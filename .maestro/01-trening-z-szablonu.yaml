@@ -1,0 +1,25 @@
+# Pierwszy trening: start z szablonu, odhaczenie serii, przerwa, pominięcie, zakończenie, historia.
+appId: pl.lukasz.trening
+name: Trening z szablonu
+---
+- launchApp:
+    clearState: true
+    permissions: { all: allow }
+- extendedWaitUntil: { visible: "Start from a template", timeout: 20000 }
+- takeScreenshot: 01-start
+- tapOn: "Start: Upper A"
+- extendedWaitUntil: { visible: "Set 1 done.*", timeout: 10000 }
+- takeScreenshot: 02-trening
+- tapOn: { text: "Set 1 done.*", index: 0 }
+- assertVisible: "Skip"
+- takeScreenshot: 03-przerwa
+- tapOn: "Skip"
+- assertNotVisible: "Skip"
+- tapOn: "Finish"
+- assertVisible: "Finish workout?"
+- takeScreenshot: 04-pytanie-o-zakonczenie
+- tapOn: { text: "Finish", below: "Finish workout\\?" }
+- extendedWaitUntil: { visible: "Start from a template", timeout: 10000 }
+- tapOn: "History"
+- assertVisible: "Upper A"
+- takeScreenshot: 05-historia

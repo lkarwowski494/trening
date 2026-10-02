@@ -57,6 +57,29 @@ scripts/check-i18n.mjs  kontrola kompletności tłumaczeń
 .github/workflows/ios-unsigned.yml   budowanie .ipa w chmurze (bez Maca, bez płatnego konta)
 ```
 
+## Droga główna (od 02.10.2026) — instalacja „ad hoc” przez EAS (płatne konto Apple Developer)
+Repozytorium: `lkarwowski494/trening` (prywatne). Build robi chmura Expo (EAS, 15 buildów iOS/mies. za darmo),
+uruchamiany z GitHuba workflow **iPhone (EAS)**. Instalacja z linku na iPhonie, ważna ok. roku, bez kabla i Sideloadly.
+TestFlight dopiero po aktualizacji Expo do SDK 54+ (od 28.04.2026 App Store Connect przyjmuje tylko buildy z Xcode 26).
+
+Jednorazowo:
+1. **App Store Connect → Users and Access → Integrations → App Store Connect API → Team Keys → +**:
+   nazwa `EAS`, dostęp **Admin**. Pobierz plik `.p8` (tylko raz!), zanotuj **Key ID** i **Issuer ID**.
+2. **developer.apple.com/account → Membership details**: zanotuj **Team ID** (10 znaków).
+3. **expo.dev** (darmowe konto) → Account settings → **Access tokens → Create token**: zanotuj token.
+4. GitHub → repozytorium → **Settings → Secrets and variables → Actions → New repository secret** (5 sekretów):
+   `EXPO_TOKEN`, `APPLE_TEAM_ID`, `ASC_KEY_ID`, `ASC_ISSUER_ID`, `ASC_API_KEY_P8` (cała treść pliku .p8, razem z liniami BEGIN/END).
+5. **Actions → iPhone (EAS) → Run workflow → akcja `zarejestruj-iphone`**. W podsumowaniu przebiegu jest link —
+   otwórz go na iPhonie w Safari i zainstaluj profil (Ustawienia → Pobrano profil). Tak samo dla kolejnych osób.
+6. **Run workflow → akcja `konfiguruj-podpis`** (certyfikat dystrybucyjny + profile dla aplikacji i widżetu).
+7. iPhone: **Ustawienia → Prywatność i ochrona → Tryb dewelopera** (wymagany też dla instalacji ad hoc).
+
+Każda nowa wersja: **Run workflow → akcja `build`** (testy + build ~20–40 min). Link „Install” jest w podsumowaniu
+przebiegu i na expo.dev (Projects → trening → Builds). Nowe urządzenie: `zarejestruj-iphone`, potem `build`.
+
+Testy na symulatorze: **Actions → E2E iOS (symulator) → Run workflow** (ręcznie przed wydaniem; scenariusze w `.maestro/`,
+zrzuty ekranu w artefakcie `e2e-ios`). Drogi z Kroków 2–3 (bez podpisu + Sideloadly) zostają jako zapas.
+
 ## Krok 0 — narzędzia (raz)
 1. Node.js LTS (20+): https://nodejs.org
 2. Git + konto GitHub (darmowe): https://github.com
@@ -75,7 +98,7 @@ zainstalować na fizycznym iPhonie — projektu na SDK 52 NIE otworzysz w Expo G
 with this version of Expo Go”). Pętla rozwoju to: zmiana → `npm run verify` → build IPA (Krok 2) → Sideloadly (Krok 3).
 Szybszą pętlę dałby dev client (`expo-dev-client` + build) albo podniesienie SDK — decyzja na później.
 
-## Krok 2 — zbuduj .ipa (GitHub Actions, za darmo)
+## Krok 2 (zapas, darmowe Apple ID) — zbuduj .ipa bez podpisu (GitHub Actions)
 1. Utwórz puste repozytorium na github.com (New repository, bez README), a w folderze projektu:
    ```
    git config --global user.name "Łukasz"          # raz, przy świeżo zainstalowanym Gicie
@@ -94,7 +117,7 @@ Szybszą pętlę dałby dev client (`expo-dev-client` + build) albo podniesienie
    u siebie — artefakty na GitHubie wygasają, a ten sam plik posłuży do odnawiania podpisu co 7 dni.
 4. Gdy przebieg się nie uda: w przebiegu jest artefakt z logiem kompilacji — wklej Claude'owi błąd z końca logu.
 
-## Krok 3 — zainstaluj na iPhonie (Sideloadly)
+## Krok 3 (zapas, darmowe Apple ID) — zainstaluj na iPhonie (Sideloadly)
 1. Podepnij iPhone kablem, na telefonie „Ufaj temu komputerowi"
 2. Sideloadly: przeciągnij `Trening-unsigned.ipa`, wpisz Apple ID (to osobne), **Start**.
    Zawsze to samo Apple ID i NIE zaznaczaj „Change Bundle ID” — inne ID instaluje drugą, pustą aplikację obok

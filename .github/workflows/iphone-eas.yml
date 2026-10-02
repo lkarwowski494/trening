@@ -1,0 +1,82 @@
+# Instalacja na iPhonie „ad hoc” przez EAS Build (decyzja 02.10.2026: konto Apple Developer, prywatne repozytorium,
+# buildy w chmurze Expo — 15 buildów iOS/mies. w darmowym planie; TestFlight dopiero po aktualizacji Expo do SDK 54+,
+# bo App Store Connect od 28.04.2026 przyjmuje tylko buildy z Xcode 26).
+#
+# Uruchamianie: Actions → „iPhone (EAS)” → Run workflow → wybierz akcję:
+#   zarejestruj-iphone  — link do otwarcia na iPhonie (raz na urządzenie; potem też dla kolejnych osób),
+#   konfiguruj-podpis   — jednorazowo: certyfikat dystrybucyjny i profile dla aplikacji i widżetu,
+#   build               — testy + build w chmurze Expo; link do instalacji w podsumowaniu przebiegu.
+# Ten job działa na Linuksie (tani w minutach) — sam build odbywa się na maszynach Expo.
+#
+# Wymagane sekrety (Settings → Secrets and variables → Actions):
+#   EXPO_TOKEN, APPLE_TEAM_ID, ASC_KEY_ID, ASC_ISSUER_ID, ASC_API_KEY_P8 (cała treść pliku .p8).
+name: iPhone (EAS)
+on:
+  workflow_dispatch:
+    inputs:
+      akcja:
+        description: Co zrobić
+        type: choice
+        options: [build, zarejestruj-iphone, konfiguruj-podpis]
+        default: build
+concurrency:
+  group: iphone-eas
+  cancel-in-progress: false
+env:
+  EAS_CLI: 24.8.0
+  EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+  EXPO_APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+  EXPO_APPLE_TEAM_TYPE: INDIVIDUAL
+  EXPO_ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+  EXPO_ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+  EXPO_ASC_API_KEY_PATH: ${{ github.workspace }}/.secrets/asc.p8
+jobs:
+  eas:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+      - name: Sekrety
+        env:
+          ASC_P8: ${{ secrets.ASC_API_KEY_P8 }}
+        run: |
+          missing=""
+          for v in EXPO_TOKEN EXPO_APPLE_TEAM_ID EXPO_ASC_KEY_ID EXPO_ASC_ISSUER_ID ASC_P8; do [ -n "${!v}" ] || missing="$missing $v"; done
+          if [ -n "$missing" ]; then echo "::error::Brak sekretów:$missing (Settings → Secrets and variables → Actions; ASC_P8 = ASC_API_KEY_P8, EXPO_APPLE_TEAM_ID = APPLE_TEAM_ID)"; exit 1; fi
+          mkdir -p .secrets && printf '%s\n' "$ASC_P8" > .secrets/asc.p8 && chmod 600 .secrets/asc.p8
+          grep -q "BEGIN PRIVATE KEY" .secrets/asc.p8 || { echo "::error::ASC_API_KEY_P8 nie wygląda na plik .p8 (brak BEGIN PRIVATE KEY)"; exit 1; }
+      - run: npm ci
+      - name: Testy (jak w buildzie bez podpisu)
+        if: inputs.akcja == 'build'
+        run: npm run typecheck && npm run check:i18n && npm test -- --maxWorkers=2
+      - name: Projekt Expo (utworzenie albo połączenie po nazwie)
+        run: npx --yes eas-cli@$EAS_CLI init --non-interactive --force
+      - name: Link do rejestracji iPhone'a
+        if: inputs.akcja == 'zarejestruj-iphone'
+        run: |
+          npm i --silent --prefix "$RUNNER_TEMP/eascli" eas-cli@$EAS_CLI
+          URL=$(NODE_PATH="$RUNNER_TEMP/eascli/node_modules" node scripts/eas/device-url.cjs)
+          echo "$URL"
+          { echo "## Otwórz ten link na iPhonie w Safari"; echo; echo "$URL"; echo; echo "Zainstaluj profil (Ustawienia → Pobrano profil), potem uruchom akcję **konfiguruj-podpis** (pierwszy raz) albo **build**."; } >> "$GITHUB_STEP_SUMMARY"
+      - name: Podpis (certyfikat i profile ad hoc)
+        if: inputs.akcja == 'konfiguruj-podpis'
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq expect
+          expect scripts/eas/configure-credentials.exp
+      - name: Build na iPhone'a (chmura Expo)
+        if: inputs.akcja == 'build'
+        run: |
+          npx --yes eas-cli@$EAS_CLI build -p ios --profile adhoc --non-interactive --refresh-ad-hoc-provisioning-profile --wait --json > build.json
+          ID=$(jq -r '.[0].id' build.json); STATUS=$(jq -r '.[0].status' build.json)
+          OWNER=$(jq -r '.[0].project.ownerAccount.name // empty' build.json); SLUG=$(jq -r '.[0].project.slug // "trening"' build.json)
+          PAGE="https://expo.dev/accounts/${OWNER}/projects/${SLUG}/builds/${ID}"
+          { echo "## Build: $STATUS"; echo; echo "Instalacja na iPhonie: otwórz w Safari i kliknij **Install**:"; echo; echo "$PAGE"; } >> "$GITHUB_STEP_SUMMARY"
+          echo "$PAGE"
+          [ "$STATUS" = "FINISHED" ]
+      - name: Sprzątanie klucza
+        if: always()
+        run: rm -rf .secrets

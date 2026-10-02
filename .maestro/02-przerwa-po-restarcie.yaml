@@ -1,0 +1,17 @@
+# Przerwa przeżywa zabicie aplikacji: po ponownym uruchomieniu pasek przerwy nadal jest.
+appId: pl.lukasz.trening
+name: Przerwa po restarcie
+---
+- launchApp:
+    clearState: true
+    permissions: { all: allow }
+- extendedWaitUntil: { visible: "Start from a template", timeout: 20000 }
+- tapOn: "Start: Upper A"
+- extendedWaitUntil: { visible: "Set 1 done.*", timeout: 10000 }
+- tapOn: { text: "Set 1 done.*", index: 0 }
+- assertVisible: "Skip"
+- stopApp
+- launchApp:
+    clearState: false
+- extendedWaitUntil: { visible: "Skip", timeout: 20000 }
+- takeScreenshot: 06-przerwa-po-restarcie

@@ -1,0 +1,20 @@
+# Ekran zmiany kolejności w trakcie treningu (samo przeciąganie sprawdzają testy jednostkowe — tu ekran i powrót).
+appId: pl.lukasz.trening
+name: Kolejność ćwiczeń
+---
+- launchApp:
+    clearState: true
+    permissions: { all: allow }
+- extendedWaitUntil: { visible: "Start from a template", timeout: 20000 }
+- tapOn: "Start: Upper A"
+- extendedWaitUntil: { visible: "Set 1 done.*", timeout: 10000 }
+- scrollUntilVisible:
+    element: "≡ Reorder"
+    direction: DOWN
+    timeout: 30000
+- tapOn: "≡ Reorder"
+- assertVisible: "Exercise order"
+- takeScreenshot: 07-kolejnosc
+- scrollUntilVisible: { element: "Done", direction: DOWN, timeout: 20000 }
+- tapOn: "Done"
+- assertVisible: "Finish"

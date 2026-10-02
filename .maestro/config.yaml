@@ -1,0 +1,6 @@
+# Testy E2E na symulatorze iOS (Maestro) — kolejność uruchamiania. Aplikacja startuje w języku symulatora (angielski).
+flows:
+  - 01-trening-z-szablonu.yaml
+  - 02-przerwa-po-restarcie.yaml
+  - 03-kolejnosc.yaml
+  - 04-plank-stoper.yaml

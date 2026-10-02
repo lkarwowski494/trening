@@ -1,0 +1,21 @@
+# Pusty trening + plank z wyboru ćwiczeń, stoper serii, zakończenie serii.
+appId: pl.lukasz.trening
+name: Plank ze stoperem
+---
+- launchApp:
+    clearState: true
+    permissions: { all: allow }
+- extendedWaitUntil: { visible: "Start from a template", timeout: 20000 }
+- scrollUntilVisible: { element: "Empty workout", direction: DOWN, timeout: 20000 }
+- tapOn: "Empty workout"
+- tapOn: "+ Add exercise"
+- tapOn: "Search exercises…"
+- inputText: "Plank"
+- tapOn: { text: "Plank", index: 1 }
+- extendedWaitUntil: { visible: "Start set stopwatch", timeout: 10000 }
+- tapOn: { text: "Start set stopwatch", index: 0 }
+- assertVisible: "Finish set"
+- takeScreenshot: 08-stoper
+- tapOn: "Finish set"
+- assertNotVisible: "Finish set"
+- takeScreenshot: 09-plank-zapisany

@@ -1,0 +1,66 @@
+# Testy E2E na symulatorze iPhone'a (Maestro) — uruchamiane ręcznie przed wydaniem (Actions → „E2E iOS (symulator)”).
+# Repozytorium prywatne: minuty macOS liczą się ×10 z darmowego limitu (ok. 200 min/mies.), stąd tylko ręcznie.
+# Build Release na symulator nie wymaga podpisu ani konta Apple. Wynik: zrzuty ekranu i raport jako artefakty.
+name: E2E iOS (symulator)
+on:
+  workflow_dispatch:
+jobs:
+  e2e:
+    runs-on: macos-15
+    timeout-minutes: 75
+    steps:
+      - uses: actions/checkout@v5
+      - name: Select Xcode 16.2
+        run: |
+          if [ ! -d /Applications/Xcode_16.2.app ]; then echo "::error::Brak Xcode 16.2 na obrazie macos-15. Dostępne:"; ls /Applications | grep -i xcode; exit 1; fi
+          sudo xcode-select -s /Applications/Xcode_16.2.app/Contents/Developer && xcodebuild -version
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+      - run: npm ci
+      - name: Generate native iOS project (expo prebuild)
+        run: npx expo prebuild --platform ios --no-install --clean
+      - name: Install pods
+        run: cd ios && pod install
+      - name: Build (Release, symulator, bez podpisu)
+        run: |
+          set -o pipefail
+          cd ios
+          xcodebuild -workspace Trening.xcworkspace -scheme Trening -configuration Release -sdk iphonesimulator \
+            -destination 'generic/platform=iOS Simulator' -derivedDataPath build CODE_SIGNING_ALLOWED=NO \
+            2>&1 | tee xcodebuild.log | xcbeautify
+          test -d build/Build/Products/Release-iphonesimulator/Trening.app
+      - name: Simulator
+        run: |
+          DEV=$(xcrun simctl list devices available | grep -m1 -E "iPhone 16 \(" | sed -E 's/.*\(([0-9A-F-]{36})\).*/\1/')
+          [ -n "$DEV" ] || DEV=$(xcrun simctl list devices available | grep -m1 -E "iPhone" | sed -E 's/.*\(([0-9A-F-]{36})\).*/\1/')
+          echo "SIM=$DEV" >> "$GITHUB_ENV"
+          xcrun simctl boot "$DEV" || true
+          xcrun simctl bootstatus "$DEV" -b
+          xcrun simctl install "$DEV" ios/build/Build/Products/Release-iphonesimulator/Trening.app
+      - name: Install Maestro
+        run: |
+          curl -fsSL "https://get.maestro.mobile.dev" | bash
+          echo "$HOME/.maestro/bin" >> "$GITHUB_PATH"
+      - name: Maestro
+        run: |
+          mkdir -p e2e-out
+          maestro --device "$SIM" test .maestro --format junit --output e2e-out/report.xml --test-output-dir e2e-out
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: e2e-ios
+          path: |
+            e2e-out
+            *.png
+            .maestro/*.png
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: xcodebuild-log-sim
+          path: ios/xcodebuild.log

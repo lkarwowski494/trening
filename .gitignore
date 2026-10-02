@@ -1,4 +1,4 @@
-node_modules/
+node_modules
 .expo/
 dist/
 /ios/
@@ -9,3 +9,4 @@ dist/
 reports/
 *.ipa
 coverage/
+.secrets/

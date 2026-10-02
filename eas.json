@@ -1,9 +1,30 @@
 {
-  "cli": { "version": ">= 12.0.0" },
-  "build": {
-    "development": { "developmentClient": true, "distribution": "internal" },
-    "preview": { "distribution": "internal" },
-    "production": {}
+  "cli": {
+    "version": ">= 16.0.0",
+    "appVersionSource": "remote"
   },
-  "submit": { "production": {} }
+  "build": {
+    "base": {
+      "node": "22.22.2",
+      "ios": {
+        "image": "macos-sequoia-15.3-xcode-16.2"
+      }
+    },
+    "adhoc": {
+      "extends": "base",
+      "distribution": "internal",
+      "ios": {
+        "autoIncrement": true
+      }
+    },
+    "production": {
+      "extends": "base",
+      "ios": {
+        "autoIncrement": true
+      }
+    }
+  },
+  "submit": {
+    "production": {}
+  }
 }

@@ -67,6 +67,23 @@
     "web": {
       "bundler": "metro",
       "output": "single"
+    },
+    "extra": {
+      "eas": {
+        "build": {
+          "experimental": {
+            "ios": {
+              "appExtensions": [
+                {
+                  "targetName": "RestWidget",
+                  "bundleIdentifier": "pl.lukasz.trening.restwidget",
+                  "entitlements": {}
+                }
+              ]
+            }
+          }
+        }
+      }
     }
   }
 }
