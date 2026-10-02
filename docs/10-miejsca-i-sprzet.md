@@ -101,7 +101,10 @@ Jedna lista **osiągalnych ciężarów** na źródło obciążenia, liczona z je
 6. **Gumy (P-001):** zostają globalne czy stają się sprzętem miejsca? *Rekomendacja:* globalne na razie (gumy się nosi); w miejscu tylko „mam gumy: tak/nie”, dziś żadne ćwiczenie ich nie wymaga.
 7. **Podpowiedź przy dużym skoku ciężaru** (pkt 4.4): (b) prosta bramka 10% z limitem +2 powtórzeń — *rekomendacja*; (a) bez bramki.
 8. **Źródło „Poprzednio” i wstępnych wartości** (pkt 4.7): (a) najpierw to samo miejsce — *rekomendacja*; (b) zawsze ostatni trening.
-9. **Twój dom — sprawdzenie na prawdziwym szablonie:** przy sprzęcie z P-003 (ławka regulowana, drążek, poręcze, hantle) z „Legs — dom” niedostępny byłby **Przysiad z pasem (linki)** (katalog: wyciąg dolny + pas). Jak go robisz w domu? (Łydki na stopniu po przeglądzie nie wymagają już niczego.) Do tego: czy w Deadlift (hantle) / RDL 48 kg to suma dwóch hantli?
+9. **Twój dom — odpowiedzi użytkownika (02.10, 21:43):**
+   - „Przysiad z pasem (linki)” robi na **ViShape** (model nieustalony; SmartGym Pro: elektryczny opór na dwóch niezależnych linkach od dołu, 1,5–60 kg na stronę, w zestawie ławka regulowana, drążek do linek, uchwyty, opaski na kostki i pas biodrowy; nie da się na nim ciągnąć z góry — źródło: test fitnessowy.net). Wniosek do projektu: potrzebna pozycja sprzętu **„stacja z linkami / opór elektryczny (np. ViShape)”**, która daje `cable.low`, `cable.dual` i pas, a ławkę regulowaną jako osobną pozycję. Ciężary to zakres na stronę; krok regulacji **nieustalony** (do sprawdzenia na urządzeniu). To tylko pozycja sprzętu, nie integracja z ViShape, więc decyzja z 28.09 („funkcje ViShape poza zakresem”) zostaje w mocy.
+   - 48 kg w Deadlift (hantle) i RDL to **suma dwóch hantli** → zgłoszenie P-004: przy dzisiejszym trybie „na hantel” objętość tych ćwiczeń liczy się podwójnie.
+   - Hantle: 2 × **TREXO TXO-B4W002 24 kg** (regulowane pokrętłem, gryf 3 kg, 8 talerzy, waga ok. 3–24 kg według sklepów). **Dokładne kroki regulacji nieustalone** — sklepy ich nie podają; do odczytania z pokrętła (lekcja 11: nie zgadujemy). Ten model wchodzi jako preset „hantle z szybką regulacją”.
 
 ### Sprawy do rozstrzygnięcia przy wdrożeniu (z przeglądu)
 - Usunięcie miejsca: szablony i treningi zachowują `locationId` jako „(usunięte miejsce)”, a miejsca głównego nie da się usunąć, dopóki nie wskaże się innego (jak Freeletics).
@@ -122,6 +125,7 @@ Jedna lista **osiągalnych ciężarów** na źródło obciążenia, liczona z je
 ## 9. Otwarte pytania / niepewne liczby
 - Domyślne presety: zestaw hantli 1–10 co 1 kg w siłowniach komercyjnych, kettle 4/6/10/14 kg, stosy maszyn co 5 kg w UE — **niezweryfikowane** (oznaczone w raporcie). Do potwierdzenia przed wpisaniem do kodu.
 - Polskie nazwy części sprzętu oznaczone w raporcie gwiazdką — potoczne, niezweryfikowane w sklepach.
+- Kroki regulacji TREXO TXO-B4W002 i ViShape — do odczytania z urządzeń.
 - Nordic curl (kotwica stóp w domu: kanapa, pas) i „Rower” (rower stacjonarny vs własny rower na zewnątrz) — niska pewność w katalogu.
 
 ## 10. Weryfikacja
