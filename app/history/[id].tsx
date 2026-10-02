@@ -2,6 +2,7 @@ import React from 'react';
 import { ScrollView, View, Alert } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Screen, H1, Muted, Btn, Txt } from '@/components/ui';
+import { beginEdit } from '@/lib/edit';
 import { getState, useTick, exById, isBW, bandById, loadLabel, fmtDate, fmtTime, fmtDur, fmtSec, fmtDist, volume, deleteWorkout, groupLabels, shortBand, bandA11y, loadLabelShort } from '@/lib/store';
 import { hasTime, hasReps, hasWeight, hasDistance, SET_KIND_MARK, SET_KIND_LABEL } from '@/lib/seed';
 import { prMap } from '@/lib/stats';
@@ -16,7 +17,7 @@ export default function HistoryDetail() {
   const cell = (v: React.ReactNode, flex = 1) => <Txt style={{ flex, fontSize: 14, fontVariant: ['tabular-nums'] }}>{v}</Txt>;
   return (
     <Screen><ScrollView contentContainerStyle={{ paddingVertical: 10, paddingBottom: 60 }}>
-      <H1>{w.templateName || t('Trening')}</H1>
+      <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}><View style={{ flex: 1 }}><H1>{w.templateName || t('Trening')}</H1></View><Btn title={t('Edytuj')} small accessibilityLabel={t('Edytuj sesję')} onPress={() => { if (beginEdit(w.id)) router.push(`/history/edit/${w.id}`); }} /></View>
       <Muted style={{ marginBottom: 14 }}>{fmtDate(w.startedAt)} {fmtTime(w.startedAt)} · {fmtDur(((w.finishedAt ?? w.startedAt) - w.startedAt) / 1000)}{volume(w) > 0 ? ` · ${t('objętość')} ${fmtVol(volume(w))}` : ''}</Muted>
       {w.note ? <Muted style={{ marginBottom: 10 }}>{w.note}</Muted> : null}
       {w.exercises.map((e, i) => { const ex = exById(e.exerciseId); const bw = ex ? isBW(ex) : false; const m = ex?.metric ?? 'weight_reps'; const rpe = getState().settings.showRpe; const anyBand = e.sets.some(s => s.bandId);

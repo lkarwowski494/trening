@@ -44,6 +44,8 @@ function Root() {
         <Stack.Screen name="reorder" options={{ title: t('Kolejność ćwiczeń') }} />
         <Stack.Screen name="exercise/[id]" options={{ title: t('Ćwiczenie') }} />
         <Stack.Screen name="history/[id]" options={{ title: t('Sesja') }} />
+        <Stack.Screen name="history/add" options={{ title: t('Trening wstecz') }} />
+        <Stack.Screen name="history/edit/[id]" options={{ title: t('Edycja sesji'), gestureEnabled: false /* docs/12: szkic nie przepada gestem — Anuluj/Zapisz w nagłówku */ }} />
         <Stack.Screen name="more/bands" options={{ title: t('Gumy') }} />
         <Stack.Screen name="more/progress" options={{ title: t('Postępy') }} />
         <Stack.Screen name="more/morning" options={{ title: t('Poranny wpis') }} />
