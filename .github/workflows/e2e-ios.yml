@@ -4,9 +4,17 @@
 name: E2E iOS (symulator)
 on:
   workflow_dispatch:
+    inputs:
+      aplikacja_z_przebiegu:
+        description: 'Numer przebiegu z gotową aplikacją (pusty = zbuduj od nowa; ~30 min mniej, gdy zmieniasz tylko scenariusze .maestro)'
+        required: false
+        default: ''
 jobs:
   e2e:
     runs-on: macos-15
+    permissions:
+      contents: read
+      actions: read
     timeout-minutes: 75
     steps:
       - uses: actions/checkout@v5
@@ -22,17 +30,22 @@ jobs:
         with:
           distribution: temurin
           java-version: 17
-      - run: npm ci
+      - if: inputs.aplikacja_z_przebiegu == ''
+        run: npm ci
       - name: Generate native iOS project (expo prebuild)
+        if: inputs.aplikacja_z_przebiegu == ''
         run: npx expo prebuild --platform ios --no-install --clean
       - name: Install pods
+        if: inputs.aplikacja_z_przebiegu == ''
         run: cd ios && pod install
       - name: Środowisko symulatora dla Xcode 16.2 (iOS 18.2)
+        if: inputs.aplikacja_z_przebiegu == ''
         # Obraz macos-15 ma tylko nowsze środowiska symulatora (18.5+, 26), a build na symulator wymaga zgodnego z SDK Xcode.
         run: |
           if ! xcrun simctl list runtimes | grep -q "iOS 18.2"; then sudo xcodebuild -downloadPlatform iOS; fi
           xcrun simctl list runtimes
       - name: Build (Release, symulator, bez podpisu)
+        if: inputs.aplikacja_z_przebiegu == ''
         run: |
           set -o pipefail
           cd ios
@@ -40,6 +53,24 @@ jobs:
             -destination 'generic/platform=iOS Simulator' -derivedDataPath build CODE_SIGNING_ALLOWED=NO \
             2>&1 | tee xcodebuild.log | xcbeautify
           test -d build/Build/Products/Release-iphonesimulator/Trening.app
+      - name: Zapis aplikacji (do ponownego użycia)
+        if: inputs.aplikacja_z_przebiegu == ''
+        run: cd ios/build/Build/Products/Release-iphonesimulator && zip -qry "$GITHUB_WORKSPACE/Trening-sim.zip" Trening.app
+      - uses: actions/upload-artifact@v4
+        if: inputs.aplikacja_z_przebiegu == ''
+        with:
+          name: trening-sim-app
+          path: Trening-sim.zip
+          retention-days: 14
+      - uses: actions/download-artifact@v4
+        if: inputs.aplikacja_z_przebiegu != ''
+        with:
+          name: trening-sim-app
+          run-id: ${{ inputs.aplikacja_z_przebiegu }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Rozpakowanie aplikacji z wcześniejszego przebiegu
+        if: inputs.aplikacja_z_przebiegu != ''
+        run: mkdir -p ios/build/Build/Products/Release-iphonesimulator && unzip -q Trening-sim.zip -d ios/build/Build/Products/Release-iphonesimulator
       - name: Simulator
         run: |
           DEV=$(xcrun simctl list devices available | grep -m1 -E "iPhone 16 \(" | sed -E 's/.*\(([0-9A-F-]{36})\).*/\1/')

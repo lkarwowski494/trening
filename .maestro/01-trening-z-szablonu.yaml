@@ -24,6 +24,6 @@ name: Trening z szablonu
 - assertVisible: "Upper A"
 - takeScreenshot: 05-zapisana-sesja
 - tapOn: "Back"
-- tapOn: "History"
+- tapOn: "History.*"
 - assertVisible: "Upper A.*"
 - takeScreenshot: 06-historia

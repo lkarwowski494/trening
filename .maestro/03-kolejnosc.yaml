@@ -17,4 +17,4 @@ name: Kolejność ćwiczeń
 - takeScreenshot: 07-kolejnosc
 - scrollUntilVisible: { element: "Done", direction: DOWN, timeout: 20000 }
 - tapOn: "Done"
-- assertVisible: "Finish"
+- assertVisible: "Reorder exercises"
