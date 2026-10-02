@@ -1,5 +1,5 @@
 import React from 'react';
-import { Pressable, Text, TextInput, View, StyleSheet, type ViewStyle, type TextStyle, type TextInputProps, type StyleProp } from 'react-native';
+import { Pressable, Switch, Text, TextInput, View, StyleSheet, type ViewStyle, type TextStyle, type TextInputProps, type StyleProp } from 'react-native';
 import { useTheme } from '@/lib/theme';
 import { lang } from '@/lib/i18n';
 import { wu } from '@/lib/units';
@@ -94,9 +94,43 @@ export function Chip({ label, on, onPress, toggle, a11yLabel, a11yHint, disabled
   const a11y = toggle ? { accessibilityRole: 'switch' as const, accessibilityLabel: field ?? label, accessibilityValue: { text: label }, accessibilityState: { checked: on, disabled: !!disabled } } : { accessibilityRole: 'button' as const, accessibilityLabel: a11yLabel ?? label, accessibilityHint: a11yHint ?? field, accessibilityState: { selected: on, disabled: !!disabled } };
   return <Pressable onPress={disabled ? undefined : onPress} {...a11y} hitSlop={4} style={[s.chip, { backgroundColor: on ? t.accent : t.surface2, borderColor: on ? t.accent : t.line }, disabled && !on && { opacity: 0.5 }]}><Text style={{ color: on ? t.accentInk : t.muted, fontWeight: '600', fontSize: 13 }}>{label}</Text></Pressable>;
 }
+/**
+ * P-002 (02.10.2026): ustawienia jak w Ustawieniach iOS (Apple HIG: przełącznik dla wł./wył., kontrolka segmentowa dla 1 z 2–4).
+ * Wiersz z opisem po lewej i systemowym przełącznikiem po prawej — zamiast przycisku na całą szerokość.
+ */
+export function SwitchRow({ label, detail, value, onChange, disabled }: { label: string; detail?: string; value: boolean; onChange: (v: boolean) => void; disabled?: boolean }) {
+  const t = useTheme();
+  return (
+    <View style={[s.switchRow, { borderBottomColor: t.line }]}>
+      <View style={{ flex: 1, minWidth: 0 }}>
+        <Text maxFontSizeMultiplier={1.4} style={{ color: t.text, fontSize: 16 }}>{label}</Text>
+        {detail ? <Text maxFontSizeMultiplier={1.4} style={{ color: t.muted, fontSize: 13, marginTop: 2 }}>{detail}</Text> : null}
+      </View>
+      <Switch value={value} disabled={disabled} onValueChange={onChange} trackColor={{ true: t.accent, false: t.surface2 }} ios_backgroundColor={t.surface2}
+        accessibilityRole="switch" accessibilityLabel={label} accessibilityHint={detail} accessibilityState={{ checked: value, disabled: !!disabled }} />
+    </View>
+  );
+}
+/** Kontrolka segmentowa: jedna z kilku opcji w jednym wąskim pasku (język, jednostka). */
+export function Segmented<T extends string>({ options, value, onChange, label }: { options: [T, string][]; value: T; onChange: (v: T) => void; label: string }) {
+  const t = useTheme();
+  return (
+    <View accessibilityRole="radiogroup" accessibilityLabel={label} style={[s.seg, { backgroundColor: t.surface2, borderColor: t.line }]}>
+      {options.map(([k, l]) => { const on = k === value; return (
+        <Pressable key={k} onPress={() => { if (!on) onChange(k); }} accessibilityRole="button" accessibilityLabel={l} accessibilityHint={label} accessibilityState={{ selected: on }} style={[s.segItem, on && { backgroundColor: t.accent }]}>
+          <Text maxFontSizeMultiplier={1.3} numberOfLines={2} style={{ color: on ? t.accentInk : t.text, fontWeight: on ? '700' : '500', fontSize: 14, textAlign: 'center' }}>{l}</Text>
+        </Pressable>); })}
+    </View>
+  );
+}
+/** Nagłówek grupy ustawień (jak sekcje w Ustawieniach iOS). */
+export function SectionTitle({ children }: { children: React.ReactNode }) { const t = useTheme(); return <Text accessibilityRole="header" maxFontSizeMultiplier={1.4} style={{ color: t.muted, fontSize: 13, fontWeight: '600', letterSpacing: 0.5, textTransform: 'uppercase', marginTop: 22, marginBottom: 4 }}>{children}</Text>; }
 export function Empty({ children }: { children: React.ReactNode }) { const t = useTheme(); return <View style={[s.empty, { borderColor: t.line }]}><Text style={{ color: t.muted, textAlign: 'center' }}>{children}</Text></View>; }
 
 const s = StyleSheet.create({
+  switchRow: { flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 10, minHeight: 52, borderBottomWidth: StyleSheet.hairlineWidth },
+  seg: { flexDirection: 'row', borderWidth: 1, borderRadius: 9, padding: 2, alignSelf: 'stretch' },
+  segItem: { flex: 1, minHeight: 40, alignItems: 'center', justifyContent: 'center', borderRadius: 7, paddingHorizontal: 6 },
   btn: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', paddingVertical: 11, paddingHorizontal: 16, borderRadius: 10, borderWidth: 1, minHeight: 44 },
   item: { flexDirection: 'row', alignItems: 'center', gap: 10, paddingRight: 4, borderBottomWidth: 1 },
   itemPress: { flex: 1, flexDirection: 'row', alignItems: 'center', gap: 10, paddingVertical: 14, paddingHorizontal: 4, minHeight: 56 },

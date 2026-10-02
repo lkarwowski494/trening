@@ -31,10 +31,10 @@ describe('runda 1 — logika', () => {
     const tpl = store.newTemplate(); tpl.items.push({ id: 'i1', exerciseId: e.id, sets: 3, repMin: 5, repMax: 5, restSec: 60, startWeight: 100, targetSec: '', groupId: null });
     store.startFromTemplate(tpl); expect(store.getState().active!.exercises[0].restSec).toBe(60);
   });
-  test('R1-05 zmiana gumy na gumę bez kg zdejmuje asystę poprzedniej', () => {
+  test('R1-05 → P-001 (02.10): wybór i zmiana gumy nie zmieniają ±kg (także ze starym nominalKg w danych)', () => {
     const st = store.getState(); st.bands[0].nominalKg = 20;
-    const s: any = { bandId: st.bands[0].id, addKg: '' }; store.applyBandAssist(s, ''); expect(s.addKg).toBe(-20);
-    const prev = s.bandId; s.bandId = st.bands[1].id; store.applyBandAssist(s, prev); expect(s.addKg).toBe('');
+    const s: any = { bandId: st.bands[0].id, addKg: '' }; store.applyBandAssist(s, ''); expect(s.addKg).toBe('');
+    s.addKg = -15; const prev = s.bandId; s.bandId = st.bands[1].id; store.applyBandAssist(s, prev); expect(s.addKg).toBe(-15);
   });
   test('R1-06 powtórz ostatni porządkuje superset po usuniętym ćwiczeniu', () => {
     const w = addWorkout(at(2026, 9, 1), [['Back Squat', [{ weight: 100, reps: 5 }]], ['Pull Up', [{ reps: 5 }]]]);
@@ -390,7 +390,7 @@ describe('runda 5', () => {
   });
   test('R5-07 pola na ekranie gum mają opisy dla VoiceOver', async () => {
     await renderApp(); await go('/more/bands'); await flushAll(10);
-    expect(screen.getAllByLabelText('Kolor gumy')).toHaveLength(3); expect(screen.getAllByLabelText('Poziom (1–7)')).toHaveLength(3); expect(screen.getAllByLabelText('Asysta (kg)')).toHaveLength(3);
+    expect(screen.getAllByLabelText('Kolor gumy')).toHaveLength(3); expect(screen.getAllByLabelText('Poziom (1–7)')).toHaveLength(3); expect(screen.queryAllByLabelText('Asysta (kg)')).toHaveLength(0); /* P-001: gumy bez kg */
   });
 });
 
@@ -1091,7 +1091,7 @@ describe('runda 45', () => {
     const tpl = store.newTemplate(); tpl.items.push({ id: 'c', exerciseId: cu.id, sets: 3, repMin: 6, repMax: 8, restSec: null, startWeight: 0, targetSec: '', groupId: null }); store.startFromTemplate(tpl);
     const sets = st.active!.exercises[0].sets; expect(sets[1].addKg).toBe(0);
     sets[0].bandId = st.bands[0].id; store.applyBandAssist(sets[0], ''); sets[0].reps = 6; store.toggleDone(0, 0);
-    expect([sets[1].bandId, sets[1].addKg]).toEqual([st.bands[0].id, -20]);
+    expect([sets[1].bandId, sets[1].addKg]).toEqual([st.bands[0].id, 0]); /* P-001: guma przechodzi, ale bez kg */
   });
 });
 
@@ -1129,8 +1129,8 @@ describe('runda 47', () => {
     addWorkout(at(2026, 9, 1), [['Pull Up', [{ reps: 8, bandId: top.id, addKg: -30 }]]]);
     await act(async () => { store.startEmpty(); store.addExerciseToActive(ex('Pull Up')); const s0 = st.active!.exercises[0].sets[0]; s0.bandId = top.id; s0.addKg = -30; store.save(st.active); }); await flushAll(10);
     await tap(screen.getAllByLabelText(/^Guma: /)[0]); await flushAll(5);
-    const s0 = st.active!.exercises[0].sets[0]; expect([s0.bandId, s0.addKg]).toEqual(['', '']);
-    await act(async () => { s0.reps = 8; store.toggleDone(0, 0); }); expect([s0.bandId, s0.addKg]).toEqual(['', '']);
+    const s0 = st.active!.exercises[0].sets[0]; expect([s0.bandId, s0.addKg]).toEqual(['', -30]); /* P-001: zdjęcie gumy nie rusza ±kg */
+    await act(async () => { s0.reps = 8; store.toggleDone(0, 0); }); expect([s0.bandId, s0.addKg]).toEqual(['', -30]);
   });
   test('R47-04 guma nie trafia do serii z własnym obciążeniem (np. asysta −10 z szablonu); ±0 zastępuje asystą gumy', async () => {
     await fresh(); const st = store.getState(); const A = st.bands[0]; A.nominalKg = 20; const cu = ex('Chin Up');
@@ -1178,15 +1178,15 @@ describe('runda 48', () => {
     store.startEmpty(); store.addExerciseToActive(ex('Pull Up')); const sets = st.active!.exercises[0].sets; sets[0].noBand = true; sets[0].reps = 8; store.toggleDone(0, 0);
     store.addSet(0); expect(sets[1].noBand).toBe(true); store.toggleDone(0, 1); expect(sets[1].bandId).toBe('');
   });
-  test('R48-05 usunięcie gumy zdejmuje ją (z asystą) z treningu w toku', async () => {
+  test('R48-05 usunięcie gumy zdejmuje ją z treningu w toku (P-001: ±kg zostaje)', async () => {
     await renderApp(); const st = store.getState(); st.bands.forEach(b => { b.nominalKg = 20; }); const ids = st.bands.map(b => b.id);
     await act(async () => { store.startEmpty(); store.addExerciseToActive(ex('Pull Up')); ids.slice(1).forEach(() => store.addSet(0)); st.active!.exercises[0].sets.forEach((s, i) => { s.bandId = ids[i]; s.addKg = -20; }); store.save(st.active); });
     await go('/more/bands'); await flushAll(10); await tap(screen.getAllByLabelText('Usuń gumę')[0]); pressAlert('Usunąć gumę?', 'Usuń'); await flushAll(5);
     const gone = ids.findIndex(id => !st.bands.some(b => b.id === id)); expect(gone).toBeGreaterThanOrEqual(0);
-    const sets = st.active!.exercises[0].sets; expect([sets[gone].bandId, sets[gone].addKg]).toEqual(['', '']); expect(sets.filter(s => s.bandId).length).toBe(ids.length - 1);
+    const sets = st.active!.exercises[0].sets; expect([sets[gone].bandId, sets[gone].addKg]).toEqual(['', -20]); expect(sets.filter(s => s.bandId).length).toBe(ids.length - 1);
   });
   test('R48-06 zdjęcie gumy o nieznanej asyście zabiera jej asystę; asysta podpowiedzi gumy nie trafia do ćwiczenia bez asysty gumą', async () => {
-    await fresh(); const st = store.getState(); const A = st.bands[0]; A.nominalKg = ''; const s: any = { bandId: '', addKg: -15 }; store.applyBandAssist(s, A.id); expect(s.addKg).toBe('');
+    await fresh(); const st = store.getState(); const A = st.bands[0]; A.nominalKg = ''; const s: any = { bandId: '', addKg: -15 }; store.applyBandAssist(s, A.id); expect(s.addKg).toBe(-15); /* P-001: zdjęcie gumy nie rusza ±kg */
     const pu = ex('Pull Up'); addWorkout(at(2026, 9, 1), [['Pull Up', [{ reps: 8, bandId: A.id, addKg: -20 }]]]); pu.bandAssistable = false;
     store.startEmpty(); store.addExerciseToActive(pu); const s0 = st.active!.exercises[0].sets[0]; store.toggleDone(0, 0); expect([s0.bandId, s0.addKg]).toEqual(['', '']);
   });
@@ -1254,7 +1254,7 @@ describe('runda 50', () => {
     await act(async () => { store.removeItem(tpl.items, 0, tpl); }); await flushAll(10); expect(screen.queryAllByText(/13/).length).toBeGreaterThan(before);
   });
   test('R50-02 zmiana gumy o nieznanej asyście na inną o nieznanej zabiera starą asystę; „62,5” z importu to 62,5', async () => {
-    await fresh(); const [A, B] = store.getState().bands; A.nominalKg = ''; B.nominalKg = ''; const s: any = { bandId: B.id, addKg: -15 }; store.applyBandAssist(s, A.id); expect(s.addKg).toBe('');
+    await fresh(); const [A, B] = store.getState().bands; A.nominalKg = ''; B.nominalKg = ''; const s: any = { bandId: B.id, addKg: -15 }; store.applyBandAssist(s, A.id); expect(s.addKg).toBe(-15); /* P-001 */
     const raw = JSON.parse(JSON.stringify(store.getState())); raw.workouts.push({ startedAt: at(2026, 9, 1), finishedAt: at(2026, 9, 1, 19), exercises: [{ exerciseId: ex('Back Squat').id, sets: [{ weight: '62,5', reps: '8', done: true }] }] });
     const m = store.migrate(raw); expect([m.workouts[0].exercises[0].sets[0].weight, m.workouts[0].exercises[0].sets[0].reps]).toEqual([62.5, 8]);
   });
@@ -1322,11 +1322,11 @@ describe('runda 51', () => {
     expect(store.shortBand(st.bands[0])).toBe('R2');
   });
 });
-test('R51-05 zmiana gumy zawsze zabiera asystę poprzedniej (także wpisaną ręcznie), dociążenie zostaje', async () => {
+test('R51-05 → P-001: zmiana gumy nie rusza ±kg (ani asysty, ani dociążenia)', async () => {
   await fresh(); const [A, B] = store.getState().bands; A.nominalKg = 20; B.nominalKg = '';
-  const s: any = { bandId: B.id, addKg: -12 }; store.applyBandAssist(s, A.id); expect(s.addKg).toBe('');
+  const s: any = { bandId: B.id, addKg: -12 }; store.applyBandAssist(s, A.id); expect(s.addKg).toBe(-12);
   const s2: any = { bandId: '', addKg: 10 }; store.applyBandAssist(s2, A.id); expect(s2.addKg).toBe(10);
-  const s3: any = { bandId: A.id, addKg: -10 }; store.applyBandAssist(s3, ''); expect(s3.addKg).toBe(-20);
+  const s3: any = { bandId: A.id, addKg: -10 }; store.applyBandAssist(s3, ''); expect(s3.addKg).toBe(-10);
   const s4: any = { bandId: B.id, addKg: -10 }; store.applyBandAssist(s4, ''); expect(s4.addKg).toBe(-10);
 });
 
@@ -1351,9 +1351,9 @@ describe('runda 52', () => {
   });
   test('R52-05 guma z podpowiedzi dostaje swoją (już znaną) asystę', async () => {
     await fresh(); const st = store.getState(); const A = st.bands[0]; addWorkout(at(2026, 9, 1), [['Pull Up', [{ reps: 8, bandId: A.id }, { reps: 8, bandId: A.id }]]]); A.nominalKg = 20;
-    store.startEmpty(); store.addExerciseToActive(ex('Pull Up')); const s = st.active!.exercises[0].sets[0]; store.toggleDone(0, 0); expect([s.bandId, s.addKg]).toEqual([A.id, -20]);
+    store.startEmpty(); store.addExerciseToActive(ex('Pull Up')); const s = st.active!.exercises[0].sets[0]; store.toggleDone(0, 0); expect([s.bandId, s.addKg]).toEqual([A.id, '']); /* P-001: guma z podpowiedzi bez kg */
     store.toggleDone(0, 0); expect([s.bandId, s.addKg]).toEqual(['', '']);
-    store.cancelWorkout(); store.repeatLast(); const r = st.active!.exercises[0].sets[0]; expect([r.bandId, r.addKg]).toEqual([A.id, -20]);
+    store.cancelWorkout(); store.repeatLast(); const r = st.active!.exercises[0].sets[0]; expect([r.bandId, r.addKg]).toEqual([A.id, '']);
   });
   test('R52-06 import: przerwa serii i czasy stopera w rozsądnych granicach; tylko tekstowe healthUUID', async () => {
     await fresh(); const raw = JSON.parse(JSON.stringify(store.getState())); raw.timer = { restTotal: 1e300, setTarget: '90', restEndAt: '2026-09-01' };
@@ -1382,8 +1382,8 @@ describe('runda 53', () => {
   });
   test('R53-03 asysta z podpowiedzi nie trafia do ćwiczenia bez ±kg; cofnięcie zdejmuje gumę razem z poprawioną asystą', async () => {
     await fresh(); const st = store.getState(); const A = st.bands[0]; addWorkout(at(2026, 9, 1), [['Pull Up', [{ reps: 8, bandId: A.id }]]]); A.nominalKg = 20;
-    store.startEmpty(); store.addExerciseToActive(ex('Pull Up')); const s = st.active!.exercises[0].sets[0]; store.toggleDone(0, 0); expect(s.addKg).toBe(-20);
-    s.addKg = -15; store.toggleDone(0, 0); expect([s.bandId, s.addKg]).toEqual(['', '']);
+    store.startEmpty(); store.addExerciseToActive(ex('Pull Up')); const s = st.active!.exercises[0].sets[0]; store.toggleDone(0, 0); expect(s.addKg).toBe(''); /* P-001 */
+    s.addKg = -15; store.toggleDone(0, 0); expect([s.bandId, s.addKg]).toEqual(['', -15]); /* wpisane ręcznie zostaje */
     store.cancelWorkout(); const pu = ex('Pull Up'); pu.metric = 'reps'; store.repeatLast(); const r = st.active!.exercises[0].sets[0]; expect([r.bandId, r.addKg]).toEqual([A.id, '']);
   });
   test('R53-04 przerwa kończąca się dalej niż cała przerwa (uszkodzony zapis) nie wraca po restarcie', async () => {
@@ -1402,12 +1402,12 @@ describe('runda 54', () => {
     const a = store.getState().active!; expect([a.exercises[0].sets[0].weight, a.exercises[1].sets[0].distanceM]).toEqual([0, 1e6]);
     expect(store.migrate(JSON.parse(JSON.stringify(store.getState())))).toEqual(JSON.parse(JSON.stringify(store.getState())));
   });
-  test('R54-02 usunięcie gumy zabiera też poprawioną asystę z treningu w toku; pusty ekran gum ma opis', async () => {
+  test('R54-02 usunięcie gumy nie zabiera ±kg (P-001); pusty ekran gum ma opis', async () => {
     await renderApp(); const st = store.getState(); st.bands.forEach(b => { b.nominalKg = 20; });
     await act(async () => { store.startEmpty(); store.addExerciseToActive(ex('Pull Up')); const s = st.active!.exercises[0].sets[0]; s.bandId = st.bands[0].id; s.addKg = -15; store.save(st.active); });
     await go('/more/bands'); await flushAll(10); const n = st.bands.length;
     for (let i = 0; i < n; i++) { await tap(screen.getAllByLabelText('Usuń gumę')[0]); pressAlert('Usunąć gumę?', 'Usuń'); await flushAll(5); }
-    const s = st.active!.exercises[0].sets[0]; expect([s.bandId, s.addKg]).toEqual(['', '']); expect(screen.getByText(/Brak gum/)).toBeTruthy();
+    const s = st.active!.exercises[0].sets[0]; expect([s.bandId, s.addKg]).toEqual(['', -15]); expect(screen.getByText(/Brak gum/)).toBeTruthy();
   });
   test('R54-03 link do postępów ćwiczenia przy otwartym ekranie postępów pokazuje to ćwiczenie', async () => {
     await renderApp({ url: '/more/progress' }); addWorkout(Date.now() - 86400e3, [['Plank', [{ durationSec: 60 }]]]); await flushAll(10);

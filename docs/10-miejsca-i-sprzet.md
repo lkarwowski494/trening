@@ -62,6 +62,35 @@ Jedna lista **osiągalnych ciężarów** na źródło obciążenia, liczona z je
 - **Para czy jeden hantel:** sam `loadMode` tego nie rozstrzyga. One Arm Row, Concentration Curl i Triceps Kickback mają `per_dumbbell`, a używa się jednego hantla. Do katalogu trzeba dodać `implements: 1 | 2`, które mówi, z której listy brać ciężary: pary (talerze dzielone na 4) czy pojedynczego (na 2). Przy trybie `total` lista pary ×2. Przy okazji wyszło, że w szablonie domowym Deadlift (hantle) i RDL mają 48 kg, a pozostałe hantle najwyżej 24, czyli prawdopodobnie suma wpisana pod `per_dumbbell` — do wyjaśnienia z użytkownikiem.
 - **kg/lb:** masy w aplikacji są w kg z dokładnością 0,01 (`kg2`), więc talerz 45 lb = 20,41 kg. Porównanie „podpowiedź ∈ dostępne” musi mieć tolerancję (np. 0,01 kg) i iść przez te same funkcje przeliczające co dziś (`wIn` / `dispKg`).
 
+### 3.4 Stacja z oporem elektrycznym / magnetycznym (jedna pozycja — decyzja użytkownika 02.10, 21:47)
+
+„Możesz dodać sprzęt z oporem magnetycznym jako jedno. Są inne sprzęty, które pozwalają na to samo, a nawet więcej.” Research (02.10) objął: ViShape SmartGym Pro i Lite, Speediance Gym Monster 2 / Gym Pal, Tonal 2, Vitruvian Trainer+, Beyond Power Voltra I, Amp, Oxefit XS1, Forme Studio Lift.
+
+Wspólny wzorzec: dwie niezależne linki napędzane silnikiem, ciężar ustawiany **na stronę**, krok zwykle 0,5 kg albo 1 lb, minimum ok. 1,5–3 kg na stronę. Urządzenia różnią się głównie **położeniem linek**: z podłogi (ViShape, Vitruvian, Gym Pal) albo z ramion o regulowanej wysokości (Tonal, Gym Monster, Amp). Voltra ma jedną linkę.
+
+Pozycja „Stacja z oporem elektrycznym / magnetycznym (np. ViShape, Speediance, Tonal…)”:
+
+- **Daje zawsze:** `cable.low`, `cable.dual` (dwie niezależne linki), uchwyty, drążek, opaski na kostki, pas biodrowy.
+- **Opcje do zaznaczenia:**
+  - „ramiona regulowane / wysoki wyciąg” → `cable.high`, `cable.mid` (ściąganie z góry, face pull, krzyżowanie linek);
+  - „ławka w zestawie” (płaska / regulowana);
+  - „lina”;
+  - „jedna linka” (np. Voltra) — wyłącza `cable.dual`;
+  - pas i opaski można odznaczyć (Tonal i Forme nie mają pasa).
+- **Ciężary:** zakres na stronę + krok + jednostka urządzenia. Seria zapisuje, ile linek pracowało (1 albo 2), a suma = liczba linek × ciężar na stronę. Dodatkowe ustawienie: urządzenie pokazuje „na stronę” albo „łącznie” — żeby wpisywać tę liczbę, którą widać na ekranie.
+- **Presety:**
+  - ViShape Pro: 1,5–65 kg na stronę, krok 0,5 kg. Wg FAQ producenta; starsze opisy podają 60 kg.
+  - ViShape Lite: 1,5–35 kg na stronę, krok 0,5 kg.
+  - Speediance: ok. 2–50 kg na stronę, krok 0,5 kg / 1 lb.
+  - Pozostałe urządzenia oznaczone jako niezweryfikowane.
+- **Tryby** (ekscentryczny, łańcuchy, izokinetyczny, elastyczny) nie zmieniają tego, jakie ćwiczenia da się zrobić. Najwyżej jako opcjonalny znacznik serii — nie w E1.
+- **Uwaga do porównań:** ciężar z linek nie równa się ciężarowi wolnemu (w teście ViShape zmierzony opór statyczny był ok. 10% niższy od ustawionego). Rekordy są i tak per ćwiczenie, więc się nie mieszają.
+- **Niepewne:**
+  - czy aplikacja ViShape Pro pokazuje ciężar na stronę, czy łącznie (test fitnessowy.net sugeruje sumę: „100 kg” przy limicie 60 na stronę);
+  - czy 45 kg startowe w „Przysiad z pasem (linki)” to suma, czy na stronę. Do sprawdzenia z użytkownikiem — bez pytań do odwołania.
+
+Źródła: https://vishape.pl/faq · https://vishape.pl/smartgym-pro · https://vishape.pl/smartgym-lite · https://vishape.pl/akcesoria · https://fitnessowy.net/smartgym-pro-test/ · https://www.speediance.com/products/speediance-gym-monster-2 · https://tonal.com/products/tonal-2 · https://www.garagegymreviews.com/vitruvian-trainer-review · https://www.beyond-power.com/products/voltra
+
 ## 4. Wpływ na trening
 
 1. **Start treningu:** pod nazwą szablonu „📍 Siłownia ▾” — domyślnie miejsce szablonu albo główne; zmiana jednym stuknięciem, tylko dla tej sesji.

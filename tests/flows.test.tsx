@@ -117,7 +117,8 @@ test('B11 usunięcie ćwiczenia z historią: znika z listy, historia zna nazwę'
 
 test('B12 ustawienia: przełącznik po jednym tapnięciu, English, funty', async () => {
   await renderApp(); await go('/more/settings'); await screen.findByText('Język');
-  const rpe = screen.getByText('ukryte'); await tap(rpe); expect(screen.getByText('pokazuj')).toBeTruthy();
+  const rpe = screen.getByLabelText('RPE / RIR przy serii'); expect(rpe.props.accessibilityState.checked).toBe(false); /* P-002: przełącznik iOS */
+  await act(async () => { require('@testing-library/react-native').fireEvent(rpe, 'valueChange', true); }); expect(store.getState().settings.showRpe).toBe(true); expect(screen.getByLabelText('RPE / RIR przy serii').props.accessibilityState.checked).toBe(true);
   await tap(screen.getByText('lb')); expect(store.getState().settings.unit).toBe('lb');
   await tap(screen.getByText('English')); expect(await screen.findByText('Language')).toBeTruthy();
 });

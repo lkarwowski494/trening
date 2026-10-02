@@ -30,8 +30,8 @@ test('J1 EN/lb journey: superset + drop + failure + band pull-ups → finish →
   expect(a.exercises[1].sets[1].weight).toBe(a.exercises[1].sets[0].weight);
   // band pull-ups
   a.exercises[2].sets[0].bandId = band.id; store.applyBandAssist(a.exercises[2].sets[0]); a.exercises[2].sets[0].reps = 8; store.addSet(2); store.save(a);
-  now += 120e3; store.toggleDone(2, 0); expect(a.exercises[2].sets[0].addKg).toBe(-20);
-  expect(a.exercises[2].sets[1].bandId).toBe(band.id); expect(a.exercises[2].sets[1].addKg).toBe(-20);
+  now += 120e3; store.toggleDone(2, 0); expect(a.exercises[2].sets[0].addKg).toBe(''); // P-001: guma bez kg
+  expect(a.exercises[2].sets[1].bandId).toBe(band.id); expect(a.exercises[2].sets[1].addKg).toBe('');
   a.exercises[2].sets[1].reps = 7; now += 120e3; store.toggleDone(2, 1);
   const w = store.finishWorkout()!;
   expect(w.exercises.length).toBe(3);

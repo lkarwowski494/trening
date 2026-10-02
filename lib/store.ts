@@ -582,9 +582,9 @@ function usedKeys(ex: Exercise | undefined): Record<typeof VAL_KEYS[number] | 'b
   return { weight: hasWeight(m) && !bw, addKg: hasWeight(m) && bw, reps: hasReps(m), durationSec: hasTime(m), distanceM: hasDistance(m), bandId: !!ex?.bandAssistable /* runda 11: guma tylko przy asyście gumą */ };
 }
 /** Runda 52: guma wstawiona bez asysty (z podpowiedzi, szablonu, poprzedniej serii) dostaje swoją znaną asystę — guma i asysta to para. */
-function pairAssist(s: WSet) { const b = s.bandId ? bandById(s.bandId) : null; if (b && Number(b.nominalKg) > 0 && isEmpty(s.addKg)) s.addKg = -Number(b.nominalKg); }
+function pairAssist(_s: WSet) { /* P-001 (02.10.2026): gumy bez kilogramów — guma nie wstawia już asysty kg (dawne nominalKg zostaje w danych tylko dla zgodności kopii; do usunięcia: T-055) */ }
 /** Czyści w serii pola, których metryka nie używa (wartości skopiowane ze starszej sesji). */
-function stripUnused(ex: Exercise | undefined, s: WSet): WSet { const u = usedKeys(ex); for (const k of VAL_KEYS) if (!u[k]) (s as any)[k] = ''; if (s.bandId && (!u.bandId || !bandById(s.bandId)) && Number(s.addKg) < 0) s.addKg = ''; /* runda 49: zdjęta guma zabiera asystę */ if (!u.bandId || (s.bandId && !bandById(s.bandId))) s.bandId = ''; /* runda 16: usunięta guma nie wraca */ if (u.addKg) pairAssist(s); /* runda 53: tylko gdy ćwiczenie używa ±kg */ return s; }
+function stripUnused(ex: Exercise | undefined, s: WSet): WSet { const u = usedKeys(ex); for (const k of VAL_KEYS) if (!u[k]) (s as any)[k] = ''; /* P-001: zdjęta guma nie zabiera już ±kg (dawniej runda 49) */ if (!u.bandId || (s.bandId && !bandById(s.bandId))) s.bandId = ''; /* runda 16: usunięta guma nie wraca */ if (u.addKg) pairAssist(s); /* runda 53: tylko gdy ćwiczenie używa ±kg */ return s; }
 const isEmpty = (v: unknown) => v === '' || v == null;
 /** Runda 72 (T5): seria z asystą gumy, której nie da się odtworzyć (guma usunięta albo asysta gumą wyłączona) — jej powtórzenia bez asysty
  * zapisałyby trudniejsze ćwiczenie (fałszywy rekord), więc z takiej serii nie przepisujemy żadnych wartości. */
@@ -664,7 +664,7 @@ export function toggleDone(ei: number, si: number, at?: number): number | null {
   // Cofnięcie odhaczenia zdejmuje wartości wstawione z podpowiedzi — ponowne odhaczenie nie traktuje ich jak wpisanych
   // ręcznie (runda 4). Runda 5: czyszczone tylko pola, których wartość wciąż równa się wstawionej; pole zmienione ręcznie
   // (albo guma przełączona) zostaje, a edycja innego pola nie blokuje czyszczenia pozostałych.
-  if (s.hinted && typeof s.hinted === 'object') { const hb = (s.hinted as any).bandId; const band0 = s.bandId; /* runda 52: stan gumy sprzed czyszczenia */ for (const [k, v] of Object.entries(s.hinted)) if ((s as any)[k] === v && !(k === 'addKg' && hb && band0 !== hb)) (s as any)[k] = ''; if (hb && band0 === hb && !s.bandId && s.addKg !== '' && Number(s.addKg) < 0) s.addKg = ''; /* runda 53: zdjęta guma z podpowiedzi zabiera też poprawioną asystę */ } // runda 48: po zmianie gumy asysta należy już do nowej gumy
+  if (s.hinted && typeof s.hinted === 'object') { const hb = (s.hinted as any).bandId; const band0 = s.bandId; /* runda 52: stan gumy sprzed czyszczenia */ for (const [k, v] of Object.entries(s.hinted)) if ((s as any)[k] === v && !(k === 'addKg' && hb && band0 !== hb)) (s as any)[k] = ''; /* P-001: zdjęcie gumy z podpowiedzi nie rusza ±kg (dawniej runda 53) */ } // runda 48: po zmianie gumy asysta należy już do nowej gumy
   s.hinted = undefined; s.completedAt = null; s.actualRest = null; save(a); return null;
 }
 /** Runda 69: porzucony trening. Pytanie po 2 h bez odhaczonej serii, ciche zakończenie po 6 h. */
@@ -785,8 +785,7 @@ export function applyBandAssist(s: WSet, prevBandId?: string) {
   // Runda 51: ujemna asysta należy zawsze do bieżącej gumy. Nowa guma ze znaną asystą ją wstawia (gdy nie ma dociążenia);
   // zmiana lub zdjęcie gumy zabiera asystę poprzedniej (wpisaną albo wstawioną). Dociążenie (+kg) zostaje.
   const b = s.bandId ? bandById(s.bandId) : null; const prev = prevBandId && prevBandId !== s.bandId ? bandById(prevBandId) : null; const cur = Number(s.addKg) || 0;
-  if (b && Number(b.nominalKg) > 0 && cur <= 0) s.addKg = -Number(b.nominalKg);
-  else if (prev && s.addKg !== '' && Number(s.addKg) < 0) s.addKg = '';
+  void b; void prev; void cur; /* P-001: wybór/zdjęcie gumy nie zmienia już pola ±kg (guma = tylko poziom 1–7) */
 }
 
 /** Trwały stan timera — zapisywany natychmiast (bez debounce), bo chodzi o przeżycie zabicia aplikacji. */

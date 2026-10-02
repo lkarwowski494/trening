@@ -93,7 +93,7 @@ function run(a: A) {
       const nxt = e.sets[si + 1] ? JSON.stringify(e.sets[si + 1]) : null;
       store.toggleDone(ei, si); store.toggleDone(ei, si);
       const after = JSON.stringify({ ...s, hinted: undefined, completedAt: null, actualRest: null, edited: s.edited });
-      const norm = (x: string) => { const o = JSON.parse(x); delete o.completedAt; delete o.actualRest; delete o.hinted; return o; };
+      const norm = (x: string) => { const o = JSON.parse(x); delete o.completedAt; delete o.actualRest; delete o.hinted; delete o.pre; /* runda 79: „pre” (T-047) po ✓ celowo staje się nową bazą przenoszenia — weryfikacja M1 (literówka poprawiona po ponownym ✓ idzie dalej) tego wymaga; wartości serii nadal muszą wrócić */ return o; };
       // Niezmiennik: odhaczenie + cofnięcie przywraca serię (wartości wstawione z podpowiedzi znikają).
       expect(norm(after)).toEqual(norm(before)); void nxt; break;
     }

@@ -56,8 +56,8 @@ export const EN: Record<string, string> = {
   'Plik ma schemat {a}, a ta wersja obsługuje do {b}. Zaktualizuj aplikację.': 'The file has schema {a}; this version supports up to {b}. Update the app.',
 
   /* gumy */
-  'Kolor · poziom (1 = cienka, 7 = bardzo gruba) · szacowana asysta w {u} (opcjonalnie — nie ma standardu kolorów, wpisz z opakowania lub własny szacunek). Gdy asysta jest podana, wybór gumy przy serii wpisuje ją jako ujemne ± (zapis, ile pomogła guma — rekordem jest suma powtórzeń bez asysty).':
-    'Colour · level (1 = thin, 7 = very thick) · estimated assistance in {u} (optional — there is no colour standard, use the package value or your own estimate). When assistance is set, picking the band for a set enters it as negative ± (a record of how much the band helped — the record is total unassisted reps).',
+  'Kolor i poziom trudności: 1 = cienka, 7 = bardzo gruba. Gumy nie mają kilogramów — przy serii zapisujesz, którą gumą pomagałeś. Rekordem są powtórzenia bez gumy, a postęp z gumą to zejście na niższy poziom.':
+    'Colour and difficulty level: 1 = thin, 7 = very thick. Bands have no kilograms — for each set you record which band helped. The record is reps without a band; progress with bands means moving to a lower level.',
   'kolor': 'colour', '+ Guma': '+ Band', 'nowa': 'new', 'czerwona': 'red', 'czarna': 'black', 'fioletowa': 'purple',
 
   /* poranny wpis */
@@ -77,18 +77,15 @@ export const EN: Record<string, string> = {
   'max ±': 'max ±', 'max ciężar': 'max weight', 'e1RM (dociążenie)': 'e1RM (added weight)', 'max pow.': 'max reps', 'max czas': 'max time', 'max dystans': 'max distance',
   'Jedna sesja: {v}. Wykres pojawi się po drugiej.': 'One session: {v}. The chart appears after the second.', 'Brak danych do wykresu.': 'No data to chart.',
 
-  /* ustawienia */
-  'włączone': 'on', 'wyłączone': 'off', 'Język': 'Language', 'Jak w telefonie': 'Phone setting', 'Jednostka ciężaru': 'Weight unit',
+  /* ustawienia */ 'Język': 'Language', 'Jak w telefonie': 'Phone setting', 'Jednostka ciężaru': 'Weight unit',
   'Domyślna przerwa (sekundy)': 'Default rest (seconds)', 'Dźwięk i wibracja na koniec przerwy': 'Sound and vibration at the end of rest',
   'np. 73': 'e.g. 73',
   'Zapisuj zakończone treningi do Apple Health': 'Save finished workouts to Apple Health', 'Apple Health niedostępne': 'Apple Health unavailable',
   'Brak zgody albo moduł HealthKit nie jest w tej wersji aplikacji (Expo Go go nie ma — potrzebny build IPA).': 'No permission, or HealthKit is not in this build (Expo Go does not include it — an IPA build is needed).',
-  'RPE / RIR przy serii (opcjonalne pole, nie wpływa na objętość)': 'RPE / RIR per set (optional, does not affect volume)', 'pokazuj': 'show', 'ukryte': 'hidden',
   'Ekran włączony podczas treningu': 'Keep screen on during workout', 'Sprawdź zgodę na powiadomienia': 'Check notification permission',
   'Powiadomienia działają': 'Notifications work', 'Brak zgody': 'No permission', 'Koniec przerwy da znać nawet na zablokowanym ekranie.': 'The end of rest will alert you even on a locked screen.',
   'Włącz powiadomienia dla Trening w Ustawieniach iOS.': 'Enable notifications for Trening in iOS Settings.',
-  'Timer odlicza w aplikacji, a na koniec przerwy przychodzi powiadomienie — także przy zablokowanym telefonie.': 'The timer counts down in the app and a notification arrives at the end of rest — even when the phone is locked.',
-  'Moduły (ukryj to, czego nie używasz)': 'Modules (hide what you do not use)', 'wkrótce': 'coming soon',
+  'Timer odlicza w aplikacji, a na koniec przerwy przychodzi powiadomienie — także przy zablokowanym telefonie.': 'The timer counts down in the app and a notification arrives at the end of rest — even when the phone is locked.', 'wkrótce': 'coming soon',
   'Trening jest zawsze włączony. Pozostałe moduły pojawią się w kolejnych wersjach — przełącznik już czeka. Schemat danych: v{v}.': 'Training is always on. Other modules arrive in later versions — the switch is ready. Data schema: v{v}.',
   'Wyczyść wszystkie dane': 'Erase all data', 'Na pewno?': 'Are you sure?', 'Usunie ćwiczenia, szablony i całą historię. Bez cofania.': 'This deletes exercises, templates and all history. It cannot be undone.', 'Wyczyść': 'Erase',
 
@@ -139,7 +136,7 @@ export const EN: Record<string, string> = {
   'Kopia nieczytelnych danych': 'Copy of unreadable data',
   'Uwaga: zmiana sprzętu, trybu liczenia lub metryki przelicza też dawne treningi (objętość, rekordy, wykresy).': 'Note: changing equipment, weight counting or metric also recalculates past workouts (volume, records, charts).',
   'Zniknie z list i szablonów; historia, wykresy i eksport zostaną.': 'It disappears from lists and templates; history, charts and export keep it.', 'Zniknie z list i szablonów.': 'It disappears from lists and templates.',
-  'Usuń gumę': 'Delete band', 'Usunąć gumę?': 'Delete band?', 'W historii serie z tą gumą pokażą „?”.': 'Sets with this band will show “?” in history.', 'W trwającym treningu guma i jej asysta znikną z nieodhaczonych serii.': 'In the current workout the band and its assist are removed from sets not yet ticked.', 'powtórzenie|powtórzenia|powtórzeń': 'rep|reps', 'Usunąć z treningu?': 'Remove from workout?', 'Trening wciąż trwa': 'Workout still in progress', 'Ostatnia seria o {t}. Zakończyć trening z tą godziną końca?': 'Last set at {t}. Finish the workout with that end time?', 'Kontynuuj': 'Continue', 'superset · przerwa po rundzie {t}': 'superset · rest after round {t}', 'Max powtórzeń bez asysty': 'Max reps unassisted', 'Max powtórzeń z asystą': 'Max reps assisted', 'Odrzucić trening?': 'Discard workout?', 'Zakończ i zapisz': 'Finish and save', 'Odrzuć': 'Discard', 'Ostatnia seria o {t}. Otwórz, by zakończyć albo kontynuować.': 'Last set at {t}. Open to finish or continue.', 'Ostatnia rozgrzewka o {t}, bez serii roboczych. Kontynuować czy odrzucić?': 'Last warm-up at {t}, no working sets. Continue or discard?', 'Ostatnia rozgrzewka o {t}, bez serii roboczych. Otwórz, by kontynuować albo odrzucić.': 'Last warm-up at {t}, no working sets. Open to continue or discard.', 'Trening rozpoczęty o {t}, bez odhaczonych serii. Kontynuować czy odrzucić?': 'Workout started at {t}, no sets ticked. Continue or discard?', 'Trening rozpoczęty o {t}, bez odhaczonych serii. Otwórz, by kontynuować albo odrzucić.': 'Workout started at {t}, no sets ticked. Open to continue or discard.', 'Zapisałem trening': 'Workout saved', 'Trening z {d} {s} nie miał aktywności od 6 godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w Historii.': 'The workout from {d} {s} had no activity for 6 hours, so it was saved automatically. End: {e} (last set). You will find it in History.', '{u}/hant.': '{u}/DB', '{u}/str.': '{u}/side', 'Max ciężar (na stronę)': 'Max weight (per side)', 'e1RM (Epley, na stronę)': 'e1RM (Epley, per side)', 'Brak gum. Dodaj pierwszą, by zapisywać asystę przy podciąganiu.': 'No bands yet. Add one to log assisted pull-ups.', '{c}, poziom {n}': '{c}, level {n}', 'Odhaczone serie bez czasu lub dystansu: {n}.': 'Ticked sets without time or distance: {n}.', 'Wykres, {n} {s}: od {a} ({x}) do {b} ({y}), najlepiej {c} ({z}).': 'Chart, {n} {s}: from {a} ({x}) to {b} ({y}), best {c} ({z}).', 'Wykres słupkowy: {v}': 'Bar chart: {v}', 'Tapnij, by wybrać inne ćwiczenie.': 'Tap to choose another exercise.', 'W trwającym treningu zostanie oznaczone jako usunięte.': 'In the current workout it will be marked as deleted.',
+  'Usuń gumę': 'Delete band', 'Usunąć gumę?': 'Delete band?', 'W historii serie z tą gumą pokażą „?”.': 'Sets with this band will show “?” in history.', 'W trwającym treningu guma zniknie z nieodhaczonych serii.': 'In the current workout the band will be removed from sets not yet ticked.', 'powtórzenie|powtórzenia|powtórzeń': 'rep|reps', 'Usunąć z treningu?': 'Remove from workout?', 'Trening wciąż trwa': 'Workout still in progress', 'Ostatnia seria o {t}. Zakończyć trening z tą godziną końca?': 'Last set at {t}. Finish the workout with that end time?', 'Kontynuuj': 'Continue', 'superset · przerwa po rundzie {t}': 'superset · rest after round {t}', 'Max powtórzeń bez asysty': 'Max reps unassisted', 'Max powtórzeń z asystą': 'Max reps assisted', 'Odrzucić trening?': 'Discard workout?', 'Zakończ i zapisz': 'Finish and save', 'Odrzuć': 'Discard', 'Ostatnia seria o {t}. Otwórz, by zakończyć albo kontynuować.': 'Last set at {t}. Open to finish or continue.', 'Ostatnia rozgrzewka o {t}, bez serii roboczych. Kontynuować czy odrzucić?': 'Last warm-up at {t}, no working sets. Continue or discard?', 'Ostatnia rozgrzewka o {t}, bez serii roboczych. Otwórz, by kontynuować albo odrzucić.': 'Last warm-up at {t}, no working sets. Open to continue or discard.', 'Trening rozpoczęty o {t}, bez odhaczonych serii. Kontynuować czy odrzucić?': 'Workout started at {t}, no sets ticked. Continue or discard?', 'Trening rozpoczęty o {t}, bez odhaczonych serii. Otwórz, by kontynuować albo odrzucić.': 'Workout started at {t}, no sets ticked. Open to continue or discard.', 'Zapisałem trening': 'Workout saved', 'Trening z {d} {s} nie miał aktywności od 6 godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w Historii.': 'The workout from {d} {s} had no activity for 6 hours, so it was saved automatically. End: {e} (last set). You will find it in History.', '{u}/hant.': '{u}/DB', '{u}/str.': '{u}/side', 'Max ciężar (na stronę)': 'Max weight (per side)', 'e1RM (Epley, na stronę)': 'e1RM (Epley, per side)', 'Brak gum. Dodaj pierwszą, by zapisywać asystę przy podciąganiu.': 'No bands yet. Add one to log assisted pull-ups.', '{c}, poziom {n}': '{c}, level {n}', 'Odhaczone serie bez czasu lub dystansu: {n}.': 'Ticked sets without time or distance: {n}.', 'Wykres, {n} {s}: od {a} ({x}) do {b} ({y}), najlepiej {c} ({z}).': 'Chart, {n} {s}: from {a} ({x}) to {b} ({y}), best {c} ({z}).', 'Wykres słupkowy: {v}': 'Bar chart: {v}', 'Tapnij, by wybrać inne ćwiczenie.': 'Tap to choose another exercise.', 'W trwającym treningu zostanie oznaczone jako usunięte.': 'In the current workout it will be marked as deleted.',
   'Połącz z następnym w superset': 'Link with next into a superset', 'Wyjmij z supersetu': 'Remove from superset', 'Przesuń wyżej': 'Move up', 'Przesuń niżej': 'Move down',
   'Usuń z szablonu': 'Remove from template', 'Usunąć z szablonu?': 'Remove from template?', '„do” jest mniejsze niż „od” — zakres pokaże się jako {n}+': '“to” is lower than “from” — the range will show as {n}+',
   'Nic do zapisania. Odrzucić ten trening?': 'Nothing to save. Discard this workout?', 'Odrzuć trening': 'Discard workout',
@@ -158,8 +155,8 @@ export const EN: Record<string, string> = {
   'Przerwa: {s}. Tapnij, by zmienić.': 'Rest: {s}. Tap to change.',
   /* runda 2 */
   'Nie udało się otworzyć danych.': 'Could not open your data.', 'Spróbuj ponownie': 'Try again',
-  'Masa ciała: „±” to dociążenie (plus) albo asysta gumą/maszyną (minus). Masa ciała nie wchodzi do obliczeń: rekord to suma powtórzeń bez asysty, a e1RM i objętość liczą się tylko z dociążenia. Ćwiczenia na czas mają w treningu stoper — po upływie celu seria odhacza się sama. Przerwa ustawiona w pozycji szablonu ma pierwszeństwo; puste pole przerwy w szablonie oznacza przerwę z tego ćwiczenia.':
-    'Body weight: “±” is added weight (plus) or band/machine assistance (minus). Body weight itself is not counted: the record is total unassisted reps, and e1RM and volume use only the added weight. Timed exercises get a stopwatch during the workout — the set ticks itself off when the target is reached. A rest set on a template item takes priority; an empty rest field in the template means this exercise’s rest.',
+  'Masa ciała: „±” to dociążenie (plus) albo asysta, np. maszyny (minus); guma to osobne pole z poziomem. Masa ciała nie wchodzi do obliczeń: rekord to suma powtórzeń bez asysty, a e1RM i objętość liczą się tylko z dociążenia. Ćwiczenia na czas mają w treningu stoper — po upływie celu seria odhacza się sama. Przerwa ustawiona w pozycji szablonu ma pierwszeństwo; puste pole przerwy w szablonie oznacza przerwę z tego ćwiczenia.':
+    'Body weight: “±” is added weight (plus) or assistance, e.g. a machine (minus); a band is a separate field with its level. Body weight itself is not counted: the record is total unassisted reps, and e1RM and volume use only the added weight. Timed exercises get a stopwatch during the workout — the set ticks itself off when the target is reached. A rest set on a template item takes priority; an empty rest field in the template means this exercise’s rest.',
   'Pokazano {n} z {m} — wpisz nazwę, by zawęzić.': 'Showing {n} of {m} — type a name to narrow down.',
   'Zmierzyć serię od nowa?': 'Time this set again?', 'Zapisany czas zostanie nadpisany.': 'The saved time will be overwritten.', 'Zmierz': 'Time it',
   'Seria {n} zrobiona — {ex}': 'Set {n} done — {ex}',
@@ -170,7 +167,6 @@ export const EN: Record<string, string> = {
   'Przywróć „{name}”': 'Restore “{name}”', 'usunięte ćwiczenie z historią': 'deleted exercise with history',
   'Kolor gumy': 'Band colour',
   'Poziom (1–7)': 'Level (1–7)',
-  'Asysta ({u})': 'Assistance ({u})',
   'Tylko rozgrzewka': 'Warm-up only',
   'Odhaczone są tylko serie rozgrzewkowe ({n}). Zapisać taki trening?': 'Only warm-up sets are ticked ({n}). Save this workout anyway?',
   'Seria {n} — {ex}': 'Set {n} — {ex}',
@@ -187,9 +183,6 @@ export const EN: Record<string, string> = {
   'Przerwa': 'Rest',
   'usunięte ćwiczenie (w bieżącym treningu)': 'deleted exercise (in the current workout)',
   /* runda 75 */
-  'Podpowiedź progresji (↑ przy ćwiczeniu, gdy ostatnio wszystkie serie były na górze zakresu powtórzeń)': 'Progression hint (↑ on the exercise when all sets last time reached the top of the rep range)',
-  'Automatyczna kopia po każdym treningu (Pliki → Na moim iPhonie → Trening → Backup, ostatnie 10)': 'Automatic backup after every workout (Files → On My iPhone → Trening → Backup, last 10)',
-  'Przypomnienie o wadze w poniedziałek o 7:00': 'Weigh-in reminder on Monday at 7:00',
   '↑ spróbuj {n} pow.': '↑ try {n} reps', '↑ spróbuj {v}': '↑ try {v}',
   'Poniedziałek — zważ się i zapisz wagę w porannym wpisie.': 'Monday — weigh yourself and log it in the morning check-in.',
   'Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → Trening → Backup, ostatnie 10). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego Apple ID wyeksportuj backup na zewnątrz.': 'Automatic backup: after every workout a JSON file is saved in Files (On My iPhone → Trening → Backup, last 10). Import accepts these files too. These copies are deleted together with the app — before removing it or installing from a different Apple ID, export a backup elsewhere.',
@@ -200,4 +193,19 @@ export const EN: Record<string, string> = {
   'Kolejność ćwiczeń': 'Exercise order', '≡ Kolejność': '≡ Reorder', 'Zmień kolejność ćwiczeń': 'Reorder exercises', 'Zmień kolejność: {name}': 'Reorder: {name}', '{n} z {all}': '{n} of {all}',
   'Przeciągnij za ≡, żeby zmienić kolejność. Superset przesuwa się w całości; kolejność w nim zmienisz uchwytami przy ćwiczeniach.': 'Drag by ≡ to change the order. A superset moves as a whole; use the handles next to its exercises to reorder within it.',
   'Nie ma treningu w toku.': 'No workout in progress.', 'Gotowe': 'Done', 'superset': 'superset', 'ćwiczenie|ćwiczenia|ćwiczeń': 'exercise|exercises',
+  // P-002 (02.10.2026): ustawienia w grupach z przełącznikami
+  'Ogólne': 'General',
+  'RPE / RIR przy serii': 'RPE / RIR per set',
+  'opcjonalne pole, nie wpływa na objętość': 'optional field, does not affect volume',
+  'Podpowiedź progresji': 'Progression hint',
+  '↑ przy ćwiczeniu, gdy ostatnio wszystkie serie były na górze zakresu powtórzeń': '↑ next to an exercise when last time all sets reached the top of the rep range',
+  'Dane i kopie': 'Data and backups',
+  'Automatyczna kopia po każdym treningu': 'Automatic backup after every workout',
+  'Pliki → Na moim iPhonie → Trening → Backup, ostatnie 10': 'Files → On My iPhone → Trening → Backup, last 10',
+  'Powiadomienia': 'Notifications',
+  'Przypomnienie o wadze': 'Weigh-in reminder',
+  'w poniedziałek o 7:00': 'Monday at 7:00',
+  'Moduły': 'Modules',
+  'Dane w telefonie': 'Data on this phone',
+  'Ukryj to, czego nie używasz': 'Hide what you don’t use',
 };

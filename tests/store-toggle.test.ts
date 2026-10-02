@@ -87,9 +87,9 @@ describe('toggleDone — guma na następną serię i cofnięcie odhaczenia (rund
     let { s, b1 } = await pull(); Object.assign(s[0], { reps: 8, bandId: b1, addKg: -15 }); s[1].bandId = b1; store.toggleDone(0, 0); expect(s[1].addKg).toBe(-15);
     ({ s, b1 } = await pull()); Object.assign(s[0], { reps: 8, bandId: b1, addKg: -15 }); s[1].bandId = b1; s[1].addKg = -10; store.toggleDone(0, 0); expect(s[1].addKg).toBe(-10);
   });
-  test('guma bez wpisanej asysty: następna seria dostaje gumę, a asystę z kg gumy (gdy podane)', async () => {
+  test('guma bez wpisanej asysty: następna seria dostaje gumę, bez kg (P-001: gumy nie mają kilogramów)', async () => {
     const { s, b1 } = await pull(); store.getState().bands[0].nominalKg = 20; Object.assign(s[0], { reps: 8, bandId: b1 }); store.toggleDone(0, 0);
-    expect([s[1].bandId, s[1].addKg]).toEqual([b1, -20]);
+    expect([s[1].bandId, s[1].addKg]).toEqual([b1, '']);
   });
   test('gdy „Poprzednio” podpowiada następną serię, guma z tej serii nie przechodzi', async () => {
     await fresh(); ex('Pull Up').bandAssistable = true; const { addWorkout } = require('./helpers'); addWorkout(now - 86400e3, [['Pull Up', [{ reps: 6 }, { reps: 6 }]]]); store.save();
@@ -102,13 +102,13 @@ describe('toggleDone — guma na następną serię i cofnięcie odhaczenia (rund
     store.toggleDone(0, 0); expect([s[0].weight, s[0].reps]).toEqual([100, 5]); store.toggleDone(0, 0); expect([s[0].weight, s[0].reps, s[0].hinted, s[0].completedAt]).toEqual(['', '', undefined, null]);
     store.toggleDone(0, 0); s[0].reps = 6; store.toggleDone(0, 0); expect([s[0].weight, s[0].reps]).toEqual(['', 6]);
   });
-  test('cofnięcie: guma z podpowiedzi zabiera swoją asystę; po zmianie gumy asysta zostaje; zdjęta guma zabiera poprawioną asystę', async () => {
+  test('cofnięcie: guma z podpowiedzi zabiera swoją asystę; po zmianie gumy asysta zostaje; poprawiona ręcznie asysta zostaje (P-001)', async () => {
     const setup = async () => { await fresh(); ex('Pull Up').bandAssistable = true; const b = store.getState().bands; const { addWorkout } = require('./helpers');
       addWorkout(now - 86400e3, [['Pull Up', [{ reps: 6, bandId: b[0].id, addKg: -15 }]]]); store.save(); store.startEmpty(); store.addExerciseToActive(ex('Pull Up'));
       const s = store.getState().active!.exercises[0].sets; store.toggleDone(0, 0); return { s, b }; };
     let { s, b } = await setup(); expect([s[0].bandId, s[0].addKg]).toEqual([b[0].id, -15]); store.toggleDone(0, 0); expect([s[0].bandId, s[0].addKg]).toEqual(['', '']);
     ({ s, b } = await setup()); s[0].bandId = b[1].id; store.toggleDone(0, 0); expect([s[0].bandId, s[0].addKg]).toEqual([b[1].id, -15]);
-    ({ s, b } = await setup()); s[0].addKg = -10; store.toggleDone(0, 0); expect([s[0].bandId, s[0].addKg]).toEqual(['', '']); /* runda 53: guma z podpowiedzi zdjęta przy cofnięciu zabiera poprawioną asystę */
+    ({ s, b } = await setup()); s[0].addKg = -10; store.toggleDone(0, 0); expect([s[0].bandId, s[0].addKg]).toEqual(['', -10]); /* P-001: wpis użytkownika zostaje (dawniej runda 53 go zabierała) */
     ({ s, b } = await setup()); s[0].bandId = ''; s[0].addKg = -10; store.toggleDone(0, 0); expect([s[0].bandId, s[0].addKg]).toEqual(['', -10]); /* guma zdjęta ręcznie przed cofnięciem — wpis użytkownika zostaje */
     ({ s, b } = await setup()); s[0].bandId = b[1].id; store.toggleDone(0, 0); expect(s[0].reps).toBe(''); /* zmiana gumy nie blokuje czyszczenia innych pól z podpowiedzi */
     ({ s, b } = await setup()); s[0].addKg = 0; store.toggleDone(0, 0); expect([s[0].bandId, s[0].addKg]).toEqual(['', 0]); /* wpisane ±0 to wynik, nie asysta */
