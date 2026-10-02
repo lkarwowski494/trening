@@ -29,11 +29,11 @@ export function Btn({ title, onPress, kind = 'default', small, block, style, acc
  * `right` = osobny element obok wiersza (np. przycisk Start) — nie jest „połykany” przez wiersz w VoiceOver (runda 6).
  * Runda 7: cały wiersz (z odstępami, min. 56 pt) jest polem dotyku, a znaki „+”/„↺” w pickerze są w środku wiersza.
  */
-export function Item({ title, sub, right, icon, onPress }: { title: string; sub?: string; right?: React.ReactNode; icon?: string; onPress?: () => void }) {
+export function Item({ title, sub, right, icon, onPress, dim }: { title: string; sub?: string; right?: React.ReactNode; icon?: string; onPress?: () => void; /** P-003: wiersz wyszarzony (np. ćwiczenie niedostępne w miejscu) */ dim?: boolean }) {
   const t = useTheme(); const glyph = icon ?? (onPress && !right ? '›' : null); const once = useOnce(700); // runda 18: podwójne tapnięcie nie otwiera ekranu dwa razy
   return (
     <View style={[s.item, { borderBottomColor: t.line }]}>
-      <Pressable onPress={onPress ? once(onPress) : undefined} disabled={!onPress} accessibilityRole={onPress ? 'button' : undefined} accessibilityLabel={sub ? `${title}, ${sub}` : title} style={({ pressed }) => [s.itemPress, { opacity: pressed ? 0.6 : 1 }]}>
+      <Pressable onPress={onPress ? once(onPress) : undefined} disabled={!onPress} accessibilityRole={onPress ? 'button' : undefined} accessibilityLabel={sub ? `${title}, ${sub}` : title} style={({ pressed }) => [s.itemPress, { opacity: pressed ? 0.6 : dim ? 0.5 : 1 }]}>
         <View style={{ flex: 1 }}>
           <Text style={{ color: t.text, fontWeight: '600', fontSize: 16 }}>{title}</Text>
           {sub ? <Text style={{ color: t.muted, fontSize: 14, marginTop: 2 }}>{sub}</Text> : null}

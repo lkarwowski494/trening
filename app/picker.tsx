@@ -2,8 +2,9 @@ import React, { useMemo, useRef, useState } from 'react';
 import { ScrollView, Pressable, Text } from 'react-native';
 import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
 import { useTheme } from '@/lib/theme';
-import { Screen, Input, Chip, Item, Muted, Empty } from '@/components/ui';
-import { getState, addExerciseToActive, newExercise, save, visibleExercises, exerciseInHistory } from '@/lib/store';
+import { Screen, Input, Chip, Item, Muted, Empty, SwitchRow } from '@/components/ui';
+import { getState, addExerciseToActive, newExercise, save, visibleExercises, exerciseInHistory, locationById } from '@/lib/store';
+import { availability, capsOf, missingLabel, type Availability } from '@/lib/equipment';
 import { uid } from '@/lib/seed';
 import { GROUPS, GROUP_TO_MUSCLE, hasReps, type Exercise } from '@/lib/seed';
 import { t, exName, locale, fold } from '@/lib/i18n';
@@ -17,7 +18,13 @@ export default function PickerScreen() {
   const ql = fold(q.trim());
   // Runda 6: dokładne trafienie nazwy pokazujemy mimo filtra partii — inaczej picker proponował utworzenie duplikatu.
   const exact = (e: Exercise) => !!ql && (fold(e.name) === ql || fold(exName(e)) === ql);
-  const list = visibleExercises().filter(e => (!g || e.group === g || exact(e)) && (!ql || fold(e.name).includes(ql) || fold(exName(e)).includes(ql))).sort((a, b) => GROUPS.indexOf(a.group) - GROUPS.indexOf(b.group) || exName(a).localeCompare(exName(b), locale()));
+  /* P-003 E1 (decyzja 3a): miejsce treningu w toku albo miejsce domyślne edytowanego szablonu — domyślnie tylko dostępne ćwiczenia,
+   * przełącznik „Pokaż wszystkie” zapamiętany; niedostępne wyszarzone z dopiskiem „brak: …”. Bez miejsca — lista jak dotąd. */
+  const ctx = target === 'active' ? locationById(st.active?.locationId) : target.startsWith('template:') ? locationById(st.templates.find(x => x.id === target.slice(9))?.locationId) : undefined;
+  const [allOn, setAllOn] = useState(st.settings.pickerShowAll); const showAll = !ctx || allOn; const caps = ctx ? capsOf(ctx) : null; const av = new Map<string, Availability>();
+  const avail = (e: Exercise) => { if (!caps) return null; let a = av.get(e.id); if (!a) { a = availability(e, ctx, caps); av.set(e.id, a); } return a; };
+  let hidden = 0;
+  const list = visibleExercises().filter(e => (!g || e.group === g || exact(e)) && (!ql || fold(e.name).includes(ql) || fold(exName(e)).includes(ql))).filter(e => { if (showAll || exact(e) || avail(e)!.ok) return true; hidden++; return false; }).sort((a, b) => GROUPS.indexOf(a.group) - GROUPS.indexOf(b.group) || exName(a).localeCompare(exName(b), locale()));
   const choose = (ex: Exercise) => {
     if (chosen.current) return; chosen.current = true; // podwójne tapnięcie nie doda ćwiczenia dwa razy ani nie cofnie o dwa ekrany
     if (target === 'active') addExerciseToActive(ex);
@@ -26,7 +33,8 @@ export default function PickerScreen() {
   };
   let last = ''; const rows: React.ReactNode[] = [];
   list.forEach(e => { if (!g && !ql && e.group !== last) { last = e.group; rows.push(<Muted key={'g' + e.group} accessibilityRole="header" style={{ fontSize: 12, fontWeight: '600', paddingTop: 12, paddingBottom: 2 }}>{t(e.group)}</Muted>); }
-    rows.push(<Item key={e.id} title={exName(e)} sub={`${t(e.equipment)}${e.bandAssistable ? ' · ' + t('guma') : ''}`} onPress={() => choose(e)} icon="+" />); });
+    const a = avail(e); const miss = a && !a.ok ? ' · ' + t('brak: {m}', { m: missingLabel(a.missing) }) : '';
+    rows.push(<Item key={e.id} title={exName(e)} sub={`${t(e.equipment)}${e.bandAssistable ? ' · ' + t('guma') : ''}${miss}`} onPress={() => choose(e)} icon="+" dim={!!miss} />); });
   // Usunięte ćwiczenie o pasującej nazwie można przywrócić razem z historią, zamiast tworzyć puste nowe (runda 4).
   const archived = ql ? st.exercises.filter(e => e.archived && (fold(e.name).includes(ql) || fold(exName(e)).includes(ql))) : [];
   archived.forEach(e => rows.push(<Item key={'a' + e.id} title={t('Przywróć „{name}”', { name: exName(e) })} sub={exerciseInHistory(e.id) ? t('usunięte ćwiczenie z historią') : t('usunięte ćwiczenie (w bieżącym treningu)')} onPress={() => { if (chosen.current) return; e.archived = false; save(e); choose(e); }} icon="↺" />));
@@ -36,6 +44,7 @@ export default function PickerScreen() {
       {/* Audyt przed telefonem: okno zamykało się tylko gestem w dół (niedostępnym dla VoiceOver) — przycisk w nagłówku */}
       <Stack.Screen options={headerOpts} />
       <Input value={q} onChangeText={setQ} placeholder={t('Szukaj ćwiczenia…')} maxLength={80} autoFocus autoCorrect={false} />
+      {ctx ? <SwitchRow label={t('Pokaż wszystkie')} detail={showAll ? t('niedostępne w: {l} są wyszarzone', { l: ctx.name }) : t('tylko dostępne w: {l}', { l: ctx.name }) + (hidden ? ' · ' + t('ukryte: {n}', { n: hidden }) : '')} value={showAll} onChange={v => { setAllOn(v); st.settings.pickerShowAll = v; save(); }} /> : null}
       <ScrollView horizontal keyboardShouldPersistTaps="handled" showsHorizontalScrollIndicator={false} style={{ flexGrow: 0, flexShrink: 0, marginVertical: 8 }} /* runda 69: chipy nie są ściskane do zera */>
         <Chip label={t('Wszystkie')} on={g === ''} onPress={() => setG('')} />{GROUPS.map(x => <Chip key={x} label={t(x)} on={g === x} onPress={() => setG(x)} />)}
       </ScrollView>

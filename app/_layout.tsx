@@ -49,6 +49,8 @@ function Root() {
         <Stack.Screen name="more/morning" options={{ title: t('Poranny wpis') }} />
         <Stack.Screen name="more/settings" options={{ title: t('Ustawienia') }} />
         <Stack.Screen name="more/backup" options={{ title: t('Backup') }} />
+        <Stack.Screen name="more/locations" options={{ title: t('Miejsca treningu') }} />
+        <Stack.Screen name="more/location/[id]" options={{ title: t('Miejsce') }} />
       </Stack>
     </>
   );

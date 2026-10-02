@@ -1,6 +1,7 @@
 import React from 'react';
 import { ScrollView, Alert, View } from 'react-native';
-import { Screen, Field, NumInput, Chip, Btn, Muted, SwitchRow, Segmented, SectionTitle } from '@/components/ui';
+import { Screen, Field, NumInput, Chip, Btn, Muted, SwitchRow, Segmented, SectionTitle, Item } from '@/components/ui';
+import { useRouter } from 'expo-router';
 import { getState, useTick, save, resetAll, setModule, applyPrefs } from '@/lib/store';
 import { DEFAULT_REST } from '@/lib/seed';
 import { MODULES, MODULE_LABEL, MODULES_AVAILABLE, SCHEMA_VERSION } from '@/lib/seed';
@@ -12,7 +13,7 @@ import { type Unit } from '@/lib/units';
 const LANGS: [LangSetting, string][] = [['auto', 'Jak w telefonie'], ['pl', 'Polski'], ['en', 'English']];
 
 export default function SettingsScreen() {
-  useTick(); const s = getState().settings;
+  useTick(); const s = getState().settings; const router = useRouter(); const mainLoc = s.locations.find(l => l.id === s.mainLocationId);
   return (
     <Screen><ScrollView keyboardShouldPersistTaps="handled" automaticallyAdjustKeyboardInsets contentContainerStyle={{ paddingVertical: 10, paddingBottom: 60 }}>
       <SectionTitle>{t('Ogólne')}</SectionTitle>
@@ -24,6 +25,7 @@ export default function SettingsScreen() {
       <SwitchRow label={t('Dźwięk i wibracja na koniec przerwy')} value={s.sound} onChange={v => { s.sound = v; save(); timer.refreshScheduled().catch(() => {}); }} />
       <SwitchRow label={t('Ekran włączony podczas treningu')} value={s.wakeLock} onChange={v => { s.wakeLock = v; save(); }} />
       <SwitchRow label={t('RPE / RIR przy serii')} detail={t('opcjonalne pole, nie wpływa na objętość')} value={s.showRpe} onChange={v => { s.showRpe = v; save(); }} />
+      <Item title={t('Miejsca treningu')} sub={s.locations.length ? t('{n}, główne: {m}', { n: s.locations.length, m: mainLoc?.name ?? '—' }) : t('sprzęt w domu, na siłowni, w hotelu…')} onPress={() => router.push('/more/locations')} /* P-003 E1 */ />
       <SwitchRow label={t('Podpowiedź progresji')} detail={t('↑ przy ćwiczeniu, gdy ostatnio wszystkie serie były na górze zakresu powtórzeń')} value={s.progressHint} onChange={v => { s.progressHint = v; save(); }} />
 
       <SectionTitle>{t('Dane i kopie')}</SectionTitle>
