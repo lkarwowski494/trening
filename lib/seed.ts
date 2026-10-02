@@ -4,8 +4,10 @@
 import * as Crypto from 'expo-crypto';
 import type { LangSetting, Lang } from './i18n';
 import type { Unit } from './units';
+import type { LoadSpec } from './loads';
+import { CATALOG, type LoadSource, type Pattern } from './catalog.generated';
 
-export const SCHEMA_VERSION = 13; // 11 (runda 55): przyciąganie starych wartości z funtów tylko dla danych sprzed tej wersji; 12 (runda 72): masa ciała zamrożona w zakończonych treningach; 13 (runda 75, Q-001): masa ciała poza obliczeniami — usunięte udział %, waga w Ustawieniach i w treningu; nowe ustawienia progressHint, autoBackup, weighReminder
+export const SCHEMA_VERSION = 14; // 14 (P-003 E1): miejsca treningu i sprzęt — Settings.locations/mainLocationId/pickerShowAll, Workout/Template.locationId, wymagania sprzętowe ćwiczeń; 11 (runda 55): przyciąganie starych wartości z funtów tylko dla danych sprzed tej wersji; 12 (runda 72): masa ciała zamrożona w zakończonych treningach; 13 (runda 75, Q-001): masa ciała poza obliczeniami — usunięte udział %, waga w Ustawieniach i w treningu; nowe ustawienia progressHint, autoBackup, weighReminder
 /** Właściciel danych zanim pojawią się konta (H2). Po logowaniu zostanie podmieniony na id użytkownika. */
 export const LOCAL_OWNER = 'local';
 /** Rejestr modułów platformy (ADR-011). Dziś działa tylko 'training'; reszta to miejsca w UI/danych, które da się ukryć. */
@@ -67,19 +69,22 @@ export type Equipment = 'hantle' | 'sztanga' | 'masa ciała' | 'maszyna' | 'link
 export const GROUPS = ['klatka','plecy','barki','biceps','triceps','nogi','pośladki','łydki','core','cardio','inne'] as const;
 export type Group = typeof GROUPS[number];
 
-export interface Exercise extends Base { name: string; group: Group; equipment: Equipment; metric: MetricType; loadMode: LoadMode; restSec: number | null; restWarmupSec: number | null; muscles: Muscle[]; secondaryMuscles: Muscle[]; bandAssistable: boolean; tempo: string; notes: string; lib?: boolean; archived?: boolean }
+export interface Exercise extends Base { name: string; group: Group; equipment: Equipment; metric: MetricType; loadMode: LoadMode; restSec: number | null; restWarmupSec: number | null; muscles: Muscle[]; secondaryMuscles: Muscle[]; bandAssistable: boolean; tempo: string; notes: string; lib?: boolean; archived?: boolean; /** P-003 (schemat 14): wymagania sprzętowe — każda grupa musi być spełniona, w grupie wystarczy jedna możliwość (lib/equipment.ts). Ćwiczenia własne: [] = zawsze dostępne. */ requires?: string[][]; recommended?: string[]; pattern?: Pattern; /** skąd brać dostępne ciężary (lib/equipment.ts loadsFor) */ loadSource?: LoadSource; /** hantle: 1 = jeden hantel, 2 = para (z której listy brać ciężary) */ implements?: 1 | 2 }
 /** nominalKg (0.5): opcjonalna szacowana asysta gumy w kg — brak standardu kolorów, więc wartość podaje użytkownik (z opakowania lub własny szacunek). */
 export interface Band extends Base { color: string; level: number; nominalKg: number | '' }
 /** id (schemat 10): stabilny klucz wiersza w edytorze (przesuwanie/usuwanie nie myli pól). */
 export interface TemplateItem { id: string; exerciseId: string; sets: number; repMin: number | null; repMax: number | null; /** null = przerwa z ćwiczenia / domyślna (runda 2) */ restSec: number | null; startWeight: number | ''; targetSec: number | ''; groupId: string | null }
-export interface Template extends Base { name: string; items: TemplateItem[] }
+export interface Template extends Base { name: string; items: TemplateItem[]; /** P-003: opcjonalne miejsce domyślne szablonu (brak = miejsce główne) */ locationId?: string }
 export interface WSet { id: string; weight: number | ''; reps: number | ''; durationSec: number | ''; distanceM: number | ''; rpe: number | ''; bandId: string; addKg: number | ''; kind: SetKind; warmup: boolean; note: string; done: boolean; completedAt: number | null; actualRest: number | null; /** wpisane ręcznie w tym treningu (nie z podpowiedzi) */ edited?: boolean; /** pola uzupełnione z podpowiedzi przy odhaczeniu: {pole: wstawiona wartość} */ hinted?: Record<string, unknown>; /** guma zdjęta ręcznie (cykl do „—”): podpowiedź ani poprzednia seria jej nie przywracają */ noBand?: boolean; /** wartości wstawione przez aplikację przy starcie (poprzedni trening / ciężar startowy) — decyzja 02.10: zmiana w serii przechodzi na nieruszone dalsze serie o tej samej wartości */ pre?: Partial<Record<'weight' | 'reps' | 'distanceM' | 'addKg', number>> }
 /** groupId (0.4): ćwiczenia z tym samym groupId tworzą superset — przerwa startuje dopiero po serii ostatniego ćwiczenia grupy. */
 export interface WExercise { id: string; exerciseId: string; restSec: number; repMin: number | null; repMax: number | null; groupId: string | null; sets: WSet[]; /** pozycja szablonu, z której powstał blok (runda 10) */ tplItemId?: string }
-export interface Workout extends Base { loggedBy: string; sessionMode: SessionMode; healthUUID: string | null; templateId: string | null; templateName: string; startedAt: number; finishedAt: number | null; note: string; exercises: WExercise[]; /** trening w toku: „Kontynuuj” po pytaniu o porzucony trening (runda 69) */ staleAck?: number; }
+export interface Workout extends Base { loggedBy: string; sessionMode: SessionMode; healthUUID: string | null; templateId: string | null; templateName: string; startedAt: number; finishedAt: number | null; note: string; exercises: WExercise[]; /** trening w toku: „Kontynuuj” po pytaniu o porzucony trening (runda 69) */ staleAck?: number; /** P-003: miejsce treningu (tylko gdy są zdefiniowane miejsca) */ locationId?: string; }
 export interface Morning extends Base { date: string; bb: number | ''; sleepScore: number | ''; sleepH: number | ''; weight: number | '' }
 /** language/unit (0.8, schemat 9, LOC-01/02): 'auto' = język systemu; masa zawsze zapisywana w kg. */
-export interface Settings { defaultRest: number; sound: boolean; wakeLock: boolean; showRpe: boolean; healthSync: boolean; /** runda 75 (T-017): cicha podpowiedź progresji */ progressHint: boolean; /** runda 75 (T-012): kopia JSON po każdym treningu w Plikach */ autoBackup: boolean; /** runda 75 (T-013): przypomnienie o wadze w poniedziałek rano */ weighReminder: boolean; modules: Record<ModuleId, boolean>; language: LangSetting; unit: Unit }
+export interface Settings { defaultRest: number; sound: boolean; wakeLock: boolean; showRpe: boolean; healthSync: boolean; /** runda 75 (T-017): cicha podpowiedź progresji */ progressHint: boolean; /** runda 75 (T-012): kopia JSON po każdym treningu w Plikach */ autoBackup: boolean; /** runda 75 (T-013): przypomnienie o wadze w poniedziałek rano */ weighReminder: boolean; modules: Record<ModuleId, boolean>; language: LangSetting; unit: Unit; /** P-003 (schemat 14): miejsca treningu; brak miejsc = zachowanie jak przed schematem 14 */ locations: Location[]; mainLocationId: string | null; /** wybór ćwiczenia: pokaż także niedostępne w miejscu (zapamiętany przełącznik) */ pickerShowAll: boolean }
+/** P-003: sprzęt w miejscu — pozycja z lib/equipment.ts, zaznaczone opcje i (dla sprzętu z ciężarami) opis dostępnych ciężarów. */
+export interface LocEquip { item: string; opts: string[]; load?: LoadSpec }
+export interface Location extends Base { name: string; equipment: LocEquip[] }
 export interface State { v: number; schemaVersion: number; ownerId: string; settings: Settings; exercises: Exercise[]; bands: Band[]; templates: Template[]; workouts: Workout[]; active: Workout | null; mornings: Morning[]; relations: CoachingRelation[]; feedback: Feedback[]; instructions: NextSessionInstructions[]; timer: TimerState; metaUpdatedAt?: number; userTouched?: boolean }
 
 /** UUID v4 (ADR-013). Fallback losowy tylko gdyby natywny moduł był niedostępny (np. web/testy). */
@@ -132,17 +137,25 @@ export const MUSCLES_BY_NAME: Record<string, [Muscle[], Muscle[]]> = {
 export const GROUP_TO_MUSCLE: Partial<Record<Group, Muscle>> = { klatka: 'klatka', plecy: 'plecy', barki: 'barki', biceps: 'biceps', triceps: 'triceps', nogi: 'czworogłowe', pośladki: 'pośladki', łydki: 'łydki', core: 'core' };
 export const musclesFor = (name: string, group: Group): [Muscle[], Muscle[]] => own(MUSCLES_BY_NAME, name) ?? [GROUP_TO_MUSCLE[group] ? [GROUP_TO_MUSCLE[group]!] : [], []];
 
+/** P-003: źródło obciążenia ćwiczenia własnego z jego zgrubnego sprzętu (żeby działało zaokrąglanie do dostępnych ciężarów). */
+export const LOAD_SOURCE_BY_EQUIPMENT: Record<Equipment, LoadSource> = { hantle: 'dumbbell', sztanga: 'barbell', 'masa ciała': 'bodyweight', maszyna: 'machine_stack', linki: 'cable', inne: 'none' };
+/** P-003: pola sprzętowe ćwiczenia — z katalogu dla biblioteki (po nazwie kanonicznej), dla własnych: bez wymagań. */
+export function equipFields(name: string, equipment: Equipment, lib: boolean): Pick<Exercise, 'requires' | 'recommended' | 'pattern' | 'loadSource' | 'implements'> {
+  const c = lib ? own(CATALOG as Record<string, typeof CATALOG[string]>, name) : undefined;
+  if (c) { const o: Pick<Exercise, 'requires' | 'recommended' | 'pattern' | 'loadSource' | 'implements'> = { requires: c.requires.map(g => [...g]), recommended: [...c.recommended], pattern: c.pattern, loadSource: c.loadSource }; if (c.implements) o.implements = c.implements; return o; }
+  return { requires: [], recommended: [], loadSource: LOAD_SOURCE_BY_EQUIPMENT[equipment] ?? 'none' };
+}
 export const blankTimer = (): TimerState => ({ restEndAt: null, restTotal: 0, restSetId: null, setStartAt: null, setTarget: 0, setId: null });
 /** Domyślne ustawienia — jedno źródło dla seeda i migracji (audyt 0.8.1: 90 s żyło w 4 miejscach). */
 export const DEFAULT_REST = 90;
-export const defaultSettings = (): Settings => ({ defaultRest: DEFAULT_REST, sound: true, wakeLock: true, showRpe: false, healthSync: false, progressHint: true, autoBackup: true, weighReminder: false, modules: defaultModules(), language: 'auto', unit: 'kg' });
+export const defaultSettings = (): Settings => ({ defaultRest: DEFAULT_REST, sound: true, wakeLock: true, showRpe: false, healthSync: false, progressHint: true, autoBackup: true, weighReminder: false, modules: defaultModules(), language: 'auto', unit: 'kg', locations: [], mainLocationId: null, pickerShowAll: false });
 
 /** Stan startowy. Nazwy tworzone dla użytkownika (szablony, gumy) w jego języku; nazwy ćwiczeń z biblioteki zostają kanoniczne i tłumaczy je exName(). */
 export function seedState(lng: Lang = 'pl'): State {
   const en = lng === 'en';
   const byName: Record<string, Exercise> = {};
   const exercises: Exercise[] = LIB.map(([name, group, equipment, band]) => {
-    const [mu, mu2] = musclesFor(name, group); const e: Exercise = { ...base(), name, group, equipment, metric: metricFor(name), loadMode: loadModeFor(equipment, name), restSec: null, restWarmupSec: null, muscles: mu, secondaryMuscles: mu2, bandAssistable: !!band, tempo: '', notes: '', lib: true };
+    const [mu, mu2] = musclesFor(name, group); const e: Exercise = { ...base(), name, group, equipment, metric: metricFor(name), loadMode: loadModeFor(equipment, name), restSec: null, restWarmupSec: null, muscles: mu, secondaryMuscles: mu2, bandAssistable: !!band, tempo: '', notes: '', lib: true, ...equipFields(name, equipment, true) };
     byName[name] = e; return e;
   });
   const it = (n: string, sets: number, min: number | null, max: number | null, rest: number, w: number): TemplateItem =>
