@@ -9,10 +9,10 @@ name: Kolejność ćwiczeń
 - tapOn: "Start: Upper A"
 - extendedWaitUntil: { visible: "Set 1 done.*", timeout: 10000 }
 - scrollUntilVisible:
-    element: "≡ Reorder"
+    element: "Reorder exercises"
     direction: DOWN
     timeout: 30000
-- tapOn: "≡ Reorder"
+- tapOn: "Reorder exercises"
 - assertVisible: "Exercise order"
 - takeScreenshot: 07-kolejnosc
 - scrollUntilVisible: { element: "Done", direction: DOWN, timeout: 20000 }

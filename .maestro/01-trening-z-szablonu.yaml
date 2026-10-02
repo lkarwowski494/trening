@@ -19,7 +19,11 @@ name: Trening z szablonu
 - assertVisible: "Finish workout?"
 - takeScreenshot: 04-pytanie-o-zakonczenie
 - tapOn: { text: "Finish", below: "Finish workout\\?" }
-- extendedWaitUntil: { visible: "Start from a template", timeout: 10000 }
-- tapOn: "History"
+# Po zapisie aplikacja pokazuje zapisaną sesję
+- extendedWaitUntil: { visible: "Delete session", timeout: 10000 }
 - assertVisible: "Upper A"
-- takeScreenshot: 05-historia
+- takeScreenshot: 05-zapisana-sesja
+- tapOn: "Back"
+- tapOn: "History"
+- assertVisible: "Upper A.*"
+- takeScreenshot: 06-historia
