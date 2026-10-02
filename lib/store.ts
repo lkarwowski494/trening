@@ -722,6 +722,48 @@ export function finishWorkout(at?: number): Workout | null {
 export function cancelWorkout() { getState().active = null; purgeOrphans(); save(); flush(); }
 export function deleteWorkout(id: string) { const st = getState(); st.workouts = st.workouts.filter(w => w.id !== id); purgeOrphans(); save(); flush(); }
 
+/* ---------- edycja historii i trening wstecz (docs/12) ---------- */
+/** Pusta seria (do edytora historii). */
+export const emptySet = blankSet;
+export { copyVals, stripUnused };
+/** Seria historii ma wynik w metryce ćwiczenia: powtórzenia (kg × powt., powt.), czas (czas, kg × czas) albo dystans/czas (bieg).
+ * Seria bez wyniku (np. plank bez czasu, 100 kg × 0) przy zapisie edycji odpada — jak nieodhaczona seria przy „Zakończ”. */
+export function setHasResult(ex: Exercise | undefined, s: WSet): boolean {
+  if (!ex) return setHasValue(s); const m = ex.metric ?? 'weight_reps';
+  if (hasReps(m)) return Number(s.reps) > 0;
+  if (hasDistance(m)) return Number(s.distanceM) > 0 || Number(s.durationSec) > 0;
+  if (hasTime(m)) return Number(s.durationSec) > 0;
+  return setHasValue(s);
+}
+/** Serie robocze (bez drop setów) z ostatniej sesji ćwiczenia rozpoczętej PRZED `before` — źródło wartości dla treningu wstecz.
+ * Dobór bloku jak w „Poprzednio”: najpierw ta sama pozycja szablonu, przy kilku blokach k-ty blok, inaczej wszystkie serie razem.
+ * Sesje późniejsze niż data treningu wstecz nie są brane pod uwagę (nie było ich jeszcze tego dnia). */
+export function previousSetsBefore(exId: string, before: number, k = 0, n = 1, tplItemId?: string): WSet[] | null {
+  for (const w of workoutsWith(exId)) {
+    if (w.startedAt >= before) continue;
+    const bl = blocksOf(w, exId); const blocks = bl.map(e => e.sets.filter(s => isWorking(s) && setHasValue(s) && s.kind !== 'drop'));
+    if (!blocks.some(b => b.length)) continue;
+    if (tplItemId) { const j = bl.findIndex(e => e.tplItemId === tplItemId); if (j >= 0 && blocks[j].length) return blocks[j]; }
+    const full = blocks.filter(b => b.length);
+    return n > 1 && full.length > 1 ? full[Math.min(k, full.length - 1)] : full.flat();
+  }
+  return null;
+}
+/**
+ * Zapis treningu z edytora historii: podmienia trening o id `replaceId` (edycja) albo dodaje nowy (trening wstecz) — w miejscu
+ * zgodnym z datą startu. Jedna zmiana stanu: save() podbija histRev, więc rekordy, „Poprzednio”, wykresy, objętość tygodnia i CSV
+ * liczą się od nowa. Trening w toku i timery nie są ruszane. false = edytowanego treningu już nie ma (usunięty w międzyczasie).
+ */
+export function putHistoryWorkout(w: Workout, replaceId: string | null): boolean {
+  const st = getState();
+  if (replaceId != null) { const i = st.workouts.findIndex(x => x.id === replaceId); if (i < 0) return false; st.workouts.splice(i, 1); }
+  w.exercises.forEach(e => e.sets.forEach(s => { s.done = true; s.warmup = s.kind === 'warmup'; delete s.pre; delete s.hinted; delete s.edited; }));
+  w.exercises = w.exercises.filter(e => e.sets.length); normalizeGroups(w.exercises); delete w.staleAck;
+  const j = st.workouts.findIndex(x => x.startedAt > w.startedAt); st.workouts.splice(j < 0 ? st.workouts.length : j, 0, w);
+  st.userTouched = true; purgeOrphans(); save(w); flush();
+  return true;
+}
+
 /* ---------- supersety (0.4) ---------- */
 export type Grouped = { groupId: string | null };
 /**
