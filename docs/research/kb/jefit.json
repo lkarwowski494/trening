@@ -1,971 +1,1081 @@
 {
-  "app": "JEFIT",
-  "version_or_date_checked": "2026-10 (iOS 17.2.5, Android updated 2026-09-30)",
-  "pricing": "Free with ads; Elite $12.99/mo or $69.99/yr (some legacy cheaper tiers). Paywalled: Adaptive Plan/AI progression, periodization, full analytics, watch app (small free quota), HD videos, Elite plans, unlimited Instant Workouts, ad-free. 7-day Adaptive Plan trial for free users (2026).",
-  "platforms": "iOS (iPhone), Apple Watch, Mac (Apple Silicon), Apple Vision, Android, Wear OS, web (routine planner, data export)",
-  "positioning": "Long-running (2010s) large-database gym log and planner with social/gamification, now repositioned around an Elite AI 'Progressive Overload System' with adaptive mesocycles.",
-  "features": [
-    {
-      "area": "log",
-      "feature_id": "log_set_fields",
-      "has": "yes",
-      "how": "Strength sets log weight x reps; cardio exercises support a duration per set, and since v17.0.8 (May 2026) interval timers let you set a target time per set and see logged times alongside weight and reps. Distance-type metrics are implied (feet/meter unit conversion fix in v17.0.15) but not documented.",
-      "sources": [
-        "https://www.jefit.com/support/faq",
-        "https://www.jefit.com/blog/meet-jefits-all-new-unified-workout-editing-screen",
-        "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000"
-      ]
-    },
-    {
-      "area": "log",
-      "feature_id": "log_set_types",
-      "has": "yes",
-      "how": "Since Apr 2025 every set can be tagged Warm-up, Working, Drop or Failure, both in the routine editor and while logging (tap set, pick type, Log); set types also show on the Apple Watch since Oct 2025. Load progression filters warm-ups out of strength estimates.",
-      "sources": [
-        "https://www.jefit.com/blog/set-types-new-in-jefit-customize-your-workouts-with-set-types",
-        "https://www.jefit.com/blog/newtrack-heart-rate-calories-in-real-time-with-jefit-apple-watch",
-        "https://www.jefit.com/blog/the-science-behind-jefits-load-progression-engine",
-        "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000"
-      ]
-    },
-    {
-      "area": "log",
-      "feature_id": "log_rpe_rir",
-      "has": "no",
-      "how": "JEFIT's own July 2026 comparison table lists 'RPE/RIR capture: No' for Jefit ('The gap: no RPE/RIR field'); effort is instead inferred by the engine from rep patterns/drop-off.",
-      "user_feedback": "App Store review 'Minimal planning features': user complains they cannot enter an RPE or a %1RM in plans (App Store).",
-      "sources": [
-        "https://www.jefit.com/blog/best-progressive-overload-apps-for-beginners-in-2026-top-5-reviewed-and-compared",
-        "https://www.jefit.com/blog/the-science-behind-jefits-load-progression-engine"
-      ]
-    },
-    {
-      "area": "log",
-      "feature_id": "log_previous_values",
-      "has": "yes",
-      "how": "Logging screen pre-fills the last logged weight/reps for the exercise ('remember weights you lifted last time'); exercise history and charts were merged into one page in 2026 (tap a chart point to see that day's logs).",
-      "sources": [
-        "https://www.jefit.com/blog/best-progressive-overload-apps-for-beginners-in-2026-top-5-reviewed-and-compared",
-        "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000",
-        "https://play.google.com/store/apps/details?id=je.fit"
-      ]
-    },
-    {
-      "area": "log",
-      "feature_id": "log_autofill",
-      "has": "yes",
-      "how": "Sets are pre-filled from the last log, or from plan targets; with Elite Load Progression / Periodization the next session's weight and rep targets are written automatically and rounded to the user's own equipment.",
-      "sources": [
-        "https://www.jefit.com/blog/best-progressive-overload-apps-for-beginners-in-2026-top-5-reviewed-and-compared",
-        "https://www.jefit.com/blog/periodization-on-your-own-plan",
-        "https://www.jefit.com/blog/the-science-behind-jefits-load-progression-engine"
-      ]
-    },
-    {
-      "area": "log",
-      "feature_id": "log_notes",
-      "has": "yes",
-      "how": "Each exercise can be tracked with sets, reps, weight and notes; exercise notes live in the logging screen's three-dots menu; workouts accept notes and progress photos. Notes can also be turned into 140-char 'Audio Cue Tips' read aloud during the exercise (Elite).",
-      "user_feedback": "etechshout (Jan 2026) lists 'adding notes on the calendar' as missing; an older App Store review complained notes/descriptions could not be added to a plan.",
-      "sources": [
-        "https://www.jefit.com/support/faq",
-        "https://www.jefit.com/blog/upcoming-enhancements-revamped-workout-tab-and-improved-exercise-screens",
-        "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000",
-        "https://www.jefit.com/blog/jefits-new-personal-audio-coach-feature"
-      ]
-    },
-    {
-      "area": "log",
-      "feature_id": "log_supersets",
-      "has": "yes",
-      "how": "Exercises can be grouped into supersets from the three-dots menu on the logging screen and in the routine builder (web planner too). Circuit/giant-set behaviour not documented.",
-      "sources": [
-        "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000",
-        "https://www.jefit.com/blog/upcoming-enhancements-revamped-workout-tab-and-improved-exercise-screens",
-        "https://www.jefit.com/blog/stay-ahead-with-jefit-online-workout-planner-enhancements"
-      ]
-    },
-    {
-      "area": "log",
-      "feature_id": "log_reorder",
-      "has": "partial",
-      "how": "Routine builder (2025) supports drag-and-drop reordering of exercises/days; reordering inside a live workout is not documented. Swiping left/right moves between exercises during logging.",
-      "sources": [
-        "https://www.jefit.com/blog/introducing-new-routine-builder-workout-planning-simplified",
-        "https://www.jefit.com/blog/stay-ahead-with-jefit-online-workout-planner-enhancements",
-        "https://www.jefit.com/blog/upcoming-enhancements-revamped-workout-tab-and-improved-exercise-screens"
-      ]
-    },
-    {
-      "area": "log",
-      "feature_id": "log_replace_exercise",
-      "has": "yes",
-      "how": "Swap Exercise in the logging screen's three-dots menu; v17.0.9 (Jun 2026) added smarter, injury-aware substitution recommendations; Adaptive Plan swaps stay within the same movement pattern and the week preview explains why an exercise was swapped (injury, difficulty, equipment).",
-      "sources": [
-        "https://www.jefit.com/blog/upcoming-enhancements-revamped-workout-tab-and-improved-exercise-screens",
-        "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000",
-        "https://www.jefit.com/blog/adaptive-mesocycle-training-jefits-smarter-way-to-progress"
-      ]
-    },
-    {
-      "area": "log",
-      "feature_id": "log_plate_calculator",
-      "has": "unknown",
-      "how": "No mention of a plate-loading calculator in JEFIT's FAQ, store listings or blog; weights are, however, rounded to the user's declared plates/dumbbells by the progression engine.",
-      "sources": [
-        "https://www.jefit.com/support/faq",
-        "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000",
-        "https://www.jefit.com/blog/periodization-on-your-own-plan"
-      ]
-    },
-    {
-      "area": "log",
-      "feature_id": "log_warmup_calculator",
-      "has": "unknown",
-      "how": "Warm-up sets can be tagged manually, but no automatic warm-up set generator is documented.",
-      "sources": [
-        "https://www.jefit.com/blog/set-types-new-in-jefit-customize-your-workouts-with-set-types"
-      ]
-    },
-    {
-      "area": "log",
-      "feature_id": "log_bodyweight_assisted",
-      "has": "partial",
-      "how": "Assisted exercises are recognized by the load progression engine ('less resistance means harder', v17.2.4, Sep 2026). Logging added weight on bodyweight moves or bands is not documented; equipment list includes Bands and Body Weight.",
-      "sources": [
-        "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000",
-        "https://www.jefit.com/exercises"
-      ]
-    },
-    {
-      "area": "log",
-      "feature_id": "log_unilateral",
-      "has": "unknown",
-      "how": "No per-side logging documented.",
-      "user_feedback": "App Store review asks for a feature to distinguish reps for each arm/leg on single-limb exercises.",
-      "sources": [
-        "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000"
-      ]
-    },
-    {
-      "area": "log",
-      "feature_id": "log_tempo",
-      "has": "unknown",
-      "how": "Only JEFIT's own marketing listicle claims tempo logging in the free version; not found in FAQ, store text or product posts.",
-      "sources": [
-        "https://www.jefit.com/blog/best-strength-training-apps-for-2026-7-options-tested-by-lifters"
-      ]
-    },
-    {
-      "area": "log",
-      "feature_id": "log_empty_workout",
-      "has": "partial",
-      "how": "Ad-hoc sessions are done via 'Instant Workout' (choose duration, muscles, equipment, then Generate; edit/swap afterwards) or the watch's quick workout by target muscle; a pure blank 'empty workout' flow isn't documented, and a quick 'add exercise on the spot' (lightning) button was removed.",
-      "sources": [
-        "https://www.jefit.com/support/faq",
-        "https://www.jefit.com/blog/watch-guide-elevate-your-workout-with-jefit-wear-os",
-        "https://etechshout.com/jefit-app-review/"
-      ]
-    },
-    {
-      "area": "log",
-      "feature_id": "log_edit_past",
-      "has": "yes",
-      "how": "Logged workouts can be edited anytime from the calendar view in the Progress tab (fix mistakes, add details).",
-      "user_feedback": "etechshout: cannot edit an in-progress workout's plan easily; 'Add exercise' changes the whole program.",
-      "sources": [
-        "https://www.jefit.com/support/faq"
-      ]
-    },
-    {
-      "area": "log",
-      "feature_id": "log_one_hand_ux",
-      "has": "partial",
-      "how": "2023 redesign moved swap/notes/superset into a three-dots menu, swipe between exercises, foldable video; 2026: timer stays visible in the log button when the keyboard is open, local decimal separator accepted, Liquid Glass UI on iOS 26.",
-      "user_feedback": "Long-time users complain about scroll-wheel weight/rep input replacing the keyboard, extra pop-ups and frequent UI changes (App Store review; etechshout).",
-      "sources": [
-        "https://www.jefit.com/blog/upcoming-enhancements-revamped-workout-tab-and-improved-exercise-screens",
-        "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000"
-      ]
-    },
-    {
-      "area": "timer",
-      "feature_id": "timer_auto_rest",
-      "has": "yes",
-      "how": "Rest time is logged automatically between sets; after logging a set the interval panel automatically switches to the rest timer.",
-      "sources": [
-        "https://www.jefit.com/support/faq",
-        "https://www.jefit.com/blog/upcoming-enhancements-revamped-workout-tab-and-improved-exercise-screens"
-      ]
-    },
-    {
-      "area": "timer",
-      "feature_id": "timer_per_exercise",
-      "has": "yes",
-      "how": "Rest can be set per individual set in the unified editor (May 2025) and per exercise in the builder; v17.0.10 (Jun 2026) added 'apply rest time to every set at once' and stopwatch/countdown toggle. Global rest settings live in Profile > Settings.",
-      "user_feedback": "etechshout: rest timer keeps re-enabling and there is no master switch to turn it off everywhere.",
-      "sources": [
-        "https://www.jefit.com/blog/meet-jefits-all-new-unified-workout-editing-screen",
-        "https://www.jefit.com/blog/introducing-new-routine-builder-workout-planning-simplified",
-        "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000",
-        "https://www.jefit.com/blog/upcoming-enhancements-revamped-workout-tab-and-improved-exercise-screens"
-      ]
-    },
-    {
-      "area": "timer",
-      "feature_id": "timer_notifications",
-      "has": "unknown",
-      "how": "Not documented for the phone app; an App Store review mentions the watch's 'notification to begin' is less smooth than the phone's.",
-      "sources": [
-        "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000"
-      ]
-    },
-    {
-      "area": "timer",
-      "feature_id": "timer_live_activity",
-      "has": "yes",
-      "how": "iOS listing: 'See your set count and rest timer right on your lock screen'. Dynamic Island not explicitly mentioned.",
-      "sources": [
-        "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000"
-      ]
-    },
-    {
-      "area": "timer",
-      "feature_id": "timer_set_stopwatch",
-      "has": "yes",
-      "how": "Any exercise can use a custom rest timer, stopwatch or countdown; interval timer per set (target time counts down) since v17.0.8; interval timer syncs live between phone and Apple Watch (v17.2.3).",
-      "sources": [
-        "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000",
-        "https://www.jefit.com/blog/meet-jefits-all-new-unified-workout-editing-screen"
-      ]
-    },
-    {
-      "area": "timer",
-      "feature_id": "timer_workout_duration",
-      "has": "yes",
-      "how": "Workout time is tracked and charted ('workout time' charts); compare-records benchmark includes total workout time; Year in Review shows total training time.",
-      "sources": [
-        "https://www.jefit.com/",
-        "https://www.jefit.com/blog/how-do-you-compare-try-jefits-new-records-feature",
-        "https://www.jefit.com/blog/jefit-year-in-review-2025-a-look-back-at-your-strength-journey"
-      ]
-    },
-    {
-      "area": "timer",
-      "feature_id": "timer_abandoned_workout",
-      "has": "partial",
-      "how": "If a workout isn't finished, on next open the app says a workout cannot last longer than 4 hours (per user report it then logged the whole elapsed time). v17.1.3 (Aug 2026) made in-progress Autoplay workouts resume after relaunch.",
-      "user_feedback": "App Store review: 70+ hour workouts logged (and synced to Apple Health) after forgetting to finish; etechshout: no resume option if you accidentally leave a session.",
-      "sources": [
-        "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000"
-      ]
-    },
-    {
-      "area": "plan",
-      "feature_id": "plan_templates",
-      "has": "yes",
-      "how": "Custom 'workout plans' (routines) made of days; create in app (Workout tab > Find Workout Plan > Create my Own) or in the web routine builder, with per-set weight/reps/rest/set type. Free tier includes custom routines.",
-      "sources": [
-        "https://jefit.zendesk.com/hc/en-us/articles/360018367531-How-to-Create-a-Customized-Routine-",
-        "https://www.jefit.com/blog/introducing-new-routine-builder-workout-planning-simplified",
-        "https://www.jefit.com/elite"
-      ]
-    },
-    {
-      "area": "plan",
-      "feature_id": "plan_folders",
-      "has": "unknown",
-      "how": "No folder concept documented; routine list sorts by most recently performed with a recency badge (v17.0.6).",
-      "sources": [
-        "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000"
-      ]
-    },
-    {
-      "area": "plan",
-      "feature_id": "plan_programs",
-      "has": "yes",
-      "how": "Routine database with ~26,800 plans filterable by goal/level/days (community + JEFIT); 'Elite' professionally designed plans are paywalled.",
-      "sources": [
-        "https://www.jefit.com/routines",
-        "https://www.jefit.com/elite",
-        "https://www.jefit.com/support/faq"
-      ]
-    },
-    {
-      "area": "plan",
-      "feature_id": "plan_periodization",
-      "has": "paid",
-      "how": "Elite: Adaptive Plan builds three 4-phase mesocycles (On-Ramp, Accumulation, Intensification, Deload; ~1 week per phase) for 3-6 days/wk; since Aug 2026 'Auto-apply periodization' runs the same phase wave on user-built plans, changing only weights/reps, with Bridge weeks when a phase underperforms. %1RM entry is not supported.",
-      "sources": [
-        "https://www.jefit.com/blog/adaptive-mesocycle-training-jefits-smarter-way-to-progress",
-        "https://www.jefit.com/blog/periodization-on-your-own-plan",
-        "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000"
-      ]
-    },
-    {
-      "area": "plan",
-      "feature_id": "plan_generator",
-      "has": "partial",
-      "how": "Instant Workout / 'Mix' generates a session from duration, target muscles (optionally auto-picked from 80-100% recovered muscles) and equipment; limited uses free, unlimited for Elite. Adaptive Plan generates a 12-week program from goal, level, frequency, equipment and session length (Elite; 7-day free trial since v17.0.13).",
-      "sources": [
-        "https://www.jefit.com/support/faq",
-        "https://www.jefit.com/blog/jefit-app-new-release-mix-workout-feature",
-        "https://www.jefit.com/blog/adaptive-mesocycle-training-jefits-smarter-way-to-progress",
-        "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000"
-      ]
-    },
-    {
-      "area": "plan",
-      "feature_id": "plan_schedule",
-      "has": "yes",
-      "how": "Calendar in Progress tab; Adaptive Plan lets you pick training days by weekday with workout reminders at 5 PM; week start day configurable; progression plans auto-advance to the next day.",
-      "sources": [
-        "https://www.jefit.com/support/faq",
-        "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000",
-        "https://www.jefit.com/blog/periodization-on-your-own-plan"
-      ]
-    },
-    {
-      "area": "plan",
-      "feature_id": "plan_share_templates",
-      "has": "yes",
-      "how": "Custom routines get a share code + QR/link after publishing; pre-built routines share via link; web builder shares a plan by copying its link.",
-      "sources": [
-        "https://www.jefit.com/blog/routine-sharing-code-and-how-to-generate-one",
-        "https://www.jefit.com/blog/introducing-new-routine-builder-workout-planning-simplified"
-      ]
-    },
-    {
-      "area": "lib",
-      "feature_id": "lib_size",
-      "has": "yes",
-      "how": "Marketed as 1,400+ exercises; the web database currently lists 1,294.",
-      "sources": [
-        "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000",
-        "https://www.jefit.com/exercises"
-      ]
-    },
-    {
-      "area": "lib",
-      "feature_id": "lib_media",
-      "has": "partial",
-      "how": "Free: animations + step-by-step text instructions; Elite: HD video demonstrations ('Play HD Video' from logging screen menu).",
-      "sources": [
-        "https://www.jefit.com/support/faq",
-        "https://www.jefit.com/elite",
-        "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000"
-      ]
-    },
-    {
-      "area": "lib",
-      "feature_id": "lib_custom",
-      "has": "yes",
-      "how": "Custom exercises with primary/secondary equipment and optional muscle groups (redesigned flow v17.0.12); custom images can be uploaded on the web. JEFIT's own listicle lists 'unlimited custom exercise creation' as an Elite perk, implying a free cap.",
-      "sources": [
-        "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000",
-        "https://www.jefit.com/blog/best-strength-training-apps-for-2026-7-options-tested-by-lifters"
-      ]
-    },
-    {
-      "area": "lib",
-      "feature_id": "lib_muscles",
-      "has": "yes",
-      "how": "Exercises map to muscle groups; BodyMap shows sub-muscle distribution per workout day/session; custom exercises have primary + optional muscle groups.",
-      "sources": [
-        "https://www.jefit.com/blog/introducing-bodymap-a-smarter-way-to-visualize-your-training",
-        "https://www.jefit.com/support/faq",
-        "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000"
-      ]
-    },
-    {
-      "area": "lib",
-      "feature_id": "lib_equipment_filter",
-      "has": "yes",
-      "how": "Database filters by 11 muscle groups and 12 equipment types (Body Weight, Bands, Barbell, Bench, Dumbbell, Exercise Ball, EZ Bar, Kettlebell, Cardio Machine, Strength Machine, Pull-up Bar, Weight Plate).",
-      "sources": [
-        "https://www.jefit.com/exercises"
-      ]
-    },
-    {
-      "area": "lib",
-      "feature_id": "lib_search",
-      "has": "yes",
-      "how": "Searchable/filterable exercise database in app and web; routine search by sharing code.",
-      "sources": [
-        "https://www.jefit.com/exercises",
-        "https://www.jefit.com/blog/routine-sharing-code-and-how-to-generate-one"
-      ]
-    },
-    {
-      "area": "lib",
-      "feature_id": "lib_localization",
-      "has": "partial",
-      "how": "App UI in English, French, German, Italian, Simplified Chinese, Spanish; whether exercise names/instructions are translated is not documented.",
-      "sources": [
-        "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000"
-      ]
-    },
-    {
-      "area": "prog",
-      "feature_id": "prog_suggestions",
-      "has": "paid",
-      "how": "Elite Load Progression Engine: after each workout it evaluates working-set quality, Hard-Set Equivalents, rep drop-off (fatigue), short-term trend, goal and exercise role; primary lifts progress when the top of the rep range is hit with stable reps, accessories when most sets hit the top; jumps typically 2.5-5% (or next dumbbell / one machine pin). A purple star explains each target.",
-      "sources": [
-        "https://www.jefit.com/support/faq",
-        "https://www.jefit.com/blog/the-science-behind-jefits-load-progression-engine",
-        "https://www.jefit.com/blog/periodization-on-your-own-plan"
-      ]
-    },
-    {
-      "area": "prog",
-      "feature_id": "prog_double_progression",
-      "has": "paid",
-      "how": "Effectively double progression inside a dynamic rep range: weight steps up only once the top of the range is reached; missed sets never lower the weight (only deloads/returns do).",
-      "sources": [
-        "https://www.jefit.com/blog/periodization-on-your-own-plan",
-        "https://www.jefit.com/support/faq"
-      ]
-    },
-    {
-      "area": "prog",
-      "feature_id": "prog_deload",
-      "has": "paid",
-      "how": "Deload is a built-in phase of every mesocycle; high fatigue can trigger an early deload; weak momentum yields a 'Bridge week'; weight progressions pause during deload (v17.2.1).",
-      "sources": [
-        "https://www.jefit.com/blog/adaptive-mesocycle-training-jefits-smarter-way-to-progress",
-        "https://www.jefit.com/blog/periodization-on-your-own-plan",
-        "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000"
-      ]
-    },
-    {
-      "area": "prog",
-      "feature_id": "prog_fatigue",
-      "has": "partial",
-      "how": "Muscle recovery chart estimates which muscles are recovered (used to auto-pick 80-100% recovered muscles in Mix); Stimulus Volume engine tracks weekly HSE load. No sleep/HRV input.",
-      "sources": [
-        "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000",
-        "https://www.jefit.com/blog/jefit-app-new-release-mix-workout-feature",
-        "https://www.jefit.com/blog/the-north-star-progress-index-nspi"
-      ]
-    },
-    {
-      "area": "prog",
-      "feature_id": "prog_ai_coach",
-      "has": "paid",
-      "how": "'Progressive Overload System' (Nov 2025): Strength, Stimulus Volume and Movement Balance engines feed the NSPI score; Adaptive Plan adjusts weekly with a Weekly Recap explaining what changed and why. Elite only.",
-      "sources": [
-        "https://www.jefit.com/blog/the-new-era-of-jefit-the-progressive-overload-system",
-        "https://www.jefit.com/blog/the-north-star-progress-index-nspi",
-        "https://www.jefit.com/blog/adaptive-mesocycle-training-jefits-smarter-way-to-progress"
-      ]
-    },
-    {
-      "area": "stats",
-      "feature_id": "stats_prs",
-      "has": "partial",
-      "how": "Automatic record detection with instant 'record breaker' notifications per set (since Dec 2023) and 1RM share cards; exact record types beyond 1RM are not documented.",
-      "sources": [
-        "https://www.jefit.com/blog/upcoming-enhancements-revamped-workout-tab-and-improved-exercise-screens",
-        "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000",
-        "https://www.jefit.com/blog/best-strength-training-apps-for-2026-7-options-tested-by-lifters"
-      ]
-    },
-    {
-      "area": "stats",
-      "feature_id": "stats_e1rm",
-      "has": "yes",
-      "how": "Automatic 1RM calculation for every exercise, updated set by set, with %1RM and 3/6-month history; formula not published.",
-      "sources": [
-        "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000",
-        "https://www.jefit.com/blog/upcoming-enhancements-revamped-workout-tab-and-improved-exercise-screens"
-      ]
-    },
-    {
-      "area": "stats",
-      "feature_id": "stats_charts_exercise",
-      "has": "yes",
-      "how": "Per-exercise progress charts (1RM, volume, reps) on one page with history; tap a point to see that day's logs.",
-      "user_feedback": "Older App Store review: progress graph 'makes no sense', no clear linear weight graph per exercise.",
-      "sources": [
-        "https://play.google.com/store/apps/details?id=je.fit",
-        "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000"
-      ]
-    },
-    {
-      "area": "stats",
-      "feature_id": "stats_volume",
-      "has": "yes",
-      "how": "Charts for volume, muscle focus, weekly sets per muscle and movement balance (6 patterns: vertical/horizontal push/pull, hinge, squat); full Analytics is Elite.",
-      "sources": [
-        "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000",
-        "https://www.jefit.com/support/faq",
-        "https://www.jefit.com/blog/jefit-year-in-review-2025-a-look-back-at-your-strength-journey"
-      ]
-    },
-    {
-      "area": "stats",
-      "feature_id": "stats_muscle_heatmap",
-      "has": "yes",
-      "how": "BodyMap silhouette shows % of workout focus per muscle/sub-muscle for a planned day (with + to add exercises) and in the Workout Complete screen; cardio counts toward it (2026).",
-      "sources": [
-        "https://www.jefit.com/blog/introducing-bodymap-a-smarter-way-to-visualize-your-training",
-        "https://www.jefit.com/support/faq",
-        "https://play.google.com/store/apps/details?id=je.fit"
-      ]
-    },
-    {
-      "area": "stats",
-      "feature_id": "stats_calendar_streaks",
-      "has": "yes",
-      "how": "Calendar view of past sessions; weekly streak tracked (widget changes color at 20+ and 50+ week streaks); yearly streak in Year in Review.",
-      "sources": [
-        "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000",
-        "https://www.jefit.com/blog/jefit-widgets-are-live-on-ios",
-        "https://www.jefit.com/blog/jefit-year-in-review-2025-a-look-back-at-your-strength-journey"
-      ]
-    },
-    {
-      "area": "stats",
-      "feature_id": "stats_workout_summary",
-      "has": "yes",
-      "how": "Workout Complete screen with summary, BodyMap and swipeable share cards (milestones, 1RM records), redesigned in 2026; watch shows its own summary.",
-      "sources": [
-        "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000",
-        "https://play.google.com/store/apps/details?id=je.fit",
-        "https://www.jefit.com/blog/introducing-bodymap-a-smarter-way-to-visualize-your-training",
-        "https://www.jefit.com/blog/ios-watch-release-now-you-can-streamline-your-workout-2"
-      ]
-    },
-    {
-      "area": "stats",
-      "feature_id": "stats_strength_standards",
-      "has": "partial",
-      "how": "No strength standards table; Year in Review ranks you by percentile vs all JEFIT users on streak, training time, weight lifted and Iron Points; 'Compare records' lets you compare bench/squat/deadlift 1RM and workout time with friends.",
-      "sources": [
-        "https://www.jefit.com/blog/jefit-year-in-review-2025-a-look-back-at-your-strength-journey",
-        "https://www.jefit.com/blog/how-do-you-compare-try-jefits-new-records-feature"
-      ]
-    },
-    {
-      "area": "body",
-      "feature_id": "body_weight",
-      "has": "yes",
-      "how": "Track body weight and body fat.",
-      "sources": [
-        "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000",
-        "https://play.google.com/store/apps/details?id=je.fit"
-      ]
-    },
-    {
-      "area": "body",
-      "feature_id": "body_measurements",
-      "has": "yes",
-      "how": "Measurements such as waist, chest, arms, legs.",
-      "sources": [
-        "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000",
-        "https://play.google.com/store/apps/details?id=je.fit"
-      ]
-    },
-    {
-      "area": "body",
-      "feature_id": "body_photos",
-      "has": "yes",
-      "how": "Progress photos can be attached to any workout.",
-      "sources": [
-        "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000"
-      ]
-    },
-    {
-      "area": "body",
-      "feature_id": "body_readiness",
-      "has": "partial",
-      "how": "No sleep/HRV/morning check-in; readiness is approximated by the muscle recovery chart and injury tracking (rate injury mild/severe with recovery check-in reminders before the next session, v17.0.9).",
-      "sources": [
-        "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000"
-      ]
-    },
-    {
-      "area": "int",
-      "feature_id": "int_apple_health",
-      "has": "yes",
-      "how": "Workouts can be sent to Apple Health; per a user review the sync must be triggered manually on the finish screen.",
-      "user_feedback": "App Store review: if you forget 'sync to Apple Health' after finishing there is no way to resync later.",
-      "sources": [
-        "https://etechshout.com/jefit-app-review/",
-        "https://www.jefit.com/blog/best-strength-training-apps-for-2026-7-options-tested-by-lifters"
-      ]
-    },
-    {
-      "area": "int",
-      "feature_id": "int_watch_app",
-      "has": "paid",
-      "how": "Apple Watch (watchOS 10+) and Wear OS apps: start workouts, log sets, rest/interval timer, live heart rate & calories, set types, standalone with later sync. Full watch use requires Elite; free users get a small session quota (e.g. 3 sessions reset in Oct 2025).",
-      "user_feedback": "Reviews report slow/failed watch-phone sync and a freezing timer on watch (App Store).",
-      "sources": [
-        "https://www.jefit.com/blog/ios-watch-release-now-you-can-streamline-your-workout-2",
-        "https://www.jefit.com/blog/android-watch-release-an-exciting-new-jefit-feature",
-        "https://www.jefit.com/blog/watch-guide-elevate-your-workout-with-jefit-wear-os",
-        "https://www.jefit.com/blog/watch-guideworkout-on-the-go-with-jefit-watch-app",
-        "https://www.jefit.com/blog/newtrack-heart-rate-calories-in-real-time-with-jefit-apple-watch",
-        "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000"
-      ]
-    },
-    {
-      "area": "int",
-      "feature_id": "int_garmin",
-      "has": "partial",
-      "how": "Strava sync exists (improved v17.0.4-17.0.5, May 2026). Garmin/Fitbit direct integrations not documented in official sources.",
-      "sources": [
-        "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000"
-      ]
-    },
-    {
-      "area": "int",
-      "feature_id": "int_import",
-      "has": "unknown",
-      "how": "No import from Strong/Hevy/CSV documented.",
-      "sources": [
-        "https://www.jefit.com/support/faq"
-      ]
-    },
-    {
-      "area": "int",
-      "feature_id": "int_export",
-      "has": "yes",
-      "how": "Web only: My Jefit > Settings > Data Controls > Export Data produces one multi-section CSV of full history (sets, reps, weights, timed sets, body stats); not available in the mobile app.",
-      "sources": [
-        "https://griptapp.com/help/import-from-jefit",
-        "https://setminded.com/import-from-jefit.html"
-      ]
-    },
-    {
-      "area": "int",
-      "feature_id": "int_backup_sync",
-      "has": "yes",
-      "how": "Account-based cloud sync across phone, watch and web planner (routines download to the app).",
-      "user_feedback": "App Store review: ~70 unsynced sessions were lost after a forced logout.",
-      "sources": [
-        "https://www.jefit.com/blog/introducing-new-routine-builder-workout-planning-simplified",
-        "https://www.jefit.com/blog/stay-ahead-with-jefit-online-workout-planner-enhancements"
-      ]
-    },
-    {
-      "area": "int",
-      "feature_id": "int_widgets",
-      "has": "yes",
-      "how": "iOS widgets: Weekly Streak and Monthly Progress (streak days, volume, duration), plus a widget to jump into today's workout; Android home-screen widget too.",
-      "sources": [
-        "https://www.jefit.com/blog/jefit-widgets-are-live-on-ios",
-        "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000",
-        "https://play.google.com/store/apps/details?id=je.fit"
-      ]
-    },
-    {
-      "area": "int",
-      "feature_id": "int_siri_shortcuts",
-      "has": "unknown",
-      "how": "Not mentioned in any source.",
-      "sources": [
-        "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000"
-      ]
-    },
-    {
-      "area": "equip",
-      "feature_id": "equip_locations",
-      "has": "unknown",
-      "how": "No multiple gym profiles documented.",
-      "sources": [
-        "https://www.jefit.com/blog/periodization-on-your-own-plan"
-      ]
-    },
-    {
-      "area": "equip",
-      "feature_id": "equip_inventory",
-      "has": "yes",
-      "how": "Training Preferences > Equipment: set plates, dumbbells and machine settings you own; targets are rounded to them; editable from the workout screen (v17.2.2); preferred weight increments for free weights/machines (v17.0.7).",
-      "sources": [
-        "https://www.jefit.com/blog/periodization-on-your-own-plan",
-        "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000"
-      ]
-    },
-    {
-      "area": "equip",
-      "feature_id": "equip_filtering",
-      "has": "yes",
-      "how": "Equipment choice drives Instant Workout/Mix and Adaptive Plan exercise selection (full gym, home, bodyweight only).",
-      "sources": [
-        "https://www.jefit.com/support/faq",
-        "https://www.jefit.com/blog/jefit-app-new-release-mix-workout-feature",
-        "https://www.jefit.com/blog/adaptive-mesocycle-training-jefits-smarter-way-to-progress"
-      ]
-    },
-    {
-      "area": "social",
-      "feature_id": "social_feed",
-      "has": "yes",
-      "how": "Follow friends, see their workouts, like and comment, groups, private messages; privacy settings control who sees logs; private posts labelled (2026).",
-      "sources": [
-        "https://www.jefit.com/support/faq",
-        "https://play.google.com/store/apps/details?id=je.fit"
-      ]
-    },
-    {
-      "area": "social",
-      "feature_id": "social_share",
-      "has": "yes",
-      "how": "Share workouts/stats to the feed and to external social apps via share cards; share routines via code/link.",
-      "sources": [
-        "https://www.jefit.com/support/faq",
-        "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000",
-        "https://www.jefit.com/blog/routine-sharing-code-and-how-to-generate-one"
-      ]
-    },
-    {
-      "area": "social",
-      "feature_id": "social_leaderboards",
-      "has": "yes",
-      "how": "Contest leaderboards (updated daily; solo leaderboard shows rank, name, points).",
-      "sources": [
-        "https://www.jefit.com/support/faq",
-        "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000"
-      ]
-    },
-    {
-      "area": "social",
-      "feature_id": "social_challenges",
-      "has": "yes",
-      "how": "Monthly challenge contests and seasonal solo or group contests (free) awarding badges and Iron Points redeemable for Elite.",
-      "sources": [
-        "https://www.jefit.com/support/faq",
-        "https://www.jefit.com/blog/challenge-your-consistency-with-a-solo-or-group-contest"
-      ]
-    },
-    {
-      "area": "coach",
-      "feature_id": "coach_client_management",
-      "has": "partial",
-      "how": "Coach Mode (launched Jun 2025, toggle in Settings): add clients by email/username, dashboard, 'Smart Actions' flag disengaged clients, add/remove paid seats. The /coach page currently says Coach Mode is temporarily unavailable.",
-      "sources": [
-        "https://www.jefit.com/blog/introducing-coach-mode-now-in-the-jefit-app",
-        "https://www.jefit.com/coach"
-      ]
-    },
-    {
-      "area": "coach",
-      "feature_id": "coach_assign_programs",
-      "has": "partial",
-      "how": "Coaches assign 400+ pre-built or custom routines and edit them as clients progress (same availability caveat).",
-      "sources": [
-        "https://www.jefit.com/blog/introducing-coach-mode-now-in-the-jefit-app",
-        "https://www.jefit.com/coach"
-      ]
-    },
-    {
-      "area": "coach",
-      "feature_id": "coach_feedback",
-      "has": "partial",
-      "how": "Coaches review client workout sessions and progress.",
-      "sources": [
-        "https://www.jefit.com/blog/introducing-coach-mode-now-in-the-jefit-app",
-        "https://www.jefit.com/coach"
-      ]
-    },
-    {
-      "area": "coach",
-      "feature_id": "coach_chat",
-      "has": "partial",
-      "how": "In-app messaging between coach and client.",
-      "sources": [
-        "https://www.jefit.com/blog/introducing-coach-mode-now-in-the-jefit-app"
-      ]
-    },
-    {
-      "area": "coach",
-      "feature_id": "coach_marketplace",
-      "has": "partial",
-      "how": "Coach profiles with certifications, success photos and bio for client discovery ('let new clients come to you').",
-      "sources": [
-        "https://www.jefit.com/coach"
-      ]
-    },
-    {
-      "area": "monet",
-      "feature_id": "monet_model",
-      "has": "yes",
-      "how": "Free tier with ads (custom routines, 1,400+ exercises, logging/history, community). Elite $12.99/mo or $69.99/yr (legacy $6.99/$39.99 tiers exist): pro plans, analytics, watch, HD video, ad-free, Adaptive Plan, Load Progression, Periodization. 7-day Adaptive Plan trial for free users since Jul 2026; Iron Points can be redeemed for Elite weeks.",
-      "user_feedback": "Reviews: constant push to upgrade and ads on free tier (etechshout).",
-      "sources": [
-        "https://www.jefit.com/elite",
-        "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000",
-        "https://www.jefit.com/support/faq"
-      ]
-    },
-    {
-      "area": "ux",
-      "feature_id": "ux_units",
-      "has": "partial",
-      "how": "kg/lb supported (metric-specific prescription fixes, local decimal separator, ft/m conversion); per-exercise units not documented.",
-      "user_feedback": "etechshout: no easy way to switch between imperial and metric.",
-      "sources": [
-        "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000"
-      ]
-    },
-    {
-      "area": "ux",
-      "feature_id": "ux_theme",
-      "has": "yes",
-      "how": "Dark mode in app (polish pass v17.0.8) and on web (footer toggle).",
-      "sources": [
-        "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000",
-        "https://www.jefit.com/"
-      ]
-    },
-    {
-      "area": "ux",
-      "feature_id": "ux_languages",
-      "has": "yes",
-      "how": "English, French, German, Italian, Simplified Chinese, Spanish.",
-      "sources": [
-        "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000"
-      ]
-    },
-    {
-      "area": "ux",
-      "feature_id": "ux_accessibility",
-      "has": "unknown",
-      "how": "Developer has not declared accessibility features on the App Store.",
-      "user_feedback": "App Store review: dark-blue/light-blue muscle selection colors hard to distinguish.",
-      "sources": [
-        "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000"
-      ]
-    },
-    {
-      "area": "ux",
-      "feature_id": "ux_onboarding",
-      "has": "yes",
-      "how": "Reimagined onboarding with animations and haptics (v17.1.2, Aug 2026); Adaptive Plan has a mini onboarding (goal, level, split, equipment, cardio finishers).",
-      "sources": [
-        "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000",
-        "https://www.jefit.com/blog/adaptive-mesocycle-training-jefits-smarter-way-to-progress"
-      ]
-    },
-    {
-      "area": "ux",
-      "feature_id": "ux_offline",
-      "has": "partial",
-      "how": "Watch app records offline and syncs later; phone offline behaviour not documented; app is strongly cloud-tied.",
-      "sources": [
-        "https://www.jefit.com/blog/watch-guide-elevate-your-workout-with-jefit-wear-os",
-        "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000"
-      ]
-    },
-    {
-      "area": "ux",
-      "feature_id": "ux_privacy",
-      "has": "partial",
-      "how": "Account-based (web features require login); App Store: usage data used to track across apps, data 'not linked to you' incl. fitness, location, contacts. 2021 data breach exposed usernames, emails, salted password hashes for accounts created before Sep 2020.",
-      "sources": [
-        "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000",
-        "https://www.jefit.com/blog/introducing-new-routine-builder-workout-planning-simplified",
-        "https://www.jefit.com/blog/jefit-data-incident-public-announcement"
-      ]
-    },
-    {
-      "area": "prog",
-      "feature_id": "new:nspi_progress_score",
-      "has": "paid",
-      "how": "North Star Progress Index: weekly score (out of 100) across Strength, Stimulus Volume (Hard-Set Equivalents, EMG-weighted) and Movement Balance, each shown as above/within/below an adaptive target range.",
-      "sources": [
-        "https://www.jefit.com/blog/the-north-star-progress-index-nspi",
-        "https://www.jefit.com/blog/periodization-on-your-own-plan"
-      ]
-    },
-    {
-      "area": "plan",
-      "feature_id": "new:weekly_recap",
-      "has": "paid",
-      "how": "Adaptive Plan shows a weekly recap card: what changed, why (e.g. strong squat/bench load progression), what this week focuses on; week preview lists exercise swaps grouped by movement pattern.",
-      "sources": [
-        "https://www.jefit.com/blog/adaptive-mesocycle-training-jefits-smarter-way-to-progress",
-        "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000"
-      ]
-    },
-    {
-      "area": "body",
-      "feature_id": "new:injury_tracking",
-      "has": "yes",
-      "how": "Log injuries rated mild/severe; app sends recovery check-in reminders before next session and swaps exercises injury-aware.",
-      "sources": [
-        "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000"
-      ]
-    },
-    {
-      "area": "log",
-      "feature_id": "new:audio_coach",
-      "has": "partial",
-      "how": "Audio cue module: spoken 'Ready, go', exercise name, halfway and end-of-set cues (free); Elite adds coach 'Pro Tips' and user-written personal audio tips per exercise.",
-      "sources": [
-        "https://www.jefit.com/blog/new-audio-cue-module-to-be-released-soon-on-jefit",
-        "https://www.jefit.com/blog/jefits-new-personal-audio-coach-feature"
-      ]
-    },
-    {
-      "area": "log",
-      "feature_id": "new:autoplay_mode",
-      "has": "yes",
-      "how": "Two workout modes: Autoplay (guided, timer-driven) vs Traditional; mode locks at session start and Autoplay resumes after relaunch (v17.1.3).",
-      "sources": [
-        "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000",
-        "https://www.jefit.com/blog/upcoming-enhancements-revamped-workout-tab-and-improved-exercise-screens"
-      ]
-    },
-    {
-      "area": "social",
-      "feature_id": "new:iron_points_badges",
-      "has": "yes",
-      "how": "Gamified reward points earned for workouts, social activity, referrals and contests; each event has a badge; consumable points redeem for Elite time.",
-      "sources": [
-        "https://www.jefit.com/support/faq"
-      ]
-    },
-    {
-      "area": "stats",
-      "feature_id": "new:year_in_review",
-      "has": "yes",
-      "how": "Annual recap (Dec-Jan): streak, most active month, movement-pattern breakdown, biggest 1RM gain, lift of the year, PR count, 'Gym O'Clock', percentile-based 'Companion' with shareable badge.",
-      "sources": [
-        "https://www.jefit.com/blog/jefit-year-in-review-2025-a-look-back-at-your-strength-journey",
-        "https://www.jefit.com/support/faq"
-      ]
-    },
-    {
-      "area": "int",
-      "feature_id": "new:web_planner",
-      "has": "yes",
-      "how": "Web routine builder at jefit.com: full-screen editor, drag-and-drop, per-set weight/reps/rest, set types, supersets, share link; routines download to the app.",
-      "sources": [
-        "https://www.jefit.com/blog/introducing-new-routine-builder-workout-planning-simplified",
-        "https://www.jefit.com/blog/stay-ahead-with-jefit-online-workout-planner-enhancements"
-      ]
-    },
-    {
-      "area": "int",
-      "feature_id": "new:multi_platform",
-      "has": "yes",
-      "how": "Runs on iPhone, Apple Watch, Apple Silicon Mac and Apple Vision (iOS 15+), Android and Wear OS.",
-      "sources": [
-        "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000",
-        "https://play.google.com/store/apps/details?id=je.fit"
-      ]
-    },
-    {
-      "area": "stats",
-      "feature_id": "new:compare_records",
-      "has": "yes",
-      "how": "Compare total workout time and bench/squat/deadlift 1RM against your past self or friends over 1w-12m windows (private to you).",
-      "sources": [
-        "https://www.jefit.com/blog/how-do-you-compare-try-jefits-new-records-feature"
-      ]
-    }
-  ]
+ "app": "JEFIT",
+ "version_or_date_checked": "2026-10 (iOS 17.2.5, Android updated 2026-09-30)",
+ "pricing": "Free with ads; Elite $12.99/mo or $69.99/yr (some legacy cheaper tiers). Paywalled: Adaptive Plan/AI progression, periodization, full analytics, watch app (small free quota), HD videos, Elite plans, unlimited Instant Workouts, ad-free. 7-day Adaptive Plan trial for free users (2026).",
+ "pricing_pl": "Za darmo z reklamami; Elite 12,99 USD/mies. lub 69,99 USD/rok (niektóre starsze tańsze plany). Za paywallem: Adaptive Plan/progresja AI, periodyzacja, pełna analityka, aplikacja na zegarek (mały darmowy limit), filmy HD, plany Elite, nielimitowane Instant Workouts, brak reklam. 7-dniowy okres próbny Adaptive Plan dla darmowych użytkowników (2026).",
+ "platforms": "iOS (iPhone), Apple Watch, Mac (Apple Silicon), Apple Vision, Android, Wear OS, web (routine planner, data export)",
+ "platforms_pl": "iOS (iPhone), Apple Watch, Mac (Apple Silicon), Apple Vision, Android, Wear OS, web (planer rutyn, eksport danych)",
+ "positioning": "Long-running (2010s) large-database gym log and planner with social/gamification, now repositioned around an Elite AI 'Progressive Overload System' with adaptive mesocycles.",
+ "positioning_pl": "Wieloletni (od 2010 r.) dziennik treningowy i planer z dużą bazą ćwiczeń oraz elementami społecznościowymi/grywalizacji, obecnie repozycjonowany wokół Elite i „Progressive Overload System” opartego na AI z adaptacyjnymi mezocyklami.",
+ "features": [
+  {
+   "area": "log",
+   "feature_id": "log_set_fields",
+   "has": "yes",
+   "how": "Strength sets log weight x reps; cardio exercises support a duration per set, and since v17.0.8 (May 2026) interval timers let you set a target time per set and see logged times alongside weight and reps. Distance-type metrics are implied (feet/meter unit conversion fix in v17.0.15) but not documented.",
+   "how_pl": "Serie siłowe logują ciężar x powtórzenia; ćwiczenia cardio obsługują czas trwania na serię, a od v17.0.8 (maj 2026) timery interwałowe pozwalają ustawić docelowy czas serii i widzieć zalogowane czasy obok ciężaru i powtórzeń. Metryki dystansu są domniemane (poprawka konwersji stopy/metry w v17.0.15), ale nieudokumentowane.",
+   "sources": [
+    "https://www.jefit.com/support/faq",
+    "https://www.jefit.com/blog/meet-jefits-all-new-unified-workout-editing-screen",
+    "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000"
+   ]
+  },
+  {
+   "area": "log",
+   "feature_id": "log_set_types",
+   "has": "yes",
+   "how": "Since Apr 2025 every set can be tagged Warm-up, Working, Drop or Failure, both in the routine editor and while logging (tap set, pick type, Log); set types also show on the Apple Watch since Oct 2025. Load progression filters warm-ups out of strength estimates.",
+   "how_pl": "Od kwi 2025 każda seria może być oznaczona jako Warm-up, Working, Drop lub Failure, zarówno w edytorze rutyny, jak i podczas logowania (dotknij serię, wybierz typ, Log); typy serii widać też na Apple Watch od paź 2025. Progresja obciążenia odfiltrowuje rozgrzewki z szacunków siły.",
+   "sources": [
+    "https://www.jefit.com/blog/set-types-new-in-jefit-customize-your-workouts-with-set-types",
+    "https://www.jefit.com/blog/newtrack-heart-rate-calories-in-real-time-with-jefit-apple-watch",
+    "https://www.jefit.com/blog/the-science-behind-jefits-load-progression-engine",
+    "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000"
+   ]
+  },
+  {
+   "area": "log",
+   "feature_id": "log_rpe_rir",
+   "has": "no",
+   "how": "JEFIT's own July 2026 comparison table lists 'RPE/RIR capture: No' for Jefit ('The gap: no RPE/RIR field'); effort is instead inferred by the engine from rep patterns/drop-off.",
+   "how_pl": "Własna tabela porównawcza JEFIT z lipca 2026 podaje dla Jefit „RPE/RIR capture: No” („The gap: no RPE/RIR field”); wysiłek jest zamiast tego wnioskowany przez silnik ze wzorców powtórzeń/spadku.",
+   "user_feedback": "App Store review 'Minimal planning features': user complains they cannot enter an RPE or a %1RM in plans (App Store).",
+   "user_feedback_pl": "Recenzja z App Store „Minimal planning features”: użytkownik skarży się, że nie może wpisać RPE ani %1RM w planach (App Store).",
+   "sources": [
+    "https://www.jefit.com/blog/best-progressive-overload-apps-for-beginners-in-2026-top-5-reviewed-and-compared",
+    "https://www.jefit.com/blog/the-science-behind-jefits-load-progression-engine"
+   ]
+  },
+  {
+   "area": "log",
+   "feature_id": "log_previous_values",
+   "has": "yes",
+   "how": "Logging screen pre-fills the last logged weight/reps for the exercise ('remember weights you lifted last time'); exercise history and charts were merged into one page in 2026 (tap a chart point to see that day's logs).",
+   "how_pl": "Ekran logowania wstępnie wypełnia ostatnio zalogowany ciężar/powtórzenia dla ćwiczenia („remember weights you lifted last time”); historia ćwiczenia i wykresy zostały w 2026 połączone w jedną stronę (dotknij punkt na wykresie, aby zobaczyć logi z tego dnia).",
+   "sources": [
+    "https://www.jefit.com/blog/best-progressive-overload-apps-for-beginners-in-2026-top-5-reviewed-and-compared",
+    "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000",
+    "https://play.google.com/store/apps/details?id=je.fit"
+   ]
+  },
+  {
+   "area": "log",
+   "feature_id": "log_autofill",
+   "has": "yes",
+   "how": "Sets are pre-filled from the last log, or from plan targets; with Elite Load Progression / Periodization the next session's weight and rep targets are written automatically and rounded to the user's own equipment.",
+   "how_pl": "Serie są wstępnie wypełniane z ostatniego logu lub z celów planu; przy Elite Load Progression / Periodization ciężar i cele powtórzeń następnej sesji są zapisywane automatycznie i zaokrąglane do sprzętu użytkownika.",
+   "sources": [
+    "https://www.jefit.com/blog/best-progressive-overload-apps-for-beginners-in-2026-top-5-reviewed-and-compared",
+    "https://www.jefit.com/blog/periodization-on-your-own-plan",
+    "https://www.jefit.com/blog/the-science-behind-jefits-load-progression-engine"
+   ]
+  },
+  {
+   "area": "log",
+   "feature_id": "log_notes",
+   "has": "yes",
+   "how": "Each exercise can be tracked with sets, reps, weight and notes; exercise notes live in the logging screen's three-dots menu; workouts accept notes and progress photos. Notes can also be turned into 140-char 'Audio Cue Tips' read aloud during the exercise (Elite).",
+   "how_pl": "Każde ćwiczenie można śledzić z seriami, powtórzeniami, ciężarem i notatkami; notatki do ćwiczeń są w menu trzech kropek ekranu logowania; treningi przyjmują notatki i zdjęcia postępów. Notatki można też zamienić w 140-znakowe „Audio Cue Tips” czytane na głos podczas ćwiczenia (Elite).",
+   "user_feedback": "etechshout (Jan 2026) lists 'adding notes on the calendar' as missing; an older App Store review complained notes/descriptions could not be added to a plan.",
+   "user_feedback_pl": "etechshout (sty 2026) wymienia „dodawanie notatek w kalendarzu” jako brakujące; starsza recenzja z App Store skarżyła się, że do planu nie można dodać notatek/opisów.",
+   "sources": [
+    "https://www.jefit.com/support/faq",
+    "https://www.jefit.com/blog/upcoming-enhancements-revamped-workout-tab-and-improved-exercise-screens",
+    "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000",
+    "https://www.jefit.com/blog/jefits-new-personal-audio-coach-feature"
+   ]
+  },
+  {
+   "area": "log",
+   "feature_id": "log_supersets",
+   "has": "yes",
+   "how": "Exercises can be grouped into supersets from the three-dots menu on the logging screen and in the routine builder (web planner too). Circuit/giant-set behaviour not documented.",
+   "how_pl": "Ćwiczenia można grupować w superserie z menu trzech kropek na ekranie logowania i w kreatorze rutyn (także w planerze webowym). Zachowanie circuit/giant-set nie jest udokumentowane.",
+   "sources": [
+    "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000",
+    "https://www.jefit.com/blog/upcoming-enhancements-revamped-workout-tab-and-improved-exercise-screens",
+    "https://www.jefit.com/blog/stay-ahead-with-jefit-online-workout-planner-enhancements"
+   ]
+  },
+  {
+   "area": "log",
+   "feature_id": "log_reorder",
+   "has": "partial",
+   "how": "Routine builder (2025) supports drag-and-drop reordering of exercises/days; reordering inside a live workout is not documented. Swiping left/right moves between exercises during logging.",
+   "how_pl": "Kreator rutyn (2025) obsługuje zmianę kolejności ćwiczeń/dni przeciąganiem; zmiana kolejności w trwającym treningu nie jest udokumentowana. Przesunięcie w lewo/prawo przełącza między ćwiczeniami podczas logowania.",
+   "sources": [
+    "https://www.jefit.com/blog/introducing-new-routine-builder-workout-planning-simplified",
+    "https://www.jefit.com/blog/stay-ahead-with-jefit-online-workout-planner-enhancements",
+    "https://www.jefit.com/blog/upcoming-enhancements-revamped-workout-tab-and-improved-exercise-screens"
+   ]
+  },
+  {
+   "area": "log",
+   "feature_id": "log_replace_exercise",
+   "has": "yes",
+   "how": "Swap Exercise in the logging screen's three-dots menu; v17.0.9 (Jun 2026) added smarter, injury-aware substitution recommendations; Adaptive Plan swaps stay within the same movement pattern and the week preview explains why an exercise was swapped (injury, difficulty, equipment).",
+   "how_pl": "Swap Exercise w menu trzech kropek ekranu logowania; v17.0.9 (cze 2026) dodała mądrzejsze, uwzględniające kontuzje rekomendacje zamienników; zamiany w Adaptive Plan pozostają w tym samym wzorcu ruchowym, a podgląd tygodnia wyjaśnia, dlaczego ćwiczenie zamieniono (kontuzja, trudność, sprzęt).",
+   "sources": [
+    "https://www.jefit.com/blog/upcoming-enhancements-revamped-workout-tab-and-improved-exercise-screens",
+    "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000",
+    "https://www.jefit.com/blog/adaptive-mesocycle-training-jefits-smarter-way-to-progress"
+   ]
+  },
+  {
+   "area": "log",
+   "feature_id": "log_plate_calculator",
+   "has": "unknown",
+   "how": "No mention of a plate-loading calculator in JEFIT's FAQ, store listings or blog; weights are, however, rounded to the user's declared plates/dumbbells by the progression engine.",
+   "how_pl": "Brak wzmianki o kalkulatorze załadunku talerzy w FAQ JEFIT, opisach w sklepach ani na blogu; ciężary są jednak zaokrąglane przez silnik progresji do deklarowanych przez użytkownika talerzy/hantli.",
+   "sources": [
+    "https://www.jefit.com/support/faq",
+    "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000",
+    "https://www.jefit.com/blog/periodization-on-your-own-plan"
+   ]
+  },
+  {
+   "area": "log",
+   "feature_id": "log_warmup_calculator",
+   "has": "unknown",
+   "how": "Warm-up sets can be tagged manually, but no automatic warm-up set generator is documented.",
+   "how_pl": "Serie rozgrzewkowe można oznaczać ręcznie, ale nie udokumentowano automatycznego generatora serii rozgrzewkowych.",
+   "sources": [
+    "https://www.jefit.com/blog/set-types-new-in-jefit-customize-your-workouts-with-set-types"
+   ]
+  },
+  {
+   "area": "log",
+   "feature_id": "log_bodyweight_assisted",
+   "has": "partial",
+   "how": "Assisted exercises are recognized by the load progression engine ('less resistance means harder', v17.2.4, Sep 2026). Logging added weight on bodyweight moves or bands is not documented; equipment list includes Bands and Body Weight.",
+   "how_pl": "Ćwiczenia z asystą są rozpoznawane przez silnik progresji obciążenia („less resistance means harder”, v17.2.4, wrz 2026). Logowanie dodatkowego ciężaru przy ćwiczeniach z masą ciała lub gumach nie jest udokumentowane; lista sprzętu zawiera Bands i Body Weight.",
+   "sources": [
+    "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000",
+    "https://www.jefit.com/exercises"
+   ]
+  },
+  {
+   "area": "log",
+   "feature_id": "log_unilateral",
+   "has": "unknown",
+   "how": "No per-side logging documented.",
+   "how_pl": "Nie udokumentowano logowania per strona.",
+   "user_feedback": "App Store review asks for a feature to distinguish reps for each arm/leg on single-limb exercises.",
+   "user_feedback_pl": "Recenzja z App Store prosi o funkcję rozróżniania powtórzeń dla każdej ręki/nogi w ćwiczeniach jednokończynowych.",
+   "sources": [
+    "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000"
+   ]
+  },
+  {
+   "area": "log",
+   "feature_id": "log_tempo",
+   "has": "unknown",
+   "how": "Only JEFIT's own marketing listicle claims tempo logging in the free version; not found in FAQ, store text or product posts.",
+   "how_pl": "Tylko własny marketingowy listicle JEFIT twierdzi, że w wersji darmowej jest logowanie tempa; nie znaleziono w FAQ, tekstach sklepowych ani postach produktowych.",
+   "sources": [
+    "https://www.jefit.com/blog/best-strength-training-apps-for-2026-7-options-tested-by-lifters"
+   ]
+  },
+  {
+   "area": "log",
+   "feature_id": "log_empty_workout",
+   "has": "partial",
+   "how": "Ad-hoc sessions are done via 'Instant Workout' (choose duration, muscles, equipment, then Generate; edit/swap afterwards) or the watch's quick workout by target muscle; a pure blank 'empty workout' flow isn't documented, and a quick 'add exercise on the spot' (lightning) button was removed.",
+   "how_pl": "Sesje ad hoc robi się przez „Instant Workout” (wybierz czas trwania, mięśnie, sprzęt, potem Generate; edycja/zamiana potem) lub szybki trening na zegarku według docelowego mięśnia; czysty przepływ „pustego treningu” nie jest udokumentowany, a przycisk szybkiego „dodaj ćwiczenie na miejscu” (błyskawica) został usunięty.",
+   "sources": [
+    "https://www.jefit.com/support/faq",
+    "https://www.jefit.com/blog/watch-guide-elevate-your-workout-with-jefit-wear-os",
+    "https://etechshout.com/jefit-app-review/"
+   ]
+  },
+  {
+   "area": "log",
+   "feature_id": "log_edit_past",
+   "has": "yes",
+   "how": "Logged workouts can be edited anytime from the calendar view in the Progress tab (fix mistakes, add details).",
+   "how_pl": "Zalogowane treningi można edytować w każdej chwili z widoku kalendarza w zakładce Progress (poprawianie błędów, dodawanie szczegółów).",
+   "user_feedback": "etechshout: cannot edit an in-progress workout's plan easily; 'Add exercise' changes the whole program.",
+   "user_feedback_pl": "etechshout: nie można łatwo edytować planu trwającego treningu; „Add exercise” zmienia cały program.",
+   "sources": [
+    "https://www.jefit.com/support/faq"
+   ]
+  },
+  {
+   "area": "log",
+   "feature_id": "log_one_hand_ux",
+   "has": "partial",
+   "how": "2023 redesign moved swap/notes/superset into a three-dots menu, swipe between exercises, foldable video; 2026: timer stays visible in the log button when the keyboard is open, local decimal separator accepted, Liquid Glass UI on iOS 26.",
+   "how_pl": "Redesign z 2023 przeniósł swap/notatki/superset do menu trzech kropek, przesuwanie między ćwiczeniami, składany film; 2026: timer pozostaje widoczny w przycisku logowania przy otwartej klawiaturze, akceptowany lokalny separator dziesiętny, interfejs Liquid Glass na iOS 26.",
+   "user_feedback": "Long-time users complain about scroll-wheel weight/rep input replacing the keyboard, extra pop-ups and frequent UI changes (App Store review; etechshout).",
+   "user_feedback_pl": "Wieloletni użytkownicy narzekają na wprowadzanie ciężaru/powtórzeń kółkiem przewijania zamiast klawiatury, dodatkowe wyskakujące okna i częste zmiany UI (recenzja z App Store; etechshout).",
+   "sources": [
+    "https://www.jefit.com/blog/upcoming-enhancements-revamped-workout-tab-and-improved-exercise-screens",
+    "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000"
+   ]
+  },
+  {
+   "area": "timer",
+   "feature_id": "timer_auto_rest",
+   "has": "yes",
+   "how": "Rest time is logged automatically between sets; after logging a set the interval panel automatically switches to the rest timer.",
+   "how_pl": "Czas przerwy jest logowany automatycznie między seriami; po zalogowaniu serii panel interwałów automatycznie przełącza się na timer przerwy.",
+   "sources": [
+    "https://www.jefit.com/support/faq",
+    "https://www.jefit.com/blog/upcoming-enhancements-revamped-workout-tab-and-improved-exercise-screens"
+   ]
+  },
+  {
+   "area": "timer",
+   "feature_id": "timer_per_exercise",
+   "has": "yes",
+   "how": "Rest can be set per individual set in the unified editor (May 2025) and per exercise in the builder; v17.0.10 (Jun 2026) added 'apply rest time to every set at once' and stopwatch/countdown toggle. Global rest settings live in Profile > Settings.",
+   "how_pl": "Przerwę można ustawić dla pojedynczej serii w ujednoliconym edytorze (maj 2025) i dla ćwiczenia w kreatorze; v17.0.10 (cze 2026) dodała „apply rest time to every set at once” oraz przełącznik stoper/odliczanie. Globalne ustawienia przerw są w Profile > Settings.",
+   "user_feedback": "etechshout: rest timer keeps re-enabling and there is no master switch to turn it off everywhere.",
+   "user_feedback_pl": "etechshout: timer przerwy ciągle się włącza ponownie i nie ma głównego przełącznika, który wyłączyłby go wszędzie.",
+   "sources": [
+    "https://www.jefit.com/blog/meet-jefits-all-new-unified-workout-editing-screen",
+    "https://www.jefit.com/blog/introducing-new-routine-builder-workout-planning-simplified",
+    "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000",
+    "https://www.jefit.com/blog/upcoming-enhancements-revamped-workout-tab-and-improved-exercise-screens"
+   ]
+  },
+  {
+   "area": "timer",
+   "feature_id": "timer_notifications",
+   "has": "unknown",
+   "how": "Not documented for the phone app; an App Store review mentions the watch's 'notification to begin' is less smooth than the phone's.",
+   "how_pl": "Nieudokumentowane dla aplikacji na telefon; jedna recenzja z App Store wspomina, że „notification to begin” na zegarku działa mniej płynnie niż na telefonie.",
+   "sources": [
+    "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000"
+   ]
+  },
+  {
+   "area": "timer",
+   "feature_id": "timer_live_activity",
+   "has": "yes",
+   "how": "iOS listing: 'See your set count and rest timer right on your lock screen'. Dynamic Island not explicitly mentioned.",
+   "how_pl": "Opis na iOS: „See your set count and rest timer right on your lock screen”. Dynamic Island nie jest wyraźnie wspomniany.",
+   "sources": [
+    "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000"
+   ]
+  },
+  {
+   "area": "timer",
+   "feature_id": "timer_set_stopwatch",
+   "has": "yes",
+   "how": "Any exercise can use a custom rest timer, stopwatch or countdown; interval timer per set (target time counts down) since v17.0.8; interval timer syncs live between phone and Apple Watch (v17.2.3).",
+   "how_pl": "Każde ćwiczenie może używać własnego timera przerwy, stopera lub odliczania; timer interwałowy dla serii (docelowy czas odlicza w dół) od v17.0.8; timer interwałowy synchronizuje się na żywo między telefonem a Apple Watch (v17.2.3).",
+   "sources": [
+    "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000",
+    "https://www.jefit.com/blog/meet-jefits-all-new-unified-workout-editing-screen"
+   ]
+  },
+  {
+   "area": "timer",
+   "feature_id": "timer_workout_duration",
+   "has": "yes",
+   "how": "Workout time is tracked and charted ('workout time' charts); compare-records benchmark includes total workout time; Year in Review shows total training time.",
+   "how_pl": "Czas treningu jest śledzony i pokazywany na wykresach („workout time”); benchmark compare-records obejmuje całkowity czas treningu; Year in Review pokazuje całkowity czas treningu.",
+   "sources": [
+    "https://www.jefit.com/",
+    "https://www.jefit.com/blog/how-do-you-compare-try-jefits-new-records-feature",
+    "https://www.jefit.com/blog/jefit-year-in-review-2025-a-look-back-at-your-strength-journey"
+   ]
+  },
+  {
+   "area": "timer",
+   "feature_id": "timer_abandoned_workout",
+   "has": "partial",
+   "how": "If a workout isn't finished, on next open the app says a workout cannot last longer than 4 hours (per user report it then logged the whole elapsed time). v17.1.3 (Aug 2026) made in-progress Autoplay workouts resume after relaunch.",
+   "how_pl": "Jeśli trening nie zostanie zakończony, przy następnym otwarciu aplikacja informuje, że trening nie może trwać dłużej niż 4 godziny (według relacji użytkownika zalogowała wtedy cały upłynięty czas). v17.1.3 (sie 2026) sprawiła, że trwające treningi Autoplay wznawiają się po ponownym uruchomieniu.",
+   "user_feedback": "App Store review: 70+ hour workouts logged (and synced to Apple Health) after forgetting to finish; etechshout: no resume option if you accidentally leave a session.",
+   "user_feedback_pl": "Recenzja z App Store: zalogowano treningi trwające 70+ godzin (i zsynchronizowano je z Apple Health) po zapomnieniu o zakończeniu; etechshout: brak opcji wznowienia, jeśli przypadkiem opuścisz sesję.",
+   "sources": [
+    "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000"
+   ]
+  },
+  {
+   "area": "plan",
+   "feature_id": "plan_templates",
+   "has": "yes",
+   "how": "Custom 'workout plans' (routines) made of days; create in app (Workout tab > Find Workout Plan > Create my Own) or in the web routine builder, with per-set weight/reps/rest/set type. Free tier includes custom routines.",
+   "how_pl": "Własne „workout plans” (rutyny) złożone z dni; tworzone w aplikacji (zakładka Workout > Find Workout Plan > Create my Own) lub w webowym kreatorze rutyn, z ciężarem/powtórzeniami/przerwą/typem serii dla każdej serii. Darmowy poziom obejmuje własne rutyny.",
+   "sources": [
+    "https://jefit.zendesk.com/hc/en-us/articles/360018367531-How-to-Create-a-Customized-Routine-",
+    "https://www.jefit.com/blog/introducing-new-routine-builder-workout-planning-simplified",
+    "https://www.jefit.com/elite"
+   ]
+  },
+  {
+   "area": "plan",
+   "feature_id": "plan_folders",
+   "has": "unknown",
+   "how": "No folder concept documented; routine list sorts by most recently performed with a recency badge (v17.0.6).",
+   "how_pl": "Nie udokumentowano koncepcji folderów; lista rutyn sortuje się według ostatnio wykonanych z plakietką świeżości (v17.0.6).",
+   "sources": [
+    "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000"
+   ]
+  },
+  {
+   "area": "plan",
+   "feature_id": "plan_programs",
+   "has": "yes",
+   "how": "Routine database with ~26,800 plans filterable by goal/level/days (community + JEFIT); 'Elite' professionally designed plans are paywalled.",
+   "how_pl": "Baza rutyn z ok. 26 800 planami filtrowanymi według celu/poziomu/dni (społeczność + JEFIT); profesjonalnie zaprojektowane plany „Elite” są za paywallem.",
+   "sources": [
+    "https://www.jefit.com/routines",
+    "https://www.jefit.com/elite",
+    "https://www.jefit.com/support/faq"
+   ]
+  },
+  {
+   "area": "plan",
+   "feature_id": "plan_periodization",
+   "has": "paid",
+   "how": "Elite: Adaptive Plan builds three 4-phase mesocycles (On-Ramp, Accumulation, Intensification, Deload; ~1 week per phase) for 3-6 days/wk; since Aug 2026 'Auto-apply periodization' runs the same phase wave on user-built plans, changing only weights/reps, with Bridge weeks when a phase underperforms. %1RM entry is not supported.",
+   "how_pl": "Elite: Adaptive Plan buduje trzy 4-fazowe mezocykle (On-Ramp, Accumulation, Intensification, Deload; ok. 1 tydzień na fazę) dla 3-6 dni/tydz.; od sie 2026 „Auto-apply periodization” stosuje tę samą falę faz do planów zbudowanych przez użytkownika, zmieniając tylko ciężary/powtórzenia, z tygodniami Bridge, gdy faza wypada słabo. Wpisywanie %1RM nie jest obsługiwane.",
+   "sources": [
+    "https://www.jefit.com/blog/adaptive-mesocycle-training-jefits-smarter-way-to-progress",
+    "https://www.jefit.com/blog/periodization-on-your-own-plan",
+    "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000"
+   ]
+  },
+  {
+   "area": "plan",
+   "feature_id": "plan_generator",
+   "has": "partial",
+   "how": "Instant Workout / 'Mix' generates a session from duration, target muscles (optionally auto-picked from 80-100% recovered muscles) and equipment; limited uses free, unlimited for Elite. Adaptive Plan generates a 12-week program from goal, level, frequency, equipment and session length (Elite; 7-day free trial since v17.0.13).",
+   "how_pl": "Instant Workout / „Mix” generuje sesję na podstawie czasu trwania, docelowych mięśni (opcjonalnie wybieranych automatycznie spośród mięśni zregenerowanych w 80-100%) i sprzętu; ograniczona liczba użyć za darmo, bez limitu w Elite. Adaptive Plan generuje 12-tygodniowy program z celu, poziomu, częstotliwości, sprzętu i długości sesji (Elite; 7-dniowy okres próbny od v17.0.13).",
+   "sources": [
+    "https://www.jefit.com/support/faq",
+    "https://www.jefit.com/blog/jefit-app-new-release-mix-workout-feature",
+    "https://www.jefit.com/blog/adaptive-mesocycle-training-jefits-smarter-way-to-progress",
+    "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000"
+   ]
+  },
+  {
+   "area": "plan",
+   "feature_id": "plan_schedule",
+   "has": "yes",
+   "how": "Calendar in Progress tab; Adaptive Plan lets you pick training days by weekday with workout reminders at 5 PM; week start day configurable; progression plans auto-advance to the next day.",
+   "how_pl": "Kalendarz w zakładce Progress; Adaptive Plan pozwala wybrać dni treningowe według dni tygodnia z przypomnieniami o treningu o 17:00; konfigurowalny dzień początku tygodnia; plany progresji automatycznie przechodzą do następnego dnia.",
+   "sources": [
+    "https://www.jefit.com/support/faq",
+    "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000",
+    "https://www.jefit.com/blog/periodization-on-your-own-plan"
+   ]
+  },
+  {
+   "area": "plan",
+   "feature_id": "plan_share_templates",
+   "has": "yes",
+   "how": "Custom routines get a share code + QR/link after publishing; pre-built routines share via link; web builder shares a plan by copying its link.",
+   "how_pl": "Własne rutyny dostają kod udostępniania + QR/link po opublikowaniu; gotowe rutyny udostępnia się przez link; webowy kreator udostępnia plan przez skopiowanie jego linku.",
+   "sources": [
+    "https://www.jefit.com/blog/routine-sharing-code-and-how-to-generate-one",
+    "https://www.jefit.com/blog/introducing-new-routine-builder-workout-planning-simplified"
+   ]
+  },
+  {
+   "area": "lib",
+   "feature_id": "lib_size",
+   "has": "yes",
+   "how": "Marketed as 1,400+ exercises; the web database currently lists 1,294.",
+   "how_pl": "Reklamowane jako 1400+ ćwiczeń; baza webowa obecnie wymienia 1294.",
+   "sources": [
+    "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000",
+    "https://www.jefit.com/exercises"
+   ]
+  },
+  {
+   "area": "lib",
+   "feature_id": "lib_media",
+   "has": "partial",
+   "how": "Free: animations + step-by-step text instructions; Elite: HD video demonstrations ('Play HD Video' from logging screen menu).",
+   "how_pl": "Za darmo: animacje + tekstowe instrukcje krok po kroku; Elite: demonstracje wideo HD („Play HD Video” z menu ekranu logowania).",
+   "sources": [
+    "https://www.jefit.com/support/faq",
+    "https://www.jefit.com/elite",
+    "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000"
+   ]
+  },
+  {
+   "area": "lib",
+   "feature_id": "lib_custom",
+   "has": "yes",
+   "how": "Custom exercises with primary/secondary equipment and optional muscle groups (redesigned flow v17.0.12); custom images can be uploaded on the web. JEFIT's own listicle lists 'unlimited custom exercise creation' as an Elite perk, implying a free cap.",
+   "how_pl": "Własne ćwiczenia ze sprzętem głównym/pomocniczym i opcjonalnymi grupami mięśniowymi (przeprojektowany przepływ v17.0.12); własne obrazy można wgrywać w webie. Własny listicle JEFIT wymienia „unlimited custom exercise creation” jako korzyść Elite, co sugeruje limit w darmowej wersji.",
+   "sources": [
+    "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000",
+    "https://www.jefit.com/blog/best-strength-training-apps-for-2026-7-options-tested-by-lifters"
+   ]
+  },
+  {
+   "area": "lib",
+   "feature_id": "lib_muscles",
+   "has": "yes",
+   "how": "Exercises map to muscle groups; BodyMap shows sub-muscle distribution per workout day/session; custom exercises have primary + optional muscle groups.",
+   "how_pl": "Ćwiczenia są mapowane na grupy mięśniowe; BodyMap pokazuje rozkład podmięśni dla dnia/sesji treningowej; własne ćwiczenia mają grupę główną + opcjonalne grupy mięśniowe.",
+   "sources": [
+    "https://www.jefit.com/blog/introducing-bodymap-a-smarter-way-to-visualize-your-training",
+    "https://www.jefit.com/support/faq",
+    "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000"
+   ]
+  },
+  {
+   "area": "lib",
+   "feature_id": "lib_equipment_filter",
+   "has": "yes",
+   "how": "Database filters by 11 muscle groups and 12 equipment types (Body Weight, Bands, Barbell, Bench, Dumbbell, Exercise Ball, EZ Bar, Kettlebell, Cardio Machine, Strength Machine, Pull-up Bar, Weight Plate).",
+   "how_pl": "Baza filtruje według 11 grup mięśniowych i 12 typów sprzętu (Body Weight, Bands, Barbell, Bench, Dumbbell, Exercise Ball, EZ Bar, Kettlebell, Cardio Machine, Strength Machine, Pull-up Bar, Weight Plate).",
+   "sources": [
+    "https://www.jefit.com/exercises"
+   ]
+  },
+  {
+   "area": "lib",
+   "feature_id": "lib_search",
+   "has": "yes",
+   "how": "Searchable/filterable exercise database in app and web; routine search by sharing code.",
+   "how_pl": "Przeszukiwalna/filtrowalna baza ćwiczeń w aplikacji i w webie; wyszukiwanie rutyn po kodzie udostępniania.",
+   "sources": [
+    "https://www.jefit.com/exercises",
+    "https://www.jefit.com/blog/routine-sharing-code-and-how-to-generate-one"
+   ]
+  },
+  {
+   "area": "lib",
+   "feature_id": "lib_localization",
+   "has": "partial",
+   "how": "App UI in English, French, German, Italian, Simplified Chinese, Spanish; whether exercise names/instructions are translated is not documented.",
+   "how_pl": "Interfejs aplikacji po angielsku, francusku, niemiecku, włosku, chińsku uproszczonym i hiszpańsku; czy nazwy ćwiczeń/instrukcje są tłumaczone, nie jest udokumentowane.",
+   "sources": [
+    "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000"
+   ]
+  },
+  {
+   "area": "prog",
+   "feature_id": "prog_suggestions",
+   "has": "paid",
+   "how": "Elite Load Progression Engine: after each workout it evaluates working-set quality, Hard-Set Equivalents, rep drop-off (fatigue), short-term trend, goal and exercise role; primary lifts progress when the top of the rep range is hit with stable reps, accessories when most sets hit the top; jumps typically 2.5-5% (or next dumbbell / one machine pin). A purple star explains each target.",
+   "how_pl": "Elite Load Progression Engine: po każdym treningu ocenia jakość serii roboczych, Hard-Set Equivalents, spadek powtórzeń (zmęczenie), krótkoterminowy trend, cel i rolę ćwiczenia; główne boje progresują, gdy osiągnięta zostanie górna granica zakresu powtórzeń przy stabilnych powtórzeniach, akcesoria, gdy większość serii osiągnie górną granicę; skoki zwykle 2,5-5% (lub następna hantla / jeden kołek maszyny). Fioletowa gwiazdka wyjaśnia każdy cel.",
+   "sources": [
+    "https://www.jefit.com/support/faq",
+    "https://www.jefit.com/blog/the-science-behind-jefits-load-progression-engine",
+    "https://www.jefit.com/blog/periodization-on-your-own-plan"
+   ]
+  },
+  {
+   "area": "prog",
+   "feature_id": "prog_double_progression",
+   "has": "paid",
+   "how": "Effectively double progression inside a dynamic rep range: weight steps up only once the top of the range is reached; missed sets never lower the weight (only deloads/returns do).",
+   "how_pl": "W praktyce podwójna progresja w dynamicznym zakresie powtórzeń: ciężar rośnie dopiero po osiągnięciu górnej granicy zakresu; nieudane serie nigdy nie obniżają ciężaru (robią to tylko deloady/powroty).",
+   "sources": [
+    "https://www.jefit.com/blog/periodization-on-your-own-plan",
+    "https://www.jefit.com/support/faq"
+   ]
+  },
+  {
+   "area": "prog",
+   "feature_id": "prog_deload",
+   "has": "paid",
+   "how": "Deload is a built-in phase of every mesocycle; high fatigue can trigger an early deload; weak momentum yields a 'Bridge week'; weight progressions pause during deload (v17.2.1).",
+   "how_pl": "Deload to wbudowana faza każdego mezocyklu; duże zmęczenie może wywołać wcześniejszy deload; słaby impet daje „Bridge week”; progresje ciężaru są wstrzymane podczas deloadu (v17.2.1).",
+   "sources": [
+    "https://www.jefit.com/blog/adaptive-mesocycle-training-jefits-smarter-way-to-progress",
+    "https://www.jefit.com/blog/periodization-on-your-own-plan",
+    "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000"
+   ]
+  },
+  {
+   "area": "prog",
+   "feature_id": "prog_fatigue",
+   "has": "partial",
+   "how": "Muscle recovery chart estimates which muscles are recovered (used to auto-pick 80-100% recovered muscles in Mix); Stimulus Volume engine tracks weekly HSE load. No sleep/HRV input.",
+   "how_pl": "Wykres regeneracji mięśni szacuje, które mięśnie są zregenerowane (używany do automatycznego wyboru mięśni zregenerowanych w 80-100% w Mix); silnik Stimulus Volume śledzi tygodniowe obciążenie HSE. Brak danych o śnie/HRV.",
+   "sources": [
+    "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000",
+    "https://www.jefit.com/blog/jefit-app-new-release-mix-workout-feature",
+    "https://www.jefit.com/blog/the-north-star-progress-index-nspi"
+   ]
+  },
+  {
+   "area": "prog",
+   "feature_id": "prog_ai_coach",
+   "has": "paid",
+   "how": "'Progressive Overload System' (Nov 2025): Strength, Stimulus Volume and Movement Balance engines feed the NSPI score; Adaptive Plan adjusts weekly with a Weekly Recap explaining what changed and why. Elite only.",
+   "how_pl": "„Progressive Overload System” (lis 2025): silniki Strength, Stimulus Volume i Movement Balance zasilają wynik NSPI; Adaptive Plan dostosowuje się co tydzień, z Weekly Recap wyjaśniającym, co się zmieniło i dlaczego. Tylko Elite.",
+   "sources": [
+    "https://www.jefit.com/blog/the-new-era-of-jefit-the-progressive-overload-system",
+    "https://www.jefit.com/blog/the-north-star-progress-index-nspi",
+    "https://www.jefit.com/blog/adaptive-mesocycle-training-jefits-smarter-way-to-progress"
+   ]
+  },
+  {
+   "area": "stats",
+   "feature_id": "stats_prs",
+   "has": "partial",
+   "how": "Automatic record detection with instant 'record breaker' notifications per set (since Dec 2023) and 1RM share cards; exact record types beyond 1RM are not documented.",
+   "how_pl": "Automatyczne wykrywanie rekordów z natychmiastowymi powiadomieniami „record breaker” dla każdej serii (od gru 2023) i kartami udostępniania 1RM; dokładne typy rekordów poza 1RM nie są udokumentowane.",
+   "sources": [
+    "https://www.jefit.com/blog/upcoming-enhancements-revamped-workout-tab-and-improved-exercise-screens",
+    "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000",
+    "https://www.jefit.com/blog/best-strength-training-apps-for-2026-7-options-tested-by-lifters"
+   ]
+  },
+  {
+   "area": "stats",
+   "feature_id": "stats_e1rm",
+   "has": "yes",
+   "how": "Automatic 1RM calculation for every exercise, updated set by set, with %1RM and 3/6-month history; formula not published.",
+   "how_pl": "Automatyczne obliczanie 1RM dla każdego ćwiczenia, aktualizowane seria po serii, z %1RM i historią z 3/6 miesięcy; wzór nieopublikowany.",
+   "sources": [
+    "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000",
+    "https://www.jefit.com/blog/upcoming-enhancements-revamped-workout-tab-and-improved-exercise-screens"
+   ]
+  },
+  {
+   "area": "stats",
+   "feature_id": "stats_charts_exercise",
+   "has": "yes",
+   "how": "Per-exercise progress charts (1RM, volume, reps) on one page with history; tap a point to see that day's logs.",
+   "how_pl": "Wykresy postępu dla ćwiczenia (1RM, objętość, powtórzenia) na jednej stronie z historią; dotknij punkt, aby zobaczyć logi z tego dnia.",
+   "user_feedback": "Older App Store review: progress graph 'makes no sense', no clear linear weight graph per exercise.",
+   "user_feedback_pl": "Starsza recenzja z App Store: wykres postępu „nie ma sensu”, brak czytelnego liniowego wykresu ciężaru dla ćwiczenia.",
+   "sources": [
+    "https://play.google.com/store/apps/details?id=je.fit",
+    "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000"
+   ]
+  },
+  {
+   "area": "stats",
+   "feature_id": "stats_volume",
+   "has": "yes",
+   "how": "Charts for volume, muscle focus, weekly sets per muscle and movement balance (6 patterns: vertical/horizontal push/pull, hinge, squat); full Analytics is Elite.",
+   "how_pl": "Wykresy objętości, skupienia na mięśniach, tygodniowych serii na mięsień i równowagi ruchowej (6 wzorców: pionowe/poziome pchanie/ciągnięcie, hinge, przysiad); pełna Analytics jest w Elite.",
+   "sources": [
+    "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000",
+    "https://www.jefit.com/support/faq",
+    "https://www.jefit.com/blog/jefit-year-in-review-2025-a-look-back-at-your-strength-journey"
+   ]
+  },
+  {
+   "area": "stats",
+   "feature_id": "stats_muscle_heatmap",
+   "has": "yes",
+   "how": "BodyMap silhouette shows % of workout focus per muscle/sub-muscle for a planned day (with + to add exercises) and in the Workout Complete screen; cardio counts toward it (2026).",
+   "how_pl": "Sylwetka BodyMap pokazuje % skupienia treningu na mięsień/podmięsień dla zaplanowanego dnia (z + do dodawania ćwiczeń) i na ekranie Workout Complete; cardio się wlicza (2026).",
+   "sources": [
+    "https://www.jefit.com/blog/introducing-bodymap-a-smarter-way-to-visualize-your-training",
+    "https://www.jefit.com/support/faq",
+    "https://play.google.com/store/apps/details?id=je.fit"
+   ]
+  },
+  {
+   "area": "stats",
+   "feature_id": "stats_calendar_streaks",
+   "has": "yes",
+   "how": "Calendar view of past sessions; weekly streak tracked (widget changes color at 20+ and 50+ week streaks); yearly streak in Year in Review.",
+   "how_pl": "Widok kalendarza minionych sesji; śledzona tygodniowa seria (widżet zmienia kolor przy seriach 20+ i 50+ tygodni); roczna seria w Year in Review.",
+   "sources": [
+    "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000",
+    "https://www.jefit.com/blog/jefit-widgets-are-live-on-ios",
+    "https://www.jefit.com/blog/jefit-year-in-review-2025-a-look-back-at-your-strength-journey"
+   ]
+  },
+  {
+   "area": "stats",
+   "feature_id": "stats_workout_summary",
+   "has": "yes",
+   "how": "Workout Complete screen with summary, BodyMap and swipeable share cards (milestones, 1RM records), redesigned in 2026; watch shows its own summary.",
+   "how_pl": "Ekran Workout Complete z podsumowaniem, BodyMap i przesuwanymi kartami udostępniania (kamienie milowe, rekordy 1RM), przeprojektowany w 2026; zegarek pokazuje własne podsumowanie.",
+   "sources": [
+    "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000",
+    "https://play.google.com/store/apps/details?id=je.fit",
+    "https://www.jefit.com/blog/introducing-bodymap-a-smarter-way-to-visualize-your-training",
+    "https://www.jefit.com/blog/ios-watch-release-now-you-can-streamline-your-workout-2"
+   ]
+  },
+  {
+   "area": "stats",
+   "feature_id": "stats_strength_standards",
+   "has": "partial",
+   "how": "No strength standards table; Year in Review ranks you by percentile vs all JEFIT users on streak, training time, weight lifted and Iron Points; 'Compare records' lets you compare bench/squat/deadlift 1RM and workout time with friends.",
+   "how_pl": "Brak tabeli norm siłowych; Year in Review klasyfikuje Cię percentylowo względem wszystkich użytkowników JEFIT pod względem serii, czasu treningu, podniesionego ciężaru i Iron Points; „Compare records” pozwala porównać 1RM w wyciskaniu/przysiadzie/martwym ciągu i czas treningu ze znajomymi.",
+   "sources": [
+    "https://www.jefit.com/blog/jefit-year-in-review-2025-a-look-back-at-your-strength-journey",
+    "https://www.jefit.com/blog/how-do-you-compare-try-jefits-new-records-feature"
+   ]
+  },
+  {
+   "area": "body",
+   "feature_id": "body_weight",
+   "has": "yes",
+   "how": "Track body weight and body fat.",
+   "how_pl": "Śledzenie masy ciała i tkanki tłuszczowej.",
+   "sources": [
+    "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000",
+    "https://play.google.com/store/apps/details?id=je.fit"
+   ]
+  },
+  {
+   "area": "body",
+   "feature_id": "body_measurements",
+   "has": "yes",
+   "how": "Measurements such as waist, chest, arms, legs.",
+   "how_pl": "Pomiary takie jak talia, klatka, ramiona, nogi.",
+   "sources": [
+    "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000",
+    "https://play.google.com/store/apps/details?id=je.fit"
+   ]
+  },
+  {
+   "area": "body",
+   "feature_id": "body_photos",
+   "has": "yes",
+   "how": "Progress photos can be attached to any workout.",
+   "how_pl": "Zdjęcia postępów można dołączyć do dowolnego treningu.",
+   "sources": [
+    "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000"
+   ]
+  },
+  {
+   "area": "body",
+   "feature_id": "body_readiness",
+   "has": "partial",
+   "how": "No sleep/HRV/morning check-in; readiness is approximated by the muscle recovery chart and injury tracking (rate injury mild/severe with recovery check-in reminders before the next session, v17.0.9).",
+   "how_pl": "Brak snu/HRV/porannego check-inu; gotowość jest przybliżana wykresem regeneracji mięśni i śledzeniem kontuzji (ocena kontuzji jako lekka/ciężka z przypomnieniami o check-inie regeneracji przed następną sesją, v17.0.9).",
+   "sources": [
+    "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000"
+   ]
+  },
+  {
+   "area": "int",
+   "feature_id": "int_apple_health",
+   "has": "yes",
+   "how": "Workouts can be sent to Apple Health; per a user review the sync must be triggered manually on the finish screen.",
+   "how_pl": "Treningi można wysyłać do Apple Health; według recenzji użytkownika synchronizację trzeba uruchomić ręcznie na ekranie zakończenia.",
+   "user_feedback": "App Store review: if you forget 'sync to Apple Health' after finishing there is no way to resync later.",
+   "user_feedback_pl": "Recenzja z App Store: jeśli po zakończeniu zapomnisz o „sync to Apple Health”, nie da się potem zsynchronizować ponownie.",
+   "sources": [
+    "https://etechshout.com/jefit-app-review/",
+    "https://www.jefit.com/blog/best-strength-training-apps-for-2026-7-options-tested-by-lifters"
+   ]
+  },
+  {
+   "area": "int",
+   "feature_id": "int_watch_app",
+   "has": "paid",
+   "how": "Apple Watch (watchOS 10+) and Wear OS apps: start workouts, log sets, rest/interval timer, live heart rate & calories, set types, standalone with later sync. Full watch use requires Elite; free users get a small session quota (e.g. 3 sessions reset in Oct 2025).",
+   "how_pl": "Aplikacje Apple Watch (watchOS 10+) i Wear OS: rozpoczynanie treningów, logowanie serii, timer przerwy/interwałowy, tętno i kalorie na żywo, typy serii, tryb samodzielny z późniejszą synchronizacją. Pełne użycie zegarka wymaga Elite; darmowi użytkownicy dostają mały limit sesji (np. 3 sesje, reset w paź 2025).",
+   "user_feedback": "Reviews report slow/failed watch-phone sync and a freezing timer on watch (App Store).",
+   "user_feedback_pl": "Recenzje zgłaszają wolną/nieudaną synchronizację zegarek-telefon i zawieszający się timer na zegarku (App Store).",
+   "sources": [
+    "https://www.jefit.com/blog/ios-watch-release-now-you-can-streamline-your-workout-2",
+    "https://www.jefit.com/blog/android-watch-release-an-exciting-new-jefit-feature",
+    "https://www.jefit.com/blog/watch-guide-elevate-your-workout-with-jefit-wear-os",
+    "https://www.jefit.com/blog/watch-guideworkout-on-the-go-with-jefit-watch-app",
+    "https://www.jefit.com/blog/newtrack-heart-rate-calories-in-real-time-with-jefit-apple-watch",
+    "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000"
+   ]
+  },
+  {
+   "area": "int",
+   "feature_id": "int_garmin",
+   "has": "partial",
+   "how": "Strava sync exists (improved v17.0.4-17.0.5, May 2026). Garmin/Fitbit direct integrations not documented in official sources.",
+   "how_pl": "Istnieje synchronizacja ze Strava (ulepszona w v17.0.4-17.0.5, maj 2026). Bezpośrednie integracje z Garmin/Fitbit nie są udokumentowane w oficjalnych źródłach.",
+   "sources": [
+    "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000"
+   ]
+  },
+  {
+   "area": "int",
+   "feature_id": "int_import",
+   "has": "unknown",
+   "how": "No import from Strong/Hevy/CSV documented.",
+   "how_pl": "Nie udokumentowano importu ze Strong/Hevy/CSV.",
+   "sources": [
+    "https://www.jefit.com/support/faq"
+   ]
+  },
+  {
+   "area": "int",
+   "feature_id": "int_export",
+   "has": "yes",
+   "how": "Web only: My Jefit > Settings > Data Controls > Export Data produces one multi-section CSV of full history (sets, reps, weights, timed sets, body stats); not available in the mobile app.",
+   "how_pl": "Tylko web: My Jefit > Settings > Data Controls > Export Data tworzy jeden wielosekcyjny CSV z pełną historią (serie, powtórzenia, ciężary, serie na czas, statystyki ciała); niedostępne w aplikacji mobilnej.",
+   "sources": [
+    "https://griptapp.com/help/import-from-jefit",
+    "https://setminded.com/import-from-jefit.html"
+   ]
+  },
+  {
+   "area": "int",
+   "feature_id": "int_backup_sync",
+   "has": "yes",
+   "how": "Account-based cloud sync across phone, watch and web planner (routines download to the app).",
+   "how_pl": "Synchronizacja w chmurze oparta na koncie między telefonem, zegarkiem i planerem webowym (rutyny pobierają się do aplikacji).",
+   "user_feedback": "App Store review: ~70 unsynced sessions were lost after a forced logout.",
+   "user_feedback_pl": "Recenzja z App Store: ok. 70 niezsynchronizowanych sesji zostało utraconych po wymuszonym wylogowaniu.",
+   "sources": [
+    "https://www.jefit.com/blog/introducing-new-routine-builder-workout-planning-simplified",
+    "https://www.jefit.com/blog/stay-ahead-with-jefit-online-workout-planner-enhancements"
+   ]
+  },
+  {
+   "area": "int",
+   "feature_id": "int_widgets",
+   "has": "yes",
+   "how": "iOS widgets: Weekly Streak and Monthly Progress (streak days, volume, duration), plus a widget to jump into today's workout; Android home-screen widget too.",
+   "how_pl": "Widżety iOS: Weekly Streak i Monthly Progress (dni serii, objętość, czas trwania), plus widżet do przeskoczenia do dzisiejszego treningu; także widżet ekranu głównego na Androidzie.",
+   "sources": [
+    "https://www.jefit.com/blog/jefit-widgets-are-live-on-ios",
+    "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000",
+    "https://play.google.com/store/apps/details?id=je.fit"
+   ]
+  },
+  {
+   "area": "int",
+   "feature_id": "int_siri_shortcuts",
+   "has": "unknown",
+   "how": "Not mentioned in any source.",
+   "how_pl": "Niewspomniane w żadnym źródle.",
+   "sources": [
+    "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000"
+   ]
+  },
+  {
+   "area": "equip",
+   "feature_id": "equip_locations",
+   "has": "unknown",
+   "how": "No multiple gym profiles documented.",
+   "how_pl": "Nie udokumentowano wielu profili siłowni.",
+   "sources": [
+    "https://www.jefit.com/blog/periodization-on-your-own-plan"
+   ]
+  },
+  {
+   "area": "equip",
+   "feature_id": "equip_inventory",
+   "has": "yes",
+   "how": "Training Preferences > Equipment: set plates, dumbbells and machine settings you own; targets are rounded to them; editable from the workout screen (v17.2.2); preferred weight increments for free weights/machines (v17.0.7).",
+   "how_pl": "Training Preferences > Equipment: ustawiasz posiadane talerze, hantle i ustawienia maszyn; cele są do nich zaokrąglane; edytowalne z ekranu treningu (v17.2.2); preferowane przyrosty ciężaru dla wolnych ciężarów/maszyn (v17.0.7).",
+   "sources": [
+    "https://www.jefit.com/blog/periodization-on-your-own-plan",
+    "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000"
+   ]
+  },
+  {
+   "area": "equip",
+   "feature_id": "equip_filtering",
+   "has": "yes",
+   "how": "Equipment choice drives Instant Workout/Mix and Adaptive Plan exercise selection (full gym, home, bodyweight only).",
+   "how_pl": "Wybór sprzętu steruje doborem ćwiczeń w Instant Workout/Mix i Adaptive Plan (pełna siłownia, dom, tylko masa ciała).",
+   "sources": [
+    "https://www.jefit.com/support/faq",
+    "https://www.jefit.com/blog/jefit-app-new-release-mix-workout-feature",
+    "https://www.jefit.com/blog/adaptive-mesocycle-training-jefits-smarter-way-to-progress"
+   ]
+  },
+  {
+   "area": "social",
+   "feature_id": "social_feed",
+   "has": "yes",
+   "how": "Follow friends, see their workouts, like and comment, groups, private messages; privacy settings control who sees logs; private posts labelled (2026).",
+   "how_pl": "Obserwowanie znajomych, oglądanie ich treningów, polubienia i komentarze, grupy, prywatne wiadomości; ustawienia prywatności kontrolują, kto widzi logi; prywatne posty są oznaczane (2026).",
+   "sources": [
+    "https://www.jefit.com/support/faq",
+    "https://play.google.com/store/apps/details?id=je.fit"
+   ]
+  },
+  {
+   "area": "social",
+   "feature_id": "social_share",
+   "has": "yes",
+   "how": "Share workouts/stats to the feed and to external social apps via share cards; share routines via code/link.",
+   "how_pl": "Udostępnianie treningów/statystyk w feedzie i w zewnętrznych aplikacjach społecznościowych przez karty udostępniania; udostępnianie rutyn przez kod/link.",
+   "sources": [
+    "https://www.jefit.com/support/faq",
+    "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000",
+    "https://www.jefit.com/blog/routine-sharing-code-and-how-to-generate-one"
+   ]
+  },
+  {
+   "area": "social",
+   "feature_id": "social_leaderboards",
+   "has": "yes",
+   "how": "Contest leaderboards (updated daily; solo leaderboard shows rank, name, points).",
+   "how_pl": "Rankingi konkursów (aktualizowane codziennie; solo ranking pokazuje pozycję, nazwę, punkty).",
+   "sources": [
+    "https://www.jefit.com/support/faq",
+    "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000"
+   ]
+  },
+  {
+   "area": "social",
+   "feature_id": "social_challenges",
+   "has": "yes",
+   "how": "Monthly challenge contests and seasonal solo or group contests (free) awarding badges and Iron Points redeemable for Elite.",
+   "how_pl": "Miesięczne konkursy wyzwań oraz sezonowe konkursy solo lub grupowe (za darmo) przyznające odznaki i Iron Points do wymiany na Elite.",
+   "sources": [
+    "https://www.jefit.com/support/faq",
+    "https://www.jefit.com/blog/challenge-your-consistency-with-a-solo-or-group-contest"
+   ]
+  },
+  {
+   "area": "coach",
+   "feature_id": "coach_client_management",
+   "has": "partial",
+   "how": "Coach Mode (launched Jun 2025, toggle in Settings): add clients by email/username, dashboard, 'Smart Actions' flag disengaged clients, add/remove paid seats. The /coach page currently says Coach Mode is temporarily unavailable.",
+   "how_pl": "Coach Mode (uruchomiony cze 2025, przełącznik w Settings): dodawanie podopiecznych przez e-mail/nazwę użytkownika, dashboard, „Smart Actions” oznaczają niezaangażowanych podopiecznych, dodawanie/usuwanie płatnych miejsc. Strona /coach obecnie mówi, że Coach Mode jest tymczasowo niedostępny.",
+   "sources": [
+    "https://www.jefit.com/blog/introducing-coach-mode-now-in-the-jefit-app",
+    "https://www.jefit.com/coach"
+   ]
+  },
+  {
+   "area": "coach",
+   "feature_id": "coach_assign_programs",
+   "has": "partial",
+   "how": "Coaches assign 400+ pre-built or custom routines and edit them as clients progress (same availability caveat).",
+   "how_pl": "Trenerzy przypisują 400+ gotowych lub własnych rutyn i edytują je w miarę postępów podopiecznych (to samo zastrzeżenie o dostępności).",
+   "sources": [
+    "https://www.jefit.com/blog/introducing-coach-mode-now-in-the-jefit-app",
+    "https://www.jefit.com/coach"
+   ]
+  },
+  {
+   "area": "coach",
+   "feature_id": "coach_feedback",
+   "has": "partial",
+   "how": "Coaches review client workout sessions and progress.",
+   "how_pl": "Trenerzy przeglądają sesje treningowe i postępy podopiecznych.",
+   "sources": [
+    "https://www.jefit.com/blog/introducing-coach-mode-now-in-the-jefit-app",
+    "https://www.jefit.com/coach"
+   ]
+  },
+  {
+   "area": "coach",
+   "feature_id": "coach_chat",
+   "has": "partial",
+   "how": "In-app messaging between coach and client.",
+   "how_pl": "Wiadomości w aplikacji między trenerem a podopiecznym.",
+   "sources": [
+    "https://www.jefit.com/blog/introducing-coach-mode-now-in-the-jefit-app"
+   ]
+  },
+  {
+   "area": "coach",
+   "feature_id": "coach_marketplace",
+   "has": "partial",
+   "how": "Coach profiles with certifications, success photos and bio for client discovery ('let new clients come to you').",
+   "how_pl": "Profile trenerów z certyfikatami, zdjęciami sukcesów i bio do odkrywania przez klientów („let new clients come to you”).",
+   "sources": [
+    "https://www.jefit.com/coach"
+   ]
+  },
+  {
+   "area": "monet",
+   "feature_id": "monet_model",
+   "has": "yes",
+   "how": "Free tier with ads (custom routines, 1,400+ exercises, logging/history, community). Elite $12.99/mo or $69.99/yr (legacy $6.99/$39.99 tiers exist): pro plans, analytics, watch, HD video, ad-free, Adaptive Plan, Load Progression, Periodization. 7-day Adaptive Plan trial for free users since Jul 2026; Iron Points can be redeemed for Elite weeks.",
+   "how_pl": "Darmowy poziom z reklamami (własne rutyny, 1400+ ćwiczeń, logowanie/historia, społeczność). Elite 12,99 USD/mies. lub 69,99 USD/rok (istnieją starsze plany 6,99/39,99 USD): plany pro, analityka, zegarek, wideo HD, brak reklam, Adaptive Plan, Load Progression, Periodization. 7-dniowy okres próbny Adaptive Plan dla darmowych użytkowników od lip 2026; Iron Points można wymienić na tygodnie Elite.",
+   "user_feedback": "Reviews: constant push to upgrade and ads on free tier (etechshout).",
+   "user_feedback_pl": "Recenzje: ciągłe namawianie do przejścia na wyższy plan i reklamy w wersji darmowej (etechshout).",
+   "sources": [
+    "https://www.jefit.com/elite",
+    "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000",
+    "https://www.jefit.com/support/faq"
+   ]
+  },
+  {
+   "area": "ux",
+   "feature_id": "ux_units",
+   "has": "partial",
+   "how": "kg/lb supported (metric-specific prescription fixes, local decimal separator, ft/m conversion); per-exercise units not documented.",
+   "how_pl": "Obsługa kg/lb (poprawki zaleceń specyficzne dla metrycznych, lokalny separator dziesiętny, konwersja stopy/metry); jednostki dla pojedynczych ćwiczeń nie są udokumentowane.",
+   "user_feedback": "etechshout: no easy way to switch between imperial and metric.",
+   "user_feedback_pl": "etechshout: brak łatwego sposobu przełączania między jednostkami imperialnymi a metrycznymi.",
+   "sources": [
+    "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000"
+   ]
+  },
+  {
+   "area": "ux",
+   "feature_id": "ux_theme",
+   "has": "yes",
+   "how": "Dark mode in app (polish pass v17.0.8) and on web (footer toggle).",
+   "how_pl": "Tryb ciemny w aplikacji (dopracowanie w v17.0.8) i w webie (przełącznik w stopce).",
+   "sources": [
+    "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000",
+    "https://www.jefit.com/"
+   ]
+  },
+  {
+   "area": "ux",
+   "feature_id": "ux_languages",
+   "has": "yes",
+   "how": "English, French, German, Italian, Simplified Chinese, Spanish.",
+   "how_pl": "Angielski, francuski, niemiecki, włoski, chiński uproszczony, hiszpański.",
+   "sources": [
+    "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000"
+   ]
+  },
+  {
+   "area": "ux",
+   "feature_id": "ux_accessibility",
+   "has": "unknown",
+   "how": "Developer has not declared accessibility features on the App Store.",
+   "how_pl": "Deweloper nie zadeklarował funkcji dostępności w App Store.",
+   "user_feedback": "App Store review: dark-blue/light-blue muscle selection colors hard to distinguish.",
+   "user_feedback_pl": "Recenzja z App Store: kolory wyboru mięśni granatowy/jasnoniebieski trudno odróżnić.",
+   "sources": [
+    "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000"
+   ]
+  },
+  {
+   "area": "ux",
+   "feature_id": "ux_onboarding",
+   "has": "yes",
+   "how": "Reimagined onboarding with animations and haptics (v17.1.2, Aug 2026); Adaptive Plan has a mini onboarding (goal, level, split, equipment, cardio finishers).",
+   "how_pl": "Przeprojektowany onboarding z animacjami i haptyką (v17.1.2, sie 2026); Adaptive Plan ma mini onboarding (cel, poziom, split, sprzęt, cardio na koniec).",
+   "sources": [
+    "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000",
+    "https://www.jefit.com/blog/adaptive-mesocycle-training-jefits-smarter-way-to-progress"
+   ]
+  },
+  {
+   "area": "ux",
+   "feature_id": "ux_offline",
+   "has": "partial",
+   "how": "Watch app records offline and syncs later; phone offline behaviour not documented; app is strongly cloud-tied.",
+   "how_pl": "Aplikacja na zegarek nagrywa offline i synchronizuje później; zachowanie telefonu offline nie jest udokumentowane; aplikacja jest silnie związana z chmurą.",
+   "sources": [
+    "https://www.jefit.com/blog/watch-guide-elevate-your-workout-with-jefit-wear-os",
+    "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000"
+   ]
+  },
+  {
+   "area": "ux",
+   "feature_id": "ux_privacy",
+   "has": "partial",
+   "how": "Account-based (web features require login); App Store: usage data used to track across apps, data 'not linked to you' incl. fitness, location, contacts. 2021 data breach exposed usernames, emails, salted password hashes for accounts created before Sep 2020.",
+   "how_pl": "Oparta na koncie (funkcje webowe wymagają logowania); App Store: dane o użyciu używane do śledzenia między aplikacjami, dane „not linked to you” obejmują fitness, lokalizację, kontakty. Wyciek danych z 2021 ujawnił nazwy użytkowników, e-maile, solone hashe haseł dla kont założonych przed wrz 2020.",
+   "sources": [
+    "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000",
+    "https://www.jefit.com/blog/introducing-new-routine-builder-workout-planning-simplified",
+    "https://www.jefit.com/blog/jefit-data-incident-public-announcement"
+   ]
+  },
+  {
+   "area": "prog",
+   "feature_id": "new:nspi_progress_score",
+   "has": "paid",
+   "how": "North Star Progress Index: weekly score (out of 100) across Strength, Stimulus Volume (Hard-Set Equivalents, EMG-weighted) and Movement Balance, each shown as above/within/below an adaptive target range.",
+   "how_pl": "North Star Progress Index: tygodniowy wynik (na 100) z Strength, Stimulus Volume (Hard-Set Equivalents, ważone EMG) i Movement Balance, każdy pokazany jako powyżej/w/poniżej adaptacyjnego zakresu docelowego.",
+   "sources": [
+    "https://www.jefit.com/blog/the-north-star-progress-index-nspi",
+    "https://www.jefit.com/blog/periodization-on-your-own-plan"
+   ]
+  },
+  {
+   "area": "plan",
+   "feature_id": "new:weekly_recap",
+   "has": "paid",
+   "how": "Adaptive Plan shows a weekly recap card: what changed, why (e.g. strong squat/bench load progression), what this week focuses on; week preview lists exercise swaps grouped by movement pattern.",
+   "how_pl": "Adaptive Plan pokazuje kartę tygodniowego podsumowania: co się zmieniło, dlaczego (np. silna progresja obciążenia w przysiadzie/wyciskaniu), na czym skupia się ten tydzień; podgląd tygodnia wymienia zamiany ćwiczeń pogrupowane według wzorca ruchowego.",
+   "sources": [
+    "https://www.jefit.com/blog/adaptive-mesocycle-training-jefits-smarter-way-to-progress",
+    "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000"
+   ]
+  },
+  {
+   "area": "body",
+   "feature_id": "new:injury_tracking",
+   "has": "yes",
+   "how": "Log injuries rated mild/severe; app sends recovery check-in reminders before next session and swaps exercises injury-aware.",
+   "how_pl": "Zapis kontuzji ocenianych jako lekkie/ciężkie; aplikacja wysyła przypomnienia o check-inie regeneracji przed następną sesją i zamienia ćwiczenia z uwzględnieniem kontuzji.",
+   "sources": [
+    "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000"
+   ]
+  },
+  {
+   "area": "log",
+   "feature_id": "new:audio_coach",
+   "has": "partial",
+   "how": "Audio cue module: spoken 'Ready, go', exercise name, halfway and end-of-set cues (free); Elite adds coach 'Pro Tips' and user-written personal audio tips per exercise.",
+   "how_pl": "Moduł wskazówek audio: wypowiadane „Ready, go”, nazwa ćwiczenia, sygnały w połowie i na końcu serii (za darmo); Elite dodaje „Pro Tips” trenera i własne osobiste wskazówki audio dla ćwiczenia.",
+   "sources": [
+    "https://www.jefit.com/blog/new-audio-cue-module-to-be-released-soon-on-jefit",
+    "https://www.jefit.com/blog/jefits-new-personal-audio-coach-feature"
+   ]
+  },
+  {
+   "area": "log",
+   "feature_id": "new:autoplay_mode",
+   "has": "yes",
+   "how": "Two workout modes: Autoplay (guided, timer-driven) vs Traditional; mode locks at session start and Autoplay resumes after relaunch (v17.1.3).",
+   "how_pl": "Dwa tryby treningu: Autoplay (prowadzony, sterowany timerem) vs Traditional; tryb blokuje się na starcie sesji, a Autoplay wznawia się po ponownym uruchomieniu (v17.1.3).",
+   "sources": [
+    "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000",
+    "https://www.jefit.com/blog/upcoming-enhancements-revamped-workout-tab-and-improved-exercise-screens"
+   ]
+  },
+  {
+   "area": "social",
+   "feature_id": "new:iron_points_badges",
+   "has": "yes",
+   "how": "Gamified reward points earned for workouts, social activity, referrals and contests; each event has a badge; consumable points redeem for Elite time.",
+   "how_pl": "Grywalizacyjne punkty nagród zdobywane za treningi, aktywność społecznościową, polecenia i konkursy; każde zdarzenie ma odznakę; konsumowalne punkty wymienia się na czas Elite.",
+   "sources": [
+    "https://www.jefit.com/support/faq"
+   ]
+  },
+  {
+   "area": "stats",
+   "feature_id": "new:year_in_review",
+   "has": "yes",
+   "how": "Annual recap (Dec-Jan): streak, most active month, movement-pattern breakdown, biggest 1RM gain, lift of the year, PR count, 'Gym O'Clock', percentile-based 'Companion' with shareable badge.",
+   "how_pl": "Roczne podsumowanie (gru-sty): seria, najaktywniejszy miesiąc, rozbicie wzorców ruchowych, największy wzrost 1RM, boj roku, liczba PR, „Gym O'Clock”, oparty na percentylach „Companion” z odznaką do udostępnienia.",
+   "sources": [
+    "https://www.jefit.com/blog/jefit-year-in-review-2025-a-look-back-at-your-strength-journey",
+    "https://www.jefit.com/support/faq"
+   ]
+  },
+  {
+   "area": "int",
+   "feature_id": "new:web_planner",
+   "has": "yes",
+   "how": "Web routine builder at jefit.com: full-screen editor, drag-and-drop, per-set weight/reps/rest, set types, supersets, share link; routines download to the app.",
+   "how_pl": "Webowy kreator rutyn na jefit.com: edytor pełnoekranowy, drag-and-drop, ciężar/powtórzenia/przerwa dla każdej serii, typy serii, superserie, link do udostępnienia; rutyny pobierają się do aplikacji.",
+   "sources": [
+    "https://www.jefit.com/blog/introducing-new-routine-builder-workout-planning-simplified",
+    "https://www.jefit.com/blog/stay-ahead-with-jefit-online-workout-planner-enhancements"
+   ]
+  },
+  {
+   "area": "int",
+   "feature_id": "new:multi_platform",
+   "has": "yes",
+   "how": "Runs on iPhone, Apple Watch, Apple Silicon Mac and Apple Vision (iOS 15+), Android and Wear OS.",
+   "how_pl": "Działa na iPhone, Apple Watch, Mac z Apple Silicon i Apple Vision (iOS 15+), Androidzie i Wear OS.",
+   "sources": [
+    "https://apps.apple.com/us/app/jefit-workout-planner-gym-log/id449810000",
+    "https://play.google.com/store/apps/details?id=je.fit"
+   ]
+  },
+  {
+   "area": "stats",
+   "feature_id": "new:compare_records",
+   "has": "yes",
+   "how": "Compare total workout time and bench/squat/deadlift 1RM against your past self or friends over 1w-12m windows (private to you).",
+   "how_pl": "Porównanie całkowitego czasu treningu i 1RM w wyciskaniu/przysiadzie/martwym ciągu z własną przeszłością lub znajomymi w oknach 1 tyg.-12 mies. (prywatne dla Ciebie).",
+   "sources": [
+    "https://www.jefit.com/blog/how-do-you-compare-try-jefits-new-records-feature"
+   ]
+  }
+ ]
 }

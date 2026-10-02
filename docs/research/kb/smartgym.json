@@ -2,14 +2,18 @@
   "app": "SmartGym",
   "version_or_date_checked": "2026-10 (iOS 8.0.3, released Sep 16 2026)",
   "pricing": "Free tier (2 routines, 3 workouts/10 histories, 2 measures) + subscriptions: Premium+ $9.99/mo or $59.99/yr (incl. 130+ pre-made workouts), User Account $6.99/mo / $39.99/yr, Family Premium+ $16.99/mo / $99.99/yr, Personal Trainer 10 students $14.99/mo / $124.99/yr; 7-day trial (US App Store prices)",
+  "pricing_pl": "Wersja darmowa (2 rutyny, 3 treningi/10 wpisów historii, 2 pomiary) + subskrypcje: Premium+ 9,99 $/mies. lub 59,99 $/rok (w tym ponad 130 gotowych treningów), User Account 6,99 $/mies. / 39,99 $/rok, Family Premium+ 16,99 $/mies. / 99,99 $/rok, Personal Trainer 10 podopiecznych 14,99 $/mies. / 124,99 $/rok; 7-dniowy okres próbny (ceny z amerykańskiego App Store)",
   "platforms": "iPhone, iPad, Mac, Apple Watch (standalone), Apple Vision Pro; no Android (routines can be shared to Android users as text/image)",
+  "platforms_pl": "iPhone, iPad, Mac, Apple Watch (samodzielna aplikacja), Apple Vision Pro; brak wersji na Androida (rutyny można udostępniać użytkownikom Androida jako tekst/obraz)",
   "positioning": "Apple-ecosystem-first AI workout planner/tracker: Smart Trainer generates and adapts routines, with the deepest Apple Watch/Siri/Live Activity/Action Button integration in the category.",
+  "positioning_pl": "Aplikacja do planowania i śledzenia treningów z AI, stawiająca na ekosystem Apple: Smart Trainer generuje i dostosowuje rutyny, a integracja z Apple Watch/Siri/Live Activity/Action Button jest najgłębsza w tej kategorii.",
   "features": [
     {
       "area": "log",
       "feature_id": "log_set_fields",
       "has": "yes",
       "how": "Each exercise in a routine has sets, reps, weight and rest; any exercise can be switched to time-based via the 'HIIT (Duration Based Exercise)' toggle. Per-set different reps/weight are added via Edit > 'Add New Set'. Heart rate, calories and distance come from the HealthKit workout session, not per-set fields.",
+      "how_pl": "Każde ćwiczenie w rutynie ma serie, powtórzenia, ciężar i przerwę; dowolne ćwiczenie można przełączyć na czasowe przełącznikiem „HIIT (Duration Based Exercise)”. Różne powtórzenia/ciężar w poszczególnych seriach dodaje się przez Edit > „Add New Set”. Tętno, kalorie i dystans pochodzą z sesji treningowej HealthKit, a nie z pól w serii.",
       "sources": [
         "https://help.smartgymapp.com/article/75-exercise-time-based",
         "https://help.smartgymapp.com/article/112-add-multiple-sets-with-different-reps-and-weight",
@@ -21,7 +25,9 @@
       "feature_id": "log_set_types",
       "has": "yes",
       "how": "Sets can be typed as regular, warm-up or drop sets (set types added in SmartGym 6, set-type editing on Watch in v7). Since 7.11 (Jul 2026) the set type can be changed directly from the custom in-app keyboard. No evidence of a dedicated failure-set type.",
+      "how_pl": "Serie mogą mieć typ: zwykła, rozgrzewkowa lub drop set (typy serii dodano w SmartGym 6, edycję typu na zegarku w v7). Od 7.11 (lip 2026) typ serii można zmienić bezpośrednio z własnej klawiatury w aplikacji. Brak dowodów na osobny typ serii „do upadku”.",
       "user_feedback": "Older aggregated App Store reviews listed 'no drop sets' as missing (pre-dates set types) - https://justuseapp.com/en/app/922744883/smartgym-gym-home-workouts/reviews",
+      "user_feedback_pl": "Starsze zbiorcze recenzje z App Store wymieniały brak drop setów (sprzed wprowadzenia typów serii) - https://justuseapp.com/en/app/922744883/smartgym-gym-home-workouts/reviews",
       "sources": [
         "https://9to5mac.com/2022/05/05/smartgym-for-ios-watchos-mac-major-update/",
         "https://alternativeto.net/news/2023/6/smartgym-7-has-been-released-with-new-exercises-progress-tracking-and-enhanced-apple-watch-app",
@@ -34,6 +40,7 @@
       "feature_id": "log_rpe_rir",
       "has": "partial",
       "how": "No per-set RPE/RIR field found. Since 7.9 (Mar 2026) the user rates whole-workout 'Workout Effort' after each session (breathing-synchronized animation), which feeds a training-load picture.",
+      "how_pl": "Nie znaleziono pola RPE/RIR dla pojedynczej serii. Od 7.9 (mar 2026) użytkownik po każdej sesji ocenia cały trening w „Workout Effort” (animacja zsynchronizowana z oddechem), co zasila obraz obciążenia treningowego.",
       "sources": [
         "https://smartgymapp.com/releases/smartgym-7-9",
         "https://smartgymapp.com/features.html"
@@ -44,6 +51,7 @@
       "feature_id": "log_previous_values",
       "has": "yes",
       "how": "During a workout a 'Vs Previous' button lets you pick a metric and compare the current exercise with the last time you did it, updating in real time as sets are logged (7.4). Inline Logging (7.11) shows a badge with the planned (routine) value in each field.",
+      "how_pl": "Podczas treningu przycisk „Vs Previous” pozwala wybrać metrykę i porównać bieżące ćwiczenie z ostatnim razem; porównanie aktualizuje się na żywo w miarę logowania serii (7.4). Inline Logging (7.11) pokazuje w każdym polu plakietkę z wartością planowaną (z rutyny).",
       "sources": [
         "https://smartgymapp.com/releases/smartgym-7-4",
         "https://smartgymapp.com/releases/smartgym-7-11",
@@ -55,7 +63,9 @@
       "feature_id": "log_autofill",
       "has": "yes",
       "how": "Model is 'always a base routine': planned sets/reps/weight come from the routine (own, pre-made or Smart Trainer) and a single tap on the set number logs the planned values. 'Log Different Sets' logs deviating values to history without overwriting the routine; editing the exercise overwrites it for future sessions.",
+      "how_pl": "Model to „zawsze rutyna bazowa”: planowane serie/powtórzenia/ciężar pochodzą z rutyny (własnej, gotowej lub od Smart Trainera), a jedno stuknięcie w numer serii loguje wartości planowane. „Log Different Sets” zapisuje w historii wartości odbiegające od planu bez nadpisywania rutyny; edycja ćwiczenia nadpisuje ją dla przyszłych sesji.",
       "user_feedback": "Users complain that recording actual reps/weight different from plan is clunky ('no ability to record actual weight and actual rep count ... without changing for that set') - https://itunes.apple.com/us/rss/customerreviews/page=3/id=922744883/sortby=mostrecent/json",
+      "user_feedback_pl": "Użytkownicy narzekają, że zapisanie faktycznych powtórzeń/ciężaru innych niż w planie jest niewygodne („no ability to record actual weight and actual rep count ... without changing for that set”) - https://itunes.apple.com/us/rss/customerreviews/page=3/id=922744883/sortby=mostrecent/json",
       "sources": [
         "https://help.smartgymapp.com/article/106-log-exercises",
         "https://help.smartgymapp.com/article/60-log-different-sets"
@@ -66,6 +76,7 @@
       "feature_id": "log_notes",
       "has": "yes",
       "how": "Routines have a Notes field; v7 added notes on routines and exercises in History; exercise notes are viewable on Watch via the exercise More button. No evidence of per-set notes.",
+      "how_pl": "Rutyny mają pole Notes; v7 dodała notatki do rutyn i ćwiczeń w History; notatki do ćwiczeń są widoczne na zegarku pod przyciskiem More ćwiczenia. Brak dowodów na notatki do pojedynczych serii.",
       "sources": [
         "https://help.smartgymapp.com/article/57-create-custom-routine",
         "https://alternativeto.net/news/2023/6/smartgym-7-has-been-released-with-new-exercises-progress-tracking-and-enhanced-apple-watch-app",
@@ -77,7 +88,9 @@
       "feature_id": "log_supersets",
       "has": "yes",
       "how": "Superset = enable the superset toggle on every exercise except the last of the group (2+ exercises, i.e. also circuits); optional rest at the end of the round. Since 7.5.4 can be toggled by swiping an exercise row.",
+      "how_pl": "Superserię tworzy się, włączając przełącznik superserii przy każdym ćwiczeniu z grupy poza ostatnim (2+ ćwiczeń, czyli także obwody); opcjonalna przerwa na końcu rundy. Od 7.5.4 można ją przełączać przesunięciem wiersza ćwiczenia.",
       "user_feedback": "Reviews: superset flow 'not intuitive and will not automatically revert back to the first exercise'; another: 'Doesn't support circuits' - https://itunes.apple.com/us/rss/customerreviews/page=3/id=922744883/sortby=mostrecent/json",
+      "user_feedback_pl": "Recenzje: przebieg superserii jest „not intuitive and will not automatically revert back to the first exercise”; inna: „Doesn't support circuits” - https://itunes.apple.com/us/rss/customerreviews/page=3/id=922744883/sortby=mostrecent/json",
       "sources": [
         "https://help.smartgymapp.com/article/74-create-supersets",
         "https://help.smartgymapp.com/article/65-superset",
@@ -89,6 +102,7 @@
       "feature_id": "log_reorder",
       "has": "partial",
       "how": "Exercises are reordered in routine Edit mode by long-pressing the three-line handle and dragging. No evidence of reordering inside an active session without editing the routine.",
+      "how_pl": "Kolejność ćwiczeń zmienia się w trybie edycji rutyny: przytrzymaj uchwyt z trzema kreskami i przeciągnij. Brak dowodów na zmianę kolejności w trakcie aktywnej sesji bez edycji rutyny.",
       "sources": [
         "https://help.smartgymapp.com/article/72-change-the-order-of-the-exercises",
         "https://help.smartgymapp.com/article/57-create-custom-routine"
@@ -99,6 +113,7 @@
       "feature_id": "log_replace_exercise",
       "has": "yes",
       "how": "'Alternative exercise' (7.4): swap an exercise for the current session only (routine stays intact); Smart Trainer suggests the most similar exercises filtered by the routine's equipment list; works offline on Apple Watch. 'Edit > Replace Exercise' changes it permanently. 7.6 added search in alternatives.",
+      "how_pl": "„Alternative exercise” (7.4): zamiana ćwiczenia tylko na bieżącą sesję (rutyna pozostaje nienaruszona); Smart Trainer proponuje najbardziej podobne ćwiczenia, filtrowane według listy sprzętu z rutyny; działa offline na Apple Watch. „Edit > Replace Exercise” zmienia je na stałe. W 7.6 dodano wyszukiwanie w alternatywach.",
       "sources": [
         "https://smartgymapp.com/releases/smartgym-7-4",
         "https://smartgymapp.com/releases/smartgym-7-6",
@@ -111,6 +126,7 @@
       "feature_id": "log_plate_calculator",
       "has": "no",
       "how": "No plate calculator in help center, feature page or release notes; a May 2026 App Store review explicitly lists 'No Built-in Plate Calculator' as a major omission.",
+      "how_pl": "Brak kalkulatora talerzy w centrum pomocy, na stronie funkcji i w notatkach wydania; recenzja z App Store z maja 2026 wprost wymienia „No Built-in Plate Calculator” jako poważny brak.",
       "sources": [
         "https://itunes.apple.com/us/rss/customerreviews/page=3/id=922744883/sortby=mostrecent/json",
         "https://smartgymapp.com/features.html"
@@ -121,6 +137,7 @@
       "feature_id": "log_warmup_calculator",
       "has": "unknown",
       "how": "No warm-up set calculator found. A 'warm-up' set type exists, and Smart Trainer (7.9) suggests warm-up/cool-down mobility stretches (routine segments), which is a different feature.",
+      "how_pl": "Nie znaleziono kalkulatora serii rozgrzewkowych. Istnieje typ serii „warm-up”, a Smart Trainer (7.9) proponuje rozciąganie mobilizujące na rozgrzewkę/schłodzenie (segmenty rutyny), ale to inna funkcja.",
       "sources": [
         "https://smartgymapp.com/releases/smartgym-7-9",
         "https://9to5mac.com/2026/07/23/smartgym-update-makes-it-easier-to-manually-adjust-and-log-exercises-on-the-go/"
@@ -131,6 +148,7 @@
       "feature_id": "log_bodyweight_assisted",
       "has": "unknown",
       "how": "Bodyweight exercises exist in the 730+ library, but no documentation found on how added/assisted weight or bands are logged.",
+      "how_pl": "Ćwiczenia z masą własną ciała są w bibliotece 730+ ćwiczeń, ale nie znaleziono dokumentacji, jak loguje się dodatkowe/odciążone obciążenie czy gumy.",
       "sources": [
         "https://smartgymapp.com/features.html"
       ]
@@ -140,6 +158,7 @@
       "feature_id": "log_unilateral",
       "has": "unknown",
       "how": "No documentation of per-side logging found.",
+      "how_pl": "Nie znaleziono dokumentacji logowania osobno dla każdej strony.",
       "sources": [
         "https://smartgymapp.com/features.html"
       ]
@@ -149,6 +168,7 @@
       "feature_id": "log_tempo",
       "has": "unknown",
       "how": "No tempo field documented.",
+      "how_pl": "Nie udokumentowano pola tempa.",
       "sources": [
         "https://smartgymapp.com/features.html"
       ]
@@ -158,6 +178,7 @@
       "feature_id": "log_empty_workout",
       "has": "partial",
       "how": "Logging is routine-based ('SmartGym works with always having a base routine'). 'Start Workout' starts a HealthKit session and you pick a routine; iOS 18 Lock Screen button can start 'an open workout'. No documented ad-hoc exercise-by-exercise logging without a routine.",
+      "how_pl": "Logowanie opiera się na rutynach („SmartGym works with always having a base routine”). „Start Workout” uruchamia sesję HealthKit i wybierasz rutynę; przycisk na ekranie blokady w iOS 18 może rozpocząć „an open workout”. Brak udokumentowanego logowania doraźnego, ćwiczenie po ćwiczeniu, bez rutyny.",
       "sources": [
         "https://help.smartgymapp.com/article/106-log-exercises",
         "https://help.smartgymapp.com/article/61-start-workout-session",
@@ -169,7 +190,9 @@
       "feature_id": "log_edit_past",
       "has": "partial",
       "how": "History entries can be deleted (including on Watch, v7); routine/exercise checkmark can manually log an exercise for today. No documented backdating of a workout to a past date.",
+      "how_pl": "Wpisy w historii można usuwać (także na zegarku, v7); znacznik przy rutynie/ćwiczeniu pozwala ręcznie zalogować ćwiczenie na dziś. Brak udokumentowanego datowania treningu wstecz.",
       "user_feedback": "Aggregated older reviews list 'No retroactive workout logging' - https://justuseapp.com/en/app/922744883/smartgym-gym-home-workouts/reviews",
+      "user_feedback_pl": "Starsze zbiorcze recenzje wymieniają „No retroactive workout logging” - https://justuseapp.com/en/app/922744883/smartgym-gym-home-workouts/reviews",
       "sources": [
         "https://alternativeto.net/news/2023/6/smartgym-7-has-been-released-with-new-exercises-progress-tracking-and-enhanced-apple-watch-app",
         "https://help.smartgymapp.com/article/63-what-is-the-checkmark"
@@ -180,7 +203,9 @@
       "feature_id": "log_one_hand_ux",
       "has": "yes",
       "how": "7.11 Inline Logging shows one set at a time with values editable in place; custom keyboard with +/- 1 buttons for weight/reps and set-type button. Smart Action Button predicts next step (log set+rest, next exercise, end). Can be bound to iPhone Action Button; on Watch: Double Tap and Ultra Action Button drive the whole workout.",
+      "how_pl": "Inline Logging z 7.11 pokazuje jedną serię naraz z wartościami edytowalnymi na miejscu; własna klawiatura z przyciskami +/- 1 dla ciężaru/powtórzeń i przyciskiem typu serii. Smart Action Button przewiduje kolejny krok (zaloguj serię + przerwa, następne ćwiczenie, zakończ). Można go przypiąć do Action Button iPhone'a; na zegarku cały trening obsługują Double Tap i Action Button w Ultra.",
       "user_feedback": "Some users find it confusing: 'each exercise has a different way to start a rest time' - https://itunes.apple.com/us/rss/customerreviews/page=2/id=922744883/sortby=mostrecent/json",
+      "user_feedback_pl": "Niektórym użytkownikom miesza się w głowie: „each exercise has a different way to start a rest time” - https://itunes.apple.com/us/rss/customerreviews/page=2/id=922744883/sortby=mostrecent/json",
       "sources": [
         "https://smartgymapp.com/releases/smartgym-7-11",
         "https://9to5mac.com/2026/07/23/smartgym-update-makes-it-easier-to-manually-adjust-and-log-exercises-on-the-go/",
@@ -193,6 +218,7 @@
       "feature_id": "timer_auto_rest",
       "has": "yes",
       "how": "Rest timer and set logging are tied: tapping the timer/set logs the set and starts the countdown (Watch and iPhone). 'Restart' restarts the timer between exercises without logging an extra set. Since 7.6 the running rest timer persists when switching exercises.",
+      "how_pl": "Timer przerwy i logowanie serii są powiązane: stuknięcie timera/serii loguje serię i uruchamia odliczanie (zegarek i iPhone). „Restart” uruchamia timer ponownie między ćwiczeniami bez logowania dodatkowej serii. Od 7.6 działający timer przerwy utrzymuje się przy zmianie ćwiczenia.",
       "sources": [
         "https://help.smartgymapp.com/article/59-apple-watch-app",
         "https://help.smartgymapp.com/article/64-start-a-rest-timer-after-all-sets-are-done",
@@ -204,6 +230,7 @@
       "feature_id": "timer_per_exercise",
       "has": "yes",
       "how": "Rest time is set per exercise in the routine ('Create custom timer for each specific exercise'). Text import requires a rest value per exercise. No evidence of rest per set type.",
+      "how_pl": "Czas przerwy ustawia się dla każdego ćwiczenia w rutynie („Create custom timer for each specific exercise”). Import z tekstu wymaga wartości przerwy dla każdego ćwiczenia. Brak dowodów na przerwę zależną od typu serii.",
       "sources": [
         "https://apps.apple.com/us/app/smartgym-gym-home-workouts/id922744883",
         "https://help.smartgymapp.com/article/150-import-routine-from-text"
@@ -214,7 +241,9 @@
       "feature_id": "timer_notifications",
       "has": "yes",
       "how": "Watch vibrates when rest ends ('a gentle haptic tap'); iPhone uses persistent Live Activities/Dynamic Island and interactive notifications.",
+      "how_pl": "Zegarek wibruje po zakończeniu przerwy („a gentle haptic tap”); iPhone używa trwałych Live Activities/Dynamic Island i interaktywnych powiadomień.",
       "user_feedback": "Reviews: 'Need haptic when timers complete' (HIIT timer, May 2026) - https://itunes.apple.com/us/rss/customerreviews/page=3/id=922744883/sortby=mostrecent/json; older aggregated reviews: rest timer lacks audio notification - https://justuseapp.com/en/app/922744883/smartgym-gym-home-workouts/reviews",
+      "user_feedback_pl": "Recenzje: „Need haptic when timers complete” (timer HIIT, maj 2026) - https://itunes.apple.com/us/rss/customerreviews/page=3/id=922744883/sortby=mostrecent/json; starsze zbiorcze recenzje: timerowi przerwy brakuje powiadomienia dźwiękowego - https://justuseapp.com/en/app/922744883/smartgym-gym-home-workouts/reviews",
       "sources": [
         "https://help.smartgymapp.com/article/59-apple-watch-app",
         "https://smartgymapp.com/watch.html",
@@ -226,6 +255,7 @@
       "feature_id": "timer_live_activity",
       "has": "yes",
       "how": "Persistent Live Activities (7.7, iOS 26) stay on Lock Screen/Dynamic Island the whole session with real-time HR from external devices and a Predictive Action button, so a workout can be completed without opening the app. watchOS 11 got a Watch-specific Live Activity UI.",
+      "how_pl": "Trwałe Live Activities (7.7, iOS 26) pozostają na ekranie blokady/Dynamic Island przez całą sesję, z tętnem z urządzeń zewnętrznych w czasie rzeczywistym i przyciskiem Predictive Action, więc trening można ukończyć bez otwierania aplikacji. watchOS 11 dostał interfejs Live Activity dedykowany zegarkowi.",
       "sources": [
         "https://smartgymapp.com/releases/smartgym-7-7",
         "https://smartgymapp.com/releases/smartgym-7-5",
@@ -237,6 +267,7 @@
       "feature_id": "timer_set_stopwatch",
       "has": "yes",
       "how": "Duration-based exercises (HIIT toggle) are timed; HIIT sequences run with voice guidance on iPhone or Watch.",
+      "how_pl": "Ćwiczenia czasowe (przełącznik HIIT) są mierzone; sekwencje HIIT działają z podpowiedziami głosowymi na iPhonie lub zegarku.",
       "sources": [
         "https://help.smartgymapp.com/article/75-exercise-time-based",
         "https://help.smartgymapp.com/article/66-listen-to-music-voice-guidance"
@@ -247,6 +278,7 @@
       "feature_id": "timer_workout_duration",
       "has": "yes",
       "how": "Workout session runs a duration timer; ending the session stops it and syncs to Apple Fitness/Health. Duration is charted in widgets and Routine Progress.",
+      "how_pl": "Sesja treningowa ma timer czasu trwania; zakończenie sesji zatrzymuje go i synchronizuje z Apple Fitness/Health. Czas trwania jest pokazywany na wykresach w widżetach i w Routine Progress.",
       "sources": [
         "https://help.smartgymapp.com/article/125-how-to-use-smartgym",
         "https://help.smartgymapp.com/article/140-complications-smart-stack"
@@ -257,7 +289,9 @@
       "feature_id": "timer_abandoned_workout",
       "has": "partial",
       "how": "No auto-end found. If a session stays active the Watch app keeps returning to screen until ended manually. 7.11 Smart Action recognizes 'returning after an interruption' and surfaces the resume action.",
+      "how_pl": "Nie znaleziono automatycznego kończenia. Jeśli sesja pozostaje aktywna, aplikacja na zegarku wciąż wraca na ekran, dopóki nie zakończy się jej ręcznie. Smart Action z 7.11 rozpoznaje „returning after an interruption” i pokazuje akcję wznowienia.",
       "user_feedback": "Review: 'can't get it to close on my watch ... immediately reopens' - https://itunes.apple.com/us/rss/customerreviews/page=3/id=922744883/sortby=mostrecent/json",
+      "user_feedback_pl": "Recenzja: „can't get it to close on my watch ... immediately reopens” - https://itunes.apple.com/us/rss/customerreviews/page=3/id=922744883/sortby=mostrecent/json",
       "sources": [
         "https://help.smartgymapp.com/article/105-apple-watch-app-wont-close",
         "https://smartgymapp.com/releases/smartgym-7-11"
@@ -268,6 +302,7 @@
       "feature_id": "plan_templates",
       "has": "yes",
       "how": "Routines with name, days, goal, tags, renewal date, notes, exercises. Create from scratch, from Explore, via Smart Trainer ('Trust Us'/'Create For Muscles'), from text, or by natural language (8.0). Duplicate, rename, archive; drafts auto-saved (7.9); optional Main/Warm-Up/Cool-Down segments.",
+      "how_pl": "Rutyny z nazwą, dniami, celem, tagami, datą odnowienia, notatkami i ćwiczeniami. Tworzenie od zera, z Explore, przez Smart Trainera („Trust Us”/„Create For Muscles”), z tekstu lub językiem naturalnym (8.0). Duplikowanie, zmiana nazwy, archiwizacja; wersje robocze zapisują się automatycznie (7.9); opcjonalne segmenty Main/Warm-Up/Cool-Down.",
       "sources": [
         "https://help.smartgymapp.com/article/57-create-custom-routine",
         "https://help.smartgymapp.com/article/118-duplicate-a-routine",
@@ -280,6 +315,7 @@
       "feature_id": "plan_folders",
       "has": "partial",
       "how": "No folders; organisation via comma-separated Tags, Archive, equipment-list tags as filters on the Routines tab, and grouping of Smart Trainer routines.",
+      "how_pl": "Brak folderów; organizacja przez tagi rozdzielane przecinkami, Archive, tagi list sprzętu jako filtry na karcie Routines oraz grupowanie rutyn Smart Trainera.",
       "sources": [
         "https://help.smartgymapp.com/article/57-create-custom-routine",
         "https://help.smartgymapp.com/article/117-archive-a-routine",
@@ -292,6 +328,7 @@
       "feature_id": "plan_programs",
       "has": "paid",
       "how": "Explore tab: 130+ pre-made workouts by personal trainers, in categories; can be adjusted to your equipment list and edited once added. Only on the Premium+ plan.",
+      "how_pl": "Karta Explore: ponad 130 gotowych treningów od trenerów personalnych, w kategoriach; można je dopasować do listy sprzętu i edytować po dodaniu. Tylko w planie Premium+.",
       "sources": [
         "https://help.smartgymapp.com/article/125-how-to-use-smartgym",
         "https://help.smartgymapp.com/article/81-access-pre-made-workouts",
@@ -304,6 +341,7 @@
       "feature_id": "plan_periodization",
       "has": "partial",
       "how": "Smart Trainer claims NSCA-style periodization: refine the routine after each workout, then rewrite the whole program at a 'transition point' (plateau, end of block). Refresh frequency configurable (Automatic / more often / 'Never'). No %1RM-based programming or explicit deload weeks documented.",
+      "how_pl": "Smart Trainer deklaruje periodyzację w stylu NSCA: dopracowuje rutynę po każdym treningu, a cały program przepisuje w „punkcie przejścia” (plateau, koniec bloku). Częstotliwość odświeżania jest konfigurowalna (Automatic / częściej / „Never”). Brak udokumentowanego programowania opartego na %1RM ani jawnych tygodni deload.",
       "sources": [
         "https://smartgymapp.com/features.html",
         "https://help.smartgymapp.com/article/145-how-often-smart-trainer-refreshes-your-routines",
@@ -315,7 +353,9 @@
       "feature_id": "plan_generator",
       "has": "yes",
       "how": "Smart Trainer builds routines from equipment list, goal, experience (beginner/intermediate/advanced), target muscles, duration and days/week (PPL 3- or 6-day option). Import From Text (Apple Foundation Models, on-device, iOS 26) and natural-language workout creation (8.0, cloud 'SmartGym Intelligence' via AWS Bedrock, opt-in), also on Watch.",
+      "how_pl": "Smart Trainer buduje rutyny na podstawie listy sprzętu, celu, doświadczenia (początkujący/średniozaawansowany/zaawansowany), docelowych mięśni, czasu trwania i liczby dni w tygodniu (opcja PPL 3- lub 6-dniowa). Import From Text (Apple Foundation Models, na urządzeniu, iOS 26) oraz tworzenie treningów językiem naturalnym (8.0, chmurowe „SmartGym Intelligence” przez AWS Bedrock, za zgodą użytkownika), także na zegarku.",
       "user_feedback": "Critical review (2024): 'skill levels do not mean anything ... routines have no rhyme or reason ... does not create supersets' - https://apps.apple.com/us/app/smartgym-gym-home-workouts/id922744883",
+      "user_feedback_pl": "Krytyczna recenzja (2024): „skill levels do not mean anything ... routines have no rhyme or reason ... does not create supersets” - https://apps.apple.com/us/app/smartgym-gym-home-workouts/id922744883",
       "sources": [
         "https://help.smartgymapp.com/article/127-what-is-smart-trainer",
         "https://help.smartgymapp.com/article/129-how-do-i-use-smart-trainer",
@@ -330,6 +370,7 @@
       "feature_id": "plan_schedule",
       "has": "partial",
       "how": "Routine 'Days' field is only a label (or a number of days/week since 7.3); 'Up Next' shows the next routine. No calendar planner; AlarmKit alarms (7.7) can be scheduled as gym reminders.",
+      "how_pl": "Pole „Days” rutyny jest tylko etykietą (od 7.3 lub liczbą dni w tygodniu); „Up Next” pokazuje następną rutynę. Brak kalendarza planowania; alarmy AlarmKit (7.7) można ustawiać jako przypomnienia o siłowni.",
       "sources": [
         "https://help.smartgymapp.com/article/131-change-days-routines",
         "https://smartgymapp.com/releases/smartgym-7-3",
@@ -342,6 +383,7 @@
       "feature_id": "plan_share_templates",
       "has": "yes",
       "how": "Routine shared as a file (AirDrop, email, iMessage, WhatsApp) and imported into SmartGym; also shareable as text or image (for Android users).",
+      "how_pl": "Rutynę udostępnia się jako plik (AirDrop, e-mail, iMessage, WhatsApp) i importuje do SmartGym; można ją też udostępnić jako tekst lub obraz (dla użytkowników Androida).",
       "sources": [
         "https://help.smartgymapp.com/article/120-share-a-routine",
         "https://help.smartgymapp.com/article/121-import-a-routine",
@@ -353,7 +395,9 @@
       "feature_id": "lib_size",
       "has": "yes",
       "how": "730+ exercises (May 2026 site; 'nearly 700' in 2024 help); 7.10 added more.",
+      "how_pl": "Ponad 730 ćwiczeń (strona z maja 2026; „nearly 700” w pomocy z 2024); 7.10 dodała kolejne.",
       "user_feedback": "Some users still miss exercises (e.g. Platz squats, landmine rows) - https://itunes.apple.com/us/rss/customerreviews/page=1/id=922744883/sortby=mostrecent/json",
+      "user_feedback_pl": "Niektórym użytkownikom wciąż brakuje ćwiczeń (np. Platz squats, landmine rows) - https://itunes.apple.com/us/rss/customerreviews/page=1/id=922744883/sortby=mostrecent/json",
       "sources": [
         "https://smartgymapp.com/",
         "https://smartgymapp.com/features.html",
@@ -365,6 +409,7 @@
       "feature_id": "lib_media",
       "has": "yes",
       "how": "Every exercise has an animation and step-by-step text instructions; since 7.6 instructions can be played as audio (iPhone and Watch); 'Exercise Questions' AI Q&A about form (7.7/8.0).",
+      "how_pl": "Każde ćwiczenie ma animację i instrukcje tekstowe krok po kroku; od 7.6 instrukcje można odtwarzać jako audio (iPhone i zegarek); „Exercise Questions” - pytania i odpowiedzi AI o technikę (7.7/8.0).",
       "sources": [
         "https://smartgymapp.com/features.html",
         "https://smartgymapp.com/releases/smartgym-7-6",
@@ -376,7 +421,9 @@
       "feature_id": "lib_custom",
       "has": "yes",
       "how": "Custom exercises with own images; since 7.10 support secondary muscles and equipment and can be used by Smart Trainer. Renamed via More > Manage Added Exercises. Built-in exercises can be removed/restored (7.6).",
+      "how_pl": "Własne ćwiczenia z własnymi zdjęciami; od 7.10 obsługują mięśnie dodatkowe i sprzęt oraz mogą być używane przez Smart Trainera. Nazwę zmienia się w More > Manage Added Exercises. Wbudowane ćwiczenia można usuwać/przywracać (7.6).",
       "user_feedback": "Praised: 'ability to easily create custom exercises with your own images is one of the best implementations' - https://itunes.apple.com/us/rss/customerreviews/page=3/id=922744883/sortby=mostrecent/json",
+      "user_feedback_pl": "Pochwała: „ability to easily create custom exercises with your own images is one of the best implementations” - https://itunes.apple.com/us/rss/customerreviews/page=3/id=922744883/sortby=mostrecent/json",
       "sources": [
         "https://help.smartgymapp.com/article/76-own-custom-exercise",
         "https://help.smartgymapp.com/article/115-rename-custom-exercise",
@@ -389,6 +436,7 @@
       "feature_id": "lib_muscles",
       "has": "yes",
       "how": "Built-in exercises have primary and secondary muscles; routine detail shows targeted muscles; feeds muscle charts and recovery.",
+      "how_pl": "Wbudowane ćwiczenia mają mięśnie główne i dodatkowe; szczegóły rutyny pokazują trenowane mięśnie; zasila to wykresy mięśni i regenerację.",
       "sources": [
         "https://smartgymapp.com/releases/smartgym-7-10",
         "https://help.smartgymapp.com/article/59-apple-watch-app"
@@ -399,6 +447,7 @@
       "feature_id": "lib_equipment_filter",
       "has": "yes",
       "how": "Exercise list can be filtered to a selected Equipment List (up to 5).",
+      "how_pl": "Listę ćwiczeń można filtrować według wybranej Equipment List (do 5).",
       "sources": [
         "https://help.smartgymapp.com/article/136-different-equipment-lists"
       ]
@@ -408,7 +457,9 @@
       "feature_id": "lib_search",
       "has": "yes",
       "how": "Exercise list is searchable; alternative-exercise picker has search (7.6).",
+      "how_pl": "Lista ćwiczeń ma wyszukiwarkę; selektor ćwiczeń alternatywnych ma wyszukiwanie (7.6).",
       "user_feedback": "'Searching for weight training exercises is hard' - https://itunes.apple.com/us/rss/customerreviews/page=1/id=922744883/sortby=mostrecent/json",
+      "user_feedback_pl": "„Searching for weight training exercises is hard” - https://itunes.apple.com/us/rss/customerreviews/page=1/id=922744883/sortby=mostrecent/json",
       "sources": [
         "https://smartgymapp.com/releases/smartgym-7-6"
       ]
@@ -418,6 +469,7 @@
       "feature_id": "lib_localization",
       "has": "partial",
       "how": "Exercise instructions natively in English and Portuguese; on-demand translation to Spanish, French, Italian, German via iOS 18 Translation framework.",
+      "how_pl": "Instrukcje ćwiczeń natywnie po angielsku i portugalsku; tłumaczenie na żądanie na hiszpański, francuski, włoski i niemiecki przez framework Translation z iOS 18.",
       "sources": [
         "https://smartgymapp.com/releases/smartgym-7-5"
       ]
@@ -427,7 +479,9 @@
       "feature_id": "prog_suggestions",
       "has": "partial",
       "how": "For Smart Trainer (and imported-from-text) routines, Smart Trainer analyses logged sets and suggests reps/weight changes or exercise swaps via a blue banner; each suggestion can be disabled, with AI explanations (7.7). Not applied to purely custom routines per user reports.",
+      "how_pl": "Dla rutyn Smart Trainera (i zaimportowanych z tekstu) Smart Trainer analizuje zalogowane serie i sugeruje zmiany powtórzeń/ciężaru lub zamianę ćwiczeń w niebieskim banerze; każdą sugestię można wyłączyć, z wyjaśnieniami AI (7.7). Według zgłoszeń użytkowników nie dotyczy to czysto własnych rutyn.",
       "user_feedback": "'Static Custom Routines ... custom routines feel more like a digital notepad than a smart coach' - https://itunes.apple.com/us/rss/customerreviews/page=3/id=922744883/sortby=mostrecent/json; 'lack of suggested weights' - https://itunes.apple.com/us/rss/customerreviews/page=3/id=922744883/sortby=mostrecent/json",
+      "user_feedback_pl": "„Static Custom Routines ... custom routines feel more like a digital notepad than a smart coach” - https://itunes.apple.com/us/rss/customerreviews/page=3/id=922744883/sortby=mostrecent/json; „lack of suggested weights” - https://itunes.apple.com/us/rss/customerreviews/page=3/id=922744883/sortby=mostrecent/json",
       "sources": [
         "https://help.smartgymapp.com/article/129-how-do-i-use-smart-trainer",
         "https://help.smartgymapp.com/article/133-smart-trainer-update",
@@ -439,6 +493,7 @@
       "feature_id": "prog_double_progression",
       "has": "unknown",
       "how": "Rules of Smart Trainer progression are not published.",
+      "how_pl": "Zasady progresji Smart Trainera nie są publikowane.",
       "sources": [
         "https://help.smartgymapp.com/article/133-smart-trainer-update"
       ]
@@ -448,6 +503,7 @@
       "feature_id": "prog_deload",
       "has": "unknown",
       "how": "No explicit deload weeks documented; Smart Trainer only states it may 'scale things back' and rewrites programs at block ends.",
+      "how_pl": "Brak udokumentowanych jawnych tygodni deload; Smart Trainer tylko wspomina, że może „scale things back”, i przepisuje programy na końcu bloków.",
       "sources": [
         "https://smartgymapp.com/features.html"
       ]
@@ -457,6 +513,7 @@
       "feature_id": "prog_fatigue",
       "has": "partial",
       "how": "No explicit deload. Muscle Fatigue/Recovery visualisation (since v6, on main screen since 2023) estimates muscle recovery time from history; Workout Effort / training load (7.9). Smart Trainer claims to consider recovery.",
+      "how_pl": "Brak jawnego deloadu. Wizualizacja Muscle Fatigue/Recovery (od v6, na ekranie głównym od 2023) szacuje czas regeneracji mięśni na podstawie historii; Workout Effort / obciążenie treningowe (7.9). Smart Trainer deklaruje uwzględnianie regeneracji.",
       "sources": [
         "https://9to5mac.com/2022/05/05/smartgym-for-ios-watchos-mac-major-update/",
         "https://9to5mac.com/2023/01/19/smartgym-for-ios-and-apple-watch-update/",
@@ -469,7 +526,9 @@
       "feature_id": "prog_ai_coach",
       "has": "yes",
       "how": "Smart Trainer (algorithmic) + Apple Intelligence features: Smart Greeting, AI personalities (Super Motivational / Balanced / Mean), explained suggestions, written monthly/routine summaries, exercise Q&A. 8.0 adds opt-in cloud 'SmartGym Intelligence' / 'Ask Smart Trainer' and Siri AI integration.",
+      "how_pl": "Smart Trainer (algorytmiczny) + funkcje Apple Intelligence: Smart Greeting, osobowości AI (Super Motivational / Balanced / Mean), wyjaśnione sugestie, pisemne podsumowania miesięczne/rutyn, pytania i odpowiedzi o ćwiczenia. 8.0 dodaje opcjonalne chmurowe „SmartGym Intelligence” / „Ask Smart Trainer” oraz integrację z Siri AI.",
       "user_feedback": "Sep 2026 review: 'Too many SmartGym Intelligence unavailable error messages' - https://itunes.apple.com/us/rss/customerreviews/page=1/id=922744883/sortby=mostrecent/json",
+      "user_feedback_pl": "Recenzja z wrz 2026: „Too many SmartGym Intelligence unavailable error messages” - https://itunes.apple.com/us/rss/customerreviews/page=1/id=922744883/sortby=mostrecent/json",
       "sources": [
         "https://smartgymapp.com/releases/smartgym-7-7",
         "https://9to5mac.com/2025/09/15/smart-gym-apple-intelligence-ios-26/",
@@ -482,6 +541,7 @@
       "feature_id": "stats_prs",
       "has": "yes",
       "how": "Dedicated Personal Records screen (since v6); PR share cards. Exact record types not documented.",
+      "how_pl": "Osobny ekran Personal Records (od v6); karty PR do udostępniania. Dokładne typy rekordów nie są udokumentowane.",
       "sources": [
         "https://9to5mac.com/2022/05/05/smartgym-for-ios-watchos-mac-major-update/",
         "https://smartgymapp.com/features.html"
@@ -492,6 +552,7 @@
       "feature_id": "stats_e1rm",
       "has": "yes",
       "how": "Exercise Progress has a 1RM chart computed from all logged values; formula not published.",
+      "how_pl": "Exercise Progress ma wykres 1RM obliczany ze wszystkich zalogowanych wartości; wzór nie jest publikowany.",
       "sources": [
         "https://help.smartgymapp.com/article/108-track-1rm",
         "https://smartgymapp.com/features.html"
@@ -502,6 +563,7 @@
       "feature_id": "stats_charts_exercise",
       "has": "yes",
       "how": "Exercise's Progress: charts plus all logged values, up/down to move through routine exercises; ranges All Time / 1M / 6M / 1Y (7.8). Interactive chart widgets/complications.",
+      "how_pl": "Exercise's Progress: wykresy plus wszystkie zalogowane wartości, góra/dół przechodzi między ćwiczeniami rutyny; zakresy All Time / 1M / 6M / 1Y (7.8). Interaktywne widżety/komplikacje z wykresami.",
       "sources": [
         "https://help.smartgymapp.com/article/107-track-exercises-progress",
         "https://smartgymapp.com/releases/smartgym-7-8",
@@ -513,6 +575,7 @@
       "feature_id": "stats_volume",
       "has": "yes",
       "how": "Volume lifted, muscle-group breakdowns; Routine Progress shows calories, avg HR, duration, distance and volume per routine; weekly/monthly comparisons (7.10). Can exclude warm-ups/stretches from stats (7.9).",
+      "how_pl": "Objętość treningowa, podziały na grupy mięśniowe; Routine Progress pokazuje kalorie, średnie tętno, czas, dystans i objętość na rutynę; porównania tygodniowe/miesięczne (7.10). Można wykluczyć rozgrzewki/rozciąganie ze statystyk (7.9).",
       "sources": [
         "https://smartgymapp.com/",
         "https://help.smartgymapp.com/article/59-apple-watch-app",
@@ -525,6 +588,7 @@
       "feature_id": "stats_muscle_heatmap",
       "has": "yes",
       "how": "Body diagram where brighter green = more targeted; summary of muscles used and visualised recovery time per muscle (Muscle Fatigue).",
+      "how_pl": "Schemat ciała, gdzie jaśniejsza zieleń = więcej pracy; podsumowanie użytych mięśni i zwizualizowany czas regeneracji każdego mięśnia (Muscle Fatigue).",
       "sources": [
         "https://9to5mac.com/2022/05/05/smartgym-for-ios-watchos-mac-major-update/",
         "https://9to5mac.com/2023/01/19/smartgym-for-ios-and-apple-watch-update/",
@@ -536,6 +600,7 @@
       "feature_id": "stats_calendar_streaks",
       "has": "yes",
       "how": "Monthly history calendar view (v6); Custom Goals (7.6): workouts per week/month/year with streaks, shown in complications and Smart Stack.",
+      "how_pl": "Miesięczny widok kalendarza historii (v6); Custom Goals (7.6): treningi na tydzień/miesiąc/rok z seriami (streaks), pokazywane w komplikacjach i Smart Stack.",
       "sources": [
         "https://9to5mac.com/2022/05/05/smartgym-for-ios-watchos-mac-major-update/",
         "https://smartgymapp.com/releases/smartgym-7-6",
@@ -547,6 +612,7 @@
       "feature_id": "stats_workout_summary",
       "has": "yes",
       "how": "End-of-workout summary incl. Activity Rings on Watch; redesigned Watch summary shows targeted muscles, HR chart, HR zones (7.4). Weekly/monthly Workout Summary with previous-period comparison (7.10) and AI-written summaries.",
+      "how_pl": "Podsumowanie po treningu, w tym Activity Rings na zegarku; przeprojektowane podsumowanie na zegarku pokazuje trenowane mięśnie, wykres tętna i strefy tętna (7.4). Tygodniowe/miesięczne Workout Summary z porównaniem do poprzedniego okresu (7.10) oraz podsumowania pisane przez AI.",
       "sources": [
         "https://help.smartgymapp.com/article/59-apple-watch-app",
         "https://smartgymapp.com/releases/smartgym-7-4",
@@ -559,6 +625,7 @@
       "feature_id": "stats_strength_standards",
       "has": "unknown",
       "how": "No strength standards/percentiles documented.",
+      "how_pl": "Brak udokumentowanych norm siłowych/percentyli.",
       "sources": [
         "https://smartgymapp.com/features.html"
       ]
@@ -568,6 +635,7 @@
       "feature_id": "body_weight",
       "has": "partial",
       "how": "Tracked as one of the 'Measures' (tab for storing/tracking measurements); free tier limited to 2 measures. No dedicated bodyweight feature documented.",
+      "how_pl": "Śledzona jako jeden z „Measures” (karta do zapisywania/śledzenia pomiarów); wersja darmowa ogranicza do 2 pomiarów. Brak udokumentowanej osobnej funkcji masy ciała.",
       "sources": [
         "https://help.smartgymapp.com/article/125-how-to-use-smartgym",
         "https://apps.apple.com/us/app/smartgym-gym-home-workouts/id922744883"
@@ -578,6 +646,7 @@
       "feature_id": "body_measurements",
       "has": "yes",
       "how": "Measures tab; Siri shortcut opens body measurements; Personal Trainer plan manages students' measurements.",
+      "how_pl": "Karta Measures; skrót Siri otwiera pomiary ciała; plan Personal Trainer pozwala zarządzać pomiarami podopiecznych.",
       "sources": [
         "https://help.smartgymapp.com/article/125-how-to-use-smartgym",
         "https://9to5mac.com/2023/01/19/smartgym-for-ios-and-apple-watch-update/",
@@ -589,6 +658,7 @@
       "feature_id": "body_photos",
       "has": "unknown",
       "how": "No progress-photo feature documented.",
+      "how_pl": "Brak udokumentowanej funkcji zdjęć postępów.",
       "sources": [
         "https://smartgymapp.com/features.html"
       ]
@@ -598,6 +668,7 @@
       "feature_id": "body_readiness",
       "has": "partial",
       "how": "No sleep/HRV/morning check-in. Muscle recovery estimate and post-workout effort rating (training load) only.",
+      "how_pl": "Brak snu/HRV/porannej ankiety. Tylko szacunek regeneracji mięśni i ocena wysiłku po treningu (obciążenie treningowe).",
       "sources": [
         "https://9to5mac.com/2022/05/05/smartgym-for-ios-watchos-mac-major-update/",
         "https://smartgymapp.com/releases/smartgym-7-9"
@@ -608,7 +679,9 @@
       "feature_id": "int_apple_health",
       "has": "yes",
       "how": "Reads HR, active energy, distance, Activity Rings during a manually started session; writes workouts to Health/Fitness (count toward rings). Since 7.8 imports third-party workouts (Fitness+, Workout app, others) into history and Muscle Recovery. Shows total vs active calories (7.5).",
+      "how_pl": "Odczytuje tętno, energię aktywną, dystans i Activity Rings podczas ręcznie rozpoczętej sesji; zapisuje treningi do Health/Fitness (liczą się do pierścieni). Od 7.8 importuje treningi innych firm (Fitness+, Workout app, inne) do historii i Muscle Recovery. Pokazuje kalorie całkowite vs aktywne (7.5).",
       "user_feedback": "Complaint: Apple's Workout Buddy is turned off when a SmartGym session runs - https://itunes.apple.com/us/rss/customerreviews/page=1/id=922744883/sortby=mostrecent/json",
+      "user_feedback_pl": "Skarga: Workout Buddy od Apple jest wyłączany, gdy trwa sesja SmartGym - https://itunes.apple.com/us/rss/customerreviews/page=1/id=922744883/sortby=mostrecent/json",
       "sources": [
         "https://help.smartgymapp.com/article/109-permission-in-the-health-app",
         "https://help.smartgymapp.com/article/114-smartgym-activity-rings",
@@ -622,7 +695,9 @@
       "feature_id": "int_watch_app",
       "has": "yes",
       "how": "Fully independent Watch app (no iPhone, no internet): routines, logging, Smart Trainer, natural-language creation (8.0), alternatives, Explore, history/charts. Default one-tap interface or Advanced Logging (edit set inline). Screen Sync mirrors iPhone during a session. Apple Watch App of the Year 2023.",
+      "how_pl": "W pełni niezależna aplikacja na zegarek (bez iPhone'a, bez internetu): rutyny, logowanie, Smart Trainer, tworzenie językiem naturalnym (8.0), alternatywy, Explore, historia/wykresy. Domyślny interfejs jednego stuknięcia lub Advanced Logging (edycja serii w miejscu). Screen Sync odzwierciedla ekran iPhone'a podczas sesji. Apple Watch App of the Year 2023.",
       "user_feedback": "Frequent sync complaints: 'Good luck syncing the watch app with your iPhone', 'Never connects to Apple Watch' (Sep 2026) - https://itunes.apple.com/us/rss/customerreviews/page=1/id=922744883/sortby=mostrecent/json",
+      "user_feedback_pl": "Częste skargi na synchronizację: „Good luck syncing the watch app with your iPhone”, „Never connects to Apple Watch” (wrz 2026) - https://itunes.apple.com/us/rss/customerreviews/page=1/id=922744883/sortby=mostrecent/json",
       "sources": [
         "https://smartgymapp.com/watch.html",
         "https://help.smartgymapp.com/article/59-apple-watch-app",
@@ -636,6 +711,7 @@
       "feature_id": "int_garmin",
       "has": "partial",
       "how": "No Garmin/Wear OS. Heart rate from AirPods Pro 3 / Powerbeats Pro 2 (Live Workout Builder, 7.6/7.7); Strava auto-upload (7.8).",
+      "how_pl": "Brak Garmin/Wear OS. Tętno z AirPods Pro 3 / Powerbeats Pro 2 (Live Workout Builder, 7.6/7.7); automatyczne wysyłanie do Stravy (7.8).",
       "sources": [
         "https://smartgymapp.com/releases/smartgym-7-6",
         "https://smartgymapp.com/releases/smartgym-7-7",
@@ -647,6 +723,7 @@
       "feature_id": "int_import",
       "has": "partial",
       "how": "No Strong/Hevy CSV import documented. Imports: routine files from friends, plain-text workouts (Foundation Models), and third-party HealthKit workouts.",
+      "how_pl": "Nie udokumentowano importu CSV ze Strong/Hevy. Importy: pliki rutyn od znajomych, treningi z zwykłego tekstu (Foundation Models) oraz treningi innych firm z HealthKit.",
       "sources": [
         "https://help.smartgymapp.com/article/121-import-a-routine",
         "https://help.smartgymapp.com/article/150-import-routine-from-text",
@@ -658,7 +735,9 @@
       "feature_id": "int_export",
       "has": "unknown",
       "how": "No in-app CSV/JSON export documented; privacy policy grants a right to a portable copy on request. Data may be deleted 60+ days after a subscription lapses.",
+      "how_pl": "Nie udokumentowano eksportu CSV/JSON w aplikacji; polityka prywatności daje prawo do przenośnej kopii na żądanie. Dane mogą zostać usunięte 60+ dni po wygaśnięciu subskrypcji.",
       "user_feedback": "'My data is gone 60 days after my subscription expires ... Glad I switched to Hevy' - https://itunes.apple.com/us/rss/customerreviews/page=1/id=922744883/sortby=mostrecent/json",
+      "user_feedback_pl": "„My data is gone 60 days after my subscription expires ... Glad I switched to Hevy” - https://itunes.apple.com/us/rss/customerreviews/page=1/id=922744883/sortby=mostrecent/json",
       "sources": [
         "https://smartgymapp.com/privacy/"
       ]
@@ -668,7 +747,9 @@
       "feature_id": "int_backup_sync",
       "has": "yes",
       "how": "Premium account syncs to SmartGym cloud across iPhone/iPad/Mac/Watch/visionOS; Watch stores offline and syncs later. 'Local Features' plan keeps data on device (Watch syncs to iPhone).",
+      "how_pl": "Konto Premium synchronizuje się z chmurą SmartGym między iPhone/iPad/Mac/zegarkiem/visionOS; zegarek zapisuje dane offline i synchronizuje później. Plan „Local Features” trzyma dane na urządzeniu (zegarek synchronizuje się z iPhone'em).",
       "user_feedback": "2021 review: iPhone could not edit reps offline ('app appears to be offline') - https://apps.apple.com/us/app/smartgym-gym-home-workouts/id922744883",
+      "user_feedback_pl": "Recenzja z 2021: iPhone nie mógł edytować powtórzeń offline („app appears to be offline”) - https://apps.apple.com/us/app/smartgym-gym-home-workouts/id922744883",
       "sources": [
         "https://help.smartgymapp.com/article/103-apple-watch-not-syncing-with-iphone",
         "https://help.smartgymapp.com/article/94-apple-watch-local-features",
@@ -681,6 +762,7 @@
       "feature_id": "int_widgets",
       "has": "yes",
       "how": "Home/Lock Screen widgets (Monthly Workouts, small/medium/large); Watch complications (app icon, weekly count) and Smart Stack widgets (interactive Workout Charts, Workout Summary, Up Next, HR, Active Calories, Duration); RelevanceKit timing (7.7); tinting (iOS 18).",
+      "how_pl": "Widżety ekranu głównego/blokady (Monthly Workouts, małe/średnie/duże); komplikacje zegarka (ikona aplikacji, liczba w tygodniu) i widżety Smart Stack (interaktywne Workout Charts, Workout Summary, Up Next, tętno, Active Calories, czas); timing RelevanceKit (7.7); tonowanie (iOS 18).",
       "sources": [
         "https://help.smartgymapp.com/article/140-complications-smart-stack",
         "https://9to5mac.com/2023/01/19/smartgym-for-ios-and-apple-watch-update/",
@@ -693,6 +775,7 @@
       "feature_id": "int_siri_shortcuts",
       "has": "yes",
       "how": "Siri since 2016; rewritten App Intents (7.5): say routine name, weekly summary shortcut, open routine. 8.0: Siri AI with on-screen awareness (e.g. 'log the next set'), create workouts from dictated text. Control Center controls on iPhone and Watch.",
+      "how_pl": "Siri od 2016; przepisane App Intents (7.5): podaj nazwę rutyny, skrót tygodniowego podsumowania, otwarcie rutyny. 8.0: Siri AI ze świadomością ekranu (np. „log the next set”), tworzenie treningów z podyktowanego tekstu. Kontrolki Control Center na iPhonie i zegarku.",
       "sources": [
         "https://smartgymapp.com/releases/smartgym-7-5",
         "https://apps.apple.com/us/app/smartgym-gym-home-workouts/id922744883",
@@ -705,6 +788,7 @@
       "feature_id": "equip_locations",
       "has": "yes",
       "how": "Up to 5 Equipment Lists (e.g. home/gym/hotel); switch with one tap; routines tagged by list.",
+      "how_pl": "Do 5 Equipment Lists (np. dom/siłownia/hotel); przełączanie jednym stuknięciem; rutyny oznaczane listą.",
       "sources": [
         "https://help.smartgymapp.com/article/136-different-equipment-lists",
         "https://smartgymapp.com/releases/smartgym-7-4"
@@ -715,6 +799,7 @@
       "feature_id": "equip_inventory",
       "has": "yes",
       "how": "Besides equipment, you can specify which weights you own; Smart Trainer uses it for recommendations.",
+      "how_pl": "Poza sprzętem można podać, jakie masz ciężary; Smart Trainer używa tego do rekomendacji.",
       "sources": [
         "https://smartgymapp.com/releases/smartgym-7-4",
         "https://smartgymapp.com/features.html"
@@ -725,6 +810,7 @@
       "feature_id": "equip_filtering",
       "has": "yes",
       "how": "Smart Trainer, alternatives, Explore workouts and the exercise list only use exercises available in the active list; changing a list doesn't rewrite existing routines.",
+      "how_pl": "Smart Trainer, alternatywy, treningi Explore i lista ćwiczeń używają tylko ćwiczeń dostępnych na aktywnej liście; zmiana listy nie przepisuje istniejących rutyn.",
       "sources": [
         "https://help.smartgymapp.com/article/136-different-equipment-lists",
         "https://help.smartgymapp.com/article/146-update-smart-trainer-changing-equipment"
@@ -735,6 +821,7 @@
       "feature_id": "social_share",
       "has": "yes",
       "how": "Customisable workout/PR/progress share images, transparent-background designs (7.8).",
+      "how_pl": "Konfigurowalne obrazy treningu/PR/postępów do udostępniania, projekty z przezroczystym tłem (7.8).",
       "sources": [
         "https://smartgymapp.com/releases/smartgym-7-8",
         "https://smartgymapp.com/features.html"
@@ -745,6 +832,7 @@
       "feature_id": "social_feed",
       "has": "unknown",
       "how": "No in-app feed documented; workouts can be auto-posted to Strava.",
+      "how_pl": "Nie udokumentowano wewnętrznego feedu; treningi można automatycznie publikować na Stravie.",
       "sources": [
         "https://smartgymapp.com/releases/smartgym-7-8"
       ]
@@ -754,6 +842,7 @@
       "feature_id": "social_leaderboards",
       "has": "unknown",
       "how": "Not documented.",
+      "how_pl": "Nie udokumentowano.",
       "sources": [
         "https://smartgymapp.com/features.html"
       ]
@@ -763,6 +852,7 @@
       "feature_id": "social_challenges",
       "has": "unknown",
       "how": "Not documented.",
+      "how_pl": "Nie udokumentowano.",
       "sources": [
         "https://smartgymapp.com/features.html"
       ]
@@ -772,6 +862,7 @@
       "feature_id": "coach_client_management",
       "has": "paid",
       "how": "Personal Trainer plans include N student Premium accounts (e.g. 10 students $14.99/mo); trainer creates/organises students' routines, histories and measurements; students see only their own data. Apps for iPhone, iPad, Watch, Mac.",
+      "how_pl": "Plany Personal Trainer obejmują N kont Premium dla podopiecznych (np. 10 podopiecznych 14,99 $/mies.); trener tworzy/organizuje rutyny, historie i pomiary podopiecznych; podopieczni widzą tylko własne dane. Aplikacje na iPhone, iPad, zegarek, Mac.",
       "sources": [
         "https://help.smartgymapp.com/article/99-how-does-personal-trainer-plan-work",
         "https://help.smartgymapp.com/article/96-add-new-students",
@@ -783,6 +874,7 @@
       "feature_id": "coach_assign_programs",
       "has": "paid",
       "how": "Trainer edits student routines on own device and they sync automatically to the student.",
+      "how_pl": "Trener edytuje rutyny podopiecznych na własnym urządzeniu, a one synchronizują się automatycznie do podopiecznego.",
       "sources": [
         "https://help.smartgymapp.com/article/96-add-new-students",
         "https://help.smartgymapp.com/article/99-how-does-personal-trainer-plan-work"
@@ -793,6 +885,7 @@
       "feature_id": "coach_feedback",
       "has": "paid",
       "how": "Trainer-only AR feature to analyse students' posture (A12+ device).",
+      "how_pl": "Funkcja AR tylko dla trenera do analizy postawy podopiecznych (urządzenie A12+).",
       "sources": [
         "https://apps.apple.com/us/app/smartgym-gym-home-workouts/id922744883"
       ]
@@ -802,6 +895,7 @@
       "feature_id": "coach_chat",
       "has": "unknown",
       "how": "No in-app trainer chat documented.",
+      "how_pl": "Nie udokumentowano czatu z trenerem w aplikacji.",
       "sources": [
         "https://help.smartgymapp.com/article/99-how-does-personal-trainer-plan-work"
       ]
@@ -811,6 +905,7 @@
       "feature_id": "coach_marketplace",
       "has": "unknown",
       "how": "No marketplace documented.",
+      "how_pl": "Nie udokumentowano marketplace'u.",
       "sources": [
         "https://help.smartgymapp.com/article/99-how-does-personal-trainer-plan-work"
       ]
@@ -820,7 +915,9 @@
       "feature_id": "monet_model",
       "has": "yes",
       "how": "Freemium: free tier = 2 routines, 3 workouts (App Store) / 10 histories (privacy policy), 2 measures. US IAPs: Premium+ $9.99/mo or $59.99/yr (adds pre-made workouts), User Account $6.99/mo or $39.99/yr, Family Premium+ $16.99/mo / $99.99/yr (Family Sharing), Legacy $29.99, trainer 10 students $14.99/mo / $124.99/yr. 7-day free trial.",
+      "how_pl": "Freemium: wersja darmowa = 2 rutyny, 3 treningi (App Store) / 10 wpisów historii (polityka prywatności), 2 pomiary. Zakupy w USA: Premium+ 9,99 $/mies. lub 59,99 $/rok (dodaje gotowe treningi), User Account 6,99 $/mies. lub 39,99 $/rok, Family Premium+ 16,99 $/mies. / 99,99 $/rok (Family Sharing), Legacy 29,99 $, trener 10 podopiecznych 14,99 $/mies. / 124,99 $/rok. 7-dniowy darmowy okres próbny.",
       "user_feedback": "Many 1-3 star reviews: almost nothing usable without subscription - https://itunes.apple.com/us/rss/customerreviews/page=3/id=922744883/sortby=mostrecent/json",
+      "user_feedback_pl": "Wiele recenzji na 1-3 gwiazdki: bez subskrypcji prawie nic nie da się używać - https://itunes.apple.com/us/rss/customerreviews/page=3/id=922744883/sortby=mostrecent/json",
       "sources": [
         "https://apps.apple.com/us/app/smartgym-gym-home-workouts/id922744883",
         "https://smartgymapp.com/privacy/",
@@ -833,6 +930,7 @@
       "feature_id": "ux_units",
       "has": "yes",
       "how": "Since 7.8 each measurement unit is chosen independently (e.g. lb for weight, km for distance). Per-exercise unit not documented.",
+      "how_pl": "Od 7.8 każdą jednostkę pomiaru wybiera się niezależnie (np. lb dla ciężaru, km dla dystansu). Jednostka dla pojedynczego ćwiczenia nie jest udokumentowana.",
       "sources": [
         "https://smartgymapp.com/releases/smartgym-7-8"
       ]
@@ -842,7 +940,9 @@
       "feature_id": "ux_theme",
       "has": "partial",
       "how": "Dark Mode supported; Liquid Glass redesign (7.7). A Sep 2026 review says the app forces dark mode with no light mode.",
+      "how_pl": "Obsługiwany tryb ciemny; redesign Liquid Glass (7.7). Recenzja z wrz 2026 twierdzi, że aplikacja wymusza tryb ciemny bez trybu jasnego.",
       "user_feedback": "'A workout tracking app that forces dark mode' - https://itunes.apple.com/us/rss/customerreviews/page=1/id=922744883/sortby=mostrecent/json",
+      "user_feedback_pl": "„A workout tracking app that forces dark mode” - https://itunes.apple.com/us/rss/customerreviews/page=1/id=922744883/sortby=mostrecent/json",
       "sources": [
         "https://smartgymapp.com/releases/smartgym-7-11",
         "https://smartgymapp.com/releases/smartgym-7-7"
@@ -853,7 +953,9 @@
       "feature_id": "ux_languages",
       "has": "yes",
       "how": "App in English, French, German, Italian, Portuguese, Spanish.",
+      "how_pl": "Aplikacja po angielsku, francusku, niemiecku, włosku, portugalsku i hiszpańsku.",
       "user_feedback": "Russian user complains about missing Russian - https://itunes.apple.com/us/rss/customerreviews/page=3/id=922744883/sortby=mostrecent/json",
+      "user_feedback_pl": "Rosyjski użytkownik narzeka na brak rosyjskiego - https://itunes.apple.com/us/rss/customerreviews/page=3/id=922744883/sortby=mostrecent/json",
       "sources": [
         "https://apps.apple.com/us/app/smartgym-gym-home-workouts/id922744883"
       ]
@@ -863,6 +965,7 @@
       "feature_id": "ux_accessibility",
       "has": "partial",
       "how": "Tech list mentions Accessibility APIs and VoiceOver for HIIT workouts; App Store accessibility labels not declared.",
+      "how_pl": "Lista technologii wymienia Accessibility APIs i VoiceOver dla treningów HIIT; etykiety dostępności w App Store nie są zadeklarowane.",
       "sources": [
         "https://smartgymapp.com/releases/smartgym-7-11",
         "https://apps.apple.com/us/app/smartgym-gym-home-workouts/id922744883"
@@ -873,7 +976,9 @@
       "feature_id": "ux_onboarding",
       "has": "yes",
       "how": "Health permission prompt on first launch; Smart Trainer questionnaire (equipment, experience, goal, muscles, duration, days). Site: 'No account required. Just open it and start training.'",
+      "how_pl": "Prośba o uprawnienia Zdrowia przy pierwszym uruchomieniu; kwestionariusz Smart Trainera (sprzęt, doświadczenie, cel, mięśnie, czas, dni). Strona: „No account required. Just open it and start training.”",
       "user_feedback": "Users dislike hitting a trial/paywall immediately after first routine - https://itunes.apple.com/us/rss/customerreviews/page=3/id=922744883/sortby=mostrecent/json",
+      "user_feedback_pl": "Użytkownikom nie podoba się trafianie na okres próbny/paywall tuż po pierwszej rutynie - https://itunes.apple.com/us/rss/customerreviews/page=3/id=922744883/sortby=mostrecent/json",
       "sources": [
         "https://help.smartgymapp.com/article/109-permission-in-the-health-app",
         "https://help.smartgymapp.com/article/129-how-do-i-use-smart-trainer",
@@ -885,6 +990,7 @@
       "feature_id": "ux_offline",
       "has": "partial",
       "how": "Watch is fully offline-capable; iPhone historically needed connection to sync edits (2021 complaint, dev promised fix). Apple Intelligence features run on-device.",
+      "how_pl": "Zegarek działa w pełni offline; iPhone historycznie potrzebował połączenia do synchronizacji edycji (skarga z 2021, deweloper obiecał poprawkę). Funkcje Apple Intelligence działają na urządzeniu.",
       "sources": [
         "https://help.smartgymapp.com/article/85-iphone-nearby",
         "https://apps.apple.com/us/app/smartgym-gym-home-workouts/id922744883",
@@ -896,6 +1002,7 @@
       "feature_id": "ux_privacy",
       "has": "yes",
       "how": "Account only created after subscribing; option to keep data only on device. Anonymous Mixpanel analytics; HealthKit data never shared. Cloud LLM features off by default, sent anonymised to AWS Bedrock. Data may be deleted 60 days after subscription expiry.",
+      "how_pl": "Konto tworzone dopiero po wykupieniu subskrypcji; opcja trzymania danych tylko na urządzeniu. Anonimowa analityka Mixpanel; dane HealthKit nigdy nie są udostępniane. Funkcje chmurowych LLM domyślnie wyłączone, dane wysyłane zanonimizowane do AWS Bedrock. Dane mogą zostać usunięte 60 dni po wygaśnięciu subskrypcji.",
       "sources": [
         "https://smartgymapp.com/privacy/",
         "https://apps.apple.com/us/app/smartgym-gym-home-workouts/id922744883"
@@ -906,6 +1013,7 @@
       "feature_id": "new:action_button_smart_action",
       "has": "yes",
       "how": "Predictive 'Smart Action': iPhone Action Button (15 Pro+, iOS 18, v7.5) and Watch Ultra Action Button / Double Tap trigger the next logical step (log set + start rest, cancel timer, next exercise, end workout). Ultra button can start a workout even when app closed; 3-s countdown cancel.",
+      "how_pl": "Predykcyjna „Smart Action”: Action Button iPhone'a (15 Pro+, iOS 18, v7.5) oraz Action Button zegarka Ultra / Double Tap uruchamiają kolejny logiczny krok (zaloguj serię + start przerwy, anuluj timer, następne ćwiczenie, zakończ trening). Przycisk Ultra może rozpocząć trening także przy zamkniętej aplikacji; 3-sekundowe odliczanie pozwala anulować.",
       "sources": [
         "https://help.smartgymapp.com/article/123-apple-watch-ultra-action-button",
         "https://help.smartgymapp.com/article/138-configure-iphones-action-button",
@@ -917,6 +1025,7 @@
       "feature_id": "new:heart_rate_zones",
       "has": "yes",
       "how": "Real-time colour-coded HR zones on iPhone and Watch (Watch background colour changes), zone time per workout, backwards compatible; custom zones (7.10, e.g. beta-blocker users); calories via Keytel formula from HR.",
+      "how_pl": "Kolorowe strefy tętna w czasie rzeczywistym na iPhonie i zegarku (zmienia się kolor tła zegarka), czas w strefach na trening, wstecznie kompatybilne; własne strefy (7.10, np. dla osób przyjmujących beta-blokery); kalorie ze wzoru Keytela na podstawie tętna.",
       "sources": [
         "https://smartgymapp.com/releases/smartgym-7-3",
         "https://smartgymapp.com/releases/smartgym-7-6",
@@ -929,6 +1038,7 @@
       "feature_id": "new:earbuds_heart_rate",
       "has": "yes",
       "how": "Live Workout Builder (iOS 26) tracks HR, zones and calories from AirPods Pro 3 / Powerbeats Pro 2 without a Watch.",
+      "how_pl": "Live Workout Builder (iOS 26) śledzi tętno, strefy i kalorie z AirPods Pro 3 / Powerbeats Pro 2 bez zegarka.",
       "sources": [
         "https://smartgymapp.com/releases/smartgym-7-7",
         "https://smartgymapp.com/features.html"
@@ -939,6 +1049,7 @@
       "feature_id": "new:strava_sync",
       "has": "yes",
       "how": "Auto-upload every workout to Strava, also directly from Watch (7.8).",
+      "how_pl": "Automatyczne wysyłanie każdego treningu na Stravę, także bezpośrednio z zegarka (7.8).",
       "sources": [
         "https://smartgymapp.com/releases/smartgym-7-8"
       ]
@@ -948,6 +1059,7 @@
       "feature_id": "new:third_party_workouts",
       "has": "yes",
       "how": "Workouts from any app writing to Apple Health appear in history and analytics (7.8).",
+      "how_pl": "Treningi z dowolnej aplikacji zapisującej do Apple Health pojawiają się w historii i analizach (7.8).",
       "sources": [
         "https://smartgymapp.com/releases/smartgym-7-8"
       ]
@@ -957,6 +1069,7 @@
       "feature_id": "new:routine_segments_stretch",
       "has": "yes",
       "how": "Routines can have Main/Warm-Up/Cool-Down sections; Smart Trainer suggests stretches for targeted muscles with user-set segment duration (7.9).",
+      "how_pl": "Rutyny mogą mieć sekcje Main/Warm-Up/Cool-Down; Smart Trainer proponuje rozciąganie dla trenowanych mięśni z czasem segmentu ustawianym przez użytkownika (7.9).",
       "sources": [
         "https://smartgymapp.com/releases/smartgym-7-9"
       ]
@@ -966,6 +1079,7 @@
       "feature_id": "new:update_exercise_across_routines",
       "has": "yes",
       "how": "Editing an exercise can propagate the change to all routines containing it (7.9).",
+      "how_pl": "Edycja ćwiczenia może propagować zmianę do wszystkich rutyn, które je zawierają (7.9).",
       "sources": [
         "https://smartgymapp.com/releases/smartgym-7-9"
       ]
@@ -975,6 +1089,7 @@
       "feature_id": "new:exclude_exercises_from_stats",
       "has": "yes",
       "how": "Choose which exercise types count in stats (exclude warm-ups, cool-downs, stretches) (7.9).",
+      "how_pl": "Wybór, które typy ćwiczeń liczą się w statystykach (wykluczenie rozgrzewek, schłodzenia, rozciągania) (7.9).",
       "sources": [
         "https://smartgymapp.com/releases/smartgym-7-9"
       ]
@@ -984,6 +1099,7 @@
       "feature_id": "new:custom_goals",
       "has": "yes",
       "how": "Workout-count goals per week/month/year with streaks, AI 'Custom Goals Insights' (7.6/7.7).",
+      "how_pl": "Cele liczby treningów na tydzień/miesiąc/rok z seriami, „Custom Goals Insights” od AI (7.6/7.7).",
       "sources": [
         "https://smartgymapp.com/releases/smartgym-7-6",
         "https://apps.apple.com/us/app/smartgym-gym-home-workouts/id922744883"
@@ -994,6 +1110,7 @@
       "feature_id": "new:hiit_voice_guidance",
       "has": "yes",
       "how": "HIIT sequences with voice guidance on iPhone or Watch; can sync sequence across devices.",
+      "how_pl": "Sekwencje HIIT z podpowiedziami głosowymi na iPhonie lub zegarku; sekwencję można synchronizować między urządzeniami.",
       "sources": [
         "https://help.smartgymapp.com/article/66-listen-to-music-voice-guidance",
         "https://apps.apple.com/us/app/smartgym-gym-home-workouts/id922744883"
@@ -1004,6 +1121,7 @@
       "feature_id": "new:audio_instructions",
       "has": "yes",
       "how": "Exercise instructions read aloud, iPhone and Watch (7.6).",
+      "how_pl": "Instrukcje ćwiczeń czytane na głos, iPhone i zegarek (7.6).",
       "sources": [
         "https://smartgymapp.com/releases/smartgym-7-6"
       ]
@@ -1013,6 +1131,7 @@
       "feature_id": "new:shareplay",
       "has": "yes",
       "how": "SharePlay: work out together over FaceTime.",
+      "how_pl": "SharePlay: wspólny trening przez FaceTime.",
       "sources": [
         "https://apps.apple.com/us/app/smartgym-gym-home-workouts/id922744883"
       ]
@@ -1022,6 +1141,7 @@
       "feature_id": "new:alarmkit_reminders",
       "has": "yes",
       "how": "More > Alarms: scheduled gym alarms that can override silent/Focus (iOS 26).",
+      "how_pl": "More > Alarms: zaplanowane alarmy o siłowni, które mogą ominąć tryb cichy/Focus (iOS 26).",
       "sources": [
         "https://smartgymapp.com/releases/smartgym-7-7",
         "https://apps.apple.com/us/app/smartgym-gym-home-workouts/id922744883"
@@ -1032,6 +1152,7 @@
       "feature_id": "new:multi_platform",
       "has": "yes",
       "how": "Native on iPhone, iPad (flexible windows, Stage Manager), Mac, Apple Watch and visionOS; single synced account.",
+      "how_pl": "Natywna aplikacja na iPhone, iPad (elastyczne okna, Stage Manager), Mac, Apple Watch i visionOS; jedno zsynchronizowane konto.",
       "sources": [
         "https://smartgymapp.com/",
         "https://smartgymapp.com/releases/smartgym-7-5",
@@ -1043,6 +1164,7 @@
       "feature_id": "new:watch_screen_sync",
       "has": "yes",
       "how": "More > Screen Sync keeps iPhone and Watch on the same screen (exercise, timer) during an active session.",
+      "how_pl": "More > Screen Sync utrzymuje iPhone'a i zegarek na tym samym ekranie (ćwiczenie, timer) podczas aktywnej sesji.",
       "sources": [
         "https://help.smartgymapp.com/article/103-apple-watch-not-syncing-with-iphone"
       ]
@@ -1052,6 +1174,7 @@
       "feature_id": "new:watch_music_control",
       "has": "yes",
       "how": "Swipe right-to-left on any Watch screen for music controls.",
+      "how_pl": "Przesunięcie od prawej do lewej na dowolnym ekranie zegarka otwiera sterowanie muzyką.",
       "sources": [
         "https://help.smartgymapp.com/article/110-control-music-playback-watch"
       ]
@@ -1061,6 +1184,7 @@
       "feature_id": "new:family_plan",
       "has": "paid",
       "how": "Family Premium+ via Apple Family Sharing gives each member own Premium account.",
+      "how_pl": "Family Premium+ przez Apple Family Sharing daje każdemu członkowi własne konto Premium.",
       "sources": [
         "https://help.smartgymapp.com/article/126-family-plan",
         "https://apps.apple.com/us/app/smartgym-gym-home-workouts/id922744883"

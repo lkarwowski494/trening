@@ -1,1002 +1,1115 @@
 {
-  "app": "StrengthLog",
-  "version_or_date_checked": "iOS 9.0.7 (released 2026-10-02), Android updated 2026-10-02; help center (65 articles via WP API) and site checked 2026-10-02",
-  "pricing": "Free with no ads and unlimited logging. Premium (US App Store): $16.90/month, $37.90/3 months, $109/year; 14-day free trial mentioned on official blog; Swedish wellness-stipend invoices (1-year). Paywalled: full program catalog, advanced stats & training reports, muscle map, RPE/RIR logging, RPE calculator, %1RM/RPE programming, quick set stats, Train-again bulk modify, sharing to other users, unlimited goals/streaks/progress-pic bundles.",
-  "platforms": "iOS 15+ (iPhone/iPad, visionOS), Apple Watch (watchOS 9+), Android with Wear OS app + Tiles, Health Connect; Flutter web build at app.strengthlog.com (scope unclear).",
-  "positioning": "Swedish, ad-free 'most generous' freemium strength log built by lifters, with a large coach-written program library, educational exercise content, PRs per rep count, goals/streaks/challenges.",
-  "features": [
-    {
-      "area": "log",
-      "feature_id": "log_set_fields",
-      "has": "yes",
-      "how": "Each exercise defines its variables at creation (strength exercises must include weight; reps, time and distance variants exist; cardio tracks distance/pace). Data can only be moved between exercises with the same variables.",
-      "sources": [
-        "https://help.strengthlog.com/help-article/adding-a-new-exercise/",
-        "https://help.strengthlog.com/help-article/how-do-i-change-delete-an-exercise/",
-        "https://apps.apple.com/us/app/strengthlog-workout-tracker/id1434229662"
-      ]
-    },
-    {
-      "area": "log",
-      "feature_id": "log_set_types",
-      "has": "yes",
-      "how": "Warm-up vs working set (long-press set number to toggle), drop sets with '+ New drop', 'Max reps' and 'Fail' flags (fail counts to volume but not records); special sets: superset, circuit, complex, EMOM, Tabata, AMRAP.",
-      "sources": [
-        "https://help.strengthlog.com/help-article/how-to-record-a-workout/",
-        "https://help.strengthlog.com/help-article/drop-sets/",
-        "https://help.strengthlog.com/help-article/mark-sets-as-fails-or-max-reps/",
-        "https://help.strengthlog.com/help-article/special-sets/"
-      ]
-    },
-    {
-      "area": "log",
-      "feature_id": "log_rpe_rir",
-      "has": "paid",
-      "how": "Premium: toggle RPE or RiR per set or permanently per exercise; RPE calculator (premium) suggests weights for target reps/RPE from your last set; RPE/RIR also usable when building programs.",
-      "sources": [
-        "https://help.strengthlog.com/help-article/how-to-activate-rpe-rir-in-your-workouts/",
-        "https://help.strengthlog.com/help-article/rpe-calculator/",
-        "https://help.strengthlog.com/help-article/strengthlog-premium/"
-      ]
-    },
-    {
-      "area": "log",
-      "feature_id": "log_previous_values",
-      "has": "yes",
-      "how": "App shows previous performance per exercise; swipe exercise > History lists all past sessions (with set comments) and lets you copy a block in (replace or add). Premium 'quick stats' per set show rep-PR at that weight and average reps.",
-      "sources": [
-        "https://help.strengthlog.com/help-article/how-to-record-a-workout/",
-        "https://help.strengthlog.com/help-article/retrieve-from-training-log/",
-        "https://www.strengthlog.com/strengthlog-bodybuilding-app/"
-      ]
-    },
-    {
-      "area": "log",
-      "feature_id": "log_autofill",
-      "has": "yes",
-      "how": "'Copy sets from last workout' checkbox when adding an exercise; templates/programs can use 'Retrieve from log' (finds last set with the same rep count, or a heavier one with more reps; warm-ups match warm-ups); 'Train again' clones a whole past workout (premium: bulk +/- weight/reps).",
-      "sources": [
-        "https://help.strengthlog.com/help-article/copy-sets-from-last-workout/",
-        "https://help.strengthlog.com/help-article/retrieve-from-training-log/",
-        "https://help.strengthlog.com/help-article/train-again/"
-      ]
-    },
-    {
-      "area": "log",
-      "feature_id": "log_notes",
-      "has": "yes",
-      "how": "Set comments (swipe set), pinned exercise comments shown every time (machine settings/cues), workout-specific exercise comments (v9.0), and a workout comment plus name at save.",
-      "user_feedback": "App Store 2026-09 (1*): after 9.0 it is 'harder to access notes for your workouts'. https://itunes.apple.com/us/rss/customerreviews/id=1434229662/sortBy=mostRecent/json",
-      "sources": [
-        "https://help.strengthlog.com/help-article/adding-set-comments/",
-        "https://help.strengthlog.com/help-article/exercise-comments/",
-        "https://apps.apple.com/us/app/strengthlog-workout-tracker/id1434229662"
-      ]
-    },
-    {
-      "area": "log",
-      "feature_id": "log_supersets",
-      "has": "yes",
-      "how": "'+ Special set' > Superset is exactly two exercises (each marked done individually; can split or reorder); Circuit for 3+ exercises/rounds; Complex for same-weight barbell sequences completed as one set.",
-      "sources": [
-        "https://help.strengthlog.com/help-article/special-sets/"
-      ]
-    },
-    {
-      "area": "log",
-      "feature_id": "log_reorder",
-      "has": "yes",
-      "how": "Long-press an exercise border (or ... > Handle exercise > Reorder) opens a drag-and-drop list; sets can be moved up/down via set menu arrows.",
-      "sources": [
-        "https://help.strengthlog.com/help-article/reorder-exercises/",
-        "https://help.strengthlog.com/help-article/how-to-record-a-workout/"
-      ]
-    },
-    {
-      "area": "log",
-      "feature_id": "log_replace_exercise",
-      "has": "yes",
-      "how": "Swipe exercise > Change: library opens with similar exercises suggested first; weights are kept as-is (or fetch from history/update 1RM).",
-      "sources": [
-        "https://help.strengthlog.com/help-article/similar-exercises/",
-        "https://help.strengthlog.com/help-article/shortcuts-in-an-active-workout/"
-      ]
-    },
-    {
-      "area": "log",
-      "feature_id": "log_plate_calculator",
-      "has": "yes",
-      "how": "Free: loading image above keyboard for barbell exercises, full calculator in Settings > Calculators; profiles per gym with plate counts, plate colors, barbells and collars; link exercises to a specific bar (e.g., 28 kg trap bar; 0 kg bar for plate-loaded machines).",
-      "sources": [
-        "https://help.strengthlog.com/help-article/plate-calculator/"
-      ]
-    },
-    {
-      "area": "log",
-      "feature_id": "log_warmup_calculator",
-      "has": "partial",
-      "how": "'Warm-up for max attempt' calculator plans warm-up sets for a target weight and can create a workout; no automatic warm-up generation for normal working sets found.",
-      "sources": [
-        "https://help.strengthlog.com/help-article/calculators/",
-        "https://www.strengthlog.com/"
-      ]
-    },
-    {
-      "area": "log",
-      "feature_id": "log_bodyweight_assisted",
-      "has": "partial",
-      "how": "Exercises can carry a 'bodyweight factor' that adds a share of bodyweight to lifted weight/volume (editable or 0 to exclude). No dedicated assisted/band-assistance mode documented.",
-      "sources": [
-        "https://help.strengthlog.com/help-article/bodyweight-factors/",
-        "https://help.strengthlog.com/help-article/adding-a-new-exercise/"
-      ]
-    },
-    {
-      "area": "log",
-      "feature_id": "log_unilateral",
-      "has": "partial",
-      "how": "One-sided exercises are 'Enter for only one side': log one side's reps/weight once and the app doubles volume; no separate L/R fields.",
-      "sources": [
-        "https://help.strengthlog.com/help-article/one-sided-exercises/"
-      ]
-    },
-    {
-      "area": "log",
-      "feature_id": "log_tempo",
-      "has": "no",
-      "how": "No tempo field or tempo timer found in help center; users request it.",
-      "user_feedback": "App Store 2026-07 (5*): 'just need a tempo timer with concentric and eccentric'. https://itunes.apple.com/us/rss/customerreviews/id=1434229662/sortBy=mostRecent/json",
-      "sources": [
-        "https://help.strengthlog.com/help-article/how-to-record-a-workout/",
-        "https://itunes.apple.com/us/rss/customerreviews/id=1434229662/sortBy=mostRecent/json"
-      ]
-    },
-    {
-      "area": "log",
-      "feature_id": "log_empty_workout",
-      "has": "yes",
-      "how": "+ (bottom menu) > Start New Workout, then '+ Exercise' from Most used / All exercises.",
-      "sources": [
-        "https://help.strengthlog.com/help-article/how-to-record-a-workout/"
-      ]
-    },
-    {
-      "area": "log",
-      "feature_id": "log_edit_past",
-      "has": "yes",
-      "how": "Edit any saved workout (sets, name, time, ratings); backdate by logging and changing date/time at save; v9.0 home calendar lets you backlog forgotten workouts; delete from home widget or log.",
-      "sources": [
-        "https://help.strengthlog.com/help-article/make-changes-to-a-saved-workout/",
-        "https://help.strengthlog.com/help-article/backdating-a-workout/",
-        "https://help.strengthlog.com/help-article/how-to-delete-a-workout/",
-        "https://apps.apple.com/us/app/strengthlog-workout-tracker/id1434229662"
-      ]
-    },
-    {
-      "area": "log",
-      "feature_id": "log_one_hand_ux",
-      "has": "partial",
-      "how": "Tap set number to mark done (turns green); swipe actions on sets/exercises; long-press shortcuts; optional XL timer. Users report the done-tap target and 9.0 navigation as unclear.",
-      "user_feedback": "App Store 2023 (3*): 'not made very clear how to mark a workout as done, you end up having to tap the small blank space'; 2026-05 (3*): 'powerful ... buried under baffling UX decisions'. https://itunes.apple.com/us/rss/customerreviews/id=1434229662/sortBy=mostRecent/json",
-      "sources": [
-        "https://help.strengthlog.com/help-article/mark-a-set-as-done/",
-        "https://help.strengthlog.com/help-article/shortcuts-in-an-active-workout/",
-        "https://help.strengthlog.com/help-article/how-to-use-the-timer/"
-      ]
-    },
-    {
-      "area": "timer",
-      "feature_id": "timer_auto_rest",
-      "has": "yes",
-      "how": "Timer settings let it start automatically on set completion; progress bar in background; +/-30 s buttons or manual entry; count-up mode.",
-      "sources": [
-        "https://help.strengthlog.com/help-article/how-to-use-the-timer/"
-      ]
-    },
-    {
-      "area": "timer",
-      "feature_id": "timer_per_exercise",
-      "has": "yes",
-      "how": "Exercise-specific rest timers set in timer settings or via ... > Handle Exercise > Exercise specific rest timer; 'Reset to default'.",
-      "sources": [
-        "https://help.strengthlog.com/help-article/how-to-use-the-timer/"
-      ]
-    },
-    {
-      "area": "timer",
-      "feature_id": "timer_notifications",
-      "has": "yes",
-      "how": "Rest-over notifications with selectable sound (permission required; no sound in silent mode).",
-      "user_feedback": "App Store 2026-09 (3*): 'Timer stopped working in iOS 27'. https://itunes.apple.com/us/rss/customerreviews/id=1434229662/sortBy=mostRecent/json",
-      "sources": [
-        "https://help.strengthlog.com/help-article/how-to-use-the-timer/",
-        "https://app.strengthlog.com/main.dart.js"
-      ]
-    },
-    {
-      "area": "timer",
-      "feature_id": "timer_live_activity",
-      "has": "unknown",
-      "how": "No mention of Live Activity/Dynamic Island in help center, store text or release notes.",
-      "sources": [
-        "https://help.strengthlog.com/help-article/how-to-use-the-timer/",
-        "https://apps.apple.com/us/app/strengthlog-workout-tracker/id1434229662"
-      ]
-    },
-    {
-      "area": "timer",
-      "feature_id": "timer_set_stopwatch",
-      "has": "partial",
-      "how": "Time-based exercises and Time PR goals exist; EMOM/Tabata/AMRAP special sets have full-screen interval timers with countdown and sounds. A per-set stopwatch for e.g. planks is not documented in detail.",
-      "sources": [
-        "https://help.strengthlog.com/help-article/special-sets/",
-        "https://help.strengthlog.com/help-article/how-to-set-up-a-goal/"
-      ]
-    },
-    {
-      "area": "timer",
-      "feature_id": "timer_workout_duration",
-      "has": "yes",
-      "how": "Workout clock with fullscreen pause (since v5.10.2); paused time can be entered manually at save; duration feeds calorie estimate.",
-      "sources": [
-        "https://help.strengthlog.com/help-article/pause-your-workout/"
-      ]
-    },
-    {
-      "area": "timer",
-      "feature_id": "timer_abandoned_workout",
-      "has": "partial",
-      "how": "No auto-end; at save you can correct time/paused time, and unfinished sets/exercises can be deleted or moved to a new planned workout.",
-      "sources": [
-        "https://help.strengthlog.com/help-article/pause-your-workout/",
-        "https://help.strengthlog.com/help-article/unfinished-sets-exercises/"
-      ]
-    },
-    {
-      "area": "plan",
-      "feature_id": "plan_templates",
-      "has": "yes",
-      "how": "Mine > + > Workout: named, colored templates with set weight, retrieve-from-log or % of 1RM (premium) per set; any logged workout can be saved as a template; favorites appear on home.",
-      "sources": [
-        "https://help.strengthlog.com/help-article/save-a-workout-template/"
-      ]
-    },
-    {
-      "area": "plan",
-      "feature_id": "plan_folders",
-      "has": "yes",
-      "how": "Workout categories: create categories and 'Move to...' templates into them.",
-      "sources": [
-        "https://help.strengthlog.com/help-article/save-a-workout-template/"
-      ]
-    },
-    {
-      "area": "plan",
-      "feature_id": "plan_programs",
-      "has": "yes",
-      "how": "200+ programs and stand-alone workouts (powerlifting, bodybuilding, powerbuilding, PPL, sport-specific) filterable by Free/Premium, level and category; 'Follow program' puts next workout on home; skip/unfollow; full catalog is Premium.",
-      "sources": [
-        "https://help.strengthlog.com/help-article/follow-a-program/",
-        "https://www.strengthlog.com/",
-        "https://apps.apple.com/us/app/strengthlog-workout-tracker/id1434229662"
-      ]
-    },
-    {
-      "area": "plan",
-      "feature_id": "plan_periodization",
-      "has": "yes",
-      "how": "Multi-week program builder (copy week to next week and edit), % of 1RM sets (premium) using stored 'My 1RMs', RPE/RIR-based sets (premium), retrieve-from-log + fixed progression increment (premium). v9.0 adds Simple and Detailed builders with Smart Blocks.",
-      "sources": [
-        "https://help.strengthlog.com/help-article/how-to-build-a-program/",
-        "https://help.strengthlog.com/help-article/1rm-for-programs/",
-        "https://apps.apple.com/us/app/strengthlog-workout-tracker/id1434229662"
-      ]
-    },
-    {
-      "area": "plan",
-      "feature_id": "plan_generator",
-      "has": "partial",
-      "how": "No AI generator. Minigames (Name Game, Dice Game, Card Game) generate randomized bodyweight-style sets; Smart Blocks automate progression but you pick exercises.",
-      "sources": [
-        "https://help.strengthlog.com/help-article/minigames/",
-        "https://apps.apple.com/us/app/strengthlog-workout-tracker/id1434229662"
-      ]
-    },
-    {
-      "area": "plan",
-      "feature_id": "plan_schedule",
-      "has": "yes",
-      "how": "Plan a workout for a date (home widget + calendar); v9.0 home calendar to start, plan, add events and schedule followed programs.",
-      "user_feedback": "App Store 2026-09 (1*): 'I used to be able to easily plan a workout. That option is no longer available' after 9.0. https://itunes.apple.com/us/rss/customerreviews/id=1434229662/sortBy=mostRecent/json",
-      "sources": [
-        "https://help.strengthlog.com/help-article/how-to-plan-a-workout-for-later/",
-        "https://apps.apple.com/us/app/strengthlog-workout-tracker/id1434229662"
-      ]
-    },
-    {
-      "area": "plan",
-      "feature_id": "plan_share_templates",
-      "has": "paid",
-      "how": "Share own program, planned or completed workout via link (share sheet); sharer needs Premium, receiver needs app v6.0+; only standard exercises; receiver needs Premium if it uses premium features.",
-      "sources": [
-        "https://help.strengthlog.com/help-article/share-workouts/"
-      ]
-    },
-    {
-      "area": "lib",
-      "feature_id": "lib_size",
-      "has": "yes",
-      "how": "Help center (Apr 2026) says 'over 600 exercises'; store listing says 500+ strength, mobility and cardio exercises (website still says 450+).",
-      "sources": [
-        "https://help.strengthlog.com/help-article/finding-the-right-excercises/",
-        "https://apps.apple.com/us/app/strengthlog-workout-tracker/id1434229662",
-        "https://www.strengthlog.com/"
-      ]
-    },
-    {
-      "area": "lib",
-      "feature_id": "lib_media",
-      "has": "yes",
-      "how": "Each exercise: written instructions, GIF, muscle map, and self-recorded videos (since v8.1), aiming for one male and one female demo per exercise.",
-      "sources": [
-        "https://help.strengthlog.com/help-article/how-to-view-exercise-descriptions/",
-        "https://help.strengthlog.com/help-article/finding-the-right-excercises/"
-      ]
-    },
-    {
-      "area": "lib",
-      "feature_id": "lib_custom",
-      "has": "yes",
-      "how": "Unlimited custom exercises (free): from scratch or copied from existing; type (strength/cardio/mobility), variables, primary/secondary muscles, bodyweight factor, one-sided flag. Delete requires moving logged data to an exercise with same variables.",
-      "sources": [
-        "https://help.strengthlog.com/help-article/adding-a-new-exercise/",
-        "https://help.strengthlog.com/help-article/how-do-i-change-delete-an-exercise/"
-      ]
-    },
-    {
-      "area": "lib",
-      "feature_id": "lib_muscles",
-      "has": "yes",
-      "how": "Primary (dark red) and secondary (pink) muscles per exercise drive the muscle map.",
-      "sources": [
-        "https://help.strengthlog.com/help-article/adding-a-new-exercise/",
-        "https://help.strengthlog.com/help-article/finding-the-right-excercises/"
-      ]
-    },
-    {
-      "area": "lib",
-      "feature_id": "lib_equipment_filter",
-      "has": "yes",
-      "how": "Filter by equipment type (long-press to isolate one), by muscle via tappable body map, and standard vs own exercises.",
-      "sources": [
-        "https://help.strengthlog.com/help-article/finding-the-right-excercises/"
-      ]
-    },
-    {
-      "area": "lib",
-      "feature_id": "lib_search",
-      "has": "yes",
-      "how": "Search plus 'Most used' list that adapts to your own usage; sort alphabetically or by usage.",
-      "sources": [
-        "https://help.strengthlog.com/help-article/finding-the-right-excercises/"
-      ]
-    },
-    {
-      "area": "lib",
-      "feature_id": "lib_localization",
-      "has": "partial",
-      "how": "App Store lists English only; the official web build contains a full Swedish translation and an in-app language switch (English/Swedish). (evidence: UI strings in StrengthLog's official Flutter web build; release status in mobile app not confirmed by help center)",
-      "sources": [
-        "https://apps.apple.com/us/app/strengthlog-workout-tracker/id1434229662",
-        "https://app.strengthlog.com/main.dart.js"
-      ]
-    },
-    {
-      "area": "prog",
-      "feature_id": "prog_suggestions",
-      "has": "yes",
-      "how": "Rule-based, not adaptive: v9.0 Smart Blocks with Linear (weight up when all reps done), Double (rep range then weight) and Triple progression (reps, then sets, then weight); older Retrieve-from-log + fixed increment (premium); % of 1RM programs.",
-      "user_feedback": "Third-party review: 'the decision of when to add weight, when to deload ... sits with you' (pre-9.0 assessment). https://steelrep.app/blog/best-workout-apps-strength-training/",
-      "sources": [
-        "https://apps.apple.com/us/app/strengthlog-workout-tracker/id1434229662",
-        "https://app.strengthlog.com/main.dart.js",
-        "https://help.strengthlog.com/help-article/how-to-build-a-program/"
-      ]
-    },
-    {
-      "area": "prog",
-      "feature_id": "prog_double_progression",
-      "has": "yes",
-      "how": "Smart Block 'Double progression': choose rep range and weight increase; when top of range is hit on all sets, weight rises and reps reset.",
-      "sources": [
-        "https://apps.apple.com/us/app/strengthlog-workout-tracker/id1434229662",
-        "https://app.strengthlog.com/main.dart.js"
-      ]
-    },
-    {
-      "area": "prog",
-      "feature_id": "prog_deload",
-      "has": "no",
-      "how": "No automatic deload rules documented in the help center; third-party review states it has no deload logic.",
-      "sources": [
-        "https://help.strengthlog.com/help-article/how-to-build-a-program/",
-        "https://steelrep.app/blog/best-workout-apps-strength-training/"
-      ]
-    },
-    {
-      "area": "prog",
-      "feature_id": "prog_fatigue",
-      "has": "partial",
-      "how": "At save you rate sleep, stress, calorie intake and how the workout felt ('shape'); premium stats compare e.g. experienced shape vs reps. No readiness model adjusting training.",
-      "sources": [
-        "https://help.strengthlog.com/help-article/how-to-record-a-workout/",
-        "https://help.strengthlog.com/help-article/strengthlog-premium/",
-        "https://app.strengthlog.com/main.dart.js"
-      ]
-    },
-    {
-      "area": "prog",
-      "feature_id": "prog_ai_coach",
-      "has": "no",
-      "how": "No AI coach in help center (65 articles), store listing or release notes.",
-      "sources": [
-        "https://apps.apple.com/us/app/strengthlog-workout-tracker/id1434229662",
-        "https://help.strengthlog.com/"
-      ]
-    },
-    {
-      "area": "stats",
-      "feature_id": "stats_prs",
-      "has": "yes",
-      "how": "Automatic PR for every rep count (1RM..nRM), Yearly Records ('YR!') and PR ('PR!') badges inline while logging, Time PR; records page per year; add old PRs manually, delete bad records; attach videos to records.",
-      "sources": [
-        "https://help.strengthlog.com/help-article/personal-records-and-yearly-records/",
-        "https://help.strengthlog.com/help-article/how-to-register-old-personal-records/",
-        "https://help.strengthlog.com/help-article/remove-old-personal-records/"
-      ]
-    },
-    {
-      "area": "stats",
-      "feature_id": "stats_e1rm",
-      "has": "yes",
-      "how": "Estimated 1RM graphs per exercise; 1RM calculator uses Epley; logged RPE/RIR adjusts e1RM (easier RPE -> higher e1RM). Separate 'My 1RMs' registry for %1RM programs (premium).",
-      "sources": [
-        "https://help.strengthlog.com/help-article/calculators/",
-        "https://help.strengthlog.com/help-article/rpe-calculator/",
-        "https://help.strengthlog.com/help-article/1rm-for-programs/",
-        "https://app.strengthlog.com/main.dart.js"
-      ]
-    },
-    {
-      "area": "stats",
-      "feature_id": "stats_charts_exercise",
-      "has": "partial",
-      "how": "Basic stats free; advanced per-exercise graphs (e1RM, reps by %1RM zones, etc.) premium; graphs can be favorited to home, reordered/recolored (v9.0) and overlaid with calendar events.",
-      "user_feedback": "App Store 2026-01 (3*): 'All stats and graphs are entirely locked behind premium which is a comical $100+ a year.' https://itunes.apple.com/us/rss/customerreviews/id=1434229662/sortBy=mostRecent/json",
-      "sources": [
-        "https://help.strengthlog.com/help-article/the-home-screen/",
-        "https://help.strengthlog.com/help-article/calendar-events/",
-        "https://help.strengthlog.com/help-article/strengthlog-premium/",
-        "https://apps.apple.com/us/app/strengthlog-workout-tracker/id1434229662"
-      ]
-    },
-    {
-      "area": "stats",
-      "feature_id": "stats_volume",
-      "has": "partial",
-      "how": "Free volume and workout stats with period comparison on home 'Overview'; premium adds per-muscle-group statistics, weekly set goals per muscle and monthly/yearly reports.",
-      "user_feedback": "App Store 2026-09 (4*): 'a real bummer that you can't even get a weekly summary of work' (free). https://itunes.apple.com/us/rss/customerreviews/id=1434229662/sortBy=mostRecent/json",
-      "sources": [
-        "https://help.strengthlog.com/help-article/the-home-screen/",
-        "https://help.strengthlog.com/help-article/muscles-worked/",
-        "https://help.strengthlog.com/help-article/strengthlog-premium/"
-      ]
-    },
-    {
-      "area": "stats",
-      "feature_id": "stats_muscle_heatmap",
-      "has": "paid",
-      "how": "Premium 'Muscles worked' map: sets per muscle over a chosen period, grey to full red at the weekly set goal (default 10, editable globally or per muscle); also as iOS widget.",
-      "sources": [
-        "https://help.strengthlog.com/help-article/muscles-worked/",
-        "https://help.strengthlog.com/help-article/widgets/"
-      ]
-    },
-    {
-      "area": "stats",
-      "feature_id": "stats_calendar_streaks",
-      "has": "yes",
-      "how": "Training log calendar with events; Streaks: manual check-off or workout-logging streaks (reps, volume, sets, number of workouts; daily/weekly) with reminders, longest streak, share image. Free has a limit; unlimited in premium.",
-      "sources": [
-        "https://help.strengthlog.com/help-article/streaks/",
-        "https://help.strengthlog.com/help-article/calendar-events/",
-        "https://help.strengthlog.com/help-article/strengthlog-premium/"
-      ]
-    },
-    {
-      "area": "stats",
-      "feature_id": "stats_workout_summary",
-      "has": "yes",
-      "how": "Summary after saving (incl. estimated calories burned since v5.10); premium monthly/yearly Training Reports (workouts, volume, reps, sets, time, muscles, top exercises, PRs, compare with previous period, share image).",
-      "sources": [
-        "https://help.strengthlog.com/help-article/training-reports/",
-        "https://www.strengthlog.com/new-features-in-the-best-free-workout-tracker-app/"
-      ]
-    },
-    {
-      "area": "stats",
-      "feature_id": "stats_strength_standards",
-      "has": "yes",
-      "how": "Strength Levels (since v8.0): general level from your 15 most-logged lifts plus per-exercise levels vs app users (Beginner 5%, Novice 25%, Intermediate 50%, Advanced 75%, Elite 95%), filterable by sex, age, bodyweight; needs sex, age, bodyweight and 3+ logged lifts; shareable image.",
-      "sources": [
-        "https://help.strengthlog.com/help-article/strength-levels/"
-      ]
-    },
-    {
-      "area": "body",
-      "feature_id": "body_weight",
-      "has": "yes",
-      "how": "Body measurement page: + to add a dated bodyweight entry, graph per measurement; can read bodyweight from Health Connect.",
-      "sources": [
-        "https://help.strengthlog.com/help-article/body-weight-and-body-measurements/",
-        "https://play.google.com/store/apps/details?id=com.styrkelabbet.Styrkelabbet"
-      ]
-    },
-    {
-      "area": "body",
-      "feature_id": "body_measurements",
-      "has": "yes",
-      "how": "Multiple body measurements with dated entries and graphs; body-measurement goals; body fat % calculator pulls stored measurements.",
-      "sources": [
-        "https://help.strengthlog.com/help-article/body-weight-and-body-measurements/",
-        "https://help.strengthlog.com/help-article/how-to-set-up-a-goal/",
-        "https://help.strengthlog.com/help-article/calculators/"
-      ]
-    },
-    {
-      "area": "body",
-      "feature_id": "body_photos",
-      "has": "partial",
-      "how": "Progress pic 'bundles' stored privately in the cloud with a photo-taking guide; free accounts hit a bundle limit, premium raises it.",
-      "sources": [
-        "https://play.google.com/store/apps/details?id=com.styrkelabbet.Styrkelabbet",
-        "https://www.strengthlog.com/how-to-track-muscle-growth-strengthlog/",
-        "https://app.strengthlog.com/main.dart.js"
-      ]
-    },
-    {
-      "area": "body",
-      "feature_id": "body_readiness",
-      "has": "partial",
-      "how": "Post-workout ratings for sleep quality, stress, calorie intake and 'how it felt'; no HRV or morning check-in.",
-      "sources": [
-        "https://help.strengthlog.com/help-article/how-to-record-a-workout/",
-        "https://app.strengthlog.com/main.dart.js"
-      ]
-    },
-    {
-      "area": "int",
-      "feature_id": "int_apple_health",
-      "has": "yes",
-      "how": "iOS: shares workouts (and active energy) to Apple Health, does not read data back. Android: Health Connect (replaced Google Fit in v6.8); can read bodyweight and Wear OS heart rate; bulk upload of missing history.",
-      "sources": [
-        "https://apps.apple.com/us/app/strengthlog-workout-tracker/id1434229662",
-        "https://play.google.com/store/apps/details?id=com.styrkelabbet.Styrkelabbet",
-        "https://help.strengthlog.com/help-article/how-to-migrate-your-data-to-health-connect/",
-        "https://app.strengthlog.com/main.dart.js"
-      ]
-    },
-    {
-      "area": "int",
-      "feature_id": "int_watch_app",
-      "has": "yes",
-      "how": "Apple Watch app (since v5.11; watchOS 9+): start workouts or continue ones started on phone, add exercises/sets; %1RM workouts need 1RMs entered first. Wear OS app with Tiles for goals, streaks, weekly stats, challenges and heart rate.",
-      "user_feedback": "App Store 2025-04 (2*): Apple Watch 'stopped working with the latest update'. https://itunes.apple.com/us/rss/customerreviews/id=1434229662/sortBy=mostRecent/json",
-      "sources": [
-        "https://www.strengthlog.com/the-best-gym-app-for-apple-watch-is-here/",
-        "https://apps.apple.com/us/app/strengthlog-workout-tracker/id1434229662",
-        "https://play.google.com/store/apps/details?id=com.styrkelabbet.Styrkelabbet",
-        "https://app.strengthlog.com/main.dart.js"
-      ]
-    },
-    {
-      "area": "int",
-      "feature_id": "int_garmin",
-      "has": "partial",
-      "how": "No Garmin/Fitbit integration found (a 2026 review asks for Fitbit); Strava connection (load Strava activities into calendar, share workouts to Strava) appears in the app strings. (evidence: UI strings in StrengthLog's official Flutter web build; release status in mobile app not confirmed by help center)",
-      "sources": [
-        "https://app.strengthlog.com/main.dart.js",
-        "https://itunes.apple.com/us/rss/customerreviews/id=1434229662/sortBy=mostRecent/json"
-      ]
-    },
-    {
-      "area": "int",
-      "feature_id": "int_import",
-      "has": "partial",
-      "how": "No import from Strong/Hevy documented; can import bodyweight history from Health; old PRs entered manually.",
-      "sources": [
-        "https://help.strengthlog.com/help-article/how-to-register-old-personal-records/",
-        "https://app.strengthlog.com/main.dart.js"
-      ]
-    },
-    {
-      "area": "int",
-      "feature_id": "int_export",
-      "has": "yes",
-      "how": "Export training log and/or body measurements as .csv (Settings); third-party importers (e.g., Gript) read this export incl. RPE and timed sets.",
-      "sources": [
-        "https://app.strengthlog.com/main.dart.js",
-        "https://griptapp.com/help/import-from-strengthlog"
-      ]
-    },
-    {
-      "area": "int",
-      "feature_id": "int_backup_sync",
-      "has": "yes",
-      "how": "Account-based cloud sync; data appears on a new device after login; subscriptions do not transfer between iOS and Android.",
-      "sources": [
-        "https://www.strengthlog.com/",
-        "https://help.strengthlog.com/help-article/possible-issues-with-your-data/",
-        "https://www.strengthlog.com/app-terms-privacy/"
-      ]
-    },
-    {
-      "area": "int",
-      "feature_id": "int_widgets",
-      "has": "yes",
-      "how": "iOS home-screen widgets: muscles worked (small/large, period editable), monthly challenge, goals (1 or 4), streaks; Wear OS Tiles.",
-      "sources": [
-        "https://help.strengthlog.com/help-article/widgets/",
-        "https://play.google.com/store/apps/details?id=com.styrkelabbet.Styrkelabbet"
-      ]
-    },
-    {
-      "area": "int",
-      "feature_id": "int_siri_shortcuts",
-      "has": "unknown",
-      "how": "Not mentioned in help center or store listing.",
-      "sources": [
-        "https://help.strengthlog.com/",
-        "https://apps.apple.com/us/app/strengthlog-workout-tracker/id1434229662"
-      ]
-    },
-    {
-      "area": "equip",
-      "feature_id": "equip_locations",
-      "has": "partial",
-      "how": "Only plate-calculator profiles per gym (e.g., 'original gym' and 'home gym') with their own plates, bars and collars.",
-      "sources": [
-        "https://help.strengthlog.com/help-article/plate-calculator/"
-      ]
-    },
-    {
-      "area": "equip",
-      "feature_id": "equip_inventory",
-      "has": "partial",
-      "how": "Plate calculator inventory: plate counts per profile, barbells, collars, exercise-specific bar; not used to round program weights.",
-      "sources": [
-        "https://help.strengthlog.com/help-article/plate-calculator/"
-      ]
-    },
-    {
-      "area": "equip",
-      "feature_id": "equip_filtering",
-      "has": "partial",
-      "how": "Exercise list can be filtered by equipment type; Similar Exercises suggests swaps if equipment is missing. No availability profile per gym.",
-      "sources": [
-        "https://help.strengthlog.com/help-article/finding-the-right-excercises/",
-        "https://help.strengthlog.com/help-article/similar-exercises/"
-      ]
-    },
-    {
-      "area": "social",
-      "feature_id": "social_feed",
-      "has": "partial",
-      "how": "Terms describe social features: mutual friend connections (username/QR) sharing workout summaries, PRs, e1RMs and Strength Levels, never the full log; app strings include feed posts and reporting; v9.0 library has a 'Following' filter. (evidence: UI strings in StrengthLog's official Flutter web build; release status in mobile app not confirmed by help center)",
-      "sources": [
-        "https://www.strengthlog.com/app-terms-privacy/",
-        "https://app.strengthlog.com/main.dart.js",
-        "https://apps.apple.com/us/app/strengthlog-workout-tracker/id1434229662"
-      ]
-    },
-    {
-      "area": "social",
-      "feature_id": "social_share",
-      "has": "yes",
-      "how": "Image for sharing (choose background, format, stats) to Instagram or save; full-workout image; share workouts/programs to other users via link (premium); share images for streaks, reports and strength levels.",
-      "sources": [
-        "https://help.strengthlog.com/help-article/share-your-workout-on-social-media/",
-        "https://help.strengthlog.com/help-article/share-workouts/",
-        "https://help.strengthlog.com/help-article/streaks/"
-      ]
-    },
-    {
-      "area": "social",
-      "feature_id": "social_leaderboards",
-      "has": "partial",
-      "how": "No ranked leaderboards found; Strength Levels compare you against all app users as percentiles.",
-      "sources": [
-        "https://help.strengthlog.com/help-article/strength-levels/"
-      ]
-    },
-    {
-      "area": "social",
-      "feature_id": "social_challenges",
-      "has": "yes",
-      "how": "Monthly app-wide challenges (usually 3 sub-goals) with badges and archive; achievements; friend-invite challenges are described in the Terms and app strings.",
-      "sources": [
-        "https://help.strengthlog.com/help-article/challenges/",
-        "https://www.strengthlog.com/new-features-in-the-best-free-workout-tracker-app/",
-        "https://www.strengthlog.com/app-terms-privacy/"
-      ]
-    },
-    {
-      "area": "coach",
-      "feature_id": "coach_client_management",
-      "has": "no",
-      "how": "No coach/client accounts in help center or store listing.",
-      "sources": [
-        "https://help.strengthlog.com/",
-        "https://apps.apple.com/us/app/strengthlog-workout-tracker/id1434229662"
-      ]
-    },
-    {
-      "area": "coach",
-      "feature_id": "coach_assign_programs",
-      "has": "partial",
-      "how": "Programs can be shared by link (premium sharer); no assignment/tracking of clients.",
-      "sources": [
-        "https://help.strengthlog.com/help-article/share-workouts/"
-      ]
-    },
-    {
-      "area": "coach",
-      "feature_id": "coach_feedback",
-      "has": "no",
-      "how": "Not present in help center or store listing.",
-      "sources": [
-        "https://help.strengthlog.com/",
-        "https://apps.apple.com/us/app/strengthlog-workout-tracker/id1434229662"
-      ]
-    },
-    {
-      "area": "coach",
-      "feature_id": "coach_chat",
-      "has": "no",
-      "how": "No in-app chat; support via app@strengthlog.com.",
-      "sources": [
-        "https://www.strengthlog.com/"
-      ]
-    },
-    {
-      "area": "coach",
-      "feature_id": "coach_marketplace",
-      "has": "no",
-      "how": "Programs are authored by StrengthLog coaches only; no third-party marketplace.",
-      "sources": [
-        "https://www.strengthlog.com/",
-        "https://help.strengthlog.com/help-article/follow-a-program/"
-      ]
-    },
-    {
-      "area": "monet",
-      "feature_id": "monet_model",
-      "has": "yes",
-      "how": "Free: unlimited logging, no ads, custom exercises, basic stats, PRs, plate calculator, timer, many programs, basic program builder, limited goals/streaks. Premium (US App Store: $16.90/month, $37.90/3 months, $109/year; 14-day trial per blog): full program catalog, advanced stats/reports, muscle map, RPE/RIR, %1RM programming, quick stats, Train-again modifications, sharing, unlimited goals/streaks. Sweden: wellness-stipend invoices. Cannot be bought on web.",
-      "user_feedback": "App Store 2025-06 (1*) '$16 / month!', 2025-01 (3*) 'Pro is wayyy too expensive'; many 5* reviews praise the generous free tier. https://itunes.apple.com/us/rss/customerreviews/id=1434229662/sortBy=mostRecent/json",
-      "sources": [
-        "https://apps.apple.com/us/app/strengthlog-workout-tracker/id1434229662",
-        "https://help.strengthlog.com/help-article/strengthlog-premium/",
-        "https://www.strengthlog.com/the-best-gym-app-for-apple-watch-is-here/",
-        "https://help.strengthlog.com/help-article/wellness-stipend-for-premium/"
-      ]
-    },
-    {
-      "area": "ux",
-      "feature_id": "ux_units",
-      "has": "partial",
-      "how": "kg or lb globally; plate calculator has its own weight-unit setting; km/miles for cardio. No per-exercise unit documented.",
-      "user_feedback": "App Store 2026-01 (2*): wants easier conversion between meter/kilo units. https://itunes.apple.com/us/rss/customerreviews/id=1434229662/sortBy=mostRecent/json",
-      "sources": [
-        "https://app.strengthlog.com/main.dart.js",
-        "https://help.strengthlog.com/help-article/plate-calculator/"
-      ]
-    },
-    {
-      "area": "ux",
-      "feature_id": "ux_theme",
-      "has": "yes",
-      "how": "Dark mode by default; toggle to light in settings (system setting option exists).",
-      "sources": [
-        "https://help.strengthlog.com/help-article/dark-mode-light-mode/",
-        "https://app.strengthlog.com/main.dart.js"
-      ]
-    },
-    {
-      "area": "ux",
-      "feature_id": "ux_languages",
-      "has": "partial",
-      "how": "Store lists English only; app strings include Swedish with an in-app language switch. (evidence: UI strings in StrengthLog's official Flutter web build; release status in mobile app not confirmed by help center)",
-      "sources": [
-        "https://apps.apple.com/us/app/strengthlog-workout-tracker/id1434229662",
-        "https://app.strengthlog.com/main.dart.js"
-      ]
-    },
-    {
-      "area": "ux",
-      "feature_id": "ux_accessibility",
-      "has": "unknown",
-      "how": "No accessibility documentation; the Flutter build contains semantic labels (e.g., 'switch language to swedish'), but VoiceOver/Dynamic Type support is unverified.",
-      "sources": [
-        "https://app.strengthlog.com/main.dart.js"
-      ]
-    },
-    {
-      "area": "ux",
-      "feature_id": "ux_onboarding",
-      "has": "partial",
-      "how": "Achievements are explicitly designed to help users learn the app; in-app News and Help; no documented setup wizard.",
-      "sources": [
-        "https://www.strengthlog.com/new-features-in-the-best-free-workout-tracker-app/",
-        "https://help.strengthlog.com/help-article/the-home-screen/"
-      ]
-    },
-    {
-      "area": "ux",
-      "feature_id": "ux_offline",
-      "has": "partial",
-      "how": "Data is stored locally and backed up to servers only when online; a temporary (anonymous) account exists, but the FAQ says an account is required. Premium status may fail to load on bad connection.",
-      "sources": [
-        "https://www.strengthlog.com/app-terms-privacy/",
-        "https://www.strengthlog.com/",
-        "https://help.strengthlog.com/help-article/premium-stopped-working/",
-        "https://app.strengthlog.com/main.dart.js"
-      ]
-    },
-    {
-      "area": "ux",
-      "feature_id": "ux_privacy",
-      "has": "yes",
-      "how": "Account required (Google, Apple, Facebook or email); GDPR rights incl. portability; processors outside EU/EEA under SCCs; account deletion via email request; de-identified data used for Strength Levels. App Store: contact info, user ID, diagnostics linked to identity.",
-      "sources": [
-        "https://www.strengthlog.com/",
-        "https://www.strengthlog.com/app-terms-privacy/",
-        "https://help.strengthlog.com/help-article/manage-your-account/",
-        "https://apps.apple.com/us/app/strengthlog-workout-tracker/id1434229662"
-      ]
-    },
-    {
-      "area": "plan",
-      "feature_id": "new:train_again",
-      "has": "yes",
-      "how": "Start an exact copy of any logged workout from home/log; premium lets you bulk-adjust reps/weight (e.g., +1%) before starting.",
-      "sources": [
-        "https://help.strengthlog.com/help-article/train-again/"
-      ]
-    },
-    {
-      "area": "log",
-      "feature_id": "new:interval_special_sets",
-      "has": "yes",
-      "how": "EMOM (intervals in 15 s steps, blocks alternate), Tabata (default 20/10 x8), AMRAP (time cap, add rounds while timer runs) and Complex, with full-screen timer, countdown and audio cues.",
-      "sources": [
-        "https://help.strengthlog.com/help-article/special-sets/"
-      ]
-    },
-    {
-      "area": "stats",
-      "feature_id": "new:goals",
-      "has": "paid",
-      "how": "9 goal types: reps, volume, sets, number of workouts, PR, e1RM, time PR, rep goal at weight, body measurement; date range, exercise or muscle-group scope, live progress graph; free limited, unlimited in premium.",
-      "sources": [
-        "https://help.strengthlog.com/help-article/how-to-set-up-a-goal/",
-        "https://help.strengthlog.com/help-article/strengthlog-premium/"
-      ]
-    },
-    {
-      "area": "log",
-      "feature_id": "new:set_video_library",
-      "has": "yes",
-      "how": "Upload a video to a set (live or past) or a PR; videos collected in a searchable library, downloadable.",
-      "sources": [
-        "https://help.strengthlog.com/help-article/using-the-video-library/"
-      ]
-    },
-    {
-      "area": "lib",
-      "feature_id": "new:calculators",
-      "has": "yes",
-      "how": "1RM (Epley), plate, RPE (premium), warm-up for max attempt, powerlifting attempt selection (91/96/100%), Wilks & IPF GL, Sinclair, daily calories, protein, body fat & fat-free mass.",
-      "sources": [
-        "https://help.strengthlog.com/help-article/calculators/"
-      ]
-    },
-    {
-      "area": "stats",
-      "feature_id": "new:quick_stats_per_set",
-      "has": "paid",
-      "how": "Swipe a set for e1RM, % of 1RM, rep-PR, average reps at that weight, bodyweight multiple.",
-      "sources": [
-        "https://help.strengthlog.com/help-article/shortcuts-in-an-active-workout/",
-        "https://help.strengthlog.com/help-article/how-to-record-a-workout/"
-      ]
-    },
-    {
-      "area": "stats",
-      "feature_id": "new:calendar_events",
-      "has": "yes",
-      "how": "Tag dates with events (sick, vacation, period, injury) and overlay them on statistics graphs.",
-      "sources": [
-        "https://help.strengthlog.com/help-article/calendar-events/"
-      ]
-    },
-    {
-      "area": "stats",
-      "feature_id": "new:calories_burned_estimate",
-      "has": "yes",
-      "how": "Estimated kcal per workout from duration (and bodyweight); can be sent to Apple Health Active Energy.",
-      "sources": [
-        "https://www.strengthlog.com/new-features-in-the-best-free-workout-tracker-app/",
-        "https://help.strengthlog.com/help-article/pause-your-workout/",
-        "https://app.strengthlog.com/main.dart.js"
-      ]
-    },
-    {
-      "area": "ux",
-      "feature_id": "new:customizable_home_screen",
-      "has": "yes",
-      "how": "Draggable home widgets: overview stats, muscles worked, programs you follow, latest workouts, goals, planned workouts, favorite graphs, news, pinned strength levels, challenges, streaks.",
-      "user_feedback": "App Store 2026-09 (1-2*): 9.0 moved next program workout off home and filled it with unrelated widgets. https://itunes.apple.com/us/rss/customerreviews/id=1434229662/sortBy=mostRecent/json",
-      "sources": [
-        "https://help.strengthlog.com/help-article/the-home-screen/"
-      ]
-    },
-    {
-      "area": "plan",
-      "feature_id": "new:merge_program_workouts",
-      "has": "yes",
-      "how": "Start next workout of one followed program, then another, and import it into the active workout (name combines both).",
-      "sources": [
-        "https://help.strengthlog.com/help-article/how-to-merge-two-program-workouts/"
-      ]
-    },
-    {
-      "area": "social",
-      "feature_id": "new:achievements",
-      "has": "yes",
-      "how": "Multi-level achievements (Log Workouts 10 levels, Compound Hero, Follow a Program, etc.) with badges on profile.",
-      "sources": [
-        "https://www.strengthlog.com/new-features-in-the-best-free-workout-tracker-app/"
-      ]
-    },
-    {
-      "area": "log",
-      "feature_id": "new:minigames",
-      "has": "yes",
-      "how": "Name Game, Dice Game and Card Game generate exercises/reps on the fly and auto-add completed sets.",
-      "sources": [
-        "https://help.strengthlog.com/help-article/minigames/"
-      ]
-    },
-    {
-      "area": "ux",
-      "feature_id": "new:web_desktop_version",
-      "has": "partial",
-      "how": "A Flutter web build runs at app.strengthlog.com and the Terms mention a 'web version'; premium cannot be bought there. Feature scope undocumented.",
-      "sources": [
-        "https://www.strengthlog.com/app-terms-privacy/",
-        "https://app.strengthlog.com/main.dart.js"
-      ]
-    },
-    {
-      "area": "plan",
-      "feature_id": "new:program_builder_v9",
-      "has": "yes",
-      "how": "v9.0 (Sep 2026) rebuilt Program Builder with Simple and Detailed modes and Smart Blocks; favorites/Following filters; major navigation reshuffle (Profile, Statistics, Library).",
-      "user_feedback": "Recent App Store reviews (Sep 2026) split: '9.0 is SICK' vs 'New app layout is awful', 'changing things for the sake of changing things'. https://itunes.apple.com/us/rss/customerreviews/id=1434229662/sortBy=mostRecent/json",
-      "sources": [
-        "https://apps.apple.com/us/app/strengthlog-workout-tracker/id1434229662"
-      ]
-    }
-  ]
+ "app": "StrengthLog",
+ "version_or_date_checked": "iOS 9.0.7 (released 2026-10-02), Android updated 2026-10-02; help center (65 articles via WP API) and site checked 2026-10-02",
+ "pricing": "Free with no ads and unlimited logging. Premium (US App Store): $16.90/month, $37.90/3 months, $109/year; 14-day free trial mentioned on official blog; Swedish wellness-stipend invoices (1-year). Paywalled: full program catalog, advanced stats & training reports, muscle map, RPE/RIR logging, RPE calculator, %1RM/RPE programming, quick set stats, Train-again bulk modify, sharing to other users, unlimited goals/streaks/progress-pic bundles.",
+ "pricing_pl": "Za darmo, bez reklam i z nieograniczonym logowaniem. Premium (US App Store): 16,90 USD/miesiąc, 37,90 USD/3 miesiące, 109 USD/rok; 14-dniowy okres próbny wspomniany na oficjalnym blogu; szwedzkie faktury w ramach dodatku wellness (1 rok). Za paywallem: pełny katalog programów, zaawansowane statystyki i raporty treningowe, mapa mięśni, logowanie RPE/RIR, kalkulator RPE, programowanie %1RM/RPE, szybkie statystyki serii, hurtowa modyfikacja „Train again”, udostępnianie innym użytkownikom, nielimitowane cele/serie (streaks)/paczki zdjęć postępów.",
+ "platforms": "iOS 15+ (iPhone/iPad, visionOS), Apple Watch (watchOS 9+), Android with Wear OS app + Tiles, Health Connect; Flutter web build at app.strengthlog.com (scope unclear).",
+ "platforms_pl": "iOS 15+ (iPhone/iPad, visionOS), Apple Watch (watchOS 9+), Android z aplikacją Wear OS + Tiles, Health Connect; wersja webowa we Flutterze pod app.strengthlog.com (zakres niejasny).",
+ "positioning": "Swedish, ad-free 'most generous' freemium strength log built by lifters, with a large coach-written program library, educational exercise content, PRs per rep count, goals/streaks/challenges.",
+ "positioning_pl": "Szwedzki, wolny od reklam, „najhojniejszy” freemium dziennik siłowy tworzony przez ćwiczących, z dużą biblioteką programów pisanych przez trenerów, edukacyjnymi treściami o ćwiczeniach, rekordami dla każdej liczby powtórzeń, celami/seriami/wyzwaniami.",
+ "features": [
+  {
+   "area": "log",
+   "feature_id": "log_set_fields",
+   "has": "yes",
+   "how": "Each exercise defines its variables at creation (strength exercises must include weight; reps, time and distance variants exist; cardio tracks distance/pace). Data can only be moved between exercises with the same variables.",
+   "how_pl": "Każde ćwiczenie definiuje swoje zmienne przy tworzeniu (ćwiczenia siłowe muszą zawierać ciężar; istnieją warianty z powtórzeniami, czasem i dystansem; cardio śledzi dystans/tempo). Dane można przenosić tylko między ćwiczeniami z tymi samymi zmiennymi.",
+   "sources": [
+    "https://help.strengthlog.com/help-article/adding-a-new-exercise/",
+    "https://help.strengthlog.com/help-article/how-do-i-change-delete-an-exercise/",
+    "https://apps.apple.com/us/app/strengthlog-workout-tracker/id1434229662"
+   ]
+  },
+  {
+   "area": "log",
+   "feature_id": "log_set_types",
+   "has": "yes",
+   "how": "Warm-up vs working set (long-press set number to toggle), drop sets with '+ New drop', 'Max reps' and 'Fail' flags (fail counts to volume but not records); special sets: superset, circuit, complex, EMOM, Tabata, AMRAP.",
+   "how_pl": "Seria rozgrzewkowa vs robocza (przełączana długim przytrzymaniem numeru serii), drop sety przez „+ New drop”, flagi „Max reps” i „Fail” (upadek liczy się do objętości, ale nie do rekordów); serie specjalne: superset, circuit, complex, EMOM, Tabata, AMRAP.",
+   "sources": [
+    "https://help.strengthlog.com/help-article/how-to-record-a-workout/",
+    "https://help.strengthlog.com/help-article/drop-sets/",
+    "https://help.strengthlog.com/help-article/mark-sets-as-fails-or-max-reps/",
+    "https://help.strengthlog.com/help-article/special-sets/"
+   ]
+  },
+  {
+   "area": "log",
+   "feature_id": "log_rpe_rir",
+   "has": "paid",
+   "how": "Premium: toggle RPE or RiR per set or permanently per exercise; RPE calculator (premium) suggests weights for target reps/RPE from your last set; RPE/RIR also usable when building programs.",
+   "how_pl": "Premium: przełączanie RPE lub RiR dla serii albo na stałe dla ćwiczenia; kalkulator RPE (premium) sugeruje ciężary dla docelowych powtórzeń/RPE na podstawie ostatniej serii; RPE/RIR można też użyć przy budowaniu programów.",
+   "sources": [
+    "https://help.strengthlog.com/help-article/how-to-activate-rpe-rir-in-your-workouts/",
+    "https://help.strengthlog.com/help-article/rpe-calculator/",
+    "https://help.strengthlog.com/help-article/strengthlog-premium/"
+   ]
+  },
+  {
+   "area": "log",
+   "feature_id": "log_previous_values",
+   "has": "yes",
+   "how": "App shows previous performance per exercise; swipe exercise > History lists all past sessions (with set comments) and lets you copy a block in (replace or add). Premium 'quick stats' per set show rep-PR at that weight and average reps.",
+   "how_pl": "Aplikacja pokazuje poprzedni wynik dla każdego ćwiczenia; przesuń ćwiczenie > History wylistuje wszystkie minione sesje (z komentarzami do serii) i pozwala skopiować blok (zastąp lub dodaj). Premiumowe „quick stats” dla serii pokazują rekord powtórzeń przy danym ciężarze i średnią liczbę powtórzeń.",
+   "sources": [
+    "https://help.strengthlog.com/help-article/how-to-record-a-workout/",
+    "https://help.strengthlog.com/help-article/retrieve-from-training-log/",
+    "https://www.strengthlog.com/strengthlog-bodybuilding-app/"
+   ]
+  },
+  {
+   "area": "log",
+   "feature_id": "log_autofill",
+   "has": "yes",
+   "how": "'Copy sets from last workout' checkbox when adding an exercise; templates/programs can use 'Retrieve from log' (finds last set with the same rep count, or a heavier one with more reps; warm-ups match warm-ups); 'Train again' clones a whole past workout (premium: bulk +/- weight/reps).",
+   "how_pl": "Pole wyboru „Copy sets from last workout” przy dodawaniu ćwiczenia; szablony/programy mogą używać „Retrieve from log” (znajduje ostatnią serię z taką samą liczbą powtórzeń lub cięższą z większą liczbą powtórzeń; rozgrzewki pasują do rozgrzewek); „Train again” klonuje cały miniony trening (premium: hurtowe +/- ciężar/powtórzenia).",
+   "sources": [
+    "https://help.strengthlog.com/help-article/copy-sets-from-last-workout/",
+    "https://help.strengthlog.com/help-article/retrieve-from-training-log/",
+    "https://help.strengthlog.com/help-article/train-again/"
+   ]
+  },
+  {
+   "area": "log",
+   "feature_id": "log_notes",
+   "has": "yes",
+   "how": "Set comments (swipe set), pinned exercise comments shown every time (machine settings/cues), workout-specific exercise comments (v9.0), and a workout comment plus name at save.",
+   "how_pl": "Komentarze do serii (przesuń serię), przypięte komentarze do ćwiczenia pokazywane za każdym razem (ustawienia maszyny/wskazówki), komentarze do ćwiczenia specyficzne dla treningu (v9.0) oraz komentarz do treningu i nazwa przy zapisie.",
+   "user_feedback": "App Store 2026-09 (1*): after 9.0 it is 'harder to access notes for your workouts'. https://itunes.apple.com/us/rss/customerreviews/id=1434229662/sortBy=mostRecent/json",
+   "user_feedback_pl": "App Store 2026-09 (1*): po 9.0 „trudniej dostać się do notatek do treningów”. https://itunes.apple.com/us/rss/customerreviews/id=1434229662/sortBy=mostRecent/json",
+   "sources": [
+    "https://help.strengthlog.com/help-article/adding-set-comments/",
+    "https://help.strengthlog.com/help-article/exercise-comments/",
+    "https://apps.apple.com/us/app/strengthlog-workout-tracker/id1434229662"
+   ]
+  },
+  {
+   "area": "log",
+   "feature_id": "log_supersets",
+   "has": "yes",
+   "how": "'+ Special set' > Superset is exactly two exercises (each marked done individually; can split or reorder); Circuit for 3+ exercises/rounds; Complex for same-weight barbell sequences completed as one set.",
+   "how_pl": "„+ Special set” > Superset to dokładnie dwa ćwiczenia (każde oznaczane jako ukończone osobno; można rozdzielić lub zmienić kolejność); Circuit dla 3+ ćwiczeń/rund; Complex dla sekwencji ze sztangą o tym samym ciężarze wykonywanych jako jedna seria.",
+   "sources": [
+    "https://help.strengthlog.com/help-article/special-sets/"
+   ]
+  },
+  {
+   "area": "log",
+   "feature_id": "log_reorder",
+   "has": "yes",
+   "how": "Long-press an exercise border (or ... > Handle exercise > Reorder) opens a drag-and-drop list; sets can be moved up/down via set menu arrows.",
+   "how_pl": "Długie przytrzymanie krawędzi ćwiczenia (lub ... > Handle exercise > Reorder) otwiera listę drag-and-drop; serie można przesuwać w górę/w dół strzałkami w menu serii.",
+   "sources": [
+    "https://help.strengthlog.com/help-article/reorder-exercises/",
+    "https://help.strengthlog.com/help-article/how-to-record-a-workout/"
+   ]
+  },
+  {
+   "area": "log",
+   "feature_id": "log_replace_exercise",
+   "has": "yes",
+   "how": "Swipe exercise > Change: library opens with similar exercises suggested first; weights are kept as-is (or fetch from history/update 1RM).",
+   "how_pl": "Przesuń ćwiczenie > Change: otwiera się biblioteka z podobnymi ćwiczeniami sugerowanymi jako pierwsze; ciężary zostają bez zmian (lub pobierane z historii/aktualizacja 1RM).",
+   "sources": [
+    "https://help.strengthlog.com/help-article/similar-exercises/",
+    "https://help.strengthlog.com/help-article/shortcuts-in-an-active-workout/"
+   ]
+  },
+  {
+   "area": "log",
+   "feature_id": "log_plate_calculator",
+   "has": "yes",
+   "how": "Free: loading image above keyboard for barbell exercises, full calculator in Settings > Calculators; profiles per gym with plate counts, plate colors, barbells and collars; link exercises to a specific bar (e.g., 28 kg trap bar; 0 kg bar for plate-loaded machines).",
+   "how_pl": "Za darmo: obrazek załadunku nad klawiaturą dla ćwiczeń ze sztangą, pełny kalkulator w Settings > Calculators; profile dla każdej siłowni z liczbą talerzy, kolorami talerzy, gryfami i zaciskami; ćwiczenia można powiązać z konkretnym gryfem (np. sztanga trap 28 kg; gryf 0 kg dla maszyn obciążanych talerzami).",
+   "sources": [
+    "https://help.strengthlog.com/help-article/plate-calculator/"
+   ]
+  },
+  {
+   "area": "log",
+   "feature_id": "log_warmup_calculator",
+   "has": "partial",
+   "how": "'Warm-up for max attempt' calculator plans warm-up sets for a target weight and can create a workout; no automatic warm-up generation for normal working sets found.",
+   "how_pl": "Kalkulator „Warm-up for max attempt” planuje serie rozgrzewkowe dla docelowego ciężaru i może utworzyć trening; nie znaleziono automatycznego generowania rozgrzewek dla zwykłych serii roboczych.",
+   "sources": [
+    "https://help.strengthlog.com/help-article/calculators/",
+    "https://www.strengthlog.com/"
+   ]
+  },
+  {
+   "area": "log",
+   "feature_id": "log_bodyweight_assisted",
+   "has": "partial",
+   "how": "Exercises can carry a 'bodyweight factor' that adds a share of bodyweight to lifted weight/volume (editable or 0 to exclude). No dedicated assisted/band-assistance mode documented.",
+   "how_pl": "Ćwiczenia mogą mieć „bodyweight factor”, który dodaje część masy ciała do podnoszonego ciężaru/objętości (edytowalny lub 0, aby wykluczyć). Nie udokumentowano dedykowanego trybu asysty/gum.",
+   "sources": [
+    "https://help.strengthlog.com/help-article/bodyweight-factors/",
+    "https://help.strengthlog.com/help-article/adding-a-new-exercise/"
+   ]
+  },
+  {
+   "area": "log",
+   "feature_id": "log_unilateral",
+   "has": "partial",
+   "how": "One-sided exercises are 'Enter for only one side': log one side's reps/weight once and the app doubles volume; no separate L/R fields.",
+   "how_pl": "Ćwiczenia jednostronne mają opcję „Enter for only one side”: wpisujesz powtórzenia/ciężar jednej strony raz, a aplikacja podwaja objętość; brak osobnych pól L/R.",
+   "sources": [
+    "https://help.strengthlog.com/help-article/one-sided-exercises/"
+   ]
+  },
+  {
+   "area": "log",
+   "feature_id": "log_tempo",
+   "has": "no",
+   "how": "No tempo field or tempo timer found in help center; users request it.",
+   "how_pl": "W help center nie znaleziono pola tempa ani timera tempa; użytkownicy o to proszą.",
+   "user_feedback": "App Store 2026-07 (5*): 'just need a tempo timer with concentric and eccentric'. https://itunes.apple.com/us/rss/customerreviews/id=1434229662/sortBy=mostRecent/json",
+   "user_feedback_pl": "App Store 2026-07 (5*): „potrzebny tylko timer tempa z fazą koncentryczną i ekscentryczną”. https://itunes.apple.com/us/rss/customerreviews/id=1434229662/sortBy=mostRecent/json",
+   "sources": [
+    "https://help.strengthlog.com/help-article/how-to-record-a-workout/",
+    "https://itunes.apple.com/us/rss/customerreviews/id=1434229662/sortBy=mostRecent/json"
+   ]
+  },
+  {
+   "area": "log",
+   "feature_id": "log_empty_workout",
+   "has": "yes",
+   "how": "+ (bottom menu) > Start New Workout, then '+ Exercise' from Most used / All exercises.",
+   "how_pl": "+ (dolne menu) > Start New Workout, następnie „+ Exercise” z list „Most used” / „All exercises”.",
+   "sources": [
+    "https://help.strengthlog.com/help-article/how-to-record-a-workout/"
+   ]
+  },
+  {
+   "area": "log",
+   "feature_id": "log_edit_past",
+   "has": "yes",
+   "how": "Edit any saved workout (sets, name, time, ratings); backdate by logging and changing date/time at save; v9.0 home calendar lets you backlog forgotten workouts; delete from home widget or log.",
+   "how_pl": "Edycja dowolnego zapisanego treningu (serie, nazwa, czas, oceny); wsteczne dodanie przez zalogowanie i zmianę daty/godziny przy zapisie; kalendarz na ekranie głównym z v9.0 pozwala uzupełnić zapomniane treningi; usuwanie z widżetu ekranu głównego lub z dziennika.",
+   "sources": [
+    "https://help.strengthlog.com/help-article/make-changes-to-a-saved-workout/",
+    "https://help.strengthlog.com/help-article/backdating-a-workout/",
+    "https://help.strengthlog.com/help-article/how-to-delete-a-workout/",
+    "https://apps.apple.com/us/app/strengthlog-workout-tracker/id1434229662"
+   ]
+  },
+  {
+   "area": "log",
+   "feature_id": "log_one_hand_ux",
+   "has": "partial",
+   "how": "Tap set number to mark done (turns green); swipe actions on sets/exercises; long-press shortcuts; optional XL timer. Users report the done-tap target and 9.0 navigation as unclear.",
+   "how_pl": "Dotknięcie numeru serii oznacza ją jako ukończoną (robi się zielona); gesty przesunięcia na seriach/ćwiczeniach; skróty długiego przytrzymania; opcjonalny timer XL. Użytkownicy zgłaszają, że pole do oznaczania ukończenia i nawigacja z 9.0 są niejasne.",
+   "user_feedback": "App Store 2023 (3*): 'not made very clear how to mark a workout as done, you end up having to tap the small blank space'; 2026-05 (3*): 'powerful ... buried under baffling UX decisions'. https://itunes.apple.com/us/rss/customerreviews/id=1434229662/sortBy=mostRecent/json",
+   "user_feedback_pl": "App Store 2023 (3*): „niezbyt jasne, jak oznaczyć trening jako ukończony, trzeba stukać w małe puste miejsce”; 2026-05 (3*): „potężna ... pogrzebana pod zdumiewającymi decyzjami UX”. https://itunes.apple.com/us/rss/customerreviews/id=1434229662/sortBy=mostRecent/json",
+   "sources": [
+    "https://help.strengthlog.com/help-article/mark-a-set-as-done/",
+    "https://help.strengthlog.com/help-article/shortcuts-in-an-active-workout/",
+    "https://help.strengthlog.com/help-article/how-to-use-the-timer/"
+   ]
+  },
+  {
+   "area": "timer",
+   "feature_id": "timer_auto_rest",
+   "has": "yes",
+   "how": "Timer settings let it start automatically on set completion; progress bar in background; +/-30 s buttons or manual entry; count-up mode.",
+   "how_pl": "Ustawienia timera pozwalają uruchamiać go automatycznie po ukończeniu serii; pasek postępu w tle; przyciski +/-30 s lub ręczne wpisanie; tryb liczenia w górę.",
+   "sources": [
+    "https://help.strengthlog.com/help-article/how-to-use-the-timer/"
+   ]
+  },
+  {
+   "area": "timer",
+   "feature_id": "timer_per_exercise",
+   "has": "yes",
+   "how": "Exercise-specific rest timers set in timer settings or via ... > Handle Exercise > Exercise specific rest timer; 'Reset to default'.",
+   "how_pl": "Timery przerw dla konkretnych ćwiczeń ustawia się w ustawieniach timera lub przez ... > Handle Exercise > Exercise specific rest timer; „Reset to default”.",
+   "sources": [
+    "https://help.strengthlog.com/help-article/how-to-use-the-timer/"
+   ]
+  },
+  {
+   "area": "timer",
+   "feature_id": "timer_notifications",
+   "has": "yes",
+   "how": "Rest-over notifications with selectable sound (permission required; no sound in silent mode).",
+   "how_pl": "Powiadomienia o końcu przerwy z wybieralnym dźwiękiem (wymaga uprawnienia; bez dźwięku w trybie cichym).",
+   "user_feedback": "App Store 2026-09 (3*): 'Timer stopped working in iOS 27'. https://itunes.apple.com/us/rss/customerreviews/id=1434229662/sortBy=mostRecent/json",
+   "user_feedback_pl": "App Store 2026-09 (3*): „Timer przestał działać w iOS 27”. https://itunes.apple.com/us/rss/customerreviews/id=1434229662/sortBy=mostRecent/json",
+   "sources": [
+    "https://help.strengthlog.com/help-article/how-to-use-the-timer/",
+    "https://app.strengthlog.com/main.dart.js"
+   ]
+  },
+  {
+   "area": "timer",
+   "feature_id": "timer_live_activity",
+   "has": "unknown",
+   "how": "No mention of Live Activity/Dynamic Island in help center, store text or release notes.",
+   "how_pl": "Brak wzmianki o Live Activity/Dynamic Island w help center, opisie sklepu ani notatkach wydania.",
+   "sources": [
+    "https://help.strengthlog.com/help-article/how-to-use-the-timer/",
+    "https://apps.apple.com/us/app/strengthlog-workout-tracker/id1434229662"
+   ]
+  },
+  {
+   "area": "timer",
+   "feature_id": "timer_set_stopwatch",
+   "has": "partial",
+   "how": "Time-based exercises and Time PR goals exist; EMOM/Tabata/AMRAP special sets have full-screen interval timers with countdown and sounds. A per-set stopwatch for e.g. planks is not documented in detail.",
+   "how_pl": "Istnieją ćwiczenia na czas i cele Time PR; serie specjalne EMOM/Tabata/AMRAP mają pełnoekranowe timery interwałowe z odliczaniem i dźwiękami. Stoper dla pojedynczej serii, np. deski, nie jest szczegółowo udokumentowany.",
+   "sources": [
+    "https://help.strengthlog.com/help-article/special-sets/",
+    "https://help.strengthlog.com/help-article/how-to-set-up-a-goal/"
+   ]
+  },
+  {
+   "area": "timer",
+   "feature_id": "timer_workout_duration",
+   "has": "yes",
+   "how": "Workout clock with fullscreen pause (since v5.10.2); paused time can be entered manually at save; duration feeds calorie estimate.",
+   "how_pl": "Zegar treningu z pauzą na pełnym ekranie (od v5.10.2); czas pauzy można wpisać ręcznie przy zapisie; czas trwania zasila szacunek kalorii.",
+   "sources": [
+    "https://help.strengthlog.com/help-article/pause-your-workout/"
+   ]
+  },
+  {
+   "area": "timer",
+   "feature_id": "timer_abandoned_workout",
+   "has": "partial",
+   "how": "No auto-end; at save you can correct time/paused time, and unfinished sets/exercises can be deleted or moved to a new planned workout.",
+   "how_pl": "Brak automatycznego zakończenia; przy zapisie można poprawić czas/czas pauzy, a nieukończone serie/ćwiczenia można usunąć lub przenieść do nowego zaplanowanego treningu.",
+   "sources": [
+    "https://help.strengthlog.com/help-article/pause-your-workout/",
+    "https://help.strengthlog.com/help-article/unfinished-sets-exercises/"
+   ]
+  },
+  {
+   "area": "plan",
+   "feature_id": "plan_templates",
+   "has": "yes",
+   "how": "Mine > + > Workout: named, colored templates with set weight, retrieve-from-log or % of 1RM (premium) per set; any logged workout can be saved as a template; favorites appear on home.",
+   "how_pl": "Mine > + > Workout: nazwane, kolorowe szablony z ciężarem serii, „retrieve-from-log” lub % 1RM (premium) dla każdej serii; dowolny zalogowany trening można zapisać jako szablon; ulubione pojawiają się na ekranie głównym.",
+   "sources": [
+    "https://help.strengthlog.com/help-article/save-a-workout-template/"
+   ]
+  },
+  {
+   "area": "plan",
+   "feature_id": "plan_folders",
+   "has": "yes",
+   "how": "Workout categories: create categories and 'Move to...' templates into them.",
+   "how_pl": "Kategorie treningów: tworzenie kategorii i „Move to...” szablonów do nich.",
+   "sources": [
+    "https://help.strengthlog.com/help-article/save-a-workout-template/"
+   ]
+  },
+  {
+   "area": "plan",
+   "feature_id": "plan_programs",
+   "has": "yes",
+   "how": "200+ programs and stand-alone workouts (powerlifting, bodybuilding, powerbuilding, PPL, sport-specific) filterable by Free/Premium, level and category; 'Follow program' puts next workout on home; skip/unfollow; full catalog is Premium.",
+   "how_pl": "Ponad 200 programów i samodzielnych treningów (trójbój siłowy, kulturystyka, powerbuilding, PPL, specyficzne dla sportu) filtrowanych według Free/Premium, poziomu i kategorii; „Follow program” umieszcza następny trening na ekranie głównym; pominięcie/zaprzestanie śledzenia; pełny katalog jest w Premium.",
+   "sources": [
+    "https://help.strengthlog.com/help-article/follow-a-program/",
+    "https://www.strengthlog.com/",
+    "https://apps.apple.com/us/app/strengthlog-workout-tracker/id1434229662"
+   ]
+  },
+  {
+   "area": "plan",
+   "feature_id": "plan_periodization",
+   "has": "yes",
+   "how": "Multi-week program builder (copy week to next week and edit), % of 1RM sets (premium) using stored 'My 1RMs', RPE/RIR-based sets (premium), retrieve-from-log + fixed progression increment (premium). v9.0 adds Simple and Detailed builders with Smart Blocks.",
+   "how_pl": "Wielotygodniowy kreator programów (kopiuj tydzień do następnego i edytuj), serie w % 1RM (premium) z użyciem zapisanych „My 1RMs”, serie oparte na RPE/RIR (premium), retrieve-from-log + stały przyrost progresji (premium). v9.0 dodaje kreatory Simple i Detailed z Smart Blocks.",
+   "sources": [
+    "https://help.strengthlog.com/help-article/how-to-build-a-program/",
+    "https://help.strengthlog.com/help-article/1rm-for-programs/",
+    "https://apps.apple.com/us/app/strengthlog-workout-tracker/id1434229662"
+   ]
+  },
+  {
+   "area": "plan",
+   "feature_id": "plan_generator",
+   "has": "partial",
+   "how": "No AI generator. Minigames (Name Game, Dice Game, Card Game) generate randomized bodyweight-style sets; Smart Blocks automate progression but you pick exercises.",
+   "how_pl": "Brak generatora AI. Minigry (Name Game, Dice Game, Card Game) generują losowe serie w stylu ćwiczeń z masą ciała; Smart Blocks automatyzują progresję, ale ćwiczenia wybierasz sam.",
+   "sources": [
+    "https://help.strengthlog.com/help-article/minigames/",
+    "https://apps.apple.com/us/app/strengthlog-workout-tracker/id1434229662"
+   ]
+  },
+  {
+   "area": "plan",
+   "feature_id": "plan_schedule",
+   "has": "yes",
+   "how": "Plan a workout for a date (home widget + calendar); v9.0 home calendar to start, plan, add events and schedule followed programs.",
+   "how_pl": "Planowanie treningu na datę (widżet ekranu głównego + kalendarz); kalendarz ekranu głównego z v9.0 do rozpoczynania, planowania, dodawania wydarzeń i harmonogramowania śledzonych programów.",
+   "user_feedback": "App Store 2026-09 (1*): 'I used to be able to easily plan a workout. That option is no longer available' after 9.0. https://itunes.apple.com/us/rss/customerreviews/id=1434229662/sortBy=mostRecent/json",
+   "user_feedback_pl": "App Store 2026-09 (1*): „Kiedyś mogłem łatwo zaplanować trening. Ta opcja nie jest już dostępna” po 9.0. https://itunes.apple.com/us/rss/customerreviews/id=1434229662/sortBy=mostRecent/json",
+   "sources": [
+    "https://help.strengthlog.com/help-article/how-to-plan-a-workout-for-later/",
+    "https://apps.apple.com/us/app/strengthlog-workout-tracker/id1434229662"
+   ]
+  },
+  {
+   "area": "plan",
+   "feature_id": "plan_share_templates",
+   "has": "paid",
+   "how": "Share own program, planned or completed workout via link (share sheet); sharer needs Premium, receiver needs app v6.0+; only standard exercises; receiver needs Premium if it uses premium features.",
+   "how_pl": "Udostępnianie własnego programu, zaplanowanego lub ukończonego treningu przez link (share sheet); udostępniający potrzebuje Premium, odbiorca aplikacji v6.0+; tylko standardowe ćwiczenia; odbiorca potrzebuje Premium, jeśli używa funkcji premium.",
+   "sources": [
+    "https://help.strengthlog.com/help-article/share-workouts/"
+   ]
+  },
+  {
+   "area": "lib",
+   "feature_id": "lib_size",
+   "has": "yes",
+   "how": "Help center (Apr 2026) says 'over 600 exercises'; store listing says 500+ strength, mobility and cardio exercises (website still says 450+).",
+   "how_pl": "Help center (kwi 2026) mówi o „ponad 600 ćwiczeniach”; opis w sklepie podaje 500+ ćwiczeń siłowych, mobilności i cardio (strona internetowa nadal podaje 450+).",
+   "sources": [
+    "https://help.strengthlog.com/help-article/finding-the-right-excercises/",
+    "https://apps.apple.com/us/app/strengthlog-workout-tracker/id1434229662",
+    "https://www.strengthlog.com/"
+   ]
+  },
+  {
+   "area": "lib",
+   "feature_id": "lib_media",
+   "has": "yes",
+   "how": "Each exercise: written instructions, GIF, muscle map, and self-recorded videos (since v8.1), aiming for one male and one female demo per exercise.",
+   "how_pl": "Każde ćwiczenie: pisemne instrukcje, GIF, mapa mięśni i własnoręcznie nagrane filmy (od v8.1), z celem jednego męskiego i jednego żeńskiego demo na ćwiczenie.",
+   "sources": [
+    "https://help.strengthlog.com/help-article/how-to-view-exercise-descriptions/",
+    "https://help.strengthlog.com/help-article/finding-the-right-excercises/"
+   ]
+  },
+  {
+   "area": "lib",
+   "feature_id": "lib_custom",
+   "has": "yes",
+   "how": "Unlimited custom exercises (free): from scratch or copied from existing; type (strength/cardio/mobility), variables, primary/secondary muscles, bodyweight factor, one-sided flag. Delete requires moving logged data to an exercise with same variables.",
+   "how_pl": "Nielimitowane własne ćwiczenia (za darmo): od zera lub skopiowane z istniejących; typ (siła/cardio/mobilność), zmienne, mięśnie główne/pomocnicze, bodyweight factor, flaga jednostronności. Usunięcie wymaga przeniesienia zalogowanych danych do ćwiczenia z tymi samymi zmiennymi.",
+   "sources": [
+    "https://help.strengthlog.com/help-article/adding-a-new-exercise/",
+    "https://help.strengthlog.com/help-article/how-do-i-change-delete-an-exercise/"
+   ]
+  },
+  {
+   "area": "lib",
+   "feature_id": "lib_muscles",
+   "has": "yes",
+   "how": "Primary (dark red) and secondary (pink) muscles per exercise drive the muscle map.",
+   "how_pl": "Mięśnie główne (ciemnoczerwone) i pomocnicze (różowe) dla każdego ćwiczenia zasilają mapę mięśni.",
+   "sources": [
+    "https://help.strengthlog.com/help-article/adding-a-new-exercise/",
+    "https://help.strengthlog.com/help-article/finding-the-right-excercises/"
+   ]
+  },
+  {
+   "area": "lib",
+   "feature_id": "lib_equipment_filter",
+   "has": "yes",
+   "how": "Filter by equipment type (long-press to isolate one), by muscle via tappable body map, and standard vs own exercises.",
+   "how_pl": "Filtr według typu sprzętu (długie przytrzymanie izoluje jeden), według mięśnia przez klikalną mapę ciała oraz standardowe vs własne ćwiczenia.",
+   "sources": [
+    "https://help.strengthlog.com/help-article/finding-the-right-excercises/"
+   ]
+  },
+  {
+   "area": "lib",
+   "feature_id": "lib_search",
+   "has": "yes",
+   "how": "Search plus 'Most used' list that adapts to your own usage; sort alphabetically or by usage.",
+   "how_pl": "Wyszukiwanie plus lista „Most used” dostosowująca się do własnego użycia; sortowanie alfabetyczne lub według użycia.",
+   "sources": [
+    "https://help.strengthlog.com/help-article/finding-the-right-excercises/"
+   ]
+  },
+  {
+   "area": "lib",
+   "feature_id": "lib_localization",
+   "has": "partial",
+   "how": "App Store lists English only; the official web build contains a full Swedish translation and an in-app language switch (English/Swedish). (evidence: UI strings in StrengthLog's official Flutter web build; release status in mobile app not confirmed by help center)",
+   "how_pl": "App Store podaje tylko angielski; oficjalna wersja webowa zawiera pełne tłumaczenie na szwedzki i przełącznik języka w aplikacji (angielski/szwedzki). (dowód: ciągi znaków UI w oficjalnej wersji webowej StrengthLog we Flutterze; status wydania w aplikacji mobilnej niepotwierdzony przez help center)",
+   "sources": [
+    "https://apps.apple.com/us/app/strengthlog-workout-tracker/id1434229662",
+    "https://app.strengthlog.com/main.dart.js"
+   ]
+  },
+  {
+   "area": "prog",
+   "feature_id": "prog_suggestions",
+   "has": "yes",
+   "how": "Rule-based, not adaptive: v9.0 Smart Blocks with Linear (weight up when all reps done), Double (rep range then weight) and Triple progression (reps, then sets, then weight); older Retrieve-from-log + fixed increment (premium); % of 1RM programs.",
+   "how_pl": "Oparte na regułach, nie adaptacyjne: Smart Blocks z v9.0 z progresją Linear (ciężar rośnie, gdy wykonano wszystkie powtórzenia), Double (zakres powtórzeń, potem ciężar) i Triple (powtórzenia, potem serie, potem ciężar); starsze Retrieve-from-log + stały przyrost (premium); programy % 1RM.",
+   "user_feedback": "Third-party review: 'the decision of when to add weight, when to deload ... sits with you' (pre-9.0 assessment). https://steelrep.app/blog/best-workout-apps-strength-training/",
+   "user_feedback_pl": "Recenzja zewnętrzna: „decyzja, kiedy dodać ciężar, kiedy zrobić deload ... należy do Ciebie” (ocena sprzed 9.0). https://steelrep.app/blog/best-workout-apps-strength-training/",
+   "sources": [
+    "https://apps.apple.com/us/app/strengthlog-workout-tracker/id1434229662",
+    "https://app.strengthlog.com/main.dart.js",
+    "https://help.strengthlog.com/help-article/how-to-build-a-program/"
+   ]
+  },
+  {
+   "area": "prog",
+   "feature_id": "prog_double_progression",
+   "has": "yes",
+   "how": "Smart Block 'Double progression': choose rep range and weight increase; when top of range is hit on all sets, weight rises and reps reset.",
+   "how_pl": "Smart Block „Double progression”: wybierasz zakres powtórzeń i przyrost ciężaru; gdy we wszystkich seriach osiągnięta zostanie górna granica zakresu, ciężar rośnie, a powtórzenia się resetują.",
+   "sources": [
+    "https://apps.apple.com/us/app/strengthlog-workout-tracker/id1434229662",
+    "https://app.strengthlog.com/main.dart.js"
+   ]
+  },
+  {
+   "area": "prog",
+   "feature_id": "prog_deload",
+   "has": "no",
+   "how": "No automatic deload rules documented in the help center; third-party review states it has no deload logic.",
+   "how_pl": "W help center nie udokumentowano automatycznych reguł deloadu; recenzja zewnętrzna stwierdza, że aplikacja nie ma logiki deloadu.",
+   "sources": [
+    "https://help.strengthlog.com/help-article/how-to-build-a-program/",
+    "https://steelrep.app/blog/best-workout-apps-strength-training/"
+   ]
+  },
+  {
+   "area": "prog",
+   "feature_id": "prog_fatigue",
+   "has": "partial",
+   "how": "At save you rate sleep, stress, calorie intake and how the workout felt ('shape'); premium stats compare e.g. experienced shape vs reps. No readiness model adjusting training.",
+   "how_pl": "Przy zapisie oceniasz sen, stres, spożycie kalorii i to, jak minął trening („shape”); statystyki premium porównują np. odczuwaną formę z powtórzeniami. Brak modelu gotowości dostosowującego trening.",
+   "sources": [
+    "https://help.strengthlog.com/help-article/how-to-record-a-workout/",
+    "https://help.strengthlog.com/help-article/strengthlog-premium/",
+    "https://app.strengthlog.com/main.dart.js"
+   ]
+  },
+  {
+   "area": "prog",
+   "feature_id": "prog_ai_coach",
+   "has": "no",
+   "how": "No AI coach in help center (65 articles), store listing or release notes.",
+   "how_pl": "Brak trenera AI w help center (65 artykułów), opisie sklepu ani notatkach wydania.",
+   "sources": [
+    "https://apps.apple.com/us/app/strengthlog-workout-tracker/id1434229662",
+    "https://help.strengthlog.com/"
+   ]
+  },
+  {
+   "area": "stats",
+   "feature_id": "stats_prs",
+   "has": "yes",
+   "how": "Automatic PR for every rep count (1RM..nRM), Yearly Records ('YR!') and PR ('PR!') badges inline while logging, Time PR; records page per year; add old PRs manually, delete bad records; attach videos to records.",
+   "how_pl": "Automatyczny rekord dla każdej liczby powtórzeń (1RM..nRM), odznaki Yearly Records („YR!”) i PR („PR!”) wyświetlane na bieżąco podczas logowania, Time PR; strona rekordów dla każdego roku; ręczne dodawanie starych rekordów, usuwanie błędnych; dołączanie filmów do rekordów.",
+   "sources": [
+    "https://help.strengthlog.com/help-article/personal-records-and-yearly-records/",
+    "https://help.strengthlog.com/help-article/how-to-register-old-personal-records/",
+    "https://help.strengthlog.com/help-article/remove-old-personal-records/"
+   ]
+  },
+  {
+   "area": "stats",
+   "feature_id": "stats_e1rm",
+   "has": "yes",
+   "how": "Estimated 1RM graphs per exercise; 1RM calculator uses Epley; logged RPE/RIR adjusts e1RM (easier RPE -> higher e1RM). Separate 'My 1RMs' registry for %1RM programs (premium).",
+   "how_pl": "Wykresy szacowanego 1RM dla każdego ćwiczenia; kalkulator 1RM używa wzoru Epleya; zalogowane RPE/RIR koryguje e1RM (łatwiejsze RPE -> wyższe e1RM). Osobny rejestr „My 1RMs” dla programów %1RM (premium).",
+   "sources": [
+    "https://help.strengthlog.com/help-article/calculators/",
+    "https://help.strengthlog.com/help-article/rpe-calculator/",
+    "https://help.strengthlog.com/help-article/1rm-for-programs/",
+    "https://app.strengthlog.com/main.dart.js"
+   ]
+  },
+  {
+   "area": "stats",
+   "feature_id": "stats_charts_exercise",
+   "has": "partial",
+   "how": "Basic stats free; advanced per-exercise graphs (e1RM, reps by %1RM zones, etc.) premium; graphs can be favorited to home, reordered/recolored (v9.0) and overlaid with calendar events.",
+   "how_pl": "Podstawowe statystyki za darmo; zaawansowane wykresy dla ćwiczeń (e1RM, powtórzenia według stref %1RM itd.) w premium; wykresy można dodać do ulubionych na ekran główny, zmieniać ich kolejność/kolory (v9.0) i nakładać na nie wydarzenia z kalendarza.",
+   "user_feedback": "App Store 2026-01 (3*): 'All stats and graphs are entirely locked behind premium which is a comical $100+ a year.' https://itunes.apple.com/us/rss/customerreviews/id=1434229662/sortBy=mostRecent/json",
+   "user_feedback_pl": "App Store 2026-01 (3*): „Wszystkie statystyki i wykresy są całkowicie zablokowane za premium, które kosztuje komiczne 100+ USD rocznie.” https://itunes.apple.com/us/rss/customerreviews/id=1434229662/sortBy=mostRecent/json",
+   "sources": [
+    "https://help.strengthlog.com/help-article/the-home-screen/",
+    "https://help.strengthlog.com/help-article/calendar-events/",
+    "https://help.strengthlog.com/help-article/strengthlog-premium/",
+    "https://apps.apple.com/us/app/strengthlog-workout-tracker/id1434229662"
+   ]
+  },
+  {
+   "area": "stats",
+   "feature_id": "stats_volume",
+   "has": "partial",
+   "how": "Free volume and workout stats with period comparison on home 'Overview'; premium adds per-muscle-group statistics, weekly set goals per muscle and monthly/yearly reports.",
+   "how_pl": "Darmowe statystyki objętości i treningów z porównaniem okresów w „Overview” na ekranie głównym; premium dodaje statystyki dla każdej grupy mięśniowej, tygodniowe cele serii dla mięśni oraz raporty miesięczne/roczne.",
+   "user_feedback": "App Store 2026-09 (4*): 'a real bummer that you can't even get a weekly summary of work' (free). https://itunes.apple.com/us/rss/customerreviews/id=1434229662/sortBy=mostRecent/json",
+   "user_feedback_pl": "App Store 2026-09 (4*): „naprawdę szkoda, że nie można nawet dostać tygodniowego podsumowania pracy” (w wersji darmowej). https://itunes.apple.com/us/rss/customerreviews/id=1434229662/sortBy=mostRecent/json",
+   "sources": [
+    "https://help.strengthlog.com/help-article/the-home-screen/",
+    "https://help.strengthlog.com/help-article/muscles-worked/",
+    "https://help.strengthlog.com/help-article/strengthlog-premium/"
+   ]
+  },
+  {
+   "area": "stats",
+   "feature_id": "stats_muscle_heatmap",
+   "has": "paid",
+   "how": "Premium 'Muscles worked' map: sets per muscle over a chosen period, grey to full red at the weekly set goal (default 10, editable globally or per muscle); also as iOS widget.",
+   "how_pl": "Premiumowa mapa „Muscles worked”: serie na mięsień w wybranym okresie, od szarego do pełnej czerwieni przy tygodniowym celu serii (domyślnie 10, edytowalny globalnie lub dla mięśnia); także jako widżet iOS.",
+   "sources": [
+    "https://help.strengthlog.com/help-article/muscles-worked/",
+    "https://help.strengthlog.com/help-article/widgets/"
+   ]
+  },
+  {
+   "area": "stats",
+   "feature_id": "stats_calendar_streaks",
+   "has": "yes",
+   "how": "Training log calendar with events; Streaks: manual check-off or workout-logging streaks (reps, volume, sets, number of workouts; daily/weekly) with reminders, longest streak, share image. Free has a limit; unlimited in premium.",
+   "how_pl": "Kalendarz dziennika treningowego z wydarzeniami; Streaks: ręczne odhaczanie lub serie logowania treningów (powtórzenia, objętość, serie, liczba treningów; dzienne/tygodniowe) z przypomnieniami, najdłuższą serią, obrazem do udostępnienia. Darmowa wersja ma limit; w premium bez limitu.",
+   "sources": [
+    "https://help.strengthlog.com/help-article/streaks/",
+    "https://help.strengthlog.com/help-article/calendar-events/",
+    "https://help.strengthlog.com/help-article/strengthlog-premium/"
+   ]
+  },
+  {
+   "area": "stats",
+   "feature_id": "stats_workout_summary",
+   "has": "yes",
+   "how": "Summary after saving (incl. estimated calories burned since v5.10); premium monthly/yearly Training Reports (workouts, volume, reps, sets, time, muscles, top exercises, PRs, compare with previous period, share image).",
+   "how_pl": "Podsumowanie po zapisie (w tym szacowane spalone kalorie od v5.10); premiumowe miesięczne/roczne Training Reports (treningi, objętość, powtórzenia, serie, czas, mięśnie, najlepsze ćwiczenia, rekordy, porównanie z poprzednim okresem, obraz do udostępnienia).",
+   "sources": [
+    "https://help.strengthlog.com/help-article/training-reports/",
+    "https://www.strengthlog.com/new-features-in-the-best-free-workout-tracker-app/"
+   ]
+  },
+  {
+   "area": "stats",
+   "feature_id": "stats_strength_standards",
+   "has": "yes",
+   "how": "Strength Levels (since v8.0): general level from your 15 most-logged lifts plus per-exercise levels vs app users (Beginner 5%, Novice 25%, Intermediate 50%, Advanced 75%, Elite 95%), filterable by sex, age, bodyweight; needs sex, age, bodyweight and 3+ logged lifts; shareable image.",
+   "how_pl": "Strength Levels (od v8.0): ogólny poziom z 15 najczęściej zalogowanych bojów plus poziomy dla ćwiczeń względem użytkowników aplikacji (Beginner 5%, Novice 25%, Intermediate 50%, Advanced 75%, Elite 95%), z filtrem według płci, wieku, masy ciała; wymaga płci, wieku, masy ciała i 3+ zalogowanych bojów; obraz do udostępnienia.",
+   "sources": [
+    "https://help.strengthlog.com/help-article/strength-levels/"
+   ]
+  },
+  {
+   "area": "body",
+   "feature_id": "body_weight",
+   "has": "yes",
+   "how": "Body measurement page: + to add a dated bodyweight entry, graph per measurement; can read bodyweight from Health Connect.",
+   "how_pl": "Strona pomiarów ciała: + dodaje wpis masy ciała z datą, wykres dla każdego pomiaru; może odczytywać masę ciała z Health Connect.",
+   "sources": [
+    "https://help.strengthlog.com/help-article/body-weight-and-body-measurements/",
+    "https://play.google.com/store/apps/details?id=com.styrkelabbet.Styrkelabbet"
+   ]
+  },
+  {
+   "area": "body",
+   "feature_id": "body_measurements",
+   "has": "yes",
+   "how": "Multiple body measurements with dated entries and graphs; body-measurement goals; body fat % calculator pulls stored measurements.",
+   "how_pl": "Wiele pomiarów ciała z datowanymi wpisami i wykresami; cele pomiarów ciała; kalkulator tkanki tłuszczowej % pobiera zapisane pomiary.",
+   "sources": [
+    "https://help.strengthlog.com/help-article/body-weight-and-body-measurements/",
+    "https://help.strengthlog.com/help-article/how-to-set-up-a-goal/",
+    "https://help.strengthlog.com/help-article/calculators/"
+   ]
+  },
+  {
+   "area": "body",
+   "feature_id": "body_photos",
+   "has": "partial",
+   "how": "Progress pic 'bundles' stored privately in the cloud with a photo-taking guide; free accounts hit a bundle limit, premium raises it.",
+   "how_pl": "„Paczki” zdjęć postępów przechowywane prywatnie w chmurze z przewodnikiem robienia zdjęć; darmowe konta mają limit paczek, premium go podnosi.",
+   "sources": [
+    "https://play.google.com/store/apps/details?id=com.styrkelabbet.Styrkelabbet",
+    "https://www.strengthlog.com/how-to-track-muscle-growth-strengthlog/",
+    "https://app.strengthlog.com/main.dart.js"
+   ]
+  },
+  {
+   "area": "body",
+   "feature_id": "body_readiness",
+   "has": "partial",
+   "how": "Post-workout ratings for sleep quality, stress, calorie intake and 'how it felt'; no HRV or morning check-in.",
+   "how_pl": "Oceny po treningu: jakość snu, stres, spożycie kalorii i „jak się czułem”; brak HRV ani porannego check-inu.",
+   "sources": [
+    "https://help.strengthlog.com/help-article/how-to-record-a-workout/",
+    "https://app.strengthlog.com/main.dart.js"
+   ]
+  },
+  {
+   "area": "int",
+   "feature_id": "int_apple_health",
+   "has": "yes",
+   "how": "iOS: shares workouts (and active energy) to Apple Health, does not read data back. Android: Health Connect (replaced Google Fit in v6.8); can read bodyweight and Wear OS heart rate; bulk upload of missing history.",
+   "how_pl": "iOS: udostępnia treningi (i energię aktywną) do Apple Health, nie odczytuje danych z powrotem. Android: Health Connect (zastąpił Google Fit w v6.8); może odczytywać masę ciała i tętno z Wear OS; hurtowe wgrywanie brakującej historii.",
+   "sources": [
+    "https://apps.apple.com/us/app/strengthlog-workout-tracker/id1434229662",
+    "https://play.google.com/store/apps/details?id=com.styrkelabbet.Styrkelabbet",
+    "https://help.strengthlog.com/help-article/how-to-migrate-your-data-to-health-connect/",
+    "https://app.strengthlog.com/main.dart.js"
+   ]
+  },
+  {
+   "area": "int",
+   "feature_id": "int_watch_app",
+   "has": "yes",
+   "how": "Apple Watch app (since v5.11; watchOS 9+): start workouts or continue ones started on phone, add exercises/sets; %1RM workouts need 1RMs entered first. Wear OS app with Tiles for goals, streaks, weekly stats, challenges and heart rate.",
+   "how_pl": "Aplikacja na Apple Watch (od v5.11; watchOS 9+): rozpoczynanie treningów lub kontynuacja rozpoczętych na telefonie, dodawanie ćwiczeń/serii; treningi %1RM wymagają wcześniejszego wpisania 1RM. Aplikacja Wear OS z Tiles dla celów, serii, tygodniowych statystyk, wyzwań i tętna.",
+   "user_feedback": "App Store 2025-04 (2*): Apple Watch 'stopped working with the latest update'. https://itunes.apple.com/us/rss/customerreviews/id=1434229662/sortBy=mostRecent/json",
+   "user_feedback_pl": "App Store 2025-04 (2*): Apple Watch „przestał działać po najnowszej aktualizacji”. https://itunes.apple.com/us/rss/customerreviews/id=1434229662/sortBy=mostRecent/json",
+   "sources": [
+    "https://www.strengthlog.com/the-best-gym-app-for-apple-watch-is-here/",
+    "https://apps.apple.com/us/app/strengthlog-workout-tracker/id1434229662",
+    "https://play.google.com/store/apps/details?id=com.styrkelabbet.Styrkelabbet",
+    "https://app.strengthlog.com/main.dart.js"
+   ]
+  },
+  {
+   "area": "int",
+   "feature_id": "int_garmin",
+   "has": "partial",
+   "how": "No Garmin/Fitbit integration found (a 2026 review asks for Fitbit); Strava connection (load Strava activities into calendar, share workouts to Strava) appears in the app strings. (evidence: UI strings in StrengthLog's official Flutter web build; release status in mobile app not confirmed by help center)",
+   "how_pl": "Nie znaleziono integracji z Garmin/Fitbit (recenzja z 2026 prosi o Fitbit); połączenie ze Strava (wczytywanie aktywności Strava do kalendarza, udostępnianie treningów do Strava) pojawia się w ciągach znaków aplikacji. (dowód: ciągi znaków UI w oficjalnej wersji webowej StrengthLog we Flutterze; status wydania w aplikacji mobilnej niepotwierdzony przez help center)",
+   "sources": [
+    "https://app.strengthlog.com/main.dart.js",
+    "https://itunes.apple.com/us/rss/customerreviews/id=1434229662/sortBy=mostRecent/json"
+   ]
+  },
+  {
+   "area": "int",
+   "feature_id": "int_import",
+   "has": "partial",
+   "how": "No import from Strong/Hevy documented; can import bodyweight history from Health; old PRs entered manually.",
+   "how_pl": "Nie udokumentowano importu ze Strong/Hevy; można zaimportować historię masy ciała ze Zdrowia; stare rekordy wpisuje się ręcznie.",
+   "sources": [
+    "https://help.strengthlog.com/help-article/how-to-register-old-personal-records/",
+    "https://app.strengthlog.com/main.dart.js"
+   ]
+  },
+  {
+   "area": "int",
+   "feature_id": "int_export",
+   "has": "yes",
+   "how": "Export training log and/or body measurements as .csv (Settings); third-party importers (e.g., Gript) read this export incl. RPE and timed sets.",
+   "how_pl": "Eksport dziennika treningowego i/lub pomiarów ciała jako .csv (Settings); zewnętrzne importery (np. Gript) czytają ten eksport, w tym RPE i serie na czas.",
+   "sources": [
+    "https://app.strengthlog.com/main.dart.js",
+    "https://griptapp.com/help/import-from-strengthlog"
+   ]
+  },
+  {
+   "area": "int",
+   "feature_id": "int_backup_sync",
+   "has": "yes",
+   "how": "Account-based cloud sync; data appears on a new device after login; subscriptions do not transfer between iOS and Android.",
+   "how_pl": "Synchronizacja w chmurze oparta na koncie; dane pojawiają się na nowym urządzeniu po zalogowaniu; subskrypcje nie przenoszą się między iOS a Androidem.",
+   "sources": [
+    "https://www.strengthlog.com/",
+    "https://help.strengthlog.com/help-article/possible-issues-with-your-data/",
+    "https://www.strengthlog.com/app-terms-privacy/"
+   ]
+  },
+  {
+   "area": "int",
+   "feature_id": "int_widgets",
+   "has": "yes",
+   "how": "iOS home-screen widgets: muscles worked (small/large, period editable), monthly challenge, goals (1 or 4), streaks; Wear OS Tiles.",
+   "how_pl": "Widżety ekranu głównego iOS: muscles worked (małe/duże, edytowalny okres), miesięczne wyzwanie, cele (1 lub 4), serie; Tiles Wear OS.",
+   "sources": [
+    "https://help.strengthlog.com/help-article/widgets/",
+    "https://play.google.com/store/apps/details?id=com.styrkelabbet.Styrkelabbet"
+   ]
+  },
+  {
+   "area": "int",
+   "feature_id": "int_siri_shortcuts",
+   "has": "unknown",
+   "how": "Not mentioned in help center or store listing.",
+   "how_pl": "Niewspomniane w help center ani opisie sklepu.",
+   "sources": [
+    "https://help.strengthlog.com/",
+    "https://apps.apple.com/us/app/strengthlog-workout-tracker/id1434229662"
+   ]
+  },
+  {
+   "area": "equip",
+   "feature_id": "equip_locations",
+   "has": "partial",
+   "how": "Only plate-calculator profiles per gym (e.g., 'original gym' and 'home gym') with their own plates, bars and collars.",
+   "how_pl": "Tylko profile kalkulatora talerzy dla każdej siłowni (np. „original gym” i „home gym”) z własnymi talerzami, gryfami i zaciskami.",
+   "sources": [
+    "https://help.strengthlog.com/help-article/plate-calculator/"
+   ]
+  },
+  {
+   "area": "equip",
+   "feature_id": "equip_inventory",
+   "has": "partial",
+   "how": "Plate calculator inventory: plate counts per profile, barbells, collars, exercise-specific bar; not used to round program weights.",
+   "how_pl": "Inwentarz kalkulatora talerzy: liczba talerzy na profil, gryfy, zaciski, gryf przypisany do ćwiczenia; nie jest używany do zaokrąglania ciężarów w programach.",
+   "sources": [
+    "https://help.strengthlog.com/help-article/plate-calculator/"
+   ]
+  },
+  {
+   "area": "equip",
+   "feature_id": "equip_filtering",
+   "has": "partial",
+   "how": "Exercise list can be filtered by equipment type; Similar Exercises suggests swaps if equipment is missing. No availability profile per gym.",
+   "how_pl": "Listę ćwiczeń można filtrować według typu sprzętu; „Similar Exercises” sugeruje zamienniki, gdy brakuje sprzętu. Brak profilu dostępności dla każdej siłowni.",
+   "sources": [
+    "https://help.strengthlog.com/help-article/finding-the-right-excercises/",
+    "https://help.strengthlog.com/help-article/similar-exercises/"
+   ]
+  },
+  {
+   "area": "social",
+   "feature_id": "social_feed",
+   "has": "partial",
+   "how": "Terms describe social features: mutual friend connections (username/QR) sharing workout summaries, PRs, e1RMs and Strength Levels, never the full log; app strings include feed posts and reporting; v9.0 library has a 'Following' filter. (evidence: UI strings in StrengthLog's official Flutter web build; release status in mobile app not confirmed by help center)",
+   "how_pl": "Regulamin opisuje funkcje społecznościowe: wzajemne połączenia znajomych (nazwa użytkownika/QR) udostępniające podsumowania treningów, rekordy, e1RM i Strength Levels, nigdy pełny dziennik; ciągi znaków aplikacji zawierają posty w feedzie i zgłaszanie; biblioteka v9.0 ma filtr „Following”. (dowód: ciągi znaków UI w oficjalnej wersji webowej StrengthLog we Flutterze; status wydania w aplikacji mobilnej niepotwierdzony przez help center)",
+   "sources": [
+    "https://www.strengthlog.com/app-terms-privacy/",
+    "https://app.strengthlog.com/main.dart.js",
+    "https://apps.apple.com/us/app/strengthlog-workout-tracker/id1434229662"
+   ]
+  },
+  {
+   "area": "social",
+   "feature_id": "social_share",
+   "has": "yes",
+   "how": "Image for sharing (choose background, format, stats) to Instagram or save; full-workout image; share workouts/programs to other users via link (premium); share images for streaks, reports and strength levels.",
+   "how_pl": "Obraz do udostępnienia (wybór tła, formatu, statystyk) na Instagram lub zapis; obraz całego treningu; udostępnianie treningów/programów innym użytkownikom przez link (premium); obrazy do udostępnienia dla serii, raportów i strength levels.",
+   "sources": [
+    "https://help.strengthlog.com/help-article/share-your-workout-on-social-media/",
+    "https://help.strengthlog.com/help-article/share-workouts/",
+    "https://help.strengthlog.com/help-article/streaks/"
+   ]
+  },
+  {
+   "area": "social",
+   "feature_id": "social_leaderboards",
+   "has": "partial",
+   "how": "No ranked leaderboards found; Strength Levels compare you against all app users as percentiles.",
+   "how_pl": "Nie znaleziono rankingów; Strength Levels porównują Cię ze wszystkimi użytkownikami aplikacji w percentylach.",
+   "sources": [
+    "https://help.strengthlog.com/help-article/strength-levels/"
+   ]
+  },
+  {
+   "area": "social",
+   "feature_id": "social_challenges",
+   "has": "yes",
+   "how": "Monthly app-wide challenges (usually 3 sub-goals) with badges and archive; achievements; friend-invite challenges are described in the Terms and app strings.",
+   "how_pl": "Miesięczne wyzwania w całej aplikacji (zwykle 3 podcele) z odznakami i archiwum; osiągnięcia; wyzwania z zapraszaniem znajomych opisane są w Regulaminie i ciągach znaków aplikacji.",
+   "sources": [
+    "https://help.strengthlog.com/help-article/challenges/",
+    "https://www.strengthlog.com/new-features-in-the-best-free-workout-tracker-app/",
+    "https://www.strengthlog.com/app-terms-privacy/"
+   ]
+  },
+  {
+   "area": "coach",
+   "feature_id": "coach_client_management",
+   "has": "no",
+   "how": "No coach/client accounts in help center or store listing.",
+   "how_pl": "Brak kont trenera/podopiecznego w help center ani opisie sklepu.",
+   "sources": [
+    "https://help.strengthlog.com/",
+    "https://apps.apple.com/us/app/strengthlog-workout-tracker/id1434229662"
+   ]
+  },
+  {
+   "area": "coach",
+   "feature_id": "coach_assign_programs",
+   "has": "partial",
+   "how": "Programs can be shared by link (premium sharer); no assignment/tracking of clients.",
+   "how_pl": "Programy można udostępniać przez link (udostępniający z premium); brak przypisywania/śledzenia podopiecznych.",
+   "sources": [
+    "https://help.strengthlog.com/help-article/share-workouts/"
+   ]
+  },
+  {
+   "area": "coach",
+   "feature_id": "coach_feedback",
+   "has": "no",
+   "how": "Not present in help center or store listing.",
+   "how_pl": "Nieobecne w help center ani opisie sklepu.",
+   "sources": [
+    "https://help.strengthlog.com/",
+    "https://apps.apple.com/us/app/strengthlog-workout-tracker/id1434229662"
+   ]
+  },
+  {
+   "area": "coach",
+   "feature_id": "coach_chat",
+   "has": "no",
+   "how": "No in-app chat; support via app@strengthlog.com.",
+   "how_pl": "Brak czatu w aplikacji; wsparcie przez app@strengthlog.com.",
+   "sources": [
+    "https://www.strengthlog.com/"
+   ]
+  },
+  {
+   "area": "coach",
+   "feature_id": "coach_marketplace",
+   "has": "no",
+   "how": "Programs are authored by StrengthLog coaches only; no third-party marketplace.",
+   "how_pl": "Programy tworzą wyłącznie trenerzy StrengthLog; brak zewnętrznego marketplace.",
+   "sources": [
+    "https://www.strengthlog.com/",
+    "https://help.strengthlog.com/help-article/follow-a-program/"
+   ]
+  },
+  {
+   "area": "monet",
+   "feature_id": "monet_model",
+   "has": "yes",
+   "how": "Free: unlimited logging, no ads, custom exercises, basic stats, PRs, plate calculator, timer, many programs, basic program builder, limited goals/streaks. Premium (US App Store: $16.90/month, $37.90/3 months, $109/year; 14-day trial per blog): full program catalog, advanced stats/reports, muscle map, RPE/RIR, %1RM programming, quick stats, Train-again modifications, sharing, unlimited goals/streaks. Sweden: wellness-stipend invoices. Cannot be bought on web.",
+   "how_pl": "Za darmo: nielimitowane logowanie, brak reklam, własne ćwiczenia, podstawowe statystyki, rekordy, kalkulator talerzy, timer, wiele programów, podstawowy kreator programów, ograniczone cele/serie (streaks). Premium (US App Store: 16,90 USD/miesiąc, 37,90 USD/3 miesiące, 109 USD/rok; 14-dniowy okres próbny wg bloga): pełny katalog programów, zaawansowane statystyki/raporty, mapa mięśni, RPE/RIR, programowanie %1RM, quick stats, modyfikacje „Train again”, udostępnianie, nielimitowane cele/serie (streaks). Szwecja: faktury w ramach dodatku wellness. Nie można kupić przez web.",
+   "user_feedback": "App Store 2025-06 (1*) '$16 / month!', 2025-01 (3*) 'Pro is wayyy too expensive'; many 5* reviews praise the generous free tier. https://itunes.apple.com/us/rss/customerreviews/id=1434229662/sortBy=mostRecent/json",
+   "user_feedback_pl": "App Store 2025-06 (1*) „16 USD / miesiąc!”, 2025-01 (3*) „Pro jest wayyy za drogie”; wiele recenzji 5* chwali hojną darmową wersję. https://itunes.apple.com/us/rss/customerreviews/id=1434229662/sortBy=mostRecent/json",
+   "sources": [
+    "https://apps.apple.com/us/app/strengthlog-workout-tracker/id1434229662",
+    "https://help.strengthlog.com/help-article/strengthlog-premium/",
+    "https://www.strengthlog.com/the-best-gym-app-for-apple-watch-is-here/",
+    "https://help.strengthlog.com/help-article/wellness-stipend-for-premium/"
+   ]
+  },
+  {
+   "area": "ux",
+   "feature_id": "ux_units",
+   "has": "partial",
+   "how": "kg or lb globally; plate calculator has its own weight-unit setting; km/miles for cardio. No per-exercise unit documented.",
+   "how_pl": "kg lub lb globalnie; kalkulator talerzy ma własne ustawienie jednostki ciężaru; km/mile dla cardio. Nie udokumentowano jednostki dla pojedynczego ćwiczenia.",
+   "user_feedback": "App Store 2026-01 (2*): wants easier conversion between meter/kilo units. https://itunes.apple.com/us/rss/customerreviews/id=1434229662/sortBy=mostRecent/json",
+   "user_feedback_pl": "App Store 2026-01 (2*): chce łatwiejszej konwersji między jednostkami metr/kilo. https://itunes.apple.com/us/rss/customerreviews/id=1434229662/sortBy=mostRecent/json",
+   "sources": [
+    "https://app.strengthlog.com/main.dart.js",
+    "https://help.strengthlog.com/help-article/plate-calculator/"
+   ]
+  },
+  {
+   "area": "ux",
+   "feature_id": "ux_theme",
+   "has": "yes",
+   "how": "Dark mode by default; toggle to light in settings (system setting option exists).",
+   "how_pl": "Domyślnie tryb ciemny; przełączenie na jasny w ustawieniach (istnieje opcja ustawienia systemowego).",
+   "sources": [
+    "https://help.strengthlog.com/help-article/dark-mode-light-mode/",
+    "https://app.strengthlog.com/main.dart.js"
+   ]
+  },
+  {
+   "area": "ux",
+   "feature_id": "ux_languages",
+   "has": "partial",
+   "how": "Store lists English only; app strings include Swedish with an in-app language switch. (evidence: UI strings in StrengthLog's official Flutter web build; release status in mobile app not confirmed by help center)",
+   "how_pl": "Sklep podaje tylko angielski; ciągi znaków aplikacji zawierają szwedzki z przełącznikiem języka w aplikacji. (dowód: ciągi znaków UI w oficjalnej wersji webowej StrengthLog we Flutterze; status wydania w aplikacji mobilnej niepotwierdzony przez help center)",
+   "sources": [
+    "https://apps.apple.com/us/app/strengthlog-workout-tracker/id1434229662",
+    "https://app.strengthlog.com/main.dart.js"
+   ]
+  },
+  {
+   "area": "ux",
+   "feature_id": "ux_accessibility",
+   "has": "unknown",
+   "how": "No accessibility documentation; the Flutter build contains semantic labels (e.g., 'switch language to swedish'), but VoiceOver/Dynamic Type support is unverified.",
+   "how_pl": "Brak dokumentacji dostępności; wersja Flutter zawiera etykiety semantyczne (np. „switch language to swedish”), ale obsługa VoiceOver/Dynamic Type jest niezweryfikowana.",
+   "sources": [
+    "https://app.strengthlog.com/main.dart.js"
+   ]
+  },
+  {
+   "area": "ux",
+   "feature_id": "ux_onboarding",
+   "has": "partial",
+   "how": "Achievements are explicitly designed to help users learn the app; in-app News and Help; no documented setup wizard.",
+   "how_pl": "Osiągnięcia są wyraźnie zaprojektowane, by pomagać użytkownikom nauczyć się aplikacji; w aplikacji są News i Help; brak udokumentowanego kreatora konfiguracji.",
+   "sources": [
+    "https://www.strengthlog.com/new-features-in-the-best-free-workout-tracker-app/",
+    "https://help.strengthlog.com/help-article/the-home-screen/"
+   ]
+  },
+  {
+   "area": "ux",
+   "feature_id": "ux_offline",
+   "has": "partial",
+   "how": "Data is stored locally and backed up to servers only when online; a temporary (anonymous) account exists, but the FAQ says an account is required. Premium status may fail to load on bad connection.",
+   "how_pl": "Dane są przechowywane lokalnie i kopiowane na serwery tylko online; istnieje tymczasowe (anonimowe) konto, ale FAQ mówi, że konto jest wymagane. Status premium może się nie wczytać przy słabym połączeniu.",
+   "sources": [
+    "https://www.strengthlog.com/app-terms-privacy/",
+    "https://www.strengthlog.com/",
+    "https://help.strengthlog.com/help-article/premium-stopped-working/",
+    "https://app.strengthlog.com/main.dart.js"
+   ]
+  },
+  {
+   "area": "ux",
+   "feature_id": "ux_privacy",
+   "has": "yes",
+   "how": "Account required (Google, Apple, Facebook or email); GDPR rights incl. portability; processors outside EU/EEA under SCCs; account deletion via email request; de-identified data used for Strength Levels. App Store: contact info, user ID, diagnostics linked to identity.",
+   "how_pl": "Wymagane konto (Google, Apple, Facebook lub e-mail); prawa RODO, w tym przenoszalność; podmioty przetwarzające spoza UE/EOG na podstawie SCC; usunięcie konta na prośbę e-mailową; zdepersonalizowane dane używane do Strength Levels. App Store: dane kontaktowe, identyfikator użytkownika, diagnostyka powiązane z tożsamością.",
+   "sources": [
+    "https://www.strengthlog.com/",
+    "https://www.strengthlog.com/app-terms-privacy/",
+    "https://help.strengthlog.com/help-article/manage-your-account/",
+    "https://apps.apple.com/us/app/strengthlog-workout-tracker/id1434229662"
+   ]
+  },
+  {
+   "area": "plan",
+   "feature_id": "new:train_again",
+   "has": "yes",
+   "how": "Start an exact copy of any logged workout from home/log; premium lets you bulk-adjust reps/weight (e.g., +1%) before starting.",
+   "how_pl": "Rozpoczęcie dokładnej kopii dowolnego zalogowanego treningu z ekranu głównego/dziennika; premium pozwala hurtowo dostosować powtórzenia/ciężar (np. +1%) przed startem.",
+   "sources": [
+    "https://help.strengthlog.com/help-article/train-again/"
+   ]
+  },
+  {
+   "area": "log",
+   "feature_id": "new:interval_special_sets",
+   "has": "yes",
+   "how": "EMOM (intervals in 15 s steps, blocks alternate), Tabata (default 20/10 x8), AMRAP (time cap, add rounds while timer runs) and Complex, with full-screen timer, countdown and audio cues.",
+   "how_pl": "EMOM (interwały w krokach co 15 s, bloki na przemian), Tabata (domyślnie 20/10 x8), AMRAP (limit czasu, dodawanie rund przy działającym timerze) i Complex, z pełnoekranowym timerem, odliczaniem i sygnałami dźwiękowymi.",
+   "sources": [
+    "https://help.strengthlog.com/help-article/special-sets/"
+   ]
+  },
+  {
+   "area": "stats",
+   "feature_id": "new:goals",
+   "has": "paid",
+   "how": "9 goal types: reps, volume, sets, number of workouts, PR, e1RM, time PR, rep goal at weight, body measurement; date range, exercise or muscle-group scope, live progress graph; free limited, unlimited in premium.",
+   "how_pl": "9 typów celów: powtórzenia, objętość, serie, liczba treningów, PR, e1RM, time PR, cel powtórzeń przy ciężarze, pomiar ciała; zakres dat, ćwiczenia lub grupy mięśniowej, wykres postępu na żywo; za darmo ograniczone, w premium bez limitu.",
+   "sources": [
+    "https://help.strengthlog.com/help-article/how-to-set-up-a-goal/",
+    "https://help.strengthlog.com/help-article/strengthlog-premium/"
+   ]
+  },
+  {
+   "area": "log",
+   "feature_id": "new:set_video_library",
+   "has": "yes",
+   "how": "Upload a video to a set (live or past) or a PR; videos collected in a searchable library, downloadable.",
+   "how_pl": "Wgrywanie filmu do serii (bieżącej lub minionej) albo do rekordu; filmy zbierane w przeszukiwalnej bibliotece, z możliwością pobrania.",
+   "sources": [
+    "https://help.strengthlog.com/help-article/using-the-video-library/"
+   ]
+  },
+  {
+   "area": "lib",
+   "feature_id": "new:calculators",
+   "has": "yes",
+   "how": "1RM (Epley), plate, RPE (premium), warm-up for max attempt, powerlifting attempt selection (91/96/100%), Wilks & IPF GL, Sinclair, daily calories, protein, body fat & fat-free mass.",
+   "how_pl": "1RM (Epley), talerzy, RPE (premium), rozgrzewki do próby maksymalnej, wyboru prób w trójboju (91/96/100%), Wilks i IPF GL, Sinclair, dziennych kalorii, białka, tkanki tłuszczowej i masy beztłuszczowej.",
+   "sources": [
+    "https://help.strengthlog.com/help-article/calculators/"
+   ]
+  },
+  {
+   "area": "stats",
+   "feature_id": "new:quick_stats_per_set",
+   "has": "paid",
+   "how": "Swipe a set for e1RM, % of 1RM, rep-PR, average reps at that weight, bodyweight multiple.",
+   "how_pl": "Przesuń serię, aby zobaczyć e1RM, % 1RM, rekord powtórzeń, średnią liczbę powtórzeń przy tym ciężarze, wielokrotność masy ciała.",
+   "sources": [
+    "https://help.strengthlog.com/help-article/shortcuts-in-an-active-workout/",
+    "https://help.strengthlog.com/help-article/how-to-record-a-workout/"
+   ]
+  },
+  {
+   "area": "stats",
+   "feature_id": "new:calendar_events",
+   "has": "yes",
+   "how": "Tag dates with events (sick, vacation, period, injury) and overlay them on statistics graphs.",
+   "how_pl": "Oznaczanie dat wydarzeniami (choroba, urlop, miesiączka, kontuzja) i nakładanie ich na wykresy statystyk.",
+   "sources": [
+    "https://help.strengthlog.com/help-article/calendar-events/"
+   ]
+  },
+  {
+   "area": "stats",
+   "feature_id": "new:calories_burned_estimate",
+   "has": "yes",
+   "how": "Estimated kcal per workout from duration (and bodyweight); can be sent to Apple Health Active Energy.",
+   "how_pl": "Szacowane kcal na trening na podstawie czasu trwania (i masy ciała); można wysłać do Apple Health Active Energy.",
+   "sources": [
+    "https://www.strengthlog.com/new-features-in-the-best-free-workout-tracker-app/",
+    "https://help.strengthlog.com/help-article/pause-your-workout/",
+    "https://app.strengthlog.com/main.dart.js"
+   ]
+  },
+  {
+   "area": "ux",
+   "feature_id": "new:customizable_home_screen",
+   "has": "yes",
+   "how": "Draggable home widgets: overview stats, muscles worked, programs you follow, latest workouts, goals, planned workouts, favorite graphs, news, pinned strength levels, challenges, streaks.",
+   "how_pl": "Przeciągalne widżety ekranu głównego: statystyki przeglądowe, muscles worked, śledzone programy, ostatnie treningi, cele, zaplanowane treningi, ulubione wykresy, news, przypięte strength levels, wyzwania, serie (streaks).",
+   "user_feedback": "App Store 2026-09 (1-2*): 9.0 moved next program workout off home and filled it with unrelated widgets. https://itunes.apple.com/us/rss/customerreviews/id=1434229662/sortBy=mostRecent/json",
+   "user_feedback_pl": "App Store 2026-09 (1-2*): 9.0 usunęła z ekranu głównego następny trening programu i wypełniła go niepowiązanymi widżetami. https://itunes.apple.com/us/rss/customerreviews/id=1434229662/sortBy=mostRecent/json",
+   "sources": [
+    "https://help.strengthlog.com/help-article/the-home-screen/"
+   ]
+  },
+  {
+   "area": "plan",
+   "feature_id": "new:merge_program_workouts",
+   "has": "yes",
+   "how": "Start next workout of one followed program, then another, and import it into the active workout (name combines both).",
+   "how_pl": "Rozpocznij następny trening jednego śledzonego programu, potem drugiego i zaimportuj go do aktywnego treningu (nazwa łączy oba).",
+   "sources": [
+    "https://help.strengthlog.com/help-article/how-to-merge-two-program-workouts/"
+   ]
+  },
+  {
+   "area": "social",
+   "feature_id": "new:achievements",
+   "has": "yes",
+   "how": "Multi-level achievements (Log Workouts 10 levels, Compound Hero, Follow a Program, etc.) with badges on profile.",
+   "how_pl": "Wielopoziomowe osiągnięcia (Log Workouts 10 poziomów, Compound Hero, Follow a Program itd.) z odznakami na profilu.",
+   "sources": [
+    "https://www.strengthlog.com/new-features-in-the-best-free-workout-tracker-app/"
+   ]
+  },
+  {
+   "area": "log",
+   "feature_id": "new:minigames",
+   "has": "yes",
+   "how": "Name Game, Dice Game and Card Game generate exercises/reps on the fly and auto-add completed sets.",
+   "how_pl": "Name Game, Dice Game i Card Game generują ćwiczenia/powtórzenia na bieżąco i automatycznie dodają ukończone serie.",
+   "sources": [
+    "https://help.strengthlog.com/help-article/minigames/"
+   ]
+  },
+  {
+   "area": "ux",
+   "feature_id": "new:web_desktop_version",
+   "has": "partial",
+   "how": "A Flutter web build runs at app.strengthlog.com and the Terms mention a 'web version'; premium cannot be bought there. Feature scope undocumented.",
+   "how_pl": "Wersja webowa we Flutterze działa pod app.strengthlog.com, a Regulamin wspomina o „wersji webowej”; premium nie można tam kupić. Zakres funkcji niedokumentowany.",
+   "sources": [
+    "https://www.strengthlog.com/app-terms-privacy/",
+    "https://app.strengthlog.com/main.dart.js"
+   ]
+  },
+  {
+   "area": "plan",
+   "feature_id": "new:program_builder_v9",
+   "has": "yes",
+   "how": "v9.0 (Sep 2026) rebuilt Program Builder with Simple and Detailed modes and Smart Blocks; favorites/Following filters; major navigation reshuffle (Profile, Statistics, Library).",
+   "how_pl": "v9.0 (wrz 2026) przebudowała Program Builder z trybami Simple i Detailed oraz Smart Blocks; filtry ulubionych/Following; duże przetasowanie nawigacji (Profile, Statistics, Library).",
+   "user_feedback": "Recent App Store reviews (Sep 2026) split: '9.0 is SICK' vs 'New app layout is awful', 'changing things for the sake of changing things'. https://itunes.apple.com/us/rss/customerreviews/id=1434229662/sortBy=mostRecent/json",
+   "user_feedback_pl": "Ostatnie recenzje w App Store (wrz 2026) są podzielone: „9.0 jest REWELACYJNA” vs „Nowy układ aplikacji jest okropny”, „zmienianie rzeczy dla samego zmieniania”. https://itunes.apple.com/us/rss/customerreviews/id=1434229662/sortBy=mostRecent/json",
+   "sources": [
+    "https://apps.apple.com/us/app/strengthlog-workout-tracker/id1434229662"
+   ]
+  }
+ ]
 }

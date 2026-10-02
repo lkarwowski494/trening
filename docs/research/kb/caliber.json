@@ -2,14 +2,18 @@
   "app": "Caliber",
   "version_or_date_checked": "2026-10 (iOS 5.16.1, Sep 8 2026)",
   "pricing": "Free tier (tracking, library, social, Health) + Caliber Plus $12/mo or $72/yr (plans library, Strength Score, custom exercises, supersets, swaps, plate math, auto rest timer, photos, nutrition targets; 7-day trial) + Supporter $3/mo + Pro group coaching $19/mo + Premium 1-on-1 coaching from $200/mo",
+  "pricing_pl": "Wersja darmowa (śledzenie, biblioteka, funkcje społecznościowe, Health) + Caliber Plus 12 $/mies. lub 72 $/rok (biblioteka planów, Strength Score, własne ćwiczenia, superserie, zamiany, obliczanie talerzy, automatyczny timer przerw, zdjęcia, cele żywieniowe; 7-dniowy okres próbny) + Supporter 3 $/mies. + grupowy coaching Pro 19 $/mies. + indywidualny coaching Premium od 200 $/mies.",
   "platforms": "iPhone (iOS 15.1+, runs on Apple-silicon Mac), Android; no Apple Watch, no iPad-native, no web",
+  "platforms_pl": "iPhone (iOS 15.1+, działa na Macu z procesorem Apple), Android; brak Apple Watch, brak natywnej wersji na iPada, brak wersji webowej",
   "positioning": "Coaching company's strength-training tracker: solid free logger plus proprietary Strength Score, upsold to Plus and human 1-on-1 coaching; no AI in-app by design.",
+  "positioning_pl": "Aplikacja do śledzenia treningu siłowego firmy coachingowej: solidny darmowy logger plus autorski Strength Score, z dosprzedażą planu Plus i coachingu indywidualnego z człowiekiem; celowo bez AI w aplikacji.",
   "features": [
     {
       "area": "log",
       "feature_id": "log_set_fields",
       "has": "yes",
       "how": "Track tab: per set reps OR time plus weight (exercise type rep- or time-based). Dumbbell = weight of one dumbbell, barbell = total incl. bar. Field order Weight-before-Reps configurable (default for new users since 5.4). Cardio is a separate activity type (time, distance, calories, pace).",
+      "how_pl": "Karta Track: na serię powtórzenia ALBO czas plus ciężar (typ ćwiczenia oparty na powtórzeniach lub na czasie). Hantla = ciężar jednej hantli, sztanga = ciężar łączny z gryfem. Kolejność pól Ciężar przed Powtórzeniami jest konfigurowalna (domyślna dla nowych użytkowników od 5.4). Cardio to osobny typ aktywności (czas, dystans, kalorie, tempo).",
       "sources": [
         "https://caliberstrong.freshdesk.com/support/solutions/articles/48001257776-caliber-app-user-guide",
         "https://caliberstrong.freshdesk.com/support/solutions/articles/48001220076-how-do-i-log-dumbbell-weights-",
@@ -22,6 +26,7 @@
       "feature_id": "log_set_types",
       "has": "partial",
       "how": "Only 'smart warm-up' sets, generated per exercise from the target weight (added/removed in exercise edit). Logging drop sets and tagging own sets as warm-up are open requests ('Under Consideration', 248 and 161 votes). No failure tag.",
+      "how_pl": "Tylko serie „smart warm-up”, generowane dla każdego ćwiczenia na podstawie docelowego ciężaru (dodawane/usuwane w edycji ćwiczenia). Logowanie drop setów i oznaczanie własnych serii jako rozgrzewkowych to otwarte prośby („Under Consideration”, 248 i 161 głosów). Brak oznaczenia serii do upadku.",
       "sources": [
         "https://caliberstrong.freshdesk.com/support/solutions/articles/48001257776-caliber-app-user-guide",
         "https://feedback.caliberstrong.com/announcements/caliber-3119-adjustable-warm-up-targets-expanded-emoji-reactions-exercise-videos-while-offline",
@@ -34,6 +39,7 @@
       "feature_id": "log_rpe_rir",
       "has": "no",
       "how": "No per-set RPE: 'RPE for sets' is on the board as Planned (182 votes). Only a post-workout rating slider + note per workout.",
+      "how_pl": "Brak RPE dla serii: „RPE for sets” jest na tablicy jako Planned (182 głosy). Tylko suwak oceny po treningu + notatka do treningu.",
       "sources": [
         "https://feedback.caliberstrong.com/b/7vz226vy/feature-ideas/rpe-for-sets",
         "https://feedback.caliberstrong.com/announcements/caliber-420-workout-overview-screen-updates",
@@ -45,6 +51,7 @@
       "feature_id": "log_previous_values",
       "has": "yes",
       "how": "Under each set field the last logged value from the most recent session of that exercise is shown (e.g. 'Last: 95 lbs'); exercise History tab (also on the warm-up screen) shows past sessions and PR dates.",
+      "how_pl": "Pod każdym polem serii pokazywana jest ostatnio zalogowana wartość z poprzedniej sesji tego ćwiczenia (np. „Last: 95 lbs”); karta History ćwiczenia (także na ekranie rozgrzewki) pokazuje wcześniejsze sesje i daty PR.",
       "sources": [
         "https://caliberstrong.freshdesk.com/support/solutions/articles/48001257776-caliber-app-user-guide",
         "https://feedback.caliberstrong.com/announcements/caliber-3119-adjustable-warm-up-targets-expanded-emoji-reactions-exercise-videos-while-offline",
@@ -56,7 +63,9 @@
       "feature_id": "log_autofill",
       "has": "partial",
       "how": "Fields are not pre-filled automatically; tapping the 'Last' text or the custom keyboard's 'Last' button (5.4) copies previous weight/reps/time into the field. Default exercise targets (sets/reps/time/rest) apply to exercises without own targets.",
+      "how_pl": "Pola nie są wypełniane automatycznie; stuknięcie tekstu „Last” lub przycisku „Last” na własnej klawiaturze (5.4) kopiuje poprzedni ciężar/powtórzenia/czas do pola. Domyślne cele ćwiczeń (serie/powtórzenia/czas/przerwa) dotyczą ćwiczeń bez własnych celów.",
       "user_feedback": "'having to constantly edit and add weights instead of it having a baseline button that fills in last workouts numbers' - https://itunes.apple.com/us/rss/customerreviews/page=2/id=1482405410/sortby=mostrecent/json",
+      "user_feedback_pl": "„having to constantly edit and add weights instead of it having a baseline button that fills in last workouts numbers” - https://itunes.apple.com/us/rss/customerreviews/page=2/id=1482405410/sortby=mostrecent/json",
       "sources": [
         "https://caliberstrong.freshdesk.com/support/solutions/articles/48001257776-caliber-app-user-guide",
         "https://feedback.caliberstrong.com/announcements/caliber-540-custom-keyboard-automatic-rest-timer-default-exercise-settings-sundaymonday-start-date-g"
@@ -67,6 +76,7 @@
       "feature_id": "log_notes",
       "has": "yes",
       "how": "Exercise notes tab next to Track (enlarged in 5.12), optional workout note + rating at completion (all users since 4.2), custom workout instructions on templates; Premium: cardio notes to coach.",
+      "how_pl": "Karta notatek ćwiczenia obok Track (powiększona w 5.12), opcjonalna notatka do treningu + ocena przy zakończeniu (dla wszystkich użytkowników od 4.2), własne instrukcje treningu w szablonach; Premium: notatki cardio dla trenera.",
       "sources": [
         "https://caliberstrong.freshdesk.com/support/solutions/articles/48001257776-caliber-app-user-guide",
         "https://feedback.caliberstrong.com/announcements/caliber-316-streamlined-rest-timer-stopwatch-revamped-exercise-notes",
@@ -80,6 +90,7 @@
       "feature_id": "log_supersets",
       "has": "paid",
       "how": "Supersets created/edited in a bottom sheet on the workout screen (5.3); auto rest timer is triggered between superset exercises; keyboard 'Next Set' jumps to next exercise in the superset. Listed as Plus feature on App Store. Substituting inside supersets is 'In Progress'.",
+      "how_pl": "Superserie tworzy się/edytuje w dolnym arkuszu na ekranie treningu (5.3); automatyczny timer przerw włącza się między ćwiczeniami superserii; klawisz „Next Set” na klawiaturze przeskakuje do następnego ćwiczenia superserii. W App Store wymieniona jako funkcja Plus. Zamiana ćwiczenia wewnątrz superserii ma status „In Progress”.",
       "sources": [
         "https://feedback.caliberstrong.com/announcements/caliber-530-exercise-search-screen-revamp-and-more",
         "https://feedback.caliberstrong.com/announcements/caliber-540-custom-keyboard-automatic-rest-timer-default-exercise-settings-sundaymonday-start-date-g",
@@ -92,6 +103,7 @@
       "feature_id": "log_reorder",
       "has": "yes",
       "how": "Long-press an exercise on the Workout Overview screen to drag-reorder (4.2), incl. reordering within a superset; templates reordered in Plans via reorder icon.",
+      "how_pl": "Przytrzymaj ćwiczenie na ekranie Workout Overview, aby zmienić kolejność przeciąganiem (4.2), także wewnątrz superserii; szablony zmienia się kolejnością w Plans ikoną zmiany kolejności.",
       "sources": [
         "https://feedback.caliberstrong.com/announcements/caliber-420-workout-overview-screen-updates",
         "https://caliberstrong.freshdesk.com/support/solutions/articles/48001257776-caliber-app-user-guide"
@@ -102,7 +114,9 @@
       "feature_id": "log_replace_exercise",
       "has": "paid",
       "how": "Substitute from active workout or template; substitution list pre-filtered by primary muscle group (3.0.4) and since 5.14 ranked by exercise popularity. On finishing, user is asked whether to save changes to the template. 'Swap exercises' listed as Plus.",
+      "how_pl": "Zamiana z aktywnego treningu lub szablonu; lista zamienników jest wstępnie filtrowana według głównej grupy mięśniowej (3.0.4), a od 5.14 szeregowana według popularności ćwiczenia. Po zakończeniu aplikacja pyta, czy zapisać zmiany w szablonie. „Swap exercises” wymienione jako Plus.",
       "user_feedback": "'Smart exercise substitutions' still Planned (1617 votes) - https://feedback.caliberstrong.com/b/7vz226vy/feature-ideas/smart-exercise-substitutions",
+      "user_feedback_pl": "„Smart exercise substitutions” wciąż Planned (1617 głosów) - https://feedback.caliberstrong.com/b/7vz226vy/feature-ideas/smart-exercise-substitutions",
       "sources": [
         "https://feedback.caliberstrong.com/announcements/caliber-304-exercise-substitution-improvements",
         "https://feedback.caliberstrong.com/announcements/caliber-514-515-improvements-to-exercise-search-progress-photo-gallery-revamp-mcp-support-for-chatgp",
@@ -115,6 +129,7 @@
       "feature_id": "log_plate_calculator",
       "has": "paid",
       "how": "Barbell icon on Track screen: optimal plate configuration from target weight, bar weight (default 45 lb/20 kg, editable) and editable plate inventory; works for Barbell, Smith, Hammer Strength, Landmine, EZ and Trap bar; pre-loads last target (useful for warm-ups). 'Plate Math Calculator' is a Plus feature.",
+      "how_pl": "Ikona sztangi na ekranie Track: optymalna konfiguracja talerzy na podstawie docelowego ciężaru, wagi gryfu (domyślnie 45 lb/20 kg, edytowalna) i edytowalnego zasobu talerzy; działa dla sztangi, Smitha, Hammer Strength, Landmine, EZ i gryfu trap bar; wstępnie ładuje ostatni cel (przydatne przy rozgrzewkach). „Plate Math Calculator” to funkcja Plus.",
       "sources": [
         "https://feedback.caliberstrong.com/announcements/caliber-3123-introducing-plate-calculator-1",
         "https://caliberstrong.freshdesk.com/support/solutions/articles/48001257778-account-management-user-guide"
@@ -125,7 +140,9 @@
       "feature_id": "log_warmup_calculator",
       "has": "yes",
       "how": "'Smart warmups' per exercise generate warm-up sets from working weight; adjustable target weight (±5 lb steps) on warm-up screen; history tab available there (3.1.19).",
+      "how_pl": "„Smart warmups” dla każdego ćwiczenia generują serie rozgrzewkowe na podstawie ciężaru roboczego; docelowy ciężar regulowany (kroki ±5 lb) na ekranie rozgrzewki; dostępna tam karta historii (3.1.19).",
       "user_feedback": "Request to allow 1-6 warm-up sets instead of fixed 3-4 (Planned) - https://feedback.caliberstrong.com/b/7vz226vy/feature-ideas/custom-number-of-warm-up-sets",
+      "user_feedback_pl": "Prośba o możliwość ustawienia 1-6 serii rozgrzewkowych zamiast stałych 3-4 (Planned) - https://feedback.caliberstrong.com/b/7vz226vy/feature-ideas/custom-number-of-warm-up-sets",
       "sources": [
         "https://feedback.caliberstrong.com/announcements/caliber-3119-adjustable-warm-up-targets-expanded-emoji-reactions-exercise-videos-while-offline",
         "https://caliberstrong.freshdesk.com/support/solutions/articles/48001257776-caliber-app-user-guide"
@@ -136,6 +153,7 @@
       "feature_id": "log_bodyweight_assisted",
       "has": "yes",
       "how": "For full-bodyweight lifts (pull-up, chin-up, dips, muscle-up...) latest logged bodyweight is added automatically - user logs only added weight; for assisted exercises assistance is subtracted from bodyweight. Applied to PRs, Strength Score and (since 5.13) charts.",
+      "how_pl": "Przy ćwiczeniach z pełną masą ciała (podciąganie, chin-up, dipy, muscle-up...) ostatnio zalogowana masa ciała jest dodawana automatycznie - użytkownik loguje tylko dodatkowy ciężar; przy ćwiczeniach z odciążeniem pomoc jest odejmowana od masy ciała. Uwzględniane w PR, Strength Score i (od 5.13) wykresach.",
       "sources": [
         "https://feedback.caliberstrong.com/announcements/bodyweightassisted-exercise-adjustment-excluding-high-rep-sets-from-1rm",
         "https://feedback.caliberstrong.com/announcements/caliber-5130-progress-section-revamp-1"
@@ -146,6 +164,7 @@
       "feature_id": "log_unilateral",
       "has": "unknown",
       "how": "No per-side logging documented.",
+      "how_pl": "Nie udokumentowano logowania osobno dla każdej strony.",
       "sources": [
         "https://caliberstrong.freshdesk.com/support/solutions/articles/48001257776-caliber-app-user-guide"
       ]
@@ -155,6 +174,7 @@
       "feature_id": "log_tempo",
       "has": "unknown",
       "how": "No tempo field documented.",
+      "how_pl": "Nie udokumentowano pola tempa.",
       "sources": [
         "https://caliberstrong.freshdesk.com/support/solutions/articles/48001257776-caliber-app-user-guide"
       ]
@@ -164,7 +184,9 @@
       "feature_id": "log_empty_workout",
       "has": "partial",
       "how": "Workouts are started from a plan template via red + > Strength; ad-hoc additions to an active workout are possible (add exercises, update template prompt). No pure blank 'empty workout' flow documented.",
+      "how_pl": "Treningi rozpoczyna się z szablonu planu przez czerwony + > Strength; w aktywnym treningu można doraźnie dodawać elementy (dodawanie ćwiczeń, monit o aktualizację szablonu). Nie udokumentowano czystego przepływu „pusty trening”.",
       "user_feedback": "'I don't get why I can't just build a workout I want, then pull that one up and log it' - https://itunes.apple.com/us/rss/customerreviews/page=3/id=1482405410/sortby=mostrecent/json",
+      "user_feedback_pl": "„I don't get why I can't just build a workout I want, then pull that one up and log it” - https://itunes.apple.com/us/rss/customerreviews/page=3/id=1482405410/sortby=mostrecent/json",
       "sources": [
         "https://caliberstrong.freshdesk.com/support/solutions/articles/48001257776-caliber-app-user-guide",
         "https://feedback.caliberstrong.com/b/7vz226vy/feature-ideas/option-to-create-new-template-in-addition-to-update-template-prompt"
@@ -175,6 +197,7 @@
       "feature_id": "log_edit_past",
       "has": "yes",
       "how": "Select a past date on dashboard/calendar + red + to record a previous workout; completed workouts editable via View/Edit; editing a workout's date was released (2025).",
+      "how_pl": "Wybierz przeszłą datę na pulpicie/w kalendarzu + czerwony +, aby zapisać wcześniejszy trening; ukończone treningi można edytować przez View/Edit; edycja daty treningu została udostępniona (2025).",
       "sources": [
         "https://caliberstrong.freshdesk.com/support/solutions/articles/48001257776-caliber-app-user-guide",
         "https://caliberstrong.freshdesk.com/support/solutions/articles/48001152861-how-do-i-log-a-strength-workout-",
@@ -186,7 +209,9 @@
       "feature_id": "log_one_hand_ux",
       "has": "yes",
       "how": "Custom keyboard (5.4) with context button (Next field / Complete exercise / Next Set in superset / Update) and 'Last' button; rest timer, add set and complete buttons tappable with keyboard open (5.1).",
+      "how_pl": "Własna klawiatura (5.4) z przyciskiem kontekstowym (Next field / Complete exercise / Next Set w superserii / Update) i przyciskiem „Last”; timer przerw, dodawanie serii i przyciski ukończenia można stukać przy otwartej klawiaturze (5.1).",
       "user_feedback": "'constantly accidentally ending my workout' - https://itunes.apple.com/us/rss/customerreviews/page=2/id=1482405410/sortby=mostrecent/json; 'Are you sure? when clicking complete workout' is Planned (286 votes) - https://feedback.caliberstrong.com/b/7vz226vy/feature-ideas/are-you-sure-when-clicking-complete-workout",
+      "user_feedback_pl": "„constantly accidentally ending my workout” - https://itunes.apple.com/us/rss/customerreviews/page=2/id=1482405410/sortby=mostrecent/json; „Are you sure? when clicking complete workout” jest Planned (286 głosów) - https://feedback.caliberstrong.com/b/7vz226vy/feature-ideas/are-you-sure-when-clicking-complete-workout",
       "sources": [
         "https://feedback.caliberstrong.com/announcements/caliber-540-custom-keyboard-automatic-rest-timer-default-exercise-settings-sundaymonday-start-date-g",
         "https://feedback.caliberstrong.com/announcements/caliber-510-track-tab-enhancements-more-dark-mode-screens-bug-fixes"
@@ -197,7 +222,9 @@
       "feature_id": "timer_auto_rest",
       "has": "paid",
       "how": "Optional automatic rest timer (5.4, Plus/Premium): starts when reps/time of a completed set are entered; uses exercise rest target or default; deliberately NOT triggered between exercises (except supersets). Otherwise single tap starts timer with the exercise's rest target; long-press for other durations.",
+      "how_pl": "Opcjonalny automatyczny timer przerw (5.4, Plus/Premium): startuje po wpisaniu powtórzeń/czasu ukończonej serii; używa celu przerwy ćwiczenia lub domyślnego; celowo NIE uruchamia się między ćwiczeniami (poza superseriami). Poza tym jedno stuknięcie uruchamia timer z celem przerwy ćwiczenia; długie przytrzymanie daje inne czasy.",
       "user_feedback": "'The rest timer is possessed... works half the time despite the global and per-exercise auto-timer setting being on' - https://itunes.apple.com/us/rss/customerreviews/page=3/id=1482405410/sortby=mostrecent/json",
+      "user_feedback_pl": "„The rest timer is possessed... works half the time despite the global and per-exercise auto-timer setting being on” - https://itunes.apple.com/us/rss/customerreviews/page=3/id=1482405410/sortby=mostrecent/json",
       "sources": [
         "https://feedback.caliberstrong.com/announcements/caliber-540-custom-keyboard-automatic-rest-timer-default-exercise-settings-sundaymonday-start-date-g",
         "https://caliberstrong.freshdesk.com/support/solutions/articles/48001257776-caliber-app-user-guide",
@@ -209,6 +236,7 @@
       "feature_id": "timer_per_exercise",
       "has": "yes",
       "how": "Rest target per exercise, to the second since 5.4 (previously 1-min steps), plus global default rest.",
+      "how_pl": "Cel przerwy dla każdego ćwiczenia, z dokładnością do sekundy od 5.4 (wcześniej kroki co 1 min), plus globalna przerwa domyślna.",
       "sources": [
         "https://feedback.caliberstrong.com/announcements/caliber-540-custom-keyboard-automatic-rest-timer-default-exercise-settings-sundaymonday-start-date-g",
         "https://caliberstrong.freshdesk.com/support/solutions/articles/48001257776-caliber-app-user-guide"
@@ -219,6 +247,7 @@
       "feature_id": "timer_notifications",
       "has": "partial",
       "how": "Since 3.1.4 the rest timer dings when backgrounded on iOS; push notifications recommended for timer. Board idea 'Have timer ding when outside of the app' still Planned (681 votes). Timer resumes correctly after app reopen (5.1 fix).",
+      "how_pl": "Od 3.1.4 timer przerw dzwoni w tle na iOS; do timera zalecane są powiadomienia push. Pomysł z tablicy „Have timer ding when outside of the app” wciąż Planned (681 głosów). Timer wznawia się poprawnie po ponownym otwarciu aplikacji (poprawka z 5.1).",
       "sources": [
         "https://feedback.caliberstrong.com/announcements/caliber-314-introducing-supporter",
         "https://caliberstrong.freshdesk.com/support/solutions/articles/48001257778-account-management-user-guide",
@@ -231,6 +260,7 @@
       "feature_id": "timer_live_activity",
       "has": "no",
       "how": "No Live Activity / Dynamic Island; request 'Make Rest Timer A Live Activity' is Planned (86 votes).",
+      "how_pl": "Brak Live Activity / Dynamic Island; prośba „Make Rest Timer A Live Activity” jest Planned (86 głosów).",
       "sources": [
         "https://feedback.caliberstrong.com/b/7vz226vy/feature-ideas/make-rest-timer-a-live-activity-show-rest-timer-on-dynamic-island"
       ]
@@ -240,6 +270,7 @@
       "feature_id": "timer_set_stopwatch",
       "has": "yes",
       "how": "Stopwatch next to the rest timer (3.1.6), can run concurrently; time-based exercises have target times.",
+      "how_pl": "Stoper obok timera przerw (3.1.6), mogą działać równocześnie; ćwiczenia czasowe mają czasy docelowe.",
       "sources": [
         "https://feedback.caliberstrong.com/announcements/caliber-316-streamlined-rest-timer-stopwatch-revamped-exercise-notes",
         "https://feedback.caliberstrong.com/announcements/caliber-3113-3115-exercise-edit-screen-redesign-bulk-edit-exercises-report-messages",
@@ -251,6 +282,7 @@
       "feature_id": "timer_workout_duration",
       "has": "yes",
       "how": "Duration shown on workout completion summary (since 3.1.22). Estimated workout duration before start is Planned (533 votes).",
+      "how_pl": "Czas trwania pokazywany w podsumowaniu zakończenia treningu (od 3.1.22). Szacowany czas treningu przed startem jest Planned (533 głosy).",
       "sources": [
         "https://feedback.caliberstrong.com/announcements/caliber-3122-workout-syncing-to-apple-health-workout-completion-flow-revamp",
         "https://feedback.caliberstrong.com/b/7vz226vy/feature-ideas/estimated-workout-duration"
@@ -261,7 +293,9 @@
       "feature_id": "timer_abandoned_workout",
       "has": "unknown",
       "how": "No documented auto-finish/recovery of forgotten sessions.",
+      "how_pl": "Nie udokumentowano automatycznego kończenia/odzyskiwania zapomnianych sesji.",
       "user_feedback": "'it aborted my workout on the 23rd of 24 sets. No saved state upon restart' - https://itunes.apple.com/us/rss/customerreviews/page=3/id=1482405410/sortby=mostrecent/json",
+      "user_feedback_pl": "„it aborted my workout on the 23rd of 24 sets. No saved state upon restart” - https://itunes.apple.com/us/rss/customerreviews/page=3/id=1482405410/sortby=mostrecent/json",
       "sources": [
         "https://caliberstrong.freshdesk.com/support/solutions/articles/48001257776-caliber-app-user-guide"
       ]
@@ -271,6 +305,7 @@
       "feature_id": "plan_templates",
       "has": "yes",
       "how": "Workout plans contain multiple workouts; create from scratch (choose number of workouts), via Workout Wizard, from Library or Pro; duplicate workouts and whole plans (5.7); bulk-edit exercise parameters across a workout (3.1.13).",
+      "how_pl": "Plany treningowe zawierają wiele treningów; tworzenie od zera (wybór liczby treningów), przez Workout Wizard, z Library lub Pro; duplikowanie treningów i całych planów (5.7); zbiorcza edycja parametrów ćwiczeń w treningu (3.1.13).",
       "sources": [
         "https://caliberstrong.freshdesk.com/support/solutions/articles/48001257776-caliber-app-user-guide",
         "https://feedback.caliberstrong.com/announcements/caliber-570-export-workout-data-plans-section-rebuild-dark-mode",
@@ -283,6 +318,7 @@
       "feature_id": "plan_folders",
       "has": "partial",
       "how": "No folders; multiple plans ('workout groups') act as containers with one default plan.",
+      "how_pl": "Brak folderów; wiele planów („workout groups”) działa jak kontenery z jednym planem domyślnym.",
       "sources": [
         "https://caliberstrong.freshdesk.com/support/solutions/articles/48001222755-how-do-i-rename-a-workout-group-",
         "https://feedback.caliberstrong.com/announcements/caliber-3112-startscheduling-ux-updates-training-plan-screen-adjustments"
@@ -293,6 +329,7 @@
       "feature_id": "plan_programs",
       "has": "paid",
       "how": "Workout Library (Plus): 120+ coach-designed plans with filters (duration, frequency, equipment...), coach bio, editable after adding; 28 new 45-min plans in 5.7; mobility workouts addable to plans; pregnancy/postpartum plans. Pro: new 4-week plans monthly.",
+      "how_pl": "Workout Library (Plus): ponad 120 planów od trenerów z filtrami (czas, częstotliwość, sprzęt...), bio trenera, edytowalne po dodaniu; 28 nowych 45-minutowych planów w 5.7; treningi mobilności można dodawać do planów; plany dla kobiet w ciąży/po porodzie. Pro: nowe 4-tygodniowe plany co miesiąc.",
       "sources": [
         "https://feedback.caliberstrong.com/announcements/caliber-400-workout-library-nutrition-targets-updated-plans-screen-uxui",
         "https://feedback.caliberstrong.com/announcements/caliber-570-export-workout-data-plans-section-rebuild-dark-mode",
@@ -306,6 +343,7 @@
       "feature_id": "plan_periodization",
       "has": "no",
       "how": "No %1RM, block or deload programming in the app; FAQ: 'Do my workouts change automatically each week? No.' Periodization only via human coach (Premium) or monthly Pro plans.",
+      "how_pl": "Brak w aplikacji programowania opartego na %1RM, blokach czy deloadzie; FAQ: „Do my workouts change automatically each week? No.” Periodyzacja tylko przez trenera-człowieka (Premium) lub miesięczne plany Pro.",
       "sources": [
         "https://caliberstrong.freshdesk.com/support/solutions/articles/48001257776-caliber-app-user-guide",
         "https://www.garagegymreviews.com/caliber-app-review"
@@ -316,7 +354,9 @@
       "feature_id": "plan_generator",
       "has": "yes",
       "how": "Workout Wizard: answer questions (goal, experience, equipment incl. 'No Equipment', schedule) to generate a plan. Not AI; company states it has not used AI in-app.",
+      "how_pl": "Workout Wizard: odpowiedz na pytania (cel, doświadczenie, sprzęt w tym „No Equipment”, harmonogram), aby wygenerować plan. Nie AI; firma deklaruje, że nie używała AI w aplikacji.",
       "user_feedback": "'changing your goals when you sign up ... doesn't change any of the workout plans the wizard comes up with' - https://itunes.apple.com/us/rss/customerreviews/page=3/id=1482405410/sortby=mostrecent/json",
+      "user_feedback_pl": "„changing your goals when you sign up ... doesn't change any of the workout plans the wizard comes up with” - https://itunes.apple.com/us/rss/customerreviews/page=3/id=1482405410/sortby=mostrecent/json",
       "sources": [
         "https://caliberstrong.freshdesk.com/support/solutions/articles/48001257776-caliber-app-user-guide",
         "https://apps.apple.com/us/app/caliber-strength-training/id1482405410",
@@ -328,6 +368,7 @@
       "feature_id": "plan_schedule",
       "has": "partial",
       "how": "Select a future date + red + to schedule a workout; calendar with month view and unlimited history. Recurring scheduling not available yet (Planned, 1004 votes); coaches can set recurring for Premium clients.",
+      "how_pl": "Wybierz przyszłą datę + czerwony +, aby zaplanować trening; kalendarz z widokiem miesiąca i nielimitowaną historią. Planowanie cykliczne jeszcze niedostępne (Planned, 1004 głosy); trenerzy mogą ustawiać cykliczne dla klientów Premium.",
       "sources": [
         "https://caliberstrong.freshdesk.com/support/solutions/articles/48001257776-caliber-app-user-guide",
         "https://feedback.caliberstrong.com/announcements/caliber-3127-home-screen-and-calendar-revamp-activity-summaries",
@@ -340,6 +381,7 @@
       "feature_id": "plan_share_templates",
       "has": "paid",
       "how": "Share workouts/plans via link, inside groups or QR code (3.1.0); custom exercises travel with the shared workout. Sharing custom workouts listed as Plus feature.",
+      "how_pl": "Udostępnianie treningów/planów przez link, w grupach lub kod QR (3.1.0); własne ćwiczenia podróżują z udostępnionym treningiem. Udostępnianie własnych treningów wymienione jako funkcja Plus.",
       "sources": [
         "https://feedback.caliberstrong.com/announcements/caliber-310-workout-sharing-disable-strength-score-for-workouts-fix-for-logout-issue",
         "https://feedback.caliberstrong.com/announcements/caliber-3118-custom-exercises",
@@ -351,7 +393,9 @@
       "feature_id": "lib_size",
       "has": "yes",
       "how": "800+ exercises per App Store ('almost 800' Sep 2026); regular additions (e.g. Hyrox exercises in 5.15).",
+      "how_pl": "Ponad 800 ćwiczeń wg App Store („almost 800” we wrz 2026); regularne uzupełnienia (np. ćwiczenia Hyrox w 5.15).",
       "user_feedback": "'Very bad selection of exercises. Lots of standard machines not even on there' - https://itunes.apple.com/us/rss/customerreviews/page=1/id=1482405410/sortby=mostrecent/json",
+      "user_feedback_pl": "„Very bad selection of exercises. Lots of standard machines not even on there” - https://itunes.apple.com/us/rss/customerreviews/page=1/id=1482405410/sortby=mostrecent/json",
       "sources": [
         "https://apps.apple.com/us/app/caliber-strength-training/id1482405410",
         "https://feedback.caliberstrong.com/announcements/caliber-514-515-improvements-to-exercise-search-progress-photo-gallery-revamp-mcp-support-for-chatgp"
@@ -362,7 +406,9 @@
       "feature_id": "lib_media",
       "has": "yes",
       "how": "Looping demo videos + text instructions and coach tips; multi-step video tutorials for complex lifts; autoplay can be disabled; viewed videos cached for offline.",
+      "how_pl": "Zapętlone filmy demonstracyjne + instrukcje tekstowe i wskazówki trenera; wieloetapowe filmy instruktażowe do złożonych bojów; autoodtwarzanie można wyłączyć; obejrzane filmy zapisywane w pamięci podręcznej offline.",
       "user_feedback": "Some form videos contradict the text (e.g. bird dog, push-up) - https://itunes.apple.com/us/rss/customerreviews/page=1/id=1482405410/sortby=mostrecent/json",
+      "user_feedback_pl": "Niektóre filmy o technice przeczą tekstowi (np. bird dog, pompki) - https://itunes.apple.com/us/rss/customerreviews/page=1/id=1482405410/sortby=mostrecent/json",
       "sources": [
         "https://caliberstrong.com/faqs/",
         "https://feedback.caliberstrong.com/announcements/caliber-302-disabling-autoplay-videos-android-performance-issue-fix",
@@ -375,7 +421,9 @@
       "feature_id": "lib_custom",
       "has": "paid",
       "how": "Custom exercises (3.1.18) with name, muscle groups, equipment, rep- or time-based; private to user; deleting one deletes its history. Listed as Plus on App Store.",
+      "how_pl": "Własne ćwiczenia (3.1.18) z nazwą, grupami mięśniowymi, sprzętem, opartymi na powtórzeniach lub czasie; prywatne dla użytkownika; usunięcie ćwiczenia usuwa jego historię. W App Store wymienione jako Plus.",
       "user_feedback": "Request for photos/thumbnails on custom exercises - https://itunes.apple.com/us/rss/customerreviews/page=3/id=1482405410/sortby=mostrecent/json",
+      "user_feedback_pl": "Prośba o zdjęcia/miniatury dla własnych ćwiczeń - https://itunes.apple.com/us/rss/customerreviews/page=3/id=1482405410/sortby=mostrecent/json",
       "sources": [
         "https://feedback.caliberstrong.com/announcements/caliber-3118-custom-exercises",
         "https://apps.apple.com/us/app/caliber-strength-training/id1482405410"
@@ -386,6 +434,7 @@
       "feature_id": "lib_muscles",
       "has": "yes",
       "how": "Primary/secondary muscles per exercise; 'Muscles Involved' at workout level updates live; tappable muscle groups list exercises targeting them (5.2.2).",
+      "how_pl": "Mięśnie główne/dodatkowe dla każdego ćwiczenia; „Muscles Involved” na poziomie treningu aktualizuje się na żywo; grupy mięśniowe można stukać, by zobaczyć ćwiczenia, które je angażują (5.2.2).",
       "sources": [
         "https://feedback.caliberstrong.com/announcements/caliber-522-workout-level-muscle-groups-new-dark-mode-sections-performance-improvements"
       ]
@@ -395,6 +444,7 @@
       "feature_id": "lib_equipment_filter",
       "has": "yes",
       "how": "Equipment filters combinable with muscle-group and Type (Strength/Mobility) filters.",
+      "how_pl": "Filtry sprzętu łączone z filtrami grupy mięśniowej i Type (Strength/Mobility).",
       "sources": [
         "https://feedback.caliberstrong.com/announcements/caliber-3116-exercise-search-screen-revamp-added-equipment-filters",
         "https://feedback.caliberstrong.com/announcements/caliber-530-exercise-search-screen-revamp-and-more"
@@ -405,7 +455,9 @@
       "feature_id": "lib_search",
       "has": "yes",
       "how": "Incremental search; since 5.14 results and filters ranked by exercise popularity (users completing it). Favorites are In Progress; semantic/alias search planned.",
+      "how_pl": "Wyszukiwanie przyrostowe; od 5.14 wyniki i filtry szeregowane według popularności ćwiczenia (liczba użytkowników, którzy je wykonali). Ulubione mają status „In Progress”; wyszukiwanie semantyczne/po aliasach planowane.",
       "user_feedback": "'if I don't know the specific wording that the app uses, the exercise doesn't come up' - https://itunes.apple.com/us/rss/customerreviews/page=3/id=1482405410/sortby=mostrecent/json",
+      "user_feedback_pl": "„if I don't know the specific wording that the app uses, the exercise doesn't come up” - https://itunes.apple.com/us/rss/customerreviews/page=3/id=1482405410/sortby=mostrecent/json",
       "sources": [
         "https://feedback.caliberstrong.com/announcements/caliber-514-515-improvements-to-exercise-search-progress-photo-gallery-revamp-mcp-support-for-chatgp",
         "https://feedback.caliberstrong.com/announcements/caliber-530-exercise-search-screen-revamp-and-more",
@@ -417,6 +469,7 @@
       "feature_id": "lib_localization",
       "has": "no",
       "how": "App and content English only.",
+      "how_pl": "Aplikacja i treści tylko po angielsku.",
       "sources": [
         "https://apps.apple.com/us/app/caliber-strength-training/id1482405410"
       ]
@@ -426,6 +479,7 @@
       "feature_id": "prog_suggestions",
       "has": "no",
       "how": "No automatic weight/rep suggestions yet; 'Adaptive weight suggestions' In Progress (1122 votes) and 'guided progressions' announced as next backend work (Sep 2026).",
+      "how_pl": "Na razie brak automatycznych sugestii ciężaru/powtórzeń; „Adaptive weight suggestions” w statusie In Progress (1122 głosy), a „guided progressions” zapowiedziano jako następną pracę nad backendem (wrz 2026).",
       "sources": [
         "https://feedback.caliberstrong.com/b/7vz226vy/feature-ideas/adaptive-weight-suggestions",
         "https://feedback.caliberstrong.com/announcements/caliber-514-515-improvements-to-exercise-search-progress-photo-gallery-revamp-mcp-support-for-chatgp"
@@ -436,6 +490,7 @@
       "feature_id": "prog_double_progression",
       "has": "no",
       "how": "No progression logic implemented (see prog_suggestions).",
+      "how_pl": "Brak zaimplementowanej logiki progresji (zob. prog_suggestions).",
       "sources": [
         "https://feedback.caliberstrong.com/b/7vz226vy/feature-ideas/adaptive-weight-suggestions"
       ]
@@ -445,6 +500,7 @@
       "feature_id": "prog_deload",
       "has": "no",
       "how": "No fatigue/readiness model. Workaround: exclude a workout (e.g. deload, injury, travel) from Strength Score; 'Suggested workout changes' Under Consideration.",
+      "how_pl": "Brak modelu zmęczenia/gotowości. Obejście: wykluczenie treningu (np. deload, kontuzja, podróż) ze Strength Score; „Suggested workout changes” w statusie Under Consideration.",
       "sources": [
         "https://feedback.caliberstrong.com/announcements/caliber-310-workout-sharing-disable-strength-score-for-workouts-fix-for-logout-issue",
         "https://caliberstrong.freshdesk.com/support/solutions/articles/48001257776-caliber-app-user-guide",
@@ -456,6 +512,7 @@
       "feature_id": "prog_fatigue",
       "has": "no",
       "how": "No recovery/fatigue or readiness model; sleep sync only Planned.",
+      "how_pl": "Brak modelu regeneracji/zmęczenia ani gotowości; synchronizacja snu tylko Planned.",
       "sources": [
         "https://feedback.caliberstrong.com/b/7vz226vy/feature-ideas/sleep-tracking",
         "https://caliberstrong.freshdesk.com/support/solutions/articles/48001257574-strength-score-user-guide"
@@ -466,6 +523,7 @@
       "feature_id": "prog_ai_coach",
       "has": "partial",
       "how": "No in-app AI coach (deliberate). Instead human coaching (Pro group / Premium 1-on-1) and an MCP server so ChatGPT/Claude can read Caliber data (Menu > Connected Apps).",
+      "how_pl": "Brak trenera AI w aplikacji (celowo). Zamiast tego coaching z człowiekiem (grupowy Pro / indywidualny Premium) oraz serwer MCP, dzięki któremu ChatGPT/Claude mogą czytać dane Caliber (Menu > Connected Apps).",
       "sources": [
         "https://feedback.caliberstrong.com/announcements/caliber-514-515-improvements-to-exercise-search-progress-photo-gallery-revamp-mcp-support-for-chatgp",
         "https://apps.apple.com/us/app/caliber-strength-training/id1482405410",
@@ -477,6 +535,7 @@
       "feature_id": "stats_prs",
       "has": "yes",
       "how": "PR types: Estimated 1RM, Max Weight, Max Volume (set), Max Reps, Max Time. Realtime PR screen right after completing an exercise (5.12, can be disabled); PR dates on history; reset PRs per exercise or all (5.12.2) keeping history.",
+      "how_pl": "Typy PR: Estimated 1RM, Max Weight, Max Volume (serii), Max Reps, Max Time. Ekran PR w czasie rzeczywistym zaraz po ukończeniu ćwiczenia (5.12, można wyłączyć); daty PR w historii; reset PR dla ćwiczenia lub wszystkich (5.12.2) z zachowaniem historii.",
       "sources": [
         "https://feedback.caliberstrong.com/announcements/caliber-5130-progress-section-revamp-1",
         "https://feedback.caliberstrong.com/announcements/caliber-5120-realtime-prs-new-workout-summary-screen-various-bug-fixes",
@@ -489,6 +548,7 @@
       "feature_id": "stats_e1rm",
       "has": "yes",
       "how": "Estimated 1RM used for charts, PRs and Strength Score; sets >15 reps excluded from 1RM. Formula not published (help example: 200x8 = 250, 210x6 = 247).",
+      "how_pl": "Estimated 1RM używany do wykresów, PR i Strength Score; serie >15 powtórzeń wykluczone z 1RM. Wzór nie jest publikowany (przykład z pomocy: 200x8 = 250, 210x6 = 247).",
       "sources": [
         "https://feedback.caliberstrong.com/announcements/bodyweightassisted-exercise-adjustment-excluding-high-rep-sets-from-1rm",
         "https://caliberstrong.freshdesk.com/support/solutions/articles/48001225489-why-did-my-muscle-group-strength-score-drop-even-though-i-increased-weight-on-an-exercise-"
@@ -499,6 +559,7 @@
       "feature_id": "stats_charts_exercise",
       "has": "yes",
       "how": "Progress tab (5.13, free): customizable charts for exercises (e1RM, max weight, max set volume, max reps, max time), cardio, nutrition, body stats, habits; ranges 1 week-1 year, scroll back to account start; config persists.",
+      "how_pl": "Karta Progress (5.13, darmowa): konfigurowalne wykresy dla ćwiczeń (e1RM, maksymalny ciężar, maksymalna objętość serii, maksymalne powtórzenia, maksymalny czas), cardio, żywienia, statystyk ciała, nawyków; zakresy od 1 tygodnia do 1 roku, przewijanie wstecz do początku konta; konfiguracja zostaje zapamiętana.",
       "sources": [
         "https://feedback.caliberstrong.com/announcements/caliber-5130-progress-section-revamp-1"
       ]
@@ -508,6 +569,7 @@
       "feature_id": "stats_volume",
       "has": "partial",
       "how": "Total workout volume (5.10) on summary/share cards/Strava. No weekly per-muscle volume; 'Additional workout stats' Planned (351 votes).",
+      "how_pl": "Całkowita objętość treningu (5.10) w podsumowaniu/kartach udostępniania/Stravie. Brak tygodniowej objętości na mięsień; „Additional workout stats” Planned (351 głosów).",
       "sources": [
         "https://feedback.caliberstrong.com/announcements/caliber-5100-strava-integration-workout-summarypr-sharing",
         "https://feedback.caliberstrong.com/announcements/caliber-514-515-improvements-to-exercise-search-progress-photo-gallery-revamp-mcp-support-for-chatgp",
@@ -519,6 +581,7 @@
       "feature_id": "stats_muscle_heatmap",
       "has": "partial",
       "how": "Per-workout 'Muscles Involved' and Strength Balance per muscle group; historical training heat map is Planned (571 votes).",
+      "how_pl": "„Muscles Involved” dla pojedynczego treningu i Strength Balance dla każdej grupy mięśniowej; historyczna mapa cieplna treningu jest Planned (571 głosów).",
       "sources": [
         "https://feedback.caliberstrong.com/announcements/caliber-522-workout-level-muscle-groups-new-dark-mode-sections-performance-improvements",
         "https://caliberstrong.freshdesk.com/support/solutions/articles/48001257574-strength-score-user-guide",
@@ -530,6 +593,7 @@
       "feature_id": "stats_calendar_streaks",
       "has": "partial",
       "how": "Calendar with month view, dots per activity, unlimited history; Sunday/Monday week start (5.4). Streaks not shipped; coloured dots per workout Planned.",
+      "how_pl": "Kalendarz z widokiem miesiąca, kropki dla każdej aktywności, nielimitowana historia; początek tygodnia w niedzielę/poniedziałek (5.4). Serie (streaks) niewprowadzone; kolorowe kropki dla treningów Planned.",
       "sources": [
         "https://feedback.caliberstrong.com/announcements/caliber-3127-home-screen-and-calendar-revamp-activity-summaries",
         "https://feedback.caliberstrong.com/announcements/caliber-3120-unlimited-calendar-visibility-performance-enhancements",
@@ -542,6 +606,7 @@
       "feature_id": "stats_workout_summary",
       "has": "yes",
       "how": "Completion screen with duration, rating, PR cards, total volume; shareable cards; viewable for past workouts from calendar.",
+      "how_pl": "Ekran zakończenia z czasem, oceną, kartami PR, całkowitą objętością; karty do udostępniania; dostępne dla przeszłych treningów z kalendarza.",
       "sources": [
         "https://feedback.caliberstrong.com/announcements/caliber-5120-realtime-prs-new-workout-summary-screen-various-bug-fixes",
         "https://feedback.caliberstrong.com/announcements/caliber-5100-strava-integration-workout-summarypr-sharing",
@@ -554,7 +619,9 @@
       "feature_id": "stats_strength_standards",
       "has": "paid",
       "how": "Strength Score (Plus): relative-strength score 100-600 (Beginner...Elite) from e1RM per muscle group (legs, chest, back, shoulders, arms) x bodyweight multiplier, adjusted for age and sex, weighted by body mass; updated weekly (Sunday 3:00 EST). Strength Balance shows proportions across muscle groups. Bodyweight exercises (except weighted pull-ups/dips) and abs excluded. Can be hidden (5.4).",
+      "how_pl": "Strength Score (Plus): wynik siły względnej 100-600 (Beginner...Elite) z e1RM dla każdej grupy mięśniowej (nogi, klatka, plecy, barki, ramiona) x mnożnik masy ciała, skorygowany o wiek i płeć, ważony masą ciała; aktualizowany co tydzień (niedziela 3:00 EST). Strength Balance pokazuje proporcje między grupami mięśniowymi. Ćwiczenia z masą własną (poza podciąganiem/dipami z obciążeniem) i brzuch są wykluczone. Można go ukryć (5.4).",
       "user_feedback": "Divisive: users report score dropping despite progress (bodyweight gain, exercise-mix changes) and suspect upsell - https://itunes.apple.com/us/rss/customerreviews/page=2/id=1482405410/sortby=mostrecent/json",
+      "user_feedback_pl": "Budzi kontrowersje: użytkownicy zgłaszają spadek wyniku mimo postępów (przyrost masy ciała, zmiany doboru ćwiczeń) i podejrzewają dosprzedaż - https://itunes.apple.com/us/rss/customerreviews/page=2/id=1482405410/sortby=mostrecent/json",
       "sources": [
         "https://caliberstrong.freshdesk.com/support/solutions/articles/48001257574-strength-score-user-guide",
         "https://apps.apple.com/us/app/caliber-strength-training/id1482405410",
@@ -567,6 +634,7 @@
       "feature_id": "body_weight",
       "has": "yes",
       "how": "Log bodyweight on Home or calendar (one entry/day); synced from Health/Health Connect smart scales; required for Strength Score.",
+      "how_pl": "Masa ciała logowana na Home lub w kalendarzu (jeden wpis dziennie); synchronizowana z inteligentnych wag przez Health/Health Connect; wymagana do Strength Score.",
       "sources": [
         "https://caliberstrong.freshdesk.com/support/solutions/articles/48001152380-how-do-i-log-a-body-stat-",
         "https://feedback.caliberstrong.com/announcements/caliber-413-android-health-connect-support",
@@ -578,6 +646,7 @@
       "feature_id": "body_measurements",
       "has": "partial",
       "how": "Body stats limited to weight, body fat % and waist.",
+      "how_pl": "Statystyki ciała ograniczone do masy, % tkanki tłuszczowej i talii.",
       "sources": [
         "https://caliberstrong.freshdesk.com/support/solutions/articles/48001152380-how-do-i-log-a-body-stat-"
       ]
@@ -587,6 +656,7 @@
       "feature_id": "body_photos",
       "has": "paid",
       "how": "Progress photos (3 per entry), gallery (3.1.17), rebuilt with side-by-side comparison creator and sharing (5.14) for Plus/Premium.",
+      "how_pl": "Zdjęcia postępów (3 na wpis), galeria (3.1.17), przebudowane z kreatorem porównań obok siebie i udostępnianiem (5.14) dla Plus/Premium.",
       "sources": [
         "https://caliberstrong.freshdesk.com/support/solutions/articles/48001152389-how-do-i-add-a-progress-photo-",
         "https://feedback.caliberstrong.com/announcements/caliber-3117-progress-photo-gallery",
@@ -598,6 +668,7 @@
       "feature_id": "body_readiness",
       "has": "no",
       "how": "No readiness/HRV; sleep sync Planned (53 votes).",
+      "how_pl": "Brak gotowości/HRV; synchronizacja snu Planned (53 głosy).",
       "sources": [
         "https://feedback.caliberstrong.com/b/7vz226vy/feature-ideas/sleep-tracking"
       ]
@@ -607,6 +678,7 @@
       "feature_id": "int_apple_health",
       "has": "yes",
       "how": "Reads steps, cardio, nutrition (MyFitnessPal/FatSecret via Health), body stats; writes completed strength workouts to Health (3.1.22, toggle per workout). Android: Health Connect (4.1.3). Synced items not editable in Caliber.",
+      "how_pl": "Odczytuje kroki, cardio, żywienie (MyFitnessPal/FatSecret przez Health), statystyki ciała; zapisuje ukończone treningi siłowe do Health (3.1.22, przełącznik dla każdego treningu). Android: Health Connect (4.1.3). Zsynchronizowanych elementów nie można edytować w Caliber.",
       "sources": [
         "https://caliberstrong.freshdesk.com/support/solutions/articles/48001257617-connected-apps-and-data-syncing-user-guide",
         "https://feedback.caliberstrong.com/announcements/caliber-3122-workout-syncing-to-apple-health-workout-completion-flow-revamp",
@@ -618,6 +690,7 @@
       "feature_id": "int_watch_app",
       "has": "no",
       "how": "No Apple Watch / Wear OS app; 'Apple Watch app' Planned (1182 votes). Watch data only via Apple Health.",
+      "how_pl": "Brak aplikacji na Apple Watch / Wear OS; „Apple Watch app” Planned (1182 głosy). Dane z zegarka tylko przez Apple Health.",
       "sources": [
         "https://feedback.caliberstrong.com/b/7vz226vy/feature-ideas/apple-watch-app",
         "https://apps.apple.com/us/app/caliber-strength-training/id1482405410"
@@ -628,6 +701,7 @@
       "feature_id": "int_garmin",
       "has": "partial",
       "how": "Garmin activities only indirectly via Apple Health; direct Garmin integration Planned (683 votes). Cronometer direct OAuth integration; Strava (5.10).",
+      "how_pl": "Aktywności Garmin tylko pośrednio przez Apple Health; bezpośrednia integracja z Garmin Planned (683 głosy). Bezpośrednia integracja OAuth z Cronometer; Strava (5.10).",
       "sources": [
         "https://caliberstrong.freshdesk.com/support/solutions/articles/48001220722-how-do-i-sync-my-garmin-activities-",
         "https://feedback.caliberstrong.com/b/7vz226vy/feature-ideas/garmin-integration",
@@ -640,6 +714,7 @@
       "feature_id": "int_import",
       "has": "unknown",
       "how": "No import from Strong/Hevy/CSV documented.",
+      "how_pl": "Nie udokumentowano importu ze Strong/Hevy/CSV.",
       "sources": [
         "https://caliberstrong.freshdesk.com/support/solutions/articles/48001257776-caliber-app-user-guide"
       ]
@@ -649,6 +724,7 @@
       "feature_id": "int_export",
       "has": "yes",
       "how": "Menu > My Account > export: CSV of all workout + cardio data (date, exercise, sets, weight, reps, time) emailed to account address; max 1 per 24 h (5.7, Oct 2025).",
+      "how_pl": "Menu > My Account > export: CSV ze wszystkimi danymi treningowymi + cardio (data, ćwiczenie, serie, ciężar, powtórzenia, czas) wysyłany e-mailem na adres konta; maks. 1 na 24 h (5.7, paź 2025).",
       "sources": [
         "https://feedback.caliberstrong.com/announcements/caliber-570-export-workout-data-plans-section-rebuild-dark-mode",
         "https://apps.apple.com/us/app/caliber-strength-training/id1482405410"
@@ -659,7 +735,9 @@
       "feature_id": "int_backup_sync",
       "has": "yes",
       "how": "Account-based cloud; offline mode saves locally and syncs when online (2.2.4, improved 4.2.2).",
+      "how_pl": "Chmura oparta na koncie; tryb offline zapisuje lokalnie i synchronizuje po połączeniu (2.2.4, ulepszone w 4.2.2).",
       "user_feedback": "Account-loss complaints: 'reset your phone ... you will never get back all your data' - https://itunes.apple.com/us/rss/customerreviews/page=3/id=1482405410/sortby=mostrecent/json",
+      "user_feedback_pl": "Skargi na utratę konta: „reset your phone ... you will never get back all your data” - https://itunes.apple.com/us/rss/customerreviews/page=3/id=1482405410/sortby=mostrecent/json",
       "sources": [
         "https://feedback.caliberstrong.com/announcements/release-notes-caliber-224-offline-mode",
         "https://feedback.caliberstrong.com/announcements/caliber-422-improved-offline-mode-bug-fixes"
@@ -670,6 +748,7 @@
       "feature_id": "int_widgets",
       "has": "no",
       "how": "No iOS home-screen widget; request Under Consideration (207 votes).",
+      "how_pl": "Brak widżetu ekranu głównego iOS; prośba w statusie Under Consideration (207 głosów).",
       "sources": [
         "https://feedback.caliberstrong.com/b/7vz226vy/feature-ideas/ios-widget-for-the-home-screen"
       ]
@@ -679,6 +758,7 @@
       "feature_id": "int_siri_shortcuts",
       "has": "unknown",
       "how": "No Siri/Shortcuts support documented.",
+      "how_pl": "Nie udokumentowano obsługi Siri/Skrótów.",
       "sources": [
         "https://apps.apple.com/us/app/caliber-strength-training/id1482405410"
       ]
@@ -688,6 +768,7 @@
       "feature_id": "equip_locations",
       "has": "no",
       "how": "No gym profiles; 'Granular exercise equipment selection' Under Consideration (557 votes).",
+      "how_pl": "Brak profili siłowni; „Granular exercise equipment selection” w statusie Under Consideration (557 głosów).",
       "sources": [
         "https://feedback.caliberstrong.com/b/7vz226vy/feature-ideas/granular-exercise-equipment-selection"
       ]
@@ -697,6 +778,7 @@
       "feature_id": "equip_inventory",
       "has": "partial",
       "how": "Only plate inventory and bar weight for the plate calculator.",
+      "how_pl": "Tylko zasób talerzy i waga gryfu na potrzeby kalkulatora talerzy.",
       "sources": [
         "https://feedback.caliberstrong.com/announcements/caliber-3123-introducing-plate-calculator-1"
       ]
@@ -706,6 +788,7 @@
       "feature_id": "equip_filtering",
       "has": "partial",
       "how": "Equipment filter in exercise search and Library plan filters; Wizard asks equipment. No automatic availability filtering.",
+      "how_pl": "Filtr sprzętu w wyszukiwarce ćwiczeń i filtrach planów Library; Wizard pyta o sprzęt. Brak automatycznego filtrowania według dostępności.",
       "sources": [
         "https://feedback.caliberstrong.com/announcements/caliber-3116-exercise-search-screen-revamp-added-equipment-filters",
         "https://feedback.caliberstrong.com/announcements/caliber-400-workout-library-nutrition-targets-updated-plans-screen-uxui",
@@ -717,7 +800,9 @@
       "feature_id": "social_feed",
       "has": "yes",
       "how": "Circles (private, friends) and Communities (public topic groups) since 5.8 (Nov 2025); live workout status showing who is training and current exercise; PRs posted to circle; reactions, mentions, report.",
+      "how_pl": "Circles (prywatne, znajomi) i Communities (publiczne grupy tematyczne) od 5.8 (lis 2025); status treningu na żywo pokazujący, kto trenuje i jakie ćwiczenie wykonuje; PR publikowane w circle; reakcje, wzmianki, zgłaszanie.",
       "user_feedback": "GGR: community 'doesn't seem to be utilized a ton' - https://www.garagegymreviews.com/caliber-app-review",
+      "user_feedback_pl": "GGR: społeczność „doesn't seem to be utilized a ton” - https://www.garagegymreviews.com/caliber-app-review",
       "sources": [
         "https://apps.apple.com/us/app/caliber-strength-training/id1482405410",
         "https://feedback.caliberstrong.com/announcements/release-notes-caliber-230-groups-20",
@@ -729,6 +814,7 @@
       "feature_id": "social_share",
       "has": "yes",
       "how": "Share cards for workout summary, PRs, Strength Score/Balance, Track screen screenshots, progress photo comparisons; Strava auto-post.",
+      "how_pl": "Karty do udostępniania dla podsumowania treningu, PR, Strength Score/Balance, zrzutów ekranu Track, porównań zdjęć postępów; automatyczna publikacja na Stravie.",
       "sources": [
         "https://feedback.caliberstrong.com/announcements/caliber-5100-strava-integration-workout-summarypr-sharing",
         "https://feedback.caliberstrong.com/announcements/caliber-5120-realtime-prs-new-workout-summary-screen-various-bug-fixes",
@@ -740,6 +826,7 @@
       "feature_id": "social_leaderboards",
       "has": "unknown",
       "how": "Not documented.",
+      "how_pl": "Nie udokumentowano.",
       "sources": [
         "https://caliberstrong.com/workout-app/"
       ]
@@ -749,6 +836,7 @@
       "feature_id": "social_challenges",
       "has": "unknown",
       "how": "Not documented; trophies/milestones Under Consideration.",
+      "how_pl": "Nie udokumentowano; trofea/kamienie milowe w statusie Under Consideration.",
       "sources": [
         "https://feedback.caliberstrong.com/b/7vz226vy/feature-ideas/trophiesmilestones"
       ]
@@ -758,7 +846,9 @@
       "feature_id": "coach_client_management",
       "has": "paid",
       "how": "In-house coaches only: Premium 1-on-1 (from $200/mo; users report $450/mo), coach has real-time access to workouts, cardio, body stats, nutrition, lessons; weekly review. Pro: $19/mo group coaching.",
+      "how_pl": "Tylko trenerzy zatrudnieni w firmie: Premium 1-on-1 (od 200 $/mies.; użytkownicy podają 450 $/mies.), trener ma dostęp w czasie rzeczywistym do treningów, cardio, statystyk ciała, żywienia, lekcji; cotygodniowy przegląd. Pro: coaching grupowy 19 $/mies.",
       "user_feedback": "'Great coach but meh app ... before you commit to $4500/year' - https://itunes.apple.com/us/rss/customerreviews/page=1/id=1482405410/sortby=mostrecent/json",
+      "user_feedback_pl": "„Great coach but meh app ... before you commit to $4500/year” - https://itunes.apple.com/us/rss/customerreviews/page=1/id=1482405410/sortby=mostrecent/json",
       "sources": [
         "https://caliberstrong.freshdesk.com/support/solutions/articles/48001257778-account-management-user-guide",
         "https://caliberstrong.com/faqs/",
@@ -770,6 +860,7 @@
       "feature_id": "coach_assign_programs",
       "has": "paid",
       "how": "Coach programs the plan weekly (Premium); Pro gets monthly 4-week plans kept forever.",
+      "how_pl": "Trener programuje plan co tydzień (Premium); Pro dostaje miesięczne 4-tygodniowe plany zachowywane na zawsze.",
       "sources": [
         "https://caliberstrong.com/membership/",
         "https://caliberstrong.freshdesk.com/support/solutions/articles/48001257573-caliber-pro-user-guide"
@@ -780,7 +871,9 @@
       "feature_id": "coach_feedback",
       "has": "paid",
       "how": "Video form review: long-press a set > Upload Form Video; sent to coach/Pro group after workout; backend processing rebuilt in 5.2.",
+      "how_pl": "Ocena techniki z wideo: przytrzymaj serię > Upload Form Video; wysyłane do trenera/grupy Pro po treningu; przetwarzanie w backendzie przebudowane w 5.2.",
       "user_feedback": "BarBend: 'Uploading videos for form correction can be quite the hassle' - https://barbend.com/caliber-fitness-app-review/",
+      "user_feedback_pl": "BarBend: „Uploading videos for form correction can be quite the hassle” - https://barbend.com/caliber-fitness-app-review/",
       "sources": [
         "https://caliberstrong.freshdesk.com/support/solutions/articles/48001257573-caliber-pro-user-guide",
         "https://feedback.caliberstrong.com/announcements/caliber-520-video-upload-rebuild-dark-mode-sections-bug-fixes",
@@ -792,6 +885,7 @@
       "feature_id": "coach_chat",
       "has": "paid",
       "how": "In-app text/video messaging and live video calls; coach replies within hours; former clients keep read-only history.",
+      "how_pl": "Wiadomości tekstowe/wideo w aplikacji i rozmowy wideo na żywo; trener odpowiada w ciągu kilku godzin; byli klienci zachowują historię tylko do odczytu.",
       "sources": [
         "https://caliberstrong.com/faqs/",
         "https://feedback.caliberstrong.com/announcements/caliber-422-improved-offline-mode-bug-fixes"
@@ -802,6 +896,7 @@
       "feature_id": "coach_marketplace",
       "has": "no",
       "how": "Coaches are Caliber employees matched after consultation; no third-party marketplace.",
+      "how_pl": "Trenerzy to pracownicy Caliber dobierani po konsultacji; brak zewnętrznego marketplace'u.",
       "sources": [
         "https://caliberstrong.com/faqs/",
         "https://caliberstrong.com/online-personal-trainer/"
@@ -812,7 +907,9 @@
       "feature_id": "monet_model",
       "has": "yes",
       "how": "Free: unlimited workouts tracking, exercise library, circles, Apple Health. Plus $12/mo or $72/yr (discounts $6-9/mo, $36-54/yr): Library plans, Strength Score/Balance, lessons, nutrition targets, custom exercises, supersets, swaps, plate math, auto rest timer, progress photos. Supporter $3/mo (no upsell pop-ups). Pro $19/mo; Premium from $200/mo, 30-day money-back.",
+      "how_pl": "Darmowe: nielimitowane śledzenie treningów, biblioteka ćwiczeń, circles, Apple Health. Plus 12 $/mies. lub 72 $/rok (zniżki 6-9 $/mies., 36-54 $/rok): plany Library, Strength Score/Balance, lekcje, cele żywieniowe, własne ćwiczenia, superserie, zamiany, obliczanie talerzy, automatyczny timer przerw, zdjęcia postępów. Supporter 3 $/mies. (bez wyskakujących reklam dosprzedażowych). Pro 19 $/mies.; Premium od 200 $/mies., 30-dniowa gwarancja zwrotu pieniędzy.",
       "user_feedback": "Most 1-star reviews: ads say 'free' but onboarding ends in 7-day trial/paywall; cardio logging not free - https://itunes.apple.com/us/rss/customerreviews/page=2/id=1482405410/sortby=mostrecent/json",
+      "user_feedback_pl": "Większość recenzji na 1 gwiazdkę: reklamy mówią „free”, ale onboarding kończy się 7-dniowym okresem próbnym/paywallem; logowanie cardio nie jest darmowe - https://itunes.apple.com/us/rss/customerreviews/page=2/id=1482405410/sortby=mostrecent/json",
       "sources": [
         "https://apps.apple.com/us/app/caliber-strength-training/id1482405410",
         "https://caliberstrong.freshdesk.com/support/solutions/articles/48001257778-account-management-user-guide",
@@ -826,6 +923,7 @@
       "feature_id": "ux_units",
       "has": "partial",
       "how": "Global units for distance, weight, length (set in registration); cannot switch lbs/kg during active workout; no per-exercise units.",
+      "how_pl": "Globalne jednostki dystansu, ciężaru, długości (ustawiane przy rejestracji); nie można przełączać lbs/kg podczas aktywnego treningu; brak jednostek dla pojedynczego ćwiczenia.",
       "sources": [
         "https://caliberstrong.freshdesk.com/support/solutions/articles/48001257778-account-management-user-guide",
         "https://feedback.caliberstrong.com/announcements/caliber-3112-startscheduling-ux-updates-training-plan-screen-adjustments"
@@ -836,6 +934,7 @@
       "feature_id": "ux_theme",
       "has": "yes",
       "how": "Dark mode rolled out 5.0-5.7 (Dec 2024-Oct 2025); pure-black theme planned.",
+      "how_pl": "Tryb ciemny wprowadzany w 5.0-5.7 (gru 2024-paź 2025); planowany czarny motyw (pure-black).",
       "sources": [
         "https://feedback.caliberstrong.com/announcements/caliber-500-dark-mode-phase-1-and-more",
         "https://feedback.caliberstrong.com/announcements/caliber-510-track-tab-enhancements-more-dark-mode-screens-bug-fixes",
@@ -847,7 +946,9 @@
       "feature_id": "ux_languages",
       "has": "no",
       "how": "English only.",
+      "how_pl": "Tylko angielski.",
       "user_feedback": "DD/MM/YYYY date format request Under Consideration - https://feedback.caliberstrong.com/b/7vz226vy/feature-ideas/ddmmyyyy-format",
+      "user_feedback_pl": "Prośba o format daty DD/MM/YYYY w statusie Under Consideration - https://feedback.caliberstrong.com/b/7vz226vy/feature-ideas/ddmmyyyy-format",
       "sources": [
         "https://apps.apple.com/us/app/caliber-strength-training/id1482405410"
       ]
@@ -857,6 +958,7 @@
       "feature_id": "ux_accessibility",
       "has": "partial",
       "how": "No declared App Store accessibility features; fixes for 'Reduce motion'/'Remove animations' breaking buttons.",
+      "how_pl": "Brak zadeklarowanych funkcji dostępności w App Store; poprawki błędów, w których „Reduce motion”/„Remove animations” psuły przyciski.",
       "sources": [
         "https://apps.apple.com/us/app/caliber-strength-training/id1482405410",
         "https://feedback.caliberstrong.com/announcements/caliber-510-track-tab-enhancements-more-dark-mode-screens-bug-fixes",
@@ -868,7 +970,9 @@
       "feature_id": "ux_onboarding",
       "has": "yes",
       "how": "Registration flow with goal/experience/equipment questions, birthday (needed for Strength Score), units; dismissible explanatory widgets; ends with generated plan + Plus paywall.",
+      "how_pl": "Proces rejestracji z pytaniami o cel/doświadczenie/sprzęt, datę urodzenia (potrzebna do Strength Score), jednostki; zamykane widżety wyjaśniające; kończy się wygenerowanym planem + paywallem Plus.",
       "user_feedback": "'ridiculous that i have to answer 15+ questions, make an account' - https://itunes.apple.com/us/rss/customerreviews/page=1/id=1482405410/sortby=mostrecent/json",
+      "user_feedback_pl": "„ridiculous that i have to answer 15+ questions, make an account” - https://itunes.apple.com/us/rss/customerreviews/page=1/id=1482405410/sortby=mostrecent/json",
       "sources": [
         "https://feedback.caliberstrong.com/announcements/release-notes-caliber-225226-registration-flow-updates",
         "https://feedback.caliberstrong.com/announcements/caliber-3127-home-screen-and-calendar-revamp-activity-summaries",
@@ -880,6 +984,7 @@
       "feature_id": "ux_offline",
       "has": "partial",
       "how": "Offline mode: start/track/save workouts, view dashboard/plans; cached videos only; other screens unavailable.",
+      "how_pl": "Tryb offline: rozpoczynanie/śledzenie/zapisywanie treningów, podgląd pulpitu/planów; tylko filmy z pamięci podręcznej; pozostałe ekrany niedostępne.",
       "sources": [
         "https://feedback.caliberstrong.com/announcements/release-notes-caliber-224-offline-mode",
         "https://feedback.caliberstrong.com/announcements/caliber-422-improved-offline-mode-bug-fixes",
@@ -891,6 +996,7 @@
       "feature_id": "ux_privacy",
       "has": "partial",
       "how": "Account required (email); App Store: Health & Fitness, contact info, photos/videos, identifiers linked to identity. Account deletion in-app deletes all data.",
+      "how_pl": "Wymagane konto (e-mail); App Store: Health & Fitness, dane kontaktowe, zdjęcia/wideo, identyfikatory powiązane z tożsamością. Usunięcie konta w aplikacji usuwa wszystkie dane.",
       "sources": [
         "https://apps.apple.com/us/app/caliber-strength-training/id1482405410",
         "https://caliberstrong.freshdesk.com/support/solutions/articles/48001256908-how-do-i-delete-my-caliber-account-"
@@ -901,6 +1007,7 @@
       "feature_id": "new:strength_balance",
       "has": "paid",
       "how": "Same methodology as Strength Score, shows balance across muscle groups to fix imbalances; tappable muscle-group trend 1/3/6 months.",
+      "how_pl": "Ta sama metodologia co Strength Score, pokazuje równowagę między grupami mięśniowymi, aby korygować dysproporcje; trend grupy mięśniowej do stuknięcia z 1/3/6 miesięcy.",
       "sources": [
         "https://caliberstrong.freshdesk.com/support/solutions/articles/48001257574-strength-score-user-guide"
       ]
@@ -910,6 +1017,7 @@
       "feature_id": "new:exclude_workout_from_strength_score",
       "has": "yes",
       "how": "Per-workout toggle 'Exclude from Strength Score' for deloads/injury/travel.",
+      "how_pl": "Przełącznik „Exclude from Strength Score” dla każdego treningu (deload/kontuzja/podróż).",
       "sources": [
         "https://feedback.caliberstrong.com/announcements/caliber-310-workout-sharing-disable-strength-score-for-workouts-fix-for-logout-issue",
         "https://caliberstrong.freshdesk.com/support/solutions/articles/48001257776-caliber-app-user-guide"
@@ -920,6 +1028,7 @@
       "feature_id": "new:mcp_server_ai_connectors",
       "has": "yes",
       "how": "Official MCP server (Jul 2026) lets ChatGPT and Claude read Caliber training data; Menu > Connected Apps.",
+      "how_pl": "Oficjalny serwer MCP (lip 2026) pozwala ChatGPT i Claude czytać dane treningowe Caliber; Menu > Connected Apps.",
       "sources": [
         "https://apps.apple.com/us/app/caliber-strength-training/id1482405410",
         "https://feedback.caliberstrong.com/announcements/caliber-514-515-improvements-to-exercise-search-progress-photo-gallery-revamp-mcp-support-for-chatgp"
@@ -930,6 +1039,7 @@
       "feature_id": "new:strava_sync",
       "has": "yes",
       "how": "Auto-post strength workouts (exercises, sets, PR count, volume) to Strava; per-workout opt-out (5.10).",
+      "how_pl": "Automatyczne publikowanie treningów siłowych (ćwiczenia, serie, liczba PR, objętość) na Stravie; rezygnacja dla pojedynczego treningu (5.10).",
       "sources": [
         "https://feedback.caliberstrong.com/announcements/caliber-5100-strava-integration-workout-summarypr-sharing"
       ]
@@ -939,6 +1049,7 @@
       "feature_id": "new:nutrition_sync_targets",
       "has": "paid",
       "how": "Nutrition from Cronometer (direct), MyFitnessPal/FatSecret (via Health/Google Fit); Nutrition Wizard sets calorie/macro targets shown vs actuals (Plus).",
+      "how_pl": "Żywienie z Cronometer (bezpośrednio), MyFitnessPal/FatSecret (przez Health/Google Fit); Nutrition Wizard ustawia cele kalorii/makroskładników pokazywane vs. wartości rzeczywiste (Plus).",
       "sources": [
         "https://caliberstrong.freshdesk.com/support/solutions/articles/48001257617-connected-apps-and-data-syncing-user-guide",
         "https://feedback.caliberstrong.com/announcements/caliber-400-workout-library-nutrition-targets-updated-plans-screen-uxui"
@@ -949,6 +1060,7 @@
       "feature_id": "new:cardio_and_habits",
       "has": "yes",
       "how": "Cardio activities (incl. custom), steps, nutrition logged/synced as Home 'activities' and charted under Habits/Cardio.",
+      "how_pl": "Aktywności cardio (w tym własne), kroki, żywienie logowane/synchronizowane jako „activities” na Home i pokazywane na wykresach w Habits/Cardio.",
       "sources": [
         "https://feedback.caliberstrong.com/announcements/caliber-330-new-cardio-activities-cardio-notes-activity-ui-enhancements",
         "https://feedback.caliberstrong.com/announcements/caliber-5130-progress-section-revamp-1",
@@ -960,6 +1072,7 @@
       "feature_id": "new:caliber_lessons",
       "has": "paid",
       "how": "Weekly expert lessons on training, nutrition, habits (Plus).",
+      "how_pl": "Cotygodniowe lekcje ekspertów o treningu, żywieniu, nawykach (Plus).",
       "sources": [
         "https://apps.apple.com/us/app/caliber-strength-training/id1482405410",
         "https://caliberstrong.com/membership/"
@@ -970,6 +1083,7 @@
       "feature_id": "new:default_exercise_targets",
       "has": "yes",
       "how": "Global default sets/reps/time/rest for exercises without own targets (5.4).",
+      "how_pl": "Globalne domyślne serie/powtórzenia/czas/przerwa dla ćwiczeń bez własnych celów (5.4).",
       "sources": [
         "https://feedback.caliberstrong.com/announcements/caliber-540-custom-keyboard-automatic-rest-timer-default-exercise-settings-sundaymonday-start-date-g"
       ]
@@ -979,6 +1093,7 @@
       "feature_id": "new:week_start_setting",
       "has": "yes",
       "how": "Sunday/Monday week start; Strength metrics update aligned (5.4).",
+      "how_pl": "Początek tygodnia w niedzielę/poniedziałek; metryki siły aktualizują się zgodnie z tym (5.4).",
       "sources": [
         "https://feedback.caliberstrong.com/announcements/caliber-540-custom-keyboard-automatic-rest-timer-default-exercise-settings-sundaymonday-start-date-g"
       ]
@@ -988,6 +1103,7 @@
       "feature_id": "new:feature_request_board",
       "has": "yes",
       "how": "Public Frill board (ideas, votes, roadmap, detailed release notes by the founder) linked in-app.",
+      "how_pl": "Publiczna tablica Frill (pomysły, głosy, roadmapa, szczegółowe notatki wydania od założyciela) podlinkowana w aplikacji.",
       "sources": [
         "https://feedback.caliberstrong.com/",
         "https://feedback.caliberstrong.com/announcements/release-notes-caliber-220-create-workouts-from-scratch-in-app-feature-requests"
@@ -998,6 +1114,7 @@
       "feature_id": "new:workout_rating",
       "has": "yes",
       "how": "Post-workout rating slider + note; history of ratings/notes per workout in Notes section.",
+      "how_pl": "Suwak oceny po treningu + notatka; historia ocen/notatek dla każdego treningu w sekcji Notes.",
       "sources": [
         "https://feedback.caliberstrong.com/announcements/caliber-420-workout-overview-screen-updates",
         "https://feedback.caliberstrong.com/announcements/caliber-5120-realtime-prs-new-workout-summary-screen-various-bug-fixes"

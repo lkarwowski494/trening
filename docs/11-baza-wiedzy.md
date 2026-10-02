@@ -1,7 +1,7 @@
 # Baza wiedzy funkcji — Trening vs 10 aplikacji (wnioski)
 
 Stan: 02.10.2026. Dane: `docs/research/kb/<aplikacja>.json` (jedno źródło prawdy; format `SCHEMA.md`), z nich generowane `matrix.csv` i strona „Baza wiedzy” (`python3 scripts/kb/build.py`). Nasza kolumna powstała **z kodu**, nie z dokumentacji (lekcja 2).
-Strona z całą bazą (opis działania i źródła w każdej komórce): artefakt „Baza wiedzy funkcji”, https://claude.ai/artifact/2R1cP4dA3zmvZC9wLHj5mF (prywatny). Opisy działania w bazie są po angielsku (tak je zebrali badacze).
+Strona z całą bazą (opis działania i źródła w każdej komórce): artefakt „Baza wiedzy funkcji”, https://claude.ai/artifact/2R1cP4dA3zmvZC9wLHj5mF (prywatny). Opisy działania są po polsku (tłumaczenie 03.10; angielskie oryginały badaczy zostają w plikach JSON jako „how”).
 Aplikacje: Strong, Hevy, Fitbod, Alpha Progression, Liftosaur, StrengthLog, JEFIT, Boostcamp, SmartGym, Caliber. 83 funkcje ze wspólnej listy + funkcje spoza listy znalezione u poszczególnych aplikacji (razem 187 wierszy).
 
 **Jak czytać:** ✓ jest · $ płatne · ◐ częściowo · ✗ brak · ? nie udało się ustalić · puste = nie sprawdzano. Funkcje „spoza listy” były sprawdzane tylko w aplikacji, w której je znaleziono — puste pole tam **nie znaczy „brak”**. Dlatego nie wyciągam z nich wniosków „tylko my to mamy”, poza miejscami, gdzie badacze opisali to wprost w funkcji z listy.

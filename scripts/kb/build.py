@@ -87,7 +87,7 @@ def load():
         for x in d['features']:
             c = canon(x['feature_id'])
             if c in feats:  # dwie nazwy u jednej aplikacji → łączymy opis
-                feats[c]['how'] += ' | ' + x['how']; feats[c]['sources'] += x.get('sources', [])
+                feats[c]['how'] += ' | ' + x['how']; feats[c]['how_pl'] = (feats[c].get('how_pl') or feats[c]['how']) + ' | ' + (x.get('how_pl') or x['how']); feats[c]['sources'] += x.get('sources', [])
                 if feats[c]['has'] not in ('yes', 'paid') and x['has'] in ('yes', 'paid', 'partial'): feats[c]['has'] = x['has']
             else:
                 feats[c] = dict(x, feature_id=c)
@@ -109,13 +109,13 @@ def main():
         cells = [apps[a]['feats'].get(fid) for a in names]
         n_others = sum({'yes': 1, 'paid': 1, 'partial': .5}.get((c or {}).get('has'), 0) for c in cells[1:])
         rows.append({'id': fid, 'area': area, 'areaPL': PL.get(area, area), 'label': LABEL.get(fid, fid[4:].replace('_', ' ')), 'others': n_others,
-                     'cells': [None if c is None else {'has': c['has'], 'how': c.get('how', ''), 'fb': c.get('user_feedback', ''), 'src': c.get('sources', [])} for c in cells]})
+                     'cells': [None if c is None else {'has': c['has'], 'how': c.get('how_pl') or c.get('how', ''), 'fb': c.get('user_feedback_pl') or c.get('user_feedback', ''), 'src': c.get('sources', [])} for c in cells]})
     with open(os.path.join(KB, 'matrix.csv'), 'w', newline='') as fh:
         w = csv.writer(fh)
         w.writerow(['Obszar', 'Funkcja', 'id', 'Ile innych ma (z 10)'] + names)
         for r in rows:
             w.writerow([r['areaPL'], r['label'], r['id'], r['others']] + [SYM.get(c['has'], c['has']) if c else '' for c in r['cells']])
-    meta = [{'app': a, 'pricing': apps[a].get('pricing', ''), 'platforms': apps[a].get('platforms', ''), 'positioning': apps[a].get('positioning', ''), 'checked': apps[a].get('version_or_date_checked', '')} for a in names]
+    meta = [{'app': a, 'pricing': apps[a].get('pricing_pl') or apps[a].get('pricing', ''), 'platforms': apps[a].get('platforms_pl') or apps[a].get('platforms', ''), 'positioning': apps[a].get('positioning_pl') or apps[a].get('positioning', ''), 'checked': apps[a].get('version_or_date_checked', '')} for a in names]
     data = {'apps': names, 'meta': meta, 'rows': rows}
     json.dump(data, open(os.path.join(KB, 'kb-data.json'), 'w'), ensure_ascii=False)
     page = open(os.path.join(ROOT, 'scripts/kb/page.html')).read()

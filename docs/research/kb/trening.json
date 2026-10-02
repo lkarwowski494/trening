@@ -2,14 +2,18 @@
   "app": "Trening (nasza)",
   "version_or_date_checked": "0.8.4 (schemaVersion 13), code read 2026-10-02",
   "pricing": "Free, personal app; no monetization code. Not on the App Store: installed ad hoc via EAS (paid Apple Developer account) or sideloaded (Sideloadly, free Apple ID).",
+  "pricing_pl": "Darmowa, osobista aplikacja; brak kodu monetyzacji. Nie ma jej w App Store: instalowana ad hoc przez EAS (płatne konto Apple Developer) lub sideloadowana (Sideloadly, darmowe Apple ID).",
   "platforms": "iOS, iPhone only (supportsTablet: false); Live Activity needs iOS 16.2+. An Android package id exists in app.json, but no Android build or workflow exists. No Watch app. Web export is used only for screenshot tests.",
+  "platforms_pl": "iOS, tylko iPhone (supportsTablet: false); Live Activity wymaga iOS 16.2+. W app.json jest identyfikator pakietu Androida, ale nie istnieje build ani workflow dla Androida. Brak aplikacji na Watch. Eksport webowy służy wyłącznie do testów zrzutów ekranu.",
   "positioning": "Offline-first, account-free Strong-style strength logger in Polish/English with a local SQLite store, Live Activity rest timer and detailed set-logic rules (supersets, bands, load modes, progression hint).",
+  "positioning_pl": "Offline-first, bez konta, logger treningu siłowego w stylu Strong po polsku/angielsku z lokalną bazą SQLite, timerem przerw w Live Activity i szczegółowymi regułami logiki serii (superserie, gumy, tryby obciążenia, podpowiedź progresji).",
   "features": [
     {
       "area": "log",
       "feature_id": "log_set_fields",
       "has": "yes",
       "how": "Each exercise has one of 5 metric types that decide the editable set columns: weight+reps (default), reps only, time, distance+time and weight+time. You change it in the exercise editor ('Co logujesz w serii'). Bodyweight-equipment exercises show a ±kg field instead of weight. Optional RPE and band columns appear when enabled.",
+      "how_pl": "Każde ćwiczenie ma jeden z 5 typów metryki, który decyduje o edytowalnych kolumnach serii: ciężar+powtórzenia (domyślny), same powtórzenia, czas, dystans+czas oraz ciężar+czas. Zmienia się go w edytorze ćwiczenia („Co logujesz w serii”). Ćwiczenia ze sprzętem „masa ciała” pokazują pole ±kg zamiast ciężaru. Opcjonalne kolumny RPE i gumy pojawiają się po włączeniu.",
       "sources": ["lib/seed.ts:METRICS", "components/ActiveWorkout.tsx:ExerciseBlock", "app/exercise/[id].tsx"]
     },
     {
@@ -17,6 +21,7 @@
       "feature_id": "log_set_types",
       "has": "yes",
       "how": "Tap the set number to open an ActionSheet with Normal / Warm-up (W) / Drop set (D) / To failure (F) and a set note. Warm-ups are excluded from volume, records and 'Previously' numbering and can have their own rest. A drop set gets no rest before it and is excluded from e1RM and max reps. 'Failure' is not copied to the next set or into 'Repeat last'.",
+      "how_pl": "Stuknięcie numeru serii otwiera ActionSheet z opcjami Normal / Warm-up (W) / Drop set (D) / To failure (F) oraz notatką do serii. Serie rozgrzewkowe są wyłączone z objętości, rekordów i numeracji „Previously” i mogą mieć własną przerwę. Drop set nie ma przerwy przed sobą i jest wyłączony z e1RM i maksymalnych powtórzeń. „Failure” nie jest kopiowane do następnej serii ani do „Repeat last”.",
       "sources": ["lib/seed.ts:SET_KINDS", "components/ActiveWorkout.tsx:setMenu", "lib/store.ts:addSet", "lib/store.ts:restAfter", "lib/stats.ts:e1rmR"]
     },
     {
@@ -24,6 +29,7 @@
       "feature_id": "log_rpe_rir",
       "has": "yes",
       "how": "An optional RPE column, off by default, is turned on in Settings ('RPE / RIR przy serii'). It is one numeric field per set, 0–10 in 0.1 steps. It does not affect volume or records. It is shown in history and exported to the CSV RPE column. There is no separate RIR field; the same field is labelled RPE/RIR.",
+      "how_pl": "Opcjonalna kolumna RPE, domyślnie wyłączona, włącza się w Ustawieniach („RPE / RIR przy serii”). To jedno pole numeryczne na serię, 0–10 z krokiem 0,1. Nie wpływa na objętość ani rekordy. Jest pokazywane w historii i eksportowane do kolumny RPE w CSV. Nie ma osobnego pola RIR; to samo pole jest opisane jako RPE/RIR.",
       "sources": ["lib/seed.ts:Settings.showRpe", "components/ActiveWorkout.tsx:ExerciseBlock", "app/more/settings.tsx", "lib/backup.ts:buildCsv"]
     },
     {
@@ -31,6 +37,7 @@
       "feature_id": "log_previous_values",
       "has": "yes",
       "how": "A 'Previously' column shows the matching working set from the last finished workout containing that exercise. It matches within set family (normal/failure ↔ normal, drop ↔ drop); warm-ups get none and don't shift numbering. Sessions with only drop sets are skipped. When an exercise appears several times in a template, it matches by template item id or block index. On narrow screens the column moves under the row.",
+      "how_pl": "Kolumna „Previously” pokazuje odpowiadającą serię roboczą z ostatniego zakończonego treningu zawierającego to ćwiczenie. Dopasowanie następuje w obrębie rodziny serii (normal/failure ↔ normal, drop ↔ drop); serie rozgrzewkowe nie mają wartości i nie przesuwają numeracji. Sesje zawierające tylko drop sety są pomijane. Gdy ćwiczenie występuje w szablonie kilka razy, dopasowanie następuje po id elementu szablonu lub indeksie bloku. Na wąskich ekranach kolumna przenosi się pod wiersz.",
       "sources": ["lib/store.ts:previousBlockFor", "lib/store.ts:hintFor", "lib/store.ts:prevCache", "components/ActiveWorkout.tsx:rowLayout"]
     },
     {
@@ -38,6 +45,7 @@
       "feature_id": "log_autofill",
       "has": "yes",
       "how": "Starting from a template pre-fills each set from the previous session's working sets, falling back to the template start weight. Time targets come from the template, never from the old result. Ticking an empty set fills its empty fields from the visible 'Previously' hint, or reps from the template's rep-range minimum. Manually typed fields copy to the next unticked set of the same family; time does not. Un-ticking clears only the values that were auto-filled.",
+      "how_pl": "Start z szablonu wstępnie wypełnia każdą serię seriami roboczymi z poprzedniej sesji, a w razie braku - ciężarem startowym z szablonu. Cele czasowe pochodzą z szablonu, nigdy z dawnego wyniku. Odhaczenie pustej serii wypełnia jej puste pola z widocznej podpowiedzi „Previously” lub powtórzenia z minimum zakresu powtórzeń szablonu. Pola wpisane ręcznie kopiują się do następnej nieodhaczonej serii tej samej rodziny; czas nie. Cofnięcie odhaczenia czyści tylko wartości wypełnione automatycznie.",
       "sources": ["lib/store.ts:startFromTemplate", "lib/store.ts:fillFromHints", "lib/store.ts:toggleDone"]
     },
     {
@@ -45,6 +53,7 @@
       "feature_id": "log_notes",
       "has": "yes",
       "how": "There are three note levels. A workout note is a free-text field at the bottom of the active workout (max 1000 chars). A set note is added from the set-number menu (max 300 chars) and shown as • plus text under the set. Exercise 'technical notes' (max 2000 chars) live in the exercise editor but are not shown during the workout. Set and workout notes go to the CSV Notes / Workout Notes columns.",
+      "how_pl": "Są trzy poziomy notatek. Notatka do treningu to pole tekstowe na dole aktywnego treningu (maks. 1000 znaków). Notatkę do serii dodaje się z menu numeru serii (maks. 300 znaków) i pokazuje jako • plus tekst pod serią. „Notatki techniczne” ćwiczenia (maks. 2000 znaków) są w edytorze ćwiczenia, ale nie są pokazywane podczas treningu. Notatki do serii i treningu trafiają do kolumn CSV Notes / Workout Notes.",
       "sources": ["components/ActiveWorkout.tsx", "app/exercise/[id].tsx", "lib/backup.ts:buildCsv"]
     },
     {
@@ -52,6 +61,7 @@
       "feature_id": "log_supersets",
       "has": "yes",
       "how": "'⇅ SS' links an exercise with the next one, in the workout or template; '✂' removes it. Groups must be contiguous with 2+ exercises (normalizeGroups) and are labelled SS A, B, C… Groups can have N exercises, so circuits work. The rest timer starts only when the round closes, counted by completed sets rather than tick order. The rest used is that of the group's last exercise.",
+      "how_pl": "„⇅ SS” łączy ćwiczenie z następnym, w treningu lub szablonie; „✂” usuwa połączenie. Grupy muszą być ciągłe i mieć 2+ ćwiczeń (normalizeGroups) i są oznaczane SS A, B, C… Grupy mogą mieć N ćwiczeń, więc działają obwody. Timer przerwy startuje dopiero po zamknięciu rundy, liczonej według ukończonych serii, a nie kolejności odhaczeń. Używana jest przerwa ostatniego ćwiczenia grupy.",
       "sources": ["lib/store.ts:linkWithNext", "lib/store.ts:normalizeGroups", "lib/store.ts:restAfter", "lib/store.ts:roundRest"]
     },
     {
@@ -59,6 +69,7 @@
       "feature_id": "log_reorder",
       "has": "yes",
       "how": "'≡ Kolejność' opens a drag-to-reorder screen, available during a workout and in the template editor. You drag by the ≡ handle with haptic feedback and auto-scroll at the edges. A superset moves as one block, and you reorder inside it with its own handles; membership never changes. VoiceOver gets move up/down actions. The template editor also has ↑/↓ buttons.",
+      "how_pl": "„≡ Kolejność” otwiera ekran zmiany kolejności przeciąganiem, dostępny podczas treningu i w edytorze szablonu. Przeciąga się za uchwyt ≡ z odpowiedzią haptyczną i automatycznym przewijaniem przy krawędziach. Superseria przesuwa się jako jeden blok, a wewnątrz niej kolejność zmienia się jej własnymi uchwytami; przynależność nigdy się nie zmienia. VoiceOver ma akcje przesuń w górę/w dół. Edytor szablonu ma też przyciski ↑/↓.",
       "sources": ["app/reorder.tsx", "components/DragList.tsx", "lib/store.ts:moveBlockOf", "lib/store.ts:moveInGroup"]
     },
     {
@@ -66,6 +77,7 @@
       "feature_id": "log_replace_exercise",
       "has": "no",
       "how": "There is no swap/replace action. During a workout you can only 'usuń' (remove) an exercise and '+ Dodaj ćwiczenie' (add) another, which is appended at the end.",
+      "how_pl": "Nie ma akcji zamiany. Podczas treningu można tylko „usuń” ćwiczenie i „+ Dodaj ćwiczenie” inne, które jest dopisywane na końcu.",
       "sources": ["components/ActiveWorkout.tsx:ExerciseBlock", "lib/store.ts:addExerciseToActive"]
     },
     {
@@ -73,6 +85,7 @@
       "feature_id": "log_plate_calculator",
       "has": "no",
       "how": "No plate calculator in code. Equipment is only an exercise attribute; no bar or plate inventory exists.",
+      "how_pl": "Brak kalkulatora talerzy w kodzie. Sprzęt jest tylko atrybutem ćwiczenia; nie ma zasobu gryfów ani talerzy.",
       "sources": ["lib/seed.ts", "components/ActiveWorkout.tsx"]
     },
     {
@@ -80,6 +93,7 @@
       "feature_id": "log_warmup_calculator",
       "has": "no",
       "how": "No warm-up set generator. You add warm-up sets manually by marking a set as W.",
+      "how_pl": "Brak generatora serii rozgrzewkowych. Serie rozgrzewkowe dodaje się ręcznie, oznaczając serię jako W.",
       "sources": ["components/ActiveWorkout.tsx:setMenu"]
     },
     {
@@ -87,6 +101,7 @@
       "feature_id": "log_bodyweight_assisted",
       "has": "yes",
       "how": "Bodyweight exercises log '±kg': plus is added load, minus is assistance. Exercises flagged 'Asysta gumą' (e.g. Pull Up, Chin Up, Dip, Nordic) get a band column; tapping it cycles through the user's bands by level and fills −nominal kg. Body mass is never used in calculations (schema 13). The record is total unassisted reps, and e1RM/volume use added load only.",
+      "how_pl": "Ćwiczenia z masą ciała logują „±kg”: plus to dodatkowe obciążenie, minus to odciążenie. Ćwiczenia oznaczone „Asysta gumą” (np. Pull Up, Chin Up, Dip, Nordic) mają kolumnę gumy; stuknięcie przełącza cyklicznie gumy użytkownika według poziomu i wpisuje −nominalne kg. Masa ciała nigdy nie jest używana w obliczeniach (schema 13). Rekord to suma powtórzeń bez asysty, a e1RM/objętość używają tylko dodanego obciążenia.",
       "sources": ["lib/store.ts:setLoad", "lib/store.ts:effectiveLoad", "lib/store.ts:applyBandAssist", "components/ActiveWorkout.tsx:cycleBand", "lib/stats.ts:totalKind"]
     },
     {
@@ -94,6 +109,7 @@
       "feature_id": "log_unilateral",
       "has": "partial",
       "how": "An exercise can have load mode 'unilateral' (per side, ×2 in volume). The column then reads 'kg/str.' and e1RM/max weight are labelled 'per side'. There are no separate left/right reps or weights per set.",
+      "how_pl": "Ćwiczenie może mieć tryb obciążenia „unilateral” (na stronę, ×2 w objętości). Kolumna ma wtedy nagłówek „kg/str.”, a e1RM/maksymalny ciężar są opisane „per side”. Nie ma osobnych powtórzeń ani ciężarów dla lewej/prawej strony w serii.",
       "sources": ["lib/seed.ts:LoadMode", "lib/store.ts:loadLabel", "app/more/progress.tsx"]
     },
     {
@@ -101,6 +117,7 @@
       "feature_id": "log_tempo",
       "has": "partial",
       "how": "Each exercise has an optional free-text tempo field (e.g. '3-1-1', max 20 chars). It appears in the exercise header during the workout and in the exercise list. There is no per-set tempo and no tempo metronome or timer.",
+      "how_pl": "Każde ćwiczenie ma opcjonalne pole tekstowe tempa (np. „3-1-1”, maks. 20 znaków). Pojawia się w nagłówku ćwiczenia podczas treningu i na liście ćwiczeń. Nie ma tempa dla pojedynczej serii ani metronomu/timera tempa.",
       "sources": ["lib/seed.ts:Exercise.tempo", "app/exercise/[id].tsx", "components/ActiveWorkout.tsx:headMeta"]
     },
     {
@@ -108,6 +125,7 @@
       "feature_id": "log_empty_workout",
       "has": "yes",
       "how": "The 'Pusty trening' button on the Trening tab starts a workout with no template; you add exercises with the picker.",
+      "how_pl": "Przycisk „Pusty trening” na karcie Trening rozpoczyna trening bez szablonu; ćwiczenia dodaje się selektorem.",
       "sources": ["lib/store.ts:startEmpty", "app/(tabs)/index.tsx:Home"]
     },
     {
@@ -115,6 +133,7 @@
       "feature_id": "log_edit_past",
       "has": "no",
       "how": "The finished-session screen (history/[id]) is read-only except for 'Usuń sesję' (delete). You cannot edit sets, add sets or backdate a workout. Start and finish time are always 'now', apart from the abandoned-workout end time.",
+      "how_pl": "Ekran zakończonej sesji (history/[id]) jest tylko do odczytu poza „Usuń sesję” (usunięcie). Nie można edytować serii, dodawać serii ani datować treningu wstecz. Czas startu i końca to zawsze „teraz”, poza czasem zakończenia porzuconego treningu.",
       "sources": ["app/history/[id].tsx", "lib/store.ts:deleteWorkout"]
     },
     {
@@ -122,6 +141,7 @@
       "feature_id": "log_one_hand_ux",
       "has": "yes",
       "how": "✓, ▶, set number and band targets are 44 pt (tested). The keyboard hides on ✓ or stopwatch start so the rest bar stays visible. Fields use number-pad or decimal-pad, or numbers-and-punctuation for ±kg because the iOS number pad has no minus. Fields accept comma or dot decimals and select their text on focus. A compact column layout is used for 320 pt screens. Typical start-to-first-set flow is 2 taps (Start, ✓).",
+      "how_pl": "✓, ▶, numer serii i cele gum mają 44 pt (przetestowane). Klawiatura chowa się po ✓ lub starcie stopera, żeby pasek przerwy pozostał widoczny. Pola używają klawiatury numerycznej lub dziesiętnej, a dla ±kg numbers-and-punctuation, bo numeryczna klawiatura iOS nie ma minusa. Pola akceptują przecinek lub kropkę dziesiętną i zaznaczają tekst po aktywacji. Dla ekranów 320 pt stosowany jest kompaktowy układ kolumn. Typowy przebieg od startu do pierwszej serii to 2 stuknięcia (Start, ✓).",
       "sources": ["components/ui.tsx:NumInput", "components/ActiveWorkout.tsx:rowLayout", "components/ActiveWorkout.tsx:onDone", "docs/09-plan-testow.md:C1-C4"]
     },
     {
@@ -129,6 +149,7 @@
       "feature_id": "timer_auto_rest",
       "has": "yes",
       "how": "Ticking a set starts the rest countdown, shown in a bottom bar with −15 / +15 / Pomiń (skip). Exceptions: no rest before an unticked drop set; inside a superset only after the round closes; rest 0 means no timer. Un-ticking stops the rest only if that set started it. After a timed set, rest counts from the set's end time.",
+      "how_pl": "Odhaczenie serii uruchamia odliczanie przerwy, pokazywane w dolnym pasku z −15 / +15 / Pomiń. Wyjątki: brak przerwy przed nieodhaczonym drop setem; w superserii dopiero po zamknięciu rundy; przerwa 0 oznacza brak timera. Cofnięcie odhaczenia zatrzymuje przerwę tylko wtedy, gdy to ta seria ją uruchomiła. Po serii czasowej przerwa liczona jest od czasu zakończenia serii.",
       "sources": ["components/ActiveWorkout.tsx:onDone", "lib/store.ts:restAfter", "lib/timer.ts:start", "lib/timer.ts:adjust"]
     },
     {
@@ -136,6 +157,7 @@
       "feature_id": "timer_per_exercise",
       "has": "yes",
       "how": "Rest is resolved in this order: template item rest, then exercise rest, then global default (90 s, max 1800 s). Each exercise can also have a separate post-warm-up rest. During a workout the ⏱ button asks 'Tylko teraz' (this block only) or 'Zapamiętaj' (save to the exercise and the source template item).",
+      "how_pl": "Przerwa jest ustalana w tej kolejności: przerwa elementu szablonu, potem przerwa ćwiczenia, potem globalna domyślna (90 s, maks. 1800 s). Każde ćwiczenie może mieć też osobną przerwę po rozgrzewce. Podczas treningu przycisk ⏱ pyta „Tylko teraz” (tylko ten blok) lub „Zapamiętaj” (zapis do ćwiczenia i do elementu szablonu źródłowego).",
       "sources": ["lib/store.ts:restFor", "lib/store.ts:startFromTemplate", "components/ActiveWorkout.tsx:rememberRest", "app/exercise/[id].tsx"]
     },
     {
@@ -143,6 +165,7 @@
       "feature_id": "timer_notifications",
       "has": "yes",
       "how": "A local notification ('Przerwa minęła') is scheduled for rest end, plus one for timed-set end ('Seria skończona'), so they fire on the lock screen. Haptics play at the end in-app. The 'Dźwięk i wibracja' toggle controls sound and haptics. No push or aps entitlement is used; it is stripped by a config plugin.",
+      "how_pl": "Lokalne powiadomienie („Przerwa minęła”) jest planowane na koniec przerwy, plus jedno na koniec serii czasowej („Seria skończona”), dzięki czemu pojawiają się na ekranie blokady. W aplikacji na koniec odtwarzana jest haptyka. Przełącznik „Dźwięk i wibracja” steruje dźwiękiem i haptyką. Nie używa się push ani uprawnienia aps; jest ono usuwane przez plugin konfiguracyjny.",
       "sources": ["lib/timer.ts:reschedule", "lib/timer.ts:scheduleSetEnd", "lib/timer.ts:tick", "plugins/withoutPushEntitlement.js"]
     },
     {
@@ -150,6 +173,7 @@
       "feature_id": "timer_live_activity",
       "has": "yes",
       "how": "A Live Activity on the lock screen and Dynamic Island (iOS 16.2+) shows the rest countdown or a timed set with a target. It displays the workout name and the next set or exercise, and the system counts down. One activity runs at a time; when one timer ends, the other running timer takes it over. Built with the local Expo module modules/rest-activity (ActivityKit) and the widget extension targets/rest-widget.",
+      "how_pl": "Live Activity na ekranie blokady i w Dynamic Island (iOS 16.2+) pokazuje odliczanie przerwy lub serię czasową z celem. Wyświetla nazwę treningu i następną serię lub ćwiczenie, a odliczanie realizuje system. Działa jedna aktywność naraz; gdy jeden timer się kończy, przejmuje ją drugi działający timer. Zbudowane lokalnym modułem Expo modules/rest-activity (ActivityKit) i rozszerzeniem widżetu targets/rest-widget.",
       "sources": ["modules/rest-activity/index.ts", "targets/rest-widget/RestLiveActivity.swift", "lib/timer.ts:laStart", "lib/timer.ts:handover"]
     },
     {
@@ -157,6 +181,7 @@
       "feature_id": "timer_set_stopwatch",
       "has": "yes",
       "how": "Time-based metrics get a ▶ button per set. With a target (set value or template 'cel s') it counts down, alerts, and auto-ticks the set with time capped at the target. Without a target it counts up until ✓ or 'Zakończ serię'. Re-measuring a ticked set asks for confirmation. Only one timer runs at a time; starting a stopwatch stops the rest timer.",
+      "how_pl": "Metryki czasowe mają przycisk ▶ przy każdej serii. Z celem (wartość serii lub „cel s” z szablonu) odlicza, alarmuje i automatycznie odhacza serię z czasem ograniczonym do celu. Bez celu liczy w górę do ✓ lub „Zakończ serię”. Ponowny pomiar odhaczonej serii wymaga potwierdzenia. Działa tylko jeden timer naraz; start stopera zatrzymuje timer przerwy.",
       "sources": ["lib/timer.ts:startSet", "lib/timer.ts:stopSet", "components/ActiveWorkout.tsx:finishTimedSet", "components/ActiveWorkout.tsx:TimerBar"]
     },
     {
@@ -164,6 +189,7 @@
       "feature_id": "timer_workout_duration",
       "has": "yes",
       "how": "The workout header shows start time and an elapsed clock (h:mm:ss) updated every second. Duration is stored as startedAt/finishedAt and shown in history and the CSV Duration column.",
+      "how_pl": "Nagłówek treningu pokazuje czas startu i zegar upływu czasu (h:mm:ss) odświeżany co sekundę. Czas trwania jest zapisywany jako startedAt/finishedAt i pokazywany w historii i kolumnie CSV Duration.",
       "sources": ["components/ActiveWorkout.tsx:SessionClock", "app/(tabs)/history.tsx", "lib/backup.ts:buildCsv"]
     },
     {
@@ -171,6 +197,7 @@
       "feature_id": "timer_abandoned_workout",
       "has": "yes",
       "how": "After 2 h without a ticked set (or since the last 'Kontynuuj'), opening the app shows a dialog: Continue / Finish and save (end = last set time) / Discard, with confirmation. After 6 h it auto-finishes silently, but only if working sets exist, and shows an alert. A running stopwatch counts as activity, and future-dated timestamps are ignored.",
+      "how_pl": "Po 2 h bez odhaczonej serii (lub od ostatniego „Kontynuuj”) otwarcie aplikacji pokazuje okno: Continue / Finish and save (koniec = czas ostatniej serii) / Discard, z potwierdzeniem. Po 6 h trening kończy się automatycznie po cichu, ale tylko jeśli istnieją serie robocze, i pokazuje alert. Działający stoper liczy się jako aktywność, a znaczniki czasu z przyszłości są ignorowane.",
       "sources": ["lib/store.ts:STALE_ASK_MS", "lib/store.ts:staleSince", "lib/store.ts:autoFinishStale", "components/ActiveWorkout.tsx:askStale", "app/_layout.tsx"]
     },
     {
@@ -178,6 +205,7 @@
       "feature_id": "plan_templates",
       "has": "yes",
       "how": "Templates (Szablony tab) are lists of items. Each item has sets (1–50), a rep range ('pow. od'/'do'; empty = max), rest, start weight (or ±kg) and target seconds for timed metrics, plus superset grouping. Four templates are seeded (Upper A, Upper B, Legs — gym, Legs — home). Start is on the Home list or in the editor.",
+      "how_pl": "Szablony (karta Szablony) to listy elementów. Każdy element ma serie (1–50), zakres powtórzeń („pow. od”/„do”; puste = maks.), przerwę, ciężar startowy (lub ±kg) i docelowe sekundy dla metryk czasowych, plus grupowanie w superserie. Zasiane są cztery szablony (Upper A, Upper B, Legs — gym, Legs — home). Start z listy Home lub z edytora.",
       "sources": ["lib/seed.ts:TemplateItem", "lib/seed.ts:seedState", "app/template/[id].tsx", "app/(tabs)/templates.tsx"]
     },
     {
@@ -185,6 +213,7 @@
       "feature_id": "plan_folders",
       "has": "no",
       "how": "Templates are a single flat list; there are no folders or tags.",
+      "how_pl": "Szablony to jedna płaska lista; brak folderów i tagów.",
       "sources": ["app/(tabs)/templates.tsx"]
     },
     {
@@ -192,6 +221,7 @@
       "feature_id": "plan_programs",
       "has": "no",
       "how": "There are no multi-week programs and no program library. Only individual templates exist.",
+      "how_pl": "Brak programów wielotygodniowych i biblioteki programów. Istnieją tylko pojedyncze szablony.",
       "sources": ["lib/seed.ts:State"]
     },
     {
@@ -199,6 +229,7 @@
       "feature_id": "plan_periodization",
       "has": "no",
       "how": "No deload weeks, blocks or %1RM-based prescriptions. A template's start weight is an absolute value.",
+      "how_pl": "Brak tygodni deload, bloków ani zaleceń opartych na %1RM. Ciężar startowy szablonu to wartość bezwzględna.",
       "sources": ["lib/seed.ts:TemplateItem"]
     },
     {
@@ -206,6 +237,7 @@
       "feature_id": "plan_generator",
       "has": "no",
       "how": "No algorithmic or AI workout generation. The 'recommendations' module is a disabled placeholder ('wkrótce').",
+      "how_pl": "Brak algorytmicznego ani AI generowania treningów. Moduł „recommendations” to wyłączony placeholder („wkrótce”).",
       "sources": ["lib/seed.ts:MODULES_AVAILABLE"]
     },
     {
@@ -213,6 +245,7 @@
       "feature_id": "plan_schedule",
       "has": "no",
       "how": "No calendar or weekly plan. The Home list only shows the last date each template was used ('ostatnio <date>').",
+      "how_pl": "Brak kalendarza i planu tygodniowego. Lista Home pokazuje tylko datę ostatniego użycia każdego szablonu („ostatnio <date>”).",
       "sources": ["app/(tabs)/index.tsx:Home"]
     },
     {
@@ -220,6 +253,7 @@
       "feature_id": "plan_share_templates",
       "has": "no",
       "how": "Templates can't be shared individually. They only move as part of the full JSON backup.",
+      "how_pl": "Szablonów nie można udostępniać pojedynczo. Przenoszą się tylko jako część pełnej kopii zapasowej JSON.",
       "sources": ["lib/backup.ts:exportBackup"]
     },
     {
@@ -227,6 +261,7 @@
       "feature_id": "lib_size",
       "has": "yes",
       "how": "125 built-in exercises across 11 groups (chest, back, shoulders, biceps, triceps, legs, glutes, calves, core, cardio, other). Equipment types: dumbbell, barbell, bodyweight, machine, cable, other.",
+      "how_pl": "125 wbudowanych ćwiczeń w 11 grupach (klatka, plecy, barki, biceps, triceps, nogi, pośladki, łydki, core, cardio, inne). Typy sprzętu: hantle, sztanga, masa ciała, maszyna, wyciąg, inne.",
       "sources": ["lib/seed.ts:LIB", "lib/seed.ts:GROUPS"]
     },
     {
@@ -234,6 +269,7 @@
       "feature_id": "lib_media",
       "has": "no",
       "how": "No videos, animations or built-in instructions. Only the user's own 'technical notes' and tempo text per exercise.",
+      "how_pl": "Brak filmów, animacji i wbudowanych instrukcji. Tylko własne „notatki techniczne” użytkownika i tekst tempa dla każdego ćwiczenia.",
       "sources": ["lib/seed.ts:Exercise", "app/exercise/[id].tsx"]
     },
     {
@@ -241,6 +277,7 @@
       "feature_id": "lib_custom",
       "has": "yes",
       "how": "'+ Nowe' in Exercises, or 'Utwórz „…”' from a search in the picker, creates a custom exercise. The editor covers name, group, equipment, metric, load mode, work and warm-up rest, primary/secondary muscles, band assist, tempo and notes. Library exercises are fully editable too. Deleting an exercise that has history archives it, and it can be restored from search.",
+      "how_pl": "„+ Nowe” w Ćwiczeniach lub „Utwórz „…”” z wyszukiwania w selektorze tworzy własne ćwiczenie. Edytor obejmuje nazwę, grupę, sprzęt, metrykę, tryb obciążenia, przerwę roboczą i po rozgrzewce, mięśnie główne/dodatkowe, asystę gumą, tempo i notatki. Ćwiczenia z biblioteki są również w pełni edytowalne. Usunięcie ćwiczenia z historią archiwizuje je i można je przywrócić z wyszukiwania.",
       "sources": ["lib/store.ts:newExercise", "lib/store.ts:deleteExercise", "app/exercise/[id].tsx", "app/picker.tsx"]
     },
     {
@@ -248,6 +285,7 @@
       "feature_id": "lib_muscles",
       "has": "yes",
       "how": "Each exercise has primary muscles (count 1 set) and secondary muscles (count 0.5 set) from 11 muscles: chest, back, shoulders, biceps, triceps, quads, hamstrings, glutes, calves, core, forearms. Main lifts are pre-mapped; others default from their group. Both are editable as chips.",
+      "how_pl": "Każde ćwiczenie ma mięśnie główne (liczą 1 serię) i dodatkowe (liczą 0,5 serii) spośród 11 mięśni: klatka, plecy, barki, biceps, triceps, czworogłowe, dwugłowe uda, pośladki, łydki, core, przedramiona. Główne boje są zmapowane z góry; pozostałe domyślnie według grupy. Oba można edytować jako chipy.",
       "sources": ["lib/seed.ts:MUSCLES", "lib/seed.ts:MUSCLES_BY_NAME", "app/exercise/[id].tsx"]
     },
     {
@@ -255,6 +293,7 @@
       "feature_id": "lib_equipment_filter",
       "has": "no",
       "how": "The picker can filter only by body-part group chips. Equipment is shown as a subtitle but can't be filtered on.",
+      "how_pl": "Selektor może filtrować tylko po chipach grup partii ciała. Sprzęt jest pokazywany jako podtytuł, ale nie można po nim filtrować.",
       "sources": ["app/picker.tsx"]
     },
     {
@@ -262,6 +301,7 @@
       "feature_id": "lib_search",
       "has": "yes",
       "how": "Search in the Exercises tab, picker and Progress screen ignores case and Polish diacritics ('lydki' finds 'Łydki'). It matches both the stored and translated names. An exact match is shown even when it falls outside the group filter. Archived matches offer 'Przywróć' (restore), and no match offers to create the exercise.",
+      "how_pl": "Wyszukiwanie w karcie Ćwiczenia, w selektorze i na ekranie Postępy ignoruje wielkość liter i polskie znaki diakrytyczne („lydki” znajduje „Łydki”). Dopasowuje zarówno nazwy zapisane, jak i przetłumaczone. Dokładne dopasowanie jest pokazywane nawet poza filtrem grupy. Zarchiwizowane dopasowania oferują „Przywróć”, a brak dopasowania oferuje utworzenie ćwiczenia.",
       "sources": ["lib/i18n.ts:fold", "app/picker.tsx", "app/(tabs)/exercises.tsx"]
     },
     {
@@ -269,6 +309,7 @@
       "feature_id": "lib_localization",
       "has": "yes",
       "how": "Library names are canonical (mostly English with Polish suffixes). In English, exName() translates full Polish names and the bracket suffixes (sztanga → Barbell). Custom or renamed exercises are shown as typed. Groups, equipment and muscles are translated at display time.",
+      "how_pl": "Nazwy w bibliotece są kanoniczne (głównie angielskie z polskimi przyrostkami). W angielskim exName() tłumaczy pełne polskie nazwy i przyrostki w nawiasach (sztanga → Barbell). Ćwiczenia własne lub przemianowane są pokazywane tak, jak wpisano. Grupy, sprzęt i mięśnie są tłumaczone w momencie wyświetlania.",
       "sources": ["lib/i18n.ts:exName", "lib/i18n.en.ts"]
     },
     {
@@ -276,6 +317,7 @@
       "feature_id": "prog_suggestions",
       "has": "yes",
       "how": "A silent '↑ spróbuj X' hint appears in the exercise header; it never changes entered values and can be turned off in Settings. Condition: weight+reps metric, the template has a rep max, and every previous working set (failure counts, drops excluded, none with a band) reached that max. Steps: barbell/machine +2.5 kg (+5 lb); dumbbell or unilateral +1 kg (+2.5 lb); bodyweight with assistance reduces assistance by 2.5 kg (to 0 = 'bez asysty'), with added load +2.5 kg, with no load +1 rep.",
+      "how_pl": "Dyskretna podpowiedź „↑ spróbuj X” pojawia się w nagłówku ćwiczenia; nigdy nie zmienia wpisanych wartości i można ją wyłączyć w Ustawieniach. Warunek: metryka ciężar+powtórzenia, szablon ma maksimum powtórzeń, a każda poprzednia seria robocza (failure się liczy, drop sety wykluczone, żadna z gumą) osiągnęła to maksimum. Kroki: sztanga/maszyna +2,5 kg (+5 lb); hantle lub unilateral +1 kg (+2,5 lb); masa ciała z asystą zmniejsza asystę o 2,5 kg (do 0 = „bez asysty”), z dodanym obciążeniem +2,5 kg, bez obciążenia +1 powtórzenie.",
       "sources": ["lib/store.ts:progressionFor", "components/ActiveWorkout.tsx:progText", "app/more/settings.tsx"]
     },
     {
@@ -283,6 +325,7 @@
       "feature_id": "prog_double_progression",
       "has": "yes",
       "how": "This is the progression model: you work up the template's rep range, and once all working sets hit the top, the hint proposes the next load step. There is no automatic rep-target change after a load increase.",
+      "how_pl": "To jest model progresji: pracujesz w górę zakresu powtórzeń szablonu, a gdy wszystkie serie robocze osiągną górę, podpowiedź proponuje następny krok obciążenia. Po zwiększeniu obciążenia nie ma automatycznej zmiany celu powtórzeń.",
       "sources": ["lib/store.ts:progressionFor"]
     },
     {
@@ -290,6 +333,7 @@
       "feature_id": "prog_deload",
       "has": "no",
       "how": "No deload detection or suggestion. The hint only ever proposes an increase.",
+      "how_pl": "Brak wykrywania ani sugerowania deloadu. Podpowiedź zawsze proponuje tylko zwiększenie.",
       "sources": ["lib/store.ts:progressionFor"]
     },
     {
@@ -297,6 +341,7 @@
       "feature_id": "prog_fatigue",
       "has": "no",
       "how": "No fatigue or recovery model. The morning check-in (BB/sleep) is only displayed in the workout header and does not affect suggestions.",
+      "how_pl": "Brak modelu zmęczenia ani regeneracji. Poranny wpis (BB/sen) jest tylko wyświetlany w nagłówku treningu i nie wpływa na sugestie.",
       "sources": ["components/ActiveWorkout.tsx:readinessLine", "lib/store.ts:todayReadiness"]
     },
     {
@@ -304,6 +349,7 @@
       "feature_id": "prog_ai_coach",
       "has": "no",
       "how": "No AI coach. There are no network calls at all.",
+      "how_pl": "Brak trenera AI. W ogóle nie ma wywołań sieciowych.",
       "sources": ["lib/store.ts", "package.json"]
     },
     {
@@ -311,6 +357,7 @@
       "feature_id": "stats_prs",
       "has": "yes",
       "how": "The record is the best per-workout total by metric: volume (weight×reps), total unassisted reps (bodyweight/reps-only), total time or total distance; e1RM also counts. A PR badge appears live next to the set that beats it, once per exercise per workout. The first session of an exercise never gives a PR. Max load, best-set volume, max reps (with/without assist), longest set and longest distance are shown as info on the records card without badges.",
+      "how_pl": "Rekord to najlepsza suma na trening według metryki: objętość (ciężar×powtórzenia), suma powtórzeń bez asysty (masa ciała/same powtórzenia), łączny czas lub łączny dystans; liczy się też e1RM. Plakietka PR pojawia się na żywo obok serii, która go pobija, raz na ćwiczenie na trening. Pierwsza sesja ćwiczenia nigdy nie daje PR. Maksymalny ciężar, objętość najlepszej serii, maksymalne powtórzenia (z asystą/bez), najdłuższa seria i najdłuższy dystans są pokazywane informacyjnie na karcie rekordów bez plakietek.",
       "sources": ["lib/stats.ts:prMap", "lib/stats.ts:totalKind", "lib/stats.ts:setPRs", "app/more/progress.tsx"]
     },
     {
@@ -318,6 +365,7 @@
       "feature_id": "stats_e1rm",
       "has": "yes",
       "how": "Uses the Epley formula: load × (1 + reps/30), and load itself when reps = 1. It only counts sets with ≤10 reps that are not drop sets and not band sets with unknown kg. It is calculated per dumbbell or per side according to load mode. For bodyweight exercises only added load counts.",
+      "how_pl": "Używa wzoru Epleya: ciężar × (1 + powtórzenia/30), a przy powtórzeniach = 1 samego ciężaru. Liczy tylko serie z ≤10 powtórzeniami, które nie są drop setami ani seriami z gumą o nieznanych kg. Obliczany jest na hantlę lub na stronę zależnie od trybu obciążenia. Dla ćwiczeń z masą ciała liczy się tylko dodane obciążenie.",
       "sources": ["lib/stats.ts:e1rm", "lib/stats.ts:E1RM_MAX_REPS", "lib/stats.ts:recE1"]
     },
     {
@@ -325,6 +373,7 @@
       "feature_id": "stats_charts_exercise",
       "has": "yes",
       "how": "More → Postępy → pick an exercise, or use the Postępy button in the exercise editor. You get a per-session line chart with metric chips (session total, volume, e1RM, max load/±, max reps, max time, max distance, depending on metric). Below it are a records card and the last 20 sessions with their best set. Charts are custom SVG (react-native-svg) with time-aware axis steps.",
+      "how_pl": "Więcej → Postępy → wybierz ćwiczenie lub użyj przycisku Postępy w edytorze ćwiczenia. Dostajesz wykres liniowy dla każdej sesji z chipami metryk (suma sesji, objętość, e1RM, maks. ciężar/±, maks. powtórzenia, maks. czas, maks. dystans, zależnie od metryki). Poniżej jest karta rekordów i ostatnie 20 sesji z najlepszą serią. Wykresy to własne SVG (react-native-svg) z krokami osi uwzględniającymi czas.",
       "sources": ["app/more/progress.tsx", "lib/stats.ts:chartKeysFor", "components/Chart.tsx"]
     },
     {
@@ -332,6 +381,7 @@
       "feature_id": "stats_volume",
       "has": "yes",
       "how": "The Progress screen without an exercise selected shows weekly volume and weekly working-set bar charts for the last 8 weeks (Monday start). It also shows working sets per muscle for this week vs last week, with primary = 1 and secondary = 0.5. Volume = load × reps × the exercise's load-mode multiplier; warm-ups are excluded.",
+      "how_pl": "Ekran Postępy bez wybranego ćwiczenia pokazuje wykresy słupkowe tygodniowej objętości i tygodniowej liczby serii roboczych z ostatnich 8 tygodni (start w poniedziałek). Pokazuje też serie robocze na mięsień w tym tygodniu vs poprzednim, przy czym główny = 1, a dodatkowy = 0,5. Objętość = ciężar × powtórzenia × mnożnik trybu obciążenia ćwiczenia; rozgrzewki są wykluczone.",
       "sources": ["lib/stats.ts:weeklyTotals", "lib/stats.ts:weeklySetsByMuscle", "app/more/progress.tsx"]
     },
     {
@@ -339,6 +389,7 @@
       "feature_id": "stats_muscle_heatmap",
       "has": "no",
       "how": "No body-map heatmap. Per-muscle data is shown only as horizontal bars (this week vs previous week).",
+      "how_pl": "Brak mapy cieplnej ciała. Dane na mięsień są pokazywane tylko jako poziome słupki (ten tydzień vs poprzedni).",
       "sources": ["app/more/progress.tsx"]
     },
     {
@@ -346,6 +397,7 @@
       "feature_id": "stats_calendar_streaks",
       "has": "no",
       "how": "No calendar view and no streaks. History is a chronological list.",
+      "how_pl": "Brak widoku kalendarza i serii (streaks). Historia to lista chronologiczna.",
       "sources": ["app/(tabs)/history.tsx"]
     },
     {
@@ -353,6 +405,7 @@
       "feature_id": "stats_workout_summary",
       "has": "partial",
       "how": "There is no dedicated summary screen. After Finish, the app opens the session detail (date, duration, volume, every set with actual rest and PR labels). It also shows a 'Nowy rekord!' alert listing up to 6 records with values. There is no shareable summary card.",
+      "how_pl": "Nie ma osobnego ekranu podsumowania. Po Zakończ aplikacja otwiera szczegóły sesji (data, czas trwania, objętość, każda seria z faktyczną przerwą i etykietami PR). Pokazuje też alert „Nowy rekord!” z listą do 6 rekordów z wartościami. Nie ma karty podsumowania do udostępniania.",
       "sources": ["components/ActiveWorkout.tsx:finalize", "lib/stats.ts:workoutPRs", "app/history/[id].tsx"]
     },
     {
@@ -360,6 +413,7 @@
       "feature_id": "stats_strength_standards",
       "has": "no",
       "how": "No strength standards or percentiles. Body weight is never used in calculations.",
+      "how_pl": "Brak norm siłowych ani percentyli. Masa ciała nigdy nie jest używana w obliczeniach.",
       "sources": ["lib/stats.ts"]
     },
     {
@@ -367,6 +421,7 @@
       "feature_id": "body_weight",
       "has": "yes",
       "how": "Body weight is entered in the morning check-in (kg/lb, stored in kg). It is shown on the Home 'Dziś rano' card and in the last-14-days list on the morning screen. There is no body-weight chart or trend.",
+      "how_pl": "Masa ciała jest wpisywana w porannym wpisie (kg/lb, przechowywana w kg). Pokazywana jest na karcie Home „Dziś rano” i na liście ostatnich 14 dni na ekranie porannym. Nie ma wykresu ani trendu masy ciała.",
       "sources": ["app/more/morning.tsx", "lib/seed.ts:Morning", "app/(tabs)/index.tsx:Home"]
     },
     {
@@ -374,6 +429,7 @@
       "feature_id": "body_measurements",
       "has": "no",
       "how": "No circumference or body-fat fields. Morning entries hold only BB, sleep score, sleep hours and weight.",
+      "how_pl": "Brak pól obwodów ani tkanki tłuszczowej. Poranne wpisy zawierają tylko BB, wynik snu, godziny snu i masę ciała.",
       "sources": ["lib/seed.ts:Morning"]
     },
     {
@@ -381,6 +437,7 @@
       "feature_id": "body_photos",
       "has": "no",
       "how": "No progress photos.",
+      "how_pl": "Brak zdjęć postępów.",
       "sources": ["lib/seed.ts:State"]
     },
     {
@@ -388,6 +445,7 @@
       "feature_id": "body_readiness",
       "has": "yes",
       "how": "A manual morning check-in records Body Battery (0–100, typed in from the Garmin app), sleep score (0–100) and sleep hours. The day's values are shown in the active workout header ('BB 86 · sen 80 · 7,5 h'). No automatic HRV or sleep import, and no readiness score or effect on training.",
+      "how_pl": "Ręczny poranny wpis zapisuje Body Battery (0–100, wpisywane z aplikacji Garmin), wynik snu (0–100) i godziny snu. Wartości z danego dnia są pokazywane w nagłówku aktywnego treningu („BB 86 · sen 80 · 7,5 h”). Brak automatycznego importu HRV ani snu oraz brak wyniku gotowości i wpływu na trening.",
       "sources": ["app/more/morning.tsx", "components/ActiveWorkout.tsx:readinessLine", "lib/store.ts:todayReadiness"]
     },
     {
@@ -395,6 +453,7 @@
       "feature_id": "int_apple_health",
       "has": "partial",
       "how": "Write-only and opt-in (Settings), with permission requested on enable. Each finished workout is saved as an HKWorkout with start/end. The type is Traditional Strength, or Functional Strength if every exercise is bodyweight. Metadata holds workout name, volume and working sets, and a SyncIdentifier = workout id prevents duplicates. Nothing is read from Health. Importing a backup re-checks permission.",
+      "how_pl": "Tylko zapis i opcjonalnie (Ustawienia), z prośbą o uprawnienie przy włączeniu. Każdy zakończony trening jest zapisywany jako HKWorkout ze startem/końcem. Typ to Traditional Strength lub Functional Strength, jeśli każde ćwiczenie jest z masą ciała. Metadane zawierają nazwę treningu, objętość i serie robocze, a SyncIdentifier = id treningu zapobiega duplikatom. Nic nie jest odczytywane ze Zdrowia. Import kopii zapasowej ponownie sprawdza uprawnienie.",
       "sources": ["lib/health.ts:saveWorkout", "lib/health.ts:ensureAuthorization", "lib/backup.ts:recheckHealthAfterImport"]
     },
     {
@@ -402,6 +461,7 @@
       "feature_id": "int_watch_app",
       "has": "no",
       "how": "No watchOS target. Only the Live Activity widget extension exists.",
+      "how_pl": "Brak targetu watchOS. Istnieje tylko rozszerzenie widżetu Live Activity.",
       "sources": ["targets/rest-widget", "app.json"]
     },
     {
@@ -409,6 +469,7 @@
       "feature_id": "int_garmin",
       "has": "no",
       "how": "No wearable integration. Garmin Body Battery is typed in manually in the morning check-in.",
+      "how_pl": "Brak integracji z urządzeniami noszonymi. Garmin Body Battery jest wpisywane ręcznie w porannym wpisie.",
       "sources": ["app/more/morning.tsx"]
     },
     {
@@ -416,6 +477,7 @@
       "feature_id": "int_import",
       "has": "partial",
       "how": "More → Backup → Importuj accepts this app's JSON backup envelope, a bare state from web v0.3 or native 0.1.0, auto-backup files and recovery files. It replaces all data after confirmation, migrates old schemas and rejects newer ones. There is no Strong, Hevy or generic CSV import.",
+      "how_pl": "Więcej → Backup → Importuj przyjmuje kopertę kopii zapasowej JSON tej aplikacji, goły stan z weba v0.3 lub natywnej 0.1.0, pliki auto-backupu i pliki odzyskiwania. Po potwierdzeniu zastępuje wszystkie dane, migruje stare schematy i odrzuca nowsze. Nie ma importu ze Strong, Hevy ani ogólnego CSV.",
       "sources": ["lib/backup.ts:importBackup", "lib/backup.ts:parseBackup", "lib/store.ts:migrate"]
     },
     {
@@ -423,6 +485,7 @@
       "feature_id": "int_export",
       "has": "yes",
       "how": "Two exports via the iOS share sheet. A JSON backup ({format:'trening-backup', schemaVersion, exportedAt, state}). A CSV in Strong column layout (Date, Workout Name, Duration, Exercise Name, Set Order, Weight, Reps, Distance, Seconds, Notes, Workout Notes, RPE) with weight in the user's unit and W marking warm-ups. Band and set type go into Notes. The CSV has a UTF-8 BOM and formula-injection escaping.",
+      "how_pl": "Dwa eksporty przez arkusz udostępniania iOS. Kopia zapasowa JSON ({format:'trening-backup', schemaVersion, exportedAt, state}). CSV w układzie kolumn Strong (Date, Workout Name, Duration, Exercise Name, Set Order, Weight, Reps, Distance, Seconds, Notes, Workout Notes, RPE) z ciężarem w jednostce użytkownika i W oznaczającym rozgrzewki. Guma i typ serii trafiają do Notes. CSV ma UTF-8 BOM i zabezpieczenie przed formula injection.",
       "sources": ["lib/backup.ts:exportBackup", "lib/backup.ts:buildCsv", "lib/backup.ts:exportCsv"]
     },
     {
@@ -430,6 +493,7 @@
       "feature_id": "int_backup_sync",
       "has": "partial",
       "how": "Offline-first with no cloud sync or account. All state is stored as JSON in SQLite (Library/SQLite, outside Files) with a 300 ms debounced save and a forced flush on background. In-progress workout and timer are saved separately under a 'live' key. Automatic JSON backups go to Files after each workout (see new:auto_backup_files).",
+      "how_pl": "Offline-first, bez synchronizacji z chmurą ani konta. Cały stan jest zapisany jako JSON w SQLite (Library/SQLite, poza Plikami) z zapisem opóźnionym o 300 ms i wymuszonym zapisem przy przejściu w tło. Trening w toku i timer są zapisywane osobno pod kluczem „live”. Automatyczne kopie JSON trafiają do Plików po każdym treningu (zob. new:auto_backup_files).",
       "sources": ["lib/store.ts:persistRun", "lib/store.ts:openDb", "lib/backup.ts:autoBackup"]
     },
     {
@@ -437,6 +501,7 @@
       "feature_id": "int_widgets",
       "has": "no",
       "how": "No Home Screen widget. The widget extension contains only the Live Activity.",
+      "how_pl": "Brak widżetu ekranu początkowego. Rozszerzenie widżetu zawiera tylko Live Activity.",
       "sources": ["targets/rest-widget/RestWidgetBundle.swift"]
     },
     {
@@ -444,6 +509,7 @@
       "feature_id": "int_siri_shortcuts",
       "has": "no",
       "how": "No App Intents or Siri Shortcuts. Only the URL scheme 'trening://' (expo-router deep links) exists.",
+      "how_pl": "Brak App Intents ani Skrótów Siri. Istnieje tylko schemat URL „trening://” (deep linki expo-router).",
       "sources": ["app.json", "app/_layout.tsx"]
     },
     {
@@ -451,6 +517,7 @@
       "feature_id": "equip_locations",
       "has": "no",
       "how": "No gym profiles. Separate templates ('Legs — gym' / 'Legs — home') are the only workaround.",
+      "how_pl": "Brak profili siłowni. Jedynym obejściem są osobne szablony („Legs — gym” / „Legs — home”).",
       "sources": ["lib/seed.ts:seedState"]
     },
     {
@@ -458,6 +525,7 @@
       "feature_id": "equip_inventory",
       "has": "partial",
       "how": "The only inventory is resistance bands (More → Gumy): colour, level 1–7 and optional nominal assist kg. There is no dumbbell, plate or machine-weight inventory.",
+      "how_pl": "Jedyny zasób to gumy oporowe (Więcej → Gumy): kolor, poziom 1–7 i opcjonalne nominalne kg asysty. Brak zasobu hantli, talerzy ani ciężarów maszyn.",
       "sources": ["app/more/bands.tsx", "lib/seed.ts:Band"]
     },
     {
@@ -465,6 +533,7 @@
       "feature_id": "equip_filtering",
       "has": "no",
       "how": "Exercises are not filtered by available equipment.",
+      "how_pl": "Ćwiczenia nie są filtrowane według dostępnego sprzętu.",
       "sources": ["app/picker.tsx"]
     },
     {
@@ -472,6 +541,7 @@
       "feature_id": "social_feed",
       "has": "no",
       "how": "No social features or accounts.",
+      "how_pl": "Brak funkcji społecznościowych i kont.",
       "sources": ["app/(tabs)/more.tsx"]
     },
     {
@@ -479,6 +549,7 @@
       "feature_id": "social_share",
       "has": "no",
       "how": "No workout share card. The share sheet is only used for backup and CSV files.",
+      "how_pl": "Brak karty treningu do udostępniania. Arkusz udostępniania służy tylko do plików kopii zapasowej i CSV.",
       "sources": ["lib/backup.ts"]
     },
     {
@@ -486,6 +557,7 @@
       "feature_id": "social_leaderboards",
       "has": "no",
       "how": "Not present.",
+      "how_pl": "Nie występuje.",
       "sources": ["lib/seed.ts:State"]
     },
     {
@@ -493,6 +565,7 @@
       "feature_id": "social_challenges",
       "has": "no",
       "how": "Not present.",
+      "how_pl": "Nie występuje.",
       "sources": ["lib/seed.ts:State"]
     },
     {
@@ -500,6 +573,7 @@
       "feature_id": "coach_client_management",
       "has": "no",
       "how": "No UI. Only a data-model skeleton exists (CoachingRelation trainerId/traineeId/status/modules); see new:coach_data_model_skeleton.",
+      "how_pl": "Brak interfejsu. Istnieje tylko szkielet modelu danych (CoachingRelation trainerId/traineeId/status/modules); zob. new:coach_data_model_skeleton.",
       "sources": ["lib/seed.ts:CoachingRelation"]
     },
     {
@@ -507,6 +581,7 @@
       "feature_id": "coach_assign_programs",
       "has": "no",
       "how": "No UI. The NextSessionInstructions entity (forTemplateId/forWorkoutId, text, acknowledgedAt) exists in the state but is unused.",
+      "how_pl": "Brak interfejsu. Encja NextSessionInstructions (forTemplateId/forWorkoutId, text, acknowledgedAt) istnieje w stanie, ale jest nieużywana.",
       "sources": ["lib/seed.ts:NextSessionInstructions"]
     },
     {
@@ -514,6 +589,7 @@
       "feature_id": "coach_feedback",
       "has": "no",
       "how": "No UI. The Feedback entity (attached to a workout, exercise index or set id) exists in the state but is unused.",
+      "how_pl": "Brak interfejsu. Encja Feedback (powiązana z treningiem, indeksem ćwiczenia lub id serii) istnieje w stanie, ale jest nieużywana.",
       "sources": ["lib/seed.ts:Feedback"]
     },
     {
@@ -521,6 +597,7 @@
       "feature_id": "coach_chat",
       "has": "no",
       "how": "Not present.",
+      "how_pl": "Nie występuje.",
       "sources": ["lib/seed.ts:State"]
     },
     {
@@ -528,6 +605,7 @@
       "feature_id": "coach_marketplace",
       "has": "no",
       "how": "Not present.",
+      "how_pl": "Nie występuje.",
       "sources": ["lib/seed.ts:State"]
     },
     {
@@ -535,6 +613,7 @@
       "feature_id": "monet_model",
       "has": "no",
       "how": "No paywall, subscriptions, in-app purchases or ads. It is a free personal app distributed ad hoc.",
+      "how_pl": "Brak paywalla, subskrypcji, zakupów w aplikacji i reklam. To darmowa aplikacja osobista dystrybuowana ad hoc.",
       "sources": ["package.json", "README.md"]
     },
     {
@@ -542,6 +621,7 @@
       "feature_id": "ux_units",
       "has": "yes",
       "how": "A global kg/lb setting. Data is always stored in kg; lb is applied only on display and input, shown at 0.1 lb (kg at 0.01). lb input snaps to round kg so there are no false PRs. There is no per-exercise unit.",
+      "how_pl": "Globalne ustawienie kg/lb. Dane są zawsze przechowywane w kg; lb stosuje się tylko przy wyświetlaniu i wprowadzaniu, pokazywane z dokładnością 0,1 lb (kg 0,01). Wpis w lb jest zaokrąglany do okrągłych kg, żeby nie było fałszywych PR. Brak jednostki dla pojedynczego ćwiczenia.",
       "sources": ["lib/units.ts", "app/more/settings.tsx"]
     },
     {
@@ -549,6 +629,7 @@
       "feature_id": "ux_theme",
       "has": "yes",
       "how": "Dark and light themes follow the system appearance (userInterfaceStyle automatic, useColorScheme). Light-theme tokens are tuned for WCAG contrast. There is no in-app override. The Live Activity background is always dark.",
+      "how_pl": "Motywy ciemny i jasny podążają za wyglądem systemu (userInterfaceStyle automatic, useColorScheme). Tokeny motywu jasnego są dostrojone pod kontrast WCAG. Nie ma ręcznego przełącznika w aplikacji. Tło Live Activity jest zawsze ciemne.",
       "sources": ["lib/theme.ts", "app.json", "targets/rest-widget/RestLiveActivity.swift"]
     },
     {
@@ -556,6 +637,7 @@
       "feature_id": "ux_languages",
       "has": "yes",
       "how": "Polish and English (Settings → Język: As phone / Polski / English). The EN dictionary is keyed by Polish source text, and 'npm run check:i18n' fails on missing keys. Plural forms are handled for both languages, and dates and numbers follow the locale (comma decimal in PL). Notifications, Live Activity labels and InfoPlist strings are localised. Seed template and band names use the device language.",
+      "how_pl": "Polski i angielski (Ustawienia → Język: As phone / Polski / English). Słownik EN jest kluczowany polskim tekstem źródłowym, a „npm run check:i18n” kończy się błędem przy brakujących kluczach. Formy liczby mnogiej są obsługiwane w obu językach, a daty i liczby podążają za ustawieniami regionalnymi (przecinek dziesiętny w PL). Powiadomienia, etykiety Live Activity i teksty InfoPlist są zlokalizowane. Nazwy zasianych szablonów i gum używają języka urządzenia.",
       "sources": ["lib/i18n.ts", "lib/i18n.en.ts", "scripts/check-i18n.mjs", "locales/en.json"]
     },
     {
@@ -563,6 +645,7 @@
       "feature_id": "ux_accessibility",
       "has": "yes",
       "how": "VoiceOver labels and hints cover every icon button and each set field (naming the set and exercise), history rows are read as 'header: value', and the drag list has up/down actions. Touch targets are ≥44 pt. Dynamic Type is supported but capped (maxFontSizeMultiplier 1.3–1.4) to keep the set row usable. There is a progressbar role on session progress, and contrast is tested.",
+      "how_pl": "Etykiety i podpowiedzi VoiceOver obejmują każdy przycisk-ikonę i każde pole serii (z nazwą serii i ćwiczenia), wiersze historii są czytane jako „nagłówek: wartość”, a lista przeciągania ma akcje w górę/w dół. Cele dotykowe mają ≥44 pt. Dynamic Type jest obsługiwany, ale ograniczony (maxFontSizeMultiplier 1,3–1,4), aby wiersz serii pozostał użyteczny. Pasek postępu sesji ma rolę progressbar, a kontrast jest testowany.",
       "sources": ["components/ActiveWorkout.tsx", "app/history/[id].tsx", "components/ui.tsx", "components/DragList.tsx", "docs/09-plan-testow.md:C2-C10"]
     },
     {
@@ -570,6 +653,7 @@
       "feature_id": "ux_onboarding",
       "has": "partial",
       "how": "There is no onboarding flow. On first launch you get seeded templates and exercises and a dashed hint card on Home explaining start → enter → ✓ → finish. Notification permission is requested when the workout screen opens.",
+      "how_pl": "Nie ma przepływu onboardingowego. Przy pierwszym uruchomieniu dostajesz zasiane szablony i ćwiczenia oraz kartę z przerywaną obwódką na Home, wyjaśniającą start → wpis → ✓ → zakończ. Uprawnienie do powiadomień jest żądane po otwarciu ekranu treningu.",
       "sources": ["app/(tabs)/index.tsx:Home", "lib/seed.ts:seedState", "components/ActiveWorkout.tsx"]
     },
     {
@@ -577,6 +661,7 @@
       "feature_id": "ux_offline",
       "has": "yes",
       "how": "Fully offline: no network calls or backend; everything is in local SQLite. The More screen states 'dane tylko w telefonie, bez konta i bez sieci'.",
+      "how_pl": "W pełni offline: brak wywołań sieciowych i backendu; wszystko jest w lokalnym SQLite. Ekran Więcej podaje: „dane tylko w telefonie, bez konta i bez sieci”.",
       "sources": ["lib/store.ts", "app/(tabs)/more.tsx"]
     },
     {
@@ -584,6 +669,7 @@
       "feature_id": "ux_privacy",
       "has": "yes",
       "how": "No account. Data stays in the app's private Library/SQLite, which is included in device backups but not visible in Files. Only the auto-backup JSONs are in Documents/Backup. Health access is write-only and opt-in. There is no analytics code.",
+      "how_pl": "Brak konta. Dane pozostają w prywatnym Library/SQLite aplikacji, które wchodzi do kopii zapasowych urządzenia, ale nie jest widoczne w Plikach. Tylko JSON-y auto-backupu są w Documents/Backup. Dostęp do Zdrowia jest tylko do zapisu i opcjonalny. Brak kodu analitycznego.",
       "sources": ["lib/store.ts:dbDirectory", "lib/backup.ts:autoBackup", "lib/health.ts", "package.json"]
     },
     {
@@ -591,6 +677,7 @@
       "feature_id": "new:morning_check_in",
       "has": "yes",
       "how": "Reach it via More → Poranne wpisy or the Home card. Fields: Body Battery, sleep score, sleep hours and weight for today. The record is created only on the first edit (one per local date). The last 14 entries are listed. Home shows 'Dziś rano' with today's values.",
+      "how_pl": "Dostęp przez Więcej → Poranne wpisy lub kartę na Home. Pola: Body Battery, wynik snu, godziny snu i masa ciała na dziś. Rekord powstaje dopiero przy pierwszej edycji (jeden na lokalną datę). Wyświetlane jest ostatnich 14 wpisów. Home pokazuje „Dziś rano” z dzisiejszymi wartościami.",
       "sources": ["app/more/morning.tsx", "lib/store.ts:todayMorning", "lib/store.ts:peekTodayMorning"]
     },
     {
@@ -598,6 +685,7 @@
       "feature_id": "new:weigh_in_reminder",
       "has": "yes",
       "how": "An optional weekly local notification every Monday at 07:00 asks you to log your weight in the morning check-in. It is off by default (Settings), needs notification permission, and is rescheduled on language change, import and reset.",
+      "how_pl": "Opcjonalne cotygodniowe lokalne powiadomienie w każdy poniedziałek o 07:00 prosi o wpisanie masy ciała w porannym wpisie. Domyślnie wyłączone (Ustawienia), wymaga uprawnienia do powiadomień i jest planowane ponownie przy zmianie języka, imporcie i resecie.",
       "sources": ["lib/timer.ts:scheduleWeighReminder", "app/more/settings.tsx"]
     },
     {
@@ -605,6 +693,7 @@
       "feature_id": "new:abandoned_workout_notification",
       "has": "yes",
       "how": "While a workout is active, a local notification 'Trening wciąż trwa' is scheduled 2 h after the last activity. Its text depends on state: working sets done / warm-up only / nothing ticked. It is cancelled on finish or discard.",
+      "how_pl": "Gdy trening jest aktywny, lokalne powiadomienie „Trening wciąż trwa” jest planowane na 2 h po ostatniej aktywności. Jego tekst zależy od stanu: wykonane serie robocze / tylko rozgrzewka / nic nie odhaczono. Jest anulowane po zakończeniu lub odrzuceniu.",
       "sources": ["lib/timer.ts:scheduleStaleReminder", "lib/timer.ts:staleBody", "components/ActiveWorkout.tsx"]
     },
     {
@@ -612,6 +701,7 @@
       "feature_id": "new:timers_survive_app_kill",
       "has": "yes",
       "how": "Rest end time, timed-set start/target and the owning set id are saved immediately, so the rest timer and a targeted stopwatch resume after the app is killed. A target stopwatch that ran out is ticked with time = target. An untargeted stopwatch is not resumed: its set is ticked with the time already in the field, or left unticked.",
+      "how_pl": "Czas końca przerwy, start/cel serii czasowej i id serii-właściciela są zapisywane natychmiast, więc timer przerwy i stoper z celem wznawiają się po zabiciu aplikacji. Stoper z celem, który się skończył, jest odhaczany z czasem = cel. Stoper bez celu nie jest wznawiany: jego seria jest odhaczana z czasem już wpisanym w polu lub zostaje nieodhaczona.",
       "sources": ["lib/store.ts:setTimerState", "lib/timer.ts:restore", "lib/store.ts:resolveColdStopwatch"]
     },
     {
@@ -619,6 +709,7 @@
       "feature_id": "new:actual_rest_logging",
       "has": "yes",
       "how": "Each ticked set stores actualRest: the time since the previous tick in the workout, under 1 h, otherwise null. It is shown in the session detail's 'przerwa' column.",
+      "how_pl": "Każda odhaczona seria zapisuje actualRest: czas od poprzedniego odhaczenia w treningu, poniżej 1 h, w przeciwnym razie null. Jest pokazywany w kolumnie „przerwa” szczegółów sesji.",
       "sources": ["lib/store.ts:toggleDone", "app/history/[id].tsx"]
     },
     {
@@ -626,6 +717,7 @@
       "feature_id": "new:rest_badge_on_tab",
       "has": "yes",
       "how": "The remaining rest time appears as a badge on the Trening tab ('2m'/'45s', '+1m' after it ends) while you are on other tabs. VoiceOver reads the full time.",
+      "how_pl": "Pozostały czas przerwy pojawia się jako plakietka na karcie Trening („2m”/„45s”, „+1m” po zakończeniu), gdy jesteś na innych kartach. VoiceOver odczytuje pełny czas.",
       "sources": ["app/(tabs)/_layout.tsx"]
     },
     {
@@ -633,6 +725,7 @@
       "feature_id": "new:band_assist",
       "has": "yes",
       "how": "Band inventory (More → Gumy): colour, level 1–7 and optional nominal assist kg. The band column cycles through bands by level, and a band with kg fills −kg into the ±kg field as a pair; removing the band removes its assistance. A band without kg makes the load unknown, so the set is excluded from e1RM and volume records. Deleted bands show '?' in history.",
+      "how_pl": "Zasób gum (Więcej → Gumy): kolor, poziom 1–7 i opcjonalne nominalne kg asysty. Kolumna gumy przełącza cyklicznie gumy według poziomu, a guma z kg wpisuje −kg do pola ±kg jako parę; usunięcie gumy usuwa jej asystę. Guma bez kg sprawia, że obciążenie jest nieznane, więc seria jest wyłączona z e1RM i rekordów objętości. Usunięte gumy pokazują w historii „?”.",
       "sources": ["app/more/bands.tsx", "lib/store.ts:applyBandAssist", "lib/store.ts:pairAssist", "lib/stats.ts:unknownAssist"]
     },
     {
@@ -640,6 +733,7 @@
       "feature_id": "new:load_modes",
       "has": "yes",
       "how": "Each weighted exercise has a load mode: per dumbbell (×2 in volume, column 'kg/hant.'), total (×1), or unilateral per side (×2, 'kg/str.'). Defaults: dumbbells → per dumbbell, except single-implement lifts like Goblet Squat or KB Swing → total. Bodyweight is always ×1. Changing equipment resets the mode. It affects volume, column labels and the e1RM/max labels.",
+      "how_pl": "Każde ćwiczenie z obciążeniem ma tryb obciążenia: na hantlę (×2 w objętości, kolumna „kg/hant.”), łącznie (×1) lub jednostronnie na stronę (×2, „kg/str.”). Domyślnie: hantle → na hantlę, z wyjątkiem boju z jednym przyborem, jak Goblet Squat czy KB Swing → łącznie. Masa ciała to zawsze ×1. Zmiana sprzętu resetuje tryb. Wpływa na objętość, etykiety kolumn i etykiety e1RM/maks.",
       "sources": ["lib/seed.ts:loadModeFor", "lib/seed.ts:SINGLE_IMPLEMENT", "lib/store.ts:exMult", "app/exercise/[id].tsx"]
     },
     {
@@ -647,6 +741,7 @@
       "feature_id": "new:prefill_carry_over",
       "has": "yes",
       "how": "Values pre-filled at workout start are remembered (set.pre). If you change set 1 from its prefill (e.g. 24 → 25 kg) and tick it, later unticked sets of the same family that were untouched and still hold the same prefill take the new value. Pyramids with different values are left alone.",
+      "how_pl": "Wartości wstępnie wypełnione na starcie treningu są zapamiętywane (set.pre). Jeśli zmienisz serię 1 względem jej wypełnienia (np. 24 → 25 kg) i odhaczysz ją, późniejsze nieodhaczone serie tej samej rodziny, których nie ruszano i które wciąż mają to samo wypełnienie, przyjmują nową wartość. Piramidy z różnymi wartościami pozostają nietknięte.",
       "sources": ["lib/store.ts:carryPrefill", "lib/store.ts:markPre"]
     },
     {
@@ -654,6 +749,7 @@
       "feature_id": "new:session_progress_bar",
       "has": "yes",
       "how": "A thin bar under the workout clock shows ticked/total sets (warm-ups included) as 'done/all'.",
+      "how_pl": "Cienki pasek pod zegarem treningu pokazuje odhaczone/wszystkie serie (łącznie z rozgrzewkami) jako „done/all”.",
       "sources": ["components/ActiveWorkout.tsx:SessionProgress"]
     },
     {
@@ -661,6 +757,7 @@
       "feature_id": "new:finish_validation",
       "has": "yes",
       "how": "Finish always asks for confirmation and warns about typed-but-unticked sets (not saved) and ticked sets with 0 reps or no time/distance. With no ticked sets it offers discard only; with warm-ups only it asks before saving. Only ticked sets are stored and empty exercises are dropped. A cancel button with confirmation discards the workout.",
+      "how_pl": "Zakończ zawsze prosi o potwierdzenie i ostrzega o wpisanych, ale nieodhaczonych seriach (niezapisywanych) oraz odhaczonych seriach z 0 powtórzeń lub bez czasu/dystansu. Gdy nie ma odhaczonych serii, oferuje tylko odrzucenie; przy samych rozgrzewkach pyta przed zapisem. Zapisywane są tylko odhaczone serie, a puste ćwiczenia są odrzucane. Przycisk anulowania z potwierdzeniem odrzuca trening.",
       "sources": ["components/ActiveWorkout.tsx:finish", "lib/store.ts:finishWorkout", "lib/store.ts:cancelWorkout"]
     },
     {
@@ -668,6 +765,7 @@
       "feature_id": "new:same_exercise_multiple_blocks",
       "has": "yes",
       "how": "The same exercise can appear several times in a workout or template, e.g. heavy plus light blocks. Blocks are numbered '(1)', '(2)' for VoiceOver. 'Previously' is matched to the same template item, or to the same block index of the last session.",
+      "how_pl": "To samo ćwiczenie może występować kilka razy w treningu lub szablonie, np. bloki ciężkie plus lekkie. Bloki są numerowane „(1)”, „(2)” dla VoiceOver. „Previously” jest dopasowywane do tego samego elementu szablonu lub do tego samego indeksu bloku ostatniej sesji.",
       "sources": ["lib/store.ts:previousBlockFor", "lib/store.ts:occurrence"]
     },
     {
@@ -675,6 +773,7 @@
       "feature_id": "new:keep_screen_awake",
       "has": "yes",
       "how": "With the 'Ekran włączony podczas treningu' setting (default on), the screen stays awake while the workout screen is mounted (expo-keep-awake).",
+      "how_pl": "Przy ustawieniu „Ekran włączony podczas treningu” (domyślnie włączone) ekran pozostaje aktywny, gdy ekran treningu jest zamontowany (expo-keep-awake).",
       "sources": ["components/ActiveWorkout.tsx", "app/more/settings.tsx"]
     },
     {
@@ -682,6 +781,7 @@
       "feature_id": "new:repeat_last_workout",
       "has": "yes",
       "how": "'Powtórz ostatni (<name>)' on Home starts a workout copying what was actually done last time: exercises added or removed mid-session, set kinds (failure becomes normal) and values. Deleted exercises are skipped, and time targets come from the template item.",
+      "how_pl": "„Powtórz ostatni (<name>)” na Home rozpoczyna trening kopiujący to, co faktycznie zrobiono ostatnio: ćwiczenia dodane lub usunięte w trakcie sesji, rodzaje serii (failure staje się normal) i wartości. Usunięte ćwiczenia są pomijane, a cele czasowe pochodzą z elementu szablonu.",
       "sources": ["lib/store.ts:repeatLast", "app/(tabs)/index.tsx:Home"]
     },
     {
@@ -689,6 +789,7 @@
       "feature_id": "new:template_duplicate",
       "has": "yes",
       "how": "'Duplikuj' in the template editor makes a copy named '<name> (kopia)' with new item ids and new superset group ids.",
+      "how_pl": "„Duplikuj” w edytorze szablonu tworzy kopię o nazwie „<name> (kopia)” z nowymi id elementów i nowymi id grup superserii.",
       "sources": ["lib/store.ts:dupTemplate", "app/template/[id].tsx"]
     },
     {
@@ -696,6 +797,7 @@
       "feature_id": "new:history_list_and_session_detail",
       "has": "yes",
       "how": "The Historia tab lists sessions with date/time, duration, working-set count and volume (virtualised FlatList). The detail view shows every set (W/numbered + D/F), load, reps, distance, time, RPE, band, actual rest, PR labels and notes. Superset labels are kept.",
+      "how_pl": "Karta Historia wyświetla sesje z datą/godziną, czasem trwania, liczbą serii roboczych i objętością (zwirtualizowany FlatList). Widok szczegółów pokazuje każdą serię (W/numerowana + D/F), ciężar, powtórzenia, dystans, czas, RPE, gumę, faktyczną przerwę, etykiety PR i notatki. Etykiety superserii są zachowane.",
       "sources": ["app/(tabs)/history.tsx", "app/history/[id].tsx"]
     },
     {
@@ -703,6 +805,7 @@
       "feature_id": "new:auto_backup_files",
       "has": "yes",
       "how": "After every saved workout (Finish, abandoned-workout save or silent 6 h save), a JSON backup is written to Documents/Backup/trening-YYYY-MM-DD-HHMMSS.json. It is visible in Files → On My iPhone → Trening → Backup (UIFileSharingEnabled). The newest 10 are kept, and user files in the folder are untouched. It is on by default and can be turned off in Settings.",
+      "how_pl": "Po każdym zapisanym treningu (Zakończ, zapis porzuconego treningu lub cichy zapis po 6 h) kopia zapasowa JSON jest zapisywana w Documents/Backup/trening-YYYY-MM-DD-HHMMSS.json. Jest widoczna w Pliki → Na moim iPhonie → Trening → Backup (UIFileSharingEnabled). Zachowywanych jest 10 najnowszych, a pliki użytkownika w folderze pozostają nietknięte. Domyślnie włączone, można wyłączyć w Ustawieniach.",
       "sources": ["lib/backup.ts:autoBackup", "lib/backup.ts:onWorkoutSaved", "app.json"]
     },
     {
@@ -710,6 +813,7 @@
       "feature_id": "new:data_integrity_recovery",
       "has": "yes",
       "how": "An unreadable saved state is never overwritten; it is moved to a 'state_corrupt_<ts>' key and a banner offers to send that copy (as an importable 'trening-recovery' envelope). A failed write shows a retry banner. Saves are sequenced with a counter so a clock change can't restore stale data. A failed DB open shows an error screen with retry instead of an empty app.",
+      "how_pl": "Nieczytelny zapisany stan nigdy nie jest nadpisywany; jest przenoszony pod klucz „state_corrupt_<ts>”, a baner proponuje wysłanie tej kopii (jako importowalnej koperty „trening-recovery”). Nieudany zapis pokazuje baner z ponowieniem. Zapisy są sekwencjonowane licznikiem, aby zmiana zegara nie mogła przywrócić nieaktualnych danych. Nieudane otwarcie bazy pokazuje ekran błędu z ponowieniem zamiast pustej aplikacji.",
       "sources": ["lib/store.ts:init", "lib/store.ts:readRecovery", "lib/store.ts:persistRun", "app/(tabs)/index.tsx:DataBanners"]
     },
     {
@@ -717,6 +821,7 @@
       "feature_id": "new:signing_expiry_reminder",
       "has": "yes",
       "how": "The app reads ExpirationDate from embedded.mobileprovision; this applies only when the profile is valid for 30 days or less. Home shows a banner when 2 days or fewer remain or the profile has expired, and More shows the expiry date. A local notification fires the day before at 18:00 ('Jutro wygasa podpis aplikacji') with a backup reminder.",
+      "how_pl": "Aplikacja odczytuje ExpirationDate z embedded.mobileprovision; dotyczy to tylko profilu ważnego 30 dni lub krócej. Home pokazuje baner, gdy zostały 2 dni lub mniej albo profil wygasł, a Więcej pokazuje datę wygaśnięcia. Lokalne powiadomienie uruchamia się dzień wcześniej o 18:00 („Jutro wygasa podpis aplikacji”) z przypomnieniem o kopii zapasowej.",
       "sources": ["lib/signing.ts:getProfileExpiry", "lib/signing.ts:scheduleReminder", "app/(tabs)/index.tsx:SigningBanner", "app/(tabs)/more.tsx"]
     },
     {
@@ -724,6 +829,7 @@
       "feature_id": "new:archive_and_restore_exercise",
       "has": "yes",
       "how": "Deleting an exercise removes it from lists and templates. If it has history (or is in the current workout) it is archived, so history, charts and CSV keep its name. Otherwise it is deleted permanently. Searching its name offers 'Przywróć' (restore) instead of creating a duplicate.",
+      "how_pl": "Usunięcie ćwiczenia usuwa je z list i szablonów. Jeśli ma historię (lub jest w bieżącym treningu), jest archiwizowane, więc historia, wykresy i CSV zachowują jego nazwę. W przeciwnym razie jest usuwane trwale. Wyszukanie jego nazwy oferuje „Przywróć” zamiast tworzenia duplikatu.",
       "sources": ["lib/store.ts:deleteExercise", "lib/store.ts:purgeOrphans", "app/(tabs)/exercises.tsx", "app/picker.tsx"]
     },
     {
@@ -731,6 +837,7 @@
       "feature_id": "new:coach_data_model_skeleton",
       "has": "partial",
       "how": "Data model only, with no UI. Every entity has UUID, ownerId and createdAt/updatedAt. Workouts carry loggedBy and sessionMode (solo/remote/in_gym). The state includes relations (CoachingRelation), feedback (Feedback) and instructions (NextSessionInstructions), all preserved through migrate/backup and prepared for future accounts.",
+      "how_pl": "Tylko model danych, bez interfejsu. Każda encja ma UUID, ownerId oraz createdAt/updatedAt. Treningi niosą loggedBy i sessionMode (solo/remote/in_gym). Stan zawiera relacje (CoachingRelation), feedback (Feedback) i instrukcje (NextSessionInstructions), wszystkie zachowywane przez migrate/backup i przygotowane na przyszłe konta.",
       "sources": ["lib/seed.ts:CoachingRelation", "lib/seed.ts:Feedback", "lib/seed.ts:NextSessionInstructions", "lib/seed.ts:Workout"]
     },
     {
@@ -738,6 +845,7 @@
       "feature_id": "new:modules_toggle",
       "has": "partial",
       "how": "Settings → Moduły lists Training (always on) plus Diet, Sleep, Cardio, Supplements and Recommendations. The others show as 'wkrótce' (coming soon), are disabled, and have no implementation. The module registry is stored in settings.modules.",
+      "how_pl": "Ustawienia → Moduły wymienia Training (zawsze włączony) oraz Diet, Sleep, Cardio, Supplements i Recommendations. Pozostałe są pokazane jako „wkrótce”, są wyłączone i nie mają implementacji. Rejestr modułów jest przechowywany w settings.modules.",
       "sources": ["lib/seed.ts:MODULES", "lib/seed.ts:MODULES_AVAILABLE", "lib/store.ts:setModule", "app/more/settings.tsx"]
     },
     {
@@ -745,6 +853,7 @@
       "feature_id": "new:reset_all_data",
       "has": "yes",
       "how": "Settings → 'Wyczyść wszystkie dane' (with confirmation) replaces everything with fresh seed data in the phone's language and stops timers.",
+      "how_pl": "Ustawienia → „Wyczyść wszystkie dane” (z potwierdzeniem) zastępuje wszystko świeżymi danymi startowymi w języku telefonu i zatrzymuje timery.",
       "sources": ["lib/store.ts:resetAll", "app/more/settings.tsx"]
     },
     {
@@ -752,6 +861,7 @@
       "feature_id": "new:schema_versioning_and_migration",
       "has": "yes",
       "how": "State has a schemaVersion (13). migrate() is idempotent and tolerant: it fixes types, clamps ranges, snaps kg to 0.01, drops corrupt entries, keeps only ticked sets in history, normalises supersets and fills defaults. It accepts web 0.3 and native 0.1.0 data.",
+      "how_pl": "Stan ma schemaVersion (13). migrate() jest idempotentne i tolerancyjne: naprawia typy, przycina zakresy, zaokrągla kg do 0,01, odrzuca uszkodzone wpisy, w historii zachowuje tylko odhaczone serie, normalizuje superserie i uzupełnia wartości domyślne. Przyjmuje dane z weba 0.3 i natywne 0.1.0.",
       "sources": ["lib/store.ts:migrate", "lib/seed.ts:SCHEMA_VERSION"]
     }
   ]
