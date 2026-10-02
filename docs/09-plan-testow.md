@@ -69,17 +69,17 @@ Zasady: test sprawdza zachowanie, nie opis w dokumentacji. Każdy błąd dostaje
 
 Stan kodu: 0.8.4 po audycie przed telefonem (runda 77). Kolejność ma znaczenie — każdy krok zależy od poprzedniego.
 
-E1. Build i instalacja (README, Kroki 2–3): push na GitHub → Actions „iOS unsigned IPA” (30–45 min) → Sideloadly → Tryb dewelopera (Ustawienia → Prywatność i ochrona, restart) → zaufanie profilowi. Gdy build padnie: artefakt z logiem kompilacji → koniec logu do Claude. Najbardziej niepewne bez Xcode: kompilacja Swift (moduł Live Activity i widżet, T-037).
+E1. Build i instalacja — ZROBIONE 02.10.2026 20:37 (droga główna od 02.10: ad hoc przez EAS, README): Actions „iPhone (EAS)” → zarejestruj-iphone (profil w Safari) → konfiguruj-podpis (raz) → build (~6 min w chmurze Expo) → strona buildu w Safari → Install → Tryb dewelopera (pojawia się w Ustawieniach dopiero po instalacji). Pierwszy build: 0fd66ae9, buildNumber 1, uruchomiona na iPhonie. Sideloadly (Kroki 2–3) tylko jako zapas.
 E2. Pierwsze uruchomienie: brak ekranu błędu; szablony Upper A/B itd. są; język polski; zgoda na powiadomienia przy pierwszej przerwie.
 E3. Import z web 0.3 (T-004): web → Więcej → Backup → „Pobierz plik backupu” → AirDrop/iCloud → natywna: Więcej → Backup → Importuj. Sprawdź: liczba treningów w Historii = w web, „Poprzednio” przy ćwiczeniach z szablonu, ćwiczenia typu plank/marsz (jeśli były) z wartościami widocznymi.
 E4. Trening (prawdziwy albo 10 min na sucho): start z szablonu; zmień ciężar w serii 1 → ✓ → dalsze nieruszone serie przejmują wartość; klawiatura chowa się po ✓, pasek przerwy widoczny (przeciągnięcie listy w dół też chowa klawiaturę); zablokuj ekran w przerwie → powiadomienie o końcu i Live Activity na ekranie blokady / Dynamic Island; seria czasowa (plank) z celem → koniec sam, wibracja; podciąganie z gumą; superset → przerwa po rundzie; „≡ Kolejność” w trakcie → przeciąganie płynne, wibracja przy zmianie miejsca; Zakończ → rekordy → Historia.
 E5. Odporność: zabij aplikację w przerwie i w trakcie stopera z celem → otwórz ponownie: przerwa liczy dalej, seria z celem odhaczona z czasem = cel.
-E6. Apple Health: Ustawienia → zapis do Zdrowia → czy pojawia się systemowe okno zgody? Po treningu: Zdrowie → Treningi. Brak okna = Sideloadly nie przeniósł uprawnienia HealthKit przy darmowym Apple ID (ograniczenie podpisu, nie błąd aplikacji) — zapisz, nie naprawiaj na siłę.
+E6. Apple Health: Ustawienia → zapis do Zdrowia → czy pojawia się systemowe okno zgody? Po treningu: Zdrowie → Treningi. Od 02.10 podpis płatnym kontem z włączonym HealthKit (scripts/eas/asc-capabilities.cjs) — brak okna zgody to już BŁĄD do zgłoszenia.
 E7. Pliki: Pliki → Na moim iPhonie → Trening → Backup — po treningu jest plik JSON; bazy (trening.db) tam nie ma.
-E8. Więcej: data wygaśnięcia podpisu (7 dni od instalacji).
+E8. Więcej: data wygaśnięcia podpisu — przy ad hoc ok. 02.10.2027 (rok, nie 7 dni). Tekst przypomnienia wciąż mówi o Sideloadly (T-053).
 E9. Odczucia: opóźnienie przy wpisywaniu w serii przy długim treningu (Q-020: ok. 80 ms w testach), płynność przeciągania, obsługa jedną ręką, duża czcionka systemowa, tryb jasny/ciemny.
 Co odesłać: zrzuty ekranu + jedno zdanie „co zrobiłem → co się stało → czego się spodziewałem”; przy porażce buildu — log z Actions.
-Znane, nie zgłaszać: Q-004, Q-012…Q-021 (backlog), brak Live Activity/Health jako skutek podpisu darmowym Apple ID.
+Znane, nie zgłaszać: Q-004, Q-012…Q-021 (backlog), T-053 (tekst przypomnienia o podpisie).
 
 ## F. Metoda od rundy 69 (bez udziału telefonu)
 
