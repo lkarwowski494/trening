@@ -5,10 +5,11 @@ import { useTheme } from '@/lib/theme';
 import { Screen, Input, Chip, Item, Muted, Empty } from '@/components/ui';
 import { getState, addExerciseToActive, newExercise, save, visibleExercises, exerciseInHistory } from '@/lib/store';
 import { uid } from '@/lib/seed';
+import { draftAddExercise } from '@/lib/edit';
 import { GROUPS, GROUP_TO_MUSCLE, hasReps, type Exercise } from '@/lib/seed';
 import { t, exName, locale, fold } from '@/lib/i18n';
 
-/** target = 'active' (dodaj do treningu) | 'template:<id>' (dodaj do szablonu) */
+/** target = 'active' (dodaj do treningu) | 'template:<id>' (dodaj do szablonu) | 'edit:<klucz szkicu>' (edytor historii, docs/12) */
 export default function PickerScreen() {
   // Runda 26: parametr z linku może być tablicą (powtórzony ?target=) — tylko tekst, inaczej nic nie dodajemy.
   const raw = useLocalSearchParams<{ target?: string | string[] }>().target; const target = typeof raw === 'string' ? raw : ''; const router = useRouter();
@@ -21,6 +22,7 @@ export default function PickerScreen() {
   const choose = (ex: Exercise) => {
     if (chosen.current) return; chosen.current = true; // podwójne tapnięcie nie doda ćwiczenia dwa razy ani nie cofnie o dwa ekrany
     if (target === 'active') addExerciseToActive(ex);
+    else if (target.startsWith('edit:')) draftAddExercise(target.slice(5), ex);
     else if (target?.startsWith('template:')) { const tpl = st.templates.find(x => x.id === target.slice(9)); tpl?.items.push({ id: uid(), exerciseId: ex.id, sets: 3, repMin: hasReps(ex.metric ?? 'weight_reps') ? 8 : null, repMax: hasReps(ex.metric ?? 'weight_reps') ? 10 : null, restSec: null, startWeight: '', targetSec: '', groupId: null }); save(tpl); }
     if (router.canGoBack()) router.back(); else router.replace('/');
   };

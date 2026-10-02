@@ -1,7 +1,8 @@
 import React from 'react';
 import { ScrollView, View, Alert } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import { Screen, H1, Muted, Btn, Txt } from '@/components/ui';
+import { Screen, H1, Muted, Btn, Txt, useOnce } from '@/components/ui';
+import { beginEdit } from '@/lib/edit';
 import { getState, useTick, exById, isBW, bandById, loadLabel, fmtDate, fmtTime, fmtDur, fmtSec, fmtDist, volume, deleteWorkout, groupLabels, shortBand, bandA11y, loadLabelShort } from '@/lib/store';
 import { hasTime, hasReps, hasWeight, hasDistance, SET_KIND_MARK, SET_KIND_LABEL } from '@/lib/seed';
 import { prMap } from '@/lib/stats';
@@ -10,13 +11,13 @@ import { t, exName } from '@/lib/i18n';
 import { fmtW, fmtVol, fmtNum } from '@/lib/units';
 
 export default function HistoryDetail() {
-  const { id } = useLocalSearchParams<{ id: string }>(); useTick(); const router = useRouter(); const th = useTheme();
+  const { id } = useLocalSearchParams<{ id: string }>(); useTick(); const router = useRouter(); const th = useTheme(); const once = useOnce(); /* audyt (LOW): podwójne „Edytuj” nie otwiera dwóch edytorów */
   const w = getState().workouts.find(x => x.id === id); if (!w) return <Screen><Muted>{t('Brak sesji.')}</Muted></Screen>;
   const labels = groupLabels(w.exercises); const prs = prMap(w); let wn = 0; // numer serii roboczej
   const cell = (v: React.ReactNode, flex = 1) => <Txt style={{ flex, fontSize: 14, fontVariant: ['tabular-nums'] }}>{v}</Txt>;
   return (
     <Screen><ScrollView contentContainerStyle={{ paddingVertical: 10, paddingBottom: 60 }}>
-      <H1>{w.templateName || t('Trening')}</H1>
+      <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}><View style={{ flex: 1 }}><H1>{w.templateName || t('Trening')}</H1></View><Btn title={t('Edytuj')} small accessibilityLabel={t('Edytuj sesję')} onPress={once(() => { if (beginEdit(w.id)) router.push(`/history/edit/${encodeURIComponent(w.id)}`); })} /></View>
       <Muted style={{ marginBottom: 14 }}>{fmtDate(w.startedAt)} {fmtTime(w.startedAt)} · {fmtDur(((w.finishedAt ?? w.startedAt) - w.startedAt) / 1000)}{volume(w) > 0 ? ` · ${t('objętość')} ${fmtVol(volume(w))}` : ''}</Muted>
       {w.note ? <Muted style={{ marginBottom: 10 }}>{w.note}</Muted> : null}
       {w.exercises.map((e, i) => { const ex = exById(e.exerciseId); const bw = ex ? isBW(ex) : false; const m = ex?.metric ?? 'weight_reps'; const rpe = getState().settings.showRpe; const anyBand = e.sets.some(s => s.bandId);

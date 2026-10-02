@@ -39,6 +39,9 @@ export async function autoBackup(): Promise<string | null> {
 }
 /** Po zapisaniu treningu (przycisk „Zakończ”, pytanie o porzucony trening, cichy zapis po 6 h): Apple Health i kopia automatyczna — jedno miejsce. */
 export async function onWorkoutSaved(w: Workout): Promise<void> { await syncAfterFinish(w).catch(() => {}); await autoBackup(); /* po Zdrowiu — kopia ma już healthUUID (audyt T14) */ }
+/** Docs/12: po zapisaniu edycji treningu albo treningu wstecz — ta sama kopia automatyczna co po „Zakończ”. Apple Health świadomie
+ * pominięte: zmienione treningi nie są tam aktualizowane, a treningi wstecz nie są zapisywane (bez duplikatów i „cofania” zdrowia). */
+export async function onHistoryEdited(): Promise<void> { await autoBackup(); }
 
 /**
  * Eksport CSV w układzie kolumn Strong (0.2.1): Date, Workout Name, Duration, Exercise Name, Set Order,

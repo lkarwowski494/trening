@@ -45,7 +45,8 @@ export async function saveWorkout(w: Workout): Promise<'saved' | 'skipped' | 'un
     });
     if (res === false) return 'failed'; // biblioteka zwraca false przy odmowie zapisu — nie oznaczamy jako zapisane
     // Gdy HealthKit nie zwróci UUID, zapisujemy znacznik 'saved' (nie identyfikator) — tylko po to, by nie dublować zapisu.
-    w.healthUUID = typeof res === 'string' && res ? res : 'saved'; save(w);
+    /* docs/12 (weryfikacja 2, L3): trening mógł zostać w międzyczasie podmieniony edycją — znacznik trafia też do obiektu, który jest teraz w historii */
+    const uuid = typeof res === 'string' && res ? res : 'saved'; w.healthUUID = uuid; const cur = getState().workouts.find(x => x.id === w.id); if (cur && cur !== w) cur.healthUUID = uuid; save(cur ?? w);
     return 'saved';
   } catch { return 'failed'; } finally { inFlight.delete(w.id); }
 }
