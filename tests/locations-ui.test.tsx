@@ -38,7 +38,7 @@ describe('Ustawienia → Miejsca treningu', () => {
     const s = store.getState().settings; expect(s.locations).toHaveLength(1); expect(s.mainLocationId).toBe(s.locations[0].id);
     expect(screen.getByText(/Miejsce główne/)).toBeTruthy(); expect(screen.getByText('Dostępne ćwiczenia: 20 z 125')).toBeTruthy();
     await toggle('Ławka regulowana', true); expect(s.locations[0].equipment.map(e => e.item)).toEqual(['bench_adj']);
-    await toggle('ze skosem w dół', true); expect(s.locations[0].equipment[0].opts).toEqual(['decline']);
+    await toggle('Ławka regulowana: ze skosem w dół', true); /* audyt M7: opcja z nazwą pozycji */ expect(s.locations[0].equipment[0].opts).toEqual(['decline']);
     await toggle('Drążek do podciągania (rozporowy, ścienny)', true); expect(screen.getByText(/Dostępne ćwiczenia: \d+ z 125/)).toBeTruthy();
     await flushAll(400); expect(JSON.parse(global.__kv.get('state')!).settings.locations[0].equipment).toHaveLength(2); /* zapis bez „Wróć” */
   });
@@ -46,11 +46,11 @@ describe('Ustawienia → Miejsca treningu', () => {
     const saved = await savedWithPlaces(); await renderApp({ saved }); await go('/more/location/home'); await flushAll(10);
     await toggle('Hantle (stała waga albo z szybką regulacją)', false); await toggle('Hantle (stała waga albo z szybką regulacją)', true);
     const db = () => store.getState().settings.locations[0].equipment.find(e => e.item === 'db_fixed')!;
-    expect(db().load).toEqual({ kind: 'list', unit: 'kg', items: [] });
+    expect((db().load as any).items).toHaveLength(12); expect(db().off).toBeUndefined(); /* audyt M5: odznaczenie i ponowne zaznaczenie nie kasuje listy */
     await type(screen.getAllByLabelText('od')[0], '2'); await type(screen.getAllByLabelText('do')[0], '24'); await type(screen.getAllByLabelText('co')[0], '2');
-    await tap(screen.getAllByLabelText('Wypełnij zakresem')[0]); expect((db().load as any).items).toHaveLength(12);
-    await tap(screen.getByLabelText('4 kg')); expect((db().load as any).items.find((x: any) => x.w === 4).on).toBe(false);
-    await type(screen.getAllByLabelText('dodaj ciężar')[0], '5'); await tap(screen.getAllByLabelText('Dodaj ciężar')[0]);
+    await tap(screen.getByLabelText('Wypełnij zakresem — Hantle (stała waga albo z szybką regulacją)')); expect((db().load as any).items).toHaveLength(12);
+    const c4 = screen.getByLabelText('4 kg'); expect(c4.props.accessibilityRole).toBe('switch'); /* audyt M7: ciężar jako przełącznik */ await tap(c4); expect(screen.getByLabelText('4 kg').props.accessibilityState.checked).toBe(false); expect((db().load as any).items.find((x: any) => x.w === 4).on).toBe(false);
+    await type(screen.getAllByLabelText('dodaj ciężar')[0], '5'); await tap(screen.getByLabelText('Dodaj ciężar — Hantle (stała waga albo z szybką regulacją)'));
     expect(screen.getByText('dostępne: 12 (2–24 kg)')).toBeTruthy();
   });
   test('stacja elektryczna: preset ViShape Pro; hantle na talerze: Hop-Sport — podsumowanie pary i jednego hantla', async () => {

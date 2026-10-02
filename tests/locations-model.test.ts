@@ -95,7 +95,8 @@ describe('operacje na miejscach', () => {
     await fresh(); store.getState().settings.unit = 'lb'; const a = L.addLocation('home');
     L.setEquip(a, 'electric', true); expect(L.equipOf(a, 'electric')).toEqual({ item: 'electric', opts: ['dual', 'belt', 'ankle'], load: { kind: 'electric', unit: 'lb', min: 0, max: 0, step: 1 } });
     L.setOpt(a, 'electric', 'arms', true); L.setOpt(a, 'electric', 'zz', true); L.setOpt(a, 'electric', 'dual', false); expect(L.equipOf(a, 'electric')!.opts).toEqual(['belt', 'ankle', 'arms']);
-    L.setEquip(a, 'electric', false); expect(a.equipment).toEqual([]); L.setEquip(a, 'nope', true); expect(a.equipment).toEqual([]);
+    L.setEquip(a, 'electric', false); expect(a.equipment).toHaveLength(1); expect(a.equipment[0].off).toBe(true); expect(L.activeEquip(a, 'electric')).toBeUndefined(); /* audyt M5 */
+    L.setEquip(a, 'electric', true); expect(L.equipOf(a, 'electric')!.opts).toEqual(['belt', 'ankle', 'arms']); L.setEquip(a, 'nope', true); expect(a.equipment).toHaveLength(1);
   });
   test('miejsca głównego nie da się usunąć, dopóki jest inne; jedyne miejsce — można (powrót do trybu bez miejsc)', async () => {
     await fresh(); const a = L.addLocation('home'); const b = L.addLocation('gym');

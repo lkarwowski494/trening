@@ -4,6 +4,7 @@
 import { fileURLToPath } from 'node:url';
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
+import { createHash } from 'node:crypto';
 
 const root = fileURLToPath(new URL('../..', import.meta.url));
 const SRC = join(root, 'docs/research/equipment/catalog.json');
@@ -29,12 +30,16 @@ export function render(catalog) {
     if (e.implements !== undefined) o.implements = e.implements;
     return `  ${JSON.stringify(e.name)}: ${JSON.stringify(o)},`;
   });
+  /* audyt E1 (M6): wersja katalogu = skrót treści — ćwiczenia z biblioteki z inną wersją dostają przy starcie aktualne wymagania */
+  const rev = createHash('sha256').update(rows.join('\n')).digest('hex').slice(0, 12);
   return [
     '/* AUTOMATYCZNIE WYGENEROWANE przez scripts/equipment/gen.mjs z docs/research/equipment/catalog.json — nie edytować ręcznie.',
     ' * Wymagania sprzętowe ćwiczeń biblioteki (P-003): requires = każda grupa musi być spełniona, w grupie wystarczy jedna możliwość. */',
     `export type LoadSource = ${LOAD_SOURCES.map(x => `'${x}'`).join(' | ')};`,
     `export type Pattern = ${PATTERNS.map(x => `'${x}'`).join(' | ')};`,
     'export interface CatalogEntry { requires: string[][]; recommended: string[]; loadSource: LoadSource; pattern: Pattern; implements?: 1 | 2 }',
+    '/** Wersja treści katalogu (skrót) — zapisywana w ćwiczeniu jako catalogRev. */',
+    `export const CATALOG_REV = '${rev}';`,
     '/** Słownik możliwości użytych w katalogu (wymagane i zalecane), posortowany. */',
     `export const CATALOG_CAPS: readonly string[] = ${JSON.stringify([...caps].sort())};`,
     'export const CATALOG: Readonly<Record<string, CatalogEntry>> = {',

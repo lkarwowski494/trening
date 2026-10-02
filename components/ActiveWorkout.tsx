@@ -226,7 +226,7 @@ function ExerciseBlock({ w, e, ei, onDone, onStartSet, labels, prs }: { w: Worko
   const bw = isBW(ex); const band = ex.bandAssistable;
   /* P-003 E1: plakietka „brak sprzętu w: Dom” (nigdy automatyczna zamiana) i dopisek, gdy „Poprzednio” pochodzi z innego miejsca (8a) */
   const place = locationById(w.locationId); const avail = place ? availability(ex, place) : null;
-  const prevElsewhere = place && prev && prev.workout.locationId !== place.id ? (prev.workout.locationId ? locationLabel(prev.workout.locationId) : tr('bez miejsca')) : '';
+  const prevElsewhere = place && prev?.workout.locationId && prev.workout.locationId !== place.id ? locationLabel(prev.workout.locationId) : ''; /* audyt M8: tylko inne, OKREŚLONE miejsce (stare treningi bez miejsca — bez dopisku) */
   const nm = nOcc > 1 ? `${exName(ex)} (${k + 1})` : exName(ex); /* runda 66: dwa bloki tego samego ćwiczenia rozróżnialne dla VoiceOver */
   const m = ex.metric ?? 'weight_reps'; const showRpe = st.settings.showRpe;
   const doneStyle = (set: WSet) => set.done ? { backgroundColor: t.done, borderColor: t.doneLine } : undefined;

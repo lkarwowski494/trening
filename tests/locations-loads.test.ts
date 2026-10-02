@@ -41,7 +41,7 @@ describe('lista i zakres', () => {
     expect(achievable(l)).toEqual([2, 6]);
   });
   test('zakres + krok to skrót edytora zapisywany jako lista; odznaczone zostają odznaczone, spoza zakresu znikają', () => {
-    const items = fillRange([{ w: 4, on: false }, { w: 30, on: true }], 2, 24, 2);
+    const items = fillRange([{ w: 4, on: false }, { w: 30, on: true }], 2, 24, 2)!;
     expect(items.map(x => x.w)).toEqual([2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24]); expect(items.find(x => x.w === 4)!.on).toBe(false); expect(items.filter(x => !x.on)).toHaveLength(1);
     expect(rangeValues(1.5, 3, 0.5)).toEqual([1.5, 2, 2.5, 3]); expect(rangeValues(0.1, 0.3, 0.1)).toEqual([0.1, 0.2, 0.3]); /* bez szumu 0,30000000000000004 */
     expect(rangeValues(5, 1, 1)).toEqual([]); expect(rangeValues(1, 5, 0)).toEqual([]); expect(rangeValues(1, 5, NaN)).toEqual([]);

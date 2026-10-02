@@ -1,10 +1,10 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { ScrollView, View, Alert } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Screen, Field, Input, Btn, Muted, SwitchRow, SectionTitle, useOnce } from '@/components/ui';
 import LoadEditor from '@/components/LoadEditor';
 import { getState, useTick, locationById, visibleExercises } from '@/lib/store';
-import { setMainLocation, renameLocation, commitLocationName, duplicateLocation, deleteLocation, canDeleteLocation, setEquip, setOpt, equipOf } from '@/lib/locations';
+import { setMainLocation, renameLocation, commitLocationName, duplicateLocation, deleteLocation, canDeleteLocation, setEquip, setOpt, activeEquip } from '@/lib/locations';
 import { EQUIPMENT, EQUIP_GROUPS, EQUIP_GROUP_LABEL, equipLabel, availability, capsOf } from '@/lib/equipment';
 import { t } from '@/lib/i18n';
 
@@ -15,6 +15,8 @@ import { t } from '@/lib/i18n';
 export default function LocationEdit() {
   const { id } = useLocalSearchParams<{ id: string }>(); useTick(); const router = useRouter(); const once = useOnce();
   const l = locationById(typeof id === 'string' ? id : ''); const initialName = useRef(l?.name ?? '');
+  /* audyt (LOW): wyjście z pustą nazwą (bez zakończenia edycji) przywraca poprzednią — nie zapisuje pustej */
+  useEffect(() => () => { const x = locationById(typeof id === 'string' ? id : ''); if (x && (!x.name.trim() || x.name !== x.name.replace(/\s+/g, ' ').trim())) commitLocationName(x, initialName.current); }, [id]);
   if (!l) return <Screen><Muted style={{ marginTop: 16 }}>{t('Nie ma takiego miejsca.')}</Muted></Screen>;
   const s = getState().settings; const main = s.mainLocationId === l.id;
   const back = () => { if (router.canGoBack()) router.back(); else router.replace('/more/locations'); };
@@ -28,10 +30,10 @@ export default function LocationEdit() {
       {EQUIP_GROUPS.map(g => (
         <View key={g}>
           <SectionTitle>{equipLabel(EQUIP_GROUP_LABEL[g])}</SectionTitle>
-          {EQUIPMENT.filter(x => x.group === g).map(x => { const e = equipOf(l, x.id); return (
+          {EQUIPMENT.filter(x => x.group === g).map(x => { const e = activeEquip(l, x.id); return (
             <View key={x.id}>
               <SwitchRow label={equipLabel(x)} value={!!e} onChange={v => setEquip(l, x.id, v)} />
-              {e && x.options?.length ? <View style={{ marginLeft: 16 }}>{x.options.map(o => <SwitchRow key={o.id} label={equipLabel(o)} value={e.opts.includes(o.id)} onChange={v => setOpt(l, x.id, o.id, v)} />)}</View> : null}
+              {e && x.options?.length ? <View style={{ marginLeft: 16 }}>{x.options.map(o => <SwitchRow key={o.id} label={equipLabel(o)} a11yLabel={`${equipLabel(x)}: ${equipLabel(o)}`} value={e.opts.includes(o.id)} onChange={v => setOpt(l, x.id, o.id, v)} />)}</View> : null}
               {e && e.load ? <LoadEditor loc={l} entry={e} item={x} /> : null}
             </View>); })}
         </View>))}

@@ -1,4 +1,4 @@
-import { snapLb } from './units';
+import { snapLb, KG_PER_LB } from './units';
 
 /*
  * P-003 E1: osiągalne ciężary sprzętu w miejscu treningu (docs/10-miejsca-i-sprzet.md, sekcja 3.2).
@@ -22,55 +22,92 @@ export type LoadSpec =
 /** Tolerancja porównań ciężarów w kg (siatka zapisu 0,01 kg; lb przez snapLb). */
 export const LOAD_TOL_KG = 0.01;
 const EPS = 1e-9;
-const MAX_VALUES = 2000;
+/**
+ * Audyt E1 (H1, M11): jedne limity dla edytora, sanityzacji i obliczeń. Nic nie jest po cichu ucinane: zakres albo talerze ponad limit
+ * są odrzucane w edytorze (komunikat z validateSpec), a opis ponad limit daje pustą listę (podpowiedź jak bez miejsca), nigdy listę bez
+ * najcięższych ciężarów.
+ */
+export const LOAD_LIMITS = { listItems: 300, plateRows: 30, rangeValues: 2000, plateSums: 50000 } as const;
 const r2 = (v: number) => Math.round(v * 100) / 100 + 0;
 const milli = (v: number) => Math.round(v * 1000);
 /** Wartość w jednostce sprzętu → kg na siatce zapisu (jak wIn: kg do 0,01, lb przyciągane do „okrągłych” kg). */
 export const toKg = (v: number, unit: LoadUnit): number => unit === 'lb' ? snapLb(v) : r2(v);
 
-/** Wartości min..max co krok (w jednostce sprzętu), bez szumu zmiennoprzecinkowego; pusta lista przy złych danych. */
-export function rangeValues(min: number, max: number, step: number): number[] {
-  if (![min, max, step].every(Number.isFinite) || step <= 0 || min < 0 || max < min) return [];
-  const a = milli(min), b = milli(max), s = milli(step); if (s <= 0) return [];
-  const out: number[] = []; for (let v = a; v <= b && out.length < MAX_VALUES; v += s) out.push(v / 1000);
+/** Liczba wartości zakresu min..max co krok; null przy złych danych (krok ≤ 0, max < min, ujemne). */
+export function rangeCount(min: number, max: number, step: number): number | null {
+  if (![min, max, step].every(Number.isFinite) || min < 0 || max < min) return null; const s = milli(step); if (s <= 0) return null;
+  return Math.floor((milli(max) - milli(min)) / s) + 1;
+}
+/** Wartości min..max co krok (w jednostce sprzętu), bez szumu zmiennoprzecinkowego; pusta lista przy złych danych albo ponad limit. */
+export function rangeValues(min: number, max: number, step: number, limit: number = LOAD_LIMITS.rangeValues): number[] {
+  const n = rangeCount(min, max, step); if (n == null || n > limit) return [];
+  const a = milli(min), s = milli(step); const out: number[] = []; for (let i = 0; i < n; i++) out.push((a + i * s) / 1000);
   return out;
 }
-/** Skrót edytora: lista z zakresu (wszystkie włączone); ciężary odznaczone wcześniej zostają odznaczone, spoza zakresu znikają. */
-export function fillRange(items: WeightEntry[], min: number, max: number, step: number): WeightEntry[] {
+/** Skrót edytora: lista z zakresu (wszystkie włączone); ciężary odznaczone wcześniej zostają odznaczone, spoza zakresu znikają.
+ * null = zły zakres albo więcej niż LOAD_LIMITS.listItems wartości (edytor pokazuje komunikat, lista się nie zmienia). */
+export function fillRange(items: WeightEntry[], min: number, max: number, step: number): WeightEntry[] | null {
+  const n = rangeCount(min, max, step); if (n == null || n > LOAD_LIMITS.listItems) return null;
   const off = new Set(items.filter(x => !x.on).map(x => milli(x.w)));
   return rangeValues(min, max, step).map(w => ({ w, on: !off.has(milli(w)) }));
 }
-/**
- * Ciężary z uchwytu/gryfu i talerzy: base + 2·Σ kᵢ·wᵢ, gdzie kᵢ ≤ ⌊nᵢ / perStep⌋ to liczba talerzy danego rozmiaru na jednej stronie.
- * perStep = ile sztuk trzeba na „jeden talerz więcej”: sztanga / jeden hantel = 2 (po jednym na stronę), para hantli = 4.
- * Wynik w jednostce sprzętu, posortowany, bez powtórzeń.
- */
-export function plateSums(base: number, plates: PlateEntry[], perStep: 2 | 4): number[] {
-  if (!Number.isFinite(base) || base < 0) return [];
+/** Sumy talerzy na stronę (w tysięcznych) albo null, gdy kombinacji jest więcej niż limit. */
+function plateSumSet(plates: PlateEntry[], perStep: 2 | 4): Set<number> | null {
   let sums = new Set<number>([0]);
   for (const p of plates) {
     if (!(p.w > 0) || !Number.isFinite(p.w)) continue; const k = Math.floor(Math.max(0, Math.floor(p.n)) / perStep); if (!k) continue;
     const w = milli(p.w); const next = new Set<number>();
     for (const s of sums) for (let i = 0; i <= k; i++) next.add(s + 2 * i * w);
-    sums = next; if (sums.size > 50000) break; /* ograniczenie na absurdalne dane (setki rozmiarów talerzy) */
+    if (next.size > LOAD_LIMITS.plateSums) return null; sums = next;
   }
-  const b = milli(base); return [...sums].sort((x, y) => x - y).slice(0, MAX_VALUES * 10).map(s => (b + s) / 1000);
+  return sums;
+}
+/**
+ * Ciężary z uchwytu/gryfu i talerzy: base + 2·Σ kᵢ·wᵢ, gdzie kᵢ ≤ ⌊nᵢ / perStep⌋ to liczba talerzy danego rozmiaru na jednej stronie.
+ * perStep = ile sztuk trzeba na „jeden talerz więcej”: sztanga / jeden hantel = 2 (po jednym na stronę), para hantli = 4.
+ * Wynik w jednostce sprzętu, posortowany, bez powtórzeń; pusty, gdy dane są złe albo kombinacji jest za dużo (validateSpec to zgłasza).
+ */
+export function plateSums(base: number, plates: PlateEntry[], perStep: 2 | 4): number[] {
+  if (!Number.isFinite(base) || base < 0 || plates.length > LOAD_LIMITS.plateRows) return [];
+  const sums = plateSumSet(plates, perStep); if (!sums) return [];
+  const b = milli(base); return [...sums].sort((x, y) => x - y).map(s => (b + s) / 1000);
+}
+export type SpecProblem = 'list_too_long' | 'plates_too_many_rows' | 'plates_too_many_combos' | 'range_invalid' | 'range_too_many';
+/** Czy opis da się policzyć w całości; null = w porządku. Edytor pokazuje komunikat zamiast po cichu uciętej listy. */
+export function validateSpec(spec: LoadSpec): SpecProblem | null {
+  if (spec.kind === 'list') return spec.items.length > LOAD_LIMITS.listItems ? 'list_too_long' : null;
+  if (spec.kind === 'plates') return spec.plates.length > LOAD_LIMITS.plateRows ? 'plates_too_many_rows' : !plateSumSet(spec.plates, 2) ? 'plates_too_many_combos' : null;
+  if (spec.max === 0 && spec.min === 0) return null; /* jeszcze niewypełniony */
+  const n = rangeCount(spec.min, spec.max, spec.step); return n == null ? 'range_invalid' : n > LOAD_LIMITS.rangeValues ? 'range_too_many' : null;
 }
 /** Jak użyć opisu: perStep talerzy (para hantli 4, inaczej 2) i mnożniki (2 = suma pary / dwie linki; [1, 2] = jedna albo dwie linki). */
 export interface LoadUse { perStep?: 2 | 4; mult?: number[] }
 /** Wartości opisu w jednostce sprzętu (przed mnożnikami). */
 export function specValues(spec: LoadSpec, perStep: 2 | 4 = 2): number[] {
-  if (spec.kind === 'list') return [...new Set(spec.items.filter(x => x.on && x.w > 0 && Number.isFinite(x.w)).map(x => milli(x.w)))].sort((a, b) => a - b).map(x => x / 1000);
+  if (spec.kind === 'list') return spec.items.length > LOAD_LIMITS.listItems ? [] : [...new Set(spec.items.filter(x => x.on && x.w > 0 && Number.isFinite(x.w)).map(x => milli(x.w)))].sort((a, b) => a - b).map(x => x / 1000);
   if (spec.kind === 'plates') return plateSums(spec.base, spec.plates, perStep).filter(v => v > 0);
   return rangeValues(spec.min, spec.max, spec.step).filter(v => v > 0);
 }
-/** Osiągalne ciężary w kg, posortowane rosnąco, bez powtórzeń (z tolerancją). */
+/** Audyt E1 (LOW): wynik liczony raz na treść opisu (klucz = JSON) — ekran treningu przelicza bloki przy każdym wpisie, a suma talerzy
+ * dla pełnej siłowni to tysiące kombinacji. Klucz z treści, więc zmiana opisu w miejscu (edytor mutuje obiekt) nie daje starego wyniku. */
+const memo = new Map<string, number[]>();
+/** Osiągalne ciężary w kg, posortowane rosnąco, bez powtórzeń (z tolerancją). Zwracanej tablicy nie modyfikować. */
 export function achievable(spec: LoadSpec | undefined | null, use: LoadUse = {}): number[] {
   if (!spec) return [];
+  const key = JSON.stringify([spec, use.perStep ?? 2, use.mult ?? [1]]); const hit = memo.get(key); if (hit) return hit;
   const vals = specValues(spec, use.perStep ?? 2); const mult = use.mult?.length ? use.mult : [1];
   const kg = mult.flatMap(m => vals.map(v => toKg(v * m, spec.unit))).sort((a, b) => a - b);
   const out: number[] = []; for (const v of kg) if (!out.length || v - out[out.length - 1] > LOAD_TOL_KG + EPS) out.push(v);
-  return out;
+  if (memo.size > 200) memo.clear(); memo.set(key, out); return out;
+}
+/** Audyt E1 (M4): zmiana jednostki sprzętu przelicza wartości (kg → lb do 0,1 lb, lb → kg przez to samo przyciąganie co wpis w polu),
+ * a nie tylko zmienia podpis — „20 kg” nie staje się „20 lb”. Liczba sztuk talerzy bez zmian. */
+export function convertSpec(spec: LoadSpec, to: LoadUnit): LoadSpec {
+  if (spec.unit === to) return spec;
+  const cv = (v: number) => to === 'kg' ? toKg(v, 'lb') : Math.round(v / KG_PER_LB * 10) / 10;
+  if (spec.kind === 'list') { const seen = new Set<number>(); const items: WeightEntry[] = []; for (const x of spec.items) { const w = cv(x.w); if (w > 0 && !seen.has(milli(w))) { seen.add(milli(w)); items.push({ w, on: x.on }); } } return { kind: 'list', unit: to, items }; }
+  if (spec.kind === 'plates') return { kind: 'plates', unit: to, base: cv(spec.base), plates: spec.plates.map(p => ({ w: cv(p.w), n: p.n })) };
+  return { kind: 'electric', unit: to, min: cv(spec.min), max: cv(spec.max), step: Math.max(to === 'kg' ? 0.01 : 0.1, cv(spec.step)) };
 }
 /** Te same ciężary (tolerancja 0,01 kg). */
 export const sameLoad = (a: number, b: number) => Math.abs(a - b) <= LOAD_TOL_KG + EPS;
@@ -86,8 +123,8 @@ const num = (v: unknown, min: number, max: number): number | null => { const n =
 export function sanitizeLoadSpec(raw: unknown): LoadSpec | undefined {
   if (!raw || typeof raw !== 'object' || Array.isArray(raw)) return undefined; const o = raw as Record<string, unknown>;
   const unit: LoadUnit = o.unit === 'lb' ? 'lb' : 'kg';
-  if (o.kind === 'list') { const items = (Array.isArray(o.items) ? o.items : []).slice(0, 300).flatMap((x: any) => { const w = num(x?.w, 0.001, 1000); return w == null ? [] : [{ w, on: x?.on !== false }]; }); return { kind: 'list', unit, items }; }
-  if (o.kind === 'plates') { const base = num(o.base, 0, 1000) ?? 0; const plates = (Array.isArray(o.plates) ? o.plates : []).slice(0, 30).flatMap((x: any) => { const w = num(x?.w, 0.001, 1000); const n = num(x?.n, 0, 100); return w == null || n == null ? [] : [{ w, n: Math.floor(n) }]; }); return { kind: 'plates', unit, base, plates }; }
-  if (o.kind === 'electric') { const min = num(o.min, 0, 1000), max = num(o.max, 0, 1000), step = num(o.step, 0.001, 1000); if (min == null || max == null || step == null) return undefined; return { kind: 'electric', unit, min, max: Math.max(min, max), step }; }
+  if (o.kind === 'list') { const items = (Array.isArray(o.items) ? o.items : []).flatMap((x: any) => { const w = num(x?.w, 0.001, 1000); return w == null ? [] : [{ w, on: x?.on !== false }]; }).slice(0, LOAD_LIMITS.listItems); return { kind: 'list', unit, items }; } /* H1: ten sam limit co edytor (edytor nie pozwala na więcej) */
+  if (o.kind === 'plates') { const base = num(o.base, 0, 1000) ?? 0; const plates = (Array.isArray(o.plates) ? o.plates : []).flatMap((x: any) => { const w = num(x?.w, 0.001, 1000); const n = num(x?.n, 0, 100); return w == null || n == null ? [] : [{ w, n: Math.floor(n) }]; }).slice(0, LOAD_LIMITS.plateRows); return { kind: 'plates', unit, base, plates }; }
+  if (o.kind === 'electric') { const min = num(o.min, 0, 1000), max = num(o.max, 0, 1000), step = num(o.step, 0.001, 1000); if (min == null || max == null || step == null) return undefined; return { kind: 'electric', unit, min, max, step }; } /* audyt (LOW): max < min zostaje — edytor to zgłasza (validateSpec), ciężary puste */
   return undefined;
 }

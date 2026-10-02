@@ -91,14 +91,14 @@ export function NumInput(props: Omit<TextInputProps, 'value'> & { value: number 
 export function Chip({ label, on, onPress, toggle, a11yLabel, a11yHint, disabled }: { label: string; on: boolean; onPress: () => void; toggle?: boolean; a11yLabel?: string; a11yHint?: string; disabled?: boolean }) {
   const t = useTheme(); const field = React.useContext(FieldLabel);
   // Runda 49: własna etykieta/podpowiedź (np. chip „✕” wyboru) i stan nieaktywny (chip, który nic nie zmienia).
-  const a11y = toggle ? { accessibilityRole: 'switch' as const, accessibilityLabel: field ?? label, accessibilityValue: { text: label }, accessibilityState: { checked: on, disabled: !!disabled } } : { accessibilityRole: 'button' as const, accessibilityLabel: a11yLabel ?? label, accessibilityHint: a11yHint ?? field, accessibilityState: { selected: on, disabled: !!disabled } };
+  const a11y = toggle ? { accessibilityRole: 'switch' as const, accessibilityLabel: a11yLabel ?? field ?? label, accessibilityValue: { text: label }, accessibilityState: { checked: on, disabled: !!disabled } } : { accessibilityRole: 'button' as const, accessibilityLabel: a11yLabel ?? label, accessibilityHint: a11yHint ?? field, accessibilityState: { selected: on, disabled: !!disabled } };
   return <Pressable onPress={disabled ? undefined : onPress} {...a11y} hitSlop={4} style={[s.chip, { backgroundColor: on ? t.accent : t.surface2, borderColor: on ? t.accent : t.line }, disabled && !on && { opacity: 0.5 }]}><Text style={{ color: on ? t.accentInk : t.muted, fontWeight: '600', fontSize: 13 }}>{label}</Text></Pressable>;
 }
 /**
  * P-002 (02.10.2026): ustawienia jak w Ustawieniach iOS (Apple HIG: przełącznik dla wł./wył., kontrolka segmentowa dla 1 z 2–4).
  * Wiersz z opisem po lewej i systemowym przełącznikiem po prawej — zamiast przycisku na całą szerokość.
  */
-export function SwitchRow({ label, detail, value, onChange, disabled }: { label: string; detail?: string; value: boolean; onChange: (v: boolean) => void; disabled?: boolean }) {
+export function SwitchRow({ label, detail, value, onChange, disabled, a11yLabel }: { label: string; detail?: string; value: boolean; onChange: (v: boolean) => void; disabled?: boolean; /** P-003 (audyt M7): pełna etykieta dla VoiceOver, np. „Ławka regulowana: ze skosem w dół” */ a11yLabel?: string }) {
   const t = useTheme();
   return (
     <View style={[s.switchRow, { borderBottomColor: t.line }]}>
@@ -107,7 +107,7 @@ export function SwitchRow({ label, detail, value, onChange, disabled }: { label:
         {detail ? <Text maxFontSizeMultiplier={1.4} style={{ color: t.muted, fontSize: 13, marginTop: 2 }}>{detail}</Text> : null}
       </View>
       <Switch value={value} disabled={disabled} onValueChange={onChange} trackColor={{ true: t.accent, false: t.surface2 }} ios_backgroundColor={t.surface2}
-        accessibilityRole="switch" accessibilityLabel={label} accessibilityHint={detail} accessibilityState={{ checked: value, disabled: !!disabled }} />
+        accessibilityRole="switch" accessibilityLabel={a11yLabel ?? label} accessibilityHint={detail} accessibilityState={{ checked: value, disabled: !!disabled }} />
     </View>
   );
 }

@@ -13,7 +13,7 @@ export default function Locations() {
   return (
     <Screen><ScrollView contentContainerStyle={{ paddingVertical: 10, paddingBottom: 80 }}>
       <Muted style={{ marginBottom: 8 }}>{t('Gdzie trenujesz i jaki sprzęt tam masz. Wybór ćwiczenia pokazuje wtedy to, co da się zrobić w miejscu treningu, a podpowiedź „↑” proponuje ciężary, które naprawdę masz. Miejsce wybierasz na starcie treningu.')}</Muted>
-      {s.locations.map(l => { const main = l.id === s.mainLocationId; const n = l.equipment.length;
+      {s.locations.map(l => { const main = l.id === s.mainLocationId; const n = l.equipment.filter(e => !e.off).length;
         return <Item key={l.id} title={(main ? '★ ' : '') + l.name} sub={[main ? t('główne') : '', `${n} ${tp(n, 'pozycja sprzętu|pozycje sprzętu|pozycji sprzętu')}`].filter(Boolean).join(' · ')} onPress={() => router.push(`/more/location/${l.id}`)} />; })}
       {s.locations.length ? null : <Empty>{t('Brak miejsc — wszystkie ćwiczenia są dostępne, a podpowiedzi działają jak dotąd.')}</Empty>}
       {adding ? <>

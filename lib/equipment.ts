@@ -54,7 +54,7 @@ export const EQUIP_GROUP_LABEL: Record<EquipGroup, L> = {
 /** Rodzaj ciężarów pozycji: decyduje, z której pozycji brać ciężary dla ćwiczenia (loadSource) i jaki edytor pokazać. */
 export type LoadKind = 'barbell' | 'ez_bar' | 'trap_bar' | 'dumbbell' | 'kettlebell' | 'cable' | 'machine';
 export interface EquipOption extends L { id: string; gives: string[]; /** zaznaczona przy dodaniu pozycji */ defaultOn?: boolean }
-export interface EquipItem extends L { id: string; group: EquipGroup; gives: string[]; options?: EquipOption[]; load?: LoadKind; /** domyślny opis ciężarów przy zaznaczeniu pozycji */ defaultLoad?: 'list' | 'plates' | 'electric' }
+export interface EquipItem extends L { id: string; group: EquipGroup; gives: string[]; options?: EquipOption[]; load?: LoadKind; /** domyślny opis ciężarów przy zaznaczeniu pozycji */ defaultLoad?: 'list' | 'plates' | 'electric'; /** audyt E1 (M1): możliwości „przy okazji” (wyciąg górny stacji do ściągania) — liczą się do dostępności, ale ciężary dla ćwiczenia bierze się najpierw z pozycji, która daje je wprost */ secondary?: string[] }
 
 const it = (id: string, group: EquipGroup, pl: string, en: string, gives: string[], extra: Partial<EquipItem> = {}): EquipItem => ({ id, group, pl, en, gives, ...extra });
 const op = (id: string, pl: string, en: string, gives: string[], defaultOn = false): EquipOption => ({ id, pl, en, gives, ...(defaultOn ? { defaultOn } : {}) });
@@ -92,8 +92,8 @@ export const EQUIPMENT: readonly EquipItem[] = [
   /* wyciągi */
   it('cable_cross', 'cables', 'Brama (dwa wyciągi z regulacją wysokości)', 'Cable crossover (two adjustable pulleys)', ['cable.high', 'cable.mid', 'cable.low', 'cable.dual', 'cable.handles'], { load: 'cable', defaultLoad: 'list', options: [op('rope', 'lina', 'rope', ['cable.rope'], true)] }),
   it('cable_single', 'cables', 'Wyciąg z regulacją wysokości (jeden)', 'Single adjustable pulley', ['cable.high', 'cable.mid', 'cable.low', 'cable.handles'], { load: 'cable', defaultLoad: 'list', options: [op('rope', 'lina', 'rope', ['cable.rope'], true)] }),
-  it('lat_pulldown', 'cables', 'Wyciąg górny (ściąganie drążka)', 'Lat pulldown', ['lat_pulldown', 'cable.high'], { load: 'cable', defaultLoad: 'list' }),
-  it('cable_row', 'cables', 'Wyciąg dolny (wiosłowanie siedząc)', 'Seated cable row', ['cable.row_seat', 'cable.low'], { load: 'cable', defaultLoad: 'list' }),
+  it('lat_pulldown', 'cables', 'Wyciąg górny (ściąganie drążka)', 'Lat pulldown', ['lat_pulldown', 'cable.high'], { load: 'cable', defaultLoad: 'list', secondary: ['cable.high'] }),
+  it('cable_row', 'cables', 'Wyciąg dolny (wiosłowanie siedząc)', 'Seated cable row', ['cable.row_seat', 'cable.low'], { load: 'cable', defaultLoad: 'list', secondary: ['cable.low'] }),
   /* 3.4: jedna pozycja dla wszystkich stacji z oporem elektrycznym / magnetycznym */
   it('electric', 'cables', 'Stacja z oporem elektrycznym / magnetycznym (np. ViShape, Speediance, Tonal…)', 'Electric / magnetic resistance station (e.g. ViShape, Speediance, Tonal…)', ['cable.low', 'cable.handles'], {
     load: 'cable', defaultLoad: 'electric', options: [
@@ -141,11 +141,11 @@ export function blankLoad(item: EquipItem, unit: LoadUnit = 'kg'): LoadSpec | un
   return { kind: 'list', unit, items: [] };
 }
 /** Presety modeli w edytorze ciężarów — tylko z danymi ze źródeł (docs/10, sekcje 3.2 i 3.4). TREXO TXO-B4W002: kroki nieznane → brak presetu. */
-export const LOAD_PRESETS: { id: string; item: string; label: string; spec: () => LoadSpec }[] = [
-  { id: 'gymtek24', item: 'db_fixed', label: 'Gymtek 2,5–24 kg', spec: () => listOf([2.5, 3.5, 4.5, 5.5, 6.5, 8, 9, 10, 11.5, 13.5, 16, 18, 20.5, 22.5, 24]) },
-  { id: 'hopsport2x10', item: 'db_plate', label: 'Hop-Sport 2×10 kg', spec: () => ({ kind: 'plates', unit: 'kg', base: 1.5, plates: [{ w: 2.5, n: 4 }, { w: 1.25, n: 4 }, { w: 0.5, n: 4 }] }) },
-  { id: 'vishape_pro', item: 'electric', label: 'ViShape SmartGym Pro (1,5–65 kg/str.)', spec: () => ({ kind: 'electric', unit: 'kg', min: 1.5, max: 65, step: 0.5 }) },
-  { id: 'vishape_lite', item: 'electric', label: 'ViShape SmartGym Lite (1,5–35 kg/str.)', spec: () => ({ kind: 'electric', unit: 'kg', min: 1.5, max: 35, step: 0.5 }) },
+export const LOAD_PRESETS: { id: string; item: string; label: L; spec: () => LoadSpec }[] = [ /* audyt (LOW): nazwy z przecinkiem / kropką wg języka */
+  { id: 'gymtek24', item: 'db_fixed', label: { pl: 'Gymtek 2,5–24 kg', en: 'Gymtek 2.5–24 kg' }, spec: () => listOf([2.5, 3.5, 4.5, 5.5, 6.5, 8, 9, 10, 11.5, 13.5, 16, 18, 20.5, 22.5, 24]) },
+  { id: 'hopsport2x10', item: 'db_plate', label: { pl: 'Hop-Sport 2×10 kg', en: 'Hop-Sport 2×10 kg' }, spec: () => ({ kind: 'plates', unit: 'kg', base: 1.5, plates: [{ w: 2.5, n: 4 }, { w: 1.25, n: 4 }, { w: 0.5, n: 4 }] }) },
+  { id: 'vishape_pro', item: 'electric', label: { pl: 'ViShape SmartGym Pro (1,5–65 kg/str.)', en: 'ViShape SmartGym Pro (1.5–65 kg/side)' }, spec: () => ({ kind: 'electric', unit: 'kg', min: 1.5, max: 65, step: 0.5 }) },
+  { id: 'vishape_lite', item: 'electric', label: { pl: 'ViShape SmartGym Lite (1,5–35 kg/str.)', en: 'ViShape SmartGym Lite (1.5–35 kg/side)' }, spec: () => ({ kind: 'electric', unit: 'kg', min: 1.5, max: 35, step: 0.5 }) },
 ];
 
 /* ---------- presety miejsc ---------- */
@@ -166,15 +166,17 @@ export function equipEntry(id: string, unit: LoadUnit = 'kg', allOptions = false
   const x = equipById(id); if (!x) throw new Error('unknown equipment ' + id);
   const e: LocEquip = { item: id, opts: (x.options ?? []).filter(o => allOptions || o.defaultOn).map(o => o.id) }; const l = blankLoad(x, unit); if (l) e.load = l; return e;
 }
-/** Sprzęt presetu miejsca. */
-export function presetEquipment(p: LocationPreset): LocEquip[] {
+/** Sprzęt presetu miejsca. Audyt (LOW): w jednostce aplikacji — przy lb typowe ciężary w funtach (gryf 45 lb, talerze 45…2,5 lb, hantle co 5 lb). */
+const LB_PLATES = [45, 35, 25, 10, 5, 2.5];
+export function presetEquipment(p: LocationPreset, unit: LoadUnit = 'kg'): LocEquip[] {
+  const lb = unit === 'lb';
   if (p === 'home') return [];
-  if (p === 'bodyweight') return [equipEntry('floor_mat')];
-  if (p === 'hotel') { const db = equipEntry('db_fixed'); db.load = listOf(rangeValues(2.5, 25, 2.5)); return [db, equipEntry('bench_adj'), equipEntry('floor_mat'), equipEntry('treadmill'), equipEntry('bike')]; }
-  return EQUIPMENT.map(x => { const e = equipEntry(x.id, 'kg', true);
+  if (p === 'bodyweight') return [equipEntry('floor_mat', unit)];
+  if (p === 'hotel') { const db = equipEntry('db_fixed', unit); db.load = lb ? listOf(rangeValues(5, 50, 5), 'lb') : listOf(rangeValues(2.5, 25, 2.5)); return [db, equipEntry('bench_adj'), equipEntry('floor_mat'), equipEntry('treadmill'), equipEntry('bike')]; }
+  return EQUIPMENT.map(x => { const e = equipEntry(x.id, unit, true);
     if (x.id === 'electric') e.opts = e.opts.filter(o => o !== 'bench'); /* ławki siłowni są osobno */
-    if (x.id === 'barbell' || x.id === 'trap_bar' || x.id === 'ez_bar') e.load = { kind: 'plates', unit: 'kg', base: x.id === 'ez_bar' ? 10 : 20, plates: OLY_PLATES.map(w => ({ w, n: 8 })) };
-    if (x.id === 'db_fixed') e.load = listOf(rangeValues(2.5, 50, 2.5));
+    if (x.id === 'barbell' || x.id === 'trap_bar' || x.id === 'ez_bar') e.load = lb ? { kind: 'plates', unit: 'lb', base: x.id === 'ez_bar' ? 25 : 45, plates: LB_PLATES.map(w => ({ w, n: 8 })) } : { kind: 'plates', unit: 'kg', base: x.id === 'ez_bar' ? 10 : 20, plates: OLY_PLATES.map(w => ({ w, n: 8 })) };
+    if (x.id === 'db_fixed') e.load = lb ? listOf(rangeValues(5, 100, 5), 'lb') : listOf(rangeValues(2.5, 50, 2.5));
     if (x.id === 'db_plate' || x.id === 'electric') return null; /* siłownia: hantle stałe; stacji elektrycznej zwykle nie ma */
     return e; }).filter((e): e is LocEquip => !!e);
 }
@@ -183,7 +185,7 @@ export function presetEquipment(p: LocationPreset): LocEquip[] {
 /** Możliwości, które daje miejsce (pozycje + zaznaczone opcje). */
 export function capsOf(loc: Location | null | undefined): Set<string> {
   const out = new Set<string>(); if (!loc) return out;
-  for (const e of loc.equipment) { const x = equipById(e.item); if (!x) continue; x.gives.forEach(c => out.add(c)); for (const o of x.options ?? []) if (e.opts.includes(o.id)) o.gives.forEach(c => out.add(c)); }
+  for (const e of loc.equipment) { const x = equipById(e.item); if (!x || e.off) continue; x.gives.forEach(c => out.add(c)); for (const o of x.options ?? []) if (e.opts.includes(o.id)) o.gives.forEach(c => out.add(c)); }
   return out;
 }
 export interface Availability { ok: boolean; /** niespełnione grupy wymagań (w grupie: którakolwiek możliwość wystarczy) */ missing: string[][]; /** brakujące zalecane (tylko informacja) */ missingRecommended: string[] }
@@ -197,46 +199,63 @@ export const missingLabel = (missing: string[][]) => missing.map(g => g.map(capL
 
 /* ---------- ciężary dla ćwiczenia w miejscu ---------- */
 const KIND_BY_SOURCE: Partial<Record<LoadSource, LoadKind>> = { barbell: 'barbell', dumbbell: 'dumbbell', kettlebell: 'kettlebell', ez_bar: 'ez_bar', trap_bar: 'trap_bar', cable: 'cable', machine_stack: 'machine', plate_loaded_machine: 'machine' };
-/** Rodzaje ciężarów, z których ćwiczenie może brać obciążenie: najpierw z loadSource, potem z alternatyw w wymaganiach (RDL: hantle albo wyciąg; goblet: hantel albo kettle). */
+/** Możliwości dawane przez maszyny z ciężarami (T-bar, suwnica…): wymaganie takiej możliwości = maszyna może być źródłem obciążenia (audyt M2). */
+const MACHINE_CAPS = new Set(EQUIPMENT.filter(x => x.load === 'machine').flatMap(x => x.gives));
+/** Rodzaje ciężarów, z których ćwiczenie może brać obciążenie: najpierw z loadSource, potem z alternatyw w wymaganiach (RDL: hantle albo wyciąg;
+ * goblet: hantel albo kettle; T-Bar Row: sztanga albo maszyna T-bar). */
 export function loadKindsFor(ex: Pick<Exercise, 'loadSource' | 'requires'>): LoadKind[] {
   const out: LoadKind[] = []; const add = (k: LoadKind | undefined) => { if (k && !out.includes(k)) out.push(k); };
   add(ex.loadSource ? KIND_BY_SOURCE[ex.loadSource] : undefined);
   if (!out.length) return out; /* masa ciała / bez obciążenia — bez listy ciężarów */
-  for (const c of (ex.requires ?? []).flat()) add(c === 'db' ? 'dumbbell' : c === 'kb' ? 'kettlebell' : c.startsWith('cable.') ? 'cable' : c === 'barbell' ? 'barbell' : undefined);
+  for (const c of (ex.requires ?? []).flat()) add(c === 'db' ? 'dumbbell' : c === 'kb' ? 'kettlebell' : c.startsWith('cable.') ? 'cable' : c === 'barbell' ? 'barbell' : MACHINE_CAPS.has(c) ? 'machine' : undefined);
   return out;
 }
 export type ExLoads = { kind: 'loads'; loads: number[]; item: string } | { kind: 'unknown' } | { kind: 'none' };
+/** Możliwości pozycji w miejscu (z zaznaczonymi opcjami); `primary` — bez możliwości „przy okazji”. */
+function entryCaps(e: LocEquip, x: EquipItem, primary: boolean): Set<string> {
+  const out = new Set(x.gives.filter(c => !primary || !(x.secondary ?? []).includes(c))); for (const o of x.options ?? []) if (e.opts.includes(o.id)) o.gives.forEach(c => out.add(c)); return out;
+}
 /**
  * Dostępne ciężary ćwiczenia w miejscu (kg, rosnąco), w tej postaci, w jakiej wpisuje się ciężar serii:
  *  - hantle per hantel: lista jednego hantla albo pary (talerze dzielone na 4 — implements: 2), łącznie: suma pary;
- *  - stacja elektryczna: na stronę (jedna linka); przy trybie „łącznie” także 2 × na stronę, gdy są dwie linki;
- *  - maszyna: stos pozycji, która spełnia wymaganie ćwiczenia (Leg Press bierze ciężary suwnicy, nie prostowania nóg).
- * 'none' = w miejscu nie ma żadnego przyrządu z ciężarem dla tego ćwiczenia; 'unknown' = jest, ale bez wpisanych ciężarów.
+ *  - stacja elektryczna: na stronę; ćwiczenie wymagające dwóch linek — 2 × na stronę; przysiad z pasem (łącznie) — jedna albo dwie linki;
+ *  - przyrządy dobierane po tym, co ćwiczenie wymaga (audyt M1): najpierw pozycje, które dają wymaganą możliwość wprost (Triceps Pushdown —
+ *    brama, nie stos wyciągu do ściągania), potem „przy okazji”; maszyny zawsze tylko spełniające wymaganie (Leg Press ≠ prostowanie nóg);
+ *    wolne ciężary i wyciągi bez dopasowania — wszystkie pozycje tego rodzaju (np. wykroki: hantle są tylko zalecane).
+ * 'none' = ćwiczenie z biblioteki z obciążeniem tylko zalecanym (wykroki, russian twist — decyzja 4a), a w miejscu nie ma tego przyrządu;
+ * 'unknown' = podpowiedź jak przed P-003 (przyrząd bez wpisanych ciężarów, ćwiczenie własne bez wymagań, nic nie pasuje — audyt H3).
  */
 export function loadsFor(ex: Pick<Exercise, 'loadSource' | 'requires' | 'recommended' | 'loadMode' | 'implements'>, loc: Location | null | undefined): ExLoads {
   if (!loc) return { kind: 'unknown' };
   const kinds = loadKindsFor(ex); if (!kinds.length) return { kind: 'unknown' };
-  const need = new Set((ex.requires ?? []).flat());
+  const need = new Set((ex.requires ?? []).flat()); const firsts = new Set((ex.requires ?? []).map(g => g[0]));
   const mode: LoadMode = ex.loadMode ?? 'total'; const impl = ex.implements ?? (mode === 'per_dumbbell' ? 2 : 1);
+  const needsDual = (ex.requires ?? []).some(g => g.includes('cable.dual')); const belt = need.has('dip_belt');
+  const valsOf = (e: LocEquip, kind: LoadKind): number[] => {
+    if (!e.load) return [];
+    if (e.load.kind === 'electric') {
+      /* ciężar ustawia się na stronę. Seria „łącznie”: dwie linki naraz (ćwiczenie ich wymaga) — 2 × na stronę; przysiad z pasem — jedna albo
+       * obie; inne (np. jednorącz) — tylko na stronę: wartość ponad zakres jednej linki nie jest podpowiadana jako „dwie linki” (audyt LOW). */
+      const dual = e.opts.includes('dual');
+      return achievable(e.load, { mult: mode !== 'total' || !dual || ex.implements === 1 && !needsDual ? [1] : needsDual ? [2] : belt ? [1, 2] : [1] });
+    }
+    if (kind === 'dumbbell') return achievable(e.load, { perStep: impl === 2 ? 4 : 2, mult: mode === 'total' && impl === 2 ? [2] : [1] });
+    return achievable(e.load, { perStep: 2 });
+  };
   let present = false;
   for (const kind of kinds) {
+    const of = loc.equipment.flatMap(e => { const x = equipById(e.item); return x && !e.off && x.load === kind ? [{ e, x }] : []; });
+    const hits = (primary: boolean, caps: Set<string>) => of.filter(({ e, x }) => [...entryCaps(e, x, primary)].some(c => caps.has(c)));
+    /* kolejność: pozycja dająca wprost PIERWSZĄ możliwość grupy (Lat Pulldown → stos wyciągu do ściągania), potem dowolną wymaganą wprost, potem „przy okazji” */
+    let use = hits(true, firsts); if (!use.length) use = hits(true, need); if (!use.length) use = hits(false, need);
+    if (!use.length && kind !== 'machine') use = of; /* nic nie daje wymaganej możliwości wprost — wszystkie pozycje tego rodzaju */
+    if (use.length) present = true;
     const all: number[] = []; let item = '';
-    for (const e of loc.equipment) {
-      const x = equipById(e.item); if (!x || x.load !== kind) continue;
-      if (kind === 'machine' && !x.gives.some(c => need.has(c))) continue;
-      present = true; if (!e.load) continue;
-      let vals: number[];
-      if (e.load.kind === 'electric') {
-        /* ciężar ustawia się na stronę; seria „łącznie” z dwiema linkami = 2 × na stronę. Ćwiczenie wymagające dwóch linek — zawsze ×2,
-         * inne (np. przysiad z pasem: jedna albo obie linki) — obie możliwości. Tryb „na hantel/na stronę” — wartość z ekranu urządzenia. */
-        const dual = e.opts.includes('dual'); const needsDual = (ex.requires ?? []).some(g => g.includes('cable.dual'));
-        vals = achievable(e.load, { mult: mode !== 'total' || !dual ? [1] : needsDual ? [2] : [1, 2] });
-      }
-      else if (kind === 'dumbbell') vals = achievable(e.load, { perStep: impl === 2 ? 4 : 2, mult: mode === 'total' && impl === 2 ? [2] : [1] });
-      else vals = achievable(e.load, { perStep: 2 });
-      if (vals.length) { all.push(...vals); item = item || e.item; }
-    }
+    for (const { e } of use) { const v = valsOf(e, kind); if (v.length) { all.push(...v); item = item || e.item; } }
     if (all.length) { all.sort((a, b) => a - b); const u: number[] = []; for (const v of all) if (!u.length || v - u[u.length - 1] > 0.01 + 1e-9) u.push(v); return { kind: 'loads', loads: u, item }; }
   }
-  return present ? { kind: 'unknown' } : { kind: 'none' };
+  if (present) return { kind: 'unknown' };
+  /* brak przyrządu: tylko dla ćwiczeń bez wymagań z obciążeniem zalecanym (decyzja 4a) — reszta jak przed P-003 */
+  const recLoad = (ex.recommended ?? []).some(c => c === 'db' || c === 'kb' || c === 'barbell');
+  return !(ex.requires ?? []).length && recLoad ? { kind: 'none' } : { kind: 'unknown' };
 }

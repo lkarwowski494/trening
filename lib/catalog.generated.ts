@@ -3,6 +3,8 @@
 export type LoadSource = 'barbell' | 'dumbbell' | 'cable' | 'machine_stack' | 'bodyweight' | 'trap_bar' | 'ez_bar' | 'plate_loaded_machine' | 'kettlebell' | 'smith' | 'band' | 'none';
 export type Pattern = 'h_push' | 'h_pull' | 'v_push' | 'v_pull' | 'squat' | 'hinge' | 'lunge_single_leg' | 'isolation' | 'core_flexion' | 'core_anti_ext' | 'core_anti_rot' | 'core_other' | 'carry' | 'cardio' | 'other';
 export interface CatalogEntry { requires: string[][]; recommended: string[]; loadSource: LoadSource; pattern: Pattern; implements?: 1 | 2 }
+/** Wersja treści katalogu (skrót) — zapisywana w ćwiczeniu jako catalogRev. */
+export const CATALOG_REV = '727ee64d3a25';
 /** Słownik możliwości użytych w katalogu (wymagane i zalecane), posortowany. */
 export const CATALOG_CAPS: readonly string[] = ["ab_wheel","barbell","bench.decline","bench.flat","bench.incline","bench.uprights","box","cable.dual","cable.high","cable.low","cable.mid","cable.row_seat","calf_machine","cardio.bike","cardio.rower","cardio.treadmill","chest_press_machine","db","dip.bars","dip_belt","ez_bar","floor_mat","ghd","glute_ham_raise","hack_squat","hip_abductor_adductor","hyperext_bench","jump_rope","kb","landmine","lat_pulldown","leg_curl","leg_ext","leg_press","med_ball","outdoor","pec_deck","preacher_bench","pullup.bar","rack","rack.safeties","rings","shoulder_press_machine","smith","suspension","t_bar","trap_bar"];
 export const CATALOG: Readonly<Record<string, CatalogEntry>> = {

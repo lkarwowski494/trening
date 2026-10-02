@@ -5,8 +5,8 @@ import { t, t as tr, tIn, applyLang, detectLang, locale } from './i18n';
 import { applyUnit, wu, wOut, wIn, KG_PER_LB, fmtW, fmtNum, snapLegacyLb } from './units';
 import { seedState, uid, base, defaultModules, defaultSettings, metricFor, loadModeFor, loadMult, blankTimer, musclesFor, hasTime, hasReps, hasWeight, hasDistance, METRICS, DEFAULT_REST, GROUPS, LIB, SCHEMA_VERSION, LOCAL_OWNER, MODULES, SET_KINDS, SINGLE_IMPLEMENT, equipFields, LOAD_SOURCE_BY_EQUIPMENT, type Base, type State, type Workout, type WSet, type WExercise, type Exercise, type Template, type Morning, type Location } from './seed';
 import { equipById, loadsFor } from './equipment';
-import { sanitizeLoadSpec, nextHeavier } from './loads';
-import { CATALOG } from './catalog.generated';
+import { sanitizeLoadSpec, nextHeavier, hasLoad } from './loads';
+import { CATALOG, CATALOG_REV } from './catalog.generated';
 
 /*
  * Trwałość: cały stan aplikacji trzymany jako dokument JSON w SQLite (tabela kv).
@@ -164,9 +164,13 @@ function setNum(k: typeof SET_NUM[number], v: unknown): number | '' {
 const LOAD_SOURCES = ['barbell', 'dumbbell', 'cable', 'machine_stack', 'bodyweight', 'trap_bar', 'ez_bar', 'plate_loaded_machine', 'kettlebell', 'smith', 'band', 'none'];
 const PATTERNS = new Set(Object.values(CATALOG).map(c => c.pattern as string).concat('other'));
 function fixEquipFields(e: any) {
-  if (!Array.isArray(e.requires)) { const f = equipFields(e.name, e.equipment, e.lib === true); delete e.implements; delete e.pattern; Object.assign(e, f); return; }
+  /* audyt M6: ćwiczenie z biblioteki z wymaganiami z innej wersji katalogu (i nieedytowane: catalogRev ≠ 'user') dostaje aktualne */
+  const fromCatalog = e.lib === true && Object.prototype.hasOwnProperty.call(CATALOG, e.name);
+  if (!Array.isArray(e.requires) || (fromCatalog && e.catalogRev !== 'user' && e.catalogRev !== CATALOG_REV)) { const f = equipFields(e.name, e.equipment, e.lib === true); delete e.implements; delete e.pattern; delete e.catalogRev; Object.assign(e, f); return; }
+  if (!fromCatalog && e.catalogRev !== 'user') delete e.catalogRev;
   const strs = (a: unknown): string[] => Array.isArray(a) ? [...new Set(a.filter((x: unknown): x is string => typeof x === 'string' && !!x))] : [];
-  e.requires = e.requires.map(strs).filter((g: string[]) => g.length); e.recommended = strs(e.recommended);
+  /* audyt (LOW): uszkodzona grupa wymagań czyni ćwiczenie MNIEJ dostępnym — grupa bez żadnej poprawnej możliwości = „?” (niespełnialna) */
+  e.requires = e.requires.map((g: unknown) => { const v = strs(g); return v.length ? v : ['?']; }); e.recommended = strs(e.recommended);
   if (!LOAD_SOURCES.includes(e.loadSource)) e.loadSource = equipFields(e.name, e.equipment, e.lib === true).loadSource;
   if (!PATTERNS.has(e.pattern)) delete e.pattern; if (e.implements !== 1 && e.implements !== 2) delete e.implements;
 }
@@ -175,11 +179,11 @@ function fixLocations(s: any, stamp: (o: any) => void, language: unknown): { loc
   const seen = new Set<string>(); const locations: Location[] = [];
   for (const l of arr(s.locations)) {
     stamp(l); if (seen.has(l.id)) continue; seen.add(l.id);
-    const n = typeof l.name === 'string' ? l.name.replace(/\s+/g, ' ').trim() : ''; l.name = n || tIn(language, 'Miejsce');
+    const n = typeof l.name === 'string' ? clampName(l.name.replace(/\s+/g, ' ').trim()) : ''; l.name = n || tIn(language, 'Miejsce'); /* audyt (LOW): limit nazwy jak w polu */
     const items = new Set<string>();
     l.equipment = arr(l.equipment).filter((e: any) => { const x = typeof e.item === 'string' ? equipById(e.item) : undefined; if (!x || items.has(e.item)) return false; items.add(e.item);
       const ok = new Set((x.options ?? []).map(o => o.id)); e.opts = Array.isArray(e.opts) ? [...new Set(e.opts.filter((o: unknown) => typeof o === 'string' && ok.has(o)))] : [];
-      const ld = x.load ? sanitizeLoadSpec(e.load) : undefined; if (ld) e.load = ld; else delete e.load; for (const k of Object.keys(e)) if (!['item', 'opts', 'load'].includes(k)) delete e[k]; return true; });
+      const ld = x.load ? sanitizeLoadSpec(e.load) : undefined; if (ld) e.load = ld; else delete e.load; if (e.off !== true) delete e.off; /* audyt M5: odznaczona pozycja z zachowanymi ciężarami */ for (const k of Object.keys(e)) if (!['item', 'opts', 'load', 'off'].includes(k)) delete e[k]; return true; });
     locations.push(l as Location);
   }
   const main = idOf(s.mainLocationId);
@@ -508,6 +512,7 @@ export function progressionFor(ex: Exercise | undefined, repMax: number | null |
   const loc = locationById(locationId);
   if (loc && !isBW(ex)) { const L = loadsFor(ex, loc);
     if (L.kind === 'none') return top <= 0 ? { kind: 'reps', reps: repMax + 1 } : null; /* np. wykroki bez hantli w domu; ciężar z innego miejsca — bez „↑” */
+    if (L.kind === 'loads' && top <= 0) return { kind: 'reps', reps: repMax + 1 }; /* audyt H2: bez obciążenia (wykroki, russian twist) — powtórzenia, nie „+1 kg”, którego nie ma */
     if (L.kind === 'loads' && top > 0) { const nx = nextHeavier(L.loads, top); if (nx == null) return null; /* poprzedni ciężar ≥ największy dostępny */
       if ((nx - top) / top > PROGRESSION_GATE + 1e-9 && Math.min(...work.map(repsOf)) < repMax + 2) return { kind: 'reps', reps: repMax + 2, gate: true };
       return { kind: 'load', kg: nx }; } }
@@ -561,6 +566,11 @@ export function startLocationId(preferred?: string | null): string | undefined {
   if (preferred && s.locations.some(l => l.id === preferred)) return preferred;
   return s.mainLocationId && s.locations.some(l => l.id === s.mainLocationId) ? s.mainLocationId : s.locations[0].id;
 }
+/** Audyt M3: ciężar spoza listy dostępnych w miejscu (np. 32 kg z siłowni, w domu max 24) — nie wstawiamy go do pól, zostaje w „Poprzednio”. */
+function offListAt(ex: Exercise | undefined, locationId: string | undefined, kg: unknown): boolean {
+  if (!ex || isBW(ex) || typeof kg !== 'number') return false; const loc = locationById(locationId); if (!loc) return false;
+  const L = loadsFor(ex, loc); return L.kind === 'loads' && !hasLoad(L.loads, kg);
+}
 /* ---------- workout actions ---------- */
 const newWorkout = (templateId: string | null, templateName: string, locPref?: string | null): Workout => { const st = getState(); const w: Workout = { ...base(st.ownerId), loggedBy: st.ownerId, sessionMode: 'solo', healthUUID: null, templateId, templateName, startedAt: Date.now(), finishedAt: null, note: '', exercises: [] }; const loc = startLocationId(locPref); if (loc) w.locationId = loc; return w; };
 export function startFromTemplate(tpl: Template) {
@@ -579,6 +589,7 @@ export function startFromTemplate(tpl: Template) {
       // Cel czasu z szablonu wygrywa z czasem z poprzedniej sesji — inaczej stoper ucinał serię na starym wyniku (runda 2).
       // Czas z poprzedniej sesji zostaje tylko podpowiedzią („Poprzednio”) — jako wartość stawałby się celem stopera (runda 4).
       if (hasTime(m)) s.durationSec = Number(it.targetSec) > 0 ? Number(it.targetSec) : ''; // runda 30: cel 0 = bez celu (jak w repeatLast)
+      if (p && w.locationId && prevAll!.workout.locationId !== w.locationId && offListAt(ex, w.locationId, s.weight)) s.weight = ''; /* audyt M3 */
       sets.push(markPre(stripUnused(ex, s)));
     }
     // Przerwa: ustawiona w pozycji szablonu wygrywa; puste pole w szablonie (null) = przerwa z ćwiczenia albo domyślna.
@@ -658,12 +669,13 @@ function prevOfBlock(e: WExercise) {
 function fillFromHints(e: WExercise, si: number) {
   const s = e.sets[si]; if (s.kind === 'warmup') return;
   // Ta sama seria robocza co w podpowiedzi „Poprzednio” (bez „dociągania” do ostatniej — ekran pokazuje wtedy „—”).
-  const p = hintFor(prevOfBlock(e)?.sets, e.sets, si, exById(e.exerciseId));
+  const pb = prevOfBlock(e); const p = hintFor(pb?.sets, e.sets, si, exById(e.exerciseId));
+  const act = getState().active; const offW = !!(p && pb && act?.locationId && pb.workout.locationId !== act.locationId && offListAt(exById(e.exerciseId), act.locationId, p.weight)); /* audyt M3 */
   // Guma z podpowiedzi tylko razem z jej asystą — gdy ±kg wpisano ręcznie (np. dociążenie), gumy nie dokładamy (runda 3).
   const hinted: Record<string, unknown> = {};
   // Runda 10: tylko pola, których używa bieżąca metryka ćwiczenia (metrykę mogła zmienić edycja ćwiczenia).
   const ex = exById(e.exerciseId); const m = ex?.metric ?? 'weight_reps'; const uses = usedKeys(ex);
-  if (p && !assistLost(ex, p)) { const kgEmpty = isEmpty(s.addKg); for (const k of VAL_KEYS) if (uses[k] && isEmpty(s[k]) && !isEmpty(p[k]) && !(k === 'addKg' && ((uses.bandId && s.bandId && s.bandId !== p.bandId) /* runda 66: ukryta guma nie blokuje +kg */ || (s.noBand && p.bandId) || (p.bandId && (!uses.bandId || !bandById(p.bandId)))))) { /* runda 47: guma zdjęta ręcznie — bez jej asysty */ /* runda 46: asysta innej gumy nie trafia do tej serii */ (s as any)[k] = p[k]; hinted[k] = p[k]; } if (uses.bandId && !s.bandId && !s.noBand && p.bandId && bandById(p.bandId) && kgEmpty) { s.bandId = p.bandId; hinted.bandId = p.bandId; } if (hinted.bandId && uses.addKg && isEmpty(s.addKg)) { pairAssist(s); if (!isEmpty(s.addKg)) hinted.addKg = s.addKg; } }
+  if (p && !assistLost(ex, p)) { const kgEmpty = isEmpty(s.addKg); for (const k of VAL_KEYS) if (uses[k] && isEmpty(s[k]) && !isEmpty(p[k]) && !(k === 'weight' && offW) && !(k === 'addKg' && ((uses.bandId && s.bandId && s.bandId !== p.bandId) /* runda 66: ukryta guma nie blokuje +kg */ || (s.noBand && p.bandId) || (p.bandId && (!uses.bandId || !bandById(p.bandId)))))) { /* runda 47: guma zdjęta ręcznie — bez jej asysty */ /* runda 46: asysta innej gumy nie trafia do tej serii */ (s as any)[k] = p[k]; hinted[k] = p[k]; } if (uses.bandId && !s.bandId && !s.noBand && p.bandId && bandById(p.bandId) && kgEmpty) { s.bandId = p.bandId; hinted.bandId = p.bandId; } if (hinted.bandId && uses.addKg && isEmpty(s.addKg)) { pairAssist(s); if (!isEmpty(s.addKg)) hinted.addKg = s.addKg; } }
   // Brak podpowiedzi i brak wpisu: dolna granica zakresu z szablonu (runda 4: pierwszy trening zapisywał „24×0”).
   if (hasReps(m) && isEmpty(s.reps) && e.repMin != null) { s.reps = e.repMin; hinted.reps = e.repMin; }
   s.hinted = Object.keys(hinted).length ? hinted : undefined;

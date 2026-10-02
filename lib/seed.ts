@@ -5,7 +5,7 @@ import * as Crypto from 'expo-crypto';
 import type { LangSetting, Lang } from './i18n';
 import type { Unit } from './units';
 import type { LoadSpec } from './loads';
-import { CATALOG, type LoadSource, type Pattern } from './catalog.generated';
+import { CATALOG, CATALOG_REV, type LoadSource, type Pattern } from './catalog.generated';
 
 export const SCHEMA_VERSION = 14; // 14 (P-003 E1): miejsca treningu i sprzęt — Settings.locations/mainLocationId/pickerShowAll, Workout/Template.locationId, wymagania sprzętowe ćwiczeń; 11 (runda 55): przyciąganie starych wartości z funtów tylko dla danych sprzed tej wersji; 12 (runda 72): masa ciała zamrożona w zakończonych treningach; 13 (runda 75, Q-001): masa ciała poza obliczeniami — usunięte udział %, waga w Ustawieniach i w treningu; nowe ustawienia progressHint, autoBackup, weighReminder
 /** Właściciel danych zanim pojawią się konta (H2). Po logowaniu zostanie podmieniony na id użytkownika. */
@@ -69,7 +69,7 @@ export type Equipment = 'hantle' | 'sztanga' | 'masa ciała' | 'maszyna' | 'link
 export const GROUPS = ['klatka','plecy','barki','biceps','triceps','nogi','pośladki','łydki','core','cardio','inne'] as const;
 export type Group = typeof GROUPS[number];
 
-export interface Exercise extends Base { name: string; group: Group; equipment: Equipment; metric: MetricType; loadMode: LoadMode; restSec: number | null; restWarmupSec: number | null; muscles: Muscle[]; secondaryMuscles: Muscle[]; bandAssistable: boolean; tempo: string; notes: string; lib?: boolean; archived?: boolean; /** P-003 (schemat 14): wymagania sprzętowe — każda grupa musi być spełniona, w grupie wystarczy jedna możliwość (lib/equipment.ts). Ćwiczenia własne: [] = zawsze dostępne. */ requires?: string[][]; recommended?: string[]; pattern?: Pattern; /** skąd brać dostępne ciężary (lib/equipment.ts loadsFor) */ loadSource?: LoadSource; /** hantle: 1 = jeden hantel, 2 = para (z której listy brać ciężary) */ implements?: 1 | 2 }
+export interface Exercise extends Base { name: string; group: Group; equipment: Equipment; metric: MetricType; loadMode: LoadMode; restSec: number | null; restWarmupSec: number | null; muscles: Muscle[]; secondaryMuscles: Muscle[]; bandAssistable: boolean; tempo: string; notes: string; lib?: boolean; archived?: boolean; /** P-003 (schemat 14): wymagania sprzętowe — każda grupa musi być spełniona, w grupie wystarczy jedna możliwość (lib/equipment.ts). Ćwiczenia własne: [] = zawsze dostępne. */ requires?: string[][]; recommended?: string[]; pattern?: Pattern; /** skąd brać dostępne ciężary (lib/equipment.ts loadsFor) */ loadSource?: LoadSource; /** hantle: 1 = jeden hantel, 2 = para (z której listy brać ciężary) */ implements?: 1 | 2; /** audyt E1 (M6): wersja katalogu, z której skopiowano wymagania ('user' = edytowane — nie odświeżać) */ catalogRev?: string }
 /** nominalKg (0.5): opcjonalna szacowana asysta gumy w kg — brak standardu kolorów, więc wartość podaje użytkownik (z opakowania lub własny szacunek). */
 export interface Band extends Base { color: string; level: number; nominalKg: number | '' }
 /** id (schemat 10): stabilny klucz wiersza w edytorze (przesuwanie/usuwanie nie myli pól). */
@@ -83,7 +83,7 @@ export interface Morning extends Base { date: string; bb: number | ''; sleepScor
 /** language/unit (0.8, schemat 9, LOC-01/02): 'auto' = język systemu; masa zawsze zapisywana w kg. */
 export interface Settings { defaultRest: number; sound: boolean; wakeLock: boolean; showRpe: boolean; healthSync: boolean; /** runda 75 (T-017): cicha podpowiedź progresji */ progressHint: boolean; /** runda 75 (T-012): kopia JSON po każdym treningu w Plikach */ autoBackup: boolean; /** runda 75 (T-013): przypomnienie o wadze w poniedziałek rano */ weighReminder: boolean; modules: Record<ModuleId, boolean>; language: LangSetting; unit: Unit; /** P-003 (schemat 14): miejsca treningu; brak miejsc = zachowanie jak przed schematem 14 */ locations: Location[]; mainLocationId: string | null; /** wybór ćwiczenia: pokaż także niedostępne w miejscu (zapamiętany przełącznik) */ pickerShowAll: boolean }
 /** P-003: sprzęt w miejscu — pozycja z lib/equipment.ts, zaznaczone opcje i (dla sprzętu z ciężarami) opis dostępnych ciężarów. */
-export interface LocEquip { item: string; opts: string[]; load?: LoadSpec }
+export interface LocEquip { item: string; opts: string[]; load?: LoadSpec; /** audyt E1 (M5): pozycja odznaczona — opcje i ciężary zostają na wypadek ponownego zaznaczenia */ off?: true }
 export interface Location extends Base { name: string; equipment: LocEquip[] }
 export interface State { v: number; schemaVersion: number; ownerId: string; settings: Settings; exercises: Exercise[]; bands: Band[]; templates: Template[]; workouts: Workout[]; active: Workout | null; mornings: Morning[]; relations: CoachingRelation[]; feedback: Feedback[]; instructions: NextSessionInstructions[]; timer: TimerState; metaUpdatedAt?: number; userTouched?: boolean }
 
@@ -140,9 +140,9 @@ export const musclesFor = (name: string, group: Group): [Muscle[], Muscle[]] => 
 /** P-003: źródło obciążenia ćwiczenia własnego z jego zgrubnego sprzętu (żeby działało zaokrąglanie do dostępnych ciężarów). */
 export const LOAD_SOURCE_BY_EQUIPMENT: Record<Equipment, LoadSource> = { hantle: 'dumbbell', sztanga: 'barbell', 'masa ciała': 'bodyweight', maszyna: 'machine_stack', linki: 'cable', inne: 'none' };
 /** P-003: pola sprzętowe ćwiczenia — z katalogu dla biblioteki (po nazwie kanonicznej), dla własnych: bez wymagań. */
-export function equipFields(name: string, equipment: Equipment, lib: boolean): Pick<Exercise, 'requires' | 'recommended' | 'pattern' | 'loadSource' | 'implements'> {
+export function equipFields(name: string, equipment: Equipment, lib: boolean): Pick<Exercise, 'requires' | 'recommended' | 'pattern' | 'loadSource' | 'implements' | 'catalogRev'> {
   const c = lib ? own(CATALOG as Record<string, typeof CATALOG[string]>, name) : undefined;
-  if (c) { const o: Pick<Exercise, 'requires' | 'recommended' | 'pattern' | 'loadSource' | 'implements'> = { requires: c.requires.map(g => [...g]), recommended: [...c.recommended], pattern: c.pattern, loadSource: c.loadSource }; if (c.implements) o.implements = c.implements; return o; }
+  if (c) { const o: Pick<Exercise, 'requires' | 'recommended' | 'pattern' | 'loadSource' | 'implements' | 'catalogRev'> = { requires: c.requires.map(g => [...g]), recommended: [...c.recommended], pattern: c.pattern, loadSource: c.loadSource }; if (c.implements) o.implements = c.implements; o.catalogRev = CATALOG_REV; return o; }
   return { requires: [], recommended: [], loadSource: LOAD_SOURCE_BY_EQUIPMENT[equipment] ?? 'none' };
 }
 export const blankTimer = (): TimerState => ({ restEndAt: null, restTotal: 0, restSetId: null, setStartAt: null, setTarget: 0, setId: null });

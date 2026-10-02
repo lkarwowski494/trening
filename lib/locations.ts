@@ -13,12 +13,12 @@ const uniqueName = (name: string) => { const names = new Set(getState().settings
 /** Nowe miejsce z presetu; pierwsze miejsce staje się główne. */
 export function addLocation(preset: LocationPreset, name?: string): Location {
   const st = getState(); const s = st.settings;
-  const label = LOCATION_PRESET_LABEL[preset]; const l: Location = { ...base(st.ownerId), name: uniqueName(clampName(name ?? (lang() === 'en' ? label.en : label.pl))), equipment: presetEquipment(preset) };
+  const label = LOCATION_PRESET_LABEL[preset]; const l: Location = { ...base(st.ownerId), name: uniqueName(clampName(name ?? (lang() === 'en' ? label.en : label.pl))), equipment: presetEquipment(preset, s.unit) };
   s.locations.push(l); if (!s.mainLocationId || !locationById(s.mainLocationId)) s.mainLocationId = l.id;
   save(); return l;
 }
 export function setMainLocation(id: string) { const s = getState().settings; if (!locationById(id) || s.mainLocationId === id) return; s.mainLocationId = id; save(); }
-export function renameLocation(l: Location, name: string) { l.name = name; save(l); }
+export function renameLocation(l: Location, name: string) { l.name = name.slice(0, NAME_MAX); save(l); } /* audyt (LOW): limit także poza polem */
 /** Porządkuje nazwę po zakończeniu edycji (pusta → poprzednia albo „Miejsce”). */
 export function commitLocationName(l: Location, fallback: string) { const n = l.name.replace(/\s+/g, ' ').trim(); l.name = clampName(n || fallback || t('Miejsce')); save(l); }
 export function duplicateLocation(id: string): Location | undefined {
@@ -33,17 +33,21 @@ export function deleteLocation(id: string): boolean {
   s.locations = s.locations.filter(l => l.id !== id); if (s.mainLocationId === id) s.mainLocationId = s.locations[0]?.id ?? null;
   save(); flush(); return true;
 }
+/** Pozycja w miejscu (także odznaczona — z zachowanymi ciężarami). */
 export const equipOf = (l: Location, item: string): LocEquip | undefined => l.equipment.find(e => e.item === item);
-/** Zaznaczenie / odznaczenie pozycji sprzętu (z domyślnymi opcjami i pustym opisem ciężarów w jednostce z Ustawień). */
+/** Pozycja zaznaczona (aktywna). */
+export const activeEquip = (l: Location, item: string): LocEquip | undefined => { const e = equipOf(l, item); return e && !e.off ? e : undefined; };
+/** Zaznaczenie / odznaczenie pozycji sprzętu (z domyślnymi opcjami i pustym opisem ciężarów w jednostce z Ustawień).
+ * Audyt M5: odznaczenie nie kasuje ciężarów i opcji — pozycja dostaje znacznik off, a ponowne zaznaczenie przywraca ją jak była. */
 export function setEquip(l: Location, item: string, on: boolean) {
   if (!equipById(item)) return; const has = equipOf(l, item);
-  if (on && !has) l.equipment.push(equipEntry(item, getState().settings.unit)); else if (!on && has) l.equipment = l.equipment.filter(e => e.item !== item); else return;
+  if (on && !has) l.equipment.push(equipEntry(item, getState().settings.unit)); else if (on && has?.off) delete has.off; else if (!on && has && !has.off) has.off = true; else return;
   save(l);
 }
 export function setOpt(l: Location, item: string, opt: string, on: boolean) {
-  const e = equipOf(l, item); const x = equipById(item); if (!e || !x?.options?.some(o => o.id === opt)) return;
+  const e = activeEquip(l, item); const x = equipById(item); if (!e || !x?.options?.some(o => o.id === opt)) return;
   e.opts = on ? [...new Set([...e.opts, opt])] : e.opts.filter(o => o !== opt); save(l);
 }
-export function setLoad(l: Location, item: string, spec: LoadSpec) { const e = equipOf(l, item); if (!e) return; e.load = spec; save(l); }
+export function setLoad(l: Location, item: string, spec: LoadSpec) { const e = activeEquip(l, item); if (!e) return; e.load = spec; save(l); }
 /** Nazwa miejsca do wyświetlenia; id usuniętego miejsca → „(usunięte miejsce)”. */
 export const locationLabel = (id: string | null | undefined) => locationById(id)?.name ?? t('(usunięte miejsce)');
