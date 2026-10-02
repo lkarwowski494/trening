@@ -4,6 +4,9 @@ Source: lista LIB z lib/seed.ts (125 ćwiczeń). Plik: docs/research/equipment/c
 
 > Uwaga: liczby w sekcji „Counts” i lista „Floor” pochodzą sprzed przeglądu 02.10. Po poprawkach bez wymagań jest 20 ćwiczeń (doszły Wall Sit, Łydki na stopniu, Bieg). Aktualne liczby zawsze z pliku JSON, nie z tej notatki.
 
+## implements (dodane przy wdrożeniu E1, 02.10.2026)
+Wpisy z `loadSource` dumbbell/kettlebell mają pole `implements`: 1 = jeden hantel/kettle (One Arm Row, Concentration Curl, Triceps Kickback, Goblet Squat, Overhead Triceps Extension (hantel), Hip Thrust (hantel), Kettlebell Swing, Russian Twist, Suitcase Carry), 2 = para (pozostałe 29). Mówi, z której listy brać ciężary hantli na talerze (para: talerze dzielone na 4, jeden: na 2). Łydki na stopniu = 2 (niepewne — przy hantlach z listą nie ma to znaczenia). Plik `lib/catalog.generated.ts` generuje `node scripts/equipment/gen.mjs` — po każdej zmianie tego JSON-a trzeba go uruchomić (test pilnuje aktualności).
+
 ## Vocabulary additions
 None. Every capability used is from the given vocabulary. Candidate splits, **not** added, listed so the decision stays open:
 - `leg_curl` → seated vs lying (affects Leg Curl / Lying Leg Curl)
