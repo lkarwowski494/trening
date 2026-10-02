@@ -30,6 +30,8 @@ env:
   EXPO_ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
   EXPO_ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
   EXPO_ASC_API_KEY_PATH: ${{ github.workspace }}/.secrets/asc.p8
+  # eas-cli 24.8.0 wysyła do Apple odrzucany PATCH uprawnień (expo/eas-cli#3986) — włączamy je sami krokiem niżej.
+  EXPO_NO_CAPABILITY_SYNC: '1'
 jobs:
   eas:
     runs-on: ubuntu-latest
@@ -62,6 +64,9 @@ jobs:
           URL=$(NODE_PATH="$RUNNER_TEMP/eascli/node_modules" node scripts/eas/device-url.cjs)
           echo "$URL"
           { echo "## Otwórz ten link na iPhonie w Safari"; echo; echo "$URL"; echo; echo "Zainstaluj profil (Ustawienia → Pobrano profil), potem uruchom akcję **konfiguruj-podpis** (pierwszy raz) albo **build**."; } >> "$GITHUB_STEP_SUMMARY"
+      - name: Uprawnienia Apple (HealthKit) przez App Store Connect API
+        if: inputs.akcja != 'zarejestruj-iphone'
+        run: node scripts/eas/asc-capabilities.cjs
       - name: Podpis (certyfikat i profile ad hoc)
         if: inputs.akcja == 'konfiguruj-podpis'
         run: |

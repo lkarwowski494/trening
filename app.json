@@ -15,6 +15,7 @@
     },
     "ios": {
       "bundleIdentifier": "pl.lukasz.trening",
+      "appleTeamId": "8NQ9GHY8GF",
       "supportsTablet": false,
       "infoPlist": {
         "NSSupportsLiveActivities": true,
