@@ -208,4 +208,6 @@ export const EN: Record<string, string> = {
   'Moduły': 'Modules',
   'Dane w telefonie': 'Data on this phone',
   'Ukryj to, czego nie używasz': 'Hide what you don’t use',
+  /* P-003 E1: miejsca treningu i sprzęt */
+  'Miejsce': 'Place', '(usunięte miejsce)': '(deleted place)',
 };
