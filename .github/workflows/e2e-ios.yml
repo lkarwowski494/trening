@@ -84,6 +84,9 @@ jobs:
           curl -fsSL "https://get.maestro.mobile.dev" | bash
           echo "$HOME/.maestro/bin" >> "$GITHUB_PATH"
       - name: Maestro
+        env:
+          MAESTRO_DRIVER_STARTUP_TIMEOUT: '240000'  # świeżo uruchomiony symulator potrzebuje więcej czasu na sterownik XCTest
+          MAESTRO_CLI_NO_ANALYTICS: '1'
         run: |
           mkdir -p e2e-out
           maestro --device "$SIM" test .maestro --format junit --output e2e-out/report.xml --test-output-dir e2e-out
