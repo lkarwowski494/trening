@@ -54,11 +54,13 @@ Priorytet od właściciela produktu. Research (w zleceniu): 9 z 10 porównywanyc
 - Ostrzeżenie o nachodzeniu na sesję z historii i blokada treningu w toku działają tylko, gdy termin zmieniono (albo przy treningu wstecz) — nieruszony termin nie jest sprawdzany.
 - Apple Health nie jest aktualizowane (patrz wyżej).
 - Przerwy między seriami (`actualRest`) istniejących serii zostają; nowe serie nie mają przerwy (w historii „—”).
+- **Miejsca treningu (P-003, integracja 0.9.0):** edycja zachowuje `locationId` treningu (szkic to głęboka kopia), więc po zapisie „Poprzednio” i wstępne wartości tego miejsca liczą się od nowa. Trening wstecz nie dostaje miejsca (także z szablonu z miejscem domyślnym) — w historii jest „bez miejsca”, więc nie wchodzi do „Poprzednio” żadnego miejsca (widzi go tylko fallback „gdziekolwiek”, gdy w danym miejscu nie było jeszcze ćwiczenia). **Znane ograniczenie (na później):** wartości wstawiane w edytorze (`previousBlockBefore`) biorą ostatnią sesję sprzed daty z dowolnego miejsca — bez preferencji tego samego miejsca (decyzja 8a), także gdy edytowany trening ma miejsce. Dopisanie: skan `histOf(exId, loc)` z tym samym filtrem daty i tym samym fallbackiem co `previousBlockFor`; wraz z wyborem miejsca w edytorze/treningu wstecz.
+- Wybór ćwiczenia w edytorze (`edit:<klucz>`) filtruje po miejscu edytowanego treningu, gdy je ma i miejsce wciąż istnieje (jak trening w toku, z tym samym przełącznikiem „Pokaż wszystkie”); trening wstecz, treningi sprzed miejsc i z usuniętym miejscem — pełna lista.
 
 ## 4. Pliki
 
 - `lib/edit.ts` — szkic: tworzenie (edycja, trening wstecz), zmiany, walidacja terminu (`parseWhen`), sprawdzenie i zapis (`checkDraft`, `commitDraft`).
-- `lib/store.ts` — `putHistoryWorkout` (z rozdzieleniem remisu startu), `previousBlockBefore` (wspólny dobór bloku z „Poprzednio”: `prevScan`, `byItemScan`, `byTplBlockScan`, `selectBlock`), `setHasResult`, eksport `emptySet` / `copyVals` / `stripUnused`.
+- `lib/store.ts` — `putHistoryWorkout` (z rozdzieleniem remisu startu), `previousBlockBefore` (wspólny dobór bloku z „Poprzednio”: skanery `prevScan`, `byItemScan`, `byTplBlockScan` dostają historię ćwiczenia — całą albo z jednego miejsca, `histOf` — i filtr sesji `WOk`; `selectBlock` wybiera blok; od integracji 0.9.0 ta sama ścieżka obsługuje `previousBlockFor(..., locationId)` z P-003), `setHasResult`, eksport `emptySet` / `copyVals` / `stripUnused`.
 - `lib/backup.ts` — `onHistoryEdited` (kopia automatyczna, bez Zdrowia).
 - `app/history/edit/[id].tsx` — edytor; `app/history/add.tsx` — trening wstecz; `components/WhenFields.tsx` — pola terminu.
 - `app/history/[id].tsx` — „Edytuj”; `app/(tabs)/history.tsx` — „+ Dodaj trening wstecz”; `app/picker.tsx` — cel `edit:<klucz>`; `app/_layout.tsx` — ekrany w stosie; `lib/i18n.en.ts` — tłumaczenia.
@@ -132,3 +134,9 @@ Weryfikacja: `npx tsc --noEmit`, `npm run check:i18n`, `npx jest --maxWorkers=2`
 | L4 | Nieruszone serie bez godziny (stare dane) dostawały zmyśloną godzinę i traciły przerwę | Godzina i zerowanie przerwy tylko dla serii nowych lub zmienionych; przesuwanie/przycinanie godzin tylko przy zmianie terminu. |
 | L5 | „Usuń sesję” przez `dismiss(2)` mogło wrócić na zakładkę Trening | Po usunięciu zawsze `dismissAll()` + `navigate('/history')` (wzór z edytora szablonu). |
 
+## 7. Integracja 0.9.0 z miejscami treningu (P-003 E1)
+
+- **Jeden dobór „Poprzednio”** (`lib/store.ts`): skanery dostają listę treningów z ćwiczeniem (od najnowszego; `histOf(exId, loc)` — cała historia albo tylko z miejsca) i filtr sesji. Cache (`memoHistBy`, klucz `exId` albo `exId + LOC_SEP + idMiejsca`, dla pozycji szablonu i bloków szablonu analogicznie) tylko dla pełnej historii; skan „przed datą” bez cache (filtr zmienia się ze szkicem).
+- `previousBlockFor(exId, k, n, tplItemId, tplId, locationId)` — decyzja 8a: gdy są miejsca i w tym miejscu było już ćwiczenie, dobór tylko z treningów w tym miejscu, inaczej z całej historii. Bez miejsc — dokładnie jak przed P-003.
+- `previousBlockBefore` — bez miejsca (ograniczenie w sekcji 3).
+- Testy przejścia funkcji: `tests/integration-090.test.tsx` (edycja treningu z miejscem, trening wstecz przy miejscach, wybór ćwiczenia w edytorze, migracja i eksport/import z danymi obu funkcji).

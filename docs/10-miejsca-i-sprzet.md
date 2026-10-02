@@ -214,6 +214,7 @@ Stan 03.10.2026: 4 commity E1 + 2 commity poprawek po niezależnym audycie + po 
 - **TREXO TXO-B4W002:** brak presetu modelu (kroki nieznane). Użytkownik wpisuje listę sam (np. „wypełnij zakresem” i odznaczenie brakujących).
 - **Picker w edycji szablonu** filtruje tylko po jawnie ustawionym miejscu szablonu (szablon bez miejsca — bez filtra).
 - **Wymagania ćwiczenia** są zapisane w ćwiczeniu, ale ekran edycji ćwiczenia ich jeszcze nie pokazuje ani nie edytuje.
+- **Edycja historii i trening wstecz (docs/12, integracja 0.9.0):** edycja zachowuje miejsce treningu (po zapisie „Poprzednio” tego miejsca liczy się od nowa); trening wstecz zapisuje się bez miejsca (nie wpływa na „Poprzednio” żadnego miejsca, poza fallbackiem „gdziekolwiek”); wybór ćwiczenia w edytorze filtruje po miejscu edytowanego treningu, gdy je ma. **Znane ograniczenie:** wartości wstawiane w edytorze historii (`previousBlockBefore`) nie stosują decyzji 8a — ostatnia sesja sprzed daty z dowolnego miejsca. Do dopisania razem z wyborem miejsca w edytorze/treningu wstecz (ten sam skaner `histOf(exId, loc)` z filtrem daty i fallbackiem jak w `previousBlockFor`).
 
 ### Co zostaje
 - **E2:** „Zamień ćwiczenie” (ranking zamienników), zamienniki per miejsce w szablonie (`TemplateItem.alternates`), edycja wymagań w edycji ćwiczenia, liczba linek w serii, miejsce w historii (lista, filtr).
