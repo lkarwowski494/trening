@@ -88,7 +88,7 @@ describe('właściwości (fast-check)', () => {
     }), { numRuns: 300 });
   });
   test('zakres: pierwsza = min, każda ≤ max, krok stały; fillRange zapisuje listę o tej samej długości', () => {
-    fc.assert(fc.property(fc.integer({ min: 0, max: 100 }), fc.integer({ min: 0, max: 100 }), fc.constantFrom(0.25, 0.5, 1, 1.25, 2, 2.5), (a, b, step) => {
+    fc.assert(fc.property(fc.integer({ min: 1, max: 100 }), fc.integer({ min: 1, max: 100 }), fc.constantFrom(0.25, 0.5, 1, 1.25, 2, 2.5), (a, b, step) => { /* weryfikacja 2: wartości od 0,001 (0 kg odrzucane jak przy wczytaniu) */
       const min = Math.min(a, b) / 2, max = Math.max(a, b) / 2; const v = rangeValues(min, max, step);
       expect(v[0]).toBe(min); expect(v.every(x => x <= max + 1e-9)).toBe(true); for (let i = 1; i < v.length; i++) expect(Math.abs(v[i] - v[i - 1] - step)).toBeLessThan(1e-9);
       expect(fillRange([], min, max, step)).toHaveLength(v.length);

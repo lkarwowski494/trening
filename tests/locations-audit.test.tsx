@@ -80,9 +80,9 @@ describe('M3 — ciężar z innego miejsca spoza listy nie trafia do pól', () =
     addWorkout(Date.now() - 86400e3, [['Bench Press (hantle)', [{ weight: 32, reps: 8 }]], ['Biceps Curl (hantle)', [{ weight: 12, reps: 10 }]]]).locationId = gym.id; store.save();
     const tpl = store.newTemplate(); for (const [i, n] of ['Bench Press (hantle)', 'Biceps Curl (hantle)'].entries()) tpl.items.push({ id: 'i' + i, exerciseId: ex(n).id, sets: 2, repMin: 6, repMax: 10, restSec: null, startWeight: '', targetSec: '', groupId: null });
     store.startFromTemplate(tpl); const a = store.getState().active!; expect(a.locationId).toBe(h.id);
-    expect(a.exercises[0].sets.map(s => [s.weight, s.reps])).toEqual([['', 8], ['', 8]]); expect(a.exercises[1].sets.map(s => s.weight)).toEqual([12, 12]);
+    expect(a.exercises[0].sets.map(s => [s.weight, s.reps])).toEqual([['', ''], ['', '']]); /* weryfikacja 2: bez ciężaru także bez powtórzeń */ expect(a.exercises[1].sets.map(s => s.weight)).toEqual([12, 12]);
     expect(store.previousBlockFor(ex('Bench Press (hantle)').id, 0, 1, 'i0', tpl.id, h.id)!.sets[0].weight).toBe(32);
-    store.toggleDone(0, 0); expect([a.exercises[0].sets[0].weight, a.exercises[0].sets[0].reps]).toEqual(['', 8]); /* odhaczenie pustej serii też nie wstawia 32 */
+    store.toggleDone(0, 0); expect([a.exercises[0].sets[0].weight, a.exercises[0].sets[0].reps]).toEqual(['', '']); /* odhaczenie pustej serii też nie wstawia 32 */
   });
   test('bez miejsc: wstępne wartości jak dotąd (32 kg)', async () => {
     await fresh(); addWorkout(Date.now() - 86400e3, [['Bench Press (hantle)', [{ weight: 32, reps: 8 }]]]).locationId = 'gone'; store.save();
@@ -95,7 +95,7 @@ describe('M4, M5, M7 — edytor ciężarów', () => {
   test('M4: zmiana jednostki przelicza wartości; kg → lb → kg wraca do tych samych kg', () => {
     const kg = list([2.5, 5, 10, 20, 24]); const lb = convertSpec(kg, 'lb'); expect(lb.kind === 'list' && lb.items.map(x => x.w)).toEqual([5.5, 11, 22, 44.1, 52.9]);
     expect(convertSpec(lb, 'kg')).toEqual(kg);
-    const pl = convertSpec({ kind: 'plates', unit: 'lb', base: 45, plates: [{ w: 45, n: 2 }] }, 'kg'); expect(pl).toEqual({ kind: 'plates', unit: 'kg', base: toKg(45, 'lb'), plates: [{ w: toKg(45, 'lb'), n: 2 }] });
+    const pl = convertSpec({ kind: 'plates', unit: 'lb', base: 45, plates: [{ w: 45, n: 2 }] }, 'kg'); expect(pl).toEqual({ kind: 'plates', unit: 'kg', base: 20.411657, plates: [{ w: 20.411657, n: 2 }] }); expect(achievable(pl)).toEqual([20.41, 61.23]); /* weryfikacja 2: talerze dokładnym współczynnikiem; po zmianie na kg — siatka kg (0,01) */
     expect(convertSpec(presetSpec('vishape_pro'), 'lb')).toEqual({ kind: 'electric', unit: 'lb', min: 3.3, max: 143.3, step: 1.1 });
   });
   test('M4 (ekran): przełączenie kg → lb zmienia „24” na „52,9”, a dostępne ciężary w kg zostają', async () => {

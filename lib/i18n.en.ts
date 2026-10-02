@@ -240,7 +240,7 @@ export const EN: Record<string, string> = {
   'Za dużo ustawień (najwyżej {n}) — zwiększ krok.': 'Too many settings (at most {n}) — increase the step.',
   'Zastąpić wpisane ciężary?': 'Replace the weights you entered?', '{p} zastąpi ciężary wpisane dla: {i}.': '{p} will replace the weights entered for: {i}.', 'Zastąp': 'Replace',
   'Odznacz ciężary, których nie masz. Najwyżej {n} ciężarów.': 'Untick weights you don’t have. At most {n} weights.',
-  'Zakres jest niepoprawny: „do” musi być ≥ „od”, krok > 0.': 'Invalid range: “to” must be ≥ “from”, step > 0.',
+  'Zakres jest niepoprawny: „do” musi być ≥ „od”, krok > 0, wartości od {a} do {b}.': 'Invalid range: “to” must be ≥ “from”, step > 0, values from {a} to {b}.', 'Ciężar od {a} do {b}.': 'Weight from {a} to {b}.',
   'Ten zakres to {c} ciężarów — najwyżej {n}. Zwiększ krok.': 'This range is {c} weights — at most {n}. Increase the step.',
   'Najwyżej {n} rodzajów.': 'At most {n} sizes.',
   'min na stronę': 'min per side', 'max na stronę': 'max per side', 'krok': 'step',

@@ -28,8 +28,12 @@ const EPS = 1e-9;
  * najcięższych ciężarów.
  */
 export const LOAD_LIMITS = { listItems: 300, plateRows: 30, rangeValues: 2000, plateSums: 50000 } as const;
+/** Weryfikacja 2: zakres pojedynczej wartości (ciężar, krok) — ten sam w edytorze i sanityzacji (inaczej wpis znikał po restarcie). */
+export const W_MIN = 0.001, W_MAX = 1000;
 const r2 = (v: number) => Math.round(v * 100) / 100 + 0;
 const milli = (v: number) => Math.round(v * 1000);
+/** Weryfikacja 2 (LOW 1): sumy talerzy w milionowych — talerze przeliczone z kg na lb (dokładny współczynnik) nie dają prawie-duplikatów. */
+const micro = (v: number) => Math.round(v * 1e6);
 /** Wartość w jednostce sprzętu → kg na siatce zapisu (jak wIn: kg do 0,01, lb przyciągane do „okrągłych” kg). */
 export const toKg = (v: number, unit: LoadUnit): number => unit === 'lb' ? snapLb(v) : r2(v);
 
@@ -47,7 +51,7 @@ export function rangeValues(min: number, max: number, step: number, limit: numbe
 /** Skrót edytora: lista z zakresu (wszystkie włączone); ciężary odznaczone wcześniej zostają odznaczone, spoza zakresu znikają.
  * null = zły zakres albo więcej niż LOAD_LIMITS.listItems wartości (edytor pokazuje komunikat, lista się nie zmienia). */
 export function fillRange(items: WeightEntry[], min: number, max: number, step: number): WeightEntry[] | null {
-  const n = rangeCount(min, max, step); if (n == null || n > LOAD_LIMITS.listItems) return null;
+  if (min < W_MIN || max > W_MAX || step < W_MIN) return null; const n = rangeCount(min, max, step); if (n == null || n > LOAD_LIMITS.listItems) return null;
   const off = new Set(items.filter(x => !x.on).map(x => milli(x.w)));
   return rangeValues(min, max, step).map(w => ({ w, on: !off.has(milli(w)) }));
 }
@@ -56,7 +60,7 @@ function plateSumSet(plates: PlateEntry[], perStep: 2 | 4): Set<number> | null {
   let sums = new Set<number>([0]);
   for (const p of plates) {
     if (!(p.w > 0) || !Number.isFinite(p.w)) continue; const k = Math.floor(Math.max(0, Math.floor(p.n)) / perStep); if (!k) continue;
-    const w = milli(p.w); const next = new Set<number>();
+    const w = micro(p.w); const next = new Set<number>();
     for (const s of sums) for (let i = 0; i <= k; i++) next.add(s + 2 * i * w);
     if (next.size > LOAD_LIMITS.plateSums) return null; sums = next;
   }
@@ -70,7 +74,7 @@ function plateSumSet(plates: PlateEntry[], perStep: 2 | 4): Set<number> | null {
 export function plateSums(base: number, plates: PlateEntry[], perStep: 2 | 4): number[] {
   if (!Number.isFinite(base) || base < 0 || plates.length > LOAD_LIMITS.plateRows) return [];
   const sums = plateSumSet(plates, perStep); if (!sums) return [];
-  const b = milli(base); return [...sums].sort((x, y) => x - y).map(s => (b + s) / 1000);
+  const b = micro(base); return [...sums].sort((x, y) => x - y).map(s => (b + s) / 1e6);
 }
 export type SpecProblem = 'list_too_long' | 'plates_too_many_rows' | 'plates_too_many_combos' | 'range_invalid' | 'range_too_many';
 /** Czy opis da się policzyć w całości; null = w porządku. Edytor pokazuje komunikat zamiast po cichu uciętej listy. */
@@ -105,9 +109,14 @@ export function achievable(spec: LoadSpec | undefined | null, use: LoadUse = {})
 export function convertSpec(spec: LoadSpec, to: LoadUnit): LoadSpec {
   if (spec.unit === to) return spec;
   const cv = (v: number) => to === 'kg' ? toKg(v, 'lb') : Math.round(v / KG_PER_LB * 10) / 10;
+  /* weryfikacja 2 (LOW 1): talerze i gryf z dokładnym współczynnikiem (10⁻⁶ lb) — zaokrąglenie każdego talerza do 0,1 lb dawało prawie-duplikaty sum */
+  const cvFine = (v: number) => Math.round((to === 'kg' ? v * KG_PER_LB : v / KG_PER_LB) * 1e6) / 1e6;
   if (spec.kind === 'list') { const seen = new Set<number>(); const items: WeightEntry[] = []; for (const x of spec.items) { const w = cv(x.w); if (w > 0 && !seen.has(milli(w))) { seen.add(milli(w)); items.push({ w, on: x.on }); } } return { kind: 'list', unit: to, items }; }
-  if (spec.kind === 'plates') return { kind: 'plates', unit: to, base: cv(spec.base), plates: spec.plates.map(p => ({ w: cv(p.w), n: p.n })) };
-  return { kind: 'electric', unit: to, min: cv(spec.min), max: cv(spec.max), step: Math.max(to === 'kg' ? 0.01 : 0.1, cv(spec.step)) };
+  if (spec.kind === 'plates') return { kind: 'plates', unit: to, base: cvFine(spec.base), plates: spec.plates.map(p => ({ w: cvFine(p.w), n: p.n })) };
+  const min = cv(spec.min), max = cv(spec.max); const g = to === 'kg' ? 0.01 : 0.1; let step = Math.max(g, cv(spec.step));
+  /* weryfikacja 2 (LOW 3): przeliczony krok zaokrąglony w górę tak, by nie przekroczyć limitu ustawień */
+  const c = rangeCount(min, max, step); if (c != null && c > LOAD_LIMITS.rangeValues) step = Math.ceil((max - min) / (LOAD_LIMITS.rangeValues - 1) / g - 1e-9) * g; step = Math.round(step * 100) / 100;
+  return { kind: 'electric', unit: to, min, max, step };
 }
 /** Te same ciężary (tolerancja 0,01 kg). */
 export const sameLoad = (a: number, b: number) => Math.abs(a - b) <= LOAD_TOL_KG + EPS;
@@ -123,8 +132,8 @@ const num = (v: unknown, min: number, max: number): number | null => { const n =
 export function sanitizeLoadSpec(raw: unknown): LoadSpec | undefined {
   if (!raw || typeof raw !== 'object' || Array.isArray(raw)) return undefined; const o = raw as Record<string, unknown>;
   const unit: LoadUnit = o.unit === 'lb' ? 'lb' : 'kg';
-  if (o.kind === 'list') { const items = (Array.isArray(o.items) ? o.items : []).flatMap((x: any) => { const w = num(x?.w, 0.001, 1000); return w == null ? [] : [{ w, on: x?.on !== false }]; }).slice(0, LOAD_LIMITS.listItems); return { kind: 'list', unit, items }; } /* H1: ten sam limit co edytor (edytor nie pozwala na więcej) */
-  if (o.kind === 'plates') { const base = num(o.base, 0, 1000) ?? 0; const plates = (Array.isArray(o.plates) ? o.plates : []).flatMap((x: any) => { const w = num(x?.w, 0.001, 1000); const n = num(x?.n, 0, 100); return w == null || n == null ? [] : [{ w, n: Math.floor(n) }]; }).slice(0, LOAD_LIMITS.plateRows); return { kind: 'plates', unit, base, plates }; }
-  if (o.kind === 'electric') { const min = num(o.min, 0, 1000), max = num(o.max, 0, 1000), step = num(o.step, 0.001, 1000); if (min == null || max == null || step == null) return undefined; return { kind: 'electric', unit, min, max, step }; } /* audyt (LOW): max < min zostaje — edytor to zgłasza (validateSpec), ciężary puste */
+  if (o.kind === 'list') { const items = (Array.isArray(o.items) ? o.items : []).flatMap((x: any) => { const w = num(x?.w, W_MIN, W_MAX); return w == null ? [] : [{ w, on: x?.on !== false }]; }).slice(0, LOAD_LIMITS.listItems); return { kind: 'list', unit, items }; } /* H1: ten sam limit co edytor (edytor nie pozwala na więcej) */
+  if (o.kind === 'plates') { const base = num(o.base, 0, W_MAX) ?? 0; const plates = (Array.isArray(o.plates) ? o.plates : []).flatMap((x: any) => { const w = num(x?.w, 0, W_MAX); /* wiersz z 0 (dopiero dodany w edytorze) zostaje — nie liczy się do sum */ const n = num(x?.n, 0, 100); return w == null || n == null ? [] : [{ w, n: Math.floor(n) }]; }).slice(0, LOAD_LIMITS.plateRows); return { kind: 'plates', unit, base, plates }; }
+  if (o.kind === 'electric') { const min = num(o.min, 0, W_MAX), max = num(o.max, 0, W_MAX), step = num(o.step, W_MIN, W_MAX); if (min == null || max == null || step == null) return undefined; return { kind: 'electric', unit, min, max, step }; } /* audyt (LOW): max < min zostaje — edytor to zgłasza (validateSpec), ciężary puste */
   return undefined;
 }

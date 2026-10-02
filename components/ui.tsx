@@ -91,7 +91,7 @@ export function NumInput(props: Omit<TextInputProps, 'value'> & { value: number 
 export function Chip({ label, on, onPress, toggle, a11yLabel, a11yHint, disabled }: { label: string; on: boolean; onPress: () => void; toggle?: boolean; a11yLabel?: string; a11yHint?: string; disabled?: boolean }) {
   const t = useTheme(); const field = React.useContext(FieldLabel);
   // Runda 49: własna etykieta/podpowiedź (np. chip „✕” wyboru) i stan nieaktywny (chip, który nic nie zmienia).
-  const a11y = toggle ? { accessibilityRole: 'switch' as const, accessibilityLabel: a11yLabel ?? field ?? label, accessibilityValue: { text: label }, accessibilityState: { checked: on, disabled: !!disabled } } : { accessibilityRole: 'button' as const, accessibilityLabel: a11yLabel ?? label, accessibilityHint: a11yHint ?? field, accessibilityState: { selected: on, disabled: !!disabled } };
+  const a11y = toggle ? { accessibilityRole: 'switch' as const, accessibilityHint: a11yHint, accessibilityLabel: a11yLabel ?? field ?? label, accessibilityValue: { text: label }, accessibilityState: { checked: on, disabled: !!disabled } } : { accessibilityRole: 'button' as const, accessibilityLabel: a11yLabel ?? label, accessibilityHint: a11yHint ?? field, accessibilityState: { selected: on, disabled: !!disabled } };
   return <Pressable onPress={disabled ? undefined : onPress} {...a11y} hitSlop={4} style={[s.chip, { backgroundColor: on ? t.accent : t.surface2, borderColor: on ? t.accent : t.line }, disabled && !on && { opacity: 0.5 }]}><Text style={{ color: on ? t.accentInk : t.muted, fontWeight: '600', fontSize: 13 }}>{label}</Text></Pressable>;
 }
 /**

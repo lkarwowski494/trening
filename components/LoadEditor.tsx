@@ -4,7 +4,7 @@ import { Btn, Chip, Field, Muted, NumInput, Segmented, FieldHint } from '@/compo
 import { useTheme } from '@/lib/theme';
 import { save } from '@/lib/store';
 import { LOAD_PRESETS, equipLabel, type EquipItem } from '@/lib/equipment';
-import { achievable, fillRange, convertSpec, validateSpec, rangeCount, LOAD_LIMITS, type LoadSpec, type LoadUnit, type SpecProblem } from '@/lib/loads';
+import { achievable, fillRange, convertSpec, validateSpec, rangeCount, LOAD_LIMITS, W_MIN, W_MAX, type LoadSpec, type LoadUnit, type SpecProblem } from '@/lib/loads';
 import { fmtNum } from '@/lib/units';
 import { t } from '@/lib/i18n';
 import type { Location, LocEquip } from '@/lib/seed';
@@ -51,19 +51,19 @@ export default function LoadEditor({ loc, entry, item }: { loc: Location; entry:
       <Segmented label={lbl(t('Jednostka sprzętu'))} options={[['kg', 'kg'], ['lb', 'lb']] as [LoadUnit, string][]} value={spec.unit} onChange={u => { entry.load = convertSpec(spec, u); upd(); }} />
       {presets.length ? <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 4 }}>{presets.map(p => <Chip key={p.id} label={equipLabel(p.label)} on={false} a11yHint={lbl(t('Wstaw ciężary modelu'))} onPress={() => applyPreset(p)} />)}</View> : null}
       {spec.kind === 'list' ? <>
-        {spec.items.length ? <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 4 }}>{[...spec.items].sort((a, b) => a.w - b.w).map((x, i) => <Chip key={x.w + ':' + i} toggle label={`${n(x.w)}`} on={x.on} a11yLabel={`${n(x.w)} ${spec.unit}`} onPress={() => { x.on = !x.on; upd(); }} />)}</View> : null}
+        {spec.items.length ? <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 4 }}>{[...spec.items].sort((a, b) => a.w - b.w).map((x, i) => <Chip key={x.w + ':' + i} toggle label={`${n(x.w)}`} on={x.on} a11yLabel={`${n(x.w)} ${spec.unit}`} a11yHint={name} /* weryfikacja 2: nazwa pozycji */ onPress={() => { x.on = !x.on; upd(); }} />)}</View> : null}
         <Muted style={{ fontSize: 12 }}>{t('Odznacz ciężary, których nie masz. Najwyżej {n} ciężarów.', { n: LOAD_LIMITS.listItems })}</Muted>
         <View style={{ flexDirection: 'row', gap: 6, alignItems: 'flex-end' }}>
           <View style={{ flex: 1 }}><Field label={t('od')}><NumInput decimal value={rng.min} onNum={v => setRng({ ...rng, min: v })} /></Field></View>
           <View style={{ flex: 1 }}><Field label={t('do')}><NumInput decimal value={rng.max} onNum={v => setRng({ ...rng, max: v })} /></Field></View>
           <View style={{ flex: 1 }}><Field label={t('co')}><NumInput decimal value={rng.step} onNum={v => setRng({ ...rng, step: v })} /></Field></View>
           <View style={{ marginBottom: 12 }}><Btn small title={t('Wypełnij')} accessibilityLabel={lbl(t('Wypełnij zakresem'))} onPress={() => { if (rng.min === '' || rng.max === '' || rng.step === '') return; const items = fillRange(spec.items, rng.min, rng.max, rng.step);
-            if (!items) { const c = rangeCount(rng.min, rng.max, rng.step); setMsg(c == null ? t('Zakres jest niepoprawny: „do” musi być ≥ „od”, krok > 0.') : t('Ten zakres to {c} ciężarów — najwyżej {n}. Zwiększ krok.', { c, n: LOAD_LIMITS.listItems })); return; }
+            if (!items) { const c = rangeCount(rng.min, rng.max, rng.step); setMsg(c == null || rng.min < W_MIN || rng.max > W_MAX || rng.step < W_MIN ? t('Zakres jest niepoprawny: „do” musi być ≥ „od”, krok > 0, wartości od {a} do {b}.', { a: fmtNum(W_MIN, 3), b: W_MAX }) : t('Ten zakres to {c} ciężarów — najwyżej {n}. Zwiększ krok.', { c, n: LOAD_LIMITS.listItems })); return; }
             spec.items = items; upd(); }} /></View>
         </View>
         <View style={{ flexDirection: 'row', gap: 6, alignItems: 'flex-end' }}>
           <View style={{ flex: 1 }}><Field label={t('dodaj ciężar')}><NumInput decimal value={add} onNum={setAdd} /></Field></View>
-          <View style={{ marginBottom: 12 }}><Btn small title="+" accessibilityLabel={lbl(t('Dodaj ciężar'))} onPress={() => { if (add === '' || !(add > 0) || add > 1000) return; if (!spec.items.some(x => Math.abs(x.w - add) < 1e-9)) { if (spec.items.length >= LOAD_LIMITS.listItems) { setMsg(t('Za dużo ciężarów (najwyżej {n}).', { n: LOAD_LIMITS.listItems })); return; } spec.items.push({ w: Math.round(add * 1000) / 1000, on: true }); } setAdd(''); upd(); }} /></View>
+          <View style={{ marginBottom: 12 }}><Btn small title="+" accessibilityLabel={lbl(t('Dodaj ciężar'))} onPress={() => { if (add === '' || add < W_MIN || add > W_MAX) { if (add !== '') setMsg(t('Ciężar od {a} do {b}.', { a: fmtNum(W_MIN, 3), b: W_MAX })); return; } if (!spec.items.some(x => Math.abs(x.w - add) < 1e-9)) { if (spec.items.length >= LOAD_LIMITS.listItems) { setMsg(t('Za dużo ciężarów (najwyżej {n}).', { n: LOAD_LIMITS.listItems })); return; } spec.items.push({ w: Math.round(add * 1000) / 1000, on: true }); } setAdd(''); upd(); }} /></View>
           {spec.items.some(x => !x.on) ? <View style={{ marginBottom: 12 }}><Btn small kind="ghost" title={t('Usuń odznaczone')} accessibilityLabel={lbl(t('Usuń odznaczone'))} onPress={() => { spec.items = spec.items.filter(x => x.on); upd(); }} /></View> : null}
         </View>
       </> : null}
@@ -81,7 +81,7 @@ export default function LoadEditor({ loc, entry, item }: { loc: Location; entry:
       {spec.kind === 'electric' ? <View style={{ flexDirection: 'row', gap: 6 }}>
         <View style={{ flex: 1 }}><Field label={t('min na stronę')}><NumInput decimal value={spec.min} onNum={v => { spec.min = v === '' ? 0 : Math.max(0, Math.min(1000, v)); upd(); }} /></Field></View>
         <View style={{ flex: 1 }}><Field label={t('max na stronę')}><NumInput decimal value={spec.max} onNum={v => { spec.max = v === '' ? 0 : Math.max(0, Math.min(1000, v)); upd(); }} /></Field></View>
-        <View style={{ flex: 1 }}><Field label={t('krok')}><NumInput decimal value={spec.step} onNum={v => { if (v === '' || !(v > 0)) return; spec.step = Math.min(100, v); upd(); }} /></Field></View>
+        <View style={{ flex: 1 }}><Field label={t('krok')}><NumInput decimal value={spec.step} onNum={v => { if (v === '' || v < W_MIN) return; spec.step = Math.min(100, v); upd(); }} /></Field></View>
       </View> : null}
       {msg ? <Muted style={{ fontSize: 12, color: th.danger }}>{msg}</Muted> : null}
     </View></FieldHint.Provider>

@@ -4,7 +4,7 @@ import { useSyncExternalStore } from 'react';
 import { t, t as tr, tIn, applyLang, detectLang, locale } from './i18n';
 import { applyUnit, wu, wOut, wIn, KG_PER_LB, fmtW, fmtNum, snapLegacyLb } from './units';
 import { seedState, uid, base, defaultModules, defaultSettings, metricFor, loadModeFor, loadMult, blankTimer, musclesFor, hasTime, hasReps, hasWeight, hasDistance, METRICS, DEFAULT_REST, GROUPS, LIB, SCHEMA_VERSION, LOCAL_OWNER, MODULES, SET_KINDS, SINGLE_IMPLEMENT, equipFields, LOAD_SOURCE_BY_EQUIPMENT, type Base, type State, type Workout, type WSet, type WExercise, type Exercise, type Template, type Morning, type Location } from './seed';
-import { equipById, loadsFor } from './equipment';
+import { equipById, loadsFor, blankLoad } from './equipment';
 import { sanitizeLoadSpec, nextHeavier, hasLoad } from './loads';
 import { CATALOG, CATALOG_REV } from './catalog.generated';
 
@@ -183,7 +183,7 @@ function fixLocations(s: any, stamp: (o: any) => void, language: unknown): { loc
     const items = new Set<string>();
     l.equipment = arr(l.equipment).filter((e: any) => { const x = typeof e.item === 'string' ? equipById(e.item) : undefined; if (!x || items.has(e.item)) return false; items.add(e.item);
       const ok = new Set((x.options ?? []).map(o => o.id)); e.opts = Array.isArray(e.opts) ? [...new Set(e.opts.filter((o: unknown) => typeof o === 'string' && ok.has(o)))] : [];
-      const ld = x.load ? sanitizeLoadSpec(e.load) : undefined; if (ld) e.load = ld; else delete e.load; if (e.off !== true) delete e.off; /* audyt M5: odznaczona pozycja z zachowanymi ciężarami */ for (const k of Object.keys(e)) if (!['item', 'opts', 'load', 'off'].includes(k)) delete e[k]; return true; });
+      const ld = x.load ? sanitizeLoadSpec(e.load) ?? blankLoad(x, e.load?.unit === 'lb' ? 'lb' : 'kg') : undefined; if (ld) e.load = ld; else delete e.load; /* weryfikacja 2: zły opis → pusty domyślny (edytor zostaje), nie usunięcie */ if (e.off !== true) delete e.off; /* audyt M5: odznaczona pozycja z zachowanymi ciężarami */ for (const k of Object.keys(e)) if (!['item', 'opts', 'load', 'off'].includes(k)) delete e[k]; return true; });
     locations.push(l as Location);
   }
   const main = idOf(s.mainLocationId);
@@ -589,7 +589,9 @@ export function startFromTemplate(tpl: Template) {
       // Cel czasu z szablonu wygrywa z czasem z poprzedniej sesji — inaczej stoper ucinał serię na starym wyniku (runda 2).
       // Czas z poprzedniej sesji zostaje tylko podpowiedzią („Poprzednio”) — jako wartość stawałby się celem stopera (runda 4).
       if (hasTime(m)) s.durationSec = Number(it.targetSec) > 0 ? Number(it.targetSec) : ''; // runda 30: cel 0 = bez celu (jak w repeatLast)
-      if (p && w.locationId && prevAll!.workout.locationId !== w.locationId && offListAt(ex, w.locationId, s.weight)) s.weight = ''; /* audyt M3 */
+      /* audyt M3 + weryfikacja 2: tylko poprzedni trening w INNYM, ZNANYM miejscu (treningi sprzed miejsc — jak M8 — nie są „gdzie indziej”); wtedy bez
+       * ciężaru nie przepisujemy też powtórzeń — seria zostaje pusta, a nie „ciężar pusty + powtórzenia” */
+      if (p && w.locationId && prevAll!.workout.locationId && prevAll!.workout.locationId !== w.locationId && offListAt(ex, w.locationId, s.weight)) { s.weight = ''; if (p.reps === s.reps) s.reps = ''; }
       sets.push(markPre(stripUnused(ex, s)));
     }
     // Przerwa: ustawiona w pozycji szablonu wygrywa; puste pole w szablonie (null) = przerwa z ćwiczenia albo domyślna.
@@ -670,11 +672,14 @@ function fillFromHints(e: WExercise, si: number) {
   const s = e.sets[si]; if (s.kind === 'warmup') return;
   // Ta sama seria robocza co w podpowiedzi „Poprzednio” (bez „dociągania” do ostatniej — ekran pokazuje wtedy „—”).
   const pb = prevOfBlock(e); const p = hintFor(pb?.sets, e.sets, si, exById(e.exerciseId));
-  const act = getState().active; const offW = !!(p && pb && act?.locationId && pb.workout.locationId !== act.locationId && offListAt(exById(e.exerciseId), act.locationId, p.weight)); /* audyt M3 */
+  const act = getState().active; const offW = !!(p && pb && act?.locationId && pb.workout.locationId && pb.workout.locationId !== act.locationId && offListAt(exById(e.exerciseId), act.locationId, p.weight)); /* audyt M3 (weryfikacja 2: tylko znane, inne miejsce) */
   // Guma z podpowiedzi tylko razem z jej asystą — gdy ±kg wpisano ręcznie (np. dociążenie), gumy nie dokładamy (runda 3).
   const hinted: Record<string, unknown> = {};
   // Runda 10: tylko pola, których używa bieżąca metryka ćwiczenia (metrykę mogła zmienić edycja ćwiczenia).
   const ex = exById(e.exerciseId); const m = ex?.metric ?? 'weight_reps'; const uses = usedKeys(ex);
+  /* weryfikacja 2 (siatka bezpieczeństwa): ciężar z podpowiedzi wstrzymany, a pole ciężaru puste — nie wstawiamy nic (ani powtórzeń z podpowiedzi,
+   * ani dolnej granicy zakresu); nigdy „ciężar pusty + powtórzenia z podpowiedzi”. Puste pola zostają dla zwykłej kontroli przy ✓ i „Zakończ”. */
+  if (offW && uses.weight && isEmpty(s.weight)) { s.hinted = undefined; return; }
   if (p && !assistLost(ex, p)) { const kgEmpty = isEmpty(s.addKg); for (const k of VAL_KEYS) if (uses[k] && isEmpty(s[k]) && !isEmpty(p[k]) && !(k === 'weight' && offW) && !(k === 'addKg' && ((uses.bandId && s.bandId && s.bandId !== p.bandId) /* runda 66: ukryta guma nie blokuje +kg */ || (s.noBand && p.bandId) || (p.bandId && (!uses.bandId || !bandById(p.bandId)))))) { /* runda 47: guma zdjęta ręcznie — bez jej asysty */ /* runda 46: asysta innej gumy nie trafia do tej serii */ (s as any)[k] = p[k]; hinted[k] = p[k]; } if (uses.bandId && !s.bandId && !s.noBand && p.bandId && bandById(p.bandId) && kgEmpty) { s.bandId = p.bandId; hinted.bandId = p.bandId; } if (hinted.bandId && uses.addKg && isEmpty(s.addKg)) { pairAssist(s); if (!isEmpty(s.addKg)) hinted.addKg = s.addKg; } }
   // Brak podpowiedzi i brak wpisu: dolna granica zakresu z szablonu (runda 4: pierwszy trening zapisywał „24×0”).
   if (hasReps(m) && isEmpty(s.reps) && e.repMin != null) { s.reps = e.repMin; hinted.reps = e.repMin; }
