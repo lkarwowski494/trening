@@ -223,4 +223,8 @@ export const EN: Record<string, string> = {
   'Nieprawidłowa data. Wpisz RRRR-MM-DD, np. {d}.': 'Invalid date. Enter YYYY-MM-DD, e.g. {d}.', 'Nieprawidłowa godzina. Wpisz GG:MM, np. 18:00.': 'Invalid time. Enter HH:MM, e.g. 18:00.',
   'Czas trwania: od 1 do 1440 minut.': 'Duration: 1 to 1440 minutes.', 'Koniec treningu ({t}) jest w przyszłości. Zmień datę, godzinę albo czas trwania.': 'The workout would end in the future ({t}). Change the date, time or duration.',
   'Nie ma żadnej serii z wynikiem.': 'There’s no set with a result.', 'Tej sesji nie ma już w historii.': 'This session is no longer in your history.',
+  'Godzina {t} nie istnieje tego dnia (zmiana czasu). Wpisz inną.': 'The time {t} doesn’t exist on that day (clock change). Enter a different one.',
+  'Ten termin nachodzi na trening w toku (start {t}). Wybierz wcześniejszy.': 'This overlaps the workout in progress (started {t}). Choose an earlier time.',
+  'Ten termin nachodzi na sesję „{name}” ({d}).': 'This overlaps the session “{name}” ({d}).',
+  'Brak szablonów z ćwiczeniami — utworzysz je w zakładce Szablony. Możesz też zacząć od pustego treningu.': 'No templates with exercises — create them in the Templates tab. You can also start from an empty workout.',
 };

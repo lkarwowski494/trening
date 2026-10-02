@@ -391,9 +391,16 @@ const exIndex = memoHist(() => { const m = new Map<string, Workout[]>();
   for (const w of finishedWorkouts()) { let last = ''; for (const e of w.exercises) { if (e.exerciseId === last) continue; last = e.exerciseId; const a = m.get(last); if (!a) m.set(last, [w]); else if (a[a.length - 1] !== w) a.push(w); } }
   return m; });
 export function workoutsWith(exId: string): Workout[] { return exIndex().get(exId) ?? []; }
-const prevCache = memoHistBy((exId: string): { workout: Workout; sets: WSet[]; blocks: WSet[][]; ids: (string | undefined)[] } | null => {
-  let dropOnly: { workout: Workout; sets: WSet[]; blocks: WSet[][]; ids: (string | undefined)[] } | null = null;
+type Prev = { workout: Workout; sets: WSet[]; blocks: WSet[][]; ids: (string | undefined)[] };
+type PrevSets = { workout: Workout; sets: WSet[] };
+/** Docs/12 (audyt M3): filtr sesji branych pod uwagę — „Poprzednio” bierze całą historię, trening wstecz tylko sesje sprzed swojej daty.
+ * Jedna implementacja doboru (prevScan/byItemScan/byTplBlockScan + selectBlock) dla obu, z cache tylko dla pełnej historii. */
+type WOk = (w: Workout) => boolean;
+const ALL: WOk = () => true;
+function prevScan(exId: string, ok: WOk): Prev | null {
+  let dropOnly: Prev | null = null;
   for (const w of workoutsWith(exId)) {
+    if (!ok(w)) continue;
     // Runda 9: puste bloki (np. sama rozgrzewka) zostają na swoich miejscach — numeracja bloków się nie przesuwa.
     const bl = blocksOf(w, exId); const blocks = bl.map(e => e.sets.filter(s => isWorking(s) && setHasValue(s)));
     // Runda 72 (T5): sesja z samymi drop setami nie zasłania ostatniego ciężaru roboczego — szukamy dalej (zapamiętując ją na wypadek braku innych).
@@ -401,7 +408,8 @@ const prevCache = memoHistBy((exId: string): { workout: Workout; sets: WSet[]; b
     if (!dropOnly && blocks.some(b => b.length)) dropOnly = { workout: w, sets: blocks.flat(), blocks, ids: bl.map(e => e.tplItemId) };
   }
   return dropOnly;
-});
+}
+const prevCache = memoHistBy((exId: string): Prev | null => prevScan(exId, ALL));
 /** Serie robocze z ostatniego treningu z tym ćwiczeniem (wszystkie bloki razem). */
 export function previousFor(exId: string): { workout: Workout; sets: WSet[] } | null { return prevCache(exId); }
 /**
@@ -409,24 +417,24 @@ export function previousFor(exId: string): { workout: Workout; sets: WSet[] } | 
  * i lżej). Gdy poprzednio było kilka bloków, bierzemy blok o tym samym numerze (albo ostatni); gdy jeden — ten jeden.
  */
 /** Runda 72 (T5): ostatni blok z tej samej pozycji szablonu (id pozycji jest unikalne) — dla ćwiczenia, które w szablonie występuje kilka razy. */
-const prevByItem = memoHistBy((key: string): { workout: Workout; sets: WSet[] } | null => {
-  const [exId, itemId] = key.split('|');
-  let dropOnly: { workout: Workout; sets: WSet[] } | null = null; /* T7: blok z samymi drop setami nie zasłania serii roboczych (jak prevCache) */
-  for (const w of workoutsWith(exId)) { const b = w.exercises.find(e => e.exerciseId === exId && e.tplItemId === itemId); const sets = b ? b.sets.filter(s => isWorking(s) && setHasValue(s)) : []; if (sets.some(s => s.kind !== 'drop')) return { workout: w, sets }; if (sets.length && !dropOnly) dropOnly = { workout: w, sets }; }
+function byItemScan(exId: string, itemId: string, ok: WOk): PrevSets | null {
+  let dropOnly: PrevSets | null = null; /* T7: blok z samymi drop setami nie zasłania serii roboczych (jak prevCache) */
+  for (const w of workoutsWith(exId)) { if (!ok(w)) continue; const b = w.exercises.find(e => e.exerciseId === exId && e.tplItemId === itemId); const sets = b ? b.sets.filter(s => isWorking(s) && setHasValue(s)) : []; if (sets.some(s => s.kind !== 'drop')) return { workout: w, sets }; if (sets.length && !dropOnly) dropOnly = { workout: w, sets }; }
   return dropOnly;
-});
+}
+const prevByItem = memoHistBy((key: string): PrevSets | null => { const [exId, itemId] = key.split('|'); return byItemScan(exId, itemId, ALL); });
 /** T6: starsze dane bez id pozycji szablonu — k-ty blok ćwiczenia z ostatniej sesji tego samego szablonu (gdy miała ich kilka). */
-const prevByTplBlock = memoHistBy((key: string): { workout: Workout; sets: WSet[] } | null => {
-  const [exId, tplId, ks] = key.split('|'); const k = Number(ks);
-  for (const w of workoutsWith(exId)) { if (w.templateId !== tplId) continue; const bl = blocksOf(w, exId).map(e => e.sets.filter(s => isWorking(s) && setHasValue(s)));
+function byTplBlockScan(exId: string, tplId: string, k: number, ok: WOk): PrevSets | null {
+  for (const w of workoutsWith(exId)) { if (!ok(w) || w.templateId !== tplId) continue; const bl = blocksOf(w, exId).map(e => e.sets.filter(s => isWorking(s) && setHasValue(s)));
     if (bl.filter(b => b.length).length > 1) { const b = bl[Math.min(k, bl.length - 1)]; if (b.some(s => s.kind !== 'drop')) return { workout: w, sets: b }; } }
   return null;
-});
-export function previousBlockFor(exId: string, k: number, n = 2, tplItemId?: string, tplId?: string | null): { workout: Workout; sets: WSet[] } | null {
-  const p = prevCache(exId); if (!p) return null;
+}
+const prevByTplBlock = memoHistBy((key: string): PrevSets | null => { const [exId, tplId, ks] = key.split('|'); return byTplBlockScan(exId, tplId, Number(ks), ALL); });
+function selectBlock(p: Prev | null, exId: string, k: number, n: number, tplItemId: string | undefined, tplId: string | null | undefined, byItem: (itemId: string) => PrevSets | null, byTpl: (tplId: string) => PrevSets | null): PrevSets | null {
+  if (!p) return null;
   // Runda 72 (T5): to samo ćwiczenie kilka razy w szablonie (ciężko + lżej) — gdy ostatnia sesja tego ćwiczenia była z innego treningu
   // (jeden blok), blok „lżejszy” dostawał ciężar z tamtej sesji. Najpierw ostatni blok tej samej pozycji szablonu.
-  if (n > 1 && tplItemId && !(tplId && p.workout.templateId === tplId) && p.blocks.filter(b => b.length).length <= 1) { const own = prevByItem(exId + '|' + tplItemId) ?? (tplId ? prevByTplBlock(`${exId}|${tplId}|${k}`) : null); if (own) return own; if (k > 0) return null; }
+  if (n > 1 && tplItemId && !(tplId && p.workout.templateId === tplId) && p.blocks.filter(b => b.length).length <= 1) { const own = byItem(tplItemId) ?? (tplId ? byTpl(tplId) : null); if (own) return own; if (k > 0) return null; }
   // Runda 11: blok z tej samej pozycji szablonu wygrywa z numerem bloku (pominięty wtedy blok nie przesuwa podpowiedzi).
   if (tplItemId && tplId && p.workout.templateId === tplId && p.ids.some(Boolean)) { const j = p.ids.indexOf(tplItemId); if (j >= 0) { const b = p.blocks[j]; return b.length ? { workout: p.workout, sets: b } : null; }
     // Runda 13: pozycji nie ma w tamtej sesji. Jeśli wszystkie tamte pozycje wciąż są w szablonie — tę pominięto → bez
@@ -436,6 +444,14 @@ export function previousBlockFor(exId: string, k: number, n = 2, tplItemId?: str
   // Runda 10: dopasowanie blok↔blok tylko, gdy po obu stronach jest kilka bloków z seriami; inaczej wszystkie serie razem.
   if (n <= 1 || p.blocks.filter(b => b.length).length <= 1) return p;
   const b = p.blocks[Math.min(k, p.blocks.length - 1)]; return b.length ? { workout: p.workout, sets: b } : null;
+}
+export function previousBlockFor(exId: string, k: number, n = 2, tplItemId?: string, tplId?: string | null): { workout: Workout; sets: WSet[] } | null {
+  return selectBlock(prevCache(exId), exId, k, n, tplItemId, tplId, it => prevByItem(exId + '|' + it), tp => prevByTplBlock(`${exId}|${tp}|${k}`));
+}
+/** Docs/12: „Poprzednio” jak previousBlockFor, ale tylko z sesji rozpoczętych PRZED `before` (i bez treningu `excludeId` — edytowanego). */
+export function previousBlockBefore(exId: string, before: number, k: number, n = 2, tplItemId?: string, tplId?: string | null, excludeId?: string | null): { workout: Workout; sets: WSet[] } | null {
+  const ok: WOk = w => w.startedAt < before && w.id !== excludeId;
+  return selectBlock(prevScan(exId, ok), exId, k, n, tplItemId, tplId, it => byItemScan(exId, it, ok), tp => byTplBlockScan(exId, tp, k, ok));
 }
 /**
  * Runda 9: podpowiedź „Poprzednio” dla serii si w ramach rodziny: zwykła/do upadku bierze n-tą nie-drop serię
@@ -735,20 +751,6 @@ export function setHasResult(ex: Exercise | undefined, s: WSet): boolean {
   if (hasTime(m)) return Number(s.durationSec) > 0;
   return setHasValue(s);
 }
-/** Serie robocze (bez drop setów) z ostatniej sesji ćwiczenia rozpoczętej PRZED `before` — źródło wartości dla treningu wstecz.
- * Dobór bloku jak w „Poprzednio”: najpierw ta sama pozycja szablonu, przy kilku blokach k-ty blok, inaczej wszystkie serie razem.
- * Sesje późniejsze niż data treningu wstecz nie są brane pod uwagę (nie było ich jeszcze tego dnia). */
-export function previousSetsBefore(exId: string, before: number, k = 0, n = 1, tplItemId?: string): WSet[] | null {
-  for (const w of workoutsWith(exId)) {
-    if (w.startedAt >= before) continue;
-    const bl = blocksOf(w, exId); const blocks = bl.map(e => e.sets.filter(s => isWorking(s) && setHasValue(s) && s.kind !== 'drop'));
-    if (!blocks.some(b => b.length)) continue;
-    if (tplItemId) { const j = bl.findIndex(e => e.tplItemId === tplItemId); if (j >= 0 && blocks[j].length) return blocks[j]; }
-    const full = blocks.filter(b => b.length);
-    return n > 1 && full.length > 1 ? full[Math.min(k, full.length - 1)] : full.flat();
-  }
-  return null;
-}
 /**
  * Zapis treningu z edytora historii: podmienia trening o id `replaceId` (edycja) albo dodaje nowy (trening wstecz) — w miejscu
  * zgodnym z datą startu. Jedna zmiana stanu: save() podbija histRev, więc rekordy, „Poprzednio”, wykresy, objętość tygodnia i CSV
@@ -759,6 +761,10 @@ export function putHistoryWorkout(w: Workout, replaceId: string | null): boolean
   if (replaceId != null) { const i = st.workouts.findIndex(x => x.id === replaceId); if (i < 0) return false; st.workouts.splice(i, 1); }
   w.exercises.forEach(e => e.sets.forEach(s => { s.done = true; s.warmup = s.kind === 'warmup'; delete s.pre; delete s.hinted; delete s.edited; if (s.noBand !== true || s.bandId) delete s.noBand; /* jak migrate — kopia wraca 1:1 */ }));
   w.exercises = w.exercises.filter(e => e.sets.length); normalizeGroups(w.exercises); delete w.staleAck;
+  /* Audyt M4: start w tej samej milisekundzie co inna sesja (albo trening w toku) — rekordy liczą się „przed startem” (<), więc obie
+   * dostałyby PR, a „Poprzednio” zależałoby od kolejności wstawienia. Przesuwamy start, koniec i godziny serii o 1 s, aż start jest unikalny. */
+  { const taken = new Set([...st.workouts, ...(st.active ? [st.active] : [])].map(x => x.startedAt)); let bump = 0; while (taken.has(w.startedAt + bump)) bump += 1000;
+    if (bump) { w.startedAt += bump; if (w.finishedAt != null) w.finishedAt += bump; w.exercises.forEach(e => e.sets.forEach(s => { if (typeof s.completedAt === 'number') s.completedAt += bump; })); } }
   const j = st.workouts.findIndex(x => x.startedAt > w.startedAt); st.workouts.splice(j < 0 ? st.workouts.length : j, 0, w);
   st.userTouched = true; purgeOrphans(); save(w); flush();
   return true;

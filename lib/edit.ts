@@ -1,6 +1,6 @@
 import { useSyncExternalStore } from 'react';
-import { getState, exById, isBW, restFor, occurrence, occurrences, normalizeGroups, assistLost, emptySet, copyVals, stripUnused, previousSetsBefore, setHasResult, putHistoryWorkout, localISODate, clampName, NAME_MAX } from './store';
-import { base, uid, hasTime, hasReps, hasWeight, type Exercise, type Workout, type WSet } from './seed';
+import { getState, exById, isBW, restFor, occurrence, occurrences, normalizeGroups, assistLost, emptySet, copyVals, stripUnused, previousBlockBefore, setHasResult, putHistoryWorkout, localISODate, clampName, NAME_MAX } from './store';
+import { base, uid, hasTime, hasReps, hasWeight, type Exercise, type Workout, type WExercise, type WSet } from './seed';
 import { t } from './i18n';
 
 /*
@@ -16,8 +16,13 @@ export interface Draft {
   w: Workout;
   /** pola daty w edytorze: RRRR-MM-DD, GG:MM, minuty (tekst — walidacja przy zapisie) */
   date: string; time: string; min: string;
-  /** stan wyjściowy do pytania „Odrzucić zmiany?” i do zachowania dokładnych znaczników, gdy daty nie ruszono */
-  orig: string; origWhen: string; origStart: number; origEnd: number;
+  /** stan wyjściowy: pytanie „Odrzucić zmiany?”, dokładne znaczniki, gdy pól terminu nie ruszono, i teksty pól z otwarcia */
+  orig: string; origStart: number; origEnd: number; oDate: string; oTime: string; oMin: string;
+  /** Audyt H1: wartości serii zapisanych wcześniej (id → wartości) — seria nieruszona w edytorze zostaje, nawet bez „wyniku” w dzisiejszej metryce */
+  origVals: Record<string, string>;
+  /** Audyt M2: serie wypełnione przez aplikację (id → wstawione wartości) i data startu, sprzed której je wzięto — po zmianie daty
+   * nieruszone wartości liczą się od nowa z sesji sprzed nowej daty */
+  prefilled: Record<string, string>; prefillAt: number;
 }
 
 const drafts = new Map<string, Draft>();
@@ -33,12 +38,15 @@ const pad = (n: number) => String(n).padStart(2, '0');
 export const dateText = (ts: number) => localISODate(new Date(ts));
 export const timeText = (ts: number) => { const d = new Date(ts); return `${pad(d.getHours())}:${pad(d.getMinutes())}`; };
 export const minText = (start: number, end: number) => String(Math.max(1, Math.round((end - start) / 60000)));
+/** Pola wartości serii (to, co decyduje o wyniku i o tym, czy seria była „ruszona”). */
+const VKEYS = ['weight', 'reps', 'durationSec', 'distanceM', 'addKg', 'bandId'] as const;
+const vals = (s: WSet) => JSON.stringify(VKEYS.map(k => s[k] ?? ''));
 const snap = (d: Draft) => JSON.stringify([d.w, d.date, d.time, d.min]);
-const whenKey = (d: { date: string; time: string; min: string }) => `${d.date.trim()}|${d.time.trim()}|${d.min.trim()}`;
 function make(key: string, sourceId: string | null, w: Workout): Draft {
-  const end = w.finishedAt ?? w.startedAt;
-  const d: Draft = { key, sourceId, w, date: dateText(w.startedAt), time: timeText(w.startedAt), min: minText(w.startedAt, end), orig: '', origWhen: '', origStart: w.startedAt, origEnd: end };
-  d.orig = snap(d); d.origWhen = whenKey(d); drafts.set(key, d); return d; /* bez powiadamiania — nowego szkicu nikt jeszcze nie rysuje (bywa tworzony w trakcie renderu edytora) */
+  const end = w.finishedAt ?? w.startedAt; const date = dateText(w.startedAt), time = timeText(w.startedAt), min = minText(w.startedAt, end);
+  const origVals: Record<string, string> = {}; if (sourceId != null) w.exercises.forEach(e => e.sets.forEach(s => { origVals[s.id] = vals(s); }));
+  const d: Draft = { key, sourceId, w, date, time, min, orig: '', origStart: w.startedAt, origEnd: end, oDate: date, oTime: time, oMin: min, origVals, prefilled: {}, prefillAt: w.startedAt };
+  d.orig = snap(d); drafts.set(key, d); return d; /* bez powiadamiania — nowego szkicu nikt jeszcze nie rysuje (bywa tworzony w trakcie renderu edytora) */
 }
 /** Czy w szkicu coś zmieniono (pytanie przy „Anuluj”). */
 export const isDirty = (d: Draft) => snap(d) !== d.orig;
@@ -56,22 +64,20 @@ export function defaultPastWhen(now = new Date()) { const s = new Date(now.getFu
 
 /**
  * Szkic treningu wstecz. Z szablonu: pozycje jak przy starcie treningu, wartości z ostatniej sesji ćwiczenia PRZED tą datą (późniejsze
- * treningi się nie liczą), a bez niej — ciężar startowy i cel czasu z szablonu oraz dolna granica powtórzeń (to, co wstawiłoby odhaczenie
- * pustej serii). Bez dotykania treningu w toku, timerów, powiadomień i maszynerii podpowiedzi („pre”, „hinted”).
+ * treningi się nie liczą; dobór bloku jak „Poprzednio” — store.previousBlockBefore), a bez niej — ciężar startowy i cel czasu z szablonu
+ * oraz dolna granica powtórzeń (to, co wstawiłoby odhaczenie pustej serii). Bez dotykania treningu w toku, timerów, powiadomień
+ * i maszynerii podpowiedzi („pre”, „hinted”).
  */
 export function beginPast(tplId: string | null, start: number, end: number): Draft {
   const st = getState(); const tpl = tplId ? st.templates.find(x => x.id === tplId) ?? null : null;
   const w: Workout = { ...base(st.ownerId), loggedBy: st.ownerId, sessionMode: 'solo', healthUUID: null, templateId: tpl?.id ?? null, templateName: tpl?.name ?? '', startedAt: start, finishedAt: end, note: '', exercises: [] };
-  tpl?.items.forEach((it, ii) => {
+  tpl?.items.forEach(it => {
     const ex = exById(it.exerciseId); if (!ex || ex.archived) return;
-    const prev = previousSetsBefore(ex.id, start, occurrence(tpl.items, ii), occurrences(tpl.items, ex.id), it.id);
     const n = Math.max(1, Math.min(50, Math.floor(Number(it.sets) || 1)));
-    const sets: WSet[] = [];
-    for (let i = 0; i < n; i++) sets.push(prefill(ex, prev ? prev[Math.min(i, prev.length - 1)] : null, it.startWeight, it.targetSec, it.repMin));
-    w.exercises.push({ id: uid(), exerciseId: ex.id, restSec: typeof it.restSec === 'number' && it.restSec >= 0 ? it.restSec : restFor(ex), repMin: it.repMin, repMax: it.repMax, groupId: it.groupId ?? null, sets, tplItemId: it.id });
+    w.exercises.push({ id: uid(), exerciseId: ex.id, restSec: typeof it.restSec === 'number' && it.restSec >= 0 ? it.restSec : restFor(ex), repMin: it.repMin, repMax: it.repMax, groupId: it.groupId ?? null, sets: Array.from({ length: n }, () => ({ ...emptySet(), done: true })), tplItemId: it.id });
   });
   normalizeGroups(w.exercises);
-  return make('new-' + uid(), null, w);
+  const d = make('new-' + uid(), null, w); refill(d, start, true); d.orig = snap(d); return d;
 }
 function prefill(ex: Exercise, p0: WSet | null, startWeight: number | '' = '', targetSec: number | '' = '', repMin: number | null = null): WSet {
   const m = ex.metric ?? 'weight_reps'; const p = assistLost(ex, p0) ? null : p0;
@@ -80,13 +86,48 @@ function prefill(ex: Exercise, p0: WSet | null, startWeight: number | '' = '', t
   if (hasReps(m) && s.reps === '' && repMin != null) s.reps = repMin;
   return stripUnused(ex, s);
 }
+/** Wartości wstawiane w blok przy danej dacie: blok z pozycji szablonu — jak start z szablonu (seria i-ta z bloku „Poprzednio”), blok dodany
+ * w edytorze — OSTATNIA seria robocza z „Poprzednio” sprzed tej daty. Edytowany trening nie jest źródłem dla samego siebie. */
+function prefillFor(d: Draft, e: WExercise, before: number): ((i: number) => WSet) | null {
+  const ex = exById(e.exerciseId); if (!ex) return null; const w = d.w;
+  const tpl = w.templateId ? getState().templates.find(x => x.id === w.templateId) ?? null : null;
+  const it = tpl && e.tplItemId ? tpl.items.find(x => x.id === e.tplItemId && x.exerciseId === e.exerciseId) : undefined;
+  const ii = it && tpl ? tpl.items.indexOf(it) : -1; const ei = w.exercises.indexOf(e);
+  const p = it && tpl ? previousBlockBefore(ex.id, before, occurrence(tpl.items, ii), occurrences(tpl.items, ex.id), it.id, tpl.id, d.sourceId)
+    : previousBlockBefore(ex.id, before, occurrence(w.exercises, ei), occurrences(w.exercises, ex.id), e.tplItemId, w.templateId, d.sourceId);
+  const src = p ? p.sets.filter(x => x.kind !== 'drop') : []; /* jak startFromTemplate: drop sety nie są źródłem zwykłych serii */
+  return it ? (i => prefill(ex, src.length ? src[Math.min(i, src.length - 1)] : null, it.startWeight, it.targetSec, it.repMin)) : (() => prefill(ex, src.length ? src[src.length - 1] : null));
+}
+/** Wypełnia serie wartościami sprzed `before`. force — wszystkie serie bloku (nowy szkic); inaczej tylko serie wypełnione wcześniej
+ * przez aplikację i od tamtej pory nieruszone (wpisane ręcznie zostają). */
+function refill(d: Draft, before: number, force: boolean, only?: WExercise) {
+  for (const e of only ? [only] : d.w.exercises) {
+    if (!force && !e.sets.some(s => d.prefilled[s.id] !== undefined && d.prefilled[s.id] === vals(s))) continue;
+    const f = prefillFor(d, e, before); if (!f) continue;
+    e.sets.forEach((s, i) => { if (!force && (d.prefilled[s.id] === undefined || d.prefilled[s.id] !== vals(s))) return; const n = f(i); for (const k of VKEYS) (s as any)[k] = n[k]; d.prefilled[s.id] = vals(s); });
+  }
+  d.prefillAt = before;
+}
+/** Start z bieżących pól daty i godziny (bez czasu trwania); pola nieruszone — start z otwarcia szkicu; niedokończone (w trakcie pisania) — null. */
+function currentStart(d: Draft): number | null {
+  if (d.date.trim() === d.oDate && d.time.trim() === d.oTime) return d.origStart;
+  const r = parseStart(d.date, d.time); return typeof r === 'number' ? r : null;
+}
+/** Zmiana pól terminu w edytorze. Audyt M2: gdy zmienia się start, nieruszone wartości wstawione przez aplikację liczą się od nowa
+ * z sesji sprzed NOWEJ daty (trening przesunięty wcześniej nie zostaje z ciężarami z późniejszych treningów). */
+export function draftSetWhen(key: string, p: Partial<{ date: string; time: string; min: string }>) {
+  const d = drafts.get(key); if (!d) return; Object.assign(d, p);
+  const s = currentStart(d); if (s != null && s !== d.prefillAt) refill(d, s, false); /* niedokończona data: wartości zostają do czasu poprawnej */
+  touchDraft();
+}
 
 /* ---------- zmiany szkicu ---------- */
-/** Ćwiczenie z wyboru (picker, target 'edit:<klucz>'): jedna seria z wartościami ostatniej sesji przed datą treningu. */
+/** Ćwiczenie z wyboru (picker, target 'edit:<klucz>'): jedna seria z wartościami ostatniej serii roboczej sprzed bieżącej daty w edytorze. */
 export function draftAddExercise(key: string, ex: Exercise) {
   const d = drafts.get(key); if (!d) return;
-  const prev = previousSetsBefore(ex.id, d.w.startedAt);
-  d.w.exercises.push({ id: uid(), exerciseId: ex.id, restSec: restFor(ex), repMin: null, repMax: null, groupId: null, sets: [prefill(ex, prev?.[0] ?? null)] });
+  const e: WExercise = { id: uid(), exerciseId: ex.id, restSec: restFor(ex), repMin: null, repMax: null, groupId: null, sets: [{ ...emptySet(), done: true }] };
+  const at = currentStart(d) ?? d.prefillAt; if (at !== d.prefillAt) refill(d, at, false); /* reszta szkicu na tę samą datę */
+  d.w.exercises.push(e); refill(d, at, true, e);
   touchDraft();
 }
 /** Nowa seria = kopia ostatniej (po rozgrzewce pusta seria zwykła, po drop secie drop set — jak „+ seria” w treningu). */
@@ -110,41 +151,69 @@ export function shiftDate(date: string, days: number): string {
 }
 
 /* ---------- walidacja i zapis ---------- */
-/** Termin z pól edytora. Koniec = start + czas trwania; koniec po starcie (≥ 1 min) i nie w przyszłości. */
-export function parseWhen(date: string, time: string, min: string, now = Date.now()): { start: number; end: number } | { error: string } {
+/** Start z pól daty i godziny albo komunikat błędu. Audyt (LOW): godzina nieistniejąca przez zmianę czasu (np. 02:30 w marcu) — błąd, nie cicha zmiana. */
+function parseStart(date: string, time: string, now = Date.now()): number | string {
   const dm = /^(\d{4})-(\d{1,2})-(\d{1,2})$/.exec(date.trim());
   const day = dm ? new Date(+dm[1], +dm[2] - 1, +dm[3]) : null;
-  if (!dm || !day || day.getFullYear() !== +dm[1] || day.getMonth() !== +dm[2] - 1 || day.getDate() !== +dm[3] || +dm[1] < 1970) return { error: t('Nieprawidłowa data. Wpisz RRRR-MM-DD, np. {d}.', { d: dateText(now) }) };
+  if (!dm || !day || day.getFullYear() !== +dm[1] || day.getMonth() !== +dm[2] - 1 || day.getDate() !== +dm[3] || +dm[1] < 1970) return t('Nieprawidłowa data. Wpisz RRRR-MM-DD, np. {d}.', { d: dateText(now) });
   const tm = /^(\d{1,2})[:.](\d{2})$/.exec(time.trim());
-  if (!tm || +tm[1] > 23 || +tm[2] > 59) return { error: t('Nieprawidłowa godzina. Wpisz GG:MM, np. 18:00.') };
-  const mins = Number(min.trim().replace(',', '.'));
-  if (!Number.isInteger(mins) || mins < 1 || mins > 1440) return { error: t('Czas trwania: od 1 do 1440 minut.') };
-  const start = new Date(+dm[1], +dm[2] - 1, +dm[3], +tm[1], +tm[2]).getTime(); const end = start + mins * 60000;
-  if (end > now) return { error: t('Koniec treningu ({t}) jest w przyszłości. Zmień datę, godzinę albo czas trwania.', { t: `${dateText(end)} ${timeText(end)}` }) };
+  if (!tm || +tm[1] > 23 || +tm[2] > 59) return t('Nieprawidłowa godzina. Wpisz GG:MM, np. 18:00.');
+  const s = new Date(+dm[1], +dm[2] - 1, +dm[3], +tm[1], +tm[2]);
+  if (s.getDate() !== +dm[3] || s.getHours() !== +tm[1] || s.getMinutes() !== +tm[2]) return t('Godzina {t} nie istnieje tego dnia (zmiana czasu). Wpisz inną.', { t: `${pad(+tm[1])}:${tm[2]}` });
+  return s.getTime();
+}
+/** Czas trwania w minutach: liczba całkowita 1–1440 (bez ułamków, znaków i wykładników). */
+function parseMin(min: string): number | string { const m = min.trim(); return /^\d{1,4}$/.test(m) && +m >= 1 && +m <= 1440 ? +m : t('Czas trwania: od 1 do 1440 minut.'); }
+const futureError = (end: number) => t('Koniec treningu ({t}) jest w przyszłości. Zmień datę, godzinę albo czas trwania.', { t: `${dateText(end)} ${timeText(end)}` });
+/** Termin z pól (ekran treningu wstecz). Koniec = start + czas trwania; koniec po starcie (≥ 1 min) i nie w przyszłości. */
+export function parseWhen(date: string, time: string, min: string, now = Date.now()): { start: number; end: number } | { error: string } {
+  const start = parseStart(date, time, now); if (typeof start === 'string') return { error: start };
+  const mins = parseMin(min); if (typeof mins === 'string') return { error: mins };
+  const end = start + mins * 60000; if (end > now) return { error: futureError(end) };
   return { start, end };
 }
-export type DraftCheck = { error: string } | { w: Workout; dropped: number; empty: boolean };
+/** Audyt M5: trening wstecz / przesunięta sesja nie może nachodzić na trening w toku (trwa od startu do teraz). */
+export function activeOverlapError(start: number, end: number): string | null {
+  const a = getState().active; if (!a || end <= a.startedAt) return null; void start;
+  return t('Ten termin nachodzi na trening w toku (start {t}). Wybierz wcześniejszy.', { t: `${dateText(a.startedAt)} ${timeText(a.startedAt)}` });
+}
+/** Termin szkicu. Pola nieruszone zostają co do sekundy: sama zmiana czasu trwania nie przesuwa startu, sama zmiana daty/godziny
+ * zachowuje dawny czas trwania (także > 24 h z importu). `changed` — termin inny niż przy otwarciu (albo nowy trening). */
+function resolveWhen(d: Draft, now: number): { start: number; end: number; changed: boolean } | { error: string } {
+  const startSame = d.date.trim() === d.oDate && d.time.trim() === d.oTime, minSame = d.min.trim() === d.oMin;
+  if (d.sourceId != null && startSame && minSame) return { start: d.origStart, end: d.origEnd, changed: false };
+  let start = d.origStart; if (!startSame) { const r = parseStart(d.date, d.time, now); if (typeof r === 'string') return { error: r }; start = r; }
+  let dur = d.origEnd - d.origStart; if (!minSame) { const m = parseMin(d.min); if (typeof m === 'string') return { error: m }; dur = m * 60000; }
+  const end = start + dur; if (end > now) return { error: futureError(end) };
+  return { start, end, changed: true };
+}
+export type DraftCheck = { error: string } | { w: Workout; dropped: number; empty: boolean; overlap: Workout | null };
 /**
- * Gotowy do zapisu trening ze szkicu (kopia — szkic zostaje do ewentualnego „Wróć”). Serie bez wyniku w metryce ćwiczenia odpadają
- * (liczba w `dropped` do ostrzeżenia), ćwiczenia bez serii też; `empty` = nie zostało nic do zapisania.
+ * Gotowy do zapisu trening ze szkicu (kopia — szkic zostaje do ewentualnego „Wróć”). Audyt H1: serie NOWE albo ZMIENIONE w edytorze bez
+ * wyniku w metryce ćwiczenia odpadają (liczba w `dropped` do ostrzeżenia); serie zapisane wcześniej i nieruszone zostają zawsze (historia
+ * może mieć odhaczone serie bez powtórzeń albo serie z dawnej metryki ćwiczenia). Ćwiczenia bez serii odpadają; `empty` = nic do zapisania.
+ * `overlap` — inna sesja z historii w tym samym czasie (do potwierdzenia); nachodzenie na trening w toku to błąd.
  */
 export function checkDraft(key: string, now = Date.now()): DraftCheck {
   const d = drafts.get(key); if (!d) return { error: t('Brak sesji.') };
-  let start = d.origStart, end = d.origEnd;
-  if (whenKey(d) !== d.origWhen || d.sourceId == null) { const r = parseWhen(d.date, d.time, d.min, now); if ('error' in r) return r; start = r.start; end = r.end; } /* bez zmian w polach: dokładne znaczniki (sekundy) zostają */
+  const r = resolveWhen(d, now); if ('error' in r) return r; const { start, end, changed } = r;
+  if (changed) { const e = activeOverlapError(start, end); if (e) return { error: e }; }
   const w: Workout = JSON.parse(JSON.stringify(d.w)); const delta = start - d.origStart;
   w.startedAt = start; w.finishedAt = end; w.templateName = clampName(w.templateName.replace(/\s+/g, ' ').trim(), NAME_MAX);
   let dropped = 0;
-  w.exercises.forEach(e => { const ex = exById(e.exerciseId); const keep = e.sets.filter(s => setHasResult(ex, s)); dropped += e.sets.length - keep.length; e.sets = keep; });
+  w.exercises.forEach(e => { const ex = exById(e.exerciseId); const keep = e.sets.filter(s => d.origVals[s.id] === vals(s) || setHasResult(ex, s)); dropped += e.sets.length - keep.length; e.sets = keep; });
   w.exercises = w.exercises.filter(e => e.sets.length);
-  /* godziny serii: przesunięte razem ze startem; nowe serie (bez godziny) zaraz po poprzedniej — kolejność PR jak na liście */
-  let last = start;
-  w.exercises.forEach(e => e.sets.forEach(s => { if (typeof s.completedAt === 'number') { s.completedAt += delta; last = s.completedAt; } else { last += 1000; s.completedAt = last; s.actualRest = null; } }));
-  return { w, dropped, empty: !w.exercises.length };
+  /* godziny serii: przesunięte razem ze startem i w granicach [start, koniec] (skrócony trening); nowe serie (bez godziny) zaraz po
+   * poprzedniej — kolejność PR jak na liście */
+  const clamp = (x: number) => Math.min(end, Math.max(start, x)); let last = start;
+  w.exercises.forEach(e => e.sets.forEach(s => { if (typeof s.completedAt === 'number') { s.completedAt = clamp(s.completedAt + delta); last = s.completedAt; } else { last = clamp(last + 1000); s.completedAt = last; s.actualRest = null; } }));
+  const overlap = changed ? getState().workouts.find(x => x.id !== d.sourceId && x.startedAt < end && (x.finishedAt ?? x.startedAt) > start) ?? null : null;
+  return { w, dropped, empty: !w.exercises.length, overlap };
 }
 /** Zapis szkicu do historii. Zwraca zapisany trening albo błąd (np. trening usunięty w międzyczasie). */
 export function commitDraft(key: string, now = Date.now()): { w: Workout } | { error: string } {
-  const d = drafts.get(key); const c = checkDraft(key, now); if ('error' in c) return c;
+  const d = drafts.get(key); if (d) { const s = currentStart(d); if (s != null && s !== d.prefillAt) refill(d, s, false); }
+  const c = checkDraft(key, now); if ('error' in c) return c;
   if (c.empty) return { error: t('Nie ma żadnej serii z wynikiem.') };
   if (!putHistoryWorkout(c.w, d!.sourceId)) return { error: t('Tej sesji nie ma już w historii.') };
   drafts.delete(key); touchDraft();

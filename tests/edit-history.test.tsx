@@ -9,6 +9,7 @@ import { buildBackup, buildCsv, parseBackup } from '@/lib/backup';
 import { wIn } from '@/lib/units';
 import type { Workout } from '@/lib/seed';
 import { fresh, ex, addWorkout, pressAlert, saved } from './helpers';
+import { router } from 'expo-router';
 import { renderApp, flushAll, screen, go, tap, type, act } from './app';
 
 jest.setTimeout(30000);
@@ -127,8 +128,8 @@ describe('szkic i zapis (logika)', () => {
     expect(store.getState().workouts.map(x => x.startedAt)).toEqual([day(10), day(5), day(1)]);
     expect(store.previousFor(ex(BP).id)!.workout.startedAt).toBe(day(1)); // najnowsza sesja wciąż źródłem „Poprzednio”
     const cs = w.exercises.flatMap(e => e.sets.map(s => s.completedAt!)); expect(cs.every((c, i) => c > w.startedAt && (i === 0 || c > cs[i - 1]))).toBe(true);
-    // ćwiczenie dodane z wyboru dostaje wartości ostatniej sesji przed datą — teraz to zapisany właśnie trening wstecz (5 dni temu), nie ten sprzed 1 dnia
-    const e2 = edit.beginPast(null, day(3), day(3) + 3600e3); edit.draftAddExercise(e2.key, ex(BP)); expect(e2.w.exercises[0].sets[0]).toMatchObject({ weight: 70, reps: 8, done: true });
+    // ćwiczenie dodane z wyboru dostaje OSTATNIĄ serię roboczą sesji przed datą — teraz to zapisany właśnie trening wstecz (5 dni temu), nie ten sprzed 1 dnia
+    const e2 = edit.beginPast(null, day(3), day(3) + 3600e3); edit.draftAddExercise(e2.key, ex(BP)); expect(e2.w.exercises[0].sets[0]).toMatchObject({ weight: 72.5, reps: 7, done: true });
   });
 
   test('trening wstecz: w historii, rekordach, tygodniowej objętości i CSV; szablon z tym samym ćwiczeniem dwa razy', async () => {
@@ -278,5 +279,154 @@ describe('ekrany', () => {
     await type(screen.getByLabelText('Start time'), '18:00'); await flushAll(800); await tap(screen.getByText('Empty workout')); await flushAll(50); check('past');
     expect(screen.getByText('No exercises — add the first one.')).toBeTruthy();
     expect(leaks).toEqual([]);
+  });
+});
+
+/* Audyt niezależny (03.10.2026): H1, M2–M6 i wybrane LOW — testy regresji. */
+describe('audyt: logika', () => {
+  test('H1: nieruszone serie zostają, choć nie mają wyniku w dzisiejszej metryce (zmieniona metryka, odhaczone puste powtórzenia, rozgrzewka bez powtórzeń)', async () => {
+    await fresh(); const bp = ex(BP);
+    const w = addWorkout(day(3), [[BP, [{ weight: 80, reps: 5 }, { weight: 80, reps: 5 }]]]);
+    bp.metric = 'weight_time'; store.save(bp); // metryka zmieniona po treningu
+    const d = edit.beginEdit(w.id)!; d.w.note = 'tylko notatka';
+    expect(edit.checkDraft(d.key)).toMatchObject({ dropped: 0, empty: false });
+    committed(edit.commitDraft(d.key)); expect(sets(w.id)).toEqual([['80x5', '80x5']]); expect(byId(w.id).note).toBe('tylko notatka');
+    bp.metric = 'weight_reps'; store.save(bp);
+    const w2 = addWorkout(day(5), [[BP, [{ weight: 40, reps: '', kind: 'warmup' }, { weight: 80, reps: '' }, { weight: 80, reps: 5 }]]]);
+    const d2 = edit.beginEdit(w2.id)!; d2.w.exercises[0].sets[2].reps = 6;
+    expect(edit.checkDraft(d2.key)).toMatchObject({ dropped: 0 }); committed(edit.commitDraft(d2.key)); expect(sets(w2.id)).toEqual([['40x', '80x', '80x6']]);
+    const d3 = edit.beginEdit(w2.id)!; d3.w.exercises[0].sets[1].weight = 82.5; // ruszona seria bez powtórzeń — reguła działa
+    expect(edit.checkDraft(d3.key)).toMatchObject({ dropped: 1 }); committed(edit.commitDraft(d3.key)); expect(sets(w2.id)).toEqual([['40x', '80x6']]);
+    const d4 = edit.beginEdit(w2.id)!; d4.w.exercises[0].sets[0].kind = 'normal'; d4.w.exercises[0].sets[0].note = 'x'; // typ i notatka to nie wynik
+    expect(edit.checkDraft(d4.key)).toMatchObject({ dropped: 0, empty: false });
+  });
+
+  test('M2: zmiana daty po wstawieniu wartości — nieruszone liczą się od nowa z sesji sprzed NOWEJ daty, wpisane ręcznie zostają; zapis też to robi', async () => {
+    await fresh(); const tpl = pushTpl();
+    addWorkout(day(10), [[BP, [{ weight: 70, reps: 8 }]]]); addWorkout(day(3), [[BP, [{ weight: 80, reps: 6 }]]]); addWorkout(day(1), [[BP, [{ weight: 90, reps: 5 }]]]);
+    const d = edit.beginPast(tpl.id, day(5), day(5) + 3600e3); const bpSets = () => d.w.exercises[0].sets.map(s => `${s.weight}x${s.reps}`);
+    expect(bpSets()).toEqual(['70x8', '70x8', '70x8']);
+    d.w.exercises[0].sets[2].weight = 75; // ręcznie
+    edit.draftSetWhen(d.key, { date: edit.dateText(day(12)) }); expect(bpSets()).toEqual(['60x6', '60x6', '75x8']); // przed całą historią: start z szablonu
+    edit.draftSetWhen(d.key, { date: edit.dateText(day(2)) }); expect(bpSets()).toEqual(['80x6', '80x6', '75x8']); // sesja sprzed 3 dni, nie ta sprzed 1
+    edit.draftSetWhen(d.key, { date: '2026-' }); expect(bpSets()).toEqual(['80x6', '80x6', '75x8']); // niedokończona data — bez zmian
+    Object.assign(d, { date: edit.dateText(day(12)) }); // pole zmienione bez draftSetWhen — zapis i tak liczy od nowa
+    const w = committed(edit.commitDraft(d.key)); expect(w.exercises[0].sets.map(s => `${s.weight}x${s.reps}`)).toEqual(['60x6', '60x6', '75x8']);
+    // edycja istniejącej sesji: ćwiczenie dodane w edytorze bierze sesję sprzed BIEŻĄCEJ daty i nie samą siebie
+    const last = store.finishedWorkouts()[0]; const e = edit.beginEdit(last.id)!; edit.draftAddExercise(e.key, ex(BP));
+    expect(e.w.exercises[1].sets[0]).toMatchObject({ weight: 80, reps: 6 });
+    edit.draftSetWhen(e.key, { date: edit.dateText(day(4)) }); expect(e.w.exercises[1].sets[0]).toMatchObject({ weight: 70, reps: 8 });
+  });
+
+  test('M3: trening wstecz dobiera blok jak „Poprzednio” (to samo ćwiczenie dwa razy, ostatnia sesja z innego treningu); previousBlockBefore(∞) = previousBlockFor', async () => {
+    await fresh(); const bp = ex(BP); const tpl = store.newTemplate(); tpl.name = 'Dwa';
+    tpl.items.push({ id: 'h', exerciseId: bp.id, sets: 2, repMin: 5, repMax: 5, restSec: null, startWeight: '', targetSec: '', groupId: null }, { id: 'l', exerciseId: bp.id, sets: 1, repMin: 10, repMax: 12, restSec: null, startWeight: '', targetSec: '', groupId: null }); store.save(tpl);
+    const old = addWorkout(day(20), [[BP, [{ weight: 95, reps: 5 }]], [BP, [{ weight: 65, reps: 10 }]]]); old.templateId = tpl.id; old.exercises[0].tplItemId = 'h'; old.exercises[1].tplItemId = 'l'; store.save(old);
+    addWorkout(day(10), [[BP, [{ weight: 100, reps: 3 }, { weight: 50, reps: 20, kind: 'drop' }]]]); // inny trening, jeden blok
+    const d = edit.beginPast(tpl.id, day(5), day(5) + 3600e3);
+    expect(d.w.exercises.map(e => e.sets.map(s => `${s.weight}x${s.reps}`))).toEqual([['95x5', '95x5'], ['65x10']]); // nie 100 kg w bloku „lżej”
+    expect(store.previousBlockFor(bp.id, 1, 2, 'l', tpl.id)!.sets.map(s => s.weight)).toEqual([65]);
+    addWorkout(day(30), [['Back Squat', [{ weight: 50, reps: 5 }]]]); addWorkout(day(2), [[BP, [{ weight: 40, reps: 20, kind: 'drop' }]], ['Back Squat', [{ weight: 100, reps: 5 }]]]);
+    for (const [exId, k, n, it, tp] of [[bp.id, 0, 2, 'h', tpl.id], [bp.id, 1, 2, 'l', tpl.id], [bp.id, 0, 1, undefined, null], [bp.id, 1, 2, undefined, null], [ex('Back Squat').id, 0, 1, 'x', tpl.id], [ex('Leg Press').id, 0, 1, undefined, null]] as [string, number, number, string | undefined, string | null][])
+      expect(store.previousBlockBefore(exId, Infinity, k, n, it, tp)).toEqual(store.previousBlockFor(exId, k, n, it, tp));
+    expect(store.previousBlockBefore(bp.id, day(2), 0, 1)!.sets.map(s => s.weight)).toEqual([100, 50]); // sesja z samymi dropami pominięta (jak „Poprzednio”)
+  });
+
+  test('M4: ten sam start co inna sesja — start przesunięty o 1 s; PR tylko w późniejszej, „Poprzednio” jednoznaczne', async () => {
+    await fresh(); const bp = ex(BP); const first = addWorkout(day(4), [[BP, [{ weight: 80, reps: 5 }]]]);
+    const p = edit.beginPast(null, day(4), day(4) + 3600e3); edit.draftAddExercise(p.key, bp); Object.assign(p.w.exercises[0].sets[0], { weight: 85, reps: 5 });
+    const w = committed(edit.commitDraft(p.key)); expect(w.startedAt).toBe(day(4) + 1000); expect(w.finishedAt).toBe(day(4) + 3601e3);
+    expect(prMap(byId(first.id)).size).toBe(0); expect(prMap(byId(w.id)).size).toBe(1); expect(store.previousFor(bp.id)!.workout.id).toBe(w.id);
+    const third = addWorkout(day(8), [[BP, [{ weight: 60, reps: 5 }]]]); const e = edit.beginEdit(third.id)!; e.date = edit.dateText(day(4)); // przeniesiona na ten sam start
+    committed(edit.commitDraft(e.key)); expect(byId(third.id).startedAt).toBe(day(4) + 2000); expect(byId(third.id).exercises[0].sets[0].completedAt).toBe(day(4) + 2000);
+    expect(new Set(store.getState().workouts.map(x => x.startedAt)).size).toBe(3);
+  });
+
+  test('M5: termin nachodzący na trening w toku — błąd; na inną sesję z historii — ostrzeżenie (overlap); nieruszony termin — bez sprawdzania', async () => {
+    await fresh(); const other = addWorkout(day(3), [[BP, [{ weight: 80, reps: 5 }]]]);
+    store.startEmpty(); const a = store.getState().active!; a.startedAt = Date.now() - 2 * 3600e3; store.save(a);
+    const p = edit.beginPast(null, a.startedAt - 1800e3, a.startedAt + 1800e3); edit.draftAddExercise(p.key, ex(BP)); Object.assign(p.w.exercises[0].sets[0], { weight: 50, reps: 5 });
+    const r = edit.commitDraft(p.key); expect('error' in r && r.error).toMatch(/nachodzi na trening w toku/); expect(store.getState().workouts).toHaveLength(1);
+    expect(edit.activeOverlapError(a.startedAt - 3600e3, a.startedAt)).toBeNull(); expect(edit.activeOverlapError(a.startedAt - 3600e3, a.startedAt + 1)).toMatch(/w toku/);
+    edit.draftSetWhen(p.key, { date: edit.dateText(day(3)), time: '18:30' }); const c = edit.checkDraft(p.key);
+    expect('overlap' in c && c.overlap?.id).toBe(other.id); committed(edit.commitDraft(p.key)); // ostrzeżenie, nie blokada
+    const e = edit.beginEdit(other.id)!; e.w.note = 'x'; expect(edit.checkDraft(e.key)).toMatchObject({ overlap: null }); // termin nieruszony
+    expect(store.getState().active).toBe(a);
+  });
+
+  test('LOW: sama zmiana czasu trwania nie rusza startu (sekundy), skrócenie przycina godziny serii; dawny czas > 24 h zostaje przy zmianie samej daty; ścisły czas trwania', async () => {
+    await fresh(); const w = addWorkout(day(3) + 37e3, [[BP, [{ weight: 80, reps: 5 }, { weight: 80, reps: 5, completedAt: day(3) + 50 * 60e3 }]]]);
+    const d = edit.beginEdit(w.id)!; edit.draftSetWhen(d.key, { min: '30' }); committed(edit.commitDraft(d.key));
+    expect(byId(w.id).startedAt).toBe(day(3) + 37e3); expect(byId(w.id).finishedAt).toBe(day(3) + 37e3 + 30 * 60e3);
+    expect(byId(w.id).exercises[0].sets.map(s => s.completedAt)).toEqual([day(3) + 37e3, day(3) + 37e3 + 30 * 60e3]);
+    const long = addWorkout(day(6), [[BP, [{ weight: 70, reps: 5 }]]]); long.finishedAt = day(6) + 30 * 3600e3; store.save(long);
+    const l = edit.beginEdit(long.id)!; expect(l.min).toBe('1800'); edit.draftSetWhen(l.key, { date: edit.dateText(day(7)) }); committed(edit.commitDraft(l.key));
+    expect(byId(long.id).finishedAt! - byId(long.id).startedAt).toBe(30 * 3600e3);
+    const l2 = edit.beginEdit(long.id)!; edit.draftSetWhen(l2.key, { min: '1800' }); expect(edit.checkDraft(l2.key)).toMatchObject({ dropped: 0, empty: false }); // ten sam tekst co przy otwarciu = bez zmian
+    edit.draftSetWhen(l2.key, { min: '1801' }); expect(edit.checkDraft(l2.key)).toEqual({ error: expect.stringMatching(/1440/) }); // nowa wartość — limit 24 h
+    const now = new Date(2026, 9, 2, 12).getTime();
+    for (const m of ['1e3', '+60', '60.0', ' 6 0', '12345', '-5']) expect('error' in edit.parseWhen('2026-10-01', '08:00', m, now)).toBe(true);
+    expect('error' in edit.parseWhen('2026-10-01', '08:00', ' 60 ', now)).toBe(false);
+  });
+
+  test('LOW: godzina nieistniejąca przez zmianę czasu (Europe/Warsaw, 29.03.2026 02:30) — błąd z komunikatem', () => {
+    const tz = process.env.TZ; process.env.TZ = 'Europe/Warsaw';
+    try {
+      const now = new Date(2026, 9, 2, 12).getTime(); const r = edit.parseWhen('2026-03-29', '02:30', '60', now);
+      expect(r).toEqual({ error: 'Godzina 02:30 nie istnieje tego dnia (zmiana czasu). Wpisz inną.' });
+      expect(edit.parseWhen('2026-03-29', '03:30', '60', now)).toEqual({ start: new Date(2026, 2, 29, 3, 30).getTime(), end: new Date(2026, 2, 29, 4, 30).getTime() });
+      expect('error' in edit.parseWhen('2025-10-26', '02:30', '60', now)).toBe(false); // godzina podwójna (jesień 2025) istnieje
+    } finally { process.env.TZ = tz; if (tz === undefined) delete process.env.TZ; }
+  });
+});
+
+describe('audyt: ekrany', () => {
+  test('H1 na ekranie: metryka zmieniona po treningu, edycja samej notatki — zapis bez „Pusty trening” i bez utraty serii', async () => {
+    await fresh(); const w = addWorkout(day(3), [[BP, [{ weight: 80, reps: 5 }, { weight: 80, reps: 5 }]]]); const bp = ex(BP); bp.metric = 'weight_time'; store.save(bp);
+    await renderApp({ saved: snapshot() }); await go(`/history/${w.id}`); await flushAll(20); await tap(screen.getByText('Edytuj')); await flushAll(20);
+    await type(screen.getByLabelText('Notatka do treningu'), 'lekko'); const n = global.__alerts.length; await tap(screen.getByText('Zapisz')); await flushAll(50);
+    expect(global.__alerts.length).toBe(n); expect(byId(w.id).note).toBe('lekko'); expect(sets(w.id)).toEqual([['80x5', '80x5']]);
+  });
+
+  test('„Usuń sesję” z edytora: powrót na listę Historii (nie na „Brak sesji”), kopia automatyczna po usunięciu', async () => {
+    await fresh(); const w = addWorkout(day(3), [[BP, [{ weight: 80, reps: 5 }]]]); addWorkout(day(5), [['Back Squat', [{ weight: 100, reps: 5 }]]]);
+    await renderApp({ saved: snapshot() }); const write = FileSystem.writeAsStringAsync as jest.Mock;
+    await go('/history'); await flushAll(20); await tap(screen.getAllByText('T')[0]); await flushAll(20); await tap(screen.getByText('Edytuj')); await flushAll(20);
+    await tap(screen.getByLabelText(`Usuń serię 1 — ${BP}`)); await tap(screen.getByText('Zapisz')); write.mockClear(); await alertNow('Pusty trening', 'Usuń sesję'); await settle();
+    expect(store.getState().workouts.some(x => x.id === w.id)).toBe(false);
+    expect(screen.getByText('+ Dodaj trening wstecz')).toBeTruthy(); expect(screen.getAllByText('Historia').length).toBeGreaterThan(0); expect(screen.queryByText('Brak sesji.')).toBeNull(); expect(screen.queryByText('Edytuj')).toBeNull();
+    expect(write.mock.calls.some(c => /\/Backup\//.test(c[0]))).toBe(true);
+  });
+
+  test('trening wstecz nachodzący na trening w toku — odrzucony już na pierwszym ekranie; nachodzący na sesję z historii — potwierdzenie', async () => {
+    await fresh(); addWorkout(day(2, 17), [[BP, [{ weight: 80, reps: 5 }]]]); store.startEmpty(); const a = store.getState().active!; a.startedAt = Date.now() - 3600e3; store.save(a);
+    await renderApp({ saved: snapshot() }); await go('/history/add'); await flushAll(20);
+    const st = Date.now() - 5400e3; await type(screen.getByLabelText('Data (RRRR-MM-DD)'), edit.dateText(st)); await type(screen.getByLabelText('Godzina startu'), edit.timeText(st));
+    await tap(screen.getByText('Pusty trening')); expect(lastAlert()).toMatchObject({ title: 'Sprawdź datę i godzinę', msg: expect.stringMatching(/nachodzi na trening w toku/) });
+    await type(screen.getByLabelText('Data (RRRR-MM-DD)'), edit.dateText(day(2))); await type(screen.getByLabelText('Godzina startu'), '17:30'); // w trakcie sesji 17:00–18:00
+    await flushAll(800); await tap(screen.getByText('Pusty trening')); await flushAll(50);
+    await tap(screen.getByText('+ Dodaj ćwiczenie')); await flushAll(20);
+    await type(screen.getByPlaceholderText('Szukaj ćwiczenia…'), 'Back Squat'); await tap(screen.getByText('Back Squat')); await flushAll(50);
+    await type(screen.getAllByLabelText('kg')[0], '100'); await type(screen.getAllByLabelText('Powtórzenia')[0], '5');
+    await tap(screen.getByText('Zapisz')); expect(lastAlert()).toMatchObject({ title: 'Zapisać zmiany?', msg: expect.stringMatching(/nachodzi na sesję „T”/) });
+    await alertNow('Zapisać zmiany?', 'Zapisz'); expect(store.getState().workouts).toHaveLength(2); expect(store.getState().active!.exercises).toHaveLength(0);
+  });
+
+  test('id z nietypowymi znakami (import): edytor, wybór ćwiczenia i zapis działają (encodeURIComponent); zamknięcie ekranu wyrzuca szkic; „Edytuj” dwa razy szybko = jeden szkic', async () => {
+    await fresh(); const w = addWorkout(day(3), [[BP, [{ weight: 80, reps: 5 }]]]); w.id = 'x/y z?#1'; store.save(w);
+    await renderApp({ saved: snapshot() }); await go(`/history/${encodeURIComponent(w.id)}`); await flushAll(20);
+    const spy = jest.spyOn(edit, 'beginEdit'); const btn = screen.getByText('Edytuj'); await tap(btn); await tap(btn); await flushAll(20);
+    expect(spy).toHaveBeenCalledTimes(1); spy.mockRestore();
+    await tap(screen.getByText('+ Dodaj ćwiczenie')); await flushAll(20); await type(screen.getByPlaceholderText('Szukaj ćwiczenia…'), 'Leg Press'); await tap(screen.getByText('Leg Press')); await flushAll(50);
+    expect(edit.draftOf(w.id)!.w.exercises).toHaveLength(2);
+    await act(async () => { router.back(); }); await flushAll(50); // wyjście bez „Anuluj” (np. systemowe)
+    expect(edit.draftOf(w.id)).toBeUndefined(); expect(byId(w.id).exercises).toHaveLength(1);
+    await flushAll(1100); await tap(screen.getByText('Edytuj')); await flushAll(20); await type(screen.getAllByLabelText('Powtórzenia')[0], '7'); await tap(screen.getByText('Zapisz')); await flushAll(50);
+    expect(sets(w.id)).toEqual([['80x7']]);
+  });
+
+  test('trening wstecz bez szablonów z ćwiczeniami: podpowiedź, gdzie je utworzyć', async () => {
+    await fresh(); store.getState().templates = []; store.save(); await renderApp({ saved: snapshot() }); await go('/history/add'); await flushAll(20);
+    expect(screen.getByText('Brak szablonów z ćwiczeniami — utworzysz je w zakładce Szablony. Możesz też zacząć od pustego treningu.')).toBeTruthy();
   });
 });

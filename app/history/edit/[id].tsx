@@ -1,11 +1,11 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { ScrollView, View, Text, Pressable, Alert, Keyboard, ActionSheetIOS, StyleSheet } from 'react-native';
 import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
 import { Screen, Muted, Btn, Txt, Field, Input, NumInput, Empty } from '@/components/ui';
 import { WhenFields } from '@/components/WhenFields';
 import { setLabel } from '@/components/ActiveWorkout';
 import { getState, useTick, exById, isBW, loadLabel, loadLabelShort, groupLabels, occurrence, occurrences, deleteWorkout, bandA11y, shortBand, clampName, NAME_MAX } from '@/lib/store';
-import { draftOf, beginEdit, discardDraft, isDirty, touchDraft, useDraftTick, checkDraft, commitDraft, draftAddSet, draftRemoveSet, draftRemoveExercise, type Draft } from '@/lib/edit';
+import { draftOf, beginEdit, discardDraft, isDirty, touchDraft, useDraftTick, checkDraft, commitDraft, draftAddSet, draftRemoveSet, draftRemoveExercise, draftSetWhen, dateText, timeText, type Draft } from '@/lib/edit';
 import { onHistoryEdited } from '@/lib/backup';
 import { hasTime, hasReps, hasWeight, hasDistance, SET_KIND_LABEL, type WExercise, type WSet } from '@/lib/seed';
 import { useTheme } from '@/lib/theme';
@@ -23,6 +23,8 @@ export default function EditWorkout() {
   useTick(); useDraftTick(); const router = useRouter(); const th = useTheme(); const leaving = useRef(false);
   /* szkic edycji zakłada „Edytuj”; przy wejściu z linku (bez szkicu) — świeża kopia treningu */
   useState(() => { if (key && !draftOf(key) && !key.startsWith('new-')) beginEdit(key); return 0; });
+  /* audyt (LOW): zamknięcie ekranu w jakikolwiek sposób wyrzuca szkic — nie zostaje w pamięci ani nie wraca przy następnym wejściu */
+  useEffect(() => () => { discardDraft(key); }, [key]);
   const d = draftOf(key);
   const close = () => { leaving.current = true; Keyboard.dismiss(); if (router.canGoBack()) router.back(); else router.replace('/history'); };
   const header = (title: string, onPress: () => void, bold?: boolean) => () => <Pressable accessibilityRole="button" accessibilityLabel={title} hitSlop={10} onPress={onPress} style={{ minHeight: 44, minWidth: 44, justifyContent: 'center' }}><Text maxFontSizeMultiplier={1.4} style={{ color: th.accent, fontSize: 17, fontWeight: bold ? '700' : '400' }}>{title}</Text></Pressable>;
@@ -43,11 +45,13 @@ export default function EditWorkout() {
     const c = checkDraft(key);
     if ('error' in c) { Alert.alert(t('Sprawdź datę i godzinę'), c.error); return; }
     if (c.empty) {
-      if (cur.sourceId) { const id = cur.sourceId; Alert.alert(t('Pusty trening'), t('Nie zostałaby żadna seria z wynikiem. Usunąć tę sesję z historii?'), [{ text: t('Wróć') }, { text: t('Usuń sesję'), style: 'destructive', onPress: () => { if (draftOf(key) !== cur) return; discardDraft(key); if (getState().workouts.some(x => x.id === id)) deleteWorkout(id); leaving.current = true; Keyboard.dismiss(); if (router.canDismiss()) router.dismiss(2); /* edytor i szczegóły usuniętej sesji — z powrotem do listy */ else router.replace('/history'); } }]); }
+      if (cur.sourceId) { const id = cur.sourceId; Alert.alert(t('Pusty trening'), t('Nie zostałaby żadna seria z wynikiem. Usunąć tę sesję z historii?'), [{ text: t('Wróć') }, { text: t('Usuń sesję'), style: 'destructive', onPress: () => { if (draftOf(key) !== cur) return; discardDraft(key); if (getState().workouts.some(x => x.id === id)) { deleteWorkout(id); onHistoryEdited().catch(() => {}); /* audyt (LOW): kopia jak po każdej zmianie historii */ } leaving.current = true; Keyboard.dismiss(); if (router.canDismiss()) router.dismiss(2); /* edytor i szczegóły usuniętej sesji — z powrotem do listy */ else router.replace('/history'); } }]); }
       else Alert.alert(t('Pusty trening'), t('Nie ma żadnej serii z wynikiem — nic do zapisania.'), [{ text: t('Wróć') }, { text: t('Odrzuć trening'), style: 'destructive', onPress: () => { if (draftOf(key) !== cur) return; discardDraft(key); close(); } }]);
       return;
     }
-    if (c.dropped) { Alert.alert(t('Zapisać zmiany?'), t('Serie bez wyniku zostaną pominięte: {n}.', { n: c.dropped }), [{ text: t('Wróć') }, { text: t('Zapisz'), onPress: () => { if (draftOf(key) === cur) commit(); } }]); return; }
+    /* audyt M5: nachodzenie na inną sesję z historii — ostrzeżenie z potwierdzeniem (dwa treningi jednego dnia bywają celowe) */
+    const warn = [c.dropped ? t('Serie bez wyniku zostaną pominięte: {n}.', { n: c.dropped }) : '', c.overlap ? t('Ten termin nachodzi na sesję „{name}” ({d}).', { name: c.overlap.templateName || t('Trening'), d: `${dateText(c.overlap.startedAt)} ${timeText(c.overlap.startedAt)}` }) : ''].filter(Boolean);
+    if (warn.length) { Alert.alert(t('Zapisać zmiany?'), warn.join('\n'), [{ text: t('Wróć') }, { text: t('Zapisz'), onPress: () => { if (draftOf(key) === cur) commit(); } }]); return; }
     commit();
   };
 
@@ -59,11 +63,11 @@ export default function EditWorkout() {
       <ScrollView keyboardShouldPersistTaps="handled" keyboardDismissMode="interactive" automaticallyAdjustKeyboardInsets contentContainerStyle={{ paddingVertical: 10, paddingBottom: 80 }}>
         {health ? <Muted style={{ fontSize: 13, marginBottom: 10 }}>{t('Zmiany nie trafiają do Apple Health.')}</Muted> : null}
         <Field label={t('Nazwa')}><Input value={w.templateName} placeholder={t('Trening')} maxLength={NAME_MAX} onChangeText={v => { w.templateName = v; touchDraft(); }} /></Field>
-        <WhenFields date={d.date} time={d.time} min={d.min} onChange={p => { Object.assign(d, p); touchDraft(); }} />
+        <WhenFields date={d.date} time={d.time} min={d.min} onChange={p => draftSetWhen(key, p)} />
         <View style={{ height: 10 }} />
         {w.exercises.map((e, ei) => <EditBlock key={e.id} d={d} e={e} ei={ei} labels={labels} />)}
         {!w.exercises.length ? <Empty>{t('Brak ćwiczeń — dodaj pierwsze.')}</Empty> : null}
-        <Btn title={t('+ Dodaj ćwiczenie')} block style={{ marginTop: 12 }} onPress={() => router.push(`/picker?target=edit:${key}`)} />
+        <Btn title={t('+ Dodaj ćwiczenie')} block style={{ marginTop: 12 }} onPress={() => router.push(`/picker?target=${encodeURIComponent('edit:' + key)}`)} />
         <View style={{ marginTop: 16 }}><Muted style={{ marginBottom: 5 }}>{t('Notatka do treningu')}</Muted><Input maxLength={1000} value={w.note} onChangeText={v => { w.note = v; touchDraft(); }} placeholder={t('np. BB 86 rano, świeżo')} accessibilityLabel={t('Notatka do treningu')} multiline /></View>
         <Btn title={t('Zapisz zmiany')} kind="primary" block style={{ marginTop: 16, minHeight: 52 }} onPress={saveDraft} />
         <Muted style={{ textAlign: 'center', fontSize: 13, marginVertical: 10 }}>{t('Tapnij numer serii, by zmienić typ (W, D, F) albo dodać notatkę. Serie bez wyniku nie zostaną zapisane.')}</Muted>
