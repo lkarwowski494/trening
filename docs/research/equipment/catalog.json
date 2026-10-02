@@ -1,0 +1,1887 @@
+[
+ {
+  "name": "Bench Press (sztanga)",
+  "requires": [
+   [
+    "barbell"
+   ],
+   [
+    "bench.flat"
+   ],
+   [
+    "rack",
+    "bench.uprights"
+   ]
+  ],
+  "recommended": [
+   "rack.safeties"
+  ],
+  "loadSource": "barbell",
+  "pattern": "h_push",
+  "alternativesNote": "Bench Press (hantle), Machine Chest Press, Push Up; Smith bench press",
+  "confidence": "high",
+  "note": "Bench inside a rack or a bench with its own uprights; safeties/spotter recommended."
+ },
+ {
+  "name": "Bench Press (hantle)",
+  "requires": [
+   [
+    "db"
+   ],
+   [
+    "bench.flat"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "dumbbell",
+  "pattern": "h_push",
+  "alternativesNote": "Bench Press (sztanga), Machine Chest Press, Push Up",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "name": "Incline Bench Press (sztanga)",
+  "requires": [
+   [
+    "barbell"
+   ],
+   [
+    "bench.incline"
+   ],
+   [
+    "rack",
+    "bench.uprights"
+   ]
+  ],
+  "recommended": [
+   "rack.safeties"
+  ],
+  "loadSource": "barbell",
+  "pattern": "h_push",
+  "alternativesNote": "Incline Bench Press (hantle); Smith incline press; incline machine press",
+  "confidence": "high",
+  "note": "Incline bench inside a rack, or a dedicated incline station with uprights."
+ },
+ {
+  "name": "Incline Bench Press (hantle)",
+  "requires": [
+   [
+    "db"
+   ],
+   [
+    "bench.incline"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "dumbbell",
+  "pattern": "h_push",
+  "alternativesNote": "Incline Bench Press (sztanga); Smith incline press; Incline Push Up is a much easier bodyweight option",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "name": "Decline Bench Press",
+  "requires": [
+   [
+    "barbell"
+   ],
+   [
+    "bench.decline"
+   ],
+   [
+    "rack",
+    "bench.uprights"
+   ]
+  ],
+  "recommended": [
+   "rack.safeties"
+  ],
+  "loadSource": "barbell",
+  "pattern": "h_push",
+  "alternativesNote": "Chest Dip, Bench Press (sztanga); decline DB press; Machine Chest Press",
+  "confidence": "high",
+  "note": "Name has no implement; barbell per app class. Decline DB press would need db + bench.decline instead."
+ },
+ {
+  "name": "Chest Fly (hantle)",
+  "requires": [
+   [
+    "db"
+   ],
+   [
+    "bench.flat"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "dumbbell",
+  "pattern": "isolation",
+  "alternativesNote": "Cable Fly, Pec Deck",
+  "confidence": "high",
+  "note": "Incline variant would need bench.incline."
+ },
+ {
+  "name": "Cable Fly",
+  "requires": [
+   [
+    "cable.dual"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "cable",
+  "pattern": "isolation",
+  "alternativesNote": "Pec Deck, Chest Fly (hantle); band fly",
+  "confidence": "high",
+  "note": "Any pulley height (high-to-low, mid, low-to-high). Single-arm version possible on one pulley."
+ },
+ {
+  "name": "Pec Deck",
+  "requires": [
+   [
+    "pec_deck"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "machine_stack",
+  "pattern": "isolation",
+  "alternativesNote": "Cable Fly, Chest Fly (hantle)",
+  "confidence": "high",
+  "note": "Most pec-deck machines double as Reverse Pec Deck."
+ },
+ {
+  "name": "Machine Chest Press",
+  "requires": [
+   [
+    "chest_press_machine"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "machine_stack",
+  "pattern": "h_push",
+  "alternativesNote": "Bench Press (hantle/sztanga); Smith bench press; Push Up",
+  "confidence": "high",
+  "note": "Some chest-press machines are plate-loaded; machine_stack chosen as the common case."
+ },
+ {
+  "name": "Wyciskanie na linkach (stojąc)",
+  "requires": [
+   [
+    "cable.dual"
+   ],
+   [
+    "cable.mid"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "cable",
+  "pattern": "h_push",
+  "alternativesNote": "Cable Fly, Machine Chest Press, Push Up; band chest press",
+  "confidence": "medium",
+  "note": "PL: standing cable chest press. Assumed two handles from two pulleys at ~chest height; a single-arm version on one mid pulley is possible."
+ },
+ {
+  "name": "Chest Dip",
+  "requires": [
+   [
+    "dip.bars",
+    "rings"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "bodyweight",
+  "pattern": "v_push",
+  "alternativesNote": "Triceps Dips (ławka), Decline Bench Press, Push Up; assisted dip machine",
+  "confidence": "high",
+  "note": "Rings, power tower or rack dip attachment also work (rings change the feel). Band assistance is optional (not required); dip_belt only for weighted variant."
+ },
+ {
+  "name": "Push Up",
+  "requires": [],
+  "recommended": [],
+  "loadSource": "bodyweight",
+  "pattern": "h_push",
+  "alternativesNote": "Bench Press (hantle), Machine Chest Press, Incline Push Up",
+  "confidence": "high",
+  "note": "Floor only. Parallettes / vest / plate on back optional."
+ },
+ {
+  "name": "Incline Push Up",
+  "requires": [
+   [
+    "bench.flat",
+    "box"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "bodyweight",
+  "pattern": "h_push",
+  "alternativesNote": "Push Up, Bench Press (hantle), Machine Chest Press",
+  "confidence": "high",
+  "note": "Hands on any sturdy elevated surface (bench, box, chair, counter, Smith/rack bar); wall push-up is the easiest extreme."
+ },
+ {
+  "name": "Diamond Push Up",
+  "requires": [],
+  "recommended": [],
+  "loadSource": "bodyweight",
+  "pattern": "h_push",
+  "alternativesNote": "Close Grip Bench Press, Triceps Dips (ławka), Triceps Pushdown",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "name": "Deadlift (sztanga)",
+  "requires": [
+   [
+    "barbell"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "barbell",
+  "pattern": "hinge",
+  "alternativesNote": "Trap Bar Deadlift, Deadlift (hantle), Sumo Deadlift",
+  "confidence": "high",
+  "note": "Lifting platform / bumper plates not modelled."
+ },
+ {
+  "name": "Deadlift (hantle)",
+  "requires": [
+   [
+    "db"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "dumbbell",
+  "pattern": "hinge",
+  "alternativesNote": "Deadlift (sztanga), Trap Bar Deadlift, Kettlebell Swing",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "name": "Sumo Deadlift",
+  "requires": [
+   [
+    "barbell"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "barbell",
+  "pattern": "hinge",
+  "alternativesNote": "Deadlift (sztanga), Trap Bar Deadlift; DB/KB sumo deadlift",
+  "confidence": "high",
+  "note": "Name has no implement; barbell per app class."
+ },
+ {
+  "name": "Trap Bar Deadlift",
+  "requires": [
+   [
+    "trap_bar"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "trap_bar",
+  "pattern": "hinge",
+  "alternativesNote": "Deadlift (sztanga), Deadlift (hantle)",
+  "confidence": "high",
+  "note": "App coarse class is 'sztanga' but the trap (hex) bar is a distinct implement. Squat-hinge hybrid; classed hinge."
+ },
+ {
+  "name": "RDL (sztanga)",
+  "requires": [
+   [
+    "barbell"
+   ]
+  ],
+  "recommended": [
+   "rack"
+  ],
+  "loadSource": "barbell",
+  "pattern": "hinge",
+  "alternativesNote": "RDL (hantle/linki), Good Morning, Back Extension",
+  "confidence": "high",
+  "note": "Rack is a convenience for unracking at hip height; the bar can be deadlifted up first."
+ },
+ {
+  "name": "RDL (hantle/linki)",
+  "requires": [
+   [
+    "db",
+    "cable.low"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "dumbbell",
+  "pattern": "hinge",
+  "alternativesNote": "RDL (sztanga), Good Morning, Back Extension",
+  "confidence": "medium",
+  "note": "Name allows two implements: dumbbells OR a low pulley (bar/handles). loadSource follows app class (dumbbell); the cable variant would be 'cable'."
+ },
+ {
+  "name": "Bent Over Row (sztanga)",
+  "requires": [
+   [
+    "barbell"
+   ]
+  ],
+  "recommended": [
+   "rack"
+  ],
+  "loadSource": "barbell",
+  "pattern": "h_pull",
+  "alternativesNote": "Bent Over Row (hantle), Pendlay Row, T-Bar Row, Seated Cable Row",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "name": "Bent Over Row (hantle)",
+  "requires": [
+   [
+    "db"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "dumbbell",
+  "pattern": "h_pull",
+  "alternativesNote": "Bent Over Row (sztanga), One Arm Row (hantle), Chest Supported Row",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "name": "Pendlay Row",
+  "requires": [
+   [
+    "barbell"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "barbell",
+  "pattern": "h_pull",
+  "alternativesNote": "Bent Over Row (sztanga/hantle), T-Bar Row",
+  "confidence": "high",
+  "note": "Dead-stop barbell row from the floor."
+ },
+ {
+  "name": "One Arm Row (hantle)",
+  "requires": [
+   [
+    "db"
+   ]
+  ],
+  "recommended": [
+   "bench.flat"
+  ],
+  "loadSource": "dumbbell",
+  "pattern": "h_pull",
+  "alternativesNote": "Bent Over Row (hantle), Chest Supported Row, single-arm Seated Cable Row",
+  "confidence": "high",
+  "note": "Classic version braced on a bench; can brace on a rack/knee, so bench only recommended."
+ },
+ {
+  "name": "Chest Supported Row",
+  "requires": [
+   [
+    "db"
+   ],
+   [
+    "bench.incline"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "dumbbell",
+  "pattern": "h_pull",
+  "alternativesNote": "Seated Cable Row, T-Bar Row; chest-supported row machine (row_machine)",
+  "confidence": "medium",
+  "note": "Generic name; interpreted per app class as dumbbells lying chest-down on an incline bench. In gyms often done on a row_machine or chest-supported T-bar instead."
+ },
+ {
+  "name": "T-Bar Row",
+  "requires": [
+   [
+    "t_bar",
+    "landmine"
+   ],
+   [
+    "t_bar",
+    "barbell"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "barbell",
+  "pattern": "h_pull",
+  "alternativesNote": "Bent Over Row (sztanga), Chest Supported Row, Seated Cable Row",
+  "confidence": "medium",
+  "note": "Either a T-bar row station or a barbell in a landmine: CNF of t_bar OR (landmine AND barbell). Barbell wedged into a corner works without a landmine. T-bar stations are plate-loaded; loadSource kept as barbell per app class."
+ },
+ {
+  "name": "Seated Cable Row",
+  "requires": [
+   [
+    "cable.row_seat",
+    "cable.low"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "cable",
+  "pattern": "h_pull",
+  "alternativesNote": "One Arm Row (hantle), Bent Over Row, row_machine",
+  "confidence": "high",
+  "note": "Dedicated seated-row station, or any low pulley sitting on the floor/bench with feet braced."
+ },
+ {
+  "name": "Wiosłowanie na linkach (siedząc)",
+  "requires": [
+   [
+    "cable.row_seat",
+    "cable.low"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "cable",
+  "pattern": "h_pull",
+  "alternativesNote": "One Arm Row (hantle), Bent Over Row, row_machine",
+  "confidence": "high",
+  "note": "PL: seated cable row - duplicates 'Seated Cable Row'. Same requirements."
+ },
+ {
+  "name": "Lat Pulldown",
+  "requires": [
+   [
+    "lat_pulldown",
+    "cable.high"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "cable",
+  "pattern": "v_pull",
+  "alternativesNote": "Pull Up, Chin Up, assisted_pullup_machine; band pulldown",
+  "confidence": "high",
+  "note": "Seated station with thigh pad; kneeling under any high pulley is an accepted substitute."
+ },
+ {
+  "name": "Straight Arm Pulldown",
+  "requires": [
+   [
+    "cable.high"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "cable",
+  "pattern": "isolation",
+  "alternativesNote": "Lat Pulldown; band straight-arm pulldown; DB pullover",
+  "confidence": "high",
+  "note": "Lats isolation. A lat_pulldown station's pulley also serves (location side may map lat_pulldown -> cable.high)."
+ },
+ {
+  "name": "Chin Up",
+  "requires": [
+   [
+    "pullup.bar",
+    "rings"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "bodyweight",
+  "pattern": "v_pull",
+  "alternativesNote": "Lat Pulldown (underhand), Pull Up, assisted_pullup_machine",
+  "confidence": "high",
+  "note": "Rings / power tower also work (rings change the feel). Band assistance optional (not required)."
+ },
+ {
+  "name": "Pull Up",
+  "requires": [
+   [
+    "pullup.bar",
+    "rings"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "bodyweight",
+  "pattern": "v_pull",
+  "alternativesNote": "Lat Pulldown, Chin Up, assisted_pullup_machine",
+  "confidence": "high",
+  "note": "Rings / power tower also work (rings change the feel). Band assistance optional (not required)."
+ },
+ {
+  "name": "Neutral Grip Pull Up",
+  "requires": [
+   [
+    "pullup.bar",
+    "rings"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "bodyweight",
+  "pattern": "v_pull",
+  "alternativesNote": "Lat Pulldown (neutral handle), Pull Up, Chin Up, assisted_pullup_machine",
+  "confidence": "medium",
+  "note": "Needs parallel/neutral handles (common on rack and power-tower bars, absent on many doorway bars); rings also give a neutral grip. No separate capability in vocab. Band assistance optional."
+ },
+ {
+  "name": "Inverted Row",
+  "requires": [
+   [
+    "rack",
+    "smith",
+    "rings",
+    "suspension"
+   ],
+   [
+    "barbell",
+    "smith",
+    "rings",
+    "suspension"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "bodyweight",
+  "pattern": "h_pull",
+  "alternativesNote": "Bent Over Row (hantle), Seated Cable Row, One Arm Row (hantle)",
+  "confidence": "medium",
+  "note": "Needs a bar/handles at hip height: barbell on rack hooks (rack AND barbell), Smith bar, rings or suspension trainer - written in CNF. At home a sturdy table edge also works (not in vocab)."
+ },
+ {
+  "name": "Face Pull",
+  "requires": [
+   [
+    "cable.high",
+    "cable.mid"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "cable",
+  "pattern": "h_pull",
+  "alternativesNote": "Reverse Pec Deck, Reverse Fly (hantle); band face pull (band.loop_anchor)",
+  "confidence": "high",
+  "note": "Rope attachment, pulley at face height or higher."
+ },
+ {
+  "name": "Back Extension",
+  "requires": [
+   [
+    "hyperext_bench",
+    "ghd"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "bodyweight",
+  "pattern": "hinge",
+  "alternativesNote": "RDL (sztanga), Good Morning; floor superman",
+  "confidence": "high",
+  "note": "45 deg or 90 deg hyperextension bench, or a GHD. Optional plate/DB held for load."
+ },
+ {
+  "name": "Shrugs (hantle)",
+  "requires": [
+   [
+    "db"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "dumbbell",
+  "pattern": "isolation",
+  "alternativesNote": "Shrugs (sztanga), Farmer's Walk; trap-bar or Smith shrugs",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "name": "Shrugs (sztanga)",
+  "requires": [
+   [
+    "barbell"
+   ]
+  ],
+  "recommended": [
+   "rack"
+  ],
+  "loadSource": "barbell",
+  "pattern": "isolation",
+  "alternativesNote": "Shrugs (hantle), Farmer's Walk; trap-bar or Smith shrugs",
+  "confidence": "high",
+  "note": "Rack is a convenience for unracking at thigh height."
+ },
+ {
+  "name": "Good Morning",
+  "requires": [
+   [
+    "barbell"
+   ],
+   [
+    "rack"
+   ]
+  ],
+  "recommended": [
+   "rack.safeties"
+  ],
+  "loadSource": "barbell",
+  "pattern": "hinge",
+  "alternativesNote": "RDL (sztanga), Back Extension; band good morning",
+  "confidence": "high",
+  "note": "Bar on the upper back must be unracked from shoulder height."
+ },
+ {
+  "name": "Overhead Press (sztanga)",
+  "requires": [
+   [
+    "barbell"
+   ]
+  ],
+  "recommended": [
+   "rack"
+  ],
+  "loadSource": "barbell",
+  "pattern": "v_push",
+  "alternativesNote": "Overhead Press (hantle), Machine Shoulder Press, Push Press; Smith OHP",
+  "confidence": "high",
+  "note": "Normally unracked at shoulder height, but the bar can be cleaned from the floor, so rack only recommended (unlike squats/good morning)."
+ },
+ {
+  "name": "Overhead Press (hantle)",
+  "requires": [
+   [
+    "db"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "dumbbell",
+  "pattern": "v_push",
+  "alternativesNote": "Overhead Press (sztanga), Seated Shoulder Press (hantle), Machine Shoulder Press",
+  "confidence": "high",
+  "note": "Standing."
+ },
+ {
+  "name": "Seated Shoulder Press (hantle)",
+  "requires": [
+   [
+    "db"
+   ],
+   [
+    "bench.flat",
+    "bench.incline",
+    "box"
+   ]
+  ],
+  "recommended": [
+   "bench.incline"
+  ],
+  "loadSource": "dumbbell",
+  "pattern": "v_push",
+  "alternativesNote": "Overhead Press (hantle/sztanga), Arnold Press, Machine Shoulder Press",
+  "confidence": "high",
+  "note": "Any seat works; back support (adjustable bench set ~80-90 deg) recommended."
+ },
+ {
+  "name": "Arnold Press",
+  "requires": [
+   [
+    "db"
+   ]
+  ],
+  "recommended": [
+   "bench.incline"
+  ],
+  "loadSource": "dumbbell",
+  "pattern": "v_push",
+  "alternativesNote": "Seated Shoulder Press (hantle), Overhead Press (hantle)",
+  "confidence": "high",
+  "note": "Done seated (back support recommended) or standing."
+ },
+ {
+  "name": "Push Press",
+  "requires": [
+   [
+    "barbell"
+   ]
+  ],
+  "recommended": [
+   "rack"
+  ],
+  "loadSource": "barbell",
+  "pattern": "v_push",
+  "alternativesNote": "Overhead Press (sztanga), DB push press",
+  "confidence": "high",
+  "note": "Same rack logic as Overhead Press (sztanga)."
+ },
+ {
+  "name": "Machine Shoulder Press",
+  "requires": [
+   [
+    "shoulder_press_machine"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "machine_stack",
+  "pattern": "v_push",
+  "alternativesNote": "Overhead Press (hantle/sztanga), Seated Shoulder Press (hantle); Smith OHP",
+  "confidence": "high",
+  "note": "Some are plate-loaded; machine_stack chosen as the common case."
+ },
+ {
+  "name": "Wyciskanie nad głowę (linki)",
+  "requires": [
+   [
+    "cable.dual"
+   ],
+   [
+    "cable.low"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "cable",
+  "pattern": "v_push",
+  "alternativesNote": "Overhead Press (hantle), Machine Shoulder Press; band overhead press",
+  "confidence": "medium",
+  "note": "PL: cable overhead press. Assumed standing/kneeling between two low pulleys; a single-arm version on one low pulley is possible."
+ },
+ {
+  "name": "Lateral Raise (hantle)",
+  "requires": [
+   [
+    "db"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "dumbbell",
+  "pattern": "isolation",
+  "alternativesNote": "Cable Lateral Raise; machine lateral raise; band lateral raise",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "name": "Cable Lateral Raise",
+  "requires": [
+   [
+    "cable.low"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "cable",
+  "pattern": "isolation",
+  "alternativesNote": "Lateral Raise (hantle); band lateral raise",
+  "confidence": "high",
+  "note": "Single-arm from a low pulley."
+ },
+ {
+  "name": "Front Raise",
+  "requires": [
+   [
+    "db"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "dumbbell",
+  "pattern": "isolation",
+  "alternativesNote": "Plate front raise (plates), cable front raise (cable.low), barbell front raise",
+  "confidence": "high",
+  "note": "Name has no implement; dumbbells per app class."
+ },
+ {
+  "name": "Rear Delt Raise (hantle)",
+  "requires": [
+   [
+    "db"
+   ]
+  ],
+  "recommended": [
+   "bench.incline"
+  ],
+  "loadSource": "dumbbell",
+  "pattern": "isolation",
+  "alternativesNote": "Reverse Pec Deck, Face Pull; cable rear-delt fly (cable.dual)",
+  "confidence": "high",
+  "note": "Bent-over or chest-down on an incline bench. Near-duplicate of 'Reverse Fly (hantle)' (both = bent-over DB rear-delt fly)."
+ },
+ {
+  "name": "Reverse Fly (hantle)",
+  "requires": [
+   [
+    "db"
+   ]
+  ],
+  "recommended": [
+   "bench.incline"
+  ],
+  "loadSource": "dumbbell",
+  "pattern": "isolation",
+  "alternativesNote": "Reverse Pec Deck, Face Pull; cable rear-delt fly (cable.dual)",
+  "confidence": "high",
+  "note": "Bent-over or chest-down on an incline bench. Near-duplicate of 'Rear Delt Raise (hantle)' (both = bent-over DB rear-delt fly)."
+ },
+ {
+  "name": "Reverse Pec Deck",
+  "requires": [
+   [
+    "pec_deck"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "machine_stack",
+  "pattern": "isolation",
+  "alternativesNote": "Reverse Fly (hantle), Face Pull; cable rear-delt fly (cable.dual)",
+  "confidence": "high",
+  "note": "Uses the pec_deck machine (most are dual-purpose); a dedicated rear-delt machine would also count."
+ },
+ {
+  "name": "Upright Row",
+  "requires": [
+   [
+    "db"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "dumbbell",
+  "pattern": "isolation",
+  "alternativesNote": "Lateral Raise (hantle); barbell/EZ upright row; cable upright row (cable.low)",
+  "confidence": "high",
+  "note": "Name has no implement; dumbbells per app class. Compound delt/trap pull, classed isolation (sometimes v_pull)."
+ },
+ {
+  "name": "Biceps Curl (hantle)",
+  "requires": [
+   [
+    "db"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "dumbbell",
+  "pattern": "isolation",
+  "alternativesNote": "Barbell Curl, EZ Bar Curl, Cable Curl, Hammer Curl",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "name": "Barbell Curl",
+  "requires": [
+   [
+    "barbell"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "barbell",
+  "pattern": "isolation",
+  "alternativesNote": "EZ Bar Curl, Biceps Curl (hantle), Cable Curl",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "name": "EZ Bar Curl",
+  "requires": [
+   [
+    "ez_bar"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "ez_bar",
+  "pattern": "isolation",
+  "alternativesNote": "Barbell Curl, Biceps Curl (hantle), Cable Curl",
+  "confidence": "high",
+  "note": "App coarse class is 'sztanga'; the EZ bar is a distinct implement."
+ },
+ {
+  "name": "Hammer Curl",
+  "requires": [
+   [
+    "db"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "dumbbell",
+  "pattern": "isolation",
+  "alternativesNote": "Rope cable hammer curl (cable.low), Biceps Curl (hantle)",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "name": "Incline Curl (hantle)",
+  "requires": [
+   [
+    "db"
+   ],
+   [
+    "bench.incline"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "dumbbell",
+  "pattern": "isolation",
+  "alternativesNote": "Biceps Curl (hantle), Cable Curl (behind body), Spider Curl",
+  "confidence": "high",
+  "note": "Seated back on an incline bench."
+ },
+ {
+  "name": "Concentration Curl (hantle)",
+  "requires": [
+   [
+    "db"
+   ],
+   [
+    "bench.flat",
+    "bench.incline",
+    "box"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "dumbbell",
+  "pattern": "isolation",
+  "alternativesNote": "Preacher Curl, Spider Curl, single-arm Cable Curl",
+  "confidence": "high",
+  "note": "Seated; any seat works."
+ },
+ {
+  "name": "Preacher Curl",
+  "requires": [
+   [
+    "db"
+   ],
+   [
+    "preacher_bench"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "dumbbell",
+  "pattern": "isolation",
+  "alternativesNote": "Spider Curl, Concentration Curl (hantle); EZ-bar or machine preacher curl",
+  "confidence": "medium",
+  "note": "Generic name; dumbbells per app class. Needs a preacher bench/pad; an incline-bench backrest is a common one-arm DB substitute (not encoded)."
+ },
+ {
+  "name": "Spider Curl",
+  "requires": [
+   [
+    "db"
+   ],
+   [
+    "bench.incline"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "dumbbell",
+  "pattern": "isolation",
+  "alternativesNote": "Preacher Curl, Concentration Curl (hantle)",
+  "confidence": "high",
+  "note": "Chest-down on an incline bench, arms hanging."
+ },
+ {
+  "name": "Cable Curl",
+  "requires": [
+   [
+    "cable.low"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "cable",
+  "pattern": "isolation",
+  "alternativesNote": "Biceps Curl (hantle), Barbell Curl; band curl",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "name": "Skullcrusher (hantle)",
+  "requires": [
+   [
+    "db"
+   ],
+   [
+    "bench.flat"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "dumbbell",
+  "pattern": "isolation",
+  "alternativesNote": "Skullcrusher (EZ), Overhead Triceps Extension (hantel), Triceps Pushdown",
+  "confidence": "high",
+  "note": "Floor version possible but bench is standard."
+ },
+ {
+  "name": "Skullcrusher (EZ)",
+  "requires": [
+   [
+    "ez_bar"
+   ],
+   [
+    "bench.flat"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "ez_bar",
+  "pattern": "isolation",
+  "alternativesNote": "Skullcrusher (hantle), Cable Overhead Extension, Triceps Pushdown",
+  "confidence": "high",
+  "note": "App coarse class is 'sztanga'; EZ bar named explicitly."
+ },
+ {
+  "name": "Triceps Dips (ławka)",
+  "requires": [
+   [
+    "bench.flat",
+    "box"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "bodyweight",
+  "pattern": "v_push",
+  "alternativesNote": "Chest Dip, Diamond Push Up, Triceps Pushdown",
+  "confidence": "high",
+  "note": "PL 'ławka' = bench: bench dips; a chair or box works."
+ },
+ {
+  "name": "Triceps Pushdown",
+  "requires": [
+   [
+    "cable.high"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "cable",
+  "pattern": "isolation",
+  "alternativesNote": "Band pushdown, Skullcrusher, Diamond Push Up",
+  "confidence": "high",
+  "note": "Rope or bar attachment."
+ },
+ {
+  "name": "Overhead Triceps Extension (hantel)",
+  "requires": [
+   [
+    "db"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "dumbbell",
+  "pattern": "isolation",
+  "alternativesNote": "Cable Overhead Extension, Skullcrusher (hantle/EZ)",
+  "confidence": "high",
+  "note": "One dumbbell held with both hands (app SINGLE_IMPLEMENT); seated or standing."
+ },
+ {
+  "name": "Cable Overhead Extension",
+  "requires": [
+   [
+    "cable.high",
+    "cable.low"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "cable",
+  "pattern": "isolation",
+  "alternativesNote": "Overhead Triceps Extension (hantel), Skullcrusher; band overhead extension",
+  "confidence": "high",
+  "note": "Facing away from a high pulley, or from a low pulley; rope attachment."
+ },
+ {
+  "name": "Close Grip Bench Press",
+  "requires": [
+   [
+    "barbell"
+   ],
+   [
+    "bench.flat"
+   ],
+   [
+    "rack",
+    "bench.uprights"
+   ]
+  ],
+  "recommended": [
+   "rack.safeties"
+  ],
+  "loadSource": "barbell",
+  "pattern": "h_push",
+  "alternativesNote": "Diamond Push Up, Triceps Dips (ławka); close-grip DB press; Smith CGBP",
+  "confidence": "high",
+  "note": "Name has no implement; barbell per app class. Same setup as Bench Press (sztanga)."
+ },
+ {
+  "name": "Triceps Kickback",
+  "requires": [
+   [
+    "db"
+   ]
+  ],
+  "recommended": [
+   "bench.flat"
+  ],
+  "loadSource": "dumbbell",
+  "pattern": "isolation",
+  "alternativesNote": "Triceps Pushdown; cable kickback (cable.low)",
+  "confidence": "high",
+  "note": "Bench support optional."
+ },
+ {
+  "name": "Back Squat",
+  "requires": [
+   [
+    "barbell"
+   ],
+   [
+    "rack"
+   ]
+  ],
+  "recommended": [
+   "rack.safeties"
+  ],
+  "loadSource": "barbell",
+  "pattern": "squat",
+  "alternativesNote": "Front Squat, Hack Squat, Leg Press, Goblet Squat; Smith squat",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "name": "Front Squat",
+  "requires": [
+   [
+    "barbell"
+   ],
+   [
+    "rack"
+   ]
+  ],
+  "recommended": [
+   "rack.safeties"
+  ],
+  "loadSource": "barbell",
+  "pattern": "squat",
+  "alternativesNote": "Back Squat, Goblet Squat, Hack Squat; Smith front squat",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "name": "Goblet Squat",
+  "requires": [
+   [
+    "db",
+    "kb"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "dumbbell",
+  "pattern": "squat",
+  "alternativesNote": "Back Squat, Front Squat, Leg Press, Przysiad z pasem (linki)",
+  "confidence": "high",
+  "note": "One DB or KB held at the chest (app SINGLE_IMPLEMENT); kettlebell is the classic implement so it is OR'ed in."
+ },
+ {
+  "name": "Przysiad z pasem (linki)",
+  "requires": [
+   [
+    "cable.low"
+   ],
+   [
+    "dip_belt"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "cable",
+  "pattern": "squat",
+  "alternativesNote": "Back Squat, Goblet Squat, Leg Press; belt-squat machine; landmine belt squat",
+  "confidence": "medium",
+  "note": "PL: belt squat on cables - interpreted as a hip/dip belt clipped to a low pulley (standing on boxes optional). The belt is inherent to the exercise, so dip_belt is required. Dedicated belt-squat machine not in vocab."
+ },
+ {
+  "name": "Box Squat",
+  "requires": [
+   [
+    "barbell"
+   ],
+   [
+    "rack"
+   ],
+   [
+    "bench.flat",
+    "box"
+   ]
+  ],
+  "recommended": [
+   "rack.safeties"
+  ],
+  "loadSource": "barbell",
+  "pattern": "squat",
+  "alternativesNote": "Back Squat; Goblet Squat to box",
+  "confidence": "high",
+  "note": "Box or bench behind as depth target."
+ },
+ {
+  "name": "Hack Squat",
+  "requires": [
+   [
+    "hack_squat"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "plate_loaded_machine",
+  "pattern": "squat",
+  "alternativesNote": "Leg Press, Back Squat; Smith squat",
+  "confidence": "high",
+  "note": "Most hack squats are plate-loaded; some are selectorized."
+ },
+ {
+  "name": "Leg Press",
+  "requires": [
+   [
+    "leg_press"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "plate_loaded_machine",
+  "pattern": "squat",
+  "alternativesNote": "Hack Squat, Back Squat, Przysiad z pasem (linki)",
+  "confidence": "high",
+  "note": "Most leg presses are plate-loaded; some are selectorized."
+ },
+ {
+  "name": "Bulgarian Split Squat (hantle)",
+  "requires": [
+   [
+    "db"
+   ],
+   [
+    "bench.flat",
+    "box"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "dumbbell",
+  "pattern": "lunge_single_leg",
+  "alternativesNote": "Lunges (hantle), Reverse Lunge, Step Up; barbell/Smith split squat",
+  "confidence": "high",
+  "note": "Rear foot on bench/box."
+ },
+ {
+  "name": "Lunges (hantle)",
+  "requires": [
+   [
+    "db"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "dumbbell",
+  "pattern": "lunge_single_leg",
+  "alternativesNote": "Walking Lunges, Reverse Lunge, Bulgarian Split Squat (hantle); barbell lunge",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "name": "Walking Lunges",
+  "requires": [],
+  "recommended": [
+   "db"
+  ],
+  "loadSource": "dumbbell",
+  "pattern": "lunge_single_leg",
+  "alternativesNote": "Lunges (hantle), Reverse Lunge, Bulgarian Split Squat (hantle)",
+  "confidence": "medium",
+  "note": "App classes this as dumbbells, but the name has no implement and it is commonly done unloaded; requirement kept at the floor so it stays available everywhere (db recommended). Switch requires to [[\"db\"]] if the app should treat it as always loaded. Needs walking space."
+ },
+ {
+  "name": "Reverse Lunge",
+  "requires": [],
+  "recommended": [
+   "db"
+  ],
+  "loadSource": "dumbbell",
+  "pattern": "lunge_single_leg",
+  "alternativesNote": "Lunges (hantle), Walking Lunges, Bulgarian Split Squat (hantle)",
+  "confidence": "medium",
+  "note": "App classes this as dumbbells, but the name has no implement and it is commonly done unloaded; requirement kept at the floor so it stays available everywhere (db recommended). Switch requires to [[\"db\"]] if the app should treat it as always loaded."
+ },
+ {
+  "name": "Step Up",
+  "requires": [
+   [
+    "bench.flat",
+    "box"
+   ]
+  ],
+  "recommended": [
+   "db"
+  ],
+  "loadSource": "dumbbell",
+  "pattern": "lunge_single_leg",
+  "alternativesNote": "Bulgarian Split Squat (hantle), Lunges (hantle), Pistol Squat",
+  "confidence": "medium",
+  "note": "Box/bench at about knee height. App classes this as dumbbells, but the name has no implement and it is commonly done unloaded; requirement kept at the floor so it stays available everywhere (db recommended). Switch requires to [[\"db\"]] if the app should treat it as always loaded."
+ },
+ {
+  "name": "Leg Extension",
+  "requires": [
+   [
+    "leg_ext"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "machine_stack",
+  "pattern": "isolation",
+  "alternativesNote": "Sissy Squat; band leg extension; Front Squat",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "name": "Leg Curl",
+  "requires": [
+   [
+    "leg_curl"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "machine_stack",
+  "pattern": "isolation",
+  "alternativesNote": "Lying Leg Curl, Nordic Curl, RDL (sztanga)",
+  "confidence": "medium",
+  "note": "Generic name; presumably the seated machine (since 'Lying Leg Curl' is separate). Vocab has a single leg_curl capability, so a seated vs a lying leg-curl machine is not distinguished."
+ },
+ {
+  "name": "Lying Leg Curl",
+  "requires": [
+   [
+    "leg_curl"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "machine_stack",
+  "pattern": "isolation",
+  "alternativesNote": "Leg Curl, Nordic Curl; DB leg curl lying on a bench",
+  "confidence": "medium",
+  "note": "Vocab has a single leg_curl capability, so a seated vs a lying leg-curl machine is not distinguished."
+ },
+ {
+  "name": "Nordic Curl",
+  "requires": [
+   [
+    "ghd",
+    "glute_ham_raise",
+    "lat_pulldown",
+    "barbell"
+   ]
+  ],
+  "recommended": [
+   "floor_mat"
+  ],
+  "loadSource": "bodyweight",
+  "pattern": "isolation",
+  "alternativesNote": "Leg Curl, Lying Leg Curl, RDL (sztanga)",
+  "confidence": "low",
+  "note": "Needs an ankle anchor: GHD/GHR/Nordic bench, lat-pulldown thigh pad, or a loaded barbell over the heels. At home a sofa, partner or strap anchor - not expressible in vocab, so availability is under-reported. Band assistance optional."
+ },
+ {
+  "name": "Pistol Squat",
+  "requires": [],
+  "recommended": [],
+  "loadSource": "bodyweight",
+  "pattern": "lunge_single_leg",
+  "alternativesNote": "Bulgarian Split Squat (hantle), Step Up, Goblet Squat",
+  "confidence": "high",
+  "note": "Box/bench as depth target or support for regression; band assistance optional."
+ },
+ {
+  "name": "Sissy Squat",
+  "requires": [],
+  "recommended": [],
+  "loadSource": "bodyweight",
+  "pattern": "isolation",
+  "alternativesNote": "Leg Extension, Front Squat",
+  "confidence": "high",
+  "note": "Hold a post/rack for balance; a sissy-squat bench is optional (not in vocab). Knee-dominant quad isolation; could be classed squat."
+ },
+ {
+  "name": "Wall Sit",
+  "requires": [],
+  "recommended": [],
+  "loadSource": "bodyweight",
+  "pattern": "squat",
+  "alternativesNote": "Goblet Squat, Leg Extension",
+  "confidence": "high",
+  "note": "Isometric (metric: time). Ściana zawsze dostępna — bez wymagań (przegląd 02.10)."
+ },
+ {
+  "name": "Hip Thrust (sztanga)",
+  "requires": [
+   [
+    "barbell"
+   ],
+   [
+    "bench.flat",
+    "box"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "barbell",
+  "pattern": "hinge",
+  "alternativesNote": "Hip Thrust (hantel), Glute Bridge; hip-thrust machine; Smith hip thrust",
+  "confidence": "high",
+  "note": "Upper back on bench/box; bar pad advised (not in vocab)."
+ },
+ {
+  "name": "Hip Thrust (hantel)",
+  "requires": [
+   [
+    "db"
+   ],
+   [
+    "bench.flat",
+    "box"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "dumbbell",
+  "pattern": "hinge",
+  "alternativesNote": "Hip Thrust (sztanga), Glute Bridge",
+  "confidence": "high",
+  "note": "One dumbbell on the hips (app SINGLE_IMPLEMENT)."
+ },
+ {
+  "name": "Glute Bridge",
+  "requires": [],
+  "recommended": [
+   "floor_mat"
+  ],
+  "loadSource": "bodyweight",
+  "pattern": "hinge",
+  "alternativesNote": "Hip Thrust (sztanga/hantel), Cable Kickback",
+  "confidence": "high",
+  "note": "Floor version; optional DB/plate/barbell on hips."
+ },
+ {
+  "name": "Cable Kickback",
+  "requires": [
+   [
+    "cable.low"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "cable",
+  "pattern": "isolation",
+  "alternativesNote": "Hip Thrust, Glute Bridge; band kickback",
+  "confidence": "high",
+  "note": "Ankle-strap attachment."
+ },
+ {
+  "name": "Hip Abduction",
+  "requires": [
+   [
+    "hip_abductor_adductor"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "machine_stack",
+  "pattern": "isolation",
+  "alternativesNote": "Band lateral walk/clamshell; cable hip abduction (cable.low)",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "name": "Hip Adduction",
+  "requires": [
+   [
+    "hip_abductor_adductor"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "machine_stack",
+  "pattern": "isolation",
+  "alternativesNote": "Cable hip adduction (cable.low); Copenhagen plank",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "name": "Kettlebell Swing",
+  "requires": [
+   [
+    "kb",
+    "db"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "kettlebell",
+  "pattern": "hinge",
+  "alternativesNote": "RDL (hantle/linki), Hip Thrust, Deadlift (hantle)",
+  "confidence": "medium",
+  "note": "App coarse class is 'hantle' (no KB class); DB swing is a common substitute, so db is OR'ed in."
+ },
+ {
+  "name": "Standing Calf Raise",
+  "requires": [
+   [
+    "calf_machine"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "machine_stack",
+  "pattern": "isolation",
+  "alternativesNote": "Łydki na stopniu, Calf Press (leg press); Smith or barbell calf raise",
+  "confidence": "medium",
+  "note": "Name has no implement; machine per app class. Vocab has a single calf_machine capability; standing vs seated calf machine is not distinguished."
+ },
+ {
+  "name": "Seated Calf Raise",
+  "requires": [
+   [
+    "calf_machine"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "plate_loaded_machine",
+  "pattern": "isolation",
+  "alternativesNote": "Standing Calf Raise; DB on knees seated on a bench with toes on a step",
+  "confidence": "medium",
+  "note": "Seated calf machines are usually plate-loaded. Vocab has a single calf_machine capability; standing vs seated calf machine is not distinguished."
+ },
+ {
+  "name": "Łydki na stopniu",
+  "requires": [],
+  "recommended": [
+   "box",
+   "db"
+  ],
+  "loadSource": "dumbbell",
+  "pattern": "isolation",
+  "alternativesNote": "Standing Calf Raise, Calf Press (leg press)",
+  "confidence": "medium",
+  "note": "Dowolny stopień/schody — bez wymagań, skrzynia zalecana (przegląd 02.10)."
+ },
+ {
+  "name": "Calf Press (leg press)",
+  "requires": [
+   [
+    "leg_press"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "plate_loaded_machine",
+  "pattern": "isolation",
+  "alternativesNote": "Standing Calf Raise, Łydki na stopniu",
+  "confidence": "high",
+  "note": "Done on the leg press."
+ },
+ {
+  "name": "Plank",
+  "requires": [],
+  "recommended": [
+   "floor_mat"
+  ],
+  "loadSource": "bodyweight",
+  "pattern": "core_anti_ext",
+  "alternativesNote": "Ab Wheel, Dead Bug, Hollow Hold",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "name": "Side Plank",
+  "requires": [],
+  "recommended": [
+   "floor_mat"
+  ],
+  "loadSource": "bodyweight",
+  "pattern": "core_other",
+  "alternativesNote": "Suitcase Carry, Pallof Press",
+  "confidence": "high",
+  "note": "Anti-lateral-flexion; no dedicated pattern in enum."
+ },
+ {
+  "name": "Dead Bug",
+  "requires": [],
+  "recommended": [
+   "floor_mat"
+  ],
+  "loadSource": "bodyweight",
+  "pattern": "core_anti_ext",
+  "alternativesNote": "Plank, Hollow Hold, Bird Dog",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "name": "Bird Dog",
+  "requires": [],
+  "recommended": [
+   "floor_mat"
+  ],
+  "loadSource": "bodyweight",
+  "pattern": "core_anti_rot",
+  "alternativesNote": "Dead Bug, Plank, Pallof Press",
+  "confidence": "high",
+  "note": "Anti-rotation / anti-extension."
+ },
+ {
+  "name": "Ab Wheel",
+  "requires": [
+   [
+    "ab_wheel"
+   ]
+  ],
+  "recommended": [
+   "floor_mat"
+  ],
+  "loadSource": "bodyweight",
+  "pattern": "core_anti_ext",
+  "alternativesNote": "Plank; barbell rollout (barbell with round plates); suspension fallout",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "name": "Pallof Press",
+  "requires": [
+   [
+    "cable.mid"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "cable",
+  "pattern": "core_anti_rot",
+  "alternativesNote": "Band Pallof press (band.loop_anchor), Side Plank, Suitcase Carry",
+  "confidence": "high",
+  "note": "Band version is equally common but not OR'ed in (different load source); pulley at chest height."
+ },
+ {
+  "name": "Hanging Leg Raise",
+  "requires": [
+   [
+    "pullup.bar",
+    "rings"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "bodyweight",
+  "pattern": "core_flexion",
+  "alternativesNote": "Hanging Knee Raise, Reverse Crunch; captain's-chair raise (dip.bars)",
+  "confidence": "high",
+  "note": "Rings / power tower also work."
+ },
+ {
+  "name": "Hanging Knee Raise",
+  "requires": [
+   [
+    "pullup.bar",
+    "rings",
+    "dip.bars"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "bodyweight",
+  "pattern": "core_flexion",
+  "alternativesNote": "Hanging Leg Raise, Reverse Crunch; captain's-chair raise (dip.bars)",
+  "confidence": "high",
+  "note": "Rings / power tower also work."
+ },
+ {
+  "name": "Cable Crunch",
+  "requires": [
+   [
+    "cable.high"
+   ]
+  ],
+  "recommended": [
+   "floor_mat"
+  ],
+  "loadSource": "cable",
+  "pattern": "core_flexion",
+  "alternativesNote": "Crunch, Reverse Crunch, Hanging Leg Raise",
+  "confidence": "high",
+  "note": "Kneeling, rope attachment."
+ },
+ {
+  "name": "Crunch",
+  "requires": [],
+  "recommended": [
+   "floor_mat"
+  ],
+  "loadSource": "bodyweight",
+  "pattern": "core_flexion",
+  "alternativesNote": "Cable Crunch, Reverse Crunch",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "name": "Reverse Crunch",
+  "requires": [],
+  "recommended": [
+   "floor_mat"
+  ],
+  "loadSource": "bodyweight",
+  "pattern": "core_flexion",
+  "alternativesNote": "Hanging Knee Raise, Crunch",
+  "confidence": "high",
+  "note": "Floor or on a flat bench."
+ },
+ {
+  "name": "Russian Twist",
+  "requires": [],
+  "recommended": [
+   "db",
+   "floor_mat"
+  ],
+  "loadSource": "dumbbell",
+  "pattern": "core_other",
+  "alternativesNote": "Pallof Press; med-ball or plate twist",
+  "confidence": "medium",
+  "note": "Rotation. One implement (app SINGLE_IMPLEMENT); med ball or plate equally common. App classes this as dumbbells, but the name has no implement and it is commonly done unloaded; requirement kept at the floor so it stays available everywhere (db recommended). Switch requires to [[\"db\"]] if the app should treat it as always loaded."
+ },
+ {
+  "name": "Hollow Hold",
+  "requires": [],
+  "recommended": [
+   "floor_mat"
+  ],
+  "loadSource": "bodyweight",
+  "pattern": "core_anti_ext",
+  "alternativesNote": "Plank, Dead Bug",
+  "confidence": "high",
+  "note": "Isometric (metric: time)."
+ },
+ {
+  "name": "Farmer's Walk",
+  "requires": [
+   [
+    "db",
+    "kb"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "dumbbell",
+  "pattern": "carry",
+  "alternativesNote": "Suitcase Carry, Shrugs (hantle); trap-bar or KB carry",
+  "confidence": "high",
+  "note": "Needs walking space. Trap bar / kettlebells / farmer handles are substitutes (not OR'ed in)."
+ },
+ {
+  "name": "Suitcase Carry",
+  "requires": [
+   [
+    "db",
+    "kb"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "dumbbell",
+  "pattern": "carry",
+  "alternativesNote": "Farmer's Walk, Side Plank; KB carry",
+  "confidence": "high",
+  "note": "One dumbbell (app SINGLE_IMPLEMENT); needs walking space."
+ },
+ {
+  "name": "Mountain Climbers",
+  "requires": [],
+  "recommended": [
+   "floor_mat"
+  ],
+  "loadSource": "bodyweight",
+  "pattern": "cardio",
+  "alternativesNote": "Burpees, Plank",
+  "confidence": "high",
+  "note": "Conditioning (metric: time); could also be classed core_anti_ext."
+ },
+ {
+  "name": "Incline Walk (bieżnia)",
+  "requires": [
+   [
+    "cardio.treadmill"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "none",
+  "pattern": "cardio",
+  "alternativesNote": "Bieg; stair climber (cardio.stairs); outdoor hill walk",
+  "confidence": "high",
+  "note": "PL 'bieżnia' = treadmill."
+ },
+ {
+  "name": "Bieg",
+  "requires": [],
+  "recommended": [],
+  "loadSource": "none",
+  "pattern": "cardio",
+  "alternativesNote": "Incline Walk (bieżnia), Rower, Rowing Machine",
+  "confidence": "high",
+  "note": "Bieżnia albo bieg na zewnątrz — na zewnątrz zawsze możliwe, więc bez wymagań (przegląd 02.10)."
+ },
+ {
+  "name": "Rower",
+  "requires": [
+   [
+    "cardio.bike",
+    "outdoor"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "none",
+  "pattern": "cardio",
+  "alternativesNote": "Assault Bike, Rowing Machine, Bieg",
+  "confidence": "low",
+  "note": "„Rower” = jazda na rowerze: stacjonarny albo na zewnątrz (outdoor = własny rower). Niska pewność."
+ },
+ {
+  "name": "Rowing Machine",
+  "requires": [
+   [
+    "cardio.rower"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "none",
+  "pattern": "cardio",
+  "alternativesNote": "Rower, Assault Bike",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "name": "Assault Bike",
+  "requires": [
+   [
+    "cardio.bike"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "none",
+  "pattern": "cardio",
+  "alternativesNote": "Rower, Rowing Machine",
+  "confidence": "medium",
+  "note": "Air/fan bike specifically; vocab only has cardio.bike, so any stationary bike satisfies it."
+ },
+ {
+  "name": "Skakanka",
+  "requires": [
+   [
+    "jump_rope"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "none",
+  "pattern": "cardio",
+  "alternativesNote": "Burpees, Mountain Climbers",
+  "confidence": "high",
+  "note": "PL: jump rope."
+ },
+ {
+  "name": "Burpees",
+  "requires": [],
+  "recommended": [],
+  "loadSource": "bodyweight",
+  "pattern": "cardio",
+  "alternativesNote": "Mountain Climbers, Box Jump",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "name": "Box Jump",
+  "requires": [
+   [
+    "box"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "bodyweight",
+  "pattern": "other",
+  "alternativesNote": "Burpees; broad jump / squat jump (no box)",
+  "confidence": "high",
+  "note": "Plyometric; a bench is not a safe substitute, so only box."
+ },
+ {
+  "name": "Medicine Ball Slam",
+  "requires": [
+   [
+    "med_ball"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "none",
+  "pattern": "other",
+  "alternativesNote": "Burpees, Kettlebell Swing",
+  "confidence": "high",
+  "note": "Power/conditioning. Slam (non-bouncing) ball preferred. loadSource enum has no med-ball value; ball weight not tracked (metric: reps)."
+ }
+]

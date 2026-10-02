@@ -1,0 +1,981 @@
+{
+  "app": "Fitbod",
+  "version_or_date_checked": "2026-10 (iOS 8.35.0; help center articles updated up to 2026-10-02)",
+  "pricing": "No free tier; 7-day trial then $15.99/mo or $95.99/yr (US, legacy $12.99/$79.99). Everything incl. logging new workouts is paywalled after trial; Family (Duo/5) annual plans, limited Lifetime at Black Friday, Business seats.",
+  "platforms": "iOS (iPhone, iOS 18+), Apple Watch, Android, Wear OS, Mac (Apple silicon via App Store); no iPad support; web only for account/subscription",
+  "positioning": "AI/algorithmic workout generator that builds each session from goal, equipment, per-muscle recovery and logged history, with automatic progressive overload.",
+  "features": [
+    {
+      "area": "log",
+      "feature_id": "log_set_fields",
+      "has": "yes",
+      "how": "Per-set weight + reps for rep exercises; timed exercises (duration, AMRAP reps in timed intervals); cardio/distance exercises track distance, duration, pace ('Split'); Watch can edit reps, weight, distance, duration, resistance, incline or band per set. Barbell weight can be shown as 'Bar + Plates' or 'Plates Only'; dumbbell weight is per dumbbell (volume doubled). Custom exercises support only reps or timed (no distance).",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/29486697282711-Exercise-Details-Screen-Sets-Reps-and-Weight-Fields-Explained",
+        "https://help.fitbod.me/hc/en-us/articles/12732749777047-Fitbod-Metrics-Records",
+        "https://help.fitbod.me/hc/en-us/articles/360006499194-Apple-Watch",
+        "https://help.fitbod.me/hc/en-us/articles/28062570249623-Custom-Exercises",
+        "https://help.fitbod.me/hc/en-us/articles/360041831493-Timed-Intervals"
+      ]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_set_types",
+      "has": "partial",
+      "how": "Explicit set types are limited: optional auto-generated warm-up sets (toggle in My Plan; 'Add Warm-Up Set' from More menu), AMRAP sets marked '+ reps' on Max Effort Days, and timed-interval sets. No documented drop-set or failure-set type in the help center.",
+      "user_feedback": "A 2026 third-party review claims 'frictionless logging for supersets, drop sets, AMRAP' but no official doc for drop sets (sensai.fit).",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/360006337634-Warm-Up-Sets",
+        "https://help.fitbod.me/hc/en-us/articles/360006335593-Editing-Workouts-in-Fitbod",
+        "https://help.fitbod.me/hc/en-us/articles/360033675553-Max-Effort-Day",
+        "https://help.fitbod.me/hc/en-us/articles/360041831493-Timed-Intervals"
+      ]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_rpe_rir",
+      "has": "yes",
+      "how": "Reps in Reserve (formerly Exertion Rating/RPE) prompt after an exercise: 0, 1, 2, 3, 4+ RiR. For supersets/circuits prompt appears after all sets; can be logged manually via More menu and edited later in the log. Not for timed/distance exercises. Feeds the recommendation algorithm (consistently high RiR -> heavier).",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/360033133174-Reps-in-Reserve-RiR-Formerly-Exertion-Rating-RPE",
+        "https://help.fitbod.me/hc/en-us/articles/43489869175063-How-does-Fitbod-decide-my-sets-reps-and-weight",
+        "https://help.fitbod.me/hc/en-us/articles/30721437384215-How-to-Navigate-the-Exercise-Details-Screen"
+      ]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_previous_values",
+      "has": "partial",
+      "how": "Exercise Details screen gives 'quick access to your past workout data' (History tab with Results/Trends; notes per past session). Recommended sets are AI-generated rather than a literal copy of last session; no documented inline 'previous' column like Strong.",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/30721437384215-How-to-Navigate-the-Exercise-Details-Screen",
+        "https://help.fitbod.me/hc/en-us/articles/21486783720087-Exercise-Notes",
+        "https://help.fitbod.me/hc/en-us/articles/12732749777047-Fitbod-Metrics-Records"
+      ]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_autofill",
+      "has": "yes",
+      "how": "Every generated workout pre-fills sets, reps and weight from the algorithm (history + mStrength variation). Saved workouts can be loaded with 'Maintain sets, reps, and weight', 'Generate new sets, reps, and weight' or 'Generate new weight only' (varied rep schemes get standardized).",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/43489869175063-How-does-Fitbod-decide-my-sets-reps-and-weight",
+        "https://help.fitbod.me/hc/en-us/articles/6259258835863-Save-a-Workout"
+      ]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_notes",
+      "has": "partial",
+      "how": "Per-exercise notes (More > Notes) saved per session and viewable later in History > Results; can be attached in saved workouts. No documented workout-level or set-level notes.",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/21486783720087-Exercise-Notes",
+        "https://help.fitbod.me/hc/en-us/articles/30721437384215-How-to-Navigate-the-Exercise-Details-Screen"
+      ]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_supersets",
+      "has": "yes",
+      "how": "Supersets (2 exercises) and circuits (3+, unlimited) can be auto-generated (toggle in My Plan) or built manually via '...' > Build superset/circuit, before or during a workout. Group menu: Add Exercises, Log All Exercises, Duplicate, Normalize Weights (iOS only; same weight across group), Reorder Sections, Unbundle. Long-press to drag groups or move exercises in/out.",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/360006427813-Circuits-Supersets",
+        "https://help.fitbod.me/hc/en-us/articles/360006335593-Editing-Workouts-in-Fitbod"
+      ]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_reorder",
+      "has": "yes",
+      "how": "Tap-and-hold an exercise and drag to reorder on the Workout tab; supersets/circuits and timed intervals also drag-reorderable.",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/360006335593-Editing-Workouts-in-Fitbod",
+        "https://help.fitbod.me/hc/en-us/articles/360006427813-Circuits-Supersets",
+        "https://help.fitbod.me/hc/en-us/articles/360041831493-Timed-Intervals"
+      ]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_replace_exercise",
+      "has": "yes",
+      "how": "Swipe left > Replace. Replace list sortable by Best Replacements / Most Logged / Least Logged / Never Logged and filterable by Your Equipment, No Equipment, Same Equipment, Different Equipment. Replacements are also treated as preference signals by the algorithm.",
+      "user_feedback": "Complaint: 'Difficult exercise replacement interface' (justuseapp review aggregation).",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/360006335593-Editing-Workouts-in-Fitbod",
+        "https://help.fitbod.me/hc/en-us/articles/43489509474455-How-does-Fitbod-choose-which-exercises-to-give-me"
+      ]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_plate_calculator",
+      "has": "yes",
+      "how": "For barbell exercises: button next to History or swipe right on a set; for other plate-loaded kit (EZ bar, trap bar, Smith, yoke, leg press, hack squat, calf machine, Hammer Strength, T-bar) swipe right on a set. Uses bars/plates from available equipment; if exact weight impossible shows nearest loadable weight. No custom bar weight for barbell; not on Watch/Wear OS.",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/360007700013-Plate-Calculator"
+      ]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_warmup_calculator",
+      "has": "yes",
+      "how": "'Warm-Up Sets' toggle in My Plan > Training Format auto-adds ramping warm-up sets (increasing weight, fewer reps) to eligible exercises. Skipped for bodyweight/band, accessory/core/assisted/timed exercises, Max Effort exercises, or when working weight is too low for a useful progression.",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/360006337634-Warm-Up-Sets",
+        "https://help.fitbod.me/hc/en-us/articles/34336407191191-My-Plan"
+      ]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_bodyweight_assisted",
+      "has": "partial",
+      "how": "Bodyweight exercises: Weight field only logs added resistance ('Added Weight', e.g. vest); estimated strength for bodyweight uses reps only. Assisted exercises exist (e.g. Assisted Pull Up) but how assistance is logged is not documented. Resistance bands: user defines a band collection (Handle/Mini/Loop bands, colors, tensions); band exercises are recommended by reps, not weight.",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/29486697282711-Exercise-Details-Screen-Sets-Reps-and-Weight-Fields-Explained",
+        "https://help.fitbod.me/hc/en-us/articles/16254175592215-Fitbod-s-Algorithm-Q-A",
+        "https://help.fitbod.me/hc/en-us/articles/12732749777047-Fitbod-Metrics-Records",
+        "https://help.fitbod.me/hc/en-us/articles/4404204105367-Resistance-Bands-Collections",
+        "https://help.fitbod.me/hc/en-us/articles/42459670227223-Exercise-Percentile-Ranking"
+      ]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_unilateral",
+      "has": "yes",
+      "how": "Exercises labeled 'per arm'/'per leg': reps and weight are per side; machine weight logged for one side (not doubled). Custom exercises can be marked unilateral or bilateral. Labels may not show on Watch/Wear OS.",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/29486697282711-Exercise-Details-Screen-Sets-Reps-and-Weight-Fields-Explained",
+        "https://help.fitbod.me/hc/en-us/articles/28062570249623-Custom-Exercises"
+      ]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_tempo",
+      "has": "unknown",
+      "how": "No tempo field found in the help center (99 articles checked).",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/30721437384215-How-to-Navigate-the-Exercise-Details-Screen"
+      ]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_empty_workout",
+      "has": "yes",
+      "how": "Swap menu > 'Create Workout From Scratch' builds a custom workout exercise by exercise; Android also offers 'Import Workout' from a photo/screenshot.",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/360006335593-Editing-Workouts-in-Fitbod",
+        "https://help.fitbod.me/hc/en-us/articles/38318585683991-Customizing-Today-s-Workout"
+      ]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_edit_past",
+      "has": "yes",
+      "how": "Log tab > workout: edit reps/sets/weight, add (+) or delete exercises; '...' to edit duration, delete, or save as a new workout. Saved workouts can be logged for a past date via 'Add as Past Workout' (date + time). Apple Health resync only same calendar day.",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/360006335593-Editing-Workouts-in-Fitbod",
+        "https://help.fitbod.me/hc/en-us/articles/6259258835863-Save-a-Workout",
+        "https://help.fitbod.me/hc/en-us/articles/360047357794-Apple-Health"
+      ]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_one_hand_ux",
+      "has": "partial",
+      "how": "Notable hands-free option: AirPods Pro head gestures (nod, shake or tilt, adjustable sensitivity) log sets; Apple Watch / Wear OS logging; Timed Intervals Auto-Play advances hands-free. No documented keyboard/large-target design notes.",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/360056464934-Apple-AirPod-Pros",
+        "https://help.fitbod.me/hc/en-us/articles/360006499194-Apple-Watch",
+        "https://help.fitbod.me/hc/en-us/articles/360041831493-Timed-Intervals"
+      ]
+    },
+    {
+      "area": "timer",
+      "feature_id": "timer_auto_rest",
+      "has": "yes",
+      "how": "Once a set is logged the countdown starts automatically with tone/vibration at the end; toggle timer icon per exercise ON/OFF. Watch logging on Wear OS does NOT start the rest timer.",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/360006340194-Rest-Timer",
+        "https://help.fitbod.me/hc/en-us/articles/4406074415383-WearOS-on-Android"
+      ]
+    },
+    {
+      "area": "timer",
+      "feature_id": "timer_per_exercise",
+      "has": "yes",
+      "how": "Rest time is generated per exercise per workout depending on difficulty/goal (longer for strength, shorter for conditioning). Adjusting it pre-workout changes all timers for that exercise; mid-workout adjustment only affects the current timer; changes don't persist to future workouts.",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/360006340194-Rest-Timer",
+        "https://help.fitbod.me/hc/en-us/articles/15948615409687-Fitness-Goals"
+      ]
+    },
+    {
+      "area": "timer",
+      "feature_id": "timer_notifications",
+      "has": "yes",
+      "how": "Settings > Workout Settings > Notifications > 'When rest timer has ended' sends a push notification when app is backgrounded/locked (sound only if app is open). Apple Watch gives haptic + audio cues but timer pauses when the screen dims (no Always On support).",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/360006340194-Rest-Timer",
+        "https://help.fitbod.me/hc/en-us/articles/360006499194-Apple-Watch"
+      ]
+    },
+    {
+      "area": "timer",
+      "feature_id": "timer_live_activity",
+      "has": "yes",
+      "how": "iOS Live Activities on Lock Screen and Dynamic Island show current exercise, rest timer, workout duration and set/rep progress (enable in iOS Settings > Apps > Fitbod > Live Activities).",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/360058341233-iOS-Widget"
+      ]
+    },
+    {
+      "area": "timer",
+      "feature_id": "timer_set_stopwatch",
+      "has": "yes",
+      "how": "Timed exercises (custom exercises can be 'Timed'); Timed Intervals (iOS only) run exercises for a set duration with AMRAP reps, automatic rest, Auto-Play hands-free advancing, editable interval duration; rep count suggestions after each interval.",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/360041831493-Timed-Intervals",
+        "https://help.fitbod.me/hc/en-us/articles/28062570249623-Custom-Exercises"
+      ]
+    },
+    {
+      "area": "timer",
+      "feature_id": "timer_workout_duration",
+      "has": "yes",
+      "how": "Workout timer at top of the in-progress screen (tap to pause); duration editable after logging ('Edit Workout Duration'). Workout length target 15 min-1h30 drives number of exercises (4 ex ~27-51 min, 5 ~35-60, 6 ~39-63).",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/23376692769559-Pause-a-Workout",
+        "https://help.fitbod.me/hc/en-us/articles/360006335593-Editing-Workouts-in-Fitbod",
+        "https://help.fitbod.me/hc/en-us/articles/43488199311767-How-long-are-Fitbod-workouts-and-can-I-make-them-shorter"
+      ]
+    },
+    {
+      "area": "timer",
+      "feature_id": "timer_abandoned_workout",
+      "has": "yes",
+      "how": "Workouts can be paused (tap timer) for up to 3 hours; after that Fitbod automatically logs the workout. Apple Watch keeps tracking during pause.",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/23376692769559-Pause-a-Workout"
+      ]
+    },
+    {
+      "area": "plan",
+      "feature_id": "plan_templates",
+      "has": "yes",
+      "how": "'Saved Workouts': save current workout or a logged one with a name; load via Swap > Saved Workouts with 3 modes (maintain / regenerate everything / regenerate weight only). Saved workouts don't transfer between iOS and Android.",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/6259258835863-Save-a-Workout",
+        "https://help.fitbod.me/hc/en-us/articles/360049362174-How-to-Transfer-Your-Fitbod-Account-Between-iOS-and-Android"
+      ]
+    },
+    {
+      "area": "plan",
+      "feature_id": "plan_folders",
+      "has": "unknown",
+      "how": "No folders for saved workouts documented in help center.",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/6259258835863-Save-a-Workout"
+      ]
+    },
+    {
+      "area": "plan",
+      "feature_id": "plan_programs",
+      "has": "partial",
+      "how": "No classic multi-week program library. Instead: algorithmic daily workouts within a split; 'Focus Exercises' run a 4-week, 4-phase cycle (Build Momentum, Dial It In, Close to Peak Effort, Final Push) on main compound lifts; iOS 'On Demand Workouts' are 9 pre-built sessions (bodyweight, dumbbell, kettlebell, bands, BOSU, TRX; 15-30 min).",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/35301260960663-Focus-Exercises",
+        "https://help.fitbod.me/hc/en-us/articles/28568837402775-On-Demand-Workouts",
+        "https://help.fitbod.me/hc/en-us/articles/34336407191191-My-Plan"
+      ]
+    },
+    {
+      "area": "plan",
+      "feature_id": "plan_periodization",
+      "has": "partial",
+      "how": "Automatic non-linear periodization: mStrength varies intensity/volume between sessions (heavy-low rep vs light-high rep days); Focus Exercises 4-phase/4-week cycle; Max Effort Days (ramp sets + 2 AMRAP sets) recalibrate. No user-defined %1RM blocks or scheduled deloads.",
+      "user_feedback": "Review: 'Mechanical plateau handling (weight reduction only, not strategic deloads)' (sensai.fit 2026).",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/43489869175063-How-does-Fitbod-decide-my-sets-reps-and-weight",
+        "https://help.fitbod.me/hc/en-us/articles/35301260960663-Focus-Exercises",
+        "https://help.fitbod.me/hc/en-us/articles/360033675553-Max-Effort-Day",
+        "https://apps.apple.com/us/app/fitbod-gym-fitness-planner/id1041517543"
+      ]
+    },
+    {
+      "area": "plan",
+      "feature_id": "plan_generator",
+      "has": "yes",
+      "how": "Core of the app. Inputs: goal (7 goals incl. Powerlifting, Olympic WL), experience (Beginner/Intermediate/Advanced), equipment per gym, split (PPL, Upper/Lower, Full Body, Fresh Muscle Groups; more with Focus Exercises), duration, variability, warm-ups, cardio, stretching, supersets, timed intervals, injuries. Selection uses effectiveness data from 87M+ logged workouts, per-muscle recovery and explicit/implicit preferences. Workout regenerates when history, equipment or settings change (edits before Start are lost).",
+      "user_feedback": "Common complaints: illogical exercise order/weights, repetitive after months, neglects muscle groups (justuseapp; lasta.app).",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/360004429814-How-Fitbod-Creates-Your-Workout",
+        "https://help.fitbod.me/hc/en-us/articles/43489509474455-How-does-Fitbod-choose-which-exercises-to-give-me",
+        "https://help.fitbod.me/hc/en-us/articles/34336407191191-My-Plan",
+        "https://help.fitbod.me/hc/en-us/articles/42333470514455-Why-did-my-workout-change-Understanding-workout-refreshes",
+        "https://help.fitbod.me/hc/en-us/articles/15948615409687-Fitness-Goals"
+      ]
+    },
+    {
+      "area": "plan",
+      "feature_id": "plan_schedule",
+      "has": "partial",
+      "how": "Workouts/Week as count or specific days with optional workout preview notifications; start-of-week setting (iOS). No built-in weekly planner/calendar of future workouts - help suggests saving named workouts per day as a workaround.",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/360013245993-Weekly-Workout-Goal-Previews-Streaks",
+        "https://help.fitbod.me/hc/en-us/articles/34336407191191-My-Plan",
+        "https://help.fitbod.me/hc/en-us/articles/6259258835863-Save-a-Workout"
+      ]
+    },
+    {
+      "area": "plan",
+      "feature_id": "plan_share_templates",
+      "has": "yes",
+      "how": "'Share Workout Link' sends a workout; the recipient's copy adapts sets/reps/weights to their own history (same exercises/order). Workouts with custom exercises can't be shared. Gym location (equipment) setups can also be shared.",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/360006427453-Sharing-a-Workout-Gym-Location-Settings",
+        "https://help.fitbod.me/hc/en-us/articles/34336407191191-My-Plan"
+      ]
+    },
+    {
+      "area": "lib",
+      "feature_id": "lib_size",
+      "has": "yes",
+      "how": "1,600+ exercises per help center (App Store text still says 1000+; older articles 1,500+). Includes cardio, stretching/mobility, soft tissue, primers, 30+ pregnancy-safe exercises.",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/360004429814-How-Fitbod-Creates-Your-Workout",
+        "https://help.fitbod.me/hc/en-us/articles/31891449815703-Fitbod-for-Business-Program-Overview-Benefits",
+        "https://apps.apple.com/us/app/fitbod-gym-fitness-planner/id1041517543",
+        "https://help.fitbod.me/hc/en-us/articles/26850494278551-Pregnancy"
+      ]
+    },
+    {
+      "area": "lib",
+      "feature_id": "lib_media",
+      "has": "yes",
+      "how": "HD multi-angle demonstration video at top of Exercise Details plus 'How To' with step-by-step guidance and target muscle breakdown. GIFs were removed; offline playback only for previously cached videos.",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/30721437384215-How-to-Navigate-the-Exercise-Details-Screen",
+        "https://help.fitbod.me/hc/en-us/articles/30721771750039-Getting-Started-with-Fitbod-A-New-User-s-Guide",
+        "https://help.fitbod.me/hc/en-us/articles/360006572594-Can-I-use-Fitbod-without-an-internet-connection",
+        "https://apps.apple.com/us/app/fitbod-gym-fitness-planner/id1041517543"
+      ]
+    },
+    {
+      "area": "lib",
+      "feature_id": "lib_custom",
+      "has": "yes",
+      "how": "Create via +Add Exercise > search > Create New Exercise: name, primary + secondary muscles, tracking (reps or timed, weighted or bodyweight), unilateral/bilateral, optional equipment. Cannot be edited after creation (delete & recreate); excluded from auto-recommendations and progression; count toward recovery and calories; no distance tracking; private.",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/28062570249623-Custom-Exercises"
+      ]
+    },
+    {
+      "area": "lib",
+      "feature_id": "lib_muscles",
+      "has": "yes",
+      "how": "Each exercise has Primary and secondary muscle targets (How To > Target tab). Primary sets count 1, secondary 0.5 for weekly set targets (another section says only primary counts).",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/24739986755223-Weekly-Set-Targets",
+        "https://help.fitbod.me/hc/en-us/articles/28062570249623-Custom-Exercises"
+      ]
+    },
+    {
+      "area": "lib",
+      "feature_id": "lib_equipment_filter",
+      "has": "yes",
+      "how": "Equipment is a hard filter for generation; add-exercise filter 'only exercises that match your available equipment'; categories By Equipment, Weighted, Bodyweight Only, Bodyweight with Equipment, Cardio, Stretching & Mobility, Pregnancy.",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/360006335593-Editing-Workouts-in-Fitbod",
+        "https://help.fitbod.me/hc/en-us/articles/43489509474455-How-does-Fitbod-choose-which-exercises-to-give-me"
+      ]
+    },
+    {
+      "area": "lib",
+      "feature_id": "lib_search",
+      "has": "yes",
+      "how": "Search by keyword; tabs All / By Muscle / Categories (incl. Recently Added, Added by Me); sort alphabetically or by Most Logged.",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/360006335593-Editing-Workouts-in-Fitbod",
+        "https://apps.apple.com/us/app/fitbod-gym-fitness-planner/id1041517543"
+      ]
+    },
+    {
+      "area": "lib",
+      "feature_id": "lib_localization",
+      "has": "partial",
+      "how": "Exercise content in app languages only: English, Spanish, Portuguese.",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/26850917322519-Is-Fitbod-available-in-other-languages"
+      ]
+    },
+    {
+      "area": "prog",
+      "feature_id": "prog_suggestions",
+      "has": "yes",
+      "how": "Every set has recommended reps/weight from logged history: comfortable completion -> gradual load/rep increase; struggle -> ease back; after a break or for new exercises -> conservative weights (seeded from aggregate data). mStrength deliberately alternates heavy/light sessions. RiR and Max Effort Day AMRAP results refine 'Estimated Strength'. Weights respect available plate/dumbbell increments.",
+      "user_feedback": "Users often see lower-than-expected weights; Fitbod explains it as deliberate light days (help FAQ).",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/43489869175063-How-does-Fitbod-decide-my-sets-reps-and-weight",
+        "https://help.fitbod.me/hc/en-us/articles/43492523917207-How-does-Fitbod-adapt-as-I-get-stronger",
+        "https://help.fitbod.me/hc/en-us/articles/34320813009431-Took-a-Break-Here-s-How-to-Recalibrate-Your-Fitbod-Recommendations",
+        "https://www.sensai.fit/blog/fitbod-review-2026"
+      ]
+    },
+    {
+      "area": "prog",
+      "feature_id": "prog_double_progression",
+      "has": "unknown",
+      "how": "Progression is algorithmic (weight or reps increased); no explicit double-progression rule documented.",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/43489869175063-How-does-Fitbod-decide-my-sets-reps-and-weight"
+      ]
+    },
+    {
+      "area": "prog",
+      "feature_id": "prog_deload",
+      "has": "partial",
+      "how": "No user-scheduled deloads. Automatic easing: lower weights after inactivity, when strength scores decline, and mStrength light days; Focus Exercise cycle ends with a phase refresh.",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/43492523917207-How-does-Fitbod-adapt-as-I-get-stronger",
+        "https://help.fitbod.me/hc/en-us/articles/43489869175063-How-does-Fitbod-decide-my-sets-reps-and-weight",
+        "https://help.fitbod.me/hc/en-us/articles/35301260960663-Focus-Exercises"
+      ]
+    },
+    {
+      "area": "prog",
+      "feature_id": "prog_fatigue",
+      "has": "yes",
+      "how": "Per-muscle recovery model: each muscle group 0-100%, full recovery ~6-7 days depending on volume/intensity, body stats and cardio; imported Apple Health/Health Connect/Strava/Fitbit activities affect recovery. Fresher muscles prioritized; user can manually override recovery %. Accessory muscles capped at 1-2 exercises per workout.",
+      "user_feedback": "Review: 'Recovery estimates may not always match how users feel' (lasta.app); no HRV/sleep inputs (sensai.fit).",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/360006269014-Muscle-Recovery",
+        "https://help.fitbod.me/hc/en-us/articles/43492170863895-How-does-Fitbod-know-my-muscles-are-still-recovering",
+        "https://help.fitbod.me/hc/en-us/articles/360047357794-Apple-Health"
+      ]
+    },
+    {
+      "area": "prog",
+      "feature_id": "prog_ai_coach",
+      "has": "partial",
+      "how": "Not a conversational coach. 'Injuries/Limitations' uses free-text description + follow-up questions to suggest exclusions/alternatives; 'Workout Insights' (App Store event) gives coaching tips and explains why exercises were recommended; human 'Ask a Trainer' email service included in subscription.",
+      "user_feedback": "'a generator not a coach' - no conversational coaching or mid-workout dialogue (sensai.fit 2026).",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/37629269518103-Injuries-and-Limitations",
+        "https://apps.apple.com/us/app/fitbod-gym-fitness-planner/id1041517543",
+        "https://help.fitbod.me/hc/en-us/articles/1500012605521-Fitbod-s-Ask-a-Trainer-Program"
+      ]
+    },
+    {
+      "area": "prog",
+      "feature_id": "new:max_effort_days",
+      "has": "yes",
+      "how": "Automatically scheduled per exercise: a few ramp-up sets then 2 AMRAP sets at working weight ('+ reps') to recalibrate Estimated Strength. Cannot be triggered manually or disabled globally (hide per exercise); not for bands/supersets/circuits, 1 per muscle per workout, paused while Focus Exercises are on.",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/360033675553-Max-Effort-Day",
+        "https://help.fitbod.me/hc/en-us/articles/43489869175063-How-does-Fitbod-decide-my-sets-reps-and-weight"
+      ]
+    },
+    {
+      "area": "prog",
+      "feature_id": "new:exercise_preferences",
+      "has": "yes",
+      "how": "Recommend More Often (+40-60% likelihood), Recommend Less Often (-20-40%), Don't Recommend Again (exclude, immediate). Managed per exercise from '...' or My Plan > Manage Exercises; no bulk reset. Implicit learning from skips, replaces, deletes and manual adds.",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/9093233634711-Recommend-More-Less-or-Exclude-Exercises",
+        "https://help.fitbod.me/hc/en-us/articles/43489509474455-How-does-Fitbod-choose-which-exercises-to-give-me"
+      ]
+    },
+    {
+      "area": "prog",
+      "feature_id": "new:exercise_variability",
+      "has": "yes",
+      "how": "More Consistent (keeps 70-80% of exercises weekly), Balanced (default), More Variable.",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/29976242163223-Exercise-Variability"
+      ]
+    },
+    {
+      "area": "prog",
+      "feature_id": "new:injuries_limitations",
+      "has": "yes",
+      "how": "My Plan > Injuries/Limitations: free text or quick area (Lower Back, Shoulder, Knee...), answer questions, get suggested exclusions/alternatives, 'Update Plan'; list shows reported date and affected exercises; 'Mark As Not Injured'. Does not override Focus Exercises.",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/37629269518103-Injuries-and-Limitations"
+      ]
+    },
+    {
+      "area": "prog",
+      "feature_id": "new:goal_and_experience_profiles",
+      "has": "yes",
+      "how": "7 goals (Build Muscle, Get Lean, Get Stronger, Reduce Bodyweight, Improve Fitness, Practice Powerlifting, Practice Olympic Weightlifting) set rep ranges (e.g., strength 4-6, hypertrophy 8-12), rest periods and cardio share; experience level unlocks exercise complexity. Neither adjusts automatically.",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/15948615409687-Fitness-Goals",
+        "https://help.fitbod.me/hc/en-us/articles/29976088485143-Fitness-Experience"
+      ]
+    },
+    {
+      "area": "prog",
+      "feature_id": "new:training_session_mods",
+      "has": "yes",
+      "how": "Per-workout tweaks via Swap menu: switch split day, pick muscles (Recovered/Push/Pull/Upper/Lower/Full Body or custom muscle set), saved workouts, create from scratch, On Demand (iOS), Import from photo (Android); Duration 15-90 min and Equipment mods for today only.",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/38318585683991-Customizing-Today-s-Workout",
+        "https://help.fitbod.me/hc/en-us/articles/10793053725335-Training-Session-Mods",
+        "https://help.fitbod.me/hc/en-us/articles/360006335593-Editing-Workouts-in-Fitbod"
+      ]
+    },
+    {
+      "area": "stats",
+      "feature_id": "stats_prs",
+      "has": "yes",
+      "how": "Records per exercise: Estimated Strength, Volume, Reps (max in a set), Weight (heaviest), Exercise Time, Total Time, Distance, Total Distance, Split (best pace).",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/12732749777047-Fitbod-Metrics-Records"
+      ]
+    },
+    {
+      "area": "stats",
+      "feature_id": "stats_e1rm",
+      "has": "partial",
+      "how": "'Estimated Strength' (formerly Projected 1RM) from sets/reps/weight over time with recency decay (drops if exercise not logged recently); for bodyweight exercises it's estimated max reps. Formula proprietary/not published; cannot be edited manually.",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/12732749777047-Fitbod-Metrics-Records",
+        "https://help.fitbod.me/hc/en-us/articles/43492523917207-How-does-Fitbod-adapt-as-I-get-stronger"
+      ]
+    },
+    {
+      "area": "stats",
+      "feature_id": "stats_charts_exercise",
+      "has": "yes",
+      "how": "Exercise > History > Trends: select a stat to view its chart (Estimated Strength etc.); Focus Exercise progress cards on Body tab with e1RM, PRs and averages.",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/42459670227223-Exercise-Percentile-Ranking",
+        "https://help.fitbod.me/hc/en-us/articles/35301260960663-Focus-Exercises",
+        "https://help.fitbod.me/hc/en-us/articles/12732749777047-Fitbod-Metrics-Records"
+      ]
+    },
+    {
+      "area": "stats",
+      "feature_id": "stats_volume",
+      "has": "yes",
+      "how": "Weekly Set Targets tab: model-generated working sets per muscle per week (from goal, frequency, duration, experience, gender/body comp); completion %; not editable. Workout Report shows Muscle Volume per muscle group by week/month/6m/year/custom.",
+      "user_feedback": "Targets not editable (top feature request); algorithm does not guarantee hitting targets (help center).",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/24739986755223-Weekly-Set-Targets",
+        "https://help.fitbod.me/hc/en-us/articles/16436302450711-Your-Workout-Report"
+      ]
+    },
+    {
+      "area": "stats",
+      "feature_id": "stats_muscle_heatmap",
+      "has": "yes",
+      "how": "Body tab > Recovery: rotatable front/back avatar heat map of muscle recovery; tap a muscle for workout/recovery history; post-workout heat map of muscles worked. Strava posts include a 'Muscle Impact' image.",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/360006269014-Muscle-Recovery",
+        "https://help.fitbod.me/hc/en-us/articles/360040720154-Strava-Integration"
+      ]
+    },
+    {
+      "area": "stats",
+      "feature_id": "stats_calendar_streaks",
+      "has": "yes",
+      "how": "Weekly streak = consecutive weeks meeting Workouts/Week goal (no grace period); shown on Log tab; workout report calendar up to 365 days; Milestones badges (volume [lbs only], workouts, calories); Year In Review report.",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/360013245993-Weekly-Workout-Goal-Previews-Streaks",
+        "https://help.fitbod.me/hc/en-us/articles/16436302450711-Your-Workout-Report",
+        "https://help.fitbod.me/hc/en-us/articles/24122892764055-Fitbod-Milestones",
+        "https://help.fitbod.me/hc/en-us/articles/29191538005399-Year-In-Review-Report"
+      ]
+    },
+    {
+      "area": "stats",
+      "feature_id": "stats_workout_summary",
+      "has": "yes",
+      "how": "Post-workout summary with Apple Health sync toggle and share cards (Instagram Stories etc.) showing achievements; Wear OS summary shows exercises, calories, volume. Weekly/monthly Workout Report (in-app + email) with totals vs previous period.",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/360006427453-Sharing-a-Workout-Gym-Location-Settings",
+        "https://help.fitbod.me/hc/en-us/articles/4406074415383-WearOS-on-Android",
+        "https://help.fitbod.me/hc/en-us/articles/16436302450711-Your-Workout-Report",
+        "https://help.fitbod.me/hc/en-us/articles/360047357794-Apple-Health"
+      ]
+    },
+    {
+      "area": "stats",
+      "feature_id": "stats_strength_standards",
+      "has": "yes",
+      "how": "Exercise Percentile Ranking (rolling out 2026): 'Top X% of Fitbodders like you' vs users of similar age, gender, bodyweight; shown only if within ~top 40% (Top 40% to Top 1%), for ~100 supported exercises, per exercise & stat. Also mStrength per-muscle score and Overall Strength Score (unlocks after >=6 sets per primary muscle across Push/Pull/Legs).",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/42459670227223-Exercise-Percentile-Ranking",
+        "https://help.fitbod.me/hc/en-us/articles/12732749777047-Fitbod-Metrics-Records"
+      ]
+    },
+    {
+      "area": "stats",
+      "feature_id": "new:calorie_estimates",
+      "has": "yes",
+      "how": "Calories from sets, estimated duration, exercise type and bodyweight; with Apple Watch/Health Connect uses heart rate, age, weight, gender (uses wearable calories if provided). Not manually editable.",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/360004826434-How-Fitbod-Calculates-Calories"
+      ]
+    },
+    {
+      "area": "stats",
+      "feature_id": "new:live_heart_rate",
+      "has": "yes",
+      "how": "Live BPM, avg/min/max and sparkline during workouts from Apple Watch or AirPods Pro 3 (iOS 26+) or any BLE heart-rate broadcaster on Android (Garmin, Polar, WHOOP). Display only - not used for calories or recommendations.",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/39224086573207-Live-Heart-Rate-Tracking"
+      ]
+    },
+    {
+      "area": "body",
+      "feature_id": "body_weight",
+      "has": "yes",
+      "how": "Weight synced from Apple Health/Health Connect (incl. smart scales) or entered manually in Body > Composition; trend over week/month/6m/year.",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/18213217448983-Body-Composition"
+      ]
+    },
+    {
+      "area": "body",
+      "feature_id": "body_measurements",
+      "has": "partial",
+      "how": "Body Composition: weight, body fat %, lean mass (both OS), BMI and waist circumference (iOS), BMR (Android). Manual entries stay in Fitbod (not written to Health). No limb circumference set documented.",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/18213217448983-Body-Composition"
+      ]
+    },
+    {
+      "area": "body",
+      "feature_id": "body_photos",
+      "has": "unknown",
+      "how": "No progress-photo feature found in the help center.",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/18213217448983-Body-Composition"
+      ]
+    },
+    {
+      "area": "body",
+      "feature_id": "body_readiness",
+      "has": "no",
+      "how": "Recovery is modeled only from logged/imported workouts; reviewers note no HRV, sleep or readiness inputs.",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/43492170863895-How-does-Fitbod-know-my-muscles-are-still-recovering",
+        "https://www.sensai.fit/blog/fitbod-review-2026"
+      ]
+    },
+    {
+      "area": "int",
+      "feature_id": "int_apple_health",
+      "has": "yes",
+      "how": "Write workouts, active energy, heart rate; read compatible workouts (runs, walks, cycles, elliptical, rower, hiking, swims) which affect recovery; read/write body comp (weight, BF%, lean mass, BMI, waist, height) and profile data. Sync toggle on summary; resync only same day.",
+      "user_feedback": "Older versions (<=8.15) silently lost Health permission (help center).",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/360047357794-Apple-Health"
+      ]
+    },
+    {
+      "area": "int",
+      "feature_id": "int_watch_app",
+      "has": "yes",
+      "how": "Apple Watch companion (watchOS 10+): log sets, edit reps/weight/distance/duration/resistance/incline/band, add/remove sets (max 9), rest timer, live HR, RiR prompts; starting, swapping/adding exercises and saving require iPhone; no Always On. Wear OS app: start, view, log/add sets, finish; no rest timer from watch logging; must be in Bluetooth range.",
+      "user_feedback": "Most common complaint: Watch sync unreliable, timer stopping (justuseapp; help troubleshooting article).",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/360006499194-Apple-Watch",
+        "https://help.fitbod.me/hc/en-us/articles/4406074415383-WearOS-on-Android",
+        "https://help.fitbod.me/hc/en-us/articles/360033133174-Reps-in-Reserve-RiR-Formerly-Exertion-Rating-RPE"
+      ]
+    },
+    {
+      "area": "int",
+      "feature_id": "int_garmin",
+      "has": "partial",
+      "how": "No native Garmin app. Strava (import public activities, post Fitbod workouts with muscle impact image), Fitbit (iOS only; import running/biking/stair/elliptical/walk; posting requires manual add in Fitbit since Oct 2024), BLE heart-rate monitors (Garmin/Polar/WHOOP broadcast) on Android, AirPods Pro for gesture logging/HR.",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/360040720154-Strava-Integration",
+        "https://help.fitbod.me/hc/en-us/articles/360026522774-Connecting-Fitbit-to-Fitbod-iOS-Only",
+        "https://help.fitbod.me/hc/en-us/articles/39224086573207-Live-Heart-Rate-Tracking",
+        "https://help.fitbod.me/hc/en-us/articles/360056464934-Apple-AirPod-Pros"
+      ]
+    },
+    {
+      "area": "int",
+      "feature_id": "int_import",
+      "has": "partial",
+      "how": "No Strong/Hevy/CSV import. Imports cardio activities from Apple Health, Health Connect, Strava, Fitbit; Android can import a workout from a photo/screenshot.",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/360047357794-Apple-Health",
+        "https://help.fitbod.me/hc/en-us/articles/22109292991895-Health-Connect-on-Android",
+        "https://help.fitbod.me/hc/en-us/articles/360040720154-Strava-Integration",
+        "https://help.fitbod.me/hc/en-us/articles/360026522774-Connecting-Fitbit-to-Fitbod-iOS-Only",
+        "https://help.fitbod.me/hc/en-us/articles/38318585683991-Customizing-Today-s-Workout"
+      ]
+    },
+    {
+      "area": "int",
+      "feature_id": "int_export",
+      "has": "yes",
+      "how": "Log tab > gear > 'Export Workout Data' produces a CSV (per-set weights/reps grouped by workout, warm-ups, timed sets, notes, unit) - documented by third parties; no help-center article.",
+      "sources": [
+        "https://griptapp.com/help/import-from-fitbod",
+        "https://www.gymnoteplus.com/blog/fitbod-vs-hevy"
+      ]
+    },
+    {
+      "area": "int",
+      "feature_id": "int_backup_sync",
+      "has": "yes",
+      "how": "Account required (email, Apple, Google, Facebook); workouts sync to servers; history, gym profiles and subscription transfer across iOS/Android (saved workouts don't). Local data syncs when back online.",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/15932124434199-How-to-Sign-Up-Log-in",
+        "https://help.fitbod.me/hc/en-us/articles/360049362174-How-to-Transfer-Your-Fitbod-Account-Between-iOS-and-Android",
+        "https://help.fitbod.me/hc/en-us/articles/360006572594-Can-I-use-Fitbod-without-an-internet-connection"
+      ]
+    },
+    {
+      "area": "int",
+      "feature_id": "int_widgets",
+      "has": "yes",
+      "how": "iOS home-screen/Today widget (small & medium): workouts this week vs weekly goal ring and next workout details.",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/360058341233-iOS-Widget"
+      ]
+    },
+    {
+      "area": "int",
+      "feature_id": "int_siri_shortcuts",
+      "has": "unknown",
+      "how": "Not mentioned in help center.",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/360058341233-iOS-Widget"
+      ]
+    },
+    {
+      "area": "equip",
+      "feature_id": "equip_locations",
+      "has": "yes",
+      "how": "Multiple gym locations, each with its own equipment (My Plan > Location > Add New Location); switch, rename, share (recipient imports setup) or delete. Units must be changed manually per location.",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/34336407191191-My-Plan",
+        "https://help.fitbod.me/hc/en-us/articles/23560953306263-Changing-Units-Imperial-Metric",
+        "https://help.fitbod.me/hc/en-us/articles/360006427453-Sharing-a-Workout-Gym-Location-Settings"
+      ]
+    },
+    {
+      "area": "equip",
+      "feature_id": "equip_inventory",
+      "has": "yes",
+      "how": "Edit available weight increments for dumbbells, kettlebells, barbells; bars/plates for plate calculator; custom resistance band collection with colors/tension.",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/34336407191191-My-Plan",
+        "https://help.fitbod.me/hc/en-us/articles/360007700013-Plate-Calculator",
+        "https://help.fitbod.me/hc/en-us/articles/4404204105367-Resistance-Bands-Collections"
+      ]
+    },
+    {
+      "area": "equip",
+      "feature_id": "equip_filtering",
+      "has": "yes",
+      "how": "Only exercises matching selected equipment are generated (hard filter); Bodyweight-Only mode; per-day equipment mod.",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/43489509474455-How-does-Fitbod-choose-which-exercises-to-give-me",
+        "https://help.fitbod.me/hc/en-us/articles/34336407191191-My-Plan",
+        "https://help.fitbod.me/hc/en-us/articles/10793053725335-Training-Session-Mods"
+      ]
+    },
+    {
+      "area": "social",
+      "feature_id": "social_feed",
+      "has": "partial",
+      "how": "Clubs (beta, select gyms, new signups only): gym-based activity feed where completed workouts auto-post and members react with emojis. No general social network.",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/38657483026967-Clubs"
+      ]
+    },
+    {
+      "area": "social",
+      "feature_id": "social_share",
+      "has": "yes",
+      "how": "Share summary image cards to Instagram Stories etc.; share workout link; Strava posting.",
+      "user_feedback": "App Store review: aggressive promotional messaging when sharing workouts.",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/360006427453-Sharing-a-Workout-Gym-Location-Settings",
+        "https://help.fitbod.me/hc/en-us/articles/360040720154-Strava-Integration"
+      ]
+    },
+    {
+      "area": "social",
+      "feature_id": "social_leaderboards",
+      "has": "partial",
+      "how": "Clubs weekly leaderboard (Volume and Workouts, Sun-Sat), top 3 announced Mondays; beta, gyms with >=5 active members. Fitbod for Business admin dashboard has weekly leaderboards.",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/38657483026967-Clubs",
+        "https://help.fitbod.me/hc/en-us/articles/31891449815703-Fitbod-for-Business-Program-Overview-Benefits"
+      ]
+    },
+    {
+      "area": "social",
+      "feature_id": "social_challenges",
+      "has": "partial",
+      "how": "Only in Fitbod for Business: custom company-wide challenges with Fitbod-sponsored prizes.",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/31891449815703-Fitbod-for-Business-Program-Overview-Benefits"
+      ]
+    },
+    {
+      "area": "coach",
+      "feature_id": "coach_client_management",
+      "has": "no",
+      "how": "No trainer/client tooling; business offering is a corporate wellness admin dashboard (usage stats, leaderboards), not coaching.",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/31891449815703-Fitbod-for-Business-Program-Overview-Benefits"
+      ]
+    },
+    {
+      "area": "coach",
+      "feature_id": "coach_assign_programs",
+      "has": "no",
+      "how": "No program assignment; nearest is sharing a workout link (adapts to recipient).",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/360006427453-Sharing-a-Workout-Gym-Location-Settings",
+        "https://help.fitbod.me/hc/en-us/articles/31891449815703-Fitbod-for-Business-Program-Overview-Benefits"
+      ]
+    },
+    {
+      "area": "coach",
+      "feature_id": "coach_feedback",
+      "has": "partial",
+      "how": "'Ask a Trainer': email certified Fitbod trainers (in-app form or trainer@fitbod.me), replies in a few business days; no custom plans, nutrition or medical advice.",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/1500012605521-Fitbod-s-Ask-a-Trainer-Program"
+      ]
+    },
+    {
+      "area": "coach",
+      "feature_id": "coach_chat",
+      "has": "no",
+      "how": "Ask a Trainer is email-only; no in-app chat with a coach documented.",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/1500012605521-Fitbod-s-Ask-a-Trainer-Program"
+      ]
+    },
+    {
+      "area": "coach",
+      "feature_id": "coach_marketplace",
+      "has": "no",
+      "how": "No coach/program marketplace found.",
+      "sources": [
+        "https://fitbod.me",
+        "https://help.fitbod.me/hc/en-us/articles/31891449815703-Fitbod-for-Business-Program-Overview-Benefits"
+      ]
+    },
+    {
+      "area": "monet",
+      "feature_id": "monet_model",
+      "has": "paid",
+      "how": "No free tier: 7-day trial (requires choosing monthly/yearly plan) then $15.99/mo or $95.99/yr (US; legacy $12.99/$79.99 and lower). After expiry can view history but not log new workouts. Lifetime (only ~1,000 sold at Black Friday), Family Plan (Duo 2 / Family 5, annual only, web purchase), Fitbod for Business (5-100+ seats), HSA/FSA eligible, monthly subscription pause offers.",
+      "user_feedback": "Price is a frequent complaint; 3-workout free limit in older versions (TechRadar 2023).",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/30542136101527-How-the-Trial-Works",
+        "https://help.fitbod.me/hc/en-us/articles/360004904714-How-to-Subscribe-to-Fitbod",
+        "https://help.fitbod.me/hc/en-us/articles/27915497464855-Lifetime-Fitbod-Membership-FAQ",
+        "https://help.fitbod.me/hc/en-us/articles/42280653162519-Fitbod-Family-Plan",
+        "https://help.fitbod.me/hc/en-us/articles/31891449815703-Fitbod-for-Business-Program-Overview-Benefits",
+        "https://help.fitbod.me/hc/en-us/articles/360006368934-How-to-Cancel-or-Request-a-Refund-for-Your-Fitbod-Subscription",
+        "https://apps.apple.com/us/app/fitbod-gym-fitness-planner/id1041517543",
+        "https://fitbod.me"
+      ]
+    },
+    {
+      "area": "ux",
+      "feature_id": "ux_units",
+      "has": "yes",
+      "how": "Global lb/kg in My Plan > Preferences > Units (one system for weight and distance); per-exercise kg/lb override for weight exercises (More menu). Past workouts keep original units. Milestones show lbs only.",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/23560953306263-Changing-Units-Imperial-Metric",
+        "https://help.fitbod.me/hc/en-us/articles/24122892764055-Fitbod-Milestones"
+      ]
+    },
+    {
+      "area": "ux",
+      "feature_id": "ux_theme",
+      "has": "unknown",
+      "how": "No theme setting documented; App Store reviewer asks for color/theme personalization.",
+      "sources": [
+        "https://apps.apple.com/us/app/fitbod-gym-fitness-planner/id1041517543"
+      ]
+    },
+    {
+      "area": "ux",
+      "feature_id": "ux_languages",
+      "has": "yes",
+      "how": "English, Spanish, Portuguese; follows device language, per-app language override.",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/26850917322519-Is-Fitbod-available-in-other-languages",
+        "https://apps.apple.com/us/app/fitbod-gym-fitness-planner/id1041517543"
+      ]
+    },
+    {
+      "area": "ux",
+      "feature_id": "ux_accessibility",
+      "has": "unknown",
+      "how": "App Store: developer has not indicated accessibility features.",
+      "sources": [
+        "https://apps.apple.com/us/app/fitbod-gym-fitness-planner/id1041517543"
+      ]
+    },
+    {
+      "area": "ux",
+      "feature_id": "ux_onboarding",
+      "has": "yes",
+      "how": "Onboarding questions on experience, goals, equipment (web or app) then first workout generated immediately; Clubs gym selection during setup.",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/30721771750039-Getting-Started-with-Fitbod-A-New-User-s-Guide",
+        "https://help.fitbod.me/hc/en-us/articles/15932124434199-How-to-Sign-Up-Log-in",
+        "https://help.fitbod.me/hc/en-us/articles/38657483026967-Clubs"
+      ]
+    },
+    {
+      "area": "ux",
+      "feature_id": "ux_offline",
+      "has": "yes",
+      "how": "Offline: local algorithm generates workouts, log/save workouts (sync later), cached thumbnails/videos. Online needed for Focus Exercise split alignment, uncached videos, full records/history.",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/360006572594-Can-I-use-Fitbod-without-an-internet-connection",
+        "https://help.fitbod.me/hc/en-us/articles/35301260960663-Focus-Exercises"
+      ]
+    },
+    {
+      "area": "ux",
+      "feature_id": "ux_privacy",
+      "has": "partial",
+      "how": "Account required. Stores body profile, workout data, preferences; GDPR-compliant deletion (in-app Permanently Delete Account). App Store label: Usage Data used to track; Health & Fitness, contact info, identifiers linked to you.",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/360004702573-What-kind-of-data-do-we-store",
+        "https://help.fitbod.me/hc/en-us/articles/19559573010583-How-to-Delete-Your-Fitbod-Account",
+        "https://help.fitbod.me/hc/en-us/articles/15932124434199-How-to-Sign-Up-Log-in",
+        "https://apps.apple.com/us/app/fitbod-gym-fitness-planner/id1041517543"
+      ]
+    },
+    {
+      "area": "ux",
+      "feature_id": "new:platforms_requirements",
+      "has": "yes",
+      "how": "iPhone (iOS 18+; current & previous major), Apple Watch (watchOS 10+), Android (current & previous major), Wear OS; Mac with Apple silicon via App Store; iPad not officially supported; website only for onboarding/subscription.",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/38144798013719-System-Requirements",
+        "https://apps.apple.com/us/app/fitbod-gym-fitness-planner/id1041517543",
+        "https://help.fitbod.me/hc/en-us/articles/15932124434199-How-to-Sign-Up-Log-in"
+      ]
+    },
+    {
+      "area": "ux",
+      "feature_id": "new:stretching_cardio_blocks",
+      "has": "yes",
+      "how": "Optional warm-up/cool-down blocks: soft tissue, dynamic, static stretches, primers (iOS); each type set to warm-up or cool-down; and optional cardio at start/end with chosen modalities, duration auto-set by goal.",
+      "sources": [
+        "https://help.fitbod.me/hc/en-us/articles/360019715433-Stretching-Warm-up-Cool-down",
+        "https://help.fitbod.me/hc/en-us/articles/360006427673-Cardio-Recommendations"
+      ]
+    }
+  ]
+}

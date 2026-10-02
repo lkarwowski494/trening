@@ -1,0 +1,893 @@
+{
+  "app": "Boostcamp",
+  "version_or_date_checked": "2026-10 (iOS v266)",
+  "pricing": "Free (no ads) incl. full tracker and 11,000+ programs; Pro $59.99/yr (7-day trial) or $14.99/mo. Paywalled: Strength Score, volume heatmap, AI/personalized programs, Pro auto-progression, 20+ exclusive coach programs, advanced analytics, bodyweight tracker, progress photos.",
+  "platforms": "iOS (iPhone, iPad), Android, web (program creator + history); no Apple Watch app",
+  "positioning": "Program-first strength app: popular coach/Reddit programs (5/3/1, nSuns, GZCLP, PPL...) with built-in progression logic, wrapped in a free tracker.",
+  "features": [
+    {
+      "area": "log",
+      "feature_id": "log_set_fields",
+      "has": "yes",
+      "how": "Sets log weight x reps (+ optional RPE/RIR); timed exercises can be programmed in minutes/seconds; AMRAP sets supported in programs. Distance metrics not documented (app is strength-focused, little cardio).",
+      "user_feedback": "App Store review: desktop creator can't switch an exercise's duration from minutes to seconds (mobile only).",
+      "sources": [
+        "https://www.boostcamp.app/workout-tracker",
+        "https://www.boostcamp.app/custom-program",
+        "https://apps.apple.com/us/app/boostcamp-workout-programs/id1529354455",
+        "https://www.garagegymreviews.com/boostcamp-review"
+      ]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_set_types",
+      "has": "yes",
+      "how": "Tap the set number to mark it Work, Warm-up, Drop or Failure set; drop sets can be added to any working set.",
+      "sources": [
+        "https://www.boostcamp.app/blogs/tips-and-tricks-to-using-boostcamp-app",
+        "https://www.boostcamp.app/workout-tracker"
+      ]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_rpe_rir",
+      "has": "yes",
+      "how": "Every set has optional RPE (5-10) and RIR fields, free; stored for fatigue trends across a block and RPE-based programs.",
+      "sources": [
+        "https://www.boostcamp.app/features",
+        "https://www.boostcamp.app/workout-tracker",
+        "https://www.jefit.com/blog/best-progressive-overload-apps-for-beginners-in-2026-top-5-reviewed-and-compared"
+      ]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_previous_values",
+      "has": "yes",
+      "how": "Logging screen shows a 'previous' column with last session's (previous week's, in programs) sets, reps and weight; exercise detail shows past performance and PRs.",
+      "user_feedback": "App Store reviews: previous weights sometimes missing (e.g. OHP in Candito program); wish it saved rep counts too.",
+      "sources": [
+        "https://www.boostcamp.app/blogs/tips-and-tricks-to-using-boostcamp-app",
+        "https://www.garagegymreviews.com/boostcamp-review",
+        "https://www.jefit.com/blog/best-progressive-overload-apps-for-beginners-in-2026-top-5-reviewed-and-compared"
+      ]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_autofill",
+      "has": "yes",
+      "how": "Tap the previous column to copy weight/reps into today's set; program auto-progression pre-loads next session's weights (bumps after hitting reps, adjusts down after misses).",
+      "sources": [
+        "https://www.boostcamp.app/blogs/tips-and-tricks-to-using-boostcamp-app",
+        "https://www.boostcamp.app/workout-tracker"
+      ]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_notes",
+      "has": "yes",
+      "how": "Workout notes (general) plus exercise-specific notes (Dec 2024); programs carry coach notes per day/week.",
+      "sources": [
+        "https://www.boostcamp.app/blogs/new-boostcamp-lifting-app-features-december-2024",
+        "https://apps.apple.com/us/app/boostcamp-workout-programs/id1529354455"
+      ]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_supersets",
+      "has": "yes",
+      "how": "Group exercises into supersets in the workout editor and program creator.",
+      "sources": [
+        "https://www.boostcamp.app/workout-tracker",
+        "https://www.boostcamp.app/custom-program"
+      ]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_reorder",
+      "has": "unknown",
+      "how": "Not documented.",
+      "sources": [
+        "https://www.boostcamp.app/workout-tracker"
+      ]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_replace_exercise",
+      "has": "yes",
+      "how": "Swap icon shows coach-suggested alternatives (or '•••' to pick any exercise); weights carry over to the substitute and the app asks whether to apply the swap only today or to future workouts. 'Similar Exercises' recommendations for every exercise added Oct 2026.",
+      "user_feedback": "Play Store review (Feb 2025): some substitution functions locked behind subscription; App Store review: only about half of 'save for future' swaps stick.",
+      "sources": [
+        "https://www.boostcamp.app/blogs/tips-and-tricks-to-using-boostcamp-app",
+        "https://www.garagegymreviews.com/boostcamp-review",
+        "https://www.boostcamp.app/features",
+        "https://apps.apple.com/us/app/boostcamp-workout-programs/id1529354455"
+      ]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_plate_calculator",
+      "has": "yes",
+      "how": "Free plate calculator tells which plates to load on each side of the bar for each set.",
+      "sources": [
+        "https://www.boostcamp.app/workout-tracker",
+        "https://www.garagegymreviews.com/boostcamp-review"
+      ]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_warmup_calculator",
+      "has": "yes",
+      "how": "Customizable warm-up set templates that can be applied to any working weight and saved/reused (now free; an older review says warm-up sets were Premium).",
+      "sources": [
+        "https://www.boostcamp.app/workout-tracker",
+        "https://www.boostcamp.app/features",
+        "https://apps.apple.com/us/app/boostcamp-workout-programs/id1529354455"
+      ]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_bodyweight_assisted",
+      "has": "unknown",
+      "how": "Bodyweight exercises supported; logging added/assisted load not documented.",
+      "sources": [
+        "https://www.boostcamp.app/free-workout-app"
+      ]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_unilateral",
+      "has": "unknown",
+      "how": "Not documented.",
+      "sources": [
+        "https://www.boostcamp.app/workout-tracker"
+      ]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_tempo",
+      "has": "unknown",
+      "how": "Not documented.",
+      "sources": [
+        "https://www.boostcamp.app/workout-tracker"
+      ]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_empty_workout",
+      "has": "yes",
+      "how": "Start a freestyle/empty workout without a program; Pro auto-progression also works with empty workouts (v266).",
+      "sources": [
+        "https://www.boostcamp.app/workout-tracker",
+        "https://apps.apple.com/us/app/boostcamp-workout-programs/id1529354455"
+      ]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_edit_past",
+      "has": "partial",
+      "how": "History tab lists past workouts (view by month since v265) and lets you open one and save it as a template; editing/backdating finished sessions is not documented.",
+      "sources": [
+        "https://www.boostcamp.app/blogs/tips-and-tricks-to-using-boostcamp-app",
+        "https://apps.apple.com/us/app/boostcamp-workout-programs/id1529354455"
+      ]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_one_hand_ux",
+      "has": "partial",
+      "how": "Tap a set to log it and the rest timer starts; since v265 (Sep 2026) the current set stays highlighted and finished exercises collapse; swipe left to delete a set/exercise.",
+      "sources": [
+        "https://www.boostcamp.app/workout-tracker",
+        "https://apps.apple.com/us/app/boostcamp-workout-programs/id1529354455",
+        "https://www.boostcamp.app/blogs/tips-and-tricks-to-using-boostcamp-app"
+      ]
+    },
+    {
+      "area": "timer",
+      "feature_id": "timer_auto_rest",
+      "has": "yes",
+      "how": "Rest timer auto-starts when a set is logged.",
+      "sources": [
+        "https://www.boostcamp.app/workout-tracker"
+      ]
+    },
+    {
+      "area": "timer",
+      "feature_id": "timer_per_exercise",
+      "has": "yes",
+      "how": "Rest time is set per exercise/set in the program creator; timers can be toggled per movement.",
+      "user_feedback": "App Store review: had to turn the timer off again every week for some movements.",
+      "sources": [
+        "https://www.boostcamp.app/custom-program",
+        "https://apps.apple.com/us/app/boostcamp-workout-programs/id1529354455"
+      ]
+    },
+    {
+      "area": "timer",
+      "feature_id": "timer_notifications",
+      "has": "unknown",
+      "how": "Not documented beyond Live Activities.",
+      "sources": [
+        "https://apps.apple.com/us/app/boostcamp-workout-programs/id1529354455"
+      ]
+    },
+    {
+      "area": "timer",
+      "feature_id": "timer_live_activity",
+      "has": "yes",
+      "how": "Live Activities put the current set and rest timer on the Lock Screen and Dynamic Island (iOS).",
+      "sources": [
+        "https://apps.apple.com/us/app/boostcamp-workout-programs/id1529354455"
+      ]
+    },
+    {
+      "area": "timer",
+      "feature_id": "timer_set_stopwatch",
+      "has": "partial",
+      "how": "Exercises can be prescribed by duration (minutes/seconds); a dedicated set stopwatch/countdown UI is not documented.",
+      "sources": [
+        "https://apps.apple.com/us/app/boostcamp-workout-programs/id1529354455"
+      ]
+    },
+    {
+      "area": "timer",
+      "feature_id": "timer_workout_duration",
+      "has": "yes",
+      "how": "Reports show number of workouts and minutes trained over time.",
+      "sources": [
+        "https://fortune.com/article/boostcamp-review/"
+      ]
+    },
+    {
+      "area": "timer",
+      "feature_id": "timer_abandoned_workout",
+      "has": "unknown",
+      "how": "Not documented.",
+      "user_feedback": "Older reviews (2023-2025): completed workout not registered (next day repeats) and freezes on the 'complete workout' summary screen.",
+      "sources": [
+        "https://www.boostcamp.app/workout-tracker"
+      ]
+    },
+    {
+      "area": "plan",
+      "feature_id": "plan_templates",
+      "has": "yes",
+      "how": "Single-day workout templates under 'All Templates'; any past workout in History can be saved as a template.",
+      "sources": [
+        "https://www.boostcamp.app/blogs/tips-and-tricks-to-using-boostcamp-app"
+      ]
+    },
+    {
+      "area": "plan",
+      "feature_id": "plan_folders",
+      "has": "partial",
+      "how": "No folders documented; since v263 (Jul 2026) 'Save' bookmarks coach/user programs into one tab.",
+      "sources": [
+        "https://apps.apple.com/us/app/boostcamp-workout-programs/id1529354455"
+      ]
+    },
+    {
+      "area": "plan",
+      "feature_id": "plan_programs",
+      "has": "yes",
+      "how": "Core of the app: 11,000+ programs incl. 130+ coach-designed (Wendler 5/3/1, nSuns, GZCLP, PHUL/PHAT, Reddit PPL, Sheiko, Candito, Helms, Nuñez...), filterable by level, goal, days/week; ~20 coach programs are Pro-exclusive. You can join multiple programs at once.",
+      "sources": [
+        "https://www.boostcamp.app/features",
+        "https://apps.apple.com/us/app/boostcamp-workout-programs/id1529354455",
+        "https://fortune.com/article/boostcamp-review/"
+      ]
+    },
+    {
+      "area": "plan",
+      "feature_id": "plan_periodization",
+      "has": "yes",
+      "how": "Programs encode percentages of training max, AMRAP targets, waves and deloads; you enter starting lifts and weights are calculated weekly. Custom builder supports multi-week mesocycles and training-max waves.",
+      "sources": [
+        "https://www.boostcamp.app/vs/hevy",
+        "https://www.boostcamp.app/features",
+        "https://www.garagegymreviews.com/boostcamp-review"
+      ]
+    },
+    {
+      "area": "plan",
+      "feature_id": "plan_generator",
+      "has": "paid",
+      "how": "'AI Coach' / personalized programs: short questionnaire (goal, experience, schedule, equipment) builds a multi-week starter periodization plan you can edit (Pro); 'Create programs with AI' added Mar 2026.",
+      "sources": [
+        "https://www.boostcamp.app/pro",
+        "https://apps.apple.com/us/app/boostcamp-workout-programs/id1529354455"
+      ]
+    },
+    {
+      "area": "plan",
+      "feature_id": "plan_schedule",
+      "has": "yes",
+      "how": "Planner icon shows scheduled workouts across all weeks of a program; app proposes the next day in sequence; push notifications preview next workout and calendar invites are available.",
+      "sources": [
+        "https://www.boostcamp.app/blogs/tips-and-tricks-to-using-boostcamp-app",
+        "https://www.garagegymreviews.com/boostcamp-review",
+        "https://fortune.com/article/boostcamp-review/"
+      ]
+    },
+    {
+      "area": "plan",
+      "feature_id": "plan_share_templates",
+      "has": "yes",
+      "how": "Custom programs can be shared via private link (recipient taps Save) or published to the community library; programs can be forked.",
+      "sources": [
+        "https://www.boostcamp.app/blogs/tips-and-tricks-to-using-boostcamp-app",
+        "https://www.boostcamp.app/custom-program",
+        "https://www.boostcamp.app/features"
+      ]
+    },
+    {
+      "area": "lib",
+      "feature_id": "lib_size",
+      "has": "partial",
+      "how": "Program creator advertises 500+ searchable exercises; web exercise guide pages cover only 30 exercises across 6 equipment types.",
+      "sources": [
+        "https://www.boostcamp.app/custom-program",
+        "https://www.boostcamp.app/exercises"
+      ]
+    },
+    {
+      "area": "lib",
+      "feature_id": "lib_media",
+      "has": "partial",
+      "how": "Tap an exercise to see a demo, past performance and PRs; reviewers say demos are animations rather than full coaching videos (marketing says 'form videos').",
+      "user_feedback": "GGR and Fortune: instruction is thin for beginners.",
+      "sources": [
+        "https://www.boostcamp.app/blogs/tips-and-tricks-to-using-boostcamp-app",
+        "https://www.garagegymreviews.com/boostcamp-review",
+        "https://apps.apple.com/us/app/boostcamp-workout-programs/id1529354455"
+      ]
+    },
+    {
+      "area": "lib",
+      "feature_id": "lib_custom",
+      "has": "yes",
+      "how": "Custom exercises allowed, free, no cap.",
+      "sources": [
+        "https://www.boostcamp.app/features",
+        "https://www.garagegymreviews.com/boostcamp-review"
+      ]
+    },
+    {
+      "area": "lib",
+      "feature_id": "lib_muscles",
+      "has": "yes",
+      "how": "Exercise guide shows body parts worked; programs show a muscle breakdown per workout (Dec 2024); muscle-group engagement analytics.",
+      "sources": [
+        "https://fortune.com/article/boostcamp-review/",
+        "https://www.boostcamp.app/blogs/new-boostcamp-lifting-app-features-december-2024",
+        "https://apps.apple.com/us/app/boostcamp-workout-programs/id1529354455"
+      ]
+    },
+    {
+      "area": "lib",
+      "feature_id": "lib_equipment_filter",
+      "has": "partial",
+      "how": "Exercises are categorized by equipment (barbell, dumbbell, kettlebell, machine, bodyweight, cable) on the web guide; in-app filtering not documented.",
+      "sources": [
+        "https://www.boostcamp.app/exercises"
+      ]
+    },
+    {
+      "area": "lib",
+      "feature_id": "lib_search",
+      "has": "yes",
+      "how": "Exercise search in the program creator; programs can be searched by exercise (Mar 2026).",
+      "sources": [
+        "https://www.boostcamp.app/custom-program",
+        "https://apps.apple.com/us/app/boostcamp-workout-programs/id1529354455"
+      ]
+    },
+    {
+      "area": "lib",
+      "feature_id": "lib_localization",
+      "has": "no",
+      "how": "App Store lists English as the only language.",
+      "sources": [
+        "https://apps.apple.com/us/app/boostcamp-workout-programs/id1529354455"
+      ]
+    },
+    {
+      "area": "prog",
+      "feature_id": "prog_suggestions",
+      "has": "partial",
+      "how": "Free: program-defined auto-progression (coach rules / % of training max) fills next weights, bumps after hitting reps and adjusts down after misses. Pro (v266, Oct 2026): 'Auto Progression' personalized weight targets based on performance, for programs and empty workouts.",
+      "sources": [
+        "https://www.boostcamp.app/workout-tracker",
+        "https://www.boostcamp.app/vs/hevy",
+        "https://apps.apple.com/us/app/boostcamp-workout-programs/id1529354455"
+      ]
+    },
+    {
+      "area": "prog",
+      "feature_id": "prog_double_progression",
+      "has": "partial",
+      "how": "Available only if the chosen program encodes it; no generic double-progression setting documented.",
+      "sources": [
+        "https://www.boostcamp.app/vs/hevy"
+      ]
+    },
+    {
+      "area": "prog",
+      "feature_id": "prog_deload",
+      "has": "partial",
+      "how": "Deloads are built into coach programs' schedules; no reactive, fatigue-triggered deload.",
+      "sources": [
+        "https://apps.apple.com/us/app/boostcamp-workout-programs/id1529354455",
+        "https://www.boostcamp.app/vs/hevy"
+      ]
+    },
+    {
+      "area": "prog",
+      "feature_id": "prog_fatigue",
+      "has": "no",
+      "how": "No readiness/recovery model; Pro shows RPE drift and volume trends only.",
+      "sources": [
+        "https://www.boostcamp.app/pro"
+      ]
+    },
+    {
+      "area": "prog",
+      "feature_id": "prog_ai_coach",
+      "has": "paid",
+      "how": "'AI Coach' builds a customized multi-week program from a questionnaire; no conversational coaching or form feedback (reviewers: 'no individualized coaching').",
+      "sources": [
+        "https://apps.apple.com/us/app/boostcamp-workout-programs/id1529354455",
+        "https://www.boostcamp.app/pro",
+        "https://www.garagegymreviews.com/boostcamp-review"
+      ]
+    },
+    {
+      "area": "stats",
+      "feature_id": "stats_prs",
+      "has": "yes",
+      "how": "Automatic PRs: max weight per rep range, max volume per session, max reps at a weight, 'Max Weight Reps', e1RM, lifetime bests; flagged in-session with confetti and badge; PRs can be reset to a new baseline while keeping history (v262).",
+      "sources": [
+        "https://www.boostcamp.app/workout-tracker",
+        "https://apps.apple.com/us/app/boostcamp-workout-programs/id1529354455"
+      ]
+    },
+    {
+      "area": "stats",
+      "feature_id": "stats_e1rm",
+      "has": "yes",
+      "how": "e1RM curve calculated from top sets; formula not published.",
+      "sources": [
+        "https://www.boostcamp.app/workout-tracker",
+        "https://www.boostcamp.app/features"
+      ]
+    },
+    {
+      "area": "stats",
+      "feature_id": "stats_charts_exercise",
+      "has": "partial",
+      "how": "Basic strength progress charts free; Pro adds advanced per-exercise analytics (volume trends, intensity distribution, frequency, RPE drift).",
+      "sources": [
+        "https://www.boostcamp.app/custom-program",
+        "https://www.boostcamp.app/pro"
+      ]
+    },
+    {
+      "area": "stats",
+      "feature_id": "stats_volume",
+      "has": "yes",
+      "how": "Weekly Sunday report (free) lists PRs, weekly volume by muscle group, adherence and workouts; total weight lifted per week shown.",
+      "sources": [
+        "https://www.boostcamp.app/workout-tracker",
+        "https://fortune.com/article/boostcamp-review/"
+      ]
+    },
+    {
+      "area": "stats",
+      "feature_id": "stats_muscle_heatmap",
+      "has": "paid",
+      "how": "Pro: front/back body diagram colored by volume per muscle with 7/30/90-day and yearly views.",
+      "sources": [
+        "https://www.boostcamp.app/pro",
+        "https://www.boostcamp.app/workout-tracker"
+      ]
+    },
+    {
+      "area": "stats",
+      "feature_id": "stats_calendar_streaks",
+      "has": "partial",
+      "how": "History viewable by month; consistency messages; explicit streak counter not documented.",
+      "sources": [
+        "https://apps.apple.com/us/app/boostcamp-workout-programs/id1529354455"
+      ]
+    },
+    {
+      "area": "stats",
+      "feature_id": "stats_workout_summary",
+      "has": "yes",
+      "how": "Post-workout summary with muscles hit, PR badges and share-with-friends step.",
+      "sources": [
+        "https://www.boostcamp.app/workout-tracker",
+        "https://apps.apple.com/us/app/boostcamp-workout-programs/id1529354455"
+      ]
+    },
+    {
+      "area": "stats",
+      "feature_id": "stats_strength_standards",
+      "has": "paid",
+      "how": "Pro 'Strength Score' 0-100 from lifetime PRs on squat, bench, deadlift, OHP and row, bodyweight-normalized with IPF DOTS.",
+      "sources": [
+        "https://www.boostcamp.app/pro"
+      ]
+    },
+    {
+      "area": "body",
+      "feature_id": "body_weight",
+      "has": "paid",
+      "how": "Bodyweight Tracker (Pro, Dec 2024); bodyweight syncs with Apple Health (v264, Aug 2026).",
+      "sources": [
+        "https://www.boostcamp.app/blogs/new-boostcamp-lifting-app-features-december-2024",
+        "https://apps.apple.com/us/app/boostcamp-workout-programs/id1529354455"
+      ]
+    },
+    {
+      "area": "body",
+      "feature_id": "body_measurements",
+      "has": "unknown",
+      "how": "Not documented.",
+      "sources": [
+        "https://www.boostcamp.app/features"
+      ]
+    },
+    {
+      "area": "body",
+      "feature_id": "body_photos",
+      "has": "paid",
+      "how": "Progress photos listed among Pro data by Garage Gym Reviews.",
+      "sources": [
+        "https://www.garagegymreviews.com/boostcamp-review"
+      ]
+    },
+    {
+      "area": "body",
+      "feature_id": "body_readiness",
+      "has": "no",
+      "how": "No sleep/HRV/check-in features mentioned anywhere; app logs effort only via RPE/RIR.",
+      "sources": [
+        "https://www.boostcamp.app/features",
+        "https://www.boostcamp.app/pro"
+      ]
+    },
+    {
+      "area": "int",
+      "feature_id": "int_apple_health",
+      "has": "yes",
+      "how": "Writes workouts and syncs bodyweight with Apple Health (v264).",
+      "sources": [
+        "https://apps.apple.com/us/app/boostcamp-workout-programs/id1529354455"
+      ]
+    },
+    {
+      "area": "int",
+      "feature_id": "int_watch_app",
+      "has": "no",
+      "how": "App Store compatibility lists iPhone/iPad (and Vision) only; Boostcamp's own comparison pages say no Apple Watch companion (its features/free pages contradictorily claim one).",
+      "sources": [
+        "https://apps.apple.com/us/app/boostcamp-workout-programs/id1529354455",
+        "https://www.boostcamp.app/vs/strong",
+        "https://www.boostcamp.app/vs/hevy",
+        "https://www.boostcamp.app/features"
+      ]
+    },
+    {
+      "area": "int",
+      "feature_id": "int_garmin",
+      "has": "unknown",
+      "how": "Not documented.",
+      "sources": [
+        "https://www.boostcamp.app/features"
+      ]
+    },
+    {
+      "area": "int",
+      "feature_id": "int_import",
+      "has": "no",
+      "how": "No one-click Strong import (Boostcamp's own vs-Strong page); no CSV import documented.",
+      "sources": [
+        "https://www.boostcamp.app/vs/strong"
+      ]
+    },
+    {
+      "area": "int",
+      "feature_id": "int_export",
+      "has": "no",
+      "how": "No official export; users rely on a third-party Chrome extension or copying the web History API JSON from browser dev tools.",
+      "sources": [
+        "https://chromewebstore.google.com/detail/boostcamp-history-%E2%86%92-csv/ndldfeicfhokabalcjmjhhdhinjilllo",
+        "https://github.com/blaekhossa/boostc_2_dataframe"
+      ]
+    },
+    {
+      "area": "int",
+      "feature_id": "int_backup_sync",
+      "has": "yes",
+      "how": "Cloud account (iCloud/Google sign-in) backs up data across devices; web app for program creation/history with QR-code login (Dec 2024).",
+      "sources": [
+        "https://www.boostcamp.app/features",
+        "https://www.boostcamp.app/blogs/new-boostcamp-lifting-app-features-december-2024",
+        "https://chromewebstore.google.com/detail/boostcamp-history-%E2%86%92-csv/ndldfeicfhokabalcjmjhhdhinjilllo"
+      ]
+    },
+    {
+      "area": "int",
+      "feature_id": "int_widgets",
+      "has": "unknown",
+      "how": "Not documented.",
+      "sources": [
+        "https://apps.apple.com/us/app/boostcamp-workout-programs/id1529354455"
+      ]
+    },
+    {
+      "area": "int",
+      "feature_id": "int_siri_shortcuts",
+      "has": "no",
+      "how": "Boostcamp's vs-Strong page lists Siri Shortcuts as a Strong-only advantage.",
+      "sources": [
+        "https://www.boostcamp.app/vs/strong"
+      ]
+    },
+    {
+      "area": "equip",
+      "feature_id": "equip_locations",
+      "has": "unknown",
+      "how": "Not documented.",
+      "sources": [
+        "https://www.boostcamp.app/features"
+      ]
+    },
+    {
+      "area": "equip",
+      "feature_id": "equip_inventory",
+      "has": "unknown",
+      "how": "Plate calculator exists but configurable plate/bar inventory not documented.",
+      "sources": [
+        "https://www.boostcamp.app/workout-tracker"
+      ]
+    },
+    {
+      "area": "equip",
+      "feature_id": "equip_filtering",
+      "has": "partial",
+      "how": "Equipment is an input to the AI/personalized program questionnaire; programs can be customized with swaps; reviewers say you can tell the app what equipment you have.",
+      "sources": [
+        "https://www.boostcamp.app/pro",
+        "https://www.garagegymreviews.com/boostcamp-review"
+      ]
+    },
+    {
+      "area": "social",
+      "feature_id": "social_feed",
+      "has": "yes",
+      "how": "Community tab (v263, Jul 2026): follow friends, like/comment on logged workouts; photo + caption posts (v265).",
+      "sources": [
+        "https://apps.apple.com/us/app/boostcamp-workout-programs/id1529354455",
+        "https://www.garagegymreviews.com/boostcamp-review",
+        "https://fortune.com/article/boostcamp-review/"
+      ]
+    },
+    {
+      "area": "social",
+      "feature_id": "social_share",
+      "has": "yes",
+      "how": "Share workouts, program links, year-end Wrapped; invite friends to start a program together.",
+      "sources": [
+        "https://apps.apple.com/us/app/boostcamp-workout-programs/id1529354455",
+        "https://www.boostcamp.app/blogs/tips-and-tricks-to-using-boostcamp-app",
+        "https://www.garagegymreviews.com/boostcamp-review"
+      ]
+    },
+    {
+      "area": "social",
+      "feature_id": "social_leaderboards",
+      "has": "no",
+      "how": "Reviewers note no leaderboards or competitions.",
+      "sources": [
+        "https://www.garagegymreviews.com/boostcamp-review",
+        "https://fortune.com/article/boostcamp-review/"
+      ]
+    },
+    {
+      "area": "social",
+      "feature_id": "social_challenges",
+      "has": "no",
+      "how": "No competitions/challenges per testers.",
+      "sources": [
+        "https://fortune.com/article/boostcamp-review/"
+      ]
+    },
+    {
+      "area": "coach",
+      "feature_id": "coach_client_management",
+      "has": "no",
+      "how": "No client dashboard; reviewers stress there is no individual coaching or coach access.",
+      "sources": [
+        "https://www.garagegymreviews.com/boostcamp-review",
+        "https://fortune.com/article/boostcamp-review/"
+      ]
+    },
+    {
+      "area": "coach",
+      "feature_id": "coach_assign_programs",
+      "has": "partial",
+      "how": "Anyone can build a program 'for someone you train' on the web creator and send a private link; client tracking is not provided.",
+      "sources": [
+        "https://www.boostcamp.app/custom-program"
+      ]
+    },
+    {
+      "area": "coach",
+      "feature_id": "coach_feedback",
+      "has": "no",
+      "how": "No coach feedback loop; only community program reviews/results.",
+      "sources": [
+        "https://www.garagegymreviews.com/boostcamp-review"
+      ]
+    },
+    {
+      "area": "coach",
+      "feature_id": "coach_chat",
+      "has": "no",
+      "how": "No chat function.",
+      "sources": [
+        "https://www.garagegymreviews.com/boostcamp-review"
+      ]
+    },
+    {
+      "area": "coach",
+      "feature_id": "coach_marketplace",
+      "has": "partial",
+      "how": "Program library from 50+ named coaches (some Pro-exclusive), with user reviews/results on program pages; not a hire-a-coach marketplace.",
+      "sources": [
+        "https://apps.apple.com/us/app/boostcamp-workout-programs/id1529354455",
+        "https://www.garagegymreviews.com/boostcamp-review"
+      ]
+    },
+    {
+      "area": "monet",
+      "feature_id": "monet_model",
+      "has": "yes",
+      "how": "Free tier (no ads claimed) with full logger, 11,000+ programs, RPE/RIR, plate calc, PRs, weekly reports, unlimited custom programs. Pro $59.99/yr with 7-day trial or $14.99/mo without trial (App Store also shows $11.99-$79.99 variants and $48.99 offers): Strength Score, heatmap, AI programs, 20+ exclusive programs, advanced analytics, bodyweight tracker, Pro auto-progression.",
+      "user_feedback": "GGR: recommends Pro to unlock data/charts; Play review: basic substitution paywalled; App Store review: dark mode used to be paid.",
+      "sources": [
+        "https://www.boostcamp.app/pro",
+        "https://www.boostcamp.app/features",
+        "https://apps.apple.com/us/app/boostcamp-workout-programs/id1529354455"
+      ]
+    },
+    {
+      "area": "ux",
+      "feature_id": "ux_units",
+      "has": "yes",
+      "how": "lb/kg switchable per exercise.",
+      "sources": [
+        "https://www.boostcamp.app/workout-tracker"
+      ]
+    },
+    {
+      "area": "ux",
+      "feature_id": "ux_theme",
+      "has": "yes",
+      "how": "Dark mode (made free after previously being Premium, per user reviews).",
+      "sources": [
+        "https://apps.apple.com/us/app/boostcamp-workout-programs/id1529354455"
+      ]
+    },
+    {
+      "area": "ux",
+      "feature_id": "ux_languages",
+      "has": "no",
+      "how": "English only.",
+      "sources": [
+        "https://apps.apple.com/us/app/boostcamp-workout-programs/id1529354455"
+      ]
+    },
+    {
+      "area": "ux",
+      "feature_id": "ux_accessibility",
+      "has": "unknown",
+      "how": "Developer has not declared accessibility features on the App Store.",
+      "sources": [
+        "https://apps.apple.com/us/app/boostcamp-workout-programs/id1529354455"
+      ]
+    },
+    {
+      "area": "ux",
+      "feature_id": "ux_onboarding",
+      "has": "yes",
+      "how": "Intake quiz recommends a program or lets AI build one; or browse the library.",
+      "sources": [
+        "https://www.garagegymreviews.com/boostcamp-review",
+        "https://fortune.com/article/boostcamp-review/"
+      ]
+    },
+    {
+      "area": "ux",
+      "feature_id": "ux_offline",
+      "has": "yes",
+      "how": "Offline mode since Mar 2024: works without internet once a program is loaded, syncs later.",
+      "user_feedback": "Pre-2024 review: data lost on network errors.",
+      "sources": [
+        "https://apps.apple.com/us/app/boostcamp-workout-programs/id1529354455",
+        "https://www.boostcamp.app/features",
+        "https://www.garagegymreviews.com/boostcamp-review"
+      ]
+    },
+    {
+      "area": "ux",
+      "feature_id": "ux_privacy",
+      "has": "partial",
+      "how": "Account required; App Store privacy: identifiers used for tracking/third-party advertising; email/name collected. Play: may share personal info with third parties.",
+      "sources": [
+        "https://apps.apple.com/us/app/boostcamp-workout-programs/id1529354455",
+        "https://play.google.com/store/apps/details?id=com.bpmhealth.boostcamp"
+      ]
+    },
+    {
+      "area": "stats",
+      "feature_id": "new:weekly_reports",
+      "has": "yes",
+      "how": "Free Sunday report: PRs hit, weekly volume per muscle, adherence, workout list; lifetime report too.",
+      "sources": [
+        "https://www.boostcamp.app/workout-tracker",
+        "https://fortune.com/article/boostcamp-review/"
+      ]
+    },
+    {
+      "area": "stats",
+      "feature_id": "new:year_end_wrapped",
+      "has": "yes",
+      "how": "Annual 'Wrapped' recap of the training year, shareable (free).",
+      "sources": [
+        "https://www.boostcamp.app/features",
+        "https://apps.apple.com/us/app/boostcamp-workout-programs/id1529354455"
+      ]
+    },
+    {
+      "area": "plan",
+      "feature_id": "new:web_program_creator",
+      "has": "yes",
+      "how": "Desktop program creator: map all weeks, 500+ exercises, sets/reps/rest/loading, supersets, RPE, AMRAP, drop sets; saves instantly to the app.",
+      "sources": [
+        "https://www.boostcamp.app/custom-program",
+        "https://www.boostcamp.app/blogs/tips-and-tricks-to-using-boostcamp-app"
+      ]
+    },
+    {
+      "area": "plan",
+      "feature_id": "new:program_variations_reviews",
+      "has": "yes",
+      "how": "Some programs offer variations on join (e.g. Nuñez Upper Lower: arms/delts, chest/back, quad or glute-ham dominant); program pages carry user reviews/results; 'similar programs' suggestions.",
+      "sources": [
+        "https://www.garagegymreviews.com/boostcamp-review",
+        "https://apps.apple.com/us/app/boostcamp-workout-programs/id1529354455"
+      ]
+    },
+    {
+      "area": "plan",
+      "feature_id": "new:fork_programs",
+      "has": "yes",
+      "how": "Fork any library program and edit it as your own.",
+      "sources": [
+        "https://www.boostcamp.app/features"
+      ]
+    },
+    {
+      "area": "plan",
+      "feature_id": "new:multiple_active_programs",
+      "has": "yes",
+      "how": "Users can join multiple programs simultaneously and pull a day from another program.",
+      "sources": [
+        "https://fortune.com/article/boostcamp-review/"
+      ]
+    }
+  ]
+}

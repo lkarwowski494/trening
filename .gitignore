@@ -10,3 +10,4 @@ reports/
 *.ipa
 coverage/
 .secrets/
+__pycache__/

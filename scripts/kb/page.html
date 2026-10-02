@@ -1,0 +1,153 @@
+<title>Baza wiedzy funkcji</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Układ: pasek filtrów → macierz (pierwsza kolumna przyklejona) → panel szczegółów wybranej funkcji. Akcent = bursztyn z aplikacji Trening. */
+:root{
+  --bg:#f3f4f2; --panel:#ffffff; --fg:#1d2126; --muted:#5f6670; --line:#dcdfe0; --accent:#b97c0e; --accent-soft:#f6e6c4;
+  --yes:#2f7d4f; --yes-bg:#e1f1e6; --paid:#6b55b5; --paid-bg:#ece7f8; --part:#9a6a00; --part-bg:#fbf0d6; --no:#a33a33; --no-bg:#f7e2df; --unk:#7b818a; --unk-bg:#eceef0;
+  --f-display:"Barlow Condensed","Arial Narrow",system-ui,sans-serif; --f-body:"Barlow",system-ui,-apple-system,"Segoe UI",sans-serif; --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#14171b; --panel:#1c2026; --fg:#e7e9ec; --muted:#9aa1ab; --line:#2c3139; --accent:#f2b441; --accent-soft:#3a2f17;
+  --yes:#7fd19b; --yes-bg:#1d3326; --paid:#b9a6f2; --paid-bg:#2a2540; --part:#f2c25a; --part-bg:#3a3017; --no:#f0928a; --no-bg:#3d2220; --unk:#a3a9b2; --unk-bg:#272b31; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#14171b; --panel:#1c2026; --fg:#e7e9ec; --muted:#9aa1ab; --line:#2c3139; --accent:#f2b441; --accent-soft:#3a2f17;
+  --yes:#7fd19b; --yes-bg:#1d3326; --paid:#b9a6f2; --paid-bg:#2a2540; --part:#f2c25a; --part-bg:#3a3017; --no:#f0928a; --no-bg:#3d2220; --unk:#a3a9b2; --unk-bg:#272b31; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:15px/1.5 var(--f-body);padding-inline:16px;padding-block:20px 48px}
+.wrap{max-width:1280px;margin:0 auto;display:flex;flex-direction:column;gap:18px}
+h1{font:700 2.1rem/1.05 var(--f-display);letter-spacing:.01em;margin:0;text-wrap:balance}
+h2{font:700 1.35rem/1.1 var(--f-display);margin:0;text-wrap:balance}
+.lede{color:var(--muted);max-width:68ch;margin:6px 0 0}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13px;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.s{display:inline-grid;place-items:center;min-width:26px;height:24px;border-radius:6px;font:500 13px/1 var(--f-mono)}
+.s-yes{color:var(--yes);background:var(--yes-bg)} .s-paid{color:var(--paid);background:var(--paid-bg)} .s-partial{color:var(--part);background:var(--part-bg)}
+.s-no{color:var(--no);background:var(--no-bg)} .s-unknown{color:var(--unk);background:var(--unk-bg)} .s-none{color:var(--line)}
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line)}
+.tabs button{font:600 15px var(--f-body);background:none;border:0;border-bottom:3px solid transparent;color:var(--muted);padding:8px 12px;cursor:pointer}
+.tabs button[aria-selected="true"]{color:var(--fg);border-bottom-color:var(--accent)}
+.controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.controls input[type=search],.controls select{font:15px var(--f-body);color:var(--fg);background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:8px 10px;min-width:0}
+.controls input[type=search]{flex:1 1 220px}
+.chk{display:inline-flex;gap:6px;align-items:center;font-size:14px;color:var(--muted);cursor:pointer}
+.count{font:500 13px var(--f-mono);color:var(--muted)}
+.grid{display:grid;grid-template-columns:minmax(0,1fr);gap:18px}
+@media (min-width:1100px){.grid{grid-template-columns:minmax(0,1.35fr) minmax(0,1fr)}}
+.tbl{overflow:auto;max-height:72vh;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+table{border-collapse:separate;border-spacing:0;width:100%;font-variant-numeric:tabular-nums}
+th,td{padding:5px 6px;border-bottom:1px solid var(--line);text-align:center;white-space:nowrap}
+thead th{position:sticky;top:0;background:var(--panel);z-index:2;font:600 12px var(--f-body);color:var(--muted);vertical-align:bottom}
+thead th.app{writing-mode:vertical-rl;transform:rotate(180deg);height:118px;text-align:left;padding:8px 4px}
+th.us,td.us{background:var(--accent-soft)}
+td.f,th.f{position:sticky;left:0;background:var(--panel);text-align:left;z-index:1;white-space:normal;min-width:190px;max-width:260px}
+thead th.f{z-index:3}
+td.f .area{display:block;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+td.n{font:500 12px var(--f-mono);color:var(--muted)}
+tbody tr{cursor:pointer}
+tbody tr:hover td{background:color-mix(in srgb,var(--accent-soft) 45%,var(--panel))}
+tbody tr.sel td{background:var(--accent-soft)}
+tbody tr:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.detail{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0;align-self:start}
+@media (min-width:1100px){.detail{position:sticky;top:calc(env(safe-area-inset-top,0px) + 12px);max-height:calc(100vh - 24px);overflow:auto}}
+.item{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 10px;padding-top:10px;border-top:1px solid var(--line)}
+.item:first-of-type{border-top:0;padding-top:0}
+.item .app{font-weight:600}
+.item p{margin:0;grid-column:2;color:var(--fg)}
+.item .fb{color:var(--muted);font-size:14px}
+.item .src{grid-column:2;display:flex;flex-wrap:wrap;gap:4px 10px;font-size:13px}
+.item .src a{color:var(--accent);word-break:break-all}
+.muted{color:var(--muted)}
+.apps{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.card h3{font:700 1.2rem var(--f-display);margin:0}
+.card dl{margin:0;display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 10px;font-size:14px}
+.card dt{color:var(--muted)} .card dd{margin:0}
+.note{font-size:13px;color:var(--muted);max-width:90ch}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <header>
+    <h1>Baza wiedzy funkcji</h1>
+    <p class="lede" id="lede"></p>
+  </header>
+  <div class="legend" aria-label="Legenda">
+    <span><b class="s s-yes">✓</b>jest</span><span><b class="s s-paid">$</b>płatne</span><span><b class="s s-partial">◐</b>częściowo</span>
+    <span><b class="s s-no">✗</b>brak</span><span><b class="s s-unknown">?</b>nie ustalono</span><span><b class="s s-none">·</b>nie sprawdzano</span>
+  </div>
+  <div class="tabs" role="tablist">
+    <button role="tab" id="tab-m" aria-selected="true">Macierz funkcji</button>
+    <button role="tab" id="tab-a" aria-selected="false">Aplikacje</button>
+  </div>
+
+  <section id="view-m" class="grid">
+    <div style="display:flex;flex-direction:column;gap:12px;min-width:0">
+      <div class="controls">
+        <input type="search" id="q" placeholder="Szukaj funkcji lub opisu…" aria-label="Szukaj">
+        <select id="area" aria-label="Obszar"></select>
+        <label class="chk"><input type="checkbox" id="gaps"> tylko nasze luki</label>
+        <label class="chk"><input type="checkbox" id="schema"> tylko wspólna lista</label>
+        <span class="count" id="count"></span>
+      </div>
+      <div class="tbl"><table id="t"><thead></thead><tbody></tbody></table></div>
+      <p class="note">„Nasze luki” = u nas brak lub częściowo, a co najmniej 4 z 10 innych aplikacji ma. Funkcje spoza wspólnej listy sprawdzano tylko w aplikacji, w której je znaleziono — puste pole tam nie znaczy „brak”.</p>
+    </div>
+    <aside class="detail" id="detail" aria-live="polite"></aside>
+  </section>
+
+  <section id="view-a" hidden><div class="apps" id="apps"></div></section>
+</div>
+
+<script>
+const KB = /*DATA*/null;
+const SYM = {yes:'✓', paid:'$', partial:'◐', no:'✗', unknown:'?'};
+const HAS = {yes:'jest', paid:'płatne', partial:'częściowo', no:'brak', unknown:'nie ustalono'};
+const short = a => a.replace(' (nasza)','').replace('Alpha Progression','Alpha');
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const $ = id => document.getElementById(id);
+let sel = null;
+
+$('lede').textContent = `${KB.rows.length} funkcji × ${KB.apps.length} aplikacji (nasza + ${KB.apps.length - 1} innych). Stan na 02.10.2026; nasza kolumna z kodu, pozostałe z help center, stron producentów, App Store i recenzji — każda komórka ma źródła. Kliknij wiersz, żeby zobaczyć, jak to działa w każdej aplikacji.`;
+
+const areas = [...new Map(KB.rows.map(r => [r.area, r.areaPL])).entries()];
+$('area').innerHTML = '<option value="">Wszystkie obszary</option>' + areas.map(([a, p]) => `<option value="${a}">${esc(p)}</option>`).join('');
+try { const s = JSON.parse(localStorage.getItem('kb-f') || '{}'); if (s.area) $('area').value = s.area; $('gaps').checked = !!s.gaps; $('schema').checked = !!s.schema; } catch (e) {}
+
+$('t').tHead.innerHTML = '<tr><th class="f">Funkcja</th><th title="Ile z 10 innych aplikacji ma (◐ = 0,5)">Inni</th>' + KB.apps.map((a, i) => `<th class="app${i ? '' : ' us'}">${esc(short(a))}</th>`).join('') + '</tr>';
+
+function rows() {
+  const q = $('q').value.trim().toLowerCase(), area = $('area').value, gaps = $('gaps').checked, schema = $('schema').checked;
+  return KB.rows.filter(r => {
+    if (area && r.area !== area) return false;
+    if (schema && r.id.startsWith('new:')) return false;
+    if (gaps) { const us = r.cells[0]?.has; if (!(us == null || us === 'no' || us === 'partial') || r.others < 4) return false; }
+    if (q) { const hay = (r.label + ' ' + r.areaPL + ' ' + r.cells.map(c => c ? c.how : '').join(' ')).toLowerCase(); if (!hay.includes(q)) return false; }
+    return true;
+  });
+}
+function render() {
+  try { localStorage.setItem('kb-f', JSON.stringify({area: $('area').value, gaps: $('gaps').checked, schema: $('schema').checked})); } catch (e) {}
+  const list = rows();
+  $('count').textContent = `${list.length} / ${KB.rows.length}`;
+  $('t').tBodies[0].innerHTML = list.map(r => `<tr tabindex="0" data-id="${esc(r.id)}"${r.id === sel ? ' class="sel"' : ''}><td class="f"><span class="area">${esc(r.areaPL)}</span>${esc(r.label)}</td><td class="n">${r.others.toLocaleString('pl-PL')}</td>` +
+    r.cells.map((c, i) => `<td${i ? '' : ' class="us"'}>${c ? `<b class="s s-${c.has}" title="${esc(HAS[c.has] || c.has)}">${SYM[c.has] || '·'}</b>` : '<b class="s s-none">·</b>'}</td>`).join('') + '</tr>').join('');
+  if (!sel && list.length) show(list[0].id);
+}
+function show(id) {
+  sel = id; const r = KB.rows.find(x => x.id === id); if (!r) return;
+  document.querySelectorAll('#t tbody tr').forEach(tr => tr.classList.toggle('sel', tr.dataset.id === id));
+  $('detail').innerHTML = `<div><span class="muted" style="font-size:12px;letter-spacing:.06em;text-transform:uppercase">${esc(r.areaPL)} · ${esc(r.id)}</span><h2>${esc(r.label)}</h2><p class="muted" style="margin:4px 0 0">Ma ${r.others.toLocaleString('pl-PL')} z ${KB.apps.length - 1} innych aplikacji.</p></div>` +
+    r.cells.map((c, i) => !c ? '' : `<div class="item"><b class="s s-${c.has}">${SYM[c.has] || '·'}</b><span class="app">${esc(KB.apps[i])} <span class="muted" style="font-weight:400">· ${esc(HAS[c.has] || c.has)}</span></span><p>${esc(c.how)}</p>${c.fb ? `<p class="fb">Opinie: ${esc(c.fb)}</p>` : ''}${c.src && c.src.length ? `<div class="src">${c.src.map(s => /^https?:/.test(s) ? `<a href="${esc(s)}" target="_blank" rel="noopener">${esc(s.replace(/^https?:\/\/(www\.)?/, '').slice(0, 60))}</a>` : `<span class="muted">${esc(s)}</span>`).join('')}</div>` : ''}</div>`).join('');
+}
+$('t').addEventListener('click', e => { const tr = e.target.closest('tr[data-id]'); if (tr) show(tr.dataset.id); });
+$('t').addEventListener('keydown', e => { const tr = e.target.closest('tr[data-id]'); if (!tr) return; if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); show(tr.dataset.id); } if (e.key === 'ArrowDown' || e.key === 'ArrowUp') { e.preventDefault(); const n = e.key === 'ArrowDown' ? tr.nextElementSibling : tr.previousElementSibling; if (n) { n.focus(); show(n.dataset.id); } } });
+['q', 'area', 'gaps', 'schema'].forEach(id => $(id).addEventListener(id === 'q' ? 'input' : 'change', () => { sel = null; render(); }));
+
+$('apps').innerHTML = KB.meta.map(m => `<article class="card"><h3>${esc(m.app)}</h3><p class="muted" style="margin:0">${esc(m.positioning)}</p><dl><dt>Cena</dt><dd>${esc(m.pricing)}</dd><dt>Platformy</dt><dd>${esc(m.platforms)}</dd><dt>Sprawdzono</dt><dd>${esc(m.checked)}</dd></dl></article>`).join('');
+function tab(m) { $('tab-m').setAttribute('aria-selected', m); $('tab-a').setAttribute('aria-selected', !m); $('view-m').hidden = !m; $('view-a').hidden = m; }
+$('tab-m').onclick = () => tab(true); $('tab-a').onclick = () => tab(false);
+if (location.hash === '#aplikacje') tab(false);
+render();
+</script>

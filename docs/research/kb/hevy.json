@@ -1,0 +1,1021 @@
+{
+ "app": "Hevy",
+ "version_or_date_checked": "2026-10 (iOS 3.1.16 of 2 Oct 2026)",
+ "pricing": "Free (no ads; 4 routines, 7 custom exercises, 3-month stats, weight+waist) + Hevy Pro US $2.99/mo (also $3.99 listed), $23.99/yr, $74.99 lifetime; Pro paywalls unlimited routines/custom exercises, all-time stats, set count per muscle, warm-up calculator, full measurements, Hevy Trainer, API. Hevy Coach for trainers from $25/mo.",
+ "platforms": "iPhone, iPad, Apple Watch, Android, Wear OS, web (hevy.com), iMessage stickers; ChatGPT app",
+ "positioning": "Social-first, free-generous workout logger with analytics, community feed and (since 2026) an algorithmic Pro program generator (Hevy Trainer).",
+ "features": [
+  {
+   "area": "log",
+   "feature_id": "log_set_fields",
+   "has": "yes",
+   "how": "Exercise type fixed per exercise: weight & reps, reps only, bodyweight reps, assisted bodyweight reps, duration, weight & duration, distance & duration, short distance & weight; plus a custom metric used for steps/floors. Set = weight_kg / reps / distance / duration (+ optional RPE). Custom exercise type cannot be edited after save (duplicate to change). HYROX/functional exercises added May 2026.",
+   "user_feedback": "Users asked for single vs double dumbbell weight logging — Hevy says it's investigating (Jul 2026).",
+   "sources": [
+    "https://api.hevyapp.com/docs/",
+    "https://help.hevyapp.com/hc/en-us/articles/35688251991575-Hevy-Exercise-Library-400-Exercises-and-Custom-Exercises",
+    "https://help.hevyapp.com/hc/en-us/articles/34264544382615-How-to-Create-Edit-and-Duplicate-Custom-Exercises-in-Hevy",
+    "https://apps.apple.com/us/app/hevy-workout-tracker-gym-log/id1458862350"
+   ]
+  },
+  {
+   "area": "log",
+   "feature_id": "log_set_types",
+   "has": "yes",
+   "how": "Tap the set number: W-Warm-up, Normal, F-Failure, D-Dropset. Rest timer does not start if the next set is a drop set. Failure = log the last completed rep (0 reps not allowed). Setting 'Warm-up Sets' toggles whether warm-ups count in stats (total sets, volume, PRs) and recalculates history.",
+   "sources": [
+    "https://help.hevyapp.com/hc/en-us/articles/34896293707927-Set-Types-in-Hevy-Explained-Drop-Sets-Warm-Up-Sets-and-More",
+    "https://help.hevyapp.com/hc/en-us/articles/34953606698903-Build-a-Workout-Program-Create-Organize-Routines",
+    "https://www.hevyapp.com/features/workout-settings/",
+    "https://api.hevyapp.com/docs/"
+   ]
+  },
+  {
+   "area": "log",
+   "feature_id": "log_rpe_rir",
+   "has": "yes",
+   "how": "Enable Settings > Workouts > RPE Tracking → extra RPE column on rep-based exercises; pick 6, 7, 7.5, 8, 8.5, 9, 9.5, 10 with RIR descriptions; can leave blank. No separate RIR mode. Previous column then shows e.g. '50lbs x 10 @ 8.5'. Aug 2026 set-row redesign added an RPE colour scale. Not available while building routines.",
+   "sources": [
+    "https://help.hevyapp.com/hc/en-us/articles/35687721776663-How-to-Use-RPE-Rate-of-Perceived-Exertion",
+    "https://help.hevyapp.com/hc/en-us/articles/34490600233111-RPE-vs-RIR-What-They-Mean-and-How-to-Use-Them-in-Hevy",
+    "https://api.hevyapp.com/docs/",
+    "https://apps.apple.com/us/app/hevy-workout-tracker-gym-log/id1458862350",
+    "https://www.hevyapp.com/features/exercise-programming-options/"
+   ]
+  },
+  {
+   "area": "log",
+   "feature_id": "log_previous_values",
+   "has": "yes",
+   "how": "PREVIOUS column on the left of each set. Setting 'Previous Workout Values': 'Any workout' (last time the exercise was done anywhere) or 'Same routine' (last time within this routine).",
+   "sources": [
+    "https://help.hevyapp.com/hc/en-us/articles/36011896355479-How-to-Use-Previous-Workout-Values-to-Improve-Performance-in-Hevy",
+    "https://help.hevyapp.com/hc/en-us/articles/34105442929943-Previous-Workout-Values-Vs-Routine-Values-How-to-Adjust-in-Settings"
+   ]
+  },
+  {
+   "area": "log",
+   "feature_id": "log_autofill",
+   "has": "yes",
+   "how": "Adding an exercise you've done before pre-fills number of sets, weight and reps; routine weight/reps values auto-update after each workout unless 'Update Routine Values' is toggled off on the Save screen; exercises with a Rep Range don't update. Routine structure changes (reorder/add/remove) trigger an 'Update Routine' vs 'Keep Original Routine' prompt.",
+   "sources": [
+    "https://www.hevyapp.com/features/exercise-programming-options/",
+    "https://help.hevyapp.com/hc/en-us/articles/34105442929943-Previous-Workout-Values-Vs-Routine-Values-How-to-Adjust-in-Settings",
+    "https://help.hevyapp.com/hc/en-us/articles/38387296276375-Update-Routine-vs-Keep-Original-Routine"
+   ]
+  },
+  {
+   "area": "log",
+   "feature_id": "log_notes",
+   "has": "yes",
+   "how": "Routine notes per exercise (persist every time the routine is used, can include clickable links, not visible to others) and workout exercise notes (saved with the session, visible to followers; shown greyed out once at the next session). Workout description on the finish screen. Exercise-level persistent notes announced as 'on our radar' (Jul 2026).",
+   "sources": [
+    "https://help.hevyapp.com/hc/en-us/articles/34463684392983-How-do-the-exercise-notes-routine-and-workout-notes-work",
+    "https://help.hevyapp.com/hc/en-us/articles/36011779117591-How-to-Use-Exercise-Notes-in-Hevy-for-Better-Workout-Tracking",
+    "https://www.hevyapp.com/community-updates/july-26/"
+   ]
+  },
+  {
+   "area": "log",
+   "feature_id": "log_supersets",
+   "has": "yes",
+   "how": "Exercise ... > '+ Add To Superset' and pick partner; add more exercises for giant sets/circuits; multiple supersets get different colours. 'Smart Superset Scrolling' auto-scrolls to the next superset exercise on set completion; rest timer on the last exercise defines a circuit round.",
+   "user_feedback": "Watch app reportedly lags during supersets with quick transitions (findyouredge).",
+   "sources": [
+    "https://help.hevyapp.com/hc/en-us/articles/35650286563095-The-Complete-Guide-to-Supersets-and-Smart-Superset-Scrolling",
+    "https://help.hevyapp.com/hc/en-us/articles/36954623739415-Circuits-Intervals-and-Supersets-Explained-How-to-Build-Them-in-the-Hevy-App"
+   ]
+  },
+  {
+   "area": "log",
+   "feature_id": "log_reorder",
+   "has": "yes",
+   "how": "Exercise ... menu > Reorder (drag and drop) in routines and live workouts; Trainer workouts too.",
+   "sources": [
+    "https://www.hevyapp.com/features/exercise-programming-options/",
+    "https://www.hevyapp.com/features/workout-plan-generator/"
+   ]
+  },
+  {
+   "area": "log",
+   "feature_id": "log_replace_exercise",
+   "has": "yes",
+   "how": "Exercise ... > Replace Exercise from the library; in Hevy Trainer, choose from 4 suggested alternatives and decide whether the swap is for this session only or permanent.",
+   "sources": [
+    "https://www.hevyapp.com/features/exercise-programming-options/",
+    "https://www.hevyapp.com/features/workout-plan-generator/",
+    "https://www.hevyapp.com/community-updates/july-26/"
+   ]
+  },
+  {
+   "area": "log",
+   "feature_id": "log_plate_calculator",
+   "has": "yes",
+   "how": "Free; enable in Settings > Workouts. In a barbell/EZ-bar exercise tap weight > 'Calculator' above keyboard; choose available plates and bar weight; if exact weight impossible it shows the closest achievable. 'Manage' lets you add custom bars and plates.",
+   "sources": [
+    "https://help.hevyapp.com/hc/en-us/articles/34518876511383-How-to-use-the-Plate-Calculator-Logging-and-Adding-Custom-Plates-and-Bars",
+    "https://www.hevyapp.com/features/workout-settings/"
+   ]
+  },
+  {
+   "area": "log",
+   "feature_id": "log_warmup_calculator",
+   "has": "paid",
+   "how": "Pro. Enable in Settings > Workouts; configurable 'Warmup Method' (each set's % and reps, add/remove sets; default starts at 40%), plate rounding and dumbbell rounding. Exercise ... > Add Warm Up Sets, enter target weight > Insert Warmup Sets.",
+   "sources": [
+    "https://help.hevyapp.com/hc/en-us/articles/35650921359639-How-to-Use-the-Warm-Up-Calculator-for-Percentage-Based-Warm-Up-Sets",
+    "https://help.hevyapp.com/hc/en-us/articles/33882110558743-Workout-Settings-Preferences-Timer-Warm-up-calculator-Plate-Calculator-Smart-Superset-Scrolling",
+    "https://help.hevyapp.com/hc/en-us/articles/35119778922263-Hevy-Pro-Subscription-How-to-get-Pro-and-What-Does-It-Include"
+   ]
+  },
+  {
+   "area": "log",
+   "feature_id": "log_bodyweight_assisted",
+   "has": "yes",
+   "how": "Three types: bodyweight, assisted (effective load = bodyweight − assistance) and weighted (bodyweight + added). For library exercises using 100% bodyweight (pull-up, chin-up, dips, HSPU) and a logged bodyweight, bodyweight is included in volume; custom bodyweight exercises never include bodyweight. Bodyweight can be updated from an exercise's ... menu mid-workout. Assisted exercises only get rep-based PRs.",
+   "user_feedback": "Users complain bodyweight squats add no volume (App Store review 2025); volume differs from Strava for bodyweight work.",
+   "sources": [
+    "https://help.hevyapp.com/hc/en-us/articles/38386262243223-Bodyweight-Exercises-in-Hevy-Bodyweight-vs-Assisted-vs-Weighted",
+    "https://help.hevyapp.com/hc/en-us/articles/38387131819799-Weighted-Bodyweight-Exercises-Is-Bodyweight-Included-in-Volume",
+    "https://help.hevyapp.com/hc/en-us/articles/34380762441111-Assisted-Bodyweight-Exercises-How-it-Calculates-Volume-and-PRs"
+   ]
+  },
+  {
+   "area": "log",
+   "feature_id": "log_unilateral",
+   "has": "no",
+   "how": "No per-side set logging documented; Hevy's Head of Product says single vs double weight logging is being investigated (Jul 2026). Trainer shows two-dumbbell exercises as combined weight.",
+   "sources": [
+    "https://www.hevyapp.com/community-updates/july-26/",
+    "https://help.hevyapp.com/hc/en-us/articles/43572343844247-How-Hevy-Trainer-Settings-Work"
+   ]
+  },
+  {
+   "area": "log",
+   "feature_id": "log_tempo",
+   "has": "unknown",
+   "how": "No tempo field in the API set schema or help center.",
+   "sources": [
+    "https://api.hevyapp.com/docs/"
+   ]
+  },
+  {
+   "area": "log",
+   "feature_id": "log_empty_workout",
+   "has": "yes",
+   "how": "Workout tab > '+ Start Empty Workout'; also 'Copy Workout' from any past workout (yours or another user's) and Quick Access widget.",
+   "sources": [
+    "https://help.hevyapp.com/hc/en-us/articles/35361530647959-How-to-Log-a-Workout-in-the-Hevy-App-Step-by-Step-Guide",
+    "https://help.hevyapp.com/hc/en-us/articles/33703513582871-Workouts-vs-Routines-in-Hevy-What-They-Mean-and-How-to-Use-Them"
+   ]
+  },
+  {
+   "area": "log",
+   "feature_id": "log_edit_past",
+   "has": "yes",
+   "how": "Workout ... > Edit Workout (sets, duration, etc.); date/time/duration adjustable on the Save Workout screen (used to backfill a missed week and restore streak); Calendar lets you tap a past date and 'Log a workout'.",
+   "sources": [
+    "https://help.hevyapp.com/hc/en-us/articles/34513981310615-How-to-I-adjust-duration-and-pause-a-workout",
+    "https://help.hevyapp.com/hc/en-us/articles/34467766576279-How-to-Get-Your-Weekly-Streak-Back-in-the-Hevy-App",
+    "https://help.hevyapp.com/hc/en-us/articles/35380117933207-Track-Your-Workout-Consistency-with-the-Calendar-and-Streak-Features"
+   ]
+  },
+  {
+   "area": "log",
+   "feature_id": "log_one_hand_ux",
+   "has": "yes",
+   "how": "Keep Awake During Workout setting; Live Activity lets you mark sets complete and adjust rest ±15 s from the lock screen; Smart Superset Scrolling; set-check sound and haptics; duration input restored as text input (May 2026); Set Row redesign with clearer active/checked states (Aug 2026). 150-set cap per workout/routine.",
+   "user_feedback": "Reviews consistently call logging fast and clean; some Strong users find Hevy 'busier' (aitoolsbakery).",
+   "sources": [
+    "https://www.hevyapp.com/features/workout-settings/",
+    "https://help.hevyapp.com/hc/en-us/articles/35649846517399-How-to-Use-Hevy-s-Live-Activity-on-iOS-and-Android",
+    "https://help.hevyapp.com/hc/en-us/articles/35650286563095-The-Complete-Guide-to-Supersets-and-Smart-Superset-Scrolling",
+    "https://apps.apple.com/us/app/hevy-workout-tracker-gym-log/id1458862350",
+    "https://help.hevyapp.com/hc/en-us/articles/34896183826455-Hevy-Set-Limit-Explained-Why-Workouts-and-Routines-Have-a-150-Set-Cap"
+   ]
+  },
+  {
+   "area": "timer",
+   "feature_id": "timer_auto_rest",
+   "has": "yes",
+   "how": "Per-exercise rest timer (tap 'Rest Timer' under exercise name); starts when a set is checked; notifies at zero. 'Default Rest Timer' setting applies to newly added exercises only (not retroactive). Can be off per exercise.",
+   "sources": [
+    "https://help.hevyapp.com/hc/en-us/articles/35385404949143-Rest-Timer-Default-Rest-Timer-How-to-Add-Adjust-Volume-and-Sound",
+    "https://www.hevyapp.com/features/exercise-programming-options/"
+   ]
+  },
+  {
+   "area": "timer",
+   "feature_id": "timer_per_exercise",
+   "has": "partial",
+   "how": "Per exercise only (stored in routine; API field rest_seconds per exercise). No per-set-type durations documented; timer skipped before drop sets. Trainer offers Short/Medium/Long rest presets.",
+   "user_feedback": "Play review (Sep 2026): wishes rest length per exercise would be remembered across workouts.",
+   "sources": [
+    "https://help.hevyapp.com/hc/en-us/articles/35385404949143-Rest-Timer-Default-Rest-Timer-How-to-Add-Adjust-Volume-and-Sound",
+    "https://api.hevyapp.com/docs/",
+    "https://help.hevyapp.com/hc/en-us/articles/43572343844247-How-Hevy-Trainer-Settings-Work"
+   ]
+  },
+  {
+   "area": "timer",
+   "feature_id": "timer_notifications",
+   "has": "yes",
+   "how": "Settings > Notifications > Rest Timer; 5 timer sounds, separate volumes (off/low/normal/high) for timer, set-check and PR sounds.",
+   "sources": [
+    "https://help.hevyapp.com/hc/en-us/articles/33845807003671-Account-Settings-Preferences-Profile-Information-Adjust-username-password-or-email-address-Notifications",
+    "https://help.hevyapp.com/hc/en-us/articles/35385404949143-Rest-Timer-Default-Rest-Timer-How-to-Add-Adjust-Volume-and-Sound",
+    "https://www.hevyapp.com/features/workout-settings/"
+   ]
+  },
+  {
+   "area": "timer",
+   "feature_id": "timer_live_activity",
+   "has": "yes",
+   "how": "iOS Live Activity + Dynamic Island and Android lock-screen equivalent: next exercise, set count, prescribed weight/reps, elapsed time, mark set complete, rest timer ±15 s or skip.",
+   "sources": [
+    "https://help.hevyapp.com/hc/en-us/articles/35649846517399-How-to-Use-Hevy-s-Live-Activity-on-iOS-and-Android",
+    "https://apps.apple.com/us/app/hevy-workout-tracker-gym-log/id1458862350"
+   ]
+  },
+  {
+   "area": "timer",
+   "feature_id": "timer_set_stopwatch",
+   "has": "yes",
+   "how": "Duration exercises have an Inline Timer (setting): play button per set acts as a stopwatch counting up and records the time. A separate countdown 'Timer' via the clock icon (manual entry of result).",
+   "sources": [
+    "https://help.hevyapp.com/hc/en-us/articles/35379662997783-The-duration-exercise-inline-timer-goes-up-and-not-down-why",
+    "https://www.hevyapp.com/features/workout-settings/"
+   ]
+  },
+  {
+   "area": "timer",
+   "feature_id": "timer_workout_duration",
+   "has": "yes",
+   "how": "Workout timer runs from start; tap duration to pause/resume (phone only, not watch); duration editable on Save screen or later via Edit Workout.",
+   "sources": [
+    "https://help.hevyapp.com/hc/en-us/articles/34513981310615-How-to-I-adjust-duration-and-pause-a-workout"
+   ]
+  },
+  {
+   "area": "timer",
+   "feature_id": "timer_abandoned_workout",
+   "has": "partial",
+   "how": "Unsaved in-progress workouts are stored on the device and can be resumed (lost if app is uninstalled before saving). No auto-finish/reminder documented.",
+   "sources": [
+    "https://help.hevyapp.com/hc/en-us/articles/38223672272791-What-will-happen-to-my-information-if-I-uninstall-and-reinstall-the-Hevy-app"
+   ]
+  },
+  {
+   "area": "plan",
+   "feature_id": "plan_templates",
+   "has": "yes",
+   "how": "'Routines': Workout tab > New Routine; free tier 4 routines (existing kept on downgrade), Pro unlimited. Routine sets can use rep ranges (e.g. 6–8). Duplicate routine supported.",
+   "user_feedback": "App Store copy still says 'unlimited routines' while help center caps free at 4 (aitoolsbakery).",
+   "sources": [
+    "https://help.hevyapp.com/hc/en-us/articles/34953606698903-Build-a-Workout-Program-Create-Organize-Routines",
+    "https://help.hevyapp.com/hc/en-us/articles/35119778922263-Hevy-Pro-Subscription-How-to-get-Pro-and-What-Does-It-Include",
+    "https://help.hevyapp.com/hc/en-us/articles/38279350428695-What-will-happen-to-my-account-if-I-switch-from-Pro-to-the-free-version",
+    "https://www.hevyapp.com/features/exercise-programming-options/",
+    "https://help.hevyapp.com/hc/en-us/articles/35119576252951-Reset-Data-Duplicate-Exercise-Routines-and-Manual-Deletion"
+   ]
+  },
+  {
+   "area": "plan",
+   "feature_id": "plan_folders",
+   "has": "yes",
+   "how": "Folder icon in Workout tab; drag-and-drop routines between folders; folders can be shared; program saves create a folder.",
+   "sources": [
+    "https://help.hevyapp.com/hc/en-us/articles/34953606698903-Build-a-Workout-Program-Create-Organize-Routines",
+    "https://help.hevyapp.com/hc/en-us/articles/36011518408983-How-to-Access-and-Use-Hevy-s-Routine-and-Program-Library"
+   ]
+  },
+  {
+   "area": "plan",
+   "feature_id": "plan_programs",
+   "has": "yes",
+   "how": "Explore library: 26 programs (filter by Level, Goal, Equipment) + 7 routine categories (At home, Travel, Dumbbells only, Band, Cardio & HIIT, Gym, Bodyweight); 'Save Program' creates a folder of routines. Blog articles link extra routines.",
+   "sources": [
+    "https://help.hevyapp.com/hc/en-us/articles/36011518408983-How-to-Access-and-Use-Hevy-s-Routine-and-Program-Library"
+   ]
+  },
+  {
+   "area": "plan",
+   "feature_id": "plan_periodization",
+   "has": "partial",
+   "how": "Hevy Trainer 'Program Variety': Consistent / Balanced (exercises rotate ~every 6 weeks) / Variable (weekly). Percentage-based warm-up calculator. No % of 1RM working-set prescriptions or deload scheduling documented.",
+   "sources": [
+    "https://help.hevyapp.com/hc/en-us/articles/43572343844247-How-Hevy-Trainer-Settings-Work",
+    "https://www.hevyapp.com/features/workout-plan-generator/",
+    "https://help.hevyapp.com/hc/en-us/articles/35650921359639-How-to-Use-the-Warm-Up-Calculator-for-Percentage-Based-Warm-Up-Sets"
+   ]
+  },
+  {
+   "area": "plan",
+   "feature_id": "plan_generator",
+   "has": "paid",
+   "how": "Hevy Trainer (Pro, launched Feb 2026): onboarding questions (goal Gain Strength/Build Muscle/Fat Loss, level, sex, age, weight, height, equipment, frequency 1–6/wk, cardio, duration, focus muscle) → algorithmic (explicitly not AI) program. Default split by frequency: 1–3 Full Body, 4 Upper/Lower, 5 PPL+UL, 6 PPL×2. Supports injuries, excluded exercises, equipment presets/custom. Also plan generation via the Hevy app in ChatGPT (@hevy).",
+   "sources": [
+    "https://help.hevyapp.com/hc/en-us/articles/38385724273047-Hevy-Trainer-Explained-How-It-Builds-Your-Workout-Program",
+    "https://help.hevyapp.com/hc/en-us/articles/43572343844247-How-Hevy-Trainer-Settings-Work",
+    "https://www.hevyapp.com/features/workout-plan-generator/",
+    "https://help.hevyapp.com/hc/en-us/articles/43652076665239-What-is-the-Hevy-App-on-ChatGPT",
+    "https://prpath.app/blog/strong-vs-hevy-2026.html"
+   ]
+  },
+  {
+   "area": "plan",
+   "feature_id": "plan_schedule",
+   "has": "partial",
+   "how": "Calendar shows completed workouts only ('cannot be used to plan'); 'Routine of the Day' widget assigns routines to weekdays; Trainer assigns workouts per week with weekly tracker.",
+   "sources": [
+    "https://help.hevyapp.com/hc/en-us/articles/35380117933207-Track-Your-Workout-Consistency-with-the-Calendar-and-Streak-Features",
+    "https://help.hevyapp.com/hc/en-us/articles/36956630666647-Hevy-App-Widgets-Explained-Setup-Features-and-How-to-Use-Them",
+    "https://help.hevyapp.com/hc/en-us/articles/43572343844247-How-Hevy-Trainer-Settings-Work"
+   ]
+  },
+  {
+   "area": "plan",
+   "feature_id": "plan_share_templates",
+   "has": "yes",
+   "how": "Share Routine / folder via link; viewable without Hevy account; recipient sees exercises but your weights/reps are not shared (their own history fills in) — rep ranges are shared. Others' workouts can be 'Save as Routine' or 'Copy Workout'.",
+   "sources": [
+    "https://help.hevyapp.com/hc/en-us/articles/34953501503895-How-to-Share-Workouts-and-Routines-in-Hevy",
+    "https://help.hevyapp.com/hc/en-us/articles/35688036014231-Hevy-App-Social-Guide-Connect-Follow-and-Share-Your-Workouts"
+   ]
+  },
+  {
+   "area": "lib",
+   "feature_id": "lib_size",
+   "has": "yes",
+   "how": "400+ exercises (Hevy Coach also says 400+); covers barbell, plate, dumbbell, kettlebell, machine, band, suspension, bodyweight; HYROX/functional exercises added May 2026.",
+   "sources": [
+    "https://help.hevyapp.com/hc/en-us/articles/35688251991575-Hevy-Exercise-Library-400-Exercises-and-Custom-Exercises",
+    "https://hevycoach.com/pricing/",
+    "https://apps.apple.com/us/app/hevy-workout-tracker-gym-log/id1458862350"
+   ]
+  },
+  {
+   "area": "lib",
+   "feature_id": "lib_media",
+   "has": "yes",
+   "how": "Each exercise has a demonstration animation/video and step-by-step setup/execution instructions.",
+   "sources": [
+    "https://help.hevyapp.com/hc/en-us/articles/35688251991575-Hevy-Exercise-Library-400-Exercises-and-Custom-Exercises",
+    "https://apps.apple.com/us/app/hevy-workout-tracker-gym-log/id1458862350"
+   ]
+  },
+  {
+   "area": "lib",
+   "feature_id": "lib_custom",
+   "has": "yes",
+   "how": "Profile > Exercises > Create: name, image/video/GIF, equipment, primary + secondary muscles, exercise type. Free: 7 custom exercises; Pro unlimited. Duplicate any library exercise to customise/reset data. Type not editable later; creatable but not editable on web.",
+   "sources": [
+    "https://help.hevyapp.com/hc/en-us/articles/34264544382615-How-to-Create-Edit-and-Duplicate-Custom-Exercises-in-Hevy",
+    "https://help.hevyapp.com/hc/en-us/articles/35688251991575-Hevy-Exercise-Library-400-Exercises-and-Custom-Exercises"
+   ]
+  },
+  {
+   "area": "lib",
+   "feature_id": "lib_muscles",
+   "has": "yes",
+   "how": "Primary and secondary muscle targets; muscle groups incl. abdominals, shoulders, biceps, triceps, forearms, quads, hamstrings, calves, glutes, abductors, adductors, lats, upper back, traps, lower back, chest, neck, full body.",
+   "sources": [
+    "https://help.hevyapp.com/hc/en-us/articles/34264544382615-How-to-Create-Edit-and-Duplicate-Custom-Exercises-in-Hevy",
+    "https://api.hevyapp.com/docs/"
+   ]
+  },
+  {
+   "area": "lib",
+   "feature_id": "lib_equipment_filter",
+   "has": "yes",
+   "how": "Library filters for equipment and target muscle; equipment categories none/barbell/dumbbell/kettlebell/machine/plate/band/suspension/other.",
+   "sources": [
+    "https://help.hevyapp.com/hc/en-us/articles/35688251991575-Hevy-Exercise-Library-400-Exercises-and-Custom-Exercises",
+    "https://api.hevyapp.com/docs/"
+   ]
+  },
+  {
+   "area": "lib",
+   "feature_id": "lib_search",
+   "has": "yes",
+   "how": "Search bar in library; recently logged exercises listed first, then custom ones.",
+   "sources": [
+    "https://help.hevyapp.com/hc/en-us/articles/35382889578135-Exercise-Performance-Tracking-in-Library-Weight-Bodyweight-Cardio-and-Duration-Based-Exercises"
+   ]
+  },
+  {
+   "area": "lib",
+   "feature_id": "lib_localization",
+   "has": "yes",
+   "how": "App in 16 languages incl. Polish (App Store) with 5 more added Sep 2026 'across the app and hevy.com'. Strong CSV import requires English exports.",
+   "sources": [
+    "https://apps.apple.com/us/app/hevy-workout-tracker-gym-log/id1458862350",
+    "https://help.hevyapp.com/hc/en-us/articles/35687878672663-Importing-Strong-Data-into-Hevy"
+   ]
+  },
+  {
+   "area": "prog",
+   "feature_id": "prog_suggestions",
+   "has": "paid",
+   "how": "Only inside Hevy Trainer (Pro): recommended starting weight if the exercise was logged at least once; automatic weight increases; 'push harder' reminders when progress stalls; progress markers on exercises. Outside Trainer, routines simply carry forward last values.",
+   "sources": [
+    "https://www.hevyapp.com/features/workout-plan-generator/",
+    "https://help.hevyapp.com/hc/en-us/articles/38385724273047-Hevy-Trainer-Explained-How-It-Builds-Your-Workout-Program",
+    "https://help.hevyapp.com/hc/en-us/articles/34105442929943-Previous-Workout-Values-Vs-Routine-Values-How-to-Adjust-in-Settings"
+   ]
+  },
+  {
+   "area": "prog",
+   "feature_id": "prog_double_progression",
+   "has": "paid",
+   "how": "Trainer rule: weight increases only after hitting the top of the rep range on all prescribed sets with that weight; since Aug 2026 also supports reps-only exercises (pull-ups, push-ups).",
+   "sources": [
+    "https://www.hevyapp.com/features/workout-plan-generator/",
+    "https://apps.apple.com/us/app/hevy-workout-tracker-gym-log/id1458862350"
+   ]
+  },
+  {
+   "area": "prog",
+   "feature_id": "prog_deload",
+   "has": "unknown",
+   "how": "No deload or readiness/fatigue model documented; Trainer has injury management (avoid/warn on exercises for flagged areas).",
+   "sources": [
+    "https://help.hevyapp.com/hc/en-us/articles/43572343844247-How-Hevy-Trainer-Settings-Work"
+   ]
+  },
+  {
+   "area": "prog",
+   "feature_id": "prog_ai_coach",
+   "has": "partial",
+   "how": "Trainer is algorithmic, 'do[es] not rely on AI'. AI via external chat: Hevy app inside ChatGPT (@hevy) analyses history, graphs lifts, builds plans saved to Hevy (replaced HevyGPT); 3.1.12+ can send workouts to ChatGPT & Claude from the finish screen.",
+   "sources": [
+    "https://help.hevyapp.com/hc/en-us/articles/38385724273047-Hevy-Trainer-Explained-How-It-Builds-Your-Workout-Program",
+    "https://help.hevyapp.com/hc/en-us/articles/43652076665239-What-is-the-Hevy-App-on-ChatGPT",
+    "https://apps.apple.com/us/app/hevy-workout-tracker-gym-log/id1458862350"
+   ]
+  },
+  {
+   "area": "prog",
+   "feature_id": "prog_fatigue",
+   "has": "unknown",
+   "how": "No muscle-recovery/fatigue model documented; Trainer adapts only to logged performance, injuries and settings.",
+   "sources": [
+    "https://help.hevyapp.com/hc/en-us/articles/43572343844247-How-Hevy-Trainer-Settings-Work"
+   ]
+  },
+  {
+   "area": "stats",
+   "feature_id": "stats_prs",
+   "has": "yes",
+   "how": "PR types by exercise type: weight&reps → Heaviest Weight, Best 1RM, Best Set Volume, Best Session Volume; bodyweight → Best Set (reps), Most Session Reps; assisted → reps only; weighted bodyweight → Heaviest, Best Set Volume; duration → Best Time; cardio → Longest Distance/Time. Live PR banner + sound during workout; medals on sets. Separate 'Set Records' table = heaviest weight per rep count (no live PR).",
+   "sources": [
+    "https://help.hevyapp.com/hc/en-us/articles/35649367857175-Personal-Records-PRs-and-Set-Records-Explained-How-They-Work-in-the-Hevy-App",
+    "https://help.hevyapp.com/hc/en-us/articles/38279531346455-Set-Records-vs-Personal-Records",
+    "https://help.hevyapp.com/hc/en-us/articles/36012016405655-Hevy-Live-PR-Notifications-Get-Instant-Updates-on-Your-Best-Lifts"
+   ]
+  },
+  {
+   "area": "stats",
+   "feature_id": "stats_e1rm",
+   "has": "yes",
+   "how": "Rep-to-percentage table: 1=100%, 2=97, 3=94, 4=92, 5=89, 6=86, 7=83, 8=81, 9=78, 10=75, 11=73, 12=71 … 20=60 … 30+=50%; e1RM = weight ÷ percentage.",
+   "sources": [
+    "https://help.hevyapp.com/hc/en-us/articles/36954464726167-Understanding-Your-Estimated-One-Rep-Max-1RM-in-Hevy"
+   ]
+  },
+  {
+   "area": "stats",
+   "feature_id": "stats_charts_exercise",
+   "has": "yes",
+   "how": "Per-exercise graph (3 months / year / all time): Heaviest Weight, One Rep Max, Best Set Volume, Session Volume, Total Reps; bodyweight: Most Reps (Set), Session Reps; cardio: Best Pace, Longest Distance/Time. Free history limited to 3 months; 1 year/all-time is Pro.",
+   "sources": [
+    "https://help.hevyapp.com/hc/en-us/articles/35382889578135-Exercise-Performance-Tracking-in-Library-Weight-Bodyweight-Cardio-and-Duration-Based-Exercises",
+    "https://help.hevyapp.com/hc/en-us/articles/38279350428695-What-will-happen-to-my-account-if-I-switch-from-Pro-to-the-free-version"
+   ]
+  },
+  {
+   "area": "stats",
+   "feature_id": "stats_volume",
+   "has": "yes",
+   "how": "Statistics: Set Count per Muscle Group (Pro; weekly/monthly), Muscle Distribution chart comparing periods, Main Exercises, Monthly Report (last completed month only). Bodyweight included in volume for 100%-bodyweight exercises.",
+   "sources": [
+    "https://help.hevyapp.com/hc/en-us/articles/35702030346903-Hevy-Statistics-Explained-Track-Your-Training-Progress-and-Muscle-Growth",
+    "https://help.hevyapp.com/hc/en-us/articles/35119778922263-Hevy-Pro-Subscription-How-to-get-Pro-and-What-Does-It-Include",
+    "https://help.hevyapp.com/hc/en-us/articles/43736497456279-Why-Is-My-Workout-Volume-Different-in-Hevy-and-Strava"
+   ]
+  },
+  {
+   "area": "stats",
+   "feature_id": "stats_muscle_heatmap",
+   "has": "yes",
+   "how": "'Last 7 Day Body Graph' heat map and weekly Muscle Distribution (Body) diagram; figure follows profile sex (male figure for 'Other').",
+   "sources": [
+    "https://help.hevyapp.com/hc/en-us/articles/35702030346903-Hevy-Statistics-Explained-Track-Your-Training-Progress-and-Muscle-Growth",
+    "https://help.hevyapp.com/hc/en-us/articles/35361145804439-How-to-Change-the-Heat-Map-Gender-in-the-Hevy-App"
+   ]
+  },
+  {
+   "area": "stats",
+   "feature_id": "stats_calendar_streaks",
+   "has": "yes",
+   "how": "Profile > Calendar with workout days; weekly streak (≥1 workout/week) shown on calendar and after first workout of the week; rest-days counter; streak recoverable by backdating a workout; configurable first day of week.",
+   "sources": [
+    "https://help.hevyapp.com/hc/en-us/articles/35380117933207-Track-Your-Workout-Consistency-with-the-Calendar-and-Streak-Features",
+    "https://help.hevyapp.com/hc/en-us/articles/34467766576279-How-to-Get-Your-Weekly-Streak-Back-in-the-Hevy-App"
+   ]
+  },
+  {
+   "area": "stats",
+   "feature_id": "stats_workout_summary",
+   "has": "yes",
+   "how": "Save Workout screen (title/description, media, visibility, sync toggles, duration/date); PR medals; shareable designs (dark/light/transparent) highlighting PRs/volume; Monthly Report and December Year in Review.",
+   "sources": [
+    "https://help.hevyapp.com/hc/en-us/articles/35688036014231-Hevy-App-Social-Guide-Connect-Follow-and-Share-Your-Workouts",
+    "https://help.hevyapp.com/hc/en-us/articles/35702030346903-Hevy-Statistics-Explained-Track-Your-Training-Progress-and-Muscle-Growth",
+    "https://help.hevyapp.com/hc/en-us/articles/35700454899991-Discover-Your-Hevy-Training-Stats-with-the-Yearly-Review"
+   ]
+  },
+  {
+   "area": "stats",
+   "feature_id": "stats_strength_standards",
+   "has": "yes",
+   "how": "Strength Level for 13 mainly barbell exercises: Beginner/Intermediate/Advanced/Elite and % of users of the same sex, age group and bodyweight you are stronger than.",
+   "sources": [
+    "https://help.hevyapp.com/hc/en-us/articles/38001696749335-Strength-Level-Feature-How-Hevy-Compares-Your-Strength-by-Exercise"
+   ]
+  },
+  {
+   "area": "body",
+   "feature_id": "body_weight",
+   "has": "yes",
+   "how": "Profile > Measures; free users can log body weight (and waist); bodyweight can also be updated mid-workout for bodyweight exercises; Trainer shows weekly average body weight.",
+   "sources": [
+    "https://help.hevyapp.com/hc/en-us/articles/35385479603479-Body-Composition-Tracking-Measurements-and-Progress-Photos",
+    "https://help.hevyapp.com/hc/en-us/articles/38386262243223-Bodyweight-Exercises-in-Hevy-Bodyweight-vs-Assisted-vs-Weighted",
+    "https://www.hevyapp.com/features/workout-plan-generator/"
+   ]
+  },
+  {
+   "area": "body",
+   "feature_id": "body_measurements",
+   "has": "paid",
+   "how": "Pro: body fat % and circumferences (neck, shoulders, chest, biceps, forearms, abdomen, hips, thighs, calves); API also stores lean mass and left/right limbs. Free: weight + waist only; history kept after downgrade.",
+   "sources": [
+    "https://help.hevyapp.com/hc/en-us/articles/34462134138775-How-to-Record-Body-Measurements-and-Progress-Photos",
+    "https://help.hevyapp.com/hc/en-us/articles/35385479603479-Body-Composition-Tracking-Measurements-and-Progress-Photos",
+    "https://api.hevyapp.com/docs/",
+    "https://help.hevyapp.com/hc/en-us/articles/38279350428695-What-will-happen-to-my-account-if-I-switch-from-Pro-to-the-free-version"
+   ]
+  },
+  {
+   "area": "body",
+   "feature_id": "body_photos",
+   "has": "yes",
+   "how": "Progress photos (private) with or without measurements, max one per day; in-app camera 'Overlay' ghost of last photo for consistent angles; compare two photos.",
+   "sources": [
+    "https://help.hevyapp.com/hc/en-us/articles/35385479603479-Body-Composition-Tracking-Measurements-and-Progress-Photos",
+    "https://help.hevyapp.com/hc/en-us/articles/34462134138775-How-to-Record-Body-Measurements-and-Progress-Photos"
+   ]
+  },
+  {
+   "area": "body",
+   "feature_id": "body_readiness",
+   "has": "unknown",
+   "how": "No sleep/HRV/readiness check-in documented.",
+   "sources": []
+  },
+  {
+   "area": "int",
+   "feature_id": "int_apple_health",
+   "has": "yes",
+   "how": "Writes workouts (as Strength Training) and active-calorie estimates to Apple Health; Health Connect on Android (→ Google Fit, Samsung Health, MyFitnessPal). Per-workout 'Sync with' toggles on Save screen; not retroactive.",
+   "sources": [
+    "https://help.hevyapp.com/hc/en-us/articles/36957445562775-Hevy-Not-Syncing-to-Apple-Health-Step-by-Step-Troubleshooting-Guide",
+    "https://help.hevyapp.com/hc/en-us/articles/34462684813079-How-to-see-the-calories-burned-in-a-workout-Apple-iOS-Android",
+    "https://help.hevyapp.com/hc/en-us/articles/34204824335255-How-to-Connect-Hevy-to-Google-Fit-Using-Health-Connect",
+    "https://help.hevyapp.com/hc/en-us/articles/34895971528727-How-to-Connect-to-MyFitnessPal-Apple-Health-Health-Connect"
+   ]
+  },
+  {
+   "area": "int",
+   "feature_id": "int_watch_app",
+   "has": "yes",
+   "how": "Apple Watch (watchOS 8+) and Wear OS: start routines, log sets, set types, rest timer with haptics, duration timers, heart rate, complications/Tile, live sync with phone; watch workouts save when reconnecting. Free tier.",
+   "user_feedback": "Watch sync delays/freezes are a documented support topic; reviewers rate Strong's watch app more refined.",
+   "sources": [
+    "https://apps.apple.com/us/app/hevy-workout-tracker-gym-log/id1458862350",
+    "https://play.google.com/store/apps/details?id=com.hevy",
+    "https://help.hevyapp.com/hc/en-us/articles/34895840771479-WearOS-Watch-Compatibility-and-Syncing-Troubleshooting",
+    "https://help.hevyapp.com/hc/en-us/articles/33996260919703-Hevy-Apple-Watch-Sync-Issues-Step-by-Step-Troubleshooting-Guide"
+   ]
+  },
+  {
+   "area": "int",
+   "feature_id": "int_garmin",
+   "has": "no",
+   "how": "Garmin rejected Hevy's API application; no Garmin integration. Strava (one-way, full exercise/set detail since Jun 2026) and Wellhub supported.",
+   "sources": [
+    "https://help.hevyapp.com/hc/en-us/articles/35361029194647-Hevy-and-Garmin-Integration-Update-Why-It-s-Not-Possible-Yet",
+    "https://help.hevyapp.com/hc/en-us/articles/38279744541591-Using-Hevy-with-Strava-Setup-Syncing-and-Editing-Workouts",
+    "https://www.hevyapp.com/community-updates/july-26/",
+    "https://help.hevyapp.com/hc/en-us/articles/34133235346327-Having-Trouble-Connecting-Hevy-to-Wellhub-Gympass-Here-s-What-to-Do"
+   ]
+  },
+  {
+   "area": "int",
+   "feature_id": "int_import",
+   "has": "partial",
+   "how": "Only Strong CSV import (English, unedited, kg): Settings > Export & Import Data > Import Strong CSV; matches exercises or creates custom ones; routines and supersets not imported; one active import, revertible. Other apps only by mimicking the Strong format (unsupported).",
+   "sources": [
+    "https://help.hevyapp.com/hc/en-us/articles/35687878672663-Importing-Strong-Data-into-Hevy",
+    "https://help.hevyapp.com/hc/en-us/articles/38001424401943-How-to-Import-Strong-App-CSV-Files-and-Export-Your-Data-in-Hevy"
+   ]
+  },
+  {
+   "area": "int",
+   "feature_id": "int_export",
+   "has": "yes",
+   "how": "Settings > Export & Import Data > Export Workouts / Export Measurements (CSV). Public REST API (Pro, key from hevy.com settings) for workouts, routines, folders, custom exercises, exercise history, body measurements, incl. change-events endpoint.",
+   "sources": [
+    "https://help.hevyapp.com/hc/en-us/articles/43708290987415-Exporting-Your-Data-from-Hevy",
+    "https://api.hevyapp.com/docs/"
+   ]
+  },
+  {
+   "area": "int",
+   "feature_id": "int_backup_sync",
+   "has": "yes",
+   "how": "Account-based server storage; data survives reinstall; sync across iPhone, Android, web (hevy.com), Apple Watch, Wear OS.",
+   "sources": [
+    "https://help.hevyapp.com/hc/en-us/articles/38223672272791-What-will-happen-to-my-information-if-I-uninstall-and-reinstall-the-Hevy-app",
+    "https://help.hevyapp.com/hc/en-us/articles/34462203494679-Login-Options-Explained-Email-Password-Google-and-Apple-Sign-In",
+    "https://help.hevyapp.com/hc/en-us/articles/33106320824727-Everything-You-Need-to-Know-About-the-Hevy-App-2025-Features-Guide"
+   ]
+  },
+  {
+   "area": "int",
+   "feature_id": "int_widgets",
+   "has": "yes",
+   "how": "Home-screen widgets: Aggregate Data/Chart, Calendar, Calendar+Stats, Last Week Workouts, Routine of the Day, Quick Access (start empty/routine/log measurement), Weekly Data (vs previous week), Routines folder, Streak, Rest days.",
+   "sources": [
+    "https://help.hevyapp.com/hc/en-us/articles/36956630666647-Hevy-App-Widgets-Explained-Setup-Features-and-How-to-Use-Them"
+   ]
+  },
+  {
+   "area": "int",
+   "feature_id": "int_siri_shortcuts",
+   "has": "no",
+   "how": "No Siri/Shortcuts in help center; the App Store listing declares no Siri capability (unlike Strong's).",
+   "sources": [
+    "https://apps.apple.com/us/app/hevy-workout-tracker-gym-log/id1458862350"
+   ]
+  },
+  {
+   "area": "equip",
+   "feature_id": "equip_locations",
+   "has": "partial",
+   "how": "Since 3.1.11 (Aug 2026) you can tag your gym on workouts (social/location label, not an equipment profile). Help center suggests duplicating exercises per gym/machine to keep data consistent.",
+   "sources": [
+    "https://apps.apple.com/us/app/hevy-workout-tracker-gym-log/id1458862350",
+    "https://www.hevyapp.com/community-updates/july-26/",
+    "https://help.hevyapp.com/hc/en-us/articles/43651329105687-Tracking-Progress-on-Gym-Machines-And-Why-It-Can-Be-Inconsistent"
+   ]
+  },
+  {
+   "area": "equip",
+   "feature_id": "equip_inventory",
+   "has": "partial",
+   "how": "Trainer equipment presets (At Home, Garage Gym, Commercial Gym, Large Gym) or Custom with selectable dumbbell, plate and barbell weights; plate calculator custom bars/plates; warm-up rounding.",
+   "sources": [
+    "https://help.hevyapp.com/hc/en-us/articles/43572343844247-How-Hevy-Trainer-Settings-Work",
+    "https://help.hevyapp.com/hc/en-us/articles/34518876511383-How-to-use-the-Plate-Calculator-Logging-and-Adding-Custom-Plates-and-Bars",
+    "https://help.hevyapp.com/hc/en-us/articles/35650921359639-How-to-Use-the-Warm-Up-Calculator-for-Percentage-Based-Warm-Up-Sets"
+   ]
+  },
+  {
+   "area": "equip",
+   "feature_id": "equip_filtering",
+   "has": "partial",
+   "how": "Trainer only selects exercises and suggests weights from available equipment; library has manual equipment filter.",
+   "sources": [
+    "https://help.hevyapp.com/hc/en-us/articles/43572343844247-How-Hevy-Trainer-Settings-Work",
+    "https://help.hevyapp.com/hc/en-us/articles/35688251991575-Hevy-Exercise-Library-400-Exercises-and-Custom-Exercises"
+   ]
+  },
+  {
+   "area": "social",
+   "feature_id": "social_feed",
+   "has": "yes",
+   "how": "Public by default. Home feed (people you follow) and Discover feed (others); likes, comments, mentions, Suggested Athletes, contacts matching (phone verification). Private profile, per-workout or default private visibility, hide suggested users — Discover cannot be removed.",
+   "user_feedback": "Some lifters find the feed clutter; it can't be fully disabled (aitoolsbakery).",
+   "sources": [
+    "https://help.hevyapp.com/hc/en-us/articles/35688036014231-Hevy-App-Social-Guide-Connect-Follow-and-Share-Your-Workouts",
+    "https://help.hevyapp.com/hc/en-us/articles/34461853165079-How-to-keep-my-information-private-Account-Single-Private-Workout-Remove-Social-Media-Features",
+    "https://help.hevyapp.com/hc/en-us/articles/38029872435351-Find-and-Connect-Contacts-on-Hevy"
+   ]
+  },
+  {
+   "area": "social",
+   "feature_id": "social_share",
+   "has": "yes",
+   "how": "Share workouts/routines/folders by link (no account needed), shareable images, up to 3 photos or 2 photos + 1 video per workout, Strava sync, exercise performance share card, iMessage stickers.",
+   "sources": [
+    "https://help.hevyapp.com/hc/en-us/articles/34953501503895-How-to-Share-Workouts-and-Routines-in-Hevy",
+    "https://help.hevyapp.com/hc/en-us/articles/35688036014231-Hevy-App-Social-Guide-Connect-Follow-and-Share-Your-Workouts",
+    "https://help.hevyapp.com/hc/en-us/articles/35382889578135-Exercise-Performance-Tracking-in-Library-Weight-Bodyweight-Cardio-and-Duration-Based-Exercises",
+    "https://apps.apple.com/us/app/hevy-workout-tracker-gym-log/id1458862350"
+   ]
+  },
+  {
+   "area": "social",
+   "feature_id": "social_leaderboards",
+   "has": "yes",
+   "how": "Exercise leaderboard vs people you follow (heaviest weight) for 13 exercises; tap to see their PR workout. Profile Compare (30 d/3 mo/1 yr/all) and exercise compare.",
+   "sources": [
+    "https://help.hevyapp.com/hc/en-us/articles/38224023680407-Hevy-Exercise-Leaderboard-How-It-Works-and-Where-to-Find-It",
+    "https://help.hevyapp.com/hc/en-us/articles/38223346135191-How-to-Compare-Your-Progress-With-Friends-on-Hevy"
+   ]
+  },
+  {
+   "area": "social",
+   "feature_id": "social_challenges",
+   "has": "unknown",
+   "how": "No challenges feature documented.",
+   "sources": []
+  },
+  {
+   "area": "coach",
+   "feature_id": "coach_client_management",
+   "has": "yes",
+   "how": "Separate Hevy Coach platform (web + coach app): dashboard, client management, coaching teams, invite link/contact form. $25/mo for 1–10 clients, tiers up to 1,000 clients, 30-day trial; clients get Hevy Pro free.",
+   "sources": [
+    "https://hevycoach.com/pricing/",
+    "https://help.hevyapp.com/hc/en-us/articles/38279631262359-What-Happens-to-Your-Hevy-Pro-Subscription-When-You-Use-Hevy-Coach"
+   ]
+  },
+  {
+   "area": "coach",
+   "feature_id": "coach_assign_programs",
+   "has": "yes",
+   "how": "Coach builds and assigns programs; client sees a Coach tab with Program Notes and assigned workouts to start and log; coach can log workouts on the coach app during in-person sessions.",
+   "sources": [
+    "https://www.hevyapp.com/features/strength-coach/",
+    "https://hevycoach.com/pricing/"
+   ]
+  },
+  {
+   "area": "coach",
+   "feature_id": "coach_feedback",
+   "has": "yes",
+   "how": "Coach instantly sees logged workouts, exercise performance, set count per muscle group, body measurements and progress photos.",
+   "sources": [
+    "https://www.hevyapp.com/features/strength-coach/"
+   ]
+  },
+  {
+   "area": "coach",
+   "feature_id": "coach_chat",
+   "has": "yes",
+   "how": "Chat in the Coach tab with images and videos.",
+   "sources": [
+    "https://www.hevyapp.com/features/strength-coach/"
+   ]
+  },
+  {
+   "area": "coach",
+   "feature_id": "coach_marketplace",
+   "has": "unknown",
+   "how": "No public coach marketplace documented.",
+   "sources": []
+  },
+  {
+   "area": "monet",
+   "feature_id": "monet_model",
+   "has": "yes",
+   "how": "Free (no ads): unlimited workouts, 4 routines, 7 custom exercises, 3 months stats history, weight+waist measurements, social, watch apps, plate calculator. Pro: $2.99/mo (also $3.99 listed), $23.99/yr, $74.99 lifetime (US); unlocks unlimited routines/custom exercises, all-time stats, set count per muscle, warm-up calculator, all measurements, Trainer, API. 50%-off first year sales a few times a year (not lifetime). Web purchase via Paddle; no Family Sharing.",
+   "user_feedback": "Generally rated the best value in the category (lifetime < Strong Forever).",
+   "sources": [
+    "https://help.hevyapp.com/hc/en-us/articles/35119778922263-Hevy-Pro-Subscription-How-to-get-Pro-and-What-Does-It-Include",
+    "https://help.hevyapp.com/hc/en-us/articles/33106320824727-Everything-You-Need-to-Know-About-the-Hevy-App-2025-Features-Guide",
+    "https://apps.apple.com/us/app/hevy-workout-tracker-gym-log/id1458862350",
+    "https://help.hevyapp.com/hc/en-us/articles/38223834432279-Hevy-Pro-Sale-50-Off-First-Year",
+    "https://help.hevyapp.com/hc/en-us/articles/38385995539735-What-is-a-Family-Sharing-plan-and-is-Hevy-a-part-of-it"
+   ]
+  },
+  {
+   "area": "ux",
+   "feature_id": "ux_units",
+   "has": "yes",
+   "how": "Settings > Units for weight, distance, body measurements; per-exercise kg/lb override (exercise ... > Select Units or tap kg/lbs header in a workout).",
+   "sources": [
+    "https://help.hevyapp.com/hc/en-us/articles/34953292892823-How-to-change-the-measurement-units-Single-exercise-or-all-exercises"
+   ]
+  },
+  {
+   "area": "ux",
+   "feature_id": "ux_theme",
+   "has": "yes",
+   "how": "Dark mode; Liquid Glass (iOS) and Material 3 (Android) redesign mid-2026.",
+   "sources": [
+    "https://apps.apple.com/us/app/hevy-workout-tracker-gym-log/id1458862350",
+    "https://www.hevyapp.com/community-updates/july-26/"
+   ]
+  },
+  {
+   "area": "ux",
+   "feature_id": "ux_languages",
+   "has": "yes",
+   "how": "English, Arabic, Catalan, French, German, Hindi, Italian, Japanese, Korean, Polish, Portuguese, Russian, Simplified/Traditional Chinese, Spanish, Turkish (+5 more added Sep 2026).",
+   "sources": [
+    "https://apps.apple.com/us/app/hevy-workout-tracker-gym-log/id1458862350"
+   ]
+  },
+  {
+   "area": "ux",
+   "feature_id": "ux_accessibility",
+   "has": "unknown",
+   "how": "Developer has not filled the App Store accessibility section; nothing in help center.",
+   "sources": [
+    "https://apps.apple.com/us/app/hevy-workout-tracker-gym-log/id1458862350"
+   ]
+  },
+  {
+   "area": "ux",
+   "feature_id": "ux_onboarding",
+   "has": "partial",
+   "how": "Account sign-up (email/username+password, Google, Apple; Facebook dropped). Trainer has its own questionnaire. General onboarding flow not documented.",
+   "sources": [
+    "https://help.hevyapp.com/hc/en-us/articles/34462203494679-Login-Options-Explained-Email-Password-Google-and-Apple-Sign-In",
+    "https://help.hevyapp.com/hc/en-us/articles/34895051242903-Forgot-my-password-How-to-recover-or-change-a-password",
+    "https://help.hevyapp.com/hc/en-us/articles/38385724273047-Hevy-Trainer-Explained-How-It-Builds-Your-Workout-Program"
+   ]
+  },
+  {
+   "area": "ux",
+   "feature_id": "ux_offline",
+   "has": "partial",
+   "how": "In-progress workouts are stored on device until saved; watch workouts save when reconnecting. A third-party comparison lists offline logging with cloud sync; not documented officially.",
+   "sources": [
+    "https://help.hevyapp.com/hc/en-us/articles/38223672272791-What-will-happen-to-my-information-if-I-uninstall-and-reinstall-the-Hevy-app",
+    "https://apps.apple.com/us/app/hevy-workout-tracker-gym-log/id1458862350",
+    "https://straightsetapp.com/use-cases/best-offline-gym-app.html"
+   ]
+  },
+  {
+   "area": "ux",
+   "feature_id": "ux_privacy",
+   "has": "partial",
+   "how": "Account required; data on Hevy servers. Profiles public by default; private profile, per-workout privacy and default visibility settings. App Store label: purchases, contact info, contacts, usage data linked to you. In-app account deletion.",
+   "sources": [
+    "https://help.hevyapp.com/hc/en-us/articles/34461853165079-How-to-keep-my-information-private-Account-Single-Private-Workout-Remove-Social-Media-Features",
+    "https://help.hevyapp.com/hc/en-us/articles/38223672272791-What-will-happen-to-my-information-if-I-uninstall-and-reinstall-the-Hevy-app",
+    "https://apps.apple.com/us/app/hevy-workout-tracker-gym-log/id1458862350",
+    "https://help.hevyapp.com/hc/en-us/articles/34895456326423-Delete-Your-Hevy-or-Hevy-Coach-Account-Easily-Full-Tutorial"
+   ]
+  },
+  {
+   "area": "new",
+   "feature_id": "new:live_pr_notifications",
+   "has": "yes",
+   "how": "Banner + configurable sound when a set beats a PR mid-workout.",
+   "sources": [
+    "https://help.hevyapp.com/hc/en-us/articles/36012016405655-Hevy-Live-PR-Notifications-Get-Instant-Updates-on-Your-Best-Lifts"
+   ]
+  },
+  {
+   "area": "new",
+   "feature_id": "new:smart_superset_scrolling",
+   "has": "yes",
+   "how": "Auto-scrolls to the next exercise of a superset on set completion.",
+   "sources": [
+    "https://help.hevyapp.com/hc/en-us/articles/35650286563095-The-Complete-Guide-to-Supersets-and-Smart-Superset-Scrolling"
+   ]
+  },
+  {
+   "area": "new",
+   "feature_id": "new:rep_ranges",
+   "has": "yes",
+   "how": "Routine reps can be a range (e.g. 6–8); shared with routines; disables auto-update of routine values.",
+   "sources": [
+    "https://www.hevyapp.com/features/exercise-programming-options/",
+    "https://help.hevyapp.com/hc/en-us/articles/34953501503895-How-to-Share-Workouts-and-Routines-in-Hevy",
+    "https://help.hevyapp.com/hc/en-us/articles/34105442929943-Previous-Workout-Values-Vs-Routine-Values-How-to-Adjust-in-Settings"
+   ]
+  },
+  {
+   "area": "new",
+   "feature_id": "new:strength_level_percentile",
+   "has": "yes",
+   "how": "See stats_strength_standards.",
+   "sources": [
+    "https://help.hevyapp.com/hc/en-us/articles/38001696749335-Strength-Level-Feature-How-Hevy-Compares-Your-Strength-by-Exercise"
+   ]
+  },
+  {
+   "area": "new",
+   "feature_id": "new:monthly_report_year_review",
+   "has": "yes",
+   "how": "Monthly report (workouts, duration, volume, sets, PRs, muscles, photos vs previous month) and December Year in Review with shareables.",
+   "sources": [
+    "https://help.hevyapp.com/hc/en-us/articles/35702030346903-Hevy-Statistics-Explained-Track-Your-Training-Progress-and-Muscle-Growth",
+    "https://help.hevyapp.com/hc/en-us/articles/35700454899991-Discover-Your-Hevy-Training-Stats-with-the-Yearly-Review"
+   ]
+  },
+  {
+   "area": "new",
+   "feature_id": "new:public_api",
+   "has": "paid",
+   "how": "REST API for Pro users (workouts, routines, folders, exercise templates, history, measurements; events endpoint for sync).",
+   "sources": [
+    "https://api.hevyapp.com/docs/"
+   ]
+  },
+  {
+   "area": "new",
+   "feature_id": "new:chatgpt_claude",
+   "has": "yes",
+   "how": "Hevy app in ChatGPT (@hevy) for plans/analysis; send finished workouts to ChatGPT & Claude (3.1.12+).",
+   "sources": [
+    "https://help.hevyapp.com/hc/en-us/articles/43652076665239-What-is-the-Hevy-App-on-ChatGPT",
+    "https://apps.apple.com/us/app/hevy-workout-tracker-gym-log/id1458862350"
+   ]
+  },
+  {
+   "area": "new",
+   "feature_id": "new:strava_full_sync",
+   "has": "yes",
+   "how": "One-way sync to Strava with exercises, sets, reps/duration and weight (since Jun 2026) plus muscle breakdown graph.",
+   "sources": [
+    "https://www.hevyapp.com/community-updates/july-26/",
+    "https://help.hevyapp.com/hc/en-us/articles/36955024819735-Strava-Hevy-Sync-Issues-Step-by-Step-Troubleshooting-Guide"
+   ]
+  },
+  {
+   "area": "new",
+   "feature_id": "new:copy_others_workouts",
+   "has": "yes",
+   "how": "Copy Workout / Save as Routine from any user's workout in the feed.",
+   "sources": [
+    "https://help.hevyapp.com/hc/en-us/articles/35688036014231-Hevy-App-Social-Guide-Connect-Follow-and-Share-Your-Workouts",
+    "https://help.hevyapp.com/hc/en-us/articles/35361530647959-How-to-Log-a-Workout-in-the-Hevy-App-Step-by-Step-Guide"
+   ]
+  },
+  {
+   "area": "new",
+   "feature_id": "new:web_app",
+   "has": "yes",
+   "how": "hevy.com web app (login, plans purchase, custom exercise creation, API key).",
+   "sources": [
+    "https://help.hevyapp.com/hc/en-us/articles/35119778922263-Hevy-Pro-Subscription-How-to-get-Pro-and-What-Does-It-Include",
+    "https://help.hevyapp.com/hc/en-us/articles/34264544382615-How-to-Create-Edit-and-Duplicate-Custom-Exercises-in-Hevy",
+    "https://api.hevyapp.com/docs/"
+   ]
+  },
+  {
+   "area": "new",
+   "feature_id": "new:set_cap_150",
+   "has": "yes",
+   "how": "Hard limit of 150 sets per workout/routine even on Pro.",
+   "sources": [
+    "https://help.hevyapp.com/hc/en-us/articles/34896183826455-Hevy-Set-Limit-Explained-Why-Workouts-and-Routines-Have-a-150-Set-Cap"
+   ]
+  },
+  {
+   "area": "new",
+   "feature_id": "new:trainer_injury_management",
+   "has": "paid",
+   "how": "Flag injured areas so Trainer avoids/warns on risky exercises (Aug 2026).",
+   "sources": [
+    "https://help.hevyapp.com/hc/en-us/articles/43572343844247-How-Hevy-Trainer-Settings-Work",
+    "https://apps.apple.com/us/app/hevy-workout-tracker-gym-log/id1458862350"
+   ]
+  },
+  {
+   "area": "new",
+   "feature_id": "new:pause_workout",
+   "has": "yes",
+   "how": "Pause/resume workout timer from phone.",
+   "sources": [
+    "https://help.hevyapp.com/hc/en-us/articles/34513981310615-How-to-I-adjust-duration-and-pause-a-workout"
+   ]
+  },
+  {
+   "area": "new",
+   "feature_id": "new:keep_awake",
+   "has": "yes",
+   "how": "Keep screen awake during workout setting.",
+   "sources": [
+    "https://www.hevyapp.com/features/workout-settings/"
+   ]
+  },
+  {
+   "area": "new",
+   "feature_id": "new:wellhub",
+   "has": "yes",
+   "how": "Hevy Pro via Wellhub (Gympass) corporate benefit, linked manually by support.",
+   "sources": [
+    "https://help.hevyapp.com/hc/en-us/articles/34133235346327-Having-Trouble-Connecting-Hevy-to-Wellhub-Gympass-Here-s-What-to-Do"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,758 @@
+{
+  "app": "Trening (nasza)",
+  "version_or_date_checked": "0.8.4 (schemaVersion 13), code read 2026-10-02",
+  "pricing": "Free, personal app; no monetization code. Not on the App Store: installed ad hoc via EAS (paid Apple Developer account) or sideloaded (Sideloadly, free Apple ID).",
+  "platforms": "iOS, iPhone only (supportsTablet: false); Live Activity needs iOS 16.2+. An Android package id exists in app.json, but no Android build or workflow exists. No Watch app. Web export is used only for screenshot tests.",
+  "positioning": "Offline-first, account-free Strong-style strength logger in Polish/English with a local SQLite store, Live Activity rest timer and detailed set-logic rules (supersets, bands, load modes, progression hint).",
+  "features": [
+    {
+      "area": "log",
+      "feature_id": "log_set_fields",
+      "has": "yes",
+      "how": "Each exercise has one of 5 metric types that decide the editable set columns: weight+reps (default), reps only, time, distance+time and weight+time. You change it in the exercise editor ('Co logujesz w serii'). Bodyweight-equipment exercises show a ±kg field instead of weight. Optional RPE and band columns appear when enabled.",
+      "sources": ["lib/seed.ts:METRICS", "components/ActiveWorkout.tsx:ExerciseBlock", "app/exercise/[id].tsx"]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_set_types",
+      "has": "yes",
+      "how": "Tap the set number to open an ActionSheet with Normal / Warm-up (W) / Drop set (D) / To failure (F) and a set note. Warm-ups are excluded from volume, records and 'Previously' numbering and can have their own rest. A drop set gets no rest before it and is excluded from e1RM and max reps. 'Failure' is not copied to the next set or into 'Repeat last'.",
+      "sources": ["lib/seed.ts:SET_KINDS", "components/ActiveWorkout.tsx:setMenu", "lib/store.ts:addSet", "lib/store.ts:restAfter", "lib/stats.ts:e1rmR"]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_rpe_rir",
+      "has": "yes",
+      "how": "An optional RPE column, off by default, is turned on in Settings ('RPE / RIR przy serii'). It is one numeric field per set, 0–10 in 0.1 steps. It does not affect volume or records. It is shown in history and exported to the CSV RPE column. There is no separate RIR field; the same field is labelled RPE/RIR.",
+      "sources": ["lib/seed.ts:Settings.showRpe", "components/ActiveWorkout.tsx:ExerciseBlock", "app/more/settings.tsx", "lib/backup.ts:buildCsv"]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_previous_values",
+      "has": "yes",
+      "how": "A 'Previously' column shows the matching working set from the last finished workout containing that exercise. It matches within set family (normal/failure ↔ normal, drop ↔ drop); warm-ups get none and don't shift numbering. Sessions with only drop sets are skipped. When an exercise appears several times in a template, it matches by template item id or block index. On narrow screens the column moves under the row.",
+      "sources": ["lib/store.ts:previousBlockFor", "lib/store.ts:hintFor", "lib/store.ts:prevCache", "components/ActiveWorkout.tsx:rowLayout"]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_autofill",
+      "has": "yes",
+      "how": "Starting from a template pre-fills each set from the previous session's working sets, falling back to the template start weight. Time targets come from the template, never from the old result. Ticking an empty set fills its empty fields from the visible 'Previously' hint, or reps from the template's rep-range minimum. Manually typed fields copy to the next unticked set of the same family; time does not. Un-ticking clears only the values that were auto-filled.",
+      "sources": ["lib/store.ts:startFromTemplate", "lib/store.ts:fillFromHints", "lib/store.ts:toggleDone"]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_notes",
+      "has": "yes",
+      "how": "There are three note levels. A workout note is a free-text field at the bottom of the active workout (max 1000 chars). A set note is added from the set-number menu (max 300 chars) and shown as • plus text under the set. Exercise 'technical notes' (max 2000 chars) live in the exercise editor but are not shown during the workout. Set and workout notes go to the CSV Notes / Workout Notes columns.",
+      "sources": ["components/ActiveWorkout.tsx", "app/exercise/[id].tsx", "lib/backup.ts:buildCsv"]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_supersets",
+      "has": "yes",
+      "how": "'⇅ SS' links an exercise with the next one, in the workout or template; '✂' removes it. Groups must be contiguous with 2+ exercises (normalizeGroups) and are labelled SS A, B, C… Groups can have N exercises, so circuits work. The rest timer starts only when the round closes, counted by completed sets rather than tick order. The rest used is that of the group's last exercise.",
+      "sources": ["lib/store.ts:linkWithNext", "lib/store.ts:normalizeGroups", "lib/store.ts:restAfter", "lib/store.ts:roundRest"]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_reorder",
+      "has": "yes",
+      "how": "'≡ Kolejność' opens a drag-to-reorder screen, available during a workout and in the template editor. You drag by the ≡ handle with haptic feedback and auto-scroll at the edges. A superset moves as one block, and you reorder inside it with its own handles; membership never changes. VoiceOver gets move up/down actions. The template editor also has ↑/↓ buttons.",
+      "sources": ["app/reorder.tsx", "components/DragList.tsx", "lib/store.ts:moveBlockOf", "lib/store.ts:moveInGroup"]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_replace_exercise",
+      "has": "no",
+      "how": "There is no swap/replace action. During a workout you can only 'usuń' (remove) an exercise and '+ Dodaj ćwiczenie' (add) another, which is appended at the end.",
+      "sources": ["components/ActiveWorkout.tsx:ExerciseBlock", "lib/store.ts:addExerciseToActive"]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_plate_calculator",
+      "has": "no",
+      "how": "No plate calculator in code. Equipment is only an exercise attribute; no bar or plate inventory exists.",
+      "sources": ["lib/seed.ts", "components/ActiveWorkout.tsx"]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_warmup_calculator",
+      "has": "no",
+      "how": "No warm-up set generator. You add warm-up sets manually by marking a set as W.",
+      "sources": ["components/ActiveWorkout.tsx:setMenu"]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_bodyweight_assisted",
+      "has": "yes",
+      "how": "Bodyweight exercises log '±kg': plus is added load, minus is assistance. Exercises flagged 'Asysta gumą' (e.g. Pull Up, Chin Up, Dip, Nordic) get a band column; tapping it cycles through the user's bands by level and fills −nominal kg. Body mass is never used in calculations (schema 13). The record is total unassisted reps, and e1RM/volume use added load only.",
+      "sources": ["lib/store.ts:setLoad", "lib/store.ts:effectiveLoad", "lib/store.ts:applyBandAssist", "components/ActiveWorkout.tsx:cycleBand", "lib/stats.ts:totalKind"]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_unilateral",
+      "has": "partial",
+      "how": "An exercise can have load mode 'unilateral' (per side, ×2 in volume). The column then reads 'kg/str.' and e1RM/max weight are labelled 'per side'. There are no separate left/right reps or weights per set.",
+      "sources": ["lib/seed.ts:LoadMode", "lib/store.ts:loadLabel", "app/more/progress.tsx"]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_tempo",
+      "has": "partial",
+      "how": "Each exercise has an optional free-text tempo field (e.g. '3-1-1', max 20 chars). It appears in the exercise header during the workout and in the exercise list. There is no per-set tempo and no tempo metronome or timer.",
+      "sources": ["lib/seed.ts:Exercise.tempo", "app/exercise/[id].tsx", "components/ActiveWorkout.tsx:headMeta"]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_empty_workout",
+      "has": "yes",
+      "how": "The 'Pusty trening' button on the Trening tab starts a workout with no template; you add exercises with the picker.",
+      "sources": ["lib/store.ts:startEmpty", "app/(tabs)/index.tsx:Home"]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_edit_past",
+      "has": "no",
+      "how": "The finished-session screen (history/[id]) is read-only except for 'Usuń sesję' (delete). You cannot edit sets, add sets or backdate a workout. Start and finish time are always 'now', apart from the abandoned-workout end time.",
+      "sources": ["app/history/[id].tsx", "lib/store.ts:deleteWorkout"]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_one_hand_ux",
+      "has": "yes",
+      "how": "✓, ▶, set number and band targets are 44 pt (tested). The keyboard hides on ✓ or stopwatch start so the rest bar stays visible. Fields use number-pad or decimal-pad, or numbers-and-punctuation for ±kg because the iOS number pad has no minus. Fields accept comma or dot decimals and select their text on focus. A compact column layout is used for 320 pt screens. Typical start-to-first-set flow is 2 taps (Start, ✓).",
+      "sources": ["components/ui.tsx:NumInput", "components/ActiveWorkout.tsx:rowLayout", "components/ActiveWorkout.tsx:onDone", "docs/09-plan-testow.md:C1-C4"]
+    },
+    {
+      "area": "timer",
+      "feature_id": "timer_auto_rest",
+      "has": "yes",
+      "how": "Ticking a set starts the rest countdown, shown in a bottom bar with −15 / +15 / Pomiń (skip). Exceptions: no rest before an unticked drop set; inside a superset only after the round closes; rest 0 means no timer. Un-ticking stops the rest only if that set started it. After a timed set, rest counts from the set's end time.",
+      "sources": ["components/ActiveWorkout.tsx:onDone", "lib/store.ts:restAfter", "lib/timer.ts:start", "lib/timer.ts:adjust"]
+    },
+    {
+      "area": "timer",
+      "feature_id": "timer_per_exercise",
+      "has": "yes",
+      "how": "Rest is resolved in this order: template item rest, then exercise rest, then global default (90 s, max 1800 s). Each exercise can also have a separate post-warm-up rest. During a workout the ⏱ button asks 'Tylko teraz' (this block only) or 'Zapamiętaj' (save to the exercise and the source template item).",
+      "sources": ["lib/store.ts:restFor", "lib/store.ts:startFromTemplate", "components/ActiveWorkout.tsx:rememberRest", "app/exercise/[id].tsx"]
+    },
+    {
+      "area": "timer",
+      "feature_id": "timer_notifications",
+      "has": "yes",
+      "how": "A local notification ('Przerwa minęła') is scheduled for rest end, plus one for timed-set end ('Seria skończona'), so they fire on the lock screen. Haptics play at the end in-app. The 'Dźwięk i wibracja' toggle controls sound and haptics. No push or aps entitlement is used; it is stripped by a config plugin.",
+      "sources": ["lib/timer.ts:reschedule", "lib/timer.ts:scheduleSetEnd", "lib/timer.ts:tick", "plugins/withoutPushEntitlement.js"]
+    },
+    {
+      "area": "timer",
+      "feature_id": "timer_live_activity",
+      "has": "yes",
+      "how": "A Live Activity on the lock screen and Dynamic Island (iOS 16.2+) shows the rest countdown or a timed set with a target. It displays the workout name and the next set or exercise, and the system counts down. One activity runs at a time; when one timer ends, the other running timer takes it over. Built with the local Expo module modules/rest-activity (ActivityKit) and the widget extension targets/rest-widget.",
+      "sources": ["modules/rest-activity/index.ts", "targets/rest-widget/RestLiveActivity.swift", "lib/timer.ts:laStart", "lib/timer.ts:handover"]
+    },
+    {
+      "area": "timer",
+      "feature_id": "timer_set_stopwatch",
+      "has": "yes",
+      "how": "Time-based metrics get a ▶ button per set. With a target (set value or template 'cel s') it counts down, alerts, and auto-ticks the set with time capped at the target. Without a target it counts up until ✓ or 'Zakończ serię'. Re-measuring a ticked set asks for confirmation. Only one timer runs at a time; starting a stopwatch stops the rest timer.",
+      "sources": ["lib/timer.ts:startSet", "lib/timer.ts:stopSet", "components/ActiveWorkout.tsx:finishTimedSet", "components/ActiveWorkout.tsx:TimerBar"]
+    },
+    {
+      "area": "timer",
+      "feature_id": "timer_workout_duration",
+      "has": "yes",
+      "how": "The workout header shows start time and an elapsed clock (h:mm:ss) updated every second. Duration is stored as startedAt/finishedAt and shown in history and the CSV Duration column.",
+      "sources": ["components/ActiveWorkout.tsx:SessionClock", "app/(tabs)/history.tsx", "lib/backup.ts:buildCsv"]
+    },
+    {
+      "area": "timer",
+      "feature_id": "timer_abandoned_workout",
+      "has": "yes",
+      "how": "After 2 h without a ticked set (or since the last 'Kontynuuj'), opening the app shows a dialog: Continue / Finish and save (end = last set time) / Discard, with confirmation. After 6 h it auto-finishes silently, but only if working sets exist, and shows an alert. A running stopwatch counts as activity, and future-dated timestamps are ignored.",
+      "sources": ["lib/store.ts:STALE_ASK_MS", "lib/store.ts:staleSince", "lib/store.ts:autoFinishStale", "components/ActiveWorkout.tsx:askStale", "app/_layout.tsx"]
+    },
+    {
+      "area": "plan",
+      "feature_id": "plan_templates",
+      "has": "yes",
+      "how": "Templates (Szablony tab) are lists of items. Each item has sets (1–50), a rep range ('pow. od'/'do'; empty = max), rest, start weight (or ±kg) and target seconds for timed metrics, plus superset grouping. Four templates are seeded (Upper A, Upper B, Legs — gym, Legs — home). Start is on the Home list or in the editor.",
+      "sources": ["lib/seed.ts:TemplateItem", "lib/seed.ts:seedState", "app/template/[id].tsx", "app/(tabs)/templates.tsx"]
+    },
+    {
+      "area": "plan",
+      "feature_id": "plan_folders",
+      "has": "no",
+      "how": "Templates are a single flat list; there are no folders or tags.",
+      "sources": ["app/(tabs)/templates.tsx"]
+    },
+    {
+      "area": "plan",
+      "feature_id": "plan_programs",
+      "has": "no",
+      "how": "There are no multi-week programs and no program library. Only individual templates exist.",
+      "sources": ["lib/seed.ts:State"]
+    },
+    {
+      "area": "plan",
+      "feature_id": "plan_periodization",
+      "has": "no",
+      "how": "No deload weeks, blocks or %1RM-based prescriptions. A template's start weight is an absolute value.",
+      "sources": ["lib/seed.ts:TemplateItem"]
+    },
+    {
+      "area": "plan",
+      "feature_id": "plan_generator",
+      "has": "no",
+      "how": "No algorithmic or AI workout generation. The 'recommendations' module is a disabled placeholder ('wkrótce').",
+      "sources": ["lib/seed.ts:MODULES_AVAILABLE"]
+    },
+    {
+      "area": "plan",
+      "feature_id": "plan_schedule",
+      "has": "no",
+      "how": "No calendar or weekly plan. The Home list only shows the last date each template was used ('ostatnio <date>').",
+      "sources": ["app/(tabs)/index.tsx:Home"]
+    },
+    {
+      "area": "plan",
+      "feature_id": "plan_share_templates",
+      "has": "no",
+      "how": "Templates can't be shared individually. They only move as part of the full JSON backup.",
+      "sources": ["lib/backup.ts:exportBackup"]
+    },
+    {
+      "area": "lib",
+      "feature_id": "lib_size",
+      "has": "yes",
+      "how": "125 built-in exercises across 11 groups (chest, back, shoulders, biceps, triceps, legs, glutes, calves, core, cardio, other). Equipment types: dumbbell, barbell, bodyweight, machine, cable, other.",
+      "sources": ["lib/seed.ts:LIB", "lib/seed.ts:GROUPS"]
+    },
+    {
+      "area": "lib",
+      "feature_id": "lib_media",
+      "has": "no",
+      "how": "No videos, animations or built-in instructions. Only the user's own 'technical notes' and tempo text per exercise.",
+      "sources": ["lib/seed.ts:Exercise", "app/exercise/[id].tsx"]
+    },
+    {
+      "area": "lib",
+      "feature_id": "lib_custom",
+      "has": "yes",
+      "how": "'+ Nowe' in Exercises, or 'Utwórz „…”' from a search in the picker, creates a custom exercise. The editor covers name, group, equipment, metric, load mode, work and warm-up rest, primary/secondary muscles, band assist, tempo and notes. Library exercises are fully editable too. Deleting an exercise that has history archives it, and it can be restored from search.",
+      "sources": ["lib/store.ts:newExercise", "lib/store.ts:deleteExercise", "app/exercise/[id].tsx", "app/picker.tsx"]
+    },
+    {
+      "area": "lib",
+      "feature_id": "lib_muscles",
+      "has": "yes",
+      "how": "Each exercise has primary muscles (count 1 set) and secondary muscles (count 0.5 set) from 11 muscles: chest, back, shoulders, biceps, triceps, quads, hamstrings, glutes, calves, core, forearms. Main lifts are pre-mapped; others default from their group. Both are editable as chips.",
+      "sources": ["lib/seed.ts:MUSCLES", "lib/seed.ts:MUSCLES_BY_NAME", "app/exercise/[id].tsx"]
+    },
+    {
+      "area": "lib",
+      "feature_id": "lib_equipment_filter",
+      "has": "no",
+      "how": "The picker can filter only by body-part group chips. Equipment is shown as a subtitle but can't be filtered on.",
+      "sources": ["app/picker.tsx"]
+    },
+    {
+      "area": "lib",
+      "feature_id": "lib_search",
+      "has": "yes",
+      "how": "Search in the Exercises tab, picker and Progress screen ignores case and Polish diacritics ('lydki' finds 'Łydki'). It matches both the stored and translated names. An exact match is shown even when it falls outside the group filter. Archived matches offer 'Przywróć' (restore), and no match offers to create the exercise.",
+      "sources": ["lib/i18n.ts:fold", "app/picker.tsx", "app/(tabs)/exercises.tsx"]
+    },
+    {
+      "area": "lib",
+      "feature_id": "lib_localization",
+      "has": "yes",
+      "how": "Library names are canonical (mostly English with Polish suffixes). In English, exName() translates full Polish names and the bracket suffixes (sztanga → Barbell). Custom or renamed exercises are shown as typed. Groups, equipment and muscles are translated at display time.",
+      "sources": ["lib/i18n.ts:exName", "lib/i18n.en.ts"]
+    },
+    {
+      "area": "prog",
+      "feature_id": "prog_suggestions",
+      "has": "yes",
+      "how": "A silent '↑ spróbuj X' hint appears in the exercise header; it never changes entered values and can be turned off in Settings. Condition: weight+reps metric, the template has a rep max, and every previous working set (failure counts, drops excluded, none with a band) reached that max. Steps: barbell/machine +2.5 kg (+5 lb); dumbbell or unilateral +1 kg (+2.5 lb); bodyweight with assistance reduces assistance by 2.5 kg (to 0 = 'bez asysty'), with added load +2.5 kg, with no load +1 rep.",
+      "sources": ["lib/store.ts:progressionFor", "components/ActiveWorkout.tsx:progText", "app/more/settings.tsx"]
+    },
+    {
+      "area": "prog",
+      "feature_id": "prog_double_progression",
+      "has": "yes",
+      "how": "This is the progression model: you work up the template's rep range, and once all working sets hit the top, the hint proposes the next load step. There is no automatic rep-target change after a load increase.",
+      "sources": ["lib/store.ts:progressionFor"]
+    },
+    {
+      "area": "prog",
+      "feature_id": "prog_deload",
+      "has": "no",
+      "how": "No deload detection or suggestion. The hint only ever proposes an increase.",
+      "sources": ["lib/store.ts:progressionFor"]
+    },
+    {
+      "area": "prog",
+      "feature_id": "prog_fatigue",
+      "has": "no",
+      "how": "No fatigue or recovery model. The morning check-in (BB/sleep) is only displayed in the workout header and does not affect suggestions.",
+      "sources": ["components/ActiveWorkout.tsx:readinessLine", "lib/store.ts:todayReadiness"]
+    },
+    {
+      "area": "prog",
+      "feature_id": "prog_ai_coach",
+      "has": "no",
+      "how": "No AI coach. There are no network calls at all.",
+      "sources": ["lib/store.ts", "package.json"]
+    },
+    {
+      "area": "stats",
+      "feature_id": "stats_prs",
+      "has": "yes",
+      "how": "The record is the best per-workout total by metric: volume (weight×reps), total unassisted reps (bodyweight/reps-only), total time or total distance; e1RM also counts. A PR badge appears live next to the set that beats it, once per exercise per workout. The first session of an exercise never gives a PR. Max load, best-set volume, max reps (with/without assist), longest set and longest distance are shown as info on the records card without badges.",
+      "sources": ["lib/stats.ts:prMap", "lib/stats.ts:totalKind", "lib/stats.ts:setPRs", "app/more/progress.tsx"]
+    },
+    {
+      "area": "stats",
+      "feature_id": "stats_e1rm",
+      "has": "yes",
+      "how": "Uses the Epley formula: load × (1 + reps/30), and load itself when reps = 1. It only counts sets with ≤10 reps that are not drop sets and not band sets with unknown kg. It is calculated per dumbbell or per side according to load mode. For bodyweight exercises only added load counts.",
+      "sources": ["lib/stats.ts:e1rm", "lib/stats.ts:E1RM_MAX_REPS", "lib/stats.ts:recE1"]
+    },
+    {
+      "area": "stats",
+      "feature_id": "stats_charts_exercise",
+      "has": "yes",
+      "how": "More → Postępy → pick an exercise, or use the Postępy button in the exercise editor. You get a per-session line chart with metric chips (session total, volume, e1RM, max load/±, max reps, max time, max distance, depending on metric). Below it are a records card and the last 20 sessions with their best set. Charts are custom SVG (react-native-svg) with time-aware axis steps.",
+      "sources": ["app/more/progress.tsx", "lib/stats.ts:chartKeysFor", "components/Chart.tsx"]
+    },
+    {
+      "area": "stats",
+      "feature_id": "stats_volume",
+      "has": "yes",
+      "how": "The Progress screen without an exercise selected shows weekly volume and weekly working-set bar charts for the last 8 weeks (Monday start). It also shows working sets per muscle for this week vs last week, with primary = 1 and secondary = 0.5. Volume = load × reps × the exercise's load-mode multiplier; warm-ups are excluded.",
+      "sources": ["lib/stats.ts:weeklyTotals", "lib/stats.ts:weeklySetsByMuscle", "app/more/progress.tsx"]
+    },
+    {
+      "area": "stats",
+      "feature_id": "stats_muscle_heatmap",
+      "has": "no",
+      "how": "No body-map heatmap. Per-muscle data is shown only as horizontal bars (this week vs previous week).",
+      "sources": ["app/more/progress.tsx"]
+    },
+    {
+      "area": "stats",
+      "feature_id": "stats_calendar_streaks",
+      "has": "no",
+      "how": "No calendar view and no streaks. History is a chronological list.",
+      "sources": ["app/(tabs)/history.tsx"]
+    },
+    {
+      "area": "stats",
+      "feature_id": "stats_workout_summary",
+      "has": "partial",
+      "how": "There is no dedicated summary screen. After Finish, the app opens the session detail (date, duration, volume, every set with actual rest and PR labels). It also shows a 'Nowy rekord!' alert listing up to 6 records with values. There is no shareable summary card.",
+      "sources": ["components/ActiveWorkout.tsx:finalize", "lib/stats.ts:workoutPRs", "app/history/[id].tsx"]
+    },
+    {
+      "area": "stats",
+      "feature_id": "stats_strength_standards",
+      "has": "no",
+      "how": "No strength standards or percentiles. Body weight is never used in calculations.",
+      "sources": ["lib/stats.ts"]
+    },
+    {
+      "area": "body",
+      "feature_id": "body_weight",
+      "has": "yes",
+      "how": "Body weight is entered in the morning check-in (kg/lb, stored in kg). It is shown on the Home 'Dziś rano' card and in the last-14-days list on the morning screen. There is no body-weight chart or trend.",
+      "sources": ["app/more/morning.tsx", "lib/seed.ts:Morning", "app/(tabs)/index.tsx:Home"]
+    },
+    {
+      "area": "body",
+      "feature_id": "body_measurements",
+      "has": "no",
+      "how": "No circumference or body-fat fields. Morning entries hold only BB, sleep score, sleep hours and weight.",
+      "sources": ["lib/seed.ts:Morning"]
+    },
+    {
+      "area": "body",
+      "feature_id": "body_photos",
+      "has": "no",
+      "how": "No progress photos.",
+      "sources": ["lib/seed.ts:State"]
+    },
+    {
+      "area": "body",
+      "feature_id": "body_readiness",
+      "has": "yes",
+      "how": "A manual morning check-in records Body Battery (0–100, typed in from the Garmin app), sleep score (0–100) and sleep hours. The day's values are shown in the active workout header ('BB 86 · sen 80 · 7,5 h'). No automatic HRV or sleep import, and no readiness score or effect on training.",
+      "sources": ["app/more/morning.tsx", "components/ActiveWorkout.tsx:readinessLine", "lib/store.ts:todayReadiness"]
+    },
+    {
+      "area": "int",
+      "feature_id": "int_apple_health",
+      "has": "partial",
+      "how": "Write-only and opt-in (Settings), with permission requested on enable. Each finished workout is saved as an HKWorkout with start/end. The type is Traditional Strength, or Functional Strength if every exercise is bodyweight. Metadata holds workout name, volume and working sets, and a SyncIdentifier = workout id prevents duplicates. Nothing is read from Health. Importing a backup re-checks permission.",
+      "sources": ["lib/health.ts:saveWorkout", "lib/health.ts:ensureAuthorization", "lib/backup.ts:recheckHealthAfterImport"]
+    },
+    {
+      "area": "int",
+      "feature_id": "int_watch_app",
+      "has": "no",
+      "how": "No watchOS target. Only the Live Activity widget extension exists.",
+      "sources": ["targets/rest-widget", "app.json"]
+    },
+    {
+      "area": "int",
+      "feature_id": "int_garmin",
+      "has": "no",
+      "how": "No wearable integration. Garmin Body Battery is typed in manually in the morning check-in.",
+      "sources": ["app/more/morning.tsx"]
+    },
+    {
+      "area": "int",
+      "feature_id": "int_import",
+      "has": "partial",
+      "how": "More → Backup → Importuj accepts this app's JSON backup envelope, a bare state from web v0.3 or native 0.1.0, auto-backup files and recovery files. It replaces all data after confirmation, migrates old schemas and rejects newer ones. There is no Strong, Hevy or generic CSV import.",
+      "sources": ["lib/backup.ts:importBackup", "lib/backup.ts:parseBackup", "lib/store.ts:migrate"]
+    },
+    {
+      "area": "int",
+      "feature_id": "int_export",
+      "has": "yes",
+      "how": "Two exports via the iOS share sheet. A JSON backup ({format:'trening-backup', schemaVersion, exportedAt, state}). A CSV in Strong column layout (Date, Workout Name, Duration, Exercise Name, Set Order, Weight, Reps, Distance, Seconds, Notes, Workout Notes, RPE) with weight in the user's unit and W marking warm-ups. Band and set type go into Notes. The CSV has a UTF-8 BOM and formula-injection escaping.",
+      "sources": ["lib/backup.ts:exportBackup", "lib/backup.ts:buildCsv", "lib/backup.ts:exportCsv"]
+    },
+    {
+      "area": "int",
+      "feature_id": "int_backup_sync",
+      "has": "partial",
+      "how": "Offline-first with no cloud sync or account. All state is stored as JSON in SQLite (Library/SQLite, outside Files) with a 300 ms debounced save and a forced flush on background. In-progress workout and timer are saved separately under a 'live' key. Automatic JSON backups go to Files after each workout (see new:auto_backup_files).",
+      "sources": ["lib/store.ts:persistRun", "lib/store.ts:openDb", "lib/backup.ts:autoBackup"]
+    },
+    {
+      "area": "int",
+      "feature_id": "int_widgets",
+      "has": "no",
+      "how": "No Home Screen widget. The widget extension contains only the Live Activity.",
+      "sources": ["targets/rest-widget/RestWidgetBundle.swift"]
+    },
+    {
+      "area": "int",
+      "feature_id": "int_siri_shortcuts",
+      "has": "no",
+      "how": "No App Intents or Siri Shortcuts. Only the URL scheme 'trening://' (expo-router deep links) exists.",
+      "sources": ["app.json", "app/_layout.tsx"]
+    },
+    {
+      "area": "equip",
+      "feature_id": "equip_locations",
+      "has": "no",
+      "how": "No gym profiles. Separate templates ('Legs — gym' / 'Legs — home') are the only workaround.",
+      "sources": ["lib/seed.ts:seedState"]
+    },
+    {
+      "area": "equip",
+      "feature_id": "equip_inventory",
+      "has": "partial",
+      "how": "The only inventory is resistance bands (More → Gumy): colour, level 1–7 and optional nominal assist kg. There is no dumbbell, plate or machine-weight inventory.",
+      "sources": ["app/more/bands.tsx", "lib/seed.ts:Band"]
+    },
+    {
+      "area": "equip",
+      "feature_id": "equip_filtering",
+      "has": "no",
+      "how": "Exercises are not filtered by available equipment.",
+      "sources": ["app/picker.tsx"]
+    },
+    {
+      "area": "social",
+      "feature_id": "social_feed",
+      "has": "no",
+      "how": "No social features or accounts.",
+      "sources": ["app/(tabs)/more.tsx"]
+    },
+    {
+      "area": "social",
+      "feature_id": "social_share",
+      "has": "no",
+      "how": "No workout share card. The share sheet is only used for backup and CSV files.",
+      "sources": ["lib/backup.ts"]
+    },
+    {
+      "area": "social",
+      "feature_id": "social_leaderboards",
+      "has": "no",
+      "how": "Not present.",
+      "sources": ["lib/seed.ts:State"]
+    },
+    {
+      "area": "social",
+      "feature_id": "social_challenges",
+      "has": "no",
+      "how": "Not present.",
+      "sources": ["lib/seed.ts:State"]
+    },
+    {
+      "area": "coach",
+      "feature_id": "coach_client_management",
+      "has": "no",
+      "how": "No UI. Only a data-model skeleton exists (CoachingRelation trainerId/traineeId/status/modules); see new:coach_data_model_skeleton.",
+      "sources": ["lib/seed.ts:CoachingRelation"]
+    },
+    {
+      "area": "coach",
+      "feature_id": "coach_assign_programs",
+      "has": "no",
+      "how": "No UI. The NextSessionInstructions entity (forTemplateId/forWorkoutId, text, acknowledgedAt) exists in the state but is unused.",
+      "sources": ["lib/seed.ts:NextSessionInstructions"]
+    },
+    {
+      "area": "coach",
+      "feature_id": "coach_feedback",
+      "has": "no",
+      "how": "No UI. The Feedback entity (attached to a workout, exercise index or set id) exists in the state but is unused.",
+      "sources": ["lib/seed.ts:Feedback"]
+    },
+    {
+      "area": "coach",
+      "feature_id": "coach_chat",
+      "has": "no",
+      "how": "Not present.",
+      "sources": ["lib/seed.ts:State"]
+    },
+    {
+      "area": "coach",
+      "feature_id": "coach_marketplace",
+      "has": "no",
+      "how": "Not present.",
+      "sources": ["lib/seed.ts:State"]
+    },
+    {
+      "area": "monet",
+      "feature_id": "monet_model",
+      "has": "no",
+      "how": "No paywall, subscriptions, in-app purchases or ads. It is a free personal app distributed ad hoc.",
+      "sources": ["package.json", "README.md"]
+    },
+    {
+      "area": "ux",
+      "feature_id": "ux_units",
+      "has": "yes",
+      "how": "A global kg/lb setting. Data is always stored in kg; lb is applied only on display and input, shown at 0.1 lb (kg at 0.01). lb input snaps to round kg so there are no false PRs. There is no per-exercise unit.",
+      "sources": ["lib/units.ts", "app/more/settings.tsx"]
+    },
+    {
+      "area": "ux",
+      "feature_id": "ux_theme",
+      "has": "yes",
+      "how": "Dark and light themes follow the system appearance (userInterfaceStyle automatic, useColorScheme). Light-theme tokens are tuned for WCAG contrast. There is no in-app override. The Live Activity background is always dark.",
+      "sources": ["lib/theme.ts", "app.json", "targets/rest-widget/RestLiveActivity.swift"]
+    },
+    {
+      "area": "ux",
+      "feature_id": "ux_languages",
+      "has": "yes",
+      "how": "Polish and English (Settings → Język: As phone / Polski / English). The EN dictionary is keyed by Polish source text, and 'npm run check:i18n' fails on missing keys. Plural forms are handled for both languages, and dates and numbers follow the locale (comma decimal in PL). Notifications, Live Activity labels and InfoPlist strings are localised. Seed template and band names use the device language.",
+      "sources": ["lib/i18n.ts", "lib/i18n.en.ts", "scripts/check-i18n.mjs", "locales/en.json"]
+    },
+    {
+      "area": "ux",
+      "feature_id": "ux_accessibility",
+      "has": "yes",
+      "how": "VoiceOver labels and hints cover every icon button and each set field (naming the set and exercise), history rows are read as 'header: value', and the drag list has up/down actions. Touch targets are ≥44 pt. Dynamic Type is supported but capped (maxFontSizeMultiplier 1.3–1.4) to keep the set row usable. There is a progressbar role on session progress, and contrast is tested.",
+      "sources": ["components/ActiveWorkout.tsx", "app/history/[id].tsx", "components/ui.tsx", "components/DragList.tsx", "docs/09-plan-testow.md:C2-C10"]
+    },
+    {
+      "area": "ux",
+      "feature_id": "ux_onboarding",
+      "has": "partial",
+      "how": "There is no onboarding flow. On first launch you get seeded templates and exercises and a dashed hint card on Home explaining start → enter → ✓ → finish. Notification permission is requested when the workout screen opens.",
+      "sources": ["app/(tabs)/index.tsx:Home", "lib/seed.ts:seedState", "components/ActiveWorkout.tsx"]
+    },
+    {
+      "area": "ux",
+      "feature_id": "ux_offline",
+      "has": "yes",
+      "how": "Fully offline: no network calls or backend; everything is in local SQLite. The More screen states 'dane tylko w telefonie, bez konta i bez sieci'.",
+      "sources": ["lib/store.ts", "app/(tabs)/more.tsx"]
+    },
+    {
+      "area": "ux",
+      "feature_id": "ux_privacy",
+      "has": "yes",
+      "how": "No account. Data stays in the app's private Library/SQLite, which is included in device backups but not visible in Files. Only the auto-backup JSONs are in Documents/Backup. Health access is write-only and opt-in. There is no analytics code.",
+      "sources": ["lib/store.ts:dbDirectory", "lib/backup.ts:autoBackup", "lib/health.ts", "package.json"]
+    },
+    {
+      "area": "body",
+      "feature_id": "new:morning_check_in",
+      "has": "yes",
+      "how": "Reach it via More → Poranne wpisy or the Home card. Fields: Body Battery, sleep score, sleep hours and weight for today. The record is created only on the first edit (one per local date). The last 14 entries are listed. Home shows 'Dziś rano' with today's values.",
+      "sources": ["app/more/morning.tsx", "lib/store.ts:todayMorning", "lib/store.ts:peekTodayMorning"]
+    },
+    {
+      "area": "body",
+      "feature_id": "new:weigh_in_reminder",
+      "has": "yes",
+      "how": "An optional weekly local notification every Monday at 07:00 asks you to log your weight in the morning check-in. It is off by default (Settings), needs notification permission, and is rescheduled on language change, import and reset.",
+      "sources": ["lib/timer.ts:scheduleWeighReminder", "app/more/settings.tsx"]
+    },
+    {
+      "area": "timer",
+      "feature_id": "new:abandoned_workout_notification",
+      "has": "yes",
+      "how": "While a workout is active, a local notification 'Trening wciąż trwa' is scheduled 2 h after the last activity. Its text depends on state: working sets done / warm-up only / nothing ticked. It is cancelled on finish or discard.",
+      "sources": ["lib/timer.ts:scheduleStaleReminder", "lib/timer.ts:staleBody", "components/ActiveWorkout.tsx"]
+    },
+    {
+      "area": "timer",
+      "feature_id": "new:timers_survive_app_kill",
+      "has": "yes",
+      "how": "Rest end time, timed-set start/target and the owning set id are saved immediately, so the rest timer and a targeted stopwatch resume after the app is killed. A target stopwatch that ran out is ticked with time = target. An untargeted stopwatch is not resumed: its set is ticked with the time already in the field, or left unticked.",
+      "sources": ["lib/store.ts:setTimerState", "lib/timer.ts:restore", "lib/store.ts:resolveColdStopwatch"]
+    },
+    {
+      "area": "timer",
+      "feature_id": "new:actual_rest_logging",
+      "has": "yes",
+      "how": "Each ticked set stores actualRest: the time since the previous tick in the workout, under 1 h, otherwise null. It is shown in the session detail's 'przerwa' column.",
+      "sources": ["lib/store.ts:toggleDone", "app/history/[id].tsx"]
+    },
+    {
+      "area": "timer",
+      "feature_id": "new:rest_badge_on_tab",
+      "has": "yes",
+      "how": "The remaining rest time appears as a badge on the Trening tab ('2m'/'45s', '+1m' after it ends) while you are on other tabs. VoiceOver reads the full time.",
+      "sources": ["app/(tabs)/_layout.tsx"]
+    },
+    {
+      "area": "log",
+      "feature_id": "new:band_assist",
+      "has": "yes",
+      "how": "Band inventory (More → Gumy): colour, level 1–7 and optional nominal assist kg. The band column cycles through bands by level, and a band with kg fills −kg into the ±kg field as a pair; removing the band removes its assistance. A band without kg makes the load unknown, so the set is excluded from e1RM and volume records. Deleted bands show '?' in history.",
+      "sources": ["app/more/bands.tsx", "lib/store.ts:applyBandAssist", "lib/store.ts:pairAssist", "lib/stats.ts:unknownAssist"]
+    },
+    {
+      "area": "log",
+      "feature_id": "new:load_modes",
+      "has": "yes",
+      "how": "Each weighted exercise has a load mode: per dumbbell (×2 in volume, column 'kg/hant.'), total (×1), or unilateral per side (×2, 'kg/str.'). Defaults: dumbbells → per dumbbell, except single-implement lifts like Goblet Squat or KB Swing → total. Bodyweight is always ×1. Changing equipment resets the mode. It affects volume, column labels and the e1RM/max labels.",
+      "sources": ["lib/seed.ts:loadModeFor", "lib/seed.ts:SINGLE_IMPLEMENT", "lib/store.ts:exMult", "app/exercise/[id].tsx"]
+    },
+    {
+      "area": "log",
+      "feature_id": "new:prefill_carry_over",
+      "has": "yes",
+      "how": "Values pre-filled at workout start are remembered (set.pre). If you change set 1 from its prefill (e.g. 24 → 25 kg) and tick it, later unticked sets of the same family that were untouched and still hold the same prefill take the new value. Pyramids with different values are left alone.",
+      "sources": ["lib/store.ts:carryPrefill", "lib/store.ts:markPre"]
+    },
+    {
+      "area": "log",
+      "feature_id": "new:session_progress_bar",
+      "has": "yes",
+      "how": "A thin bar under the workout clock shows ticked/total sets (warm-ups included) as 'done/all'.",
+      "sources": ["components/ActiveWorkout.tsx:SessionProgress"]
+    },
+    {
+      "area": "log",
+      "feature_id": "new:finish_validation",
+      "has": "yes",
+      "how": "Finish always asks for confirmation and warns about typed-but-unticked sets (not saved) and ticked sets with 0 reps or no time/distance. With no ticked sets it offers discard only; with warm-ups only it asks before saving. Only ticked sets are stored and empty exercises are dropped. A cancel button with confirmation discards the workout.",
+      "sources": ["components/ActiveWorkout.tsx:finish", "lib/store.ts:finishWorkout", "lib/store.ts:cancelWorkout"]
+    },
+    {
+      "area": "log",
+      "feature_id": "new:same_exercise_multiple_blocks",
+      "has": "yes",
+      "how": "The same exercise can appear several times in a workout or template, e.g. heavy plus light blocks. Blocks are numbered '(1)', '(2)' for VoiceOver. 'Previously' is matched to the same template item, or to the same block index of the last session.",
+      "sources": ["lib/store.ts:previousBlockFor", "lib/store.ts:occurrence"]
+    },
+    {
+      "area": "log",
+      "feature_id": "new:keep_screen_awake",
+      "has": "yes",
+      "how": "With the 'Ekran włączony podczas treningu' setting (default on), the screen stays awake while the workout screen is mounted (expo-keep-awake).",
+      "sources": ["components/ActiveWorkout.tsx", "app/more/settings.tsx"]
+    },
+    {
+      "area": "plan",
+      "feature_id": "new:repeat_last_workout",
+      "has": "yes",
+      "how": "'Powtórz ostatni (<name>)' on Home starts a workout copying what was actually done last time: exercises added or removed mid-session, set kinds (failure becomes normal) and values. Deleted exercises are skipped, and time targets come from the template item.",
+      "sources": ["lib/store.ts:repeatLast", "app/(tabs)/index.tsx:Home"]
+    },
+    {
+      "area": "plan",
+      "feature_id": "new:template_duplicate",
+      "has": "yes",
+      "how": "'Duplikuj' in the template editor makes a copy named '<name> (kopia)' with new item ids and new superset group ids.",
+      "sources": ["lib/store.ts:dupTemplate", "app/template/[id].tsx"]
+    },
+    {
+      "area": "stats",
+      "feature_id": "new:history_list_and_session_detail",
+      "has": "yes",
+      "how": "The Historia tab lists sessions with date/time, duration, working-set count and volume (virtualised FlatList). The detail view shows every set (W/numbered + D/F), load, reps, distance, time, RPE, band, actual rest, PR labels and notes. Superset labels are kept.",
+      "sources": ["app/(tabs)/history.tsx", "app/history/[id].tsx"]
+    },
+    {
+      "area": "int",
+      "feature_id": "new:auto_backup_files",
+      "has": "yes",
+      "how": "After every saved workout (Finish, abandoned-workout save or silent 6 h save), a JSON backup is written to Documents/Backup/trening-YYYY-MM-DD-HHMMSS.json. It is visible in Files → On My iPhone → Trening → Backup (UIFileSharingEnabled). The newest 10 are kept, and user files in the folder are untouched. It is on by default and can be turned off in Settings.",
+      "sources": ["lib/backup.ts:autoBackup", "lib/backup.ts:onWorkoutSaved", "app.json"]
+    },
+    {
+      "area": "int",
+      "feature_id": "new:data_integrity_recovery",
+      "has": "yes",
+      "how": "An unreadable saved state is never overwritten; it is moved to a 'state_corrupt_<ts>' key and a banner offers to send that copy (as an importable 'trening-recovery' envelope). A failed write shows a retry banner. Saves are sequenced with a counter so a clock change can't restore stale data. A failed DB open shows an error screen with retry instead of an empty app.",
+      "sources": ["lib/store.ts:init", "lib/store.ts:readRecovery", "lib/store.ts:persistRun", "app/(tabs)/index.tsx:DataBanners"]
+    },
+    {
+      "area": "int",
+      "feature_id": "new:signing_expiry_reminder",
+      "has": "yes",
+      "how": "The app reads ExpirationDate from embedded.mobileprovision; this applies only when the profile is valid for 30 days or less. Home shows a banner when 2 days or fewer remain or the profile has expired, and More shows the expiry date. A local notification fires the day before at 18:00 ('Jutro wygasa podpis aplikacji') with a backup reminder.",
+      "sources": ["lib/signing.ts:getProfileExpiry", "lib/signing.ts:scheduleReminder", "app/(tabs)/index.tsx:SigningBanner", "app/(tabs)/more.tsx"]
+    },
+    {
+      "area": "lib",
+      "feature_id": "new:archive_and_restore_exercise",
+      "has": "yes",
+      "how": "Deleting an exercise removes it from lists and templates. If it has history (or is in the current workout) it is archived, so history, charts and CSV keep its name. Otherwise it is deleted permanently. Searching its name offers 'Przywróć' (restore) instead of creating a duplicate.",
+      "sources": ["lib/store.ts:deleteExercise", "lib/store.ts:purgeOrphans", "app/(tabs)/exercises.tsx", "app/picker.tsx"]
+    },
+    {
+      "area": "coach",
+      "feature_id": "new:coach_data_model_skeleton",
+      "has": "partial",
+      "how": "Data model only, with no UI. Every entity has UUID, ownerId and createdAt/updatedAt. Workouts carry loggedBy and sessionMode (solo/remote/in_gym). The state includes relations (CoachingRelation), feedback (Feedback) and instructions (NextSessionInstructions), all preserved through migrate/backup and prepared for future accounts.",
+      "sources": ["lib/seed.ts:CoachingRelation", "lib/seed.ts:Feedback", "lib/seed.ts:NextSessionInstructions", "lib/seed.ts:Workout"]
+    },
+    {
+      "area": "ux",
+      "feature_id": "new:modules_toggle",
+      "has": "partial",
+      "how": "Settings → Moduły lists Training (always on) plus Diet, Sleep, Cardio, Supplements and Recommendations. The others show as 'wkrótce' (coming soon), are disabled, and have no implementation. The module registry is stored in settings.modules.",
+      "sources": ["lib/seed.ts:MODULES", "lib/seed.ts:MODULES_AVAILABLE", "lib/store.ts:setModule", "app/more/settings.tsx"]
+    },
+    {
+      "area": "ux",
+      "feature_id": "new:reset_all_data",
+      "has": "yes",
+      "how": "Settings → 'Wyczyść wszystkie dane' (with confirmation) replaces everything with fresh seed data in the phone's language and stops timers.",
+      "sources": ["lib/store.ts:resetAll", "app/more/settings.tsx"]
+    },
+    {
+      "area": "ux",
+      "feature_id": "new:schema_versioning_and_migration",
+      "has": "yes",
+      "how": "State has a schemaVersion (13). migrate() is idempotent and tolerant: it fixes types, clamps ranges, snaps kg to 0.01, drops corrupt entries, keeps only ticked sets in history, normalises supersets and fills defaults. It accepts web 0.3 and native 0.1.0 data.",
+      "sources": ["lib/store.ts:migrate", "lib/seed.ts:SCHEMA_VERSION"]
+    }
+  ]
+}

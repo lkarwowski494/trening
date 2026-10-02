@@ -1,0 +1,126 @@
+Ćwiczenie,Wymaga (każda grupa; w grupie: którekolwiek),Zalecane,Źródło obciążenia,Wzorzec ruchu,Zamienniki,Pewność,Uwagi
+Bench Press (sztanga),barbell + bench.flat + (rack lub bench.uprights),rack.safeties,barbell,h_push,"Bench Press (hantle), Machine Chest Press, Push Up; Smith bench press",high,Bench inside a rack or a bench with its own uprights; safeties/spotter recommended.
+Bench Press (hantle),db + bench.flat,,dumbbell,h_push,"Bench Press (sztanga), Machine Chest Press, Push Up",high,
+Incline Bench Press (sztanga),barbell + bench.incline + (rack lub bench.uprights),rack.safeties,barbell,h_push,Incline Bench Press (hantle); Smith incline press; incline machine press,high,"Incline bench inside a rack, or a dedicated incline station with uprights."
+Incline Bench Press (hantle),db + bench.incline,,dumbbell,h_push,Incline Bench Press (sztanga); Smith incline press; Incline Push Up is a much easier bodyweight option,high,
+Decline Bench Press,barbell + bench.decline + (rack lub bench.uprights),rack.safeties,barbell,h_push,"Chest Dip, Bench Press (sztanga); decline DB press; Machine Chest Press",high,Name has no implement; barbell per app class. Decline DB press would need db + bench.decline instead.
+Chest Fly (hantle),db + bench.flat,,dumbbell,isolation,"Cable Fly, Pec Deck",high,Incline variant would need bench.incline.
+Cable Fly,cable.dual,,cable,isolation,"Pec Deck, Chest Fly (hantle); band fly",high,"Any pulley height (high-to-low, mid, low-to-high). Single-arm version possible on one pulley."
+Pec Deck,pec_deck,,machine_stack,isolation,"Cable Fly, Chest Fly (hantle)",high,Most pec-deck machines double as Reverse Pec Deck.
+Machine Chest Press,chest_press_machine,,machine_stack,h_push,Bench Press (hantle/sztanga); Smith bench press; Push Up,high,Some chest-press machines are plate-loaded; machine_stack chosen as the common case.
+Wyciskanie na linkach (stojąc),cable.dual + cable.mid,,cable,h_push,"Cable Fly, Machine Chest Press, Push Up; band chest press",medium,PL: standing cable chest press. Assumed two handles from two pulleys at ~chest height; a single-arm version on one mid pulley is possible.
+Chest Dip,(dip.bars lub rings),,bodyweight,v_push,"Triceps Dips (ławka), Decline Bench Press, Push Up; assisted dip machine",high,"Rings, power tower or rack dip attachment also work (rings change the feel). Band assistance is optional (not required); dip_belt only for weighted variant."
+Push Up,— (nic),,bodyweight,h_push,"Bench Press (hantle), Machine Chest Press, Incline Push Up",high,Floor only. Parallettes / vest / plate on back optional.
+Incline Push Up,(bench.flat lub box),,bodyweight,h_push,"Push Up, Bench Press (hantle), Machine Chest Press",high,"Hands on any sturdy elevated surface (bench, box, chair, counter, Smith/rack bar); wall push-up is the easiest extreme."
+Diamond Push Up,— (nic),,bodyweight,h_push,"Close Grip Bench Press, Triceps Dips (ławka), Triceps Pushdown",high,
+Deadlift (sztanga),barbell,,barbell,hinge,"Trap Bar Deadlift, Deadlift (hantle), Sumo Deadlift",high,Lifting platform / bumper plates not modelled.
+Deadlift (hantle),db,,dumbbell,hinge,"Deadlift (sztanga), Trap Bar Deadlift, Kettlebell Swing",high,
+Sumo Deadlift,barbell,,barbell,hinge,"Deadlift (sztanga), Trap Bar Deadlift; DB/KB sumo deadlift",high,Name has no implement; barbell per app class.
+Trap Bar Deadlift,trap_bar,,trap_bar,hinge,"Deadlift (sztanga), Deadlift (hantle)",high,App coarse class is 'sztanga' but the trap (hex) bar is a distinct implement. Squat-hinge hybrid; classed hinge.
+RDL (sztanga),barbell,rack,barbell,hinge,"RDL (hantle/linki), Good Morning, Back Extension",high,Rack is a convenience for unracking at hip height; the bar can be deadlifted up first.
+RDL (hantle/linki),(db lub cable.low),,dumbbell,hinge,"RDL (sztanga), Good Morning, Back Extension",medium,Name allows two implements: dumbbells OR a low pulley (bar/handles). loadSource follows app class (dumbbell); the cable variant would be 'cable'.
+Bent Over Row (sztanga),barbell,rack,barbell,h_pull,"Bent Over Row (hantle), Pendlay Row, T-Bar Row, Seated Cable Row",high,
+Bent Over Row (hantle),db,,dumbbell,h_pull,"Bent Over Row (sztanga), One Arm Row (hantle), Chest Supported Row",high,
+Pendlay Row,barbell,,barbell,h_pull,"Bent Over Row (sztanga/hantle), T-Bar Row",high,Dead-stop barbell row from the floor.
+One Arm Row (hantle),db,bench.flat,dumbbell,h_pull,"Bent Over Row (hantle), Chest Supported Row, single-arm Seated Cable Row",high,"Classic version braced on a bench; can brace on a rack/knee, so bench only recommended."
+Chest Supported Row,db + bench.incline,,dumbbell,h_pull,"Seated Cable Row, T-Bar Row; chest-supported row machine (row_machine)",medium,Generic name; interpreted per app class as dumbbells lying chest-down on an incline bench. In gyms often done on a row_machine or chest-supported T-bar instead.
+T-Bar Row,(t_bar lub landmine) + (t_bar lub barbell),,barbell,h_pull,"Bent Over Row (sztanga), Chest Supported Row, Seated Cable Row",medium,Either a T-bar row station or a barbell in a landmine: CNF of t_bar OR (landmine AND barbell). Barbell wedged into a corner works without a landmine. T-bar stations are plate-loaded; loadSource kept as barbell per app class.
+Seated Cable Row,(cable.row_seat lub cable.low),,cable,h_pull,"One Arm Row (hantle), Bent Over Row, row_machine",high,"Dedicated seated-row station, or any low pulley sitting on the floor/bench with feet braced."
+Wiosłowanie na linkach (siedząc),(cable.row_seat lub cable.low),,cable,h_pull,"One Arm Row (hantle), Bent Over Row, row_machine",high,PL: seated cable row - duplicates 'Seated Cable Row'. Same requirements.
+Lat Pulldown,(lat_pulldown lub cable.high),,cable,v_pull,"Pull Up, Chin Up, assisted_pullup_machine; band pulldown",high,Seated station with thigh pad; kneeling under any high pulley is an accepted substitute.
+Straight Arm Pulldown,cable.high,,cable,isolation,Lat Pulldown; band straight-arm pulldown; DB pullover,high,Lats isolation. A lat_pulldown station's pulley also serves (location side may map lat_pulldown -> cable.high).
+Chin Up,(pullup.bar lub rings),,bodyweight,v_pull,"Lat Pulldown (underhand), Pull Up, assisted_pullup_machine",high,Rings / power tower also work (rings change the feel). Band assistance optional (not required).
+Pull Up,(pullup.bar lub rings),,bodyweight,v_pull,"Lat Pulldown, Chin Up, assisted_pullup_machine",high,Rings / power tower also work (rings change the feel). Band assistance optional (not required).
+Neutral Grip Pull Up,(pullup.bar lub rings),,bodyweight,v_pull,"Lat Pulldown (neutral handle), Pull Up, Chin Up, assisted_pullup_machine",medium,"Needs parallel/neutral handles (common on rack and power-tower bars, absent on many doorway bars); rings also give a neutral grip. No separate capability in vocab. Band assistance optional."
+Inverted Row,(rack lub smith lub rings lub suspension) + (barbell lub smith lub rings lub suspension),,bodyweight,h_pull,"Bent Over Row (hantle), Seated Cable Row, One Arm Row (hantle)",medium,"Needs a bar/handles at hip height: barbell on rack hooks (rack AND barbell), Smith bar, rings or suspension trainer - written in CNF. At home a sturdy table edge also works (not in vocab)."
+Face Pull,(cable.high lub cable.mid),,cable,h_pull,"Reverse Pec Deck, Reverse Fly (hantle); band face pull (band.loop_anchor)",high,"Rope attachment, pulley at face height or higher."
+Back Extension,(hyperext_bench lub ghd),,bodyweight,hinge,"RDL (sztanga), Good Morning; floor superman",high,"45 deg or 90 deg hyperextension bench, or a GHD. Optional plate/DB held for load."
+Shrugs (hantle),db,,dumbbell,isolation,"Shrugs (sztanga), Farmer's Walk; trap-bar or Smith shrugs",high,
+Shrugs (sztanga),barbell,rack,barbell,isolation,"Shrugs (hantle), Farmer's Walk; trap-bar or Smith shrugs",high,Rack is a convenience for unracking at thigh height.
+Good Morning,barbell + rack,rack.safeties,barbell,hinge,"RDL (sztanga), Back Extension; band good morning",high,Bar on the upper back must be unracked from shoulder height.
+Overhead Press (sztanga),barbell,rack,barbell,v_push,"Overhead Press (hantle), Machine Shoulder Press, Push Press; Smith OHP",high,"Normally unracked at shoulder height, but the bar can be cleaned from the floor, so rack only recommended (unlike squats/good morning)."
+Overhead Press (hantle),db,,dumbbell,v_push,"Overhead Press (sztanga), Seated Shoulder Press (hantle), Machine Shoulder Press",high,Standing.
+Seated Shoulder Press (hantle),db + (bench.flat lub bench.incline lub box),bench.incline,dumbbell,v_push,"Overhead Press (hantle/sztanga), Arnold Press, Machine Shoulder Press",high,Any seat works; back support (adjustable bench set ~80-90 deg) recommended.
+Arnold Press,db,bench.incline,dumbbell,v_push,"Seated Shoulder Press (hantle), Overhead Press (hantle)",high,Done seated (back support recommended) or standing.
+Push Press,barbell,rack,barbell,v_push,"Overhead Press (sztanga), DB push press",high,Same rack logic as Overhead Press (sztanga).
+Machine Shoulder Press,shoulder_press_machine,,machine_stack,v_push,"Overhead Press (hantle/sztanga), Seated Shoulder Press (hantle); Smith OHP",high,Some are plate-loaded; machine_stack chosen as the common case.
+Wyciskanie nad głowę (linki),cable.dual + cable.low,,cable,v_push,"Overhead Press (hantle), Machine Shoulder Press; band overhead press",medium,PL: cable overhead press. Assumed standing/kneeling between two low pulleys; a single-arm version on one low pulley is possible.
+Lateral Raise (hantle),db,,dumbbell,isolation,Cable Lateral Raise; machine lateral raise; band lateral raise,high,
+Cable Lateral Raise,cable.low,,cable,isolation,Lateral Raise (hantle); band lateral raise,high,Single-arm from a low pulley.
+Front Raise,db,,dumbbell,isolation,"Plate front raise (plates), cable front raise (cable.low), barbell front raise",high,Name has no implement; dumbbells per app class.
+Rear Delt Raise (hantle),db,bench.incline,dumbbell,isolation,"Reverse Pec Deck, Face Pull; cable rear-delt fly (cable.dual)",high,Bent-over or chest-down on an incline bench. Near-duplicate of 'Reverse Fly (hantle)' (both = bent-over DB rear-delt fly).
+Reverse Fly (hantle),db,bench.incline,dumbbell,isolation,"Reverse Pec Deck, Face Pull; cable rear-delt fly (cable.dual)",high,Bent-over or chest-down on an incline bench. Near-duplicate of 'Rear Delt Raise (hantle)' (both = bent-over DB rear-delt fly).
+Reverse Pec Deck,pec_deck,,machine_stack,isolation,"Reverse Fly (hantle), Face Pull; cable rear-delt fly (cable.dual)",high,Uses the pec_deck machine (most are dual-purpose); a dedicated rear-delt machine would also count.
+Upright Row,db,,dumbbell,isolation,Lateral Raise (hantle); barbell/EZ upright row; cable upright row (cable.low),high,"Name has no implement; dumbbells per app class. Compound delt/trap pull, classed isolation (sometimes v_pull)."
+Biceps Curl (hantle),db,,dumbbell,isolation,"Barbell Curl, EZ Bar Curl, Cable Curl, Hammer Curl",high,
+Barbell Curl,barbell,,barbell,isolation,"EZ Bar Curl, Biceps Curl (hantle), Cable Curl",high,
+EZ Bar Curl,ez_bar,,ez_bar,isolation,"Barbell Curl, Biceps Curl (hantle), Cable Curl",high,App coarse class is 'sztanga'; the EZ bar is a distinct implement.
+Hammer Curl,db,,dumbbell,isolation,"Rope cable hammer curl (cable.low), Biceps Curl (hantle)",high,
+Incline Curl (hantle),db + bench.incline,,dumbbell,isolation,"Biceps Curl (hantle), Cable Curl (behind body), Spider Curl",high,Seated back on an incline bench.
+Concentration Curl (hantle),db + (bench.flat lub bench.incline lub box),,dumbbell,isolation,"Preacher Curl, Spider Curl, single-arm Cable Curl",high,Seated; any seat works.
+Preacher Curl,db + preacher_bench,,dumbbell,isolation,"Spider Curl, Concentration Curl (hantle); EZ-bar or machine preacher curl",medium,Generic name; dumbbells per app class. Needs a preacher bench/pad; an incline-bench backrest is a common one-arm DB substitute (not encoded).
+Spider Curl,db + bench.incline,,dumbbell,isolation,"Preacher Curl, Concentration Curl (hantle)",high,"Chest-down on an incline bench, arms hanging."
+Cable Curl,cable.low,,cable,isolation,"Biceps Curl (hantle), Barbell Curl; band curl",high,
+Skullcrusher (hantle),db + bench.flat,,dumbbell,isolation,"Skullcrusher (EZ), Overhead Triceps Extension (hantel), Triceps Pushdown",high,Floor version possible but bench is standard.
+Skullcrusher (EZ),ez_bar + bench.flat,,ez_bar,isolation,"Skullcrusher (hantle), Cable Overhead Extension, Triceps Pushdown",high,App coarse class is 'sztanga'; EZ bar named explicitly.
+Triceps Dips (ławka),(bench.flat lub box),,bodyweight,v_push,"Chest Dip, Diamond Push Up, Triceps Pushdown",high,PL 'ławka' = bench: bench dips; a chair or box works.
+Triceps Pushdown,cable.high,,cable,isolation,"Band pushdown, Skullcrusher, Diamond Push Up",high,Rope or bar attachment.
+Overhead Triceps Extension (hantel),db,,dumbbell,isolation,"Cable Overhead Extension, Skullcrusher (hantle/EZ)",high,One dumbbell held with both hands (app SINGLE_IMPLEMENT); seated or standing.
+Cable Overhead Extension,(cable.high lub cable.low),,cable,isolation,"Overhead Triceps Extension (hantel), Skullcrusher; band overhead extension",high,"Facing away from a high pulley, or from a low pulley; rope attachment."
+Close Grip Bench Press,barbell + bench.flat + (rack lub bench.uprights),rack.safeties,barbell,h_push,"Diamond Push Up, Triceps Dips (ławka); close-grip DB press; Smith CGBP",high,Name has no implement; barbell per app class. Same setup as Bench Press (sztanga).
+Triceps Kickback,db,bench.flat,dumbbell,isolation,Triceps Pushdown; cable kickback (cable.low),high,Bench support optional.
+Back Squat,barbell + rack,rack.safeties,barbell,squat,"Front Squat, Hack Squat, Leg Press, Goblet Squat; Smith squat",high,
+Front Squat,barbell + rack,rack.safeties,barbell,squat,"Back Squat, Goblet Squat, Hack Squat; Smith front squat",high,
+Goblet Squat,(db lub kb),,dumbbell,squat,"Back Squat, Front Squat, Leg Press, Przysiad z pasem (linki)",high,One DB or KB held at the chest (app SINGLE_IMPLEMENT); kettlebell is the classic implement so it is OR'ed in.
+Przysiad z pasem (linki),cable.low + dip_belt,,cable,squat,"Back Squat, Goblet Squat, Leg Press; belt-squat machine; landmine belt squat",medium,"PL: belt squat on cables - interpreted as a hip/dip belt clipped to a low pulley (standing on boxes optional). The belt is inherent to the exercise, so dip_belt is required. Dedicated belt-squat machine not in vocab."
+Box Squat,barbell + rack + (bench.flat lub box),rack.safeties,barbell,squat,Back Squat; Goblet Squat to box,high,Box or bench behind as depth target.
+Hack Squat,hack_squat,,plate_loaded_machine,squat,"Leg Press, Back Squat; Smith squat",high,Most hack squats are plate-loaded; some are selectorized.
+Leg Press,leg_press,,plate_loaded_machine,squat,"Hack Squat, Back Squat, Przysiad z pasem (linki)",high,Most leg presses are plate-loaded; some are selectorized.
+Bulgarian Split Squat (hantle),db + (bench.flat lub box),,dumbbell,lunge_single_leg,"Lunges (hantle), Reverse Lunge, Step Up; barbell/Smith split squat",high,Rear foot on bench/box.
+Lunges (hantle),db,,dumbbell,lunge_single_leg,"Walking Lunges, Reverse Lunge, Bulgarian Split Squat (hantle); barbell lunge",high,
+Walking Lunges,— (nic),db,dumbbell,lunge_single_leg,"Lunges (hantle), Reverse Lunge, Bulgarian Split Squat (hantle)",medium,"App classes this as dumbbells, but the name has no implement and it is commonly done unloaded; requirement kept at the floor so it stays available everywhere (db recommended). Switch requires to [[""db""]] if the app should treat it as always loaded. Needs walking space."
+Reverse Lunge,— (nic),db,dumbbell,lunge_single_leg,"Lunges (hantle), Walking Lunges, Bulgarian Split Squat (hantle)",medium,"App classes this as dumbbells, but the name has no implement and it is commonly done unloaded; requirement kept at the floor so it stays available everywhere (db recommended). Switch requires to [[""db""]] if the app should treat it as always loaded."
+Step Up,(bench.flat lub box),db,dumbbell,lunge_single_leg,"Bulgarian Split Squat (hantle), Lunges (hantle), Pistol Squat",medium,"Box/bench at about knee height. App classes this as dumbbells, but the name has no implement and it is commonly done unloaded; requirement kept at the floor so it stays available everywhere (db recommended). Switch requires to [[""db""]] if the app should treat it as always loaded."
+Leg Extension,leg_ext,,machine_stack,isolation,Sissy Squat; band leg extension; Front Squat,high,
+Leg Curl,leg_curl,,machine_stack,isolation,"Lying Leg Curl, Nordic Curl, RDL (sztanga)",medium,"Generic name; presumably the seated machine (since 'Lying Leg Curl' is separate). Vocab has a single leg_curl capability, so a seated vs a lying leg-curl machine is not distinguished."
+Lying Leg Curl,leg_curl,,machine_stack,isolation,"Leg Curl, Nordic Curl; DB leg curl lying on a bench",medium,"Vocab has a single leg_curl capability, so a seated vs a lying leg-curl machine is not distinguished."
+Nordic Curl,(ghd lub glute_ham_raise lub lat_pulldown lub barbell),floor_mat,bodyweight,isolation,"Leg Curl, Lying Leg Curl, RDL (sztanga)",low,"Needs an ankle anchor: GHD/GHR/Nordic bench, lat-pulldown thigh pad, or a loaded barbell over the heels. At home a sofa, partner or strap anchor - not expressible in vocab, so availability is under-reported. Band assistance optional."
+Pistol Squat,— (nic),,bodyweight,lunge_single_leg,"Bulgarian Split Squat (hantle), Step Up, Goblet Squat",high,Box/bench as depth target or support for regression; band assistance optional.
+Sissy Squat,— (nic),,bodyweight,isolation,"Leg Extension, Front Squat",high,Hold a post/rack for balance; a sissy-squat bench is optional (not in vocab). Knee-dominant quad isolation; could be classed squat.
+Wall Sit,— (nic),,bodyweight,squat,"Goblet Squat, Leg Extension",high,Isometric (metric: time). Ściana zawsze dostępna — bez wymagań (przegląd 02.10).
+Hip Thrust (sztanga),barbell + (bench.flat lub box),,barbell,hinge,"Hip Thrust (hantel), Glute Bridge; hip-thrust machine; Smith hip thrust",high,Upper back on bench/box; bar pad advised (not in vocab).
+Hip Thrust (hantel),db + (bench.flat lub box),,dumbbell,hinge,"Hip Thrust (sztanga), Glute Bridge",high,One dumbbell on the hips (app SINGLE_IMPLEMENT).
+Glute Bridge,— (nic),floor_mat,bodyweight,hinge,"Hip Thrust (sztanga/hantel), Cable Kickback",high,Floor version; optional DB/plate/barbell on hips.
+Cable Kickback,cable.low,,cable,isolation,"Hip Thrust, Glute Bridge; band kickback",high,Ankle-strap attachment.
+Hip Abduction,hip_abductor_adductor,,machine_stack,isolation,Band lateral walk/clamshell; cable hip abduction (cable.low),high,
+Hip Adduction,hip_abductor_adductor,,machine_stack,isolation,Cable hip adduction (cable.low); Copenhagen plank,high,
+Kettlebell Swing,(kb lub db),,kettlebell,hinge,"RDL (hantle/linki), Hip Thrust, Deadlift (hantle)",medium,"App coarse class is 'hantle' (no KB class); DB swing is a common substitute, so db is OR'ed in."
+Standing Calf Raise,calf_machine,,machine_stack,isolation,"Łydki na stopniu, Calf Press (leg press); Smith or barbell calf raise",medium,Name has no implement; machine per app class. Vocab has a single calf_machine capability; standing vs seated calf machine is not distinguished.
+Seated Calf Raise,calf_machine,,plate_loaded_machine,isolation,Standing Calf Raise; DB on knees seated on a bench with toes on a step,medium,Seated calf machines are usually plate-loaded. Vocab has a single calf_machine capability; standing vs seated calf machine is not distinguished.
+Łydki na stopniu,— (nic),"box, db",dumbbell,isolation,"Standing Calf Raise, Calf Press (leg press)",medium,"Dowolny stopień/schody — bez wymagań, skrzynia zalecana (przegląd 02.10)."
+Calf Press (leg press),leg_press,,plate_loaded_machine,isolation,"Standing Calf Raise, Łydki na stopniu",high,Done on the leg press.
+Plank,— (nic),floor_mat,bodyweight,core_anti_ext,"Ab Wheel, Dead Bug, Hollow Hold",high,
+Side Plank,— (nic),floor_mat,bodyweight,core_other,"Suitcase Carry, Pallof Press",high,Anti-lateral-flexion; no dedicated pattern in enum.
+Dead Bug,— (nic),floor_mat,bodyweight,core_anti_ext,"Plank, Hollow Hold, Bird Dog",high,
+Bird Dog,— (nic),floor_mat,bodyweight,core_anti_rot,"Dead Bug, Plank, Pallof Press",high,Anti-rotation / anti-extension.
+Ab Wheel,ab_wheel,floor_mat,bodyweight,core_anti_ext,Plank; barbell rollout (barbell with round plates); suspension fallout,high,
+Pallof Press,cable.mid,,cable,core_anti_rot,"Band Pallof press (band.loop_anchor), Side Plank, Suitcase Carry",high,Band version is equally common but not OR'ed in (different load source); pulley at chest height.
+Hanging Leg Raise,(pullup.bar lub rings),,bodyweight,core_flexion,"Hanging Knee Raise, Reverse Crunch; captain's-chair raise (dip.bars)",high,Rings / power tower also work.
+Hanging Knee Raise,(pullup.bar lub rings lub dip.bars),,bodyweight,core_flexion,"Hanging Leg Raise, Reverse Crunch; captain's-chair raise (dip.bars)",high,Rings / power tower also work.
+Cable Crunch,cable.high,floor_mat,cable,core_flexion,"Crunch, Reverse Crunch, Hanging Leg Raise",high,"Kneeling, rope attachment."
+Crunch,— (nic),floor_mat,bodyweight,core_flexion,"Cable Crunch, Reverse Crunch",high,
+Reverse Crunch,— (nic),floor_mat,bodyweight,core_flexion,"Hanging Knee Raise, Crunch",high,Floor or on a flat bench.
+Russian Twist,— (nic),"db, floor_mat",dumbbell,core_other,Pallof Press; med-ball or plate twist,medium,"Rotation. One implement (app SINGLE_IMPLEMENT); med ball or plate equally common. App classes this as dumbbells, but the name has no implement and it is commonly done unloaded; requirement kept at the floor so it stays available everywhere (db recommended). Switch requires to [[""db""]] if the app should treat it as always loaded."
+Hollow Hold,— (nic),floor_mat,bodyweight,core_anti_ext,"Plank, Dead Bug",high,Isometric (metric: time).
+Farmer's Walk,(db lub kb),,dumbbell,carry,"Suitcase Carry, Shrugs (hantle); trap-bar or KB carry",high,Needs walking space. Trap bar / kettlebells / farmer handles are substitutes (not OR'ed in).
+Suitcase Carry,(db lub kb),,dumbbell,carry,"Farmer's Walk, Side Plank; KB carry",high,One dumbbell (app SINGLE_IMPLEMENT); needs walking space.
+Mountain Climbers,— (nic),floor_mat,bodyweight,cardio,"Burpees, Plank",high,Conditioning (metric: time); could also be classed core_anti_ext.
+Incline Walk (bieżnia),cardio.treadmill,,none,cardio,Bieg; stair climber (cardio.stairs); outdoor hill walk,high,PL 'bieżnia' = treadmill.
+Bieg,— (nic),,none,cardio,"Incline Walk (bieżnia), Rower, Rowing Machine",high,"Bieżnia albo bieg na zewnątrz — na zewnątrz zawsze możliwe, więc bez wymagań (przegląd 02.10)."
+Rower,(cardio.bike lub outdoor),,none,cardio,"Assault Bike, Rowing Machine, Bieg",low,„Rower” = jazda na rowerze: stacjonarny albo na zewnątrz (outdoor = własny rower). Niska pewność.
+Rowing Machine,cardio.rower,,none,cardio,"Rower, Assault Bike",high,
+Assault Bike,cardio.bike,,none,cardio,"Rower, Rowing Machine",medium,"Air/fan bike specifically; vocab only has cardio.bike, so any stationary bike satisfies it."
+Skakanka,jump_rope,,none,cardio,"Burpees, Mountain Climbers",high,PL: jump rope.
+Burpees,— (nic),,bodyweight,cardio,"Mountain Climbers, Box Jump",high,
+Box Jump,box,,bodyweight,other,Burpees; broad jump / squat jump (no box),high,"Plyometric; a bench is not a safe substitute, so only box."
+Medicine Ball Slam,med_ball,,none,other,"Burpees, Kettlebell Swing",high,Power/conditioning. Slam (non-bouncing) ball preferred. loadSource enum has no med-ball value; ball weight not tracked (metric: reps).

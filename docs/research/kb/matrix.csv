@@ -1,0 +1,188 @@
+Obszar,Funkcja,id,Ile innych ma (z 10),Trening (nasza),Strong,Hevy,Fitbod,Alpha Progression,Liftosaur,StrengthLog,JEFIT,Boostcamp,SmartGym,Caliber
+Logowanie treningu,Pola serii (kg/powt./czas/dystans),log_set_fields,10,✓,✓,✓,✓,✓,✓,✓,✓,✓,✓,✓
+Logowanie treningu,"Typy serii (rozgrzewka, drop, do upadku)",log_set_types,8.0,✓,✓,✓,◐,◐,◐,✓,✓,✓,✓,◐
+Logowanie treningu,RPE/RIR,log_rpe_rir,7.5,✓,✓,✓,✓,$,✓,$,✗,✓,◐,✗
+Logowanie treningu,Wartości z poprzedniego razu,log_previous_values,9.5,✓,✓,✓,◐,✓,✓,✓,✓,✓,✓,✓
+Logowanie treningu,Automatyczne wypełnianie,log_autofill,9.0,✓,◐,✓,✓,✓,✓,✓,✓,✓,✓,◐
+Logowanie treningu,Notatki,log_notes,9.5,✓,✓,✓,◐,✓,✓,✓,✓,✓,✓,✓
+Logowanie treningu,Supersety/obwody,log_supersets,10,✓,✓,✓,✓,✓,✓,✓,✓,✓,✓,$
+Logowanie treningu,Zmiana kolejności w treningu,log_reorder,8.0,✓,✓,✓,✓,✓,✓,✓,◐,?,◐,✓
+Logowanie treningu,Zamiana ćwiczenia w trakcie,log_replace_exercise,10,✗,✓,✓,✓,✓,✓,✓,✓,✓,✓,$
+Logowanie treningu,Kalkulator talerzy,log_plate_calculator,8,✗,$,✓,✓,$,$,✓,?,✓,✗,$
+Logowanie treningu,Kalkulator rozgrzewki,log_warmup_calculator,7.5,✗,$,$,✓,$,✓,◐,?,✓,?,✓
+Logowanie treningu,Masa ciała z dociążeniem/asystą,log_bodyweight_assisted,6.0,✓,◐,✓,◐,✓,✓,◐,◐,?,?,✓
+Logowanie treningu,Strona lewa/prawa,log_unilateral,3.0,◐,◐,✗,✓,?,✓,◐,?,?,?,?
+Logowanie treningu,Tempo,log_tempo,0.5,◐,✗,?,?,?,◐,✗,?,?,?,?
+Logowanie treningu,Pusty trening,log_empty_workout,8.5,✓,✓,✓,✓,✓,✓,✓,◐,✓,◐,◐
+Logowanie treningu,Edycja/wsteczne dodanie treningu,log_edit_past,9.0,✗,✓,✓,✓,✓,✓,✓,✓,◐,◐,✓
+Logowanie treningu,Obsługa jedną ręką,log_one_hand_ux,7.0,✓,◐,✓,◐,◐,✓,◐,◐,◐,✓,✓
+Przerwy i czas,Automatyczna przerwa,timer_auto_rest,10,✓,✓,✓,✓,✓,✓,✓,✓,✓,✓,$
+Przerwy i czas,Przerwa per ćwiczenie,timer_per_exercise,9.5,✓,✓,◐,✓,✓,✓,✓,✓,✓,✓,✓
+Przerwy i czas,Powiadomienie o końcu przerwy,timer_notifications,7.0,✓,✓,✓,✓,◐,$,✓,?,?,✓,◐
+Przerwy i czas,Live Activity / Dynamic Island,timer_live_activity,8,✓,✓,✓,✓,✓,$,?,✓,✓,✓,✗
+Przerwy i czas,Stoper serii czasowych,timer_set_stopwatch,8.0,✓,◐,✓,✓,◐,✓,◐,✓,◐,✓,✓
+Przerwy i czas,Czas treningu,timer_workout_duration,9,✓,✓,✓,✓,?,✓,✓,✓,✓,✓,✓
+Przerwy i czas,Porzucony trening,timer_abandoned_workout,4.5,✓,?,◐,✓,◐,✓,◐,◐,?,◐,?
+Szablony i programy,Szablony,plan_templates,10,✓,✓,✓,✓,✓,✓,✓,✓,✓,✓,✓
+Szablony i programy,Foldery szablonów,plan_folders,4.5,✗,✓,✓,?,?,✗,✓,?,◐,◐,◐
+Szablony i programy,Programy wielotygodniowe,plan_programs,8.5,✗,◐,✓,◐,◐,✓,✓,✓,✓,$,$
+Szablony i programy,Periodyzacja/% 1RM/deload,plan_periodization,6.5,✗,✗,◐,◐,$,✓,✓,$,✓,◐,✗
+Szablony i programy,Generator treningów (AI/algorytm),plan_generator,7.5,✗,✗,$,✓,$,◐,◐,◐,$,✓,✓
+Szablony i programy,Kalendarz/plan tygodnia,plan_schedule,6.0,✗,◐,◐,◐,✗,◐,✓,✓,✓,◐,◐
+Szablony i programy,Udostępnianie szablonów,plan_share_templates,10,✗,✓,✓,✓,✓,✓,$,✓,✓,✓,$
+Biblioteka ćwiczeń,Liczba ćwiczeń,lib_size,9.5,✓,✓,✓,✓,✓,✓,✓,✓,◐,✓,✓
+Biblioteka ćwiczeń,Filmy/animacje,lib_media,8.5,✗,✓,✓,✓,✓,◐,✓,◐,◐,✓,✓
+Biblioteka ćwiczeń,Własne ćwiczenia,lib_custom,10,✓,✓,✓,✓,✓,✓,✓,✓,✓,✓,$
+Biblioteka ćwiczeń,Mięśnie główne/pomocnicze,lib_muscles,9.5,✓,◐,✓,✓,✓,✓,✓,✓,✓,✓,✓
+Biblioteka ćwiczeń,Filtr sprzętu,lib_equipment_filter,8.5,✗,?,✓,✓,✓,✓,✓,✓,◐,✓,✓
+Biblioteka ćwiczeń,Wyszukiwanie,lib_search,10,✓,✓,✓,✓,✓,✓,✓,✓,✓,✓,✓
+Biblioteka ćwiczeń,Języki biblioteki,lib_localization,4.5,✓,◐,✓,◐,✓,✗,◐,◐,✗,◐,✗
+Progresja,Podpowiedzi ciężaru/powtórzeń,prog_suggestions,7.0,✓,✗,$,✓,$,✓,✓,$,◐,◐,✗
+Progresja,Podwójna progresja,prog_double_progression,5.5,✓,✗,$,?,✓,✓,✓,$,◐,?,✗
+Progresja,Deload,prog_deload,4.0,✗,✗,?,◐,$,✓,✗,$,◐,?,✗
+Progresja,Zmęczenie/regeneracja,prog_fatigue,3.0,✗,✗,?,✓,◐,✗,◐,◐,✗,◐,✗
+Progresja,Trener AI,prog_ai_coach,5.0,✗,✗,◐,◐,✗,◐,✗,$,$,✓,◐
+Rekordy i statystyki,Rekordy,stats_prs,9.5,✓,✓,✓,✓,✓,✓,✓,◐,✓,✓,✓
+Rekordy i statystyki,e1RM,stats_e1rm,9.5,✓,✓,✓,◐,✓,✓,✓,✓,✓,✓,✓
+Rekordy i statystyki,Wykresy ćwiczenia,stats_charts_exercise,9.0,✓,$,✓,✓,$,$,◐,✓,◐,✓,✓
+Rekordy i statystyki,Objętość/serie na partię,stats_volume,8.5,✓,◐,✓,✓,$,$,◐,✓,✓,✓,◐
+Rekordy i statystyki,Mapa mięśni,stats_muscle_heatmap,8.0,✗,◐,✓,✓,?,$,$,✓,$,✓,◐
+Rekordy i statystyki,Kalendarz/serie dni,stats_calendar_streaks,8.5,✗,✓,✓,✓,✓,◐,✓,✓,◐,✓,◐
+Rekordy i statystyki,Podsumowanie po treningu,stats_workout_summary,9.5,◐,◐,✓,✓,✓,✓,✓,✓,✓,✓,✓
+Rekordy i statystyki,Normy siły/percentyle,stats_strength_standards,5.5,✗,✗,✓,✓,?,✗,✓,◐,$,?,$
+Ciało,Masa ciała,body_weight,9.5,✓,✓,✓,✓,✓,✓,✓,✓,$,◐,✓
+Ciało,Obwody,body_measurements,8.0,✗,$,$,◐,✓,✓,✓,✓,?,✓,◐
+Ciało,Zdjęcia sylwetki,body_photos,5.0,✗,◐,✓,?,?,✗,◐,✓,$,?,$
+Ciało,"Gotowość (sen, HRV, poranny wpis)",body_readiness,2.0,✓,✗,?,✗,✗,◐,◐,◐,✗,◐,✗
+Integracje i dane,Apple Health,int_apple_health,10,◐,✓,✓,✓,✓,✓,✓,✓,✓,✓,✓
+Integracje i dane,Aplikacja na zegarek,int_watch_app,7,✗,✓,✓,✓,✗,$,✓,$,✗,✓,✗
+Integracje i dane,Garmin/inne zegarki,int_garmin,2.5,✗,?,✗,◐,✗,✗,◐,◐,?,◐,◐
+Integracje i dane,Import (Strong/Hevy/CSV),int_import,2.5,◐,✗,◐,◐,✗,◐,◐,?,✗,◐,?
+Integracje i dane,Eksport,int_export,8,✓,✓,✓,✓,✓,✓,✓,✓,✗,?,✓
+Integracje i dane,Kopia/synchronizacja/konto,int_backup_sync,10,◐,✓,✓,✓,✓,✓,✓,✓,✓,✓,✓
+Integracje i dane,Widżety,int_widgets,6,✗,✓,✓,✓,?,✗,✓,✓,?,✓,✗
+Integracje i dane,Siri/Skróty,int_siri_shortcuts,2,✗,✓,✗,?,?,✗,?,?,✗,✓,?
+Sprzęt i miejsca,Miejsca treningu,equip_locations,5.0,✗,?,◐,✓,$,✓,◐,?,?,✓,✗
+Sprzęt i miejsca,Dostępne ciężary,equip_inventory,7.0,◐,◐,◐,✓,✓,✓,◐,✓,?,✓,◐
+Sprzęt i miejsca,Ćwiczenia wg sprzętu,equip_filtering,7.0,✗,?,◐,✓,✓,✓,◐,✓,◐,✓,◐
+Społeczność,Feed,social_feed,5.0,✗,✗,✓,◐,✗,✗,◐,✓,✓,?,✓
+Społeczność,Udostępnianie treningu,social_share,10,✗,✓,✓,✓,✓,✓,✓,✓,✓,✓,✓
+Społeczność,Rankingi,social_leaderboards,3.0,✗,✗,✓,◐,✗,✗,◐,✓,✗,?,?
+Społeczność,Wyzwania,social_challenges,2.5,✗,✗,?,◐,?,✗,✓,✓,✗,?,?
+Trener,Trener: podopieczni,coach_client_management,3.5,✗,✗,✓,✗,✗,✗,✗,◐,✗,$,$
+Trener,Trener: przypisywanie planów,coach_assign_programs,5.5,✗,✗,✓,✗,◐,◐,◐,◐,◐,$,$
+Trener,Trener: komentarze,coach_feedback,4.0,✗,✗,✓,◐,✗,✗,✗,◐,✗,$,$
+Trener,Trener: czat,coach_chat,2.5,✗,✗,✓,✗,✗,✗,✗,◐,✗,?,$
+Trener,Rynek trenerów,coach_marketplace,1.0,✗,✗,?,✗,✗,✗,✗,◐,◐,?,✗
+Płatności,Model płatności,monet_model,10,✗,✓,✓,$,✓,✓,✓,✓,✓,✓,✓
+Ustawienia i wygoda,Jednostki,ux_units,8.5,✓,✓,✓,✓,✓,✓,◐,◐,✓,✓,◐
+Ustawienia i wygoda,Motyw,ux_theme,8.5,✓,✓,✓,?,✓,✓,✓,✓,✓,◐,✓
+Ustawienia i wygoda,Języki,ux_languages,6.5,✓,✓,✓,✓,✓,✗,◐,✓,✗,✓,✗
+Ustawienia i wygoda,"Dostępność (VoiceOver, duża czcionka)",ux_accessibility,2.0,✓,◐,?,?,?,◐,?,?,?,◐,◐
+Ustawienia i wygoda,Wprowadzenie,ux_onboarding,8.5,◐,◐,◐,✓,✓,✓,◐,✓,✓,✓,✓
+Ustawienia i wygoda,Działanie offline,ux_offline,7.0,✓,◐,◐,✓,✓,✓,◐,◐,✓,◐,◐
+Ustawienia i wygoda,Prywatność/konto,ux_privacy,7.5,✓,✓,◐,◐,✓,✓,✓,◐,◐,✓,◐
+Inne (spoza listy),abandoned workout notification,new:abandoned_workout_notification,0,✓,,,,,,,,,,
+Inne (spoza listy),achievements,new:achievements,2,,,,,,,✓,✓,,,
+Inne (spoza listy),action button smart action,new:action_button_smart_action,1,,,,,,,,,,✓,
+Inne (spoza listy),actual rest logging,new:actual_rest_logging,0,✓,,,,,,,,,,
+Inne (spoza listy),ai connectors,new:ai_connectors,3,,,✓,,,$,,,,,✓
+Inne (spoza listy),alarmkit reminders,new:alarmkit_reminders,1,,,,,,,,,,✓,
+Inne (spoza listy),always on display,new:always_on_display,1,,,,,,✓,,,,,
+Inne (spoza listy),archive and restore exercise,new:archive_and_restore_exercise,0,✓,,,,,,,,,,
+Inne (spoza listy),audio guidance,new:audio_guidance,1.5,,,,,,,,◐,,✓,
+Inne (spoza listy),auto backup files,new:auto_backup_files,0,✓,,,,,,,,,,
+Inne (spoza listy),autoplay mode,new:autoplay_mode,1,,,,,,,,✓,,,
+Inne (spoza listy),band assist,new:band_assist,0,✓,,,,,,,,,,
+Inne (spoza listy),calculators,new:calculators,1,,,,,,,✓,,,,
+Inne (spoza listy),calendar events,new:calendar_events,1,,,,,,,✓,,,,
+Inne (spoza listy),caliber lessons,new:caliber_lessons,1,,,,,,,,,,,$
+Inne (spoza listy),calorie estimates,new:calorie_estimates,2,,,,✓,,,✓,,,,
+Inne (spoza listy),cardio and habits,new:cardio_and_habits,1,,,,,,,,,,,✓
+Inne (spoza listy),coach data model skeleton,new:coach_data_model_skeleton,0,◐,,,,,,,,,,
+Inne (spoza listy),compare records,new:compare_records,1,,,,,,,,✓,,,
+Inne (spoza listy),copy others workouts,new:copy_others_workouts,1,,,✓,,,,,,,,
+Inne (spoza listy),customizable home screen,new:customizable_home_screen,1,,,,,,,✓,,,,
+Inne (spoza listy),data integrity recovery,new:data_integrity_recovery,0,✓,,,,,,,,,,
+Inne (spoza listy),default exercise targets,new:default_exercise_targets,1,,,,,,,,,,,✓
+Inne (spoza listy),exclude from stats,new:exclude_from_stats,3,,✓,,,,,,,,✓,✓
+Inne (spoza listy),exercise evaluations,new:exercise_evaluations,1,,,,,$,,,,,,
+Inne (spoza listy),exercise preferences,new:exercise_preferences,1,,,,✓,,,,,,,
+Inne (spoza listy),exercise variability,new:exercise_variability,1,,,,✓,,,,,,,
+Inne (spoza listy),family plan,new:family_plan,1,,,,,,,,,,$,
+Inne (spoza listy),feature request board,new:feature_request_board,1,,,,,,,,,,,✓
+Inne (spoza listy),finish validation,new:finish_validation,0,✓,,,,,,,,,,
+Inne (spoza listy),focus metric,new:focus_metric,1,,✓,,,,,,,,,
+Inne (spoza listy),fork programs,new:fork_programs,1,,,,,,,,,✓,,
+Inne (spoza listy),goal and experience profiles,new:goal_and_experience_profiles,1,,,,✓,,,,,,,
+Inne (spoza listy),goals,new:goals,2,,,,,,,$,,,✓,
+Inne (spoza listy),heart rate,new:heart_rate,3,,,,✓,,✓,,,,✓,
+Inne (spoza listy),history list and session detail,new:history_list_and_session_detail,0,✓,,,,,,,,,,
+Inne (spoza listy),in workout update scripts,new:in_workout_update_scripts,1,,,,,,✓,,,,,
+Inne (spoza listy),injuries,new:injuries,3,,,$,✓,,,,✓,,,
+Inne (spoza listy),interval special sets,new:interval_special_sets,1,,,,,,,✓,,,,
+Inne (spoza listy),keep screen awake,new:keep_screen_awake,1,✓,,✓,,,,,,,,
+Inne (spoza listy),lifetime purchase,new:lifetime_purchase,1,,✓,,,,,,,,,
+Inne (spoza listy),liftoscript dsl,new:liftoscript_dsl,1,,,,,,✓,,,,,
+Inne (spoza listy),live pr,new:live_pr,1,✓,,✓,,,,,,,,
+Inne (spoza listy),load modes,new:load_modes,0,✓,,,,,,,,,,
+Inne (spoza listy),max effort days,new:max_effort_days,1,,,,✓,,,,,,,
+Inne (spoza listy),merge exercise history,new:merge_exercise_history,1,,✓,,,,,,,,,
+Inne (spoza listy),merge program workouts,new:merge_program_workouts,1,,,,,,,✓,,,,
+Inne (spoza listy),minigames,new:minigames,1,,,,,,,✓,,,,
+Inne (spoza listy),modules toggle,new:modules_toggle,0,◐,,,,,,,,,,
+Inne (spoza listy),morning check in,new:morning_check_in,0,✓,,,,,,,,,,
+Inne (spoza listy),multiple active programs,new:multiple_active_programs,1,,,,,,,,,✓,,
+Inne (spoza listy),multiple local accounts,new:multiple_local_accounts,1,,,,,,✓,,,,,
+Inne (spoza listy),muscle volume targets,new:muscle_volume_targets,1,,,,,,$,,,,,
+Inne (spoza listy),nspi progress score,new:nspi_progress_score,1,,,,,,,,$,,,
+Inne (spoza listy),nutrition sync targets,new:nutrition_sync_targets,1,,,,,,,,,,,$
+Inne (spoza listy),nutrition tracking,new:nutrition_tracking,0.5,,◐,,,,,,,,,
+Inne (spoza listy),open source,new:open_source,1,,,,,,✓,,,,,
+Inne (spoza listy),pause workout,new:pause_workout,1,,,✓,,,,,,,,
+Inne (spoza listy),periodic reports,new:periodic_reports,4,,,✓,,✓,,,$,✓,,
+Inne (spoza listy),pinned sticky notes,new:pinned_sticky_notes,1,,✓,,,,,,,,,
+Inne (spoza listy),platforms,new:platforms,4,,,,✓,✓,,,✓,,✓,
+Inne (spoza listy),prefill carry over,new:prefill_carry_over,0,✓,,,,,,,,,,
+Inne (spoza listy),profile dashboard,new:profile_dashboard,1,,✓,,,,,,,,,
+Inne (spoza listy),program builder v9,new:program_builder_v9,1,,,,,,,✓,,,,
+Inne (spoza listy),program editor modes and versions,new:program_editor_modes_and_versions,1,,,,,,✓,,,,,
+Inne (spoza listy),program playground,new:program_playground,1,,,,,,✓,,,,,
+Inne (spoza listy),program variations reviews,new:program_variations_reviews,1,,,,,,,,,✓,,
+Inne (spoza listy),public api,new:public_api,2,,,$,,,$,,,,,
+Inne (spoza listy),public profile page,new:public_profile_page,1,,,,,,✓,,,,,
+Inne (spoza listy),quick stats per set,new:quick_stats_per_set,1,,,,,,,$,,,,
+Inne (spoza listy),rep max calculator,new:rep_max_calculator,1,,,,,,✓,,,,,
+Inne (spoza listy),rep ranges,new:rep_ranges,1,✓,,✓,,,,,,,,
+Inne (spoza listy),repeat last workout,new:repeat_last_workout,1,✓,,,,,,✓,,,,
+Inne (spoza listy),reset all data,new:reset_all_data,0,✓,,,,,,,,,,
+Inne (spoza listy),rest badge on tab,new:rest_badge_on_tab,0,✓,,,,,,,,,,
+Inne (spoza listy),routine segments stretch,new:routine_segments_stretch,1,,,,,,,,,,✓,
+Inne (spoza listy),same exercise multiple blocks,new:same_exercise_multiple_blocks,0,✓,,,,,,,,,,
+Inne (spoza listy),schema versioning and migration,new:schema_versioning_and_migration,0,✓,,,,,,,,,,
+Inne (spoza listy),session progress bar,new:session_progress_bar,0,✓,,,,,,,,,,
+Inne (spoza listy),set cap 150,new:set_cap_150,1,,,✓,,,,,,,,
+Inne (spoza listy),set video library,new:set_video_library,1,,,,,,,✓,,,,
+Inne (spoza listy),shareplay,new:shareplay,1,,,,,,,,,,✓,
+Inne (spoza listy),signing expiry reminder,new:signing_expiry_reminder,0,✓,,,,,,,,,,
+Inne (spoza listy),smart superset scrolling,new:smart_superset_scrolling,1,,,✓,,,,,,,,
+Inne (spoza listy),strava sync,new:strava_sync,3,,,✓,,,,,,,✓,✓
+Inne (spoza listy),strength balance,new:strength_balance,1,,,,,,,,,,,$
+Inne (spoza listy),strength level percentile,new:strength_level_percentile,1,,,✓,,,,,,,,
+Inne (spoza listy),stretching cardio blocks,new:stretching_cardio_blocks,1,,,,✓,,,,,,,
+Inne (spoza listy),template archive,new:template_archive,1,,✓,,,,,,,,,
+Inne (spoza listy),template duplicate,new:template_duplicate,0,✓,,,,,,,,,,
+Inne (spoza listy),template update prompt,new:template_update_prompt,2,,✓,,,,,,,,✓,
+Inne (spoza listy),third party workouts,new:third_party_workouts,1,,,,,,,,,,✓,
+Inne (spoza listy),timers survive app kill,new:timers_survive_app_kill,0,✓,,,,,,,,,,
+Inne (spoza listy),training session mods,new:training_session_mods,1,,,,✓,,,,,,,
+Inne (spoza listy),watch live sync handoff,new:watch_live_sync_handoff,1,,✓,,,,,,,,,
+Inne (spoza listy),watch music control,new:watch_music_control,1,,,,,,,,,,✓,
+Inne (spoza listy),watch screen sync,new:watch_screen_sync,1,,,,,,,,,,✓,
+Inne (spoza listy),web app,new:web_app,4.5,,,✓,,,✓,◐,✓,✓,,
+Inne (spoza listy),week start setting,new:week_start_setting,1,,,,,,,,,,,✓
+Inne (spoza listy),weigh in reminder,new:weigh_in_reminder,0,✓,,,,,,,,,,
+Inne (spoza listy),weight rounding explainer,new:weight_rounding_explainer,1,,,,,,✓,,,,,
+Inne (spoza listy),wellhub,new:wellhub,1,,,✓,,,,,,,,
+Inne (spoza listy),workout rating,new:workout_rating,1,,,,,,,,,,,✓
+Inne (spoza listy),year review,new:year_review,2,,,,,,,,✓,✓,,

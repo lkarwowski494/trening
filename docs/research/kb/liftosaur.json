@@ -1,0 +1,969 @@
+{
+  "app": "Liftosaur",
+  "version_or_date_checked": "iOS v122 (released 2026-09-29), Android updated 2026-09-22; docs/feature pages checked 2026-10-02",
+  "pricing": "Free core (programs, progression engine, logging, history, sync, import/export). Premium US: $4.99/month, $39.99/year (14-day free trial on subscriptions), $99.99 lifetime; localized per country. Paywalled: plates-per-side calculator, graphs, muscle maps, Week Insights, rest-timer notifications + Live Activity/Dynamic Island, Apple Watch app, REST API & MCP.",
+  "platforms": "iOS 17+ (iPhone/iPad, Apple Silicon Mac, visionOS), Apple Watch (watchOS 10.6+, Premium), Android (thin wrapper around PWA, Health Connect, Live Update), web app/PWA at liftosaur.com/app, desktop web program editor; no Wear OS.",
+  "positioning": "Open-source (AGPL), 'scriptable' strength tracker where every program and progression rule is plain text (Liftoscript) that the app executes automatically after each workout.",
+  "features": [
+    {
+      "area": "log",
+      "feature_id": "log_set_fields",
+      "has": "yes",
+      "how": "Each set has Reps and Weight (lb/kg or % of 1RM); optional logged RPE; timed sets record a set time (Time column, L/R for unilateral). No distance/cardio fields found in the docs; weight can be left empty and typed at completion.",
+      "sources": [
+        "https://www.liftosaur.com/features/workout-screen",
+        "https://www.liftosaur.com/features/timed-sets",
+        "https://www.liftosaur.com/features/liftoscript"
+      ]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_set_types",
+      "has": "partial",
+      "how": "Warm-up sets (auto-generated or 'warmup:' section), working sets, AMRAP ('5+'), ask-RPE ('@8+'), ask-weight ('100lb+' / '?+'), set labels like '(Main)', timed/count-up sets and EMOM/Tabata via 'auto'. No dedicated drop-set or failure tag; drop sets must be written as extra set groups.",
+      "sources": [
+        "https://www.liftosaur.com/features/set-types",
+        "https://www.liftosaur.com/features/timed-sets",
+        "https://www.liftosaur.com/features/liftoscript"
+      ]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_rpe_rir",
+      "has": "yes",
+      "how": "RPE is native: '@8' sets a target RPE, '@8+' asks for completed RPE (0-10, step 0.5) after the set; RPE with no weight auto-derives weight from 1RM+reps+RPE. RIR is not a native field (can be emulated with a user-prompted state variable).",
+      "sources": [
+        "https://www.liftosaur.com/features/set-types",
+        "https://www.liftosaur.com/features/liftoscript"
+      ]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_previous_values",
+      "has": "yes",
+      "how": "The expanded set shows 'Last', 'Best' and (multi-week programs) 'Same day' results with dates; AMRAP sets show 'Best AMRAP'. 'Add Set' copies the last set or the last set of the previous workout; the target column can be cycled to 'Previous Set'.",
+      "user_feedback": "App Store 2024-04 (3*): it 'pulls my reps and weight from a different day' when the same exercise has different targets on different days. https://itunes.apple.com/us/rss/customerreviews/id=1661880849/sortBy=mostRecent/json",
+      "sources": [
+        "https://www.liftosaur.com/features/workout-screen"
+      ]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_autofill",
+      "has": "yes",
+      "how": "Targets come from the program text after progression scripts ran; % of 1RM and RPE targets are resolved to concrete weights and rounded to your loadable plates. Swapped-in exercises get weights converted from your history at the closest rep count/RPE, or from 1RM/default starting weight.",
+      "sources": [
+        "https://www.liftosaur.com/features/workout-screen",
+        "https://www.liftosaur.com/features/changing-a-workout"
+      ]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_notes",
+      "has": "yes",
+      "how": "Per-workout notes (kebab > Show Workout Notes) and per-exercise workout notes, shown next time as 'Previous Note' for two months; persistent Markdown exercise notes on the exercise screen; Markdown program descriptions per exercise/day/week ('//' lines). No per-set notes found.",
+      "sources": [
+        "https://www.liftosaur.com/features/workout-screen",
+        "https://www.liftosaur.com/features/workout-history",
+        "https://www.liftosaur.com/features/liftoscript"
+      ]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_supersets",
+      "has": "yes",
+      "how": "Any number of exercises share a group name ('superset: A'); after each working set the screen jumps to the next exercise in the group, skipping finished ones; colored line under thumbnails. Groups can be set in program text, editor, or ad hoc during a workout; separate Superset rest timer.",
+      "sources": [
+        "https://www.liftosaur.com/features/supersets"
+      ]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_reorder",
+      "has": "yes",
+      "how": "Long-tap an exercise thumbnail in the top strip and drag to reorder during the workout; program editor grid supports drag of exercises/days/weeks.",
+      "sources": [
+        "https://www.liftosaur.com/features/workout-screen",
+        "https://www.liftosaur.com/features/program-editor"
+      ]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_replace_exercise",
+      "has": "yes",
+      "how": "Cog > Swap Exercise; picker has Ad-hoc and From Program tabs, 'Similar Muscles' sort, and a Recent list (last 5 swaps). Weights are recalculated from history for the new exercise; swap affects this workout only; pre-defined alternatives with their own progression can be kept via 'used: none'.",
+      "sources": [
+        "https://www.liftosaur.com/features/changing-a-workout",
+        "https://www.liftosaur.com/features/exercise-library"
+      ]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_plate_calculator",
+      "has": "paid",
+      "how": "Plates per side shown under the expanded set, under the weight keyboard and as a Plates column; free users see a 'See plates for each side' link. Rounding to loadable weights itself is free.",
+      "sources": [
+        "https://www.liftosaur.com/features/premium",
+        "https://www.liftosaur.com/features/equipment-and-gyms"
+      ]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_warmup_calculator",
+      "has": "yes",
+      "how": "Warm-ups are added automatically by default per exercise; customizable per exercise with 'warmup: 1x5 45lb, 1x3 80%' where % is of the first working set weight, or 'warmup: none'.",
+      "sources": [
+        "https://www.liftosaur.com/doc/liftoscript",
+        "https://github.com/astashov/liftosaur"
+      ]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_bodyweight_assisted",
+      "has": "yes",
+      "how": "Equipment switches 'Bodyweight for Bar' and 'Is assisting?' model weighted and assisted pull-ups/dips; bands are added as 'plates' with assistance weight. Requires a small update script (weights = bodyweight +/- originalWeights) documented with examples.",
+      "sources": [
+        "https://www.liftosaur.com/features/equipment-and-gyms"
+      ]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_unilateral",
+      "has": "yes",
+      "how": "Exercises flagged 'Is Unilateral' get separate L: and R: rep fields; AMRAP asks left/right reps; timed sets run two clocks. Volume sums both sides; e1RM uses the average of sides.",
+      "sources": [
+        "https://www.liftosaur.com/features/set-types",
+        "https://www.liftosaur.com/features/timed-sets"
+      ]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_tempo",
+      "has": "partial",
+      "how": "No tempo field or tempo timer in Liftoscript; tempo can only be written as an exercise description ('//' Markdown) or a set label (max 8 chars).",
+      "user_feedback": "App Store 2026-06 (5*): user keeps 'tempos, RIR targets ... all of it' in the Liftoscript text. https://itunes.apple.com/us/rss/customerreviews/id=1661880849/sortBy=mostRecent/json",
+      "sources": [
+        "https://www.liftosaur.com/doc/liftoscript"
+      ]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_empty_workout",
+      "has": "yes",
+      "how": "'Ad-Hoc Workout' starts an empty workout and opens the Add Exercises picker (multi-select). After finishing, 'Create Program Day' turns it into a new or existing program's day.",
+      "user_feedback": "App Store 2026-07 (4*): complained there was no way to save a past training day to a program (current docs describe a Create Program Day action). https://itunes.apple.com/us/rss/customerreviews/id=1661880849/sortBy=mostRecent/json",
+      "sources": [
+        "https://www.liftosaur.com/features/changing-a-workout"
+      ]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_edit_past",
+      "has": "yes",
+      "how": "Open a past workout from Home: edit sets, swap/remove exercises, change date and length (hh:mm), add notes, delete. Saving does not rerun progressions. Past workouts can also be imported via CSV.",
+      "sources": [
+        "https://www.liftosaur.com/features/workout-history"
+      ]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_one_hand_ux",
+      "has": "yes",
+      "how": "Big Reps/Weight fields and big checkmark; custom keypad with +/- that steps by the smallest loadable weight; swipe between exercises; sets can be completed from the iOS Live Activity / Android notification without unlocking (Premium). Text-size slider 12-24 and optional Always On Display.",
+      "user_feedback": "App Store 2026-05 (3*): 'slow input' - typing faster than the app keeps up drops input. https://itunes.apple.com/us/rss/customerreviews/id=1661880849/sortBy=mostRecent/json",
+      "sources": [
+        "https://www.liftosaur.com/features/workout-screen",
+        "https://www.liftosaur.com/features/lock-screen-and-notifications",
+        "https://www.liftosaur.com/features/first-run-and-settings"
+      ]
+    },
+    {
+      "area": "timer",
+      "feature_id": "timer_auto_rest",
+      "has": "yes",
+      "how": "Rest timer starts automatically when a set is checked (or when the AMRAP/RPE popup is submitted); pill shows elapsed vs target, turns red past target and keeps counting; -15s/+15s.",
+      "sources": [
+        "https://www.liftosaur.com/features/rest-timer"
+      ]
+    },
+    {
+      "area": "timer",
+      "feature_id": "timer_per_exercise",
+      "has": "yes",
+      "how": "Priority: per-set rest in program text ('3x5 90s') > Superset timer > Warmup (default 90s) or Workout (default 180s) timer from Me > Timers.",
+      "sources": [
+        "https://www.liftosaur.com/features/rest-timer"
+      ]
+    },
+    {
+      "area": "timer",
+      "feature_id": "timer_notifications",
+      "has": "paid",
+      "how": "With Premium: push notification when rest ends, with next set and plates ('Next Set: Bench Press, 5 reps, 100lb'); chime over other audio, via headphones when locked with Apple Watch paired; Android 'Ignore Do Not Disturb'.",
+      "user_feedback": "App Store 2026-07 (4*): Apple Watch notifications bugged. https://itunes.apple.com/us/rss/customerreviews/id=1661880849/sortBy=mostRecent/json",
+      "sources": [
+        "https://www.liftosaur.com/features/lock-screen-and-notifications",
+        "https://www.liftosaur.com/features/premium"
+      ]
+    },
+    {
+      "area": "timer",
+      "feature_id": "timer_live_activity",
+      "has": "paid",
+      "how": "Premium iOS Live Activity + Dynamic Island show workout time, set dots, next set and plates, rest timer with +/-15s, and a tappable set card that completes the set from the lock screen; Android Live Update chip/ongoing notification with Done button.",
+      "sources": [
+        "https://www.liftosaur.com/features/lock-screen-and-notifications"
+      ]
+    },
+    {
+      "area": "timer",
+      "feature_id": "timer_set_stopwatch",
+      "has": "yes",
+      "how": "Timed sets 'Plank / 3x1 60s|30s': Get Ready countdown (default 5s), set clock, auto-complete at target; '30s+' counts up past target (hold as long as possible); 'Stop & record' and 'Log, keep timing'; recorded time editable.",
+      "sources": [
+        "https://www.liftosaur.com/features/timed-sets"
+      ]
+    },
+    {
+      "area": "timer",
+      "feature_id": "timer_workout_duration",
+      "has": "yes",
+      "how": "Header shows workout time with a pause/resume button; duration shown on summary and history cards and editable on past workouts.",
+      "sources": [
+        "https://www.liftosaur.com/features/workout-screen",
+        "https://www.liftosaur.com/features/workout-history"
+      ]
+    },
+    {
+      "area": "timer",
+      "feature_id": "timer_abandoned_workout",
+      "has": "yes",
+      "how": "If you leave the app with a workout running, a 'Workout reminder' notification fires after a delay (default 900 s, configurable, 0=off). The cloud keeps one open workout per account; it can be continued on another device or discarded.",
+      "sources": [
+        "https://www.liftosaur.com/features/lock-screen-and-notifications",
+        "https://www.liftosaur.com/features/sync-and-offline"
+      ]
+    },
+    {
+      "area": "plan",
+      "feature_id": "plan_templates",
+      "has": "yes",
+      "how": "Workouts are days inside a program; you can have multiple programs and switch the current one. A day can also be created from an ad-hoc workout.",
+      "sources": [
+        "https://www.liftosaur.com/features/program-editor",
+        "https://www.liftosaur.com/features/changing-a-workout"
+      ]
+    },
+    {
+      "area": "plan",
+      "feature_id": "plan_folders",
+      "has": "no",
+      "how": "Programs are a flat 'Yours' list next to 'Built-in'; no folders/categories described. Not described anywhere in the official per-feature docs, which claim to cover 'everything the app does' (checked 2026-10-02).",
+      "sources": [
+        "https://www.liftosaur.com/features/built-in-programs",
+        "https://www.liftosaur.com/features"
+      ]
+    },
+    {
+      "area": "plan",
+      "feature_id": "plan_programs",
+      "has": "yes",
+      "how": "About 60 built-in programs (GZCLP and GZCL family, 5/3/1 variants, Starting Strength, PHUL, Basic Beginner Routine, Strong Curves...) filterable by experience, days/week, session length and goal; preview every day; clone into your own editable copy.",
+      "sources": [
+        "https://www.liftosaur.com/features/built-in-programs",
+        "https://apps.apple.com/us/app/liftosaur-scriptable-workouts/id1661880849"
+      ]
+    },
+    {
+      "area": "plan",
+      "feature_id": "plan_periodization",
+      "has": "yes",
+      "how": "Multi-week programs ('# Week N'), % of 1RM, RPE targets, set variations, per-week overrides, deload weeks via 'progress: none', lp() with deload-after-N-failures parameters; everything scriptable.",
+      "sources": [
+        "https://www.liftosaur.com/doc/liftoscript",
+        "https://www.liftosaur.com/features/progressions"
+      ]
+    },
+    {
+      "area": "plan",
+      "feature_id": "plan_generator",
+      "has": "partial",
+      "how": "No built-in generator; AI generation happens in external assistants (ChatGPT plugin, Claude/Gemini via MCP) that read the Liftoscript reference, write a program, test it with run_playground and save it. Account-touching tools need Premium.",
+      "user_feedback": "App Store 2026-09 (5*): 'I told ChatGPT what I wanted ... it created a workout program for me, and now I track everything in Liftosaur.' https://itunes.apple.com/us/rss/customerreviews/id=1661880849/sortBy=mostRecent/json",
+      "sources": [
+        "https://www.liftosaur.com/features/chatgpt-claude-and-ai"
+      ]
+    },
+    {
+      "area": "plan",
+      "feature_id": "plan_schedule",
+      "has": "partial",
+      "how": "Programs run as an ordered sequence of days with a 'Next Day' pointer; you can pick any day as next. No calendar-date scheduling; week start (Sun/Mon) setting only affects history/insights.",
+      "sources": [
+        "https://www.liftosaur.com/features/changing-a-workout",
+        "https://www.liftosaur.com/features/program-editor",
+        "https://www.liftosaur.com/features/first-run-and-settings"
+      ]
+    },
+    {
+      "area": "plan",
+      "feature_id": "plan_share_templates",
+      "has": "yes",
+      "how": "Program menu: public short link (liftosaur.com/p/...) with custom exercises and units, program image with QR code, private link for laptop editing, export all programs as text. Links are immutable snapshots.",
+      "sources": [
+        "https://www.liftosaur.com/features/sharing-programs"
+      ]
+    },
+    {
+      "area": "lib",
+      "feature_id": "lib_size",
+      "has": "yes",
+      "how": "Docs say 'hundreds of built-in exercises'; the public directory lists ~364 exercise+equipment combinations (counted 2026-10-02).",
+      "sources": [
+        "https://www.liftosaur.com/features/exercise-library",
+        "https://www.liftosaur.com/exercises"
+      ]
+    },
+    {
+      "area": "lib",
+      "feature_id": "lib_media",
+      "has": "partial",
+      "how": "Each exercise has an image/thumbnail and muscle map; web exercise pages give text 'How to perform ... with proper form' steps. No exercise videos found.",
+      "sources": [
+        "https://www.liftosaur.com/features/exercise-library",
+        "https://www.liftosaur.com/exercises/barbell-bench-press"
+      ]
+    },
+    {
+      "area": "lib",
+      "feature_id": "lib_custom",
+      "has": "yes",
+      "how": "Name, image (library/camera/photo, account needed to upload), target/synergist muscles, types, Markdown notes; 'Autofill Muscles and Types' asks an AI model; 'Clone from another exercise'. Renaming updates program text.",
+      "sources": [
+        "https://www.liftosaur.com/features/custom-exercises"
+      ]
+    },
+    {
+      "area": "lib",
+      "feature_id": "lib_muscles",
+      "has": "yes",
+      "how": "Target and synergist muscles and groups per exercise; per-user 'Override Muscles' with 0-1 multipliers; custom muscle groups (e.g., split delts), hide built-in groups.",
+      "sources": [
+        "https://www.liftosaur.com/features/exercise-library",
+        "https://www.liftosaur.com/features/custom-exercises"
+      ]
+    },
+    {
+      "area": "lib",
+      "feature_id": "lib_equipment_filter",
+      "has": "yes",
+      "how": "Filter by equipment, type (Core/Pull/Push/Legs/Upper/Lower), muscle groups or single muscles; 'Show only available equipment' hides exercises needing hidden equipment.",
+      "sources": [
+        "https://www.liftosaur.com/features/exercise-library"
+      ]
+    },
+    {
+      "area": "lib",
+      "feature_id": "lib_search",
+      "has": "yes",
+      "how": "Search matches name and equipment words ('incline dumbbell'); favorites star; multi-select add; sort by name or Similar Muscles.",
+      "sources": [
+        "https://www.liftosaur.com/features/exercise-library"
+      ]
+    },
+    {
+      "area": "lib",
+      "feature_id": "lib_localization",
+      "has": "no",
+      "how": "App Store lists English only; docs and exercise names are English.",
+      "sources": [
+        "https://apps.apple.com/us/app/liftosaur-scriptable-workouts/id1661880849"
+      ]
+    },
+    {
+      "area": "prog",
+      "feature_id": "prog_suggestions",
+      "has": "yes",
+      "how": "Rule-based: per-exercise 'progress:' runs at workout finish and rewrites program text: lp(increment, successes, ..., deload weight, failures), dp(), sum(), or custom() scripts with state variables reading completedReps/RPE/weights. Preview of 'Exercise Changes' shown under the sets; can be suppressed once.",
+      "sources": [
+        "https://www.liftosaur.com/features/progressions"
+      ]
+    },
+    {
+      "area": "prog",
+      "feature_id": "prog_double_progression",
+      "has": "yes",
+      "how": "dp(5lb, 8, 12): reps climb within the range until the top on every set, then weight increases and reps reset.",
+      "sources": [
+        "https://www.liftosaur.com/features/progressions"
+      ]
+    },
+    {
+      "area": "prog",
+      "feature_id": "prog_deload",
+      "has": "yes",
+      "how": "lp() takes a deload amount and number of failed sessions; editor pill 'Add deload on failure'; deload weeks via 'progress: none'; custom scripts can implement any reset logic.",
+      "sources": [
+        "https://www.liftosaur.com/features/progressions",
+        "https://www.liftosaur.com/features/program-editor",
+        "https://www.liftosaur.com/doc/liftoscript"
+      ]
+    },
+    {
+      "area": "prog",
+      "feature_id": "prog_fatigue",
+      "has": "no",
+      "how": "No readiness/recovery model; sleep, calories and protein are only read from Health for display/API. Not described anywhere in the official per-feature docs, which claim to cover 'everything the app does' (checked 2026-10-02).",
+      "sources": [
+        "https://www.liftosaur.com/features/measurements",
+        "https://www.liftosaur.com/features"
+      ]
+    },
+    {
+      "area": "prog",
+      "feature_id": "prog_ai_coach",
+      "has": "partial",
+      "how": "No in-app AI coach; ChatGPT plugin and MCP server (Claude, Gemini) let an assistant edit programs, log workouts and analyze history including sleep/protein. In-app AI only autofills custom exercise muscles.",
+      "user_feedback": "App Store 2026-03 (5*): 'The MCP tool with Claude makes it super easy for programming workout plans.' https://itunes.apple.com/us/rss/customerreviews/id=1661880849/sortBy=mostRecent/json",
+      "sources": [
+        "https://www.liftosaur.com/features/chatgpt-claude-and-ai",
+        "https://www.liftosaur.com/doc/mcp"
+      ]
+    },
+    {
+      "area": "stats",
+      "feature_id": "stats_prs",
+      "has": "yes",
+      "how": "Per exercise: Max Weight and Max 1RM (e1RM) with date and set; trophy on history cards; finish screen lists new PRs; Week Insights shows PRs vs previous best; Last/Best/Best AMRAP during sets. No per-rep-count record table described.",
+      "sources": [
+        "https://www.liftosaur.com/features/workout-screen",
+        "https://www.liftosaur.com/features/graphs",
+        "https://www.liftosaur.com/features/week-insights"
+      ]
+    },
+    {
+      "area": "stats",
+      "feature_id": "stats_e1rm",
+      "has": "yes",
+      "how": "e1RM = weight / (share of 1RM from an RPE chart for reps at RPE), RPE 10 assumed if none logged; chart follows the OpenPowerlifting RPE calculator (5 reps @ 200 lb -> ~231 lb). Unilateral uses average of sides.",
+      "sources": [
+        "https://www.liftosaur.com/features/workout-screen",
+        "https://www.liftosaur.com/features/set-types"
+      ]
+    },
+    {
+      "area": "stats",
+      "feature_id": "stats_charts_exercise",
+      "has": "paid",
+      "how": "Graphs tab (Premium): per exercise Max Weight (with e1RM line) or Volume, long-press for set/notes/state, pinch zoom, program-change lines, bodyweight overlay. Free users still see PR list; graphs are blurred.",
+      "user_feedback": "App Store 2024-05 (3*): 'New update put graphs behind paywall when it was free a week ago.' https://itunes.apple.com/us/rss/customerreviews/id=1661880849/sortBy=mostRecent/json",
+      "sources": [
+        "https://www.liftosaur.com/features/graphs",
+        "https://www.liftosaur.com/features/premium"
+      ]
+    },
+    {
+      "area": "stats",
+      "feature_id": "stats_volume",
+      "has": "paid",
+      "how": "Weekly sets/volume per muscle group graphs; Week Insights and program week stats show sets per muscle vs configurable ranges (presets Novice 10-12/Intermediate 13-15/Advanced 16-20, frequency targets, synergist multiplier 0.5), strength (<8 reps) vs hypertrophy split. Week Insights and muscle views are Premium; web editor shows week stats.",
+      "user_feedback": "App Store 2026-09 (4*): post-workout summary volume reported ~4000 too high and sets exclude warm-ups. https://itunes.apple.com/us/rss/customerreviews/id=1661880849/sortBy=mostRecent/json",
+      "sources": [
+        "https://www.liftosaur.com/features/week-insights",
+        "https://www.liftosaur.com/features/program-editor",
+        "https://www.liftosaur.com/features/web-editor",
+        "https://www.liftosaur.com/features/premium"
+      ]
+    },
+    {
+      "area": "stats",
+      "feature_id": "stats_muscle_heatmap",
+      "has": "paid",
+      "how": "Front/back body drawing shading muscles by sets for a week, a program week or a day ('Day Muscles'), with Strength/Hypertrophy tabs and relative percentages; Premium.",
+      "sources": [
+        "https://www.liftosaur.com/features/week-insights",
+        "https://www.liftosaur.com/features/workout-screen",
+        "https://www.liftosaur.com/features/premium"
+      ]
+    },
+    {
+      "area": "stats",
+      "feature_id": "stats_calendar_streaks",
+      "has": "partial",
+      "how": "Week strip and month calendar of workouts with per-month workout and PR counts; week-over-week deltas. No streak feature described.",
+      "sources": [
+        "https://www.liftosaur.com/features/workout-history",
+        "https://www.liftosaur.com/features"
+      ]
+    },
+    {
+      "area": "stats",
+      "feature_id": "stats_workout_summary",
+      "has": "yes",
+      "how": "'Congratulations!' screen after Finish: time, volume, sets, reps, exercises, sets per muscle group, new PRs, share buttons.",
+      "sources": [
+        "https://www.liftosaur.com/features/workout-screen",
+        "https://www.liftosaur.com/features/sharing-workouts"
+      ]
+    },
+    {
+      "area": "stats",
+      "feature_id": "stats_strength_standards",
+      "has": "no",
+      "how": "No strength standards or percentile comparison. Not described anywhere in the official per-feature docs, which claim to cover 'everything the app does' (checked 2026-10-02).",
+      "sources": [
+        "https://www.liftosaur.com/features"
+      ]
+    },
+    {
+      "area": "body",
+      "feature_id": "body_weight",
+      "has": "yes",
+      "how": "Log bodyweight with any date (backfill), list + graph (graph Premium), optional moving average (2-5 values, Premium) that also feeds the Liftoscript 'bodyweight' variable; can sync from Apple Health/Health Connect.",
+      "sources": [
+        "https://www.liftosaur.com/features/measurements"
+      ]
+    },
+    {
+      "area": "body",
+      "feature_id": "body_measurements",
+      "has": "yes",
+      "how": "Body fat % plus 13 sites (neck, shoulders, L/R biceps, forearms, thighs, calves, chest, waist, hips) in cm/in; choose which types are enabled; graphs Premium.",
+      "sources": [
+        "https://www.liftosaur.com/features/measurements"
+      ]
+    },
+    {
+      "area": "body",
+      "feature_id": "body_photos",
+      "has": "no",
+      "how": "Measurements cover bodyweight, body fat and 13 sites only; no progress photos. Not described anywhere in the official per-feature docs, which claim to cover 'everything the app does' (checked 2026-10-02).",
+      "sources": [
+        "https://www.liftosaur.com/features/measurements",
+        "https://www.liftosaur.com/features"
+      ]
+    },
+    {
+      "area": "body",
+      "feature_id": "body_readiness",
+      "has": "partial",
+      "how": "Reads sleep, dietary calories and protein (one total/day) from Apple Health (90 days) or Health Connect (30 days) for graphs and API; watch/AirPods heart rate during workouts. No readiness score or check-in.",
+      "sources": [
+        "https://www.liftosaur.com/features/measurements",
+        "https://www.liftosaur.com/features/health-sync",
+        "https://apps.apple.com/us/app/liftosaur-scriptable-workouts/id1661880849"
+      ]
+    },
+    {
+      "area": "int",
+      "feature_id": "int_apple_health",
+      "has": "yes",
+      "how": "Writes finished workouts (strength training, active kcal = 6 kcal/min) and bodyweight/body fat/waist; reads bodyweight, body fat, waist, sleep, calories, protein. Android uses Health Connect. Past workouts can be synced manually.",
+      "user_feedback": "App Store 2026-02 (3*): Health sync repeatedly failing with error messages during workouts. https://itunes.apple.com/us/rss/customerreviews/id=1661880849/sortBy=mostRecent/json",
+      "sources": [
+        "https://www.liftosaur.com/features/health-sync"
+      ]
+    },
+    {
+      "area": "int",
+      "feature_id": "int_watch_app",
+      "has": "paid",
+      "how": "Apple Watch app (Premium): start/continue workouts, log sets with Digital Crown (weights step through loadable values), AMRAP/RPE prompts, timed sets, rest timer, heart rate, works without the phone via direct server sync, complications. Cannot swap exercises or change targets on watch. No official Wear OS app.",
+      "user_feedback": "App Store 2026-02 (5*): 'latest update that added watch support' made it a must-have; 2025-09 reviewers had listed missing Watch support as the only gap. https://itunes.apple.com/us/rss/customerreviews/id=1661880849/sortBy=mostRecent/json",
+      "sources": [
+        "https://www.liftosaur.com/features/apple-watch",
+        "https://apps.apple.com/us/app/liftosaur-scriptable-workouts/id1661880849"
+      ]
+    },
+    {
+      "area": "int",
+      "feature_id": "int_garmin",
+      "has": "no",
+      "how": "No official Garmin/Wear OS/Fitbit integration; community projects use the API (e.g., unofficial Wear OS client, Liftosaur-to-Garmin FIT converters).",
+      "sources": [
+        "https://github.com/MrSeal04/Vibe-coded-liftosaur-WearOS",
+        "https://github.com/ThisFunctionalTom/liftosaur-to-garmin",
+        "https://www.liftosaur.com/features"
+      ]
+    },
+    {
+      "area": "int",
+      "feature_id": "int_import",
+      "has": "partial",
+      "how": "Import history from Hevy CSV or Liftosaur CSV with preview (suspicious values, duplicates within 1 min skipped), undo of last 5 imports; JSON full restore; program JSON; program links. No direct Strong import.",
+      "sources": [
+        "https://www.liftosaur.com/features/import-export"
+      ]
+    },
+    {
+      "area": "int",
+      "feature_id": "int_export",
+      "has": "yes",
+      "how": "Export everything to JSON (restorable), history to CSV (one row per set incl. warm-ups, RPE, time, muscles, notes), all programs as Liftoscript text.",
+      "sources": [
+        "https://www.liftosaur.com/features/import-export"
+      ]
+    },
+    {
+      "area": "int",
+      "feature_id": "int_backup_sync",
+      "has": "yes",
+      "how": "Offline-first: data saved on device, optional account syncs after every change and pushes to other devices; per-entity last-write-wins merge; live workout continues across phone/web.",
+      "sources": [
+        "https://www.liftosaur.com/features/sync-and-offline"
+      ]
+    },
+    {
+      "area": "int",
+      "feature_id": "int_widgets",
+      "has": "no",
+      "how": "No home-screen widgets described; only Apple Watch complications (Up Next / Ongoing). Not described anywhere in the official per-feature docs, which claim to cover 'everything the app does' (checked 2026-10-02).",
+      "sources": [
+        "https://www.liftosaur.com/features/apple-watch",
+        "https://www.liftosaur.com/features"
+      ]
+    },
+    {
+      "area": "int",
+      "feature_id": "int_siri_shortcuts",
+      "has": "no",
+      "how": "No Siri/Shortcuts integration described; automation is via REST API instead. Not described anywhere in the official per-feature docs, which claim to cover 'everything the app does' (checked 2026-10-02).",
+      "sources": [
+        "https://www.liftosaur.com/features",
+        "https://www.liftosaur.com/features/api"
+      ]
+    },
+    {
+      "area": "equip",
+      "feature_id": "equip_locations",
+      "has": "yes",
+      "how": "Multiple gyms (Manage Gyms > Add/duplicate); 'Current Gym' switch changes equipment used by every exercise; per-gym equipment mapping per exercise.",
+      "sources": [
+        "https://www.liftosaur.com/features/equipment-and-gyms"
+      ]
+    },
+    {
+      "area": "equip",
+      "feature_id": "equip_inventory",
+      "has": "yes",
+      "how": "Per equipment: bar weight, sides (1-4), plate counts (only pairs count), fixed-weight lists for dumbbells/kettlebells/stacks, unit per equipment; custom equipment types. Targets are rounded down to the heaviest loadable weight with a 'Why is the weight adjusted?' explanation.",
+      "sources": [
+        "https://www.liftosaur.com/features/equipment-and-gyms"
+      ]
+    },
+    {
+      "area": "equip",
+      "feature_id": "equip_filtering",
+      "has": "yes",
+      "how": "Hidden equipment hides its exercises from the picker by default ('Show only available equipment').",
+      "sources": [
+        "https://www.liftosaur.com/features/equipment-and-gyms",
+        "https://www.liftosaur.com/features/exercise-library"
+      ]
+    },
+    {
+      "area": "social",
+      "feature_id": "social_feed",
+      "has": "no",
+      "how": "No feed, followers or friends; only an optional public profile page. Not described anywhere in the official per-feature docs, which claim to cover 'everything the app does' (checked 2026-10-02).",
+      "sources": [
+        "https://www.liftosaur.com/features/sharing-workouts",
+        "https://www.liftosaur.com/features"
+      ]
+    },
+    {
+      "area": "social",
+      "feature_id": "social_share",
+      "has": "yes",
+      "how": "Finish screen: IG Story/Feed, TikTok image (optionally over your photo), text copy, public link to the workout; optional public profile page with main lifts progress graphs.",
+      "sources": [
+        "https://www.liftosaur.com/features/sharing-workouts"
+      ]
+    },
+    {
+      "area": "social",
+      "feature_id": "social_leaderboards",
+      "has": "no",
+      "how": "No leaderboards. Not described anywhere in the official per-feature docs, which claim to cover 'everything the app does' (checked 2026-10-02).",
+      "sources": [
+        "https://www.liftosaur.com/features"
+      ]
+    },
+    {
+      "area": "social",
+      "feature_id": "social_challenges",
+      "has": "no",
+      "how": "No challenges. Not described anywhere in the official per-feature docs, which claim to cover 'everything the app does' (checked 2026-10-02).",
+      "sources": [
+        "https://www.liftosaur.com/features"
+      ]
+    },
+    {
+      "area": "coach",
+      "feature_id": "coach_client_management",
+      "has": "no",
+      "how": "No trainer/client accounts. Not described anywhere in the official per-feature docs, which claim to cover 'everything the app does' (checked 2026-10-02).",
+      "sources": [
+        "https://www.liftosaur.com/features"
+      ]
+    },
+    {
+      "area": "coach",
+      "feature_id": "coach_assign_programs",
+      "has": "partial",
+      "how": "No coach role, but a coach can send a program link/QR image that the athlete imports (with unit conversion); API keys allow external tooling.",
+      "sources": [
+        "https://www.liftosaur.com/features/sharing-programs",
+        "https://www.liftosaur.com/features/api"
+      ]
+    },
+    {
+      "area": "coach",
+      "feature_id": "coach_feedback",
+      "has": "no",
+      "how": "No coach feedback/review flow. Not described anywhere in the official per-feature docs, which claim to cover 'everything the app does' (checked 2026-10-02).",
+      "sources": [
+        "https://www.liftosaur.com/features"
+      ]
+    },
+    {
+      "area": "coach",
+      "feature_id": "coach_chat",
+      "has": "no",
+      "how": "No in-app chat; support via email and Discord. Not described anywhere in the official per-feature docs, which claim to cover 'everything the app does' (checked 2026-10-02).",
+      "sources": [
+        "https://www.liftosaur.com/features",
+        "https://www.liftosaur.com/features/first-run-and-settings"
+      ]
+    },
+    {
+      "area": "coach",
+      "feature_id": "coach_marketplace",
+      "has": "no",
+      "how": "No marketplace; built-in program library plus free public program links. There is an affiliate program for sharers.",
+      "sources": [
+        "https://www.liftosaur.com/features/built-in-programs",
+        "https://www.liftosaur.com/features/sharing-programs"
+      ]
+    },
+    {
+      "area": "monet",
+      "feature_id": "monet_model",
+      "has": "yes",
+      "how": "Core is free (programs, editor, Liftoscript, progressions, logging, history, measurement entry, equipment, sharing, import/export, sync). Premium (US: $4.99/mo, $39.99/yr, $99.99 lifetime; 14-day trial on subs; store-localized prices) unlocks plates per side, graphs, muscle views, rest-timer notifications/Live Activity, Week Insights, Apple Watch, API & MCP. Bought only in iOS/Android apps, works on all platforms.",
+      "user_feedback": "App Store 2025-11/2026-03 (5*): praised lifetime option; 'everything you need including progression is free'. https://itunes.apple.com/us/rss/customerreviews/id=1661880849/sortBy=mostRecent/json",
+      "sources": [
+        "https://www.liftosaur.com/features/premium",
+        "https://apps.apple.com/us/app/liftosaur-scriptable-workouts/id1661880849"
+      ]
+    },
+    {
+      "area": "ux",
+      "feature_id": "ux_units",
+      "has": "yes",
+      "how": "Global kg/lb and cm/in; per-equipment unit override (e.g., kg stack in lb gym, shown in kg in workout/history while graphs stay in default unit); automatic conversion when cloning/importing programs.",
+      "sources": [
+        "https://www.liftosaur.com/features/first-run-and-settings",
+        "https://www.liftosaur.com/features/equipment-and-gyms"
+      ]
+    },
+    {
+      "area": "ux",
+      "feature_id": "ux_theme",
+      "has": "yes",
+      "how": "Follows system light/dark by default; Dark mode override in Me > Appearance.",
+      "sources": [
+        "https://www.liftosaur.com/features/first-run-and-settings"
+      ]
+    },
+    {
+      "area": "ux",
+      "feature_id": "ux_languages",
+      "has": "no",
+      "how": "English only (App Store language list: English).",
+      "sources": [
+        "https://apps.apple.com/us/app/liftosaur-scriptable-workouts/id1661880849"
+      ]
+    },
+    {
+      "area": "ux",
+      "feature_id": "ux_accessibility",
+      "has": "partial",
+      "how": "In-app text size slider 12-24 that defaults to device text size and scales icons/thumbnails. VoiceOver support not documented.",
+      "sources": [
+        "https://www.liftosaur.com/features/first-run-and-settings"
+      ]
+    },
+    {
+      "area": "ux",
+      "feature_id": "ux_onboarding",
+      "has": "yes",
+      "how": "5 intro slides, pick units, equipment and plates, then built-in/create/import/no program; guided tours on workout screen and editors until 4 workouts finished; '?' replays tours.",
+      "user_feedback": "Many App Store reviews mention a learning curve for Liftoscript (e.g., 2026-04, 2026-02, 2025-11). https://itunes.apple.com/us/rss/customerreviews/id=1661880849/sortBy=mostRecent/json",
+      "sources": [
+        "https://www.liftosaur.com/features/first-run-and-settings"
+      ]
+    },
+    {
+      "area": "ux",
+      "feature_id": "ux_offline",
+      "has": "yes",
+      "how": "Works fully without account or connection; only the built-in program list needs a connection; web app caches itself for offline use.",
+      "sources": [
+        "https://www.liftosaur.com/features/sync-and-offline"
+      ]
+    },
+    {
+      "area": "ux",
+      "feature_id": "ux_privacy",
+      "has": "yes",
+      "how": "No account required; sign-in with Apple/Google/email optional; several local accounts per phone; 'Delete Current Cloud Account' wipes server data (payment records kept). App Store label lists health/fitness, email, IDs and usage data linked to identity.",
+      "sources": [
+        "https://www.liftosaur.com/features/account",
+        "https://apps.apple.com/us/app/liftosaur-scriptable-workouts/id1661880849"
+      ]
+    },
+    {
+      "area": "plan",
+      "feature_id": "new:liftoscript_dsl",
+      "has": "yes",
+      "how": "Programs are plain text: 'Exercise / sets x reps weight @RPE / rest / warmup: / progress: / update: / superset:'; weeks '#', days '##', reuse ('...Bench Press'), templates ('used: none'), labels, descriptions; JS-like scripting with state variables, loops, tags and built-in functions.",
+      "sources": [
+        "https://www.liftosaur.com/features/liftoscript",
+        "https://www.liftosaur.com/doc/liftoscript"
+      ]
+    },
+    {
+      "area": "prog",
+      "feature_id": "new:in_workout_update_scripts",
+      "has": "yes",
+      "how": "'update: custom()' runs before the first set and after each completed set to modify remaining sets in the current workout (e.g., add a set if reps hit target, set weight = bodyweight).",
+      "sources": [
+        "https://www.liftosaur.com/features/progressions"
+      ]
+    },
+    {
+      "area": "plan",
+      "feature_id": "new:program_playground",
+      "has": "yes",
+      "how": "Simulate workouts without touching history: complete sets, finish days and walk through weeks to see weights, reps and state variables change; also on program previews and web editor.",
+      "sources": [
+        "https://www.liftosaur.com/features/playground"
+      ]
+    },
+    {
+      "area": "plan",
+      "feature_id": "new:web_program_editor",
+      "has": "yes",
+      "how": "liftosaur.com/planner desktop editor (no account needed) with autocomplete, regex find/replace, multi-cursor, week stats and preview; private links edit the live account program; full app also runs as installable PWA at liftosaur.com/app.",
+      "sources": [
+        "https://www.liftosaur.com/features/web-editor",
+        "https://github.com/astashov/liftosaur"
+      ]
+    },
+    {
+      "area": "plan",
+      "feature_id": "new:program_editor_modes_and_versions",
+      "has": "yes",
+      "how": "In-app editor has 4 modes (calendar grid with drag-and-drop, per-day UI, per-day text, full text) with contextual 'pills' that write syntax; signed-in users can restore any of the last 100 saved versions.",
+      "sources": [
+        "https://www.liftosaur.com/features/program-editor",
+        "https://www.liftosaur.com/features/web-editor"
+      ]
+    },
+    {
+      "area": "int",
+      "feature_id": "new:rest_api",
+      "has": "paid",
+      "how": "API keys (lftsk_...) give read/write to programs, history, measurements, gyms/equipment, exercise data; /api/v1/workout/* runs the program engine server-side (start, log sets, finish with progressions). Premium + account required.",
+      "sources": [
+        "https://www.liftosaur.com/features/api"
+      ]
+    },
+    {
+      "area": "int",
+      "feature_id": "new:mcp_server_chatgpt_plugin",
+      "has": "paid",
+      "how": "MCP server at liftosaur.com/mcp (OAuth or API key) for Claude/Gemini/other clients plus a ChatGPT plugin: tools to CRUD programs, history, custom exercises, gyms, measurements, run_playground and get_program_stats. Reference tools free; account tools Premium.",
+      "sources": [
+        "https://www.liftosaur.com/features/chatgpt-claude-and-ai",
+        "https://www.liftosaur.com/doc/mcp"
+      ]
+    },
+    {
+      "area": "equip",
+      "feature_id": "new:weight_rounding_explainer",
+      "has": "yes",
+      "how": "When a computed target is not loadable, the exact weight is crossed out and the rounded one underlined; tapping it opens 'Why is the weight adjusted?' explaining 1RM %, unit conversion, bar, plates or closest dumbbell.",
+      "sources": [
+        "https://www.liftosaur.com/features/workout-screen",
+        "https://www.liftosaur.com/features/equipment-and-gyms"
+      ]
+    },
+    {
+      "area": "stats",
+      "feature_id": "new:muscle_volume_targets",
+      "has": "paid",
+      "how": "Per-muscle-group weekly set ranges and frequency targets with color coding and arrows (add/remove sets), strength/hypertrophy split targets, editable presets; shared by Week Insights and program week stats.",
+      "sources": [
+        "https://www.liftosaur.com/features/week-insights"
+      ]
+    },
+    {
+      "area": "lib",
+      "feature_id": "new:rep_max_calculator",
+      "has": "yes",
+      "how": "Calculator from the 1RM field or weight keypad: enter reps/RPE/weight achieved and target reps/RPE to get a weight ('Use it!'); also public web calculators.",
+      "sources": [
+        "https://www.liftosaur.com/features/exercise-library"
+      ]
+    },
+    {
+      "area": "social",
+      "feature_id": "new:public_profile_page",
+      "has": "yes",
+      "how": "Optional public page liftosaur.com/profile/<id> with nickname, current program, main/rest lift max and progress graphs.",
+      "sources": [
+        "https://www.liftosaur.com/features/sharing-workouts"
+      ]
+    },
+    {
+      "area": "ux",
+      "feature_id": "new:multiple_local_accounts",
+      "has": "yes",
+      "how": "Several local accounts on one phone, each with its own programs/history/settings; switch without losing data.",
+      "sources": [
+        "https://www.liftosaur.com/features/account"
+      ]
+    },
+    {
+      "area": "ux",
+      "feature_id": "new:open_source",
+      "has": "yes",
+      "how": "Source code public on GitHub under AGPL-3.0; Preact/TypeScript PWA wrapped in thin native iOS/Android apps.",
+      "sources": [
+        "https://github.com/astashov/liftosaur",
+        "https://raw.githubusercontent.com/astashov/liftosaur/master/LICENSE"
+      ]
+    },
+    {
+      "area": "body",
+      "feature_id": "new:heart_rate_display",
+      "has": "yes",
+      "how": "Heart rate shown on the workout screen from Apple Watch, or from AirPods if no watch (v122, Sep 2026).",
+      "sources": [
+        "https://apps.apple.com/us/app/liftosaur-scriptable-workouts/id1661880849",
+        "https://www.liftosaur.com/features/apple-watch"
+      ]
+    },
+    {
+      "area": "ux",
+      "feature_id": "new:always_on_display",
+      "has": "yes",
+      "how": "Optional setting keeps the screen awake while the app is open.",
+      "sources": [
+        "https://www.liftosaur.com/features/first-run-and-settings"
+      ]
+    }
+  ]
+}

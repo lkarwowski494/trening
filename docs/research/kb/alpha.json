@@ -1,0 +1,838 @@
+{
+  "app": "Alpha Progression",
+  "version_or_date_checked": "2026-10 (iOS 7.6.2; official guide dated 2026-09-10/17)",
+  "pricing": "Free forever (ad-free logging, own plans, all videos, CSV); Pro $12.99/mo or $79.99/yr US with 14-day trial on yearly - paywalls plan/workout generator, progression recommendations, charts, multiple gyms, RIR/periodization/deloads, plate & warm-up calculators, exercise evaluations, custom exercise images.",
+  "platforms": "iOS (iPhone), Android; no Apple Watch/Wear OS app, no web logger",
+  "positioning": "Hypertrophy/strength logger with a program generator and per-set weight/rep recommendations constrained by the gym's real available weights.",
+  "features": [
+    {
+      "area": "log",
+      "feature_id": "log_set_fields",
+      "has": "yes",
+      "how": "8 metric types per exercise: weight+reps, counterweight(assistance)+reps, reps only, reps+duration, duration only, distance+duration, weight+distance, weight+duration. Each set also shows a computed performance metric (e1RM, e10RM or volume, per setting).",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-guide"
+      ]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_set_types",
+      "has": "partial",
+      "how": "Working sets, dropsets (app calculates drop weight from last working set; generator can add them), supersets, and warm-up sets from the Pro warm-up calculator - warm-ups aren't logged as sets but can be copied into notes with one tap. No documented failure/AMRAP set type.",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-guide",
+        "https://alphaprogression.com/en/blog/alpha-progression-workout-plan-generator"
+      ]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_rpe_rir",
+      "has": "paid",
+      "how": "RIR (not RPE) is a Pro feature, toggled per plan or workout; half values allowed (e.g. 1.5). Once enabled, RIR must be entered for every set. Plans can carry RIR targets that recommendations aim for; without tracking the algorithm infers RIR.",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-guide",
+        "https://alphaprogression.com/en/blog/alpha-progression-progression-recommendations"
+      ]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_previous_values",
+      "has": "yes",
+      "how": "Previous sets and notes stay visible in the logger. 'Reference workout' setting (Settings > Training): 'Same plan day' (default; previous performance of that exercise on the same plan day, fallback to most recent) or 'Last workout' (most recent regardless of plan).",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-guide",
+        "https://alphaprogression.com/en/blog/alpha-progression-progression-recommendations"
+      ]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_autofill",
+      "has": "yes",
+      "how": "Editable weight/reps fields are pre-filled with values from the reference workout; Pro recommendation shown separately as a blue bubble under the same set.",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-progression-recommendations"
+      ]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_notes",
+      "has": "yes",
+      "how": "Any number of notes per exercise in a workout. Two kinds: temporary workout notes (shown later as previous-workout info) and pinned exercise notes (shown every time, editable on exercise page); toggle by (un)pinning. Notes aren't included when sharing plans.",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-guide"
+      ]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_supersets",
+      "has": "yes",
+      "how": "Supersets supported in plans and workouts (also usable to shorten sessions); generator output editable to add supersets. No circuits/giant-set terminology documented.",
+      "user_feedback": "Older review: can't modify supersets mid-workout (thefitnesstribe, undated/older).",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-guide",
+        "https://alphaprogression.com/en/blog/alpha-progression-workout-plan-generator"
+      ]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_reorder",
+      "has": "yes",
+      "how": "Long-press an exercise thumbnail in the workout header and drag; plan editor allows moving exercises between days (v6.4, Jan 2026) and importing workouts/days from other plans.",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-guide",
+        "https://apps.apple.com/us/app/alpha-progression/id1462277793"
+      ]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_replace_exercise",
+      "has": "yes",
+      "how": "Replace shows a list of similar exercises (e.g., different equipment when machine is taken) or normal search/filters; targets kept where possible (v6.5). At workout end, prompt asks whether to apply changes to the plan or keep them only for today.",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-guide",
+        "https://apps.apple.com/us/app/alpha-progression/id1462277793"
+      ]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_plate_calculator",
+      "has": "paid",
+      "how": "Pro: built into the weight picker for bar-and-plate exercises (uses bar weight + plate inventory of active gym); if target can't be built shows next lower achievable weight.",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-guide",
+        "https://alphaprogression.com/en/subscribe"
+      ]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_warmup_calculator",
+      "has": "paid",
+      "how": "Pro: tailored warm-up sets before working sets scaled by exercise, first working set weight, target reps, available weights and experience. Configurable count per compound/medium/isolation and per cold/warm muscle, extra/fewer sets for very low/high reps, and % of working weight per warm-up set (e.g., 35%, 65%).",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-guide",
+        "https://alphaprogression.com/en/subscribe"
+      ]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_bodyweight_assisted",
+      "has": "yes",
+      "how": "Each built-in bodyweight exercise stores the % of bodyweight moved (custom exercises: user sets 0-100%). User logs only added weight or assistance (e.g., -15 kg on assisted dips); bodyweight is included in e1RM/e10RM and recommendations. Resistance bands available as equipment.",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-guide"
+      ]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_unilateral",
+      "has": "unknown",
+      "how": "No per-side tracking documented; exercise 'Misc' instructions say whether to log one dumbbell or both.",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-guide",
+        "https://alphaprogression.com/en/support"
+      ]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_tempo",
+      "has": "unknown",
+      "how": "No tempo field documented.",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-guide"
+      ]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_empty_workout",
+      "has": "yes",
+      "how": "Free: create a standalone workout from scratch; Pro can generate a standalone workout.",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-guide"
+      ]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_edit_past",
+      "has": "yes",
+      "how": "Past workouts can be opened, edited or deleted; changes propagate to stats. Past workouts can be added manually (suggested in lieu of import).",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-guide"
+      ]
+    },
+    {
+      "area": "log",
+      "feature_id": "log_one_hand_ux",
+      "has": "partial",
+      "how": "Custom 'Picker' for weight/reps/RIR shows a sorted list of likely values plus keyboard ('Weight, reps and RIR in two taps'); horizontal thumbnail tab bar to switch exercises.",
+      "user_feedback": "Older review: text entry lag in exercise search (thefitnesstribe).",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-guide",
+        "https://apps.apple.com/us/app/alpha-progression/id1462277793"
+      ]
+    },
+    {
+      "area": "timer",
+      "feature_id": "timer_auto_rest",
+      "has": "yes",
+      "how": "Starts automatically on set completion; alarm at zero; by default counts past zero to show actual rest. Rest timer is in the free tier.",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-guide"
+      ]
+    },
+    {
+      "area": "timer",
+      "feature_id": "timer_per_exercise",
+      "has": "yes",
+      "how": "Defaults per exercise type (e.g., longer for large compounds, shorter for isolation) plus per-exercise override; current rest can be adjusted without changing the default.",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-guide"
+      ]
+    },
+    {
+      "area": "timer",
+      "feature_id": "timer_notifications",
+      "has": "partial",
+      "how": "'Rest timer with alarm'; live countdown in iOS Live Activity / Android live notification. Whether a push alert fires when backgrounded isn't explicitly documented.",
+      "user_feedback": "Review lists 'No audio cues' as a con (fitnessdrum 2026).",
+      "sources": [
+        "https://alphaprogression.com/en",
+        "https://alphaprogression.com/en/blog/alpha-progression-guide"
+      ]
+    },
+    {
+      "area": "timer",
+      "feature_id": "timer_live_activity",
+      "has": "yes",
+      "how": "iOS Live Activity (since v6.6, Apr 2026; iOS 16+): exercise/set counts, current exercise, set and recommendation; during rest the whole activity becomes a countdown bar; Dynamic Island shows rest timer and one-tap return. Android live notification equivalent (can be disabled).",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-guide",
+        "https://apps.apple.com/us/app/alpha-progression/id1462277793"
+      ]
+    },
+    {
+      "area": "timer",
+      "feature_id": "timer_set_stopwatch",
+      "has": "partial",
+      "how": "Duration-based metric types exist (duration only, reps+duration, weight+duration, distance+duration) for planks, burpees, runs; dedicated in-set stopwatch/countdown UI not documented.",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-guide"
+      ]
+    },
+    {
+      "area": "timer",
+      "feature_id": "timer_workout_duration",
+      "has": "unknown",
+      "how": "Generator shows an estimated workout duration (incl. warm-ups, rest, transitions); whether the in-workout elapsed timer exists is not documented.",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-workout-plan-generator"
+      ]
+    },
+    {
+      "area": "timer",
+      "feature_id": "timer_abandoned_workout",
+      "has": "partial",
+      "how": "An 'active workout reminder' notification exists (v7.0 fixed it firing after a completed workout); resume of workouts referenced. Auto-finish behaviour not documented.",
+      "sources": [
+        "https://apps.apple.com/us/app/alpha-progression/id1462277793"
+      ]
+    },
+    {
+      "area": "plan",
+      "feature_id": "plan_templates",
+      "has": "yes",
+      "how": "Free: unlimited manual plans (multi-day) and standalone workouts. Plan editor with bulk editing across all exercises, a day, or a week of a periodized plan; edit sets, rep targets, dropsets; import days from other plans.",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-guide",
+        "https://apps.apple.com/us/app/alpha-progression/id1462277793"
+      ]
+    },
+    {
+      "area": "plan",
+      "feature_id": "plan_folders",
+      "has": "unknown",
+      "how": "No folders documented.",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-guide"
+      ]
+    },
+    {
+      "area": "plan",
+      "feature_id": "plan_programs",
+      "has": "partial",
+      "how": "Multi-week plans: generated plans 4-7 weeks (default 4) or indefinite; manual plans 1-52 weeks or indefinite; repeat/extend/regenerate at the end. No curated library of named programs - entry points are generate, build own, or open a shared plan link.",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-guide",
+        "https://alphaprogression.com/en/blog/alpha-progression-workout-plan-generator"
+      ]
+    },
+    {
+      "area": "plan",
+      "feature_id": "plan_periodization",
+      "has": "paid",
+      "how": "Pro: periodization across a mesocycle (plans >=2 weeks) varies sets, rep targets, dropsets and RIR targets week to week; optional deload at plan end (not for indefinite plans) or mark any workout as deload. Not %1RM-based.",
+      "user_feedback": "Advanced users praise built-in periodization replacing Excel (App Store reviews).",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-guide",
+        "https://alphaprogression.com/en/blog/alpha-progression-workout-plan-generator"
+      ]
+    },
+    {
+      "area": "plan",
+      "feature_id": "plan_generator",
+      "has": "paid",
+      "how": "Pro, server-side (needs internet). Inputs: gender, experience (Beginner <6 mo, Intermediate 6+ mo, Advanced 1.5+ y, Pro 4+ y, Elite 8+ y), gym equipment, goal (Max strength / Muscle gain / Strength endurance -> rep targets), frequency, relative duration, muscle priorities (prioritize/deprioritize, relative), split (Automatic incl. hybrids, Full body, Upper-lower, Push-pull, PPL, PPL-upper-lower), plan length, optional RIR/periodization/deload. Outputs split, exercises, order, sets, reps, dropsets; some randomness among equal options. Standalone workout generator: Full body/Upper/Lower with nested focus (e.g., Upper > Push > Chest) or auto-focus from recent training.",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-workout-plan-generator",
+        "https://alphaprogression.com/en/blog/alpha-progression-guide",
+        "https://alphaprogression.com/en/subscribe"
+      ]
+    },
+    {
+      "area": "plan",
+      "feature_id": "plan_schedule",
+      "has": "no",
+      "how": "Plans are a sequence, not calendar-bound: missed workouts just continue with the next; only a weekly workout target (1-7) for streaks.",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-guide",
+        "https://alphaprogression.com/en/blog/alpha-progression-workout-plan-generator",
+        "https://alphaprogression.com/en/support"
+      ]
+    },
+    {
+      "area": "plan",
+      "feature_id": "plan_share_templates",
+      "has": "yes",
+      "how": "Free: share plans or workouts via unique link and QR code; includes name, exercises (also custom), targets, supersets - no logged sets or notes. Recipient gets an editable copy.",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-guide"
+      ]
+    },
+    {
+      "area": "lib",
+      "feature_id": "lib_size",
+      "has": "yes",
+      "how": "795 built-in exercises (Sept 2026), curated for strength/hypertrophy, plus home, stability and cardio exercises.",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-guide",
+        "https://alphaprogression.com/en/fact-sheet"
+      ]
+    },
+    {
+      "area": "lib",
+      "feature_id": "lib_media",
+      "has": "yes",
+      "how": "Every exercise has a real video filmed in a gym by certified trainers (no stock/animations), sometimes multi-angle; text sections Setup, Execution, Misc (cues, mistakes, how to count weight). Offline videos in lower resolution.",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-guide",
+        "https://alphaprogression.com/en"
+      ]
+    },
+    {
+      "area": "lib",
+      "feature_id": "lib_custom",
+      "has": "yes",
+      "how": "Create or copy an existing exercise: name, image (Pro, from camera/library), equipment, main muscle, multiple auxiliary muscles, type (compound/isolation...), metrics, bodyweight involvement 0-100%. Not used by generators.",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-guide"
+      ]
+    },
+    {
+      "area": "lib",
+      "feature_id": "lib_muscles",
+      "has": "yes",
+      "how": "Main targeted muscle + auxiliary muscles per exercise; muscle filter; charts for sets per muscle.",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-guide"
+      ]
+    },
+    {
+      "area": "lib",
+      "feature_id": "lib_equipment_filter",
+      "has": "yes",
+      "how": "Database shows only exercises available with the active gym's equipment (custom always shown); per-exercise whitelist/blacklist overrides.",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-guide"
+      ]
+    },
+    {
+      "area": "lib",
+      "feature_id": "lib_search",
+      "has": "yes",
+      "how": "Search plus filters (muscle, equipment, type: large compound/medium/small isolation/stability/cardio) and sorts: Most used, Most recent (shows time since last), Most popular (default; based on 25M workouts), A-Z; shows count performed.",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-guide",
+        "https://apps.apple.com/us/app/alpha-progression/id1462277793"
+      ]
+    },
+    {
+      "area": "lib",
+      "feature_id": "lib_localization",
+      "has": "yes",
+      "how": "Exercise content in 13 app languages (EN, DE, ES, FR, PT-BR, IT, PL, TR, NL, SV, NO, DA, JA).",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-guide",
+        "https://apps.apple.com/us/app/alpha-progression/id1462277793"
+      ]
+    },
+    {
+      "area": "lib",
+      "feature_id": "new:exercise_evaluations",
+      "has": "paid",
+      "how": "Pro: rates each exercise's suitability for muscle building based on range of motion and stability.",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-guide",
+        "https://alphaprogression.com/en/subscribe"
+      ]
+    },
+    {
+      "area": "prog",
+      "feature_id": "prog_suggestions",
+      "has": "paid",
+      "how": "Pro, per working set: estimates achievable performance via an internal estimated 10RM from reference workout + today's completed sets, then picks a weight (hard constraint: available weights in active gym) and reps close to plan target, weighting deviations; optional RIR target. Updates set to set within a workout, can go down after underperformance, can trade weight for reps (e.g., 20kg x 10 -> 20kg x 11 ... 20kg x 15 -> 25kg x 6). No recommendation on first exercise use. Works with own plans and offline.",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-progression-recommendations",
+        "https://alphaprogression.com/en/blog/alpha-progression-guide"
+      ]
+    },
+    {
+      "area": "prog",
+      "feature_id": "prog_double_progression",
+      "has": "yes",
+      "how": "Effectively double progression driven by available increments: adds reps at the same load until the next weight step is appropriate (worked examples in docs), not a fixed rep-range rule.",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-progression-recommendations"
+      ]
+    },
+    {
+      "area": "prog",
+      "feature_id": "prog_deload",
+      "has": "paid",
+      "how": "Planned deload at end of a plan or mark any workout as deload; recommendations are reduced accordingly (Pro).",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-guide",
+        "https://alphaprogression.com/en/blog/alpha-progression-progression-recommendations"
+      ]
+    },
+    {
+      "area": "prog",
+      "feature_id": "prog_fatigue",
+      "has": "partial",
+      "how": "Intra-workout fatigue: recommendations change between sets because 'set 3 is not set 1'. No per-muscle recovery or readiness model - recovery handled by program structure.",
+      "sources": [
+        "https://apps.apple.com/us/app/alpha-progression/id1462277793",
+        "https://alphaprogression.com/en/blog/alpha-progression-vs-fitbod"
+      ]
+    },
+    {
+      "area": "prog",
+      "feature_id": "prog_ai_coach",
+      "has": "no",
+      "how": "No conversational/AI coach; algorithmic generators and recommendations only. Human support via email.",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-guide",
+        "https://alphaprogression.com/en/support"
+      ]
+    },
+    {
+      "area": "stats",
+      "feature_id": "stats_prs",
+      "has": "yes",
+      "how": "Free: weight, reps, volume, estimated 1RM, estimated 10RM records and best performance per muscle group, surfaced in workout summary.",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-guide",
+        "https://apps.apple.com/us/app/alpha-progression/id1462277793"
+      ]
+    },
+    {
+      "area": "stats",
+      "feature_id": "stats_e1rm",
+      "has": "yes",
+      "how": "Estimated 1RM and 10RM per set (setting chooses which metric is displayed). Internal 10RM uses AP's own method; public RM calculator combines Epley and Brzycki.",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-guide",
+        "https://alphaprogression.com/en/blog/alpha-progression-progression-recommendations",
+        "https://alphaprogression.com/en/tools/rm-calculator",
+        "https://alphaprogression.com/en/blog/10rm-1rm-relationship"
+      ]
+    },
+    {
+      "area": "stats",
+      "feature_id": "stats_charts_exercise",
+      "has": "paid",
+      "how": "Pro charts: exercise performance, strength, volume, sets per muscle, workouts per week, bodyweight, measurements; configurable chart per exercise pinnable to Analytics; 3M range added 2026.",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-guide",
+        "https://apps.apple.com/us/app/alpha-progression/id1462277793"
+      ]
+    },
+    {
+      "area": "stats",
+      "feature_id": "stats_volume",
+      "has": "paid",
+      "how": "Sets-per-muscle and volume charts (Pro); reports break down by muscle.",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-guide"
+      ]
+    },
+    {
+      "area": "stats",
+      "feature_id": "stats_muscle_heatmap",
+      "has": "unknown",
+      "how": "No body heat map documented (older review mentions muscle targeting diagrams on exercises).",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-guide",
+        "https://www.compareworkoutapps.com/reviews/alpha-progression-app-review/"
+      ]
+    },
+    {
+      "area": "stats",
+      "feature_id": "stats_calendar_streaks",
+      "has": "yes",
+      "how": "Weekly target 1-7 workouts; streak = consecutive weeks meeting target, plus view for all targets and consecutive days. Achievements with punny badges and trophies per 10%. Calendar-based weekly/monthly/yearly reports.",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-guide"
+      ]
+    },
+    {
+      "area": "stats",
+      "feature_id": "stats_workout_summary",
+      "has": "yes",
+      "how": "Post-workout summary lists all records beaten and comparison with previous workout; shareable screenshot.",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-guide"
+      ]
+    },
+    {
+      "area": "stats",
+      "feature_id": "stats_strength_standards",
+      "has": "unknown",
+      "how": "Home page mentions a 'strength rating' chart; no population percentile/standards documented.",
+      "sources": [
+        "https://alphaprogression.com/en"
+      ]
+    },
+    {
+      "area": "stats",
+      "feature_id": "new:training_reports",
+      "has": "yes",
+      "how": "Weekly, monthly and yearly reports: frequency, what was trained, records, progress, achievements, most-used exercise, most-trained muscle, vs previous period.",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-guide"
+      ]
+    },
+    {
+      "area": "body",
+      "feature_id": "body_weight",
+      "has": "yes",
+      "how": "Free; manual or from Apple Health/Health Connect; used for bodyweight-exercise load.",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-guide",
+        "https://alphaprogression.com/en/privacy-policy"
+      ]
+    },
+    {
+      "area": "body",
+      "feature_id": "body_measurements",
+      "has": "yes",
+      "how": "Free: bodyweight, body fat %, calves L/R, chest, forearms L/R, hips, neck, shoulder width, thighs L/R, upper arms L/R, waist; charts (absolute/change) in Pro.",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-guide"
+      ]
+    },
+    {
+      "area": "body",
+      "feature_id": "body_photos",
+      "has": "unknown",
+      "how": "Not documented.",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-guide"
+      ]
+    },
+    {
+      "area": "body",
+      "feature_id": "body_readiness",
+      "has": "no",
+      "how": "No sleep/HRV/readiness inputs; the program-centric approach explicitly has no recovery model.",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-vs-fitbod"
+      ]
+    },
+    {
+      "area": "int",
+      "feature_id": "int_apple_health",
+      "has": "yes",
+      "how": "Apple Health (iOS) and Health Connect (Android): workouts with calories, bodyweight, body fat %. Health Connect data stays on device.",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-guide",
+        "https://alphaprogression.com/en/privacy-policy"
+      ]
+    },
+    {
+      "area": "int",
+      "feature_id": "int_watch_app",
+      "has": "no",
+      "how": "No Apple Watch or Wear OS app (on roadmap); Live Activity / live notification instead.",
+      "user_feedback": "Most cited missing feature in reviews (fitnessdrum 2026; compareworkoutapps).",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-guide"
+      ]
+    },
+    {
+      "area": "int",
+      "feature_id": "int_garmin",
+      "has": "no",
+      "how": "No Strava, Garmin or Fitbit integration stated by AP's own comparison.",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-vs-fitbod"
+      ]
+    },
+    {
+      "area": "int",
+      "feature_id": "int_import",
+      "has": "no",
+      "how": "No import from other apps; past workouts must be added manually.",
+      "user_feedback": "Listed as con (fitnessdrum 2026).",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-guide"
+      ]
+    },
+    {
+      "area": "int",
+      "feature_id": "int_export",
+      "has": "yes",
+      "how": "Free CSV export of plans, workout history, custom exercises, body measurements; since v7.6.2 via email, direct .csv download or clipboard.",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-guide",
+        "https://apps.apple.com/us/app/alpha-progression/id1462277793"
+      ]
+    },
+    {
+      "area": "int",
+      "feature_id": "int_backup_sync",
+      "has": "yes",
+      "how": "Optional free account syncs to backend across devices/iOS-Android incl. subscription; guest data local only and cannot be merged later.",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-guide",
+        "https://alphaprogression.com/en/support"
+      ]
+    },
+    {
+      "area": "int",
+      "feature_id": "int_widgets",
+      "has": "unknown",
+      "how": "No home-screen widget documented.",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-guide"
+      ]
+    },
+    {
+      "area": "int",
+      "feature_id": "int_siri_shortcuts",
+      "has": "unknown",
+      "how": "Not documented.",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-guide"
+      ]
+    },
+    {
+      "area": "equip",
+      "feature_id": "equip_locations",
+      "has": "paid",
+      "how": "Pro: multiple gyms, each with own equipment and weights; without Pro only the active gym is usable.",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-guide",
+        "https://alphaprogression.com/en/subscribe"
+      ]
+    },
+    {
+      "area": "equip",
+      "feature_id": "equip_inventory",
+      "has": "yes",
+      "how": "Per gym, per equipment, per exercise: weight ranges (min/max/interval, multiple ranges) or bar weight + plate counts; per-equipment/per-exercise unit overrides. Defaults provided in kg and lb. Drives recommendations, warm-ups and plate calculator.",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-guide"
+      ]
+    },
+    {
+      "area": "equip",
+      "feature_id": "equip_filtering",
+      "has": "yes",
+      "how": "Equipment checklist (~40 items in 6 groups) filters database and generators; whitelist/blacklist exercises.",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-guide"
+      ]
+    },
+    {
+      "area": "social",
+      "feature_id": "social_feed",
+      "has": "no",
+      "how": "No built-in social network (AP's own comparison).",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-vs-hevy"
+      ]
+    },
+    {
+      "area": "social",
+      "feature_id": "social_share",
+      "has": "yes",
+      "how": "Screenshot of workout summary/report to social media or messenger; plan/workout links with QR code.",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-guide"
+      ]
+    },
+    {
+      "area": "social",
+      "feature_id": "social_leaderboards",
+      "has": "no",
+      "how": "No social network or leaderboards.",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-vs-hevy"
+      ]
+    },
+    {
+      "area": "social",
+      "feature_id": "social_challenges",
+      "has": "unknown",
+      "how": "Not documented (achievements exist).",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-guide"
+      ]
+    },
+    {
+      "area": "coach",
+      "feature_id": "coach_client_management",
+      "has": "no",
+      "how": "No coach tooling; sharing plan links with coaching clients is the only mechanism.",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-guide",
+        "https://apps.apple.com/us/app/alpha-progression/id1462277793"
+      ]
+    },
+    {
+      "area": "coach",
+      "feature_id": "coach_assign_programs",
+      "has": "partial",
+      "how": "Coach can send a plan link/QR; client gets an editable copy. No tracking of client.",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-guide"
+      ]
+    },
+    {
+      "area": "coach",
+      "feature_id": "coach_feedback",
+      "has": "no",
+      "how": "No coach feedback; email support only.",
+      "sources": [
+        "https://alphaprogression.com/en/support"
+      ]
+    },
+    {
+      "area": "coach",
+      "feature_id": "coach_chat",
+      "has": "no",
+      "how": "Not available.",
+      "sources": [
+        "https://alphaprogression.com/en/support"
+      ]
+    },
+    {
+      "area": "coach",
+      "feature_id": "coach_marketplace",
+      "has": "no",
+      "how": "Not available.",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-guide"
+      ]
+    },
+    {
+      "area": "monet",
+      "feature_id": "monet_model",
+      "has": "yes",
+      "how": "Free forever, no ads, no account: unlimited logging, own plans, 795 exercise videos, rest timer, records, achievements, measurements, sharing, CSV. Pro $12.99/mo or $79.99/yr (US; 14-day trial only on yearly), via App Store, Play or web (web allows promo codes). Full refund on request. After expiry: generated-plan workouts can't be started; manual plans run without Pro settings.",
+      "user_feedback": "Free users ask for periodization in free tier (App Store review).",
+      "sources": [
+        "https://alphaprogression.com/en",
+        "https://alphaprogression.com/en/blog/alpha-progression-guide",
+        "https://alphaprogression.com/en/subscribe",
+        "https://apps.apple.com/us/app/alpha-progression/id1462277793"
+      ]
+    },
+    {
+      "area": "ux",
+      "feature_id": "ux_units",
+      "has": "yes",
+      "how": "kg/lb, cm/in, decimal point/comma, 12/24h, week start Sun/Mon; weight/length overridable per gym equipment and per exercise.",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-guide"
+      ]
+    },
+    {
+      "area": "ux",
+      "feature_id": "ux_theme",
+      "has": "yes",
+      "how": "Light and dark mode.",
+      "sources": [
+        "https://alphaprogression.com/en"
+      ]
+    },
+    {
+      "area": "ux",
+      "feature_id": "ux_languages",
+      "has": "yes",
+      "how": "13 languages (added most in Jul-Sep 2026: ES, FR, PT-BR, TR, IT, PL, NL, SV, NO, DA, JA; plus EN, DE).",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-guide",
+        "https://apps.apple.com/us/app/alpha-progression/id1462277793"
+      ]
+    },
+    {
+      "area": "ux",
+      "feature_id": "ux_accessibility",
+      "has": "unknown",
+      "how": "App Store: developer has not indicated accessibility features.",
+      "sources": [
+        "https://apps.apple.com/us/app/alpha-progression/id1462277793"
+      ]
+    },
+    {
+      "area": "ux",
+      "feature_id": "ux_onboarding",
+      "has": "yes",
+      "how": "Short onboarding: gender, experience (5 levels), bodyweight (manual or Health); optional Health connection; Pro offer; no account needed.",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-guide"
+      ]
+    },
+    {
+      "area": "ux",
+      "feature_id": "ux_offline",
+      "has": "yes",
+      "how": "Almost fully offline incl. Pro recommendations; videos in lower resolution; generators need internet; sync when back online.",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-guide",
+        "https://alphaprogression.com/en"
+      ]
+    },
+    {
+      "area": "ux",
+      "feature_id": "ux_privacy",
+      "has": "yes",
+      "how": "No account required (guest data local only). German GmbH, GDPR; uses Firebase, Adjust, RevenueCat/Stripe. App Store label: purchases and identifiers used to track; third-party advertising data.",
+      "sources": [
+        "https://alphaprogression.com/en/blog/alpha-progression-guide",
+        "https://alphaprogression.com/en/privacy-policy",
+        "https://apps.apple.com/us/app/alpha-progression/id1462277793"
+      ]
+    },
+    {
+      "area": "ux",
+      "feature_id": "new:platforms",
+      "has": "yes",
+      "how": "iOS (iPhone, iOS 15.6+; listed for Vision), Android; no iPad-specific, watch, or web app.",
+      "sources": [
+        "https://apps.apple.com/us/app/alpha-progression/id1462277793",
+        "https://alphaprogression.com/en/blog/alpha-progression-guide"
+      ]
+    }
+  ]
+}
