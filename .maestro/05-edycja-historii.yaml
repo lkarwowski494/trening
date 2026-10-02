@@ -1,0 +1,89 @@
+# Edycja zapisanej sesji (zmiana nazwy w edytorze, „Save” w nagłówku) i trening wstecz z szablonu (docs/12).
+#
+# Literały (EN z lib/i18n.en.ts, chyba że zaznaczono inaczej):
+#   "Start from a template"  ← 'Zacznij z szablonu'                         (app/(tabs)/index.tsx)
+#   "Start: Upper A"         ← 'Start: {name}' + nazwa szablonu z lib/seed.ts (accessibilityLabel przycisku Start)
+#   "Set 1 done.*"           ← 'Seria {n} zrobiona — {ex}' → 'Set {n} done — {ex}' (jak flow 01)
+#   "Skip"                   ← 'Pomiń'
+#   "Finish"                 ← 'Zakończ'          (components/ActiveWorkout.tsx: przycisk i przycisk w Alercie)
+#   "Finish workout\?"       ← 'Zakończyć trening?'
+#   "Delete session"         ← 'Usuń sesję'       (app/history/[id].tsx — znacznik ekranu zapisanej sesji)
+#   "Edit session"           ← 'Edytuj sesję'     (accessibilityLabel przycisku „Edit” w app/history/[id].tsx;
+#                                                  uwaga: tytuł edytora 'Edycja sesji' to też „Edit session”)
+#   "Cancel"                 ← 'Anuluj'           (headerLeft edytora app/history/edit/[id].tsx)
+#   "Save"                   ← 'Zapisz'           (headerRight edytora i przycisk w Alercie „Save changes?”)
+#   "Save changes"           ← 'Zapisz zmiany'    (przycisk na dole edytora)
+#   "Save changes\?"         ← 'Zapisać zmiany?'  (Alert przy pominiętych seriach / nachodzeniu terminów)
+#   "Upper A"                ← wartość pola Nazwa (Input w Field 'Nazwa' = „Name”) — nazwa szablonu z lib/seed.ts
+#   "Upper A E2E"            ← tekst wpisywany w tym teście
+#   "Back"                   ← 'Wróć' (headerBackTitle w app/_layout.tsx)
+#   "History, tab.*"         ← 'Historia' + etykieta zakładki react-navigation „{label}, tab, {i} of {n}”
+#   "+ Log a past workout"   ← '+ Dodaj trening wstecz' (app/(tabs)/history.tsx)
+#   "From a template"        ← 'Z szablonu'       (app/history/add.tsx)
+#   "Upper A, .*"            ← Item: accessibilityLabel „{title}, {sub}” (components/ui.tsx), sub = '{n} ex. · {m} sets'
+#   "2 sessions"             ← 'sesja|sesje|sesji' → 'session|sessions' (licznik w nagłówku Historii)
+appId: pl.lukasz.trening
+name: Edycja historii i trening wstecz
+---
+- launchApp:
+    clearState: true
+    permissions: { all: allow }
+- extendedWaitUntil: { visible: "Start from a template", timeout: 20000 }
+- tapOn: "Start: Upper A"
+- extendedWaitUntil: { visible: "Set 1 done.*", timeout: 10000 }
+- tapOn: { text: "Set 1 done.*", index: 0 }
+- extendedWaitUntil: { visible: "Skip", timeout: 10000 }
+- tapOn: "Skip"
+- assertNotVisible: "Skip"
+- tapOn: "Finish"
+- extendedWaitUntil: { visible: "Finish workout\\?", timeout: 10000 }
+- tapOn: { text: "Finish", below: "Finish workout\\?" }
+# Zapisana sesja
+- extendedWaitUntil: { visible: "Delete session", timeout: 10000 }
+- assertVisible: "Upper A"
+- takeScreenshot: 10-sesja-przed-edycja
+
+# --- Edycja sesji ---
+- tapOn: "Edit session"
+- extendedWaitUntil: { visible: "Cancel", timeout: 10000 }
+- assertVisible: "Save"
+- assertVisible: "Save changes"
+- takeScreenshot: 11-edytor-sesji
+# Pole „Name” (TextInput) ma wartość „Upper A” — dopasowanie po wartości pola (etykieta „Name” jest zdublowana z podpisem pola)
+- tapOn: "Upper A"
+- eraseText: 30
+- inputText: "Upper A E2E"
+- takeScreenshot: 12-edytor-nowa-nazwa
+- tapOn: "Save"
+# Alert pojawia się tylko przy pominiętych seriach / nachodzeniu terminów — tutaj nie powinien, ale nie blokuje testu
+- tapOn: { text: "Save", below: "Save changes\\?", optional: true }
+# Powrót na ekran sesji z nową nazwą
+- extendedWaitUntil: { visible: "Delete session", timeout: 10000 }
+- assertVisible: "Upper A E2E"
+- assertNotVisible: "Upper A"
+- assertNotVisible: "Cancel"
+- takeScreenshot: 13-sesja-po-edycji
+
+# --- Trening wstecz ---
+- tapOn: "Back"
+- tapOn: "History, tab.*"
+- extendedWaitUntil: { visible: "Upper A E2E,.*", timeout: 10000 }
+- tapOn: "\\+ Log a past workout"
+- extendedWaitUntil: { visible: "From a template", timeout: 10000 }
+- takeScreenshot: 14-trening-wstecz
+- tapOn: "Upper A, .*"
+- extendedWaitUntil: { visible: "Cancel", timeout: 10000 }
+- assertVisible: "Save"
+- takeScreenshot: 15-edytor-treningu-wstecz
+- tapOn: "Save"
+# Upper A ma ćwiczenia bez zakresu powtórzeń (Chin Up, Chest Dip) — ich puste serie zostaną pominięte, więc spodziewany Alert
+- tapOn: { text: "Save", below: "Save changes\\?", optional: true }
+# Po zapisie edytor zastępuje się ekranem nowej sesji
+- extendedWaitUntil: { visible: "Delete session", timeout: 10000 }
+- assertVisible: "Upper A"
+- takeScreenshot: 16-sesja-wstecz-zapisana
+- tapOn: "Back"
+- extendedWaitUntil: { visible: "2 sessions", timeout: 10000 }
+- assertVisible: "Upper A, .*"
+- assertVisible: "Upper A E2E,.*"
+- takeScreenshot: 17-historia-dwie-sesje

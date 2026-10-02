@@ -4,3 +4,5 @@ flows:
   - 02-przerwa-po-restarcie.yaml
   - 03-kolejnosc.yaml
   - 04-plank-stoper.yaml
+  - 05-edycja-historii.yaml
+  - 06-miejsca.yaml
