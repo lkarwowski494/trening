@@ -1,7 +1,9 @@
 import React, { useEffect, useRef } from 'react';
 import { ScrollView, View, Alert } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import { Screen, Field, Input, NumInput, Btn, Muted, Txt, FieldLabel, FieldHint, useOnce } from '@/components/ui';
+import { Screen, Field, Input, NumInput, Btn, Muted, Txt, FieldLabel, FieldHint, useOnce, Chip } from '@/components/ui';
+import { ScrollView as HScroll } from 'react-native';
+import { locationLabel } from '@/lib/locations';
 import { getState, useTick, exById, save, dupTemplate, deleteTemplate, groupLabels, linkWithNext, unlink, moveItem, removeItem, restFor, isBW, startFromTemplate, loadLabel, loadLabelShort, occurrence, occurrences } from '@/lib/store';
 import { useTheme } from '@/lib/theme';
 import { hasTime, hasReps, hasWeight } from '@/lib/seed';
@@ -32,6 +34,11 @@ export default function TemplateEdit() {
   return (
     <Screen><ScrollView keyboardShouldPersistTaps="handled" keyboardDismissMode="interactive" automaticallyAdjustKeyboardInsets contentContainerStyle={{ paddingVertical: 10, paddingBottom: 120 }}>
       <Field label={t('Nazwa')}><Input selectTextOnFocus maxLength={80} value={tpl.name} onChangeText={v => { tpl.name = v; save(tpl); }} onEndEditing={commitName} /></Field>
+      {getState().settings.locations.length ? <Field label={t('Miejsce domyślne')} /* P-003 E1: start treningu z tego szablonu — to miejsce (zmiana na starcie: „📍”) */><HScroll horizontal keyboardShouldPersistTaps="handled" showsHorizontalScrollIndicator={false}>
+        <Chip label={t('główne')} on={!tpl.locationId} onPress={() => { if (!tpl.locationId) return; delete tpl.locationId; save(tpl); }} />
+        {getState().settings.locations.map(l => <Chip key={l.id} label={l.name} on={tpl.locationId === l.id} onPress={() => { if (tpl.locationId === l.id) return; tpl.locationId = l.id; save(tpl); }} />)}
+        {tpl.locationId && !getState().settings.locations.some(l => l.id === tpl.locationId) ? <Chip label={locationLabel(tpl.locationId)} on onPress={() => {}} /> : null}
+      </HScroll></Field> : null}
       <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginBottom: 10 }}>{tpl.items.length ? <Btn title={getState().active ? t('Trening w toku') : t('Start')} kind={getState().active ? 'ghost' : 'primary'} small onPress={once(() => { commitName(); const act = getState().active; if (act && act.templateId === tpl.id) { goHome(); return; } if (act) { Alert.alert(t('Trening w toku'), t('Najpierw zakończ albo anuluj bieżący trening.')); return; } startFromTemplate(tpl); goHome(); })} /> : null}{tpl.items.length > 1 ? <Btn title={t('≡ Kolejność')} small accessibilityLabel={t('Zmień kolejność ćwiczeń')} onPress={() => { commitName(); router.push(`/reorder?target=template:${tpl.id}`); }} /> : null}{tpl.items.length ? <Btn title={t('Duplikuj')} small onPress={() => { if (busy.current) return; busy.current = true; commitName(); const c = dupTemplate(tpl.id); router.replace(`/template/${c.id}`); }} /> : null}<Btn title={t('Usuń')} small kind="danger" onPress={() => Alert.alert(t('Usunąć szablon?'), undefined, [{ text: t('Nie') }, { text: t('Usuń'), style: 'destructive', onPress: () => { if (!getState().templates.some(x => x.id === tpl.id)) return; deleteTemplate(tpl.id); back(); } }])} /></View>
       {tpl.items.map((it, i) => { const ex = exById(it.exerciseId); const m = ex?.metric ?? 'weight_reps'; const next = tpl.items[i + 1]; const nOcc = occurrences(tpl.items, it.exerciseId); const nm = nOcc > 1 ? `${exName(ex)} (${occurrence(tpl.items, i) + 1})` : exName(ex); /* runda 67: dwie pozycje tego samego ćwiczenia rozróżnialne dla VoiceOver */ return (
         <View key={it.id} style={{ borderBottomWidth: 1, borderBottomColor: th.line, paddingVertical: 10, gap: 8 }}>

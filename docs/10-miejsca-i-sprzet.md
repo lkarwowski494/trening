@@ -1,6 +1,6 @@
 # Miejsca treningu i sprzęt (P-003) — research i projekt wdrożenia
 
-Wersja robocza 02.10.2026. Status: **projekt do decyzji** (nic nie jest jeszcze w kodzie). Zgłoszenie: P-003 (02.10, test na iPhonie), wraca T-044 / D-011 (odłożone 01.10).
+Wersja robocza 02.10.2026. Status: **E1 wdrożone na gałęzi `feature/locations`** (niezmergowane, bez buildu) — szczegóły, przyjęte decyzje i odstępstwa w sekcji „Implementacja E1” na końcu. Zgłoszenie: P-003 (02.10, test na iPhonie), wraca T-044 / D-011 (odłożone 01.10).
 Dane źródłowe: `docs/research/equipment/catalog.json` (katalog 125 ćwiczeń), `docs/research/kb/*.json` (baza wiedzy funkcji 10 aplikacji). Pełne raporty z researchu: sekcja „Źródła” na końcu.
 
 ## 1. Co chcemy osiągnąć (słowami użytkownika)
@@ -122,6 +122,8 @@ Pozycja „Stacja z oporem elektrycznym / magnetycznym (np. ViShape, Speediance,
 
 ## 7. Decyzje do podjęcia (rekomendacja pierwsza)
 
+> Przy wdrożeniu E1 (02.10, właściciel niedostępny) przyjęto rekomendacje: 1a, 2a (bez zamienników w E1 — to E2), 3a, 4a, 5 — zostawić duplikaty, 6 — gumy globalne, 7b, 8a. Zapis i odstępstwa: „Implementacja E1”.
+
 1. **Gdzie wybiera się miejsce:** (a) miejsce główne + domyślne miejsce szablonu + zmiana na starcie treningu — *rekomendacja*; (b) jedno globalne „aktywne miejsce” (Alpha/Liftosaur) — prostsze, ale łatwo zapomnieć przełączyć.
 2. **Szablony a miejsca:** (a) jeden szablon + zamienniki per miejsce (E2) — *rekomendacja*, bez dublowania; (b) osobne szablony „Legs — dom / siłownia” (dzisiejszy stan) — proste, ale edycje trzeba robić dwa razy.
 3. **Filtr w wyborze ćwiczenia:** (a) domyślnie tylko dostępne + „pokaż wszystkie” — *rekomendacja*; (b) wszystkie, dostępne na górze.
@@ -172,6 +174,91 @@ Niezależny przegląd 02.10.2026 (agent, który nie pisał dokumentu): 6 wysokic
 - sprawy do rozstrzygnięcia przy wdrożeniu.
 
 Poprawki katalogu (Wall Sit, Bieg, Rower, siedzisko na skosie, Łydki na stopniu, kółka, kettle przy spacerze farmera, face pull, stojak przy wiosłowaniu) wprowadzone w `catalog.json`. Sprawdzone i poprawne: algorytm talerzy (3 przypadki) i liczby w katalogu.
+
+## Implementacja E1 (gałąź feature/locations)
+
+Stan 03.10.2026: 4 commity E1 + 2 commity poprawek po niezależnym audycie + po 1 commicie po weryfikacjach 2 i 3 (sekcja „Audyt E1” niżej) na `feature/locations` (bez push i buildu). Weryfikacja: `npx tsc --noEmit` ✓, `npm run check:i18n` ✓, `npx jest --maxWorkers=2` 763/763 ✓ (650 dotychczasowych + 113 nowych w `tests/locations-*.test.ts(x)`), `node scripts/equipment/gen.mjs --check` ✓, `node scripts/verify-native.mjs` ✓.
+
+### Co jest zrobione
+- **A. `lib/equipment.ts`** — jedno źródło prawdy: słownik możliwości (z katalogu + `bands`, `cable.rope`, `ankle_strap`, `cable.handles`), 50 pozycji sprzętu w 7 grupach (PL/EN, opcje → dodatkowe możliwości, rodzaj ciężarów), stacja z oporem elektrycznym/magnetycznym jako **jedna pozycja** (zawsze `cable.low`; domyślnie zaznaczone opcje: dwie linki, pas biodrowy, opaski; do zaznaczenia: ramiona/wysoki wyciąg, ławka, lina), presety miejsc, `availability(ćwiczenie, miejsce)` → `{ ok, missing: grupy, missingRecommended }`, `loadsFor(ćwiczenie, miejsce)`. Wymagania 125 ćwiczeń są **generowane** z `catalog.json` (`scripts/equipment/gen.mjs` → `lib/catalog.generated.ts`; test sprawdza, że plik jest aktualny).
+- **B. `lib/loads.ts`** — lista ciężarów z przełącznikiem przy każdym, „zakres + krok” jako skrót edytora zapisywany do listy (odznaczone zostają odznaczone), uchwyt/gryf + talerze (ograniczona suma podzbiorów; para hantli = 4 sztuki na krok, jeden hantel / sztanga = 2), stacja elektryczna (zakres na stronę + krok; ×1/×2 linki), kg/lb przez to samo przyciąganie co wpis w polu (`snapLb`), tolerancja 0,01 kg. Testy: Hop-Sport para (8 ciężarów), jeden hantel (21 do 18,5), sztanga 20 + para talerzy (co 2,5 do 177,5), ViShape Pro (128 ustawień), fast-check (zgodność z pełnym przeliczeniem, sortowanie, „najbliższy większy ∈ dostępne”).
+- **C. Model danych, schemat 14** — `Settings.locations[]`, `mainLocationId`, `pickerShowAll`; `Workout.locationId?`, `Template.locationId?`; ćwiczenie: `requires`, `recommended`, `pattern`, `loadSource`, `implements` (zapisane w ćwiczeniu). Migracja: ćwiczenia z flagą `lib` dostają dane z katalogu po nazwie kanonicznej; własne — `requires: []` (zawsze dostępne) i `loadSource` ze zgrubnego sprzętu (także po zmianie sprzętu w edycji). Biała lista Ustawień w `migrate()` rozszerzona (sprzęt i opcje tylko znane, ciężary sanityzowane, miejsce główne zawsze istnieje, gdy są miejsca). Testy: idempotencja (fast-check), eksport → import, restart, stary backup web 0.3.
+- **D. Ekrany** — Ustawienia → „Miejsca treningu” (`app/more/locations.tsx`): lista (★ główne), „+ Dodaj miejsce” z presetami. Miejsce (`app/more/location/[id].tsx`): nazwa, „Ustaw jako główne”, licznik „Dostępne ćwiczenia: N z M”, sprzęt w grupach (przełączniki iOS), opcje pod pozycją, edytor ciężarów (`components/LoadEditor.tsx`: lista z odznaczaniem + „wypełnij zakresem” + „dodaj ciężar”; uchwyt/gryf + talerze w sztukach; min/max na stronę + krok; jednostka sprzętu kg/lb; presety modeli tylko ze źródeł: Gymtek 2,5–24, Hop-Sport 2×10, ViShape Pro i Lite), „Duplikuj”, „Usuń”. Zapis przy każdej zmianie.
+- **E. Trening** — „📍 Dom ▾” pod nazwą treningu (tylko gdy są miejsca; zmiana tylko dla tej sesji, nic nie jest przepisywane); szablon: „Miejsce domyślne” (chipy); start: miejsce szablonu, inaczej główne; „Powtórz ostatni” — miejsce tamtego treningu. Wybór ćwiczenia: domyślnie tylko dostępne w miejscu treningu (albo w miejscu domyślnym edytowanego szablonu), zapamiętany przełącznik „Pokaż wszystkie”, niedostępne wyszarzone z „brak: sztanga, klatka / stojaki”; dokładna nazwa z wyszukiwania pokazuje się mimo filtra. Blok ćwiczenia: plakietka „brak sprzętu w: Dom (…)”, nigdy automatyczna zamiana.
+- **F. Podpowiedzi** — „↑” = najbliższy większy **dostępny** ciężar; przy skoku > 10% najpierw „↑ ten sam ciężar, spróbuj {górna granica + 2} pow.”, po zrobieniu tego na wszystkich seriach — „↑ spróbuj X”; ciężar ≥ największy dostępny → brak „↑”; przyrząd bez wpisanych ciężarów → podpowiedź jak dotąd; brak przyrządu z ciężarem (np. wykroki w miejscu bez hantli) → podpowiedź w powtórzeniach. Masa ciała z dociążeniem — bez zmian. Wpisane wartości nigdy nie są zmieniane. „Poprzednio” i wstępne wartości: najpierw ostatni trening **w tym samym miejscu**, gdy go brak — ostatni gdziekolwiek, z dopiskiem „Poprzednio: Siłownia”.
+- **Bez miejsc** aplikacja działa jak dotąd: trening nie dostaje pola `locationId`, picker bez filtra, podpowiedzi i „Poprzednio” bez zmian (cały dotychczasowy zestaw testów przechodzi).
+
+### Decyzje zastosowane
+| # | Decyzja | Jak w kodzie |
+|---|---|---|
+| 1a | miejsce główne + miejsce szablonu + zmiana na starcie | `startLocationId()`, chip „📍” w treningu, chipy w szablonie |
+| 2 | bez zamienników per miejsce w E1 | szablony bez zmian; `alternates` → E2 |
+| 3a | tylko dostępne + zapamiętane „Pokaż wszystkie” | `Settings.pickerShowAll` (jedno ustawienie dla wszystkich miejsc) |
+| 4a | wykroki, step-up, russian twist bez wymogu hantli | z katalogu; „Tylko masa ciała” = 20 ćwiczeń |
+| 5 | duplikaty zostają | bez zmian w bibliotece |
+| 6 | gumy globalne | pozycja „Gumy oporowe” (możliwość `bands`) tylko informacyjnie; nic jej nie wymaga |
+| 7b | bramka 10% z limitem +2 | `PROGRESSION_GATE = 0.10` w `progressionFor` |
+| 8a | „Poprzednio” z tego samego miejsca, potem gdziekolwiek | `previousBlockFor(…, locationId)`; tylko gdy są miejsca |
+| 3.4 | stacja elektryczna jako jedna pozycja | `electric` z opcjami |
+
+### Dom użytkownika (test `tests/locations-catalog.test.ts`)
+Ławka regulowana, drążek, poręcze, hantle z listą (TREXO), ViShape SmartGym Pro (1,5–65 kg/str., krok 0,5; dwie linki od dołu, pas, opaski; bez wysokiego wyciągu). Dostępnych **70 ze 125**, m.in. Bench Press (hantle) ✓, Pull Up ✓, Chest Dip ✓, Przysiad z pasem (linki) ✓ (stacja: wyciąg dolny + pas), cały szablon „Legs — dom” ✓; niedostępne m.in. Back Squat (sztanga, stojaki), Lat Pulldown / Face Pull / Triceps Pushdown (brak wysokiego wyciągu — po zaznaczeniu opcji „ramiona” byłyby dostępne), maszyny, cardio. Pełną listę warto przejrzeć z użytkownikiem (ekran miejsca pokazuje licznik, picker — „brak: …”).
+
+### Odstępstwa i doprecyzowania
+- **Testy schematu:** dwa istniejące testy miały wpisany literał `schemaVersion === 13` (audit-r72-b B7/B8, regress R55-01) — zmieniony na 14. Poza tym żaden dotychczasowy test nie był zmieniany.
+- **`implements`** dopisane do `catalog.json` (9 × jeden, 29 × para); Łydki na stopniu = para (niepewne, bez znaczenia przy hantlach z listą).
+- **Usuwanie:** miejsca głównego nie da się usunąć, dopóki jest inne; **jedyne** miejsce można usunąć — aplikacja wraca wtedy do trybu bez miejsc (inaczej nie dałoby się z niego wyjść).
+- **Stacja elektryczna:** seria nie zapisuje (jeszcze) liczby linek. Ćwiczenia wymagające dwóch linek (`cable.dual`) — 2 × na stronę; przysiad z pasem (wymaga pasa) — jedna albo obie linki (×1 i ×2); pozostałe, w tym jednorącz, — tylko na stronę (po audycie: wartość ponad zakres jednej linki nie jest podpowiadana jako „dwie linki”). Ustawienie „urządzenie pokazuje na stronę / łącznie” — nie w E1.
+- **Talerze** są opisane osobno przy każdej pozycji (sztanga, EZ, trap bar, hantle na talerze) — bez wspólnej puli talerzy miejsca (do rozważenia z kalkulatorem talerzy, E3).
+- **Presety:** „Pełna siłownia” = cały sprzęt (125/125), sztanga/EZ/trap bar z talerzami 25…1,25 (po 8 szt.), hantle 2,5–50 co 2,5; **stosy maszyn, wyciągów i kettle — puste** (wartości z researchu niezweryfikowane; podpowiedź działa wtedy jak dotąd). „Hotel”: hantle 2,5–25 co 2,5, ławka regulowana, mata, bieżnia, rower — do potwierdzenia.
+- **TREXO TXO-B4W002:** brak presetu modelu (kroki nieznane). Użytkownik wpisuje listę sam (np. „wypełnij zakresem” i odznaczenie brakujących).
+- **Picker w edycji szablonu** filtruje tylko po jawnie ustawionym miejscu szablonu (szablon bez miejsca — bez filtra).
+- **Wymagania ćwiczenia** są zapisane w ćwiczeniu, ale ekran edycji ćwiczenia ich jeszcze nie pokazuje ani nie edytuje.
+
+### Co zostaje
+- **E2:** „Zamień ćwiczenie” (ranking zamienników), zamienniki per miejsce w szablonie (`TemplateItem.alternates`), edycja wymagań w edycji ćwiczenia, liczba linek w serii, miejsce w historii (lista, filtr).
+- **E3:** kalkulator talerzy i rozgrzewki z talerzy miejsca (wspólna pula talerzy).
+- **Do ustalenia z użytkownikiem:** kroki regulacji TREXO (odczyt z pokrętła); czy ViShape pokazuje ciężar na stronę czy łącznie i czy 45 kg w „Przysiad z pasem (linki)” to suma; P-004 (Deadlift/RDL z hantlami wpisywane jako suma przy trybie „na hantel” — objętość ×2); wartości presetów (Hotel, stosy maszyn); przegląd listy 70 ćwiczeń dostępnych w domu.
+- **Ryzyka:** kopia ze schematem 14 nie wczyta się w starszej wersji aplikacji; ekran miejsca ma ~50 przełączników i edytory ciężarów — do sprawdzenia na iPhonie (przewijanie, klawiatura nad polami „od/do/co”).
+
+### Audyt E1 (03.10.2026) — poprawki
+Niezależny audyt gałęzi: 3 wysokie, 11 średnich, kilka niskich. Wszystkie poprawione (M9 i M10 — tylko opisane niżej), każda z testem regresji w `tests/locations-audit.test.tsx` (23 testy).
+
+| # | Problem | Poprawka |
+|---|---|---|
+| H1 | sanityzacja ucinała listę do 300 ciężarów / 30 talerzy, a edytor pozwalał na 2000 → utrata danych przy starcie/imporcie | jeden limit `LOAD_LIMITS` (lista 300, rodzaje talerzy 30, ustawienia stacji 2000, kombinacje talerzy 50 000) w edytorze, sanityzacji i obliczeniach; limit widoczny w edytorze |
+| H2 | z listą ciężarów i poprzednim ciężarem 0 (wykroki, russian twist) podpowiedź „+1 kg”, choć najmniejszy hantel to 3 kg | lista + ciężar 0 → „↑ spróbuj {górna granica + 1} pow.” (spójne z decyzją 4a) |
+| H3 | własne ćwiczenia na maszynie/wyciągu traciły „↑”, gdy istniało jakiekolwiek miejsce | brak dopasowanego przyrządu → „nieznane” (podpowiedź jak dotąd); „brak” tylko dla ćwiczeń biblioteki bez wymagań z obciążeniem zalecanym (4a) |
+| M1 | ciężary wszystkich wyciągów łączone (Pushdown dostawał stos wyciągu do ściągania) | dobór pozycji po wymaganiu: najpierw pozycja dająca wprost pierwszą możliwość grupy, potem dowolną wymaganą wprost, potem „przy okazji” (`secondary`: wyciąg górny stacji do ściągania, dolny stacji do wiosłowania); bez dopasowania — wszystkie pozycje tego rodzaju (poza maszynami) |
+| M2 | maszyna T-bar nie była źródłem ciężaru | możliwości maszyn z ciężarami w wymaganiach dodają rodzaj „maszyna” |
+| M3 | ciężar z innego miejsca wstawiany do pól, choć tu go nie ma (32 kg z siłowni, w domu max 24) | przy starcie i odhaczeniu pustej serii ciężar z innego (znanego — weryfikacja 2) miejsca spoza listy nie jest wstawiany — zostaje tylko w „Poprzednio” (pkt 4.4); bez miejsc bez zmian |
+| M4 | zmiana jednostki sprzętu zmieniała tylko podpis | `convertSpec`: kg → lb do 0,1 lb, lb → kg przez `snapLb`; kg → lb → kg wraca do tych samych kg |
+| M5 | odznaczenie pozycji kasowało ciężary; preset modelu nadpisywał listę bez pytania | odznaczona pozycja dostaje `off: true` (opcje i ciężary zostają, także w kopii); preset pyta „Zastąpić wpisane ciężary?”, gdy coś jest wpisane |
+| M6 | wymagania biblioteki kopiowane raz | `CATALOG_REV` (skrót treści katalogu, generowany); ćwiczenie z inną wersją dostaje przy starcie aktualne wymagania; `catalogRev: 'user'` = edytowane — przyszły edytor wymagań ma ustawiać tę wartość |
+| M7 | VoiceOver: opcje bez nazwy pozycji, przyciski edytora bez kontekstu, ciężary jako zwykłe przyciski | etykiety „Pozycja: opcja”, „Akcja — Pozycja”; ciężary jako przełączniki ze stanem |
+| M8 | „Poprzednio: bez miejsca” wszędzie po utworzeniu pierwszego miejsca | dopisek tylko, gdy poprzedni trening był w innym, określonym miejscu |
+| M11 | zakresy i kombinacje talerzy ucinane po cichu (bez najcięższych) | ponad limit: edytor pokazuje komunikat i nie zmienia listy; opis ponad limit daje pustą listę (podpowiedź jak bez miejsca), nigdy listę bez najcięższych |
+| LOW | — | `achievable` zapamiętywane po treści opisu (nie po rewizji miejsca: edytor zmienia obiekt w miejscu, a klucz z treści nie daje starego wyniku; `capsOf`/`availability` są tanie); preset „Pełna siłownia” i „Hotel” w lb (gryf 45 lb, talerze 45…2,5, hantle co 5 lb); nazwy presetów modeli wg języka; nazwa miejsca ≤ 80 znaków, wyjście z pustą nazwą przywraca poprzednią; stacja z max < min zostaje jak wpisana i edytor to zgłasza; uszkodzona grupa wymagań → `['?']` (ćwiczenie niedostępne, „brak: ?” — wybór zachowawczy); jednorącz na linkach > 65 kg/str. nie dostaje wartości „dwóch linek” |
+
+**Weryfikacja 2 (03.10.2026)** — 1 nowy wysoki (skutek poprawki M3) i 4 niskie; poprawione, testy w `tests/locations-verify2.test.tsx` (7 testów):
+- **HIGH:** M3 traktowało treningi zapisane przed utworzeniem miejsc (bez `locationId`) jako „inne miejsce”, a M8 — nie. Po dodaniu pierwszego miejsca ciężar z historii był wstrzymywany, a ✓ zapisywało serię z powtórzeniami i PUSTYM ciężarem (objętość, rekordy i progresja psute; następna sesja dziedziczyła pustkę). Teraz M3 działa tylko, gdy poprzedni trening ma **znane, inne** miejsce (spójnie z M8). Siatka bezpieczeństwa: gdy ciężar z podpowiedzi jest wstrzymany, a pole ciężaru puste, ✓ nie wstawia nic (ani powtórzeń z podpowiedzi, ani dolnej granicy zakresu), a start treningu nie przepisuje samych powtórzeń — nigdy „ciężar pusty + powtórzenia z podpowiedzi”. Testy: scenariusz z raportu (24×10, 61×5 → „Pełna siłownia”) i wypełnianie z historii tego samego miejsca.
+- **LOW 1:** talerze przy zmianie jednostki przeliczane dokładnym współczynnikiem (10⁻⁶), a sumy talerzy liczone w milionowych — zaokrąglanie każdego talerza do 0,1 lb dawało prawie-duplikaty (68 zamiast 64 ciężarów; przy 8 sztukach 486 zamiast 253).
+- **LOW 2:** jeden zakres wartości 0,001–1000 (`W_MIN`, `W_MAX`) w edytorze (zakres, dodawany ciężar, krok stacji) i sanityzacji; zły opis ciężarów z importu zastępowany pustym domyślnym (edytor nie znika); dopiero dodany wiersz talerza (0) zostaje.
+- **LOW 3:** przeliczony krok stacji zaokrąglany w górę tak, by nie przekroczyć limitu 2000 ustawień.
+- **LOW 4:** ciężar w edytorze (przełącznik) ma w podpowiedzi VoiceOver nazwę pozycji.
+
+**Weryfikacja 3 (03.10.2026)** — 0 wysokich, 0 średnich, 5 niskich; poprawione, testy w `tests/locations-verify3.test.tsx` (7 testów):
+- **L1:** okno „Zakończyć trening?” ostrzega „Odhaczone serie bez ciężaru: n” (ćwiczenia z ciężarem, bez masy ciała; pusty ciężar, nie 0 kg) — także bez miejsc (pierwsza sesja; dotychczasowe testy okna sprawdzają treść przez dopasowanie, więc dodatkowa linia ich nie zmienia). Przy ćwiczeniu dopisek „Poprzednio: Siłownia · ciężaru 32 kg nie ma tutaj — wpisz ciężar”.
+- **L2:** „Powtórz ostatni” stosuje to samo sprawdzenie co start z szablonu (ostatni trening w znanym, innym miejscu — np. usuniętym — i ciężar spoza listy: pole puste, bez samych powtórzeń).
+- **L3:** stacja przy zmianie jednostki przeliczana dokładnym współczynnikiem (jak talerze); zakresy liczone w milionowych; przeliczenie lb → kg najpierw na siatkę wyświetlania 0,1 lb (jak `wOut`) — 22,0462 lb nie zaokrągla się podwójnie do 22,1 (10,02 kg). Ustawienia w kg przed i po zmianie jednostki są te same.
+- **L4:** pola uchwytu/gryfu, talerzy i stacji pokazują najwyżej 3 miejsca po przecinku (zapis zostaje dokładny).
+- **L5:** zmiana sprzętu ćwiczenia z biblioteki: wymagania i zalecane czyszczone (ćwiczenie zawsze dostępne), źródło obciążenia ze zgrubnego sprzętu, `implements` usunięte, `catalogRev: 'user'` (start aplikacji nie przywraca wymagań z katalogu). Np. Bench Press (hantle) przestawione na linki bierze ciężary stacji, nie hantli.
+
+**Znane skutki zasad (M9, M10 — bez zmian w kodzie):**
+- **P-004 a podpowiedź w domu:** Deadlift (hantle) i RDL mają w szablonie 48 kg (suma pary) przy trybie „na hantel”, a lista hantli domu kończy się na 24 kg. 48 > największy dostępny → w domu brak „↑” dla tych ćwiczeń, dopóki P-004 nie zostanie rozstrzygnięte (tryb „łącznie” albo wpis na hantel).
+- **Cable Fly na linkach od podłogi:** katalog wymaga tylko dwóch linek (`cable.dual`), więc na ViShape (linki od dołu) Cable Fly jest „dostępne” — w praktyce jako rozpiętki od dołu. Dokładniej dopiero po rozbiciu wysokości linek w wymaganiu (E2).
+- **Jedna linka powyżej 65 kg:** ćwiczenia jednorącz nie dostają już wartości 2 × na stronę; ćwiczenia „łącznie” bez wymogu dwóch linek (poza przysiadem z pasem) — tylko wartości jednej linki.
+- **Hantle co 2,5 kg i bramka 10%:** przy lekkich hantlach skok 2,5 kg to > 10% (10 → 12,5 kg = 25%), więc większość pracy hantlami w domu najpierw dostaje „ten sam ciężar, górna granica + 2”, a dopiero potem „↑ ciężar”. Tak działa decyzja 7b; od 25 kg skok 2,5 kg mieści się w 10%.
 
 ## Źródła (wybór)
 - Freeletics Spaces: https://www.freeletics.com/en/blog/posts/freeletics-spaces-feature/ · https://forum.freeletics.com/t/new-feature-spaces-%E2%80%93-train-anywhere-smarter-%F0%9F%92%AA/22310 · https://help.freeletics.com/hc/en-us/articles/115005747425-Adjust-your-Bodyweight-Journey-preferences · https://forum.freeletics.com/t/need-help-how-to-set-up-adjustable-dumbbellskettlebellsbarbell-in-the-freeletics-app/23488

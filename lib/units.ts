@@ -26,7 +26,7 @@ export const wIn = (v: number | ''): number | '' => {
   return snapLb(n);
 };
 /** Runda 27: przyciąganie liczy od wartości WYŚWIETLANEJ (0,1 lb) — ta sama liczba na ekranie = te same kg. */
-function snapLb(n: number): number {
+export function snapLb(n: number): number {
   // Runda 28: wg wartości bezwzględnej (asysta ujemna lustrzana) i przez 0,01 lb — 1,6499999 (stary zapis) i 1,65 (wpis) dają to samo.
   const sign = Math.sign(n); const shown = round(round(Math.abs(n), 2), 1); const kg = shown * KG_PER_LB;
   for (const step of [0.25, 0.1, 0.05, 0.01]) { const k = Math.round(kg / step) * step; if (round(k / KG_PER_LB, 1) === shown) return sign * round(k, 2) + 0; }
