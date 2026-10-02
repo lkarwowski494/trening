@@ -1,0 +1,72 @@
+{
+  "expo": {
+    "name": "Trening",
+    "slug": "trening",
+    "version": "0.8.4",
+    "scheme": "trening",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/icon.png",
+      "backgroundColor": "#12151c",
+      "resizeMode": "contain"
+    },
+    "ios": {
+      "bundleIdentifier": "pl.lukasz.trening",
+      "supportsTablet": false,
+      "infoPlist": {
+        "NSSupportsLiveActivities": true,
+        "CFBundleLocalizations": [
+          "en",
+          "pl"
+        ],
+        "CFBundleAllowMixedLocalizations": true,
+        "UIFileSharingEnabled": true,
+        "LSSupportsOpeningDocumentsInPlace": true
+      }
+    },
+    "android": {
+      "package": "pl.lukasz.trening",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/icon.png",
+        "backgroundColor": "#12151c"
+      }
+    },
+    "plugins": [
+      "./plugins/withoutPushEntitlement",
+      "expo-router",
+      "expo-sqlite",
+      [
+        "expo-notifications",
+        {
+          "color": "#f2b441"
+        }
+      ],
+      "expo-asset",
+      "expo-font",
+      [
+        "@kingstinct/react-native-healthkit",
+        {
+          "NSHealthShareUsageDescription": "Trening nie odczytuje danych zdrowotnych — iOS wymaga tego opisu przy uprawnieniu HealthKit.",
+          "NSHealthUpdateUsageDescription": "Trening zapisuje zakończone treningi siłowe do Apple Health.",
+          "background": false
+        }
+      ],
+      "@bacons/apple-targets",
+      "expo-localization"
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "locales": {
+      "pl": "./locales/pl.json",
+      "en": "./locales/en.json"
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "single"
+    }
+  }
+}

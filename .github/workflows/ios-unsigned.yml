@@ -1,0 +1,74 @@
+# Buduje NIEPODPISANY plik .ipa na darmowej maszynie macOS w GitHub Actions.
+# Pobierasz artefakt "Trening-unsigned-ipa", a Sideloadly podpisuje go Twoim Apple ID.
+# Uruchamianie: zakładka Actions → "iOS unsigned IPA" → Run workflow.
+#
+# Audyt 0.8.1: Xcode 16.2 wybierany jawnie (Expo SDK 52 wspiera Xcode 16.x do 16.2; nowszy domyślny na macos-15), xcbeautify zamiast
+# nieistniejącego xcpretty, pipefail zamiast „|| true” (błąd kompilacji nie jest już ukrywany), log kompilacji jako
+# artefakt przy porażce, podpis ad-hoc także frameworków (hermes), sprawdzenie, że binarka, bundle JS i widżet istnieją.
+name: iOS unsigned IPA
+on:
+  workflow_dispatch:
+jobs:
+  build:
+    # macos-14 jest wycofywany (niedziałające przebiegi od X 2026, koniec 2 XI 2026) — macos-15 z Xcode 16.2 wybranym jawnie.
+    runs-on: macos-15
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v5
+      - name: Select Xcode 16.2
+        # Audyt przed telefonem: Expo SDK 52 / RN 0.76 nie wspiera oficjalnie Xcode 16.3+; gdy obraz macos-15 przestanie mieć 16.2 — jasny komunikat.
+        run: |
+          if [ ! -d /Applications/Xcode_16.2.app ]; then echo "::error::Brak Xcode 16.2 na obrazie macos-15. Dostępne:"; ls /Applications | grep -i xcode; exit 1; fi
+          sudo xcode-select -s /Applications/Xcode_16.2.app/Contents/Developer && xcodebuild -version
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Checks (TypeScript, tłumaczenia, testy logiki)
+        run: npm run typecheck && npm run check:i18n && npm test -- --maxWorkers=2  # 7 GB RAM na maszynie — mniej procesów Jesta
+      - name: Natywna konfiguracja (warstwa D planu testów — runda 58)
+        run: npm run verify:native
+      - name: Generate native iOS project (expo prebuild)
+        run: npx expo prebuild --platform ios --no-install --clean
+      - name: Build number = numer przebiegu (aplikacja i widżet muszą mieć ten sam CFBundleVersion)
+        run: /usr/libexec/PlistBuddy -c "Set :CFBundleVersion ${{ github.run_number }}" ios/Trening/Info.plist
+      - name: Install pods
+        run: cd ios && pod install
+      - name: Build (no code signing)
+        run: |
+          set -o pipefail
+          cd ios
+          xcodebuild -workspace Trening.xcworkspace -scheme Trening -configuration Release -sdk iphoneos \
+            -destination 'generic/platform=iOS' -derivedDataPath build \
+            CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" \
+            DEVELOPMENT_TEAM="" PROVISIONING_PROFILE_SPECIFIER="" \
+            CURRENT_PROJECT_VERSION=${{ github.run_number }} \
+            2>&1 | tee xcodebuild.log | xcbeautify
+          APP=build/Build/Products/Release-iphoneos/Trening.app
+          test -f "$APP/Trening" && test -f "$APP/main.jsbundle" && test -d "$APP/PlugIns/RestWidget.appex"
+      - name: Embed entitlements (ad-hoc signature)
+        # Build bez podpisu nie zawiera uprawnień (HealthKit). Podpis ad-hoc „-” wpisuje je do binarki,
+        # a Sideloadly przy podpisywaniu Twoim Apple ID przenosi je do nowego podpisu (do potwierdzenia na telefonie).
+        run: |
+          cd ios
+          APP=build/Build/Products/Release-iphoneos/Trening.app
+          if [ -d "$APP/Frameworks" ]; then find "$APP/Frameworks" -maxdepth 1 \( -name '*.framework' -o -name '*.dylib' \) -exec codesign --force --sign - {} \; ; fi
+          for ext in "$APP"/PlugIns/*.appex; do if [ -d "$ext" ]; then codesign --force --sign - "$ext"; fi; done
+          codesign --force --sign - --entitlements Trening/Trening.entitlements "$APP"
+          codesign -d --entitlements - "$APP"
+      - name: Package .ipa
+        run: |
+          cd ios
+          mkdir -p Payload
+          cp -R build/Build/Products/Release-iphoneos/Trening.app Payload/
+          zip -qry ../Trening-unsigned.ipa Payload
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Trening-unsigned-ipa
+          path: Trening-unsigned.ipa
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: xcodebuild-log
+          path: ios/xcodebuild.log

@@ -1,0 +1,42 @@
+import React, { useEffect, useRef } from 'react';
+import { ScrollView, View, Alert } from 'react-native';
+import { useLocalSearchParams, useRouter } from 'expo-router';
+import { Screen, Field, Input, NumInput, Btn, Muted, Chip } from '@/components/ui';
+import { getState, useTick, exById, previousFor, save, deleteExercise, setSummary, fmtDate, setEquipment, exerciseInHistory, exerciseUsed } from '@/lib/store';
+import { GROUPS, GROUP_TO_MUSCLE, METRICS, METRIC_LABEL, LOAD_MODE_LABEL, MUSCLES, hasWeight, type Equipment, type LoadMode } from '@/lib/seed';
+import { t, exName, lang } from '@/lib/i18n';
+
+const EQ: Equipment[] = ['hantle', 'sztanga', 'masa ciała', 'maszyna', 'linki', 'inne'];
+
+export default function ExerciseEdit() {
+  const { id } = useLocalSearchParams<{ id: string }>(); useTick(); const router = useRouter();
+  // Nowe, nietknięte ćwiczenie bez historii znika po wyjściu (runda 2).
+  useEffect(() => { const created = exById(id!)?.createdAt ?? 0; return () => { const x = exById(id!); if (x && x.name === t('Nowe ćwiczenie') && !x.lib && x.updatedAt === created && !exerciseUsed(x.id) && !getState().templates.some(tp => tp.items.some(i => i.exerciseId === x.id))) { /* runda 42: ćwiczenie z szablonu zostaje */ const st = getState(); st.exercises = st.exercises.filter(y => y.id !== x.id); save(); } }; }, [id]);
+  const initialName = useRef(exById(id!)?.name ?? '');
+  const e = exById(id!); if (!e) return <Screen><Muted>{t('Nie ma takiego ćwiczenia.')}</Muted></Screen>;
+  const p = previousFor(e.id);
+  const translated = lang() === 'en' && exName(e) !== e.name;
+  return (
+    <Screen><ScrollView keyboardShouldPersistTaps="handled" automaticallyAdjustKeyboardInsets contentContainerStyle={{ paddingVertical: 10, paddingBottom: 120 }}>
+      <Field label={t('Nazwa')}><Input selectTextOnFocus maxLength={80} value={e.name} onChangeText={v => { e.name = v; save(e); }} onEndEditing={() => { const n = e.name.replace(/\s+/g, ' ').trim(); if (!n) { e.name = initialName.current || t('Nowe ćwiczenie'); save(e); } else { if (n !== e.name) { e.name = n; save(e); } initialName.current = n; /* runda 49 */ } }} /></Field>
+      {translated ? <Muted style={{ fontSize: 12, marginTop: -6, marginBottom: 10 }}>{t('Wyświetlane jako: {n}', { n: exName(e) })}</Muted> : null}
+      <Field label={t('Partia')}><ScrollView horizontal keyboardShouldPersistTaps="handled" showsHorizontalScrollIndicator={false}>{GROUPS.map(g => <Chip key={g} label={t(g)} on={e.group === g} onPress={() => { const old = e.group; const auto = old ? GROUP_TO_MUSCLE[old] : undefined; const cur = e.muscles ?? []; e.group = g; const mu = GROUP_TO_MUSCLE[g]; /* runda 5: automatyczna partia z poprzedniej grupy jest podmieniana, a nowa znika z pomocniczych */ if (!cur.length || (cur.length === 1 && cur[0] === auto)) { e.muscles = mu ? [mu] : []; if (mu) e.secondaryMuscles = (e.secondaryMuscles ?? []).filter(x => x !== mu); } save(e); }} />)}</ScrollView></Field>
+      <Field label={t('Sprzęt')}><ScrollView horizontal keyboardShouldPersistTaps="handled" showsHorizontalScrollIndicator={false}>{EQ.map(g => <Chip key={g} label={t(g)} on={e.equipment === g} onPress={() => setEquipment(e, g)} />)}</ScrollView></Field>
+      <Field label={t('Co logujesz w serii')}><ScrollView horizontal keyboardShouldPersistTaps="handled" showsHorizontalScrollIndicator={false}>{METRICS.map(m => <Chip key={m} label={t(METRIC_LABEL[m])} on={(e.metric ?? 'weight_reps') === m} onPress={() => { e.metric = m; save(e); }} />)}</ScrollView></Field>
+      {hasWeight(e.metric ?? 'weight_reps') && e.equipment !== 'masa ciała' ? <Field label={t('Jak liczyć ciężar w objętości')}><ScrollView horizontal keyboardShouldPersistTaps="handled" showsHorizontalScrollIndicator={false}>{(Object.keys(LOAD_MODE_LABEL) as LoadMode[]).map(m => <Chip key={m} label={t(LOAD_MODE_LABEL[m])} on={(e.loadMode ?? 'total') === m} onPress={() => { e.loadMode = m; save(e); }} />)}</ScrollView></Field> : null}
+      <View style={{ flexDirection: 'row', gap: 10 }}>
+        <View style={{ flex: 1 }}><Field label={t('Przerwa robocza (s)')}><NumInput value={e.restSec ?? ''} onNum={v => { e.restSec = v === '' ? null : Math.min(1800, Math.max(0, Math.round(v))); save(e); }} placeholder={t('domyślna {s}', { s: getState().settings.defaultRest })} /></Field></View>
+        <View style={{ flex: 1 }}><Field label={t('Przerwa po rozgrzewce (s)')}><NumInput value={e.restWarmupSec ?? ''} onNum={v => { e.restWarmupSec = v === '' ? null : Math.min(1800, Math.max(0, Math.round(v))); save(e); }} placeholder={t('jak robocza')} /></Field></View>
+      </View>
+      <Field label={t('Partie główne (1 seria)')}><View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 4 }}>{MUSCLES.map(mu => <Chip key={mu} label={t(mu)} on={(e.muscles ?? []).includes(mu)} onPress={() => { const has = (e.muscles ?? []).includes(mu); e.muscles = has ? e.muscles.filter(x => x !== mu) : [...(e.muscles ?? []), mu]; if (!has) e.secondaryMuscles = (e.secondaryMuscles ?? []).filter(x => x !== mu); save(e); }} />)}</View></Field>
+      <Field label={t('Partie pomocnicze (0,5 serii)')}><View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 4 }}>{MUSCLES.map(mu => <Chip key={mu} label={t(mu)} on={(e.secondaryMuscles ?? []).includes(mu)} onPress={() => { const has = (e.secondaryMuscles ?? []).includes(mu); e.secondaryMuscles = has ? e.secondaryMuscles.filter(x => x !== mu) : [...(e.secondaryMuscles ?? []), mu]; if (!has) e.muscles = (e.muscles ?? []).filter(x => x !== mu); save(e); }} />)}</View></Field>
+      <Field label={t('Asysta gumą')}><Chip toggle label={e.bandAssistable ? t('tak — przy serii wybierasz gumę') : t('nie')} on={e.bandAssistable} onPress={() => { e.bandAssistable = !e.bandAssistable; save(e); }} /></Field>
+      <Field label={t('Tempo (opcjonalnie, np. 3-1-1)')}><Input maxLength={20} value={e.tempo} onChangeText={v => { e.tempo = v; save(e); }} /></Field>
+      <Field label={t('Notatki techniczne')}><Input maxLength={2000} value={e.notes} onChangeText={v => { e.notes = v; save(e); }} multiline style={{ minHeight: 80 }} /></Field>
+      {exerciseInHistory(e.id) ? <Muted style={{ fontSize: 12, marginBottom: 10 }}>{t('Uwaga: zmiana sprzętu, trybu liczenia lub metryki przelicza też dawne treningi (objętość, rekordy, wykresy).')}</Muted> : null}
+      {p ? <Muted style={{ fontSize: 13, marginBottom: 10 }}>{t('Ostatnio {d}:', { d: fmtDate(p.workout.startedAt) })} {p.sets.map(x => setSummary(e, x)).join(', ')}</Muted> : null}
+      <Muted style={{ fontSize: 13, marginBottom: 16 }}>{t('Masa ciała: „±” to dociążenie (plus) albo asysta gumą/maszyną (minus). Masa ciała nie wchodzi do obliczeń: rekord to suma powtórzeń bez asysty, a e1RM i objętość liczą się tylko z dociążenia. Ćwiczenia na czas mają w treningu stoper — po upływie celu seria odhacza się sama. Przerwa ustawiona w pozycji szablonu ma pierwszeństwo; puste pole przerwy w szablonie oznacza przerwę z tego ćwiczenia.')}</Muted>
+      <View style={{ flexDirection: 'row', gap: 8 }}><Btn title={t('Postępy')} onPress={() => router.push(`/more/progress?ex=${e.id}`)} /><Btn title={t('Usuń ćwiczenie')} kind="danger" onPress={() => Alert.alert(t('Usunąć ćwiczenie?'), [exerciseInHistory(e.id) ? t('Zniknie z list i szablonów; historia, wykresy i eksport zostaną.') : t('Zniknie z list i szablonów.'), getState().active?.exercises.some(x => x.exerciseId === e.id) ? t('W trwającym treningu zostanie oznaczone jako usunięte.') : ''].filter(Boolean).join(' ') /* runda 40: tylko prawdziwa historia */, [{ text: t('Nie') }, { text: t('Usuń'), style: 'destructive', onPress: () => { const cur = getState().exercises.find(x => x.id === e.id); if (!cur || cur.archived) return; deleteExercise(e.id); if (router.canGoBack()) router.back(); else router.replace('/exercises'); } }])} /></View>
+    </ScrollView></Screen>
+  );
+}
