@@ -6,7 +6,7 @@ import { Screen, Input, Chip, Item, Muted, Empty, SwitchRow } from '@/components
 import { getState, addExerciseToActive, newExercise, save, visibleExercises, exerciseInHistory, locationById } from '@/lib/store';
 import { availability, capsOf, missingLabel, type Availability } from '@/lib/equipment';
 import { uid } from '@/lib/seed';
-import { draftAddExercise } from '@/lib/edit';
+import { draftAddExercise, draftOf } from '@/lib/edit';
 import { GROUPS, GROUP_TO_MUSCLE, hasReps, type Exercise } from '@/lib/seed';
 import { t, exName, locale, fold } from '@/lib/i18n';
 
@@ -20,8 +20,11 @@ export default function PickerScreen() {
   // Runda 6: dokładne trafienie nazwy pokazujemy mimo filtra partii — inaczej picker proponował utworzenie duplikatu.
   const exact = (e: Exercise) => !!ql && (fold(e.name) === ql || fold(exName(e)) === ql);
   /* P-003 E1 (decyzja 3a): miejsce treningu w toku albo miejsce domyślne edytowanego szablonu — domyślnie tylko dostępne ćwiczenia,
-   * przełącznik „Pokaż wszystkie” zapamiętany; niedostępne wyszarzone z dopiskiem „brak: …”. Bez miejsca — lista jak dotąd. */
-  const ctx = target === 'active' ? locationById(st.active?.locationId) : target.startsWith('template:') ? locationById(st.templates.find(x => x.id === target.slice(9))?.locationId) : undefined;
+   * przełącznik „Pokaż wszystkie” zapamiętany; niedostępne wyszarzone z dopiskiem „brak: …”. Bez miejsca — lista jak dotąd.
+   * Integracja 0.9.0: edytor historii ('edit:<klucz>') jak trening w toku — filtr po miejscu edytowanego treningu, gdy je ma (i miejsce
+   * wciąż istnieje); trening wstecz i treningi sprzed miejsc nie mają miejsca → pełna lista. */
+  const ctx = target === 'active' ? locationById(st.active?.locationId) : target.startsWith('template:') ? locationById(st.templates.find(x => x.id === target.slice(9))?.locationId)
+    : target.startsWith('edit:') ? locationById(draftOf(target.slice(5))?.w.locationId) : undefined;
   const [allOn, setAllOn] = useState(st.settings.pickerShowAll); const showAll = !ctx || allOn; const caps = ctx ? capsOf(ctx) : null; const av = new Map<string, Availability>();
   const avail = (e: Exercise) => { if (!caps) return null; let a = av.get(e.id); if (!a) { a = availability(e, ctx, caps); av.set(e.id, a); } return a; };
   let hidden = 0;
