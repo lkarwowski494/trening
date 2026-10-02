@@ -53,7 +53,8 @@ describe('LOW', () => {
   test('3: zmiana jednostki stacji nie przekracza limitu ustawień (krok zaokrąglony w górę)', () => {
     const kg: LoadSpec = { kind: 'electric', unit: 'kg', min: 1, max: 940, step: 0.47 }; expect(validateSpec(kg)).toBeNull();
     const lb = convertSpec(kg, 'lb'); if (lb.kind !== 'electric') throw new Error();
-    expect(rangeCount(lb.min, lb.max, lb.step)!).toBeLessThanOrEqual(LOAD_LIMITS.rangeValues); expect(validateSpec(lb)).toBeNull(); expect(lb.step).toBe(1.1);
+    expect(rangeCount(lb.min, lb.max, lb.step)!).toBeLessThanOrEqual(LOAD_LIMITS.rangeValues); expect(validateSpec(lb)).toBeNull(); expect(lb.step).toBeCloseTo(0.47 / 0.45359237, 5); /* weryfikacja 3: krok dokładnym współczynnikiem */
+    const edge: LoadSpec = { kind: 'electric', unit: 'kg', min: 0, max: 1999 * 0.47, step: 0.47 }; const e2 = convertSpec(edge, 'lb') as any; expect(rangeCount(e2.min, e2.max, e2.step)!).toBeLessThanOrEqual(LOAD_LIMITS.rangeValues);
   });
   test('4: ciężar w edytorze ma w podpowiedzi VoiceOver nazwę pozycji', async () => {
     await fresh(); const s = store.getState().settings; const h = userHome([4, 8]); s.locations.push(h); s.mainLocationId = h.id; await store.flush();

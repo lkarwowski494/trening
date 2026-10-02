@@ -35,17 +35,17 @@ const milli = (v: number) => Math.round(v * 1000);
 /** Weryfikacja 2 (LOW 1): sumy talerzy w milionowych — talerze przeliczone z kg na lb (dokładny współczynnik) nie dają prawie-duplikatów. */
 const micro = (v: number) => Math.round(v * 1e6);
 /** Wartość w jednostce sprzętu → kg na siatce zapisu (jak wIn: kg do 0,01, lb przyciągane do „okrągłych” kg). */
-export const toKg = (v: number, unit: LoadUnit): number => unit === 'lb' ? snapLb(v) : r2(v);
+export const toKg = (v: number, unit: LoadUnit): number => unit === 'lb' ? snapLb(Math.round(v * 10) / 10) : r2(v); /* weryfikacja 3: najpierw siatka wyświetlania 0,1 lb (jak wOut) — wartości z dokładnym współczynnikiem (22,0462 lb) nie zaokrąglają się podwójnie do 22,1 */
 
 /** Liczba wartości zakresu min..max co krok; null przy złych danych (krok ≤ 0, max < min, ujemne). */
 export function rangeCount(min: number, max: number, step: number): number | null {
-  if (![min, max, step].every(Number.isFinite) || min < 0 || max < min) return null; const s = milli(step); if (s <= 0) return null;
-  return Math.floor((milli(max) - milli(min)) / s) + 1;
+  if (![min, max, step].every(Number.isFinite) || min < 0 || max < min) return null; const s = micro(step); if (s <= 0) return null;
+  return Math.floor((micro(max) - micro(min)) / s) + 1; /* weryfikacja 3: w milionowych — krok przeliczony dokładnym współczynnikiem (1,102311 lb) nie „dryfuje” */
 }
 /** Wartości min..max co krok (w jednostce sprzętu), bez szumu zmiennoprzecinkowego; pusta lista przy złych danych albo ponad limit. */
 export function rangeValues(min: number, max: number, step: number, limit: number = LOAD_LIMITS.rangeValues): number[] {
   const n = rangeCount(min, max, step); if (n == null || n > limit) return [];
-  const a = milli(min), s = milli(step); const out: number[] = []; for (let i = 0; i < n; i++) out.push((a + i * s) / 1000);
+  const a = micro(min), s = micro(step); const out: number[] = []; for (let i = 0; i < n; i++) out.push((a + i * s) / 1e6);
   return out;
 }
 /** Skrót edytora: lista z zakresu (wszystkie włączone); ciężary odznaczone wcześniej zostają odznaczone, spoza zakresu znikają.
@@ -113,9 +113,10 @@ export function convertSpec(spec: LoadSpec, to: LoadUnit): LoadSpec {
   const cvFine = (v: number) => Math.round((to === 'kg' ? v * KG_PER_LB : v / KG_PER_LB) * 1e6) / 1e6;
   if (spec.kind === 'list') { const seen = new Set<number>(); const items: WeightEntry[] = []; for (const x of spec.items) { const w = cv(x.w); if (w > 0 && !seen.has(milli(w))) { seen.add(milli(w)); items.push({ w, on: x.on }); } } return { kind: 'list', unit: to, items }; }
   if (spec.kind === 'plates') return { kind: 'plates', unit: to, base: cvFine(spec.base), plates: spec.plates.map(p => ({ w: cvFine(p.w), n: p.n })) };
-  const min = cv(spec.min), max = cv(spec.max); const g = to === 'kg' ? 0.01 : 0.1; let step = Math.max(g, cv(spec.step));
-  /* weryfikacja 2 (LOW 3): przeliczony krok zaokrąglony w górę tak, by nie przekroczyć limitu ustawień */
-  const c = rangeCount(min, max, step); if (c != null && c > LOAD_LIMITS.rangeValues) step = Math.ceil((max - min) / (LOAD_LIMITS.rangeValues - 1) / g - 1e-9) * g; step = Math.round(step * 100) / 100;
+  /* weryfikacja 3 (L3): stacja dokładnym współczynnikiem jak talerze — ustawienia się nie przesuwają (zaokrąglenie tylko na ekranie) */
+  const min = cvFine(spec.min), max = cvFine(spec.max); let step = Math.max(W_MIN, cvFine(spec.step));
+  /* weryfikacja 2 (LOW 3): krok zaokrąglony w górę tak, by nie przekroczyć limitu ustawień */
+  const c = rangeCount(min, max, step); if (c != null && c > LOAD_LIMITS.rangeValues) step = Math.ceil((max - min) / (LOAD_LIMITS.rangeValues - 1) * 1e6) / 1e6;
   return { kind: 'electric', unit: to, min, max, step };
 }
 /** Te same ciężary (tolerancja 0,01 kg). */

@@ -242,6 +242,6 @@ export const EN: Record<string, string> = {
   'Odznacz ciężary, których nie masz. Najwyżej {n} ciężarów.': 'Untick weights you don’t have. At most {n} weights.',
   'Zakres jest niepoprawny: „do” musi być ≥ „od”, krok > 0, wartości od {a} do {b}.': 'Invalid range: “to” must be ≥ “from”, step > 0, values from {a} to {b}.', 'Ciężar od {a} do {b}.': 'Weight from {a} to {b}.',
   'Ten zakres to {c} ciężarów — najwyżej {n}. Zwiększ krok.': 'This range is {c} weights — at most {n}. Increase the step.',
-  'Najwyżej {n} rodzajów.': 'At most {n} sizes.',
+  'Najwyżej {n} rodzajów.': 'At most {n} sizes.', 'Odhaczone serie bez ciężaru: {n}.': 'Ticked sets without weight: {n}.', 'ciężaru {w} nie ma tutaj — wpisz ciężar': '{w} isn’t available here — enter a weight',
   'min na stronę': 'min per side', 'max na stronę': 'max per side', 'krok': 'step',
 };

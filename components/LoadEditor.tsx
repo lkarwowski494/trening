@@ -17,6 +17,8 @@ import type { Location, LocEquip } from '@/lib/seed';
  * przelicza wartości (M4); preset modelu nie nadpisuje wpisanych ciężarów bez pytania (M5); przyciski i ciężary z nazwą pozycji (M7).
  */
 const n = (v: number) => fmtNum(v, 3);
+/** Weryfikacja 3 (L4): wartości w polach do 3 miejsc po przecinku (po zmianie jednostki zapis ma dokładny współczynnik, np. 2,755778 lb). */
+const r3 = (v: number) => Math.round(v * 1000) / 1000;
 const span = (vals: number[], u: string) => vals.length ? `${n(vals[0])}–${n(vals[vals.length - 1])} ${u}` : '';
 const PROBLEM: Record<SpecProblem, () => string> = {
   list_too_long: () => t('Za dużo ciężarów (najwyżej {n}).', { n: LOAD_LIMITS.listItems }),
@@ -68,20 +70,20 @@ export default function LoadEditor({ loc, entry, item }: { loc: Location; entry:
         </View>
       </> : null}
       {spec.kind === 'plates' ? <>
-        <Field label={item.id === 'db_plate' ? t('Uchwyt (jeden, {u})', { u: spec.unit }) : t('Gryf ({u})', { u: spec.unit })}><NumInput decimal value={spec.base} onNum={v => { spec.base = v === '' ? 0 : Math.max(0, Math.min(1000, v)); upd(); }} /></Field>
+        <Field label={item.id === 'db_plate' ? t('Uchwyt (jeden, {u})', { u: spec.unit }) : t('Gryf ({u})', { u: spec.unit })}><NumInput decimal value={r3(spec.base)} onNum={v => { spec.base = v === '' ? 0 : Math.max(0, Math.min(1000, v)); upd(); }} /></Field>
         <Muted style={{ fontSize: 12 }}>{(item.id === 'db_plate' ? t('Talerze: ciężar i liczba sztuk (wszystkie, dla obu hantli razem).') : t('Talerze: ciężar i liczba sztuk (wszystkie, na obie strony razem).')) + ' ' + t('Najwyżej {n} rodzajów.', { n: LOAD_LIMITS.plateRows })}</Muted>
         {spec.plates.map((p, i) => (
           <View key={i} style={{ flexDirection: 'row', gap: 6, alignItems: 'flex-end' }}>
-            <View style={{ flex: 1 }}><Field label={t('talerz ({u})', { u: spec.unit })}><NumInput decimal value={p.w} onNum={v => { p.w = v === '' ? 0 : Math.max(0, Math.min(1000, v)); upd(); }} /></Field></View>
+            <View style={{ flex: 1 }}><Field label={t('talerz ({u})', { u: spec.unit })}><NumInput decimal value={r3(p.w)} onNum={v => { p.w = v === '' ? 0 : Math.max(0, Math.min(1000, v)); upd(); }} /></Field></View>
             <View style={{ flex: 1 }}><Field label={t('sztuk')}><NumInput value={p.n} onNum={v => { p.n = v === '' ? 0 : Math.max(0, Math.min(100, Math.round(v))); upd(); }} /></Field></View>
             <View style={{ marginBottom: 12 }}><Btn small kind="ghost" title="✕" accessibilityLabel={lbl(t('Usuń talerz'))} onPress={() => { spec.plates.splice(i, 1); upd(); }} /></View>
           </View>))}
         {spec.plates.length < LOAD_LIMITS.plateRows ? <Btn small title={t('+ talerz')} accessibilityLabel={lbl(t('+ talerz'))} onPress={() => { spec.plates.push({ w: 0, n: 2 }); upd(); }} /> : null}
       </> : null}
       {spec.kind === 'electric' ? <View style={{ flexDirection: 'row', gap: 6 }}>
-        <View style={{ flex: 1 }}><Field label={t('min na stronę')}><NumInput decimal value={spec.min} onNum={v => { spec.min = v === '' ? 0 : Math.max(0, Math.min(1000, v)); upd(); }} /></Field></View>
-        <View style={{ flex: 1 }}><Field label={t('max na stronę')}><NumInput decimal value={spec.max} onNum={v => { spec.max = v === '' ? 0 : Math.max(0, Math.min(1000, v)); upd(); }} /></Field></View>
-        <View style={{ flex: 1 }}><Field label={t('krok')}><NumInput decimal value={spec.step} onNum={v => { if (v === '' || v < W_MIN) return; spec.step = Math.min(100, v); upd(); }} /></Field></View>
+        <View style={{ flex: 1 }}><Field label={t('min na stronę')}><NumInput decimal value={r3(spec.min)} onNum={v => { spec.min = v === '' ? 0 : Math.max(0, Math.min(1000, v)); upd(); }} /></Field></View>
+        <View style={{ flex: 1 }}><Field label={t('max na stronę')}><NumInput decimal value={r3(spec.max)} onNum={v => { spec.max = v === '' ? 0 : Math.max(0, Math.min(1000, v)); upd(); }} /></Field></View>
+        <View style={{ flex: 1 }}><Field label={t('krok')}><NumInput decimal value={r3(spec.step)} onNum={v => { if (v === '' || v < W_MIN) return; spec.step = Math.min(100, v); upd(); }} /></Field></View>
       </View> : null}
       {msg ? <Muted style={{ fontSize: 12, color: th.danger }}>{msg}</Muted> : null}
     </View></FieldHint.Provider>

@@ -567,7 +567,7 @@ export function startLocationId(preferred?: string | null): string | undefined {
   return s.mainLocationId && s.locations.some(l => l.id === s.mainLocationId) ? s.mainLocationId : s.locations[0].id;
 }
 /** Audyt M3: ciężar spoza listy dostępnych w miejscu (np. 32 kg z siłowni, w domu max 24) — nie wstawiamy go do pól, zostaje w „Poprzednio”. */
-function offListAt(ex: Exercise | undefined, locationId: string | undefined, kg: unknown): boolean {
+export function offListAt(ex: Exercise | undefined, locationId: string | undefined, kg: unknown): boolean {
   if (!ex || isBW(ex) || typeof kg !== 'number') return false; const loc = locationById(locationId); if (!loc) return false;
   const L = loadsFor(ex, loc); return L.kind === 'loads' && !hasLoad(L.loads, kg);
 }
@@ -608,7 +608,9 @@ export function repeatLast() {
   // Runda 22: cel czasu z pozycji szablonu, z której powstał blok (stary wynik nie staje się celem — runda 4).
   const tplOf = last.templateId ? getState().templates.find(x => x.id === last.templateId) : null;
   const tgt = (e: WExercise): number | '' => { const it = tplOf && e.tplItemId ? tplOf.items.find(x => x.id === e.tplItemId && x.exerciseId === e.exerciseId) : null; return it && Number(it.targetSec) > 0 ? Number(it.targetSec) : ''; };
-  w.exercises = last.exercises.filter(e => { const ex = exById(e.exerciseId); return ex && !ex.archived; }).map(e => ({ ...e, id: uid(), sets: e.sets.map(s => ({ ...blankSet(), ...(assistLost(exById(e.exerciseId), s) ? {} : copyVals(s)), durationSec: s.kind === 'warmup' ? '' : tgt(e), kind: s.kind === 'failure' ? 'normal' : s.kind ?? (s.warmup ? 'warmup' : 'normal') /* T11: upadek to wynik, nie plan (jak addSet i szablon) */, warmup: s.warmup })).map(s => markPre(stripUnused(exById(e.exerciseId), s))) }));
+  w.exercises = last.exercises.filter(e => { const ex = exById(e.exerciseId); return ex && !ex.archived; }).map(e => ({ ...e, id: uid(), sets: e.sets.map(s => ({ ...blankSet(), ...(assistLost(exById(e.exerciseId), s) ? {} : copyVals(s)), durationSec: s.kind === 'warmup' ? '' : tgt(e), kind: s.kind === 'failure' ? 'normal' : s.kind ?? (s.warmup ? 'warmup' : 'normal') /* T11: upadek to wynik, nie plan (jak addSet i szablon) */, warmup: s.warmup })).map(s => { const ex = exById(e.exerciseId); /* weryfikacja 3 (L2): jak przy starcie z szablonu — ciężar z innego, znanego miejsca spoza listy tutaj nie jest wstawiany (ani same powtórzenia) */
+    if (last.locationId && w.locationId && last.locationId !== w.locationId && offListAt(ex, w.locationId, s.weight)) { s.weight = ''; s.reps = ''; }
+    return markPre(stripUnused(ex, s)); }) }));
   normalizeGroups(w.exercises);
   getState().active = w; save(); flush();
 }
@@ -879,7 +881,10 @@ export const NAME_MAX = 80;
 export const clampName = (s: string, n = NAME_MAX) => { let r = s.slice(0, Math.max(0, n)); if (/[\uD800-\uDBFF]$/.test(r)) r = r.slice(0, -1); return r.trimEnd(); };
 export function newExercise(name = t('Nowe ćwiczenie')): Exercise { const e: Exercise = { ...base(getState().ownerId), name: clampName(name), group: 'inne', equipment: 'inne', metric: 'weight_reps', loadMode: 'total', restSec: null, restWarmupSec: null, muscles: [], secondaryMuscles: [], bandAssistable: false, tempo: '', notes: '', ...equipFields('', 'inne', false) }; getState().exercises.push(e); save(); return e; }
 /** Zmiana sprzętu ustawia domyślny tryb liczenia (wcześniej zostawał stary — np. ×2 dla masy ciała). */
-export function setEquipment(e: Exercise, eq: Exercise['equipment']) { if (e.equipment === eq) return; /* runda 40: ten sam chip nie resetuje ustawień */ e.equipment = eq; e.loadMode = loadModeFor(eq, e.name); if (!e.lib) e.loadSource = LOAD_SOURCE_BY_EQUIPMENT[eq]; /* P-003: ćwiczenie własne — źródło obciążenia za sprzętem */ save(e); }
+export function setEquipment(e: Exercise, eq: Exercise['equipment']) { if (e.equipment === eq) return; /* runda 40: ten sam chip nie resetuje ustawień */ e.equipment = eq; e.loadMode = loadModeFor(eq, e.name); e.loadSource = LOAD_SOURCE_BY_EQUIPMENT[eq]; /* P-003: źródło obciążenia za sprzętem */
+  /* weryfikacja 3 (L5): ćwiczenie z biblioteki po zmianie sprzętu nie trzyma wymagań katalogu (np. hantle przy ruchu na linkach) — bez wymagań (zawsze dostępne),
+   * catalogRev 'user' (start aplikacji go nie nadpisze katalogiem) */
+  if (e.lib) { e.requires = []; e.recommended = []; delete e.implements; e.catalogRev = 'user'; } save(e); }
 /** Czy ćwiczenie występuje w historii lub w treningu w toku. */
 /** Runda 40: czy ćwiczenie jest w zakończonych treningach (historia — nie sam trening w toku). */
 export const exerciseInHistory = (id: string) => getState().workouts.some(w => w.exercises.some(x => x.exerciseId === id));

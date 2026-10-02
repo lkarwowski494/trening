@@ -177,7 +177,7 @@ Poprawki katalogu (Wall Sit, Bieg, Rower, siedzisko na skosie, Łydki na stopniu
 
 ## Implementacja E1 (gałąź feature/locations)
 
-Stan 03.10.2026: 4 commity E1 + 2 commity poprawek po niezależnym audycie + 1 commit po weryfikacji 2 (sekcja „Audyt E1” niżej) na `feature/locations` (bez push i buildu). Weryfikacja: `npx tsc --noEmit` ✓, `npm run check:i18n` ✓, `npx jest --maxWorkers=2` 756/756 ✓ (650 dotychczasowych + 106 nowych w `tests/locations-*.test.ts(x)`), `node scripts/equipment/gen.mjs --check` ✓, `node scripts/verify-native.mjs` ✓.
+Stan 03.10.2026: 4 commity E1 + 2 commity poprawek po niezależnym audycie + po 1 commicie po weryfikacjach 2 i 3 (sekcja „Audyt E1” niżej) na `feature/locations` (bez push i buildu). Weryfikacja: `npx tsc --noEmit` ✓, `npm run check:i18n` ✓, `npx jest --maxWorkers=2` 763/763 ✓ (650 dotychczasowych + 113 nowych w `tests/locations-*.test.ts(x)`), `node scripts/equipment/gen.mjs --check` ✓, `node scripts/verify-native.mjs` ✓.
 
 ### Co jest zrobione
 - **A. `lib/equipment.ts`** — jedno źródło prawdy: słownik możliwości (z katalogu + `bands`, `cable.rope`, `ankle_strap`, `cable.handles`), 50 pozycji sprzętu w 7 grupach (PL/EN, opcje → dodatkowe możliwości, rodzaj ciężarów), stacja z oporem elektrycznym/magnetycznym jako **jedna pozycja** (zawsze `cable.low`; domyślnie zaznaczone opcje: dwie linki, pas biodrowy, opaski; do zaznaczenia: ramiona/wysoki wyciąg, ławka, lina), presety miejsc, `availability(ćwiczenie, miejsce)` → `{ ok, missing: grupy, missingRecommended }`, `loadsFor(ćwiczenie, miejsce)`. Wymagania 125 ćwiczeń są **generowane** z `catalog.json` (`scripts/equipment/gen.mjs` → `lib/catalog.generated.ts`; test sprawdza, że plik jest aktualny).
@@ -246,6 +246,13 @@ Niezależny audyt gałęzi: 3 wysokie, 11 średnich, kilka niskich. Wszystkie po
 - **LOW 2:** jeden zakres wartości 0,001–1000 (`W_MIN`, `W_MAX`) w edytorze (zakres, dodawany ciężar, krok stacji) i sanityzacji; zły opis ciężarów z importu zastępowany pustym domyślnym (edytor nie znika); dopiero dodany wiersz talerza (0) zostaje.
 - **LOW 3:** przeliczony krok stacji zaokrąglany w górę tak, by nie przekroczyć limitu 2000 ustawień.
 - **LOW 4:** ciężar w edytorze (przełącznik) ma w podpowiedzi VoiceOver nazwę pozycji.
+
+**Weryfikacja 3 (03.10.2026)** — 0 wysokich, 0 średnich, 5 niskich; poprawione, testy w `tests/locations-verify3.test.tsx` (7 testów):
+- **L1:** okno „Zakończyć trening?” ostrzega „Odhaczone serie bez ciężaru: n” (ćwiczenia z ciężarem, bez masy ciała; pusty ciężar, nie 0 kg) — także bez miejsc (pierwsza sesja; dotychczasowe testy okna sprawdzają treść przez dopasowanie, więc dodatkowa linia ich nie zmienia). Przy ćwiczeniu dopisek „Poprzednio: Siłownia · ciężaru 32 kg nie ma tutaj — wpisz ciężar”.
+- **L2:** „Powtórz ostatni” stosuje to samo sprawdzenie co start z szablonu (ostatni trening w znanym, innym miejscu — np. usuniętym — i ciężar spoza listy: pole puste, bez samych powtórzeń).
+- **L3:** stacja przy zmianie jednostki przeliczana dokładnym współczynnikiem (jak talerze); zakresy liczone w milionowych; przeliczenie lb → kg najpierw na siatkę wyświetlania 0,1 lb (jak `wOut`) — 22,0462 lb nie zaokrągla się podwójnie do 22,1 (10,02 kg). Ustawienia w kg przed i po zmianie jednostki są te same.
+- **L4:** pola uchwytu/gryfu, talerzy i stacji pokazują najwyżej 3 miejsca po przecinku (zapis zostaje dokładny).
+- **L5:** zmiana sprzętu ćwiczenia z biblioteki: wymagania i zalecane czyszczone (ćwiczenie zawsze dostępne), źródło obciążenia ze zgrubnego sprzętu, `implements` usunięte, `catalogRev: 'user'` (start aplikacji nie przywraca wymagań z katalogu). Np. Bench Press (hantle) przestawione na linki bierze ciężary stacji, nie hantli.
 
 **Znane skutki zasad (M9, M10 — bez zmian w kodzie):**
 - **P-004 a podpowiedź w domu:** Deadlift (hantle) i RDL mają w szablonie 48 kg (suma pary) przy trybie „na hantel”, a lista hantli domu kończy się na 24 kg. 48 > największy dostępny → w domu brak „↑” dla tych ćwiczeń, dopóki P-004 nie zostanie rozstrzygnięte (tryb „łącznie” albo wpis na hantel).

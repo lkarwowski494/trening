@@ -96,7 +96,7 @@ describe('M4, M5, M7 — edytor ciężarów', () => {
     const kg = list([2.5, 5, 10, 20, 24]); const lb = convertSpec(kg, 'lb'); expect(lb.kind === 'list' && lb.items.map(x => x.w)).toEqual([5.5, 11, 22, 44.1, 52.9]);
     expect(convertSpec(lb, 'kg')).toEqual(kg);
     const pl = convertSpec({ kind: 'plates', unit: 'lb', base: 45, plates: [{ w: 45, n: 2 }] }, 'kg'); expect(pl).toEqual({ kind: 'plates', unit: 'kg', base: 20.411657, plates: [{ w: 20.411657, n: 2 }] }); expect(achievable(pl)).toEqual([20.41, 61.23]); /* weryfikacja 2: talerze dokładnym współczynnikiem; po zmianie na kg — siatka kg (0,01) */
-    expect(convertSpec(presetSpec('vishape_pro'), 'lb')).toEqual({ kind: 'electric', unit: 'lb', min: 3.3, max: 143.3, step: 1.1 });
+    expect(convertSpec(presetSpec('vishape_pro'), 'lb')).toEqual({ kind: 'electric', unit: 'lb', min: 3.306934, max: 143.30047, step: 1.102311 }); /* weryfikacja 3: dokładny współczynnik */
   });
   test('M4 (ekran): przełączenie kg → lb zmienia „24” na „52,9”, a dostępne ciężary w kg zostają', async () => {
     await fresh(); place(); await store.flush(); await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())) }); await go('/more/location/home'); await flushAll(10);
