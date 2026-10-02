@@ -7,6 +7,7 @@ import { setLabel } from '@/components/ActiveWorkout';
 import { getState, useTick, exById, isBW, loadLabel, loadLabelShort, groupLabels, occurrence, occurrences, deleteWorkout, bandA11y, shortBand, clampName, NAME_MAX } from '@/lib/store';
 import { draftOf, beginEdit, discardDraft, isDirty, touchDraft, useDraftTick, checkDraft, commitDraft, draftAddSet, draftRemoveSet, draftRemoveExercise, draftSetWhen, dateText, timeText, type Draft } from '@/lib/edit';
 import { onHistoryEdited } from '@/lib/backup';
+import { locationLabel } from '@/lib/locations';
 import { hasTime, hasReps, hasWeight, hasDistance, SET_KIND_LABEL, type WExercise, type WSet } from '@/lib/seed';
 import { useTheme } from '@/lib/theme';
 import { t, tp, exName } from '@/lib/i18n';
@@ -62,6 +63,7 @@ export default function EditWorkout() {
       <Stack.Screen options={{ title: d.sourceId ? t('Edycja sesji') : t('Trening wstecz'), headerBackVisible: false, headerLeft: header(t('Anuluj'), cancel), headerRight: header(t('Zapisz'), saveDraft, true) }} />
       <ScrollView keyboardShouldPersistTaps="handled" keyboardDismissMode="interactive" automaticallyAdjustKeyboardInsets contentContainerStyle={{ paddingVertical: 10, paddingBottom: 80 }}>
         {health ? <Muted style={{ fontSize: 13, marginBottom: 10 }}>{t('Zmiany nie trafiają do Apple Health.')}</Muted> : null}
+        {w.locationId ? <Text accessibilityLabel={`${t('Miejsce')}: ${locationLabel(w.locationId)}`} maxFontSizeMultiplier={1.3} style={{ color: th.muted, fontSize: 14, fontWeight: '600', marginBottom: 10 }}>{`📍 ${locationLabel(w.locationId)}`}</Text> : null /* integracja 0.9.0: miejsce treningu tylko do odczytu (edycja go nie zmienia) */}
         <Field label={t('Nazwa')}><Input value={w.templateName} placeholder={t('Trening')} maxLength={NAME_MAX} onChangeText={v => { w.templateName = v; touchDraft(); }} /></Field>
         <WhenFields date={d.date} time={d.time} min={d.min} onChange={p => draftSetWhen(key, p)} />
         <View style={{ height: 10 }} />

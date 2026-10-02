@@ -1,5 +1,5 @@
 import { useSyncExternalStore } from 'react';
-import { getState, exById, isBW, restFor, occurrence, occurrences, normalizeGroups, assistLost, emptySet, copyVals, stripUnused, previousBlockBefore, setHasResult, putHistoryWorkout, localISODate, clampName, NAME_MAX } from './store';
+import { getState, exById, isBW, restFor, occurrence, occurrences, normalizeGroups, assistLost, emptySet, copyVals, stripUnused, previousBlockBefore, offListAt, startLocationId, setHasResult, putHistoryWorkout, localISODate, clampName, NAME_MAX } from './store';
 import { base, uid, hasTime, hasReps, hasWeight, type Exercise, type Workout, type WExercise, type WSet } from './seed';
 import { t } from './i18n';
 
@@ -66,12 +66,15 @@ export function defaultPastWhen(now = new Date()) { const s = new Date(now.getFu
 /**
  * Szkic treningu wstecz. Z szablonu: pozycje jak przy starcie treningu, wartości z ostatniej sesji ćwiczenia PRZED tą datą (późniejsze
  * treningi się nie liczą; dobór bloku jak „Poprzednio” — store.previousBlockBefore), a bez niej — ciężar startowy i cel czasu z szablonu
- * oraz dolna granica powtórzeń (to, co wstawiłoby odhaczenie pustej serii). Bez dotykania treningu w toku, timerów, powiadomień
+ * oraz dolna granica powtórzeń (to, co wstawiłoby odhaczenie pustej serii). Gdy są miejsca — miejsce szablonu albo główne (jak start treningu)
+ * i dobór „Poprzednio” z tego miejsca (decyzja 8a). Bez dotykania treningu w toku, timerów, powiadomień
  * i maszynerii podpowiedzi („pre”, „hinted”).
  */
 export function beginPast(tplId: string | null, start: number, end: number): Draft {
   const st = getState(); const tpl = tplId ? st.templates.find(x => x.id === tplId) ?? null : null;
   const w: Workout = { ...base(st.ownerId), loggedBy: st.ownerId, sessionMode: 'solo', healthUUID: null, templateId: tpl?.id ?? null, templateName: tpl?.name ?? '', startedAt: start, finishedAt: end, note: '', exercises: [] };
+  /* integracja 0.9.0 (decyzja 1a, jak start treningu): miejsce szablonu, inaczej główne — tylko gdy są miejsca; w edytorze tylko do odczytu */
+  const loc = startLocationId(tpl?.locationId); if (loc) w.locationId = loc;
   tpl?.items.forEach(it => {
     const ex = exById(it.exerciseId); if (!ex || ex.archived) return;
     const n = Math.max(1, Math.min(50, Math.floor(Number(it.sets) || 1)));
@@ -88,16 +91,21 @@ function prefill(ex: Exercise, p0: WSet | null, startWeight: number | '' = '', t
   return stripUnused(ex, s);
 }
 /** Wartości wstawiane w blok przy danej dacie: blok z pozycji szablonu — jak start z szablonu (seria i-ta z bloku „Poprzednio”), blok dodany
- * w edytorze — OSTATNIA seria robocza z „Poprzednio” sprzed tej daty. Edytowany trening nie jest źródłem dla samego siebie. */
+ * w edytorze — OSTATNIA seria robocza z „Poprzednio” sprzed tej daty. Edytowany trening nie jest źródłem dla samego siebie.
+ * Integracja 0.9.0: szkic z miejscem bierze najpierw sesje z tego miejsca (decyzja 8a, previousBlockBefore z locationId), a ciężar z sesji
+ * w INNYM, ZNANYM miejscu spoza listy dostępnych tutaj (offListAt) nie jest wstawiany — jak startFromTemplate, tyle że razem z ciężarem
+ * puste zostają też powtórzenia (nigdy „ciężar pusty + powtórzenia”). */
 function prefillFor(d: Draft, e: WExercise, before: number): ((i: number) => WSet) | null {
-  const ex = exById(e.exerciseId); if (!ex) return null; const w = d.w;
+  const ex = exById(e.exerciseId); if (!ex) return null; const w = d.w; const loc = w.locationId;
   const tpl = w.templateId ? getState().templates.find(x => x.id === w.templateId) ?? null : null;
   const it = tpl && e.tplItemId ? tpl.items.find(x => x.id === e.tplItemId && x.exerciseId === e.exerciseId) : undefined;
   const ii = it && tpl ? tpl.items.indexOf(it) : -1; const ei = w.exercises.indexOf(e);
-  const p = it && tpl ? previousBlockBefore(ex.id, before, occurrence(tpl.items, ii), occurrences(tpl.items, ex.id), it.id, tpl.id, d.sourceId)
-    : previousBlockBefore(ex.id, before, occurrence(w.exercises, ei), occurrences(w.exercises, ex.id), e.tplItemId, w.templateId, d.sourceId);
+  const p = it && tpl ? previousBlockBefore(ex.id, before, occurrence(tpl.items, ii), occurrences(tpl.items, ex.id), it.id, tpl.id, d.sourceId, loc)
+    : previousBlockBefore(ex.id, before, occurrence(w.exercises, ei), occurrences(w.exercises, ex.id), e.tplItemId, w.templateId, d.sourceId, loc);
   const src = p ? p.sets.filter(x => x.kind !== 'drop') : []; /* jak startFromTemplate: drop sety nie są źródłem zwykłych serii */
-  return it ? (i => prefill(ex, src.length ? src[Math.min(i, src.length - 1)] : null, it.startWeight, it.targetSec, it.repMin)) : (() => prefill(ex, src.length ? src[src.length - 1] : null));
+  const away = !!(p && loc && p.workout.locationId && p.workout.locationId !== loc); /* tylko znane, inne miejsce (treningi bez miejsca — nie) */
+  const off = (s: WSet) => { if (away && offListAt(ex, loc, s.weight)) { s.weight = ''; s.reps = ''; } return s; };
+  return it ? (i => off(prefill(ex, src.length ? src[Math.min(i, src.length - 1)] : null, it.startWeight, it.targetSec, it.repMin))) : (() => off(prefill(ex, src.length ? src[src.length - 1] : null)));
 }
 /** Pola serii wciąż równe wartości wstawionej przez aplikację (pole zmienione ręcznie wypada). */
 const liveKeys = (d: Draft, s: WSet): VKey[] => { const r = d.prefilled[s.id]; return r ? (Object.keys(r) as VKey[]).filter(k => s[k] === r[k]) : []; };

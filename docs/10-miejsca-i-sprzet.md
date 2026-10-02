@@ -191,14 +191,14 @@ Stan 03.10.2026: 4 commity E1 + 2 commity poprawek po niezależnym audycie + po 
 ### Decyzje zastosowane
 | # | Decyzja | Jak w kodzie |
 |---|---|---|
-| 1a | miejsce główne + miejsce szablonu + zmiana na starcie | `startLocationId()`, chip „📍” w treningu, chipy w szablonie |
+| 1a | miejsce główne + miejsce szablonu + zmiana na starcie | `startLocationId()`, chip „📍” w treningu, chipy w szablonie; trening wstecz — `startLocationId()` w `beginPast` (bez zmiany, „📍” tylko do odczytu) |
 | 2 | bez zamienników per miejsce w E1 | szablony bez zmian; `alternates` → E2 |
 | 3a | tylko dostępne + zapamiętane „Pokaż wszystkie” | `Settings.pickerShowAll` (jedno ustawienie dla wszystkich miejsc) |
 | 4a | wykroki, step-up, russian twist bez wymogu hantli | z katalogu; „Tylko masa ciała” = 20 ćwiczeń |
 | 5 | duplikaty zostają | bez zmian w bibliotece |
 | 6 | gumy globalne | pozycja „Gumy oporowe” (możliwość `bands`) tylko informacyjnie; nic jej nie wymaga |
 | 7b | bramka 10% z limitem +2 | `PROGRESSION_GATE = 0.10` w `progressionFor` |
-| 8a | „Poprzednio” z tego samego miejsca, potem gdziekolwiek | `previousBlockFor(…, locationId)`; tylko gdy są miejsca |
+| 8a | „Poprzednio” z tego samego miejsca, potem gdziekolwiek | `previousBlockFor(…, locationId)`, w edytorze historii `previousBlockBefore(…, locationId)`; tylko gdy są miejsca |
 | 3.4 | stacja elektryczna jako jedna pozycja | `electric` z opcjami |
 
 ### Dom użytkownika (test `tests/locations-catalog.test.ts`)
@@ -214,7 +214,7 @@ Stan 03.10.2026: 4 commity E1 + 2 commity poprawek po niezależnym audycie + po 
 - **TREXO TXO-B4W002:** brak presetu modelu (kroki nieznane). Użytkownik wpisuje listę sam (np. „wypełnij zakresem” i odznaczenie brakujących).
 - **Picker w edycji szablonu** filtruje tylko po jawnie ustawionym miejscu szablonu (szablon bez miejsca — bez filtra).
 - **Wymagania ćwiczenia** są zapisane w ćwiczeniu, ale ekran edycji ćwiczenia ich jeszcze nie pokazuje ani nie edytuje.
-- **Edycja historii i trening wstecz (docs/12, integracja 0.9.0):** edycja zachowuje miejsce treningu (po zapisie „Poprzednio” tego miejsca liczy się od nowa); trening wstecz zapisuje się bez miejsca (nie wpływa na „Poprzednio” żadnego miejsca, poza fallbackiem „gdziekolwiek”); wybór ćwiczenia w edytorze filtruje po miejscu edytowanego treningu, gdy je ma. **Znane ograniczenie:** wartości wstawiane w edytorze historii (`previousBlockBefore`) nie stosują decyzji 8a — ostatnia sesja sprzed daty z dowolnego miejsca. Do dopisania razem z wyborem miejsca w edytorze/treningu wstecz (ten sam skaner `histOf(exId, loc)` z filtrem daty i fallbackiem jak w `previousBlockFor`).
+- **Edycja historii i trening wstecz (docs/12, integracja 0.9.0):** edycja zachowuje miejsce treningu (po zapisie „Poprzednio” tego miejsca liczy się od nowa); trening wstecz dostaje miejsce jak start treningu (decyzja 1a: miejsce szablonu, inaczej główne; tylko gdy są miejsca) — w edytorze „📍 Dom” tylko do odczytu; wybór ćwiczenia w edytorze filtruje po miejscu szkicu, gdy je ma. Wartości wstawiane w edytorze historii stosują decyzję 8a: `previousBlockBefore(…, locationId)` skanuje `histOf(exId, loc)` z filtrem daty, a gdy w tym miejscu przed datą nie było ćwiczenia — całą historię sprzed daty (fallback jak w `previousBlockFor`). Ciężar z sesji w innym, znanym miejscu spoza listy dostępnych w miejscu szkicu (`offListAt`) nie jest wstawiany — puste zostają ciężar i powtórzenia razem. `repeatLast`, gdy najnowszy trening nie ma miejsca (sprzed miejsc, import), a miejsca są: „nieznane miejsce” — start w miejscu głównym, wartości bez wstrzymywania (jak treningi sprzed miejsc w starcie z szablonu i przy odhaczaniu). Bez miejsc — wszystko jak przed integracją.
 
 ### Co zostaje
 - **E2:** „Zamień ćwiczenie” (ranking zamienników), zamienniki per miejsce w szablonie (`TemplateItem.alternates`), edycja wymagań w edycji ćwiczenia, liczba linek w serii, miejsce w historii (lista, filtr).

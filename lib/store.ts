@@ -431,7 +431,7 @@ type PrevSets = { workout: Workout; sets: WSet[] };
 /* Integracja 0.9.0 — JEDNA implementacja doboru „Poprzednio” dla trzech przypadków:
  *  - treningu w toku i startu z szablonu: cała historia ćwiczenia (previousFor/previousBlockFor),
  *  - P-003 (decyzja 8a): najpierw historia z tego samego miejsca (previousBlockFor z locationId),
- *  - docs/12 (audyt M3): trening wstecz i edycja — tylko sesje sprzed daty, bez edytowanej (previousBlockBefore).
+ *  - docs/12 (audyt M3): trening wstecz i edycja — tylko sesje sprzed daty, bez edytowanej (previousBlockBefore; z locationId — jak 8a).
  * Skanery (prevScan/byItemScan/byTplBlockScan) dostają listę treningów z ćwiczeniem (od najnowszego: cała historia albo z jednego miejsca)
  * i filtr sesji `ok`; selectBlock wybiera blok. Cache (memoHistBy, klucz: id ćwiczenia [+ LOC_SEP + id miejsca]) tylko dla pełnej
  * historii (ok = ALL) — filtr daty zmienia się z każdym szkicem, więc skan „przed datą” idzie bez cache. */
@@ -483,11 +483,15 @@ export function previousBlockFor(exId: string, k: number, n = 2, tplItemId?: str
   return selectBlock(prevCache(exId + lk), k, n, tplItemId, tplId, it => prevByItem(exId + '|' + it + lk), tp => prevByTplBlock(`${exId}|${tp}|${k}` + lk));
 }
 /** Docs/12: „Poprzednio” jak previousBlockFor, ale tylko z sesji rozpoczętych PRZED `before` (i bez treningu `excludeId` — edytowanego).
- * Integracja 0.9.0 — znane ograniczenie: pomija miejsce (cała historia sprzed daty, bez preferencji 8a), także gdy edytowany trening
- * ma locationId. Do dopisania później jako histOf(exId, loc) + ten sam fallback co w previousBlockFor (docs/10, docs/12). */
-export function previousBlockBefore(exId: string, before: number, k: number, n = 2, tplItemId?: string, tplId?: string | null, excludeId?: string | null): { workout: Workout; sets: WSet[] } | null {
-  const ok: WOk = w => w.startedAt < before && w.id !== excludeId; const hist = workoutsWith(exId);
-  return selectBlock(prevScan(hist, exId, ok), k, n, tplItemId, tplId, it => byItemScan(hist, exId, it, ok), tp => byTplBlockScan(hist, exId, tp, k, ok));
+ * `locationId` (integracja 0.9.0, decyzja 8a jak w previousBlockFor): gdy są miejsca i w tym miejscu przed datą było już to ćwiczenie —
+ * dobór tylko z treningów w tym miejscu (histOf(exId, loc) z tym samym filtrem), inaczej z całej historii sprzed daty. Bez miejsc
+ * (albo bez `locationId`) — dokładnie jak przed tą zmianą. */
+export function previousBlockBefore(exId: string, before: number, k: number, n = 2, tplItemId?: string, tplId?: string | null, excludeId?: string | null, locationId?: string | null): { workout: Workout; sets: WSet[] } | null {
+  const ok: WOk = w => w.startedAt < before && w.id !== excludeId;
+  let hist = workoutsWith(exId); let p: Prev | null = null;
+  if (locationId && getState().settings.locations.length) { const lh = histOf(exId, locationId); p = prevScan(lh, exId, ok); if (p) hist = lh; }
+  if (!p) p = prevScan(hist, exId, ok);
+  return selectBlock(p, k, n, tplItemId, tplId, it => byItemScan(hist, exId, it, ok), tp => byTplBlockScan(hist, exId, tp, k, ok));
 }
 /** Wybór bloku z ostatniej sesji `p` (wspólny dla previousBlockFor i previousBlockBefore); byItem/byTpl — skany w tej samej historii i z tym samym filtrem. */
 function selectBlock(p: Prev | null, k: number, n: number, tplItemId: string | undefined, tplId: string | null | undefined, byItem: (itemId: string) => PrevSets | null, byTpl: (tplId: string) => PrevSets | null): PrevSets | null {
@@ -624,6 +628,9 @@ export function startEmpty() { getState().active = newWorkout(null, ''); save();
 export function repeatLast() {
   const last = finishedWorkouts()[0]; if (!last) return;
   // Powtarza to, co faktycznie zrobiono (także ćwiczenia dodane/usunięte w trakcie), a nie szablon, z którego wystartowano (runda 2).
+  /* Integracja 0.9.0: ostatni trening bez locationId (sprzed miejsc, z importu), choć miejsca są — to „nieznane miejsce”, nie „inne miejsce”:
+   * nowy trening dostaje miejsce główne, a wartości kopiujemy bez wstrzymywania ciężarów spoza listy (jak treningi sprzed miejsc
+   * w startFromTemplate i przy odhaczaniu; docs/10, docs/12). Świadomie bez zmian. */
   const w = newWorkout(last.templateId, last.templateName, last.locationId);
   // Runda 22: cel czasu z pozycji szablonu, z której powstał blok (stary wynik nie staje się celem — runda 4).
   const tplOf = last.templateId ? getState().templates.find(x => x.id === last.templateId) : null;

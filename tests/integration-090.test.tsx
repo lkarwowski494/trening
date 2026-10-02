@@ -61,46 +61,76 @@ describe('(1) edycja treningu z miejscem', () => {
     expect(byId(h1.id).locationId).toBe(home); expect(byId(h1.id).startedAt).toBe(day(1)); expect(prevW(db.id, home)).toEqual([20]);
   });
 
-  test('znane ograniczenie: ćwiczenie dodane w edytorze bierze wartości sprzed daty BEZ preferencji miejsca (previousBlockBefore)', async () => {
+  test('ćwiczenie dodane w edytorze bierze wartości sprzed daty Z TEGO MIEJSCA (decyzja 8a, previousBlockBefore z locationId)', async () => {
     await fresh(); const { home, h2 } = placesAndHistory(); const db = ex(DB);
     const d = edit.beginEdit(h2.id)!; edit.draftAddExercise(d.key, db);
-    /* przed 2 dniami: siłownia (6 dni temu, 32 kg) jest nowsza niż ostatni dom (10 dni temu, 20 kg); z preferencją miejsca byłoby 20 */
-    expect(d.w.exercises[1].sets[0].weight).toBe(32); expect(d.w.locationId).toBe(home);
+    /* przed 2 dniami: siłownia (6 dni temu, 32 kg — w domu poza listą) jest nowsza niż ostatni dom (10 dni temu, 20 kg); bierzemy dom */
+    expect(d.w.exercises[1].sets.map(s => [s.weight, s.reps])).toEqual([[20, 8]]); expect(d.w.locationId).toBe(home);
+    expect(store.previousBlockBefore(db.id, day(2), 0, 1, undefined, null, h2.id, home)!.workout.locationId).toBe(home);
+    expect(store.previousBlockBefore(db.id, day(2), 0, 1, undefined, null, h2.id)!.sets[0].weight).toBe(32); // bez miejsca — jak dotąd
     committed(edit.commitDraft(d.key)); expect(byId(h2.id).locationId).toBe(home);
+  });
+
+  test('w tym miejscu nic przed datą: fallback na całą historię; ciężar z innego, znanego miejsca spoza listy — pusty razem z powtórzeniami', async () => {
+    await fresh(); const { home, gym } = placesAndHistory(); const db = ex(DB);
+    const g0 = addWorkout(day(14), [[DB, [{ weight: 32, reps: 6 }, { weight: 20, reps: 10 }]]], 'Siłownia 0'); g0.locationId = gym;
+    const w0 = addWorkout(day(12), [['Pull Up', [{ reps: 8 }]]], 'Dom 0'); w0.locationId = home; store.save();
+    const d = edit.beginEdit(w0.id)!; edit.draftAddExercise(d.key, db);
+    expect(d.w.exercises[1].sets.map(s => [s.weight, s.reps])).toEqual([[20, 10]]); // ostatnia seria robocza (20 kg) jest w domu — przepisana
+    g0.exercises[0].sets.reverse(); store.save(); edit.draftAddExercise(d.key, db); // teraz ostatnia seria to 32 kg (poza listą w domu)
+    expect(d.w.exercises[2].sets.map(s => [s.weight, s.reps])).toEqual([['', '']]); // nigdy „ciężar pusty + powtórzenia”
+    /* szablon (pozycja z dolną granicą powtórzeń) — też bez samych powtórzeń */
+    const tpl = homeTpl(home); const p = edit.beginPast(tpl.id, day(13), day(13) + 3600e3); expect(p.w.locationId).toBe(home);
+    expect(p.w.exercises[0].sets.map(s => [s.weight, s.reps])).toEqual([[20, 10], ['', '']]); // seria 1: 20×10 (jest na liście), seria 2: 32 → puste (bez dolnej granicy powtórzeń)
+    edit.draftSetWhen(p.key, { date: edit.dateText(day(1)) }); expect(p.w.exercises[0].sets.map(s => [s.weight, s.reps])).toEqual([[24, 8], [24, 8]]); // przed 1 dniem: dom 24
+    edit.draftSetWhen(p.key, { date: edit.dateText(day(15)) }); expect(p.w.exercises[0].sets.map(s => [s.weight, s.reps])).toEqual([[10, 6], [10, 6]]); // nic wcześniej: ciężar startowy szablonu
+  });
+
+  test('trening bez miejsca (sprzed miejsc) przy istniejących miejscach: cała historia, bez wstrzymywania ciężarów', async () => {
+    await fresh(); placesAndHistory(); const db = ex(DB);
+    const old = addWorkout(day(4), [['Pull Up', [{ reps: 8 }]]], 'Stary'); store.save();
+    const d = edit.beginEdit(old.id)!; expect(d.w.locationId).toBeUndefined(); edit.draftAddExercise(d.key, db);
+    expect(d.w.exercises[1].sets.map(s => [s.weight, s.reps])).toEqual([[32, 8]]);
   });
 
   test('ekran edycji: zapis treningu z miejscem zostawia miejsce (UI)', async () => {
     await fresh(); const { home, h2 } = placesAndHistory(); await renderApp({ saved: snapshot() });
     await go(`/history/${h2.id}`); await flushAll(20); await tap(screen.getByText('Edytuj')); await flushAll(20);
+    expect(screen.getByText('📍 Dom')).toBeTruthy(); // miejsce tylko do odczytu
     await type(screen.getAllByLabelText(/^kg/)[0], '22'); await tap(screen.getByText('Zapisz')); await flushAll(50);
     expect(byId(h2.id).locationId).toBe(home); expect(byId(h2.id).exercises[0].sets[0].weight).toBe(22); expect(prevW(ex(DB).id, home)).toEqual([22]);
   });
 });
 
 describe('(2) trening wstecz przy istniejących miejscach', () => {
-  test('bez awarii; wartości z ostatniej sesji PRZED datą (z dowolnego miejsca); zapisany bez miejsca, więc nie zmienia „Poprzednio” miejsc', async () => {
+  test('trening wstecz dostaje miejsce szablonu (inaczej główne); wartości z ostatniej sesji PRZED datą z tego miejsca (8a)', async () => {
     await fresh(); const { home, gym } = placesAndHistory(); const db = ex(DB); const tpl = homeTpl(home);
     const d = edit.beginPast(tpl.id, day(4), day(4) + 3600e3);
-    expect(d.w.locationId).toBeUndefined(); expect(d.w.exercises[0].sets.map(s => s.weight)).toEqual([32, 32]); // siłownia 6 dni temu, nie dom 10 dni temu
-    edit.draftSetWhen(d.key, { date: edit.dateText(day(8)) }); expect(d.w.exercises[0].sets.map(s => s.weight)).toEqual([20, 20]); // przed 8 dniami: tylko dom 10 dni temu
-    const w = committed(edit.commitDraft(d.key)); expect('locationId' in byId(w.id)).toBe(false);
-    expect(prevW(db.id, home)).toEqual([24]); expect(prevW(db.id, gym)).toEqual([32]);
+    expect(d.w.locationId).toBe(home); expect(d.w.exercises[0].sets.map(s => s.weight)).toEqual([20, 20]); // dom 10 dni temu, nie siłownia 6 dni temu
+    edit.draftSetWhen(d.key, { date: edit.dateText(day(1)) }); expect(d.w.exercises[0].sets.map(s => s.weight)).toEqual([24, 24]); // przed 1 dniem: dom 2 dni temu
+    edit.draftSetWhen(d.key, { date: edit.dateText(day(4)) }); expect(d.w.exercises[0].sets.map(s => s.weight)).toEqual([20, 20]);
+    const w = committed(edit.commitDraft(d.key)); expect(byId(w.id).locationId).toBe(home);
+    expect(prevW(db.id, home)).toEqual([24]); expect(prevW(db.id, gym)).toEqual([32]); // starszy niż dom 2 dni temu
     store.startFromTemplate(tpl); expect(store.getState().active!.exercises[0].sets.map(s => s.weight)).toEqual([24, 24]); store.cancelWorkout();
+    expect(edit.beginPast(null, day(3), day(3) + 3600e3).w.locationId).toBe(home); // pusty trening — miejsce główne
+    const gt = store.newTemplate(); gt.name = 'G'; gt.locationId = gym; gt.items.push({ id: 'g1', exerciseId: db.id, sets: 1, repMin: null, repMax: null, restSec: null, startWeight: '', targetSec: '', groupId: null }); store.save(gt);
+    const dg = edit.beginPast(gt.id, day(3), day(3) + 3600e3); expect(dg.w.locationId).toBe(gym); expect(dg.w.exercises[0].sets.map(s => s.weight)).toEqual([32]);
+    L.deleteLocation(gym); expect(edit.beginPast(gt.id, day(3), day(3) + 3600e3).w.locationId).toBe(home); // miejsce szablonu usunięte — główne
   });
 
-  test('miejsce bez historii ćwiczenia: fallback „gdziekolwiek” widzi też trening wstecz bez miejsca', async () => {
+  test('miejsce bez historii ćwiczenia: trening wstecz z szablonu dostaje to miejsce i od razu jest jego „Poprzednio”', async () => {
     await fresh(); const s = store.getState().settings; s.locations.push(userHome([10, 20])); s.mainLocationId = 'home'; store.save();
     const tpl = homeTpl('home'); const d = edit.beginPast(tpl.id, day(3), day(3) + 3600e3); d.w.exercises[0].sets.forEach(x => { x.weight = 18; x.reps = 8; });
-    committed(edit.commitDraft(d.key)); expect(prevW(ex(DB).id, 'home')).toEqual([18, 18]);
+    const w = committed(edit.commitDraft(d.key)); expect(w.locationId).toBe('home'); expect(prevW(ex(DB).id, 'home')).toEqual([18, 18]);
   });
 
-  test('ekran: + Dodaj trening wstecz z szablonem z miejscem — edytor z wartościami sprzed daty, zapis bez miejsca (UI)', async () => {
+  test('ekran: + Dodaj trening wstecz z szablonem z miejscem — „📍 Dom”, wartości sprzed daty z tego miejsca, zapis z miejscem (UI)', async () => {
     await fresh(); const { home } = placesAndHistory(); homeTpl(home); await renderApp({ saved: snapshot() });
     await go('/history'); await flushAll(20); await tap(screen.getByText('+ Dodaj trening wstecz')); await flushAll(20);
     await type(screen.getByLabelText('Data (RRRR-MM-DD)'), edit.dateText(day(4))); await flushAll(800); await tap(screen.getByText('Dom')); await flushAll(50);
-    expect(screen.getAllByLabelText(/^kg/)[0].props.value).toBe('32');
+    expect(screen.getByText('📍 Dom')).toBeTruthy(); expect(screen.getAllByLabelText(/^kg/)[0].props.value).toBe('20');
     await tap(screen.getByText('Zapisz')); await flushAll(50);
-    const w = store.getState().workouts.find(x => x.templateName === 'Dom')!; expect(w.startedAt).toBe(day(4)); expect('locationId' in w).toBe(false);
+    const w = store.getState().workouts.find(x => x.templateName === 'Dom')!; expect(w.startedAt).toBe(day(4)); expect(w.locationId).toBe(home);
   });
 });
 
@@ -115,14 +145,20 @@ describe('(3) wybór ćwiczenia w edytorze (target edit:<klucz>)', () => {
     expect(store.getState().settings.pickerShowAll).toBe(false); // sam wybór nie zmienia ustawienia filtra
   });
 
-  test('trening wstecz (bez miejsca) i trening z usuniętym miejscem: pełna lista bez przełącznika', async () => {
+  test('trening wstecz (miejsce główne) — filtr jak w edycji; trening z usuniętym miejscem — pełna lista bez przełącznika', async () => {
     await fresh(); const { h1 } = placesAndHistory(); h1.locationId = 'usuniete'; store.save();
     const d = edit.beginPast(null, day(3), day(3) + 3600e3); await renderApp({ saved: snapshot() });
     await go(`/picker?target=${encodeURIComponent('edit:' + d.key)}`); await flushAll(20);
-    expect(screen.queryByLabelText('Pokaż wszystkie')).toBeNull(); expect(screen.getByText('Leg Press')).toBeTruthy(); expect(screen.queryAllByText(/brak:/)).toHaveLength(0);
-    await tap(screen.getByText('Leg Press')); await flushAll(20); expect(edit.draftOf(d.key)!.w.exercises).toHaveLength(1);
+    expect(screen.getByText(/tylko dostępne w: Dom/)).toBeTruthy(); expect(screen.queryByText('Leg Press')).toBeNull();
+    await tap(screen.getByText('Pull Up')); await flushAll(20); expect(edit.draftOf(d.key)!.w.exercises).toHaveLength(1);
     const d2 = edit.beginEdit(h1.id)!; await go(`/picker?target=${encodeURIComponent('edit:' + d2.key)}`); await flushAll(20);
     expect(screen.queryByLabelText('Pokaż wszystkie')).toBeNull(); expect(screen.getByText('Leg Press')).toBeTruthy();
+  });
+
+  test('ekran edycji treningu z usuniętym miejscem: „📍 (usunięte miejsce)”; trening bez miejsca — bez wiersza miejsca (UI)', async () => {
+    await fresh(); const { h1, h2 } = placesAndHistory(); h1.locationId = 'usuniete'; delete h2.locationId; store.save(); await renderApp({ saved: snapshot() });
+    await go(`/history/edit/${h1.id}`); await flushAll(20); expect(screen.getByText('📍 (usunięte miejsce)')).toBeTruthy();
+    await go(`/history/edit/${h2.id}`); await flushAll(20); expect(screen.queryByText(/^📍/)).toBeNull();
   });
 
   test('nieistniejący szkic: pełna lista, wybór nic nie psuje', async () => {
@@ -140,11 +176,11 @@ describe('(4) migracja i eksport/import z danymi obu funkcji', () => {
     store.startFromTemplate(tpl); store.toggleDone(0, 0); await store.flush(); return { ...r, past };
   }
 
-  test('migrate jest idempotentne (także przez JSON) i nie gubi miejsc treningów edytowanych ani braku miejsca w treningu wstecz', async () => {
+  test('migrate jest idempotentne (także przez JSON) i nie gubi miejsc treningów edytowanych ani treningu wstecz', async () => {
     const { home, h2, past } = await bothFeatures();
     const a = strip(store.migrate(snapshot())); const b = strip(store.migrate(JSON.parse(JSON.stringify(a))));
     expect(b).toEqual(a); expect(a).toEqual(strip(store.getState()));
-    expect(a.workouts.find((w: Workout) => w.id === h2.id).locationId).toBe(home); expect('locationId' in a.workouts.find((w: Workout) => w.id === past.id)).toBe(false);
+    expect(a.workouts.find((w: Workout) => w.id === h2.id).locationId).toBe(home); expect(a.workouts.find((w: Workout) => w.id === past.id).locationId).toBe(home);
     expect(a.active.locationId).toBe(home); expect(a.settings.locations).toHaveLength(2);
   });
 
@@ -154,7 +190,33 @@ describe('(4) migracja i eksport/import z danymi obu funkcji', () => {
     store.replaceState(parseBackup(JSON.stringify(buildBackup())));
     expect(strip(store.getState())).toEqual(before); expect([prevW(db, home), prevW(db, gym), prevW(db)]).toEqual(prev);
     await store.flush(); const st = await fresh(global.__kv.get('state')!);
-    expect(strip(st)).toEqual(before); expect(st.workouts.find(w => w.id === h2.id)!.locationId).toBe(home); expect('locationId' in st.workouts.find(w => w.id === past.id)!).toBe(false);
+    expect(strip(st)).toEqual(before); expect(st.workouts.find(w => w.id === h2.id)!.locationId).toBe(home); expect(st.workouts.find(w => w.id === past.id)!.locationId).toBe(home);
     expect([prevW(db, home), prevW(db, gym), prevW(db)]).toEqual(prev);
+  });
+});
+
+describe('(5) bez miejsc — jak przed integracją; repeatLast z treningiem bez miejsca', () => {
+  test('ZERO miejsc: previousBlockBefore z locationId = bez niego (zachowanie sprzed zmiany), trening wstecz bez miejsca', async () => {
+    await fresh(); const db = ex(DB);
+    /* treningi z locationId (np. miejsce usunięte, potem wszystkie miejsca usunięte) — przy zerze miejsc id niczego nie zmienia */
+    const a = addWorkout(day(10), [[DB, [{ weight: 20, reps: 8 }]], [DB, [{ weight: 12, reps: 12 }]]], 'A'); a.locationId = 'home';
+    const b = addWorkout(day(6), [[DB, [{ weight: 32, reps: 8 }]]], 'B'); b.locationId = 'gym';
+    const c = addWorkout(day(2), [[DB, [{ weight: 24, reps: 8 }]]], 'C'); c.locationId = 'home'; store.save();
+    expect(store.getState().settings.locations).toHaveLength(0);
+    for (const before of [day(1), day(2), day(4), day(8), day(11), Infinity]) for (const [k, n] of [[0, 1], [0, 2], [1, 2]]) for (const ex0 of [null, c.id]) for (const loc of ['home', 'gym', 'brak'])
+      expect(store.previousBlockBefore(db.id, before, k, n, undefined, null, ex0, loc)).toEqual(store.previousBlockBefore(db.id, before, k, n, undefined, null, ex0));
+    expect(store.previousBlockBefore(db.id, day(2), 0, 1, undefined, null, null, 'home')!.sets.map(s => s.weight)).toEqual([32]); // bez preferencji miejsca
+    const d = edit.beginPast(null, day(4), day(4) + 3600e3); expect('locationId' in d.w).toBe(false);
+    edit.draftAddExercise(d.key, db); expect(d.w.exercises[0].sets.map(s => [s.weight, s.reps])).toEqual([[32, 8]]);
+    const e = edit.beginEdit(c.id)!; edit.draftAddExercise(e.key, db); expect(e.w.exercises[1].sets.map(s => [s.weight, s.reps])).toEqual([[32, 8]]); // bez miejsc: bez 8a i bez wstrzymywania
+  });
+
+  test('repeatLast: najnowszy trening bez miejsca przy istniejących miejscach — „nieznane miejsce”: miejsce główne, wartości bez wstrzymywania', async () => {
+    await fresh(); const { home, gym } = placesAndHistory();
+    addWorkout(day(1), [[DB, [{ weight: 32, reps: 8 }]]], 'Bez miejsca'); store.save();
+    store.repeatLast(); const a = store.getState().active!; expect(a.locationId).toBe(home);
+    expect(a.exercises[0].sets.map(s => [s.weight, s.reps])).toEqual([[32, 8]]); store.cancelWorkout();
+    const g = addWorkout(day(0, 0, 5), [[DB, [{ weight: 32, reps: 8 }]]], 'Siłownia 2'); g.locationId = gym; store.save(); // dla porównania: najnowszy z miejscem — powtórzenie w tym samym miejscu, wartości 1:1
+    store.repeatLast(); const a2 = store.getState().active!; expect(a2.locationId).toBe(gym); expect(a2.exercises[0].sets.map(s => [s.weight, s.reps])).toEqual([[32, 8]]); store.cancelWorkout();
   });
 });
