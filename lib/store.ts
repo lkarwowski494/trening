@@ -758,7 +758,9 @@ export function setHasResult(ex: Exercise | undefined, s: WSet): boolean {
  */
 export function putHistoryWorkout(w: Workout, replaceId: string | null): boolean {
   const st = getState();
-  if (replaceId != null) { const i = st.workouts.findIndex(x => x.id === replaceId); if (i < 0) return false; st.workouts.splice(i, 1); }
+  if (replaceId != null) { const i = st.workouts.findIndex(x => x.id === replaceId); if (i < 0) return false;
+    /* weryfikacja 2 (L3): znacznik Apple Health i data utworzenia z treningu ZAPISANEGO teraz, nie ze szkicu — zapis do Zdrowia mógł skończyć się w trakcie edycji */
+    w.healthUUID = st.workouts[i].healthUUID; w.createdAt = st.workouts[i].createdAt; st.workouts.splice(i, 1); }
   w.exercises.forEach(e => e.sets.forEach(s => { s.done = true; s.warmup = s.kind === 'warmup'; delete s.pre; delete s.hinted; delete s.edited; if (s.noBand !== true || s.bandId) delete s.noBand; /* jak migrate — kopia wraca 1:1 */ }));
   w.exercises = w.exercises.filter(e => e.sets.length); normalizeGroups(w.exercises); delete w.staleAck;
   /* Audyt M4: start w tej samej milisekundzie co inna sesja (albo trening w toku) — rekordy liczą się „przed startem” (<), więc obie

@@ -20,9 +20,9 @@ export interface Draft {
   orig: string; origStart: number; origEnd: number; oDate: string; oTime: string; oMin: string;
   /** Audyt H1: wartości serii zapisanych wcześniej (id → wartości) — seria nieruszona w edytorze zostaje, nawet bez „wyniku” w dzisiejszej metryce */
   origVals: Record<string, string>;
-  /** Audyt M2: serie wypełnione przez aplikację (id → wstawione wartości) i data startu, sprzed której je wzięto — po zmianie daty
-   * nieruszone wartości liczą się od nowa z sesji sprzed nowej daty */
-  prefilled: Record<string, string>; prefillAt: number;
+  /** Audyt M2 / weryfikacja 2 (L2): pola wypełnione przez aplikację (id serii → pole → wstawiona wartość) i data startu, sprzed której
+   * je wzięto — po zmianie daty pola wciąż równe wstawionej wartości liczą się od nowa z sesji sprzed nowej daty; pola wpisane ręcznie zostają */
+  prefilled: Record<string, Partial<Record<VKey, unknown>>>; prefillAt: number;
 }
 
 const drafts = new Map<string, Draft>();
@@ -40,6 +40,7 @@ export const timeText = (ts: number) => { const d = new Date(ts); return `${pad(
 export const minText = (start: number, end: number) => String(Math.max(1, Math.round((end - start) / 60000)));
 /** Pola wartości serii (to, co decyduje o wyniku i o tym, czy seria była „ruszona”). */
 const VKEYS = ['weight', 'reps', 'durationSec', 'distanceM', 'addKg', 'bandId'] as const;
+type VKey = typeof VKEYS[number];
 const vals = (s: WSet) => JSON.stringify(VKEYS.map(k => s[k] ?? ''));
 const snap = (d: Draft) => JSON.stringify([d.w, d.date, d.time, d.min]);
 function make(key: string, sourceId: string | null, w: Workout): Draft {
@@ -98,13 +99,21 @@ function prefillFor(d: Draft, e: WExercise, before: number): ((i: number) => WSe
   const src = p ? p.sets.filter(x => x.kind !== 'drop') : []; /* jak startFromTemplate: drop sety nie są źródłem zwykłych serii */
   return it ? (i => prefill(ex, src.length ? src[Math.min(i, src.length - 1)] : null, it.startWeight, it.targetSec, it.repMin)) : (() => prefill(ex, src.length ? src[src.length - 1] : null));
 }
-/** Wypełnia serie wartościami sprzed `before`. force — wszystkie serie bloku (nowy szkic); inaczej tylko serie wypełnione wcześniej
- * przez aplikację i od tamtej pory nieruszone (wpisane ręcznie zostają). */
+/** Pola serii wciąż równe wartości wstawionej przez aplikację (pole zmienione ręcznie wypada). */
+const liveKeys = (d: Draft, s: WSet): VKey[] => { const r = d.prefilled[s.id]; return r ? (Object.keys(r) as VKey[]).filter(k => s[k] === r[k]) : []; };
+/** Wypełnia serie wartościami sprzed `before`. force — wszystkie pola serii bloku (nowy szkic, nowe ćwiczenie); inaczej tylko pola
+ * wypełnione wcześniej przez aplikację i od tamtej pory nieruszone (weryfikacja 2, L2: per pole — wpisane powtórzenia nie blokują
+ * przeliczenia ciężaru). */
 function refill(d: Draft, before: number, force: boolean, only?: WExercise) {
   for (const e of only ? [only] : d.w.exercises) {
-    if (!force && !e.sets.some(s => d.prefilled[s.id] !== undefined && d.prefilled[s.id] === vals(s))) continue;
+    if (!force && !e.sets.some(s => liveKeys(d, s).length)) continue;
     const f = prefillFor(d, e, before); if (!f) continue;
-    e.sets.forEach((s, i) => { if (!force && (d.prefilled[s.id] === undefined || d.prefilled[s.id] !== vals(s))) return; const n = f(i); for (const k of VKEYS) (s as any)[k] = n[k]; d.prefilled[s.id] = vals(s); });
+    e.sets.forEach((s, i) => {
+      const keys = force ? [...VKEYS] : liveKeys(d, s); if (!keys.length) { delete d.prefilled[s.id]; return; }
+      const n = f(i); const rec: Partial<Record<VKey, unknown>> = {};
+      for (const k of keys) { (s as any)[k] = n[k]; rec[k] = n[k]; }
+      d.prefilled[s.id] = rec;
+    });
   }
   d.prefillAt = before;
 }
@@ -134,8 +143,10 @@ export function draftAddExercise(key: string, ex: Exercise) {
 export function draftAddSet(key: string, ei: number) {
   const d = drafts.get(key); const e = d?.w.exercises[ei]; if (!d || !e) return;
   const l = e.sets[e.sets.length - 1]; const fromWarmup = !l || l.kind === 'warmup';
-  const s: WSet = { ...emptySet(), ...(fromWarmup ? {} : copyVals(l)), rpe: !fromWarmup && l ? l.rpe : '', kind: l?.kind === 'drop' ? 'drop' : 'normal', done: true };
-  e.sets.push(stripUnused(exById(e.exerciseId), s)); touchDraft();
+  const s: WSet = stripUnused(exById(e.exerciseId), { ...emptySet(), ...(fromWarmup ? {} : copyVals(l)), rpe: !fromWarmup && l ? l.rpe : '', kind: l?.kind === 'drop' ? 'drop' : 'normal', done: true });
+  /* weryfikacja 2 (L1): kopia pól wypełnionych przez aplikację i nieruszonych też jest „wypełniona przez aplikację” — po zmianie daty liczy się od nowa */
+  if (!fromWarmup && l) { const rec: Partial<Record<VKey, unknown>> = {}; for (const k of liveKeys(d, l)) if (s[k] === l[k]) rec[k] = s[k]; if (Object.keys(rec).length) d.prefilled[s.id] = rec; }
+  e.sets.push(s); touchDraft();
 }
 export function draftRemoveSet(key: string, ei: number, setId: string) {
   const e = drafts.get(key)?.w.exercises[ei]; if (!e) return; const i = e.sets.findIndex(s => s.id === setId); if (i < 0) return; e.sets.splice(i, 1); touchDraft();
@@ -203,10 +214,14 @@ export function checkDraft(key: string, now = Date.now()): DraftCheck {
   let dropped = 0;
   w.exercises.forEach(e => { const ex = exById(e.exerciseId); const keep = e.sets.filter(s => d.origVals[s.id] === vals(s) || setHasResult(ex, s)); dropped += e.sets.length - keep.length; e.sets = keep; });
   w.exercises = w.exercises.filter(e => e.sets.length);
-  /* godziny serii: przesunięte razem ze startem i w granicach [start, koniec] (skrócony trening); nowe serie (bez godziny) zaraz po
-   * poprzedniej — kolejność PR jak na liście */
-  const clamp = (x: number) => Math.min(end, Math.max(start, x)); let last = start;
-  w.exercises.forEach(e => e.sets.forEach(s => { if (typeof s.completedAt === 'number') { s.completedAt = clamp(s.completedAt + delta); last = s.completedAt; } else { last = clamp(last + 1000); s.completedAt = last; s.actualRest = null; } }));
+  /* godziny serii: przy zmianie terminu przesunięte razem ze startem i w granicach [start, koniec] (skrócony trening); serie nowe
+   * i zmienione bez godziny dostają ją zaraz po poprzedniej (kolejność PR jak na liście). Weryfikacja 2 (L4): seria nieruszona bez godziny
+   * (stare dane) zostaje bez godziny i z dawną przerwą — kopia wraca 1:1. */
+  const clamp = (x: number) => Math.min(end, Math.max(start, x)); let last = start; const touched = (s: WSet) => d.origVals[s.id] !== vals(s);
+  w.exercises.forEach(e => e.sets.forEach(s => {
+    if (typeof s.completedAt === 'number') { if (changed) s.completedAt = clamp(s.completedAt + delta); last = s.completedAt; }
+    else if (touched(s)) { last = clamp(last + 1000); s.completedAt = last; s.actualRest = null; }
+  }));
   const overlap = changed ? getState().workouts.find(x => x.id !== d.sourceId && x.startedAt < end && (x.finishedAt ?? x.startedAt) > start) ?? null : null;
   return { w, dropped, empty: !w.exercises.length, overlap };
 }

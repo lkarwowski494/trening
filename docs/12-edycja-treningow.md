@@ -14,12 +14,13 @@ Priorytet od właściciela produktu. Research (w zleceniu): 9 z 10 porównywanyc
 
 „Anuluj” (w nagłówku) wyrzuca szkic — gdy coś zmieniono, najpierw pyta „Odrzucić zmiany?”. „Zapisz” (w nagłówku i na dole) zapisuje wszystko naraz.
 
-**Trening wstecz.** Zakładka Historia ma przycisk **„+ Dodaj trening wstecz”** (`app/history/add.tsx`): termin (domyślnie wczoraj 18:00, 60 min), potem szablon z listy albo „Pusty trening”, potem ten sam edytor. Szkic z szablonu powstaje jak przy starcie treningu, ale **bez** treningu w toku, timerów, powiadomień i maszynerii podpowiedzi (`pre`, `hinted`): pozycje szablonu, liczba serii, superserie, a wartości z **ostatniej sesji ćwiczenia sprzed tej daty** (ten sam kod doboru bloku co „Poprzednio” — `store.previousBlockBefore` dzieli z `previousBlockFor` wszystkie reguły: pozycja szablonu, k-ty blok, pominięta pozycja, sesje z samymi drop setami; drop sety nie są źródłem). Bez wcześniejszej sesji — ciężar startowy i cel czasu z szablonu oraz dolna granica powtórzeń (to, co wstawiłoby odhaczenie pustej serii). Ćwiczenie dodane w edytorze dostaje wartości z **ostatniej** serii roboczej sprzed bieżącej daty w edytorze. Gdy datę lub godzinę zmienić w edytorze, wartości wstawione przez aplikację i nieruszone liczą się od nowa z sesji sprzed nowej daty (wpisane ręcznie zostają). Zapis wstawia trening do historii w miejscu zgodnym z datą.
+**Trening wstecz.** Zakładka Historia ma przycisk **„+ Dodaj trening wstecz”** (`app/history/add.tsx`): termin (domyślnie wczoraj 18:00, 60 min), potem szablon z listy albo „Pusty trening”, potem ten sam edytor. Szkic z szablonu powstaje jak przy starcie treningu, ale **bez** treningu w toku, timerów, powiadomień i maszynerii podpowiedzi (`pre`, `hinted`): pozycje szablonu, liczba serii, superserie, a wartości z **ostatniej sesji ćwiczenia sprzed tej daty** (ten sam kod doboru bloku co „Poprzednio” — `store.previousBlockBefore` dzieli z `previousBlockFor` wszystkie reguły: pozycja szablonu, k-ty blok, pominięta pozycja, sesje z samymi drop setami; drop sety nie są źródłem). Bez wcześniejszej sesji — ciężar startowy i cel czasu z szablonu oraz dolna granica powtórzeń (to, co wstawiłoby odhaczenie pustej serii). Ćwiczenie dodane w edytorze dostaje wartości z **ostatniej** serii roboczej sprzed bieżącej daty w edytorze. Gdy datę lub godzinę zmienić w edytorze, pola wstawione przez aplikację i nieruszone liczą się od nowa z sesji sprzed nowej daty — per pole (wpisane ręcznie powtórzenia zostają, a ciężar z tej samej serii się przelicza); seria dodana „+ seria” z takiej serii też jest „wypełniona przez aplikację”. Zapis wstawia trening do historii w miejscu zgodnym z datą.
 
 **Zapis (edycja i trening wstecz):**
 - serie **nowe albo zmienione w edytorze** (inne wartości niż przy otwarciu) bez wyniku w metryce ćwiczenia odpadają z ostrzeżeniem „Serie bez wyniku zostaną pominięte: n” (kg × powt. i powt.: brak powtórzeń; czas, kg × czas: brak czasu; dystans + czas: brak obu) — odpowiednik ostrzeżeń „Zakończ”; serie zapisane wcześniej i nieruszone zostają zawsze (historia może mieć odhaczone serie bez powtórzeń, rozgrzewki bez powtórzeń albo serie z dawnej metryki ćwiczenia); ćwiczenie bez serii odpada;
-- gdy nie zostaje żadna seria (tylko po usunięciu/wyczyszczeniu serii przez użytkownika) — edycja proponuje „Usuń sesję” z historii (potem powrót na listę Historii i kopia automatyczna), trening wstecz „Odrzuć trening”;
-- termin: poprawna data RRRR-MM-DD, godzina GG:MM istniejąca tego dnia (nie 02:30 w dniu zmiany czasu na letni), czas trwania 1–1440 min (same cyfry), koniec nie później niż teraz. Pola nieruszone zostają co do sekundy: sama zmiana czasu trwania nie przesuwa startu, sama zmiana daty/godziny zachowuje dawny czas trwania (także > 24 h z importu). Godziny serii (`completedAt`) przesuwają się razem ze startem i mieszczą w [start, koniec] (skrócony trening); nowe serie dostają godziny po kolei (kolejność PR = kolejność na liście);
+- gdy nie zostaje żadna seria (tylko po usunięciu/wyczyszczeniu serii przez użytkownika) — edycja proponuje „Usuń sesję” z historii (potem zawsze lista Historii — także gdy szczegóły otwarto z zakładki Trening — i kopia automatyczna), trening wstecz „Odrzuć trening”;
+- termin: poprawna data RRRR-MM-DD, godzina GG:MM istniejąca tego dnia (nie 02:30 w dniu zmiany czasu na letni), czas trwania 1–1440 min (same cyfry), koniec nie później niż teraz. Pola nieruszone zostają co do sekundy: sama zmiana czasu trwania nie przesuwa startu, sama zmiana daty/godziny zachowuje dawny czas trwania (także > 24 h z importu). Godziny serii (`completedAt`) przesuwają się razem ze startem i mieszczą w [start, koniec] (skrócony trening); serie nowe i zmienione bez godziny dostają godziny po kolei (kolejność PR = kolejność na liście); nieruszone serie ze starych danych bez godziny zostają bez godziny i z dawną przerwą (kopia 1:1);
+- przy podmianie treningu znacznik Apple Health (`healthUUID`) i `createdAt` są brane z treningu zapisanego w tej chwili, a zapis do Zdrowia kończący się po edycji wpisuje znacznik do obiektu, który jest wtedy w historii;
 - termin nachodzący na trening w toku — błąd (także już na pierwszym ekranie treningu wstecz); nachodzący na inną sesję z historii — ostrzeżenie z potwierdzeniem;
 - start identyczny z inną sesją (albo treningiem w toku) przesuwa się o 1 s (patrz decyzje);
 - jeden zapis do stanu (`store.putHistoryWorkout`): `save()` podbija `histRev`, od którego zależą wszystkie cache historii (lista, indeks treningów z ćwiczeniem, „Poprzednio”, sesje i rekordy narastające ze `stats.ts`) — rekordy/PR, „Poprzednio”, wykresy, tygodniowa objętość i serie na partię, CSV liczą się od nowa;
@@ -62,7 +63,7 @@ Priorytet od właściciela produktu. Research (w zleceniu): 9 z 10 porównywanyc
 - `app/history/edit/[id].tsx` — edytor; `app/history/add.tsx` — trening wstecz; `components/WhenFields.tsx` — pola terminu.
 - `app/history/[id].tsx` — „Edytuj”; `app/(tabs)/history.tsx` — „+ Dodaj trening wstecz”; `app/picker.tsx` — cel `edit:<klucz>`; `app/_layout.tsx` — ekrany w stosie; `lib/i18n.en.ts` — tłumaczenia.
 
-## 5. Testy (`tests/edit-history.test.tsx`, 29)
+## 5. Testy (`tests/edit-history.test.tsx`, 33)
 
 Logika:
 1. zmiana ciężaru: szkic nie rusza historii; po zapisie PR i „Poprzednio” następnego treningu liczą się od nowa (także start z szablonu);
@@ -101,7 +102,13 @@ Audyt — ekrany:
 28. id z „/ ? # spacją”: edytor, wybór ćwiczenia, zapis; wyjście bez „Anuluj” wyrzuca szkic; „Edytuj” dwa razy szybko = jeden szkic;
 29. brak szablonów — podpowiedź, gdzie je utworzyć.
 
-Weryfikacja: `npx tsc --noEmit`, `npm run check:i18n`, `npx jest --maxWorkers=2` (cały zestaw, 679), `node scripts/verify-native.mjs` — wszystko OK.
+Weryfikacja 2:
+30. L1 + L2: „+ seria” z serii wypełnionej przez aplikację przelicza się po zmianie daty; przeliczanie per pole;
+31. L3: `healthUUID`/`createdAt` z bieżącego zapisu — Zdrowie skończone w trakcie edycji i po zapisie edycji;
+32. L4: nieruszona seria bez godziny zostaje 1:1 (także po eksporcie/imporcie), zmieniona dostaje godzinę;
+33. L5: „Usuń sesję” ze szczegółów otwartych z zakładki Trening → lista Historii.
+
+Weryfikacja: `npx tsc --noEmit`, `npm run check:i18n`, `npx jest --maxWorkers=2` (cały zestaw, 683), `node scripts/verify-native.mjs` — wszystko OK.
 
 ## 6. Audyt niezależny (03.10.2026) — co poprawiono
 
@@ -114,3 +121,14 @@ Weryfikacja: `npx tsc --noEmit`, `npm run check:i18n`, `npx jest --maxWorkers=2`
 | M5 | Brak sprawdzania nachodzenia terminów | Blokada dla treningu w toku, ostrzeżenie dla historii. |
 | M6 | Brak testów powyższego | Testy 18–28. |
 | LOW | Sama zmiana czasu trwania przesuwała start; ułamki/wykładniki w minutach; nieistniejąca godzina DST; limit 24 h dla nieruszonego czasu; id w adresach bez kodowania; szkic zostawał po wyjściu; podwójne „Edytuj”; pierwsza zamiast ostatniej serii; brak kopii po „Usuń sesję”; tekst „Brak szablonów” | Wszystkie poprawione (testy 19, 23, 24, 26, 28, 29). |
+
+### Weryfikacja 2 (03.10.2026) — 0 HIGH, 0 MEDIUM; poprawione LOW
+
+| # | Problem | Poprawka |
+|---|---|---|
+| L1 | Seria z „+ seria” skopiowana z serii wypełnionej przez aplikację nie była oznaczona — po zmianie daty zostawały wartości z późniejszej sesji | Kopia dziedziczy oznaczenie pól wciąż równych wstawionym (`draftAddSet`). |
+| L2 | „Ruszona” liczona per seria — wpisanie powtórzeń blokowało przeliczenie ciężaru | Oznaczenie per pole (`prefilled[id][pole]`); przeliczane są tylko pola wciąż równe wstawionej wartości. |
+| L3 | Znacznik Apple Health mógł zginąć, gdy zapis do Zdrowia skończył się w trakcie edycji | `putHistoryWorkout` bierze `healthUUID` i `createdAt` z treningu zapisanego teraz; `health.saveWorkout` wpisuje znacznik także do obiektu, który jest w historii po podmianie. |
+| L4 | Nieruszone serie bez godziny (stare dane) dostawały zmyśloną godzinę i traciły przerwę | Godzina i zerowanie przerwy tylko dla serii nowych lub zmienionych; przesuwanie/przycinanie godzin tylko przy zmianie terminu. |
+| L5 | „Usuń sesję” przez `dismiss(2)` mogło wrócić na zakładkę Trening | Po usunięciu zawsze `dismissAll()` + `navigate('/history')` (wzór z edytora szablonu). |
+

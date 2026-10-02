@@ -6,6 +6,7 @@ import * as timer from '@/lib/timer';
 import * as edit from '@/lib/edit';
 import { prMap, recordsFor, sessionsFor, weeklyTotals } from '@/lib/stats';
 import { buildBackup, buildCsv, parseBackup } from '@/lib/backup';
+import * as health from '@/lib/health';
 import { wIn } from '@/lib/units';
 import type { Workout } from '@/lib/seed';
 import { fresh, ex, addWorkout, pressAlert, saved } from './helpers';
@@ -307,11 +308,11 @@ describe('audyt: logika', () => {
     const d = edit.beginPast(tpl.id, day(5), day(5) + 3600e3); const bpSets = () => d.w.exercises[0].sets.map(s => `${s.weight}x${s.reps}`);
     expect(bpSets()).toEqual(['70x8', '70x8', '70x8']);
     d.w.exercises[0].sets[2].weight = 75; // ręcznie
-    edit.draftSetWhen(d.key, { date: edit.dateText(day(12)) }); expect(bpSets()).toEqual(['60x6', '60x6', '75x8']); // przed całą historią: start z szablonu
-    edit.draftSetWhen(d.key, { date: edit.dateText(day(2)) }); expect(bpSets()).toEqual(['80x6', '80x6', '75x8']); // sesja sprzed 3 dni, nie ta sprzed 1
-    edit.draftSetWhen(d.key, { date: '2026-' }); expect(bpSets()).toEqual(['80x6', '80x6', '75x8']); // niedokończona data — bez zmian
+    edit.draftSetWhen(d.key, { date: edit.dateText(day(12)) }); expect(bpSets()).toEqual(['60x6', '60x6', '75x6']); // przed całą historią: start z szablonu; wpisany ciężar zostaje, powtórzenia (nieruszone) liczą się od nowa
+    edit.draftSetWhen(d.key, { date: edit.dateText(day(2)) }); expect(bpSets()).toEqual(['80x6', '80x6', '75x6']); // sesja sprzed 3 dni, nie ta sprzed 1
+    edit.draftSetWhen(d.key, { date: '2026-' }); expect(bpSets()).toEqual(['80x6', '80x6', '75x6']); // niedokończona data — bez zmian
     Object.assign(d, { date: edit.dateText(day(12)) }); // pole zmienione bez draftSetWhen — zapis i tak liczy od nowa
-    const w = committed(edit.commitDraft(d.key)); expect(w.exercises[0].sets.map(s => `${s.weight}x${s.reps}`)).toEqual(['60x6', '60x6', '75x8']);
+    const w = committed(edit.commitDraft(d.key)); expect(w.exercises[0].sets.map(s => `${s.weight}x${s.reps}`)).toEqual(['60x6', '60x6', '75x6']);
     // edycja istniejącej sesji: ćwiczenie dodane w edytorze bierze sesję sprzed BIEŻĄCEJ daty i nie samą siebie
     const last = store.finishedWorkouts()[0]; const e = edit.beginEdit(last.id)!; edit.draftAddExercise(e.key, ex(BP));
     expect(e.w.exercises[1].sets[0]).toMatchObject({ weight: 80, reps: 6 });
@@ -428,5 +429,52 @@ describe('audyt: ekrany', () => {
   test('trening wstecz bez szablonów z ćwiczeniami: podpowiedź, gdzie je utworzyć', async () => {
     await fresh(); store.getState().templates = []; store.save(); await renderApp({ saved: snapshot() }); await go('/history/add'); await flushAll(20);
     expect(screen.getByText('Brak szablonów z ćwiczeniami — utworzysz je w zakładce Szablony. Możesz też zacząć od pustego treningu.')).toBeTruthy();
+  });
+});
+
+/* Weryfikacja 2 (03.10.2026): L1–L5. */
+describe('weryfikacja 2', () => {
+  test('L1: „+ seria” z serii wypełnionej przez aplikację też liczy się od nowa po zmianie daty; L2: per pole — wpisane powtórzenia zostają, ciężar się przelicza', async () => {
+    await fresh(); const tpl = pushTpl();
+    addWorkout(day(10), [[BP, [{ weight: 70, reps: 8 }]]]); addWorkout(day(3), [[BP, [{ weight: 80, reps: 6 }]]]);
+    const d = edit.beginPast(tpl.id, day(5), day(5) + 3600e3); const bpSets = () => d.w.exercises[0].sets.map(s => `${s.weight}x${s.reps}`);
+    edit.draftAddSet(d.key, 0); expect(bpSets()).toEqual(['70x8', '70x8', '70x8', '70x8']);
+    d.w.exercises[0].sets[0].reps = 10; // ręcznie tylko powtórzenia
+    edit.draftAddSet(d.key, 0); d.w.exercises[0].sets[4].weight = 72.5; // kopia, potem ręcznie ciężar
+    edit.draftSetWhen(d.key, { date: edit.dateText(day(2)) });
+    expect(bpSets()).toEqual(['80x10', '80x6', '80x6', '80x6', '72.5x6']);
+    edit.draftSetWhen(d.key, { date: edit.dateText(day(12)) }); expect(bpSets()).toEqual(['60x10', '60x6', '60x6', '60x6', '72.5x6']);
+    const w = committed(edit.commitDraft(d.key)); expect(w.exercises[0].sets.map(s => `${s.weight}x${s.reps}`)).toEqual(['60x10', '60x6', '60x6', '60x6', '72.5x6']);
+  });
+
+  test('L3: znacznik Apple Health i createdAt z treningu zapisanego teraz — zapis do Zdrowia skończony w trakcie edycji albo po niej nie ginie', async () => {
+    await fresh(); store.getState().settings.healthSync = true; const w = addWorkout(day(3), [[BP, [{ weight: 80, reps: 5 }]]]);
+    const d = edit.beginEdit(w.id)!; d.w.note = 'x'; d.w.createdAt = 1; byId(w.id).healthUUID = 'hk-1'; store.save(byId(w.id)); // Zdrowie skończyło w trakcie edycji
+    committed(edit.commitDraft(d.key)); expect(byId(w.id)).toMatchObject({ healthUUID: 'hk-1', createdAt: w.createdAt, note: 'x' });
+    const w2 = addWorkout(day(5), [[BP, [{ weight: 70, reps: 5 }]]]);
+    const hk = jest.requireMock('@kingstinct/react-native-healthkit').default; let done: (v: string) => void = () => {};
+    const spy = jest.spyOn(hk, 'saveWorkoutSample').mockImplementation(() => new Promise<string>(res => { done = res; }));
+    const pending = health.saveWorkout(byId(w2.id)); // zapis do Zdrowia trwa…
+    const d2 = edit.beginEdit(w2.id)!; d2.w.exercises[0].sets[0].reps = 6; committed(edit.commitDraft(d2.key)); // …a w tym czasie zapis edycji
+    done('uuid-2'); expect(await pending).toBe('saved'); spy.mockRestore();
+    expect(byId(w2.id)).toMatchObject({ healthUUID: 'uuid-2' }); expect(sets(w2.id)).toEqual([['70x6']]);
+  });
+
+  test('L4: nieruszona seria ze starych danych bez godziny zostaje bez godziny i z dawną przerwą (kopia 1:1); seria zmieniona dostaje godzinę', async () => {
+    await fresh(); const w = addWorkout(day(3), [[BP, [{ weight: 80, reps: 5, completedAt: null, actualRest: 75 }, { weight: 80, reps: 5, completedAt: null, actualRest: 80 }]]]);
+    w.exercises[0].sets.forEach(x => { x.completedAt = null; }); store.save(w); const before = JSON.parse(JSON.stringify(byId(w.id).exercises));
+    const d = edit.beginEdit(w.id)!; d.w.note = 'n'; committed(edit.commitDraft(d.key));
+    expect(byId(w.id).exercises).toEqual(before); expect(parseBackup(JSON.stringify(buildBackup())).workouts.find(x => x.id === w.id)!.exercises).toEqual(before);
+    const d2 = edit.beginEdit(w.id)!; d2.w.exercises[0].sets[1].reps = 6; committed(edit.commitDraft(d2.key));
+    expect(byId(w.id).exercises[0].sets.map(x => [x.completedAt, x.actualRest])).toEqual([[null, 75], [day(3) + 1000, null]]);
+  });
+
+  test('L5: „Usuń sesję” ze szczegółów otwartych z zakładki Trening — ląduje na liście Historii', async () => {
+    await fresh(); const w = addWorkout(day(3), [[BP, [{ weight: 80, reps: 5 }]]]); addWorkout(day(5), [['Back Squat', [{ weight: 100, reps: 5 }]]]);
+    await renderApp({ saved: snapshot() }); expect(screen.getByText('Zacznij z szablonu')).toBeTruthy(); // zakładka Trening
+    await go(`/history/${w.id}`); await flushAll(20); await tap(screen.getByText('Edytuj')); await flushAll(20);
+    await tap(screen.getByLabelText(`Usuń serię 1 — ${BP}`)); await tap(screen.getByText('Zapisz')); await alertNow('Pusty trening', 'Usuń sesję'); await settle();
+    expect(store.getState().workouts.some(x => x.id === w.id)).toBe(false);
+    expect(screen.getByText('+ Dodaj trening wstecz')).toBeTruthy(); expect(screen.queryByText('Zacznij z szablonu')).toBeNull(); expect(screen.queryByText('Edytuj')).toBeNull();
   });
 });
