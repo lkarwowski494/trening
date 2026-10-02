@@ -94,8 +94,9 @@ function prefill(ex: Exercise, p0: WSet | null, startWeight: number | '' = '', t
  * w edytorze — OSTATNIA seria robocza z „Poprzednio” sprzed tej daty. Edytowany trening nie jest źródłem dla samego siebie.
  * Integracja 0.9.0: szkic z miejscem bierze najpierw sesje z tego miejsca (decyzja 8a, previousBlockBefore z locationId), a ciężar z sesji
  * w INNYM, ZNANYM miejscu spoza listy dostępnych tutaj (offListAt) nie jest wstawiany — jak startFromTemplate, tyle że razem z ciężarem
- * puste zostają też powtórzenia (nigdy „ciężar pusty + powtórzenia”). */
-function prefillFor(d: Draft, e: WExercise, before: number): ((i: number) => WSet) | null {
+ * puste zostają też powtórzenia (nigdy „ciężar pusty + powtórzenia”). Zwraca wartości ze źródła i `off` (ciężar do wstrzymania) — samo
+ * wstrzymanie robi refill, bo zależy od tego, które pola są jeszcze wypełniane przez aplikację (weryfikacja integracji, LOW1). */
+function prefillFor(d: Draft, e: WExercise, before: number): ((i: number) => { s: WSet; off: boolean }) | null {
   const ex = exById(e.exerciseId); if (!ex) return null; const w = d.w; const loc = w.locationId;
   const tpl = w.templateId ? getState().templates.find(x => x.id === w.templateId) ?? null : null;
   const it = tpl && e.tplItemId ? tpl.items.find(x => x.id === e.tplItemId && x.exerciseId === e.exerciseId) : undefined;
@@ -103,9 +104,11 @@ function prefillFor(d: Draft, e: WExercise, before: number): ((i: number) => WSe
   const p = it && tpl ? previousBlockBefore(ex.id, before, occurrence(tpl.items, ii), occurrences(tpl.items, ex.id), it.id, tpl.id, d.sourceId, loc)
     : previousBlockBefore(ex.id, before, occurrence(w.exercises, ei), occurrences(w.exercises, ex.id), e.tplItemId, w.templateId, d.sourceId, loc);
   const src = p ? p.sets.filter(x => x.kind !== 'drop') : []; /* jak startFromTemplate: drop sety nie są źródłem zwykłych serii */
-  const away = !!(p && loc && p.workout.locationId && p.workout.locationId !== loc); /* tylko znane, inne miejsce (treningi bez miejsca — nie) */
-  const off = (s: WSet) => { if (away && offListAt(ex, loc, s.weight)) { s.weight = ''; s.reps = ''; } return s; };
-  return it ? (i => off(prefill(ex, src.length ? src[Math.min(i, src.length - 1)] : null, it.startWeight, it.targetSec, it.repMin))) : (() => off(prefill(ex, src.length ? src[src.length - 1] : null)));
+  /* tylko znane, inne miejsce (treningi bez miejsca — nie); weryfikacja integracji (LOW2): i tylko, gdy sesja daje wartości — sesja z samymi
+   * drop setami nie jest źródłem, więc nie wstrzymuje ciężaru startowego szablonu (jak startFromTemplate: wstrzymanie tylko przy kopii z sesji) */
+  const away = !!(src.length && loc && p!.workout.locationId && p!.workout.locationId !== loc);
+  const at = (s: WSet) => ({ s, off: away && offListAt(ex, loc, s.weight) });
+  return it ? (i => at(prefill(ex, src.length ? src[Math.min(i, src.length - 1)] : null, it.startWeight, it.targetSec, it.repMin))) : (() => at(prefill(ex, src.length ? src[src.length - 1] : null)));
 }
 /** Pola serii wciąż równe wartości wstawionej przez aplikację (pole zmienione ręcznie wypada). */
 const liveKeys = (d: Draft, s: WSet): VKey[] => { const r = d.prefilled[s.id]; return r ? (Object.keys(r) as VKey[]).filter(k => s[k] === r[k]) : []; };
@@ -118,7 +121,11 @@ function refill(d: Draft, before: number, force: boolean, only?: WExercise) {
     const f = prefillFor(d, e, before); if (!f) continue;
     e.sets.forEach((s, i) => {
       const keys = force ? [...VKEYS] : liveKeys(d, s); if (!keys.length) { delete d.prefilled[s.id]; return; }
-      const n = f(i); const rec: Partial<Record<VKey, unknown>> = {};
+      const { s: n, off } = f(i); const rec: Partial<Record<VKey, unknown>> = {};
+      /* LOW1: ciężar spoza listy wstrzymujemy tylko w polu ciężaru wciąż wypełnianym przez aplikację — wtedy pusty jest też wstawiany ciężar
+       * i wstawiane powtórzenia (nigdy „ciężar pusty + powtórzenia ze źródła”); powtórzenia wpisane ręcznie zostają (ostrzeżenie przy zapisie).
+       * Ciężar wpisany ręcznie: nic nie wstrzymujemy — wstawiane powtórzenia idą ze źródła. */
+      if (off && keys.includes('weight')) { n.weight = ''; n.reps = ''; }
       for (const k of keys) { (s as any)[k] = n[k]; rec[k] = n[k]; }
       d.prefilled[s.id] = rec;
     });
@@ -206,12 +213,14 @@ function resolveWhen(d: Draft, now: number): { start: number; end: number; chang
   const end = start + dur; if (end > now) return { error: futureError(end) };
   return { start, end, changed: true };
 }
-export type DraftCheck = { error: string } | { w: Workout; dropped: number; empty: boolean; overlap: Workout | null };
+export type DraftCheck = { error: string } | { w: Workout; dropped: number; noWeight: number; empty: boolean; overlap: Workout | null };
 /**
  * Gotowy do zapisu trening ze szkicu (kopia — szkic zostaje do ewentualnego „Wróć”). Audyt H1: serie NOWE albo ZMIENIONE w edytorze bez
  * wyniku w metryce ćwiczenia odpadają (liczba w `dropped` do ostrzeżenia); serie zapisane wcześniej i nieruszone zostają zawsze (historia
  * może mieć odhaczone serie bez powtórzeń albo serie z dawnej metryki ćwiczenia). Ćwiczenia bez serii odpadają; `empty` = nic do zapisania.
- * `overlap` — inna sesja z historii w tym samym czasie (do potwierdzenia); nachodzenie na trening w toku to błąd.
+ * `overlap` — inna sesja z historii w tym samym czasie (do potwierdzenia); nachodzenie na trening w toku to błąd. `noWeight` — zapisywane serie
+ * robocze nowe albo zmienione ćwiczeń z ciężarem (nie masa ciała) z pustym ciężarem (np. wpisane powtórzenia przy ciężarze wstrzymanym jako
+ * spoza listy) — zostają, ale z ostrzeżeniem jak „Odhaczone serie bez ciężaru” przy „Zakończ” (weryfikacja integracji, LOW1).
  */
 export function checkDraft(key: string, now = Date.now()): DraftCheck {
   const d = drafts.get(key); if (!d) return { error: t('Brak sesji.') };
@@ -222,6 +231,7 @@ export function checkDraft(key: string, now = Date.now()): DraftCheck {
   let dropped = 0;
   w.exercises.forEach(e => { const ex = exById(e.exerciseId); const keep = e.sets.filter(s => d.origVals[s.id] === vals(s) || setHasResult(ex, s)); dropped += e.sets.length - keep.length; e.sets = keep; });
   w.exercises = w.exercises.filter(e => e.sets.length);
+  const noWeight = w.exercises.reduce((a, e) => { const ex = exById(e.exerciseId); return a + (ex && !isBW(ex) && hasWeight(ex.metric ?? 'weight_reps') ? e.sets.filter(s => s.kind !== 'warmup' && (s.weight === '' || s.weight == null) && d.origVals[s.id] !== vals(s)).length : 0); }, 0);
   /* godziny serii: przy zmianie terminu przesunięte razem ze startem i w granicach [start, koniec] (skrócony trening); serie nowe
    * i zmienione bez godziny dostają ją zaraz po poprzedniej (kolejność PR jak na liście). Weryfikacja 2 (L4): seria nieruszona bez godziny
    * (stare dane) zostaje bez godziny i z dawną przerwą — kopia wraca 1:1. */
@@ -231,7 +241,7 @@ export function checkDraft(key: string, now = Date.now()): DraftCheck {
     else if (touched(s)) { last = clamp(last + 1000); s.completedAt = last; s.actualRest = null; }
   }));
   const overlap = changed ? getState().workouts.find(x => x.id !== d.sourceId && x.startedAt < end && (x.finishedAt ?? x.startedAt) > start) ?? null : null;
-  return { w, dropped, empty: !w.exercises.length, overlap };
+  return { w, dropped, noWeight, empty: !w.exercises.length, overlap };
 }
 /** Zapis szkicu do historii. Zwraca zapisany trening albo błąd (np. trening usunięty w międzyczasie). */
 export function commitDraft(key: string, now = Date.now()): { w: Workout } | { error: string } {

@@ -215,7 +215,7 @@ export const EN: Record<string, string> = {
   'Z szablonu': 'From a template', 'ćwiczenia dodasz w następnym kroku': 'add exercises in the next step',
   'Odrzucić zmiany?': 'Discard changes?', 'Sesja w historii zostanie bez zmian.': 'The session in your history stays unchanged.', 'Ten trening nie zostanie zapisany.': 'This workout won’t be saved.', 'Odrzuć zmiany': 'Discard changes',
   'Nie udało się zapisać': 'Couldn’t save', 'Nie zostałaby żadna seria z wynikiem. Usunąć tę sesję z historii?': 'No set with a result would be left. Delete this session from your history?',
-  'Nie ma żadnej serii z wynikiem — nic do zapisania.': 'There’s no set with a result — nothing to save.', 'Zapisać zmiany?': 'Save changes?', 'Serie bez wyniku zostaną pominięte: {n}.': 'Sets without a result will be skipped: {n}.',
+  'Nie ma żadnej serii z wynikiem — nic do zapisania.': 'There’s no set with a result — nothing to save.', 'Zapisać zmiany?': 'Save changes?', 'Serie bez wyniku zostaną pominięte: {n}.': 'Sets without a result will be skipped: {n}.', 'Serie bez ciężaru: {n}.': 'Sets without weight: {n}.',
   'Zmiany nie trafiają do Apple Health.': 'Changes are not sent to Apple Health.', 'Brak ćwiczeń — dodaj pierwsze.': 'No exercises — add the first one.', 'Zapisz zmiany': 'Save changes',
   'Tapnij numer serii, by zmienić typ (W, D, F) albo dodać notatkę. Serie bez wyniku nie zostaną zapisane.': 'Tap a set number to change its type (W, D, F) or add a note. Sets without a result won’t be saved.',
   'Usuń serię {n} — {ex}': 'Delete set {n} — {ex}', 'Bez serii — ćwiczenie nie zostanie zapisane.': 'No sets — this exercise won’t be saved.',

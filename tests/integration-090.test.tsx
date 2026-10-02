@@ -8,7 +8,7 @@ import * as L from '@/lib/locations';
 import { prMap, recordsFor } from '@/lib/stats';
 import { buildBackup, parseBackup } from '@/lib/backup';
 import type { Workout } from '@/lib/seed';
-import { fresh, ex, addWorkout } from './helpers';
+import { fresh, ex, addWorkout, pressAlert } from './helpers';
 import { userHome } from './locations-fixtures';
 import { renderApp, flushAll, screen, go, tap, type, act } from './app';
 
@@ -218,5 +218,52 @@ describe('(5) bez miejsc — jak przed integracją; repeatLast z treningiem bez 
     expect(a.exercises[0].sets.map(s => [s.weight, s.reps])).toEqual([[32, 8]]); store.cancelWorkout();
     const g = addWorkout(day(0, 0, 5), [[DB, [{ weight: 32, reps: 8 }]]], 'Siłownia 2'); g.locationId = gym; store.save(); // dla porównania: najnowszy z miejscem — powtórzenie w tym samym miejscu, wartości 1:1
     store.repeatLast(); const a2 = store.getState().active!; expect(a2.locationId).toBe(gym); expect(a2.exercises[0].sets.map(s => [s.weight, s.reps])).toEqual([[32, 8]]); store.cancelWorkout();
+  });
+});
+
+describe('(6) wstrzymywanie ciężaru spoza listy w edytorze (weryfikacja integracji: LOW1, LOW2)', () => {
+  const pair = (s: { weight: unknown; reps: unknown }) => [s.weight, s.reps];
+
+  test('LOW1: wstrzymanie dotyczy tylko pól wypełnianych przez aplikację — wpisane ręcznie zostają; seria bez ciężaru zapisuje się z ostrzeżeniem', async () => {
+    await fresh(); const { gym } = placesAndHistory(); const db = ex(DB);
+    const g0 = addWorkout(day(14), [[DB, [{ weight: 32, reps: 6 }]]], 'Siłownia 0'); g0.locationId = gym; store.save();
+    /* przed 4 dniem: dom 10 dni temu (20 × 8); przed 12 dniem: w domu nic — cała historia: siłownia 14 dni temu (32 kg, w domu poza listą) */
+    const a = edit.beginPast(null, day(4), day(4) + 3600e3); edit.draftAddExercise(a.key, db); const sa = a.w.exercises[0].sets[0];
+    expect(pair(sa)).toEqual([20, 8]);
+    sa.reps = 12; edit.draftSetWhen(a.key, { date: edit.dateText(day(12)) });
+    expect(pair(sa)).toEqual(['', 12]); // A: ciężar (wstawiany) wstrzymany, powtórzenia użytkownika zostają
+    expect(edit.checkDraft(a.key)).toMatchObject({ dropped: 0, noWeight: 1, empty: false }); // seria zostaje — z ostrzeżeniem „Serie bez ciężaru”
+    edit.draftSetWhen(a.key, { date: edit.dateText(day(4)) }); expect(pair(sa)).toEqual([20, 12]); // pole ciężaru wciąż „z aplikacji” — wraca
+    edit.draftSetWhen(a.key, { date: edit.dateText(day(12)) }); expect(pair(sa)).toEqual(['', 12]);
+    const b = edit.beginPast(null, day(4), day(4) + 3600e3); edit.draftAddExercise(b.key, db); const sb = b.w.exercises[0].sets[0];
+    sb.weight = 18; edit.draftSetWhen(b.key, { date: edit.dateText(day(12)) });
+    expect(pair(sb)).toEqual([18, 6]); // B: ciężar użytkownika (jest na liście) — nic nie wstrzymujemy, powtórzenia ze źródła
+    expect(edit.checkDraft(b.key)).toMatchObject({ dropped: 0, noWeight: 0 });
+    const c = edit.beginPast(null, day(4), day(4) + 3600e3); edit.draftAddExercise(c.key, db); edit.draftSetWhen(c.key, { date: edit.dateText(day(12)) });
+    expect(pair(c.w.exercises[0].sets[0])).toEqual(['', '']); // nic nie wpisano — jak dotąd: puste oba (nigdy „ciężar pusty + powtórzenia”)
+    expect(edit.checkDraft(c.key)).toMatchObject({ dropped: 1, noWeight: 0, empty: true });
+    const w = committed(edit.commitDraft(a.key)); expect(pair(w.exercises[0].sets[0])).toEqual(['', 12]); // zapis nie gubi serii
+  });
+
+  test('LOW1 (UI): edytor ostrzega „Serie bez ciężaru: n.” przed zapisem i zapisuje serię po potwierdzeniu', async () => {
+    await fresh(); const { h2 } = placesAndHistory(); await renderApp({ saved: snapshot() });
+    await go(`/history/edit/${h2.id}`); await flushAll(20); await type(screen.getAllByLabelText(/^kg/)[0], ''); await tap(screen.getByText('Zapisz')); await flushAll(20);
+    const al = global.__alerts[global.__alerts.length - 1]; expect(al).toMatchObject({ title: 'Zapisać zmiany?', msg: 'Serie bez ciężaru: 1.' });
+    expect(byId(h2.id).exercises[0].sets[0].weight).toBe(24); // przed potwierdzeniem nic nie zapisano
+    await act(async () => { pressAlert('Zapisać zmiany?', 'Zapisz'); }); await flushAll(50);
+    expect(byId(h2.id).exercises[0].sets.map(s => [s.weight, s.reps])).toEqual([['', 8]]);
+  });
+
+  test('LOW2: sesja w innym miejscu z samymi drop setami nie wstrzymuje ciężaru startowego szablonu — jak startFromTemplate', async () => {
+    await fresh(); const s = store.getState().settings; const home = userHome([2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24]); s.locations.push(home); s.mainLocationId = home.id;
+    const gym = L.addLocation('gym', 'Siłownia'); const g = addWorkout(day(6), [[DB, [{ weight: 40, reps: 8, kind: 'drop' }]]], 'Siłownia'); g.locationId = gym.id; store.save();
+    const tpl = store.newTemplate(); tpl.name = 'Dom'; tpl.locationId = home.id; /* 25 kg — poza listą domu (co 2 kg) */
+    tpl.items.push({ id: 'i1', exerciseId: ex(DB).id, sets: 1, repMin: null, repMax: null, restSec: null, startWeight: 25, targetSec: '', groupId: null }); store.save(tpl);
+    store.startFromTemplate(tpl); const fromTpl = store.getState().active!.exercises[0].sets.map(pair); store.cancelWorkout();
+    expect(fromTpl).toEqual([[25, '']]);
+    const p = edit.beginPast(tpl.id, day(3), day(3) + 3600e3); expect(p.w.exercises[0].sets.map(pair)).toEqual(fromTpl);
+    tpl.items[0].repMin = 6; store.save(tpl); /* trening wstecz wstawia dolną granicę powtórzeń (docs/12) — ciężar startowy nadal nie jest wstrzymany */
+    expect(edit.beginPast(tpl.id, day(3), day(3) + 3600e3).w.exercises[0].sets.map(pair)).toEqual([[25, 6]]);
+    const p2 = edit.beginPast(tpl.id, day(8), day(8) + 3600e3); edit.draftSetWhen(p2.key, { date: edit.dateText(day(3)) }); expect(p2.w.exercises[0].sets.map(pair)).toEqual([[25, 6]]); // po zmianie daty też
   });
 });

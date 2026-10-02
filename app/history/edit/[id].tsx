@@ -51,7 +51,7 @@ export default function EditWorkout() {
       return;
     }
     /* audyt M5: nachodzenie na inną sesję z historii — ostrzeżenie z potwierdzeniem (dwa treningi jednego dnia bywają celowe) */
-    const warn = [c.dropped ? t('Serie bez wyniku zostaną pominięte: {n}.', { n: c.dropped }) : '', c.overlap ? t('Ten termin nachodzi na sesję „{name}” ({d}).', { name: c.overlap.templateName || t('Trening'), d: `${dateText(c.overlap.startedAt)} ${timeText(c.overlap.startedAt)}` }) : ''].filter(Boolean);
+    const warn = [c.dropped ? t('Serie bez wyniku zostaną pominięte: {n}.', { n: c.dropped }) : '', c.noWeight ? t('Serie bez ciężaru: {n}.', { n: c.noWeight }) : '', c.overlap ? t('Ten termin nachodzi na sesję „{name}” ({d}).', { name: c.overlap.templateName || t('Trening'), d: `${dateText(c.overlap.startedAt)} ${timeText(c.overlap.startedAt)}` }) : ''].filter(Boolean);
     if (warn.length) { Alert.alert(t('Zapisać zmiany?'), warn.join('\n'), [{ text: t('Wróć') }, { text: t('Zapisz'), onPress: () => { if (draftOf(key) === cur) commit(); } }]); return; }
     commit();
   };
