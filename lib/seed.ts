@@ -7,7 +7,7 @@ import type { Unit } from './units';
 import type { LoadSpec } from './loads';
 import { CATALOG, CATALOG_REV, type LoadSource, type Pattern } from './catalog.generated';
 
-export const SCHEMA_VERSION = 14; // 14 (P-003 E1): miejsca treningu i sprzęt — Settings.locations/mainLocationId/pickerShowAll, Workout/Template.locationId, wymagania sprzętowe ćwiczeń; 11 (runda 55): przyciąganie starych wartości z funtów tylko dla danych sprzed tej wersji; 12 (runda 72): masa ciała zamrożona w zakończonych treningach; 13 (runda 75, Q-001): masa ciała poza obliczeniami — usunięte udział %, waga w Ustawieniach i w treningu; nowe ustawienia progressHint, autoBackup, weighReminder
+export const SCHEMA_VERSION = 15; // 15 (decyzje 03.10.2026): WExercise.impl — przyrząd użyty w bloku (decyzja 8c); P-004 (b): jednorazowo 48 → 24 kg w szablonach dla Deadlift (hantle) i RDL (hantle/linki) (hantle wpisywane na hantel); 14 (P-003 E1): miejsca treningu i sprzęt — Settings.locations/mainLocationId/pickerShowAll, Workout/Template.locationId, wymagania sprzętowe ćwiczeń; 11 (runda 55): przyciąganie starych wartości z funtów tylko dla danych sprzed tej wersji; 12 (runda 72): masa ciała zamrożona w zakończonych treningach; 13 (runda 75, Q-001): masa ciała poza obliczeniami — usunięte udział %, waga w Ustawieniach i w treningu; nowe ustawienia progressHint, autoBackup, weighReminder
 /** Właściciel danych zanim pojawią się konta (H2). Po logowaniu zostanie podmieniony na id użytkownika. */
 export const LOCAL_OWNER = 'local';
 /** Rejestr modułów platformy (ADR-011). Dziś działa tylko 'training'; reszta to miejsca w UI/danych, które da się ukryć. */
@@ -77,7 +77,11 @@ export interface TemplateItem { id: string; exerciseId: string; sets: number; re
 export interface Template extends Base { name: string; items: TemplateItem[]; /** P-003: opcjonalne miejsce domyślne szablonu (brak = miejsce główne) */ locationId?: string }
 export interface WSet { id: string; weight: number | ''; reps: number | ''; durationSec: number | ''; distanceM: number | ''; rpe: number | ''; bandId: string; addKg: number | ''; kind: SetKind; warmup: boolean; note: string; done: boolean; completedAt: number | null; actualRest: number | null; /** wpisane ręcznie w tym treningu (nie z podpowiedzi) */ edited?: boolean; /** pola uzupełnione z podpowiedzi przy odhaczeniu: {pole: wstawiona wartość} */ hinted?: Record<string, unknown>; /** guma zdjęta ręcznie (cykl do „—”): podpowiedź ani poprzednia seria jej nie przywracają */ noBand?: boolean; /** wartości wstawione przez aplikację przy starcie (poprzedni trening / ciężar startowy) — decyzja 02.10: zmiana w serii przechodzi na nieruszone dalsze serie o tej samej wartości */ pre?: Partial<Record<'weight' | 'reps' | 'distanceM' | 'addKg', number>> }
 /** groupId (0.4): ćwiczenia z tym samym groupId tworzą superset — przerwa startuje dopiero po serii ostatniego ćwiczenia grupy. */
-export interface WExercise { id: string; exerciseId: string; restSec: number; repMin: number | null; repMax: number | null; groupId: string | null; sets: WSet[]; /** pozycja szablonu, z której powstał blok (runda 10) */ tplItemId?: string }
+/** Decyzja 8c (03.10.2026): przyrząd / źródło obciążenia, którym zrobiono blok (rozstrzygnięte w miejscu treningu — lib/equipment.ts implAt).
+ * 'electric' = stacja z oporem elektrycznym / magnetycznym (ViShape…), 'cable' = zwykły wyciąg. Brak = trening bez miejsca albo dane sprzed schematu 15. */
+export const IMPLS = ['barbell', 'ez_bar', 'trap_bar', 'dumbbell', 'kettlebell', 'cable', 'electric', 'machine'] as const;
+export type Impl = typeof IMPLS[number];
+export interface WExercise { id: string; exerciseId: string; restSec: number; repMin: number | null; repMax: number | null; groupId: string | null; sets: WSet[]; /** pozycja szablonu, z której powstał blok (runda 10) */ tplItemId?: string; /** decyzja 8c: przyrząd użyty w bloku (tylko gdy trening ma miejsce) */ impl?: Impl }
 export interface Workout extends Base { loggedBy: string; sessionMode: SessionMode; healthUUID: string | null; templateId: string | null; templateName: string; startedAt: number; finishedAt: number | null; note: string; exercises: WExercise[]; /** trening w toku: „Kontynuuj” po pytaniu o porzucony trening (runda 69) */ staleAck?: number; /** P-003: miejsce treningu (tylko gdy są zdefiniowane miejsca) */ locationId?: string; }
 export interface Morning extends Base { date: string; bb: number | ''; sleepScore: number | ''; sleepH: number | ''; weight: number | '' }
 /** language/unit (0.8, schemat 9, LOC-01/02): 'auto' = język systemu; masa zawsze zapisywana w kg. */
@@ -160,11 +164,12 @@ export function seedState(lng: Lang = 'pl'): State {
   });
   const it = (n: string, sets: number, min: number | null, max: number | null, rest: number, w: number): TemplateItem =>
     ({ id: uid(), exerciseId: byName[n].id, sets, repMin: min, repMax: max, restSec: rest, startWeight: w, targetSec: '', groupId: null });
+  /* P-004 (decyzja b, 03.10.2026): hantle wpisuje się NA HANTEL — Deadlift (hantle) i RDL (hantle/linki) 24 kg (wcześniej 48 = suma pary przy trybie „na hantel”) */
   const templates: Template[] = [
     { ...base(), name: 'Upper A', items: [it('Bench Press (hantle)',4,6,8,150,24), it('Bent Over Row (hantle)',4,6,8,120,20), it('Overhead Press (hantle)',3,10,12,90,11), it('Chin Up',3,null,null,90,0), it('Chest Dip',3,null,null,90,0), it('Biceps Curl (hantle)',3,10,12,60,8), it('Skullcrusher (hantle)',3,10,12,60,6), it('Lateral Raise (hantle)',3,15,15,60,4), it('Rear Delt Raise (hantle)',3,15,15,60,6)] },
     { ...base(), name: 'Upper B', items: [it('Incline Bench Press (hantle)',4,8,10,120,21), it('One Arm Row (hantle)',4,8,8,90,22), it('Chest Fly (hantle)',3,8,10,90,12.5), it('Pull Up',3,null,null,90,0), it('Triceps Dips (ławka)',3,12,12,60,0), it('Incline Curl (hantle)',3,8,10,60,8), it('Reverse Fly (hantle)',3,10,12,60,5), it('Concentration Curl (hantle)',3,8,12,60,9)] },
-    { ...base(), name: en ? 'Legs — gym' : 'Legs — siłownia', items: [it('Leg Press',5,6,12,120,130), it('Deadlift (hantle)',5,8,8,150,48), it('Leg Extension',5,10,15,60,41), it('Leg Curl',4,10,12,60,41), it('Hip Thrust (sztanga)',4,6,8,90,30), it('Seated Calf Raise',4,10,12,60,30)] },
-    { ...base(), name: en ? 'Legs — home' : 'Legs — dom', items: [it('Przysiad z pasem (linki)',4,6,8,150,45), it('RDL (hantle/linki)',4,8,10,150,48), it('Bulgarian Split Squat (hantle)',3,8,8,90,7), it('Hip Thrust (hantel)',3,10,12,90,24), it('Łydki na stopniu',4,15,15,60,24)] },
+    { ...base(), name: en ? 'Legs — gym' : 'Legs — siłownia', items: [it('Leg Press',5,6,12,120,130), it('Deadlift (hantle)',5,8,8,150,24), it('Leg Extension',5,10,15,60,41), it('Leg Curl',4,10,12,60,41), it('Hip Thrust (sztanga)',4,6,8,90,30), it('Seated Calf Raise',4,10,12,60,30)] },
+    { ...base(), name: en ? 'Legs — home' : 'Legs — dom', items: [it('Przysiad z pasem (linki)',4,6,8,150,45), it('RDL (hantle/linki)',4,8,10,150,24), it('Bulgarian Split Squat (hantle)',3,8,8,90,7), it('Hip Thrust (hantel)',3,10,12,90,24), it('Łydki na stopniu',4,15,15,60,24)] },
   ];
   return {
     v: 2, schemaVersion: SCHEMA_VERSION, ownerId: LOCAL_OWNER,

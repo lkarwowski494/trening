@@ -109,11 +109,11 @@ describe('ciężary ćwiczenia w miejscu (loadsFor)', () => {
     const one = loadsFor(ex('One Arm Row (hantle)'), L); expect(one.kind === 'loads' && one.loads.length).toBe(21);
     const sum = loadsFor(ex('Deadlift (hantle)', 'total'), L); expect(sum.kind === 'loads' && sum.loads).toEqual([3, 5, 8, 10, 13, 15, 18, 20]); /* tryb „łącznie” + para = suma dwóch */
   });
-  test('stacja elektryczna: przysiad z pasem (łącznie) — jedna albo dwie linki; ćwiczenie wymagające dwóch linek — tylko ×2', () => {
-    const h = userHome();
-    const belt = loadsFor(ex('Przysiad z pasem (linki)', 'total'), h); expect(belt.kind).toBe('loads');
-    if (belt.kind === 'loads') { expect(belt.loads[0]).toBe(1.5); expect(belt.loads.slice(-1)[0]).toBe(130); expect(hasLoad(belt.loads, 45)).toBe(true); expect(belt.item).toBe('electric'); }
-    const fly = loadsFor(ex('Cable Fly', 'total'), h); expect(fly.kind === 'loads' && fly.loads[0]).toBe(3);
+  test('stacja elektryczna — decyzja 03.10.2026 „ViShape na stronę”: każde ćwiczenie (przysiad z pasem, dwie linki, jednorącz) — ciężary NA STRONĘ', () => {
+    const h = userHome(); const perSide = achievable(presetSpec('vishape_pro'));
+    for (const [n, m] of [['Przysiad z pasem (linki)', 'total'], ['Cable Fly', 'total'], ['Cable Lateral Raise', 'total'], ['RDL (hantle/linki)', 'per_dumbbell']] as const) {
+      const r = loadsFor(ex(n, m), loc('vs', h.equipment.filter(e => e.item !== 'db_fixed'))); expect(r).toEqual({ kind: 'loads', loads: perSide, item: 'electric' }); }
+    const belt = loadsFor(ex('Przysiad z pasem (linki)', 'total'), h); expect(belt.kind === 'loads' && [belt.loads[0], belt.loads.slice(-1)[0], hasLoad(belt.loads, 45)]).toEqual([1.5, 65, true]);
   });
   test('RDL (hantle/linki): w domu z hantlami — hantle; bez hantli — linki stacji', () => {
     const h = userHome([4, 8, 12, 16, 20, 24]);

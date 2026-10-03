@@ -1,5 +1,5 @@
 import { useSyncExternalStore } from 'react';
-import { getState, exById, isBW, restFor, occurrence, occurrences, normalizeGroups, assistLost, emptySet, copyVals, stripUnused, previousBlockBefore, offListAt, startLocationId, setHasResult, putHistoryWorkout, localISODate, clampName, NAME_MAX } from './store';
+import { getState, exById, isBW, restFor, occurrence, occurrences, normalizeGroups, assistLost, emptySet, copyVals, stripUnused, previousBlockBefore, offListAt, startLocationId, stampImpl, setHasResult, putHistoryWorkout, localISODate, clampName, NAME_MAX } from './store';
 import { base, uid, hasTime, hasReps, hasWeight, type Exercise, type Workout, type WExercise, type WSet } from './seed';
 import { t } from './i18n';
 
@@ -66,8 +66,8 @@ export function defaultPastWhen(now = new Date()) { const s = new Date(now.getFu
 /**
  * Szkic treningu wstecz. Z szablonu: pozycje jak przy starcie treningu, wartości z ostatniej sesji ćwiczenia PRZED tą datą (późniejsze
  * treningi się nie liczą; dobór bloku jak „Poprzednio” — store.previousBlockBefore), a bez niej — ciężar startowy i cel czasu z szablonu
- * oraz dolna granica powtórzeń (to, co wstawiłoby odhaczenie pustej serii). Gdy są miejsca — miejsce szablonu albo główne (jak start treningu)
- * i dobór „Poprzednio” z tego miejsca (decyzja 8a). Bez dotykania treningu w toku, timerów, powiadomień
+ * oraz dolna granica powtórzeń (to, co wstawiłoby odhaczenie pustej serii). Gdy są miejsca — miejsce szablonu albo główne (jak start treningu),
+ * przyrząd bloku wg tego miejsca i dobór „Poprzednio” wg przyrządu (decyzja 8c). Bez dotykania treningu w toku, timerów, powiadomień
  * i maszynerii podpowiedzi („pre”, „hinted”).
  */
 export function beginPast(tplId: string | null, start: number, end: number): Draft {
@@ -78,7 +78,7 @@ export function beginPast(tplId: string | null, start: number, end: number): Dra
   tpl?.items.forEach(it => {
     const ex = exById(it.exerciseId); if (!ex || ex.archived) return;
     const n = Math.max(1, Math.min(50, Math.floor(Number(it.sets) || 1)));
-    w.exercises.push({ id: uid(), exerciseId: ex.id, restSec: typeof it.restSec === 'number' && it.restSec >= 0 ? it.restSec : restFor(ex), repMin: it.repMin, repMax: it.repMax, groupId: it.groupId ?? null, sets: Array.from({ length: n }, () => ({ ...emptySet(), done: true })), tplItemId: it.id });
+    w.exercises.push(stampImpl({ id: uid(), exerciseId: ex.id, restSec: typeof it.restSec === 'number' && it.restSec >= 0 ? it.restSec : restFor(ex), repMin: it.repMin, repMax: it.repMax, groupId: it.groupId ?? null, sets: Array.from({ length: n }, () => ({ ...emptySet(), done: true })), tplItemId: it.id }, w.locationId)); /* decyzja 8c */
   });
   normalizeGroups(w.exercises);
   const d = make('new-' + uid(), null, w); refill(d, start, true); d.orig = snap(d); return d;
@@ -92,17 +92,18 @@ function prefill(ex: Exercise, p0: WSet | null, startWeight: number | '' = '', t
 }
 /** Wartości wstawiane w blok przy danej dacie: blok z pozycji szablonu — jak start z szablonu (seria i-ta z bloku „Poprzednio”), blok dodany
  * w edytorze — OSTATNIA seria robocza z „Poprzednio” sprzed tej daty. Edytowany trening nie jest źródłem dla samego siebie.
- * Integracja 0.9.0: szkic z miejscem bierze najpierw sesje z tego miejsca (decyzja 8a, previousBlockBefore z locationId), a ciężar z sesji
+ * Decyzja 8c (03.10.2026): blok z przyrządem (WExercise.impl) bierze najpierw sesje tym samym albo nieznanym przyrządem, gdziekolwiek były
+ * (previousBlockBefore z `impl`; miejsce samo w sobie nie ma znaczenia), a ciężar z sesji
  * w INNYM, ZNANYM miejscu spoza listy dostępnych tutaj (offListAt) nie jest wstawiany — jak startFromTemplate, tyle że razem z ciężarem
  * puste zostają też powtórzenia (nigdy „ciężar pusty + powtórzenia”). Zwraca wartości ze źródła i `off` (ciężar do wstrzymania) — samo
  * wstrzymanie robi refill, bo zależy od tego, które pola są jeszcze wypełniane przez aplikację (weryfikacja integracji, LOW1). */
 function prefillFor(d: Draft, e: WExercise, before: number): ((i: number) => { s: WSet; off: boolean }) | null {
-  const ex = exById(e.exerciseId); if (!ex) return null; const w = d.w; const loc = w.locationId;
+  const ex = exById(e.exerciseId); if (!ex) return null; const w = d.w; const loc = w.locationId; const impl = e.impl;
   const tpl = w.templateId ? getState().templates.find(x => x.id === w.templateId) ?? null : null;
   const it = tpl && e.tplItemId ? tpl.items.find(x => x.id === e.tplItemId && x.exerciseId === e.exerciseId) : undefined;
   const ii = it && tpl ? tpl.items.indexOf(it) : -1; const ei = w.exercises.indexOf(e);
-  const p = it && tpl ? previousBlockBefore(ex.id, before, occurrence(tpl.items, ii), occurrences(tpl.items, ex.id), it.id, tpl.id, d.sourceId, loc)
-    : previousBlockBefore(ex.id, before, occurrence(w.exercises, ei), occurrences(w.exercises, ex.id), e.tplItemId, w.templateId, d.sourceId, loc);
+  const p = it && tpl ? previousBlockBefore(ex.id, before, occurrence(tpl.items, ii), occurrences(tpl.items, ex.id), it.id, tpl.id, d.sourceId, impl)
+    : previousBlockBefore(ex.id, before, occurrence(w.exercises, ei), occurrences(w.exercises, ex.id), e.tplItemId, w.templateId, d.sourceId, impl);
   const src = p ? p.sets.filter(x => x.kind !== 'drop') : []; /* jak startFromTemplate: drop sety nie są źródłem zwykłych serii */
   /* tylko znane, inne miejsce (treningi bez miejsca — nie); weryfikacja integracji (LOW2): i tylko, gdy sesja daje wartości — sesja z samymi
    * drop setami nie jest źródłem, więc nie wstrzymuje ciężaru startowego szablonu (jak startFromTemplate: wstrzymanie tylko przy kopii z sesji) */
@@ -149,7 +150,7 @@ export function draftSetWhen(key: string, p: Partial<{ date: string; time: strin
 /** Ćwiczenie z wyboru (picker, target 'edit:<klucz>'): jedna seria z wartościami ostatniej serii roboczej sprzed bieżącej daty w edytorze. */
 export function draftAddExercise(key: string, ex: Exercise) {
   const d = drafts.get(key); if (!d) return;
-  const e: WExercise = { id: uid(), exerciseId: ex.id, restSec: restFor(ex), repMin: null, repMax: null, groupId: null, sets: [{ ...emptySet(), done: true }] };
+  const e: WExercise = stampImpl({ id: uid(), exerciseId: ex.id, restSec: restFor(ex), repMin: null, repMax: null, groupId: null, sets: [{ ...emptySet(), done: true }] }, d.w.locationId); /* decyzja 8c: przyrząd wg miejsca szkicu */
   const at = currentStart(d) ?? d.prefillAt; if (at !== d.prefillAt) refill(d, at, false); /* reszta szkicu na tę samą datę */
   d.w.exercises.push(e); refill(d, at, true, e);
   touchDraft();

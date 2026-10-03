@@ -3,8 +3,8 @@ import * as FileSystem from 'expo-file-system';
 import { useSyncExternalStore } from 'react';
 import { t, t as tr, tIn, applyLang, detectLang, locale } from './i18n';
 import { applyUnit, wu, wOut, wIn, KG_PER_LB, fmtW, fmtNum, snapLegacyLb } from './units';
-import { seedState, uid, base, defaultModules, defaultSettings, metricFor, loadModeFor, loadMult, blankTimer, musclesFor, hasTime, hasReps, hasWeight, hasDistance, METRICS, DEFAULT_REST, GROUPS, LIB, SCHEMA_VERSION, LOCAL_OWNER, MODULES, SET_KINDS, SINGLE_IMPLEMENT, equipFields, LOAD_SOURCE_BY_EQUIPMENT, type Base, type State, type Workout, type WSet, type WExercise, type Exercise, type Template, type Morning, type Location } from './seed';
-import { equipById, loadsFor, blankLoad } from './equipment';
+import { seedState, uid, base, defaultModules, defaultSettings, metricFor, loadModeFor, loadMult, blankTimer, musclesFor, hasTime, hasReps, hasWeight, hasDistance, METRICS, DEFAULT_REST, GROUPS, LIB, SCHEMA_VERSION, LOCAL_OWNER, MODULES, SET_KINDS, SINGLE_IMPLEMENT, equipFields, LOAD_SOURCE_BY_EQUIPMENT, IMPLS, type Impl, type Base, type State, type Workout, type WSet, type WExercise, type Exercise, type Template, type Morning, type Location } from './seed';
+import { equipById, loadsFor, implAt, blankLoad } from './equipment';
 import { sanitizeLoadSpec, nextHeavier, hasLoad } from './loads';
 import { CATALOG, CATALOG_REV } from './catalog.generated';
 
@@ -129,6 +129,8 @@ export function applyPrefs() { if (!S) return; applyLang(S.settings.language); a
 const isObj = (x: unknown): x is Record<string, any> => !!x && typeof x === 'object' && !Array.isArray(x);
 const arr = (x: unknown): any[] => Array.isArray(x) ? x.filter(isObj) : [];
 const LIB_NAMES = new Set(LIB.map(l => l[0]));
+/** Schemat 15 — P-004: ćwiczenia z hantlami, w których szablony miały sumę pary (48 kg) zamiast ciężaru jednego hantla. */
+const P004_NAMES: ReadonlySet<string> = new Set(['Deadlift (hantle)', 'RDL (hantle/linki)']);
 
 /**
  * Migracja do bieżącego schematu. Przyjmuje backupy web 0.3, natywnej 0.1.0 i każdą późniejszą wersję;
@@ -229,6 +231,11 @@ export function migrate(raw: any): State {
   raw.templates = arr(raw.templates);
   raw.templates.forEach((t: any) => { stamp(t); if (typeof t.name !== 'string') t.name = ''; t.items = arr(t.items); t.items = t.items.filter((it: any) => idOf(it.exerciseId) != null); t.items.forEach((it: any) => { it.id = idOf(it.id) ?? uid(); it.exerciseId = idOf(it.exerciseId); { const v = parseNum(it.targetSec); it.targetSec = v == null || v < 0 ? '' : Math.min(86400, Math.round(v)); } /* runda 51 */ it.groupId = idOf(it.groupId); it.sets = intIn(it.sets, 1, 50) ?? 1; /* runda 15: liczba, nie tekst z importu */ if (it.startWeight === undefined) it.startWeight = ''; for (const k of ['repMin', 'repMax']) it[k] = intIn(it[k], 1, 100); { const v = parseNum(it.restSec); it.restSec = v == null || v < 0 ? null : Math.min(1800, Math.round(v)); } /* runda 49: także tekst, jak przerwa ćwiczenia */ /* runda 17: limit 1800 */ { const v = parseNum(it.startWeight); it.startWeight = v == null ? '' : kg2(snapL(v) as number); } }); });
   raw.templates.forEach((x: any) => { const n = x.name.replace(/\s+/g, ' ').trim(); x.name = n || tIn(raw.settings?.language, 'Nowy szablon'); { const l = idOf(x.locationId); if (l) x.locationId = l; else delete x.locationId; } /* P-003 */ }); // runda 35: jak nazwy ćwiczeń
+  /* Schemat 15 — P-004 (decyzja b, 03.10.2026): hantle wpisuje się NA HANTEL. Szablony z danymi sprzed 15 miały w Deadlift (hantle) i RDL (hantle/linki)
+   * z biblioteki (tryb „na hantel”) 48 kg = sumę pary → jednorazowo 24. Tylko przy przejściu z wersji < 15 (stała granica, jak schemat 10) — 48 wpisane
+   * świadomie później zostaje. Historia bez zmian (A-002): zapisane serie zostają, jak były. */
+  if ((Number(raw.schemaVersion) || 0) < 15) { const p4 = new Set(raw.exercises.filter((e: any) => e.lib === true && e.loadMode === 'per_dumbbell' && P004_NAMES.has(e.name)).map((e: any) => e.id));
+    if (p4.size) raw.templates.forEach((tp: any) => tp.items.forEach((it: any) => { if (p4.has(it.exerciseId) && it.startWeight === 48) it.startWeight = 24; })); }
   const fixSet = (s: any) => {
     s.id = idOf(s.id) ?? uid(); s.bandId = idOf(s.bandId) ?? ''; // runda 51
     // Runda 48: wartości serii to liczba albo '' (import/ręczna edycja: tekst, tablica, obiekt, NaN); tylko asysta ±kg może być ujemna.
@@ -246,7 +253,7 @@ export function migrate(raw: any): State {
   const fixWorkout = (w: any) => {
     if (typeof w.loggedBy !== 'string' || !w.loggedBy) w.loggedBy = owner; if (typeof w.sessionMode !== 'string' || !w.sessionMode) w.sessionMode = 'solo'; if (typeof w.healthUUID !== 'string' || !w.healthUUID) w.healthUUID = null; /* runda 52 */ delete w.bodyWeightKg; /* schemat 13 (Q-001): bez zamrożonej masy ciała */
     w.startedAt = tsOf(w.startedAt); w.finishedAt = w === raw.active ? null : (tsOf(w.finishedAt) ?? w.startedAt); if (w !== raw.active || tsOf(w.staleAck) == null) delete w.staleAck; else w.staleAck = tsOf(w.staleAck); /* runda 69 */ /* runda 49/51: trening z historii zawsze zakończony; trening w toku — nie */ /* runda 49: zakończony (choć nieczytelny) trening zostaje w historii */ if (w.finishedAt != null && w.finishedAt < w.startedAt) w.finishedAt = w.startedAt; /* runda 48 */ if (typeof w.templateName !== 'string') w.templateName = ''; if (typeof w.note !== 'string') w.note = ''; w.templateId = idOf(w.templateId); { const l = idOf(w.locationId); if (l) w.locationId = l; else delete w.locationId; } /* P-003: miejsce zostaje także po usunięciu miejsca („(usunięte miejsce)”) */
-    w.exercises = arr(w.exercises).filter((e: any) => idOf(e.exerciseId) != null); /* runda 50/51 */ if (w !== raw.active) { w.exercises.forEach((e: any) => { e.sets = arr(e.sets).filter((s: any) => !!s.done); e.sets.forEach((s: any) => { delete s.pre; }); }); w.exercises = w.exercises.filter((e: any) => e.sets.length); } /* runda 59: historia = tylko odhaczone serie, jak po „Zakończ” */ w.exercises.forEach((e: any) => { e.exerciseId = idOf(e.exerciseId); e.id = idOf(e.id) ?? uid(); if (e.tplItemId != null) e.tplItemId = idOf(e.tplItemId) ?? undefined; for (const k of ['repMin', 'repMax']) e[k] = intIn(e[k], 1, 100); /* runda 49: jak w szablonie */ e.groupId = idOf(e.groupId); { const v = parseNum(e.restSec); e.restSec = v == null || v < 0 ? DEFAULT_REST : Math.min(1800, Math.round(v)); } e.sets = arr(e.sets); e.sets.forEach(fixSet); }); normalizeGroups(w.exercises);
+    w.exercises = arr(w.exercises).filter((e: any) => idOf(e.exerciseId) != null); /* runda 50/51 */ if (w !== raw.active) { w.exercises.forEach((e: any) => { e.sets = arr(e.sets).filter((s: any) => !!s.done); e.sets.forEach((s: any) => { delete s.pre; }); }); w.exercises = w.exercises.filter((e: any) => e.sets.length); } /* runda 59: historia = tylko odhaczone serie, jak po „Zakończ” */ w.exercises.forEach((e: any) => { e.exerciseId = idOf(e.exerciseId); e.id = idOf(e.id) ?? uid(); if (e.tplItemId != null) e.tplItemId = idOf(e.tplItemId) ?? undefined; if (!(IMPLS as readonly unknown[]).includes(e.impl)) delete e.impl; /* schemat 15 (decyzja 8c): tylko znany przyrząd */ for (const k of ['repMin', 'repMax']) e[k] = intIn(e[k], 1, 100); /* runda 49: jak w szablonie */ e.groupId = idOf(e.groupId); { const v = parseNum(e.restSec); e.restSec = v == null || v < 0 ? DEFAULT_REST : Math.min(1800, Math.round(v)); } e.sets = arr(e.sets); e.sets.forEach(fixSet); }); normalizeGroups(w.exercises);
   };
   raw.bands = arr(raw.bands); raw.bands.forEach((b: any) => { stamp(b); if (b.nominalKg === undefined) b.nominalKg = ''; b.nominalKg = posNum(b.nominalKg) === '' ? '' : kg2(snapL(posNum(b.nominalKg)) as number); /* runda 50 */ if (typeof b.color !== 'string' || !b.color.trim()) b.color = '?'; b.color = b.color.replace(/\s+/g, ' ').trim(); b.level = intIn(b.level, 1, 7) ?? 1; /* runda 51 */ });
   raw.workouts = arr(raw.workouts).filter(w => tsOf(w.startedAt) != null); raw.workouts.forEach((w: any) => { w.startedAt = tsOf(w.startedAt); }); raw.workouts.forEach((w: any) => { stamp(w, w.finishedAt || w.startedAt); fixWorkout(w); }); raw.workouts = raw.workouts.filter((w: any) => w.exercises.length); /* runda 60: bez pustych sesji w historii (jak po „Zakończ”, B9) */
@@ -430,19 +437,23 @@ type Prev = { workout: Workout; sets: WSet[]; blocks: WSet[][]; ids: (string | u
 type PrevSets = { workout: Workout; sets: WSet[] };
 /* Integracja 0.9.0 — JEDNA implementacja doboru „Poprzednio” dla trzech przypadków:
  *  - treningu w toku i startu z szablonu: cała historia ćwiczenia (previousFor/previousBlockFor),
- *  - P-003 (decyzja 8a): najpierw historia z tego samego miejsca (previousBlockFor z locationId),
- *  - docs/12 (audyt M3): trening wstecz i edycja — tylko sesje sprzed daty, bez edytowanej (previousBlockBefore; z locationId — jak 8a).
- * Skanery (prevScan/byItemScan/byTplBlockScan) dostają listę treningów z ćwiczeniem (od najnowszego: cała historia albo z jednego miejsca)
- * i filtr sesji `ok`; selectBlock wybiera blok. Cache (memoHistBy, klucz: id ćwiczenia [+ LOC_SEP + id miejsca]) tylko dla pełnej
+ *  - decyzja 8c (03.10.2026, zastępuje 8a „najpierw to samo miejsce”): „Poprzednio” = ostatni raz TYM SAMYM PRZYRZĄDEM, gdziekolwiek
+ *    (previousBlockFor z `impl` bloku),
+ *  - docs/12 (audyt M3): trening wstecz i edycja — tylko sesje sprzed daty, bez edytowanej (previousBlockBefore; z `impl` — jak 8c).
+ * Skanery (prevScan/byItemScan/byTplBlockScan) dostają listę treningów z ćwiczeniem (od najnowszego: cała historia albo zgodna z przyrządem)
+ * i filtr sesji `ok`; selectBlock wybiera blok. Cache (memoHistBy, klucz: id ćwiczenia [+ IMPL_SEP + przyrząd]) tylko dla pełnej
  * historii (ok = ALL) — filtr daty zmienia się z każdym szkicem, więc skan „przed datą” idzie bez cache. */
 type WOk = (w: Workout) => boolean;
 const ALL: WOk = () => true;
-/* P-003 (decyzja 8a): klucz cache = id ćwiczenia, opcjonalnie + LOC_SEP + id miejsca. Bez miejsca klucze i wyniki są dokładnie takie jak przed P-003. */
-const LOC_SEP = '\u0001';
-const splitLoc = (key: string): [string, string | undefined] => { const i = key.indexOf(LOC_SEP); return i < 0 ? [key, undefined] : [key.slice(0, i), key.slice(i + 1)]; };
-const locWorkouts = memoHistBy((key: string): Workout[] => { const [exId, loc] = splitLoc(key); return workoutsWith(exId).filter(w => w.locationId === loc); });
-/** Treningi z ćwiczeniem od najnowszego: cała historia (loc undefined) albo tylko z miejsca `loc`. */
-const histOf = (exId: string, loc: string | undefined) => loc === undefined ? workoutsWith(exId) : locWorkouts(exId + LOC_SEP + loc);
+/* Decyzja 8c: klucz cache = id ćwiczenia, opcjonalnie + IMPL_SEP + przyrząd. Bez przyrządu (zawsze, gdy nie ma miejsc) klucze i wyniki są dokładnie
+ * takie jak przed P-003. */
+const IMPL_SEP = '\u0001';
+const splitImpl = (key: string): [string, Impl | undefined] => { const i = key.indexOf(IMPL_SEP); return i < 0 ? [key, undefined] : [key.slice(0, i), key.slice(i + 1) as Impl]; };
+/** Decyzja 8c — reguła: sesja „pasuje” do przyrządu `impl`, gdy któryś jej blok tego ćwiczenia ma ten sam przyrząd ALBO przyrząd nieznany
+ * (trening bez miejsca, dane sprzed schematu 15). Sesje zrobione na pewno innym przyrządem (np. RDL na linkach, gdy dziś hantle) są pomijane. */
+const implWorkouts = memoHistBy((key: string): Workout[] => { const [exId, impl] = splitImpl(key); return workoutsWith(exId).filter(w => w.exercises.some(e => e.exerciseId === exId && (e.impl === undefined || e.impl === impl))); });
+/** Treningi z ćwiczeniem od najnowszego: cała historia (impl undefined) albo tylko pasujące do przyrządu `impl`. */
+const histOf = (exId: string, impl: Impl | undefined) => impl === undefined ? workoutsWith(exId) : implWorkouts(exId + IMPL_SEP + impl);
 function prevScan(hist: readonly Workout[], exId: string, ok: WOk): Prev | null {
   let dropOnly: Prev | null = null;
   for (const w of hist) {
@@ -455,7 +466,7 @@ function prevScan(hist: readonly Workout[], exId: string, ok: WOk): Prev | null 
   }
   return dropOnly;
 }
-const prevCache = memoHistBy((key: string): Prev | null => { const [exId, loc] = splitLoc(key); return prevScan(histOf(exId, loc), exId, ALL); });
+const prevCache = memoHistBy((key: string): Prev | null => { const [exId, impl] = splitImpl(key); return prevScan(histOf(exId, impl), exId, ALL); });
 /** Serie robocze z ostatniego treningu z tym ćwiczeniem (wszystkie bloki razem). */
 export function previousFor(exId: string): { workout: Workout; sets: WSet[] } | null { return prevCache(exId); }
 /**
@@ -468,28 +479,29 @@ function byItemScan(hist: readonly Workout[], exId: string, itemId: string, ok: 
   for (const w of hist) { if (!ok(w)) continue; const b = w.exercises.find(e => e.exerciseId === exId && e.tplItemId === itemId); const sets = b ? b.sets.filter(s => isWorking(s) && setHasValue(s)) : []; if (sets.some(s => s.kind !== 'drop')) return { workout: w, sets }; if (sets.length && !dropOnly) dropOnly = { workout: w, sets }; }
   return dropOnly;
 }
-const prevByItem = memoHistBy((key: string): PrevSets | null => { const [k0, loc] = splitLoc(key); const [exId, itemId] = k0.split('|'); return byItemScan(histOf(exId, loc), exId, itemId, ALL); });
+const prevByItem = memoHistBy((key: string): PrevSets | null => { const [k0, impl] = splitImpl(key); const [exId, itemId] = k0.split('|'); return byItemScan(histOf(exId, impl), exId, itemId, ALL); });
 /** T6: starsze dane bez id pozycji szablonu — k-ty blok ćwiczenia z ostatniej sesji tego samego szablonu (gdy miała ich kilka). */
 function byTplBlockScan(hist: readonly Workout[], exId: string, tplId: string, k: number, ok: WOk): PrevSets | null {
   for (const w of hist) { if (!ok(w) || w.templateId !== tplId) continue; const bl = blocksOf(w, exId).map(e => e.sets.filter(s => isWorking(s) && setHasValue(s)));
     if (bl.filter(b => b.length).length > 1) { const b = bl[Math.min(k, bl.length - 1)]; if (b.some(s => s.kind !== 'drop')) return { workout: w, sets: b }; } }
   return null;
 }
-const prevByTplBlock = memoHistBy((key: string): PrevSets | null => { const [k0, loc] = splitLoc(key); const [exId, tplId, ks] = k0.split('|'); return byTplBlockScan(histOf(exId, loc), exId, tplId, Number(ks), ALL); });
-/** `locationId` (P-003, decyzja 8a): gdy są miejsca i w tym miejscu było już to ćwiczenie — dobór jak niżej, ale tylko z treningów w tym miejscu;
- * inaczej ostatni trening gdziekolwiek (jak przed P-003). */
-export function previousBlockFor(exId: string, k: number, n = 2, tplItemId?: string, tplId?: string | null, locationId?: string | null): { workout: Workout; sets: WSet[] } | null {
-  const lk = locationId && getState().settings.locations.length && prevCache(exId + LOC_SEP + locationId) ? LOC_SEP + locationId : '';
-  return selectBlock(prevCache(exId + lk), k, n, tplItemId, tplId, it => prevByItem(exId + '|' + it + lk), tp => prevByTplBlock(`${exId}|${tp}|${k}` + lk));
+const prevByTplBlock = memoHistBy((key: string): PrevSets | null => { const [k0, impl] = splitImpl(key); const [exId, tplId, ks] = k0.split('|'); return byTplBlockScan(histOf(exId, impl), exId, tplId, Number(ks), ALL); });
+/** `impl` (decyzja 8c, 03.10.2026): przyrząd bieżącego bloku (WExercise.impl). Gdy są miejsca i przyrząd jest znany — dobór jak niżej, ale tylko
+ * z sesji pasujących do przyrządu (ten sam albo nieznany — implWorkouts), gdziekolwiek były; gdy takiej sesji nie ma — ostatni trening w ogóle.
+ * Miejsce samo w sobie NIE ma znaczenia. Bez przyrządu (i zawsze bez miejsc) — dokładnie jak przed P-003. */
+export function previousBlockFor(exId: string, k: number, n = 2, tplItemId?: string, tplId?: string | null, impl?: Impl | null): { workout: Workout; sets: WSet[] } | null {
+  const ik = impl && getState().settings.locations.length && prevCache(exId + IMPL_SEP + impl) ? IMPL_SEP + impl : '';
+  return selectBlock(prevCache(exId + ik), k, n, tplItemId, tplId, it => prevByItem(exId + '|' + it + ik), tp => prevByTplBlock(`${exId}|${tp}|${k}` + ik));
 }
 /** Docs/12: „Poprzednio” jak previousBlockFor, ale tylko z sesji rozpoczętych PRZED `before` (i bez treningu `excludeId` — edytowanego).
- * `locationId` (integracja 0.9.0, decyzja 8a jak w previousBlockFor): gdy są miejsca i w tym miejscu przed datą było już to ćwiczenie —
- * dobór tylko z treningów w tym miejscu (histOf(exId, loc) z tym samym filtrem), inaczej z całej historii sprzed daty. Bez miejsc
- * (albo bez `locationId`) — dokładnie jak przed tą zmianą. */
-export function previousBlockBefore(exId: string, before: number, k: number, n = 2, tplItemId?: string, tplId?: string | null, excludeId?: string | null, locationId?: string | null): { workout: Workout; sets: WSet[] } | null {
+ * `impl` (decyzja 8c jak w previousBlockFor): gdy są miejsca i przyrząd bloku jest znany — dobór tylko z sesji sprzed daty pasujących do przyrządu
+ * (histOf(exId, impl) z tym samym filtrem), a gdy takiej nie ma — z całej historii sprzed daty. Bez miejsc (albo bez `impl`) — dokładnie jak
+ * przed P-003. */
+export function previousBlockBefore(exId: string, before: number, k: number, n = 2, tplItemId?: string, tplId?: string | null, excludeId?: string | null, impl?: Impl | null): { workout: Workout; sets: WSet[] } | null {
   const ok: WOk = w => w.startedAt < before && w.id !== excludeId;
   let hist = workoutsWith(exId); let p: Prev | null = null;
-  if (locationId && getState().settings.locations.length) { const lh = histOf(exId, locationId); p = prevScan(lh, exId, ok); if (p) hist = lh; }
+  if (impl && getState().settings.locations.length) { const ih = histOf(exId, impl); p = prevScan(ih, exId, ok); if (p) hist = ih; }
   if (!p) p = prevScan(hist, exId, ok);
   return selectBlock(p, k, n, tplItemId, tplId, it => byItemScan(hist, exId, it, ok), tp => byTplBlockScan(hist, exId, tp, k, ok));
 }
@@ -524,22 +536,19 @@ export function hintFor(prevSets: WSet[] | null | undefined, sets: WSet[], si: n
  * serie robocze (zwykłe i do upadku, bez drop setów) miały co najmniej górę zakresu powtórzeń, proponujemy kolejny krok: ciężar +2,5 kg
  * (w lb +5 lb), hantle i ćwiczenia jednostronne +1 kg (+2,5 lb); masa ciała: z asystą 2,5 kg mniej asysty (najwyżej do 0), z dociążeniem
  * +2,5 kg, bez obciążenia — jedno powtórzenie więcej. Bez okienek i bez zmiany wpisanych wartości (A-002); wyłączana w Ustawieniach. */
-export type Progression = { kind: 'load'; kg: number } | { kind: 'reps'; reps: number; /** P-003 (7b): skok do następnego ciężaru > 10% — najpierw powtórzenia tym samym ciężarem */ gate?: boolean };
-/** P-003 (decyzja 7b): skok ciężaru powyżej 10% (górna granica ACSM 2009) — najpierw „ten sam ciężar, górna granica + 2”. */
-export const PROGRESSION_GATE = 0.10;
+export type Progression = { kind: 'load'; kg: number } | { kind: 'reps'; reps: number };
 export function progressionFor(ex: Exercise | undefined, repMax: number | null | undefined, prevSets: WSet[] | null | undefined, locationId?: string | null): Progression | null {
   if (!ex || repMax == null || !getState().settings.progressHint || (ex.metric ?? 'weight_reps') !== 'weight_reps') return null;
   const work = (prevSets ?? []).filter(x => isWorking(x) && x.kind !== 'drop' && !x.bandId); /* seria z gumą: obciążenie nieznane — bez podpowiedzi */
   if (!work.length || work.length !== (prevSets ?? []).filter(x => isWorking(x) && x.kind !== 'drop').length || work.some(x => repsOf(x) < repMax)) return null;
   const top = Math.max(...work.map(x => setLoad(ex, x))); const lb = wu() === 'lb';
-  /* P-003 (E1, decyzje 4a i 7b): w miejscu z opisanym sprzętem „↑” to najbliższy większy DOSTĘPNY ciężar; bez przyrządu z ciężarem — powtórzenia. */
+  /* P-003 (E1, decyzja 4a; decyzja 7a z 03.10.2026 — bez bramki 10%): w miejscu z opisanym sprzętem „↑” to najbliższy większy DOSTĘPNY ciężar,
+   * także przy dużym skoku (10 → 12 kg); bez przyrządu z ciężarem — powtórzenia. */
   const loc = locationById(locationId);
   if (loc && !isBW(ex)) { const L = loadsFor(ex, loc);
     if (L.kind === 'none') return top <= 0 ? { kind: 'reps', reps: repMax + 1 } : null; /* np. wykroki bez hantli w domu; ciężar z innego miejsca — bez „↑” */
     if (L.kind === 'loads' && top <= 0) return { kind: 'reps', reps: repMax + 1 }; /* audyt H2: bez obciążenia (wykroki, russian twist) — powtórzenia, nie „+1 kg”, którego nie ma */
-    if (L.kind === 'loads' && top > 0) { const nx = nextHeavier(L.loads, top); if (nx == null) return null; /* poprzedni ciężar ≥ największy dostępny */
-      if ((nx - top) / top > PROGRESSION_GATE + 1e-9 && Math.min(...work.map(repsOf)) < repMax + 2) return { kind: 'reps', reps: repMax + 2, gate: true };
-      return { kind: 'load', kg: nx }; } }
+    if (L.kind === 'loads' && top > 0) { const nx = nextHeavier(L.loads, top); return nx == null ? null /* poprzedni ciężar ≥ największy dostępny */ : { kind: 'load', kg: nx }; } }
   const small = ex.equipment === 'hantle' || ex.loadMode === 'per_dumbbell' || ex.loadMode === 'unilateral';
   const step = isBW(ex) ? (lb ? 5 : 2.5) : small ? (lb ? 2.5 : 1) : (lb ? 5 : 2.5); /* w jednostce wyświetlania */
   if (isBW(ex) && top === 0) return { kind: 'reps', reps: repMax + 1 };
@@ -595,6 +604,20 @@ export function offListAt(ex: Exercise | undefined, locationId: string | undefin
   if (!ex || isBW(ex) || typeof kg !== 'number') return false; const loc = locationById(locationId); if (!loc) return false;
   const L = loadsFor(ex, loc); return L.kind === 'loads' && !hasLoad(L.loads, kg);
 }
+/** Decyzja 8c: przyrząd ćwiczenia w miejscu treningu (lib/equipment.ts implAt) — zapisywany w bloku przy dodaniu/starcie; bez miejsca — brak. */
+export function implAtLoc(ex: Exercise | undefined, locationId: string | null | undefined): Impl | undefined {
+  const loc = locationById(locationId); return ex && loc ? implAt(ex, loc) : undefined;
+}
+/** Ustawia (albo usuwa) przyrząd bloku wg miejsca treningu. Bez miejsca pole nie powstaje — dane jak przed schematem 15. */
+export function stampImpl(e: WExercise, locationId: string | null | undefined): WExercise {
+  const i = implAtLoc(exById(e.exerciseId), locationId); if (i) e.impl = i; else delete e.impl; return e;
+}
+/** Zmiana miejsca treningu w toku (chip „📍”): tylko ta sesja; przyrządy bloków liczone od nowa dla nowego miejsca (decyzja 8c) — wpisane
+ * wartości zostają (A-002), zmienia się filtr wyboru ćwiczeń, plakietki braku sprzętu, podpowiedzi i „Poprzednio”. */
+export function setActiveLocation(id: string) {
+  const a = getState().active; if (!a || !locationById(id) || a.locationId === id) return;
+  a.locationId = id; a.exercises.forEach(e => stampImpl(e, id)); save(a);
+}
 /* ---------- workout actions ---------- */
 const newWorkout = (templateId: string | null, templateName: string, locPref?: string | null): Workout => { const st = getState(); const w: Workout = { ...base(st.ownerId), loggedBy: st.ownerId, sessionMode: 'solo', healthUUID: null, templateId, templateName, startedAt: Date.now(), finishedAt: null, note: '', exercises: [] }; const loc = startLocationId(locPref); if (loc) w.locationId = loc; return w; };
 export function startFromTemplate(tpl: Template) {
@@ -602,7 +625,8 @@ export function startFromTemplate(tpl: Template) {
   tpl.items.forEach((it, ii) => {
     const ex = exById(it.exerciseId); if (!ex || ex.archived) return; // runda 42: usunięte ćwiczenie (np. z importu) nie wraca do treningu
     // Runda 7: drop sety poprzedniej sesji nie są źródłem wartości dla zwykłych serii szablonu (jak przy odhaczaniu, runda 6).
-    const prevAll = previousBlockFor(it.exerciseId, occurrence(tpl.items, ii), occurrences(tpl.items, it.exerciseId), it.id, tpl.id, w.locationId); const src = prevAll ? prevAll.sets.filter(x => x.kind !== 'drop') : [];
+    const impl = implAtLoc(ex, w.locationId); /* decyzja 8c: „Poprzednio” = ostatni raz tym samym przyrządem */
+    const prevAll = previousBlockFor(it.exerciseId, occurrence(tpl.items, ii), occurrences(tpl.items, it.exerciseId), it.id, tpl.id, impl); const src = prevAll ? prevAll.sets.filter(x => x.kind !== 'drop') : [];
     const prev = src.length ? { sets: src } : null;
     const sets: WSet[] = [];
     const n = Math.max(1, Math.min(50, Math.floor(Number(it.sets) || 1)));
@@ -619,7 +643,7 @@ export function startFromTemplate(tpl: Template) {
       sets.push(markPre(stripUnused(ex, s)));
     }
     // Przerwa: ustawiona w pozycji szablonu wygrywa; puste pole w szablonie (null) = przerwa z ćwiczenia albo domyślna.
-    w.exercises.push({ id: uid(), exerciseId: ex.id, restSec: typeof it.restSec === 'number' && it.restSec >= 0 ? it.restSec : restFor(ex), /* null w szablonie = przerwa z ćwiczenia */ repMin: it.repMin, repMax: it.repMax, groupId: it.groupId ?? null, sets, tplItemId: it.id });
+    w.exercises.push({ id: uid(), exerciseId: ex.id, restSec: typeof it.restSec === 'number' && it.restSec >= 0 ? it.restSec : restFor(ex), /* null w szablonie = przerwa z ćwiczenia */ repMin: it.repMin, repMax: it.repMax, groupId: it.groupId ?? null, sets, tplItemId: it.id, ...(impl ? { impl } : {}) });
   });
   normalizeGroups(w.exercises);
   st.active = w; save(); flush();
@@ -638,12 +662,13 @@ export function repeatLast() {
   w.exercises = last.exercises.filter(e => { const ex = exById(e.exerciseId); return ex && !ex.archived; }).map(e => ({ ...e, id: uid(), sets: e.sets.map(s => ({ ...blankSet(), ...(assistLost(exById(e.exerciseId), s) ? {} : copyVals(s)), durationSec: s.kind === 'warmup' ? '' : tgt(e), kind: s.kind === 'failure' ? 'normal' : s.kind ?? (s.warmup ? 'warmup' : 'normal') /* T11: upadek to wynik, nie plan (jak addSet i szablon) */, warmup: s.warmup })).map(s => { const ex = exById(e.exerciseId); /* weryfikacja 3 (L2): jak przy starcie z szablonu — ciężar z innego, znanego miejsca spoza listy tutaj nie jest wstawiany (ani same powtórzenia) */
     if (last.locationId && w.locationId && last.locationId !== w.locationId && offListAt(ex, w.locationId, s.weight)) { s.weight = ''; s.reps = ''; }
     return markPre(stripUnused(ex, s)); }) }));
+  w.exercises.forEach(e => stampImpl(e, w.locationId)); /* decyzja 8c: przyrząd w miejscu NOWEGO treningu (nie kopiowany z poprzedniego) */
   normalizeGroups(w.exercises);
   getState().active = w; save(); flush();
 }
 export function addExerciseToActive(ex: Exercise) {
   const a = getState().active; if (!a) return;
-  a.exercises.push({ id: uid(), exerciseId: ex.id, restSec: restFor(ex), repMin: null, repMax: null, groupId: null, sets: [blankSet()] }); save(a);
+  a.exercises.push(stampImpl({ id: uid(), exerciseId: ex.id, restSec: restFor(ex), repMin: null, repMax: null, groupId: null, sets: [blankSet()] }, a.locationId)); save(a);
 }
 export function addSet(ei: number) { const a = getState().active!; const e = a.exercises[ei]; const l = e.sets[e.sets.length - 1]; const fromWarmup = l?.kind === 'warmup'; e.sets.push({ ...blankSet(), ...(fromWarmup ? {} : copyVals(l)), ...(l?.done ? { durationSec: '' as const } : {}), ...(l?.noBand && !fromWarmup ? { noBand: true } : {}), kind: l?.kind === 'drop' ? 'drop' : 'normal' /* runda 72: po serii „do upadku” kolejna jest zwykła — upadek to wynik, nie plan */ }); { const ns = e.sets[e.sets.length - 1]; if (l?.pre && !fromWarmup) { const p: NonNullable<WSet['pre']> = {}; for (const k of PRE_KEYS) if (l.pre[k] !== undefined && ns[k] === l.pre[k]) p[k] = l.pre[k]; if (Object.keys(p).length) ns.pre = p; } /* weryfikacja: dodana seria idzie za zmianą jak pozostałe */ if (ns.bandId && !usedKeys(exById(e.exerciseId)).bandId) { if (Number(ns.addKg) < 0) ns.addKg = ''; ns.bandId = ''; } } /* runda 65: wyłączona asysta gumą — guma (i jej asysta) nie przechodzi */ save(a); } // czas zmierzonej serii nie staje się celem następnej (runda 3) // po rozgrzewce pusta seria: podpowie „Poprzednio”
 export function removeSet(ei: number) { const a = getState().active!; const e = a.exercises[ei]; if (e.sets.length > 1) { e.sets.pop(); save(a); } }
@@ -695,7 +720,7 @@ export const assistLost = (ex: Exercise | undefined, p: Partial<WSet> | null | u
 /** „Poprzednio” dla bloku treningu w toku (ten sam dobór co na ekranie). */
 function prevOfBlock(e: WExercise) {
   const a = getState().active; const ei = a ? a.exercises.indexOf(e) : -1;
-  return ei >= 0 ? previousBlockFor(e.exerciseId, occurrence(a!.exercises, ei), occurrences(a!.exercises, e.exerciseId), e.tplItemId, a!.templateId, a!.locationId) : previousFor(e.exerciseId);
+  return ei >= 0 ? previousBlockFor(e.exerciseId, occurrence(a!.exercises, ei), occurrences(a!.exercises, e.exerciseId), e.tplItemId, a!.templateId, e.impl) : previousFor(e.exerciseId);
 }
 function fillFromHints(e: WExercise, si: number) {
   const s = e.sets[si]; if (s.kind === 'warmup') return;

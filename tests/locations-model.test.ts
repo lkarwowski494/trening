@@ -1,5 +1,5 @@
-/* P-003 E1 (C, E, F-8a): schemat 14 — miejsca w Ustawieniach, miejsce treningu i szablonu, pola sprzętowe ćwiczeń, migracja,
- * eksport → import, operacje na miejscach, „Poprzednio” z tego samego miejsca. */
+/* P-003 E1 (C, E, F): schemat 14 — miejsca w Ustawieniach, miejsce treningu i szablonu, pola sprzętowe ćwiczeń, migracja,
+ * eksport → import, operacje na miejscach; „Poprzednio” wg przyrządu (decyzja 8c z 03.10.2026, zastąpiła 8a „to samo miejsce”). */
 import fc from 'fast-check';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
@@ -20,8 +20,8 @@ function twoPlaces(trexo: number[] = [3, 6, 9, 12, 15, 18, 21, 24]) {
 }
 
 describe('schemat 14 i migracja', () => {
-  test('wersja schematu 14; domyślnie brak miejsc, brak miejsca głównego, filtr „pokaż wszystkie” wyłączony', async () => {
-    const st = await fresh(); expect(SCHEMA_VERSION).toBe(14);
+  test('wersja schematu 15 (14: miejsca, 15: przyrząd bloku i P-004); domyślnie brak miejsc, brak miejsca głównego, filtr „pokaż wszystkie” wyłączony', async () => {
+    const st = await fresh(); expect(SCHEMA_VERSION).toBe(15);
     expect(st.settings.locations).toEqual([]); expect(st.settings.mainLocationId).toBeNull(); expect(st.settings.pickerShowAll).toBe(false);
   });
   test('dane sprzed schematu 14: ćwiczenia z biblioteki dostają wymagania z katalogu, własne — brak wymagań i źródło obciążenia ze sprzętu', async () => {
@@ -33,7 +33,7 @@ describe('schemat 14 i migracja', () => {
     const bp = m.exercises.find(e => e.name === 'Bench Press (hantle)' && e.lib)!; expect(bp.requires).toEqual(CATALOG['Bench Press (hantle)'].requires); expect(bp.implements).toBe(2); expect(bp.pattern).toBe('h_push');
     const own = m.exercises.find(e => e.id === 'own1')!; expect(own.requires).toEqual([]); expect(own.loadSource).toBe('cable'); expect(own.pattern).toBeUndefined();
     const dup = m.exercises.find(e => e.id === 'own2')!; expect(dup.requires).toEqual([]); expect(dup.loadSource).toBe('dumbbell'); /* własne o nazwie z biblioteki (bez flagi lib, schemat 13) — bez wymagań */
-    expect(m.settings.locations).toEqual([]); expect(m.settings.mainLocationId).toBeNull(); expect(m.schemaVersion).toBe(14);
+    expect(m.settings.locations).toEqual([]); expect(m.settings.mainLocationId).toBeNull(); expect(m.schemaVersion).toBe(15);
   });
   test('stary backup z wersji web 0.3 wczytuje się; ćwiczenia biblioteki mają wymagania', async () => {
     await fresh(); const raw = readFileSync(join(__dirname, 'fixtures/web03-backup.json'), 'utf8');
@@ -127,29 +127,30 @@ describe('miejsce treningu', () => {
   });
 });
 
-describe('„Poprzednio” i wstępne wartości z tego samego miejsca (decyzja 8a)', () => {
-  test('trening w domu bierze ostatni domowy, nie nowszy z siłowni; brak domowego → ostatni gdziekolwiek', async () => {
+describe('„Poprzednio” i wstępne wartości — ostatni raz tym samym przyrządem, nie w tym samym miejscu (decyzja 8c, 03.10.2026; zastępuje 8a)', () => {
+  test('hantle (jeden przyrząd): ostatni trening gdziekolwiek, także nowszy z siłowni; ciężaru spoza listy domu nie wstawiamy (M3), w siłowni — tak', async () => {
     await fresh(); const { gym } = twoPlaces();
-    const h = addWorkout(at(1), [['Bench Press (hantle)', [{ weight: 24, reps: 8 }]]]); h.locationId = 'home';
-    const g = addWorkout(at(5), [['Bench Press (hantle)', [{ weight: 32, reps: 8 }]], ['Leg Press', [{ weight: 140, reps: 10 }]]]); g.locationId = gym.id; store.save();
+    const h = addWorkout(at(1), [['Bench Press (hantle)', [{ weight: 24, reps: 8 }]]]); h.locationId = 'home'; h.exercises[0].impl = 'dumbbell';
+    const g = addWorkout(at(5), [['Bench Press (hantle)', [{ weight: 32, reps: 8 }]], ['Leg Press', [{ weight: 140, reps: 10 }]]]); g.locationId = gym.id; g.exercises[0].impl = 'dumbbell'; store.save();
     const bp = ex('Bench Press (hantle)').id, lp = ex('Leg Press').id;
-    expect(store.previousBlockFor(bp, 0, 1, undefined, null, 'home')!.sets[0].weight).toBe(24);
-    expect(store.previousBlockFor(bp, 0, 1, undefined, null, gym.id)!.sets[0].weight).toBe(32);
-    expect(store.previousBlockFor(bp, 0, 1)!.sets[0].weight).toBe(32); /* bez miejsca — jak dziś */
-    expect(store.previousBlockFor(lp, 0, 1, undefined, null, 'home')!.sets[0].weight).toBe(140); /* fallback */
-    /* start z szablonu w domu: wstępny ciężar z treningu domowego */
+    expect(store.previousBlockFor(bp, 0, 1, undefined, null, 'dumbbell')!.sets[0].weight).toBe(32); /* miejsce nie ma znaczenia */
+    expect(store.previousBlockFor(bp, 0, 1)!.sets[0].weight).toBe(32);
+    expect(store.previousBlockFor(lp, 0, 1, undefined, null, 'machine')!.sets[0].weight).toBe(140);
     const tpl = store.newTemplate(); tpl.items.push({ id: 'i1', exerciseId: bp, sets: 2, repMin: 6, repMax: 8, restSec: null, startWeight: '', targetSec: '', groupId: null });
-    store.startFromTemplate(tpl); expect(store.getState().active!.exercises[0].sets.map(s => s.weight)).toEqual([24, 24]); store.cancelWorkout();
+    store.startFromTemplate(tpl); const a = store.getState().active!; expect(a.locationId).toBe('home'); expect(a.exercises[0].impl).toBe('dumbbell');
+    expect(a.exercises[0].sets.map(s => [s.weight, s.reps])).toEqual([['', ''], ['', '']]); /* 32 kg z siłowni — w domu max 24 (M3) */ store.cancelWorkout();
     tpl.locationId = gym.id; store.startFromTemplate(tpl); expect(store.getState().active!.exercises[0].sets.map(s => s.weight)).toEqual([32, 32]);
   });
-  test('odhaczenie pustej serii bierze podpowiedź z tego samego miejsca', async () => {
+  test('odhaczenie pustej serii: masa ciała (bez przyrządu) — podpowiedź z ostatniego treningu gdziekolwiek', async () => {
     await fresh(); const { gym } = twoPlaces();
     addWorkout(at(1), [['Pull Up', [{ addKg: 5, reps: 6 }]]]).locationId = 'home'; addWorkout(at(2), [['Pull Up', [{ addKg: 20, reps: 3 }]]]).locationId = gym.id; store.save();
-    store.startEmpty(); store.addExerciseToActive(ex('Pull Up')); store.toggleDone(0, 0); const s = store.getState().active!.exercises[0].sets[0]; expect([s.addKg, s.reps]).toEqual([5, 6]);
+    store.startEmpty(); store.addExerciseToActive(ex('Pull Up')); expect('impl' in store.getState().active!.exercises[0]).toBe(false);
+    store.toggleDone(0, 0); const s = store.getState().active!.exercises[0].sets[0]; expect([s.addKg, s.reps]).toEqual([20, 3]);
   });
-  test('bez miejsc w Ustawieniach locationId treningu nie zmienia doboru (ostatni gdziekolwiek)', async () => {
-    await fresh(); addWorkout(at(1), [['Pull Up', [{ addKg: 5, reps: 6 }]]]).locationId = 'x'; addWorkout(at(2), [['Pull Up', [{ addKg: 20, reps: 3 }]]]); store.save();
-    expect(store.previousBlockFor(ex('Pull Up').id, 0, 1, undefined, null, 'x')!.sets[0].addKg).toBe(20);
+  test('bez miejsc w Ustawieniach przyrząd bloku nie zmienia doboru (ostatni gdziekolwiek)', async () => {
+    await fresh(); const a = addWorkout(at(1), [['RDL (hantle/linki)', [{ weight: 20, reps: 6 }]]]); a.exercises[0].impl = 'dumbbell';
+    const b = addWorkout(at(2), [['RDL (hantle/linki)', [{ weight: 40, reps: 3 }]]]); b.exercises[0].impl = 'electric'; store.save();
+    expect(store.previousBlockFor(ex('RDL (hantle/linki)').id, 0, 1, undefined, null, 'dumbbell')!.sets[0].weight).toBe(40);
   });
   void set;
 });

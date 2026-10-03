@@ -241,7 +241,7 @@ export const EN: Record<string, string> = {
   'brak: {m}': 'missing: {m}', 'Pokaż wszystkie': 'Show all', 'niedostępne w: {l} są wyszarzone': 'unavailable at {l} are greyed out',
   'tylko dostępne w: {l}': 'only available at {l}', 'ukryte: {n}': 'hidden: {n}', 'Miejsce domyślne': 'Default place',
   'bez miejsca': 'no place', 'Miejsce tego treningu': 'Place of this workout', 'Miejsce treningu: {l}. Tapnij, by zmienić.': 'Workout place: {l}. Tap to change.',
-  '↑ ten sam ciężar, spróbuj {n} pow.': '↑ same weight, try {n} reps', 'Brak sprzętu w: {l}. Brakuje: {m}': 'No equipment at {l}. Missing: {m}',
+  'Brak sprzętu w: {l}. Brakuje: {m}': 'No equipment at {l}. Missing: {m}',
   'brak sprzętu w: {l}': 'no equipment at {l}', 'Poprzednio: {l}': 'Previous: {l}',
   '{n} ustawień na stronę: {r}': '{n} settings per side: {r}', 'wpisz zakres na stronę i krok': 'enter the per-side range and step',
   'para: {a} ({r}); jeden hantel: {b} ({r1})': 'pair: {a} ({r}); single dumbbell: {b} ({r1})', 'wpisz uchwyt i talerze': 'enter handle and plates',
@@ -262,5 +262,5 @@ export const EN: Record<string, string> = {
   'Zakres jest niepoprawny: „do” musi być ≥ „od”, krok > 0, wartości od {a} do {b}.': 'Invalid range: “to” must be ≥ “from”, step > 0, values from {a} to {b}.', 'Ciężar od {a} do {b}.': 'Weight from {a} to {b}.',
   'Ten zakres to {c} ciężarów — najwyżej {n}. Zwiększ krok.': 'This range is {c} weights — at most {n}. Increase the step.',
   'Najwyżej {n} rodzajów.': 'At most {n} sizes.', 'Odhaczone serie bez ciężaru: {n}.': 'Ticked sets without weight: {n}.', 'ciężaru {w} nie ma tutaj — wpisz ciężar': '{w} isn’t available here — enter a weight',
-  'min na stronę': 'min per side', 'max na stronę': 'max per side', 'krok': 'step',
+  'Ciężar serii na stacji wpisuj na stronę — tak, jak pokazuje urządzenie.': 'Enter station set weights per side — as the device shows them.', 'min na stronę': 'min per side', 'max na stronę': 'max per side', 'krok': 'step',
 };

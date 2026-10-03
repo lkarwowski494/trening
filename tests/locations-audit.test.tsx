@@ -65,12 +65,13 @@ describe('H2, H3, M1, M2 — źródło ciężarów i podpowiedź', () => {
   test('M2: T-Bar Row na maszynie T-bar (bez sztangi) bierze jej ciężary', async () => {
     await fresh(); const tb = equipEntry('t_bar'); tb.load = list([20, 25, 30]); const g = place(loc('G', [tb]));
     expect(availability(ex('T-Bar Row'), g).ok).toBe(true);
-    expect(store.progressionFor(ex('T-Bar Row'), 10, sets(25, [10, 10]), g.id)).toEqual({ kind: 'reps', reps: 12, gate: true }); /* 25 → 30 = 20% */
+    expect(store.progressionFor(ex('T-Bar Row'), 10, sets(25, [10, 10]), g.id)).toEqual({ kind: 'load', kg: 30 }); /* 25 → 30 = 20% — decyzja 7a: od razu następny ciężar maszyny */
   });
-  test('LOW: jednorącz na linkach przy 65 kg/str. nie dostaje „dwóch linek” (66); przysiad z pasem — dostaje', async () => {
+  test('LOW + decyzja 03.10 „ViShape na stronę”: 65 kg/str. to maksimum stacji — bez „↑” (ani jednorącz, ani przysiad z pasem: bez sumy dwóch linek)', async () => {
     await fresh(); const h = place();
     expect(store.progressionFor(ex('Cable Lateral Raise'), 12, sets(65, [12, 12]), h.id)).toBeNull();
-    expect(store.progressionFor(ex('Przysiad z pasem (linki)'), 8, sets(65, [8, 8]), h.id)).toEqual({ kind: 'load', kg: 66 });
+    expect(store.progressionFor(ex('Przysiad z pasem (linki)'), 8, sets(65, [8, 8]), h.id)).toBeNull();
+    expect(store.progressionFor(ex('Przysiad z pasem (linki)'), 8, sets(64.5, [8, 8]), h.id)).toEqual({ kind: 'load', kg: 65 });
   });
 });
 
@@ -81,7 +82,7 @@ describe('M3 — ciężar z innego miejsca spoza listy nie trafia do pól', () =
     const tpl = store.newTemplate(); for (const [i, n] of ['Bench Press (hantle)', 'Biceps Curl (hantle)'].entries()) tpl.items.push({ id: 'i' + i, exerciseId: ex(n).id, sets: 2, repMin: 6, repMax: 10, restSec: null, startWeight: '', targetSec: '', groupId: null });
     store.startFromTemplate(tpl); const a = store.getState().active!; expect(a.locationId).toBe(h.id);
     expect(a.exercises[0].sets.map(s => [s.weight, s.reps])).toEqual([['', ''], ['', '']]); /* weryfikacja 2: bez ciężaru także bez powtórzeń */ expect(a.exercises[1].sets.map(s => s.weight)).toEqual([12, 12]);
-    expect(store.previousBlockFor(ex('Bench Press (hantle)').id, 0, 1, 'i0', tpl.id, h.id)!.sets[0].weight).toBe(32);
+    expect(a.exercises[0].impl).toBe('dumbbell'); expect(store.previousBlockFor(ex('Bench Press (hantle)').id, 0, 1, 'i0', tpl.id, a.exercises[0].impl)!.sets[0].weight).toBe(32);
     store.toggleDone(0, 0); expect([a.exercises[0].sets[0].weight, a.exercises[0].sets[0].reps]).toEqual(['', '']); /* odhaczenie pustej serii też nie wstawia 32 */
   });
   test('bez miejsc: wstępne wartości jak dotąd (32 kg)', async () => {

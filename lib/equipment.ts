@@ -1,7 +1,7 @@
 import { CATALOG_CAPS, type LoadSource } from './catalog.generated';
 import { achievable, rangeValues, type LoadSpec, type LoadUnit } from './loads';
 import { lang } from './i18n';
-import type { Exercise, Location, LocEquip, LoadMode } from './seed';
+import type { Exercise, Location, LocEquip, LoadMode, Impl } from './seed';
 
 /*
  * P-003 E1 — jedno źródło prawdy o sprzęcie (docs/10-miejsca-i-sprzet.md, sekcje 3.1–3.4):
@@ -218,7 +218,8 @@ function entryCaps(e: LocEquip, x: EquipItem, primary: boolean): Set<string> {
 /**
  * Dostępne ciężary ćwiczenia w miejscu (kg, rosnąco), w tej postaci, w jakiej wpisuje się ciężar serii:
  *  - hantle per hantel: lista jednego hantla albo pary (talerze dzielone na 4 — implements: 2), łącznie: suma pary;
- *  - stacja elektryczna: na stronę; ćwiczenie wymagające dwóch linek — 2 × na stronę; przysiad z pasem (łącznie) — jedna albo dwie linki;
+ *  - stacja elektryczna: zawsze NA STRONĘ — tak, jak pokazuje urządzenie (decyzja 03.10.2026 „ViShape na stronę”; także ćwiczenia na dwie
+ *    linki i przysiad z pasem — wpisuje się liczbę z ekranu urządzenia, nie sumę linek);
  *  - przyrządy dobierane po tym, co ćwiczenie wymaga (audyt M1): najpierw pozycje, które dają wymaganą możliwość wprost (Triceps Pushdown —
  *    brama, nie stos wyciągu do ściągania), potem „przy okazji”; maszyny zawsze tylko spełniające wymaganie (Leg Press ≠ prostowanie nóg);
  *    wolne ciężary i wyciągi bez dopasowania — wszystkie pozycje tego rodzaju (np. wykroki: hantle są tylko zalecane).
@@ -226,36 +227,43 @@ function entryCaps(e: LocEquip, x: EquipItem, primary: boolean): Set<string> {
  * 'unknown' = podpowiedź jak przed P-003 (przyrząd bez wpisanych ciężarów, ćwiczenie własne bez wymagań, nic nie pasuje — audyt H3).
  */
 export function loadsFor(ex: Pick<Exercise, 'loadSource' | 'requires' | 'recommended' | 'loadMode' | 'implements'>, loc: Location | null | undefined): ExLoads {
-  if (!loc) return { kind: 'unknown' };
-  const kinds = loadKindsFor(ex); if (!kinds.length) return { kind: 'unknown' };
+  return resolveLoads(ex, loc).res;
+}
+/**
+ * Decyzja 8c (03.10.2026): przyrząd, którym ćwiczenie robi się w tym miejscu — ten sam dobór co loadsFor (pierwszy rodzaj ciężaru z wpisanymi
+ * ciężarami; gdy żaden nie ma ciężarów — pierwszy obecny): 'dumbbell', 'kettlebell', 'barbell', 'machine'…; wyciąg: 'electric', gdy wartości
+ * (albo pierwsza pasująca pozycja) pochodzą ze stacji z oporem elektrycznym / magnetycznym, inaczej 'cable'. Bez miejsca, ćwiczenie bez
+ * obciążenia (masa ciała) albo bez pasującego przyrządu — undefined.
+ */
+export function implAt(ex: Pick<Exercise, 'loadSource' | 'requires' | 'recommended' | 'loadMode' | 'implements'>, loc: Location | null | undefined): Impl | undefined {
+  return resolveLoads(ex, loc).impl;
+}
+const implOf = (kind: LoadKind, item: string): Impl => kind === 'cable' && item === 'electric' ? 'electric' : kind;
+function resolveLoads(ex: Pick<Exercise, 'loadSource' | 'requires' | 'recommended' | 'loadMode' | 'implements'>, loc: Location | null | undefined): { res: ExLoads; impl?: Impl } {
+  if (!loc) return { res: { kind: 'unknown' } };
+  const kinds = loadKindsFor(ex); if (!kinds.length) return { res: { kind: 'unknown' } };
   const need = new Set((ex.requires ?? []).flat()); const firsts = new Set((ex.requires ?? []).map(g => g[0]));
-  const mode: LoadMode = ex.loadMode ?? 'total'; const impl = ex.implements ?? (mode === 'per_dumbbell' ? 2 : 1);
-  const needsDual = (ex.requires ?? []).some(g => g.includes('cable.dual')); const belt = need.has('dip_belt');
+  const mode: LoadMode = ex.loadMode ?? 'total'; const nImpl = ex.implements ?? (mode === 'per_dumbbell' ? 2 : 1);
   const valsOf = (e: LocEquip, kind: LoadKind): number[] => {
     if (!e.load) return [];
-    if (e.load.kind === 'electric') {
-      /* ciężar ustawia się na stronę. Seria „łącznie”: dwie linki naraz (ćwiczenie ich wymaga) — 2 × na stronę; przysiad z pasem — jedna albo
-       * obie; inne (np. jednorącz) — tylko na stronę: wartość ponad zakres jednej linki nie jest podpowiadana jako „dwie linki” (audyt LOW). */
-      const dual = e.opts.includes('dual');
-      return achievable(e.load, { mult: mode !== 'total' || !dual || ex.implements === 1 && !needsDual ? [1] : needsDual ? [2] : belt ? [1, 2] : [1] });
-    }
-    if (kind === 'dumbbell') return achievable(e.load, { perStep: impl === 2 ? 4 : 2, mult: mode === 'total' && impl === 2 ? [2] : [1] });
+    if (e.load.kind === 'electric') return achievable(e.load, { mult: [1] }); /* decyzja 03.10.2026: ciężar stacji zawsze na stronę (jak na ekranie urządzenia) */
+    if (kind === 'dumbbell') return achievable(e.load, { perStep: nImpl === 2 ? 4 : 2, mult: mode === 'total' && nImpl === 2 ? [2] : [1] });
     return achievable(e.load, { perStep: 2 });
   };
-  let present = false;
+  let present: Impl | undefined;
   for (const kind of kinds) {
     const of = loc.equipment.flatMap(e => { const x = equipById(e.item); return x && !e.off && x.load === kind ? [{ e, x }] : []; });
     const hits = (primary: boolean, caps: Set<string>) => of.filter(({ e, x }) => [...entryCaps(e, x, primary)].some(c => caps.has(c)));
     /* kolejność: pozycja dająca wprost PIERWSZĄ możliwość grupy (Lat Pulldown → stos wyciągu do ściągania), potem dowolną wymaganą wprost, potem „przy okazji” */
     let use = hits(true, firsts); if (!use.length) use = hits(true, need); if (!use.length) use = hits(false, need);
     if (!use.length && kind !== 'machine') use = of; /* nic nie daje wymaganej możliwości wprost — wszystkie pozycje tego rodzaju */
-    if (use.length) present = true;
+    if (use.length && !present) present = implOf(kind, use[0].e.item);
     const all: number[] = []; let item = '';
     for (const { e } of use) { const v = valsOf(e, kind); if (v.length) { all.push(...v); item = item || e.item; } }
-    if (all.length) { all.sort((a, b) => a - b); const u: number[] = []; for (const v of all) if (!u.length || v - u[u.length - 1] > 0.01 + 1e-9) u.push(v); return { kind: 'loads', loads: u, item }; }
+    if (all.length) { all.sort((a, b) => a - b); const u: number[] = []; for (const v of all) if (!u.length || v - u[u.length - 1] > 0.01 + 1e-9) u.push(v); return { res: { kind: 'loads', loads: u, item }, impl: implOf(kind, item) }; }
   }
-  if (present) return { kind: 'unknown' };
+  if (present) return { res: { kind: 'unknown' }, impl: present };
   /* brak przyrządu: tylko dla ćwiczeń bez wymagań z obciążeniem zalecanym (decyzja 4a) — reszta jak przed P-003 */
   const recLoad = (ex.recommended ?? []).some(c => c === 'db' || c === 'kb' || c === 'barbell');
-  return !(ex.requires ?? []).length && recLoad ? { kind: 'none' } : { kind: 'unknown' };
+  return { res: !(ex.requires ?? []).length && recLoad ? { kind: 'none' } : { kind: 'unknown' } };
 }

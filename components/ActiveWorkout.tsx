@@ -4,7 +4,7 @@ import { useRouter } from 'expo-router';
 import { activateKeepAwakeAsync, deactivateKeepAwake } from 'expo-keep-awake';
 import { useTheme } from '@/lib/theme';
 import { Btn, Input, NumInput, Muted } from '@/components/ui';
-import { progressionFor, lastActivity, staleSince, staleRef, staleKind, ackStale, markActivity, useForegroundTick, bandA11y, clampName, loadLabelShort, getState, useTick, exById, previousBlockFor, occurrence, occurrences, hintFor, isBW, reps, fmtDur, fmtSec, fmtTime, setSummary, toggleDone, restAfter, roundRest, addSet, removeSet, removeExercise, finishWorkout, cancelWorkout, save, loadLabel, todayReadiness, groupLabels, linkWithNext, unlink, applyBandAssist, findSet, shortBand, setHasValue, locationById, offListAt } from '@/lib/store';
+import { progressionFor, setActiveLocation, lastActivity, staleSince, staleRef, staleKind, ackStale, markActivity, useForegroundTick, bandA11y, clampName, loadLabelShort, getState, useTick, exById, previousBlockFor, occurrence, occurrences, hintFor, isBW, reps, fmtDur, fmtSec, fmtTime, setSummary, toggleDone, restAfter, roundRest, addSet, removeSet, removeExercise, finishWorkout, cancelWorkout, save, loadLabel, todayReadiness, groupLabels, linkWithNext, unlink, applyBandAssist, findSet, shortBand, setHasValue, locationById, offListAt } from '@/lib/store';
 import { availability, missingLabel } from '@/lib/equipment';
 import { locationLabel } from '@/lib/locations';
 import * as timer from '@/lib/timer';
@@ -171,7 +171,7 @@ function LocationChip({ w }: { w: Workout }) {
   const t = useTheme(); const locs = getState().settings.locations; if (!locs.length) return null;
   const name = w.locationId ? locationLabel(w.locationId) : tr('bez miejsca');
   const pick = () => ActionSheetIOS.showActionSheetWithOptions({ options: [...locs.map(l => l.name), tr('Anuluj')], cancelButtonIndex: locs.length, title: tr('Miejsce tego treningu') }, i => {
-    const l = locs[i]; const a = getState().active; if (!l || !a || a.id !== w.id) return; a.locationId = l.id; save(a); });
+    const l = locs[i]; const a = getState().active; if (!l || !a || a.id !== w.id) return; setActiveLocation(l.id); /* decyzja 8c: przyrządy bloków wg nowego miejsca */ });
   return <Pressable onPress={pick} accessibilityRole="button" accessibilityLabel={tr('Miejsce treningu: {l}. Tapnij, by zmienić.', { l: name })} hitSlop={6} style={{ alignSelf: 'flex-start', paddingVertical: 4 }}>
     <Text maxFontSizeMultiplier={1.3} style={{ color: t.accent, fontSize: 14, fontWeight: '600' }}>{`📍 ${name} ▾`}</Text></Pressable>;
 }
@@ -220,13 +220,13 @@ export function rowLayout(m: import('@/lib/seed').MetricType, band: boolean, sho
 function ExerciseBlock({ w, e, ei, onDone, onStartSet, labels, prs }: { w: Workout; e: WExercise; ei: number; onDone: (ei: number, si: number) => void; onStartSet: (setId: string, target: number, subtitle: string, remeasure?: boolean) => void; labels: Record<string, string>; prs: Map<string, string[]> }) {
   const t = useTheme(); const st = getState(); const { width } = useWindowDimensions();
   const ex = exById(e.exerciseId);
-  const k = occurrence(w.exercises, ei); const nOcc = occurrences(w.exercises, e.exerciseId); const prev = ex ? previousBlockFor(ex.id, k, nOcc, e.tplItemId, w.templateId, w.locationId) : null; /* runda 50: bez useMemo — zależy też od szablonu (edycja w trakcie); ta sama podpowiedź co przy odhaczeniu */ // eslint-disable-line react-hooks/exhaustive-deps
+  const k = occurrence(w.exercises, ei); const nOcc = occurrences(w.exercises, e.exerciseId); const prev = ex ? previousBlockFor(ex.id, k, nOcc, e.tplItemId, w.templateId, e.impl) : null; /* decyzja 8c: ostatni raz tym samym przyrządem */ /* runda 50: bez useMemo — zależy też od szablonu (edycja w trakcie); ta sama podpowiedź co przy odhaczeniu */ // eslint-disable-line react-hooks/exhaustive-deps
   if (!ex) {
     // Ćwiczenie usunięte na stałe w trakcie treningu — pokazujemy blok, żeby dało się go usunąć (wcześniej znikał niewidoczny).
     return <View style={[s.ex, { borderBottomColor: t.line }]}><Muted>{tr('Usunięte ćwiczenie')} · {e.sets.length} {tp(e.sets.length, 'seria|serie|serii')}</Muted><View style={s.actions}><Btn title={tr('usuń')} accessibilityLabel={tr('Usuń usunięte ćwiczenie z treningu')} small kind="ghost" onPress={() => { const i = getState().active?.exercises.findIndex(x => x.id === e.id) ?? -1; if (i >= 0) { const ids = e.sets.map(x => x.id); if (timer.S.on && ids.includes(timer.S.setId ?? '')) timer.stopSet(); if (timer.T.on && ids.includes(timer.T.setId ?? '')) timer.stop(); removeExercise(i); } }} /* runda 43: jak zwykłe „usuń” — timery tego bloku stop */ /></View></View>;
   }
   const bw = isBW(ex); const band = ex.bandAssistable;
-  /* P-003 E1: plakietka „brak sprzętu w: Dom” (nigdy automatyczna zamiana) i dopisek, gdy „Poprzednio” pochodzi z innego miejsca (8a) */
+  /* P-003 E1: plakietka „brak sprzętu w: Dom” (nigdy automatyczna zamiana) i dopisek, gdy „Poprzednio” pochodzi z innego, znanego miejsca (8c: źródłem bywa każde miejsce) */
   const place = locationById(w.locationId); const avail = place ? availability(ex, place) : null;
   const prevElsewhere = place && prev?.workout.locationId && prev.workout.locationId !== place.id ? locationLabel(prev.workout.locationId) : '';
   /* weryfikacja 3 (L1): poprzedni ciężar z innego miejsca, którego tu nie ma (pole zostało puste) — dopisek przy ćwiczeniu */
@@ -236,7 +236,7 @@ function ExerciseBlock({ w, e, ei, onDone, onStartSet, labels, prs }: { w: Worko
   const doneStyle = (set: WSet) => set.done ? { backgroundColor: t.done, borderColor: t.doneLine } : undefined;
   const inSS = !!e.groupId;
   const prog = progressionFor(ex, e.repMax, prev?.sets, w.locationId); /* T-017: cicha podpowiedź progresji; P-003: z ciężarów miejsca */
-  const progText = prog ? (prog.kind === 'reps' ? (prog.gate ? tr('↑ ten sam ciężar, spróbuj {n} pow.', { n: prog.reps }) : tr('↑ spróbuj {n} pow.', { n: prog.reps })) : (bw && prog.kg === 0 ? tr('↑ spróbuj bez asysty') : tr('↑ spróbuj {v}', { v: (bw && prog.kg > 0 ? '+' : '') + fmtW(prog.kg) }))) : '';
+  const progText = prog ? (prog.kind === 'reps' ? tr('↑ spróbuj {n} pow.', { n: prog.reps }) : (bw && prog.kg === 0 ? tr('↑ spróbuj bez asysty') : tr('↑ spróbuj {v}', { v: (bw && prog.kg > 0 ? '+' : '') + fmtW(prog.kg) }))) : '';
   const headMeta = [hasReps(m) && e.repMin != null ? reps(e.repMin, e.repMax) + ' ' + tr('pow.') : '', progText, inSS ? tr('superset · przerwa po rundzie {t}', { t: fmtDur(roundRest(ei) ?? e.restSec) }) /* T7: przerwa po zamknięciu rundy, niezależnie od kolejności odhaczania */ : tr('przerwa') + ' ' + fmtDur(e.restSec), ex.tempo].filter(Boolean).join(' · ');
   // Szerokość: czy kolumna „Poprzednio” zmieści się w wierszu (ekran − marginesy 2×14).
   const { prevInline, W } = rowLayout(m, band, showRpe, width);

@@ -95,7 +95,7 @@ describe('trening i wybór ćwiczenia w miejscu', () => {
     addWorkout(Date.now() - 86400e3, [['Biceps Curl (hantle)', [{ weight: 10, reps: 12 }, { weight: 10, reps: 12 }]]]).locationId = gym.id;
     const tpl = store.newTemplate(); tpl.name = 'Ręce'; tpl.items.push({ id: 'i1', exerciseId: ex('Biceps Curl (hantle)').id, sets: 2, repMin: 10, repMax: 12, restSec: null, startWeight: '', targetSec: '', groupId: null }); store.save(); store.startFromTemplate(tpl); await store.flush();
     await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())) }); await flushAll(10);
-    expect(screen.getByText(/↑ ten sam ciężar, spróbuj 14 pow\./)).toBeTruthy(); expect(screen.getByText('Poprzednio: Siłownia')).toBeTruthy();
+    expect(screen.getByText(/↑ spróbuj 12 kg/)).toBeTruthy(); /* decyzja 7a: od razu następny dostępny (10 → 12) */ expect(screen.queryByText(/ten sam ciężar/)).toBeNull(); expect(screen.getByText('Poprzednio: Siłownia')).toBeTruthy();
   });
   test('szablon: miejsce domyślne (chipy) i start treningu w tym miejscu', async () => {
     const saved = await savedWithPlaces(); await renderApp({ saved }); const tpl = store.getState().templates[0]; await go(`/template/${tpl.id}`); await flushAll(10);

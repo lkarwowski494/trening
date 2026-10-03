@@ -1424,7 +1424,7 @@ describe('runda 54', () => {
 describe('runda 55', () => {
   test('R55-01 kg z wieloma miejscami po przecinku zostają po restarcie (przyciąganie funtów tylko dla starych danych)', async () => {
     await fresh(); store.startEmpty(); store.addExerciseToActive(ex('Back Squat')); const s = store.getState().active!.exercises[0].sets[0]; s.weight = 45.359237;
-    const m = store.migrate(JSON.parse(JSON.stringify(store.getState()))); expect(m.active!.exercises[0].sets[0].weight).toBe(45.36); /* runda 60: siatka 0,01 kg, nie przyciąganie funtów (45,35) */ expect(m.schemaVersion).toBe(14); /* runda 75: schemat 13; P-003 E1: 14 */
+    const m = store.migrate(JSON.parse(JSON.stringify(store.getState()))); expect(m.active!.exercises[0].sets[0].weight).toBe(45.36); /* runda 60: siatka 0,01 kg, nie przyciąganie funtów (45,35) */ expect(m.schemaVersion).toBe(15); /* runda 75: schemat 13; P-003 E1: 14 */
   });
   test('R55-02 nazwy jak „toString”/„constructor”/„__proto__” nie trafiają w Object.prototype', async () => {
     await fresh(); for (const n of ['toString', 'constructor', '__proto__', 'hasOwnProperty']) { const e = store.newExercise(n); store.setEquipment(e, 'masa ciała'); expect(e.equipment).toBe('masa ciała'); }
