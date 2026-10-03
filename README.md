@@ -15,8 +15,8 @@ tygodniowo), rekordy per ćwiczenie i oznaczanie PR w trakcie treningu, w podsum
 (`lib/stats.ts`, `components/Chart.tsx`, react-native-svg).
 Od 0.4.0: supersety (`groupId` na ćwiczeniu w treningu i szablonie; przerwa dopiero po ostatnim ćwiczeniu grupy),
 partie mięśniowe główne/pomocnicze per ćwiczenie i serie tygodniowo per partia (1 / 0,5) w Postępach.
-Od 0.5.0: ćwiczenia z masą ciała mają pole ±kg (plus = dociążenie, minus = asysta), gumy mogą mieć szacowaną
-asystę w kg (wybór gumy wpisuje −kg). Od rundy 75 (schemat 13) masa ciała nie wchodzi do obliczeń: rekord to suma
+Od 0.5.0: ćwiczenia z masą ciała mają pole ±kg (plus = dociążenie, minus = asysta). Gumy od P-001 (02.10.2026) mają tylko
+kolor i poziom 1–7 — bez kg; wybór gumy nie zmienia ±kg (dawne pole kg ze starych kopii odpada przy imporcie, T-055). Od rundy 75 (schemat 13) masa ciała nie wchodzi do obliczeń: rekord to suma
 powtórzeń bez asysty, a e1RM i objętość liczą się tylko z dociążenia.
 Od rundy 75: podpowiedź progresji (↑ w nagłówku ćwiczenia), kopia automatyczna po treningu (Pliki → Na moim iPhonie →
 Trening → Backup), przypomnienie o wadze w poniedziałek, pasek postępu sesji; baza w Library/SQLite (poza Plikami).
