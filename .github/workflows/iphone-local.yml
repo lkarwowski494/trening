@@ -46,6 +46,12 @@ jobs:
         run: npm run typecheck && npm run check:i18n && npm test -- --maxWorkers=3
       - name: Projekt Expo (połączenie po nazwie)
         run: npx --yes eas-cli@$EAS_CLI init --non-interactive --force
+      - name: Platforma iOS 18.2 dla Xcode 16.2
+        # Obraz macos-15 ma tylko nowsze platformy iOS; bez tej xcodebuild nie znajduje celu „Any iOS Device”
+        # (przebieg 37123785083: „iOS 18.2 is not installed”) — ten sam krok co w e2e-ios.yml.
+        run: |
+          if ! xcrun simctl list runtimes | grep -q "iOS 18.2"; then sudo xcodebuild -downloadPlatform iOS; fi
+          xcrun simctl list runtimes
       - name: Build na tej maszynie (eas build --local)
         run: |
           set -o pipefail
