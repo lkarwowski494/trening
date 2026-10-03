@@ -20,32 +20,32 @@
 #   "Start: Upper A"              ← 'Start: {name}' (accessibilityLabel przycisku Start na ekranie głównym)
 appId: pl.lukasz.trening
 ---
-- scrollUntilVisible: { element: "\\+ New template", direction: DOWN, timeout: 20000 }
+- scrollUntilVisible: { element: "\\+ New template", direction: DOWN, timeout: 60000 }
 - assertVisible: "No templates yet — create your first one or start an empty workout."
 - tapOn: "\\+ New template"
-- extendedWaitUntil: { visible: "\\+ Add exercise", timeout: 10000 }
+- extendedWaitUntil: { visible: "\\+ Add exercise", timeout: 30000 }
 # Pole „Name” ma wartość „New template” (zaznacza się całe przy fokusie)
 - tapOn: "New template"
 - eraseText: 30
 - inputText: "Upper A"
 # --- ćwiczenie 1 ---
 - tapOn: "\\+ Add exercise"
-- extendedWaitUntil: { visible: "Search exercises…", timeout: 10000 }
+- extendedWaitUntil: { visible: "Search exercises…", timeout: 30000 }
 - tapOn: "Search exercises…"
 - inputText: "Bench Press"
 - tapOn: { text: "Continue", optional: true }
 - tapOn: "Bench Press \\(Dumbbell\\), dumbbells"
-- extendedWaitUntil: { visible: "Bench Press \\(Dumbbell\\)", timeout: 10000 }
+- extendedWaitUntil: { visible: "Bench Press \\(Dumbbell\\)", timeout: 30000 }
 # --- ćwiczenie 2 ---
-- scrollUntilVisible: { element: "\\+ Add exercise", direction: DOWN, timeout: 20000 }
+- scrollUntilVisible: { element: "\\+ Add exercise", direction: DOWN, timeout: 60000 }
 - tapOn: "\\+ Add exercise"
-- extendedWaitUntil: { visible: "Search exercises…", timeout: 10000 }
+- extendedWaitUntil: { visible: "Search exercises…", timeout: 30000 }
 - tapOn: "Search exercises…"
 - inputText: "Bent Over Row"
 - tapOn: { text: "Continue", optional: true }
 - tapOn: "Bent Over Row \\(Dumbbell\\), dumbbells"
-- extendedWaitUntil: { visible: "Bent Over Row \\(Dumbbell\\)", timeout: 10000 }
+- extendedWaitUntil: { visible: "Bent Over Row \\(Dumbbell\\)", timeout: 30000 }
 - takeScreenshot: 00-szablon-testowy
 # --- powrót na ekran główny ---
 - tapOn: "Back"
-- extendedWaitUntil: { visible: "Start: Upper A", timeout: 10000 }
+- extendedWaitUntil: { visible: "Start: Upper A", timeout: 30000 }

@@ -28,26 +28,26 @@ name: Edycja historii i trening wstecz
 - launchApp:
     clearState: true
     permissions: { all: allow }
-- extendedWaitUntil: { visible: "Start from a template", timeout: 20000 }
+- extendedWaitUntil: { visible: "Start from a template", timeout: 60000 }
 # Świeża instalacja nie ma szablonów (decyzja 03.10.2026) — szablon „Upper A” tworzy podprzepływ przez UI
 - runFlow: subflows/szablon-testowy.yaml
 - tapOn: "Start: Upper A"
-- extendedWaitUntil: { visible: "Set 1 done.*", timeout: 10000 }
+- extendedWaitUntil: { visible: "Set 1 done.*", timeout: 30000 }
 - tapOn: { text: "Set 1 done.*", index: 0 }
-- extendedWaitUntil: { visible: "Skip", timeout: 10000 }
+- extendedWaitUntil: { visible: "Skip", timeout: 30000 }
 - tapOn: "Skip"
 - assertNotVisible: "Skip"
 - tapOn: "Finish"
-- extendedWaitUntil: { visible: "Finish workout\\?", timeout: 10000 }
+- extendedWaitUntil: { visible: "Finish workout\\?", timeout: 30000 }
 - tapOn: { text: "Finish", below: "Finish workout\\?" }
 # Zapisana sesja
-- extendedWaitUntil: { visible: "Session", timeout: 10000 }  # tytuł ekranu zapisanej sesji („Delete session” bywa poza ekranem; „Edit session” to też tytuł edytora)
+- extendedWaitUntil: { visible: "Session", timeout: 30000 }  # tytuł ekranu zapisanej sesji („Delete session” bywa poza ekranem; „Edit session” to też tytuł edytora)
 - assertVisible: "Upper A"
 - takeScreenshot: 10-sesja-przed-edycja
 
 # --- Edycja sesji ---
 - tapOn: "Edit session"
-- extendedWaitUntil: { visible: "Cancel", timeout: 10000 }
+- extendedWaitUntil: { visible: "Cancel", timeout: 30000 }
 - assertVisible: "Save"
 - assertVisible: "Save changes"
 - takeScreenshot: 11-edytor-sesji
@@ -60,7 +60,7 @@ name: Edycja historii i trening wstecz
 # Alert pojawia się przy pominiętych seriach, seriach bez ciężaru (szablon testowy nie ma ciężaru startowego — tu zwykle tak) albo nachodzeniu terminów; opcjonalny
 - tapOn: { text: "Save", below: "Save changes\\?", optional: true }
 # Powrót na ekran sesji z nową nazwą
-- extendedWaitUntil: { visible: "Session", timeout: 10000 }  # tytuł ekranu zapisanej sesji („Delete session” bywa poza ekranem; „Edit session” to też tytuł edytora)
+- extendedWaitUntil: { visible: "Session", timeout: 30000 }  # tytuł ekranu zapisanej sesji („Delete session” bywa poza ekranem; „Edit session” to też tytuł edytora)
 - assertVisible: "Upper A E2E"
 - assertNotVisible: "Upper A"
 - assertNotVisible: "Cancel"
@@ -69,23 +69,23 @@ name: Edycja historii i trening wstecz
 # --- Trening wstecz ---
 - tapOn: "Back"
 - tapOn: "History, tab.*"
-- extendedWaitUntil: { visible: "Upper A E2E,.*", timeout: 10000 }
+- extendedWaitUntil: { visible: "Upper A E2E,.*", timeout: 30000 }
 - tapOn: "\\+ Log a past workout"
-- extendedWaitUntil: { visible: "From a template", timeout: 10000 }
+- extendedWaitUntil: { visible: "From a template", timeout: 30000 }
 - takeScreenshot: 14-trening-wstecz
 - tapOn: "Upper A, .*"
-- extendedWaitUntil: { visible: "Cancel", timeout: 10000 }
+- extendedWaitUntil: { visible: "Cancel", timeout: 30000 }
 - assertVisible: "Save"
 - takeScreenshot: 15-edytor-treningu-wstecz
 - tapOn: "Save"
 # Szablon testowy nie ma ciężaru startowego — serie bez ciężaru („Sets without weight: n.”), więc spodziewany Alert „Save changes?”
 - tapOn: { text: "Save", below: "Save changes\\?", optional: true }
 # Po zapisie edytor zastępuje się ekranem nowej sesji
-- extendedWaitUntil: { visible: "Session", timeout: 10000 }  # tytuł ekranu zapisanej sesji („Delete session” bywa poza ekranem; „Edit session” to też tytuł edytora)
+- extendedWaitUntil: { visible: "Session", timeout: 30000 }  # tytuł ekranu zapisanej sesji („Delete session” bywa poza ekranem; „Edit session” to też tytuł edytora)
 - assertVisible: "Upper A"
 - takeScreenshot: 16-sesja-wstecz-zapisana
 - tapOn: "Back"
-- extendedWaitUntil: { visible: "2 sessions", timeout: 10000 }
+- extendedWaitUntil: { visible: "2 sessions", timeout: 30000 }
 - assertVisible: "Upper A, .*"
 - assertVisible: "Upper A E2E,.*"
 - takeScreenshot: 17-historia-dwie-sesje

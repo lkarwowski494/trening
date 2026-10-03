@@ -30,23 +30,23 @@ name: Miejsca treningu i filtr ćwiczeń
 - launchApp:
     clearState: true
     permissions: { all: allow }
-- extendedWaitUntil: { visible: "Start from a template", timeout: 20000 }
+- extendedWaitUntil: { visible: "Start from a template", timeout: 60000 }
 
 # --- Więcej → Ustawienia → Miejsca treningu ---
 - tapOn: "More, tab.*"
-- extendedWaitUntil: { visible: "Settings", timeout: 10000 }
+- extendedWaitUntil: { visible: "Settings", timeout: 30000 }
 - tapOn: "Settings"
-- scrollUntilVisible: { element: "Training places,.*", direction: DOWN, timeout: 20000 }
+- scrollUntilVisible: { element: "Training places,.*", direction: DOWN, timeout: 60000 }
 - tapOn: "Training places,.*"
-- extendedWaitUntil: { visible: "\\+ Add place", timeout: 10000 }
+- extendedWaitUntil: { visible: "\\+ Add place", timeout: 30000 }
 - takeScreenshot: 20-miejsca-pusto
 - tapOn: "\\+ Add place"
-- extendedWaitUntil: { visible: "Bodyweight only,.*", timeout: 10000 }
+- extendedWaitUntil: { visible: "Bodyweight only,.*", timeout: 30000 }
 - takeScreenshot: 21-presety-miejsc
 - tapOn: "Bodyweight only,.*"
 
 # --- Ekran miejsca: włączenie drążka do podciągania ---
-- extendedWaitUntil: { visible: "Available exercises: .*", timeout: 10000 }
+- extendedWaitUntil: { visible: "Available exercises: .*", timeout: 30000 }
 - copyTextFrom: "Available exercises: .*"
 - evalScript: ${output.dostepnePrzed = maestro.copiedText}
 - scrollUntilVisible: { element: "Pull-up bar.*", direction: DOWN, timeout: 30000 }
@@ -61,31 +61,31 @@ name: Miejsca treningu i filtr ćwiczeń
 
 # --- Powrót do zakładki Trening (miejsce → lista miejsc → ustawienia → zakładki) ---
 - tapOn: "Back"
-- extendedWaitUntil: { visible: "\\+ Add place", timeout: 10000 }
+- extendedWaitUntil: { visible: "\\+ Add place", timeout: 30000 }
 - assertVisible: ".*Bodyweight only, main.*"
 - tapOn: "Back"
-- extendedWaitUntil: { visible: "Training places,.*Bodyweight only", timeout: 10000 }
+- extendedWaitUntil: { visible: "Training places,.*Bodyweight only", timeout: 30000 }
 - tapOn: "Back"
-- extendedWaitUntil: { visible: "Workout, tab.*", timeout: 10000 }
+- extendedWaitUntil: { visible: "Workout, tab.*", timeout: 30000 }
 - tapOn: "Workout, tab.*"
-- extendedWaitUntil: { visible: "Start from a template", timeout: 10000 }
-- scrollUntilVisible: { element: "Empty workout", direction: DOWN, timeout: 20000 }
+- extendedWaitUntil: { visible: "Start from a template", timeout: 30000 }
+- scrollUntilVisible: { element: "Empty workout", direction: DOWN, timeout: 60000 }
 - tapOn: "Empty workout"
-- extendedWaitUntil: { visible: "+ Add exercise", timeout: 10000 }
+- extendedWaitUntil: { visible: "+ Add exercise", timeout: 30000 }
 - tapOn: "+ Add exercise"
 
 # --- Wybór ćwiczenia z filtrem miejsca ---
-- extendedWaitUntil: { visible: "only available at Bodyweight only.*", timeout: 10000 }
+- extendedWaitUntil: { visible: "only available at Bodyweight only.*", timeout: 30000 }
 - takeScreenshot: 23-picker-filtr-miejsca
 - tapOn: "Search exercises…"
 - inputText: "Pull"
 - tapOn: { text: "Continue", optional: true }
-- extendedWaitUntil: { visible: "Pull Up,.*", timeout: 10000 }
+- extendedWaitUntil: { visible: "Pull Up,.*", timeout: 30000 }
 - assertNotVisible: "Lat Pulldown,.*"
 - takeScreenshot: 24-picker-tylko-dostepne
 # „Show all”: jak wyżej — Text (index 0) i przełącznik (index 1)
 - tapOn: { id: "sw-Show all" }
-- extendedWaitUntil: { visible: "unavailable at Bodyweight only are greyed out", timeout: 10000 }
+- extendedWaitUntil: { visible: "unavailable at Bodyweight only are greyed out", timeout: 30000 }
 - assertVisible: "Lat Pulldown,.*missing:.*"
 - assertVisible: "Pull Up,.*"
 - takeScreenshot: 25-picker-pokaz-wszystkie

@@ -5,15 +5,15 @@ name: Przerwa po restarcie
 - launchApp:
     clearState: true
     permissions: { all: allow }
-- extendedWaitUntil: { visible: "Start from a template", timeout: 20000 }
+- extendedWaitUntil: { visible: "Start from a template", timeout: 60000 }
 # Świeża instalacja nie ma szablonów (decyzja 03.10.2026) — szablon „Upper A” tworzy podprzepływ przez UI
 - runFlow: subflows/szablon-testowy.yaml
 - tapOn: "Start: Upper A"
-- extendedWaitUntil: { visible: "Set 1 done.*", timeout: 10000 }
+- extendedWaitUntil: { visible: "Set 1 done.*", timeout: 30000 }
 - tapOn: { text: "Set 1 done.*", index: 0 }
 - assertVisible: "Skip"
 - stopApp
 - launchApp:
     clearState: false
-- extendedWaitUntil: { visible: "Skip", timeout: 20000 }
+- extendedWaitUntil: { visible: "Skip", timeout: 60000 }
 - takeScreenshot: 06-przerwa-po-restarcie

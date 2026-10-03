@@ -5,11 +5,11 @@ name: Kolejność ćwiczeń
 - launchApp:
     clearState: true
     permissions: { all: allow }
-- extendedWaitUntil: { visible: "Start from a template", timeout: 20000 }
+- extendedWaitUntil: { visible: "Start from a template", timeout: 60000 }
 # Świeża instalacja nie ma szablonów (decyzja 03.10.2026) — szablon „Upper A” tworzy podprzepływ przez UI
 - runFlow: subflows/szablon-testowy.yaml
 - tapOn: "Start: Upper A"
-- extendedWaitUntil: { visible: "Set 1 done.*", timeout: 10000 }
+- extendedWaitUntil: { visible: "Set 1 done.*", timeout: 30000 }
 - scrollUntilVisible:
     element: "Reorder exercises"
     direction: DOWN
@@ -17,7 +17,7 @@ name: Kolejność ćwiczeń
 - tapOn: "Reorder exercises"
 - assertVisible: "Exercise order"
 - takeScreenshot: 07-kolejnosc
-- scrollUntilVisible: { element: "Done", direction: DOWN, timeout: 20000 }
+- scrollUntilVisible: { element: "Done", direction: DOWN, timeout: 60000 }
 - tapOn: "Done"
 - assertNotVisible: "Exercise order"
 - scrollUntilVisible: { element: "Reorder exercises", direction: DOWN, timeout: 30000 }

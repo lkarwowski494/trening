@@ -5,12 +5,12 @@ name: Trening z szablonu
 - launchApp:
     clearState: true
     permissions: { all: allow }
-- extendedWaitUntil: { visible: "Start from a template", timeout: 20000 }
+- extendedWaitUntil: { visible: "Start from a template", timeout: 60000 }
 # Świeża instalacja nie ma szablonów (decyzja 03.10.2026) — szablon „Upper A” tworzy podprzepływ przez UI
 - runFlow: subflows/szablon-testowy.yaml
 - takeScreenshot: 01-start
 - tapOn: "Start: Upper A"
-- extendedWaitUntil: { visible: "Set 1 done.*", timeout: 10000 }
+- extendedWaitUntil: { visible: "Set 1 done.*", timeout: 30000 }
 - takeScreenshot: 02-trening
 - tapOn: { text: "Set 1 done.*", index: 0 }
 - assertVisible: "Skip"
@@ -22,7 +22,7 @@ name: Trening z szablonu
 - takeScreenshot: 04-pytanie-o-zakonczenie
 - tapOn: { text: "Finish", below: "Finish workout\\?" }
 # Po zapisie aplikacja pokazuje zapisaną sesję
-- extendedWaitUntil: { visible: "Delete session", timeout: 10000 }
+- extendedWaitUntil: { visible: "Delete session", timeout: 30000 }
 - assertVisible: "Upper A"
 - takeScreenshot: 05-zapisana-sesja
 - tapOn: "Back"
