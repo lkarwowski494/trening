@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
   s.summary        = 'Live Activity (ActivityKit) bridge for the rest timer'
   s.description    = 'Starts, updates and ends the rest-timer Live Activity.'
   s.author         = ''
-  s.homepage       = 'https://github.com/lukasz/trening'
+  s.homepage       = 'https://github.com/lkarwowski494/trening'
   s.platforms      = { :ios => '15.1' }
   s.source         = { git: '' }
   s.static_framework = true
