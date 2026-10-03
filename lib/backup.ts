@@ -36,7 +36,7 @@ const poolKey = (m: RegExpExecArray) => `${m[1]}-${(m[2] ?? '1').padStart(3, '0'
 /** Zapis bieżącego stanu (koperta jak eksport — z treningiem w toku; `extra` dokłada pola do koperty) do Backup/<prefix><data>[-N].json
  * i rotacja puli `re` do AUTO_KEEP najnowszych. Pliki spoza puli (inne kopie, pliki użytkownika) zostają.
  * Runda 83b (LOW 4):
- *  - rzuca TYLKO gdy kopii nie udało się zapisać; zapis jest atomowy (expo-file-system 18 i 19 „legacy” na iOS: String.write(toFile:atomically: true); nowe API File.write w 19 pisze NIEatomowo — przy przejściu na nie zachować tę gwarancję —
+ *  - rzuca TYLKO gdy kopii nie udało się zapisać; zapis jest atomowy (expo-file-system „legacy” na iOS: 18 i 19 — String.write(toFile:atomically: true), 57.0.7 — Data.write(options: .atomic), sprawdzone w źródle przy T-051; nowe API File.write w 19 i 57 pisze NIEatomowo — przy przejściu na nie zachować tę gwarancję —
  *    plik tymczasowy i podmiana), więc udany zapis = kompletny plik; błąd sprzątania puli po udanym zapisie nie przerywa działania;
  *  - po nieudanym zapisie usuwamy plik docelowy (na wypadek platformy bez zapisu atomowego), żeby w puli nie został ucięty JSON;
  *  - nazwa zajęta (druga kopia w tej samej sekundzie) → przyrostek -2, -3, … zamiast nadpisania. */
