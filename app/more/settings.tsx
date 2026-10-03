@@ -6,6 +6,7 @@ import { getState, useTick, save, resetAll, setModule, applyPrefs } from '@/lib/
 import { DEFAULT_REST } from '@/lib/seed';
 import { MODULES, MODULE_LABEL, MODULES_AVAILABLE, SCHEMA_VERSION } from '@/lib/seed';
 import * as timer from '@/lib/timer';
+import { safetyBackup } from '@/lib/backup';
 import * as health from '@/lib/health';
 import { t, type LangSetting } from '@/lib/i18n';
 import { type Unit } from '@/lib/units';
@@ -46,7 +47,7 @@ export default function SettingsScreen() {
       </Field>
       <Muted style={{ fontSize: 12, marginBottom: 16 }}>{t('Trening jest zawsze włączony. Pozostałe moduły pojawią się w kolejnych wersjach — przełącznik już czeka. Schemat danych: v{v}.', { v: SCHEMA_VERSION })}</Muted>
       <SectionTitle>{t('Dane w telefonie')}</SectionTitle>
-      <Btn title={t('Wyczyść wszystkie dane')} kind="danger" onPress={() => Alert.alert(t('Na pewno?'), t('Usunie ćwiczenia, szablony i całą historię. Bez cofania.'), [{ text: t('Nie') }, { text: t('Wyczyść'), style: 'destructive', onPress: () => { timer.resetAll().catch(() => {}); resetAll(); timer.scheduleWeighReminder().catch(() => {}); /* runda 75 (audyt T14): po wyczyszczeniu domyślne ustawienia — bez przypomnienia */ } }])} />
+      <Btn title={t('Wyczyść wszystkie dane')} kind="danger" onPress={() => Alert.alert(t('Na pewno?'), t('Usunie ćwiczenia, szablony i całą historię. Przedtem obecne dane zapiszą się jako kopia w Plikach: Trening → Backup (można ją zaimportować).'), [{ text: t('Nie') }, { text: t('Wyczyść'), style: 'destructive', onPress: () => { safetyBackup('reset').then(() => { timer.resetAll().catch(() => {}); resetAll(); timer.scheduleWeighReminder().catch(() => {}); /* runda 75 (audyt T14): po wyczyszczeniu domyślne ustawienia — bez przypomnienia */ }).catch((e: unknown) => Alert.alert(t('Dane nie zostały wyczyszczone'), e instanceof Error ? e.message : undefined)); /* Q-019: najpierw kopia bezpieczeństwa w Backup/ */ } }])} />
     </ScrollView></Screen>
   );
 }

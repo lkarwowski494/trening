@@ -55,7 +55,7 @@ export const EN: Record<string, string> = {
   'Eksport tworzy plik JSON z całą historią i szablonami — zapisz go w Plikach/iCloud albo wyślij sobie. Import przyjmuje ten sam format, także backup z wersji webowej.': 'Export creates a JSON file with your whole history and templates — save it to Files/iCloud or send it to yourself. Import accepts the same format, including backups from the web version.',
   'Eksportuj backup (plik JSON)': 'Export backup (JSON file)', 'Eksportuj historię do CSV (format Strong)': 'Export history to CSV (Strong format)',
   'CSV: ciężar w jednostce z ustawień ({u}), dystans w metrach.': 'CSV: weight in your unit setting ({u}), distance in metres.',
-  'Importuj backup': 'Import backup', 'Nadpisać dane?': 'Overwrite data?', 'Import zastąpi wszystkie obecne dane zawartością pliku.': 'Import will replace all current data with the file contents.',
+  'Importuj backup': 'Import backup', 'Nadpisać dane?': 'Overwrite data?', 'Import zastąpi wszystkie obecne dane zawartością pliku. Obecne dane (także trening w toku) zapiszą się najpierw jako kopia w Plikach: Trening → Backup.': 'Import will replace all current data with the file contents. Your current data (including a workout in progress) is first saved as a copy in Files: Trening → Backup.', 'Import przerwany': 'Import cancelled', 'Nie udało się zapisać kopii bezpieczeństwa w Plikach — dane nie zostały zmienione.': 'Could not save the safety copy in Files — your data was not changed.',
   'Importuj': 'Import', 'Zaimportowano': 'Imported', 'To nie wygląda na backup z tej apki': 'This does not look like a backup from this app',
   'Backup treningów': 'Workout backup', 'Eksport CSV': 'CSV export', 'do upadku': 'to failure',
   'Plik ma schemat {a}, a ta wersja obsługuje do {b}. Zaktualizuj aplikację.': 'The file has schema {a}; this version supports up to {b}. Update the app.',
@@ -92,7 +92,7 @@ export const EN: Record<string, string> = {
   'Włącz powiadomienia dla Trening w Ustawieniach iOS.': 'Enable notifications for Trening in iOS Settings.',
   'Timer odlicza w aplikacji, a na koniec przerwy przychodzi powiadomienie — także przy zablokowanym telefonie.': 'The timer counts down in the app and a notification arrives at the end of rest — even when the phone is locked.', 'wkrótce': 'coming soon',
   'Trening jest zawsze włączony. Pozostałe moduły pojawią się w kolejnych wersjach — przełącznik już czeka. Schemat danych: v{v}.': 'Training is always on. Other modules arrive in later versions — the switch is ready. Data schema: v{v}.',
-  'Wyczyść wszystkie dane': 'Erase all data', 'Na pewno?': 'Are you sure?', 'Usunie ćwiczenia, szablony i całą historię. Bez cofania.': 'This deletes exercises, templates and all history. It cannot be undone.', 'Wyczyść': 'Erase',
+  'Wyczyść wszystkie dane': 'Erase all data', 'Na pewno?': 'Are you sure?', 'Usunie ćwiczenia, szablony i całą historię. Przedtem obecne dane zapiszą się jako kopia w Plikach: Trening → Backup (można ją zaimportować).': 'This deletes exercises, templates and all history. Your current data is first saved as a copy in Files: Trening → Backup (you can import it).', 'Dane nie zostały wyczyszczone': 'Data was not erased', 'Wyczyść': 'Erase',
 
   /* szablon */
   'Nie ma takiego szablonu.': 'Template not found.', 'Duplikuj': 'Duplicate', 'Usunąć szablon?': 'Delete template?',

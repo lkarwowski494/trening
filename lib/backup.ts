@@ -25,18 +25,39 @@ export async function exportBackup(): Promise<void> {
 /** Runda 75 (T-012): automatyczna kopia JSON po każdym zapisanym treningu, w katalogu dokumentów aplikacji — widoczna w Plikach
  * (Na moim iPhonie → Trening → Backup) dzięki UIFileSharingEnabled. Trzymamy ostatnie AUTO_KEEP kopii; błąd zapisu nie przerywa niczego. */
 export const AUTO_DIR = 'Backup/'; export const AUTO_KEEP = 10;
+/** Kopie po treningu: trening-RRRR-MM-DD-GGMMSS.json (grupa 1 = data i godzina — nazwy sortują się chronologicznie). */
+const AUTO_RE = /^trening-(\d{4}-\d{2}-\d{2}-\d{6})\.json$/;
+/** Q-019: kopie bezpieczeństwa przed importem i „Wyczyść dane” — osobna pula (nie wypychają kopii po treningu i odwrotnie). */
+export const SAFETY_RE = /^trening-przed-(?:importem|czyszczeniem)-(\d{4}-\d{2}-\d{2}-\d{6})\.json$/;
+const stampOf = (d: Date) => `${localISODate(d)}-${String(d.getHours()).padStart(2, '0')}${String(d.getMinutes()).padStart(2, '0')}${String(d.getSeconds()).padStart(2, '0')}`;
+/** Zapis bieżącego stanu (koperta jak eksport — z treningiem w toku) do Backup/<prefix><data>.json i rotacja puli `re` do AUTO_KEEP najnowszych.
+ * Rzuca przy błędzie — wywołujący decyduje, czy to przerywa działanie. Pliki spoza puli (inne kopie, pliki użytkownika) zostają. */
+async function writeKopia(prefix: string, re: RegExp): Promise<string> {
+  if (!FileSystem.documentDirectory) throw new Error('no document directory');
+  const dir = FileSystem.documentDirectory + AUTO_DIR; const info = await FileSystem.getInfoAsync(dir);
+  if (!info.exists) await FileSystem.makeDirectoryAsync(dir, { intermediates: true });
+  const name = `${prefix}${stampOf(new Date())}.json`;
+  await FileSystem.writeAsStringAsync(dir + name, JSON.stringify(buildBackup()));
+  const old = (await FileSystem.readDirectoryAsync(dir)).map(f => [f, re.exec(f)?.[1]] as const).filter((x): x is readonly [string, string] => !!x[1])
+    .sort((a, b) => (a[1] < b[1] ? 1 : a[1] > b[1] ? -1 : 0)).slice(AUTO_KEEP);
+  for (const [f] of old) await FileSystem.deleteAsync(dir + f, { idempotent: true });
+  return dir + name;
+}
 export async function autoBackup(): Promise<string | null> {
   if (!getState().settings.autoBackup || !FileSystem.documentDirectory) return null;
-  try {
-    const dir = FileSystem.documentDirectory + AUTO_DIR; const info = await FileSystem.getInfoAsync(dir);
-    if (!info.exists) await FileSystem.makeDirectoryAsync(dir, { intermediates: true });
-    const d = new Date(); const name = `trening-${localISODate(d)}-${String(d.getHours()).padStart(2, '0')}${String(d.getMinutes()).padStart(2, '0')}${String(d.getSeconds()).padStart(2, '0')}.json`;
-    await FileSystem.writeAsStringAsync(dir + name, JSON.stringify(buildBackup()));
-    const old = (await FileSystem.readDirectoryAsync(dir)).filter(f => /^trening-\d{4}-\d{2}-\d{2}-\d{6}\.json$/.test(f)) /* tylko nasze kopie — plik dorzucony przez użytkownika zostaje */.sort().reverse().slice(AUTO_KEEP); /* nazwy z datą sortują się chronologicznie */
-    for (const f of old) await FileSystem.deleteAsync(dir + f, { idempotent: true });
-    return dir + name;
-  } catch { return null; }
+  try { return await writeKopia('trening-', AUTO_RE); } catch { return null; }
 }
+/**
+ * Q-019: kopia bezpieczeństwa tuż przed importem (zanim plik zastąpi dane) i przed „Wyczyść wszystkie dane” — ZAWSZE, także przy wyłączonej
+ * kopii automatycznej (ustawienie dotyczy kopii po treningu; tu chodzi o cofnięcie pomyłki). Ten sam katalog Backup/ i format co kopia
+ * po treningu (da się ją zaimportować), osobna pula AUTO_KEEP najnowszych. Nieudany zapis rzuca błąd z `safety: true` — import i czyszczenie
+ * są wtedy przerywane (dane zostają bez zmian).
+ */
+export async function safetyBackup(kind: 'import' | 'reset'): Promise<string> {
+  try { return await writeKopia(kind === 'import' ? 'trening-przed-importem-' : 'trening-przed-czyszczeniem-', SAFETY_RE); }
+  catch { throw Object.assign(new Error(t('Nie udało się zapisać kopii bezpieczeństwa w Plikach — dane nie zostały zmienione.')), { safety: true }); }
+}
+export const isSafetyError = (e: unknown): e is Error => e instanceof Error && (e as Error & { safety?: boolean }).safety === true;
 /** Po zapisaniu treningu (przycisk „Zakończ”, pytanie o porzucony trening, cichy zapis po 6 h): Apple Health i kopia automatyczna — jedno miejsce. */
 export async function onWorkoutSaved(w: Workout): Promise<void> { await syncAfterFinish(w).catch(() => {}); await autoBackup(); /* po Zdrowiu — kopia ma już healthUUID (audyt T14) */ }
 /** Docs/12: po zapisaniu edycji treningu albo treningu wstecz — ta sama kopia automatyczna co po „Zakończ”. Apple Health świadomie
@@ -102,7 +123,8 @@ export async function importBackup(): Promise<boolean> {
   const res = await DocumentPicker.getDocumentAsync({ type: ['application/json', 'text/plain', '*/*'], copyToCacheDirectory: true });
   if (res.canceled || !res.assets?.[0]) return false;
   const txt = await FileSystem.readAsStringAsync(res.assets[0].uri);
-  replaceState(parseBackup(txt)); await flush(); clearRecovery(); await recheckHealthAfterImport(); await scheduleWeighReminder(); /* runda 75: ustawienie z kopii */
+  const next = parseBackup(txt); await safetyBackup('import'); /* Q-019: dopiero gdy plik jest poprawny — przed zastąpieniem danych */
+  replaceState(next); await flush(); clearRecovery(); await recheckHealthAfterImport(); await scheduleWeighReminder(); /* runda 75: ustawienie z kopii */
   return true;
 }
 

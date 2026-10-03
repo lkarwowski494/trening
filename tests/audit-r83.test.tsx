@@ -1,7 +1,9 @@
 /* Runda 83 — backlog po pierwszym teście na iPhonie (docs/09):
  *  - T-053: przypomnienie o podpisie dopasowane do drogi instalacji (ad hoc przez EAS → nowy build w GitHubie; darmowe Apple ID → Sideloadly);
  *  - T-055: martwy kod asysty kg gumy usunięty (nominalKg, pairAssist, applyBandAssist); stare kopie z nominalKg dalej się importują, pole odpada;
- *  - Q-018: po zmianie sprzętu ćwiczenia historia, rekordy i statystyki czytają ciężar tak jak CSV (T4b) — jedno źródło store.loadValue. */
+ *  - Q-018: po zmianie sprzętu ćwiczenia historia, rekordy i statystyki czytają ciężar tak jak CSV (T4b) — jedno źródło store.loadValue;
+ *  - Q-019: kopia bezpieczeństwa w Backup/ tuż przed importem i przed „Wyczyść wszystkie dane” — zawsze (także przy wyłączonej kopii automatycznej),
+ *    osobna pula 10 najnowszych (nie wypycha kopii po treningu); nieudany zapis kopii przerywa import/czyszczenie. */
 import * as store from '@/lib/store';
 import * as timer from '@/lib/timer';
 import * as signing from '@/lib/signing';
@@ -150,5 +152,65 @@ describe('Q-018 zmiana sprzętu ćwiczenia: historia i rekordy bez 0 kg', () => 
   test('bez zmiany sprzętu nic się nie zmienia: wpisane 0 nie bierze wartości z drugiego pola', async () => {
     await fresh(); const x = ex('Pull Up'); const s = { weight: 50, addKg: 0 } as any; expect(store.loadValue(x, s)).toBe(0);
     const bs = ex('Back Squat'); expect(store.loadValue(bs, { weight: 0, addKg: 15 } as any)).toBe(0); expect(store.loadValue(bs, { weight: '', addKg: '' } as any)).toBe(0);
+  });
+});
+
+describe('Q-019 kopia bezpieczeństwa przed importem i „Wyczyść dane”', () => {
+  const FS = require('expo-file-system'); const DP = require('expo-document-picker');
+  const AUTO = Array.from({ length: 10 }, (_, i) => `trening-2026-09-${String(10 + i).padStart(2, '0')}-080000.json`);
+  const SAFE = Array.from({ length: 10 }, (_, i) => `trening-przed-importem-2026-08-${String(10 + i).padStart(2, '0')}-070000.json`);
+  const setupFs = (files: string[]) => {
+    /* katalog jak prawdziwy: zawiera też pliki zapisane w tym teście */
+    FS.readDirectoryAsync.mockImplementation(async () => [...files, ...(FS.writeAsStringAsync as jest.Mock).mock.calls.map((c: any) => String(c[0]).split('/').pop())]); FS.deleteAsync.mockClear(); FS.writeAsStringAsync.mockClear();
+    FS.writeAsStringAsync.mockImplementation(async () => {});
+  };
+  afterEach(() => { FS.readDirectoryAsync.mockImplementation(async () => []); FS.writeAsStringAsync.mockImplementation(async () => {}); });
+  const writes = (re: RegExp) => (FS.writeAsStringAsync as jest.Mock).mock.calls.filter((c: any) => re.test(c[0]));
+  /** Trening w toku (Back Squat 100 × 5 odhaczone) przy wyłączonej kopii automatycznej. */
+  async function inProgress() {
+    await act(async () => { store.getState().settings.autoBackup = false; store.startEmpty(); store.addExerciseToActive(ex('Back Squat')); const a = store.getState().active!; Object.assign(a.exercises[0].sets[0], { weight: 100, reps: 5 }); store.save(a); store.toggleDone(0, 0); }); await flushAll(10);
+  }
+  async function importFile(txt: string) {
+    FS.readAsStringAsync.mockImplementationOnce(async () => txt); DP.getDocumentAsync.mockImplementationOnce(async () => ({ canceled: false, assets: [{ uri: 'file:///inny.json' }] }));
+    await go('/more/backup'); await flushAll(10);
+    await tap(screen.getByText('Importuj backup')); await act(async () => { pressAlert('Nadpisać dane?', 'Importuj'); }); await flushAll(50); await flushAll(50);
+  }
+  test('import: przed zastąpieniem danych kopia z treningiem w toku (mimo wyłączonej kopii automatycznej); kopie po treningu nietknięte, rotacja tylko w swojej puli', async () => {
+    await fresh(); const other = JSON.stringify(backup.buildBackup()); /* poprawny plik: świeże dane bez treningu */
+    await renderApp(); await inProgress(); setupFs([...AUTO, ...SAFE, 'moj-plik.json']);
+    await importFile(other);
+    expect(store.getState().active).toBeNull(); /* import się wykonał */
+    const w = writes(/\/Backup\/trening-przed-importem-\d{4}-\d{2}-\d{2}-\d{6}\.json$/); expect(w).toHaveLength(1);
+    const kopia = JSON.parse(w[0][1]); expect(kopia.format).toBe('trening-backup'); expect(kopia.state.active.exercises[0].sets[0]).toMatchObject({ weight: 100, reps: 5, done: true });
+    expect(writes(/\/Backup\/trening-\d{4}/)).toHaveLength(0); /* kopia automatyczna wyłączona — tylko kopia bezpieczeństwa */
+    const del = (FS.deleteAsync as jest.Mock).mock.calls.map((c: any) => c[0].split('/').pop()); expect(del).toEqual([SAFE[0]]); /* 10 + nowa → najstarsza z puli kopii bezpieczeństwa */
+    expect(backup.parseBackup(w[0][1]).active!.exercises[0].sets[0].weight).toBe(100); /* kopię da się zaimportować */
+  });
+  test('kopia po treningu nie wypycha kopii bezpieczeństwa (osobne pule)', async () => {
+    await fresh(); setupFs([...AUTO, 'trening-2026-09-25-080000.json', ...SAFE]);
+    await backup.autoBackup(); const del = (FS.deleteAsync as jest.Mock).mock.calls.map((c: any) => c[0].split('/').pop());
+    expect(del.length).toBeGreaterThan(0); expect(del.every((f: string) => /^trening-\d{4}/.test(f))).toBe(true);
+  });
+  test('zły plik: nic nie jest zastępowane i nie powstaje kopia; nieudany zapis kopii przerywa import — dane bez zmian', async () => {
+    await renderApp(); await inProgress(); setupFs([]);
+    await importFile('{"to": "nie backup"}');
+    expect(writes(/przed-importem/)).toHaveLength(0); expect(store.getState().active).not.toBeNull();
+    await fresh(); const other = JSON.stringify(backup.buildBackup());
+    await renderApp(); await inProgress(); setupFs([]); FS.writeAsStringAsync.mockImplementation(async () => { throw new Error('dysk pełny'); });
+    await importFile(other);
+    expect(store.getState().active).not.toBeNull(); expect(store.getState().active!.exercises[0].sets[0].weight).toBe(100);
+    expect(global.__alerts.some(a => a.title === 'Import przerwany' && /kopii bezpieczeństwa/.test(a.msg ?? ''))).toBe(true);
+  });
+  test('„Wyczyść wszystkie dane”: najpierw kopia (trening w toku, historia), potem czyszczenie; nieudana kopia → dane zostają', async () => {
+    await renderApp(); addWorkout(Date.now() - 86400e3, [['Back Squat', [{ weight: 90, reps: 5 }]]]); await inProgress(); setupFs([...AUTO]);
+    await go('/more/settings'); await flushAll(10);
+    await tap(screen.getByText('Wyczyść wszystkie dane')); await act(async () => { pressAlert('Na pewno?', 'Wyczyść'); }); await flushAll(50);
+    const w = writes(/\/Backup\/trening-przed-czyszczeniem-\d{4}-\d{2}-\d{2}-\d{6}\.json$/); expect(w).toHaveLength(1);
+    const k = JSON.parse(w[0][1]).state; expect(k.workouts).toHaveLength(1); expect(k.active.exercises[0].sets[0].weight).toBe(100);
+    expect(store.getState().workouts).toHaveLength(0); expect(store.getState().active).toBeNull(); expect(FS.deleteAsync).not.toHaveBeenCalled();
+    await renderApp(); addWorkout(Date.now() - 86400e3, [['Back Squat', [{ weight: 90, reps: 5 }]]]); setupFs([]); FS.writeAsStringAsync.mockImplementation(async () => { throw new Error('dysk pełny'); });
+    await go('/more/settings'); await flushAll(10);
+    await tap(screen.getByText('Wyczyść wszystkie dane')); await act(async () => { pressAlert('Na pewno?', 'Wyczyść'); }); await flushAll(50);
+    expect(store.getState().workouts).toHaveLength(1); expect(global.__alerts.some(a => a.title === 'Dane nie zostały wyczyszczone')).toBe(true);
   });
 });

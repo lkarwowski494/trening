@@ -20,6 +20,8 @@ asystę w kg (wybór gumy wpisuje −kg). Od rundy 75 (schemat 13) masa ciała n
 powtórzeń bez asysty, a e1RM i objętość liczą się tylko z dociążenia.
 Od rundy 75: podpowiedź progresji (↑ w nagłówku ćwiczenia), kopia automatyczna po treningu (Pliki → Na moim iPhonie →
 Trening → Backup), przypomnienie o wadze w poniedziałek, pasek postępu sesji; baza w Library/SQLite (poza Plikami).
+Od 0.9.0 (Q-019): przed importem i przed „Wyczyść wszystkie dane” zawsze kopia bezpieczeństwa w tym samym katalogu
+(`trening-przed-importem-…`, `trening-przed-czyszczeniem-…`, osobno 10 najnowszych) — pomyłkę cofa import tej kopii.
 Od 0.6.0: opcjonalny zapis zakończonych treningów do Apple Health (Ustawienia; `lib/health.ts`,
 @kingstinct/react-native-healthkit 8.x z config pluginem). Działa tylko w buildzie IPA / dev buildzie (bez modułu
 natywnego, np. w testach, przełącznik pokazuje komunikat). Uwaga przy Sideloadly: HealthKit wymaga entitlementu
