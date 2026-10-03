@@ -11,7 +11,7 @@ import { locationLabel } from '@/lib/locations';
 import { hasTime, hasReps, hasWeight, hasDistance, SET_KIND_LABEL, type WExercise, type WSet } from '@/lib/seed';
 import { useTheme } from '@/lib/theme';
 import { t, tp, exName } from '@/lib/i18n';
-import { wu, wField, wIn, fmtW } from '@/lib/units';
+import { wu, wField, wInKeep, fmtW } from '@/lib/units';
 
 /*
  * Docs/12: edycja zakończonego treningu i trening wstecz — wspólny edytor szkicu (lib/edit.ts). Wygląd jak szczegóły sesji,
@@ -114,7 +114,7 @@ function EditBlock({ d, e, ei, labels }: { d: Draft; e: WExercise; ei: number; l
               <Pressable onPress={() => setMenu(set, si)} hitSlop={8} accessibilityRole="button" accessibilityHint={hint} accessibilityLabel={t('Seria {n}, typ: {k}. Tapnij, by zmienić typ lub dodać notatkę.', { n: lbl, k: t(SET_KIND_LABEL[kind]) })} style={{ width: 32, minHeight: 44, justifyContent: 'center' }}>
                 <Text maxFontSizeMultiplier={1.3} style={{ color: kind !== 'normal' ? th.band : th.muted, fontSize: 14, fontWeight: kind !== 'normal' ? '700' : '400' }}>{lbl}{set.note ? '•' : ''}</Text>
               </Pressable>
-              {hasWeight(m) ? <View style={s.cell}><NumInput weightTol decimal allowNegative={bw} value={wField(bw ? set.addKg : set.weight)} onNum={v => { if (bw) set.addKg = wIn(v); else set.weight = v === '' ? '' : wIn(Math.max(0, v)); touchDraft(); }} placeholder={bw ? '±0' : wu()} accessibilityLabel={ex ? loadLabel(ex, impl) : t('ciężar')} accessibilityHint={hint} /></View> : null}
+              {hasWeight(m) ? <View style={s.cell}><NumInput weightTol decimal allowNegative={bw} value={wField(bw ? set.addKg : set.weight)} stored={bw ? set.addKg : set.weight} onNum={(v, keep) => { if (bw) set.addKg = wInKeep(v, keep); else set.weight = v === '' ? '' : wInKeep(Math.max(0, v), keep); /* Q-021 */ touchDraft(); }} placeholder={bw ? '±0' : wu()} accessibilityLabel={ex ? loadLabel(ex, impl) : t('ciężar')} accessibilityHint={hint} /></View> : null}
               {hasReps(m) ? <View style={s.cell}><NumInput value={set.reps} onNum={v => { set.reps = v === '' ? '' : Math.min(1000, Math.max(0, Math.floor(v))); touchDraft(); }} placeholder="0" accessibilityLabel={t('Powtórzenia')} accessibilityHint={hint} /></View> : null}
               {hasDistance(m) ? <View style={s.cell}><NumInput value={set.distanceM} onNum={v => { set.distanceM = v === '' ? '' : Math.max(0, Math.round(v)); touchDraft(); }} placeholder="m" accessibilityLabel={t('dystans')} accessibilityHint={hint} /></View> : null}
               {hasTime(m) ? <View style={s.cell}><NumInput value={set.durationSec} onNum={v => { set.durationSec = v === '' ? '' : Math.min(86400, Math.max(0, Math.round(v))); touchDraft(); }} placeholder="s" accessibilityLabel={t('czas')} accessibilityHint={hint} /></View> : null}

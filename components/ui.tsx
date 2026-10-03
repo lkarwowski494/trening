@@ -70,8 +70,10 @@ const parseNum = (v: string): number | '' | null => { const x = parseRaw(v); ret
  * Do 0.7.1 pole było w pełni sterowane liczbą, więc „12,” zamieniało się od razu w „12” i nie dało się wpisać 12,5 kg
  * (T-039). Teraz przecinek/kropka zostają w trakcie pisania, a śmieci (np. samo „.”) nie trafiają do danych.
  */
-export function NumInput(props: Omit<TextInputProps, 'value'> & { value: number | '' | undefined; onNum: (v: number | '') => void; decimal?: boolean; allowNegative?: boolean; /** pole ciężaru: w lb wyświetlamy 0,1, więc różnica < 0,06 to ta sama wartość */ weightTol?: boolean }) {
-  const { value, onNum, decimal, allowNegative, weightTol, ...rest } = props;
+export function NumInput(props: Omit<TextInputProps, 'value'> & { value: number | '' | undefined; onNum: (v: number | '', keep?: number | '') => void; decimal?: boolean; allowNegative?: boolean; /** pole ciężaru: w lb wyświetlamy 0,1, więc różnica < 0,06 to ta sama wartość */ weightTol?: boolean; /** Q-021: zapisana wartość (kg) za wyświetlaną `value` — gdy wpis kończy się liczbą, którą pole pokazywało na początku edycji, onNum dostaje ją jako `keep` (units.wInKeep) */ stored?: number | '' }) {
+  const { value, onNum, decimal, allowNegative, weightTol, stored, ...rest } = props;
+  // Q-021: stan na początku edycji (pierwsza zmiana tekstu — także bez zdarzenia focus); koniec edycji go zeruje.
+  const start = React.useRef<{ shown: number | '' | undefined; stored: number | '' | undefined } | null>(null);
   // Po polsku przecinek dziesiętny także w wartościach wstawionych przez apkę (np. „12,5” z szablonu) — audyt r1.
   const raw = value === '' || value == null ? '' : /e/i.test(String(value)) ? String(Number(Number(value).toFixed(6))) : String(value); /* runda 55: bez zapisu wykładniczego */ const ext = lang() === 'pl' ? raw.replace('.', ',') : raw;
   const [txt, setTxt] = React.useState(ext);
@@ -85,7 +87,7 @@ export function NumInput(props: Omit<TextInputProps, 'value'> & { value: number 
   // Zmiana języka przeformatowuje separator (12,5 ↔ 12.5); po zakończeniu edycji pole pokazuje to, co naprawdę zapisano
   // (np. wartość przyciętą do limitu) — runda 2.
   const L = lang(); React.useEffect(() => { setTxt(ext); }, [L]); // eslint-disable-line react-hooks/exhaustive-deps
-  return <Input center keyboardType={allowNegative ? 'numbers-and-punctuation' : decimal ? 'decimal-pad' : 'number-pad'} value={txt} onChangeText={v => { setTxt(v); const p = parseNum(v); if (p !== null) onNum(p); }} onEndEditing={() => setTxt(ext)} selectTextOnFocus {...rest} />;
+  return <Input center keyboardType={allowNegative ? 'numbers-and-punctuation' : decimal ? 'decimal-pad' : 'number-pad'} value={txt} onChangeText={v => { setTxt(v); if (!start.current) start.current = { shown: value, stored }; const p = parseNum(v); if (p !== null) onNum(p, stored !== undefined && typeof p === 'number' && p === start.current.shown ? start.current.stored : undefined); }} onEndEditing={() => { start.current = null; setTxt(ext); }} selectTextOnFocus {...rest} />;
 }
 /** Chip wyboru. `toggle` = przełącznik ustawienia: VoiceOver czyta nazwę pola (z Field) jako etykietę i stan włączenia (runda 6). */
 export function Chip({ label, on, onPress, toggle, a11yLabel, a11yHint, disabled }: { label: string; on: boolean; onPress: () => void; toggle?: boolean; a11yLabel?: string; a11yHint?: string; disabled?: boolean }) {

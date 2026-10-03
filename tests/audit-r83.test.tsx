@@ -3,7 +3,8 @@
  *  - T-055: martwy kod asysty kg gumy usunięty (nominalKg, pairAssist, applyBandAssist); stare kopie z nominalKg dalej się importują, pole odpada;
  *  - Q-018: po zmianie sprzętu ćwiczenia historia, rekordy i statystyki czytają ciężar tak jak CSV (T4b) — jedno źródło store.loadValue;
  *  - Q-019: kopia bezpieczeństwa w Backup/ tuż przed importem i przed „Wyczyść wszystkie dane” — zawsze (także przy wyłączonej kopii automatycznej),
- *    osobna pula 10 najnowszych (nie wypycha kopii po treningu); nieudany zapis kopii przerywa import/czyszczenie. */
+ *    osobna pula 10 najnowszych (nie wypycha kopii po treningu); nieudany zapis kopii przerywa import/czyszczenie;
+ *  - Q-021: lb — ponowny wpis liczby, którą pole już pokazuje (61,23 kg = 135,0 lb), nie zmienia zapisanych kg i nie przenosi się na dalsze serie. */
 import * as store from '@/lib/store';
 import * as timer from '@/lib/timer';
 import * as signing from '@/lib/signing';
@@ -11,7 +12,8 @@ import * as stats from '@/lib/stats';
 import * as backup from '@/lib/backup';
 import { SCHEMA_VERSION } from '@/lib/seed';
 import { fresh, ex, seedWithDemo, pressAlert, addWorkout } from './helpers';
-import { renderApp, flushAll, screen, go, tap, act } from './app';
+import { renderApp, flushAll, screen, go, tap, act, fireEvent } from './app';
+import * as units from '@/lib/units';
 
 jest.setTimeout(60000);
 afterEach(async () => { try { store.getState(); } catch { return; } await timer.stop(); await timer.stopSet(); });
@@ -212,5 +214,46 @@ describe('Q-019 kopia bezpieczeństwa przed importem i „Wyczyść dane”', ()
     await go('/more/settings'); await flushAll(10);
     await tap(screen.getByText('Wyczyść wszystkie dane')); await act(async () => { pressAlert('Na pewno?', 'Wyczyść'); }); await flushAll(50);
     expect(store.getState().workouts).toHaveLength(1); expect(global.__alerts.some(a => a.title === 'Dane nie zostały wyczyszczone')).toBe(true);
+  });
+});
+
+describe('Q-021 lb: ponowny wpis tej samej liczby nie zmienia kg', () => {
+  afterEach(() => units.applyUnit('kg'));
+  /** Szablon: Back Squat 3 serie, start 61,23 kg (poza siatką funtów; = 135,0 lb na ekranie); jednostka lb; trening w toku. */
+  async function start(unit: 'kg' | 'lb' = 'lb') {
+    await renderApp(); const tpl = store.newTemplate();
+    tpl.items.push({ id: 'q21', exerciseId: ex('Back Squat').id, sets: 3, repMin: 5, repMax: 5, restSec: 60, startWeight: 61.23, targetSec: '', groupId: null });
+    await act(async () => { store.getState().settings.unit = unit; store.applyPrefs(); store.save(); store.startFromTemplate(tpl); }); await flushAll(10);
+    const sets = () => store.getState().active!.exercises[0].sets; expect(sets().map(x => x.weight)).toEqual([61.23, 61.23, 61.23]);
+    return { sets, field: () => screen.getAllByLabelText(unit)[0] };
+  }
+  test('wpis „135” (całość i znak po znaku) zostawia 61,23 kg; po ✓ dalsze serie bez zmian', async () => {
+    const { sets, field } = await start(); expect(units.wOut(61.23)).toBe(135);
+    await act(async () => { fireEvent.changeText(field(), '135'); }); await flushAll(5); expect(sets()[0].weight).toBe(61.23);
+    for (const txt of ['1', '13', '135']) await act(async () => { fireEvent.changeText(field(), txt); }); await flushAll(5);
+    expect(sets()[0].weight).toBe(61.23); /* przy pisaniu po znaku kg zmieniają się po drodze, ale końcowa liczba = ta sprzed edycji */
+    await act(async () => { fireEvent(field(), 'endEditing'); sets()[0].reps = 5; store.toggleDone(0, 0); }); await flushAll(5);
+    expect(sets().map(x => x.weight)).toEqual([61.23, 61.23, 61.23]);
+  });
+  test('inna liczba nadal zmienia kg (przyciąganie do „okrągłych” kg) i przenosi się na nieruszone serie', async () => {
+    const { sets, field } = await start();
+    await act(async () => { fireEvent.changeText(field(), '140'); }); await flushAll(5); expect(sets()[0].weight).toBe(units.wIn(140));
+    await act(async () => { fireEvent(field(), 'endEditing'); sets()[0].reps = 5; store.toggleDone(0, 0); }); await flushAll(5);
+    expect(sets().map(x => x.weight)).toEqual([units.wIn(140), units.wIn(140), units.wIn(140)]);
+    /* nowa edycja zaczyna się od nowej wartości: powrót do „135” = zwykły wpis (61,25), bo pole pokazywało 140 */
+    await act(async () => { fireEvent.changeText(screen.getAllByLabelText('lb')[1], '135'); }); await flushAll(5); expect(sets()[1].weight).toBe(units.wIn(135));
+  });
+  test('edytor szablonu i poranna waga: ta sama zasada (start 61,23 kg = 135 lb, waga 81,43 kg = 179,5 lb)', async () => {
+    await renderApp(); const tpl = store.newTemplate();
+    tpl.items.push({ id: 'q21', exerciseId: ex('Back Squat').id, sets: 3, repMin: 5, repMax: 5, restSec: 60, startWeight: 61.23, targetSec: '', groupId: null });
+    await act(async () => { store.getState().settings.unit = 'lb'; store.applyPrefs(); store.save(tpl); }); await go('/template/' + tpl.id); await flushAll(10);
+    await act(async () => { fireEvent.changeText(screen.getByDisplayValue('135'), '135'); }); await flushAll(5); expect(tpl.items[0].startWeight).toBe(61.23);
+    await act(async () => { const m = store.todayMorning(); m.weight = 81.43; store.save(m); }); await go('/more/morning'); await flushAll(10);
+    expect(units.wOut(81.43)).toBe(179.5); expect(units.wIn(179.5)).not.toBe(81.43); /* bez poprawki ponowny wpis zmieniłby wagę */
+    await act(async () => { fireEvent.changeText(screen.getByDisplayValue('179,5'), '179,5'); }); await flushAll(5); expect(store.todayMorning().weight).toBe(81.43);
+  });
+  test('kg: wpis różniący się o 0,01 to nowa wartość (bez tolerancji)', async () => {
+    const { sets, field } = await start('kg');
+    await act(async () => { fireEvent.changeText(field(), '61,24'); }); await flushAll(5); expect(sets()[0].weight).toBe(61.24);
   });
 });

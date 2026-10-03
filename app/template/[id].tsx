@@ -8,7 +8,7 @@ import { getState, useTick, exById, save, dupTemplate, deleteTemplate, groupLabe
 import { useTheme } from '@/lib/theme';
 import { hasTime, hasReps, hasWeight } from '@/lib/seed';
 import { t, exName } from '@/lib/i18n';
-import { wu, wField, wIn } from '@/lib/units';
+import { wu, wField, wInKeep } from '@/lib/units';
 
 /*
  * Edycja szablonu. Audyt 0.8.1: wiersze kluczowane po id pozycji (przesuwanie nie przenosi wpisywanego pola na inny
@@ -58,7 +58,7 @@ export default function TemplateEdit() {
             <Col label={t('do')}><NumInput value={it.repMax ?? ''} onNum={v => { it.repMax = int(v, 1, 100); save(tpl); }} /></Col></> : null}
             {hasTime(m) ? <Col label={t('cel s')}><NumInput value={it.targetSec} onNum={v => { it.targetSec = v === '' ? '' : Math.min(86400, Math.max(0, Math.round(v))); save(tpl); }} placeholder={t('np. 60')} /></Col> : null}
             <Col label={t('przerwa s')}><NumInput value={it.restSec ?? ''} onNum={v => { it.restSec = int(v, 0, 1800); save(tpl); }} placeholder={String(restFor(ex))} /></Col>
-            {hasWeight(m) ? <Col label={t('start {u}', { u: ex ? loadLabelShort(ex, impl) : wu() }) /* runda 63/71: jak nagłówek kolumny w treningu (kg/hant.; MEDIUM 2: stacja — kg/str.) */} a11y={t('start {u}', { u: ex ? loadLabel(ex, impl) : wu() })}><NumInput weightTol decimal allowNegative={!!ex && isBW(ex)} value={wField(it.startWeight)} onNum={v => { it.startWeight = v === '' ? '' : wIn(ex && isBW(ex) ? v : Math.max(0, v)); save(tpl); }} /></Col> : null}
+            {hasWeight(m) ? <Col label={t('start {u}', { u: ex ? loadLabelShort(ex, impl) : wu() }) /* runda 63/71: jak nagłówek kolumny w treningu (kg/hant.; MEDIUM 2: stacja — kg/str.) */} a11y={t('start {u}', { u: ex ? loadLabel(ex, impl) : wu() })}><NumInput weightTol decimal allowNegative={!!ex && isBW(ex)} value={wField(it.startWeight)} stored={it.startWeight} onNum={(v, keep) => { it.startWeight = v === '' ? '' : wInKeep(ex && isBW(ex) ? v : Math.max(0, v), keep); /* Q-021 */ save(tpl); }} /></Col> : null}
           </View></FieldHint.Provider>
           {hasReps(m) && it.repMin != null && it.repMax != null && it.repMax < it.repMin ? <Muted style={{ fontSize: 12, color: th.danger }}>{t('„do” jest mniejsze niż „od” — zakres pokaże się jako {n}+', { n: it.repMin })}</Muted> : null}
         </View>); })}

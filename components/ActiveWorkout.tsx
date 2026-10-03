@@ -12,7 +12,7 @@ import { prMap, workoutPRs } from '@/lib/stats';
 import { onWorkoutSaved } from '@/lib/backup';
 import { hasTime, hasReps, hasWeight, hasDistance, SET_KIND_MARK, SET_KIND_LABEL, type WExercise, type WSet, type Workout } from '@/lib/seed';
 import { t as tr, tp, exName, lang } from '@/lib/i18n';
-import { wu, wField, wIn, fmtNum, fmtW } from '@/lib/units';
+import { wu, wField, wInKeep, fmtNum, fmtW } from '@/lib/units';
 
 /*
  * Trening w toku. Audyt 0.8.1:
@@ -292,7 +292,7 @@ function ExerciseBlock({ w, e, ei, onDone, onStartSet, labels, prs }: { w: Worko
                 <Text maxFontSizeMultiplier={1.3} style={{ color: kind !== 'normal' ? t.band : t.muted, fontSize: 14, fontWeight: kind !== 'normal' ? '700' : '400' }}>{lbl}{set.note ? '•' : ''}</Text>
               </Pressable>
               <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', gap: 4 }}>{prevInline ? <Text maxFontSizeMultiplier={1.3} numberOfLines={1} style={{ flexShrink: 1, color: t.muted, fontSize: 13 }}>{prevTxt}</Text> : null}{pr ? <Text maxFontSizeMultiplier={1.3} style={{ color: t.band, fontSize: 11, fontWeight: '700' }}>PR</Text> : null}</View>
-              {hasWeight(m) ? <View style={{ width: W.w }}><NumInput weightTol decimal allowNegative={bw} value={wField(bw ? set.addKg : set.weight)} onNum={v => { if (bw) set.addKg = wIn(v); else set.weight = v === '' ? '' : wIn(Math.max(0, v)); /* runda 54: ciężar nieujemny jak po wczytaniu */ tick(); }} placeholder={bw ? '±0' : wu()} style={doneStyle(set)} accessibilityLabel={loadLabel(ex, impl)} accessibilityHint={hint} /></View> : null}
+              {hasWeight(m) ? <View style={{ width: W.w }}><NumInput weightTol decimal allowNegative={bw} value={wField(bw ? set.addKg : set.weight)} stored={bw ? set.addKg : set.weight} onNum={(v, keep) => { if (bw) set.addKg = wInKeep(v, keep); else set.weight = v === '' ? '' : wInKeep(Math.max(0, v), keep); /* runda 54: ciężar nieujemny jak po wczytaniu; Q-021: ta sama liczba co na ekranie = te same kg */ tick(); }} placeholder={bw ? '±0' : wu()} style={doneStyle(set)} accessibilityLabel={loadLabel(ex, impl)} accessibilityHint={hint} /></View> : null}
               {hasReps(m) ? <View style={{ width: W.reps }}><NumInput value={set.reps} onNum={v => { set.reps = v === '' ? '' : Math.max(0, Math.floor(v)); tick(); }} placeholder={e.repMin == null ? 'max' : reps(e.repMin, e.repMax)} style={doneStyle(set)} accessibilityLabel={tr('Powtórzenia')} accessibilityHint={hint} /></View> : null}
               {hasDistance(m) ? <View style={{ width: W.dist }}><NumInput value={set.distanceM} onNum={v => { set.distanceM = v === '' ? '' : Math.max(0, Math.round(v)); /* runda 55/56: pełne metry jak klawiatura */ tick(); }} placeholder="m" style={doneStyle(set)} accessibilityLabel={tr('dystans')} accessibilityHint={hint} /></View> : null}
               {hasTime(m) ? <View style={{ width: W.time }}><NumInput value={set.durationSec} onNum={v => { set.durationSec = v === '' ? '' : Math.min(86400, Math.max(0, Math.round(v))); /* runda 56: pełne sekundy jak klawiatura */ tick(); }} placeholder="s" style={doneStyle(set)} accessibilityLabel={tr('czas')} accessibilityHint={hint} /></View> : null}

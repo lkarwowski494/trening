@@ -25,6 +25,13 @@ export const wIn = (v: number | ''): number | '' => {
   if (v === '') return ''; const n = Number(v); if (unit !== 'lb') return round(n, 2); /* runda 59: kg jak na ekranie (0,01) — 100,004 to nie rekord nad 100 */
   return snapLb(n);
 };
+/**
+ * Q-021: wpis w polu ciężaru → kg do zapisu, z zachowaniem kg sprzed edycji. `keep` = kg, które pole pokazywało, gdy zaczęła się edycja —
+ * podawane przez NumInput (prop `stored`) tylko wtedy, gdy wpisana liczba jest DOKŁADNIE tą, którą pole wtedy pokazywało (wOut).
+ * Wtedy kg się nie zmieniają: 61,23 kg (135,0 lb na ekranie) po ponownym wpisaniu „135” zostaje 61,23, a nie 61,25 (wIn przyciąga do
+ * „okrągłych” kg) — i nie przenosi się na dalsze serie. Inna liczba → zwykły wIn.
+ */
+export const wInKeep = (v: number | '', keep?: number | ''): number | '' => typeof keep === 'number' && Number.isFinite(keep) ? keep : wIn(v);
 /** Runda 27: przyciąganie liczy od wartości WYŚWIETLANEJ (0,1 lb) — ta sama liczba na ekranie = te same kg. */
 export function snapLb(n: number): number {
   // Runda 28: wg wartości bezwzględnej (asysta ujemna lustrzana) i przez 0,01 lb — 1,6499999 (stary zapis) i 1,65 (wpis) dają to samo.
