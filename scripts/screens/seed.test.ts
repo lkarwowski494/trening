@@ -1,4 +1,5 @@
 import * as store from '@/lib/store';
+import * as loc from '@/lib/locations';
 import { fresh, ex, addWorkout } from '../../tests/helpers';
 test('seed', async () => {
   await fresh(); const st = store.getState(); st.bands[0].nominalKg = 15; st.bands[1].nominalKg = 25; st.settings.showRpe = true;
@@ -10,6 +11,10 @@ test('seed', async () => {
   st.mornings.push({ ...({} as any), id: 'm1', ownerId: 'local', createdAt: now, updatedAt: now, date: store.localISODate(), bb: 72, sleepScore: 81, sleepH: 7.5, weight: 81.2 } as any);
   store.startFromTemplate(st.templates[0]); store.addExerciseToActive(long); store.addExerciseToActive(ex('Plank'));
   const a = st.active!; a.exercises[0].sets[0].done = true; a.exercises[0].sets[0].completedAt = now; store.linkWithNext(a.exercises, 0, a);
+  // 0.9.0: miejsce (siłownia jako główne + dom z ławką, drążkiem, poręczami i hantlami) — ekrany miejsc, chip w treningu, filtr w wyborze ćwiczenia
+  const gym = loc.addLocation('gym'); const home = loc.addLocation('home');
+  for (const it of ['bench_adj', 'pullup_bar', 'dip_bars', 'db_fixed', 'electric']) { try { loc.setEquip(home, it, true); } catch { /* id spoza słownika — pomijamy */ } }
+  st.settings.mainLocationId = gym.id; st.active!.locationId = gym.id;
   store.save(); await store.flush();
   require('fs').writeFileSync(process.env.SEED_OUT!, JSON.stringify(store.getState()));
 });
