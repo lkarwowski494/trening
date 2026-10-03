@@ -4,7 +4,7 @@ import { useRouter } from 'expo-router';
 import { activateKeepAwakeAsync, deactivateKeepAwake } from 'expo-keep-awake';
 import { useTheme } from '@/lib/theme';
 import { Btn, Input, NumInput, Muted } from '@/components/ui';
-import { progressionFor, setActiveLocation, lastActivity, staleSince, staleRef, staleKind, ackStale, markActivity, useForegroundTick, bandA11y, clampName, loadLabelShort, getState, useTick, exById, previousBlockFor, occurrence, occurrences, hintFor, isBW, reps, fmtDur, fmtSec, fmtTime, setSummary, toggleDone, restAfter, roundRest, addSet, removeSet, removeExercise, finishWorkout, cancelWorkout, save, loadLabel, todayReadiness, groupLabels, linkWithNext, unlink, applyBandAssist, findSet, shortBand, setHasValue, locationById, offListAt } from '@/lib/store';
+import { progressionFor, setActiveLocation, lastActivity, staleSince, staleRef, staleKind, ackStale, markActivity, useForegroundTick, bandA11y, clampName, loadLabelShort, getState, useTick, exById, previousBlockFor, occurrence, occurrences, hintFor, isBW, reps, fmtDur, fmtSec, fmtTime, setSummary, toggleDone, restAfter, roundRest, addSet, removeSet, removeExercise, finishWorkout, cancelWorkout, save, loadLabel, todayReadiness, groupLabels, linkWithNext, unlink, applyBandAssist, findSet, shortBand, setHasValue, locationById, offListAt, blockImpl } from '@/lib/store';
 import { availability, missingLabel } from '@/lib/equipment';
 import { locationLabel } from '@/lib/locations';
 import * as timer from '@/lib/timer';
@@ -229,8 +229,12 @@ function ExerciseBlock({ w, e, ei, onDone, onStartSet, labels, prs }: { w: Worko
   /* P-003 E1: plakietka „brak sprzętu w: Dom” (nigdy automatyczna zamiana) i dopisek, gdy „Poprzednio” pochodzi z innego, znanego miejsca (8c: źródłem bywa każde miejsce) */
   const place = locationById(w.locationId); const avail = place ? availability(ex, place) : null;
   const prevElsewhere = place && prev?.workout.locationId && prev.workout.locationId !== place.id ? locationLabel(prev.workout.locationId) : '';
-  /* weryfikacja 3 (L1): poprzedni ciężar z innego miejsca, którego tu nie ma (pole zostało puste) — dopisek przy ćwiczeniu */
-  const prevOff = prevElsewhere && prev ? (prev.sets.map(x => x.weight).find(v => typeof v === 'number' && offListAt(ex, place!.id, v)) as number | undefined) ?? null : null; /* audyt M8: tylko inne, OKREŚLONE miejsce (stare treningi bez miejsca — bez dopisku) */
+  /* weryfikacja 3 (L1): poprzedni ciężar, którego tu nie ma — dopisek przy ćwiczeniu. Audyt f132330/025ee6a (MEDIUM 1): także gdy „Poprzednio” jest
+   * z sesji bez miejsca (0.8.5 / web 0.3 — wartość wstawiona do pól, bo wstrzymanie dawało serie bez ciężaru) albo innym przyrządem (LOW 3 — pole
+   * puste); prefiks „Poprzednio: ‹miejsce›” nadal tylko dla innego, OKREŚLONEGO miejsca (audyt M8 — bez „Poprzednio: bez miejsca”) */
+  const prevOff = place && prev ? (prev.sets.map(x => x.weight).find(v => typeof v === 'number' && offListAt(ex, place.id, v)) as number | undefined) ?? null : null;
+  const offNote = prevOff != null ? tr('ciężaru {w} nie ma tutaj — wpisz ciężar', { w: fmtW(prevOff) }) : '';
+  const impl = blockImpl(e, w.locationId); /* MEDIUM 2: stacja — kolumna „kg/str.” (na stronę) */
   const nm = nOcc > 1 ? `${exName(ex)} (${k + 1})` : exName(ex); /* runda 66: dwa bloki tego samego ćwiczenia rozróżnialne dla VoiceOver */
   const m = ex.metric ?? 'weight_reps'; const showRpe = st.settings.showRpe;
   const doneStyle = (set: WSet) => set.done ? { backgroundColor: t.done, borderColor: t.doneLine } : undefined;
@@ -261,11 +265,11 @@ function ExerciseBlock({ w, e, ei, onDone, onStartSet, labels, prs }: { w: Worko
         <Muted numberOfLines={2} style={{ fontSize: 13, flexShrink: 1, flexGrow: 1, textAlign: 'right' }}>{headMeta}</Muted>
       </View>
       {place && avail && !avail.ok ? <Muted style={{ fontSize: 12, color: t.danger, marginTop: -2, marginBottom: 6 }} accessibilityLabel={tr('Brak sprzętu w: {l}. Brakuje: {m}', { l: place.name, m: missingLabel(avail.missing) })}>{tr('brak sprzętu w: {l}', { l: place.name })} ({missingLabel(avail.missing)})</Muted> : null}
-      {prevElsewhere ? <Muted style={{ fontSize: 12, marginTop: -2, marginBottom: 6 }}>{tr('Poprzednio: {l}', { l: prevElsewhere })}{prevOff != null ? ' · ' + tr('ciężaru {w} nie ma tutaj — wpisz ciężar', { w: fmtW(prevOff) }) : ''}</Muted> : null}
+      {prevElsewhere || offNote ? <Muted style={{ fontSize: 12, marginTop: -2, marginBottom: 6 }}>{[prevElsewhere ? tr('Poprzednio: {l}', { l: prevElsewhere }) : '', offNote].filter(Boolean).join(' · ')}</Muted> : null}
       <View style={[s.row, { gap: W.gap }]}>
         <Muted style={[s.c, { width: W.idx, textAlign: 'left' }]}>#</Muted>
         {prevInline ? <Muted numberOfLines={1} style={[s.c, { flex: 1, textAlign: 'left' }]}>{tr('Poprzednio')}</Muted> : <View style={{ flex: 1 }} />}
-        {hasWeight(m) ? <Muted numberOfLines={1} style={[s.c, { width: W.w }]}>{loadLabelShort(ex)}</Muted> : null}
+        {hasWeight(m) ? <Muted numberOfLines={1} style={[s.c, { width: W.w }]}>{loadLabelShort(ex, impl)}</Muted> : null}
         {hasReps(m) ? <Muted style={[s.c, { width: W.reps }]}>{tr('Pow.')}</Muted> : null}
         {hasDistance(m) ? <Muted style={[s.c, { width: W.dist }]}>m</Muted> : null}
         {hasTime(m) ? <Muted style={[s.c, { width: W.time }]}>{tr('sek.')}</Muted> : null}
@@ -286,7 +290,7 @@ function ExerciseBlock({ w, e, ei, onDone, onStartSet, labels, prs }: { w: Worko
                 <Text maxFontSizeMultiplier={1.3} style={{ color: kind !== 'normal' ? t.band : t.muted, fontSize: 14, fontWeight: kind !== 'normal' ? '700' : '400' }}>{lbl}{set.note ? '•' : ''}</Text>
               </Pressable>
               <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', gap: 4 }}>{prevInline ? <Text maxFontSizeMultiplier={1.3} numberOfLines={1} style={{ flexShrink: 1, color: t.muted, fontSize: 13 }}>{prevTxt}</Text> : null}{pr ? <Text maxFontSizeMultiplier={1.3} style={{ color: t.band, fontSize: 11, fontWeight: '700' }}>PR</Text> : null}</View>
-              {hasWeight(m) ? <View style={{ width: W.w }}><NumInput weightTol decimal allowNegative={bw} value={wField(bw ? set.addKg : set.weight)} onNum={v => { if (bw) set.addKg = wIn(v); else set.weight = v === '' ? '' : wIn(Math.max(0, v)); /* runda 54: ciężar nieujemny jak po wczytaniu */ tick(); }} placeholder={bw ? '±0' : wu()} style={doneStyle(set)} accessibilityLabel={loadLabel(ex)} accessibilityHint={hint} /></View> : null}
+              {hasWeight(m) ? <View style={{ width: W.w }}><NumInput weightTol decimal allowNegative={bw} value={wField(bw ? set.addKg : set.weight)} onNum={v => { if (bw) set.addKg = wIn(v); else set.weight = v === '' ? '' : wIn(Math.max(0, v)); /* runda 54: ciężar nieujemny jak po wczytaniu */ tick(); }} placeholder={bw ? '±0' : wu()} style={doneStyle(set)} accessibilityLabel={loadLabel(ex, impl)} accessibilityHint={hint} /></View> : null}
               {hasReps(m) ? <View style={{ width: W.reps }}><NumInput value={set.reps} onNum={v => { set.reps = v === '' ? '' : Math.max(0, Math.floor(v)); tick(); }} placeholder={e.repMin == null ? 'max' : reps(e.repMin, e.repMax)} style={doneStyle(set)} accessibilityLabel={tr('Powtórzenia')} accessibilityHint={hint} /></View> : null}
               {hasDistance(m) ? <View style={{ width: W.dist }}><NumInput value={set.distanceM} onNum={v => { set.distanceM = v === '' ? '' : Math.max(0, Math.round(v)); /* runda 55/56: pełne metry jak klawiatura */ tick(); }} placeholder="m" style={doneStyle(set)} accessibilityLabel={tr('dystans')} accessibilityHint={hint} /></View> : null}
               {hasTime(m) ? <View style={{ width: W.time }}><NumInput value={set.durationSec} onNum={v => { set.durationSec = v === '' ? '' : Math.min(86400, Math.max(0, Math.round(v))); /* runda 56: pełne sekundy jak klawiatura */ tick(); }} placeholder="s" style={doneStyle(set)} accessibilityLabel={tr('czas')} accessibilityHint={hint} /></View> : null}

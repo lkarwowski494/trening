@@ -1,5 +1,7 @@
 import * as store from '@/lib/store';
-import { seedState, type State, type Workout, type WSet } from '@/lib/seed';
+import { seedState, type State, type Template, type Workout, type WSet } from '@/lib/seed';
+import { lang, type Lang } from '@/lib/i18n';
+import { demoTemplates } from './fixtures/demo-templates';
 
 declare global { // eslint-disable-next-line no-var
   var __kv: Map<string, string>; var __dbFail: boolean; var __locales: { languageCode: string; languageTag: string }[]; var __alerts: { title: string; msg?: string; buttons?: { text: string; onPress?: (v?: string) => void; style?: string }[]; prompt?: boolean; def?: string }[]; var __notifications: unknown[]; var __la: unknown[];
@@ -28,4 +30,11 @@ export const pressAlert = (title: string, button: string, value?: string) => {
   const a = [...global.__alerts].reverse().find(x => x.title === title); if (!a) throw new Error('no alert ' + title + ' in ' + global.__alerts.map(x => x.title).join(' | '));
   const b = a.buttons?.find(x => x.text === button); if (!b) throw new Error('no button ' + button); b.onPress?.(value);
 };
+/** Decyzja 03.10.2026 (08:11): świeża instalacja nie ma szablonów. Testy, które potrzebują dawnych czterech szablonów (Upper A, Upper B,
+ * Legs — siłownia, Legs — dom), dokładają je JAWNIE: do stanu w store (język jak interfejsu) — zwraca dodane szablony w tej kolejności. */
+export function withDemoTemplates(lng: Lang = lang()): Template[] {
+  const st = store.getState(); const t = demoTemplates(st.exercises, lng); st.templates.push(...t); store.save(); return t;
+}
+/** seedState z szablonami demonstracyjnymi — dla testów budujących zapisany stan (`fresh(seedWithDemo())`). */
+export function seedWithDemo(lng: Lang = 'pl'): State { const s = seedState(lng); s.templates = demoTemplates(s.exercises, lng); return s; }
 export { seedState };

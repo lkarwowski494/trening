@@ -8,7 +8,7 @@ import * as L from '@/lib/locations';
 import { buildBackup, parseBackup } from '@/lib/backup';
 import { CATALOG } from '@/lib/catalog.generated';
 import { SCHEMA_VERSION } from '@/lib/seed';
-import { fresh, ex, addWorkout, set } from './helpers';
+import { fresh, ex, addWorkout, set, withDemoTemplates } from './helpers';
 import { userHome } from './locations-fixtures';
 
 const strip = (s: any) => { const c = JSON.parse(JSON.stringify(s)); delete c.metaUpdatedAt; delete c.saveSeq; delete c.userTouched; return c; };
@@ -57,12 +57,12 @@ describe('schemat 14 i migracja', () => {
     expect(b.name).toBe('Miejsce'); expect(typeof b.id).toBe('string'); expect(m.settings.mainLocationId).toBe('a'); expect(m.settings.pickerShowAll).toBe(false);
   });
   test('trening i szablon: locationId tylko tekst; usunięte miejsce zostaje w danych', async () => {
-    await fresh(); const w = addWorkout(at(1), [['Pull Up', [{ reps: 5 }]]]); (w as any).locationId = 'gone'; const tpl = store.getState().templates[0]; (tpl as any).locationId = 7; const t2 = store.getState().templates[1]; (t2 as any).locationId = {};
+    await fresh(); withDemoTemplates(); const w = addWorkout(at(1), [['Pull Up', [{ reps: 5 }]]]); (w as any).locationId = 'gone'; const tpl = store.getState().templates[0]; (tpl as any).locationId = 7; const t2 = store.getState().templates[1]; (t2 as any).locationId = {};
     const m = store.migrate(JSON.parse(JSON.stringify(store.getState())));
     expect(m.workouts[0].locationId).toBe('gone'); expect(m.templates[0].locationId).toBe('7'); expect('locationId' in m.templates[1]).toBe(false); expect('locationId' in m.templates[2]).toBe(false);
   });
   test('eksport → import zachowuje miejsca, sprzęt, ciężary, miejsce główne, filtr i miejsca treningów/szablonów', async () => {
-    await fresh(); const { home, gym } = twoPlaces(); const s = store.getState().settings; s.pickerShowAll = true; s.mainLocationId = gym.id;
+    await fresh(); withDemoTemplates(); const { home, gym } = twoPlaces(); const s = store.getState().settings; s.pickerShowAll = true; s.mainLocationId = gym.id;
     const tpl = store.getState().templates[3]; tpl.locationId = home.id; const w = addWorkout(at(2), [['Pull Up', [{ reps: 5 }]]]); w.locationId = gym.id; store.save();
     const before = strip(store.getState()); store.replaceState(parseBackup(JSON.stringify(buildBackup())));
     expect(strip(store.getState())).toEqual(before); expect(store.getState().settings.locations).toHaveLength(2); expect(store.getState().settings.locations[0].equipment.find(e => e.item === 'electric')!.load).toEqual({ kind: 'electric', unit: 'kg', min: 1.5, max: 65, step: 0.5 });
@@ -105,7 +105,7 @@ describe('operacje na miejscach', () => {
     expect(L.deleteLocation(b.id)).toBe(true); expect(store.getState().settings).toMatchObject({ locations: [], mainLocationId: null });
   });
   test('usunięte miejsce: treningi i szablony zachowują id i pokazują „(usunięte miejsce)”', async () => {
-    await fresh(); const { gym } = twoPlaces(); const tpl = store.getState().templates[0]; tpl.locationId = gym.id; const w = addWorkout(at(3), [['Pull Up', [{ reps: 5 }]]]); w.locationId = gym.id;
+    await fresh(); withDemoTemplates(); const { gym } = twoPlaces(); const tpl = store.getState().templates[0]; tpl.locationId = gym.id; const w = addWorkout(at(3), [['Pull Up', [{ reps: 5 }]]]); w.locationId = gym.id;
     expect(L.deleteLocation(gym.id)).toBe(true); expect(tpl.locationId).toBe(gym.id); expect(store.getState().workouts[0].locationId).toBe(gym.id);
     expect(L.locationLabel(gym.id)).toBe('(usunięte miejsce)'); expect(L.locationLabel('home')).toBe('Dom');
     store.startFromTemplate(tpl); expect(store.getState().active!.locationId).toBe('home'); /* szablon z usuniętym miejscem → główne */
@@ -114,12 +114,12 @@ describe('operacje na miejscach', () => {
 
 describe('miejsce treningu', () => {
   test('bez miejsc: trening nie ma pola locationId (dane jak przed P-003)', async () => {
-    await fresh(); store.startFromTemplate(store.getState().templates[0]); expect('locationId' in store.getState().active!).toBe(false); store.cancelWorkout();
+    await fresh(); store.startFromTemplate(withDemoTemplates()[0]); expect('locationId' in store.getState().active!).toBe(false); store.cancelWorkout();
     store.startEmpty(); expect('locationId' in store.getState().active!).toBe(false); store.cancelWorkout();
     addWorkout(at(1), [['Pull Up', [{ reps: 5 }]]]); store.repeatLast(); expect('locationId' in store.getState().active!).toBe(false);
   });
   test('start: miejsce szablonu, inaczej główne; pusty trening — główne; „Powtórz ostatni” — miejsce tamtego treningu', async () => {
-    await fresh(); const { gym } = twoPlaces(); const [t0, t1] = store.getState().templates; t1.locationId = gym.id;
+    await fresh(); withDemoTemplates(); const { gym } = twoPlaces(); const [t0, t1] = store.getState().templates; t1.locationId = gym.id;
     store.startFromTemplate(t0); expect(store.getState().active!.locationId).toBe('home'); store.cancelWorkout();
     store.startFromTemplate(t1); expect(store.getState().active!.locationId).toBe(gym.id); store.cancelWorkout();
     store.startEmpty(); expect(store.getState().active!.locationId).toBe('home'); store.cancelWorkout();

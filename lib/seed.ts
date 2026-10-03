@@ -7,7 +7,7 @@ import type { Unit } from './units';
 import type { LoadSpec } from './loads';
 import { CATALOG, CATALOG_REV, type LoadSource, type Pattern } from './catalog.generated';
 
-export const SCHEMA_VERSION = 15; // 15 (decyzje 03.10.2026): WExercise.impl — przyrząd użyty w bloku (decyzja 8c); P-004 (b): jednorazowo 48 → 24 kg w szablonach dla Deadlift (hantle) i RDL (hantle/linki) (hantle wpisywane na hantel); 14 (P-003 E1): miejsca treningu i sprzęt — Settings.locations/mainLocationId/pickerShowAll, Workout/Template.locationId, wymagania sprzętowe ćwiczeń; 11 (runda 55): przyciąganie starych wartości z funtów tylko dla danych sprzed tej wersji; 12 (runda 72): masa ciała zamrożona w zakończonych treningach; 13 (runda 75, Q-001): masa ciała poza obliczeniami — usunięte udział %, waga w Ustawieniach i w treningu; nowe ustawienia progressHint, autoBackup, weighReminder
+export const SCHEMA_VERSION = 15; // 15 (decyzje 03.10.2026): WExercise.impl — przyrząd użyty w bloku (decyzja 8c); szablonów użytkownika migracja NIE zmienia (decyzja 03.10, 08:11 — bez dawnej jednorazowej zmiany 48 → 24 kg z P-004); 14 (P-003 E1): miejsca treningu i sprzęt — Settings.locations/mainLocationId/pickerShowAll, Workout/Template.locationId, wymagania sprzętowe ćwiczeń; 11 (runda 55): przyciąganie starych wartości z funtów tylko dla danych sprzed tej wersji; 12 (runda 72): masa ciała zamrożona w zakończonych treningach; 13 (runda 75, Q-001): masa ciała poza obliczeniami — usunięte udział %, waga w Ustawieniach i w treningu; nowe ustawienia progressHint, autoBackup, weighReminder
 /** Właściciel danych zanim pojawią się konta (H2). Po logowaniu zostanie podmieniony na id użytkownika. */
 export const LOCAL_OWNER = 'local';
 /** Rejestr modułów platformy (ADR-011). Dziś działa tylko 'training'; reszta to miejsca w UI/danych, które da się ukryć. */
@@ -154,27 +154,18 @@ export const blankTimer = (): TimerState => ({ restEndAt: null, restTotal: 0, re
 export const DEFAULT_REST = 90;
 export const defaultSettings = (): Settings => ({ defaultRest: DEFAULT_REST, sound: true, wakeLock: true, showRpe: false, healthSync: false, progressHint: true, autoBackup: true, weighReminder: false, modules: defaultModules(), language: 'auto', unit: 'kg', locations: [], mainLocationId: null, pickerShowAll: false });
 
-/** Stan startowy. Nazwy tworzone dla użytkownika (szablony, gumy) w jego języku; nazwy ćwiczeń z biblioteki zostają kanoniczne i tłumaczy je exName(). */
+/** Stan startowy: biblioteka ćwiczeń i gumy, BEZ szablonów (decyzja właściciela 03.10.2026, 08:11: „Nie przenoś do aplikacji żadnych moich szablonów.
+ * Sam je ustawię.” — świeża instalacja ma `templates: []`; dawne cztery szablony żyją tylko w danych testowych: tests/fixtures/demo-templates.ts).
+ * Nazwy gum w języku użytkownika; nazwy ćwiczeń z biblioteki zostają kanoniczne i tłumaczy je exName(). */
 export function seedState(lng: Lang = 'pl'): State {
   const en = lng === 'en';
-  const byName: Record<string, Exercise> = {};
   const exercises: Exercise[] = LIB.map(([name, group, equipment, band]) => {
-    const [mu, mu2] = musclesFor(name, group); const e: Exercise = { ...base(), name, group, equipment, metric: metricFor(name), loadMode: loadModeFor(equipment, name), restSec: null, restWarmupSec: null, muscles: mu, secondaryMuscles: mu2, bandAssistable: !!band, tempo: '', notes: '', lib: true, ...equipFields(name, equipment, true) };
-    byName[name] = e; return e;
+    const [mu, mu2] = musclesFor(name, group); return { ...base(), name, group, equipment, metric: metricFor(name), loadMode: loadModeFor(equipment, name), restSec: null, restWarmupSec: null, muscles: mu, secondaryMuscles: mu2, bandAssistable: !!band, tempo: '', notes: '', lib: true, ...equipFields(name, equipment, true) };
   });
-  const it = (n: string, sets: number, min: number | null, max: number | null, rest: number, w: number): TemplateItem =>
-    ({ id: uid(), exerciseId: byName[n].id, sets, repMin: min, repMax: max, restSec: rest, startWeight: w, targetSec: '', groupId: null });
-  /* P-004 (decyzja b, 03.10.2026): hantle wpisuje się NA HANTEL — Deadlift (hantle) i RDL (hantle/linki) 24 kg (wcześniej 48 = suma pary przy trybie „na hantel”) */
-  const templates: Template[] = [
-    { ...base(), name: 'Upper A', items: [it('Bench Press (hantle)',4,6,8,150,24), it('Bent Over Row (hantle)',4,6,8,120,20), it('Overhead Press (hantle)',3,10,12,90,11), it('Chin Up',3,null,null,90,0), it('Chest Dip',3,null,null,90,0), it('Biceps Curl (hantle)',3,10,12,60,8), it('Skullcrusher (hantle)',3,10,12,60,6), it('Lateral Raise (hantle)',3,15,15,60,4), it('Rear Delt Raise (hantle)',3,15,15,60,6)] },
-    { ...base(), name: 'Upper B', items: [it('Incline Bench Press (hantle)',4,8,10,120,21), it('One Arm Row (hantle)',4,8,8,90,22), it('Chest Fly (hantle)',3,8,10,90,12.5), it('Pull Up',3,null,null,90,0), it('Triceps Dips (ławka)',3,12,12,60,0), it('Incline Curl (hantle)',3,8,10,60,8), it('Reverse Fly (hantle)',3,10,12,60,5), it('Concentration Curl (hantle)',3,8,12,60,9)] },
-    { ...base(), name: en ? 'Legs — gym' : 'Legs — siłownia', items: [it('Leg Press',5,6,12,120,130), it('Deadlift (hantle)',5,8,8,150,24), it('Leg Extension',5,10,15,60,41), it('Leg Curl',4,10,12,60,41), it('Hip Thrust (sztanga)',4,6,8,90,30), it('Seated Calf Raise',4,10,12,60,30)] },
-    { ...base(), name: en ? 'Legs — home' : 'Legs — dom', items: [it('Przysiad z pasem (linki)',4,6,8,150,45), it('RDL (hantle/linki)',4,8,10,150,24), it('Bulgarian Split Squat (hantle)',3,8,8,90,7), it('Hip Thrust (hantel)',3,10,12,90,24), it('Łydki na stopniu',4,15,15,60,24)] },
-  ];
   return {
     v: 2, schemaVersion: SCHEMA_VERSION, ownerId: LOCAL_OWNER,
     settings: defaultSettings(), exercises,
     bands: [{ ...base(), color: en ? 'red' : 'czerwona', level: 2, nominalKg: '' }, { ...base(), color: en ? 'black' : 'czarna', level: 4, nominalKg: '' }, { ...base(), color: en ? 'purple' : 'fioletowa', level: 6, nominalKg: '' }],
-    templates, workouts: [], active: null, mornings: [], relations: [], feedback: [], instructions: [], timer: blankTimer(),
+    templates: [], workouts: [], active: null, mornings: [], relations: [], feedback: [], instructions: [], timer: blankTimer(),
   };
 }

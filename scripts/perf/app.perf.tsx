@@ -2,7 +2,7 @@
  * Czasy z Node na komputerze deweloperskim — telefon jest wolniejszy (rząd 2–5×); liczy się proporcja i trend między wersjami. */
 import * as store from '@/lib/store';
 import * as stats from '@/lib/stats';
-import { fresh, ex } from '../../tests/helpers';
+import { fresh, ex, withDemoTemplates } from '../../tests/helpers';
 import { renderApp, flushAll, screen, type, act } from '../../tests/app';
 import type { Workout, WSet } from '@/lib/seed';
 
@@ -30,7 +30,7 @@ function build(n: number) {
 
 test('wydajność', async () => {
   for (const n of NS) {
-    jest.useRealTimers(); await fresh(); build(n); await store.flush();
+    jest.useRealTimers(); await fresh(); withDemoTemplates(); /* szablony demonstracyjne — świeża instalacja nie ma szablonów (03.10.2026) */ build(n); await store.flush();
     const raw = global.__kv.get('state')!; note(n, 'rozmiar stanu (MB)', raw.length / 1e6);
     note(n, 'JSON.stringify stanu', ms(() => JSON.stringify(store.getState()), 1, 3));
     note(n, 'start: JSON.parse', ms(() => JSON.parse(raw), 1, 3)); note(n, 'start: parse + migracja', ms(() => store.migrate(JSON.parse(raw)), 1, 3));

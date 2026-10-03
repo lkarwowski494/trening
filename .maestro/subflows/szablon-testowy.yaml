@@ -1,0 +1,51 @@
+# Podprzepływ (runFlow) — szablon testowy „Upper A” tworzony przez UI.
+# Od 03.10.2026 (decyzja właściciela, 08:11: „Nie przenoś do aplikacji żadnych moich szablonów. Sam je ustawię.”) świeża instalacja
+# nie ma szablonów, a przepływy 01, 02, 03 i 05 startują z czystej instalacji (clearState) — każdy najpierw woła ten podprzepływ.
+# Wołać na ekranie głównym zaraz po starcie (widać „Start from a template”). Wynik: szablon „Upper A” z dwoma ćwiczeniami
+# (Bench Press (hantle), Bent Over Row (hantle); domyślnie 3 serie, 8–10 pow., bez ciężaru startowego) i przycisk „Start: Upper A”.
+# Dwa ćwiczenia — przepływ 03 potrzebuje przycisku „Reorder exercises” (pokazywany od 2 ćwiczeń w treningu).
+# Nie jest na liście w config.yaml — uruchamiany tylko przez runFlow.
+#
+# Literały (EN z lib/i18n.en.ts, chyba że zaznaczono inaczej):
+#   "No templates yet — create…"  ← 'Nie masz jeszcze szablonów — utwórz pierwszy albo zacznij pusty trening.' (app/(tabs)/index.tsx, pusty stan)
+#   "\+ New template"             ← '+ Nowy szablon'   (Btn w pustym stanie app/(tabs)/index.tsx; accessibilityLabel = tytuł)
+#   "\+ Add exercise"             ← '+ Dodaj ćwiczenie' (Btn w app/template/[id].tsx)
+#   "New template"                ← wartość pola Nazwa nowego szablonu: 'Nowy szablon' (lib/store.ts newTemplate) — dopasowanie po wartości pola
+#   "Search exercises…"           ← 'Szukaj ćwiczenia…' (placeholder pola w app/picker.tsx, jak przepływ 04)
+#   "Bench Press \(Dumbbell\), dumbbells" ← Item w app/picker.tsx: accessibilityLabel „{title}, {sub}” (components/ui.tsx);
+#                                    title = exName('Bench Press (hantle)') → 'Bench Press (Dumbbell)' (lib/i18n.ts EX_PAREN), sub = sprzęt 'hantle' → 'dumbbells'
+#   "Bent Over Row \(Dumbbell\), dumbbells" ← jak wyżej dla 'Bent Over Row (hantle)'
+#   "Bench Press \(Dumbbell\)"    ← nazwa ćwiczenia w wierszu pozycji edytora szablonu (Txt w app/template/[id].tsx)
+#   "Back"                        ← 'Wróć' (headerBackTitle w app/_layout.tsx)
+#   "Start: Upper A"              ← 'Start: {name}' (accessibilityLabel przycisku Start na ekranie głównym)
+appId: pl.lukasz.trening
+---
+- scrollUntilVisible: { element: "\\+ New template", direction: DOWN, timeout: 20000 }
+- assertVisible: "No templates yet — create your first one or start an empty workout."
+- tapOn: "\\+ New template"
+- extendedWaitUntil: { visible: "\\+ Add exercise", timeout: 10000 }
+# Pole „Name” ma wartość „New template” (zaznacza się całe przy fokusie)
+- tapOn: "New template"
+- eraseText: 30
+- inputText: "Upper A"
+# --- ćwiczenie 1 ---
+- tapOn: "\\+ Add exercise"
+- extendedWaitUntil: { visible: "Search exercises…", timeout: 10000 }
+- tapOn: "Search exercises…"
+- inputText: "Bench Press"
+- tapOn: { text: "Continue", optional: true }
+- tapOn: "Bench Press \\(Dumbbell\\), dumbbells"
+- extendedWaitUntil: { visible: "Bench Press \\(Dumbbell\\)", timeout: 10000 }
+# --- ćwiczenie 2 ---
+- scrollUntilVisible: { element: "\\+ Add exercise", direction: DOWN, timeout: 20000 }
+- tapOn: "\\+ Add exercise"
+- extendedWaitUntil: { visible: "Search exercises…", timeout: 10000 }
+- tapOn: "Search exercises…"
+- inputText: "Bent Over Row"
+- tapOn: { text: "Continue", optional: true }
+- tapOn: "Bent Over Row \\(Dumbbell\\), dumbbells"
+- extendedWaitUntil: { visible: "Bent Over Row \\(Dumbbell\\)", timeout: 10000 }
+- takeScreenshot: 00-szablon-testowy
+# --- powrót na ekran główny ---
+- tapOn: "Back"
+- extendedWaitUntil: { visible: "Start: Upper A", timeout: 10000 }

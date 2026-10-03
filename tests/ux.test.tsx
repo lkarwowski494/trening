@@ -6,7 +6,7 @@ import { dark, light } from '@/lib/theme';
 import { LIB, metricFor, type Equipment } from '@/lib/seed';
 import { rowLayout } from '@/components/ActiveWorkout';
 import { renderApp, tap, flushAll, screen, go, act } from './app';
-import { ex, pressAlert } from './helpers';
+import { ex, pressAlert, seedWithDemo } from './helpers';
 
 jest.setTimeout(60000);
 afterEach(async () => { try { store.getState(); } catch { return; } /* runda 68: test uruchomiony osobno, bez wczytanego stanu */ await timer.stop(); await timer.stopSet(); });
@@ -20,7 +20,7 @@ function allTexts(): string[] {
 const act0 = async (f: () => void) => { await act(async () => { f(); }); await flushAll(10); };
 
 test('C1 od uruchomienia do pierwszej odhaczonej serii: 2 tapnięcia', async () => {
-  await renderApp(); let taps = 0;
+  await renderApp({ saved: seedWithDemo() }); let taps = 0;
   await tap(screen.getByLabelText('Start: Upper A')); taps++;
   await tap(screen.getAllByLabelText(/^Seria 1 zrobiona/)[0]); taps++;
   expect(store.getState().active!.exercises[0].sets[0].done).toBe(true); expect(taps).toBeLessThanOrEqual(2);
@@ -62,7 +62,7 @@ test('C5 kontrast motywów (WCAG): tekst ≥ 4,5, duże elementy ≥ 3', () => {
 });
 
 test('C6 English: żaden ekran nie pokazuje polskich tekstów interfejsu', async () => {
-  await renderApp({ locale: 'en' });
+  await renderApp({ locale: 'en', saved: seedWithDemo('en') });
   const s = store.getState(); const tplId = s.templates[0].id; const exId = ex('Bench Press (hantle)').id;
   const pl = /[ąćęłńóśźżĄĆĘŁŃÓŚŹŻ]|\b(serii?|przerwa|Trening|Zakończ|Usuń|Ćwiczeni|pow\.|guma|sen)\b/;
   const leaks: string[] = [];
@@ -76,7 +76,7 @@ test('C6 English: żaden ekran nie pokazuje polskich tekstów interfejsu', async
 });
 
 test('C7 akcje niszczące wymagają potwierdzenia', async () => {
-  await renderApp(); const s = store.getState();
+  await renderApp({ saved: seedWithDemo() }); const s = store.getState();
   const expectConfirm = async (press: () => Promise<void>, title: string | RegExp) => { const n = global.__alerts.length; await press(); expect(global.__alerts.length).toBe(n + 1); expect(global.__alerts[global.__alerts.length - 1].title).toMatch(title); };
   const nTpl = s.templates.length;
   await go(`/template/${s.templates[0].id}`); await flushAll(10);
@@ -105,14 +105,14 @@ test('C8 puste stany mają tekst', async () => {
 
 test('C9 żaden ekran nie zgłasza ostrzeżeń Reacta (poza act w testach)', async () => {
   const errs: string[] = []; const spy = jest.spyOn(console, 'error').mockImplementation((...a: unknown[]) => { const m = String(a[0]); if (!/not wrapped in act/.test(m)) errs.push(m.slice(0, 160)); });
-  await renderApp(); const s = store.getState();
+  await renderApp({ saved: seedWithDemo() }); const s = store.getState();
   for (const url of ['/', '/templates', '/exercises', '/history', '/more', '/more/settings', '/more/bands', '/more/morning', '/more/progress', '/more/backup', `/template/${s.templates[0].id}`, `/exercise/${s.exercises[0].id}`, '/picker?target=active']) { await go(url); await flushAll(10); }
   await go('/'); await tap(screen.getByLabelText('Start: Upper A')); await tap(screen.getAllByLabelText(/^Seria 1 zrobiona/)[0]); await flushAll(2000);
   spy.mockRestore(); expect(errs).toEqual([]);
 });
 
 test('C10 pola tekstowe ograniczają powiększenie tekstu', async () => {
-  await renderApp(); await tap(screen.getByLabelText('Start: Upper A'));
+  await renderApp({ saved: seedWithDemo() }); await tap(screen.getByLabelText('Start: Upper A'));
   const inputs = screen.UNSAFE_getAllByType(TextInput);
   expect(inputs.length).toBeGreaterThan(5);
   expect(inputs.filter(i => !(i.props.maxFontSizeMultiplier > 0))).toHaveLength(0);

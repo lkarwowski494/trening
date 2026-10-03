@@ -1,14 +1,15 @@
 /* Runda 72 — testy z audytu tematycznego T4 (trwałość/porzucony trening, wymiana danych). Nazwy części testów opisują scenariusz dawnego błędu; asercje sprawdzają poprawne zachowanie. */
 import * as store from '@/lib/store';
-import { fresh, ex, seedState } from './helpers';
+import { fresh, ex, seedState, withDemoTemplates } from './helpers';
 
 jest.setTimeout(30000);
 const H = 3600e3;
 afterEach(() => { (global as any).__dbFail = false; });
 
-/** Trening w toku z jedną odhaczoną serią roboczą, wszystko zapisane. */
+/** Trening w toku z jedną odhaczoną serią roboczą, wszystko zapisane. Szablony demonstracyjne (świeża instalacja nie ma szablonów od 03.10.2026) —
+ * zmiana szablonu to tu sposób na pełny zapis bez treningu. */
 async function withDoneSet() {
-  await fresh(); store.startEmpty(); store.addExerciseToActive(ex('Back Squat'));
+  await fresh(); withDemoTemplates(); store.startEmpty(); store.addExerciseToActive(ex('Back Squat'));
   const s = store.getState().active!.exercises[0].sets[0]; s.weight = 100; s.reps = 5; store.toggleDone(0, 0); await store.flush();
 }
 

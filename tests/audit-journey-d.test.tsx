@@ -5,7 +5,7 @@ import * as timer from '@/lib/timer';
 import * as units from '@/lib/units';
 import { exName, t as tr } from '@/lib/i18n';
 import { renderApp, tap, type, flushAll, screen, go, act } from './app';
-import { ex, pressAlert } from './helpers';
+import { ex, pressAlert, seedWithDemo } from './helpers';
 
 jest.setTimeout(120000);
 afterEach(async () => { await timer.stop(); await timer.stopSet(); units.applyUnit('kg'); });
@@ -14,7 +14,7 @@ const finish = async () => { await tap(screen.getAllByText(tr('Zakończ trening 
 const texts = () => screen.getAllByText(/./).map(x => [x.props.children].flat().join('')).join(' | ');
 
 test('D1 en/lb day2 improvement: alert + history + poprzednio', async () => {
-  await renderApp({ locale: 'en' });
+  await renderApp({ locale: 'en', saved: seedWithDemo('en') });
   const st = store.getState(); st.settings.unit = 'lb'; store.applyPrefs(); store.save(); await flushAll(400);
   const bench = exName(ex('Bench Press (hantle)')); const lbl = store.loadLabel(ex('Bench Press (hantle)'));
   await tap(screen.getByLabelText(tr('Start: {name}', { name: 'Upper A' }))); await flushAll(10);

@@ -45,7 +45,7 @@ describe('A1 migracje', () => {
 describe('A2 start', () => {
   test('pusty telefon → dane startowe w języku systemu (EN)', async () => {
     const s = await fresh(undefined, 'en');
-    expect(s.templates.map(t => t.name)).toContain('Legs — home'); expect(s.bands[0].color).toBe('red');
+    expect(s.templates).toEqual([]); /* decyzja 03.10.2026 (08:11): bez szablonów właściciela — ustawia je sam */ expect(s.bands[0].color).toBe('red');
     expect(i18n.lang()).toBe('en'); expect(saved().schemaVersion).toBe(SCHEMA_VERSION);
   });
   test('nieczytelny zapis nie jest nadpisany — kopia i baner odzysku', async () => {
@@ -54,7 +54,7 @@ describe('A2 start', () => {
     const keys = [...global.__kv.keys()]; const copy = keys.find(k => k.startsWith('state_corrupt_'))!;
     expect(copy).toBeTruthy(); expect(global.__kv.get(copy)).toBe(bad);
     expect(store.getRecovery()).not.toBeNull(); expect(await store.readRecovery()).toBe(bad);
-    expect(store.getState().templates.length).toBe(4);
+    expect(store.getState().templates).toEqual([]); expect(store.getState().exercises.length).toBe(seedState().exercises.length); /* czysty stan startowy (od 03.10.2026 bez szablonów) */
   });
   test('stary schemat zapisany od razu po migracji', async () => {
     const old: any = seedState(); old.schemaVersion = 5; delete old.settings.language;

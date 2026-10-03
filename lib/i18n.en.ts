@@ -21,6 +21,9 @@ export const EN: Record<string, string> = {
   'Dziś rano': 'This morning', 'sen': 'sleep', 'BB, sen, waga — 20 sekund': 'BB, sleep, weight — 20 seconds',
   'Pierwszy raz? Wybierz szablon niżej, wpisz ciężar i powtórzenia, odhaczaj serie ✓ — przerwa odlicza się sama. Na koniec „Zakończ trening i zapisz”. Szablony i ćwiczenia zmienisz w zakładkach obok.':
     'First time? Pick a template below, enter weight and reps, tick sets ✓ — the rest timer starts by itself. When done, tap “Finish and save workout”. Edit templates and exercises in the other tabs.',
+  'Pierwszy raz? Utwórz swój szablon („+ Nowy szablon” niżej) albo zacznij pusty trening. Wpisuj ciężar i powtórzenia, odhaczaj serie ✓ — przerwa odlicza się sama. Na koniec „Zakończ trening i zapisz”.':
+    'First time? Create your own template (“+ New template” below) or start an empty workout. Enter weight and reps, tick sets ✓ — the rest timer starts by itself. When done, tap “Finish and save workout”.',
+  'Nie masz jeszcze szablonów — utwórz pierwszy albo zacznij pusty trening.': 'No templates yet — create your first one or start an empty workout.',
   'Zacznij z szablonu': 'Start from a template', 'ćw.': 'ex.', 'ostatnio': 'last', 'Start': 'Start',
   'Powtórz ostatni ({name})': 'Repeat last ({name})', 'bez szablonu': 'no template', 'Pusty trening': 'Empty workout',
   'Podpis ważny do {d}.': 'Signature valid until {d}.',
@@ -114,7 +117,7 @@ export const EN: Record<string, string> = {
   'Zrób backup (Więcej → Backup) i odnów w Sideloadly. Dane zostają.': 'Make a backup (More → Backup) and renew in Sideloadly. Your data stays.',
 
   /* jednostki w etykietach */
-  '{u}/hantel': '{u}/dumbbell', '{u}/strona': '{u}/side',
+  '{u}/hantel': '{u}/dumbbell', '{u}/strona': '{u}/side', '{u}/stronę': '{u}/side',
 
   /* wartości domenowe (zapisane w danych po polsku, tłumaczone przy wyświetlaniu) */
   // partie (GROUPS) i mięśnie (MUSCLES)

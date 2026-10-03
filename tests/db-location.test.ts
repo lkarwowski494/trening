@@ -25,7 +25,8 @@ async function start(dbs: Map<string, KV>, opts?: { failRun?: boolean }) {
   await new Promise(r => setTimeout(r, 0)); /* kasowanie starej bazy jest „w tle” */
   return { ...f, st };
 }
-const savedState = () => { const st = require('@/lib/seed').seedState('pl'); st.templates[0].name = 'MOJ PLAN'; return JSON.stringify(st); };
+/* szablon użytkownika (dane testowe — świeża instalacja nie ma szablonów od 03.10.2026); fixture importuje tylko lib/seed, nie store */
+const savedState = () => { const st = require('@/lib/seed').seedState('pl'); st.templates = require('./fixtures/demo-templates').demoTemplates(st.exercises, 'pl'); st.templates[0].name = 'MOJ PLAN'; return JSON.stringify(st); };
 
 test('stare dane w Dokumentach → przeniesione do Library/SQLite, stara baza skasowana; drugi start nie otwiera już Dokumentów', async () => {
   const dbs = new Map<string, KV>([['/c/Documents/SQLite', new Map([['state', savedState()], ['state_corrupt_1', 'x']])]]);
@@ -38,7 +39,7 @@ test('stare dane w Dokumentach → przeniesione do Library/SQLite, stara baza sk
 
 test('nowa instalacja: baza od razu w Library/SQLite, pusta baza w Dokumentach (utworzona przy sprawdzeniu) sprzątnięta', async () => {
   const dbs = new Map<string, KV>(); const r = await start(dbs);
-  expect(r.st.templates.length).toBeGreaterThan(0); expect(dbs.get('/c/Library/SQLite')!.has('state')).toBe(true); expect(dbs.has('/c/Documents/SQLite')).toBe(false);
+  expect(r.st.exercises.length).toBeGreaterThan(0); expect(r.st.templates).toEqual([]); /* świeży stan startowy: biblioteka bez szablonów (decyzja 03.10.2026) */ expect(dbs.get('/c/Library/SQLite')!.has('state')).toBe(true); expect(dbs.has('/c/Documents/SQLite')).toBe(false);
 });
 
 test('błąd przy przenoszeniu → start ze starej bazy (dane są), stara nieskasowana, nowa bez „state” — ponowienie przy następnym starcie', async () => {

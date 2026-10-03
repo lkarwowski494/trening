@@ -129,8 +129,6 @@ export function applyPrefs() { if (!S) return; applyLang(S.settings.language); a
 const isObj = (x: unknown): x is Record<string, any> => !!x && typeof x === 'object' && !Array.isArray(x);
 const arr = (x: unknown): any[] => Array.isArray(x) ? x.filter(isObj) : [];
 const LIB_NAMES = new Set(LIB.map(l => l[0]));
-/** Schemat 15 — P-004: ćwiczenia z hantlami, w których szablony miały sumę pary (48 kg) zamiast ciężaru jednego hantla. */
-const P004_NAMES: ReadonlySet<string> = new Set(['Deadlift (hantle)', 'RDL (hantle/linki)']);
 
 /**
  * Migracja do bieżącego schematu. Przyjmuje backupy web 0.3, natywnej 0.1.0 i każdą późniejszą wersję;
@@ -231,11 +229,8 @@ export function migrate(raw: any): State {
   raw.templates = arr(raw.templates);
   raw.templates.forEach((t: any) => { stamp(t); if (typeof t.name !== 'string') t.name = ''; t.items = arr(t.items); t.items = t.items.filter((it: any) => idOf(it.exerciseId) != null); t.items.forEach((it: any) => { it.id = idOf(it.id) ?? uid(); it.exerciseId = idOf(it.exerciseId); { const v = parseNum(it.targetSec); it.targetSec = v == null || v < 0 ? '' : Math.min(86400, Math.round(v)); } /* runda 51 */ it.groupId = idOf(it.groupId); it.sets = intIn(it.sets, 1, 50) ?? 1; /* runda 15: liczba, nie tekst z importu */ if (it.startWeight === undefined) it.startWeight = ''; for (const k of ['repMin', 'repMax']) it[k] = intIn(it[k], 1, 100); { const v = parseNum(it.restSec); it.restSec = v == null || v < 0 ? null : Math.min(1800, Math.round(v)); } /* runda 49: także tekst, jak przerwa ćwiczenia */ /* runda 17: limit 1800 */ { const v = parseNum(it.startWeight); it.startWeight = v == null ? '' : kg2(snapL(v) as number); } }); });
   raw.templates.forEach((x: any) => { const n = x.name.replace(/\s+/g, ' ').trim(); x.name = n || tIn(raw.settings?.language, 'Nowy szablon'); { const l = idOf(x.locationId); if (l) x.locationId = l; else delete x.locationId; } /* P-003 */ }); // runda 35: jak nazwy ćwiczeń
-  /* Schemat 15 — P-004 (decyzja b, 03.10.2026): hantle wpisuje się NA HANTEL. Szablony z danymi sprzed 15 miały w Deadlift (hantle) i RDL (hantle/linki)
-   * z biblioteki (tryb „na hantel”) 48 kg = sumę pary → jednorazowo 24. Tylko przy przejściu z wersji < 15 (stała granica, jak schemat 10) — 48 wpisane
-   * świadomie później zostaje. Historia bez zmian (A-002): zapisane serie zostają, jak były. */
-  if ((Number(raw.schemaVersion) || 0) < 15) { const p4 = new Set(raw.exercises.filter((e: any) => e.lib === true && e.loadMode === 'per_dumbbell' && P004_NAMES.has(e.name)).map((e: any) => e.id));
-    if (p4.size) raw.templates.forEach((tp: any) => tp.items.forEach((it: any) => { if (p4.has(it.exerciseId) && it.startWeight === 48) it.startWeight = 24; })); }
+  /* Decyzja właściciela 03.10.2026 (08:11): aplikacja NIGDY nie zmienia szablonów użytkownika — także przy przejściu na schemat 15
+   * (wcześniejsza jednorazowa zmiana 48 → 24 kg z P-004 usunięta; szablony zostają, jak były — ani zmieniane, ani usuwane). */
   const fixSet = (s: any) => {
     s.id = idOf(s.id) ?? uid(); s.bandId = idOf(s.bandId) ?? ''; // runda 51
     // Runda 48: wartości serii to liczba albo '' (import/ręczna edycja: tekst, tablica, obiekt, NaN); tylko asysta ±kg może być ujemna.
@@ -398,10 +393,15 @@ export const volOf = (ex: Exercise, load: number, reps: number) => exMult(ex) * 
 /** Runda 73 (T13): w lb ciężar serii liczony tak, jak go widać (0,1 lb) — wpis 100 lb zapisany jako 45,35 kg dawał objętość 2999 lb zamiast 3000.
  * Zwraca kg odpowiadające dokładnie wyświetlanej liczbie funtów; w kg bez zmian. */
 const dispKg = (kg: number) => wu() === 'lb' ? wOut(kg) * KG_PER_LB : kg;
-/** Etykieta kolumny ciężaru zależna od trybu liczenia. */
+/** Etykieta kolumny ciężaru zależna od trybu liczenia — a dla bloku na stacji z oporem elektrycznym/magnetycznym (`impl` 'electric') zawsze
+ * NA STRONĘ (decyzja 03.10.2026 „ViShape na stronę”; audyt f132330/025ee6a, MEDIUM 2: wcześniej zmieniała się tylko lista ciężarów, a kolumna
+ * mówiła „kg” / „kg/hantel”). Dotyczy każdego ćwiczenia na stacji, także „Przysiad z pasem (linki)”, „Cable Fly”, „RDL (hantle/linki)”.
+ * `impl` — przyrząd bloku (WExercise.impl; blockImpl dopowiada go z miejsca, gdy blok go nie ma); bez przyrządu — jak przed P-003.
+ * Sama objętość (exMult) się NIE zmienia — otwarte pytanie właściciela w docs/10. */
+const perSide = (impl: Impl | null | undefined) => impl === 'electric';
 /** Runda 69 (zrzuty): krótka etykieta kolumny tabeli — pełna zostaje dla VoiceOver. */
-export const loadLabelShort = (ex: Exercise) => isBW(ex) ? `±${wu()}` : (ex.loadMode === 'per_dumbbell' ? t('{u}/hant.', { u: wu() }) : ex.loadMode === 'unilateral' ? t('{u}/str.', { u: wu() }) : wu());
-export const loadLabel = (ex: Exercise) => isBW(ex) ? `±${wu()}` : (ex.loadMode === 'per_dumbbell' ? t('{u}/hantel', { u: wu() }) : ex.loadMode === 'unilateral' ? t('{u}/strona', { u: wu() }) : wu());
+export const loadLabelShort = (ex: Exercise, impl?: Impl | null) => isBW(ex) ? `±${wu()}` : perSide(impl) ? t('{u}/str.', { u: wu() }) : (ex.loadMode === 'per_dumbbell' ? t('{u}/hant.', { u: wu() }) : ex.loadMode === 'unilateral' ? t('{u}/str.', { u: wu() }) : wu());
+export const loadLabel = (ex: Exercise, impl?: Impl | null) => isBW(ex) ? `±${wu()}` : perSide(impl) ? t('{u}/stronę', { u: wu() }) : (ex.loadMode === 'per_dumbbell' ? t('{u}/hantel', { u: wu() }) : ex.loadMode === 'unilateral' ? t('{u}/strona', { u: wu() }) : wu());
 /** Domyślna przerwa dla ćwiczenia: zapamiętana w ćwiczeniu albo globalna. */
 export const restFor = (ex: Exercise | undefined, warmup = false): number => { const s = getState().settings; const def = typeof s.defaultRest === 'number' && s.defaultRest >= 0 ? s.defaultRest : 90; if (!ex) return def; if (warmup && ex.restWarmupSec != null) return ex.restWarmupSec; return ex.restSec ?? def; };
 export const fmtSec = (sec: number) => { sec = Math.max(0, Math.round(sec)); if (sec >= 3600) return fmtDur(sec); /* runda 12: godzina i więcej jak czas sesji */ const m = Math.floor(sec / 60), r = sec % 60; return m ? `${m}:${String(r).padStart(2, '0')}` : `${r}s`; };
@@ -454,19 +454,22 @@ const splitImpl = (key: string): [string, Impl | undefined] => { const i = key.i
 const implWorkouts = memoHistBy((key: string): Workout[] => { const [exId, impl] = splitImpl(key); return workoutsWith(exId).filter(w => w.exercises.some(e => e.exerciseId === exId && (e.impl === undefined || e.impl === impl))); });
 /** Treningi z ćwiczeniem od najnowszego: cała historia (impl undefined) albo tylko pasujące do przyrządu `impl`. */
 const histOf = (exId: string, impl: Impl | undefined) => impl === undefined ? workoutsWith(exId) : implWorkouts(exId + IMPL_SEP + impl);
-function prevScan(hist: readonly Workout[], exId: string, ok: WOk): Prev | null {
+/** Audyt f132330/025ee6a (LOW 4): w wybranej sesji tylko bloki tym samym albo nieznanym przyrządem, gdy takie są — sesja z RDL hantlami
+ * i na linkach nie miesza wartości obu przyrządów. `impl` tylko przy aktywnym filtrze 8c (są miejsca, blok ma przyrząd); bez niego — wszystkie bloki. */
+const implBlocks = (bl: WExercise[], impl: Impl | undefined): WExercise[] => { if (!impl) return bl; const same = bl.filter(e => e.impl === undefined || e.impl === impl); return same.length ? same : bl; };
+function prevScan(hist: readonly Workout[], exId: string, ok: WOk, impl?: Impl): Prev | null {
   let dropOnly: Prev | null = null;
   for (const w of hist) {
     if (!ok(w)) continue;
     // Runda 9: puste bloki (np. sama rozgrzewka) zostają na swoich miejscach — numeracja bloków się nie przesuwa.
-    const bl = blocksOf(w, exId); const blocks = bl.map(e => e.sets.filter(s => isWorking(s) && setHasValue(s)));
+    const bl = implBlocks(blocksOf(w, exId), impl); const blocks = bl.map(e => e.sets.filter(s => isWorking(s) && setHasValue(s)));
     // Runda 72 (T5): sesja z samymi drop setami nie zasłania ostatniego ciężaru roboczego — szukamy dalej (zapamiętując ją na wypadek braku innych).
     if (blocks.some(b => b.some(s => s.kind !== 'drop'))) return { workout: w, sets: blocks.flat(), blocks, ids: bl.map(e => e.tplItemId) };
     if (!dropOnly && blocks.some(b => b.length)) dropOnly = { workout: w, sets: blocks.flat(), blocks, ids: bl.map(e => e.tplItemId) };
   }
   return dropOnly;
 }
-const prevCache = memoHistBy((key: string): Prev | null => { const [exId, impl] = splitImpl(key); return prevScan(histOf(exId, impl), exId, ALL); });
+const prevCache = memoHistBy((key: string): Prev | null => { const [exId, impl] = splitImpl(key); return prevScan(histOf(exId, impl), exId, ALL, impl); });
 /** Serie robocze z ostatniego treningu z tym ćwiczeniem (wszystkie bloki razem). */
 export function previousFor(exId: string): { workout: Workout; sets: WSet[] } | null { return prevCache(exId); }
 /**
@@ -474,21 +477,23 @@ export function previousFor(exId: string): { workout: Workout; sets: WSet[] } | 
  * i lżej). Gdy poprzednio było kilka bloków, bierzemy blok o tym samym numerze (albo ostatni); gdy jeden — ten jeden.
  */
 /** Runda 72 (T5): ostatni blok z tej samej pozycji szablonu (id pozycji jest unikalne) — dla ćwiczenia, które w szablonie występuje kilka razy. */
-function byItemScan(hist: readonly Workout[], exId: string, itemId: string, ok: WOk): PrevSets | null {
+function byItemScan(hist: readonly Workout[], exId: string, itemId: string, ok: WOk, impl?: Impl): PrevSets | null {
   let dropOnly: PrevSets | null = null; /* T7: blok z samymi drop setami nie zasłania serii roboczych (jak prevScan) */
-  for (const w of hist) { if (!ok(w)) continue; const b = w.exercises.find(e => e.exerciseId === exId && e.tplItemId === itemId); const sets = b ? b.sets.filter(s => isWorking(s) && setHasValue(s)) : []; if (sets.some(s => s.kind !== 'drop')) return { workout: w, sets }; if (sets.length && !dropOnly) dropOnly = { workout: w, sets }; }
+  for (const w of hist) { if (!ok(w)) continue; const b = w.exercises.find(e => e.exerciseId === exId && e.tplItemId === itemId && (!impl || e.impl === undefined || e.impl === impl)); /* LOW 4: blok innym przyrządem — szukamy dalej */ const sets = b ? b.sets.filter(s => isWorking(s) && setHasValue(s)) : []; if (sets.some(s => s.kind !== 'drop')) return { workout: w, sets }; if (sets.length && !dropOnly) dropOnly = { workout: w, sets }; }
   return dropOnly;
 }
-const prevByItem = memoHistBy((key: string): PrevSets | null => { const [k0, impl] = splitImpl(key); const [exId, itemId] = k0.split('|'); return byItemScan(histOf(exId, impl), exId, itemId, ALL); });
+const prevByItem = memoHistBy((key: string): PrevSets | null => { const [k0, impl] = splitImpl(key); const [exId, itemId] = k0.split('|'); return byItemScan(histOf(exId, impl), exId, itemId, ALL, impl); });
 /** T6: starsze dane bez id pozycji szablonu — k-ty blok ćwiczenia z ostatniej sesji tego samego szablonu (gdy miała ich kilka). */
-function byTplBlockScan(hist: readonly Workout[], exId: string, tplId: string, k: number, ok: WOk): PrevSets | null {
-  for (const w of hist) { if (!ok(w) || w.templateId !== tplId) continue; const bl = blocksOf(w, exId).map(e => e.sets.filter(s => isWorking(s) && setHasValue(s)));
+function byTplBlockScan(hist: readonly Workout[], exId: string, tplId: string, k: number, ok: WOk, impl?: Impl): PrevSets | null {
+  for (const w of hist) { if (!ok(w) || w.templateId !== tplId) continue; const bl = implBlocks(blocksOf(w, exId), impl).map(e => e.sets.filter(s => isWorking(s) && setHasValue(s)));
     if (bl.filter(b => b.length).length > 1) { const b = bl[Math.min(k, bl.length - 1)]; if (b.some(s => s.kind !== 'drop')) return { workout: w, sets: b }; } }
   return null;
 }
-const prevByTplBlock = memoHistBy((key: string): PrevSets | null => { const [k0, impl] = splitImpl(key); const [exId, tplId, ks] = k0.split('|'); return byTplBlockScan(histOf(exId, impl), exId, tplId, Number(ks), ALL); });
+const prevByTplBlock = memoHistBy((key: string): PrevSets | null => { const [k0, impl] = splitImpl(key); const [exId, tplId, ks] = k0.split('|'); return byTplBlockScan(histOf(exId, impl), exId, tplId, Number(ks), ALL, impl); });
 /** `impl` (decyzja 8c, 03.10.2026): przyrząd bieżącego bloku (WExercise.impl). Gdy są miejsca i przyrząd jest znany — dobór jak niżej, ale tylko
- * z sesji pasujących do przyrządu (ten sam albo nieznany — implWorkouts), gdziekolwiek były; gdy takiej sesji nie ma — ostatni trening w ogóle.
+ * z sesji pasujących do przyrządu (ten sam albo nieznany — implWorkouts), gdziekolwiek były, a w wybranej sesji tylko z bloków tym samym albo
+ * nieznanym przyrządem (implBlocks — runda 82, LOW 4); gdy takiej sesji nie ma — ostatni trening w ogóle (wtedy bezpiecznik M3 przy wstawianiu:
+ * prevFromOther traktuje znany, inny przyrząd jak inne miejsce — LOW 3).
  * Miejsce samo w sobie NIE ma znaczenia. Bez przyrządu (i zawsze bez miejsc) — dokładnie jak przed P-003. */
 export function previousBlockFor(exId: string, k: number, n = 2, tplItemId?: string, tplId?: string | null, impl?: Impl | null): { workout: Workout; sets: WSet[] } | null {
   const ik = impl && getState().settings.locations.length && prevCache(exId + IMPL_SEP + impl) ? IMPL_SEP + impl : '';
@@ -500,10 +505,10 @@ export function previousBlockFor(exId: string, k: number, n = 2, tplItemId?: str
  * przed P-003. */
 export function previousBlockBefore(exId: string, before: number, k: number, n = 2, tplItemId?: string, tplId?: string | null, excludeId?: string | null, impl?: Impl | null): { workout: Workout; sets: WSet[] } | null {
   const ok: WOk = w => w.startedAt < before && w.id !== excludeId;
-  let hist = workoutsWith(exId); let p: Prev | null = null;
-  if (impl && getState().settings.locations.length) { const ih = histOf(exId, impl); p = prevScan(ih, exId, ok); if (p) hist = ih; }
+  let hist = workoutsWith(exId); let p: Prev | null = null; let fi: Impl | undefined; /* fi: filtr bloków (LOW 4) tylko razem z historią wg przyrządu */
+  if (impl && getState().settings.locations.length) { const ih = histOf(exId, impl); p = prevScan(ih, exId, ok, impl); if (p) { hist = ih; fi = impl; } }
   if (!p) p = prevScan(hist, exId, ok);
-  return selectBlock(p, k, n, tplItemId, tplId, it => byItemScan(hist, exId, it, ok), tp => byTplBlockScan(hist, exId, tp, k, ok));
+  return selectBlock(p, k, n, tplItemId, tplId, it => byItemScan(hist, exId, it, ok, fi), tp => byTplBlockScan(hist, exId, tp, k, ok, fi));
 }
 /** Wybór bloku z ostatniej sesji `p` (wspólny dla previousBlockFor i previousBlockBefore); byItem/byTpl — skany w tej samej historii i z tym samym filtrem. */
 function selectBlock(p: Prev | null, k: number, n: number, tplItemId: string | undefined, tplId: string | null | undefined, byItem: (itemId: string) => PrevSets | null, byTpl: (tplId: string) => PrevSets | null): PrevSets | null {
@@ -599,24 +604,40 @@ export function startLocationId(preferred?: string | null): string | undefined {
   if (preferred && s.locations.some(l => l.id === preferred)) return preferred;
   return s.mainLocationId && s.locations.some(l => l.id === s.mainLocationId) ? s.mainLocationId : s.locations[0].id;
 }
-/** Audyt M3: ciężar spoza listy dostępnych w miejscu (np. 32 kg z siłowni, w domu max 24) — nie wstawiamy go do pól, zostaje w „Poprzednio”. */
+/** Audyt M3: ciężar spoza listy dostępnych w miejscu (np. 32 kg z siłowni, w domu max 24) — nie wstawiamy go do pól, zostaje w „Poprzednio”
+ * (tylko gdy źródło jest „gdzie indziej” — prevFromOther; z sesji bez miejsca wartość zostaje, a ekran pokazuje dopisek). */
 export function offListAt(ex: Exercise | undefined, locationId: string | undefined, kg: unknown): boolean {
   if (!ex || isBW(ex) || typeof kg !== 'number') return false; const loc = locationById(locationId); if (!loc) return false;
   const L = loadsFor(ex, loc); return L.kind === 'loads' && !hasLoad(L.loads, kg);
+}
+/** Bezpiecznik M3 — JEDNA reguła „źródło wartości jest gdzie indziej” (start z szablonu, „Powtórz ostatni”, odhaczenie pustej serii, edytor historii):
+ * sesja źródłowa w INNYM, ZNANYM miejscu niż trening (weryfikacja 2: sesje bez miejsca — nie) ALBO — audyt f132330/025ee6a (LOW 3) — blok źródłowy
+ * zrobiony ZNANYM, INNYM przyrządem niż bieżący blok (np. „Poprzednio” z fallbacku 8c: RDL na stacji, dziś hantle w tym samym miejscu).
+ * Wtedy ciężar spoza listy tego miejsca (offListAt) nie trafia do pól — puste ciężar i powtórzenia (kontrakt M3). Bez miejsca treningu — nigdy.
+ * Sesja bez miejsca i bez przyrządu (0.8.5, web 0.3) to NIE „gdzie indziej” (HIGH z weryfikacji 2: wstrzymanie dawało serie bez ciężaru) —
+ * jej wartość zostaje, a ekran treningu i edytor historii pokazują dopisek „ciężaru … nie ma tutaj” (audyt MEDIUM 1). */
+export function prevFromOther(src: { workout: Workout; sets: WSet[] } | null | undefined, exId: string, locationId: string | null | undefined, impl: Impl | null | undefined): boolean {
+  if (!src || !locationId) return false;
+  if (src.workout.locationId && src.workout.locationId !== locationId) return true;
+  return !!impl && src.workout.exercises.some(e => e.exerciseId === exId && e.impl !== undefined && e.impl !== impl && e.sets.some(x => src.sets.includes(x)));
 }
 /** Decyzja 8c: przyrząd ćwiczenia w miejscu treningu (lib/equipment.ts implAt) — zapisywany w bloku przy dodaniu/starcie; bez miejsca — brak. */
 export function implAtLoc(ex: Exercise | undefined, locationId: string | null | undefined): Impl | undefined {
   const loc = locationById(locationId); return ex && loc ? implAt(ex, loc) : undefined;
 }
+/** Przyrząd bloku do etykiet (MEDIUM 2): zapisany w bloku, a gdy go nie ma — rozstrzygnięty dla miejsca treningu (bez miejsca — brak). */
+export const blockImpl = (e: Pick<WExercise, 'exerciseId' | 'impl'>, locationId: string | null | undefined): Impl | undefined => e.impl ?? implAtLoc(exById(e.exerciseId), locationId);
 /** Ustawia (albo usuwa) przyrząd bloku wg miejsca treningu. Bez miejsca pole nie powstaje — dane jak przed schematem 15. */
 export function stampImpl(e: WExercise, locationId: string | null | undefined): WExercise {
   const i = implAtLoc(exById(e.exerciseId), locationId); if (i) e.impl = i; else delete e.impl; return e;
 }
-/** Zmiana miejsca treningu w toku (chip „📍”): tylko ta sesja; przyrządy bloków liczone od nowa dla nowego miejsca (decyzja 8c) — wpisane
- * wartości zostają (A-002), zmienia się filtr wyboru ćwiczeń, plakietki braku sprzętu, podpowiedzi i „Poprzednio”. */
+/** Zmiana miejsca treningu w toku (chip „📍”): tylko ta sesja; przyrządy bloków BEZ odhaczonych serii liczone od nowa dla nowego miejsca
+ * (decyzja 8c) — blok z odhaczonymi seriami zachowuje przyrząd, którym je zrobiono (audyt f132330/025ee6a, LOW 5: wcześniej przemianowywało się
+ * także zrobione serie, np. RDL na hantlach zapisywał się jako stacja). Wpisane wartości zostają (A-002), zmienia się filtr wyboru ćwiczeń,
+ * plakietki braku sprzętu, podpowiedzi i „Poprzednio”. */
 export function setActiveLocation(id: string) {
   const a = getState().active; if (!a || !locationById(id) || a.locationId === id) return;
-  a.locationId = id; a.exercises.forEach(e => stampImpl(e, id)); save(a);
+  a.locationId = id; a.exercises.forEach(e => { if (!e.sets.some(x => x.done)) stampImpl(e, id); }); save(a);
 }
 /* ---------- workout actions ---------- */
 const newWorkout = (templateId: string | null, templateName: string, locPref?: string | null): Workout => { const st = getState(); const w: Workout = { ...base(st.ownerId), loggedBy: st.ownerId, sessionMode: 'solo', healthUUID: null, templateId, templateName, startedAt: Date.now(), finishedAt: null, note: '', exercises: [] }; const loc = startLocationId(locPref); if (loc) w.locationId = loc; return w; };
@@ -637,9 +658,9 @@ export function startFromTemplate(tpl: Template) {
       // Cel czasu z szablonu wygrywa z czasem z poprzedniej sesji — inaczej stoper ucinał serię na starym wyniku (runda 2).
       // Czas z poprzedniej sesji zostaje tylko podpowiedzią („Poprzednio”) — jako wartość stawałby się celem stopera (runda 4).
       if (hasTime(m)) s.durationSec = Number(it.targetSec) > 0 ? Number(it.targetSec) : ''; // runda 30: cel 0 = bez celu (jak w repeatLast)
-      /* audyt M3 + weryfikacja 2: tylko poprzedni trening w INNYM, ZNANYM miejscu (treningi sprzed miejsc — jak M8 — nie są „gdzie indziej”); wtedy bez
-       * ciężaru nie przepisujemy też powtórzeń — seria zostaje pusta, a nie „ciężar pusty + powtórzenia” */
-      if (p && w.locationId && prevAll!.workout.locationId && prevAll!.workout.locationId !== w.locationId && offListAt(ex, w.locationId, s.weight)) { s.weight = ''; if (p.reps === s.reps) s.reps = ''; }
+      /* audyt M3 + weryfikacja 2: tylko źródło „gdzie indziej” (prevFromOther: inne, znane miejsce albo — LOW 3 — znany, inny przyrząd; treningi sprzed
+       * miejsc — jak M8 — nie); wtedy bez ciężaru nie przepisujemy też powtórzeń — seria zostaje pusta, a nie „ciężar pusty + powtórzenia” */
+      if (p && prevFromOther(prevAll, ex.id, w.locationId, impl) && offListAt(ex, w.locationId, s.weight)) { s.weight = ''; if (p.reps === s.reps) s.reps = ''; }
       sets.push(markPre(stripUnused(ex, s)));
     }
     // Przerwa: ustawiona w pozycji szablonu wygrywa; puste pole w szablonie (null) = przerwa z ćwiczenia albo domyślna.
@@ -654,15 +675,18 @@ export function repeatLast() {
   // Powtarza to, co faktycznie zrobiono (także ćwiczenia dodane/usunięte w trakcie), a nie szablon, z którego wystartowano (runda 2).
   /* Integracja 0.9.0: ostatni trening bez locationId (sprzed miejsc, z importu), choć miejsca są — to „nieznane miejsce”, nie „inne miejsce”:
    * nowy trening dostaje miejsce główne, a wartości kopiujemy bez wstrzymywania ciężarów spoza listy (jak treningi sprzed miejsc
-   * w startFromTemplate i przy odhaczaniu; docs/10, docs/12). Świadomie bez zmian. */
+   * w startFromTemplate i przy odhaczaniu; docs/10, docs/12). Świadomie bez zmian — ekran treningu pokazuje wtedy dopisek „ciężaru … nie ma tutaj”
+   * (runda 82, MEDIUM 1). Wstrzymanie tylko dla źródła „gdzie indziej” (prevFromOther: inne, znane miejsce albo znany, inny przyrząd — LOW 3). */
   const w = newWorkout(last.templateId, last.templateName, last.locationId);
   // Runda 22: cel czasu z pozycji szablonu, z której powstał blok (stary wynik nie staje się celem — runda 4).
   const tplOf = last.templateId ? getState().templates.find(x => x.id === last.templateId) : null;
   const tgt = (e: WExercise): number | '' => { const it = tplOf && e.tplItemId ? tplOf.items.find(x => x.id === e.tplItemId && x.exerciseId === e.exerciseId) : null; return it && Number(it.targetSec) > 0 ? Number(it.targetSec) : ''; };
-  w.exercises = last.exercises.filter(e => { const ex = exById(e.exerciseId); return ex && !ex.archived; }).map(e => ({ ...e, id: uid(), sets: e.sets.map(s => ({ ...blankSet(), ...(assistLost(exById(e.exerciseId), s) ? {} : copyVals(s)), durationSec: s.kind === 'warmup' ? '' : tgt(e), kind: s.kind === 'failure' ? 'normal' : s.kind ?? (s.warmup ? 'warmup' : 'normal') /* T11: upadek to wynik, nie plan (jak addSet i szablon) */, warmup: s.warmup })).map(s => { const ex = exById(e.exerciseId); /* weryfikacja 3 (L2): jak przy starcie z szablonu — ciężar z innego, znanego miejsca spoza listy tutaj nie jest wstawiany (ani same powtórzenia) */
-    if (last.locationId && w.locationId && last.locationId !== w.locationId && offListAt(ex, w.locationId, s.weight)) { s.weight = ''; s.reps = ''; }
-    return markPre(stripUnused(ex, s)); }) }));
-  w.exercises.forEach(e => stampImpl(e, w.locationId)); /* decyzja 8c: przyrząd w miejscu NOWEGO treningu (nie kopiowany z poprzedniego) */
+  w.exercises = last.exercises.filter(e => { const ex = exById(e.exerciseId); return ex && !ex.archived; }).map(e => { const nw = stampImpl({ ...e, id: uid(), sets: [] }, w.locationId); /* decyzja 8c: przyrząd w miejscu NOWEGO treningu (nie kopiowany z poprzedniego) */
+    const away = prevFromOther({ workout: last, sets: e.sets }, e.exerciseId, w.locationId, nw.impl); /* weryfikacja 3 (L2) + LOW 3: jak przy starcie z szablonu — inne, znane miejsce albo znany, inny przyrząd */
+    nw.sets = e.sets.map(s => ({ ...blankSet(), ...(assistLost(exById(e.exerciseId), s) ? {} : copyVals(s)), durationSec: s.kind === 'warmup' ? '' : tgt(e), kind: s.kind === 'failure' ? 'normal' : s.kind ?? (s.warmup ? 'warmup' : 'normal') /* T11: upadek to wynik, nie plan (jak addSet i szablon) */, warmup: s.warmup })).map(s => { const ex = exById(e.exerciseId); /* ciężar spoza listy tutaj z sesji „gdzie indziej” nie jest wstawiany (ani same powtórzenia) */
+      if (away && offListAt(ex, w.locationId, s.weight)) { s.weight = ''; s.reps = ''; }
+      return markPre(stripUnused(ex, s)); });
+    return nw; });
   normalizeGroups(w.exercises);
   getState().active = w; save(); flush();
 }
@@ -726,7 +750,7 @@ function fillFromHints(e: WExercise, si: number) {
   const s = e.sets[si]; if (s.kind === 'warmup') return;
   // Ta sama seria robocza co w podpowiedzi „Poprzednio” (bez „dociągania” do ostatniej — ekran pokazuje wtedy „—”).
   const pb = prevOfBlock(e); const p = hintFor(pb?.sets, e.sets, si, exById(e.exerciseId));
-  const act = getState().active; const offW = !!(p && pb && act?.locationId && pb.workout.locationId && pb.workout.locationId !== act.locationId && offListAt(exById(e.exerciseId), act.locationId, p.weight)); /* audyt M3 (weryfikacja 2: tylko znane, inne miejsce) */
+  const act = getState().active; const offW = !!(p && prevFromOther(pb, e.exerciseId, act?.locationId, e.impl) && offListAt(exById(e.exerciseId), act?.locationId, p.weight)); /* audyt M3 (weryfikacja 2: tylko znane, inne miejsce; LOW 3: albo znany, inny przyrząd) */
   // Guma z podpowiedzi tylko razem z jej asystą — gdy ±kg wpisano ręcznie (np. dociążenie), gumy nie dokładamy (runda 3).
   const hinted: Record<string, unknown> = {};
   // Runda 10: tylko pola, których używa bieżąca metryka ćwiczenia (metrykę mogła zmienić edycja ćwiczenia).

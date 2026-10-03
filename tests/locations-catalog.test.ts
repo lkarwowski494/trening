@@ -5,6 +5,7 @@ import { join } from 'node:path';
 import { CAPABILITIES, CAP_LABEL, EQUIPMENT, EQUIP_GROUPS, LOCATION_PRESETS, availability, capsOf, presetEquipment, equipEntry, missingLabel, loadKindsFor, LOAD_PRESETS, equipById } from '@/lib/equipment';
 import { CATALOG, CATALOG_CAPS } from '@/lib/catalog.generated';
 import { LIB, seedState, equipFields } from '@/lib/seed';
+import { demoTemplates } from './fixtures/demo-templates';
 import { userHome, loc } from './locations-fixtures';
 
 const root = join(__dirname, '..');
@@ -90,7 +91,7 @@ describe('presety miejsc i dostępność', () => {
     /* pełna lista do przejrzenia z użytkownikiem (docs/10, „Implementacja E1”) — 70 ze 125 */
     expect(ex.filter(e => availability(e, h).ok)).toHaveLength(70);
     /* szablon „Legs — dom” w całości dostępny w domu */
-    const sd = seedState(); const tpl = sd.templates.find(t => t.name === 'Legs — dom')!;
+    const sd = seedState(); const tpl = demoTemplates(sd.exercises).find(t => t.name === 'Legs — dom')!; /* szablon właściciela — dane testowe (od 03.10.2026 nie ma go w seedzie) */
     for (const i of tpl.items) expect(availability(sd.exercises.find(e => e.id === i.exerciseId)!, h).ok).toBe(true);
   });
   test('dopisek „brak: …” wymienia niespełnione grupy (w grupie alternatywy przez „/”)', () => {

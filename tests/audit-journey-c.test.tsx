@@ -7,7 +7,7 @@ import * as units from '@/lib/units';
 import * as backup from '@/lib/backup';
 import { exName, t as tr } from '@/lib/i18n';
 import { renderApp, tap, type, flushAll, screen, go, act } from './app';
-import { ex, pressAlert, saved } from './helpers';
+import { ex, pressAlert, saved, seedWithDemo } from './helpers';
 import * as FS from 'expo-file-system';
 import * as DP from 'expo-document-picker';
 
@@ -24,7 +24,7 @@ const finish = async () => { await tap(screen.getAllByText(tr('Zakończ trening 
 
 for (const [loc, unit] of [['pl', 'kg'], ['en', 'lb']] as const) {
   test(`C journey ${loc}/${unit}`, async () => {
-    await renderApp({ locale: loc });
+    await renderApp({ locale: loc, saved: seedWithDemo(loc) });
     const st = store.getState(); st.settings.unit = unit; store.applyPrefs();
     const tpl = st.templates.find(x => x.name === 'Upper A')!;
     // superset Bench + Row; plank with 30 s target

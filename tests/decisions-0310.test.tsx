@@ -1,7 +1,8 @@
 /* Decyzje właściciela produktu z 03.10.2026, 07:35 (docs/10, runda 81):
  *  - 7b → 7a: podpowiedź „↑” bez bramki 10% — zawsze najbliższy większy DOSTĘPNY ciężar;
  *  - 8a → 8c: „Poprzednio” = ostatni raz TYM SAMYM PRZYRZĄDEM, gdziekolwiek (WExercise.impl, schemat 15) — miejsce samo w sobie bez znaczenia;
- *  - P-004 (b): hantle wpisuje się na hantel — szablony 48 → 24 kg (seed + jednorazowa migracja), historia bez zmian;
+ *  - P-004 (b): hantle wpisuje się na hantel — dane wpisuje użytkownik; decyzja z 08:11 („Nie przenoś do aplikacji żadnych moich szablonów”):
+ *    świeża instalacja bez szablonów, a migracja NIE zmienia szablonów (dawne 48 → 24 usunięte), historia bez zmian;
  *  - ViShape na stronę: ciężar stacji elektrycznej zawsze na stronę. */
 import fc from 'fast-check';
 import { readFileSync } from 'node:fs';
@@ -14,8 +15,8 @@ import { implAt, loadsFor, equipEntry } from '@/lib/equipment';
 import { nextHeavier, achievable } from '@/lib/loads';
 import { buildBackup, parseBackup } from '@/lib/backup';
 import { EN } from '@/lib/i18n.en';
-import { SCHEMA_VERSION, type Impl, type Workout } from '@/lib/seed';
-import { fresh, ex, addWorkout, set } from './helpers';
+import { SCHEMA_VERSION, LIB, seedState, type Impl, type Workout } from '@/lib/seed';
+import { fresh, ex, addWorkout, set, saved, withDemoTemplates } from './helpers';
 import { userHome, loc, presetSpec } from './locations-fixtures';
 import { renderApp, flushAll, screen, go } from './app';
 
@@ -91,9 +92,17 @@ describe('8c — przyrząd bloku (WExercise.impl)', () => {
     await fresh(); places(); hist(day(10), RDL, 20, 'home', 'dumbbell'); hist(day(5), RDL, 40, 'garage', 'electric');
     store.startFromTemplate(tplAt(RDL, 'home')); let a = store.getState().active!; expect(a.exercises[0].impl).toBe('dumbbell'); expect(weights(a)).toEqual([20, 20]); store.cancelWorkout();
     store.startFromTemplate(tplAt(RDL, 'garage')); a = store.getState().active!; expect(a.exercises[0].impl).toBe('electric'); expect(weights(a)).toEqual([40, 40]); store.cancelWorkout();
-    /* jedna sesja z RDL hantlami i na linkach: sesja pasuje do obu przyrządów (któryś blok ma ten przyrząd) */
+    /* jedna sesja z RDL hantlami i na linkach: sesja pasuje do obu przyrządów (któryś blok ma ten przyrząd), ale — audyt runda 82 (LOW 4) — wartości
+     * tylko z bloków tym samym (albo nieznanym) przyrządem: wcześniej obie wartości mieszały się w jedną listę serii (18 i 35) */
     const w = addWorkout(day(2), [[RDL, [{ weight: 18, reps: 8 }]], [RDL, [{ weight: 35, reps: 8 }]]]); w.exercises[0].impl = 'dumbbell'; w.exercises[1].impl = 'electric'; store.save();
-    expect(store.previousBlockFor(ex(RDL).id, 0, 1, undefined, null, 'electric')!.workout.id).toBe(w.id);
+    const pe = store.previousBlockFor(ex(RDL).id, 0, 1, undefined, null, 'electric')!, pd = store.previousBlockFor(ex(RDL).id, 0, 1, undefined, null, 'dumbbell')!;
+    expect([pe.workout.id, pd.workout.id]).toEqual([w.id, w.id]); expect(pe.sets.map(s => s.weight)).toEqual([35]); expect(pd.sets.map(s => s.weight)).toEqual([18]);
+    expect(store.previousBlockBefore(ex(RDL).id, Infinity, 0, 1, undefined, null, null, 'electric')!.sets.map(s => s.weight)).toEqual([35]); /* edytor historii — ta sama reguła */
+    store.startFromTemplate(tplAt(RDL, 'garage')); expect(weights(store.getState().active)).toEqual([35, 35]); store.cancelWorkout();
+    store.startFromTemplate(tplAt(RDL, 'home')); expect(weights(store.getState().active)).toEqual([18, 18]); store.cancelWorkout();
+    /* blok bez przyrządu (sprzed schematu 15) w tej samej sesji też pasuje — razem z blokiem tym samym przyrządem */
+    const w2 = addWorkout(day(1), [[RDL, [{ weight: 16, reps: 8 }]], [RDL, [{ weight: 36, reps: 8 }]], [RDL, [{ weight: 19, reps: 8 }]]]); w2.exercises[1].impl = 'electric'; w2.exercises[2].impl = 'dumbbell'; store.save();
+    expect(store.previousBlockFor(ex(RDL).id, 0, 1, undefined, null, 'dumbbell')!.sets.map(s => s.weight)).toEqual([16, 19]);
   });
 
   test('wyciąg w siłowni i stacja w domu to różne przyrządy: „Poprzednio” nie miesza ciężarów (Triceps Pushdown)', async () => {
@@ -165,36 +174,41 @@ describe('schemat 15 — migracja, eksport/import, restart', () => {
   });
 });
 
-describe('P-004 (b) — hantle na hantel', () => {
+describe('decyzja 03.10.2026 (08:11) — aplikacja nie przenosi ani nie zmienia szablonów właściciela (zastępuje seed i migrację P-004)', () => {
   const item = (st: { templates: { name: string; items: { exerciseId: string; startWeight: number | '' }[] }[]; exercises: { id: string; name: string; lib?: boolean }[] }, tpl: string, exName: string) =>
     st.templates.find(t => t.name === tpl)!.items.find(i => st.exercises.find(e => e.id === i.exerciseId)?.name === exName)!;
-  test('nowa instalacja: Deadlift (hantle) i RDL (hantle/linki) w szablonach Legs po 24 kg (PL i EN); reszta bez zmian', async () => {
-    let st = await fresh();
-    expect([item(st, 'Legs — siłownia', 'Deadlift (hantle)').startWeight, item(st, 'Legs — dom', RDL).startWeight, item(st, 'Legs — dom', 'Hip Thrust (hantel)').startWeight, item(st, 'Legs — siłownia', 'Leg Press').startWeight]).toEqual([24, 24, 24, 130]);
-    st = await fresh(undefined, 'en'); expect([item(st, 'Legs — gym', 'Deadlift (hantle)').startWeight, item(st, 'Legs — home', RDL).startWeight]).toEqual([24, 24]);
-  });
-  test('migracja ze schematu < 15: tylko te dwa ćwiczenia z biblioteki w trybie „na hantel” i dokładnie 48 → 24; historia bez zmian; jednorazowo', async () => {
-    await fresh(); const raw = JSON.parse(JSON.stringify(store.getState())); raw.schemaVersion = 14;
-    item(raw, 'Legs — siłownia', 'Deadlift (hantle)').startWeight = 48; item(raw, 'Legs — dom', RDL).startWeight = 48; item(raw, 'Upper A', DB).startWeight = 48;
-    raw.exercises.push({ ...raw.exercises.find((e: any) => e.name === 'Deadlift (hantle)'), id: 'own', lib: undefined }); /* własne o tej samej nazwie */
-    raw.templates.push({ ...raw.templates[0], id: 'tOwn', name: 'Własny', items: [{ id: 'x1', exerciseId: 'own', sets: 3, repMin: 8, repMax: 8, restSec: null, startWeight: 48, targetSec: '', groupId: null }, { id: 'x2', exerciseId: raw.exercises.find((e: any) => e.name === RDL).id, sets: 3, repMin: 8, repMax: 8, restSec: null, startWeight: 47.5, targetSec: '', groupId: null }] });
+  /** Stan ze schematem 14 (sprzed 0.9.0) z szablonami użytkownika: Deadlift (hantle) i RDL (hantle/linki) 48 kg — dawniej ruszane przez migrację P-004. */
+  const schema14 = async () => {
+    await fresh(); withDemoTemplates(); const raw = JSON.parse(JSON.stringify(store.getState())); raw.schemaVersion = 14;
+    item(raw, 'Legs — siłownia', 'Deadlift (hantle)').startWeight = 48; item(raw, 'Legs — dom', RDL).startWeight = 48;
     const dl = raw.exercises.find((e: any) => e.name === 'Deadlift (hantle)' && e.lib).id;
     raw.workouts = [{ id: 'h', ownerId: 'local', createdAt: day(3), updatedAt: day(3), loggedBy: 'local', sessionMode: 'solo', healthUUID: null, templateId: null, templateName: 'Legs', startedAt: day(3), finishedAt: day(3) + 3600e3, note: '', exercises: [{ id: 'b', exerciseId: dl, restSec: 90, repMin: 8, repMax: 8, groupId: null, sets: [set({ weight: 48, reps: 8 })] }] }];
-    const m = store.migrate(JSON.parse(JSON.stringify(raw)));
-    expect([item(m, 'Legs — siłownia', 'Deadlift (hantle)').startWeight, item(m, 'Legs — dom', RDL).startWeight, item(m, 'Upper A', DB).startWeight]).toEqual([24, 24, 48]);
-    expect(m.templates.find(t => t.id === 'tOwn')!.items.map(i => i.startWeight)).toEqual([48, 47.5]);
-    expect(m.workouts[0].exercises[0].sets[0].weight).toBe(48); /* A-002: zapisane serie zostają */
-    /* jednorazowo: po migracji (schemat 15) świadomie wpisane 48 zostaje */
-    item(m, 'Legs — dom', RDL).startWeight = 48; expect(item(store.migrate(JSON.parse(JSON.stringify(m))), 'Legs — dom', RDL).startWeight).toBe(48);
-    /* tryb „łącznie” (użytkownik zmienił sposób liczenia) — 48 to wtedy prawidłowa suma */
-    const raw2 = JSON.parse(JSON.stringify(raw)); raw2.exercises.find((e: any) => e.id === dl).loadMode = 'total';
-    expect(item(store.migrate(raw2), 'Legs — siłownia', 'Deadlift (hantle)').startWeight).toBe(48);
-    /* przez start aplikacji (dane z SQLite, schemat 14) */
-    const st = await fresh(JSON.parse(JSON.stringify(raw))); expect(item(st, 'Legs — siłownia', 'Deadlift (hantle)').startWeight).toBe(24); expect(st.schemaVersion).toBe(15);
+    return raw;
+  };
+  const tplShape = (st: { templates: { id: string; name: string; items: { exerciseId: string; startWeight: number | ''; sets: number }[] }[] }) => st.templates.map(t => [t.id, t.name, t.items.map(i => [i.exerciseId, i.sets, i.startWeight])]);
+  test('nowa instalacja: ZERO szablonów (PL i EN); biblioteka ćwiczeń i gumy jak dotąd', async () => {
+    let st = await fresh(); expect(st.templates).toEqual([]); expect(st.exercises.map(e => e.name)).toEqual(LIB.map(l => l[0])); expect(st.bands.map(b => [b.color, b.level])).toEqual([['czerwona', 2], ['czarna', 4], ['fioletowa', 6]]);
+    st = await fresh(undefined, 'en'); expect(st.templates).toEqual([]); expect(st.bands.map(b => b.color)).toEqual(['red', 'black', 'purple']);
+    expect(seedState('pl').templates).toEqual([]); expect(seedState('en').templates).toEqual([]);
   });
-  test('stary backup web 0.3 (prawdziwy format): szablony z 48 kg (suma pary) → 24 kg na hantel', async () => {
-    await fresh(); const s = parseBackup(readFileSync(join(__dirname, 'fixtures/web03-backup.json'), 'utf8')); store.replaceState(s); const st = store.getState();
-    expect(st.schemaVersion).toBe(15); expect([item(st, 'Legs — siłownia', 'Deadlift (hantle)').startWeight, item(st, 'Legs — dom / Vishape', RDL).startWeight]).toEqual([24, 24]);
+  test('przejście ze schematu 14: szablon z Deadlift (hantle) 48 kg zostaje 48 (migracja i start aplikacji); szablony ani zmieniane, ani usuwane; historia bez zmian', async () => {
+    const raw = await schema14();
+    const m = store.migrate(JSON.parse(JSON.stringify(raw)));
+    expect([item(m, 'Legs — siłownia', 'Deadlift (hantle)').startWeight, item(m, 'Legs — dom', RDL).startWeight]).toEqual([48, 48]);
+    expect(tplShape(m)).toEqual(tplShape(raw)); expect(m.schemaVersion).toBe(15);
+    expect(m.workouts[0].exercises[0].sets[0].weight).toBe(48); /* A-002: zapisane serie zostają */
+    expect(strip(store.migrate(JSON.parse(JSON.stringify(m))))).toEqual(strip(m)); /* idempotentnie */
+    /* przez start aplikacji (dane z SQLite, schemat 14) */
+    const st = await fresh(JSON.parse(JSON.stringify(raw))); expect(item(st, 'Legs — siłownia', 'Deadlift (hantle)').startWeight).toBe(48); expect(st.schemaVersion).toBe(15); expect(tplShape(st)).toEqual(tplShape(raw));
+    expect(saved().templates.find(t => t.name === 'Legs — siłownia')!.items.find(i => i.startWeight === 48)).toBeTruthy(); /* zapisane z powrotem bez zmian */
+  });
+  test('import kopii: kopia ze schematem 14 i stary backup web 0.3 (prawdziwy format) — szablony 1:1, 48 kg zostaje', async () => {
+    const raw = await schema14(); await fresh();
+    store.replaceState(parseBackup(JSON.stringify(raw))); let st = store.getState();
+    expect(item(st, 'Legs — siłownia', 'Deadlift (hantle)').startWeight).toBe(48); expect(item(st, 'Legs — dom', RDL).startWeight).toBe(48); expect(tplShape(st)).toEqual(tplShape(raw));
+    store.replaceState(parseBackup(readFileSync(join(__dirname, 'fixtures/web03-backup.json'), 'utf8'))); st = store.getState();
+    expect(st.schemaVersion).toBe(15); expect([item(st, 'Legs — siłownia', 'Deadlift (hantle)').startWeight, item(st, 'Legs — dom / Vishape', RDL).startWeight]).toEqual([48, 48]);
+    expect(st.templates.map(t => t.name)).toEqual(['Upper A', 'Upper B', 'Legs — siłownia', 'Legs — dom / Vishape']);
   });
 });
 

@@ -4,7 +4,7 @@ import * as stats from '@/lib/stats';
 import * as timer from '@/lib/timer';
 import * as units from '@/lib/units';
 import { buildCsv } from '@/lib/backup';
-import { fresh, ex, addWorkout, pressAlert, seedState } from './helpers';
+import { fresh, ex, addWorkout, pressAlert, seedState, withDemoTemplates, seedWithDemo } from './helpers';
 import { renderApp, tap, type, flushAll, screen, go, act } from './app';
 
 jest.setTimeout(30000);
@@ -92,11 +92,11 @@ describe('runda 1 — ekrany', () => {
     expect(timer.S.on).toBe(false);
   });
   test('R1-21 po polsku przecinek w polach wstawionych przez apkę', async () => {
-    await renderApp(); await tap(screen.getByLabelText('Start: Upper B')); await flushAll(10);
+    await renderApp({ saved: seedWithDemo() }); await tap(screen.getByLabelText('Start: Upper B')); await flushAll(10);
     expect(screen.getAllByDisplayValue('12,5').length).toBeGreaterThan(0);
   });
   test('R1-22 puste pole w oknie przerwy nie zeruje przerwy', async () => {
-    await renderApp(); await tap(screen.getByLabelText('Start: Upper A')); await flushAll(10);
+    await renderApp({ saved: seedWithDemo() }); await tap(screen.getByLabelText('Start: Upper A')); await flushAll(10);
     await tap(screen.getAllByLabelText(/^Przerwa: /)[0]); pressAlert('Przerwa (sekundy)', 'Zapamiętaj', '  ');
     expect(ex('Bench Press (hantle)').restSec).toBeNull();
     await tap(screen.getAllByLabelText(/^Przerwa: /)[0]); pressAlert('Przerwa (sekundy)', 'Zapamiętaj', '75');
@@ -107,7 +107,7 @@ describe('runda 1 — ekrany', () => {
     expect(screen.queryByText(/Udział masy ciała/)).toBeNull(); expect(screen.queryByDisplayValue('64')).toBeNull();
   });
   test('R1-24 zakończenie z nagłówka wymaga potwierdzenia i ostrzega o nieodhaczonych wynikach', async () => {
-    await renderApp(); await tap(screen.getByLabelText('Start: Upper A')); await flushAll(10);
+    await renderApp({ saved: seedWithDemo() }); await tap(screen.getByLabelText('Start: Upper A')); await flushAll(10);
     await tap(screen.getAllByLabelText(/^Seria 1 zrobiona/)[0]);
     await type(screen.getAllByLabelText('Powtórzenia')[1], '7'); // wpisane ręcznie
     await tap(screen.getAllByText('Zakończ')[0]);
@@ -115,13 +115,13 @@ describe('runda 1 — ekrany', () => {
     expect(store.getState().active).not.toBeNull();
   });
   test('R1-25 plakietka z czasem przerwy na zakładce Trening', async () => {
-    await renderApp(); await tap(screen.getByLabelText('Start: Upper A')); await flushAll(10);
+    await renderApp({ saved: seedWithDemo() }); await tap(screen.getByLabelText('Start: Upper A')); await flushAll(10);
     await tap(screen.getAllByLabelText(/^Seria 1 zrobiona/)[0]); await go('/history'); await flushAll(1000);
     expect(screen.getAllByText(/^[0-9]+[ms]$/).length).toBeGreaterThan(0); /* 02.10.2026: skrót „2m/45s” — „2:28” było ucinane na iOS */
     expect(screen.getByLabelText(/^Trening, przerwa [0-9]+:[0-9]{2}$/)).toBeTruthy(); // VoiceOver: pełny czas
   });
   test('R1-26 wiersz szablonu na ekranie głównym otwiera podgląd, nie start', async () => {
-    await renderApp(); await tap(screen.getByText('Upper A')); await flushAll(10);
+    await renderApp({ saved: seedWithDemo() }); await tap(screen.getByText('Upper A')); await flushAll(10);
     expect(store.getState().active).toBeNull(); expect(screen.getByText('Duplikuj')).toBeTruthy();
   });
 });
@@ -171,7 +171,7 @@ describe('runda 2 — logika', () => {
     store.startFromTemplate(tpl); expect(store.getState().active!.exercises[0].sets[0].addKg).toBe(10);
   });
   test('R2-09 powtórz ostatni odtwarza faktyczny trening (z ćwiczeniem dodanym w trakcie)', () => {
-    const tpl = store.getState().templates[0];
+    const tpl = withDemoTemplates()[0];
     const w = addWorkout(at(2026, 9, 1), [['Bench Press (hantle)', [{ weight: 24, reps: 8 }]], ['Plank', [{ durationSec: 60 }]]]); w.templateId = tpl.id; store.save();
     store.repeatLast(); expect(store.getState().active!.exercises.map(e => e.exerciseId)).toEqual([ex('Bench Press (hantle)').id, ex('Plank').id]);
   });
@@ -180,7 +180,7 @@ describe('runda 2 — logika', () => {
 describe('runda 2 — ekrany', () => {
   afterEach(async () => { try { store.getState(); } catch { return; } await timer.stop(); await timer.stopSet(); });
   test('R2-20 ostrzeżenie przy zakończeniu nie liczy wartości z podpowiedzi', async () => {
-    await renderApp(); await tap(screen.getByLabelText('Start: Upper A')); await flushAll(10);
+    await renderApp({ saved: seedWithDemo() }); await tap(screen.getByLabelText('Start: Upper A')); await flushAll(10);
     await tap(screen.getAllByLabelText(/^Seria 1 zrobiona/)[0]); await tap(screen.getAllByText('Zakończ')[0]);
     const a = global.__alerts[global.__alerts.length - 1]; expect(a.msg).not.toMatch(/Nieodhaczone/);
   });
@@ -199,12 +199,12 @@ describe('runda 2 — ekrany', () => {
     await renderApp({ saved }); expect(screen.getByText(/BB 0/)).toBeTruthy(); expect(screen.getByText(/7,5 h/)).toBeTruthy();
   });
   test('R2-24 pole liczbowe pokazuje po edycji wartość zapisaną (po przycięciu)', async () => {
-    await renderApp(); const tpl = store.getState().templates[0]; await go(`/template/${tpl.id}`); await flushAll(10);
+    await renderApp({ saved: seedWithDemo() }); const tpl = store.getState().templates[0]; await go(`/template/${tpl.id}`); await flushAll(10);
     const f = screen.getAllByDisplayValue('4')[0]; await type(f, '50'); await type(f, '55'); expect(tpl.items[0].sets).toBe(50); /* runda 63: limit 50 */
     await act(async () => { f.props.onEndEditing?.(); }); expect(f.props.value).toBe('50');
   });
   test('R2-25 zmiana języka przeformatowuje separator w polach', async () => {
-    await renderApp(); await tap(screen.getByLabelText('Start: Upper B')); await flushAll(10);
+    await renderApp({ saved: seedWithDemo() }); await tap(screen.getByLabelText('Start: Upper B')); await flushAll(10);
     expect(screen.getAllByDisplayValue('12,5').length).toBeGreaterThan(0);
     await act(async () => { store.getState().settings.language = 'en'; store.applyPrefs(); store.save(); }); await flushAll(10);
     expect(screen.queryAllByDisplayValue('12,5')).toHaveLength(0);
@@ -216,7 +216,7 @@ describe('runda 2 — ekrany', () => {
     expect(store.getState().templates.length).toBe(n);
   });
   test('R2-27 plakietka po czasie pokazuje nadwyżkę', async () => {
-    await renderApp(); await tap(screen.getByLabelText('Start: Upper A')); await flushAll(10);
+    await renderApp({ saved: seedWithDemo() }); await tap(screen.getByLabelText('Start: Upper A')); await flushAll(10);
     await tap(screen.getAllByLabelText(/^Seria 1 zrobiona/)[0]); await go('/history'); await flushAll(200e3);
     expect(screen.getAllByText(/^\+[0-9]+[ms]$/).length).toBeGreaterThan(0); // 02.10.2026: skrót na plakietce
   });
@@ -242,7 +242,7 @@ describe('runda 3', () => {
     expect([s1.reps, s1.bandId]).toEqual([8, st.bands[0].id]);
   });
   test('R3-04 Start w edytorze szablonu wraca do istniejącego ekranu głównego', async () => {
-    await renderApp(); await tap(screen.getByText('Upper A')); await flushAll(10);
+    await renderApp({ saved: seedWithDemo() }); await tap(screen.getByText('Upper A')); await flushAll(10);
     await tap(screen.getByText('Start')); await flushAll(10);
     const { router } = require('expo-router'); expect(router.canGoBack()).toBe(false);
     expect(screen.getAllByText('Zakończ trening i zapisz')).toHaveLength(1);
@@ -275,7 +275,7 @@ describe('runda 3', () => {
     await renderApp({ saved }); expect(screen.queryByLabelText('Start: Pusty')).toBeNull();
   });
   test('R3-10 pola w edytorze szablonu i porannym wpisie mają opis dla VoiceOver', async () => {
-    await renderApp(); await go(`/template/${store.getState().templates[0].id}`); await flushAll(10);
+    await renderApp({ saved: seedWithDemo() }); await go(`/template/${store.getState().templates[0].id}`); await flushAll(10);
     const { TextInput } = require('react-native');
     expect(screen.UNSAFE_getAllByType(TextInput).filter((i: any) => !i.props.accessibilityLabel)).toHaveLength(0);
     await go('/more/morning'); await flushAll(10);
@@ -322,7 +322,7 @@ describe('runda 4', () => {
     function w0(id: string) { store.getState().workouts.at(-1)!.templateId = id; }
   });
   test('R4-05 odhaczenie bez powtórzeń przy zakresie bierze dolną granicę', async () => {
-    await fresh(); store.startFromTemplate(store.getState().templates[0]); store.toggleDone(0, 0);
+    await fresh(); withDemoTemplates(); store.startFromTemplate(store.getState().templates[0]); store.toggleDone(0, 0);
     expect(store.getState().active!.exercises[0].sets[0].reps).toBe(6);
   });
   test('R4-06 postępy pokazują usunięte ćwiczenie z historią', async () => {
@@ -419,7 +419,7 @@ describe('runda 6', () => {
     expect([...stats.prMap(w).values()][0]).toEqual(['e1RM']);
   });
   test('R6-05 przycisk Start na ekranie głównym jest osobnym elementem (nie w wierszu)', async () => {
-    await renderApp(); const start = screen.getByLabelText('Start: Upper A');
+    await renderApp({ saved: seedWithDemo() }); const start = screen.getByLabelText('Start: Upper A');
     let p: any = start.parent; while (p) { if (typeof p.type === 'string' && p.props?.accessible && p.props.accessibilityLabel !== 'Start: Upper A') throw new Error('Start zagnieżdżony w elemencie dostępności wiersza'); p = p.parent; }
     expect(screen.getAllByRole('button').some(b => /^Upper A,/.test(b.props.accessibilityLabel))).toBe(true);
   });
@@ -429,12 +429,12 @@ describe('runda 6', () => {
     expect(sw.every(x => typeof x.props.accessibilityState?.checked === 'boolean')).toBe(true);
   });
   test('R6-07 podwójne „Duplikuj” robi jedną kopię', async () => {
-    await renderApp(); const n = store.getState().templates.length; await go(`/template/${store.getState().templates[0].id}`); await flushAll(10);
+    await renderApp({ saved: seedWithDemo() }); const n = store.getState().templates.length; await go(`/template/${store.getState().templates[0].id}`); await flushAll(10);
     const b = screen.getByText('Duplikuj'); await act(async () => { const { fireEvent } = require('@testing-library/react-native'); fireEvent.press(b); fireEvent.press(b); }); await flushAll(10);
     expect(store.getState().templates.length).toBe(n + 1);
   });
   test('R6-08 podwójne „Zakończ” otwiera jedno okno', async () => {
-    await renderApp(); await tap(screen.getByLabelText('Start: Upper A')); await tap(screen.getAllByLabelText(/^Seria 1 zrobiona/)[0]);
+    await renderApp({ saved: seedWithDemo() }); await tap(screen.getByLabelText('Start: Upper A')); await tap(screen.getAllByLabelText(/^Seria 1 zrobiona/)[0]);
     const n = global.__alerts.length; const b = screen.getAllByText('Zakończ')[0];
     await act(async () => { const { fireEvent } = require('@testing-library/react-native'); fireEvent.press(b); fireEvent.press(b); });
     expect(global.__alerts.length).toBe(n + 1); pressAlert('Zakończyć trening?', 'Wróć');
@@ -448,7 +448,7 @@ describe('runda 6', () => {
     expect(store.getState().exercises.find(e => e.name === 'Moje wyciskanie')!.muscles).toEqual(['klatka']);
   });
   test('R6-10 szablon: start ±kg dla ćwiczenia z masą ciała przyjmuje asystę (ujemne)', async () => {
-    await renderApp(); const tpl = store.getState().templates.find(x => x.items.some(i => i.exerciseId === ex('Chin Up').id))!; const it = tpl.items.find(i => i.exerciseId === ex('Chin Up').id)!;
+    await renderApp({ saved: seedWithDemo() }); const tpl = store.getState().templates.find(x => x.items.some(i => i.exerciseId === ex('Chin Up').id))!; const it = tpl.items.find(i => i.exerciseId === ex('Chin Up').id)!;
     await go(`/template/${tpl.id}`); await flushAll(10);
     const inputs = screen.getAllByLabelText('start ±kg'); await type(inputs[0], '-10'); expect(it.startWeight).toBe(-10);
   });
@@ -458,7 +458,7 @@ describe('runda 6', () => {
     await type(screen.getByPlaceholderText('Szukaj ćwiczenia…'), 'zzzz'); expect(screen.getByText('Nic nie pasuje.')).toBeTruthy();
   });
   test('R6-12 sama rozgrzewka: osobne okno z możliwością odrzucenia', async () => {
-    await renderApp(); await tap(screen.getByLabelText('Start: Upper A'));
+    await renderApp({ saved: seedWithDemo() }); await tap(screen.getByLabelText('Start: Upper A'));
     await act(async () => { const s0 = store.getState().active!.exercises[0].sets[0]; s0.kind = 'warmup'; s0.warmup = true; store.save(); }); await flushAll(10);
     await tap(screen.getAllByLabelText(/^Seria W zrobiona|^Seria 1 zrobiona/)[0]); await tap(screen.getAllByText('Zakończ')[0]);
     expect(global.__alerts.at(-1)!.title).toBe('Tylko rozgrzewka'); pressAlert('Tylko rozgrzewka', 'Odrzuć trening'); await flushAll(10);
@@ -561,18 +561,18 @@ describe('runda 9', () => {
     expect(store.getState().templates.length).toBe(n + 1);
   });
   test('R9-05 ponowny Start w edytorze szablonu nie pokazuje sprzecznego komunikatu', async () => {
-    await renderApp(); const tpl = store.getState().templates[0]; await go('/templates'); await flushAll(10); await tap(screen.getByText(tpl.name)); await flushAll(10);
+    await renderApp({ saved: seedWithDemo() }); const tpl = store.getState().templates[0]; await go('/templates'); await flushAll(10); await tap(screen.getByText(tpl.name)); await flushAll(10);
     const b = screen.getByText('Start'); await act(async () => { const { fireEvent } = require('@testing-library/react-native'); fireEvent.press(b); fireEvent.press(b); }); await flushAll(10);
     expect(global.__alerts.filter((x: any) => x.title === 'Trening w toku')).toHaveLength(0); expect(store.getState().active?.templateId).toBe(tpl.id);
     expect(screen.getAllByText('Zakończ trening i zapisz')).toHaveLength(1); // edytor otwarty z zakładki Szablony też wraca do treningu
   });
   test('R9-06 teksty w wierszu serii mają limit powiększenia', async () => {
-    await renderApp(); await tap(screen.getByLabelText('Start: Upper A'));
+    await renderApp({ saved: seedWithDemo() }); await tap(screen.getByLabelText('Start: Upper A'));
     const { Text } = require('react-native'); const btn = screen.getAllByLabelText(/^Seria 1 zrobiona/)[0];
     expect(btn.findAllByType(Text).every((x: any) => x.props.maxFontSizeMultiplier > 0)).toBe(true);
   });
   test('R9-07 Start w edytorze otwartym z zakładki Szablony przechodzi do treningu', async () => {
-    await renderApp(); const tpl = store.getState().templates[0]; await go('/templates'); await flushAll(10); await tap(screen.getByText(tpl.name)); await flushAll(10);
+    await renderApp({ saved: seedWithDemo() }); const tpl = store.getState().templates[0]; await go('/templates'); await flushAll(10); await tap(screen.getByText(tpl.name)); await flushAll(10);
     await tap(screen.getByText('Start')); await flushAll(10); expect(screen.getAllByText('Zakończ trening i zapisz')).toHaveLength(1);
   });
 });
@@ -593,12 +593,12 @@ describe('runda 10', () => {
     expect([s0.weight, s0.reps, s0.durationSec]).toEqual(['', '', 40]);
   });
   test('R10-03 podwójne „usuń” ćwiczenia w treningu usuwa jedno', async () => {
-    await renderApp(); await tap(screen.getByLabelText('Start: Upper A')); const n = store.getState().active!.exercises.length;
+    await renderApp({ saved: seedWithDemo() }); await tap(screen.getByLabelText('Start: Upper A')); const n = store.getState().active!.exercises.length;
     await press2(screen.getAllByText('usuń')[0]); global.__alerts.filter((a: any) => a.title === 'Usunąć z treningu?').forEach(() => pressAlert('Usunąć z treningu?', 'Usuń'));
     await flushAll(10); expect(store.getState().active!.exercises.length).toBe(n - 1);
   });
   test('R10-04 podwójne „✕” w szablonie usuwa jedną pozycję', async () => {
-    await renderApp(); const tpl = store.getState().templates[0]; const n = tpl.items.length; await tap(screen.getByText(tpl.name)); await flushAll(10);
+    await renderApp({ saved: seedWithDemo() }); const tpl = store.getState().templates[0]; const n = tpl.items.length; await tap(screen.getByText(tpl.name)); await flushAll(10);
     await press2(screen.getAllByLabelText('Usuń z szablonu')[0]); global.__alerts.filter((a: any) => a.title === 'Usunąć z szablonu?').forEach(() => pressAlert('Usunąć z szablonu?', 'Usuń'));
     await flushAll(10); expect(tpl.items.length).toBe(n - 1);
   });
@@ -627,7 +627,7 @@ describe('runda 11', () => {
     store.startFromTemplate(tpl); expect(store.getState().active!.exercises.map(e => e.sets[0].weight)).toEqual(['', 100, 80]);
   });
   test('R11-03 przerwa wpisana w treningu ma limit 30:00', async () => {
-    await renderApp(); await tap(screen.getByLabelText('Start: Upper A')); await tap(screen.getAllByLabelText(/^Przerwa: /)[0]);
+    await renderApp({ saved: seedWithDemo() }); await tap(screen.getByLabelText('Start: Upper A')); await tap(screen.getAllByLabelText(/^Przerwa: /)[0]);
     const a: any = global.__alerts.at(-1); a.buttons.find((b: any) => b.text === 'Zapamiętaj').onPress('90000'); await flushAll(10);
     expect(store.getState().active!.exercises[0].restSec).toBe(1800);
   });
@@ -714,7 +714,7 @@ describe('runda 15', () => {
 describe('runda 16', () => {
   afterEach(async () => { try { store.getState(); } catch { return; } await timer.stop(); await timer.stopSet(); });
   test('R16-01 migracja naprawia pola ćwiczeń i szablonów z ręcznie edytowanego backupu (idempotentnie)', async () => {
-    await fresh(); const raw = JSON.parse(JSON.stringify(store.getState())); const cu = raw.exercises.find((e: any) => e.name === 'Chin Up'); const lp = raw.exercises.find((e: any) => e.name === 'Leg Press');
+    await fresh(); withDemoTemplates(); const raw = JSON.parse(JSON.stringify(store.getState())); const cu = raw.exercises.find((e: any) => e.name === 'Chin Up'); const lp = raw.exercises.find((e: any) => e.name === 'Leg Press');
     Object.assign(cu, { restSec: '90', restWarmupSec: -30 }); Object.assign(lp, { metric: 'bogus', loadMode: 'bogus' });
     raw.templates[0].items[0].sets = '3'; raw.templates[0].items[0].repMin = 0.5; raw.mornings = [{ id: 'm', date: '2026-9-1', bb: 50, sleepScore: '', sleepH: '', weight: '' }];
     const m1 = store.migrate(raw); const m2 = store.migrate(JSON.parse(JSON.stringify(m1)));
@@ -738,7 +738,7 @@ describe('runda 16', () => {
 
 describe('runda 17', () => {
   test('R17-01 migracja: limit przerwy 1800 także dla szablonu i ustawień', async () => {
-    await fresh(); const raw = JSON.parse(JSON.stringify(store.getState())); raw.templates[0].items[0].restSec = 3600; raw.settings.defaultRest = 5000; raw.templates[0].items[1].startWeight = null;
+    await fresh(); withDemoTemplates(); const raw = JSON.parse(JSON.stringify(store.getState())); raw.templates[0].items[0].restSec = 3600; raw.settings.defaultRest = 5000; raw.templates[0].items[1].startWeight = null;
     const m = store.migrate(raw); expect([m.templates[0].items[0].restSec, m.settings.defaultRest, m.templates[0].items[1].startWeight]).toEqual([1800, 1800, '']);
   });
   test('R17-02 migracja: nieistniejące daty poranne odpadają, jeden wpis na dzień', async () => {
@@ -954,7 +954,7 @@ describe('runda 32', () => {
     expect(calendarDaysLeft(new Date(2026, 9, 6, 9), new Date(2026, 9, 6, 10))).toBe(-1);
   });
   test('R32-02 błąd zapisu widoczny w trakcie treningu', async () => {
-    await renderApp(); await tap(screen.getByLabelText('Start: Upper A')); global.__dbFail = true;
+    await renderApp({ saved: seedWithDemo() }); await tap(screen.getByLabelText('Start: Upper A')); global.__dbFail = true;
     await tap(screen.getAllByLabelText(/^Seria 1 zrobiona/)[0]); await flushAll(1000);
     expect(screen.getAllByText('Nie udało się zapisać danych').length).toBeGreaterThan(0); global.__dbFail = false;
   });
@@ -993,7 +993,7 @@ describe('runda 35', () => {
     global.__kv.set('state', '{zle2'); store.__resetForTests(); await store.init(); expect(store.getRecovery()!.key).toBe(k1); expect(await store.readRecovery()).toBe('{zle1');
   });
   test('R35-02 Start i Duplikuj używają uporządkowanej nazwy szablonu', async () => {
-    await renderApp(); const tpl = store.getState().templates[0]; const orig = tpl.name; await go('/templates'); await flushAll(10); await tap(screen.getByText(orig)); await flushAll(10);
+    await renderApp({ saved: seedWithDemo() }); const tpl = store.getState().templates[0]; const orig = tpl.name; await go('/templates'); await flushAll(10); await tap(screen.getByText(orig)); await flushAll(10);
     await act(async () => { tpl.name = '   '; store.save(tpl); }); await tap(screen.getByText('Start')); await flushAll(10);
     expect(store.getState().active!.templateName).toBe(orig);
   });
@@ -1005,7 +1005,7 @@ describe('runda 35', () => {
 
 describe('runda 36', () => {
   test('R36-01 migracja nadaje pustym nazwom domyślną nazwę w języku z ustawień, nie telefonu', async () => {
-    await fresh(undefined, 'pl'); const raw = JSON.parse(JSON.stringify(store.getState())); raw.settings.language = 'en'; raw.exercises[0].name = '   '; raw.templates[0].name = '';
+    await fresh(undefined, 'pl'); withDemoTemplates(); const raw = JSON.parse(JSON.stringify(store.getState())); raw.settings.language = 'en'; raw.exercises[0].name = '   '; raw.templates[0].name = '';
     const m = store.migrate(raw); expect(m.exercises[0].name).toBe('New exercise'); expect(m.templates[0].name).toBe('New template');
   });
   test('R36-02 wysłanie kopii nieczytelnych danych: błąd zapisu kończy się komunikatem', async () => {
@@ -1227,11 +1227,11 @@ describe('runda 49', () => {
     store.toggleDone(0, 0); expect([s.id, s.kind, s.weight, s.reps]).toEqual([s0.id, 'normal', '', 5]);
   });
   test('R49-05 import: przerwa pozycji szablonu z tekstu; pola stopera śmieciowe → domyślne', async () => {
-    await fresh(); const raw = JSON.parse(JSON.stringify(store.getState())); raw.templates[0].items[0].restSec = '60'; raw.timer = { restTotal: 'a', restEndAt: 'x', setId: 5 };
+    await fresh(); withDemoTemplates(); const raw = JSON.parse(JSON.stringify(store.getState())); raw.templates[0].items[0].restSec = '60'; raw.timer = { restTotal: 'a', restEndAt: 'x', setId: 5 };
     const m = store.migrate(raw); expect(m.templates[0].items[0].restSec).toBe(60); expect([m.timer.restTotal, m.timer.restEndAt, m.timer.setId]).toEqual([0, null, null]);
   });
   test('R49-06 VoiceOver: kontrolki wiersza szablonu i gumy mówią, czego dotyczą; chip wybranego ćwiczenia; nieaktywne moduły', async () => {
-    await renderApp(); const st = store.getState(); const tpl = st.templates[0]; await go(`/template/${tpl.id}`); await flushAll(10);
+    await renderApp({ saved: seedWithDemo() }); const st = store.getState(); const tpl = st.templates[0]; await go(`/template/${tpl.id}`); await flushAll(10);
     const name = store.exById(tpl.items[0].exerciseId)!.name;
     expect(screen.getAllByLabelText('Usuń z szablonu')[0].props.accessibilityHint).toBe(name); expect(screen.getAllByLabelText('serie')[0].props.accessibilityHint).toBe(name);
     await go('/more/bands'); await flushAll(10); expect(screen.getAllByLabelText('Usuń gumę')[0].props.accessibilityHint).toBeTruthy();
@@ -1292,7 +1292,7 @@ test('R50-09 wykresy mają streszczenie dla VoiceOver (linia)', async () => {
 
 describe('runda 51', () => {
   test('R51-01 import z liczbowymi id: historia, szablony i gumy dalej wskazują swoje ćwiczenia', async () => {
-    await fresh(); const raw = JSON.parse(JSON.stringify(store.getState())); const sq = raw.exercises.find((e: any) => e.name === 'Back Squat'); sq.id = 7; raw.bands[0].id = 3;
+    await fresh(); withDemoTemplates(); const raw = JSON.parse(JSON.stringify(store.getState())); const sq = raw.exercises.find((e: any) => e.name === 'Back Squat'); sq.id = 7; raw.bands[0].id = 3;
     raw.exercises.push({ id: 8, name: 'Moje', group: 'inne', equipment: 'inne', archived: true });
     raw.templates[0].items.push({ id: 99, exerciseId: 7, sets: 3 }); const nItems = raw.templates[0].items.length;
     raw.workouts.push({ startedAt: at(2026, 9, 1), finishedAt: at(2026, 9, 1, 19), exercises: [{ exerciseId: 7, sets: [{ weight: 100, reps: 5, done: true, bandId: 3 }] }, { exerciseId: 8, sets: [{ weight: 50, reps: 5, done: true }] }] });
@@ -1301,7 +1301,7 @@ describe('runda 51', () => {
     expect(store.migrate(JSON.parse(JSON.stringify(m)))).toEqual(m);
   });
   test('R51-02 import: pola szablonu, ustawień i ćwiczeń jak wartości serii (przecinek, tekst, zakresy, nieskończoność)', async () => {
-    await fresh(); const raw = JSON.parse(JSON.stringify(store.getState())); const it = raw.templates[0].items[0];
+    await fresh(); withDemoTemplates(); const raw = JSON.parse(JSON.stringify(store.getState())); const it = raw.templates[0].items[0];
     Object.assign(it, { startWeight: '62,5', targetSec: { v: 60 }, repMin: 'Infinity', repMax: '1e400' }); raw.templates[0].items[1].targetSec = -30;
     raw.settings.defaultRest = '120'; raw.bands[0].level = 'Infinity'; raw.bands[1].nominalKg = '12,5';
     const m = store.migrate(raw); const i0 = m.templates[0].items[0];
@@ -1336,7 +1336,7 @@ describe('runda 52', () => {
     await type(f, ''); await flushAll(2); expect(screen.getAllByLabelText('Kolor gumy')[0].props.value).toBe('');
   });
   test('R52-02 import: czas tekstem (liczba i sama data) czytany; createdAt/updatedAt zawsze liczbą; najnowszy wpis poranny wygrywa', async () => {
-    await fresh(); const raw = JSON.parse(JSON.stringify(store.getState()));
+    await fresh(); withDemoTemplates(); const raw = JSON.parse(JSON.stringify(store.getState()));
     raw.workouts.push({ startedAt: String(at(2026, 9, 1)), finishedAt: String(at(2026, 9, 1, 19)), exercises: [{ exerciseId: ex('Back Squat').id, sets: [{ weight: 100, reps: 5, done: true }] }] }, { startedAt: '2026-09-03', exercises: [{ exerciseId: ex('Back Squat').id, sets: [{ weight: 100, reps: 5, done: true }] }] });
     raw.templates[0].createdAt = '2026-09-01T09:00:00'; raw.mornings = [{ date: '2026-09-01', bb: 50, updatedAt: '2026-09-02T10:00:00' }, { date: '2026-09-01', bb: 60, updatedAt: at(2026, 9, 1) }];
     const m = store.migrate(raw); expect(m.workouts.map(w => w.startedAt)).toEqual([at(2026, 9, 1), new Date(2026, 8, 3).getTime()]);
@@ -1553,7 +1553,7 @@ describe('runda 62', () => {
 
 describe('runda 63', () => {
   test('R63-01 przycisk numeru serii mówi, którego ćwiczenia dotyczy; szablon: „start kg/hantel”, serie do 50', async () => {
-    await renderApp(); await tap(screen.getByLabelText('Start: Upper A')); await flushAll(10);
+    await renderApp({ saved: seedWithDemo() }); await tap(screen.getByLabelText('Start: Upper A')); await flushAll(10);
     expect(screen.getAllByLabelText(/^Seria 1, typ: normalna/)[0].props.accessibilityHint).toMatch(/Seria 1 — /);
     const tpl = store.getState().templates[0]; await go(`/template/${tpl.id}`); await flushAll(10);
     expect(screen.getAllByLabelText(/^start /)[0].props.accessibilityLabel).toMatch(/kg\/hantel|±kg|^start kg$/);
@@ -1763,7 +1763,7 @@ describe('runda 71 (audyt tematyczny T1b/T3)', () => {
     const b = axisTicks([0, 20000], 1, 0, true, TIME_STEPS).ticks; expect((b[1] - b[0]) % 3600).toBe(0);
   });
   test('R71-07 szablon: krótka etykieta ciężaru startowego, pełna dla VoiceOver', async () => {
-    await renderApp(); const st = store.getState(); const tpl = st.templates[0]; const db = st.exercises.find(e => e.loadMode === 'per_dumbbell' && !e.archived)!; tpl.items[0].exerciseId = db.id; store.save(tpl);
+    await renderApp({ saved: seedWithDemo() }); const st = store.getState(); const tpl = st.templates[0]; const db = st.exercises.find(e => e.loadMode === 'per_dumbbell' && !e.archived)!; tpl.items[0].exerciseId = db.id; store.save(tpl);
     await go('/template/' + tpl.id); await flushAll(10);
     const short = 'start ' + store.loadLabelShort(db), full = 'start ' + store.loadLabel(db); expect(short).not.toBe(full);
     expect(screen.getAllByText(short).length).toBeGreaterThan(0); expect(screen.getAllByLabelText(full).length).toBeGreaterThan(0);

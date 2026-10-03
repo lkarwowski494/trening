@@ -2,7 +2,7 @@
 import * as store from '@/lib/store';
 import * as timer from '@/lib/timer';
 import { renderApp, tap, type, flushAll, screen, go, act } from './app';
-import { ex, pressAlert, addWorkout } from './helpers';
+import { ex, pressAlert, addWorkout, seedWithDemo } from './helpers';
 
 jest.setTimeout(30000);
 afterEach(async () => { await timer.stop(); await timer.stopSet(); });
@@ -12,14 +12,34 @@ const startTemplate = async (name: string) => {
 };
 const finishConfirmed = async () => { await tap(screen.getAllByText('Zakończ trening i zapisz')[0]); pressAlert('Zakończyć trening?', 'Zakończ'); await flushAll(500); };
 
-test('B1 pierwszy start: podpowiedź i 4 szablony', async () => {
+test('B1 pierwszy start: podpowiedź, ZERO szablonów (decyzja 03.10.2026) i droga do pierwszego szablonu', async () => {
   await renderApp();
-  expect(screen.getByText(/Pierwszy raz\?/)).toBeTruthy();
-  for (const n of ['Upper A', 'Upper B', 'Legs — siłownia', 'Legs — dom']) expect(screen.getByText(n)).toBeTruthy();
+  expect(store.getState().templates).toEqual([]);
+  expect(screen.getByText(/^Pierwszy raz\? Utwórz swój szablon/)).toBeTruthy(); /* nie odsyła do „szablonu niżej”, którego nie ma */
+  expect(screen.queryByText(/Wybierz szablon niżej/)).toBeNull();
+  expect(screen.getByText('Nie masz jeszcze szablonów — utwórz pierwszy albo zacznij pusty trening.')).toBeTruthy();
+  for (const n of ['Upper A', 'Upper B', 'Legs — siłownia', 'Legs — dom']) expect(screen.queryByText(n)).toBeNull();
+  expect(screen.queryByLabelText(/^Start: /)).toBeNull(); expect(screen.getByText('Pusty trening')).toBeTruthy();
+  await tap(screen.getByText('+ Nowy szablon')); await flushAll(10); /* „+ Nowy szablon” → edytor nowego szablonu */
+  expect(store.getState().templates).toHaveLength(1); expect(screen.getByDisplayValue('Nowy szablon')).toBeTruthy(); expect(screen.getByText('+ Dodaj ćwiczenie')).toBeTruthy();
+});
+
+test('B1 (EN) first launch without templates: hint, empty state and „+ New template” in English', async () => {
+  await renderApp({ locale: 'en' });
+  expect(screen.getByText(/^First time\? Create your own template/)).toBeTruthy();
+  expect(screen.getByText('No templates yet — create your first one or start an empty workout.')).toBeTruthy(); expect(screen.getByText('+ New template')).toBeTruthy();
+  expect(screen.queryByText(/Nie masz jeszcze szablonów|Pierwszy raz/)).toBeNull();
+});
+
+test('B1b szablony ustawione przez użytkownika (dane testowe) — wszystkie na ekranie głównym ze „Start”', async () => {
+  await renderApp({ saved: seedWithDemo() });
+  expect(screen.getByText(/^Pierwszy raz\? Wybierz szablon niżej/)).toBeTruthy();
+  expect(screen.queryByText('Nie masz jeszcze szablonów — utwórz pierwszy albo zacznij pusty trening.')).toBeNull();
+  for (const n of ['Upper A', 'Upper B', 'Legs — siłownia', 'Legs — dom']) { expect(screen.getByText(n)).toBeTruthy(); expect(screen.getByLabelText('Start: ' + n)).toBeTruthy(); }
 });
 
 test('B2 start szablonu jednym tapnięciem, ✓ → przerwa i powiadomienie', async () => {
-  await renderApp();
+  await renderApp({ saved: seedWithDemo() });
   await startTemplate('Upper A');
   const checks = screen.getAllByLabelText(/^Seria 1 zrobiona/);
   await tap(checks[0]);
@@ -28,7 +48,7 @@ test('B2 start szablonu jednym tapnięciem, ✓ → przerwa i powiadomienie', as
 });
 
 test('B3 ciężar z przecinkiem: 12,5 zostaje w polu i trafia do danych', async () => {
-  await renderApp(); await startTemplate('Upper A');
+  await renderApp({ saved: seedWithDemo() }); await startTemplate('Upper A');
   const field = screen.getAllByLabelText('kg/hantel')[0];
   await type(field, '12,'); expect(field.props.value).toBe('12,');
   await type(field, '12,5'); expect(field.props.value).toBe('12,5');
@@ -36,7 +56,7 @@ test('B3 ciężar z przecinkiem: 12,5 zostaje w polu i trafia do danych', async 
 });
 
 test('B4 cofnięcie ✓ starszej serii nie kasuje przerwy z nowszej', async () => {
-  await renderApp(); await startTemplate('Upper A');
+  await renderApp({ saved: seedWithDemo() }); await startTemplate('Upper A');
   await tap(screen.getAllByLabelText(/^Seria 1 zrobiona/)[0]);
   await tap(screen.getAllByLabelText(/^Seria 2 zrobiona/)[0]);
   const id2 = store.getState().active!.exercises[0].sets[1].id; expect(timer.T.setId).toBe(id2);
@@ -47,7 +67,7 @@ test('B4 cofnięcie ✓ starszej serii nie kasuje przerwy z nowszej', async () =
 });
 
 test('B5 rozgrzewka nie przesuwa „Poprzednio”', async () => {
-  await renderApp();
+  await renderApp({ saved: seedWithDemo() });
   const w0 = Date.now() - 3 * 86400e3; const s = store.getState(); const bench = ex('Bench Press (hantle)');
   s.workouts.push({ id: 'w0', ownerId: 'local', createdAt: w0, updatedAt: w0, loggedBy: 'local', sessionMode: 'solo', healthUUID: null, templateId: null, templateName: 'X', startedAt: w0, finishedAt: w0 + 1, note: '', exercises: [{ id: 'e0', exerciseId: bench.id, restSec: 90, repMin: null, repMax: null, groupId: null, sets: [22, 24].map((kg, i) => ({ id: 'p' + i, weight: kg, reps: 8, durationSec: '', distanceM: '', rpe: '', bandId: '', addKg: '', kind: 'normal' as const, warmup: false, note: '', done: true, completedAt: w0 + i, actualRest: null })) }] });
   store.save();
@@ -80,7 +100,7 @@ test('B7 superset: po pierwszym ćwiczeniu brak przerwy, po drugim jest', async 
 });
 
 test('B8 zakończenie z rekordem: alert i te same PR w historii', async () => {
-  await renderApp(); /* runda 72: pierwsza sesja ćwiczenia nie jest rekordem — wcześniejsza, lżejsza sesja */
+  await renderApp({ saved: seedWithDemo() }); /* runda 72: pierwsza sesja ćwiczenia nie jest rekordem — wcześniejsza, lżejsza sesja */
   { const st = store.getState(); const tpl = st.templates.find(x => x.name === 'Upper A')!; const e0 = store.exById(tpl.items[0].exerciseId)!; await act(async () => { addWorkout(Date.now() - 86400e3, [[e0.name, [{ weight: 20, reps: 8 }]]]); }); }
   await startTemplate('Upper A');
   const a = store.getState().active!; a.exercises[0].sets.forEach(s => { s.weight = 24; s.reps = 8; }); store.save(a); await flushAll();
@@ -91,14 +111,14 @@ test('B8 zakończenie z rekordem: alert i te same PR w historii', async () => {
 });
 
 test('B9 zakończenie bez serii → odrzucenie, bez pustej sesji', async () => {
-  await renderApp(); await startTemplate('Upper A');
+  await renderApp({ saved: seedWithDemo() }); await startTemplate('Upper A');
   await tap(screen.getAllByText('Zakończ trening i zapisz')[0]);
   pressAlert('Brak odhaczonych serii', 'Odrzuć trening'); await flushAll();
   expect(store.getState().active).toBeNull(); expect(store.getState().workouts).toHaveLength(0);
 });
 
 test('B10 edytor szablonu: skasowanie „serie” i wpisanie 4, potwierdzenie usunięcia', async () => {
-  await renderApp(); const tpl = store.getState().templates[0];
+  await renderApp({ saved: seedWithDemo() }); const tpl = store.getState().templates[0];
   await go(`/template/${tpl.id}`); await screen.findByText('Duplikuj');
   const field = screen.getAllByDisplayValue('4')[0];
   await type(field, ''); expect(field.props.value).toBe('');
@@ -136,7 +156,7 @@ test('B14 poranny wpis: wejście nie tworzy rekordu, wpisanie wagi tworzy', asyn
 });
 
 test('B15 reset danych zatrzymuje timery', async () => {
-  await renderApp(); await startTemplate('Upper A'); await tap(screen.getAllByLabelText(/^Seria 1 zrobiona/)[0]); expect(timer.T.on).toBe(true);
+  await renderApp({ saved: seedWithDemo() }); await startTemplate('Upper A'); await tap(screen.getAllByLabelText(/^Seria 1 zrobiona/)[0]); expect(timer.T.on).toBe(true);
   await go('/more/settings'); await screen.findByText('Wyczyść wszystkie dane');
   await tap(screen.getByText('Wyczyść wszystkie dane')); pressAlert('Na pewno?', 'Wyczyść'); await flushAll(10);
   expect(timer.T.on).toBe(false); expect(store.getState().active).toBeNull();

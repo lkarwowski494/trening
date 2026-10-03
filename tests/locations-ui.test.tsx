@@ -2,7 +2,7 @@
 import * as store from '@/lib/store';
 import * as timer from '@/lib/timer';
 import { fireEvent } from '@testing-library/react-native';
-import { fresh, ex, addWorkout } from './helpers';
+import { fresh, ex, addWorkout, withDemoTemplates } from './helpers';
 import { renderApp, flushAll, screen, go, tap, type, act } from './app';
 import { userHome } from './locations-fixtures';
 import { addLocation } from '@/lib/locations';
@@ -12,8 +12,9 @@ afterEach(async () => { try { store.getState(); } catch { return; } await timer.
 
 const toggle = async (label: string | RegExp, v: boolean) => { await act(async () => { fireEvent(screen.getAllByLabelText(label)[0], 'valueChange', v); }); await flushAll(5); };
 /** Zapisany stan z domem użytkownika (główne) i siłownią; opcjonalnie trening w toku w domu. */
-async function savedWithPlaces(active = false) {
-  await fresh(); const s = store.getState().settings; const home = userHome([2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24]); s.locations.push(home); s.mainLocationId = home.id; addLocation('gym', 'Siłownia');
+/** demo: szablony demonstracyjne (świeża instalacja nie ma szablonów od 03.10.2026) */
+async function savedWithPlaces(active = false, demo = false) {
+  await fresh(); if (demo) withDemoTemplates(); const s = store.getState().settings; const home = userHome([2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24]); s.locations.push(home); s.mainLocationId = home.id; addLocation('gym', 'Siłownia');
   if (active) { store.startEmpty(); }
   await store.flush(); return JSON.parse(JSON.stringify(store.getState()));
 }
@@ -98,13 +99,13 @@ describe('trening i wybór ćwiczenia w miejscu', () => {
     expect(screen.getByText(/↑ spróbuj 12 kg/)).toBeTruthy(); /* decyzja 7a: od razu następny dostępny (10 → 12) */ expect(screen.queryByText(/ten sam ciężar/)).toBeNull(); expect(screen.getByText('Poprzednio: Siłownia')).toBeTruthy();
   });
   test('szablon: miejsce domyślne (chipy) i start treningu w tym miejscu', async () => {
-    const saved = await savedWithPlaces(); await renderApp({ saved }); const tpl = store.getState().templates[0]; await go(`/template/${tpl.id}`); await flushAll(10);
+    const saved = await savedWithPlaces(false, true); await renderApp({ saved }); const tpl = store.getState().templates[0]; await go(`/template/${tpl.id}`); await flushAll(10);
     expect(screen.getByText('Miejsce domyślne')).toBeTruthy(); await tap(screen.getByText('Siłownia')); expect(store.getState().templates[0].locationId).toBe(store.getState().settings.locations[1].id);
     await tap(screen.getByText('Start')); await flushAll(10); expect(store.getState().active!.locationId).toBe(store.getState().settings.locations[1].id);
     expect(screen.getByText('📍 Siłownia ▾')).toBeTruthy();
   });
   test('picker w edycji szablonu z miejscem domyślnym filtruje po tym miejscu', async () => {
-    const saved = await savedWithPlaces(); saved.templates[0].locationId = 'home'; await renderApp({ saved }); await go(`/picker?target=template:${saved.templates[0].id}`); await flushAll(10);
+    const saved = await savedWithPlaces(false, true); saved.templates[0].locationId = 'home'; await renderApp({ saved }); await go(`/picker?target=template:${saved.templates[0].id}`); await flushAll(10);
     expect(screen.getByText(/tylko dostępne w: Dom/)).toBeTruthy(); expect(screen.queryByText('Leg Press')).toBeNull();
   });
 });

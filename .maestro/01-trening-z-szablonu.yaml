@@ -6,6 +6,8 @@ name: Trening z szablonu
     clearState: true
     permissions: { all: allow }
 - extendedWaitUntil: { visible: "Start from a template", timeout: 20000 }
+# Świeża instalacja nie ma szablonów (decyzja 03.10.2026) — szablon „Upper A” tworzy podprzepływ przez UI
+- runFlow: subflows/szablon-testowy.yaml
 - takeScreenshot: 01-start
 - tapOn: "Start: Upper A"
 - extendedWaitUntil: { visible: "Set 1 done.*", timeout: 10000 }

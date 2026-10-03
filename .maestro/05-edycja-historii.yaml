@@ -2,7 +2,7 @@
 #
 # Literały (EN z lib/i18n.en.ts, chyba że zaznaczono inaczej):
 #   "Start from a template"  ← 'Zacznij z szablonu'                         (app/(tabs)/index.tsx)
-#   "Start: Upper A"         ← 'Start: {name}' + nazwa szablonu z lib/seed.ts (accessibilityLabel przycisku Start)
+#   "Start: Upper A"         ← 'Start: {name}' + nazwa szablonu z podprzepływu subflows/szablon-testowy.yaml (accessibilityLabel przycisku Start)
 #   "Set 1 done.*"           ← 'Seria {n} zrobiona — {ex}' → 'Set {n} done — {ex}' (jak flow 01)
 #   "Skip"                   ← 'Pomiń'
 #   "Finish"                 ← 'Zakończ'          (components/ActiveWorkout.tsx: przycisk i przycisk w Alercie)
@@ -14,13 +14,13 @@
 #   "Save"                   ← 'Zapisz'           (headerRight edytora i przycisk w Alercie „Save changes?”)
 #   "Save changes"           ← 'Zapisz zmiany'    (przycisk na dole edytora)
 #   "Save changes\?"         ← 'Zapisać zmiany?'  (Alert przy pominiętych seriach / nachodzeniu terminów)
-#   "Upper A"                ← wartość pola Nazwa (Input w Field 'Nazwa' = „Name”) — nazwa szablonu z lib/seed.ts
+#   "Upper A"                ← wartość pola Nazwa (Input w Field 'Nazwa' = „Name”) — nazwa szablonu z subflows/szablon-testowy.yaml
 #   "Upper A E2E"            ← tekst wpisywany w tym teście
 #   "Back"                   ← 'Wróć' (headerBackTitle w app/_layout.tsx)
 #   "History, tab.*"         ← 'Historia' + etykieta zakładki react-navigation „{label}, tab, {i} of {n}”
 #   "+ Log a past workout"   ← '+ Dodaj trening wstecz' (app/(tabs)/history.tsx)
 #   "From a template"        ← 'Z szablonu'       (app/history/add.tsx)
-#   "Upper A, .*"            ← Item: accessibilityLabel „{title}, {sub}” (components/ui.tsx), sub = '{n} ex. · {m} sets'
+#   "Upper A, .*"            ← Item: accessibilityLabel „{title}, {sub}” (components/ui.tsx), sub = '{n} ex. · {m} sets' (tu: 2 ex. · 6 sets)
 #   "2 sessions"             ← 'sesja|sesje|sesji' → 'session|sessions' (licznik w nagłówku Historii)
 appId: pl.lukasz.trening
 name: Edycja historii i trening wstecz
@@ -29,6 +29,8 @@ name: Edycja historii i trening wstecz
     clearState: true
     permissions: { all: allow }
 - extendedWaitUntil: { visible: "Start from a template", timeout: 20000 }
+# Świeża instalacja nie ma szablonów (decyzja 03.10.2026) — szablon „Upper A” tworzy podprzepływ przez UI
+- runFlow: subflows/szablon-testowy.yaml
 - tapOn: "Start: Upper A"
 - extendedWaitUntil: { visible: "Set 1 done.*", timeout: 10000 }
 - tapOn: { text: "Set 1 done.*", index: 0 }
@@ -55,7 +57,7 @@ name: Edycja historii i trening wstecz
 - inputText: "Upper A E2E"
 - takeScreenshot: 12-edytor-nowa-nazwa
 - tapOn: "Save"
-# Alert pojawia się tylko przy pominiętych seriach / nachodzeniu terminów — tutaj nie powinien, ale nie blokuje testu
+# Alert pojawia się przy pominiętych seriach, seriach bez ciężaru (szablon testowy nie ma ciężaru startowego — tu zwykle tak) albo nachodzeniu terminów; opcjonalny
 - tapOn: { text: "Save", below: "Save changes\\?", optional: true }
 # Powrót na ekran sesji z nową nazwą
 - extendedWaitUntil: { visible: "Session", timeout: 10000 }  # tytuł ekranu zapisanej sesji („Delete session” bywa poza ekranem; „Edit session” to też tytuł edytora)
@@ -76,7 +78,7 @@ name: Edycja historii i trening wstecz
 - assertVisible: "Save"
 - takeScreenshot: 15-edytor-treningu-wstecz
 - tapOn: "Save"
-# Upper A ma ćwiczenia bez zakresu powtórzeń (Chin Up, Chest Dip) — ich puste serie zostaną pominięte, więc spodziewany Alert
+# Szablon testowy nie ma ciężaru startowego — serie bez ciężaru („Sets without weight: n.”), więc spodziewany Alert „Save changes?”
 - tapOn: { text: "Save", below: "Save changes\\?", optional: true }
 # Po zapisie edytor zastępuje się ekranem nowej sesji
 - extendedWaitUntil: { visible: "Session", timeout: 10000 }  # tytuł ekranu zapisanej sesji („Delete session” bywa poza ekranem; „Edit session” to też tytuł edytora)

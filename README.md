@@ -47,7 +47,7 @@ goły stan z wersji webowej v0.3 i z natywnej 0.1.0 — `migrate()` dopisuje bra
 ```
 app/            ekrany (expo-router): (tabs)/ Trening · Szablony · Ćwiczenia · Historia · Więcej
 components/     ActiveWorkout (trening w toku + timer), ui (przyciski, pola)
-lib/seed.ts     model danych + biblioteka 125 ćwiczeń + szablony Upper A / Upper B / Legs — siłownia / Legs — dom
+lib/seed.ts     model danych + biblioteka 125 ćwiczeń + gumy (bez szablonów — użytkownik ustawia je sam, decyzja 03.10.2026; szablony testowe: tests/fixtures/demo-templates.ts)
 lib/store.ts    stan aplikacji + zapis do SQLite + logika treningu (previous, autofill, objętość)
 lib/timer.ts    timer przerw + lokalne powiadomienia
 lib/backup.ts   eksport/import JSON + CSV

@@ -9,7 +9,7 @@ import { buildBackup, buildCsv, parseBackup } from '@/lib/backup';
 import * as health from '@/lib/health';
 import { wIn } from '@/lib/units';
 import type { Workout } from '@/lib/seed';
-import { fresh, ex, addWorkout, pressAlert, saved } from './helpers';
+import { fresh, ex, addWorkout, pressAlert, saved, withDemoTemplates } from './helpers';
 import { router } from 'expo-router';
 import { renderApp, flushAll, screen, go, tap, type, act } from './app';
 
@@ -152,7 +152,7 @@ describe('szkic i zapis (logika)', () => {
 
   test('trening w toku (z przerwą i powiadomieniami) jest nietknięty przy edycji i treningu wstecz', async () => {
     await fresh(); const w = addWorkout(day(3), [[BP, [{ weight: 80, reps: 5 }]]]);
-    const tpl = store.getState().templates[0]; store.startFromTemplate(tpl); const a = store.getState().active!;
+    const tpl = withDemoTemplates()[0]; store.startFromTemplate(tpl); const a = store.getState().active!;
     a.exercises[0].sets[0].weight = 25; a.exercises[0].sets[0].edited = true; const rest = store.toggleDone(0, 0); await timer.start(rest ?? 90, a.exercises[0].sets[0].id);
     const snapA = JSON.stringify(store.getState().active), snapT = JSON.stringify(store.getState().timer), nN = global.__notifications.length, T = JSON.stringify(timer.T);
     const d = edit.beginEdit(w.id)!; d.w.exercises[0].sets[0].weight = 95; committed(edit.commitDraft(d.key));
@@ -163,7 +163,7 @@ describe('szkic i zapis (logika)', () => {
   });
 
   test('eksport → import po edycji i treningu wstecz: te same dane (migracja nic nie zmienia)', async () => {
-    await fresh(); const w = addWorkout(day(4), [[BP, [{ weight: 80, reps: 5 }]], ['Chest Dip', [{ addKg: 10, reps: 8 }]]]);
+    await fresh(); withDemoTemplates(); const w = addWorkout(day(4), [[BP, [{ weight: 80, reps: 5 }]], ['Chest Dip', [{ addKg: 10, reps: 8 }]]]);
     const d = edit.beginEdit(w.id)!; d.date = edit.shiftDate(d.date, -1); edit.draftAddSet(d.key, 1); d.w.exercises[1].sets[1].bandId = store.getState().bands[0].id; d.w.exercises[1].sets[1].kind = 'drop'; d.w.templateName = '  Nowa   nazwa '; committed(edit.commitDraft(d.key));
     expect(byId(w.id).templateName).toBe('Nowa nazwa');
     const p = edit.beginPast(store.getState().templates[1].id, day(2), day(2) + 3600e3); committed(edit.commitDraft(p.key));

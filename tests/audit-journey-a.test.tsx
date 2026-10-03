@@ -4,7 +4,7 @@ import * as timer from '@/lib/timer';
 import * as stats from '@/lib/stats';
 import { exName } from '@/lib/i18n';
 import { renderApp, tap, type, flushAll, screen, go, act } from './app';
-import { ex, pressAlert, saved } from './helpers';
+import { ex, pressAlert, saved, seedWithDemo } from './helpers';
 
 jest.setTimeout(60000);
 afterEach(async () => { await timer.stop(); await timer.stopSet(); });
@@ -15,7 +15,7 @@ const repsOf = (exN: string, n: number) => screen.getAllByLabelText('Powtórzeni
 const tick = async (exN: string, n: number) => tap(screen.getByLabelText(`Seria ${n} zrobiona — ${exN}`));
 
 test('A1 band-assisted (no kg) chin-ups: e1RM/volume PR over unassisted reps', async () => {
-  await renderApp();
+  await renderApp({ saved: seedWithDemo() });
   store.save(); await flushAll(400);
   const chin = exName(ex('Chin Up'));
   // Day 1: 6 unassisted reps

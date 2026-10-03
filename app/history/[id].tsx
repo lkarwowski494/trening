@@ -3,7 +3,7 @@ import { ScrollView, View, Alert } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Screen, H1, Muted, Btn, Txt, useOnce } from '@/components/ui';
 import { beginEdit } from '@/lib/edit';
-import { getState, useTick, exById, isBW, bandById, loadLabel, fmtDate, fmtTime, fmtDur, fmtSec, fmtDist, volume, deleteWorkout, groupLabels, shortBand, bandA11y, loadLabelShort } from '@/lib/store';
+import { getState, useTick, exById, isBW, bandById, loadLabel, fmtDate, fmtTime, fmtDur, fmtSec, fmtDist, volume, deleteWorkout, groupLabels, shortBand, bandA11y, loadLabelShort, blockImpl } from '@/lib/store';
 import { hasTime, hasReps, hasWeight, hasDistance, SET_KIND_MARK, SET_KIND_LABEL } from '@/lib/seed';
 import { prMap } from '@/lib/stats';
 import { useTheme } from '@/lib/theme';
@@ -23,7 +23,8 @@ export default function HistoryDetail() {
       {w.exercises.map((e, i) => { const ex = exById(e.exerciseId); const bw = ex ? isBW(ex) : false; const m = ex?.metric ?? 'weight_reps'; const rpe = getState().settings.showRpe; const anyBand = e.sets.some(s => s.bandId);
         // Nagłówki i komórki z tych samych warunków (wcześniej dla usuniętego ćwiczenia kolumny się rozjeżdżały).
         const showW = hasWeight(m);
-        const heads = ['#', ...(showW ? [ex ? loadLabelShort(ex) : t('ciężar')] : []), ...(hasReps(m) ? [t('pow.')] : []), ...(hasDistance(m) ? [t('dystans')] : []), ...(hasTime(m) ? [t('czas')] : []), ...(rpe ? ['RPE'] : []), ...(anyBand ? [t('guma')] : []), t('przerwa')];
+        const impl = blockImpl(e, w.locationId); /* MEDIUM 2: blok na stacji — „kg/str.” (na stronę) */
+        const heads = ['#', ...(showW ? [ex ? loadLabelShort(ex, impl) : t('ciężar')] : []), ...(hasReps(m) ? [t('pow.')] : []), ...(hasDistance(m) ? [t('dystans')] : []), ...(hasTime(m) ? [t('czas')] : []), ...(rpe ? ['RPE'] : []), ...(anyBand ? [t('guma')] : []), t('przerwa')];
         return (
         <View key={e.id ?? i} style={{ marginBottom: 16, borderBottomWidth: 1, borderBottomColor: th.line, paddingBottom: 8 }}>
           <Txt accessibilityRole="header" style={{ fontWeight: '600', fontSize: 17, marginBottom: 6 }}>{e.groupId ? <Txt style={{ color: th.band, fontWeight: '700' }}>{`SS ${labels[e.groupId]} · `}</Txt> : null}{exName(ex)}</Txt>
@@ -34,7 +35,7 @@ export default function HistoryDetail() {
             return (
             <View key={s.id}>
               {/* Runda 50: wiersz czytany przez VoiceOver jako całość „nagłówek: wartość” (wcześniej same liczby). */}
-              <View accessible accessibilityLabel={heads.map((h, k) => `${k === 1 && showW && ex ? loadLabel(ex) : h}: ${spoken[k]}`).join(', ')} style={{ flexDirection: 'row', paddingVertical: 4 }}>{vals.map((v, k) => <React.Fragment key={k}>{cell(v, k === 0 ? 0.5 : undefined)}</React.Fragment>)}</View>
+              <View accessible accessibilityLabel={heads.map((h, k) => `${k === 1 && showW && ex ? loadLabel(ex, impl) : h}: ${spoken[k]}`).join(', ')} style={{ flexDirection: 'row', paddingVertical: 4 }}>{vals.map((v, k) => <React.Fragment key={k}>{cell(v, k === 0 ? 0.5 : undefined)}</React.Fragment>)}</View>
               {prs.get(s.id) ? <Muted style={{ fontSize: 12, color: th.band, fontWeight: '700' }}>PR: {prs.get(s.id)!.map(k => t(k)).join(', ')}</Muted> : null}
               {s.note ? <Muted style={{ fontSize: 13 }}>{s.note}</Muted> : null}
             </View>); })}
