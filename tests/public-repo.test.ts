@@ -27,8 +27,8 @@ describe('workflowy na publicznym repozytorium', () => {
     expect(y).toMatch(/2> >\(tee build\.err \| sed -E "\$UDID_SED" >&2\)/);
     expect(y).toMatch(/configure-credentials\.exp 2>&1 \| sed -E "\$UDID_SED"/);
     const sedExpr = /UDID_SED: '([^']+)'/.exec(y)![1];
-    const out = execFileSync('sed', ['-E', sedExpr], { input: 'iPhone (00008110-001A2B3C4D5E801E) stary 0123456789abcdef0123456789abcdef01234567 build 0fd66ae9-1234-4abc-9def-0123456789ab\n' }).toString();
-    expect(out).toBe('iPhone (<UDID>) stary <UDID> build 0fd66ae9-1234-4abc-9def-0123456789ab\n');
+    const out = execFileSync('sed', ['-E', sedExpr], { input: 'iPhone (00008110-001A2B3C4D5E801E) stary 0123456789abcdef0123456789abcdef01234567 build 0fd66ae9-1234-4abc-9def-0123456789ab\n0123456789abcdef0123456789abcdef01234567,fedcba9876543210fedcba9876543210fedcba98 commit 0123456789abcdef0123456789abcdef012345678\n' }).toString();
+    expect(out).toBe('iPhone (<UDID>) stary <UDID> build 0fd66ae9-1234-4abc-9def-0123456789ab\n<UDID>,<UDID> commit 0123456789abcdef0123456789abcdef012345678\n'); // 41 znaków to nie UDID
   });
   test('build lokalny (bez limitu Expo): kompilacja na maszynie GitHuba, do Expo tylko eas upload; log z maskowaniem UDID', () => {
     const y = wf('iphone-local.yml');
