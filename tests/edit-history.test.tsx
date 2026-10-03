@@ -1,6 +1,6 @@
 /* Docs/12 (02.10.2026): edycja zakończonych treningów i trening wstecz — szkic, spójność historii (rekordy, „Poprzednio”,
  * statystyki, CSV, kopia), nietknięty trening w toku, jednostka lb, eksport/import i ekrany (PL i EN). */
-import * as FileSystem from 'expo-file-system';
+import * as FileSystem from 'expo-file-system/legacy';
 import * as store from '@/lib/store';
 import * as timer from '@/lib/timer';
 import * as edit from '@/lib/edit';

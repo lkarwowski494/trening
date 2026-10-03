@@ -93,7 +93,7 @@ describe('MEDIUM 2 — droga instalacji z get-task-allow', () => {
 });
 
 describe('Q-019 kopia bezpieczeństwa — LOW 3 (nieczytelny zapis) i LOW 4 (writeKopia)', () => {
-  const FS = require('expo-file-system'); const DP = require('expo-document-picker');
+  const FS = require('expo-file-system/legacy'); const DP = require('expo-document-picker');
   const writes = (re: RegExp) => (FS.writeAsStringAsync as jest.Mock).mock.calls.filter((c: any) => re.test(c[0]));
   beforeEach(() => { FS.writeAsStringAsync.mockClear(); FS.deleteAsync.mockClear(); });
   afterEach(() => { FS.readDirectoryAsync.mockImplementation(async () => []); FS.writeAsStringAsync.mockImplementation(async () => {}); FS.getInfoAsync.mockImplementation(async () => ({ exists: false })); FS.deleteAsync.mockImplementation(async () => {}); });

@@ -22,7 +22,8 @@ export async function renderApp(opts: { saved?: unknown; locale?: 'pl' | 'en'; u
    * z opóźnieniem 500 ms po starcie, blokada podwójnego „Edytuj” 1 s po powrocie z edytora). expo-router 5 to usunął,
    * więc odtwarzamy je tutaj tym samym zdarzeniem ('state' kontenera nawigacji), żeby zegar testów biegł jak przed aktualizacją
    * i żadna asercja „czegoś nie ma” nie stała się pusta przez niewykonane timery. */
-  routerStore.navigationRef?.addListener('state', () => jest.runOnlyPendingTimers());
+  if (!routerStore.navigationRef?.addListener) throw new Error('tests/app.tsx: brak store.navigationRef w expo-router — sprawdź odtworzenie runOnlyPendingTimers po aktualizacji routera');
+  routerStore.navigationRef.addListener('state', () => jest.runOnlyPendingTimers());
   // Czekamy na init() krokami fałszywego zegara (findBy* z fałszywymi timerami potrafił zapętlić się przy kolejnych testach).
   for (let i = 0; i < 40 && !store.isReadyForTests(); i++) await act(async () => { jest.advanceTimersByTime(10); await Promise.resolve(); });
   await act(async () => { jest.advanceTimersByTime(10); await Promise.resolve(); });

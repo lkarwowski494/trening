@@ -1,4 +1,4 @@
-import * as FileSystem from 'expo-file-system';
+import * as FileSystem from 'expo-file-system/legacy';
 import * as Notifications from 'expo-notifications';
 import { Platform } from 'react-native';
 import { t } from './i18n';

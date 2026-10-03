@@ -257,7 +257,7 @@ function ExerciseBlock({ w, e, ei, onDone, onStartSet, labels, prs }: { w: Worko
     const kinds = ['normal', 'warmup', 'drop', 'failure'] as const;
     ActionSheetIOS.showActionSheetWithOptions({ options: labels, cancelButtonIndex: 5, title: tr('Seria {n}', { n: setLabel(e, si) }) }, i => {
       if (i < 4) { set.kind = kinds[i]; set.warmup = set.kind === 'warmup'; save(st.active); }
-      else if (i === 4) Alert.prompt?.(tr('Notatka do serii'), undefined, [{ text: tr('Anuluj'), style: 'cancel' }, { text: tr('Zapisz'), onPress: v => { set.note = clampName((v ?? '').trim(), 300); /* runda 49: limit notatki */ save(st.active); } }], 'plain-text', set.note);
+      else if (i === 4) Alert.prompt?.(tr('Notatka do serii'), undefined, [{ text: tr('Anuluj'), style: 'cancel' }, { text: tr('Zapisz'), onPress: (v?: string) => { set.note = clampName((v ?? '').trim(), 300); /* runda 49: limit notatki */ save(st.active); } }], 'plain-text', set.note);
     });
   };
   return (
@@ -311,7 +311,7 @@ function ExerciseBlock({ w, e, ei, onDone, onStartSet, labels, prs }: { w: Worko
       })}
       <View style={s.actions}>
         <Btn title={tr('+ seria')} small accessibilityHint={nm} onPress={() => addSet(ei)} />{e.sets.length > 1 ? <Btn title={tr('− seria')} small accessibilityHint={nm} onPress={removeLast} /> : null}
-        <Btn title={`⏱ ${fmtDur(e.restSec)}`} small accessibilityHint={nm} accessibilityLabel={tr('Przerwa: {s}. Tapnij, by zmienić.', { s: fmtDur(e.restSec) })} onPress={() => { Alert.prompt?.(tr('Przerwa (sekundy)'), tr('Zapamiętać dla tego ćwiczenia?'), [{ text: tr('Anuluj'), style: 'cancel' }, { text: tr('Tylko teraz'), onPress: v => { const n = parseRest(v); if (n != null) { e.restSec = n; save(st.active); } } }, { text: tr('Zapamiętaj'), onPress: v => { const n = parseRest(v); if (n != null) rememberRest(n); } }], 'plain-text', String(e.restSec), 'number-pad'); }} />
+        <Btn title={`⏱ ${fmtDur(e.restSec)}`} small accessibilityHint={nm} accessibilityLabel={tr('Przerwa: {s}. Tapnij, by zmienić.', { s: fmtDur(e.restSec) })} onPress={() => { Alert.prompt?.(tr('Przerwa (sekundy)'), tr('Zapamiętać dla tego ćwiczenia?'), [{ text: tr('Anuluj'), style: 'cancel' }, { text: tr('Tylko teraz'), onPress: (v?: string) => { const n = parseRest(v); if (n != null) { e.restSec = n; save(st.active); } } }, { text: tr('Zapamiętaj'), onPress: (v?: string) => { const n = parseRest(v); if (n != null) rememberRest(n); } }], 'plain-text', String(e.restSec), 'number-pad'); }} />
         {ei + 1 < w.exercises.length && (!inSS || w.exercises[ei + 1].groupId !== e.groupId) ? <Btn title="⇅ SS" small kind="ghost" accessibilityLabel={tr('Połącz z następnym w superset')} accessibilityHint={nm} onPress={() => linkWithNext(w.exercises, ei, w)} /> : null}
         {inSS ? <Btn title="✂ SS" small kind="ghost" accessibilityLabel={tr('Wyjmij z supersetu')} accessibilityHint={nm} onPress={() => unlink(w.exercises, ei, w)} /> : null}
         <Btn title={tr('usuń')} accessibilityLabel={tr('Usuń ćwiczenie: {name}', { name: nm })} small kind="ghost" onPress={() => Alert.alert(tr('Usunąć z treningu?'), nm, [{ text: tr('Nie') }, { text: tr('Usuń'), style: 'destructive', onPress: () => { const i = getState().active?.exercises.findIndex(x => x.id === e.id) ?? -1; if (i < 0) return; /* runda 10: po id — drugie okno nie usuwa sąsiada */ dropTimers(e.sets.map(x => x.id)); removeExercise(i); } }])} />

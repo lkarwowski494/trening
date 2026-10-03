@@ -88,7 +88,7 @@ function EditBlock({ d, e, ei, labels }: { d: Draft; e: WExercise; ei: number; l
     const kinds = ['normal', 'warmup', 'drop', 'failure'] as const;
     ActionSheetIOS.showActionSheetWithOptions({ options: opts, cancelButtonIndex: 5, title: t('Seria {n}', { n: setLabel(e, si) }) }, i => {
       if (i < 4) { set.kind = kinds[i]; set.warmup = set.kind === 'warmup'; touchDraft(); }
-      else if (i === 4) Alert.prompt?.(t('Notatka do serii'), undefined, [{ text: t('Anuluj'), style: 'cancel' }, { text: t('Zapisz'), onPress: v => { set.note = clampName((v ?? '').trim(), 300); touchDraft(); } }], 'plain-text', set.note);
+      else if (i === 4) Alert.prompt?.(t('Notatka do serii'), undefined, [{ text: t('Anuluj'), style: 'cancel' }, { text: t('Zapisz'), onPress: (v?: string) => { set.note = clampName((v ?? '').trim(), 300); touchDraft(); } }], 'plain-text', set.note);
     });
   };
   const cycleBand = (set: WSet) => { set.bandId = nextBandId(set.bandId); touchDraft(); }; /* ten sam cykl co w treningu (store.nextBandId) */

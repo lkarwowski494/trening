@@ -1009,7 +1009,7 @@ describe('runda 36', () => {
     const m = store.migrate(raw); expect(m.exercises[0].name).toBe('New exercise'); expect(m.templates[0].name).toBe('New template');
   });
   test('R36-02 wysłanie kopii nieczytelnych danych: błąd zapisu kończy się komunikatem', async () => {
-    await renderApp({ saved: '{zle' }); await flushAll(10); const fs = require('expo-file-system'); const spy = jest.spyOn(fs, 'writeAsStringAsync').mockRejectedValueOnce(new Error('disk full'));
+    await renderApp({ saved: '{zle' }); await flushAll(10); const fs = require('expo-file-system/legacy'); const spy = jest.spyOn(fs, 'writeAsStringAsync').mockRejectedValueOnce(new Error('disk full'));
     await tap(screen.getByText('Poprzednich danych nie dało się odczytać')); pressAlert('Poprzednich danych nie dało się odczytać', 'Wyślij kopię'); await flushAll(10);
     expect(global.__alerts.at(-1)!.title).toBe('Nie udało się'); spy.mockRestore();
   });

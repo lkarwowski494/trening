@@ -60,7 +60,7 @@ describe('T-016 pasek postępu sesji', () => {
 });
 
 describe('T-012 kopia automatyczna', () => {
-  const fsMock = (files: string[]) => { const FS = require('expo-file-system'); (FS.makeDirectoryAsync as jest.Mock).mockClear(); (FS.readDirectoryAsync as jest.Mock).mockImplementation(async () => files); (FS.deleteAsync as jest.Mock).mockClear(); (FS.writeAsStringAsync as jest.Mock).mockClear(); return FS; };
+  const fsMock = (files: string[]) => { const FS = require('expo-file-system/legacy'); (FS.makeDirectoryAsync as jest.Mock).mockClear(); (FS.readDirectoryAsync as jest.Mock).mockImplementation(async () => files); (FS.deleteAsync as jest.Mock).mockClear(); (FS.writeAsStringAsync as jest.Mock).mockClear(); return FS; };
   test('zapis w Backup/ z datą i godziną; zostaje 10 najnowszych; wyłączona — nic nie zapisuje', async () => {
     await fresh(); const backup = require('@/lib/backup');
     const old = Array.from({ length: 12 }, (_, i) => `trening-2026-09-${String(10 + i).padStart(2, '0')}-080000.json`);
@@ -116,7 +116,7 @@ describe('audyt T14 (runda 75): baza poza Dokumentami (Dokumenty widać w Plikac
 
 describe('audyt T14 — drobne', () => {
   test('kopia automatyczna nie kasuje pliku dorzuconego przez użytkownika do Backup/', async () => {
-    await fresh(); const backup = require('@/lib/backup'); const FS = require('expo-file-system');
+    await fresh(); const backup = require('@/lib/backup'); const FS = require('expo-file-system/legacy');
     const ours = Array.from({ length: 11 }, (_, i) => `trening-2026-09-${String(10 + i).padStart(2, '0')}-080000.json`);
     (FS.readDirectoryAsync as jest.Mock).mockImplementation(async () => [...ours, 'trening-backup-2026-10-02.json']); (FS.deleteAsync as jest.Mock).mockClear();
     await backup.autoBackup(); expect((FS.deleteAsync as jest.Mock).mock.calls.map((c: any) => c[0])).toEqual([`file:///doc/Backup/${ours[0]}`]);
