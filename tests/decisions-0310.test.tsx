@@ -2,7 +2,8 @@
  *  - 7b → 7a: podpowiedź „↑” bez bramki 10% — zawsze najbliższy większy DOSTĘPNY ciężar;
  *  - 8a → 8c: „Poprzednio” = ostatni raz TYM SAMYM PRZYRZĄDEM, gdziekolwiek (WExercise.impl, schemat 15) — miejsce samo w sobie bez znaczenia;
  *  - P-004 (b): hantle wpisuje się na hantel — dane wpisuje użytkownik; decyzja z 08:11 („Nie przenoś do aplikacji żadnych moich szablonów”):
- *    świeża instalacja bez szablonów, a migracja NIE zmienia szablonów (dawne 48 → 24 usunięte), historia bez zmian;
+ *    świeża instalacja bez szablonów, a migracja nie zmienia ciężarów ani treści szablonów (dawne 48 → 24 usunięte; zostaje tylko normalizacja
+ *    jak w main — runda 82b), historia bez zmian;
  *  - ViShape na stronę: ciężar stacji elektrycznej zawsze na stronę. */
 import fc from 'fast-check';
 import { readFileSync } from 'node:fs';
@@ -191,7 +192,7 @@ describe('decyzja 03.10.2026 (08:11) — aplikacja nie przenosi ani nie zmienia 
     st = await fresh(undefined, 'en'); expect(st.templates).toEqual([]); expect(st.bands.map(b => b.color)).toEqual(['red', 'black', 'purple']);
     expect(seedState('pl').templates).toEqual([]); expect(seedState('en').templates).toEqual([]);
   });
-  test('przejście ze schematu 14: szablon z Deadlift (hantle) 48 kg zostaje 48 (migracja i start aplikacji); szablony ani zmieniane, ani usuwane; historia bez zmian', async () => {
+  test('przejście ze schematu 14: szablon z Deadlift (hantle) 48 kg zostaje 48 (migracja i start aplikacji); szablony z istniejącymi ćwiczeniami 1:1 (normalizacja jak w main — audit-r82b); historia bez zmian', async () => {
     const raw = await schema14();
     const m = store.migrate(JSON.parse(JSON.stringify(raw)));
     expect([item(m, 'Legs — siłownia', 'Deadlift (hantle)').startWeight, item(m, 'Legs — dom', RDL).startWeight]).toEqual([48, 48]);

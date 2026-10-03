@@ -1,5 +1,5 @@
 import { useSyncExternalStore } from 'react';
-import { getState, exById, isBW, restFor, occurrence, occurrences, normalizeGroups, assistLost, emptySet, copyVals, stripUnused, previousBlockBefore, offListAt, prevFromOther, startLocationId, stampImpl, setHasResult, putHistoryWorkout, localISODate, clampName, NAME_MAX } from './store';
+import { getState, exById, isBW, restFor, occurrence, occurrences, normalizeGroups, assistLost, emptySet, copyVals, stripUnused, previousBlockBefore, offListAt, offListNote, prevFromOther, startLocationId, stampImpl, setHasResult, putHistoryWorkout, localISODate, clampName, NAME_MAX } from './store';
 import { base, uid, hasTime, hasReps, hasWeight, type Exercise, type Workout, type WExercise, type WSet } from './seed';
 import { t } from './i18n';
 
@@ -99,28 +99,39 @@ function prefill(ex: Exercise, p0: WSet | null, startWeight: number | '' = '', t
  * zostaje — edytor pokazuje wtedy dopisek „ciężaru … nie ma tutaj” (prefilledOffList; audyt MEDIUM 1). Zwraca wartości ze źródła i `off` (ciężar do wstrzymania) — samo
  * wstrzymanie robi refill, bo zależy od tego, które pola są jeszcze wypełniane przez aplikację (weryfikacja integracji, LOW1). */
 function prefillFor(d: Draft, e: WExercise, before: number): ((i: number) => { s: WSet; off: boolean }) | null {
-  const ex = exById(e.exerciseId); if (!ex) return null; const w = d.w; const loc = w.locationId; const impl = e.impl;
+  const r = prefillSrc(d, e, before); if (!r) return null; const { ex, p, src, it, srcOf } = r; const loc = d.w.locationId;
+  /* tylko źródło „gdzie indziej” (znane, inne miejsce albo znany, inny przyrząd; treningi bez miejsca — nie); weryfikacja integracji (LOW2): i tylko,
+   * gdy sesja daje wartości — sesja z samymi drop setami nie jest źródłem, więc nie wstrzymuje ciężaru startowego szablonu (jak startFromTemplate) */
+  const away = !!(src.length && prevFromOther(p, ex.id, loc, e.impl));
+  const at = (s: WSet) => ({ s, off: away && offListAt(ex, loc, s.weight) });
+  return it ? (i => at(prefill(ex, srcOf(i), it.startWeight, it.targetSec, it.repMin))) : (i => at(prefill(ex, srcOf(i))));
+}
+/** Źródło wartości bloku przy danej dacie (wspólne dla prefillFor i dopisku prefilledOffList — runda 82b): sesja „Poprzednio” `p`, jej serie bez
+ * drop setów `src` i `srcOf(i)` — seria źródła dla serii i bloku (pozycja szablonu: i-ta, dalej ostatnia; blok dodany w edytorze: ostatnia). */
+function prefillSrc(d: Draft, e: WExercise, before: number) {
+  const ex = exById(e.exerciseId); if (!ex) return null; const w = d.w; const impl = e.impl;
   const tpl = w.templateId ? getState().templates.find(x => x.id === w.templateId) ?? null : null;
   const it = tpl && e.tplItemId ? tpl.items.find(x => x.id === e.tplItemId && x.exerciseId === e.exerciseId) : undefined;
   const ii = it && tpl ? tpl.items.indexOf(it) : -1; const ei = w.exercises.indexOf(e);
   const p = it && tpl ? previousBlockBefore(ex.id, before, occurrence(tpl.items, ii), occurrences(tpl.items, ex.id), it.id, tpl.id, d.sourceId, impl)
     : previousBlockBefore(ex.id, before, occurrence(w.exercises, ei), occurrences(w.exercises, ex.id), e.tplItemId, w.templateId, d.sourceId, impl);
   const src = p ? p.sets.filter(x => x.kind !== 'drop') : []; /* jak startFromTemplate: drop sety nie są źródłem zwykłych serii */
-  /* tylko źródło „gdzie indziej” (znane, inne miejsce albo znany, inny przyrząd; treningi bez miejsca — nie); weryfikacja integracji (LOW2): i tylko,
-   * gdy sesja daje wartości — sesja z samymi drop setami nie jest źródłem, więc nie wstrzymuje ciężaru startowego szablonu (jak startFromTemplate) */
-  const away = !!(src.length && prevFromOther(p, ex.id, loc, impl));
-  const at = (s: WSet) => ({ s, off: away && offListAt(ex, loc, s.weight) });
-  return it ? (i => at(prefill(ex, src.length ? src[Math.min(i, src.length - 1)] : null, it.startWeight, it.targetSec, it.repMin))) : (() => at(prefill(ex, src.length ? src[src.length - 1] : null)));
+  const srcOf = (i: number): WSet | null => !src.length ? null : it ? src[Math.min(i, src.length - 1)] : src[src.length - 1];
+  return { ex, p, src, it, srcOf };
 }
 /** Pola serii wciąż równe wartości wstawionej przez aplikację (pole zmienione ręcznie wypada). */
 const liveKeys = (d: Draft, s: WSet): VKey[] => { const r = d.prefilled[s.id]; return r ? (Object.keys(r) as VKey[]).filter(k => s[k] === r[k]) : []; };
-/** Audyt f132330/025ee6a (MEDIUM 1): pierwszy ciężar w bloku wstawiony przez aplikację (i nieruszony), którego nie ma na liście miejsca szkicu —
- * np. 32 kg z sesji bez miejsca (0.8.5 / web 0.3), w domu max 24. Wartość zostaje (wstrzymanie dawało serie bez ciężaru — HIGH z weryfikacji 2),
- * a edytor pokazuje dopisek „ciężaru … nie ma tutaj — wpisz ciężar”. Ciężar wpisany ręcznie — bez dopisku. Bez miejsca szkicu — null. */
+/** Audyt f132330/025ee6a (MEDIUM 1): dopisek „ciężaru … nie ma tutaj — wpisz ciężar” w edytorze — np. 32 kg z sesji bez miejsca (0.8.5 / web 0.3),
+ * w domu max 24: wartość zostaje (wstrzymanie dawało serie bez ciężaru — HIGH z weryfikacji 2). Runda 82b (weryfikacja 6ea37a3): ta sama reguła
+ * co na ekranie treningu (store.offListNote — źródło „gdzie indziej” albo bez miejsca, seria robocza > 0 spoza listy wg jednostki, pole puste
+ * albo wciąż z tą wartością) i tylko dla pól ciężaru wciąż wypełnionych przez aplikację (ciężar wpisany ręcznie — bez dopisku; edycja zapisanego
+ * treningu bez dodanych serii — bez dopisku). Pokazuje się więc też przy wartości wstrzymanej (źródło z innego miejsca — pole puste), jak w treningu.
+ * Bez miejsca szkicu — null. */
 export function prefilledOffList(d: Draft, e: WExercise): number | null {
-  const ex = exById(e.exerciseId); if (!ex || !d.w.locationId) return null;
-  for (const s of e.sets) if (typeof s.weight === 'number' && liveKeys(d, s).includes('weight') && offListAt(ex, d.w.locationId, s.weight)) return s.weight;
-  return null;
+  if (!d.w.locationId) return null;
+  const live = (i: number) => liveKeys(d, e.sets[i]).includes('weight'); if (!e.sets.some((_, i) => live(i))) return null; /* bez skanu historii przy każdym wpisie */
+  const r = prefillSrc(d, e, d.prefillAt); if (!r) return null;
+  return offListNote(e, r.p, d.w.locationId, r.srcOf, live);
 }
 /** Wypełnia serie wartościami sprzed `before`. force — wszystkie pola serii bloku (nowy szkic, nowe ćwiczenie); inaczej tylko pola
  * wypełnione wcześniej przez aplikację i od tamtej pory nieruszone (weryfikacja 2, L2: per pole — wpisane powtórzenia nie blokują

@@ -1,4 +1,4 @@
-import { snapLb, KG_PER_LB } from './units';
+import { snapLb, KG_PER_LB, wOut, wu } from './units';
 
 /*
  * P-003 E1: osiągalne ciężary sprzętu w miejscu treningu (docs/10-miejsca-i-sprzet.md, sekcja 3.2).
@@ -122,6 +122,10 @@ export function convertSpec(spec: LoadSpec, to: LoadUnit): LoadSpec {
 /** Te same ciężary (tolerancja 0,01 kg). */
 export const sameLoad = (a: number, b: number) => Math.abs(a - b) <= LOAD_TOL_KG + EPS;
 export const hasLoad = (loads: readonly number[], x: number) => loads.some(v => sameLoad(v, x));
+/** Runda 82b (weryfikacja 6ea37a3, MEDIUM 1d): „ten ciężar jest dostępny” tak, jak widzi go użytkownik — tolerancja LOAD_TOL_KG ALBO (w lb)
+ * ta sama liczba na ekranie (wOut, 0,1 lb). Ciężar zapisany np. jako 19,97 kg (wpis w kg) pokazuje się jako 44 lb — tak jak pozycja „44 lb”
+ * z listy (19,95 kg) — więc jest na liście; bez nowej stałej tolerancji (w kg siatka ekranu 0,01 = LOAD_TOL_KG). */
+export const hasLoadShown = (loads: readonly number[], x: number) => { if (hasLoad(loads, x)) return true; if (wu() !== 'lb') return false; const sx = wOut(x); return loads.some(v => wOut(v) === sx); };
 /** Najbliższy większy dostępny ciężar (lista rosnąca) albo null. */
 export const nextHeavier = (loads: readonly number[], x: number): number | null => { for (const v of loads) if (v > x + LOAD_TOL_KG + EPS) return v; return null; };
 /** Zaokrąglenie w dół do dostępnego (podpowiedzi i szacunki — nigdy wpisane wartości) albo null, gdy nic nie jest ≤ x. */

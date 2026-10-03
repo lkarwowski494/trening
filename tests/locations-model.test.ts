@@ -20,7 +20,7 @@ function twoPlaces(trexo: number[] = [3, 6, 9, 12, 15, 18, 21, 24]) {
 }
 
 describe('schemat 14 i migracja', () => {
-  test('wersja schematu 15 (14: miejsca, 15: przyrząd bloku i P-004); domyślnie brak miejsc, brak miejsca głównego, filtr „pokaż wszystkie” wyłączony', async () => {
+  test('wersja schematu 15 (14: miejsca, 15: przyrząd bloku — bez migracji P-004, usuniętej w rundzie 82); domyślnie brak miejsc, brak miejsca głównego, filtr „pokaż wszystkie” wyłączony', async () => {
     const st = await fresh(); expect(SCHEMA_VERSION).toBe(15);
     expect(st.settings.locations).toEqual([]); expect(st.settings.mainLocationId).toBeNull(); expect(st.settings.pickerShowAll).toBe(false);
   });

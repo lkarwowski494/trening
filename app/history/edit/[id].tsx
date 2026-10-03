@@ -4,7 +4,7 @@ import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
 import { Screen, Muted, Btn, Txt, Field, Input, NumInput, Empty } from '@/components/ui';
 import { WhenFields } from '@/components/WhenFields';
 import { setLabel } from '@/components/ActiveWorkout';
-import { getState, useTick, exById, isBW, loadLabel, loadLabelShort, groupLabels, occurrence, occurrences, deleteWorkout, bandA11y, shortBand, clampName, NAME_MAX, blockImpl } from '@/lib/store';
+import { getState, useTick, exById, isBW, loadLabel, loadLabelShort, groupLabels, occurrence, occurrences, deleteWorkout, bandA11y, shortBand, clampName, NAME_MAX, blockImpl, liveBlockImpl } from '@/lib/store';
 import { draftOf, beginEdit, discardDraft, isDirty, touchDraft, useDraftTick, checkDraft, commitDraft, draftAddSet, draftRemoveSet, draftRemoveExercise, draftSetWhen, dateText, timeText, prefilledOffList, type Draft } from '@/lib/edit';
 import { onHistoryEdited } from '@/lib/backup';
 import { locationLabel } from '@/lib/locations';
@@ -92,8 +92,10 @@ function EditBlock({ d, e, ei, labels }: { d: Draft; e: WExercise; ei: number; l
     });
   };
   const cycleBand = (set: WSet) => { const sorted = [...st.bands].sort((a, b) => a.level - b.level); const i = sorted.findIndex(b => b.id === set.bandId); set.bandId = i < 0 ? (sorted[0]?.id ?? '') : (i + 1 < sorted.length ? sorted[i + 1].id : ''); touchDraft(); };
-  const impl = blockImpl(e, d.w.locationId); /* MEDIUM 2: blok na stacji — „kg/str.” (na stronę) */
-  const off = prefilledOffList(d, e); /* MEDIUM 1: wstawiony ciężar (np. z sesji bez miejsca), którego nie ma w miejscu szkicu — dopisek, wartość zostaje */
+  /* MEDIUM 2: blok na stacji — „kg/str.” (na stronę). Runda 82b (LOW 4): zapisany trening — przyrząd z zapisu (jak szczegóły sesji, docs/10);
+   * nowy trening wstecz — jak trening w toku (bez miejsc przyrząd się nie liczy) */
+  const impl = d.sourceId ? blockImpl(e, d.w.locationId) : liveBlockImpl(e, d.w.locationId);
+  const off = prefilledOffList(d, e); /* MEDIUM 1 / runda 82b: ta sama reguła dopisku co w treningu (store.offListNote) — wartość zostaje */
   const heads = ['#', ...(hasWeight(m) ? [ex ? loadLabelShort(ex, impl) : wu()] : []), ...(hasReps(m) ? [t('Pow.')] : []), ...(hasDistance(m) ? ['m'] : []), ...(hasTime(m) ? [t('sek.')] : []), ...(showRpe ? ['RPE'] : [])];
   return (
     <View style={[s.ex, { borderBottomColor: th.line }]}>

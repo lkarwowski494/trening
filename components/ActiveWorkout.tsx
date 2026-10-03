@@ -4,7 +4,7 @@ import { useRouter } from 'expo-router';
 import { activateKeepAwakeAsync, deactivateKeepAwake } from 'expo-keep-awake';
 import { useTheme } from '@/lib/theme';
 import { Btn, Input, NumInput, Muted } from '@/components/ui';
-import { progressionFor, setActiveLocation, lastActivity, staleSince, staleRef, staleKind, ackStale, markActivity, useForegroundTick, bandA11y, clampName, loadLabelShort, getState, useTick, exById, previousBlockFor, occurrence, occurrences, hintFor, isBW, reps, fmtDur, fmtSec, fmtTime, setSummary, toggleDone, restAfter, roundRest, addSet, removeSet, removeExercise, finishWorkout, cancelWorkout, save, loadLabel, todayReadiness, groupLabels, linkWithNext, unlink, applyBandAssist, findSet, shortBand, setHasValue, locationById, offListAt, blockImpl } from '@/lib/store';
+import { progressionFor, setActiveLocation, lastActivity, staleSince, staleRef, staleKind, ackStale, markActivity, useForegroundTick, bandA11y, clampName, loadLabelShort, getState, useTick, exById, previousBlockFor, occurrence, occurrences, hintFor, isBW, reps, fmtDur, fmtSec, fmtTime, setSummary, toggleDone, restAfter, roundRest, addSet, removeSet, removeExercise, finishWorkout, cancelWorkout, save, loadLabel, todayReadiness, groupLabels, linkWithNext, unlink, applyBandAssist, findSet, shortBand, setHasValue, locationById, offListNote, liveBlockImpl, listLocFor } from '@/lib/store';
 import { availability, missingLabel } from '@/lib/equipment';
 import { locationLabel } from '@/lib/locations';
 import * as timer from '@/lib/timer';
@@ -230,16 +230,18 @@ function ExerciseBlock({ w, e, ei, onDone, onStartSet, labels, prs }: { w: Worko
   const place = locationById(w.locationId); const avail = place ? availability(ex, place) : null;
   const prevElsewhere = place && prev?.workout.locationId && prev.workout.locationId !== place.id ? locationLabel(prev.workout.locationId) : '';
   /* weryfikacja 3 (L1): poprzedni ciężar, którego tu nie ma — dopisek przy ćwiczeniu. Audyt f132330/025ee6a (MEDIUM 1): także gdy „Poprzednio” jest
-   * z sesji bez miejsca (0.8.5 / web 0.3 — wartość wstawiona do pól, bo wstrzymanie dawało serie bez ciężaru) albo innym przyrządem (LOW 3 — pole
-   * puste); prefiks „Poprzednio: ‹miejsce›” nadal tylko dla innego, OKREŚLONEGO miejsca (audyt M8 — bez „Poprzednio: bez miejsca”) */
-  const prevOff = place && prev ? (prev.sets.map(x => x.weight).find(v => typeof v === 'number' && offListAt(ex, place.id, v)) as number | undefined) ?? null : null;
+   * z sesji bez miejsca (0.8.5 / web 0.3 — wartość wstawiona do pól) albo innym przyrządem (LOW 3 — pole puste). Runda 82b (weryfikacja 6ea37a3):
+   * jedna reguła z edytorem historii (store.offListNote) — tylko źródło „gdzie indziej” albo bez miejsca, tylko wartość serii roboczej (bez drop
+   * setów, > 0) spoza listy (wg jednostki), liczone z BIEŻĄCYCH pól: wpisany ciężar chowa dopisek; blok innym przyrządem niż tutaj — bez dopisku.
+   * Prefiks „Poprzednio: ‹miejsce›” nadal tylko dla innego, OKREŚLONEGO miejsca (audyt M8 — bez „Poprzednio: bez miejsca”) */
+  const prevOff = offListNote(e, prev, w.locationId, si => hintFor(prev?.sets, e.sets, si, ex));
   const offNote = prevOff != null ? tr('ciężaru {w} nie ma tutaj — wpisz ciężar', { w: fmtW(prevOff) }) : '';
-  const impl = blockImpl(e, w.locationId); /* MEDIUM 2: stacja — kolumna „kg/str.” (na stronę) */
+  const impl = liveBlockImpl(e, w.locationId); /* MEDIUM 2: stacja — kolumna „kg/str.” (na stronę); runda 82b (LOW 4): bez miejsc — jak w main */
   const nm = nOcc > 1 ? `${exName(ex)} (${k + 1})` : exName(ex); /* runda 66: dwa bloki tego samego ćwiczenia rozróżnialne dla VoiceOver */
   const m = ex.metric ?? 'weight_reps'; const showRpe = st.settings.showRpe;
   const doneStyle = (set: WSet) => set.done ? { backgroundColor: t.done, borderColor: t.doneLine } : undefined;
   const inSS = !!e.groupId;
-  const prog = progressionFor(ex, e.repMax, prev?.sets, w.locationId); /* T-017: cicha podpowiedź progresji; P-003: z ciężarów miejsca */
+  const prog = progressionFor(ex, e.repMax, prev?.sets, listLocFor(e, w.locationId)); /* T-017: cicha podpowiedź progresji; P-003: z ciężarów miejsca; runda 82b (LOW 5): blok innym przyrządem niż tutaj — bez listy miejsca */
   const progText = prog ? (prog.kind === 'reps' ? tr('↑ spróbuj {n} pow.', { n: prog.reps }) : (bw && prog.kg === 0 ? tr('↑ spróbuj bez asysty') : tr('↑ spróbuj {v}', { v: (bw && prog.kg > 0 ? '+' : '') + fmtW(prog.kg) }))) : '';
   const headMeta = [hasReps(m) && e.repMin != null ? reps(e.repMin, e.repMax) + ' ' + tr('pow.') : '', progText, inSS ? tr('superset · przerwa po rundzie {t}', { t: fmtDur(roundRest(ei) ?? e.restSec) }) /* T7: przerwa po zamknięciu rundy, niezależnie od kolejności odhaczania */ : tr('przerwa') + ' ' + fmtDur(e.restSec), ex.tempo].filter(Boolean).join(' · ');
   // Szerokość: czy kolumna „Poprzednio” zmieści się w wierszu (ekran − marginesy 2×14).

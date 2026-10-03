@@ -5,7 +5,7 @@ import * as timer from '@/lib/timer';
 import { dark, light } from '@/lib/theme';
 import { LIB, metricFor, type Equipment } from '@/lib/seed';
 import { rowLayout } from '@/components/ActiveWorkout';
-import { renderApp, tap, flushAll, screen, go, act } from './app';
+import { renderApp, tap, flushAll, screen, go, act, type } from './app';
 import { ex, pressAlert, seedWithDemo } from './helpers';
 
 jest.setTimeout(60000);
@@ -19,11 +19,26 @@ function allTexts(): string[] {
 }
 const act0 = async (f: () => void) => { await act(async () => { f(); }); await flushAll(10); };
 
-test('C1 od uruchomienia do pierwszej odhaczonej serii: 2 tapnięcia', async () => {
+/* C1 (docs/09) — dwie ścieżki. Od 03.10.2026 świeża instalacja nie ma szablonów (decyzja właściciela), więc „≤ 2 tapnięcia” dotyczy
+ * użytkownika z szablonem (tu: szablony demonstracyjne), a świeża instalacja ma własny, zmierzony wynik (runda 82b, weryfikacja 6ea37a3 LOW 6). */
+test('C1a z szablonem: od uruchomienia do pierwszej odhaczonej serii ≤ 2 tapnięcia (Start, ✓)', async () => {
   await renderApp({ saved: seedWithDemo() }); let taps = 0;
   await tap(screen.getByLabelText('Start: Upper A')); taps++;
   await tap(screen.getAllByLabelText(/^Seria 1 zrobiona/)[0]); taps++;
   expect(store.getState().active!.exercises[0].sets[0].done).toBe(true); expect(taps).toBeLessThanOrEqual(2);
+});
+
+test('C1b świeża instalacja (bez szablonów): 4 tapnięcia (Pusty trening, + Dodaj ćwiczenie, ćwiczenie, ✓) plus wpis ciężaru i powtórzeń', async () => {
+  await renderApp(); let taps = 0;
+  expect(store.getState().templates).toEqual([]); expect(screen.queryByLabelText(/^Start: /)).toBeNull(); /* nie ma skrótu „Start” */
+  await tap(screen.getByText('Pusty trening')); taps++;
+  await tap(screen.getByText('+ Dodaj ćwiczenie')); taps++; await flushAll(20);
+  await tap(screen.getByText('Bench Press (hantle)')); taps++; await flushAll(20); /* lista bez szukania — pierwszy ekran wyboru */
+  /* bez historii i bez szablonu nic się nie wstawia — ciężar i powtórzenia trzeba wpisać (pola, nie tapnięcia w miarze C1) */
+  const a = store.getState().active!; expect([a.exercises[0].sets[0].weight, a.exercises[0].sets[0].reps]).toEqual(['', '']);
+  await type(screen.getAllByLabelText('kg/hantel')[0], '20'); await type(screen.getAllByLabelText('Powtórzenia')[0], '8');
+  await tap(screen.getAllByLabelText(/^Seria 1 zrobiona/)[0]); taps++;
+  expect(a.exercises[0].sets[0]).toMatchObject({ done: true, weight: 20, reps: 8 }); expect(taps).toBe(4);
 });
 
 test('C2+C3 przyciski z ikoną mają opis, cele dotykowe ≥ 44 pt', async () => {

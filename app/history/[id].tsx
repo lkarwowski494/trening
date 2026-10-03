@@ -23,7 +23,7 @@ export default function HistoryDetail() {
       {w.exercises.map((e, i) => { const ex = exById(e.exerciseId); const bw = ex ? isBW(ex) : false; const m = ex?.metric ?? 'weight_reps'; const rpe = getState().settings.showRpe; const anyBand = e.sets.some(s => s.bandId);
         // Nagłówki i komórki z tych samych warunków (wcześniej dla usuniętego ćwiczenia kolumny się rozjeżdżały).
         const showW = hasWeight(m);
-        const impl = blockImpl(e, w.locationId); /* MEDIUM 2: blok na stacji — „kg/str.” (na stronę) */
+        const impl = blockImpl(e, w.locationId); /* MEDIUM 2: blok na stacji — „kg/str.” (na stronę); runda 82b (LOW 4): zakończona sesja — zapisany przyrząd także bez miejsc (prawdziwy zapis wpisu na stronę; docs/10) */
         const heads = ['#', ...(showW ? [ex ? loadLabelShort(ex, impl) : t('ciężar')] : []), ...(hasReps(m) ? [t('pow.')] : []), ...(hasDistance(m) ? [t('dystans')] : []), ...(hasTime(m) ? [t('czas')] : []), ...(rpe ? ['RPE'] : []), ...(anyBand ? [t('guma')] : []), t('przerwa')];
         return (
         <View key={e.id ?? i} style={{ marginBottom: 16, borderBottomWidth: 1, borderBottomColor: th.line, paddingBottom: 8 }}>

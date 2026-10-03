@@ -5,7 +5,7 @@ import { t, t as tr, tIn, applyLang, detectLang, locale } from './i18n';
 import { applyUnit, wu, wOut, wIn, KG_PER_LB, fmtW, fmtNum, snapLegacyLb } from './units';
 import { seedState, uid, base, defaultModules, defaultSettings, metricFor, loadModeFor, loadMult, blankTimer, musclesFor, hasTime, hasReps, hasWeight, hasDistance, METRICS, DEFAULT_REST, GROUPS, LIB, SCHEMA_VERSION, LOCAL_OWNER, MODULES, SET_KINDS, SINGLE_IMPLEMENT, equipFields, LOAD_SOURCE_BY_EQUIPMENT, IMPLS, type Impl, type Base, type State, type Workout, type WSet, type WExercise, type Exercise, type Template, type Morning, type Location } from './seed';
 import { equipById, loadsFor, implAt, blankLoad } from './equipment';
-import { sanitizeLoadSpec, nextHeavier, hasLoad } from './loads';
+import { sanitizeLoadSpec, nextHeavier, hasLoadShown } from './loads';
 import { CATALOG, CATALOG_REV } from './catalog.generated';
 
 /*
@@ -229,8 +229,9 @@ export function migrate(raw: any): State {
   raw.templates = arr(raw.templates);
   raw.templates.forEach((t: any) => { stamp(t); if (typeof t.name !== 'string') t.name = ''; t.items = arr(t.items); t.items = t.items.filter((it: any) => idOf(it.exerciseId) != null); t.items.forEach((it: any) => { it.id = idOf(it.id) ?? uid(); it.exerciseId = idOf(it.exerciseId); { const v = parseNum(it.targetSec); it.targetSec = v == null || v < 0 ? '' : Math.min(86400, Math.round(v)); } /* runda 51 */ it.groupId = idOf(it.groupId); it.sets = intIn(it.sets, 1, 50) ?? 1; /* runda 15: liczba, nie tekst z importu */ if (it.startWeight === undefined) it.startWeight = ''; for (const k of ['repMin', 'repMax']) it[k] = intIn(it[k], 1, 100); { const v = parseNum(it.restSec); it.restSec = v == null || v < 0 ? null : Math.min(1800, Math.round(v)); } /* runda 49: także tekst, jak przerwa ćwiczenia */ /* runda 17: limit 1800 */ { const v = parseNum(it.startWeight); it.startWeight = v == null ? '' : kg2(snapL(v) as number); } }); });
   raw.templates.forEach((x: any) => { const n = x.name.replace(/\s+/g, ' ').trim(); x.name = n || tIn(raw.settings?.language, 'Nowy szablon'); { const l = idOf(x.locationId); if (l) x.locationId = l; else delete x.locationId; } /* P-003 */ }); // runda 35: jak nazwy ćwiczeń
-  /* Decyzja właściciela 03.10.2026 (08:11): aplikacja NIGDY nie zmienia szablonów użytkownika — także przy przejściu na schemat 15
-   * (wcześniejsza jednorazowa zmiana 48 → 24 kg z P-004 usunięta; szablony zostają, jak były — ani zmieniane, ani usuwane). */
+  /* Decyzja właściciela 03.10.2026 (08:11): aplikacja nie zmienia ciężarów ani treści szablonów użytkownika — także przy przejściu na schemat 15
+   * (wcześniejsza jednorazowa zmiana 48 → 24 kg z P-004 usunięta: 48 zostaje 48). Zostaje tylko dotychczasowa normalizacja, ta sama co w main:
+   * pola pozycji wyżej (liczby, zakresy, siatka kg), a niżej usunięcie pozycji, których ćwiczenia nie ma albo jest usunięte (runda 82b — docs/10). */
   const fixSet = (s: any) => {
     s.id = idOf(s.id) ?? uid(); s.bandId = idOf(s.bandId) ?? ''; // runda 51
     // Runda 48: wartości serii to liczba albo '' (import/ręczna edycja: tekst, tablica, obiekt, NaN); tylko asysta ±kg może być ujemna.
@@ -605,10 +606,11 @@ export function startLocationId(preferred?: string | null): string | undefined {
   return s.mainLocationId && s.locations.some(l => l.id === s.mainLocationId) ? s.mainLocationId : s.locations[0].id;
 }
 /** Audyt M3: ciężar spoza listy dostępnych w miejscu (np. 32 kg z siłowni, w domu max 24) — nie wstawiamy go do pól, zostaje w „Poprzednio”
- * (tylko gdy źródło jest „gdzie indziej” — prevFromOther; z sesji bez miejsca wartość zostaje, a ekran pokazuje dopisek). */
-export function offListAt(ex: Exercise | undefined, locationId: string | undefined, kg: unknown): boolean {
+ * (tylko gdy źródło jest „gdzie indziej” — prevFromOther; z sesji bez miejsca wartość zostaje, a ekran pokazuje dopisek — offListNote).
+ * Runda 82b (MEDIUM 1d): porównanie wg jednostki wyświetlania (hasLoadShown) — w lb ciężar, który na ekranie jest pozycją z listy, jest na liście. */
+export function offListAt(ex: Exercise | undefined, locationId: string | null | undefined, kg: unknown): boolean {
   if (!ex || isBW(ex) || typeof kg !== 'number') return false; const loc = locationById(locationId); if (!loc) return false;
-  const L = loadsFor(ex, loc); return L.kind === 'loads' && !hasLoad(L.loads, kg);
+  const L = loadsFor(ex, loc); return L.kind === 'loads' && !hasLoadShown(L.loads, kg);
 }
 /** Bezpiecznik M3 — JEDNA reguła „źródło wartości jest gdzie indziej” (start z szablonu, „Powtórz ostatni”, odhaczenie pustej serii, edytor historii):
  * sesja źródłowa w INNYM, ZNANYM miejscu niż trening (weryfikacja 2: sesje bez miejsca — nie) ALBO — audyt f132330/025ee6a (LOW 3) — blok źródłowy
@@ -625,8 +627,42 @@ export function prevFromOther(src: { workout: Workout; sets: WSet[] } | null | u
 export function implAtLoc(ex: Exercise | undefined, locationId: string | null | undefined): Impl | undefined {
   const loc = locationById(locationId); return ex && loc ? implAt(ex, loc) : undefined;
 }
-/** Przyrząd bloku do etykiet (MEDIUM 2): zapisany w bloku, a gdy go nie ma — rozstrzygnięty dla miejsca treningu (bez miejsca — brak). */
+/** Przyrząd bloku do etykiet (MEDIUM 2): zapisany w bloku, a gdy go nie ma — rozstrzygnięty dla miejsca treningu (bez miejsca — brak).
+ * Tak liczy zakończona historia (szczegóły sesji, edycja zapisanego treningu): zapisany przyrząd to prawdziwy zapis, np. „kg/str.” na stacji,
+ * także gdy miejsc już nie ma (docs/10, runda 82b). Trening w toku i nowy trening wstecz — liveBlockImpl. */
 export const blockImpl = (e: Pick<WExercise, 'exerciseId' | 'impl'>, locationId: string | null | undefined): Impl | undefined => e.impl ?? implAtLoc(exById(e.exerciseId), locationId);
+/** Runda 82b (weryfikacja 6ea37a3, LOW 4): przyrząd bloku do etykiet w treningu W TOKU (i w nowym treningu wstecz) — bez miejsc (np. wszystkie
+ * usunięte w trakcie) przyrząd się nie liczy: etykiety jak bez miejsc, czyli jak w main („kg/hant.”, „kg”), a nie „kg/str.” z zapisanego `impl`. */
+export const liveBlockImpl = (e: Pick<WExercise, 'exerciseId' | 'impl'>, locationId: string | null | undefined): Impl | undefined => getState().settings.locations.length ? blockImpl(e, locationId) : undefined;
+/** Runda 82b (weryfikacja 6ea37a3, LOW 5): miejsce, którego listy ciężarów dotyczy blok. Blok, który po zmianie miejsca zachował przyrząd
+ * (odhaczone serie — runda 82, L5), a tutaj ćwiczenie robi się INNYM przyrządem (albo żadnym), nie korzysta z listy tego miejsca (loadsFor nie
+ * patrzy na przyrząd bloku): bez dopisku „nie ma tutaj”, bez „↑ spróbuj X” z tej listy i bez wstrzymywania ciężaru przy odhaczeniu — dla tego
+ * bloku jak bez listy ciężarów. Blok bez przyrządu (nieznany) — lista miejsca jak dotąd. Bez miejsca treningu — undefined (jak przed P-003). */
+export function listLocFor(e: Pick<WExercise, 'exerciseId' | 'impl'>, locationId: string | null | undefined): string | undefined {
+  if (!locationId || !locationById(locationId)) return undefined;
+  return e.impl !== undefined && e.impl !== implAtLoc(exById(e.exerciseId), locationId) ? undefined : locationId;
+}
+/** Runda 82b (weryfikacja 6ea37a3: MEDIUM 1 + LOW 3) — JEDNA reguła dopisku „ciężaru X nie ma tutaj — wpisz ciężar” dla ekranu treningu
+ * i edytora historii (edit.prefilledOffList). Dopisek tylko, gdy:
+ *  (i) trening ma miejsce, a blok korzysta z jego listy ciężarów (listLocFor — LOW 5);
+ *  (ii) źródło „Poprzednio” jest „gdzie indziej” (prevFromOther: inne, znane miejsce albo znany, inny przyrząd — tam wartość jest wstrzymana,
+ *       kontrakt M3) ALBO to sesja bez miejsca (0.8.5 / web 0.3 — wartość zostaje). To samo, znane miejsce tym samym / nieznanym przyrządem —
+ *       nigdy (użytkownik zrobił tam ten ciężar, np. 23 kg przy liście samych parzystych);
+ *  (iii) wartość KONKRETNEJ serii roboczej źródła (`srcOf(i)` dla serii i bloku; bez rozgrzewek i drop setów, > 0) nie jest osiągalna tutaj
+ *       (offListAt — porównanie wg jednostki, hasLoadShown), a pole tej serii jest puste albo wciąż pokazuje tę wartość: wpisany ciężar
+ *       (dostępny albo świadomie inny) chowa dopisek — liczone z bieżących pól, przy każdym wpisie.
+ * `live(i)` — dodatkowy warunek (edytor: pole ciężaru wciąż wypełnione przez aplikację). Zwraca ciężar (kg) do dopisku albo null. */
+export function offListNote(e: Pick<WExercise, 'exerciseId' | 'impl' | 'sets'>, src: { workout: Workout; sets: WSet[] } | null | undefined, locationId: string | null | undefined, srcOf: (i: number) => WSet | null | undefined, live?: (i: number) => boolean): number | null {
+  const ex = exById(e.exerciseId); const loc = listLocFor(e, locationId); if (!ex || !src || !loc || isBW(ex)) return null;
+  if (src.workout.locationId && !prevFromOther(src, ex.id, loc, e.impl)) return null;
+  for (let i = 0; i < e.sets.length; i++) {
+    const s = e.sets[i]; if (s.kind === 'warmup' || s.kind === 'drop' || (live && !live(i))) continue;
+    const h = srcOf(i); const v = h && h.kind !== 'warmup' && h.kind !== 'drop' ? h.weight : '';
+    if (typeof v !== 'number' || !(v > 0) || !offListAt(ex, loc, v)) continue;
+    if (isEmpty(s.weight) || (typeof s.weight === 'number' && hasLoadShown([v], s.weight))) return v;
+  }
+  return null;
+}
 /** Ustawia (albo usuwa) przyrząd bloku wg miejsca treningu. Bez miejsca pole nie powstaje — dane jak przed schematem 15. */
 export function stampImpl(e: WExercise, locationId: string | null | undefined): WExercise {
   const i = implAtLoc(exById(e.exerciseId), locationId); if (i) e.impl = i; else delete e.impl; return e;
@@ -750,7 +786,7 @@ function fillFromHints(e: WExercise, si: number) {
   const s = e.sets[si]; if (s.kind === 'warmup') return;
   // Ta sama seria robocza co w podpowiedzi „Poprzednio” (bez „dociągania” do ostatniej — ekran pokazuje wtedy „—”).
   const pb = prevOfBlock(e); const p = hintFor(pb?.sets, e.sets, si, exById(e.exerciseId));
-  const act = getState().active; const offW = !!(p && prevFromOther(pb, e.exerciseId, act?.locationId, e.impl) && offListAt(exById(e.exerciseId), act?.locationId, p.weight)); /* audyt M3 (weryfikacja 2: tylko znane, inne miejsce; LOW 3: albo znany, inny przyrząd) */
+  const act = getState().active; const offW = !!(p && prevFromOther(pb, e.exerciseId, act?.locationId, e.impl) && offListAt(exById(e.exerciseId), listLocFor(e, act?.locationId), p.weight)); /* audyt M3 (weryfikacja 2: tylko znane, inne miejsce; LOW 3: albo znany, inny przyrząd); runda 82b (LOW 5): lista miejsca tylko dla bloku tym przyrządem, którym robi się tu ćwiczenie (listLocFor) */
   // Guma z podpowiedzi tylko razem z jej asystą — gdy ±kg wpisano ręcznie (np. dociążenie), gumy nie dokładamy (runda 3).
   const hinted: Record<string, unknown> = {};
   // Runda 10: tylko pola, których używa bieżąca metryka ćwiczenia (metrykę mogła zmienić edycja ćwiczenia).

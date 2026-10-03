@@ -7,10 +7,13 @@ import fc from 'fast-check';
 import * as store from '@/lib/store';
 import * as stats from '@/lib/stats';
 import * as units from '@/lib/units';
-import { fresh } from './helpers';
+import { fresh, withDemoTemplates } from './helpers';
 
 jest.setTimeout(600000);
 const RUNS = Number(process.env.INV_RUNS || 60);
+/* Runda 82b (weryfikacja 6ea37a3, MEDIUM 2): od 03.10.2026 świeża instalacja nie ma szablonów — każdy przebieg dokłada szablony demonstracyjne
+ * (withDemoTemplates), a test sprawdza, że start z szablonu i niezmiennik supersetów szablonów naprawdę się wykonały (inaczej byłyby puste). */
+const ran = { startTpl: 0, tplGroups: 0, tplLink: 0 };
 
 type A =
   | { t: 'startTpl'; i: number } | { t: 'startEmpty' } | { t: 'repeat' } | { t: 'addEx'; i: number }
@@ -19,7 +22,7 @@ type A =
   | { t: 'tick'; e: number; s: number } | { t: 'tickUntick'; e: number; s: number } | { t: 'band'; e: number; s: number }
   | { t: 'kind'; e: number; s: number; k: 'normal' | 'warmup' | 'drop' | 'failure' } | { t: 'link'; e: number } | { t: 'unlink'; e: number }
   | { t: 'unit' } | { t: 'finish' } | { t: 'cancel' } | { t: 'delW'; i: number } | { t: 'equip'; i: number; q: number }
-  | { t: 'bandOff'; i: number } | { t: 'nominal'; b: number; v: number | '' } | { t: 'delBand'; b: number } | { t: 'bodyweight'; v: number | '' };
+  | { t: 'tplLink'; i: number; j: number } | { t: 'tplUnlink'; i: number; j: number } | { t: 'bandOff'; i: number } | { t: 'nominal'; b: number; v: number | '' } | { t: 'delBand'; b: number } | { t: 'bodyweight'; v: number | '' };
 
 const num = fc.oneof(fc.constantFrom<number | ''>('', 0, 1, 2.5, 5, 8, 10, 12.345, 20, 62.555, 100, 100.004, -5, -15, -20, 1e6), fc.double({ min: -50, max: 300, noNaN: true }));
 const idx = fc.nat(12);
@@ -43,6 +46,8 @@ const action: fc.Arbitrary<A> = fc.oneof(
   { weight: 1, arbitrary: fc.constant({ t: 'cancel' as const }) },
   { weight: 1, arbitrary: fc.record({ t: fc.constant('delW' as const), i: idx }) },
   { weight: 1, arbitrary: fc.record({ t: fc.constant('equip' as const), i: fc.nat(130), q: fc.nat(5) }) },
+  { weight: 1, arbitrary: fc.record({ t: fc.constant('tplLink' as const), i: idx, j: idx }) },
+  { weight: 1, arbitrary: fc.record({ t: fc.constant('tplUnlink' as const), i: idx, j: idx }) },
   { weight: 1, arbitrary: fc.record({ t: fc.constant('bandOff' as const), i: fc.nat(130) }) },
   { weight: 1, arbitrary: fc.record({ t: fc.constant('nominal' as const), b: fc.nat(3), v: fc.constantFrom<number | ''>('', 0, 10, 15, 20, 2.125, 25) }) },
   { weight: 1, arbitrary: fc.record({ t: fc.constant('delBand' as const), b: fc.nat(3) }) },
@@ -78,7 +83,9 @@ function run(a: A) {
   const st = store.getState(); const act = st.active; const exs = st.exercises.filter(e => !e.archived);
   const blk = (e: number) => act && act.exercises.length ? act.exercises[e % act.exercises.length] : null;
   switch (a.t) {
-    case 'startTpl': if (!act && st.templates.length) store.startFromTemplate(st.templates[a.i % st.templates.length]); break;
+    case 'startTpl': if (!act && st.templates.length) { store.startFromTemplate(st.templates[a.i % st.templates.length]); ran.startTpl++; } break;
+    case 'tplLink': { const tp = st.templates.length ? st.templates[a.i % st.templates.length] : null; if (tp && tp.items.length > 1) { store.linkWithNext(tp.items, a.j % (tp.items.length - 1), tp); ran.tplLink++; } break; } /* jak „Połącz z następnym” w edytorze szablonu */
+    case 'tplUnlink': { const tp = st.templates.length ? st.templates[a.i % st.templates.length] : null; if (tp?.items.length) store.unlink(tp.items, a.j % tp.items.length, tp); break; }
     case 'startEmpty': if (!act) store.startEmpty(); break;
     case 'repeat': if (!act) store.repeatLast(); break;
     case 'addEx': if (act && exs.length) store.addExerciseToActive(exs[a.i % exs.length]); break;
@@ -144,7 +151,7 @@ function check(where: string) {
     expect([where, 'hist', w.exercises.length > 0, w.exercises.every(e => e.sets.length > 0 && e.sets.every(s => s.done)), (w.finishedAt ?? 0) >= w.startedAt]).toEqual([where, 'hist', true, true, true]);
     const v = store.volume(w); expect([where, 'vol', Number.isFinite(v) && v >= 0]).toEqual([where, 'vol', true]);
   }
-  for (const t of st.templates) expect([where, 'tplgroups', groupsOk(t.items)]).toEqual([where, 'tplgroups', true]);
+  for (const t of st.templates) { expect([where, 'tplgroups', groupsOk(t.items)]).toEqual([where, 'tplgroups', true]); ran.tplGroups++; }
   // I6: rekordy i statystyki zawsze skończone.
   for (const e of st.exercises.slice(0, 200)) { const r = stats.recordsFor(e); for (const v of Object.values(r)) if (typeof v === 'number') expect([where, e.name, Number.isFinite(v)]).toEqual([where, e.name, true]); }
   if (st.active) stats.prMap(st.active);
@@ -153,10 +160,12 @@ function check(where: string) {
 describe('niezmienniki — losowe sekwencje działań (fast-check)', () => {
   test('po każdym kroku: wczytanie bez zmian, supersety, siatka kg, guma, historia, objętość, rekordy; odhacz+cofnij przywraca serię', async () => {
     await fc.assert(fc.asyncProperty(fc.array(action, { minLength: 5, maxLength: 70 }), fc.boolean(), async (acts, lb) => {
-      await fresh(); if (lb) { store.getState().settings.unit = 'lb'; store.applyPrefs(); }
+      await fresh(); withDemoTemplates(); if (lb) { store.getState().settings.unit = 'lb'; store.applyPrefs(); }
       try { acts.forEach((a, i) => { run(a); check(`krok ${i}: ${JSON.stringify(a)}`); }); }
       finally { units.applyUnit('kg'); }
     }), { numRuns: RUNS, seed: process.env.INV_SEED ? Number(process.env.INV_SEED) : undefined });
+    /* MEDIUM 2: niezmienniki szablonów nie są puste — start z szablonu, łączenie pozycji w superset i sprawdzenie supersetów szablonów się wykonały */
+    expect(ran.startTpl).toBeGreaterThan(0); expect(ran.tplLink).toBeGreaterThan(0); expect(ran.tplGroups).toBeGreaterThan(0);
   });
 });
 
