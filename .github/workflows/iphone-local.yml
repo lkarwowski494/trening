@@ -1,0 +1,58 @@
+# Instalacja „ad hoc” na iPhonie BEZ zużywania limitu buildów Expo (decyzja 03.10.2026: build to ostateczność,
+# 15 buildów iOS/mies. w darmowym planie Expo dzielą 3 aplikacje). Repozytorium publiczne (ADR-031), więc maszyna macOS
+# w GitHub Actions jest darmowa: kompilacja odbywa się tutaj (`eas build --local`, te same certyfikaty i profile z EAS),
+# a do Expo trafia tylko gotowy plik (`eas upload`), który daje link do instalacji, jak przy buildzie w chmurze.
+#
+# Uruchamianie: Actions → „iPhone (lokalnie, bez limitu Expo)” → Run workflow (gałąź do wyboru w polu „Use workflow from”).
+# Wymagany sekret: EXPO_TOKEN. Nowe urządzenia rejestruje się osobno (T-061) — ten workflow używa profilu, który już jest.
+name: iPhone (lokalnie, bez limitu Expo)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: iphone-local
+  cancel-in-progress: false
+env:
+  EAS_CLI: 24.8.0
+  EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+  # eas-cli 24.8.0 wysyła do Apple odrzucany PATCH uprawnień (expo/eas-cli#3986); uprawnienia (HealthKit) są już włączone.
+  EXPO_NO_CAPABILITY_SYNC: '1'
+  # Logi są publiczne: UDID z listy urządzeń profilu zastępujemy znacznikiem (jak w iphone-eas.yml).
+  UDID_SED: 's/[0-9A-Fa-f]{8}-[0-9A-Fa-f]{16}/<UDID>/g; s/\b[0-9a-fA-F]{40}\b/<UDID>/g'
+jobs:
+  build:
+    runs-on: macos-15
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v5
+      - name: Select Xcode 16.2
+        run: |
+          if [ ! -d /Applications/Xcode_16.2.app ]; then echo "::error::Brak Xcode 16.2 na obrazie macos-15. Dostępne:"; ls /Applications | grep -i xcode; exit 1; fi
+          sudo xcode-select -s /Applications/Xcode_16.2.app/Contents/Developer && xcodebuild -version
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+      - name: Sekret
+        run: '[ -n "$EXPO_TOKEN" ] || { echo "::error::Brak sekretu EXPO_TOKEN"; exit 1; }'
+      - run: npm ci
+      - name: Testy (jak w buildzie w chmurze)
+        run: npm run typecheck && npm run check:i18n && npm test -- --maxWorkers=3
+      - name: Projekt Expo (połączenie po nazwie)
+        run: npx --yes eas-cli@$EAS_CLI init --non-interactive --force
+      - name: Build na tej maszynie (eas build --local)
+        run: |
+          set -o pipefail
+          mkdir -p build
+          npx --yes eas-cli@$EAS_CLI build -p ios --profile adhoc --local --non-interactive --output build/Trening.ipa 2>&1 | sed -E "$UDID_SED"
+          test -s build/Trening.ipa
+      - name: Link do instalacji (eas upload — bez buildu w chmurze)
+        run: |
+          set -o pipefail
+          npx --yes eas-cli@$EAS_CLI upload -p ios --build-path build/Trening.ipa --json --non-interactive > upload.json 2> >(sed -E "$UDID_SED" >&2)
+          cat upload.json | sed -E "$UDID_SED"
+          URL=$(node -e "const j=require('./upload.json'); const s=JSON.stringify(j); const m=s.match(/https:\/\/expo\.dev\/[^\"]+/); console.log(m?m[0]:'')")
+          [ -n "$URL" ] || { echo "::error::eas upload nie zwrócił linku (zawartość upload.json powyżej)"; exit 1; }
+          { echo "## Instalacja na iPhonie (build lokalny, bez limitu Expo)"; echo; echo "Otwórz w Safari na iPhonie i kliknij **Install**:"; echo; echo "$URL"; } >> "$GITHUB_STEP_SUMMARY"
+          echo "$URL"
