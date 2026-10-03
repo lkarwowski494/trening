@@ -1,6 +1,7 @@
 # Instalacja na iPhonie „ad hoc” przez EAS Build (decyzja 02.10.2026: konto Apple Developer; od 03.10.2026 repozytorium publiczne — ADR-031,
-# buildy w chmurze Expo — 15 buildów iOS/mies. w darmowym planie; TestFlight dopiero po aktualizacji Expo do SDK 54+,
-# bo App Store Connect od 28.04.2026 przyjmuje tylko buildy z Xcode 26).
+# buildy w chmurze Expo — 15 buildów iOS/mies. w darmowym planie). Od T-051 (Expo SDK 54) build w chmurze używa obrazu `sdk-54`
+# z eas.json (macOS 15.6 + Xcode 26.0), więc wynik spełnia wymóg App Store Connect (od 28.04.2026 tylko Xcode 26+). Wysyłka do
+# TestFlight to osobny krok, jeszcze niewłączony (docs/13, B5 — wymaga audytu publicznych logów).
 #
 # Uruchamianie: Actions → „iPhone (EAS)” → Run workflow → wybierz akcję:
 #   zarejestruj-iphone  — link do otwarcia na iPhonie (raz na urządzenie; potem też dla kolejnych osób),

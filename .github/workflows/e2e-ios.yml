@@ -19,10 +19,9 @@ jobs:
     timeout-minutes: 75
     steps:
       - uses: actions/checkout@v5
-      - name: Select Xcode 16.2
-        run: |
-          if [ ! -d /Applications/Xcode_16.2.app ]; then echo "::error::Brak Xcode 16.2 na obrazie macos-15. Dostępne:"; ls /Applications | grep -i xcode; exit 1; fi
-          sudo xcode-select -s /Applications/Xcode_16.2.app/Contents/Developer && xcodebuild -version
+      - name: Select Xcode 26.x
+        # SDK 54 (T-051): najnowszy Xcode 26.x z obrazu macos-15 (jak ios-unsigned.yml i iphone-local.yml).
+        run: bash scripts/ci/select-xcode.sh 26
       - uses: actions/setup-node@v5
         with:
           node-version: 22
@@ -39,12 +38,6 @@ jobs:
       - name: Install pods
         if: inputs.aplikacja_z_przebiegu == ''
         run: cd ios && pod install
-      - name: Środowisko symulatora dla Xcode 16.2 (iOS 18.2)
-        if: inputs.aplikacja_z_przebiegu == ''
-        # Obraz macos-15 ma tylko nowsze środowiska symulatora (18.5+, 26), a build na symulator wymaga zgodnego z SDK Xcode.
-        run: |
-          if ! xcrun simctl list runtimes | grep -q "iOS 18.2"; then sudo xcodebuild -downloadPlatform iOS; fi
-          xcrun simctl list runtimes
       - name: Build (Release, symulator, bez podpisu)
         if: inputs.aplikacja_z_przebiegu == ''
         run: |
@@ -73,9 +66,19 @@ jobs:
         if: inputs.aplikacja_z_przebiegu != ''
         run: mkdir -p ios/build/Build/Products/Release-iphonesimulator && unzip -q Trening-sim.zip -d ios/build/Build/Products/Release-iphonesimulator
       - name: Simulator
+        # Obraz macos-15 ma symulatory iOS 18.5/18.6/26.0/26.1/26.2 — wybieramy z wersji zgodnej z SDK wybranego Xcode (dla 26.3: iOS 26.2),
+        # a gdy jej nie ma, z całej listy. Kolejność: iPhone 16 (jak dotąd), iPhone 17, dowolny iPhone.
         run: |
-          DEV=$(xcrun simctl list devices available | grep -m1 -E "iPhone 16 \(" | sed -E 's/.*\(([0-9A-F-]{36})\).*/\1/')
-          [ -n "$DEV" ] || DEV=$(xcrun simctl list devices available | grep -m1 -E "iPhone" | sed -E 's/.*\(([0-9A-F-]{36})\).*/\1/')
+          SDK=$(xcrun --sdk iphonesimulator --show-sdk-version)
+          LIST=$(xcrun simctl list devices available | awk -v h="-- iOS $SDK --" '$0 == h { f = 1; next } /^-- / { f = 0 } f')
+          [ -n "$LIST" ] || { echo "Brak symulatorów iOS $SDK — wybór z całej listy"; LIST=$(xcrun simctl list devices available); }
+          DEV=""
+          for pat in "iPhone 16 \(" "iPhone 17 \(" "iPhone"; do
+            DEV=$(printf '%s\n' "$LIST" | grep -m1 -E "$pat" | sed -E 's/.*\(([0-9A-F-]{36})\).*/\1/' || true)  # || true: krok działa z -eo pipefail
+            [ -n "$DEV" ] && break
+          done
+          [ -n "$DEV" ] || { echo "::error::Brak dostępnego symulatora iPhone'a"; xcrun simctl list devices available; exit 1; }
+          echo "Symulator: $(printf '%s\n' "$LIST" | grep -m1 "$DEV" | sed -E 's/^ +//') (SDK symulatora $SDK)"
           echo "SIM=$DEV" >> "$GITHUB_ENV"
           xcrun simctl boot "$DEV" || true
           xcrun simctl bootstatus "$DEV" -b

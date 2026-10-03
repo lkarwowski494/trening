@@ -1482,6 +1482,27 @@ describe('runda 58', () => {
   test('R58-02 CI uruchamia natywne sprawdzenia (warstwa D)', () => {
     const y = require('fs').readFileSync(require('path').join(__dirname, '../.github/workflows/ios-unsigned.yml'), 'utf8'); expect(y).toMatch(/npm run verify:native/);
   });
+  test('T-051 CI (SDK 54): buildy na macOS wybierają najnowszy Xcode 26.x; platforma iOS dla buildów na urządzenie; obraz EAS sdk-54', () => {
+    const fs = require('fs'), path = require('path'), os = require('os'); const { execFileSync } = require('child_process');
+    const wf = (n: string) => fs.readFileSync(path.join(__dirname, '../.github/workflows', n), 'utf8') as string;
+    for (const n of ['ios-unsigned.yml', 'e2e-ios.yml', 'iphone-local.yml']) {
+      const y = wf(n);
+      expect(y).toMatch(/run: bash scripts\/ci\/select-xcode\.sh 26\n/); expect(y.split('\n').filter(l => !/^\s*#/.test(l)).join('\n')).not.toMatch(/Xcode_16|iOS 18\.2/); /* komentarze mogą cytować historię */
+      expect(y.indexOf('select-xcode.sh')).toBeLessThan(y.indexOf('npm ci')); /* Xcode wybrany przed czymkolwiek, co go używa */
+    }
+    for (const n of ['ios-unsigned.yml', 'iphone-local.yml']) { const y = wf(n); const p = y.indexOf('bash scripts/ci/ensure-ios-platform.sh'); expect(p).toBeGreaterThan(0); expect(p).toBeLessThan(y.indexOf(n === 'iphone-local.yml' ? 'build -p ios --profile adhoc --local' : 'xcodebuild -workspace')); }
+    const e2e = wf('e2e-ios.yml'); expect(e2e).not.toMatch(/downloadPlatform/); expect(e2e.indexOf('"iPhone 16 \\(" "iPhone 17 \\(" "iPhone"')).toBeGreaterThan(0);
+    expect(JSON.parse(fs.readFileSync(path.join(__dirname, '../eas.json'), 'utf8')).build.base.ios.image).toBe('sdk-54');
+    /* skrypt wyboru na sztucznym /Applications: najnowszy 26.x po numerze (26.10 > 26.3), bez dowiązań i bet; brak 26.x → błąd z listą */
+    const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'xcode-')); const run = (major?: string) => execFileSync('bash', [path.join(__dirname, '../scripts/ci/select-xcode.sh'), ...(major ? [major] : [])], { env: { ...process.env, APPS_DIR: dir, DRY_RUN: '1' }, encoding: 'utf8' });
+    try {
+      for (const v of ['16.2', '16.4', '26.0.1', '26.1.1', '26.2', '26.3', '26.4_beta']) fs.mkdirSync(path.join(dir, `Xcode_${v}.app`));
+      fs.symlinkSync(path.join(dir, 'Xcode_26.2.app'), path.join(dir, 'Xcode_26.9.app'));
+      expect(run()).toBe(`Wybrany Xcode: 26.3 (${dir}/Xcode_26.3.app)\n`);
+      fs.mkdirSync(path.join(dir, 'Xcode_26.10.app')); expect(run('26')).toMatch(/^Wybrany Xcode: 26\.10 /);
+      let err = ''; try { run('27'); } catch (e: any) { err = String(e.stdout); } expect(err).toMatch(/::error::Brak Xcode 27\.x/); expect(err).toMatch(/Xcode_26\.3\.app/);
+    } finally { fs.rmSync(dir, { recursive: true, force: true }); }
+  });
 });
 
 describe('runda 59', () => {
