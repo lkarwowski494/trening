@@ -8,6 +8,11 @@
 name: iPhone (lokalnie, bez limitu Expo)
 on:
   workflow_dispatch:
+    inputs:
+      wyslij:
+        description: 'Wyślij plik do Expo i daj link do instalacji (nie = tylko sprawdź, czy build przechodzi)'
+        type: boolean
+        default: true
 permissions:
   contents: read
 concurrency:
@@ -47,7 +52,10 @@ jobs:
           mkdir -p build
           npx --yes eas-cli@$EAS_CLI build -p ios --profile adhoc --local --non-interactive --output build/Trening.ipa 2>&1 | sed -E "$UDID_SED"
           test -s build/Trening.ipa
+          ls -la build/Trening.ipa
+          unzip -l build/Trening.ipa | grep -E "Payload/[^/]+\.app/(Info\.plist|embedded\.mobileprovision)$|PlugIns/[^/]+\.appex/$" || { echo "::error::IPA bez Info.plist, profilu albo rozszerzenia widżetu"; exit 1; }
       - name: Link do instalacji (eas upload — bez buildu w chmurze)
+        if: inputs.wyslij
         run: |
           set -o pipefail
           npx --yes eas-cli@$EAS_CLI upload -p ios --build-path build/Trening.ipa --json --non-interactive > upload.json 2> >(sed -E "$UDID_SED" >&2)
