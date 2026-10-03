@@ -58,7 +58,10 @@ scripts/check-i18n.mjs  kontrola kompletności tłumaczeń
 ```
 
 ## Droga główna (od 02.10.2026) — instalacja „ad hoc” przez EAS (płatne konto Apple Developer)
-Repozytorium: `lkarwowski494/trening` (prywatne). Build robi chmura Expo (EAS, 15 buildów iOS/mies. za darmo),
+Repozytorium: `lkarwowski494/trening` — publiczne od 03.10.2026 (ADR-031), bez licencji: kod do wglądu, wszystkie prawa
+zastrzeżone. Logi, podsumowania i artefakty przebiegów Actions widzi każdy: workflow maskuje UDID, a link rejestracji
+nowego urządzenia na publicznym repo nie powstaje (patrz runbook na Drive: „Rejestracja nowego urządzenia”).
+Build robi chmura Expo (EAS, 15 buildów iOS/mies. za darmo),
 uruchamiany z GitHuba workflow **iPhone (EAS)**. Instalacja z linku na iPhonie, ważna ok. roku, bez kabla i Sideloadly.
 TestFlight dopiero po aktualizacji Expo do SDK 54+ (od 28.04.2026 App Store Connect przyjmuje tylko buildy z Xcode 26).
 
@@ -110,8 +113,8 @@ Szybszą pętlę dałby dev client (`expo-dev-client` + build) albo podniesienie
    git remote add origin https://github.com/<twoj-login>/trening.git
    git push -u origin main
    ```
-   Repozytorium publiczne ma darmowe minuty macOS bez limitu; prywatne zużywa miesięczny limit z mnożnikiem ×10
-   za macOS (wystarczy na kilka buildów miesięcznie).
+   Repozytorium publiczne ma darmowe standardowe maszyny GitHuba (także macOS) bez limitu minut; prywatne zużywa
+   miesięczny limit 2000 min, a minuta macOS liczy się ×10 (incydent 02/03.10.2026 — ADR-031).
 2. Zakładka **Actions** → workflow **iOS unsigned IPA** → **Run workflow** (workflow pojawia się po wypchnięciu na `main`)
 3. Po ~30–45 min pobierz artefakt `Trening-unsigned-ipa` (zip z plikiem `Trening-unsigned.ipa`). Zachowaj plik .ipa
    u siebie — artefakty na GitHubie wygasają, a ten sam plik posłuży do odnawiania podpisu co 7 dni.
