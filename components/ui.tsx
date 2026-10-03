@@ -106,7 +106,7 @@ export function SwitchRow({ label, detail, value, onChange, disabled, a11yLabel 
         <Text maxFontSizeMultiplier={1.4} style={{ color: t.text, fontSize: 16 }}>{label}</Text>
         {detail ? <Text maxFontSizeMultiplier={1.4} style={{ color: t.muted, fontSize: 13, marginTop: 2 }}>{detail}</Text> : null}
       </View>
-      <Switch value={value} disabled={disabled} onValueChange={onChange} trackColor={{ true: t.accent, false: t.surface2 }} ios_backgroundColor={t.surface2}
+      <Switch testID={'sw-' + label} /* E2E (Maestro): przełącznik po id, nie po kolejności tekstu i przełącznika */ value={value} disabled={disabled} onValueChange={onChange} trackColor={{ true: t.accent, false: t.surface2 }} ios_backgroundColor={t.surface2}
         accessibilityRole="switch" accessibilityLabel={a11yLabel ?? label} accessibilityHint={detail} accessibilityState={{ checked: value, disabled: !!disabled }} />
     </View>
   );

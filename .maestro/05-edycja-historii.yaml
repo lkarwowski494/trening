@@ -7,7 +7,7 @@
 #   "Skip"                   ← 'Pomiń'
 #   "Finish"                 ← 'Zakończ'          (components/ActiveWorkout.tsx: przycisk i przycisk w Alercie)
 #   "Finish workout\?"       ← 'Zakończyć trening?'
-#   "Delete session"         ← 'Usuń sesję'       (app/history/[id].tsx — znacznik ekranu zapisanej sesji)
+#   "Edit session"           ← 'Edytuj sesję'     (app/history/[id].tsx — przycisk u góry ekranu zapisanej sesji)
 #   "Edit session"           ← 'Edytuj sesję'     (accessibilityLabel przycisku „Edit” w app/history/[id].tsx;
 #                                                  uwaga: tytuł edytora 'Edycja sesji' to też „Edit session”)
 #   "Cancel"                 ← 'Anuluj'           (headerLeft edytora app/history/edit/[id].tsx)
@@ -39,7 +39,7 @@ name: Edycja historii i trening wstecz
 - extendedWaitUntil: { visible: "Finish workout\\?", timeout: 10000 }
 - tapOn: { text: "Finish", below: "Finish workout\\?" }
 # Zapisana sesja
-- extendedWaitUntil: { visible: "Delete session", timeout: 10000 }
+- extendedWaitUntil: { visible: "Session", timeout: 10000 }  # tytuł ekranu zapisanej sesji („Delete session” bywa poza ekranem; „Edit session” to też tytuł edytora)
 - assertVisible: "Upper A"
 - takeScreenshot: 10-sesja-przed-edycja
 
@@ -58,7 +58,7 @@ name: Edycja historii i trening wstecz
 # Alert pojawia się tylko przy pominiętych seriach / nachodzeniu terminów — tutaj nie powinien, ale nie blokuje testu
 - tapOn: { text: "Save", below: "Save changes\\?", optional: true }
 # Powrót na ekran sesji z nową nazwą
-- extendedWaitUntil: { visible: "Delete session", timeout: 10000 }
+- extendedWaitUntil: { visible: "Session", timeout: 10000 }  # tytuł ekranu zapisanej sesji („Delete session” bywa poza ekranem; „Edit session” to też tytuł edytora)
 - assertVisible: "Upper A E2E"
 - assertNotVisible: "Upper A"
 - assertNotVisible: "Cancel"
@@ -79,7 +79,7 @@ name: Edycja historii i trening wstecz
 # Upper A ma ćwiczenia bez zakresu powtórzeń (Chin Up, Chest Dip) — ich puste serie zostaną pominięte, więc spodziewany Alert
 - tapOn: { text: "Save", below: "Save changes\\?", optional: true }
 # Po zapisie edytor zastępuje się ekranem nowej sesji
-- extendedWaitUntil: { visible: "Delete session", timeout: 10000 }
+- extendedWaitUntil: { visible: "Session", timeout: 10000 }  # tytuł ekranu zapisanej sesji („Delete session” bywa poza ekranem; „Edit session” to też tytuł edytora)
 - assertVisible: "Upper A"
 - takeScreenshot: 16-sesja-wstecz-zapisana
 - tapOn: "Back"
