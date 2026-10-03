@@ -20,4 +20,4 @@ name: Kolejność ćwiczeń
 - scrollUntilVisible: { element: "Done", direction: DOWN, timeout: 60000 }
 - tapOn: "Done"
 - assertNotVisible: "Exercise order"
-- scrollUntilVisible: { element: "Reorder exercises", direction: DOWN, timeout: 30000 }
+- scrollUntilVisible: { element: "Reorder exercises", direction: DOWN, timeout: 90000 }

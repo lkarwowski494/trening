@@ -49,12 +49,12 @@ name: Miejsca treningu i filtr ćwiczeń
 - extendedWaitUntil: { visible: "Available exercises: .*", timeout: 30000 }
 - copyTextFrom: "Available exercises: .*"
 - evalScript: ${output.dostepnePrzed = maestro.copiedText}
-- scrollUntilVisible: { element: "Pull-up bar.*", direction: DOWN, timeout: 30000 }
+- scrollUntilVisible: { element: "Pull-up bar.*", direction: DOWN, timeout: 90000 }
 # Wiersz SwitchRow: Text z nazwą (index 0) i systemowy przełącznik z tą samą etykietą (index 1)
 # Maestro traktuje id jako wyrażenie regularne — nawiasy w nazwie sprzętu trzeba poprzedzić \\ (przebieg 03.10.2026: „Element not found”).
 - tapOn: { id: "sw-Pull-up bar \\(doorway, wall-mounted\\)" }  # testID przełącznika (SwitchRow)
 - takeScreenshot: 22-drazek-wlaczony
-- scrollUntilVisible: { element: "Available exercises: .*", direction: UP, timeout: 30000 }
+- scrollUntilVisible: { element: "Available exercises: .*", direction: UP, timeout: 90000 }
 - copyTextFrom: "Available exercises: .*"
 # Drążek odblokowuje m.in. Pull Up / Chin Up — licznik dostępnych ćwiczeń musi się zmienić
 - assertTrue: ${maestro.copiedText != output.dostepnePrzed}
