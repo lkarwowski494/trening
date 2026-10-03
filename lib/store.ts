@@ -373,13 +373,22 @@ export const bandById = (id: string) => getState().bands.find(b => b.id === id);
 export const isBW = (e: Exercise) => e.equipment === 'masa ciała';
 /** Liczba powtórzeń do obliczeń: nieujemna liczba całkowita. */
 export const repsOf = (s: WSet) => Math.max(0, Math.floor(Number(s.reps) || 0));
+/**
+ * Ciężar zapisany w serii — JEDNO źródło dla historii, rekordów, statystyk i CSV (Q-018, dawniej tylko CSV — T4b): pole właściwe dla
+ * OBECNEGO sprzętu (±kg przy masie ciała, kg poza nią), a gdy jest puste — drugie pole. Po zmianie sprzętu ćwiczenia (np. „inne” → masa ciała)
+ * dawne serie nie pokazują 0 kg. Wpisane 0 jest wartością (bez sięgania do drugiego pola). Usunięte ćwiczenie (ex brak) = pole kg.
+ */
+export function loadValue(ex: Exercise | undefined, s: Pick<WSet, 'weight' | 'addKg'>): number {
+  const bw = !!ex && isBW(ex); const a = bw ? s.addKg : s.weight, b = bw ? s.weight : s.addKg;
+  return Number(a !== '' && a != null ? a : b !== '' && b != null ? b : 0) || 0;
+}
 /** Obciążenie zewnętrzne serii: kg (ciężar) albo ±kg przy masie ciała (dodatnie = dociążenie, ujemne = asysta gumą/maszyną — 0.5, wzór Alpha Progression). */
-export const setLoad = (ex: Exercise, s: WSet) => isBW(ex) ? (Number(s.addKg) || 0) : Math.max(0, Number(s.weight) || 0); // runda 48: ujemny ciężar (np. asysta z szablonu po zmianie sprzętu) nie daje ujemnej objętości
+export const setLoad = (ex: Exercise, s: WSet) => isBW(ex) ? loadValue(ex, s) : Math.max(0, loadValue(ex, s)); // runda 48: ujemny ciężar (np. asysta z szablonu po zmianie sprzętu) nie daje ujemnej objętości
 /** Data RRRR-MM-DD jako lokalna północ (Date.parse traktuje ją jako UTC). */
 export function localDateTs(iso: string): number { const m = /^(\d{4})-(\d{2})-(\d{2})/.exec(iso ?? ''); return m ? new Date(+m[1], +m[2] - 1, +m[3]).getTime() : NaN; }
 /** Obciążenie efektywne: dla ćwiczeń z masą ciała tylko ±kg (dociążenie; asysta = 0), dla reszty ciężar.
  * Runda 75 (Q-001, decyzja 02.10.2026): masa ciała nie wchodzi do żadnych obliczeń — rekord to „moja masa ciała” albo „masa ciała + 10 kg”. */
-export function effectiveLoad(ex: Exercise, s: WSet): number { return isBW(ex) ? Math.max(0, Number(s.addKg) || 0) : setLoad(ex, s); }
+export function effectiveLoad(ex: Exercise, s: WSet): number { return Math.max(0, setLoad(ex, s)); }
 /** Mnożnik objętości: per hantel / jednostronne ×2, łącznie ×1; ćwiczenia z masą ciała zawsze ×1. */
 export const exMult = (ex: Exercise) => isBW(ex) ? 1 : loadMult(ex.loadMode ?? loadModeFor(ex.equipment, ex.name));
 /** Seria robocza = odhaczona i nie rozgrzewkowa. */
@@ -574,7 +583,7 @@ export function setSummary(ex: Exercise, s: WSet): string {
   else if (m === 'distance_time') core = `${fmtDist(Number(s.distanceM) || 0)} ${fmtSec(Number(s.durationSec) || 0)}`;
   else if (m === 'weight_time') core = `${fmtW(setLoad(ex, s), false)}${wu()}×${fmtSec(Number(s.durationSec) || 0)}`;
   else if (m === 'reps') core = `${s.reps || 0}`;
-  else core = isBW(ex) ? `${s.reps || 0}${Number(s.addKg) ? '@' + (Number(s.addKg) > 0 ? '+' : '') + fmtW(Number(s.addKg), false) : ''}` : `${fmtW(Number(s.weight) || 0, false)}×${s.reps || 0}`;
+  else { const l = loadValue(ex, s); /* Q-018: jak historia i CSV */ core = isBW(ex) ? `${s.reps || 0}${l ? '@' + (l > 0 ? '+' : '') + fmtW(l, false) : ''}` : `${fmtW(l, false)}×${s.reps || 0}`; }
   return core + (b ? ` (${shortBand(b)})` : '') + (s.rpe !== '' && s.rpe != null ? ` @${fmtNum(Number(s.rpe), 1)}` : '');
 }
 /** Wynik serii do porównań „najlepsza seria”: ciężar×1000+pow. / czas / dystans (przy równym dystansie krótszy czas lepszy). */

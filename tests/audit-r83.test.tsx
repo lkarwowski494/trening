@@ -1,12 +1,14 @@
 /* Runda 83 — backlog po pierwszym teście na iPhonie (docs/09):
  *  - T-053: przypomnienie o podpisie dopasowane do drogi instalacji (ad hoc przez EAS → nowy build w GitHubie; darmowe Apple ID → Sideloadly);
- *  - T-055: martwy kod asysty kg gumy usunięty (nominalKg, pairAssist, applyBandAssist); stare kopie z nominalKg dalej się importują, pole odpada. */
+ *  - T-055: martwy kod asysty kg gumy usunięty (nominalKg, pairAssist, applyBandAssist); stare kopie z nominalKg dalej się importują, pole odpada;
+ *  - Q-018: po zmianie sprzętu ćwiczenia historia, rekordy i statystyki czytają ciężar tak jak CSV (T4b) — jedno źródło store.loadValue. */
 import * as store from '@/lib/store';
 import * as timer from '@/lib/timer';
 import * as signing from '@/lib/signing';
+import * as stats from '@/lib/stats';
 import * as backup from '@/lib/backup';
 import { SCHEMA_VERSION } from '@/lib/seed';
-import { fresh, ex, seedWithDemo, pressAlert } from './helpers';
+import { fresh, ex, seedWithDemo, pressAlert, addWorkout } from './helpers';
 import { renderApp, flushAll, screen, go, tap, act } from './app';
 
 jest.setTimeout(60000);
@@ -113,5 +115,40 @@ describe('T-055 gumy bez kg: dawne nominalKg tylko przyjmowane przy imporcie', (
   test('jeden cykl gum (store.nextBandId) dla treningu i edytora historii: brak → cienka → … → gruba → brak; usunięta guma → od początku', async () => {
     await fresh(); const [A, B, C] = [...store.getState().bands].sort((a, b) => a.level - b.level);
     expect([store.nextBandId(''), store.nextBandId(A.id), store.nextBandId(B.id), store.nextBandId(C.id), store.nextBandId('usunięta')]).toEqual([A.id, B.id, C.id, '', A.id]);
+  });
+});
+
+describe('Q-018 zmiana sprzętu ćwiczenia: historia i rekordy bez 0 kg', () => {
+  /** Własne ćwiczenie „inne” z dwiema sesjami 40 kg × 10 i 42,5 kg × 8, potem sprzęt → masa ciała (jak chip „Sprzęt” w edycji ćwiczenia). */
+  async function otherToBodyweight() {
+    const st = store.getState(); const x = { ...st.exercises.find(y => y.name === 'Back Squat')!, id: 'q18', name: 'Wiosło Q18', lib: undefined, equipment: 'inne' as const, loadMode: 'total' as const, metric: 'weight_reps' as const, bandAssistable: false };
+    st.exercises.push(x); store.save(x);
+    const d = Date.now() - 3 * 86400e3; addWorkout(d, [['Wiosło Q18', [{ weight: 40, reps: 10 }]]]); const w2 = addWorkout(d + 86400e3, [['Wiosło Q18', [{ weight: 42.5, reps: 8 }]]]);
+    const before = { vol: store.volume(w2), rec: stats.recordsFor(ex('Wiosło Q18')), sum: store.setSummary(ex('Wiosło Q18'), w2.exercises[0].sets[0]) };
+    store.setEquipment(ex('Wiosło Q18'), 'masa ciała'); return { w2, before };
+  }
+  test('objętość, rekordy (max obciążenie, e1RM) i opis serii po zmianie „inne” → masa ciała nie spadają do 0', async () => {
+    await fresh(); const { w2, before } = await otherToBodyweight(); const x = ex('Wiosło Q18');
+    expect(before.vol).toBe(340); expect(before.sum).toBe('42,5×8');
+    expect(store.setLoad(x, w2.exercises[0].sets[0])).toBe(42.5);
+    expect(store.volume(w2)).toBe(340); /* masa ciała ×1, jak „łącznie” */
+    const rec = stats.recordsFor(x); expect(rec.maxLoad).toBe(42.5); expect(rec.bestE1rm).toBeCloseTo(before.rec.bestE1rm, 6);
+    expect(store.setSummary(x, w2.exercises[0].sets[0])).toBe('8@+42,5');
+  });
+  test('ekran sesji w historii pokazuje 42,5, nie 0 — ta sama wartość co CSV', async () => {
+    await renderApp(); const { w2 } = await otherToBodyweight(); await flushAll(10);
+    await go(`/history/${w2.id}`); await flushAll(10);
+    expect(screen.getAllByText('42,5').length).toBeGreaterThan(0); expect(screen.queryByText(/^0$/)).toBeNull();
+    expect(backup.buildCsv()).toMatch(/Wiosło Q18,1,42\.5,8/);
+  });
+  test('odwrotnie: masa ciała (asysta −20 / dociążenie +10) → sztanga: objętość ≥ 0, historia jak CSV', async () => {
+    await fresh(); const d = Date.now() - 2 * 86400e3; const w = addWorkout(d, [['Pull Up', [{ addKg: -20, reps: 8 }, { addKg: 10, reps: 5 }]]]);
+    store.setEquipment(ex('Pull Up'), 'sztanga'); const x = ex('Pull Up'); const [a, b] = w.exercises[0].sets;
+    expect([store.loadValue(x, a), store.loadValue(x, b)]).toEqual([-20, 10]); expect([store.setLoad(x, a), store.setLoad(x, b)]).toEqual([0, 10]);
+    expect(store.volume(w)).toBe(50); expect(stats.recordsFor(x).maxLoad).toBe(10);
+  });
+  test('bez zmiany sprzętu nic się nie zmienia: wpisane 0 nie bierze wartości z drugiego pola', async () => {
+    await fresh(); const x = ex('Pull Up'); const s = { weight: 50, addKg: 0 } as any; expect(store.loadValue(x, s)).toBe(0);
+    const bs = ex('Back Squat'); expect(store.loadValue(bs, { weight: 0, addKg: 15 } as any)).toBe(0); expect(store.loadValue(bs, { weight: '', addKg: '' } as any)).toBe(0);
   });
 });

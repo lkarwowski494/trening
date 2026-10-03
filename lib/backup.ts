@@ -1,7 +1,7 @@
 import * as FileSystem from 'expo-file-system';
 import * as Sharing from 'expo-sharing';
 import * as DocumentPicker from 'expo-document-picker';
-import { bandColor, getState, save, replaceState, clearRecovery, migrate, finishedWorkouts, exById, isBW, bandById, localISODate, flush, readRecovery } from './store';
+import { bandColor, getState, save, replaceState, clearRecovery, migrate, finishedWorkouts, exById, loadValue, bandById, localISODate, flush, readRecovery } from './store';
 import { t, exName } from './i18n';
 import { wOut } from './units';
 import { ensureAuthorization, syncAfterFinish } from './health';
@@ -48,8 +48,6 @@ export async function onHistoryEdited(): Promise<void> { await autoBackup(); }
  * Weight, Reps, Distance, Seconds, Notes, Workout Notes, RPE. Ciężar hantli zostaje per hantel (jak w Strong na iOS).
  * Guma i typ serii trafiają do Notes, bo Strong nie ma na nie pól.
  */
-/** T4b: ciężar serii z tego pola, które ma wartość — po zmianie sprzętu ćwiczenia (np. z maszyny na masę ciała) stare serie nie dają 0. */
-const loadOf = (ex: Exercise | undefined, s: WSet) => { const bw = !!ex && isBW(ex); const a = bw ? s.addKg : s.weight, b = bw ? s.weight : s.addKg; return a !== '' && a != null ? a : b !== '' && b != null ? b : 0; };
 export function buildCsv(): string {
   // Runda 21: tekst zaczynający się od = + - @ nie staje się formułą w arkuszu (liczby, także ujemne, zostają liczbami).
   const q = (v: unknown) => { let s = v == null ? '' : String(v); if (typeof v === 'string' && /^[=+\-@\t\r]/.test(s)) s = "'" + s; return /[",\r\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s; };
@@ -62,7 +60,7 @@ export function buildCsv(): string {
       let n = 0; // numer serii roboczej — rozgrzewki mają „W” i nie przesuwają numeracji
       e.sets.forEach(s => { const b = s.bandId ? bandById(s.bandId) : null; const bandTxt = b ? `${t('guma')} ${bandColor(b)} ${b.level}` : s.bandId ? `${t('guma')} ?` : ''; const mark = SET_KIND_MARK[s.kind ?? (s.warmup ? 'warmup' : 'normal')]; if (mark !== 'W') n++;
         const notes = [s.note, bandTxt, mark === 'D' ? 'drop set' : mark === 'F' ? t('do upadku') : ''].filter(Boolean).join('; ');
-        rows.push([dt(w.startedAt), w.templateName || t('Trening'), dur, exName(ex), mark === 'W' ? 'W' : String(n), wOut(Number(loadOf(ex, s)) || 0) /* runda 7: w jednostce użytkownika, jak eksport Stronga */, s.reps || 0, s.distanceM || 0, s.durationSec || 0, notes, w.note, s.rpe === '' || s.rpe == null ? '' : s.rpe /* runda 18: RIR 0 też */].map(q).join(','));
+        rows.push([dt(w.startedAt), w.templateName || t('Trening'), dur, exName(ex), mark === 'W' ? 'W' : String(n), wOut(loadValue(ex, s)) /* runda 7: w jednostce użytkownika, jak eksport Stronga; T4b/Q-018: store.loadValue — jak historia i rekordy */, s.reps || 0, s.distanceM || 0, s.durationSec || 0, notes, w.note, s.rpe === '' || s.rpe == null ? '' : s.rpe /* runda 18: RIR 0 też */].map(q).join(','));
       }); });
   }
   return rows.join('\n') + '\n';
