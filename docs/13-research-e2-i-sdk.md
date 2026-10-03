@@ -653,3 +653,11 @@ potem test na telefonie (B6) i scalenie.
 31. Expo blog — Expo File System upgrade in SDK 54: https://expo.dev/blog/expo-file-system
 
 Dane z npm (wersje i zależności pakietów: `expo`, `expo-file-system`, `expo-sqlite`, `expo-notifications`, `expo-router`, `jest-expo`, `@testing-library/react-native`, `@kingstinct/react-native-healthkit` 8.7.2 i 16.0.0, `@bacons/apple-targets` 4.0.7 i 5.0.0) — pobrane `npm view` / `npm pack` 03.10.2026 z https://registry.npmjs.org.
+
+### B11. Audyt aktualizacji 52 → 57 (03.10.2026)
+
+Niezależny audyt różnicy dd4a7cd..49d4207: **0 wysokich, 1 średni, 5 niskich**.
+- ŚREDNI (naprawiony): od SDK 56 w aplikacji jest `expo-splash-screen` (przeniesienie `splash` do wtyczki), a expo-router chowa ekran powitalny dopiero, gdy zamontuje się nawigator. Ekran błędu startu („Nie udało się otworzyć danych”) nie ma nawigatora, więc zostałby pod logo. `app/_layout.tsx` chowa ekran powitalny przy błędzie startu; test `tests/splash-start-error.test.tsx` (mock bazy `global.__dbOpenFail`).
+- NISKIE: HealthKit 8.7.2 na RN 0.86 w działaniu — do sprawdzenia na telefonie (E2E tego nie obejmuje); `tests/app.tsx` przy każdej nawigacji uruchamia oczekujące timery (jak expo-router 4 — nie wykryje błędów „timer wciąż czeka po nawigacji”); `Tabs` z `expo-router` przestarzałe w 57 (docelowo `expo-router/js-tabs`); minimum iOS 16.4 (zamierzone); nieaktualne zdanie w B9 o niewypchniętej gałęzi (gałąź jest na GitHubie).
+- Bez zmian: położenie bazy SQLite i migracja do Library/SQLite, schemat 15, format kopii, uprawnienia i teksty HealthKit, identyfikatory pakietów, wygląd ekranu powitalnego.
+

@@ -7,11 +7,12 @@ global.__notifications = [];      // zaplanowane powiadomienia
 global.__la = [];                 // wywołania Live Activity
 
 jest.mock('expo-sqlite', () => ({
-  openDatabaseAsync: async () => ({
+  /* global.__dbOpenFail: baza nie otwiera się przy starcie (ekran błędu startu; T-051 — ekran powitalny nie może go zasłonić) */
+  openDatabaseAsync: async () => { if (global.__dbOpenFail) throw new Error('baza nieczytelna'); return ({
     execAsync: async () => {},
     getFirstAsync: async (_q, k) => (global.__kv.has(k) ? { v: global.__kv.get(k) } : null),
     runAsync: async (_q, k, v) => { const f = global.__dbFail; if (typeof f === 'function' ? f(k, _q) : f) throw new Error('disk full'); if (/^\s*DELETE/i.test(_q)) global.__kv.delete(k); else global.__kv.set(k, v); }, /* runda 71: __dbFail może być funkcją (k, zapytanie) — awaria tylko wybranego klucza */
-  }),
+  }); },
 }));
 jest.mock('expo-localization', () => ({ getLocales: () => global.__locales }));
 jest.mock('expo-notifications', () => ({
