@@ -374,21 +374,42 @@ export const isBW = (e: Exercise) => e.equipment === 'masa ciała';
 /** Liczba powtórzeń do obliczeń: nieujemna liczba całkowita. */
 export const repsOf = (s: WSet) => Math.max(0, Math.floor(Number(s.reps) || 0));
 /**
- * Ciężar zapisany w serii — JEDNO źródło dla historii, rekordów, statystyk i CSV (Q-018, dawniej tylko CSV — T4b): pole właściwe dla
- * OBECNEGO sprzętu (±kg przy masie ciała, kg poza nią), a gdy jest puste — drugie pole. Po zmianie sprzętu ćwiczenia (np. „inne” → masa ciała)
- * dawne serie nie pokazują 0 kg. Wpisane 0 jest wartością (bez sięgania do drugiego pola). Usunięte ćwiczenie (ex brak) = pole kg.
+ * Ciężar serii — JEDNO źródło (Q-018, runda 83b). Seria ma dwa pola: `weight` (kg — sprzęt z ciężarem) i `addKg` (±kg — masa ciała:
+ * + dociążenie, − asysta). Pole „własne” to to, które pasuje do OBECNEGO sprzętu ćwiczenia; drugie („obce”) zostaje w seriach zapisanych
+ * przed zmianą sprzętu (np. „inne” 42,5 kg → masa ciała).
+ * Reguła (decyzja rundy 83b):
+ *  - WIDOK (historia: ekran sesji, edytor, opisy serii „Ostatnio”/Postępy, CSV) pokazuje wartość własnego pola, a gdy puste — obcego
+ *    (`shownLoad`), żeby historia mówiła, co wpisano (Q-018: bez „0 kg”);
+ *  - OBLICZENIA i trening w toku (objętość, rekordy max/e1RM, PR, „najlepsza seria”, podpowiedź progresji, „Poprzednio”, wpisywanie
+ *    podpowiedzi) biorą WYŁĄCZNIE własne pole (`setLoad`): 42,5 kg maszyny to nie „+42,5 kg dociążenia”, a asysta −20 to nie ciężar sztangi
+ *    — runda 83 (Q-018) liczyła je do rekordów i progresji (audyt 83b, MEDIUM 1). Obca wartość zacznie się liczyć, gdy użytkownik wpisze ją
+ *    w edytorze historii (zapis `writeLoad` przenosi ją do własnego pola).
+ * Ujemna wartość ma sens tylko przy masie ciała (asysta): poza nią widok i obliczenia dają ≥ 0 (runda 48; audyt 83b, LOW 1).
+ * Wpisane 0 jest wartością (bez sięgania do drugiego pola). Usunięte ćwiczenie (ex brak) = pole kg własne.
  */
-export function loadValue(ex: Exercise | undefined, s: Pick<WSet, 'weight' | 'addKg'>): number {
-  const bw = !!ex && isBW(ex); const a = bw ? s.addKg : s.weight, b = bw ? s.weight : s.addKg;
-  return Number(a !== '' && a != null ? a : b !== '' && b != null ? b : 0) || 0;
+export function loadOf(ex: Exercise | undefined, s: Pick<WSet, 'weight' | 'addKg'>): { kg: number; own: boolean; raw: number | '' } {
+  const bw = !!ex && isBW(ex); const a = bw ? s.addKg : s.weight, b = bw ? s.weight : s.addKg; const has = (v: unknown) => v !== '' && v != null;
+  const own = has(a) || !has(b); const raw: number | '' = has(a) ? (Number(a) || 0) : has(b) ? (Number(b) || 0) : '';
+  const v = raw === '' ? '' : bw ? raw : Math.max(0, raw);
+  return { kg: v === '' ? 0 : v, own, raw: v };
 }
-/** Obciążenie zewnętrzne serii: kg (ciężar) albo ±kg przy masie ciała (dodatnie = dociążenie, ujemne = asysta gumą/maszyną — 0.5, wzór Alpha Progression). */
-export const setLoad = (ex: Exercise, s: WSet) => isBW(ex) ? loadValue(ex, s) : Math.max(0, loadValue(ex, s)); // runda 48: ujemny ciężar (np. asysta z szablonu po zmianie sprzętu) nie daje ujemnej objętości
+/** Ciężar do WYŚWIETLENIA (historia, edytor historii, opisy serii, CSV) — patrz loadOf. */
+export const shownLoad = (ex: Exercise | undefined, s: Pick<WSet, 'weight' | 'addKg'>) => loadOf(ex, s).kg;
+/** Obciążenie zewnętrzne serii do OBLICZEŃ: tylko pole właściwe dla obecnego sprzętu — kg (≥ 0) albo ±kg przy masie ciała (dodatnie = dociążenie,
+ * ujemne = asysta gumą/maszyną — 0.5, wzór Alpha Progression). Seria zapisana pod innym sprzętem = 0 (patrz loadOf). */
+export const setLoad = (ex: Exercise, s: Pick<WSet, 'weight' | 'addKg'>) => { const l = loadOf(ex, s); return l.own ? l.kg : 0; }; // runda 48: ujemny ciężar (np. asysta z szablonu po zmianie sprzętu) nie daje ujemnej objętości
+/** Pole ciężaru w formularzu edytora historii: wartość, którą pokazuje ekran sesji (shownLoad), jako zapisane kg (lub '' gdy brak). */
+export const loadFieldValue = (ex: Exercise | undefined, s: Pick<WSet, 'weight' | 'addKg'>): number | '' => loadOf(ex, s).raw;
+/** Zapis ciężaru wpisanego w pole serii (trening w toku i edytor historii): do pola właściwego dla obecnego sprzętu; obce pole jest czyszczone —
+ * wpis określa obciążenie w obecnym sprzęcie (runda 83b; dzięki temu da się też wyczyścić pole pokazujące obcą wartość). */
+export function writeLoad(ex: Exercise | undefined, s: Pick<WSet, 'weight' | 'addKg'>, kg: number | '') {
+  if (ex && isBW(ex)) { s.addKg = kg; s.weight = ''; } else { s.weight = kg === '' ? '' : Math.max(0, kg); s.addKg = ''; } /* runda 54: ciężar nieujemny */
+}
 /** Data RRRR-MM-DD jako lokalna północ (Date.parse traktuje ją jako UTC). */
 export function localDateTs(iso: string): number { const m = /^(\d{4})-(\d{2})-(\d{2})/.exec(iso ?? ''); return m ? new Date(+m[1], +m[2] - 1, +m[3]).getTime() : NaN; }
 /** Obciążenie efektywne: dla ćwiczeń z masą ciała tylko ±kg (dociążenie; asysta = 0), dla reszty ciężar.
  * Runda 75 (Q-001, decyzja 02.10.2026): masa ciała nie wchodzi do żadnych obliczeń — rekord to „moja masa ciała” albo „masa ciała + 10 kg”. */
-export function effectiveLoad(ex: Exercise, s: WSet): number { return Math.max(0, setLoad(ex, s)); }
+export function effectiveLoad(ex: Exercise, s: Pick<WSet, 'weight' | 'addKg'>): number { return Math.max(0, setLoad(ex, s)); }
 /** Mnożnik objętości: per hantel / jednostronne ×2, łącznie ×1; ćwiczenia z masą ciała zawsze ×1. */
 export const exMult = (ex: Exercise) => isBW(ex) ? 1 : loadMult(ex.loadMode ?? loadModeFor(ex.equipment, ex.name));
 /** Seria robocza = odhaczona i nie rozgrzewkowa. */
@@ -575,15 +596,18 @@ export function progressionFor(ex: Exercise | undefined, repMax: number | null |
 export const occurrence = (items: { exerciseId: string }[], i: number) => items.slice(0, i).filter(x => x.exerciseId === items[i].exerciseId).length;
 /** Ile razy ćwiczenie występuje w treningu/szablonie. */
 export const occurrences = (items: { exerciseId: string }[], exId: string) => items.filter(x => x.exerciseId === exId).length;
-export function setSummary(ex: Exercise, s: WSet): string {
-  const b = s.bandId ? bandById(s.bandId) : null;
+/** Opis serii („8@+10”, „100×5”). `calc` = ciężar do obliczeń (setLoad) — podpowiedź „Poprzednio” w treningu w toku, bo wpisanie podpowiedzi
+ * przenosi tylko pole właściwe dla obecnego sprzętu (audyt 83b, MEDIUM 1b: „8@+42,5” przy pustym ±kg po wpisaniu); domyślnie widok historii
+ * (shownLoad — jak ekran sesji i CSV). Jedna reguła w loadOf. */
+export function setSummary(ex: Exercise, s: WSet, load: 'shown' | 'calc' = 'shown'): string {
+  const b = s.bandId ? bandById(s.bandId) : null; const l = load === 'calc' ? setLoad(ex, s) : shownLoad(ex, s);
   const m = ex.metric ?? 'weight_reps';
   let core: string;
   if (m === 'time') core = fmtSec(Number(s.durationSec) || 0);
   else if (m === 'distance_time') core = `${fmtDist(Number(s.distanceM) || 0)} ${fmtSec(Number(s.durationSec) || 0)}`;
-  else if (m === 'weight_time') core = `${fmtW(setLoad(ex, s), false)}${wu()}×${fmtSec(Number(s.durationSec) || 0)}`;
+  else if (m === 'weight_time') core = `${fmtW(l, false)}${wu()}×${fmtSec(Number(s.durationSec) || 0)}`;
   else if (m === 'reps') core = `${s.reps || 0}`;
-  else { const l = loadValue(ex, s); /* Q-018: jak historia i CSV */ core = isBW(ex) ? `${s.reps || 0}${l ? '@' + (l > 0 ? '+' : '') + fmtW(l, false) : ''}` : `${fmtW(l, false)}×${s.reps || 0}`; }
+  else { core = isBW(ex) ? `${s.reps || 0}${l ? '@' + (l > 0 ? '+' : '') + fmtW(l, false) : ''}` : `${fmtW(l, false)}×${s.reps || 0}`; }
   return core + (b ? ` (${shortBand(b)})` : '') + (s.rpe !== '' && s.rpe != null ? ` @${fmtNum(Number(s.rpe), 1)}` : '');
 }
 /** Wynik serii do porównań „najlepsza seria”: ciężar×1000+pow. / czas / dystans (przy równym dystansie krótszy czas lepszy). */

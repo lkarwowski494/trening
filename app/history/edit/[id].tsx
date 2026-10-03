@@ -4,7 +4,7 @@ import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
 import { Screen, Muted, Btn, Txt, Field, Input, NumInput, Empty } from '@/components/ui';
 import { WhenFields } from '@/components/WhenFields';
 import { setLabel } from '@/components/ActiveWorkout';
-import { getState, useTick, exById, isBW, loadLabel, loadLabelShort, groupLabels, occurrence, occurrences, deleteWorkout, bandA11y, shortBand, clampName, NAME_MAX, blockImpl, liveBlockImpl, nextBandId } from '@/lib/store';
+import { getState, useTick, exById, isBW, loadLabel, loadLabelShort, groupLabels, occurrence, occurrences, deleteWorkout, bandA11y, shortBand, clampName, NAME_MAX, blockImpl, liveBlockImpl, nextBandId, loadFieldValue, writeLoad } from '@/lib/store';
 import { draftOf, beginEdit, discardDraft, isDirty, touchDraft, useDraftTick, checkDraft, commitDraft, draftAddSet, draftRemoveSet, draftRemoveExercise, draftSetWhen, dateText, timeText, prefilledOffList, type Draft } from '@/lib/edit';
 import { onHistoryEdited } from '@/lib/backup';
 import { locationLabel } from '@/lib/locations';
@@ -114,7 +114,7 @@ function EditBlock({ d, e, ei, labels }: { d: Draft; e: WExercise; ei: number; l
               <Pressable onPress={() => setMenu(set, si)} hitSlop={8} accessibilityRole="button" accessibilityHint={hint} accessibilityLabel={t('Seria {n}, typ: {k}. Tapnij, by zmienić typ lub dodać notatkę.', { n: lbl, k: t(SET_KIND_LABEL[kind]) })} style={{ width: 32, minHeight: 44, justifyContent: 'center' }}>
                 <Text maxFontSizeMultiplier={1.3} style={{ color: kind !== 'normal' ? th.band : th.muted, fontSize: 14, fontWeight: kind !== 'normal' ? '700' : '400' }}>{lbl}{set.note ? '•' : ''}</Text>
               </Pressable>
-              {hasWeight(m) ? <View style={s.cell}><NumInput weightTol decimal allowNegative={bw} value={wField(bw ? set.addKg : set.weight)} stored={bw ? set.addKg : set.weight} onNum={(v, keep) => { if (bw) set.addKg = wInKeep(v, keep); else set.weight = v === '' ? '' : wInKeep(Math.max(0, v), keep); /* Q-021 */ touchDraft(); }} placeholder={bw ? '±0' : wu()} accessibilityLabel={ex ? loadLabel(ex, impl) : t('ciężar')} accessibilityHint={hint} /></View> : null}
+              {hasWeight(m) ? <View style={s.cell}><NumInput weightTol decimal allowNegative={bw} value={wField(loadFieldValue(ex, set))} stored={loadFieldValue(ex, set)} onNum={(v, keep) => { writeLoad(ex, set, wInKeep(v, keep)); /* Q-021; audyt 83b (LOW 2): pole pokazuje to samo co ekran sesji (store.loadOf), wpis trafia do pola obecnego sprzętu */ touchDraft(); }} placeholder={bw ? '±0' : wu()} accessibilityLabel={ex ? loadLabel(ex, impl) : t('ciężar')} accessibilityHint={hint} /></View> : null}
               {hasReps(m) ? <View style={s.cell}><NumInput value={set.reps} onNum={v => { set.reps = v === '' ? '' : Math.min(1000, Math.max(0, Math.floor(v))); touchDraft(); }} placeholder="0" accessibilityLabel={t('Powtórzenia')} accessibilityHint={hint} /></View> : null}
               {hasDistance(m) ? <View style={s.cell}><NumInput value={set.distanceM} onNum={v => { set.distanceM = v === '' ? '' : Math.max(0, Math.round(v)); touchDraft(); }} placeholder="m" accessibilityLabel={t('dystans')} accessibilityHint={hint} /></View> : null}
               {hasTime(m) ? <View style={s.cell}><NumInput value={set.durationSec} onNum={v => { set.durationSec = v === '' ? '' : Math.min(86400, Math.max(0, Math.round(v))); touchDraft(); }} placeholder="s" accessibilityLabel={t('czas')} accessibilityHint={hint} /></View> : null}

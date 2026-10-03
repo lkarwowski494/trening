@@ -4,7 +4,7 @@ import { useRouter } from 'expo-router';
 import { activateKeepAwakeAsync, deactivateKeepAwake } from 'expo-keep-awake';
 import { useTheme } from '@/lib/theme';
 import { Btn, Input, NumInput, Muted } from '@/components/ui';
-import { progressionFor, setActiveLocation, lastActivity, staleSince, staleRef, staleKind, ackStale, markActivity, useForegroundTick, bandA11y, clampName, loadLabelShort, getState, useTick, exById, previousBlockFor, occurrence, occurrences, hintFor, isBW, reps, fmtDur, fmtSec, fmtTime, setSummary, toggleDone, restAfter, roundRest, addSet, removeSet, removeExercise, finishWorkout, cancelWorkout, save, loadLabel, todayReadiness, groupLabels, linkWithNext, unlink, cycleBand, findSet, shortBand, setHasValue, locationById, offListNote, liveBlockImpl, listLocFor, srcSetAt } from '@/lib/store';
+import { progressionFor, writeLoad, setActiveLocation, lastActivity, staleSince, staleRef, staleKind, ackStale, markActivity, useForegroundTick, bandA11y, clampName, loadLabelShort, getState, useTick, exById, previousBlockFor, occurrence, occurrences, hintFor, isBW, reps, fmtDur, fmtSec, fmtTime, setSummary, toggleDone, restAfter, roundRest, addSet, removeSet, removeExercise, finishWorkout, cancelWorkout, save, loadLabel, todayReadiness, groupLabels, linkWithNext, unlink, cycleBand, findSet, shortBand, setHasValue, locationById, offListNote, liveBlockImpl, listLocFor, srcSetAt } from '@/lib/store';
 import { availability, missingLabel } from '@/lib/equipment';
 import { locationLabel } from '@/lib/locations';
 import * as timer from '@/lib/timer';
@@ -284,7 +284,7 @@ function ExerciseBlock({ w, e, ei, onDone, onStartSet, labels, prs }: { w: Worko
         const p = prevFor(si); const tick = () => { set.edited = true; save(st.active); }; const lbl = setLabel(e, si); const hint = tr('Seria {n} — {ex}', { n: lbl, ex: nm }); // runda 6: VoiceOver mówi, której serii dotyczy pole
         const running = timer.S.on && timer.S.setId === set.id;
         const pr = prs.get(set.id); const kind = set.kind ?? 'normal';
-        const prevTxt = p ? setSummary(ex, p) : '—';
+        const prevTxt = p ? setSummary(ex, p, 'calc') : '—'; /* audyt 83b (MEDIUM 1b): ciężar jak wpisze podpowiedź — tylko pole obecnego sprzętu */
         return (
           <View key={set.id}>
             <View style={[s.row, { gap: W.gap }]}>
@@ -292,7 +292,7 @@ function ExerciseBlock({ w, e, ei, onDone, onStartSet, labels, prs }: { w: Worko
                 <Text maxFontSizeMultiplier={1.3} style={{ color: kind !== 'normal' ? t.band : t.muted, fontSize: 14, fontWeight: kind !== 'normal' ? '700' : '400' }}>{lbl}{set.note ? '•' : ''}</Text>
               </Pressable>
               <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', gap: 4 }}>{prevInline ? <Text maxFontSizeMultiplier={1.3} numberOfLines={1} style={{ flexShrink: 1, color: t.muted, fontSize: 13 }}>{prevTxt}</Text> : null}{pr ? <Text maxFontSizeMultiplier={1.3} style={{ color: t.band, fontSize: 11, fontWeight: '700' }}>PR</Text> : null}</View>
-              {hasWeight(m) ? <View style={{ width: W.w }}><NumInput weightTol decimal allowNegative={bw} value={wField(bw ? set.addKg : set.weight)} stored={bw ? set.addKg : set.weight} onNum={(v, keep) => { if (bw) set.addKg = wInKeep(v, keep); else set.weight = v === '' ? '' : wInKeep(Math.max(0, v), keep); /* runda 54: ciężar nieujemny jak po wczytaniu; Q-021: ta sama liczba co na ekranie = te same kg */ tick(); }} placeholder={bw ? '±0' : wu()} style={doneStyle(set)} accessibilityLabel={loadLabel(ex, impl)} accessibilityHint={hint} /></View> : null}
+              {hasWeight(m) ? <View style={{ width: W.w }}><NumInput weightTol decimal allowNegative={bw} value={wField(bw ? set.addKg : set.weight)} stored={bw ? set.addKg : set.weight} onNum={(v, keep) => { writeLoad(ex, set, wInKeep(v, keep)); /* runda 54: ciężar nieujemny; Q-021: ta sama liczba co na ekranie = te same kg; 83b: jeden zapis (store.writeLoad) */ tick(); }} placeholder={bw ? '±0' : wu()} style={doneStyle(set)} accessibilityLabel={loadLabel(ex, impl)} accessibilityHint={hint} /></View> : null}
               {hasReps(m) ? <View style={{ width: W.reps }}><NumInput value={set.reps} onNum={v => { set.reps = v === '' ? '' : Math.max(0, Math.floor(v)); tick(); }} placeholder={e.repMin == null ? 'max' : reps(e.repMin, e.repMax)} style={doneStyle(set)} accessibilityLabel={tr('Powtórzenia')} accessibilityHint={hint} /></View> : null}
               {hasDistance(m) ? <View style={{ width: W.dist }}><NumInput value={set.distanceM} onNum={v => { set.distanceM = v === '' ? '' : Math.max(0, Math.round(v)); /* runda 55/56: pełne metry jak klawiatura */ tick(); }} placeholder="m" style={doneStyle(set)} accessibilityLabel={tr('dystans')} accessibilityHint={hint} /></View> : null}
               {hasTime(m) ? <View style={{ width: W.time }}><NumInput value={set.durationSec} onNum={v => { set.durationSec = v === '' ? '' : Math.min(86400, Math.max(0, Math.round(v))); /* runda 56: pełne sekundy jak klawiatura */ tick(); }} placeholder="s" style={doneStyle(set)} accessibilityLabel={tr('czas')} accessibilityHint={hint} /></View> : null}

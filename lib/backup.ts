@@ -1,7 +1,7 @@
 import * as FileSystem from 'expo-file-system';
 import * as Sharing from 'expo-sharing';
 import * as DocumentPicker from 'expo-document-picker';
-import { bandColor, getState, save, replaceState, clearRecovery, migrate, finishedWorkouts, exById, loadValue, bandById, localISODate, flush, readRecovery } from './store';
+import { bandColor, getState, save, replaceState, clearRecovery, migrate, finishedWorkouts, exById, shownLoad, bandById, localISODate, flush, readRecovery, getRecovery } from './store';
 import { t, exName } from './i18n';
 import { wOut } from './units';
 import { ensureAuthorization, syncAfterFinish } from './health';
@@ -25,22 +25,34 @@ export async function exportBackup(): Promise<void> {
 /** Runda 75 (T-012): automatyczna kopia JSON po każdym zapisanym treningu, w katalogu dokumentów aplikacji — widoczna w Plikach
  * (Na moim iPhonie → Trening → Backup) dzięki UIFileSharingEnabled. Trzymamy ostatnie AUTO_KEEP kopii; błąd zapisu nie przerywa niczego. */
 export const AUTO_DIR = 'Backup/'; export const AUTO_KEEP = 10;
-/** Kopie po treningu: trening-RRRR-MM-DD-GGMMSS.json (grupa 1 = data i godzina — nazwy sortują się chronologicznie). */
-const AUTO_RE = /^trening-(\d{4}-\d{2}-\d{2}-\d{6})\.json$/;
+/** Kopie po treningu: trening-RRRR-MM-DD-GGMMSS[-N].json (grupa 1 = data i godzina — nazwy sortują się chronologicznie; grupa 2 = numer
+ * kolejnej kopii z tej samej sekundy, od rundy 83b — LOW 4: wcześniej druga kopia w tej samej sekundzie nadpisywała pierwszą). */
+const AUTO_RE = /^trening-(\d{4}-\d{2}-\d{2}-\d{6})(?:-(\d{1,3}))?\.json$/;
 /** Q-019: kopie bezpieczeństwa przed importem i „Wyczyść dane” — osobna pula (nie wypychają kopii po treningu i odwrotnie). */
-export const SAFETY_RE = /^trening-przed-(?:importem|czyszczeniem)-(\d{4}-\d{2}-\d{2}-\d{6})\.json$/;
+export const SAFETY_RE = /^trening-przed-(?:importem|czyszczeniem)-(\d{4}-\d{2}-\d{2}-\d{6})(?:-(\d{1,3}))?\.json$/;
 const stampOf = (d: Date) => `${localISODate(d)}-${String(d.getHours()).padStart(2, '0')}${String(d.getMinutes()).padStart(2, '0')}${String(d.getSeconds()).padStart(2, '0')}`;
-/** Zapis bieżącego stanu (koperta jak eksport — z treningiem w toku) do Backup/<prefix><data>.json i rotacja puli `re` do AUTO_KEEP najnowszych.
- * Rzuca przy błędzie — wywołujący decyduje, czy to przerywa działanie. Pliki spoza puli (inne kopie, pliki użytkownika) zostają. */
-async function writeKopia(prefix: string, re: RegExp): Promise<string> {
+/** Klucz sortowania w puli: data i godzina, potem numer kopii z tej samej sekundy (bez numeru = 1). */
+const poolKey = (m: RegExpExecArray) => `${m[1]}-${(m[2] ?? '1').padStart(3, '0')}`;
+/** Zapis bieżącego stanu (koperta jak eksport — z treningiem w toku; `extra` dokłada pola do koperty) do Backup/<prefix><data>[-N].json
+ * i rotacja puli `re` do AUTO_KEEP najnowszych. Pliki spoza puli (inne kopie, pliki użytkownika) zostają.
+ * Runda 83b (LOW 4):
+ *  - rzuca TYLKO gdy kopii nie udało się zapisać; zapis jest atomowy (expo-file-system 18 na iOS: String.write(toFile:atomically: true) —
+ *    plik tymczasowy i podmiana), więc udany zapis = kompletny plik; błąd sprzątania puli po udanym zapisie nie przerywa działania;
+ *  - po nieudanym zapisie usuwamy plik docelowy (na wypadek platformy bez zapisu atomowego), żeby w puli nie został ucięty JSON;
+ *  - nazwa zajęta (druga kopia w tej samej sekundzie) → przyrostek -2, -3, … zamiast nadpisania. */
+async function writeKopia(prefix: string, re: RegExp, extra?: Record<string, unknown>): Promise<string> {
   if (!FileSystem.documentDirectory) throw new Error('no document directory');
   const dir = FileSystem.documentDirectory + AUTO_DIR; const info = await FileSystem.getInfoAsync(dir);
   if (!info.exists) await FileSystem.makeDirectoryAsync(dir, { intermediates: true });
-  const name = `${prefix}${stampOf(new Date())}.json`;
-  await FileSystem.writeAsStringAsync(dir + name, JSON.stringify(buildBackup()));
-  const old = (await FileSystem.readDirectoryAsync(dir)).map(f => [f, re.exec(f)?.[1]] as const).filter((x): x is readonly [string, string] => !!x[1])
-    .sort((a, b) => (a[1] < b[1] ? 1 : a[1] > b[1] ? -1 : 0)).slice(AUTO_KEEP);
-  for (const [f] of old) await FileSystem.deleteAsync(dir + f, { idempotent: true });
+  const stamp = stampOf(new Date()); let name = `${prefix}${stamp}.json`;
+  for (let n = 2; n < 1000 && (await FileSystem.getInfoAsync(dir + name)).exists; n++) name = `${prefix}${stamp}-${n}.json`;
+  try { await FileSystem.writeAsStringAsync(dir + name, JSON.stringify({ ...buildBackup(), ...extra })); }
+  catch (e) { await FileSystem.deleteAsync(dir + name, { idempotent: true }).catch(() => {}); throw e; }
+  try {
+    const old = (await FileSystem.readDirectoryAsync(dir)).map(f => [f, re.exec(f)] as const).filter((x): x is readonly [string, RegExpExecArray] => !!x[1])
+      .map(([f, m]) => [f, poolKey(m)] as const).sort((a, b) => (a[1] < b[1] ? 1 : a[1] > b[1] ? -1 : 0)).slice(AUTO_KEEP);
+    for (const [f] of old) await FileSystem.deleteAsync(dir + f, { idempotent: true });
+  } catch {} /* kopia już jest — nieposprzątana pula to mniejsze zło niż przerwany import */
   return dir + name;
 }
 export async function autoBackup(): Promise<string | null> {
@@ -52,11 +64,21 @@ export async function autoBackup(): Promise<string | null> {
  * kopii automatycznej (ustawienie dotyczy kopii po treningu; tu chodzi o cofnięcie pomyłki). Ten sam katalog Backup/ i format co kopia
  * po treningu (da się ją zaimportować), osobna pula AUTO_KEEP najnowszych. Nieudany zapis rzuca błąd z `safety: true` — import i czyszczenie
  * są wtedy przerywane (dane zostają bez zmian).
+ * Runda 83b (LOW 3, decyzja): gdy przy starcie nie dało się odczytać zapisu (store.getRecovery), stan w pamięci to dane startowe, a import
+ * i czyszczenie kasują komunikat o nieczytelnych danych (clearRecovery) — dlatego kopia bezpieczeństwa niesie też surowy tekst tamtego zapisu
+ * w polu `recovery` (dokładnie to, co wysyła „Kopia nieczytelnych danych”, store.readRecovery). Import kopii czyta `state` (jak dotąd);
+ * `recovery` jest do ręcznego odzyskania. Błąd odczytu tego tekstu z bazy → kopia się nie udaje i operacja jest przerywana
+ * (brak samego tekstu — readRecovery = null — nie blokuje: nie ma czego chronić).
+ * (Alternatywa — nie kasować komunikatu po imporcie — zostawiałaby komunikat o danych, których import już nie dotyczy.)
  */
 export async function safetyBackup(kind: 'import' | 'reset'): Promise<string> {
-  try { return await writeKopia(kind === 'import' ? 'trening-przed-importem-' : 'trening-przed-czyszczeniem-', SAFETY_RE); }
-  catch { throw Object.assign(new Error(t('Nie udało się zapisać kopii bezpieczeństwa w Plikach — dane nie zostały zmienione.')), { safety: true }); }
+  try {
+    const rec = getRecovery() ? await readRecovery() : null; /* błąd odczytu bazy → wyjątek → operacja przerwana */
+    return await writeKopia(kind === 'import' ? 'trening-przed-importem-' : 'trening-przed-czyszczeniem-', SAFETY_RE, rec != null ? { recovery: rec } : undefined);
+  } catch { throw Object.assign(new Error(t('Nie udało się zapisać kopii bezpieczeństwa w Plikach — dane nie zostały zmienione.')), { safety: true }); }
 }
+/** Runda 83b (LOW 3): dopisek do potwierdzenia importu / czyszczenia, gdy kopia bezpieczeństwa obejmie też nieczytelny zapis (safetyBackup). */
+export const safetyRecoveryNote = (): string => getRecovery() ? ' ' + t('Kopia obejmie też poprzednie, nieczytelne dane.') : '';
 export const isSafetyError = (e: unknown): e is Error => e instanceof Error && (e as Error & { safety?: boolean }).safety === true;
 /** Po zapisaniu treningu (przycisk „Zakończ”, pytanie o porzucony trening, cichy zapis po 6 h): Apple Health i kopia automatyczna — jedno miejsce. */
 export async function onWorkoutSaved(w: Workout): Promise<void> { await syncAfterFinish(w).catch(() => {}); await autoBackup(); /* po Zdrowiu — kopia ma już healthUUID (audyt T14) */ }
@@ -81,7 +103,7 @@ export function buildCsv(): string {
       let n = 0; // numer serii roboczej — rozgrzewki mają „W” i nie przesuwają numeracji
       e.sets.forEach(s => { const b = s.bandId ? bandById(s.bandId) : null; const bandTxt = b ? `${t('guma')} ${bandColor(b)} ${b.level}` : s.bandId ? `${t('guma')} ?` : ''; const mark = SET_KIND_MARK[s.kind ?? (s.warmup ? 'warmup' : 'normal')]; if (mark !== 'W') n++;
         const notes = [s.note, bandTxt, mark === 'D' ? 'drop set' : mark === 'F' ? t('do upadku') : ''].filter(Boolean).join('; ');
-        rows.push([dt(w.startedAt), w.templateName || t('Trening'), dur, exName(ex), mark === 'W' ? 'W' : String(n), wOut(loadValue(ex, s)) /* runda 7: w jednostce użytkownika, jak eksport Stronga; T4b/Q-018: store.loadValue — jak historia i rekordy */, s.reps || 0, s.distanceM || 0, s.durationSec || 0, notes, w.note, s.rpe === '' || s.rpe == null ? '' : s.rpe /* runda 18: RIR 0 też */].map(q).join(','));
+        rows.push([dt(w.startedAt), w.templateName || t('Trening'), dur, exName(ex), mark === 'W' ? 'W' : String(n), wOut(shownLoad(ex, s)) /* runda 7: w jednostce użytkownika, jak eksport Stronga; T4b/Q-018/83b: store.shownLoad — jak ekran sesji w historii */, s.reps || 0, s.distanceM || 0, s.durationSec || 0, notes, w.note, s.rpe === '' || s.rpe == null ? '' : s.rpe /* runda 18: RIR 0 też */].map(q).join(','));
       }); });
   }
   return rows.join('\n') + '\n';

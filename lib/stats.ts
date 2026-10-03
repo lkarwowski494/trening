@@ -20,7 +20,7 @@ export const E1RM_MAX_REPS = 10;
 const e1rmR = (s: WSet, load: number, reps: number) => s.kind === 'drop' || reps > E1RM_MAX_REPS ? 0 : e1rm(load, reps);
 const e1rmOf = (s: WSet, load: number) => e1rmR(s, load, repsOf(s));
 /** T8: guma bez wpisanej asysty (kg) — obciążenie nieznane (startowe gumy nie mają kg), więc seria nie wchodzi do rekordów e1RM i objętości serii. */
-const unknownAssist = (ex: Exercise, s: WSet) => isBW(ex) && !!s.bandId && !(setLoad(ex, s) < 0); /* Q-018: ciężar z jednego źródła (store.loadValue) */
+const unknownAssist = (ex: Exercise, s: WSet) => isBW(ex) && !!s.bandId && !(setLoad(ex, s) < 0); /* Q-018/83b: ciężar do obliczeń z jednego źródła (store.setLoad → loadOf) */
 const recE1 = (ex: Exercise, s: WSet) => unknownAssist(ex, s) ? 0 : e1rmOf(s, effectiveLoad(ex, s));
 export const e1rm = (load: number, reps: number) => (load > 0 && reps > 0) ? Math.round((reps === 1 ? load : load * (1 + reps / 30)) * 1e6) / 1e6 : 0;
 

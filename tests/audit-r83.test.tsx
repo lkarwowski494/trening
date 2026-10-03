@@ -1,7 +1,8 @@
 /* Runda 83 — backlog po pierwszym teście na iPhonie (docs/09):
  *  - T-053: przypomnienie o podpisie dopasowane do drogi instalacji (ad hoc przez EAS → nowy build w GitHubie; darmowe Apple ID → Sideloadly);
  *  - T-055: martwy kod asysty kg gumy usunięty (nominalKg, pairAssist, applyBandAssist); stare kopie z nominalKg dalej się importują, pole odpada;
- *  - Q-018: po zmianie sprzętu ćwiczenia historia, rekordy i statystyki czytają ciężar tak jak CSV (T4b) — jedno źródło store.loadValue;
+ *  - Q-018: po zmianie sprzętu ćwiczenia historia (ekran sesji, opisy serii) pokazuje ciężar tak jak CSV (T4b) — jedno źródło store.loadOf;
+ *    od rundy 83b obliczenia (objętość, rekordy, progresja) biorą tylko pole obecnego sprzętu (tests/audit-r83b.test.tsx);
  *  - Q-019: kopia bezpieczeństwa w Backup/ tuż przed importem i przed „Wyczyść wszystkie dane” — zawsze (także przy wyłączonej kopii automatycznej),
  *    osobna pula 10 najnowszych (nie wypycha kopii po treningu); nieudany zapis kopii przerywa import/czyszczenie;
  *  - Q-021: lb — ponowny wpis liczby, którą pole już pokazuje (61,23 kg = 135,0 lb), nie zmienia zapisanych kg i nie przenosi się na dalsze serie. */
@@ -122,7 +123,7 @@ describe('T-055 gumy bez kg: dawne nominalKg tylko przyjmowane przy imporcie', (
   });
 });
 
-describe('Q-018 zmiana sprzętu ćwiczenia: historia i rekordy bez 0 kg', () => {
+describe('Q-018 zmiana sprzętu ćwiczenia: historia bez 0 kg (83b: obliczenia tylko z pola obecnego sprzętu)', () => {
   /** Własne ćwiczenie „inne” z dwiema sesjami 40 kg × 10 i 42,5 kg × 8, potem sprzęt → masa ciała (jak chip „Sprzęt” w edycji ćwiczenia). */
   async function otherToBodyweight() {
     const st = store.getState(); const x = { ...st.exercises.find(y => y.name === 'Back Squat')!, id: 'q18', name: 'Wiosło Q18', lib: undefined, equipment: 'inne' as const, loadMode: 'total' as const, metric: 'weight_reps' as const, bandAssistable: false };
@@ -131,13 +132,13 @@ describe('Q-018 zmiana sprzętu ćwiczenia: historia i rekordy bez 0 kg', () => 
     const before = { vol: store.volume(w2), rec: stats.recordsFor(ex('Wiosło Q18')), sum: store.setSummary(ex('Wiosło Q18'), w2.exercises[0].sets[0]) };
     store.setEquipment(ex('Wiosło Q18'), 'masa ciała'); return { w2, before };
   }
-  test('objętość, rekordy (max obciążenie, e1RM) i opis serii po zmianie „inne” → masa ciała nie spadają do 0', async () => {
+  test('opis serii po zmianie „inne” → masa ciała pokazuje 42,5 (nie 0); obliczenia — runda 83b: 42,5 kg maszyny to nie dociążenie', async () => {
     await fresh(); const { w2, before } = await otherToBodyweight(); const x = ex('Wiosło Q18');
-    expect(before.vol).toBe(340); expect(before.sum).toBe('42,5×8');
-    expect(store.setLoad(x, w2.exercises[0].sets[0])).toBe(42.5);
-    expect(store.volume(w2)).toBe(340); /* masa ciała ×1, jak „łącznie” */
-    const rec = stats.recordsFor(x); expect(rec.maxLoad).toBe(42.5); expect(rec.bestE1rm).toBeCloseTo(before.rec.bestE1rm, 6);
-    expect(store.setSummary(x, w2.exercises[0].sets[0])).toBe('8@+42,5');
+    expect(before.vol).toBe(340); expect(before.sum).toBe('42,5×8'); expect(before.rec.maxLoad).toBe(42.5);
+    expect(store.shownLoad(x, w2.exercises[0].sets[0])).toBe(42.5); expect(store.setSummary(x, w2.exercises[0].sets[0])).toBe('8@+42,5');
+    /* 83b (MEDIUM 1): objętość, rekordy i progresja tylko z pola ±kg — dawne „42,5 / e1RM 53,8” zostawały rekordem ćwiczenia z masą ciała */
+    expect(store.setLoad(x, w2.exercises[0].sets[0])).toBe(0); expect(store.volume(w2)).toBe(0);
+    const rec = stats.recordsFor(x); expect(rec.maxLoad).toBe(0); expect(rec.bestE1rm).toBe(0);
   });
   test('ekran sesji w historii pokazuje 42,5, nie 0 — ta sama wartość co CSV', async () => {
     await renderApp(); const { w2 } = await otherToBodyweight(); await flushAll(10);
@@ -145,15 +146,15 @@ describe('Q-018 zmiana sprzętu ćwiczenia: historia i rekordy bez 0 kg', () => 
     expect(screen.getAllByText('42,5').length).toBeGreaterThan(0); expect(screen.queryByText(/^0$/)).toBeNull();
     expect(backup.buildCsv()).toMatch(/Wiosło Q18,1,42\.5,8/);
   });
-  test('odwrotnie: masa ciała (asysta −20 / dociążenie +10) → sztanga: objętość ≥ 0, historia jak CSV', async () => {
+  test('odwrotnie: masa ciała (asysta −20 / dociążenie +10) → sztanga: widok ≥ 0 jak CSV (83b, LOW 1), obliczenia bez obcych ±kg', async () => {
     await fresh(); const d = Date.now() - 2 * 86400e3; const w = addWorkout(d, [['Pull Up', [{ addKg: -20, reps: 8 }, { addKg: 10, reps: 5 }]]]);
     store.setEquipment(ex('Pull Up'), 'sztanga'); const x = ex('Pull Up'); const [a, b] = w.exercises[0].sets;
-    expect([store.loadValue(x, a), store.loadValue(x, b)]).toEqual([-20, 10]); expect([store.setLoad(x, a), store.setLoad(x, b)]).toEqual([0, 10]);
-    expect(store.volume(w)).toBe(50); expect(stats.recordsFor(x).maxLoad).toBe(10);
+    expect([store.shownLoad(x, a), store.shownLoad(x, b)]).toEqual([0, 10]); expect([store.setLoad(x, a), store.setLoad(x, b)]).toEqual([0, 0]);
+    expect(store.volume(w)).toBe(0); expect(stats.recordsFor(x).maxLoad).toBe(0);
   });
   test('bez zmiany sprzętu nic się nie zmienia: wpisane 0 nie bierze wartości z drugiego pola', async () => {
-    await fresh(); const x = ex('Pull Up'); const s = { weight: 50, addKg: 0 } as any; expect(store.loadValue(x, s)).toBe(0);
-    const bs = ex('Back Squat'); expect(store.loadValue(bs, { weight: 0, addKg: 15 } as any)).toBe(0); expect(store.loadValue(bs, { weight: '', addKg: '' } as any)).toBe(0);
+    await fresh(); const x = ex('Pull Up'); const s = { weight: 50, addKg: 0 } as any; expect(store.shownLoad(x, s)).toBe(0);
+    const bs = ex('Back Squat'); expect(store.shownLoad(bs, { weight: 0, addKg: 15 } as any)).toBe(0); expect(store.shownLoad(bs, { weight: '', addKg: '' } as any)).toBe(0);
   });
 });
 

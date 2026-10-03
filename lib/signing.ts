@@ -12,10 +12,26 @@ import { t } from './i18n';
  *  - ad hoc przez EAS (droga główna, płatne konto) — profil ważny ok. roku; odnowienie = nowy build w GitHub Actions
  *    („iPhone (EAS)” → build), bez Sideloadly;
  *  - Sideloadly z darmowym Apple ID (zapas) — profil ważny 7 dni; odnowienie = Sideloadly.
- * Rozróżniamy je po okresie ważności profilu: ExpirationDate − CreationDate. Darmowe Apple ID daje zawsze 7 dni,
- * płatne konto — rok (także profil deweloperski z Sideloadly na płatnym koncie, ale tej drogi nie używamy).
- * Inne pola nie wystarczą: ProvisionedDevices mają oba rodzaje, get-task-allow = true ma każdy profil deweloperski
- * (także płatny), TeamName to po prostu nazwa zespołu/osoby. Brak CreationDate → przyjmujemy drogę główną.
+ * Rozpoznanie drogi (runda 83b, audyt MEDIUM 2) — PIERWSZY sygnał: uprawnienie `get-task-allow` w słowniku Entitlements profilu.
+ *  - Profil DEWELOPERSKI ma get-task-allow = <true/> (debugger może się podłączyć). Darmowe Apple ID (osobisty zespół) dostaje WYŁĄCZNIE
+ *    profile deweloperskie — tak podpisuje Sideloadly i Xcode. → „odnów w Sideloadly”.
+ *  - Profil DYSTRYBUCYJNY (ad hoc, App Store, In-House) ma get-task-allow = <false/> — tak wygląda profil ad hoc z EAS (`eas build`,
+ *    distribution: internal). → „zbuduj od nowa w GitHubie”.
+ *  Kierunek sprawdzony (audytor podał go odwrotnie): Apple TN2415 „Entitlements Troubleshooting” — „The boolean value of get-task-allow
+ *  determines whether Xcode's debugger can attach to the app”, a debugger podłącza się tylko do buildów deweloperskich; Apple Developer
+ *  Forums, „What exactly is a provisioning profile?” (Quinn, DTS) — przykładowy profil deweloperski ma `<key>get-task-allow</key><true/>`
+ *  i na iOS to uprawnienie musi być dopuszczone przez profil (aplikacja nie może go mieć z wartością inną niż w profilu); profile dystrybucyjne
+ *  dopuszczają tylko false — stąd znane „nie da się podpiąć debuggera do buildu ad hoc / z App Store”. Atrapa profilu ad hoc w testach
+ *  (tests/audit-r83.test.tsx) ma ten sam układ: <key>get-task-allow</key><false/>.
+ *  Pogodzenie z wcześniejszą uwagą „get-task-allow mają oba rodzaje”: KLUCZ jest w obu rodzajach profilu, różni się WARTOŚĆ — liczy się
+ *  wartość, nie obecność. Profil deweloperski z płatnego konta (rok) też ma true — wtedy także odnawia się go ponownym podpisaniem
+ *  (Sideloadly/Xcode), nie buildem EAS, więc tekst Sideloadly pasuje.
+ * Dlaczego nie sam okres ważności (runda 83): Apple ucina ważność odświeżonego profilu ad hoc do daty wygaśnięcia certyfikatu dystrybucyjnego,
+ * a każdy `build` w .github/workflows/iphone-eas.yml odświeża profil (--refresh-ad-hoc-provisioning-profile) — build w ostatnich ~10 dniach
+ * przed wygaśnięciem certyfikatu (rocznego, 02.10.2027) dałby krótki profil ad hoc mylony z darmowym Apple ID.
+ * ZAPASOWY sygnał, gdy klucza brak (lub ma inną wartość niż true/false): ExpirationDate − CreationDate ≤ FREE_PROFILE_MAX_DAYS (darmowe
+ * Apple ID daje 7 dni) → Sideloadly, dłużej → nowy build. Inne pola nie wystarczą: ProvisionedDevices mają profile deweloperskie i ad hoc,
+ * TeamName to po prostu nazwa zespołu/osoby. Brak klucza i brak CreationDate → przyjmujemy drogę główną.
  */
 export type RenewKind = 'sideloadly' | 'rebuild';
 export type ProfileInfo = { expiry: Date | null; kind: RenewKind };
@@ -32,10 +48,17 @@ export function decodeB64(b64: string): string {
 const plistDate = (txt: string, key: string): Date | null => { const m = new RegExp(`<key>${key}</key>\\s*<date>([^<]+)</date>`).exec(txt); if (!m) return null; const d = new Date(m[1]); return isNaN(d.getTime()) ? null : d; };
 /** Data wygaśnięcia z treści profilu. */
 export function parseExpiry(txt: string): Date | null { return plistDate(txt, 'ExpirationDate'); }
-/** Profil krótszy niż ten próg = darmowe Apple ID (7 dni) → odnowienie w Sideloadly; dłuższy (rok) = ad hoc → nowy build. */
+/** Zapasowy próg (gdy profil nie ma get-task-allow): profil krótszy = darmowe Apple ID (7 dni) → Sideloadly; dłuższy (rok) = ad hoc → nowy build. */
 export const FREE_PROFILE_MAX_DAYS = 10;
-/** Sposób odnowienia z treści profilu (T-053): po okresie ważności ExpirationDate − CreationDate. */
+/** Wartość get-task-allow ze słownika Entitlements profilu: true/false, null gdy brak klucza (runda 83b). */
+export function parseTaskAllow(txt: string): boolean | null {
+  const i = txt.indexOf('<key>Entitlements</key>'); if (i < 0) return null;
+  const m = /<key>get-task-allow<\/key>\s*<(true|false)\s*\/>/.exec(txt.slice(i)); return m ? m[1] === 'true' : null;
+}
+/** Sposób odnowienia z treści profilu (T-053, runda 83b): get-task-allow (true = deweloperski → Sideloadly, false = ad hoc → nowy build),
+ * a bez tego klucza — okres ważności ExpirationDate − CreationDate. */
 export function parseRenewKind(txt: string): RenewKind {
+  const ta = parseTaskAllow(txt); if (ta !== null) return ta ? 'sideloadly' : 'rebuild';
   const e = plistDate(txt, 'ExpirationDate'), c = plistDate(txt, 'CreationDate');
   return e && c && e.getTime() - c.getTime() <= FREE_PROFILE_MAX_DAYS * 86400e3 ? 'sideloadly' : 'rebuild';
 }
