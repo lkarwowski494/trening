@@ -1482,7 +1482,7 @@ describe('runda 58', () => {
   test('R58-02 CI uruchamia natywne sprawdzenia (warstwa D)', () => {
     const y = require('fs').readFileSync(require('path').join(__dirname, '../.github/workflows/ios-unsigned.yml'), 'utf8'); expect(y).toMatch(/npm run verify:native/);
   });
-  test('T-051 CI (SDK 54): buildy na macOS wybierają najnowszy Xcode 26.x; platforma iOS dla buildów na urządzenie; obraz EAS sdk-54', () => {
+  test('T-051 CI (SDK 54+): buildy na macOS wybierają najnowszy Xcode 26.x; platforma iOS dla buildów na urządzenie; obraz EAS zgodny z SDK', () => {
     const fs = require('fs'), path = require('path'), os = require('os'); const { execFileSync } = require('child_process');
     const wf = (n: string) => fs.readFileSync(path.join(__dirname, '../.github/workflows', n), 'utf8') as string;
     for (const n of ['ios-unsigned.yml', 'e2e-ios.yml', 'iphone-local.yml']) {
@@ -1492,7 +1492,7 @@ describe('runda 58', () => {
     }
     for (const n of ['ios-unsigned.yml', 'iphone-local.yml']) { const y = wf(n); const p = y.indexOf('bash scripts/ci/ensure-ios-platform.sh'); expect(p).toBeGreaterThan(0); expect(p).toBeLessThan(y.indexOf(n === 'iphone-local.yml' ? 'build -p ios --profile adhoc --local' : 'xcodebuild -workspace')); }
     const e2e = wf('e2e-ios.yml'); expect(e2e).not.toMatch(/downloadPlatform/); expect(e2e.indexOf('"iPhone 16 \\(" "iPhone 17 \\(" "iPhone"')).toBeGreaterThan(0);
-    expect(JSON.parse(fs.readFileSync(path.join(__dirname, '../eas.json'), 'utf8')).build.base.ios.image).toBe('sdk-54');
+    expect(JSON.parse(fs.readFileSync(path.join(__dirname, '../eas.json'), 'utf8')).build.base.ios.image).toBe(`sdk-${require('expo/package.json').version.split('.')[0]}`); /* alias obrazu = główny numer zainstalowanego SDK (docs.expo.dev/build-reference/infrastructure) — podbicie SDK bez obrazu EAS nie przejdzie */
     /* skrypt wyboru na sztucznym /Applications: najnowszy 26.x po numerze (26.10 > 26.3), bez dowiązań i bet; brak 26.x → błąd z listą */
     const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'xcode-')); const run = (major?: string) => execFileSync('bash', [path.join(__dirname, '../scripts/ci/select-xcode.sh'), ...(major ? [major] : [])], { env: { ...process.env, APPS_DIR: dir, DRY_RUN: '1' }, encoding: 'utf8' });
     try {

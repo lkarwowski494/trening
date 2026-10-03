@@ -7,7 +7,7 @@
     "base": {
       "node": "22.22.2",
       "ios": {
-        "image": "sdk-54"
+        "image": "sdk-55"
       }
     },
     "adhoc": {
