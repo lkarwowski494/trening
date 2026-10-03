@@ -8,6 +8,8 @@
 name: iOS unsigned IPA
 on:
   workflow_dispatch:
+permissions:
+  contents: read
 jobs:
   build:
     # macos-14 jest wycofywany (niedziałające przebiegi od X 2026, koniec 2 XI 2026) — macos-15 z Xcode 16.2 wybranym jawnie.
