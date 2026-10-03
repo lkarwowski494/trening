@@ -1,10 +1,13 @@
 /* Runda 83 — backlog po pierwszym teście na iPhonie (docs/09):
- *  - T-053: przypomnienie o podpisie dopasowane do drogi instalacji (ad hoc przez EAS → nowy build w GitHubie; darmowe Apple ID → Sideloadly). */
+ *  - T-053: przypomnienie o podpisie dopasowane do drogi instalacji (ad hoc przez EAS → nowy build w GitHubie; darmowe Apple ID → Sideloadly);
+ *  - T-055: martwy kod asysty kg gumy usunięty (nominalKg, pairAssist, applyBandAssist); stare kopie z nominalKg dalej się importują, pole odpada. */
 import * as store from '@/lib/store';
 import * as timer from '@/lib/timer';
 import * as signing from '@/lib/signing';
-import { fresh } from './helpers';
-import { renderApp, flushAll, screen } from './app';
+import * as backup from '@/lib/backup';
+import { SCHEMA_VERSION } from '@/lib/seed';
+import { fresh, ex, seedWithDemo, pressAlert } from './helpers';
+import { renderApp, flushAll, screen, go, tap, act } from './app';
 
 jest.setTimeout(60000);
 afterEach(async () => { try { store.getState(); } catch { return; } await timer.stop(); await timer.stopSet(); });
@@ -73,5 +76,42 @@ describe('T-053 przypomnienie o podpisie wg drogi instalacji', () => {
     useProfile(profileB64(Date.now() - DAY, Date.now() + 364 * DAY));
     await renderApp(); await flushAll(50);
     expect(screen.queryByText(/^Podpis aplikacji/)).toBeNull();
+  });
+});
+
+describe('T-055 gumy bez kg: dawne nominalKg tylko przyjmowane przy imporcie', () => {
+  test('świeża instalacja, nowa guma z ekranu Gumy i zapis — bez pola nominalKg', async () => {
+    await renderApp(); await flushAll(10);
+    expect(store.getState().bands.length).toBeGreaterThan(0); for (const b of store.getState().bands) expect(b).not.toHaveProperty('nominalKg');
+    await go('/more/bands'); await flushAll(10); await tap(screen.getByText('+ Guma')); await flushAll(400); await store.flush();
+    expect(global.__kv.get('state')).not.toMatch(/nominalKg/); expect(JSON.stringify(backup.buildBackup())).not.toMatch(/nominalKg/);
+  });
+  test('stara kopia z asystą kg gum (różne postaci) importuje się; pole odpada, gumy (kolor, poziom) i serie bez zmian', async () => {
+    await fresh(); const old = seedWithDemo() as any; old.bands[0].nominalKg = 20; old.bands[1].nominalKg = '12,5'; old.bands[2].nominalKg = { v: 1 };
+    const pu = old.exercises.find((e: any) => e.name === 'Pull Up');
+    old.workouts = [{ id: 'w1', startedAt: Date.now() - 86400e3, finishedAt: Date.now() - 86000e3, templateName: 'T', note: '', exercises: [{ id: 'e1', exerciseId: pu.id, restSec: 90, sets: [{ id: 's1', reps: 8, addKg: -20, bandId: old.bands[0].id, done: true, kind: 'normal' }] }] }];
+    const st = backup.parseBackup(JSON.stringify({ format: 'trening-backup', schemaVersion: SCHEMA_VERSION, exportedAt: '2026-10-01T10:00:00Z', state: old }));
+    expect(st.bands.map(b => [b.color, b.level])).toEqual(old.bands.map((b: any) => [b.color, b.level])); for (const b of st.bands) expect(b).not.toHaveProperty('nominalKg');
+    const s0 = st.workouts[0].exercises[0].sets[0]; expect([s0.bandId, s0.addKg, s0.reps]).toEqual([old.bands[0].id, -20, 8]);
+    store.replaceState(st); expect(store.migrate(JSON.parse(JSON.stringify(store.getState())))).toEqual(JSON.parse(JSON.stringify(store.getState()))); /* idempotentnie */
+  });
+  test('po imporcie starej kopii z kg gum: przycisk gumy w treningu nie wpisuje kg; ręczne ±kg zostaje przy zmianie, zdjęciu i usunięciu gumy', async () => {
+    const old = seedWithDemo() as any; old.bands.forEach((b: any) => { b.nominalKg = 20; }); old.exercises.find((e: any) => e.name === 'Pull Up').bandAssistable = true;
+    await renderApp({ saved: old }); await flushAll(10);
+    await act(async () => { store.startEmpty(); store.addExerciseToActive(ex('Pull Up')); }); await flushAll(10);
+    const s0 = () => store.getState().active!.exercises[0].sets[0];
+    await tap(screen.getAllByLabelText(/^Guma: /)[0]); await flushAll(5); expect([s0().bandId !== '', s0().addKg]).toEqual([true, '']);
+    await act(async () => { s0().addKg = -7.5; store.save(store.getState().active); });
+    for (let i = 0; i < 3; i++) { await tap(screen.getAllByLabelText(/^Guma: /)[0]); await flushAll(5); expect(s0().addKg).toBe(-7.5); }
+    expect(s0().bandId).toBe(''); /* trzy gumy: cienka → średnia → gruba → brak */
+    await tap(screen.getAllByLabelText(/^Guma: /)[0]); await flushAll(5); const id = s0().bandId;
+    await go('/more/bands'); await flushAll(10);
+    const order = [...store.getState().bands].sort((a, b) => a.level - b.level); const row = order.findIndex(b => b.id === id); expect(row).toBe(0);
+    await tap(screen.getAllByLabelText('Usuń gumę')[0]); pressAlert('Usunąć gumę?', 'Usuń'); await flushAll(5);
+    expect([s0().bandId, s0().addKg]).toEqual(['', -7.5]);
+  });
+  test('jeden cykl gum (store.nextBandId) dla treningu i edytora historii: brak → cienka → … → gruba → brak; usunięta guma → od początku', async () => {
+    await fresh(); const [A, B, C] = [...store.getState().bands].sort((a, b) => a.level - b.level);
+    expect([store.nextBandId(''), store.nextBandId(A.id), store.nextBandId(B.id), store.nextBandId(C.id), store.nextBandId('usunięta')]).toEqual([A.id, B.id, C.id, '', A.id]);
   });
 });

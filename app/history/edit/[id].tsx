@@ -4,7 +4,7 @@ import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
 import { Screen, Muted, Btn, Txt, Field, Input, NumInput, Empty } from '@/components/ui';
 import { WhenFields } from '@/components/WhenFields';
 import { setLabel } from '@/components/ActiveWorkout';
-import { getState, useTick, exById, isBW, loadLabel, loadLabelShort, groupLabels, occurrence, occurrences, deleteWorkout, bandA11y, shortBand, clampName, NAME_MAX, blockImpl, liveBlockImpl } from '@/lib/store';
+import { getState, useTick, exById, isBW, loadLabel, loadLabelShort, groupLabels, occurrence, occurrences, deleteWorkout, bandA11y, shortBand, clampName, NAME_MAX, blockImpl, liveBlockImpl, nextBandId } from '@/lib/store';
 import { draftOf, beginEdit, discardDraft, isDirty, touchDraft, useDraftTick, checkDraft, commitDraft, draftAddSet, draftRemoveSet, draftRemoveExercise, draftSetWhen, dateText, timeText, prefilledOffList, type Draft } from '@/lib/edit';
 import { onHistoryEdited } from '@/lib/backup';
 import { locationLabel } from '@/lib/locations';
@@ -91,7 +91,7 @@ function EditBlock({ d, e, ei, labels }: { d: Draft; e: WExercise; ei: number; l
       else if (i === 4) Alert.prompt?.(t('Notatka do serii'), undefined, [{ text: t('Anuluj'), style: 'cancel' }, { text: t('Zapisz'), onPress: v => { set.note = clampName((v ?? '').trim(), 300); touchDraft(); } }], 'plain-text', set.note);
     });
   };
-  const cycleBand = (set: WSet) => { const sorted = [...st.bands].sort((a, b) => a.level - b.level); const i = sorted.findIndex(b => b.id === set.bandId); set.bandId = i < 0 ? (sorted[0]?.id ?? '') : (i + 1 < sorted.length ? sorted[i + 1].id : ''); touchDraft(); };
+  const cycleBand = (set: WSet) => { set.bandId = nextBandId(set.bandId); touchDraft(); }; /* ten sam cykl co w treningu (store.nextBandId) */
   /* MEDIUM 2: blok na stacji — „kg/str.” (na stronę). Runda 82b (LOW 4): zapisany trening — przyrząd z zapisu (jak szczegóły sesji, docs/10);
    * nowy trening wstecz — jak trening w toku (bez miejsc przyrząd się nie liczy) */
   const impl = d.sourceId ? blockImpl(e, d.w.locationId) : liveBlockImpl(e, d.w.locationId);

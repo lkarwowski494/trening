@@ -3,7 +3,7 @@ const log = (..._a: unknown[]) => { /* diagnostyka audytu wyciszona */ };
 import * as store from '@/lib/store';
 import * as stats from '@/lib/stats';
 import * as timer from '@/lib/timer';
-import { ex, addWorkout, pressAlert, fresh } from './helpers';
+import { ex, addWorkout, pressAlert, fresh, legacyBandKg } from './helpers';
 import { renderApp, flushAll, screen, act, tap, go } from './app';
 
 jest.setTimeout(60000);
@@ -43,7 +43,7 @@ test('M3 summary title says "Nowy rekord!" for two records on one set', async ()
 });
 
 test('M4 deleting a band mid-workout turns assisted sets into unassisted records', async () => {
-  await renderApp(); const b = store.getState().bands[0]; b.nominalKg = 20;
+  await renderApp(); const b = store.getState().bands[0]; legacyBandKg(b, 20);
   addWorkout(Date.now() - 2 * day, [['Pull Up', [{ reps: 5 }, { reps: 5 }]]]);
   await act(async () => { store.startEmpty(); store.addExerciseToActive(ex('Pull Up')); const a = store.getState().active!;
     a.exercises[0].sets[0] = { ...a.exercises[0].sets[0], reps: 8, bandId: b.id, addKg: -20 }; store.save(a); });

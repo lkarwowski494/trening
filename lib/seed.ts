@@ -70,8 +70,9 @@ export const GROUPS = ['klatka','plecy','barki','biceps','triceps','nogi','pośl
 export type Group = typeof GROUPS[number];
 
 export interface Exercise extends Base { name: string; group: Group; equipment: Equipment; metric: MetricType; loadMode: LoadMode; restSec: number | null; restWarmupSec: number | null; muscles: Muscle[]; secondaryMuscles: Muscle[]; bandAssistable: boolean; tempo: string; notes: string; lib?: boolean; archived?: boolean; /** P-003 (schemat 14): wymagania sprzętowe — każda grupa musi być spełniona, w grupie wystarczy jedna możliwość (lib/equipment.ts). Ćwiczenia własne: [] = zawsze dostępne. */ requires?: string[][]; recommended?: string[]; pattern?: Pattern; /** skąd brać dostępne ciężary (lib/equipment.ts loadsFor) */ loadSource?: LoadSource; /** hantle: 1 = jeden hantel, 2 = para (z której listy brać ciężary) */ implements?: 1 | 2; /** audyt E1 (M6): wersja katalogu, z której skopiowano wymagania ('user' = edytowane — nie odświeżać) */ catalogRev?: string }
-/** nominalKg (0.5): opcjonalna szacowana asysta gumy w kg — brak standardu kolorów, więc wartość podaje użytkownik (z opakowania lub własny szacunek). */
-export interface Band extends Base { color: string; level: number; nominalKg: number | '' }
+/** Guma (P-001, 02.10.2026): tylko kolor i poziom 1–7 — bez kilogramów. Dawne pole nominalKg (asysta kg, 0.5) jest przy imporcie
+ * starych kopii przyjmowane i usuwane w migrate (T-055); aplikacja go nie zapisuje ani nie czyta. */
+export interface Band extends Base { color: string; level: number }
 /** id (schemat 10): stabilny klucz wiersza w edytorze (przesuwanie/usuwanie nie myli pól). */
 export interface TemplateItem { id: string; exerciseId: string; sets: number; repMin: number | null; repMax: number | null; /** null = przerwa z ćwiczenia / domyślna (runda 2) */ restSec: number | null; startWeight: number | ''; targetSec: number | ''; groupId: string | null }
 export interface Template extends Base { name: string; items: TemplateItem[]; /** P-003: opcjonalne miejsce domyślne szablonu (brak = miejsce główne) */ locationId?: string }
@@ -165,7 +166,7 @@ export function seedState(lng: Lang = 'pl'): State {
   return {
     v: 2, schemaVersion: SCHEMA_VERSION, ownerId: LOCAL_OWNER,
     settings: defaultSettings(), exercises,
-    bands: [{ ...base(), color: en ? 'red' : 'czerwona', level: 2, nominalKg: '' }, { ...base(), color: en ? 'black' : 'czarna', level: 4, nominalKg: '' }, { ...base(), color: en ? 'purple' : 'fioletowa', level: 6, nominalKg: '' }],
+    bands: [{ ...base(), color: en ? 'red' : 'czerwona', level: 2 }, { ...base(), color: en ? 'black' : 'czarna', level: 4 }, { ...base(), color: en ? 'purple' : 'fioletowa', level: 6 }],
     templates: [], workouts: [], active: null, mornings: [], relations: [], feedback: [], instructions: [], timer: blankTimer(),
   };
 }

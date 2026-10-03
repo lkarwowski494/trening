@@ -6,7 +6,7 @@ import { fresh, ex, addWorkout, set } from './helpers';
 afterEach(() => { units.applyUnit('kg'); jest.restoreAllMocks(); });
 
 test('S1 BW: band w/o kg excluded; free improvement gets e1RM/vol/reps', async () => {
-  const st = await fresh(); const b = st.bands[0]; b.nominalKg = ''; const pu = ex('Pull Up'); pu.bandAssistable = true; store.save();
+  const st = await fresh(); const b = st.bands[0]; const pu = ex('Pull Up'); pu.bandAssistable = true; store.save();
   const now = Date.now(); addWorkout(now - 2 * 86400e3, [['Pull Up', [{ addKg: '', reps: 10, bandId: b.id }, { addKg: '', reps: 5 }]]]);
   const rec = recordsFor(pu); expect(rec.maxRepsFree).toBe(5); expect(rec.maxReps).toBe(10);
   expect(setPRs(pu, set({ reps: 12, bandId: b.id }), rec)).toEqual([]);

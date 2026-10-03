@@ -42,7 +42,7 @@ test('A1 band-assisted (no kg) chin-ups: e1RM/volume PR over unassisted reps', a
 test('A1b same root cause at store level: progress record e1RM comes from the band set', async () => {
   const { fresh, addWorkout } = require('./helpers');
   await fresh();
-  const band = store.getState().bands[0]; expect(band.nominalKg).toBe('');
+  const band = store.getState().bands[0]; expect(band).not.toHaveProperty('nominalKg');
   const d = new Date(2026, 8, 1).getTime();
   addWorkout(d, [['Chin Up', [{ addKg: 0, reps: 6 }]]]);
   const w = addWorkout(d + 2 * 86400e3, [['Chin Up', [{ addKg: 0, bandId: band.id, reps: 12 }]]]);

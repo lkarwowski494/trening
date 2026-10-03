@@ -1,5 +1,5 @@
 import * as store from '@/lib/store';
-import { seedState, type State, type Template, type Workout, type WSet } from '@/lib/seed';
+import { seedState, type State, type Template, type Workout, type WSet, type Band } from '@/lib/seed';
 import { lang, type Lang } from '@/lib/i18n';
 import { demoTemplates } from './fixtures/demo-templates';
 
@@ -38,3 +38,6 @@ export function withDemoTemplates(lng: Lang = lang()): Template[] {
 /** seedState z szablonami demonstracyjnymi — dla testów budujących zapisany stan (`fresh(seedWithDemo())`). */
 export function seedWithDemo(lng: Lang = 'pl'): State { const s = seedState(lng); s.templates = demoTemplates(s.exercises, lng); return s; }
 export { seedState };
+/** T-055: dawne pole asysty kg gumy (sprzed P-001) — aplikacja go już nie zapisuje ani nie czyta, a migrate je usuwa. Testy dokładają je do
+ * gumy w pamięci (jak obiekt ze starej kopii przed migracją), żeby sprawdzić, że nadal nie wpływa na ±kg, podpowiedzi ani rekordy. */
+export function legacyBandKg(b: Band, kg: unknown) { (b as Band & { nominalKg?: unknown }).nominalKg = kg; }

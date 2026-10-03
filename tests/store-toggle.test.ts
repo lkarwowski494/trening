@@ -1,7 +1,7 @@
 /* Runda 74 — odhaczenie serii (toggleDone) na poziomie logiki: godzina, rzeczywista przerwa i przenoszenie wpisanych wartości
  * na następną serię. Przypadki dopisane po testach mutacyjnych lib/store.ts (wcześniej pokryte głównie testami ekranów). */
 import * as store from '@/lib/store';
-import { fresh, ex } from './helpers';
+import { fresh, ex, legacyBandKg } from './helpers';
 
 let now = 0;
 beforeEach(() => { now = new Date(2026, 8, 1, 10, 0, 0).getTime(); jest.spyOn(Date, 'now').mockImplementation(() => now); });
@@ -88,7 +88,7 @@ describe('toggleDone — guma na następną serię i cofnięcie odhaczenia (rund
     ({ s, b1 } = await pull()); Object.assign(s[0], { reps: 8, bandId: b1, addKg: -15 }); s[1].bandId = b1; s[1].addKg = -10; store.toggleDone(0, 0); expect(s[1].addKg).toBe(-10);
   });
   test('guma bez wpisanej asysty: następna seria dostaje gumę, bez kg (P-001: gumy nie mają kilogramów)', async () => {
-    const { s, b1 } = await pull(); store.getState().bands[0].nominalKg = 20; Object.assign(s[0], { reps: 8, bandId: b1 }); store.toggleDone(0, 0);
+    const { s, b1 } = await pull(); legacyBandKg(store.getState().bands[0], 20); Object.assign(s[0], { reps: 8, bandId: b1 }); store.toggleDone(0, 0);
     expect([s[1].bandId, s[1].addKg]).toEqual([b1, '']);
   });
   test('gdy „Poprzednio” podpowiada następną serię, guma z tej serii nie przechodzi', async () => {

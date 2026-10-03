@@ -4,14 +4,14 @@ import * as store from '@/lib/store';
 import * as stats from '@/lib/stats';
 import { buildBackup, parseBackup, buildCsv } from '@/lib/backup';
 import { wIn, fmtW } from '@/lib/units';
-import { fresh, ex } from './helpers';
+import { fresh, ex, legacyBandKg } from './helpers';
 const H = 3600e3; let now = 0;
 beforeEach(() => { now = new Date(2026, 8, 1, 18, 0, 0).getTime(); jest.spyOn(Date, 'now').mockImplementation(() => now); });
 afterEach(() => jest.restoreAllMocks());
 
 test('J1 EN/lb journey: superset + drop + failure + band pull-ups → finish → backup → next day', async () => {
   const st = await fresh(undefined, 'en'); st.settings.unit = 'lb'; store.applyPrefs(); store.save();
-  const band = st.bands[0]; band.nominalKg = 20; store.save(band);
+  const band = st.bands[0]; legacyBandKg(band, 20); store.save(band);
   const pu = ex('Pull Up'); pu.bandAssistable = true; store.save(pu);
   store.startEmpty(); store.addExerciseToActive(ex('Bench Press (sztanga)')); store.addExerciseToActive(ex('Bent Over Row (hantle)')); store.addExerciseToActive(pu);
   let a = store.getState().active!; store.linkWithNext(a.exercises, 0, a);
@@ -29,7 +29,7 @@ test('J1 EN/lb journey: superset + drop + failure + band pull-ups → finish →
   now += 30e3; a.exercises[1].sets[1].reps = 12; const r5 = store.toggleDone(1, 1); expect(r5).toBeGreaterThan(0);
   expect(a.exercises[1].sets[1].weight).toBe(a.exercises[1].sets[0].weight);
   // band pull-ups
-  a.exercises[2].sets[0].bandId = band.id; store.applyBandAssist(a.exercises[2].sets[0]); a.exercises[2].sets[0].reps = 8; store.addSet(2); store.save(a);
+  a.exercises[2].sets[0].bandId = band.id; a.exercises[2].sets[0].reps = 8; store.addSet(2); store.save(a);
   now += 120e3; store.toggleDone(2, 0); expect(a.exercises[2].sets[0].addKg).toBe(''); // P-001: guma bez kg
   expect(a.exercises[2].sets[1].bandId).toBe(band.id); expect(a.exercises[2].sets[1].addKg).toBe('');
   a.exercises[2].sets[1].reps = 7; now += 120e3; store.toggleDone(2, 1);

@@ -33,7 +33,7 @@ type A =
   | { t: 'tick'; e: number; s: number } | { t: 'tickUntick'; e: number; s: number } | { t: 'band'; e: number; s: number }
   | { t: 'kind'; e: number; s: number; k: 'normal' | 'warmup' | 'drop' | 'failure' } | { t: 'link'; e: number } | { t: 'unlink'; e: number }
   | { t: 'unit' } | { t: 'finish' } | { t: 'cancel' } | { t: 'delW'; i: number } | { t: 'equip'; i: number; q: number }
-  | { t: 'tplLink'; i: number; j: number } | { t: 'tplUnlink'; i: number; j: number } | { t: 'bandOff'; i: number } | { t: 'nominal'; b: number; v: number | '' } | { t: 'delBand'; b: number } | { t: 'bodyweight'; v: number | '' };
+  | { t: 'tplLink'; i: number; j: number } | { t: 'tplUnlink'; i: number; j: number } | { t: 'bandOff'; i: number } | { t: 'delBand'; b: number } | { t: 'bodyweight'; v: number | '' };
 
 const num = fc.oneof(fc.constantFrom<number | ''>('', 0, 1, 2.5, 5, 8, 10, 12.345, 20, 62.555, 100, 100.004, -5, -15, -20, 1e6), fc.double({ min: -50, max: 300, noNaN: true }));
 const idx = fc.nat(12);
@@ -60,7 +60,7 @@ const action: fc.Arbitrary<A> = fc.oneof(
   { weight: 1, arbitrary: fc.record({ t: fc.constant('tplLink' as const), i: idx, j: idx }) },
   { weight: 1, arbitrary: fc.record({ t: fc.constant('tplUnlink' as const), i: idx, j: idx }) },
   { weight: 1, arbitrary: fc.record({ t: fc.constant('bandOff' as const), i: fc.nat(130) }) },
-  { weight: 1, arbitrary: fc.record({ t: fc.constant('nominal' as const), b: fc.nat(3), v: fc.constantFrom<number | ''>('', 0, 10, 15, 20, 2.125, 25) }) },
+  /* T-055: akcja „nominal” (asysta kg gumy) usunięta — ekran Gum nie ma kg od P-001; stare kg w danych sprawdzają migrate-idem i audit-r83 */
   { weight: 1, arbitrary: fc.record({ t: fc.constant('delBand' as const), b: fc.nat(3) }) },
   { weight: 1, arbitrary: fc.record({ t: fc.constant('bodyweight' as const), v: fc.constantFrom<number | ''>('', 0, 0.004, 80, 81.25, 1200) }) },
 );
@@ -77,18 +77,13 @@ function typeValue(e: any, set: any, k: string, raw: number | '') {
   else if (k === 'rpe') set.rpe = v === '' ? '' : Math.min(10, Math.max(0, Math.round(v * 10) / 10));
   set.edited = true;
 }
-/** Jak cycleBand na ekranie. */
+/** Przycisk gumy na ekranie (to samo store.cycleBand, T-055). */
 function cycleBand(e: any, set: any) {
   const ex = store.exById(e.exerciseId)!; if (!ex.bandAssistable) return;
-  const bands = [...store.getState().bands].sort((a, b) => a.level - b.level); const i = bands.findIndex(b => b.id === set.bandId); const prev = set.bandId;
-  set.bandId = i < 0 ? (bands[0]?.id ?? '') : (i + 1 < bands.length ? bands[i + 1].id : ''); if (set.bandId) delete set.noBand; else set.noBand = true;
-  store.applyBandAssist(set, prev); if (!(store.isBW(ex) && (ex.metric ?? 'weight_reps').includes('weight'))) set.addKg = '';
+  store.cycleBand(set, store.isBW(ex) && (ex.metric ?? 'weight_reps').includes('weight'));
 }
-/** Jak usuwanie gumy na ekranie Gumy. */
-function deleteBand(id: string) {
-  const st = store.getState(); st.bands = st.bands.filter(b => b.id !== id);
-  st.active?.exercises.forEach(e => e.sets.forEach(s => { if (s.bandId === id) { if (Number(s.addKg) < 0) s.addKg = ''; s.bandId = ''; } })); store.save();
-}
+/** Usuwanie gumy na ekranie Gumy (to samo store.deleteBand, T-055 — dawna kopia zdejmowała też ujemne ±kg i gumę z odhaczonych serii). */
+function deleteBand(id: string) { store.deleteBand(id); }
 
 function run(a: A) {
   const st = store.getState(); const act = st.active; const exs = st.exercises.filter(e => !e.archived);
@@ -125,7 +120,6 @@ function run(a: A) {
     case 'delW': if (st.workouts.length) store.deleteWorkout(st.workouts[a.i % st.workouts.length].id); break;
     case 'equip': if (exs.length) store.setEquipment(exs[a.i % exs.length], EQ[a.q % EQ.length]); break;
     case 'bandOff': if (exs.length) { const x = exs[a.i % exs.length]; x.bandAssistable = !x.bandAssistable; store.save(x); } break;
-    case 'nominal': if (st.bands.length) { const b = st.bands[a.b % st.bands.length]; b.nominalKg = a.v === '' ? '' : units.wIn(Math.max(0, a.v)) as number; store.save(b); } break;
     case 'delBand': if (st.bands.length) deleteBand(st.bands[a.b % st.bands.length].id); break;
     case 'bodyweight': { /* runda 75 (Q-001): masa ciała tylko w porannym wpisie, poza obliczeniami */ const kg = a.v === '' ? 0 : Number(units.wIn(a.v)); const d = store.localISODate(); let m = st.mornings.find((x: any) => x.date === d); if (!m) { m = { id: 'm' + st.mornings.length, ownerId: 'local', createdAt: Date.now(), updatedAt: Date.now(), date: d, bb: '', sleepScore: '', sleepH: '', weight: '' } as any; st.mornings.push(m!); } m!.weight = kg > 0 && kg <= 1000 ? Math.round(kg * 100) / 100 : ''; store.save(); break; }
   }
@@ -153,8 +147,8 @@ function check(where: string) {
       // I3: kg na siatce 0,01; brak „bez gumy” razem z gumą.
       expect([where, 'grid', onGrid(s.weight), onGrid(s.addKg)]).toEqual([where, 'grid', true, true]);
       expect([where, 'noBand+band', !!(s.noBand && s.bandId)]).toEqual([where, 'noBand+band', false]);
-      // I4: w treningu w toku żadna seria nie wskazuje usuniętej gumy.
-      if (w === st.active) expect([where, 'deleted band', !!s.bandId && !bandIds.has(s.bandId)]).toEqual([where, 'deleted band', false]);
+      // I4: w treningu w toku żadna NIEODHACZONA seria nie wskazuje usuniętej gumy (T13: odhaczone zostają z gumą i pokazują „?” — store.deleteBand).
+      if (w === st.active && !s.done) expect([where, 'deleted band', !!s.bandId && !bandIds.has(s.bandId)]).toEqual([where, 'deleted band', false]);
     }
   }
   for (const w of st.workouts) {

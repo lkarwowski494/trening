@@ -4,7 +4,7 @@ import { useRouter } from 'expo-router';
 import { activateKeepAwakeAsync, deactivateKeepAwake } from 'expo-keep-awake';
 import { useTheme } from '@/lib/theme';
 import { Btn, Input, NumInput, Muted } from '@/components/ui';
-import { progressionFor, setActiveLocation, lastActivity, staleSince, staleRef, staleKind, ackStale, markActivity, useForegroundTick, bandA11y, clampName, loadLabelShort, getState, useTick, exById, previousBlockFor, occurrence, occurrences, hintFor, isBW, reps, fmtDur, fmtSec, fmtTime, setSummary, toggleDone, restAfter, roundRest, addSet, removeSet, removeExercise, finishWorkout, cancelWorkout, save, loadLabel, todayReadiness, groupLabels, linkWithNext, unlink, applyBandAssist, findSet, shortBand, setHasValue, locationById, offListNote, liveBlockImpl, listLocFor, srcSetAt } from '@/lib/store';
+import { progressionFor, setActiveLocation, lastActivity, staleSince, staleRef, staleKind, ackStale, markActivity, useForegroundTick, bandA11y, clampName, loadLabelShort, getState, useTick, exById, previousBlockFor, occurrence, occurrences, hintFor, isBW, reps, fmtDur, fmtSec, fmtTime, setSummary, toggleDone, restAfter, roundRest, addSet, removeSet, removeExercise, finishWorkout, cancelWorkout, save, loadLabel, todayReadiness, groupLabels, linkWithNext, unlink, cycleBand, findSet, shortBand, setHasValue, locationById, offListNote, liveBlockImpl, listLocFor, srcSetAt } from '@/lib/store';
 import { availability, missingLabel } from '@/lib/equipment';
 import { locationLabel } from '@/lib/locations';
 import * as timer from '@/lib/timer';
@@ -301,7 +301,7 @@ function ExerciseBlock({ w, e, ei, onDone, onStartSet, labels, prs }: { w: Worko
                   <Text maxFontSizeMultiplier={1.3} style={{ color: running ? t.accentInk : t.text, fontSize: 16 }}>{running ? '…' : '▶'}</Text>
                 </Pressable>) : null}
               {showRpe ? <View style={{ width: W.rpe }}><NumInput decimal value={set.rpe} onNum={v => { set.rpe = v === '' ? '' : Math.min(10, Math.max(0, Math.round(v * 10) / 10)); tick(); }} placeholder="—" style={doneStyle(set)} accessibilityLabel="RPE" accessibilityHint={hint} /></View> : null}
-              {band ? <Pressable accessibilityRole="button" accessibilityHint={hint} accessibilityLabel={tr('Guma: {b}. Tapnij, by zmienić.', { b: set.bandId ? bandA11y(st.bands.find(b => b.id === set.bandId)) : tr('brak') })} onPress={() => cycleBand(set, st.bands, bw && hasWeight(m))} style={[s.bandBtn, { width: W.band, backgroundColor: t.surface2, borderColor: set.done ? t.doneLine : t.line }]}><Text maxFontSizeMultiplier={1.3} style={{ color: set.bandId ? t.band : t.muted, fontSize: 13, fontWeight: '600' }}>{set.bandId ? shortBand(st.bands.find(b => b.id === set.bandId)) : '—'}</Text></Pressable> : null}
+              {band ? <Pressable accessibilityRole="button" accessibilityHint={hint} accessibilityLabel={tr('Guma: {b}. Tapnij, by zmienić.', { b: set.bandId ? bandA11y(st.bands.find(b => b.id === set.bandId)) : tr('brak') })} onPress={() => cycleBand(set, bw && hasWeight(m))} style={[s.bandBtn, { width: W.band, backgroundColor: t.surface2, borderColor: set.done ? t.doneLine : t.line }]}><Text maxFontSizeMultiplier={1.3} style={{ color: set.bandId ? t.band : t.muted, fontSize: 13, fontWeight: '600' }}>{set.bandId ? shortBand(st.bands.find(b => b.id === set.bandId)) : '—'}</Text></Pressable> : null}
               <Pressable accessibilityRole="checkbox" accessibilityState={{ checked: set.done }} accessibilityLabel={tr('Seria {n} zrobiona — {ex}', { n: lbl, ex: nm })} onPress={() => onDone(ei, si)} style={[s.doneBtn, { width: W.done, backgroundColor: set.done ? t.accent : t.surface2, borderColor: set.done ? t.accent : t.line }]}><Text maxFontSizeMultiplier={1.3} style={{ color: set.done ? t.accentInk : t.muted, fontSize: 18 }}>{set.done ? '✓' : ''}</Text></Pressable>
             </View>
             {!prevInline && p ? <Muted numberOfLines={1} style={{ fontSize: 12, marginLeft: W.idx + W.gap, marginTop: -4, marginBottom: 6 }}>{tr('Poprzednio')}: {prevTxt}</Muted> : null}
@@ -318,10 +318,6 @@ function ExerciseBlock({ w, e, ei, onDone, onStartSet, labels, prs }: { w: Worko
       </View>
     </View>
   );
-}
-function cycleBand(set: WSet, bands: { id: string; level: number }[], usesKg = true) {
-  const sorted = [...bands].sort((a, b) => a.level - b.level); const i = sorted.findIndex(b => b.id === set.bandId); const prev = set.bandId;
-  set.bandId = i < 0 ? (sorted[0]?.id ?? '') : (i + 1 < sorted.length ? sorted[i + 1].id : ''); if (set.bandId) delete set.noBand; else set.noBand = true; /* runda 47 */ applyBandAssist(set, prev); if (!usesKg) set.addKg = ''; /* runda 54: bez ukrytej asysty, gdy ćwiczenie nie ma pola ±kg */; save(getState().active);
 }
 
 /** Dolny pasek: stoper serii czasowej (gdy trwa) albo timer przerwy. Odświeża się sam (250 ms), bez reszty ekranu. */

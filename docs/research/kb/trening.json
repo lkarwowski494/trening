@@ -100,9 +100,9 @@
       "area": "log",
       "feature_id": "log_bodyweight_assisted",
       "has": "yes",
-      "how": "Bodyweight exercises log '±kg': plus is added load, minus is assistance. Exercises flagged 'Asysta gumą' (e.g. Pull Up, Chin Up, Dip, Nordic) get a band column; tapping it cycles through the user's bands by level and fills −nominal kg. Body mass is never used in calculations (schema 13). The record is total unassisted reps, and e1RM/volume use added load only.",
-      "how_pl": "Ćwiczenia z masą ciała logują „±kg”: plus to dodatkowe obciążenie, minus to odciążenie. Ćwiczenia oznaczone „Asysta gumą” (np. Pull Up, Chin Up, Dip, Nordic) mają kolumnę gumy; stuknięcie przełącza cyklicznie gumy użytkownika według poziomu i wpisuje −nominalne kg. Masa ciała nigdy nie jest używana w obliczeniach (schema 13). Rekord to suma powtórzeń bez asysty, a e1RM/objętość używają tylko dodanego obciążenia.",
-      "sources": ["lib/store.ts:setLoad", "lib/store.ts:effectiveLoad", "lib/store.ts:applyBandAssist", "components/ActiveWorkout.tsx:cycleBand", "lib/stats.ts:totalKind"]
+      "how": "Bodyweight exercises log '±kg': plus is added load, minus is assistance. Exercises flagged 'Asysta gumą' (e.g. Pull Up, Chin Up, Dip, Nordic) get a band column; tapping it cycles through the user's bands by level (bands have no kg since P-001 — choosing a band never changes ±kg). Body mass is never used in calculations (schema 13). The record is total unassisted reps, and e1RM/volume use added load only.",
+      "how_pl": "Ćwiczenia z masą ciała logują „±kg”: plus to dodatkowe obciążenie, minus to odciążenie. Ćwiczenia oznaczone „Asysta gumą” (np. Pull Up, Chin Up, Dip, Nordic) mają kolumnę gumy; stuknięcie przełącza cyklicznie gumy użytkownika według poziomu (od P-001 gumy nie mają kg — wybór gumy nie zmienia ±kg). Masa ciała nigdy nie jest używana w obliczeniach (schema 13). Rekord to suma powtórzeń bez asysty, a e1RM/objętość używają tylko dodanego obciążenia.",
+      "sources": ["lib/store.ts:setLoad", "lib/store.ts:effectiveLoad", "lib/store.ts:cycleBand", "components/ActiveWorkout.tsx", "lib/stats.ts:totalKind"]
     },
     {
       "area": "log",
@@ -524,8 +524,8 @@
       "area": "equip",
       "feature_id": "equip_inventory",
       "has": "partial",
-      "how": "The only inventory is resistance bands (More → Gumy): colour, level 1–7 and optional nominal assist kg. There is no dumbbell, plate or machine-weight inventory.",
-      "how_pl": "Jedyny zasób to gumy oporowe (Więcej → Gumy): kolor, poziom 1–7 i opcjonalne nominalne kg asysty. Brak zasobu hantli, talerzy ani ciężarów maszyn.",
+      "how": "The only inventory is resistance bands (More → Gumy): colour and level 1–7 (no kg since P-001). There is no dumbbell, plate or machine-weight inventory.",
+      "how_pl": "Jedyny zasób to gumy oporowe (Więcej → Gumy): kolor i poziom 1–7 (bez kg od P-001). Brak zasobu hantli, talerzy ani ciężarów maszyn.",
       "sources": ["app/more/bands.tsx", "lib/seed.ts:Band"]
     },
     {
@@ -724,9 +724,9 @@
       "area": "log",
       "feature_id": "new:band_assist",
       "has": "yes",
-      "how": "Band inventory (More → Gumy): colour, level 1–7 and optional nominal assist kg. The band column cycles through bands by level, and a band with kg fills −kg into the ±kg field as a pair; removing the band removes its assistance. A band without kg makes the load unknown, so the set is excluded from e1RM and volume records. Deleted bands show '?' in history.",
-      "how_pl": "Zasób gum (Więcej → Gumy): kolor, poziom 1–7 i opcjonalne nominalne kg asysty. Kolumna gumy przełącza cyklicznie gumy według poziomu, a guma z kg wpisuje −kg do pola ±kg jako parę; usunięcie gumy usuwa jej asystę. Guma bez kg sprawia, że obciążenie jest nieznane, więc seria jest wyłączona z e1RM i rekordów objętości. Usunięte gumy pokazują w historii „?”.",
-      "sources": ["app/more/bands.tsx", "lib/store.ts:applyBandAssist", "lib/store.ts:pairAssist", "lib/stats.ts:unknownAssist"]
+      "how": "Band inventory (More → Gumy): colour and level 1–7 only — no kg (P-001). The band column cycles through bands by level; choosing, changing, removing or deleting a band never changes the ±kg field. A band set without negative ±kg makes the load unknown, so the set is excluded from e1RM and volume records. Deleted bands show '?' in history.",
+      "how_pl": "Zasób gum (Więcej → Gumy): tylko kolor i poziom 1–7 — bez kg (P-001). Kolumna gumy przełącza cyklicznie gumy według poziomu; wybór, zmiana, zdjęcie ani usunięcie gumy nie zmienia pola ±kg. Seria z gumą bez ujemnego ±kg sprawia, że obciążenie jest nieznane, więc seria jest wyłączona z e1RM i rekordów objętości. Usunięte gumy pokazują w historii „?”.",
+      "sources": ["app/more/bands.tsx", "lib/store.ts:cycleBand", "lib/store.ts:deleteBand", "lib/stats.ts:unknownAssist"]
     },
     {
       "area": "log",

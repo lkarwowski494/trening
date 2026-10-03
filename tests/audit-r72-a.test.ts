@@ -54,7 +54,7 @@ test('D2b superset: A2 after round 1 (B1+B1D) must not start rest before B2', as
 
 test('D3 band-assisted pull-up with default band (nominalKg empty) is not a reps PR', async () => {
   await fresh();
-  const band = store.getState().bands[0]; expect(band.nominalKg).toBe('');
+  const band = store.getState().bands[0]; expect(band).not.toHaveProperty('nominalKg');
   addWorkout(at(2026, 9, 1), [['Pull Up', [{ addKg: 0, reps: 6 }]]]);
   const w = addWorkout(at(2026, 9, 3), [['Pull Up', [{ addKg: '', bandId: band.id, reps: 12 }]]]);
   expect(stats.prMap(w).get(w.exercises[0].sets[0].id) ?? []).not.toContain('powtórzenia');

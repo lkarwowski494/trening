@@ -251,7 +251,7 @@ export function migrate(raw: any): State {
     w.startedAt = tsOf(w.startedAt); w.finishedAt = w === raw.active ? null : (tsOf(w.finishedAt) ?? w.startedAt); if (w !== raw.active || tsOf(w.staleAck) == null) delete w.staleAck; else w.staleAck = tsOf(w.staleAck); /* runda 69 */ /* runda 49/51: trening z historii zawsze zakończony; trening w toku — nie */ /* runda 49: zakończony (choć nieczytelny) trening zostaje w historii */ if (w.finishedAt != null && w.finishedAt < w.startedAt) w.finishedAt = w.startedAt; /* runda 48 */ if (typeof w.templateName !== 'string') w.templateName = ''; if (typeof w.note !== 'string') w.note = ''; w.templateId = idOf(w.templateId); { const l = idOf(w.locationId); if (l) w.locationId = l; else delete w.locationId; } /* P-003: miejsce zostaje także po usunięciu miejsca („(usunięte miejsce)”) */
     w.exercises = arr(w.exercises).filter((e: any) => idOf(e.exerciseId) != null); /* runda 50/51 */ if (w !== raw.active) { w.exercises.forEach((e: any) => { e.sets = arr(e.sets).filter((s: any) => !!s.done); e.sets.forEach((s: any) => { delete s.pre; }); }); w.exercises = w.exercises.filter((e: any) => e.sets.length); } /* runda 59: historia = tylko odhaczone serie, jak po „Zakończ” */ w.exercises.forEach((e: any) => { e.exerciseId = idOf(e.exerciseId); e.id = idOf(e.id) ?? uid(); if (e.tplItemId != null) e.tplItemId = idOf(e.tplItemId) ?? undefined; if (!(IMPLS as readonly unknown[]).includes(e.impl)) delete e.impl; /* schemat 15 (decyzja 8c): tylko znany przyrząd */ for (const k of ['repMin', 'repMax']) e[k] = intIn(e[k], 1, 100); /* runda 49: jak w szablonie */ e.groupId = idOf(e.groupId); { const v = parseNum(e.restSec); e.restSec = v == null || v < 0 ? DEFAULT_REST : Math.min(1800, Math.round(v)); } e.sets = arr(e.sets); e.sets.forEach(fixSet); }); normalizeGroups(w.exercises);
   };
-  raw.bands = arr(raw.bands); raw.bands.forEach((b: any) => { stamp(b); if (b.nominalKg === undefined) b.nominalKg = ''; b.nominalKg = posNum(b.nominalKg) === '' ? '' : kg2(snapL(posNum(b.nominalKg)) as number); /* runda 50 */ if (typeof b.color !== 'string' || !b.color.trim()) b.color = '?'; b.color = b.color.replace(/\s+/g, ' ').trim(); b.level = intIn(b.level, 1, 7) ?? 1; /* runda 51 */ });
+  raw.bands = arr(raw.bands); raw.bands.forEach((b: any) => { stamp(b); delete b.nominalKg; /* T-055: dawna asysta kg gumy (przed P-001) — stara kopia się importuje, pole odpada; starsze wersje aplikacji czytają brak pola jako „bez kg” */ if (typeof b.color !== 'string' || !b.color.trim()) b.color = '?'; b.color = b.color.replace(/\s+/g, ' ').trim(); b.level = intIn(b.level, 1, 7) ?? 1; /* runda 51 */ });
   raw.workouts = arr(raw.workouts).filter(w => tsOf(w.startedAt) != null); raw.workouts.forEach((w: any) => { w.startedAt = tsOf(w.startedAt); }); raw.workouts.forEach((w: any) => { stamp(w, w.finishedAt || w.startedAt); fixWorkout(w); }); raw.workouts = raw.workouts.filter((w: any) => w.exercises.length); /* runda 60: bez pustych sesji w historii (jak po „Zakończ”, B9) */
   // Runda 16: data poranna w formacie RRRR-MM-DD (np. „2026-9-1” z ręcznej edycji → „2026-09-01”); nieczytelne odpadają.
   raw.mornings = arr(raw.mornings).filter(m => typeof m.date === 'string' && /^\d{4}-\d{1,2}-\d{1,2}/.test(m.date)).map((m: any) => { const [y, mo, d] = m.date.slice(0, 10).split(/[-T]/); m.date = `${y}-${mo.padStart(2, '0')}-${d.padStart(2, '0')}`; return m; })
@@ -792,10 +792,8 @@ function usedKeys(ex: Exercise | undefined): Record<typeof VAL_KEYS[number] | 'b
   const m = ex?.metric ?? 'weight_reps'; const bw = !!ex && isBW(ex);
   return { weight: hasWeight(m) && !bw, addKg: hasWeight(m) && bw, reps: hasReps(m), durationSec: hasTime(m), distanceM: hasDistance(m), bandId: !!ex?.bandAssistable /* runda 11: guma tylko przy asyście gumą */ };
 }
-/** Runda 52: guma wstawiona bez asysty (z podpowiedzi, szablonu, poprzedniej serii) dostaje swoją znaną asystę — guma i asysta to para. */
-function pairAssist(_s: WSet) { /* P-001 (02.10.2026): gumy bez kilogramów — guma nie wstawia już asysty kg (dawne nominalKg zostaje w danych tylko dla zgodności kopii; do usunięcia: T-055) */ }
 /** Czyści w serii pola, których metryka nie używa (wartości skopiowane ze starszej sesji). */
-function stripUnused(ex: Exercise | undefined, s: WSet): WSet { const u = usedKeys(ex); for (const k of VAL_KEYS) if (!u[k]) (s as any)[k] = ''; /* P-001: zdjęta guma nie zabiera już ±kg (dawniej runda 49) */ if (!u.bandId || (s.bandId && !bandById(s.bandId))) s.bandId = ''; /* runda 16: usunięta guma nie wraca */ if (u.addKg) pairAssist(s); /* runda 53: tylko gdy ćwiczenie używa ±kg */ return s; }
+function stripUnused(ex: Exercise | undefined, s: WSet): WSet { const u = usedKeys(ex); for (const k of VAL_KEYS) if (!u[k]) (s as any)[k] = ''; /* P-001: zdjęta guma nie zabiera już ±kg (dawniej runda 49) */ if (!u.bandId || (s.bandId && !bandById(s.bandId))) s.bandId = ''; /* runda 16: usunięta guma nie wraca */ return s; }
 const isEmpty = (v: unknown) => v === '' || v == null;
 /** Runda 72 (T5): seria z asystą gumy, której nie da się odtworzyć (guma usunięta albo asysta gumą wyłączona) — jej powtórzenia bez asysty
  * zapisałyby trudniejsze ćwiczenie (fałszywy rekord), więc z takiej serii nie przepisujemy żadnych wartości. */
@@ -817,7 +815,7 @@ function fillFromHints(e: WExercise, si: number) {
   /* weryfikacja 2 (siatka bezpieczeństwa): ciężar z podpowiedzi wstrzymany, a pole ciężaru puste — nie wstawiamy nic (ani powtórzeń z podpowiedzi,
    * ani dolnej granicy zakresu); nigdy „ciężar pusty + powtórzenia z podpowiedzi”. Puste pola zostają dla zwykłej kontroli przy ✓ i „Zakończ”. */
   if (offW && uses.weight && isEmpty(s.weight)) { s.hinted = undefined; return; }
-  if (p && !assistLost(ex, p)) { const kgEmpty = isEmpty(s.addKg); for (const k of VAL_KEYS) if (uses[k] && isEmpty(s[k]) && !isEmpty(p[k]) && !(k === 'weight' && offW) && !(k === 'addKg' && ((uses.bandId && s.bandId && s.bandId !== p.bandId) /* runda 66: ukryta guma nie blokuje +kg */ || (s.noBand && p.bandId) || (p.bandId && (!uses.bandId || !bandById(p.bandId)))))) { /* runda 47: guma zdjęta ręcznie — bez jej asysty */ /* runda 46: asysta innej gumy nie trafia do tej serii */ (s as any)[k] = p[k]; hinted[k] = p[k]; } if (uses.bandId && !s.bandId && !s.noBand && p.bandId && bandById(p.bandId) && kgEmpty) { s.bandId = p.bandId; hinted.bandId = p.bandId; } if (hinted.bandId && uses.addKg && isEmpty(s.addKg)) { pairAssist(s); if (!isEmpty(s.addKg)) hinted.addKg = s.addKg; } }
+  if (p && !assistLost(ex, p)) { const kgEmpty = isEmpty(s.addKg); for (const k of VAL_KEYS) if (uses[k] && isEmpty(s[k]) && !isEmpty(p[k]) && !(k === 'weight' && offW) && !(k === 'addKg' && ((uses.bandId && s.bandId && s.bandId !== p.bandId) /* runda 66: ukryta guma nie blokuje +kg */ || (s.noBand && p.bandId) || (p.bandId && (!uses.bandId || !bandById(p.bandId)))))) { /* runda 47: guma zdjęta ręcznie — bez jej asysty */ /* runda 46: asysta innej gumy nie trafia do tej serii */ (s as any)[k] = p[k]; hinted[k] = p[k]; } if (uses.bandId && !s.bandId && !s.noBand && p.bandId && bandById(p.bandId) && kgEmpty) { s.bandId = p.bandId; hinted.bandId = p.bandId; } /* P-001/T-055: guma z podpowiedzi przychodzi bez kg */ }
   // Brak podpowiedzi i brak wpisu: dolna granica zakresu z szablonu (runda 4: pierwszy trening zapisywał „24×0”).
   if (hasReps(m) && isEmpty(s.reps) && e.repMin != null) { s.reps = e.repMin; hinted.reps = e.repMin; }
   s.hinted = Object.keys(hinted).length ? hinted : undefined;
@@ -866,11 +864,11 @@ export function toggleDone(ei: number, si: number, at?: number): number | null {
     // Czas NIE przechodzi na następną serię: w serii czasowej to cel stopera (przejęcie ucinało kolejną serię — runda 2).
     if (nxt && !nxt.done && sameKind) {
       for (const k of VAL_KEYS) if (k !== 'durationSec' && !(k === 'addKg' && s.bandId && (usedKeys(exById(e.exerciseId)).bandId || Number(s.addKg) < 0)) /* runda 66: ukryta guma blokuje tylko swoją asystę */ && typed.has(k) && isEmpty(nxt[k])) (nxt as any)[k] = s[k];
-      /* Runda 47: guma i jej asysta to para. Przechodzi na następną serię razem (asysta wpisana albo z podpowiedzi), gdy:
+      /* Runda 47: guma przechodzi na następną serię razem z wpisanym ±kg (P-001: guma sama nie wnosi kg), gdy:
          „Poprzednio” nic nie mówi o tej serii, guma nie została w niej zdjęta ręcznie, a seria nie ma własnego, innego obciążenia. */
       const nKg = isEmpty(nxt.addKg) || Number(nxt.addKg) === 0;
       if (s.bandId && usedKeys(exById(e.exerciseId)).bandId /* runda 65 */ && !nxt.noBand && !hintFor(prevOfBlock(e)?.sets, e.sets, si + 1, exById(e.exerciseId)) /* T7: ta sama podpowiedź co na ekranie */ && ((!nxt.bandId && nKg) || nxt.bandId === s.bandId)) {
-        nxt.bandId = s.bandId; if (nKg && !isEmpty(s.addKg)) nxt.addKg = s.addKg; if (usedKeys(exById(e.exerciseId)).addKg) pairAssist(nxt);
+        nxt.bandId = s.bandId; if (nKg && !isEmpty(s.addKg)) nxt.addKg = s.addKg;
       }
     }
     save(a);
@@ -1026,15 +1024,25 @@ export function moveInGroup<T extends Grouped & { id: string }>(list: T[], id: s
   if (dest === i) return false; const [x] = list.splice(i, 1); list.splice(dest, 0, x); save(touched); return true;
 }
 
+/** Następna guma w cyklu przycisku gumy: brak → najcieńsza → … → najgrubsza → brak (wg poziomu). Jedno źródło dla treningu i edytora historii. */
+export function nextBandId(cur: string): string {
+  const sorted = [...getState().bands].sort((a, b) => a.level - b.level); const i = sorted.findIndex(b => b.id === cur);
+  return i < 0 ? (sorted[0]?.id ?? '') : (i + 1 < sorted.length ? sorted[i + 1].id : '');
+}
 /**
- * Po wyborze gumy z podaną asystą: jeśli pole ±kg jest puste lub było asystą, wpisz −nominalKg (0.5).
- * Zdjęcie gumy czyści ±kg tylko wtedy, gdy wartość pochodziła z poprzedniej gumy — ręcznie wpisana asysta zostaje.
+ * Przycisk gumy w serii treningu w toku. P-001/T-055: guma = kolor + poziom 1–7 — wybór, zmiana ani zdjęcie gumy nie zmienia ±kg
+ * (dawna automatyczna asysta −kg gumy usunięta). Zdjęcie gumy zapamiętuje „bez gumy” (runda 47: nie wraca z podpowiedzi).
+ * usesKg = false (ćwiczenie bez pola ±kg): bez ukrytej wartości ±kg (runda 54).
  */
-export function applyBandAssist(s: WSet, prevBandId?: string) {
-  // Runda 51: ujemna asysta należy zawsze do bieżącej gumy. Nowa guma ze znaną asystą ją wstawia (gdy nie ma dociążenia);
-  // zmiana lub zdjęcie gumy zabiera asystę poprzedniej (wpisaną albo wstawioną). Dociążenie (+kg) zostaje.
-  const b = s.bandId ? bandById(s.bandId) : null; const prev = prevBandId && prevBandId !== s.bandId ? bandById(prevBandId) : null; const cur = Number(s.addKg) || 0;
-  void b; void prev; void cur; /* P-001: wybór/zdjęcie gumy nie zmienia już pola ±kg (guma = tylko poziom 1–7) */
+export function cycleBand(s: WSet, usesKg = true) {
+  s.bandId = nextBandId(s.bandId); if (s.bandId) delete s.noBand; else s.noBand = true;
+  if (!usesKg) s.addKg = ''; save(getState().active);
+}
+/** Usunięcie gumy (ekran Gumy). Runda 48: trening w toku nie trzyma usuniętej gumy w nieodhaczonych seriach; T13: odhaczone zostają
+ * z gumą (pokażą „?”, jak w historii); P-001: ±kg zostaje — guma nie ma kilogramów. */
+export function deleteBand(id: string) {
+  const st = getState(); st.bands = st.bands.filter(x => x.id !== id);
+  st.active?.exercises.forEach(e => e.sets.forEach(s => { if (s.bandId === id && !s.done) s.bandId = ''; })); save();
 }
 
 /** Trwały stan timera — zapisywany natychmiast (bez debounce), bo chodzi o przeżycie zabicia aplikacji. */

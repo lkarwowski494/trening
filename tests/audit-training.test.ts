@@ -4,7 +4,7 @@ import fc from 'fast-check';
 import * as store from '@/lib/store';
 import * as stats from '@/lib/stats';
 import * as units from '@/lib/units';
-import { fresh, ex, addWorkout } from './helpers';
+import { fresh, ex, addWorkout, legacyBandKg } from './helpers';
 
 const at = (y: number, m: number, d: number, h = 18) => new Date(y, m - 1, d, h).getTime();
 const item = (id: string, exerciseId: string, sets: number) => ({ id, exerciseId, sets, repMin: null, repMax: null, restSec: null, startWeight: '' as const, targetSec: '' as const, groupId: null });
@@ -40,7 +40,7 @@ test('T5-02 same exercise twice in template: back-off block is not prefilled fro
 });
 test('T5-03 deleted band: hint "8@-20" must not be logged as 8 unassisted reps (false e1RM/volume PR)', async () => {
   await fresh(); const s = store.getState();
-  const band = s.bands[0]; band.nominalKg = 20; store.save(band);
+  const band = s.bands[0]; legacyBandKg(band, 20); store.save(band);
   addWorkout(at(2026, 9, 1), [['Chin Up', [{ reps: 8, addKg: -20, bandId: band.id }]]]);
   s.bands = s.bands.filter(b => b.id !== band.id); store.save();
   store.startEmpty(); store.addExerciseToActive(ex('Chin Up')); store.toggleDone(0, 0);

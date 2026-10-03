@@ -4,7 +4,7 @@ import fc from 'fast-check';
 import * as store from '@/lib/store';
 import * as stats from '@/lib/stats';
 import * as backup from '@/lib/backup';
-import { fresh, ex, addWorkout, set } from './helpers';
+import { fresh, ex, addWorkout, set, legacyBandKg } from './helpers';
 
 jest.setTimeout(120000);
 const at = (y: number, m: number, d: number, h = 18) => new Date(y, m - 1, d, h).getTime();
@@ -25,7 +25,7 @@ test('B1 band-only assistance (nominalKg empty) with band deleted: reps not copi
 
 test('B2 "Poprzednio" shown on screen but tick does not use it (assistLost) — hint/UI mismatch', async () => {
   await fresh();
-  const st = store.getState(); const b = st.bands[0]; b.nominalKg = 20;
+  const st = store.getState(); const b = st.bands[0]; legacyBandKg(b, 20);
   addWorkout(at(2026, 9, 1), [['Pull Up', [{ addKg: -20, bandId: b.id, reps: 8 }]]]);
   st.bands = st.bands.filter(x => x.id !== b.id); store.save();
   jest.spyOn(Date, 'now').mockReturnValue(at(2026, 9, 3));

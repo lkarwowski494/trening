@@ -2,7 +2,7 @@
 import * as store from '@/lib/store';
 import * as timer from '@/lib/timer';
 import { fireEvent } from '@testing-library/react-native';
-import { fresh, ex } from './helpers';
+import { fresh, ex, legacyBandKg } from './helpers';
 import { renderApp, flushAll, screen, go, tap, act } from './app';
 
 jest.setTimeout(30000);
@@ -17,7 +17,7 @@ describe('P-001 gumy: tylko kolor i poziom 1–7', () => {
     expect(Math.max(...store.getState().bands.map(b => b.level))).toBe(7);
   });
   test('stare dane z asystą kg gumy: wybór gumy w treningu nie wpisuje ujemnych kg; ręczne ±kg zostaje przy zmianie i zdjęciu gumy', async () => {
-    await fresh(); const st = store.getState(); st.bands.forEach(b => { b.nominalKg = 20; }); const pu = ex('Pull Up'); pu.bandAssistable = true;
+    await fresh(); const st = store.getState(); st.bands.forEach(b => { legacyBandKg(b, 20); }); const pu = ex('Pull Up'); pu.bandAssistable = true;
     store.startEmpty(); store.addExerciseToActive(pu); await store.flush();
     await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())) }); await flushAll(20);
     const s0 = () => store.getState().active!.exercises[0].sets[0];
