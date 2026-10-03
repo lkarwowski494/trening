@@ -4,7 +4,7 @@ import * as store from '@/lib/store';
 import * as stats from '@/lib/stats';
 import { fresh, ex, withDemoTemplates } from '../../tests/helpers';
 import { renderApp, flushAll, screen, type, act } from '../../tests/app';
-import type { Workout, WSet } from '@/lib/seed';
+import { hasWeight, type Workout, type WSet } from '@/lib/seed';
 
 const NS = (process.env.PERF_N ?? '1000,5000').split(',').map(Number) as number[];
 /* zegar spoza Jesta — fałszywe timery (renderApp) podmieniają performance.now */
@@ -47,8 +47,13 @@ test('wydajność', async () => {
     note(n, 'historia: PR jednej sesji (zimny)', cold(() => stats.prMap(store.getState().workouts[n - 1]))); note(n, 'historia: PR innej sesji (ciepły)', ms(() => stats.prMap(store.getState().workouts[n >> 1]), 20));
     const saved = JSON.parse(JSON.stringify(store.getState()));
     t = now(); await renderApp({ saved }); await flushAll(50); note(n, 'start aplikacji + ekran treningu (render)', now() - t);
-    const input = screen.queryAllByLabelText('kg')[0];
-    if (input) { t = now(); for (let i = 0; i < 5; i++) await type(input, String(70 + i)); note(n, 'wpis znaku w pole serii (z renderem)', (now() - t) / 5); }
+    /* runda 82c: pole ciężaru pierwszego bloku z ciężarem — etykieta jak na ekranie (loadLabel z przyrządem bloku; np. „kg/hantel” w Upper A),
+     * nie stałe „kg”, które nie pasowało i pomiar był po cichu pomijany. Brak pola — błąd (getAllByLabelText rzuca), nie pominięcie. */
+    const a0 = store.getState().active!; const b0 = a0.exercises.find(e => { const x = store.exById(e.exerciseId); return x && !store.isBW(x) && hasWeight(x.metric ?? 'weight_reps'); });
+    if (!b0) throw new Error('perf: trening bez bloku z ciężarem — brak pomiaru wpisu');
+    const input = screen.getAllByLabelText(store.loadLabel(store.exById(b0.exerciseId)!, store.liveBlockImpl(b0, a0.locationId)))[0];
+    t = now(); for (let i = 0; i < 5; i++) await type(input, String(70 + i)); note(n, 'wpis znaku w pole serii (z renderem)', (now() - t) / 5);
+    expect(store.getState().active!.exercises.find(e => e.id === b0.id)!.sets[0].weight).toBe(74); /* wpis naprawdę trafił do serii */
     const { router } = require('expo-router');
     t = now(); await act(async () => { router.push('/history'); }); await flushAll(50); note(n, 'zakładka Historia (render)', now() - t);
     t = now(); await act(async () => { router.push('/more/progress?ex=' + ex('Back Squat').id); }); await flushAll(50); note(n, 'Postępy ćwiczenia (render)', now() - t);

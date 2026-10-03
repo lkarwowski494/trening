@@ -1,5 +1,5 @@
 import { useSyncExternalStore } from 'react';
-import { getState, exById, isBW, restFor, occurrence, occurrences, normalizeGroups, assistLost, emptySet, copyVals, stripUnused, previousBlockBefore, offListAt, offListNote, prevFromOther, startLocationId, stampImpl, setHasResult, putHistoryWorkout, localISODate, clampName, NAME_MAX } from './store';
+import { getState, exById, isBW, restFor, occurrence, occurrences, normalizeGroups, assistLost, emptySet, copyVals, stripUnused, previousBlockBefore, offListAt, offListNote, srcSetAt, prevFromOther, startLocationId, stampImpl, setHasResult, putHistoryWorkout, localISODate, clampName, NAME_MAX } from './store';
 import { base, uid, hasTime, hasReps, hasWeight, type Exercise, type Workout, type WExercise, type WSet } from './seed';
 import { t } from './i18n';
 
@@ -116,7 +116,7 @@ function prefillSrc(d: Draft, e: WExercise, before: number) {
   const p = it && tpl ? previousBlockBefore(ex.id, before, occurrence(tpl.items, ii), occurrences(tpl.items, ex.id), it.id, tpl.id, d.sourceId, impl)
     : previousBlockBefore(ex.id, before, occurrence(w.exercises, ei), occurrences(w.exercises, ex.id), e.tplItemId, w.templateId, d.sourceId, impl);
   const src = p ? p.sets.filter(x => x.kind !== 'drop') : []; /* jak startFromTemplate: drop sety nie są źródłem zwykłych serii */
-  const srcOf = (i: number): WSet | null => !src.length ? null : it ? src[Math.min(i, src.length - 1)] : src[src.length - 1];
+  const srcOf = (i: number): WSet | null => srcSetAt(src, i, !!it); /* runda 82c: to samo mapowanie co start z szablonu i ekran treningu */
   return { ex, p, src, it, srcOf };
 }
 /** Pola serii wciąż równe wartości wstawionej przez aplikację (pole zmienione ręcznie wypada). */

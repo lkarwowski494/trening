@@ -4,7 +4,7 @@ import { useRouter } from 'expo-router';
 import { activateKeepAwakeAsync, deactivateKeepAwake } from 'expo-keep-awake';
 import { useTheme } from '@/lib/theme';
 import { Btn, Input, NumInput, Muted } from '@/components/ui';
-import { progressionFor, setActiveLocation, lastActivity, staleSince, staleRef, staleKind, ackStale, markActivity, useForegroundTick, bandA11y, clampName, loadLabelShort, getState, useTick, exById, previousBlockFor, occurrence, occurrences, hintFor, isBW, reps, fmtDur, fmtSec, fmtTime, setSummary, toggleDone, restAfter, roundRest, addSet, removeSet, removeExercise, finishWorkout, cancelWorkout, save, loadLabel, todayReadiness, groupLabels, linkWithNext, unlink, applyBandAssist, findSet, shortBand, setHasValue, locationById, offListNote, liveBlockImpl, listLocFor } from '@/lib/store';
+import { progressionFor, setActiveLocation, lastActivity, staleSince, staleRef, staleKind, ackStale, markActivity, useForegroundTick, bandA11y, clampName, loadLabelShort, getState, useTick, exById, previousBlockFor, occurrence, occurrences, hintFor, isBW, reps, fmtDur, fmtSec, fmtTime, setSummary, toggleDone, restAfter, roundRest, addSet, removeSet, removeExercise, finishWorkout, cancelWorkout, save, loadLabel, todayReadiness, groupLabels, linkWithNext, unlink, applyBandAssist, findSet, shortBand, setHasValue, locationById, offListNote, liveBlockImpl, listLocFor, srcSetAt } from '@/lib/store';
 import { availability, missingLabel } from '@/lib/equipment';
 import { locationLabel } from '@/lib/locations';
 import * as timer from '@/lib/timer';
@@ -234,7 +234,7 @@ function ExerciseBlock({ w, e, ei, onDone, onStartSet, labels, prs }: { w: Worko
    * jedna reguła z edytorem historii (store.offListNote) — tylko źródło „gdzie indziej” albo bez miejsca, tylko wartość serii roboczej (bez drop
    * setów, > 0) spoza listy (wg jednostki), liczone z BIEŻĄCYCH pól: wpisany ciężar chowa dopisek; blok innym przyrządem niż tutaj — bez dopisku.
    * Prefiks „Poprzednio: ‹miejsce›” nadal tylko dla innego, OKREŚLONEGO miejsca (audyt M8 — bez „Poprzednio: bez miejsca”) */
-  const prevOff = offListNote(e, prev, w.locationId, si => hintFor(prev?.sets, e.sets, si, ex));
+  const prevOff = offListNote(e, prev, w.locationId, si => srcSetAt(prev?.sets, si)); /* runda 82c (LOW 1): seria źródła jak przy wstawianiu wartości (srcSetAt: i-ta, dalej ostatnia) — nie hintFor, który za końcem „Poprzednio” nic nie daje */
   const offNote = prevOff != null ? tr('ciężaru {w} nie ma tutaj — wpisz ciężar', { w: fmtW(prevOff) }) : '';
   const impl = liveBlockImpl(e, w.locationId); /* MEDIUM 2: stacja — kolumna „kg/str.” (na stronę); runda 82b (LOW 4): bez miejsc — jak w main */
   const nm = nOcc > 1 ? `${exName(ex)} (${k + 1})` : exName(ex); /* runda 66: dwa bloki tego samego ćwiczenia rozróżnialne dla VoiceOver */

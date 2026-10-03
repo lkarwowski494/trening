@@ -648,7 +648,8 @@ export function listLocFor(e: Pick<WExercise, 'exerciseId' | 'impl'>, locationId
  *  (ii) źródło „Poprzednio” jest „gdzie indziej” (prevFromOther: inne, znane miejsce albo znany, inny przyrząd — tam wartość jest wstrzymana,
  *       kontrakt M3) ALBO to sesja bez miejsca (0.8.5 / web 0.3 — wartość zostaje). To samo, znane miejsce tym samym / nieznanym przyrządem —
  *       nigdy (użytkownik zrobił tam ten ciężar, np. 23 kg przy liście samych parzystych);
- *  (iii) wartość KONKRETNEJ serii roboczej źródła (`srcOf(i)` dla serii i bloku; bez rozgrzewek i drop setów, > 0) nie jest osiągalna tutaj
+ *  (iii) wartość KONKRETNEJ serii roboczej źródła (`srcOf(i)` dla serii i bloku — runda 82c: na obu ekranach srcSetAt, to samo mapowanie co
+ *       wartości wstawiane przy starcie z szablonu; bez rozgrzewek i drop setów, > 0) nie jest osiągalna tutaj
  *       (offListAt — porównanie wg jednostki, hasLoadShown), a pole tej serii jest puste albo wciąż pokazuje tę wartość: wpisany ciężar
  *       (dostępny albo świadomie inny) chowa dopisek — liczone z bieżących pól, przy każdym wpisie.
  * `live(i)` — dodatkowy warunek (edytor: pole ciężaru wciąż wypełnione przez aplikację). Zwraca ciężar (kg) do dopisku albo null. */
@@ -663,6 +664,14 @@ export function offListNote(e: Pick<WExercise, 'exerciseId' | 'impl' | 'sets'>, 
   }
   return null;
 }
+/** Runda 82c (weryfikacja 82a8a16, LOW 1): seria źródła dla serii `i` bloku — JEDNO mapowanie dla wartości wstawianych przez aplikację (start
+ * z szablonu, edytor historii — prefillSrc) i dopisku „ciężaru X nie ma tutaj” (ekran treningu, edytor — offListNote): i-ta seria źródła bez drop
+ * setów, a za końcem źródła — OSTATNIA (szablon 4 serie, poprzednio 2 → serie 3–4 dostają wartość serii 2). Wcześniej ekran treningu porównywał
+ * serię i tylko z i-tą serią „Poprzednio” (hintFor), więc dopisek znikał po wpisaniu ciężaru w serie 1–2, choć serie 3–4 wciąż miały 32 kg spoza
+ * listy. `perSet` false — zawsze ostatnia seria źródła (blok dodany w edytorze historii, prefillFor). Bez źródła — null. */
+export function srcSetAt(sets: readonly WSet[] | null | undefined, i: number, perSet = true): WSet | null {
+  const src = (sets ?? []).filter(x => x.kind !== 'drop'); return src.length ? src[perSet ? Math.min(Math.max(0, i), src.length - 1) : src.length - 1] : null;
+}
 /** Ustawia (albo usuwa) przyrząd bloku wg miejsca treningu. Bez miejsca pole nie powstaje — dane jak przed schematem 15. */
 export function stampImpl(e: WExercise, locationId: string | null | undefined): WExercise {
   const i = implAtLoc(exById(e.exerciseId), locationId); if (i) e.impl = i; else delete e.impl; return e;
@@ -673,7 +682,21 @@ export function stampImpl(e: WExercise, locationId: string | null | undefined): 
  * plakietki braku sprzętu, podpowiedzi i „Poprzednio”. */
 export function setActiveLocation(id: string) {
   const a = getState().active; if (!a || !locationById(id) || a.locationId === id) return;
-  a.locationId = id; a.exercises.forEach(e => { if (!e.sets.some(x => x.done)) stampImpl(e, id); }); save(a);
+  a.locationId = id; restampUntouched(a); save(a);
+}
+/** Reguła L5 (runda 82): przyrząd od nowa tylko dla bloków BEZ odhaczonych serii; blok z odhaczonymi seriami zachowuje przyrząd, którym je zrobiono. */
+function restampUntouched(a: Workout): boolean {
+  let changed = false; a.exercises.forEach(e => { if (e.sets.some(x => x.done)) return; const before = e.impl; stampImpl(e, a.locationId); if (e.impl !== before) changed = true; }); return changed;
+}
+/** Runda 82c (weryfikacja 82a8a16, LOW 2): zmiana sprzętu (pozycja, opcja, ciężary) miejsca treningu W TOKU albo usunięcie tego miejsca — przyrządy
+ * bloków bez odhaczonych serii liczone od nowa (ta sama reguła co setActiveLocation, L5). Wcześniej blok zostawał przy przyrządzie, do którego
+ * miejsce już się nie rozstrzyga (np. RDL na stacji, a po wpisaniu ciężarów hantli — hantle), a listLocFor wyłączał wtedy dla niego listę
+ * miejsca (bez „↑ spróbuj X” z listy, bez dopisku, etykieta „kg/str.”). Usunięte miejsce — blok bez przyrządu (jak bez miejsca). Wołane przez
+ * lib/locations.ts (setEquip, setOpt, setLoad, deleteLocation, locationEdited — edytor ciężarów) PRZED zapisem; inne miejsce niż miejsce treningu
+ * (albo trening bez miejsca, w tym zero miejsc) — nic. Zwraca, czy zmienił się przyrząd któregoś bloku. */
+export function locationEquipChanged(locationId: string): boolean {
+  const a = getState().active; if (!a || !a.locationId || a.locationId !== locationId) return false;
+  return restampUntouched(a);
 }
 /* ---------- workout actions ---------- */
 const newWorkout = (templateId: string | null, templateName: string, locPref?: string | null): Workout => { const st = getState(); const w: Workout = { ...base(st.ownerId), loggedBy: st.ownerId, sessionMode: 'solo', healthUUID: null, templateId, templateName, startedAt: Date.now(), finishedAt: null, note: '', exercises: [] }; const loc = startLocationId(locPref); if (loc) w.locationId = loc; return w; };
@@ -688,7 +711,7 @@ export function startFromTemplate(tpl: Template) {
     const sets: WSet[] = [];
     const n = Math.max(1, Math.min(50, Math.floor(Number(it.sets) || 1)));
     for (let i = 0; i < n; i++) {
-      const p0 = prev ? prev.sets[Math.min(i, prev.sets.length - 1)] : null; const p = assistLost(ex, p0) ? null : p0; /* runda 72: jak przy odhaczaniu */
+      const p0 = srcSetAt(prev?.sets, i); const p = assistLost(ex, p0) ? null : p0; /* runda 72: jak przy odhaczaniu; runda 82c: wspólne mapowanie serii źródła (srcSetAt) */
       const m = ex.metric ?? 'weight_reps';
       const s = { ...blankSet(), ...(p ? copyVals(p) : { weight: (isBW(ex) || !hasWeight(m)) ? '' : (it.startWeight === '' ? '' : Math.max(0, Number(it.startWeight))), /* runda 48 */ addKg: isBW(ex) && hasWeight(m) ? it.startWeight : '', durationSec: hasTime(m) ? it.targetSec : '' }) } as WSet;
       // Cel czasu z szablonu wygrywa z czasem z poprzedniej sesji — inaczej stoper ucinał serię na starym wyniku (runda 2).

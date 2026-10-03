@@ -1,4 +1,4 @@
-import { getState, save, flush, locationById, clampName, NAME_MAX } from './store';
+import { getState, save, flush, locationById, clampName, NAME_MAX, locationEquipChanged } from './store';
 import { base, type Location, type LocEquip } from './seed';
 import { presetEquipment, equipEntry, equipById, LOCATION_PRESET_LABEL, type LocationPreset } from './equipment';
 import { type LoadSpec } from './loads';
@@ -31,8 +31,12 @@ export const canDeleteLocation = (id: string) => { const s = getState().settings
 export function deleteLocation(id: string): boolean {
   const s = getState().settings; if (!canDeleteLocation(id)) return false;
   s.locations = s.locations.filter(l => l.id !== id); if (s.mainLocationId === id) s.mainLocationId = s.locations[0]?.id ?? null;
+  locationEquipChanged(id); /* runda 82c (LOW 2): trening w toku w usuniętym miejscu — bloki bez odhaczonych serii bez przyrządu */
   save(); flush(); return true;
 }
+/** Runda 82c (weryfikacja 82a8a16, LOW 2): KAŻDA zmiana sprzętu miejsca (pozycja, opcja, ciężary — także edytor ciężarów, components/LoadEditor)
+ * idzie tędy: przyrządy bloków treningu w toku bez odhaczonych serii liczone od nowa, gdy to miejsce treningu (store.locationEquipChanged), potem zapis. */
+export function locationEdited(l: Location) { locationEquipChanged(l.id); save(l); }
 /** Pozycja w miejscu (także odznaczona — z zachowanymi ciężarami). */
 export const equipOf = (l: Location, item: string): LocEquip | undefined => l.equipment.find(e => e.item === item);
 /** Pozycja zaznaczona (aktywna). */
@@ -42,12 +46,12 @@ export const activeEquip = (l: Location, item: string): LocEquip | undefined => 
 export function setEquip(l: Location, item: string, on: boolean) {
   if (!equipById(item)) return; const has = equipOf(l, item);
   if (on && !has) l.equipment.push(equipEntry(item, getState().settings.unit)); else if (on && has?.off) delete has.off; else if (!on && has && !has.off) has.off = true; else return;
-  save(l);
+  locationEdited(l);
 }
 export function setOpt(l: Location, item: string, opt: string, on: boolean) {
   const e = activeEquip(l, item); const x = equipById(item); if (!e || !x?.options?.some(o => o.id === opt)) return;
-  e.opts = on ? [...new Set([...e.opts, opt])] : e.opts.filter(o => o !== opt); save(l);
+  e.opts = on ? [...new Set([...e.opts, opt])] : e.opts.filter(o => o !== opt); locationEdited(l);
 }
-export function setLoad(l: Location, item: string, spec: LoadSpec) { const e = activeEquip(l, item); if (!e) return; e.load = spec; save(l); }
+export function setLoad(l: Location, item: string, spec: LoadSpec) { const e = activeEquip(l, item); if (!e) return; e.load = spec; locationEdited(l); }
 /** Nazwa miejsca do wyświetlenia; id usuniętego miejsca → „(usunięte miejsce)”. */
 export const locationLabel = (id: string | null | undefined) => locationById(id)?.name ?? t('(usunięte miejsce)');

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Alert } from 'react-native';
 import { Btn, Chip, Field, Muted, NumInput, Segmented, FieldHint } from '@/components/ui';
 import { useTheme } from '@/lib/theme';
-import { save } from '@/lib/store';
+import { locationEdited } from '@/lib/locations';
 import { LOAD_PRESETS, equipLabel, type EquipItem } from '@/lib/equipment';
 import { achievable, fillRange, convertSpec, validateSpec, rangeCount, LOAD_LIMITS, W_MIN, W_MAX, type LoadSpec, type LoadUnit, type SpecProblem } from '@/lib/loads';
 import { fmtNum } from '@/lib/units';
@@ -41,7 +41,7 @@ const filled = (s: LoadSpec) => s.kind === 'list' ? s.items.length > 0 : s.kind 
 export default function LoadEditor({ loc, entry, item }: { loc: Location; entry: LocEquip; item: EquipItem }) {
   const th = useTheme(); const spec = entry.load; const [rng, setRng] = useState<{ min: number | ''; max: number | ''; step: number | '' }>({ min: '', max: '', step: '' }); const [add, setAdd] = useState<number | ''>(''); const [msg, setMsg] = useState('');
   if (!spec) return null;
-  const upd = () => { setMsg(''); save(loc); }; const name = equipLabel(item); const lbl = (s: string) => `${s} — ${name}`;
+  const upd = () => { setMsg(''); locationEdited(loc); }; /* runda 82c (LOW 2): przyrządy bloków treningu w toku w tym miejscu od nowa */ const name = equipLabel(item); const lbl = (s: string) => `${s} — ${name}`;
   const presets = LOAD_PRESETS.filter(p => p.item === item.id);
   const applyPreset = (p: typeof presets[number]) => { const go = () => { entry.load = p.spec(); upd(); };
     if (!filled(spec)) { go(); return; }

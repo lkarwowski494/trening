@@ -33,10 +33,10 @@ const tplAt = (exName: string, locationId?: string, sets = 1) => { const t = sto
 const hist = (at: number, exName: string, sets: Partial<WSet>[], locationId?: string, impl?: Impl) => { const w = addWorkout(at, [[exName, sets]]); if (locationId) w.locationId = locationId; if (impl) w.exercises[0].impl = impl; store.save(); return w; };
 const vals = (sets: { weight: unknown; reps: unknown }[]) => sets.map(s => [s.weight, s.reps]);
 const snapshot = () => JSON.parse(JSON.stringify(store.getState()));
-/** Dopisek dla bloku treningu w toku — jak ekran (ActiveWorkout: offListNote z „Poprzednio” i hintFor). */
-const noteOf = (ei: number) => { const a = store.getState().active!; const e = a.exercises[ei]; const exr = ex(store.exById(e.exerciseId)!.name);
+/** Dopisek dla bloku treningu w toku — jak ekran (ActiveWorkout: offListNote z „Poprzednio” i — od rundy 82c — srcSetAt, jak wstawianie wartości). */
+const noteOf = (ei: number) => { const a = store.getState().active!; const e = a.exercises[ei];
   const k = store.occurrence(a.exercises, ei); const p = store.previousBlockFor(e.exerciseId, k, store.occurrences(a.exercises, e.exerciseId), e.tplItemId, a.templateId, e.impl);
-  return store.offListNote(e, p, a.locationId, si => store.hintFor(p?.sets, e.sets, si, exr)); };
+  return store.offListNote(e, p, a.locationId, si => store.srcSetAt(p?.sets, si)); };
 const show = async () => { await store.flush(); await renderApp({ saved: snapshot() }); await flushAll(10); };
 
 describe('MEDIUM 1 — dopisek tylko dla źródła „gdzie indziej” / bez miejsca i wartości roboczej spoza listy', () => {

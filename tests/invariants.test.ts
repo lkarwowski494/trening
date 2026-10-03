@@ -13,7 +13,18 @@ jest.setTimeout(600000);
 const RUNS = Number(process.env.INV_RUNS || 60);
 /* Runda 82b (weryfikacja 6ea37a3, MEDIUM 2): od 03.10.2026 świeża instalacja nie ma szablonów — każdy przebieg dokłada szablony demonstracyjne
  * (withDemoTemplates), a test sprawdza, że start z szablonu i niezmiennik supersetów szablonów naprawdę się wykonały (inaczej byłyby puste). */
-const ran = { startTpl: 0, tplGroups: 0, tplLink: 0 };
+const ran = { startTpl: 0, tplGroups: 0, tplLink: 0, supersetStart: 0 };
+/* Runda 82c (weryfikacja 82a8a16, LOW 3): szablony demonstracyjne nie mają supersetów, a losowe „startTpl” i „tplLink” nie gwarantują startu z szablonu
+ * z supersetem — każdy przebieg zaczyna się więc od stałego kroku: połączenie dwóch pierwszych pozycji losowo wybranego szablonu, start z niego
+ * (superset w treningu w toku — I2), sprawdzenie i anulowanie; dalej losowa sekwencja od tego samego stanu bez treningu. */
+function supersetStart(ti: number) {
+  const st = store.getState(); const tp = st.templates[ti % st.templates.length]; expect(tp.items.length).toBeGreaterThan(1);
+  store.linkWithNext(tp.items, 0, tp); expect(tp.items[0].groupId).toBeTruthy(); expect(tp.items[1].groupId).toBe(tp.items[0].groupId);
+  store.startFromTemplate(tp); const a = st.active!; const g = a.exercises.filter(e => e.groupId); /* pozycje z ćwiczeniem w bibliotece — zawsze w demo */
+  expect(g.length).toBeGreaterThanOrEqual(2); expect(new Set(g.map(e => e.groupId)).size).toBe(1);
+  check('superset: start z szablonu'); ran.supersetStart++;
+  store.cancelWorkout(); check('superset: anulowanie');
+}
 
 type A =
   | { t: 'startTpl'; i: number } | { t: 'startEmpty' } | { t: 'repeat' } | { t: 'addEx'; i: number }
@@ -151,7 +162,7 @@ function check(where: string) {
     expect([where, 'hist', w.exercises.length > 0, w.exercises.every(e => e.sets.length > 0 && e.sets.every(s => s.done)), (w.finishedAt ?? 0) >= w.startedAt]).toEqual([where, 'hist', true, true, true]);
     const v = store.volume(w); expect([where, 'vol', Number.isFinite(v) && v >= 0]).toEqual([where, 'vol', true]);
   }
-  for (const t of st.templates) { expect([where, 'tplgroups', groupsOk(t.items)]).toEqual([where, 'tplgroups', true]); ran.tplGroups++; }
+  for (const t of st.templates) { expect([where, 'tplgroups', groupsOk(t.items)]).toEqual([where, 'tplgroups', true]); if (t.items.some(it => it.groupId)) ran.tplGroups++; /* runda 82c: liczone tylko szablony z supersetem */ }
   // I6: rekordy i statystyki zawsze skończone.
   for (const e of st.exercises.slice(0, 200)) { const r = stats.recordsFor(e); for (const v of Object.values(r)) if (typeof v === 'number') expect([where, e.name, Number.isFinite(v)]).toEqual([where, e.name, true]); }
   if (st.active) stats.prMap(st.active);
@@ -159,13 +170,14 @@ function check(where: string) {
 
 describe('niezmienniki — losowe sekwencje działań (fast-check)', () => {
   test('po każdym kroku: wczytanie bez zmian, supersety, siatka kg, guma, historia, objętość, rekordy; odhacz+cofnij przywraca serię', async () => {
-    await fc.assert(fc.asyncProperty(fc.array(action, { minLength: 5, maxLength: 70 }), fc.boolean(), async (acts, lb) => {
+    await fc.assert(fc.asyncProperty(fc.array(action, { minLength: 5, maxLength: 70 }), fc.boolean(), fc.nat(12), async (acts, lb, ti) => {
       await fresh(); withDemoTemplates(); if (lb) { store.getState().settings.unit = 'lb'; store.applyPrefs(); }
-      try { acts.forEach((a, i) => { run(a); check(`krok ${i}: ${JSON.stringify(a)}`); }); }
+      try { supersetStart(ti); acts.forEach((a, i) => { run(a); check(`krok ${i}: ${JSON.stringify(a)}`); }); }
       finally { units.applyUnit('kg'); }
     }), { numRuns: RUNS, seed: process.env.INV_SEED ? Number(process.env.INV_SEED) : undefined });
     /* MEDIUM 2: niezmienniki szablonów nie są puste — start z szablonu, łączenie pozycji w superset i sprawdzenie supersetów szablonów się wykonały */
     expect(ran.startTpl).toBeGreaterThan(0); expect(ran.tplLink).toBeGreaterThan(0); expect(ran.tplGroups).toBeGreaterThan(0);
+    expect(ran.supersetStart).toBeGreaterThanOrEqual(Math.max(1, RUNS)); /* runda 82c: start z szablonu z supersetem w KAŻDYM przebiegu */
   });
 });
 
