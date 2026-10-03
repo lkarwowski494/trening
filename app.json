@@ -7,11 +7,6 @@
     "orientation": "portrait",
     "userInterfaceStyle": "automatic",
     "icon": "./assets/icon.png",
-    "splash": {
-      "image": "./assets/icon.png",
-      "backgroundColor": "#12151c",
-      "resizeMode": "contain"
-    },
     "ios": {
       "bundleIdentifier": "pl.lukasz.trening",
       "appleTeamId": "8NQ9GHY8GF",
@@ -56,7 +51,20 @@
       ],
       "@bacons/apple-targets",
       "expo-localization",
-      "expo-sharing"
+      "expo-sharing",
+      "expo-status-bar",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/icon.png",
+          "backgroundColor": "#12151c",
+          "resizeMode": "contain",
+          "imageWidth": 200,
+          "ios": {
+            "enableFullScreenImage_legacy": true
+          }
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true

@@ -17,7 +17,7 @@
 #   "Upper A"                ← wartość pola Nazwa (Input w Field 'Nazwa' = „Name”) — nazwa szablonu z subflows/szablon-testowy.yaml
 #   "Upper A E2E"            ← tekst wpisywany w tym teście
 #   "Back"                   ← 'Wróć' (headerBackTitle w app/_layout.tsx)
-#   "History, tab.*"         ← 'Historia' + etykieta zakładki react-navigation „{label}, tab, {i} of {n}”
+#   "History, tab.*"         ← 'Historia' + etykieta zakładki „{label}, tab, {i} of {n}” (React Navigation; od SDK 56 jej kopia w expo-router — ten sam format)
 #   "+ Log a past workout"   ← '+ Dodaj trening wstecz' (app/(tabs)/history.tsx)
 #   "From a template"        ← 'Z szablonu'       (app/history/add.tsx)
 #   "Upper A, .*"            ← Item: accessibilityLabel „{title}, {sub}” (components/ui.tsx), sub = '{n} ex. · {m} sets' (tu: 2 ex. · 6 sets)

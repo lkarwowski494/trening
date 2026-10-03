@@ -2,7 +2,7 @@
 #
 # Literały (EN z lib/i18n.en.ts / lib/equipment.ts, chyba że zaznaczono inaczej):
 #   "Start from a template"          ← 'Zacznij z szablonu'                 (app/(tabs)/index.tsx)
-#   "More, tab.*" / "Workout, tab.*" ← 'Więcej' / 'Trening' + etykieta zakładki react-navigation „{label}, tab, {i} of {n}”
+#   "More, tab.*" / "Workout, tab.*" ← 'Więcej' / 'Trening' + etykieta zakładki „{label}, tab, {i} of {n}” (React Navigation; od SDK 56 jej kopia w expo-router — ten sam format)
 #   "Settings"                       ← 'Ustawienia'                         (Item w app/(tabs)/more.tsx)
 #   "Training places,.*"             ← 'Miejsca treningu' + sub 'sprzęt w domu, na siłowni, w hotelu…'
 #                                      (Item w app/more/settings.tsx; accessibilityLabel „{title}, {sub}”)

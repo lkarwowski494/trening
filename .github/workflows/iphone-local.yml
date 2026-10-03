@@ -27,12 +27,12 @@ env:
   UDID_SED: 's/[0-9A-Fa-f]{8}-[0-9A-Fa-f]{16}/<UDID>/g; s/(^|[^0-9A-Za-z])[0-9a-fA-F]{40}([^0-9A-Za-z]|$)/\1<UDID>\2/g; s/(^|[^0-9A-Za-z])[0-9a-fA-F]{40}([^0-9A-Za-z]|$)/\1<UDID>\2/g'
 jobs:
   build:
-    runs-on: macos-15
+    runs-on: macos-26  # SDK 56+: Xcode 26.4+ (macos-15 ma najwyżej 26.3)
     timeout-minutes: 90
     steps:
       - uses: actions/checkout@v5
       - name: Select Xcode 26.x
-        # SDK 54 (T-051): najnowszy Xcode 26.x z obrazu macos-15 — `eas build --local` buduje Xcode wybranym na tej maszynie
+        # T-051: najnowszy Xcode 26.x z obrazu macos-26 (dziś 26.6) — `eas build --local` buduje Xcode wybranym na tej maszynie
         # (obraz z eas.json dotyczy tylko buildów w chmurze Expo). Build z Xcode 26 nadaje się też do App Store Connect.
         run: bash scripts/ci/select-xcode.sh 26
       - uses: actions/setup-node@v5
@@ -48,7 +48,7 @@ jobs:
         run: npx --yes eas-cli@$EAS_CLI init --non-interactive --force
       - name: Platforma iOS zgodna z SDK wybranego Xcode (pobranie tylko, gdy jej brak)
         # Bez niej xcodebuild nie znajduje celu „Any iOS Device” (przebieg 37123785083 na Xcode 16.2: „iOS 18.2 is not installed”).
-        # Dla Xcode 26.2/26.3 obraz ma iOS 26.2, więc zwykle nic nie jest pobierane.
+        # Obraz macos-26 ma platformy zgodne z każdym swoim Xcode (dla 26.6: iOS 26.5), więc zwykle nic nie jest pobierane.
         run: bash scripts/ci/ensure-ios-platform.sh
       - name: Build na tej maszynie (eas build --local)
         run: |
