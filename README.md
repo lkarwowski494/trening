@@ -79,6 +79,9 @@ Jednorazowo:
 
 Każda nowa wersja: **Run workflow → akcja `build`** (testy + build ~20–40 min). Link „Install” jest w podsumowaniu
 przebiegu i na expo.dev (Projects → trening → Builds). Nowe urządzenie: `zarejestruj-iphone`, potem `build`.
+Odnowienie podpisu (ok. raz w roku; data w zakładce Więcej w ostatnich 30 dniach, baner 2 dni przed): backup, potem `build`
+i instalacja z linku — dane zostają. Otwarte pytanie (do sprawdzenia przy pierwszym odnowieniu): czy po wygaśnięciu
+certyfikatu dystrybucyjnego trzeba najpierw powtórzyć `konfiguruj-podpis`.
 
 Testy na symulatorze: **Actions → E2E iOS (symulator) → Run workflow** (ręcznie przed wydaniem; scenariusze w `.maestro/`,
 zrzuty ekranu w artefakcie `e2e-ios`). Drogi z Kroków 2–3 (bez podpisu + Sideloadly) zostają jako zapas.

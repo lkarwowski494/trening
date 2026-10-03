@@ -7,17 +7,19 @@ import ActiveWorkout from '@/components/ActiveWorkout';
 import { Alert } from 'react-native';
 import { getState, useTick, finishedWorkouts, startFromTemplate, startEmpty, newTemplate, useForegroundTick, repeatLast, fmtDate, localISODate, getPersistError, getRecovery, clearRecovery, flush, exById } from '@/lib/store';
 import { exportRecovery } from '@/lib/backup';
-import { daysLeft, scheduleReminder } from '@/lib/signing';
+import { signingState, scheduleReminder, renewTexts, type RenewKind } from '@/lib/signing';
 import { t, tp, locale } from '@/lib/i18n';
 import { fmtW, fmtNum } from '@/lib/units';
 
 function SigningBanner() {
-  const [days, setDays] = useState<number | null>(null); const router = useRouter();
+  const [st, setSt] = useState<{ days: number | null; kind: RenewKind }>({ days: null, kind: 'rebuild' }); const router = useRouter();
   const fg = useForegroundTick(); // runda 30: po powrocie z tła (np. następnego dnia) liczymy od nowa
-  useEffect(() => { daysLeft().then(setDays).catch(() => {}); scheduleReminder(); }, [fg]);
-  if (days == null || days > 2) return null;
-  const txt = days < 0 ? t('Podpis aplikacji wygasł — odnów w Sideloadly.') : days === 0 ? t('Podpis aplikacji wygasa dziś.') : t('Podpis aplikacji wygasa za {n} {d}.', { n: days, d: tp(days, 'dzień|dni|dni') });
-  return <Item title={txt} sub={t('Zrób backup i odnów w Sideloadly (ok. 2 min). Dane zostają w telefonie.')} onPress={() => router.push('/more/backup')} />;
+  useEffect(() => { signingState().then(setSt).catch(() => {}); scheduleReminder(); }, [fg]);
+  const days = st.days; if (days == null || days > 2) return null;
+  // T-053: tekst zależy od drogi instalacji — ad hoc (rok) → nowy build w GitHubie; darmowe Apple ID (7 dni) → Sideloadly.
+  const rt = renewTexts(st.kind);
+  const txt = days < 0 ? rt.expired : days === 0 ? t('Podpis aplikacji wygasa dziś.') : t('Podpis aplikacji wygasa za {n} {d}.', { n: days, d: tp(days, 'dzień|dni|dni') });
+  return <Item title={txt} sub={rt.sub} onPress={() => router.push('/more/backup')} />;
 }
 
 /** Problemy z zapisem: błąd zapisu na dysk albo nieczytelne dane przy starcie (kopia odłożona, nie nadpisana). */

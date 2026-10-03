@@ -18,6 +18,8 @@ export const EN: Record<string, string> = {
   'Podpis aplikacji wygasa dziś.': 'App signature expires today.',
   'Podpis aplikacji wygasa za {n} {d}.': 'App signature expires in {n} {d}.',
   'Zrób backup i odnów w Sideloadly (ok. 2 min). Dane zostają w telefonie.': 'Make a backup and renew in Sideloadly (about 2 min). Your data stays on the phone.',
+  'Podpis aplikacji wygasł — zbuduj ją od nowa w GitHubie.': 'App signature expired — rebuild the app on GitHub.',
+  'Zrób backup, potem w GitHubie: Actions → iPhone (EAS) → build i zainstaluj z linku. Dane zostają w telefonie.': 'Make a backup, then on GitHub: Actions → iPhone (EAS) → build, and install from the link. Your data stays on the phone.',
   'Dziś rano': 'This morning', 'sen': 'sleep', 'BB, sen, waga — 20 sekund': 'BB, sleep, weight — 20 seconds',
   'Pierwszy raz? Wybierz szablon niżej, wpisz ciężar i powtórzenia, odhaczaj serie ✓ — przerwa odlicza się sama. Na koniec „Zakończ trening i zapisz”. Szablony i ćwiczenia zmienisz w zakładkach obok.':
     'First time? Pick a template below, enter weight and reps, tick sets ✓ — the rest timer starts by itself. When done, tap “Finish and save workout”. Edit templates and exercises in the other tabs.',
@@ -115,6 +117,7 @@ export const EN: Record<string, string> = {
   'Seria skończona': 'Set finished', 'Minęło {s} s.': '{s} s have passed.',
   'Jutro wygasa podpis aplikacji': 'App signature expires tomorrow',
   'Zrób backup (Więcej → Backup) i odnów w Sideloadly. Dane zostają.': 'Make a backup (More → Backup) and renew in Sideloadly. Your data stays.',
+  'Zrób backup (Więcej → Backup) i zbuduj aplikację od nowa w GitHubie: iPhone (EAS) → build. Dane zostają.': 'Make a backup (More → Backup) and rebuild the app on GitHub: iPhone (EAS) → build. Your data stays.',
 
   /* jednostki w etykietach */
   '{u}/hantel': '{u}/dumbbell', '{u}/strona': '{u}/side', '{u}/stronę': '{u}/side',
