@@ -145,3 +145,17 @@ describe('Q-019 kopia bezpieczeństwa — LOW 3 (nieczytelny zapis) i LOW 4 (wri
     await act(async () => { store.getState().settings.autoBackup = true; }); expect(await backup.autoBackup()).toMatch(/\/Backup\/trening-2026-10-03-120005\.json$/);
   });
 });
+
+describe('audyt 83b-2 (LOW 2): ostrzeżenie „Serie bez ciężaru” zgodne z polem w edytorze', () => {
+  test('masa ciała +10 × 8 → sztanga: zmiana samych powtórzeń nie daje ostrzeżenia, bo pole kg pokazuje 10; puste pole dalej ostrzega', async () => {
+    await fresh(); const st = store.getState();
+    const x = { ...st.exercises.find(y => y.name === 'Back Squat')!, id: 'q18c', name: 'Dip Q18', lib: undefined, equipment: 'masa ciała' as const, loadMode: 'total' as const, metric: 'weight_reps' as const, bandAssistable: false };
+    st.exercises.push(x); store.save(x);
+    const w = addWorkout(Date.now() - 86400e3, [['Dip Q18', [{ addKg: 10, reps: 8 }, { addKg: '', reps: 8 }]]]);
+    store.setEquipment(ex('Dip Q18'), 'sztanga');
+    const d = edit.beginEdit(w.id)!; const sets = d.w.exercises[0].sets;
+    expect(store.loadOf(ex('Dip Q18'), sets[0]).raw).toBe(10); /* to pokazuje pole kg w edytorze */
+    sets[0].reps = 9; sets[1].reps = 9;
+    expect(edit.checkDraft(d.key)).toMatchObject({ noWeight: 1 }); /* tylko seria z pustym polem */
+  });
+});

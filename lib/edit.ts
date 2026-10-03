@@ -1,5 +1,5 @@
 import { useSyncExternalStore } from 'react';
-import { getState, exById, isBW, restFor, occurrence, occurrences, normalizeGroups, assistLost, emptySet, copyVals, stripUnused, previousBlockBefore, offListAt, offListNote, srcSetAt, prevFromOther, startLocationId, stampImpl, setHasResult, putHistoryWorkout, localISODate, clampName, NAME_MAX } from './store';
+import { getState, exById, isBW, restFor, occurrence, occurrences, normalizeGroups, assistLost, emptySet, copyVals, stripUnused, previousBlockBefore, offListAt, offListNote, srcSetAt, prevFromOther, startLocationId, stampImpl, setHasResult, putHistoryWorkout, loadOf, localISODate, clampName, NAME_MAX } from './store';
 import { base, uid, hasTime, hasReps, hasWeight, type Exercise, type Workout, type WExercise, type WSet } from './seed';
 import { t } from './i18n';
 
@@ -252,7 +252,7 @@ export function checkDraft(key: string, now = Date.now()): DraftCheck {
   let dropped = 0;
   w.exercises.forEach(e => { const ex = exById(e.exerciseId); const keep = e.sets.filter(s => d.origVals[s.id] === vals(s) || setHasResult(ex, s)); dropped += e.sets.length - keep.length; e.sets = keep; });
   w.exercises = w.exercises.filter(e => e.sets.length);
-  const noWeight = w.exercises.reduce((a, e) => { const ex = exById(e.exerciseId); return a + (ex && !isBW(ex) && hasWeight(ex.metric ?? 'weight_reps') ? e.sets.filter(s => s.kind !== 'warmup' && (s.weight === '' || s.weight == null) && d.origVals[s.id] !== vals(s)).length : 0); }, 0);
+  const noWeight = w.exercises.reduce((a, e) => { const ex = exById(e.exerciseId); return a + (ex && !isBW(ex) && hasWeight(ex.metric ?? 'weight_reps') ? e.sets.filter(s => s.kind !== 'warmup' && loadOf(ex, s).raw === '' && d.origVals[s.id] !== vals(s)).length /* audyt 83b-2 (LOW 2): jak pole w edytorze (loadOf) — bez ostrzeżenia, gdy pole pokazuje ciężar spod innego sprzętu */ : 0); }, 0);
   /* godziny serii: przy zmianie terminu przesunięte razem ze startem i w granicach [start, koniec] (skrócony trening); serie nowe
    * i zmienione bez godziny dostają ją zaraz po poprzedniej (kolejność PR jak na liście). Weryfikacja 2 (L4): seria nieruszona bez godziny
    * (stare dane) zostaje bez godziny i z dawną przerwą — kopia wraca 1:1. */
