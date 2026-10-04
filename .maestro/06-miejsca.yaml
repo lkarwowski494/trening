@@ -86,8 +86,8 @@ name: Miejsca treningu i filtr ćwiczeń
 # filtr miejsca jako etykieta: „📍 Bodyweight only ✕” zdejmuje filtr
 - tapOn: "Place filter: Bodyweight only.*"
 - extendedWaitUntil: { visible: "unavailable at Bodyweight only are greyed out", timeout: 30000 }
-- assertVisible: "Pull Up,.*"
-# pełna baza (854 ćwiczenia, 04.10.2026): „Pull” daje ~38 wyników, Lat Pulldown jest poza ekranem — zawężenie wyszukiwania
+# pełna baza (854 ćwiczenia, 04.10.2026): „Pull” daje ~38 wyników — Pull Up i Lat Pulldown bywają poza ekranem (Pull Up sprawdzony wyżej,
+# z filtrem); zawężenie wyszukiwania do Lat Pulldown
 - tapOn: "Pull"
 - eraseText: 10
 - inputText: "Lat Pull"
