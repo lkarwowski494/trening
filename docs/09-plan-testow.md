@@ -69,7 +69,7 @@ Dane testowe (od rundy 82, decyzja właściciela 03.10.2026, 08:11 — „Nie pr
 
 ## E. Na telefonie — pierwszy test (weekend 3–4.10.2026)
 
-Stan kodu: 0.8.4 po audycie przed telefonem (runda 77). Kolejność ma znaczenie — każdy krok zależy od poprzedniego.
+Stan kodu: 0.8.4 po audycie przed telefonem (runda 77) — kroki E1–E9 bez zmian. **Test 05.10.2026** (build bbcf1af: SDK 57 + E2, schemat 16) — dodatkowo E10. Kolejność ma znaczenie — każdy krok zależy od poprzedniego.
 
 E1. Build i instalacja — ZROBIONE 02.10.2026 20:37 (droga główna od 02.10: ad hoc przez EAS, README): Actions „iPhone (EAS)” → zarejestruj-iphone (profil w Safari) → konfiguruj-podpis (raz) → build (~6 min w chmurze Expo) → strona buildu w Safari → Install → Tryb dewelopera (pojawia się w Ustawieniach dopiero po instalacji). Pierwszy build: 0fd66ae9, buildNumber 1, uruchomiona na iPhonie. Sideloadly (Kroki 2–3) tylko jako zapas.
 E2. Pierwsze uruchomienie: brak ekranu błędu; szablonów NIE MA (od 0.9.0 — decyzja 03.10.2026, 08:11: ustawiasz je sam) — ekran główny pokazuje „Nie masz jeszcze szablonów…” i „+ Nowy szablon”; język polski; zgoda na powiadomienia przy pierwszej przerwie.
@@ -80,6 +80,7 @@ E6. Apple Health: Ustawienia → zapis do Zdrowia → czy pojawia się systemowe
 E7. Pliki: Pliki → Na moim iPhonie → Trening → Backup — po treningu jest plik JSON; bazy (trening.db) tam nie ma.
 E8. Więcej: data wygaśnięcia podpisu — przy ad hoc ok. 02.10.2027 (rok, nie 7 dni); data pokazuje się dopiero w ostatnich 30 dniach, baner na ekranie głównym 2 dni przed. Od 0.9.0 (runda 83, T-053) tekst przypomnienia przy ad hoc mówi o nowym buildzie w GitHubie, nie o Sideloadly.
 E9. Odczucia: opóźnienie przy wpisywaniu w serii przy długim treningu (Q-020: ok. 80 ms w testach), płynność przeciągania, obsługa jedną ręką, duża czcionka systemowa, tryb jasny/ciemny.
+E10. Zamiana ćwiczenia (E2, docs/14): (a) „⇄ zamień” przed pierwszą serią — propozycje, „↺ cofnij” wraca do A; (b) zamiana po 1–2 seriach — zrobione zostają przy A, B dostaje resztę; w supersecie przerwa dopiero po rundzie; (c) RDL w domu: „inny przyrząd: stacja” → kolumna „kg/str.”; (d) „Zawsze w: Dom” → przy kolejnym starcie szablonu w domu podpowiedź „Zwykle w: Dom…” (nic nie zmienia się samo); (e) po aktualizacji historia, szablony i rekordy bez zmian (migracja 15 → 16); (f) edytor historii: „⇄ zamień” przepina cały blok.
 Co odesłać: zrzuty ekranu + jedno zdanie „co zrobiłem → co się stało → czego się spodziewałem”; przy porażce buildu — log z Actions.
 Znane, nie zgłaszać: Q-004, Q-012…Q-017, Q-020 (backlog).
 
@@ -137,3 +138,4 @@ Znane, nie zgłaszać: Q-004, Q-012…Q-017, Q-020 (backlog).
 | E2 W3 | 04.10.2026 | feature/e2-swap: 965 pass, 80 plików; `npm run verify` — OK | W3 zamienniki per miejsce (docs/14 pkt 4; P1 a, P5a a, P6 a): „Zawsze w”, podpowiedź przy starcie, ✕, przerwa zamiennika, edytor szablonu, migracja M5–M7 | brak | — |
 | E2 D6 | 04.10.2026 | feature/e2-swap: 972 pass, 81 plików; `npm run verify` — OK | D6 zamiana w edytorze historii (docs/14 pkt 5; P3 a, P4 a, P5b a): przepięcie całego bloku, rekordy i „Poprzednio” przeliczone po zapisie, trening wstecz (H7), bez Apple Health, poprawka samego przyrządu | brak | — |
 | E2 audyt | 04.10.2026 | feature/e2-swap: 977 pass, 81 plików; `npm run verify` — OK | niezależny audyt różnicy E2 (docs/14 pkt 10): 0 wysokich, 2 średnie (D6: „Poprzednio” zamiennika w treningu wstecz; przywrócenie zarchiwizowanego oryginału), 2 niskie (cofnięcie po łańcuchu A→B→C z podziałem; M3 wg przypiętego przyrządu w edytorze) | 4, wszystkie z testem i naprawione | — |
+| E2 E2E | 04.10.2026 | E2E `e2e-ios.yml` 7/7 na bbcf1af (przebieg 37198696767; poprawki scenariuszy 03 i 07 — docs/14 pkt 10); `integration/0.9.0` = `feature/e2-swap` (ec8627c) | build na trening 05.10 z bbcf1af | — | — |

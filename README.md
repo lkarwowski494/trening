@@ -3,7 +3,7 @@
 Tracker treningów w stylu Strong: szablony, serie (kg per hantel, powtórzenia, guma, +kg), timer przerw
 z powiadomieniem na zablokowanym ekranie, historia, postępy, poranny wpis (BB/sen/waga), backup JSON.
 Dane trzymane lokalnie w telefonie (SQLite). Od 0.1.1 (ADR-013) każda encja ma UUID, `ownerId`,
-`createdAt`/`updatedAt`, a stan ma `schemaVersion` (dziś 15) i rejestr modułów w ustawieniach.
+`createdAt`/`updatedAt`, a stan ma `schemaVersion` (dziś 16 — E2, docs/14) i rejestr modułów w ustawieniach.
 Od 0.2.0: każde ćwiczenie ma typ metryki (ciężar+powtórzenia / powtórzenia / czas / dystans+czas / ciężar+czas),
 ćwiczenia na czas mają wbudowany stoper serii z automatycznym odhaczeniem, opcjonalne RPE przy serii
 (Ustawienia), a trening ma `loggedBy` i `sessionMode` oraz szkielet encji Feedback / NextSessionInstructions (ADR-016).
@@ -118,7 +118,7 @@ zrzuty ekranu w artefakcie `e2e-ios`). Drogi z Kroków 2–3 (bez podpisu + Side
 ```
 npm ci                      # dokładnie te wersje, co w chmurze (package-lock.json)
 npm run typecheck           # TypeScript, powinno przejść bez błędów
-npm run verify              # typy, tłumaczenia, testy (920+), eksport bundla, kontrola konfiguracji natywnej
+npm run verify              # typy, tłumaczenia, testy (980+), eksport bundla, kontrola konfiguracji natywnej
 ```
 Uwaga (stan na 10.2026): Expo Go z App Store obsługuje tylko najnowsze SDK, a starszej wersji nie da się
 zainstalować na fizycznym iPhonie — projektu na SDK 57 NIE otworzysz w Expo Go z App Store („Project is incompatible

@@ -73,10 +73,10 @@ Stan na 03.10.2026. Kod czytany z `/home/claude/trening-wt-integration`, gałą�
 - **Superserie:** `restAfter` liczy rundy po liczbie zrobionych serii roboczych każdego członka grupy. `normalizeGroups` pilnuje spójności grup. Dokument 10 już postanowił: „przy zamianie zachować `groupId` i `tplItemId`”.
 - **Timery** trzymają `setId`, nie indeksy:
   - przy usuwaniu bloku ekran zatrzymuje stoper i przerwę tego bloku (`dropTimers`) — zamiana musi zrobić to samo dla serii, które znikają;
-  - podtytuł Live Activity powstaje w `lib/timer.ts` — **do sprawdzenia** przy wdrożeniu, czy po zamianie nie pokazuje starej nazwy.
+  - podtytuł Live Activity powstaje w `lib/timer.ts` — **do sprawdzenia** przy wdrożeniu, czy po zamianie nie pokazuje starej nazwy. *(04.10.2026: sprawdzone — podtytuł był zamrażany; dodane `timer.relabel`, docs/14 pkt 3.8)*
 - **Historia:** przy zapisie i migracji (`migrate`, `lib/store.ts:252`) w zakończonych treningach zostają tylko odhaczone serie, a bloki bez nich znikają. Pusty blok po zamianie sam się więc nie zapisze.
 - **Szablony** `TemplateItem` nie mają dziś zamienników. Dokument 10 (pkt 3.3) planuje `TemplateItem.alternates?: { [locationId]: exerciseId }` na E2.
-  - Decyzja 2 (jeden szablon z zamiennikami vs osobne szablony dom/siłownia) jest **wciąż otwarta**.
+  - Decyzja 2 (jeden szablon z zamiennikami vs osobne szablony dom/siłownia) jest **wciąż otwarta**. *(Rozstrzygnięte 04.10.2026: D2 a — niżej, blok decyzji A5.)*
   - Od decyzji 03.10, 08:11 („szablony ustawiam sam”) aplikacja nie może sama zmieniać szablonów.
 - **Edytor historii** (`lib/edit.ts`) ma `draftAddExercise` i `draftRemoveExercise`. Zamiany w nim nie ma i w E2 nie jest konieczna (patrz decyzja D6).
 - **„Powtórz ostatni”** kopiuje to, co faktycznie zrobiono, czyli po zamianie powtórzy zamiennik — zgodnie z zasadą z rundy 2.
@@ -202,7 +202,7 @@ Przy następnym starcie z szablonu w Domu blok A pokazuje podpowiedź „W Domu 
 | 4 | Superseria | B dziedziczy `groupId`; A z samymi odhaczonymi seriami zostaje w grupie. Analiza `restAfter`: blok bez nieodhaczonych serii nie blokuje przerwy ani zamknięcia rundy, ale **musi to pokryć test** (A1-B1-A2 → podział A → przerwa po rundzie, odhaczanie poza kolejnością) |
 | 5 | Przerwa: `restSec` | zostaje przerwa bloku (z pozycji szablonu albo ustawiona „tylko teraz”). Alternatywa: przerwa zapamiętana dla B (`restFor(B)`) — decyzja D4 |
 | 6 | Trwa stoper serii nieodhaczonej, która znika | zatrzymać jak przy „usuń” (`dropTimers`); trwająca przerwa po odhaczonej serii A trwa dalej (seria zostaje w A) |
-| 7 | Live Activity | po zamianie odświeżyć podtytuł, jeśli zawiera nazwę ćwiczenia (**do sprawdzenia** w `lib/timer.ts`) |
+| 7 | Live Activity | po zamianie odświeżyć podtytuł, jeśli zawiera nazwę ćwiczenia (**do sprawdzenia** w `lib/timer.ts`; 04.10.2026: zrobione — `timer.relabel`, docs/14 pkt 3.8) |
 | 8 | B już jest w treningu | dozwolone, dopisek w propozycjach; zmienia się numeracja wystąpień `k` innych bloków B → test „Poprzednio” dla obu |
 | 9 | Cofnięcie | „↺ cofnij zamianę”, dopóki B nie ma odhaczonych serii: w przypadku 1 → blok wraca do A (wartości liczone od nowa); w przypadku 2 → serie B wracają do bloku A nad nim (scalenie), B znika |
 | 10 | Zamiana zamiennika (A→B→C) | C dostaje `swappedFrom = A` (oryginał z szablonu), żeby „cofnij” i ranking wskazywały pozycję szablonu |
