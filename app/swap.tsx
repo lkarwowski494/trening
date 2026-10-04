@@ -3,8 +3,9 @@ import { ScrollView, Pressable, Text } from 'react-native';
 import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
 import { useTheme } from '@/lib/theme';
 import { Screen, Item, Muted, Empty, SectionTitle } from '@/components/ui';
-import { getState, useTick, exById, swapBlock, canUndoSwap } from '@/lib/store';
-import { swapCandidates, reasonText, SWAP_TOP } from '@/lib/swap';
+import { getState, useTick, exById, swapBlock, swapImpl, canUndoSwap, locationById } from '@/lib/store';
+import { swapCandidates, reasonText, otherImpls, implLabel, SWAP_TOP } from '@/lib/swap';
+import type { Impl } from '@/lib/seed';
 import { afterSwap, confirmUndoSwap } from '@/components/ActiveWorkout';
 import { t, exName } from '@/lib/i18n';
 
@@ -25,6 +26,9 @@ export default function SwapScreen() {
   const props = swapCandidates(ex.id, { locationId: a.locationId, showAll: false, inWorkout: inW }).slice(0, SWAP_TOP);
   const pick = (toId: string) => { if (chosen.current) return; chosen.current = true; const r = swapBlock(blockId, toId); if (r) afterSwap(r.goneSetIds); close(); };
   const orig = e.swappedFrom ? exById(e.swappedFrom) : undefined;
+  /* D5 (pkt 3.7): inne przyrządy tego ćwiczenia obecne w miejscu treningu; bez miejsca — sekcji nie ma */
+  const impls = otherImpls(ex, locationById(a.locationId), e.impl);
+  const pickImpl = (i: Impl) => { if (chosen.current) return; chosen.current = true; const r = swapImpl(blockId, i); if (r) afterSwap(r.goneSetIds); close(); };
   return (
     <Screen style={{ paddingTop: 10 }}>
       <Stack.Screen options={headerOpts} />
@@ -35,6 +39,8 @@ export default function SwapScreen() {
         {props.length ? props.map((c, i) => { const b = exById(c.exId)!; const sub = [reasonText(c), c.inWorkout ? t('już w treningu') : ''].filter(Boolean).join(' · ');
           return <Item key={c.exId} title={exName(b)} sub={sub} icon="⇄" onPress={() => pick(c.exId)} accessibilityLabel={t('Propozycja {n}: {name}', { n: i + 1, name: exName(b) }) + (sub ? `, ${sub}` : '')} />; })
           : <Empty>{t('Brak podobnych ćwiczeń w tym miejscu — wybierz z całej biblioteki.')}</Empty>}
+        {impls.length ? <><SectionTitle>{t('Ten sam ruch, inny przyrząd')}</SectionTitle>
+          {impls.map(i => <Item key={i} title={`${exName(ex)} — ${implLabel(i)}`} sub={e.impl ? t('zamiast: {name}', { name: implLabel(e.impl) }) : undefined} icon="⇄" onPress={() => pickImpl(i)} accessibilityLabel={t('Inny przyrząd: {impl}', { impl: implLabel(i) })} />)}</> : null}
         <SectionTitle>{t('Inne')}</SectionTitle>
         <Item title={t('Cała biblioteka')} sub={t('wszystkie ćwiczenia z tą samą miarą')} onPress={() => { if (chosen.current) return; chosen.current = true; router.replace(`/picker?target=swap:active:${blockId}`); }} />
       </ScrollView>

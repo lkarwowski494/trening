@@ -278,4 +278,5 @@ export const EN: Record<string, string> = {
   'wszystkie ćwiczenia z tą samą miarą': 'all exercises with the same measure', 'Cofnąć zamianę?': 'Undo swap?', 'Wpisane wartości zamiennika przepadną.': 'Values entered for the substitute will be lost.', 'Cofnij': 'Undo',
   'zamiast: {name}': 'instead of: {name}', 'ostatnio {s}': 'last time {s}', '↺ cofnij': '↺ undo', 'Cofnij zamianę: {name}': 'Undo swap: {name}',
   'Zamień ćwiczenie (brak sprzętu): {name}': 'Swap exercise (missing equipment): {name}', '⇄ zamień': '⇄ swap', 'Zamień ćwiczenie: {name}': 'Swap exercise: {name}',
+  'Ten sam ruch, inny przyrząd': 'Same movement, other equipment', 'Inny przyrząd: {impl}': 'Other equipment: {impl}',
 };

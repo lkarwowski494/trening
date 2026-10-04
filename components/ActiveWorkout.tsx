@@ -4,8 +4,9 @@ import { useRouter } from 'expo-router';
 import { activateKeepAwakeAsync, deactivateKeepAwake } from 'expo-keep-awake';
 import { useTheme } from '@/lib/theme';
 import { Btn, Input, NumInput, Muted } from '@/components/ui';
-import { progressionFor, writeLoad, setActiveLocation, lastActivity, staleSince, staleRef, staleKind, ackStale, markActivity, useForegroundTick, bandA11y, clampName, loadLabelShort, getState, useTick, exById, prevOfActiveBlock, previousFor, canUndoSwap, undoSwap, occurrence, occurrences, hintFor, isBW, reps, fmtDur, fmtSec, fmtTime, setSummary, toggleDone, restAfter, roundRest, addSet, removeSet, removeExercise, finishWorkout, cancelWorkout, save, loadLabel, todayReadiness, groupLabels, linkWithNext, unlink, cycleBand, findSet, shortBand, setHasValue, locationById, offListNote, liveBlockImpl, listLocFor, srcSetAt } from '@/lib/store';
+import { progressionFor, writeLoad, setActiveLocation, lastActivity, staleSince, staleRef, staleKind, ackStale, markActivity, useForegroundTick, bandA11y, clampName, loadLabelShort, getState, useTick, exById, prevOfActiveBlock, previousFor, canUndoSwap, undoSwap, pinnedImpl, occurrence, occurrences, hintFor, isBW, reps, fmtDur, fmtSec, fmtTime, setSummary, toggleDone, restAfter, roundRest, addSet, removeSet, removeExercise, finishWorkout, cancelWorkout, save, loadLabel, todayReadiness, groupLabels, linkWithNext, unlink, cycleBand, findSet, shortBand, setHasValue, locationById, offListNote, liveBlockImpl, listLocFor, srcSetAt } from '@/lib/store';
 import { availability, missingLabel } from '@/lib/equipment';
+import { implLabel } from '@/lib/swap';
 import { locationLabel } from '@/lib/locations';
 import * as timer from '@/lib/timer';
 import { prMap, workoutPRs } from '@/lib/stats';
@@ -269,9 +270,9 @@ function ExerciseBlock({ w, e, ei, onDone, onStartSet, labels, prs }: { w: Worko
   const swappable = e.sets.some(x => !x.done); const openSwap = () => router.push(`/swap?target=active:${e.id}`); const insteadTxt = insteadLine(e);
   const doneStyle = (set: WSet) => set.done ? { backgroundColor: t.done, borderColor: t.doneLine } : undefined;
   const inSS = !!e.groupId;
-  const prog = progressionFor(ex, e.repMax, prev?.sets, listLocFor(e, w.locationId)); /* T-017: cicha podpowiedź progresji; P-003: z ciężarów miejsca; runda 82b (LOW 5): blok innym przyrządem niż tutaj — bez listy miejsca */
+  const prog = progressionFor(ex, e.repMax, prev?.sets, listLocFor(e, w.locationId), pinnedImpl(e)); /* E2 D5: przypięty przyrząd */ /* T-017: cicha podpowiedź progresji; P-003: z ciężarów miejsca; runda 82b (LOW 5): blok innym przyrządem niż tutaj — bez listy miejsca */
   const progText = prog ? (prog.kind === 'reps' ? tr('↑ spróbuj {n} pow.', { n: prog.reps }) : (bw && prog.kg === 0 ? tr('↑ spróbuj bez asysty') : tr('↑ spróbuj {v}', { v: (bw && prog.kg > 0 ? '+' : '') + fmtW(prog.kg) }))) : '';
-  const headMeta = [hasReps(m) && e.repMin != null ? reps(e.repMin, e.repMax) + ' ' + tr('pow.') : '', progText, inSS ? tr('superset · przerwa po rundzie {t}', { t: fmtDur(roundRest(ei) ?? e.restSec) }) /* T7: przerwa po zamknięciu rundy, niezależnie od kolejności odhaczania */ : tr('przerwa') + ' ' + fmtDur(e.restSec), ex.tempo].filter(Boolean).join(' · ');
+  const headMeta = [e.implPinned && e.impl ? implLabel(e.impl) /* E2 D5: przyrząd wybrany ręcznie */ : '', hasReps(m) && e.repMin != null ? reps(e.repMin, e.repMax) + ' ' + tr('pow.') : '', progText, inSS ? tr('superset · przerwa po rundzie {t}', { t: fmtDur(roundRest(ei) ?? e.restSec) }) /* T7: przerwa po zamknięciu rundy, niezależnie od kolejności odhaczania */ : tr('przerwa') + ' ' + fmtDur(e.restSec), ex.tempo].filter(Boolean).join(' · ');
   // Szerokość: czy kolumna „Poprzednio” zmieści się w wierszu (ekran − marginesy 2×14).
   const { prevInline, W } = rowLayout(m, band, showRpe, width);
   // „Poprzednio” po numerze serii roboczej: rozgrzewki w tym treningu nie przesuwają podpowiedzi.

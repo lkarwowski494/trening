@@ -87,4 +87,20 @@ describe('W1 — ekran treningu i arkusz zamiany', () => {
     await tap(screen.getByLabelText(/^Suggestion 1: /)); await flushAll(20);
     expect(JSON.stringify(screen.toJSON())).toMatch(/instead of: Bench Press \(Barbell\)/);
   });
+
+  test('D5: sekcja „Ten sam ruch, inny przyrząd” — RDL w Domu: stacja; wybór przypina przyrząd (kolumna kg/str.)', async () => {
+    await renderApp({ saved: await savedWith(['RDL (hantle/linki)']) }); await flushAll(20);
+    expect(blk(0).impl).toBe('dumbbell');
+    await tap(screen.getByLabelText('Zamień ćwiczenie: RDL (hantle/linki)')); await flushAll(20);
+    expect(screen.getByText('Ten sam ruch, inny przyrząd')).toBeTruthy();
+    await tap(screen.getByLabelText('Inny przyrząd: stacja')); await flushAll(20);
+    expect(blk(0)).toMatchObject({ impl: 'electric', implPinned: true }); expect(screen.getAllByText('kg/str.').length).toBeGreaterThan(0);
+    await tap(screen.getByLabelText('Zamień ćwiczenie: RDL (hantle/linki)')); await flushAll(20);
+    expect(screen.getByLabelText('Inny przyrząd: hantle')).toBeTruthy(); expect(screen.queryByLabelText('Inny przyrząd: stacja')).toBeNull();
+  });
+  test('D5: bez miejsca — sekcji nie ma', async () => {
+    await renderApp({ saved: await savedWith(['RDL (hantle/linki)'], { places: false }) }); await flushAll(20);
+    await tap(screen.getByLabelText('Zamień ćwiczenie: RDL (hantle/linki)')); await flushAll(20);
+    expect(screen.queryByText('Ten sam ruch, inny przyrząd')).toBeNull();
+  });
 });

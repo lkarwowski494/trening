@@ -258,3 +258,51 @@ describe('W1: zamiana w treningu w toku', () => {
     expect(a.exercises[1].sets[0].weight).toBe(30);
   });
 });
+
+/* ---------- D5: ten sam ruch, inny przyrząd (docs/14 pkt 3.7; P2 — interpretacja z docs/14 pkt 9) ---------- */
+import { loadsFor } from '@/lib/equipment';
+describe('D5: inny przyrząd', () => {
+  beforeEach(places);
+  const RDL = 'RDL (hantle/linki)';
+
+  test('D5: przyrząd przypięty — restampUntouched go nie rusza; „📍” zdejmuje przypięcie z bloku bez serii; lista ciężarów, ↑ i M3 wg przypiętego przyrządu (loadsFor z prefer)', () => {
+    const home = locationById('home')!; const e = ex(RDL);
+    expect(store.implAtLoc(e, 'home')).toBe('dumbbell'); /* hantle mają ciężary (TREXO), więc domyślnie hantle */
+    expect(loadsFor(e, home)).toMatchObject({ kind: 'loads', item: 'db_fixed' });
+    const st = loadsFor(e, home, 'electric'); expect(st).toMatchObject({ kind: 'loads', item: 'electric' }); expect((st as any).loads).toContain(65);
+    expect(loadsFor(e, home, 'barbell')).toEqual(loadsFor(e, home)); /* przyrządu nie ma w miejscu — prefer bez znaczenia */
+    /* historia: RDL na stacji 40 kg/str. (poza listą hantli), RDL hantlami 20 */
+    const w1 = addWorkout(H, [[RDL, [{ weight: 20, reps: 10 }]]]); w1.locationId = 'home'; w1.exercises[0].impl = 'dumbbell';
+    const w2 = addWorkout(H + 86400e3, [[RDL, [{ weight: 40, reps: 10 }]]]); w2.locationId = 'home'; w2.exercises[0].impl = 'electric'; save();
+    workout([[RDL, ['normal', 'normal']], ['Bench Press (hantle)', ['normal']]], 'home');
+    expect(blk(0).impl).toBe('dumbbell');
+    const r = store.swapImpl(blk(0).id, 'electric')!; expect(r.goneSetIds).toHaveLength(2);
+    expect(blk(0)).toMatchObject({ exerciseId: e.id, impl: 'electric', implPinned: true }); expect(blk(0).swappedFrom).toBeUndefined();
+    expect(blk(0).sets.map(s => s.weight)).toEqual([40, 40]); /* „Poprzednio” ze stacji (8c), lista stacji — 40 jest dostępne */
+    expect(store.listLocFor(blk(0), 'home')).toBe('home'); /* przypięty przyrząd jest w miejscu — lista miejsca działa */
+    expect(store.offListAt(e, 'home', 40, store.pinnedImpl(blk(0)))).toBe(false); expect(store.offListAt(e, 'home', 40)).toBe(true); /* wg hantli 40 nie ma */
+    const prog = store.progressionFor(e, 10, [{ ...store.emptySet(), done: true, weight: 40, reps: 10 }], 'home', store.pinnedImpl(blk(0)));
+    expect(prog).toEqual({ kind: 'load', kg: 40.5 }); /* stacja co 0,5 kg/str. */
+    /* restampUntouched (zmiana sprzętu miejsca) nie rusza przypięcia */
+    expect(store.locationEquipChanged('home')).toBe(false); expect(blk(0)).toMatchObject({ impl: 'electric', implPinned: true });
+    /* „📍” na inne miejsce: przypięcie zdjęte, przyrząd od nowa */
+    store.setActiveLocation('gym'); expect(blk(0).implPinned).toBeUndefined(); expect(blk(0).impl).toBe('dumbbell');
+  });
+
+  test('D5 (P2): blok z odhaczoną serią — podział jak przy zamianie: stary przyrząd zostaje z odhaczonymi, nowy blok z resztą', () => {
+    workout([[RDL, ['normal', 'normal', 'normal']]], 'home'); tick(0, 0, { weight: 20, reps: 10 });
+    const r = store.swapImpl(blk(0).id, 'electric')!; const [a0, b0] = getState().active!.exercises;
+    expect(a0).toMatchObject({ impl: 'dumbbell' }); expect(a0.implPinned).toBeUndefined(); expect(a0.sets).toHaveLength(1);
+    expect(b0).toMatchObject({ id: r.blockId, exerciseId: ex(RDL).id, impl: 'electric', implPinned: true, splitFrom: a0.id }); expect(b0.sets.map(s => s.done)).toEqual([false, false]);
+    expect(b0.swappedFrom).toBeUndefined();
+    expect(store.swapImpl(a0.id, 'electric')).toBeNull(); /* wszystkie odhaczone */
+    expect(store.swapImpl(b0.id, 'barbell')).toBeNull(); /* przyrządu nie ma w miejscu */
+  });
+
+  test('Powtórz ostatni po zamianie: implPinned tylko w tym samym miejscu', () => {
+    workout([[RDL, ['normal']]], 'home'); store.swapImpl(blk(0).id, 'electric'); tick(0, 0, { weight: 40, reps: 8 }); store.finishWorkout();
+    store.repeatLast(); expect(blk(0)).toMatchObject({ impl: 'electric', implPinned: true }); store.cancelWorkout();
+    getState().settings.mainLocationId = 'gym'; const last = store.finishedWorkouts()[0]; delete last.locationId; save();
+    store.repeatLast(); expect(getState().active!.locationId).toBe('gym'); expect(blk(0).impl).toBe('dumbbell'); expect(blk(0).implPinned).toBeUndefined();
+  });
+});

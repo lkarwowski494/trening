@@ -226,8 +226,10 @@ function entryCaps(e: LocEquip, x: EquipItem, primary: boolean): Set<string> {
  * 'none' = ćwiczenie z biblioteki z obciążeniem tylko zalecanym (wykroki, russian twist — decyzja 4a), a w miejscu nie ma tego przyrządu;
  * 'unknown' = podpowiedź jak przed P-003 (przyrząd bez wpisanych ciężarów, ćwiczenie własne bez wymagań, nic nie pasuje — audyt H3).
  */
-export function loadsFor(ex: Pick<Exercise, 'loadSource' | 'requires' | 'recommended' | 'loadMode' | 'implements'>, loc: Location | null | undefined): ExLoads {
-  return resolveLoads(ex, loc).res;
+/** `prefer` (E2 D5, docs/14 pkt 3.7.3): przyrząd wybrany ręcznie w bloku (implPinned) — ciężary tylko z pozycji tego przyrządu; gdy go w miejscu nie ma
+ * (implsAt) — bez znaczenia (dobór jak bez niego). */
+export function loadsFor(ex: Pick<Exercise, 'loadSource' | 'requires' | 'recommended' | 'loadMode' | 'implements'>, loc: Location | null | undefined, prefer?: Impl): ExLoads {
+  return resolveLoads(ex, loc, prefer).res;
 }
 /**
  * Decyzja 8c (03.10.2026): przyrząd, którym ćwiczenie robi się w tym miejscu — ten sam dobór co loadsFor (pierwszy rodzaj ciężaru z wpisanymi
@@ -239,9 +241,10 @@ export function implAt(ex: Pick<Exercise, 'loadSource' | 'requires' | 'recommend
   return resolveLoads(ex, loc).impl;
 }
 const implOf = (kind: LoadKind, item: string): Impl => kind === 'cable' && item === 'electric' ? 'electric' : kind;
-function resolveLoads(ex: Pick<Exercise, 'loadSource' | 'requires' | 'recommended' | 'loadMode' | 'implements'>, loc: Location | null | undefined): { res: ExLoads; impl?: Impl } {
+function resolveLoads(ex: Pick<Exercise, 'loadSource' | 'requires' | 'recommended' | 'loadMode' | 'implements'>, loc: Location | null | undefined, prefer?: Impl): { res: ExLoads; impl?: Impl } {
   if (!loc) return { res: { kind: 'unknown' } };
   const kinds = loadKindsFor(ex); if (!kinds.length) return { res: { kind: 'unknown' } };
+  const only = prefer && implsAt(ex, loc).includes(prefer) ? prefer : undefined; /* E2 D5: tylko pozycje przypiętego przyrządu */
   const need = new Set((ex.requires ?? []).flat()); const firsts = new Set((ex.requires ?? []).map(g => g[0]));
   const mode: LoadMode = ex.loadMode ?? 'total'; const nImpl = ex.implements ?? (mode === 'per_dumbbell' ? 2 : 1);
   const valsOf = (e: LocEquip, kind: LoadKind): number[] => {
@@ -252,7 +255,7 @@ function resolveLoads(ex: Pick<Exercise, 'loadSource' | 'requires' | 'recommende
   };
   let present: Impl | undefined;
   for (const kind of kinds) {
-    const of = loc.equipment.flatMap(e => { const x = equipById(e.item); return x && !e.off && x.load === kind ? [{ e, x }] : []; });
+    const of = loc.equipment.flatMap(e => { const x = equipById(e.item); return x && !e.off && x.load === kind && (!only || implOf(kind, e.item) === only) ? [{ e, x }] : []; });
     const hits = (primary: boolean, caps: Set<string>) => of.filter(({ e, x }) => [...entryCaps(e, x, primary)].some(c => caps.has(c)));
     /* kolejność: pozycja dająca wprost PIERWSZĄ możliwość grupy (Lat Pulldown → stos wyciągu do ściągania), potem dowolną wymaganą wprost, potem „przy okazji” */
     let use = hits(true, firsts); if (!use.length) use = hits(true, need); if (!use.length) use = hits(false, need);
