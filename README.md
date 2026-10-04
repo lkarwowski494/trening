@@ -3,7 +3,7 @@
 Tracker treningów w stylu Strong: szablony, serie (kg per hantel, powtórzenia, guma, +kg), timer przerw
 z powiadomieniem na zablokowanym ekranie, historia, postępy, poranny wpis (BB/sen/waga), backup JSON.
 Dane trzymane lokalnie w telefonie (SQLite). Od 0.1.1 (ADR-013) każda encja ma UUID, `ownerId`,
-`createdAt`/`updatedAt`, a stan ma `schemaVersion` (dziś 13) i rejestr modułów w ustawieniach.
+`createdAt`/`updatedAt`, a stan ma `schemaVersion` (dziś 15) i rejestr modułów w ustawieniach.
 Od 0.2.0: każde ćwiczenie ma typ metryki (ciężar+powtórzenia / powtórzenia / czas / dystans+czas / ciężar+czas),
 ćwiczenia na czas mają wbudowany stoper serii z automatycznym odhaczeniem, opcjonalne RPE przy serii
 (Ustawienia), a trening ma `loggedBy` i `sessionMode` oraz szkielet encji Feedback / NextSessionInstructions (ADR-016).
@@ -57,15 +57,22 @@ lib/backup.ts   eksport/import JSON + CSV
 lib/i18n.ts     języki PL/EN (t, tp, exName) + lib/i18n.en.ts słownik
 lib/units.ts    kg/lb (zapis w kg)
 scripts/check-i18n.mjs  kontrola kompletności tłumaczeń
-.github/workflows/ios-unsigned.yml   budowanie .ipa w chmurze (bez Maca, bez płatnego konta)
+.github/workflows/iphone-local.yml   droga główna: podpisany build ad hoc na macOS w GitHub Actions + link instalacji (bez limitu Expo)
+.github/workflows/iphone-eas.yml     rejestracja urządzenia, konfiguracja podpisu, build w chmurze Expo (ostateczność)
+.github/workflows/e2e-ios.yml        testy E2E Maestro na symulatorze iPhone
+.github/workflows/ios-unsigned.yml   budowanie .ipa bez podpisu (zapas dla Sideloadly, bez płatnego konta)
 ```
 
-## Droga główna (od 02.10.2026) — instalacja „ad hoc” przez EAS (płatne konto Apple Developer)
+## Droga główna (od 03.10.2026) — build lokalny „ad hoc” w GitHub Actions (płatne konto Apple Developer)
 Repozytorium: `lkarwowski494/trening` — publiczne od 03.10.2026 (ADR-031), bez licencji: kod do wglądu, wszystkie prawa
 zastrzeżone. Logi, podsumowania i artefakty przebiegów Actions widzi każdy: workflow maskuje UDID, a link rejestracji
 nowego urządzenia na publicznym repo nie powstaje (patrz runbook na Drive: „Rejestracja nowego urządzenia”).
-Build robi chmura Expo (EAS, 15 buildów iOS/mies. za darmo),
-uruchamiany z GitHuba workflow **iPhone (EAS)**. Instalacja z linku na iPhonie, ważna ok. roku, bez kabla i Sideloadly.
+Build robi darmowa maszyna macOS w GitHub Actions — workflow **iPhone (lokalnie, bez limitu Expo)**
+(`iphone-local.yml`: `eas build --local` z tymi samymi certyfikatami i profilami z EAS, potem `eas upload`, który daje
+link do instalacji). Nie zużywa limitu buildów Expo (15 buildów iOS/mies. w darmowym planie, wspólne dla 3 aplikacji).
+Build w chmurze Expo (workflow **iPhone (EAS)**, akcja `build`) to ostateczność — decyzja 03.10.2026. Workflow
+**iPhone (EAS)** zostaje potrzebny do jednorazowej konfiguracji podpisu (niżej). Instalacja z linku na iPhonie, ważna
+ok. roku, bez kabla i Sideloadly.
 Od T-051 aplikacja jest na **Expo SDK 57** (React Native 0.86, React 19.2; minimum iOS 16.4) i wszystkie buildy idą przez
 **Xcode 26**, którego od 28.04.2026 wymaga App Store Connect (także TestFlight). SDK 56+ wymaga Xcode 26.4+, więc workflowy
 na macOS (`ios-unsigned.yml`, `e2e-ios.yml`, `iphone-local.yml`) działają na maszynie `macos-26` i wybierają najnowszy
@@ -82,13 +89,18 @@ Jednorazowo:
 4. GitHub → repozytorium → **Settings → Secrets and variables → Actions → New repository secret** (5 sekretów):
    `EXPO_TOKEN`, `APPLE_TEAM_ID`, `ASC_KEY_ID`, `ASC_ISSUER_ID`, `ASC_API_KEY_P8` (cała treść pliku .p8, razem z liniami BEGIN/END).
 5. **Actions → iPhone (EAS) → Run workflow → akcja `zarejestruj-iphone`**. W podsumowaniu przebiegu jest link —
-   otwórz go na iPhonie w Safari i zainstaluj profil (Ustawienia → Pobrano profil). Tak samo dla kolejnych osób.
+   otwórz go na iPhonie w Safari i zainstaluj profil (Ustawienia → Pobrano profil). Na publicznym repozytorium ta akcja
+   kończy się błędem (link rejestracji byłby widoczny dla wszystkich); iPhone właściciela jest już zarejestrowany,
+   sposób na kolejne urządzenie — T-061.
 6. **Run workflow → akcja `konfiguruj-podpis`** (certyfikat dystrybucyjny + profile dla aplikacji i widżetu).
 7. iPhone: **Ustawienia → Prywatność i ochrona → Tryb dewelopera** (wymagany też dla instalacji ad hoc).
 
-Każda nowa wersja: **Run workflow → akcja `build`** (testy + build ~20–40 min). Link „Install” jest w podsumowaniu
-przebiegu i na expo.dev (Projects → trening → Builds). Nowe urządzenie: `zarejestruj-iphone`, potem `build`.
-Odnowienie podpisu (ok. raz w roku; data w zakładce Więcej w ostatnich 30 dniach, baner 2 dni przed): backup, potem `build`
+Każda nowa wersja: **Actions → iPhone (lokalnie, bez limitu Expo) → Run workflow** (gałąź w polu „Use workflow from”,
+`wyslij` = tak): testy, build na maszynie `macos-26`, `eas upload`. Link „Install” jest w podsumowaniu przebiegu —
+otwórz go w Safari na iPhonie. `wyslij` = nie: tylko sprawdzenie, czy podpisany build przechodzi. Gdy build lokalny
+zawiedzie: **iPhone (EAS) → akcja `build`** (chmura Expo, zużywa limit; link także na expo.dev → Projects → trening → Builds).
+Nowe urządzenie: T-061 (punkt 5) — `iphone-local.yml` używa profilu, który już jest, i nowych urządzeń nie dopisuje.
+Odnowienie podpisu (ok. raz w roku; data w zakładce Więcej w ostatnich 30 dniach, baner 2 dni przed): backup, potem build
 i instalacja z linku — dane zostają. Otwarte pytanie (do sprawdzenia przy pierwszym odnowieniu): czy po wygaśnięciu
 certyfikatu dystrybucyjnego trzeba najpierw powtórzyć `konfiguruj-podpis`.
 
@@ -111,8 +123,8 @@ npm run verify              # typy, tłumaczenia, testy (920+), eksport bundla, 
 Uwaga (stan na 10.2026): Expo Go z App Store obsługuje tylko najnowsze SDK, a starszej wersji nie da się
 zainstalować na fizycznym iPhonie — projektu na SDK 57 NIE otworzysz w Expo Go z App Store („Project is incompatible
 with this version of Expo Go”; Expo Go dla SDK 57 czekało w 10.2026 na zatwierdzenie Apple, dostępne tylko przez `eas go`).
-Pętla rozwoju to: zmiana → `npm run verify` → build IPA (Krok 2) → Sideloadly (Krok 3).
-Szybszą pętlę dałby dev client (`expo-dev-client` + build) albo podniesienie SDK — decyzja na później.
+Pętla rozwoju to: zmiana → `npm run verify` → build lokalny z linkiem instalacji (Droga główna); Kroki 2–3
+(IPA bez podpisu + Sideloadly) to zapas. Szybszą pętlę dałby dev client (`expo-dev-client` + build) — decyzja na później.
 
 ## Krok 2 (zapas, darmowe Apple ID) — zbuduj .ipa bez podpisu (GitHub Actions)
 1. Utwórz puste repozytorium na github.com (New repository, bez README), a w folderze projektu:
@@ -153,7 +165,7 @@ Ten sam kod. Potrzebne: Apple Developer Program ($99/rok), `npm i -g eas-cli`, `
 ## Praca z Claude Code
 Otwórz folder projektu w Claude Code i mów, co zmienić — np. „dodaj wykres objętości w Postępach",
 „zrób superserie", „przenieś przycisk Zakończ wyżej". Po każdej zmianie: `npm run typecheck`,
-`npm run verify`, a gdy jesteś zadowolony — commit, push i ponownie Krok 2–3 (Expo Go z App Store nie obsługuje SDK 57 — patrz Krok 1).
+`npm run verify`, a gdy jesteś zadowolony — commit, push i build lokalny z linkiem instalacji (Droga główna; Kroki 2–3 — zapas) (Expo Go z App Store nie obsługuje SDK 57 — patrz Krok 1).
 Jeśli `npm install` zgłosi konflikt wersji: `npx expo install --fix` dopasowuje pakiety do SDK 57 z `package.json`
 (nie twórz nowego projektu przez `create-expo-app@latest` — dałby najnowsze SDK, niezgodne z tym kodem).
 
