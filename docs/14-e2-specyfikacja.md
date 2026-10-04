@@ -390,7 +390,9 @@ Wynik: **0 wysokich, 2 średnie, 2 niskie** — wszystkie naprawione, każde z t
 
 ### E2E na symulatorze i build na trening 05.10.2026
 
-GOTOWE DO BUILDU: 62d418eb075f5f5784b88b9838d1575d1b4d360d — E2E run 37221502818 7/7, audyt: 0 wysokich / 1 średnich (naprawione) (04.10.2026, 18:35 UTC)
+GOTOWE DO BUILDU: fe5ca7655d11dc79f16fa19da0ac185ce5898d39 — E2E run 37222826222 7/7, audyt: 0 wysokich / 0 średnich (04.10.2026, 19:05 UTC)
+
+*Poprzednio (zastąpione 04.10.2026, 19:05 UTC — Q-024 „×2 dla dwóch linek”; audyt kodu 62d418e..398da2f: w części Q-024 bez wysokich i średnich):* `GOTOWE DO BUILDU: 62d418eb075f5f5784b88b9838d1575d1b4d360d — E2E run 37221502818 7/7, audyt: 0 wysokich / 1 średnich (naprawione) (04.10.2026, 18:35 UTC)`
 
 *Poprzednio (zastąpione 04.10.2026, 18:35 UTC — katalog 270 ćwiczeń: krok 1 i krok b, poprawki audytów katalogu, E2E: limit sterownika XCTest):* `GOTOWE DO BUILDU: 01f2bee15b78f97e2fe90632b064a268b66f4912 — E2E run 37210063301 7/7, audyt: 0 wysokich / 2 średnich (naprawione) (04.10.2026, 16:05 UTC)`
 
