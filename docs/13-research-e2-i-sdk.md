@@ -235,8 +235,8 @@ Przy następnym starcie z szablonu w Domu blok A pokazuje podpowiedź „W Domu 
 > - D1 (c) + D2 (a): zakres rośnie z 3–4 do ok. 5–7 sesji (A3, „Porównanie”: W3 +2–3); schemat 16 z migracją i kopiami —
 >   zgodnie z B/„Kolejność” osobne wydanie po scaleniu SDK 57, nie razem z aktualizacją SDK.
 > - D4: dziś edytor szablonu ma już pole „przerwa s” przy każdej pozycji (`app/template/[id].tsx`, `TemplateItem.restSec`; puste =
->   przerwa z ćwiczenia), więc dla W1 wymaganie jest spełnione. **Otwarte (W3):** czy zamiennik per miejsce („Dom: B”) ma własne
->   pole przerwy — (a) tak, opcjonalne, puste = przerwa pozycji; (b) nie, zawsze przerwa pozycji. Do decyzji właściciela.
+>   przerwa z ćwiczenia), więc dla W1 wymaganie jest spełnione. **W3 (decyzja 04.10.2026: (a)):** zamiennik per miejsce („Dom: B”)
+>   ma własne, opcjonalne pole przerwy — puste = przerwa pozycji szablonu; odrzucone (b): zawsze przerwa pozycji.
 > - D6 (b): w edytorze historii zamiana = przeniesienie serii zapisanych pod złym ćwiczeniem (inne zasady niż w trakcie treningu:
 >   przenosi odhaczone serie, wpływa na rekordy, „Poprzednio” i statystyki) — wymaga własnej specyfikacji i testów przed kodem.
 
