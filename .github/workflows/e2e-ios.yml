@@ -95,6 +95,9 @@ jobs:
         run: |
           mkdir -p e2e-out
           maestro --device "$SIM" test .maestro --format junit --output e2e-out/report.xml --test-output-dir e2e-out
+      - name: Podsumowanie porażki (nieudane polecenie i teksty z ekranu — artefakty bywają nieosiągalne)
+        if: failure()
+        run: python3 scripts/ci/maestro-failures.py e2e-out
       - uses: actions/upload-artifact@v4
         if: always()
         with:

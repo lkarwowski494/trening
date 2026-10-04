@@ -1,0 +1,11 @@
+[
+  {"command": {"launchAppCommand": {"appId": "pl.lukasz.trening"}}, "metadata": {"status": "COMPLETED", "duration": 900}},
+  {"command": {"tapOnElement": {"selector": {"textRegex": "Reorder exercises"}}}, "metadata": {"status": "COMPLETED", "duration": 1200}},
+  {"command": {"assertConditionCommand": {"condition": {"visible": {"textRegex": "Exercise order"}}}}, "metadata": {"status": "FAILED", "duration": 7000,
+    "error": {"message": "Assertion is false: \"Exercise order\" is visible",
+      "hierarchy": {"attributes": {"text": ""}, "children": [
+        {"attributes": {"accessibilityText": "Swap exercise", "text": ""}},
+        {"attributes": {"text": "Suggestion 1: Push Up, same movement"}},
+        {"attributes": {"text": "Device 1A2B3C4D-1111-2222-3333-444455556666"}}
+      ]}}}}
+]
