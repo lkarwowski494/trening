@@ -26,10 +26,11 @@ const MUSCLES = ['klatka', 'plecy', 'barki', 'biceps', 'triceps', 'czworogłowe'
 export function render(catalog) {
   if (!Array.isArray(catalog)) throw new Error('catalog: oczekiwana tablica');
   const names = new Set(); const caps = new Set(); const loads = []; const cables = []; const extra = [];
+  const folded = new Set(); const fold = n => n.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/ł/g, 'l').replace(/\s+/g, ' ').trim(); /* audyt 04.10 (LOW): duplikat po złożeniu nazwy */
   const rows = catalog.map((e, i) => {
     const where = `catalog[${i}] ${e && e.name}`;
     if (!e || typeof e.name !== 'string' || !e.name) throw new Error(where + ': brak nazwy');
-    if (names.has(e.name)) throw new Error(where + ': powtórzona nazwa'); names.add(e.name);
+    if (names.has(e.name)) throw new Error(where + ': powtórzona nazwa'); names.add(e.name); if (folded.has(fold(e.name))) throw new Error(where + ': nazwa powtórzona po złożeniu (wielkość liter, polskie znaki)'); folded.add(fold(e.name));
     if (!Array.isArray(e.requires) || !e.requires.every(g => Array.isArray(g) && g.length && g.every(c => typeof c === 'string' && c))) throw new Error(where + ': requires musi być listą niepustych grup');
     if (!Array.isArray(e.recommended) || !e.recommended.every(c => typeof c === 'string' && c)) throw new Error(where + ': recommended');
     if (!LOAD_SOURCES.includes(e.loadSource)) throw new Error(where + ': loadSource ' + e.loadSource);

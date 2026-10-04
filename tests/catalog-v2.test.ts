@@ -103,3 +103,17 @@ describe('katalog ćwiczeń — ekran', () => {
     const mine = store.newExercise('Moje'); await go(`/exercise/${mine.id}`); await flushAll(20); expect(screen.queryByText('Obciążenie partii (z katalogu)')).toBeNull();
   });
 });
+
+describe('katalog ćwiczeń — audyt 04.10 (znacznik zamiast numeru schematu)', () => {
+  test('dane schematu 16 sprzed katalogu (build 01f2bee) też dostają nowe ćwiczenia — raz; nowa instalacja ma znacznik', async () => {
+    const fx = require('./fixtures/state-090-schema15.json');
+    await fresh(); const raw = JSON.parse(JSON.stringify(fx.state)); raw.schemaVersion = 16; /* jak po instalacji 01f2bee */
+    const m = store.migrate(raw); expect(LIB_EXTRA_NAMES.every(n => m.exercises.some(e => e.name === n))).toBe(true);
+    expect(store.migrate(JSON.parse(JSON.stringify(m))).exercises.length).toBe(m.exercises.length);
+    expect(seedState('pl').libExtra).toBeTruthy(); expect(store.migrate(JSON.parse(JSON.stringify(seedState('pl')))).exercises.length).toBe(LIB.length);
+  });
+  test('kopia web 0.3: ćwiczenie własne o nazwie z nowego katalogu nie staje się ćwiczeniem biblioteki', async () => {
+    await fresh(); const raw: any = { exercises: [{ id: 'x', name: LIB_EXTRA_NAMES[0], group: 'inne', equipment: 'inne' }], templates: [], workouts: [] };
+    const m = store.migrate(raw); expect(m.exercises.find(e => e.id === 'x')!.lib).toBeUndefined();
+  });
+});

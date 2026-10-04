@@ -93,7 +93,7 @@ export interface Settings { defaultRest: number; sound: boolean; wakeLock: boole
 /** P-003: sprzęt w miejscu — pozycja z lib/equipment.ts, zaznaczone opcje i (dla sprzętu z ciężarami) opis dostępnych ciężarów. */
 export interface LocEquip { item: string; opts: string[]; load?: LoadSpec; /** audyt E1 (M5): pozycja odznaczona — opcje i ciężary zostają na wypadek ponownego zaznaczenia */ off?: true }
 export interface Location extends Base { name: string; equipment: LocEquip[] }
-export interface State { v: number; schemaVersion: number; ownerId: string; settings: Settings; exercises: Exercise[]; bands: Band[]; templates: Template[]; workouts: Workout[]; active: Workout | null; mornings: Morning[]; relations: CoachingRelation[]; feedback: Feedback[]; instructions: NextSessionInstructions[]; timer: TimerState; metaUpdatedAt?: number; userTouched?: boolean }
+export interface State { v: number; schemaVersion: number; ownerId: string; settings: Settings; exercises: Exercise[]; bands: Band[]; templates: Template[]; workouts: Workout[]; active: Workout | null; mornings: Morning[]; relations: CoachingRelation[]; feedback: Feedback[]; instructions: NextSessionInstructions[]; timer: TimerState; metaUpdatedAt?: number; userTouched?: boolean; /** katalog 04.10.2026: nowe ćwiczenia biblioteki już dopisane (LIB_EXTRA_REV) */ libExtra?: string }
 
 /** UUID v4 (ADR-013). Fallback losowy tylko gdyby natywny moduł był niedostępny (np. web/testy). */
 export function uid(): string {
@@ -129,6 +129,11 @@ export const muscleLoadOf = (e: Pick<Exercise, 'name' | 'lib'>): [MuscleRegion, 
  * (pola group/equipment/metric/loadMode/muscles), generowane do lib/catalog.generated.ts. */
 const EXTRA = new Map(CATALOG_LIB_EXTRA.map(r => [r[0], r]));
 export const LIB_EXTRA_NAMES: readonly string[] = CATALOG_LIB_EXTRA.map(r => r[0]);
+/** Nazwy 125 ćwiczeń pierwszej wersji (reguły migracji danych sprzed schematu 10 — runda 52/56). */
+export const LIB_BASE_NAMES: ReadonlySet<string> = new Set(LIB_BASE.map(l => l[0]));
+/** Znacznik dopisania ćwiczeń katalogu 04.10.2026 do danych użytkownika (State.libExtra). Audyt 04.10 (HIGH): osobny znacznik, nie numer
+ * schematu — schemat 16 miał już build sprzed katalogu (01f2bee), więc granica „< 16” pomijałaby te dane. */
+export const LIB_EXTRA_REV = 'katalog-2026-10-04';
 export const LIB: [string, Group, Equipment, boolean?][] = [...LIB_BASE, ...CATALOG_LIB_EXTRA.map(r => [r[0], r[1] as Group, r[2] as Equipment, r[3]] as [string, Group, Equipment, boolean])];
 /** Metryka dla pozycji biblioteki innych niż ciężar+powtórzenia. Używane też w migracji (po nazwie). */
 export const METRIC_BY_NAME: Record<string, MetricType> = {
@@ -181,6 +186,6 @@ export function seedState(lng: Lang = 'pl'): State {
     v: 2, schemaVersion: SCHEMA_VERSION, ownerId: LOCAL_OWNER,
     settings: defaultSettings(), exercises,
     bands: [{ ...base(), color: en ? 'red' : 'czerwona', level: 2 }, { ...base(), color: en ? 'black' : 'czarna', level: 4 }, { ...base(), color: en ? 'purple' : 'fioletowa', level: 6 }],
-    templates: [], workouts: [], active: null, mornings: [], relations: [], feedback: [], instructions: [], timer: blankTimer(),
+    templates: [], workouts: [], active: null, mornings: [], relations: [], feedback: [], instructions: [], timer: blankTimer(), libExtra: LIB_EXTRA_REV,
   };
 }
