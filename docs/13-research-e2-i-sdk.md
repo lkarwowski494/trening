@@ -16,7 +16,7 @@ Stan na 03.10.2026. Kod czytany z `/home/claude/trening-wt-integration`, gałą�
 4. **Apple od 28.04.2026 przyjmuje do App Store Connect (także do TestFlight) tylko aplikacje zbudowane w Xcode 26** — potwierdzone [6][7]. Nasze SDK 52 buduje się w Xcode 16.2, więc **TestFlight jest zablokowany**. Instalacja „ad hoc” na Twoim iPhonie dalej działa.
 5. **Rekomendacja dla T-051:** cel **SDK 57**, przejście po jednej wersji na osobnej gałęzi (zalecenie Expo [8]), z punktem kontrolnym na SDK 54. Już SDK 54 odblokowuje TestFlight.
    - SDK 56 i 57 wymagają Xcode 26.4+, którego darmowa maszyna `macos-15` nie ma. Workflowy trzeba przenieść na `macos-26` [9][10].
-   - **Stan realizacji (03.10.2026):** M1 = SDK 54 sprawdzony w CI na macOS (B9); SDK 55 → 56 → 57 zrobione na gałęzi `upgrade/sdk-57` i sprawdzone na Linuksie, natywny build SDK 57 na `macos-26` czeka na uruchomienie workflowów (B10).
+   - **Stan realizacji (03.10.2026):** M1 = SDK 54 sprawdzony w CI na macOS (B9); SDK 55 → 56 → 57 zrobione na gałęzi `upgrade/sdk-57` i sprawdzone na Linuksie, natywny build SDK 57 na `macos-26` sprawdzony w CI — `ios-unsigned`, build lokalny EAS i E2E 6/6 (B10, „Wyniki CI”); zostaje test na telefonie i scalenie.
 6. **Kolejność:** najpierw T-051, a w tym czasie podejmujesz decyzje do E2. Potem implementacja E2 na nowym SDK.
    - **Szacunek:** T-051 to 4–6 sesji, E2 (W1) to 3–4 sesje.
    - Nie łączyć w jednym wydaniu aktualizacji SDK ze zmianą schematu danych — wtedy powrót do poprzedniej wersji aplikacji zostaje bezpieczny.
@@ -591,6 +591,25 @@ względem 56 [4]; regresja pamięci Hermes V1 z SDK 56 (expo/expo#46519) naprawi
 - E2E Maestro na iPhone 17 / iOS 26.5 — inny rozmiar ekranu niż iPhone 16 (402×874 vs 393×852 pt), możliwe drobne różnice w przewijaniu;
 - build lokalny EAS (`iphone-local.yml`) na `macos-26` i instalacja na telefonie (lista z B6, pkt 3), w tym splash i Live Activity.
 
+**Wyniki CI na `macos-26` (03.10.2026, Xcode 26.6):**
+
+| Workflow | Przebieg | Commit | Wynik |
+|---|---|---|---|
+| `ios-unsigned.yml` | 37142743600 | 49d4207 | OK — kompilacja Swift: healthkit 8.7.2 na RN 0.86, reanimated/worklets, `rest-activity` 16.4, widżet z apple-targets 5.0.0 |
+| `iphone-local.yml` (`wyslij = nie`) | 37142745929 | 49d4207 | OK — podpisany build lokalny EAS (profil `adhoc`), IPA z profilem i rozszerzeniem widżetu |
+| `e2e-ios.yml` | 37142744844 | 49d4207 | OK — 6/6 |
+| `e2e-ios.yml` | 37145871451 | 97f8a20 | 4/6 — 2 scenariusze padły na czekaniu, ekran był poprawny; start aplikacji do 103 s, stuknięcie do 16 s |
+| `e2e-ios.yml` | 37148240242 | 8e9fc92 | 5/6 — „Miejsca treningu i filtr ćwiczeń”: powrót na górę długiej listy sprzętu nie zmieścił się w 30 s |
+| `e2e-ios.yml` (aplikacja z 37145871451) | 37149375860 | 97303e1 | OK — 6/6 w 16 min 39 s |
+| `iphone-local.yml` (`wyslij = tak`) | 37182282200 (04.10.2026) | 97303e1 | OK — IPA 10,5 MB (z rozszerzeniem `RestWidget.appex`), `eas upload` dał link do instalacji |
+
+**Limity czasu w Maestro (8e9fc92, 97303e1):** `extendedWaitUntil` 10 → 30 s i 20 → 60 s, `scrollUntilVisible` 30 → 90 s.
+Ten sam kod przechodził 6/6 i padał na czekaniu, więc przyczyną jest prędkość symulatora iPhone 17 na `macos-26`, nie aplikacja
+(w przebiegu 37145871451 zrzut z nieudanego kroku pokazał właściwy ekran). Asercje bez zmian — wydłużone jest tylko oczekiwanie. Koszt: wolniejsze
+wykrycie rzeczywistego braku elementu (do 90 s zamiast 30 s na krok). Te same dwa commity przeniesione na `integration/0.9.0`
+(9e0d751, 37d6437). **Niewyjaśnione:** czy symulator jest wolny zawsze, czy tylko na części maszyn `macos-26` — do obserwacji przy
+kolejnych przebiegach (czas „6/6 Flows Passed in …” w logu).
+
 **Ryzyka i plan B:**
 1. healthkit 8.7.2 nie skompiluje się na RN 0.86 → `expo-build-properties` z `ios.buildReactNativeFromSource: true`, a jeśli to
    nie pomoże — healthkit 16 (Nitro) z przepisaniem `lib/health.ts` (B3).
@@ -601,14 +620,14 @@ względem 56 [4]; regresja pamięci Hermes V1 z SDK 56 (expo/expo#46519) naprawi
    `select-xcode.sh` bierze tylko 26.x, obraz EAS `sdk-57` ma Xcode 26.6. Gdy GitHub/Apple przejdą na Xcode 27 — osobne zadanie.
 4. Wycofanie: każdy krok ma osobny commit (B10, tabela); dane bez zmian schematu (B7).
 
-**Następne kroki:** `ios-unsigned.yml` → `e2e-ios.yml` → `iphone-local.yml` (`wyslij = nie`, potem `tak`) na gałęzi `upgrade/sdk-57`,
-potem test na telefonie (B6) i scalenie.
+**Następne kroki:** ~~`ios-unsigned.yml` → `e2e-ios.yml` → `iphone-local.yml` (`wyslij = nie`, potem `tak`)~~ (wyniki wyżej),
+teraz test na telefonie (B6) i scalenie.
 
 ---
 
 ## Niezweryfikowane / otwarte (zebrane)
 
-- Kompilacja i działanie healthkit 8.7.2 oraz `modules/rest-activity` w Xcode 26.x — na M1 (26.3 / RN 0.81) potwierdzone w CI; na SDK 57 (26.6 / RN 0.86) potwierdzi dopiero build (B10).
+- Działanie healthkit 8.7.2 oraz `modules/rest-activity` (Live Activity) na telefonie — kompilacja w Xcode 26.6 / RN 0.86 potwierdzona w CI (B10, „Wyniki CI”); E2E na symulatorze ich nie obejmuje, więc zostaje test na telefonie (B6).
 - Lista zmian `@bacons/apple-targets` 5.0.0 (brak dostępu do repo przez API) — przejście na 5.0.0 oparte na diffie paczek (B10, pkt 2).
 - ~~Obraz EAS dla SDK 54~~ — sprawdzone 03.10.2026: alias `sdk-54` = `macos-sequoia-15.6-xcode-26.0` (B9).
 - ~~Zgodność eas-cli 24.8.0 z SDK 57~~ — wersja z 24.09.2026, nowsze bez zmian dla naszego przepływu (B10, pkt 10); potwierdzi build lokalny. Limity darmowego EAS Submit — otwarte.
