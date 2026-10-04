@@ -3,10 +3,10 @@ import * as FileSystem from 'expo-file-system/legacy';
 import { useSyncExternalStore } from 'react';
 import { t, t as tr, tIn, applyLang, detectLang, locale, fold } from './i18n';
 import { applyUnit, wu, wOut, wIn, KG_PER_LB, fmtW, fmtNum, snapLegacyLb } from './units';
-import { seedState, uid, base, defaultModules, defaultSettings, metricFor, loadModeFor, loadMult, blankTimer, musclesFor, hasTime, hasReps, hasWeight, hasDistance, METRICS, DEFAULT_REST, GROUPS, LIB, SCHEMA_VERSION, LOCAL_OWNER, MODULES, SET_KINDS, SINGLE_IMPLEMENT, equipFields, libExercise, LIB_EXTRA_REVS, LIB_EXTRA_REV, LIB_MUSCLE_FIXES, libExtraRevOf, LIB_BASE_NAMES, LOAD_SOURCE_BY_EQUIPMENT, IMPLS, type Impl, type SetKind, type Base, type State, type Workout, type WSet, type WExercise, type Exercise, type Template, type TemplateItem, type TemplateAlt, type Morning, type Location } from './seed';
+import { seedState, uid, base, defaultModules, defaultSettings, metricFor, loadModeFor, loadMult, blankTimer, musclesFor, hasTime, hasReps, hasWeight, hasDistance, METRICS, DEFAULT_REST, GROUPS, LIB, SCHEMA_VERSION, LOCAL_OWNER, MODULES, SET_KINDS, SINGLE_IMPLEMENT, equipFields, libExercise, LIB_EXTRA_REVS, LIB_EXTRA_REV, LIB_MUSCLE_FIXES, libExtraRevOf, LIB_BASE_NAMES, LOAD_SOURCE_BY_EQUIPMENT, IMPLS, own, type Impl, type SetKind, type Base, type State, type Workout, type WSet, type WExercise, type Exercise, type Template, type TemplateItem, type TemplateAlt, type Morning, type Location } from './seed';
 import { equipById, loadsFor, implAt, implsAt, blankLoad, availability } from './equipment';
 import { sanitizeLoadSpec, nextHeavier, hasLoadShown } from './loads';
-import { CATALOG, CATALOG_REV } from './catalog.generated';
+import { CATALOG, CATALOG_REV, CABLES } from './catalog.generated';
 
 /*
  * Trwałość: cały stan aplikacji trzymany jako dokument JSON w SQLite (tabela kv).
@@ -451,12 +451,16 @@ export const exMult = (ex: Exercise) => isBW(ex) ? 1 : loadMult(ex.loadMode ?? l
 /** Seria robocza = odhaczona i nie rozgrzewkowa. */
 export const isWorking = (s: WSet) => s.done && s.kind !== 'warmup' && !s.warmup;
 /** Objętość jednej serii — JEDYNA definicja, używana w historii, Postępach, rekordach i PR (audyt 0.8.1). */
-export function setVolume(ex: Exercise, s: WSet): number {
+export function setVolume(ex: Exercise, s: WSet, impl?: Impl | null): number {
   const m = ex.metric ?? 'weight_reps'; if (!isWorking(s) || !hasWeight(m) || !hasReps(m)) return 0;
-  return volOf(ex, effectiveLoad(ex, s), repsOf(s));
+  return volOf(ex, effectiveLoad(ex, s), repsOf(s), impl);
 }
+/** Q-024 (decyzja właściciela 04.10.2026: „×2 dla dwóch linek”): blok na stacji (`impl` 'electric' — ciężar wpisywany NA STRONĘ) przy ćwiczeniu
+ * biblioteki na dwie linki (katalog: CABLES 2) liczy objętość ×2 zamiast mnożnika trybu liczenia (RDL „na hantel” zostaje ×2, nie ×4). Wyciąg siłowni,
+ * hantle, jedna linka, ćwiczenia własne i bloki bez zapisanego przyrządu — bez zmian. */
+export const blockMult = (ex: Exercise, impl?: Impl | null) => !isBW(ex) && impl === 'electric' && ex.lib === true && own(CABLES as Record<string, 1 | 2>, ex.name) === 2 ? 2 : exMult(ex);
 /** Rdzeń setVolume dla znanego obciążenia efektywnego i powtórzeń (runda 74: statystyki liczą je raz na serię). */
-export const volOf = (ex: Exercise, load: number, reps: number) => exMult(ex) * dispKg(load) * reps;
+export const volOf = (ex: Exercise, load: number, reps: number, impl?: Impl | null) => blockMult(ex, impl) * dispKg(load) * reps;
 /** Runda 73 (T13): w lb ciężar serii liczony tak, jak go widać (0,1 lb) — wpis 100 lb zapisany jako 45,35 kg dawał objętość 2999 lb zamiast 3000.
  * Zwraca kg odpowiadające dokładnie wyświetlanej liczbie funtów; w kg bez zmian. */
 const dispKg = (kg: number) => wu() === 'lb' ? wOut(kg) * KG_PER_LB : kg;
@@ -464,7 +468,7 @@ const dispKg = (kg: number) => wu() === 'lb' ? wOut(kg) * KG_PER_LB : kg;
  * NA STRONĘ (decyzja 03.10.2026 „ViShape na stronę”; audyt f132330/025ee6a, MEDIUM 2: wcześniej zmieniała się tylko lista ciężarów, a kolumna
  * mówiła „kg” / „kg/hantel”). Dotyczy każdego ćwiczenia na stacji, także „Przysiad z pasem (linki)”, „Cable Fly”, „RDL (hantle/linki)”.
  * `impl` — przyrząd bloku (WExercise.impl; blockImpl dopowiada go z miejsca, gdy blok go nie ma); bez przyrządu — jak przed P-003.
- * Sama objętość (exMult) się NIE zmienia — otwarte pytanie właściciela w docs/10. */
+ * Objętość: Q-024 (blockMult) — ×2 na stacji przy ćwiczeniach na dwie linki. */
 const perSide = (impl: Impl | null | undefined) => impl === 'electric';
 /** Runda 69 (zrzuty): krótka etykieta kolumny tabeli — pełna zostaje dla VoiceOver. */
 export const loadLabelShort = (ex: Exercise, impl?: Impl | null) => isBW(ex) ? `±${wu()}` : perSide(impl) ? t('{u}/str.', { u: wu() }) : (ex.loadMode === 'per_dumbbell' ? t('{u}/hant.', { u: wu() }) : ex.loadMode === 'unilateral' ? t('{u}/str.', { u: wu() }) : wu());
@@ -664,7 +668,7 @@ export function setScore(ex: Exercise, s: WSet): number {
 export const setHasValue = (s: WSet) => [s.weight, s.reps, s.durationSec, s.distanceM, s.addKg].some(v => v !== '' && v != null);
 export function volume(w: Workout): number {
   let v = 0;
-  w.exercises.forEach(e => { const ex = exById(e.exerciseId); if (!ex) return; e.sets.forEach(s => { v += setVolume(ex, s); }); });
+  w.exercises.forEach(e => { const ex = exById(e.exerciseId); if (!ex) return; e.sets.forEach(s => { v += setVolume(ex, s, e.impl); }); }); /* Q-024: przyrząd bloku */
   return v; // runda 6: bez zaokrąglania w kg — zaokrągla dopiero fmtVol w jednostce wyświetlania (w lb było ±1 lb)
 }
 const blankSet = (): WSet => ({ id: uid(), weight: '', reps: '', durationSec: '', distanceM: '', rpe: '', bandId: '', addKg: '', kind: 'normal', warmup: false, note: '', done: false, completedAt: null, actualRest: null });

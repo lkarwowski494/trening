@@ -1,7 +1,7 @@
 import { t, tp } from './i18n';
 import { fmtW, fmtVol, fmtNum, wu, KG_PER_LB, volOut } from './units';
-import { getState, exById, volume, finishedWorkouts, setSummary, isBW, setLoad, loadOf, effectiveLoad, setVolume, exMult, setScore, isWorking, repsOf, memoHist, memoHistBy, workoutsWith, volOf, fmtSec, fmtDist } from './store';
-import { hasReps, hasWeight, hasTime, hasDistance, type Exercise, type MetricType, type WSet, type Workout } from './seed';
+import { getState, exById, volume, finishedWorkouts, setSummary, isBW, setLoad, loadOf, effectiveLoad, setVolume, blockMult, setScore, isWorking, repsOf, memoHist, memoHistBy, workoutsWith, volOf, fmtSec, fmtDist } from './store';
+import { hasReps, hasWeight, hasTime, hasDistance, type Exercise, type Impl, type MetricType, type WSet, type Workout } from './seed';
 
 /*
  * Statystyki i rekordy (T-030, 0.3). Wszystko liczone z historii — bez osobnych tabel (jedno źródło prawdy: workouts).
@@ -39,9 +39,9 @@ export function totalKind(ex: Exercise): TotalKind | null {
   return null;
 }
 /** Wkład serii do sumy treningu (tylko serie robocze). */
-export function setTotal(ex: Exercise, s: WSet): number {
+export function setTotal(ex: Exercise, s: WSet, impl?: Impl | null): number {
   if (!isWorking(s)) return 0; const k = totalKind(ex);
-  return totalOf(k, ex, s, k === 'objętość treningu' ? setVolume(ex, s) : 0, repsOf(s));
+  return totalOf(k, ex, s, k === 'objętość treningu' ? setVolume(ex, s, impl) : 0, repsOf(s));
 }
 /** Rdzeń setTotal przy znanej objętości serii (setVolume) i powtórzeniach — runda 74: summarize liczy je raz na serię. */
 function totalOf(k: TotalKind | null, ex: Exercise, s: WSet, vol: number, reps: number): number {
@@ -68,8 +68,8 @@ const allSessions = memoHistBy((key: string): Session[] => {
   const exId = key.split('|')[0]; const ex = exById(exId); if (!ex) return [];
   const out: Session[] = [];
   for (const w of workoutsWith(exId)) { /* runda 74: indeks zamiast przejścia po całej historii */
-    const sets: WSet[] = []; for (const e of w.exercises) if (e.exerciseId === exId) for (const s of e.sets) if (isWorking(s)) sets.push(s);
-    if (sets.length) out.push(summarize(ex, w, sets));
+    const sets: WSet[] = []; const impls: (Impl | undefined)[] = []; for (const e of w.exercises) if (e.exerciseId === exId) for (const s of e.sets) if (isWorking(s)) { sets.push(s); impls.push(e.impl); }
+    if (sets.length) out.push(summarize(ex, w, sets, impls));
   }
   return out.reverse();
 });
@@ -85,23 +85,23 @@ export function sessionsFor(ex: Exercise, before?: number): Session[] {
 /** Seria faktycznie wykonana: powtórzenia > 0, a bez powtórzeń — czas (lub dystans) > 0. Runda 58: 50 kg × 0 s nie jest rekordem ciężaru. */
 const performed = (m: MetricType, s: WSet, reps = repsOf(s)) => hasReps(m) ? reps > 0 : hasDistance(m) ? Number(s.distanceM) > 0 || Number(s.durationSec) > 0 /* runda 59: bieg z samym dystansem */ : hasTime(m) ? Number(s.durationSec) > 0 : true;
 /** Runda 74: jedno przejście po seriach (wcześniej dziewięć) — te same definicje (setTotal, setVolume, recE1, setScore), tylko liczone raz. */
-function summarize(ex: Exercise, w: Workout, sets: WSet[]): Session {
+function summarize(ex: Exercise, w: Workout, sets: WSet[], impls: (Impl | undefined)[] = []): Session {
   const m = ex.metric ?? 'weight_reps'; const at = w.startedAt; const W = hasWeight(m), R = hasReps(m), T = hasTime(m), D = hasDistance(m);
   let total = 0, volume = 0, bestE1rm = 0, maxReps = 0, maxDuration = 0, maxDistance = 0, bestSetVolume = 0, maxRepsFree = 0, maxLoad = -Infinity, hasLoad = false;
   // Runda 13: seria bez powtórzeń (np. 140×0) nie jest „najlepszą” — jak przy rekordzie ciężaru (gdy żadna nie jest wykonana — najlepsza ze wszystkich).
   let bestP: WSet | null = null, bestPS = -Infinity, bestA = sets[0], bestAS = setScore(ex, sets[0]);
   const tk = totalKind(ex);
-  for (const s of sets) { /* serie robocze (allSessions) — setVolume = volOf(obciążenie efektywne, powtórzenia) */
+  sets.forEach((s, i) => { /* serie robocze (allSessions) — setVolume = volOf(obciążenie efektywne, powtórzenia, przyrząd bloku — Q-024) */
     const reps = repsOf(s); const sc = setScore(ex, s); if (sc > bestAS) { bestA = s; bestAS = sc; }
     if (performed(m, s, reps)) { if (sc > bestPS) { bestP = s; bestPS = sc; } if (W && !unknownAssist(ex, s)) { maxLoad = Math.max(maxLoad, setLoad(ex, s)); hasLoad = true; } } /* Q-008: guma bez wpisanych kg — obciążenie nieznane, nie „±0” */
-    const load = W && R ? effectiveLoad(ex, s) : 0; const v = W && R ? volOf(ex, load, reps) : 0; volume += v;
+    const load = W && R ? effectiveLoad(ex, s) : 0; const v = W && R ? volOf(ex, load, reps, impls[i]) : 0; volume += v;
     total += totalOf(tk, ex, s, v, reps);
     if (!unknownAssist(ex, s)) { bestSetVolume = Math.max(bestSetVolume, v); if (W && R) bestE1rm = Math.max(bestE1rm, e1rmR(s, load, reps)); }
     if (R && s.kind !== 'drop') maxReps = Math.max(maxReps, reps); /* Q-005: drop set (na zmęczeniu, lżej) to nie „max powtórzeń w serii” — jak przy e1RM */
     if (T) maxDuration = Math.max(maxDuration, Number(s.durationSec) || 0);
     if (D) maxDistance = Math.max(maxDistance, Number(s.distanceM) || 0);
     if (freeOf(ex, s) && s.kind !== 'drop') maxRepsFree = Math.max(maxRepsFree, reps); /* Q-005 (audyt 74): także bez asysty */
-  }
+  });
   return { workout: w, date: at, sets, bestSet: bestP ?? bestA, total, maxLoad: maxLoad === -Infinity ? 0 : maxLoad, hasLoad, bestE1rm, volume, maxReps, maxDuration, maxDistance, bestSetVolume, maxRepsFree };
 }
 
@@ -151,16 +151,16 @@ function raise(ex: Exercise, s: WSet, rec: Records) {
  */
 export function prMap(w: Workout): Map<string, string[]> {
   const out = new Map<string, string[]>(); const at = w.startedAt; const recs = new Map<string, Records>(); const run = new Map<string, number>(); const runU = new Map<string, number>(); const totDone = new Set<string>();
-  const sets: { ex: Exercise; s: WSet; order: number }[] = [];
-  w.exercises.forEach((e, ei) => { const ex = exById(e.exerciseId); if (!ex) return; e.sets.forEach((s, si) => { if (isWorking(s)) sets.push({ ex, s, order: s.completedAt ?? (ei * 1000 + si) }); }); });
+  const sets: { ex: Exercise; s: WSet; order: number; impl?: Impl }[] = [];
+  w.exercises.forEach((e, ei) => { const ex = exById(e.exerciseId); if (!ex) return; e.sets.forEach((s, si) => { if (isWorking(s)) sets.push({ ex, s, order: s.completedAt ?? (ei * 1000 + si), impl: e.impl }); }); });
   sets.sort((a, b) => a.order - b.order);
-  for (const { ex, s } of sets) {
+  for (const { ex, s, impl } of sets) {
     let rec = recs.get(ex.id); if (!rec) { rec = recordsFor(ex, at); recs.set(ex.id, rec); }
     // Runda 72 (T5): pierwsza sesja ćwiczenia nie jest „rekordem” — nowy użytkownik nie dostaje 8 rekordów po pierwszym treningu.
     const k = rec.any ? setPRs(ex, s, rec) : [];
     // Runda 73: suma na treningu — odznaka przy serii, która przebiła najlepszą dotychczasową sumę (raz na ćwiczenie w treningu).
-    const tk = totalKind(ex); if (tk) { const v = (run.get(ex.id) ?? 0) + setTotal(ex, s); run.set(ex.id, v);
-      const u = (runU.get(ex.id) ?? 0) + (setTotal(ex, s) > 0 ? exMult(ex) * repsOf(s) : 0); runU.set(ex.id, u);
+    const tk = totalKind(ex); if (tk) { const st = setTotal(ex, s, impl); const v = (run.get(ex.id) ?? 0) + st; run.set(ex.id, v);
+      const u = (runU.get(ex.id) ?? 0) + (st > 0 ? blockMult(ex, impl) * repsOf(s) : 0); runU.set(ex.id, u);
       if (rec.any && rec.totalAny /* Q-026 (audyt 04.10): bez porównywalnej sumy w historii (np. same serie spod innego sprzętu) — bez rekordu sumy, jak e1rmAny */ && !totDone.has(ex.id) && v > 0 && totalGt(ex, v, rec.bestTotal, u)) { k.push(tk); totDone.add(ex.id); } }
     if (k.length) out.set(s.id, k);
     raise(ex, s, rec);
@@ -176,7 +176,7 @@ export function workoutPRs(w: Workout): WorkoutPR[] {
   // Kolejność odhaczenia jak w prMap: każda późniejsza seria z tym samym rodzajem jest lepsza od wcześniejszej.
   const order = (x: { set: WSet }) => x.set.completedAt ?? 0; const last = new Map<string, typeof out[number]>();
   for (const x of [...out].sort((a, b) => order(a) - order(b))) for (const k of x.kinds) last.set(x.exercise.id + '|' + k, x);
-  const total = (ex: Exercise) => w.exercises.filter(e => e.exerciseId === ex.id).reduce((a, e) => a + e.sets.reduce((b, s) => b + setTotal(ex, s), 0), 0);
+  const total = (ex: Exercise) => w.exercises.filter(e => e.exerciseId === ex.id).reduce((a, e) => a + e.sets.reduce((b, s) => b + setTotal(ex, s, e.impl), 0), 0);
   return out.map(x => ({ ...x, kinds: x.kinds.filter(k => last.get(x.exercise.id + '|' + k) === x) })).filter(x => x.kinds.length)
     .map(x => ({ ...x, details: [...x.kinds].sort((a, b) => (a === 'e1RM' ? 1 : 0) - (b === 'e1RM' ? 1 : 0)) /* T13: najpierw suma (główny rekord), potem e1RM */
       .map(k => k === 'e1RM' ? t('e1RM {v} (seria {s})', { v: fmtW(recE1(x.exercise, x.set)), s: isBW(x.exercise) ? `${fmtW(effectiveLoad(x.exercise, x.set))} × ${repsOf(x.set)}` /* T13: „seria 6” wyglądało jak numer serii */ : setSummary(x.exercise, x.set) }) : t('{k}: {v}', { k: t(k), v: fmtTotal(x.exercise, total(x.exercise)) })) }));
