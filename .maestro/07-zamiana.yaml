@@ -1,5 +1,4 @@
 # E2 (docs/14 pkt 7, Maestro 07): zamiana ćwiczenia w trakcie treningu — W1 „tylko dziś”: zamiana w miejscu, cofnięcie, podział po odhaczonej serii.
-# (Krok D6 — przepięcie w edytorze historii — dopisywany w etapie D6.)
 #
 # Literały (EN z lib/i18n.en.ts / lib/equipment.ts, chyba że zaznaczono inaczej):
 #   "Start from a template", "More, tab.*", "Settings", "Training places,.*", "\+ Add place", "Back", "Workout, tab.*",
@@ -125,6 +124,22 @@ name: Zamiana ćwiczenia w trakcie treningu (E2 W1)
 - assertVisible: ".*Overhead Press \\(Barbell\\).*"
 - assertVisible: ".*Arnold Press.*"
 - takeScreenshot: 35-historia-po-podziale
+
+# --- D6: przepięcie w edytorze historii (docs/14 pkt 5, krok 7) ---
+#   "Edit session", "Save", "Save changes\?" ← jak przepływ 05; „⇄ zamień” w edytorze ma ten sam opis „Swap exercise: X”
+- tapOn: "Edit session"
+- extendedWaitUntil: { visible: "Swap exercise: Overhead Press \\(Barbell\\)", timeout: 30000 }
+- tapOn: "Swap exercise: Overhead Press \\(Barbell\\)"
+- extendedWaitUntil: { visible: "Suggestion \\d: Overhead Press \\(Dumbbell\\).*", timeout: 30000 }
+- takeScreenshot: 38-edytor-arkusz
+- tapOn: "Suggestion \\d: Overhead Press \\(Dumbbell\\).*"
+- extendedWaitUntil: { visible: "Swap exercise: Overhead Press \\(Dumbbell\\)", timeout: 30000 }
+- tapOn: "Save"
+- tapOn: { text: "Save", below: "Save changes\\?", optional: true }
+- extendedWaitUntil: { visible: "Session", timeout: 30000 }
+- assertVisible: ".*Overhead Press \\(Dumbbell\\).*"
+- assertNotVisible: ".*Overhead Press \\(Barbell\\).*"
+- takeScreenshot: 39-historia-po-przepieciu
 
 # --- W3: „Always at Home” w treningu z szablonu i podpowiedź przy ponownym starcie (docs/14 pkt 7, krok 9 — rekomendacja) ---
 #   "Always at Home — X"             ← 'Zawsze w: {l} — {name}' (accessibilityLabel przycisku „Zawsze w: Dom” w linijce „zamiast”)

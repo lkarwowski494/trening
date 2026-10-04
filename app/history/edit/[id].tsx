@@ -79,7 +79,7 @@ export default function EditWorkout() {
 }
 
 function EditBlock({ d, e, ei, labels }: { d: Draft; e: WExercise; ei: number; labels: Record<string, string> }) {
-  const th = useTheme(); const st = getState(); const ex = exById(e.exerciseId);
+  const th = useTheme(); const st = getState(); const ex = exById(e.exerciseId); const router = useRouter();
   const nOcc = occurrences(d.w.exercises, e.exerciseId); const nm = ex ? (nOcc > 1 ? `${exName(ex)} (${occurrence(d.w.exercises, ei) + 1})` : exName(ex)) : t('Usunięte ćwiczenie');
   const m = ex?.metric ?? 'weight_reps'; const bw = !!ex && isBW(ex); const band = !!ex?.bandAssistable; const showRpe = st.settings.showRpe;
   const removeEx = () => Alert.alert(t('Usunąć z treningu?'), nm, [{ text: t('Nie') }, { text: t('Usuń'), style: 'destructive', onPress: () => draftRemoveExercise(d.key, e.id) }]);
@@ -129,6 +129,7 @@ function EditBlock({ d, e, ei, labels }: { d: Draft; e: WExercise; ei: number; l
       {!e.sets.length ? <Muted style={{ fontSize: 13, marginBottom: 6 }}>{t('Bez serii — ćwiczenie nie zostanie zapisane.')}</Muted> : null}
       <View style={s.actions}>
         <Btn title={t('+ seria')} small accessibilityHint={nm} onPress={() => draftAddSet(d.key, ei)} />
+        <Btn title={t('⇄ zamień')} small kind="ghost" accessibilityLabel={t('Zamień ćwiczenie: {name}', { name: nm })} onPress={() => router.push(`/swap?target=edit:${d.key}:${e.id}`)} /* E2 D6 (H1) */ />
         <Btn title={t('usuń')} small kind="ghost" accessibilityLabel={t('Usuń ćwiczenie: {name}', { name: nm })} onPress={removeEx} />
         <Muted style={{ fontSize: 13, alignSelf: 'center' }}>{`${e.sets.length} ${tp(e.sets.length, 'seria|serie|serii')}`}</Muted>
       </View>

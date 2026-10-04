@@ -1,6 +1,7 @@
 import { useSyncExternalStore } from 'react';
-import { getState, exById, isBW, restFor, occurrence, occurrences, normalizeGroups, assistLost, emptySet, copyVals, stripUnused, previousBlockBefore, offListAt, offListNote, srcSetAt, prevFromOther, startLocationId, stampImpl, setHasResult, putHistoryWorkout, loadOf, localISODate, clampName, NAME_MAX } from './store';
-import { base, uid, hasTime, hasReps, hasWeight, type Exercise, type Workout, type WExercise, type WSet } from './seed';
+import { getState, exById, isBW, restFor, occurrence, occurrences, normalizeGroups, assistLost, emptySet, copyVals, stripUnused, previousBlockBefore, offListAt, offListNote, srcSetAt, prevFromOther, startLocationId, stampImpl, setHasResult, putHistoryWorkout, loadOf, writeLoad, localISODate, clampName, NAME_MAX, locationById } from './store';
+import { implsAt, loadKindsFor } from './equipment';
+import { base, uid, hasTime, hasReps, hasWeight, type Exercise, type Impl, type Workout, type WExercise, type WSet } from './seed';
 import { t } from './i18n';
 
 /*
@@ -23,6 +24,8 @@ export interface Draft {
   /** Audyt M2 / weryfikacja 2 (L2): pola wypełnione przez aplikację (id serii → pole → wstawiona wartość) i data startu, sprzed której
    * je wzięto — po zmianie daty pola wciąż równe wstawionej wartości liczą się od nowa z sesji sprzed nowej daty; pola wpisane ręcznie zostają */
   prefilled: Record<string, Partial<Record<VKey, unknown>>>; prefillAt: number;
+  /** E2 D6 (H8): ćwiczenie i pola zamiany bloków z otwarcia szkicu (id bloku → stan) — „↺ przywróć: A” */
+  origEx: Record<string, Pick<WExercise, 'exerciseId' | 'swappedFrom' | 'impl' | 'implPinned'>>;
 }
 
 const drafts = new Map<string, Draft>();
@@ -46,7 +49,8 @@ const snap = (d: Draft) => JSON.stringify([d.w, d.date, d.time, d.min]);
 function make(key: string, sourceId: string | null, w: Workout): Draft {
   const end = w.finishedAt ?? w.startedAt; const date = dateText(w.startedAt), time = timeText(w.startedAt), min = minText(w.startedAt, end);
   const origVals: Record<string, string> = {}; if (sourceId != null) w.exercises.forEach(e => e.sets.forEach(s => { origVals[s.id] = vals(s); }));
-  const d: Draft = { key, sourceId, w, date, time, min, orig: '', origStart: w.startedAt, origEnd: end, oDate: date, oTime: time, oMin: min, origVals, prefilled: {}, prefillAt: w.startedAt };
+  const origEx: Draft['origEx'] = {}; w.exercises.forEach(e => { origEx[e.id] = { exerciseId: e.exerciseId, swappedFrom: e.swappedFrom, impl: e.impl, implPinned: e.implPinned }; });
+  const d: Draft = { key, sourceId, w, date, time, min, orig: '', origStart: w.startedAt, origEnd: end, oDate: date, oTime: time, oMin: min, origVals, prefilled: {}, prefillAt: w.startedAt, origEx };
   d.orig = snap(d); drafts.set(key, d); return d; /* bez powiadamiania — nowego szkicu nikt jeszcze nie rysuje (bywa tworzony w trakcie renderu edytora) */
 }
 /** Czy w szkicu coś zmieniono (pytanie przy „Anuluj”). */
@@ -190,6 +194,52 @@ export function draftRemoveSet(key: string, ei: number, setId: string) {
 export function draftRemoveExercise(key: string, blockId: string) {
   const d = drafts.get(key); if (!d) return; const i = d.w.exercises.findIndex(e => e.id === blockId); if (i < 0) return;
   d.w.exercises.splice(i, 1); normalizeGroups(d.w.exercises); touchDraft();
+}
+/* ---------- E2 D6: zamiana w edytorze historii — poprawka „zapisałem serie pod złym ćwiczeniem” (docs/14 pkt 5) ---------- */
+/** H3: tylko ta sama miara (pola serii muszą pasować); blok usuniętego ćwiczenia — dowolne. Zarchiwizowane i to samo ćwiczenie — nie. */
+export function swapTargetOk(_d: Draft, e: WExercise, b: Exercise | undefined): boolean {
+  const a = exById(e.exerciseId); return !!b && !b.archived && b.id !== e.exerciseId && (!a || (a.metric ?? 'weight_reps') === (b.metric ?? 'weight_reps'));
+}
+const lastAt = (d: Draft) => currentStart(d) ?? d.prefillAt;
+/**
+ * Przepięcie CAŁEGO bloku pod ćwiczenie `toId` (P3 a). H2: serie i wartości bez zmian (A-002), pozycja szablonu, superset, przerwa i zakres bez zmian.
+ * H4 (P4 a): masa ciała ↔ ciężar — wpisany ciężar trafia do pola właściwego B (writeLoad), ujemna asysta przy ćwiczeniu z ciężarem → pole puste
+ * (zapis ostrzeże „Serie bez ciężaru”). H5: przyrząd wg miejsca szkicu, bez przypięcia. H6: swappedFrom zostaje, a gdy go nie było i blok jest
+ * z pozycji szablonu — A; powrót do swappedFrom go usuwa. H7: wartości wstawione przez aplikację (trening wstecz) i nieruszone liczą się od nowa
+ * z historii B sprzed daty. Zwraca false, gdy przepięcie niedozwolone.
+ */
+export function draftSwapExercise(key: string, blockId: string, toId: string): boolean {
+  const d = drafts.get(key); const e = d?.w.exercises.find(x => x.id === blockId); const b = exById(toId); if (!d || !e || !b || !swapTargetOk(d, e, b)) return false;
+  const a = exById(e.exerciseId); const from = e.exerciseId;
+  if (a && isBW(a) !== isBW(b)) for (const s of e.sets) {
+    const raw = loadOf(a, s).raw; const v = raw !== '' && !isBW(b) && raw < 0 ? '' : raw; writeLoad(b, s, v); if (!isBW(b) && v === '') s.weight = '';
+    const r = d.prefilled[s.id]; if (r) { const [ka, kb] = isBW(a) ? ['addKg', 'weight'] as const : ['weight', 'addKg'] as const; if (ka in r) { r[kb] = s[kb]; delete r[ka]; } } /* pole wypełnione przez aplikację wędruje razem z wartością */
+  }
+  e.exerciseId = b.id; delete e.implPinned; stampImpl(e, d.w.locationId);
+  const orig = e.swappedFrom ?? (e.tplItemId ? from : undefined); if (orig && orig !== b.id) e.swappedFrom = orig; else delete e.swappedFrom;
+  refill(d, lastAt(d), false, e); touchDraft(); return true;
+}
+/** H8: „↺ przywróć: A” — blok z otwarcia szkicu ma dziś inne ćwiczenie (albo przyrząd), a oryginał wciąż istnieje. */
+export function canRestoreExercise(d: Draft, e: WExercise): boolean {
+  const o = d.origEx[e.id]; return !!o && (o.exerciseId !== e.exerciseId || o.impl !== e.impl) && !!exById(o.exerciseId);
+}
+export function draftRestoreExercise(key: string, blockId: string) {
+  const d = drafts.get(key); const e = d?.w.exercises.find(x => x.id === blockId); const o = d && e ? d.origEx[e.id] : undefined; if (!d || !e || !o || !canRestoreExercise(d, e)) return;
+  if (o.exerciseId !== e.exerciseId && !draftSwapExercise(key, blockId, o.exerciseId)) return;
+  for (const k of ['swappedFrom', 'impl', 'implPinned'] as const) { if (o[k] === undefined) delete e[k]; else (e as any)[k] = o[k]; }
+  refill(d, lastAt(d), false, e); touchDraft();
+}
+/** P5b (a): przyrządy do poprawki samego przyrządu bloku — w miejscu szkicu (implsAt), a bez miejsca — z rodzajów ciężaru ćwiczenia
+ * (wyciąg: zwykły albo stacja); bez bieżącego. */
+export function draftImplChoices(d: Draft, e: WExercise): Impl[] {
+  const ex = exById(e.exerciseId); if (!ex) return []; const loc = locationById(d.w.locationId);
+  const all: Impl[] = loc ? implsAt(ex, loc) : loadKindsFor(ex).flatMap(k => k === 'cable' ? ['cable', 'electric'] as Impl[] : [k as Impl]);
+  return all.filter((i, n) => all.indexOf(i) === n && i !== e.impl);
+}
+/** P5b: poprawka samego przyrządu (dawne treningi RDL zapisane jako hantle) — przyrząd przypięty, „Poprzednio” 8c liczy się od nowa po zapisie. */
+export function draftSetImpl(key: string, blockId: string, impl: Impl) {
+  const d = drafts.get(key); const e = d?.w.exercises.find(x => x.id === blockId); if (!d || !e || !draftImplChoices(d, e).includes(impl)) return;
+  e.impl = impl; e.implPinned = true; refill(d, lastAt(d), false, e); touchDraft();
 }
 /** Przesunięcie daty o dzień (przyciski ‹ ›). Nieczytelna data zostaje bez zmian. */
 export function shiftDate(date: string, days: number): string {

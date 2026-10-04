@@ -7,12 +7,14 @@ import { getState, addExerciseToActive, newExercise, save, visibleExercises, exe
 import { afterSwap } from '@/components/ActiveWorkout';
 import { availability, capsOf, missingLabel, type Availability } from '@/lib/equipment';
 import { uid } from '@/lib/seed';
-import { draftAddExercise, draftOf } from '@/lib/edit';
+import { draftAddExercise, draftOf, draftSwapExercise, swapTargetOk } from '@/lib/edit';
+import { parseSwapTarget } from '@/lib/swap';
 import { GROUPS, GROUP_TO_MUSCLE, hasReps, type Exercise } from '@/lib/seed';
 import { t, exName, locale, fold } from '@/lib/i18n';
 
 /** target = 'active' (dodaj do treningu) | 'template:<id>' (dodaj do szablonu) | 'edit:<klucz szkicu>' (edytor historii, docs/12)
- *  | 'swap:active:<id bloku>' (E2: zamiana ćwiczenia bloku treningu w toku — „Cała biblioteka” z arkusza app/swap.tsx) */
+ *  | 'swap:active:<id bloku>' (E2: zamiana ćwiczenia bloku treningu w toku — „Cała biblioteka” z arkusza app/swap.tsx)
+ *  | 'swap:edit:<klucz szkicu>:<id bloku>' (E2 D6: przepięcie bloku w edytorze historii) */
 export default function PickerScreen() {
   // Runda 26: parametr z linku może być tablicą (powtórzony ?target=) — tylko tekst, inaczej nic nie dodajemy.
   const raw = useLocalSearchParams<{ target?: string | string[] }>().target; const target = typeof raw === 'string' ? raw : ''; const router = useRouter();
@@ -26,9 +28,12 @@ export default function PickerScreen() {
    * Integracja 0.9.0: edytor historii ('edit:<klucz>') jak trening w toku — filtr po miejscu edytowanego treningu, gdy je ma (i miejsce
    * wciąż istnieje); trening wstecz i treningi sprzed miejsc nie mają miejsca → pełna lista. */
   /* E2 (docs/14 pkt 3.1): cel swap: — filtr miejsca jak w 'active', bez bieżącego ćwiczenia bloku i bez ćwiczeń o innej mierze (pola serii by nie pasowały) */
-  const swapId = target.startsWith('swap:active:') ? target.slice(12) : ''; const swapEx = swapId ? exById(st.active?.exercises.find(x => x.id === swapId)?.exerciseId ?? '') : undefined;
-  const swapOk = (e: Exercise) => !swapId || (!!swapEx && e.id !== swapEx.id && (e.metric ?? 'weight_reps') === (swapEx.metric ?? 'weight_reps'));
-  const ctx = target === 'active' || swapId ? locationById(st.active?.locationId) : target.startsWith('template:') ? locationById(st.templates.find(x => x.id === target.slice(9))?.locationId)
+  const sw = target.startsWith('swap:') ? parseSwapTarget(target.slice(5)) : null; const swapId = sw?.blockId ?? '';
+  const swapDraft = sw?.kind === 'edit' ? draftOf(sw.key) : undefined; const swapW = sw?.kind === 'edit' ? swapDraft?.w : sw ? st.active : undefined;
+  const swapBlk = swapW?.exercises.find(x => x.id === swapId); const swapEx = swapBlk ? exById(swapBlk.exerciseId) : undefined;
+  /* D6 (H3): w edytorze — ta sama reguła co przepięcie (swapTargetOk: blok usuniętego ćwiczenia bez filtra miary) */
+  const swapOk = (e: Exercise) => !sw || (swapDraft && swapBlk ? swapTargetOk(swapDraft, swapBlk, e) : !!swapEx && e.id !== swapEx.id && (e.metric ?? 'weight_reps') === (swapEx.metric ?? 'weight_reps'));
+  const ctx = target === 'active' || sw?.kind === 'active' ? locationById(st.active?.locationId) : sw?.kind === 'edit' ? locationById(swapW?.locationId) : target.startsWith('template:') ? locationById(st.templates.find(x => x.id === target.slice(9))?.locationId)
     : target.startsWith('edit:') ? locationById(draftOf(target.slice(5))?.w.locationId) : undefined;
   const [allOn, setAllOn] = useState(st.settings.pickerShowAll); const showAll = !ctx || allOn; const caps = ctx ? capsOf(ctx) : null; const av = new Map<string, Availability>();
   const avail = (e: Exercise) => { if (!caps) return null; let a = av.get(e.id); if (!a) { a = availability(e, ctx, caps); av.set(e.id, a); } return a; };
@@ -37,7 +42,8 @@ export default function PickerScreen() {
   const choose = (ex: Exercise) => {
     if (chosen.current) return; chosen.current = true; // podwójne tapnięcie nie doda ćwiczenia dwa razy ani nie cofnie o dwa ekrany
     if (target === 'active') addExerciseToActive(ex);
-    else if (swapId) { const r = swapBlock(swapId, ex.id); if (r) afterSwap(r.goneSetIds); }
+    else if (sw?.kind === 'active') { const r = swapBlock(swapId, ex.id); if (r) afterSwap(r.goneSetIds); }
+    else if (sw?.kind === 'edit') draftSwapExercise(sw.key, swapId, ex.id);
     else if (target.startsWith('edit:')) draftAddExercise(target.slice(5), ex);
     else if (target?.startsWith('template:')) { const tpl = st.templates.find(x => x.id === target.slice(9)); tpl?.items.push({ id: uid(), exerciseId: ex.id, sets: 3, repMin: hasReps(ex.metric ?? 'weight_reps') ? 8 : null, repMax: hasReps(ex.metric ?? 'weight_reps') ? 10 : null, restSec: null, startWeight: '', targetSec: '', groupId: null }); save(tpl); }
     if (router.canGoBack()) router.back(); else router.replace('/');

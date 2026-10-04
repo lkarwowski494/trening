@@ -85,3 +85,10 @@ export function reasonText(c: SwapCandidate): string {
     c.reasons.includes('swapped') ? t('wcześniej zamieniane') : '',
     c.sessions > 0 ? t('robione {n}×', { n: c.sessions }) : ''].filter(Boolean).join(' · ');
 }
+
+/** Cel arkusza: 'active:<id bloku>' (trening w toku, W1) albo 'edit:<klucz szkicu>:<id bloku>' (edytor historii, D6). */
+export function parseSwapTarget(target: string): { kind: 'active'; blockId: string } | { kind: 'edit'; key: string; blockId: string } | null {
+  if (target.startsWith('active:')) return { kind: 'active', blockId: target.slice(7) };
+  if (target.startsWith('edit:')) { const r = target.slice(5); const i = r.lastIndexOf(':'); return i > 0 ? { kind: 'edit', key: r.slice(0, i), blockId: r.slice(i + 1) } : null; }
+  return null;
+}

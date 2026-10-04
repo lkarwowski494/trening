@@ -282,4 +282,5 @@ export const EN: Record<string, string> = {
   'przyrząd: {impl}': 'equipment: {impl}', 'Zawsze w: {l}': 'Always at {l}', 'Zawsze w: {l} — {name}': 'Always at {l} — {name}', 'Zapisuje zamiennik w szablonie dla tego miejsca.': 'Saves the substitute in the template for this place.',
   'Zwykle w: {l} — {name}. Zamienić?': 'Usually at {l} — {name}. Swap?', 'Zamień': 'Swap', 'Zamień na zamiennik: {name}': 'Swap to substitute: {name}', 'Nie zamieniaj: {name}': 'Don’t swap: {name}',
   'Zamienniki': 'Substitutes', 'Przerwa zamiennika (s): {name}': 'Substitute rest (s): {name}', 'Usuń zamiennik: {name}': 'Remove substitute: {name}', 'Usunąć zamiennik?': 'Remove substitute?',
+  'Poprawka zapisu: wszystkie serie bloku „{name}” przejdą pod wybrane ćwiczenie (wartości bez zmian).': 'Log correction: all sets of “{name}” move to the chosen exercise (values unchanged).',
 };
