@@ -61,7 +61,9 @@ export function swapCandidates(exId: string, ctx: SwapCtx): SwapCandidate[] {
     out.push({ exId: b.id, score, reasons, available, inWorkout: ctx.inWorkout.has(b.id), sessions });
   }
   const name = new Map(out.map(c => [c.exId, exName(getState().exercises.find(e => e.id === c.exId))]));
-  return out.sort((x, y) => y.score - x.score || y.sessions - x.sessions || name.get(x.exId)!.localeCompare(name.get(y.exId)!, locale()));
+  /* decyzja właściciela 04.10.2026 (przegląd D7): remis rozstrzyga najpierw ten sam sprzęt co oryginał (sztanga → sztanga), potem sesje i nazwa */
+  const sameEq = new Map(out.map(c => [c.exId, getState().exercises.find(e => e.id === c.exId)?.equipment === a.equipment ? 1 : 0]));
+  return out.sort((x, y) => y.score - x.score || sameEq.get(y.exId)! - sameEq.get(x.exId)! || y.sessions - x.sessions || name.get(x.exId)!.localeCompare(name.get(y.exId)!, locale()));
 }
 
 /** Nazwa przyrządu (decyzja 8c) do arkusza i tabeli D7. */

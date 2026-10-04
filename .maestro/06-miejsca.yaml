@@ -18,7 +18,7 @@
 #   "+ Add exercise"                 ← '+ Dodaj ćwiczenie'                  (jak flow 04)
 #   "only available at Bodyweight only.*"     ← 'tylko dostępne w: {l}' → 'only available at {l}' (+ ' · hidden: {n}') (app/picker.tsx)
 #   "unavailable at Bodyweight only are greyed out" ← 'niedostępne w: {l} są wyszarzone' → 'unavailable at {l} are greyed out'
-#   "Show all"                       ← 'Pokaż wszystkie'                    (SwitchRow w app/picker.tsx)
+#   "Place filter: X.*"             ← 'Filtr miejsca: {l}. Tapnij, by zdjąć.' (chip-etykieta „📍 X ✕” w app/picker.tsx; od 04.10.2026 zamiast przełącznika „Pokaż wszystkie”)
 #   "Search exercises…"              ← 'Szukaj ćwiczenia…'                  (jak flow 04)
 #   "Pull Up,.*"                     ← nazwa ćwiczenia z lib/seed.ts (EN bez zmian, exName) — wymaga pullup.bar|rings (catalog.generated.ts)
 #   "Lat Pulldown,.*"                ← nazwa z lib/seed.ts — wymaga lat_pulldown|cable.high → niedostępne w „Bodyweight only”
@@ -83,11 +83,11 @@ name: Miejsca treningu i filtr ćwiczeń
 - extendedWaitUntil: { visible: "Pull Up,.*", timeout: 30000 }
 - assertNotVisible: "Lat Pulldown,.*"
 - takeScreenshot: 24-picker-tylko-dostepne
-# „Show all”: jak wyżej — Text (index 0) i przełącznik (index 1)
-- tapOn: { id: "sw-Show all" }
+# filtr miejsca jako etykieta: „📍 Bodyweight only ✕” zdejmuje filtr
+- tapOn: "Place filter: Bodyweight only.*"
 - extendedWaitUntil: { visible: "unavailable at Bodyweight only are greyed out", timeout: 30000 }
 - assertVisible: "Lat Pulldown,.*missing:.*"
 - assertVisible: "Pull Up,.*"
 - takeScreenshot: 25-picker-pokaz-wszystkie
 - tapOn: "Cancel"
-- assertNotVisible: "Show all"
+- assertNotVisible: "Place filter.*"

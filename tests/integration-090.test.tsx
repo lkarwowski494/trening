@@ -154,7 +154,7 @@ describe('(3) wybór ćwiczenia w edytorze (target edit:<klucz>)', () => {
     expect(screen.getByText(/tylko dostępne w: Dom/)).toBeTruthy(); expect(screen.queryByText('Leg Press')).toBeNull();
     await tap(screen.getByText('Pull Up')); await flushAll(20); expect(edit.draftOf(d.key)!.w.exercises).toHaveLength(1);
     const d2 = edit.beginEdit(h1.id)!; await go(`/picker?target=${encodeURIComponent('edit:' + d2.key)}`); await flushAll(20);
-    expect(screen.queryByLabelText('Pokaż wszystkie')).toBeNull(); expect(screen.getByText('Leg Press')).toBeTruthy();
+    expect(screen.queryByLabelText(/^Filtr miejsca/)).toBeNull(); expect(screen.getByText('Leg Press')).toBeTruthy();
   });
 
   test('ekran edycji treningu z usuniętym miejscem: „📍 (usunięte miejsce)”; trening bez miejsca — bez wiersza miejsca (UI)', async () => {

@@ -32,23 +32,27 @@ describe('W1 — ekran treningu i arkusz zamiany', () => {
     expect(screen.getByText(/Usunięte ćwiczenie/)).toBeTruthy(); expect(screen.queryAllByLabelText(/^Zamień ćwiczenie/)).toHaveLength(0);
   });
 
-  test('arkusz: top-3, „już w treningu”, „Cała biblioteka” z filtrem; linijka „zamiast: …”; cofnij', async () => {
+  test('arkusz: top-3, „już w treningu”, „Inne” z filtrami; linijka „zamiast: …”; cofnij', async () => {
     await renderApp({ saved: await savedWith(['Bench Press (sztanga)', 'Push Up']) }); await flushAll(20);
     await tap(screen.getByLabelText('Zamień ćwiczenie: Bench Press (sztanga)')); await flushAll(20);
     expect(screen.getByText('Propozycje')).toBeTruthy();
     const props = screen.getAllByLabelText(/^Propozycja \d: /); expect(props).toHaveLength(3);
     expect(screen.getByText(/już w treningu/)).toBeTruthy(); /* Push Up jest w treningu i jest wśród propozycji */
-    expect(screen.getByText('Cała biblioteka')).toBeTruthy();
-    await tap(screen.getByLabelText(/^Propozycja 1: Bench Press \(hantle\)/)); await flushAll(20);
+    expect(screen.getByLabelText('Pokaż inne ćwiczenia')).toBeTruthy();
+    await tap(screen.getByLabelText(/^Propozycja \d: Bench Press \(hantle\)/)); await flushAll(20);
     expect(blk(0).exerciseId).toBe(ex('Bench Press (hantle)').id); expect(blk(0).sets.map(s => s.weight)).toEqual([22.5, 22.5, 22.5]);
     expect(screen.getByText(/zamiast: Bench Press \(sztanga\)/)).toBeTruthy();
     await tap(screen.getByLabelText('Cofnij zamianę: Bench Press (hantle)')); await flushAll(10);
     expect(blk(0).exerciseId).toBe(ex('Bench Press (sztanga)').id); expect(screen.queryByText(/zamiast:/)).toBeNull();
-    /* cała biblioteka: filtr miejsca, bez bieżącego i bez innej metryki */
+    /* „Inne” (decyzja 04.10.2026): filtry-etykiety partii i miejsca, zdejmowane ✕; zawsze bez bieżącego i bez innej miary */
     await tap(screen.getByLabelText('Zamień ćwiczenie: Bench Press (sztanga)')); await flushAll(20);
-    await tap(screen.getByText('Cała biblioteka')); await flushAll(20);
-    expect(screen.queryByText('Bench Press (sztanga)')).toBeNull(); expect(screen.queryByText('Plank')).toBeNull(); expect(screen.queryByText('Leg Press')).toBeNull(); /* inna metryka; niedostępne w Domu */
-    expect(screen.getByText('Goblet Squat')).toBeTruthy();
+    await tap(screen.getByLabelText('Pokaż inne ćwiczenia')); await flushAll(5);
+    expect(screen.getByLabelText('Filtr partii: klatka. Tapnij, by zdjąć.')).toBeTruthy(); expect(screen.getByLabelText('Filtr miejsca: Dom. Tapnij, by zdjąć.')).toBeTruthy();
+    expect(screen.queryByText('Goblet Squat')).toBeNull(); expect(screen.getAllByText('Incline Push Up').length).toBeGreaterThan(0);
+    await tap(screen.getByLabelText('Filtr partii: klatka. Tapnij, by zdjąć.')); await flushAll(5);
+    expect(screen.getByText('Goblet Squat')).toBeTruthy(); expect(screen.queryByText('Leg Press')).toBeNull(); /* niedostępne w Domu */
+    await tap(screen.getByLabelText('Filtr miejsca: Dom. Tapnij, by zdjąć.')); await flushAll(5);
+    expect(screen.getByText('Leg Press')).toBeTruthy(); expect(screen.queryByText('Plank')).toBeNull(); expect(screen.queryAllByText('Bench Press (sztanga)').length).toBe(0); /* inna miara; bieżące */
     await tap(screen.getByText('Goblet Squat')); await flushAll(20);
     expect(blk(0).exerciseId).toBe(ex('Goblet Squat').id); expect(blk(0).swappedFrom).toBe(ex('Bench Press (sztanga)').id);
   });
@@ -82,8 +86,8 @@ describe('W1 — ekran treningu i arkusz zamiany', () => {
     await renderApp({ saved: await savedWith(['Bench Press (sztanga)'], { locale: 'en' }), locale: 'en' }); await flushAll(20);
     await act(async () => { store.getState().settings.language = 'en'; store.applyPrefs(); store.save(); }); await flushAll(5);
     await tap(screen.getByLabelText('Swap exercise: Bench Press (Barbell)')); await flushAll(20);
-    expect(screen.getByText('Suggestions')).toBeTruthy(); expect(screen.getByText('Whole library')).toBeTruthy();
-    const txt = JSON.stringify(screen.toJSON()); expect(txt).not.toMatch(/Propozycje|Cała biblioteka|ten sam ruch|już w treningu|zamiast/);
+    expect(screen.getByText('Suggestions')).toBeTruthy(); expect(screen.getByLabelText('Show other exercises')).toBeTruthy();
+    const txt = JSON.stringify(screen.toJSON()); expect(txt).not.toMatch(/Propozycje|Inne ▾|ten sam ruch|już w treningu|zamiast/);
     await tap(screen.getByLabelText(/^Suggestion 1: /)); await flushAll(20);
     expect(JSON.stringify(screen.toJSON())).toMatch(/instead of: Bench Press \(Barbell\)/);
   });

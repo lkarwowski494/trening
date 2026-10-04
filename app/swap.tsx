@@ -1,13 +1,14 @@
-import React, { useMemo, useRef } from 'react';
-import { ScrollView, Pressable, Text } from 'react-native';
+import React, { useMemo, useRef, useState } from 'react';
+import { ScrollView, Pressable, Text, View } from 'react-native';
 import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
 import { useTheme } from '@/lib/theme';
-import { Screen, Item, Muted, Empty, SectionTitle } from '@/components/ui';
-import { getState, useTick, exById, swapBlock, swapImpl, canUndoSwap, locationById } from '@/lib/store';
-import { draftOf, useDraftTick, draftSwapExercise, canRestoreExercise, draftRestoreExercise, draftImplChoices, draftSetImpl } from '@/lib/edit';
+import { Screen, Item, Muted, Empty, SectionTitle, Chip, Input } from '@/components/ui';
+import { getState, useTick, exById, swapBlock, swapImpl, canUndoSwap, locationById, visibleExercises } from '@/lib/store';
+import { availability, capsOf, missingLabel } from '@/lib/equipment';
+import { draftOf, useDraftTick, draftSwapExercise, canRestoreExercise, draftRestoreExercise, draftImplChoices, draftSetImpl, swapTargetOk } from '@/lib/edit';
 import { swapCandidates, reasonText, otherImpls, implLabel, parseSwapTarget, SWAP_TOP } from '@/lib/swap';
 import { afterSwap, confirmUndoSwap } from '@/components/ActiveWorkout';
-import { t, exName } from '@/lib/i18n';
+import { t, exName, locale, fold } from '@/lib/i18n';
 import type { Exercise, Impl, WExercise } from '@/lib/seed';
 
 /**
@@ -21,6 +22,8 @@ import type { Exercise, Impl, WExercise } from '@/lib/seed';
 export default function SwapScreen() {
   const raw = useLocalSearchParams<{ target?: string | string[] }>().target; const target = typeof raw === 'string' ? raw : ''; const router = useRouter();
   const th = useTheme(); useTick(); useDraftTick(); const chosen = useRef(false);
+  /* „Inne” (decyzja właściciela 04.10.2026): rozwijana lista z filtrami-etykietami partii i miejsca, które da się zdjąć (✕) */
+  const [open, setOpen] = useState(false); const [grpOn, setGrpOn] = useState(true); const [locOn, setLocOn] = useState(true); const [q, setQ] = useState('');
   const close = () => { if (router.canGoBack()) router.back(); else router.replace('/'); };
   const headerOpts = useMemo(() => ({ headerRight: () => <Pressable accessibilityRole="button" hitSlop={10} onPress={() => { if (chosen.current) return; chosen.current = true; close(); }}><Text style={{ color: th.accent, fontSize: 17 }}>{t('Anuluj')}</Text></Pressable> }), [th, router]); // eslint-disable-line react-hooks/exhaustive-deps
   const tg = parseSwapTarget(target);
@@ -38,7 +41,10 @@ export default function SwapScreen() {
   const restore: { ex: Exercise; go: () => void } | null = tg.kind === 'active'
     ? (e.swappedFrom && canUndoSwap(e) ? { ex: exById(e.swappedFrom)!, go: () => { if (chosen.current) return; confirmUndoSwap(tg.blockId, () => { chosen.current = true; close(); }); } } : null)
     : (d && canRestoreExercise(d, e) ? { ex: exById(d.origEx[e.id].exerciseId)!, go: () => once(() => { draftRestoreExercise(tg.key, tg.blockId); close(); }) } : null);
-  const libTarget = tg.kind === 'active' ? `swap:active:${tg.blockId}` : `swap:edit:${tg.key}:${tg.blockId}`;
+  const place = locationById(w.locationId); const caps = place ? capsOf(place) : null; const ql = fold(q.trim());
+  const okEx = (b: Exercise) => d ? swapTargetOk(d, e, b) : !!ex && b.id !== ex.id && (b.metric ?? 'weight_reps') === (ex.metric ?? 'weight_reps');
+  const others = open ? visibleExercises().filter(b => okEx(b) && (!grpOn || !ex || b.group === ex.group) && (!locOn || !caps || availability(b, place, caps).ok) && (!ql || fold(b.name).includes(ql) || fold(exName(b)).includes(ql)))
+    .sort((x, y) => exName(x).localeCompare(exName(y), locale())) : [];
   return (
     <Screen style={{ paddingTop: 10 }}>
       <Stack.Screen options={headerOpts} />
@@ -52,7 +58,16 @@ export default function SwapScreen() {
         {ex && impls.length ? <><SectionTitle>{t('Ten sam ruch, inny przyrząd')}</SectionTitle>
           {impls.map(i => <Item key={i} title={`${exName(ex)} — ${implLabel(i)}`} sub={e.impl ? t('zamiast: {name}', { name: implLabel(e.impl) }) : undefined} icon="⇄" onPress={() => pickImpl(i)} accessibilityLabel={t('Inny przyrząd: {impl}', { impl: implLabel(i) })} />)}</> : null}
         <SectionTitle>{t('Inne')}</SectionTitle>
-        <Item title={t('Cała biblioteka')} sub={ex ? t('wszystkie ćwiczenia z tą samą miarą') : undefined} onPress={() => once(() => router.replace(`/picker?target=${libTarget}`))} />
+        <Item title={open ? t('Inne ▴') : t('Inne ▾')} sub={t('lista ćwiczeń z filtrami, które możesz zdjąć')} onPress={() => setOpen(x => !x)} icon={open ? '▴' : '▾'} accessibilityLabel={open ? t('Zwiń inne ćwiczenia') : t('Pokaż inne ćwiczenia')} />
+        {open ? <View>
+          <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6, marginVertical: 8 }}>
+            {ex ? <Chip label={grpOn ? `${t(ex.group)} ✕` : `+ ${t(ex.group)}`} on={grpOn} onPress={() => setGrpOn(x => !x)} a11yLabel={grpOn ? t('Filtr partii: {g}. Tapnij, by zdjąć.', { g: t(ex.group) }) : t('Filtr partii wyłączony: {g}. Tapnij, by włączyć.', { g: t(ex.group) })} /> : null}
+            {place ? <Chip label={locOn ? `📍 ${place.name} ✕` : `+ 📍 ${place.name}`} on={locOn} onPress={() => setLocOn(x => !x)} a11yLabel={locOn ? t('Filtr miejsca: {l}. Tapnij, by zdjąć.', { l: place.name }) : t('Filtr miejsca wyłączony: {l}. Tapnij, by pokazać tylko dostępne.', { l: place.name })} /> : null}
+          </View>
+          <Input value={q} onChangeText={setQ} placeholder={t('Szukaj ćwiczenia…')} maxLength={80} autoCorrect={false} />
+          {others.length ? others.map(b => { const av = caps ? availability(b, place, caps) : null; const miss = av && !av.ok ? ' · ' + t('brak: {m}', { m: missingLabel(av.missing) }) : '';
+            return <Item key={b.id} title={exName(b)} sub={`${t(b.equipment)}${miss}`} icon="⇄" dim={!!miss} onPress={() => pick(b.id)} />; }) : <Empty>{t('Nic nie pasuje.')}</Empty>}
+        </View> : null}
       </ScrollView>
     </Screen>
   );

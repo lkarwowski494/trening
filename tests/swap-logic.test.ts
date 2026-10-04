@@ -317,3 +317,13 @@ describe('W1 — audyt różnicy E2 (04.10.2026)', () => {
     expect(getState().active!.exercises.map(e => [e.exerciseId, e.sets.length])).toEqual([[ex('Bench Press (hantle)').id, 1], [ex('Bench Press (sztanga)').id, 2]]);
   });
 });
+
+describe('ranking — decyzja właściciela 04.10.2026 (D7)', () => {
+  beforeEach(setup);
+  test('remis: najpierw ten sam sprzęt co oryginał, potem liczba sesji i nazwa', () => {
+    const c = swapCandidates(ex('Bench Press (sztanga)').id, { locationId: 'gym', showAll: false, inWorkout: new Set() });
+    const sameEq = (id: string) => getState().exercises.find(e => e.id === id)!.equipment === 'sztanga';
+    for (let k = 1; k < c.length; k++) if (c[k - 1].score === c[k].score) expect(Number(sameEq(c[k - 1].exId)) >= Number(sameEq(c[k].exId))).toBe(true);
+    expect(getState().exercises.find(e => e.id === c[0].exId)!.equipment).toBe('sztanga'); /* w siłowni przy remisie 10 pkt — sztanga przed hantlami */
+  });
+});

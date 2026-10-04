@@ -283,4 +283,7 @@ export const EN: Record<string, string> = {
   'Zwykle w: {l} — {name}. Zamienić?': 'Usually at {l} — {name}. Swap?', 'Zamień': 'Swap', 'Zamień na zamiennik: {name}': 'Swap to substitute: {name}', 'Nie zamieniaj: {name}': 'Don’t swap: {name}',
   'Zamienniki': 'Substitutes', 'Przerwa zamiennika (s): {name}': 'Substitute rest (s): {name}', 'Usuń zamiennik: {name}': 'Remove substitute: {name}', 'Usunąć zamiennik?': 'Remove substitute?',
   'Poprawka zapisu: wszystkie serie bloku „{name}” przejdą pod wybrane ćwiczenie (wartości bez zmian).': 'Log correction: all sets of “{name}” move to the chosen exercise (values unchanged).',
+  'Filtr miejsca: {l}. Tapnij, by zdjąć.': 'Place filter: {l}. Tap to remove.', 'Filtr miejsca wyłączony: {l}. Tapnij, by pokazać tylko dostępne.': 'Place filter off: {l}. Tap to show only available.',
+  'Inne ▴': 'Other ▴', 'Inne ▾': 'Other ▾', 'lista ćwiczeń z filtrami, które możesz zdjąć': 'exercise list with filters you can remove', 'Zwiń inne ćwiczenia': 'Collapse other exercises', 'Pokaż inne ćwiczenia': 'Show other exercises',
+  'Filtr partii: {g}. Tapnij, by zdjąć.': 'Muscle group filter: {g}. Tap to remove.', 'Filtr partii wyłączony: {g}. Tapnij, by włączyć.': 'Muscle group filter off: {g}. Tap to turn on.',
 };

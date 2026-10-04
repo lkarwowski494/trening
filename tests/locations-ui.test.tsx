@@ -24,7 +24,7 @@ describe('bez miejsc — ekrany jak dotąd', () => {
     await renderApp(); await act(async () => { store.startEmpty(); }); await flushAll(10);
     expect(screen.queryByLabelText(/^Miejsce treningu:/)).toBeNull();
     await go('/picker?target=active'); await flushAll(10);
-    expect(screen.queryByLabelText('Pokaż wszystkie')).toBeNull(); expect(screen.queryAllByText(/brak:/)).toHaveLength(0); expect(screen.getByText('Back Squat')).toBeTruthy();
+    expect(screen.queryByLabelText(/^Filtr miejsca/)).toBeNull(); expect(screen.queryAllByText(/brak:/)).toHaveLength(0); expect(screen.getByText('Back Squat')).toBeTruthy();
   });
   test('Ustawienia → Miejsca treningu: pusta lista z wyjaśnieniem', async () => {
     await renderApp(); await go('/more/settings'); await flushAll(10); await tap(screen.getByText('Miejsca treningu')); await flushAll(10);
@@ -80,7 +80,7 @@ describe('trening i wybór ćwiczenia w miejscu', () => {
   test('wybór ćwiczenia: domyślnie tylko dostępne w Dom; „Pokaż wszystkie” zapamiętany, niedostępne wyszarzone z „brak: …”', async () => {
     const saved = await savedWithPlaces(true); await renderApp({ saved }); await go('/picker?target=active'); await flushAll(10);
     expect(screen.getByText('Bench Press (hantle)')).toBeTruthy(); expect(screen.queryByText('Back Squat')).toBeNull(); expect(screen.getByText(/tylko dostępne w: Dom · ukryte: 55/)).toBeTruthy();
-    await toggle('Pokaż wszystkie', true); expect(store.getState().settings.pickerShowAll).toBe(true);
+    await tap(screen.getByLabelText(/^Filtr miejsca: Dom/)); /* decyzja 04.10: filtr-etykieta zamiast przełącznika */ expect(store.getState().settings.pickerShowAll).toBe(true);
     expect(screen.getByText('Back Squat')).toBeTruthy(); expect(screen.getAllByText('sztanga · brak: sztanga, klatka / stojaki').length).toBeGreaterThanOrEqual(3); /* Back/Front/Box Squat, Good Morning */
     await tap(screen.getByText('Back Squat')); await flushAll(10);
     expect(store.getState().active!.exercises.map(e => ex('Back Squat').id === e.exerciseId)).toEqual([true]);

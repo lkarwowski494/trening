@@ -323,6 +323,11 @@ Dokumentacja po wdrożeniu: sekcja „Implementacja E2” w docs/10, wiersz w do
 > **P5b (a)** — poprawka samego przyrządu w edytorze historii, w E2; **P6 (a)** — dodawanie zamienników tylko z treningu;
 > **P7 (a)** — 3 propozycje, wagi startowe z A4, ocena na tabeli D7 przed wydaniem.
 
+> **04.10.2026 (popołudnie) — decyzje właściciela po przeglądzie tabeli D7 i backlogu:**
+> - **D7:** remis w rankingu rozstrzyga najpierw **ten sam sprzęt** co oryginał (potem sesje, nazwa). Do tego w arkuszu opcja **„Inne”** — rozwijana lista ćwiczeń przefiltrowana po partii mięśniowej; filtry da się zdjąć i wybrać dowolne istniejące ćwiczenie. Wdrożone: `lib/swap.ts` (sortowanie), `app/swap.tsx` („Inne ▾”: etykiety „klatka ✕”, „📍 Dom ✕”, szukajka; zastępuje „Cała biblioteka”), tabela D7 przeliczona.
+> - **Wymagania sprzętowe / filtr miejsca:** zamiast edycji wymagań — **miejsce jako filtr-etykieta, którą łatwo zdjąć** („jak label w JIRA”), także w wyborze ćwiczenia. Wdrożone: `app/picker.tsx` — „📍 Dom ✕” / „+ 📍 Dom” zamiast przełącznika „Pokaż wszystkie” (wybór zapamiętany jak dotąd).
+> - **Q-024 (objętość stacji ×1/×2):** odłożone — właściciel: najpierw **pełny katalog ćwiczeń** (pozyskany z zewnętrznego źródła, każde ćwiczenie sprawdzone pod kątem sprzętu, np. Cable Fly bywa na jedną stronę); dziś katalog jest za słaby, żeby rozstrzygać ×2 per ćwiczenie. Nowy temat: katalog ćwiczeń (źródło, licencja, mapowanie na sprzęt) — plan do przygotowania.
+
 **P1. Gdzie przycisk „Zawsze w: Dom” (W3)?**
 - (a) **W linijce bloku po zamianie: „zamiast: A · [Zawsze w: Dom]”** (rekomendacja) — zamiana zostaje jednym stuknięciem, „na stałe” to drugie, świadome; widać, co zapisujesz. Minus: o jedno stuknięcie więcej niż „trzeci przycisk”.
 - (b) Przełącznik „Zapamiętaj dla: Dom” w arkuszu przed wyborem zamiennika — wszystko w jednym miejscu. Minus: łatwo zostawić włączony i zapisać zamiennik niechcący; arkusz bardziej zatłoczony.

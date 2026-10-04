@@ -353,7 +353,7 @@ Skrót z dawnej kopii tego dokumentu na Dysku Google (sekcja „Aktualizacja 03.
 | niezależna weryfikacja commitu rundy 82 (6ea37a3) | 0 wysokich / 2 średnie / 6 niskich | runda 82b |
 | niezależna weryfikacja commitu rundy 82b (82a8a16) | 0 wysokich / 0 średnich / 4 niskie | runda 82c — niskie naprawione, temat zamknięty |
 
-Po rundzie 82c: 875 testów. Otwarte pytanie o objętość stacji (×1 czy ×2 przy ćwiczeniach na dwie linki — sekcja „Runda 82”) ma numer **Q-024**.
+Po rundzie 82c: 875 testów. Otwarte pytanie o objętość stacji (×1 czy ×2 przy ćwiczeniach na dwie linki — sekcja „Runda 82”) ma numer **Q-024**. *(04.10.2026: odłożone do przebudowy katalogu ćwiczeń — decyzja właściciela, docs/14 pkt 9.)*
 
 ## Źródła (wybór)
 - Freeletics Spaces: https://www.freeletics.com/en/blog/posts/freeletics-spaces-feature/ · https://forum.freeletics.com/t/new-feature-spaces-%E2%80%93-train-anywhere-smarter-%F0%9F%92%AA/22310 · https://help.freeletics.com/hc/en-us/articles/115005747425-Adjust-your-Bodyweight-Journey-preferences · https://forum.freeletics.com/t/need-help-how-to-set-up-adjustable-dumbbellskettlebellsbarbell-in-the-freeletics-app/23488

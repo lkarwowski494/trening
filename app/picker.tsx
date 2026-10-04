@@ -1,8 +1,8 @@
 import React, { useMemo, useRef, useState } from 'react';
-import { ScrollView, Pressable, Text } from 'react-native';
+import { ScrollView, Pressable, Text, View } from 'react-native';
 import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
 import { useTheme } from '@/lib/theme';
-import { Screen, Input, Chip, Item, Muted, Empty, SwitchRow } from '@/components/ui';
+import { Screen, Input, Chip, Item, Muted, Empty } from '@/components/ui';
 import { getState, addExerciseToActive, newExercise, save, visibleExercises, exerciseInHistory, locationById, swapBlock, exById } from '@/lib/store';
 import { afterSwap } from '@/components/ActiveWorkout';
 import { availability, capsOf, missingLabel, type Availability } from '@/lib/equipment';
@@ -61,7 +61,11 @@ export default function PickerScreen() {
       {/* Audyt przed telefonem: okno zamykało się tylko gestem w dół (niedostępnym dla VoiceOver) — przycisk w nagłówku */}
       <Stack.Screen options={headerOpts} />
       <Input value={q} onChangeText={setQ} placeholder={t('Szukaj ćwiczenia…')} maxLength={80} autoFocus autoCorrect={false} />
-      {ctx ? <SwitchRow label={t('Pokaż wszystkie')} detail={showAll ? t('niedostępne w: {l} są wyszarzone', { l: ctx.name }) : t('tylko dostępne w: {l}', { l: ctx.name }) + (hidden ? ' · ' + t('ukryte: {n}', { n: hidden }) : '')} value={showAll} onChange={v => { setAllOn(v); st.settings.pickerShowAll = v; save(); }} /> : null}
+      {ctx ? <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', gap: 6, marginTop: 8 }}>
+        {/* decyzja właściciela 04.10.2026: miejsce jako filtr-etykieta (jak etykieta w JIRA) — „📍 Dom ✕” zdejmuje filtr, „+ 📍 Dom” przywraca; wybór zapamiętany */}
+        <Chip label={showAll ? `+ 📍 ${ctx.name}` : `📍 ${ctx.name} ✕`} on={!showAll} onPress={() => { const v = !showAll; setAllOn(v); st.settings.pickerShowAll = v; save(); }} a11yLabel={showAll ? t('Filtr miejsca wyłączony: {l}. Tapnij, by pokazać tylko dostępne.', { l: ctx.name }) : t('Filtr miejsca: {l}. Tapnij, by zdjąć.', { l: ctx.name })} />
+        <Muted style={{ fontSize: 12, flexShrink: 1 }}>{showAll ? t('niedostępne w: {l} są wyszarzone', { l: ctx.name }) : t('tylko dostępne w: {l}', { l: ctx.name }) + (hidden ? ' · ' + t('ukryte: {n}', { n: hidden }) : '')}</Muted>
+      </View> : null}
       <ScrollView horizontal keyboardShouldPersistTaps="handled" showsHorizontalScrollIndicator={false} style={{ flexGrow: 0, flexShrink: 0, marginVertical: 8 }} /* runda 69: chipy nie są ściskane do zera */>
         <Chip label={t('Wszystkie')} on={g === ''} onPress={() => setG('')} />{GROUPS.map(x => <Chip key={x} label={t(x)} on={g === x} onPress={() => setG(x)} />)}
       </ScrollView>
