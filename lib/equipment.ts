@@ -11,7 +11,7 @@ import type { Exercise, Location, LocEquip, LoadMode, Impl } from './seed';
  * Ekrany i testy czytają wszystko stąd.
  */
 
-/** Możliwości używane tylko przez sprzęt (żadne ćwiczenie biblioteki ich dziś nie wymaga). */
+/** Możliwości dawane przez sprzęt, których nie było w pierwszym katalogu (od katalogu 04.10.2026 część ćwiczeń ich wymaga albo zaleca — mogą się więc powtarzać w CAPABILITIES; dostępność liczy zbiór). */
 export const EXTRA_CAPS = ['bands', 'cable.rope', 'ankle_strap', 'cable.handles'] as const;
 export const CAPABILITIES: readonly string[] = [...CATALOG_CAPS, ...EXTRA_CAPS];
 

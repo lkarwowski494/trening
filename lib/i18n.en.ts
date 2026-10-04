@@ -287,4 +287,6 @@ export const EN: Record<string, string> = {
   'Inne ▴': 'Other ▴', 'Inne ▾': 'Other ▾', 'lista ćwiczeń z filtrami, które możesz zdjąć': 'exercise list with filters you can remove', 'Zwiń inne ćwiczenia': 'Collapse other exercises', 'Pokaż inne ćwiczenia': 'Show other exercises',
   'Filtr partii: {g}. Tapnij, by zdjąć.': 'Muscle group filter: {g}. Tap to remove.', 'Filtr partii wyłączony: {g}. Tapnij, by włączyć.': 'Muscle group filter off: {g}. Tap to turn on.',
   'Brak podobnych ćwiczeń w tym miejscu — rozwiń „Inne”.': 'No similar exercises at this place — expand “Other”.',
+  'Obciążenie partii (z katalogu)': 'Muscle load (from the catalog)', 'główna': 'primary', 'pomocnicza': 'secondary', 'stabilizacja': 'stabilizer', '●●● główna · ●● pomocnicza · ● stabilizacja': '●●● primary · ●● secondary · ● stabilizer',
+  'barki — przód': 'front delts', 'barki — bok': 'side delts', 'barki — tył': 'rear delts', 'najszersze grzbietu': 'lats', 'góra pleców': 'upper back', 'prostowniki grzbietu': 'lower back', 'brzuch': 'abs', 'skośne brzucha': 'obliques', 'przywodziciele': 'adductors', 'odwodziciele': 'abductors',
 };

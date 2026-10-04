@@ -1,9 +1,9 @@
 import * as SQLite from 'expo-sqlite';
 import * as FileSystem from 'expo-file-system/legacy';
 import { useSyncExternalStore } from 'react';
-import { t, t as tr, tIn, applyLang, detectLang, locale } from './i18n';
+import { t, t as tr, tIn, applyLang, detectLang, locale, fold } from './i18n';
 import { applyUnit, wu, wOut, wIn, KG_PER_LB, fmtW, fmtNum, snapLegacyLb } from './units';
-import { seedState, uid, base, defaultModules, defaultSettings, metricFor, loadModeFor, loadMult, blankTimer, musclesFor, hasTime, hasReps, hasWeight, hasDistance, METRICS, DEFAULT_REST, GROUPS, LIB, SCHEMA_VERSION, LOCAL_OWNER, MODULES, SET_KINDS, SINGLE_IMPLEMENT, equipFields, LOAD_SOURCE_BY_EQUIPMENT, IMPLS, type Impl, type SetKind, type Base, type State, type Workout, type WSet, type WExercise, type Exercise, type Template, type TemplateItem, type TemplateAlt, type Morning, type Location } from './seed';
+import { seedState, uid, base, defaultModules, defaultSettings, metricFor, loadModeFor, loadMult, blankTimer, musclesFor, hasTime, hasReps, hasWeight, hasDistance, METRICS, DEFAULT_REST, GROUPS, LIB, SCHEMA_VERSION, LOCAL_OWNER, MODULES, SET_KINDS, SINGLE_IMPLEMENT, equipFields, libExercise, LIB_EXTRA_NAMES, LOAD_SOURCE_BY_EQUIPMENT, IMPLS, type Impl, type SetKind, type Base, type State, type Workout, type WSet, type WExercise, type Exercise, type Template, type TemplateItem, type TemplateAlt, type Morning, type Location } from './seed';
 import { equipById, loadsFor, implAt, implsAt, blankLoad, availability } from './equipment';
 import { sanitizeLoadSpec, nextHeavier, hasLoadShown } from './loads';
 import { CATALOG, CATALOG_REV } from './catalog.generated';
@@ -247,6 +247,10 @@ export function migrate(raw: any): State {
     if (e.lib && SINGLE_IMPLEMENT.has(e.name) && e.loadMode === 'per_dumbbell' && (Number(raw.schemaVersion) || 0) < 10) e.loadMode = 'total';
     fixEquipFields(e);
   });
+  /* Katalog 04.10.2026 (decyzja właściciela: rozbudowa katalogu): dane sprzed schematu 16 dostają nowe ćwiczenia biblioteki RAZ (stała granica
+   * schematu, jak runda 52/56 — ćwiczenie usunięte później przez użytkownika nie wraca); pomijane, gdy istnieje ćwiczenie o tej samej nazwie (także własne). */
+  if ((Number(raw.schemaVersion) || 0) < 16) { const have = new Set(raw.exercises.map((e: any) => fold(e.name)));
+    for (const row of LIB.filter(l => LIB_EXTRA_NAMES.includes(l[0]))) if (!have.has(fold(row[0]))) raw.exercises.push(libExercise(row, owner)); }
   raw.templates = arr(raw.templates);
   raw.templates.forEach((t: any) => { stamp(t); if (typeof t.name !== 'string') t.name = ''; t.items = arr(t.items); t.items = t.items.filter((it: any) => idOf(it.exerciseId) != null); t.items.forEach((it: any) => { it.id = idOf(it.id) ?? uid(); it.exerciseId = idOf(it.exerciseId); { const v = parseNum(it.targetSec); it.targetSec = v == null || v < 0 ? '' : Math.min(86400, Math.round(v)); } /* runda 51 */ it.groupId = idOf(it.groupId); it.sets = intIn(it.sets, 1, 50) ?? 1; /* runda 15: liczba, nie tekst z importu */ if (it.startWeight === undefined) it.startWeight = ''; for (const k of ['repMin', 'repMax']) it[k] = intIn(it[k], 1, 100); { const v = parseNum(it.restSec); it.restSec = v == null || v < 0 ? null : Math.min(1800, Math.round(v)); } /* runda 49: także tekst, jak przerwa ćwiczenia */ /* runda 17: limit 1800 */ { const v = parseNum(it.startWeight); it.startWeight = v == null ? '' : kg2(snapL(v) as number); } fixAlternates(it); }); });
   raw.templates.forEach((x: any) => { const n = x.name.replace(/\s+/g, ' ').trim(); x.name = n || tIn(raw.settings?.language, 'Nowy szablon'); { const l = idOf(x.locationId); if (l) x.locationId = l; else delete x.locationId; } /* P-003 */ }); // runda 35: jak nazwy ćwiczeń

@@ -20,7 +20,12 @@
   "pattern": "h_push",
   "alternativesNote": "Bench Press (hantle), Machine Chest Press, Push Up; Smith bench press",
   "confidence": "high",
-  "note": "Bench inside a rack or a bench with its own uprights; safeties/spotter recommended."
+  "note": "Bench inside a rack or a bench with its own uprights; safeties/spotter recommended.",
+  "muscleLoad": {
+   "chest": 1,
+   "triceps": 0.5,
+   "front_delt": 0.5
+  }
  },
  {
   "name": "Bench Press (hantle)",
@@ -38,7 +43,12 @@
   "pattern": "h_push",
   "alternativesNote": "Bench Press (sztanga), Machine Chest Press, Push Up",
   "confidence": "high",
-  "note": ""
+  "note": "",
+  "muscleLoad": {
+   "chest": 1,
+   "triceps": 0.5,
+   "front_delt": 0.5
+  }
  },
  {
   "name": "Incline Bench Press (sztanga)",
@@ -61,7 +71,12 @@
   "pattern": "h_push",
   "alternativesNote": "Incline Bench Press (hantle); Smith incline press; incline machine press",
   "confidence": "high",
-  "note": "Incline bench inside a rack, or a dedicated incline station with uprights."
+  "note": "Incline bench inside a rack, or a dedicated incline station with uprights.",
+  "muscleLoad": {
+   "chest": 1,
+   "front_delt": 0.5,
+   "triceps": 0.5
+  }
  },
  {
   "name": "Incline Bench Press (hantle)",
@@ -79,7 +94,12 @@
   "pattern": "h_push",
   "alternativesNote": "Incline Bench Press (sztanga); Smith incline press; Incline Push Up is a much easier bodyweight option",
   "confidence": "high",
-  "note": ""
+  "note": "",
+  "muscleLoad": {
+   "chest": 1,
+   "front_delt": 0.5,
+   "triceps": 0.5
+  }
  },
  {
   "name": "Decline Bench Press",
@@ -102,7 +122,12 @@
   "pattern": "h_push",
   "alternativesNote": "Chest Dip, Bench Press (sztanga); decline DB press; Machine Chest Press",
   "confidence": "high",
-  "note": "Name has no implement; barbell per app class. Decline DB press would need db + bench.decline instead."
+  "note": "Name has no implement; barbell per app class. Decline DB press would need db + bench.decline instead.",
+  "muscleLoad": {
+   "chest": 1,
+   "triceps": 0.5,
+   "front_delt": 0.25
+  }
  },
  {
   "name": "Chest Fly (hantle)",
@@ -120,7 +145,12 @@
   "pattern": "isolation",
   "alternativesNote": "Cable Fly, Pec Deck",
   "confidence": "high",
-  "note": "Incline variant would need bench.incline."
+  "note": "Incline variant would need bench.incline.",
+  "muscleLoad": {
+   "chest": 1,
+   "front_delt": 0.5,
+   "biceps": 0.25
+  }
  },
  {
   "name": "Cable Fly",
@@ -134,7 +164,13 @@
   "pattern": "isolation",
   "alternativesNote": "Pec Deck, Chest Fly (hantle); band fly",
   "confidence": "high",
-  "note": "Any pulley height (high-to-low, mid, low-to-high). Single-arm version possible on one pulley."
+  "note": "Any pulley height (high-to-low, mid, low-to-high). Single-arm version possible on one pulley.",
+  "muscleLoad": {
+   "chest": 1,
+   "front_delt": 0.5,
+   "biceps": 0.25
+  },
+  "cables": 2
  },
  {
   "name": "Pec Deck",
@@ -148,7 +184,11 @@
   "pattern": "isolation",
   "alternativesNote": "Cable Fly, Chest Fly (hantle)",
   "confidence": "high",
-  "note": "Most pec-deck machines double as Reverse Pec Deck."
+  "note": "Most pec-deck machines double as Reverse Pec Deck.",
+  "muscleLoad": {
+   "chest": 1,
+   "front_delt": 0.5
+  }
  },
  {
   "name": "Machine Chest Press",
@@ -162,7 +202,12 @@
   "pattern": "h_push",
   "alternativesNote": "Bench Press (hantle/sztanga); Smith bench press; Push Up",
   "confidence": "high",
-  "note": "Some chest-press machines are plate-loaded; machine_stack chosen as the common case."
+  "note": "Some chest-press machines are plate-loaded; machine_stack chosen as the common case.",
+  "muscleLoad": {
+   "chest": 1,
+   "triceps": 0.5,
+   "front_delt": 0.5
+  }
  },
  {
   "name": "Wyciskanie na linkach (stojąc)",
@@ -179,7 +224,14 @@
   "pattern": "h_push",
   "alternativesNote": "Cable Fly, Machine Chest Press, Push Up; band chest press",
   "confidence": "medium",
-  "note": "PL: standing cable chest press. Assumed two handles from two pulleys at ~chest height; a single-arm version on one mid pulley is possible."
+  "note": "PL: standing cable chest press. Assumed two handles from two pulleys at ~chest height; a single-arm version on one mid pulley is possible.",
+  "muscleLoad": {
+   "chest": 1,
+   "triceps": 0.5,
+   "front_delt": 0.5,
+   "abs": 0.25
+  },
+  "cables": 2
  },
  {
   "name": "Chest Dip",
@@ -194,7 +246,12 @@
   "pattern": "v_push",
   "alternativesNote": "Triceps Dips (ławka), Decline Bench Press, Push Up; assisted dip machine",
   "confidence": "high",
-  "note": "Rings, power tower or rack dip attachment also work (rings change the feel). Band assistance is optional (not required); dip_belt only for weighted variant."
+  "note": "Rings, power tower or rack dip attachment also work (rings change the feel). Band assistance is optional (not required); dip_belt only for weighted variant.",
+  "muscleLoad": {
+   "chest": 1,
+   "triceps": 0.5,
+   "front_delt": 0.5
+  }
  },
  {
   "name": "Push Up",
@@ -204,7 +261,13 @@
   "pattern": "h_push",
   "alternativesNote": "Bench Press (hantle), Machine Chest Press, Incline Push Up",
   "confidence": "high",
-  "note": "Floor only. Parallettes / vest / plate on back optional."
+  "note": "Floor only. Parallettes / vest / plate on back optional.",
+  "muscleLoad": {
+   "chest": 1,
+   "triceps": 0.5,
+   "front_delt": 0.5,
+   "abs": 0.25
+  }
  },
  {
   "name": "Incline Push Up",
@@ -219,7 +282,13 @@
   "pattern": "h_push",
   "alternativesNote": "Push Up, Bench Press (hantle), Machine Chest Press",
   "confidence": "high",
-  "note": "Hands on any sturdy elevated surface (bench, box, chair, counter, Smith/rack bar); wall push-up is the easiest extreme."
+  "note": "Hands on any sturdy elevated surface (bench, box, chair, counter, Smith/rack bar); wall push-up is the easiest extreme.",
+  "muscleLoad": {
+   "chest": 1,
+   "triceps": 0.5,
+   "front_delt": 0.5,
+   "abs": 0.25
+  }
  },
  {
   "name": "Diamond Push Up",
@@ -229,7 +298,13 @@
   "pattern": "h_push",
   "alternativesNote": "Close Grip Bench Press, Triceps Dips (ławka), Triceps Pushdown",
   "confidence": "high",
-  "note": ""
+  "note": "",
+  "muscleLoad": {
+   "triceps": 1,
+   "chest": 0.5,
+   "front_delt": 0.5,
+   "abs": 0.25
+  }
  },
  {
   "name": "Deadlift (sztanga)",
@@ -243,7 +318,18 @@
   "pattern": "hinge",
   "alternativesNote": "Trap Bar Deadlift, Deadlift (hantle), Sumo Deadlift",
   "confidence": "high",
-  "note": "Lifting platform / bumper plates not modelled."
+  "note": "Lifting platform / bumper plates not modelled.",
+  "muscleLoad": {
+   "lower_back": 1,
+   "hamstrings": 1,
+   "glutes": 0.5,
+   "quads": 0.5,
+   "upper_back": 0.5,
+   "forearms": 0.5,
+   "lats": 0.25,
+   "adductors": 0.25,
+   "abs": 0.25
+  }
  },
  {
   "name": "Deadlift (hantle)",
@@ -258,7 +344,16 @@
   "pattern": "hinge",
   "alternativesNote": "Deadlift (sztanga), Trap Bar Deadlift, Kettlebell Swing",
   "confidence": "high",
-  "note": ""
+  "note": "",
+  "muscleLoad": {
+   "lower_back": 1,
+   "hamstrings": 1,
+   "glutes": 0.5,
+   "quads": 0.25,
+   "upper_back": 0.25,
+   "forearms": 0.5,
+   "lats": 0.25
+  }
  },
  {
   "name": "Sumo Deadlift",
@@ -272,7 +367,16 @@
   "pattern": "hinge",
   "alternativesNote": "Deadlift (sztanga), Trap Bar Deadlift; DB/KB sumo deadlift",
   "confidence": "high",
-  "note": "Name has no implement; barbell per app class."
+  "note": "Name has no implement; barbell per app class.",
+  "muscleLoad": {
+   "glutes": 1,
+   "quads": 1,
+   "lower_back": 0.5,
+   "hamstrings": 0.5,
+   "adductors": 0.5,
+   "upper_back": 0.5,
+   "forearms": 0.5
+  }
  },
  {
   "name": "Trap Bar Deadlift",
@@ -286,7 +390,15 @@
   "pattern": "hinge",
   "alternativesNote": "Deadlift (sztanga), Deadlift (hantle)",
   "confidence": "high",
-  "note": "App coarse class is 'sztanga' but the trap (hex) bar is a distinct implement. Squat-hinge hybrid; classed hinge."
+  "note": "App coarse class is 'sztanga' but the trap (hex) bar is a distinct implement. Squat-hinge hybrid; classed hinge.",
+  "muscleLoad": {
+   "quads": 1,
+   "lower_back": 1,
+   "glutes": 0.5,
+   "hamstrings": 0.5,
+   "upper_back": 0.5,
+   "forearms": 0.5
+  }
  },
  {
   "name": "RDL (sztanga)",
@@ -302,7 +414,15 @@
   "pattern": "hinge",
   "alternativesNote": "RDL (hantle/linki), Good Morning, Back Extension",
   "confidence": "high",
-  "note": "Rack is a convenience for unracking at hip height; the bar can be deadlifted up first."
+  "note": "Rack is a convenience for unracking at hip height; the bar can be deadlifted up first.",
+  "muscleLoad": {
+   "hamstrings": 1,
+   "glutes": 0.5,
+   "lower_back": 0.5,
+   "upper_back": 0.25,
+   "forearms": 0.25,
+   "adductors": 0.25
+  }
  },
  {
   "name": "RDL (hantle/linki)",
@@ -318,7 +438,16 @@
   "pattern": "hinge",
   "alternativesNote": "RDL (sztanga), Good Morning, Back Extension",
   "confidence": "medium",
-  "note": "Name allows two implements: dumbbells OR a low pulley (bar/handles). loadSource follows app class (dumbbell); the cable variant would be 'cable'."
+  "note": "Name allows two implements: dumbbells OR a low pulley (bar/handles). loadSource follows app class (dumbbell); the cable variant would be 'cable'.",
+  "muscleLoad": {
+   "hamstrings": 1,
+   "glutes": 0.5,
+   "lower_back": 0.5,
+   "upper_back": 0.25,
+   "forearms": 0.25,
+   "adductors": 0.25
+  },
+  "cables": 1
  },
  {
   "name": "Bent Over Row (sztanga)",
@@ -334,7 +463,15 @@
   "pattern": "h_pull",
   "alternativesNote": "Bent Over Row (hantle), Pendlay Row, T-Bar Row, Seated Cable Row",
   "confidence": "high",
-  "note": ""
+  "note": "",
+  "muscleLoad": {
+   "lats": 1,
+   "upper_back": 1,
+   "rear_delt": 0.5,
+   "biceps": 0.5,
+   "lower_back": 0.5,
+   "forearms": 0.25
+  }
  },
  {
   "name": "Bent Over Row (hantle)",
@@ -349,7 +486,15 @@
   "pattern": "h_pull",
   "alternativesNote": "Bent Over Row (sztanga), One Arm Row (hantle), Chest Supported Row",
   "confidence": "high",
-  "note": ""
+  "note": "",
+  "muscleLoad": {
+   "lats": 1,
+   "upper_back": 1,
+   "rear_delt": 0.5,
+   "biceps": 0.5,
+   "lower_back": 0.5,
+   "forearms": 0.25
+  }
  },
  {
   "name": "Pendlay Row",
@@ -363,7 +508,15 @@
   "pattern": "h_pull",
   "alternativesNote": "Bent Over Row (sztanga/hantle), T-Bar Row",
   "confidence": "high",
-  "note": "Dead-stop barbell row from the floor."
+  "note": "Dead-stop barbell row from the floor.",
+  "muscleLoad": {
+   "lats": 1,
+   "upper_back": 1,
+   "rear_delt": 0.5,
+   "biceps": 0.5,
+   "lower_back": 0.5,
+   "forearms": 0.25
+  }
  },
  {
   "name": "One Arm Row (hantle)",
@@ -380,7 +533,15 @@
   "pattern": "h_pull",
   "alternativesNote": "Bent Over Row (hantle), Chest Supported Row, single-arm Seated Cable Row",
   "confidence": "high",
-  "note": "Classic version braced on a bench; can brace on a rack/knee, so bench only recommended."
+  "note": "Classic version braced on a bench; can brace on a rack/knee, so bench only recommended.",
+  "muscleLoad": {
+   "lats": 1,
+   "upper_back": 0.5,
+   "rear_delt": 0.5,
+   "biceps": 0.5,
+   "forearms": 0.25,
+   "obliques": 0.25
+  }
  },
  {
   "name": "Chest Supported Row",
@@ -398,7 +559,14 @@
   "pattern": "h_pull",
   "alternativesNote": "Seated Cable Row, T-Bar Row; chest-supported row machine (row_machine)",
   "confidence": "medium",
-  "note": "Generic name; interpreted per app class as dumbbells lying chest-down on an incline bench. In gyms often done on a row_machine or chest-supported T-bar instead."
+  "note": "Generic name; interpreted per app class as dumbbells lying chest-down on an incline bench. In gyms often done on a row_machine or chest-supported T-bar instead.",
+  "muscleLoad": {
+   "lats": 1,
+   "upper_back": 1,
+   "rear_delt": 0.5,
+   "biceps": 0.5,
+   "forearms": 0.25
+  }
  },
  {
   "name": "T-Bar Row",
@@ -417,7 +585,15 @@
   "pattern": "h_pull",
   "alternativesNote": "Bent Over Row (sztanga), Chest Supported Row, Seated Cable Row",
   "confidence": "medium",
-  "note": "Either a T-bar row station or a barbell in a landmine: CNF of t_bar OR (landmine AND barbell). Barbell wedged into a corner works without a landmine. T-bar stations are plate-loaded; loadSource kept as barbell per app class."
+  "note": "Either a T-bar row station or a barbell in a landmine: CNF of t_bar OR (landmine AND barbell). Barbell wedged into a corner works without a landmine. T-bar stations are plate-loaded; loadSource kept as barbell per app class.",
+  "muscleLoad": {
+   "lats": 1,
+   "upper_back": 1,
+   "rear_delt": 0.5,
+   "biceps": 0.5,
+   "lower_back": 0.5,
+   "forearms": 0.25
+  }
  },
  {
   "name": "Seated Cable Row",
@@ -432,7 +608,16 @@
   "pattern": "h_pull",
   "alternativesNote": "One Arm Row (hantle), Bent Over Row, row_machine",
   "confidence": "high",
-  "note": "Dedicated seated-row station, or any low pulley sitting on the floor/bench with feet braced."
+  "note": "Dedicated seated-row station, or any low pulley sitting on the floor/bench with feet braced.",
+  "muscleLoad": {
+   "lats": 1,
+   "upper_back": 1,
+   "rear_delt": 0.5,
+   "biceps": 0.5,
+   "forearms": 0.25,
+   "lower_back": 0.25
+  },
+  "cables": 1
  },
  {
   "name": "Wiosłowanie na linkach (siedząc)",
@@ -447,7 +632,16 @@
   "pattern": "h_pull",
   "alternativesNote": "One Arm Row (hantle), Bent Over Row, row_machine",
   "confidence": "high",
-  "note": "PL: seated cable row - duplicates 'Seated Cable Row'. Same requirements."
+  "note": "PL: seated cable row - duplicates 'Seated Cable Row'. Same requirements.",
+  "muscleLoad": {
+   "lats": 1,
+   "upper_back": 1,
+   "rear_delt": 0.5,
+   "biceps": 0.5,
+   "forearms": 0.25,
+   "lower_back": 0.25
+  },
+  "cables": 1
  },
  {
   "name": "Lat Pulldown",
@@ -462,7 +656,15 @@
   "pattern": "v_pull",
   "alternativesNote": "Pull Up, Chin Up, assisted_pullup_machine; band pulldown",
   "confidence": "high",
-  "note": "Seated station with thigh pad; kneeling under any high pulley is an accepted substitute."
+  "note": "Seated station with thigh pad; kneeling under any high pulley is an accepted substitute.",
+  "muscleLoad": {
+   "lats": 1,
+   "upper_back": 0.5,
+   "biceps": 0.5,
+   "rear_delt": 0.25,
+   "forearms": 0.25
+  },
+  "cables": 1
  },
  {
   "name": "Straight Arm Pulldown",
@@ -476,7 +678,14 @@
   "pattern": "isolation",
   "alternativesNote": "Lat Pulldown; band straight-arm pulldown; DB pullover",
   "confidence": "high",
-  "note": "Lats isolation. A lat_pulldown station's pulley also serves (location side may map lat_pulldown -> cable.high)."
+  "note": "Lats isolation. A lat_pulldown station's pulley also serves (location side may map lat_pulldown -> cable.high).",
+  "muscleLoad": {
+   "lats": 1,
+   "triceps": 0.25,
+   "rear_delt": 0.25,
+   "abs": 0.25
+  },
+  "cables": 1
  },
  {
   "name": "Chin Up",
@@ -491,7 +700,15 @@
   "pattern": "v_pull",
   "alternativesNote": "Lat Pulldown (underhand), Pull Up, assisted_pullup_machine",
   "confidence": "high",
-  "note": "Rings / power tower also work (rings change the feel). Band assistance optional (not required)."
+  "note": "Rings / power tower also work (rings change the feel). Band assistance optional (not required).",
+  "muscleLoad": {
+   "lats": 1,
+   "biceps": 0.5,
+   "upper_back": 0.5,
+   "forearms": 0.5,
+   "rear_delt": 0.25,
+   "abs": 0.25
+  }
  },
  {
   "name": "Pull Up",
@@ -506,7 +723,15 @@
   "pattern": "v_pull",
   "alternativesNote": "Lat Pulldown, Chin Up, assisted_pullup_machine",
   "confidence": "high",
-  "note": "Rings / power tower also work (rings change the feel). Band assistance optional (not required)."
+  "note": "Rings / power tower also work (rings change the feel). Band assistance optional (not required).",
+  "muscleLoad": {
+   "lats": 1,
+   "upper_back": 0.5,
+   "biceps": 0.5,
+   "forearms": 0.5,
+   "rear_delt": 0.25,
+   "abs": 0.25
+  }
  },
  {
   "name": "Neutral Grip Pull Up",
@@ -521,7 +746,15 @@
   "pattern": "v_pull",
   "alternativesNote": "Lat Pulldown (neutral handle), Pull Up, Chin Up, assisted_pullup_machine",
   "confidence": "medium",
-  "note": "Needs parallel/neutral handles (common on rack and power-tower bars, absent on many doorway bars); rings also give a neutral grip. No separate capability in vocab. Band assistance optional."
+  "note": "Needs parallel/neutral handles (common on rack and power-tower bars, absent on many doorway bars); rings also give a neutral grip. No separate capability in vocab. Band assistance optional.",
+  "muscleLoad": {
+   "lats": 1,
+   "upper_back": 0.5,
+   "biceps": 0.5,
+   "forearms": 0.5,
+   "rear_delt": 0.25,
+   "abs": 0.25
+  }
  },
  {
   "name": "Inverted Row",
@@ -544,7 +777,15 @@
   "pattern": "h_pull",
   "alternativesNote": "Bent Over Row (hantle), Seated Cable Row, One Arm Row (hantle)",
   "confidence": "medium",
-  "note": "Needs a bar/handles at hip height: barbell on rack hooks (rack AND barbell), Smith bar, rings or suspension trainer - written in CNF. At home a sturdy table edge also works (not in vocab)."
+  "note": "Needs a bar/handles at hip height: barbell on rack hooks (rack AND barbell), Smith bar, rings or suspension trainer - written in CNF. At home a sturdy table edge also works (not in vocab).",
+  "muscleLoad": {
+   "upper_back": 1,
+   "lats": 1,
+   "rear_delt": 0.5,
+   "biceps": 0.5,
+   "abs": 0.25,
+   "glutes": 0.25
+  }
  },
  {
   "name": "Face Pull",
@@ -559,7 +800,14 @@
   "pattern": "h_pull",
   "alternativesNote": "Reverse Pec Deck, Reverse Fly (hantle); band face pull (band.loop_anchor)",
   "confidence": "high",
-  "note": "Rope attachment, pulley at face height or higher."
+  "note": "Rope attachment, pulley at face height or higher.",
+  "muscleLoad": {
+   "rear_delt": 1,
+   "upper_back": 0.5,
+   "side_delt": 0.25,
+   "biceps": 0.25
+  },
+  "cables": 1
  },
  {
   "name": "Back Extension",
@@ -574,7 +822,12 @@
   "pattern": "hinge",
   "alternativesNote": "RDL (sztanga), Good Morning; floor superman",
   "confidence": "high",
-  "note": "45 deg or 90 deg hyperextension bench, or a GHD. Optional plate/DB held for load."
+  "note": "45 deg or 90 deg hyperextension bench, or a GHD. Optional plate/DB held for load.",
+  "muscleLoad": {
+   "lower_back": 1,
+   "glutes": 0.5,
+   "hamstrings": 0.5
+  }
  },
  {
   "name": "Shrugs (hantle)",
@@ -589,7 +842,11 @@
   "pattern": "isolation",
   "alternativesNote": "Shrugs (sztanga), Farmer's Walk; trap-bar or Smith shrugs",
   "confidence": "high",
-  "note": ""
+  "note": "",
+  "muscleLoad": {
+   "upper_back": 1,
+   "forearms": 0.5
+  }
  },
  {
   "name": "Shrugs (sztanga)",
@@ -605,7 +862,11 @@
   "pattern": "isolation",
   "alternativesNote": "Shrugs (hantle), Farmer's Walk; trap-bar or Smith shrugs",
   "confidence": "high",
-  "note": "Rack is a convenience for unracking at thigh height."
+  "note": "Rack is a convenience for unracking at thigh height.",
+  "muscleLoad": {
+   "upper_back": 1,
+   "forearms": 0.5
+  }
  },
  {
   "name": "Good Morning",
@@ -624,7 +885,13 @@
   "pattern": "hinge",
   "alternativesNote": "RDL (sztanga), Back Extension; band good morning",
   "confidence": "high",
-  "note": "Bar on the upper back must be unracked from shoulder height."
+  "note": "Bar on the upper back must be unracked from shoulder height.",
+  "muscleLoad": {
+   "hamstrings": 1,
+   "lower_back": 0.5,
+   "glutes": 0.5,
+   "abs": 0.25
+  }
  },
  {
   "name": "Overhead Press (sztanga)",
@@ -640,7 +907,15 @@
   "pattern": "v_push",
   "alternativesNote": "Overhead Press (hantle), Machine Shoulder Press, Push Press; Smith OHP",
   "confidence": "high",
-  "note": "Normally unracked at shoulder height, but the bar can be cleaned from the floor, so rack only recommended (unlike squats/good morning)."
+  "note": "Normally unracked at shoulder height, but the bar can be cleaned from the floor, so rack only recommended (unlike squats/good morning).",
+  "muscleLoad": {
+   "front_delt": 1,
+   "side_delt": 0.5,
+   "triceps": 0.5,
+   "upper_back": 0.25,
+   "chest": 0.25,
+   "abs": 0.25
+  }
  },
  {
   "name": "Overhead Press (hantle)",
@@ -655,7 +930,14 @@
   "pattern": "v_push",
   "alternativesNote": "Overhead Press (sztanga), Seated Shoulder Press (hantle), Machine Shoulder Press",
   "confidence": "high",
-  "note": "Standing."
+  "note": "Standing.",
+  "muscleLoad": {
+   "front_delt": 1,
+   "side_delt": 0.5,
+   "triceps": 0.5,
+   "upper_back": 0.25,
+   "abs": 0.25
+  }
  },
  {
   "name": "Seated Shoulder Press (hantle)",
@@ -677,7 +959,13 @@
   "pattern": "v_push",
   "alternativesNote": "Overhead Press (hantle/sztanga), Arnold Press, Machine Shoulder Press",
   "confidence": "high",
-  "note": "Any seat works; back support (adjustable bench set ~80-90 deg) recommended."
+  "note": "Any seat works; back support (adjustable bench set ~80-90 deg) recommended.",
+  "muscleLoad": {
+   "front_delt": 1,
+   "side_delt": 0.5,
+   "triceps": 0.5,
+   "upper_back": 0.25
+  }
  },
  {
   "name": "Arnold Press",
@@ -694,7 +982,13 @@
   "pattern": "v_push",
   "alternativesNote": "Seated Shoulder Press (hantle), Overhead Press (hantle)",
   "confidence": "high",
-  "note": "Done seated (back support recommended) or standing."
+  "note": "Done seated (back support recommended) or standing.",
+  "muscleLoad": {
+   "front_delt": 1,
+   "side_delt": 0.5,
+   "triceps": 0.5,
+   "upper_back": 0.25
+  }
  },
  {
   "name": "Push Press",
@@ -710,7 +1004,17 @@
   "pattern": "v_push",
   "alternativesNote": "Overhead Press (sztanga), DB push press",
   "confidence": "high",
-  "note": "Same rack logic as Overhead Press (sztanga)."
+  "note": "Same rack logic as Overhead Press (sztanga).",
+  "muscleLoad": {
+   "front_delt": 1,
+   "side_delt": 0.5,
+   "triceps": 0.5,
+   "quads": 0.5,
+   "glutes": 0.25,
+   "upper_back": 0.25,
+   "abs": 0.25,
+   "calves": 0.25
+  }
  },
  {
   "name": "Machine Shoulder Press",
@@ -724,7 +1028,12 @@
   "pattern": "v_push",
   "alternativesNote": "Overhead Press (hantle/sztanga), Seated Shoulder Press (hantle); Smith OHP",
   "confidence": "high",
-  "note": "Some are plate-loaded; machine_stack chosen as the common case."
+  "note": "Some are plate-loaded; machine_stack chosen as the common case.",
+  "muscleLoad": {
+   "front_delt": 1,
+   "side_delt": 0.5,
+   "triceps": 0.5
+  }
  },
  {
   "name": "Wyciskanie nad głowę (linki)",
@@ -741,7 +1050,15 @@
   "pattern": "v_push",
   "alternativesNote": "Overhead Press (hantle), Machine Shoulder Press; band overhead press",
   "confidence": "medium",
-  "note": "PL: cable overhead press. Assumed standing/kneeling between two low pulleys; a single-arm version on one low pulley is possible."
+  "note": "PL: cable overhead press. Assumed standing/kneeling between two low pulleys; a single-arm version on one low pulley is possible.",
+  "muscleLoad": {
+   "front_delt": 1,
+   "side_delt": 0.5,
+   "triceps": 0.5,
+   "upper_back": 0.25,
+   "abs": 0.25
+  },
+  "cables": 2
  },
  {
   "name": "Lateral Raise (hantle)",
@@ -756,7 +1073,12 @@
   "pattern": "isolation",
   "alternativesNote": "Cable Lateral Raise; machine lateral raise; band lateral raise",
   "confidence": "high",
-  "note": ""
+  "note": "",
+  "muscleLoad": {
+   "side_delt": 1,
+   "front_delt": 0.25,
+   "upper_back": 0.25
+  }
  },
  {
   "name": "Cable Lateral Raise",
@@ -770,7 +1092,13 @@
   "pattern": "isolation",
   "alternativesNote": "Lateral Raise (hantle); band lateral raise",
   "confidence": "high",
-  "note": "Single-arm from a low pulley."
+  "note": "Single-arm from a low pulley.",
+  "muscleLoad": {
+   "side_delt": 1,
+   "front_delt": 0.25,
+   "upper_back": 0.25
+  },
+  "cables": 1
  },
  {
   "name": "Front Raise",
@@ -785,7 +1113,12 @@
   "pattern": "isolation",
   "alternativesNote": "Plate front raise (plates), cable front raise (cable.low), barbell front raise",
   "confidence": "high",
-  "note": "Name has no implement; dumbbells per app class."
+  "note": "Name has no implement; dumbbells per app class.",
+  "muscleLoad": {
+   "front_delt": 1,
+   "side_delt": 0.25,
+   "chest": 0.25
+  }
  },
  {
   "name": "Rear Delt Raise (hantle)",
@@ -802,7 +1135,11 @@
   "pattern": "isolation",
   "alternativesNote": "Reverse Pec Deck, Face Pull; cable rear-delt fly (cable.dual)",
   "confidence": "high",
-  "note": "Bent-over or chest-down on an incline bench. Near-duplicate of 'Reverse Fly (hantle)' (both = bent-over DB rear-delt fly)."
+  "note": "Bent-over or chest-down on an incline bench. Near-duplicate of 'Reverse Fly (hantle)' (both = bent-over DB rear-delt fly).",
+  "muscleLoad": {
+   "rear_delt": 1,
+   "upper_back": 0.5
+  }
  },
  {
   "name": "Reverse Fly (hantle)",
@@ -819,7 +1156,11 @@
   "pattern": "isolation",
   "alternativesNote": "Reverse Pec Deck, Face Pull; cable rear-delt fly (cable.dual)",
   "confidence": "high",
-  "note": "Bent-over or chest-down on an incline bench. Near-duplicate of 'Rear Delt Raise (hantle)' (both = bent-over DB rear-delt fly)."
+  "note": "Bent-over or chest-down on an incline bench. Near-duplicate of 'Rear Delt Raise (hantle)' (both = bent-over DB rear-delt fly).",
+  "muscleLoad": {
+   "rear_delt": 1,
+   "upper_back": 0.5
+  }
  },
  {
   "name": "Reverse Pec Deck",
@@ -833,7 +1174,11 @@
   "pattern": "isolation",
   "alternativesNote": "Reverse Fly (hantle), Face Pull; cable rear-delt fly (cable.dual)",
   "confidence": "high",
-  "note": "Uses the pec_deck machine (most are dual-purpose); a dedicated rear-delt machine would also count."
+  "note": "Uses the pec_deck machine (most are dual-purpose); a dedicated rear-delt machine would also count.",
+  "muscleLoad": {
+   "rear_delt": 1,
+   "upper_back": 0.5
+  }
  },
  {
   "name": "Upright Row",
@@ -848,7 +1193,14 @@
   "pattern": "isolation",
   "alternativesNote": "Lateral Raise (hantle); barbell/EZ upright row; cable upright row (cable.low)",
   "confidence": "high",
-  "note": "Name has no implement; dumbbells per app class. Compound delt/trap pull, classed isolation (sometimes v_pull)."
+  "note": "Name has no implement; dumbbells per app class. Compound delt/trap pull, classed isolation (sometimes v_pull).",
+  "muscleLoad": {
+   "side_delt": 1,
+   "upper_back": 0.5,
+   "front_delt": 0.5,
+   "biceps": 0.5,
+   "forearms": 0.25
+  }
  },
  {
   "name": "Biceps Curl (hantle)",
@@ -863,7 +1215,11 @@
   "pattern": "isolation",
   "alternativesNote": "Barbell Curl, EZ Bar Curl, Cable Curl, Hammer Curl",
   "confidence": "high",
-  "note": ""
+  "note": "",
+  "muscleLoad": {
+   "biceps": 1,
+   "forearms": 0.25
+  }
  },
  {
   "name": "Barbell Curl",
@@ -877,7 +1233,11 @@
   "pattern": "isolation",
   "alternativesNote": "EZ Bar Curl, Biceps Curl (hantle), Cable Curl",
   "confidence": "high",
-  "note": ""
+  "note": "",
+  "muscleLoad": {
+   "biceps": 1,
+   "forearms": 0.25
+  }
  },
  {
   "name": "EZ Bar Curl",
@@ -891,7 +1251,11 @@
   "pattern": "isolation",
   "alternativesNote": "Barbell Curl, Biceps Curl (hantle), Cable Curl",
   "confidence": "high",
-  "note": "App coarse class is 'sztanga'; the EZ bar is a distinct implement."
+  "note": "App coarse class is 'sztanga'; the EZ bar is a distinct implement.",
+  "muscleLoad": {
+   "biceps": 1,
+   "forearms": 0.25
+  }
  },
  {
   "name": "Hammer Curl",
@@ -906,7 +1270,11 @@
   "pattern": "isolation",
   "alternativesNote": "Rope cable hammer curl (cable.low), Biceps Curl (hantle)",
   "confidence": "high",
-  "note": ""
+  "note": "",
+  "muscleLoad": {
+   "biceps": 1,
+   "forearms": 0.5
+  }
  },
  {
   "name": "Incline Curl (hantle)",
@@ -924,7 +1292,11 @@
   "pattern": "isolation",
   "alternativesNote": "Biceps Curl (hantle), Cable Curl (behind body), Spider Curl",
   "confidence": "high",
-  "note": "Seated back on an incline bench."
+  "note": "Seated back on an incline bench.",
+  "muscleLoad": {
+   "biceps": 1,
+   "forearms": 0.25
+  }
  },
  {
   "name": "Concentration Curl (hantle)",
@@ -944,7 +1316,11 @@
   "pattern": "isolation",
   "alternativesNote": "Preacher Curl, Spider Curl, single-arm Cable Curl",
   "confidence": "high",
-  "note": "Seated; any seat works."
+  "note": "Seated; any seat works.",
+  "muscleLoad": {
+   "biceps": 1,
+   "forearms": 0.25
+  }
  },
  {
   "name": "Preacher Curl",
@@ -962,7 +1338,11 @@
   "pattern": "isolation",
   "alternativesNote": "Spider Curl, Concentration Curl (hantle); EZ-bar or machine preacher curl",
   "confidence": "medium",
-  "note": "Generic name; dumbbells per app class. Needs a preacher bench/pad; an incline-bench backrest is a common one-arm DB substitute (not encoded)."
+  "note": "Generic name; dumbbells per app class. Needs a preacher bench/pad; an incline-bench backrest is a common one-arm DB substitute (not encoded).",
+  "muscleLoad": {
+   "biceps": 1,
+   "forearms": 0.25
+  }
  },
  {
   "name": "Spider Curl",
@@ -980,7 +1360,11 @@
   "pattern": "isolation",
   "alternativesNote": "Preacher Curl, Concentration Curl (hantle)",
   "confidence": "high",
-  "note": "Chest-down on an incline bench, arms hanging."
+  "note": "Chest-down on an incline bench, arms hanging.",
+  "muscleLoad": {
+   "biceps": 1,
+   "forearms": 0.25
+  }
  },
  {
   "name": "Cable Curl",
@@ -994,7 +1378,12 @@
   "pattern": "isolation",
   "alternativesNote": "Biceps Curl (hantle), Barbell Curl; band curl",
   "confidence": "high",
-  "note": ""
+  "note": "",
+  "muscleLoad": {
+   "biceps": 1,
+   "forearms": 0.25
+  },
+  "cables": 1
  },
  {
   "name": "Skullcrusher (hantle)",
@@ -1012,7 +1401,10 @@
   "pattern": "isolation",
   "alternativesNote": "Skullcrusher (EZ), Overhead Triceps Extension (hantel), Triceps Pushdown",
   "confidence": "high",
-  "note": "Floor version possible but bench is standard."
+  "note": "Floor version possible but bench is standard.",
+  "muscleLoad": {
+   "triceps": 1
+  }
  },
  {
   "name": "Skullcrusher (EZ)",
@@ -1029,7 +1421,10 @@
   "pattern": "isolation",
   "alternativesNote": "Skullcrusher (hantle), Cable Overhead Extension, Triceps Pushdown",
   "confidence": "high",
-  "note": "App coarse class is 'sztanga'; EZ bar named explicitly."
+  "note": "App coarse class is 'sztanga'; EZ bar named explicitly.",
+  "muscleLoad": {
+   "triceps": 1
+  }
  },
  {
   "name": "Triceps Dips (ławka)",
@@ -1044,7 +1439,12 @@
   "pattern": "v_push",
   "alternativesNote": "Chest Dip, Diamond Push Up, Triceps Pushdown",
   "confidence": "high",
-  "note": "PL 'ławka' = bench: bench dips; a chair or box works."
+  "note": "PL 'ławka' = bench: bench dips; a chair or box works.",
+  "muscleLoad": {
+   "triceps": 1,
+   "chest": 0.5,
+   "front_delt": 0.5
+  }
  },
  {
   "name": "Triceps Pushdown",
@@ -1058,7 +1458,11 @@
   "pattern": "isolation",
   "alternativesNote": "Band pushdown, Skullcrusher, Diamond Push Up",
   "confidence": "high",
-  "note": "Rope or bar attachment."
+  "note": "Rope or bar attachment.",
+  "muscleLoad": {
+   "triceps": 1
+  },
+  "cables": 1
  },
  {
   "name": "Overhead Triceps Extension (hantel)",
@@ -1073,7 +1477,10 @@
   "pattern": "isolation",
   "alternativesNote": "Cable Overhead Extension, Skullcrusher (hantle/EZ)",
   "confidence": "high",
-  "note": "One dumbbell held with both hands (app SINGLE_IMPLEMENT); seated or standing."
+  "note": "One dumbbell held with both hands (app SINGLE_IMPLEMENT); seated or standing.",
+  "muscleLoad": {
+   "triceps": 1
+  }
  },
  {
   "name": "Cable Overhead Extension",
@@ -1088,7 +1495,11 @@
   "pattern": "isolation",
   "alternativesNote": "Overhead Triceps Extension (hantel), Skullcrusher; band overhead extension",
   "confidence": "high",
-  "note": "Facing away from a high pulley, or from a low pulley; rope attachment."
+  "note": "Facing away from a high pulley, or from a low pulley; rope attachment.",
+  "muscleLoad": {
+   "triceps": 1
+  },
+  "cables": 1
  },
  {
   "name": "Close Grip Bench Press",
@@ -1111,7 +1522,12 @@
   "pattern": "h_push",
   "alternativesNote": "Diamond Push Up, Triceps Dips (ławka); close-grip DB press; Smith CGBP",
   "confidence": "high",
-  "note": "Name has no implement; barbell per app class. Same setup as Bench Press (sztanga)."
+  "note": "Name has no implement; barbell per app class. Same setup as Bench Press (sztanga).",
+  "muscleLoad": {
+   "triceps": 1,
+   "chest": 0.5,
+   "front_delt": 0.5
+  }
  },
  {
   "name": "Triceps Kickback",
@@ -1128,7 +1544,11 @@
   "pattern": "isolation",
   "alternativesNote": "Triceps Pushdown; cable kickback (cable.low)",
   "confidence": "high",
-  "note": "Bench support optional."
+  "note": "Bench support optional.",
+  "muscleLoad": {
+   "triceps": 1,
+   "rear_delt": 0.25
+  }
  },
  {
   "name": "Back Squat",
@@ -1147,7 +1567,16 @@
   "pattern": "squat",
   "alternativesNote": "Front Squat, Hack Squat, Leg Press, Goblet Squat; Smith squat",
   "confidence": "high",
-  "note": ""
+  "note": "",
+  "muscleLoad": {
+   "quads": 1,
+   "glutes": 0.5,
+   "hamstrings": 0.5,
+   "adductors": 0.5,
+   "lower_back": 0.5,
+   "abs": 0.25,
+   "calves": 0.25
+  }
  },
  {
   "name": "Front Squat",
@@ -1166,7 +1595,15 @@
   "pattern": "squat",
   "alternativesNote": "Back Squat, Goblet Squat, Hack Squat; Smith front squat",
   "confidence": "high",
-  "note": ""
+  "note": "",
+  "muscleLoad": {
+   "quads": 1,
+   "glutes": 0.5,
+   "abs": 0.5,
+   "upper_back": 0.5,
+   "adductors": 0.5,
+   "lower_back": 0.25
+  }
  },
  {
   "name": "Goblet Squat",
@@ -1182,7 +1619,14 @@
   "pattern": "squat",
   "alternativesNote": "Back Squat, Front Squat, Leg Press, Przysiad z pasem (linki)",
   "confidence": "high",
-  "note": "One DB or KB held at the chest (app SINGLE_IMPLEMENT); kettlebell is the classic implement so it is OR'ed in."
+  "note": "One DB or KB held at the chest (app SINGLE_IMPLEMENT); kettlebell is the classic implement so it is OR'ed in.",
+  "muscleLoad": {
+   "quads": 1,
+   "glutes": 0.5,
+   "adductors": 0.5,
+   "abs": 0.25,
+   "upper_back": 0.25
+  }
  },
  {
   "name": "Przysiad z pasem (linki)",
@@ -1199,7 +1643,14 @@
   "pattern": "squat",
   "alternativesNote": "Back Squat, Goblet Squat, Leg Press; belt-squat machine; landmine belt squat",
   "confidence": "medium",
-  "note": "PL: belt squat on cables - interpreted as a hip/dip belt clipped to a low pulley (standing on boxes optional). The belt is inherent to the exercise, so dip_belt is required. Dedicated belt-squat machine not in vocab."
+  "note": "PL: belt squat on cables - interpreted as a hip/dip belt clipped to a low pulley (standing on boxes optional). The belt is inherent to the exercise, so dip_belt is required. Dedicated belt-squat machine not in vocab.",
+  "muscleLoad": {
+   "quads": 1,
+   "glutes": 0.5,
+   "adductors": 0.5,
+   "hamstrings": 0.25
+  },
+  "cables": 2
  },
  {
   "name": "Box Squat",
@@ -1222,7 +1673,14 @@
   "pattern": "squat",
   "alternativesNote": "Back Squat; Goblet Squat to box",
   "confidence": "high",
-  "note": "Box or bench behind as depth target."
+  "note": "Box or bench behind as depth target.",
+  "muscleLoad": {
+   "quads": 1,
+   "glutes": 0.5,
+   "hamstrings": 0.5,
+   "adductors": 0.5,
+   "lower_back": 0.5
+  }
  },
  {
   "name": "Hack Squat",
@@ -1236,7 +1694,12 @@
   "pattern": "squat",
   "alternativesNote": "Leg Press, Back Squat; Smith squat",
   "confidence": "high",
-  "note": "Most hack squats are plate-loaded; some are selectorized."
+  "note": "Most hack squats are plate-loaded; some are selectorized.",
+  "muscleLoad": {
+   "quads": 1,
+   "glutes": 0.5,
+   "adductors": 0.25
+  }
  },
  {
   "name": "Leg Press",
@@ -1250,7 +1713,13 @@
   "pattern": "squat",
   "alternativesNote": "Hack Squat, Back Squat, Przysiad z pasem (linki)",
   "confidence": "high",
-  "note": "Most leg presses are plate-loaded; some are selectorized."
+  "note": "Most leg presses are plate-loaded; some are selectorized.",
+  "muscleLoad": {
+   "quads": 1,
+   "glutes": 0.5,
+   "adductors": 0.5,
+   "hamstrings": 0.25
+  }
  },
  {
   "name": "Bulgarian Split Squat (hantle)",
@@ -1269,7 +1738,16 @@
   "pattern": "lunge_single_leg",
   "alternativesNote": "Lunges (hantle), Reverse Lunge, Step Up; barbell/Smith split squat",
   "confidence": "high",
-  "note": "Rear foot on bench/box."
+  "note": "Rear foot on bench/box.",
+  "muscleLoad": {
+   "quads": 1,
+   "glutes": 1,
+   "hamstrings": 0.5,
+   "adductors": 0.5,
+   "abductors": 0.25,
+   "calves": 0.25,
+   "forearms": 0.25
+  }
  },
  {
   "name": "Lunges (hantle)",
@@ -1284,7 +1762,16 @@
   "pattern": "lunge_single_leg",
   "alternativesNote": "Walking Lunges, Reverse Lunge, Bulgarian Split Squat (hantle); barbell lunge",
   "confidence": "high",
-  "note": ""
+  "note": "",
+  "muscleLoad": {
+   "quads": 1,
+   "glutes": 1,
+   "adductors": 0.5,
+   "hamstrings": 0.25,
+   "abductors": 0.25,
+   "calves": 0.25,
+   "forearms": 0.25
+  }
  },
  {
   "name": "Walking Lunges",
@@ -1297,7 +1784,16 @@
   "pattern": "lunge_single_leg",
   "alternativesNote": "Lunges (hantle), Reverse Lunge, Bulgarian Split Squat (hantle)",
   "confidence": "medium",
-  "note": "App classes this as dumbbells, but the name has no implement and it is commonly done unloaded; requirement kept at the floor so it stays available everywhere (db recommended). Switch requires to [[\"db\"]] if the app should treat it as always loaded. Needs walking space."
+  "note": "App classes this as dumbbells, but the name has no implement and it is commonly done unloaded; requirement kept at the floor so it stays available everywhere (db recommended). Switch requires to [[\"db\"]] if the app should treat it as always loaded. Needs walking space.",
+  "muscleLoad": {
+   "quads": 1,
+   "glutes": 1,
+   "adductors": 0.5,
+   "hamstrings": 0.25,
+   "abductors": 0.25,
+   "calves": 0.25,
+   "forearms": 0.25
+  }
  },
  {
   "name": "Reverse Lunge",
@@ -1310,7 +1806,16 @@
   "pattern": "lunge_single_leg",
   "alternativesNote": "Lunges (hantle), Walking Lunges, Bulgarian Split Squat (hantle)",
   "confidence": "medium",
-  "note": "App classes this as dumbbells, but the name has no implement and it is commonly done unloaded; requirement kept at the floor so it stays available everywhere (db recommended). Switch requires to [[\"db\"]] if the app should treat it as always loaded."
+  "note": "App classes this as dumbbells, but the name has no implement and it is commonly done unloaded; requirement kept at the floor so it stays available everywhere (db recommended). Switch requires to [[\"db\"]] if the app should treat it as always loaded.",
+  "muscleLoad": {
+   "quads": 1,
+   "glutes": 1,
+   "adductors": 0.5,
+   "hamstrings": 0.25,
+   "abductors": 0.25,
+   "calves": 0.25,
+   "forearms": 0.25
+  }
  },
  {
   "name": "Step Up",
@@ -1328,7 +1833,15 @@
   "pattern": "lunge_single_leg",
   "alternativesNote": "Bulgarian Split Squat (hantle), Lunges (hantle), Pistol Squat",
   "confidence": "medium",
-  "note": "Box/bench at about knee height. App classes this as dumbbells, but the name has no implement and it is commonly done unloaded; requirement kept at the floor so it stays available everywhere (db recommended). Switch requires to [[\"db\"]] if the app should treat it as always loaded."
+  "note": "Box/bench at about knee height. App classes this as dumbbells, but the name has no implement and it is commonly done unloaded; requirement kept at the floor so it stays available everywhere (db recommended). Switch requires to [[\"db\"]] if the app should treat it as always loaded.",
+  "muscleLoad": {
+   "quads": 1,
+   "glutes": 1,
+   "hamstrings": 0.25,
+   "abductors": 0.25,
+   "calves": 0.25,
+   "forearms": 0.25
+  }
  },
  {
   "name": "Leg Extension",
@@ -1342,7 +1855,10 @@
   "pattern": "isolation",
   "alternativesNote": "Sissy Squat; band leg extension; Front Squat",
   "confidence": "high",
-  "note": ""
+  "note": "",
+  "muscleLoad": {
+   "quads": 1
+  }
  },
  {
   "name": "Leg Curl",
@@ -1356,7 +1872,11 @@
   "pattern": "isolation",
   "alternativesNote": "Lying Leg Curl, Nordic Curl, RDL (sztanga)",
   "confidence": "medium",
-  "note": "Generic name; presumably the seated machine (since 'Lying Leg Curl' is separate). Vocab has a single leg_curl capability, so a seated vs a lying leg-curl machine is not distinguished."
+  "note": "Generic name; presumably the seated machine (since 'Lying Leg Curl' is separate). Vocab has a single leg_curl capability, so a seated vs a lying leg-curl machine is not distinguished.",
+  "muscleLoad": {
+   "hamstrings": 1,
+   "calves": 0.25
+  }
  },
  {
   "name": "Lying Leg Curl",
@@ -1370,7 +1890,11 @@
   "pattern": "isolation",
   "alternativesNote": "Leg Curl, Nordic Curl; DB leg curl lying on a bench",
   "confidence": "medium",
-  "note": "Vocab has a single leg_curl capability, so a seated vs a lying leg-curl machine is not distinguished."
+  "note": "Vocab has a single leg_curl capability, so a seated vs a lying leg-curl machine is not distinguished.",
+  "muscleLoad": {
+   "hamstrings": 1,
+   "calves": 0.25
+  }
  },
  {
   "name": "Nordic Curl",
@@ -1389,7 +1913,12 @@
   "pattern": "isolation",
   "alternativesNote": "Leg Curl, Lying Leg Curl, RDL (sztanga)",
   "confidence": "low",
-  "note": "Needs an ankle anchor: GHD/GHR/Nordic bench, lat-pulldown thigh pad, or a loaded barbell over the heels. At home a sofa, partner or strap anchor - not expressible in vocab, so availability is under-reported. Band assistance optional."
+  "note": "Needs an ankle anchor: GHD/GHR/Nordic bench, lat-pulldown thigh pad, or a loaded barbell over the heels. At home a sofa, partner or strap anchor - not expressible in vocab, so availability is under-reported. Band assistance optional.",
+  "muscleLoad": {
+   "hamstrings": 1,
+   "calves": 0.25,
+   "glutes": 0.25
+  }
  },
  {
   "name": "Pistol Squat",
@@ -1399,7 +1928,15 @@
   "pattern": "lunge_single_leg",
   "alternativesNote": "Bulgarian Split Squat (hantle), Step Up, Goblet Squat",
   "confidence": "high",
-  "note": "Box/bench as depth target or support for regression; band assistance optional."
+  "note": "Box/bench as depth target or support for regression; band assistance optional.",
+  "muscleLoad": {
+   "quads": 1,
+   "glutes": 0.5,
+   "adductors": 0.25,
+   "abductors": 0.25,
+   "abs": 0.25,
+   "calves": 0.25
+  }
  },
  {
   "name": "Sissy Squat",
@@ -1409,7 +1946,11 @@
   "pattern": "isolation",
   "alternativesNote": "Leg Extension, Front Squat",
   "confidence": "high",
-  "note": "Hold a post/rack for balance; a sissy-squat bench is optional (not in vocab). Knee-dominant quad isolation; could be classed squat."
+  "note": "Hold a post/rack for balance; a sissy-squat bench is optional (not in vocab). Knee-dominant quad isolation; could be classed squat.",
+  "muscleLoad": {
+   "quads": 1,
+   "abs": 0.25
+  }
  },
  {
   "name": "Wall Sit",
@@ -1419,7 +1960,11 @@
   "pattern": "squat",
   "alternativesNote": "Goblet Squat, Leg Extension",
   "confidence": "high",
-  "note": "Isometric (metric: time). Ściana zawsze dostępna — bez wymagań (przegląd 02.10)."
+  "note": "Isometric (metric: time). Ściana zawsze dostępna — bez wymagań (przegląd 02.10).",
+  "muscleLoad": {
+   "quads": 1,
+   "glutes": 0.25
+  }
  },
  {
   "name": "Hip Thrust (sztanga)",
@@ -1437,7 +1982,14 @@
   "pattern": "hinge",
   "alternativesNote": "Hip Thrust (hantel), Glute Bridge; hip-thrust machine; Smith hip thrust",
   "confidence": "high",
-  "note": "Upper back on bench/box; bar pad advised (not in vocab)."
+  "note": "Upper back on bench/box; bar pad advised (not in vocab).",
+  "muscleLoad": {
+   "glutes": 1,
+   "hamstrings": 0.5,
+   "quads": 0.25,
+   "adductors": 0.25,
+   "abductors": 0.25
+  }
  },
  {
   "name": "Hip Thrust (hantel)",
@@ -1456,7 +2008,14 @@
   "pattern": "hinge",
   "alternativesNote": "Hip Thrust (sztanga), Glute Bridge",
   "confidence": "high",
-  "note": "One dumbbell on the hips (app SINGLE_IMPLEMENT)."
+  "note": "One dumbbell on the hips (app SINGLE_IMPLEMENT).",
+  "muscleLoad": {
+   "glutes": 1,
+   "hamstrings": 0.5,
+   "quads": 0.25,
+   "adductors": 0.25,
+   "abductors": 0.25
+  }
  },
  {
   "name": "Glute Bridge",
@@ -1468,7 +2027,11 @@
   "pattern": "hinge",
   "alternativesNote": "Hip Thrust (sztanga/hantel), Cable Kickback",
   "confidence": "high",
-  "note": "Floor version; optional DB/plate/barbell on hips."
+  "note": "Floor version; optional DB/plate/barbell on hips.",
+  "muscleLoad": {
+   "glutes": 1,
+   "hamstrings": 0.5
+  }
  },
  {
   "name": "Cable Kickback",
@@ -1482,7 +2045,13 @@
   "pattern": "isolation",
   "alternativesNote": "Hip Thrust, Glute Bridge; band kickback",
   "confidence": "high",
-  "note": "Ankle-strap attachment."
+  "note": "Ankle-strap attachment.",
+  "muscleLoad": {
+   "glutes": 1,
+   "hamstrings": 0.5,
+   "abductors": 0.25
+  },
+  "cables": 1
  },
  {
   "name": "Hip Abduction",
@@ -1496,7 +2065,11 @@
   "pattern": "isolation",
   "alternativesNote": "Band lateral walk/clamshell; cable hip abduction (cable.low)",
   "confidence": "high",
-  "note": ""
+  "note": "",
+  "muscleLoad": {
+   "abductors": 1,
+   "glutes": 0.5
+  }
  },
  {
   "name": "Hip Adduction",
@@ -1510,7 +2083,11 @@
   "pattern": "isolation",
   "alternativesNote": "Cable hip adduction (cable.low); Copenhagen plank",
   "confidence": "high",
-  "note": ""
+  "note": "",
+  "muscleLoad": {
+   "adductors": 1,
+   "glutes": 0.25
+  }
  },
  {
   "name": "Kettlebell Swing",
@@ -1526,7 +2103,16 @@
   "pattern": "hinge",
   "alternativesNote": "RDL (hantle/linki), Hip Thrust, Deadlift (hantle)",
   "confidence": "medium",
-  "note": "App coarse class is 'hantle' (no KB class); DB swing is a common substitute, so db is OR'ed in."
+  "note": "App coarse class is 'hantle' (no KB class); DB swing is a common substitute, so db is OR'ed in.",
+  "muscleLoad": {
+   "glutes": 1,
+   "hamstrings": 1,
+   "lower_back": 0.5,
+   "abs": 0.25,
+   "forearms": 0.25,
+   "front_delt": 0.25,
+   "quads": 0.25
+  }
  },
  {
   "name": "Standing Calf Raise",
@@ -1540,7 +2126,10 @@
   "pattern": "isolation",
   "alternativesNote": "Łydki na stopniu, Calf Press (leg press); Smith or barbell calf raise",
   "confidence": "medium",
-  "note": "Name has no implement; machine per app class. Vocab has a single calf_machine capability; standing vs seated calf machine is not distinguished."
+  "note": "Name has no implement; machine per app class. Vocab has a single calf_machine capability; standing vs seated calf machine is not distinguished.",
+  "muscleLoad": {
+   "calves": 1
+  }
  },
  {
   "name": "Seated Calf Raise",
@@ -1554,7 +2143,10 @@
   "pattern": "isolation",
   "alternativesNote": "Standing Calf Raise; DB on knees seated on a bench with toes on a step",
   "confidence": "medium",
-  "note": "Seated calf machines are usually plate-loaded. Vocab has a single calf_machine capability; standing vs seated calf machine is not distinguished."
+  "note": "Seated calf machines are usually plate-loaded. Vocab has a single calf_machine capability; standing vs seated calf machine is not distinguished.",
+  "muscleLoad": {
+   "calves": 1
+  }
  },
  {
   "name": "Łydki na stopniu",
@@ -1568,7 +2160,11 @@
   "pattern": "isolation",
   "alternativesNote": "Standing Calf Raise, Calf Press (leg press)",
   "confidence": "medium",
-  "note": "Dowolny stopień/schody — bez wymagań, skrzynia zalecana (przegląd 02.10)."
+  "note": "Dowolny stopień/schody — bez wymagań, skrzynia zalecana (przegląd 02.10).",
+  "muscleLoad": {
+   "calves": 1,
+   "forearms": 0.25
+  }
  },
  {
   "name": "Calf Press (leg press)",
@@ -1582,7 +2178,10 @@
   "pattern": "isolation",
   "alternativesNote": "Standing Calf Raise, Łydki na stopniu",
   "confidence": "high",
-  "note": "Done on the leg press."
+  "note": "Done on the leg press.",
+  "muscleLoad": {
+   "calves": 1
+  }
  },
  {
   "name": "Plank",
@@ -1594,7 +2193,14 @@
   "pattern": "core_anti_ext",
   "alternativesNote": "Ab Wheel, Dead Bug, Hollow Hold",
   "confidence": "high",
-  "note": ""
+  "note": "",
+  "muscleLoad": {
+   "abs": 1,
+   "obliques": 0.5,
+   "front_delt": 0.25,
+   "glutes": 0.25,
+   "quads": 0.25
+  }
  },
  {
   "name": "Side Plank",
@@ -1606,7 +2212,13 @@
   "pattern": "core_other",
   "alternativesNote": "Suitcase Carry, Pallof Press",
   "confidence": "high",
-  "note": "Anti-lateral-flexion; no dedicated pattern in enum."
+  "note": "Anti-lateral-flexion; no dedicated pattern in enum.",
+  "muscleLoad": {
+   "obliques": 1,
+   "abs": 0.5,
+   "abductors": 0.5,
+   "side_delt": 0.25
+  }
  },
  {
   "name": "Dead Bug",
@@ -1618,7 +2230,11 @@
   "pattern": "core_anti_ext",
   "alternativesNote": "Plank, Hollow Hold, Bird Dog",
   "confidence": "high",
-  "note": ""
+  "note": "",
+  "muscleLoad": {
+   "abs": 1,
+   "obliques": 0.5
+  }
  },
  {
   "name": "Bird Dog",
@@ -1630,7 +2246,15 @@
   "pattern": "core_anti_rot",
   "alternativesNote": "Dead Bug, Plank, Pallof Press",
   "confidence": "high",
-  "note": "Anti-rotation / anti-extension."
+  "note": "Anti-rotation / anti-extension.",
+  "muscleLoad": {
+   "obliques": 1,
+   "abs": 0.5,
+   "lower_back": 1,
+   "glutes": 0.5,
+   "front_delt": 0.25,
+   "upper_back": 0.25
+  }
  },
  {
   "name": "Ab Wheel",
@@ -1646,7 +2270,14 @@
   "pattern": "core_anti_ext",
   "alternativesNote": "Plank; barbell rollout (barbell with round plates); suspension fallout",
   "confidence": "high",
-  "note": ""
+  "note": "",
+  "muscleLoad": {
+   "abs": 1,
+   "obliques": 0.5,
+   "lats": 0.5,
+   "triceps": 0.25,
+   "front_delt": 0.25
+  }
  },
  {
   "name": "Pallof Press",
@@ -1660,7 +2291,14 @@
   "pattern": "core_anti_rot",
   "alternativesNote": "Band Pallof press (band.loop_anchor), Side Plank, Suitcase Carry",
   "confidence": "high",
-  "note": "Band version is equally common but not OR'ed in (different load source); pulley at chest height."
+  "note": "Band version is equally common but not OR'ed in (different load source); pulley at chest height.",
+  "muscleLoad": {
+   "obliques": 1,
+   "abs": 0.5,
+   "front_delt": 0.25,
+   "glutes": 0.25
+  },
+  "cables": 1
  },
  {
   "name": "Hanging Leg Raise",
@@ -1675,7 +2313,13 @@
   "pattern": "core_flexion",
   "alternativesNote": "Hanging Knee Raise, Reverse Crunch; captain's-chair raise (dip.bars)",
   "confidence": "high",
-  "note": "Rings / power tower also work."
+  "note": "Rings / power tower also work.",
+  "muscleLoad": {
+   "abs": 1,
+   "obliques": 0.5,
+   "forearms": 0.5,
+   "lats": 0.25
+  }
  },
  {
   "name": "Hanging Knee Raise",
@@ -1691,7 +2335,13 @@
   "pattern": "core_flexion",
   "alternativesNote": "Hanging Leg Raise, Reverse Crunch; captain's-chair raise (dip.bars)",
   "confidence": "high",
-  "note": "Rings / power tower also work."
+  "note": "Rings / power tower also work.",
+  "muscleLoad": {
+   "abs": 1,
+   "obliques": 0.5,
+   "forearms": 0.5,
+   "lats": 0.25
+  }
  },
  {
   "name": "Cable Crunch",
@@ -1707,7 +2357,12 @@
   "pattern": "core_flexion",
   "alternativesNote": "Crunch, Reverse Crunch, Hanging Leg Raise",
   "confidence": "high",
-  "note": "Kneeling, rope attachment."
+  "note": "Kneeling, rope attachment.",
+  "muscleLoad": {
+   "abs": 1,
+   "obliques": 0.5
+  },
+  "cables": 1
  },
  {
   "name": "Crunch",
@@ -1719,7 +2374,11 @@
   "pattern": "core_flexion",
   "alternativesNote": "Cable Crunch, Reverse Crunch",
   "confidence": "high",
-  "note": ""
+  "note": "",
+  "muscleLoad": {
+   "abs": 1,
+   "obliques": 0.25
+  }
  },
  {
   "name": "Reverse Crunch",
@@ -1731,7 +2390,11 @@
   "pattern": "core_flexion",
   "alternativesNote": "Hanging Knee Raise, Crunch",
   "confidence": "high",
-  "note": "Floor or on a flat bench."
+  "note": "Floor or on a flat bench.",
+  "muscleLoad": {
+   "abs": 1,
+   "obliques": 0.25
+  }
  },
  {
   "name": "Russian Twist",
@@ -1745,7 +2408,11 @@
   "pattern": "core_other",
   "alternativesNote": "Pallof Press; med-ball or plate twist",
   "confidence": "medium",
-  "note": "Rotation. One implement (app SINGLE_IMPLEMENT); med ball or plate equally common. App classes this as dumbbells, but the name has no implement and it is commonly done unloaded; requirement kept at the floor so it stays available everywhere (db recommended). Switch requires to [[\"db\"]] if the app should treat it as always loaded."
+  "note": "Rotation. One implement (app SINGLE_IMPLEMENT); med ball or plate equally common. App classes this as dumbbells, but the name has no implement and it is commonly done unloaded; requirement kept at the floor so it stays available everywhere (db recommended). Switch requires to [[\"db\"]] if the app should treat it as always loaded.",
+  "muscleLoad": {
+   "obliques": 1,
+   "abs": 0.5
+  }
  },
  {
   "name": "Hollow Hold",
@@ -1757,7 +2424,11 @@
   "pattern": "core_anti_ext",
   "alternativesNote": "Plank, Dead Bug",
   "confidence": "high",
-  "note": "Isometric (metric: time)."
+  "note": "Isometric (metric: time).",
+  "muscleLoad": {
+   "abs": 1,
+   "obliques": 0.5
+  }
  },
  {
   "name": "Farmer's Walk",
@@ -1773,7 +2444,16 @@
   "pattern": "carry",
   "alternativesNote": "Suitcase Carry, Shrugs (hantle); trap-bar or KB carry",
   "confidence": "high",
-  "note": "Needs walking space. Trap bar / kettlebells / farmer handles are substitutes (not OR'ed in)."
+  "note": "Needs walking space. Trap bar / kettlebells / farmer handles are substitutes (not OR'ed in).",
+  "muscleLoad": {
+   "forearms": 1,
+   "upper_back": 1,
+   "obliques": 0.5,
+   "abs": 0.5,
+   "quads": 0.25,
+   "glutes": 0.25,
+   "calves": 0.25
+  }
  },
  {
   "name": "Suitcase Carry",
@@ -1789,7 +2469,14 @@
   "pattern": "carry",
   "alternativesNote": "Farmer's Walk, Side Plank; KB carry",
   "confidence": "high",
-  "note": "One dumbbell (app SINGLE_IMPLEMENT); needs walking space."
+  "note": "One dumbbell (app SINGLE_IMPLEMENT); needs walking space.",
+  "muscleLoad": {
+   "obliques": 1,
+   "forearms": 0.5,
+   "upper_back": 0.5,
+   "abs": 0.5,
+   "abductors": 0.5
+  }
  },
  {
   "name": "Mountain Climbers",
@@ -1801,7 +2488,15 @@
   "pattern": "cardio",
   "alternativesNote": "Burpees, Plank",
   "confidence": "high",
-  "note": "Conditioning (metric: time); could also be classed core_anti_ext."
+  "note": "Conditioning (metric: time); could also be classed core_anti_ext.",
+  "muscleLoad": {
+   "abs": 1,
+   "obliques": 0.25,
+   "front_delt": 0.25,
+   "chest": 0.25,
+   "triceps": 0.25,
+   "quads": 0.25
+  }
  },
  {
   "name": "Incline Walk (bieżnia)",
@@ -1815,7 +2510,13 @@
   "pattern": "cardio",
   "alternativesNote": "Bieg; stair climber (cardio.stairs); outdoor hill walk",
   "confidence": "high",
-  "note": "PL 'bieżnia' = treadmill."
+  "note": "PL 'bieżnia' = treadmill.",
+  "muscleLoad": {
+   "glutes": 0.5,
+   "hamstrings": 0.5,
+   "calves": 0.5,
+   "quads": 0.5
+  }
  },
  {
   "name": "Bieg",
@@ -1825,7 +2526,14 @@
   "pattern": "cardio",
   "alternativesNote": "Incline Walk (bieżnia), Rower, Rowing Machine",
   "confidence": "high",
-  "note": "Bieżnia albo bieg na zewnątrz — na zewnątrz zawsze możliwe, więc bez wymagań (przegląd 02.10)."
+  "note": "Bieżnia albo bieg na zewnątrz — na zewnątrz zawsze możliwe, więc bez wymagań (przegląd 02.10).",
+  "muscleLoad": {
+   "quads": 0.5,
+   "hamstrings": 0.5,
+   "glutes": 0.5,
+   "calves": 0.5,
+   "abs": 0.25
+  }
  },
  {
   "name": "Rower",
@@ -1840,7 +2548,13 @@
   "pattern": "cardio",
   "alternativesNote": "Assault Bike, Rowing Machine, Bieg",
   "confidence": "low",
-  "note": "„Rower” = jazda na rowerze: stacjonarny albo na zewnątrz (outdoor = własny rower). Niska pewność."
+  "note": "„Rower” = jazda na rowerze: stacjonarny albo na zewnątrz (outdoor = własny rower). Niska pewność.",
+  "muscleLoad": {
+   "quads": 0.5,
+   "glutes": 0.5,
+   "hamstrings": 0.25,
+   "calves": 0.25
+  }
  },
  {
   "name": "Rowing Machine",
@@ -1854,7 +2568,19 @@
   "pattern": "cardio",
   "alternativesNote": "Rower, Assault Bike",
   "confidence": "high",
-  "note": ""
+  "note": "",
+  "muscleLoad": {
+   "quads": 0.5,
+   "glutes": 0.5,
+   "lats": 0.5,
+   "upper_back": 0.5,
+   "hamstrings": 0.25,
+   "lower_back": 0.25,
+   "biceps": 0.25,
+   "rear_delt": 0.25,
+   "forearms": 0.25,
+   "abs": 0.25
+  }
  },
  {
   "name": "Assault Bike",
@@ -1868,7 +2594,17 @@
   "pattern": "cardio",
   "alternativesNote": "Rower, Rowing Machine",
   "confidence": "medium",
-  "note": "Air/fan bike specifically; vocab only has cardio.bike, so any stationary bike satisfies it."
+  "note": "Air/fan bike specifically; vocab only has cardio.bike, so any stationary bike satisfies it.",
+  "muscleLoad": {
+   "quads": 0.5,
+   "glutes": 0.5,
+   "hamstrings": 0.25,
+   "chest": 0.25,
+   "lats": 0.25,
+   "front_delt": 0.25,
+   "triceps": 0.25,
+   "biceps": 0.25
+  }
  },
  {
   "name": "Skakanka",
@@ -1882,7 +2618,14 @@
   "pattern": "cardio",
   "alternativesNote": "Burpees, Mountain Climbers",
   "confidence": "high",
-  "note": "PL: jump rope."
+  "note": "PL: jump rope.",
+  "muscleLoad": {
+   "calves": 0.5,
+   "quads": 0.25,
+   "forearms": 0.25,
+   "front_delt": 0.25,
+   "abs": 0.25
+  }
  },
  {
   "name": "Burpees",
@@ -1892,7 +2635,17 @@
   "pattern": "cardio",
   "alternativesNote": "Mountain Climbers, Box Jump",
   "confidence": "high",
-  "note": ""
+  "note": "",
+  "muscleLoad": {
+   "quads": 0.5,
+   "glutes": 0.5,
+   "chest": 0.5,
+   "triceps": 0.25,
+   "front_delt": 0.25,
+   "abs": 0.25,
+   "hamstrings": 0.25,
+   "calves": 0.25
+  }
  },
  {
   "name": "Box Jump",
@@ -1906,7 +2659,13 @@
   "pattern": "other",
   "alternativesNote": "Burpees; broad jump / squat jump (no box)",
   "confidence": "high",
-  "note": "Plyometric; a bench is not a safe substitute, so only box."
+  "note": "Plyometric; a bench is not a safe substitute, so only box.",
+  "muscleLoad": {
+   "quads": 0.5,
+   "glutes": 0.5,
+   "calves": 0.5,
+   "hamstrings": 0.25
+  }
  },
  {
   "name": "Medicine Ball Slam",
@@ -1920,6 +2679,3698 @@
   "pattern": "other",
   "alternativesNote": "Burpees, Kettlebell Swing",
   "confidence": "high",
-  "note": "Power/conditioning. Slam (non-bouncing) ball preferred. loadSource enum has no med-ball value; ball weight not tracked (metric: reps)."
+  "note": "Power/conditioning. Slam (non-bouncing) ball preferred. loadSource enum has no med-ball value; ball weight not tracked (metric: reps).",
+  "muscleLoad": {
+   "lats": 0.5,
+   "abs": 0.5,
+   "front_delt": 0.25,
+   "triceps": 0.25,
+   "obliques": 0.25,
+   "glutes": 0.25,
+   "quads": 0.25
+  }
+ },
+ {
+  "name": "Incline Chest Fly (hantle)",
+  "group": "klatka",
+  "equipment": "hantle",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "per_dumbbell",
+  "muscles": [
+   "klatka"
+  ],
+  "secondaryMuscles": [
+   "barki"
+  ],
+  "requires": [
+   [
+    "db"
+   ],
+   [
+    "bench.incline"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "dumbbell",
+  "pattern": "isolation",
+  "implements": 2,
+  "muscleLoad": {
+   "chest": 1,
+   "front_delt": 0.5,
+   "biceps": 0.25
+  },
+  "confidence": "high",
+  "note": "Dumbbell pair on an incline bench."
+ },
+ {
+  "name": "Decline Bench Press (hantle)",
+  "group": "klatka",
+  "equipment": "hantle",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "per_dumbbell",
+  "muscles": [
+   "klatka"
+  ],
+  "secondaryMuscles": [
+   "triceps"
+  ],
+  "requires": [
+   [
+    "db"
+   ],
+   [
+    "bench.decline"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "dumbbell",
+  "pattern": "h_push",
+  "implements": 2,
+  "muscleLoad": {
+   "chest": 1,
+   "triceps": 0.5,
+   "front_delt": 0.25
+  },
+  "confidence": "high",
+  "note": "Dumbbell pair on a decline bench; no rack needed."
+ },
+ {
+  "name": "Floor Press (hantle)",
+  "group": "klatka",
+  "equipment": "hantle",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "per_dumbbell",
+  "muscles": [
+   "klatka"
+  ],
+  "secondaryMuscles": [
+   "triceps"
+  ],
+  "requires": [
+   [
+    "db"
+   ]
+  ],
+  "recommended": [
+   "floor_mat"
+  ],
+  "loadSource": "dumbbell",
+  "pattern": "h_push",
+  "implements": 2,
+  "muscleLoad": {
+   "chest": 1,
+   "triceps": 0.5,
+   "front_delt": 0.5
+  },
+  "confidence": "high",
+  "note": "Lying on the floor, so no bench needed."
+ },
+ {
+  "name": "Floor Press (sztanga)",
+  "group": "klatka",
+  "equipment": "sztanga",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "total",
+  "muscles": [
+   "klatka"
+  ],
+  "secondaryMuscles": [
+   "triceps"
+  ],
+  "requires": [
+   [
+    "barbell"
+   ],
+   [
+    "rack"
+   ]
+  ],
+  "recommended": [
+   "rack.safeties"
+  ],
+  "loadSource": "barbell",
+  "pattern": "h_push",
+  "muscleLoad": {
+   "chest": 1,
+   "triceps": 0.5,
+   "front_delt": 0.5
+  },
+  "confidence": "medium",
+  "note": "Bar is taken from a rack set low; without a rack it is awkward to get into position (barbell-over-body rule)."
+ },
+ {
+  "name": "Squeeze Press (hantle)",
+  "group": "klatka",
+  "equipment": "hantle",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "per_dumbbell",
+  "muscles": [
+   "klatka"
+  ],
+  "secondaryMuscles": [
+   "triceps"
+  ],
+  "requires": [
+   [
+    "db"
+   ],
+   [
+    "bench.flat"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "dumbbell",
+  "pattern": "h_push",
+  "implements": 2,
+  "muscleLoad": {
+   "chest": 1,
+   "triceps": 0.5,
+   "front_delt": 0.25
+  },
+  "confidence": "high",
+  "note": "Dumbbells pressed together on a flat bench."
+ },
+ {
+  "name": "Cable Fly (low to high)",
+  "group": "klatka",
+  "equipment": "linki",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "total",
+  "muscles": [
+   "klatka"
+  ],
+  "secondaryMuscles": [
+   "barki"
+  ],
+  "requires": [
+   [
+    "cable.dual"
+   ],
+   [
+    "cable.low"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "cable",
+  "pattern": "isolation",
+  "cables": 2,
+  "muscleLoad": {
+   "chest": 1,
+   "front_delt": 0.5
+  },
+  "confidence": "high",
+  "note": "Two handles from low pulleys; works on an electric station with two cables."
+ },
+ {
+  "name": "Cable Fly (high to low)",
+  "group": "klatka",
+  "equipment": "linki",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "total",
+  "muscles": [
+   "klatka"
+  ],
+  "secondaryMuscles": [],
+  "requires": [
+   [
+    "cable.dual"
+   ],
+   [
+    "cable.high"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "cable",
+  "pattern": "isolation",
+  "cables": 2,
+  "muscleLoad": {
+   "chest": 1,
+   "front_delt": 0.25
+  },
+  "confidence": "high",
+  "note": "Two handles from high pulleys."
+ },
+ {
+  "name": "Incline Cable Fly",
+  "group": "klatka",
+  "equipment": "linki",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "total",
+  "muscles": [
+   "klatka"
+  ],
+  "secondaryMuscles": [
+   "barki"
+  ],
+  "requires": [
+   [
+    "cable.dual"
+   ],
+   [
+    "cable.low"
+   ],
+   [
+    "bench.incline"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "cable",
+  "pattern": "isolation",
+  "cables": 2,
+  "muscleLoad": {
+   "chest": 1,
+   "front_delt": 0.5
+  },
+  "confidence": "high",
+  "note": "Incline bench between two low pulleys."
+ },
+ {
+  "name": "Single Arm Cable Fly",
+  "group": "klatka",
+  "equipment": "linki",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "unilateral",
+  "muscles": [
+   "klatka"
+  ],
+  "secondaryMuscles": [],
+  "requires": [
+   [
+    "cable.mid",
+    "cable.low"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "cable",
+  "pattern": "isolation",
+  "cables": 1,
+  "muscleLoad": {
+   "chest": 1,
+   "front_delt": 0.25,
+   "obliques": 0.25
+  },
+  "confidence": "high",
+  "note": "One handle, one side at a time; mid or low pulley (low = low-to-high path)."
+ },
+ {
+  "name": "Single Arm Cable Chest Press",
+  "group": "klatka",
+  "equipment": "linki",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "unilateral",
+  "muscles": [
+   "klatka"
+  ],
+  "secondaryMuscles": [
+   "triceps"
+  ],
+  "requires": [
+   [
+    "cable.mid",
+    "cable.low"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "cable",
+  "pattern": "h_push",
+  "cables": 1,
+  "muscleLoad": {
+   "chest": 1,
+   "triceps": 0.5,
+   "front_delt": 0.5,
+   "obliques": 0.25
+  },
+  "confidence": "high",
+  "note": "One handle at chest height, same height rule as Wyciskanie na linkach (stojąc)."
+ },
+ {
+  "name": "Svend Press",
+  "group": "klatka",
+  "equipment": "hantle",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "total",
+  "muscles": [
+   "klatka"
+  ],
+  "secondaryMuscles": [],
+  "requires": [
+   [
+    "db"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "dumbbell",
+  "pattern": "isolation",
+  "implements": 1,
+  "muscleLoad": {
+   "chest": 1,
+   "front_delt": 0.5
+  },
+  "confidence": "medium",
+  "note": "Classic version squeezes a weight plate; a single dumbbell works too. No plate capability exists, so barbell (plates) is OR-ed in; loads come from the dumbbell list."
+ },
+ {
+  "name": "Decline Push Up",
+  "group": "klatka",
+  "equipment": "masa ciała",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "total",
+  "muscles": [
+   "klatka"
+  ],
+  "secondaryMuscles": [
+   "barki",
+   "triceps"
+  ],
+  "requires": [
+   [
+    "bench.flat",
+    "box"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "bodyweight",
+  "pattern": "h_push",
+  "muscleLoad": {
+   "chest": 1,
+   "front_delt": 0.5,
+   "triceps": 0.5,
+   "abs": 0.25
+  },
+  "confidence": "high",
+  "note": "Feet on a bench or box (elevated-surface shape)."
+ },
+ {
+  "name": "Smith Machine Bench Press",
+  "group": "klatka",
+  "equipment": "maszyna",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "total",
+  "muscles": [
+   "klatka"
+  ],
+  "secondaryMuscles": [
+   "triceps"
+  ],
+  "requires": [
+   [
+    "smith"
+   ],
+   [
+    "bench.flat"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "smith",
+  "pattern": "h_push",
+  "muscleLoad": {
+   "chest": 1,
+   "triceps": 0.5,
+   "front_delt": 0.5
+  },
+  "confidence": "high",
+  "note": "Flat bench under a Smith machine."
+ },
+ {
+  "name": "Smith Machine Incline Press",
+  "group": "klatka",
+  "equipment": "maszyna",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "total",
+  "muscles": [
+   "klatka"
+  ],
+  "secondaryMuscles": [
+   "barki",
+   "triceps"
+  ],
+  "requires": [
+   [
+    "smith"
+   ],
+   [
+    "bench.incline"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "smith",
+  "pattern": "h_push",
+  "muscleLoad": {
+   "chest": 1,
+   "front_delt": 0.5,
+   "triceps": 0.5
+  },
+  "confidence": "high",
+  "note": "Incline bench under a Smith machine."
+ },
+ {
+  "name": "Pullover (hantel)",
+  "group": "klatka",
+  "equipment": "hantle",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "total",
+  "muscles": [
+   "klatka",
+   "plecy"
+  ],
+  "secondaryMuscles": [],
+  "requires": [
+   [
+    "db"
+   ],
+   [
+    "bench.flat"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "dumbbell",
+  "pattern": "isolation",
+  "implements": 1,
+  "muscleLoad": {
+   "chest": 1,
+   "lats": 1,
+   "triceps": 0.25
+  },
+  "confidence": "high",
+  "note": "One dumbbell held in both hands across a flat bench."
+ },
+ {
+  "name": "Single Arm Cable Row",
+  "group": "plecy",
+  "equipment": "linki",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "unilateral",
+  "muscles": [
+   "plecy"
+  ],
+  "secondaryMuscles": [
+   "biceps"
+  ],
+  "requires": [
+   [
+    "cable.low",
+    "cable.mid",
+    "cable.row_seat"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "cable",
+  "pattern": "h_pull",
+  "cables": 1,
+  "muscleLoad": {
+   "lats": 1,
+   "upper_back": 1,
+   "biceps": 0.5,
+   "rear_delt": 0.5
+  },
+  "confidence": "high",
+  "note": "One handle; seated or standing, low or mid pulley."
+ },
+ {
+  "name": "Standing Cable Row",
+  "group": "plecy",
+  "equipment": "linki",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "total",
+  "muscles": [
+   "plecy"
+  ],
+  "secondaryMuscles": [
+   "biceps"
+  ],
+  "requires": [
+   [
+    "cable.mid",
+    "cable.low"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "cable",
+  "pattern": "h_pull",
+  "cables": 1,
+  "muscleLoad": {
+   "upper_back": 1,
+   "lats": 1,
+   "biceps": 0.5,
+   "rear_delt": 0.5,
+   "lower_back": 0.25
+  },
+  "confidence": "medium",
+  "note": "Bar or V-handle on one pulley; for two independent cables use Bent Over Row (linki)."
+ },
+ {
+  "name": "Bent Over Row (linki)",
+  "group": "plecy",
+  "equipment": "linki",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "total",
+  "muscles": [
+   "plecy"
+  ],
+  "secondaryMuscles": [
+   "biceps"
+  ],
+  "requires": [
+   [
+    "cable.dual"
+   ],
+   [
+    "cable.low"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "cable",
+  "pattern": "h_pull",
+  "cables": 2,
+  "muscleLoad": {
+   "lats": 1,
+   "upper_back": 1,
+   "biceps": 0.5,
+   "rear_delt": 0.5,
+   "lower_back": 0.5,
+   "hamstrings": 0.25
+  },
+  "confidence": "high",
+  "note": "Hinged row with one handle in each hand from two low cables (typical electric station setup)."
+ },
+ {
+  "name": "Meadows Row",
+  "group": "plecy",
+  "equipment": "sztanga",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "unilateral",
+  "muscles": [
+   "plecy"
+  ],
+  "secondaryMuscles": [
+   "biceps"
+  ],
+  "requires": [
+   [
+    "landmine"
+   ],
+   [
+    "barbell"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "barbell",
+  "pattern": "h_pull",
+  "muscleLoad": {
+   "lats": 1,
+   "upper_back": 1,
+   "biceps": 0.5,
+   "rear_delt": 0.5,
+   "forearms": 0.25
+  },
+  "confidence": "medium",
+  "note": "Bar end in a landmine (CNF like Landmine Press); one arm at a time, load = plates on the bar."
+ },
+ {
+  "name": "Seal Row (sztanga)",
+  "group": "plecy",
+  "equipment": "sztanga",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "total",
+  "muscles": [
+   "plecy"
+  ],
+  "secondaryMuscles": [
+   "biceps"
+  ],
+  "requires": [
+   [
+    "barbell"
+   ],
+   [
+    "bench.flat"
+   ]
+  ],
+  "recommended": [
+   "box"
+  ],
+  "loadSource": "barbell",
+  "pattern": "h_pull",
+  "muscleLoad": {
+   "upper_back": 1,
+   "lats": 1,
+   "biceps": 0.5,
+   "rear_delt": 0.5
+  },
+  "confidence": "medium",
+  "note": "Needs a bench raised high enough for the bar to hang (bench on boxes); no capability for a seal-row bench."
+ },
+ {
+  "name": "Rack Pull",
+  "group": "plecy",
+  "equipment": "sztanga",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "total",
+  "muscles": [
+   "plecy"
+  ],
+  "secondaryMuscles": [
+   "pośladki",
+   "dwugłowe"
+  ],
+  "requires": [
+   [
+    "barbell"
+   ],
+   [
+    "rack.safeties"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "barbell",
+  "pattern": "hinge",
+  "muscleLoad": {
+   "upper_back": 1,
+   "lower_back": 1,
+   "glutes": 0.5,
+   "hamstrings": 0.5,
+   "forearms": 0.5,
+   "lats": 0.25
+  },
+  "confidence": "high",
+  "note": "Bar starts on safety arms / pins at knee height; blocks are an alternative not in the vocabulary."
+ },
+ {
+  "name": "Single Arm Lat Pulldown",
+  "group": "plecy",
+  "equipment": "linki",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "unilateral",
+  "muscles": [
+   "plecy"
+  ],
+  "secondaryMuscles": [
+   "biceps"
+  ],
+  "requires": [
+   [
+    "cable.high",
+    "lat_pulldown"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "cable",
+  "pattern": "v_pull",
+  "cables": 1,
+  "muscleLoad": {
+   "lats": 1,
+   "biceps": 0.5,
+   "upper_back": 0.5
+  },
+  "confidence": "high",
+  "note": "One handle on a high pulley."
+ },
+ {
+  "name": "Renegade Row",
+  "group": "plecy",
+  "equipment": "hantle",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "per_dumbbell",
+  "muscles": [
+   "plecy",
+   "core"
+  ],
+  "secondaryMuscles": [
+   "biceps"
+  ],
+  "requires": [
+   [
+    "db"
+   ]
+  ],
+  "recommended": [
+   "floor_mat"
+  ],
+  "loadSource": "dumbbell",
+  "pattern": "h_pull",
+  "implements": 2,
+  "muscleLoad": {
+   "lats": 1,
+   "upper_back": 1,
+   "abs": 1,
+   "obliques": 0.5,
+   "biceps": 0.5,
+   "chest": 0.25,
+   "triceps": 0.25
+  },
+  "confidence": "high",
+  "note": "Plank on a pair of dumbbells (hex or flat-sided preferred)."
+ },
+ {
+  "name": "Superman",
+  "group": "plecy",
+  "equipment": "masa ciała",
+  "bandAssistable": false,
+  "metric": "reps",
+  "loadMode": "total",
+  "muscles": [
+   "plecy"
+  ],
+  "secondaryMuscles": [
+   "pośladki"
+  ],
+  "requires": [],
+  "recommended": [
+   "floor_mat"
+  ],
+  "loadSource": "bodyweight",
+  "pattern": "other",
+  "muscleLoad": {
+   "lower_back": 1,
+   "glutes": 0.5,
+   "hamstrings": 0.25,
+   "upper_back": 0.25
+  },
+  "confidence": "high",
+  "note": "Prone back extension on the floor."
+ },
+ {
+  "name": "Shrugs (linki)",
+  "group": "plecy",
+  "equipment": "linki",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "total",
+  "muscles": [
+   "plecy"
+  ],
+  "secondaryMuscles": [],
+  "requires": [
+   [
+    "cable.dual"
+   ],
+   [
+    "cable.low"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "cable",
+  "pattern": "isolation",
+  "cables": 2,
+  "muscleLoad": {
+   "upper_back": 1,
+   "forearms": 0.25
+  },
+  "confidence": "medium",
+  "note": "Bar on one low pulley; with a handle in each hand on two cables the cable count would be 2."
+ },
+ {
+  "name": "Dead Hang",
+  "group": "plecy",
+  "equipment": "masa ciała",
+  "bandAssistable": false,
+  "metric": "time",
+  "loadMode": "total",
+  "muscles": [
+   "przedramiona"
+  ],
+  "secondaryMuscles": [
+   "plecy"
+  ],
+  "requires": [
+   [
+    "pullup.bar",
+    "rings"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "bodyweight",
+  "pattern": "other",
+  "muscleLoad": {
+   "forearms": 1,
+   "lats": 0.5,
+   "upper_back": 0.25
+  },
+  "confidence": "high",
+  "note": "Hanging from a bar or rings, same requirement as Pull Up."
+ },
+ {
+  "name": "Landmine Press",
+  "group": "barki",
+  "equipment": "sztanga",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "unilateral",
+  "muscles": [
+   "barki"
+  ],
+  "secondaryMuscles": [
+   "klatka",
+   "triceps"
+  ],
+  "requires": [
+   [
+    "landmine"
+   ],
+   [
+    "barbell"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "barbell",
+  "pattern": "v_push",
+  "muscleLoad": {
+   "front_delt": 1,
+   "chest": 0.5,
+   "triceps": 0.5,
+   "obliques": 0.25
+  },
+  "confidence": "medium",
+  "note": "Bar end in a landmine; usually one arm at a time, load = plates on the bar."
+ },
+ {
+  "name": "Single Arm Overhead Press (hantel)",
+  "group": "barki",
+  "equipment": "hantle",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "unilateral",
+  "muscles": [
+   "barki"
+  ],
+  "secondaryMuscles": [
+   "triceps"
+  ],
+  "requires": [
+   [
+    "db"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "dumbbell",
+  "pattern": "v_push",
+  "implements": 1,
+  "muscleLoad": {
+   "front_delt": 1,
+   "side_delt": 0.5,
+   "triceps": 0.5,
+   "obliques": 0.25
+  },
+  "confidence": "high",
+  "note": "One dumbbell, one side at a time."
+ },
+ {
+  "name": "Cable Front Raise",
+  "group": "barki",
+  "equipment": "linki",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "total",
+  "muscles": [
+   "barki"
+  ],
+  "secondaryMuscles": [],
+  "requires": [
+   [
+    "cable.low"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "cable",
+  "pattern": "isolation",
+  "cables": 1,
+  "muscleLoad": {
+   "front_delt": 1,
+   "side_delt": 0.25,
+   "upper_back": 0.25
+  },
+  "confidence": "high",
+  "note": "Bar or rope on one low pulley."
+ },
+ {
+  "name": "Cable Reverse Fly",
+  "group": "barki",
+  "equipment": "linki",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "total",
+  "muscles": [
+   "barki"
+  ],
+  "secondaryMuscles": [
+   "plecy"
+  ],
+  "requires": [
+   [
+    "cable.dual"
+   ],
+   [
+    "cable.high",
+    "cable.mid"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "cable",
+  "pattern": "isolation",
+  "cables": 2,
+  "muscleLoad": {
+   "rear_delt": 1,
+   "upper_back": 0.5
+  },
+  "confidence": "high",
+  "note": "Crossed cables from two pulleys at shoulder height or above."
+ },
+ {
+  "name": "Y Raise (hantle)",
+  "group": "barki",
+  "equipment": "hantle",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "per_dumbbell",
+  "muscles": [
+   "barki"
+  ],
+  "secondaryMuscles": [
+   "plecy"
+  ],
+  "requires": [
+   [
+    "db"
+   ]
+  ],
+  "recommended": [
+   "bench.incline"
+  ],
+  "loadSource": "dumbbell",
+  "pattern": "isolation",
+  "implements": 2,
+  "muscleLoad": {
+   "side_delt": 1,
+   "rear_delt": 0.5,
+   "upper_back": 0.5
+  },
+  "confidence": "high",
+  "note": "Usually chest-down on an incline bench; can be done bent over."
+ },
+ {
+  "name": "Cable Y Raise",
+  "group": "barki",
+  "equipment": "linki",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "total",
+  "muscles": [
+   "barki"
+  ],
+  "secondaryMuscles": [
+   "plecy"
+  ],
+  "requires": [
+   [
+    "cable.dual"
+   ],
+   [
+    "cable.low"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "cable",
+  "pattern": "isolation",
+  "cables": 2,
+  "muscleLoad": {
+   "side_delt": 1,
+   "rear_delt": 0.5,
+   "upper_back": 0.5
+  },
+  "confidence": "high",
+  "note": "Two low cables crossed in front of the body."
+ },
+ {
+  "name": "Upright Row (linki)",
+  "group": "barki",
+  "equipment": "linki",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "total",
+  "muscles": [
+   "barki"
+  ],
+  "secondaryMuscles": [
+   "plecy"
+  ],
+  "requires": [
+   [
+    "cable.low"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "cable",
+  "pattern": "isolation",
+  "cables": 1,
+  "muscleLoad": {
+   "side_delt": 1,
+   "upper_back": 0.5,
+   "front_delt": 0.5,
+   "biceps": 0.25
+  },
+  "confidence": "high",
+  "note": "Bar or rope on one low pulley."
+ },
+ {
+  "name": "Upright Row (sztanga)",
+  "group": "barki",
+  "equipment": "sztanga",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "total",
+  "muscles": [
+   "barki"
+  ],
+  "secondaryMuscles": [
+   "plecy"
+  ],
+  "requires": [
+   [
+    "barbell",
+    "ez_bar"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "barbell",
+  "pattern": "isolation",
+  "muscleLoad": {
+   "side_delt": 1,
+   "upper_back": 0.5,
+   "front_delt": 0.5,
+   "biceps": 0.25
+  },
+  "confidence": "medium",
+  "note": "Straight bar or EZ bar (both common). Existing generic Upright Row is the dumbbell version."
+ },
+ {
+  "name": "Pike Push Up",
+  "group": "barki",
+  "equipment": "masa ciała",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "total",
+  "muscles": [
+   "barki"
+  ],
+  "secondaryMuscles": [
+   "triceps"
+  ],
+  "requires": [],
+  "recommended": [],
+  "loadSource": "bodyweight",
+  "pattern": "v_push",
+  "muscleLoad": {
+   "front_delt": 1,
+   "triceps": 0.5,
+   "chest": 0.25,
+   "upper_back": 0.25
+  },
+  "confidence": "high",
+  "note": "Floor only; feet can be raised on a box for progression."
+ },
+ {
+  "name": "Handstand Push Up",
+  "group": "barki",
+  "equipment": "masa ciała",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "total",
+  "muscles": [
+   "barki"
+  ],
+  "secondaryMuscles": [
+   "triceps"
+  ],
+  "requires": [],
+  "recommended": [
+   "floor_mat"
+  ],
+  "loadSource": "bodyweight",
+  "pattern": "v_push",
+  "muscleLoad": {
+   "front_delt": 1,
+   "triceps": 0.5,
+   "side_delt": 0.5,
+   "upper_back": 0.25
+  },
+  "confidence": "high",
+  "note": "Against a wall; no equipment."
+ },
+ {
+  "name": "Kettlebell Press",
+  "group": "barki",
+  "equipment": "hantle",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "unilateral",
+  "muscles": [
+   "barki"
+  ],
+  "secondaryMuscles": [
+   "triceps"
+  ],
+  "requires": [
+   [
+    "kb"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "kettlebell",
+  "pattern": "v_push",
+  "implements": 1,
+  "muscleLoad": {
+   "front_delt": 1,
+   "triceps": 0.5,
+   "side_delt": 0.5,
+   "obliques": 0.25
+  },
+  "confidence": "high",
+  "note": "One kettlebell overhead, one side at a time (R1: kettlebell named)."
+ },
+ {
+  "name": "Smith Machine Shoulder Press",
+  "group": "barki",
+  "equipment": "maszyna",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "total",
+  "muscles": [
+   "barki"
+  ],
+  "secondaryMuscles": [
+   "triceps"
+  ],
+  "requires": [
+   [
+    "smith"
+   ],
+   [
+    "bench.flat",
+    "bench.incline",
+    "box"
+   ]
+  ],
+  "recommended": [
+   "bench.incline"
+  ],
+  "loadSource": "smith",
+  "pattern": "v_push",
+  "muscleLoad": {
+   "front_delt": 1,
+   "triceps": 0.5,
+   "side_delt": 0.5
+  },
+  "confidence": "high",
+  "note": "Seated under a Smith machine; seat shape like Seated Shoulder Press (hantle)."
+ },
+ {
+  "name": "External Rotation (linki)",
+  "group": "barki",
+  "equipment": "linki",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "unilateral",
+  "muscles": [
+   "barki"
+  ],
+  "secondaryMuscles": [],
+  "requires": [
+   [
+    "cable.mid",
+    "cable.low"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "cable",
+  "pattern": "isolation",
+  "cables": 1,
+  "muscleLoad": {
+   "rear_delt": 1,
+   "upper_back": 0.25
+  },
+  "confidence": "medium",
+  "note": "Rotator-cuff work, one handle at elbow height; infraspinatus mapped to rear_delt (no rotator-cuff region)."
+ },
+ {
+  "name": "External Rotation (hantel)",
+  "group": "barki",
+  "equipment": "hantle",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "unilateral",
+  "muscles": [
+   "barki"
+  ],
+  "secondaryMuscles": [],
+  "requires": [
+   [
+    "db"
+   ]
+  ],
+  "recommended": [
+   "floor_mat",
+   "bench.flat"
+  ],
+  "loadSource": "dumbbell",
+  "pattern": "isolation",
+  "implements": 1,
+  "muscleLoad": {
+   "rear_delt": 1,
+   "upper_back": 0.25
+  },
+  "confidence": "medium",
+  "note": "Side-lying with one light dumbbell; rotator cuff mapped to rear_delt."
+ },
+ {
+  "name": "Band Pull Apart",
+  "group": "barki",
+  "equipment": "inne",
+  "bandAssistable": false,
+  "metric": "reps",
+  "loadMode": "total",
+  "muscles": [
+   "barki"
+  ],
+  "secondaryMuscles": [
+   "plecy"
+  ],
+  "requires": [
+   [
+    "bands"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "band",
+  "pattern": "h_pull",
+  "muscleLoad": {
+   "rear_delt": 1,
+   "upper_back": 0.5
+  },
+  "confidence": "high",
+  "note": "Resistance band only (band capability from EXTRA_CAPS)."
+ },
+ {
+  "name": "Hammer Curl (linki)",
+  "group": "biceps",
+  "equipment": "linki",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "total",
+  "muscles": [
+   "biceps"
+  ],
+  "secondaryMuscles": [
+   "przedramiona"
+  ],
+  "requires": [
+   [
+    "cable.low"
+   ]
+  ],
+  "recommended": [
+   "cable.rope"
+  ],
+  "loadSource": "cable",
+  "pattern": "isolation",
+  "cables": 1,
+  "muscleLoad": {
+   "biceps": 1,
+   "forearms": 0.5
+  },
+  "confidence": "high",
+  "note": "Rope on one low pulley; rope recommended, a pair of handles also works."
+ },
+ {
+  "name": "Bayesian Curl",
+  "group": "biceps",
+  "equipment": "linki",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "unilateral",
+  "muscles": [
+   "biceps"
+  ],
+  "secondaryMuscles": [],
+  "requires": [
+   [
+    "cable.low",
+    "cable.mid"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "cable",
+  "pattern": "isolation",
+  "cables": 1,
+  "muscleLoad": {
+   "biceps": 1,
+   "forearms": 0.25
+  },
+  "confidence": "high",
+  "note": "Facing away from the pulley, one arm behind the body."
+ },
+ {
+  "name": "High Cable Curl",
+  "group": "biceps",
+  "equipment": "linki",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "total",
+  "muscles": [
+   "biceps"
+  ],
+  "secondaryMuscles": [],
+  "requires": [
+   [
+    "cable.dual"
+   ],
+   [
+    "cable.high",
+    "cable.mid"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "cable",
+  "pattern": "isolation",
+  "cables": 2,
+  "muscleLoad": {
+   "biceps": 1,
+   "forearms": 0.25
+  },
+  "confidence": "high",
+  "note": "Arms out to the sides between two high pulleys."
+ },
+ {
+  "name": "Cable Curl (dwie linki)",
+  "group": "biceps",
+  "equipment": "linki",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "total",
+  "muscles": [
+   "biceps"
+  ],
+  "secondaryMuscles": [],
+  "requires": [
+   [
+    "cable.dual"
+   ],
+   [
+    "cable.low"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "cable",
+  "pattern": "isolation",
+  "cables": 2,
+  "muscleLoad": {
+   "biceps": 1,
+   "forearms": 0.25
+  },
+  "confidence": "high",
+  "note": "One handle per hand from two low cables (electric station); existing Cable Curl = bar on one pulley."
+ },
+ {
+  "name": "Preacher Curl (EZ)",
+  "group": "biceps",
+  "equipment": "sztanga",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "total",
+  "muscles": [
+   "biceps"
+  ],
+  "secondaryMuscles": [],
+  "requires": [
+   [
+    "ez_bar"
+   ],
+   [
+    "preacher_bench"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "ez_bar",
+  "pattern": "isolation",
+  "muscleLoad": {
+   "biceps": 1,
+   "forearms": 0.25
+  },
+  "confidence": "high",
+  "note": "EZ bar on a preacher bench (existing Preacher Curl = dumbbell)."
+ },
+ {
+  "name": "Reverse Curl",
+  "group": "biceps",
+  "equipment": "sztanga",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "total",
+  "muscles": [
+   "biceps",
+   "przedramiona"
+  ],
+  "secondaryMuscles": [],
+  "requires": [
+   [
+    "barbell",
+    "ez_bar"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "barbell",
+  "pattern": "isolation",
+  "muscleLoad": {
+   "biceps": 1,
+   "forearms": 1
+  },
+  "confidence": "medium",
+  "note": "Overhand grip; straight bar or EZ both standard, so OR-ed in (like Goblet Squat)."
+ },
+ {
+  "name": "Zottman Curl",
+  "group": "biceps",
+  "equipment": "hantle",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "per_dumbbell",
+  "muscles": [
+   "biceps"
+  ],
+  "secondaryMuscles": [
+   "przedramiona"
+  ],
+  "requires": [
+   [
+    "db"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "dumbbell",
+  "pattern": "isolation",
+  "implements": 2,
+  "muscleLoad": {
+   "biceps": 1,
+   "forearms": 0.5
+  },
+  "confidence": "high",
+  "note": "Dumbbell pair, supinated up, pronated down."
+ },
+ {
+  "name": "Wrist Curl (hantle)",
+  "group": "inne",
+  "equipment": "hantle",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "per_dumbbell",
+  "muscles": [
+   "przedramiona"
+  ],
+  "secondaryMuscles": [],
+  "requires": [
+   [
+    "db"
+   ]
+  ],
+  "recommended": [
+   "bench.flat"
+  ],
+  "loadSource": "dumbbell",
+  "pattern": "isolation",
+  "implements": 2,
+  "muscleLoad": {
+   "forearms": 1
+  },
+  "confidence": "high",
+  "note": "Forearms on a bench or thighs."
+ },
+ {
+  "name": "Reverse Wrist Curl (hantle)",
+  "group": "inne",
+  "equipment": "hantle",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "per_dumbbell",
+  "muscles": [
+   "przedramiona"
+  ],
+  "secondaryMuscles": [],
+  "requires": [
+   [
+    "db"
+   ]
+  ],
+  "recommended": [
+   "bench.flat"
+  ],
+  "loadSource": "dumbbell",
+  "pattern": "isolation",
+  "implements": 2,
+  "muscleLoad": {
+   "forearms": 1
+  },
+  "confidence": "high",
+  "note": "Wrist extensors; forearms on a bench or thighs."
+ },
+ {
+  "name": "Single Arm Triceps Pushdown",
+  "group": "triceps",
+  "equipment": "linki",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "unilateral",
+  "muscles": [
+   "triceps"
+  ],
+  "secondaryMuscles": [],
+  "requires": [
+   [
+    "cable.high"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "cable",
+  "pattern": "isolation",
+  "cables": 1,
+  "muscleLoad": {
+   "triceps": 1
+  },
+  "confidence": "high",
+  "note": "One handle on a high pulley."
+ },
+ {
+  "name": "Triceps Kickback (linki)",
+  "group": "triceps",
+  "equipment": "linki",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "unilateral",
+  "muscles": [
+   "triceps"
+  ],
+  "secondaryMuscles": [],
+  "requires": [
+   [
+    "cable.low",
+    "cable.mid"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "cable",
+  "pattern": "isolation",
+  "cables": 1,
+  "muscleLoad": {
+   "triceps": 1,
+   "rear_delt": 0.25
+  },
+  "confidence": "high",
+  "note": "One handle, bent over; low or mid pulley."
+ },
+ {
+  "name": "Overhead Triceps Extension (EZ)",
+  "group": "triceps",
+  "equipment": "sztanga",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "total",
+  "muscles": [
+   "triceps"
+  ],
+  "secondaryMuscles": [],
+  "requires": [
+   [
+    "ez_bar"
+   ]
+  ],
+  "recommended": [
+   "bench.flat"
+  ],
+  "loadSource": "ez_bar",
+  "pattern": "isolation",
+  "muscleLoad": {
+   "triceps": 1
+  },
+  "confidence": "high",
+  "note": "Standing or seated with an EZ bar."
+ },
+ {
+  "name": "Skullcrusher (sztanga)",
+  "group": "triceps",
+  "equipment": "sztanga",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "total",
+  "muscles": [
+   "triceps"
+  ],
+  "secondaryMuscles": [],
+  "requires": [
+   [
+    "barbell"
+   ],
+   [
+    "bench.flat"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "barbell",
+  "pattern": "isolation",
+  "muscleLoad": {
+   "triceps": 1
+  },
+  "confidence": "high",
+  "note": "Straight bar version for gyms without an EZ bar."
+ },
+ {
+  "name": "JM Press",
+  "group": "triceps",
+  "equipment": "sztanga",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "total",
+  "muscles": [
+   "triceps"
+  ],
+  "secondaryMuscles": [
+   "klatka"
+  ],
+  "requires": [
+   [
+    "barbell"
+   ],
+   [
+    "bench.flat"
+   ],
+   [
+    "rack",
+    "bench.uprights"
+   ]
+  ],
+  "recommended": [
+   "rack.safeties"
+  ],
+  "loadSource": "barbell",
+  "pattern": "h_push",
+  "muscleLoad": {
+   "triceps": 1,
+   "chest": 0.5,
+   "front_delt": 0.25
+  },
+  "confidence": "medium",
+  "note": "Barbell over a bench (rack or uprights rule)."
+ },
+ {
+  "name": "Tate Press",
+  "group": "triceps",
+  "equipment": "hantle",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "per_dumbbell",
+  "muscles": [
+   "triceps"
+  ],
+  "secondaryMuscles": [],
+  "requires": [
+   [
+    "db"
+   ],
+   [
+    "bench.flat"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "dumbbell",
+  "pattern": "isolation",
+  "implements": 2,
+  "muscleLoad": {
+   "triceps": 1,
+   "chest": 0.25
+  },
+  "confidence": "high",
+  "note": "Dumbbell pair on a flat bench."
+ },
+ {
+  "name": "Single Leg RDL (hantel)",
+  "group": "plecy",
+  "equipment": "hantle",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "unilateral",
+  "muscles": [
+   "dwugłowe",
+   "pośladki"
+  ],
+  "secondaryMuscles": [
+   "plecy"
+  ],
+  "requires": [
+   [
+    "db"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "dumbbell",
+  "pattern": "hinge",
+  "implements": 1,
+  "muscleLoad": {
+   "hamstrings": 1,
+   "glutes": 1,
+   "lower_back": 0.5,
+   "abductors": 0.25
+  },
+  "confidence": "high",
+  "note": "One dumbbell, one leg at a time (a pair also common; R2 keeps dumbbell)."
+ },
+ {
+  "name": "Single Leg RDL (linki)",
+  "group": "plecy",
+  "equipment": "linki",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "unilateral",
+  "muscles": [
+   "dwugłowe",
+   "pośladki"
+  ],
+  "secondaryMuscles": [
+   "plecy"
+  ],
+  "requires": [
+   [
+    "cable.low"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "cable",
+  "pattern": "hinge",
+  "cables": 1,
+  "muscleLoad": {
+   "hamstrings": 1,
+   "glutes": 1,
+   "lower_back": 0.5,
+   "abductors": 0.25
+  },
+  "confidence": "high",
+  "note": "One handle from a low pulley; electric-station staple."
+ },
+ {
+  "name": "Cable Squat",
+  "group": "nogi",
+  "equipment": "linki",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "total",
+  "muscles": [
+   "czworogłowe"
+  ],
+  "secondaryMuscles": [
+   "pośladki"
+  ],
+  "requires": [
+   [
+    "cable.dual"
+   ],
+   [
+    "cable.low"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "cable",
+  "pattern": "squat",
+  "cables": 2,
+  "muscleLoad": {
+   "quads": 1,
+   "glutes": 0.5,
+   "adductors": 0.25,
+   "lower_back": 0.25
+  },
+  "confidence": "medium",
+  "note": "Handles or bar on two low cables (electric station). Belt version is Przysiad z pasem (linki)."
+ },
+ {
+  "name": "Single Leg Press",
+  "group": "nogi",
+  "equipment": "maszyna",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "unilateral",
+  "muscles": [
+   "czworogłowe"
+  ],
+  "secondaryMuscles": [
+   "pośladki"
+  ],
+  "requires": [
+   [
+    "leg_press"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "plate_loaded_machine",
+  "pattern": "lunge_single_leg",
+  "muscleLoad": {
+   "quads": 1,
+   "glutes": 0.5,
+   "hamstrings": 0.25
+  },
+  "confidence": "high",
+  "note": "Leg press one leg at a time."
+ },
+ {
+  "name": "Split Squat",
+  "group": "nogi",
+  "equipment": "hantle",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "per_dumbbell",
+  "muscles": [
+   "czworogłowe",
+   "pośladki"
+  ],
+  "secondaryMuscles": [],
+  "requires": [],
+  "recommended": [
+   "db"
+  ],
+  "loadSource": "dumbbell",
+  "pattern": "lunge_single_leg",
+  "implements": 2,
+  "muscleLoad": {
+   "quads": 1,
+   "glutes": 1,
+   "adductors": 0.25,
+   "hamstrings": 0.25
+  },
+  "confidence": "medium",
+  "note": "Static split squat; R3 (often unloaded) so dumbbells only recommended."
+ },
+ {
+  "name": "Split Squat (linki)",
+  "group": "nogi",
+  "equipment": "linki",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "total",
+  "muscles": [
+   "czworogłowe",
+   "pośladki"
+  ],
+  "secondaryMuscles": [],
+  "requires": [
+   [
+    "cable.dual"
+   ],
+   [
+    "cable.low"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "cable",
+  "pattern": "lunge_single_leg",
+  "cables": 2,
+  "muscleLoad": {
+   "quads": 1,
+   "glutes": 1,
+   "adductors": 0.25
+  },
+  "confidence": "high",
+  "note": "Handle in each hand from two low cables."
+ },
+ {
+  "name": "Lateral Lunge",
+  "group": "nogi",
+  "equipment": "hantle",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "per_dumbbell",
+  "muscles": [
+   "czworogłowe",
+   "pośladki"
+  ],
+  "secondaryMuscles": [],
+  "requires": [],
+  "recommended": [
+   "db"
+  ],
+  "loadSource": "dumbbell",
+  "pattern": "lunge_single_leg",
+  "implements": 2,
+  "muscleLoad": {
+   "quads": 1,
+   "glutes": 1,
+   "adductors": 0.5
+  },
+  "confidence": "medium",
+  "note": "R3: often unloaded; one goblet-held weight also common."
+ },
+ {
+  "name": "Curtsy Lunge",
+  "group": "nogi",
+  "equipment": "hantle",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "per_dumbbell",
+  "muscles": [
+   "pośladki",
+   "czworogłowe"
+  ],
+  "secondaryMuscles": [],
+  "requires": [],
+  "recommended": [
+   "db"
+  ],
+  "loadSource": "dumbbell",
+  "pattern": "lunge_single_leg",
+  "implements": 2,
+  "muscleLoad": {
+   "glutes": 1,
+   "quads": 1,
+   "abductors": 0.25,
+   "adductors": 0.25
+  },
+  "confidence": "medium",
+  "note": "R3: often unloaded."
+ },
+ {
+  "name": "Cossack Squat",
+  "group": "nogi",
+  "equipment": "masa ciała",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "total",
+  "muscles": [
+   "czworogłowe",
+   "pośladki"
+  ],
+  "secondaryMuscles": [],
+  "requires": [],
+  "recommended": [],
+  "loadSource": "bodyweight",
+  "pattern": "lunge_single_leg",
+  "muscleLoad": {
+   "quads": 1,
+   "glutes": 1,
+   "adductors": 0.5,
+   "hamstrings": 0.25
+  },
+  "confidence": "high",
+  "note": "Bodyweight; can hold a weight."
+ },
+ {
+  "name": "Bodyweight Squat",
+  "group": "nogi",
+  "equipment": "masa ciała",
+  "bandAssistable": false,
+  "metric": "reps",
+  "loadMode": "total",
+  "muscles": [
+   "czworogłowe"
+  ],
+  "secondaryMuscles": [
+   "pośladki"
+  ],
+  "requires": [],
+  "recommended": [],
+  "loadSource": "bodyweight",
+  "pattern": "squat",
+  "muscleLoad": {
+   "quads": 1,
+   "glutes": 0.5
+  },
+  "confidence": "high",
+  "note": "No equipment."
+ },
+ {
+  "name": "Jump Squat",
+  "group": "nogi",
+  "equipment": "masa ciała",
+  "bandAssistable": false,
+  "metric": "reps",
+  "loadMode": "total",
+  "muscles": [
+   "czworogłowe"
+  ],
+  "secondaryMuscles": [
+   "pośladki",
+   "łydki"
+  ],
+  "requires": [],
+  "recommended": [],
+  "loadSource": "bodyweight",
+  "pattern": "other",
+  "muscleLoad": {
+   "quads": 1,
+   "glutes": 0.5,
+   "calves": 0.5
+  },
+  "confidence": "high",
+  "note": "Plyometric, no equipment (pattern other like Box Jump)."
+ },
+ {
+  "name": "Smith Machine Squat",
+  "group": "nogi",
+  "equipment": "maszyna",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "total",
+  "muscles": [
+   "czworogłowe"
+  ],
+  "secondaryMuscles": [
+   "pośladki"
+  ],
+  "requires": [
+   [
+    "smith"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "smith",
+  "pattern": "squat",
+  "muscleLoad": {
+   "quads": 1,
+   "glutes": 0.5,
+   "adductors": 0.25
+  },
+  "confidence": "high",
+  "note": "Smith machine only."
+ },
+ {
+  "name": "Zercher Squat",
+  "group": "nogi",
+  "equipment": "sztanga",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "total",
+  "muscles": [
+   "czworogłowe"
+  ],
+  "secondaryMuscles": [
+   "pośladki",
+   "core"
+  ],
+  "requires": [
+   [
+    "barbell"
+   ],
+   [
+    "rack"
+   ]
+  ],
+  "recommended": [
+   "rack.safeties"
+  ],
+  "loadSource": "barbell",
+  "pattern": "squat",
+  "muscleLoad": {
+   "quads": 1,
+   "glutes": 0.5,
+   "abs": 0.5,
+   "upper_back": 0.5,
+   "biceps": 0.25
+  },
+  "confidence": "medium",
+  "note": "Bar in the elbows, taken from a rack (bar-on-body rule)."
+ },
+ {
+  "name": "Double Kettlebell Front Squat",
+  "group": "nogi",
+  "equipment": "hantle",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "per_dumbbell",
+  "muscles": [
+   "czworogłowe"
+  ],
+  "secondaryMuscles": [
+   "pośladki",
+   "core"
+  ],
+  "requires": [
+   [
+    "kb"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "kettlebell",
+  "pattern": "squat",
+  "implements": 2,
+  "muscleLoad": {
+   "quads": 1,
+   "glutes": 0.5,
+   "abs": 0.5,
+   "upper_back": 0.25
+  },
+  "confidence": "high",
+  "note": "Two kettlebells in the rack position."
+ },
+ {
+  "name": "Landmine Squat",
+  "group": "nogi",
+  "equipment": "sztanga",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "total",
+  "muscles": [
+   "czworogłowe"
+  ],
+  "secondaryMuscles": [
+   "pośladki"
+  ],
+  "requires": [
+   [
+    "landmine"
+   ],
+   [
+    "barbell"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "barbell",
+  "pattern": "squat",
+  "muscleLoad": {
+   "quads": 1,
+   "glutes": 0.5,
+   "abs": 0.25
+  },
+  "confidence": "high",
+  "note": "Bar end held at chest, other end in a landmine."
+ },
+ {
+  "name": "Sumo Squat (hantel)",
+  "group": "nogi",
+  "equipment": "hantle",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "total",
+  "muscles": [
+   "czworogłowe",
+   "pośladki"
+  ],
+  "secondaryMuscles": [],
+  "requires": [
+   [
+    "db",
+    "kb"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "dumbbell",
+  "pattern": "squat",
+  "implements": 1,
+  "muscleLoad": {
+   "quads": 1,
+   "glutes": 1,
+   "adductors": 0.5
+  },
+  "confidence": "high",
+  "note": "One dumbbell (or kettlebell) held between the legs; exception like Goblet Squat."
+ },
+ {
+  "name": "Lunges (sztanga)",
+  "group": "nogi",
+  "equipment": "sztanga",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "total",
+  "muscles": [
+   "czworogłowe",
+   "pośladki"
+  ],
+  "secondaryMuscles": [],
+  "requires": [
+   [
+    "barbell"
+   ],
+   [
+    "rack"
+   ]
+  ],
+  "recommended": [
+   "rack.safeties"
+  ],
+  "loadSource": "barbell",
+  "pattern": "lunge_single_leg",
+  "muscleLoad": {
+   "quads": 1,
+   "glutes": 1,
+   "adductors": 0.25,
+   "hamstrings": 0.25
+  },
+  "confidence": "high",
+  "note": "Bar on the back, so rack required."
+ },
+ {
+  "name": "Reverse Nordic",
+  "group": "nogi",
+  "equipment": "masa ciała",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "total",
+  "muscles": [
+   "czworogłowe"
+  ],
+  "secondaryMuscles": [],
+  "requires": [],
+  "recommended": [
+   "floor_mat"
+  ],
+  "loadSource": "bodyweight",
+  "pattern": "isolation",
+  "muscleLoad": {
+   "quads": 1,
+   "abs": 0.25
+  },
+  "confidence": "high",
+  "note": "Kneeling, no equipment; mat for knees."
+ },
+ {
+  "name": "Glute Ham Raise",
+  "group": "nogi",
+  "equipment": "masa ciała",
+  "bandAssistable": true,
+  "metric": "weight_reps",
+  "loadMode": "total",
+  "muscles": [
+   "dwugłowe"
+  ],
+  "secondaryMuscles": [
+   "pośladki"
+  ],
+  "requires": [
+   [
+    "glute_ham_raise"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "bodyweight",
+  "pattern": "isolation",
+  "muscleLoad": {
+   "hamstrings": 1,
+   "glutes": 0.5,
+   "calves": 0.25
+  },
+  "confidence": "high",
+  "note": "GHD / glute-ham raise station (ghd item gives glute_ham_raise)."
+ },
+ {
+  "name": "Standing Cable Leg Curl",
+  "group": "nogi",
+  "equipment": "linki",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "unilateral",
+  "muscles": [
+   "dwugłowe"
+  ],
+  "secondaryMuscles": [],
+  "requires": [
+   [
+    "cable.low"
+   ]
+  ],
+  "recommended": [
+   "ankle_strap"
+  ],
+  "loadSource": "cable",
+  "pattern": "isolation",
+  "cables": 1,
+  "muscleLoad": {
+   "hamstrings": 1,
+   "calves": 0.25
+  },
+  "confidence": "medium",
+  "note": "Ankle strap on a low pulley; strap recommended, same as Cable Kickback."
+ },
+ {
+  "name": "Leg Curl (hantel)",
+  "group": "nogi",
+  "equipment": "hantle",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "total",
+  "muscles": [
+   "dwugłowe"
+  ],
+  "secondaryMuscles": [],
+  "requires": [
+   [
+    "db"
+   ],
+   [
+    "bench.flat"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "dumbbell",
+  "pattern": "isolation",
+  "implements": 1,
+  "muscleLoad": {
+   "hamstrings": 1,
+   "calves": 0.25
+  },
+  "confidence": "medium",
+  "note": "Prone on a flat bench, one dumbbell between the feet."
+ },
+ {
+  "name": "Cable Pull Through",
+  "group": "pośladki",
+  "equipment": "linki",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "total",
+  "muscles": [
+   "pośladki"
+  ],
+  "secondaryMuscles": [
+   "dwugłowe"
+  ],
+  "requires": [
+   [
+    "cable.low"
+   ]
+  ],
+  "recommended": [
+   "cable.rope"
+  ],
+  "loadSource": "cable",
+  "pattern": "hinge",
+  "cables": 1,
+  "muscleLoad": {
+   "glutes": 1,
+   "hamstrings": 0.5,
+   "lower_back": 0.25
+  },
+  "confidence": "high",
+  "note": "Rope on one low pulley."
+ },
+ {
+  "name": "Frog Pump",
+  "group": "pośladki",
+  "equipment": "masa ciała",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "total",
+  "muscles": [
+   "pośladki"
+  ],
+  "secondaryMuscles": [],
+  "requires": [],
+  "recommended": [
+   "floor_mat"
+  ],
+  "loadSource": "bodyweight",
+  "pattern": "hinge",
+  "muscleLoad": {
+   "glutes": 1,
+   "abductors": 0.25
+  },
+  "confidence": "high",
+  "note": "Floor; a dumbbell on the hips is optional."
+ },
+ {
+  "name": "Single Leg Glute Bridge",
+  "group": "pośladki",
+  "equipment": "masa ciała",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "total",
+  "muscles": [
+   "pośladki"
+  ],
+  "secondaryMuscles": [
+   "dwugłowe"
+  ],
+  "requires": [],
+  "recommended": [
+   "floor_mat"
+  ],
+  "loadSource": "bodyweight",
+  "pattern": "hinge",
+  "muscleLoad": {
+   "glutes": 1,
+   "hamstrings": 0.5
+  },
+  "confidence": "high",
+  "note": "Floor, no equipment."
+ },
+ {
+  "name": "Single Leg Hip Thrust",
+  "group": "pośladki",
+  "equipment": "masa ciała",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "total",
+  "muscles": [
+   "pośladki"
+  ],
+  "secondaryMuscles": [
+   "dwugłowe"
+  ],
+  "requires": [
+   [
+    "bench.flat",
+    "box"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "bodyweight",
+  "pattern": "hinge",
+  "muscleLoad": {
+   "glutes": 1,
+   "hamstrings": 0.5,
+   "quads": 0.25
+  },
+  "confidence": "high",
+  "note": "Back on a bench or box (elevated-surface shape)."
+ },
+ {
+  "name": "Glute Bridge (sztanga)",
+  "group": "pośladki",
+  "equipment": "sztanga",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "total",
+  "muscles": [
+   "pośladki"
+  ],
+  "secondaryMuscles": [
+   "dwugłowe"
+  ],
+  "requires": [
+   [
+    "barbell"
+   ]
+  ],
+  "recommended": [
+   "floor_mat"
+  ],
+  "loadSource": "barbell",
+  "pattern": "hinge",
+  "muscleLoad": {
+   "glutes": 1,
+   "hamstrings": 0.5,
+   "quads": 0.25
+  },
+  "confidence": "high",
+  "note": "Bar rolled over the hips on the floor."
+ },
+ {
+  "name": "Smith Machine Hip Thrust",
+  "group": "pośladki",
+  "equipment": "maszyna",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "total",
+  "muscles": [
+   "pośladki"
+  ],
+  "secondaryMuscles": [
+   "dwugłowe"
+  ],
+  "requires": [
+   [
+    "smith"
+   ],
+   [
+    "bench.flat",
+    "box"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "smith",
+  "pattern": "hinge",
+  "muscleLoad": {
+   "glutes": 1,
+   "hamstrings": 0.5,
+   "quads": 0.25
+  },
+  "confidence": "high",
+  "note": "Smith machine plus a bench or box."
+ },
+ {
+  "name": "Sumo Deadlift (kettlebell)",
+  "group": "pośladki",
+  "equipment": "hantle",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "total",
+  "muscles": [
+   "pośladki",
+   "czworogłowe"
+  ],
+  "secondaryMuscles": [
+   "dwugłowe"
+  ],
+  "requires": [
+   [
+    "kb"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "kettlebell",
+  "pattern": "hinge",
+  "implements": 1,
+  "muscleLoad": {
+   "glutes": 1,
+   "quads": 1,
+   "hamstrings": 0.5,
+   "adductors": 0.5,
+   "lower_back": 0.25
+  },
+  "confidence": "high",
+  "note": "One kettlebell between the feet."
+ },
+ {
+  "name": "Cable Hip Abduction",
+  "group": "pośladki",
+  "equipment": "linki",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "unilateral",
+  "muscles": [
+   "pośladki"
+  ],
+  "secondaryMuscles": [],
+  "requires": [
+   [
+    "cable.low"
+   ]
+  ],
+  "recommended": [
+   "ankle_strap"
+  ],
+  "loadSource": "cable",
+  "pattern": "isolation",
+  "cables": 1,
+  "muscleLoad": {
+   "abductors": 1,
+   "glutes": 0.5
+  },
+  "confidence": "medium",
+  "note": "Standing, ankle strap on a low pulley (strap recommended, as Cable Kickback)."
+ },
+ {
+  "name": "Lateral Band Walk",
+  "group": "pośladki",
+  "equipment": "inne",
+  "bandAssistable": false,
+  "metric": "reps",
+  "loadMode": "total",
+  "muscles": [
+   "pośladki"
+  ],
+  "secondaryMuscles": [],
+  "requires": [
+   [
+    "bands"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "band",
+  "pattern": "isolation",
+  "muscleLoad": {
+   "abductors": 1,
+   "glutes": 0.5
+  },
+  "confidence": "high",
+  "note": "Mini band around legs."
+ },
+ {
+  "name": "Fire Hydrant",
+  "group": "pośladki",
+  "equipment": "masa ciała",
+  "bandAssistable": false,
+  "metric": "reps",
+  "loadMode": "total",
+  "muscles": [
+   "pośladki"
+  ],
+  "secondaryMuscles": [],
+  "requires": [],
+  "recommended": [
+   "floor_mat",
+   "bands"
+  ],
+  "loadSource": "bodyweight",
+  "pattern": "isolation",
+  "muscleLoad": {
+   "abductors": 1,
+   "glutes": 0.5
+  },
+  "confidence": "high",
+  "note": "On all fours; band optional."
+ },
+ {
+  "name": "Donkey Kick",
+  "group": "pośladki",
+  "equipment": "masa ciała",
+  "bandAssistable": false,
+  "metric": "reps",
+  "loadMode": "total",
+  "muscles": [
+   "pośladki"
+  ],
+  "secondaryMuscles": [
+   "dwugłowe"
+  ],
+  "requires": [],
+  "recommended": [
+   "floor_mat"
+  ],
+  "loadSource": "bodyweight",
+  "pattern": "isolation",
+  "muscleLoad": {
+   "glutes": 1,
+   "hamstrings": 0.5
+  },
+  "confidence": "high",
+  "note": "On all fours; cable version is Cable Kickback."
+ },
+ {
+  "name": "Clamshell",
+  "group": "pośladki",
+  "equipment": "masa ciała",
+  "bandAssistable": false,
+  "metric": "reps",
+  "loadMode": "total",
+  "muscles": [
+   "pośladki"
+  ],
+  "secondaryMuscles": [],
+  "requires": [],
+  "recommended": [
+   "floor_mat",
+   "bands"
+  ],
+  "loadSource": "bodyweight",
+  "pattern": "isolation",
+  "muscleLoad": {
+   "abductors": 1,
+   "glutes": 0.5
+  },
+  "confidence": "high",
+  "note": "Side-lying; band optional."
+ },
+ {
+  "name": "Single Leg Calf Raise",
+  "group": "łydki",
+  "equipment": "hantle",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "unilateral",
+  "muscles": [
+   "łydki"
+  ],
+  "secondaryMuscles": [],
+  "requires": [],
+  "recommended": [
+   "box",
+   "db"
+  ],
+  "loadSource": "dumbbell",
+  "pattern": "isolation",
+  "implements": 1,
+  "muscleLoad": {
+   "calves": 1
+  },
+  "confidence": "medium",
+  "note": "R3 like Łydki na stopniu: step and dumbbell recommended."
+ },
+ {
+  "name": "Seated Calf Raise (hantle)",
+  "group": "łydki",
+  "equipment": "hantle",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "per_dumbbell",
+  "muscles": [
+   "łydki"
+  ],
+  "secondaryMuscles": [],
+  "requires": [
+   [
+    "db"
+   ],
+   [
+    "bench.flat",
+    "box"
+   ]
+  ],
+  "recommended": [
+   "box"
+  ],
+  "loadSource": "dumbbell",
+  "pattern": "isolation",
+  "implements": 2,
+  "muscleLoad": {
+   "calves": 1
+  },
+  "confidence": "high",
+  "note": "Dumbbells on the knees, seated on a bench or box."
+ },
+ {
+  "name": "Smith Machine Calf Raise",
+  "group": "łydki",
+  "equipment": "maszyna",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "total",
+  "muscles": [
+   "łydki"
+  ],
+  "secondaryMuscles": [],
+  "requires": [
+   [
+    "smith"
+   ]
+  ],
+  "recommended": [
+   "box"
+  ],
+  "loadSource": "smith",
+  "pattern": "isolation",
+  "muscleLoad": {
+   "calves": 1
+  },
+  "confidence": "high",
+  "note": "Smith machine; step recommended."
+ },
+ {
+  "name": "Calf Raise (sztanga)",
+  "group": "łydki",
+  "equipment": "sztanga",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "total",
+  "muscles": [
+   "łydki"
+  ],
+  "secondaryMuscles": [],
+  "requires": [
+   [
+    "barbell"
+   ],
+   [
+    "rack"
+   ]
+  ],
+  "recommended": [
+   "box"
+  ],
+  "loadSource": "barbell",
+  "pattern": "isolation",
+  "muscleLoad": {
+   "calves": 1
+  },
+  "confidence": "high",
+  "note": "Bar on the back, so rack required."
+ },
+ {
+  "name": "Calf Raise (linki)",
+  "group": "łydki",
+  "equipment": "linki",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "total",
+  "muscles": [
+   "łydki"
+  ],
+  "secondaryMuscles": [],
+  "requires": [
+   [
+    "cable.dual"
+   ],
+   [
+    "cable.low"
+   ]
+  ],
+  "recommended": [
+   "box"
+  ],
+  "loadSource": "cable",
+  "pattern": "isolation",
+  "cables": 2,
+  "muscleLoad": {
+   "calves": 1
+  },
+  "confidence": "high",
+  "note": "Handle in each hand from two low cables (electric station)."
+ },
+ {
+  "name": "Cable Woodchop",
+  "group": "core",
+  "equipment": "linki",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "unilateral",
+  "muscles": [
+   "core"
+  ],
+  "secondaryMuscles": [],
+  "requires": [
+   [
+    "cable.high",
+    "cable.mid",
+    "cable.low"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "cable",
+  "pattern": "core_other",
+  "cables": 1,
+  "muscleLoad": {
+   "obliques": 1,
+   "abs": 0.5,
+   "front_delt": 0.25
+  },
+  "confidence": "high",
+  "note": "One handle; high-to-low or low-to-high, any pulley height."
+ },
+ {
+  "name": "Landmine Rotation",
+  "group": "core",
+  "equipment": "sztanga",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "total",
+  "muscles": [
+   "core"
+  ],
+  "secondaryMuscles": [
+   "barki"
+  ],
+  "requires": [
+   [
+    "landmine"
+   ],
+   [
+    "barbell"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "barbell",
+  "pattern": "core_other",
+  "muscleLoad": {
+   "obliques": 1,
+   "abs": 0.5,
+   "front_delt": 0.5
+  },
+  "confidence": "medium",
+  "note": "Bar end in a landmine."
+ },
+ {
+  "name": "Toes to Bar",
+  "group": "core",
+  "equipment": "masa ciała",
+  "bandAssistable": false,
+  "metric": "reps",
+  "loadMode": "total",
+  "muscles": [
+   "core"
+  ],
+  "secondaryMuscles": [],
+  "requires": [
+   [
+    "pullup.bar",
+    "rings"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "bodyweight",
+  "pattern": "core_flexion",
+  "muscleLoad": {
+   "abs": 1,
+   "obliques": 0.5,
+   "lats": 0.25,
+   "forearms": 0.25
+  },
+  "confidence": "high",
+  "note": "Hanging like Hanging Leg Raise."
+ },
+ {
+  "name": "L-Sit",
+  "group": "core",
+  "equipment": "masa ciała",
+  "bandAssistable": false,
+  "metric": "time",
+  "loadMode": "total",
+  "muscles": [
+   "core"
+  ],
+  "secondaryMuscles": [],
+  "requires": [],
+  "recommended": [
+   "dip.bars"
+  ],
+  "loadSource": "bodyweight",
+  "pattern": "core_flexion",
+  "muscleLoad": {
+   "abs": 1,
+   "quads": 0.25,
+   "triceps": 0.25
+  },
+  "confidence": "medium",
+  "note": "Possible on the floor; parallettes / dip bars easier."
+ },
+ {
+  "name": "Plank Shoulder Taps",
+  "group": "core",
+  "equipment": "masa ciała",
+  "bandAssistable": false,
+  "metric": "reps",
+  "loadMode": "total",
+  "muscles": [
+   "core"
+  ],
+  "secondaryMuscles": [],
+  "requires": [],
+  "recommended": [
+   "floor_mat"
+  ],
+  "loadSource": "bodyweight",
+  "pattern": "core_anti_rot",
+  "muscleLoad": {
+   "abs": 1,
+   "obliques": 0.5,
+   "front_delt": 0.25
+  },
+  "confidence": "high",
+  "note": "Floor."
+ },
+ {
+  "name": "Copenhagen Plank",
+  "group": "core",
+  "equipment": "masa ciała",
+  "bandAssistable": false,
+  "metric": "time",
+  "loadMode": "total",
+  "muscles": [
+   "core"
+  ],
+  "secondaryMuscles": [],
+  "requires": [
+   [
+    "bench.flat",
+    "box"
+   ]
+  ],
+  "recommended": [
+   "floor_mat"
+  ],
+  "loadSource": "bodyweight",
+  "pattern": "core_other",
+  "muscleLoad": {
+   "obliques": 1,
+   "adductors": 0.5
+  },
+  "confidence": "medium",
+  "note": "Top leg on a bench or box; adductors have no coarse muscle, so only core is listed."
+ },
+ {
+  "name": "Decline Crunch",
+  "group": "core",
+  "equipment": "masa ciała",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "total",
+  "muscles": [
+   "core"
+  ],
+  "secondaryMuscles": [],
+  "requires": [
+   [
+    "bench.decline"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "bodyweight",
+  "pattern": "core_flexion",
+  "muscleLoad": {
+   "abs": 1,
+   "obliques": 0.25
+  },
+  "confidence": "high",
+  "note": "Decline bench with foot pads."
+ },
+ {
+  "name": "GHD Sit Up",
+  "group": "core",
+  "equipment": "masa ciała",
+  "bandAssistable": false,
+  "metric": "reps",
+  "loadMode": "total",
+  "muscles": [
+   "core"
+  ],
+  "secondaryMuscles": [],
+  "requires": [
+   [
+    "ghd"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "bodyweight",
+  "pattern": "core_flexion",
+  "muscleLoad": {
+   "abs": 1,
+   "quads": 0.25
+  },
+  "confidence": "medium",
+  "note": "GHD only."
+ },
+ {
+  "name": "Sit Up",
+  "group": "core",
+  "equipment": "masa ciała",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "total",
+  "muscles": [
+   "core"
+  ],
+  "secondaryMuscles": [],
+  "requires": [],
+  "recommended": [
+   "floor_mat"
+  ],
+  "loadSource": "bodyweight",
+  "pattern": "core_flexion",
+  "muscleLoad": {
+   "abs": 1,
+   "obliques": 0.25
+  },
+  "confidence": "high",
+  "note": "Floor."
+ },
+ {
+  "name": "V-Up",
+  "group": "core",
+  "equipment": "masa ciała",
+  "bandAssistable": false,
+  "metric": "reps",
+  "loadMode": "total",
+  "muscles": [
+   "core"
+  ],
+  "secondaryMuscles": [],
+  "requires": [],
+  "recommended": [
+   "floor_mat"
+  ],
+  "loadSource": "bodyweight",
+  "pattern": "core_flexion",
+  "muscleLoad": {
+   "abs": 1,
+   "obliques": 0.25
+  },
+  "confidence": "high",
+  "note": "Floor."
+ },
+ {
+  "name": "Bicycle Crunch",
+  "group": "core",
+  "equipment": "masa ciała",
+  "bandAssistable": false,
+  "metric": "reps",
+  "loadMode": "total",
+  "muscles": [
+   "core"
+  ],
+  "secondaryMuscles": [],
+  "requires": [],
+  "recommended": [
+   "floor_mat"
+  ],
+  "loadSource": "bodyweight",
+  "pattern": "core_flexion",
+  "muscleLoad": {
+   "abs": 1,
+   "obliques": 1
+  },
+  "confidence": "high",
+  "note": "Floor."
+ },
+ {
+  "name": "Lying Leg Raise",
+  "group": "core",
+  "equipment": "masa ciała",
+  "bandAssistable": false,
+  "metric": "reps",
+  "loadMode": "total",
+  "muscles": [
+   "core"
+  ],
+  "secondaryMuscles": [],
+  "requires": [],
+  "recommended": [
+   "floor_mat",
+   "bench.flat"
+  ],
+  "loadSource": "bodyweight",
+  "pattern": "core_flexion",
+  "muscleLoad": {
+   "abs": 1,
+   "obliques": 0.25
+  },
+  "confidence": "high",
+  "note": "Floor or flat bench."
+ },
+ {
+  "name": "Dragon Flag",
+  "group": "core",
+  "equipment": "masa ciała",
+  "bandAssistable": false,
+  "metric": "reps",
+  "loadMode": "total",
+  "muscles": [
+   "core"
+  ],
+  "secondaryMuscles": [],
+  "requires": [
+   [
+    "bench.flat"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "bodyweight",
+  "pattern": "core_anti_ext",
+  "muscleLoad": {
+   "abs": 1,
+   "obliques": 0.5,
+   "lats": 0.25
+  },
+  "confidence": "medium",
+  "note": "Gripping behind the head on a flat bench."
+ },
+ {
+  "name": "Rollout (sztanga)",
+  "group": "core",
+  "equipment": "sztanga",
+  "bandAssistable": false,
+  "metric": "reps",
+  "loadMode": "total",
+  "muscles": [
+   "core"
+  ],
+  "secondaryMuscles": [],
+  "requires": [
+   [
+    "barbell"
+   ]
+  ],
+  "recommended": [
+   "floor_mat"
+  ],
+  "loadSource": "bodyweight",
+  "pattern": "core_anti_ext",
+  "muscleLoad": {
+   "abs": 1,
+   "lats": 0.5,
+   "obliques": 0.25
+  },
+  "confidence": "medium",
+  "note": "Loaded barbell used like an ab wheel; load is not lifted, so bodyweight."
+ },
+ {
+  "name": "Side Bend (hantel)",
+  "group": "core",
+  "equipment": "hantle",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "unilateral",
+  "muscles": [
+   "core"
+  ],
+  "secondaryMuscles": [],
+  "requires": [
+   [
+    "db",
+    "kb"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "dumbbell",
+  "pattern": "core_other",
+  "implements": 1,
+  "muscleLoad": {
+   "obliques": 1,
+   "abs": 0.25
+  },
+  "confidence": "high",
+  "note": "One dumbbell (kettlebell OK), one side at a time."
+ },
+ {
+  "name": "Kettlebell Windmill",
+  "group": "core",
+  "equipment": "hantle",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "unilateral",
+  "muscles": [
+   "core"
+  ],
+  "secondaryMuscles": [
+   "barki"
+  ],
+  "requires": [
+   [
+    "kb"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "kettlebell",
+  "pattern": "core_other",
+  "implements": 1,
+  "muscleLoad": {
+   "obliques": 1,
+   "side_delt": 0.5,
+   "hamstrings": 0.25,
+   "glutes": 0.25
+  },
+  "confidence": "medium",
+  "note": "One kettlebell overhead."
+ },
+ {
+  "name": "Turkish Get Up",
+  "group": "core",
+  "equipment": "hantle",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "unilateral",
+  "muscles": [
+   "core",
+   "barki"
+  ],
+  "secondaryMuscles": [
+   "pośladki"
+  ],
+  "requires": [
+   [
+    "kb",
+    "db"
+   ]
+  ],
+  "recommended": [
+   "floor_mat"
+  ],
+  "loadSource": "kettlebell",
+  "pattern": "other",
+  "implements": 1,
+  "muscleLoad": {
+   "abs": 1,
+   "obliques": 1,
+   "front_delt": 1,
+   "glutes": 0.5,
+   "triceps": 0.25,
+   "quads": 0.25
+  },
+  "confidence": "high",
+  "note": "Kettlebell classic; dumbbell accepted (exception like Kettlebell Swing)."
+ },
+ {
+  "name": "Overhead Carry (hantle)",
+  "group": "core",
+  "equipment": "hantle",
+  "bandAssistable": false,
+  "metric": "weight_time",
+  "loadMode": "per_dumbbell",
+  "muscles": [
+   "core",
+   "barki"
+  ],
+  "secondaryMuscles": [],
+  "requires": [
+   [
+    "db",
+    "kb"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "dumbbell",
+  "pattern": "carry",
+  "implements": 2,
+  "muscleLoad": {
+   "abs": 1,
+   "front_delt": 1,
+   "side_delt": 0.5,
+   "upper_back": 0.5,
+   "triceps": 0.25
+  },
+  "confidence": "high",
+  "note": "Pair overhead; kettlebells accepted as Farmer's Walk."
+ },
+ {
+  "name": "Double Kettlebell Front Rack Carry",
+  "group": "core",
+  "equipment": "hantle",
+  "bandAssistable": false,
+  "metric": "weight_time",
+  "loadMode": "per_dumbbell",
+  "muscles": [
+   "core"
+  ],
+  "secondaryMuscles": [
+   "plecy"
+  ],
+  "requires": [
+   [
+    "kb"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "kettlebell",
+  "pattern": "carry",
+  "implements": 2,
+  "muscleLoad": {
+   "abs": 1,
+   "upper_back": 0.5,
+   "biceps": 0.25,
+   "forearms": 0.25
+  },
+  "confidence": "high",
+  "note": "Two kettlebells in the rack position."
+ },
+ {
+  "name": "Farmer's Walk (trap bar)",
+  "group": "core",
+  "equipment": "sztanga",
+  "bandAssistable": false,
+  "metric": "weight_time",
+  "loadMode": "total",
+  "muscles": [
+   "przedramiona",
+   "plecy"
+  ],
+  "secondaryMuscles": [
+   "core"
+  ],
+  "requires": [
+   [
+    "trap_bar"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "trap_bar",
+  "pattern": "carry",
+  "muscleLoad": {
+   "forearms": 1,
+   "upper_back": 1,
+   "abs": 0.5,
+   "obliques": 0.5,
+   "quads": 0.25,
+   "glutes": 0.25,
+   "calves": 0.25
+  },
+  "confidence": "high",
+  "note": "Loaded trap bar carried."
+ },
+ {
+  "name": "Kettlebell Clean",
+  "group": "inne",
+  "equipment": "hantle",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "unilateral",
+  "muscles": [
+   "pośladki",
+   "dwugłowe"
+  ],
+  "secondaryMuscles": [
+   "plecy"
+  ],
+  "requires": [
+   [
+    "kb"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "kettlebell",
+  "pattern": "hinge",
+  "implements": 1,
+  "muscleLoad": {
+   "glutes": 1,
+   "hamstrings": 1,
+   "upper_back": 0.5,
+   "lower_back": 0.5,
+   "forearms": 0.25
+  },
+  "confidence": "high",
+  "note": "One kettlebell, one side at a time."
+ },
+ {
+  "name": "Kettlebell Snatch",
+  "group": "inne",
+  "equipment": "hantle",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "unilateral",
+  "muscles": [
+   "pośladki",
+   "barki"
+  ],
+  "secondaryMuscles": [
+   "dwugłowe",
+   "plecy"
+  ],
+  "requires": [
+   [
+    "kb"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "kettlebell",
+  "pattern": "hinge",
+  "implements": 1,
+  "muscleLoad": {
+   "glutes": 1,
+   "front_delt": 1,
+   "hamstrings": 0.5,
+   "upper_back": 0.5,
+   "lower_back": 0.5
+  },
+  "confidence": "high",
+  "note": "One kettlebell, one side at a time."
+ },
+ {
+  "name": "Snatch (hantel)",
+  "group": "inne",
+  "equipment": "hantle",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "unilateral",
+  "muscles": [
+   "pośladki",
+   "barki"
+  ],
+  "secondaryMuscles": [
+   "dwugłowe",
+   "czworogłowe"
+  ],
+  "requires": [
+   [
+    "db"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "dumbbell",
+  "pattern": "hinge",
+  "implements": 1,
+  "muscleLoad": {
+   "glutes": 1,
+   "front_delt": 1,
+   "hamstrings": 0.5,
+   "quads": 0.5,
+   "upper_back": 0.5
+  },
+  "confidence": "high",
+  "note": "One dumbbell, alternating or per side."
+ },
+ {
+  "name": "Power Clean",
+  "group": "inne",
+  "equipment": "sztanga",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "total",
+  "muscles": [
+   "pośladki",
+   "czworogłowe"
+  ],
+  "secondaryMuscles": [
+   "plecy",
+   "dwugłowe"
+  ],
+  "requires": [
+   [
+    "barbell"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "barbell",
+  "pattern": "hinge",
+  "muscleLoad": {
+   "glutes": 1,
+   "quads": 1,
+   "hamstrings": 0.5,
+   "upper_back": 0.5,
+   "lower_back": 0.5,
+   "calves": 0.25
+  },
+  "confidence": "high",
+  "note": "Barbell from the floor; bumper plates ideal (not in vocabulary)."
+ },
+ {
+  "name": "Thruster (hantle)",
+  "group": "inne",
+  "equipment": "hantle",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "per_dumbbell",
+  "muscles": [
+   "czworogłowe",
+   "barki"
+  ],
+  "secondaryMuscles": [
+   "pośladki",
+   "triceps"
+  ],
+  "requires": [
+   [
+    "db"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "dumbbell",
+  "pattern": "squat",
+  "implements": 2,
+  "muscleLoad": {
+   "quads": 1,
+   "front_delt": 1,
+   "glutes": 0.5,
+   "triceps": 0.5
+  },
+  "confidence": "high",
+  "note": "Front squat into press with a dumbbell pair."
+ },
+ {
+  "name": "Wall Ball",
+  "group": "cardio",
+  "equipment": "inne",
+  "bandAssistable": false,
+  "metric": "reps",
+  "loadMode": "total",
+  "muscles": [
+   "czworogłowe"
+  ],
+  "secondaryMuscles": [
+   "barki",
+   "pośladki"
+  ],
+  "requires": [
+   [
+    "med_ball"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "none",
+  "pattern": "other",
+  "muscleLoad": {
+   "quads": 1,
+   "front_delt": 0.5,
+   "glutes": 0.5,
+   "triceps": 0.25
+  },
+  "confidence": "medium",
+  "note": "Medicine ball and a wall; loadSource none like Medicine Ball Slam."
+ },
+ {
+  "name": "Jumping Jacks",
+  "group": "cardio",
+  "equipment": "masa ciała",
+  "bandAssistable": false,
+  "metric": "time",
+  "loadMode": "total",
+  "muscles": [],
+  "secondaryMuscles": [],
+  "requires": [],
+  "recommended": [],
+  "loadSource": "bodyweight",
+  "pattern": "cardio",
+  "muscleLoad": {
+   "calves": 0.5,
+   "side_delt": 0.25,
+   "abductors": 0.25
+  },
+  "confidence": "high",
+  "note": "No equipment."
+ },
+ {
+  "name": "High Knees",
+  "group": "cardio",
+  "equipment": "masa ciała",
+  "bandAssistable": false,
+  "metric": "time",
+  "loadMode": "total",
+  "muscles": [],
+  "secondaryMuscles": [],
+  "requires": [],
+  "recommended": [],
+  "loadSource": "bodyweight",
+  "pattern": "cardio",
+  "muscleLoad": {
+   "quads": 0.5,
+   "calves": 0.5,
+   "abs": 0.25
+  },
+  "confidence": "high",
+  "note": "No equipment."
+ },
+ {
+  "name": "Broad Jump",
+  "group": "cardio",
+  "equipment": "masa ciała",
+  "bandAssistable": false,
+  "metric": "reps",
+  "loadMode": "total",
+  "muscles": [
+   "czworogłowe",
+   "pośladki"
+  ],
+  "secondaryMuscles": [],
+  "requires": [],
+  "recommended": [],
+  "loadSource": "bodyweight",
+  "pattern": "other",
+  "muscleLoad": {
+   "quads": 1,
+   "glutes": 1,
+   "calves": 0.5,
+   "hamstrings": 0.25
+  },
+  "confidence": "high",
+  "note": "Plyometric, no equipment (like Box Jump)."
  }
 ]

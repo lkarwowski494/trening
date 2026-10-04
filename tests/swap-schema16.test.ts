@@ -2,7 +2,7 @@
  * Test 24 (idempotencja) — generatory w tests/migrate-idem.test.ts; test 26 (niezmienniki) — tests/invariants.test.ts. */
 import * as store from '@/lib/store';
 import { buildBackup, parseBackup } from '@/lib/backup';
-import { SCHEMA_VERSION, seedState } from '@/lib/seed';
+import { SCHEMA_VERSION, seedState, LIB_EXTRA_NAMES } from '@/lib/seed';
 import { fresh, ex, addWorkout, saved } from './helpers';
 
 const H = Date.UTC(2026, 8, 10, 10);
@@ -69,9 +69,10 @@ describe('schemat 15 → 16 na danych z prawdziwej wersji 0.9.0', () => {
     await fresh(); global.__kv.clear(); global.__kv.set('state', JSON.stringify(fx.state)); global.__kv.set('live', JSON.stringify(fx.live)); /* jak baza na telefonie */
     store.__resetForTests(); await store.init(); const st = store.getState();
     expect(fx.state.schemaVersion).toBe(15); expect(fx.live.seq).toBeGreaterThanOrEqual(fx.state.saveSeq); /* „live” nowszy niż „state” — ścieżka startu z treningiem w toku */
-    const strip = (s: any) => { const c = JSON.parse(JSON.stringify(s)); delete c.schemaVersion; delete c.metaUpdatedAt; delete c.saveSeq; return c; };
+    /* katalog 04.10.2026: migracja z 15 dopisuje nowe ćwiczenia biblioteki (osobny test w tests/catalog-v2.test.ts) — poza nimi dane 1:1 */
+    const strip = (s: any) => { const c = JSON.parse(JSON.stringify(s)); delete c.schemaVersion; delete c.metaUpdatedAt; delete c.saveSeq; c.exercises = c.exercises.filter((e: any) => !LIB_EXTRA_NAMES.includes(e.name)); c.exercises.forEach((e: any) => { delete e.catalogRev; }); /* nowa wersja katalogu — wymagania odświeżone, te same */ return c; };
     const want = strip({ ...fx.state, active: fx.live.active, timer: fx.live.timer });
-    expect(st.schemaVersion).toBe(16); expect(strip(st)).toEqual(want);
+    expect(st.schemaVersion).toBe(16); expect(strip(st)).toEqual(want); expect(st.exercises.length).toBe(fx.state.exercises.length + LIB_EXTRA_NAMES.length);
     expect(st.workouts).toHaveLength(6); expect(st.active!.exercises[0].sets[0].done).toBe(true); expect(st.timer.restSetId).toBe(fx.live.timer.restSetId);
     /* zapis po migracji ma już schemat 16, a ponowne wczytanie niczego nie zmienia */
     await store.flush(); const again = await fresh(saved()); expect(strip(again)).toEqual(want);

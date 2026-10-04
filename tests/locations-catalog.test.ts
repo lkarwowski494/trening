@@ -15,9 +15,9 @@ describe('katalog generowany', () => {
   test('lib/catalog.generated.ts jest aktualny względem catalog.json (gen.mjs --check)', () => {
     expect(() => execFileSync('node', [join(root, 'scripts/equipment/gen.mjs'), '--check'], { stdio: 'pipe' })).not.toThrow();
   });
-  test('katalog obejmuje dokładnie 125 ćwiczeń biblioteki, z tymi samymi danymi co JSON', () => {
+  test('katalog obejmuje dokładnie 248 ćwiczeń biblioteki (125 + 123 z katalogu 04.10.2026), z tymi samymi danymi co JSON', () => {
     expect(Object.keys(CATALOG).sort()).toEqual(LIB.map(l => l[0]).sort());
-    expect(catalog).toHaveLength(125);
+    expect(catalog).toHaveLength(248);
     for (const e of catalog) { const g = CATALOG[e.name]; expect(g.requires).toEqual(e.requires); expect(g.recommended).toEqual(e.recommended); expect(g.loadSource).toBe(e.loadSource); expect(g.pattern).toBe(e.pattern); expect(g.implements).toBe(e.implements); }
   });
   test('każdy wpis używa tylko słownika możliwości; słownik = możliwości z katalogu + kilka sprzętowych', () => {
@@ -68,12 +68,12 @@ describe('sprzęt', () => {
 
 describe('presety miejsc i dostępność', () => {
   const ex = seedState().exercises;
-  test('„Pełna siłownia” → 125/125 dostępne', () => {
-    const g = loc('Siłownia', presetEquipment('gym')); expect(ex.filter(e => availability(e, g).ok)).toHaveLength(125);
+  test('„Pełna siłownia” → 248/248 dostępne', () => {
+    const g = loc('Siłownia', presetEquipment('gym')); expect(ex.filter(e => availability(e, g).ok)).toHaveLength(248);
   });
-  test('„Tylko masa ciała” → dokładnie ćwiczenia z pustą listą wymagań (20; decyzja 4a)', () => {
+  test('„Tylko masa ciała” → dokładnie ćwiczenia z pustą listą wymagań (45 od katalogu 04.10.2026; decyzja 4a)', () => {
     const b = loc('BW', presetEquipment('bodyweight')); const ok = ex.filter(e => availability(e, b).ok).map(e => e.name).sort();
-    expect(ok).toEqual(catalog.filter(e => !e.requires.length).map(e => e.name).sort()); expect(ok).toHaveLength(20);
+    expect(ok).toEqual(catalog.filter(e => !e.requires.length).map(e => e.name).sort()); expect(ok).toHaveLength(45);
     for (const n of ['Walking Lunges', 'Reverse Lunge', 'Russian Twist']) expect(ok).toContain(n); /* 4a: bez hantli */
     expect(ok).not.toContain('Lunges (hantle)'); expect(ok).not.toContain('Step Up'); /* Step Up wymaga skrzyni/ławki */
   });
@@ -88,8 +88,8 @@ describe('presety miejsc i dostępność', () => {
     expect(ok('Przysiad z pasem (linki)')).toBe(true); /* przez stację elektryczną: wyciąg dolny + pas biodrowy */
     for (const n of ['Incline Bench Press (hantle)', 'RDL (hantle/linki)', 'Bulgarian Split Squat (hantle)', 'Hip Thrust (hantel)', 'Łydki na stopniu', 'Wiosłowanie na linkach (siedząc)', 'Hanging Leg Raise']) expect(ok(n)).toBe(true);
     for (const n of ['Lat Pulldown', 'Face Pull', 'Triceps Pushdown', 'Leg Press', 'Bench Press (sztanga)', 'Decline Bench Press']) expect(ok(n)).toBe(false); /* ViShape: bez wyciągu górnego */
-    /* pełna lista do przejrzenia z użytkownikiem (docs/10, „Implementacja E1”) — 70 ze 125 */
-    expect(ex.filter(e => availability(e, h).ok)).toHaveLength(70);
+    /* pełna lista do przejrzenia z użytkownikiem (docs/10, „Implementacja E1”) — 70 ze 125 przed katalogiem 04.10.2026, teraz 147 z 248 */
+    expect(ex.filter(e => availability(e, h).ok)).toHaveLength(147);
     /* szablon „Legs — dom” w całości dostępny w domu */
     const sd = seedState(); const tpl = demoTemplates(sd.exercises).find(t => t.name === 'Legs — dom')!; /* szablon właściciela — dane testowe (od 03.10.2026 nie ma go w seedzie) */
     for (const i of tpl.items) expect(availability(sd.exercises.find(e => e.id === i.exerciseId)!, h).ok).toBe(true);
@@ -111,7 +111,7 @@ describe('presety miejsc i dostępność', () => {
     expect(loadKindsFor(CATALOG['Kettlebell Swing'])).toEqual(['kettlebell', 'dumbbell']);
     expect(loadKindsFor(CATALOG['Pull Up'])).toEqual([]);
   });
-  test('dane: seedState ma pola sprzętowe dla wszystkich 125 ćwiczeń, zgodne z katalogiem', () => {
+  test('dane: seedState ma pola sprzętowe dla wszystkich 248 ćwiczeń, zgodne z katalogiem', () => {
     for (const e of seedState().exercises) { const c = CATALOG[e.name]; expect(e.requires).toEqual(c.requires); expect(e.loadSource).toBe(c.loadSource); expect(e.pattern).toBe(c.pattern); expect(e.implements).toBe(c.implements); }
   });
 });

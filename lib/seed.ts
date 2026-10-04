@@ -5,7 +5,7 @@ import * as Crypto from 'expo-crypto';
 import type { LangSetting, Lang } from './i18n';
 import type { Unit } from './units';
 import type { LoadSpec } from './loads';
-import { CATALOG, CATALOG_REV, type LoadSource, type Pattern } from './catalog.generated';
+import { CATALOG, CATALOG_REV, CATALOG_LIB_EXTRA, MUSCLE_LOAD, type LoadSource, type Pattern, type MuscleRegion } from './catalog.generated';
 
 export const SCHEMA_VERSION = 16; // 16 (E2, docs/14 pkt 2): WExercise.swappedFrom / implPinned (trening w toku i historia), splitFrom / altSkip (tylko trening w toku), TemplateItem.alternates (W3); pola opcjonalne — blok bez zamiany i szablon bez zamienników wyglądają jak w 15; kopia 16 jest odrzucana przez wersję 15 (pkt 2.4); 15 (decyzje 03.10.2026): WExercise.impl — przyrząd użyty w bloku (decyzja 8c); ciężarów ani treści szablonów użytkownika migracja nie zmienia (decyzja 03.10, 08:11 — bez dawnej jednorazowej zmiany 48 → 24 kg z P-004; zostaje tylko normalizacja pól i usuwanie pozycji z brakującym/usuniętym ćwiczeniem, jak w main); 14 (P-003 E1): miejsca treningu i sprzęt — Settings.locations/mainLocationId/pickerShowAll, Workout/Template.locationId, wymagania sprzętowe ćwiczeń; 11 (runda 55): przyciąganie starych wartości z funtów tylko dla danych sprzed tej wersji; 12 (runda 72): masa ciała zamrożona w zakończonych treningach; 13 (runda 75, Q-001): masa ciała poza obliczeniami — usunięte udział %, waga w Ustawieniach i w treningu; nowe ustawienia progressHint, autoBackup, weighReminder
 /** Właściciel danych zanim pojawią się konta (H2). Po logowaniu zostanie podmieniony na id użytkownika. */
@@ -50,7 +50,7 @@ export type LoadMode = 'per_dumbbell' | 'total' | 'unilateral';
 export const LOAD_MODE_LABEL: Record<LoadMode, string> = { per_dumbbell: 'per hantel (×2)', total: 'łącznie', unilateral: 'jednostronne (per strona, ×2)' };
 /** Ćwiczenia z hantlami wykonywane JEDNYM ciężarem (audyt 0.8.1): objętość ×1, nie ×2. */
 export const SINGLE_IMPLEMENT: ReadonlySet<string> = new Set(['Goblet Squat', 'Overhead Triceps Extension (hantel)', 'Hip Thrust (hantel)', 'Kettlebell Swing', 'Russian Twist', 'Suitcase Carry']);
-export const loadModeFor = (equipment: Equipment, name?: string): LoadMode => equipment === 'hantle' && !(name && SINGLE_IMPLEMENT.has(name)) ? 'per_dumbbell' : 'total';
+export const loadModeFor = (equipment: Equipment, name?: string): LoadMode => (name && EXTRA.has(name) && EXTRA.get(name)![2] === equipment ? EXTRA.get(name)![5] as LoadMode : undefined) ?? (equipment === 'hantle' && !(name && SINGLE_IMPLEMENT.has(name)) ? 'per_dumbbell' : 'total'); /* katalog 04.10: nowe ćwiczenia mają tryb z katalogu (dopóki sprzęt ten sam) */
 export const loadMult = (mode: LoadMode) => mode === 'total' ? 1 : 2;
 /** Trwały stan timerów (0.2.1): przeżywa zabicie aplikacji; przy starcie odtwarzany z zapisanego znacznika końca. */
 /** setId (schemat 10): stoper serii wskazuje serię po id, nie po pozycji — usunięcie ćwiczenia nie przenosi pomiaru na inną serię. */
@@ -107,8 +107,8 @@ export function defaultModules(): Record<ModuleId, boolean> {
   return { training: true, diet: false, sleep: false, cardio: false, supplements: false, recommendations: false };
 }
 
-// [nazwa, partia, sprzęt, asysta gumą]
-export const LIB: [string, Group, Equipment, boolean?][] = [
+// [nazwa, partia, sprzęt, asysta gumą] — 125 ćwiczeń z pierwszej wersji; ćwiczenia dodane w katalogu 04.10.2026 dochodzą z CATALOG_LIB_EXTRA (niżej)
+const LIB_BASE: [string, Group, Equipment, boolean?][] = [
   ['Bench Press (sztanga)','klatka','sztanga'],['Bench Press (hantle)','klatka','hantle'],['Incline Bench Press (sztanga)','klatka','sztanga'],['Incline Bench Press (hantle)','klatka','hantle'],['Decline Bench Press','klatka','sztanga'],['Chest Fly (hantle)','klatka','hantle'],['Cable Fly','klatka','linki'],['Pec Deck','klatka','maszyna'],['Machine Chest Press','klatka','maszyna'],['Wyciskanie na linkach (stojąc)','klatka','linki'],['Chest Dip','klatka','masa ciała',true],['Push Up','klatka','masa ciała'],['Incline Push Up','klatka','masa ciała'],['Diamond Push Up','triceps','masa ciała'],
   ['Deadlift (sztanga)','plecy','sztanga'],['Deadlift (hantle)','plecy','hantle'],['Sumo Deadlift','plecy','sztanga'],['Trap Bar Deadlift','plecy','sztanga'],['RDL (sztanga)','plecy','sztanga'],['RDL (hantle/linki)','plecy','hantle'],['Bent Over Row (sztanga)','plecy','sztanga'],['Bent Over Row (hantle)','plecy','hantle'],['Pendlay Row','plecy','sztanga'],['One Arm Row (hantle)','plecy','hantle'],['Chest Supported Row','plecy','hantle'],['T-Bar Row','plecy','sztanga'],['Seated Cable Row','plecy','linki'],['Wiosłowanie na linkach (siedząc)','plecy','linki'],['Lat Pulldown','plecy','linki'],['Straight Arm Pulldown','plecy','linki'],['Chin Up','plecy','masa ciała',true],['Pull Up','plecy','masa ciała',true],['Neutral Grip Pull Up','plecy','masa ciała',true],['Inverted Row','plecy','masa ciała'],['Face Pull','plecy','linki'],['Back Extension','plecy','masa ciała'],['Shrugs (hantle)','plecy','hantle'],['Shrugs (sztanga)','plecy','sztanga'],['Good Morning','plecy','sztanga'],
   ['Overhead Press (sztanga)','barki','sztanga'],['Overhead Press (hantle)','barki','hantle'],['Seated Shoulder Press (hantle)','barki','hantle'],['Arnold Press','barki','hantle'],['Push Press','barki','sztanga'],['Machine Shoulder Press','barki','maszyna'],['Wyciskanie nad głowę (linki)','barki','linki'],['Lateral Raise (hantle)','barki','hantle'],['Cable Lateral Raise','barki','linki'],['Front Raise','barki','hantle'],['Rear Delt Raise (hantle)','barki','hantle'],['Reverse Fly (hantle)','barki','hantle'],['Reverse Pec Deck','barki','maszyna'],['Upright Row','barki','hantle'],
@@ -121,6 +121,15 @@ export const LIB: [string, Group, Equipment, boolean?][] = [
   ['Incline Walk (bieżnia)','cardio','inne'],['Bieg','cardio','inne'],['Rower','cardio','inne'],['Rowing Machine','cardio','maszyna'],['Assault Bike','cardio','maszyna'],['Skakanka','cardio','inne'],['Burpees','cardio','masa ciała'],['Box Jump','cardio','masa ciała'],['Medicine Ball Slam','cardio','inne'],
 ];
 
+/** Katalog 04.10.2026: regiony mięśni do obciążenia partii (dane w catalog.json; przyszła regeneracja partii). */
+export const REGION_LABEL: Record<MuscleRegion, string> = { chest: 'klatka', front_delt: 'barki — przód', side_delt: 'barki — bok', rear_delt: 'barki — tył', lats: 'najszersze grzbietu', upper_back: 'góra pleców', lower_back: 'prostowniki grzbietu', biceps: 'biceps', triceps: 'triceps', forearms: 'przedramiona', abs: 'brzuch', obliques: 'skośne brzucha', glutes: 'pośladki', quads: 'czworogłowe', hamstrings: 'dwugłowe', adductors: 'przywodziciele', abductors: 'odwodziciele', calves: 'łydki' };
+/** Obciążenie partii ćwiczenia z biblioteki (1 główny, 0,5 pomocniczy, 0,25 stabilizacja), od największego; ćwiczenia własne i przemianowane — brak. */
+export const muscleLoadOf = (e: Pick<Exercise, 'name' | 'lib'>): [MuscleRegion, number][] => { const m = e.lib ? own(MUSCLE_LOAD as Record<string, Partial<Record<MuscleRegion, number>>>, e.name) : undefined; return m ? (Object.entries(m) as [MuscleRegion, number][]).sort((a, b) => b[1] - a[1]) : []; };
+/** Katalog 04.10.2026 (decyzja właściciela: rozbudowa własnego katalogu): nowe ćwiczenia biblioteki — JEDNO źródło: docs/research/equipment/catalog.json
+ * (pola group/equipment/metric/loadMode/muscles), generowane do lib/catalog.generated.ts. */
+const EXTRA = new Map(CATALOG_LIB_EXTRA.map(r => [r[0], r]));
+export const LIB_EXTRA_NAMES: readonly string[] = CATALOG_LIB_EXTRA.map(r => r[0]);
+export const LIB: [string, Group, Equipment, boolean?][] = [...LIB_BASE, ...CATALOG_LIB_EXTRA.map(r => [r[0], r[1] as Group, r[2] as Equipment, r[3]] as [string, Group, Equipment, boolean])];
 /** Metryka dla pozycji biblioteki innych niż ciężar+powtórzenia. Używane też w migracji (po nazwie). */
 export const METRIC_BY_NAME: Record<string, MetricType> = {
   'Plank': 'time', 'Side Plank': 'time', 'Wall Sit': 'time', 'Hollow Hold': 'time', 'Skakanka': 'time', 'Mountain Climbers': 'time',
@@ -130,20 +139,20 @@ export const METRIC_BY_NAME: Record<string, MetricType> = {
 };
 /** Runda 55: tylko własne klucze tablic (nazwa „toString” czy „constructor” nie trafia w Object.prototype). */
 export const own = <T,>(o: Record<string, T>, k: string): T | undefined => Object.prototype.hasOwnProperty.call(o, k) ? o[k] : undefined;
-export const metricFor = (name: string): MetricType => own(METRIC_BY_NAME, name) ?? 'weight_reps';
+export const metricFor = (name: string): MetricType => own(METRIC_BY_NAME, name) ?? (EXTRA.get(name)?.[4] as MetricType | undefined) ?? 'weight_reps';
 
 /** Partie mięśniowe głównych ćwiczeń biblioteki: [główne, pomocnicze]. Reszta bierze partię z pola group. */
 export const MUSCLES_BY_NAME: Record<string, [Muscle[], Muscle[]]> = {
   'Bench Press (sztanga)': [['klatka'], ['triceps', 'barki']], 'Bench Press (hantle)': [['klatka'], ['triceps', 'barki']], 'Incline Bench Press (sztanga)': [['klatka'], ['barki', 'triceps']], 'Incline Bench Press (hantle)': [['klatka'], ['barki', 'triceps']], 'Decline Bench Press': [['klatka'], ['triceps']], 'Machine Chest Press': [['klatka'], ['triceps']], 'Wyciskanie na linkach (stojąc)': [['klatka'], ['triceps']], 'Chest Dip': [['klatka'], ['triceps']], 'Push Up': [['klatka'], ['triceps', 'barki']], 'Incline Push Up': [['klatka'], ['triceps']], 'Diamond Push Up': [['triceps'], ['klatka']],
-  'Deadlift (sztanga)': [['plecy', 'dwugłowe'], ['pośladki', 'czworogłowe']], 'Deadlift (hantle)': [['plecy', 'dwugłowe'], ['pośladki']], 'Sumo Deadlift': [['pośladki', 'czworogłowe'], ['plecy', 'dwugłowe']], 'Trap Bar Deadlift': [['czworogłowe', 'plecy'], ['pośladki', 'dwugłowe']], 'RDL (sztanga)': [['dwugłowe'], ['pośladki', 'plecy']], 'RDL (hantle/linki)': [['dwugłowe'], ['pośladki', 'plecy']], 'Bent Over Row (sztanga)': [['plecy'], ['biceps']], 'Bent Over Row (hantle)': [['plecy'], ['biceps']], 'Pendlay Row': [['plecy'], ['biceps']], 'One Arm Row (hantle)': [['plecy'], ['biceps']], 'Chest Supported Row': [['plecy'], ['biceps']], 'T-Bar Row': [['plecy'], ['biceps']], 'Seated Cable Row': [['plecy'], ['biceps']], 'Wiosłowanie na linkach (siedząc)': [['plecy'], ['biceps']], 'Lat Pulldown': [['plecy'], ['biceps']], 'Chin Up': [['plecy'], ['biceps']], 'Pull Up': [['plecy'], ['biceps']], 'Neutral Grip Pull Up': [['plecy'], ['biceps']], 'Inverted Row': [['plecy'], ['biceps']], 'Face Pull': [['barki'], ['plecy']], 'Good Morning': [['dwugłowe'], ['plecy']],
-  'Overhead Press (sztanga)': [['barki'], ['triceps']], 'Overhead Press (hantle)': [['barki'], ['triceps']], 'Seated Shoulder Press (hantle)': [['barki'], ['triceps']], 'Arnold Press': [['barki'], ['triceps']], 'Push Press': [['barki'], ['triceps', 'czworogłowe']], 'Machine Shoulder Press': [['barki'], ['triceps']], 'Wyciskanie nad głowę (linki)': [['barki'], ['triceps']], 'Upright Row': [['barki'], ['biceps']],
+  'Deadlift (sztanga)': [['plecy', 'dwugłowe'], ['pośladki', 'czworogłowe']], 'Deadlift (hantle)': [['plecy', 'dwugłowe'], ['pośladki']], 'Sumo Deadlift': [['pośladki', 'czworogłowe'], ['plecy', 'dwugłowe']], 'Trap Bar Deadlift': [['czworogłowe', 'plecy'], ['pośladki', 'dwugłowe']], 'RDL (sztanga)': [['dwugłowe'], ['pośladki', 'plecy']], 'RDL (hantle/linki)': [['dwugłowe'], ['pośladki', 'plecy']], 'Bent Over Row (sztanga)': [['plecy'], ['biceps']], 'Bent Over Row (hantle)': [['plecy'], ['biceps']], 'Pendlay Row': [['plecy'], ['biceps']], 'One Arm Row (hantle)': [['plecy'], ['biceps']], 'Chest Supported Row': [['plecy'], ['biceps']], 'T-Bar Row': [['plecy'], ['biceps']], 'Seated Cable Row': [['plecy'], ['biceps']], 'Wiosłowanie na linkach (siedząc)': [['plecy'], ['biceps']], 'Lat Pulldown': [['plecy'], ['biceps']], 'Chin Up': [['plecy'], ['biceps']], 'Pull Up': [['plecy'], ['biceps']], 'Neutral Grip Pull Up': [['plecy'], ['biceps']], 'Inverted Row': [['plecy'], ['biceps']], 'Face Pull': [['barki'], ['plecy']], 'Good Morning': [['dwugłowe'], ['plecy']], 'Back Extension': [['plecy'], ['pośladki', 'dwugłowe']], /* katalog 04.10.2026: korekty zgrubnych partii po przeglądzie obciążenia (Upright Row, Farmer's Walk, Back Extension) — tylko nowe instalacje; zapisane ćwiczenia bez zmian */
+  'Overhead Press (sztanga)': [['barki'], ['triceps']], 'Overhead Press (hantle)': [['barki'], ['triceps']], 'Seated Shoulder Press (hantle)': [['barki'], ['triceps']], 'Arnold Press': [['barki'], ['triceps']], 'Push Press': [['barki'], ['triceps', 'czworogłowe']], 'Machine Shoulder Press': [['barki'], ['triceps']], 'Wyciskanie nad głowę (linki)': [['barki'], ['triceps']], 'Upright Row': [['barki'], ['plecy', 'biceps']],
   'Close Grip Bench Press': [['triceps'], ['klatka']], 'Triceps Dips (ławka)': [['triceps'], ['klatka']],
   'Back Squat': [['czworogłowe'], ['pośladki', 'dwugłowe']], 'Front Squat': [['czworogłowe'], ['pośladki', 'core']], 'Goblet Squat': [['czworogłowe'], ['pośladki']], 'Przysiad z pasem (linki)': [['czworogłowe'], ['pośladki']], 'Box Squat': [['czworogłowe'], ['pośladki']], 'Hack Squat': [['czworogłowe'], ['pośladki']], 'Leg Press': [['czworogłowe'], ['pośladki']], 'Bulgarian Split Squat (hantle)': [['czworogłowe', 'pośladki'], ['dwugłowe']], 'Lunges (hantle)': [['czworogłowe', 'pośladki'], []], 'Walking Lunges': [['czworogłowe', 'pośladki'], []], 'Reverse Lunge': [['czworogłowe', 'pośladki'], []], 'Step Up': [['czworogłowe', 'pośladki'], []], 'Leg Extension': [['czworogłowe'], []], 'Leg Curl': [['dwugłowe'], []], 'Lying Leg Curl': [['dwugłowe'], []], 'Nordic Curl': [['dwugłowe'], []], 'Pistol Squat': [['czworogłowe'], ['pośladki']], 'Sissy Squat': [['czworogłowe'], []], 'Wall Sit': [['czworogłowe'], []],
   'Hip Thrust (sztanga)': [['pośladki'], ['dwugłowe']], 'Hip Thrust (hantel)': [['pośladki'], ['dwugłowe']], 'Glute Bridge': [['pośladki'], ['dwugłowe']], 'Kettlebell Swing': [['pośladki', 'dwugłowe'], ['plecy']],
-  "Farmer's Walk": [['przedramiona', 'core'], []], 'Suitcase Carry': [['core'], ['przedramiona']],
+  "Farmer's Walk": [['przedramiona', 'plecy'], ['core']], 'Suitcase Carry': [['core'], ['przedramiona']],
 };
 export const GROUP_TO_MUSCLE: Partial<Record<Group, Muscle>> = { klatka: 'klatka', plecy: 'plecy', barki: 'barki', biceps: 'biceps', triceps: 'triceps', nogi: 'czworogłowe', pośladki: 'pośladki', łydki: 'łydki', core: 'core' };
-export const musclesFor = (name: string, group: Group): [Muscle[], Muscle[]] => own(MUSCLES_BY_NAME, name) ?? [GROUP_TO_MUSCLE[group] ? [GROUP_TO_MUSCLE[group]!] : [], []];
+export const musclesFor = (name: string, group: Group): [Muscle[], Muscle[]] => own(MUSCLES_BY_NAME, name) ?? (EXTRA.has(name) ? [[...EXTRA.get(name)![6]] as Muscle[], [...EXTRA.get(name)![7]] as Muscle[]] : null) ?? [GROUP_TO_MUSCLE[group] ? [GROUP_TO_MUSCLE[group]!] : [], []];
 
 /** P-003: źródło obciążenia ćwiczenia własnego z jego zgrubnego sprzętu (żeby działało zaokrąglanie do dostępnych ciężarów). */
 export const LOAD_SOURCE_BY_EQUIPMENT: Record<Equipment, LoadSource> = { hantle: 'dumbbell', sztanga: 'barbell', 'masa ciała': 'bodyweight', maszyna: 'machine_stack', linki: 'cable', inne: 'none' };
@@ -158,14 +167,16 @@ export const blankTimer = (): TimerState => ({ restEndAt: null, restTotal: 0, re
 export const DEFAULT_REST = 90;
 export const defaultSettings = (): Settings => ({ defaultRest: DEFAULT_REST, sound: true, wakeLock: true, showRpe: false, healthSync: false, progressHint: true, autoBackup: true, weighReminder: false, modules: defaultModules(), language: 'auto', unit: 'kg', locations: [], mainLocationId: null, pickerShowAll: false });
 
+/** Ćwiczenie z biblioteki (wpis LIB) — wspólne dla stanu startowego i migracji dopisującej ćwiczenia katalogu 04.10.2026. */
+export function libExercise([name, group, equipment, band]: [string, Group, Equipment, boolean?], owner: string = LOCAL_OWNER): Exercise {
+  const [mu, mu2] = musclesFor(name, group); return { ...base(owner), name, group, equipment, metric: metricFor(name), loadMode: loadModeFor(equipment, name), restSec: null, restWarmupSec: null, muscles: mu, secondaryMuscles: mu2, bandAssistable: !!band, tempo: '', notes: '', lib: true, ...equipFields(name, equipment, true) };
+}
 /** Stan startowy: biblioteka ćwiczeń i gumy, BEZ szablonów (decyzja właściciela 03.10.2026, 08:11: „Nie przenoś do aplikacji żadnych moich szablonów.
  * Sam je ustawię.” — świeża instalacja ma `templates: []`; dawne cztery szablony żyją tylko w danych testowych: tests/fixtures/demo-templates.ts).
  * Nazwy gum w języku użytkownika; nazwy ćwiczeń z biblioteki zostają kanoniczne i tłumaczy je exName(). */
 export function seedState(lng: Lang = 'pl'): State {
   const en = lng === 'en';
-  const exercises: Exercise[] = LIB.map(([name, group, equipment, band]) => {
-    const [mu, mu2] = musclesFor(name, group); return { ...base(), name, group, equipment, metric: metricFor(name), loadMode: loadModeFor(equipment, name), restSec: null, restWarmupSec: null, muscles: mu, secondaryMuscles: mu2, bandAssistable: !!band, tempo: '', notes: '', lib: true, ...equipFields(name, equipment, true) };
-  });
+  const exercises: Exercise[] = LIB.map(r => libExercise(r));
   return {
     v: 2, schemaVersion: SCHEMA_VERSION, ownerId: LOCAL_OWNER,
     settings: defaultSettings(), exercises,
