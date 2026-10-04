@@ -45,8 +45,8 @@ test('e2e-ios.yml: podsumowanie porażki uruchamiane tylko po błędzie, przed w
 test('e2e-ios.yml: najwyżej jedno powtórzenie Maestro i tylko, gdy sterownik XCTest nie wystartował (błąd scenariusza nie jest powtarzany)', () => {
   const y = fs.readFileSync(path.join(root, '.github/workflows/e2e-ios.yml'), 'utf8');
   const step = y.slice(y.indexOf('- name: Maestro'), y.indexOf('- name: Podsumowanie porażki'));
-  expect(step.match(/maestro --device/g)).toHaveLength(2);
-  expect(step).toMatch(/if \[ "\$rc" -ne 0 \] && grep -q "iOS driver not ready in time"/);
+  expect(step.match(/maestro --device/g)).toHaveLength(2); /* oba przez strażnika czasu (guard) */
+  expect(step).toMatch(/if \[ "\$rc" -ne 0 \] && grep -qE "iOS driver not ready in time\|deviceInfo failed"/);
   expect(step).toMatch(/exit \$rc/);
   const bash = require('child_process').execFileSync; /* logika powtórzenia na atrapie maestro */
   const body = step.slice(step.indexOf('run: |') + 6).split('\n').map(l => l.replace(/^ {10}/, '')).join('\n');
@@ -55,6 +55,16 @@ test('e2e-ios.yml: najwyżej jedno powtórzenie Maestro i tylko, gdy sterownik X
     let rc = 0; try { bash('bash', ['-e', '-c', body], { cwd: d, env: { ...process.env, PATH: `${d}:${process.env.PATH}`, SIM: 'x' }, stdio: 'pipe' }); } catch (e: any) { rc = e.status; }
     return { rc, runs: Number(fs.readFileSync(path.join(d, 'n'), 'utf8')) }; };
   expect(sim('iOS driver not ready in time, consider increasing timeout', 1)).toEqual({ rc: 0, runs: 2 });
+  /* 04.10.2026 (run 37229659437): sterownik XCTest zwrócił 500 na deviceInfo przed pierwszym scenariuszem — też awaria maszyny */
+  expect(sim('UnknownFailure(errorResponse=Request for http://127.0.0.1:50514/deviceInfo failed, code: 500, body: )', 1)).toEqual({ rc: 0, runs: 2 });
   expect(sim('Assertion is false: "Propozycje" is visible', 1)).toEqual({ rc: 1, runs: 1 });
   expect(sim('ok', 0)).toEqual({ rc: 0, runs: 1 });
+  /* zawieszony Maestro (ten sam przebieg: wyjątek w wątku głównym, proces nie kończył się 68 min) — strażnik czasu kończy podejście */
+  expect(step.match(/guard maestro --device/g)).toHaveLength(2); expect(step).toMatch(/MAESTRO_ALARM:-1500/);
+  const d = fs.mkdtempSync(path.join(require('os').tmpdir(), 'mh-')); fs.writeFileSync(path.join(d, 'maestro'), '#!/bin/bash\nsleep 30\n', { mode: 0o755 });
+  const t0 = Date.now(); let rc = 0; try { bash('bash', ['-e', '-c', body], { cwd: d, env: { ...process.env, PATH: `${d}:${process.env.PATH}`, SIM: 'x', MAESTRO_ALARM: '1' }, stdio: 'pipe' }); } catch (e: any) { rc = e.status; }
+  expect(rc).not.toBe(0); expect(Date.now() - t0).toBeLessThan(15000); /* zawieszenie przerwane, bez powtórki (brak komunikatu sterownika) */
+  fs.writeFileSync(path.join(d, 'maestro'), '#!/bin/bash\nkill -9 $$\n', { mode: 0o755 }); let rc2 = 0; /* proces zabity sygnałem — porażka, nie sukces */
+  try { bash('bash', ['-e', '-c', body], { cwd: d, env: { ...process.env, PATH: `${d}:${process.env.PATH}`, SIM: 'x' }, stdio: 'pipe' }); } catch (e: any) { rc2 = e.status; }
+  expect(rc2).toBe(137);
 });
