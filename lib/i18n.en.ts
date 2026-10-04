@@ -269,4 +269,7 @@ export const EN: Record<string, string> = {
   'Ten zakres to {c} ciężarów — najwyżej {n}. Zwiększ krok.': 'This range is {c} weights — at most {n}. Increase the step.',
   'Najwyżej {n} rodzajów.': 'At most {n} sizes.', 'Odhaczone serie bez ciężaru: {n}.': 'Ticked sets without weight: {n}.', 'ciężaru {w} nie ma tutaj — wpisz ciężar': '{w} isn’t available here — enter a weight',
   'Ciężar serii na stacji wpisuj na stronę — tak, jak pokazuje urządzenie.': 'Enter station set weights per side — as the device shows them.', 'min na stronę': 'min per side', 'max na stronę': 'max per side', 'krok': 'step',
+  /* E2 — zamiana ćwiczenia (docs/14) */
+  'gryf łamany': 'EZ bar', 'trap bar': 'trap bar', 'kettlebell': 'kettlebell', 'wyciąg': 'cable', 'stacja': 'station',
+  'ten sam ruch': 'same movement', 'te same mięśnie': 'same muscles', 'wcześniej zamieniane': 'swapped before', 'robione {n}×': 'done {n}×',
 };

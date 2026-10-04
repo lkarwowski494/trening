@@ -267,3 +267,21 @@ function resolveLoads(ex: Pick<Exercise, 'loadSource' | 'requires' | 'recommende
   const recLoad = (ex.recommended ?? []).some(c => c === 'db' || c === 'kb' || c === 'barbell');
   return { res: !(ex.requires ?? []).length && recLoad ? { kind: 'none' } : { kind: 'unknown' } };
 }
+/**
+ * E2 D5 (docs/14 pkt 3.7.1): wszystkie przyrządy, którymi ćwiczenie da się zrobić w miejscu — rodzaje ciężaru z loadKindsFor (w tej kolejności),
+ * każdy jako przyrząd jak w implAt (stacja → 'electric', zwykły wyciąg → 'cable'). Pozycja liczy się, gdy daje możliwość z wymagań ćwiczenia
+ * (RDL: hantle albo wyciąg dolny — stacja tak, brama też); gdy ŻADNA pozycja tego rodzaju w ogóle nie może dać możliwości z wymagań (np. hantle
+ * tylko zalecane) — każda pozycja tego rodzaju. Maszyny zawsze tylko spełniające wymaganie (jak resolveLoads). Bez miejsca — pusto.
+ */
+export function implsAt(ex: Pick<Exercise, 'loadSource' | 'requires'>, loc: Location | null | undefined): Impl[] {
+  if (!loc) return []; const need = new Set((ex.requires ?? []).flat()); const out: Impl[] = [];
+  for (const kind of loadKindsFor(ex)) {
+    const can = kind === 'machine' || EQUIPMENT.some(x => x.load === kind && [...x.gives, ...(x.options ?? []).flatMap(o => o.gives)].some(c => need.has(c)));
+    for (const e of loc.equipment) {
+      const x = equipById(e.item); if (!x || e.off || x.load !== kind) continue;
+      if (can && ![...entryCaps(e, x, false)].some(c => need.has(c))) continue;
+      const i = implOf(kind, e.item); if (!out.includes(i)) out.push(i);
+    }
+  }
+  return out;
+}
