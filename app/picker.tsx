@@ -14,7 +14,8 @@ import { t, exName, locale, fold } from '@/lib/i18n';
 
 /** target = 'active' (dodaj do treningu) | 'template:<id>' (dodaj do szablonu) | 'edit:<klucz szkicu>' (edytor historii, docs/12)
  *  | 'swap:active:<id bloku>' (E2: zamiana ćwiczenia bloku treningu w toku — „Cała biblioteka” z arkusza app/swap.tsx)
- *  | 'swap:edit:<klucz szkicu>:<id bloku>' (E2 D6: przepięcie bloku w edytorze historii) */
+ *  | 'swap:edit:<klucz szkicu>:<id bloku>' (E2 D6: przepięcie bloku w edytorze historii)
+ * Cele swap: — od 04.10.2026 arkusz ma własną listę „Inne”; cel zostaje dla linków i testów (tests/backlog-0410.test.tsx). */
 export default function PickerScreen() {
   // Runda 26: parametr z linku może być tablicą (powtórzony ?target=) — tylko tekst, inaczej nic nie dodajemy.
   const raw = useLocalSearchParams<{ target?: string | string[] }>().target; const target = typeof raw === 'string' ? raw : ''; const router = useRouter();

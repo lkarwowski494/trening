@@ -59,3 +59,20 @@ test('Q-026 (audyt 04.10): po zmianie sprzętu na masę ciała pierwszy trening 
   const w2 = addWorkout(day(0), [['Moje dipy', [{ reps: 5 }]]]); /* po pierwszej porównywalnej sesji rekord sumy działa */
   expect([...prMap(w2).values()].flat()).toContain('suma powtórzeń');
 });
+
+test('arkusz „Inne” (audyt 04.10): przewijanie nie gubi tapnięcia przy klawiaturze; „Przywróć …” zarchiwizowanego i „Utwórz …” z miarą A', async () => {
+  await fresh(); addWorkout(day(5), [['Bench Press (hantle)', [{ weight: 20, reps: 10 }]]]); store.deleteExercise(ex('Bench Press (hantle)').id);
+  store.startEmpty(); store.addExerciseToActive(ex('Bench Press (sztanga)')); await store.flush();
+  await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())) }); await flushAll(20);
+  await tap(screen.getByLabelText('Zamień ćwiczenie: Bench Press (sztanga)')); await flushAll(20);
+  await tap(screen.getByLabelText('Pokaż inne ćwiczenia')); await flushAll(5);
+  const sv = screen.UNSAFE_getAllByType(require('react-native').ScrollView).find((x: any) => x.props.keyboardShouldPersistTaps === 'handled'); expect(sv).toBeTruthy();
+  await type(screen.getByPlaceholderText('Szukaj ćwiczenia…'), 'Bench Press (hantle)'); await flushAll(5);
+  await tap(screen.getByText('Przywróć „Bench Press (hantle)”')); await flushAll(20);
+  expect(store.getState().active!.exercises[0].exerciseId).toBe(ex('Bench Press (hantle)').id); expect(ex('Bench Press (hantle)').archived).toBeFalsy();
+  await tap(screen.getByLabelText('Zamień ćwiczenie: Bench Press (hantle)')); await flushAll(20);
+  await tap(screen.getByLabelText('Pokaż inne ćwiczenia')); await flushAll(5);
+  await type(screen.getByPlaceholderText('Szukaj ćwiczenia…'), 'Moje wyciskanie'); await flushAll(5);
+  await tap(screen.getByText('Utwórz „Moje wyciskanie”')); await flushAll(20);
+  const mine = store.getState().exercises.find(e => e.name === 'Moje wyciskanie')!; expect(mine.metric).toBe('weight_reps'); expect(store.getState().active!.exercises[0].exerciseId).toBe(mine.id);
+});
