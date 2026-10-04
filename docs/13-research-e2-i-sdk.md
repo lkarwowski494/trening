@@ -617,6 +617,8 @@ względem 56 [4]; regresja pamięci Hermes V1 z SDK 56 (expo/expo#46519) naprawi
 | `e2e-ios.yml` | 37148240242 | 8e9fc92 | 5/6 — „Miejsca treningu i filtr ćwiczeń”: powrót na górę długiej listy sprzętu nie zmieścił się w 30 s |
 | `e2e-ios.yml` (aplikacja z 37145871451) | 37149375860 | 97303e1 | OK — 6/6 w 16 min 39 s |
 | `iphone-local.yml` (`wyslij = tak`) | 37182282200 (04.10.2026) | 97303e1 | OK — IPA 10,5 MB (z rozszerzeniem `RestWidget.appex`), `eas upload` dał link do instalacji |
+| `e2e-ios.yml` | 37183882533 (04.10.2026) | 89b463b (`expo-router/js-tabs`) | build OK; Maestro nie wystartował — sterownik iOS niegotowy w 240 s (symulator ponad 5 min w „Data Migration” przy pierwszym uruchomieniu); żaden scenariusz nie ruszył — awaria maszyny |
+| `e2e-ios.yml` (aplikacja z 37183882533) | 37185626220 (04.10.2026) | 89b463b | OK — 6/6 w 14 min 2 s (jedno powtórzenie po awarii przed scenariuszami) |
 
 **Limity czasu w Maestro (8e9fc92, 97303e1):** `extendedWaitUntil` 10 → 30 s i 20 → 60 s, `scrollUntilVisible` 30 → 90 s.
 Ten sam kod przechodził 6/6 i padał na czekaniu, więc przyczyną jest prędkość symulatora iPhone 17 na `macos-26`, nie aplikacja
@@ -636,7 +638,7 @@ kolejnych przebiegach (czas „6/6 Flows Passed in …” w logu).
 4. Wycofanie: każdy krok ma osobny commit (B10, tabela); dane bez zmian schematu (B7).
 
 **Następne kroki:** ~~`ios-unsigned.yml` → `e2e-ios.yml` → `iphone-local.yml` (`wyslij = nie`, potem `tak`)~~ (wyniki wyżej),
-teraz test na telefonie (B6) i scalenie.
+scalenie do `integration/0.9.0` 04.10.2026 — **decyzja właściciela: bez testu na telefonie**, ewentualny problem z HealthKit naprawiany w następnej wersji; lista B6 pkt 3 zostaje do sprawdzenia przy najbliższej instalacji.
 
 ---
 

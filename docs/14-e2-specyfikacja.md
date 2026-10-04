@@ -315,6 +315,14 @@ Dokumentacja po wdrożeniu: sekcja „Implementacja E2” w docs/10, wiersz w do
 
 ## 9. Otwarte pytania do właściciela
 
+> **04.10.2026 — odpowiedzi właściciela:** **P1 (a)** — „Zawsze w: <Miejsce>” w linijce bloku po zamianie; **P2 — wariant (b) w brzmieniu
+> właściciela:** „Po prostu zastępujesz na nowe ćwiczenie z pustymi seriami wykonanymi nawet jeżeli już jakaś jest zrobiona” —
+> interpretacja (do potwierdzenia przy implementacji): zmiana przyrządu działa jak zamiana ćwiczenia — odhaczone serie zostają w bloku
+> ze starym przyrządem, nowy blok (nowy przyrząd) dostaje pozostałe serie jako nieodhaczone, wartości jak przy zamianie (W1, przypadek 2);
+> **P3 (a)** — w historii cały blok; **P4 (a)** — przenieść do pola B; **P5a (a)** — „Zawsze w” także dla przyrządu (`TemplateAlt.impl`);
+> **P5b (a)** — poprawka samego przyrządu w edytorze historii, w E2; **P6 (a)** — dodawanie zamienników tylko z treningu;
+> **P7 (a)** — 3 propozycje, wagi startowe z A4, ocena na tabeli D7 przed wydaniem.
+
 **P1. Gdzie przycisk „Zawsze w: Dom” (W3)?**
 - (a) **W linijce bloku po zamianie: „zamiast: A · [Zawsze w: Dom]”** (rekomendacja) — zamiana zostaje jednym stuknięciem, „na stałe” to drugie, świadome; widać, co zapisujesz. Minus: o jedno stuknięcie więcej niż „trzeci przycisk”.
 - (b) Przełącznik „Zapamiętaj dla: Dom” w arkuszu przed wyborem zamiennika — wszystko w jednym miejscu. Minus: łatwo zostawić włączony i zapisać zamiennik niechcący; arkusz bardziej zatłoczony.
