@@ -390,7 +390,9 @@ Wynik: **0 wysokich, 2 średnie, 2 niskie** — wszystkie naprawione, każde z t
 
 ### E2E na symulatorze i build na trening 05.10.2026
 
-GOTOWE DO BUILDU: 01f2bee15b78f97e2fe90632b064a268b66f4912 — E2E run 37210063301 7/7, audyt: 0 wysokich / 2 średnich (naprawione) (04.10.2026, 16:05 UTC)
+GOTOWE DO BUILDU: 62d418eb075f5f5784b88b9838d1575d1b4d360d — E2E run 37221502818 7/7, audyt: 0 wysokich / 1 średnich (naprawione) (04.10.2026, 18:35 UTC)
+
+*Poprzednio (zastąpione 04.10.2026, 18:35 UTC — katalog 270 ćwiczeń: krok 1 i krok b, poprawki audytów katalogu, E2E: limit sterownika XCTest):* `GOTOWE DO BUILDU: 01f2bee15b78f97e2fe90632b064a268b66f4912 — E2E run 37210063301 7/7, audyt: 0 wysokich / 2 średnich (naprawione) (04.10.2026, 16:05 UTC)`
 
 *Poprzednio (zastąpione 04.10.2026, 16:05 UTC — Q-026, decyzje D7 i filtry-etykiety z poprawkami audytu):* `GOTOWE DO BUILDU: ddff68253c6f045f6ac321ee042e19fc0913bb32 — E2E run 37202832692 7/7, audyt: 0 wysokich / 2 średnich (naprawione) (04.10.2026, 13:40 UTC)`
 
