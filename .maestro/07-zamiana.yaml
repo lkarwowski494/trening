@@ -160,13 +160,9 @@ name: Zamiana ćwiczenia w trakcie treningu (E2 W1)
 - scrollUntilVisible: { element: "Cancel workout", direction: DOWN, timeout: 60000 }
 - tapOn: "Cancel workout"
 - extendedWaitUntil: { visible: "Cancel workout\\?", timeout: 30000 }
-- tapOn: { text: "Cancel workout", below: "Cancel workout\\?" }
-# Wolny symulator: stuknięcie w przycisk okna potrafi zostać samym dotknięciem (okno zostaje, przycisk wciśnięty —
-# run 37195812733, zrzut kroku 148) — wtedy jeszcze raz; potem czekamy, aż okno zniknie.
-- runFlow:
-    when: { visible: "Cancel workout\\?" }
-    commands:
-      - tapOn: { text: "Cancel workout", below: "Cancel workout\\?", optional: true }
+# Pod tytułem okna są dwa „Cancel workout”: przycisk okna i przycisk w tle (lista przewinięta do dołu) — „below: tytuł”
+# trafiał w ten w tle, zasłonięty oknem (run 37197114478, zrzut kroku 150). Przycisk okna: pod „Back”, nad opisem w tle.
+- tapOn: { text: "Cancel workout", below: "Back", above: "The workout in progress saves.*" }
 - extendedWaitUntil: { notVisible: "Cancel workout\\?", timeout: 30000 }
 - scrollUntilVisible: { element: "Start: Upper A", direction: UP, timeout: 60000 }
 - tapOn: "Start: Upper A"
