@@ -1,7 +1,7 @@
 # Miejsca treningu i sprzęt (P-003) — research i projekt wdrożenia
 
 Wersja robocza 02.10.2026, aktualizacja 03.10.2026 (decyzje właściciela z 07:35). Status: **E1 wdrożone na gałęzi `feature/locations`, zintegrowane w `integration/0.9.0`** (bez buildu) — szczegóły, przyjęte decyzje i odstępstwa w sekcji „Implementacja E1” na końcu; decyzje właściciela z 03.10 (7a, 8c, P-004 b, ViShape na stronę) — sekcja „Decyzje właściciela 03.10.2026”; decyzja z 08:11 (bez szablonów właściciela w aplikacji) i poprawki audytu commitów f132330/025ee6a — sekcja „Runda 82”; poprawki weryfikacji commitu 6ea37a3 — sekcja „Runda 82b”. Zgłoszenie: P-003 (02.10, test na iPhonie), wraca T-044 / D-011 (odłożone 01.10).
-Dane źródłowe: `docs/research/equipment/catalog.json` (katalog 125 ćwiczeń), `docs/research/kb/*.json` (baza wiedzy funkcji 10 aplikacji). Pełne raporty z researchu: sekcja „Źródła” na końcu.
+Dane źródłowe: `docs/research/equipment/catalog.json` (katalog 125 ćwiczeń; jego kopia jako arkusz „Katalog ćwiczeń — wymagania sprzętu” jest na Dysku Google w folderze „Trening App”), `docs/research/kb/*.json` (baza wiedzy funkcji 10 aplikacji). Pełne raporty z researchu: sekcja „Źródła” na końcu.
 
 ## 1. Co chcemy osiągnąć (słowami użytkownika)
 
@@ -37,7 +37,7 @@ Uwaga do źródeł: Freeletics i Gymverse nie są w bazie wiedzy funkcji (tam 10
 Dwie warstwy, żeby ćwiczenie nie musiało znać konkretnego sprzętu:
 - **Miejsce** ma listę **pozycji sprzętu** (np. „Ławka regulowana”, opcja „ze skosem w dół”).
 - Każda pozycja **daje możliwości** (np. ławka regulowana → `bench.flat`, `bench.incline` [+ `bench.decline`]; klatka z drążkiem → `rack`, `pullup.bar`; brama → `cable.high`, `cable.low`, `cable.mid`, `cable.dual`; wyciąg górny → `lat_pulldown`, `cable.high`).
-- **Ćwiczenie** ma `requires`: lista grup — każda grupa musi być spełniona, w grupie wystarczy jedna możliwość (np. wyciskanie sztangi na ławce: `(barbell) + (bench.flat) + (rack lub bench.uprights)`; podciąganie: `(pullup.bar)`; hip thrust z hantlem: `(db) + (bench.flat lub box)`). Do tego `recommended` (np. asekuracja przy wyciskaniu — tylko ostrzeżenie, nie blokuje).
+- **Ćwiczenie** ma `requires`: lista grup — każda grupa musi być spełniona, w grupie wystarczy jedna możliwość (np. wyciskanie sztangi na ławce: `(barbell) + (bench.flat) + (rack lub bench.uprights)`; podciąganie: `(pullup.bar lub rings)` — jak w `catalog.json` i `lib/catalog.generated.ts`; hip thrust z hantlem: `(db) + (bench.flat lub box)`). Do tego `recommended` (np. asekuracja przy wyciskaniu — tylko ostrzeżenie, nie blokuje).
 - Słownik możliwości i lista pozycji sprzętu (≈45, z polskimi nazwami ze sklepów: gryf olimpijski/prosty/łamany, ławka płaska/regulowana/skośna, klatka treningowa, stojaki, drążek rozporowy, poręcze do dipów, brama, wyciąg górny/dolny, suwnica Smitha, suwnica na nogi, modlitewnik, ławka rzymska, kettlebell, gumy, kółko do brzucha, skrzynia…) — jedno źródło prawdy w `lib/equipment.ts`, z niego generowane ekrany i testy.
 
 ### 3.2 Dostępne ciężary (per miejsce)
@@ -342,6 +342,18 @@ Bez miejsc — bez zmian względem main (c713236): `listLocFor` i `liveBlockImpl
 Bez miejsc — bez zmian względem main (c713236): `srcSetAt` w `startFromTemplate` i edytorze to ta sama arytmetyka co wcześniej, `offListNote` bez miejsca — `null`, `locationEquipChanged` bez miejsca treningu — nic (a bez miejsc nie ma czego edytować).
 
 **Testy:** `tests/audit-r82c.test.tsx` (13: LOW 1 — `srcSetAt`, scenariusz 2×32 / 4 serie z kontrolą starego mapowania, ekran z wpisem w pola, edytor historii = trening, drop set w źródle, bez miejsc; LOW 2 — RDL stacja → hantle z „↑ 22 kg” i „kg/hant.” na ekranie, kontrola bez przeliczenia, blok z odhaczoną serią, edytor ciężarów na ekranie miejsca (wypełnij zakresem, odznaczenie hantli), inne miejsce / trening bez miejsca, usunięcie miejsca treningu, usunięcie ostatniego miejsca); `tests/invariants.test.ts` (LOW 3); `tests/audit-r82b.test.tsx` — `noteOf` liczy jak ekran (`srcSetAt`).
+
+## Podsumowanie audytów rund 81–82c (przeniesione z Dysku 04.10.2026)
+
+Skrót z dawnej kopii tego dokumentu na Dysku Google (sekcja „Aktualizacja 03.10.2026”); szczegóły poprawek — sekcje „Runda 82”, „Runda 82b”, „Runda 82c” wyżej.
+
+| Audyt (03.10.2026) | Wynik | Poprawki |
+|---|---|---|
+| niezależny audyt commitów rundy 81 (f132330 / 025ee6a) | 0 wysokich / 2 średnie / 4 niskie | runda 82 |
+| niezależna weryfikacja commitu rundy 82 (6ea37a3) | 0 wysokich / 2 średnie / 6 niskich | runda 82b |
+| niezależna weryfikacja commitu rundy 82b (82a8a16) | 0 wysokich / 0 średnich / 4 niskie | runda 82c — niskie naprawione, temat zamknięty |
+
+Po rundzie 82c: 875 testów. Otwarte pytanie o objętość stacji (×1 czy ×2 przy ćwiczeniach na dwie linki — sekcja „Runda 82”) ma numer **Q-024**.
 
 ## Źródła (wybór)
 - Freeletics Spaces: https://www.freeletics.com/en/blog/posts/freeletics-spaces-feature/ · https://forum.freeletics.com/t/new-feature-spaces-%E2%80%93-train-anywhere-smarter-%F0%9F%92%AA/22310 · https://help.freeletics.com/hc/en-us/articles/115005747425-Adjust-your-Bodyweight-Journey-preferences · https://forum.freeletics.com/t/need-help-how-to-set-up-adjustable-dumbbellskettlebellsbarbell-in-the-freeletics-app/23488
