@@ -1,3 +1,5 @@
+import { libExtraRevOf } from '@/lib/seed';
+import { FULL_BASE_REV } from '@/lib/swap';
 /* E2 (docs/14 pkt 6, test 11 z pkt 7) — ranking propozycji zamiany: czysta funkcja lib/swap.ts swapCandidates. */
 import fc from 'fast-check';
 import { fresh, ex, addWorkout } from './helpers';
@@ -320,10 +322,14 @@ describe('W1 — audyt różnicy E2 (04.10.2026)', () => {
 
 describe('ranking — decyzja właściciela 04.10.2026 (D7)', () => {
   beforeEach(setup);
-  test('remis: najpierw ten sam sprzęt co oryginał, potem liczba sesji i nazwa', () => {
+  test('remis: najpierw biblioteka przejrzana (przed pełną bazą), w niej ten sam sprzęt co oryginał, potem liczba sesji i nazwa', () => {
     const c = swapCandidates(ex('Bench Press (sztanga)').id, { locationId: 'gym', showAll: false, inWorkout: new Set() });
     const sameEq = (id: string) => getState().exercises.find(e => e.id === id)!.equipment === 'sztanga';
-    for (let k = 1; k < c.length; k++) if (c[k - 1].score === c[k].score) expect(Number(sameEq(c[k - 1].exId)) >= Number(sameEq(c[k].exId))).toBe(true);
+    /* pełna baza (05.10): przy remisie najpierw biblioteka przejrzana przez właściciela, potem pełna baza; w każdej części — ten sam sprzęt */
+    const tier = (id: string) => { const e = getState().exercises.find(x => x.id === id)!; return e.lib && libExtraRevOf(e.name) === FULL_BASE_REV ? 1 : 0; };
+    for (let k = 1; k < c.length; k++) if (c[k - 1].score === c[k].score) { expect(tier(c[k - 1].exId) <= tier(c[k].exId)).toBe(true);
+      if (tier(c[k - 1].exId) === tier(c[k].exId)) expect(Number(sameEq(c[k - 1].exId)) >= Number(sameEq(c[k].exId))).toBe(true); }
+    expect(c.slice(0, 3).every(x => tier(x.exId) === 0)).toBe(true);
     expect(getState().exercises.find(e => e.id === c[0].exId)!.equipment).toBe('sztanga'); /* w siłowni przy remisie 10 pkt — sztanga przed hantlami */
   });
 });

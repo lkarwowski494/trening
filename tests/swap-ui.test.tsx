@@ -3,7 +3,7 @@
 import * as store from '@/lib/store';
 import * as timer from '@/lib/timer';
 import { fresh, ex, addWorkout, pressAlert } from './helpers';
-import { renderApp, flushAll, screen, go, tap, act } from './app';
+import { renderApp, flushAll, screen, go, tap, act, type } from './app';
 import { userHome } from './locations-fixtures';
 import { addLocation } from '@/lib/locations';
 
@@ -50,10 +50,11 @@ describe('W1 — ekran treningu i arkusz zamiany', () => {
     expect(screen.getByLabelText('Filtr partii: klatka. Tapnij, by zdjąć.')).toBeTruthy(); expect(screen.getByLabelText('Filtr miejsca: Dom. Tapnij, by zdjąć.')).toBeTruthy();
     expect(screen.queryByText('Goblet Squat')).toBeNull(); expect(screen.getAllByText('Incline Push Up').length).toBeGreaterThan(0);
     await tap(screen.getByLabelText('Filtr partii: klatka. Tapnij, by zdjąć.')); await flushAll(5);
-    expect(screen.getByText('Goblet Squat')).toBeTruthy(); expect(screen.queryByText('Leg Press')).toBeNull(); /* niedostępne w Domu */
+    const find = async (q: string) => { await type(screen.getAllByPlaceholderText('Szukaj ćwiczenia…').pop()!, q); await flushAll(5); }; /* pełna baza: lista „Inne” porcjami (SWAP_PAGE) */
+    await find('Goblet Squat'); expect(screen.getByText('Goblet Squat')).toBeTruthy(); await find('Leg Press'); expect(screen.queryByText('Leg Press')).toBeNull(); /* niedostępne w Domu */
     await tap(screen.getByLabelText('Filtr miejsca: Dom. Tapnij, by zdjąć.')); await flushAll(5);
-    expect(screen.getByText('Leg Press')).toBeTruthy(); expect(screen.queryByText('Plank')).toBeNull(); expect(screen.queryAllByText('Bench Press (sztanga)').length).toBe(0); /* inna miara; bieżące */
-    await tap(screen.getByText('Goblet Squat')); await flushAll(20);
+    expect(screen.getByText('Leg Press')).toBeTruthy(); await find('Plank'); expect(screen.queryByText('Plank')).toBeNull(); await find('Bench Press (sztanga)'); expect(screen.queryAllByText('Bench Press (sztanga)').length).toBe(0); /* inna miara; bieżące */
+    await find('Goblet Squat'); await tap(screen.getByText('Goblet Squat')); await flushAll(20);
     expect(blk(0).exerciseId).toBe(ex('Goblet Squat').id); expect(blk(0).swappedFrom).toBe(ex('Bench Press (sztanga)').id);
   });
 

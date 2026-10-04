@@ -1,5 +1,5 @@
 import React, { useMemo, useRef, useState } from 'react';
-import { ScrollView, Pressable, Text, View } from 'react-native';
+import { FlatList, ScrollView, Pressable, Text, View } from 'react-native';
 import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
 import { useTheme } from '@/lib/theme';
 import { Screen, Input, Chip, Item, Muted, Empty } from '@/components/ui';
@@ -70,7 +70,9 @@ export default function PickerScreen() {
       <ScrollView horizontal keyboardShouldPersistTaps="handled" showsHorizontalScrollIndicator={false} style={{ flexGrow: 0, flexShrink: 0, marginVertical: 8 }} /* runda 69: chipy nie są ściskane do zera */>
         <Chip label={t('Wszystkie')} on={g === ''} onPress={() => setG('')} />{GROUPS.map(x => <Chip key={x} label={t(x)} on={g === x} onPress={() => setG(x)} />)}
       </ScrollView>
-      <ScrollView keyboardShouldPersistTaps="handled" automaticallyAdjustKeyboardInsets contentContainerStyle={{ paddingBottom: 40 }}>{rows.length ? rows : <Empty>{t('Nic nie pasuje.')}</Empty>}</ScrollView>
+      {/* pełna baza ćwiczeń (04.10.2026, ~870): lista wirtualizowana — ScrollView renderował wszystkie wiersze naraz (270 → 433 ms w Node, npm run perf) */}
+      <FlatList data={rows} renderItem={({ item }) => item as React.ReactElement} keyExtractor={(x, i) => String((x as React.ReactElement)?.key ?? i)} initialNumToRender={30} maxToRenderPerBatch={30} windowSize={11}
+        keyboardShouldPersistTaps="handled" automaticallyAdjustKeyboardInsets contentContainerStyle={{ paddingBottom: 40 }} ListEmptyComponent={<Empty>{t('Nic nie pasuje.')}</Empty>} />
     </Screen>
   );
 }

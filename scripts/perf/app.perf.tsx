@@ -57,6 +57,9 @@ test('wydajność', async () => {
     const { router } = require('expo-router');
     t = now(); await act(async () => { router.push('/history'); }); await flushAll(50); note(n, 'zakładka Historia (render)', now() - t);
     t = now(); await act(async () => { router.push('/more/progress?ex=' + ex('Back Squat').id); }); await flushAll(50); note(n, 'Postępy ćwiczenia (render)', now() - t);
+    /* pełna baza ćwiczeń (04.10.2026): lista wyboru bez miejsca = wszystkie ćwiczenia biblioteki (ScrollView bez wirtualizacji) */
+    note(n, `liczba ćwiczeń`, store.getState().exercises.length);
+    t = now(); await act(async () => { router.push('/picker?target=add'); }); await flushAll(50); note(n, 'wybór ćwiczenia — wszystkie (render)', now() - t);
   }
   const keys = [...new Set(rows.map(r => r[2]))];
   console.log('\nms (Node)'.padEnd(50) + NS.map(n => String(n).padStart(9)).join('') + '\n' + keys.map(k => k.padEnd(48) + NS.map(n => String(rows.find(r => r[0] === n && r[2] === k)?.[1] ?? '—').padStart(9)).join('')).join('\n'));

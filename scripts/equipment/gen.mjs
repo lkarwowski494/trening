@@ -11,11 +11,11 @@ const SRC = join(root, 'docs/research/equipment/catalog.json');
 const OUT = join(root, 'lib/catalog.generated.ts');
 
 const LOAD_SOURCES = ['barbell', 'dumbbell', 'cable', 'machine_stack', 'bodyweight', 'trap_bar', 'ez_bar', 'plate_loaded_machine', 'kettlebell', 'smith', 'band', 'none'];
-const PATTERNS = ['h_push', 'h_pull', 'v_push', 'v_pull', 'squat', 'hinge', 'lunge_single_leg', 'isolation', 'core_flexion', 'core_anti_ext', 'core_anti_rot', 'core_other', 'carry', 'cardio', 'other'];
+const PATTERNS = ['h_push', 'h_pull', 'v_push', 'v_pull', 'squat', 'hinge', 'lunge_single_leg', 'isolation', 'core_flexion', 'core_anti_ext', 'core_anti_rot', 'core_other', 'carry', 'cardio', 'other', 'mobility'];
 
 /* Katalog ćwiczeń 04.10.2026 (decyzja właściciela: rozbudowa własnego katalogu + obciążenie partii): regiony mięśni do „muscleLoad”
  * (1 = główny, 0,5 = znaczący pomocniczy, 0,25 = stabilizacja), mapowanie regionu na zgrubną partię (seed.ts MUSCLES) — reguła spójności. */
-export const REGIONS = { chest: 'klatka', front_delt: 'barki', side_delt: 'barki', rear_delt: 'barki', lats: 'plecy', upper_back: 'plecy', lower_back: 'plecy', biceps: 'biceps', triceps: 'triceps', forearms: 'przedramiona', abs: 'core', obliques: 'core', glutes: 'pośladki', quads: 'czworogłowe', hamstrings: 'dwugłowe', adductors: 'przywodziciele', abductors: 'pośladki', calves: 'łydki' };
+export const REGIONS = { chest: 'klatka', front_delt: 'barki', side_delt: 'barki', rear_delt: 'barki', lats: 'plecy', upper_back: 'plecy', lower_back: 'plecy', biceps: 'biceps', triceps: 'triceps', forearms: 'przedramiona', abs: 'core', obliques: 'core', glutes: 'pośladki', quads: 'czworogłowe', hamstrings: 'dwugłowe', adductors: 'przywodziciele', abductors: 'pośladki', calves: 'łydki', neck: null };
 const WEIGHTS = [1, 0.5, 0.25];
 const GROUPS = ['klatka', 'plecy', 'barki', 'biceps', 'triceps', 'nogi', 'pośladki', 'łydki', 'core', 'cardio', 'inne'];
 const EQUIPS = ['hantle', 'sztanga', 'masa ciała', 'maszyna', 'linki', 'inne'];
@@ -23,7 +23,7 @@ const METRICS = ['weight_reps', 'reps', 'time', 'distance_time', 'weight_time'];
 const LOAD_MODES = ['per_dumbbell', 'total', 'unilateral'];
 const MUSCLES = ['klatka', 'plecy', 'barki', 'biceps', 'triceps', 'czworogłowe', 'dwugłowe', 'pośladki', 'łydki', 'core', 'przedramiona', 'przywodziciele'];
 /** Kroki dopisywania nowych ćwiczeń do danych użytkownika (lib/seed.ts LIB_EXTRA_REVS) — pole „added” nowego ćwiczenia; brak = pierwszy krok. */
-const ADDED = ['katalog-2026-10-04', 'katalog-2026-10-04b'];
+const ADDED = ['katalog-2026-10-04', 'katalog-2026-10-04b', 'katalog-2026-10-05'];
 
 export function render(catalog) {
   if (!Array.isArray(catalog)) throw new Error('catalog: oczekiwana tablica');

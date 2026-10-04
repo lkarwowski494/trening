@@ -29,7 +29,8 @@ describe('katalog ćwiczeń — spójność', () => {
       const of = (m: string) => Object.entries(ml).filter(([r]) => (MUSCLE_REGIONS as Record<string, string | null>)[r] === m).map(([, w]) => w);
       for (const m of e.muscles) if (!of(m).some(w => w === 1)) bad.push(`${e.name}: główna ${m}`);
       for (const m of e.secondaryMuscles) if (!of(m).some(w => w >= 0.5)) bad.push(`${e.name}: pomocnicza ${m}`);
-      if (e.group !== 'cardio' && !Object.values(ml).includes(1)) bad.push(`${e.name}: brak regionu głównego`);
+      if (e.group !== 'cardio' && e.pattern !== 'mobility' /* rozciąganie (pełna baza 04.10): bez obciążenia, tylko 0,25 */ && !Object.values(ml).includes(1)) bad.push(`${e.name}: brak regionu głównego`);
+      if (e.pattern === 'mobility' && (e.muscles.length || e.secondaryMuscles.length || Object.values(ml).some(w => w > 0.25))) bad.push(`${e.name}: rozciąganie liczone jako trening partii`);
     }
     expect(bad).toEqual([]);
   });
@@ -56,7 +57,7 @@ describe('katalog ćwiczeń — spójność', () => {
       for (const c of [...(e.requires ?? []).flat(), ...(e.recommended ?? [])]) expect([e.name, vocab.has(c)]).toEqual([e.name, true]);
       if (!availability(e, gym).ok && e.group !== 'cardio') missingGym.push(e.name);
       /* konwencja R3 (catalog-notes): ćwiczenie zwykle bez obciążenia (wykroki, łydki na stopniu) — przyrząd tylko zalecany; dostępne bez sprzętu tylko wtedy */
-      const LOAD_CAPS = ['db', 'kb', 'barbell', 'ez_bar', 'trap_bar', 'smith', 'landmine', 'med_ball'];
+      const LOAD_CAPS = ['db', 'kb', 'barbell', 'ez_bar', 'trap_bar', 'smith', 'landmine', 'med_ball', 'plate', 'sandbag', 'chains'];
       if (availability(e, bw).ok && !['bodyweight', 'none', 'band'].includes(CATALOG[e.name].loadSource) && !(e.recommended ?? []).some(c => LOAD_CAPS.includes(c) || c.startsWith('cable.'))) bwWrong.push(e.name);
     }
     expect(bwWrong).toEqual([]);
@@ -151,7 +152,7 @@ describe('katalog ćwiczeń — decyzje 04.10 wieczór', () => {
 
 describe('katalog ćwiczeń — migracja kroku 04.10 b', () => {
   test('dane po pierwszym kroku katalogu: dopisane tylko nowe ćwiczenia; usunięte z pierwszego kroku nie wracają; partie przywodzicieli poprawione tylko, gdy domyślne', async () => {
-    expect(LIB_EXTRA_REVS).toEqual(['katalog-2026-10-04', 'katalog-2026-10-04b']);
+    expect(LIB_EXTRA_REVS).toEqual(['katalog-2026-10-04', 'katalog-2026-10-04b', 'katalog-2026-10-05']);
     const b = new Set(CATALOG_LIB_EXTRA.filter(r => r[8] === 'katalog-2026-10-04b').map(r => r[0])); expect(b.size).toBe(22);
     await fresh(); const raw: any = JSON.parse(JSON.stringify(seedState('pl'))); raw.libExtra = 'katalog-2026-10-04'; delete raw.libExtraStep; /* jak dane z buildu 643cba7 */
     raw.exercises = raw.exercises.filter((e: any) => !b.has(e.name) && e.name !== 'Cossack Squat'); /* Cossack Squat (krok 1) usunięty przez użytkownika */
@@ -159,7 +160,7 @@ describe('katalog ćwiczeń — migracja kroku 04.10 b', () => {
     const cp = raw.exercises.find((e: any) => e.name === 'Copenhagen Plank'); cp.muscles = ['core']; cp.secondaryMuscles = ['barki']; /* zmienione przez użytkownika */
     const m = store.migrate(raw); const names = m.exercises.map(e => e.name);
     for (const n of b) expect([n, names.includes(n)]).toEqual([n, true]); expect(names.includes('Cossack Squat')).toBe(false);
-    expect(m).toMatchObject({ libExtra: 'katalog-2026-10-04', libExtraStep: 'katalog-2026-10-04b' }); /* audyt kroku b (MEDIUM): libExtra jak w 643cba7 */
+    expect(m).toMatchObject({ libExtra: 'katalog-2026-10-04', libExtraStep: 'katalog-2026-10-05' }); /* audyt kroku b (MEDIUM): libExtra jak w 643cba7 */
     expect(m.exercises.find(e => e.name === 'Hip Adduction')!.muscles).toEqual(['przywodziciele']);
     expect(m.exercises.find(e => e.name === 'Copenhagen Plank')!).toMatchObject({ muscles: ['core'], secondaryMuscles: ['barki'] });
     const again = store.migrate(JSON.parse(JSON.stringify(m))); expect(again.exercises.length).toBe(m.exercises.length);
@@ -181,9 +182,20 @@ describe('katalog ćwiczeń — migracja kroku 04.10 b', () => {
 describe('katalog ćwiczeń — audyt kroku b (MEDIUM: powrót do starszego buildu)', () => {
   test('dane nowej wersji czytane regułą buildu 643cba7 (libExtra !== „katalog-2026-10-04” → dopisz) nie dopisują usuniętych; ponowna aktualizacja też nie', async () => {
     await fresh(); const s: any = JSON.parse(JSON.stringify(seedState('pl')));
-    expect(s).toMatchObject({ libExtra: 'katalog-2026-10-04', libExtraStep: 'katalog-2026-10-04b' });
+    expect(s).toMatchObject({ libExtra: 'katalog-2026-10-04', libExtraStep: 'katalog-2026-10-05' });
     s.exercises = s.exercises.filter((e: any) => e.name !== 'Cossack Squat' && e.name !== 'Machine Row');
     const m: any = store.migrate(s); expect(m.libExtra !== 'katalog-2026-10-04').toBe(false); /* stara reguła — nic nie dopisze */
     expect(store.migrate(JSON.parse(JSON.stringify(m))).exercises.some(e => e.name === 'Cossack Squat' || e.name === 'Machine Row')).toBe(false);
+  });
+});
+
+describe('pełna baza (krok 05.10, „dodawaj resztę”) — migracja', () => {
+  test('dane po kroku b: dopisane tylko ćwiczenia kroku c; usunięte z kroku b nie wracają; nowa instalacja ma wszystko', async () => {
+    const c = new Set(CATALOG_LIB_EXTRA.filter(r => r[8] === 'katalog-2026-10-05').map(r => r[0])); expect(c.size).toBeGreaterThan(500);
+    await fresh(); const raw: any = JSON.parse(JSON.stringify(seedState('pl'))); raw.libExtraStep = 'katalog-2026-10-04b';
+    raw.exercises = raw.exercises.filter((e: any) => !c.has(e.name) && e.name !== 'Machine Row');
+    const m = store.migrate(raw); const names = new Set(m.exercises.map(e => e.name));
+    expect([...c].filter(n => !names.has(n))).toEqual([]); expect(names.has('Machine Row')).toBe(false); expect(m.libExtraStep).toBe('katalog-2026-10-05');
+    expect(seedState('pl').exercises.length).toBe(LIB.length);
   });
 });

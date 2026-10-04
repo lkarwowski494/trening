@@ -51,14 +51,21 @@ export const CAP_LABEL: Record<string, L> = {
   'reverse_hyper': { pl: 'reverse hyper', en: 'reverse hyper' }, 'sled': { pl: 'sanki', en: 'sled' }, 'battle_ropes': { pl: 'liny bojowe', en: 'battle ropes' },
   'cardio.stair': { pl: 'stepper schodowy', en: 'stair climber' }, 'cardio.elliptical': { pl: 'orbitrek', en: 'elliptical' }, 'cardio.ski': { pl: 'ski erg', en: 'ski erg' },
   'stability_ball': { pl: 'piłka gimnastyczna', en: 'stability ball' }, 'sliders': { pl: 'ślizgacze', en: 'sliders' },
+  /* pełna baza ćwiczeń (decyzja właściciela 04.10.2026, wieczór: „dodawaj resztę”) */
+  'plate': { pl: 'talerz obciążeniowy', en: 'weight plate' }, 'foam_roller': { pl: 'roller', en: 'foam roller' }, 'bosu': { pl: 'bosu / platforma balansowa', en: 'BOSU / balance board' },
+  'sandbag': { pl: 'worek z piaskiem', en: 'sandbag' }, 'chains': { pl: 'łańcuchy', en: 'chains' }, 'climbing_rope': { pl: 'lina do wspinania', en: 'climbing rope' },
+  'wrist_roller': { pl: 'roller na nadgarstki', en: 'wrist roller' }, 'neck_harness': { pl: 'uprząż na szyję', en: 'neck harness' }, 'lever_machine': { pl: 'maszyna dźwigniowa', en: 'lever machine' },
+  'tire': { pl: 'opona', en: 'tire' }, 'sledgehammer': { pl: 'młot', en: 'sledgehammer' }, 'atlas_stones': { pl: 'kamienie atlas', en: 'atlas stones' }, 'yoke': { pl: 'jarzmo (yoke)', en: 'yoke' },
+  'log_bar': { pl: 'kłoda (log)', en: 'log bar' }, 'keg': { pl: 'beczka (keg)', en: 'keg' }, 'axle_bar': { pl: 'gryf gruby (axle)', en: 'axle bar' }, 'farmers_handles': { pl: 'uchwyty farmerskie', en: "farmer's handles" },
+  'rickshaw': { pl: 'riksza', en: 'rickshaw' },
 };
 export const capLabel = (c: string) => { const l = Object.prototype.hasOwnProperty.call(CAP_LABEL, c) ? CAP_LABEL[c] : undefined; return l ? (lang() === 'en' ? l.en : l.pl) : c; };
 
-export const EQUIP_GROUPS = ['free', 'benches', 'bars', 'cables', 'machines', 'accessories', 'cardio'] as const;
+export const EQUIP_GROUPS = ['free', 'benches', 'bars', 'cables', 'machines', 'accessories', 'cardio', 'strongman'] as const;
 export type EquipGroup = typeof EQUIP_GROUPS[number];
 export const EQUIP_GROUP_LABEL: Record<EquipGroup, L> = {
   free: { pl: 'Wolne ciężary', en: 'Free weights' }, benches: { pl: 'Ławki i stojaki', en: 'Benches and racks' }, bars: { pl: 'Drążki i poręcze', en: 'Bars and dip stations' },
-  cables: { pl: 'Wyciągi', en: 'Cables' }, machines: { pl: 'Maszyny', en: 'Machines' }, accessories: { pl: 'Akcesoria', en: 'Accessories' }, cardio: { pl: 'Cardio', en: 'Cardio' },
+  cables: { pl: 'Wyciągi', en: 'Cables' }, machines: { pl: 'Maszyny', en: 'Machines' }, accessories: { pl: 'Akcesoria', en: 'Accessories' }, cardio: { pl: 'Cardio', en: 'Cardio' }, strongman: { pl: 'Strongman', en: 'Strongman' },
 };
 /** Rodzaj ciężarów pozycji: decyduje, z której pozycji brać ciężary dla ćwiczenia (loadSource) i jaki edytor pokazać. */
 export type LoadKind = 'barbell' | 'ez_bar' | 'trap_bar' | 'dumbbell' | 'kettlebell' | 'cable' | 'machine';
@@ -80,6 +87,9 @@ export const EQUIPMENT: readonly EquipItem[] = [
   it('landmine', 'free', 'Landmine (uchwyt końca gryfu)', 'Landmine', ['landmine']),
   it('med_ball', 'free', 'Piłka lekarska', 'Medicine ball', ['med_ball']),
   it('dip_belt', 'free', 'Pas do dociążania', 'Dip belt', ['dip_belt']),
+  it('plate', 'free', 'Talerz obciążeniowy (osobno, do trzymania)', 'Weight plate (held)', ['plate']),
+  it('sandbag', 'free', 'Worek z piaskiem (sandbag)', 'Sandbag', ['sandbag']),
+  it('chains', 'free', 'Łańcuchy (do sztangi)', 'Chains (for the barbell)', ['chains']),
   /* ławki i stojaki */
   it('bench_flat', 'benches', 'Ławka płaska', 'Flat bench', ['bench.flat']),
   it('bench_adj', 'benches', 'Ławka regulowana', 'Adjustable bench', ['bench.flat', 'bench.incline'], { options: [op('decline', 'ze skosem w dół', 'with decline', ['bench.decline'])] }),
@@ -98,9 +108,10 @@ export const EQUIPMENT: readonly EquipItem[] = [
   it('power_tower', 'bars', 'Stacja: drążek + poręcze (power tower)', 'Power tower (pull-up + dip)', ['pullup.bar', 'dip.bars']),
   it('rings', 'bars', 'Kółka gimnastyczne', 'Gymnastic rings', ['rings']),
   it('suspension', 'bars', 'Taśmy TRX (podwieszane)', 'Suspension trainer (TRX)', ['suspension']),
+  it('climbing_rope', 'bars', 'Lina do wspinania', 'Climbing rope', ['climbing_rope']),
   /* wyciągi */
-  it('cable_cross', 'cables', 'Brama (dwa wyciągi z regulacją wysokości)', 'Cable crossover (two adjustable pulleys)', ['cable.high', 'cable.mid', 'cable.low', 'cable.dual', 'cable.handles'], { load: 'cable', defaultLoad: 'list', options: [op('rope', 'lina', 'rope', ['cable.rope'], true)] }),
-  it('cable_single', 'cables', 'Wyciąg z regulacją wysokości (jeden)', 'Single adjustable pulley', ['cable.high', 'cable.mid', 'cable.low', 'cable.handles'], { load: 'cable', defaultLoad: 'list', options: [op('rope', 'lina', 'rope', ['cable.rope'], true)] }),
+  it('cable_cross', 'cables', 'Brama (dwa wyciągi z regulacją wysokości)', 'Cable crossover (two adjustable pulleys)', ['cable.high', 'cable.mid', 'cable.low', 'cable.dual', 'cable.handles'], { load: 'cable', defaultLoad: 'list', options: [op('rope', 'lina', 'rope', ['cable.rope'], true), op('ankle', 'opaski na kostki', 'ankle straps', ['ankle_strap'])] }),
+  it('cable_single', 'cables', 'Wyciąg z regulacją wysokości (jeden)', 'Single adjustable pulley', ['cable.high', 'cable.mid', 'cable.low', 'cable.handles'], { load: 'cable', defaultLoad: 'list', options: [op('rope', 'lina', 'rope', ['cable.rope'], true), op('ankle', 'opaski na kostki', 'ankle straps', ['ankle_strap'])] }),
   it('lat_pulldown', 'cables', 'Wyciąg górny (ściąganie drążka)', 'Lat pulldown', ['lat_pulldown', 'cable.high'], { load: 'cable', defaultLoad: 'list', secondary: ['cable.high'] }),
   it('cable_row', 'cables', 'Wyciąg dolny (wiosłowanie siedząc)', 'Seated cable row', ['cable.row_seat', 'cable.low'], { load: 'cable', defaultLoad: 'list', secondary: ['cable.low'] }),
   /* 3.4: jedna pozycja dla wszystkich stacji z oporem elektrycznym / magnetycznym */
@@ -135,6 +146,7 @@ export const EQUIPMENT: readonly EquipItem[] = [
   it('hip_thrust_machine', 'machines', 'Maszyna do hip thrustu', 'Hip thrust machine', ['hip_thrust_machine'], { load: 'machine', defaultLoad: 'list' }),
   it('belt_squat', 'machines', 'Maszyna do przysiadów z pasem (belt squat)', 'Belt squat machine', ['belt_squat_machine'], { load: 'machine', defaultLoad: 'list' }),
   it('pendulum_squat', 'machines', 'Pendulum squat', 'Pendulum squat machine', ['pendulum_squat'], { load: 'machine', defaultLoad: 'list' }),
+  it('lever_machine', 'machines', 'Maszyny dźwigniowe na talerze (wiosłowanie, wyciskanie, martwy ciąg…)', 'Plate-loaded lever machines (row, press, deadlift…)', ['lever_machine'], { load: 'machine', defaultLoad: 'list' }),
   it('reverse_hyper', 'machines', 'Reverse hyper (odwrotne hiperekstensje)', 'Reverse hyper machine', ['reverse_hyper'], { load: 'machine', defaultLoad: 'list' }),
   /* akcesoria */
   it('bands', 'accessories', 'Gumy oporowe', 'Resistance bands', ['bands']),
@@ -145,6 +157,10 @@ export const EQUIPMENT: readonly EquipItem[] = [
   it('sliders', 'accessories', 'Ślizgacze (slidery)', 'Sliders', ['sliders']),
   it('sled', 'accessories', 'Sanki (prowler)', 'Sled (prowler)', ['sled']),
   it('battle_ropes', 'accessories', 'Liny bojowe (battle ropes)', 'Battle ropes', ['battle_ropes']),
+  it('foam_roller', 'accessories', 'Roller do automasażu', 'Foam roller', ['foam_roller']),
+  it('bosu', 'accessories', 'Bosu / platforma balansowa', 'BOSU / balance board', ['bosu']),
+  it('wrist_roller', 'accessories', 'Roller na nadgarstki', 'Wrist roller', ['wrist_roller']),
+  it('neck_harness', 'accessories', 'Uprząż na szyję', 'Neck harness', ['neck_harness']),
   /* cardio */
   it('treadmill', 'cardio', 'Bieżnia', 'Treadmill', ['cardio.treadmill']),
   it('bike', 'cardio', 'Rower stacjonarny / air bike', 'Stationary / air bike', ['cardio.bike']),
@@ -152,6 +168,16 @@ export const EQUIPMENT: readonly EquipItem[] = [
   it('stair_climber', 'cardio', 'Stepper schodowy (stair climber)', 'Stair climber', ['cardio.stair']),
   it('elliptical', 'cardio', 'Orbitrek', 'Elliptical', ['cardio.elliptical']),
   it('ski_erg', 'cardio', 'Ski erg', 'Ski erg', ['cardio.ski']),
+  /* strongman — poza presetem „Pełna siłownia” */
+  it('tire', 'strongman', 'Opona do przewracania', 'Tire (flips)', ['tire']),
+  it('sledgehammer', 'strongman', 'Młot', 'Sledgehammer', ['sledgehammer']),
+  it('atlas_stones', 'strongman', 'Kamienie atlas', 'Atlas stones', ['atlas_stones']),
+  it('yoke', 'strongman', 'Jarzmo (yoke)', 'Yoke', ['yoke']),
+  it('log_bar', 'strongman', 'Kłoda (log bar)', 'Log bar', ['log_bar']),
+  it('keg', 'strongman', 'Beczka (keg)', 'Keg', ['keg']),
+  it('axle_bar', 'strongman', 'Gryf gruby (axle)', 'Axle bar', ['axle_bar']),
+  it('farmers_handles', 'strongman', 'Uchwyty farmerskie', "Farmer's walk handles", ['farmers_handles']),
+  it('rickshaw', 'strongman', 'Riksza (rickshaw)', 'Rickshaw', ['rickshaw']),
   it('bicycle', 'cardio', 'Rower (jazda na zewnątrz)', 'Bicycle (outdoors)', ['outdoor']),
 ];
 const BY_ID = new Map(EQUIPMENT.map(x => [x.id, x]));
@@ -205,7 +231,7 @@ export function presetEquipment(p: LocationPreset, unit: LoadUnit = 'kg'): LocEq
     if (x.id === 'electric') e.opts = e.opts.filter(o => o !== 'bench'); /* ławki siłowni są osobno */
     if (x.id === 'barbell' || x.id === 'trap_bar' || x.id === 'ez_bar') e.load = lb ? { kind: 'plates', unit: 'lb', base: x.id === 'ez_bar' ? 25 : 45, plates: LB_PLATES.map(w => ({ w, n: 8 })) } : { kind: 'plates', unit: 'kg', base: x.id === 'ez_bar' ? 10 : 20, plates: OLY_PLATES.map(w => ({ w, n: 8 })) };
     if (x.id === 'db_fixed') e.load = lb ? listOf(rangeValues(5, 100, 5), 'lb') : listOf(rangeValues(2.5, 50, 2.5));
-    if (x.id === 'db_plate' || x.id === 'electric') return null; /* siłownia: hantle stałe; stacji elektrycznej zwykle nie ma */
+    if (x.id === 'db_plate' || x.id === 'electric' || x.group === 'strongman') return null; /* siłownia: hantle stałe; stacji elektrycznej i sprzętu strongman zwykle nie ma */
     return e; }).filter((e): e is LocEquip => !!e);
 }
 

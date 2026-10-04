@@ -1,7 +1,7 @@
 import { getState, visibleExercises, workoutsWith, finishedWorkouts, memoHist, locationById } from './store';
 import { availability, capsOf, implsAt } from './equipment';
 import { t, exName, locale } from './i18n';
-import type { Exercise, Impl, Location, Workout } from './seed';
+import { libExtraRevOf, LIB_EXTRA_REVS, type Exercise, type Impl, type Location, type Workout } from './seed';
 
 /*
  * E2 „Zamiana ćwiczenia w trakcie treningu” (docs/14) — ranking propozycji zamiennika. Czysta funkcja nad stanem (bez zapisu):
@@ -13,6 +13,10 @@ import type { Exercise, Impl, Location, Workout } from './seed';
 export const SWAP_WEIGHTS = { pattern: 3, muscle: 3, firstMuscle: 1, group: 1, secondary: 1, secondaryMax: 2, swapped: 4, history: 1 } as const;
 /** Liczba propozycji w arkuszu (decyzja P7 a: 3). */
 export const SWAP_TOP = 3;
+/** Krok katalogu z pełną bazą (free-exercise-db, 05.10.2026) — przy remisie w rankingu po bibliotece przejrzanej przez właściciela. */
+export const FULL_BASE_REV = 'katalog-2026-10-05';
+/** Lista „Inne” w arkuszu zamiany: wiersze renderowane porcjami (pełna baza ~870 ćwiczeń, lista w ScrollView arkusza — bez wirtualizacji). */
+export const SWAP_PAGE = 50;
 /** Wzorce ruchu, które same nie świadczą o podobieństwie (liczą się tylko przy wspólnym mięśniu głównym). */
 const WEAK_PATTERNS = new Set(['isolation', 'other']);
 
@@ -63,7 +67,12 @@ export function swapCandidates(exId: string, ctx: SwapCtx): SwapCandidate[] {
   const name = new Map(out.map(c => [c.exId, exName(getState().exercises.find(e => e.id === c.exId))]));
   /* decyzja właściciela 04.10.2026 (przegląd D7): remis rozstrzyga najpierw ten sam sprzęt co oryginał (sztanga → sztanga), potem sesje i nazwa */
   const sameEq = new Map(out.map(c => [c.exId, getState().exercises.find(e => e.id === c.exId)?.equipment === a.equipment ? 1 : 0]));
-  return out.sort((x, y) => y.score - x.score || sameEq.get(y.exId)! - sameEq.get(x.exId)! || y.sessions - x.sessions || name.get(x.exId)!.localeCompare(name.get(y.exId)!, locale()));
+  /* pełna baza (05.10.2026, ~870): przy remisie punktów najpierw biblioteka przejrzana przez właściciela (kroki katalogu 04.10 i własne
+   * ćwiczenia), dopiero potem pełna baza (krok 05.10) — inaczej remisy „ten sam sprzęt” i nazwa wypychały znane ćwiczenia rzadkimi wariantami
+   * (Bench Press with Chains przed Bench Press (hantle)). W obrębie każdej z tych dwóch części — decyzja D7: ten sam sprzęt, sesje, nazwa. */
+  const step = new Map(out.map(c => { const b = getState().exercises.find(e => e.id === c.exId); const r = b?.lib ? libExtraRevOf(b.name) : undefined; return [c.exId, r ? LIB_EXTRA_REVS.indexOf(r) : -1]; }));
+  const full = LIB_EXTRA_REVS.indexOf(FULL_BASE_REV); const tier = (id: string) => full >= 0 && step.get(id)! >= full ? 1 : 0;
+  return out.sort((x, y) => y.score - x.score || tier(x.exId) - tier(y.exId) || sameEq.get(y.exId)! - sameEq.get(x.exId)! || y.sessions - x.sessions || step.get(x.exId)! - step.get(y.exId)! || name.get(x.exId)!.localeCompare(name.get(y.exId)!, locale()));
 }
 
 /** Nazwa przyrządu (decyzja 8c) do arkusza i tabeli D7. */

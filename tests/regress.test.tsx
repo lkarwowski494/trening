@@ -865,7 +865,7 @@ describe('runda 26', () => {
   });
   test('R26-03 picker z powtórzonym parametrem target nie wywraca aplikacji', async () => {
     await renderApp(); await act(async () => { store.startEmpty(); }); await go('/picker?target=active&target=x'); await flushAll(10);
-    await tap(screen.getByText('Back Squat')); await flushAll(10); expect(store.getState().active!.exercises).toHaveLength(0);
+    await tap(screen.getAllByText('nogi')[0]); await flushAll(5); /* pełna baza: lista wirtualizowana */ await tap(screen.getByText('Back Squat')); await flushAll(10); expect(store.getState().active!.exercises).toHaveLength(0);
   });
 });
 
