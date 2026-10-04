@@ -15,9 +15,9 @@ describe('katalog generowany', () => {
   test('lib/catalog.generated.ts jest aktualny względem catalog.json (gen.mjs --check)', () => {
     expect(() => execFileSync('node', [join(root, 'scripts/equipment/gen.mjs'), '--check'], { stdio: 'pipe' })).not.toThrow();
   });
-  test('katalog obejmuje dokładnie 862 ćwiczenia biblioteki (125 + 123 z katalogu 04.10.2026 + 22 z kroku b + 592 z pełnej bazy 05.10), z tymi samymi danymi co JSON', () => {
+  test('katalog obejmuje dokładnie 854 ćwiczenia biblioteki (125 + 123 z katalogu 04.10.2026 + 22 z kroku b + 584 z pełnej bazy 05.10), z tymi samymi danymi co JSON', () => {
     expect(Object.keys(CATALOG).sort()).toEqual(LIB.map(l => l[0]).sort());
-    expect(catalog).toHaveLength(862);
+    expect(catalog).toHaveLength(854);
     for (const e of catalog) { const g = CATALOG[e.name]; expect(g.requires).toEqual(e.requires); expect(g.recommended).toEqual(e.recommended); expect(g.loadSource).toBe(e.loadSource); expect(g.pattern).toBe(e.pattern); expect(g.implements).toBe(e.implements); }
   });
   test('każdy wpis używa tylko słownika możliwości; słownik = możliwości z katalogu + kilka sprzętowych', () => {
@@ -68,14 +68,14 @@ describe('sprzęt', () => {
 
 describe('presety miejsc i dostępność', () => {
   const ex = seedState().exercises;
-  test('„Pełna siłownia” → wszystko poza sprzętem strongman (852/862; strongman poza presetem)', () => {
-    const g = loc('Siłownia', presetEquipment('gym')); expect(ex.filter(e => availability(e, g).ok)).toHaveLength(852);
+  test('„Pełna siłownia” → wszystko poza sprzętem strongman (843/854; strongman poza presetem)', () => {
+    const g = loc('Siłownia', presetEquipment('gym')); expect(ex.filter(e => availability(e, g).ok)).toHaveLength(843);
     const SM = new Set(['tire', 'sledgehammer', 'atlas_stones', 'yoke', 'log_bar', 'keg', 'axle_bar', 'farmers_handles', 'rickshaw']);
     expect(ex.filter(e => !availability(e, g).ok).every(e => availability(e, g).missing.every(gr => gr.every(c => SM.has(c))))).toBe(true);
   });
-  test('„Tylko masa ciała” → dokładnie ćwiczenia z pustą listą wymagań (45 od katalogu 04.10.2026, 196 z pełną bazą — w tym rozciąganie; decyzja 4a)', () => {
+  test('„Tylko masa ciała” → dokładnie ćwiczenia z pustą listą wymagań (45 od katalogu 04.10.2026, 191 z pełną bazą — w tym rozciąganie; decyzja 4a)', () => {
     const b = loc('BW', presetEquipment('bodyweight')); const ok = ex.filter(e => availability(e, b).ok).map(e => e.name).sort();
-    expect(ok).toEqual(catalog.filter(e => !e.requires.length).map(e => e.name).sort()); expect(ok).toHaveLength(196);
+    expect(ok).toEqual(catalog.filter(e => !e.requires.length).map(e => e.name).sort()); expect(ok).toHaveLength(191);
     for (const n of ['Walking Lunges', 'Reverse Lunge', 'Russian Twist']) expect(ok).toContain(n); /* 4a: bez hantli */
     expect(ok).not.toContain('Lunges (hantle)'); expect(ok).not.toContain('Step Up'); /* Step Up wymaga skrzyni/ławki */
   });
@@ -90,8 +90,8 @@ describe('presety miejsc i dostępność', () => {
     expect(ok('Przysiad z pasem (linki)')).toBe(true); /* przez stację elektryczną: wyciąg dolny + pas biodrowy */
     for (const n of ['Incline Bench Press (hantle)', 'RDL (hantle/linki)', 'Bulgarian Split Squat (hantle)', 'Hip Thrust (hantel)', 'Łydki na stopniu', 'Wiosłowanie na linkach (siedząc)', 'Hanging Leg Raise']) expect(ok(n)).toBe(true);
     for (const n of ['Lat Pulldown', 'Face Pull', 'Triceps Pushdown', 'Leg Press', 'Bench Press (sztanga)', 'Decline Bench Press']) expect(ok(n)).toBe(false); /* ViShape: bez wyciągu górnego */
-    /* pełna lista do przejrzenia z użytkownikiem (docs/10, „Implementacja E1”) — 70 ze 125 przed katalogiem 04.10.2026, 147 z 248 po katalogu, 149 z 270 po kroku b, teraz 408 z 862 (pełna baza) */
-    expect(ex.filter(e => availability(e, h).ok)).toHaveLength(408);
+    /* pełna lista do przejrzenia z użytkownikiem (docs/10, „Implementacja E1”) — 70 ze 125 przed katalogiem 04.10.2026, 147 z 248 po katalogu, 149 z 270 po kroku b, teraz 402 z 854 (pełna baza) */
+    expect(ex.filter(e => availability(e, h).ok)).toHaveLength(402);
     /* szablon „Legs — dom” w całości dostępny w domu */
     const sd = seedState(); const tpl = demoTemplates(sd.exercises).find(t => t.name === 'Legs — dom')!; /* szablon właściciela — dane testowe (od 03.10.2026 nie ma go w seedzie) */
     for (const i of tpl.items) expect(availability(sd.exercises.find(e => e.id === i.exerciseId)!, h).ok).toBe(true);
@@ -113,7 +113,7 @@ describe('presety miejsc i dostępność', () => {
     expect(loadKindsFor(CATALOG['Kettlebell Swing'])).toEqual(['kettlebell', 'dumbbell']);
     expect(loadKindsFor(CATALOG['Pull Up'])).toEqual([]);
   });
-  test('dane: seedState ma pola sprzętowe dla wszystkich 862 ćwiczeń, zgodne z katalogiem', () => {
+  test('dane: seedState ma pola sprzętowe dla wszystkich 854 ćwiczeń, zgodne z katalogiem', () => {
     for (const e of seedState().exercises) { const c = CATALOG[e.name]; expect(e.requires).toEqual(c.requires); expect(e.loadSource).toBe(c.loadSource); expect(e.pattern).toBe(c.pattern); expect(e.implements).toBe(c.implements); }
   });
 });

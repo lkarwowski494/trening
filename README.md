@@ -50,7 +50,7 @@ goły stan z wersji webowej v0.3 i z natywnej 0.1.0 — `migrate()` dopisuje bra
 ```
 app/            ekrany (expo-router): (tabs)/ Trening · Szablony · Ćwiczenia · Historia · Więcej
 components/     ActiveWorkout (trening w toku + timer), ui (przyciski, pola)
-lib/seed.ts     model danych + biblioteka 125 ćwiczeń + gumy (bez szablonów — użytkownik ustawia je sam, decyzja 03.10.2026; szablony testowe: tests/fixtures/demo-templates.ts)
+lib/seed.ts     model danych + biblioteka ćwiczeń (125 pierwszych + katalog docs/research/equipment/catalog.json — razem 854) + gumy (bez szablonów — użytkownik ustawia je sam, decyzja 03.10.2026; szablony testowe: tests/fixtures/demo-templates.ts)
 lib/store.ts    stan aplikacji + zapis do SQLite + logika treningu (previous, autofill, objętość)
 lib/timer.ts    timer przerw + lokalne powiadomienia
 lib/backup.ts   eksport/import JSON + CSV
@@ -118,7 +118,7 @@ zrzuty ekranu w artefakcie `e2e-ios`). Drogi z Kroków 2–3 (bez podpisu + Side
 ```
 npm ci                      # dokładnie te wersje, co w chmurze (package-lock.json)
 npm run typecheck           # TypeScript, powinno przejść bez błędów
-npm run verify              # typy, tłumaczenia, testy (980+), eksport bundla, kontrola konfiguracji natywnej
+npm run verify              # typy, tłumaczenia, testy (1000+), eksport bundla, kontrola konfiguracji natywnej
 ```
 Uwaga (stan na 10.2026): Expo Go z App Store obsługuje tylko najnowsze SDK, a starszej wersji nie da się
 zainstalować na fizycznym iPhonie — projektu na SDK 57 NIE otworzysz w Expo Go z App Store („Project is incompatible

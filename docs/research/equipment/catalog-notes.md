@@ -75,3 +75,28 @@ Decyzje właściciela (odpowiedzi na 3 pytania): „Przecież istnieje RDL i wio
 - **Migracja (State.libExtra jako krok):** kroki `LIB_EXTRA_REVS` po kolei od zapisanego znacznika — dane z buildu 01f2bee (bez znacznika) dostają oba kroki, dane z kroku 1 — tylko 22 nowe (ćwiczenia z kroku 1 usunięte przez użytkownika nie wracają); nieznany nowszy znacznik — bez zmian. `LIB_MUSCLE_FIXES`: Hip Adduction (pośladki → przywodziciele) i Copenhagen Plank (core → przywodziciele + core) — tylko gdy zapisane partie są dokładnie dawnymi domyślnymi.
 - **Pominięte (otwarte):** maszyna do podciągania / dipów ze wspomaganiem — ciężar to odciążenie (im mniej, tym trudniej); aplikacja nie ma takiej miary (rekordy i objętość liczyłyby odwrotnie). Wymaga decyzji o mierze przed dodaniem. Donkey calf raise — wariant maszyny do łydek, nie dodany.
 - **Audyt kroku b (04.10.2026, niezależny recenzent): 0 wysokich / 1 średni / 6 niskich.** Średni (naprawiony): powrót do buildu 643cba7 po nowej wersji — stara reguła `libExtra !== 'katalog-2026-10-04'` dopisałaby ponownie usunięte ćwiczenia i cofnęła znacznik → `State.libExtra` zostaje wartością pierwszego kroku, kolejne kroki w `State.libExtraStep` (test w catalog-v2). Niskie (bez zmian, opisane): `CABLES` nie jest jeszcze czytane przez aplikację (Q-024); przywodziciele nie liczone w ćwiczeniach złożonych (najmocniejsi kandydaci do decyzji: Cossack Squat, Lateral Lunge); poprawka partii nadpisze świadomie ustawione dokładnie domyślne partie (nie do odróżnienia); zapisane miejsca nie dostają nowego sprzętu (możliwa później akcja „uzupełnij z presetu”); sanki i liny w „Akcesoriach”; Copenhagen Plank zostaje w grupie core (brak grupy przywodzicieli). W starszym buildzie partia „przywodziciele” nie jest widoczna (brak na liście) — tylko wygląd.
+
+## Pełna baza (krok „katalog-2026-10-05”, 04.10.2026 wieczorem) — 270 → 854
+
+Decyzja właściciela: „Dlaczego mamy 270 ćwiczeń, skoro te online mają po 860?” → „czas jest od jutra 15.30 CET. Dodawaj resztę.”
+
+- **Źródło:** free-exercise-db (876 pozycji; domena publiczna — Unlicense). Wzięte tylko nazwy i fakty, bez opisów i zdjęć. Pole `fedb` w catalog.json to nazwa źródłowa.
+- **Jak powstało:**
+  - 8 paczek według partii (klatka, plecy, barki, ramiona, czworogłowe, tył uda i pośladki, brzuch, rozciąganie i roller), każda opracowana przez osobnego agenta według zasad (kopia zasad i skryptu sprawdzającego: poza repo, w notatkach sesji);
+  - automatyczny sprawdzacz: te same reguły co `tests/catalog-v2.test.ts`, do tego pokrycie każdej pozycji źródła (dodana albo pominięta jako duplikat) i kolizje nazw między paczkami;
+  - 592 dodane, 284 pominięte jako duplikaty istniejących albo innych pozycji.
+- **Niezależna recenzja:** 4 recenzentów po 148 ćwiczeń dało 13 poprawek i 10 usunięć (2 pary usuwały się nawzajem — zostaje jedno z pary). Wynik: 584 nowe, razem 854.
+  - Poprawki: wymagania (Car Deadlift i Conan's Wheel nie są dostępne w zwykłej siłowni, Skating wymaga „na zewnątrz”, wyciskanie leżąc sztangą wymaga stojaków), partie (Cable/Leverage Deadlift, Supine Chest Throw, Sandbag Load), miara i tryb (Push Up to Side Plank, One Arm Chin-Up), nazwy („Weighted Squat” → „Dip Belt Squat”, „Wind Sprints” → „Hanging Alternating Knee Raise”).
+- **Konwencje nowe w tym kroku:**
+  - rozciąganie i roller: wzorzec `mobility`, grupa „inne”, miara czas, bez partii — nie liczą się do serii tygodniowych; obciążenie partii tylko 0,25;
+  - region `neck` (szyja) bez zgrubnej partii;
+  - sprzęt strongman w osobnej grupie, poza presetem „Pełna siłownia” — 11 ćwiczeń strongman jest tam niedostępnych (test);
+  - opaski na kostki jako opcja wyciągów (brama, pojedynczy).
+- **Słownik sprzętu rozszerzony:** talerz, worek z piaskiem, łańcuchy, lina do wspinania, maszyny dźwigniowe (zbiorczo), roller, bosu, roller na nadgarstki, uprząż na szyję; strongman: opona, młot, kamienie, jarzmo, kłoda, beczka, gruby gryf, uchwyty farmerskie, riksza.
+- **Nazwy:** angielskie, jak w źródle (wyczyszczone). Po polsku pokazują się tak samo — tak jak większość dotychczasowej biblioteki.
+- **Ranking zamiany:** przy remisie punktów najpierw biblioteka przejrzana przez właściciela (125 + kroki 04.10), dopiero potem pełna baza. Bez tego rzadkie warianty wypychały znane ćwiczenia, np. „Bench Press with Chains” przed „Bench Press (hantle)”. W obrębie każdej części obowiązuje D7: ten sam sprzęt, sesje, nazwa. **Do potwierdzenia przez właściciela.** Alternatywa: tylko D7, bez podziału — więcej rzadkich wariantów w propozycjach.
+- **Wydajność:**
+  - wybór ćwiczenia to lista wirtualizowana (FlatList): 854 ćwiczenia renderują się w 227 ms (`npm run perf`, Node), wcześniej 433 ms przy 270 w ScrollView;
+  - lista „Inne” w arkuszu zamiany pokazuje porcje po 50 (`SWAP_PAGE`) z przyciskiem „Pokaż więcej”;
+  - stan po migracji jest o ok. 300 KB większy.
+- **Braki słownika zgłoszone przez agentów** (dodane z najbliższą możliwością i niską pewnością): partner (rozciąganie PNF, rzuty), worek bokserski, bloczki do zarzutów, płotki i pachołki, ręcznik, wózek ze sztangą (car deadlift), kij do rozciągania, specjalne maszyny (dip machine → maszyna do tricepsa). Do rozbudowy po teście, jeśli potrzebne.

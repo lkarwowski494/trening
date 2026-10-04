@@ -7102,40 +7102,6 @@
   }
  },
  {
-  "name": "Bent-Arm Dumbbell Pullover",
-  "fedb": "Bent-Arm Dumbbell Pullover",
-  "added": "katalog-2026-10-05",
-  "group": "klatka",
-  "bandAssistable": false,
-  "metric": "weight_reps",
-  "loadMode": "total",
-  "secondaryMuscles": [],
-  "recommended": [],
-  "confidence": "medium",
-  "note": "One dumbbell, shoulders across a flat bench, elbows bent (heavier, more lats than the straight-arm Pullover (hantel)).",
-  "equipment": "hantle",
-  "muscles": [
-   "klatka",
-   "plecy"
-  ],
-  "requires": [
-   [
-    "db"
-   ],
-   [
-    "bench.flat"
-   ]
-  ],
-  "loadSource": "dumbbell",
-  "implements": 1,
-  "pattern": "isolation",
-  "muscleLoad": {
-   "chest": 1,
-   "lats": 1,
-   "triceps": 0.25
-  }
- },
- {
   "name": "Decline Dumbbell Fly",
   "fedb": "Decline Dumbbell Flyes",
   "added": "katalog-2026-10-05",
@@ -8223,7 +8189,7 @@
   "added": "katalog-2026-10-05",
   "group": "klatka",
   "bandAssistable": true,
-  "metric": "reps",
+  "metric": "weight_reps",
   "loadMode": "total",
   "secondaryMuscles": [
    "core",
@@ -8929,39 +8895,6 @@
   },
   "confidence": "medium",
   "note": "Standing calf machine, shoulder pads loaded, shrug instead of a calf raise; no grip needed."
- },
- {
-  "name": "Catch and Overhead Throw",
-  "fedb": "Catch and Overhead Throw",
-  "added": "katalog-2026-10-05",
-  "group": "cardio",
-  "equipment": "inne",
-  "bandAssistable": false,
-  "metric": "reps",
-  "loadMode": "total",
-  "muscles": [],
-  "secondaryMuscles": [
-   "plecy",
-   "core"
-  ],
-  "requires": [
-   [
-    "med_ball"
-   ]
-  ],
-  "recommended": [],
-  "loadSource": "none",
-  "pattern": "other",
-  "muscleLoad": {
-   "lats": 0.5,
-   "abs": 0.5,
-   "triceps": 0.5,
-   "chest": 0.25,
-   "front_delt": 0.25,
-   "obliques": 0.25
-  },
-  "confidence": "medium",
-  "note": "Medicine ball thrown forward from behind the head against a wall or to a partner; power drill like Medicine Ball Slam."
  },
  {
   "name": "Clean Shrug",
@@ -9798,7 +9731,7 @@
   "equipment": "masa ciała",
   "bandAssistable": true,
   "metric": "weight_reps",
-  "loadMode": "total",
+  "loadMode": "unilateral",
   "muscles": [
    "plecy",
    "biceps"
@@ -10287,40 +10220,6 @@
   },
   "confidence": "high",
   "note": "Upright row on a Smith bar; muscle split like Upright Row (sztanga)."
- },
- {
-  "name": "Suspended Row",
-  "fedb": "Suspended Row",
-  "added": "katalog-2026-10-05",
-  "group": "plecy",
-  "equipment": "masa ciała",
-  "bandAssistable": false,
-  "metric": "weight_reps",
-  "loadMode": "total",
-  "muscles": [
-   "plecy"
-  ],
-  "secondaryMuscles": [
-   "biceps"
-  ],
-  "requires": [
-   [
-    "suspension",
-    "rings"
-   ]
-  ],
-  "recommended": [],
-  "loadSource": "bodyweight",
-  "pattern": "h_pull",
-  "muscleLoad": {
-   "upper_back": 1,
-   "lats": 1,
-   "rear_delt": 0.5,
-   "biceps": 0.5,
-   "abs": 0.25
-  },
-  "confidence": "medium",
-  "note": "Suspension trainer or rings; difficulty set by body angle. Inverted Row is the fixed-bar version."
  },
  {
   "name": "Underhand Cable Pulldowns",
@@ -15087,11 +14986,14 @@
    ],
    [
     "bench.flat"
+   ],
+   [
+    "rack",
+    "bench.uprights"
    ]
   ],
   "recommended": [
-   "rack",
-   "bench.uprights"
+   "rack.safeties"
   ],
   "loadSource": "ez_bar",
   "pattern": "h_push",
@@ -15198,9 +15100,13 @@
   "requires": [
    [
     "barbell"
+   ],
+   [
+    "rack"
    ]
   ],
   "recommended": [
+   "rack.safeties",
    "floor_mat"
   ],
   "loadSource": "barbell",
@@ -16121,16 +16027,16 @@
   "name": "Supine Chest Throw",
   "fedb": "Supine Chest Throw",
   "added": "katalog-2026-10-05",
-  "group": "triceps",
+  "group": "klatka",
   "equipment": "inne",
   "bandAssistable": false,
   "metric": "reps",
   "loadMode": "total",
   "muscles": [
-   "triceps"
+   "klatka"
   ],
   "secondaryMuscles": [
-   "klatka",
+   "triceps",
    "barki"
   ],
   "requires": [
@@ -16144,8 +16050,8 @@
   "loadSource": "none",
   "pattern": "other",
   "muscleLoad": {
-   "triceps": 1,
-   "chest": 0.5,
+   "chest": 1,
+   "triceps": 0.5,
    "front_delt": 0.5,
    "abs": 0.25
   },
@@ -17202,37 +17108,6 @@
   "note": "Split squat in a Smith machine driven up explosively; fedb lists it as machine."
  },
  {
-  "name": "Chair Squat",
-  "fedb": "Chair Squat",
-  "added": "katalog-2026-10-05",
-  "group": "nogi",
-  "equipment": "maszyna",
-  "bandAssistable": false,
-  "metric": "weight_reps",
-  "loadMode": "total",
-  "muscles": [
-   "czworogłowe"
-  ],
-  "secondaryMuscles": [
-   "pośladki"
-  ],
-  "requires": [
-   [
-    "smith"
-   ]
-  ],
-  "recommended": [],
-  "loadSource": "smith",
-  "pattern": "squat",
-  "muscleLoad": {
-   "quads": 1,
-   "glutes": 0.5,
-   "adductors": 0.25
-  },
-  "confidence": "low",
-  "note": "fedb: machine, bar unlocked from the hooks; assumed Smith machine squat with a vertical shin \"chair\" position."
- },
- {
   "name": "Smith Machine Leg Press",
   "fedb": "Smith Machine Leg Press",
   "added": "katalog-2026-10-05",
@@ -17478,7 +17353,7 @@
   "note": "Plate held on the chest, other hand on a rack or post for balance."
  },
  {
-  "name": "Weighted Squat",
+  "name": "Dip Belt Squat",
   "fedb": "Weighted Squat",
   "added": "katalog-2026-10-05",
   "group": "nogi",
@@ -17587,7 +17462,8 @@
   "metric": "weight_reps",
   "loadMode": "total",
   "muscles": [
-   "czworogłowe"
+   "czworogłowe",
+   "plecy"
   ],
   "secondaryMuscles": [
    "pośladki",
@@ -17607,9 +17483,9 @@
   "cables": 2,
   "muscleLoad": {
    "quads": 1,
+   "lower_back": 1,
    "glutes": 0.5,
    "hamstrings": 0.5,
-   "lower_back": 0.5,
    "forearms": 0.5
   },
   "confidence": "medium",
@@ -17625,7 +17501,8 @@
   "metric": "weight_reps",
   "loadMode": "total",
   "muscles": [
-   "czworogłowe"
+   "czworogłowe",
+   "plecy"
   ],
   "secondaryMuscles": [
    "pośladki",
@@ -17641,9 +17518,9 @@
   "pattern": "hinge",
   "muscleLoad": {
    "quads": 1,
+   "lower_back": 1,
    "glutes": 0.5,
    "hamstrings": 0.5,
-   "lower_back": 0.5,
    "forearms": 0.5
   },
   "confidence": "medium",
@@ -18342,7 +18219,10 @@
   ],
   "requires": [
    [
-    "lever_machine"
+    "landmine"
+   ],
+   [
+    "barbell"
    ]
   ],
   "recommended": [],
@@ -18357,7 +18237,7 @@
    "lower_back": 0.25
   },
   "confidence": "low",
-  "note": "Zercher-held lever arm walked in a circle; no cap for this strongman apparatus, generic lever machine as closest."
+  "note": "Zercher-held lever arm walked in a circle; no cap for the strongman apparatus. Common substitute: loaded barbell in a landmine, held in the crook of the elbows and walked around the pivot."
  },
  {
   "name": "Car Deadlift",
@@ -18378,7 +18258,7 @@
   ],
   "requires": [
    [
-    "lever_machine"
+    "rickshaw"
    ]
   ],
   "recommended": [],
@@ -18393,7 +18273,7 @@
    "upper_back": 0.25
   },
   "confidence": "low",
-  "note": "Car deadlift frame not in vocabulary; generic lever machine as closest cap."
+  "note": "Car deadlift frame not in vocabulary; a rickshaw/deadlift frame with side handles is the closest cap (a generic lever machine cannot be used for it)."
  },
  {
   "name": "Rickshaw Deadlift",
@@ -18473,17 +18353,18 @@
   "name": "Sandbag Load",
   "fedb": "Sandbag Load",
   "added": "katalog-2026-10-05",
-  "group": "pośladki",
+  "group": "plecy",
   "equipment": "inne",
   "bandAssistable": false,
   "metric": "weight_reps",
   "loadMode": "total",
   "muscles": [
+   "plecy",
    "pośladki"
   ],
   "secondaryMuscles": [
    "dwugłowe",
-   "plecy"
+   "czworogłowe"
   ],
   "requires": [
    [
@@ -18496,9 +18377,9 @@
   "loadSource": "none",
   "pattern": "hinge",
   "muscleLoad": {
+   "lower_back": 1,
    "glutes": 1,
    "hamstrings": 0.5,
-   "lower_back": 0.5,
    "quads": 0.5,
    "upper_back": 0.5,
    "biceps": 0.25,
@@ -19188,7 +19069,11 @@
   "loadMode": "total",
   "muscles": [],
   "secondaryMuscles": [],
-  "requires": [],
+  "requires": [
+   [
+    "outdoor"
+   ]
+  ],
   "recommended": [],
   "loadSource": "none",
   "pattern": "cardio",
@@ -19200,7 +19085,7 @@
    "calves": 0.25
   },
   "confidence": "low",
-  "note": "Roller skating; skates not in the vocabulary, so no requirement modelled."
+  "note": "Roller skating outdoors (own skates, as with Rower's outdoor = own bike); skates not in the vocabulary."
  },
  {
   "name": "Double Kettlebell Alternating Hang Clean",
@@ -19886,35 +19771,6 @@
   },
   "confidence": "medium",
   "note": "Glute bridge with a band across the hips, anchored to rack pegs or heavy dumbbells."
- },
- {
-  "name": "Hurdle Hops",
-  "fedb": "Hurdle Hops",
-  "added": "katalog-2026-10-05",
-  "group": "cardio",
-  "equipment": "masa ciała",
-  "bandAssistable": false,
-  "metric": "reps",
-  "loadMode": "total",
-  "muscles": [
-   "łydki"
-  ],
-  "secondaryMuscles": [
-   "czworogłowe",
-   "pośladki"
-  ],
-  "requires": [],
-  "recommended": [],
-  "loadSource": "bodyweight",
-  "pattern": "other",
-  "muscleLoad": {
-   "calves": 1,
-   "quads": 0.5,
-   "glutes": 0.5,
-   "hamstrings": 0.25
-  },
-  "confidence": "medium",
-  "note": "Plyometric hops over mini hurdles; hurdles/cones are not in the vocabulary, any low obstacle works."
  },
  {
   "name": "Kettlebell One-Legged Deadlift",
@@ -22854,7 +22710,7 @@
   "note": "Bands anchored at the base of a decline bench, handles held at the shoulders; band resistance not logged as kg."
  },
  {
-  "name": "Wind Sprints",
+  "name": "Hanging Alternating Knee Raise",
   "fedb": "Wind Sprints",
   "added": "katalog-2026-10-05",
   "group": "core",
@@ -22869,7 +22725,8 @@
   "requires": [
    [
     "pullup.bar",
-    "rings"
+    "rings",
+    "dip.bars"
    ]
   ],
   "recommended": [],
@@ -22882,7 +22739,7 @@
    "obliques": 0.25
   },
   "confidence": "medium",
-  "note": "Hanging, fast alternating knee raises."
+  "note": "fedb \"Wind Sprints\": hanging from a bar, fast alternating knee raises. Renamed so it is not mistaken for running sprints. Captain's chair (dip.bars) also works, as for Hanging Knee Raise."
  },
  {
   "name": "90/90 Hamstring",
@@ -24296,30 +24153,6 @@
   "note": "Hips draped over a stability ball."
  },
  {
-  "name": "Quad Stretch",
-  "fedb": "Quad Stretch",
-  "added": "katalog-2026-10-05",
-  "group": "inne",
-  "bandAssistable": false,
-  "loadMode": "total",
-  "muscles": [],
-  "secondaryMuscles": [],
-  "pattern": "mobility",
-  "equipment": "masa ciała",
-  "metric": "time",
-  "requires": [],
-  "recommended": [
-   "bands",
-   "floor_mat"
-  ],
-  "loadSource": "bodyweight",
-  "muscleLoad": {
-   "quads": 0.25
-  },
-  "confidence": "high",
-  "note": "Side-lying with a strap around the top foot. Belt, rope or band as a strap."
- },
- {
   "name": "Round The World Shoulder Stretch",
   "fedb": "Round The World Shoulder Stretch",
   "added": "katalog-2026-10-05",
@@ -25140,29 +24973,6 @@
   "note": "Hands clasped forward, shoulders rounded."
  },
  {
-  "name": "Upward Stretch",
-  "fedb": "Upward Stretch",
-  "added": "katalog-2026-10-05",
-  "group": "inne",
-  "bandAssistable": false,
-  "loadMode": "total",
-  "muscles": [],
-  "secondaryMuscles": [],
-  "pattern": "mobility",
-  "equipment": "masa ciała",
-  "metric": "time",
-  "requires": [],
-  "recommended": [],
-  "loadSource": "bodyweight",
-  "muscleLoad": {
-   "lats": 0.25,
-   "chest": 0.25,
-   "front_delt": 0.25
-  },
-  "confidence": "high",
-  "note": "Standing, arms straight overhead, palms together."
- },
- {
   "name": "Windmills",
   "fedb": "Windmills",
   "added": "katalog-2026-10-05",
@@ -25643,35 +25453,6 @@
   },
   "confidence": "high",
   "note": "Consecutive forward squat jumps; plyometric (like Jump Squat)."
- },
- {
-  "name": "Jumping Split Squats",
-  "fedb": "Split Squats",
-  "added": "katalog-2026-10-05",
-  "bandAssistable": false,
-  "loadMode": "total",
-  "loadSource": "bodyweight",
-  "equipment": "masa ciała",
-  "group": "nogi",
-  "metric": "reps",
-  "muscles": [
-   "czworogłowe"
-  ],
-  "secondaryMuscles": [
-   "pośladki",
-   "łydki"
-  ],
-  "requires": [],
-  "recommended": [],
-  "pattern": "other",
-  "muscleLoad": {
-   "quads": 1,
-   "glutes": 0.5,
-   "calves": 0.5,
-   "hamstrings": 0.25
-  },
-  "confidence": "medium",
-  "note": "fedb \"Split Squats\" is a jumping split squat (switch legs in the air); renamed to avoid confusion with Split Squat."
  },
  {
   "name": "Lower Back Curl",
