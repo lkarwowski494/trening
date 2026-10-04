@@ -225,6 +225,21 @@ Przy następnym starcie z szablonu w Domu blok A pokazuje podpowiedź „W Domu 
 | D7 | Przejrzenie tabeli „top-3 propozycji” dla ok. 10 ćwiczeń w Twoim Domu i Pełnej siłowni przed wydaniem | **(a) tak** · (b) nie |
 | D8 | „Powtórz ostatni” po podziale bloku | **(a) jak dziś — powtarza wszystko, co zrobiono** · (b) pomija niepełny blok A, gdy jest jego zamiennik |
 
+> **04.10.2026 — decyzje właściciela:** **D1 (c)** — od razu W1 + W3 (zamienniki per miejsce w szablonie, schemat 16);
+> **D2 (a)** — jeden szablon + zamienniki per miejsce (to także decyzja 2 z dokumentu 10); **D3 (a)** — przycisk ukryty, gdy wszystkie
+> serie odhaczone; **D4 (a) z dopiskiem** — „przerwa z planu, ale użytkownik powinien mieć zawsze możliwość zmiany przerwy w szablonie
+> dla danego ćwiczenia”; **D5 (a)** — „ten sam ruch, inny przyrząd” w E2; **D6 (b)** — zamiana także w edytorze historii, w E2;
+> **D7 (a)** — tabela top-3 propozycji do przejrzenia przed wydaniem; **D8 (a)** — „Powtórz ostatni” powtarza wszystko, co zrobiono.
+>
+> Skutki dla planu (do rozpisania przed implementacją):
+> - D1 (c) + D2 (a): zakres rośnie z 3–4 do ok. 5–7 sesji (A3, „Porównanie”: W3 +2–3); schemat 16 z migracją i kopiami —
+>   zgodnie z B/„Kolejność” osobne wydanie po scaleniu SDK 57, nie razem z aktualizacją SDK.
+> - D4: dziś edytor szablonu ma już pole „przerwa s” przy każdej pozycji (`app/template/[id].tsx`, `TemplateItem.restSec`; puste =
+>   przerwa z ćwiczenia), więc dla W1 wymaganie jest spełnione. **Otwarte (W3):** czy zamiennik per miejsce („Dom: B”) ma własne
+>   pole przerwy — (a) tak, opcjonalne, puste = przerwa pozycji; (b) nie, zawsze przerwa pozycji. Do decyzji właściciela.
+> - D6 (b): w edytorze historii zamiana = przeniesienie serii zapisanych pod złym ćwiczeniem (inne zasady niż w trakcie treningu:
+>   przenosi odhaczone serie, wpływa na rekordy, „Poprzednio” i statystyki) — wymaga własnej specyfikacji i testów przed kodem.
+
 ## A6. Plan wdrożenia i testów (W1)
 
 **Kroki:**
