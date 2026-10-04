@@ -3,8 +3,8 @@ import * as FileSystem from 'expo-file-system/legacy';
 import { useSyncExternalStore } from 'react';
 import { t, t as tr, tIn, applyLang, detectLang, locale } from './i18n';
 import { applyUnit, wu, wOut, wIn, KG_PER_LB, fmtW, fmtNum, snapLegacyLb } from './units';
-import { seedState, uid, base, defaultModules, defaultSettings, metricFor, loadModeFor, loadMult, blankTimer, musclesFor, hasTime, hasReps, hasWeight, hasDistance, METRICS, DEFAULT_REST, GROUPS, LIB, SCHEMA_VERSION, LOCAL_OWNER, MODULES, SET_KINDS, SINGLE_IMPLEMENT, equipFields, LOAD_SOURCE_BY_EQUIPMENT, IMPLS, type Impl, type SetKind, type Base, type State, type Workout, type WSet, type WExercise, type Exercise, type Template, type Morning, type Location } from './seed';
-import { equipById, loadsFor, implAt, implsAt, blankLoad } from './equipment';
+import { seedState, uid, base, defaultModules, defaultSettings, metricFor, loadModeFor, loadMult, blankTimer, musclesFor, hasTime, hasReps, hasWeight, hasDistance, METRICS, DEFAULT_REST, GROUPS, LIB, SCHEMA_VERSION, LOCAL_OWNER, MODULES, SET_KINDS, SINGLE_IMPLEMENT, equipFields, LOAD_SOURCE_BY_EQUIPMENT, IMPLS, type Impl, type SetKind, type Base, type State, type Workout, type WSet, type WExercise, type Exercise, type Template, type TemplateItem, type TemplateAlt, type Morning, type Location } from './seed';
+import { equipById, loadsFor, implAt, implsAt, blankLoad, availability } from './equipment';
 import { sanitizeLoadSpec, nextHeavier, hasLoadShown } from './loads';
 import { CATALOG, CATALOG_REV } from './catalog.generated';
 
@@ -197,6 +197,19 @@ function fixSwapFields(e: any, live: boolean) {
   { const v = live ? idOf(e.splitFrom) : null; if (v) e.splitFrom = v; else delete e.splitFrom; } /* M3 */
   if (!live || e.altSkip !== true) delete e.altSkip; /* M4 */
 }
+/** Schemat 16 (E2 W3, docs/14 pkt 2.2, M5; M6 — po filtrze ćwiczeń, M7 — usunięte miejsce zostaje): zamienniki pozycji szablonu z importu —
+ * biała lista pól, id tekstem, przerwa jak pozycji, przyrząd tylko znany; jeden wpis na miejsce (pierwszy); zamiennik = ćwiczenie pozycji bez przyrządu odpada. */
+function fixAlternates(it: any) {
+  if (it.alternates === undefined) return; if (!Array.isArray(it.alternates)) { delete it.alternates; return; }
+  const seen = new Set<string>(); const out: TemplateAlt[] = [];
+  for (const x of arr(it.alternates)) {
+    const locationId = idOf(x.locationId), exerciseId = idOf(x.exerciseId); if (!locationId || !exerciseId || seen.has(locationId)) continue;
+    const v = parseNum(x.restSec); const restSec = v == null || v < 0 ? null : Math.min(1800, Math.round(v));
+    const a: TemplateAlt = { locationId, exerciseId, restSec }; if ((IMPLS as readonly unknown[]).includes(x.impl)) a.impl = x.impl;
+    if (exerciseId === it.exerciseId && !a.impl) continue; seen.add(locationId); out.push(a);
+  }
+  if (out.length) it.alternates = out; else delete it.alternates;
+}
 export function migrate(raw: any): State {
   if (!isObj(raw) || !Array.isArray(raw.exercises) || !Array.isArray(raw.templates)) throw new Error('bad state');
   legacyLb = !((Number(raw.schemaVersion) || 0) >= 11);
@@ -235,7 +248,7 @@ export function migrate(raw: any): State {
     fixEquipFields(e);
   });
   raw.templates = arr(raw.templates);
-  raw.templates.forEach((t: any) => { stamp(t); if (typeof t.name !== 'string') t.name = ''; t.items = arr(t.items); t.items = t.items.filter((it: any) => idOf(it.exerciseId) != null); t.items.forEach((it: any) => { it.id = idOf(it.id) ?? uid(); it.exerciseId = idOf(it.exerciseId); { const v = parseNum(it.targetSec); it.targetSec = v == null || v < 0 ? '' : Math.min(86400, Math.round(v)); } /* runda 51 */ it.groupId = idOf(it.groupId); it.sets = intIn(it.sets, 1, 50) ?? 1; /* runda 15: liczba, nie tekst z importu */ if (it.startWeight === undefined) it.startWeight = ''; for (const k of ['repMin', 'repMax']) it[k] = intIn(it[k], 1, 100); { const v = parseNum(it.restSec); it.restSec = v == null || v < 0 ? null : Math.min(1800, Math.round(v)); } /* runda 49: także tekst, jak przerwa ćwiczenia */ /* runda 17: limit 1800 */ { const v = parseNum(it.startWeight); it.startWeight = v == null ? '' : kg2(snapL(v) as number); } }); });
+  raw.templates.forEach((t: any) => { stamp(t); if (typeof t.name !== 'string') t.name = ''; t.items = arr(t.items); t.items = t.items.filter((it: any) => idOf(it.exerciseId) != null); t.items.forEach((it: any) => { it.id = idOf(it.id) ?? uid(); it.exerciseId = idOf(it.exerciseId); { const v = parseNum(it.targetSec); it.targetSec = v == null || v < 0 ? '' : Math.min(86400, Math.round(v)); } /* runda 51 */ it.groupId = idOf(it.groupId); it.sets = intIn(it.sets, 1, 50) ?? 1; /* runda 15: liczba, nie tekst z importu */ if (it.startWeight === undefined) it.startWeight = ''; for (const k of ['repMin', 'repMax']) it[k] = intIn(it[k], 1, 100); { const v = parseNum(it.restSec); it.restSec = v == null || v < 0 ? null : Math.min(1800, Math.round(v)); } /* runda 49: także tekst, jak przerwa ćwiczenia */ /* runda 17: limit 1800 */ { const v = parseNum(it.startWeight); it.startWeight = v == null ? '' : kg2(snapL(v) as number); } fixAlternates(it); }); });
   raw.templates.forEach((x: any) => { const n = x.name.replace(/\s+/g, ' ').trim(); x.name = n || tIn(raw.settings?.language, 'Nowy szablon'); { const l = idOf(x.locationId); if (l) x.locationId = l; else delete x.locationId; } /* P-003 */ }); // runda 35: jak nazwy ćwiczeń
   /* Decyzja właściciela 03.10.2026 (08:11): aplikacja nie zmienia ciężarów ani treści szablonów użytkownika — także przy przejściu na schemat 15
    * (wcześniejsza jednorazowa zmiana 48 → 24 kg z P-004 usunięta: 48 zostaje 48). Zostaje tylko dotychczasowa normalizacja, ta sama co w main:
@@ -271,7 +284,8 @@ export function migrate(raw: any): State {
   // Runda 41: jak purgeOrphans — usunięte ćwiczenia bez żadnego treningu znikają także przy starcie i imporcie.
   { const used = new Set<string>(); for (const w of [...raw.workouts, ...(raw.active ? [raw.active] : [])]) for (const x of w.exercises) used.add(x.exerciseId); raw.exercises = raw.exercises.filter((e: any) => e.archived !== true || used.has(e.id)); }
   // Runda 43: pozycje szablonów wskazujące brakujące lub usunięte ćwiczenie odpadają (jak przy usuwaniu ćwiczenia w aplikacji).
-  { const ok = new Set<string>(raw.exercises.filter((e: any) => e.archived !== true).map((e: any) => e.id)); raw.templates.forEach((tp: any) => { const n = tp.items.length; tp.items = tp.items.filter((it: any) => ok.has(it.exerciseId)); void n; normalizeGroups(tp.items); /* T-010 (audyt): zawsze — rozerwana grupa z importu dzieliłaby klucz bloku przy przeciąganiu */ }); }
+  { const ok = new Set<string>(raw.exercises.filter((e: any) => e.archived !== true).map((e: any) => e.id)); raw.templates.forEach((tp: any) => { const n = tp.items.length; tp.items = tp.items.filter((it: any) => ok.has(it.exerciseId)); void n;
+    tp.items.forEach((it: any) => { if (!it.alternates) return; it.alternates = it.alternates.filter((x: any) => ok.has(x.exerciseId)); if (!it.alternates.length) delete it.alternates; }); /* E2 M6: zamiennik z brakującym / usuniętym ćwiczeniem odpada */ normalizeGroups(tp.items); /* T-010 (audyt): zawsze — rozerwana grupa z importu dzieliłaby klucz bloku przy przeciąganiu */ }); }
   raw.timer = { ...blankTimer(), ...(isObj(raw.timer) ? raw.timer : {}) };
   delete raw.timer.setEi; delete raw.timer.setSi;
   { const T = raw.timer, b = blankTimer() as any; for (const k of ['restEndAt', 'setStartAt']) if (T[k] != null) T[k] = tsOf(T[k]); for (const k of ['restTotal', 'setTarget']) T[k] = intIn(T[k], 0, 86400) ?? b[k]; /* runda 52: doba to i tak koniec */ for (const k of ['restSetId', 'setId']) if (T[k] != null && typeof T[k] !== 'string') T[k] = null; } // runda 49
@@ -830,7 +844,7 @@ const tplItemOf = (w: Workout, e: WExercise) => { const tpl = w.templateId ? get
  * `swappedFrom` = oryginał (A→B→C zostaje A; powrót do oryginału go usuwa); przyrząd od nowa wg miejsca, bez przypięcia. `restSec` — przerwa
  * zamiennika per miejsce (W3, pkt 4.3), inaczej przerwa bloku. Zwraca id usuniętych serii (ekran zatrzymuje ich stoper) i id bloku B.
  */
-export function swapBlock(blockId: string, toExId: string, opts: { restSec?: number | null } = {}): { goneSetIds: string[]; blockId: string } | null {
+export function swapBlock(blockId: string, toExId: string, opts: { restSec?: number | null; impl?: Impl } = {}): { goneSetIds: string[]; blockId: string } | null {
   const a = getState().active; const ei = a ? a.exercises.findIndex(x => x.id === blockId) : -1; if (!a || ei < 0) return null;
   const A = a.exercises[ei]; const B = exById(toExId); if (!B || B.archived || B.id === A.exerciseId) return null;
   const left = A.sets.filter(x => !x.done); if (!left.length) return null;
@@ -843,8 +857,9 @@ export function swapBlock(blockId: string, toExId: string, opts: { restSec?: num
   }
   if (orig !== B.id) blk.swappedFrom = orig; else delete blk.swappedFrom;
   stampImpl(blk, a.locationId);
+  { const loc = locationById(a.locationId); if (opts.impl && loc && implsAt(B, loc).includes(opts.impl)) { blk.impl = opts.impl; blk.implPinned = true; } } /* W3 P5a: przyrząd z zamiennika per miejsce */
   if (typeof opts.restSec === 'number' && opts.restSec >= 0) blk.restSec = Math.min(1800, Math.round(opts.restSec));
-  blk.sets = prefillSets(B, left.map(x => x.kind), prevOfActiveBlock(a, blk), a.locationId, blk.impl, it?.targetSec ?? '');
+  blk.sets = prefillSets(B, left.map(x => x.kind), prevOfActiveBlock(a, blk), a.locationId, blk.impl, it?.targetSec ?? '', '', 0, !!blk.implPinned);
   save(a); return { goneSetIds: left.map(x => x.id), blockId: blk.id };
 }
 /**
@@ -889,6 +904,57 @@ export function undoSwap(blockId: string): { goneSetIds: string[] } | null {
     B.sets = prefillSets(A, kinds, prevOfActiveBlock(a, B), a.locationId, B.impl, own?.targetSec ?? '', own?.startWeight ?? '');
   }
   save(a); return { goneSetIds: gone };
+}
+/* ---------- E2 W3: zamienniki per miejsce w szablonie (docs/14 pkt 4) ---------- */
+/** Pozycja szablonu bloku (tylko z szablonu treningu) i miejsce treningu (tylko istniejące). */
+function altCtx(w: Workout, e: WExercise): { tpl: Template; item: TemplateItem; loc: Location } | null {
+  const tpl = w.templateId ? getState().templates.find(x => x.id === w.templateId) : undefined; const item = tpl && e.tplItemId ? tpl.items.find(x => x.id === e.tplItemId) : undefined;
+  const loc = locationById(w.locationId); return tpl && item && loc ? { tpl, item, loc } : null;
+}
+/** Wpis, który zapisałby „Zawsze w” dla bloku: zamiennik B pozycji A (swappedFrom = ćwiczenie pozycji) albo A z przyrządem wybranym ręcznie (P5a). */
+function altOfBlock(c: { item: TemplateItem; loc: Location }, e: WExercise): TemplateAlt | null {
+  const pin = e.implPinned && e.impl ? { impl: e.impl } : {};
+  if (e.swappedFrom === c.item.exerciseId && e.exerciseId !== c.item.exerciseId) return { locationId: c.loc.id, exerciseId: e.exerciseId, restSec: null, ...pin };
+  if (!e.swappedFrom && e.exerciseId === c.item.exerciseId && e.implPinned && e.impl) return { locationId: c.loc.id, exerciseId: e.exerciseId, restSec: null, impl: e.impl };
+  return null;
+}
+const sameAlt = (x: TemplateAlt | undefined, y: TemplateAlt) => !!x && x.exerciseId === y.exerciseId && (x.impl ?? null) === (y.impl ?? null);
+/** „Zawsze w: <Miejsce>” (pkt 4.1, P1 a, P5a a): trening ma istniejące miejsce i szablon z pozycją bloku, blok zastępuje ćwiczenie pozycji (albo ma
+ * przypięty przyrząd), a takiego wpisu dla tego miejsca jeszcze nie ma. */
+export function canRememberAlt(w: Workout, e: WExercise): boolean {
+  const c = altCtx(w, e); const n = c ? altOfBlock(c, e) : null; return !!c && !!n && !sameAlt(c.item.alternates?.find(x => x.locationId === c.loc.id), n);
+}
+/** Zapis zamiennika w pozycji szablonu bloku — tylko na wyraźne stuknięcie (decyzja 08:11 zachowana); wpis tego miejsca jest zastępowany (z przerwą). */
+export function rememberAlt(blockId: string): boolean {
+  const w = getState().active; const e = w?.exercises.find(x => x.id === blockId); if (!w || !e || !canRememberAlt(w, e)) return false;
+  const c = altCtx(w, e)!; const n = altOfBlock(c, e)!; c.item.alternates = [...(c.item.alternates ?? []).filter(x => x.locationId !== c.loc.id), n];
+  save(c.tpl); return true;
+}
+/** Podpowiedź zamiennika (pkt 4.2) — liczona przy renderze, nigdy nie zmienia bloku sama: blok z pozycji szablonu, jeszcze nie zamieniony, bez
+ * odhaczonych serii i bez „✕”; wpis dla miejsca treningu z widocznym ćwiczeniem dostępnym w miejscu (przyrząd — obecny w miejscu i inny niż bloku). */
+export function altHint(w: Workout, e: WExercise): TemplateAlt | undefined {
+  const c = altCtx(w, e); if (!c || e.altSkip || e.swappedFrom || e.exerciseId !== c.item.exerciseId || e.sets.some(x => x.done)) return undefined;
+  const alt = c.item.alternates?.find(x => x.locationId === c.loc.id); const B = alt ? exById(alt.exerciseId) : undefined; if (!alt || !B || B.archived) return undefined;
+  if (alt.exerciseId === e.exerciseId) return alt.impl && alt.impl !== e.impl && implsAt(B, c.loc).includes(alt.impl) ? alt : undefined;
+  return availability(B, c.loc).ok ? alt : undefined;
+}
+/** „Zamień” z podpowiedzi (pkt 4.3): zamiana w miejscu z przerwą wpisu (pusta — przerwa bloku, D4 a) i przyrządem wpisu (P5a). */
+export function acceptAlt(blockId: string): { goneSetIds: string[]; blockId: string } | null {
+  const w = getState().active; const e = w?.exercises.find(x => x.id === blockId); const alt = w && e ? altHint(w, e) : undefined; if (!w || !e || !alt) return null;
+  if (alt.exerciseId !== e.exerciseId) return swapBlock(blockId, alt.exerciseId, { restSec: alt.restSec, impl: alt.impl });
+  const r = swapImpl(blockId, alt.impl!); if (r && alt.restSec != null) { const b = w.exercises.find(x => x.id === r.blockId); if (b) { b.restSec = alt.restSec; save(w); } } return r;
+}
+/** „✕” przy podpowiedzi: tylko ten blok, tylko ten trening (M4). */
+export function skipAlt(blockId: string) { const w = getState().active; const e = w?.exercises.find(x => x.id === blockId); if (!w || !e) return; e.altSkip = true; save(w); }
+/** „Zapamiętaj” przerwę (⏱ w bloku): w bloku, który jest zamiennikiem tego miejsca — do wpisu zamiennika (dopisek właściciela do D4);
+ * inaczej jak dotąd: pozycja szablonu, z której powstał blok (runda 10), i ćwiczenie. */
+export function rememberRest(w: Workout, e: WExercise, n: number) {
+  const ex = exById(e.exerciseId); if (!ex) return; e.restSec = n; ex.restSec = n;
+  const c = altCtx(w, e); const mine = c ? altOfBlock(c, e) : null; const alt = c && mine ? c.item.alternates?.find(x => x.locationId === c.loc.id) : undefined;
+  const tpl = w.templateId ? getState().templates.find(x => x.id === w.templateId) : null;
+  if (alt && sameAlt(alt, mine!)) alt.restSec = n;
+  else { const it = tpl && e.tplItemId ? tpl.items.find(x => x.id === e.tplItemId && x.exerciseId === ex.id) : undefined; if (it) it.restSec = n; }
+  save(w, ex, tpl);
 }
 export function addSet(ei: number) { const a = getState().active!; const e = a.exercises[ei]; const l = e.sets[e.sets.length - 1]; const fromWarmup = l?.kind === 'warmup'; e.sets.push({ ...blankSet(), ...(fromWarmup ? {} : copyVals(l)), ...(l?.done ? { durationSec: '' as const } : {}), ...(l?.noBand && !fromWarmup ? { noBand: true } : {}), kind: l?.kind === 'drop' ? 'drop' : 'normal' /* runda 72: po serii „do upadku” kolejna jest zwykła — upadek to wynik, nie plan */ }); { const ns = e.sets[e.sets.length - 1]; if (l?.pre && !fromWarmup) { const p: NonNullable<WSet['pre']> = {}; for (const k of PRE_KEYS) if (l.pre[k] !== undefined && ns[k] === l.pre[k]) p[k] = l.pre[k]; if (Object.keys(p).length) ns.pre = p; } /* weryfikacja: dodana seria idzie za zmianą jak pozostałe */ if (ns.bandId && !usedKeys(exById(e.exerciseId)).bandId) { if (Number(ns.addKg) < 0) ns.addKg = ''; ns.bandId = ''; } } /* runda 65: wyłączona asysta gumą — guma (i jej asysta) nie przechodzi */ save(a); } // czas zmierzonej serii nie staje się celem następnej (runda 3) // po rozgrzewce pusta seria: podpowie „Poprzednio”
 export function removeSet(ei: number) { const a = getState().active!; const e = a.exercises[ei]; if (e.sets.length > 1) { e.sets.pop(); save(a); } }
@@ -1221,7 +1287,8 @@ export const exerciseUsed = (id: string) => { const st = getState(); return [...
  */
 export function deleteExercise(id: string) {
   const st = getState(); const e = exById(id); if (!e) return;
-  st.templates.forEach(tpl => { tpl.items = tpl.items.filter(i => i.exerciseId !== id); normalizeGroups(tpl.items); });
+  st.templates.forEach(tpl => { tpl.items = tpl.items.filter(i => i.exerciseId !== id); normalizeGroups(tpl.items);
+    tpl.items.forEach(i => { if (!i.alternates) return; i.alternates = i.alternates.filter(x => x.exerciseId !== id); if (!i.alternates.length) delete i.alternates; }); }); /* E2 W3: zamiennik z usuniętym ćwiczeniem znika (jak M6) */
   if (exerciseUsed(id)) e.archived = true; else st.exercises = st.exercises.filter(x => x.id !== id);
   save(e); flush();
 }

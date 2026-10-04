@@ -125,3 +125,29 @@ name: Zamiana ćwiczenia w trakcie treningu (E2 W1)
 - assertVisible: ".*Overhead Press \\(Barbell\\).*"
 - assertVisible: ".*Arnold Press.*"
 - takeScreenshot: 35-historia-po-podziale
+
+# --- W3: „Always at Home” w treningu z szablonu i podpowiedź przy ponownym starcie (docs/14 pkt 7, krok 9 — rekomendacja) ---
+#   "Always at Home — X"             ← 'Zawsze w: {l} — {name}' (accessibilityLabel przycisku „Zawsze w: Dom” w linijce „zamiast”)
+#   "Usually at Home — X. Swap\?"    ← 'Zwykle w: {l} — {name}. Zamienić?' (podpowiedź liczona przy renderze)
+#   "Cancel workout", "Cancel workout\?" ← 'Anuluj trening' / 'Anulować trening?'
+- tapOn: "Back"
+- extendedWaitUntil: { visible: "Start from a template", timeout: 30000 }
+- runFlow: subflows/szablon-testowy.yaml
+- tapOn: "Start: Upper A"
+- extendedWaitUntil: { visible: "Swap exercise: Bench Press \\(Dumbbell\\)", timeout: 30000 }
+- tapOn: "Swap exercise: Bench Press \\(Dumbbell\\)"
+- extendedWaitUntil: { visible: "Suggestion 1: .*", timeout: 30000 }
+- tapOn: "Suggestion 1: .*"
+- extendedWaitUntil: { visible: "Always at Home — .*", timeout: 30000 }
+- tapOn: "Always at Home — .*"
+- assertNotVisible: "Always at Home — .*"
+- takeScreenshot: 36-zawsze-w-domu
+- scrollUntilVisible: { element: "Cancel workout", direction: DOWN, timeout: 60000 }
+- tapOn: "Cancel workout"
+- extendedWaitUntil: { visible: "Cancel workout\\?", timeout: 30000 }
+- tapOn: { text: "Cancel workout", below: "Cancel workout\\?" }
+- extendedWaitUntil: { visible: "Start: Upper A", timeout: 30000 }
+- tapOn: "Start: Upper A"
+- extendedWaitUntil: { visible: "Usually at Home — .*\\. Swap\\?", timeout: 30000 }
+- assertVisible: "Swap exercise: Bench Press \\(Dumbbell\\)"   # podpowiedź nie zmienia bloku sama
+- takeScreenshot: 37-podpowiedz-zamiennika

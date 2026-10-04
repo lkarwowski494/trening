@@ -4,7 +4,9 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Screen, Field, Input, NumInput, Btn, Muted, Txt, FieldLabel, FieldHint, useOnce, Chip } from '@/components/ui';
 import { ScrollView as HScroll } from 'react-native';
 import { locationLabel } from '@/lib/locations';
-import { getState, useTick, exById, save, dupTemplate, deleteTemplate, groupLabels, linkWithNext, unlink, moveItem, removeItem, restFor, isBW, startFromTemplate, loadLabel, loadLabelShort, occurrence, occurrences, implAtLoc, startLocationId } from '@/lib/store';
+import { availability } from '@/lib/equipment';
+import { implLabel } from '@/lib/swap';
+import { getState, useTick, exById, save, dupTemplate, deleteTemplate, groupLabels, linkWithNext, unlink, moveItem, removeItem, restFor, isBW, startFromTemplate, loadLabel, loadLabelShort, occurrence, occurrences, implAtLoc, startLocationId, locationById } from '@/lib/store';
 import { useTheme } from '@/lib/theme';
 import { hasTime, hasReps, hasWeight } from '@/lib/seed';
 import { t, exName } from '@/lib/i18n';
@@ -60,11 +62,28 @@ export default function TemplateEdit() {
             <Col label={t('przerwa s')}><NumInput value={it.restSec ?? ''} onNum={v => { it.restSec = int(v, 0, 1800); save(tpl); }} placeholder={String(restFor(ex))} /></Col>
             {hasWeight(m) ? <Col label={t('start {u}', { u: ex ? loadLabelShort(ex, impl) : wu() }) /* runda 63/71: jak nagłówek kolumny w treningu (kg/hant.; MEDIUM 2: stacja — kg/str.) */} a11y={t('start {u}', { u: ex ? loadLabel(ex, impl) : wu() })}><NumInput weightTol decimal allowNegative={!!ex && isBW(ex)} value={wField(it.startWeight)} stored={it.startWeight} onNum={(v, keep) => { it.startWeight = v === '' ? '' : wInKeep(ex && isBW(ex) ? v : Math.max(0, v), keep); /* Q-021 */ save(tpl); }} /></Col> : null}
           </View></FieldHint.Provider>
+          {it.alternates?.length ? <Alternates tplId={tpl.id} itemId={it.id} /> : null}
           {hasReps(m) && it.repMin != null && it.repMax != null && it.repMax < it.repMin ? <Muted style={{ fontSize: 12, color: th.danger }}>{t('„do” jest mniejsze niż „od” — zakres pokaże się jako {n}+', { n: it.repMin })}</Muted> : null}
         </View>); })}
       <Btn title={t('+ Dodaj ćwiczenie')} block style={{ marginTop: 12 }} onPress={() => router.push(`/picker?target=template:${tpl.id}`)} />
       <Muted style={{ fontSize: 13, marginTop: 10 }}>{t('Puste „pow. od” = seria do maksimum. „⇅ SS” łączy ćwiczenie z następnym w superset (wspólna przerwa po ostatnim z grupy), „✂” wyjmuje z grupy.')}</Muted>
     </ScrollView></Screen>
   );
+}
+/** E2 W3 (docs/14 pkt 4.4, P6 a): zamienniki pozycji per miejsce — podgląd, przerwa zamiennika i usuwanie (dodawanie tylko z treningu: „Zawsze w”).
+ * Wpis z usuniętym miejscem: „(usunięte miejsce)”; z ćwiczeniem niedostępnym w miejscu: „brak sprzętu w: …”. */
+function Alternates({ tplId, itemId }: { tplId: string; itemId: string }) {
+  const th = useTheme(); const tpl = getState().templates.find(x => x.id === tplId); const it = tpl?.items.find(x => x.id === itemId); if (!tpl || !it?.alternates?.length) return null;
+  const itEx = exById(it.exerciseId);
+  return <View style={{ gap: 4 }}>
+    <Muted style={{ fontSize: 12, fontWeight: '600' }}>{t('Zamienniki')}</Muted>
+    {it.alternates.map(a => { const B = exById(a.exerciseId); const place = locationById(a.locationId); const av = B && place ? availability(B, place) : null;
+      const name = `${locationLabel(a.locationId)}: ${exName(B)}${a.impl ? ` — ${implLabel(a.impl)}` : ''}`; const key = `${locationLabel(a.locationId)} — ${exName(B)}`;
+      return <View key={a.locationId} style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
+        <View style={{ flex: 1 }}><Txt style={{ fontSize: 14 }}>{`📍 ${name}`}</Txt>{av && !av.ok ? <Muted style={{ fontSize: 12, color: th.danger }}>{t('brak sprzętu w: {l}', { l: place!.name })}</Muted> : null}</View>
+        <View style={{ width: 72 }}><NumInput value={a.restSec ?? ''} onNum={v => { a.restSec = v === '' ? null : Math.min(1800, Math.max(0, Math.round(v))); save(tpl); }} placeholder={String(it.restSec ?? restFor(itEx))} accessibilityLabel={t('Przerwa zamiennika (s): {name}', { name: key })} /></View>
+        <Btn title="✕" small kind="ghost" accessibilityLabel={t('Usuń zamiennik: {name}', { name: key })} onPress={() => Alert.alert(t('Usunąć zamiennik?'), name, [{ text: t('Nie') }, { text: t('Usuń'), style: 'destructive', onPress: () => { if (!it.alternates) return; it.alternates = it.alternates.filter(x => x !== a); if (!it.alternates.length) delete it.alternates; save(tpl); } }])} />
+      </View>; })}
+  </View>;
 }
 function Col({ label, a11y, children }: { label: string; /** runda 71: pełna nazwa dla VoiceOver, gdy etykieta jest skrócona */ a11y?: string; children: React.ReactNode }) { return <View style={{ flex: 1, justifyContent: 'flex-end' }} /* runda 69: pola w jednej linii, gdy etykieta zawija się */><Muted style={{ fontSize: 11, marginBottom: 3 }} accessibilityLabel={a11y !== label ? a11y : undefined}>{label}</Muted><FieldLabel.Provider value={a11y ?? label}>{children}</FieldLabel.Provider></View>; }

@@ -279,4 +279,7 @@ export const EN: Record<string, string> = {
   'zamiast: {name}': 'instead of: {name}', 'ostatnio {s}': 'last time {s}', '↺ cofnij': '↺ undo', 'Cofnij zamianę: {name}': 'Undo swap: {name}',
   'Zamień ćwiczenie (brak sprzętu): {name}': 'Swap exercise (missing equipment): {name}', '⇄ zamień': '⇄ swap', 'Zamień ćwiczenie: {name}': 'Swap exercise: {name}',
   'Ten sam ruch, inny przyrząd': 'Same movement, other equipment', 'Inny przyrząd: {impl}': 'Other equipment: {impl}',
+  'przyrząd: {impl}': 'equipment: {impl}', 'Zawsze w: {l}': 'Always at {l}', 'Zawsze w: {l} — {name}': 'Always at {l} — {name}', 'Zapisuje zamiennik w szablonie dla tego miejsca.': 'Saves the substitute in the template for this place.',
+  'Zwykle w: {l} — {name}. Zamienić?': 'Usually at {l} — {name}. Swap?', 'Zamień': 'Swap', 'Zamień na zamiennik: {name}': 'Swap to substitute: {name}', 'Nie zamieniaj: {name}': 'Don’t swap: {name}',
+  'Zamienniki': 'Substitutes', 'Przerwa zamiennika (s): {name}': 'Substitute rest (s): {name}', 'Usuń zamiennik: {name}': 'Remove substitute: {name}', 'Usunąć zamiennik?': 'Remove substitute?',
 };
