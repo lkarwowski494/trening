@@ -10,12 +10,15 @@ name: Kolejność ćwiczeń
 - runFlow: subflows/szablon-testowy.yaml
 - tapOn: "Start: Upper A"
 - extendedWaitUntil: { visible: "Set 1 done.*", timeout: 30000 }
+# centerElement: od E2 bloki są wyższe („⇄ swap”) i przycisk zatrzymywał się pod paskiem zakładek — stuknięcie trafiało
+# w zakładkę More (run 37195812733, zrzut kroku 36).
 - scrollUntilVisible:
     element: "Reorder exercises"
     direction: DOWN
     timeout: 30000
+    centerElement: true
 - tapOn: "Reorder exercises"
-- assertVisible: "Exercise order"
+- extendedWaitUntil: { visible: "Exercise order", timeout: 30000 }
 - takeScreenshot: 07-kolejnosc
 - scrollUntilVisible: { element: "Done", direction: DOWN, timeout: 60000 }
 - tapOn: "Done"
