@@ -113,3 +113,24 @@ describe('D6 — ekrany', () => {
     void pressAlert;
   });
 });
+
+describe('D6 — audyt różnicy E2 (04.10.2026)', () => {
+  test('M1: trening wstecz z szablonu — po przepięciu na B, które jest też własną pozycją szablonu, wartości z „Poprzednio” B (reguła pkt 3.6), nie puste', async () => {
+    await fresh(); const tpl = store.newTemplate(); tpl.name = 'T';
+    tpl.items.push({ id: 'x', exerciseId: ex(BP).id, sets: 2, repMin: 5, repMax: 5, restSec: null, startWeight: '', targetSec: '', groupId: null }, { id: 'y', exerciseId: ex(DB).id, sets: 1, repMin: 10, repMax: 10, restSec: null, startWeight: '', targetSec: '', groupId: null }); store.save(tpl);
+    const w = addWorkout(day(5), [[BP, [{ weight: 80, reps: 5 }]], [DB, [{ weight: 24, reps: 10 }]]]); w.templateId = tpl.id; w.exercises[0].tplItemId = 'x'; w.exercises[1].tplItemId = 'y'; store.save();
+    const d = edit.beginPast(tpl.id, day(1), day(1) + 3600e3); const b = d.w.exercises[0]; expect(b.sets.map(s => s.weight)).toEqual([80, 80]);
+    edit.draftSwapExercise(d.key, b.id, ex(DB).id); expect(b.sets.map(s => s.weight)).toEqual([24, 24]);
+  });
+  test('M2: „↺ przywróć” działa, gdy oryginał jest zarchiwizowany (H11)', async () => {
+    await fresh(); const w = addWorkout(day(3), [[BP, [{ weight: 60, reps: 5 }]]]); store.deleteExercise(ex(BP).id); expect(ex(BP).archived).toBe(true);
+    const d = edit.beginEdit(w.id)!; const b = d.w.exercises[0]; expect(edit.draftSwapExercise(d.key, b.id, ex(DB).id)).toBe(true);
+    expect(edit.canRestoreExercise(d, b)).toBe(true); edit.draftRestoreExercise(d.key, b.id); expect(b.exerciseId).toBe(ex(BP).id);
+  });
+  test('L2: trening wstecz — wstrzymanie ciężaru spoza listy (M3) wg przyrządu wybranego ręcznie (P5b)', async () => {
+    await fresh(); const s = store.getState().settings; s.locations = [userHome(TREXO), loc('Siłownia', presetEquipment('gym'), 'gym')]; s.mainLocationId = 'home';
+    const g = addWorkout(day(5), [['RDL (hantle/linki)', [{ weight: 40, reps: 10 }]]]); g.locationId = 'gym'; g.exercises[0].impl = 'electric'; store.save();
+    const d = edit.beginPast(null, day(1), day(1) + 3600e3); edit.draftAddExercise(d.key, ex('RDL (hantle/linki)')); const b = d.w.exercises[0];
+    edit.draftSetImpl(d.key, b.id, 'electric'); expect(b.sets[0].weight).toBe(40); /* 40 kg/str. jest na stacji w Domu — nie wstrzymane, choć hantli 40 nie ma */
+  });
+});

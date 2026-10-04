@@ -373,3 +373,12 @@ Decyzje implementacyjne (bez wpływu na zachowanie opisane wyżej; do wglądu):
 - Zamiana na ćwiczenie równe oryginałowi (`swappedFrom`) usuwa `swappedFrom` (to powrót, nie zamiana); „cofnij” jest ukryte także, gdy oryginał jest zarchiwizowany (usunięty z biblioteki w trakcie treningu).
 - Cel czasu pozycji szablonu przy zamianie trafia do serii poza rozgrzewką (jak w „Powtórz ostatni”); przy cofnięciu do A w miejscu — także ciężar startowy pozycji (gdy A nie ma historii), jak przy starcie.
 
+### Audyt różnicy E2 (04.10.2026, niezależny subagent; `feature/e2-swap` względem 51bfbcd)
+
+Wynik: **0 wysokich, 2 średnie, 2 niskie** — wszystkie naprawione, każde z testem odtwarzającym (czerwony przed poprawką).
+- **M1** (D6): trening wstecz z szablonu — po przepięciu na B, które jest też własną pozycją szablonu, serie B puste. `previousBlockBefore` nie dostawał `swapped` z `lib/edit.ts` (reguła pkt 3.6 martwa w edytorze). Poprawka: `prefillSrc` przekazuje `!!e.swappedFrom`. Test: `tests/swap-history.test.tsx` „M1: …”.
+- **M2** (D6): „↺ przywróć: A” przy zarchiwizowanym A nic nie robiło (`swapTargetOk` odrzuca archiwum). Poprawka: przywrócenie dopuszcza zarchiwizowany oryginał (H11). Test „M2: …”.
+- **L1** (W1): po A→B w miejscu i B→C z podziałem „cofnij” C scalało z blokiem B, choć linijka mówi „zamiast: A”. Poprawka: scalenie z blokiem podziału tylko, gdy to oryginał; inaczej cofnięcie w miejscu do A. Test: `tests/swap-logic.test.ts` „L1: …”.
+- **L2** (P5b): trening wstecz — wstrzymanie ciężaru spoza listy (M3) liczone wg domyślnego przyrządu zamiast wybranego ręcznie. Poprawka: `offListAt(…, pinnedImpl(e))` w `prefillFor`. Test „L2: …”.
+- Drobiazg bez zmiany: picker z celem `swap:edit` nie pokazuje „Przywróć …” dla zarchiwizowanych ćwiczeń (cel `swap:active` pokazuje) — niespójność, nie błąd; do decyzji przy kolejnej rundzie.
+

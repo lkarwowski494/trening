@@ -306,3 +306,14 @@ describe('D5: inny przyrząd', () => {
     store.repeatLast(); expect(getState().active!.locationId).toBe('gym'); expect(blk(0).impl).toBe('dumbbell'); expect(blk(0).implPinned).toBeUndefined();
   });
 });
+
+describe('W1 — audyt różnicy E2 (04.10.2026)', () => {
+  beforeEach(places);
+  test('L1: A→B w miejscu, potem B→C z podziałem — „cofnij” C wraca do A (oryginał z linijki „zamiast”), nie do B', () => {
+    workout([['Bench Press (sztanga)', ['normal', 'normal', 'normal']]], 'gym');
+    store.swapBlock(blk(0).id, ex('Bench Press (hantle)').id); tick(0, 0, { weight: 20, reps: 10 });
+    store.swapBlock(blk(0).id, ex('Machine Chest Press').id); const C = blk(1); expect(C.swappedFrom).toBe(ex('Bench Press (sztanga)').id);
+    store.undoSwap(C.id);
+    expect(getState().active!.exercises.map(e => [e.exerciseId, e.sets.length])).toEqual([[ex('Bench Press (hantle)').id, 1], [ex('Bench Press (sztanga)').id, 2]]);
+  });
+});

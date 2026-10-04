@@ -1,5 +1,5 @@
 import { useSyncExternalStore } from 'react';
-import { getState, exById, isBW, restFor, occurrence, occurrences, normalizeGroups, assistLost, emptySet, copyVals, stripUnused, previousBlockBefore, offListAt, offListNote, srcSetAt, prevFromOther, startLocationId, stampImpl, setHasResult, putHistoryWorkout, loadOf, writeLoad, localISODate, clampName, NAME_MAX, locationById } from './store';
+import { getState, exById, isBW, restFor, occurrence, occurrences, normalizeGroups, assistLost, emptySet, copyVals, stripUnused, previousBlockBefore, offListAt, offListNote, srcSetAt, prevFromOther, startLocationId, stampImpl, setHasResult, putHistoryWorkout, loadOf, writeLoad, pinnedImpl, localISODate, clampName, NAME_MAX, locationById } from './store';
 import { implsAt, loadKindsFor } from './equipment';
 import { base, uid, hasTime, hasReps, hasWeight, type Exercise, type Impl, type Workout, type WExercise, type WSet } from './seed';
 import { t } from './i18n';
@@ -107,7 +107,7 @@ function prefillFor(d: Draft, e: WExercise, before: number): ((i: number) => { s
   /* tylko źródło „gdzie indziej” (znane, inne miejsce albo znany, inny przyrząd; treningi bez miejsca — nie); weryfikacja integracji (LOW2): i tylko,
    * gdy sesja daje wartości — sesja z samymi drop setami nie jest źródłem, więc nie wstrzymuje ciężaru startowego szablonu (jak startFromTemplate) */
   const away = !!(src.length && prevFromOther(p, ex.id, loc, e.impl));
-  const at = (s: WSet) => ({ s, off: away && offListAt(ex, loc, s.weight) });
+  const at = (s: WSet) => ({ s, off: away && offListAt(ex, loc, s.weight, pinnedImpl(e)) }); /* E2 (audyt L2): przyrząd wybrany ręcznie (P5b) */
   return it ? (i => at(prefill(ex, srcOf(i), it.startWeight, it.targetSec, it.repMin))) : (i => at(prefill(ex, srcOf(i))));
 }
 /** Źródło wartości bloku przy danej dacie (wspólne dla prefillFor i dopisku prefilledOffList — runda 82b): sesja „Poprzednio” `p`, jej serie bez
@@ -118,7 +118,7 @@ function prefillSrc(d: Draft, e: WExercise, before: number) {
   const it = tpl && e.tplItemId ? tpl.items.find(x => x.id === e.tplItemId && x.exerciseId === e.exerciseId) : undefined;
   const ii = it && tpl ? tpl.items.indexOf(it) : -1; const ei = w.exercises.indexOf(e);
   const p = it && tpl ? previousBlockBefore(ex.id, before, occurrence(tpl.items, ii), occurrences(tpl.items, ex.id), it.id, tpl.id, d.sourceId, impl)
-    : previousBlockBefore(ex.id, before, occurrence(w.exercises, ei), occurrences(w.exercises, ex.id), e.tplItemId, w.templateId, d.sourceId, impl);
+    : previousBlockBefore(ex.id, before, occurrence(w.exercises, ei), occurrences(w.exercises, ex.id), e.tplItemId, w.templateId, d.sourceId, impl, !!e.swappedFrom); /* E2 pkt 3.6 (audyt M1): zamiennik — najpierw B z tej pozycji szablonu */
   const src = p ? p.sets.filter(x => x.kind !== 'drop') : []; /* jak startFromTemplate: drop sety nie są źródłem zwykłych serii */
   const srcOf = (i: number): WSet | null => srcSetAt(src, i, !!it); /* runda 82c: to samo mapowanie co start z szablonu i ekran treningu */
   return { ex, p, src, it, srcOf };
@@ -197,8 +197,8 @@ export function draftRemoveExercise(key: string, blockId: string) {
 }
 /* ---------- E2 D6: zamiana w edytorze historii — poprawka „zapisałem serie pod złym ćwiczeniem” (docs/14 pkt 5) ---------- */
 /** H3: tylko ta sama miara (pola serii muszą pasować); blok usuniętego ćwiczenia — dowolne. Zarchiwizowane i to samo ćwiczenie — nie. */
-export function swapTargetOk(_d: Draft, e: WExercise, b: Exercise | undefined): boolean {
-  const a = exById(e.exerciseId); return !!b && !b.archived && b.id !== e.exerciseId && (!a || (a.metric ?? 'weight_reps') === (b.metric ?? 'weight_reps'));
+export function swapTargetOk(_d: Draft, e: WExercise, b: Exercise | undefined, allowArchived = false): boolean {
+  const a = exById(e.exerciseId); return !!b && (allowArchived || !b.archived) && b.id !== e.exerciseId && (!a || (a.metric ?? 'weight_reps') === (b.metric ?? 'weight_reps'));
 }
 const lastAt = (d: Draft) => currentStart(d) ?? d.prefillAt;
 /**
@@ -208,8 +208,8 @@ const lastAt = (d: Draft) => currentStart(d) ?? d.prefillAt;
  * z pozycji szablonu — A; powrót do swappedFrom go usuwa. H7: wartości wstawione przez aplikację (trening wstecz) i nieruszone liczą się od nowa
  * z historii B sprzed daty. Zwraca false, gdy przepięcie niedozwolone.
  */
-export function draftSwapExercise(key: string, blockId: string, toId: string): boolean {
-  const d = drafts.get(key); const e = d?.w.exercises.find(x => x.id === blockId); const b = exById(toId); if (!d || !e || !b || !swapTargetOk(d, e, b)) return false;
+export function draftSwapExercise(key: string, blockId: string, toId: string, allowArchived = false): boolean {
+  const d = drafts.get(key); const e = d?.w.exercises.find(x => x.id === blockId); const b = exById(toId); if (!d || !e || !b || !swapTargetOk(d, e, b, allowArchived)) return false;
   const a = exById(e.exerciseId); const from = e.exerciseId;
   if (a && isBW(a) !== isBW(b)) for (const s of e.sets) {
     const raw = loadOf(a, s).raw; const v = raw !== '' && !isBW(b) && raw < 0 ? '' : raw; writeLoad(b, s, v); if (!isBW(b) && v === '') s.weight = '';
@@ -225,7 +225,7 @@ export function canRestoreExercise(d: Draft, e: WExercise): boolean {
 }
 export function draftRestoreExercise(key: string, blockId: string) {
   const d = drafts.get(key); const e = d?.w.exercises.find(x => x.id === blockId); const o = d && e ? d.origEx[e.id] : undefined; if (!d || !e || !o || !canRestoreExercise(d, e)) return;
-  if (o.exerciseId !== e.exerciseId && !draftSwapExercise(key, blockId, o.exerciseId)) return;
+  if (o.exerciseId !== e.exerciseId && !draftSwapExercise(key, blockId, o.exerciseId, true /* audyt M2: oryginał bywa zarchiwizowany (H11) */)) return;
   for (const k of ['swappedFrom', 'impl', 'implPinned'] as const) { if (o[k] === undefined) delete e[k]; else (e as any)[k] = o[k]; }
   refill(d, lastAt(d), false, e); touchDraft();
 }

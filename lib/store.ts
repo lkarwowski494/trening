@@ -892,7 +892,8 @@ export function undoSwap(blockId: string): { goneSetIds: string[] } | null {
   const a = getState().active; const ei = a ? a.exercises.findIndex(x => x.id === blockId) : -1; if (!a || ei < 0) return null;
   const B = a.exercises[ei]; if (!canUndoSwap(B)) return null;
   const gone = B.sets.map(x => x.id); const kinds = B.sets.map(x => x.kind);
-  const P = B.splitFrom ? a.exercises.find(x => x.id === B.splitFrom && x.id !== B.id) : undefined; const exP = P ? exById(P.exerciseId) : undefined;
+  /* audyt L1: scalenie z blokiem podziału tylko, gdy to oryginał (A) — po A→B w miejscu i B→C z podziałem C wraca do A, jak obiecuje „zamiast: A” */
+  const P = B.splitFrom ? a.exercises.find(x => x.id === B.splitFrom && x.id !== B.id && x.exerciseId === B.swappedFrom) : undefined; const exP = P ? exById(P.exerciseId) : undefined;
   if (P && exP) {
     a.exercises.splice(ei, 1); normalizeGroups(a.exercises);
     const from = P.sets.filter(x => x.kind !== 'warmup' && x.kind !== 'drop').length;
