@@ -438,7 +438,7 @@
   "pattern": "hinge",
   "alternativesNote": "RDL (sztanga), Good Morning, Back Extension",
   "confidence": "medium",
-  "note": "Name allows two implements: dumbbells OR a low pulley (bar/handles). loadSource follows app class (dumbbell); the cable variant would be 'cable'.",
+  "note": "Two hands: two dumbbells OR two low cables / a bar on one low cable (cables: 2 = on a two-cable station). One-hand version: Single Arm RDL (hantel/linka) (owner decision 04.10.2026).",
   "muscleLoad": {
    "hamstrings": 1,
    "glutes": 0.5,
@@ -447,7 +447,7 @@
    "forearms": 0.25,
    "adductors": 0.25
   },
-  "cables": 1
+  "cables": 2
  },
  {
   "name": "Bent Over Row (sztanga)",
@@ -632,7 +632,7 @@
   "pattern": "h_pull",
   "alternativesNote": "One Arm Row (hantle), Bent Over Row, row_machine",
   "confidence": "high",
-  "note": "PL: seated cable row - duplicates 'Seated Cable Row'. Same requirements.",
+  "note": "PL: seated cable row with two hands on two cables (owner station); one-hand version: Single Arm Cable Row (owner decision 04.10.2026).",
   "muscleLoad": {
    "lats": 1,
    "upper_back": 1,
@@ -641,7 +641,7 @@
    "forearms": 0.25,
    "lower_back": 0.25
   },
-  "cables": 1
+  "cables": 2
  },
  {
   "name": "Lat Pulldown",
@@ -5688,9 +5688,11 @@
   "metric": "time",
   "loadMode": "total",
   "muscles": [
+   "przywodziciele"
+  ],
+  "secondaryMuscles": [
    "core"
   ],
-  "secondaryMuscles": [],
   "requires": [
    [
     "bench.flat",
@@ -5703,11 +5705,11 @@
   "loadSource": "bodyweight",
   "pattern": "core_other",
   "muscleLoad": {
-   "obliques": 1,
-   "adductors": 0.5
+   "adductors": 1,
+   "obliques": 0.5
   },
   "confidence": "medium",
-  "note": "Top leg on a bench or box; adductors have no coarse muscle, so only core is listed."
+  "note": "Top leg on a bench or box; primarily adductors (coarse muscle przywodziciele since 04.10.2026 b)."
  },
  {
   "name": "Decline Crunch",
@@ -6372,5 +6374,659 @@
   },
   "confidence": "high",
   "note": "Plyometric, no equipment (like Box Jump)."
+ },
+ {
+  "name": "Single Arm RDL (hantel/linka)",
+  "group": "plecy",
+  "equipment": "hantle",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "unilateral",
+  "muscles": [
+   "dwugłowe"
+  ],
+  "secondaryMuscles": [
+   "pośladki",
+   "plecy"
+  ],
+  "requires": [
+   [
+    "db",
+    "cable.low"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "dumbbell",
+  "pattern": "hinge",
+  "implements": 1,
+  "cables": 1,
+  "note": "Both feet down, one dumbbell or one low cable (owner decision 04.10.2026: one-hand and two-hand RDL are separate exercises).",
+  "muscleLoad": {
+   "hamstrings": 1,
+   "glutes": 0.5,
+   "lower_back": 0.5,
+   "obliques": 0.25,
+   "forearms": 0.25,
+   "adductors": 0.25
+  },
+  "confidence": "high",
+  "added": "katalog-2026-10-04b"
+ },
+ {
+  "name": "Cable Hip Adduction",
+  "group": "pośladki",
+  "equipment": "linki",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "unilateral",
+  "muscles": [
+   "przywodziciele"
+  ],
+  "secondaryMuscles": [],
+  "requires": [
+   [
+    "cable.low"
+   ]
+  ],
+  "recommended": [
+   "ankle_strap"
+  ],
+  "loadSource": "cable",
+  "pattern": "isolation",
+  "cables": 1,
+  "note": "Standing, ankle strap (or a handle around the ankle) on a low pulley — strap only recommended, like Cable Kickback.",
+  "muscleLoad": {
+   "adductors": 1,
+   "obliques": 0.25
+  },
+  "confidence": "high",
+  "added": "katalog-2026-10-04b"
+ },
+ {
+  "name": "Machine Row",
+  "group": "plecy",
+  "equipment": "maszyna",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "total",
+  "muscles": [
+   "plecy"
+  ],
+  "secondaryMuscles": [
+   "biceps"
+  ],
+  "requires": [
+   [
+    "row_machine"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "machine_stack",
+  "pattern": "h_pull",
+  "note": "Chest-supported seated row machine (stack or plate-loaded).",
+  "muscleLoad": {
+   "lats": 1,
+   "upper_back": 1,
+   "rear_delt": 0.5,
+   "biceps": 0.5,
+   "forearms": 0.25
+  },
+  "confidence": "high",
+  "added": "katalog-2026-10-04b"
+ },
+ {
+  "name": "Machine Pullover",
+  "group": "plecy",
+  "equipment": "maszyna",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "total",
+  "muscles": [
+   "plecy"
+  ],
+  "secondaryMuscles": [],
+  "requires": [
+   [
+    "pullover_machine"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "machine_stack",
+  "pattern": "isolation",
+  "muscleLoad": {
+   "lats": 1,
+   "chest": 0.25,
+   "triceps": 0.25
+  },
+  "confidence": "high",
+  "note": "",
+  "added": "katalog-2026-10-04b"
+ },
+ {
+  "name": "Machine Crunch",
+  "group": "core",
+  "equipment": "maszyna",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "total",
+  "muscles": [
+   "core"
+  ],
+  "secondaryMuscles": [],
+  "requires": [
+   [
+    "ab_crunch_machine"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "machine_stack",
+  "pattern": "core_flexion",
+  "muscleLoad": {
+   "abs": 1,
+   "obliques": 0.25
+  },
+  "confidence": "high",
+  "note": "",
+  "added": "katalog-2026-10-04b"
+ },
+ {
+  "name": "Machine Biceps Curl",
+  "group": "biceps",
+  "equipment": "maszyna",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "total",
+  "muscles": [
+   "biceps"
+  ],
+  "secondaryMuscles": [],
+  "requires": [
+   [
+    "biceps_curl_machine"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "machine_stack",
+  "pattern": "isolation",
+  "muscleLoad": {
+   "biceps": 1,
+   "forearms": 0.25
+  },
+  "confidence": "high",
+  "note": "",
+  "added": "katalog-2026-10-04b"
+ },
+ {
+  "name": "Machine Triceps Extension",
+  "group": "triceps",
+  "equipment": "maszyna",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "total",
+  "muscles": [
+   "triceps"
+  ],
+  "secondaryMuscles": [],
+  "requires": [
+   [
+    "triceps_ext_machine"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "machine_stack",
+  "pattern": "isolation",
+  "muscleLoad": {
+   "triceps": 1
+  },
+  "confidence": "high",
+  "note": "",
+  "added": "katalog-2026-10-04b"
+ },
+ {
+  "name": "Machine Lateral Raise",
+  "group": "barki",
+  "equipment": "maszyna",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "total",
+  "muscles": [
+   "barki"
+  ],
+  "secondaryMuscles": [],
+  "requires": [
+   [
+    "lateral_raise_machine"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "machine_stack",
+  "pattern": "isolation",
+  "muscleLoad": {
+   "side_delt": 1,
+   "upper_back": 0.25
+  },
+  "confidence": "high",
+  "note": "",
+  "added": "katalog-2026-10-04b"
+ },
+ {
+  "name": "Machine Glute Kickback",
+  "group": "pośladki",
+  "equipment": "maszyna",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "unilateral",
+  "muscles": [
+   "pośladki"
+  ],
+  "secondaryMuscles": [],
+  "requires": [
+   [
+    "glute_kickback_machine"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "machine_stack",
+  "pattern": "isolation",
+  "muscleLoad": {
+   "glutes": 1,
+   "hamstrings": 0.25
+  },
+  "confidence": "high",
+  "note": "",
+  "added": "katalog-2026-10-04b"
+ },
+ {
+  "name": "Machine Hip Thrust",
+  "group": "pośladki",
+  "equipment": "maszyna",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "total",
+  "muscles": [
+   "pośladki"
+  ],
+  "secondaryMuscles": [],
+  "requires": [
+   [
+    "hip_thrust_machine"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "plate_loaded_machine",
+  "pattern": "hinge",
+  "muscleLoad": {
+   "glutes": 1,
+   "hamstrings": 0.25,
+   "quads": 0.25
+  },
+  "confidence": "high",
+  "note": "",
+  "added": "katalog-2026-10-04b"
+ },
+ {
+  "name": "Belt Squat Machine",
+  "group": "nogi",
+  "equipment": "maszyna",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "total",
+  "muscles": [
+   "czworogłowe"
+  ],
+  "secondaryMuscles": [
+   "pośladki"
+  ],
+  "requires": [
+   [
+    "belt_squat_machine"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "plate_loaded_machine",
+  "pattern": "squat",
+  "muscleLoad": {
+   "quads": 1,
+   "glutes": 0.5,
+   "adductors": 0.5,
+   "hamstrings": 0.25
+  },
+  "confidence": "high",
+  "note": "",
+  "added": "katalog-2026-10-04b"
+ },
+ {
+  "name": "Pendulum Squat",
+  "group": "nogi",
+  "equipment": "maszyna",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "total",
+  "muscles": [
+   "czworogłowe"
+  ],
+  "secondaryMuscles": [
+   "pośladki"
+  ],
+  "requires": [
+   [
+    "pendulum_squat"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "plate_loaded_machine",
+  "pattern": "squat",
+  "muscleLoad": {
+   "quads": 1,
+   "glutes": 0.5,
+   "adductors": 0.25
+  },
+  "confidence": "high",
+  "note": "",
+  "added": "katalog-2026-10-04b"
+ },
+ {
+  "name": "Reverse Hyperextension",
+  "group": "pośladki",
+  "equipment": "maszyna",
+  "bandAssistable": false,
+  "metric": "weight_reps",
+  "loadMode": "total",
+  "muscles": [
+   "pośladki"
+  ],
+  "secondaryMuscles": [
+   "dwugłowe",
+   "plecy"
+  ],
+  "requires": [
+   [
+    "reverse_hyper"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "plate_loaded_machine",
+  "pattern": "hinge",
+  "muscleLoad": {
+   "glutes": 1,
+   "hamstrings": 0.5,
+   "lower_back": 0.5
+  },
+  "confidence": "high",
+  "note": "",
+  "added": "katalog-2026-10-04b"
+ },
+ {
+  "name": "Sled Push",
+  "group": "nogi",
+  "equipment": "inne",
+  "bandAssistable": false,
+  "metric": "weight_time",
+  "loadMode": "total",
+  "muscles": [
+   "czworogłowe"
+  ],
+  "secondaryMuscles": [
+   "pośladki",
+   "łydki"
+  ],
+  "requires": [
+   [
+    "sled"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "none",
+  "pattern": "other",
+  "note": "Weight = plates on the sled; time per push.",
+  "muscleLoad": {
+   "quads": 1,
+   "glutes": 0.5,
+   "calves": 0.5,
+   "front_delt": 0.25,
+   "triceps": 0.25,
+   "abs": 0.25
+  },
+  "confidence": "high",
+  "added": "katalog-2026-10-04b"
+ },
+ {
+  "name": "Battle Ropes",
+  "group": "cardio",
+  "equipment": "inne",
+  "bandAssistable": false,
+  "metric": "time",
+  "loadMode": "total",
+  "muscles": [
+   "barki"
+  ],
+  "secondaryMuscles": [
+   "przedramiona",
+   "core"
+  ],
+  "requires": [
+   [
+    "battle_ropes"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "none",
+  "pattern": "cardio",
+  "muscleLoad": {
+   "front_delt": 1,
+   "side_delt": 0.5,
+   "forearms": 0.5,
+   "abs": 0.5,
+   "upper_back": 0.25
+  },
+  "confidence": "high",
+  "note": "",
+  "added": "katalog-2026-10-04b"
+ },
+ {
+  "name": "Stair Climber",
+  "group": "cardio",
+  "equipment": "maszyna",
+  "bandAssistable": false,
+  "metric": "time",
+  "loadMode": "total",
+  "muscles": [],
+  "secondaryMuscles": [],
+  "requires": [
+   [
+    "cardio.stair"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "none",
+  "pattern": "cardio",
+  "muscleLoad": {
+   "quads": 0.5,
+   "glutes": 0.5,
+   "calves": 0.5,
+   "hamstrings": 0.25
+  },
+  "confidence": "high",
+  "note": "",
+  "added": "katalog-2026-10-04b"
+ },
+ {
+  "name": "Orbitrek",
+  "group": "cardio",
+  "equipment": "maszyna",
+  "bandAssistable": false,
+  "metric": "distance_time",
+  "loadMode": "total",
+  "muscles": [],
+  "secondaryMuscles": [],
+  "requires": [
+   [
+    "cardio.elliptical"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "none",
+  "pattern": "cardio",
+  "muscleLoad": {
+   "quads": 0.5,
+   "glutes": 0.5,
+   "hamstrings": 0.25,
+   "calves": 0.25,
+   "front_delt": 0.25,
+   "upper_back": 0.25
+  },
+  "confidence": "high",
+  "note": "",
+  "added": "katalog-2026-10-04b"
+ },
+ {
+  "name": "Ski Erg",
+  "group": "cardio",
+  "equipment": "maszyna",
+  "bandAssistable": false,
+  "metric": "distance_time",
+  "loadMode": "total",
+  "muscles": [],
+  "secondaryMuscles": [],
+  "requires": [
+   [
+    "cardio.ski"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "none",
+  "pattern": "cardio",
+  "muscleLoad": {
+   "lats": 0.5,
+   "triceps": 0.5,
+   "abs": 0.5,
+   "upper_back": 0.25,
+   "glutes": 0.25,
+   "front_delt": 0.25
+  },
+  "confidence": "high",
+  "note": "",
+  "added": "katalog-2026-10-04b"
+ },
+ {
+  "name": "Stability Ball Crunch",
+  "group": "core",
+  "equipment": "inne",
+  "bandAssistable": false,
+  "metric": "reps",
+  "loadMode": "total",
+  "muscles": [
+   "core"
+  ],
+  "secondaryMuscles": [],
+  "requires": [
+   [
+    "stability_ball"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "none",
+  "pattern": "core_flexion",
+  "muscleLoad": {
+   "abs": 1,
+   "obliques": 0.25
+  },
+  "confidence": "high",
+  "note": "",
+  "added": "katalog-2026-10-04b"
+ },
+ {
+  "name": "Stability Ball Hamstring Curl",
+  "group": "nogi",
+  "equipment": "inne",
+  "bandAssistable": false,
+  "metric": "reps",
+  "loadMode": "total",
+  "muscles": [
+   "dwugłowe"
+  ],
+  "secondaryMuscles": [
+   "pośladki"
+  ],
+  "requires": [
+   [
+    "stability_ball"
+   ]
+  ],
+  "recommended": [
+   "floor_mat"
+  ],
+  "loadSource": "none",
+  "pattern": "isolation",
+  "muscleLoad": {
+   "hamstrings": 1,
+   "glutes": 0.5,
+   "lower_back": 0.25
+  },
+  "confidence": "high",
+  "note": "",
+  "added": "katalog-2026-10-04b"
+ },
+ {
+  "name": "Slider Hamstring Curl",
+  "group": "nogi",
+  "equipment": "inne",
+  "bandAssistable": false,
+  "metric": "reps",
+  "loadMode": "total",
+  "muscles": [
+   "dwugłowe"
+  ],
+  "secondaryMuscles": [
+   "pośladki"
+  ],
+  "requires": [
+   [
+    "sliders"
+   ]
+  ],
+  "recommended": [
+   "floor_mat"
+  ],
+  "loadSource": "none",
+  "pattern": "isolation",
+  "muscleLoad": {
+   "hamstrings": 1,
+   "glutes": 0.5,
+   "lower_back": 0.25
+  },
+  "confidence": "high",
+  "note": "",
+  "added": "katalog-2026-10-04b"
+ },
+ {
+  "name": "Slider Reverse Lunge",
+  "group": "nogi",
+  "equipment": "inne",
+  "bandAssistable": false,
+  "metric": "reps",
+  "loadMode": "unilateral",
+  "muscles": [
+   "czworogłowe",
+   "pośladki"
+  ],
+  "secondaryMuscles": [],
+  "requires": [
+   [
+    "sliders"
+   ]
+  ],
+  "recommended": [],
+  "loadSource": "none",
+  "pattern": "lunge_single_leg",
+  "muscleLoad": {
+   "quads": 1,
+   "glutes": 1,
+   "adductors": 0.25,
+   "hamstrings": 0.25
+  },
+  "confidence": "high",
+  "note": "",
+  "added": "katalog-2026-10-04b"
  }
 ]

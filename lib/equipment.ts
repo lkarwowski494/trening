@@ -42,6 +42,15 @@ export const CAP_LABEL: Record<string, L> = {
   'suspension': { pl: 'taśmy TRX', en: 'suspension trainer' }, 't_bar': { pl: 'T-bar', en: 'T-bar' }, 'trap_bar': { pl: 'trap bar', en: 'trap bar' },
   'bands': { pl: 'gumy', en: 'bands' }, 'cable.rope': { pl: 'lina do wyciągu', en: 'cable rope' }, 'ankle_strap': { pl: 'opaski na kostki', en: 'ankle straps' },
   'cable.handles': { pl: 'uchwyty do linek', en: 'cable handles' },
+  /* decyzja właściciela 04.10.2026 (wieczór): brakujący sprzęt i ćwiczenia */
+  'row_machine': { pl: 'maszyna do wiosłowania', en: 'row machine' }, 'pullover_machine': { pl: 'maszyna pullover', en: 'pullover machine' },
+  'ab_crunch_machine': { pl: 'maszyna do brzucha', en: 'ab crunch machine' }, 'biceps_curl_machine': { pl: 'maszyna do bicepsa', en: 'biceps curl machine' },
+  'triceps_ext_machine': { pl: 'maszyna do tricepsa', en: 'triceps extension machine' }, 'lateral_raise_machine': { pl: 'maszyna do wznosów bokiem', en: 'lateral raise machine' },
+  'glute_kickback_machine': { pl: 'maszyna do wykopów (pośladki)', en: 'glute kickback machine' }, 'hip_thrust_machine': { pl: 'maszyna do hip thrustu', en: 'hip thrust machine' },
+  'belt_squat_machine': { pl: 'maszyna belt squat', en: 'belt squat machine' }, 'pendulum_squat': { pl: 'pendulum squat', en: 'pendulum squat' },
+  'reverse_hyper': { pl: 'reverse hyper', en: 'reverse hyper' }, 'sled': { pl: 'sanki', en: 'sled' }, 'battle_ropes': { pl: 'liny bojowe', en: 'battle ropes' },
+  'cardio.stair': { pl: 'stepper schodowy', en: 'stair climber' }, 'cardio.elliptical': { pl: 'orbitrek', en: 'elliptical' }, 'cardio.ski': { pl: 'ski erg', en: 'ski erg' },
+  'stability_ball': { pl: 'piłka gimnastyczna', en: 'stability ball' }, 'sliders': { pl: 'ślizgacze', en: 'sliders' },
 };
 export const capLabel = (c: string) => { const l = Object.prototype.hasOwnProperty.call(CAP_LABEL, c) ? CAP_LABEL[c] : undefined; return l ? (lang() === 'en' ? l.en : l.pl) : c; };
 
@@ -115,15 +124,34 @@ export const EQUIPMENT: readonly EquipItem[] = [
   it('hip_abd_add', 'machines', 'Maszyna do odwodzenia / przywodzenia', 'Hip abductor / adductor', ['hip_abductor_adductor'], { load: 'machine', defaultLoad: 'list' }),
   it('calf_machine', 'machines', 'Maszyna do łydek', 'Calf machine', ['calf_machine'], { load: 'machine', defaultLoad: 'list' }),
   it('t_bar', 'machines', 'Wiosłowanie T-bar', 'T-bar row', ['t_bar'], { load: 'machine', defaultLoad: 'list' }),
+  /* decyzja właściciela 04.10.2026 (wieczór): brakujący sprzęt */
+  it('row_machine', 'machines', 'Maszyna do wiosłowania (siedząc)', 'Seated row machine', ['row_machine'], { load: 'machine', defaultLoad: 'list' }),
+  it('pullover_machine', 'machines', 'Maszyna pullover', 'Pullover machine', ['pullover_machine'], { load: 'machine', defaultLoad: 'list' }),
+  it('ab_crunch_machine', 'machines', 'Maszyna do brzucha (spięcia)', 'Ab crunch machine', ['ab_crunch_machine'], { load: 'machine', defaultLoad: 'list' }),
+  it('biceps_curl_machine', 'machines', 'Maszyna do uginania ramion (biceps)', 'Biceps curl machine', ['biceps_curl_machine'], { load: 'machine', defaultLoad: 'list' }),
+  it('triceps_ext_machine', 'machines', 'Maszyna do prostowania ramion (triceps)', 'Triceps extension machine', ['triceps_ext_machine'], { load: 'machine', defaultLoad: 'list' }),
+  it('lateral_raise_machine', 'machines', 'Maszyna do wznosów bokiem', 'Lateral raise machine', ['lateral_raise_machine'], { load: 'machine', defaultLoad: 'list' }),
+  it('glute_kickback_machine', 'machines', 'Maszyna do wykopów nogą w tył (pośladki)', 'Glute kickback machine', ['glute_kickback_machine'], { load: 'machine', defaultLoad: 'list' }),
+  it('hip_thrust_machine', 'machines', 'Maszyna do hip thrustu', 'Hip thrust machine', ['hip_thrust_machine'], { load: 'machine', defaultLoad: 'list' }),
+  it('belt_squat', 'machines', 'Maszyna do przysiadów z pasem (belt squat)', 'Belt squat machine', ['belt_squat_machine'], { load: 'machine', defaultLoad: 'list' }),
+  it('pendulum_squat', 'machines', 'Pendulum squat', 'Pendulum squat machine', ['pendulum_squat'], { load: 'machine', defaultLoad: 'list' }),
+  it('reverse_hyper', 'machines', 'Reverse hyper (odwrotne hiperekstensje)', 'Reverse hyper machine', ['reverse_hyper'], { load: 'machine', defaultLoad: 'list' }),
   /* akcesoria */
   it('bands', 'accessories', 'Gumy oporowe', 'Resistance bands', ['bands']),
   it('ab_wheel', 'accessories', 'Kółko do brzucha', 'Ab wheel', ['ab_wheel']),
   it('floor_mat', 'accessories', 'Mata', 'Mat', ['floor_mat']),
   it('jump_rope', 'accessories', 'Skakanka', 'Jump rope', ['jump_rope']),
+  it('stability_ball', 'accessories', 'Piłka gimnastyczna (fitball)', 'Stability ball', ['stability_ball']),
+  it('sliders', 'accessories', 'Ślizgacze (slidery)', 'Sliders', ['sliders']),
+  it('sled', 'accessories', 'Sanki (prowler)', 'Sled (prowler)', ['sled']),
+  it('battle_ropes', 'accessories', 'Liny bojowe (battle ropes)', 'Battle ropes', ['battle_ropes']),
   /* cardio */
   it('treadmill', 'cardio', 'Bieżnia', 'Treadmill', ['cardio.treadmill']),
   it('bike', 'cardio', 'Rower stacjonarny / air bike', 'Stationary / air bike', ['cardio.bike']),
   it('rower', 'cardio', 'Wioślarz', 'Rowing machine', ['cardio.rower']),
+  it('stair_climber', 'cardio', 'Stepper schodowy (stair climber)', 'Stair climber', ['cardio.stair']),
+  it('elliptical', 'cardio', 'Orbitrek', 'Elliptical', ['cardio.elliptical']),
+  it('ski_erg', 'cardio', 'Ski erg', 'Ski erg', ['cardio.ski']),
   it('bicycle', 'cardio', 'Rower (jazda na zewnątrz)', 'Bicycle (outdoors)', ['outdoor']),
 ];
 const BY_ID = new Map(EQUIPMENT.map(x => [x.id, x]));

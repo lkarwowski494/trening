@@ -10,9 +10,7 @@ import { fresh } from './helpers';
 
 const lib = () => seedState('pl').exercises;
 /** Wyjątki od reguły „partia główna ↔ region z wagą 1” — tylko tam, gdzie zgrubna partia nie potrafi wyrazić prawdy (z uzasadnieniem). */
-const RULE_EXCEPTIONS: Record<string, string> = {
-  'Hip Adduction': 'przywodziciele nie mają zgrubnej partii; partia z grupy „pośladki” (zapasowa) — pośladki w rzeczywistości 0,25',
-};
+const RULE_EXCEPTIONS: Record<string, string> = {}; /* 04.10 wieczór: Hip Adduction ma partię „przywodziciele” — wyjątków brak */
 
 describe('katalog ćwiczeń — spójność', () => {
   test('każde ćwiczenie biblioteki ma wpis w katalogu i obciążenie partii; nazwy unikalne (bez wielkości liter i polskich znaków), także po angielsku', () => {
@@ -115,5 +113,67 @@ describe('katalog ćwiczeń — audyt 04.10 (znacznik zamiast numeru schematu)',
   test('kopia web 0.3: ćwiczenie własne o nazwie z nowego katalogu nie staje się ćwiczeniem biblioteki', async () => {
     await fresh(); const raw: any = { exercises: [{ id: 'x', name: LIB_EXTRA_NAMES[0], group: 'inne', equipment: 'inne' }], templates: [], workouts: [] };
     const m = store.migrate(raw); expect(m.exercises.find(e => e.id === 'x')!.lib).toBeUndefined();
+  });
+});
+
+/* Decyzje właściciela 04.10.2026 (wieczór): „RDL i wiosłowanie jedną ręką jak i dwoma to dwa inne ćwiczenia”; partia „przywodziciele” — tak;
+ * dopisać brakujący sprzęt i ćwiczenia — tak. */
+import { MUSCLES, LIB_EXTRA_REVS, LIB_MUSCLE_FIXES } from '@/lib/seed';
+import { CATALOG_CAPS } from '@/lib/catalog.generated';
+import { EQUIPMENT, CAP_LABEL, loadsFor } from '@/lib/equipment';
+const NEW_EQUIP = ['row_machine', 'pullover_machine', 'ab_crunch_machine', 'biceps_curl_machine', 'triceps_ext_machine', 'lateral_raise_machine', 'glute_kickback_machine', 'hip_thrust_machine', 'belt_squat', 'pendulum_squat', 'reverse_hyper', 'sled', 'battle_ropes', 'stability_ball', 'sliders', 'stair_climber', 'elliptical', 'ski_erg'];
+describe('katalog ćwiczeń — decyzje 04.10 wieczór', () => {
+  test('jednorącz i oburącz to osobne ćwiczenia: oburącz — dwie linki, jednorącz — jedna', () => {
+    expect(CABLES['RDL (hantle/linki)']).toBe(2); expect(CABLES['Wiosłowanie na linkach (siedząc)']).toBe(2);
+    expect(CABLES['Single Arm RDL (hantel/linka)']).toBe(1); expect(CABLES['Single Arm Cable Row']).toBe(1);
+    const one = lib().find(e => e.name === 'Single Arm RDL (hantel/linka)')!; expect(one).toMatchObject({ implements: 1, loadMode: 'unilateral', pattern: 'hinge', muscles: ['dwugłowe'] });
+    applyLang('en'); expect(exName(one)).toBe('Single Arm RDL (Dumbbell/Cable)'); applyLang('pl');
+  });
+  test('partia „przywodziciele”: na liście partii, region adductors → przywodziciele, bez wyjątków od reguły spójności', () => {
+    expect(MUSCLES).toContain('przywodziciele'); expect(MUSCLE_REGIONS.adductors).toBe('przywodziciele'); expect(RULE_EXCEPTIONS).toEqual({});
+    const by = (n: string) => lib().find(e => e.name === n)!;
+    expect(by('Hip Adduction').muscles).toEqual(['przywodziciele']); expect(by('Copenhagen Plank').muscles).toEqual(['przywodziciele']); expect(by('Cable Hip Adduction').muscles).toEqual(['przywodziciele']);
+    applyLang('en'); expect(t('przywodziciele')).toBe('adductors'); applyLang('pl');
+  });
+  test('nowy sprzęt: każda pozycja ma PL/EN, jest w pełnej siłowni i ma co najmniej jedno ćwiczenie; każda możliwość ma nazwę', () => {
+    for (const id of NEW_EQUIP) { const x = EQUIPMENT.find(q => q.id === id); expect([id, !!x]).toEqual([id, true]); expect(!!(x!.pl && x!.en)).toBe(true);
+      const g = loc('G', presetEquipment('gym')); const only = loc('X', [{ item: id, opts: [] }]);
+      expect([id, lib().some(e => (e.requires ?? []).length > 0 && availability(e, only).ok && availability(e, g).ok)]).toEqual([id, true]); }
+    for (const c of CATALOG_CAPS) expect([c, !!CAP_LABEL[c]]).toEqual([c, true]);
+  });
+  test('maszyny z ciężarami: ciężary z pozycji maszyny (nie z innej maszyny)', () => {
+    const rm = EQUIPMENT.find(q => q.id === 'row_machine')!; expect(rm.load).toBe('machine');
+    const list = (w: number) => ({ kind: 'list' as const, unit: 'kg' as const, items: [{ w, on: true }] });
+    const g = loc('G', ['t_bar', 'row_machine', 'biceps_curl_machine', 'belt_squat', 'leg_press'].map((item, i) => ({ item, opts: [], load: list(10 * (i + 1)) })));
+    for (const [n, item, w] of [['Machine Row', 'row_machine', 20], ['Machine Biceps Curl', 'biceps_curl_machine', 30], ['Belt Squat Machine', 'belt_squat', 40]] as const) { const r = loadsFor(lib().find(e => e.name === n)!, g); expect([n, r]).toEqual([n, { kind: 'loads', loads: [w], item }]); }
+  });
+});
+
+describe('katalog ćwiczeń — migracja kroku 04.10 b', () => {
+  test('dane po pierwszym kroku katalogu: dopisane tylko nowe ćwiczenia; usunięte z pierwszego kroku nie wracają; partie przywodzicieli poprawione tylko, gdy domyślne', async () => {
+    expect(LIB_EXTRA_REVS).toEqual(['katalog-2026-10-04', 'katalog-2026-10-04b']);
+    const b = new Set(CATALOG_LIB_EXTRA.filter(r => r[8] === 'katalog-2026-10-04b').map(r => r[0])); expect(b.size).toBe(22);
+    await fresh(); const raw: any = JSON.parse(JSON.stringify(seedState('pl'))); raw.libExtra = 'katalog-2026-10-04';
+    raw.exercises = raw.exercises.filter((e: any) => !b.has(e.name) && e.name !== 'Cossack Squat'); /* Cossack Squat (krok 1) usunięty przez użytkownika */
+    const ha = raw.exercises.find((e: any) => e.name === 'Hip Adduction'); ha.muscles = ['pośladki']; ha.secondaryMuscles = [];
+    const cp = raw.exercises.find((e: any) => e.name === 'Copenhagen Plank'); cp.muscles = ['core']; cp.secondaryMuscles = ['barki']; /* zmienione przez użytkownika */
+    const m = store.migrate(raw); const names = m.exercises.map(e => e.name);
+    for (const n of b) expect([n, names.includes(n)]).toEqual([n, true]); expect(names.includes('Cossack Squat')).toBe(false);
+    expect(m.libExtra).toBe('katalog-2026-10-04b');
+    expect(m.exercises.find(e => e.name === 'Hip Adduction')!.muscles).toEqual(['przywodziciele']);
+    expect(m.exercises.find(e => e.name === 'Copenhagen Plank')!).toMatchObject({ muscles: ['core'], secondaryMuscles: ['barki'] });
+    const again = store.migrate(JSON.parse(JSON.stringify(m))); expect(again.exercises.length).toBe(m.exercises.length);
+    expect(LIB_MUSCLE_FIXES.every(f => f.rev === 'katalog-2026-10-04b')).toBe(true);
+  });
+  test('ręczna zmiana partii po kroku b zostaje (poprawka partii tylko raz); nieznany przyszły znacznik — nic nie dopisuje', async () => {
+    await fresh(); const s: any = JSON.parse(JSON.stringify(seedState('pl'))); s.exercises.find((e: any) => e.name === 'Hip Adduction').muscles = ['pośladki'];
+    expect(store.migrate(s).exercises.find(e => e.name === 'Hip Adduction')!.muscles).toEqual(['pośladki']);
+    const f: any = JSON.parse(JSON.stringify(seedState('pl'))); f.libExtra = 'katalog-2099'; f.exercises = f.exercises.filter((e: any) => e.name !== 'Machine Row');
+    const m = store.migrate(f); expect(m.exercises.some(e => e.name === 'Machine Row')).toBe(false); expect(m.libExtra).toBe('katalog-2099');
+  });
+  test('dane bez znacznika (build 01f2bee / schemat 15): dopisane oba kroki; Hip Adduction z domyślną partią → przywodziciele', async () => {
+    const fx = require('./fixtures/state-090-schema15.json'); await fresh(); const raw = JSON.parse(JSON.stringify(fx.state));
+    const m = store.migrate(raw); expect(LIB_EXTRA_NAMES.every(n => m.exercises.some(e => e.name === n))).toBe(true);
+    const ha = m.exercises.find(e => e.name === 'Hip Adduction'); if (ha) expect(ha.muscles).toEqual(['przywodziciele']);
   });
 });

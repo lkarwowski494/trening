@@ -5,7 +5,7 @@ import * as Crypto from 'expo-crypto';
 import type { LangSetting, Lang } from './i18n';
 import type { Unit } from './units';
 import type { LoadSpec } from './loads';
-import { CATALOG, CATALOG_REV, CATALOG_LIB_EXTRA, MUSCLE_LOAD, type LoadSource, type Pattern, type MuscleRegion } from './catalog.generated';
+import { CATALOG, CATALOG_REV, CATALOG_LIB_EXTRA, CATALOG_ADDED_REVS, MUSCLE_LOAD, type LoadSource, type Pattern, type MuscleRegion } from './catalog.generated';
 
 export const SCHEMA_VERSION = 16; // 16 (E2, docs/14 pkt 2): WExercise.swappedFrom / implPinned (trening w toku i historia), splitFrom / altSkip (tylko trening w toku), TemplateItem.alternates (W3); pola opcjonalne — blok bez zamiany i szablon bez zamienników wyglądają jak w 15; kopia 16 jest odrzucana przez wersję 15 (pkt 2.4); 15 (decyzje 03.10.2026): WExercise.impl — przyrząd użyty w bloku (decyzja 8c); ciężarów ani treści szablonów użytkownika migracja nie zmienia (decyzja 03.10, 08:11 — bez dawnej jednorazowej zmiany 48 → 24 kg z P-004; zostaje tylko normalizacja pól i usuwanie pozycji z brakującym/usuniętym ćwiczeniem, jak w main); 14 (P-003 E1): miejsca treningu i sprzęt — Settings.locations/mainLocationId/pickerShowAll, Workout/Template.locationId, wymagania sprzętowe ćwiczeń; 11 (runda 55): przyciąganie starych wartości z funtów tylko dla danych sprzed tej wersji; 12 (runda 72): masa ciała zamrożona w zakończonych treningach; 13 (runda 75, Q-001): masa ciała poza obliczeniami — usunięte udział %, waga w Ustawieniach i w treningu; nowe ustawienia progressHint, autoBackup, weighReminder
 /** Właściciel danych zanim pojawią się konta (H2). Po logowaniu zostanie podmieniony na id użytkownika. */
@@ -37,7 +37,7 @@ export const hasWeight = (m: MetricType) => m === 'weight_reps' || m === 'weight
 export const hasDistance = (m: MetricType) => m === 'distance_time';
 
 /** Partie mięśniowe do liczenia serii tygodniowo (0.4). Ćwiczenie ma partię główną (1 seria) i pomocnicze (0,5 serii), jak w Hevy/Boostcamp. */
-export const MUSCLES = ['klatka', 'plecy', 'barki', 'biceps', 'triceps', 'czworogłowe', 'dwugłowe', 'pośladki', 'łydki', 'core', 'przedramiona'] as const;
+export const MUSCLES = ['klatka', 'plecy', 'barki', 'biceps', 'triceps', 'czworogłowe', 'dwugłowe', 'pośladki', 'łydki', 'core', 'przedramiona', 'przywodziciele'] as const; /* „przywodziciele” — decyzja właściciela 04.10.2026 (wieczór) */
 export type Muscle = typeof MUSCLES[number];
 
 /** Typ serii (0.2.1): normal / rozgrzewkowa (poza objętością i „poprzednio”) / drop set / do upadku. Pole warmup zostaje jako pochodna kind dla zgodności. */
@@ -131,9 +131,19 @@ const EXTRA = new Map(CATALOG_LIB_EXTRA.map(r => [r[0], r]));
 export const LIB_EXTRA_NAMES: readonly string[] = CATALOG_LIB_EXTRA.map(r => r[0]);
 /** Nazwy 125 ćwiczeń pierwszej wersji (reguły migracji danych sprzed schematu 10 — runda 52/56). */
 export const LIB_BASE_NAMES: ReadonlySet<string> = new Set(LIB_BASE.map(l => l[0]));
-/** Znacznik dopisania ćwiczeń katalogu 04.10.2026 do danych użytkownika (State.libExtra). Audyt 04.10 (HIGH): osobny znacznik, nie numer
- * schematu — schemat 16 miał już build sprzed katalogu (01f2bee), więc granica „< 16” pomijałaby te dane. */
-export const LIB_EXTRA_REV = 'katalog-2026-10-04';
+/** Kroki dopisywania ćwiczeń katalogu do danych użytkownika (State.libExtra = ostatni dopisany krok; pole „added” w catalog.json). Audyt 04.10 (HIGH):
+ * osobny znacznik, nie numer schematu — schemat 16 miał już build sprzed katalogu (01f2bee), więc granica „< 16” pomijałaby te dane.
+ * Krok b (04.10.2026, wieczór): jednorącz/oburącz jako osobne ćwiczenia, partia „przywodziciele”, nowy sprzęt i ćwiczenia. */
+export const LIB_EXTRA_REVS: readonly string[] = CATALOG_ADDED_REVS;
+export const LIB_EXTRA_REV = LIB_EXTRA_REVS[LIB_EXTRA_REVS.length - 1];
+/** Krok, w którym ćwiczenie katalogu trafia do danych użytkownika. */
+export const libExtraRevOf = (name: string): string | undefined => EXTRA.get(name)?.[8];
+/** Poprawki zgrubnych partii ćwiczeń biblioteki przy kroku katalogu — tylko gdy zapisane partie są dokładnie dawnymi domyślnymi (zmian użytkownika
+ * nie ruszamy); nowe partie = musclesFor (jedno źródło). */
+export const LIB_MUSCLE_FIXES: readonly { rev: string; name: string; from: [Muscle[], Muscle[]] }[] = [
+  { rev: 'katalog-2026-10-04b', name: 'Hip Adduction', from: [['pośladki'], []] },
+  { rev: 'katalog-2026-10-04b', name: 'Copenhagen Plank', from: [['core'], []] },
+];
 export const LIB: [string, Group, Equipment, boolean?][] = [...LIB_BASE, ...CATALOG_LIB_EXTRA.map(r => [r[0], r[1] as Group, r[2] as Equipment, r[3]] as [string, Group, Equipment, boolean])];
 /** Metryka dla pozycji biblioteki innych niż ciężar+powtórzenia. Używane też w migracji (po nazwie). */
 export const METRIC_BY_NAME: Record<string, MetricType> = {
@@ -153,7 +163,7 @@ export const MUSCLES_BY_NAME: Record<string, [Muscle[], Muscle[]]> = {
   'Overhead Press (sztanga)': [['barki'], ['triceps']], 'Overhead Press (hantle)': [['barki'], ['triceps']], 'Seated Shoulder Press (hantle)': [['barki'], ['triceps']], 'Arnold Press': [['barki'], ['triceps']], 'Push Press': [['barki'], ['triceps', 'czworogłowe']], 'Machine Shoulder Press': [['barki'], ['triceps']], 'Wyciskanie nad głowę (linki)': [['barki'], ['triceps']], 'Upright Row': [['barki'], ['plecy', 'biceps']],
   'Close Grip Bench Press': [['triceps'], ['klatka']], 'Triceps Dips (ławka)': [['triceps'], ['klatka']],
   'Back Squat': [['czworogłowe'], ['pośladki', 'dwugłowe']], 'Front Squat': [['czworogłowe'], ['pośladki', 'core']], 'Goblet Squat': [['czworogłowe'], ['pośladki']], 'Przysiad z pasem (linki)': [['czworogłowe'], ['pośladki']], 'Box Squat': [['czworogłowe'], ['pośladki']], 'Hack Squat': [['czworogłowe'], ['pośladki']], 'Leg Press': [['czworogłowe'], ['pośladki']], 'Bulgarian Split Squat (hantle)': [['czworogłowe', 'pośladki'], ['dwugłowe']], 'Lunges (hantle)': [['czworogłowe', 'pośladki'], []], 'Walking Lunges': [['czworogłowe', 'pośladki'], []], 'Reverse Lunge': [['czworogłowe', 'pośladki'], []], 'Step Up': [['czworogłowe', 'pośladki'], []], 'Leg Extension': [['czworogłowe'], []], 'Leg Curl': [['dwugłowe'], []], 'Lying Leg Curl': [['dwugłowe'], []], 'Nordic Curl': [['dwugłowe'], []], 'Pistol Squat': [['czworogłowe'], ['pośladki']], 'Sissy Squat': [['czworogłowe'], []], 'Wall Sit': [['czworogłowe'], []],
-  'Hip Thrust (sztanga)': [['pośladki'], ['dwugłowe']], 'Hip Thrust (hantel)': [['pośladki'], ['dwugłowe']], 'Glute Bridge': [['pośladki'], ['dwugłowe']], 'Kettlebell Swing': [['pośladki', 'dwugłowe'], ['plecy']],
+  'Hip Adduction': [['przywodziciele'], []], 'Hip Thrust (sztanga)': [['pośladki'], ['dwugłowe']], 'Hip Thrust (hantel)': [['pośladki'], ['dwugłowe']], 'Glute Bridge': [['pośladki'], ['dwugłowe']], 'Kettlebell Swing': [['pośladki', 'dwugłowe'], ['plecy']],
   "Farmer's Walk": [['przedramiona', 'plecy'], ['core']], 'Suitcase Carry': [['core'], ['przedramiona']],
 };
 export const GROUP_TO_MUSCLE: Partial<Record<Group, Muscle>> = { klatka: 'klatka', plecy: 'plecy', barki: 'barki', biceps: 'biceps', triceps: 'triceps', nogi: 'czworogłowe', pośladki: 'pośladki', łydki: 'łydki', core: 'core' };

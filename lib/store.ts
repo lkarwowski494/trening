@@ -3,7 +3,7 @@ import * as FileSystem from 'expo-file-system/legacy';
 import { useSyncExternalStore } from 'react';
 import { t, t as tr, tIn, applyLang, detectLang, locale, fold } from './i18n';
 import { applyUnit, wu, wOut, wIn, KG_PER_LB, fmtW, fmtNum, snapLegacyLb } from './units';
-import { seedState, uid, base, defaultModules, defaultSettings, metricFor, loadModeFor, loadMult, blankTimer, musclesFor, hasTime, hasReps, hasWeight, hasDistance, METRICS, DEFAULT_REST, GROUPS, LIB, SCHEMA_VERSION, LOCAL_OWNER, MODULES, SET_KINDS, SINGLE_IMPLEMENT, equipFields, libExercise, LIB_EXTRA_NAMES, LIB_EXTRA_REV, LIB_BASE_NAMES, LOAD_SOURCE_BY_EQUIPMENT, IMPLS, type Impl, type SetKind, type Base, type State, type Workout, type WSet, type WExercise, type Exercise, type Template, type TemplateItem, type TemplateAlt, type Morning, type Location } from './seed';
+import { seedState, uid, base, defaultModules, defaultSettings, metricFor, loadModeFor, loadMult, blankTimer, musclesFor, hasTime, hasReps, hasWeight, hasDistance, METRICS, DEFAULT_REST, GROUPS, LIB, SCHEMA_VERSION, LOCAL_OWNER, MODULES, SET_KINDS, SINGLE_IMPLEMENT, equipFields, libExercise, LIB_EXTRA_REVS, LIB_EXTRA_REV, LIB_MUSCLE_FIXES, libExtraRevOf, LIB_BASE_NAMES, LOAD_SOURCE_BY_EQUIPMENT, IMPLS, type Impl, type SetKind, type Base, type State, type Workout, type WSet, type WExercise, type Exercise, type Template, type TemplateItem, type TemplateAlt, type Morning, type Location } from './seed';
 import { equipById, loadsFor, implAt, implsAt, blankLoad, availability } from './equipment';
 import { sanitizeLoadSpec, nextHeavier, hasLoadShown } from './loads';
 import { CATALOG, CATALOG_REV } from './catalog.generated';
@@ -250,8 +250,15 @@ export function migrate(raw: any): State {
   /* Katalog 04.10.2026 (decyzja właściciela: rozbudowa katalogu): dane bez znacznika katalogu dostają nowe ćwiczenia biblioteki RAZ (znacznik
    * State.libExtra — ćwiczenie usunięte później przez użytkownika nie wraca); pomijane, gdy istnieje ćwiczenie o tej samej nazwie (także własne).
    * Audyt 04.10 (HIGH): znacznik zamiast granicy schematu — build 01f2bee miał już schemat 16 bez katalogu. */
-  if (raw.libExtra !== LIB_EXTRA_REV) { const have = new Set(raw.exercises.map((e: any) => fold(e.name))); const extra = new Set(LIB_EXTRA_NAMES);
-    for (const row of LIB) if (extra.has(row[0]) && !have.has(fold(row[0]))) raw.exercises.push(libExercise(row, owner)); raw.libExtra = LIB_EXTRA_REV; }
+  const sameList = (a: unknown, b: readonly string[]) => Array.isArray(a) && a.length === b.length && a.every((x, i) => x === b[i]);
+  /* Krok b (04.10 wieczór): kroki kolejno od zapisanego znacznika; nieznany (nowszy) znacznik — bez zmian. */
+  { const done = typeof raw.libExtra === 'string' ? LIB_EXTRA_REVS.indexOf(raw.libExtra) : -1;
+    if (done >= 0 || typeof raw.libExtra !== 'string') { const have = new Set(raw.exercises.map((e: any) => fold(e.name)));
+      for (const rev of LIB_EXTRA_REVS.slice(done + 1)) {
+        for (const row of LIB) if (libExtraRevOf(row[0]) === rev && !have.has(fold(row[0]))) { raw.exercises.push(libExercise(row, owner)); have.add(fold(row[0])); }
+        for (const f of LIB_MUSCLE_FIXES) if (f.rev === rev) for (const e of raw.exercises) if (e.lib === true && e.name === f.name && sameList(e.muscles, f.from[0]) && sameList(e.secondaryMuscles, f.from[1])) { const [a, b] = musclesFor(e.name, e.group); e.muscles = a; e.secondaryMuscles = b; }
+      }
+      raw.libExtra = LIB_EXTRA_REV; } }
   raw.templates = arr(raw.templates);
   raw.templates.forEach((t: any) => { stamp(t); if (typeof t.name !== 'string') t.name = ''; t.items = arr(t.items); t.items = t.items.filter((it: any) => idOf(it.exerciseId) != null); t.items.forEach((it: any) => { it.id = idOf(it.id) ?? uid(); it.exerciseId = idOf(it.exerciseId); { const v = parseNum(it.targetSec); it.targetSec = v == null || v < 0 ? '' : Math.min(86400, Math.round(v)); } /* runda 51 */ it.groupId = idOf(it.groupId); it.sets = intIn(it.sets, 1, 50) ?? 1; /* runda 15: liczba, nie tekst z importu */ if (it.startWeight === undefined) it.startWeight = ''; for (const k of ['repMin', 'repMax']) it[k] = intIn(it[k], 1, 100); { const v = parseNum(it.restSec); it.restSec = v == null || v < 0 ? null : Math.min(1800, Math.round(v)); } /* runda 49: także tekst, jak przerwa ćwiczenia */ /* runda 17: limit 1800 */ { const v = parseNum(it.startWeight); it.startWeight = v == null ? '' : kg2(snapL(v) as number); } fixAlternates(it); }); });
   raw.templates.forEach((x: any) => { const n = x.name.replace(/\s+/g, ' ').trim(); x.name = n || tIn(raw.settings?.language, 'Nowy szablon'); { const l = idOf(x.locationId); if (l) x.locationId = l; else delete x.locationId; } /* P-003 */ }); // runda 35: jak nazwy ćwiczeń
