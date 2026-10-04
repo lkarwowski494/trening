@@ -13,7 +13,7 @@ jest.setTimeout(600000);
 const RUNS = Number(process.env.INV_RUNS || 60);
 /* Runda 82b (weryfikacja 6ea37a3, MEDIUM 2): od 03.10.2026 świeża instalacja nie ma szablonów — każdy przebieg dokłada szablony demonstracyjne
  * (withDemoTemplates), a test sprawdza, że start z szablonu i niezmiennik supersetów szablonów naprawdę się wykonały (inaczej byłyby puste). */
-const ran = { startTpl: 0, tplGroups: 0, tplLink: 0, supersetStart: 0 };
+const ran = { startTpl: 0, tplGroups: 0, tplLink: 0, supersetStart: 0, swap: 0, split: 0, undo: 0 };
 /* Runda 82c (weryfikacja 82a8a16, LOW 3): szablony demonstracyjne nie mają supersetów, a losowe „startTpl” i „tplLink” nie gwarantują startu z szablonu
  * z supersetem — każdy przebieg zaczyna się więc od stałego kroku: połączenie dwóch pierwszych pozycji losowo wybranego szablonu, start z niego
  * (superset w treningu w toku — I2), sprawdzenie i anulowanie; dalej losowa sekwencja od tego samego stanu bez treningu. */
@@ -26,6 +26,18 @@ function supersetStart(ti: number) {
   store.cancelWorkout(); check('superset: anulowanie');
 }
 
+/* E2 (docs/14 test 26): stały krok każdego przebiegu — w supersecie z szablonu podział pierwszego bloku (po odhaczeniu serii), zamiana drugiego
+ * w miejscu, sprawdzenie, cofnięcie obu, sprawdzenie. Losowe „swap”/„undoSwap” dalej trafiają w dowolne stany. */
+function swapStart(ti: number) {
+  const st = store.getState(); const tp = st.templates[ti % st.templates.length]; store.startFromTemplate(tp); const a = st.active!; const exs = st.exercises.filter(e => !e.archived);
+  const pick = (not: string) => exs.find(e => e.id !== not && e.metric === store.exById(not)!.metric)!;
+  if (a.exercises[0].sets.length < 2) store.addSet(0); store.toggleDone(0, 0);
+  const r1 = store.swapBlock(a.exercises[0].id, pick(a.exercises[0].exerciseId).id)!; expect(r1).toBeTruthy(); ran.swap++; ran.split++; check('E2: podział');
+  const i2 = a.exercises.findIndex((e, i) => i > 1 && !e.sets.some(x => x.done)); if (i2 > 0) { store.swapBlock(a.exercises[i2].id, pick(a.exercises[i2].exerciseId).id); ran.swap++; check('E2: zamiana w miejscu'); }
+  for (const e of [...a.exercises].filter(store.canUndoSwap)) { store.undoSwap(e.id); ran.undo++; } check('E2: cofnięcie');
+  store.toggleDone(0, 1); store.finishWorkout(); check('E2: zakończenie po cofnięciu');
+}
+
 type A =
   | { t: 'startTpl'; i: number } | { t: 'startEmpty' } | { t: 'repeat' } | { t: 'addEx'; i: number }
   | { t: 'addSet'; e: number } | { t: 'rmSet'; e: number } | { t: 'rmEx'; e: number }
@@ -33,7 +45,7 @@ type A =
   | { t: 'tick'; e: number; s: number } | { t: 'tickUntick'; e: number; s: number } | { t: 'band'; e: number; s: number }
   | { t: 'kind'; e: number; s: number; k: 'normal' | 'warmup' | 'drop' | 'failure' } | { t: 'link'; e: number } | { t: 'unlink'; e: number }
   | { t: 'unit' } | { t: 'finish' } | { t: 'cancel' } | { t: 'delW'; i: number } | { t: 'equip'; i: number; q: number }
-  | { t: 'tplLink'; i: number; j: number } | { t: 'tplUnlink'; i: number; j: number } | { t: 'bandOff'; i: number } | { t: 'delBand'; b: number } | { t: 'bodyweight'; v: number | '' };
+  | { t: 'swap'; e: number; i: number } | { t: 'undoSwap'; e: number } | { t: 'tplLink'; i: number; j: number } | { t: 'tplUnlink'; i: number; j: number } | { t: 'bandOff'; i: number } | { t: 'delBand'; b: number } | { t: 'bodyweight'; v: number | '' };
 
 const num = fc.oneof(fc.constantFrom<number | ''>('', 0, 1, 2.5, 5, 8, 10, 12.345, 20, 62.555, 100, 100.004, -5, -15, -20, 1e6), fc.double({ min: -50, max: 300, noNaN: true }));
 const idx = fc.nat(12);
@@ -57,6 +69,8 @@ const action: fc.Arbitrary<A> = fc.oneof(
   { weight: 1, arbitrary: fc.constant({ t: 'cancel' as const }) },
   { weight: 1, arbitrary: fc.record({ t: fc.constant('delW' as const), i: idx }) },
   { weight: 1, arbitrary: fc.record({ t: fc.constant('equip' as const), i: fc.nat(130), q: fc.nat(5) }) },
+  { weight: 2, arbitrary: fc.record({ t: fc.constant('swap' as const), e: idx, i: fc.nat(130) }) }, /* E2 (docs/14 test 26) */
+  { weight: 1, arbitrary: fc.record({ t: fc.constant('undoSwap' as const), e: idx }) },
   { weight: 1, arbitrary: fc.record({ t: fc.constant('tplLink' as const), i: idx, j: idx }) },
   { weight: 1, arbitrary: fc.record({ t: fc.constant('tplUnlink' as const), i: idx, j: idx }) },
   { weight: 1, arbitrary: fc.record({ t: fc.constant('bandOff' as const), i: fc.nat(130) }) },
@@ -112,6 +126,11 @@ function run(a: A) {
     }
     case 'band': { const e = blk(a.e); if (e) { const s = e.sets[a.s % e.sets.length]; if (!s.done) cycleBand(e, s); store.save(act); } break; }
     case 'kind': { const e = blk(a.e); if (e) { const s = e.sets[a.s % e.sets.length]; s.kind = a.k; s.warmup = a.k === 'warmup'; store.save(act); } break; }
+    case 'swap': { const e = blk(a.e); if (e && exs.length) { const to = exs[a.i % exs.length]; const n = act!.exercises.length; const r = store.swapBlock(e.id, to.id); if (r) { ran.swap++;
+      const b = act!.exercises.find(x => x.id === r.blockId)!; expect(b.exerciseId).toBe(to.id); expect(b.sets.every(x => !x.done && !x.edited)).toBe(true);
+      if (act!.exercises.length > n) { ran.split++; const A = act!.exercises[act!.exercises.indexOf(b) - 1]; expect(b.splitFrom).toBe(A.id); expect(A.sets.every(x => x.done)).toBe(true); expect(b.groupId).toBe(A.groupId); } } } break; }
+    case 'undoSwap': { const u = act ? act.exercises.filter(store.canUndoSwap) : []; const e = u.length ? u[a.e % u.length] : null; if (e) { const n = act!.exercises.length; const split = !!e.splitFrom && act!.exercises.some(x => x.id === e.splitFrom);
+      store.undoSwap(e.id); ran.undo++; expect(act!.exercises.length).toBe(split ? n - 1 : n); } break; } /* „↺ cofnij” tylko tam, gdzie ekran go pokazuje */
     case 'link': if (act && act.exercises.length > 1) { store.linkWithNext(act.exercises, a.e % (act.exercises.length - 1), act); } break;
     case 'unlink': if (act?.exercises.length) store.unlink(act.exercises, a.e % act.exercises.length, act); break;
     case 'unit': st.settings.unit = st.settings.unit === 'lb' ? 'kg' : 'lb'; store.applyPrefs(); store.save(); break;
@@ -166,11 +185,11 @@ describe('niezmienniki — losowe sekwencje działań (fast-check)', () => {
   test('po każdym kroku: wczytanie bez zmian, supersety, siatka kg, guma, historia, objętość, rekordy; odhacz+cofnij przywraca serię', async () => {
     await fc.assert(fc.asyncProperty(fc.array(action, { minLength: 5, maxLength: 70 }), fc.boolean(), fc.nat(12), async (acts, lb, ti) => {
       await fresh(); withDemoTemplates(); if (lb) { store.getState().settings.unit = 'lb'; store.applyPrefs(); }
-      try { supersetStart(ti); acts.forEach((a, i) => { run(a); check(`krok ${i}: ${JSON.stringify(a)}`); }); }
+      try { supersetStart(ti); swapStart(ti); acts.forEach((a, i) => { run(a); check(`krok ${i}: ${JSON.stringify(a)}`); }); }
       finally { units.applyUnit('kg'); }
     }), { numRuns: RUNS, seed: process.env.INV_SEED ? Number(process.env.INV_SEED) : undefined });
     /* MEDIUM 2: niezmienniki szablonów nie są puste — start z szablonu, łączenie pozycji w superset i sprawdzenie supersetów szablonów się wykonały */
-    expect(ran.startTpl).toBeGreaterThan(0); expect(ran.tplLink).toBeGreaterThan(0); expect(ran.tplGroups).toBeGreaterThan(0);
+    expect(ran.startTpl).toBeGreaterThan(0); expect(ran.tplLink).toBeGreaterThan(0); expect(ran.tplGroups).toBeGreaterThan(0); expect(ran.swap).toBeGreaterThan(0); expect(ran.split).toBeGreaterThan(0); expect(ran.undo).toBeGreaterThan(0); /* E2 */
     expect(ran.supersetStart).toBeGreaterThanOrEqual(Math.max(1, RUNS)); /* runda 82c: start z szablonu z supersetem w KAŻDYM przebiegu */
   });
 });
