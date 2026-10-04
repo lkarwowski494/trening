@@ -60,3 +60,20 @@ describe('schemat 16 — migracja pól zamiany', () => {
     expect(store.migrate(JSON.parse(JSON.stringify(store.getState()))).workouts.find(x => x.id === w.id)!.exercises[0]).toEqual(JSON.parse(JSON.stringify(got)));
   });
 });
+
+describe('schemat 15 → 16 na danych z prawdziwej wersji 0.9.0', () => {
+  /* tests/fixtures/state-090-schema15.json — zapis bazy („state” + „live”) wygenerowany kodem integration/0.9.0 (schemat 15, commit 2a66a6a):
+   * szablony demonstracyjne, dwa miejsca, 6 treningów (zmiana miejsca, superset), trening w toku z odhaczoną serią i trwającą przerwą. */
+  const fx = require('./fixtures/state-090-schema15.json');
+  test('instalacja wersji ze schematem 16 na telefonie z danymi 15: migracja bez utraty danych (wszystko 1:1 poza numerem schematu), trening w toku i przerwa zostają', async () => {
+    await fresh(); global.__kv.clear(); global.__kv.set('state', JSON.stringify(fx.state)); global.__kv.set('live', JSON.stringify(fx.live)); /* jak baza na telefonie */
+    store.__resetForTests(); await store.init(); const st = store.getState();
+    expect(fx.state.schemaVersion).toBe(15); expect(fx.live.seq).toBeGreaterThanOrEqual(fx.state.saveSeq); /* „live” nowszy niż „state” — ścieżka startu z treningiem w toku */
+    const strip = (s: any) => { const c = JSON.parse(JSON.stringify(s)); delete c.schemaVersion; delete c.metaUpdatedAt; delete c.saveSeq; return c; };
+    const want = strip({ ...fx.state, active: fx.live.active, timer: fx.live.timer });
+    expect(st.schemaVersion).toBe(16); expect(strip(st)).toEqual(want);
+    expect(st.workouts).toHaveLength(6); expect(st.active!.exercises[0].sets[0].done).toBe(true); expect(st.timer.restSetId).toBe(fx.live.timer.restSetId);
+    /* zapis po migracji ma już schemat 16, a ponowne wczytanie niczego nie zmienia */
+    await store.flush(); const again = await fresh(saved()); expect(strip(again)).toEqual(want);
+  });
+});
