@@ -30,5 +30,6 @@ test('e2e-ios.yml: podsumowanie porażki uruchamiane tylko po błędzie, przed w
   const i = y.indexOf('python3 scripts/ci/maestro-failures.py e2e-out');
   expect(i).toBeGreaterThan(0);
   expect(y.slice(y.lastIndexOf('- name:', i), i)).toMatch(/if: failure\(\)/);
+  expect(y.slice(i, y.indexOf('name: e2e-ios'))).toMatch(/ZRZUT-BLEDU[\s\S]*BEGIN-B64[\s\S]*END-B64/);
   expect(i).toBeLessThan(y.indexOf('name: e2e-ios'));
 });
