@@ -6,7 +6,7 @@ import { Screen, Item, Muted, Empty, SectionTitle, Chip, Input } from '@/compone
 import { getState, useTick, exById, swapBlock, swapImpl, canUndoSwap, locationById, visibleExercises, newExercise, save, exerciseInHistory } from '@/lib/store';
 import { availability, capsOf, missingLabel } from '@/lib/equipment';
 import { draftOf, useDraftTick, draftSwapExercise, canRestoreExercise, draftRestoreExercise, draftImplChoices, draftSetImpl, swapTargetOk } from '@/lib/edit';
-import { swapCandidates, reasonText, otherImpls, implLabel, parseSwapTarget, SWAP_TOP, SWAP_PAGE } from '@/lib/swap';
+import { swapCandidates, reasonText, otherImpls, implLabel, parseSwapTarget, SWAP_TOP, SWAP_PAGE, sortOthers } from '@/lib/swap';
 import { afterSwap, confirmUndoSwap } from '@/components/ActiveWorkout';
 import { t, exName, locale, fold } from '@/lib/i18n';
 import type { Exercise, Impl, WExercise } from '@/lib/seed';
@@ -49,7 +49,7 @@ export default function SwapScreen() {
   const exact = (b: Exercise) => fold(b.name) === ql || fold(exName(b)) === ql;
   const canCreate = open && !!ql && !getState().exercises.some(exact);
   const others = open ? visibleExercises().filter(b => okEx(b) && (!grpOn || !ex || b.group === ex.group) && (!locOn || !caps || availability(b, place, caps).ok) && (!ql || fold(b.name).includes(ql) || fold(exName(b)).includes(ql)))
-    .sort((x, y) => exName(x).localeCompare(exName(y), locale())) : [];
+     : []; const othersSorted = sortOthers(others, ql);
   return (
     <Screen style={{ paddingTop: 10 }}>
       <Stack.Screen options={headerOpts} />
@@ -63,14 +63,14 @@ export default function SwapScreen() {
         {ex && impls.length ? <><SectionTitle>{t('Ten sam ruch, inny przyrząd')}</SectionTitle>
           {impls.map(i => <Item key={i} title={`${exName(ex)} — ${implLabel(i)}`} sub={e.impl ? t('zamiast: {name}', { name: implLabel(e.impl) }) : undefined} icon="⇄" onPress={() => pickImpl(i)} accessibilityLabel={t('Inny przyrząd: {impl}', { impl: implLabel(i) })} />)}</> : null}
         <SectionTitle>{t('Inne')}</SectionTitle>
-        <Item title={open ? t('Inne ▴') : t('Inne ▾')} sub={t('lista ćwiczeń z filtrami, które możesz zdjąć')} onPress={() => setOpen(x => !x)} icon={open ? '▴' : '▾'} accessibilityLabel={open ? t('Zwiń inne ćwiczenia') : t('Pokaż inne ćwiczenia')} />
+        <Item title={open ? t('Inne ▴') : t('Inne ▾')} sub={t('lista ćwiczeń z filtrami, które możesz zdjąć')} onPress={() => { setOpen(x => !x); setLim(SWAP_PAGE); /* audyt pełnej bazy (LOW 5) */ }} icon={open ? '▴' : '▾'} accessibilityLabel={open ? t('Zwiń inne ćwiczenia') : t('Pokaż inne ćwiczenia')} />
         {open ? <View>
           <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6, marginVertical: 8 }}>
             {ex ? <Chip label={grpOn ? `${t(ex.group)} ✕` : `+ ${t(ex.group)}`} on={grpOn} onPress={() => { setGrpOn(x => !x); setLim(SWAP_PAGE); }} a11yLabel={grpOn ? t('Filtr partii: {g}. Tapnij, by zdjąć.', { g: t(ex.group) }) : t('Filtr partii wyłączony: {g}. Tapnij, by włączyć.', { g: t(ex.group) })} /> : null}
             {place ? <Chip label={locOn ? `📍 ${place.name} ✕` : `+ 📍 ${place.name}`} on={locOn} onPress={() => { setLocOn(x => !x); setLim(SWAP_PAGE); }} a11yLabel={locOn ? t('Filtr miejsca: {l}. Tapnij, by zdjąć.', { l: place.name }) : t('Filtr miejsca wyłączony: {l}. Tapnij, by pokazać tylko dostępne.', { l: place.name })} /> : null}
           </View>
           <Input value={q} onChangeText={v => { setQ(v); setLim(SWAP_PAGE); }} placeholder={t('Szukaj ćwiczenia…')} maxLength={80} autoCorrect={false} />
-          {others.length ? others.slice(0, lim).map(b => { const av = caps ? availability(b, place, caps) : null; const miss = av && !av.ok ? ' · ' + t('brak: {m}', { m: missingLabel(av.missing) }) : '';
+          {others.length ? othersSorted.slice(0, lim).map(b => { const av = caps ? availability(b, place, caps) : null; const miss = av && !av.ok ? ' · ' + t('brak: {m}', { m: missingLabel(av.missing) }) : '';
             return <Item key={b.id} title={exName(b)} sub={`${t(b.equipment)}${miss}`} icon="⇄" dim={!!miss} onPress={() => pick(b.id)} />; }) : !archived.length && !canCreate ? <Empty>{t('Nic nie pasuje.')}</Empty> : null}
           {others.length > lim ? <Item title={t('Pokaż więcej ({n})', { n: others.length - lim })} icon="▾" onPress={() => setLim(x => x + SWAP_PAGE * 2)} accessibilityLabel={t('Pokaż więcej ćwiczeń: zostało {n}', { n: others.length - lim })} /> : null}
           {archived.map(b => <Item key={'a' + b.id} title={t('Przywróć „{name}”', { name: exName(b) })} sub={exerciseInHistory(b.id) ? t('usunięte ćwiczenie z historią') : t('usunięte ćwiczenie (w bieżącym treningu)')} icon="↺" onPress={() => { if (chosen.current) return; b.archived = false; save(b); pick(b.id); }} />)}

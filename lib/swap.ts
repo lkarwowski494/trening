@@ -1,6 +1,6 @@
 import { getState, visibleExercises, workoutsWith, finishedWorkouts, memoHist, locationById } from './store';
 import { availability, capsOf, implsAt } from './equipment';
-import { t, exName, locale } from './i18n';
+import { t, exName, locale, fold } from './i18n';
 import { libExtraRevOf, LIB_EXTRA_REVS, type Exercise, type Impl, type Location, type Workout } from './seed';
 
 /*
@@ -18,7 +18,7 @@ export const FULL_BASE_REV = 'katalog-2026-10-05';
 /** Lista „Inne” w arkuszu zamiany: wiersze renderowane porcjami (pełna baza ~870 ćwiczeń, lista w ScrollView arkusza — bez wirtualizacji). */
 export const SWAP_PAGE = 50;
 /** Wzorce ruchu, które same nie świadczą o podobieństwie (liczą się tylko przy wspólnym mięśniu głównym). */
-const WEAK_PATTERNS = new Set(['isolation', 'other']);
+const WEAK_PATTERNS = new Set(['isolation', 'other', 'mobility']); /* audyt pełnej bazy (MEDIUM 1): rozciąganie nie jest „tym samym ruchem” bez wspólnej partii */
 
 export type SwapReason = 'pattern' | 'muscle' | 'firstMuscle' | 'group' | 'secondary' | 'swapped' | 'history';
 export interface SwapCandidate { exId: string; score: number; reasons: SwapReason[]; /** dostępne w miejscu (bez miejsca — zawsze) */ available: boolean; /** już jest w treningu (dopisek, nie blokuje) */ inWorkout: boolean; /** liczba sesji z tym ćwiczeniem (remis, „robione 12×”) */ sessions: number }
@@ -75,6 +75,12 @@ export function swapCandidates(exId: string, ctx: SwapCtx): SwapCandidate[] {
   return out.sort((x, y) => y.score - x.score || tier(x.exId) - tier(y.exId) || sameEq.get(y.exId)! - sameEq.get(x.exId)! || y.sessions - x.sessions || step.get(x.exId)! - step.get(y.exId)! || name.get(x.exId)!.localeCompare(name.get(y.exId)!, locale()));
 }
 
+/** Lista „Inne” w arkuszu zamiany: dokładne trafienie nazwy (w języku interfejsu albo kanonicznej) na początku, reszta alfabetycznie
+ * (audyt pełnej bazy, LOW 4: przy porcjach SWAP_PAGE dokładne trafienie nie może utknąć za „Pokaż więcej”). `ql` — zapytanie po fold(). */
+export function sortOthers(list: readonly Exercise[], ql: string): Exercise[] {
+  const exact = (e: Exercise) => !!ql && (fold(e.name) === ql || fold(exName(e)) === ql);
+  return [...list].sort((x, y) => Number(exact(y)) - Number(exact(x)) || exName(x).localeCompare(exName(y), locale()));
+}
 /** Nazwa przyrządu (decyzja 8c) do arkusza i tabeli D7. */
 export function implLabel(i: Impl): string {
   switch (i) {

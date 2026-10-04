@@ -3,7 +3,7 @@
 import * as store from '@/lib/store';
 import { SWAP_PAGE } from '@/lib/swap';
 import { fresh, ex } from './helpers';
-import { renderApp, flushAll, screen, go, tap, type } from './app';
+import { renderApp, flushAll, screen, go, tap, type, act } from './app';
 
 jest.setTimeout(60000);
 describe('pełna baza — listy', () => {
@@ -26,5 +26,29 @@ describe('pełna baza — listy', () => {
     expect(rows()).toBeLessThanOrEqual(SWAP_PAGE + 3 /* propozycje */ + 1);
     const more = screen.getByLabelText(/^Pokaż więcej ćwiczeń: zostało \d+$/); await tap(more); await flushAll(5);
     expect(rows()).toBeGreaterThan(SWAP_PAGE + 4);
+  });
+});
+
+import { swapCandidates, sortOthers } from '@/lib/swap';
+import { exName } from '@/lib/i18n';
+describe('pełna baza — audyt kodu 04.10 wieczór', () => {
+  test('MEDIUM 1: rozciąganie (wzorzec mobility) nie jest „tym samym ruchem” dla innego rozciągania bez wspólnej partii', async () => {
+    await fresh(); const c = swapCandidates(ex('Ankle Circles').id, { showAll: true, inWorkout: new Set() });
+    expect(c.filter(x => !x.reasons.includes('muscle'))).toEqual([]);
+  });
+  test('LOW 4: lista „Inne” — dokładne trafienie nazwy na początku (przed porcją „Pokaż więcej”), reszta alfabetycznie', async () => {
+    await fresh(); const all = store.getState().exercises.filter(e => /push/i.test(e.name));
+    const s = sortOthers(all, 'push up'); expect(exName(s[0])).toBe('Push Up');
+    const rest = s.slice(1).map(e => exName(e)); expect(rest).toEqual([...rest].sort((a, b) => a.localeCompare(b, 'pl')));
+  });
+  test('LOW 5: zwinięcie i ponowne rozwinięcie „Inne” wraca do pierwszej porcji', async () => {
+    await fresh(); store.startEmpty(); store.addExerciseToActive(ex('Bench Press (sztanga)')); await store.flush();
+    await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())) }); await flushAll(20);
+    await tap(screen.getByLabelText('Zamień ćwiczenie: Bench Press (sztanga)')); await flushAll(20);
+    await tap(screen.getByLabelText('Pokaż inne ćwiczenia')); await flushAll(5); await tap(screen.getByLabelText('Filtr partii: klatka. Tapnij, by zdjąć.')); await flushAll(5);
+    const first = screen.getAllByText('⇄').length; await tap(screen.getByLabelText(/^Pokaż więcej ćwiczeń/)); await flushAll(5); expect(screen.getAllByText('⇄').length).toBeGreaterThan(first);
+    const wait = async () => { await act(async () => { jest.advanceTimersByTime(800); }); }; /* Item: useOnce(700) — ochrona przed podwójnym tapnięciem */
+    await wait(); await tap(screen.getByLabelText('Zwiń inne ćwiczenia')); await flushAll(5); await wait(); await tap(screen.getByLabelText('Pokaż inne ćwiczenia')); await flushAll(5);
+    expect(screen.getAllByText('⇄').length).toBe(first);
   });
 });

@@ -100,3 +100,11 @@ Decyzja właściciela: „Dlaczego mamy 270 ćwiczeń, skoro te online mają po 
   - lista „Inne” w arkuszu zamiany pokazuje porcje po 50 (`SWAP_PAGE`) z przyciskiem „Pokaż więcej”;
   - stan po migracji jest o ok. 300 KB większy.
 - **Braki słownika zgłoszone przez agentów** (dodane z najbliższą możliwością i niską pewnością): partner (rozciąganie PNF, rzuty), worek bokserski, bloczki do zarzutów, płotki i pachołki, ręcznik, wózek ze sztangą (car deadlift), kij do rozciągania, specjalne maszyny (dip machine → maszyna do tricepsa). Do rozbudowy po teście, jeśli potrzebne.
+- **Audyt kodu (62d418e..398da2f, niezależny): 0 wysokich / 2 średnie / 5 niskich.**
+  - **MEDIUM 1 (naprawiony):** wzorzec `mobility` dawał „ten sam ruch” każdemu rozciąganiu (np. Ankle Circles → Arm Circles). Jest teraz w `WEAK_PATTERNS`: liczy się tylko przy wspólnej partii, a rozciąganie partii nie ma, więc bez propozycji. Zostaje „Inne”.
+  - **MEDIUM 2 (opisany, decyzja właściciela):** zapisane miejsca (np. siłownia z presetu sprzed pełnej bazy) nie dostają nowych pozycji sprzętu (talerz, łańcuchy, maszyny dźwigniowe, opaski na kostki…). Ćwiczenia, które ich wymagają, są tam niedostępne, dopóki pozycji nie zaznaczysz. Opcje: (a) jednorazowo dopisać nowe pozycje do miejsc zawierających prawie cały preset siłowni, (b) podpowiedź „uzupełnij z presetu” w edytorze miejsca, (c) zostawić.
+  - **LOW 4 (naprawiony):** w „Inne” dokładne trafienie nazwy jest na początku (`sortOthers`). Wcześniej mogło utknąć za „Pokaż więcej”.
+  - **LOW 5 (naprawiony):** zwinięcie i rozwinięcie „Inne” wraca do pierwszej porcji.
+  - **LOW 3 (opisany):** objętość ×2 tylko przy zapisanym przyrządzie bloku. Stary blok bez przyrządu w miejscu ze stacją ma podpis „kg/str.” (przyrząd z miejsca), a liczy się ×1.
+  - **LOW 6 (opisany):** ranking i filtr „Inne” przechodzą po wszystkich 854 ćwiczeniach przy każdym renderze. Pomiar wydajności tego nie pokazuje jako problemu.
+  - **LOW 7 (sprawdzony):** „Full Range-Of-Motion Lat Pulldown” to dwie linki — uchwyty z dwóch górnych wyciągów, `cables 2` poprawne.
