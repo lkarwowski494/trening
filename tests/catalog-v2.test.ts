@@ -153,13 +153,13 @@ describe('katalog ćwiczeń — migracja kroku 04.10 b', () => {
   test('dane po pierwszym kroku katalogu: dopisane tylko nowe ćwiczenia; usunięte z pierwszego kroku nie wracają; partie przywodzicieli poprawione tylko, gdy domyślne', async () => {
     expect(LIB_EXTRA_REVS).toEqual(['katalog-2026-10-04', 'katalog-2026-10-04b']);
     const b = new Set(CATALOG_LIB_EXTRA.filter(r => r[8] === 'katalog-2026-10-04b').map(r => r[0])); expect(b.size).toBe(22);
-    await fresh(); const raw: any = JSON.parse(JSON.stringify(seedState('pl'))); raw.libExtra = 'katalog-2026-10-04';
+    await fresh(); const raw: any = JSON.parse(JSON.stringify(seedState('pl'))); raw.libExtra = 'katalog-2026-10-04'; delete raw.libExtraStep; /* jak dane z buildu 643cba7 */
     raw.exercises = raw.exercises.filter((e: any) => !b.has(e.name) && e.name !== 'Cossack Squat'); /* Cossack Squat (krok 1) usunięty przez użytkownika */
     const ha = raw.exercises.find((e: any) => e.name === 'Hip Adduction'); ha.muscles = ['pośladki']; ha.secondaryMuscles = [];
     const cp = raw.exercises.find((e: any) => e.name === 'Copenhagen Plank'); cp.muscles = ['core']; cp.secondaryMuscles = ['barki']; /* zmienione przez użytkownika */
     const m = store.migrate(raw); const names = m.exercises.map(e => e.name);
     for (const n of b) expect([n, names.includes(n)]).toEqual([n, true]); expect(names.includes('Cossack Squat')).toBe(false);
-    expect(m.libExtra).toBe('katalog-2026-10-04b');
+    expect(m).toMatchObject({ libExtra: 'katalog-2026-10-04', libExtraStep: 'katalog-2026-10-04b' }); /* audyt kroku b (MEDIUM): libExtra jak w 643cba7 */
     expect(m.exercises.find(e => e.name === 'Hip Adduction')!.muscles).toEqual(['przywodziciele']);
     expect(m.exercises.find(e => e.name === 'Copenhagen Plank')!).toMatchObject({ muscles: ['core'], secondaryMuscles: ['barki'] });
     const again = store.migrate(JSON.parse(JSON.stringify(m))); expect(again.exercises.length).toBe(m.exercises.length);
@@ -168,12 +168,22 @@ describe('katalog ćwiczeń — migracja kroku 04.10 b', () => {
   test('ręczna zmiana partii po kroku b zostaje (poprawka partii tylko raz); nieznany przyszły znacznik — nic nie dopisuje', async () => {
     await fresh(); const s: any = JSON.parse(JSON.stringify(seedState('pl'))); s.exercises.find((e: any) => e.name === 'Hip Adduction').muscles = ['pośladki'];
     expect(store.migrate(s).exercises.find(e => e.name === 'Hip Adduction')!.muscles).toEqual(['pośladki']);
-    const f: any = JSON.parse(JSON.stringify(seedState('pl'))); f.libExtra = 'katalog-2099'; f.exercises = f.exercises.filter((e: any) => e.name !== 'Machine Row');
-    const m = store.migrate(f); expect(m.exercises.some(e => e.name === 'Machine Row')).toBe(false); expect(m.libExtra).toBe('katalog-2099');
+    const f: any = JSON.parse(JSON.stringify(seedState('pl'))); f.libExtraStep = 'katalog-2099'; f.exercises = f.exercises.filter((e: any) => e.name !== 'Machine Row');
+    const m = store.migrate(f); expect(m.exercises.some(e => e.name === 'Machine Row')).toBe(false); expect(m.libExtraStep).toBe('katalog-2099');
   });
   test('dane bez znacznika (build 01f2bee / schemat 15): dopisane oba kroki; Hip Adduction z domyślną partią → przywodziciele', async () => {
     const fx = require('./fixtures/state-090-schema15.json'); await fresh(); const raw = JSON.parse(JSON.stringify(fx.state));
     const m = store.migrate(raw); expect(LIB_EXTRA_NAMES.every(n => m.exercises.some(e => e.name === n))).toBe(true);
     const ha = m.exercises.find(e => e.name === 'Hip Adduction'); if (ha) expect(ha.muscles).toEqual(['przywodziciele']);
+  });
+});
+
+describe('katalog ćwiczeń — audyt kroku b (MEDIUM: powrót do starszego buildu)', () => {
+  test('dane nowej wersji czytane regułą buildu 643cba7 (libExtra !== „katalog-2026-10-04” → dopisz) nie dopisują usuniętych; ponowna aktualizacja też nie', async () => {
+    await fresh(); const s: any = JSON.parse(JSON.stringify(seedState('pl')));
+    expect(s).toMatchObject({ libExtra: 'katalog-2026-10-04', libExtraStep: 'katalog-2026-10-04b' });
+    s.exercises = s.exercises.filter((e: any) => e.name !== 'Cossack Squat' && e.name !== 'Machine Row');
+    const m: any = store.migrate(s); expect(m.libExtra !== 'katalog-2026-10-04').toBe(false); /* stara reguła — nic nie dopisze */
+    expect(store.migrate(JSON.parse(JSON.stringify(m))).exercises.some(e => e.name === 'Cossack Squat' || e.name === 'Machine Row')).toBe(false);
   });
 });

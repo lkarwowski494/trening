@@ -80,7 +80,7 @@ export function render(catalog) {
     'export const CABLES: Readonly<Record<string, 1 | 2>> = {',
     ...cables,
     '};',
-    '/** Kolejne kroki dopisywania nowych ćwiczeń do danych użytkownika (State.libExtra — ostatni dopisany krok). */',
+    '/** Kolejne kroki dopisywania nowych ćwiczeń do danych użytkownika (State.libExtraStep — ostatni dopisany krok). */',
     `export const CATALOG_ADDED_REVS = ${JSON.stringify(ADDED)} as const;`,
     '/** Ćwiczenia biblioteki dodane w katalogu (04.10.2026): [nazwa, partia, sprzęt, asysta gumą, miara, tryb liczenia, mięśnie główne, pomocnicze, krok dopisania]. */',
     'export const CATALOG_LIB_EXTRA: readonly [string, string, string, boolean, string, string, string[], string[], string][] = [',

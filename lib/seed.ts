@@ -93,7 +93,7 @@ export interface Settings { defaultRest: number; sound: boolean; wakeLock: boole
 /** P-003: sprzęt w miejscu — pozycja z lib/equipment.ts, zaznaczone opcje i (dla sprzętu z ciężarami) opis dostępnych ciężarów. */
 export interface LocEquip { item: string; opts: string[]; load?: LoadSpec; /** audyt E1 (M5): pozycja odznaczona — opcje i ciężary zostają na wypadek ponownego zaznaczenia */ off?: true }
 export interface Location extends Base { name: string; equipment: LocEquip[] }
-export interface State { v: number; schemaVersion: number; ownerId: string; settings: Settings; exercises: Exercise[]; bands: Band[]; templates: Template[]; workouts: Workout[]; active: Workout | null; mornings: Morning[]; relations: CoachingRelation[]; feedback: Feedback[]; instructions: NextSessionInstructions[]; timer: TimerState; metaUpdatedAt?: number; userTouched?: boolean; /** katalog 04.10.2026: nowe ćwiczenia biblioteki już dopisane (LIB_EXTRA_REV) */ libExtra?: string }
+export interface State { v: number; schemaVersion: number; ownerId: string; settings: Settings; exercises: Exercise[]; bands: Band[]; templates: Template[]; workouts: Workout[]; active: Workout | null; mornings: Morning[]; relations: CoachingRelation[]; feedback: Feedback[]; instructions: NextSessionInstructions[]; timer: TimerState; metaUpdatedAt?: number; userTouched?: boolean; /** katalog 04.10.2026: nowe ćwiczenia biblioteki już dopisane — pierwszy krok (wartość stała, czyta ją build 643cba7) */ libExtra?: string; /** ostatni dopisany krok katalogu (LIB_EXTRA_REVS) */ libExtraStep?: string }
 
 /** UUID v4 (ADR-013). Fallback losowy tylko gdyby natywny moduł był niedostępny (np. web/testy). */
 export function uid(): string {
@@ -131,7 +131,7 @@ const EXTRA = new Map(CATALOG_LIB_EXTRA.map(r => [r[0], r]));
 export const LIB_EXTRA_NAMES: readonly string[] = CATALOG_LIB_EXTRA.map(r => r[0]);
 /** Nazwy 125 ćwiczeń pierwszej wersji (reguły migracji danych sprzed schematu 10 — runda 52/56). */
 export const LIB_BASE_NAMES: ReadonlySet<string> = new Set(LIB_BASE.map(l => l[0]));
-/** Kroki dopisywania ćwiczeń katalogu do danych użytkownika (State.libExtra = ostatni dopisany krok; pole „added” w catalog.json). Audyt 04.10 (HIGH):
+/** Kroki dopisywania ćwiczeń katalogu do danych użytkownika (State.libExtraStep = ostatni dopisany krok, State.libExtra = pierwszy — audyt kroku b; pole „added” w catalog.json). Audyt 04.10 (HIGH):
  * osobny znacznik, nie numer schematu — schemat 16 miał już build sprzed katalogu (01f2bee), więc granica „< 16” pomijałaby te dane.
  * Krok b (04.10.2026, wieczór): jednorącz/oburącz jako osobne ćwiczenia, partia „przywodziciele”, nowy sprzęt i ćwiczenia. */
 export const LIB_EXTRA_REVS: readonly string[] = CATALOG_ADDED_REVS;
@@ -196,6 +196,6 @@ export function seedState(lng: Lang = 'pl'): State {
     v: 2, schemaVersion: SCHEMA_VERSION, ownerId: LOCAL_OWNER,
     settings: defaultSettings(), exercises,
     bands: [{ ...base(), color: en ? 'red' : 'czerwona', level: 2 }, { ...base(), color: en ? 'black' : 'czarna', level: 4 }, { ...base(), color: en ? 'purple' : 'fioletowa', level: 6 }],
-    templates: [], workouts: [], active: null, mornings: [], relations: [], feedback: [], instructions: [], timer: blankTimer(), libExtra: LIB_EXTRA_REV,
+    templates: [], workouts: [], active: null, mornings: [], relations: [], feedback: [], instructions: [], timer: blankTimer(), libExtra: LIB_EXTRA_REVS[0], libExtraStep: LIB_EXTRA_REV,
   };
 }

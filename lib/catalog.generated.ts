@@ -606,7 +606,7 @@ export const CABLES: Readonly<Record<string, 1 | 2>> = {
   "Single Arm RDL (hantel/linka)": 1,
   "Cable Hip Adduction": 1,
 };
-/** Kolejne kroki dopisywania nowych ćwiczeń do danych użytkownika (State.libExtra — ostatni dopisany krok). */
+/** Kolejne kroki dopisywania nowych ćwiczeń do danych użytkownika (State.libExtraStep — ostatni dopisany krok). */
 export const CATALOG_ADDED_REVS = ["katalog-2026-10-04","katalog-2026-10-04b"] as const;
 /** Ćwiczenia biblioteki dodane w katalogu (04.10.2026): [nazwa, partia, sprzęt, asysta gumą, miara, tryb liczenia, mięśnie główne, pomocnicze, krok dopisania]. */
 export const CATALOG_LIB_EXTRA: readonly [string, string, string, boolean, string, string, string[], string[], string][] = [

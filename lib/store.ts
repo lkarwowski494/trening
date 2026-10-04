@@ -252,13 +252,15 @@ export function migrate(raw: any): State {
    * Audyt 04.10 (HIGH): znacznik zamiast granicy schematu — build 01f2bee miał już schemat 16 bez katalogu. */
   const sameList = (a: unknown, b: readonly string[]) => Array.isArray(a) && a.length === b.length && a.every((x, i) => x === b[i]);
   /* Krok b (04.10 wieczór): kroki kolejno od zapisanego znacznika; nieznany (nowszy) znacznik — bez zmian. */
-  { const done = typeof raw.libExtra === 'string' ? LIB_EXTRA_REVS.indexOf(raw.libExtra) : -1;
-    if (done >= 0 || typeof raw.libExtra !== 'string') { const have = new Set(raw.exercises.map((e: any) => fold(e.name)));
+  /* Audyt kroku b (MEDIUM): libExtra zostaje wartością pierwszego kroku (build 643cba7 porównuje ją dosłownie i przy innej dopisałby usunięte
+   * ćwiczenia po powrocie do starszej wersji); kolejne kroki — w libExtraStep. */
+  { const mark = typeof raw.libExtraStep === 'string' ? raw.libExtraStep : raw.libExtra; const done = typeof mark === 'string' ? LIB_EXTRA_REVS.indexOf(mark) : -1;
+    if (done >= 0 || typeof mark !== 'string') { const have = new Set(raw.exercises.map((e: any) => fold(e.name)));
       for (const rev of LIB_EXTRA_REVS.slice(done + 1)) {
         for (const row of LIB) if (libExtraRevOf(row[0]) === rev && !have.has(fold(row[0]))) { raw.exercises.push(libExercise(row, owner)); have.add(fold(row[0])); }
         for (const f of LIB_MUSCLE_FIXES) if (f.rev === rev) for (const e of raw.exercises) if (e.lib === true && e.name === f.name && sameList(e.muscles, f.from[0]) && sameList(e.secondaryMuscles, f.from[1])) { const [a, b] = musclesFor(e.name, e.group); e.muscles = a; e.secondaryMuscles = b; }
       }
-      raw.libExtra = LIB_EXTRA_REV; } }
+      raw.libExtra = LIB_EXTRA_REVS[0]; raw.libExtraStep = LIB_EXTRA_REV; } }
   raw.templates = arr(raw.templates);
   raw.templates.forEach((t: any) => { stamp(t); if (typeof t.name !== 'string') t.name = ''; t.items = arr(t.items); t.items = t.items.filter((it: any) => idOf(it.exerciseId) != null); t.items.forEach((it: any) => { it.id = idOf(it.id) ?? uid(); it.exerciseId = idOf(it.exerciseId); { const v = parseNum(it.targetSec); it.targetSec = v == null || v < 0 ? '' : Math.min(86400, Math.round(v)); } /* runda 51 */ it.groupId = idOf(it.groupId); it.sets = intIn(it.sets, 1, 50) ?? 1; /* runda 15: liczba, nie tekst z importu */ if (it.startWeight === undefined) it.startWeight = ''; for (const k of ['repMin', 'repMax']) it[k] = intIn(it[k], 1, 100); { const v = parseNum(it.restSec); it.restSec = v == null || v < 0 ? null : Math.min(1800, Math.round(v)); } /* runda 49: także tekst, jak przerwa ćwiczenia */ /* runda 17: limit 1800 */ { const v = parseNum(it.startWeight); it.startWeight = v == null ? '' : kg2(snapL(v) as number); } fixAlternates(it); }); });
   raw.templates.forEach((x: any) => { const n = x.name.replace(/\s+/g, ' ').trim(); x.name = n || tIn(raw.settings?.language, 'Nowy szablon'); { const l = idOf(x.locationId); if (l) x.locationId = l; else delete x.locationId; } /* P-003 */ }); // runda 35: jak nazwy ćwiczeń
