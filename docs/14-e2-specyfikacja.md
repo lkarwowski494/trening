@@ -390,7 +390,11 @@ Wynik: **0 wysokich, 2 średnie, 2 niskie** — wszystkie naprawione, każde z t
 
 ### E2E na symulatorze i build na trening 05.10.2026
 
-GOTOWE DO BUILDU: fe5ca7655d11dc79f16fa19da0ac185ce5898d39 — E2E run 37222826222 7/7, audyt: 0 wysokich / 0 średnich (04.10.2026, 19:05 UTC)
+GOTOWE DO BUILDU: 4cc004b29d37a9acb2b09452052d77c1f20fefd1 — E2E run 37237348581 7/7, audyt: 0 wysokich / 2 średnich (1 naprawiony, 1 opisany — decyzja właściciela) (04.10.2026, 22:10 UTC)
+
+*Zakres:* pełna baza ćwiczeń (854; decyzja właściciela „dodawaj resztę”), Q-024, listy wirtualizowane. Aplikacja w E2E zbudowana w run 37226412840 (02ba448) — kod aplikacji bez zmian do 4cc004b (od tego czasu tylko scenariusze Maestro, przepływ E2E, testy i dokumentacja).
+
+*Poprzednio (zastąpione 04.10.2026, 22:10 UTC — pełna baza):* `GOTOWE DO BUILDU: fe5ca7655d11dc79f16fa19da0ac185ce5898d39 — E2E run 37222826222 7/7, audyt: 0 wysokich / 0 średnich (04.10.2026, 19:05 UTC)`
 
 *Poprzednio (zastąpione 04.10.2026, 19:05 UTC — Q-024 „×2 dla dwóch linek”; audyt kodu 62d418e..398da2f: w części Q-024 bez wysokich i średnich):* `GOTOWE DO BUILDU: 62d418eb075f5f5784b88b9838d1575d1b4d360d — E2E run 37221502818 7/7, audyt: 0 wysokich / 1 średnich (naprawione) (04.10.2026, 18:35 UTC)`
 
