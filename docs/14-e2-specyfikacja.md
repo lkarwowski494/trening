@@ -382,3 +382,23 @@ Wynik: **0 wysokich, 2 średnie, 2 niskie** — wszystkie naprawione, każde z t
 - **L2** (P5b): trening wstecz — wstrzymanie ciężaru spoza listy (M3) liczone wg domyślnego przyrządu zamiast wybranego ręcznie. Poprawka: `offListAt(…, pinnedImpl(e))` w `prefillFor`. Test „L2: …”.
 - Drobiazg bez zmiany: picker z celem `swap:edit` nie pokazuje „Przywróć …” dla zarchiwizowanych ćwiczeń (cel `swap:active` pokazuje) — niespójność, nie błąd; do decyzji przy kolejnej rundzie.
 
+
+### E2E na symulatorze i build na trening 05.10.2026
+
+GOTOWE DO BUILDU: bbcf1af3467de11121229c64bf0231df6d14517c — E2E run 37198696767 7/7, audyt: 0 wysokich / 2 średnich (naprawione) (04.10.2026, 11:47 UTC)
+
+Kod aplikacji = c9e2101 (aplikacja symulatora z przebiegu 37190915402); późniejsze commity zmieniają tylko `.maestro/`,
+`.github/workflows/e2e-ios.yml`, `scripts/ci/` i testy. Build ad hoc: gałąź `build/trening-0510` = bbcf1af.
+
+| Przebieg | Commit | Wynik | Przyczyna / poprawka |
+|---|---|---|---|
+| 37189853451 | 0951d1e (W1) | 6/7 | 03 „Kolejność” — jak niżej |
+| 37190915402 | c9e2101 | 5/7 | 03 i 07 (część W3) |
+| 37193129280 | 6e47a65 | 5/7 | diagnostyka: `scripts/ci/maestro-failures.py` — nieudane polecenie w logu |
+| 37194374128 | f1ef685 | 5/7 | 07: hipoteza „ekran przewinięty” odrzucona (przewijanie w górę też nie znalazło „Start”) |
+| 37195812733 | 9a2c8a9 | 5/7 | zrzuty kroków dekodowane z logu (base64) — artefakty nieosiągalne z sesji (proxy) |
+| 37197114478 | 4f81ba4 | 6/7 | 03 naprawione: od E2 bloki są wyższe („⇄ swap”), „Reorder exercises” zatrzymywał się pod paskiem zakładek i stuknięcie trafiało w zakładkę More → `centerElement: true` |
+| 37198696767 | bbcf1af | **7/7** | 07 naprawione: pod tytułem okna „Cancel workout?” są dwa przyciski „Cancel workout” (okno i przycisk w tle po przewinięciu) — selektor trafiał w ten w tle → przycisk okna wskazany między „Back” a opisem w tle |
+
+Wniosek dla aplikacji (niezmienione, do rozważenia): treść ekranu treningu przewija się pod paskiem zakładek — na telefonie
+nie przeszkadza (użytkownik przewija dalej), ale dolne przyciski są tuż nad paskiem.
