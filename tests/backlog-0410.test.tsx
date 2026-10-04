@@ -48,3 +48,14 @@ test('Q-026 (decyzja a, 04.10.2026): serie zapisane pod innym sprzętem nie licz
   expect(recordsFor(e).maxRepsFree).toBe(8);
   expect(store.setSummary(e, older.sets[0])).toBe('12@+42,5'); /* widok historii bez zmian (shownLoad, runda 83b) */
 });
+
+import { prMap } from '@/lib/stats';
+test('Q-026 (audyt 04.10): po zmianie sprzętu na masę ciała pierwszy trening nie dostaje fałszywego rekordu „suma powtórzeń” (brak porównywalnej sumy)', async () => {
+  await fresh(); const e = store.newExercise('Moje dipy'); store.setEquipment(e, 'inne');
+  addWorkout(day(5), [['Moje dipy', [{ weight: 42.5, reps: 12 }, { weight: 42.5, reps: 12 }]]]);
+  store.setEquipment(e, 'masa ciała');
+  const w = addWorkout(day(1), [['Moje dipy', [{ reps: 3 }]]]);
+  expect([...prMap(w).values()].flat()).not.toContain('suma powtórzeń');
+  const w2 = addWorkout(day(0), [['Moje dipy', [{ reps: 5 }]]]); /* po pierwszej porównywalnej sesji rekord sumy działa */
+  expect([...prMap(w2).values()].flat()).toContain('suma powtórzeń');
+});

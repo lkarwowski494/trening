@@ -48,7 +48,7 @@ function refSessions(e: Exercise, before?: number) {
 function refRecords(e: Exercise, before?: number) {
   const r = stats.emptyRecords();
   for (const s of refSessions(e, before)) {
-    r.any = true; r.bestTotal = Math.max(r.bestTotal, s.total); r.maxLoad = Math.max(r.maxLoad, s.maxLoad); r.bestE1rm = Math.max(r.bestE1rm, s.bestE1rm); if (s.bestE1rm > 0) r.e1rmAny = true; r.maxReps = Math.max(r.maxReps, s.maxReps);
+    r.any = true; r.bestTotal = Math.max(r.bestTotal, s.total); r.maxLoad = Math.max(r.maxLoad, s.maxLoad); r.bestE1rm = Math.max(r.bestE1rm, s.bestE1rm); if (s.bestE1rm > 0) r.e1rmAny = true; if (s.total > 0) r.totalAny = true; /* Q-026 (audyt 04.10): zamierzona zmiana */ r.maxReps = Math.max(r.maxReps, s.maxReps);
     r.maxDuration = Math.max(r.maxDuration, s.maxDuration); r.maxDistance = Math.max(r.maxDistance, s.maxDistance);
     s.sets.forEach(set => { r.bestSetVolume = Math.max(r.bestSetVolume, recVol(e, set)); if (freeOf(e, set) && set.kind !== 'drop') r.maxRepsFree = Math.max(r.maxRepsFree, repsOf(set)); });
   }

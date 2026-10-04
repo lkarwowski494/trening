@@ -105,8 +105,8 @@ function summarize(ex: Exercise, w: Workout, sets: WSet[]): Session {
   return { workout: w, date: at, sets, bestSet: bestP ?? bestA, total, maxLoad: maxLoad === -Infinity ? 0 : maxLoad, hasLoad, bestE1rm, volume, maxReps, maxDuration, maxDistance, bestSetVolume, maxRepsFree };
 }
 
-export interface Records { /** runda 73: najlepsza suma na treningu */ bestTotal: number; maxLoad: number; bestE1rm: number; bestSetVolume: number; maxReps: number; /** runda 72: najwięcej powtórzeń bez asysty (ćwiczenia z masą ciała: ±kg ≥ 0) — próg rekordu powtórzeń */ maxRepsFree: number; /** T6: czy w historii jest seria, z której liczy się e1RM (≤ 10 powt., nie drop) */ e1rmAny: boolean; maxDuration: number; maxDistance: number; any: boolean }
-export const emptyRecords = (): Records => ({ bestTotal: 0, maxLoad: 0, bestE1rm: 0, bestSetVolume: 0, maxReps: 0, maxRepsFree: 0, e1rmAny: false, maxDuration: 0, maxDistance: 0, any: false });
+export interface Records { /** runda 73: najlepsza suma na treningu */ bestTotal: number; maxLoad: number; bestE1rm: number; bestSetVolume: number; maxReps: number; /** runda 72: najwięcej powtórzeń bez asysty (ćwiczenia z masą ciała: ±kg ≥ 0) — próg rekordu powtórzeń */ maxRepsFree: number; /** Q-026: czy któraś sesja miała sumę > 0 (próg rekordu sumy) */ totalAny: boolean; /** T6: czy w historii jest seria, z której liczy się e1RM (≤ 10 powt., nie drop) */ e1rmAny: boolean; maxDuration: number; maxDistance: number; any: boolean }
+export const emptyRecords = (): Records => ({ bestTotal: 0, maxLoad: 0, bestE1rm: 0, bestSetVolume: 0, maxReps: 0, maxRepsFree: 0, e1rmAny: false, totalAny: false, maxDuration: 0, maxDistance: 0, any: false });
 /** Rekordy z historii przed znacznikiem `before` (domyślnie: cała historia). Kopia — prMap podnosi poprzeczki. */
 export function recordsFor(ex: Exercise, before?: number): Records {
   const key = ex.id + '|' + wu(); const all = allSessions(key); const n = before == null ? all.length : countBefore(all, before);
@@ -117,7 +117,7 @@ export function recordsFor(ex: Exercise, before?: number): Records {
 const recordsPrefix = memoHistBy((key: string): Records[] => {
   const out: Records[] = []; let r = emptyRecords();
   for (const s of allSessions(key)) {
-    r = { any: true, bestTotal: Math.max(r.bestTotal, s.total), maxLoad: Math.max(r.maxLoad, s.maxLoad), bestE1rm: Math.max(r.bestE1rm, s.bestE1rm), e1rmAny: r.e1rmAny || s.bestE1rm > 0,
+    r = { any: true, bestTotal: Math.max(r.bestTotal, s.total), maxLoad: Math.max(r.maxLoad, s.maxLoad), bestE1rm: Math.max(r.bestE1rm, s.bestE1rm), e1rmAny: r.e1rmAny || s.bestE1rm > 0, totalAny: r.totalAny || s.total > 0,
       maxReps: Math.max(r.maxReps, s.maxReps), maxDuration: Math.max(r.maxDuration, s.maxDuration), maxDistance: Math.max(r.maxDistance, s.maxDistance),
       bestSetVolume: Math.max(r.bestSetVolume, s.bestSetVolume), maxRepsFree: Math.max(r.maxRepsFree, s.maxRepsFree) };
     out.push(r);
@@ -161,7 +161,7 @@ export function prMap(w: Workout): Map<string, string[]> {
     // Runda 73: suma na treningu — odznaka przy serii, która przebiła najlepszą dotychczasową sumę (raz na ćwiczenie w treningu).
     const tk = totalKind(ex); if (tk) { const v = (run.get(ex.id) ?? 0) + setTotal(ex, s); run.set(ex.id, v);
       const u = (runU.get(ex.id) ?? 0) + (setTotal(ex, s) > 0 ? exMult(ex) * repsOf(s) : 0); runU.set(ex.id, u);
-      if (rec.any && !totDone.has(ex.id) && v > 0 && totalGt(ex, v, rec.bestTotal, u)) { k.push(tk); totDone.add(ex.id); } }
+      if (rec.any && rec.totalAny /* Q-026 (audyt 04.10): bez porównywalnej sumy w historii (np. same serie spod innego sprzętu) — bez rekordu sumy, jak e1rmAny */ && !totDone.has(ex.id) && v > 0 && totalGt(ex, v, rec.bestTotal, u)) { k.push(tk); totDone.add(ex.id); } }
     if (k.length) out.set(s.id, k);
     raise(ex, s, rec);
   }
