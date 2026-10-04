@@ -98,10 +98,9 @@ jobs:
       - name: Podsumowanie porażki (nieudane polecenie i teksty z ekranu — artefakty bywają nieosiągalne)
         if: failure()
         run: |
-          python3 scripts/ci/maestro-failures.py e2e-out
-          # Zrzut z chwili błędu jako tekst w logu (base64 JPEG ~480 px) — artefakty bywają nieosiągalne; tylko ekran aplikacji w symulatorze.
-          find e2e-out -name '*.png' | sed 's|^|  png: |' | head -60
-          find e2e-out -name '*❌*.png' | head -4 | while IFS= read -r f; do
+          python3 scripts/ci/maestro-failures.py e2e-out /tmp/zrzuty.txt
+          # Zrzut nieudanego kroku jako tekst w logu (base64 JPEG ~480 px) — artefakty bywają nieosiągalne; tylko ekran aplikacji w symulatorze.
+          head -4 /tmp/zrzuty.txt | while IFS= read -r f; do
             echo "=== ZRZUT-BLEDU: $f"; sips -Z 480 -s format jpeg -s formatOptions 35 "$f" --out /tmp/zrzut.jpg >/dev/null 2>&1 || continue
             echo "BEGIN-B64"; base64 -b 1000 -i /tmp/zrzut.jpg; echo "END-B64"
           done
