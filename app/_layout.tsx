@@ -42,6 +42,7 @@ function Root() {
       <Stack screenOptions={{ headerStyle: { backgroundColor: th.bg }, headerTintColor: th.text, headerShadowVisible: false, contentStyle: { backgroundColor: th.bg }, headerBackTitle: t('Wróć') }}>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="picker" options={{ presentation: 'modal', title: t('Wybierz ćwiczenie') }} />
+        <Stack.Screen name="swap" options={{ presentation: 'modal', title: t('Zamień ćwiczenie') }} />
         <Stack.Screen name="+not-found" options={{ headerShown: false, animation: 'none' }} />
         <Stack.Screen name="_sitemap" options={{ headerShown: false, animation: 'none' }} />
         <Stack.Screen name="template/[id]" options={{ title: t('Szablon') }} />

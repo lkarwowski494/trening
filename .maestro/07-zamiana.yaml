@@ -1,0 +1,127 @@
+# E2 (docs/14 pkt 7, Maestro 07): zamiana ćwiczenia w trakcie treningu — W1 „tylko dziś”: zamiana w miejscu, cofnięcie, podział po odhaczonej serii.
+# (Krok D6 — przepięcie w edytorze historii — dopisywany w etapie D6.)
+#
+# Literały (EN z lib/i18n.en.ts / lib/equipment.ts, chyba że zaznaczono inaczej):
+#   "Start from a template", "More, tab.*", "Settings", "Training places,.*", "\+ Add place", "Back", "Workout, tab.*",
+#   "Empty workout", "\+ Add exercise", "Search exercises…", "Cancel", "Show all" (sw-Show all)  ← jak przepływ 06
+#   "Home,.*"                        ← LOCATION_PRESET_LABEL.home.en 'Home' + hint 'empty — tick what you have' (lib/equipment.ts)
+#   sw-Adjustable bench              ← testID przełącznika SwitchRow: 'sw-' + EQUIPMENT bench_adj.en (lib/equipment.ts)
+#   sw-Dumbbells \(fixed or quick-adjust\) ← jak wyżej, db_fixed.en; nawiasy poprzedzone \\ (tests/maestro-selectors.test.ts)
+#   "Bench Press \(Barbell\),.*"     ← Item pickera „{title}, {sub}”: exName('Bench Press (sztanga)') → 'Bench Press (Barbell)', sub 'barbell · missing: …'
+#   "no equipment at Home.*"         ← 'brak sprzętu w: {l}' → 'no equipment at {l}' (components/ActiveWorkout.tsx)
+#   "Swap exercise: X"               ← 'Zamień ćwiczenie: {name}' (accessibilityLabel przycisku „⇄ zamień” w bloku)
+#   "Suggestion 1: X.*"              ← 'Propozycja {n}: {name}' (app/swap.tsx; ranking lib/swap.ts — w Domu z ławką i hantlami:
+#                                      Bench Press (Barbell) → 1. Bench Press (Dumbbell); Overhead Press (Barbell) → 1. Arnold Press — remis
+#                                      punktów, kolejność alfabetyczna w języku interfejsu; tabela D7: docs/14a-e2-top3.md)
+#   "instead of: X.*"                ← 'zamiast: {name}' (linijka pod nazwą zamiennika)
+#   "Undo swap: X"                   ← 'Cofnij zamianę: {name}' (przycisk „↺ cofnij”)
+#   "Set N done — X"                 ← 'Seria {n} zrobiona — {ex}' (checkbox serii)
+#   "\+ set"                         ← '+ seria'
+#   "Finish", "Finish workout\?", "Session" ← jak przepływ 05
+appId: pl.lukasz.trening
+name: Zamiana ćwiczenia w trakcie treningu (E2 W1)
+---
+- launchApp:
+    clearState: true
+    permissions: { all: allow }
+- extendedWaitUntil: { visible: "Start from a template", timeout: 60000 }
+
+# --- Miejsce „Home”: ławka regulowana i hantle ---
+- tapOn: "More, tab.*"
+- extendedWaitUntil: { visible: "Settings", timeout: 30000 }
+- tapOn: "Settings"
+- scrollUntilVisible: { element: "Training places,.*", direction: DOWN, timeout: 60000 }
+- tapOn: "Training places,.*"
+- extendedWaitUntil: { visible: "\\+ Add place", timeout: 30000 }
+- tapOn: "\\+ Add place"
+- extendedWaitUntil: { visible: "Home,.*", timeout: 30000 }
+- tapOn: "Home,.*"
+- extendedWaitUntil: { visible: "Available exercises: .*", timeout: 30000 }
+- scrollUntilVisible: { element: { id: "sw-Dumbbells \\(fixed or quick-adjust\\)" }, direction: DOWN, timeout: 90000 }
+- tapOn: { id: "sw-Dumbbells \\(fixed or quick-adjust\\)" }
+- scrollUntilVisible: { element: { id: "sw-Adjustable bench" }, direction: DOWN, timeout: 90000 }
+- tapOn: { id: "sw-Adjustable bench" }
+- takeScreenshot: 30-dom-lawka-hantle
+- tapOn: "Back"
+- extendedWaitUntil: { visible: "\\+ Add place", timeout: 30000 }
+- tapOn: "Back"
+- extendedWaitUntil: { visible: "Training places,.*", timeout: 30000 }
+- tapOn: "Back"
+- extendedWaitUntil: { visible: "Workout, tab.*", timeout: 30000 }
+- tapOn: "Workout, tab.*"
+
+# --- Pusty trening + Bench Press (Barbell) — niedostępny w Domu ---
+- extendedWaitUntil: { visible: "Start from a template", timeout: 30000 }
+- scrollUntilVisible: { element: "Empty workout", direction: DOWN, timeout: 60000 }
+- tapOn: "Empty workout"
+- extendedWaitUntil: { visible: "\\+ Add exercise", timeout: 30000 }
+- tapOn: "\\+ Add exercise"
+- extendedWaitUntil: { visible: "Show all", timeout: 30000 }
+- tapOn: { id: "sw-Show all" }
+- tapOn: "Search exercises…"
+- inputText: "Bench"
+- tapOn: { text: "Continue", optional: true }
+- extendedWaitUntil: { visible: "Bench Press \\(Barbell\\),.*", timeout: 30000 }
+- tapOn: "Bench Press \\(Barbell\\),.*"
+- extendedWaitUntil: { visible: "no equipment at Home.*", timeout: 30000 }
+- takeScreenshot: 31-brak-sprzetu
+
+# --- Zamiana w miejscu: propozycje → Bench Press (Dumbbell) ---
+- tapOn: "Swap exercise: Bench Press \\(Barbell\\)"
+- extendedWaitUntil: { visible: "Suggestion 1: Bench Press \\(Dumbbell\\).*", timeout: 30000 }
+- takeScreenshot: 32-arkusz-propozycje
+- tapOn: "Suggestion 1: Bench Press \\(Dumbbell\\).*"
+- extendedWaitUntil: { visible: "instead of: Bench Press \\(Barbell\\).*", timeout: 30000 }
+- assertVisible: "Set 1 done — Bench Press \\(Dumbbell\\)"
+- assertNotVisible: "Set 2 done — Bench Press \\(Dumbbell\\)"   # ta sama liczba serii (pusty trening: 1)
+- assertNotVisible: "no equipment at Home.*"
+- takeScreenshot: 33-po-zamianie
+
+# --- Cofnięcie i ponowna zamiana ---
+- tapOn: "Undo swap: Bench Press \\(Dumbbell\\)"
+- extendedWaitUntil: { visible: "Swap exercise: Bench Press \\(Barbell\\)", timeout: 30000 }
+- assertNotVisible: "instead of: .*"
+- tapOn: "Swap exercise: Bench Press \\(Barbell\\)"
+- extendedWaitUntil: { visible: "Suggestion 1: Bench Press \\(Dumbbell\\).*", timeout: 30000 }
+- tapOn: "Suggestion 1: Bench Press \\(Dumbbell\\).*"
+- extendedWaitUntil: { visible: "instead of: Bench Press \\(Barbell\\).*", timeout: 30000 }
+
+# --- Podział: drugie ćwiczenie z 3 seriami, 1 odhaczona → zamiana ---
+- scrollUntilVisible: { element: "\\+ Add exercise", direction: DOWN, timeout: 60000 }
+- tapOn: "\\+ Add exercise"
+- extendedWaitUntil: { visible: "Search exercises…", timeout: 30000 }
+- tapOn: "Search exercises…"
+- inputText: "Overhead Press"
+- tapOn: { text: "Continue", optional: true }
+- extendedWaitUntil: { visible: "Overhead Press \\(Barbell\\),.*", timeout: 30000 }
+- tapOn: "Overhead Press \\(Barbell\\),.*"
+- extendedWaitUntil: { visible: "Set 1 done — Overhead Press \\(Barbell\\)", timeout: 30000 }
+- scrollUntilVisible: { element: { text: "\\+ set", index: 1 }, direction: DOWN, timeout: 60000 }
+- tapOn: { text: "\\+ set", index: 1 }
+- tapOn: { text: "\\+ set", index: 1 }
+- scrollUntilVisible: { element: "Set 3 done — Overhead Press \\(Barbell\\)", direction: DOWN, timeout: 60000 }
+- tapOn: "Set 1 done — Overhead Press \\(Barbell\\)"
+- tapOn: { text: "Skip", optional: true }
+- scrollUntilVisible: { element: "Swap exercise: Overhead Press \\(Barbell\\)", direction: DOWN, timeout: 60000 }
+- tapOn: "Swap exercise: Overhead Press \\(Barbell\\)"
+- extendedWaitUntil: { visible: "Suggestion 1: Arnold Press.*", timeout: 30000 }
+- tapOn: "Suggestion 1: Arnold Press.*"
+- extendedWaitUntil: { visible: "instead of: Overhead Press \\(Barbell\\).*", timeout: 30000 }
+- assertVisible: "Set 1 done — Overhead Press \\(Barbell\\)"
+- assertNotVisible: "Set 2 done — Overhead Press \\(Barbell\\)"
+- assertVisible: "Set 1 done — Arnold Press"
+- assertVisible: "Set 2 done — Arnold Press"
+- assertNotVisible: "Set 3 done — Arnold Press"
+- takeScreenshot: 34-podzial
+
+# --- Odhaczenie serii B → Zakończ → w historii oba ćwiczenia ---
+- tapOn: "Set 1 done — Arnold Press"
+- tapOn: { text: "Skip", optional: true }
+- scrollUntilVisible: { element: "Finish", direction: UP, timeout: 60000 }
+- tapOn: "Finish"
+- extendedWaitUntil: { visible: "Finish workout\\?", timeout: 30000 }
+- tapOn: { text: "Finish", below: "Finish workout\\?" }
+- extendedWaitUntil: { visible: "Session", timeout: 30000 }
+- assertVisible: ".*Overhead Press \\(Barbell\\).*"
+- assertVisible: ".*Arnold Press.*"
+- takeScreenshot: 35-historia-po-podziale

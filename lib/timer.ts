@@ -70,6 +70,11 @@ export async function adjust(delta: number) {
   if (T.alarmed && T.endAt > Date.now()) { T.alarmed = false; if (laKind !== 'set') laStart('rest', sub, T.endAt, T.total); } else if (laKind === 'rest') LA.update(sub, T.endAt, T.total).catch(() => {});
   await reschedule(); emit();
 }
+/** E2 (docs/14 pkt 3.8): nowy podpis TRWAJĄCEJ przerwy — po zamianie ćwiczenia (podpis jest zamrażany na starcie przerwy, T.sub), także na Live Activity. */
+export function relabel(sub: string) {
+  if (!T.on || !sub || sub === T.sub) return; T.sub = sub; labels.subtitle = sub;
+  if (laKind === 'rest' && !T.alarmed) LA.update(sub, T.endAt, T.total).catch(() => {}); emit();
+}
 export async function stop() { const was = T.on; T.on = false; T.setId = null; setTimerState({ restEndAt: null, restTotal: 0, restSetId: null }); await cancelScheduled(); if (was) laEnd('rest'); emit(); }
 /** Zatrzymuje przerwę tylko wtedy, gdy uruchomiła ją ta seria (cofnięcie odhaczenia starszej serii nie kasuje bieżącej przerwy). */
 export async function stopIfFrom(setId: string) { if (T.on && T.setId === setId) await stop(); }

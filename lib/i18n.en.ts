@@ -272,4 +272,10 @@ export const EN: Record<string, string> = {
   /* E2 — zamiana ćwiczenia (docs/14) */
   'gryf łamany': 'EZ bar', 'trap bar': 'trap bar', 'kettlebell': 'kettlebell', 'wyciąg': 'cable', 'stacja': 'station',
   'ten sam ruch': 'same movement', 'te same mięśnie': 'same muscles', 'wcześniej zamieniane': 'swapped before', 'robione {n}×': 'done {n}×',
+  'Zamień ćwiczenie': 'Swap exercise', 'Tego ćwiczenia nie da się już zamienić.': 'This exercise can no longer be swapped.', 'Zamiana tylko w tym treningu: {name}': 'Swap for this workout only: {name}',
+  '↺ przywróć: {name}': '↺ restore: {name}', 'Propozycje': 'Suggestions', 'już w treningu': 'already in workout', 'Propozycja {n}: {name}': 'Suggestion {n}: {name}',
+  'Brak podobnych ćwiczeń w tym miejscu — wybierz z całej biblioteki.': 'No similar exercises at this place — choose from the whole library.', 'Inne': 'Other', 'Cała biblioteka': 'Whole library',
+  'wszystkie ćwiczenia z tą samą miarą': 'all exercises with the same measure', 'Cofnąć zamianę?': 'Undo swap?', 'Wpisane wartości zamiennika przepadną.': 'Values entered for the substitute will be lost.', 'Cofnij': 'Undo',
+  'zamiast: {name}': 'instead of: {name}', 'ostatnio {s}': 'last time {s}', '↺ cofnij': '↺ undo', 'Cofnij zamianę: {name}': 'Undo swap: {name}',
+  'Zamień ćwiczenie (brak sprzętu): {name}': 'Swap exercise (missing equipment): {name}', '⇄ zamień': '⇄ swap', 'Zamień ćwiczenie: {name}': 'Swap exercise: {name}',
 };

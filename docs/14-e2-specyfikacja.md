@@ -352,3 +352,21 @@ Dokumentacja po wdrożeniu: sekcja „Implementacja E2” w docs/10, wiersz w do
 Wagi (+3/+3/+1/+1/+4/+1) i „3–4 propozycje” pochodzą z propozycji w docs/13 A4, **nie z badań ani danych**.
 - (a) **Start z tymi wagami i 3 propozycjami; ocena wyłącznie na tabeli D7** (Dom + Pełna siłownia) przed wydaniem, korekty wag w tym samym commicie co tabela (rekomendacja).
 - (b) 4 propozycje — większa szansa trafienia, dłuższy arkusz na 320 pt (test C4/zrzuty).
+
+## 10. Implementacja — stan prac (gałąź `feature/e2-swap`)
+
+Gałąź od `integration/0.9.0` (SDK 57 scalone). **04.10.2026:** do gałęzi wciągnięte też 5 commitów `upgrade/sdk-57` (3be9533…db613bf: ten dokument,
+odpowiedzi P1–P7, poprawka zakładek js-tabs), których scalenie do `integration/0.9.0` (b37399a, z 97303e1) nie objęło — bez nich specyfikacji nie było na gałęzi.
+
+| Data | Etap | Co zrobione | Testy / CI | Otwarte |
+|---|---|---|---|---|
+| 04.10.2026 | W1 sesja 1 | `lib/swap.ts`: ranking (`swapCandidates`, `SWAP_WEIGHTS`, `SWAP_TOP = 3`), linijka „dlaczego” (`reasonText`), D5 `implsAt`/`otherImpls`; tabela D7 `docs/14a-e2-top3.md` generowana testem | `tests/swap-top3.test.ts`, test 11 (`tests/swap-logic.test.ts`) | przegląd tabeli D7 przez właściciela (P7) |
+| 04.10.2026 | W1 sesja 2 | `prefillSets` (wspólne z `startFromTemplate`), `swapBlock` / `undoSwap` / `canUndoSwap`, łańcuch `splitFrom` w `restAfter`, „Poprzednio” zamiennika (`swapped` w `previousBlockFor/Before`, `prevOfActiveBlock`), schemat 16 (M1–M4) | testy 1–7, 9–10 (`swap-logic`), 23–25 (`swap-schema16`), 24 (`migrate-idem`), 26 (`invariants`: stały krok podział/zamiana/cofnięcie w każdym przebiegu + losowe akcje); 5 plików z literałem schematu 15 → 16 | — |
+| 04.10.2026 | W1 sesja 3 | UI: „⇄ zamień” w akcjach bloku i „⇄” przy plakietce braku sprzętu, arkusz `app/swap.tsx` (propozycje, „już w treningu”, „↺ przywróć”, „Cała biblioteka”), cel pickera `swap:active:<blok>`, linijka „zamiast: A · ostatnio …”, „↺ cofnij” z potwierdzeniem (C7), `timer.relabel` + `afterSwap` (stoper usuniętej serii stop, przerwa trwa, nowy podpis Live Activity), PL/EN | `tests/swap-ui.test.tsx` (5), C2/C3 bez zmian; Maestro `.maestro/07-zamiana.yaml` (kroki 1–6 z pkt 7; krok 7 — D6) | E2E na symulatorze — wynik niżej |
+
+Decyzje implementacyjne (bez wpływu na zachowanie opisane wyżej; do wglądu):
+- `SwapCandidate` ma dodatkowe pole `sessions` (liczba sesji z ćwiczeniem) — remis w rankingu i „robione 12×” w linijce „dlaczego”.
+- „Cała biblioteka” zastępuje arkusz pickerem (`router.replace`), więc wybór w pickerze wraca prosto do treningu (jeden „wstecz”).
+- Zamiana na ćwiczenie równe oryginałowi (`swappedFrom`) usuwa `swappedFrom` (to powrót, nie zamiana); „cofnij” jest ukryte także, gdy oryginał jest zarchiwizowany (usunięty z biblioteki w trakcie treningu).
+- Cel czasu pozycji szablonu przy zamianie trafia do serii poza rozgrzewką (jak w „Powtórz ostatni”); przy cofnięciu do A w miejscu — także ciężar startowy pozycji (gdy A nie ma historii), jak przy starcie.
+

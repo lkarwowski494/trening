@@ -4,7 +4,7 @@ import { useRouter } from 'expo-router';
 import { activateKeepAwakeAsync, deactivateKeepAwake } from 'expo-keep-awake';
 import { useTheme } from '@/lib/theme';
 import { Btn, Input, NumInput, Muted } from '@/components/ui';
-import { progressionFor, writeLoad, setActiveLocation, lastActivity, staleSince, staleRef, staleKind, ackStale, markActivity, useForegroundTick, bandA11y, clampName, loadLabelShort, getState, useTick, exById, previousBlockFor, occurrence, occurrences, hintFor, isBW, reps, fmtDur, fmtSec, fmtTime, setSummary, toggleDone, restAfter, roundRest, addSet, removeSet, removeExercise, finishWorkout, cancelWorkout, save, loadLabel, todayReadiness, groupLabels, linkWithNext, unlink, cycleBand, findSet, shortBand, setHasValue, locationById, offListNote, liveBlockImpl, listLocFor, srcSetAt } from '@/lib/store';
+import { progressionFor, writeLoad, setActiveLocation, lastActivity, staleSince, staleRef, staleKind, ackStale, markActivity, useForegroundTick, bandA11y, clampName, loadLabelShort, getState, useTick, exById, prevOfActiveBlock, previousFor, canUndoSwap, undoSwap, occurrence, occurrences, hintFor, isBW, reps, fmtDur, fmtSec, fmtTime, setSummary, toggleDone, restAfter, roundRest, addSet, removeSet, removeExercise, finishWorkout, cancelWorkout, save, loadLabel, todayReadiness, groupLabels, linkWithNext, unlink, cycleBand, findSet, shortBand, setHasValue, locationById, offListNote, liveBlockImpl, listLocFor, srcSetAt } from '@/lib/store';
 import { availability, missingLabel } from '@/lib/equipment';
 import { locationLabel } from '@/lib/locations';
 import * as timer from '@/lib/timer';
@@ -52,12 +52,7 @@ export default function ActiveWorkout() {
   /** Podpis przerwy na Live Activity: następna seria albo następne ćwiczenie (runda 22: wspólny dla odhaczenia i ponownego pomiaru). */
   const restLabels = (ei: number, si: number) => {
     const a = getState().active; if (!a) return; const e = a.exercises[ei]; if (!e) return; timer.labels.title = a.templateName || tr('Trening');
-    // Runda 23: następna do zrobienia = pierwsza nieodhaczona seria od początku supersetu (albo od tego ćwiczenia) w kolejności treningu.
-    const from = e.groupId ? a.exercises.findIndex(x => x.groupId === e.groupId) : ei;
-    for (let j = from; j < a.exercises.length; j++) { const x = a.exercises[j]; const k = x.sets.findIndex((y, i) => !y.done && !(j === ei && i === si)); if (k < 0) continue;
-      const nm = exName(exById(x.exerciseId)); const same = j === ei || (!!e.groupId && x.groupId === e.groupId);
-      timer.labels.subtitle = same ? `${nm} · ${tr('seria {n}', { n: setLabel(x, k) })}` : tr('dalej: {name}', { name: nm }); return; }
-    timer.labels.subtitle = exName(exById(e.exerciseId));
+    timer.labels.subtitle = restSubtitle(a, ei, si);
   };
   /** Koniec serii czasowej (auto po osiągnięciu celu, ✓ albo ręcznie): zapisuje czas (maks. cel) i odhacza. */
   const closingSet = useRef(false); /* T11: domykanie serii czasowej w toku — pytanie o porzucony trening czeka */
@@ -165,6 +160,37 @@ export default function ActiveWorkout() {
   );
 }
 
+/** Podpis przerwy po serii (ei, si): następna seria albo następne ćwiczenie. Runda 23: następna do zrobienia = pierwsza nieodhaczona seria
+ * od początku supersetu (albo od tego ćwiczenia) w kolejności treningu. Wspólny dla odhaczenia, ponownego pomiaru i zamiany (E2 pkt 3.8). */
+export function restSubtitle(a: Workout, ei: number, si: number): string {
+  const e = a.exercises[ei]; if (!e) return '';
+  const from = e.groupId ? a.exercises.findIndex(x => x.groupId === e.groupId) : ei;
+  for (let j = from; j < a.exercises.length; j++) { const x = a.exercises[j]; const k = x.sets.findIndex((y, i) => !y.done && !(j === ei && i === si)); if (k < 0) continue;
+    const nm = exName(exById(x.exerciseId)); const same = j === ei || (!!e.groupId && x.groupId === e.groupId);
+    return same ? `${nm} · ${tr('seria {n}', { n: setLabel(x, k) })}` : tr('dalej: {name}', { name: nm }); }
+  return exName(exById(e.exerciseId));
+}
+/** E2 (docs/14 pkt 3.8): po zamianie albo cofnięciu zamiany — stoper usuniętej serii stop (jak „usuń”), przerwa trwa (seria, która ją uruchomiła,
+ * zostaje w bloku A), a jej podpis — także na Live Activity — liczony od nowa dla serii, która ją uruchomiła. */
+export function afterSwap(goneSetIds: string[]) {
+  if (timer.S.on && goneSetIds.includes(timer.S.setId ?? '')) timer.stopSet();
+  if (timer.T.on && goneSetIds.includes(timer.T.setId ?? '')) timer.stop();
+  const a = getState().active; const pos = timer.T.on ? findSet(timer.T.setId) : null; if (a && pos) timer.relabel(restSubtitle(a, pos.ei, pos.si));
+}
+/** E2 (pkt 3.4): „↺ cofnij zamianę” — z potwierdzeniem, gdy w seriach zamiennika są wpisane wartości (C7). */
+export function confirmUndoSwap(blockId: string, done?: () => void) {
+  const e = getState().active?.exercises.find(x => x.id === blockId); if (!e) return;
+  const go = () => { const r = undoSwap(blockId); if (r) afterSwap(r.goneSetIds); done?.(); };
+  if (e.sets.some(x => x.edited)) Alert.alert(tr('Cofnąć zamianę?'), tr('Wpisane wartości zamiennika przepadną.'), [{ text: tr('Nie') }, { text: tr('Cofnij'), style: 'destructive', onPress: go }]); else go();
+}
+/** E2 (pkt 3.2): „zamiast: A · ostatnio 3 serie 80×8” — ostatnia sesja A (previousFor), bez przeliczania. */
+function insteadLine(e: WExercise): string {
+  const A = e.swappedFrom ? exById(e.swappedFrom) : undefined; if (!A) return '';
+  const p = previousFor(A.id); const xs = (p?.sets ?? []).map(x => setSummary(A, x)); const same = xs.length > 1 && xs.every(x => x === xs[0]);
+  const last = !xs.length ? '' : same ? `${xs.length} ${tp(xs.length, 'seria|serie|serii')} ${xs[0]}` : xs.slice(0, 4).join(', ') + (xs.length > 4 ? '…' : '');
+  return [tr('zamiast: {name}', { name: exName(A) }), last ? tr('ostatnio {s}', { s: last }) : ''].filter(Boolean).join(' · ');
+}
+
 /** P-003 E1: „📍 Dom ▾” pod nazwą treningu (tylko gdy są miejsca) — zmiana miejsca tylko dla tej sesji; nic nie jest przepisywane
  * ani zamieniane (A-002) — zmienia się filtr wyboru ćwiczeń, plakietki braku sprzętu i podpowiedzi. */
 function LocationChip({ w }: { w: Workout }) {
@@ -218,9 +244,9 @@ export function rowLayout(m: import('@/lib/seed').MetricType, band: boolean, sho
 }
 
 function ExerciseBlock({ w, e, ei, onDone, onStartSet, labels, prs }: { w: Workout; e: WExercise; ei: number; onDone: (ei: number, si: number) => void; onStartSet: (setId: string, target: number, subtitle: string, remeasure?: boolean) => void; labels: Record<string, string>; prs: Map<string, string[]> }) {
-  const t = useTheme(); const st = getState(); const { width } = useWindowDimensions();
+  const t = useTheme(); const st = getState(); const { width } = useWindowDimensions(); const router = useRouter();
   const ex = exById(e.exerciseId);
-  const k = occurrence(w.exercises, ei); const nOcc = occurrences(w.exercises, e.exerciseId); const prev = ex ? previousBlockFor(ex.id, k, nOcc, e.tplItemId, w.templateId, e.impl) : null; /* decyzja 8c: ostatni raz tym samym przyrządem */ /* runda 50: bez useMemo — zależy też od szablonu (edycja w trakcie); ta sama podpowiedź co przy odhaczeniu */ // eslint-disable-line react-hooks/exhaustive-deps
+  const k = occurrence(w.exercises, ei); const nOcc = occurrences(w.exercises, e.exerciseId); const prev = ex ? prevOfActiveBlock(w, e) : null; /* decyzja 8c: ostatni raz tym samym przyrządem; E2 pkt 3.6: zamiennik — najpierw z tej pozycji szablonu */ /* runda 50: bez useMemo — zależy też od szablonu (edycja w trakcie); ta sama podpowiedź co przy odhaczeniu */ // eslint-disable-line react-hooks/exhaustive-deps
   if (!ex) {
     // Ćwiczenie usunięte na stałe w trakcie treningu — pokazujemy blok, żeby dało się go usunąć (wcześniej znikał niewidoczny).
     return <View style={[s.ex, { borderBottomColor: t.line }]}><Muted>{tr('Usunięte ćwiczenie')} · {e.sets.length} {tp(e.sets.length, 'seria|serie|serii')}</Muted><View style={s.actions}><Btn title={tr('usuń')} accessibilityLabel={tr('Usuń usunięte ćwiczenie z treningu')} small kind="ghost" onPress={() => { const i = getState().active?.exercises.findIndex(x => x.id === e.id) ?? -1; if (i >= 0) { const ids = e.sets.map(x => x.id); if (timer.S.on && ids.includes(timer.S.setId ?? '')) timer.stopSet(); if (timer.T.on && ids.includes(timer.T.setId ?? '')) timer.stop(); removeExercise(i); } }} /* runda 43: jak zwykłe „usuń” — timery tego bloku stop */ /></View></View>;
@@ -239,6 +265,8 @@ function ExerciseBlock({ w, e, ei, onDone, onStartSet, labels, prs }: { w: Worko
   const impl = liveBlockImpl(e, w.locationId); /* MEDIUM 2: stacja — kolumna „kg/str.” (na stronę); runda 82b (LOW 4): bez miejsc — jak w main */
   const nm = nOcc > 1 ? `${exName(ex)} (${k + 1})` : exName(ex); /* runda 66: dwa bloki tego samego ćwiczenia rozróżnialne dla VoiceOver */
   const m = ex.metric ?? 'weight_reps'; const showRpe = st.settings.showRpe;
+  /* E2 W1: „⇄ zamień” — ukryty, gdy wszystkie serie odhaczone (D3 a); arkusz app/swap.tsx */
+  const swappable = e.sets.some(x => !x.done); const openSwap = () => router.push(`/swap?target=active:${e.id}`); const insteadTxt = insteadLine(e);
   const doneStyle = (set: WSet) => set.done ? { backgroundColor: t.done, borderColor: t.doneLine } : undefined;
   const inSS = !!e.groupId;
   const prog = progressionFor(ex, e.repMax, prev?.sets, listLocFor(e, w.locationId)); /* T-017: cicha podpowiedź progresji; P-003: z ciężarów miejsca; runda 82b (LOW 5): blok innym przyrządem niż tutaj — bez listy miejsca */
@@ -266,7 +294,8 @@ function ExerciseBlock({ w, e, ei, onDone, onStartSet, labels, prs }: { w: Worko
         <Text accessibilityRole="header" style={{ color: t.text, fontSize: 17, fontWeight: '600', flexGrow: 1, flexShrink: 1, minWidth: '58%' }}>{inSS ? <Text style={{ color: t.band }}>{`SS ${labels[e.groupId!]} · `}</Text> : null}{exName(ex)}{ex.archived ? <Text style={{ color: t.muted, fontSize: 13 }}>{' (' + tr('usunięte') + ')'}</Text> : null}</Text>
         <Muted numberOfLines={2} style={{ fontSize: 13, flexShrink: 1, flexGrow: 1, textAlign: 'right' }}>{headMeta}</Muted>
       </View>
-      {place && avail && !avail.ok ? <Muted style={{ fontSize: 12, color: t.danger, marginTop: -2, marginBottom: 6 }} accessibilityLabel={tr('Brak sprzętu w: {l}. Brakuje: {m}', { l: place.name, m: missingLabel(avail.missing) })}>{tr('brak sprzętu w: {l}', { l: place.name })} ({missingLabel(avail.missing)})</Muted> : null}
+      {insteadTxt ? <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginTop: -2, marginBottom: 6 }}><Muted style={{ fontSize: 12, flexShrink: 1 }}>{insteadTxt}</Muted>{canUndoSwap(e) ? <Btn title={tr('↺ cofnij')} small kind="ghost" accessibilityLabel={tr('Cofnij zamianę: {name}', { name: nm })} onPress={() => confirmUndoSwap(e.id)} /> : null}</View> : null}
+      {place && avail && !avail.ok ? <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginTop: -2, marginBottom: 6 }}><Muted style={{ fontSize: 12, color: t.danger, flexShrink: 1 }} accessibilityLabel={tr('Brak sprzętu w: {l}. Brakuje: {m}', { l: place.name, m: missingLabel(avail.missing) })}>{tr('brak sprzętu w: {l}', { l: place.name })} ({missingLabel(avail.missing)})</Muted>{swappable ? <Btn title="⇄" small kind="ghost" accessibilityLabel={tr('Zamień ćwiczenie (brak sprzętu): {name}', { name: nm })} onPress={openSwap} /> : null}</View> : null}
       {prevElsewhere || offNote ? <Muted style={{ fontSize: 12, marginTop: -2, marginBottom: 6 }}>{[prevElsewhere ? tr('Poprzednio: {l}', { l: prevElsewhere }) : '', offNote].filter(Boolean).join(' · ')}</Muted> : null}
       <View style={[s.row, { gap: W.gap }]}>
         <Muted style={[s.c, { width: W.idx, textAlign: 'left' }]}>#</Muted>
@@ -314,6 +343,7 @@ function ExerciseBlock({ w, e, ei, onDone, onStartSet, labels, prs }: { w: Worko
         <Btn title={`⏱ ${fmtDur(e.restSec)}`} small accessibilityHint={nm} accessibilityLabel={tr('Przerwa: {s}. Tapnij, by zmienić.', { s: fmtDur(e.restSec) })} onPress={() => { Alert.prompt?.(tr('Przerwa (sekundy)'), tr('Zapamiętać dla tego ćwiczenia?'), [{ text: tr('Anuluj'), style: 'cancel' }, { text: tr('Tylko teraz'), onPress: (v?: string) => { const n = parseRest(v); if (n != null) { e.restSec = n; save(st.active); } } }, { text: tr('Zapamiętaj'), onPress: (v?: string) => { const n = parseRest(v); if (n != null) rememberRest(n); } }], 'plain-text', String(e.restSec), 'number-pad'); }} />
         {ei + 1 < w.exercises.length && (!inSS || w.exercises[ei + 1].groupId !== e.groupId) ? <Btn title="⇅ SS" small kind="ghost" accessibilityLabel={tr('Połącz z następnym w superset')} accessibilityHint={nm} onPress={() => linkWithNext(w.exercises, ei, w)} /> : null}
         {inSS ? <Btn title="✂ SS" small kind="ghost" accessibilityLabel={tr('Wyjmij z supersetu')} accessibilityHint={nm} onPress={() => unlink(w.exercises, ei, w)} /> : null}
+        {swappable ? <Btn title={tr('⇄ zamień')} small kind="ghost" accessibilityLabel={tr('Zamień ćwiczenie: {name}', { name: nm })} onPress={openSwap} /> : null}
         <Btn title={tr('usuń')} accessibilityLabel={tr('Usuń ćwiczenie: {name}', { name: nm })} small kind="ghost" onPress={() => Alert.alert(tr('Usunąć z treningu?'), nm, [{ text: tr('Nie') }, { text: tr('Usuń'), style: 'destructive', onPress: () => { const i = getState().active?.exercises.findIndex(x => x.id === e.id) ?? -1; if (i < 0) return; /* runda 10: po id — drugie okno nie usuwa sąsiada */ dropTimers(e.sets.map(x => x.id)); removeExercise(i); } }])} />
       </View>
     </View>
