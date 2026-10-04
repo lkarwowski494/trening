@@ -35,3 +35,16 @@ test('renderApp({ navTimers: false }): arkusz zamiany zamknięty „Anuluj” ni
   await tap(screen.getByText('Anuluj')); await flushAll(2000);
   expect(jest.getTimerCount()).toBe(before);
 });
+
+import { sessionsFor, recordsFor } from '@/lib/stats';
+test('Q-026 (decyzja a, 04.10.2026): serie zapisane pod innym sprzętem nie liczą się do rekordów i wykresu masy ciała; lista nadal je pokazuje', async () => {
+  await fresh(); const e = store.newExercise('Moje podciąganie'); store.setEquipment(e, 'inne');
+  addWorkout(day(5), [['Moje podciąganie', [{ weight: 42.5, reps: 12 }]]]);
+  store.setEquipment(e, 'masa ciała');
+  addWorkout(day(2), [['Moje podciąganie', [{ addKg: 0, reps: 8 }]]]);
+  const ss = sessionsFor(e); const older = ss.find(x => x.sets[0].weight === 42.5)!, newer = ss.find(x => x !== older)!;
+  expect(older.hasLoad).toBe(false); expect(older.maxRepsFree).toBe(0); /* bez punktu „max ±” = 0 i bez rekordu bez asysty */
+  expect(newer.hasLoad).toBe(true); expect(newer.maxRepsFree).toBe(8);
+  expect(recordsFor(e).maxRepsFree).toBe(8);
+  expect(store.setSummary(e, older.sets[0])).toBe('12@+42,5'); /* widok historii bez zmian (shownLoad, runda 83b) */
+});

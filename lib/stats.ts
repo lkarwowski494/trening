@@ -1,6 +1,6 @@
 import { t, tp } from './i18n';
 import { fmtW, fmtVol, fmtNum, wu, KG_PER_LB, volOut } from './units';
-import { getState, exById, volume, finishedWorkouts, setSummary, isBW, setLoad, effectiveLoad, setVolume, exMult, setScore, isWorking, repsOf, memoHist, memoHistBy, workoutsWith, volOf, fmtSec, fmtDist } from './store';
+import { getState, exById, volume, finishedWorkouts, setSummary, isBW, setLoad, loadOf, effectiveLoad, setVolume, exMult, setScore, isWorking, repsOf, memoHist, memoHistBy, workoutsWith, volOf, fmtSec, fmtDist } from './store';
 import { hasReps, hasWeight, hasTime, hasDistance, type Exercise, type MetricType, type WSet, type Workout } from './seed';
 
 /*
@@ -20,7 +20,10 @@ export const E1RM_MAX_REPS = 10;
 const e1rmR = (s: WSet, load: number, reps: number) => s.kind === 'drop' || reps > E1RM_MAX_REPS ? 0 : e1rm(load, reps);
 const e1rmOf = (s: WSet, load: number) => e1rmR(s, load, repsOf(s));
 /** T8: guma bez wpisanej asysty (kg) — obciążenie nieznane (startowe gumy nie mają kg), więc seria nie wchodzi do rekordów e1RM i objętości serii. */
-const unknownAssist = (ex: Exercise, s: WSet) => isBW(ex) && !!s.bandId && !(setLoad(ex, s) < 0); /* Q-018/83b: ciężar do obliczeń z jednego źródła (store.setLoad → loadOf) */
+/** Q-026 (decyzja właściciela a, 04.10.2026): seria zapisana pod innym sprzętem (wartość tylko w „obcym” polu — loadOf.own false, np. 42,5 kg
+ * sprzed zmiany na masę ciała) — obciążenie dla obecnego sprzętu nieznane: bez rekordów, „max ±” i rekordu powtórzeń bez asysty. Widok (shownLoad) bez zmian. */
+const foreignLoad = (ex: Exercise, s: WSet) => hasWeight(ex.metric ?? 'weight_reps') && !loadOf(ex, s).own;
+const unknownAssist = (ex: Exercise, s: WSet) => (isBW(ex) && !!s.bandId && !(setLoad(ex, s) < 0)) || foreignLoad(ex, s); /* Q-018/83b: ciężar do obliczeń z jednego źródła (store.setLoad → loadOf) */
 const recE1 = (ex: Exercise, s: WSet) => unknownAssist(ex, s) ? 0 : e1rmOf(s, effectiveLoad(ex, s));
 export const e1rm = (load: number, reps: number) => (load > 0 && reps > 0) ? Math.round((reps === 1 ? load : load * (1 + reps / 30)) * 1e6) / 1e6 : 0;
 
@@ -135,7 +138,7 @@ export function setPRs(ex: Exercise, s: WSet, rec: Records): string[] {
   return [];
 }
 /** Seria bez asysty: ćwiczenie bez ciężaru albo z masą ciała z ±kg ≥ 0 (dociążenie też — trudniej niż sama masa ciała). */
-const freeOf = (ex: Exercise, s: WSet) => { const m = ex.metric ?? 'weight_reps'; return !s.bandId && (!hasWeight(m) || (isBW(ex) && setLoad(ex, s) >= 0)); };
+const freeOf = (ex: Exercise, s: WSet) => { const m = ex.metric ?? 'weight_reps'; return !s.bandId && !foreignLoad(ex, s) /* Q-026 */ && (!hasWeight(m) || (isBW(ex) && setLoad(ex, s) >= 0)); };
 /** Podnosi poprzeczkę e1RM w trakcie treningu (druga identyczna seria nie jest rekordem). Runda 73: tylko e1RM — pozostałe maksima
  * nie dają już odznaki z serii, a sumę na treningu liczy prMap; podnoszenie ich tutaj było martwym kodem (wykazały to testy mutacyjne). */
 function raise(ex: Exercise, s: WSet, rec: Records) {

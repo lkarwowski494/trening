@@ -16,11 +16,13 @@ const NAMES = ['Back Squat', 'Bench Press (hantle)', 'Pull Up', 'Plank', 'Bieg',
 
 /* ---------- wzorzec: kod sprzed rundy 74 ---------- */
 const { repsOf, isWorking, setScore, setLoad, effectiveLoad, setVolume, isBW } = store;
-const unknownAssist = (e: Exercise, s: WSet) => isBW(e) && !!s.bandId && !(Number(s.addKg) < 0);
+/* Q-026 (decyzja 04.10.2026, zamierzona zmiana dopisana do wzorca): seria tylko z wartością spod innego sprzętu — obciążenie nieznane */
+const foreignLoad = (e: Exercise, s: WSet) => hasWeight(e.metric ?? 'weight_reps') && !store.loadOf(e, s).own;
+const unknownAssist = (e: Exercise, s: WSet) => (isBW(e) && !!s.bandId && !(Number(s.addKg) < 0)) || foreignLoad(e, s);
 const e1rmOf = (s: WSet, load: number) => s.kind === 'drop' || repsOf(s) > stats.E1RM_MAX_REPS ? 0 : stats.e1rm(load, repsOf(s));
 const recE1 = (e: Exercise, s: WSet) => unknownAssist(e, s) ? 0 : e1rmOf(s, effectiveLoad(e, s)); /* runda 75: bez masy ciała — bez `at` */
 const recVol = (e: Exercise, s: WSet) => unknownAssist(e, s) ? 0 : setVolume(e, s);
-const freeOf = (e: Exercise, s: WSet) => { const m = e.metric ?? 'weight_reps'; return !s.bandId && (!hasWeight(m) || (isBW(e) && setLoad(e, s) >= 0)); };
+const freeOf = (e: Exercise, s: WSet) => { const m = e.metric ?? 'weight_reps'; return !s.bandId && !foreignLoad(e, s) && (!hasWeight(m) || (isBW(e) && setLoad(e, s) >= 0)); };
 const performed = (m: MetricType, s: WSet) => hasReps(m) ? repsOf(s) > 0 : hasDistance(m) ? Number(s.distanceM) > 0 || Number(s.durationSec) > 0 : hasTime(m) ? Number(s.durationSec) > 0 : true;
 function refSummarize(e: Exercise, w: Workout, sets: WSet[]) {
   const m = e.metric ?? 'weight_reps'; const at = w.startedAt;
