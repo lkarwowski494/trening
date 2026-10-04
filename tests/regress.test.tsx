@@ -1512,6 +1512,14 @@ describe('runda 58', () => {
       expect(run26()).toBe(`Wybrany Xcode: 26.6 (${dir26}/Xcode_26.6.app)\n`);
     } finally { fs.rmSync(dir26, { recursive: true, force: true }); }
   });
+  test('T-051 audyt (NISKIE): zakładki z `expo-router/js-tabs` — `Tabs` z głównego `expo-router` jest przestarzałe od routera 57', () => {
+    const fs = require('fs'), path = require('path');
+    const files: string[] = []; const walk = (d: string) => { for (const e of fs.readdirSync(d, { withFileTypes: true })) { const f = path.join(d, e.name); if (e.isDirectory()) walk(f); else if (/\.tsx?$/.test(e.name)) files.push(f); } };
+    for (const d of ['app', 'components', 'lib']) walk(path.join(__dirname, '..', d));
+    const bad = files.filter(f => /import\s*\{[^}]*\bTabs\b[^}]*\}\s*from\s*'expo-router'/.test(fs.readFileSync(f, 'utf8'))); expect(bad).toEqual([]);
+    expect(fs.readFileSync(path.join(__dirname, '../app/(tabs)/_layout.tsx'), 'utf8')).toMatch(/import \{ Tabs \} from 'expo-router\/js-tabs';/);
+    expect(require('expo-router/js-tabs').Tabs).toBe(require('expo-router').Tabs); /* ten sam komponent — zmiana tylko ścieżki importu */
+  });
 });
 
 describe('runda 59', () => {
