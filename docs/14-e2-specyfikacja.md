@@ -4,7 +4,7 @@ Wersja 04.10.2026. Status: **specyfikacja przed implementacją** (zasada projekt
 
 **Zakres (decyzje 04.10):** W1 „zamień tylko dziś” + W3 zamienniki per miejsce w szablonie (D1 c, D2 a), przycisk ukryty po odhaczeniu wszystkich serii (D3 a), przerwa z planu i własna przerwa zamiennika w szablonie (D4 a), „ten sam ruch, inny przyrząd” (D5 a), zamiana w edytorze historii (D6 b), tabela top-3 do przejrzenia przed wydaniem (D7 a), „Powtórz ostatni” bez zmian (D8 a).
 
-**Wydanie:** osobne wydanie **po scaleniu SDK 57**, nie razem z aktualizacją SDK (docs/13, „W skrócie” pkt 6). Schemat 16 jest jednokierunkowy dla kopii (pkt 2.4) — dlatego aktualizacja SDK musi być już sprawdzona na telefonie, zanim pójdzie zmiana schematu.
+**Wydanie:** osobne wydanie **po scaleniu SDK 57**, nie razem z aktualizacją SDK (docs/13, „W skrócie” pkt 6). Schemat 16 jest jednokierunkowy dla kopii (pkt 2.4) — dlatego aktualizacja SDK powinna być sprawdzona na telefonie, zanim pójdzie zmiana schematu. **Decyzja właściciela 04.10.2026:** SDK 57 scalane bez testu na telefonie; ewentualny problem z HealthKit — poprawka w następnej wersji. Ryzyko: jeśli trzeba będzie wrócić do wersji sprzed schematu 16, kopie zrobione na schemacie 16 nie wczytają się w starszej wersji (pkt 2.4).
 
 ---
 
