@@ -8,7 +8,7 @@ import * as backup from '@/lib/backup';
 import { exName, t as tr } from '@/lib/i18n';
 import { renderApp, tap, type, flushAll, screen, go, act } from './app';
 import { ex, pressAlert, saved, seedWithDemo } from './helpers';
-import * as FS from 'expo-file-system';
+import * as FS from 'expo-file-system/legacy';
 import * as DP from 'expo-document-picker';
 
 jest.setTimeout(120000);

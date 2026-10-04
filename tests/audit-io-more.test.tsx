@@ -20,7 +20,7 @@ describe('T4b more', () => {
     await fresh(); const env = JSON.stringify(buildBackup());
     await renderApp();
     await act(async () => { store.startEmpty(); store.addExerciseToActive(ex('Back Squat')); }); await flushAll(10);
-    const FS = require('expo-file-system'); const DP = require('expo-document-picker');
+    const FS = require('expo-file-system/legacy'); const DP = require('expo-document-picker');
     FS.readAsStringAsync.mockImplementationOnce(async () => env); DP.getDocumentAsync.mockImplementationOnce(async () => ({ canceled: false, assets: [{ uri: 'file:///x.json' }] }));
     await go('/more/backup'); await flushAll(10);
     spy.mockClear();

@@ -24,7 +24,7 @@ const DAY = 86400e3;
 const profileB64 = (created: number, expires: number, extra = '') => Buffer.from(`0\u0082\u0003garbage<?xml version="1.0"?><plist version="1.0"><dict><key>AppIDName</key><string>trening</string><key>CreationDate</key><date>${new Date(created).toISOString().replace(/\.\d+Z$/, 'Z')}</date>${extra}<key>ExpirationDate</key><date>${new Date(expires).toISOString().replace(/\.\d+Z$/, 'Z')}</date></dict></plist>`, 'latin1').toString('base64');
 
 describe('T-053 przypomnienie o podpisie wg drogi instalacji', () => {
-  const FS = require('expo-file-system');
+  const FS = require('expo-file-system/legacy');
   const useProfile = (b64: string | null) => {
     signing.__resetSigningCache();
     (global as { __bundleDir?: string | null }).__bundleDir = b64 ? '/var/containers/Bundle/Application/X/Trening.app/' : null;
@@ -159,7 +159,7 @@ describe('Q-018 zmiana sprzętu ćwiczenia: historia bez 0 kg (83b: obliczenia t
 });
 
 describe('Q-019 kopia bezpieczeństwa przed importem i „Wyczyść dane”', () => {
-  const FS = require('expo-file-system'); const DP = require('expo-document-picker');
+  const FS = require('expo-file-system/legacy'); const DP = require('expo-document-picker');
   const AUTO = Array.from({ length: 10 }, (_, i) => `trening-2026-09-${String(10 + i).padStart(2, '0')}-080000.json`);
   const SAFE = Array.from({ length: 10 }, (_, i) => `trening-przed-importem-2026-08-${String(10 + i).padStart(2, '0')}-070000.json`);
   const setupFs = (files: string[]) => {

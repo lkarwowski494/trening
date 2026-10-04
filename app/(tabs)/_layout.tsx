@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react';
 import * as timer from '@/lib/timer';
 import { fmtDur } from '@/lib/store';
 import { Tabs } from 'expo-router';
-import { Text } from 'react-native';
+import { Text, type ColorValue } from 'react-native';
 import { useTheme } from '@/lib/theme';
 import { t as tr } from '@/lib/i18n';
 import { usePrefsTick } from '@/lib/store';
 
-const icon = (ch: string) => ({ color }: { color: string }) => <Text style={{ fontSize: 20, color }}>{ch}</Text>;
+// SDK 56: zakładki expo-router (fork React Navigation) podają kolor jako ColorValue, nie string — Text przyjmuje oba.
+const icon = (ch: string) => ({ color }: { color: ColorValue }) => <Text style={{ fontSize: 20, color }}>{ch}</Text>;
 
 export default function TabsLayout() {
   const t = useTheme(); usePrefsTick();

@@ -16,6 +16,7 @@ Stan na 03.10.2026. Kod czytany z `/home/claude/trening-wt-integration`, gałą�
 4. **Apple od 28.04.2026 przyjmuje do App Store Connect (także do TestFlight) tylko aplikacje zbudowane w Xcode 26** — potwierdzone [6][7]. Nasze SDK 52 buduje się w Xcode 16.2, więc **TestFlight jest zablokowany**. Instalacja „ad hoc” na Twoim iPhonie dalej działa.
 5. **Rekomendacja dla T-051:** cel **SDK 57**, przejście po jednej wersji na osobnej gałęzi (zalecenie Expo [8]), z punktem kontrolnym na SDK 54. Już SDK 54 odblokowuje TestFlight.
    - SDK 56 i 57 wymagają Xcode 26.4+, którego darmowa maszyna `macos-15` nie ma. Workflowy trzeba przenieść na `macos-26` [9][10].
+   - **Stan realizacji (03.10.2026):** M1 = SDK 54 sprawdzony w CI na macOS (B9); SDK 55 → 56 → 57 zrobione na gałęzi `upgrade/sdk-57` i sprawdzone na Linuksie, natywny build SDK 57 na `macos-26` czeka na uruchomienie workflowów (B10).
 6. **Kolejność:** najpierw T-051, a w tym czasie podejmujesz decyzje do E2. Potem implementacja E2 na nowym SDK.
    - **Szacunek:** T-051 to 4–6 sesji, E2 (W1) to 3–4 sesje.
    - Nie łączyć w jednym wydaniu aktualizacji SDK ze zmianą schematu danych — wtedy powrót do poprzedniej wersji aplikacji zostaje bezpieczny.
@@ -295,7 +296,7 @@ W3 to dodatkowe 2–3 sesje.
 | Nowa architektura | SDK 53 włączył ją domyślnie (z React 19). SDK 54 to **ostatnie** z obsługą starej architektury. W SDK 55 starą usunięto, a opcję `newArchEnabled` wycięto z app.json | [23][24][2] |
 | Biblioteki natywne w starym stylu | RN 0.82+: „We will keep the interop layers in the codebase for the foreseeable future” — moduły „mostkowe” dalej działają przez warstwę zgodności, bez daty usunięcia | [25] |
 | Zalecana ścieżka Expo | „We recommend upgrading SDK versions incrementally, one at a time”; kroki: `npm install expo@^N`, `npx expo install --fix`, `npx expo-doctor`; przy CNG skasować `ios/` | [8] |
-| Obrazy EAS (chmura) | `sdk-55` = macos-sequoia-15.6-xcode-26.2; `sdk-56` = macos-tahoe-26.4-xcode-26.4; `sdk-57` = `latest` = macos-tahoe-26.5-xcode-26.6; `sdk-58` = Xcode 27.0. Obrazu dla SDK 54 streszczenie strony nie pokazało — **NIEZWERYFIKOWANE** (blog Expo: 54 domyślnie z Xcode 26) | [26][7] |
+| Obrazy EAS (chmura) | `sdk-55` = macos-sequoia-15.6-xcode-26.2; `sdk-56` = macos-tahoe-26.4-xcode-26.4; `sdk-57` = `latest` = macos-tahoe-26.5-xcode-26.6; `sdk-58` = Xcode 27.0. `sdk-54` = macos-sequoia-15.6-xcode-26.0 (dopisane 03.10.2026 przy realizacji, B9) | [26][7] |
 | Darmowe maszyny GitHub: `macos-15` (obraz 20260907) | Xcode 16.0–16.4 (domyślny 16.4) **oraz 26.0.1, 26.1.1, 26.2, 26.3** — brak 26.4+ | [9] |
 | `macos-26` (obraz 20260907; etykieta `macos-latest`) | Xcode 26.0.1 … 26.4.1, 26.5, **26.6 (domyślny)**; symulatory iOS 26.2/26.4/26.5 (iPhone 17, brak iPhone 16); CocoaPods 1.17.0, Fastlane 2.239.0, xcbeautify 3.2.1 | [10][27] |
 | `macos-14` | wycofywany: od 06.07.2026, całkowicie nieobsługiwany od 02.11.2026 (nas nie dotyczy — używamy `macos-15`) | [28] |
@@ -454,15 +455,164 @@ Przed włączeniem wysyłki do TestFlight (nowe uprawnienia, nowe kroki z sekret
 
 **Kiedy odwrócić kolejność:** jeśli zamiana ćwiczenia jest Ci pilnie potrzebna na telefonie, a TestFlight nie. E2 da się zrobić na SDK 52 i zainstalować ad hoc. Koszt: konflikty w `package-lock.json` i testach przy późniejszym scaleniu oraz ryzyko, że `macos-15` straci Xcode 16.2.
 
+## B9. Stan realizacji T-051 (03.10.2026) — M1 = SDK 54 osiągnięty na gałęzi
+
+Gałąź `upgrade/sdk-57` (od `integration/0.9.0`, dd4a7cd), bez wypychania. Każdy krok to osobny commit:
+
+| Krok | Commit | Co |
+|---|---|---|
+| SDK 53 | 77c1664 | expo 53.0.27, RN 0.79.6, React 19.0, expo-router 5.1, RNTL 13.3.3, jest-expo 53, `@types/react` 19.0 |
+| SDK 54 | ca20f6e | expo 54.0.37, RN 0.81.5, React 19.1, expo-router 6.0, expo-file-system 19 (`/legacy`), safe-area-context 5.6, screens 4.16 |
+| CI Xcode 26 | commit „CI: Xcode 26…” (po ca20f6e) | workflowy na najnowszy Xcode 26.x, obraz EAS `sdk-54`, dokumentacja |
+
+**Wyniki na każdym kroku (Linux):** `tsc` 0 błędów, `check:i18n` OK, Jest 922/922 (po kroku CI 923 — nowy test workflowów),
+`gen.mjs --check` OK, `verify:native` OK (prebuild: aplikacja iOS 15.1, widżet 16.2, nowa architektura, na SDK 54 prekompilowany
+React Native — `RCT_USE_PREBUILT_RNCORE`), `expo export --platform ios` OK. `expo-doctor`: SDK 53 — 18/18; SDK 54 — 17/18 (wyjątek niżej).
+`npm ls` bez błędów peer: healthkit 8.7.2 ma peer `react`/`react-native` „*”, apple-targets 4.0.7 — `expo >=52`, więc żadnych ostrzeżeń.
+
+**Odstępstwa od planu B4 i ich powody:**
+1. **Pomocnik testów `tests/app.tsx` (SDK 53), bez zmiany żadnej asercji:**
+   - przed każdym `renderApp` odmontowanie poprzedniego drzewa (`await cleanupAsync()`). Z React 19 (RNTL 13 domyślnie z równoległym
+     korzeniem) drugi „start aplikacji” w jednym teście odświeżał stare drzewo, które czytało wyzerowany store („store not initialised”,
+     6 testów audit-r82b, a pełny przebieg potrafił się zapętlić);
+   - odtworzone zachowanie `renderRouter` z expo-router 4: przy każdej zmianie stanu nawigacji `jest.runOnlyPendingTimers()`. W expo-router 4
+     robił to sam `renderRouter` (`subscribeToRootState`), w 5 to usunięto. Bez tego zegar testów biegł inaczej niż przy pisaniu testów
+     (R69-09: komunikat po 500 ms; edit-history: blokada podwójnego „Edytuj” 1 s), a asercje „czegoś nie ma” mogłyby przechodzić na pusto.
+     Pomocnik używa wewnętrznej ścieżki `expo-router/build/global-state/router-store` i rzuca jawny błąd, gdy jej zabraknie — **do sprawdzenia
+     przy SDK 55+**.
+2. **`package-lock.json` na SDK 53 wygenerowany od nowa** — npm 10 przy aktualizacji starej blokady zgłaszał ERESOLVE na opcjonalnych
+   peerach expo-router 5 (`react-native-reanimated`, `react-server-dom-webpack`). Od zera rozwiązuje się bez `--legacy-peer-deps`
+   i bez instalowania tych pakietów. Na SDK 54 blokada zaktualizowana już przyrostowo.
+3. **Dwie jawne zależności na SDK 54** (npm na SDK 54 nie podnosi tych pakietów do `node_modules`, także przy świeżej blokadzie):
+   - `@expo/prebuild-config ~54.0.9` — `@bacons/apple-targets` 4.0.7 robi `require('@expo/prebuild-config/build/plugins/icons/AssetContents')`
+     bez deklarowania zależności; bez tego `expo config`, prebuild i expo-doctor kończą się MODULE_NOT_FOUND. **expo-doctor zgłasza to jako
+     „should not be installed directly” — świadomy wyjątek** (ta sama wersja co w `@expo/cli`). Usunąć przy przejściu na apple-targets 5.0.0,
+     który deklaruje tę zależność sam (`~55.0.6`), albo przy podbiciu SDK podbić razem z nim;
+   - `babel-preset-expo ~54.0.10` (dev) — wskazuje go `babel.config.js`; bez tego Jest: „Cannot find module 'babel-preset-expo'”.
+4. **Kod poza listą z B4:** jawny typ `(v?: string) =>` w 3 przyciskach `Alert.prompt` (RN 0.81 zmienił typ `AlertButton.onPress` na unię
+   z wariantem login/hasło — TS7006). Zachowanie bez zmian.
+5. **Atrapa `expo-file-system` w testach:** stare API pod `expo-file-system/legacy` (kod i 8 plików testów), a główne wejście rzuca przy
+   każdym użyciu — pominięty import starego API wywali test (w aplikacji rzuciłby dopiero na telefonie).
+6. **`expo export` do katalogu tymczasowego poza projektem** — Expo 53/54 odmawia („--output-dir must be a subdirectory of the project”);
+   sprawdzane jak w `npm run verify`: `.expo/verify-export` (w `.gitignore`) i usunięte po sprawdzeniu.
+7. **CI:**
+   - `ios-unsigned.yml`, `e2e-ios.yml`, `iphone-local.yml`: krok „Select Xcode 26.x” = `bash scripts/ci/select-xcode.sh 26` — najnowszy
+     zainstalowany Xcode 26.x (bez dowiązań i bet), wypisuje wybór, przy braku błąd z listą. README obrazu `macos-15` (20260907, sprawdzone
+     03.10.2026): 26.0.1, 26.1.1, 26.2, **26.3** (wybrany) — SDK iOS 26.2, symulatory iOS 26.2 z iPhone 16 i 17;
+   - buildy na urządzenie (`ios-unsigned.yml`, `iphone-local.yml`): `scripts/ci/ensure-ios-platform.sh` — pobiera platformę iOS tylko,
+     gdy brakuje wersji zgodnej z SDK wybranego Xcode (zwykle nic nie pobiera); `e2e-ios.yml` — krok pobierania iOS 18.2 usunięty;
+   - `e2e-ios.yml`: symulator z wersji iOS zgodnej z SDK (fallback: cała lista), kolejność iPhone 16 → iPhone 17 → dowolny iPhone;
+     przy okazji poprawka `|| true` — stary krok z `-eo pipefail` kończył się błędem, gdy nie było „iPhone 16”;
+   - `eas.json`: `"image": "sdk-54"` — alias sprawdzony na stronie infrastruktury EAS 03.10.2026: `macos-sequoia-15.6-xcode-26.0`
+     (Xcode 26.0, spełnia wymóg App Store Connect);
+   - test `R58`/`T-051 CI` w `tests/regress.test.tsx`: workflowy, kolejność kroków, obraz EAS i działanie `select-xcode.sh` na sztucznym `/Applications`.
+
+**Czego nie dało się sprawdzić na Linuksie (zrobi CI na macOS):**
+- kompilacja Swift: `modules/rest-activity`, widżet `targets/rest-widget`, `@kingstinct/react-native-healthkit` 8.7.2 (moduł „mostkowy”,
+  `RCT_EXTERN_MODULE`) w Xcode 26.3 z prekompilowanym React Native 0.81 i nową architekturą (warstwa zgodności);
+- `pod install` (CocoaPods z obrazu), podpis ad hoc, zawartość IPA (`.appex`, uprawnienia HealthKit);
+- E2E Maestro na symulatorze iOS 26.2; zachowanie na telefonie (lista z B6, pkt 3).
+
+**Ryzyka buildu iOS (kolejność sprawdzania):**
+1. healthkit 8.7.2 z prekompilowanym RN (`RCT_USE_PREBUILT_RNCORE=1`) — jeśli kompilacja padnie na nagłówkach React, plan B bez zmiany
+   biblioteki: `expo-build-properties` z `ios.buildReactNativeFromSource: true` (dłuższy build); plan C: healthkit 16 + Nitro (B3).
+2. Swift 6 / Xcode 26 ostrzega lub błęduje na `@available`/ActivityKit w module i widżecie — podspec ma `swift_version 5.9`, więc tryb
+   Swift 5 zostaje; do potwierdzenia logiem.
+3. `@bacons/apple-targets` 4.0.7 z prebuild SDK 54 — `verify:native` przechodzi (cel widżetu w projekcie), ale `.appex` w IPA potwierdzi
+   dopiero `ios-unsigned.yml`.
+4. Wewnętrzna ścieżka routera w pomocniku testów (punkt 1) — tylko testy, nie aplikacja.
+
+**Następne kroki (wykonane przed SDK 55):** na gałęzi przeszły `ios-unsigned.yml` (kompilacja Swift — moduł, widżet, healthkit 8.7.2 —
+w Xcode 26.3), `e2e-ios.yml` (Maestro 6/6 na iPhone 16 / iOS 26.2) i podpisany build lokalny EAS (`iphone-local.yml`). Dalej: B10.
+
+## B10. Stan realizacji T-051 (03.10.2026) — SDK 55 → 56 → 57 na gałęzi
+
+| Krok | Commit | Co |
+|---|---|---|
+| SDK 55 | 0afe6be | expo 55.0.31, RN 0.83.10, React 19.2.0, expo-router 55, bez `newArchEnabled`; obraz EAS `sdk-55` |
+| SDK 56 | a3899bf | expo 56.0.23, RN 0.85.3, React 19.2.3, expo-router 56 (bez React Navigation), TypeScript 6, iOS 16.4, splash we wtyczce, CI na `macos-26` |
+| SDK 57 | 860be24 | expo 57.0.26, RN 0.86.3, `@bacons/apple-targets` 5.0.0 zamiast jawnego `@expo/prebuild-config`, obraz EAS `sdk-57` |
+| Dokumentacja | commit „Docs: T-051 SDK 57…” (po 860be24) | README, docs/09, docs/13 |
+
+**Wyniki na każdym kroku (Linux):** `tsc` 0 błędów, `check:i18n` OK, Jest 923/923 (74 pliki; na SDK 57 także z wyczyszczoną pamięcią
+podręczną), `gen.mjs --check` OK, `verify:native` OK, `expo export --platform ios` OK, `npm ci` od zera OK.
+`expo-doctor`: SDK 55 — 19/20, SDK 56 — 20/22, **SDK 57 — 21/21**. Prebuild na SDK 56–57: aplikacja iOS 16.4, widżet 16.2,
+prekompilowany React Native, uprawnienia tylko HealthKit.
+
+**Co zmieniło się poza listą z B4 i dlaczego:**
+1. **Jawne `react-native-reanimated`, `react-native-worklets`, `react-native-gesture-handler` (od SDK 56, wersje z SDK: 57 → 4.5.1 /
+   0.10.1 / ~2.32.0).** expo-router 56+ zależy od `react-native-drawer-layout`, który ma *nieopcjonalne* peery reanimated
+   i gesture-handler. npm instaluje je sam — w najnowszych wersjach (reanimated 4.7.1 wymaga RN 0.86–0.88), co dawało ERESOLVE albo
+   wersje niezgodne z SDK. Autolinking Expo idzie też po nieopcjonalnych peerach, więc te moduły i tak trafiają do buildu natywnego;
+   przypięcie do wersji SDK jest jedyną bezpieczną opcją. W bundlu JS ich nie ma (sprawdzone mapą źródeł) — aplikacja ich nie importuje.
+2. **`@expo/prebuild-config`:** na SDK 55–56 jawny (`~55.0.6`, `~56.0.0`) jak na SDK 54. Na SDK 57 **`@bacons/apple-targets` 5.0.0**
+   (deklaruje tę zależność sam) i usunięcie jawnej paczki — expo-doctor 21/21. Ocena 5.0.0 z pełnego diffu paczek (lista zmian na
+   GitHubie dalej niedostępna): pliki entitlements z `expo-target.config` generowane do `ios/.targets/` (nasz widżet nie ma obiektu
+   `entitlements` — bez znaczenia), podspec ExtensionStorage iOS 16.4 (= minimum aplikacji od SDK 56; dlatego nie wcześniej),
+   deklaracja zależności. Prebuild z 4.0.7 i 5.0.0 porównany: pliki `ios/` identyczne, `project.pbxproj` identyczny po znormalizowaniu
+   identyfikatorów. 5.0.0 trzyma własną kopię `@expo/prebuild-config` 55 (używa z niej tylko pomocnika ikon `AssetContents`).
+3. **Splash (SDK 56):** schemat app.json odrzuca główny klucz `splash`. Przeniesiony do wtyczki `expo-splash-screen` z opcjami, które
+   odtwarzają to, co prebuild SDK 55 robił z kluczem głównym (`enableFullScreenImage_legacy`, `imageWidth` 200, `contain`, tło
+   `#12151c`) — storyboard i zasoby jak wcześniej. Expo nazywa tę flagę przejściową: przy jej usunięciu zwykły splash (ikona 200 pt
+   na środku) — zmiana wyglądu do decyzji.
+4. **TypeScript 6 (SDK 56):** `tsconfig.json` ma `"types": ["jest", "node"]` — TS 6 nie dołącza już wszystkich `@types/*` (tysiące błędów
+   „Cannot find name 'jest'” w testach). `@types/node` jest zależnością pośrednią (z Jesta), jak wcześniej.
+5. **Kod:** ikona zakładki przyjmuje `ColorValue` (kopia zakładek w expo-router 56 ma węższy typ); `RestActivity.podspec` iOS 16.4
+   (zalecenie Expo dla własnych modułów w SDK 56). Widżet zostaje na 16.2 — rozszerzenie może mieć niższe minimum niż aplikacja,
+   a wspólny `RestTimerAttributes.swift` ma `@available(iOS 16.2)`.
+6. **Jest:** `standard-navigation` w `transformIgnorePatterns` (ESM w nowej zależności routera; jak w domyślnym wzorcu jest-expo 56).
+   `tests/smoke.test.tsx` z limitem 30 s: przy zimnej pamięci podręcznej (CI) pierwsze `renderRouter` kompiluje w treści testu ekrany
+   i kopię React Navigation z `expo-router/src` — 5,3 s na 2 rdzeniach, ponad domyślne 5 s; asercja bez zmian.
+7. **`package-lock.json` od nowa na SDK 56 i 57** — przyrostowa aktualizacja kończyła się ERESOLVE (SDK 57: stary jest-expo 56
+   z peerem `@react-native/jest-preset` 0.85) albo zostawiała `@expo/config-plugins` tylko w zagnieżdżonych katalogach (SDK 56;
+   wtyczka healthkit 8.7.2 robi `require('@expo/config-plugins')` bez deklaracji). Świeża blokada podnosi go do korzenia.
+8. **Wtyczki dopisane przez `expo install --fix`:** `expo-sharing` (SDK 55) i `expo-status-bar` (SDK 56) — bez opcji nic nie robią
+   (sprawdzone w źródłach); zostają, żeby `expo install --fix` nie dopisywał ich przy każdym podbiciu.
+9. **CI (SDK 56):** `runs-on: macos-26` w `ios-unsigned.yml`, `e2e-ios.yml`, `iphone-local.yml`. `select-xcode.sh` bez zmian w logice —
+   na obrazie `macos-26` 20260907 (Xcode 26.0.1 … 26.4.1, 26.5, 26.6; dowiązania `Xcode_26.6.0.app`, `Xcode_26.4.app`, `Xcode.app`)
+   wybiera **26.6** (SDK iOS 26.5; nowy przypadek w teście T-051 CI). `ensure-ios-platform.sh` dalej warunkowy (obraz ma iOS 26.5).
+   E2E: symulator z iOS zgodnego z SDK, kolejność **iPhone 17** → iPhone 16 → dowolny iPhone (macos-26 nie ma iPhone 16).
+   `eas.json`: obraz = `sdk-<numer SDK>`; test T-051 CI porównuje go z zainstalowanym `expo`, więc podbicie SDK bez obrazu nie przejdzie.
+10. **eas-cli zostaje 24.8.0.** Wydany 24.09.2026, prawie 3 miesiące po SDK 57; 24.9.0 i 24.10.0 (02.10.2026) mają te same biblioteki
+    konfiguracji (`@expo/config` 55.0.10, `@expo/config-plugins` 55.0.7) i zmiany dotyczące symulatorów w chmurze, `eas update`
+    i SDK 58 (lista zmian sprawdzona). Obejścia (EXPO_NO_CAPABILITY_SYNC, `asc-capabilities.cjs`, `device-url.cjs`,
+    `configure-credentials.exp`, test symulujący prompty) dotyczą wersji eas-cli, nie SDK — bez zmian.
+
+**Sprawdzone, bez zmian w kodzie:** brak `reset` w opcjach ekranów (SDK 55: `resetOnFocus`), brak pola `notification` w app.json,
+brak `fetch` w aplikacji (SDK 56: `expo/fetch` jako globalny `fetch`; `fetch` jest tylko w skrypcie Node `scripts/eas/asc-capabilities.cjs`),
+brak kolumn BLOB w SQLite (tylko tekstowe kv), `expo-file-system/legacy` dalej w paczce 57, wewnętrzna ścieżka
+`expo-router/build/global-state/router-store` z `navigationRef` w routerze 57 (pomocnik `tests/app.tsx`), etykiety zakładek
+„{label}, tab, {i} of {n}” w kopii React Navigation w routerze (selektory Maestro). SDK 57 według changelogu bez zmian przełomowych
+względem 56 [4]; regresja pamięci Hermes V1 z SDK 56 (expo/expo#46519) naprawiona od expo 57.0.9 / RN 0.86.2 — jesteśmy na 57.0.26 / 0.86.3.
+
+**Czego nie dało się sprawdzić na Linuksie (zrobi CI na `macos-26`):**
+- kompilacja w Xcode 26.6: healthkit 8.7.2 (moduł „mostkowy”) na RN 0.86 przez warstwę zgodności, reanimated 4.5 / worklets 0.10
+  (nowe w buildzie), `rest-activity` z podspec 16.4, widżet z apple-targets 5.0.0, ExtensionStorage 16.4, `pod install` z CocoaPods 1.17;
+- E2E Maestro na iPhone 17 / iOS 26.5 — inny rozmiar ekranu niż iPhone 16 (402×874 vs 393×852 pt), możliwe drobne różnice w przewijaniu;
+- build lokalny EAS (`iphone-local.yml`) na `macos-26` i instalacja na telefonie (lista z B6, pkt 3), w tym splash i Live Activity.
+
+**Ryzyka i plan B:**
+1. healthkit 8.7.2 nie skompiluje się na RN 0.86 → `expo-build-properties` z `ios.buildReactNativeFromSource: true`, a jeśli to
+   nie pomoże — healthkit 16 (Nitro) z przepisaniem `lib/health.ts` (B3).
+2. reanimated/worklets wydłużą build albo zgłoszą błąd w Xcode 26.6 → to wersje wskazane przez SDK 57 (`bundledNativeModules`),
+   więc mało prawdopodobne; wyłączenie ich z autolinkingu (`react-native.config.js`) możliwe, bo JS ich nie importuje.
+3. Xcode 27: aplikacje zbudowane z SDK iOS 27 muszą używać cyklu życia UIScene; SDK 57 ma to opcjonalnie
+   (`expo-build-properties` `ios.enableSceneSupport`, od expo 57.0.23), SDK 58 domyślnie [4][22]. Dziś nas nie dotyczy:
+   `select-xcode.sh` bierze tylko 26.x, obraz EAS `sdk-57` ma Xcode 26.6. Gdy GitHub/Apple przejdą na Xcode 27 — osobne zadanie.
+4. Wycofanie: każdy krok ma osobny commit (B10, tabela); dane bez zmian schematu (B7).
+
+**Następne kroki:** `ios-unsigned.yml` → `e2e-ios.yml` → `iphone-local.yml` (`wyslij = nie`, potem `tak`) na gałęzi `upgrade/sdk-57`,
+potem test na telefonie (B6) i scalenie.
+
 ---
 
 ## Niezweryfikowane / otwarte (zebrane)
 
-- Kompilacja i działanie healthkit 8.7.2 oraz `modules/rest-activity` w Xcode 26.4+/RN 0.86 — potwierdzi dopiero build.
-- Lista zmian `@bacons/apple-targets` 5.0.0 (brak dostępu do repo przez API).
-- Obraz EAS dla SDK 54 (nie pokazało go streszczenie strony obrazów).
-- Zgodność eas-cli 24.8.0 z SDK 57; limity darmowego EAS Submit.
-- Czy SDK 57 dalej obsługuje główny klucz `splash` w app.json.
+- Kompilacja i działanie healthkit 8.7.2 oraz `modules/rest-activity` w Xcode 26.x — na M1 (26.3 / RN 0.81) potwierdzone w CI; na SDK 57 (26.6 / RN 0.86) potwierdzi dopiero build (B10).
+- Lista zmian `@bacons/apple-targets` 5.0.0 (brak dostępu do repo przez API) — przejście na 5.0.0 oparte na diffie paczek (B10, pkt 2).
+- ~~Obraz EAS dla SDK 54~~ — sprawdzone 03.10.2026: alias `sdk-54` = `macos-sequoia-15.6-xcode-26.0` (B9).
+- ~~Zgodność eas-cli 24.8.0 z SDK 57~~ — wersja z 24.09.2026, nowsze bez zmian dla naszego przepływu (B10, pkt 10); potwierdzi build lokalny. Limity darmowego EAS Submit — otwarte.
+- ~~Czy SDK 57 dalej obsługuje główny klucz `splash`~~ — nie (od SDK 56 schemat go odrzuca); przeniesiony do wtyczki `expo-splash-screen` (B10, pkt 3).
 - Jak długo `macos-15` będzie miał Xcode 16.2.
 - Termin przyszłego wymogu Xcode 27 w App Store Connect (nieogłoszony).
 - Czy SDK 58 wyszło jako stabilne w ostatnich dniach (dziennik zmian Expo pokazuje 03.10.2026 tylko betę z 15.09; beta miała trwać 3–4 tygodnie).
@@ -503,3 +653,11 @@ Przed włączeniem wysyłki do TestFlight (nowe uprawnienia, nowe kroki z sekret
 31. Expo blog — Expo File System upgrade in SDK 54: https://expo.dev/blog/expo-file-system
 
 Dane z npm (wersje i zależności pakietów: `expo`, `expo-file-system`, `expo-sqlite`, `expo-notifications`, `expo-router`, `jest-expo`, `@testing-library/react-native`, `@kingstinct/react-native-healthkit` 8.7.2 i 16.0.0, `@bacons/apple-targets` 4.0.7 i 5.0.0) — pobrane `npm view` / `npm pack` 03.10.2026 z https://registry.npmjs.org.
+
+### B11. Audyt aktualizacji 52 → 57 (03.10.2026)
+
+Niezależny audyt różnicy dd4a7cd..49d4207: **0 wysokich, 1 średni, 5 niskich**.
+- ŚREDNI (naprawiony): od SDK 56 w aplikacji jest `expo-splash-screen` (przeniesienie `splash` do wtyczki), a expo-router chowa ekran powitalny dopiero, gdy zamontuje się nawigator. Ekran błędu startu („Nie udało się otworzyć danych”) nie ma nawigatora, więc zostałby pod logo. `app/_layout.tsx` chowa ekran powitalny przy błędzie startu; test `tests/splash-start-error.test.tsx` (mock bazy `global.__dbOpenFail`).
+- NISKIE: HealthKit 8.7.2 na RN 0.86 w działaniu — do sprawdzenia na telefonie (E2E tego nie obejmuje); `tests/app.tsx` przy każdej nawigacji uruchamia oczekujące timery (jak expo-router 4 — nie wykryje błędów „timer wciąż czeka po nawigacji”); `Tabs` z `expo-router` przestarzałe w 57 (docelowo `expo-router/js-tabs`); minimum iOS 16.4 (zamierzone); nieaktualne zdanie w B9 o niewypchniętej gałęzi (gałąź jest na GitHubie).
+- Bez zmian: położenie bazy SQLite i migracja do Library/SQLite, schemat 15, format kopii, uprawnienia i teksty HealthKit, identyfikatory pakietów, wygląd ekranu powitalnego.
+

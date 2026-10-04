@@ -7,11 +7,12 @@ global.__notifications = [];      // zaplanowane powiadomienia
 global.__la = [];                 // wywołania Live Activity
 
 jest.mock('expo-sqlite', () => ({
-  openDatabaseAsync: async () => ({
+  /* global.__dbOpenFail: baza nie otwiera się przy starcie (ekran błędu startu; T-051 — ekran powitalny nie może go zasłonić) */
+  openDatabaseAsync: async () => { if (global.__dbOpenFail) throw new Error('baza nieczytelna'); return ({
     execAsync: async () => {},
     getFirstAsync: async (_q, k) => (global.__kv.has(k) ? { v: global.__kv.get(k) } : null),
     runAsync: async (_q, k, v) => { const f = global.__dbFail; if (typeof f === 'function' ? f(k, _q) : f) throw new Error('disk full'); if (/^\s*DELETE/i.test(_q)) global.__kv.delete(k); else global.__kv.set(k, v); }, /* runda 71: __dbFail może być funkcją (k, zapytanie) — awaria tylko wybranego klucza */
-  }),
+  }); },
 }));
 jest.mock('expo-localization', () => ({ getLocales: () => global.__locales }));
 jest.mock('expo-notifications', () => ({
@@ -25,7 +26,10 @@ jest.mock('expo-notifications', () => ({
 }));
 jest.mock('expo-haptics', () => ({ notificationAsync: async () => {}, selectionAsync: async () => {}, impactAsync: async () => {}, NotificationFeedbackType: { Success: 'success' }, ImpactFeedbackStyle: { Light: 'light' } }));
 jest.mock('expo-keep-awake', () => ({ activateKeepAwakeAsync: jest.fn(async () => {}), deactivateKeepAwake: jest.fn(async () => {}) }));
-jest.mock('expo-file-system', () => ({ cacheDirectory: 'file:///cache/', documentDirectory: 'file:///doc/', get bundleDirectory() { return global.__bundleDir ?? null; } /* runda 83: getter — `import * as` kopiuje wartości, test ustawia global.__bundleDir */, makeDirectoryAsync: jest.fn(async () => {}), readDirectoryAsync: jest.fn(async () => []), deleteAsync: jest.fn(async () => {}), writeAsStringAsync: jest.fn(async () => {}), readAsStringAsync: jest.fn(async () => ''), getInfoAsync: jest.fn(async () => ({ exists: false })), copyAsync: jest.fn(async () => {}), EncodingType: { UTF8: 'utf8', Base64: 'base64' } }));
+/* SDK 54: kod używa wyłącznie starego API z „expo-file-system/legacy” (główne wejście to nowe API File/Directory, a stare funkcje
+ * rzucają tam w czasie działania). Import z głównego wejścia — w kodzie albo w teście — kończy się tu błędem, żeby pominięty import nie przeszedł niezauważony. */
+jest.mock('expo-file-system', () => new Proxy({}, { get: (_t, k) => { throw new Error(`expo-file-system (główne wejście, „${String(k)}”): na SDK 54+ importuj z 'expo-file-system/legacy'`); } }));
+jest.mock('expo-file-system/legacy', () => ({ cacheDirectory: 'file:///cache/', documentDirectory: 'file:///doc/', get bundleDirectory() { return global.__bundleDir ?? null; } /* runda 83: getter — `import * as` kopiuje wartości, test ustawia global.__bundleDir */, makeDirectoryAsync: jest.fn(async () => {}), readDirectoryAsync: jest.fn(async () => []), deleteAsync: jest.fn(async () => {}), writeAsStringAsync: jest.fn(async () => {}), readAsStringAsync: jest.fn(async () => ''), getInfoAsync: jest.fn(async () => ({ exists: false })), copyAsync: jest.fn(async () => {}), EncodingType: { UTF8: 'utf8', Base64: 'base64' } }));
 jest.mock('expo-sharing', () => ({ isAvailableAsync: async () => true, shareAsync: jest.fn(async () => {}) }));
 jest.mock('expo-document-picker', () => ({ getDocumentAsync: jest.fn(async () => ({ canceled: true })) }));
 jest.mock('@kingstinct/react-native-healthkit', () => ({ default: { isHealthDataAvailable: async () => false, requestAuthorization: async () => false, saveWorkoutSample: async () => false } }), { virtual: true });

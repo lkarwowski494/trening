@@ -75,7 +75,7 @@ describe('Q-010 / Q-011 — porzucony trening', () => {
 describe('Q-007 (runda 75)', () => {
   test('plik CSV zaczyna się od BOM (Excel), a treść to dokładnie buildCsv()', async () => {
     await fresh(); addWorkout(new Date(2026, 8, 1, 18).getTime(), [['Back Squat', [{ weight: 100, reps: 5, note: 'łatwo, żółw' }]]]); store.save();
-    const FS = require('expo-file-system'); const backup = require('@/lib/backup'); (FS.writeAsStringAsync as jest.Mock).mockClear();
+    const FS = require('expo-file-system/legacy'); const backup = require('@/lib/backup'); (FS.writeAsStringAsync as jest.Mock).mockClear();
     await backup.exportCsv(); const [path, text] = (FS.writeAsStringAsync as jest.Mock).mock.calls[0];
     expect(path).toMatch(/\.csv$/); expect(text.charCodeAt(0)).toBe(0xFEFF); expect(text.slice(1)).toBe(backup.buildCsv()); expect(text).toContain('żółw');
   });

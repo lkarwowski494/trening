@@ -66,7 +66,13 @@ zastrzeżone. Logi, podsumowania i artefakty przebiegów Actions widzi każdy: w
 nowego urządzenia na publicznym repo nie powstaje (patrz runbook na Drive: „Rejestracja nowego urządzenia”).
 Build robi chmura Expo (EAS, 15 buildów iOS/mies. za darmo),
 uruchamiany z GitHuba workflow **iPhone (EAS)**. Instalacja z linku na iPhonie, ważna ok. roku, bez kabla i Sideloadly.
-TestFlight dopiero po aktualizacji Expo do SDK 54+ (od 28.04.2026 App Store Connect przyjmuje tylko buildy z Xcode 26).
+Od T-051 aplikacja jest na **Expo SDK 57** (React Native 0.86, React 19.2; minimum iOS 16.4) i wszystkie buildy idą przez
+**Xcode 26**, którego od 28.04.2026 wymaga App Store Connect (także TestFlight). SDK 56+ wymaga Xcode 26.4+, więc workflowy
+na macOS (`ios-unsigned.yml`, `e2e-ios.yml`, `iphone-local.yml`) działają na maszynie `macos-26` i wybierają najnowszy
+zainstalowany Xcode 26.x (`scripts/ci/select-xcode.sh`; obraz 20260907: 26.6, SDK iOS 26.5; E2E na symulatorze iPhone 17).
+Build w chmurze Expo używa obrazu `sdk-57` z `eas.json` (Xcode 26.6). Xcode 27 nie jest wybierany (aplikacje z SDK iOS 27
+wymagają cyklu życia UIScene — osobne zadanie razem z SDK 58). Sama wysyłka do TestFlight to osobny, jeszcze niewłączony
+krok (docs/13, B5).
 
 Jednorazowo:
 1. **App Store Connect → Users and Access → Integrations → App Store Connect API → Team Keys → +**:
@@ -100,11 +106,12 @@ zrzuty ekranu w artefakcie `e2e-ios`). Drogi z Kroków 2–3 (bez podpisu + Side
 ```
 npm ci                      # dokładnie te wersje, co w chmurze (package-lock.json)
 npm run typecheck           # TypeScript, powinno przejść bez błędów
-npm run verify              # typy, tłumaczenia, testy (640+), eksport bundla, kontrola konfiguracji natywnej
+npm run verify              # typy, tłumaczenia, testy (920+), eksport bundla, kontrola konfiguracji natywnej
 ```
 Uwaga (stan na 10.2026): Expo Go z App Store obsługuje tylko najnowsze SDK, a starszej wersji nie da się
-zainstalować na fizycznym iPhonie — projektu na SDK 52 NIE otworzysz w Expo Go („Project is incompatible
-with this version of Expo Go”). Pętla rozwoju to: zmiana → `npm run verify` → build IPA (Krok 2) → Sideloadly (Krok 3).
+zainstalować na fizycznym iPhonie — projektu na SDK 57 NIE otworzysz w Expo Go z App Store („Project is incompatible
+with this version of Expo Go”; Expo Go dla SDK 57 czekało w 10.2026 na zatwierdzenie Apple, dostępne tylko przez `eas go`).
+Pętla rozwoju to: zmiana → `npm run verify` → build IPA (Krok 2) → Sideloadly (Krok 3).
 Szybszą pętlę dałby dev client (`expo-dev-client` + build) albo podniesienie SDK — decyzja na później.
 
 ## Krok 2 (zapas, darmowe Apple ID) — zbuduj .ipa bez podpisu (GitHub Actions)
@@ -146,8 +153,8 @@ Ten sam kod. Potrzebne: Apple Developer Program ($99/rok), `npm i -g eas-cli`, `
 ## Praca z Claude Code
 Otwórz folder projektu w Claude Code i mów, co zmienić — np. „dodaj wykres objętości w Postępach",
 „zrób superserie", „przenieś przycisk Zakończ wyżej". Po każdej zmianie: `npm run typecheck`,
-`npm run verify`, a gdy jesteś zadowolony — commit, push i ponownie Krok 2–3 (Expo Go nie obsługuje SDK 52 — patrz Krok 1).
-Jeśli `npm install` zgłosi konflikt wersji: `npx expo install --fix` dopasowuje pakiety do SDK 52 z `package.json`
+`npm run verify`, a gdy jesteś zadowolony — commit, push i ponownie Krok 2–3 (Expo Go z App Store nie obsługuje SDK 57 — patrz Krok 1).
+Jeśli `npm install` zgłosi konflikt wersji: `npx expo install --fix` dopasowuje pakiety do SDK 57 z `package.json`
 (nie twórz nowego projektu przez `create-expo-app@latest` — dałby najnowsze SDK, niezgodne z tym kodem).
 
 ## Import danych z wersji webowej

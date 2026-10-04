@@ -32,7 +32,7 @@ describe('workflowy na publicznym repozytorium', () => {
   });
   test('build lokalny (bez limitu Expo): kompilacja na maszynie GitHuba, do Expo tylko eas upload; log z maskowaniem UDID', () => {
     const y = wf('iphone-local.yml');
-    expect(y).toMatch(/runs-on: macos-15/);
+    expect(y).toMatch(/runs-on: macos-26/); // od SDK 56 (Xcode 26.4+); wcześniej macos-15
     expect(y).toMatch(/build -p ios --profile adhoc --local --non-interactive --output build\/Trening\.ipa 2>&1 \| sed -E "\$UDID_SED"/);
     expect(y).toMatch(/upload -p ios --build-path build\/Trening\.ipa/);
     expect(y).not.toMatch(/eas-cli@\$EAS_CLI build -p ios --profile adhoc --non-interactive/); // bez buildu w chmurze

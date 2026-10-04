@@ -2,8 +2,8 @@
 # Pobierasz artefakt "Trening-unsigned-ipa", a Sideloadly podpisuje go Twoim Apple ID.
 # Uruchamianie: zakładka Actions → "iOS unsigned IPA" → Run workflow.
 #
-# Audyt 0.8.1: Xcode 16.2 wybierany jawnie (Expo SDK 52 wspiera Xcode 16.x do 16.2; nowszy domyślny na macos-15), xcbeautify zamiast
-# nieistniejącego xcpretty, pipefail zamiast „|| true” (błąd kompilacji nie jest już ukrywany), log kompilacji jako
+# Audyt 0.8.1: Xcode wybierany jawnie (od T-051: najnowszy Xcode 26.x z obrazu — scripts/ci/select-xcode.sh; wcześniej 16.2
+# dla SDK 52), xcbeautify zamiast nieistniejącego xcpretty, pipefail zamiast „|| true” (błąd kompilacji nie jest już ukrywany), log kompilacji jako
 # artefakt przy porażce, podpis ad-hoc także frameworków (hermes), sprawdzenie, że binarka, bundle JS i widżet istnieją.
 name: iOS unsigned IPA
 on:
@@ -12,16 +12,16 @@ permissions:
   contents: read
 jobs:
   build:
-    # macos-14 jest wycofywany (niedziałające przebiegi od X 2026, koniec 2 XI 2026) — macos-15 z Xcode 16.2 wybranym jawnie.
-    runs-on: macos-15
+    # SDK 56+ wymaga Xcode 26.4+, a macos-15 ma najwyżej 26.3 — od SDK 56 macos-26 (docs/13, B5). Obraz 20260907:
+    # Xcode 26.0.1 … 26.4.1, 26.5, 26.6 (domyślny); wybierany jawnie najnowszy 26.x (26.6, SDK iOS 26.5).
+    runs-on: macos-26
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@v5
-      - name: Select Xcode 16.2
-        # Audyt przed telefonem: Expo SDK 52 / RN 0.76 nie wspiera oficjalnie Xcode 16.3+; gdy obraz macos-15 przestanie mieć 16.2 — jasny komunikat.
-        run: |
-          if [ ! -d /Applications/Xcode_16.2.app ]; then echo "::error::Brak Xcode 16.2 na obrazie macos-15. Dostępne:"; ls /Applications | grep -i xcode; exit 1; fi
-          sudo xcode-select -s /Applications/Xcode_16.2.app/Contents/Developer && xcodebuild -version
+      - name: Select Xcode 26.x
+        # Od SDK 54 buildy do App Store Connect / TestFlight tylko z Xcode 26+, od SDK 56 Expo wymaga 26.4+. Najnowszy 26.x
+        # z obrazu; brak — błąd z listą dostępnych.
+        run: bash scripts/ci/select-xcode.sh 26
       - uses: actions/setup-node@v5
         with:
           node-version: 22
@@ -37,6 +37,8 @@ jobs:
         run: /usr/libexec/PlistBuddy -c "Set :CFBundleVersion ${{ github.run_number }}" ios/Trening/Info.plist
       - name: Install pods
         run: cd ios && pod install
+      - name: Platforma iOS zgodna z SDK wybranego Xcode (pobranie tylko, gdy jej brak)
+        run: bash scripts/ci/ensure-ios-platform.sh
       - name: Build (no code signing)
         run: |
           set -o pipefail
