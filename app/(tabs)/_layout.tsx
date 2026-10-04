@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import * as timer from '@/lib/timer';
 import { fmtDur } from '@/lib/store';
-import { Tabs } from 'expo-router';
+import { Tabs } from 'expo-router/js-tabs'; // router 57: `Tabs` z głównego 'expo-router' przestarzałe (ten sam komponent)
 import { Text, type ColorValue } from 'react-native';
 import { useTheme } from '@/lib/theme';
 import { t as tr } from '@/lib/i18n';
