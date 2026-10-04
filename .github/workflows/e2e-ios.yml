@@ -90,11 +90,22 @@ jobs:
           echo "$HOME/.maestro/bin" >> "$GITHUB_PATH"
       - name: Maestro
         env:
-          MAESTRO_DRIVER_STARTUP_TIMEOUT: '240000'  # świeżo uruchomiony symulator potrzebuje więcej czasu na sterownik XCTest
+          MAESTRO_DRIVER_STARTUP_TIMEOUT: '480000'  # świeżo uruchomiony symulator potrzebuje więcej czasu na sterownik XCTest (04.10.2026: 2× „driver not ready” przy 240 s po 8-min. rozruchu symulatora)
           MAESTRO_CLI_NO_ANALYTICS: '1'
         run: |
           mkdir -p e2e-out
-          maestro --device "$SIM" test .maestro --format junit --output e2e-out/report.xml --test-output-dir e2e-out
+          # Jedno powtórzenie TYLKO, gdy sterownik XCTest nie wystartował (awaria maszyny przed pierwszym scenariuszem — CLAUDE.md);
+          # błąd w scenariuszu nie jest powtarzany.
+          set +e
+          maestro --device "$SIM" test .maestro --format junit --output e2e-out/report.xml --test-output-dir e2e-out 2>&1 | tee /tmp/maestro-1.log
+          rc=${PIPESTATUS[0]}
+          if [ "$rc" -ne 0 ] && grep -q "iOS driver not ready in time" /tmp/maestro-1.log; then
+            echo "::warning::Sterownik XCTest nie wystartował — jedno powtórzenie (awaria maszyny, nie scenariusza)"
+            rm -rf e2e-out && mkdir -p e2e-out
+            maestro --device "$SIM" test .maestro --format junit --output e2e-out/report.xml --test-output-dir e2e-out
+            rc=$?
+          fi
+          exit $rc
       - name: Podsumowanie porażki (nieudane polecenie i teksty z ekranu — artefakty bywają nieosiągalne)
         if: failure()
         run: |
