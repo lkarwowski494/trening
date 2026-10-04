@@ -385,7 +385,9 @@ Wynik: **0 wysokich, 2 średnie, 2 niskie** — wszystkie naprawione, każde z t
 
 ### E2E na symulatorze i build na trening 05.10.2026
 
-GOTOWE DO BUILDU: bbcf1af3467de11121229c64bf0231df6d14517c — E2E run 37198696767 7/7, audyt: 0 wysokich / 2 średnich (naprawione) (04.10.2026, 11:47 UTC)
+GOTOWE DO BUILDU: ddff68253c6f045f6ac321ee042e19fc0913bb32 — E2E run 37202832692 7/7, audyt: 0 wysokich / 2 średnich (naprawione) (04.10.2026, 13:40 UTC)
+
+*Poprzednio (zastąpione 04.10.2026, 13:40 UTC — backlog bez decyzji: „Przywróć …” w pickerze edytora historii, opcja testów navTimers):* `GOTOWE DO BUILDU: bbcf1af3467de11121229c64bf0231df6d14517c — E2E run 37198696767 7/7, audyt: 0 wysokich / 2 średnich (naprawione) (04.10.2026, 11:47 UTC)`
 
 Kod aplikacji = c9e2101 (aplikacja symulatora z przebiegu 37190915402); późniejsze commity zmieniają tylko `.maestro/`,
 `.github/workflows/e2e-ios.yml`, `scripts/ci/` i testy. Build ad hoc: gałąź `build/trening-0510` = bbcf1af.
