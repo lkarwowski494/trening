@@ -380,7 +380,7 @@ Wynik: **0 wysokich, 2 średnie, 2 niskie** — wszystkie naprawione, każde z t
 - **M2** (D6): „↺ przywróć: A” przy zarchiwizowanym A nic nie robiło (`swapTargetOk` odrzuca archiwum). Poprawka: przywrócenie dopuszcza zarchiwizowany oryginał (H11). Test „M2: …”.
 - **L1** (W1): po A→B w miejscu i B→C z podziałem „cofnij” C scalało z blokiem B, choć linijka mówi „zamiast: A”. Poprawka: scalenie z blokiem podziału tylko, gdy to oryginał; inaczej cofnięcie w miejscu do A. Test: `tests/swap-logic.test.ts` „L1: …”.
 - **L2** (P5b): trening wstecz — wstrzymanie ciężaru spoza listy (M3) liczone wg domyślnego przyrządu zamiast wybranego ręcznie. Poprawka: `offListAt(…, pinnedImpl(e))` w `prefillFor`. Test „L2: …”.
-- Drobiazg bez zmiany: picker z celem `swap:edit` nie pokazuje „Przywróć …” dla zarchiwizowanych ćwiczeń (cel `swap:active` pokazuje) — niespójność, nie błąd; do decyzji przy kolejnej rundzie.
+- ~~Drobiazg: picker z celem `swap:edit` nie pokazuje „Przywróć …” dla zarchiwizowanych ćwiczeń~~ — 04.10.2026 (backlog przed testem): pokazuje, jak `swap:active` (tylko ta sama miara); test `tests/backlog-0410.test.tsx`.
 
 
 ### E2E na symulatorze i build na trening 05.10.2026

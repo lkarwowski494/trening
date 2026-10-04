@@ -32,7 +32,7 @@ export default function PickerScreen() {
   const swapDraft = sw?.kind === 'edit' ? draftOf(sw.key) : undefined; const swapW = sw?.kind === 'edit' ? swapDraft?.w : sw ? st.active : undefined;
   const swapBlk = swapW?.exercises.find(x => x.id === swapId); const swapEx = swapBlk ? exById(swapBlk.exerciseId) : undefined;
   /* D6 (H3): w edytorze — ta sama reguła co przepięcie (swapTargetOk: blok usuniętego ćwiczenia bez filtra miary) */
-  const swapOk = (e: Exercise) => !sw || (swapDraft && swapBlk ? swapTargetOk(swapDraft, swapBlk, e) : !!swapEx && e.id !== swapEx.id && (e.metric ?? 'weight_reps') === (swapEx.metric ?? 'weight_reps'));
+  const swapOk = (e: Exercise) => !sw || (swapDraft && swapBlk ? swapTargetOk(swapDraft, swapBlk, e, e.archived === true /* „Przywróć …” jak w treningu (backlog 04.10) */) : !!swapEx && e.id !== swapEx.id && (e.metric ?? 'weight_reps') === (swapEx.metric ?? 'weight_reps'));
   const ctx = target === 'active' || sw?.kind === 'active' ? locationById(st.active?.locationId) : sw?.kind === 'edit' ? locationById(swapW?.locationId) : target.startsWith('template:') ? locationById(st.templates.find(x => x.id === target.slice(9))?.locationId)
     : target.startsWith('edit:') ? locationById(draftOf(target.slice(5))?.w.locationId) : undefined;
   const [allOn, setAllOn] = useState(st.settings.pickerShowAll); const showAll = !ctx || allOn; const caps = ctx ? capsOf(ctx) : null; const av = new Map<string, Availability>();

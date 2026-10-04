@@ -6,7 +6,9 @@ import { router } from 'expo-router';
 import { store as routerStore } from 'expo-router/build/global-state/router-store';
 
 /** Uruchamia całą aplikację (prawdziwe ekrany expo-router) na świeżym stanie. */
-export async function renderApp(opts: { saved?: unknown; locale?: 'pl' | 'en'; url?: string; width?: number } = {}) {
+/** `navTimers` (domyślnie true): odtworzone zachowanie expo-router 4 — przy każdej zmianie nawigacji `jest.runOnlyPendingTimers()` (niżej).
+ * false — bez tego: test sam przesuwa zegar i może sprawdzić, że po nawigacji nie zostaje żaden zaległy timer (docs/13 B11, NISKIE). */
+export async function renderApp(opts: { saved?: unknown; locale?: 'pl' | 'en'; url?: string; width?: number; navTimers?: boolean } = {}) {
   /* SDK 53 (React 19, RNTL 13 z równoległym korzeniem, expo-router 5): drugi renderApp w tym samym teście (nowy „start aplikacji”)
    * odświeżał jeszcze zamontowane drzewo z poprzedniego startu — wspólny stan routera — a to czytało już wyzerowany store
    * („store not initialised”). Poprzednie uruchomienie odmontowujemy, zanim zerujemy store, tak jak zamknięcie aplikacji przed ponownym startem.
@@ -23,7 +25,7 @@ export async function renderApp(opts: { saved?: unknown; locale?: 'pl' | 'en'; u
    * więc odtwarzamy je tutaj tym samym zdarzeniem ('state' kontenera nawigacji), żeby zegar testów biegł jak przed aktualizacją
    * i żadna asercja „czegoś nie ma” nie stała się pusta przez niewykonane timery. */
   if (!routerStore.navigationRef?.addListener) throw new Error('tests/app.tsx: brak store.navigationRef w expo-router — sprawdź odtworzenie runOnlyPendingTimers po aktualizacji routera');
-  routerStore.navigationRef.addListener('state', () => jest.runOnlyPendingTimers());
+  if (opts.navTimers !== false) routerStore.navigationRef.addListener('state', () => jest.runOnlyPendingTimers());
   // Czekamy na init() krokami fałszywego zegara (findBy* z fałszywymi timerami potrafił zapętlić się przy kolejnych testach).
   for (let i = 0; i < 40 && !store.isReadyForTests(); i++) await act(async () => { jest.advanceTimersByTime(10); await Promise.resolve(); });
   await act(async () => { jest.advanceTimersByTime(10); await Promise.resolve(); });
