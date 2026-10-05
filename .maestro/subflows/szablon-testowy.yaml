@@ -28,6 +28,9 @@ appId: pl.lukasz.trening
 - tapOn: "New template"
 - eraseText: 30
 - inputText: "Upper A"
+# 05.10.2026: szablon jak trening (wiersze serii) — ekran wyższy; otwarta klawiatura zasłaniała „+ Add exercise” (przebieg 37323737583:
+# tap trafił w klawisz „t” — nazwa „Upper At”). Enter zatwierdza nazwę i chowa klawiaturę.
+- pressKey: Enter
 # --- ćwiczenie 1 ---
 - tapOn: "\\+ Add exercise"
 - extendedWaitUntil: { visible: "Search exercises…", timeout: 30000 }
