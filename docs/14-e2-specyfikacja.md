@@ -390,7 +390,13 @@ Wynik: **0 wysokich, 2 średnie, 2 niskie** — wszystkie naprawione, każde z t
 
 ### E2E na symulatorze i build na trening 05.10.2026
 
-GOTOWE DO BUILDU: 409d768352bd32e7788a845352bb5e52a83d19f4 — E2E run 37304786066 7/7, audyt: 0 wysokich / 0 średnich (05.10.2026, 12:35 UTC)
+GOTOWE DO BUILDU: 23fa1e0d96c6154358ba7333b24f9e00c1e6cd26 — E2E run 37337763557 7/7, audyt: 0 wysokich / 3 średnich (naprawione) (05.10.2026, 16:55 UTC)
+
+*Zakres:* jak 409d768 + uwagi właściciela po treningu 05.10 (docs/10, docs/17): zwijane grupy sprzętu, bieżnia z nachyleniem, gumy jako poziomy
+1–7 w miejscu, widoczne typy serii, szablon jak trening (schemat 17), trening wstecz z wierszy szablonu. Audyty: 11ded5c..7651f64 (0/1/2),
+7651f64..85364ad (0/2/3) — docs/09. Build na telefon: iphone-local run 37337769218 (ten sam commit).
+
+*Poprzednio (zastąpione 05.10.2026, 16:55 UTC):* `GOTOWE DO BUILDU: 409d768352bd32e7788a845352bb5e52a83d19f4 — E2E run 37304786066 7/7, audyt: 0 wysokich / 0 średnich (05.10.2026, 12:35 UTC)`
 
 *Zakres:* jak 0f45b27 + wybór wyglądu, domyślnie jasna Kreda (decyzja właściciela 05.10 po instalacji; docs/16). Audyt 0ac7b2b..409d768:
 0 wysokich, 0 średnich, 3 niskie (opisane w docs/09).
