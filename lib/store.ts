@@ -1280,9 +1280,6 @@ export function deleteBand(id: string) {
 
 /** Trwały stan timera — zapisywany natychmiast (bez debounce), bo chodzi o przeżycie zabicia aplikacji. */
 export function setTimerState(patch: Partial<State['timer']>) { const st = getState(); st.timer = { ...(st.timer ?? blankTimer()), ...patch }; rev++; emit(); persistNow().catch(() => {}); }
-/** Czy dziś jest poranny wpis z jakąkolwiek wartością. */
-export function todayReadiness(at?: number) { const d = localISODate(at != null ? new Date(at) : undefined); // runda 31: dzień treningu, nie „dziś” po północy
-  const m = getState().mornings.find(x => x.date === d); return m && (m.bb !== '' || m.sleepScore !== '' || m.sleepH !== '') ? m : null; }
 
 /* ---------- misc ---------- */
 /** Runda 39: wspólny limit długości nazw (pola edycji mają maxLength = NAME_MAX). */
@@ -1319,10 +1316,6 @@ export function dupTemplate(id: string): Template { const src = getState().templ
 export function deleteTemplate(id: string) { const st = getState(); st.templates = st.templates.filter(x => x.id !== id); save(); flush(); }
 /** Włączanie/wyłączanie modułu (ADR-011). 'training' jest zawsze włączony. */
 export function setModule(m: keyof State['settings']['modules'], on: boolean) { const s = getState().settings; s.modules[m] = m === 'training' ? true : on; save(); }
-/** Dzisiejszy poranny wpis bez tworzenia go (do wyświetlania). */
-export function peekTodayMorning(): Morning | undefined { const d = localISODate(); return getState().mornings.find(x => x.date === d); }
-/** Dzisiejszy wpis — tworzony dopiero przy pierwszej edycji (wcześniej powstawał pusty już przy wejściu na ekran). */
-export function todayMorning(): Morning { const st = getState(); const d = localISODate(); let m = st.mornings.find(x => x.date === d); if (!m) { m = { ...base(st.ownerId), date: d, bb: '', sleepScore: '', sleepH: '', weight: '' }; st.mornings.push(m); } return m; }
 /** Reset: nowe dane startowe w języku, który będzie widoczny po resecie (ustawienie wraca na „auto” = język telefonu). */
 export function resetAll() { replaceState(seedState(detectLang())); clearRecovery(); flush(); }
 export type { WExercise };

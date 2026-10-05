@@ -168,13 +168,12 @@ export function subscribe(cb: () => void) { listeners.add(cb); return () => { li
 function emit() { listeners.forEach(l => l()); }
 
 /* Runda 69: przypomnienie o porzuconym treningu — 2 h po ostatniej odhaczonej serii (albo po „Kontynuuj”). */
-/** Runda 75 (T-013): przypomnienie o wadze w poniedziałek o 7:00 (powtarzane co tydzień, lokalne). Włącznik w Ustawieniach;
- * treść w bieżącym języku — przeplanowywane przy starcie, zmianie języka (refreshScheduled) i po imporcie kopii. */
+/** Runda 75 (T-013): przypomnienie o wadze w poniedziałek o 7:00 — usunięte 05.10.2026 razem z porannym wpisem; zostaje odwołanie dawnego. */
 const WEIGH_ID = 'weigh-reminder';
 export async function scheduleWeighReminder() {
+  /* Decyzja właściciela 05.10.2026: poranny wpis usunięty z aplikacji — przypomnienie zaplanowane przez starszą wersję jest odwoływane, nowe nie powstaje
+   * (ustawienie weighReminder zostaje w danych bez znaczenia). */
   try { await Notifications.cancelScheduledNotificationAsync(WEIGH_ID); } catch {}
-  if (!getState().settings.weighReminder) return;
-  try { await Notifications.scheduleNotificationAsync({ identifier: WEIGH_ID, content: { title: t('Poranny wpis'), body: t('Poniedziałek — zważ się i zapisz wagę w porannym wpisie.'), sound: soundOn() }, trigger: { type: Notifications.SchedulableTriggerInputTypes.WEEKLY, weekday: 2 /* poniedziałek (1 = niedziela) */, hour: 7, minute: 0 } }); } catch {}
 }
 const STALE_ID = 'stale-reminder';
 export async function cancelStaleReminder() { try { await Notifications.cancelScheduledNotificationAsync(STALE_ID); } catch {} }

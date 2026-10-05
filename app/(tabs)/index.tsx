@@ -33,15 +33,12 @@ function DataBanners() {
 
 function Home() {
   const st = getState(); const router = useRouter(); const once = useOnce();
-  const fin = finishedWorkouts(); const last = fin[0]; const m = st.mornings.find(x => x.date === localISODate());
+  const fin = finishedWorkouts(); const last = fin[0];
   return (
     <ScrollView contentContainerStyle={{ paddingBottom: 40 }}>
       <View style={{ marginVertical: 10 }}><H1>{t('Trening')}</H1><Muted>{new Date().toLocaleDateString(locale(), { weekday: 'long', day: 'numeric', month: 'long' })}</Muted></View>
       <DataBanners />
       <SigningBanner />
-      {m && [m.bb, m.weight, m.sleepScore, m.sleepH].some(v => v !== '' && v != null)
-        ? <Item title={t('Dziś rano')} sub={[`BB ${m.bb !== '' ? m.bb : '—'}`, `${t('sen')} ${m.sleepScore !== '' ? m.sleepScore : '—'}`, m.sleepH !== '' ? `${fmtNum(Number(m.sleepH), 1)} h` : '', m.weight !== '' ? fmtW(Number(m.weight)) : ''].filter(Boolean).join(' · ')} onPress={() => router.push('/more/morning')} />
-        : <Item title={t('Poranny wpis')} sub={t('BB, sen, waga — 20 sekund')} onPress={() => router.push('/more/morning')} />}
       {/* Decyzja 03.10.2026 (08:11): świeża instalacja nie ma szablonów (użytkownik ustawia je sam) — wskazówka pierwszego startu nie odsyła wtedy
           do „szablonu niżej”, tylko do „+ Nowy szablon” albo pustego treningu */}
       {!last ? <View style={{ marginTop: 16, padding: 12, borderRadius: 10, borderWidth: 1, borderStyle: 'dashed', borderColor: '#5a5f6b' }}><Muted style={{ fontSize: 13 }}>{st.templates.length ? t('Pierwszy raz? Wybierz szablon niżej, wpisz ciężar i powtórzenia, odhaczaj serie ✓ — przerwa odlicza się sama. Na koniec „Zakończ trening i zapisz”. Szablony i ćwiczenia zmienisz w zakładkach obok.') : t('Pierwszy raz? Utwórz swój szablon („+ Nowy szablon” niżej) albo zacznij pusty trening. Wpisuj ciężar i powtórzenia, odhaczaj serie ✓ — przerwa odlicza się sama. Na koniec „Zakończ trening i zapisz”.')}</Muted></View> : null}

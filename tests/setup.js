@@ -4,6 +4,7 @@ global.__dbFail = false;          // wymuszenie błędu zapisu
 global.__locales = [{ languageCode: 'pl', languageTag: 'pl-PL' }];
 global.__alerts = [];             // wywołania Alert.alert / Alert.prompt
 global.__notifications = [];      // zaplanowane powiadomienia
+global.__cancelled = [];          // odwołane powiadomienia (identyfikatory)
 global.__la = [];                 // wywołania Live Activity
 
 jest.mock('expo-sqlite', () => ({
@@ -20,7 +21,7 @@ jest.mock('expo-notifications', () => ({
   getPermissionsAsync: async () => ({ granted: true }),
   requestPermissionsAsync: async () => ({ granted: true }),
   scheduleNotificationAsync: async (req) => { global.__notifications.push(req); return 'n' + global.__notifications.length; },
-  cancelScheduledNotificationAsync: async () => {},
+  cancelScheduledNotificationAsync: async (id) => { global.__cancelled.push(id); },
   getAllScheduledNotificationsAsync: async () => [],
   SchedulableTriggerInputTypes: { TIME_INTERVAL: 'timeInterval', DATE: 'date', WEEKLY: 'weekly' },
 }));

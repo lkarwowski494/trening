@@ -53,7 +53,6 @@ function Root() {
         <Stack.Screen name="history/edit/[id]" options={{ title: t('Edycja sesji'), gestureEnabled: false /* docs/12: szkic nie przepada gestem — Anuluj/Zapisz w nagłówku */ }} />
         <Stack.Screen name="more/bands" options={{ title: t('Gumy') }} />
         <Stack.Screen name="more/progress" options={{ title: t('Postępy') }} />
-        <Stack.Screen name="more/morning" options={{ title: t('Poranny wpis') }} />
         <Stack.Screen name="more/settings" options={{ title: t('Ustawienia') }} />
         <Stack.Screen name="more/backup" options={{ title: t('Backup') }} />
         <Stack.Screen name="more/locations" options={{ title: t('Miejsca treningu') }} />

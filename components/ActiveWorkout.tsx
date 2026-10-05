@@ -4,7 +4,7 @@ import { useRouter } from 'expo-router';
 import { activateKeepAwakeAsync, deactivateKeepAwake } from 'expo-keep-awake';
 import { useTheme } from '@/lib/theme';
 import { Btn, Input, NumInput, Muted } from '@/components/ui';
-import { progressionFor, writeLoad, setActiveLocation, lastActivity, staleSince, staleRef, staleKind, ackStale, markActivity, useForegroundTick, bandA11y, clampName, loadLabelShort, getState, useTick, exById, prevOfActiveBlock, previousFor, canUndoSwap, undoSwap, pinnedImpl, rememberRest as storeRememberRest, canRememberAlt, rememberAlt, altHint, acceptAlt, skipAlt, occurrence, occurrences, hintFor, isBW, reps, fmtDur, fmtSec, fmtTime, setSummary, toggleDone, restAfter, roundRest, addSet, removeSet, removeExercise, finishWorkout, cancelWorkout, save, loadLabel, todayReadiness, groupLabels, linkWithNext, unlink, cycleBand, findSet, shortBand, setHasValue, locationById, offListNote, liveBlockImpl, listLocFor, srcSetAt } from '@/lib/store';
+import { progressionFor, writeLoad, setActiveLocation, lastActivity, staleSince, staleRef, staleKind, ackStale, markActivity, useForegroundTick, bandA11y, clampName, loadLabelShort, getState, useTick, exById, prevOfActiveBlock, previousFor, canUndoSwap, undoSwap, pinnedImpl, rememberRest as storeRememberRest, canRememberAlt, rememberAlt, altHint, acceptAlt, skipAlt, occurrence, occurrences, hintFor, isBW, reps, fmtDur, fmtSec, fmtTime, setSummary, toggleDone, restAfter, roundRest, addSet, removeSet, removeExercise, finishWorkout, cancelWorkout, save, loadLabel, groupLabels, linkWithNext, unlink, cycleBand, findSet, shortBand, setHasValue, locationById, offListNote, liveBlockImpl, listLocFor, srcSetAt } from '@/lib/store';
 import { availability, missingLabel } from '@/lib/equipment';
 import { implLabel } from '@/lib/swap';
 import { locationLabel } from '@/lib/locations';
@@ -151,7 +151,7 @@ export default function ActiveWorkout() {
         </View>
         {w.exercises.map((e, ei) => <ExerciseBlock key={e.id} w={w} e={e} ei={ei} onDone={onDone} onStartSet={startSet} labels={labels} prs={prs} />)}
         <View style={{ flexDirection: 'row', gap: 8 }}><Btn title={tr('+ Dodaj ćwiczenie')} style={{ flex: 1 }} onPress={() => router.push('/picker?target=active')} />{w.exercises.length > 1 ? <Btn title={tr('≡ Kolejność')} accessibilityLabel={tr('Zmień kolejność ćwiczeń')} onPress={() => router.push('/reorder?target=active')} /> : null}</View>
-        <View style={{ marginTop: 16 }}><Muted style={{ marginBottom: 5 }}>{tr('Notatka do treningu')}</Muted><Input maxLength={1000} value={w.note} onChangeText={v => { w.note = v; save(w); }} placeholder={tr('np. BB 86 rano, świeżo')} accessibilityLabel={tr('Notatka do treningu')} multiline /></View>
+        <View style={{ marginTop: 16 }}><Muted style={{ marginBottom: 5 }}>{tr('Notatka do treningu')}</Muted><Input maxLength={1000} value={w.note} onChangeText={v => { w.note = v; save(w); }} placeholder={tr('np. samopoczucie, ból, sprzęt')} accessibilityLabel={tr('Notatka do treningu')} multiline /></View>
         <Btn title={tr('Zakończ trening i zapisz')} kind="primary" block style={{ marginTop: 10, minHeight: 52 }} onPress={finish} />
         <Muted style={{ textAlign: 'center', fontSize: 13, marginVertical: 10 }}>{tr('Trening w toku zapisuje się na bieżąco. Tapnij numer serii, by oznaczyć rozgrzewkę (W), drop set (D), serię do upadku (F) albo dodać notatkę.')}</Muted>
         <Btn title={tr('Anuluj trening')} kind="danger" block style={{ marginTop: 24 }} onPress={cancel} />
@@ -213,7 +213,7 @@ function isPrefill(_e: WExercise, s: WSet) { return !s.edited; } // runda 2: lic
 function SessionClock({ w }: { w: Workout }) {
   const [, force] = useState(0);
   useEffect(() => { const i = setInterval(() => force(x => x + 1), 1000); return () => clearInterval(i); }, []);
-  return <Muted style={{ fontSize: 13 }}>{tr('start')} {fmtTime(w.startedAt)} · {fmtDur((Date.now() - w.startedAt) / 1000)}{readinessLine(w.startedAt)}</Muted>;
+  return <Muted style={{ fontSize: 13 }}>{tr('start')} {fmtTime(w.startedAt)} · {fmtDur((Date.now() - w.startedAt) / 1000)}</Muted>;
 }
 
 /** Runda 75 (T-016): postęp sesji — odhaczone serie / wszystkie (z rozgrzewkami), cienki pasek pod zegarem. */
@@ -227,7 +227,6 @@ function SessionProgress({ w }: { w: Workout }) {
 }
 
 /** Gotowość z porannego wpisu w nagłówku sesji (0.2.1): „tracker wie, jak spałeś”. */
-function readinessLine(at: number) { const m = todayReadiness(at); if (!m) return ''; return ' · ' + [m.bb !== '' ? `BB ${m.bb}` : '', m.sleepScore !== '' ? `${tr('sen')} ${m.sleepScore}` : '', m.sleepH !== '' ? `${fmtNum(Number(m.sleepH), 1)} h` : ''].filter(Boolean).join(' · '); }
 
 const WIDE = { idx: 28, w: 64, reps: 56, dist: 64, time: 56, play: 44, rpe: 46, band: 56, done: 44, gap: 6, prevMin: 70 };
 /** Wariant zwarty dla wąskich ekranów (iPhone SE 1. gen., 320 pt) — gdy szerokie kolumny się nie mieszczą. */

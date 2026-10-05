@@ -34,7 +34,6 @@ export default function SettingsScreen() {
       <SwitchRow label={t('Automatyczna kopia po każdym treningu')} detail={t('Pliki → Na moim iPhonie → Trening → Backup, ostatnie 10')} value={s.autoBackup} onChange={v => { s.autoBackup = v; save(); }} />
 
       <SectionTitle>{t('Powiadomienia')}</SectionTitle>
-      <SwitchRow label={t('Przypomnienie o wadze')} detail={t('w poniedziałek o 7:00')} value={s.weighReminder} onChange={async v => { if (v && !(await timer.ensurePermission())) { Alert.alert(t('Brak zgody'), t('Włącz powiadomienia dla Trening w Ustawieniach iOS.')); return; } s.weighReminder = v; save(); timer.scheduleWeighReminder().catch(() => {}); }} />
       <Btn title={t('Sprawdź zgodę na powiadomienia')} style={{ marginTop: 12 }} onPress={async () => { const ok = await timer.ensurePermission(); Alert.alert(ok ? t('Powiadomienia działają') : t('Brak zgody'), ok ? t('Koniec przerwy da znać nawet na zablokowanym ekranie.') : t('Włącz powiadomienia dla Trening w Ustawieniach iOS.')); }} />
       <Muted style={{ fontSize: 13, marginVertical: 12 }}>{t('Timer odlicza w aplikacji, a na koniec przerwy przychodzi powiadomienie — także przy zablokowanym telefonie.')}</Muted>
 

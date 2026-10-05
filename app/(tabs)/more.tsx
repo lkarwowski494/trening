@@ -17,7 +17,6 @@ export default function MoreScreen() {
       <View style={{ marginVertical: 10 }}><H1>{t('Więcej')}</H1></View>
       <Item title={t('Postępy')} onPress={() => router.push('/more/progress')} />
       <Item title={t('Gumy')} onPress={() => router.push('/more/bands')} />
-      <Item title={t('Poranne wpisy')} onPress={() => router.push('/more/morning')} />
       <Item title={t('Backup (eksport / import)')} onPress={() => router.push('/more/backup')} />
       <Item title={t('Ustawienia')} onPress={() => router.push('/more/settings')} />
       <Muted style={{ marginTop: 20, fontSize: 13 }}>{t('Trening {v} · dane tylko w telefonie, bez konta i bez sieci. Backup po ważnych sesjach (i przed odnowieniem podpisu).', { v: Constants.expoConfig?.version ?? '' })}{expTxt}</Muted>

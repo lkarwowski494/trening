@@ -28,7 +28,7 @@ describe('P-001 gumy: tylko kolor i poziom 1–7', () => {
 });
 
 describe('P-002 ustawienia: przełączniki iOS, segmenty, grupy', () => {
-  const SWITCHES = ['Dźwięk i wibracja na koniec przerwy', 'Ekran włączony podczas treningu', 'RPE / RIR przy serii', 'Podpowiedź progresji', 'Zapisuj zakończone treningi do Apple Health', 'Automatyczna kopia po każdym treningu', 'Przypomnienie o wadze'];
+  const SWITCHES = ['Dźwięk i wibracja na koniec przerwy', 'Ekran włączony podczas treningu', 'RPE / RIR przy serii', 'Podpowiedź progresji', 'Zapisuj zakończone treningi do Apple Health', 'Automatyczna kopia po każdym treningu'];
   test('każda opcja wł./wył. to przełącznik z nazwą i stanem; brak dawnych przycisków „włączone/wyłączone”', async () => {
     await renderApp(); await go('/more/settings'); await flushAll(10);
     const sw = screen.getAllByRole('switch').map(x => x.props.accessibilityLabel);

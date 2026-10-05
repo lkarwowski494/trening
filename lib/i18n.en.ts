@@ -105,7 +105,7 @@ export const EN: Record<string, string> = {
   'seria {n}': 'set {n}', 'dalej: {name}': 'next: {name}', 'Nowy rekord!': 'New record!', 'Nowe rekordy: {n}': 'New records: {n}',
   'Brak odhaczonych serii': 'No sets ticked', 'Zakończ': 'Finish',
   'Anulować trening?': 'Cancel workout?', 'Serie z tej sesji przepadną.': 'Sets from this session will be lost.', 'Anuluj trening': 'Cancel workout',
-  'start': 'started', 'Notatka do treningu': 'Workout note', 'np. BB 86 rano, świeżo': 'e.g. BB 86 this morning, feeling fresh', 'Zakończ trening i zapisz': 'Finish and save workout',
+  'start': 'started', 'Notatka do treningu': 'Workout note', 'np. samopoczucie, ból, sprzęt': 'e.g. how you feel, pain, equipment', 'Zakończ trening i zapisz': 'Finish and save workout',
   'Poprzednio': 'Previous', 'Pow.': 'Reps', 'sek.': 'sec.', 'Guma': 'Band',
   '+ seria': '+ set', '− seria': '− set', 'Przerwa (sekundy)': 'Rest (seconds)', 'Zapamiętać dla tego ćwiczenia?': 'Remember for this exercise?',
   'Tylko teraz': 'This time only', 'Zapamiętaj': 'Remember',

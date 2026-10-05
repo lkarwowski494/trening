@@ -84,14 +84,11 @@ describe('T-012 kopia automatyczna', () => {
   });
 });
 
-describe('T-013 przypomnienie o wadze', () => {
-  test('wyłączone domyślnie; włączone — co tydzień w poniedziałek 7:00, treść w języku aplikacji', async () => {
-    await fresh(); global.__notifications.length = 0;
-    await timer.scheduleWeighReminder(); expect(global.__notifications.some((n: any) => n.identifier === 'weigh-reminder')).toBe(false);
-    store.getState().settings.weighReminder = true; await timer.scheduleWeighReminder();
-    const n: any = global.__notifications.find((x: any) => x.identifier === 'weigh-reminder'); expect(n.trigger).toMatchObject({ type: 'weekly', weekday: 2, hour: 7, minute: 0 }); expect(n.content.body).toMatch(/Poniedziałek/);
-    require('@/lib/i18n').applyLang('en'); global.__notifications.length = 0; await timer.refreshScheduled();
-    expect((global.__notifications.find((x: any) => x.identifier === 'weigh-reminder') as any).content.body).toMatch(/^Monday/); require('@/lib/i18n').applyLang('pl');
+describe('T-013 przypomnienie o wadze — usunięte 05.10.2026 razem z porannym wpisem', () => {
+  test('nawet przy włączonym ustawieniu (dane starszej wersji) nie powstaje; odświeżenie po zmianie języka też nie', async () => {
+    await fresh(); global.__notifications.length = 0; store.getState().settings.weighReminder = true;
+    await timer.scheduleWeighReminder(); await timer.refreshScheduled();
+    expect(global.__notifications.some((n: any) => n.identifier === 'weigh-reminder')).toBe(false);
   });
 });
 

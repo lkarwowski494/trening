@@ -149,11 +149,7 @@ test('B13 gumy: pusty kolor nie wywraca treningu z gumą', async () => {
   expect(screen.getByLabelText(/Guma: \?, poziom 2/)).toBeTruthy();
 });
 
-test('B14 poranny wpis: wejście nie tworzy rekordu, wpisanie wagi tworzy', async () => {
-  await renderApp(); await go('/more/morning'); await screen.findByText('Body Battery');
-  expect(store.getState().mornings).toHaveLength(0);
-  await type(screen.getAllByDisplayValue('')[3], '80,5'); expect(store.getState().mornings[0].weight).toBe(80.5);
-});
+/* B14 (poranny wpis) — ekran usunięty 05.10.2026 (decyzja właściciela); zachowanie po usunięciu: tests/morning-removed.test.tsx */
 
 test('B15 reset danych zatrzymuje timery', async () => {
   await renderApp({ saved: seedWithDemo() }); await startTemplate('Upper A'); await tap(screen.getAllByLabelText(/^Seria 1 zrobiona/)[0]); expect(timer.T.on).toBe(true);

@@ -194,9 +194,9 @@ describe('runda 2 — ekrany', () => {
     await renderApp(); const e = ex('Back Squat'); await go(`/exercise/${e.id}`); await flushAll(10);
     const f = screen.getByDisplayValue('Back Squat'); await type(f, ''); await act(async () => { f.props.onEndEditing?.(); }); expect(e.name.trim()).not.toBe('');
   });
-  test('R2-23 dzisiejszy wpis tylko z godzinami snu i BB = 0 są widoczne', async () => {
+  test('R2-23 (05.10.2026: poranny wpis usunięty z ekranu) wpis z BB = 0 i samymi godzinami snu zostaje w danych bez zmian', async () => {
     const saved = require('@/lib/seed').seedState(); saved.mornings.push({ id: 'm', ownerId: 'local', createdAt: 0, updatedAt: 0, date: store.localISODate(), bb: 0, sleepScore: '', sleepH: 7.5, weight: '' });
-    await renderApp({ saved }); expect(screen.getByText(/BB 0/)).toBeTruthy(); expect(screen.getByText(/7,5 h/)).toBeTruthy();
+    await renderApp({ saved }); expect(store.getState().mornings[0]).toMatchObject({ bb: 0, sleepH: 7.5 }); expect(screen.queryByText(/BB 0/)).toBeNull();
   });
   test('R2-24 pole liczbowe pokazuje po edycji wartość zapisaną (po przycięciu)', async () => {
     await renderApp({ saved: seedWithDemo() }); const tpl = store.getState().templates[0]; await go(`/template/${tpl.id}`); await flushAll(10);
@@ -916,10 +916,12 @@ describe('runda 30', () => {
   afterEach(async () => { try { store.getState(); } catch { return; } await timer.stop(); await timer.stopSet(); });
   test('R30-01 powrót z tła następnego dnia odświeża ekran główny', async () => {
     await renderApp(); const t0 = new Date(2026, 8, 30, 22).getTime(); jest.setSystemTime(t0);
-    await act(async () => { const m = store.todayMorning(); m.bb = 50; store.save(m); }); await flushAll(10);
-    expect(screen.getAllByText(/Dziś rano/).length).toBeGreaterThan(0);
+    /* 05.10.2026: poranny wpis usunięty — odświeżenie sprawdzane na dacie w nagłówku ekranu głównego */
+    await act(async () => { store.refreshViews(); }); await flushAll(10);
+    const day = (ms: number) => new Date(ms).toLocaleDateString('pl-PL', { weekday: 'long', day: 'numeric', month: 'long' });
+    expect(screen.getByText(day(t0))).toBeTruthy();
     jest.setSystemTime(t0 + 9 * 3600e3); await act(async () => { store.refreshViews(); }); await flushAll(10);
-    expect(screen.queryByText(/Dziś rano/)).toBeNull();
+    expect(screen.queryByText(day(t0))).toBeNull(); expect(screen.getByText(day(t0 + 9 * 3600e3))).toBeTruthy();
   });
   test('R30-02 ekran Backup po imporcie pokazuje język i jednostkę danych', async () => {
     await renderApp({ locale: 'en' }); await go('/more/backup'); await flushAll(10); expect(screen.getByText(/CSV: weight/)).toBeTruthy();
@@ -1258,11 +1260,9 @@ describe('runda 50', () => {
     const raw = JSON.parse(JSON.stringify(store.getState())); raw.workouts.push({ startedAt: at(2026, 9, 1), finishedAt: at(2026, 9, 1, 19), exercises: [{ exerciseId: ex('Back Squat').id, sets: [{ weight: '62,5', reps: '8', done: true }] }] });
     const m = store.migrate(raw); expect([m.workouts[0].exercises[0].sets[0].weight, m.workouts[0].exercises[0].sets[0].reps]).toEqual([62.5, 8]);
   });
-  test('R50-03 import z obiektem w porannym wpisie nie wywraca ekranu; BB i sen 0–100', async () => {
+  test('R50-03 import z obiektem w porannym wpisie nie wywraca aplikacji; BB i sen 0–100 (ekran wpisu usunięty 05.10.2026)', async () => {
     const st = seedState('pl') as any; st.mornings = [{ date: '2026-09-01', bb: { v: 50 }, sleepScore: 150, sleepH: '30', weight: 'x' }]; legacyBandKg(st.bands[0], {});
     await renderApp({ saved: st }); const m = store.getState().mornings[0]; expect([m.bb, m.sleepScore, m.sleepH, m.weight]).toEqual(['', 100, 24, '']); expect(store.getState().bands[0]).not.toHaveProperty('nominalKg'); /* T-055: dawne pole odpada przy imporcie */
-    await go('/more/morning'); await flushAll(10); await type(screen.getByLabelText('Body Battery'), '250'); await flushAll(5);
-    const today = store.getState().mornings.find(x => x.date === store.localISODate()); expect(today?.bb).toBe(100);
   });
   test('R50-04 niedostępny moduł włączony w imporcie nie wygląda na włączony', async () => {
     const st = seedState('pl') as any; st.settings.modules.diet = true; await renderApp({ saved: st }); await go('/more/settings'); await flushAll(10);
@@ -1431,10 +1431,7 @@ describe('runda 55', () => {
     const raw = JSON.parse(JSON.stringify(store.getState())); raw.schemaVersion = 9; raw.exercises.push({ id: 'k', name: 'constructor', group: 'inne', equipment: 'inne' }); expect(() => store.migrate(raw)).not.toThrow();
     expect(typeof require('@/lib/i18n').t('constructor')).toBe('string');
   });
-  test('R55-03 w lb: ułamek funta, który po przeliczeniu daje 0 kg, to brak wpisu (rano i w ustawieniach)', async () => {
-    await renderApp(); const st = store.getState(); st.settings.unit = 'lb'; store.applyPrefs(); store.save(); await go('/more/morning'); await flushAll(10);
-    await type(screen.getByLabelText('Waga (lb)'), '0,004'); await flushAll(2); const m = st.mornings.find(x => x.date === store.localISODate()); expect(m?.weight ?? '').toBe('');
-  });
+  /* R55-03 (waga rano w lb) — ekran porannego wpisu usunięty 05.10.2026 (decyzja właściciela) */
   test('R55-04 cel stopera ograniczony do doby (jak po wczytaniu); czas/dystans zaokrąglone, pole bez zapisu wykładniczego', async () => {
     await fresh(); store.startEmpty(); store.addExerciseToActive(ex('Plank')); const id = store.getState().active!.exercises[0].sets[0].id; await timer.startSet(id, 200000); expect(timer.S.targetSec).toBe(86400); await timer.stopSet();
   });
@@ -1468,7 +1465,6 @@ describe('runda 57', () => {
     await renderApp(); store.getState().settings.showRpe = true; await act(async () => { store.startEmpty(); store.addExerciseToActive(ex('Back Squat')); }); await flushAll(10);
     const r = () => screen.getAllByLabelText('Powtórzenia')[0]; await type(r(), '2000000'); await flushAll(5); expect(r().props.value).toBe('1000000');
     const p = () => screen.getAllByLabelText('RPE')[0]; await type(p(), '8,25'); await flushAll(5); expect(p().props.value).toBe('8,3');
-    await go('/more/morning'); await flushAll(10); const w = () => screen.getByLabelText('Waga (kg)'); await type(w(), '0'); await flushAll(5); expect(w().props.value).toBe('0');
   });
 });
 
