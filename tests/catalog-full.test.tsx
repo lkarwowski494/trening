@@ -79,3 +79,24 @@ describe('pełna baza — nowy sprzęt w zapisanych miejscach (decyzja 1.a)', ()
     expect(g.equipment.find(e => e.item === 'db_fixed')!.load).toEqual(db.load); expect(g.equipment.some(e => e.item === 'tire')).toBe(false);
   });
 });
+
+describe('sprzęt w miejscach (1.a) — audyt 05.10', () => {
+  const L2 = (id: string, equipment: any[]) => ({ id, ownerId: 'local', createdAt: 1, updatedAt: 1, name: id, equipment });
+  const old = () => presetEquipment('gym').filter(e => !GYM_FILL.items.includes(e.item)).map(e => ({ ...e, opts: e.opts.filter(o => !(GYM_FILL.opts[e.item] ?? []).includes(o)) }));
+  test('MEDIUM: odznaczone pozycje (off) nie liczą się do „presetu siłowni” — dom z presetu z odznaczonym prawie wszystkim nie dostaje sprzętu', async () => {
+    await fresh(); const eq = old().map((e, i) => (i < 40 ? { ...e, off: true } : e));
+    const s: any = JSON.parse(JSON.stringify(seedState('pl'))); delete s.equipFill; s.settings.locations = [L2('dom', eq)]; s.settings.mainLocationId = 'dom';
+    expect(store.migrate(s).settings.locations[0].equipment.some(e => e.item === 'row_machine')).toBe(false);
+  });
+  test('LOW: opaski dopisywane tylko przy zaznaczonych wyciągach', async () => {
+    await fresh(); const eq = old().map(e => (e.item === 'cable_single' ? { ...e, off: true } : e));
+    const s: any = JSON.parse(JSON.stringify(seedState('pl'))); delete s.equipFill; s.settings.locations = [L2('gym', eq)]; s.settings.mainLocationId = 'gym';
+    const g = store.migrate(s).settings.locations[0];
+    expect(g.equipment.find(e => e.item === 'cable_single')!.opts).not.toContain('ankle'); expect(g.equipment.find(e => e.item === 'cable_cross')!.opts).toContain('ankle');
+  });
+  test('LOW: start aplikacji zapisuje wynik jednorazowych kroków (znaczniki), nawet bez zmiany schematu', async () => {
+    await fresh(); const s: any = JSON.parse(JSON.stringify(seedState('pl'))); delete s.equipFill; s.settings.locations = [L2('gym', old())]; s.settings.mainLocationId = 'gym';
+    global.__kv.set('state', JSON.stringify(s)); store.__resetForTests(); await store.init(); await store.flush();
+    const saved = JSON.parse(global.__kv.get('state')!); expect(saved.equipFill).toBe(GYM_FILL.rev); expect(saved.settings.locations[0].equipment.some((e: any) => e.item === 'row_machine')).toBe(true);
+  });
+});

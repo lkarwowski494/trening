@@ -109,3 +109,8 @@ Decyzja właściciela: „Dlaczego mamy 270 ćwiczeń, skoro te online mają po 
   - **LOW 6 (opisany):** ranking i filtr „Inne” przechodzą po wszystkich 854 ćwiczeniach przy każdym renderze. Pomiar wydajności tego nie pokazuje jako problemu.
   - **LOW 7 (sprawdzony):** „Full Range-Of-Motion Lat Pulldown” to dwie linki — uchwyty z dwóch górnych wyciągów, `cables 2` poprawne.
 - **Decyzje właściciela 05.10.2026:** „1.a” — nowy sprzęt dopisany **jednorazowo** do zapisanych miejsc opartych na presecie siłowni (`GYM_FILL` w lib/equipment.ts: ≥ 75 % pozycji dawnego presetu; dom i hotel bez zmian; znacznik `State.equipFill` — usunięte później pozycje nie wracają; ciężary i opcje istniejących pozycji bez zmian, przy wyciągach dochodzi opcja „opaski na kostki”; strongman nie). „2. ok” — ranking zamiany przy remisie: najpierw biblioteka przejrzana, potem pełna baza (zostaje). Testy: `tests/catalog-full.test.tsx`.
+- **Audyt kodu 1.a (1956243..3c7cd3e): 0 wysokich / 1 średni / 2 niskie.**
+  - **MEDIUM (naprawiony):** odznaczone pozycje (`off`) liczyły się do kwalifikacji. Dom utworzony z presetu siłowni z prawie wszystkim odznaczonym dostałby 27 pozycji. Teraz liczą się tylko zaznaczone.
+  - **LOW (naprawiony):** opaski dopisywane tylko przy zaznaczonych wyciągach.
+  - **LOW (sprawdzony testem):** start aplikacji zapisuje wynik jednorazowych kroków.
+  - Bez zmian w doborze ciężarów (porównanie wszystkich ćwiczeń w kg i lb).

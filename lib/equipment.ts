@@ -247,10 +247,10 @@ export const GYM_FILL = {
 };
 /** Dopisuje nowy sprzęt do miejsca opartego na presecie siłowni; zwraca, czy miejsce się kwalifikowało. */
 export function fillGym(loc: Pick<Location, 'equipment'>, unit: LoadUnit = 'kg'): boolean {
-  const old = presetEquipment('gym', unit).map(e => e.item).filter(id => !GYM_FILL.items.includes(id)); const have = new Set(loc.equipment.map(e => e.item));
-  if (!old.length || old.filter(id => have.has(id)).length < old.length * GYM_FILL.share) return false;
+  const old = presetEquipment('gym', unit).map(e => e.item).filter(id => !GYM_FILL.items.includes(id)); const have = new Set(loc.equipment.map(e => e.item)); const on = new Set(loc.equipment.filter(e => !e.off).map(e => e.item)); /* audyt 05.10 (MEDIUM): kwalifikują tylko zaznaczone pozycje */
+  if (!old.length || old.filter(id => on.has(id)).length < old.length * GYM_FILL.share) return false;
   for (const id of GYM_FILL.items) if (!have.has(id) && equipById(id)) loc.equipment.push(equipEntry(id, unit, true));
-  for (const e of loc.equipment) for (const o of GYM_FILL.opts[e.item] ?? []) if (!e.opts.includes(o)) e.opts.push(o);
+  for (const e of loc.equipment) if (!e.off) for (const o of GYM_FILL.opts[e.item] ?? []) if (!e.opts.includes(o)) e.opts.push(o); /* audyt 05.10 (LOW): tylko zaznaczone wyciągi */
   return true;
 }
 
