@@ -33,7 +33,7 @@ describe('P-002 ustawienia: przełączniki iOS, segmenty, grupy', () => {
     await renderApp(); await go('/more/settings'); await flushAll(10);
     const sw = screen.getAllByRole('switch').map(x => x.props.accessibilityLabel);
     expect(sw).toEqual(expect.arrayContaining(SWITCHES)); expect(screen.queryByText('włączone')).toBeNull(); expect(screen.queryByText('wyłączone')).toBeNull();
-    for (const h of ['Ogólne', 'Trening', 'Dane i kopie', 'Powiadomienia', 'Moduły']) expect(screen.getAllByText(h).length).toBeGreaterThan(0);
+    for (const h of ['Ogólne', 'Trening', 'Dane i kopie', 'Powiadomienia'] /* „Moduły” schowane 05.10.2026 */) expect(screen.getAllByText(h).length).toBeGreaterThan(0);
   });
   test('przełączenie zmienia ustawienie i stan VoiceOver (dźwięk, ekran, RPE, podpowiedź, kopia)', async () => {
     await renderApp(); await go('/more/settings'); await flushAll(10); const s = store.getState().settings;

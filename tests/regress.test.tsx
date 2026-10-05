@@ -1238,7 +1238,7 @@ describe('runda 49', () => {
     expect(screen.getAllByLabelText('Usuń z szablonu')[0].props.accessibilityHint).toBe(name); expect(screen.getAllByLabelText('serie')[0].props.accessibilityHint).toBe(name);
     await go('/more/bands'); await flushAll(10); expect(screen.getAllByLabelText('Usuń gumę')[0].props.accessibilityHint).toBeTruthy();
     await go(`/more/progress?ex=${ex('Back Squat').id}`); await flushAll(10); const chip = screen.getByLabelText('Back Squat'); expect(chip.props.accessibilityHint).toMatch(/inne ćwiczenie/);
-    await go('/more/settings'); await flushAll(10); expect(screen.getByLabelText('Trening').props.accessibilityState.disabled).toBe(true);
+    /* moduły schowane 05.10.2026 (decyzja właściciela) — chip „Trening” nie jest już wyświetlany */
   });
   test('R49-07 pusta nazwa wraca do ostatniej zapisanej, nie do tej sprzed otwarcia ekranu', async () => {
     await renderApp(); const e = ex('Back Squat'); await go(`/exercise/${e.id}`); await flushAll(10);
@@ -1264,9 +1264,9 @@ describe('runda 50', () => {
     const st = seedState('pl') as any; st.mornings = [{ date: '2026-09-01', bb: { v: 50 }, sleepScore: 150, sleepH: '30', weight: 'x' }]; legacyBandKg(st.bands[0], {});
     await renderApp({ saved: st }); const m = store.getState().mornings[0]; expect([m.bb, m.sleepScore, m.sleepH, m.weight]).toEqual(['', 100, 24, '']); expect(store.getState().bands[0]).not.toHaveProperty('nominalKg'); /* T-055: dawne pole odpada przy imporcie */
   });
-  test('R50-04 niedostępny moduł włączony w imporcie nie wygląda na włączony', async () => {
+  test('R50-04 moduł włączony w imporcie: sekcja modułów schowana (05.10.2026), import nie wywraca ustawień', async () => {
     const st = seedState('pl') as any; st.settings.modules.diet = true; await renderApp({ saved: st }); await go('/more/settings'); await flushAll(10);
-    const chip = screen.getAllByRole('button').find(x => /wkrótce/.test(x.props.accessibilityLabel ?? '') && /Dieta/.test(x.props.accessibilityLabel)); expect(chip!.props.accessibilityState).toEqual({ selected: false, disabled: true });
+    expect(screen.queryByText(/Dieta/)).toBeNull(); expect(screen.getByText('Dane w telefonie')).toBeTruthy();
   });
   test('R50-05 usunięcie nieużywanej gumy nie straszy historią ani treningiem', async () => {
     await renderApp(); await go('/more/bands'); await flushAll(10); await tap(screen.getAllByLabelText('Usuń gumę')[0]);

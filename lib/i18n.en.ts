@@ -53,7 +53,7 @@ export const EN: Record<string, string> = {
   /* backup */
   'Nie udało się': 'Something went wrong', 'Spróbuj ponownie.': 'Please try again.',
   'Eksport tworzy plik JSON z całą historią i szablonami — zapisz go w Plikach/iCloud albo wyślij sobie. Import przyjmuje ten sam format, także backup z wersji webowej.': 'Export creates a JSON file with your whole history and templates — save it to Files/iCloud or send it to yourself. Import accepts the same format, including backups from the web version.',
-  'Eksportuj backup (plik JSON)': 'Export backup (JSON file)', 'Eksportuj historię do CSV (format Strong)': 'Export history to CSV (Strong format)',
+  'Eksportuj backup (plik JSON)': 'Export backup (JSON file)', 'Eksportuj historię do CSV': 'Export history to CSV',
   'CSV: ciężar w jednostce z ustawień ({u}), dystans w metrach.': 'CSV: weight in your unit setting ({u}), distance in metres.',
   'Importuj backup': 'Import backup', 'Nadpisać dane?': 'Overwrite data?', 'Kopia obejmie też poprzednie, nieczytelne dane.': 'The copy will also include the earlier unreadable data.', 'Import zastąpi wszystkie obecne dane zawartością pliku. Obecne dane (także trening w toku) zapiszą się najpierw jako kopia w Plikach: Trening → Backup.': 'Import will replace all current data with the file contents. Your current data (including a workout in progress) is first saved as a copy in Files: Trening → Backup.', 'Import przerwany': 'Import cancelled', 'Nie udało się zapisać kopii bezpieczeństwa w Plikach — dane nie zostały zmienione.': 'Could not save the safety copy in Files — your data was not changed.',
   'Importuj': 'Import', 'Zaimportowano': 'Imported', 'To nie wygląda na backup z tej apki': 'This does not look like a backup from this app',
@@ -290,4 +290,5 @@ export const EN: Record<string, string> = {
   'Obciążenie partii (z katalogu)': 'Muscle load (from the catalog)', 'główna': 'primary', 'pomocnicza': 'secondary', 'stabilizacja': 'stabilizer', '●●● główna · ●● pomocnicza · ● stabilizacja': '●●● primary · ●● secondary · ● stabilizer',
   'barki — przód': 'front delts', 'barki — bok': 'side delts', 'barki — tył': 'rear delts', 'najszersze grzbietu': 'lats', 'góra pleców': 'upper back', 'prostowniki grzbietu': 'lower back', 'brzuch': 'abs', 'skośne brzucha': 'obliques', 'przywodziciele': 'adductors', 'odwodziciele': 'abductors', 'szyja': 'neck',
   'Pokaż więcej ({n})': 'Show more ({n})', 'Pokaż więcej ćwiczeń: zostało {n}': 'Show more exercises: {n} left',
+  'Miejsca i sprzęt': 'Places and equipment',
 };

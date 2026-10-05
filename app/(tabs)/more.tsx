@@ -16,6 +16,7 @@ export default function MoreScreen() {
     <SafeAreaView style={{ flex: 1 }} edges={['top']}><Screen>
       <View style={{ marginVertical: 10 }}><H1>{t('Więcej')}</H1></View>
       <Item title={t('Postępy')} onPress={() => router.push('/more/progress')} />
+      <Item title={t('Miejsca i sprzęt')} onPress={() => router.push('/more/locations')} /* decyzja 05.10.2026: osobna pozycja, nie tylko w Ustawieniach */ />
       <Item title={t('Gumy')} onPress={() => router.push('/more/bands')} />
       <Item title={t('Backup (eksport / import)')} onPress={() => router.push('/more/backup')} />
       <Item title={t('Ustawienia')} onPress={() => router.push('/more/settings')} />
