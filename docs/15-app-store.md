@@ -83,3 +83,11 @@ użytkownicy — Pro za darmo (jak w decyzji wyżej). Eksport danych zawsze darm
 wytyczne Apple 3.1.1 dopuszczają darmowy zakup „trial”), potem jednorazowy zakup pełnej wersji. Bez zakupu: treningi zablokowane,
 kopia i eksport danych działają (decyzja „Wybieram 1” zostaje). Wcześniejsi użytkownicy (pobrani przed płatnościami): pełna wersja za darmo.
 Otwarte: cena, data wprowadzenia, Chmura rodzinna (Family Sharing) — tak/nie.
+
+**Uzupełnienie decyzji (właściciel 05.10.2026):** „Wersja offline do jednorazowego wykupienia po wypróbowaniu. Jeżeli kiedyś dodamy funkcjonalności
+online, to będą to dodatkowo płatne funkcje.” Ustalenia:
+- Wszystko, co działa bez sieci, należy do zakupu jednorazowego — **na zawsze**; nic z tej części nie przechodzi później do płatnych funkcji online
+  (odbieranie funkcji to skarga nr 1 w researchu).
+- Funkcje online (np. synchronizacja między urządzeniami, trener, współdzielenie) — osobny produkt; ze względu na koszty serwera zwykle subskrypcja.
+  Apple pozwala łączyć zakup jednorazowy i subskrypcję w jednej aplikacji.
+- Otwarte: czy wcześniejsi użytkownicy dostają funkcje online za darmo; koszty serwera — przed wdrożeniem sprawdzić darmowe limity (zasada: 0 zł poza Apple).
