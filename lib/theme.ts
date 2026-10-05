@@ -1,4 +1,4 @@
-import { useColorScheme } from 'react-native';
+import { Appearance, useColorScheme } from 'react-native';
 
 /*
  * Styl marki „Kreda” (decyzja właściciela 05.10.2026; docs/16-jezyki-i-marka.md). Jedno źródło kolorów i krojów pisma.
@@ -10,6 +10,8 @@ export const light: Record<'bg' | 'surface' | 'surface2' | 'line' | 'text' | 'mu
 /** Kreda po zmroku („Kreda + ciemna wersja”, 05.10.2026): grafitowe tło, kredowy tekst, ten sam pomarańcz (jaśniejszy). */
 export const dark: typeof light = { bg: '#17181b', surface: '#1f2024', surface2: '#2a2b30', line: '#3a3c42', text: BRAND.chalk, muted: '#a3a5ab', accent: '#ff8a3d', accentInk: BRAND.graphite, done: '#26301f', doneLine: '#4b6a2c', danger: '#ec7a72', band: '#5fc3c9' };
 export type Theme = typeof dark;
+/** Wygląd z ustawień (decyzja 05.10.2026). Nadpisuje tryb systemu dla całej aplikacji — także alerty, klawiaturę i pasek stanu. */
+export function applyTheme(x: 'light' | 'dark' | 'auto' | undefined) { try { Appearance.setColorScheme(x === 'dark' ? 'dark' : x === 'auto' ? 'unspecified' : 'light'); } catch { /* bez natywnego modułu (web) — tryb systemu */ } }
 export function useTheme(): Theme { return useColorScheme() === 'light' ? light : dark; }
 
 /**

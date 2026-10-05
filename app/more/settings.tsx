@@ -3,7 +3,7 @@ import { ScrollView, Alert, View } from 'react-native';
 import { Screen, Field, NumInput, Btn, Muted, SwitchRow, Segmented, SectionTitle, Item } from '@/components/ui';
 import { useRouter } from 'expo-router';
 import { getState, useTick, save, resetAll, applyPrefs } from '@/lib/store';
-import { DEFAULT_REST } from '@/lib/seed';
+import { DEFAULT_REST, type ThemeSetting } from '@/lib/seed';
 import * as timer from '@/lib/timer';
 import { safetyBackup, safetyRecoveryNote } from '@/lib/backup';
 import * as health from '@/lib/health';
@@ -17,6 +17,7 @@ export default function SettingsScreen() {
     <Screen><ScrollView keyboardShouldPersistTaps="handled" automaticallyAdjustKeyboardInsets contentContainerStyle={{ paddingVertical: 10, paddingBottom: 60 }}>
       <SectionTitle>{t('Ogólne')}</SectionTitle>
       <Item title={t('Język')} sub={s.language && s.language !== 'auto' ? LANG_NAME[s.language as Lang] : t('Jak w telefonie')} onPress={() => router.push('/more/language')} /* 05.10.2026: 16 języków — osobna lista */ />
+      <Field label={t('Wygląd')}><Segmented label={t('Wygląd')} options={[['light', t('Jasny')], ['dark', t('Ciemny')], ['auto', t('Jak w telefonie')]] as [ThemeSetting, string][]} value={s.theme ?? 'light'} onChange={v => { s.theme = v; applyPrefs(); save(); }} /></Field>
       <Field label={t('Jednostka ciężaru')}><Segmented label={t('Jednostka ciężaru')} options={[['kg', 'kg'], ['lb', 'lb']] as [Unit, string][]} value={(s.unit ?? 'kg') as Unit} onChange={u => { s.unit = u; applyPrefs(); save(); }} /></Field>
 
       <SectionTitle>{t('Trening')}</SectionTitle>

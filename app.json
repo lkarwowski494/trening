@@ -40,7 +40,7 @@
       "package": "pl.lukasz.trening",
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon.png",
-        "backgroundColor": "#1E1F22"
+        "backgroundColor": "#F2F0EB"
       }
     },
     "plugins": [
@@ -71,7 +71,7 @@
         "expo-splash-screen",
         {
           "image": "./assets/icon.png",
-          "backgroundColor": "#1E1F22",
+          "backgroundColor": "#F2F0EB",
           "resizeMode": "contain",
           "imageWidth": 200,
           "ios": {

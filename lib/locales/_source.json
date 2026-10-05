@@ -360,6 +360,10 @@
   "en": "target s"
  },
  {
+  "pl": "Ciemny",
+  "en": "Dark"
+ },
+ {
   "pl": "ciężar",
   "en": "weight"
  },
@@ -852,6 +856,10 @@
  {
   "pl": "Jarzmo (yoke)",
   "en": "Yoke"
+ },
+ {
+  "pl": "Jasny",
+  "en": "Light"
  },
  {
   "pl": "Jedna sesja: {v}. Wykres pojawi się po drugiej.",
@@ -2940,6 +2948,10 @@
  {
   "pl": "Wydłuż przerwę o 15 sekund",
   "en": "Extend rest by 15 seconds"
+ },
+ {
+  "pl": "Wygląd",
+  "en": "Appearance"
  },
  {
   "pl": "Wyjmij z supersetu",

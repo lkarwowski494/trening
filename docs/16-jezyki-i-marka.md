@@ -62,4 +62,7 @@ Każdy kierunek: ikona aplikacji, ikony zakładek SVG zamiast emoji, ten sam ekr
 - Ikony zakładek: `components/TabIcon.tsx` (SVG). Ikona aplikacji: źródło `assets/brand/icon.svg` → `node scripts/brand/icon.mjs` → `assets/icon.png`.
 - Ekran startowy i Live Activity (przerwa) w kolorach Kredy.
 - Testy: `tests/brand-kreda.test.tsx`.
-- Do sprawdzenia na telefonie: wygląd w trybie ciemnym; błysk przy starcie (tło ekranu startowego #1E1F22 ≠ tło aplikacji — audyt cd60eec LOW).
+- **Wybór wyglądu (decyzja właściciela 05.10.2026, po instalacji — zrzut „Nie ma wyglądu kredy”, telefon w trybie ciemnym):**
+  „Wybór motywu, domyślnie jasna Kreda”. Ustawienia → Wygląd: Jasny (domyślnie, także dla dotychczasowych danych) / Ciemny / Jak w telefonie.
+  `settings.theme`, `applyTheme` w `lib/theme.ts` (`Appearance.setColorScheme` — alerty, klawiatura i pasek stanu też). Ekran startowy kredowy
+  (#F2F0EB) — pasuje do domyślnego wyglądu. Testy: `tests/theme-choice.test.tsx`.

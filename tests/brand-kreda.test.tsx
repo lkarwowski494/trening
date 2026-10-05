@@ -37,7 +37,7 @@ test('zakładki bez emoji (ikony SVG); ikona aplikacji i ekran startowy w kolora
   for (const e of ['🏋️', '📋', '📚', '📈', '⋯']) expect(screen.queryByText(e)).toBeNull();
   const app = JSON.parse(fs.readFileSync(path.join(root, 'app.json'), 'utf8')).expo;
   const splash = app.plugins.find((p: unknown) => Array.isArray(p) && p[0] === 'expo-splash-screen')[1];
-  expect(splash.backgroundColor).toBe(BRAND.graphite);
+  expect(splash.backgroundColor).toBe(BRAND.chalk); /* domyślny wygląd jasny (05.10.2026) — bez błysku przy starcie */
   expect(fs.readFileSync(path.join(root, 'assets/brand/icon.svg'), 'utf8')).toContain(BRAND.signal);
 });
 
