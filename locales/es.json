@@ -1,0 +1,5 @@
+{
+  "CFBundleDisplayName": "Trening",
+  "NSHealthShareUsageDescription": "Trening no lee datos de salud: iOS exige esta descripción para el permiso de HealthKit.",
+  "NSHealthUpdateUsageDescription": "Trening guarda los entrenamientos de fuerza terminados en Apple Health."
+}

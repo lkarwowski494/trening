@@ -14,8 +14,22 @@
       "infoPlist": {
         "NSSupportsLiveActivities": true,
         "CFBundleLocalizations": [
+          "pl",
           "en",
-          "pl"
+          "cs",
+          "sk",
+          "hu",
+          "ro",
+          "bg",
+          "hr",
+          "sl",
+          "sr",
+          "lt",
+          "lv",
+          "et",
+          "uk",
+          "es",
+          "pt"
         ],
         "CFBundleAllowMixedLocalizations": true,
         "UIFileSharingEnabled": true,
@@ -71,7 +85,21 @@
     },
     "locales": {
       "pl": "./locales/pl.json",
-      "en": "./locales/en.json"
+      "en": "./locales/en.json",
+      "cs": "./locales/cs.json",
+      "sk": "./locales/sk.json",
+      "hu": "./locales/hu.json",
+      "ro": "./locales/ro.json",
+      "bg": "./locales/bg.json",
+      "hr": "./locales/hr.json",
+      "sl": "./locales/sl.json",
+      "sr": "./locales/sr.json",
+      "lt": "./locales/lt.json",
+      "lv": "./locales/lv.json",
+      "et": "./locales/et.json",
+      "uk": "./locales/uk.json",
+      "es": "./locales/es.json",
+      "pt": "./locales/pt.json"
     },
     "web": {
       "bundler": "metro",

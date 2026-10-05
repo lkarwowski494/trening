@@ -1,0 +1,5 @@
+{
+  "CFBundleDisplayName": "Trening",
+  "NSHealthShareUsageDescription": "Trening ei loe terviseandmeid — iOS nõuab HealthKiti loa jaoks seda kirjeldust.",
+  "NSHealthUpdateUsageDescription": "Trening salvestab lõpetatud jõutreeningud rakendusse Apple Health."
+}

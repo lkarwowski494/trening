@@ -1,0 +1,5 @@
+{
+  "CFBundleDisplayName": "Trening",
+  "NSHealthShareUsageDescription": "A Trening nem olvas egészségügyi adatokat — az iOS a HealthKit-engedélyhez megköveteli ezt a leírást.",
+  "NSHealthUpdateUsageDescription": "A Trening a befejezett erősítő edzéseket az Apple Health appba menti."
+}

@@ -1,0 +1,5 @@
+{
+  "CFBundleDisplayName": "Trening",
+  "NSHealthShareUsageDescription": "Trening nelasa veselības datus — iOS pieprasa šo aprakstu HealthKit atļaujai.",
+  "NSHealthUpdateUsageDescription": "Trening saglabā pabeigtos spēka treniņus lietotnē Apple Health."
+}

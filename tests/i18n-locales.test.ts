@@ -5,6 +5,11 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { EN } from '@/lib/i18n.en';
 import { allLabels } from '@/lib/equipment';
+import { LANGS } from '@/lib/i18n';
+import { LOCALES } from '@/lib/locales';
+import { PLURAL_FORMS } from '@/lib/plural';
+
+const params = (s: string) => (s.match(/\{\w+\}/g) ?? []).sort().join(',');
 
 const FILE = path.join(__dirname, '..', 'lib', 'locales', '_source.json');
 type Src = { pl: string; en: string; plural?: true };
@@ -21,3 +26,32 @@ test('lib/locales/_source.json jest aktualny względem kodu (słownik EN + etyki
   expect(fs.readFileSync(FILE, 'utf8')).toBe(want);
 });
 
+
+describe.each(LANGS.filter(l => l !== 'pl' && l !== 'en'))('słownik %s', l => {
+  const d = LOCALES[l] ?? {}; const src = source();
+  test('komplet kluczy, niepuste, te same {parametry}, bez kluczy spoza źródła', () => {
+    const keys = new Set(src.map(s => s.pl));
+    expect(src.filter(s => !(typeof d[s.pl] === 'string' && d[s.pl].trim())).map(s => s.pl)).toEqual([]);
+    expect(src.filter(s => d[s.pl] !== undefined && params(d[s.pl]) !== params(s.pl)).map(s => s.pl)).toEqual([]);
+    expect(Object.keys(d).filter(k => !keys.has(k))).toEqual([]);
+  });
+  test('liczba mnoga: tyle form, ile ma język', () => {
+    const n = PLURAL_FORMS[l].length;
+    expect(src.filter(s => s.plural && d[s.pl] !== undefined && d[s.pl].split('|').length !== n).map(s => `${s.pl} → ${d[s.pl]}`)).toEqual([]);
+  });
+  test('bez liter występujących tylko w polskim (przeciek nieprzetłumaczonego tekstu)', () => {
+    const PL_ONLY = l === 'lt' ? /[łńśźżŁŃŚŹŻ]/ : /[ąęłńśźżĄĘŁŃŚŹŻ]/; /* litewski ma ą, ę */
+    expect(src.filter(s => d[s.pl] !== undefined && PL_ONLY.test(d[s.pl])).map(s => `${s.pl} → ${d[s.pl]}`)).toEqual([]);
+  });
+});
+
+test('iOS zna wszystkie języki aplikacji: CFBundleLocalizations i opisy uprawnień (locales/<kod>.json)', () => {
+  const app = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'app.json'), 'utf8')).expo;
+  expect([...app.ios.infoPlist.CFBundleLocalizations].sort()).toEqual([...LANGS].sort());
+  expect(Object.keys(app.locales).sort()).toEqual([...LANGS].sort());
+  for (const l of LANGS) {
+    const f = JSON.parse(fs.readFileSync(path.join(__dirname, '..', app.locales[l]), 'utf8'));
+    expect([l, Object.keys(f).sort()]).toEqual([l, ['CFBundleDisplayName', 'NSHealthShareUsageDescription', 'NSHealthUpdateUsageDescription']]);
+    expect(f.CFBundleDisplayName).toBe('Trening');
+  }
+});
