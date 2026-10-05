@@ -82,7 +82,7 @@ export const EN: Record<string, string> = {
   'max ±': 'max ±', 'max ciężar': 'max weight', 'e1RM (dociążenie)': 'e1RM (added weight)', 'max pow.': 'max reps', 'max czas': 'max time', 'max dystans': 'max distance',
   'Jedna sesja: {v}. Wykres pojawi się po drugiej.': 'One session: {v}. The chart appears after the second.', 'Brak danych do wykresu.': 'No data to chart.',
 
-  /* ustawienia */ 'Język': 'Language', 'Jak w telefonie': 'Phone setting', 'Wygląd': 'Appearance', '{n} z {m}': '{n} of {m}', 'zaznaczone: {n} z {m}': 'selected: {n} of {m}', 'poziom {n}': 'level {n}', 'Usuń gumy…': 'Delete bands…', 'Poziomy gum, które masz w tym miejscu (1 = cienka, 7 = bardzo gruba).': 'Band levels you have at this place (1 = thin, 7 = very thick).', 'Jasny': 'Light', 'Ciemny': 'Dark', 'Jednostka ciężaru': 'Weight unit',
+  /* ustawienia */ 'Język': 'Language', 'Jak w telefonie': 'Phone setting', 'Wygląd': 'Appearance', '{n} z {m}': '{n} of {m}', 'zaznaczone: {n} z {m}': 'selected: {n} of {m}', 'poziom {n}': 'level {n}', 'Usuń gumy…': 'Delete bands…', '+ rozgrzewka': '+ warm-up', '+ drop set': '+ drop set', 'Poziomy gum, które masz w tym miejscu (1 = cienka, 7 = bardzo gruba).': 'Band levels you have at this place (1 = thin, 7 = very thick).', 'Jasny': 'Light', 'Ciemny': 'Dark', 'Jednostka ciężaru': 'Weight unit',
   'Domyślna przerwa (sekundy)': 'Default rest (seconds)', 'Dźwięk i wibracja na koniec przerwy': 'Sound and vibration at the end of rest',
   'np. 73': 'e.g. 73',
   'Zapisuj zakończone treningi do Apple Health': 'Save finished workouts to Apple Health', 'Apple Health niedostępne': 'Apple Health unavailable',

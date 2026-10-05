@@ -104,6 +104,10 @@
   "en": "+ Log a past workout"
  },
  {
+  "pl": "+ drop set",
+  "en": "+ drop set"
+ },
+ {
   "pl": "+ Guma",
   "en": "+ Band"
  },
@@ -118,6 +122,10 @@
  {
   "pl": "+ Nowy szablon",
   "en": "+ New template"
+ },
+ {
+  "pl": "+ rozgrzewka",
+  "en": "+ warm-up"
  },
  {
   "pl": "+ seria",
