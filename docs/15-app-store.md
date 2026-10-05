@@ -26,7 +26,10 @@ Rozmowa 05.10.2026, rano: „Chciałbym móc opublikować to w Apple Store” i 
   - **Decyzja właściciela 05.10.2026:** „Ci, co teraz pobiorą, będą mieli za darmo. A jak wprowadzimy płatności, to subskrypcja
     będzie płatna po 30 dniach.” → wcześniejsi użytkownicy: dostęp na zawsze (konto Apple, `originalAppVersion` < pierwszy płatny build);
     nowi: subskrypcja z darmowym okresem próbnym **1 miesiąc** (najbliższa „30 dniom” długość w App Store Connect).
-  - Otwarte: ceny (miesięczna/roczna), zakres „Pro” (co jest darmowe po próbie), data wprowadzenia płatności, Small Business Program (prowizja 15%).
+  - **Zakres (właściciel 05.10.2026):** „Cała aplikacja stanie się płatna po jakimś czasie” — po okresie próbnym bez subskrypcji
+    aplikacja zablokowana (bez wersji „darmowa + Pro”).
+  - Otwarte: co widzi osoba bez subskrypcji po próbie (propozycja: dostęp do kopii zapasowej/eksportu swoich danych), ceny
+    (miesięczna/roczna), data wprowadzenia płatności, Small Business Program (prowizja 15%).
   Konto: Apple Developer jako osoba fizyczna (Individual) — firma niepotrzebna.
 - **Nazwa:** otwarta. Propozycja „Trening” — do sprawdzenia w sklepie.
 
