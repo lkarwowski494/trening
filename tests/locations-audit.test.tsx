@@ -8,7 +8,7 @@ import { loadsFor, equipEntry, availability, LOAD_PRESETS, equipLabel, presetEqu
 import { CATALOG, CATALOG_REV } from '@/lib/catalog.generated';
 import * as i18n from '@/lib/i18n';
 import { fresh, ex, addWorkout, set } from './helpers';
-import { renderApp, flushAll, screen, go, tap, type, act } from './app';
+import { renderApp, flushAll, screen, go, tap, type, act, expandEquip } from './app';
 import { userHome, loc, presetSpec } from './locations-fixtures';
 
 jest.setTimeout(60000);
@@ -35,7 +35,7 @@ describe('H1 / M11 — jeden limit, nic nie jest ucinane po cichu', () => {
     const rows = Array.from({ length: 31 }, () => ({ w: 5, n: 2 })); expect(validateSpec({ kind: 'plates', unit: 'kg', base: 20, plates: rows })).toBe('plates_too_many_rows'); expect(plateSums(20, rows, 2)).toEqual([]);
   });
   test('edytor: zakres ponad limit pokazuje komunikat i nie zmienia listy; limit widoczny', async () => {
-    await fresh(); place(); await store.flush(); await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())) }); await go('/more/location/home'); await flushAll(10);
+    await fresh(); place(); await store.flush(); await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())) }); await go('/more/location/home'); await flushAll(10); await expandEquip();
     expect(screen.getByText('Odznacz ciężary, których nie masz. Najwyżej 300 ciężarów.')).toBeTruthy();
     await type(screen.getAllByLabelText('od')[0], '1'); await type(screen.getAllByLabelText('do')[0], '400'); await type(screen.getAllByLabelText('co')[0], '1');
     await tap(screen.getByLabelText('Wypełnij zakresem — Hantle (stała waga albo z szybką regulacją)'));
@@ -100,14 +100,14 @@ describe('M4, M5, M7 — edytor ciężarów', () => {
     expect(convertSpec(presetSpec('vishape_pro'), 'lb')).toEqual({ kind: 'electric', unit: 'lb', min: 3.306934, max: 143.30047, step: 1.102311 }); /* weryfikacja 3: dokładny współczynnik */
   });
   test('M4 (ekran): przełączenie kg → lb zmienia „24” na „52,9”, a dostępne ciężary w kg zostają', async () => {
-    await fresh(); place(); await store.flush(); await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())) }); await go('/more/location/home'); await flushAll(10);
+    await fresh(); place(); await store.flush(); await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())) }); await go('/more/location/home'); await flushAll(10); await expandEquip();
     const before = loadsFor({ ...CATALOG['Bench Press (hantle)'], loadMode: 'per_dumbbell' }, store.getState().settings.locations[0]);
     await tap(screen.getAllByLabelText('lb')[0]); await flushAll(5);
     const db = store.getState().settings.locations[0].equipment.find(e => e.item === 'db_fixed')!.load!; expect(db.unit).toBe('lb'); expect(screen.getByLabelText('52,9 lb')).toBeTruthy();
     expect(loadsFor({ ...CATALOG['Bench Press (hantle)'], loadMode: 'per_dumbbell' }, store.getState().settings.locations[0])).toEqual(before);
   });
   test('M5: preset modelu nie nadpisuje wpisanej listy bez pytania; pusta lista — od razu', async () => {
-    await fresh(); place(); await store.flush(); await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())) }); await go('/more/location/home'); await flushAll(10);
+    await fresh(); place(); await store.flush(); await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())) }); await go('/more/location/home'); await flushAll(10); await expandEquip();
     const db = () => store.getState().settings.locations[0].equipment.find(e => e.item === 'db_fixed')!.load as any;
     await tap(screen.getByText('Gymtek 2,5–24 kg')); expect(global.__alerts.slice(-1)[0].title).toBe('Zastąpić wpisane ciężary?'); expect(db().items).toHaveLength(8);
     await act(async () => { global.__alerts.slice(-1)[0].buttons!.find(b => b.text === 'Zastąp')!.onPress!(); }); await flushAll(5); expect(db().items).toHaveLength(15);
@@ -120,7 +120,7 @@ describe('M4, M5, M7 — edytor ciężarów', () => {
     L.setEquip(h, 'db_fixed', true); expect(availability(ex('Bench Press (hantle)'), h).ok).toBe(true);
   });
   test('M7: opcje z nazwą pozycji dla VoiceOver, przyciski edytora z nazwą pozycji', async () => {
-    await fresh(); place(); await store.flush(); await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())) }); await go('/more/location/home'); await flushAll(10);
+    await fresh(); place(); await store.flush(); await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())) }); await go('/more/location/home'); await flushAll(10); await expandEquip();
     expect(screen.getByLabelText('Stacja z oporem elektrycznym / magnetycznym (np. ViShape, Speediance, Tonal…): pas biodrowy')).toBeTruthy();
     expect(screen.getByLabelText('Dodaj ciężar — Hantle (stała waga albo z szybką regulacją)')).toBeTruthy();
     expect(screen.getByLabelText('Jednostka sprzętu — Hantle (stała waga albo z szybką regulacją)')).toBeTruthy();
@@ -161,7 +161,7 @@ describe('M8 i uwagi LOW', () => {
   });
   test('nazwa miejsca: najwyżej 80 znaków; wyjście z pustą nazwą przywraca poprzednią', async () => {
     await fresh(); const a = L.addLocation('home'); L.renameLocation(a, 'x'.repeat(100)); expect(a.name).toHaveLength(80); L.renameLocation(a, 'Dom'); await store.flush();
-    await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())) }); await go(`/more/location/${a.id}`); await flushAll(10);
+    await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())) }); await go(`/more/location/${a.id}`); await flushAll(10); await expandEquip();
     await act(async () => { fireEvent.changeText(screen.getByDisplayValue('Dom'), ''); }); await act(async () => { require('expo-router').router.back(); }); await flushAll(10);
     expect(store.getState().settings.locations[0].name).toBe('Dom');
   });

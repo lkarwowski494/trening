@@ -25,7 +25,7 @@ export const CAP_LABEL: Record<string, L> = {
   'cable.high': { pl: 'wyciąg górny', en: 'high cable' }, 'cable.low': { pl: 'wyciąg dolny', en: 'low cable' },
   'cable.mid': { pl: 'wyciąg na wysokości klatki', en: 'mid cable' }, 'cable.row_seat': { pl: 'wyciąg do wiosłowania siedząc', en: 'seated row station' },
   'calf_machine': { pl: 'maszyna do łydek', en: 'calf machine' }, 'cardio.bike': { pl: 'rower stacjonarny', en: 'stationary bike' },
-  'cardio.rower': { pl: 'wioślarz', en: 'rowing machine' }, 'cardio.treadmill': { pl: 'bieżnia', en: 'treadmill' },
+  'cardio.rower': { pl: 'wioślarz', en: 'rowing machine' }, 'cardio.treadmill': { pl: 'bieżnia', en: 'treadmill' }, 'cardio.treadmill_incline': { pl: 'bieżnia z nachyleniem', en: 'incline treadmill' },
   'chest_press_machine': { pl: 'maszyna do wyciskania (klatka)', en: 'chest press machine' }, 'db': { pl: 'hantle', en: 'dumbbells' },
   'dip.bars': { pl: 'poręcze', en: 'dip bars' }, 'dip_belt': { pl: 'pas (do dociążania / biodrowy)', en: 'belt (dip / hip)' },
   'ez_bar': { pl: 'gryf łamany', en: 'EZ bar' }, 'floor_mat': { pl: 'mata', en: 'mat' }, 'ghd': { pl: 'GHD', en: 'GHD' },
@@ -162,7 +162,7 @@ export const EQUIPMENT: readonly EquipItem[] = [
   it('wrist_roller', 'accessories', 'Roller na nadgarstki', 'Wrist roller', ['wrist_roller']),
   it('neck_harness', 'accessories', 'Uprząż na szyję', 'Neck harness', ['neck_harness']),
   /* cardio */
-  it('treadmill', 'cardio', 'Bieżnia', 'Treadmill', ['cardio.treadmill']),
+  it('treadmill', 'cardio', 'Bieżnia', 'Treadmill', ['cardio.treadmill'], { options: [op('incline', 'z regulacją nachylenia (marsz pod górę)', 'with incline (uphill walking)', ['cardio.treadmill_incline'], true)] }), /* uwaga właściciela 05.10.2026 */
   it('bike', 'cardio', 'Rower stacjonarny / air bike', 'Stationary / air bike', ['cardio.bike']),
   it('rower', 'cardio', 'Wioślarz', 'Rowing machine', ['cardio.rower']),
   it('stair_climber', 'cardio', 'Stepper schodowy (stair climber)', 'Stair climber', ['cardio.stair']),
@@ -245,6 +245,12 @@ export const GYM_FILL = {
     'plate', 'sandbag', 'chains', 'climbing_rope', 'stability_ball', 'sliders', 'sled', 'battle_ropes', 'foam_roller', 'bosu', 'wrist_roller', 'neck_harness', 'stair_climber', 'elliptical', 'ski_erg'] as readonly string[],
   opts: { cable_cross: ['ankle'], cable_single: ['ankle'] } as Readonly<Record<string, readonly string[]>>,
 };
+/**
+ * Nowe opcje istniejących pozycji, dopisywane raz (State.optFill = rev) do pozycji sprzed opcji — żeby ćwiczenie dotąd dostępne
+ * nie zniknęło po aktualizacji (bieżnia: „marsz pod górę” wymaga od 05.10.2026 nachylenia). Odznaczenie później zostaje.
+ */
+export const OPT_FILL = { rev: 'opcje-2026-10-05', opts: { treadmill: ['incline'] } as Readonly<Record<string, readonly string[]>> };
+export function fillOpts(loc: Pick<Location, 'equipment'>) { for (const e of loc.equipment) for (const o of OPT_FILL.opts[e.item] ?? []) if (!e.opts.includes(o)) e.opts.push(o); }
 /** Dopisuje nowy sprzęt do miejsca opartego na presecie siłowni; zwraca, czy miejsce się kwalifikowało. */
 export function fillGym(loc: Pick<Location, 'equipment'>, unit: LoadUnit = 'kg'): boolean {
   const old = presetEquipment('gym', unit).map(e => e.item).filter(id => !GYM_FILL.items.includes(id)); const have = new Set(loc.equipment.map(e => e.item)); const on = new Set(loc.equipment.filter(e => !e.off).map(e => e.item)); /* audyt 05.10 (MEDIUM): kwalifikują tylko zaznaczone pozycje */

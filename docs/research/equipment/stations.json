@@ -1,0 +1,443 @@
+[
+ {
+  "id": "speediance-gym-monster",
+  "brand": "Speediance",
+  "model": "Gym Monster (1st gen)",
+  "perSide": {
+   "min": null,
+   "max": 110,
+   "unit": "lb",
+   "kg": {
+    "min": null,
+    "max": 49.9
+   }
+  },
+  "totalMax": {
+   "value": 220,
+   "unit": "lb",
+   "kg": 99.79
+  },
+  "step": {
+   "value": 1,
+   "unit": "lb",
+   "kg": 0.45
+  },
+  "cables": 2,
+  "arms": true,
+  "bench": "optional",
+  "belt": false,
+  "ankle": true,
+  "rope": true,
+  "sources": [
+   "https://www.speediance.com/products/speediance-home-gym",
+   "https://eu.speediance.com/en/pages/speediance-gym-monster",
+   "https://www.speediance.com/pages/faq"
+  ],
+  "notes": "US product page: 'Single arm 110 LB', 'Maximum 220 lbs/100kg', 'adjustable increment of 1 lb', also '1 lb or 0.5 kg'; FAQ: '220lbs (100KG). 50KG per arm'. Minimum: EU page 'Starting weight: 8 lbs' / '8 lb start'; FAQ 'motor's total weight range is 8-220 lbs' -> 8 lb is a total/machine minimum, per-side minimum not stated (perSide.min=null). 2x800W motors. Pulley: 10 heights 306-1656 mm (adjustable arm carriage, no separate high pulley above 1656 mm). Every package (Basic/Works/Works Plus/Family/Family Plus) lists Handles, Tricep Rope, Ankle Straps, Adjustable Barbell; bench only in Works+ packages. Exercise/lifting belt sold separately (not in package lists).",
+  "accessed": "2026-10-05"
+ },
+ {
+  "id": "speediance-gym-monster-2",
+  "brand": "Speediance",
+  "model": "Gym Monster 2",
+  "perSide": {
+   "min": null,
+   "max": 50,
+   "unit": "kg"
+  },
+  "totalMax": {
+   "value": 100,
+   "unit": "kg"
+  },
+  "step": {
+   "value": 0.5,
+   "unit": "kg"
+  },
+  "cables": 2,
+  "arms": true,
+  "bench": "optional",
+  "belt": false,
+  "ankle": true,
+  "rope": true,
+  "sources": [
+   "https://speediance.eu/products/speediance-gym-monster-2-classic",
+   "https://www.speediance.com/pages/gym-monster-2",
+   "https://business.speediance.com/gym-monster-2/"
+  ],
+  "notes": "EU page: 'Maximum 220 lbs/100kg ... adjustable increment of 1 lb/0.5 kg', FAQ '50KG per arm'. US page: 'Up to 220 lbs resistance, Adjustable in 1 lb increments' (US unit = lb, per side 110 lb per business page 'Single arm 110 LB for GM 2'). Step differs by unit system (1 lb vs 0.5 kg) - not a real conflict, but app should offer both. Business page: 'Digital Weight Precision: 8 LB' (same wording Speediance uses for the 8 lb starting weight on GM1) -> min likely 8 lb total, not stated explicitly for GM2, so perSide.min=null. Cable positions '11 vertical + 1 bottom'. EU 'What's in the box' (Basic 2.0): Premium Handles, Triceps Rope, Ankle Straps, Belt Extenders, Adjustable Barbell, Bluetooth ring; benches only in Works/Family packages. 'Belt extenders' are cable extenders, not a hip belt; Exercise Belt sold separately. Variant Gym Monster 2S: EU 'Up to 120 kg', US 'Up to 260 lbs' (120 kg = 264.6 lb -> small conflict).",
+  "accessed": "2026-10-05"
+ },
+ {
+  "id": "speediance-gym-monster-3",
+  "brand": "Speediance",
+  "model": "Gym Monster 3 (added; current flagship)",
+  "perSide": {
+   "min": null,
+   "max": null,
+   "unit": "kg"
+  },
+  "totalMax": {
+   "value": 100,
+   "unit": "kg"
+  },
+  "step": {
+   "value": 1,
+   "unit": "kg"
+  },
+  "cables": 2,
+  "arms": true,
+  "bench": "optional",
+  "belt": null,
+  "ankle": true,
+  "rope": true,
+  "sources": [
+   "https://speediance.eu/products/speediance-gym-monster-3",
+   "https://www.speediance.com/pages/gym-monster-2"
+  ],
+  "notes": "EU: 'Up to 120 kg on Gym Monster 3S, 100 kg on Gym Monster 3', 'digital weights in 1 kg steps', dual 800 W (3) / 1000 W (3S) motors, '19 vertical positions ... plus a bottom position', 7.5 cm spacing. US comparison: GM3 'Up to 220 lbs resistance, Adjustable in 1 lb increments'; GM3S 'Up to 260 lbs'. CONFLICT on step: EU 1 kg vs US 1 lb; GM3S 120 kg vs 260 lb (=117.9 kg). Per-arm max not stated (presumably half, NOT verified). Improved ankle straps, triceps rope, standard handles mentioned as included; bench in Studio (incline) / Station (AeroRow) packages, Core has no bench. Squat Belt appears in the add-on list with a price -> inclusion unclear (belt=null).",
+  "accessed": "2026-10-05"
+ },
+ {
+  "id": "speediance-gym-pal",
+  "brand": "Speediance",
+  "model": "Gym Pal",
+  "perSide": {
+   "min": null,
+   "max": null,
+   "unit": "lb",
+   "kg": {
+    "min": null,
+    "max": null
+   }
+  },
+  "totalMax": {
+   "value": 220,
+   "unit": "lb",
+   "kg": 99.79
+  },
+  "step": {
+   "value": 1,
+   "unit": "lb",
+   "kg": 0.45
+  },
+  "cables": 2,
+  "arms": null,
+  "bench": null,
+  "belt": null,
+  "ankle": null,
+  "rope": null,
+  "sources": [
+   "https://www.speediance.com/products/speediance-gym-pal",
+   "https://www.speediance.com/pages/gym-pal"
+  ],
+  "notes": "Product spec table: 'Resistance Adjustment 7-220lb', 'Resistance Method Dual Motor'. Gym Pal page: 'Maximum 220 lbs/100kg ... adjustable increment of 1lb', 'Separate Weight Control ... each side'. CONFLICT: same page intro says '200 lbs of resistance'. Min 7 lb is for the machine (total vs per side not stated). Per-side max not stated. Floor platform (32x23 in horizontal, 32x6 in vertical storage) - no tower/high pulley mentioned, but not explicitly stated (arms=null). Page shows exercises with handles, tricep rope, ankle straps, adjustable bench but no box contents list -> inclusion unknown.",
+  "accessed": "2026-10-05"
+ },
+ {
+  "id": "tonal-1",
+  "brand": "Tonal",
+  "model": "Tonal (1st gen, now sold as Certified Refurbished)",
+  "perSide": {
+   "min": null,
+   "max": 100,
+   "unit": "lb",
+   "kg": {
+    "min": null,
+    "max": 45.36
+   }
+  },
+  "totalMax": {
+   "value": 200,
+   "unit": "lb",
+   "kg": 90.72
+  },
+  "step": {
+   "value": 1,
+   "unit": "lb",
+   "kg": 0.45
+  },
+  "cables": 2,
+  "arms": true,
+  "bench": "optional",
+  "belt": false,
+  "ankle": "optional",
+  "rope": "optional",
+  "sources": [
+   "https://tonal.com/products/tonal-1-certified-refurbished",
+   "https://knowledge.tonal.com/kb/guide/en/max-supported-weight-itpqCGsyfS/Steps/3941987"
+  ],
+  "notes": "Refurb page: 'Up to 200 lbs, starting at 5 lbs'. Knowledge base: '200 lbs (Tonal 1) or 250 lbs (Tonal 2) ... 100 or 125 lbs per each arm', 'adjust the weight in one-pound increments'. Min 5 lb not stated as per arm or total (perSide.min=null). Wall-mounted, arms adjustable (refurb page checks 'all the angles of the arms'). Accessories sold in bundles: Essentials (Smart Handles, Bar, Bar Control, Rope, Bench, Foam Roller, Mat); Ultimate adds Ankle Straps + Pilates Loops. No hip belt in any bundle.",
+  "accessed": "2026-10-05"
+ },
+ {
+  "id": "tonal-2",
+  "brand": "Tonal",
+  "model": "Tonal 2",
+  "perSide": {
+   "min": null,
+   "max": 125,
+   "unit": "lb",
+   "kg": {
+    "min": null,
+    "max": 56.7
+   }
+  },
+  "totalMax": {
+   "value": 250,
+   "unit": "lb",
+   "kg": 113.4
+  },
+  "step": {
+   "value": 1,
+   "unit": "lb",
+   "kg": 0.45
+  },
+  "cables": 2,
+  "arms": true,
+  "bench": "optional",
+  "belt": false,
+  "ankle": "optional",
+  "rope": "optional",
+  "sources": [
+   "https://tonal.com/products/tonal-2",
+   "https://knowledge.tonal.com/kb/guide/en/max-supported-weight-itpqCGsyfS/Steps/3941987"
+  ],
+  "notes": "Tonal 2 page 'TONAL SPECS': 'resistance ranging from 5 - 250 pounds that adjusts in 1 lb increments'; KB: '125 lbs per each arm'. 5 lb min not stated per arm vs total (perSide.min=null). 'Adjustable arms'. Accessories: Essentials bundle $495 (Smart Handles, Bar, Bar Control, Rope, Bench, Foam Roller, Mat); Ultimate $595 adds Ankle Straps, Pilates Loops; 'No Smart Accessories Bundle' option exists -> all optional.",
+  "accessed": "2026-10-05"
+ },
+ {
+  "id": "vitruvian-trainer-plus",
+  "brand": "Vitruvian",
+  "model": "Trainer+",
+  "perSide": {
+   "min": 4,
+   "max": 100,
+   "unit": "kg"
+  },
+  "totalMax": {
+   "value": 200,
+   "unit": "kg"
+  },
+  "step": {
+   "value": null,
+   "unit": "kg"
+  },
+  "cables": 2,
+  "arms": false,
+  "bench": "optional",
+  "belt": "optional",
+  "ankle": true,
+  "rope": "optional",
+  "sources": [
+   "https://vitruvianform.com/pages/product-info",
+   "https://knowledge.vitruvianform.com/support/hardware-and-electrical-specifications",
+   "https://vitruvianform.com/pages/faqs",
+   "https://wake.store/products/vitruvian-trainer-plus (RETAILER - accessories only)"
+  ],
+  "notes": "Official spec: 'Resistance Weight Range 0kg/0lbs to 200kg/440lbs'; hardware spec: resistance range (each rope) 0-100 kg, active range (each rope) '8.8 lbs to 220 lbs (4kg to 100kg)'. FAQ: 'starts at 8lb / 4kg'; new users capped at 20 kg until machine learns strength; weight limit per handle Trainer+ '~100kgs' (thermal constraint). Step NOT found (FAQ only mentions progression/regression of 1, 2 or 3 kg per rep) -> step.value=null. Floor platform; FAQ says accessories for vertical pulling are still 'in motion' -> no high pulley. Accessories from RETAILER wake.store only: base package 'Pro handles, ankle straps'; Entry kit 'Long Bar, Tricep Rope, Premium Handles, Workout Mat, Safety Cables'; Pro kit 2.0 'Long Bar, Short Bar, Pump Handles, Tech Mat, Foldable Bench, Belt, Safety Cables, Rope'. Official site shows minimal storefront (company status unclear).",
+  "accessed": "2026-10-05"
+ },
+ {
+  "id": "vishape-smartgym-pro",
+  "brand": "ViSHAPE",
+  "model": "SmartGym Pro",
+  "perSide": {
+   "min": 1.5,
+   "max": 65,
+   "unit": "kg"
+  },
+  "totalMax": {
+   "value": 130,
+   "unit": "kg"
+  },
+  "step": {
+   "value": 0.5,
+   "unit": "kg"
+  },
+  "cables": 2,
+  "arms": null,
+  "bench": "optional",
+  "belt": true,
+  "ankle": true,
+  "rope": false,
+  "sources": [
+   "https://vishape.eu/en/smartgym-pro",
+   "https://vishape.eu/en/comparison",
+   "https://vishape.eu/en/faq"
+  ],
+  "notes": "FAQ: '0.5 kg steps within a range of 1.5 through 65 kg per each side (i.e. 3 kg minimum and 130 kg maximum total)'; comparison '1,5 kg - 65 kg' per side, 'ability to diversify the load value on each side'. CONFLICT: Pro page spec block says 'from 1.5 kg to 60 kg per side' while same page says 'Ranging from 1.5 kg to 65 kg per side' and '130 kg maximum'. Step '0.5 kg step per side'. Standard accessories: 'handles, ankle straps, hip belt, wireless button, barbell'; bench is extra (SmartGym Pro Set). No rope listed. Floor platform; no high pulley/arms mentioned (arms=null, likely none).",
+  "accessed": "2026-10-05"
+ },
+ {
+  "id": "vishape-smartgym-lite",
+  "brand": "ViSHAPE",
+  "model": "SmartGym Lite",
+  "perSide": {
+   "min": 1.5,
+   "max": 35,
+   "unit": "kg"
+  },
+  "totalMax": {
+   "value": 70,
+   "unit": "kg"
+  },
+  "step": {
+   "value": 0.5,
+   "unit": "kg"
+  },
+  "cables": 2,
+  "arms": null,
+  "bench": "optional",
+  "belt": true,
+  "ankle": true,
+  "rope": false,
+  "sources": [
+   "https://vishape.eu/en/smartgym-lite",
+   "https://vishape.eu/en/comparison",
+   "https://vishape.eu/en/faq"
+  ],
+  "notes": "Lite page and comparison: '1.5 kg to 35 kg per side', '70 kg maximum working weight', '0.5 kg step per side'. CONFLICT: FAQ says '3 kg minimum and 68 kg maximum total'. Comparison: 'lack of load diversification on each side' -> two cables but NOT independently loadable (same load both sides). Standard accessories: handles, ankle straps, hip belt, wireless button, barbell; bench is extra (Lite Set). No rope listed. arms=null (floor platform, nothing stated).",
+  "accessed": "2026-10-05"
+ },
+ {
+  "id": "beyond-power-voltra-1",
+  "brand": "Beyond Power",
+  "model": "VOLTRA I",
+  "perSide": {
+   "min": 5,
+   "max": 200,
+   "unit": "lb",
+   "kg": {
+    "min": 2.27,
+    "max": 90.72
+   }
+  },
+  "totalMax": {
+   "value": 200,
+   "unit": "lb",
+   "kg": 90.72
+  },
+  "step": {
+   "value": 1,
+   "unit": "lb",
+   "kg": 0.45
+  },
+  "cables": 1,
+  "arms": false,
+  "bench": false,
+  "belt": false,
+  "ankle": "optional",
+  "rope": "optional",
+  "sources": [
+   "https://www.beyond-power.com/products/voltra",
+   "https://help.beyond-power.com/en/articles/14167505-what-is-voltra-i"
+  ],
+  "notes": "Help center: '5-200 lbs (2-90 kg), adjustable in 1 lb increments'; product page: '5 to 200 lbs (2 to 90 kg)'. Single cable, portable; 'requires a mount to operate - one is not included' -> pulley height depends on the mount (rack/wall/strap), so high pulley possible but not built in. 'What's in the box': VOLTRA I, 65W USB-C charger kit, carry case, screen protector, carabiner. Functional Rope, Basic Handle, Ankle Strap sold as accessories. Two units can be used for bilateral work (not verified as official spec).",
+  "accessed": "2026-10-05"
+ },
+ {
+  "id": "aeke-k1",
+  "brand": "AEKE",
+  "model": "K1",
+  "perSide": {
+   "min": null,
+   "max": 50,
+   "unit": "kg"
+  },
+  "totalMax": {
+   "value": 100,
+   "unit": "kg"
+  },
+  "step": {
+   "value": 1,
+   "unit": "lb",
+   "kg": 0.45
+  },
+  "cables": 2,
+  "arms": false,
+  "bench": "optional",
+  "belt": null,
+  "ankle": true,
+  "rope": null,
+  "sources": [
+   "https://aeke.com/products/buy-aeke-k1",
+   "https://aeke.com/pages/faq"
+  ],
+  "notes": "FAQ: 'The total resistance is 220lbs ( 100KG ). 110lbs/50KG per arm.' Product page: '220 Digital Resistance', '1LB Precision Control'. Min not stated. Mirror-type unit with floor-level cables; FAQ replaces lat pulldown by lying on a bench -> no high pulley (arms=false). FAQ: 'comes with a professional barbell ... We also provide an ankle strap'. Bench: variant 'K1 Complete Set + Bench (B1)' vs 'K1 Complete Set'. Rope not listed. 'Extender Belt' sold separately (unclear if hip belt). Newer AEKE S1 Pro: also 220 lb/100 kg, 50 kg per arm (FAQ notes some promo materials claim >300 lb).",
+  "accessed": "2026-10-05"
+ },
+ {
+  "id": "oxefit-xp1",
+  "brand": "OxeFit",
+  "model": "XP1",
+  "perSide": {
+   "min": null,
+   "max": 100,
+   "unit": "lb",
+   "kg": {
+    "min": null,
+    "max": 45.36
+   }
+  },
+  "totalMax": {
+   "value": 400,
+   "unit": "lb",
+   "kg": 181.44
+  },
+  "step": {
+   "value": null,
+   "unit": "lb",
+   "kg": null
+  },
+  "cables": 4,
+  "arms": true,
+  "bench": null,
+  "belt": null,
+  "ankle": null,
+  "rope": null,
+  "sources": [
+   "https://support.oxefit.com/hc/en-us/articles/18861120880279-XP1-Specifications",
+   "https://support.oxefit.com/hc/en-us/articles/18861289127959-XP1-Using-Digital-Weight",
+   "https://support.oxefit.com/hc/en-us/articles/23698743400343-XP1-Cable-Modalities",
+   "https://support.oxefit.com/hc/en-us/articles/18862361812375-XP1-View-All-Accessories"
+  ],
+  "notes": "Specs: 'TENSION 400 lbs', 'BAR HEIGHT RANGE OF MOTION 26.5\" to 71.75\"', 'ADJUSTABLE BENCH' listed in spec sheet. Using Digital Weight: max '400 lbs for barbell, 300 lbs for waist harness, 200 lbs for cook bar, 100 lbs for individual cable exercises'. FOUR cables (2 front from deck/rack arms, 2 rear from deck) - perSide.max = 100 lb per individual cable; 'DUAL' modality controls left/right independently. Step and min NOT stated. CONFLICT (unverified): third-party summaries cite 500 lb from press materials; official support says 400 lb. Accessories article lists handles, rope, ankle straps, waist harness, cinch belt, barbells - but does not say which are included in the base price (bench/belt/ankle/rope=null). Commercial/pro-oriented, US only.",
+  "accessed": "2026-10-05"
+ },
+ {
+  "id": "forme-studio-lift",
+  "brand": "FORME",
+  "model": "Studio + Lift",
+  "perSide": {
+   "min": null,
+   "max": 100,
+   "unit": "lb",
+   "kg": {
+    "min": null,
+    "max": 45.36
+   }
+  },
+  "totalMax": {
+   "value": 200,
+   "unit": "lb",
+   "kg": 90.72
+  },
+  "step": {
+   "value": null,
+   "unit": "lb",
+   "kg": null
+  },
+  "cables": 2,
+  "arms": true,
+  "bench": "optional",
+  "belt": null,
+  "ankle": true,
+  "rope": true,
+  "sources": [
+   "https://formelife.com/products/studio-lift-1",
+   "https://formelife.com/pages/hardware"
+  ],
+  "notes": "Product page: '200 lbs total resistance (100 lbs per arm)', 'Dual adjustable arms'. 'Equipment Included: 2 Free FORME Handles, Premium Rope Grip, 2 Ankle Straps, Short Bar'. Bench via optional 'Fitbench Strength Bundle'. Min and step NOT stated on official pages (third-party: Studio-only 5 lb min, not verified for Lift). No hip belt listed.",
+  "accessed": "2026-10-05"
+ }
+]

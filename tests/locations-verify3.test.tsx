@@ -6,7 +6,7 @@ import { achievable, convertSpec, type LoadSpec } from '@/lib/loads';
 import { availability, loadsFor } from '@/lib/equipment';
 import { CATALOG } from '@/lib/catalog.generated';
 import { fresh, ex, addWorkout, pressAlert } from './helpers';
-import { renderApp, flushAll, screen, go, tap, act } from './app';
+import { renderApp, flushAll, screen, go, tap, act, expandEquip } from './app';
 import { userHome, presetSpec } from './locations-fixtures';
 
 jest.setTimeout(60000);
@@ -54,7 +54,7 @@ describe('L3, L4: stacja i pola po zmianie jednostki', () => {
   test('pola talerzy i stacji pokazują najwyżej 3 miejsca po przecinku', async () => {
     await fresh(); const s = store.getState().settings; const h = userHome(HOME); s.locations.push(h); s.mainLocationId = h.id;
     L.setEquip(h, 'db_plate', true); L.setLoad(h, 'db_plate', convertSpec(presetSpec('hopsport2x10'), 'lb')); L.setLoad(h, 'electric', convertSpec(presetSpec('vishape_pro'), 'lb')); await store.flush();
-    await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())) }); await go('/more/location/home'); await flushAll(10);
+    await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())) }); await go('/more/location/home'); await flushAll(10); await expandEquip();
     expect(screen.getAllByDisplayValue('3,307')).toHaveLength(2); /* uchwyt 1,5 kg i min stacji 1,5 kg/str. */ expect(screen.getAllByDisplayValue('1,102').length).toBeGreaterThanOrEqual(1); /* krok stacji (i talerz 0,5 kg) */ expect(screen.getByDisplayValue('2,756')).toBeTruthy();
     expect(screen.queryByDisplayValue(/\d,\d{4,}/)).toBeNull();
   });

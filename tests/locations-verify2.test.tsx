@@ -4,7 +4,7 @@ import * as timer from '@/lib/timer';
 import * as L from '@/lib/locations';
 import { achievable, convertSpec, fillRange, validateSpec, rangeCount, LOAD_LIMITS, type LoadSpec } from '@/lib/loads';
 import { fresh, ex, addWorkout } from './helpers';
-import { renderApp, flushAll, screen, go } from './app';
+import { renderApp, flushAll, screen, go, expandEquip } from './app';
 import { userHome } from './locations-fixtures';
 
 jest.setTimeout(60000);
@@ -58,7 +58,7 @@ describe('LOW', () => {
   });
   test('4: ciężar w edytorze ma w podpowiedzi VoiceOver nazwę pozycji', async () => {
     await fresh(); const s = store.getState().settings; const h = userHome([4, 8]); s.locations.push(h); s.mainLocationId = h.id; await store.flush();
-    await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())) }); await go('/more/location/home'); await flushAll(10);
+    await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())) }); await go('/more/location/home'); await flushAll(10); await expandEquip();
     const c = screen.getByLabelText('8 kg'); expect(c.props.accessibilityHint).toBe('Hantle (stała waga albo z szybką regulacją)'); expect(c.props.accessibilityRole).toBe('switch');
   });
 });

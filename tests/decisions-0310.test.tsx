@@ -19,7 +19,7 @@ import { EN } from '@/lib/i18n.en';
 import { SCHEMA_VERSION, LIB, seedState, type Impl, type Workout } from '@/lib/seed';
 import { fresh, ex, addWorkout, set, saved, withDemoTemplates } from './helpers';
 import { userHome, loc, presetSpec } from './locations-fixtures';
-import { renderApp, flushAll, screen, go } from './app';
+import { renderApp, flushAll, screen, go, expandEquip } from './app';
 
 jest.setTimeout(60000);
 afterEach(async () => { edit.__resetDrafts(); try { store.getState(); } catch { return; } await timer.stop(); await timer.stopSet(); });
@@ -220,7 +220,7 @@ describe('ViShape na stronę', () => {
     const g = loc('G', [{ ...equipEntry('electric'), opts: ['dual', 'belt', 'ankle', 'arms'], load: presetSpec('vishape_lite') }]);
     await fresh(); for (const n of ['Przysiad z pasem (linki)', 'Cable Fly', TP, RDL, 'Cable Lateral Raise']) { const r = loadsFor(ex(n), g); expect(r).toEqual({ kind: 'loads', loads: lite, item: 'electric' }); }
     const s = store.getState().settings; s.locations = [userHome(HOME)]; s.mainLocationId = 'home'; await store.flush();
-    await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())) }); await go('/more/location/home'); await flushAll(10);
+    await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())) }); await go('/more/location/home'); await flushAll(10); await expandEquip();
     expect(screen.getByText('Ciężar serii na stacji wpisuj na stronę — tak, jak pokazuje urządzenie.')).toBeTruthy();
   });
 });

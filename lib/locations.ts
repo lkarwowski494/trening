@@ -1,4 +1,4 @@
-import { getState, save, flush, locationById, clampName, NAME_MAX, locationEquipChanged } from './store';
+import { getState, save, flush, locationById, clampName, NAME_MAX, locationEquipChanged, cleanLevels } from './store';
 import { base, type Location, type LocEquip } from './seed';
 import { presetEquipment, equipEntry, equipById, LOCATION_PRESET_LABEL, type LocationPreset } from './equipment';
 import { type LoadSpec } from './loads';
@@ -52,6 +52,8 @@ export function setOpt(l: Location, item: string, opt: string, on: boolean) {
   const e = activeEquip(l, item); const x = equipById(item); if (!e || !x?.options?.some(o => o.id === opt)) return;
   e.opts = on ? [...new Set([...e.opts, opt])] : e.opts.filter(o => o !== opt); locationEdited(l);
 }
+/** Gumy: zakres poziomów w miejscu (od–do, 1–7). */
+export function setBandLevels(l: Location, from: number, to: number) { const e = activeEquip(l, 'bands'); if (!e) return; const lv = cleanLevels('bands', [Math.round(from), Math.round(to)]); if (lv) e.levels = lv; else delete e.levels; locationEdited(l); }
 export function setLoad(l: Location, item: string, spec: LoadSpec) { const e = activeEquip(l, item); if (!e) return; e.load = spec; locationEdited(l); }
 /** Nazwa miejsca do wyświetlenia; id usuniętego miejsca → „(usunięte miejsce)”. */
 export const locationLabel = (id: string | null | undefined) => locationById(id)?.name ?? t('(usunięte miejsce)');

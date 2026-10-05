@@ -49,6 +49,9 @@ name: Miejsca treningu i filtr ćwiczeń
 - extendedWaitUntil: { visible: "Available exercises: .*", timeout: 30000 }
 - copyTextFrom: "Available exercises: .*"
 - evalScript: ${output.dostepnePrzed = maestro.copiedText}
+# 05.10.2026: grupy sprzętu zwinięte — najpierw rozwinięcie grupy „Drążki i poręcze” (EQUIP_GROUP_LABEL.bars)
+- scrollUntilVisible: { element: "Bars and dip stations.*", direction: DOWN, timeout: 90000 }
+- tapOn: "Bars and dip stations.*"
 - scrollUntilVisible: { element: "Pull-up bar.*", direction: DOWN, timeout: 90000 }
 # Wiersz SwitchRow: Text z nazwą (index 0) i systemowy przełącznik z tą samą etykietą (index 1)
 # Maestro traktuje id jako wyrażenie regularne — nawiasy w nazwie sprzętu trzeba poprzedzić \\ (przebieg 03.10.2026: „Element not found”).

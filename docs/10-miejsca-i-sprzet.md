@@ -369,3 +369,22 @@ Po rundzie 82c: 875 testów. Otwarte pytanie o objętość stacji (×1 czy ×2 p
 - Ciężary: https://www.sport-shop.pl/hantla-regulowana-2-5-24kg-gymtek-czerwona-p-170823.html · https://hop-sport.pl/hantle/zestaw-hantli-zeliwnych-2x10kg-z-przeduzanym-gryfem/5902308215542 · https://iwf.sport/weightlifting_/equipment/ · https://www.bowflex.com/product/552-results-series-adjustable-dumbbells/ZMK4011008.html
 - Polskie nazwy: https://hop-sport.pl/gryfy · https://trainingshowroom.com/636-lawki-treningowe · https://www.e-insportline.pl/wyciagi-do-cwiczen · https://hms-fitness.pl/oferta/sprzet-silowy/atlasy-bramy-i-suwnice-smitha
 - Progresja i zamienniki: https://peerj.com/articles/14142/ (Plotkin 2022) · https://www.strongerbyscience.com/progressive-overload-strategies/ · https://tourniquets.org/wp-content/uploads/PDFs/ACSM-Progression-models-in-resistance-training-for-healthy-adults-2009.pdf · https://link.springer.com/article/10.1007/s40279-023-01937-7 (Nuzzo 2023) · https://www.researchgate.net/publication/49746305 (Saeterbakken 2011) · https://www.nsca.com/contentassets/3d09f06f0b4c4f6fbd8cc382ed1f3d4a/ptq-10.2.1-progressive-strategies-for-teaching-fundamental-resistance-training-movement-patterns.pdf · https://link.springer.com/article/10.1007/s40279-021-01559-x (Halperin 2022, RIR)
+
+## Uwagi właściciela 05.10.2026 (po treningu)
+
+1. **Grupy sprzętu zwijane** („Każdy rodzaj sprzętu powinien móc być zwinięty i rozwinięty”; wybór: „zwinięte, licznik zaznaczonych”) —
+   ekran miejsca: każda grupa zwinięta z licznikiem „n z m”, dotknięcie rozwija. Test: `tests/owner-0510c.test.tsx`.
+2. **Charakterystyki stacji elektrycznych** (wybór: „stacje elektryczne”, tylko oficjalne źródła) — dane z linkami:
+   `docs/research/equipment/stations.json` (13 modeli, dostęp 05.10.2026). Presety w aplikacji — **otwarte** (luki i sprzeczności w źródłach, niżej).
+3. **Bieżnia z nachyleniem i bez** — opcja „z regulacją nachylenia (marsz pod górę)” (domyślnie zaznaczona); „Incline Walk (bieżnia)” wymaga
+   nachylenia (`cardio.treadmill_incline`), „Treadmill Walking” — każdej bieżni. Istniejące bieżnie dostają opcję raz (`State.optFill`,
+   `OPT_FILL` w `lib/equipment.ts`) — ćwiczenie nie znika po aktualizacji; późniejsze odznaczenie zostaje.
+4. **Gumy — zakres poziomów w miejscu** (wybór: „zakres od–do”) — pod „Gumy oporowe” pola „od poziomu / do poziomu” (1–7; 1–7 = bez
+   ograniczenia, `LocEquip.levels`). Przycisk gumy w serii przełącza tylko gumy z zakresu miejsca treningu; guma spoza zakresu → następna w zakresie.
+
+### Stacje elektryczne — stan danych (05.10.2026)
+- Kompletne (min, max na stronę, krok): ViShape SmartGym Pro i Lite, Beyond Power Voltra I (jedna linka).
+- Brak minimum na stronę: Speediance (Gym Monster 1/2/3, Gym Pal), Tonal 1/2, AEKE K1, OxeFit XP1, Forme Studio Lift.
+- Brak kroku: Vitruvian Trainer+, OxeFit XP1, Forme Studio Lift.
+- Sprzeczności źródeł: ViShape Pro maks. 60 vs 65 kg/str. (preset w aplikacji: 65 — do potwierdzenia), ViShape Lite łącznie 70 vs 68 kg,
+  Gym Pal 220 vs 200 lb, Gym Monster 3 krok 1 kg (EU) vs 1 lb (US), OxeFit XP1 400 vs 500 lb.

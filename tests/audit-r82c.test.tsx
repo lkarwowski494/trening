@@ -14,7 +14,7 @@ import { equipEntry } from '@/lib/equipment';
 import type { Impl, WSet } from '@/lib/seed';
 import { fresh, ex, addWorkout } from './helpers';
 import { userHome, loc, presetSpec } from './locations-fixtures';
-import { renderApp, flushAll, screen, go, type, tap, act, fireEvent } from './app';
+import { renderApp, flushAll, screen, go, type, tap, act, fireEvent, expandEquip } from './app';
 
 jest.setTimeout(60000);
 afterEach(async () => { edit.__resetDrafts(); try { store.getState(); } catch { return; } await timer.stop(); await timer.stopSet(); });
@@ -111,7 +111,7 @@ describe('LOW 2 — zmiana sprzętu miejsca w trakcie treningu: przyrząd blokó
   });
   test('edytor ciężarów (ekran miejsca, „Wypełnij zakresem” 2–24 co 2) w trakcie treningu — ten sam efekt', async () => {
     await fresh(); places([]); store.startFromTemplate(tplAt(RDL, 'home')); expect(store.getState().active!.exercises[0].impl).toBe('electric');
-    await store.flush(); await renderApp({ saved: snapshot() }); await go('/more/location/home'); await flushAll(10);
+    await store.flush(); await renderApp({ saved: snapshot() }); await go('/more/location/home'); await flushAll(10); await expandEquip();
     await type(screen.getAllByLabelText('od')[0], '2'); await type(screen.getAllByLabelText('do')[0], '24'); await type(screen.getAllByLabelText('co')[0], '2');
     await tap(screen.getByLabelText('Wypełnij zakresem — ' + DB_ITEM)); await flushAll(5);
     expect(store.getState().active!.exercises[0].impl).toBe('dumbbell');

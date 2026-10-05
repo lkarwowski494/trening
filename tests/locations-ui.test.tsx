@@ -3,7 +3,7 @@ import * as store from '@/lib/store';
 import * as timer from '@/lib/timer';
 import { fireEvent } from '@testing-library/react-native';
 import { fresh, ex, addWorkout, withDemoTemplates } from './helpers';
-import { renderApp, flushAll, screen, go, tap, type, act } from './app';
+import { renderApp, flushAll, screen, go, tap, type, act, expandEquip } from './app';
 import { userHome } from './locations-fixtures';
 import { addLocation } from '@/lib/locations';
 
@@ -39,13 +39,13 @@ describe('Ustawienia → Miejsca treningu', () => {
     await tap(screen.getByText('+ Dodaj miejsce')); await tap(screen.getByText('Dom')); await flushAll(10);
     const s = store.getState().settings; expect(s.locations).toHaveLength(1); expect(s.mainLocationId).toBe(s.locations[0].id);
     expect(screen.getByText(/Miejsce główne/)).toBeTruthy(); expect(screen.getByText('Dostępne ćwiczenia: 191 z 854')).toBeTruthy();
-    await toggle('Ławka regulowana', true); expect(s.locations[0].equipment.map(e => e.item)).toEqual(['bench_adj']);
+    await expandEquip(); await toggle('Ławka regulowana', true); expect(s.locations[0].equipment.map(e => e.item)).toEqual(['bench_adj']);
     await toggle('Ławka regulowana: ze skosem w dół', true); /* audyt M7: opcja z nazwą pozycji */ expect(s.locations[0].equipment[0].opts).toEqual(['decline']);
     await toggle('Drążek do podciągania (rozporowy, ścienny)', true); expect(screen.getByText(/Dostępne ćwiczenia: \d+ z 854/)).toBeTruthy();
     await flushAll(400); expect(JSON.parse(global.__kv.get('state')!).settings.locations[0].equipment).toHaveLength(2); /* zapis bez „Wróć” */
   });
   test('hantle: „wypełnij zakresem” 2–24 co 2, odznaczenie 4 kg, dodanie 5 kg; podsumowanie dostępnych', async () => {
-    const saved = await savedWithPlaces(); await renderApp({ saved }); await go('/more/location/home'); await flushAll(10);
+    const saved = await savedWithPlaces(); await renderApp({ saved }); await go('/more/location/home'); await flushAll(10); await expandEquip();
     await toggle('Hantle (stała waga albo z szybką regulacją)', false); await toggle('Hantle (stała waga albo z szybką regulacją)', true);
     const db = () => store.getState().settings.locations[0].equipment.find(e => e.item === 'db_fixed')!;
     expect((db().load as any).items).toHaveLength(12); expect(db().off).toBeUndefined(); /* audyt M5: odznaczenie i ponowne zaznaczenie nie kasuje listy */
@@ -56,15 +56,15 @@ describe('Ustawienia → Miejsca treningu', () => {
     expect(screen.getByText('dostępne: 12 (2–24 kg)')).toBeTruthy();
   });
   test('stacja elektryczna: preset ViShape Pro; hantle na talerze: Hop-Sport — podsumowanie pary i jednego hantla', async () => {
-    const saved = await savedWithPlaces(); await renderApp({ saved }); await go('/more/location/home'); await flushAll(10);
+    const saved = await savedWithPlaces(); await renderApp({ saved }); await go('/more/location/home'); await flushAll(10); await expandEquip();
     expect(screen.getByText('128 ustawień na stronę: 1,5–65 kg')).toBeTruthy();
     await toggle('Hantle na talerze (uchwyty + talerze)', true); await tap(screen.getByText('Hop-Sport 2×10 kg')); await flushAll(5);
     expect(screen.getByText('para: 8 (1,5–10 kg); jeden hantel: 21 (1,5–18,5 kg)')).toBeTruthy();
   });
   test('ustaw jako główne, duplikuj, usuń: głównego nie da się usunąć, dopóki jest inne', async () => {
-    const saved = await savedWithPlaces(); await renderApp({ saved }); await go('/more/location/home'); await flushAll(10);
+    const saved = await savedWithPlaces(); await renderApp({ saved }); await go('/more/location/home'); await flushAll(10); await expandEquip();
     await tap(screen.getByText('Usuń')); expect(global.__alerts.slice(-1)[0].title).toBe('To miejsce główne');
-    const gym = store.getState().settings.locations[1]; await go(`/more/location/${gym.id}`); await flushAll(10);
+    const gym = store.getState().settings.locations[1]; await go(`/more/location/${gym.id}`); await flushAll(10); await expandEquip();
     await tap(screen.getByText('Ustaw jako główne')); expect(store.getState().settings.mainLocationId).toBe(gym.id);
     await tap(screen.getByText('Duplikuj')); await flushAll(10); expect(store.getState().settings.locations.map(l => l.name)).toEqual(['Dom', 'Siłownia', 'Siłownia (kopia)']);
   });

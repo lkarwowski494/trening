@@ -5,7 +5,7 @@ import * as Crypto from 'expo-crypto';
 import { tIn, type LangSetting, type Lang } from './i18n';
 import type { Unit } from './units';
 import type { LoadSpec } from './loads';
-import { GYM_FILL } from './equipment';
+import { GYM_FILL, OPT_FILL } from './equipment';
 import { CATALOG, CATALOG_REV, CATALOG_LIB_EXTRA, CATALOG_ADDED_REVS, MUSCLE_LOAD, type LoadSource, type Pattern, type MuscleRegion } from './catalog.generated';
 
 export const SCHEMA_VERSION = 16; // 16 (E2, docs/14 pkt 2): WExercise.swappedFrom / implPinned (trening w toku i historia), splitFrom / altSkip (tylko trening w toku), TemplateItem.alternates (W3); pola opcjonalne — blok bez zamiany i szablon bez zamienników wyglądają jak w 15; kopia 16 jest odrzucana przez wersję 15 (pkt 2.4); 15 (decyzje 03.10.2026): WExercise.impl — przyrząd użyty w bloku (decyzja 8c); ciężarów ani treści szablonów użytkownika migracja nie zmienia (decyzja 03.10, 08:11 — bez dawnej jednorazowej zmiany 48 → 24 kg z P-004; zostaje tylko normalizacja pól i usuwanie pozycji z brakującym/usuniętym ćwiczeniem, jak w main); 14 (P-003 E1): miejsca treningu i sprzęt — Settings.locations/mainLocationId/pickerShowAll, Workout/Template.locationId, wymagania sprzętowe ćwiczeń; 11 (runda 55): przyciąganie starych wartości z funtów tylko dla danych sprzed tej wersji; 12 (runda 72): masa ciała zamrożona w zakończonych treningach; 13 (runda 75, Q-001): masa ciała poza obliczeniami — usunięte udział %, waga w Ustawieniach i w treningu; nowe ustawienia progressHint, autoBackup, weighReminder
@@ -93,9 +93,9 @@ export interface Morning extends Base { date: string; bb: number | ''; sleepScor
 export type ThemeSetting = 'light' | 'dark' | 'auto';
 export interface Settings { defaultRest: number; sound: boolean; wakeLock: boolean; showRpe: boolean; healthSync: boolean; /** runda 75 (T-017): cicha podpowiedź progresji */ progressHint: boolean; /** runda 75 (T-012): kopia JSON po każdym treningu w Plikach */ autoBackup: boolean; /** runda 75 (T-013): przypomnienie o wadze w poniedziałek rano */ weighReminder: boolean; modules: Record<ModuleId, boolean>; language: LangSetting; unit: Unit; /** P-003 (schemat 14): miejsca treningu; brak miejsc = zachowanie jak przed schematem 14 */ locations: Location[]; mainLocationId: string | null; /** wybór ćwiczenia: pokaż także niedostępne w miejscu (zapamiętany przełącznik) */ pickerShowAll: boolean; /** decyzja 05.10.2026: wygląd — domyślnie jasna Kreda; 'auto' = jak w telefonie */ theme: ThemeSetting }
 /** P-003: sprzęt w miejscu — pozycja z lib/equipment.ts, zaznaczone opcje i (dla sprzętu z ciężarami) opis dostępnych ciężarów. */
-export interface LocEquip { item: string; opts: string[]; load?: LoadSpec; /** audyt E1 (M5): pozycja odznaczona — opcje i ciężary zostają na wypadek ponownego zaznaczenia */ off?: true }
+export interface LocEquip { item: string; opts: string[]; load?: LoadSpec; /** audyt E1 (M5): pozycja odznaczona — opcje i ciężary zostają na wypadek ponownego zaznaczenia */ off?: true; /** gumy (uwaga właściciela 05.10.2026): zakres poziomów w tym miejscu; brak = 1–7 */ levels?: [number, number] }
 export interface Location extends Base { name: string; equipment: LocEquip[] }
-export interface State { v: number; schemaVersion: number; ownerId: string; settings: Settings; exercises: Exercise[]; bands: Band[]; templates: Template[]; workouts: Workout[]; active: Workout | null; mornings: Morning[]; relations: CoachingRelation[]; feedback: Feedback[]; instructions: NextSessionInstructions[]; timer: TimerState; metaUpdatedAt?: number; userTouched?: boolean; /** katalog 04.10.2026: nowe ćwiczenia biblioteki już dopisane — pierwszy krok (wartość stała, czyta ją build 643cba7) */ libExtra?: string; /** ostatni dopisany krok katalogu (LIB_EXTRA_REVS) */ libExtraStep?: string; /** decyzja 05.10.2026 (1.a): nowy sprzęt dopisany do miejsc z presetu siłowni (GYM_FILL.rev) */ equipFill?: string }
+export interface State { v: number; schemaVersion: number; ownerId: string; settings: Settings; exercises: Exercise[]; bands: Band[]; templates: Template[]; workouts: Workout[]; active: Workout | null; mornings: Morning[]; relations: CoachingRelation[]; feedback: Feedback[]; instructions: NextSessionInstructions[]; timer: TimerState; metaUpdatedAt?: number; userTouched?: boolean; /** katalog 04.10.2026: nowe ćwiczenia biblioteki już dopisane — pierwszy krok (wartość stała, czyta ją build 643cba7) */ libExtra?: string; /** ostatni dopisany krok katalogu (LIB_EXTRA_REVS) */ libExtraStep?: string; /** decyzja 05.10.2026 (1.a): nowy sprzęt dopisany do miejsc z presetu siłowni (GYM_FILL.rev) */ equipFill?: string; /** 05.10.2026: nowe opcje sprzętu dopisane raz do istniejących pozycji (OPT_FILL.rev) */ optFill?: string }
 
 /** UUID v4 (ADR-013). Fallback losowy tylko gdyby natywny moduł był niedostępny (np. web/testy). */
 export function uid(): string {
@@ -198,6 +198,6 @@ export function seedState(lng: Lang = 'pl'): State {
     v: 2, schemaVersion: SCHEMA_VERSION, ownerId: LOCAL_OWNER,
     settings: defaultSettings(), exercises,
     bands: [{ ...base(), color: c('czerwona'), level: 2 }, { ...base(), color: c('czarna'), level: 4 }, { ...base(), color: c('fioletowa'), level: 6 }],
-    templates: [], workouts: [], active: null, mornings: [], relations: [], feedback: [], instructions: [], timer: blankTimer(), libExtra: LIB_EXTRA_REVS[0], libExtraStep: LIB_EXTRA_REV, equipFill: GYM_FILL.rev /* nowa instalacja nie ma dawnych miejsc */,
+    templates: [], workouts: [], active: null, mornings: [], relations: [], feedback: [], instructions: [], timer: blankTimer(), libExtra: LIB_EXTRA_REVS[0], libExtraStep: LIB_EXTRA_REV, equipFill: GYM_FILL.rev /* nowa instalacja nie ma dawnych miejsc */, optFill: OPT_FILL.rev,
   };
 }

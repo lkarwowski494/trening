@@ -28,6 +28,10 @@
   "en": "{n} of {all}"
  },
  {
+  "pl": "{n} z {m}",
+  "en": "{n} of {m}"
+ },
+ {
   "pl": "{n}, główne: {m}",
   "en": "{n}, main: {m}"
  },
@@ -238,6 +242,10 @@
  {
   "pl": "Bieżnia",
   "en": "Treadmill"
+ },
+ {
+  "pl": "bieżnia z nachyleniem",
+  "en": "incline treadmill"
  },
  {
   "pl": "bosu / platforma balansowa",
@@ -487,6 +495,10 @@
  {
   "pl": "do",
   "en": "to"
+ },
+ {
+  "pl": "do poziomu",
+  "en": "to level"
  },
  {
   "pl": "do upadku",
@@ -1610,6 +1622,10 @@
   "en": "from"
  },
  {
+  "pl": "od poziomu",
+  "en": "from level"
+ },
+ {
   "pl": "Odhaczone są tylko serie rozgrzewkowe ({n}). Zapisać taki trening?",
   "en": "Only warm-up sets are ticked ({n}). Save this workout anyway?"
  },
@@ -1949,6 +1965,10 @@
  {
   "pl": "Poziom (1–7)",
   "en": "Level (1–7)"
+ },
+ {
+  "pl": "Poziomy gum w tym miejscu (1 = cienka, 7 = bardzo gruba).",
+  "en": "Band levels at this place (1 = thin, 7 = very thick)."
  },
  {
   "pl": "pozycja sprzętu|pozycje sprzętu|pozycji sprzętu",
@@ -2998,6 +3018,10 @@
   "en": "with incline back"
  },
  {
+  "pl": "z regulacją nachylenia (marsz pod górę)",
+  "en": "with incline (uphill walking)"
+ },
+ {
   "pl": "Z szablonu",
   "en": "From a template"
  },
@@ -3144,6 +3168,10 @@
  {
   "pl": "Zawsze w: {l} — {name}",
   "en": "Always at {l} — {name}"
+ },
+ {
+  "pl": "zaznaczone: {n} z {m}",
+  "en": "selected: {n} of {m}"
  },
  {
   "pl": "ze skosem w dół",

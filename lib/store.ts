@@ -5,7 +5,7 @@ import { t, t as tr, tIn, applyLang, detectLang, locale, fold, isLang } from './
 import { applyUnit, wu, wOut, wIn, KG_PER_LB, fmtW, fmtNum, snapLegacyLb } from './units';
 import { applyTheme } from './theme';
 import { seedState, uid, base, defaultModules, defaultSettings, metricFor, loadModeFor, loadMult, blankTimer, musclesFor, hasTime, hasReps, hasWeight, hasDistance, METRICS, DEFAULT_REST, GROUPS, LIB, SCHEMA_VERSION, LOCAL_OWNER, MODULES, SET_KINDS, SINGLE_IMPLEMENT, equipFields, libExercise, LIB_EXTRA_REVS, LIB_EXTRA_REV, LIB_MUSCLE_FIXES, libExtraRevOf, LIB_BASE_NAMES, LOAD_SOURCE_BY_EQUIPMENT, IMPLS, own, type Impl, type SetKind, type Base, type State, type Workout, type WSet, type WExercise, type Exercise, type Template, type TemplateItem, type TemplateAlt, type Morning, type Location } from './seed';
-import { equipById, loadsFor, implAt, implsAt, blankLoad, availability, fillGym, GYM_FILL } from './equipment';
+import { equipById, loadsFor, implAt, implsAt, blankLoad, availability, fillGym, GYM_FILL, fillOpts, OPT_FILL } from './equipment';
 import { sanitizeLoadSpec, nextHeavier, hasLoadShown } from './loads';
 import { CATALOG, CATALOG_REV, CABLES } from './catalog.generated';
 
@@ -184,7 +184,7 @@ function fixLocations(s: any, stamp: (o: any) => void, language: unknown): { loc
     const items = new Set<string>();
     l.equipment = arr(l.equipment).filter((e: any) => { const x = typeof e.item === 'string' ? equipById(e.item) : undefined; if (!x || items.has(e.item)) return false; items.add(e.item);
       const ok = new Set((x.options ?? []).map(o => o.id)); e.opts = Array.isArray(e.opts) ? [...new Set(e.opts.filter((o: unknown) => typeof o === 'string' && ok.has(o)))] : [];
-      const ld = x.load ? sanitizeLoadSpec(e.load) ?? blankLoad(x, e.load?.unit === 'lb' ? 'lb' : 'kg') : undefined; if (ld) e.load = ld; else delete e.load; /* weryfikacja 2: zły opis → pusty domyślny (edytor zostaje), nie usunięcie */ if (e.off !== true) delete e.off; /* audyt M5: odznaczona pozycja z zachowanymi ciężarami */ for (const k of Object.keys(e)) if (!['item', 'opts', 'load', 'off'].includes(k)) delete e[k]; return true; });
+      const ld = x.load ? sanitizeLoadSpec(e.load) ?? blankLoad(x, e.load?.unit === 'lb' ? 'lb' : 'kg') : undefined; if (ld) e.load = ld; else delete e.load; /* weryfikacja 2: zły opis → pusty domyślny (edytor zostaje), nie usunięcie */ if (e.off !== true) delete e.off; /* audyt M5: odznaczona pozycja z zachowanymi ciężarami */ const lv = cleanLevels(e.item, e.levels); if (lv) e.levels = lv; else delete e.levels; for (const k of Object.keys(e)) if (!['item', 'opts', 'load', 'off', 'levels'].includes(k)) delete e[k]; return true; });
     locations.push(l as Location);
   }
   const main = idOf(s.mainLocationId);
@@ -321,6 +321,7 @@ export function migrate(raw: any): State {
     ...fixLocations(s, stamp, raw.settings?.language), /* P-003 (schemat 14): bez tego biała lista gubiła miejsca przy każdym starcie i imporcie */
   };
   if (raw.equipFill !== GYM_FILL.rev) { for (const l of raw.settings.locations) fillGym(l, raw.settings.unit); raw.equipFill = GYM_FILL.rev; } /* decyzja 05.10.2026 (1.a): raz */
+  if (raw.optFill !== OPT_FILL.rev) { for (const l of raw.settings.locations) fillOpts(l); raw.optFill = OPT_FILL.rev; } /* bieżnia: nachylenie (05.10.2026), raz */
   raw.ownerId = owner;
   if (!Number.isFinite(raw.v)) raw.v = 2; if (raw.metaUpdatedAt != null && tsOf(raw.metaUpdatedAt) == null) delete raw.metaUpdatedAt; /* runda 53 */
   raw.schemaVersion = SCHEMA_VERSION;
@@ -1260,8 +1261,16 @@ export function moveInGroup<T extends Grouped & { id: string }>(list: T[], id: s
 }
 
 /** Następna guma w cyklu przycisku gumy: brak → najcieńsza → … → najgrubsza → brak (wg poziomu). Jedno źródło dla treningu i edytora historii. */
+/** Gumy (uwaga właściciela 05.10.2026): zakres poziomów 1–7 w miejscu; 1–7 albo zły zapis = bez ograniczenia. */
+export function cleanLevels(item: unknown, v: unknown): [number, number] | undefined {
+  if (item !== 'bands' || !Array.isArray(v) || v.length !== 2 || !v.every(x => typeof x === 'number' && Number.isInteger(x) && x >= 1 && x <= 7)) return undefined;
+  const r: [number, number] = [Math.min(v[0], v[1]), Math.max(v[0], v[1])]; return r[0] === 1 && r[1] === 7 ? undefined : r;
+}
 export function nextBandId(cur: string): string {
-  const sorted = [...getState().bands].sort((a, b) => a.level - b.level); const i = sorted.findIndex(b => b.id === cur);
+  const st = getState(); const loc = st.active?.locationId ? locationById(st.active.locationId) : undefined; const lv = loc?.equipment.find(e => e.item === 'bands' && !e.off)?.levels;
+  const all = [...st.bands].sort((a, b) => a.level - b.level); const inRange = lv ? all.filter(b => b.level >= lv[0] && b.level <= lv[1]) : all; const sorted = inRange.length ? inRange : all;
+  const cl = all.find(b => b.id === cur); const i = sorted.findIndex(b => b.id === cur);
+  if (i < 0 && cl) { const nx = sorted.find(b => b.level > cl.level); return nx?.id ?? ''; } /* guma spoza zakresu → następna w zakresie */
   return i < 0 ? (sorted[0]?.id ?? '') : (i + 1 < sorted.length ? sorted[i + 1].id : '');
 }
 /**

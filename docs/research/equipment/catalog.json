@@ -2502,7 +2502,7 @@
   "name": "Incline Walk (bieżnia)",
   "requires": [
    [
-    "cardio.treadmill"
+    "cardio.treadmill_incline"
    ]
   ],
   "recommended": [],

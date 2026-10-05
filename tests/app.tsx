@@ -37,3 +37,6 @@ export const type = async (el: Parameters<typeof fireEvent.changeText>[0], text:
 export const flushAll = async (ms = 0) => { await act(async () => { jest.advanceTimersByTime(ms); await Promise.resolve(); await Promise.resolve(); }); };
 export { screen, act, fireEvent };
 export const go = async (href: string) => { await act(async () => { router.push(href as never); }); };
+
+/** Ekran miejsca (05.10.2026): grupy sprzętu są zwinięte — rozwija wszystkie (testy sprzed zwijania). */
+export const expandEquip = async () => { const { EQUIP_GROUPS, EQUIP_GROUP_LABEL, equipLabel } = require('@/lib/equipment'); for (const g of EQUIP_GROUPS) { const el = screen.queryByLabelText(equipLabel(EQUIP_GROUP_LABEL[g])); if (el && !el.props.accessibilityState?.expanded) await tap(el); } };
