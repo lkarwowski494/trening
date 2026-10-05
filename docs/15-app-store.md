@@ -78,3 +78,8 @@ Wcześniejsza decyzja (subskrypcja, miesiąc próby, potem blokada treningów; e
 
 Rekomendacja (do decyzji właściciela): **D** — darmowe podstawy na zawsze, Pro jako subskrypcja albo zakup dożywotni; wcześniejsi
 użytkownicy — Pro za darmo (jak w decyzji wyżej). Eksport danych zawsze darmowy.
+
+**Decyzja właściciela 05.10.2026: „B: jednorazowy zakup po próbie”.** Zastępuje subskrypcję (wyżej): 30 dni całości za darmo (liczy aplikacja —
+wytyczne Apple 3.1.1 dopuszczają darmowy zakup „trial”), potem jednorazowy zakup pełnej wersji. Bez zakupu: treningi zablokowane,
+kopia i eksport danych działają (decyzja „Wybieram 1” zostaje). Wcześniejsi użytkownicy (pobrani przed płatnościami): pełna wersja za darmo.
+Otwarte: cena, data wprowadzenia, Chmura rodzinna (Family Sharing) — tak/nie.
