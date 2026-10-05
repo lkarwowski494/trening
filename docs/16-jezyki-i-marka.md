@@ -57,8 +57,9 @@ Każdy kierunek: ikona aplikacji, ikony zakładek SVG zamiast emoji, ten sam ekr
 - Pomarańcz marki #E8590C na jasnym tle ma kontrast 3,3:1 — za mało dla tekstu (WCAG 4,5). W jasnym motywie akcent #C2410C, w ciemnym #FF8A3D;
   czysty #E8590C zostaje w ikonie aplikacji i kolorze powiadomień. Test kontrastu: `tests/ux.test.tsx` C5.
 - Kroje ładowane przy starcie (`app/_layout.tsx`); błąd lub brak odpowiedzi w 3 s → krój systemowy, start nie czeka dłużej.
-- Liczby (pola ciężaru/powtórzeń, timery, „Poprzednio”) — IBM Plex Mono; tekst i nagłówki — Archivo.
+- Timery i duże liczby — IBM Plex Mono; tekst, nagłówki i wąskie pola liczbowe — Archivo z cyframi tabelarycznymi
+  (audyt cd60eec: mono, 0,6 em na znak, ucinało „102,5” w polu ciężaru 56 pt).
 - Ikony zakładek: `components/TabIcon.tsx` (SVG). Ikona aplikacji: źródło `assets/brand/icon.svg` → `node scripts/brand/icon.mjs` → `assets/icon.png`.
 - Ekran startowy i Live Activity (przerwa) w kolorach Kredy.
 - Testy: `tests/brand-kreda.test.tsx`.
-- Do sprawdzenia na telefonie: szerokość pól ciężaru z krojem mono (np. „102,5”), wygląd w trybie ciemnym.
+- Do sprawdzenia na telefonie: wygląd w trybie ciemnym; błysk przy starcie (tło ekranu startowego #1E1F22 ≠ tło aplikacji — audyt cd60eec LOW).

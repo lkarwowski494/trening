@@ -40,7 +40,8 @@ export const lang = () => current;
 /* Audyt ac5d764 LOW 2: porównanie po podtagu języka; serbski interfejs jest cyrylicą, więc daty też (telefon może mieć sr-Latn). */
 export const locale = () => current === 'pl' ? 'pl-PL' : current === 'sr' ? 'sr-Cyrl-RS' : deviceTag.split(/[-_]/)[0].toLowerCase() === current ? deviceTag : TAG[current];
 /** Przecinek dziesiętny w polach liczbowych — ten sam separator co w fmtNum (audyt ac5d764 MEDIUM 1: dotąd tylko po polsku). */
-export const decimalComma = () => { try { return (1.5).toLocaleString(locale()).includes(','); } catch { return current !== 'en'; } };
+let commaCache: [string, boolean] | null = null; /* audyt cd60eec LOW: bez toLocaleString przy każdym renderze pola */
+export const decimalComma = () => { const l = locale(); if (commaCache?.[0] === l) return commaCache[1]; let c: boolean; try { c = (1.5).toLocaleString(l).includes(','); } catch { c = current !== 'en'; } commaCache = [l, c]; return c; };
 
 /** Runda 55: tylko własne klucze słownika (tekst „constructor” nie zwraca funkcji). */
 const own = (d: Record<string, string> | undefined, k: string): string | undefined => d && Object.prototype.hasOwnProperty.call(d, k) ? d[k] : undefined;

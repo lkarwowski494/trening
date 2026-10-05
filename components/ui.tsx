@@ -61,6 +61,8 @@ export function Input(props: TextInputProps & { center?: boolean }) {
   const t = useTheme(); const label = React.useContext(FieldLabel); const hint = React.useContext(FieldHint);
   return <TextInput placeholderTextColor={t.muted} maxFontSizeMultiplier={1.3} accessibilityLabel={label ?? (typeof props.placeholder === 'string' ? props.placeholder : undefined)} accessibilityHint={hint} {...props} style={[s.input, { backgroundColor: t.surface2, borderColor: t.line, color: t.text }, props.center && { textAlign: 'center', paddingHorizontal: 4 }, props.style]} />;
 }
+/** Audyt cd60eec MEDIUM: wąskie pola (ciężar 56 pt, RPE 40 pt) — krój mono (0,6 em na znak) ucinał „102,5”; Archivo z cyframi tabelarycznymi. */
+export const NUM_FONT = { fontFamily: F.regular, fontVariant: ['tabular-nums' as const] };
 /** Liczba z tekstu pola (przecinek dziesiętny), bez przycinania; null = tekst niedokończony/nieliczbowy. */
 const parseRaw = (v: string): number | '' | null => { const n = v.trim().replace(',', '.'); if (n === '') return ''; const x = Number(n); return Number.isFinite(x) ? x : null; };
 /** Do zapisu: ta sama granica co przy wczytaniu (runda 54: |v| ≤ 1e6, także po przeliczeniu z lb). */
@@ -87,7 +89,7 @@ export function NumInput(props: Omit<TextInputProps, 'value'> & { value: number 
   // Zmiana języka przeformatowuje separator (12,5 ↔ 12.5); po zakończeniu edycji pole pokazuje to, co naprawdę zapisano
   // (np. wartość przyciętą do limitu) — runda 2.
   const L = lang(); React.useEffect(() => { setTxt(ext); }, [L]); // eslint-disable-line react-hooks/exhaustive-deps
-  return <Input center keyboardType={allowNegative ? 'numbers-and-punctuation' : decimal ? 'decimal-pad' : 'number-pad'} value={txt} onChangeText={v => { setTxt(v); if (!start.current) start.current = { shown: value, stored }; const p = parseNum(v); if (p !== null) onNum(p, stored !== undefined && typeof p === 'number' && p === start.current.shown ? start.current.stored : undefined); }} onEndEditing={() => { start.current = null; setTxt(ext); }} selectTextOnFocus {...rest} style={[{ fontFamily: F.mono }, rest.style]} />;
+  return <Input center keyboardType={allowNegative ? 'numbers-and-punctuation' : decimal ? 'decimal-pad' : 'number-pad'} value={txt} onChangeText={v => { setTxt(v); if (!start.current) start.current = { shown: value, stored }; const p = parseNum(v); if (p !== null) onNum(p, stored !== undefined && typeof p === 'number' && p === start.current.shown ? start.current.stored : undefined); }} onEndEditing={() => { start.current = null; setTxt(ext); }} selectTextOnFocus {...rest} style={[NUM_FONT, rest.style]} />;
 }
 /** Chip wyboru. `toggle` = przełącznik ustawienia: VoiceOver czyta nazwę pola (z Field) jako etykietę i stan włączenia (runda 6). */
 export function Chip({ label, on, onPress, toggle, a11yLabel, a11yHint, disabled }: { label: string; on: boolean; onPress: () => void; toggle?: boolean; a11yLabel?: string; a11yHint?: string; disabled?: boolean }) {

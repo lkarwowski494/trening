@@ -40,3 +40,11 @@ test('zakładki bez emoji (ikony SVG); ikona aplikacji i ekran startowy w kolora
   expect(splash.backgroundColor).toBe(BRAND.graphite);
   expect(fs.readFileSync(path.join(root, 'assets/brand/icon.svg'), 'utf8')).toContain(BRAND.signal);
 });
+
+test('audyt cd60eec MEDIUM: wąskie pola liczbowe nie używają kroju mono (ucinał „102,5” w polu 56 pt) — cyfry tabelaryczne', () => {
+  const { NUM_FONT } = require('@/components/ui');
+  expect(NUM_FONT.fontFamily).not.toBe(F.mono); expect(NUM_FONT.fontFamily).not.toBe(F.monoBold);
+  expect(NUM_FONT.fontVariant).toEqual(['tabular-nums']);
+  const src = ['components/ActiveWorkout.tsx', 'app/history/edit/[id].tsx'].map(f => fs.readFileSync(path.join(root, f), 'utf8')).join('\n');
+  expect(src).not.toMatch(/kind !== 'normal' \? F\.monoBold : F\.mono/); /* etykieta serii w kolumnie 24 pt łamała „12•” */
+});

@@ -112,7 +112,7 @@ function EditBlock({ d, e, ei, labels }: { d: Draft; e: WExercise; ei: number; l
           <View key={set.id}>
             <View style={s.row}>
               <Pressable onPress={() => setMenu(set, si)} hitSlop={8} accessibilityRole="button" accessibilityHint={hint} accessibilityLabel={t('Seria {n}, typ: {k}. Tapnij, by zmienić typ lub dodać notatkę.', { n: lbl, k: t(SET_KIND_LABEL[kind]) })} style={{ width: 32, minHeight: 44, justifyContent: 'center' }}>
-                <Text maxFontSizeMultiplier={1.3} style={{ color: kind !== 'normal' ? th.band : th.muted, fontSize: 14, fontFamily: kind !== 'normal' ? F.monoBold : F.mono }}>{lbl}{set.note ? '•' : ''}</Text>
+                <Text maxFontSizeMultiplier={1.3} style={{ color: kind !== 'normal' ? th.band : th.muted, fontSize: 14, fontFamily: kind !== 'normal' ? F.semibold : F.regular }}>{lbl}{set.note ? '•' : ''}</Text>
               </Pressable>
               {hasWeight(m) ? <View style={s.cell}><NumInput weightTol decimal allowNegative={bw} value={wField(loadFieldValue(ex, set))} stored={loadFieldValue(ex, set)} onNum={(v, keep) => { writeLoad(ex, set, wInKeep(v, keep)); /* Q-021; audyt 83b (LOW 2): pole pokazuje to samo co ekran sesji (store.loadOf), wpis trafia do pola obecnego sprzętu */ touchDraft(); }} placeholder={bw ? '±0' : wu()} accessibilityLabel={ex ? loadLabel(ex, impl) : t('ciężar')} accessibilityHint={hint} /></View> : null}
               {hasReps(m) ? <View style={s.cell}><NumInput value={set.reps} onNum={v => { set.reps = v === '' ? '' : Math.min(1000, Math.max(0, Math.floor(v))); touchDraft(); }} placeholder="0" accessibilityLabel={t('Powtórzenia')} accessibilityHint={hint} /></View> : null}
