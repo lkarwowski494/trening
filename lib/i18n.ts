@@ -19,7 +19,7 @@ export type LangSetting = 'auto' | Lang;
 export const LANG_NAME: Record<Lang, string> = { pl: 'Polski', en: 'English', cs: 'Čeština', sk: 'Slovenčina', hu: 'Magyar', ro: 'Română', bg: 'Български', hr: 'Hrvatski', sl: 'Slovenščina', sr: 'Српски', lt: 'Lietuvių', lv: 'Latviešu', et: 'Eesti', uk: 'Українська', es: 'Español', pt: 'Português' };
 /** Nazwa aplikacji pod ikoną i w tekstach (folder w Plikach, stopka, powiadomienia). Decyzja właściciela 05.10.2026: lokalne słowo tam,
  * gdzie jest podobne do „Trening” (to samo co nazwa zakładki), w pozostałych językach „Training”. Test i18n-locales pilnuje locales/<kod>.json i słowników. */
-export const APP_NAME: Record<Lang, string> = { pl: 'Trening', en: 'Training', cs: 'Trénink', sk: 'Tréning', hu: 'Training', ro: 'Training', bg: 'Training', hr: 'Trening', sl: 'Trening', sr: 'Тренинг', lt: 'Training', lv: 'Treniņš', et: 'Treening', uk: 'Training', es: 'Training', pt: 'Training' };
+export const APP_NAME: Record<Lang, string> = { pl: 'Trening', en: 'Training', cs: 'Trénink', sk: 'Tréning', hu: 'Training', ro: 'Training', bg: 'Training', hr: 'Trening', sl: 'Trening', sr: 'Тренинг', lt: 'Treniruotė', lv: 'Treniņš', et: 'Treening', uk: 'Training', es: 'Training', pt: 'Treino' };
 /** Domyślny tag regionu do dat i liczb, gdy telefon ma inny region. */
 const TAG: Record<Lang, string> = { pl: 'pl-PL', en: 'en-US', cs: 'cs-CZ', sk: 'sk-SK', hu: 'hu-HU', ro: 'ro-RO', bg: 'bg-BG', hr: 'hr-HR', sl: 'sl-SI', sr: 'sr-RS', lt: 'lt-LT', lv: 'lv-LV', et: 'et-EE', uk: 'uk-UA', es: 'es-ES', pt: 'pt-PT' };
 export const isLang = (x: unknown): x is Lang => typeof x === 'string' && (LANGS as readonly string[]).includes(x);

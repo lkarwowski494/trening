@@ -1,5 +1,5 @@
 {
-  "CFBundleDisplayName": "Training",
-  "NSHealthShareUsageDescription": "Training neskaito sveikatos duomenų — iOS reikalauja šio aprašo HealthKit leidimui.",
-  "NSHealthUpdateUsageDescription": "Training įrašo baigtas jėgos treniruotes į Apple Health."
+  "CFBundleDisplayName": "Treniruotė",
+  "NSHealthShareUsageDescription": "Treniruotė neskaito sveikatos duomenų — iOS reikalauja šio aprašo HealthKit leidimui.",
+  "NSHealthUpdateUsageDescription": "Treniruotė įrašo baigtas jėgos treniruotes į Apple Health."
 }
