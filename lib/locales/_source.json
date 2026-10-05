@@ -807,7 +807,7 @@
  },
  {
   "pl": "Import zastąpi wszystkie obecne dane zawartością pliku. Obecne dane (także trening w toku) zapiszą się najpierw jako kopia w Plikach: Trening → Backup.",
-  "en": "Import will replace all current data with the file contents. Your current data (including a workout in progress) is first saved as a copy in Files: Trening → Backup."
+  "en": "Import will replace all current data with the file contents. Your current data (including a workout in progress) is first saved as a copy in Files: Training → Backup."
  },
  {
   "pl": "Importuj",
@@ -963,7 +963,7 @@
  },
  {
   "pl": "Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → Trening → Backup, ostatnie 10). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego Apple ID wyeksportuj backup na zewnątrz.",
-  "en": "Automatic backup: after every workout a JSON file is saved in Files (On My iPhone → Trening → Backup, last 10). Import accepts these files too. These copies are deleted together with the app — before removing it or installing from a different Apple ID, export a backup elsewhere."
+  "en": "Automatic backup: after every workout a JSON file is saved in Files (On My iPhone → Training → Backup, last 10). Import accepts these files too. These copies are deleted together with the app — before removing it or installing from a different Apple ID, export a backup elsewhere."
  },
  {
   "pl": "Kopia jest zachowana w telefonie. Tapnij, by ją wysłać, a potem zaimportuj backup.",
@@ -1795,7 +1795,7 @@
  },
  {
   "pl": "Pliki → Na moim iPhonie → Trening → Backup, ostatnie 10",
-  "en": "Files → On My iPhone → Trening → Backup, last 10"
+  "en": "Files → On My iPhone → Training → Backup, last 10"
  },
  {
   "pl": "Po ukryciu komunikatu kopii nie da się już wysłać z aplikacji — najpierw ją wyślij, jeśli jest potrzebna.",
@@ -2571,7 +2571,7 @@
  },
  {
   "pl": "Trening {v} · dane tylko w telefonie, bez konta i bez sieci. Backup po ważnych sesjach (i przed odnowieniem podpisu).",
-  "en": "Trening {v} · data stays on your phone, no account, no network. Back up after important sessions (and before renewing the signature)."
+  "en": "Training {v} · data stays on your phone, no account, no network. Back up after important sessions (and before renewing the signature)."
  },
  {
   "pl": "Trening jest zawsze włączony. Pozostałe moduły pojawią się w kolejnych wersjach — przełącznik już czeka. Schemat danych: v{v}.",
@@ -2723,7 +2723,7 @@
  },
  {
   "pl": "Usunie ćwiczenia, szablony i całą historię. Przedtem obecne dane zapiszą się jako kopia w Plikach: Trening → Backup (można ją zaimportować).",
-  "en": "This deletes exercises, templates and all history. Your current data is first saved as a copy in Files: Trening → Backup (you can import it)."
+  "en": "This deletes exercises, templates and all history. Your current data is first saved as a copy in Files: Training → Backup (you can import it)."
  },
  {
   "pl": "usunięte",
@@ -2851,7 +2851,7 @@
  },
  {
   "pl": "Włącz powiadomienia dla Trening w Ustawieniach iOS.",
-  "en": "Enable notifications for Trening in iOS Settings."
+  "en": "Enable notifications for Training in iOS Settings."
  },
  {
   "pl": "Wolne ciężary",

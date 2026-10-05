@@ -81,7 +81,7 @@ test('C6 English: żaden ekran nie pokazuje polskich tekstów interfejsu', async
   const s = store.getState(); const tplId = s.templates[0].id; const exId = ex('Bench Press (hantle)').id;
   const pl = /[ąćęłńóśźżĄĆĘŁŃÓŚŹŻ]|\b(serii?|przerwa|Trening|Zakończ|Usuń|Ćwiczeni|pow\.|guma|sen)\b/;
   const leaks: string[] = [];
-  // „Trening” w stopce „Trening 0.8.1 · …” to nazwa aplikacji (marka), nie tekst interfejsu.
+  // Nazwa aplikacji w stopce i w ścieżce Plików to marka (APP_NAME w lib/i18n.ts), nie tekst interfejsu; po angielsku „Training”.
   /* runda 75: także ścieżka w Plikach „On My iPhone → Trening → Backup” (nazwa aplikacji = folder) */
   const check = (where: string) => allTexts().filter(t => pl.test(t.replace(/^Trening \S* ·/, '').replace(/→ Trening →/g, '→'))).forEach(t => leaks.push(`${where}: ${t}`));
   for (const url of ['/', '/templates', '/exercises', '/history', '/more', '/more/settings', '/more/bands', '/more/morning', '/more/progress', '/more/backup', `/template/${tplId}`, `/exercise/${exId}`, '/picker?target=active']) { await go(url); await flushAll(10); check(url); }

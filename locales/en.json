@@ -1,5 +1,5 @@
 {
-  "CFBundleDisplayName": "Trening",
-  "NSHealthShareUsageDescription": "Trening does not read health data — iOS requires this description for the HealthKit permission.",
-  "NSHealthUpdateUsageDescription": "Trening saves finished strength workouts to Apple Health."
+  "CFBundleDisplayName": "Training",
+  "NSHealthShareUsageDescription": "Training does not read health data — iOS requires this description for the HealthKit permission.",
+  "NSHealthUpdateUsageDescription": "Training saves finished strength workouts to Apple Health."
 }

@@ -5,7 +5,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { EN } from '@/lib/i18n.en';
 import { allLabels } from '@/lib/equipment';
-import { LANGS } from '@/lib/i18n';
+import { APP_NAME, LANGS } from '@/lib/i18n';
 import { LOCALES } from '@/lib/locales';
 import { PLURAL_FORMS } from '@/lib/plural';
 
@@ -52,6 +52,15 @@ test('iOS zna wszystkie języki aplikacji: CFBundleLocalizations i opisy uprawni
   for (const l of LANGS) {
     const f = JSON.parse(fs.readFileSync(path.join(__dirname, '..', app.locales[l]), 'utf8'));
     expect([l, Object.keys(f).sort()]).toEqual([l, ['CFBundleDisplayName', 'NSHealthShareUsageDescription', 'NSHealthUpdateUsageDescription']]);
-    expect(f.CFBundleDisplayName).toBe('Trening');
+    expect(f.CFBundleDisplayName).toBe(APP_NAME[l]);
+    expect([l, f.NSHealthShareUsageDescription.includes(APP_NAME[l]), f.NSHealthUpdateUsageDescription.includes(APP_NAME[l])]).toEqual([l, true, true]);
+  }
+});
+
+test('nazwa aplikacji w tekstach = APP_NAME danego języka (bez starej nazwy „Trening” tam, gdzie nazwa jest inna)', () => {
+  for (const l of LANGS) {
+    if (l === 'pl' || APP_NAME[l] === 'Trening') continue;
+    const d: Record<string, string> = l === 'en' ? EN : (LOCALES as Record<string, Record<string, string>>)[l];
+    expect([l, Object.values(d).filter(v => /\bTrening\b/.test(v))]).toEqual([l, []]);
   }
 });

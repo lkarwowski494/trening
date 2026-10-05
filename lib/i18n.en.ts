@@ -29,7 +29,7 @@ export const EN: Record<string, string> = {
   'Zacznij z szablonu': 'Start from a template', 'ćw.': 'ex.', 'ostatnio': 'last', 'Start': 'Start',
   'Powtórz ostatni ({name})': 'Repeat last ({name})', 'bez szablonu': 'no template', 'Pusty trening': 'Empty workout',
   'Podpis ważny do {d}.': 'Signature valid until {d}.',
-  'Trening {v} · dane tylko w telefonie, bez konta i bez sieci. Backup po ważnych sesjach (i przed odnowieniem podpisu).': 'Trening {v} · data stays on your phone, no account, no network. Back up after important sessions (and before renewing the signature).',
+  'Trening {v} · dane tylko w telefonie, bez konta i bez sieci. Backup po ważnych sesjach (i przed odnowieniem podpisu).': 'Training {v} · data stays on your phone, no account, no network. Back up after important sessions (and before renewing the signature).',
 
   /* listy */
   'guma': 'band', 'tempo': 'tempo', '+ Nowe': '+ New', '+ Nowy': '+ New', 'Szukaj…': 'Search…', 'Szukaj ćwiczenia…': 'Search exercises…',
@@ -55,7 +55,7 @@ export const EN: Record<string, string> = {
   'Eksport tworzy plik JSON z całą historią i szablonami — zapisz go w Plikach/iCloud albo wyślij sobie. Import przyjmuje ten sam format, także backup z wersji webowej.': 'Export creates a JSON file with your whole history and templates — save it to Files/iCloud or send it to yourself. Import accepts the same format, including backups from the web version.',
   'Eksportuj backup (plik JSON)': 'Export backup (JSON file)', 'Eksportuj historię do CSV': 'Export history to CSV',
   'CSV: ciężar w jednostce z ustawień ({u}), dystans w metrach.': 'CSV: weight in your unit setting ({u}), distance in metres.',
-  'Importuj backup': 'Import backup', 'Nadpisać dane?': 'Overwrite data?', 'Kopia obejmie też poprzednie, nieczytelne dane.': 'The copy will also include the earlier unreadable data.', 'Import zastąpi wszystkie obecne dane zawartością pliku. Obecne dane (także trening w toku) zapiszą się najpierw jako kopia w Plikach: Trening → Backup.': 'Import will replace all current data with the file contents. Your current data (including a workout in progress) is first saved as a copy in Files: Trening → Backup.', 'Import przerwany': 'Import cancelled', 'Nie udało się zapisać kopii bezpieczeństwa w Plikach — dane nie zostały zmienione.': 'Could not save the safety copy in Files — your data was not changed.',
+  'Importuj backup': 'Import backup', 'Nadpisać dane?': 'Overwrite data?', 'Kopia obejmie też poprzednie, nieczytelne dane.': 'The copy will also include the earlier unreadable data.', 'Import zastąpi wszystkie obecne dane zawartością pliku. Obecne dane (także trening w toku) zapiszą się najpierw jako kopia w Plikach: Trening → Backup.': 'Import will replace all current data with the file contents. Your current data (including a workout in progress) is first saved as a copy in Files: Training → Backup.', 'Import przerwany': 'Import cancelled', 'Nie udało się zapisać kopii bezpieczeństwa w Plikach — dane nie zostały zmienione.': 'Could not save the safety copy in Files — your data was not changed.',
   'Importuj': 'Import', 'Zaimportowano': 'Imported', 'To nie wygląda na backup z tej apki': 'This does not look like a backup from this app',
   'Backup treningów': 'Workout backup', 'Eksport CSV': 'CSV export', 'do upadku': 'to failure',
   'Plik ma schemat {a}, a ta wersja obsługuje do {b}. Zaktualizuj aplikację.': 'The file has schema {a}; this version supports up to {b}. Update the app.',
@@ -89,10 +89,10 @@ export const EN: Record<string, string> = {
   'Brak zgody albo moduł HealthKit nie jest w tej wersji aplikacji (Expo Go go nie ma — potrzebny build IPA).': 'No permission, or HealthKit is not in this build (Expo Go does not include it — an IPA build is needed).',
   'Ekran włączony podczas treningu': 'Keep screen on during workout', 'Sprawdź zgodę na powiadomienia': 'Check notification permission',
   'Powiadomienia działają': 'Notifications work', 'Brak zgody': 'No permission', 'Koniec przerwy da znać nawet na zablokowanym ekranie.': 'The end of rest will alert you even on a locked screen.',
-  'Włącz powiadomienia dla Trening w Ustawieniach iOS.': 'Enable notifications for Trening in iOS Settings.',
+  'Włącz powiadomienia dla Trening w Ustawieniach iOS.': 'Enable notifications for Training in iOS Settings.',
   'Timer odlicza w aplikacji, a na koniec przerwy przychodzi powiadomienie — także przy zablokowanym telefonie.': 'The timer counts down in the app and a notification arrives at the end of rest — even when the phone is locked.', 'wkrótce': 'coming soon',
   'Trening jest zawsze włączony. Pozostałe moduły pojawią się w kolejnych wersjach — przełącznik już czeka. Schemat danych: v{v}.': 'Training is always on. Other modules arrive in later versions — the switch is ready. Data schema: v{v}.',
-  'Wyczyść wszystkie dane': 'Erase all data', 'Na pewno?': 'Are you sure?', 'Usunie ćwiczenia, szablony i całą historię. Przedtem obecne dane zapiszą się jako kopia w Plikach: Trening → Backup (można ją zaimportować).': 'This deletes exercises, templates and all history. Your current data is first saved as a copy in Files: Trening → Backup (you can import it).', 'Dane nie zostały wyczyszczone': 'Data was not erased', 'Wyczyść': 'Erase',
+  'Wyczyść wszystkie dane': 'Erase all data', 'Na pewno?': 'Are you sure?', 'Usunie ćwiczenia, szablony i całą historię. Przedtem obecne dane zapiszą się jako kopia w Plikach: Trening → Backup (można ją zaimportować).': 'This deletes exercises, templates and all history. Your current data is first saved as a copy in Files: Training → Backup (you can import it).', 'Dane nie zostały wyczyszczone': 'Data was not erased', 'Wyczyść': 'Erase',
 
   /* szablon */
   'Nie ma takiego szablonu.': 'Template not found.', 'Duplikuj': 'Duplicate', 'Usunąć szablon?': 'Delete template?',
@@ -191,7 +191,7 @@ export const EN: Record<string, string> = {
   /* runda 75 */
   '↑ spróbuj {n} pow.': '↑ try {n} reps', '↑ spróbuj {v}': '↑ try {v}',
   'Poniedziałek — zważ się i zapisz wagę w porannym wpisie.': 'Monday — weigh yourself and log it in the morning check-in.',
-  'Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → Trening → Backup, ostatnie 10). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego Apple ID wyeksportuj backup na zewnątrz.': 'Automatic backup: after every workout a JSON file is saved in Files (On My iPhone → Trening → Backup, last 10). Import accepts these files too. These copies are deleted together with the app — before removing it or installing from a different Apple ID, export a backup elsewhere.',
+  'Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → Trening → Backup, ostatnie 10). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego Apple ID wyeksportuj backup na zewnątrz.': 'Automatic backup: after every workout a JSON file is saved in Files (On My iPhone → Training → Backup, last 10). Import accepts these files too. These copies are deleted together with the app — before removing it or installing from a different Apple ID, export a backup elsewhere.',
   'Kopia automatyczna po treningu jest wyłączona (Ustawienia).': 'Automatic backup after a workout is off (Settings).',
   'Postęp treningu: {d} z {n} serii': 'Workout progress: {d} of {n} sets',
   '↑ spróbuj bez asysty': '↑ try without assistance',
@@ -207,7 +207,7 @@ export const EN: Record<string, string> = {
   '↑ przy ćwiczeniu, gdy ostatnio wszystkie serie były na górze zakresu powtórzeń': '↑ next to an exercise when last time all sets reached the top of the rep range',
   'Dane i kopie': 'Data and backups',
   'Automatyczna kopia po każdym treningu': 'Automatic backup after every workout',
-  'Pliki → Na moim iPhonie → Trening → Backup, ostatnie 10': 'Files → On My iPhone → Trening → Backup, last 10',
+  'Pliki → Na moim iPhonie → Trening → Backup, ostatnie 10': 'Files → On My iPhone → Training → Backup, last 10',
   'Powiadomienia': 'Notifications',
   'Przypomnienie o wadze': 'Weigh-in reminder',
   'w poniedziałek o 7:00': 'Monday at 7:00',
