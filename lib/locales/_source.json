@@ -497,10 +497,6 @@
   "en": "to"
  },
  {
-  "pl": "do poziomu",
-  "en": "to level"
- },
- {
   "pl": "do upadku",
   "en": "to failure"
  },
@@ -1622,10 +1618,6 @@
   "en": "from"
  },
  {
-  "pl": "od poziomu",
-  "en": "from level"
- },
- {
   "pl": "Odhaczone są tylko serie rozgrzewkowe ({n}). Zapisać taki trening?",
   "en": "Only warm-up sets are ticked ({n}). Save this workout anyway?"
  },
@@ -1967,8 +1959,12 @@
   "en": "Level (1–7)"
  },
  {
-  "pl": "Poziomy gum w tym miejscu (1 = cienka, 7 = bardzo gruba).",
-  "en": "Band levels at this place (1 = thin, 7 = very thick)."
+  "pl": "poziom {n}",
+  "en": "level {n}"
+ },
+ {
+  "pl": "Poziomy gum, które masz w tym miejscu (1 = cienka, 7 = bardzo gruba).",
+  "en": "Band levels you have at this place (1 = thin, 7 = very thick)."
  },
  {
   "pl": "pozycja sprzętu|pozycje sprzętu|pozycji sprzętu",
@@ -2780,6 +2776,10 @@
  {
   "pl": "Usuń gumę",
   "en": "Delete band"
+ },
+ {
+  "pl": "Usuń gumy…",
+  "en": "Delete bands…"
  },
  {
   "pl": "Usuń odznaczone",

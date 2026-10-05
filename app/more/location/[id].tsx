@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { ScrollView, View, Alert, Pressable, Text } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import { Screen, Field, Input, NumInput, Btn, Muted, SwitchRow, useOnce } from '@/components/ui';
+import { Screen, Field, Input, Btn, Muted, SwitchRow, Chip, useOnce } from '@/components/ui';
 import LoadEditor from '@/components/LoadEditor';
-import { getState, useTick, locationById, visibleExercises } from '@/lib/store';
-import { setMainLocation, renameLocation, commitLocationName, duplicateLocation, deleteLocation, canDeleteLocation, setEquip, setOpt, activeEquip, setBandLevels } from '@/lib/locations';
+import { getState, useTick, locationById, visibleExercises, bandColor } from '@/lib/store';
+import { setMainLocation, renameLocation, commitLocationName, duplicateLocation, deleteLocation, canDeleteLocation, setEquip, setOpt, activeEquip, setBandLevel, setBandColor } from '@/lib/locations';
 import type { Location } from '@/lib/seed';
 import { EQUIPMENT, EQUIP_GROUPS, EQUIP_GROUP_LABEL, equipLabel, availability, capsOf } from '@/lib/equipment';
 import { t } from '@/lib/i18n';
@@ -59,16 +59,19 @@ export default function LocationEdit() {
   );
 }
 
-/** Uwaga właściciela 05.10.2026: „Gumy — brak możliwości wybrania zakresu 1–7 w ustawieniach miejsca”. Przy serii przełączają się tylko gumy z zakresu. */
-function BandLevels({ l, levels, label }: { l: Location; levels?: [number, number]; label: string }) {
-  const [a, b] = levels ?? [1, 7]; const clamp = (v: number | '') => v === '' ? null : Math.min(7, Math.max(1, Math.round(v)));
+/** Decyzja właściciela 05.10.2026: gumy w dodawaniu sprzętu — posiadane poziomy 1–7 jak ciężary hantli, kolor przy zaznaczonym poziomie. */
+function BandLevels({ l, levels, label }: { l: Location; levels?: number[]; label: string }) {
+  const router = useRouter(); const bands = getState().bands; const on = levels ?? [...new Set(bands.map(b => b.level))];
   return (
-    <View style={{ marginLeft: 16, marginBottom: 8 }}>
-      <Muted style={{ fontSize: 13, marginTop: 6, marginBottom: 6 }}>{t('Poziomy gum w tym miejscu (1 = cienka, 7 = bardzo gruba).')}</Muted>
-      <View style={{ flexDirection: 'row', gap: 12, alignItems: 'flex-end' }}>
-        <View style={{ width: 110 }}><Field label={t('od poziomu')}><NumInput value={a} accessibilityLabel={`${label}: ${t('od poziomu')}`} onNum={v => { const x = clamp(v); if (x != null) setBandLevels(l, x, b); }} /></Field></View>
-        <View style={{ width: 110 }}><Field label={t('do poziomu')}><NumInput value={b} accessibilityLabel={`${label}: ${t('do poziomu')}`} onNum={v => { const x = clamp(v); if (x != null) setBandLevels(l, a, x); }} /></Field></View>
-      </View>
+    <View style={{ marginLeft: 16, marginBottom: 8, gap: 6 }}>
+      <Muted style={{ fontSize: 13, marginTop: 6 }}>{t('Poziomy gum, które masz w tym miejscu (1 = cienka, 7 = bardzo gruba).')}</Muted>
+      <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 4 }}>{[1, 2, 3, 4, 5, 6, 7].map(n => <Chip key={n} toggle label={String(n)} on={on.includes(n)} a11yLabel={`${label}: ${t('poziom {n}', { n })}`} onPress={() => setBandLevel(l, n, !on.includes(n))} />)}</View>
+      {on.map(n => { const b = bands.find(x => x.level === n); return b ? (
+        <View key={n} style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+          <Muted style={{ width: 70 }}>{t('poziom {n}', { n })}</Muted>
+          <View style={{ flex: 1 }}><Input maxLength={30} selectTextOnFocus placeholder={t('kolor')} accessibilityLabel={`${t('Kolor gumy')}: ${t('poziom {n}', { n })}`} value={b.color ? bandColor(b) : ''} onChangeText={v => setBandColor(n, v)} /></View>
+        </View>) : null; })}
+      <Btn title={t('Usuń gumy…')} small kind="ghost" style={{ alignSelf: 'flex-start' }} onPress={() => router.push('/more/bands')} />
     </View>
   );
 }

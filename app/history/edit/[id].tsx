@@ -91,7 +91,7 @@ function EditBlock({ d, e, ei, labels }: { d: Draft; e: WExercise; ei: number; l
       else if (i === 4) Alert.prompt?.(t('Notatka do serii'), undefined, [{ text: t('Anuluj'), style: 'cancel' }, { text: t('Zapisz'), onPress: (v?: string) => { set.note = clampName((v ?? '').trim(), 300); touchDraft(); } }], 'plain-text', set.note);
     });
   };
-  const cycleBand = (set: WSet) => { set.bandId = nextBandId(set.bandId); touchDraft(); }; /* ten sam cykl co w treningu (store.nextBandId) */
+  const cycleBand = (set: WSet) => { set.bandId = nextBandId(set.bandId, d.w.locationId ?? null); touchDraft(); }; /* ten sam cykl co w treningu (store.nextBandId) */
   /* MEDIUM 2: blok na stacji — „kg/str.” (na stronę). Runda 82b (LOW 4): zapisany trening — przyrząd z zapisu (jak szczegóły sesji, docs/10);
    * nowy trening wstecz — jak trening w toku (bez miejsc przyrząd się nie liczy) */
   const impl = d.sourceId ? blockImpl(e, d.w.locationId) : liveBlockImpl(e, d.w.locationId);

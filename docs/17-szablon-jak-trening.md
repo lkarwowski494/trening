@@ -24,6 +24,9 @@ typu; zmiana typu istniejącej serii — dotknięcie etykiety (menu z nazwami). 
 „Teraz w ustawieniach to oddzielny ekran. To powinno być w dodawaniu sprzętu, a posiadane poziomy od 1 do 7 jak ciężary w hantlach.”
 Wybór: **„Poziomy w miejscu, kolory tam też”** — pod „Gumy oporowe” w miejscu przyciski 1–7 (jak lista ciężarów hantli), przy
 zaznaczonym poziomie opcjonalna nazwa koloru. Ekran „Gumy” w Więcej znika (dane i historia zostają). Zastępuje zakres „od–do” z 7651f64.
+- Wdrożenie: `LocEquip.levels` = lista poziomów; zaznaczenie poziomu bez gumy tworzy gumę; kolor wspólny dla miejsc (ta sama guma);
+  usuwanie gum — „Usuń gumy…” pod gumami w miejscu (dawny ekran). Przycisk gumy w serii: tylko poziomy miejsca treningu; edytor historii —
+  miejsce edytowanego treningu (audyt 7651f64 MEDIUM). Test: `tests/owner-0510c.test.tsx`.
 
 ## 4. Testerzy i publikacja
 „Zrobimy TestFlight, ale jak uznam, że apka jest gotowa. Alternatywnie udostępnimy ją za darmo. Jak będzie zbierać słabe oceny przez

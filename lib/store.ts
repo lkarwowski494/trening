@@ -1261,16 +1261,17 @@ export function moveInGroup<T extends Grouped & { id: string }>(list: T[], id: s
 }
 
 /** Następna guma w cyklu przycisku gumy: brak → najcieńsza → … → najgrubsza → brak (wg poziomu). Jedno źródło dla treningu i edytora historii. */
-/** Gumy (uwaga właściciela 05.10.2026): zakres poziomów 1–7 w miejscu; 1–7 albo zły zapis = bez ograniczenia. */
-export function cleanLevels(item: unknown, v: unknown): [number, number] | undefined {
-  if (item !== 'bands' || !Array.isArray(v) || v.length !== 2 || !v.every(x => typeof x === 'number' && Number.isInteger(x) && x >= 1 && x <= 7)) return undefined;
-  const r: [number, number] = [Math.min(v[0], v[1]), Math.max(v[0], v[1])]; return r[0] === 1 && r[1] === 7 ? undefined : r;
+/** Gumy (decyzja właściciela 05.10.2026): posiadane poziomy 1–7 w miejscu — lista jak ciężary hantli; zły zapis → poprawne wartości albo brak. */
+export function cleanLevels(item: unknown, v: unknown): number[] | undefined {
+  if (item !== 'bands' || !Array.isArray(v)) return undefined;
+  return [...new Set(v.filter((x): x is number => typeof x === 'number' && Number.isInteger(x) && x >= 1 && x <= 7))].sort((p, q) => p - q);
 }
-export function nextBandId(cur: string): string {
-  const st = getState(); const loc = st.active?.locationId ? locationById(st.active.locationId) : undefined; const lv = loc?.equipment.find(e => e.item === 'bands' && !e.off)?.levels;
-  const all = [...st.bands].sort((a, b) => a.level - b.level); const inRange = lv ? all.filter(b => b.level >= lv[0] && b.level <= lv[1]) : all; const sorted = inRange.length ? inRange : all;
+/** Następna guma w cyklu przycisku serii. `locId` — miejsce treningu (audyt 7651f64 MEDIUM: edytor historii podaje miejsce edytowanego treningu). */
+export function nextBandId(cur: string, locId: string | null | undefined = getState().active?.locationId): string {
+  const st = getState(); const loc = locId ? locationById(locId) : undefined; const lv = loc?.equipment.find(e => e.item === 'bands' && !e.off)?.levels;
+  const all = [...st.bands].sort((a, b) => a.level - b.level); const inRange = lv ? all.filter(b => lv.includes(b.level)) : all; const sorted = inRange.length ? inRange : all;
   const cl = all.find(b => b.id === cur); const i = sorted.findIndex(b => b.id === cur);
-  if (i < 0 && cl) { const nx = sorted.find(b => b.level > cl.level); return nx?.id ?? ''; } /* guma spoza zakresu → następna w zakresie */
+  if (i < 0 && cl) { const nx = sorted.find(b => b.level > cl.level); return nx?.id ?? ''; } /* guma spoza miejsca → następna z miejsca */
   return i < 0 ? (sorted[0]?.id ?? '') : (i + 1 < sorted.length ? sorted[i + 1].id : '');
 }
 /**

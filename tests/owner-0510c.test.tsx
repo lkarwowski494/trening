@@ -18,30 +18,39 @@ describe('1) grupy sprzętu zwijane', () => {
 
 import * as store from '@/lib/store';
 import { fresh } from './helpers';
-import { addLocation, setEquip, setBandLevels, activeEquip } from '@/lib/locations';
+import { addLocation, setEquip, setBandLevel, setBandColor, activeEquip } from '@/lib/locations';
 import { availability, capsOf } from '@/lib/equipment';
 
-describe('4) gumy — zakres poziomów w miejscu', () => {
-  const bands = () => { const st = store.getState(); st.bands = [1, 2, 3, 5, 7].map(level => ({ ...st.bands[0] ?? {}, id: 'b' + level, color: 'c' + level, level } as any)); };
-  test('przycisk gumy w serii przełącza tylko gumy z zakresu miejsca treningu; bez zakresu — wszystkie', async () => {
+describe('4) gumy w miejscu — posiadane poziomy 1–7 jak ciężary hantli, kolory przy poziomach (decyzja 05.10.2026)', () => {
+  const bands = () => { const st = store.getState(); st.bands = [1, 2, 3, 5, 7].map(level => ({ ...(st.bands[0] ?? {}), id: 'b' + level, color: 'c' + level, level } as any)); };
+  test('włączenie gum w miejscu zaznacza poziomy posiadanych gum; przycisk gumy przełącza tylko gumy z zaznaczonych poziomów', async () => {
     await fresh(); bands(); const l = addLocation('home'); setEquip(l, 'bands', true);
+    expect(activeEquip(l, 'bands')!.levels).toEqual([1, 2, 3, 5, 7]);
     store.startEmpty(); store.addExerciseToActive(store.getState().exercises.find(e => e.name === 'Pull Up')!); store.setActiveLocation(l.id);
     const s = store.getState().active!.exercises[0].sets[0]; const seq = () => { const out: string[] = []; s.bandId = ''; for (let i = 0; i < 6; i++) { store.cycleBand(s); out.push(s.bandId); } return out; };
     expect(seq()).toEqual(['b1', 'b2', 'b3', 'b5', 'b7', '']);
-    setBandLevels(l, 2, 5); expect(activeEquip(l, 'bands')!.levels).toEqual([2, 5]);
+    setBandLevel(l, 1, false); setBandLevel(l, 7, false); expect(activeEquip(l, 'bands')!.levels).toEqual([2, 3, 5]);
     expect(seq()).toEqual(['b2', 'b3', 'b5', '', 'b2', 'b3']);
-    setBandLevels(l, 6, 3); expect(activeEquip(l, 'bands')!.levels).toEqual([3, 6]); /* odwrócony zakres → posortowany */
-    setBandLevels(l, 0, 9); expect(activeEquip(l, 'bands')!.levels).toBeUndefined(); /* 1–7 = bez ograniczenia */
   });
-  test('zakres zapisany i odczytany (migracja nie gubi), zły zakres odrzucony; ekran miejsca pokazuje pola od–do', async () => {
-    await fresh(); const l = addLocation('home'); setEquip(l, 'bands', true); setBandLevels(l, 2, 4); await store.flush();
-    const raw = JSON.parse(JSON.stringify(store.getState())); raw.settings.locations[0].equipment.push({ item: 'bands', opts: [] });
+  test('zaznaczenie poziomu bez gumy tworzy gumę tego poziomu; kolor edytowany w miejscu; edytor historii używa miejsca edytowanego treningu (audyt MEDIUM)', async () => {
+    await fresh(); bands(); const l = addLocation('home'); setEquip(l, 'bands', true);
+    setBandLevel(l, 4, true); const b4 = store.getState().bands.find(b => b.level === 4)!; expect(b4).toBeTruthy(); expect(activeEquip(l, 'bands')!.levels).toEqual([1, 2, 3, 4, 5, 7]);
+    setBandColor(4, 'zielona'); expect(store.getState().bands.find(b => b.level === 4)!.color).toBe('zielona');
+    setBandLevel(l, 1, false); setBandLevel(l, 2, false); setBandLevel(l, 3, false); setBandLevel(l, 7, false);
+    expect(store.nextBandId('', l.id)).toBe(b4.id); expect(store.nextBandId('', null)).toBe('b1'); /* bez miejsca — wszystkie */
+  });
+  test('zapis/odczyt: lista poziomów przetrwa migrację; zły zapis odrzucony; ekran miejsca: przyciski 1–7 i kolory zaznaczonych', async () => {
+    await fresh(); bands(); const l = addLocation('home'); setEquip(l, 'bands', true); setBandLevel(l, 7, false); await store.flush();
     await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())) });
-    expect(store.getState().settings.locations[0].equipment.find(e => e.item === 'bands')!.levels).toEqual([2, 4]);
-    const bad = JSON.parse(JSON.stringify(store.getState())); bad.settings.locations[0].equipment.find((e: any) => e.item === 'bands').levels = ['x', 99];
-    await renderApp({ saved: bad }); expect(store.getState().settings.locations[0].equipment.find(e => e.item === 'bands')!.levels).toBeUndefined();
+    expect(store.getState().settings.locations[0].equipment.find(e => e.item === 'bands')!.levels).toEqual([1, 2, 3, 5]);
+    const bad = JSON.parse(JSON.stringify(store.getState())); bad.settings.locations[0].equipment.find((e: any) => e.item === 'bands').levels = ['x', 99, 3, 3];
+    await renderApp({ saved: bad }); expect(store.getState().settings.locations[0].equipment.find(e => e.item === 'bands')!.levels).toEqual([3]);
     await go(`/more/location/${store.getState().settings.locations[0].id}`); await flushAll(10); await tap(screen.getByLabelText('Akcesoria'));
-    expect(screen.getByLabelText('Gumy oporowe: od poziomu')).toBeTruthy(); expect(screen.getByLabelText('Gumy oporowe: do poziomu')).toBeTruthy();
+    for (let i = 1; i <= 7; i++) expect(screen.getByLabelText(`Gumy oporowe: poziom ${i}`)).toBeTruthy();
+    expect(screen.getByLabelText('Kolor gumy: poziom 3')).toBeTruthy();
+  });
+  test('ekran „Gumy” zniknął z Więcej', async () => {
+    await renderApp(); await go('/more'); await flushAll(10); expect(screen.queryByText('Gumy')).toBeNull();
   });
 });
 

@@ -45,15 +45,23 @@ export const activeEquip = (l: Location, item: string): LocEquip | undefined => 
  * Audyt M5: odznaczenie nie kasuje ciężarów i opcji — pozycja dostaje znacznik off, a ponowne zaznaczenie przywraca ją jak była. */
 export function setEquip(l: Location, item: string, on: boolean) {
   if (!equipById(item)) return; const has = equipOf(l, item);
-  if (on && !has) l.equipment.push(equipEntry(item, getState().settings.unit)); else if (on && has?.off) delete has.off; else if (!on && has && !has.off) has.off = true; else return;
+  if (on && !has) { const e = equipEntry(item, getState().settings.unit); if (item === 'bands') e.levels = cleanLevels('bands', getState().bands.map(b => b.level)); l.equipment.push(e); } else if (on && has?.off) delete has.off; else if (!on && has && !has.off) has.off = true; else return;
   locationEdited(l);
 }
 export function setOpt(l: Location, item: string, opt: string, on: boolean) {
   const e = activeEquip(l, item); const x = equipById(item); if (!e || !x?.options?.some(o => o.id === opt)) return;
   e.opts = on ? [...new Set([...e.opts, opt])] : e.opts.filter(o => o !== opt); locationEdited(l);
 }
-/** Gumy: zakres poziomów w miejscu (od–do, 1–7). */
-export function setBandLevels(l: Location, from: number, to: number) { const e = activeEquip(l, 'bands'); if (!e) return; const lv = cleanLevels('bands', [Math.round(from), Math.round(to)]); if (lv) e.levels = lv; else delete e.levels; locationEdited(l); }
+/** Gumy w miejscu (decyzja 05.10.2026): zaznaczenie poziomu 1–7; poziom bez gumy w katalogu gum tworzy gumę tego poziomu. */
+export function setBandLevel(l: Location, level: number, on: boolean) {
+  const e = activeEquip(l, 'bands'); if (!e || !Number.isInteger(level) || level < 1 || level > 7) return; const st = getState();
+  const cur = e.levels ?? [...new Set(st.bands.map(b => b.level))];
+  e.levels = cleanLevels('bands', on ? [...cur, level] : cur.filter(x => x !== level));
+  if (on && !st.bands.some(b => b.level === level)) st.bands.push({ ...base(st.ownerId), color: t('nowa'), level });
+  locationEdited(l);
+}
+/** Kolor gumy danego poziomu (wspólny dla miejsc — to ta sama guma). */
+export function setBandColor(level: number, color: string) { const b = getState().bands.find(x => x.level === level); if (!b) return; b.color = color; save(b); }
 export function setLoad(l: Location, item: string, spec: LoadSpec) { const e = activeEquip(l, item); if (!e) return; e.load = spec; locationEdited(l); }
 /** Nazwa miejsca do wyświetlenia; id usuniętego miejsca → „(usunięte miejsce)”. */
 export const locationLabel = (id: string | null | undefined) => locationById(id)?.name ?? t('(usunięte miejsce)');

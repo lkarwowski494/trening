@@ -17,7 +17,7 @@ export default function MoreScreen() {
       <View style={{ marginVertical: 10 }}><H1>{t('Więcej')}</H1></View>
       <Item title={t('Postępy')} onPress={() => router.push('/more/progress')} />
       <Item title={t('Miejsca i sprzęt')} onPress={() => router.push('/more/locations')} /* decyzja 05.10.2026: osobna pozycja, nie tylko w Ustawieniach */ />
-      <Item title={t('Gumy')} onPress={() => router.push('/more/bands')} />
+      {/* decyzja 05.10.2026: gumy w dodawaniu sprzętu (Miejsca i sprzęt → Gumy oporowe); ekran /more/bands zostaje dla usuwania gum */}
       <Item title={t('Backup (eksport / import)')} onPress={() => router.push('/more/backup')} />
       <Item title={t('Ustawienia')} onPress={() => router.push('/more/settings')} />
       <Muted style={{ marginTop: 20, fontSize: 13 }}>{t('Trening {v} · dane tylko w telefonie, bez konta i bez sieci. Backup po ważnych sesjach (i przed odnowieniem podpisu).', { v: Constants.expoConfig?.version ?? '' })}{expTxt}</Muted>
