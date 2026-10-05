@@ -1,4 +1,6 @@
 import { EN } from './i18n.en';
+import { LOCALES } from './locales';
+import { pluralIndex } from './plural';
 
 /*
  * Języki (T-040, LOC-01, ADR-027). Kluczem jest polski tekst źródłowy — kod czyta się jak dotąd,
@@ -9,48 +11,58 @@ import { EN } from './i18n.en';
  * je tylko warstwa wyświetlania (t(wartość)), więc zmiana języka nie wymaga migracji danych.
  */
 
-export type Lang = 'pl' | 'en';
+/** Języki aplikacji (decyzja właściciela 05.10.2026: Europa Środkowo-Wschodnia + hiszpański i portugalski). Kolejność = lista w ustawieniach. */
+export const LANGS = ['pl', 'en', 'cs', 'sk', 'hu', 'ro', 'bg', 'hr', 'sl', 'sr', 'lt', 'lv', 'et', 'uk', 'es', 'pt'] as const;
+export type Lang = typeof LANGS[number];
 export type LangSetting = 'auto' | Lang;
+/** Nazwa języka w nim samym (lista w ustawieniach). */
+export const LANG_NAME: Record<Lang, string> = { pl: 'Polski', en: 'English', cs: 'Čeština', sk: 'Slovenčina', hu: 'Magyar', ro: 'Română', bg: 'Български', hr: 'Hrvatski', sl: 'Slovenščina', sr: 'Српски', lt: 'Lietuvių', lv: 'Latviešu', et: 'Eesti', uk: 'Українська', es: 'Español', pt: 'Português' };
+/** Domyślny tag regionu do dat i liczb, gdy telefon ma inny region. */
+const TAG: Record<Lang, string> = { pl: 'pl-PL', en: 'en-US', cs: 'cs-CZ', sk: 'sk-SK', hu: 'hu-HU', ro: 'ro-RO', bg: 'bg-BG', hr: 'hr-HR', sl: 'sl-SI', sr: 'sr-RS', lt: 'lt-LT', lv: 'lv-LV', et: 'et-EE', uk: 'uk-UA', es: 'es-ES', pt: 'pt-PT' };
+export const isLang = (x: unknown): x is Lang => typeof x === 'string' && (LANGS as readonly string[]).includes(x);
 
 let deviceTag = 'pl-PL';
 let current: Lang = 'pl';
 
-/** Język systemu: polski → pl, każdy inny → en. Bez modułu natywnego (testy) → pl. */
+/** Język systemu: obsługiwany → ten, każdy inny → angielski. Bez modułu natywnego (testy) → pl. */
 export function detectLang(): Lang {
   try {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     const loc = (require('expo-localization') as typeof import('expo-localization')).getLocales()[0];
     deviceTag = loc?.languageTag || deviceTag;
-    return loc?.languageCode === 'pl' ? 'pl' : 'en';
+    return isLang(loc?.languageCode) ? loc!.languageCode as Lang : 'en';
   } catch { return 'pl'; }
 }
 /** Język z ustawień; tag urządzenia czytany zawsze (także przy wymuszonym języku — np. English na brytyjskim telefonie → daty en-GB). */
-export function applyLang(setting: LangSetting | undefined) { const sys = detectLang(); current = !setting || setting === 'auto' ? sys : setting; }
+export function applyLang(setting: LangSetting | undefined) { const sys = detectLang(); current = !setting || setting === 'auto' || !isLang(setting) ? sys : setting; }
 export const lang = () => current;
-/** Locale do dat i liczb: pl-PL albo angielski tag urządzenia (en-GB, en-US…), domyślnie en-US. */
-export const locale = () => current === 'pl' ? 'pl-PL' : (deviceTag.startsWith('en') ? deviceTag : 'en-US');
+/** Locale do dat i liczb: region telefonu, gdy pasuje do języka (en-GB, pt-BR…), inaczej domyślny region języka. */
+export const locale = () => current === 'pl' ? 'pl-PL' : deviceTag.toLowerCase().startsWith(current) ? deviceTag : TAG[current];
 
-/** Tłumaczenie z interpolacją {nazwa}. */
 /** Runda 55: tylko własne klucze słownika (tekst „constructor” nie zwraca funkcji). */
-const enOf = (k: string): string | undefined => Object.prototype.hasOwnProperty.call(EN, k) ? EN[k] : undefined;
+const own = (d: Record<string, string> | undefined, k: string): string | undefined => d && Object.prototype.hasOwnProperty.call(d, k) ? d[k] : undefined;
+const dictOf = (l: Lang): Record<string, string> | undefined => l === 'en' ? EN : LOCALES[l];
+/** Tekst w języku `l`: polski — klucz; inne — słownik języka, brak → angielski, brak → polski. */
+function lookup(l: Lang, pl: string): string { return l === 'pl' ? pl : own(dictOf(l), pl) ?? own(EN, pl) ?? pl; }
+const enOf = (k: string): string | undefined => own(EN, k);
+/** Tłumaczenie z interpolacją {nazwa}. */
 export function t(pl: string, params?: Record<string, string | number>): string {
-  let s = current === 'en' ? (enOf(pl) ?? pl) : pl;
+  let s = lookup(current, pl);
   if (params) for (const k of Object.keys(params)) s = s.split(`{${k}}`).join(String(params[k]));
   return s;
 }
+/** Etykieta zapisana parą {pl, en} (sprzęt, presety): polski / angielski wprost, inne języki — słownik po polskim tekście, brak → angielski. */
+export function lbl(x: { pl: string; en: string }): string { return current === 'pl' ? x.pl : current === 'en' ? x.en : own(LOCALES[current], x.pl) ?? x.en; }
 
 /**
- * Liczebnik: formy polskie 'jeden|kilka|wiele' (np. 'sesja|sesje|sesji'), angielskie w słowniku 'one|other'.
- * Zwraca samo słowo — liczbę wstawia wywołujący.
+ * Liczebnik: formy polskie 'jeden|kilka|wiele' (np. 'sesja|sesje|sesji'); w słownikach innych języków formy w kolejności
+ * z lib/plural.ts PLURAL_FORMS (np. cs 'one|few|other'). Zwraca samo słowo — liczbę wstawia wywołujący.
  */
 export function tp(n: number, forms: string): string {
-  const abs = Math.abs(n);
-  if (!Number.isInteger(abs)) { if (current === 'en') { const f = (enOf(forms) ?? forms).split('|'); return f[1] ?? f[0]; } return forms.split('|')[2] ?? forms; } // ułamki: „2,5 serii”
-  if (current === 'en') { const [one, other] = (enOf(forms) ?? forms).split('|'); return abs === 1 ? one : (other ?? one); }
-  const [one, few, many] = forms.split('|');
-  if (abs === 1) return one;
-  const d = abs % 10, dd = abs % 100;
-  return d >= 2 && d <= 4 && (dd < 12 || dd > 14) ? few : many;
+  const pick = (l: Lang, v: string) => { const f = v.split('|'); return f[Math.min(pluralIndex(l, n), f.length - 1)]; };
+  if (current === 'pl') return pick('pl', forms);
+  const mine = own(dictOf(current), forms); if (mine) return pick(current, mine);
+  const en = enOf(forms); return en ? pick('en', en) : pick('pl', forms);
 }
 
 /* ---------- nazwy ćwiczeń z biblioteki ---------- */
@@ -64,7 +76,7 @@ const EX_PAREN: Record<string, string> = { 'sztanga': 'Barbell', 'hantle': 'Dumb
 /** Nazwa ćwiczenia do wyświetlenia. Ćwiczenia własne i przemianowane pokazujemy tak, jak je nazwał użytkownik. */
 export function exName(e: { name: string; lib?: boolean } | undefined | null): string {
   if (!e) return '?';
-  if (current !== 'en' || !e.lib) return e.name;
+  if (current === 'pl' || !e.lib) return e.name; /* inne języki: nazwy biblioteki po angielsku (jak na siłowniach) */
   { const f = Object.prototype.hasOwnProperty.call(EX_FULL, e.name) ? EX_FULL[e.name] : undefined; if (f) return f; }
   return e.name.replace(/\(([^)]+)\)/g, (m, inner: string) => Object.prototype.hasOwnProperty.call(EX_PAREN, inner) ? `(${EX_PAREN[inner]})` : m);
 }
@@ -72,8 +84,8 @@ export function exName(e: { name: string; lib?: boolean } | undefined | null): s
 // Język systemu od razu przy starcie modułu — ekran błędu startu (zanim wczytają się ustawienia) też jest przetłumaczony (runda 3).
 applyLang('auto');
 
-/** Runda 32: porównanie w wyszukiwaniu bez wielkości liter i polskich znaków („lydki” znajduje „Łydki”). */
-const FOLD: Record<string, string> = { ą: 'a', ć: 'c', ę: 'e', ł: 'l', ń: 'n', ó: 'o', ś: 's', ź: 'z', ż: 'z' };
-export const fold = (s: string) => s.toLowerCase().replace(/[ąćęłńóśźż]/g, ch => FOLD[ch] ?? ch).replace(/\s+/g, ' ').trim();
+/** Runda 32: porównanie w wyszukiwaniu bez wielkości liter i znaków diakrytycznych („lydki” znajduje „Łydki”, „cestina” — „Čeština”). */
+const FOLD: Record<string, string> = { ł: 'l', đ: 'd', ø: 'o', ß: 'ss' };
+export const fold = (s: string) => s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[łđøß]/g, ch => FOLD[ch] ?? ch).replace(/\s+/g, ' ').trim();
 /** Runda 36: tekst w konkretnym języku danych (ustawienie 'auto' → język telefonu), niezależnie od bieżącego języka ekranu. */
-export function tIn(setting: unknown, pl: string): string { const l = setting === 'pl' || setting === 'en' ? setting : detectLang(); return l === 'en' ? (enOf(pl) ?? pl) : pl; }
+export function tIn(setting: unknown, pl: string): string { const l = isLang(setting) ? setting : detectLang(); return lookup(l, pl); }

@@ -11,11 +11,11 @@ describe('T4b flows', () => {
   test('language switch during rest: scheduled rest + stale notifications are rescheduled in the new language', async () => {
     await renderApp();
     await act(async () => { store.startEmpty(); store.addExerciseToActive(ex('Back Squat')); }); await flushAll(10);
-    await act(async () => { await timer.start(120); }); await flushAll(10);
+    await act(async () => { await timer.start(600); }); await flushAll(10); /* 05.10.2026: każde przejście ekranu w testach przesuwa zegar ~60 s — przerwa musi przetrwać dwa */
     expect(notes('rest-end').pop().content.title).toBe('Przerwa minęła');
     expect(notes('stale-reminder').pop().content.title).toBe('Trening wciąż trwa');
     await go('/more/settings'); await flushAll(10);
-    await tap(screen.getByText('English')); await flushAll(10);
+    await tap(screen.getByText('Język')); await flushAll(5); await tap(screen.getByText('English')); await flushAll(10); /* 05.10.2026: wybór języka na osobnej liście */ await flushAll(10);
     // pending notifications still carry the Polish text that will be shown in 2 min / 2 h
     expect(notes('rest-end').pop().content.title).toBe('Rest is over');
     expect(notes('stale-reminder').pop().content.title).not.toBe('Trening wciąż trwa');

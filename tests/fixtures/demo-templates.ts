@@ -22,5 +22,5 @@ export function demoTemplates(exercises: Exercise[], lng: Lang = 'pl'): Template
     const e = byName.get(n); if (!e) throw new Error('demo template: no exercise ' + n);
     return { id: uid(), exerciseId: e.id, sets, repMin: min, repMax: max, restSec: rest, startWeight: w, targetSec: '', groupId: null };
   };
-  return DEMO_TEMPLATES.map(t => ({ ...base(), name: t.name[lng], items: t.items.map(it) }));
+  return DEMO_TEMPLATES.map(t => ({ ...base(), name: t.name[lng === 'pl' ? 'pl' : 'en'], items: t.items.map(it) }));
 }

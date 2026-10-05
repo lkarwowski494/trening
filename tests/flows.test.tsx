@@ -140,7 +140,7 @@ test('B12 ustawienia: przełącznik po jednym tapnięciu, English, funty', async
   const rpe = screen.getByLabelText('RPE / RIR przy serii'); expect(rpe.props.accessibilityState.checked).toBe(false); /* P-002: przełącznik iOS */
   await act(async () => { require('@testing-library/react-native').fireEvent(rpe, 'valueChange', true); }); expect(store.getState().settings.showRpe).toBe(true); expect(screen.getByLabelText('RPE / RIR przy serii').props.accessibilityState.checked).toBe(true);
   await tap(screen.getByText('lb')); expect(store.getState().settings.unit).toBe('lb');
-  await tap(screen.getByText('English')); expect(await screen.findByText('Language')).toBeTruthy();
+  await tap(screen.getByText('Język')); await flushAll(5); await tap(screen.getByText('English')); await flushAll(10); /* 05.10.2026: wybór języka na osobnej liście */ expect(await screen.findByText('Language')).toBeTruthy();
 });
 
 test('B13 gumy: pusty kolor nie wywraca treningu z gumą', async () => {

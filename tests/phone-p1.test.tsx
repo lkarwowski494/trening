@@ -47,7 +47,7 @@ describe('P-002 ustawienia: przełączniki iOS, segmenty, grupy', () => {
     await renderApp(); await go('/more/settings'); await flushAll(10);
     expect(screen.getByLabelText('kg').props.accessibilityState.selected).toBe(true);
     await tap(screen.getByText('lb')); expect(store.getState().settings.unit).toBe('lb'); expect(screen.getByLabelText('lb').props.accessibilityState.selected).toBe(true);
-    await tap(screen.getByText('English')); expect(await screen.findByText('Language')).toBeTruthy(); expect(screen.getByText('General')).toBeTruthy();
+    await tap(screen.getByText('Język')); await flushAll(5); await tap(screen.getByText('English')); await flushAll(10); /* 05.10.2026: wybór języka na osobnej liście */ expect(await screen.findByText('Language')).toBeTruthy(); expect(screen.getByText('General')).toBeTruthy();
     await tap(screen.getByText('kg')); expect(store.getState().settings.unit).toBe('kg');
   });
 });

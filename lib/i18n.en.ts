@@ -291,4 +291,5 @@ export const EN: Record<string, string> = {
   'barki — przód': 'front delts', 'barki — bok': 'side delts', 'barki — tył': 'rear delts', 'najszersze grzbietu': 'lats', 'góra pleców': 'upper back', 'prostowniki grzbietu': 'lower back', 'brzuch': 'abs', 'skośne brzucha': 'obliques', 'przywodziciele': 'adductors', 'odwodziciele': 'abductors', 'szyja': 'neck',
   'Pokaż więcej ({n})': 'Show more ({n})', 'Pokaż więcej ćwiczeń: zostało {n}': 'Show more exercises: {n} left',
   'Miejsca i sprzęt': 'Places and equipment',
+  '{name}, wybrany': '{name}, selected', 'Nazwy ćwiczeń z biblioteki są po angielsku we wszystkich językach poza polskim.': 'Library exercise names are in English in all languages except Polish.',
 };

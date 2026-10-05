@@ -2,7 +2,7 @@ import { getState, save, flush, locationById, clampName, NAME_MAX, locationEquip
 import { base, type Location, type LocEquip } from './seed';
 import { presetEquipment, equipEntry, equipById, LOCATION_PRESET_LABEL, type LocationPreset } from './equipment';
 import { type LoadSpec } from './loads';
-import { t, lang } from './i18n';
+import { t, lbl } from './i18n';
 
 /*
  * P-003 E1: operacje na miejscach treningu (Ustawienia → Miejsca treningu). Każda zmiana zapisuje się od razu (antywzorzec
@@ -13,7 +13,7 @@ const uniqueName = (name: string) => { const names = new Set(getState().settings
 /** Nowe miejsce z presetu; pierwsze miejsce staje się główne. */
 export function addLocation(preset: LocationPreset, name?: string): Location {
   const st = getState(); const s = st.settings;
-  const label = LOCATION_PRESET_LABEL[preset]; const l: Location = { ...base(st.ownerId), name: uniqueName(clampName(name ?? (lang() === 'en' ? label.en : label.pl))), equipment: presetEquipment(preset, s.unit) };
+  const label = LOCATION_PRESET_LABEL[preset]; const l: Location = { ...base(st.ownerId), name: uniqueName(clampName(name ?? lbl(label))), equipment: presetEquipment(preset, s.unit) };
   s.locations.push(l); if (!s.mainLocationId || !locationById(s.mainLocationId)) s.mainLocationId = l.id;
   save(); return l;
 }

@@ -44,7 +44,7 @@ describe('T4b more', () => {
     await renderApp();
     await act(async () => { store.startEmpty(); store.addExerciseToActive(ex('Back Squat')); }); await flushAll(10);
     await go('/more/settings'); await flushAll(10);
-    await tap(screen.getByText('English')); await flushAll(10);
+    await tap(screen.getByText('Język')); await flushAll(5); await tap(screen.getByText('English')); await flushAll(10); /* 05.10.2026: wybór języka na osobnej liście */ await flushAll(10);
     const n = (global.__notifications as any[]).filter(x => x.identifier === 'stale-reminder').pop();
     expect(n.content.title).toBe('Workout still in progress');
   });

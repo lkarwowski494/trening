@@ -1,6 +1,6 @@
 import { CATALOG_CAPS, type LoadSource } from './catalog.generated';
 import { achievable, rangeValues, type LoadSpec, type LoadUnit } from './loads';
-import { lang } from './i18n';
+import { lbl } from './i18n';
 import type { Exercise, Location, LocEquip, LoadMode, Impl } from './seed';
 
 /*
@@ -59,7 +59,7 @@ export const CAP_LABEL: Record<string, L> = {
   'log_bar': { pl: 'kłoda (log)', en: 'log bar' }, 'keg': { pl: 'beczka (keg)', en: 'keg' }, 'axle_bar': { pl: 'gryf gruby (axle)', en: 'axle bar' }, 'farmers_handles': { pl: 'uchwyty farmerskie', en: "farmer's handles" },
   'rickshaw': { pl: 'riksza', en: 'rickshaw' },
 };
-export const capLabel = (c: string) => { const l = Object.prototype.hasOwnProperty.call(CAP_LABEL, c) ? CAP_LABEL[c] : undefined; return l ? (lang() === 'en' ? l.en : l.pl) : c; };
+export const capLabel = (c: string) => { const l = Object.prototype.hasOwnProperty.call(CAP_LABEL, c) ? CAP_LABEL[c] : undefined; return l ? lbl(l) : c; };
 
 export const EQUIP_GROUPS = ['free', 'benches', 'bars', 'cables', 'machines', 'accessories', 'cardio', 'strongman'] as const;
 export type EquipGroup = typeof EQUIP_GROUPS[number];
@@ -182,7 +182,7 @@ export const EQUIPMENT: readonly EquipItem[] = [
 ];
 const BY_ID = new Map(EQUIPMENT.map(x => [x.id, x]));
 export const equipById = (id: string) => BY_ID.get(id);
-export const equipLabel = (x: L) => lang() === 'en' ? x.en : x.pl;
+export const equipLabel = (x: L) => lbl(x);
 
 /* ---------- ciężary: domyślne opisy i presety modeli (wartości ze źródeł w dokumencie; reszta do wpisania przez użytkownika) ---------- */
 const listOf = (vals: number[], unit: LoadUnit = 'kg'): LoadSpec => ({ kind: 'list', unit, items: vals.map(w => ({ w, on: true })) });
@@ -252,6 +252,12 @@ export function fillGym(loc: Pick<Location, 'equipment'>, unit: LoadUnit = 'kg')
   for (const id of GYM_FILL.items) if (!have.has(id) && equipById(id)) loc.equipment.push(equipEntry(id, unit, true));
   for (const e of loc.equipment) if (!e.off) for (const o of GYM_FILL.opts[e.item] ?? []) if (!e.opts.includes(o)) e.opts.push(o); /* audyt 05.10 (LOW): tylko zaznaczone wyciągi */
   return true;
+}
+
+/** Wszystkie etykiety {pl, en} sprzętu i presetów — źródło tłumaczeń na inne języki (lib/locales/_source.json). */
+export function allLabels(): L[] {
+  return [...Object.values(CAP_LABEL), ...Object.values(EQUIP_GROUP_LABEL), ...EQUIPMENT.flatMap(x => [x, ...(x.options ?? [])]), ...LOAD_PRESETS.map(p => p.label),
+    ...Object.values(LOCATION_PRESET_LABEL), ...Object.values(LOCATION_PRESET_HINT)].map(x => ({ pl: x.pl, en: x.en }));
 }
 
 /* ---------- dostępność ---------- */

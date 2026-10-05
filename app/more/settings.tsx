@@ -8,17 +8,16 @@ import { MODULES, MODULE_LABEL, MODULES_AVAILABLE, SCHEMA_VERSION } from '@/lib/
 import * as timer from '@/lib/timer';
 import { safetyBackup, safetyRecoveryNote } from '@/lib/backup';
 import * as health from '@/lib/health';
-import { t, type LangSetting } from '@/lib/i18n';
+import { t, LANG_NAME, type Lang } from '@/lib/i18n';
 import { type Unit } from '@/lib/units';
 
-const LANGS: [LangSetting, string][] = [['auto', 'Jak w telefonie'], ['pl', 'Polski'], ['en', 'English']];
 
 export default function SettingsScreen() {
   useTick(); const s = getState().settings; const router = useRouter(); const mainLoc = s.locations.find(l => l.id === s.mainLocationId);
   return (
     <Screen><ScrollView keyboardShouldPersistTaps="handled" automaticallyAdjustKeyboardInsets contentContainerStyle={{ paddingVertical: 10, paddingBottom: 60 }}>
       <SectionTitle>{t('Ogólne')}</SectionTitle>
-      <Field label={t('Język')}><Segmented label={t('Język')} options={LANGS.map(([k, label]) => [k, k === 'auto' ? t(label) : label] as [LangSetting, string])} value={(s.language ?? 'auto') as LangSetting} onChange={k => { s.language = k; applyPrefs(); save(); timer.refreshScheduled().catch(() => {}); /* T4b: zaplanowane powiadomienia w nowym języku */ }} /></Field>
+      <Item title={t('Język')} sub={s.language && s.language !== 'auto' ? LANG_NAME[s.language as Lang] : t('Jak w telefonie')} onPress={() => router.push('/more/language')} /* 05.10.2026: 16 języków — osobna lista */ />
       <Field label={t('Jednostka ciężaru')}><Segmented label={t('Jednostka ciężaru')} options={[['kg', 'kg'], ['lb', 'lb']] as [Unit, string][]} value={(s.unit ?? 'kg') as Unit} onChange={u => { s.unit = u; applyPrefs(); save(); }} /></Field>
 
       <SectionTitle>{t('Trening')}</SectionTitle>

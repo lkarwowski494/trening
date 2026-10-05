@@ -15,7 +15,7 @@ export default function ExerciseEdit() {
   const initialName = useRef(exById(id!)?.name ?? '');
   const e = exById(id!); if (!e) return <Screen><Muted>{t('Nie ma takiego ćwiczenia.')}</Muted></Screen>;
   const p = previousFor(e.id);
-  const translated = lang() === 'en' && exName(e) !== e.name;
+  const translated = lang() !== 'pl' && exName(e) !== e.name;
   return (
     <Screen><ScrollView keyboardShouldPersistTaps="handled" automaticallyAdjustKeyboardInsets contentContainerStyle={{ paddingVertical: 10, paddingBottom: 120 }}>
       <Field label={t('Nazwa')}><Input selectTextOnFocus maxLength={80} value={e.name} onChangeText={v => { e.name = v; save(e); }} onEndEditing={() => { const n = e.name.replace(/\s+/g, ' ').trim(); if (!n) { e.name = initialName.current || t('Nowe ćwiczenie'); save(e); } else { if (n !== e.name) { e.name = n; save(e); } initialName.current = n; /* runda 49 */ } }} /></Field>
