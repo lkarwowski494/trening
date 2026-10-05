@@ -64,3 +64,11 @@ test('nazwa aplikacji w tekstach = APP_NAME danego języka (bez starej nazwy „
     expect([l, Object.values(d).filter(v => /\bTrening\b/.test(v))]).toEqual([l, []]);
   }
 });
+
+test('nazwy w App Store (store/app-store-names.json): max 30 znaków, przed dwukropkiem APP_NAME języka', () => {
+  const { names } = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'store', 'app-store-names.json'), 'utf8')) as { names: Record<string, string> };
+  const lang = (loc: string) => loc.split('-')[0] as (typeof LANGS)[number];
+  for (const [loc, name] of Object.entries(names)) {
+    expect([loc, LANGS.includes(lang(loc)), [...name].length <= 30, name.startsWith(`${APP_NAME[lang(loc)]}: `)]).toEqual([loc, true, true, true]);
+  }
+});
