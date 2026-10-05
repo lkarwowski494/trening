@@ -77,6 +77,10 @@ name: Edycja historii i trening wstecz
 - extendedWaitUntil: { visible: "Cancel", timeout: 30000 }
 - assertVisible: "Save"
 - takeScreenshot: 15-edytor-treningu-wstecz
+# 05.10.2026: nowe ćwiczenie w szablonie nie ma już domyślnego zakresu 8–10 (zakres opcjonalny), więc trening wstecz bez wcześniejszej sesji
+# ma puste powtórzenia — wpisujemy wynik pierwszej serii (testID reps-<blok>-<seria> w app/history/edit/[id].tsx); „Save” w nagłówku nad klawiaturą.
+- tapOn: { id: "reps-0-0" }
+- inputText: "8"
 - tapOn: "Save"
 # Szablon testowy nie ma ciężaru startowego — serie bez ciężaru („Sets without weight: n.”), więc spodziewany Alert „Save changes?”
 - tapOn: { text: "Save", below: "Save changes\\?", optional: true }

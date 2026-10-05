@@ -100,3 +100,10 @@ describe('audyt 85364ad', () => {
     store.tplRemoveRow(t, it.id, 'nie:0'); expect(it.rows!.length).toBe(4);
   });
 });
+
+test('trening wstecz z szablonu: typy i wartości z wierszy szablonu (jak start treningu), gdy brak wcześniejszej sesji', async () => {
+  await fresh(); const t = tplWith('Bench Press (sztanga)', { repMin: null, repMax: null }); const it = t.items[0] as import('@/lib/seed').TemplateItem;
+  store.tplAddRow(t, it.id, 'warmup'); store.tplSetRow(t, it.id, it.rows![0].id, { weight: 40, reps: 10 }); store.tplSetRow(t, it.id, it.rows![1].id, { reps: 8 });
+  const { beginPast } = require('@/lib/edit'); const d = beginPast('tq', Date.now() - 3 * 86400000, Date.now() - 3 * 86400000 + 3600000);
+  expect(d.w.exercises[0].sets.map((s: any) => [s.kind, s.weight, s.reps])).toEqual([['warmup', 40, 10], ['normal', 60, 8], ['normal', 60, ''], ['normal', 60, '']]);
+});
