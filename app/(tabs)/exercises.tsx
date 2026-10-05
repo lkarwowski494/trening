@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ScrollView, View } from 'react-native';
+import { F } from '@/lib/theme';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { Screen, H1, Item, Btn, Input, Muted, Empty, useOnce } from '@/components/ui';
@@ -14,7 +15,7 @@ export default function ExercisesScreen() {
   // Runda 7: usunięte ćwiczenie z historią można tu przywrócić zamiast tworzyć duplikat (jak w pickerze).
   const archived = ql ? getState().exercises.filter(e => e.archived && (fold(e.name).includes(ql) || fold(exName(e)).includes(ql))) : [];
   let last = ''; const rows: React.ReactNode[] = [];
-  list.forEach(e => { if (e.group !== last) { last = e.group; rows.push(<Muted key={'g' + e.group} accessibilityRole="header" style={{ fontSize: 12, fontWeight: '600', paddingTop: 14, paddingBottom: 2 }}>{t(e.group)}</Muted>); }
+  list.forEach(e => { if (e.group !== last) { last = e.group; rows.push(<Muted key={'g' + e.group} accessibilityRole="header" style={{ fontSize: 12, fontFamily: F.semibold, paddingTop: 14, paddingBottom: 2 }}>{t(e.group)}</Muted>); }
     rows.push(<Item key={e.id} title={exName(e)} sub={`${t(e.equipment)}${e.bandAssistable ? ' · ' + t('guma') : ''}${e.tempo ? ' · ' + t('tempo') + ' ' + e.tempo : ''}`} onPress={() => router.push(`/exercise/${e.id}`)} />); });
   return (
     <SafeAreaView style={{ flex: 1 }} edges={['top']}><Screen>

@@ -11,18 +11,18 @@ struct RestLiveActivity: Widget {
       // Runda 38: tło zawsze ciemne, więc tekst też w trybie ciemnym (.secondary w jasnym trybie był nieczytelny).
       LockScreenView(context: context)
         .environment(\.colorScheme, .dark)
-        .activityBackgroundTint(Color(red: 0.07, green: 0.08, blue: 0.11))
+        .activityBackgroundTint(Color(red: 0.12, green: 0.12, blue: 0.13))
         .activitySystemActionForegroundColor(.white)
     } dynamicIsland: { context in
       DynamicIsland {
         DynamicIslandExpandedRegion(.leading) { Text(kindLabel(context.attributes.kind)).font(.caption).foregroundColor(.secondary) }
         DynamicIslandExpandedRegion(.trailing) { Text(context.state.subtitle).font(.caption).foregroundColor(.secondary).lineLimit(1) }
         DynamicIslandExpandedRegion(.center) {
-          Text(timerInterval: timerRange(context.state.endAt), countsDown: true).font(.system(size: 34, weight: .bold, design: .rounded)).monospacedDigit().foregroundColor(Color(red: 0.95, green: 0.71, blue: 0.25))
+          Text(timerInterval: timerRange(context.state.endAt), countsDown: true).font(.system(size: 34, weight: .bold, design: .rounded)).monospacedDigit().foregroundColor(Color(red: 1.0, green: 0.54, blue: 0.24))
         }
         DynamicIslandExpandedRegion(.bottom) { Text(context.attributes.title).font(.caption2).foregroundColor(.secondary) }
       } compactLeading: {
-        Image(systemName: kindBase(context.attributes.kind) == "set" ? "stopwatch" : "timer").foregroundColor(Color(red: 0.95, green: 0.71, blue: 0.25))
+        Image(systemName: kindBase(context.attributes.kind) == "set" ? "stopwatch" : "timer").foregroundColor(Color(red: 1.0, green: 0.54, blue: 0.24))
       } compactTrailing: {
         Text(timerInterval: timerRange(context.state.endAt), countsDown: true).monospacedDigit().frame(width: 44)
       } minimal: {
@@ -45,7 +45,7 @@ struct LockScreenView: View {
       Spacer()
       Text(timerInterval: timerRange(context.state.endAt), countsDown: true)
         .font(.system(size: 40, weight: .bold, design: .rounded)).monospacedDigit()
-        .foregroundColor(Color(red: 0.95, green: 0.71, blue: 0.25))
+        .foregroundColor(Color(red: 1.0, green: 0.54, blue: 0.24))
         .frame(minWidth: 110, alignment: .trailing)
     }
     .padding(14)

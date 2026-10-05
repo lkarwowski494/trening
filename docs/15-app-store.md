@@ -10,7 +10,9 @@ Rozmowa 05.10.2026, rano: „Chciałbym móc opublikować to w Apple Store” i 
   - Klucz tylko jako sekret GitHub, nigdy w repo (CLAUDE.md, ADR-031). Bez `eas submit`: limitów darmowego planu dla Submit nie sprawdzono.
 - **Polityka prywatności:** GitHub Pages z tego repozytorium (`docs/`).
   - Treść: brak zbierania danych, wszystko lokalnie na telefonie, HealthKit tylko zapis zakończonych treningów.
-- **Cena i nazwa:** otwarte. Propozycja z pytania: darmowa, „Trening” — nazwa do sprawdzenia w sklepie.
+- **Cena:** „Darmowa na start” (05.10.2026) — bez reklam i zakupów; w App Store Connect deklaracja „nie jestem traderem” (DSA), bez publicznego adresu.
+  Konto: Apple Developer jako osoba fizyczna (Individual) — firma niepotrzebna.
+- **Nazwa:** otwarta. Propozycja „Trening” — do sprawdzenia w sklepie.
 
 ## Zmiany w aplikacji już zrobione pod publikację
 

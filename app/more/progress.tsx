@@ -6,7 +6,7 @@ import { useTick, exById, setSummary, fmtDate, fmtSec, fmtDist, isBW, getState }
 import { sessionsFor, recordsFor, hasHistory, chartKeysFor, totalKind, fmtTotal, weeklyTotals, hasAnyHistory, weeklySetsByMuscle, thisMonday, type ChartKey } from '@/lib/stats';
 import { MUSCLES } from '@/lib/seed';
 import { LineChart, BarChart, TIME_STEPS } from '@/components/Chart';
-import { useTheme } from '@/lib/theme';
+import { useTheme, F } from '@/lib/theme';
 import { hasWeight, hasReps, hasTime, hasDistance } from '@/lib/seed';
 import { t, exName, locale, fold } from '@/lib/i18n';
 import { fmtW, fmtVol, volOut, wu, fmtNum } from '@/lib/units';
@@ -45,7 +45,7 @@ export default function Progress() {
           {(() => { const cur = weeklySetsByMuscle(thisMonday()); const prev = weeklySetsByMuscle(thisMonday(-1)); const rows = MUSCLES.filter(mu => (cur[mu] ?? 0) > 0 || (prev[mu] ?? 0) > 0); const max = Math.max(1, ...rows.map(mu => Math.max(cur[mu] ?? 0, prev[mu] ?? 0)));
             return rows.length ? rows.map(mu => (
               <View key={mu} style={{ marginBottom: 8 }}>
-                <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}><Txt style={{ fontSize: 14 }}>{t(mu)}</Txt><Muted style={{ fontSize: 13, fontVariant: ['tabular-nums'] }}>{fmtNum(cur[mu] ?? 0, 1)} <Muted style={{ fontSize: 12 }}>({t('poprz.')} {fmtNum(prev[mu] ?? 0, 1)})</Muted></Muted></View>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}><Txt style={{ fontSize: 14 }}>{t(mu)}</Txt><Muted style={{ fontSize: 13, fontFamily: F.mono }}>{fmtNum(cur[mu] ?? 0, 1)} <Muted style={{ fontSize: 12 }}>({t('poprz.')} {fmtNum(prev[mu] ?? 0, 1)})</Muted></Muted></View>
                 <View style={{ height: 6, backgroundColor: th.line, borderRadius: 3, marginTop: 4 }}><View style={{ width: `${Math.round(100 * (cur[mu] ?? 0) / max)}%`, height: 6, backgroundColor: th.accent, borderRadius: 3 }} /></View>
               </View>)) : <Muted style={{ fontSize: 13 }}>{t('Brak serii w tym i poprzednim tygodniu.')}</Muted>; })()}
           <Muted style={{ fontSize: 12, marginTop: 4, marginBottom: 14 }}>{t('Partia główna liczy 1 serię, pomocnicza 0,5 (np. wyciskanie: klatka 1, triceps i barki po 0,5). Partie ustawisz w edycji ćwiczenia.')}</Muted>
@@ -82,13 +82,13 @@ export default function Progress() {
         <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6, marginTop: 12 }}>{keys.map(k => <Chip key={k.key} label={k.label} on={active?.key === k.key} onPress={() => setKey(k.key)} />)}</View>
         <View style={{ marginTop: 10 }}>{active ? <LineChart points={points} fmt={active.fmt} scale={active.scale} minStep={active.minStep} intOnly={active.intOnly} steps={active.time ? TIME_STEPS : undefined} /> : null}</View>
         {recRows.length ? <View style={{ marginTop: 12, padding: 12, borderRadius: 10, backgroundColor: th.surface2, gap: 6 }}>
-          <Muted style={{ fontSize: 12, fontWeight: '600' }}>{t('REKORDY')}</Muted>
-          {recRows.map(([l, v]) => <View key={l} style={{ flexDirection: 'row', justifyContent: 'space-between' }}><Muted>{l}</Muted><Txt style={{ fontWeight: '600', fontVariant: ['tabular-nums'] }}>{v}</Txt></View>)}
+          <Muted style={{ fontSize: 12, fontFamily: F.semibold }}>{t('REKORDY')}</Muted>
+          {recRows.map(([l, v]) => <View key={l} style={{ flexDirection: 'row', justifyContent: 'space-between' }}><Muted>{l}</Muted><Txt style={{ fontFamily: F.monoBold }}>{v}</Txt></View>)}
         </View> : null}
         <H2 style={{ marginTop: 16 }}>{t('Sesje')}</H2>
         {[...sessions].reverse().slice(0, 20).map((s, i) => (
           <View key={i} style={{ paddingVertical: 8, borderBottomWidth: 1, borderBottomColor: th.line }}>
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}><Txt style={{ fontWeight: '600' }}>{fmtDate(s.date)}</Txt><Muted>{t('najlepsza')} {setSummary(ex, s.bestSet)}{s.volume ? ` · ${t('obj.')} ${fmtVol(s.volume)}` : ''}{s.bestE1rm ? ` · e1RM ${fmtW(s.bestE1rm, false)}` : ''}</Muted></View>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}><Txt style={{ fontFamily: F.semibold }}>{fmtDate(s.date)}</Txt><Muted>{t('najlepsza')} {setSummary(ex, s.bestSet)}{s.volume ? ` · ${t('obj.')} ${fmtVol(s.volume)}` : ''}{s.bestE1rm ? ` · e1RM ${fmtW(s.bestE1rm, false)}` : ''}</Muted></View>
             <Muted style={{ fontSize: 13 }}>{s.sets.map(x => setSummary(ex, x)).join(' · ')}</Muted>
           </View>))}
       </> : <Empty>{t('Brak zapisanych sesji z tym ćwiczeniem.')}</Empty>}

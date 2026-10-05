@@ -9,7 +9,7 @@ import { draftOf, beginEdit, discardDraft, isDirty, touchDraft, useDraftTick, ch
 import { onHistoryEdited } from '@/lib/backup';
 import { locationLabel } from '@/lib/locations';
 import { hasTime, hasReps, hasWeight, hasDistance, SET_KIND_LABEL, type WExercise, type WSet } from '@/lib/seed';
-import { useTheme } from '@/lib/theme';
+import { useTheme, F } from '@/lib/theme';
 import { t, tp, exName } from '@/lib/i18n';
 import { wu, wField, wInKeep, fmtW } from '@/lib/units';
 
@@ -28,7 +28,7 @@ export default function EditWorkout() {
   useEffect(() => () => { discardDraft(key); }, [key]);
   const d = draftOf(key);
   const close = () => { leaving.current = true; Keyboard.dismiss(); if (router.canGoBack()) router.back(); else router.replace('/history'); };
-  const header = (title: string, onPress: () => void, bold?: boolean) => () => <Pressable accessibilityRole="button" accessibilityLabel={title} hitSlop={10} onPress={onPress} style={{ minHeight: 44, minWidth: 44, justifyContent: 'center' }}><Text maxFontSizeMultiplier={1.4} style={{ color: th.accent, fontSize: 17, fontWeight: bold ? '700' : '400' }}>{title}</Text></Pressable>;
+  const header = (title: string, onPress: () => void, bold?: boolean) => () => <Pressable accessibilityRole="button" accessibilityLabel={title} hitSlop={10} onPress={onPress} style={{ minHeight: 44, minWidth: 44, justifyContent: 'center' }}><Text maxFontSizeMultiplier={1.4} style={{ color: th.accent, fontSize: 17, fontFamily: bold ? F.semibold : F.regular }}>{title}</Text></Pressable>;
   if (!d) return <Screen><Stack.Screen options={{ headerLeft: header(t('Wróć'), close) }} />{leaving.current ? null : <><Muted style={{ marginTop: 14 }}>{t('Brak sesji.')}</Muted><Btn title={t('Wróć')} block style={{ marginTop: 12 }} onPress={close} /></>}</Screen>;
 
   const cancel = () => {
@@ -63,7 +63,7 @@ export default function EditWorkout() {
       <Stack.Screen options={{ title: d.sourceId ? t('Edycja sesji') : t('Trening wstecz'), headerBackVisible: false, headerLeft: header(t('Anuluj'), cancel), headerRight: header(t('Zapisz'), saveDraft, true) }} />
       <ScrollView keyboardShouldPersistTaps="handled" keyboardDismissMode="interactive" automaticallyAdjustKeyboardInsets contentContainerStyle={{ paddingVertical: 10, paddingBottom: 80 }}>
         {health ? <Muted style={{ fontSize: 13, marginBottom: 10 }}>{t('Zmiany nie trafiają do Apple Health.')}</Muted> : null}
-        {w.locationId ? <Text accessibilityLabel={`${t('Miejsce')}: ${locationLabel(w.locationId)}`} maxFontSizeMultiplier={1.3} style={{ color: th.muted, fontSize: 14, fontWeight: '600', marginBottom: 10 }}>{`📍 ${locationLabel(w.locationId)}`}</Text> : null /* integracja 0.9.0: miejsce treningu tylko do odczytu (edycja go nie zmienia) */}
+        {w.locationId ? <Text accessibilityLabel={`${t('Miejsce')}: ${locationLabel(w.locationId)}`} maxFontSizeMultiplier={1.3} style={{ color: th.muted, fontSize: 14, fontFamily: F.semibold, marginBottom: 10 }}>{`📍 ${locationLabel(w.locationId)}`}</Text> : null /* integracja 0.9.0: miejsce treningu tylko do odczytu (edycja go nie zmienia) */}
         <Field label={t('Nazwa')}><Input value={w.templateName} placeholder={t('Trening')} maxLength={NAME_MAX} onChangeText={v => { w.templateName = v; touchDraft(); }} /></Field>
         <WhenFields date={d.date} time={d.time} min={d.min} onChange={p => draftSetWhen(key, p)} />
         <View style={{ height: 10 }} />
@@ -99,7 +99,7 @@ function EditBlock({ d, e, ei, labels }: { d: Draft; e: WExercise; ei: number; l
   const heads = ['#', ...(hasWeight(m) ? [ex ? loadLabelShort(ex, impl) : wu()] : []), ...(hasReps(m) ? [t('Pow.')] : []), ...(hasDistance(m) ? ['m'] : []), ...(hasTime(m) ? [t('sek.')] : []), ...(showRpe ? ['RPE'] : [])];
   return (
     <View style={[s.ex, { borderBottomColor: th.line }]}>
-      <Txt accessibilityRole="header" style={{ fontWeight: '600', fontSize: 17, marginBottom: 6 }}>{e.groupId && labels[e.groupId] ? <Txt style={{ color: th.band, fontWeight: '700' }}>{`SS ${labels[e.groupId]} · `}</Txt> : null}{nm}{ex?.archived ? <Txt style={{ color: th.muted, fontSize: 13 }}>{' (' + t('usunięte') + ')'}</Txt> : null}</Txt>
+      <Txt accessibilityRole="header" style={{ fontFamily: F.semibold, fontSize: 17, marginBottom: 6 }}>{e.groupId && labels[e.groupId] ? <Txt style={{ color: th.band, fontFamily: F.semibold }}>{`SS ${labels[e.groupId]} · `}</Txt> : null}{nm}{ex?.archived ? <Txt style={{ color: th.muted, fontSize: 13 }}>{' (' + t('usunięte') + ')'}</Txt> : null}</Txt>
       {off != null ? <Muted style={{ fontSize: 12, marginTop: -2, marginBottom: 6 }}>{t('ciężaru {w} nie ma tutaj — wpisz ciężar', { w: fmtW(off) })}</Muted> : null}
       <View style={s.row} accessibilityElementsHidden importantForAccessibility="no-hide-descendants">
         {heads.map((h, k) => <Muted key={k} numberOfLines={1} style={[s.head, k === 0 ? { width: 32, textAlign: 'left' } : { flex: 1 }]}>{h}</Muted>)}
@@ -112,14 +112,14 @@ function EditBlock({ d, e, ei, labels }: { d: Draft; e: WExercise; ei: number; l
           <View key={set.id}>
             <View style={s.row}>
               <Pressable onPress={() => setMenu(set, si)} hitSlop={8} accessibilityRole="button" accessibilityHint={hint} accessibilityLabel={t('Seria {n}, typ: {k}. Tapnij, by zmienić typ lub dodać notatkę.', { n: lbl, k: t(SET_KIND_LABEL[kind]) })} style={{ width: 32, minHeight: 44, justifyContent: 'center' }}>
-                <Text maxFontSizeMultiplier={1.3} style={{ color: kind !== 'normal' ? th.band : th.muted, fontSize: 14, fontWeight: kind !== 'normal' ? '700' : '400' }}>{lbl}{set.note ? '•' : ''}</Text>
+                <Text maxFontSizeMultiplier={1.3} style={{ color: kind !== 'normal' ? th.band : th.muted, fontSize: 14, fontFamily: kind !== 'normal' ? F.monoBold : F.mono }}>{lbl}{set.note ? '•' : ''}</Text>
               </Pressable>
               {hasWeight(m) ? <View style={s.cell}><NumInput weightTol decimal allowNegative={bw} value={wField(loadFieldValue(ex, set))} stored={loadFieldValue(ex, set)} onNum={(v, keep) => { writeLoad(ex, set, wInKeep(v, keep)); /* Q-021; audyt 83b (LOW 2): pole pokazuje to samo co ekran sesji (store.loadOf), wpis trafia do pola obecnego sprzętu */ touchDraft(); }} placeholder={bw ? '±0' : wu()} accessibilityLabel={ex ? loadLabel(ex, impl) : t('ciężar')} accessibilityHint={hint} /></View> : null}
               {hasReps(m) ? <View style={s.cell}><NumInput value={set.reps} onNum={v => { set.reps = v === '' ? '' : Math.min(1000, Math.max(0, Math.floor(v))); touchDraft(); }} placeholder="0" accessibilityLabel={t('Powtórzenia')} accessibilityHint={hint} /></View> : null}
               {hasDistance(m) ? <View style={s.cell}><NumInput value={set.distanceM} onNum={v => { set.distanceM = v === '' ? '' : Math.max(0, Math.round(v)); touchDraft(); }} placeholder="m" accessibilityLabel={t('dystans')} accessibilityHint={hint} /></View> : null}
               {hasTime(m) ? <View style={s.cell}><NumInput value={set.durationSec} onNum={v => { set.durationSec = v === '' ? '' : Math.min(86400, Math.max(0, Math.round(v))); touchDraft(); }} placeholder="s" accessibilityLabel={t('czas')} accessibilityHint={hint} /></View> : null}
               {showRpe ? <View style={s.cell}><NumInput decimal value={set.rpe} onNum={v => { set.rpe = v === '' ? '' : Math.min(10, Math.max(0, Math.round(v * 10) / 10)); touchDraft(); }} placeholder="—" accessibilityLabel="RPE" accessibilityHint={hint} /></View> : null}
-              {band ? <Pressable accessibilityRole="button" accessibilityHint={hint} accessibilityLabel={t('Guma: {b}. Tapnij, by zmienić.', { b: set.bandId ? bandA11y(st.bands.find(b => b.id === set.bandId)) : t('brak') })} onPress={() => cycleBand(set)} style={[s.box, { width: 52, backgroundColor: th.surface2, borderColor: th.line }]}><Text maxFontSizeMultiplier={1.3} style={{ color: set.bandId ? th.band : th.muted, fontSize: 13, fontWeight: '600' }}>{set.bandId ? shortBand(st.bands.find(b => b.id === set.bandId)) : '—'}</Text></Pressable> : null}
+              {band ? <Pressable accessibilityRole="button" accessibilityHint={hint} accessibilityLabel={t('Guma: {b}. Tapnij, by zmienić.', { b: set.bandId ? bandA11y(st.bands.find(b => b.id === set.bandId)) : t('brak') })} onPress={() => cycleBand(set)} style={[s.box, { width: 52, backgroundColor: th.surface2, borderColor: th.line }]}><Text maxFontSizeMultiplier={1.3} style={{ color: set.bandId ? th.band : th.muted, fontSize: 13, fontFamily: F.semibold }}>{set.bandId ? shortBand(st.bands.find(b => b.id === set.bandId)) : '—'}</Text></Pressable> : null}
               <Pressable accessibilityRole="button" accessibilityLabel={t('Usuń serię {n} — {ex}', { n: lbl, ex: nm })} hitSlop={4} onPress={() => draftRemoveSet(d.key, ei, set.id)} style={[s.box, { width: 44, borderColor: 'transparent' }]}><Text maxFontSizeMultiplier={1.3} style={{ color: th.danger, fontSize: 18 }}>✕</Text></Pressable>
             </View>
             {set.note ? <Muted style={{ fontSize: 12, marginLeft: 38, marginTop: -4, marginBottom: 6 }}>{set.note}</Muted> : null}

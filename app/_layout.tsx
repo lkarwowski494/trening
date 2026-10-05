@@ -10,7 +10,11 @@ import type { Workout } from '@/lib/seed';
 import { AppState } from 'react-native';
 import { t } from '@/lib/i18n';
 import * as timer from '@/lib/timer';
-import { useTheme } from '@/lib/theme';
+import { useTheme, F, FONT_FILES } from '@/lib/theme';
+import * as Font from 'expo-font';
+
+/** Kroje marki (docs/16). Błąd lub brak odpowiedzi w 3 s nie blokuje startu — zostaje krój systemowy. */
+const loadFonts = () => { let to: ReturnType<typeof setTimeout> | undefined; return Promise.race([Font.loadAsync(FONT_FILES), new Promise(r => { to = setTimeout(r, 3000); })]).catch(() => {}).finally(() => clearTimeout(to)); };
 
 // Runda 27: link otwierający ekran ze stosu (np. trening://template/…) kładzie pod nim zakładki — zawsze jest droga powrotu.
 export const unstable_settings = { initialRouteName: '(tabs)' };
@@ -20,7 +24,7 @@ export default function RootLayout() {
   // Runda 69: trening porzucony ponad 6 h temu zapisuje się sam (koniec = ostatnia odhaczona seria) — przy starcie i powrocie z tła.
   const autoSaved = (w: Workout | null) => { if (!w) return; timer.stop().catch(() => {}); timer.stopSet().catch(() => {}); timer.cancelStaleReminder().catch(() => {}); onWorkoutSaved(w).catch(() => {});
     setTimeout(() => Alert.alert(t('Zapisałem trening'), t('Trening z {d} {s} nie miał aktywności od 6 godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w Historii.', { d: fmtDate(w.startedAt), s: fmtTime(w.startedAt), e: fmtTime(w.finishedAt ?? w.startedAt) })), 500); };
-  const start = () => { setErr(null); init().then(() => { resolveColdStopwatch(); /* Q-002 */ autoSaved(autoFinishStale()); return timer.restore().catch(() => {}); }).then(() => setReady(true)).catch(e => setErr(e instanceof Error ? e.message : String(e))); };
+  const start = () => { setErr(null); Promise.all([init(), loadFonts()]).then(() => { resolveColdStopwatch(); /* Q-002 */ autoSaved(autoFinishStale()); return timer.restore().catch(() => {}); }).then(() => setReady(true)).catch(e => setErr(e instanceof Error ? e.message : String(e))); };
   useEffect(start, []);
   /* T-051 (SDK 56+, audyt aktualizacji): expo-router trzyma ekran powitalny, dopóki nie zamontuje się nawigator — ekran błędu startu
    * (poniżej) nie ma nawigatora, więc zostałby pod logo i aplikacja wyglądałaby na zawieszoną. Przy błędzie chowamy go sami. */
@@ -28,7 +32,7 @@ export default function RootLayout() {
   // Zapis wymuszony przy wyjściu do tła — debounce 300 ms nie może zgubić ostatniej zmiany, gdy system ubije apkę.
   useEffect(() => { const sub = AppState.addEventListener('change', st => { if (st !== 'active') flush(); else { const w = autoFinishStale(); /* runda 74 (audyt): stoper zdjęty z zapisu przez cichy zapis (Q-011, seria z celem odhaczona) nie liczy dalej w pamięci */ if (!w && timer.S.on && !getState().timer?.setStartAt) timer.stopSet().catch(() => {}); autoSaved(w); timer.onForeground(); refreshViews(); } }); return () => sub.remove(); }, []);
   // Błąd startu (np. baza niedostępna) — komunikat i ponowienie zamiast wiecznego kółka (runda 2).
-  if (err) return <View style={{ flex: 1, backgroundColor: th.bg, alignItems: 'center', justifyContent: 'center', padding: 24, gap: 12 }}><Text style={{ color: th.text, fontSize: 17, textAlign: 'center' }}>{t('Nie udało się otworzyć danych.')}</Text><Text style={{ color: th.muted, textAlign: 'center' }}>{err}</Text><Pressable accessibilityRole="button" onPress={start} style={{ padding: 12 }}><Text style={{ color: th.accent, fontSize: 16, fontWeight: '600' }}>{t('Spróbuj ponownie')}</Text></Pressable></View>;
+  if (err) return <View style={{ flex: 1, backgroundColor: th.bg, alignItems: 'center', justifyContent: 'center', padding: 24, gap: 12 }}><Text style={{ color: th.text, fontSize: 17, textAlign: 'center' }}>{t('Nie udało się otworzyć danych.')}</Text><Text style={{ color: th.muted, textAlign: 'center' }}>{err}</Text><Pressable accessibilityRole="button" onPress={start} style={{ padding: 12 }}><Text style={{ color: th.accent, fontSize: 16, fontFamily: F.semibold }}>{t('Spróbuj ponownie')}</Text></Pressable></View>;
   if (!ready) return <View style={{ flex: 1, backgroundColor: th.bg, alignItems: 'center', justifyContent: 'center' }}><ActivityIndicator color={th.accent} /></View>;
   return <Root />;
 }
@@ -39,7 +43,7 @@ function Root() {
   return (
     <>
       <StatusBar style="auto" />
-      <Stack screenOptions={{ headerStyle: { backgroundColor: th.bg }, headerTintColor: th.text, headerShadowVisible: false, contentStyle: { backgroundColor: th.bg }, headerBackTitle: t('Wróć') }}>
+      <Stack screenOptions={{ headerStyle: { backgroundColor: th.bg }, headerTintColor: th.text, headerTitleStyle: { fontFamily: F.semibold }, headerShadowVisible: false, contentStyle: { backgroundColor: th.bg }, headerBackTitle: t('Wróć') }}>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="picker" options={{ presentation: 'modal', title: t('Wybierz ćwiczenie') }} />
         <Stack.Screen name="swap" options={{ presentation: 'modal', title: t('Zamień ćwiczenie') }} />

@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { View, Text, ScrollView, Pressable, Alert, StyleSheet, useWindowDimensions, ActionSheetIOS, Keyboard } from 'react-native';
 import { useRouter } from 'expo-router';
 import { activateKeepAwakeAsync, deactivateKeepAwake } from 'expo-keep-awake';
-import { useTheme } from '@/lib/theme';
+import { useTheme, F } from '@/lib/theme';
 import { Btn, Input, NumInput, Muted } from '@/components/ui';
 import { progressionFor, writeLoad, setActiveLocation, lastActivity, staleSince, staleRef, staleKind, ackStale, markActivity, useForegroundTick, bandA11y, clampName, loadLabelShort, getState, useTick, exById, prevOfActiveBlock, previousFor, canUndoSwap, undoSwap, pinnedImpl, rememberRest as storeRememberRest, canRememberAlt, rememberAlt, altHint, acceptAlt, skipAlt, occurrence, occurrences, hintFor, isBW, reps, fmtDur, fmtSec, fmtTime, setSummary, toggleDone, restAfter, roundRest, addSet, removeSet, removeExercise, finishWorkout, cancelWorkout, save, loadLabel, groupLabels, linkWithNext, unlink, cycleBand, findSet, shortBand, setHasValue, locationById, offListNote, liveBlockImpl, listLocFor, srcSetAt } from '@/lib/store';
 import { availability, missingLabel } from '@/lib/equipment';
@@ -146,7 +146,7 @@ export default function ActiveWorkout() {
     <View style={{ flex: 1 }}>
       <ScrollView contentContainerStyle={{ paddingBottom: 170 }} keyboardShouldPersistTaps="handled" keyboardDismissMode="interactive" automaticallyAdjustKeyboardInsets>
         <View style={s.head}>
-          <View style={{ flex: 1 }}><Text accessibilityRole="header" style={{ color: t.text, fontSize: 22, fontWeight: '600' }}>{w.templateName || tr('Trening')}</Text><LocationChip w={w} /><SessionClock w={w} /><SessionProgress w={w} /></View>
+          <View style={{ flex: 1 }}><Text accessibilityRole="header" style={{ color: t.text, fontSize: 24, fontFamily: F.heavy }}>{w.templateName || tr('Trening')}</Text><LocationChip w={w} /><SessionClock w={w} /><SessionProgress w={w} /></View>
           <Btn title={tr('Zakończ')} kind="primary" onPress={finish} />
         </View>
         {w.exercises.map((e, ei) => <ExerciseBlock key={e.id} w={w} e={e} ei={ei} onDone={onDone} onStartSet={startSet} labels={labels} prs={prs} />)}
@@ -200,7 +200,7 @@ function LocationChip({ w }: { w: Workout }) {
   const pick = () => ActionSheetIOS.showActionSheetWithOptions({ options: [...locs.map(l => l.name), tr('Anuluj')], cancelButtonIndex: locs.length, title: tr('Miejsce tego treningu') }, i => {
     const l = locs[i]; const a = getState().active; if (!l || !a || a.id !== w.id) return; setActiveLocation(l.id); /* decyzja 8c: przyrządy bloków wg nowego miejsca */ });
   return <Pressable onPress={pick} accessibilityRole="button" accessibilityLabel={tr('Miejsce treningu: {l}. Tapnij, by zmienić.', { l: name })} hitSlop={6} style={{ alignSelf: 'flex-start', paddingVertical: 4 }}>
-    <Text maxFontSizeMultiplier={1.3} style={{ color: t.accent, fontSize: 14, fontWeight: '600' }}>{`📍 ${name} ▾`}</Text></Pressable>;
+    <Text maxFontSizeMultiplier={1.3} style={{ color: t.accent, fontSize: 14, fontFamily: F.semibold }}>{`📍 ${name} ▾`}</Text></Pressable>;
 }
 
 /** Etykieta serii jak na ekranie: „W” dla rozgrzewki, inaczej numer serii roboczej (+D/F) — ta sama w dostępności, menu i Live Activity. */
@@ -294,7 +294,7 @@ function ExerciseBlock({ w, e, ei, onDone, onStartSet, labels, prs }: { w: Worko
   return (
     <View style={[s.ex, { borderBottomColor: t.line }]}>
       <View style={s.exHead}>
-        <Text accessibilityRole="header" style={{ color: t.text, fontSize: 17, fontWeight: '600', flexGrow: 1, flexShrink: 1, minWidth: '58%' }}>{inSS ? <Text style={{ color: t.band }}>{`SS ${labels[e.groupId!]} · `}</Text> : null}{exName(ex)}{ex.archived ? <Text style={{ color: t.muted, fontSize: 13 }}>{' (' + tr('usunięte') + ')'}</Text> : null}</Text>
+        <Text accessibilityRole="header" style={{ color: t.text, fontSize: 17, fontFamily: F.semibold, flexGrow: 1, flexShrink: 1, minWidth: '58%' }}>{inSS ? <Text style={{ color: t.band }}>{`SS ${labels[e.groupId!]} · `}</Text> : null}{exName(ex)}{ex.archived ? <Text style={{ color: t.muted, fontSize: 13 }}>{' (' + tr('usunięte') + ')'}</Text> : null}</Text>
         <Muted numberOfLines={2} style={{ fontSize: 13, flexShrink: 1, flexGrow: 1, textAlign: 'right' }}>{headMeta}</Muted>
       </View>
       {insteadTxt || remember ? <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', gap: 8, marginTop: -2, marginBottom: 6 }}><Muted style={{ fontSize: 12, flexShrink: 1 }}>{insteadTxt || (e.impl ? tr('przyrząd: {impl}', { impl: implLabel(e.impl) }) : '')}</Muted>{canUndoSwap(e) ? <Btn title={tr('↺ cofnij')} small kind="ghost" accessibilityLabel={tr('Cofnij zamianę: {name}', { name: nm })} onPress={() => confirmUndoSwap(e.id)} /> : null}{remember && place ? <Btn title={tr('Zawsze w: {l}', { l: place.name })} small kind="ghost" accessibilityLabel={tr('Zawsze w: {l} — {name}', { l: place.name, name: nm })} accessibilityHint={tr('Zapisuje zamiennik w szablonie dla tego miejsca.')} onPress={() => rememberAlt(e.id)} /> : null}</View> : null}
@@ -322,9 +322,9 @@ function ExerciseBlock({ w, e, ei, onDone, onStartSet, labels, prs }: { w: Worko
           <View key={set.id}>
             <View style={[s.row, { gap: W.gap }]}>
               <Pressable onPress={() => setMenu(set, si)} hitSlop={8} accessibilityHint={hint} /* runda 63 */ accessibilityRole="button" accessibilityLabel={tr('Seria {n}, typ: {k}. Tapnij, by zmienić typ lub dodać notatkę.', { n: lbl, k: tr(SET_KIND_LABEL[kind]) })} style={{ width: W.idx, minHeight: 44, justifyContent: 'center' }}>
-                <Text maxFontSizeMultiplier={1.3} style={{ color: kind !== 'normal' ? t.band : t.muted, fontSize: 14, fontWeight: kind !== 'normal' ? '700' : '400' }}>{lbl}{set.note ? '•' : ''}</Text>
+                <Text maxFontSizeMultiplier={1.3} style={{ color: kind !== 'normal' ? t.band : t.muted, fontSize: 14, fontFamily: kind !== 'normal' ? F.monoBold : F.mono }}>{lbl}{set.note ? '•' : ''}</Text>
               </Pressable>
-              <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', gap: 4 }}>{prevInline ? <Text maxFontSizeMultiplier={1.3} numberOfLines={1} style={{ flexShrink: 1, color: t.muted, fontSize: 13 }}>{prevTxt}</Text> : null}{pr ? <Text maxFontSizeMultiplier={1.3} style={{ color: t.band, fontSize: 11, fontWeight: '700' }}>PR</Text> : null}</View>
+              <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', gap: 4 }}>{prevInline ? <Text maxFontSizeMultiplier={1.3} numberOfLines={1} style={{ flexShrink: 1, color: t.muted, fontSize: 13 }}>{prevTxt}</Text> : null}{pr ? <Text maxFontSizeMultiplier={1.3} style={{ color: t.band, fontSize: 11, fontFamily: F.semibold }}>PR</Text> : null}</View>
               {hasWeight(m) ? <View style={{ width: W.w }}><NumInput weightTol decimal allowNegative={bw} value={wField(bw ? set.addKg : set.weight)} stored={bw ? set.addKg : set.weight} onNum={(v, keep) => { writeLoad(ex, set, wInKeep(v, keep)); /* runda 54: ciężar nieujemny; Q-021: ta sama liczba co na ekranie = te same kg; 83b: jeden zapis (store.writeLoad) */ tick(); }} placeholder={bw ? '±0' : wu()} style={doneStyle(set)} accessibilityLabel={loadLabel(ex, impl)} accessibilityHint={hint} /></View> : null}
               {hasReps(m) ? <View style={{ width: W.reps }}><NumInput value={set.reps} onNum={v => { set.reps = v === '' ? '' : Math.max(0, Math.floor(v)); tick(); }} placeholder={e.repMin == null ? 'max' : reps(e.repMin, e.repMax)} style={doneStyle(set)} accessibilityLabel={tr('Powtórzenia')} accessibilityHint={hint} /></View> : null}
               {hasDistance(m) ? <View style={{ width: W.dist }}><NumInput value={set.distanceM} onNum={v => { set.distanceM = v === '' ? '' : Math.max(0, Math.round(v)); /* runda 55/56: pełne metry jak klawiatura */ tick(); }} placeholder="m" style={doneStyle(set)} accessibilityLabel={tr('dystans')} accessibilityHint={hint} /></View> : null}
@@ -334,7 +334,7 @@ function ExerciseBlock({ w, e, ei, onDone, onStartSet, labels, prs }: { w: Worko
                   <Text maxFontSizeMultiplier={1.3} style={{ color: running ? t.accentInk : t.text, fontSize: 16 }}>{running ? '…' : '▶'}</Text>
                 </Pressable>) : null}
               {showRpe ? <View style={{ width: W.rpe }}><NumInput decimal value={set.rpe} onNum={v => { set.rpe = v === '' ? '' : Math.min(10, Math.max(0, Math.round(v * 10) / 10)); tick(); }} placeholder="—" style={doneStyle(set)} accessibilityLabel="RPE" accessibilityHint={hint} /></View> : null}
-              {band ? <Pressable accessibilityRole="button" accessibilityHint={hint} accessibilityLabel={tr('Guma: {b}. Tapnij, by zmienić.', { b: set.bandId ? bandA11y(st.bands.find(b => b.id === set.bandId)) : tr('brak') })} onPress={() => cycleBand(set, bw && hasWeight(m))} style={[s.bandBtn, { width: W.band, backgroundColor: t.surface2, borderColor: set.done ? t.doneLine : t.line }]}><Text maxFontSizeMultiplier={1.3} style={{ color: set.bandId ? t.band : t.muted, fontSize: 13, fontWeight: '600' }}>{set.bandId ? shortBand(st.bands.find(b => b.id === set.bandId)) : '—'}</Text></Pressable> : null}
+              {band ? <Pressable accessibilityRole="button" accessibilityHint={hint} accessibilityLabel={tr('Guma: {b}. Tapnij, by zmienić.', { b: set.bandId ? bandA11y(st.bands.find(b => b.id === set.bandId)) : tr('brak') })} onPress={() => cycleBand(set, bw && hasWeight(m))} style={[s.bandBtn, { width: W.band, backgroundColor: t.surface2, borderColor: set.done ? t.doneLine : t.line }]}><Text maxFontSizeMultiplier={1.3} style={{ color: set.bandId ? t.band : t.muted, fontSize: 13, fontFamily: F.semibold }}>{set.bandId ? shortBand(st.bands.find(b => b.id === set.bandId)) : '—'}</Text></Pressable> : null}
               <Pressable accessibilityRole="checkbox" accessibilityState={{ checked: set.done }} accessibilityLabel={tr('Seria {n} zrobiona — {ex}', { n: lbl, ex: nm })} onPress={() => onDone(ei, si)} style={[s.doneBtn, { width: W.done, backgroundColor: set.done ? t.accent : t.surface2, borderColor: set.done ? t.accent : t.line }]}><Text maxFontSizeMultiplier={1.3} style={{ color: set.done ? t.accentInk : t.muted, fontSize: 18 }}>{set.done ? '✓' : ''}</Text></Pressable>
             </View>
             {!prevInline && p ? <Muted numberOfLines={1} style={{ fontSize: 12, marginLeft: W.idx + W.gap, marginTop: -4, marginBottom: 6 }}>{tr('Poprzednio')}: {prevTxt}</Muted> : null}
@@ -364,7 +364,7 @@ function TimerBar({ onFinishSet }: { onFinishSet: () => void }) {
     const txt = target > 0 ? (over ? '+' + fmtSec(-left) : fmtSec(left)) : fmtSec(el);
     return (
       <View style={[s.timer, { backgroundColor: t.surface, borderColor: t.band }]}>
-        <View><Text style={{ color: over ? t.danger : t.band, fontSize: big, fontWeight: '700', fontVariant: ['tabular-nums'] }} maxFontSizeMultiplier={1.3}>{txt}</Text><Muted style={{ fontSize: 12 }}>{target > 0 ? tr('seria · cel {s}', { s: fmtSec(target) }) : tr('seria · bez celu')}</Muted></View>
+        <View><Text style={{ color: over ? t.danger : t.band, fontSize: big, fontFamily: F.monoBold }} maxFontSizeMultiplier={1.3}>{txt}</Text><Muted style={{ fontSize: 12 }}>{target > 0 ? tr('seria · cel {s}', { s: fmtSec(target) }) : tr('seria · bez celu')}</Muted></View>
         <View style={{ flex: 1 }} />
         <Btn title={tr('Zakończ serię')} small kind="primary" onPress={onFinishSet} />
       </View>
@@ -374,7 +374,7 @@ function TimerBar({ onFinishSet }: { onFinishSet: () => void }) {
   const left = Math.round((timer.T.endAt - Date.now()) / 1000); const over = left <= 0;
   return (
     <View style={[s.timer, { backgroundColor: t.surface, borderColor: t.accent }]}>
-      <View><Text style={{ color: over ? t.danger : t.accent, fontSize: big, fontWeight: '700', fontVariant: ['tabular-nums'] }} maxFontSizeMultiplier={1.3}>{over ? '+' + fmtDur(-left) : fmtDur(left)}</Text><Muted style={{ fontSize: 12 }}>{over ? tr('przerwa minęła') : tr('przerwa z {s}', { s: fmtDur(timer.T.total) })}</Muted></View>
+      <View><Text style={{ color: over ? t.danger : t.accent, fontSize: big, fontFamily: F.monoBold }} maxFontSizeMultiplier={1.3}>{over ? '+' + fmtDur(-left) : fmtDur(left)}</Text><Muted style={{ fontSize: 12 }}>{over ? tr('przerwa minęła') : tr('przerwa z {s}', { s: fmtDur(timer.T.total) })}</Muted></View>
       <View style={{ flex: 1 }} />
       <Btn title="−15" small accessibilityLabel={tr('Skróć przerwę o 15 sekund')} onPress={() => timer.adjust(-15)} /><Btn title="+15" small accessibilityLabel={tr('Wydłuż przerwę o 15 sekund')} onPress={() => timer.adjust(15)} /><Btn title={tr('Pomiń')} small kind="primary" onPress={() => timer.stop()} />
     </View>

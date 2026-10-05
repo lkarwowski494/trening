@@ -39,7 +39,9 @@ potem 14 niezależnych recenzji (inny agent, bez dostępu do notatek tłumacza).
 - Nazwy ćwiczeń z biblioteki w językach innych niż pl/en.
 - Opis w App Store w każdym języku — przy publikacji (docs/15).
 
-## Styl marki (05.10.2026 — czeka na wybór właściciela)
+## Styl marki
+
+*Decyzja właściciela 05.10.2026:* „Podoba mi się kreda.” → **kierunek A · Kreda**. Tryb ciemny: „Kreda + ciemna wersja” (05.10.2026) — w trybie ciemnym grafitowe tło, kredowy tekst, ten sam pomarańcz.
 
 Właściciel: „Grafika wydaje się defaultowa … Co możemy zrobić, żeby mieć swój własny brand style?” → wybrał „3 kierunki do wyboru”.
 
@@ -50,4 +52,13 @@ Właściciel: „Grafika wydaje się defaultowa … Co możemy zrobić, żeby mi
 | C · Tablica wyników | #FFFFFF, #0B0C0E, #1739D6 akcent, #FFB800 rekord | Barlow Condensed + Barlow | sportowy, wąskie duże cyfry |
 
 Każdy kierunek: ikona aplikacji, ikony zakładek SVG zamiast emoji, ten sam ekran treningu. Fonty z Google Fonts (licencja OFL — 0 zł).
-Wdrożenie po wyborze: kolory i fonty w jednym module (`lib/theme`), ikony jako komponenty SVG.
+*Wdrożenie (05.10.2026):*
+- Kolory i kroje w jednym module `lib/theme.ts` (`BRAND`, `light`, `dark`, `F`, `FONT_FILES`).
+- Pomarańcz marki #E8590C na jasnym tle ma kontrast 3,3:1 — za mało dla tekstu (WCAG 4,5). W jasnym motywie akcent #C2410C, w ciemnym #FF8A3D;
+  czysty #E8590C zostaje w ikonie aplikacji i kolorze powiadomień. Test kontrastu: `tests/ux.test.tsx` C5.
+- Kroje ładowane przy starcie (`app/_layout.tsx`); błąd lub brak odpowiedzi w 3 s → krój systemowy, start nie czeka dłużej.
+- Liczby (pola ciężaru/powtórzeń, timery, „Poprzednio”) — IBM Plex Mono; tekst i nagłówki — Archivo.
+- Ikony zakładek: `components/TabIcon.tsx` (SVG). Ikona aplikacji: źródło `assets/brand/icon.svg` → `node scripts/brand/icon.mjs` → `assets/icon.png`.
+- Ekran startowy i Live Activity (przerwa) w kolorach Kredy.
+- Testy: `tests/brand-kreda.test.tsx`.
+- Do sprawdzenia na telefonie: szerokość pól ciężaru z krojem mono (np. „102,5”), wygląd w trybie ciemnym.

@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react';
 import * as timer from '@/lib/timer';
 import { fmtDur } from '@/lib/store';
 import { Tabs } from 'expo-router/js-tabs'; // router 57: `Tabs` z głównego 'expo-router' przestarzałe (ten sam komponent)
-import { Text, type ColorValue } from 'react-native';
-import { useTheme } from '@/lib/theme';
+import { type ColorValue } from 'react-native';
+import { useTheme, F } from '@/lib/theme';
+import { TabIcon, type TabIconName } from '@/components/TabIcon';
 import { t as tr } from '@/lib/i18n';
 import { usePrefsTick } from '@/lib/store';
 
 // SDK 56: zakładki expo-router (fork React Navigation) podają kolor jako ColorValue, nie string — Text przyjmuje oba.
-const icon = (ch: string) => ({ color }: { color: ColorValue }) => <Text style={{ fontSize: 20, color }}>{ch}</Text>;
+const icon = (name: TabIconName) => ({ color }: { color: ColorValue }) => <TabIcon name={name} color={color} />;
 
 export default function TabsLayout() {
   const t = useTheme(); usePrefsTick();
@@ -22,12 +23,12 @@ export default function TabsLayout() {
   const full = left == null ? undefined : left > 0 ? fmtDur(left) : '+' + fmtDur(-left); // po czasie: nadwyżka jak na pasku
   const badge = left == null ? undefined : left > 0 ? short(left) : '+' + short(-left);
   return (
-    <Tabs screenOptions={{ headerShown: false, tabBarStyle: { backgroundColor: t.surface, borderTopColor: t.line }, tabBarActiveTintColor: t.accent, tabBarInactiveTintColor: t.muted, sceneStyle: { backgroundColor: t.bg } }}>
-      <Tabs.Screen name="index" options={{ title: tr('Trening'), tabBarIcon: icon('🏋️'), tabBarBadge: badge, tabBarAccessibilityLabel: full ? `${tr('Trening')}, ${tr('przerwa {s}', { s: full })}` : undefined /* runda 30: VoiceOver czyta przerwę */, tabBarBadgeStyle: { backgroundColor: t.accent, color: t.accentInk, fontSize: 11 } }} />
-      <Tabs.Screen name="templates" options={{ title: tr('Szablony'), tabBarIcon: icon('📋') }} />
-      <Tabs.Screen name="exercises" options={{ title: tr('Ćwiczenia'), tabBarIcon: icon('📚') }} />
-      <Tabs.Screen name="history" options={{ title: tr('Historia'), tabBarIcon: icon('📈') }} />
-      <Tabs.Screen name="more" options={{ title: tr('Więcej'), tabBarIcon: icon('⋯') }} />
+    <Tabs screenOptions={{ headerShown: false, tabBarStyle: { backgroundColor: t.surface, borderTopColor: t.line }, tabBarActiveTintColor: t.accent, tabBarInactiveTintColor: t.muted, tabBarLabelStyle: { fontFamily: F.semibold }, sceneStyle: { backgroundColor: t.bg } }}>
+      <Tabs.Screen name="index" options={{ title: tr('Trening'), tabBarIcon: icon('workout'), tabBarBadge: badge, tabBarAccessibilityLabel: full ? `${tr('Trening')}, ${tr('przerwa {s}', { s: full })}` : undefined /* runda 30: VoiceOver czyta przerwę */, tabBarBadgeStyle: { backgroundColor: t.accent, color: t.accentInk, fontSize: 11 } }} />
+      <Tabs.Screen name="templates" options={{ title: tr('Szablony'), tabBarIcon: icon('templates') }} />
+      <Tabs.Screen name="exercises" options={{ title: tr('Ćwiczenia'), tabBarIcon: icon('exercises') }} />
+      <Tabs.Screen name="history" options={{ title: tr('Historia'), tabBarIcon: icon('history') }} />
+      <Tabs.Screen name="more" options={{ title: tr('Więcej'), tabBarIcon: icon('more') }} />
     </Tabs>
   );
 }

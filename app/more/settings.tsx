@@ -1,10 +1,9 @@
 import React from 'react';
 import { ScrollView, Alert, View } from 'react-native';
-import { Screen, Field, NumInput, Chip, Btn, Muted, SwitchRow, Segmented, SectionTitle, Item } from '@/components/ui';
+import { Screen, Field, NumInput, Btn, Muted, SwitchRow, Segmented, SectionTitle, Item } from '@/components/ui';
 import { useRouter } from 'expo-router';
-import { getState, useTick, save, resetAll, setModule, applyPrefs } from '@/lib/store';
+import { getState, useTick, save, resetAll, applyPrefs } from '@/lib/store';
 import { DEFAULT_REST } from '@/lib/seed';
-import { MODULES, MODULE_LABEL, MODULES_AVAILABLE, SCHEMA_VERSION } from '@/lib/seed';
 import * as timer from '@/lib/timer';
 import { safetyBackup, safetyRecoveryNote } from '@/lib/backup';
 import * as health from '@/lib/health';

@@ -7,5 +7,5 @@ module.exports = {
   deploymentTarget: '16.2',
   frameworks: ['SwiftUI', 'WidgetKit', 'ActivityKit'],
   // Kształt: string albo { light, dark } (apple-targets 4.x) — wcześniejsze { color, darkColor } dawało pusty colorset.
-  colors: { $accent: '#f2b441' },
+  colors: { $accent: '#FF8A3D' }, // Kreda (docs/16)
 };

@@ -1,7 +1,7 @@
 import React, { useMemo, useRef, useState } from 'react';
 import { FlatList, ScrollView, Pressable, Text, View } from 'react-native';
 import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
-import { useTheme } from '@/lib/theme';
+import { useTheme, F } from '@/lib/theme';
 import { Screen, Input, Chip, Item, Muted, Empty } from '@/components/ui';
 import { getState, addExerciseToActive, newExercise, save, visibleExercises, exerciseInHistory, locationById, swapBlock, exById } from '@/lib/store';
 import { afterSwap } from '@/components/ActiveWorkout';
@@ -50,7 +50,7 @@ export default function PickerScreen() {
     if (router.canGoBack()) router.back(); else router.replace('/');
   };
   let last = ''; const rows: React.ReactNode[] = [];
-  list.forEach(e => { if (!g && !ql && e.group !== last) { last = e.group; rows.push(<Muted key={'g' + e.group} accessibilityRole="header" style={{ fontSize: 12, fontWeight: '600', paddingTop: 12, paddingBottom: 2 }}>{t(e.group)}</Muted>); }
+  list.forEach(e => { if (!g && !ql && e.group !== last) { last = e.group; rows.push(<Muted key={'g' + e.group} accessibilityRole="header" style={{ fontSize: 12, fontFamily: F.semibold, paddingTop: 12, paddingBottom: 2 }}>{t(e.group)}</Muted>); }
     const a = avail(e); const miss = a && !a.ok ? ' · ' + t('brak: {m}', { m: missingLabel(a.missing) }) : '';
     rows.push(<Item key={e.id} title={exName(e)} sub={`${t(e.equipment)}${e.bandAssistable ? ' · ' + t('guma') : ''}${miss}`} onPress={() => choose(e)} icon="+" dim={!!miss} />); });
   // Usunięte ćwiczenie o pasującej nazwie można przywrócić razem z historią, zamiast tworzyć puste nowe (runda 4).

@@ -7,7 +7,7 @@ import { locationLabel } from '@/lib/locations';
 import { availability } from '@/lib/equipment';
 import { implLabel } from '@/lib/swap';
 import { getState, useTick, exById, save, dupTemplate, deleteTemplate, groupLabels, linkWithNext, unlink, moveItem, removeItem, restFor, isBW, startFromTemplate, loadLabel, loadLabelShort, occurrence, occurrences, implAtLoc, startLocationId, locationById } from '@/lib/store';
-import { useTheme } from '@/lib/theme';
+import { useTheme, F } from '@/lib/theme';
 import { hasTime, hasReps, hasWeight } from '@/lib/seed';
 import { t, exName } from '@/lib/i18n';
 import { wu, wField, wInKeep } from '@/lib/units';
@@ -45,7 +45,7 @@ export default function TemplateEdit() {
       {tpl.items.map((it, i) => { const ex = exById(it.exerciseId); const m = ex?.metric ?? 'weight_reps'; const next = tpl.items[i + 1]; const nOcc = occurrences(tpl.items, it.exerciseId); const nm = nOcc > 1 ? `${exName(ex)} (${occurrence(tpl.items, i) + 1})` : exName(ex); /* runda 67: dwie pozycje tego samego ćwiczenia rozróżnialne dla VoiceOver */ const impl = implAtLoc(ex, startLocationId(tpl.locationId)); /* MEDIUM 2: przyrząd w miejscu startu szablonu (jak blok po starcie) */ return (
         <View key={it.id} style={{ borderBottomWidth: 1, borderBottomColor: th.line, paddingVertical: 10, gap: 8 }}>
           <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-            <Txt style={{ fontWeight: '600', flex: 1 }}>{it.groupId ? <Txt style={{ color: th.band, fontWeight: '700' }}>{`SS ${labels[it.groupId]} · `}</Txt> : null}{exName(ex)}</Txt>
+            <Txt style={{ fontFamily: F.semibold, flex: 1 }}>{it.groupId ? <Txt style={{ color: th.band, fontFamily: F.semibold }}>{`SS ${labels[it.groupId]} · `}</Txt> : null}{exName(ex)}</Txt>
             <View style={{ flexDirection: 'row', gap: 4 }}>
               {next && (!it.groupId || next.groupId !== it.groupId) ? <Btn title="⇅ SS" small kind="ghost" accessibilityLabel={t('Połącz z następnym w superset')} accessibilityHint={nm} onPress={() => linkWithNext(tpl.items, i, tpl)} /> : null}
               {it.groupId ? <Btn title="✂" small kind="ghost" accessibilityLabel={t('Wyjmij z supersetu')} accessibilityHint={nm} onPress={() => unlink(tpl.items, i, tpl)} /> : null}
@@ -76,7 +76,7 @@ function Alternates({ tplId, itemId }: { tplId: string; itemId: string }) {
   const th = useTheme(); const tpl = getState().templates.find(x => x.id === tplId); const it = tpl?.items.find(x => x.id === itemId); if (!tpl || !it?.alternates?.length) return null;
   const itEx = exById(it.exerciseId);
   return <View style={{ gap: 4 }}>
-    <Muted style={{ fontSize: 12, fontWeight: '600' }}>{t('Zamienniki')}</Muted>
+    <Muted style={{ fontSize: 12, fontFamily: F.semibold }}>{t('Zamienniki')}</Muted>
     {it.alternates.map(a => { const B = exById(a.exerciseId); const place = locationById(a.locationId); const av = B && place ? availability(B, place) : null;
       const name = `${locationLabel(a.locationId)}: ${exName(B)}${a.impl ? ` — ${implLabel(a.impl)}` : ''}`; const key = `${locationLabel(a.locationId)} — ${exName(B)}`;
       return <View key={a.locationId} style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
