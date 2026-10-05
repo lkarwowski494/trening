@@ -390,7 +390,13 @@ Wynik: **0 wysokich, 2 średnie, 2 niskie** — wszystkie naprawione, każde z t
 
 ### E2E na symulatorze i build na trening 05.10.2026
 
-GOTOWE DO BUILDU: 8f0f93593a823580a1981c89d4b88c67cc46cc07 — E2E run 37268636855 7/7, audyt: 0 wysokich / 1 średnich (naprawione) (05.10.2026, 06:35 UTC)
+GOTOWE DO BUILDU: 0f45b27fed4064035a441dc53632d74841d38b36 — E2E run 37289333861 7/7, audyt: 0 wysokich / 2 średnich (naprawione) (05.10.2026, 10:05 UTC)
+
+*Zakres:* jak 8f0f935 + uwagi właściciela 05.10: poranny wpis usunięty, moduły schowane, bez nazw innych aplikacji, „Miejsca i sprzęt”
+w Więcej (E2E run 37281443063 7/7 na cb6755b), 16 języków (docs/16), styl marki „Kreda” (docs/16). Audyty: 8f0f935..ac5d764
+(0/1/4) i ac5d764..cd60eec (0/1/5) — docs/09. Późniejsze commity do 694ceb1 zmieniają tylko docs/15.
+
+*Poprzednio (zastąpione 05.10.2026, 10:05 UTC):* `GOTOWE DO BUILDU: 8f0f93593a823580a1981c89d4b88c67cc46cc07 — E2E run 37268636855 7/7, audyt: 0 wysokich / 1 średnich (naprawione) (05.10.2026, 06:35 UTC)`
 
 *Zakres:* jak 4cc004b + decyzja właściciela 05.10 „1.a” (nowy sprzęt dopisany raz do miejsc z presetu siłowni) i „2. ok” (ranking przy remisie).
 
