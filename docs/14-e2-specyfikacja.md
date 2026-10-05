@@ -390,7 +390,11 @@ Wynik: **0 wysokich, 2 średnie, 2 niskie** — wszystkie naprawione, każde z t
 
 ### E2E na symulatorze i build na trening 05.10.2026
 
-GOTOWE DO BUILDU: 4cc004b29d37a9acb2b09452052d77c1f20fefd1 — E2E run 37237348581 7/7, audyt: 0 wysokich / 2 średnich (1 naprawiony, 1 opisany — decyzja właściciela) (04.10.2026, 22:10 UTC)
+GOTOWE DO BUILDU: 8f0f93593a823580a1981c89d4b88c67cc46cc07 — E2E run 37268636855 7/7, audyt: 0 wysokich / 1 średnich (naprawione) (05.10.2026, 06:35 UTC)
+
+*Zakres:* jak 4cc004b + decyzja właściciela 05.10 „1.a” (nowy sprzęt dopisany raz do miejsc z presetu siłowni) i „2. ok” (ranking przy remisie).
+
+*Poprzednio (zastąpione 05.10.2026, 06:35 UTC):* `GOTOWE DO BUILDU: 4cc004b29d37a9acb2b09452052d77c1f20fefd1 — E2E run 37237348581 7/7, audyt: 0 wysokich / 2 średnich (1 naprawiony, 1 opisany — decyzja właściciela) (04.10.2026, 22:10 UTC)`
 
 *Zakres:* pełna baza ćwiczeń (854; decyzja właściciela „dodawaj resztę”), Q-024, listy wirtualizowane. Aplikacja w E2E zbudowana w run 37226412840 (02ba448) — kod aplikacji bez zmian do 4cc004b (od tego czasu tylko scenariusze Maestro, przepływ E2E, testy i dokumentacja).
 
