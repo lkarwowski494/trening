@@ -390,7 +390,12 @@ Wynik: **0 wysokich, 2 średnie, 2 niskie** — wszystkie naprawione, każde z t
 
 ### E2E na symulatorze i build na trening 05.10.2026
 
-GOTOWE DO BUILDU: 0f45b27fed4064035a441dc53632d74841d38b36 — E2E run 37289333861 7/7, audyt: 0 wysokich / 2 średnich (naprawione) (05.10.2026, 10:05 UTC)
+GOTOWE DO BUILDU: 409d768352bd32e7788a845352bb5e52a83d19f4 — E2E run 37304786066 7/7, audyt: 0 wysokich / 0 średnich (05.10.2026, 12:35 UTC)
+
+*Zakres:* jak 0f45b27 + wybór wyglądu, domyślnie jasna Kreda (decyzja właściciela 05.10 po instalacji; docs/16). Audyt 0ac7b2b..409d768:
+0 wysokich, 0 średnich, 3 niskie (opisane w docs/09).
+
+*Poprzednio (zastąpione 05.10.2026, 12:35 UTC):* `GOTOWE DO BUILDU: 0f45b27fed4064035a441dc53632d74841d38b36 — E2E run 37289333861 7/7, audyt: 0 wysokich / 2 średnich (naprawione) (05.10.2026, 10:05 UTC)`
 
 *Zakres:* jak 8f0f935 + uwagi właściciela 05.10: poranny wpis usunięty, moduły schowane, bez nazw innych aplikacji, „Miejsca i sprzęt”
 w Więcej (E2E run 37281443063 7/7 na cb6755b), 16 języków (docs/16), styl marki „Kreda” (docs/16). Audyty: 8f0f935..ac5d764
