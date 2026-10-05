@@ -136,6 +136,10 @@
   "en": "+ plate"
  },
  {
+  "pl": "+ zakres powtórzeń",
+  "en": "+ rep range"
+ },
+ {
   "pl": "− seria",
   "en": "− set"
  },
@@ -547,6 +551,10 @@
  {
   "pl": "dostępne: {n} ({r})",
   "en": "available: {n} ({r})"
+ },
+ {
+  "pl": "Dotknij etykiety serii, by zmienić typ albo usunąć serię. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✂” wyjmuje z grupy.",
+  "en": "Tap a set label to change its type or delete the set. The rep range is optional — with it you get “↑” hints. “⇅ SS” links an exercise with the next one in a superset, “✂” takes it out of the group."
  },
  {
   "pl": "drążek",
@@ -1958,6 +1966,14 @@
   "en": "Reps"
  },
  {
+  "pl": "powtórzenia do",
+  "en": "reps to"
+ },
+ {
+  "pl": "powtórzenia od",
+  "en": "reps from"
+ },
+ {
   "pl": "powtórzenie|powtórzenia|powtórzeń",
   "en": "rep|reps",
   "plural": true
@@ -2218,6 +2234,10 @@
  {
   "pl": "Seria {n}, typ: {k}. Tapnij, by zmienić typ lub dodać notatkę.",
   "en": "Set {n}, type: {k}. Tap to change the type or add a note."
+ },
+ {
+  "pl": "Seria {n}, typ: {k}. Tapnij, by zmienić typ lub usunąć serię.",
+  "en": "Set {n}, type: {k}. Tap to change the type or delete the set."
  },
  {
   "pl": "seria {s} s",
@@ -2794,6 +2814,10 @@
   "en": "Remove unticked"
  },
  {
+  "pl": "Usuń serię",
+  "en": "Delete set"
+ },
+ {
   "pl": "Usuń serię {n} — {ex}",
   "en": "Delete set {n} — {ex}"
  },
@@ -2812,6 +2836,10 @@
  {
   "pl": "Usuń z szablonu",
   "en": "Remove from template"
+ },
+ {
+  "pl": "Usuń zakres powtórzeń",
+  "en": "Remove rep range"
  },
  {
   "pl": "Usuń zamiennik: {name}",
@@ -3084,6 +3112,10 @@
  {
   "pl": "Zakres jest niepoprawny: „max” musi być ≥ „min”, krok > 0. Ciężary nie są liczone.",
   "en": "Invalid range: “max” must be ≥ “min”, step > 0. Weights are not calculated."
+ },
+ {
+  "pl": "Zakres powtórzeń: {r} — po osiągnięciu górnej granicy podpowiedź „↑ więcej kg”.",
+  "en": "Rep range: {r} — when you reach the top of the range you get a “↑ more kg” hint."
  },
  {
   "pl": "Zalecenia",

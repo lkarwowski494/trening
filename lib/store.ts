@@ -4,7 +4,7 @@ import { useSyncExternalStore } from 'react';
 import { t, t as tr, tIn, applyLang, detectLang, locale, fold, isLang } from './i18n';
 import { applyUnit, wu, wOut, wIn, KG_PER_LB, fmtW, fmtNum, snapLegacyLb } from './units';
 import { applyTheme } from './theme';
-import { seedState, uid, base, defaultModules, defaultSettings, metricFor, loadModeFor, loadMult, blankTimer, musclesFor, hasTime, hasReps, hasWeight, hasDistance, METRICS, DEFAULT_REST, GROUPS, LIB, SCHEMA_VERSION, LOCAL_OWNER, MODULES, SET_KINDS, SINGLE_IMPLEMENT, equipFields, libExercise, LIB_EXTRA_REVS, LIB_EXTRA_REV, LIB_MUSCLE_FIXES, libExtraRevOf, LIB_BASE_NAMES, LOAD_SOURCE_BY_EQUIPMENT, IMPLS, own, type Impl, type SetKind, type Base, type State, type Workout, type WSet, type WExercise, type Exercise, type Template, type TemplateItem, type TemplateAlt, type Morning, type Location } from './seed';
+import { seedState, uid, base, defaultModules, defaultSettings, metricFor, loadModeFor, loadMult, blankTimer, musclesFor, hasTime, hasReps, hasWeight, hasDistance, METRICS, DEFAULT_REST, GROUPS, LIB, SCHEMA_VERSION, LOCAL_OWNER, MODULES, SET_KINDS, SINGLE_IMPLEMENT, equipFields, libExercise, LIB_EXTRA_REVS, LIB_EXTRA_REV, LIB_MUSCLE_FIXES, libExtraRevOf, LIB_BASE_NAMES, LOAD_SOURCE_BY_EQUIPMENT, IMPLS, own, type Impl, type SetKind, type Base, type State, type Workout, type WSet, type WExercise, type Exercise, type Template, type TemplateItem, type TemplateAlt, type TRow, type Morning, type Location } from './seed';
 import { equipById, loadsFor, implAt, implsAt, blankLoad, availability, fillGym, GYM_FILL, fillOpts, OPT_FILL } from './equipment';
 import { sanitizeLoadSpec, nextHeavier, hasLoadShown } from './loads';
 import { CATALOG, CATALOG_REV, CABLES } from './catalog.generated';
@@ -263,7 +263,7 @@ export function migrate(raw: any): State {
       }
       raw.libExtra = LIB_EXTRA_REVS[0]; raw.libExtraStep = LIB_EXTRA_REV; } }
   raw.templates = arr(raw.templates);
-  raw.templates.forEach((t: any) => { stamp(t); if (typeof t.name !== 'string') t.name = ''; t.items = arr(t.items); t.items = t.items.filter((it: any) => idOf(it.exerciseId) != null); t.items.forEach((it: any) => { it.id = idOf(it.id) ?? uid(); it.exerciseId = idOf(it.exerciseId); { const v = parseNum(it.targetSec); it.targetSec = v == null || v < 0 ? '' : Math.min(86400, Math.round(v)); } /* runda 51 */ it.groupId = idOf(it.groupId); it.sets = intIn(it.sets, 1, 50) ?? 1; /* runda 15: liczba, nie tekst z importu */ if (it.startWeight === undefined) it.startWeight = ''; for (const k of ['repMin', 'repMax']) it[k] = intIn(it[k], 1, 100); { const v = parseNum(it.restSec); it.restSec = v == null || v < 0 ? null : Math.min(1800, Math.round(v)); } /* runda 49: także tekst, jak przerwa ćwiczenia */ /* runda 17: limit 1800 */ { const v = parseNum(it.startWeight); it.startWeight = v == null ? '' : kg2(snapL(v) as number); } fixAlternates(it); }); });
+  raw.templates.forEach((t: any) => { stamp(t); if (typeof t.name !== 'string') t.name = ''; t.items = arr(t.items); t.items = t.items.filter((it: any) => idOf(it.exerciseId) != null); t.items.forEach((it: any) => { it.id = idOf(it.id) ?? uid(); it.exerciseId = idOf(it.exerciseId); { const v = parseNum(it.targetSec); it.targetSec = v == null || v < 0 ? '' : Math.min(86400, Math.round(v)); } /* runda 51 */ it.groupId = idOf(it.groupId); it.sets = intIn(it.sets, 1, 50) ?? 1; /* runda 15: liczba, nie tekst z importu */ if (it.startWeight === undefined) it.startWeight = ''; for (const k of ['repMin', 'repMax']) it[k] = intIn(it[k], 1, 100); { const v = parseNum(it.restSec); it.restSec = v == null || v < 0 ? null : Math.min(1800, Math.round(v)); } /* runda 49: także tekst, jak przerwa ćwiczenia */ /* runda 17: limit 1800 */ { const v = parseNum(it.startWeight); it.startWeight = v == null ? '' : kg2(snapL(v) as number); } fixAlternates(it); fixRows(it); }); });
   raw.templates.forEach((x: any) => { const n = x.name.replace(/\s+/g, ' ').trim(); x.name = n || tIn(raw.settings?.language, 'Nowy szablon'); { const l = idOf(x.locationId); if (l) x.locationId = l; else delete x.locationId; } /* P-003 */ }); // runda 35: jak nazwy ćwiczeń
   /* Decyzja właściciela 03.10.2026 (08:11): aplikacja nie zmienia ciężarów ani treści szablonów użytkownika — także przy przejściu na schemat 15
    * (wcześniejsza jednorazowa zmiana 48 → 24 kg z P-004 usunięta: 48 zostaje 48). Zostaje tylko dotychczasowa normalizacja, ta sama co w main:
@@ -797,21 +797,61 @@ const newWorkout = (templateId: string | null, templateName: string, locPref?: s
  * Bez źródła: ciężar startowy pozycji szablonu (`startWeight` — tylko start z szablonu i cofnięcie do A; zamiana podaje '', bo to ciężar A).
  * Cel czasu (`targetSec`) — przy metryce z czasem, w seriach poza rozgrzewką.
  */
-export function prefillSets(ex: Exercise, kinds: readonly SetKind[], prevAll: { workout: Workout; sets: WSet[] } | null, locationId: string | null | undefined, impl: Impl | null | undefined, targetSec: number | '', startWeight: number | '' = '', from = 0, pinned = false): WSet[] {
+export function prefillSets(ex: Exercise, kinds: readonly SetKind[], prevAll: { workout: Workout; sets: WSet[] } | null, locationId: string | null | undefined, impl: Impl | null | undefined, targetSec: number | '', startWeight: number | '' = '', from = 0, pinned = false, rows?: readonly TRow[]): WSet[] {
   const src = prevAll ? prevAll.sets.filter(x => x.kind !== 'drop') : []; const m = ex.metric ?? 'weight_reps';
   const away = !!prevAll && prevFromOther(prevAll, ex.id, locationId, impl); let j = from;
-  return kinds.map(kind => {
-    const work = kind !== 'warmup' && kind !== 'drop';
+  return kinds.map((kind, k) => {
+    const work = kind !== 'warmup' && kind !== 'drop'; const row = rows?.[k];
     const p0 = work ? srcSetAt(src, j++) : null; const p = assistLost(ex, p0) ? null : p0; /* runda 72: jak przy odhaczaniu; runda 82c: wspólne mapowanie serii źródła (srcSetAt) */
     const s = { ...blankSet(), kind, warmup: kind === 'warmup', ...(p ? copyVals(p) : work ? { weight: (isBW(ex) || !hasWeight(m)) ? '' : (startWeight === '' ? '' : Math.max(0, Number(startWeight))), /* runda 48 */ addKg: isBW(ex) && hasWeight(m) ? startWeight : '' } : {}) } as WSet;
     // Cel czasu z szablonu wygrywa z czasem z poprzedniej sesji — inaczej stoper ucinał serię na starym wyniku (runda 2).
     // Czas z poprzedniej sesji zostaje tylko podpowiedzią („Poprzednio”) — jako wartość stawałby się celem stopera (runda 4).
     if (hasTime(m)) s.durationSec = kind !== 'warmup' && Number(targetSec) > 0 ? Number(targetSec) : ''; // runda 30: cel 0 = bez celu (jak w repeatLast)
+    /* schemat 17: bez „ostatnio” — plan z wiersza szablonu (także rozgrzewki i drop sety); cel czasu z wiersza */
+    if (row) { if (!p) { if (hasWeight(m)) { if (isBW(ex)) s.addKg = row.weight; else s.weight = row.weight === '' ? '' : Math.max(0, Number(row.weight)); } if (hasReps(m)) s.reps = row.reps; if (hasDistance(m)) s.distanceM = row.distanceM; }
+      if (hasTime(m)) s.durationSec = kind !== 'warmup' && Number(row.durationSec) > 0 ? Number(row.durationSec) : s.durationSec; }
     /* audyt M3 + weryfikacja 2: tylko źródło „gdzie indziej” (prevFromOther: inne, znane miejsce albo — LOW 3 — znany, inny przyrząd; treningi sprzed
      * miejsc — jak M8 — nie); wtedy bez ciężaru nie przepisujemy też powtórzeń — seria zostaje pusta, a nie „ciężar pusty + powtórzenia” */
     if (p && away && offListAt(ex, locationId, s.weight, pinned && impl ? impl : undefined)) { s.weight = ''; if (p.reps === s.reps) s.reps = ''; }
     return markPre(stripUnused(ex, s));
   });
+}
+/* ---------- szablon = nieaktywny trening (schemat 17, docs/17) ---------- */
+/** Wiersze serii pozycji: zapisane albo — dla danych sprzed 17 — `sets` zwykłych serii z ciężarem startowym i celem czasu. */
+export function tplRows(it: TemplateItem): TRow[] {
+  if (it.rows?.length) return it.rows;
+  const n = Math.max(1, Math.min(50, Math.floor(Number(it.sets) || 1)));
+  return Array.from({ length: n }, (_, k) => ({ id: `${it.id}:${k}`, kind: 'normal' as SetKind, reps: '' as const, weight: it.startWeight ?? '', durationSec: Number(it.targetSec) > 0 ? Number(it.targetSec) : '' as const, distanceM: '' as const }));
+}
+const isWork = (k: SetKind) => k === 'normal' || k === 'failure';
+/** Liczba serii, ciężar startowy i cel czasu z wierszy (reszta kodu — zamiana, trening wstecz — czyta te pola). */
+function syncItem(it: TemplateItem) { if (!it.rows?.length) { delete it.rows; return; } it.sets = it.rows.length; const w = it.rows.find(r => isWork(r.kind)); it.startWeight = w ? w.weight : ''; it.targetSec = w && Number(w.durationSec) > 0 ? Number(w.durationSec) : ''; }
+function rowsOf(it: TemplateItem): TRow[] { if (!it.rows?.length) it.rows = tplRows(it).map(r => ({ ...r, id: uid() })); return it.rows; }
+const tplItem = (tpl: Template, itemId: string) => tpl.items.find(x => x.id === itemId);
+/** „+ seria / + rozgrzewka / + drop set” w szablonie — jak w treningu (addSet): rozgrzewka pusta przed roboczymi; seria — wartości ostatniej. */
+export function tplAddRow(tpl: Template, itemId: string, kind?: 'warmup' | 'drop') {
+  const it = tplItem(tpl, itemId); if (!it) return; const rows = rowsOf(it); if (rows.length >= 50) return;
+  if (kind === 'warmup') { const i = rows.findIndex(r => r.kind !== 'warmup'); rows.splice(i < 0 ? rows.length : i, 0, { id: uid(), kind: 'warmup', reps: '', weight: '', durationSec: '', distanceM: '' }); }
+  else { const l = rows[rows.length - 1]; rows.push({ ...(l ?? { reps: '', weight: '', durationSec: '', distanceM: '' }), id: uid(), kind: kind ?? (l?.kind === 'drop' ? 'drop' : 'normal') }); }
+  syncItem(it); save(tpl);
+}
+export function tplRemoveRow(tpl: Template, itemId: string, rowId?: string) {
+  const it = tplItem(tpl, itemId); if (!it) return; const rows = rowsOf(it); if (rows.length <= 1) return;
+  const f = rowId ? rows.findIndex(r => r.id === rowId) : rows.length - 1; const i = f >= 0 ? f : rowId ? Number(rowId.split(':')[1]) : -1; /* wiersz wyliczony (dane sprzed 17): id „pozycja:k” */ if (!(i >= 0 && i < rows.length)) return; rows.splice(i, 1); syncItem(it); save(tpl);
+}
+export function tplSetRow(tpl: Template, itemId: string, rowId: string, patch: Partial<Omit<TRow, 'id' | 'kind'>>) {
+  const it = tplItem(tpl, itemId); if (!it) return; const r = rowsOf(it).find(x => x.id === rowId) ?? rowsOf(it)[Number(rowId.split(':')[1])]; if (!r) return; Object.assign(r, patch); syncItem(it); save(tpl);
+}
+export function tplSetKind(tpl: Template, itemId: string, rowId: string, kind: SetKind) {
+  const it = tplItem(tpl, itemId); if (!it) return; const r = rowsOf(it).find(x => x.id === rowId) ?? rowsOf(it)[Number(rowId.split(':')[1])]; if (!r) return; r.kind = kind; syncItem(it); save(tpl);
+}
+/** Wczytanie/import: wiersze poprawne albo brak (pozycja wraca do `sets` + `startWeight`). */
+function fixRows(it: any) {
+  if (!Array.isArray(it.rows)) { delete it.rows; return; }
+  const num = (v: unknown, min: number, max: number, int = true) => { const x = parseNum(v); return x == null ? '' : Math.min(max, Math.max(min, int ? Math.round(x) : x)); };
+  it.rows = it.rows.filter(isObj).slice(0, 50).map((r: any) => ({ id: typeof r.id === 'string' && r.id ? r.id : uid(), kind: (SET_KINDS as readonly string[]).includes(r.kind) ? r.kind : 'normal',
+    reps: num(r.reps, 0, 1000), weight: (v => v == null ? '' : kg2(snapL(v) as number))(parseNum(r.weight)), durationSec: num(r.durationSec, 0, 86400), distanceM: num(r.distanceM, 0, 1e6) }));
+  syncItem(it);
 }
 export function startFromTemplate(tpl: Template) {
   const st = getState(); const w = newWorkout(tpl.id, tpl.name, tpl.locationId);
@@ -820,8 +860,8 @@ export function startFromTemplate(tpl: Template) {
     // Runda 7: drop sety poprzedniej sesji nie są źródłem wartości dla zwykłych serii szablonu (jak przy odhaczaniu, runda 6).
     const impl = implAtLoc(ex, w.locationId); /* decyzja 8c: „Poprzednio” = ostatni raz tym samym przyrządem */
     const prevAll = previousBlockFor(it.exerciseId, occurrence(tpl.items, ii), occurrences(tpl.items, it.exerciseId), it.id, tpl.id, impl);
-    const n = Math.max(1, Math.min(50, Math.floor(Number(it.sets) || 1)));
-    const sets = prefillSets(ex, Array<SetKind>(n).fill('normal'), prevAll, w.locationId, impl, it.targetSec, it.startWeight);
+    const rows = tplRows(it); /* schemat 17: typy i plan z wierszy szablonu */
+    const sets = prefillSets(ex, rows.map(r => r.kind), prevAll, w.locationId, impl, it.targetSec, it.startWeight, 0, false, rows);
     // Przerwa: ustawiona w pozycji szablonu wygrywa; puste pole w szablonie (null) = przerwa z ćwiczenia albo domyślna.
     w.exercises.push({ id: uid(), exerciseId: ex.id, restSec: typeof it.restSec === 'number' && it.restSec >= 0 ? it.restSec : restFor(ex), /* null w szablonie = przerwa z ćwiczenia */ repMin: it.repMin, repMax: it.repMax, groupId: it.groupId ?? null, sets, tplItemId: it.id, ...(impl ? { impl } : {}) });
   });

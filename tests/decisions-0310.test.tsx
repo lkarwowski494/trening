@@ -196,11 +196,11 @@ describe('decyzja 03.10.2026 (08:11) — aplikacja nie przenosi ani nie zmienia 
     const raw = await schema14();
     const m = store.migrate(JSON.parse(JSON.stringify(raw)));
     expect([item(m, 'Legs — siłownia', 'Deadlift (hantle)').startWeight, item(m, 'Legs — dom', RDL).startWeight]).toEqual([48, 48]);
-    expect(tplShape(m)).toEqual(tplShape(raw)); expect(m.schemaVersion).toBe(16);
+    expect(tplShape(m)).toEqual(tplShape(raw)); expect(m.schemaVersion).toBe(17);
     expect(m.workouts[0].exercises[0].sets[0].weight).toBe(48); /* A-002: zapisane serie zostają */
     expect(strip(store.migrate(JSON.parse(JSON.stringify(m))))).toEqual(strip(m)); /* idempotentnie */
     /* przez start aplikacji (dane z SQLite, schemat 14) */
-    const st = await fresh(JSON.parse(JSON.stringify(raw))); expect(item(st, 'Legs — siłownia', 'Deadlift (hantle)').startWeight).toBe(48); expect(st.schemaVersion).toBe(16); expect(tplShape(st)).toEqual(tplShape(raw));
+    const st = await fresh(JSON.parse(JSON.stringify(raw))); expect(item(st, 'Legs — siłownia', 'Deadlift (hantle)').startWeight).toBe(48); expect(st.schemaVersion).toBe(17); expect(tplShape(st)).toEqual(tplShape(raw));
     expect(saved().templates.find(t => t.name === 'Legs — siłownia')!.items.find(i => i.startWeight === 48)).toBeTruthy(); /* zapisane z powrotem bez zmian */
   });
   test('import kopii: kopia ze schematem 14 i stary backup web 0.3 (prawdziwy format) — szablony 1:1, 48 kg zostaje', async () => {
@@ -208,7 +208,7 @@ describe('decyzja 03.10.2026 (08:11) — aplikacja nie przenosi ani nie zmienia 
     store.replaceState(parseBackup(JSON.stringify(raw))); let st = store.getState();
     expect(item(st, 'Legs — siłownia', 'Deadlift (hantle)').startWeight).toBe(48); expect(item(st, 'Legs — dom', RDL).startWeight).toBe(48); expect(tplShape(st)).toEqual(tplShape(raw));
     store.replaceState(parseBackup(readFileSync(join(__dirname, 'fixtures/web03-backup.json'), 'utf8'))); st = store.getState();
-    expect(st.schemaVersion).toBe(16); expect([item(st, 'Legs — siłownia', 'Deadlift (hantle)').startWeight, item(st, 'Legs — dom / Vishape', RDL).startWeight]).toEqual([48, 48]);
+    expect(st.schemaVersion).toBe(17); expect([item(st, 'Legs — siłownia', 'Deadlift (hantle)').startWeight, item(st, 'Legs — dom / Vishape', RDL).startWeight]).toEqual([48, 48]);
     expect(st.templates.map(t => t.name)).toEqual(['Upper A', 'Upper B', 'Legs — siłownia', 'Legs — dom / Vishape']);
   });
 });

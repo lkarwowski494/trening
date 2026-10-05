@@ -1,14 +1,16 @@
-import React, { useEffect, useRef } from 'react';
-import { ScrollView, View, Alert } from 'react-native';
+import React, { useEffect, useRef, useState } from 'react';
+import { ScrollView, View, Alert, Pressable, ActionSheetIOS, useWindowDimensions } from 'react-native';
+import { SetBadge, kindLabel } from '@/components/SetBadge';
+import { rowLayout } from '@/components/ActiveWorkout';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Screen, Field, Input, NumInput, Btn, Muted, Txt, FieldLabel, FieldHint, useOnce, Chip } from '@/components/ui';
 import { ScrollView as HScroll } from 'react-native';
 import { locationLabel } from '@/lib/locations';
 import { availability } from '@/lib/equipment';
 import { implLabel } from '@/lib/swap';
-import { getState, useTick, exById, save, dupTemplate, deleteTemplate, groupLabels, linkWithNext, unlink, moveItem, removeItem, restFor, isBW, startFromTemplate, loadLabel, loadLabelShort, occurrence, occurrences, implAtLoc, startLocationId, locationById } from '@/lib/store';
+import { getState, useTick, exById, save, dupTemplate, deleteTemplate, groupLabels, linkWithNext, unlink, moveItem, removeItem, restFor, isBW, startFromTemplate, loadLabel, loadLabelShort, occurrence, occurrences, implAtLoc, startLocationId, locationById, tplRows, tplAddRow, tplRemoveRow, tplSetRow, tplSetKind, previousBlockFor, srcSetAt, setSummary, reps } from '@/lib/store';
 import { useTheme, F } from '@/lib/theme';
-import { hasTime, hasReps, hasWeight } from '@/lib/seed';
+import { hasTime, hasReps, hasWeight, hasDistance, SET_KIND_LABEL, type Template, type TemplateItem } from '@/lib/seed';
 import { t, exName } from '@/lib/i18n';
 import { wu, wField, wInKeep } from '@/lib/units';
 
@@ -54,19 +56,11 @@ export default function TemplateEdit() {
               <Btn title="✕" small kind="ghost" accessibilityLabel={t('Usuń z szablonu')} accessibilityHint={nm} onPress={() => Alert.alert(t('Usunąć z szablonu?'), nm, [{ text: t('Nie') }, { text: t('Usuń'), style: 'destructive', onPress: () => { const j = tpl.items.findIndex(x => x.id === it.id); if (j >= 0) removeItem(tpl.items, j, tpl); } }])} />
             </View>
           </View>
-          <FieldHint.Provider value={nm}><View style={{ flexDirection: 'row', gap: 6 }}>
-            <Col label={t('serie')}><NumInput value={it.sets} onNum={v => { const n = int(v, 1, 50); /* runda 63: ten sam limit co wczytanie i start */ if (n != null) { it.sets = n; save(tpl); } }} /></Col>
-            {hasReps(m) ? <><Col label={t('pow. od')}><NumInput value={it.repMin ?? ''} onNum={v => { it.repMin = int(v, 1, 100); save(tpl); }} placeholder="max" /></Col>
-            <Col label={t('do')}><NumInput value={it.repMax ?? ''} onNum={v => { it.repMax = int(v, 1, 100); save(tpl); }} /></Col></> : null}
-            {hasTime(m) ? <Col label={t('cel s')}><NumInput value={it.targetSec} onNum={v => { it.targetSec = v === '' ? '' : Math.min(86400, Math.max(0, Math.round(v))); save(tpl); }} placeholder={t('np. 60')} /></Col> : null}
-            <Col label={t('przerwa s')}><NumInput value={it.restSec ?? ''} onNum={v => { it.restSec = int(v, 0, 1800); save(tpl); }} placeholder={String(restFor(ex))} /></Col>
-            {hasWeight(m) ? <Col label={t('start {u}', { u: ex ? loadLabelShort(ex, impl) : wu() }) /* runda 63/71: jak nagłówek kolumny w treningu (kg/hant.; MEDIUM 2: stacja — kg/str.) */} a11y={t('start {u}', { u: ex ? loadLabel(ex, impl) : wu() })}><NumInput weightTol decimal allowNegative={!!ex && isBW(ex)} value={wField(it.startWeight)} stored={it.startWeight} onNum={(v, keep) => { it.startWeight = v === '' ? '' : wInKeep(ex && isBW(ex) ? v : Math.max(0, v), keep); /* Q-021 */ save(tpl); }} /></Col> : null}
-          </View></FieldHint.Provider>
+          <TplRows tpl={tpl} it={it} ii={i} nm={nm} />
           {it.alternates?.length ? <Alternates tplId={tpl.id} itemId={it.id} /> : null}
-          {hasReps(m) && it.repMin != null && it.repMax != null && it.repMax < it.repMin ? <Muted style={{ fontSize: 12, color: th.danger }}>{t('„do” jest mniejsze niż „od” — zakres pokaże się jako {n}+', { n: it.repMin })}</Muted> : null}
         </View>); })}
       <Btn title={t('+ Dodaj ćwiczenie')} block style={{ marginTop: 12 }} onPress={() => router.push(`/picker?target=template:${tpl.id}`)} />
-      <Muted style={{ fontSize: 13, marginTop: 10 }}>{t('Puste „pow. od” = seria do maksimum. „⇅ SS” łączy ćwiczenie z następnym w superset (wspólna przerwa po ostatnim z grupy), „✂” wyjmuje z grupy.')}</Muted>
+      <Muted style={{ fontSize: 13, marginTop: 10 }}>{t('Dotknij etykiety serii, by zmienić typ albo usunąć serię. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✂” wyjmuje z grupy.')}</Muted>
     </ScrollView></Screen>
   );
 }
@@ -87,3 +81,53 @@ function Alternates({ tplId, itemId }: { tplId: string; itemId: string }) {
   </View>;
 }
 function Col({ label, a11y, children }: { label: string; /** runda 71: pełna nazwa dla VoiceOver, gdy etykieta jest skrócona */ a11y?: string; children: React.ReactNode }) { return <View style={{ flex: 1, justifyContent: 'flex-end' }} /* runda 69: pola w jednej linii, gdy etykieta zawija się */><Muted style={{ fontSize: 11, marginBottom: 3 }} accessibilityLabel={a11y !== label ? a11y : undefined}>{label}</Muted><FieldLabel.Provider value={a11y ?? label}>{children}</FieldLabel.Provider></View>; }
+
+/**
+ * Decyzja właściciela 05.10.2026 (docs/17): „Tworzenie szablonu to po prostu nieaktywny trening” — wiersze serii jak w treningu (typ, ostatnio,
+ * powtórzenia, ciężar/czas), te same przyciski typów; zakres powtórzeń opcjonalny („i wtedy będą podpowiedzi”).
+ */
+function TplRows({ tpl, it, ii, nm }: { tpl: Template; it: TemplateItem; ii: number; nm: string }) {
+  const th = useTheme(); const { width } = useWindowDimensions(); const ex = exById(it.exerciseId); const m = ex?.metric ?? 'weight_reps';
+  const [range, setRange] = useState(it.repMin != null || it.repMax != null);
+  const impl = implAtLoc(ex, startLocationId(tpl.locationId)); const L = rowLayout(m, false, false, width); const W = L.W;
+  const prev = ex ? previousBlockFor(it.exerciseId, occurrence(tpl.items, ii), occurrences(tpl.items, it.exerciseId), it.id, tpl.id, impl) : null;
+  const src = prev ? prev.sets.filter(x => x.kind !== 'drop') : []; const rows = tplRows(it); const kinds = rows.map(r => r.kind);
+  const int = (v: number | '', min: number, max: number) => v === '' ? null : Math.min(max, Math.max(min, Math.round(v)));
+  let j = 0;
+  const menu = (rowId: string, lbl: string) => {
+    const labels = [t('Seria normalna'), t('Rozgrzewka (W)'), t('Drop set (D)'), t('Do upadku (F)'), t('Usuń serię'), t('Anuluj')]; const ks = ['normal', 'warmup', 'drop', 'failure'] as const;
+    ActionSheetIOS.showActionSheetWithOptions({ options: labels, cancelButtonIndex: 5, destructiveButtonIndex: 4, title: t('Seria {n}', { n: lbl }) }, i => { if (i < 4) tplSetKind(tpl, it.id, rowId, ks[i]); else if (i === 4) tplRemoveRow(tpl, it.id, rowId); });
+  };
+  return (
+    <FieldHint.Provider value={nm}><View style={{ gap: 2 }}>
+      {rows.map((r, k) => { const lbl = kindLabel(kinds, k); const work = r.kind !== 'warmup' && r.kind !== 'drop'; const p = work ? srcSetAt(src, j++) : null; const prevTxt = p && ex ? setSummary(ex, p, 'calc') : '—';
+        return (
+          <View key={r.id} style={{ flexDirection: 'row', alignItems: 'center', gap: W.gap, minHeight: 48 }}>
+            <Pressable onPress={() => menu(r.id, lbl)} hitSlop={8} accessibilityRole="button" accessibilityLabel={t('Seria {n}, typ: {k}. Tapnij, by zmienić typ lub usunąć serię.', { n: lbl, k: t(SET_KIND_LABEL[r.kind]) })} style={{ width: W.idx, minHeight: 44, justifyContent: 'center' }}><SetBadge kind={r.kind} label={lbl} /></Pressable>
+            <View style={{ flex: 1 }}>{L.prevInline ? <Muted numberOfLines={1} style={{ fontSize: 13 }}>{prevTxt}</Muted> : null}</View>
+            {hasWeight(m) ? <View style={{ width: W.w }}><NumInput weightTol decimal allowNegative={!!ex && isBW(ex)} value={wField(r.weight)} stored={r.weight} placeholder={ex ? loadLabelShort(ex, impl) : wu()} accessibilityLabel={ex ? loadLabel(ex, impl) : wu()} onNum={(v, keep) => tplSetRow(tpl, it.id, r.id, { weight: v === '' ? '' : wInKeep(ex && isBW(ex) ? v : Math.max(0, v), keep) })} /></View> : null}
+            {hasReps(m) ? <View style={{ width: W.reps }}><NumInput value={r.reps} placeholder={it.repMin != null ? reps(it.repMin, it.repMax) : t('pow.')} accessibilityLabel={t('Powtórzenia')} onNum={v => tplSetRow(tpl, it.id, r.id, { reps: v === '' ? '' : Math.max(0, Math.floor(v)) })} /></View> : null}
+            {hasDistance(m) ? <View style={{ width: W.dist }}><NumInput value={r.distanceM} placeholder="m" accessibilityLabel={t('dystans')} onNum={v => tplSetRow(tpl, it.id, r.id, { distanceM: v === '' ? '' : Math.max(0, Math.round(v)) })} /></View> : null}
+            {hasTime(m) ? <View style={{ width: W.time }}><NumInput value={r.durationSec} placeholder={t('cel s')} accessibilityLabel={t('cel s')} onNum={v => tplSetRow(tpl, it.id, r.id, { durationSec: v === '' ? '' : Math.min(86400, Math.max(0, Math.round(v))) })} /></View> : null}
+          </View>); })}
+      {!L.prevInline && src.length ? <Muted style={{ fontSize: 12 }}>{t('Poprzednio')}: {src.map(x => ex ? setSummary(ex, x, 'calc') : '').join(', ')}</Muted> : null}
+      <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6, marginTop: 4 }}>
+        <Btn title={t('+ seria')} small accessibilityHint={nm} onPress={() => tplAddRow(tpl, it.id)} />
+        <Btn title={t('+ rozgrzewka')} small kind="ghost" accessibilityHint={nm} onPress={() => tplAddRow(tpl, it.id, 'warmup')} />
+        <Btn title={t('+ drop set')} small kind="ghost" accessibilityHint={nm} onPress={() => tplAddRow(tpl, it.id, 'drop')} />
+        {rows.length > 1 ? <Btn title={t('− seria')} small kind="ghost" accessibilityHint={nm} onPress={() => tplRemoveRow(tpl, it.id)} /> : null}
+      </View>
+      <View style={{ flexDirection: 'row', gap: 8, alignItems: 'flex-end', marginTop: 4 }}>
+        <View style={{ width: 96 }}><Field label={t('przerwa s')}><NumInput value={it.restSec ?? ''} onNum={v => { it.restSec = int(v, 0, 1800); save(tpl); }} placeholder={String(restFor(ex))} /></Field></View>
+        {hasReps(m) && !range ? <Btn title={t('+ zakres powtórzeń')} small kind="ghost" accessibilityHint={nm} style={{ marginBottom: 12 }} onPress={() => setRange(true)} /> : null}
+        {hasReps(m) && range ? <>
+          <View style={{ width: 72 }}><Field label={t('pow. od')}><NumInput value={it.repMin ?? ''} accessibilityLabel={`${t('powtórzenia od')} — ${nm}`} onNum={v => { it.repMin = int(v, 1, 100); save(tpl); }} /></Field></View>
+          <View style={{ width: 72 }}><Field label={t('do')}><NumInput value={it.repMax ?? ''} accessibilityLabel={`${t('powtórzenia do')} — ${nm}`} onNum={v => { it.repMax = int(v, 1, 100); save(tpl); }} /></Field></View>
+          <Btn title="✕" small kind="ghost" accessibilityLabel={t('Usuń zakres powtórzeń')} accessibilityHint={nm} style={{ marginBottom: 12 }} onPress={() => { it.repMin = null; it.repMax = null; save(tpl); setRange(false); }} />
+        </> : null}
+      </View>
+      {hasReps(m) && it.repMin != null ? <Muted style={{ fontSize: 12 }}>{t('Zakres powtórzeń: {r} — po osiągnięciu górnej granicy podpowiedź „↑ więcej kg”.', { r: reps(it.repMin, it.repMax) })}</Muted> : null}
+      {hasReps(m) && it.repMin != null && it.repMax != null && it.repMax < it.repMin ? <Muted style={{ fontSize: 12, color: th.danger }}>{t('„do” jest mniejsze niż „od” — zakres pokaże się jako {n}+', { n: it.repMin })}</Muted> : null}
+    </View></FieldHint.Provider>
+  );
+}

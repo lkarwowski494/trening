@@ -7,6 +7,7 @@ import { Btn, Input, NumInput, Muted } from '@/components/ui';
 import { progressionFor, writeLoad, setActiveLocation, lastActivity, staleSince, staleRef, staleKind, ackStale, markActivity, useForegroundTick, bandA11y, clampName, loadLabelShort, getState, useTick, exById, prevOfActiveBlock, previousFor, canUndoSwap, undoSwap, pinnedImpl, rememberRest as storeRememberRest, canRememberAlt, rememberAlt, altHint, acceptAlt, skipAlt, occurrence, occurrences, hintFor, isBW, reps, fmtDur, fmtSec, fmtTime, setSummary, toggleDone, restAfter, roundRest, addSet, removeSet, removeExercise, finishWorkout, cancelWorkout, save, loadLabel, groupLabels, linkWithNext, unlink, cycleBand, findSet, shortBand, setHasValue, locationById, offListNote, liveBlockImpl, listLocFor, srcSetAt } from '@/lib/store';
 import { availability, missingLabel } from '@/lib/equipment';
 import { implLabel } from '@/lib/swap';
+import { SetBadge } from '@/components/SetBadge';
 import { locationLabel } from '@/lib/locations';
 import * as timer from '@/lib/timer';
 import { prMap, workoutPRs } from '@/lib/stats';
@@ -322,8 +323,7 @@ function ExerciseBlock({ w, e, ei, onDone, onStartSet, labels, prs }: { w: Worko
           <View key={set.id}>
             <View style={[s.row, { gap: W.gap }]}>
               <Pressable onPress={() => setMenu(set, si)} hitSlop={8} accessibilityHint={hint} /* runda 63 */ accessibilityRole="button" accessibilityLabel={tr('Seria {n}, typ: {k}. Tapnij, by zmienić typ lub dodać notatkę.', { n: lbl, k: tr(SET_KIND_LABEL[kind]) })} style={{ width: W.idx, minHeight: 44, justifyContent: 'center' }}>
-                {kind !== 'normal' ? <View style={{ alignSelf: 'flex-start', backgroundColor: t.band, borderRadius: 6, paddingHorizontal: 4, paddingVertical: 1 }}><Text maxFontSizeMultiplier={1.3} style={{ color: t.bg, fontSize: 13, fontFamily: F.semibold }}>{lbl}{set.note ? '•' : ''}</Text></View>
-                  : <Text maxFontSizeMultiplier={1.3} style={{ color: t.muted, fontSize: 14, fontFamily: F.regular }}>{lbl}{set.note ? '•' : ''}</Text> /* decyzja 05.10.2026: typ serii widoczny (kolorowa etykieta) */}
+                <SetBadge kind={kind} label={lbl} note={!!set.note} />
               </Pressable>
               <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', gap: 4 }}>{prevInline ? <Text maxFontSizeMultiplier={1.3} numberOfLines={1} style={{ flexShrink: 1, color: t.muted, fontSize: 13 }}>{prevTxt}</Text> : null}{pr ? <Text maxFontSizeMultiplier={1.3} style={{ color: t.band, fontSize: 11, fontFamily: F.semibold }}>PR</Text> : null}</View>
               {hasWeight(m) ? <View style={{ width: W.w }}><NumInput weightTol decimal allowNegative={bw} value={wField(bw ? set.addKg : set.weight)} stored={bw ? set.addKg : set.weight} onNum={(v, keep) => { writeLoad(ex, set, wInKeep(v, keep)); /* runda 54: ciężar nieujemny; Q-021: ta sama liczba co na ekranie = te same kg; 83b: jeden zapis (store.writeLoad) */ tick(); }} placeholder={bw ? '±0' : wu()} style={doneStyle(set)} accessibilityLabel={loadLabel(ex, impl)} accessibilityHint={hint} /></View> : null}

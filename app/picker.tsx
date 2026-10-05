@@ -46,7 +46,7 @@ export default function PickerScreen() {
     else if (sw?.kind === 'active') { const r = swapBlock(swapId, ex.id); if (r) afterSwap(r.goneSetIds); }
     else if (sw?.kind === 'edit') draftSwapExercise(sw.key, swapId, ex.id);
     else if (target.startsWith('edit:')) draftAddExercise(target.slice(5), ex);
-    else if (target?.startsWith('template:')) { const tpl = st.templates.find(x => x.id === target.slice(9)); tpl?.items.push({ id: uid(), exerciseId: ex.id, sets: 3, repMin: hasReps(ex.metric ?? 'weight_reps') ? 8 : null, repMax: hasReps(ex.metric ?? 'weight_reps') ? 10 : null, restSec: null, startWeight: '', targetSec: '', groupId: null }); save(tpl); }
+    else if (target?.startsWith('template:')) { const tpl = st.templates.find(x => x.id === target.slice(9)); tpl?.items.push({ id: uid(), exerciseId: ex.id, sets: 3, repMin: null, repMax: null, /* decyzja 05.10.2026: zakres opcjonalny — dodawany w szablonie */ restSec: null, startWeight: '', targetSec: '', groupId: null }); save(tpl); }
     if (router.canGoBack()) router.back(); else router.replace('/');
   };
   let last = ''; const rows: React.ReactNode[] = [];

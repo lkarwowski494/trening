@@ -1,5 +1,5 @@
 import { useSyncExternalStore } from 'react';
-import { getState, exById, isBW, restFor, occurrence, occurrences, normalizeGroups, assistLost, emptySet, copyVals, stripUnused, previousBlockBefore, offListAt, offListNote, srcSetAt, prevFromOther, startLocationId, stampImpl, setHasResult, putHistoryWorkout, loadOf, writeLoad, pinnedImpl, localISODate, clampName, NAME_MAX, locationById } from './store';
+import { getState, exById, isBW, restFor, occurrence, occurrences, normalizeGroups, assistLost, emptySet, copyVals, stripUnused, previousBlockBefore, offListAt, offListNote, srcSetAt, prevFromOther, startLocationId, stampImpl, setHasResult, putHistoryWorkout, loadOf, writeLoad, pinnedImpl, localISODate, clampName, NAME_MAX, locationById, tplRows } from './store';
 import { implsAt, loadKindsFor } from './equipment';
 import { base, uid, hasTime, hasReps, hasWeight, type Exercise, type Impl, type Workout, type WExercise, type WSet } from './seed';
 import { t } from './i18n';
@@ -81,8 +81,8 @@ export function beginPast(tplId: string | null, start: number, end: number): Dra
   const loc = startLocationId(tpl?.locationId); if (loc) w.locationId = loc;
   tpl?.items.forEach(it => {
     const ex = exById(it.exerciseId); if (!ex || ex.archived) return;
-    const n = Math.max(1, Math.min(50, Math.floor(Number(it.sets) || 1)));
-    w.exercises.push(stampImpl({ id: uid(), exerciseId: ex.id, restSec: typeof it.restSec === 'number' && it.restSec >= 0 ? it.restSec : restFor(ex), repMin: it.repMin, repMax: it.repMax, groupId: it.groupId ?? null, sets: Array.from({ length: n }, () => ({ ...emptySet(), done: true })), tplItemId: it.id }, w.locationId)); /* decyzja 8c */
+    const rows = tplRows(it); /* schemat 17: liczba i typy serii z wierszy szablonu */
+    w.exercises.push(stampImpl({ id: uid(), exerciseId: ex.id, restSec: typeof it.restSec === 'number' && it.restSec >= 0 ? it.restSec : restFor(ex), repMin: it.repMin, repMax: it.repMax, groupId: it.groupId ?? null, sets: rows.map(r => ({ ...emptySet(), kind: r.kind, warmup: r.kind === 'warmup', done: true })), tplItemId: it.id }, w.locationId)); /* decyzja 8c */
   });
   normalizeGroups(w.exercises);
   const d = make('new-' + uid(), null, w); refill(d, start, true); d.orig = snap(d); return d;

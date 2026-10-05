@@ -248,7 +248,7 @@ describe('Q-021 lb: ponowny wpis tej samej liczby nie zmienia kg', () => {
     await renderApp(); const tpl = store.newTemplate();
     tpl.items.push({ id: 'q21', exerciseId: ex('Back Squat').id, sets: 3, repMin: 5, repMax: 5, restSec: 60, startWeight: 61.23, targetSec: '', groupId: null });
     await act(async () => { store.getState().settings.unit = 'lb'; store.applyPrefs(); store.save(tpl); }); await go('/template/' + tpl.id); await flushAll(10);
-    await act(async () => { fireEvent.changeText(screen.getByDisplayValue('135'), '135'); }); await flushAll(5); expect(tpl.items[0].startWeight).toBe(61.23);
+    await act(async () => { fireEvent.changeText(screen.getAllByDisplayValue('135')[0], '135'); }); await flushAll(5); expect(tpl.items[0].startWeight).toBe(61.23);
     /* poranna waga — ekran usunięty 05.10.2026 (decyzja właściciela) */
   });
   test('kg: wpis różniący się o 0,01 to nowa wartość (bez tolerancji)', async () => {

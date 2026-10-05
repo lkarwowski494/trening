@@ -117,12 +117,11 @@ test('B9 zakończenie bez serii → odrzucenie, bez pustej sesji', async () => {
   expect(store.getState().active).toBeNull(); expect(store.getState().workouts).toHaveLength(0);
 });
 
-test('B10 edytor szablonu: skasowanie „serie” i wpisanie 4, potwierdzenie usunięcia', async () => {
+test('B10 edytor szablonu: „+ seria / − seria” (05.10.2026: serie jako wiersze, dawne pole „serie”), potwierdzenie usunięcia', async () => {
   await renderApp({ saved: seedWithDemo() }); const tpl = store.getState().templates[0];
-  await go(`/template/${tpl.id}`); await screen.findByText('Duplikuj');
-  const field = screen.getAllByDisplayValue('4')[0];
-  await type(field, ''); expect(field.props.value).toBe('');
-  await type(field, '5'); expect(tpl.items[0].sets).toBe(5); expect(field.props.value).toBe('5');
+  await go(`/template/${tpl.id}`); await screen.findByText('Duplikuj'); const n0 = tpl.items[0].sets;
+  await tap(screen.getAllByText('+ seria')[0]); expect(tpl.items[0].sets).toBe(n0 + 1);
+  await tap(screen.getAllByText('− seria')[0]); expect(tpl.items[0].sets).toBe(n0);
   const n = tpl.items.length;
   await tap(screen.getAllByLabelText('Usuń z szablonu')[0]); expect(tpl.items.length).toBe(n);
   pressAlert('Usunąć z szablonu?', 'Usuń'); await flushAll(); expect(tpl.items.length).toBe(n - 1);

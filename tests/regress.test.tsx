@@ -200,8 +200,8 @@ describe('runda 2 — ekrany', () => {
   });
   test('R2-24 pole liczbowe pokazuje po edycji wartość zapisaną (po przycięciu)', async () => {
     await renderApp({ saved: seedWithDemo() }); const tpl = store.getState().templates[0]; await go(`/template/${tpl.id}`); await flushAll(10);
-    const f = screen.getAllByDisplayValue('4')[0]; await type(f, '50'); await type(f, '55'); expect(tpl.items[0].sets).toBe(50); /* runda 63: limit 50 */
-    await act(async () => { f.props.onEndEditing?.(); }); expect(f.props.value).toBe('50');
+    const f = screen.getAllByLabelText('przerwa s')[0]; await type(f, '1800'); await type(f, '2500'); expect(tpl.items[0].restSec).toBe(1800); /* 05.10.2026: pole „serie” zastąpione wierszami — ta sama zasada na polu przerwy (limit 1800) */
+    await act(async () => { f.props.onEndEditing?.(); }); expect(f.props.value).toBe('1800');
   });
   test('R2-25 zmiana języka przeformatowuje separator w polach', async () => {
     await renderApp({ saved: seedWithDemo() }); await tap(screen.getByLabelText('Start: Upper B')); await flushAll(10);
@@ -450,7 +450,7 @@ describe('runda 6', () => {
   test('R6-10 szablon: start ±kg dla ćwiczenia z masą ciała przyjmuje asystę (ujemne)', async () => {
     await renderApp({ saved: seedWithDemo() }); const tpl = store.getState().templates.find(x => x.items.some(i => i.exerciseId === ex('Chin Up').id))!; const it = tpl.items.find(i => i.exerciseId === ex('Chin Up').id)!;
     await go(`/template/${tpl.id}`); await flushAll(10);
-    const inputs = screen.getAllByLabelText('start ±kg'); await type(inputs[0], '-10'); expect(it.startWeight).toBe(-10);
+    const inputs = screen.getAllByLabelText(store.loadLabel(ex('Chin Up'))); await type(inputs[0], '-10'); expect(it.startWeight).toBe(-10); expect(it.rows![0].weight).toBe(-10); /* 05.10.2026: wiersz serii */
   });
   test('R6-11 wyszukiwanie bez wyników pokazuje tekst (Ćwiczenia i Postępy, ze spacją na końcu)', async () => {
     await renderApp(); await go('/exercises'); await flushAll(10); await type(screen.getByPlaceholderText('Szukaj…'), 'zzzz'); expect(screen.getByText('Nic nie pasuje.')).toBeTruthy();
@@ -1235,7 +1235,7 @@ describe('runda 49', () => {
   test('R49-06 VoiceOver: kontrolki wiersza szablonu i gumy mówią, czego dotyczą; chip wybranego ćwiczenia; nieaktywne moduły', async () => {
     await renderApp({ saved: seedWithDemo() }); const st = store.getState(); const tpl = st.templates[0]; await go(`/template/${tpl.id}`); await flushAll(10);
     const name = store.exById(tpl.items[0].exerciseId)!.name;
-    expect(screen.getAllByLabelText('Usuń z szablonu')[0].props.accessibilityHint).toBe(name); expect(screen.getAllByLabelText('serie')[0].props.accessibilityHint).toBe(name);
+    expect(screen.getAllByLabelText('Usuń z szablonu')[0].props.accessibilityHint).toBe(name); expect(screen.getAllByLabelText('+ seria')[0].props.accessibilityHint).toBe(name);
     await go('/more/bands'); await flushAll(10); expect(screen.getAllByLabelText('Usuń gumę')[0].props.accessibilityHint).toBeTruthy();
     await go(`/more/progress?ex=${ex('Back Squat').id}`); await flushAll(10); const chip = screen.getByLabelText('Back Squat'); expect(chip.props.accessibilityHint).toMatch(/inne ćwiczenie/);
     /* moduły schowane 05.10.2026 (decyzja właściciela) — chip „Trening” nie jest już wyświetlany */
@@ -1424,7 +1424,7 @@ describe('runda 54', () => {
 describe('runda 55', () => {
   test('R55-01 kg z wieloma miejscami po przecinku zostają po restarcie (przyciąganie funtów tylko dla starych danych)', async () => {
     await fresh(); store.startEmpty(); store.addExerciseToActive(ex('Back Squat')); const s = store.getState().active!.exercises[0].sets[0]; s.weight = 45.359237;
-    const m = store.migrate(JSON.parse(JSON.stringify(store.getState()))); expect(m.active!.exercises[0].sets[0].weight).toBe(45.36); /* runda 60: siatka 0,01 kg, nie przyciąganie funtów (45,35) */ expect(m.schemaVersion).toBe(16); /* runda 75: schemat 13; P-003 E1: 14 */
+    const m = store.migrate(JSON.parse(JSON.stringify(store.getState()))); expect(m.active!.exercises[0].sets[0].weight).toBe(45.36); /* runda 60: siatka 0,01 kg, nie przyciąganie funtów (45,35) */ expect(m.schemaVersion).toBe(17); /* runda 75: schemat 13; P-003 E1: 14 */
   });
   test('R55-02 nazwy jak „toString”/„constructor”/„__proto__” nie trafiają w Object.prototype', async () => {
     await fresh(); for (const n of ['toString', 'constructor', '__proto__', 'hasOwnProperty']) { const e = store.newExercise(n); store.setEquipment(e, 'masa ciała'); expect(e.equipment).toBe('masa ciała'); }
@@ -1590,8 +1590,8 @@ describe('runda 63', () => {
     await renderApp({ saved: seedWithDemo() }); await tap(screen.getByLabelText('Start: Upper A')); await flushAll(10);
     expect(screen.getAllByLabelText(/^Seria 1, typ: normalna/)[0].props.accessibilityHint).toMatch(/Seria 1 — /);
     const tpl = store.getState().templates[0]; await go(`/template/${tpl.id}`); await flushAll(10);
-    expect(screen.getAllByLabelText(/^start /)[0].props.accessibilityLabel).toMatch(/kg\/hantel|±kg|^start kg$/);
-    await type(screen.getAllByLabelText('serie')[0], '30'); await flushAll(5); expect(tpl.items[0].sets).toBe(30);
+    expect(screen.getAllByLabelText(/kg\/hantel|±kg|^kg$/).length).toBeGreaterThan(0); /* 05.10.2026: wiersze serii — etykieta ciężaru jak w treningu */
+    await act(async () => { for (let i = 0; i < 60; i++) store.tplAddRow(tpl, tpl.items[0].id); }); await flushAll(5); expect(tpl.items[0].sets).toBe(50); /* limit 50 serii */
   });
 });
 
@@ -1799,8 +1799,8 @@ describe('runda 71 (audyt tematyczny T1b/T3)', () => {
   test('R71-07 szablon: krótka etykieta ciężaru startowego, pełna dla VoiceOver', async () => {
     await renderApp({ saved: seedWithDemo() }); const st = store.getState(); const tpl = st.templates[0]; const db = st.exercises.find(e => e.loadMode === 'per_dumbbell' && !e.archived)!; tpl.items[0].exerciseId = db.id; store.save(tpl);
     await go('/template/' + tpl.id); await flushAll(10);
-    const short = 'start ' + store.loadLabelShort(db), full = 'start ' + store.loadLabel(db); expect(short).not.toBe(full);
-    expect(screen.getAllByText(short).length).toBeGreaterThan(0); expect(screen.getAllByLabelText(full).length).toBeGreaterThan(0);
+    const short = store.loadLabelShort(db), full = store.loadLabel(db); expect(short).not.toBe(full); /* 05.10.2026: wiersze serii — krótka etykieta w polu, pełna dla VoiceOver */
+    expect(screen.getAllByPlaceholderText(short).length).toBeGreaterThan(0); expect(screen.getAllByLabelText(full).length).toBeGreaterThan(0);
   });
 });
 

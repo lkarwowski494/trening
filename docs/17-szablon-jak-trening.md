@@ -36,3 +36,17 @@ bugi, to możemy wycofać, a później dodać z nowymi featurami pod nową nazw�
 - Ustalenie (do decyzji właściciela): App Store pozwala **wyzerować oceny** przy wydaniu nowej wersji (App Store Connect → „Reset summary
   rating”) — bez wycofywania. Ponowne wydanie tej samej aplikacji pod nową nazwą, by uciec od ocen, grozi odrzuceniem
   (wytyczne Apple 4.3 „spam” i 5.6 — manipulowanie ocenami). Bezpieczniej: TestFlight przed publikacją, potem wydanie stopniowe (phased release).
+
+## Wdrożenie (05.10.2026)
+
+- **Progresja** (właściciel: „niech w ustawieniach szablonu będzie się opcjonalnie dało wrzucić zakres i wtedy będą podpowiedzi”):
+  zakres od–do przy ćwiczeniu szablonu jest opcjonalny („+ zakres powtórzeń”); bez zakresu — bez podpowiedzi „↑”. Nowe ćwiczenie w szablonie —
+  bez zakresu. Istniejące szablony zachowują swoje zakresy (podpowiedzi działają jak dotąd).
+- **Schemat 17:** `TemplateItem.rows` (typ, powtórzenia, ciężar, czas, dystans). Szablony sprzed 17 **bez zmian** (brak `rows` = `sets` zwykłych
+  serii z `startWeight`; decyzja 03.10.2026 08:11 — aplikacja nie zmienia szablonów). Wiersze zapisują się dopiero przy edycji serii.
+  `sets`, `startWeight`, `targetSec` liczone z wierszy (zamiana ćwiczenia, trening wstecz). Kopia 17 odrzucana przez wersję 16.
+- **Start treningu:** typy serii z wierszy; serie robocze z „ostatnio” (jak dotąd), bez historii — plan z wiersza (także rozgrzewki i drop sety).
+- **Ekran szablonu:** wiersze jak w treningu (etykieta typu — menu: typ albo usunięcie serii; „Poprzednio”; ciężar; powtórzenia/czas/dystans),
+  „+ seria / + rozgrzewka / + drop set / − seria”, przerwa, opcjonalny zakres. Wspólna etykieta typu: `components/SetBadge.tsx`.
+- Testy: `tests/template-rows.test.tsx`; dostosowane testy dawnych pól „serie”/„start kg” (flows B10, regress R2-24/R6-10/R49-06/R63-01/R71-07,
+  audit-r82 MEDIUM 2, audit-r83 Q-021) i numeru schematu.

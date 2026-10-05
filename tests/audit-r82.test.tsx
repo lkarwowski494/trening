@@ -96,7 +96,7 @@ describe('MEDIUM 2 — etykieta ciężaru bloku na stacji: na stronę', () => {
     expect(screen.getByLabelText(/^#: 1, kg\/stronę: 30, /)).toBeTruthy();
     /* edytor szablonu z miejscem garaż — „start kg/str.” */
     const t = store.getState().templates.find(x => x.locationId === 'garage')!;
-    await go('/template/' + t.id); await flushAll(10); expect(screen.getByText('start kg/str.')).toBeTruthy();
+    await go('/template/' + t.id); await flushAll(10); expect(screen.getAllByPlaceholderText('kg/str.').length).toBeGreaterThan(0); /* 05.10.2026: wiersze serii */
   });
 });
 
