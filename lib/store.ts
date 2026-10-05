@@ -809,7 +809,7 @@ export function prefillSets(ex: Exercise, kinds: readonly SetKind[], prevAll: { 
     if (hasTime(m)) s.durationSec = kind !== 'warmup' && Number(targetSec) > 0 ? Number(targetSec) : ''; // runda 30: cel 0 = bez celu (jak w repeatLast)
     /* schemat 17: bez „ostatnio” — plan z wiersza szablonu (także rozgrzewki i drop sety); cel czasu z wiersza */
     if (row) { if (!p) { if (hasWeight(m)) { if (isBW(ex)) s.addKg = row.weight; else s.weight = row.weight === '' ? '' : Math.max(0, Number(row.weight)); } if (hasReps(m)) s.reps = row.reps; if (hasDistance(m)) s.distanceM = row.distanceM; }
-      if (hasTime(m)) s.durationSec = kind !== 'warmup' && Number(row.durationSec) > 0 ? Number(row.durationSec) : s.durationSec; }
+      if (hasTime(m)) s.durationSec = Number(row.durationSec) > 0 ? Number(row.durationSec) : ''; } /* audyt 85364ad L3: czas tylko z wiersza (także rozgrzewki) */
     /* audyt M3 + weryfikacja 2: tylko źródło „gdzie indziej” (prevFromOther: inne, znane miejsce albo — LOW 3 — znany, inny przyrząd; treningi sprzed
      * miejsc — jak M8 — nie); wtedy bez ciężaru nie przepisujemy też powtórzeń — seria zostaje pusta, a nie „ciężar pusty + powtórzenia” */
     if (p && away && offListAt(ex, locationId, s.weight, pinned && impl ? impl : undefined)) { s.weight = ''; if (p.reps === s.reps) s.reps = ''; }
@@ -824,9 +824,11 @@ export function tplRows(it: TemplateItem): TRow[] {
   return Array.from({ length: n }, (_, k) => ({ id: `${it.id}:${k}`, kind: 'normal' as SetKind, reps: '' as const, weight: it.startWeight ?? '', durationSec: Number(it.targetSec) > 0 ? Number(it.targetSec) : '' as const, distanceM: '' as const }));
 }
 const isWork = (k: SetKind) => k === 'normal' || k === 'failure';
+/** Wiersze pozycji, gdy rodzaje serii bloku wciąż się z nimi zgadzają (cofnięcie zamiany — „wartości jak przy starcie”, audyt 85364ad M2). */
+const rowsFor = (it: TemplateItem | undefined, kinds: readonly SetKind[]) => { if (!it) return undefined; const r = tplRows(it); return r.length === kinds.length && r.every((x, i) => x.kind === kinds[i]) ? r : undefined; };
 /** Liczba serii, ciężar startowy i cel czasu z wierszy (reszta kodu — zamiana, trening wstecz — czyta te pola). */
 function syncItem(it: TemplateItem) { if (!it.rows?.length) { delete it.rows; return; } it.sets = it.rows.length; const w = it.rows.find(r => isWork(r.kind)); it.startWeight = w ? w.weight : ''; it.targetSec = w && Number(w.durationSec) > 0 ? Number(w.durationSec) : ''; }
-function rowsOf(it: TemplateItem): TRow[] { if (!it.rows?.length) it.rows = tplRows(it).map(r => ({ ...r, id: uid() })); return it.rows; }
+function rowsOf(it: TemplateItem): TRow[] { if (!it.rows?.length) it.rows = tplRows(it).map(r => ({ ...r })); /* audyt 85364ad M1: id wyliczone zostają — pola nie montują się od nowa */ return it.rows; }
 const tplItem = (tpl: Template, itemId: string) => tpl.items.find(x => x.id === itemId);
 /** „+ seria / + rozgrzewka / + drop set” w szablonie — jak w treningu (addSet): rozgrzewka pusta przed roboczymi; seria — wartości ostatniej. */
 export function tplAddRow(tpl: Template, itemId: string, kind?: 'warmup' | 'drop') {
@@ -837,13 +839,13 @@ export function tplAddRow(tpl: Template, itemId: string, kind?: 'warmup' | 'drop
 }
 export function tplRemoveRow(tpl: Template, itemId: string, rowId?: string) {
   const it = tplItem(tpl, itemId); if (!it) return; const rows = rowsOf(it); if (rows.length <= 1) return;
-  const f = rowId ? rows.findIndex(r => r.id === rowId) : rows.length - 1; const i = f >= 0 ? f : rowId ? Number(rowId.split(':')[1]) : -1; /* wiersz wyliczony (dane sprzed 17): id „pozycja:k” */ if (!(i >= 0 && i < rows.length)) return; rows.splice(i, 1); syncItem(it); save(tpl);
+  const i = rowId ? rows.findIndex(r => r.id === rowId) : rows.length - 1; if (i < 0) return; /* audyt 85364ad L4: tylko po id (id wyliczone zostają po zapisie — M1) */ rows.splice(i, 1); syncItem(it); save(tpl);
 }
 export function tplSetRow(tpl: Template, itemId: string, rowId: string, patch: Partial<Omit<TRow, 'id' | 'kind'>>) {
-  const it = tplItem(tpl, itemId); if (!it) return; const r = rowsOf(it).find(x => x.id === rowId) ?? rowsOf(it)[Number(rowId.split(':')[1])]; if (!r) return; Object.assign(r, patch); syncItem(it); save(tpl);
+  const it = tplItem(tpl, itemId); if (!it) return; const r = rowsOf(it).find(x => x.id === rowId); if (!r) return; Object.assign(r, patch); syncItem(it); save(tpl);
 }
 export function tplSetKind(tpl: Template, itemId: string, rowId: string, kind: SetKind) {
-  const it = tplItem(tpl, itemId); if (!it) return; const r = rowsOf(it).find(x => x.id === rowId) ?? rowsOf(it)[Number(rowId.split(':')[1])]; if (!r) return; r.kind = kind; syncItem(it); save(tpl);
+  const it = tplItem(tpl, itemId); if (!it) return; const r = rowsOf(it).find(x => x.id === rowId); if (!r) return; r.kind = kind; syncItem(it); save(tpl);
 }
 /** Wczytanie/import: wiersze poprawne albo brak (pozycja wraca do `sets` + `startWeight`). */
 function fixRows(it: any) {
@@ -943,7 +945,7 @@ export function swapImpl(blockId: string, impl: Impl): { goneSetIds: string[]; b
   }
   blk.impl = impl; blk.implPinned = true;
   const own = it && it.exerciseId === ex.id && !blk.swappedFrom ? it : undefined;
-  blk.sets = prefillSets(ex, left.map(x => x.kind), prevOfActiveBlock(a, blk), a.locationId, impl, it?.targetSec ?? '', blk === A ? own?.startWeight ?? '' : '', 0 /* numeracja jak „Poprzednio” na ekranie (hintFor — od początku bloku) */, true);
+  blk.sets = prefillSets(ex, left.map(x => x.kind), prevOfActiveBlock(a, blk), a.locationId, impl, it?.targetSec ?? '', blk === A ? own?.startWeight ?? '' : '', 0 /* numeracja jak „Poprzednio” na ekranie (hintFor — od początku bloku) */, true, blk === A ? rowsFor(own, left.map(x => x.kind)) : undefined);
   save(a); return { goneSetIds: left.map(x => x.id), blockId: blk.id };
 }
 /** „↺ cofnij zamianę” (pkt 3.4): blok-zamiennik bez odhaczonych serii, a oryginał wciąż istnieje (nieusunięty). */
@@ -964,7 +966,7 @@ export function undoSwap(blockId: string): { goneSetIds: string[] } | null {
     const A = exById(B.swappedFrom!)!; B.exerciseId = A.id; delete B.swappedFrom; delete B.implPinned; delete B.splitFrom; stampImpl(B, a.locationId);
     const it = tplItemOf(a, B); const own = it && it.exerciseId === A.id ? it : undefined;
     if (own) B.restSec = typeof own.restSec === 'number' && own.restSec >= 0 ? own.restSec : restFor(A);
-    B.sets = prefillSets(A, kinds, prevOfActiveBlock(a, B), a.locationId, B.impl, own?.targetSec ?? '', own?.startWeight ?? '');
+    B.sets = prefillSets(A, kinds, prevOfActiveBlock(a, B), a.locationId, B.impl, own?.targetSec ?? '', own?.startWeight ?? '', 0, false, rowsFor(own, kinds));
   }
   save(a); return { goneSetIds: gone };
 }

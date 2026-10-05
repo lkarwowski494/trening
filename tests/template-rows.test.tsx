@@ -73,3 +73,30 @@ test('kopia ze schematem 17 (wiersze szablonu) odrzucana przez wersję 16 — be
   jest.isolateModules(() => { jest.doMock('@/lib/seed', () => ({ ...jest.requireActual('@/lib/seed'), SCHEMA_VERSION: 16 })); const old = require('@/lib/backup'); try { old.parseBackup(env); } catch (e) { err = (e as Error).message; } });
   expect(err).toMatch(/17.*16/);
 });
+
+describe('audyt 85364ad', () => {
+  test('MEDIUM 1: pierwsza edycja starej pozycji zachowuje id wierszy (klawiatura nie znika, Q-021 trzyma stan)', async () => {
+    await fresh(); const t = tplWith('Bench Press (sztanga)'); const it = t.items[0] as import('@/lib/seed').TemplateItem;
+    const before = store.tplRows(it).map(r => r.id); store.tplSetRow(t, it.id, before[1], { weight: 61 });
+    expect(store.tplRows(it).map(r => r.id)).toEqual(before); expect(it.rows!.map(r => r.weight)).toEqual([60, 61, 60]);
+  });
+  test('MEDIUM 2: cofnięcie zamiany przywraca wartości jak przy starcie (wiersze szablonu)', async () => {
+    await fresh(); const t = tplWith('Bench Press (sztanga)'); const it = t.items[0] as import('@/lib/seed').TemplateItem;
+    store.tplAddRow(t, it.id, 'warmup'); store.tplSetRow(t, it.id, it.rows![0].id, { weight: 40, reps: 10 }); store.tplSetRow(t, it.id, it.rows![2].id, { weight: 70, reps: 6 });
+    store.startFromTemplate(t); const start = store.getState().active!.exercises[0].sets.map(s => [s.kind, s.weight, s.reps]);
+    const other = store.getState().exercises.find(e => e.name === 'Bench Press (hantle)')!;
+    expect(store.swapBlock(store.getState().active!.exercises[0].id, other.id)).toBeTruthy();
+    expect(store.undoSwap(store.getState().active!.exercises[0].id)).toBeTruthy();
+    expect(store.getState().active!.exercises[0].sets.map(s => [s.kind, s.weight, s.reps])).toEqual(start);
+  });
+  test('LOW 3: czas — wiersz z pustym czasem bez celu; rozgrzewka z własnym czasem', async () => {
+    await fresh(); const plank = store.getState().exercises.find(e => e.name === 'Plank')!; const t = tplWith('Plank', { targetSec: 60, startWeight: '', repMin: null, repMax: null }); const it = t.items[0] as import('@/lib/seed').TemplateItem;
+    store.tplSetRow(t, it.id, store.tplRows(it)[1].id, { durationSec: '' }); store.tplAddRow(t, it.id, 'warmup'); store.tplSetRow(t, it.id, it.rows![0].id, { durationSec: 20 });
+    store.startFromTemplate(t); expect(store.getState().active!.exercises[0].sets.map(s => [s.kind, s.durationSec])).toEqual([['warmup', 20], ['normal', 60], ['normal', ''], ['normal', 60]]); void plank;
+  });
+  test('LOW 4: id z dwukropkiem z importu nie edytuje cudzego wiersza', async () => {
+    await fresh(); const t = tplWith('Bench Press (sztanga)'); const it = t.items[0] as import('@/lib/seed').TemplateItem; store.tplAddRow(t, it.id); it.rows![0].id = 'x:2';
+    store.tplSetRow(t, it.id, 'nie:1', { weight: 99 }); expect(it.rows!.map(r => r.weight)).not.toContain(99);
+    store.tplRemoveRow(t, it.id, 'nie:0'); expect(it.rows!.length).toBe(4);
+  });
+});
