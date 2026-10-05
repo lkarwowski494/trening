@@ -11,7 +11,9 @@ seria, ostatnio, powtórzenia, kg … Każda seria jako oddzielny wiersz.”
 - Zakres powtórzeń: „Może linijka tekstu pod nazwą ćwiczenia z uzasadnieniem? … trening siłowy, rzeźbę i masę to różne zakresy
   powtórzeń … opcjonalnie przy kreowaniu szablonu wybór: cel treningowy (masa, rzeźba, siła, masa + siła i inne możliwe mixy) i zrobić
   research, jakie są najlepsze zakresy powtórzeń w tych opcjach”.
-  - Kierunek: opcjonalny **cel treningowy szablonu** → zakres powtórzeń na ćwiczenie (podpowiedzi progresji) + linijka z uzasadnieniem
+  - **Decyzja 05.10.2026 (po researchu zakresów):** „Bez celów na razie” — szablon jak trening (wiersze serii), bez celu i zakresów;
+    podpowiedzi z „ostatnio”. Research zakresów zostaje: `docs/research/zakresy-powtorzen-cele-2026-10.md`.
+  - (wcześniej rozważane) opcjonalny **cel treningowy szablonu** → zakres powtórzeń na ćwiczenie (podpowiedzi progresji) + linijka z uzasadnieniem
     pod nazwą ćwiczenia. Zakresy — z researchu (źródła naukowe), **otwarte** do zatwierdzenia przez właściciela.
 - Otwarte: migracja obecnych szablonów (N serii + od–do → N wierszy), zmiana schematu danych (osobne wydanie, bez aktualizacji SDK).
 

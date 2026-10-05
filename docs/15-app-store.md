@@ -61,3 +61,20 @@ Rozmowa 05.10.2026, rano: „Chciałbym móc opublikować to w Apple Store” i 
 5. **Zrzuty ekranu** (6,9″ i 6,5″) z symulatora — Maestro `takeScreenshot` albo `scripts/screens`. Opis PL/EN.
 6. **Strona polityki prywatności i wsparcia** na GitHub Pages.
 7. **Elementy specyficzne dla właściciela do przejrzenia** przed sklepem: presety ViShape, teksty o „domu właściciela” w podpowiedziach, dane demo.
+
+## Model płatności — ponowna analiza (05.10.2026)
+
+Po researchu skarg (docs/research/skargi-uzytkownikow-2026-10.md: płatności to skarga nr 1, najostrzej oceniane odbieranie darmowych
+funkcji i ściana płatności po rejestracji; częsta prośba o jednorazowy zakup) właściciel: „Tak, rozważmy alternatywy”.
+Wcześniejsza decyzja (subskrypcja, miesiąc próby, potem blokada treningów; eksport danych zawsze) — do potwierdzenia albo zmiany.
+
+| Opcja | Na czym polega | Za | Przeciw |
+|---|---|---|---|
+| A. Subskrypcja + blokada po próbie (obecna decyzja) | miesiąc za darmo, potem bez subskrypcji tylko eksport | stały przychód; prosta zasada | dokładnie to, za co konkurencja zbiera najgorsze oceny |
+| B. Jednorazowy zakup po próbie | 30 dni za darmo (liczy aplikacja), potem jednorazowo „pełna wersja” | ludzie to lubią; Chmura rodzinna Apple | przychód jednorazowy; kolejne zarobki tylko z nowych użytkowników |
+| C. Darmowe podstawy na zawsze + płatne Pro | zapis treningów, szablony, historia — zawsze za darmo; Pro: np. postępy/wykresy, wiele miejsc i sprzętu, presety stacji, Apple Health | najlepsze opinie, szeroki zasięg; nikt nie traci tego, co miał | trzeba z góry dobrze wybrać, co jest w Pro (późniejsze przenoszenie = skarga nr 1) |
+| D. C + wybór: subskrypcja albo dożywotnio | Pro miesięcznie/rocznie albo raz na zawsze | wybór dla obu typów klientów; częsty model w kategorii | więcej produktów do utrzymania w App Store Connect |
+| E. Darmowa + „napiwek” | wszystko za darmo, dobrowolne wsparcie | zero skarg na płatności | mały przychód |
+
+Rekomendacja (do decyzji właściciela): **D** — darmowe podstawy na zawsze, Pro jako subskrypcja albo zakup dożywotni; wcześniejsi
+użytkownicy — Pro za darmo (jak w decyzji wyżej). Eksport danych zawsze darmowy.
