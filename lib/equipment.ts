@@ -235,6 +235,25 @@ export function presetEquipment(p: LocationPreset, unit: LoadUnit = 'kg'): LocEq
     return e; }).filter((e): e is LocEquip => !!e);
 }
 
+/** Decyzja właściciela 05.10.2026 („1.a”): nowy sprzęt (katalog krok b i pełna baza, 04.10.2026) dopisany RAZ do zapisanych miejsc opartych na
+ * presecie siłowni (State.equipFill = rev); miejsce kwalifikuje się, gdy ma co najmniej GYM_FILL.share pozycji dawnego presetu (dom, hotel — nie).
+ * Pozycje usunięte później przez użytkownika nie wracają (znacznik); istniejące pozycje, ciężary i opcje bez zmian (poza dopisaniem opcji z `opts`). */
+export const GYM_FILL = {
+  rev: 'sprzet-2026-10-05',
+  share: 0.75,
+  items: ['row_machine', 'pullover_machine', 'ab_crunch_machine', 'biceps_curl_machine', 'triceps_ext_machine', 'lateral_raise_machine', 'glute_kickback_machine', 'hip_thrust_machine', 'belt_squat', 'pendulum_squat', 'reverse_hyper', 'lever_machine',
+    'plate', 'sandbag', 'chains', 'climbing_rope', 'stability_ball', 'sliders', 'sled', 'battle_ropes', 'foam_roller', 'bosu', 'wrist_roller', 'neck_harness', 'stair_climber', 'elliptical', 'ski_erg'] as readonly string[],
+  opts: { cable_cross: ['ankle'], cable_single: ['ankle'] } as Readonly<Record<string, readonly string[]>>,
+};
+/** Dopisuje nowy sprzęt do miejsca opartego na presecie siłowni; zwraca, czy miejsce się kwalifikowało. */
+export function fillGym(loc: Pick<Location, 'equipment'>, unit: LoadUnit = 'kg'): boolean {
+  const old = presetEquipment('gym', unit).map(e => e.item).filter(id => !GYM_FILL.items.includes(id)); const have = new Set(loc.equipment.map(e => e.item));
+  if (!old.length || old.filter(id => have.has(id)).length < old.length * GYM_FILL.share) return false;
+  for (const id of GYM_FILL.items) if (!have.has(id) && equipById(id)) loc.equipment.push(equipEntry(id, unit, true));
+  for (const e of loc.equipment) for (const o of GYM_FILL.opts[e.item] ?? []) if (!e.opts.includes(o)) e.opts.push(o);
+  return true;
+}
+
 /* ---------- dostępność ---------- */
 /** Możliwości, które daje miejsce (pozycje + zaznaczone opcje). */
 export function capsOf(loc: Location | null | undefined): Set<string> {

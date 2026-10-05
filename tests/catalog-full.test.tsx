@@ -52,3 +52,30 @@ describe('pełna baza — audyt kodu 04.10 wieczór', () => {
     expect(screen.getAllByText('⇄').length).toBe(first);
   });
 });
+
+/* Decyzja właściciela 05.10.2026 („1.a”): nowy sprzęt (krok b i pełna baza) dopisany jednorazowo do miejsc opartych na presecie siłowni. */
+import { presetEquipment, GYM_FILL, capsOf, availability } from '@/lib/equipment';
+import { seedState } from '@/lib/seed';
+describe('pełna baza — nowy sprzęt w zapisanych miejscach (decyzja 1.a)', () => {
+  const oldGym = () => presetEquipment('gym').filter(e => !GYM_FILL.items.includes(e.item)).map(e => ({ ...e, opts: e.opts.filter(o => !(GYM_FILL.opts[e.item] ?? []).includes(o)) }));
+  const withLocs = (locs: any[]) => { const s: any = JSON.parse(JSON.stringify(seedState('pl'))); delete s.equipFill; s.settings.locations = locs; s.settings.mainLocationId = locs[0].id; return s; };
+  const L = (id: string, equipment: any[]) => ({ id, ownerId: 'local', createdAt: 1, updatedAt: 1, name: id, equipment });
+  test('siłownia z dawnego presetu (także z kilkoma usuniętymi pozycjami) dostaje nowy sprzęt i opaski przy wyciągach; dom — nie; raz', async () => {
+    await fresh(); const gym = oldGym(); const trimmed = gym.slice(3);
+    const m = store.migrate(withLocs([L('gym', gym), L('gym2', trimmed), L('home', [{ item: 'db_fixed', opts: [] }, { item: 'bench_adj', opts: [] }])]));
+    const [g, g2, h] = m.settings.locations;
+    for (const id of GYM_FILL.items) expect([id, g.equipment.some(e => e.item === id)]).toEqual([id, true]);
+    expect(g.equipment.find(e => e.item === 'cable_cross')!.opts).toContain('ankle'); expect(g2.equipment.some(e => e.item === 'row_machine')).toBe(true);
+    expect(h.equipment.map(e => e.item)).toEqual(['db_fixed', 'bench_adj']);
+    expect(m.equipFill).toBe(GYM_FILL.rev);
+    const caps = capsOf(g); const ex2 = m.exercises.find(e => e.name === 'Machine Row')!; expect(availability(ex2, g, caps).ok).toBe(true);
+    /* raz: pozycja usunięta później przez użytkownika nie wraca */
+    const again: any = JSON.parse(JSON.stringify(m)); again.settings.locations[0].equipment = again.settings.locations[0].equipment.filter((e: any) => e.item !== 'row_machine');
+    expect(store.migrate(again).settings.locations[0].equipment.some(e => e.item === 'row_machine')).toBe(false);
+  });
+  test('ciężary i opcje istniejących pozycji bez zmian; strongman nie jest dopisywany', async () => {
+    await fresh(); const gym = oldGym(); const db = gym.find(e => e.item === 'db_fixed')!; db.load = { kind: 'list', unit: 'kg', items: [{ w: 7, on: true }] } as any;
+    const g = store.migrate(withLocs([L('gym', gym)])).settings.locations[0];
+    expect(g.equipment.find(e => e.item === 'db_fixed')!.load).toEqual(db.load); expect(g.equipment.some(e => e.item === 'tire')).toBe(false);
+  });
+});
