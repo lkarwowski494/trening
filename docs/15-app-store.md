@@ -11,6 +11,11 @@ Rozmowa 05.10.2026, rano: „Chciałbym móc opublikować to w Apple Store” i 
 - **Polityka prywatności:** GitHub Pages z tego repozytorium (`docs/`).
   - Treść: brak zbierania danych, wszystko lokalnie na telefonie, HealthKit tylko zapis zakończonych treningów.
 - **Cena:** „Darmowa na start” (05.10.2026) — bez reklam i zakupów; w App Store Connect deklaracja „nie jestem traderem” (DSA), bez publicznego adresu.
+- **Płatności później, wcześniejsi użytkownicy za darmo** (właściciel 05.10.2026: „Później najwyżej wprowadzimy płatności, ale tym, co już mają, to zostawimy darmową”).
+  Kierunek (do decyzji, gdy przyjdzie czas): aplikacja dalej darmowa do pobrania, wersja Pro jako zakup w aplikacji;
+  kto pobrał przed wersją płatną, ma Pro bez opłaty — StoreKit 2 `AppTransaction.originalAppVersion` (Apple podaje numer
+  **buildu** z pierwszego pobrania, nie wersję marketingową). Wymóg już dziś: numery buildów tylko rosną i są zapisywane
+  (EAS `appVersionSource: remote` + `autoIncrement`). Płatna wersja = status tradera (DSA: adres i telefon publicznie) i PIT.
   Konto: Apple Developer jako osoba fizyczna (Individual) — firma niepotrzebna.
 - **Nazwa:** otwarta. Propozycja „Trening” — do sprawdzenia w sklepie.
 
