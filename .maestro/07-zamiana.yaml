@@ -36,8 +36,13 @@ name: Zamiana ćwiczenia w trakcie treningu (E2 W1)
 - extendedWaitUntil: { visible: "Home,.*", timeout: 30000 }
 - tapOn: "Home,.*"
 - extendedWaitUntil: { visible: "Available exercises: .*", timeout: 30000 }
+# 05.10.2026: grupy sprzętu zwinięte — rozwinięcie „Wolne ciężary” i „Ławki i stojaki” (EQUIP_GROUP_LABEL)
+- scrollUntilVisible: { element: "Free weights.*", direction: DOWN, timeout: 90000 }
+- tapOn: "Free weights.*"
 - scrollUntilVisible: { element: { id: "sw-Dumbbells \\(fixed or quick-adjust\\)" }, direction: DOWN, timeout: 90000 }
 - tapOn: { id: "sw-Dumbbells \\(fixed or quick-adjust\\)" }
+- scrollUntilVisible: { element: "Benches and racks.*", direction: DOWN, timeout: 90000 }
+- tapOn: "Benches and racks.*"
 - scrollUntilVisible: { element: { id: "sw-Adjustable bench" }, direction: DOWN, timeout: 90000 }
 - tapOn: { id: "sw-Adjustable bench" }
 - takeScreenshot: 30-dom-lawka-hantle

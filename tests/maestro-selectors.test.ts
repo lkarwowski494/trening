@@ -17,3 +17,11 @@ test('każdy selektor id w scenariuszach Maestro dopasowuje swój testID dosłow
     expect({ id, matches: new RegExp('^(?:' + id + ')$').test(literal) }).toEqual({ id, matches: true });
   }
 });
+
+test('scenariusze rozwijają grupy sprzętu po angielskich nazwach z EQUIP_GROUP_LABEL (05.10.2026: grupy zwinięte)', () => {
+  const fs = require('fs'); const path = require('path'); const { EQUIP_GROUP_LABEL } = require('@/lib/equipment');
+  const names = Object.values(EQUIP_GROUP_LABEL as Record<string, { en: string }>).map(x => x.en);
+  const dir = path.join(__dirname, '..', '.maestro'); const used: string[] = [];
+  for (const f of fs.readdirSync(dir).filter((x: string) => x.endsWith('.yaml'))) for (const m of fs.readFileSync(path.join(dir, f), 'utf8').matchAll(/tapOn: "([^"]+)\.\*"/g)) if (/^[A-Z][a-z]+ (?:weights|and|dip)/.test(m[1])) used.push(m[1]);
+  expect(used.length).toBeGreaterThanOrEqual(3); for (const u of used) expect(names).toContain(u);
+});
