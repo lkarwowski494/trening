@@ -16,6 +16,14 @@ Rozmowa 05.10.2026, rano: „Chciałbym móc opublikować to w Apple Store” i 
   kto pobrał przed wersją płatną, ma Pro bez opłaty — StoreKit 2 `AppTransaction.originalAppVersion` (Apple podaje numer
   **buildu** z pierwszego pobrania, nie wersję marketingową). Wymóg już dziś: numery buildów tylko rosną i są zapisywane
   (EAS `appVersionSource: remote` + `autoIncrement`). Płatna wersja = status tradera (DSA: adres i telefon publicznie) i PIT.
+- **Okres próbny dla nowych** (właściciel 05.10.2026: „Nowi użytkownicy powinni dostać 30 dni za darmo. Może nawet 60”;
+  wcześniejsi — darmowo do końca, „chyba że zrezygnuje z darmowej subskrypcji, a później zdecyduje się wrócić”). Ustalenia:
+  - Aplikacja płatna przy pobraniu nie może mieć okresu próbnego w App Store — okres próbny wymaga darmowego pobrania i zakupu w aplikacji.
+  - Subskrypcja: darmowy okres próbny Apple ma stałe długości (m.in. 1 miesiąc, 2 miesiące — nie „30/60 dni”); zmienia się go w App Store Connect bez nowej wersji.
+  - Jednorazowy zakup „Pro” + okres próbny liczony przez aplikację: dokładnie 30/60 dni (wytyczne Apple 3.1.1 dopuszczają darmowy zakup „trial”).
+  - Wcześniejsi użytkownicy: dostęp przypisany do konta Apple (pierwsze pobranie przed wersją płatną) nie ma czego „anulować”, więc
+    warunku „zrezygnuje i wróci” nie da się wiarygodnie sprawdzić (usunięcia aplikacji iOS nie zgłasza). Otwarte: zostawić dostęp na zawsze.
+  - Otwarte do decyzji: subskrypcja czy jednorazowy zakup; 1 czy 2 miesiące próby; ceny.
   Konto: Apple Developer jako osoba fizyczna (Individual) — firma niepotrzebna.
 - **Nazwa:** otwarta. Propozycja „Trening” — do sprawdzenia w sklepie.
 
