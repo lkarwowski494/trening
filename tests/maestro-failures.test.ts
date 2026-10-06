@@ -60,7 +60,9 @@ test('e2e-ios.yml: najwyżej jedno powtórzenie Maestro i tylko, gdy sterownik X
   expect(sim('Assertion is false: "Propozycje" is visible', 1)).toEqual({ rc: 1, runs: 1 });
   expect(sim('ok', 0)).toEqual({ rc: 0, runs: 1 });
   /* zawieszony Maestro (ten sam przebieg: wyjątek w wątku głównym, proces nie kończył się 68 min) — strażnik czasu kończy podejście */
-  expect(step.match(/guard maestro --device/g)).toHaveLength(2); expect(step).toMatch(/MAESTRO_ALARM:-1500/);
+  expect(step.match(/guard maestro --device/g)).toHaveLength(2); const alarm = Number(step.match(/MAESTRO_ALARM:-(\d+)/)![1]); const jobMin = Number(require('fs').readFileSync(require('path').join(__dirname, '..', '.github/workflows/e2e-ios.yml'), 'utf8').match(/timeout-minutes: (\d+)/)![1]);
+  /* 06.10.2026: 10 scenariuszy — strażnik ≥ 30 min na podejście; limit zadania mieści build (~40 min) i 2 podejścia, żeby powtórka nie była ucinana */
+  expect(alarm).toBeGreaterThanOrEqual(1800); expect(jobMin).toBeGreaterThanOrEqual(40 + 2 * alarm / 60);
   const d = fs.mkdtempSync(path.join(require('os').tmpdir(), 'mh-')); fs.writeFileSync(path.join(d, 'maestro'), '#!/bin/bash\nsleep 30\n', { mode: 0o755 });
   const t0 = Date.now(); let rc = 0; try { bash('bash', ['-e', '-c', body], { cwd: d, env: { ...process.env, PATH: `${d}:${process.env.PATH}`, SIM: 'x', MAESTRO_ALARM: '1' }, stdio: 'pipe' }); } catch (e: any) { rc = e.status; }
   expect(rc).not.toBe(0); expect(Date.now() - t0).toBeLessThan(15000); /* zawieszenie przerwane, bez powtórki (brak komunikatu sterownika) */

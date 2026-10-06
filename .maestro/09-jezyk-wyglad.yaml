@@ -1,0 +1,116 @@
+# Ustawienia (scenariusz właściciela 06.10.2026): język (ekran /more/language) — zmiana na polski i powrót do „jak w telefonie”,
+# wygląd Jasny/Ciemny/Jak w telefonie (aplikacja dalej nawiguje), jednostka kg → lb → kg widoczna przy polu ciężaru w treningu.
+#
+# Literały (EN z lib/i18n.en.ts, chyba że zaznaczono inaczej):
+#   "Start from a template", "More, tab.*", "Workout, tab.*", "Settings", "Back", "Empty workout", "\+ Add exercise",
+#   "Search exercises…", "Bench Press \(Barbell\),.*"  ← jak przepływy 06 i 07
+#   "Language, Phone setting"   ← Item 'Język' + sub 'Jak w telefonie' (app/more/settings.tsx; accessibilityLabel „{title}, {sub}”)
+#   "Polski", "English"         ← LANG_NAME (lib/i18n.ts; Item w app/more/language.tsx)
+#   PL po zmianie języka (klucze z kodu): "Ustawienia" (tytuł ekranu, app/_layout.tsx), "Wygląd", "Jednostka ciężaru",
+#                               "Język, Polski" (Item „{title}, {sub}”), "Wróć" (headerBackTitle), "Więcej" (nagłówek H1 w app/(tabs)/more.tsx),
+#                               "Jak w telefonie" (pozycja „auto” na liście języków)
+#   "Appearance", "Weight unit" ← 'Wygląd', 'Jednostka ciężaru' (Field + Segmented)
+#   "Light" / "Dark" / "Phone setting" ← 'Jasny' / 'Ciemny' / 'Jak w telefonie' (segmenty „Wygląd”; dokładne dopasowanie —
+#                               „Language, Phone setting” to inny element)
+#   "kg" / "lb"                 ← segmenty jednostki; w treningu nagłówek kolumny ciężaru = loadLabelShort (wu()) i etykieta pola (loadLabel)
+#   "Set 1 done — X"            ← 'Seria {n} zrobiona — {ex}'
+appId: pl.lukasz.trening
+name: Język, wygląd i jednostka
+---
+- launchApp:
+    clearState: true
+    permissions: { all: allow }
+- extendedWaitUntil: { visible: "Start from a template", timeout: 60000 }
+
+# --- Język: polski ---
+- tapOn: "More, tab.*"
+- extendedWaitUntil: { visible: "Settings", timeout: 30000 }
+- tapOn: "Settings"
+- extendedWaitUntil: { visible: "Language, Phone setting", timeout: 30000 }
+- assertVisible: "Appearance"
+- tapOn: "Language, Phone setting"
+- extendedWaitUntil: { visible: "Polski", timeout: 30000 }
+- takeScreenshot: 50-lista-jezykow
+- tapOn: "Polski"
+# Wybór wraca do Ustawień — teksty i tytuł ekranu po polsku
+- extendedWaitUntil: { visible: "Język, Polski", timeout: 30000 }
+- assertVisible: "Ustawienia"
+- assertVisible: "Wygląd"
+- assertVisible: "Jednostka ciężaru"
+- assertNotVisible: "Appearance"
+- takeScreenshot: 51-ustawienia-po-polsku
+- tapOn: "Wróć"
+- extendedWaitUntil: { visible: "Więcej", timeout: 30000 }
+- tapOn: "Ustawienia"
+- extendedWaitUntil: { visible: "Język, Polski", timeout: 30000 }
+
+# --- Język: z powrotem „jak w telefonie” (symulator: angielski) ---
+- tapOn: "Język, Polski"
+- extendedWaitUntil: { visible: "Jak w telefonie", timeout: 30000 }
+- tapOn: "Jak w telefonie"
+- extendedWaitUntil: { visible: "Language, Phone setting", timeout: 30000 }
+- assertVisible: "Appearance"
+- assertNotVisible: "Wygląd"
+
+# --- Wygląd: Ciemny → nawigacja ---
+- tapOn: "Dark"
+- takeScreenshot: 52-wyglad-ciemny
+- tapOn: "Back"
+- extendedWaitUntil: { visible: "Workout, tab.*", timeout: 30000 }
+- tapOn: "Workout, tab.*"
+- extendedWaitUntil: { visible: "Start from a template", timeout: 30000 }
+- takeScreenshot: 53-ekran-glowny-ciemny
+- tapOn: "More, tab.*"
+- extendedWaitUntil: { visible: "Settings", timeout: 30000 }
+- tapOn: "Settings"
+- extendedWaitUntil: { visible: "Appearance", timeout: 30000 }
+
+# --- Wygląd: jak w telefonie → nawigacja ---
+- tapOn: "Phone setting"
+- tapOn: "Back"
+- extendedWaitUntil: { visible: "Workout, tab.*", timeout: 30000 }
+- tapOn: "Workout, tab.*"
+- extendedWaitUntil: { visible: "Start from a template", timeout: 30000 }
+- tapOn: "More, tab.*"
+- extendedWaitUntil: { visible: "Settings", timeout: 30000 }
+- tapOn: "Settings"
+- extendedWaitUntil: { visible: "Appearance", timeout: 30000 }
+
+# --- Wygląd: Jasny (domyślny) ---
+- tapOn: "Light"
+- takeScreenshot: 54-wyglad-jasny
+
+# --- Jednostka: lb ---
+- tapOn: "lb"
+- tapOn: "Back"
+- extendedWaitUntil: { visible: "Workout, tab.*", timeout: 30000 }
+- tapOn: "Workout, tab.*"
+- extendedWaitUntil: { visible: "Start from a template", timeout: 30000 }
+- scrollUntilVisible: { element: "Empty workout", direction: DOWN, timeout: 60000 }
+- tapOn: "Empty workout"
+- extendedWaitUntil: { visible: "\\+ Add exercise", timeout: 30000 }
+- tapOn: "\\+ Add exercise"
+- extendedWaitUntil: { visible: "Search exercises…", timeout: 30000 }
+- tapOn: "Search exercises…"
+- inputText: "Bench Press"
+- tapOn: { text: "Continue", optional: true }
+- extendedWaitUntil: { visible: "Bench Press \\(Barbell\\),.*", timeout: 30000 }
+- tapOn: "Bench Press \\(Barbell\\),.*"
+- extendedWaitUntil: { visible: "Set 1 done — Bench Press \\(Barbell\\)", timeout: 30000 }
+- assertVisible: "lb"
+- assertNotVisible: "kg"
+- takeScreenshot: 55-jednostka-lb
+
+# --- Jednostka: z powrotem kg (trening w toku zostaje) ---
+- tapOn: "More, tab.*"
+- extendedWaitUntil: { visible: "Settings", timeout: 30000 }
+- tapOn: "Settings"
+- extendedWaitUntil: { visible: "Weight unit", timeout: 30000 }
+- tapOn: "kg"
+- tapOn: "Back"
+- extendedWaitUntil: { visible: "Workout, tab.*", timeout: 30000 }
+- tapOn: "Workout, tab.*"
+- extendedWaitUntil: { visible: "Set 1 done — Bench Press \\(Barbell\\)", timeout: 30000 }
+- assertVisible: "kg"
+- assertNotVisible: "lb"
+- takeScreenshot: 56-jednostka-kg

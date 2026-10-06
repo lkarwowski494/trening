@@ -1,0 +1,166 @@
+# Szablon = nieaktywny trening (docs/17, decyzje 05–06.10.2026; scenariusz właściciela 06.10.2026): wiersze serii w szablonie
+# („+ seria / + rozgrzewka / + drop set”, menu etykiety: typ i „Usuń serię”), wartości w wierszach, opcjonalny zakres powtórzeń,
+# zwijane karty (otwarta jedna), drugie ćwiczenie i „Usuń ćwiczenie”, a potem Start — trening ma typy i wartości z wierszy.
+#
+# Literały (EN z lib/i18n.en.ts, chyba że zaznaczono inaczej):
+#   "Start from a template", "\+ New template", "New template", "\+ Add exercise", "Search exercises…",
+#   "Bench Press \(Dumbbell\), dumbbells", "Bent Over Row \(Dumbbell\), dumbbells" ← jak podprzepływ subflows/szablon-testowy.yaml
+#   "Bench Press \(Dumbbell\)"       ← accessibilityLabel nagłówka karty ćwiczenia (Pressable w app/template/[id].tsx; tapnięcie zwija/rozwija)
+#   "\+ set" / "\+ warm-up" / "\+ drop set" ← '+ seria' / '+ rozgrzewka' / '+ drop set' (TplRows)
+#   "Set N, type: K.*"               ← 'Seria {n}, typ: {k}. Tapnij, by zmienić typ lub usunąć serię.' (etykieta wiersza szablonu);
+#                                      w treningu 'Seria {n}, typ: {k}. Tapnij, by zmienić typ lub dodać notatkę.' (components/ActiveWorkout.tsx);
+#                                      {n} = kindLabel/setLabel (W, 1, 2, 3F, 4D — drop set liczy się do numeru); {k} = SET_KIND_LABEL:
+#                                      'normalna' → normal, 'rozgrzewkowa' → warm-up, 'drop set' → drop set, 'do upadku' → to failure
+#   "To failure \(F\)", "Delete set" ← 'Do upadku (F)', 'Usuń serię' (ActionSheet etykiety serii)
+#   "\+ rep range"                   ← '+ zakres powtórzeń'
+#   "reps from — X" / "reps to — X"  ← '{powtórzenia od} — {nazwa}' / '{powtórzenia do} — {nazwa}' (accessibilityLabel pól zakresu)
+#   "Rep range: 8.12.*"              ← 'Zakres powtórzeń: {r} — po osiągnięciu górnej granicy…' (r = reps(8, 12) = „8–12”)
+#   "Remove rep range"               ← 'Usuń zakres powtórzeń' (przycisk „✕”)
+#   tpl-w-<poz>-<wiersz> / tpl-r-<poz>-<wiersz> ← testID pól ciężaru / powtórzeń wiersza szablonu (app/template/[id].tsx, dodane 06.10.2026 dla tego scenariusza)
+#   "Remove from template"           ← accessibilityLabel przycisku „Usuń ćwiczenie” ('Usuń z szablonu'); okno 'Usunąć z szablonu?' → "Remove from template\?", przycisk 'Usuń' → "Delete"
+#   "Start"                          ← 'Start' (przycisk w edytorze szablonu; start → ekran główny z treningiem)
+#   "Set W done — X"                 ← 'Seria {n} zrobiona — {ex}' (checkbox serii w treningu)
+appId: pl.lukasz.trening
+name: Szablon jak trening — wiersze serii, karty, start
+---
+- launchApp:
+    clearState: true
+    permissions: { all: allow }
+- extendedWaitUntil: { visible: "Start from a template", timeout: 60000 }
+
+# --- Nowy szablon „Rows E2E” ---
+- scrollUntilVisible: { element: "\\+ New template", direction: DOWN, timeout: 60000 }
+- tapOn: "\\+ New template"
+- extendedWaitUntil: { visible: "\\+ Add exercise", timeout: 30000 }
+- tapOn: "New template"
+- eraseText: 30
+- inputText: "Rows E2E"
+- pressKey: Enter   # zatwierdza nazwę i chowa klawiaturę (jak podprzepływ szablon-testowy.yaml)
+
+# --- Ćwiczenie 1: karta otwiera się sama, 3 zwykłe serie ---
+- tapOn: "\\+ Add exercise"
+- extendedWaitUntil: { visible: "Search exercises…", timeout: 30000 }
+- tapOn: "Search exercises…"
+- inputText: "Bench Press"
+- tapOn: { text: "Continue", optional: true }
+- tapOn: "Bench Press \\(Dumbbell\\), dumbbells"
+- extendedWaitUntil: { visible: "Bench Press \\(Dumbbell\\)", timeout: 30000 }
+- extendedWaitUntil: { visible: "\\+ set", timeout: 30000 }   # nowo dodane ćwiczenie — karta rozwinięta (decyzja 06.10.2026)
+- assertVisible: "Set 3, type: normal.*"
+- assertNotVisible: "Set 4, type: .*"
+
+# --- Wiersze: + seria, + rozgrzewka, + drop set ---
+- scrollUntilVisible: { element: "\\+ set", direction: DOWN, timeout: 30000, centerElement: true }
+- tapOn: "\\+ set"
+- extendedWaitUntil: { visible: "Set 4, type: normal.*", timeout: 15000 }
+- scrollUntilVisible: { element: "\\+ warm-up", direction: DOWN, timeout: 30000, centerElement: true }
+- tapOn: "\\+ warm-up"
+- extendedWaitUntil: { visible: "Set W, type: warm-up.*", timeout: 15000 }
+- scrollUntilVisible: { element: "\\+ drop set", direction: DOWN, timeout: 30000, centerElement: true }
+- tapOn: "\\+ drop set"
+- scrollUntilVisible: { element: "Set 5D, type: drop set.*", direction: DOWN, timeout: 30000 }
+- takeScreenshot: 40-szablon-wiersze
+# W, 1, 2, 3, 4, 5D
+
+# --- Menu etykiety serii: zmiana typu i usunięcie ---
+- scrollUntilVisible: { element: "Set 4, type: normal.*", direction: UP, timeout: 30000 }
+- tapOn: "Set 4, type: normal.*"
+- extendedWaitUntil: { visible: "To failure \\(F\\)", timeout: 15000 }
+- takeScreenshot: 41-menu-etykiety
+- tapOn: "To failure \\(F\\)"
+- extendedWaitUntil: { visible: "Set 4F, type: to failure.*", timeout: 15000 }
+- tapOn: "Set 3, type: normal.*"
+- extendedWaitUntil: { visible: "Delete set", timeout: 15000 }
+- tapOn: "Delete set"
+# W, 1, 2, 3F, 4D
+- extendedWaitUntil: { visible: "Set 3F, type: to failure.*", timeout: 15000 }
+- assertVisible: "Set 4D, type: drop set.*"
+- assertNotVisible: "Set 5D, type: .*"
+- assertNotVisible: "Set 3, type: normal.*"
+
+# --- Opcjonalny zakres powtórzeń: dodanie, podpowiedź, usunięcie ---
+- scrollUntilVisible: { element: "\\+ rep range", direction: DOWN, timeout: 30000, centerElement: true }
+- tapOn: "\\+ rep range"
+- extendedWaitUntil: { visible: "reps from — Bench Press \\(Dumbbell\\)", timeout: 15000 }
+- tapOn: "reps from — Bench Press \\(Dumbbell\\)"
+- inputText: "8"
+- tapOn: "reps to — Bench Press \\(Dumbbell\\)"
+- inputText: "12"
+# Klawiatura numeryczna nie ma Enter — fokus na polu nazwy (klawiatura z Enter) i Enter chowa klawiaturę
+- scrollUntilVisible: { element: "Rows E2E", direction: UP, timeout: 30000 }
+- tapOn: "Rows E2E"
+- pressKey: Enter
+- scrollUntilVisible: { element: "Rep range: 8.12.*", direction: DOWN, timeout: 30000 }
+- takeScreenshot: 42-zakres-powtorzen
+- scrollUntilVisible: { element: "Remove rep range", direction: DOWN, timeout: 30000, centerElement: true }
+- tapOn: "Remove rep range"
+- extendedWaitUntil: { visible: "\\+ rep range", timeout: 15000 }
+- assertNotVisible: "Rep range: .*"
+
+# --- Wartości w wierszach (rozgrzewka 20 × 10, seria 1: 37 × 11) ---
+- scrollUntilVisible: { element: { id: "tpl-w-0-0" }, direction: UP, timeout: 30000 }
+- tapOn: { id: "tpl-w-0-0" }
+- inputText: "20"
+- tapOn: { id: "tpl-r-0-0" }
+- inputText: "10"
+- tapOn: { id: "tpl-w-0-1" }
+- inputText: "37"
+- tapOn: { id: "tpl-r-0-1" }
+- inputText: "11"
+- takeScreenshot: 43-wartosci-w-wierszach
+
+# --- Zwijanie i rozwijanie karty (zwinięcie usuwa pola, więc chowa też klawiaturę) ---
+- scrollUntilVisible: { element: "Bench Press \\(Dumbbell\\)", direction: UP, timeout: 30000 }
+- tapOn: "Bench Press \\(Dumbbell\\)"
+- extendedWaitUntil: { notVisible: "\\+ set", timeout: 15000 }
+- assertNotVisible: "Set W, type: .*"
+- takeScreenshot: 44-karta-zwinieta
+- tapOn: "Bench Press \\(Dumbbell\\)"
+- extendedWaitUntil: { visible: "Set W, type: warm-up.*", timeout: 15000 }
+- assertVisible: "37"   # wartości zostały w wierszach
+- assertVisible: "11"
+
+# --- Ćwiczenie 2: otwiera się samo, pierwsze się zwija (otwarta jedna karta) ---
+- scrollUntilVisible: { element: "\\+ Add exercise", direction: DOWN, timeout: 60000, centerElement: true }
+- tapOn: "\\+ Add exercise"
+- extendedWaitUntil: { visible: "Search exercises…", timeout: 30000 }
+- tapOn: "Search exercises…"
+- inputText: "Bent Over Row"
+- tapOn: { text: "Continue", optional: true }
+- tapOn: "Bent Over Row \\(Dumbbell\\), dumbbells"
+- extendedWaitUntil: { visible: "Bent Over Row \\(Dumbbell\\)", timeout: 30000 }
+- extendedWaitUntil: { visible: "Set 3, type: normal.*", timeout: 15000 }   # karta ćwiczenia 2 (3 zwykłe serie)
+- assertNotVisible: "Set W, type: .*"                                     # karta ćwiczenia 1 zwinięta
+- takeScreenshot: 45-druga-karta
+# Rozwinięcie karty 1 zwija kartę 2
+- scrollUntilVisible: { element: "Bench Press \\(Dumbbell\\)", direction: UP, timeout: 30000 }
+- tapOn: "Bench Press \\(Dumbbell\\)"
+- extendedWaitUntil: { visible: "Set W, type: warm-up.*", timeout: 15000 }
+- assertNotVisible: "Set 3, type: normal.*"
+
+# --- Usuń ćwiczenie (ćwiczenie 2) ---
+- scrollUntilVisible: { element: "Bent Over Row \\(Dumbbell\\)", direction: DOWN, timeout: 30000, centerElement: true }
+- tapOn: "Bent Over Row \\(Dumbbell\\)"
+- extendedWaitUntil: { visible: "Set 3, type: normal.*", timeout: 15000 }
+- scrollUntilVisible: { element: "Remove from template", direction: DOWN, timeout: 30000, centerElement: true }
+- tapOn: "Remove from template"
+- extendedWaitUntil: { visible: "Remove from template\\?", timeout: 15000 }
+- tapOn: { text: "Delete", below: "Remove from template\\?" }
+- extendedWaitUntil: { notVisible: "Remove from template\\?", timeout: 15000 }
+- assertNotVisible: "Bent Over Row \\(Dumbbell\\)"
+- assertVisible: "Bench Press \\(Dumbbell\\)"
+- takeScreenshot: 46-po-usunieciu-cwiczenia
+
+# --- Start: trening ma typy i wartości z wierszy szablonu ---
+- scrollUntilVisible: { element: "Start", direction: UP, timeout: 30000 }
+- tapOn: "Start"
+- extendedWaitUntil: { visible: "Set W done — Bench Press \\(Dumbbell\\)", timeout: 30000 }
+- assertVisible: "Set W, type: warm-up.*"
+- assertVisible: "Set 1, type: normal.*"
+- scrollUntilVisible: { element: "Set 4D, type: drop set.*", direction: DOWN, timeout: 30000 }
+- assertVisible: "Set 3F, type: to failure.*"
+- assertVisible: "20"
+- assertVisible: "37"
+- assertVisible: "11"
+- assertNotVisible: "Set 5.*"
+- takeScreenshot: 47-trening-z-wierszy

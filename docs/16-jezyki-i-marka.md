@@ -39,6 +39,35 @@ potem 14 niezależnych recenzji (inny agent, bez dostępu do notatek tłumacza).
 - Nazwy ćwiczeń z biblioteki w językach innych niż pl/en.
 - Opis w App Store w każdym języku — przy publikacji (docs/15).
 
+## Nazwa aplikacji (decyzja właściciela 05.10.2026)
+
+*Pod ikoną* (`APP_NAME` w `lib/i18n.ts`, jedno źródło prawdy; `locales/<kod>.json` musi się zgadzać — test `tests/i18n-locales.test.ts`):
+słowo lokalne tam, gdzie jest podobne do „Trening” (to samo co tytuł zakładki), w pozostałych „Training”.
+
+| Nazwa | Języki |
+|---|---|
+| Trening | pl, hr, sl |
+| Тренинг | sr |
+| Trénink / Tréning | cs / sk |
+| Treening / Treniņš / Treniruotė | et / lv / lt |
+| Treino | pt |
+| Training | en, es, ro, hu, bg, uk |
+
+Przebieg decyzji: odrzucone „Forma” (w App Store jest już „Forma: Workout Tracker Gym Log”), „Simple Workout Tracker”
+(22 znaki — ucięte pod ikoną; jest już „Simple Workout Tracker: Gym”), „Workout” (nazwa aplikacji Apple na Apple Watch),
+„Seria”, „Hantel” (właściciel wybrał „Trening”). lt i pt najpierw „Training”, potem właściciel: „Treino i Treniruotė też jest ok”.
+sr: cyrylica jak cały interfejs (nie łacinka „Trening”).
+
+*W App Store* (`store/app-store-names.json`, max 30 znaków, wytyczna Apple 2.3.7): „<nazwa>: <opis>”, opis = dziennik siłowni.
+App Store Connect nie ma lokalizacji bg, sr, lt, lv, et (lista: developer.apple.com/help/app-store-connect/reference/app-information/app-store-localizations);
+w tych krajach sklep pokazuje English (U.K.) — „Training: Gym Log & Rest Timer”, Serbia także chorwacką. Pod ikoną zostaje nazwa lokalna
+(wariant A, właściciel 05.10.2026). Odrzucony wariant B: „Training” pod ikoną w tych 5 językach. Ryzyko: wytyczna 2.3.8 (nazwa w sklepie
+i pod ikoną „similar”) — wspólny rdzeń; jeśli recenzja zakwestionuje, zmiana jednej linii w `APP_NAME`.
+
+*Otwarte:* opisy w App Store (część po dwukropku) czytane przez native speakera; unikalność nazw (rezerwacja w App Store Connect);
+znaki towarowe (nie sprawdzone); nazwa widżetu „Trening — przerwa” (`targets/rest-widget`, tylko po polsku); czy folder w Plikach
+przyjmuje nazwę zlokalizowaną (sprawdzić na buildzie — teksty ścieżki zakładają, że tak).
+
 ## Styl marki
 
 *Decyzja właściciela 05.10.2026:* „Podoba mi się kreda.” → **kierunek A · Kreda**. Tryb ciemny: „Kreda + ciemna wersja” (05.10.2026) — w trybie ciemnym grafitowe tło, kredowy tekst, ten sam pomarańcz.

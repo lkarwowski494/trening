@@ -32,7 +32,7 @@ Rozmowa 05.10.2026, rano: „Chciałbym móc opublikować to w Apple Store” i 
   - Otwarte: ceny
     (miesięczna/roczna), data wprowadzenia płatności, Small Business Program (prowizja 15%).
   Konto: Apple Developer jako osoba fizyczna (Individual) — firma niepotrzebna.
-- **Nazwa:** otwarta. Propozycja „Trening” — do sprawdzenia w sklepie.
+- **Nazwa:** decyzja właściciela 05.10.2026 (potwierdzona 06.10) — `store/app-store-names.json` (12 lokalizacji App Store), szczegóły w docs/16 „Nazwa aplikacji”. Unikalność potwierdzi rezerwacja nazwy w App Store Connect.
 
 ## Zmiany w aplikacji już zrobione pod publikację
 

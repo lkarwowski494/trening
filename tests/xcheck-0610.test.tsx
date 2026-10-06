@@ -34,8 +34,8 @@ import { AUTO_KEEP } from '@/lib/backup';
 import { t } from '@/lib/i18n';
 const src = (f: string) => fs.readFileSync(require('path').join(__dirname, '..', f), 'utf8');
 test('NISKIE: liczba kopii automatycznych w tekstach pochodzi z AUTO_KEEP (nie wpisana „10”)', () => {
-  for (const f of ['app/more/settings.tsx', 'app/more/backup.tsx']) { expect(src(f)).not.toMatch(/ostatnie 10/); expect(src(f)).toMatch(/\{ n: AUTO_KEEP \}/); }
-  expect(t('Pliki → Na moim iPhonie → Trening → Backup, ostatnie {n}', { n: AUTO_KEEP })).toContain(`ostatnie ${AUTO_KEEP}`);
+  for (const f of ['app/more/settings.tsx', 'app/more/backup.tsx']) { expect(src(f)).not.toMatch(/ostatnie 10/); expect(src(f)).toMatch(/n: AUTO_KEEP \}/); }
+  expect(t('Pliki → Na moim iPhonie → {app} → Backup, ostatnie {n}', { app: 'Trening', n: AUTO_KEEP })).toContain(`ostatnie ${AUTO_KEEP}`);
 });
 test('NISKIE: podpowiedź zakresu w szablonie mówi o jednostce z ustawień, nie zawsze „kg”', () => {
   expect(src('app/template/[id].tsx')).not.toMatch(/więcej kg/); expect(src('app/template/[id].tsx')).toMatch(/więcej \{u\}”\.', \{ r: reps\(it\.repMin, it\.repMax\), u: wu\(\) \}/);

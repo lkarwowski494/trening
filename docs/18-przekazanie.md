@@ -56,3 +56,6 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
 
 - 06.10.2026: etykiety supersetów po 26 grupach zaczynają się od „A” — **zostaje** (wariant A: „nikt nie robi 27 supersetów”);
   test `tests/matrix-logic.test.tsx` (`groupLabels`) sprawdza zakres A–Z.
+- 06.10.2026: scenariusze E2E 08–10 (wiersze serii w szablonie, język + wygląd, gumy) — **wdrażać** (wariant A).
+- 06.10.2026: nazwa aplikacji (decyzje z sesji „Nazwa aplikacji treningowej”, 05.10, potwierdzone przez właściciela 06.10) — **najpierw nazwa,
+  potem pierwszy TestFlight** (wariant B). Gryf bez talerzy = ciężary nieznane (wariant A, wdrożone f59d36e).

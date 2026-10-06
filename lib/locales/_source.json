@@ -340,8 +340,8 @@
   "en": "No permission"
  },
  {
-  "pl": "Brak zgody na zapis treningów. Włącz ją w aplikacji Zdrowie: profil → Aplikacje → Trening.",
-  "en": "No permission to save workouts. Turn it on in the Health app: profile → Apps → Trening."
+  "pl": "Brak zgody na zapis treningów. Włącz ją w aplikacji Zdrowie: profil → Aplikacje → {app}.",
+  "en": "No permission to save workouts. Turn it on in the Health app: profile → Apps → {app}."
  },
  {
   "pl": "brak: {m}",
@@ -842,8 +842,8 @@
   "en": "Import cancelled"
  },
  {
-  "pl": "Import zastąpi wszystkie obecne dane zawartością pliku. Obecne dane (także trening w toku) zapiszą się najpierw jako kopia w Plikach: Trening → Backup.",
-  "en": "Import will replace all current data with the file contents. Your current data (including a workout in progress) is first saved as a copy in Files: Trening → Backup."
+  "pl": "Import zastąpi wszystkie obecne dane zawartością pliku. Obecne dane (także trening w toku) zapiszą się najpierw jako kopia w Plikach: {app} → Backup.",
+  "en": "Import will replace all current data with the file contents. Your current data (including a workout in progress) is first saved as a copy in Files: {app} → Backup."
  },
  {
   "pl": "Importuj",
@@ -998,8 +998,8 @@
   "en": "Automatic backup after a workout is off (Settings)."
  },
  {
-  "pl": "Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → Trening → Backup, ostatnie {n}). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego Apple ID wyeksportuj backup na zewnątrz.",
-  "en": "Automatic backup: after every workout a JSON file is saved in Files (On My iPhone → Trening → Backup, last {n}). Import accepts these files too. These copies are deleted together with the app — before removing it or installing from a different Apple ID, export a backup elsewhere."
+  "pl": "Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → {app} → Backup, ostatnie {n}). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego Apple ID wyeksportuj backup na zewnątrz.",
+  "en": "Automatic backup: after every workout a JSON file is saved in Files (On My iPhone → {app} → Backup, last {n}). Import accepts these files too. These copies are deleted together with the app — before removing it or installing from a different Apple ID, export a backup elsewhere."
  },
  {
   "pl": "Kopia jest zachowana w telefonie. Tapnij, by ją wysłać, a potem zaimportuj backup.",
@@ -1838,8 +1838,8 @@
   "en": "The file has schema {a}; this version supports up to {b}. Update the app."
  },
  {
-  "pl": "Pliki → Na moim iPhonie → Trening → Backup, ostatnie {n}",
-  "en": "Files → On My iPhone → Trening → Backup, last {n}"
+  "pl": "Pliki → Na moim iPhonie → {app} → Backup, ostatnie {n}",
+  "en": "Files → On My iPhone → {app} → Backup, last {n}"
  },
  {
   "pl": "Po ukryciu komunikatu kopii nie da się już wysłać z aplikacji — najpierw ją wyślij, jeśli jest potrzebna.",
@@ -2786,8 +2786,8 @@
   "en": "Remove substitute?"
  },
  {
-  "pl": "Usunie ćwiczenia, szablony i całą historię oraz przywróci ustawienia domyślne (także miejsca, sprzęt i gumy). Przedtem obecne dane zapiszą się jako kopia w Plikach: Trening → Backup (można ją zaimportować).",
-  "en": "This deletes exercises, templates and all history and restores default settings (including places, equipment and bands). Your current data is first saved as a copy in Files: Trening → Backup (you can import it)."
+  "pl": "Usunie ćwiczenia, szablony i całą historię oraz przywróci ustawienia domyślne (także miejsca, sprzęt i gumy). Przedtem obecne dane zapiszą się jako kopia w Plikach: {app} → Backup (można ją zaimportować).",
+  "en": "This deletes exercises, templates and all history and restores default settings (including places, equipment and bands). Your current data is first saved as a copy in Files: {app} → Backup (you can import it)."
  },
  {
   "pl": "usunięte",
@@ -2926,8 +2926,8 @@
   "en": "coming soon"
  },
  {
-  "pl": "Włącz powiadomienia dla Trening w Ustawieniach iOS.",
-  "en": "Enable notifications for Trening in iOS Settings."
+  "pl": "Włącz powiadomienia dla {app} w Ustawieniach iOS.",
+  "en": "Enable notifications for {app} in iOS Settings."
  },
  {
   "pl": "Wolne ciężary",

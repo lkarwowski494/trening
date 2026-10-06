@@ -1,0 +1,17 @@
+{
+  "_opis": "Nazwy w App Store (pole Name, max 30 znaków) dla lokalizacji App Store Connect. Część przed dwukropkiem = APP_NAME języka aplikacji (lib/i18n.ts); test tests/i18n-locales.test.ts pilnuje zgodności i długości. Decyzja właściciela 05.10.2026, docs/16.",
+  "names": {
+    "pl": "Trening: dziennik siłowni",
+    "en-US": "Training: Gym Log & Rest Timer",
+    "en-GB": "Training: Gym Log & Rest Timer",
+    "cs": "Trénink: deník z posilovny",
+    "sk": "Tréning: denník z posilňovne",
+    "hu": "Training: edzésnapló",
+    "ro": "Training: jurnal de sală",
+    "hr": "Trening: dnevnik teretane",
+    "sl": "Trening: dnevnik vadbe",
+    "uk": "Training: щоденник тренувань",
+    "es-ES": "Training: diario de gimnasio",
+    "pt-PT": "Treino: diário de ginásio"
+  }
+}

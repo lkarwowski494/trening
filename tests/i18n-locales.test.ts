@@ -5,7 +5,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { EN } from '@/lib/i18n.en';
 import { allLabels } from '@/lib/equipment';
-import { LANGS } from '@/lib/i18n';
+import { APP_NAME, LANGS } from '@/lib/i18n';
 import { LOCALES } from '@/lib/locales';
 import { PLURAL_FORMS } from '@/lib/plural';
 
@@ -52,6 +52,36 @@ test('iOS zna wszystkie języki aplikacji: CFBundleLocalizations i opisy uprawni
   for (const l of LANGS) {
     const f = JSON.parse(fs.readFileSync(path.join(__dirname, '..', app.locales[l]), 'utf8'));
     expect([l, Object.keys(f).sort()]).toEqual([l, ['CFBundleDisplayName', 'NSHealthShareUsageDescription', 'NSHealthUpdateUsageDescription']]);
-    expect(f.CFBundleDisplayName).toBe('Trening');
+    expect(f.CFBundleDisplayName).toBe(APP_NAME[l]);
+    expect([l, f.NSHealthShareUsageDescription.includes(APP_NAME[l]), f.NSHealthUpdateUsageDescription.includes(APP_NAME[l])]).toEqual([l, true, true]);
   }
+});
+
+test('nazwa aplikacji w tekstach = APP_NAME danego języka (bez starej nazwy „Trening” tam, gdzie nazwa jest inna)', () => {
+  for (const l of LANGS) {
+    if (l === 'pl' || APP_NAME[l] === 'Trening') continue;
+    const d: Record<string, string> = l === 'en' ? EN : (LOCALES as Record<string, Record<string, string>>)[l];
+    expect([l, Object.values(d).filter(v => /\bTrening\b/.test(v))]).toEqual([l, []]);
+  }
+});
+
+test('nazwy w App Store (store/app-store-names.json): max 30 znaków, przed dwukropkiem APP_NAME języka', () => {
+  const { names } = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'store', 'app-store-names.json'), 'utf8')) as { names: Record<string, string> };
+  const lang = (loc: string) => loc.split('-')[0] as (typeof LANGS)[number];
+  for (const [loc, name] of Object.entries(names)) {
+    expect([loc, LANGS.includes(lang(loc)), [...name].length <= 30, name.startsWith(`${APP_NAME[lang(loc)]}: `)]).toEqual([loc, true, true, true]);
+  }
+});
+
+/* 06.10.2026: nazwa aplikacji w tekstach jako parametr {app} = APP_NAME języka (jedno źródło prawdy; dotąd wpisana w każde tłumaczenie) */
+import { t, applyLang, appName } from '@/lib/i18n';
+test('teksty z nazwą aplikacji (folder w Plikach, Zdrowie, powiadomienia, stopka) biorą ją z APP_NAME bieżącego języka', () => {
+  const keys = Object.keys(EN).filter(k => k.includes('{app}'));
+  expect(keys.length).toBeGreaterThanOrEqual(6);
+  for (const l of LANGS) {
+    applyLang(l); expect(appName()).toBe(APP_NAME[l]);
+    for (const k of keys) { const s = t(k, { app: appName(), n: 10 }); expect([l, k, s.includes(APP_NAME[l]), s.includes('{app}')]).toEqual([l, k, true, false]); }
+  }
+  applyLang('pl');
+  const src = fs.readFileSync(path.join(__dirname, '..', 'app', '(tabs)', 'more.tsx'), 'utf8'); expect(src).toMatch(/\$\{appName\(\)\} \$\{Constants/);
 });

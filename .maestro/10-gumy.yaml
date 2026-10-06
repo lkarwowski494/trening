@@ -1,0 +1,129 @@
+# Gumy w miejscu i w treningu (docs/17 pkt 3 i „Gumy w ćwiczeniach z oporem gumy”, scenariusz właściciela 06.10.2026):
+# w miejscu „Home” gumy oporowe z poziomami 1, 2, 4 (zaznaczenie 1, odznaczenie 6) i kolorem poziomu 1; trening z Band Pull Apart
+# (opór gumy) i Pull Up (asysta gumą) — przycisk gumy przechodzi tylko przez poziomy miejsca; zakończenie i guma w zapisanej sesji.
+#
+# Literały (EN z lib/i18n.en.ts / lib/equipment.ts, chyba że zaznaczono inaczej):
+#   "Start from a template", "More, tab.*", "Settings", "Training places,.*", "\+ Add place", "Home,.*", "Available exercises: .*",
+#   "Back", "Workout, tab.*", "Empty workout", "\+ Add exercise", "Search exercises…", "Place filter: Home.*",
+#   "Finish", "Finish workout\?", "Session", "Skip"   ← jak przepływy 05, 06 i 07
+#   "Bars and dip stations.*", sw-Pull-up bar \(doorway, wall-mounted\) ← jak przepływ 06 (EQUIP_GROUP_LABEL.bars, SwitchRow)
+#   "Accessories.*"                  ← EQUIP_GROUP_LABEL.accessories.en (nagłówek grupy, zwinięty)
+#   sw-Resistance bands              ← testID przełącznika: 'sw-' + EQUIPMENT bands.en 'Resistance bands'
+#   "Resistance bands: level N"      ← Chip poziomu w BandLevels (app/more/location/[id].tsx): a11yLabel „{sprzęt}: {'poziom {n}'}”
+#                                      (świeża instalacja ma gumy poziomów 2, 4, 6 — lib/seed.ts; włączenie gum zaznacza te poziomy)
+#   "Band colour: level 1"           ← '{Kolor gumy}: {poziom {n}}' (pole koloru; nowa guma ma kolor 'nowa' → „new”)
+#   "Band Pull Apart, .*" / "Pull Up, .*" ← Item pickera „{title}, {sub}” (sub: sprzęt + ' · band', app/picker.tsx)
+#   "Band: X. Tap to change."        ← 'Guma: {b}. Tapnij, by zmienić.' (components/ActiveWorkout.tsx); b = bandA11y '{c}, poziom {n}' → „green, level 1”
+#                                      albo 'brak' → „none”; kolejność: poziomy miejsca rosnąco (store.nextBandId), potem brak
+#   "Set 1 done — X"                 ← 'Seria {n} zrobiona — {ex}'
+#   ".*band: green, level 1.*"       ← wiersz serii zapisanej sesji (app/history/[id].tsx): accessibilityLabel „{nagłówek}: {wartość}, …”,
+#                                      nagłówek 'guma' → „band”, wartość bandA11y
+appId: pl.lukasz.trening
+name: Gumy w miejscu i w treningu
+---
+- launchApp:
+    clearState: true
+    permissions: { all: allow }
+- extendedWaitUntil: { visible: "Start from a template", timeout: 60000 }
+
+# --- Miejsce „Home”: drążek i gumy ---
+- tapOn: "More, tab.*"
+- extendedWaitUntil: { visible: "Settings", timeout: 30000 }
+- tapOn: "Settings"
+- scrollUntilVisible: { element: "Training places,.*", direction: DOWN, timeout: 60000 }
+- tapOn: "Training places,.*"
+- extendedWaitUntil: { visible: "\\+ Add place", timeout: 30000 }
+- tapOn: "\\+ Add place"
+- extendedWaitUntil: { visible: "Home,.*", timeout: 30000 }
+- tapOn: "Home,.*"
+- extendedWaitUntil: { visible: "Available exercises: .*", timeout: 30000 }
+# Drążek — Pull Up dostępny w Domu (filtr miejsca w wyborze ćwiczeń zostaje włączony)
+- scrollUntilVisible: { element: "Bars and dip stations.*", direction: DOWN, timeout: 90000 }
+- tapOn: "Bars and dip stations.*"
+- scrollUntilVisible: { element: { id: "sw-Pull-up bar \\(doorway, wall-mounted\\)" }, direction: DOWN, timeout: 90000 }
+- tapOn: { id: "sw-Pull-up bar \\(doorway, wall-mounted\\)" }
+# Gumy oporowe: włączenie, poziomy 1 (nowa guma) i bez 6, kolor poziomu 1
+- scrollUntilVisible: { element: "Accessories.*", direction: DOWN, timeout: 90000 }
+- tapOn: "Accessories.*"
+- scrollUntilVisible: { element: { id: "sw-Resistance bands" }, direction: DOWN, timeout: 90000 }
+- tapOn: { id: "sw-Resistance bands" }
+- scrollUntilVisible: { element: "Resistance bands: level 7", direction: DOWN, timeout: 60000, centerElement: true }
+- tapOn: "Resistance bands: level 1"
+- tapOn: "Resistance bands: level 6"
+- scrollUntilVisible: { element: "Band colour: level 1", direction: DOWN, timeout: 60000, centerElement: true }
+- tapOn: "Band colour: level 1"
+- eraseText: 30
+- inputText: "green"
+- pressKey: Enter
+- assertNotVisible: "Band colour: level 6"   # poziom 6 odznaczony — bez pola koloru
+- scrollUntilVisible: { element: "Band colour: level 4", direction: DOWN, timeout: 30000 }
+- takeScreenshot: 60-gumy-w-miejscu
+
+# --- Powrót do zakładki Trening ---
+- tapOn: "Back"
+- extendedWaitUntil: { visible: "\\+ Add place", timeout: 30000 }
+- tapOn: "Back"
+- extendedWaitUntil: { visible: "Training places,.*", timeout: 30000 }
+- tapOn: "Back"
+- extendedWaitUntil: { visible: "Workout, tab.*", timeout: 30000 }
+- tapOn: "Workout, tab.*"
+
+# --- Pusty trening + Band Pull Apart (opór gumy) ---
+- extendedWaitUntil: { visible: "Start from a template", timeout: 30000 }
+- scrollUntilVisible: { element: "Empty workout", direction: DOWN, timeout: 60000 }
+- tapOn: "Empty workout"
+- extendedWaitUntil: { visible: "\\+ Add exercise", timeout: 30000 }
+- tapOn: "\\+ Add exercise"
+- extendedWaitUntil: { visible: "Place filter: Home.*", timeout: 30000 }
+- tapOn: "Search exercises…"
+- inputText: "Band Pull Apart"
+- tapOn: { text: "Continue", optional: true }
+- extendedWaitUntil: { visible: "Band Pull Apart, .*", timeout: 30000 }
+- tapOn: "Band Pull Apart, .*"
+- extendedWaitUntil: { visible: "Set 1 done — Band Pull Apart", timeout: 30000 }
+# Cykl gumy: brak → 1 → 2 → 4 → brak (6 odznaczone w miejscu) → 1
+- tapOn: "Band: none\\. Tap to change\\."
+- extendedWaitUntil: { visible: "Band: green, level 1\\. Tap to change\\.", timeout: 15000 }
+- tapOn: "Band: green, level 1\\. Tap to change\\."
+- extendedWaitUntil: { visible: "Band: red, level 2\\. Tap to change\\.", timeout: 15000 }
+- tapOn: "Band: red, level 2\\. Tap to change\\."
+- extendedWaitUntil: { visible: "Band: black, level 4\\. Tap to change\\.", timeout: 15000 }
+- tapOn: "Band: black, level 4\\. Tap to change\\."
+- extendedWaitUntil: { visible: "Band: none\\. Tap to change\\.", timeout: 15000 }
+- assertNotVisible: "Band: purple, level 6.*"
+- tapOn: "Band: none\\. Tap to change\\."
+- extendedWaitUntil: { visible: "Band: green, level 1\\. Tap to change\\.", timeout: 15000 }
+- takeScreenshot: 61-guma-band-pull-apart
+- tapOn: "Set 1 done — Band Pull Apart"
+- tapOn: { text: "Skip", optional: true }
+
+# --- Pull Up (asysta gumą) ---
+- scrollUntilVisible: { element: "\\+ Add exercise", direction: DOWN, timeout: 60000, centerElement: true }
+- tapOn: "\\+ Add exercise"
+- extendedWaitUntil: { visible: "Search exercises…", timeout: 30000 }
+- tapOn: "Search exercises…"
+- inputText: "Pull Up"
+- tapOn: { text: "Continue", optional: true }
+- extendedWaitUntil: { visible: "Pull Up, .*", timeout: 30000 }
+- tapOn: "Pull Up, .*"
+- extendedWaitUntil: { visible: "Set 1 done — Pull Up", timeout: 30000 }
+- scrollUntilVisible: { element: "Band: none\\. Tap to change\\.", direction: DOWN, timeout: 30000, centerElement: true }
+- tapOn: "Band: none\\. Tap to change\\."
+# Band Pull Apart (wyżej) i Pull Up mają teraz poziom 1 — drugi przycisk to Pull Up
+- extendedWaitUntil: { visible: { text: "Band: green, level 1\\. Tap to change\\.", index: 1 }, timeout: 15000 }
+- tapOn: { text: "Band: green, level 1\\. Tap to change\\.", index: 1 }
+- extendedWaitUntil: { visible: "Band: red, level 2\\. Tap to change\\.", timeout: 15000 }
+- takeScreenshot: 62-guma-pull-up
+- tapOn: "Set 1 done — Pull Up"
+- tapOn: { text: "Skip", optional: true }
+
+# --- Zakończenie: guma w zapisanej sesji ---
+- scrollUntilVisible: { element: "Finish", direction: UP, timeout: 60000 }
+- tapOn: "Finish"
+- extendedWaitUntil: { visible: "Finish workout\\?", timeout: 30000 }
+- tapOn: { text: "Finish", below: "Finish workout\\?" }
+- extendedWaitUntil: { visible: "Session", timeout: 30000 }
+- tapOn: { text: "OK", optional: true }   # okno „Nowy rekord!” (setTimeout po zapisie) — zwykle się nie pojawia (serie z gumą nie liczą się do rekordów)
+- assertVisible: ".*band: green, level 1.*"
+- assertVisible: ".*band: red, level 2.*"
+- takeScreenshot: 63-sesja-z-gumami

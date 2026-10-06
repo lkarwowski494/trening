@@ -17,6 +17,10 @@ export type Lang = typeof LANGS[number];
 export type LangSetting = 'auto' | Lang;
 /** Nazwa języka w nim samym (lista w ustawieniach). */
 export const LANG_NAME: Record<Lang, string> = { pl: 'Polski', en: 'English', cs: 'Čeština', sk: 'Slovenčina', hu: 'Magyar', ro: 'Română', bg: 'Български', hr: 'Hrvatski', sl: 'Slovenščina', sr: 'Српски', lt: 'Lietuvių', lv: 'Latviešu', et: 'Eesti', uk: 'Українська', es: 'Español', pt: 'Português' };
+/** Nazwa aplikacji pod ikoną i w tekstach (folder w Plikach, Zdrowie, powiadomienia, stopka). Decyzja właściciela 05.10.2026 (potwierdzona 06.10):
+ * lokalne słowo tam, gdzie jest podobne do „Trening” (to samo co nazwa zakładki), w pozostałych językach „Training”. Teksty biorą ją parametrem {app}
+ * (jedno źródło); test i18n-locales pilnuje locales/<kod>.json (CFBundleDisplayName) i store/app-store-names.json. */
+export const APP_NAME: Record<Lang, string> = { pl: 'Trening', en: 'Training', cs: 'Trénink', sk: 'Tréning', hu: 'Training', ro: 'Training', bg: 'Training', hr: 'Trening', sl: 'Trening', sr: 'Тренинг', lt: 'Treniruotė', lv: 'Treniņš', et: 'Treening', uk: 'Training', es: 'Training', pt: 'Treino' };
 /** Domyślny tag regionu do dat i liczb, gdy telefon ma inny region. */
 const TAG: Record<Lang, string> = { pl: 'pl-PL', en: 'en-US', cs: 'cs-CZ', sk: 'sk-SK', hu: 'hu-HU', ro: 'ro-RO', bg: 'bg-BG', hr: 'hr-HR', sl: 'sl-SI', sr: 'sr-RS', lt: 'lt-LT', lv: 'lv-LV', et: 'et-EE', uk: 'uk-UA', es: 'es-ES', pt: 'pt-PT' };
 export const isLang = (x: unknown): x is Lang => typeof x === 'string' && (LANGS as readonly string[]).includes(x);
@@ -36,6 +40,7 @@ export function detectLang(): Lang {
 /** Język z ustawień; tag urządzenia czytany zawsze (także przy wymuszonym języku — np. English na brytyjskim telefonie → daty en-GB). */
 export function applyLang(setting: LangSetting | undefined) { const sys = detectLang(); current = !setting || setting === 'auto' || !isLang(setting) ? sys : setting; }
 export const lang = () => current;
+export const appName = () => APP_NAME[current];
 /** Locale do dat i liczb: region telefonu, gdy pasuje do języka (en-GB, pt-BR…), inaczej domyślny region języka. */
 /* Audyt ac5d764 LOW 2: porównanie po podtagu języka; serbski interfejs jest cyrylicą, więc daty też (telefon może mieć sr-Latn). */
 export const locale = () => current === 'pl' ? 'pl-PL' : current === 'sr' ? 'sr-Cyrl-RS' : deviceTag.split(/[-_]/)[0].toLowerCase() === current ? deviceTag : TAG[current];

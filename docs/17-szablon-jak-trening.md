@@ -57,6 +57,8 @@ jest za blisko X — łatwo je wyrzucić missclickiem”. Decyzje: **„Zwijane 
 - Każde ćwiczenie to karta: zwinięta — nazwa i podsumowanie („3 serie · 8–12 · 120 s”), rozwinięta — wiersze serii, przerwa, zakres, superset i
   „Usuń ćwiczenie” (z potwierdzeniem) na dole. Otwarta jedna naraz; nowo dodane ćwiczenie otwiera się samo. Kolejność — tylko „≡ Kolejność”.
 - Testy: `tests/template-cards.test.tsx`; dostosowane testy edytora (pomocnik `openCard`).
+- E2E (06.10.2026): `.maestro/08-szablon-wiersze.yaml` — wiersze serii (+ seria / + rozgrzewka / + drop set, menu etykiety: typ i „Usuń serię”),
+  wartości w wierszach, opcjonalny zakres, zwijane karty (otwarta jedna), „Usuń ćwiczenie” i Start (trening z typami i wartościami z wierszy).
 
 ## Gumy w ćwiczeniach z oporem gumy (06.10.2026)
 Właściciel: „ćwiczenia z band nie mają przy tworzeniu szablonu / przy pustym treningu wyboru zakresu gumy. Sprawdź wszystkie ćwiczenia z band
@@ -65,5 +67,7 @@ i upewnij się, że można wybrać gumy z zakresu 1–7.”
   (23 tylko z gumą, np. Band Pull Apart; 11 sztanga + gumy, np. Deadlift with Bands).
 - Teraz `usesBand(ex)` = asysta albo wymaganie „bands”: przycisk gumy w treningu, edycji historii i wierszach szablonu (`TRow.bandId`);
   cykl przez gumy z poziomów miejsca (1–7). Test: `tests/band-exercises.test.tsx` (wszystkie ćwiczenia z gumą, pełne 1–7).
+- E2E (06.10.2026): `.maestro/10-gumy.yaml` — gumy w miejscu (poziomy, kolor), Band Pull Apart i Pull Up: cykl gumy tylko przez poziomy miejsca,
+  guma w zapisanej sesji.
 - **Otwarte (decyzja właściciela):** serie z gumą nie liczą się dziś do rekordów i podpowiedzi „↑” (guma traktowana jak asysta — obciążenie
   nieznane). Dla oporu gumy sensowne byłyby rekordy osobno dla każdego poziomu gumy.
