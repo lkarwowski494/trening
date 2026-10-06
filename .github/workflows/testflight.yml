@@ -1,0 +1,102 @@
+# TestFlight — testy wewnętrzne (decyzja właściciela 06.10.2026, docs/15: limit Expo na buildy lokalne wyczerpany do 01.11.2026).
+# Build i podpis wyłącznie narzędziami Apple (bez Expo/EAS): xcodebuild archive z automatycznym podpisem przez klucz App Store Connect API,
+# eksport z wysyłką do App Store Connect. Tester wewnętrzny (właściciel) dostaje build w aplikacji TestFlight bez recenzji Apple.
+# Uruchamianie: Actions → „TestFlight (testy wewnętrzne)” → Run workflow (tylko ręcznie; sekrety niedostępne dla forków).
+#
+# Sekrety repozytorium (Settings → Secrets and variables → Actions) — nigdy w repo:
+#   ASC_KEY_ID     — identyfikator klucza API (10 znaków)
+#   ASC_ISSUER_ID  — Issuer ID (UUID z App Store Connect → Users and Access → Integrations)
+#   ASC_KEY_P8     — pełna treść pliku AuthKey_XXXX.p8 (razem z liniami BEGIN/END)
+# Numer buildu: 1000 + numer przebiegu tego workflow — tylko rośnie (warunek „wcześniejsi użytkownicy za darmo”, docs/15).
+name: TestFlight (testy wewnętrzne)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: testflight
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: macos-26
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v5
+      - name: Select Xcode 26.x
+        run: bash scripts/ci/select-xcode.sh 26
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Testy (jak przed każdym buildem)
+        run: npm run typecheck && npm run check:i18n && npm test -- --maxWorkers=2 && npm run verify:native
+      - name: Sekrety obecne (bez wypisywania wartości)
+        env:
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+          ASC_KEY_P8: ${{ secrets.ASC_KEY_P8 }}
+        run: |
+          for v in ASC_KEY_ID ASC_ISSUER_ID ASC_KEY_P8; do [ -n "${!v}" ] || { echo "::error::Brak sekretu $v (docs/15 — kroki właściciela)"; exit 1; }; done
+      - name: Generate native iOS project (expo prebuild)
+        run: npx expo prebuild --platform ios --no-install --clean
+      - name: Numer buildu (aplikacja i widżet ten sam CFBundleVersion)
+        # 1000 + numer przebiegu (wyrażenia GitHub Actions nie liczą — liczy powłoka)
+        run: |
+          echo "BUILD_NUMBER=$((1000 + GITHUB_RUN_NUMBER))" >> "$GITHUB_ENV"
+          /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $((1000 + GITHUB_RUN_NUMBER))" ios/Trening/Info.plist
+      - name: Install pods
+        run: cd ios && pod install
+      - name: Platforma iOS zgodna z SDK wybranego Xcode (pobranie tylko, gdy jej brak)
+        run: bash scripts/ci/ensure-ios-platform.sh
+      - name: Klucz API na dysk (dopiero po npm ci, testach, prebuild i pod install — audyt 06.10, ŚREDNIE)
+        env:
+          ASC_KEY_P8: ${{ secrets.ASC_KEY_P8 }}
+        run: umask 077; printf '%s\n' "$ASC_KEY_P8" > "$RUNNER_TEMP/AuthKey.p8"
+      - name: Archiwum (podpis automatyczny kluczem API)
+        env:
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+        run: |
+          set -o pipefail
+          cd ios
+          xcodebuild -workspace Trening.xcworkspace -scheme Trening -configuration Release -destination 'generic/platform=iOS' \
+            -archivePath "$RUNNER_TEMP/Trening.xcarchive" archive \
+            -allowProvisioningUpdates -authenticationKeyPath "$RUNNER_TEMP/AuthKey.p8" \
+            -authenticationKeyID "$ASC_KEY_ID" -authenticationKeyIssuerID "$ASC_ISSUER_ID" \
+            CODE_SIGN_STYLE=Automatic CURRENT_PROJECT_VERSION=$BUILD_NUMBER \
+            2>&1 | tee xcodebuild.log | xcbeautify
+      - name: Eksport i wysyłka do App Store Connect
+        env:
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+        run: |
+          set -o pipefail
+          TEAM=$(node -p "require('./app.json').expo.ios.appleTeamId")
+          cat > "$RUNNER_TEMP/ExportOptions.plist" <<EOF
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0"><dict>
+            <key>method</key><string>app-store-connect</string>
+            <key>destination</key><string>upload</string>
+            <key>teamID</key><string>$TEAM</string>
+            <key>signingStyle</key><string>automatic</string>
+            <key>manageAppVersionAndBuildNumber</key><false/>
+          </dict></plist>
+          EOF
+          xcodebuild -exportArchive -archivePath "$RUNNER_TEMP/Trening.xcarchive" -exportOptionsPlist "$RUNNER_TEMP/ExportOptions.plist" \
+            -exportPath "$RUNNER_TEMP/export" -allowProvisioningUpdates -authenticationKeyPath "$RUNNER_TEMP/AuthKey.p8" \
+            -authenticationKeyID "$ASC_KEY_ID" -authenticationKeyIssuerID "$ASC_ISSUER_ID" 2>&1 | tee export.log | xcbeautify
+          echo "## TestFlight: build $BUILD_NUMBER wysłany" >> "$GITHUB_STEP_SUMMARY"
+          echo "Po przetworzeniu przez Apple (zwykle 10–30 min) pojawi się w aplikacji TestFlight na iPhonie." >> "$GITHUB_STEP_SUMMARY"
+      - name: Usunięcie klucza z maszyny
+        if: always()
+        run: rm -f "$RUNNER_TEMP/AuthKey.p8"
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: testflight-logi
+          retention-days: 1
+          path: |
+            ios/xcodebuild.log
+            export.log

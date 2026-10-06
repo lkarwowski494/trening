@@ -11,3 +11,10 @@ reports/
 coverage/
 .secrets/
 __pycache__/
+
+# audyt 06.10.2026: sekrety i pliki podpisu nigdy w repo (CLAUDE.md)
+.env*
+*.p8
+*.p12
+*.mobileprovision
+*.cer

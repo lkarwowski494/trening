@@ -97,3 +97,32 @@ Przebieg `iphone-local.yml` 37422172177: build lokalny OK, ale `eas upload` odrz
 this month, which will reset in 25 days (on Sun Nov 01 2026)”. Darmowy plan Expo liczy też buildy lokalne wysłane przez `eas upload`
 (wcześniej zakładano, że tylko buildy w chmurze — docs/13). Link instalacyjny przez Expo niedostępny do 01.11.2026.
 Do decyzji właściciela: TestFlight (testy wewnętrzne — bez recenzji Apple) albo instalacja pliku .ipa z komputera Mac; płatny plan Expo — nie (0 zł).
+
+## TestFlight — testy wewnętrzne (decyzja właściciela 06.10.2026: „TestFlight — testy wewnętrzne”)
+Workflow `.github/workflows/testflight.yml`: build i podpis tylko narzędziami Apple (xcodebuild z kluczem App Store Connect API, podpis
+automatyczny), wysyłka do App Store Connect; bez Expo/EAS i ich limitów. Numer buildu 1000 + numer przebiegu (rośnie).
+`ITSAppUsesNonExemptEncryption: false` w `app.json` (aplikacja nie używa szyfrowania poza systemowym — bez pytania przy każdym buildzie).
+
+**Kroki właściciela (przeglądarka, ~30 min):**
+1. App Store Connect → Apps → „+” → New App: platforma iOS, nazwa (np. „Trening” — jeśli zajęta, inna), język główny Polski,
+   Bundle ID `pl.lukasz.trening` (jeśli nie ma go na liście: developer.apple.com → Identifiers → „+” → App ID z tym identyfikatorem), SKU dowolne.
+2. Users and Access → Integrations → App Store Connect API → „+”: nazwa „GitHub”, dostęp **App Manager** → pobierz plik `AuthKey_XXXX.p8`
+   (do pobrania tylko raz), zanotuj Key ID i Issuer ID.
+3. GitHub → repozytorium → Settings → Secrets and variables → Actions → New repository secret: `ASC_KEY_ID`, `ASC_ISSUER_ID`,
+   `ASC_KEY_P8` (cała treść pliku .p8). Pliku nie wysyłać nigdzie indziej (ani na czat).
+4. App Store Connect → aplikacja → TestFlight → Internal Testing → „+” grupa → dodaj siebie. Na iPhonie aplikacja TestFlight (App Store).
+
+**Przed pierwszą wysyłką:** audyt historii repozytorium wg reguły właściciela (wynik w tej sekcji).
+
+### Audyt repozytorium przed pierwszą wysyłką (06.10.2026, niezależny subagent, tylko odczyt)
+Zakres: 168 commitów ze wszystkich gałęzi, wiadomości, tagi, 289 plików z historii, workflowy.
+- **Czysto:** brak kluczy prywatnych, certyfikatów, .p8/.p12/.mobileprovision/.env w całej historii; brak tokenów; brak prawdziwych UDID;
+  autorzy commitów — tylko adresy noreply; workflowy tylko `workflow_dispatch`, `contents: read`, bez `pull_request(_target)` (forki bez sekretów);
+  sekrety nie są wypisywane; brak logów CI w repo.
+- **WYSOKIE (sprawdzone):** stare przebiegi `iphone-eas.yml` sprzed maskowania UDID — lista przebiegów tego workflow jest pusta (0), nie ma czego usuwać.
+- **ŚREDNIE:** (1) `iphone-eas.yml`/`iphone-local.yml` — sekrety ustawione dla całego workflow (dostępne podczas `npm ci`/testów) — do przeniesienia
+  do pojedynczych kroków (otwarte; workflowy i tak nieużywane do 01.11 — limit Expo); (2) `testflight.yml` — klucz na dysku dopiero przed archiwum
+  (naprawione); (3) `tests/fixtures/web03-backup.json` zawiera wagę ciała i wpisy z 02.10.2026 — **pytanie do właściciela**, czy to prawdziwe dane.
+- **NISKIE:** `ios-unsigned.yml` artefakty 1 dzień (naprawione); `.gitignore` dla `.env*`, `*.p8`, `*.p12`, `*.mobileprovision`, `*.cer` (naprawione);
+  `appleTeamId` w `app.json` — Apple nie traktuje go jako sekretu (zostaje); Maestro instalowany bez przypiętej wersji (bez sekretów — zostaje).
+- Do sprawdzenia przez właściciela: GitHub → Settings → Actions → General → „Fork pull request workflows” — wymagane zatwierdzenie.

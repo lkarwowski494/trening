@@ -33,7 +33,8 @@
         ],
         "CFBundleAllowMixedLocalizations": true,
         "UIFileSharingEnabled": true,
-        "LSSupportsOpeningDocumentsInPlace": true
+        "LSSupportsOpeningDocumentsInPlace": true,
+        "ITSAppUsesNonExemptEncryption": false
       }
     },
     "android": {

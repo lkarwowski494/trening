@@ -7,7 +7,7 @@ const wf = (n: string) => readFileSync(join(__dirname, '../.github/workflows', n
 
 describe('workflowy na publicznym repozytorium', () => {
   test('każdy workflow ma jawne uprawnienia tokenu tylko do odczytu treści i uruchamia się tylko ręcznie', () => {
-    for (const n of ['iphone-eas.yml', 'iphone-local.yml', 'ios-unsigned.yml', 'e2e-ios.yml']) {
+    for (const n of ['iphone-eas.yml', 'iphone-local.yml', 'ios-unsigned.yml', 'e2e-ios.yml', 'testflight.yml']) {
       const y = wf(n);
       expect(y).toMatch(/permissions:\n\s+contents: read/);
       expect(y).not.toMatch(/contents: write|pull_request_target|^\s+push:/m);
@@ -37,6 +37,23 @@ describe('workflowy na publicznym repozytorium', () => {
     expect(y).toMatch(/upload -p ios --build-path build\/Trening\.ipa/);
     expect(y).not.toMatch(/eas-cli@\$EAS_CLI build -p ios --profile adhoc --non-interactive/); // bez buildu w chmurze
     expect(/UDID_SED: '([^']+)'/.exec(y)![1]).toBe(/UDID_SED: '([^']+)'/.exec(wf('iphone-eas.yml'))![1]);
+  });
+  test('TestFlight (06.10.2026): tylko narzędzia Apple, klucz API z sekretów — nigdy wypisywany, usuwany zawsze; logi 1 dzień; numer buildu rośnie', () => {
+    const y = wf('testflight.yml');
+    expect(y).not.toMatch(/eas-cli|eas build|eas upload/);
+    for (const k of ['ASC_KEY_ID', 'ASC_ISSUER_ID', 'ASC_KEY_P8']) expect(y).toContain(`secrets.${k}`);
+    expect(y).not.toMatch(/echo[^\n]*\$\{?ASC_KEY_P8/); expect(y).toMatch(/umask 077/);
+    expect(y).toMatch(/- name: Usunięcie klucza z maszyny\n\s+if: always\(\)\n\s+run: rm -f "\$RUNNER_TEMP\/AuthKey\.p8"/);
+    expect(y).toMatch(/BUILD_NUMBER=\$\(\(1000 \+ GITHUB_RUN_NUMBER\)\)/); expect(y).not.toMatch(/\$\{\{[^}]*\+/); /* wyrażenia Actions nie liczą */ expect(y).toMatch(/retention-days: 1/);
+    expect(y).toMatch(/<string>app-store-connect<\/string>/);
+    expect(y.indexOf('AuthKey.p8"\n')).toBeGreaterThan(y.indexOf('pod install')); /* audyt 06.10: klucz na dysku dopiero przed archiwum */
+  });
+  test('deklaracja szyfrowania: aplikacja nie używa szyfrowania poza systemowym (bez pytania przy każdym buildzie w App Store Connect)', () => {
+    expect(JSON.parse(readFileSync(join(__dirname, '../app.json'), 'utf8')).expo.ios.infoPlist.ITSAppUsesNonExemptEncryption).toBe(false);
+  });
+  test('audyt 06.10.2026: artefakty buildu bez podpisu 1 dzień; .gitignore chroni pliki z sekretami', () => {
+    const y = wf('ios-unsigned.yml'); expect((y.match(/retention-days: 1\n/g) || []).length).toBe(y.split('actions/upload-artifact@v4').length - 1);
+    const g = readFileSync(join(__dirname, '../.gitignore'), 'utf8'); for (const p of ['.env*', '*.p8', '*.p12', '*.mobileprovision', '*.cer']) expect(g.split('\n')).toContain(p);
   });
   test('podspec modułu wskazuje właściwe repozytorium', () => {
     expect(readFileSync(join(__dirname, '../modules/rest-activity/RestActivity.podspec'), 'utf8')).toMatch(/s\.homepage\s+= 'https:\/\/github\.com\/lkarwowski494\/trening'/);
