@@ -44,6 +44,15 @@ Rozmowa 05.10.2026, rano: „Chciałbym móc opublikować to w Apple Store” i 
      Największa szansa w mniejszych sklepach (cs, sk, lt, lv, et, hr, sl, ro, hu, bg) — mniejsza konkurencja, nazwa lokalna.
   2. Prośba o ocenę w aplikacji po kilku treningach (systemowe okno Apple) — do zaprojektowania (kiedy, ile razy), decyzja właściciela.
   3. Spokojne wpisy tam, gdzie są osoby trenujące (lokalne fora/grupy, Reddit np. r/homegym): bez konta, dane w telefonie, offline, domowa siłownia.
+- **Model płatności — ZMIANA (właściciel 06.10.2026, wariant A):** subskrypcja roczna **odnawiana automatycznie, 29 zł/rok**, z **miesiącem
+  za darmo** na start (oferta wprowadzająca App Store). Zastępuje „jednorazową płatność” z 05.10. Uzasadnienie: kto zostaje, ten odnawia bez
+  wysiłku, przychód z kolejnych lat się sumuje; anulowanie jednym ruchem w Ustawieniach iOS. Odrzucone: B — subskrypcja nieodnawialna
+  (wygasa po roku, trzeba kupić ponownie; gubi zadowolonych przez zapomnienie, trudniejsza bez konta/serwera).
+  Rachunek: ok. 20 zł netto/os./rok (PL: VAT 23%, prowizja 15%) → 2000 zł/mies. ≈ 1200 aktywnych subskrybentów.
+  **Do sprawdzenia w dokumentacji Apple przed wdrożeniem** (nie zgadujemy): dostępne długości okresu próbnego dla subskrypcji rocznej,
+  stawka prowizji dla subskrypcji w Small Business Program, wymagania przywracania zakupów bez konta (StoreKit 2).
+  **Do potwierdzenia przez właściciela:** czy nadal obowiązuje „wcześniejsi użytkownicy za darmo na zawsze” oraz „po wygaśnięciu treningi
+  zablokowane, kopia i eksport działają zawsze”.
 - **Cel przychodu (właściciel 06.10.2026):** ~2000 zł miesięcznie; model bez zmian: 30 dni za darmo, potem jednorazowa płatność.
   Rachunek orientacyjny (agent, do sprawdzenia): z ceny w App Store odpada VAT kraju kupującego (PL 23%) i prowizja Apple (15% w Small Business
   Program), czyli na konto ok. 0,69 × cena przy kupującym z Polski. Potrzebne zakupy miesięcznie: cena 29 zł → ok. 100; 49 zł → ok. 59;
