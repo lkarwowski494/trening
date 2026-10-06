@@ -241,21 +241,30 @@ describe('import — przypadki brzegowe (deterministyczne)', () => {
  * a aplikacja szuka i usuwa po id: deleteWorkout (lib/store.ts:1227) kasuje OBA treningi, exById zwraca zawsze pierwsze ćwiczenie (drugiego nie
  * da się otworzyć ani edytować), lista historii ma zduplikowane klucze Reacta. Oczekiwane: id unikalne po imporcie (powtórzone → nowe uid()). */
 describe('import — zduplikowane id', () => {
+  test('powtórzone id dostają nowe: oba treningi zostają osobno (także po ponownym wczytaniu), id unikalne, migrate idempotentne', async () => {
+    const st = await doc(); const w = st.workouts.find((x: any) => x.id === 'w3'); st.workouts.push({ ...clone(w), startedAt: w.startedAt + 7 * DAY, finishedAt: w.finishedAt + 7 * DAY, note: 'drugi trening' });
+    const r = parseBackup(J(st)); store.replaceState(r);
+    const ws = store.getState().workouts; expect(new Set(ws.map(x => x.id)).size).toBe(ws.length);
+    const second = ws.find(x => x.note === 'drugi trening')!; expect(second.id).not.toBe('w3'); expect(ws.some(x => x.id === 'w3' && x.note !== 'drugi trening')).toBe(true); /* pierwsze wystąpienie zachowuje id */
+    const sets = ws.flatMap(x => x.exercises.flatMap(e => e.sets.map(z => z.id))); expect(new Set(sets).size).toBe(sets.length);
+    const again = store.migrate(JSON.parse(J(store.getState()))); expect(again.workouts.map(x => x.id)).toEqual(ws.map(x => x.id));
+  });
+
   const doc = async () => { await fresh(); store.replaceState(store.migrate(baseRaw())); return clone(store.getState()) as any; };
-  test.failing('ZNALEZISKO: kopia z dwoma RÓŻNYMI treningami o tym samym id — usunięcie jednego z historii kasuje oba (lib/store.ts:291, :1227)', async () => {
+  test('NAPRAWIONE 06.10 (decyzja właściciela A): kopia z dwoma RÓŻNYMI treningami o tym samym id — usunięcie jednego z historii kasuje oba (lib/store.ts:291, :1227)', async () => {
     const st = await doc(); const w = st.workouts.find((x: any) => x.id === 'w3'); st.workouts.push({ ...clone(w), startedAt: w.startedAt + 7 * DAY, finishedAt: w.finishedAt + 7 * DAY, note: 'drugi trening' });
     store.replaceState(parseBackup(J(st))); const n = store.getState().workouts.length; expect(n).toBe(4);
     store.deleteWorkout(store.getState().workouts.find(x => x.note === 'drugi trening')!.id);
     expect(store.getState().workouts.map(x => x.note)).toContain('notatka, "z" cudzysłowem'); /* pierwszy trening w3 zostaje */
     expect(store.getState().workouts).toHaveLength(n - 1);
   });
-  test.failing('ZNALEZISKO: kopia z dwoma RÓŻNYMI ćwiczeniami (i gumami) o tym samym id — drugie nieosiągalne po id (lib/store.ts:218, :225, :290)', async () => {
+  test('NAPRAWIONE 06.10 (decyzja właściciela A): kopia z dwoma RÓŻNYMI ćwiczeniami (i gumami) o tym samym id — drugie nieosiągalne po id (lib/store.ts:218, :225, :290)', async () => {
     const st = await doc(); st.exercises.push({ ...clone(st.exercises.find((e: any) => e.id === 'cx')), name: 'Inne własne' }); st.bands.push({ ...clone(st.bands[0]), color: 'zielona' });
     const r = parseBackup(J(st)); store.replaceState(r);
     expect(store.getState().exercises.map(e => store.exById(e.id)?.name)).toEqual(store.getState().exercises.map(e => e.name));
     expect(store.getState().bands.map(b => store.bandById(b.id)?.color)).toEqual(store.getState().bands.map(b => b.color));
   });
-  test.failing('ZNALEZISKO: ekran Historii na kopii ze zduplikowanym id treningu — zduplikowane klucze listy (console.error Reacta)', async () => {
+  test('NAPRAWIONE 06.10 (decyzja właściciela A): ekran Historii na kopii ze zduplikowanym id treningu — zduplikowane klucze listy (console.error Reacta)', async () => {
     const st = await doc(); const w = st.workouts.find((x: any) => x.id === 'w3'); st.workouts.push({ ...clone(w), startedAt: w.startedAt + 7 * DAY, finishedAt: w.finishedAt + 7 * DAY, note: 'drugi trening' });
     const errs: string[] = []; const spy = jest.spyOn(console, 'error').mockImplementation((...a: unknown[]) => { if (!/not wrapped in act/.test(String(a[0]))) errs.push(String(a[0]).slice(0, 120)); });
     try { await renderApp({ saved: parseBackup(J(st)) }); await flushAll(50); await go('/history'); await flushAll(50); } finally { spy.mockRestore(); }

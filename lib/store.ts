@@ -296,6 +296,7 @@ export function migrate(raw: any): State {
   { const byDate = new Map<string, any>(); for (const m of raw.mornings) { const o = byDate.get(m.date); if (!o || (tsOf(m.updatedAt) ?? 0) > (tsOf(o.updatedAt) ?? 0)) byDate.set(m.date, m); } raw.mornings = [...byDate.values()]; }
   raw.mornings.forEach((m: any) => { stamp(m, localDateTs(m.date)); for (const k of ['bb', 'sleepScore', 'sleepH', 'weight']) m[k] = posNum(m[k]); /* runda 50: liczba albo '' (obiekt z importu wywracał ekran) */ if (m.bb !== '') m.bb = Math.min(100, Math.round(m.bb)); if (m.sleepScore !== '') m.sleepScore = Math.min(100, Math.round(m.sleepScore)); if (m.sleepH !== '') m.sleepH = Math.min(24, Math.round(m.sleepH * 100) / 100); if (m.weight !== '') { const w = kg2(snapL(m.weight) as number); m.weight = w > 0 && w <= 1000 ? w : ''; } /* runda 61: najpierw zaokrąglenie, potem zakres */ /* runda 51: 0 = brak wpisu */ });
   if (isObj(raw.active) && tsOf(raw.active.startedAt) != null) { stamp(raw.active, raw.active.startedAt); fixWorkout(raw.active); } else raw.active = null;
+  uniqueIds(raw); /* przed porządkowaniem nieużywanych ćwiczeń — inaczej drugie wczytanie zmieniałoby dane (migrate-idem) */
   // Runda 41: jak purgeOrphans — usunięte ćwiczenia bez żadnego treningu znikają także przy starcie i imporcie.
   { const used = new Set<string>(); for (const w of [...raw.workouts, ...(raw.active ? [raw.active] : [])]) for (const x of w.exercises) used.add(x.exerciseId); raw.exercises = raw.exercises.filter((e: any) => e.archived !== true || used.has(e.id)); }
   // Runda 43: pozycje szablonów wskazujące brakujące lub usunięte ćwiczenie odpadają (jak przy usuwaniu ćwiczenia w aplikacji).
@@ -326,6 +327,26 @@ export function migrate(raw: any): State {
   if (!Number.isFinite(raw.v)) raw.v = 2; if (raw.metaUpdatedAt != null && tsOf(raw.metaUpdatedAt) == null) delete raw.metaUpdatedAt; /* runda 53 */
   raw.schemaVersion = SCHEMA_VERSION;
   return raw as State;
+}
+/** Decyzja właściciela 06.10.2026 (wariant A): powtórzony identyfikator w danych (np. kopia sklejona ręcznie z dwóch plików) dostaje nowy —
+ * nic nie ginie (dotąd usunięcie jednego treningu kasowało oba, drugie ćwiczenie/guma było nieosiągalne). Pierwsze wystąpienie zachowuje id,
+ * więc odwołania (pozycje szablonów, bloki, gumy serii) wskazują to samo co przedtem. Idempotentne: przy unikalnych id nic nie zmienia.
+ * Znalezisko tests/matrix-data-fuzz.test.ts. */
+function uniqueIds(raw: any) {
+  /* nowe id deterministyczne („<id>~2”, „~3”…): dwa wczytania tych samych danych dają ten sam wynik (porównania eksport → import, restart) */
+  const fresh = (list: any[]) => { const seen = new Set<string>(list.map(o => o?.id).filter((x: unknown) => typeof x === 'string'));
+    const first = new Set<string>(); for (const o of list) { if (typeof o?.id !== 'string') continue; if (!first.has(o.id)) { first.add(o.id); continue; }
+      let n = 2; while (seen.has(`${o.id}~${n}`)) n++; o.id = `${o.id}~${n}`; seen.add(o.id); first.add(o.id); } };
+  /* ten sam obiekt w kilku miejscach (dane z pamięci, nie z pliku) — osobne kopie, żeby zmiana id jednej nie zmieniała wszystkich */
+  const objs = new Set<object>(); const own = (list: any[]) => list.map(o => { if (!isObj(o)) return o; if (objs.has(o)) return JSON.parse(JSON.stringify(o)); objs.add(o); return o; });
+  raw.exercises = own(raw.exercises); raw.bands = own(raw.bands); raw.templates = own(raw.templates); raw.workouts = own(raw.workouts);
+  for (const t of raw.templates) if (Array.isArray(t.items)) { t.items = own(t.items); for (const it of t.items) if (Array.isArray(it?.rows)) it.rows = own(it.rows); }
+  for (const w of [...raw.workouts, ...(isObj(raw.active) ? [raw.active] : [])]) if (Array.isArray(w.exercises)) { w.exercises = own(w.exercises); for (const e of w.exercises) if (Array.isArray(e?.sets)) e.sets = own(e.sets); }
+  fresh(raw.exercises); fresh(raw.bands); fresh(raw.templates);
+  fresh(raw.templates.flatMap((t: any) => arr(t.items)));
+  for (const it of raw.templates.flatMap((t: any) => arr(t.items))) if (Array.isArray(it.rows)) fresh(it.rows);
+  const ws = [...raw.workouts, ...(isObj(raw.active) ? [raw.active] : [])];
+  fresh(ws); const blocks = ws.flatMap((w: any) => arr(w.exercises)); fresh(blocks); fresh(blocks.flatMap((e: any) => arr(e.sets)));
 }
 
 /** Runda 71 (audyt T1b): zapisy idą po kolei. Wcześniej zapis timera (setTimerState) mógł wejść między nieudany pełny zapis
