@@ -227,7 +227,7 @@ Kategorie: **mamy** / **łatwe** (dni) / **duże** (tygodnie albo zmiana archite
 |---|---|---|---|
 | A1 | Niskie darmowe limity, abonament za dziennik | mamy (dziś) / **ryzyko** | Dziś bez limitów. W `docs/15` jest decyzja z 05.10: po 1 miesiącu próby „treningi zablokowane”. To ten sam wzorzec, który w recenzjach Fitbod i FitNotes zbiera 1★ (A2, A3). Do rozważenia przez właściciela: (a) cała aplikacja w subskrypcji po próbie — największy przychód, największe ryzyko złych ocen; (b) darmowy rdzeń (logowanie, historia, szablony) plus płatne dodatki — najmniej skarg w recenzjach; (c) jednorazowy zakup „Pro” — o to proszą użytkownicy (pkt 2.18). Moja rekomendacja: (b) albo (c). |
 | A2 | Paywall ukryty do końca onboardingu | łatwe | Pokazać cenę i zasady próby na pierwszym ekranie i w opisie w App Store. |
-| A3 | Odbieranie darmowych funkcji | mamy (plan) | `docs/15`: wcześniejsi użytkownicy zostają za darmo. To trafia dokładnie w tę skargę. |
+| A3 | Odbieranie darmowych funkcji | nie dotyczy (06.10.2026) | `docs/15`: płatna subskrypcja od pierwszej wersji, bez darmowych użytkowników — nikomu nie odbieramy funkcji, które miał za darmo. |
 | A4 | Pop-upy i nagabywanie | mamy | Brak reklam i upsellu. Przy wprowadzaniu płatności: bez okien w trakcie treningu. |
 | B1 | Utrata historii | mamy (częściowo) | Lokalny SQLite, automatyczna kopia JSON po treningu, odzyskiwanie po uszkodzonym stanie. Brak kopii poza urządzeniem (poza kopią iOS). Atut warty komunikowania w App Store. |
 | B2 | Wymuszone konto | mamy | Bez konta. |

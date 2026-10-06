@@ -65,3 +65,4 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
 - 06.10.2026: powtórzone identyfikatory w imporcie — **wariant A**: przy wczytaniu powtórzony id dostaje nowy (`uniqueIds` w `migrate`), nic nie ginie.
 - 06.10.2026: import treningu z niemożliwą datą (np. 30.02) — **wariant A**: zostaje jak jest (wczytuje się z najbliższą prawdziwą datą, bez ostrzeżenia).
 - 06.10.2026: model płatności — **subskrypcja roczna odnawiana automatycznie, 29 zł/rok, miesiąc za darmo** (wariant A; zastępuje jednorazową płatność; docs/15).
+- 06.10.2026: **bez darmowych użytkowników** — od pierwszej wersji 30 dni za darmo, potem subskrypcja roczna (odwołuje „wcześniejsi za darmo” z 05.10).

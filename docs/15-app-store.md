@@ -11,7 +11,7 @@ Rozmowa 05.10.2026, rano: „Chciałbym móc opublikować to w Apple Store” i 
 - **Polityka prywatności:** GitHub Pages z tego repozytorium (`docs/`).
   - Treść: brak zbierania danych, wszystko lokalnie na telefonie, HealthKit tylko zapis zakończonych treningów.
 - **Cena:** „Darmowa na start” (05.10.2026) — bez reklam i zakupów; w App Store Connect deklaracja „nie jestem traderem” (DSA), bez publicznego adresu.
-- **Płatności później, wcześniejsi użytkownicy za darmo** (właściciel 05.10.2026: „Później najwyżej wprowadzimy płatności, ale tym, co już mają, to zostawimy darmową”).
+- ~~**Płatności później, wcześniejsi użytkownicy za darmo**~~ (odwołane 06.10.2026: płatna subskrypcja od pierwszej wersji, bez darmowych użytkowników; było — właściciel 05.10.2026: „Później najwyżej wprowadzimy płatności, ale tym, co już mają, to zostawimy darmową”).
   Kierunek (do decyzji, gdy przyjdzie czas): aplikacja dalej darmowa do pobrania, wersja Pro jako zakup w aplikacji;
   kto pobrał przed wersją płatną, ma Pro bez opłaty — StoreKit 2 `AppTransaction.originalAppVersion` (Apple podaje numer
   **buildu** z pierwszego pobrania, nie wersję marketingową). Wymóg już dziś: numery buildów tylko rosną i są zapisywane
@@ -51,15 +51,16 @@ Rozmowa 05.10.2026, rano: „Chciałbym móc opublikować to w Apple Store” i 
   Rachunek: ok. 20 zł netto/os./rok (PL: VAT 23%, prowizja 15%) → 2000 zł/mies. ≈ 1200 aktywnych subskrybentów.
   **Do sprawdzenia w dokumentacji Apple przed wdrożeniem** (nie zgadujemy): dostępne długości okresu próbnego dla subskrypcji rocznej,
   stawka prowizji dla subskrypcji w Small Business Program, wymagania przywracania zakupów bez konta (StoreKit 2).
-  **Do potwierdzenia przez właściciela:** czy nadal obowiązuje „wcześniejsi użytkownicy za darmo na zawsze” oraz „po wygaśnięciu treningi
-  zablokowane, kopia i eksport działają zawsze”.
+  **Decyzja właściciela 06.10.2026 (późniejsza):** „od razu 30 dni za free, a potem subskrypcja na rok. Nie będzie użytkowników za darmo” —
+  od pierwszej wersji w App Store; ustalenie „wcześniejsi użytkownicy za darmo” (05.10, niżej) **odwołane**.
+  **Do potwierdzenia przez właściciela:** czy „po wygaśnięciu treningi zablokowane, kopia i eksport działają zawsze” nadal obowiązuje.
 - **Cel przychodu (właściciel 06.10.2026):** ~2000 zł miesięcznie; model bez zmian: 30 dni za darmo, potem jednorazowa płatność.
   Rachunek orientacyjny (agent, do sprawdzenia): z ceny w App Store odpada VAT kraju kupującego (PL 23%) i prowizja Apple (15% w Small Business
   Program), czyli na konto ok. 0,69 × cena przy kupującym z Polski. Potrzebne zakupy miesięcznie: cena 29 zł → ok. 100; 49 zł → ok. 59;
   79 zł → ok. 37; 99 zł → ok. 29. Jednorazowa płatność = przychód tylko z NOWYCH kupujących, więc przy ~100 pobraniach/mies. cel wymaga,
   żeby kupowała duża część pobierających — realnie potrzeba kilkuset pobrań miesięcznie albo wyższej ceny (założenie, nie dane;
-  odsetek kupujących po okresie próbnym zmierzymy po premierze w App Store Connect). „Wcześniejsi użytkownicy za darmo” obniżają przychód
-  na starcie. **Otwarte:** cena; podatek dochodowy od sprzedaży w App Store przy koncie osoby prywatnej — pytanie do księgowego
+  odsetek kupujących po okresie próbnym zmierzymy po premierze w App Store Connect). Darmowych użytkowników nie będzie (decyzja 06.10).
+  **Otwarte:** cena; podatek dochodowy od sprzedaży w App Store przy koncie osoby prywatnej — pytanie do księgowego
   (nie zgadujemy).
 - **Priorytet produktu wynikający z celu:** zatrzymanie użytkowników (jakość, brak błędów, dane bezpieczne) ważniejsze niż liczba pobrań —
   zgodne z pełnym zakresem testów (docs/20).
@@ -93,6 +94,9 @@ Rozmowa 05.10.2026, rano: „Chciałbym móc opublikować to w Apple Store” i 
 7. **Elementy specyficzne dla właściciela do przejrzenia** przed sklepem: presety ViShape, teksty o „domu właściciela” w podpowiedziach, dane demo.
 
 ## Model płatności — ponowna analiza (05.10.2026)
+
+> **Zastąpione 06.10.2026** (decyzje właściciela): subskrypcja roczna 29 zł odnawiana automatycznie, miesiąc za darmo, bez darmowych
+> użytkowników — sekcja „Decyzje właściciela” wyżej. Analiza niżej zostaje jako historia (wzmianki o „wcześniejszych użytkownikach” nieaktualne).
 
 Po researchu skarg (docs/research/skargi-uzytkownikow-2026-10.md: płatności to skarga nr 1, najostrzej oceniane odbieranie darmowych
 funkcji i ściana płatności po rejestracji; częsta prośba o jednorazowy zakup) właściciel: „Tak, rozważmy alternatywy”.
