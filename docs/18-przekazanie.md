@@ -1,6 +1,7 @@
 # 18. Przekazanie pracy do nowego czatu (06.10.2026, ok. 08:30 UTC)
 
-Stan na moment przeniesienia rozmowy do nowego czatu (prośba właściciela 06.10.2026). Nowa sesja zaczyna od tego pliku,
+Stan prac 06.10.2026. Przeniesienie do nowego czatu odwołane (właściciel 06.10: „Musimy zostać tutaj” — zwykły czat nie ma narzędzi
+sesji Claude Code); plik zostaje jako punkt startowy na wypadek nowej sesji Claude Code. Nowa sesja zaczyna od tego pliku,
 potem `CLAUDE.md`, docs/14 (E2), docs/15 (App Store / TestFlight), docs/17 (szablon jak trening), docs/09 (dziennik testów).
 
 ## Gałęzie i kod
