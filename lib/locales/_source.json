@@ -1626,8 +1626,16 @@
   "en": "volume"
  },
  {
+  "pl": "Objętość per partia ({u}) — ten tydzień vs poprzedni",
+  "en": "Volume per muscle ({u}) — this week vs last"
+ },
+ {
   "pl": "objętość serii",
   "en": "set volume"
+ },
+ {
+  "pl": "Objętość serii roboczych (ciężar × powtórzenia × mnożnik ćwiczenia); partia główna liczy całość, pomocnicza połowę. Ćwiczenia bez ciężaru (masa ciała, gumy) się nie liczą.",
+  "en": "Volume of working sets (weight × reps × exercise multiplier); the main muscle counts in full, a secondary one half. Exercises without weight (bodyweight, bands) are not counted."
  },
  {
   "pl": "objętość treningu",

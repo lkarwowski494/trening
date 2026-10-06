@@ -3,7 +3,7 @@ import { ScrollView, View } from 'react-native';
 import { useLocalSearchParams } from 'expo-router';
 import { Screen, Muted, Txt, Chip, Input, Empty, H2 } from '@/components/ui';
 import { useTick, exById, setSummary, fmtDate, fmtSec, fmtDist, isBW, getState } from '@/lib/store';
-import { sessionsFor, recordsFor, hasHistory, chartKeysFor, totalKind, fmtTotal, weeklyTotals, hasAnyHistory, weeklySetsByMuscle, thisMonday, type ChartKey } from '@/lib/stats';
+import { sessionsFor, recordsFor, hasHistory, chartKeysFor, totalKind, fmtTotal, weeklyTotals, hasAnyHistory, weeklySetsByMuscle, weeklyVolumeByMuscle, thisMonday, type ChartKey } from '@/lib/stats';
 import { MUSCLES } from '@/lib/seed';
 import { LineChart, BarChart, TIME_STEPS } from '@/components/Chart';
 import { useTheme, F } from '@/lib/theme';
@@ -42,13 +42,11 @@ export default function Progress() {
           <BarChart bars={weeks.map(w => ({ label: short(w.weekStart), value: w.sets }))} fmt={v => `${v}`} height={110} />
           <Muted style={{ fontSize: 12, marginTop: 4, marginBottom: 14 }}>{t('Tygodnie od poniedziałku. Objętość = ciężar × powtórzenia × mnożnik ćwiczenia; rozgrzewka poza.')}</Muted>
           <H2>{t('Serie per partia — ten tydzień vs poprzedni')}</H2>
-          {(() => { const cur = weeklySetsByMuscle(thisMonday()); const prev = weeklySetsByMuscle(thisMonday(-1)); const rows = MUSCLES.filter(mu => (cur[mu] ?? 0) > 0 || (prev[mu] ?? 0) > 0); const max = Math.max(1, ...rows.map(mu => Math.max(cur[mu] ?? 0, prev[mu] ?? 0)));
-            return rows.length ? rows.map(mu => (
-              <View key={mu} style={{ marginBottom: 8 }}>
-                <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}><Txt style={{ fontSize: 14 }}>{t(mu)}</Txt><Muted style={{ fontSize: 13, fontFamily: F.mono }}>{fmtNum(cur[mu] ?? 0, 1)} <Muted style={{ fontSize: 12 }}>({t('poprz.')} {fmtNum(prev[mu] ?? 0, 1)})</Muted></Muted></View>
-                <View style={{ height: 6, backgroundColor: th.line, borderRadius: 3, marginTop: 4 }}><View style={{ width: `${Math.round(100 * (cur[mu] ?? 0) / max)}%`, height: 6, backgroundColor: th.accent, borderRadius: 3 }} /></View>
-              </View>)) : <Muted style={{ fontSize: 13 }}>{t('Brak serii w tym i poprzednim tygodniu.')}</Muted>; })()}
+          <MuscleCompare cur={weeklySetsByMuscle(thisMonday())} prev={weeklySetsByMuscle(thisMonday(-1))} fmt={v => fmtNum(v, 1)} />
           <Muted style={{ fontSize: 12, marginTop: 4, marginBottom: 14 }}>{t('Partia główna liczy 1 serię, pomocnicza 0,5 (np. wyciskanie: klatka 1, triceps i barki po 0,5). Partie ustawisz w edycji ćwiczenia.')}</Muted>
+          <H2>{t('Objętość per partia ({u}) — ten tydzień vs poprzedni', { u: wu() })}</H2>
+          <MuscleCompare cur={weeklyVolumeByMuscle(thisMonday())} prev={weeklyVolumeByMuscle(thisMonday(-1))} fmt={v => { const x = volOut(v); return x >= 10000 ? `${fmtNum(x / 1000, 1)}k` : fmtNum(Math.round(x)); }} />
+          <Muted style={{ fontSize: 12, marginTop: 4, marginBottom: 14 }}>{t('Objętość serii roboczych (ciężar × powtórzenia × mnożnik ćwiczenia); partia główna liczy całość, pomocnicza połowę. Ćwiczenia bez ciężaru (masa ciała, gumy) się nie liczą.')}</Muted>
         </> : <Empty>{t('Wykresy pojawią się po pierwszym zakończonym treningu.')}</Empty>}
         <H2 style={{ marginTop: 8 }}>{t('Ćwiczenie')}</H2>
         <Input value={q} onChangeText={setQ} placeholder={t('Szukaj ćwiczenia…')} maxLength={80} autoCorrect={false} />
@@ -94,4 +92,15 @@ export default function Progress() {
       </> : <Empty>{t('Brak zapisanych sesji z tym ćwiczeniem.')}</Empty>}
     </ScrollView></Screen>
   );
+}
+
+/** Porównanie partii: ten tydzień (pasek) vs poprzedni (liczba w nawiasie) — serie albo objętość (06.10.2026). */
+function MuscleCompare({ cur, prev, fmt }: { cur: Record<string, number>; prev: Record<string, number>; fmt: (v: number) => string }) {
+  const th = useTheme(); const rows = MUSCLES.filter(mu => (cur[mu] ?? 0) > 0 || (prev[mu] ?? 0) > 0); const max = Math.max(1, ...rows.map(mu => Math.max(cur[mu] ?? 0, prev[mu] ?? 0)));
+  if (!rows.length) return <Muted style={{ fontSize: 13 }}>{t('Brak serii w tym i poprzednim tygodniu.')}</Muted>;
+  return <>{rows.map(mu => (
+    <View key={mu} style={{ marginBottom: 8 }}>
+      <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}><Txt style={{ fontSize: 14 }}>{t(mu)}</Txt><Muted style={{ fontSize: 13, fontFamily: F.mono }}>{fmt(cur[mu] ?? 0)} <Muted style={{ fontSize: 12 }}>({t('poprz.')} {fmt(prev[mu] ?? 0)})</Muted></Muted></View>
+      <View style={{ height: 6, backgroundColor: th.line, borderRadius: 3, marginTop: 4 }}><View style={{ width: `${Math.round(100 * (cur[mu] ?? 0) / max)}%`, height: 6, backgroundColor: th.accent, borderRadius: 3 }} /></View>
+    </View>))}</>;
 }

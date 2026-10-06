@@ -163,6 +163,14 @@ describe('sumy tygodniowe i partie', () => {
     const g = addWorkout(mon + 7200e3, [['Back Squat', [{ weight: 100, reps: 5 }]]]); g.exercises[0].exerciseId = 'usuniete'; store.save();
     expect(stats.weeklySetsByMuscle(mon)).toEqual({ 'czworogłowe': 2, 'pośladki': 1, 'dwugłowe': 1 });
   });
+  test('objętość per partia (06.10.2026): ciężar × powtórzenia, główna 1, pomocnicza 0,5; rozgrzewki, inne tygodnie i usunięte pominięte', () => {
+    const mon = stats.thisMonday(0, now);
+    addWorkout(mon + 3600e3, [['Back Squat', [{ weight: 100, reps: 5 }, { weight: 100, reps: 5 }, { weight: 40, reps: 10, kind: 'warmup' }]]]);
+    addWorkout(mon - 3600e3, [['Back Squat', [{ weight: 100, reps: 5 }]]]);
+    const g = addWorkout(mon + 7200e3, [['Back Squat', [{ weight: 100, reps: 5 }]]]); g.exercises[0].exerciseId = 'usuniete'; store.save();
+    expect(stats.weeklyVolumeByMuscle(mon)).toEqual({ 'czworogłowe': 1000, 'pośladki': 500, 'dwugłowe': 500 });
+    expect(stats.weeklyVolumeByMuscle(stats.thisMonday(-1, now))).toEqual({ 'czworogłowe': 500, 'pośladki': 250, 'dwugłowe': 250 });
+  });
   test('czy jest historia: tylko zakończone treningi', () => {
     expect(stats.hasAnyHistory()).toBe(false); store.startEmpty(); expect(stats.hasAnyHistory()).toBe(false);
     addWorkout(at(2026, 9, 1), [['Back Squat', [{ weight: 100, reps: 5 }]]]); expect(stats.hasAnyHistory()).toBe(true);

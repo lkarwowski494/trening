@@ -230,3 +230,13 @@ export function weeklySetsByMuscle(weekStart: number): Record<string, number> {
       (ex.muscles ?? []).forEach(mu => { out[mu] = (out[mu] ?? 0) + n; }); (ex.secondaryMuscles ?? []).forEach(mu => { out[mu] = (out[mu] ?? 0) + n * 0.5; }); }); }
   return out;
 }
+
+/** Objętość per partia w tygodniu (uwaga właściciela 06.10.2026: „obciążenie per partia analogicznie”) — objętość serii roboczych
+ * (jak „Objętość tygodniowo”), partia główna 1, pomocnicza 0,5 (jak serie per partia). Wartości w kg (wyświetlanie: volOut). */
+export function weeklyVolumeByMuscle(weekStart: number): Record<string, number> {
+  const out: Record<string, number> = {}; const d = new Date(weekStart); const end = new Date(d.getFullYear(), d.getMonth(), d.getDate() + 7).getTime();
+  for (const w of finishedWorkouts()) { if (w.startedAt < weekStart || w.startedAt >= end) continue;
+    w.exercises.forEach(e => { const ex = exById(e.exerciseId); if (!ex) return; const v = e.sets.filter(isWorking).reduce((a, s) => a + setVolume(ex, s, e.impl), 0); if (!v) return;
+      (ex.muscles ?? []).forEach(mu => { out[mu] = (out[mu] ?? 0) + v; }); (ex.secondaryMuscles ?? []).forEach(mu => { out[mu] = (out[mu] ?? 0) + v * 0.5; }); }); }
+  return out;
+}
