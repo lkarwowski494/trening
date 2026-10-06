@@ -110,6 +110,7 @@ automatyczny), wysyłka do App Store Connect; bez Expo/EAS i ich limitów. Numer
    (do pobrania tylko raz), zanotuj Key ID i Issuer ID.
 3. GitHub → repozytorium → Settings → Secrets and variables → Actions → New repository secret: `ASC_KEY_ID`, `ASC_ISSUER_ID`,
    `ASC_KEY_P8` (cała treść pliku .p8). Pliku nie wysyłać nigdzie indziej (ani na czat).
+   - **Stan 06.10.2026 (właściciel):** sekrety `ASC_KEY_ID`, `ASC_ISSUER_ID`, `ASC_KEY_P8` są dodane (agent ich nie widzi — sprawdza je pierwszy krok `testflight.yml`).
 4. App Store Connect → aplikacja → TestFlight → Internal Testing → „+” grupa → dodaj siebie. Na iPhonie aplikacja TestFlight (App Store).
 
 **Przed pierwszą wysyłką:** audyt historii repozytorium wg reguły właściciela (wynik w tej sekcji).

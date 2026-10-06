@@ -390,7 +390,12 @@ Wynik: **0 wysokich, 2 średnie, 2 niskie** — wszystkie naprawione, każde z t
 
 ### E2E na symulatorze i build na trening 05.10.2026
 
-GOTOWE DO BUILDU: 23fa1e0d96c6154358ba7333b24f9e00c1e6cd26 — E2E run 37337763557 7/7, audyt: 0 wysokich / 3 średnich (naprawione) (05.10.2026, 16:55 UTC)
+GOTOWE DO BUILDU: 70481ce0f2a2693e1e21786f4ea173560418656f — E2E run 37434083110 7/7, audyt: przegląd spójności 06.10 (partie 1–3, scenariusz pełny): wysokie naprawione, otwarte tylko decyzje właściciela (docs/18) (06.10.2026, 09:10 UTC)
+
+*Zakres:* jak 23fa1e0 + 06.10: gumy przy wszystkich ćwiczeniach z gumami, karty ćwiczeń w szablonie, objętość per partia, stopka z numerem wersji,
+przegląd spójności (docs/09: partie 1–3, `tests/scenario-full.test.tsx`), TestFlight narzędziami Apple (`testflight.yml`). 1156 testów — OK.
+
+*Poprzednio (zastąpione 06.10.2026, 09:10 UTC):* `GOTOWE DO BUILDU: 23fa1e0d96c6154358ba7333b24f9e00c1e6cd26 — E2E run 37337763557 7/7, audyt: 0 wysokich / 3 średnich (naprawione) (05.10.2026, 16:55 UTC)`
 
 *Zakres:* jak 409d768 + uwagi właściciela po treningu 05.10 (docs/10, docs/17): zwijane grupy sprzętu, bieżnia z nachyleniem, gumy jako poziomy
 1–7 w miejscu, widoczne typy serii, szablon jak trening (schemat 17), trening wstecz z wierszy szablonu. Audyty: 11ded5c..7651f64 (0/1/2),
