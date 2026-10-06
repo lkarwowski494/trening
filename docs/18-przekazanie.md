@@ -67,3 +67,4 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
 - 06.10.2026: model płatności — **subskrypcja roczna odnawiana automatycznie, 29 zł/rok, miesiąc za darmo** (wariant A; zastępuje jednorazową płatność; docs/15).
 - 06.10.2026: **bez darmowych użytkowników** — od pierwszej wersji 30 dni za darmo, potem subskrypcja roczna (odwołuje „wcześniejsi za darmo” z 05.10).
 - 06.10.2026: **status tradera (DSA) od pierwszego dnia**; subskrypcja roczna 29 zł, najpierw **90 dni za darmo**, później 30 dni dla nowych (docs/15).
+- 06.10.2026: po wygaśnięciu subskrypcji — nowe treningi zablokowane, historia/kopia/eksport działają zawsze (potwierdzone).

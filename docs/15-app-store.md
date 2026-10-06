@@ -53,13 +53,14 @@ Rozmowa 05.10.2026, rano: „Chciałbym móc opublikować to w Apple Store” i 
   stawka prowizji dla subskrypcji w Small Business Program, wymagania przywracania zakupów bez konta (StoreKit 2).
   **Decyzja właściciela 06.10.2026 (późniejsza):** „od razu 30 dni za free, a potem subskrypcja na rok. Nie będzie użytkowników za darmo” —
   od pierwszej wersji w App Store; ustalenie „wcześniejsi użytkownicy za darmo” (05.10, niżej) **odwołane**.
-  **Do potwierdzenia przez właściciela:** czy „po wygaśnięciu treningi zablokowane, kopia i eksport działają zawsze” nadal obowiązuje.
+  **Po wygaśnięciu subskrypcji (potwierdzone przez właściciela 06.10.2026):** nowe treningi zablokowane; historia, kopia (backup) i eksport
+  danych działają zawsze — dane użytkownika zostają jego niezależnie od płatności.
 - **Decyzja właściciela 06.10.2026 (ostateczna na dziś):** „od pierwszego dnia status tradera i po problemie. Najpierw 90 dni za darmo, później
   zmienimy na 30.” Czyli: konto jako **trader (DSA)** od pierwszej wersji w UE; subskrypcja roczna 29 zł odnawiana automatycznie; oferta
   wprowadzająca **3 miesiące za darmo** (dostępna długość), później nowa oferta **1 miesiąc** dla nowych (każdy korzysta z jednej oferty).
   Kroki właściciela przed płatną wersją: deklaracja tradera w App Store Connect (adres lub skrytka pocztowa, telefon, e-mail — publiczne
   w sklepie UE); umowa na aplikacje płatne (Paid Apps Agreement), dane bankowe i podatkowe; zapis do App Store Small Business Program;
-  podatek/VAT — księgowy. Po stronie aplikacji: ekran subskrypcji (StoreKit), przywracanie zakupu, zachowanie po wygaśnięciu — do zaprojektowania.
+  podatek/VAT — księgowy. Po stronie aplikacji: ekran subskrypcji (StoreKit), przywracanie zakupu, zachowanie po wygaśnięciu (ustalone wyżej) — do zaprojektowania i wdrożenia z pełnym zakresem testów (docs/20).
 - **Cel przychodu (właściciel 06.10.2026):** ~2000 zł miesięcznie; model bez zmian: 30 dni za darmo, potem jednorazowa płatność.
   Rachunek orientacyjny (agent, do sprawdzenia): z ceny w App Store odpada VAT kraju kupującego (PL 23%) i prowizja Apple (15% w Small Business
   Program), czyli na konto ok. 0,69 × cena przy kupującym z Polski. Potrzebne zakupy miesięcznie: cena 29 zł → ok. 100; 49 zł → ok. 59;
