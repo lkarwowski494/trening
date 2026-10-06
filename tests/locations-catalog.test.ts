@@ -60,7 +60,7 @@ describe('sprzęt', () => {
     expect(equipEntry('barbell').load).toEqual({ kind: 'plates', unit: 'kg', base: 20, plates: [] });
   });
   test('presety ciężarów modeli tylko ze źródeł; brak presetu TREXO (kroki regulacji nieznane)', () => {
-    expect(LOAD_PRESETS.map(p => p.id).sort()).toEqual(['gymtek24', 'hopsport2x10', 'vishape_lite', 'vishape_pro']);
+    expect(LOAD_PRESETS.map(p => p.id).sort()).toEqual(['gymtek24', 'hopsport2x10', 'vishape_lite', 'vishape_pro', 'voltra1']); /* 06.10.2026: Voltra I — dane kompletne (docs/research/equipment/stations.json) */
     expect(LOAD_PRESETS.some(p => /trexo/i.test(p.id + p.label))).toBe(false);
     for (const p of LOAD_PRESETS) expect(equipById(p.item)).toBeTruthy();
   });
@@ -116,4 +116,12 @@ describe('presety miejsc i dostępność', () => {
   test('dane: seedState ma pola sprzętowe dla wszystkich 854 ćwiczeń, zgodne z katalogiem', () => {
     for (const e of seedState().exercises) { const c = CATALOG[e.name]; expect(e.requires).toEqual(c.requires); expect(e.loadSource).toBe(c.loadSource); expect(e.pattern).toBe(c.pattern); expect(e.implements).toBe(c.implements); }
   });
+});
+
+test('preset Beyond Power Voltra I (06.10.2026): 5–200 lb, krok 1 lb, jednostka sprzętu lb — wartości ze źródła producenta', () => {
+  const { LOAD_PRESETS } = require('@/lib/equipment'); const { achievable } = require('@/lib/loads');
+  const p = LOAD_PRESETS.find((x: { id: string }) => x.id === 'voltra1'); expect(p.item).toBe('electric');
+  expect(p.spec()).toEqual({ kind: 'electric', unit: 'lb', min: 5, max: 200, step: 1 }); expect(achievable({ ...p.spec(), unit: 'kg' }).length).toBe(196);
+  const st = require('../docs/research/equipment/stations.json').find((x: { id: string }) => x.id === 'beyond-power-voltra-1');
+  expect([st.perSide.min, st.perSide.max, st.perSide.unit, st.step.value, st.step.unit]).toEqual([5, 200, 'lb', 1, 'lb']);
 });

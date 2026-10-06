@@ -388,3 +388,13 @@ Po rundzie 82c: 875 testów. Otwarte pytanie o objętość stacji (×1 czy ×2 p
 - Brak kroku: Vitruvian Trainer+, OxeFit XP1, Forme Studio Lift.
 - Sprzeczności źródeł: ViShape Pro maks. 60 vs 65 kg/str. — **rozstrzygnięte 06.10.2026: właściciel odczytał na swoim urządzeniu 65 kg/str.** (preset w aplikacji: 65 — zgodny), ViShape Lite łącznie 70 vs 68 kg,
   Gym Pal 220 vs 200 lb, Gym Monster 3 krok 1 kg (EU) vs 1 lb (US), OxeFit XP1 400 vs 500 lb.
+
+### Stacje elektryczne — druga runda researchu (06.10.2026)
+Właściciel: „A nie potrafisz sprawdzić specyfikacji?” → druga runda (instrukcje PDF, centra pomocy, recenzje oznaczone jako źródło wtórne);
+wyniki z cytatami i typem źródła: `docs/research/equipment/stations.json` (`secondPassFindings`).
+- **Nowy preset:** Beyond Power Voltra I — 5–200 lb, krok 1 lb, jedna linka (komplet ze źródeł producenta).
+- Zamknięte: ViShape Lite łącznie 70 kg (instrukcja; 68 w FAQ to błąd rachunkowy); OxeFit XP1 400 lb (centrum pomocy; 500 z komunikatu 2021);
+  Gym Pal 220 lb; Gym Monster 3 krok 1 kg w trybie kg; Forme — min. 5 lb, krok 1 lb.
+- **Nadal otwarte (producent nie podaje):** minimum na linkę — Speediance Gym Monster 1/2/3, Gym Pal, Tonal 1/2 (podają minimum bez „na linkę/łącznie”),
+  AEKE K1, OxeFit XP1 (brak minimum); krok — Vitruvian Trainer+; maks. na ramię — Gym Monster 3; Forme maks. na ramię: 75 (pomoc) vs 50 (instrukcja)
+  vs 100 (strona). Bez presetów, dopóki brak danych (zasada: liczby nieznanego pochodzenia — otwarte).

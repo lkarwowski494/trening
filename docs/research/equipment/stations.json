@@ -10,6 +10,13 @@
    "kg": {
     "min": null,
     "max": 49.9
+   },
+   "minPublishedUnspecified": {
+    "value": 8,
+    "unit": "lb",
+    "kg": 3.5,
+    "scope": "unspecified (per side vs total not stated)",
+    "sourceType": "official/support"
    }
   },
   "totalMax": {
@@ -34,7 +41,49 @@
    "https://www.speediance.com/pages/faq"
   ],
   "notes": "US product page: 'Single arm 110 LB', 'Maximum 220 lbs/100kg', 'adjustable increment of 1 lb', also '1 lb or 0.5 kg'; FAQ: '220lbs (100KG). 50KG per arm'. Minimum: EU page 'Starting weight: 8 lbs' / '8 lb start'; FAQ 'motor's total weight range is 8-220 lbs' -> 8 lb is a total/machine minimum, per-side minimum not stated (perSide.min=null). 2x800W motors. Pulley: 10 heights 306-1656 mm (adjustable arm carriage, no separate high pulley above 1656 mm). Every package (Basic/Works/Works Plus/Family/Family Plus) lists Handles, Tricep Rope, Ankle Straps, Adjustable Barbell; bench only in Works+ packages. Exercise/lifting belt sold separately (not in package lists).",
-  "accessed": "2026-10-05"
+  "accessed": "2026-10-05",
+  "secondPassFindings": {
+   "minPerSide": {
+    "status": "open",
+    "value": null,
+    "note": "Official minimum is published only as '8 lb' / '3.5 kg' without saying per side or total.",
+    "evidence": [
+     {
+      "url": "https://www.speediance.com/pages/faq",
+      "sourceType": "support",
+      "quote": "Our motor's total weight range is 8-220 lbs. Therefore, you can only operate within this weight range in any mode. For example, in eccentric mode, the concentric phase weight cannot be less than 8 lbs"
+     },
+     {
+      "url": "https://www.speediance.com/pages/gym-monster-2-vs-gym-monster",
+      "sourceType": "official",
+      "quote": "Both the Gym Monster and Gym Monster 2 support a weight range of 3.5 kg to 100 kg"
+     },
+     {
+      "url": "https://www.speediance.com/products/speediance-gym-monster-series-bundle",
+      "sourceType": "official",
+      "quote": "Digital Weight Maximum Single arm 110 LB  Digital Weight Precision 8 LB (spec table; '8 LB' is labelled 'precision' but matches the 8 lb minimum)"
+     },
+     {
+      "url": "https://www.manualslib.com/manual/2888679/Speediance-Gym-Monster-S1.html?page=10",
+      "sourceType": "manual",
+      "quote": "Parameters table (GYM MONSTER S1) lists dimensions, 1600 W, accessories - no resistance range"
+     }
+    ]
+   },
+   "stepNote": {
+    "sourceType": "official",
+    "value": "1 lb / 0.5 kg",
+    "quote": "allows you to increase the weight in increments of 1 lb or 0.5 kg, up to a maximum load capacity of 220 lbs/100kgs (series bundle FAQ)",
+    "url": "https://www.speediance.com/products/speediance-gym-monster-series-bundle",
+    "conflict": {
+     "url": "https://www.garagegymreviews.com/speediance-review",
+     "sourceType": "review",
+     "quote": "Weight increments 1 kg"
+    }
+   }
+  },
+  "secondPass": true,
+  "accessed2": "2026-10-06"
  },
  {
   "id": "speediance-gym-monster-2",
@@ -43,7 +92,14 @@
   "perSide": {
    "min": null,
    "max": 50,
-   "unit": "kg"
+   "unit": "kg",
+   "minPublishedUnspecified": {
+    "value": 8,
+    "unit": "lb",
+    "kg": 3.5,
+    "scope": "unspecified",
+    "sourceType": "official"
+   }
   },
   "totalMax": {
    "value": 100,
@@ -65,7 +121,33 @@
    "https://business.speediance.com/gym-monster-2/"
   ],
   "notes": "EU page: 'Maximum 220 lbs/100kg ... adjustable increment of 1 lb/0.5 kg', FAQ '50KG per arm'. US page: 'Up to 220 lbs resistance, Adjustable in 1 lb increments' (US unit = lb, per side 110 lb per business page 'Single arm 110 LB for GM 2'). Step differs by unit system (1 lb vs 0.5 kg) - not a real conflict, but app should offer both. Business page: 'Digital Weight Precision: 8 LB' (same wording Speediance uses for the 8 lb starting weight on GM1) -> min likely 8 lb total, not stated explicitly for GM2, so perSide.min=null. Cable positions '11 vertical + 1 bottom'. EU 'What's in the box' (Basic 2.0): Premium Handles, Triceps Rope, Ankle Straps, Belt Extenders, Adjustable Barbell, Bluetooth ring; benches only in Works/Family packages. 'Belt extenders' are cable extenders, not a hip belt; Exercise Belt sold separately. Variant Gym Monster 2S: EU 'Up to 120 kg', US 'Up to 260 lbs' (120 kg = 264.6 lb -> small conflict).",
-  "accessed": "2026-10-05"
+  "accessed": "2026-10-05",
+  "secondPassFindings": {
+   "minPerSide": {
+    "status": "open",
+    "value": null,
+    "note": "Official comparison: 'Min resistance 8 lb (3.5 kg)' for GM2 - scope (per side/total) not stated.",
+    "evidence": [
+     {
+      "url": "https://www.speediance.com/blogs/gym/gym-monster-2-vs-gym-monster-3",
+      "sourceType": "official",
+      "quote": "Min resistance 8 lb (3.5 kg) 8 lb (3.5 kg)"
+     },
+     {
+      "url": "https://connectthewatts.com/2024/11/01/review-speediance-gym-monster-2/",
+      "sourceType": "review",
+      "quote": "Resistance can be adjusted anywhere from 8 to 220lbs ... up to 220 lbs (110 lbs per side)"
+     },
+     {
+      "url": "https://www.pcworld.com/article/3038010/speediance-gym-monster-2-review.html",
+      "sourceType": "review",
+      "quote": "Maximum digital resistance: 220 lbs, or 110 lbs per side  Digital weight increments: Approx. 1 lb"
+     }
+    ]
+   }
+  },
+  "secondPass": true,
+  "accessed2": "2026-10-06"
  },
  {
   "id": "speediance-gym-monster-3",
@@ -74,7 +156,14 @@
   "perSide": {
    "min": null,
    "max": null,
-   "unit": "kg"
+   "unit": "kg",
+   "minPublishedUnspecified": {
+    "value": 3.5,
+    "unit": "kg",
+    "lb": 8,
+    "scope": "unspecified",
+    "sourceType": "official"
+   }
   },
   "totalMax": {
    "value": 100,
@@ -82,7 +171,9 @@
   },
   "step": {
    "value": 1,
-   "unit": "kg"
+   "unit": "kg",
+   "lbValue": 1,
+   "sourceType": "official"
   },
   "cables": 2,
   "arms": true,
@@ -95,7 +186,68 @@
    "https://www.speediance.com/pages/gym-monster-2"
   ],
   "notes": "EU: 'Up to 120 kg on Gym Monster 3S, 100 kg on Gym Monster 3', 'digital weights in 1 kg steps', dual 800 W (3) / 1000 W (3S) motors, '19 vertical positions ... plus a bottom position', 7.5 cm spacing. US comparison: GM3 'Up to 220 lbs resistance, Adjustable in 1 lb increments'; GM3S 'Up to 260 lbs'. CONFLICT on step: EU 1 kg vs US 1 lb; GM3S 120 kg vs 260 lb (=117.9 kg). Per-arm max not stated (presumably half, NOT verified). Improved ankle straps, triceps rope, standard handles mentioned as included; bench in Studio (incline) / Station (AeroRow) packages, Core has no bench. Squat Belt appears in the add-on list with a price -> inclusion unclear (belt=null).",
-  "accessed": "2026-10-05"
+  "accessed": "2026-10-05",
+  "secondPassFindings": {
+   "step": {
+    "status": "closed",
+    "value": "1 kg in kg mode, 1 lb in lb mode",
+    "sourceType": "official",
+    "evidence": [
+     {
+      "url": "https://me.speediance.com/products/speediance-gym-monster-3",
+      "sourceType": "official",
+      "quote": "Minimum weight 8 lbs / 3.5 kg  Precise Adjustment 1 lb / 1 kg increment"
+     },
+     {
+      "url": "https://speediance.eu/products/speediance-gym-monster-3",
+      "sourceType": "official",
+      "quote": "Smallest increment 1 kg"
+     },
+     {
+      "url": "https://speediance.co.uk/products/speediance-gym-monster-3",
+      "sourceType": "official",
+      "quote": "Smallest increment 1 kg"
+     },
+     {
+      "url": "https://www.speediance.com/products/speediance-gym-monster-3",
+      "sourceType": "official",
+      "quote": "Minimum weight 8 lbs  Precise Adjustment 1 lb increment"
+     }
+    ],
+    "note": "Not a conflict: increment follows the unit setting (1 kg vs 1 lb). Note GM1/GM2 were advertised as 0.5 kg in kg mode; GM3 is 1 kg."
+   },
+   "minPerSide": {
+    "status": "open",
+    "value": null,
+    "note": "Official 'Minimum weight 8 lbs / 3.5 kg' - per side vs total not stated.",
+    "evidence": [
+     {
+      "url": "https://me.speediance.com/products/speediance-gym-monster-3",
+      "sourceType": "official",
+      "quote": "Minimum weight 8 lbs / 3.5 kg"
+     },
+     {
+      "url": "https://www.speediance.com/blogs/gym/gym-monster-2-vs-gym-monster-3",
+      "sourceType": "official",
+      "quote": "Min resistance 8 lb (3.5 kg)"
+     }
+    ]
+   },
+   "maxPerSide": {
+    "status": "open",
+    "value": null,
+    "note": "No GM3-specific per-arm figure on any official GM3 page (US, EU, UK, ME). Only the generic Speediance FAQ (not model-specific, written for GM1/GM2) says '50KG per arm'. GM3S per-arm also not published.",
+    "evidence": [
+     {
+      "url": "https://www.speediance.com/pages/faq",
+      "sourceType": "support",
+      "quote": "The total resistance is 220lbs ( 100KG ). 50KG per arm. (generic FAQ, no model named)"
+     }
+    ]
+   }
+  },
+  "secondPass": true,
+  "accessed2": "2026-10-06"
  },
  {
   "id": "speediance-gym-pal",
@@ -108,6 +260,12 @@
    "kg": {
     "min": null,
     "max": null
+   },
+   "minPublishedUnspecified": {
+    "value": 7,
+    "unit": "lb",
+    "scope": "unspecified",
+    "sourceType": "official"
    }
   },
   "totalMax": {
@@ -131,7 +289,52 @@
    "https://www.speediance.com/pages/gym-pal"
   ],
   "notes": "Product spec table: 'Resistance Adjustment 7-220lb', 'Resistance Method Dual Motor'. Gym Pal page: 'Maximum 220 lbs/100kg ... adjustable increment of 1lb', 'Separate Weight Control ... each side'. CONFLICT: same page intro says '200 lbs of resistance'. Min 7 lb is for the machine (total vs per side not stated). Per-side max not stated. Floor platform (32x23 in horizontal, 32x6 in vertical storage) - no tower/high pulley mentioned, but not explicitly stated (arms=null). Page shows exercises with handles, tricep rope, ankle straps, adjustable bench but no box contents list -> inclusion unknown.",
-  "accessed": "2026-10-05"
+  "accessed": "2026-10-05",
+  "secondPassFindings": {
+   "totalMaxConflict": {
+    "status": "resolved (with caveat)",
+    "value": 220,
+    "unit": "lb",
+    "sourceType": "official",
+    "note": "220 lb appears in the spec table, the headline and the body; '200 lbs' appears only once in intro marketing copy. Reviews also report 220 lb. Treat 200 as copy error (not confirmed by the vendor).",
+    "evidence": [
+     {
+      "url": "https://www.speediance.com/products/speediance-gym-pal",
+      "sourceType": "official",
+      "quote": "Resistance Adjustment 7-220lb"
+     },
+     {
+      "url": "https://www.speediance.com/pages/gym-pal",
+      "sourceType": "official",
+      "quote": "Maximum 220 lbs/100kg ... A maximum weight capacity of 220 lbs/100kg and an adjustable increment of 1lb. (same page intro: '200 lbs of resistance at your fingertips')"
+     },
+     {
+      "url": "https://athletechnews.com/product-of-the-week-speediance-gym-pal-review/",
+      "sourceType": "review",
+      "quote": "The Gym Pal has a maximum weight capacity of 220 lbs and can be incremented by 1 lb."
+     },
+     {
+      "url": "https://connectthewatts.com/2023/08/30/speediance-gym-pal-review/",
+      "sourceType": "review",
+      "quote": "the Gym Pal is still able to provide up to 220 lbs of strength resistance"
+     }
+    ]
+   },
+   "minPerSide": {
+    "status": "open",
+    "value": null,
+    "note": "Only '7-220lb' (scope unstated). Per-side max also not published by Speediance (110 lb/side appears only in secondary summaries without a verifiable quote).",
+    "evidence": [
+     {
+      "url": "https://www.speediance.com/products/speediance-gym-pal",
+      "sourceType": "official",
+      "quote": "Resistance Adjustment 7-220lb"
+     }
+    ]
+   }
+  },
+  "secondPass": true,
+  "accessed2": "2026-10-06"
  },
  {
   "id": "tonal-1",
@@ -167,7 +370,33 @@
    "https://knowledge.tonal.com/kb/guide/en/max-supported-weight-itpqCGsyfS/Steps/3941987"
   ],
   "notes": "Refurb page: 'Up to 200 lbs, starting at 5 lbs'. Knowledge base: '200 lbs (Tonal 1) or 250 lbs (Tonal 2) ... 100 or 125 lbs per each arm', 'adjust the weight in one-pound increments'. Min 5 lb not stated as per arm or total (perSide.min=null). Wall-mounted, arms adjustable (refurb page checks 'all the angles of the arms'). Accessories sold in bundles: Essentials (Smart Handles, Bar, Bar Control, Rope, Bench, Foam Roller, Mat); Ultimate adds Ankle Straps + Pilates Loops. No hip belt in any bundle.",
-  "accessed": "2026-10-05"
+  "accessed": "2026-10-05",
+  "secondPassFindings": {
+   "minPerSide": {
+    "status": "open",
+    "value": null,
+    "note": "Tonal publishes 'starting at 5 lbs' / '5 - 250 pounds' only; neither the Tonal Guide PDF (manual) nor the Max Supported Weight KB article states whether 5 lb is per arm or total.",
+    "evidence": [
+     {
+      "url": "https://prod-www.tonal.com/docs/TonalGuide.pdf",
+      "sourceType": "manual",
+      "quote": "users may lift up to 200 lbs. - 100 lbs. per arm - with Tonal. (no minimum stated anywhere in the guide)"
+     },
+     {
+      "url": "https://knowledge.tonal.com/kb/guide/en/max-supported-weight-itpqCGsyfS/Steps/3941987",
+      "sourceType": "support",
+      "quote": "100 or 125 lbs per each arm ... adjust the weight in one-pound increments (no minimum)"
+     },
+     {
+      "url": "https://tonalengineering.substack.com/p/progressive-weight-mode",
+      "sourceType": "official (engineering blog)",
+      "quote": "For the Barbell Seated Lat Pulldown, where our high_weight = 142 and low_weight = 10 (per-exercise recommendation floor, not the hardware minimum)"
+     }
+    ]
+   }
+  },
+  "secondPass": true,
+  "accessed2": "2026-10-06"
  },
  {
   "id": "tonal-2",
@@ -203,7 +432,33 @@
    "https://knowledge.tonal.com/kb/guide/en/max-supported-weight-itpqCGsyfS/Steps/3941987"
   ],
   "notes": "Tonal 2 page 'TONAL SPECS': 'resistance ranging from 5 - 250 pounds that adjusts in 1 lb increments'; KB: '125 lbs per each arm'. 5 lb min not stated per arm vs total (perSide.min=null). 'Adjustable arms'. Accessories: Essentials bundle $495 (Smart Handles, Bar, Bar Control, Rope, Bench, Foam Roller, Mat); Ultimate $595 adds Ankle Straps, Pilates Loops; 'No Smart Accessories Bundle' option exists -> all optional.",
-  "accessed": "2026-10-05"
+  "accessed": "2026-10-05",
+  "secondPassFindings": {
+   "minPerSide": {
+    "status": "open",
+    "value": null,
+    "note": "Tonal publishes 'starting at 5 lbs' / '5 - 250 pounds' only; neither the Tonal Guide PDF (manual) nor the Max Supported Weight KB article states whether 5 lb is per arm or total.",
+    "evidence": [
+     {
+      "url": "https://prod-www.tonal.com/docs/TonalGuide.pdf",
+      "sourceType": "manual",
+      "quote": "users may lift up to 200 lbs. - 100 lbs. per arm - with Tonal. (no minimum stated anywhere in the guide)"
+     },
+     {
+      "url": "https://knowledge.tonal.com/kb/guide/en/max-supported-weight-itpqCGsyfS/Steps/3941987",
+      "sourceType": "support",
+      "quote": "100 or 125 lbs per each arm ... adjust the weight in one-pound increments (no minimum)"
+     },
+     {
+      "url": "https://tonalengineering.substack.com/p/progressive-weight-mode",
+      "sourceType": "official (engineering blog)",
+      "quote": "For the Barbell Seated Lat Pulldown, where our high_weight = 142 and low_weight = 10 (per-exercise recommendation floor, not the hardware minimum)"
+     }
+    ]
+   }
+  },
+  "secondPass": true,
+  "accessed2": "2026-10-06"
  },
  {
   "id": "vitruvian-trainer-plus",
@@ -235,7 +490,33 @@
    "https://wake.store/products/vitruvian-trainer-plus (RETAILER - accessories only)"
   ],
   "notes": "Official spec: 'Resistance Weight Range 0kg/0lbs to 200kg/440lbs'; hardware spec: resistance range (each rope) 0-100 kg, active range (each rope) '8.8 lbs to 220 lbs (4kg to 100kg)'. FAQ: 'starts at 8lb / 4kg'; new users capped at 20 kg until machine learns strength; weight limit per handle Trainer+ '~100kgs' (thermal constraint). Step NOT found (FAQ only mentions progression/regression of 1, 2 or 3 kg per rep) -> step.value=null. Floor platform; FAQ says accessories for vertical pulling are still 'in motion' -> no high pulley. Accessories from RETAILER wake.store only: base package 'Pro handles, ankle straps'; Entry kit 'Long Bar, Tricep Rope, Premium Handles, Workout Mat, Safety Cables'; Pro kit 2.0 'Long Bar, Short Bar, Pump Handles, Tech Mat, Foldable Bench, Belt, Safety Cables, Rope'. Official site shows minimal storefront (company status unclear).",
-  "accessed": "2026-10-05"
+  "accessed": "2026-10-05",
+  "secondPassFindings": {
+   "step": {
+    "status": "open (official); secondary only",
+    "value": null,
+    "note": "No official source gives the manual weight-selection step. KB gives only auto progression/regression of 1, 2 or 3 kg per rep. One review says 1 lb increments (lb mode); kg-mode step unknown.",
+    "evidence": [
+     {
+      "url": "https://knowledge.vitruvianform.com/support/the-training-modes-explained",
+      "sourceType": "support",
+      "quote": "Add 1, 2 or 3kg every time you pause at the top and let the weight load"
+     },
+     {
+      "url": "https://knowledge.vitruvianform.com/support/how-does-just-lift-work",
+      "sourceType": "support",
+      "quote": "Select your desired weight (note the weight is per cable)."
+     },
+     {
+      "url": "https://whitecoattrainer.com/blog/vitruvian-trainer-review",
+      "sourceType": "review",
+      "quote": "you can increase the weight of each exercise in one-pound increments!"
+     }
+    ]
+   }
+  },
+  "secondPass": true,
+  "accessed2": "2026-10-06"
  },
  {
   "id": "vishape-smartgym-pro",
@@ -265,8 +546,18 @@
    "https://vishape.eu/en/comparison",
    "https://vishape.eu/en/faq"
   ],
-  "notes": "FAQ: '0.5 kg steps within a range of 1.5 through 65 kg per each side (i.e. 3 kg minimum and 130 kg maximum total)'; comparison '1,5 kg - 65 kg' per side, 'ability to diversify the load value on each side'. CONFLICT: Pro page spec block says 'from 1.5 kg to 60 kg per side' while same page says 'Ranging from 1.5 kg to 65 kg per side' and '130 kg maximum'. Step '0.5 kg step per side'. Standard accessories: 'handles, ankle straps, hip belt, wireless button, barbell'; bench is extra (SmartGym Pro Set). No rope listed. Floor platform; no high pulley/arms mentioned (arms=null, likely none). | 2026-10-06: właściciel potwierdził na swoim urządzeniu maks. 65 kg na stronę.",
-  "accessed": "2026-10-05"
+  "notes": "FAQ: '0.5 kg steps within a range of 1.5 through 65 kg per each side (i.e. 3 kg minimum and 130 kg maximum total)'; comparison '1,5 kg - 65 kg' per side, 'ability to diversify the load value on each side'. CONFLICT: Pro page spec block says 'from 1.5 kg to 60 kg per side' while same page says 'Ranging from 1.5 kg to 65 kg per side' and '130 kg maximum'. Step '0.5 kg step per side'. Standard accessories: 'handles, ankle straps, hip belt, wireless button, barbell'; bench is extra (SmartGym Pro Set). No rope listed. Floor platform; no high pulley/arms mentioned (arms=null, likely none).",
+  "accessed": "2026-10-05",
+  "secondPass": true,
+  "secondPassFindings": {
+   "maxPerSide": {
+    "status": "closed",
+    "value": 65,
+    "unit": "kg",
+    "sourceType": "owner (verified on device)",
+    "note": "Confirmed by owner on device; not re-researched."
+   }
+  }
  },
  {
   "id": "vishape-smartgym-lite",
@@ -297,7 +588,35 @@
    "https://vishape.eu/en/faq"
   ],
   "notes": "Lite page and comparison: '1.5 kg to 35 kg per side', '70 kg maximum working weight', '0.5 kg step per side'. CONFLICT: FAQ says '3 kg minimum and 68 kg maximum total'. Comparison: 'lack of load diversification on each side' -> two cables but NOT independently loadable (same load both sides). Standard accessories: handles, ankle straps, hip belt, wireless button, barbell; bench is extra (Lite Set). No rope listed. arms=null (floor platform, nothing stated).",
-  "accessed": "2026-10-05"
+  "accessed": "2026-10-05",
+  "secondPassFindings": {
+   "totalMaxConflict": {
+    "status": "resolved",
+    "value": 70,
+    "unit": "kg",
+    "sourceType": "manual",
+    "note": "35 kg x 2 = 70 kg. The '68 kg' in the FAQ (EN and PL) is an arithmetic error in the FAQ text.",
+    "evidence": [
+     {
+      "url": "https://vishape.eu/files/ViSHAPE%20SmartGym%20Lite%20Manual%20EN.pdf",
+      "sourceType": "manual",
+      "quote": "Resistance weight range  combined: 70 kg (35 kg each side)  adjustment: 0,5 kg each side"
+     },
+     {
+      "url": "https://vishape.pl/files/ViSHAPE%20SmartGym%20Lite%20Manual.pdf",
+      "sourceType": "manual (PL)",
+      "quote": "Zakres obciążenia 1,5-35 kg na każdą ze stron, zmiana obciążenia co 0,5 kg"
+     },
+     {
+      "url": "https://vishape.eu/en/faq",
+      "sourceType": "support",
+      "quote": "1.5 through 35 kg per each side (i.e. 3 kg minimum and 68 kg maximum total working weight)"
+     }
+    ]
+   }
+  },
+  "secondPass": true,
+  "accessed2": "2026-10-06"
  },
  {
   "id": "beyond-power-voltra-1",
@@ -333,7 +652,8 @@
    "https://help.beyond-power.com/en/articles/14167505-what-is-voltra-i"
   ],
   "notes": "Help center: '5-200 lbs (2-90 kg), adjustable in 1 lb increments'; product page: '5 to 200 lbs (2 to 90 kg)'. Single cable, portable; 'requires a mount to operate - one is not included' -> pulley height depends on the mount (rack/wall/strap), so high pulley possible but not built in. 'What's in the box': VOLTRA I, 65W USB-C charger kit, carry case, screen protector, carabiner. Functional Rope, Basic Handle, Ankle Strap sold as accessories. Two units can be used for bilateral work (not verified as official spec).",
-  "accessed": "2026-10-05"
+  "accessed": "2026-10-05",
+  "secondPass": true
  },
  {
   "id": "aeke-k1",
@@ -364,7 +684,28 @@
    "https://aeke.com/pages/faq"
   ],
   "notes": "FAQ: 'The total resistance is 220lbs ( 100KG ). 110lbs/50KG per arm.' Product page: '220 Digital Resistance', '1LB Precision Control'. Min not stated. Mirror-type unit with floor-level cables; FAQ replaces lat pulldown by lying on a bench -> no high pulley (arms=false). FAQ: 'comes with a professional barbell ... We also provide an ankle strap'. Bench: variant 'K1 Complete Set + Bench (B1)' vs 'K1 Complete Set'. Rope not listed. 'Extender Belt' sold separately (unclear if hip belt). Newer AEKE S1 Pro: also 220 lb/100 kg, 50 kg per arm (FAQ notes some promo materials claim >300 lb).",
-  "accessed": "2026-10-05"
+  "accessed": "2026-10-05",
+  "secondPassFindings": {
+   "minPerSide": {
+    "status": "open",
+    "value": null,
+    "note": "AEKE FAQ, product page and AEKE blog give only max (220 lb / 100 kg; 110 lb / 50 kg per arm) and '1LB Precision Control'. Manual on manuals.plus blocked (403). No minimum found.",
+    "evidence": [
+     {
+      "url": "https://aeke.com/pages/faq",
+      "sourceType": "support",
+      "quote": "The total resistance is 220lbs ( 100KG ). 110lbs/50KG per arm."
+     },
+     {
+      "url": "https://aeke.com/products/buy-aeke-k1",
+      "sourceType": "official",
+      "quote": "1LB Precision Control"
+     }
+    ]
+   }
+  },
+  "secondPass": true,
+  "accessed2": "2026-10-06"
  },
  {
   "id": "oxefit-xp1",
@@ -385,9 +726,10 @@
    "kg": 181.44
   },
   "step": {
-   "value": null,
+   "value": 1,
    "unit": "lb",
-   "kg": null
+   "kg": 0.45,
+   "sourceType": "support (brand-wide article, not XP1-specific)"
   },
   "cables": 4,
   "arms": true,
@@ -402,20 +744,78 @@
    "https://support.oxefit.com/hc/en-us/articles/18862361812375-XP1-View-All-Accessories"
   ],
   "notes": "Specs: 'TENSION 400 lbs', 'BAR HEIGHT RANGE OF MOTION 26.5\" to 71.75\"', 'ADJUSTABLE BENCH' listed in spec sheet. Using Digital Weight: max '400 lbs for barbell, 300 lbs for waist harness, 200 lbs for cook bar, 100 lbs for individual cable exercises'. FOUR cables (2 front from deck/rack arms, 2 rear from deck) - perSide.max = 100 lb per individual cable; 'DUAL' modality controls left/right independently. Step and min NOT stated. CONFLICT (unverified): third-party summaries cite 500 lb from press materials; official support says 400 lb. Accessories article lists handles, rope, ankle straps, waist harness, cinch belt, barbells - but does not say which are included in the base price (bench/belt/ankle/rope=null). Commercial/pro-oriented, US only.",
-  "accessed": "2026-10-05"
+  "accessed": "2026-10-05",
+  "secondPassFindings": {
+   "step": {
+    "status": "closed (brand-wide)",
+    "value": 1,
+    "unit": "lb",
+    "sourceType": "support",
+    "evidence": [
+     {
+      "url": "https://support.oxefit.com/hc/en-us/articles/18862972102679-Strength-Training",
+      "sourceType": "support",
+      "quote": "You have the ability to increase or decrease the weight by as little as 1lb increments"
+     }
+    ],
+    "note": "Generic OxeFit help-center article (covers XS1 and XP1); kg mode not documented."
+   },
+   "minPerSide": {
+    "status": "open",
+    "value": null,
+    "note": "No minimum load in specs, Using Digital Weight, Quick Start or any help-center article (searched via Zendesk API for 'minimum', 'increment', 'lbs')."
+   },
+   "totalMaxConflict": {
+    "status": "resolved",
+    "value": 400,
+    "unit": "lb",
+    "sourceType": "support",
+    "note": "500 lb is from the April 2021 launch press release; current support docs (updated 2025-09) say 400 lb tension. Use 400.",
+    "evidence": [
+     {
+      "url": "https://support.oxefit.com/hc/en-us/articles/18861120880279-XP1-Specifications",
+      "sourceType": "support",
+      "quote": "TENSION 400 lbs (article updated 2025-09-11)"
+     },
+     {
+      "url": "https://support.oxefit.com/hc/en-us/articles/18861233707799-XP1-The-World-s-Best-SmartGym",
+      "sourceType": "support",
+      "quote": "Up to 400 lbs of digital weight"
+     },
+     {
+      "url": "https://support.oxefit.com/hc/en-us/articles/18861289127959-XP1-Using-Digital-Weight",
+      "sourceType": "support",
+      "quote": "400 lbs for barbell exercises ... 100 lbs for individual cable exercises"
+     },
+     {
+      "url": "https://www.t3.com/reviews/oxefit-xp1-smart-gym-review",
+      "sourceType": "review",
+      "quote": "Max Tension: 400 pounds"
+     },
+     {
+      "url": "https://www.newswire.com/news/introducing-oxefits-xp1-an-unparalleled-strength-training-product-with-21360013",
+      "sourceType": "official (press release, 2021-04-07)",
+      "quote": "Dynamic variable resistance training with computer-controlled loads up to 500 pounds"
+     }
+    ]
+   }
+  },
+  "secondPass": true,
+  "accessed2": "2026-10-06"
  },
  {
   "id": "forme-studio-lift",
   "brand": "FORME",
   "model": "Studio + Lift",
   "perSide": {
-   "min": null,
+   "min": 5,
    "max": 100,
    "unit": "lb",
    "kg": {
-    "min": null,
+    "min": 2.27,
     "max": 45.36
-   }
+   },
+   "minScope": "probably per arm (sentence is about per-arm resistance control) - not stated explicitly"
   },
   "totalMax": {
    "value": 200,
@@ -423,9 +823,10 @@
    "kg": 90.72
   },
   "step": {
-   "value": null,
+   "value": 1,
    "unit": "lb",
-   "kg": null
+   "kg": 0.45,
+   "sourceType": "support"
   },
   "cables": 2,
   "arms": true,
@@ -438,6 +839,63 @@
    "https://formelife.com/pages/hardware"
   ],
   "notes": "Product page: '200 lbs total resistance (100 lbs per arm)', 'Dual adjustable arms'. 'Equipment Included: 2 Free FORME Handles, Premium Rope Grip, 2 Ankle Straps, Short Bar'. Bench via optional 'Fitbench Strength Bundle'. Min and step NOT stated on official pages (third-party: Studio-only 5 lb min, not verified for Lift). No hip belt listed.",
-  "accessed": "2026-10-05"
+  "accessed": "2026-10-05",
+  "secondPassFindings": {
+   "step": {
+    "status": "closed",
+    "value": 1,
+    "unit": "lb",
+    "sourceType": "support",
+    "evidence": [
+     {
+      "url": "https://support.formelife.com/en-US/setting-the-resistance-for-the-lift-arms-2530965",
+      "sourceType": "support",
+      "quote": "Tap on the up or down arrows to make 1-pound adjustments ... Allow the cables to fully retract. Then tap the displayed resistance to expose the keypad."
+     }
+    ]
+   },
+   "minPerSide": {
+    "status": "closed (scope inferred)",
+    "value": 5,
+    "unit": "lb",
+    "sourceType": "support + manual",
+    "evidence": [
+     {
+      "url": "https://support.formelife.com/en-US/setting-the-resistance-for-the-lift-arms-2530965",
+      "sourceType": "support",
+      "quote": "Currently, you can set a maximum resistance of 75 lbs per arm and a minimum resistance of 5 lbs."
+     },
+     {
+      "url": "https://www.manualslib.com/manual/2957813/Forme-Studio.html",
+      "sourceType": "manual (p.30, older)",
+      "quote": "Anytime you're in a workout that uses the Studio Lift arms, you'll see the resistance control on the screen. Currently, you can set a maximum resistance of 50 lbs per arm and a minimum resistance of 5 lbs."
+     }
+    ],
+    "note": "Resistance control is per arm, so 5 lb is most likely per arm, but the sentence does not repeat 'per arm'."
+   },
+   "maxPerSideConflict": {
+    "status": "NEW CONFLICT",
+    "note": "Software cap differs from hardware spec: product page 100 lb/arm (200 total); help center (updated ~early 2026) 'Currently ... 75 lbs per arm'; older manual 50 lbs per arm. App should treat 75 lb/arm as current usable cap unless owner confirms otherwise.",
+    "evidence": [
+     {
+      "url": "https://formelife.com/products/studio-lift-1",
+      "sourceType": "official",
+      "quote": "200 lbs total resistance (100 lbs per arm)"
+     },
+     {
+      "url": "https://support.formelife.com/en-US/setting-the-resistance-for-the-lift-arms-2530965",
+      "sourceType": "support",
+      "quote": "maximum resistance of 75 lbs per arm"
+     },
+     {
+      "url": "https://connectthewatts.com/2023/11/06/forme-lift-review/",
+      "sourceType": "review",
+      "quote": "The weight for each arm can be adjusted up to 100 lbs for a combined total of 200 lbs."
+     }
+    ]
+   }
+  },
+  "secondPass": true,
+  "accessed2": "2026-10-06"
  }
 ]

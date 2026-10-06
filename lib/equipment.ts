@@ -199,6 +199,8 @@ export const LOAD_PRESETS: { id: string; item: string; label: L; spec: () => Loa
   { id: 'gymtek24', item: 'db_fixed', label: { pl: 'Gymtek 2,5–24 kg', en: 'Gymtek 2.5–24 kg' }, spec: () => listOf([2.5, 3.5, 4.5, 5.5, 6.5, 8, 9, 10, 11.5, 13.5, 16, 18, 20.5, 22.5, 24]) },
   { id: 'hopsport2x10', item: 'db_plate', label: { pl: 'Hop-Sport 2×10 kg', en: 'Hop-Sport 2×10 kg' }, spec: () => ({ kind: 'plates', unit: 'kg', base: 1.5, plates: [{ w: 2.5, n: 4 }, { w: 1.25, n: 4 }, { w: 0.5, n: 4 }] }) },
   { id: 'vishape_pro', item: 'electric', label: { pl: 'ViShape SmartGym Pro (1,5–65 kg/str.)', en: 'ViShape SmartGym Pro (1.5–65 kg/side)' }, spec: () => ({ kind: 'electric', unit: 'kg', min: 1.5, max: 65, step: 0.5 }) },
+  /* 06.10.2026: dane z docs/research/equipment/stations.json (strona producenta i centrum pomocy); jedna linka */
+  { id: 'voltra1', item: 'electric', label: { pl: 'Beyond Power Voltra I (5–200 lb)', en: 'Beyond Power Voltra I (5–200 lb)' }, spec: () => ({ kind: 'electric', unit: 'lb', min: 5, max: 200, step: 1 }) },
   { id: 'vishape_lite', item: 'electric', label: { pl: 'ViShape SmartGym Lite (1,5–35 kg/str.)', en: 'ViShape SmartGym Lite (1.5–35 kg/side)' }, spec: () => ({ kind: 'electric', unit: 'kg', min: 1.5, max: 35, step: 0.5 }) },
 ];
 
