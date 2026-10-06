@@ -57,3 +57,13 @@ jest za blisko X — łatwo je wyrzucić missclickiem”. Decyzje: **„Zwijane 
 - Każde ćwiczenie to karta: zwinięta — nazwa i podsumowanie („3 serie · 8–12 · 120 s”), rozwinięta — wiersze serii, przerwa, zakres, superset i
   „Usuń ćwiczenie” (z potwierdzeniem) na dole. Otwarta jedna naraz; nowo dodane ćwiczenie otwiera się samo. Kolejność — tylko „≡ Kolejność”.
 - Testy: `tests/template-cards.test.tsx`; dostosowane testy edytora (pomocnik `openCard`).
+
+## Gumy w ćwiczeniach z oporem gumy (06.10.2026)
+Właściciel: „ćwiczenia z band nie mają przy tworzeniu szablonu / przy pustym treningu wyboru zakresu gumy. Sprawdź wszystkie ćwiczenia z band
+i upewnij się, że można wybrać gumy z zakresu 1–7.”
+- Przyczyna: przycisk gumy był tylko przy asyście gumą (`bandAssistable`, np. podciąganie). W katalogu 34 ćwiczenia wymagają gum jako oporu
+  (23 tylko z gumą, np. Band Pull Apart; 11 sztanga + gumy, np. Deadlift with Bands).
+- Teraz `usesBand(ex)` = asysta albo wymaganie „bands”: przycisk gumy w treningu, edycji historii i wierszach szablonu (`TRow.bandId`);
+  cykl przez gumy z poziomów miejsca (1–7). Test: `tests/band-exercises.test.tsx` (wszystkie ćwiczenia z gumą, pełne 1–7).
+- **Otwarte (decyzja właściciela):** serie z gumą nie liczą się dziś do rekordów i podpowiedzi „↑” (guma traktowana jak asysta — obciążenie
+  nieznane). Dla oporu gumy sensowne byłyby rekordy osobno dla każdego poziomu gumy.

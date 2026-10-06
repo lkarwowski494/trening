@@ -808,7 +808,7 @@ export function prefillSets(ex: Exercise, kinds: readonly SetKind[], prevAll: { 
     // Czas z poprzedniej sesji zostaje tylko podpowiedzią („Poprzednio”) — jako wartość stawałby się celem stopera (runda 4).
     if (hasTime(m)) s.durationSec = kind !== 'warmup' && Number(targetSec) > 0 ? Number(targetSec) : ''; // runda 30: cel 0 = bez celu (jak w repeatLast)
     /* schemat 17: bez „ostatnio” — plan z wiersza szablonu (także rozgrzewki i drop sety); cel czasu z wiersza */
-    if (row) { if (!p) { if (hasWeight(m)) { if (isBW(ex)) s.addKg = row.weight; else s.weight = row.weight === '' ? '' : Math.max(0, Number(row.weight)); } if (hasReps(m)) s.reps = row.reps; if (hasDistance(m)) s.distanceM = row.distanceM; }
+    if (row) { if (!p) { if (hasWeight(m)) { if (isBW(ex)) s.addKg = row.weight; else s.weight = row.weight === '' ? '' : Math.max(0, Number(row.weight)); } if (hasReps(m)) s.reps = row.reps; if (hasDistance(m)) s.distanceM = row.distanceM; if (row.bandId && usesBand(ex) && bandById(row.bandId)) s.bandId = row.bandId; }
       if (hasTime(m)) s.durationSec = Number(row.durationSec) > 0 ? Number(row.durationSec) : ''; } /* audyt 85364ad L3: czas tylko z wiersza (także rozgrzewki) */
     /* audyt M3 + weryfikacja 2: tylko źródło „gdzie indziej” (prevFromOther: inne, znane miejsce albo — LOW 3 — znany, inny przyrząd; treningi sprzed
      * miejsc — jak M8 — nie); wtedy bez ciężaru nie przepisujemy też powtórzeń — seria zostaje pusta, a nie „ciężar pusty + powtórzenia” */
@@ -841,6 +841,8 @@ export function tplRemoveRow(tpl: Template, itemId: string, rowId?: string) {
   const it = tplItem(tpl, itemId); if (!it) return; const rows = rowsOf(it); if (rows.length <= 1) return;
   const i = rowId ? rows.findIndex(r => r.id === rowId) : rows.length - 1; if (i < 0) return; /* audyt 85364ad L4: tylko po id (id wyliczone zostają po zapisie — M1) */ rows.splice(i, 1); syncItem(it); save(tpl);
 }
+/** Guma wiersza szablonu — ten sam cykl co w treningu (poziomy z miejsca szablonu). */
+export function tplCycleBand(tpl: Template, itemId: string, rowId: string) { const it = tplItem(tpl, itemId); if (!it) return; const r = rowsOf(it).find(x => x.id === rowId); if (!r) return; const n = nextBandId(r.bandId ?? '', startLocationId(tpl.locationId)); if (n) r.bandId = n; else delete r.bandId; syncItem(it); save(tpl); }
 export function tplSetRow(tpl: Template, itemId: string, rowId: string, patch: Partial<Omit<TRow, 'id' | 'kind'>>) {
   const it = tplItem(tpl, itemId); if (!it) return; const r = rowsOf(it).find(x => x.id === rowId); if (!r) return; Object.assign(r, patch); syncItem(it); save(tpl);
 }
@@ -852,7 +854,7 @@ function fixRows(it: any) {
   if (!Array.isArray(it.rows)) { delete it.rows; return; }
   const num = (v: unknown, min: number, max: number, int = true) => { const x = parseNum(v); return x == null ? '' : Math.min(max, Math.max(min, int ? Math.round(x) : x)); };
   it.rows = it.rows.filter(isObj).slice(0, 50).map((r: any) => ({ id: typeof r.id === 'string' && r.id ? r.id : uid(), kind: (SET_KINDS as readonly string[]).includes(r.kind) ? r.kind : 'normal',
-    reps: num(r.reps, 0, 1000), weight: (v => v == null ? '' : kg2(snapL(v) as number))(parseNum(r.weight)), durationSec: num(r.durationSec, 0, 86400), distanceM: num(r.distanceM, 0, 1e6) }));
+    reps: num(r.reps, 0, 1000), weight: (v => v == null ? '' : kg2(snapL(v) as number))(parseNum(r.weight)), durationSec: num(r.durationSec, 0, 86400), distanceM: num(r.distanceM, 0, 1e6), ...(typeof r.bandId === 'string' && r.bandId ? { bandId: r.bandId } : {}) }));
   syncItem(it);
 }
 export function startFromTemplate(tpl: Template) {
@@ -1061,9 +1063,11 @@ function carryPrefill(e: WExercise, si: number) {
     s.pre[k] = v; /* weryfikacja: poprawka literówki (625 → 62,5) po ponownym ✓ też przechodzi dalej */ }
 }
 /** Runda 10: pola wartości używane przez bieżącą metrykę ćwiczenia (metrykę można zmienić po treningach). */
+/** Ćwiczenie z gumą: asysta (bandAssistable) albo opór gumy (wymaganie sprzętu „bands”) — uwaga właściciela 06.10.2026. */
+export const usesBand = (ex: Exercise | undefined | null): boolean => !!ex && (!!ex.bandAssistable || (ex.requires ?? []).some(g => g.includes('bands')));
 function usedKeys(ex: Exercise | undefined): Record<typeof VAL_KEYS[number] | 'bandId', boolean> {
   const m = ex?.metric ?? 'weight_reps'; const bw = !!ex && isBW(ex);
-  return { weight: hasWeight(m) && !bw, addKg: hasWeight(m) && bw, reps: hasReps(m), durationSec: hasTime(m), distanceM: hasDistance(m), bandId: !!ex?.bandAssistable /* runda 11: guma tylko przy asyście gumą */ };
+  return { weight: hasWeight(m) && !bw, addKg: hasWeight(m) && bw, reps: hasReps(m), durationSec: hasTime(m), distanceM: hasDistance(m), bandId: usesBand(ex) /* runda 11: guma tylko przy gumach; 06.10.2026: także opór gumy */ };
 }
 /** Czyści w serii pola, których metryka nie używa (wartości skopiowane ze starszej sesji). */
 function stripUnused(ex: Exercise | undefined, s: WSet): WSet { const u = usedKeys(ex); for (const k of VAL_KEYS) if (!u[k]) (s as any)[k] = ''; /* P-001: zdjęta guma nie zabiera już ±kg (dawniej runda 49) */ if (!u.bandId || (s.bandId && !bandById(s.bandId))) s.bandId = ''; /* runda 16: usunięta guma nie wraca */ return s; }

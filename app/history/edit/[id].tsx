@@ -4,7 +4,7 @@ import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
 import { Screen, Muted, Btn, Txt, Field, Input, NumInput, Empty } from '@/components/ui';
 import { WhenFields } from '@/components/WhenFields';
 import { setLabel } from '@/components/ActiveWorkout';
-import { getState, useTick, exById, isBW, loadLabel, loadLabelShort, groupLabels, occurrence, occurrences, deleteWorkout, bandA11y, shortBand, clampName, NAME_MAX, blockImpl, liveBlockImpl, nextBandId, loadFieldValue, writeLoad } from '@/lib/store';
+import { getState, useTick, exById, isBW, loadLabel, loadLabelShort, groupLabels, occurrence, occurrences, deleteWorkout, bandA11y, shortBand, clampName, NAME_MAX, blockImpl, liveBlockImpl, nextBandId, loadFieldValue, writeLoad, usesBand } from '@/lib/store';
 import { draftOf, beginEdit, discardDraft, isDirty, touchDraft, useDraftTick, checkDraft, commitDraft, draftAddSet, draftRemoveSet, draftRemoveExercise, draftSetWhen, dateText, timeText, prefilledOffList, type Draft } from '@/lib/edit';
 import { onHistoryEdited } from '@/lib/backup';
 import { locationLabel } from '@/lib/locations';
@@ -81,7 +81,7 @@ export default function EditWorkout() {
 function EditBlock({ d, e, ei, labels }: { d: Draft; e: WExercise; ei: number; labels: Record<string, string> }) {
   const th = useTheme(); const st = getState(); const ex = exById(e.exerciseId); const router = useRouter();
   const nOcc = occurrences(d.w.exercises, e.exerciseId); const nm = ex ? (nOcc > 1 ? `${exName(ex)} (${occurrence(d.w.exercises, ei) + 1})` : exName(ex)) : t('Usunięte ćwiczenie');
-  const m = ex?.metric ?? 'weight_reps'; const bw = !!ex && isBW(ex); const band = !!ex?.bandAssistable; const showRpe = st.settings.showRpe;
+  const m = ex?.metric ?? 'weight_reps'; const bw = !!ex && isBW(ex); const band = usesBand(ex); /* 06.10.2026: także opór gumy */ const showRpe = st.settings.showRpe;
   const removeEx = () => Alert.alert(t('Usunąć z treningu?'), nm, [{ text: t('Nie') }, { text: t('Usuń'), style: 'destructive', onPress: () => draftRemoveExercise(d.key, e.id) }]);
   const setMenu = (set: WSet, si: number) => {
     const opts = [t('Seria normalna'), t('Rozgrzewka (W)'), t('Drop set (D)'), t('Do upadku (F)'), set.note ? t('Edytuj notatkę') : t('Dodaj notatkę'), t('Anuluj')];

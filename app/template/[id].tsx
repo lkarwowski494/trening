@@ -8,7 +8,7 @@ import { ScrollView as HScroll } from 'react-native';
 import { locationLabel } from '@/lib/locations';
 import { availability } from '@/lib/equipment';
 import { implLabel } from '@/lib/swap';
-import { getState, useTick, exById, save, dupTemplate, deleteTemplate, groupLabels, linkWithNext, unlink, moveItem, removeItem, restFor, isBW, startFromTemplate, loadLabel, loadLabelShort, occurrence, occurrences, implAtLoc, startLocationId, locationById, tplRows, tplAddRow, tplRemoveRow, tplSetRow, tplSetKind, previousBlockFor, srcSetAt, setSummary, reps } from '@/lib/store';
+import { getState, useTick, exById, save, dupTemplate, deleteTemplate, groupLabels, linkWithNext, unlink, moveItem, removeItem, restFor, isBW, startFromTemplate, loadLabel, loadLabelShort, occurrence, occurrences, implAtLoc, startLocationId, locationById, tplRows, tplAddRow, tplRemoveRow, tplSetRow, tplSetKind, previousBlockFor, srcSetAt, setSummary, reps, usesBand, tplCycleBand, bandA11y, shortBand } from '@/lib/store';
 import { useTheme, F } from '@/lib/theme';
 import { hasTime, hasReps, hasWeight, hasDistance, SET_KIND_LABEL, type Template, type TemplateItem } from '@/lib/seed';
 import { t, tp, exName } from '@/lib/i18n';
@@ -98,7 +98,7 @@ function Col({ label, a11y, children }: { label: string; /** runda 71: pełna na
 function TplRows({ tpl, it, ii, nm }: { tpl: Template; it: TemplateItem; ii: number; nm: string }) {
   const th = useTheme(); const { width } = useWindowDimensions(); const ex = exById(it.exerciseId); const m = ex?.metric ?? 'weight_reps';
   const [range, setRange] = useState(it.repMin != null || it.repMax != null);
-  const impl = implAtLoc(ex, startLocationId(tpl.locationId)); const L = rowLayout(m, false, false, width); const W = L.W;
+  const impl = implAtLoc(ex, startLocationId(tpl.locationId)); const band = usesBand(ex); const L = rowLayout(m, band, false, width); const W = L.W; const bands = getState().bands;
   const prev = ex ? previousBlockFor(it.exerciseId, occurrence(tpl.items, ii), occurrences(tpl.items, it.exerciseId), it.id, tpl.id, impl) : null;
   const src = prev ? prev.sets.filter(x => x.kind !== 'drop') : []; const rows = tplRows(it); const kinds = rows.map(r => r.kind);
   const int = (v: number | '', min: number, max: number) => v === '' ? null : Math.min(max, Math.max(min, Math.round(v)));
@@ -117,6 +117,7 @@ function TplRows({ tpl, it, ii, nm }: { tpl: Template; it: TemplateItem; ii: num
             {hasWeight(m) ? <View style={{ width: W.w }}><NumInput weightTol decimal allowNegative={!!ex && isBW(ex)} value={wField(r.weight)} stored={r.weight} placeholder={ex ? loadLabelShort(ex, impl) : wu()} accessibilityLabel={ex ? loadLabel(ex, impl) : wu()} onNum={(v, keep) => tplSetRow(tpl, it.id, r.id, { weight: v === '' ? '' : wInKeep(ex && isBW(ex) ? v : Math.max(0, v), keep) })} /></View> : null}
             {hasReps(m) ? <View style={{ width: W.reps }}><NumInput value={r.reps} placeholder={it.repMin != null ? reps(it.repMin, it.repMax) : t('pow.')} accessibilityLabel={t('Powtórzenia')} onNum={v => tplSetRow(tpl, it.id, r.id, { reps: v === '' ? '' : Math.max(0, Math.floor(v)) })} /></View> : null}
             {hasDistance(m) ? <View style={{ width: W.dist }}><NumInput value={r.distanceM} placeholder="m" accessibilityLabel={t('dystans')} onNum={v => tplSetRow(tpl, it.id, r.id, { distanceM: v === '' ? '' : Math.max(0, Math.round(v)) })} /></View> : null}
+            {band ? <Pressable accessibilityRole="button" accessibilityHint={nm} accessibilityLabel={t('Guma: {b}. Tapnij, by zmienić.', { b: r.bandId ? bandA11y(bands.find(b => b.id === r.bandId)) : t('brak') })} onPress={() => tplCycleBand(tpl, it.id, r.id)} style={{ width: W.band, minHeight: 40, borderRadius: 8, borderWidth: 1, borderColor: th.line, backgroundColor: th.surface2, alignItems: 'center', justifyContent: 'center' }}><Txt style={{ color: r.bandId ? th.band : th.muted, fontSize: 13, fontFamily: F.semibold }}>{r.bandId ? shortBand(bands.find(b => b.id === r.bandId)) : '—'}</Txt></Pressable> : null}
             {hasTime(m) ? <View style={{ width: W.time }}><NumInput value={r.durationSec} placeholder={t('cel s')} accessibilityLabel={t('cel s')} onNum={v => tplSetRow(tpl, it.id, r.id, { durationSec: v === '' ? '' : Math.min(86400, Math.max(0, Math.round(v))) })} /></View> : null}
           </View>); })}
       {!L.prevInline && src.length ? <Muted style={{ fontSize: 12 }}>{t('Poprzednio')}: {src.map(x => ex ? setSummary(ex, x, 'calc') : '').join(', ')}</Muted> : null}
