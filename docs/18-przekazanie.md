@@ -6,10 +6,10 @@ potem `CLAUDE.md`, docs/14 (E2), docs/15 (App Store / TestFlight), docs/17 (szab
 
 ## Gałęzie i kod
 
-- Praca: `feature/e2-swap` (od `integration/0.9.0`). Ostatni commit kodu: `70481ce` (przegląd spójności, partia 3).
+- Praca: `feature/e2-swap` (od `integration/0.9.0`). Ostatni commit kodu: `e795731` (uniqueIds); `e900b61` — poprawka scenariusza E2E 04.
 - `npm run verify` na `70481ce`: 1156 testów — OK.
 - E2E (Maestro, `e2e-ios.yml`) na `70481ce`: przebieg nr 56 (run 37434083110) — 7/7 zielony (06.10, 08:57 UTC); linia GOTOWE w docs/14 przesunięta.
-- GOTOWE DO BUILDU w docs/14: `70481ce` (06.10). `integration/0.9.0` i **`main`** zawierają całą wersję 0.9.0 (polecenie właściciela 06.10:
+- GOTOWE DO BUILDU w docs/14: `e900b61` (06.10, 18:40 UTC; E2E run 37506280153 10/10). Wcześniej `70481ce` (06.10). `integration/0.9.0` i **`main`** zawierają całą wersję 0.9.0 (polecenie właściciela 06.10:
   „Cała wersja na main”, wykonane 06.10 ok. 09:15 UTC). Scalenie z `main` dołączyło do `CLAUDE.md` zasadę „Merytoryczne podstawy”
   (04.10, wcześniej tylko na `main`) — obowiązuje: hierarchia źródeł, właściciel nie rozstrzyga kwestii merytorycznych.
 - Schemat danych: SCHEMA_VERSION 17 (TemplateItem.rows). SDK bez zmian w tym wydaniu.

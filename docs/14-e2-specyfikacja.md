@@ -390,7 +390,11 @@ Wynik: **0 wysokich, 2 średnie, 2 niskie** — wszystkie naprawione, każde z t
 
 ### E2E na symulatorze i build na trening 05.10.2026
 
-GOTOWE DO BUILDU: 70481ce0f2a2693e1e21786f4ea173560418656f — E2E run 37434083110 7/7, audyt: przegląd spójności 06.10 (partie 1–3, scenariusz pełny): wysokie naprawione, otwarte tylko decyzje właściciela (docs/18) (06.10.2026, 09:10 UTC)
+GOTOWE DO BUILDU: e900b61dcd7730c5d8f8e6a351993927dc37d19b — E2E run 37506280153 10/10 (aplikacja z przebiegu 37496797683 = kod e795731; e795731..e900b61 tylko scenariusz 04 i dokumentacja), audyt: znaleziska macierzy testów naprawione, otwarte tylko decyzje właściciela (docs/18) (06.10.2026, 18:40 UTC)
+
+*Zakres:* jak 70481ce + 06.10: macierz testów (docs/19, `check:matrix` w verify), definicja ukończenia (docs/20), scenariusze E2E 08–10, nazwa aplikacji i widżet w 16 językach, IBM Plex Sans dla bg/sr/uk, gryf bez talerzy = ciężary nieznane, powtórzone identyfikatory w imporcie (`uniqueIds`), poprawki z losowych sekwencji i fuzzingu danych (docs/09), `tests.yml`, `nightly.yml`, `tests-tz.yml`.
+
+*Poprzednio (zastąpione 06.10.2026, 18:40 UTC):* `GOTOWE DO BUILDU: 70481ce0f2a2693e1e21786f4ea173560418656f — E2E run 37434083110 7/7, audyt: przegląd spójności 06.10 (partie 1–3, scenariusz pełny): wysokie naprawione, otwarte tylko decyzje właściciela (docs/18) (06.10.2026, 09:10 UTC)`
 
 *Zakres:* jak 23fa1e0 + 06.10: gumy przy wszystkich ćwiczeniach z gumami, karty ćwiczeń w szablonie, objętość per partia, stopka z numerem wersji,
 przegląd spójności (docs/09: partie 1–3, `tests/scenario-full.test.tsx`), TestFlight narzędziami Apple (`testflight.yml`). 1156 testów — OK.
