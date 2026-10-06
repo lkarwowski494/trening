@@ -51,3 +51,8 @@ i skrypty EAS po pierwszym udanym TestFlight (rekomendacja); B — zostawić jak
 
 Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu treningowego (odłożone); presety stacji o niepełnych danych;
 „Powtórz ostatni” a zamienione ćwiczenie (swappedFrom) — do zbadania przed propozycją.
+
+## Decyzje właściciela po przekazaniu
+
+- 06.10.2026: etykiety supersetów po 26 grupach zaczynają się od „A” — **zostaje** (wariant A: „nikt nie robi 27 supersetów”);
+  test `tests/matrix-logic.test.tsx` (`groupLabels`) sprawdza zakres A–Z.
