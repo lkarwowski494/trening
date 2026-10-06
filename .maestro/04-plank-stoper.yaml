@@ -8,7 +8,9 @@ name: Plank ze stoperem
 - extendedWaitUntil: { visible: "Start from a template", timeout: 60000 }
 - scrollUntilVisible: { element: "Empty workout", direction: DOWN, timeout: 60000 }
 - tapOn: "Empty workout"
-- tapOn: "+ Add exercise"
+# run 37496797683 (06.10.2026): pierwszy scenariusz po starcie symulatora — ekran treningu nie zdążył się pojawić; czekamy jak w 06/07
+- extendedWaitUntil: { visible: "\\+ Add exercise", timeout: 30000 }
+- tapOn: "\\+ Add exercise"
 - tapOn: "Search exercises…"
 - inputText: "Plank"
 - tapOn: { text: "Continue", optional: true }
