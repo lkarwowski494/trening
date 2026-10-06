@@ -10,6 +10,19 @@ on:
         description: 'Numer przebiegu z gotową aplikacją (pusty = zbuduj od nowa; ~30 min mniej, gdy zmieniasz tylko scenariusze .maestro)'
         required: false
         default: ''
+      urzadzenie:
+        description: 'Wzorzec nazwy symulatora (grep -E), np. "iPhone SE|iPhone 16e" — mały ekran; pusty = iPhone 17'
+        required: false
+        default: ''
+      wyglad:
+        description: 'Wygląd systemu symulatora: light albo dark'
+        required: false
+        default: 'light'
+  workflow_call:  # nocny przebieg (nightly.yml, 06.10.2026): inne urządzenie i ciemny wygląd
+    inputs:
+      aplikacja_z_przebiegu: { type: string, required: false, default: '' }
+      urzadzenie: { type: string, required: false, default: '' }
+      wyglad: { type: string, required: false, default: 'light' }
 jobs:
   e2e:
     runs-on: macos-26  # SDK 56+: Xcode 26.4+ (macos-15 ma najwyżej 26.3)
@@ -69,12 +82,15 @@ jobs:
         # Obraz macos-26 (20260907) ma symulatory iOS 26.2/26.4/26.5 z iPhone 17 (bez iPhone 16) — wybieramy z wersji zgodnej
         # z SDK wybranego Xcode (dla 26.6: iOS 26.5), a gdy jej nie ma, z całej listy. Kolejność: iPhone 17, iPhone 16 (macos-15,
         # testy do SDK 54), dowolny iPhone. Wzorzec z „ (” — bez iPhone 17 Pro/17e/16e.
+        env:
+          WANT: ${{ inputs.urzadzenie }}
+          WYGLAD: ${{ inputs.wyglad }}
         run: |
           SDK=$(xcrun --sdk iphonesimulator --show-sdk-version)
           LIST=$(xcrun simctl list devices available | awk -v h="-- iOS $SDK --" '$0 == h { f = 1; next } /^-- / { f = 0 } f')
           [ -n "$LIST" ] || { echo "Brak symulatorów iOS $SDK — wybór z całej listy"; LIST=$(xcrun simctl list devices available); }
           DEV=""
-          for pat in "iPhone 17 \(" "iPhone 16 \(" "iPhone"; do
+          for pat in ${WANT:+"$WANT"} "iPhone 17 \(" "iPhone 16 \(" "iPhone"; do  # WANT: wejście „urzadzenie” (nocny przebieg — mały ekran)
             DEV=$(printf '%s\n' "$LIST" | grep -m1 -E "$pat" | sed -E 's/.*\(([0-9A-F-]{36})\).*/\1/' || true)  # || true: krok działa z -eo pipefail
             [ -n "$DEV" ] && break
           done
@@ -83,6 +99,7 @@ jobs:
           echo "SIM=$DEV" >> "$GITHUB_ENV"
           xcrun simctl boot "$DEV" || true
           xcrun simctl bootstatus "$DEV" -b
+          [ "$WYGLAD" = dark ] && xcrun simctl ui "$DEV" appearance dark || true  # wejście „wyglad” (nocny przebieg)
           xcrun simctl install "$DEV" ios/build/Build/Products/Release-iphonesimulator/Trening.app
       - name: Install Maestro
         run: |

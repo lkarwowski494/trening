@@ -14,6 +14,16 @@ describe('workflowy na publicznym repozytorium', () => {
       expect(y).toMatch(/on:\n\s+workflow_dispatch:/);
     }
   });
+  test('przebiegi według harmonogramu (nightly.yml, tests-tz.yml; 06.10.2026): tylko harmonogram i ręcznie, odczyt, bez sekretów, artefakty 1 dzień', () => {
+    const fs = require('fs') as typeof import('fs');
+    for (const n of ['nightly.yml', 'tests-tz.yml'].filter(n => fs.existsSync(join(__dirname, '../.github/workflows', n)))) {
+      const y = wf(n);
+      expect([n, /permissions:\n\s+contents: read/.test(y), /contents: write|pull_request|^\s+push:/m.test(y), /secrets\./.test(y), /on:\n\s+schedule:/.test(y), /workflow_dispatch:/.test(y)]).toEqual([n, true, false, false, true, true]);
+      const ups = y.split('actions/upload-artifact@v4').length - 1; expect([n, (y.match(/retention-days: 1\n/g) || []).length]).toEqual([n, ups]);
+    }
+    const n = wf('nightly.yml'); expect(n).toMatch(/MATRIX_SEED=random/); expect(n).toMatch(/npx stryker run/); expect(n).toMatch(/uses: \.\/\.github\/workflows\/e2e-ios\.yml/); expect(n).toMatch(/wyglad: dark/);
+    const e = wf('e2e-ios.yml'); expect(e).toMatch(/workflow_call:/); expect(e).toMatch(/WANT: \$\{\{ inputs\.urzadzenie \}\}/); expect(e).toMatch(/simctl ui "\$DEV" appearance dark/);
+  });
   test('artefakty E2E trzymane 1 dzień', () => {
     const y = wf('e2e-ios.yml');
     const uploads = y.split('actions/upload-artifact@v4').length - 1;

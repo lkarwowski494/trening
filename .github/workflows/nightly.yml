@@ -1,0 +1,60 @@
+# Nocny przebieg testów (polecenie właściciela 06.10.2026: „jeżeli nic nas nie kosztują, warto robić jak najpełniejsze i testować wszystko”).
+# Repozytorium publiczne (ADR-031): standardowe maszyny GitHuba (także macOS) bez opłat i bez limitu minut. Artefakty 1 dzień.
+# Co noc na gałęzi domyślnej; ręcznie (Run workflow) na dowolnej gałęzi:
+#   1. losowe sekwencje działań z nowym ziarnem i 10× więcej przebiegów niż przy każdym commicie (ziarno w logu — do odtworzenia),
+#   2. testy mutacyjne (Stryker): ile celowo wprowadzonych błędów w logice testy wykrywają — raport jako artefakt,
+#   3. E2E na innym symulatorze (mały ekran) przy ciemnym wyglądzie systemu — wywołanie e2e-ios.yml.
+# Strefy czasowe: osobny tests-tz.yml.
+name: Nocne testy
+on:
+  schedule:
+    - cron: '41 2 * * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: nightly-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  losowe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Losowe sekwencje działań — nowe ziarno, 1000 przebiegów
+        run: MATRIX_SEED=random MATRIX_RUNS=1000 npx jest tests/matrix-invariants.test.ts --testTimeout=7200000
+      - name: Pełny zestaw testów (bez zmian ziarna)
+        run: npx jest --maxWorkers=2
+  mutacje:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Testy mutacyjne (Stryker, stryker.config.json)
+        run: npx stryker run --cleanTempDir false
+      - name: Wynik mutacji w podsumowaniu przebiegu
+        if: always()
+        run: |
+          node -e "const r=require('./.stryker-tmp/report.json'); const c={}; for (const f of Object.values(r.files)) for (const m of f.mutants) c[m.status]=(c[m.status]||0)+1; const det=(c.Killed||0)+(c.Timeout||0), all=det+(c.Survived||0)+(c.NoCoverage||0); console.log('## Testy mutacyjne\n\nWykryte: '+det+' z '+all+' ('+(100*det/Math.max(1,all)).toFixed(1)+'%). Statusy: '+JSON.stringify(c))" >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: mutacje
+          retention-days: 1
+          path: .stryker-tmp/report.json
+  e2e-maly-ekran-ciemny:
+    uses: ./.github/workflows/e2e-ios.yml
+    with:
+      urzadzenie: 'iPhone SE|iPhone 16e|iPhone 17e'
+      wyglad: dark
