@@ -556,7 +556,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     await tap(byHint('+ drop set', P)); expect(blk(P).sets.map(x => x.kind)).toEqual(['warmup', 'normal', 'normal', 'normal', 'drop']); expect(screen.getByLabelText(`Seria 4D zrobiona — ${P}`)).toBeTruthy();
     await tap(byHint('− seria', P)); expect(blk(P).sets.map(x => x.kind)).toEqual(['warmup', 'normal', 'normal', 'normal']); /* nieodhaczona — bez pytania */
     const kindP = (n: string, k: string) => screen.getAllByLabelText(`Seria ${n}, typ: ${k}. Tapnij, by zmienić typ lub dodać notatkę.`).find(x => x.props.accessibilityHint === h(n, P))!;
-    await tap(kindP('1', 'normalna')); expect((global as any).__sheets.at(-1).opts.options).toEqual(['Seria normalna', 'Rozgrzewka (W)', 'Drop set (D)', 'Do upadku (F)', 'Dodaj notatkę', 'Anuluj']);
+    await tap(kindP('1', 'normalna')); expect((global as any).__sheets.at(-1).opts.options).toEqual(['Seria normalna', 'Rozgrzewka (W)', 'Drop set (D)', 'Do upadku (F)', 'Dodaj notatkę', 'Usuń serię', 'Anuluj']);
     await sheet(4); expect(lastAlert()).toMatchObject({ title: 'Notatka do serii', prompt: true, def: '' });
     await act(async () => { pressAlert('Notatka do serii', 'Zapisz', '  chwyt nachwytem  '); }); await flushAll(5);
     expect(blk(P).sets[1].note).toBe('chwyt nachwytem'); expect(screen.getByText('chwyt nachwytem')).toBeTruthy();

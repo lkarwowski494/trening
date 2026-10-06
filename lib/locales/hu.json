@@ -817,5 +817,7 @@
  "Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → Trening → Backup, ostatnie {n}). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego Apple ID wyeksportuj backup na zewnątrz.": "Automatikus mentés: minden edzés után egy JSON-fájl mentődik a Fájlokba (Az iPhone-omon → Trening → Backup, utolsó {n}). Az importálás ezeket a fájlokat is elfogadja. Ezek a másolatok az alkalmazással együtt törlődnek — mielőtt eltávolítja, vagy másik Apple ID-ról telepíti, exportáljon mentést máshová.",
  "Zakres powtórzeń: {r} — po osiągnięciu górnej granicy podpowiedź „↑ więcej {u}”.": "Ismétlési tartomány: {r} — a felső határ elérésekor „↑ több {u}” tippet kap.",
  "Ustawienia na stronę: {n} ({r})": "Beállítások oldalanként: {n} ({r})",
- "Ciężarów w tym zakresie: {c} — najwyżej {n}. Zwiększ krok.": "Súlyok ebben a tartományban: {c} — legfeljebb {n}. Növelje a lépésközt."
+ "Ciężarów w tym zakresie: {c} — najwyżej {n}. Zwiększ krok.": "Súlyok ebben a tartományban: {c} — legfeljebb {n}. Növelje a lépésközt.",
+ "Guma jako opór: przy serii wybierasz gumę (poziom 1–7), rekordy liczą serie z gumą.": "Gumiszalag mint ellenállás: minden sorozatnál gumiszalagot választ (1–7. szint), a rekordok a gumiszalagos sorozatokat is számolják.",
+ "Usunąć serię?": "Törli a sorozatot?"
 }

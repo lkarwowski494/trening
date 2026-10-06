@@ -778,6 +778,10 @@
   "en": "Band"
  },
  {
+  "pl": "Guma jako opór: przy serii wybierasz gumę (poziom 1–7), rekordy liczą serie z gumą.",
+  "en": "Band as resistance: pick a band (level 1–7) for each set; records count sets with a band."
+ },
+ {
   "pl": "Guma: {b}. Tapnij, by zmienić.",
   "en": "Band: {b}. Tap to change."
  },
@@ -2756,6 +2760,10 @@
  {
   "pl": "Usunąć ostatnią serię?",
   "en": "Remove the last set?"
+ },
+ {
+  "pl": "Usunąć serię?",
+  "en": "Delete set?"
  },
  {
   "pl": "Usunąć szablon?",

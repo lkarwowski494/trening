@@ -3,7 +3,7 @@ import { FlatList, ScrollView, Pressable, Text, View } from 'react-native';
 import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
 import { useTheme, F } from '@/lib/theme';
 import { Screen, Input, Chip, Item, Muted, Empty } from '@/components/ui';
-import { getState, addExerciseToActive, newExercise, save, visibleExercises, exerciseInHistory, locationById, swapBlock, exById } from '@/lib/store';
+import { getState, addExerciseToActive, newExercise, save, visibleExercises, exerciseInHistory, locationById, swapBlock, exById, usesBand } from '@/lib/store';
 import { afterSwap } from '@/components/ActiveWorkout';
 import { availability, capsOf, missingLabel, type Availability } from '@/lib/equipment';
 import { uid } from '@/lib/seed';
@@ -20,7 +20,7 @@ export default function PickerScreen() {
   // Runda 26: parametr z linku może być tablicą (powtórzony ?target=) — tylko tekst, inaczej nic nie dodajemy.
   const raw = useLocalSearchParams<{ target?: string | string[] }>().target; const target = typeof raw === 'string' ? raw : ''; const router = useRouter();
   const th = useTheme(); const [q, setQ] = useState(''); const [g, setG] = useState(''); const st = getState(); const chosen = useRef(false);
-  const headerOpts = useMemo(() => ({ headerRight: () => <Pressable accessibilityRole="button" hitSlop={10} onPress={() => { if (chosen.current) return; chosen.current = true; /* weryfikacja: podwójne „Anuluj” zamykało też ekran pod spodem */ if (router.canGoBack()) router.back(); else router.replace('/'); }}><Text style={{ color: th.accent, fontSize: 17 }}>{t('Anuluj')}</Text></Pressable> }), [th, router]); // eslint-disable-line react-hooks/exhaustive-deps
+  const headerOpts = useMemo(() => ({ headerRight: () => <Pressable accessibilityRole="button" hitSlop={10} onPress={() => { if (chosen.current) return; chosen.current = true; /* weryfikacja: podwójne „Anuluj” zamykało też ekran pod spodem */ if (router.canGoBack()) router.back(); else router.replace('/'); }}><Text style={{ color: th.accent, fontSize: 17, fontFamily: F.regular }}>{t('Anuluj')}</Text></Pressable> }), [th, router]); // eslint-disable-line react-hooks/exhaustive-deps
   const ql = fold(q.trim());
   // Runda 6: dokładne trafienie nazwy pokazujemy mimo filtra partii — inaczej picker proponował utworzenie duplikatu.
   const exact = (e: Exercise) => !!ql && (fold(e.name) === ql || fold(exName(e)) === ql);
@@ -52,7 +52,7 @@ export default function PickerScreen() {
   let last = ''; const rows: React.ReactNode[] = [];
   list.forEach(e => { if (!g && !ql && e.group !== last) { last = e.group; rows.push(<Muted key={'g' + e.group} accessibilityRole="header" style={{ fontSize: 12, fontFamily: F.semibold, paddingTop: 12, paddingBottom: 2 }}>{t(e.group)}</Muted>); }
     const a = avail(e); const miss = a && !a.ok ? ' · ' + t('brak: {m}', { m: missingLabel(a.missing) }) : '';
-    rows.push(<Item key={e.id} title={exName(e)} sub={`${t(e.equipment)}${e.bandAssistable ? ' · ' + t('guma') : ''}${miss}`} onPress={() => choose(e)} icon="+" dim={!!miss} />); });
+    rows.push(<Item key={e.id} title={exName(e)} sub={`${t(e.equipment)}${usesBand(e) ? ' · ' + t('guma') : ''}${miss}`} onPress={() => choose(e)} icon="+" dim={!!miss} />); });
   // Usunięte ćwiczenie o pasującej nazwie można przywrócić razem z historią, zamiast tworzyć puste nowe (runda 4).
   const archived = ql ? st.exercises.filter(e => e.archived && swapOk(e) && (fold(e.name).includes(ql) || fold(exName(e)).includes(ql))) : [];
   archived.forEach(e => rows.push(<Item key={'a' + e.id} title={t('Przywróć „{name}”', { name: exName(e) })} sub={exerciseInHistory(e.id) ? t('usunięte ćwiczenie z historią') : t('usunięte ćwiczenie (w bieżącym treningu)')} onPress={() => { if (chosen.current) return; e.archived = false; save(e); choose(e); }} icon="↺" />));

@@ -817,5 +817,7 @@
  "Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → Trening → Backup, ostatnie {n}). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego Apple ID wyeksportuj backup na zewnątrz.": "Backup automat: după fiecare antrenament se salvează un fișier JSON în Fișiere (Pe iPhone-ul meu → Trening → Backup, ultimele {n}). Importul acceptă și aceste fișiere. Aceste copii se șterg odată cu aplicația — înainte de a o elimina sau de a o instala de pe alt Apple ID, exportați un backup în altă parte.",
  "Zakres powtórzeń: {r} — po osiągnięciu górnej granicy podpowiedź „↑ więcej {u}”.": "Interval de repetări: {r} — când atingeți limita de sus, apare sugestia „↑ mai multe {u}”.",
  "Ustawienia na stronę: {n} ({r})": "Setări pe parte: {n} ({r})",
- "Ciężarów w tym zakresie: {c} — najwyżej {n}. Zwiększ krok.": "Greutăți în acest interval: {c} — cel mult {n}. Măriți pasul."
+ "Ciężarów w tym zakresie: {c} — najwyżej {n}. Zwiększ krok.": "Greutăți în acest interval: {c} — cel mult {n}. Măriți pasul.",
+ "Guma jako opór: przy serii wybierasz gumę (poziom 1–7), rekordy liczą serie z gumą.": "Banda ca rezistență: la fiecare serie alegeți banda (nivel 1–7), recordurile numără seriile cu bandă.",
+ "Usunąć serię?": "Ștergeți seria?"
 }

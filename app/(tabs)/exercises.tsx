@@ -4,7 +4,7 @@ import { F } from '@/lib/theme';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { Screen, H1, Item, Btn, Input, Muted, Empty, useOnce } from '@/components/ui';
-import { useHistTick, newExercise, visibleExercises, getState, save, exerciseInHistory } from '@/lib/store';
+import { useHistTick, newExercise, visibleExercises, getState, save, exerciseInHistory, usesBand } from '@/lib/store';
 import { GROUPS } from '@/lib/seed';
 import { t, exName, locale, fold } from '@/lib/i18n';
 
@@ -16,7 +16,7 @@ export default function ExercisesScreen() {
   const archived = ql ? getState().exercises.filter(e => e.archived && (fold(e.name).includes(ql) || fold(exName(e)).includes(ql))) : [];
   let last = ''; const rows: React.ReactNode[] = [];
   list.forEach(e => { if (e.group !== last) { last = e.group; rows.push(<Muted key={'g' + e.group} accessibilityRole="header" style={{ fontSize: 12, fontFamily: F.semibold, paddingTop: 14, paddingBottom: 2 }}>{t(e.group)}</Muted>); }
-    rows.push(<Item key={e.id} title={exName(e)} sub={`${t(e.equipment)}${e.bandAssistable ? ' · ' + t('guma') : ''}${e.tempo ? ' · ' + t('tempo') + ' ' + e.tempo : ''}`} onPress={() => router.push(`/exercise/${e.id}`)} />); });
+    rows.push(<Item key={e.id} title={exName(e)} sub={`${t(e.equipment)}${usesBand(e) ? ' · ' + t('guma') : ''}${e.tempo ? ' · ' + t('tempo') + ' ' + e.tempo : ''}`} onPress={() => router.push(`/exercise/${e.id}`)} />); });
   return (
     <SafeAreaView style={{ flex: 1 }} edges={['top']}><Screen>
       <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginVertical: 10 }}><H1>{t('Ćwiczenia')} <Muted>{all.length}</Muted></H1><Btn title={t('+ Nowe')} small onPress={once(() => { const e = newExercise(); router.push(`/exercise/${e.id}`); })} /></View>

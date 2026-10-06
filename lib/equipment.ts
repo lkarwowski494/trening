@@ -195,14 +195,18 @@ export function blankLoad(item: EquipItem, unit: LoadUnit = 'kg'): LoadSpec | un
   return { kind: 'list', unit, items: [] };
 }
 /** Presety modeli w edytorze ciężarów — tylko z danymi ze źródeł (docs/10, sekcje 3.2 i 3.4). TREXO TXO-B4W002: kroki nieznane → brak presetu. */
-export const LOAD_PRESETS: { id: string; item: string; label: L; spec: () => LoadSpec }[] = [ /* audyt (LOW): nazwy z przecinkiem / kropką wg języka */
+export const LOAD_PRESETS: { id: string; item: string; label: L; spec: () => LoadSpec; optsOff?: string[] }[] = [ /* audyt (LOW): nazwy z przecinkiem / kropką wg języka */
   { id: 'gymtek24', item: 'db_fixed', label: { pl: 'Gymtek 2,5–24 kg', en: 'Gymtek 2.5–24 kg' }, spec: () => listOf([2.5, 3.5, 4.5, 5.5, 6.5, 8, 9, 10, 11.5, 13.5, 16, 18, 20.5, 22.5, 24]) },
   { id: 'hopsport2x10', item: 'db_plate', label: { pl: 'Hop-Sport 2×10 kg', en: 'Hop-Sport 2×10 kg' }, spec: () => ({ kind: 'plates', unit: 'kg', base: 1.5, plates: [{ w: 2.5, n: 4 }, { w: 1.25, n: 4 }, { w: 0.5, n: 4 }] }) },
   { id: 'vishape_pro', item: 'electric', label: { pl: 'ViShape SmartGym Pro (1,5–65 kg/str.)', en: 'ViShape SmartGym Pro (1.5–65 kg/side)' }, spec: () => ({ kind: 'electric', unit: 'kg', min: 1.5, max: 65, step: 0.5 }) },
   /* 06.10.2026: dane z docs/research/equipment/stations.json (strona producenta i centrum pomocy); jedna linka */
-  { id: 'voltra1', item: 'electric', label: { pl: 'Beyond Power Voltra I (5–200 lb)', en: 'Beyond Power Voltra I (5–200 lb)' }, spec: () => ({ kind: 'electric', unit: 'lb', min: 5, max: 200, step: 1 }) },
+  { id: 'voltra1', item: 'electric', label: { pl: 'Beyond Power Voltra I (5–200 lb)', en: 'Beyond Power Voltra I (5–200 lb)' }, spec: () => ({ kind: 'electric', unit: 'lb', min: 5, max: 200, step: 1 }), optsOff: ['dual'] },
   { id: 'vishape_lite', item: 'electric', label: { pl: 'ViShape SmartGym Lite (1,5–35 kg/str.)', en: 'ViShape SmartGym Lite (1.5–35 kg/side)' }, spec: () => ({ kind: 'electric', unit: 'kg', min: 1.5, max: 35, step: 0.5 }) },
 ];
+
+/** Preset modelu: ciężary i — gdy model czegoś nie ma — odznaczone opcje (Voltra I: jedna linka; przegląd 06.10). Pozostałe opcje bez zmian:
+ * wyposażenia dodatkowego (pas, opaski) źródła nie podają. */
+export function applyLoadPreset(entry: { load?: LoadSpec; opts: string[] }, p: typeof LOAD_PRESETS[number]) { entry.load = p.spec(); if (p.optsOff) entry.opts = entry.opts.filter(o => !p.optsOff!.includes(o)); }
 
 /* ---------- presety miejsc ---------- */
 export const LOCATION_PRESETS = ['gym', 'home', 'bodyweight', 'hotel'] as const;
@@ -294,7 +298,7 @@ export function loadKindsFor(ex: Pick<Exercise, 'loadSource' | 'requires'>): Loa
   const out: LoadKind[] = []; const add = (k: LoadKind | undefined) => { if (k && !out.includes(k)) out.push(k); };
   add(ex.loadSource ? KIND_BY_SOURCE[ex.loadSource] : undefined);
   if (!out.length) return out; /* masa ciała / bez obciążenia — bez listy ciężarów */
-  for (const c of (ex.requires ?? []).flat()) add(c === 'db' ? 'dumbbell' : c === 'kb' ? 'kettlebell' : c.startsWith('cable.') ? 'cable' : c === 'barbell' ? 'barbell' : MACHINE_CAPS.has(c) ? 'machine' : undefined);
+  for (const c of (ex.requires ?? []).flat()) add(c === 'db' ? 'dumbbell' : c === 'kb' ? 'kettlebell' : c.startsWith('cable.') ? 'cable' : c === 'barbell' ? 'barbell' : c === 'ez_bar' ? 'ez_bar' : c === 'trap_bar' ? 'trap_bar' : MACHINE_CAPS.has(c) ? 'machine' : undefined); /* przegląd 06.10: EZ i trap bar jako alternatywa (Upright Row, Reverse Curl…) */
   return out;
 }
 export type ExLoads = { kind: 'loads'; loads: number[]; item: string } | { kind: 'unknown' } | { kind: 'none' };

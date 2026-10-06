@@ -184,10 +184,13 @@ export function draftAddExercise(key: string, ex: Exercise) {
   touchDraft();
 }
 /** Nowa seria = kopia ostatniej (po rozgrzewce pusta seria zwykła, po drop secie drop set — jak „+ seria” w treningu). */
-export function draftAddSet(key: string, ei: number) {
+/** „+ seria” / „+ rozgrzewka” / „+ drop set” (przegląd 06.10 — jak w treningu, store.addSet): rozgrzewka pusta przed seriami roboczymi,
+ * drop set na końcu z wartościami ostatniej. RPE się nie kopiuje (jak w treningu — to ocena tej jednej serii). */
+export function draftAddSet(key: string, ei: number, kind?: 'warmup' | 'drop') {
   const d = drafts.get(key); const e = d?.w.exercises[ei]; if (!d || !e) return;
+  if (kind === 'warmup') { const i = e.sets.findIndex(x => x.kind !== 'warmup'); e.sets.splice(i < 0 ? e.sets.length : i, 0, stripUnused(exById(e.exerciseId), { ...emptySet(), kind: 'warmup', warmup: true, done: true })); touchDraft(); return; }
   const l = e.sets[e.sets.length - 1]; const fromWarmup = !l || l.kind === 'warmup';
-  const s: WSet = stripUnused(exById(e.exerciseId), { ...emptySet(), ...(fromWarmup ? {} : copyVals(l)), rpe: !fromWarmup && l ? l.rpe : '', kind: l?.kind === 'drop' ? 'drop' : 'normal', done: true });
+  const s: WSet = stripUnused(exById(e.exerciseId), { ...emptySet(), ...(fromWarmup ? {} : copyVals(l)), rpe: '', kind: kind === 'drop' || l?.kind === 'drop' ? 'drop' : 'normal', done: true });
   /* weryfikacja 2 (L1): kopia pól wypełnionych przez aplikację i nieruszonych też jest „wypełniona przez aplikację” — po zmianie daty liczy się od nowa */
   if (!fromWarmup && l) { const rec: Partial<Record<VKey, unknown>> = {}; for (const k of liveKeys(d, l)) if (s[k] === l[k]) rec[k] = s[k]; if (Object.keys(rec).length) d.prefilled[s.id] = rec; }
   e.sets.push(s); touchDraft();

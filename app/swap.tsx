@@ -1,7 +1,7 @@
 import React, { useMemo, useRef, useState } from 'react';
 import { ScrollView, Pressable, Text, View } from 'react-native';
 import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
-import { useTheme } from '@/lib/theme';
+import { useTheme, F } from '@/lib/theme';
 import { Screen, Item, Muted, Empty, SectionTitle, Chip, Input } from '@/components/ui';
 import { getState, useTick, exById, swapBlock, swapImpl, canUndoSwap, locationById, visibleExercises, newExercise, save, exerciseInHistory } from '@/lib/store';
 import { availability, capsOf, missingLabel } from '@/lib/equipment';
@@ -25,7 +25,7 @@ export default function SwapScreen() {
   /* „Inne” (decyzja właściciela 04.10.2026): rozwijana lista z filtrami-etykietami partii i miejsca, które da się zdjąć (✕) */
   const [open, setOpen] = useState(false); const [grpOn, setGrpOn] = useState(true); const [locOn, setLocOn] = useState(true); const [q, setQ] = useState(''); const [lim, setLim] = useState(SWAP_PAGE);
   const close = () => { if (router.canGoBack()) router.back(); else router.replace('/'); };
-  const headerOpts = useMemo(() => ({ headerRight: () => <Pressable accessibilityRole="button" hitSlop={10} onPress={() => { if (chosen.current) return; chosen.current = true; close(); }}><Text style={{ color: th.accent, fontSize: 17 }}>{t('Anuluj')}</Text></Pressable> }), [th, router]); // eslint-disable-line react-hooks/exhaustive-deps
+  const headerOpts = useMemo(() => ({ headerRight: () => <Pressable accessibilityRole="button" hitSlop={10} onPress={() => { if (chosen.current) return; chosen.current = true; close(); }}><Text style={{ color: th.accent, fontSize: 17, fontFamily: F.regular }}>{t('Anuluj')}</Text></Pressable> }), [th, router]); // eslint-disable-line react-hooks/exhaustive-deps
   const tg = parseSwapTarget(target);
   const d = tg?.kind === 'edit' ? draftOf(tg.key) : undefined; const a = tg?.kind === 'active' ? getState().active : null;
   const w = d ? d.w : a; const e: WExercise | undefined = tg && w ? w.exercises.find(x => x.id === tg.blockId) : undefined; const ex = e ? exById(e.exerciseId) : undefined;

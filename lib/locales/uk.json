@@ -817,5 +817,7 @@
  "Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → Trening → Backup, ostatnie {n}). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego Apple ID wyeksportuj backup na zewnątrz.": "Автоматична резервна копія: після кожного тренування у Файлах зберігається файл JSON (На iPhone → Trening → Backup, останні {n}). Імпорт приймає й ці файли. Ці копії видаляються разом із програмою — перш ніж її видалити або встановити з іншого Apple ID, експортуйте резервну копію деінде.",
  "Zakres powtórzeń: {r} — po osiągnięciu górnej granicy podpowiedź „↑ więcej {u}”.": "Діапазон повторень: {r} — коли досягнете верхньої межі, з’явиться підказка «↑ більше {u}».",
  "Ustawienia na stronę: {n} ({r})": "Налаштування на сторону: {n} ({r})",
- "Ciężarów w tym zakresie: {c} — najwyżej {n}. Zwiększ krok.": "Ваг у цьому діапазоні: {c} — щонайбільше {n}. Збільште крок."
+ "Ciężarów w tym zakresie: {c} — najwyżej {n}. Zwiększ krok.": "Ваг у цьому діапазоні: {c} — щонайбільше {n}. Збільште крок.",
+ "Guma jako opór: przy serii wybierasz gumę (poziom 1–7), rekordy liczą serie z gumą.": "Резинка як опір: для кожного підходу вибираєте резинку (рівень 1–7), рекорди враховують підходи з резинкою.",
+ "Usunąć serię?": "Видалити підхід?"
 }

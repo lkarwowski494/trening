@@ -9,6 +9,7 @@ import { draftOf, beginEdit, discardDraft, isDirty, touchDraft, useDraftTick, ch
 import { onHistoryEdited } from '@/lib/backup';
 import { locationLabel } from '@/lib/locations';
 import { hasTime, hasReps, hasWeight, hasDistance, SET_KIND_LABEL, type WExercise, type WSet } from '@/lib/seed';
+import { SetBadge } from '@/components/SetBadge';
 import { useTheme, F } from '@/lib/theme';
 import { t, tp, exName } from '@/lib/i18n';
 import { wu, wField, wInKeep, fmtW } from '@/lib/units';
@@ -112,7 +113,7 @@ function EditBlock({ d, e, ei, labels }: { d: Draft; e: WExercise; ei: number; l
           <View key={set.id}>
             <View style={s.row}>
               <Pressable onPress={() => setMenu(set, si)} hitSlop={8} accessibilityRole="button" accessibilityHint={hint} accessibilityLabel={t('Seria {n}, typ: {k}. Tapnij, by zmienić typ lub dodać notatkę.', { n: lbl, k: t(SET_KIND_LABEL[kind]) })} style={{ width: 32, minHeight: 44, justifyContent: 'center' }}>
-                <Text maxFontSizeMultiplier={1.3} style={{ color: kind !== 'normal' ? th.band : th.muted, fontSize: 14, fontFamily: kind !== 'normal' ? F.semibold : F.regular }}>{lbl}{set.note ? '•' : ''}</Text>
+                <SetBadge kind={kind} label={lbl} note={!!set.note} /* przegląd 06.10: jak w treningu i szablonie */ />
               </Pressable>
               {hasWeight(m) ? <View style={s.cell}><NumInput weightTol decimal allowNegative={bw} value={wField(loadFieldValue(ex, set))} stored={loadFieldValue(ex, set)} onNum={(v, keep) => { writeLoad(ex, set, wInKeep(v, keep)); /* Q-021; audyt 83b (LOW 2): pole pokazuje to samo co ekran sesji (store.loadOf), wpis trafia do pola obecnego sprzętu */ touchDraft(); }} placeholder={bw ? '±0' : wu()} accessibilityLabel={ex ? loadLabel(ex, impl) : t('ciężar')} accessibilityHint={hint} /></View> : null}
               {hasReps(m) ? <View style={s.cell}><NumInput value={set.reps} onNum={v => { set.reps = v === '' ? '' : Math.min(1000, Math.max(0, Math.floor(v))); touchDraft(); }} placeholder="0" accessibilityLabel={t('Powtórzenia')} accessibilityHint={hint} testID={`reps-${ei}-${si}`} /* E2E (Maestro 05) */ /></View> : null}
@@ -128,7 +129,7 @@ function EditBlock({ d, e, ei, labels }: { d: Draft; e: WExercise; ei: number; l
       })}
       {!e.sets.length ? <Muted style={{ fontSize: 13, marginBottom: 6 }}>{t('Bez serii — ćwiczenie nie zostanie zapisane.')}</Muted> : null}
       <View style={s.actions}>
-        <Btn title={t('+ seria')} small accessibilityHint={nm} onPress={() => draftAddSet(d.key, ei)} />
+        <Btn title={t('+ seria')} small accessibilityHint={nm} onPress={() => draftAddSet(d.key, ei)} /><Btn title={t('+ rozgrzewka')} small kind="ghost" accessibilityHint={nm} onPress={() => draftAddSet(d.key, ei, 'warmup')} /><Btn title={t('+ drop set')} small kind="ghost" accessibilityHint={nm} onPress={() => draftAddSet(d.key, ei, 'drop')} />
         <Btn title={t('⇄ zamień')} small kind="ghost" accessibilityLabel={t('Zamień ćwiczenie: {name}', { name: nm })} onPress={() => router.push(`/swap?target=edit:${d.key}:${e.id}`)} /* E2 D6 (H1) */ />
         <Btn title={t('usuń')} small kind="ghost" accessibilityLabel={t('Usuń ćwiczenie: {name}', { name: nm })} onPress={removeEx} />
         <Muted style={{ fontSize: 13, alignSelf: 'center' }}>{`${e.sets.length} ${tp(e.sets.length, 'seria|serie|serii')}`}</Muted>

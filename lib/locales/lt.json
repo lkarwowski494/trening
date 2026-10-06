@@ -817,5 +817,7 @@
  "Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → Trening → Backup, ostatnie {n}). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego Apple ID wyeksportuj backup na zewnątrz.": "Automatinė atsarginė kopija: po kiekvienos treniruotės JSON failas išsaugomas programoje „Failai“ (Mano iPhone → Trening → Backup, paskutiniai {n}). Importuoti galima ir šiuos failus. Šios kopijos ištrinamos kartu su programa — prieš ją pašalindami arba diegdami iš kito Apple ID, eksportuokite atsarginę kopiją kitur.",
  "Zakres powtórzeń: {r} — po osiągnięciu górnej granicy podpowiedź „↑ więcej {u}”.": "Pakartojimų intervalas: {r} — pasiekus viršutinę ribą, rodomas patarimas „↑ daugiau {u}“.",
  "Ustawienia na stronę: {n} ({r})": "Nustatymų vienai pusei: {n} ({r})",
- "Ciężarów w tym zakresie: {c} — najwyżej {n}. Zwiększ krok.": "Svorių šiame intervale: {c} — daugiausia {n}. Padidinkite žingsnį."
+ "Ciężarów w tym zakresie: {c} — najwyżej {n}. Zwiększ krok.": "Svorių šiame intervale: {c} — daugiausia {n}. Padidinkite žingsnį.",
+ "Guma jako opór: przy serii wybierasz gumę (poziom 1–7), rekordy liczą serie z gumą.": "Guma kaip pasipriešinimas: kiekvienai serijai pasirenkate gumą (1–7 lygis), rekordai skaičiuoja serijas su guma.",
+ "Usunąć serię?": "Ištrinti seriją?"
 }

@@ -41,7 +41,7 @@ export const EN: Record<string, string> = {
   'Co logujesz w serii': 'What you log per set', 'Jak liczyć ciężar w objętości': 'How weight counts toward volume',
   'Przerwa robocza (s)': 'Working rest (s)', 'domyślna {s}': 'default {s}', 'Przerwa po rozgrzewce (s)': 'Rest after warm-up (s)', 'jak robocza': 'same as working',
   'Partie główne (1 seria)': 'Primary muscles (1 set)', 'Partie pomocnicze (0,5 serii)': 'Secondary muscles (0.5 set)',
-  'Asysta gumą': 'Band assistance', 'tak — przy serii wybierasz gumę': 'yes — pick a band for each set', 'nie': 'no',
+  'Asysta gumą': 'Band assistance', 'Guma jako opór: przy serii wybierasz gumę (poziom 1–7), rekordy liczą serie z gumą.': 'Band as resistance: pick a band (level 1–7) for each set; records count sets with a band.', 'Usunąć serię?': 'Delete set?', 'tak — przy serii wybierasz gumę': 'yes — pick a band for each set', 'nie': 'no',
   'Tempo (opcjonalnie, np. 3-1-1)': 'Tempo (optional, e.g. 3-1-1)', 'Notatki techniczne': 'Technique notes', 'Ostatnio {d}:': 'Last time {d}:',
   'Usuń ćwiczenie': 'Delete exercise', 'Usunąć ćwiczenie?': 'Delete exercise?',   'Nie': 'No', 'Usuń': 'Delete', 'usuń': 'remove',
 

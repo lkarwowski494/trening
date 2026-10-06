@@ -817,5 +817,7 @@
  "Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → Trening → Backup, ostatnie {n}). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego Apple ID wyeksportuj backup na zewnątrz.": "Automātiskais dublējums: pēc katra treniņa JSON fails pats saglabājas lietotnē Faili (Manā iPhone → Trening → Backup, pēdējie {n}). Imports pieņem arī šos failus. Šīs kopijas tiek izdzēstas kopā ar lietotni — pirms tās dzēšanas vai instalēšanas no cita Apple ID eksportējiet dublējumu ārpus tās.",
  "Zakres powtórzeń: {r} — po osiągnięciu górnej granicy podpowiedź „↑ więcej {u}”.": "Atkārtojumu diapazons: {r} — sasniedzot augšējo robežu, tiek rādīts padoms “↑ vairāk {u}”.",
  "Ustawienia na stronę: {n} ({r})": "Iestatījumi uz pusi: {n} ({r})",
- "Ciężarów w tym zakresie: {c} — najwyżej {n}. Zwiększ krok.": "Svaru šajā diapazonā: {c} — ne vairāk kā {n}. Palieliniet soli."
+ "Ciężarów w tym zakresie: {c} — najwyżej {n}. Zwiększ krok.": "Svaru šajā diapazonā: {c} — ne vairāk kā {n}. Palieliniet soli.",
+ "Guma jako opór: przy serii wybierasz gumę (poziom 1–7), rekordy liczą serie z gumą.": "Gumija kā pretestība: katrai sērijai izvēlaties gumiju (1.–7. līmenis), rekordos tiek skaitītas sērijas ar gumiju.",
+ "Usunąć serię?": "Dzēst sēriju?"
 }

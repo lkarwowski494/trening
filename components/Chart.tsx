@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, type LayoutChangeEvent } from 'react-native';
 import Svg, { Polyline, Circle, Line, Rect, Text as SvgText } from 'react-native-svg';
-import { useTheme } from '@/lib/theme';
+import { useTheme, F } from '@/lib/theme';
 import { t as tr, tp } from '@/lib/i18n';
 
 /*
@@ -34,7 +34,7 @@ export function LineChart({ points, fmt, height = 180, color, scale = 1, minStep
   const t = useTheme(); const [w, setW] = React.useState(0);
   const onLayout = (e: LayoutChangeEvent) => setW(e.nativeEvent.layout.width);
   const c = color ?? t.accent;
-  if (points.length < 2) return <View onLayout={onLayout} style={{ height, justifyContent: 'center' }}><Text style={{ color: t.muted, textAlign: 'center', fontSize: 13 }}>{points.length === 1 ? tr('Jedna sesja: {v}. Wykres pojawi się po drugiej.', { v: fmt(points[0].y) }) : tr('Brak danych do wykresu.')}</Text></View>;
+  if (points.length < 2) return <View onLayout={onLayout} style={{ height, justifyContent: 'center' }}><Text style={{ color: t.muted, textAlign: 'center', fontSize: 13, fontFamily: F.regular }}>{points.length === 1 ? tr('Jedna sesja: {v}. Wykres pojawi się po drugiej.', { v: fmt(points[0].y) }) : tr('Brak danych do wykresu.')}</Text></View>;
   const padR = 12, padT = 14, padB = 26;
   // Runda 69: podziałki liczone w jednostkach wyświetlanych (lb!), krok nie mniejszy niż rozdzielczość etykiet,
   // dla serii całkowitych (powtórzenia, sekundy) tylko kroki całkowite 1/2/5×10^k — etykiety się nie powtarzają i odpowiadają liniom.
@@ -51,12 +51,12 @@ export function LineChart({ points, fmt, height = 180, color, scale = 1, minStep
     <View onLayout={onLayout} style={{ height }} accessible accessibilityRole="image" accessibilityLabel={a11y}>
       {w > 0 ? (
         <Svg width={w} height={height}>
-          {ticks.map((v, i) => <React.Fragment key={i}><Line x1={padL} x2={w - padR} y1={Y(v)} y2={Y(v)} stroke={t.line} strokeWidth={1} /><SvgText x={padL - 6} y={Y(v) + 4} fill={t.muted} fontSize={10} textAnchor="end">{tickLabels[i]}</SvgText></React.Fragment>)}
+          {ticks.map((v, i) => <React.Fragment key={i}><Line x1={padL} x2={w - padR} y1={Y(v)} y2={Y(v)} stroke={t.line} strokeWidth={1} /><SvgText fontFamily={F.regular} x={padL - 6} y={Y(v) + 4} fill={t.muted} fontSize={10} textAnchor="end">{tickLabels[i]}</SvgText></React.Fragment>)}
           <Polyline points={pts} fill="none" stroke={c} strokeWidth={2} strokeLinejoin="round" strokeLinecap="round" />
           {(points.length <= MAX_DOTS ? points : [...new Set([points[0], best, last])]).map((p, i) => <Circle key={i} cx={X(p.x)} cy={Y(p.y)} r={p === best ? 4.5 : 3} fill={p === best ? t.band : c} />)}
-          <SvgText x={padL} y={height - 8} fill={t.muted} fontSize={10}>{points[0].label}</SvgText>
-          <SvgText x={w - padR} y={height - 8} fill={t.muted} fontSize={10} textAnchor="end">{last.label}</SvgText>
-          {(() => { const bl = fmt(best.y); const half = 3 * bl.length; const bx = X(best.x); const anchor = bx + half > w - 2 ? 'end' : bx - half < padL ? 'start' : 'middle'; /* runda 69: nie na etykiecie osi */ const by = Y(best.y) - 8 < padT + 2 ? Y(best.y) + 16 : Y(best.y) - 8; return <SvgText x={anchor === 'end' ? Math.min(bx, w - 2) : anchor === 'start' ? Math.max(bx, padL) : bx} y={by} fill={t.band} fontSize={10} textAnchor={anchor}>{bl}</SvgText>; })() /* runda 13: etykieta rekordu nie wychodzi za krawędź */}
+          <SvgText fontFamily={F.regular} x={padL} y={height - 8} fill={t.muted} fontSize={10}>{points[0].label}</SvgText>
+          <SvgText fontFamily={F.regular} x={w - padR} y={height - 8} fill={t.muted} fontSize={10} textAnchor="end">{last.label}</SvgText>
+          {(() => { const bl = fmt(best.y); const half = 3 * bl.length; const bx = X(best.x); const anchor = bx + half > w - 2 ? 'end' : bx - half < padL ? 'start' : 'middle'; /* runda 69: nie na etykiecie osi */ const by = Y(best.y) - 8 < padT + 2 ? Y(best.y) + 16 : Y(best.y) - 8; return <SvgText fontFamily={F.regular} x={anchor === 'end' ? Math.min(bx, w - 2) : anchor === 'start' ? Math.max(bx, padL) : bx} y={by} fill={t.band} fontSize={10} textAnchor={anchor}>{bl}</SvgText>; })() /* runda 13: etykieta rekordu nie wychodzi za krawędź */}
         </Svg>) : null}
     </View>
   );
@@ -74,8 +74,8 @@ export function BarChart({ bars, fmt, height = 140, color }: { bars: { label: st
           {bars.map((b, i) => { const h = (height - padT - padB) * (b.value / max); const x = i * (bw + gap); const y = height - padB - h; return (
             <React.Fragment key={i}>
               <Rect x={x} y={y} width={bw} height={Math.max(1, h)} rx={3} fill={b.value ? c : t.line} />
-              {b.value ? <SvgText x={x + bw / 2} y={y - 4} fill={t.muted} fontSize={9} textAnchor="middle">{fmt(b.value)}</SvgText> : null}
-              <SvgText x={x + bw / 2} y={height - 6} fill={t.muted} fontSize={9} textAnchor="middle">{b.label}</SvgText>
+              {b.value ? <SvgText fontFamily={F.regular} x={x + bw / 2} y={y - 4} fill={t.muted} fontSize={9} textAnchor="middle">{fmt(b.value)}</SvgText> : null}
+              <SvgText fontFamily={F.regular} x={x + bw / 2} y={height - 6} fill={t.muted} fontSize={9} textAnchor="middle">{b.label}</SvgText>
             </React.Fragment>); })}
         </Svg>) : null}
     </View>

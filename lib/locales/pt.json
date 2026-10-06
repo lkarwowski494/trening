@@ -817,5 +817,7 @@
  "Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → Trening → Backup, ostatnie {n}). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego Apple ID wyeksportuj backup na zewnątrz.": "Cópia automática: após cada treino, um ficheiro JSON é guardado automaticamente em Ficheiros (No meu iPhone → Trening → Backup, últimas {n}). A importação também aceita estes ficheiros. Estas cópias são apagadas juntamente com a app — antes de a remover ou de a instalar com outro ID Apple, exporte uma cópia para outro lado.",
  "Zakres powtórzeń: {r} — po osiągnięciu górnej granicy podpowiedź „↑ więcej {u}”.": "Intervalo de repetições: {r} — ao atingir o limite superior, surge a sugestão «↑ mais {u}».",
  "Ustawienia na stronę: {n} ({r})": "Definições por lado: {n} ({r})",
- "Ciężarów w tym zakresie: {c} — najwyżej {n}. Zwiększ krok.": "Pesos neste intervalo: {c} — no máximo {n}. Aumente o passo."
+ "Ciężarów w tym zakresie: {c} — najwyżej {n}. Zwiększ krok.": "Pesos neste intervalo: {c} — no máximo {n}. Aumente o passo.",
+ "Guma jako opór: przy serii wybierasz gumę (poziom 1–7), rekordy liczą serie z gumą.": "Elástico como resistência: em cada série escolhe o elástico (nível 1–7); os recordes contam as séries com elástico.",
+ "Usunąć serię?": "Apagar a série?"
 }

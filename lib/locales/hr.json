@@ -817,5 +817,7 @@
  "Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → Trening → Backup, ostatnie {n}). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego Apple ID wyeksportuj backup na zewnątrz.": "Automatska sigurnosna kopija: nakon svakog treninga JSON datoteka sprema se u Datoteke (Na mom iPhoneu → Trening → Backup, zadnjih {n}). Uvoz prihvaća i te datoteke. Te se kopije brišu zajedno s aplikacijom — prije uklanjanja ili instalacije s drugog Apple ID-a izvezite kopiju na drugo mjesto.",
  "Zakres powtórzeń: {r} — po osiągnięciu górnej granicy podpowiedź „↑ więcej {u}”.": "Raspon ponavljanja: {r} — kad dosegnete gornju granicu, pojavit će se savjet „↑ više {u}”.",
  "Ustawienia na stronę: {n} ({r})": "Postavki po strani: {n} ({r})",
- "Ciężarów w tym zakresie: {c} — najwyżej {n}. Zwiększ krok.": "Težina u ovom rasponu: {c} — najviše {n}. Povećajte korak."
+ "Ciężarów w tym zakresie: {c} — najwyżej {n}. Zwiększ krok.": "Težina u ovom rasponu: {c} — najviše {n}. Povećajte korak.",
+ "Guma jako opór: przy serii wybierasz gumę (poziom 1–7), rekordy liczą serie z gumą.": "Traka kao otpor: za svaku seriju birate traku (razina 1–7), rekordi računaju serije s trakom.",
+ "Usunąć serię?": "Obrisati seriju?"
 }

@@ -70,7 +70,7 @@ describe('szkic i zapis (logika)', () => {
     const w = addWorkout(day(3), [[BP, [{ weight: 80, reps: 5, kind: 'failure', rpe: 9 }]], ['Back Squat', [{ weight: 100, reps: 5 }]]]);
     const d = edit.beginEdit(w.id)!;
     edit.draftAddSet(d.key, 0); const s = d.w.exercises[0].sets;
-    expect(s).toHaveLength(2); expect(s[1]).toMatchObject({ weight: 80, reps: 5, rpe: 9, kind: 'normal', done: true, completedAt: null }); expect(s[1].id).not.toBe(s[0].id);
+    expect(s).toHaveLength(2); expect(s[1]).toMatchObject({ weight: 80, reps: 5, rpe: '' /* przegląd 06.10 (#9): RPE się nie kopiuje, jak w treningu */, kind: 'normal', done: true, completedAt: null }); expect(s[1].id).not.toBe(s[0].id);
     edit.draftRemoveSet(d.key, 0, s[0].id); expect(d.w.exercises[0].sets.map(x => x.kind)).toEqual(['normal']);
     edit.draftAddExercise(d.key, bp); expect(d.w.exercises.map(e => e.exerciseId)).toEqual([bp.id, sq.id, bp.id]);
     expect(d.w.exercises[2].sets[0]).toMatchObject({ weight: '', reps: '', done: true }); // ten trening nie jest „wcześniejszy” od siebie

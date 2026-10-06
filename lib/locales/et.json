@@ -817,5 +817,7 @@
  "Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → Trening → Backup, ostatnie {n}). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego Apple ID wyeksportuj backup na zewnątrz.": "Automaatne varukoopia: pärast iga treeningut salvestatakse JSON-fail rakendusse Failid (Minu iPhone’is → Trening → Backup, viimased {n}). Import võtab vastu ka need failid. Need koopiad kustuvad koos rakendusega — enne selle eemaldamist või teise Apple ID-ga installimist ekspordi varukoopia mujale.",
  "Zakres powtórzeń: {r} — po osiągnięciu górnej granicy podpowiedź „↑ więcej {u}”.": "Korduste vahemik: {r} — ülemise piiri saavutamisel kuvatakse vihje „↑ rohkem {u}“.",
  "Ustawienia na stronę: {n} ({r})": "Seadeid külje kohta: {n} ({r})",
- "Ciężarów w tym zakresie: {c} — najwyżej {n}. Zwiększ krok.": "Raskusi selles vahemikus: {c} — kõige rohkem {n}. Suurenda sammu."
+ "Ciężarów w tym zakresie: {c} — najwyżej {n}. Zwiększ krok.": "Raskusi selles vahemikus: {c} — kõige rohkem {n}. Suurenda sammu.",
+ "Guma jako opór: przy serii wybierasz gumę (poziom 1–7), rekordy liczą serie z gumą.": "Kumm vastupanuna: vali igal seerial kumm (tase 1–7), rekordid arvestavad kummiga seeriaid.",
+ "Usunąć serię?": "Kas kustutada seeria?"
 }

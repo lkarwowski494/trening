@@ -3,7 +3,7 @@ import { View, Alert } from 'react-native';
 import { Btn, Chip, Field, Muted, NumInput, Segmented, FieldHint } from '@/components/ui';
 import { useTheme } from '@/lib/theme';
 import { locationEdited } from '@/lib/locations';
-import { LOAD_PRESETS, equipLabel, type EquipItem } from '@/lib/equipment';
+import { LOAD_PRESETS, applyLoadPreset, equipLabel, type EquipItem } from '@/lib/equipment';
 import { achievable, fillRange, convertSpec, validateSpec, rangeCount, LOAD_LIMITS, W_MIN, W_MAX, type LoadSpec, type LoadUnit, type SpecProblem } from '@/lib/loads';
 import { fmtNum } from '@/lib/units';
 import { t } from '@/lib/i18n';
@@ -43,7 +43,7 @@ export default function LoadEditor({ loc, entry, item }: { loc: Location; entry:
   if (!spec) return null;
   const upd = () => { setMsg(''); locationEdited(loc); }; /* runda 82c (LOW 2): przyrządy bloków treningu w toku w tym miejscu od nowa */ const name = equipLabel(item); const lbl = (s: string) => `${s} — ${name}`;
   const presets = LOAD_PRESETS.filter(p => p.item === item.id);
-  const applyPreset = (p: typeof presets[number]) => { const go = () => { entry.load = p.spec(); upd(); };
+  const applyPreset = (p: typeof presets[number]) => { const go = () => { applyLoadPreset(entry, p); upd(); };
     if (!filled(spec)) { go(); return; }
     Alert.alert(t('Zastąpić wpisane ciężary?'), t('{p} zastąpi ciężary wpisane dla: {i}.', { p: equipLabel(p.label), i: name }), [{ text: t('Nie') }, { text: t('Zastąp'), style: 'destructive', onPress: go }]); };
   const problem = validateSpec(spec);

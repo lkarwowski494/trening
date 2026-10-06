@@ -4,7 +4,7 @@ import { useRouter } from 'expo-router';
 import { activateKeepAwakeAsync, deactivateKeepAwake } from 'expo-keep-awake';
 import { useTheme, F } from '@/lib/theme';
 import { Btn, Input, NumInput, Muted } from '@/components/ui';
-import { progressionFor, writeLoad, setActiveLocation, lastActivity, staleSince, staleRef, staleKind, ackStale, markActivity, useForegroundTick, bandA11y, clampName, loadLabelShort, getState, useTick, exById, prevOfActiveBlock, previousFor, canUndoSwap, undoSwap, pinnedImpl, rememberRest as storeRememberRest, canRememberAlt, rememberAlt, altHint, acceptAlt, skipAlt, occurrence, occurrences, hintFor, isBW, reps, fmtDur, fmtSec, fmtTime, setSummary, toggleDone, restAfter, roundRest, addSet, removeSet, removeExercise, finishWorkout, cancelWorkout, save, loadLabel, groupLabels, linkWithNext, unlink, cycleBand, findSet, shortBand, setHasValue, locationById, offListNote, liveBlockImpl, listLocFor, srcSetAt, usesBand } from '@/lib/store';
+import { progressionFor, writeLoad, setActiveLocation, lastActivity, staleSince, staleRef, staleKind, ackStale, markActivity, useForegroundTick, bandA11y, clampName, loadLabelShort, getState, useTick, exById, prevOfActiveBlock, previousFor, canUndoSwap, undoSwap, pinnedImpl, rememberRest as storeRememberRest, canRememberAlt, rememberAlt, altHint, acceptAlt, skipAlt, occurrence, occurrences, hintFor, isBW, reps, fmtDur, fmtSec, fmtTime, setSummary, toggleDone, restAfter, roundRest, addSet, removeSet, removeSetById, removeExercise, finishWorkout, cancelWorkout, save, loadLabel, groupLabels, linkWithNext, unlink, cycleBand, findSet, shortBand, setHasValue, locationById, offListNote, liveBlockImpl, listLocFor, srcSetAt, usesBand } from '@/lib/store';
 import { availability, missingLabel } from '@/lib/equipment';
 import { implLabel } from '@/lib/swap';
 import { SetBadge } from '@/components/SetBadge';
@@ -285,10 +285,13 @@ function ExerciseBlock({ w, e, ei, onDone, onStartSet, labels, prs }: { w: Worko
   const rememberRest = (n: number) => storeRememberRest(w, e, n); /* runda 10: tylko pozycja szablonu, z której powstał blok; blok dodany w trakcie zmienia tylko ćwiczenie; E2 W3: blok-zamiennik — przerwa wpisu zamiennika */
   const parseRest = (v?: string) => { const x = (v ?? '').trim(); if (!x) return null; const n = Math.round(Number(x.replace(',', '.'))); return n >= 0 && isFinite(n) ? Math.min(1800, n) : null; }; // runda 11: ten sam limit co w edycji ćwiczenia i szablonu
   const setMenu = (set: WSet, si: number) => {
-    const labels = [tr('Seria normalna'), tr('Rozgrzewka (W)'), tr('Drop set (D)'), tr('Do upadku (F)'), set.note ? tr('Edytuj notatkę') : tr('Dodaj notatkę'), tr('Anuluj')];
+    const canDel = e.sets.length > 1; /* przegląd 06.10 (jak w szablonie): usunięcie wybranej serii, np. rozgrzewki dodanej przez pomyłkę */
+    const labels = [tr('Seria normalna'), tr('Rozgrzewka (W)'), tr('Drop set (D)'), tr('Do upadku (F)'), set.note ? tr('Edytuj notatkę') : tr('Dodaj notatkę'), ...(canDel ? [tr('Usuń serię')] : []), tr('Anuluj')];
     const kinds = ['normal', 'warmup', 'drop', 'failure'] as const;
-    ActionSheetIOS.showActionSheetWithOptions({ options: labels, cancelButtonIndex: 5, title: tr('Seria {n}', { n: setLabel(e, si) }) }, i => {
+    ActionSheetIOS.showActionSheetWithOptions({ options: labels, cancelButtonIndex: labels.length - 1, ...(canDel ? { destructiveButtonIndex: 5 } : {}), title: tr('Seria {n}', { n: setLabel(e, si) }) }, i => {
       if (i < 4) { set.kind = kinds[i]; set.warmup = set.kind === 'warmup'; save(st.active); }
+      else if (i === 5 && canDel) { const go = () => { const cur = getState().active?.exercises.find(x => x.id === e.id); if (!cur) return; dropTimers([set.id]); removeSetById(getState().active!.exercises.indexOf(cur), set.id); };
+        if (set.done) Alert.alert(tr('Usunąć serię?'), tr('Seria jest już odhaczona.'), [{ text: tr('Nie') }, { text: tr('Usuń'), style: 'destructive', onPress: go }]); else go(); }
       else if (i === 4) Alert.prompt?.(tr('Notatka do serii'), undefined, [{ text: tr('Anuluj'), style: 'cancel' }, { text: tr('Zapisz'), onPress: (v?: string) => { set.note = clampName((v ?? '').trim(), 300); /* runda 49: limit notatki */ save(st.active); } }], 'plain-text', set.note);
     });
   };
