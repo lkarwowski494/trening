@@ -65,6 +65,28 @@ Rozmowa 05.10.2026, rano: „Chciałbym móc opublikować to w Apple Store” i 
 - **Priorytet produktu wynikający z celu:** zatrzymanie użytkowników (jakość, brak błędów, dane bezpieczne) ważniejsze niż liczba pobrań —
   zgodne z pełnym zakresem testów (docs/20).
 
+## Status tradera (DSA) i okres próbny — sprawdzone w źródłach Apple (06.10.2026, na prośbę właściciela, wariant A „najpierw za darmo”)
+
+Źródła (przeczytane): Apple, „Manage European Union Digital Services Act trader requirements”
+(developer.apple.com/help/app-store-connect/manage-compliance-information/manage-european-union-digital-services-act-trader-requirements/);
+„Set up introductory offers for auto-renewable subscriptions” (developer.apple.com/help/app-store-connect/manage-subscriptions/set-up-introductory-offers-for-auto-renewable-subscriptions/);
+„Provide your trader status in App Store Connect” (developer.apple.com/news/?id=x60uzbu9).
+- Trader = osoba działająca „for purposes relating to his or her trade, business, craft or profession” (definicja DSA cytowana przez Apple).
+  Czynniki wg Apple: przychód z aplikacji („for example if your app includes In-App Purchases, or if it's a paid or ad-sponsored app”), praktyki
+  handlowe wobec konsumentów (reklama, promocja), rejestracja VAT, działanie zawodowe. Cytat: „if you're a hobbyist and you developed your app
+  with no intention of commercializing it, you may not be considered a trader.”
+- **Ocenę robi sam deweloper** (Apple nie rozstrzyga). Ryzyko dla wariantu A: darmowa pierwsza wersja z ZAMIAREM późniejszej monetyzacji może
+  być oceniona jako działanie handlowe już teraz — szara strefa, do potwierdzenia u prawnika/księgowego (nie zgadujemy).
+- Non-trader: aplikacja może być w UE; konsumenci widzą, że prawa konsumenckie z umów z nami nie obowiązują. Trader (osoba fizyczna): na stronie
+  aplikacji w UE publicznie adres (lub skrytka pocztowa — „Address or P.O. Box”), telefon, e-mail.
+- Status można zmienić później dla aplikacji (App Information → Digital Services Act → Edit); przy pierwszej deklaracji tradera trzeba podać i
+  zweryfikować dane kontaktowe.
+- Okres próbny subskrypcji rocznej: dostępne 3 dni, 1–2 tyg., 1, 2, 3, 6 mies. i **1 rok**. Ofertę wprowadzającą usuwa się i tworzy na nowo
+  (nie edytuje); każdy może skorzystać z jednej oferty wprowadzającej w grupie subskrypcji.
+- Wniosek (agent): wariant A (bez płatności w aplikacji) daje najmocniejszą podstawę do deklaracji non-trader; wariant B (roczny okres próbny
+  w subskrypcji) = płatności w aplikacji od pierwszego dnia → według kryteriów Apple prawie na pewno trader. Ostateczną ocenę przy zamiarze
+  monetyzacji warto potwierdzić u prawnika/księgowego. Skrytka pocztowa zamiast adresu domowego jest dopuszczalna.
+
 ## Zmiany w aplikacji już zrobione pod publikację
 
 - **Poranny wpis usunięty z aplikacji** (decyzja 05.10.2026: „Nie wszyscy mają czym to mierzyć”, wariant „usunąć z aplikacji”).
