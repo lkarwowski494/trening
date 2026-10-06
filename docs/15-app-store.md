@@ -91,3 +91,9 @@ online, to będą to dodatkowo płatne funkcje.” Ustalenia:
 - Funkcje online (np. synchronizacja między urządzeniami, trener, współdzielenie) — osobny produkt; ze względu na koszty serwera zwykle subskrypcja.
   Apple pozwala łączyć zakup jednorazowy i subskrypcję w jednej aplikacji.
 - Otwarte: czy wcześniejsi użytkownicy dostają funkcje online za darmo; koszty serwera — przed wdrożeniem sprawdzić darmowe limity (zasada: 0 zł poza Apple).
+
+## Limit Expo na buildy lokalne (06.10.2026)
+Przebieg `iphone-local.yml` 37422172177: build lokalny OK, ale `eas upload` odrzucony — „This account has used its local builds from the free plan
+this month, which will reset in 25 days (on Sun Nov 01 2026)”. Darmowy plan Expo liczy też buildy lokalne wysłane przez `eas upload`
+(wcześniej zakładano, że tylko buildy w chmurze — docs/13). Link instalacyjny przez Expo niedostępny do 01.11.2026.
+Do decyzji właściciela: TestFlight (testy wewnętrzne — bez recenzji Apple) albo instalacja pliku .ipa z komputera Mac; płatny plan Expo — nie (0 zł).
