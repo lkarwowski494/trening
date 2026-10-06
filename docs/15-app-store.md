@@ -122,7 +122,7 @@ Zakres: 168 commitów ze wszystkich gałęzi, wiadomości, tagi, 289 plików z h
 - **WYSOKIE (sprawdzone):** stare przebiegi `iphone-eas.yml` sprzed maskowania UDID — lista przebiegów tego workflow jest pusta (0), nie ma czego usuwać.
 - **ŚREDNIE:** (1) `iphone-eas.yml`/`iphone-local.yml` — sekrety ustawione dla całego workflow (dostępne podczas `npm ci`/testów) — do przeniesienia
   do pojedynczych kroków (otwarte; workflowy i tak nieużywane do 01.11 — limit Expo); (2) `testflight.yml` — klucz na dysku dopiero przed archiwum
-  (naprawione); (3) `tests/fixtures/web03-backup.json` zawiera wagę ciała i wpisy z 02.10.2026 — **pytanie do właściciela**, czy to prawdziwe dane.
+  (naprawione); (3) `tests/fixtures/web03-backup.json` zawierał wagę ciała i wpisy z 02.10.2026 — właściciel: „Tak — zamień na zmyślone” (06.10): poranny wpis fikcyjny, daty przesunięte o 300 dni; stare wartości zostają w historii git (przepisanie historii — nie).
 - **NISKIE:** `ios-unsigned.yml` artefakty 1 dzień (naprawione); `.gitignore` dla `.env*`, `*.p8`, `*.p12`, `*.mobileprovision`, `*.cer` (naprawione);
   `appleTeamId` w `app.json` — Apple nie traktuje go jako sekretu (zostaje); Maestro instalowany bez przypiętej wersji (bez sekretów — zostaje).
 - Do sprawdzenia przez właściciela: GitHub → Settings → Actions → General → „Fork pull request workflows” — wymagane zatwierdzenie.
