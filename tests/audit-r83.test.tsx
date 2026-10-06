@@ -13,7 +13,7 @@ import * as stats from '@/lib/stats';
 import * as backup from '@/lib/backup';
 import { SCHEMA_VERSION } from '@/lib/seed';
 import { fresh, ex, seedWithDemo, pressAlert, addWorkout } from './helpers';
-import { renderApp, flushAll, screen, go, tap, act, fireEvent } from './app';
+import { renderApp, flushAll, screen, go, tap, act, fireEvent, openCard } from './app';
 import * as units from '@/lib/units';
 
 jest.setTimeout(60000);
@@ -247,7 +247,7 @@ describe('Q-021 lb: ponowny wpis tej samej liczby nie zmienia kg', () => {
   test('edytor szablonu i poranna waga: ta sama zasada (start 61,23 kg = 135 lb, waga 81,43 kg = 179,5 lb)', async () => {
     await renderApp(); const tpl = store.newTemplate();
     tpl.items.push({ id: 'q21', exerciseId: ex('Back Squat').id, sets: 3, repMin: 5, repMax: 5, restSec: 60, startWeight: 61.23, targetSec: '', groupId: null });
-    await act(async () => { store.getState().settings.unit = 'lb'; store.applyPrefs(); store.save(tpl); }); await go('/template/' + tpl.id); await flushAll(10);
+    await act(async () => { store.getState().settings.unit = 'lb'; store.applyPrefs(); store.save(tpl); }); await go('/template/' + tpl.id); await flushAll(10); await openCard(0);
     await act(async () => { fireEvent.changeText(screen.getAllByDisplayValue('135')[0], '135'); }); await flushAll(5); expect(tpl.items[0].startWeight).toBe(61.23);
     /* poranna waga — ekran usunięty 05.10.2026 (decyzja właściciela) */
   });

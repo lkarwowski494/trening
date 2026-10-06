@@ -11,7 +11,7 @@ import { implLabel } from '@/lib/swap';
 import { getState, useTick, exById, save, dupTemplate, deleteTemplate, groupLabels, linkWithNext, unlink, moveItem, removeItem, restFor, isBW, startFromTemplate, loadLabel, loadLabelShort, occurrence, occurrences, implAtLoc, startLocationId, locationById, tplRows, tplAddRow, tplRemoveRow, tplSetRow, tplSetKind, previousBlockFor, srcSetAt, setSummary, reps } from '@/lib/store';
 import { useTheme, F } from '@/lib/theme';
 import { hasTime, hasReps, hasWeight, hasDistance, SET_KIND_LABEL, type Template, type TemplateItem } from '@/lib/seed';
-import { t, exName } from '@/lib/i18n';
+import { t, tp, exName } from '@/lib/i18n';
 import { wu, wField, wInKeep } from '@/lib/units';
 
 /*
@@ -25,7 +25,10 @@ export default function TemplateEdit() {
   // Nowy, nietknięty szablon (bez ćwiczeń, z nazwą domyślną) znika po wyjściu — „+ Nowy” i „Wróć” nie zostawiają śmieci (runda 2).
   // Tylko szablon utworzony i niezmieniony (updatedAt = createdAt) — nie usuwamy zapisanych szablonów bez ćwiczeń (runda 3).
   useEffect(() => () => { const x = getState().templates.find(y => y.id === id); if (x && !x.items.length && x.name === t('Nowy szablon') && x.updatedAt === x.createdAt) deleteTemplate(x.id); }, [id]);
-  const initialName = useRef(tpl?.name ?? ''); const busy = useRef(false); const once = useOnce(); // runda 6: podwójne „Duplikuj” robiło dwie kopie
+  const initialName = useRef(tpl?.name ?? ''); const busy = useRef(false); const once = useOnce();
+  /* decyzja właściciela 06.10.2026: zwijane karty ćwiczeń, otwarta jedna; nowo dodane ćwiczenie otwiera się samo */
+  const [open, setOpen] = useState<string | null>(null); const known = useRef<Set<string> | null>(null);
+  useEffect(() => { const ids = tpl?.items.map(x => x.id) ?? []; if (!known.current) { known.current = new Set(ids); return; } const fresh = ids.filter(x => !known.current!.has(x)); ids.forEach(x => known.current!.add(x)); if (fresh.length) setOpen(fresh[fresh.length - 1]); }); // runda 6: podwójne „Duplikuj” robiło dwie kopie
   if (!tpl) return <Screen><Muted>{t('Nie ma takiego szablonu.')}</Muted></Screen>;
   // Runda 9: dismissTo('/') nie działał, gdy edytor otwarto z zakładki Szablony (POP_TO 'index' spoza stosu) — trening
   // startował, a ekran zostawał w edytorze. Zamykamy cały stos i przechodzimy na zakładkę główną.
@@ -45,22 +48,28 @@ export default function TemplateEdit() {
       </HScroll></Field> : null}
       <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginBottom: 10 }}>{tpl.items.length ? <Btn title={getState().active ? t('Trening w toku') : t('Start')} kind={getState().active ? 'ghost' : 'primary'} small onPress={once(() => { commitName(); const act = getState().active; if (act && act.templateId === tpl.id) { goHome(); return; } if (act) { Alert.alert(t('Trening w toku'), t('Najpierw zakończ albo anuluj bieżący trening.')); return; } startFromTemplate(tpl); goHome(); })} /> : null}{tpl.items.length > 1 ? <Btn title={t('≡ Kolejność')} small accessibilityLabel={t('Zmień kolejność ćwiczeń')} onPress={() => { commitName(); router.push(`/reorder?target=template:${tpl.id}`); }} /> : null}{tpl.items.length ? <Btn title={t('Duplikuj')} small onPress={() => { if (busy.current) return; busy.current = true; commitName(); const c = dupTemplate(tpl.id); router.replace(`/template/${c.id}`); }} /> : null}<Btn title={t('Usuń')} small kind="danger" onPress={() => Alert.alert(t('Usunąć szablon?'), undefined, [{ text: t('Nie') }, { text: t('Usuń'), style: 'destructive', onPress: () => { if (!getState().templates.some(x => x.id === tpl.id)) return; deleteTemplate(tpl.id); back(); } }])} /></View>
       {tpl.items.map((it, i) => { const ex = exById(it.exerciseId); const m = ex?.metric ?? 'weight_reps'; const next = tpl.items[i + 1]; const nOcc = occurrences(tpl.items, it.exerciseId); const nm = nOcc > 1 ? `${exName(ex)} (${occurrence(tpl.items, i) + 1})` : exName(ex); /* runda 67: dwie pozycje tego samego ćwiczenia rozróżnialne dla VoiceOver */ const impl = implAtLoc(ex, startLocationId(tpl.locationId)); /* MEDIUM 2: przyrząd w miejscu startu szablonu (jak blok po starcie) */ return (
-        <View key={it.id} style={{ borderBottomWidth: 1, borderBottomColor: th.line, paddingVertical: 10, gap: 8 }}>
-          <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-            <Txt style={{ fontFamily: F.semibold, flex: 1 }}>{it.groupId ? <Txt style={{ color: th.band, fontFamily: F.semibold }}>{`SS ${labels[it.groupId]} · `}</Txt> : null}{exName(ex)}</Txt>
-            <View style={{ flexDirection: 'row', gap: 4 }}>
-              {next && (!it.groupId || next.groupId !== it.groupId) ? <Btn title="⇅ SS" small kind="ghost" accessibilityLabel={t('Połącz z następnym w superset')} accessibilityHint={nm} onPress={() => linkWithNext(tpl.items, i, tpl)} /> : null}
-              {it.groupId ? <Btn title="✂" small kind="ghost" accessibilityLabel={t('Wyjmij z supersetu')} accessibilityHint={nm} onPress={() => unlink(tpl.items, i, tpl)} /> : null}
-              {i > 0 ? <Btn title="↑" small kind="ghost" accessibilityLabel={t('Przesuń wyżej')} accessibilityHint={nm} onPress={() => moveItem(tpl.items, i, -1, tpl)} /> : null}
-              {next ? <Btn title="↓" small kind="ghost" accessibilityLabel={t('Przesuń niżej')} accessibilityHint={nm} onPress={() => moveItem(tpl.items, i, 1, tpl)} /> : null}
-              <Btn title="✕" small kind="ghost" accessibilityLabel={t('Usuń z szablonu')} accessibilityHint={nm} onPress={() => Alert.alert(t('Usunąć z szablonu?'), nm, [{ text: t('Nie') }, { text: t('Usuń'), style: 'destructive', onPress: () => { const j = tpl.items.findIndex(x => x.id === it.id); if (j >= 0) removeItem(tpl.items, j, tpl); } }])} />
+        <View key={it.id} style={{ borderBottomWidth: 1, borderBottomColor: th.line, paddingVertical: 6, gap: 8 }}>
+          <Pressable accessibilityRole="button" accessibilityLabel={nm} accessibilityValue={{ text: tplSummary(it) }} accessibilityState={{ expanded: open === it.id }} onPress={() => setOpen(o => o === it.id ? null : it.id)}
+            style={({ pressed }) => ({ flexDirection: 'row', alignItems: 'center', minHeight: 48, gap: 8, opacity: pressed ? 0.6 : 1 })}>
+            <View style={{ flex: 1 }}>
+              <Txt style={{ fontFamily: F.semibold }}>{it.groupId ? <Txt style={{ color: th.band, fontFamily: F.semibold }}>{`SS ${labels[it.groupId]} · `}</Txt> : null}{exName(ex)}</Txt>
+              {open !== it.id ? <Muted style={{ fontSize: 13 }}>{tplSummary(it)}</Muted> : null}
             </View>
-          </View>
-          <TplRows tpl={tpl} it={it} ii={i} nm={nm} />
-          {it.alternates?.length ? <Alternates tplId={tpl.id} itemId={it.id} /> : null}
+            <Muted style={{ fontSize: 16 }}>{open === it.id ? '▾' : '▸'}</Muted>
+          </Pressable>
+          {open === it.id ? <>
+            <TplRows tpl={tpl} it={it} ii={i} nm={nm} />
+            {it.alternates?.length ? <Alternates tplId={tpl.id} itemId={it.id} /> : null}
+            <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', gap: 8, marginTop: 4, marginBottom: 6 }}>
+              {next && (!it.groupId || next.groupId !== it.groupId) ? <Btn title="⇅ SS" small kind="ghost" accessibilityLabel={t('Połącz z następnym w superset')} accessibilityHint={nm} onPress={() => linkWithNext(tpl.items, i, tpl)} /> : null}
+              {it.groupId ? <Btn title="✂ SS" small kind="ghost" accessibilityLabel={t('Wyjmij z supersetu')} accessibilityHint={nm} onPress={() => unlink(tpl.items, i, tpl)} /> : null}
+              <View style={{ flex: 1 }} />
+              <Btn title={t('Usuń ćwiczenie')} small kind="danger" accessibilityLabel={t('Usuń z szablonu')} accessibilityHint={nm} onPress={() => Alert.alert(t('Usunąć z szablonu?'), nm, [{ text: t('Nie') }, { text: t('Usuń'), style: 'destructive', onPress: () => { const j = tpl.items.findIndex(x => x.id === it.id); if (j >= 0) removeItem(tpl.items, j, tpl); } }])} />
+            </View>
+          </> : null}
         </View>); })}
       <Btn title={t('+ Dodaj ćwiczenie')} block style={{ marginTop: 12 }} onPress={() => router.push(`/picker?target=template:${tpl.id}`)} />
-      <Muted style={{ fontSize: 13, marginTop: 10 }}>{t('Dotknij etykiety serii, by zmienić typ albo usunąć serię. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✂” wyjmuje z grupy.')}</Muted>
+      <Muted style={{ fontSize: 13, marginTop: 10 }}>{t('Dotknij etykiety serii, by zmienić typ albo usunąć serię. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✂ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.')}</Muted>
     </ScrollView></Screen>
   );
 }
@@ -130,4 +139,10 @@ function TplRows({ tpl, it, ii, nm }: { tpl: Template; it: TemplateItem; ii: num
       {hasReps(m) && it.repMin != null && it.repMax != null && it.repMax < it.repMin ? <Muted style={{ fontSize: 12, color: th.danger }}>{t('„do” jest mniejsze niż „od” — zakres pokaże się jako {n}+', { n: it.repMin })}</Muted> : null}
     </View></FieldHint.Provider>
   );
+}
+
+/** Linijka zwiniętej karty: liczba serii (rozgrzewki osobno), zakres, przerwa. */
+function tplSummary(it: TemplateItem): string {
+  const rows = tplRows(it); const w = rows.filter(r => r.kind !== 'warmup').length, wu = rows.length - w; const ex = exById(it.exerciseId);
+  return [`${w} ${tp(w, 'seria|serie|serii')}`, wu ? t('{n} rozgrz.', { n: wu }) : '', it.repMin != null ? reps(it.repMin, it.repMax) : '', `${it.restSec ?? restFor(ex)} s`].filter(Boolean).join(' · ');
 }

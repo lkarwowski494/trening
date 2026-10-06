@@ -5,7 +5,7 @@ import * as timer from '@/lib/timer';
 import { dark, light } from '@/lib/theme';
 import { LIB, metricFor, type Equipment } from '@/lib/seed';
 import { rowLayout } from '@/components/ActiveWorkout';
-import { renderApp, tap, flushAll, screen, go, act, type } from './app';
+import { renderApp, tap, flushAll, screen, go, act, type, openCard } from './app';
 import { ex, pressAlert, seedWithDemo } from './helpers';
 
 jest.setTimeout(60000);
@@ -94,7 +94,7 @@ test('C7 akcje niszczące wymagają potwierdzenia', async () => {
   await renderApp({ saved: seedWithDemo() }); const s = store.getState();
   const expectConfirm = async (press: () => Promise<void>, title: string | RegExp) => { const n = global.__alerts.length; await press(); expect(global.__alerts.length).toBe(n + 1); expect(global.__alerts[global.__alerts.length - 1].title).toMatch(title); };
   const nTpl = s.templates.length;
-  await go(`/template/${s.templates[0].id}`); await flushAll(10);
+  await go(`/template/${s.templates[0].id}`); await flushAll(10); await openCard(0);
   await expectConfirm(() => tap(screen.getByText('Usuń')), 'Usunąć szablon?'); expect(s.templates.length).toBe(nTpl);
   await go(`/exercise/${ex('Back Squat').id}`); await flushAll(10);
   await expectConfirm(() => tap(screen.getByText('Usuń ćwiczenie')), 'Usunąć ćwiczenie?'); expect(ex('Back Squat').archived).toBeFalsy();

@@ -40,3 +40,5 @@ export const go = async (href: string) => { await act(async () => { router.push(
 
 /** Ekran miejsca (05.10.2026): grupy sprzętu są zwinięte — rozwija wszystkie (testy sprzed zwijania). */
 export const expandEquip = async () => { const { EQUIP_GROUPS, EQUIP_GROUP_LABEL, equipLabel } = require('@/lib/equipment'); for (const g of EQUIP_GROUPS) { const el = screen.queryByLabelText(equipLabel(EQUIP_GROUP_LABEL[g])); if (el && !el.props.accessibilityState?.expanded) await tap(el); } };
+/** Edytor szablonu (06.10.2026): karty ćwiczeń zwinięte, otwarta jedna — otwiera kartę nr `i` (kolejność na ekranie). */
+export const openCard = async (i = 0) => { const cards = screen.getAllByRole('button').filter(b => b.props.accessibilityState?.expanded !== undefined && b.props.accessibilityValue?.text !== undefined); if (cards[i] && !cards[i].props.accessibilityState?.expanded) await tap(cards[i]); };

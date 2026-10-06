@@ -1,7 +1,7 @@
 /* Warstwa B planu testów (09): przepływy na prawdziwych ekranach. */
 import * as store from '@/lib/store';
 import * as timer from '@/lib/timer';
-import { renderApp, tap, type, flushAll, screen, go, act } from './app';
+import { renderApp, tap, type, flushAll, screen, go, act, openCard } from './app';
 import { ex, pressAlert, addWorkout, seedWithDemo } from './helpers';
 
 jest.setTimeout(30000);
@@ -119,7 +119,7 @@ test('B9 zakończenie bez serii → odrzucenie, bez pustej sesji', async () => {
 
 test('B10 edytor szablonu: „+ seria / − seria” (05.10.2026: serie jako wiersze, dawne pole „serie”), potwierdzenie usunięcia', async () => {
   await renderApp({ saved: seedWithDemo() }); const tpl = store.getState().templates[0];
-  await go(`/template/${tpl.id}`); await screen.findByText('Duplikuj'); const n0 = tpl.items[0].sets;
+  await go(`/template/${tpl.id}`); await screen.findByText('Duplikuj'); await openCard(0); const n0 = tpl.items[0].sets;
   await tap(screen.getAllByText('+ seria')[0]); expect(tpl.items[0].sets).toBe(n0 + 1);
   await tap(screen.getAllByText('− seria')[0]); expect(tpl.items[0].sets).toBe(n0);
   const n = tpl.items.length;

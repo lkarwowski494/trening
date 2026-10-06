@@ -1,6 +1,6 @@
 /* Decyzje właściciela 05.10.2026 (docs/17): „Tworzenie szablonu to po prostu nieaktywny trening” — każda seria to wiersz (typ, ostatnio,
  * powtórzenia, kg), te same przyciski typów co w treningu; zakres powtórzeń opcjonalnie („w ustawieniach szablonu … i wtedy będą podpowiedzi”). */
-import { renderApp, flushAll, screen, go, tap, type as typeText } from './app';
+import { renderApp, flushAll, screen, go, tap, type as typeText, openCard } from './app';
 import * as store from '@/lib/store';
 import { fresh, ex, addWorkout } from './helpers';
 import { SCHEMA_VERSION } from '@/lib/seed';
@@ -49,7 +49,7 @@ describe('model: wiersze serii w pozycji szablonu', () => {
 describe('ekran szablonu jak trening', () => {
   test('wiersze serii z etykietą typu, przyciski „+ seria / + rozgrzewka / + drop set”, bez pól „serie”, „pow. od”; zakres po rozwinięciu', async () => {
     await fresh(); tplWith('Bench Press (sztanga)'); await store.flush();
-    await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())) }); await go('/template/tq'); await flushAll(10);
+    await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())) }); await go('/template/tq'); await flushAll(10); await openCard(0);
     expect(screen.queryByText('serie')).toBeNull(); expect(screen.queryByText(/^start /)).toBeNull(); /* dawne pola „serie” i „start kg” — teraz wiersze */
     expect(screen.getAllByLabelText(/^Seria [123], typ: normalna/).length).toBe(3);
     await tap(screen.getByText('+ rozgrzewka')); await tap(screen.getByText('+ drop set')); await flushAll(5);
@@ -62,7 +62,7 @@ describe('ekran szablonu jak trening', () => {
     await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())) }); await go('/picker?target=template:tn'); await flushAll(10);
     await typeText(screen.getByPlaceholderText('Szukaj ćwiczenia…'), 'Bench Press (sztanga)'); await flushAll(5); await tap(screen.getAllByText('Bench Press (sztanga)')[0]); await flushAll(10);
     const it = store.getState().templates.find(x => x.id === 'tn')!.items[0]; expect(it.repMin).toBeNull(); expect(it.repMax).toBeNull(); expect(store.tplRows(it).length).toBe(3);
-    await go('/template/tn'); await flushAll(10); await tap(screen.getByText('+ zakres powtórzeń')); await flushAll(5);
+    await go('/template/tn'); await flushAll(10); await openCard(0); await tap(screen.getByText('+ zakres powtórzeń')); await flushAll(5);
     expect(screen.getAllByLabelText(/powtórzenia od/).length).toBeGreaterThan(0);
   });
 });

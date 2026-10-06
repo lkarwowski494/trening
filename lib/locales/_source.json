@@ -20,6 +20,10 @@
   "en": "{k}: {v}"
  },
  {
+  "pl": "{n} rozgrz.",
+  "en": "{n} warm-up"
+ },
+ {
   "pl": "{n} ustawień na stronę: {r}",
   "en": "{n} settings per side: {r}"
  },
@@ -557,8 +561,8 @@
   "en": "available: {n} ({r})"
  },
  {
-  "pl": "Dotknij etykiety serii, by zmienić typ albo usunąć serię. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✂” wyjmuje z grupy.",
-  "en": "Tap a set label to change its type or delete the set. The rep range is optional — with it you get “↑” hints. “⇅ SS” links an exercise with the next one in a superset, “✂” takes it out of the group."
+  "pl": "Dotknij etykiety serii, by zmienić typ albo usunąć serię. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✂ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.",
+  "en": "Tap a set label to change its type or delete the set. The rep range is optional — with it you get “↑” hints. “⇅ SS” links an exercise with the next one in a superset, “✂ SS” takes it out of the group. Order: “≡ Reorder”."
  },
  {
   "pl": "drążek",

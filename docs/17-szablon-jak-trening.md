@@ -50,3 +50,10 @@ bugi, to możemy wycofać, a później dodać z nowymi featurami pod nową nazw�
   „+ seria / + rozgrzewka / + drop set / − seria”, przerwa, opcjonalny zakres. Wspólna etykieta typu: `components/SetBadge.tsx`.
 - Testy: `tests/template-rows.test.tsx`; dostosowane testy dawnych pól „serie”/„start kg” (flows B10, regress R2-24/R6-10/R49-06/R63-01/R71-07,
   audit-r82 MEDIUM 2, audit-r83 Q-021) i numeru schematu.
+
+## Karty ćwiczeń w szablonie (06.10.2026)
+Właściciel (zrzut ekranu szablonu): „niewygodne, że jak dodasz ćwiczenie, to ono zostaje takie rozwinięte … zmiana pozycji ćwiczenia na liście
+jest za blisko X — łatwo je wyrzucić missclickiem”. Decyzje: **„Zwijane karty, jedna otwarta”** i **„Bez strzałek; »Usuń« w rozwiniętej karcie”**.
+- Każde ćwiczenie to karta: zwinięta — nazwa i podsumowanie („3 serie · 8–12 · 120 s”), rozwinięta — wiersze serii, przerwa, zakres, superset i
+  „Usuń ćwiczenie” (z potwierdzeniem) na dole. Otwarta jedna naraz; nowo dodane ćwiczenie otwiera się samo. Kolejność — tylko „≡ Kolejność”.
+- Testy: `tests/template-cards.test.tsx`; dostosowane testy edytora (pomocnik `openCard`).

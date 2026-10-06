@@ -5,7 +5,7 @@ import * as timer from '@/lib/timer';
 import * as units from '@/lib/units';
 import { buildCsv } from '@/lib/backup';
 import { fresh, ex, addWorkout, pressAlert, seedState, withDemoTemplates, seedWithDemo, legacyBandKg } from './helpers';
-import { renderApp, tap, type, flushAll, screen, go, act } from './app';
+import { renderApp, tap, type, flushAll, screen, go, act, openCard } from './app';
 
 jest.setTimeout(30000);
 const at = (y: number, m: number, d: number, h = 18) => new Date(y, m - 1, d, h).getTime();
@@ -199,7 +199,7 @@ describe('runda 2 — ekrany', () => {
     await renderApp({ saved }); expect(store.getState().mornings[0]).toMatchObject({ bb: 0, sleepH: 7.5 }); expect(screen.queryByText(/BB 0/)).toBeNull();
   });
   test('R2-24 pole liczbowe pokazuje po edycji wartość zapisaną (po przycięciu)', async () => {
-    await renderApp({ saved: seedWithDemo() }); const tpl = store.getState().templates[0]; await go(`/template/${tpl.id}`); await flushAll(10);
+    await renderApp({ saved: seedWithDemo() }); const tpl = store.getState().templates[0]; await go(`/template/${tpl.id}`); await flushAll(10); await openCard(0);
     const f = screen.getAllByLabelText('przerwa s')[0]; await type(f, '1800'); await type(f, '2500'); expect(tpl.items[0].restSec).toBe(1800); /* 05.10.2026: pole „serie” zastąpione wierszami — ta sama zasada na polu przerwy (limit 1800) */
     await act(async () => { f.props.onEndEditing?.(); }); expect(f.props.value).toBe('1800');
   });
@@ -249,7 +249,7 @@ describe('runda 3', () => {
   });
   test('R3-05 skasowana nazwa wraca do poprzedniej; pusty zapisany szablon nie znika', async () => {
     await renderApp(); const tpl = store.newTemplate(); tpl.name = 'Mobilność'; store.save(tpl);
-    await go(`/template/${tpl.id}`); await flushAll(10);
+    await go(`/template/${tpl.id}`); await flushAll(10); await openCard(0);
     const f = screen.getByDisplayValue('Mobilność'); await type(f, ''); await act(async () => { f.props.onEndEditing?.(); });
     expect(tpl.name).toBe('Mobilność');
     const { router } = require('expo-router'); await act(async () => { router.back(); }); await flushAll(10);
@@ -449,7 +449,7 @@ describe('runda 6', () => {
   });
   test('R6-10 szablon: start ±kg dla ćwiczenia z masą ciała przyjmuje asystę (ujemne)', async () => {
     await renderApp({ saved: seedWithDemo() }); const tpl = store.getState().templates.find(x => x.items.some(i => i.exerciseId === ex('Chin Up').id))!; const it = tpl.items.find(i => i.exerciseId === ex('Chin Up').id)!;
-    await go(`/template/${tpl.id}`); await flushAll(10);
+    await go(`/template/${tpl.id}`); await flushAll(10); await openCard(tpl.items.indexOf(it)); /* 06.10.2026: karta ćwiczenia z masą ciała */
     const inputs = screen.getAllByLabelText(store.loadLabel(ex('Chin Up'))); await type(inputs[0], '-10'); expect(it.startWeight).toBe(-10); expect(it.rows![0].weight).toBe(-10); /* 05.10.2026: wiersz serii */
   });
   test('R6-11 wyszukiwanie bez wyników pokazuje tekst (Ćwiczenia i Postępy, ze spacją na końcu)', async () => {
@@ -598,7 +598,7 @@ describe('runda 10', () => {
     await flushAll(10); expect(store.getState().active!.exercises.length).toBe(n - 1);
   });
   test('R10-04 podwójne „✕” w szablonie usuwa jedną pozycję', async () => {
-    await renderApp({ saved: seedWithDemo() }); const tpl = store.getState().templates[0]; const n = tpl.items.length; await tap(screen.getByText(tpl.name)); await flushAll(10);
+    await renderApp({ saved: seedWithDemo() }); const tpl = store.getState().templates[0]; const n = tpl.items.length; await tap(screen.getByText(tpl.name)); await flushAll(10); await openCard(0);
     await press2(screen.getAllByLabelText('Usuń z szablonu')[0]); global.__alerts.filter((a: any) => a.title === 'Usunąć z szablonu?').forEach(() => pressAlert('Usunąć z szablonu?', 'Usuń'));
     await flushAll(10); expect(tpl.items.length).toBe(n - 1);
   });
@@ -1233,7 +1233,7 @@ describe('runda 49', () => {
     const m = store.migrate(raw); expect(m.templates[0].items[0].restSec).toBe(60); expect([m.timer.restTotal, m.timer.restEndAt, m.timer.setId]).toEqual([0, null, null]);
   });
   test('R49-06 VoiceOver: kontrolki wiersza szablonu i gumy mówią, czego dotyczą; chip wybranego ćwiczenia; nieaktywne moduły', async () => {
-    await renderApp({ saved: seedWithDemo() }); const st = store.getState(); const tpl = st.templates[0]; await go(`/template/${tpl.id}`); await flushAll(10);
+    await renderApp({ saved: seedWithDemo() }); const st = store.getState(); const tpl = st.templates[0]; await go(`/template/${tpl.id}`); await flushAll(10); await openCard(0);
     const name = store.exById(tpl.items[0].exerciseId)!.name;
     expect(screen.getAllByLabelText('Usuń z szablonu')[0].props.accessibilityHint).toBe(name); expect(screen.getAllByLabelText('+ seria')[0].props.accessibilityHint).toBe(name);
     await go('/more/bands'); await flushAll(10); expect(screen.getAllByLabelText('Usuń gumę')[0].props.accessibilityHint).toBeTruthy();
@@ -1589,7 +1589,7 @@ describe('runda 63', () => {
   test('R63-01 przycisk numeru serii mówi, którego ćwiczenia dotyczy; szablon: „start kg/hantel”, serie do 50', async () => {
     await renderApp({ saved: seedWithDemo() }); await tap(screen.getByLabelText('Start: Upper A')); await flushAll(10);
     expect(screen.getAllByLabelText(/^Seria 1, typ: normalna/)[0].props.accessibilityHint).toMatch(/Seria 1 — /);
-    const tpl = store.getState().templates[0]; await go(`/template/${tpl.id}`); await flushAll(10);
+    const tpl = store.getState().templates[0]; await go(`/template/${tpl.id}`); await flushAll(10); await openCard(0);
     expect(screen.getAllByLabelText(/kg\/hantel|±kg|^kg$/).length).toBeGreaterThan(0); /* 05.10.2026: wiersze serii — etykieta ciężaru jak w treningu */
     await act(async () => { for (let i = 0; i < 60; i++) store.tplAddRow(tpl, tpl.items[0].id); }); await flushAll(5); expect(tpl.items[0].sets).toBe(50); /* limit 50 serii */
   });
@@ -1632,7 +1632,7 @@ describe('runda 67', () => {
   });
   test('R67-03 dwie pozycje szablonu z tym samym ćwiczeniem rozróżnialne dla VoiceOver', async () => {
     await renderApp(); const tpl = store.newTemplate(); const sq = ex('Back Squat'); for (const id of ['a', 'b']) tpl.items.push({ id, exerciseId: sq.id, sets: 3, repMin: 5, repMax: 8, restSec: null, startWeight: '', targetSec: '', groupId: null }); store.save(tpl);
-    await go(`/template/${tpl.id}`); await flushAll(10); const h = screen.getAllByLabelText('Usuń z szablonu').map((x: any) => x.props.accessibilityHint); expect(new Set(h).size).toBe(2);
+    await go(`/template/${tpl.id}`); await flushAll(10); const h: string[] = []; for (const i of [0, 1]) { await openCard(i); h.push(screen.getByLabelText('Usuń z szablonu').props.accessibilityHint); } expect(new Set(h).size).toBe(2); /* 06.10.2026: karty — otwarta jedna */
   });
   test('R67-04 koniec przerwy kończy Live Activity także poza zakładką Trening', async () => {
     await renderApp({ url: '/history' }); await act(async () => { store.startEmpty(); await timer.start(3); }); global.__la.length = 0;
@@ -1798,7 +1798,7 @@ describe('runda 71 (audyt tematyczny T1b/T3)', () => {
   });
   test('R71-07 szablon: krótka etykieta ciężaru startowego, pełna dla VoiceOver', async () => {
     await renderApp({ saved: seedWithDemo() }); const st = store.getState(); const tpl = st.templates[0]; const db = st.exercises.find(e => e.loadMode === 'per_dumbbell' && !e.archived)!; tpl.items[0].exerciseId = db.id; store.save(tpl);
-    await go('/template/' + tpl.id); await flushAll(10);
+    await go('/template/' + tpl.id); await flushAll(10); await openCard(0);
     const short = store.loadLabelShort(db), full = store.loadLabel(db); expect(short).not.toBe(full); /* 05.10.2026: wiersze serii — krótka etykieta w polu, pełna dla VoiceOver */
     expect(screen.getAllByPlaceholderText(short).length).toBeGreaterThan(0); expect(screen.getAllByLabelText(full).length).toBeGreaterThan(0);
   });
