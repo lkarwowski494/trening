@@ -4,7 +4,7 @@ import { Btn, Chip, Field, Muted, NumInput, Segmented, FieldHint } from '@/compo
 import { useTheme } from '@/lib/theme';
 import { locationEdited } from '@/lib/locations';
 import { LOAD_PRESETS, applyLoadPreset, equipLabel, type EquipItem } from '@/lib/equipment';
-import { achievable, fillRange, convertSpec, validateSpec, rangeCount, LOAD_LIMITS, W_MIN, W_MAX, type LoadSpec, type LoadUnit, type SpecProblem } from '@/lib/loads';
+import { achievable, noPlates, fillRange, convertSpec, validateSpec, rangeCount, LOAD_LIMITS, W_MIN, W_MAX, type LoadSpec, type LoadUnit, type SpecProblem } from '@/lib/loads';
 import { fmtNum } from '@/lib/units';
 import { t } from '@/lib/i18n';
 import type { Location, LocEquip } from '@/lib/seed';
@@ -33,7 +33,7 @@ export function loadSummary(item: EquipItem, spec: LoadSpec): string {
   const u = spec.unit; const vals = (o: Parameters<typeof achievable>[1] = {}) => achievable({ ...spec, unit: 'kg' }, o); /* liczba sztuk i zakres w jednostce sprzętu */
   if (spec.kind === 'electric') { const v = vals(); return v.length ? t('Ustawienia na stronę: {n} ({r})', { n: v.length, r: span(v, u) }) : t('wpisz zakres na stronę i krok'); }
   if (item.id === 'db_plate') { const p = vals({ perStep: 4 }), one = vals({ perStep: 2 }); return p.length ? t('para: {a} ({r}); jeden hantel: {b} ({r1})', { a: p.length, r: span(p, u), b: one.length, r1: span(one, u) }) : t('wpisz uchwyt i talerze'); }
-  const v = vals(); return v.length ? t('dostępne: {n} ({r})', { n: v.length, r: span(v, u) }) : t('brak ciężarów — podpowiedź „↑” jak bez miejsca');
+  const v = noPlates(spec) ? [] : vals(); return v.length ? t('dostępne: {n} ({r})', { n: v.length, r: span(v, u) }) : t('brak ciężarów — podpowiedź „↑” jak bez miejsca');
 }
 /** Czy opis ma już wpisane wartości (preset modelu pyta przed nadpisaniem). */
 const filled = (s: LoadSpec) => s.kind === 'list' ? s.items.length > 0 : s.kind === 'plates' ? s.plates.length > 0 : s.max > 0 || s.min > 0;

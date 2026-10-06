@@ -12,7 +12,7 @@
     "test": "jest",
     "verify:native": "node scripts/verify-native.mjs",
     "check:matrix": "node scripts/test-matrix.mjs --check",
-    "verify": "npm run typecheck && npm run check:i18n && jest && npx expo export --platform ios --output-dir .expo/verify-export && node -e \"require('fs').rmSync('.expo/verify-export',{recursive:true,force:true})\" && npm run verify:native",
+    "verify": "npm run typecheck && npm run check:i18n && jest && npm run check:matrix && npx expo export --platform ios --output-dir .expo/verify-export && node -e \"require('fs').rmSync('.expo/verify-export',{recursive:true,force:true})\" && npm run verify:native",
     "screens": "node scripts/screens/run.mjs",
     "mutation": "stryker run",
     "perf": "jest -c jest.perf.config.js"

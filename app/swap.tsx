@@ -3,7 +3,7 @@ import { ScrollView, Pressable, Text, View } from 'react-native';
 import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
 import { useTheme, F } from '@/lib/theme';
 import { Screen, Item, Muted, Empty, SectionTitle, Chip, Input } from '@/components/ui';
-import { getState, useTick, exById, swapBlock, swapImpl, canUndoSwap, locationById, visibleExercises, newExercise, save, exerciseInHistory } from '@/lib/store';
+import { getState, useTick, exById, swapBlock, swapImpl, canUndoSwap, locationById, visibleExercises, newExercise, save, exerciseInHistory, restoreExercise } from '@/lib/store';
 import { availability, capsOf, missingLabel } from '@/lib/equipment';
 import { draftOf, useDraftTick, draftSwapExercise, canRestoreExercise, draftRestoreExercise, draftImplChoices, draftSetImpl, swapTargetOk } from '@/lib/edit';
 import { swapCandidates, reasonText, otherImpls, implLabel, parseSwapTarget, SWAP_TOP, SWAP_PAGE, sortOthers } from '@/lib/swap';
@@ -73,7 +73,7 @@ export default function SwapScreen() {
           {others.length ? othersSorted.slice(0, lim).map(b => { const av = caps ? availability(b, place, caps) : null; const miss = av && !av.ok ? ' · ' + t('brak: {m}', { m: missingLabel(av.missing) }) : '';
             return <Item key={b.id} title={exName(b)} sub={`${t(b.equipment)}${miss}`} icon="⇄" dim={!!miss} onPress={() => pick(b.id)} />; }) : !archived.length && !canCreate ? <Empty>{t('Nic nie pasuje.')}</Empty> : null}
           {others.length > lim ? <Item title={t('Pokaż więcej ({n})', { n: others.length - lim })} icon="▾" onPress={() => setLim(x => x + SWAP_PAGE * 2)} accessibilityLabel={t('Pokaż więcej ćwiczeń: zostało {n}', { n: others.length - lim })} /> : null}
-          {archived.map(b => <Item key={'a' + b.id} title={t('Przywróć „{name}”', { name: exName(b) })} sub={exerciseInHistory(b.id) ? t('usunięte ćwiczenie z historią') : t('usunięte ćwiczenie (w bieżącym treningu)')} icon="↺" onPress={() => { if (chosen.current) return; b.archived = false; save(b); pick(b.id); }} />)}
+          {archived.map(b => <Item key={'a' + b.id} title={t('Przywróć „{name}”', { name: exName(b) })} sub={exerciseInHistory(b.id) ? t('usunięte ćwiczenie z historią') : t('usunięte ćwiczenie (w bieżącym treningu)')} icon="↺" onPress={() => { if (chosen.current) return; restoreExercise(b); pick(b.id); }} />)}
           {canCreate ? <Item title={t('Utwórz „{name}”', { name: q.trim() })} sub={t('nowe ćwiczenie własne')} icon="+" onPress={() => { if (chosen.current) return; const n = newExercise(q.replace(/\s+/g, ' ').trim()); if (ex) { n.metric = ex.metric; n.group = ex.group; n.muscles = [...ex.muscles]; save(n); } pick(n.id); }} /> : null}
         </View> : null}
       </ScrollView>

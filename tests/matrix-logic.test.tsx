@@ -918,7 +918,7 @@ describe('EKRAN /swap', () => {
     expect(screen.getByText('Przywróć „Chest Fly (hantle)”')).toBeTruthy(); expect(screen.getByText('usunięte ćwiczenie z historią')).toBeTruthy();
     expect(screen.queryByText(/^Utwórz/)).toBeNull(); /* dokładna nazwa istnieje */
     await tap(screen.getByText('Przywróć „Chest Fly (hantle)”')); await flushAll(20);
-    expect(ex('Chest Fly (hantle)').archived).toBe(false); expect(blk(0).exerciseId).toBe(ex('Chest Fly (hantle)').id);
+    expect(ex('Chest Fly (hantle)').archived).toBeUndefined(); /* restoreExercise (06.10): bez pola, jak po wczytaniu */ expect(blk(0).exerciseId).toBe(ex('Chest Fly (hantle)').id);
     /* Utwórz: z drugiego bloku (nogi) */
     await go(swapUrl('active:' + blk(1).id)); await flushAll(20);
     await tap(screen.getByLabelText('Pokaż inne ćwiczenia')); await flushAll(5);

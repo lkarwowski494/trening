@@ -96,6 +96,9 @@ export function specValues(spec: LoadSpec, perStep: 2 | 4 = 2): number[] {
  * dla pełnej siłowni to tysiące kombinacji. Klucz z treści, więc zmiana opisu w miejscu (edytor mutuje obiekt) nie daje starego wyniku. */
 const memo = new Map<string, number[]>();
 /** Osiągalne ciężary w kg, posortowane rosnąco, bez powtórzeń (z tolerancją). Zwracanej tablicy nie modyfikować. */
+/** Opis talerzowy bez żadnego talerza (sztanga / EZ / trap bar dopiero zaznaczone) = ciężary nieznane, nie „sam gryf”
+ * (decyzja właściciela 06.10.2026, wariant A): podpowiedź „↑” i wartości z poprzedniego treningu jak bez miejsca. */
+export const noPlates = (spec: LoadSpec): boolean => spec.kind === 'plates' && !spec.plates.some(p => p.n > 0);
 export function achievable(spec: LoadSpec | undefined | null, use: LoadUse = {}): number[] {
   if (!spec) return [];
   const key = JSON.stringify([spec, use.perStep ?? 2, use.mult ?? [1]]); const hit = memo.get(key); if (hit) return hit;

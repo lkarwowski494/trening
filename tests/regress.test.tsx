@@ -343,7 +343,7 @@ describe('runda 4', () => {
     await renderApp(); addWorkout(Date.now() - 3600e3, [['Back Squat', [{ weight: 100, reps: 5 }]]]); store.deleteExercise(ex('Back Squat').id);
     await act(async () => { store.startEmpty(); }); await go('/picker?target=active'); await flushAll(10);
     await type(screen.getByPlaceholderText('Szukaj ćwiczenia…'), 'back squat'); await tap(screen.getByText('Przywróć „Back Squat”')); await flushAll(10);
-    expect(ex('Back Squat').archived).toBe(false); expect(store.getState().active!.exercises[0].exerciseId).toBe(ex('Back Squat').id);
+    expect(ex('Back Squat').archived).toBeUndefined(); /* restoreExercise (06.10) */ expect(store.getState().active!.exercises[0].exerciseId).toBe(ex('Back Squat').id);
   });
 });
 
@@ -500,7 +500,7 @@ describe('runda 7', () => {
   test('R7-07 Ćwiczenia: wyszukanie usuniętego pozwala je przywrócić, bez „Utwórz”', async () => {
     await renderApp(); addWorkout(Date.now() - 3600e3, [['Back Squat', [{ weight: 100, reps: 5 }]]]); await act(async () => { store.deleteExercise(ex('Back Squat').id); });
     await go('/exercises'); await flushAll(10); await type(screen.getByPlaceholderText('Szukaj…'), 'back squat'); await flushAll(10);
-    expect(screen.queryByText(/^Utwórz/)).toBeNull(); await tap(screen.getByText('Przywróć „Back Squat”')); expect(ex('Back Squat').archived).toBe(false);
+    expect(screen.queryByText(/^Utwórz/)).toBeNull(); await tap(screen.getByText('Przywróć „Back Squat”')); expect(ex('Back Squat').archived).toBeUndefined(); /* restoreExercise (06.10) */
   });
   test('R7-08 okno „brak odhaczonych” i „tylko rozgrzewka” ostrzega o wpisanych, nieodhaczonych seriach', async () => {
     await renderApp(); await act(async () => { store.startEmpty(); store.addExerciseToActive(ex('Back Squat')); const s0 = store.getState().active!.exercises[0].sets[0]; s0.weight = 100; s0.reps = 5; s0.edited = true; store.save(); }); await flushAll(10);

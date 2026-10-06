@@ -4,7 +4,7 @@ import { F } from '@/lib/theme';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { Screen, H1, Item, Btn, Input, Muted, Empty, useOnce } from '@/components/ui';
-import { useHistTick, newExercise, visibleExercises, getState, save, exerciseInHistory, usesBand } from '@/lib/store';
+import { useHistTick, newExercise, visibleExercises, getState, save, exerciseInHistory, usesBand, restoreExercise } from '@/lib/store';
 import { GROUPS } from '@/lib/seed';
 import { t, exName, locale, fold } from '@/lib/i18n';
 
@@ -21,7 +21,7 @@ export default function ExercisesScreen() {
     <SafeAreaView style={{ flex: 1 }} edges={['top']}><Screen>
       <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginVertical: 10 }}><H1>{t('Ćwiczenia')} <Muted>{all.length}</Muted></H1><Btn title={t('+ Nowe')} small onPress={once(() => { const e = newExercise(); router.push(`/exercise/${e.id}`); })} /></View>
       <Input value={q} onChangeText={setQ} placeholder={t('Szukaj…')} maxLength={80} autoCorrect={false} />
-      <ScrollView keyboardShouldPersistTaps="handled" automaticallyAdjustKeyboardInsets>{archived.map(e => <Item key={'a' + e.id} title={t('Przywróć „{name}”', { name: exName(e) })} sub={exerciseInHistory(e.id) ? t('usunięte ćwiczenie z historią') : t('usunięte ćwiczenie (w bieżącym treningu)')} icon="↺" onPress={() => { e.archived = false; save(e); setQ(''); router.push(`/exercise/${e.id}`); }} />)}{rows.length ? rows : archived.length ? null : <><Empty>{t('Nic nie pasuje.')}</Empty>{ql ? <Btn title={t('Utwórz „{name}”', { name: q.trim() })} block onPress={once(() => { const e = newExercise(q.replace(/\s+/g, ' ').trim()); setQ(''); router.push(`/exercise/${e.id}`); })} /> : null}</>}</ScrollView>
+      <ScrollView keyboardShouldPersistTaps="handled" automaticallyAdjustKeyboardInsets>{archived.map(e => <Item key={'a' + e.id} title={t('Przywróć „{name}”', { name: exName(e) })} sub={exerciseInHistory(e.id) ? t('usunięte ćwiczenie z historią') : t('usunięte ćwiczenie (w bieżącym treningu)')} icon="↺" onPress={() => { restoreExercise(e); setQ(''); router.push(`/exercise/${e.id}`); }} />)}{rows.length ? rows : archived.length ? null : <><Empty>{t('Nic nie pasuje.')}</Empty>{ql ? <Btn title={t('Utwórz „{name}”', { name: q.trim() })} block onPress={once(() => { const e = newExercise(q.replace(/\s+/g, ' ').trim()); setQ(''); router.push(`/exercise/${e.id}`); })} /> : null}</>}</ScrollView>
     </Screen></SafeAreaView>
   );
 }

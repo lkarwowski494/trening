@@ -1358,7 +1358,12 @@ export function newExercise(name = t('Nowe ćwiczenie')): Exercise { const e: Ex
 export function setEquipment(e: Exercise, eq: Exercise['equipment']) { if (e.equipment === eq) return; /* runda 40: ten sam chip nie resetuje ustawień */ e.equipment = eq; e.loadMode = loadModeFor(eq, e.name); e.loadSource = LOAD_SOURCE_BY_EQUIPMENT[eq]; /* P-003: źródło obciążenia za sprzętem */
   /* weryfikacja 3 (L5): ćwiczenie z biblioteki po zmianie sprzętu nie trzyma wymagań katalogu (np. hantle przy ruchu na linkach) — bez wymagań (zawsze dostępne),
    * catalogRev 'user' (start aplikacji go nie nadpisze katalogiem) */
-  if (e.lib) { e.requires = []; e.recommended = []; delete e.implements; e.catalogRev = 'user'; } save(e); }
+  if (e.lib) { e.requires = []; e.recommended = []; delete e.implements; e.catalogRev = 'user'; }
+  /* macierz niezmienników 06.10 (L5): bloki tego ćwiczenia w treningu w toku bez odhaczonych serii dostają przyrząd wg nowego sprzętu — jak przy zmianie sprzętu miejsca */
+  const a = getState().active; if (a && a.exercises.some(x => x.exerciseId === e.id)) { restampUntouched(a); save(a); }
+  save(e); }
+/** „Przywróć …” (lista ćwiczeń, wybór, zamiana): bez pola archived — tak samo jak po wczytaniu danych (migrate usuwa archived ≠ true; macierz niezmienników 06.10). */
+export function restoreExercise(e: Exercise) { delete e.archived; save(e); }
 /** Czy ćwiczenie występuje w historii lub w treningu w toku. */
 /** Runda 40: czy ćwiczenie jest w zakończonych treningach (historia — nie sam trening w toku). */
 export const exerciseInHistory = (id: string) => getState().workouts.some(w => w.exercises.some(x => x.exerciseId === id));

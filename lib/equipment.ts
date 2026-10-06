@@ -1,5 +1,5 @@
 import { CATALOG_CAPS, type LoadSource } from './catalog.generated';
-import { achievable, rangeValues, type LoadSpec, type LoadUnit } from './loads';
+import { achievable, noPlates, rangeValues, type LoadSpec, type LoadUnit } from './loads';
 import { lbl } from './i18n';
 import type { Exercise, Location, LocEquip, LoadMode, Impl } from './seed';
 
@@ -339,7 +339,7 @@ function resolveLoads(ex: Pick<Exercise, 'loadSource' | 'requires' | 'recommende
   const need = new Set((ex.requires ?? []).flat()); const firsts = new Set((ex.requires ?? []).map(g => g[0]));
   const mode: LoadMode = ex.loadMode ?? 'total'; const nImpl = ex.implements ?? (mode === 'per_dumbbell' ? 2 : 1);
   const valsOf = (e: LocEquip, kind: LoadKind): number[] => {
-    if (!e.load) return [];
+    if (!e.load || noPlates(e.load)) return []; /* decyzja 06.10.2026: gryf bez talerzy = ciężary nieznane */
     if (e.load.kind === 'electric') return achievable(e.load, { mult: [1] }); /* decyzja 03.10.2026: ciężar stacji zawsze na stronę (jak na ekranie urządzenia) */
     if (kind === 'dumbbell') return achievable(e.load, { perStep: nImpl === 2 ? 4 : 2, mult: mode === 'total' && nImpl === 2 ? [2] : [1] });
     return achievable(e.load, { perStep: 2 });

@@ -205,7 +205,7 @@ describe('LoadEditor (/more/location/[id])', () => {
     await open(['electric', 'db_plate', 'barbell', 'kettlebell']);
     expect(screen.getByText('wpisz zakres na stronę i krok')).toBeTruthy();
     expect(screen.getByText('wpisz uchwyt i talerze')).toBeTruthy();
-    expect(screen.getByText('brak ciężarów — podpowiedź „↑” jak bez miejsca')).toBeTruthy();
+    expect(screen.getAllByText('brak ciężarów — podpowiedź „↑” jak bez miejsca')).toHaveLength(2); /* lista i sztanga bez talerzy (decyzja 06.10, wariant A) */
     expect(screen.getByText(`Talerze: ciężar i liczba sztuk (wszystkie, dla obu hantli razem). Najwyżej ${LOAD_LIMITS.plateRows} rodzajów.`)).toBeTruthy();
     expect(screen.getByText('Talerze: ciężar i liczba sztuk (wszystkie, na obie strony razem). Najwyżej 30 rodzajów.')).toBeTruthy();
     expect(screen.getByText('Gryf (kg)')).toBeTruthy();

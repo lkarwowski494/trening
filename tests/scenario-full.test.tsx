@@ -823,7 +823,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     await go('/exercises'); await flushAll(10); await type(screen.getByPlaceholderText('Szukaj…'), 'lateral raise (h');
     expect(screen.getByLabelText(`Przywróć „${LR}”, usunięte ćwiczenie z historią`)).toBeTruthy();
     await tap(screen.getByLabelText(`Przywróć „${LR}”, usunięte ćwiczenie z historią`)); await flushAll(10);
-    expect(lr.archived).toBe(false); expect(screen.getByLabelText('Nazwa').props.value).toBe(LR); expect(store.visibleExercises().some(e => e.id === lr.id)).toBe(true);
+    expect(lr.archived).toBeUndefined(); /* restoreExercise (06.10) */ expect(screen.getByLabelText('Nazwa').props.value).toBe(LR); expect(store.visibleExercises().some(e => e.id === lr.id)).toBe(true);
   });
 
   test('10 backup: eksport JSON, CSV, import (anulowany, zły plik, nowszy schemat, poprawny) przywraca dane; kopia bezpieczeństwa przed importem', async () => {
