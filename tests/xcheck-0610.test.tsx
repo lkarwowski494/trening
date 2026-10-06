@@ -27,3 +27,30 @@ test('NISKIE: gumy w miejscu z odznaczonymi wszystkimi poziomami — przycisk ni
   const l = addLocation('home'); setEquip(l, 'bands', true); for (const lv of activeEquip(l, 'bands')!.levels!.slice()) setBandLevel(l, lv, false);
   expect(activeEquip(l, 'bands')!.levels).toEqual([]); expect(store.nextBandId('', l.id)).toBe('');
 });
+
+/* partia 2 (ustawienia, teksty): liczby w tekstach z jednego źródła, jednostka z ustawień, poprawna odmiana */
+import * as fs from 'fs';
+import { AUTO_KEEP } from '@/lib/backup';
+import { t } from '@/lib/i18n';
+const src = (f: string) => fs.readFileSync(require('path').join(__dirname, '..', f), 'utf8');
+test('NISKIE: liczba kopii automatycznych w tekstach pochodzi z AUTO_KEEP (nie wpisana „10”)', () => {
+  for (const f of ['app/more/settings.tsx', 'app/more/backup.tsx']) { expect(src(f)).not.toMatch(/ostatnie 10/); expect(src(f)).toMatch(/\{ n: AUTO_KEEP \}/); }
+  expect(t('Pliki → Na moim iPhonie → Trening → Backup, ostatnie {n}', { n: AUTO_KEEP })).toContain(`ostatnie ${AUTO_KEEP}`);
+});
+test('NISKIE: podpowiedź zakresu w szablonie mówi o jednostce z ustawień, nie zawsze „kg”', () => {
+  expect(src('app/template/[id].tsx')).not.toMatch(/więcej kg/); expect(src('app/template/[id].tsx')).toMatch(/więcej \{u\}”\.', \{ r: reps\(it\.repMin, it\.repMax\), u: wu\(\) \}/);
+});
+test('NISKIE: teksty LoadEditor bez odmiany zależnej od liczby („1 ustawień”, „3 ciężarów”)', () => {
+  const s = src('components/LoadEditor.tsx'); expect(s).not.toMatch(/\{n\} ustawień|to \{c\} ciężarów/);
+});
+test('NISKIE: ostrzeżenie „Wyczyść wszystkie dane” mówi, że wracają też ustawienia, miejsca i gumy; alert Zdrowia bez żargonu (IPA, Expo Go)', () => {
+  const s = src('app/more/settings.tsx'); expect(s).toMatch(/przywróci ustawienia domyślne \(także miejsca, sprzęt i gumy\)/); expect(s).not.toMatch(/build IPA|Expo Go go nie ma/);
+});
+test('NISKIE: ramka wskazówki pierwszego startu w kolorze z motywu (nie stały #5a5f6b — niewidoczna różnica w jasnym motywie)', () => {
+  expect(src('app/(tabs)/index.tsx')).not.toMatch(/#5a5f6b/); expect(src('app/(tabs)/index.tsx')).toMatch(/borderColor: th\.line/);
+});
+test('ŚREDNIE (scenariusz 05b): liczba serii szablonu bez rozgrzewek wszędzie — ekran główny, trening wstecz, karta, Historia', () => {
+  const tpl = { items: [{ id: 'i', exerciseId: 'x', sets: 3, rows: [{ id: 'a', kind: 'warmup', reps: '', weight: '', durationSec: '', distanceM: '' }, { id: 'b', kind: 'normal', reps: '', weight: '', durationSec: '', distanceM: '' }, { id: 'c', kind: 'drop', reps: '', weight: '', durationSec: '', distanceM: '' }] }] } as any;
+  expect(store.tplWorkSets(tpl)).toBe(2);
+  for (const f of ['app/(tabs)/index.tsx', 'app/history/add.tsx']) { expect(src(f)).toMatch(/tplWorkSets\(tpl\)/); expect(src(f)).not.toMatch(/a \+ i\.sets/); }
+});

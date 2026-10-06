@@ -136,7 +136,7 @@ function TplRows({ tpl, it, ii, nm }: { tpl: Template; it: TemplateItem; ii: num
           <Btn title="✕" small kind="ghost" accessibilityLabel={t('Usuń zakres powtórzeń')} accessibilityHint={nm} style={{ marginBottom: 12 }} onPress={() => { it.repMin = null; it.repMax = null; save(tpl); setRange(false); }} />
         </> : null}
       </View>
-      {hasReps(m) && it.repMin != null ? <Muted style={{ fontSize: 12 }}>{t('Zakres powtórzeń: {r} — po osiągnięciu górnej granicy podpowiedź „↑ więcej kg”.', { r: reps(it.repMin, it.repMax) })}</Muted> : null}
+      {hasReps(m) && it.repMin != null ? <Muted style={{ fontSize: 12 }}>{t('Zakres powtórzeń: {r} — po osiągnięciu górnej granicy podpowiedź „↑ więcej {u}”.', { r: reps(it.repMin, it.repMax), u: wu() })}</Muted> : null}
       {hasReps(m) && it.repMin != null && it.repMax != null && it.repMax < it.repMin ? <Muted style={{ fontSize: 12, color: th.danger }}>{t('„do” jest mniejsze niż „od” — zakres pokaże się jako {n}+', { n: it.repMin })}</Muted> : null}
     </View></FieldHint.Provider>
   );

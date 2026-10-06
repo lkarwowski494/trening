@@ -3,7 +3,7 @@ import { ScrollView, Alert, Keyboard } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Screen, H2, Muted, Item } from '@/components/ui';
 import { WhenFields } from '@/components/WhenFields';
-import { getState, useTick, exById } from '@/lib/store';
+import { getState, useTick, exById, tplWorkSets } from '@/lib/store';
 import { beginPast, defaultPastWhen, parseWhen, activeOverlapError } from '@/lib/edit';
 import { t, tp } from '@/lib/i18n';
 
@@ -27,7 +27,7 @@ export default function AddPastWorkout() {
       <Muted style={{ fontSize: 13, marginBottom: 12 }}>{t('Trening, którego nie zapisałeś na bieżąco. Ustaw termin i wybierz szablon — serie uzupełnisz w następnym kroku (wartości z ostatniego treningu przed tą datą).')}</Muted>
       <WhenFields date={when.date} time={when.time} min={when.min} onChange={p => setWhen(x => ({ ...x, ...p }))} />
       <H2 style={{ marginTop: 16 }}>{t('Z szablonu')}</H2>
-      {tpls.map(tpl => { const sets = tpl.items.reduce((a, i) => a + i.sets, 0); return <Item key={tpl.id} title={tpl.name} sub={`${tpl.items.length} ${t('ćw.')} · ${sets} ${tp(sets, 'seria|serie|serii')}`} onPress={() => start(tpl.id)} />; })}
+      {tpls.map(tpl => { const sets = tplWorkSets(tpl); return <Item key={tpl.id} title={tpl.name} sub={`${tpl.items.length} ${t('ćw.')} · ${sets} ${tp(sets, 'seria|serie|serii')}`} onPress={() => start(tpl.id)} />; })}
       {!tpls.length ? <Muted style={{ fontSize: 13 }}>{t('Brak szablonów z ćwiczeniami — utworzysz je w zakładce Szablony. Możesz też zacząć od pustego treningu.')}</Muted> : null}
       <Item title={t('Pusty trening')} sub={t('ćwiczenia dodasz w następnym kroku')} onPress={() => start(null)} />
     </ScrollView></Screen>

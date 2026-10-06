@@ -39,7 +39,7 @@ describe('H1 / M11 — jeden limit, nic nie jest ucinane po cichu', () => {
     expect(screen.getByText('Odznacz ciężary, których nie masz. Najwyżej 300 ciężarów.')).toBeTruthy();
     await type(screen.getAllByLabelText('od')[0], '1'); await type(screen.getAllByLabelText('do')[0], '400'); await type(screen.getAllByLabelText('co')[0], '1');
     await tap(screen.getByLabelText('Wypełnij zakresem — Hantle (stała waga albo z szybką regulacją)'));
-    expect(screen.getByText('Ten zakres to 400 ciężarów — najwyżej 300. Zwiększ krok.')).toBeTruthy(); expect((store.getState().settings.locations[0].equipment.find(e => e.item === 'db_fixed')!.load as any).items).toHaveLength(8);
+    expect(screen.getByText('Ciężarów w tym zakresie: 400 — najwyżej 300. Zwiększ krok.')).toBeTruthy(); expect((store.getState().settings.locations[0].equipment.find(e => e.item === 'db_fixed')!.load as any).items).toHaveLength(8);
   });
 });
 

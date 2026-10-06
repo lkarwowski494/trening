@@ -31,7 +31,7 @@ const PROBLEM: Record<SpecProblem, () => string> = {
 export function loadSummary(item: EquipItem, spec: LoadSpec): string {
   const bad = validateSpec(spec); if (bad) return PROBLEM[bad]();
   const u = spec.unit; const vals = (o: Parameters<typeof achievable>[1] = {}) => achievable({ ...spec, unit: 'kg' }, o); /* liczba sztuk i zakres w jednostce sprzętu */
-  if (spec.kind === 'electric') { const v = vals(); return v.length ? t('{n} ustawień na stronę: {r}', { n: v.length, r: span(v, u) }) : t('wpisz zakres na stronę i krok'); }
+  if (spec.kind === 'electric') { const v = vals(); return v.length ? t('Ustawienia na stronę: {n} ({r})', { n: v.length, r: span(v, u) }) : t('wpisz zakres na stronę i krok'); }
   if (item.id === 'db_plate') { const p = vals({ perStep: 4 }), one = vals({ perStep: 2 }); return p.length ? t('para: {a} ({r}); jeden hantel: {b} ({r1})', { a: p.length, r: span(p, u), b: one.length, r1: span(one, u) }) : t('wpisz uchwyt i talerze'); }
   const v = vals(); return v.length ? t('dostępne: {n} ({r})', { n: v.length, r: span(v, u) }) : t('brak ciężarów — podpowiedź „↑” jak bez miejsca');
 }
@@ -60,7 +60,7 @@ export default function LoadEditor({ loc, entry, item }: { loc: Location; entry:
           <View style={{ flex: 1 }}><Field label={t('do')}><NumInput decimal value={rng.max} onNum={v => setRng({ ...rng, max: v })} /></Field></View>
           <View style={{ flex: 1 }}><Field label={t('co')}><NumInput decimal value={rng.step} onNum={v => setRng({ ...rng, step: v })} /></Field></View>
           <View style={{ marginBottom: 12 }}><Btn small title={t('Wypełnij')} accessibilityLabel={lbl(t('Wypełnij zakresem'))} onPress={() => { if (rng.min === '' || rng.max === '' || rng.step === '') return; const items = fillRange(spec.items, rng.min, rng.max, rng.step);
-            if (!items) { const c = rangeCount(rng.min, rng.max, rng.step); setMsg(c == null || rng.min < W_MIN || rng.max > W_MAX || rng.step < W_MIN ? t('Zakres jest niepoprawny: „do” musi być ≥ „od”, krok > 0, wartości od {a} do {b}.', { a: fmtNum(W_MIN, 3), b: W_MAX }) : t('Ten zakres to {c} ciężarów — najwyżej {n}. Zwiększ krok.', { c, n: LOAD_LIMITS.listItems })); return; }
+            if (!items) { const c = rangeCount(rng.min, rng.max, rng.step); setMsg(c == null || rng.min < W_MIN || rng.max > W_MAX || rng.step < W_MIN ? t('Zakres jest niepoprawny: „do” musi być ≥ „od”, krok > 0, wartości od {a} do {b}.', { a: fmtNum(W_MIN, 3), b: W_MAX }) : t('Ciężarów w tym zakresie: {c} — najwyżej {n}. Zwiększ krok.', { c, n: LOAD_LIMITS.listItems })); return; }
             spec.items = items; upd(); }} /></View>
         </View>
         <View style={{ flexDirection: 'row', gap: 6, alignItems: 'flex-end' }}>

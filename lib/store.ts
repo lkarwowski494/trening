@@ -824,6 +824,8 @@ export function tplRows(it: TemplateItem): TRow[] {
   return Array.from({ length: n }, (_, k) => ({ id: `${it.id}:${k}`, kind: 'normal' as SetKind, reps: '' as const, weight: it.startWeight ?? '', durationSec: Number(it.targetSec) > 0 ? Number(it.targetSec) : '' as const, distanceM: '' as const }));
 }
 const isWork = (k: SetKind) => k === 'normal' || k === 'failure';
+/** Serie szablonu bez rozgrzewek — jedna reguła dla ekranu głównego, „Dodaj trening wstecz”, karty szablonu i listy Historii (scenariusz 06.10, krok 05b). */
+export const tplWorkSets = (tpl: { items: TemplateItem[] }) => tpl.items.reduce((a, i) => a + tplRows(i).filter(r => r.kind !== 'warmup').length, 0);
 /** Wiersze pozycji, gdy rodzaje serii bloku wciąż się z nimi zgadzają (cofnięcie zamiany — „wartości jak przy starcie”, audyt 85364ad M2). */
 const rowsFor = (it: TemplateItem | undefined, kinds: readonly SetKind[]) => { if (!it) return undefined; const r = tplRows(it); return r.length === kinds.length && r.every((x, i) => x.kind === kinds[i]) ? r : undefined; };
 /** Liczba serii, ciężar startowy i cel czasu z wierszy (reszta kodu — zamiana, trening wstecz — czyta te pola). */

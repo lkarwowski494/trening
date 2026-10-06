@@ -24,10 +24,6 @@
   "en": "{n} warm-up"
  },
  {
-  "pl": "{n} ustawień na stronę: {r}",
-  "en": "{n} settings per side: {r}"
- },
- {
   "pl": "{n} z {all}",
   "en": "{n} of {all}"
  },
@@ -344,8 +340,8 @@
   "en": "No permission"
  },
  {
-  "pl": "Brak zgody albo moduł HealthKit nie jest w tej wersji aplikacji (Expo Go go nie ma — potrzebny build IPA).",
-  "en": "No permission, or HealthKit is not in this build (Expo Go does not include it — an IPA build is needed)."
+  "pl": "Brak zgody na zapis treningów. Włącz ją w aplikacji Zdrowie: profil → Aplikacje → Trening.",
+  "en": "No permission to save workouts. Turn it on in the Health app: profile → Apps → Trening."
  },
  {
   "pl": "brak: {m}",
@@ -410,6 +406,10 @@
  {
   "pl": "Ciężar serii na stacji wpisuj na stronę — tak, jak pokazuje urządzenie.",
   "en": "Enter station set weights per side — as the device shows them."
+ },
+ {
+  "pl": "Ciężarów w tym zakresie: {c} — najwyżej {n}. Zwiększ krok.",
+  "en": "Weights in this range: {c} — at most {n}. Increase the step."
  },
  {
   "pl": "ciężaru {w} nie ma tutaj — wpisz ciężar",
@@ -994,8 +994,8 @@
   "en": "Automatic backup after a workout is off (Settings)."
  },
  {
-  "pl": "Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → Trening → Backup, ostatnie 10). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego Apple ID wyeksportuj backup na zewnątrz.",
-  "en": "Automatic backup: after every workout a JSON file is saved in Files (On My iPhone → Trening → Backup, last 10). Import accepts these files too. These copies are deleted together with the app — before removing it or installing from a different Apple ID, export a backup elsewhere."
+  "pl": "Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → Trening → Backup, ostatnie {n}). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego Apple ID wyeksportuj backup na zewnątrz.",
+  "en": "Automatic backup: after every workout a JSON file is saved in Files (On My iPhone → Trening → Backup, last {n}). Import accepts these files too. These copies are deleted together with the app — before removing it or installing from a different Apple ID, export a backup elsewhere."
  },
  {
   "pl": "Kopia jest zachowana w telefonie. Tapnij, by ją wysłać, a potem zaimportuj backup.",
@@ -1834,8 +1834,8 @@
   "en": "The file has schema {a}; this version supports up to {b}. Update the app."
  },
  {
-  "pl": "Pliki → Na moim iPhonie → Trening → Backup, ostatnie 10",
-  "en": "Files → On My iPhone → Trening → Backup, last 10"
+  "pl": "Pliki → Na moim iPhonie → Trening → Backup, ostatnie {n}",
+  "en": "Files → On My iPhone → Trening → Backup, last {n}"
  },
  {
   "pl": "Po ukryciu komunikatu kopii nie da się już wysłać z aplikacji — najpierw ją wyślij, jeśli jest potrzebna.",
@@ -2606,10 +2606,6 @@
   "en": "This workout won’t be saved."
  },
  {
-  "pl": "Ten zakres to {c} ciężarów — najwyżej {n}. Zwiększ krok.",
-  "en": "This range is {c} weights — at most {n}. Increase the step."
- },
- {
   "pl": "Timer odlicza w aplikacji, a na koniec przerwy przychodzi powiadomienie — także przy zablokowanym telefonie.",
   "en": "The timer counts down in the app and a notification arrives at the end of rest — even when the phone is locked."
  },
@@ -2742,6 +2738,10 @@
   "en": "Settings"
  },
  {
+  "pl": "Ustawienia na stronę: {n} ({r})",
+  "en": "Settings per side: {n} ({r})"
+ },
+ {
   "pl": "Usunąć ćwiczenie?",
   "en": "Delete exercise?"
  },
@@ -2778,8 +2778,8 @@
   "en": "Remove substitute?"
  },
  {
-  "pl": "Usunie ćwiczenia, szablony i całą historię. Przedtem obecne dane zapiszą się jako kopia w Plikach: Trening → Backup (można ją zaimportować).",
-  "en": "This deletes exercises, templates and all history. Your current data is first saved as a copy in Files: Trening → Backup (you can import it)."
+  "pl": "Usunie ćwiczenia, szablony i całą historię oraz przywróci ustawienia domyślne (także miejsca, sprzęt i gumy). Przedtem obecne dane zapiszą się jako kopia w Plikach: Trening → Backup (można ją zaimportować).",
+  "en": "This deletes exercises, templates and all history and restores default settings (including places, equipment and bands). Your current data is first saved as a copy in Files: Trening → Backup (you can import it)."
  },
  {
   "pl": "usunięte",
@@ -3126,8 +3126,8 @@
   "en": "Invalid range: “max” must be ≥ “min”, step > 0. Weights are not calculated."
  },
  {
-  "pl": "Zakres powtórzeń: {r} — po osiągnięciu górnej granicy podpowiedź „↑ więcej kg”.",
-  "en": "Rep range: {r} — when you reach the top of the range you get a “↑ more kg” hint."
+  "pl": "Zakres powtórzeń: {r} — po osiągnięciu górnej granicy podpowiedź „↑ więcej {u}”.",
+  "en": "Rep range: {r} — when you reach the top of the range you get a “↑ more {u}” hint."
  },
  {
   "pl": "Zalecenia",
