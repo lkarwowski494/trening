@@ -46,7 +46,9 @@ describe('workflowy na publicznym repozytorium', () => {
     expect(y).toMatch(/- name: Usunięcie klucza z maszyny\n\s+if: always\(\)\n\s+run: rm -f "\$RUNNER_TEMP\/AuthKey\.p8"/);
     expect(y).toMatch(/BUILD_NUMBER=\$\(\(1000 \+ GITHUB_RUN_NUMBER\)\)/); expect(y).not.toMatch(/\$\{\{[^}]*\+/); /* wyrażenia Actions nie liczą */ expect(y).toMatch(/retention-days: 1/);
     expect(y).toMatch(/<string>app-store-connect<\/string>/);
-    expect(y.indexOf('AuthKey.p8"\n')).toBeGreaterThan(y.indexOf('pod install')); /* audyt 06.10: klucz na dysku dopiero przed archiwum */
+    expect(y.indexOf('AuthKey.p8"\n')).toBeGreaterThan(y.indexOf('pod install'));
+    expect(y.indexOf('Sekrety obecne')).toBeLessThan(y.indexOf('npm ci')); /* brak sekretu kończy przebieg od razu */
+    expect((y.match(/unset ASC_KEY_ID ASC_ISSUER_ID/g) || []).length).toBe(2); expect(y).not.toMatch(/-authenticationKeyID "\$ASC_KEY_ID"/); /* logi w artefakcie bez identyfikatorów */ /* audyt 06.10: klucz na dysku dopiero przed archiwum */
   });
   test('deklaracja szyfrowania: aplikacja nie używa szyfrowania poza systemowym (bez pytania przy każdym buildzie w App Store Connect)', () => {
     expect(JSON.parse(readFileSync(join(__dirname, '../app.json'), 'utf8')).expo.ios.infoPlist.ITSAppUsesNonExemptEncryption).toBe(false);

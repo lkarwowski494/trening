@@ -28,9 +28,6 @@ jobs:
         with:
           node-version: 22
           cache: npm
-      - run: npm ci
-      - name: Testy (jak przed każdym buildem)
-        run: npm run typecheck && npm run check:i18n && npm test -- --maxWorkers=2 && npm run verify:native
       - name: Sekrety obecne (bez wypisywania wartości)
         env:
           ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
@@ -38,6 +35,9 @@ jobs:
           ASC_KEY_P8: ${{ secrets.ASC_KEY_P8 }}
         run: |
           for v in ASC_KEY_ID ASC_ISSUER_ID ASC_KEY_P8; do [ -n "${!v}" ] || { echo "::error::Brak sekretu $v (docs/15 — kroki właściciela)"; exit 1; }; done
+      - run: npm ci
+      - name: Testy (jak przed każdym buildem)
+        run: npm run typecheck && npm run check:i18n && npm test -- --maxWorkers=2 && npm run verify:native
       - name: Generate native iOS project (expo prebuild)
         run: npx expo prebuild --platform ios --no-install --clean
       - name: Numer buildu (aplikacja i widżet ten sam CFBundleVersion)
@@ -59,12 +59,15 @@ jobs:
           ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
         run: |
           set -o pipefail
+          # przegląd CI 06.10: identyfikatory klucza poza środowiskiem xcodebuild (surowe logi idą do artefaktu, a tam GitHub nie maskuje)
+          KID="$ASC_KEY_ID"; ISS="$ASC_ISSUER_ID"; unset ASC_KEY_ID ASC_ISSUER_ID
+          TEAM=$(node -p "require('./app.json').expo.ios.appleTeamId")
           cd ios
           xcodebuild -workspace Trening.xcworkspace -scheme Trening -configuration Release -destination 'generic/platform=iOS' \
             -archivePath "$RUNNER_TEMP/Trening.xcarchive" archive \
             -allowProvisioningUpdates -authenticationKeyPath "$RUNNER_TEMP/AuthKey.p8" \
-            -authenticationKeyID "$ASC_KEY_ID" -authenticationKeyIssuerID "$ASC_ISSUER_ID" \
-            CODE_SIGN_STYLE=Automatic CURRENT_PROJECT_VERSION=$BUILD_NUMBER \
+            -authenticationKeyID "$KID" -authenticationKeyIssuerID "$ISS" \
+            CODE_SIGN_STYLE=Automatic DEVELOPMENT_TEAM="$TEAM" CURRENT_PROJECT_VERSION=$BUILD_NUMBER \
             2>&1 | tee xcodebuild.log | xcbeautify
       - name: Eksport i wysyłka do App Store Connect
         env:
@@ -72,6 +75,7 @@ jobs:
           ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
         run: |
           set -o pipefail
+          KID="$ASC_KEY_ID"; ISS="$ASC_ISSUER_ID"; unset ASC_KEY_ID ASC_ISSUER_ID
           TEAM=$(node -p "require('./app.json').expo.ios.appleTeamId")
           cat > "$RUNNER_TEMP/ExportOptions.plist" <<EOF
           <?xml version="1.0" encoding="UTF-8"?>
@@ -86,7 +90,7 @@ jobs:
           EOF
           xcodebuild -exportArchive -archivePath "$RUNNER_TEMP/Trening.xcarchive" -exportOptionsPlist "$RUNNER_TEMP/ExportOptions.plist" \
             -exportPath "$RUNNER_TEMP/export" -allowProvisioningUpdates -authenticationKeyPath "$RUNNER_TEMP/AuthKey.p8" \
-            -authenticationKeyID "$ASC_KEY_ID" -authenticationKeyIssuerID "$ASC_ISSUER_ID" 2>&1 | tee export.log | xcbeautify
+            -authenticationKeyID "$KID" -authenticationKeyIssuerID "$ISS" 2>&1 | tee export.log | xcbeautify
           echo "## TestFlight: build $BUILD_NUMBER wysłany" >> "$GITHUB_STEP_SUMMARY"
           echo "Po przetworzeniu przez Apple (zwykle 10–30 min) pojawi się w aplikacji TestFlight na iPhonie." >> "$GITHUB_STEP_SUMMARY"
       - name: Usunięcie klucza z maszyny

@@ -55,7 +55,7 @@ Rozmowa 05.10.2026, rano: „Chciałbym móc opublikować to w Apple Store” i 
 2. **App Store Connect (właściciel, w przeglądarce):**
    - rekord aplikacji (bundle `pl.lukasz.trening`), nazwa, kategoria (Health & Fitness), ocena wieku;
    - App Privacy: „Data Not Collected”, do potwierdzenia;
-   - klucz API (rola App Manager) → sekrety repo.
+   - klucz API (rola **Admin** — przegląd CI 06.10: podpis w chmurze przy eksporcie wymaga uprawnień do certyfikatów dystrybucyjnych) → sekrety repo.
 3. **Profil „App Store”:** certyfikat dystrybucyjny i profil App Store w EAS credentials. Dziś jest tylko ad hoc.
 4. **`ITSAppUsesNonExemptEncryption: false`** w `app.json` (aplikacja nie używa własnego szyfrowania). Do potwierdzenia przy audycie.
 5. **Zrzuty ekranu** (6,9″ i 6,5″) z symulatora — Maestro `takeScreenshot` albo `scripts/screens`. Opis PL/EN.
@@ -106,7 +106,7 @@ automatyczny), wysyłka do App Store Connect; bez Expo/EAS i ich limitów. Numer
 **Kroki właściciela (przeglądarka, ~30 min):**
 1. App Store Connect → Apps → „+” → New App: platforma iOS, nazwa (np. „Trening” — jeśli zajęta, inna), język główny Polski,
    Bundle ID `pl.lukasz.trening` (jeśli nie ma go na liście: developer.apple.com → Identifiers → „+” → App ID z tym identyfikatorem), SKU dowolne.
-2. Users and Access → Integrations → App Store Connect API → „+”: nazwa „GitHub”, dostęp **App Manager** → pobierz plik `AuthKey_XXXX.p8`
+2. Users and Access → Integrations → App Store Connect API → „+”: nazwa „GitHub”, dostęp **Admin** (podpis w chmurze przy eksporcie — z rolą App Manager zwykle błąd „Cloud signing permission error”) → pobierz plik `AuthKey_XXXX.p8`
    (do pobrania tylko raz), zanotuj Key ID i Issuer ID.
 3. GitHub → repozytorium → Settings → Secrets and variables → Actions → New repository secret: `ASC_KEY_ID`, `ASC_ISSUER_ID`,
    `ASC_KEY_P8` (cała treść pliku .p8). Pliku nie wysyłać nigdzie indziej (ani na czat).

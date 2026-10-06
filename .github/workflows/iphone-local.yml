@@ -1,4 +1,7 @@
-# Instalacja „ad hoc” na iPhonie BEZ zużywania limitu buildów Expo (decyzja 03.10.2026: build to ostateczność,
+# UWAGA (06.10.2026, docs/15): `eas upload` JEDNAK zużywa limit darmowego planu Expo — wyczerpany do 01.11.2026. Instalacja na telefonie:
+# testflight.yml (decyzja właściciela). Ten workflow zostaje do decyzji o usunięciu Expo/EAS (nazwa historyczna).
+#
+# Instalacja „ad hoc” na iPhonie BEZ zużywania limitu buildów Expo w chmurze (decyzja 03.10.2026: build to ostateczność,
 # 15 buildów iOS/mies. w darmowym planie Expo dzielą 3 aplikacje). Repozytorium publiczne (ADR-031), więc maszyna macOS
 # w GitHub Actions jest darmowa: kompilacja odbywa się tutaj (`eas build --local`, te same certyfikaty i profile z EAS),
 # a do Expo trafia tylko gotowy plik (`eas upload`), który daje link do instalacji, jak przy buildzie w chmurze.

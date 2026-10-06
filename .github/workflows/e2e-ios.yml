@@ -16,7 +16,7 @@ jobs:
     permissions:
       contents: read
       actions: read
-    timeout-minutes: 75
+    timeout-minutes: 110  # przegląd CI 06.10.2026: build ~30 + symulator ~8 + 2 × strażnik 25 min — przy 75 powtórzenie było ucinane bez podsumowania porażki
     steps:
       - uses: actions/checkout@v5
       - name: Select Xcode 26.x
