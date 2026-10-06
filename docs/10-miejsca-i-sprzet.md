@@ -386,5 +386,5 @@ Po rundzie 82c: 875 testów. Otwarte pytanie o objętość stacji (×1 czy ×2 p
 - Kompletne (min, max na stronę, krok): ViShape SmartGym Pro i Lite, Beyond Power Voltra I (jedna linka).
 - Brak minimum na stronę: Speediance (Gym Monster 1/2/3, Gym Pal), Tonal 1/2, AEKE K1, OxeFit XP1, Forme Studio Lift.
 - Brak kroku: Vitruvian Trainer+, OxeFit XP1, Forme Studio Lift.
-- Sprzeczności źródeł: ViShape Pro maks. 60 vs 65 kg/str. (preset w aplikacji: 65 — do potwierdzenia), ViShape Lite łącznie 70 vs 68 kg,
+- Sprzeczności źródeł: ViShape Pro maks. 60 vs 65 kg/str. — **rozstrzygnięte 06.10.2026: właściciel odczytał na swoim urządzeniu 65 kg/str.** (preset w aplikacji: 65 — zgodny), ViShape Lite łącznie 70 vs 68 kg,
   Gym Pal 220 vs 200 lb, Gym Monster 3 krok 1 kg (EU) vs 1 lb (US), OxeFit XP1 400 vs 500 lb.
