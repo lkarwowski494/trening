@@ -59,3 +59,4 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
 - 06.10.2026: scenariusze E2E 08–10 (wiersze serii w szablonie, język + wygląd, gumy) — **wdrażać** (wariant A).
 - 06.10.2026: nazwa aplikacji (decyzje z sesji „Nazwa aplikacji treningowej”, 05.10, potwierdzone przez właściciela 06.10) — **najpierw nazwa,
   potem pierwszy TestFlight** (wariant B). Gryf bez talerzy = ciężary nieznane (wariant A, wdrożone f59d36e).
+- 06.10.2026: testy przy każdym wypchnięciu — **wariant A**: `tests.yml` (verify na każdej gałęzi), E2E samo na `main` i `integration/**`.

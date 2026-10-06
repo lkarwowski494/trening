@@ -7,18 +7,23 @@ const wf = (n: string) => readFileSync(join(__dirname, '../.github/workflows', n
 
 describe('workflowy na publicznym repozytorium', () => {
   test('każdy workflow ma jawne uprawnienia tokenu tylko do odczytu treści i uruchamia się tylko ręcznie', () => {
-    for (const n of ['iphone-eas.yml', 'iphone-local.yml', 'ios-unsigned.yml', 'e2e-ios.yml', 'testflight.yml']) {
+    for (const n of ['iphone-eas.yml', 'iphone-local.yml', 'ios-unsigned.yml', 'testflight.yml']) {
       const y = wf(n);
       expect(y).toMatch(/permissions:\n\s+contents: read/);
       expect(y).not.toMatch(/contents: write|pull_request_target|^\s+push:/m);
       expect(y).toMatch(/on:\n\s+workflow_dispatch:/);
     }
+    /* decyzja właściciela 06.10.2026 (wariant A): testy przy każdym wypchnięciu; E2E samo tylko na main i integration/**; nigdy pull_request (forki) */
+    const e = wf('e2e-ios.yml'); expect(e).toMatch(/permissions:\n\s+contents: read/); expect(e).not.toMatch(/contents: write|pull_request/);
+    expect(e).toMatch(/push:\n\s+branches: \[main, 'integration\/\*\*'\]/); expect(e).toMatch(/workflow_dispatch:/); expect(e).not.toMatch(/secrets\.(?!GITHUB_TOKEN)/);
+    const t = wf('tests.yml'); expect(t).toMatch(/permissions:\n\s+contents: read/); expect(t).not.toMatch(/contents: write|pull_request|secrets\./);
+    expect(t).toMatch(/on:\n\s+push:/); expect(t).toMatch(/run: npm run verify/);
   });
   test('przebiegi według harmonogramu (nightly.yml, tests-tz.yml; 06.10.2026): tylko harmonogram i ręcznie, odczyt, bez sekretów, artefakty 1 dzień', () => {
     const fs = require('fs') as typeof import('fs');
     for (const n of ['nightly.yml', 'tests-tz.yml'].filter(n => fs.existsSync(join(__dirname, '../.github/workflows', n)))) {
       const y = wf(n);
-      expect([n, /permissions:\n\s+contents: read/.test(y), /contents: write|pull_request|^\s+push:/m.test(y), /secrets\./.test(y), /on:\n\s+schedule:/.test(y), /workflow_dispatch:/.test(y)]).toEqual([n, true, false, false, true, true]);
+      expect([n, /permissions:\n\s+contents: read/.test(y), /contents: write|pull_request|^\s+push:/m.test(y), /secrets\./.test(y), /\n\s+schedule:\n/.test(y), /workflow_dispatch:/.test(y)]).toEqual([n, true, false, false, true, true]);
       const ups = y.split('actions/upload-artifact@v4').length - 1; expect([n, (y.match(/retention-days: 1\n/g) || []).length]).toEqual([n, ups]);
     }
     const n = wf('nightly.yml'); expect(n).toMatch(/MATRIX_SEED=random/); expect(n).toMatch(/npx stryker run/); expect(n).toMatch(/uses: \.\/\.github\/workflows\/e2e-ios\.yml/); expect(n).toMatch(/wyglad: dark/);

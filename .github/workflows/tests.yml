@@ -1,0 +1,25 @@
+# Testy przy każdym wypchnięciu (decyzja właściciela 06.10.2026, wariant A): pełne `npm run verify` na każdej gałęzi.
+# Repozytorium publiczne (ADR-031): maszyna ubuntu bez opłat. Uruchamia tylko wypchnięcie do tego repozytorium (właściciel i agent);
+# bez wyzwalaczy dla zgłoszeń zmian (PR) — kod z cudzych forków tego nie odpali. Bez sekretów.
+name: Testy (każde wypchnięcie)
+on:
+  push:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: tests-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: npm run verify (typy, tłumaczenia, wszystkie testy Jest, macierz, eksport iOS, sprawdzenie natywne)
+        run: npm run verify

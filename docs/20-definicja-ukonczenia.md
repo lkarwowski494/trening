@@ -25,6 +25,12 @@ Brak któregoś rodzaju wymaga zapisanego powodu w docs/09 (wiersz tej zmiany), 
 - **Przy przeglądzie zmiany (agent, przed commitem):** rodzaje 3, 5 (dopisanie akcji), 6, 8, 9 — wiersz w docs/09 wymienia testy każdego rodzaju
   albo powód „nie dotyczy”. Bramka sprawdza obecność testu, nie jego jakość: sama wzmianka tekstu w teście to za mało (CLAUDE.md).
 - **Przed buildem:** E2E (`e2e-ios.yml`) zielone na commicie z linii „GOTOWE DO BUILDU” (docs/14).
+- **Przy każdym wypchnięciu (decyzja właściciela 06.10.2026, wariant A):** `tests.yml` — pełne `npm run verify` na każdej gałęzi (ubuntu, bez opłat);
+  `e2e-ios.yml` samo przy wypchnięciu na `main` i `integration/**` (bez zmian tylko w `docs/` i `*.md`). Bez wyzwalaczy dla PR z forków.
+- **Co noc / codziennie:** `nightly.yml` (losowe sekwencje ×1000 z nowym ziarnem, testy mutacyjne, E2E na małym ekranie przy ciemnym wyglądzie),
+  `tests-tz.yml` (cały zestaw w 7 strefach czasowych). Harmonogram działa z gałęzi domyślnej (`main`).
+- **Testy są trwałe:** każda wersja dokłada swoje testy do tych samych plików/zestawów; test usuwa się albo zmienia tylko przy celowej zmianie
+  zachowania, z wpisem w docs/09.
 
 ## Stan na 06.10.2026
 
