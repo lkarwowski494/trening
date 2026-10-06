@@ -2,7 +2,7 @@
 module.exports = {
   type: 'widget',
   name: 'RestWidget',
-  displayName: 'Trening — przerwa',
+  displayName: 'Trening — Przerwa', // język bazowy; 16 języków: <kod>.lproj/InfoPlist.strings generowane w tests/widget-i18n.test.ts (06.10.2026)
   bundleIdentifier: '.restwidget',
   deploymentTarget: '16.2',
   frameworks: ['SwiftUI', 'WidgetKit', 'ActivityKit'],

@@ -65,7 +65,7 @@ w tych krajach sklep pokazuje English (U.K.) — „Training: Gym Log & Rest Tim
 i pod ikoną „similar”) — wspólny rdzeń; jeśli recenzja zakwestionuje, zmiana jednej linii w `APP_NAME`.
 
 *Otwarte:* opisy w App Store (część po dwukropku) czytane przez native speakera; unikalność nazw (rezerwacja w App Store Connect);
-znaki towarowe (nie sprawdzone); nazwa widżetu „Trening — przerwa” (`targets/rest-widget`, tylko po polsku); czy folder w Plikach
+znaki towarowe (nie sprawdzone); ~~nazwa widżetu „Trening — przerwa” tylko po polsku~~ — 06.10.2026: widżet w 16 językach (`<kod>.lproj/InfoPlist.strings` i `RestLabels.swift` generowane z APP_NAME i słowników, `tests/widget-i18n.test.ts`); czy folder w Plikach
 przyjmuje nazwę zlokalizowaną (sprawdzić na buildzie — teksty ścieżki zakładają, że tak).
 
 ## Styl marki

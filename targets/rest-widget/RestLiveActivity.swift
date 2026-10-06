@@ -58,12 +58,12 @@ func kindBase(_ kind: String) -> String {
   return kind
 }
 /// Etykieta rodzaju odliczania. Runda 37: aplikacja przekazuje ją w języku z ustawień aplikacji („rest|Przerwa”);
-/// bez niej (starsza wersja aplikacji) — w języku systemu (T-040).
+/// bez niej — w języku systemu z 16 języków aplikacji (06.10.2026, RestLabels.swift generowany z tłumaczeń), inny język → angielski.
 func kindLabel(_ kind: String) -> String {
   if let i = kind.firstIndex(of: "|") { return String(kind[kind.index(after: i)...]) }
-  let pl = Locale.preferredLanguages.first?.hasPrefix("pl") ?? false
-  if kind == "set" { return pl ? "Seria" : "Set" }
-  return pl ? "Przerwa" : "Rest"
+  let code = String((Locale.preferredLanguages.first ?? "en").prefix(2))
+  let l = restLabels[code] ?? restLabels["en"]!
+  return kind == "set" ? l.set : l.rest
 }
 
 /// Zakres odliczania odporny na koniec w przeszłości: operator ... wywraca rozszerzenie, gdy start > koniec (audyt 0.8.1).
