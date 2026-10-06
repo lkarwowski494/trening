@@ -655,7 +655,6 @@
  "To nie wygląda na backup z tej apki": "Nevypadá to jako záloha z této aplikace",
  "trap bar": "trap bar",
  "Trening": "Trénink",
- "Trening {v} · dane tylko w telefonie, bez konta i bez sieci. Backup po ważnych sesjach (i przed odnowieniem podpisu).": "Trening {v} · data jen v telefonu, bez účtu, bez sítě. Zálohujte po důležitých trénincích (a před obnovením podpisu).",
  "Trening jest zawsze włączony. Pozostałe moduły pojawią się w kolejnych wersjach — przełącznik już czeka. Schemat danych: v{v}.": "Trénink je vždy zapnutý. Další moduly přibudou v dalších verzích – přepínač je připraven. Schéma dat: v{v}.",
  "Trening rozpoczęty o {t}, bez odhaczonych serii. Kontynuować czy odrzucić?": "Trénink začal v {t}, žádné odškrtnuté série. Pokračovat, nebo zahodit?",
  "Trening rozpoczęty o {t}, bez odhaczonych serii. Otwórz, by kontynuować albo odrzucić.": "Trénink začal v {t}, žádné odškrtnuté série. Otevřete a pokračujte, nebo zahoďte.",

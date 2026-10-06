@@ -89,7 +89,7 @@ export function beginPast(tplId: string | null, start: number, end: number): Dra
 }
 function prefill(ex: Exercise, p0: WSet | null, startWeight: number | '' = '', targetSec: number | '' = '', repMin: number | null = null, row?: TRow): WSet {
   const m = ex.metric ?? 'weight_reps'; const p = assistLost(ex, p0) ? null : p0; const sw = row ? row.weight : startWeight; /* schemat 17: plan z wiersza szablonu, jak start treningu */
-  const s = { ...emptySet(), ...(p ? copyVals(p) : { weight: isBW(ex) || !hasWeight(m) || sw === '' ? '' : Math.max(0, Number(sw)), addKg: isBW(ex) && hasWeight(m) ? sw : '', ...(row && hasReps(m) ? { reps: row.reps } : {}), ...(row && hasDistance(m) ? { distanceM: row.distanceM } : {}) }), done: true } as WSet;
+  const s = { ...emptySet(), ...(p ? copyVals(p) : { weight: isBW(ex) || !hasWeight(m) || sw === '' ? '' : Math.max(0, Number(sw)), addKg: isBW(ex) && hasWeight(m) ? sw : '', ...(row && hasReps(m) ? { reps: row.reps } : {}), ...(row && hasDistance(m) ? { distanceM: row.distanceM } : {}), ...(row?.bandId ? { bandId: row.bandId } : {}) }), done: true } as WSet;
   if (row) targetSec = Number(row.durationSec) > 0 ? Number(row.durationSec) : '';
   if (hasTime(m)) s.durationSec = Number(targetSec) > 0 ? Number(targetSec) : (p && Number(p.durationSec) > 0 ? Number(p.durationSec) : '');
   if (hasReps(m) && s.reps === '' && repMin != null) s.reps = repMin;
@@ -109,7 +109,10 @@ function prefillFor(d: Draft, e: WExercise, before: number): ((i: number) => { s
    * gdy sesja daje wartości — sesja z samymi drop setami nie jest źródłem, więc nie wstrzymuje ciężaru startowego szablonu (jak startFromTemplate) */
   const away = !!(src.length && prevFromOther(p, ex.id, loc, e.impl));
   const at = (s: WSet) => ({ s, off: away && offListAt(ex, loc, s.weight, pinnedImpl(e)) }); /* E2 (audyt L2): przyrząd wybrany ręcznie (P5b) */
-  return it ? (i => at(prefill(ex, srcOf(i), it.startWeight, it.targetSec, it.repMin, it.rows?.[i]))) : (i => at(prefill(ex, srcOf(i))));
+  /* przegląd 06.10.2026 (WYSOKIE): rozgrzewki i drop sety bez źródła, serie robocze numerowane bez nich — jak store.prefillSets przy starcie */
+  const kinds = e.sets.map(x => x.kind); const work = (k: string) => k !== 'warmup' && k !== 'drop';
+  const srcAt = (i: number) => work(kinds[i]) ? srcOf(kinds.slice(0, i).filter(work).length) : null;
+  return it ? (i => at(prefill(ex, srcAt(i), it.startWeight, it.targetSec, it.repMin, it.rows?.[i]))) : (i => at(prefill(ex, srcAt(i))));
 }
 /** Źródło wartości bloku przy danej dacie (wspólne dla prefillFor i dopisku prefilledOffList — runda 82b): sesja „Poprzednio” `p`, jej serie bez
  * drop setów `src` i `srcOf(i)` — seria źródła dla serii i bloku (pozycja szablonu: i-ta, dalej ostatnia; blok dodany w edytorze: ostatnia). */

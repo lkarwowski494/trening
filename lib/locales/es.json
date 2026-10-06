@@ -655,7 +655,6 @@
  "To nie wygląda na backup z tej apki": "No parece una copia de seguridad de esta app",
  "trap bar": "barra hexagonal",
  "Trening": "Entrenamiento",
- "Trening {v} · dane tylko w telefonie, bez konta i bez sieci. Backup po ważnych sesjach (i przed odnowieniem podpisu).": "Trening {v} · los datos se quedan en tu teléfono, sin cuenta ni red. Haz una copia tras las sesiones importantes (y antes de renovar la firma).",
  "Trening jest zawsze włączony. Pozostałe moduły pojawią się w kolejnych wersjach — przełącznik już czeka. Schemat danych: v{v}.": "El entrenamiento siempre está activo. Otros módulos llegarán en próximas versiones — el interruptor está listo. Esquema de datos: v{v}.",
  "Trening rozpoczęty o {t}, bez odhaczonych serii. Kontynuować czy odrzucić?": "Entrenamiento empezado a las {t}, sin series marcadas. ¿Continuar o descartar?",
  "Trening rozpoczęty o {t}, bez odhaczonych serii. Otwórz, by kontynuować albo odrzucić.": "Entrenamiento empezado a las {t}, sin series marcadas. Abre para continuar o descartar.",

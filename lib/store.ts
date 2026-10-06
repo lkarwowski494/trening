@@ -624,7 +624,7 @@ export function hintFor(prevSets: WSet[] | null | undefined, sets: WSet[], si: n
 export type Progression = { kind: 'load'; kg: number } | { kind: 'reps'; reps: number };
 export function progressionFor(ex: Exercise | undefined, repMax: number | null | undefined, prevSets: WSet[] | null | undefined, locationId?: string | null, prefer?: Impl): Progression | null {
   if (!ex || repMax == null || !getState().settings.progressHint || (ex.metric ?? 'weight_reps') !== 'weight_reps') return null;
-  const work = (prevSets ?? []).filter(x => isWorking(x) && x.kind !== 'drop' && !x.bandId); /* seria z gumą: obciążenie nieznane — bez podpowiedzi */
+  const work = (prevSets ?? []).filter(x => isWorking(x) && x.kind !== 'drop' && !(x.bandId && ex.bandAssistable)); /* seria z asystą gumą: obciążenie nieznane — bez podpowiedzi; guma oporowa (przegląd 06.10) — podpowiedź jak zwykle */
   if (!work.length || work.length !== (prevSets ?? []).filter(x => isWorking(x) && x.kind !== 'drop').length || work.some(x => repsOf(x) < repMax)) return null;
   const top = Math.max(...work.map(x => setLoad(ex, x))); const lb = wu() === 'lb';
   /* P-003 (E1, decyzja 4a; decyzja 7a z 03.10.2026 — bez bramki 10%): w miejscu z opisanym sprzętem „↑” to najbliższy większy DOSTĘPNY ciężar,
@@ -1064,7 +1064,7 @@ function carryPrefill(e: WExercise, si: number) {
 }
 /** Runda 10: pola wartości używane przez bieżącą metrykę ćwiczenia (metrykę można zmienić po treningach). */
 /** Ćwiczenie z gumą: asysta (bandAssistable) albo opór gumy (wymaganie sprzętu „bands”) — uwaga właściciela 06.10.2026. */
-export const usesBand = (ex: Exercise | undefined | null): boolean => !!ex && (!!ex.bandAssistable || (ex.requires ?? []).some(g => g.includes('bands')));
+export const usesBand = (ex: Exercise | undefined | null): boolean => !!ex && (!!ex.bandAssistable || (ex.requires ?? []).some(g => g.includes('bands')) || (ex.recommended ?? []).includes('bands')); /* przegląd 06.10: także guma „zalecana” */
 function usedKeys(ex: Exercise | undefined): Record<typeof VAL_KEYS[number] | 'bandId', boolean> {
   const m = ex?.metric ?? 'weight_reps'; const bw = !!ex && isBW(ex);
   return { weight: hasWeight(m) && !bw, addKg: hasWeight(m) && bw, reps: hasReps(m), durationSec: hasTime(m), distanceM: hasDistance(m), bandId: usesBand(ex) /* runda 11: guma tylko przy gumach; 06.10.2026: także opór gumy */ };
@@ -1320,7 +1320,7 @@ export function cleanLevels(item: unknown, v: unknown): number[] | undefined {
 /** Następna guma w cyklu przycisku serii. `locId` — miejsce treningu (audyt 7651f64 MEDIUM: edytor historii podaje miejsce edytowanego treningu). */
 export function nextBandId(cur: string, locId: string | null | undefined = getState().active?.locationId): string {
   const st = getState(); const loc = locId ? locationById(locId) : undefined; const lv = loc?.equipment.find(e => e.item === 'bands' && !e.off)?.levels;
-  const all = [...st.bands].sort((a, b) => a.level - b.level); const inRange = lv ? all.filter(b => lv.includes(b.level)) : all; const sorted = inRange.length ? inRange : all;
+  const all = [...st.bands].sort((a, b) => a.level - b.level); const inRange = lv ? all.filter(b => lv.includes(b.level)) : all; const sorted = lv && !lv.length ? [] : inRange.length ? inRange : all; /* przegląd 06.10: wszystkie poziomy odznaczone = brak gum w miejscu */
   const cl = all.find(b => b.id === cur); const i = sorted.findIndex(b => b.id === cur);
   if (i < 0 && cl) { const nx = sorted.find(b => b.level > cl.level); return nx?.id ?? ''; } /* guma spoza miejsca → następna z miejsca */
   return i < 0 ? (sorted[0]?.id ?? '') : (i + 1 < sorted.length ? sorted[i + 1].id : '');

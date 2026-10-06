@@ -107,3 +107,21 @@ test('trening wstecz z szablonu: typy i wartości z wierszy szablonu (jak start 
   const { beginPast } = require('@/lib/edit'); const d = beginPast('tq', Date.now() - 3 * 86400000, Date.now() - 3 * 86400000 + 3600000);
   expect(d.w.exercises[0].sets.map((s: any) => [s.kind, s.weight, s.reps])).toEqual([['warmup', 40, 10], ['normal', 60, 8], ['normal', 60, ''], ['normal', 60, '']]);
 });
+
+describe('przegląd spójności 06.10.2026', () => {
+  test('WYSOKIE: trening wstecz z szablonu z rozgrzewką i drop setem rozkłada historię jak start treningu', async () => {
+    await fresh(); const t = tplWith('Bench Press (sztanga)', { repMin: null, repMax: null, sets: 2 }); const it = t.items[0] as import('@/lib/seed').TemplateItem;
+    store.tplAddRow(t, it.id, 'warmup'); store.tplSetRow(t, it.id, it.rows![0].id, { weight: 40, reps: 10 }); store.tplAddRow(t, it.id, 'drop'); store.tplSetRow(t, it.id, it.rows![3].id, { weight: 30, reps: 12 });
+    addWorkout(Date.now() - 10 * 86400000, [['Bench Press (sztanga)', [{ weight: 100, reps: 5 }, { weight: 90, reps: 6 }]]]);
+    store.startFromTemplate(t); const live = store.getState().active!.exercises[0].sets.map(s => [s.kind, s.weight, s.reps]); store.cancelWorkout();
+    const { beginPast } = require('@/lib/edit'); const d = beginPast('tq', Date.now() - 2 * 86400000, Date.now() - 2 * 86400000 + 3600000);
+    expect(d.w.exercises[0].sets.map((s: any) => [s.kind, s.weight, s.reps])).toEqual(live);
+    expect(live).toEqual([['warmup', 40, 10], ['normal', 100, 5], ['normal', 90, 6], ['drop', 30, 12]]);
+  });
+  test('ŚREDNIE: trening wstecz bierze gumę z wiersza szablonu', async () => {
+    await fresh(); const t = tplWith('Band Pull Apart', { repMin: null, repMax: null, startWeight: '' }); const it = t.items[0] as import('@/lib/seed').TemplateItem;
+    store.tplCycleBand(t, it.id, store.tplRows(it)[0].id); const b = it.rows![0].bandId; expect(b).toBeTruthy();
+    const { beginPast } = require('@/lib/edit'); const d = beginPast('tq', Date.now() - 2 * 86400000, Date.now() - 2 * 86400000 + 3600000);
+    expect(d.w.exercises[0].sets[0].bandId).toBe(b);
+  });
+});

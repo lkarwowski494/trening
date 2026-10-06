@@ -2630,10 +2630,6 @@
   "en": "Workout"
  },
  {
-  "pl": "Trening {v} · dane tylko w telefonie, bez konta i bez sieci. Backup po ważnych sesjach (i przed odnowieniem podpisu).",
-  "en": "Trening {v} · data stays on your phone, no account, no network. Back up after important sessions (and before renewing the signature)."
- },
- {
   "pl": "Trening jest zawsze włączony. Pozostałe moduły pojawią się w kolejnych wersjach — przełącznik już czeka. Schemat danych: v{v}.",
   "en": "Training is always on. Other modules arrive in later versions — the switch is ready. Data schema: v{v}."
  },

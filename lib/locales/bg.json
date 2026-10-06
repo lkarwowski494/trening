@@ -655,7 +655,6 @@
  "To nie wygląda na backup z tej apki": "Това не прилича на резервно копие от това приложение",
  "trap bar": "трап бар",
  "Trening": "Тренировка",
- "Trening {v} · dane tylko w telefonie, bez konta i bez sieci. Backup po ważnych sesjach (i przed odnowieniem podpisu).": "Trening {v} · данните са само в телефона, без акаунт и без мрежа. Правете резервно копие след важни тренировки (и преди подновяване на подписа).",
  "Trening jest zawsze włączony. Pozostałe moduły pojawią się w kolejnych wersjach — przełącznik już czeka. Schemat danych: v{v}.": "Тренировките са винаги включени. Другите модули ще се появят в следващи версии — превключвателят е готов. Схема на данните: v{v}.",
  "Trening rozpoczęty o {t}, bez odhaczonych serii. Kontynuować czy odrzucić?": "Тренировката е започната в {t}, без отметнати серии. Продължаване или отхвърляне?",
  "Trening rozpoczęty o {t}, bez odhaczonych serii. Otwórz, by kontynuować albo odrzucić.": "Тренировката е започната в {t}, без отметнати серии. Отворете, за да продължите или отхвърлите.",

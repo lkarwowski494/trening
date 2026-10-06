@@ -83,7 +83,7 @@ test('C6 English: żaden ekran nie pokazuje polskich tekstów interfejsu', async
   const leaks: string[] = [];
   // „Trening” w stopce „Trening 0.8.1 · …” to nazwa aplikacji (marka), nie tekst interfejsu.
   /* runda 75: także ścieżka w Plikach „On My iPhone → Trening → Backup” (nazwa aplikacji = folder) */
-  const check = (where: string) => allTexts().filter(t => pl.test(t.replace(/^Trening \S* ·/, '').replace(/→ Trening →/g, '→'))).forEach(t => leaks.push(`${where}: ${t}`));
+  const check = (where: string) => allTexts().filter(t => pl.test(t.replace(/^Trening \S* ·/, '').replace(/^Trening \S*\s*$/, '') /* 06.10.2026: stopka = nazwa aplikacji i wersja */.replace(/→ Trening →/g, '→'))).forEach(t => leaks.push(`${where}: ${t}`));
   for (const url of ['/', '/templates', '/exercises', '/history', '/more', '/more/settings', '/more/bands', '/more/morning', '/more/progress', '/more/backup', `/template/${tplId}`, `/exercise/${exId}`, '/picker?target=active']) { await go(url); await flushAll(10); check(url); }
   await go('/'); await tap(screen.getByLabelText('Start: Upper A')); await tap(screen.getAllByLabelText(/^Set 1 done/)[0]); check('workout');
   await tap(screen.getAllByText('Finish and save workout')[0]); pressAlert('Finish workout?', 'Finish'); await flushAll(500); check('history detail');

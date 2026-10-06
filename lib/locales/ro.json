@@ -655,7 +655,6 @@
  "To nie wygląda na backup z tej apki": "Nu pare a fi un backup din această aplicație",
  "trap bar": "trap bar",
  "Trening": "Antrenament",
- "Trening {v} · dane tylko w telefonie, bez konta i bez sieci. Backup po ważnych sesjach (i przed odnowieniem podpisu).": "Trening {v} · datele rămân pe telefon, fără cont, fără rețea. Faceți backup după sesiunile importante (și înainte de reînnoirea semnăturii).",
  "Trening jest zawsze włączony. Pozostałe moduły pojawią się w kolejnych wersjach — przełącznik już czeka. Schemat danych: v{v}.": "Antrenamentul este mereu activat. Celelalte module vor apărea în versiunile următoare — comutatorul este pregătit. Schema datelor: v{v}.",
  "Trening rozpoczęty o {t}, bez odhaczonych serii. Kontynuować czy odrzucić?": "Antrenament început la {t}, nicio serie bifată. Continuați sau renunțați?",
  "Trening rozpoczęty o {t}, bez odhaczonych serii. Otwórz, by kontynuować albo odrzucić.": "Antrenament început la {t}, nicio serie bifată. Deschideți pentru a continua sau a renunța.",

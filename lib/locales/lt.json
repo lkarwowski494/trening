@@ -655,7 +655,6 @@
  "To nie wygląda na backup z tej apki": "Tai neatrodo kaip šios programos atsarginė kopija",
  "trap bar": "šešiakampis grifas",
  "Trening": "Treniruotė",
- "Trening {v} · dane tylko w telefonie, bez konta i bez sieci. Backup po ważnych sesjach (i przed odnowieniem podpisu).": "Trening {v} · duomenys tik telefone, be paskyros ir be tinklo. Pasidarykite atsarginę kopiją po svarbių treniruočių (ir prieš atnaujindami parašą).",
  "Trening jest zawsze włączony. Pozostałe moduły pojawią się w kolejnych wersjach — przełącznik już czeka. Schemat danych: v{v}.": "Treniruotės modulis visada įjungtas. Kiti moduliai atsiras vėlesnėse versijose — jungiklis jau paruoštas. Duomenų schema: v{v}.",
  "Trening rozpoczęty o {t}, bez odhaczonych serii. Kontynuować czy odrzucić?": "Treniruotė pradėta {t}, nepažymėta nė viena serija. Tęsti ar atmesti?",
  "Trening rozpoczęty o {t}, bez odhaczonych serii. Otwórz, by kontynuować albo odrzucić.": "Treniruotė pradėta {t}, nepažymėta nė viena serija. Atidarykite, kad tęstumėte arba atmestumėte.",

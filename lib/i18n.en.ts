@@ -29,7 +29,6 @@ export const EN: Record<string, string> = {
   'Zacznij z szablonu': 'Start from a template', 'ćw.': 'ex.', 'ostatnio': 'last', 'Start': 'Start',
   'Powtórz ostatni ({name})': 'Repeat last ({name})', 'bez szablonu': 'no template', 'Pusty trening': 'Empty workout',
   'Podpis ważny do {d}.': 'Signature valid until {d}.',
-  'Trening {v} · dane tylko w telefonie, bez konta i bez sieci. Backup po ważnych sesjach (i przed odnowieniem podpisu).': 'Trening {v} · data stays on your phone, no account, no network. Back up after important sessions (and before renewing the signature).',
 
   /* listy */
   'guma': 'band', 'tempo': 'tempo', '+ Nowe': '+ New', '+ Nowy': '+ New', 'Szukaj…': 'Search…', 'Szukaj ćwiczenia…': 'Search exercises…',

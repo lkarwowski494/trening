@@ -655,7 +655,6 @@
  "To nie wygląda na backup z tej apki": "Ovo ne izgleda kao sigurnosna kopija iz ove aplikacije",
  "trap bar": "trap šipka",
  "Trening": "Trening",
- "Trening {v} · dane tylko w telefonie, bez konta i bez sieci. Backup po ważnych sesjach (i przed odnowieniem podpisu).": "Trening {v} · podaci ostaju na telefonu, bez računa, bez mreže. Napravite sigurnosnu kopiju nakon važnih sesija (i prije obnove potpisa).",
  "Trening jest zawsze włączony. Pozostałe moduły pojawią się w kolejnych wersjach — przełącznik już czeka. Schemat danych: v{v}.": "Trening je uvijek uključen. Ostali moduli stižu u kasnijim verzijama — prekidač je spreman. Shema podataka: v{v}.",
  "Trening rozpoczęty o {t}, bez odhaczonych serii. Kontynuować czy odrzucić?": "Trening započet u {t}, nema označenih serija. Nastaviti ili odbaciti?",
  "Trening rozpoczęty o {t}, bez odhaczonych serii. Otwórz, by kontynuować albo odrzucić.": "Trening započet u {t}, nema označenih serija. Otvorite za nastavak ili odbacivanje.",

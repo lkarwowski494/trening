@@ -20,7 +20,7 @@ export default function MoreScreen() {
       {/* decyzja 05.10.2026: gumy w dodawaniu sprzętu (Miejsca i sprzęt → Gumy oporowe); ekran /more/bands zostaje dla usuwania gum */}
       <Item title={t('Backup (eksport / import)')} onPress={() => router.push('/more/backup')} />
       <Item title={t('Ustawienia')} onPress={() => router.push('/more/settings')} />
-      <Muted style={{ marginTop: 20, fontSize: 13 }}>{t('Trening {v} · dane tylko w telefonie, bez konta i bez sieci. Backup po ważnych sesjach (i przed odnowieniem podpisu).', { v: Constants.expoConfig?.version ?? '' })}{expTxt}</Muted>
+      <Muted style={{ marginTop: 20, fontSize: 12 }}>{/* decyzja właściciela 06.10.2026: tylko numer wersji, małym drukiem */}{`Trening ${Constants.expoConfig?.version ?? ''}`}{expTxt}</Muted>
     </Screen></SafeAreaView>
   );
 }

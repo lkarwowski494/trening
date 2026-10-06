@@ -655,7 +655,6 @@
  "To nie wygląda na backup z tej apki": "Це не схоже на резервну копію з цієї програми",
  "trap bar": "трап-гриф",
  "Trening": "Тренування",
- "Trening {v} · dane tylko w telefonie, bez konta i bez sieci. Backup po ważnych sesjach (i przed odnowieniem podpisu).": "Trening {v} · дані залишаються на телефоні, без облікового запису, без мережі. Робіть резервну копію після важливих тренувань (і перед поновленням підпису).",
  "Trening jest zawsze włączony. Pozostałe moduły pojawią się w kolejnych wersjach — przełącznik już czeka. Schemat danych: v{v}.": "Тренування завжди ввімкнено. Інші модулі з’являться в наступних версіях — перемикач уже готовий. Схема даних: v{v}.",
  "Trening rozpoczęty o {t}, bez odhaczonych serii. Kontynuować czy odrzucić?": "Тренування почато о {t}, жодного підходу не позначено. Продовжити чи відхилити?",
  "Trening rozpoczęty o {t}, bez odhaczonych serii. Otwórz, by kontynuować albo odrzucić.": "Тренування почато о {t}, жодного підходу не позначено. Відкрийте, щоб продовжити або відхилити.",

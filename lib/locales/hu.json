@@ -655,7 +655,6 @@
  "To nie wygląda na backup z tej apki": "Ez nem tűnik az alkalmazás biztonsági mentésének",
  "trap bar": "trap rúd",
  "Trening": "Edzés",
- "Trening {v} · dane tylko w telefonie, bez konta i bez sieci. Backup po ważnych sesjach (i przed odnowieniem podpisu).": "Trening {v} · az adatok csak a telefonon, fiók és hálózat nélkül. Készítsen mentést a fontos edzések után (és az aláírás megújítása előtt).",
  "Trening jest zawsze włączony. Pozostałe moduły pojawią się w kolejnych wersjach — przełącznik już czeka. Schemat danych: v{v}.": "Az edzés mindig be van kapcsolva. A többi modul a későbbi verziókban érkezik — a kapcsoló már kész. Adatséma: v{v}.",
  "Trening rozpoczęty o {t}, bez odhaczonych serii. Kontynuować czy odrzucić?": "Az edzés {t}-kor kezdődött, nincs kipipált sorozat. Folytatja vagy elveti?",
  "Trening rozpoczęty o {t}, bez odhaczonych serii. Otwórz, by kontynuować albo odrzucić.": "Az edzés {t}-kor kezdődött, nincs kipipált sorozat. Nyissa meg a folytatáshoz vagy elvetéshez.",
