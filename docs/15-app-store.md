@@ -34,6 +34,19 @@ Rozmowa 05.10.2026, rano: „Chciałbym móc opublikować to w Apple Store” i 
   Konto: Apple Developer jako osoba fizyczna (Individual) — firma niepotrzebna.
 - **Nazwa:** decyzja właściciela 05.10.2026 (potwierdzona 06.10) — `store/app-store-names.json` (12 lokalizacji App Store), szczegóły w docs/16 „Nazwa aplikacji”. Unikalność potwierdzi rezerwacja nazwy w App Store Connect.
 
+## Wzrost i promocja — ustalenia (właściciel 06.10.2026)
+
+- **Cel:** powolne zdobywanie użytkowników, którzy zostają na stałe — bez ostrej, szybkiej promocji. „100 pobrań miesięcznie byłoby super.”
+- **Realistyczny punkt wyjścia (ocena agenta, nie dane):** bez promocji — rzędu kilkudziesięciu pobrań w pierwszym miesiącu, potem od kilku do kilkudziesięciu
+  miesięcznie; kategoria „dziennik treningów” zatłoczona (Strong, Hevy, Fitbod, JEFIT). Liczby do zweryfikowania po premierze (App Store Connect → Analityka).
+- **Kanały za 0 zł (zgoda właściciela 06.10: „Tak” — przygotować przy wydaniu):**
+  1. ASO: słowa kluczowe i opisy w 12 lokalizacjach App Store (`store/app-store-names.json` + opisy), zrzuty ekranu w każdym języku (`npm run screens`).
+     Największa szansa w mniejszych sklepach (cs, sk, lt, lv, et, hr, sl, ro, hu, bg) — mniejsza konkurencja, nazwa lokalna.
+  2. Prośba o ocenę w aplikacji po kilku treningach (systemowe okno Apple) — do zaprojektowania (kiedy, ile razy), decyzja właściciela.
+  3. Spokojne wpisy tam, gdzie są osoby trenujące (lokalne fora/grupy, Reddit np. r/homegym): bez konta, dane w telefonie, offline, domowa siłownia.
+- **Priorytet produktu wynikający z celu:** zatrzymanie użytkowników (jakość, brak błędów, dane bezpieczne) ważniejsze niż liczba pobrań —
+  zgodne z pełnym zakresem testów (docs/20).
+
 ## Zmiany w aplikacji już zrobione pod publikację
 
 - **Poranny wpis usunięty z aplikacji** (decyzja 05.10.2026: „Nie wszyscy mają czym to mierzyć”, wariant „usunąć z aplikacji”).
