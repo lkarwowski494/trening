@@ -119,9 +119,13 @@ name: Zamiana ćwiczenia w trakcie treningu (E2 W1)
 - takeScreenshot: 34-podzial
 
 # --- Odhaczenie serii B → Zakończ → w historii oba ćwiczenia ---
+# run 37480681417 (06.10.2026): ✓ tuż nad paskiem zakładek — stuknięcie nie trafiło, seria nieodhaczona, Arnold Press nie trafił do historii.
+# Przewinięcie na środek ekranu przed stuknięciem i sprawdzenie licznika serii (2 z 4) po nim.
+- scrollUntilVisible: { element: "Set 1 done — Arnold Press", direction: DOWN, centerElement: true, timeout: 60000 }
 - tapOn: "Set 1 done — Arnold Press"
 - tapOn: { text: "Skip", optional: true }
 - scrollUntilVisible: { element: "Finish", direction: UP, timeout: 60000 }
+- extendedWaitUntil: { visible: "Workout progress: 2 of 4 sets", timeout: 30000 }
 - tapOn: "Finish"
 - extendedWaitUntil: { visible: "Finish workout\\?", timeout: 30000 }
 - tapOn: { text: "Finish", below: "Finish workout\\?" }
