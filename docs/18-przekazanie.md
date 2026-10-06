@@ -63,3 +63,4 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
 - 06.10.2026: krój pisma dla bg/sr/uk — **wariant A**: IBM Plex Sans (Archivo nie ma cyrylicy); hiszpańska zakładka — **wariant A**: „Entreno”.
 - 06.10.2026: cel przychodu ~2000 zł/mies., model 30 dni za darmo + jednorazowa płatność (rachunek w docs/15).
 - 06.10.2026: powtórzone identyfikatory w imporcie — **wariant A**: przy wczytaniu powtórzony id dostaje nowy (`uniqueIds` w `migrate`), nic nie ginie.
+- 06.10.2026: import treningu z niemożliwą datą (np. 30.02) — **wariant A**: zostaje jak jest (wczytuje się z najbliższą prawdziwą datą, bez ostrzeżenia).
