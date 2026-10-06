@@ -20,7 +20,8 @@ test('kolory Kredy: kredowe tło i grafitowy tekst za dnia, odwrotnie po zmroku;
 test('kroje: każdy krój z F ma plik; start ładuje wszystkie', async () => {
   for (const f of Object.values(F)) expect([f, !!(FONT_FILES as Record<string, unknown>)[f]]).toEqual([f, true]);
   await renderApp(); await flushAll(10);
-  expect(Object.keys(load.mock.calls[0][0] as object).sort()).toEqual(Object.values(F).sort());
+  expect(Object.keys(load.mock.calls[0][0] as object).sort()).toEqual(Object.keys(FONT_FILES).sort()); /* także IBM Plex Sans (bg/sr/uk, 06.10.2026) */
+  for (const f of Object.values(F)) expect(Object.keys(load.mock.calls[0][0] as object)).toContain(f);
 });
 
 test('kroje, które się nie wczytają (błąd albo brak odpowiedzi), nie blokują startu — po 3 s krój systemowy', async () => {

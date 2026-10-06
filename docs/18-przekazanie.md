@@ -60,3 +60,5 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
 - 06.10.2026: nazwa aplikacji (decyzje z sesji „Nazwa aplikacji treningowej”, 05.10, potwierdzone przez właściciela 06.10) — **najpierw nazwa,
   potem pierwszy TestFlight** (wariant B). Gryf bez talerzy = ciężary nieznane (wariant A, wdrożone f59d36e).
 - 06.10.2026: testy przy każdym wypchnięciu — **wariant A**: `tests.yml` (verify na każdej gałęzi), E2E samo na `main` i `integration/**`.
+- 06.10.2026: krój pisma dla bg/sr/uk — **wariant A**: IBM Plex Sans (Archivo nie ma cyrylicy); hiszpańska zakładka — **wariant A**: „Entreno”.
+- 06.10.2026: cel przychodu ~2000 zł/mies., model 30 dni za darmo + jednorazowa płatność (rachunek w docs/15).

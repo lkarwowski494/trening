@@ -1,9 +1,9 @@
 import * as SQLite from 'expo-sqlite';
 import * as FileSystem from 'expo-file-system/legacy';
 import { useSyncExternalStore } from 'react';
-import { t, t as tr, tIn, applyLang, detectLang, locale, fold, isLang } from './i18n';
+import { t, t as tr, tIn, applyLang, detectLang, locale, fold, isLang, lang } from './i18n';
 import { applyUnit, wu, wOut, wIn, KG_PER_LB, fmtW, fmtNum, snapLegacyLb } from './units';
-import { applyTheme } from './theme';
+import { applyTheme, applyFontsFor } from './theme';
 import { seedState, uid, base, defaultModules, defaultSettings, metricFor, loadModeFor, loadMult, blankTimer, musclesFor, hasTime, hasReps, hasWeight, hasDistance, METRICS, DEFAULT_REST, GROUPS, LIB, SCHEMA_VERSION, LOCAL_OWNER, MODULES, SET_KINDS, SINGLE_IMPLEMENT, equipFields, libExercise, LIB_EXTRA_REVS, LIB_EXTRA_REV, LIB_MUSCLE_FIXES, libExtraRevOf, LIB_BASE_NAMES, LOAD_SOURCE_BY_EQUIPMENT, IMPLS, own, type Impl, type SetKind, type Base, type State, type Workout, type WSet, type WExercise, type Exercise, type Template, type TemplateItem, type TemplateAlt, type TRow, type Morning, type Location } from './seed';
 import { equipById, loadsFor, implAt, implsAt, blankLoad, availability, fillGym, GYM_FILL, fillOpts, OPT_FILL } from './equipment';
 import { sanitizeLoadSpec, nextHeavier, hasLoadShown } from './loads';
@@ -125,7 +125,7 @@ export async function init(): Promise<void> {
 }
 
 /** Przenosi język i jednostkę z ustawień do warstwy wyświetlania. Wołane po starcie, imporcie i zmianie ustawień. */
-export function applyPrefs() { if (!S) return; applyLang(S.settings.language); applyUnit(S.settings.unit); applyTheme(S.settings.theme); }
+export function applyPrefs() { if (!S) return; applyLang(S.settings.language); applyFontsFor(lang()); applyUnit(S.settings.unit); applyTheme(S.settings.theme); }
 
 const isObj = (x: unknown): x is Record<string, any> => !!x && typeof x === 'object' && !Array.isArray(x);
 const arr = (x: unknown): any[] => Array.isArray(x) ? x.filter(isObj) : [];

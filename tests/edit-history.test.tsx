@@ -370,7 +370,8 @@ describe('audyt: logika', () => {
     expect('error' in edit.parseWhen('2026-10-01', '08:00', ' 60 ', now)).toBe(false);
   });
 
-  test('LOW: godzina nieistniejąca przez zmianę czasu (Europe/Warsaw, 29.03.2026 02:30) — błąd z komunikatem', () => {
+  /* Tylko w strefie Europe/Warsaw (zmiana process.env.TZ w trakcie nie działa w procesach Jesta); każdą strefę obejmuje tests/matrix-time.test.ts (tests-tz.yml). */
+  (new Date(2026, 2, 29, 2, 30).getHours() === 3 && new Date(2026, 0, 1).getTimezoneOffset() === -60 ? test : test.skip)('LOW: godzina nieistniejąca przez zmianę czasu (Europe/Warsaw, 29.03.2026 02:30) — błąd z komunikatem', () => {
     const tz = process.env.TZ; process.env.TZ = 'Europe/Warsaw';
     try {
       const now = new Date(2026, 9, 2, 12).getTime(); const r = edit.parseWhen('2026-03-29', '02:30', '60', now);

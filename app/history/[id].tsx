@@ -14,7 +14,7 @@ export default function HistoryDetail() {
   const { id } = useLocalSearchParams<{ id: string }>(); useTick(); const router = useRouter(); const th = useTheme(); const once = useOnce(); /* audyt (LOW): podwójne „Edytuj” nie otwiera dwóch edytorów */
   const w = getState().workouts.find(x => x.id === id); if (!w) return <Screen><Muted>{t('Brak sesji.')}</Muted></Screen>;
   const labels = groupLabels(w.exercises); const prs = prMap(w); let wn = 0; // numer serii roboczej
-  const cell = (v: React.ReactNode, flex = 1) => <Txt style={{ flex, fontSize: 14, fontFamily: F.mono }}>{v}</Txt>;
+  const cell = (v: React.ReactNode, flex = 1) => <Txt maxFontSizeMultiplier={1.3} /* jak wiersze serii w treningu (matrix-a11y, 06.10) */ style={{ flex, fontSize: 14, fontFamily: F.mono }}>{v}</Txt>;
   return (
     <Screen><ScrollView contentContainerStyle={{ paddingVertical: 10, paddingBottom: 60 }}>
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}><View style={{ flex: 1 }}><H1>{w.templateName || t('Trening')}</H1></View><Btn title={t('Edytuj')} small accessibilityLabel={t('Edytuj sesję')} onPress={once(() => { if (beginEdit(w.id)) router.push(`/history/edit/${encodeURIComponent(w.id)}`); })} /></View>

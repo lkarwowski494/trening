@@ -44,6 +44,14 @@ Rozmowa 05.10.2026, rano: „Chciałbym móc opublikować to w Apple Store” i 
      Największa szansa w mniejszych sklepach (cs, sk, lt, lv, et, hr, sl, ro, hu, bg) — mniejsza konkurencja, nazwa lokalna.
   2. Prośba o ocenę w aplikacji po kilku treningach (systemowe okno Apple) — do zaprojektowania (kiedy, ile razy), decyzja właściciela.
   3. Spokojne wpisy tam, gdzie są osoby trenujące (lokalne fora/grupy, Reddit np. r/homegym): bez konta, dane w telefonie, offline, domowa siłownia.
+- **Cel przychodu (właściciel 06.10.2026):** ~2000 zł miesięcznie; model bez zmian: 30 dni za darmo, potem jednorazowa płatność.
+  Rachunek orientacyjny (agent, do sprawdzenia): z ceny w App Store odpada VAT kraju kupującego (PL 23%) i prowizja Apple (15% w Small Business
+  Program), czyli na konto ok. 0,69 × cena przy kupującym z Polski. Potrzebne zakupy miesięcznie: cena 29 zł → ok. 100; 49 zł → ok. 59;
+  79 zł → ok. 37; 99 zł → ok. 29. Jednorazowa płatność = przychód tylko z NOWYCH kupujących, więc przy ~100 pobraniach/mies. cel wymaga,
+  żeby kupowała duża część pobierających — realnie potrzeba kilkuset pobrań miesięcznie albo wyższej ceny (założenie, nie dane;
+  odsetek kupujących po okresie próbnym zmierzymy po premierze w App Store Connect). „Wcześniejsi użytkownicy za darmo” obniżają przychód
+  na starcie. **Otwarte:** cena; podatek dochodowy od sprzedaży w App Store przy koncie osoby prywatnej — pytanie do księgowego
+  (nie zgadujemy).
 - **Priorytet produktu wynikający z celu:** zatrzymanie użytkowników (jakość, brak błędów, dane bezpieczne) ważniejsze niż liczba pobrań —
   zgodne z pełnym zakresem testów (docs/20).
 

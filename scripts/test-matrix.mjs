@@ -11,6 +11,7 @@
 import { fileURLToPath } from 'node:url';
 import { readFileSync, readdirSync, statSync, writeFileSync, existsSync } from 'node:fs';
 import { join, relative } from 'node:path';
+import { execFileSync } from 'node:child_process';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
 const rel = p => relative(root, p).split('\\').join('/');
@@ -18,9 +19,13 @@ const walk = (d, re, out = []) => { for (const f of readdirSync(d)) { const p = 
 const read = p => readFileSync(p, 'utf8');
 const unq = s => s.replace(/\\'/g, "'").replace(/\\\\/g, '\\');
 
-const testFiles = walk(join(root, 'tests'), /\.(ts|tsx)$/).filter(f => !/matrix-gate\.test/.test(f));
+/* Tylko pliki śledzone przez git (06.10.2026): dokument i bramka liczą to samo, co zobaczy CI — pliki testów w trakcie pisania (nieśledzone) nie zmieniają wyniku.
+ * Nowy plik testów trzeba dodać do gita (git add) przed --write. Bez gita (np. paczka źródeł) — wszystkie pliki. */
+let tracked = null; try { tracked = new Set(execFileSync('git', ['ls-files', 'tests', '.maestro'], { cwd: root, encoding: 'utf8' }).split('\n').filter(Boolean)); } catch { tracked = null; }
+const isTracked = f => !tracked || tracked.has(rel(f));
+const testFiles = walk(join(root, 'tests'), /\.(ts|tsx)$/).filter(f => !/matrix-gate\.test/.test(f) && isTracked(f));
 const tests = testFiles.map(f => ({ f: rel(f), src: read(f) }));
-const maestro = walk(join(root, '.maestro'), /\.ya?ml$/).map(f => ({ f: rel(f), src: read(f) }));
+const maestro = walk(join(root, '.maestro'), /\.ya?ml$/).filter(isTracked).map(f => ({ f: rel(f), src: read(f) }));
 const evidence = (pred, pool = tests) => pool.filter(t => pred(t.src)).map(t => t.f);
 
 const items = [];

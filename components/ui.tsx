@@ -11,7 +11,7 @@ export function Screen({ children, style }: { children: React.ReactNode; style?:
 export function H1({ children }: { children: React.ReactNode }) { const t = useTheme(); return <Text accessibilityRole="header" /* runda 68 */ style={{ color: t.text, fontSize: 24, fontFamily: F.heavy }}>{children}</Text>; }
 export function H2({ children, style }: { children: React.ReactNode; style?: StyleProp<TextStyle> }) { const t = useTheme(); return <Text accessibilityRole="header" style={[{ color: t.text, fontSize: 17, fontFamily: F.semibold, marginBottom: 8 }, style]}>{children}</Text>; }
 export function Muted({ children, style, numberOfLines, accessibilityRole, accessibilityLabel }: { children: React.ReactNode; style?: StyleProp<TextStyle>; numberOfLines?: number; accessibilityRole?: 'header'; accessibilityLabel?: string }) { const t = useTheme(); return <Text numberOfLines={numberOfLines} accessibilityRole={accessibilityRole} accessibilityLabel={accessibilityLabel} maxFontSizeMultiplier={1.4} style={[{ color: t.muted, fontSize: 14, fontFamily: F.regular }, style]}>{children}</Text>; }
-export function Txt({ children, style, accessibilityRole }: { children: React.ReactNode; style?: StyleProp<TextStyle>; accessibilityRole?: 'header' }) { const t = useTheme(); return <Text accessibilityRole={accessibilityRole} style={[{ color: t.text, fontSize: 16, fontFamily: F.regular }, style]}>{children}</Text>; }
+export function Txt({ children, style, accessibilityRole, maxFontSizeMultiplier }: { children: React.ReactNode; style?: StyleProp<TextStyle>; accessibilityRole?: 'header'; maxFontSizeMultiplier?: number }) { const t = useTheme(); return <Text accessibilityRole={accessibilityRole} maxFontSizeMultiplier={maxFontSizeMultiplier} style={[{ color: t.text, fontSize: 16, fontFamily: F.regular }, style]}>{children}</Text>; }
 
 export function Btn({ title, onPress, kind = 'default', small, block, style, accessibilityLabel, accessibilityHint }: { title: string; onPress: () => void; kind?: 'default' | 'primary' | 'ghost' | 'danger'; small?: boolean; block?: boolean; style?: StyleProp<ViewStyle>; accessibilityLabel?: string; accessibilityHint?: string }) {
   const t = useTheme();
@@ -59,7 +59,7 @@ export function Field({ label, children }: { label: string; children: React.Reac
 }
 export function Input(props: TextInputProps & { center?: boolean }) {
   const t = useTheme(); const label = React.useContext(FieldLabel); const hint = React.useContext(FieldHint);
-  return <TextInput placeholderTextColor={t.muted} maxFontSizeMultiplier={1.3} accessibilityLabel={label ?? (typeof props.placeholder === 'string' ? props.placeholder : undefined)} accessibilityHint={hint} {...props} style={[s.input, { backgroundColor: t.surface2, borderColor: t.line, color: t.text }, props.center && { textAlign: 'center', paddingHorizontal: 4 }, props.style]} />;
+  return <TextInput placeholderTextColor={t.muted} maxFontSizeMultiplier={1.3} accessibilityLabel={label ?? (typeof props.placeholder === 'string' ? props.placeholder : undefined)} accessibilityHint={hint} {...props} style={[s.input, { backgroundColor: t.surface2, borderColor: t.line, color: t.text, fontFamily: F.regular }, props.center && { textAlign: 'center', paddingHorizontal: 4 }, props.style]} />;
 }
 /** Audyt cd60eec MEDIUM: wąskie pola (ciężar 56 pt, RPE 40 pt) — krój mono (0,6 em na znak) ucinał „102,5”; Archivo z cyframi tabelarycznymi. */
 export const NUM_FONT = { fontFamily: F.regular, fontVariant: ['tabular-nums' as const] };
@@ -138,7 +138,7 @@ const s = StyleSheet.create({
   btn: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', paddingVertical: 11, paddingHorizontal: 16, borderRadius: 10, borderWidth: 1, minHeight: 44 },
   item: { flexDirection: 'row', alignItems: 'center', gap: 10, paddingRight: 4, borderBottomWidth: 1 },
   itemPress: { flex: 1, flexDirection: 'row', alignItems: 'center', gap: 10, paddingVertical: 14, paddingHorizontal: 4, minHeight: 56 },
-  input: { borderWidth: 1, borderRadius: 8, paddingVertical: 10, paddingHorizontal: 12, fontSize: 16, minHeight: 44, fontFamily: F.regular },
+  input: { borderWidth: 1, borderRadius: 8, paddingVertical: 10, paddingHorizontal: 12, fontSize: 16, minHeight: 44 }, /* krój przy renderze (F zależy od języka, 06.10.2026) */
   chip: { paddingVertical: 8, paddingHorizontal: 12, minHeight: 36, justifyContent: 'center', borderRadius: 999, borderWidth: 1, marginRight: 6 },
   empty: { padding: 28, borderWidth: 1, borderStyle: 'dashed', borderRadius: 10 },
 });

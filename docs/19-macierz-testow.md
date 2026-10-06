@@ -10,33 +10,33 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | EKRAN | 20 | 20 | 0 |
 | UI | 174 | 174 | 0 |
 | TEKST | 366 | 366 | 0 |
-| LOGIKA | 349 | 349 | 0 |
+| LOGIKA | 350 | 350 | 0 |
 | WYMIAR | 10 | 10 | 0 |
 
 ## EKRAN
 
 | Pozycja | Źródło | Testy (pierwsze 3) |
 |---|---|---|
-| /exercises | app/(tabs)/exercises.tsx | tests/matrix-a11y.test.tsx, tests/matrix-dim-langs1.test.tsx, tests/matrix-dim-langs2.test.tsx +6 |
-| /history | app/(tabs)/history.tsx | tests/audit-r82.test.tsx, tests/audit-r82b.test.tsx, tests/audit-r83.test.tsx +18 |
-| / | app/(tabs)/index.tsx | tests/app.tsx, tests/audit-backlog-q.test.tsx, tests/audit-backlog-r75.test.tsx +67 |
-| /more | app/(tabs)/more.tsx | tests/audit-io-flows.test.tsx, tests/audit-io-more.test.tsx, tests/audit-journey-c.test.tsx +29 |
-| /templates | app/(tabs)/templates.tsx | tests/matrix-a11y.test.tsx, tests/matrix-dim-langs1.test.tsx, tests/matrix-dim-langs2.test.tsx +5 |
-| /exercise | app/exercise/[id].tsx | tests/catalog-v2.test.ts, tests/matrix-a11y.test.tsx, tests/matrix-dim-langs1.test.tsx +7 |
-| /history | app/history/[id].tsx | tests/audit-r82.test.tsx, tests/audit-r82b.test.tsx, tests/audit-r83.test.tsx +18 |
+| /exercises | app/(tabs)/exercises.tsx | tests/matrix-a11y.test.tsx, tests/matrix-data-fuzz.test.ts, tests/matrix-dim-langs1.test.tsx +7 |
+| /history | app/(tabs)/history.tsx | tests/audit-r82.test.tsx, tests/audit-r82b.test.tsx, tests/audit-r83.test.tsx +19 |
+| / | app/(tabs)/index.tsx | tests/app.tsx, tests/audit-backlog-q.test.tsx, tests/audit-backlog-r75.test.tsx +68 |
+| /more | app/(tabs)/more.tsx | tests/audit-io-flows.test.tsx, tests/audit-io-more.test.tsx, tests/audit-journey-c.test.tsx +30 |
+| /templates | app/(tabs)/templates.tsx | tests/matrix-a11y.test.tsx, tests/matrix-data-fuzz.test.ts, tests/matrix-dim-langs1.test.tsx +6 |
+| /exercise | app/exercise/[id].tsx | tests/catalog-v2.test.ts, tests/matrix-a11y.test.tsx, tests/matrix-data-fuzz.test.ts +8 |
+| /history | app/history/[id].tsx | tests/audit-r82.test.tsx, tests/audit-r82b.test.tsx, tests/audit-r83.test.tsx +19 |
 | /history/add | app/history/add.tsx | tests/audit-r82.test.tsx, tests/edit-history.test.tsx, tests/matrix-ui.test.tsx +1 |
 | /history/edit | app/history/edit/[id].tsx | tests/backlog-0410.test.tsx, tests/integration-090.test.tsx, tests/matrix-a11y.test.tsx +2 |
 | /more/backup | app/more/backup.tsx | tests/audit-io-more.test.tsx, tests/audit-r83.test.tsx, tests/audit-r83b.test.tsx +10 |
-| /more/bands | app/more/bands.tsx | tests/audit-r83.test.tsx, tests/audit-records-misc.test.tsx, tests/matrix-a11y.test.tsx +9 |
+| /more/bands | app/more/bands.tsx | tests/audit-r83.test.tsx, tests/audit-records-misc.test.tsx, tests/matrix-a11y.test.tsx +10 |
 | /more/language | app/more/language.tsx | tests/matrix-a11y.test.tsx, tests/matrix-dim-langs1.test.tsx, tests/matrix-dim-langs2.test.tsx +4 |
 | /more/location | app/more/location/[id].tsx | tests/audit-r82c.test.tsx, tests/decisions-0310.test.tsx, tests/locations-audit.test.tsx +5 |
-| /more/locations | app/more/locations.tsx | tests/locations-ui.test.tsx, tests/matrix-a11y.test.tsx, tests/matrix-dim-langs1.test.tsx +6 |
-| /more/progress | app/more/progress.tsx | tests/audit-journey-c.test.tsx, tests/audit-perf-ui.test.tsx, tests/audit-records-ui.test.tsx +10 |
+| /more/locations | app/more/locations.tsx | tests/locations-ui.test.tsx, tests/matrix-a11y.test.tsx, tests/matrix-data-fuzz.test.ts +7 |
+| /more/progress | app/more/progress.tsx | tests/audit-journey-c.test.tsx, tests/audit-perf-ui.test.tsx, tests/audit-records-ui.test.tsx +11 |
 | /more/settings | app/more/settings.tsx | tests/audit-io-flows.test.tsx, tests/audit-io-more.test.tsx, tests/audit-r83.test.tsx +18 |
 | /picker | app/picker.tsx | tests/audit-prephone.test.tsx, tests/backlog-0410.test.tsx, tests/catalog-full.test.tsx +7 |
 | /reorder | app/reorder.tsx | tests/reorder-t010.test.tsx |
 | /swap | app/swap.tsx | tests/matrix-logic.test.tsx, tests/matrix-ui.test.tsx |
-| /template | app/template/[id].tsx | tests/audit-prephone.test.tsx, tests/audit-r82.test.tsx, tests/audit-r83.test.tsx +17 |
+| /template | app/template/[id].tsx | tests/audit-prephone.test.tsx, tests/audit-r82.test.tsx, tests/audit-r83.test.tsx +18 |
 
 ## UI
 
@@ -50,8 +50,8 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | + Dodaj ćwiczenie | app/history/edit/[id].tsx | tests/audit-prephone.test.tsx, tests/audit-r82.test.tsx, tests/edit-history.test.tsx +10 |
 | + Dodaj miejsce | app/more/locations.tsx | tests/locations-ui.test.tsx, tests/matrix-dim-langs1.test.tsx, tests/matrix-dim-langs2.test.tsx +6 |
 | + Dodaj trening wstecz | app/(tabs)/history.tsx | tests/edit-history.test.tsx, tests/integration-090.test.tsx, tests/matrix-dim-langs1.test.tsx +5 |
-| + drop set | app/history/edit/[id].tsx | tests/scenario-full.test.tsx, tests/set-kinds-visible.test.tsx, tests/template-rows.test.tsx +2 |
-| + Guma | app/more/bands.tsx | tests/audit-r83.test.tsx, tests/matrix-dim-langs1.test.tsx, tests/matrix-dim-langs2.test.tsx +4 |
+| + drop set | app/history/edit/[id].tsx | tests/matrix-i18n.test.tsx, tests/scenario-full.test.tsx, tests/set-kinds-visible.test.tsx +3 |
+| + Guma | app/more/bands.tsx | tests/audit-r83.test.tsx, tests/matrix-dim-langs1.test.tsx, tests/matrix-dim-langs2.test.tsx +5 |
 | + Nowe | app/(tabs)/exercises.tsx | tests/matrix-dim-langs1.test.tsx, tests/matrix-dim-langs2.test.tsx, tests/matrix-dim-langs3.test.tsx +2 |
 | + Nowy | app/(tabs)/templates.tsx | tests/flows.test.tsx, tests/matrix-ui.test.tsx, tests/regress.test.tsx +2 |
 | + Nowy szablon | app/(tabs)/index.tsx | tests/flows.test.tsx, tests/matrix-ui.test.tsx, tests/regress.test.tsx +2 |
@@ -68,20 +68,20 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | Backup (eksport / import) | app/(tabs)/more.tsx | tests/scenario-full.test.tsx |
 | Brak sprzętu w: {l}. Brakuje: {m} | components/ActiveWorkout.tsx | tests/scenario-full.test.tsx |
 | cel s | app/template/[id].tsx | tests/audit-stale-ui.test.tsx, tests/regress.test.tsx, tests/scenario-full.test.tsx +1 |
-| co | components/LoadEditor.tsx | tests/app.tsx, tests/audit-ac5d764.test.tsx, tests/audit-backlog-q.test.tsx +124 |
+| co | components/LoadEditor.tsx | tests/app.tsx, tests/audit-ac5d764.test.tsx, tests/audit-backlog-q.test.tsx +126 |
 | Co logujesz w serii | app/exercise/[id].tsx | tests/matrix-dim-langs1.test.tsx, tests/matrix-dim-langs2.test.tsx, tests/matrix-dim-langs3.test.tsx +2 |
 | Cofnij | components/ActiveWorkout.tsx | tests/matrix-logic.test.tsx, tests/matrix-ui.test.tsx, tests/scenario-full.test.tsx +2 |
 | Cofnij zamianę: {name} | components/ActiveWorkout.tsx | tests/matrix-ui.test.tsx, tests/scenario-full.test.tsx, tests/swap-ui.test.tsx +1 |
-| czas | app/history/edit/[id].tsx | tests/app.tsx, tests/audit-backlog-q.test.tsx, tests/audit-backlog-r75.test.tsx +24 |
+| czas | app/history/edit/[id].tsx | tests/app.tsx, tests/audit-backlog-q.test.tsx, tests/audit-backlog-r75.test.tsx +26 |
 | Czas trwania (min) | components/WhenFields.tsx | tests/edit-history.test.tsx, tests/matrix-ui.test.tsx, tests/scenario-full.test.tsx |
 | Data (RRRR-MM-DD) | components/WhenFields.tsx | tests/edit-history.test.tsx, tests/integration-090.test.tsx, tests/matrix-ui.test.tsx +1 |
-| do | app/template/[id].tsx | tests/app.tsx, tests/audit-backlog-q.test.tsx, tests/audit-backlog-r75.test.tsx +120 |
+| do | app/template/[id].tsx | tests/app.tsx, tests/audit-backlog-q.test.tsx, tests/audit-backlog-r75.test.tsx +122 |
 | Do upadku (F) | app/template/[id].tsx | tests/scenario-full.test.tsx, .maestro/08-szablon-wiersze.yaml |
 | dodaj ciężar | components/LoadEditor.tsx | tests/locations-ui.test.tsx, tests/matrix-ui.test.tsx, tests/scenario-full.test.tsx |
 | Dodaj notatkę | components/ActiveWorkout.tsx | tests/scenario-full.test.tsx |
 | domyślna {s} | app/exercise/[id].tsx | tests/audit-backlog-r75.test.tsx, tests/regress.test.tsx, tests/scenario-full.test.tsx +1 |
 | Domyślna przerwa (sekundy) | app/more/settings.tsx | tests/scenario-full.test.tsx |
-| Drop set (D) | app/template/[id].tsx | tests/scenario-full.test.tsx |
+| Drop set (D) | app/template/[id].tsx | tests/matrix-i18n.test.tsx, tests/scenario-full.test.tsx |
 | Duplikuj | app/more/location/[id].tsx | tests/flows.test.tsx, tests/locations-ui.test.tsx, tests/regress.test.tsx +1 |
 | dystans | app/history/edit/[id].tsx | tests/audit-backlog-r75.test.tsx, tests/audit-prephone.test.tsx, tests/edit-history.test.tsx +8 |
 | Dzień później | components/WhenFields.tsx | tests/scenario-full.test.tsx |
@@ -103,11 +103,11 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | Jak liczyć ciężar w objętości | app/exercise/[id].tsx | tests/scenario-full.test.tsx |
 | jak robocza | app/exercise/[id].tsx | tests/matrix-ui.test.tsx |
 | Jednostka ciężaru | app/more/settings.tsx | tests/matrix-dim-langs1.test.tsx, tests/matrix-dim-langs2.test.tsx, tests/matrix-dim-langs3.test.tsx +3 |
-| Język | app/more/settings.tsx | tests/audit-io-flows.test.tsx, tests/audit-io-more.test.tsx, tests/flows.test.tsx +4 |
+| Język | app/more/settings.tsx | tests/audit-io-flows.test.tsx, tests/audit-io-more.test.tsx, tests/flows.test.tsx +5 |
 | kolor | app/more/bands.tsx | tests/audit-r83.test.tsx, tests/brand-kreda.test.tsx, tests/flows.test.tsx +13 |
 | Kolor gumy | app/more/bands.tsx | tests/owner-0510c.test.tsx, tests/regress.test.tsx, tests/scenario-full.test.tsx +1 |
 | Kontynuuj | components/ActiveWorkout.tsx | tests/audit-close2-a.test.tsx, tests/audit-journey-b.test.tsx, tests/audit-r72-d.test.ts +4 |
-| krok | components/LoadEditor.tsx | tests/app.tsx, tests/audit-backlog-r75.test.tsx, tests/audit-r82b.test.tsx +22 |
+| krok | components/LoadEditor.tsx | tests/app.tsx, tests/audit-backlog-r75.test.tsx, tests/audit-r82b.test.tsx +23 |
 | max na stronę | components/LoadEditor.tsx | tests/matrix-ui.test.tsx, tests/scenario-full.test.tsx |
 | Miejsca i sprzęt | app/(tabs)/more.tsx | tests/matrix-dim-langs1.test.tsx, tests/matrix-dim-langs2.test.tsx, tests/matrix-dim-langs3.test.tsx +3 |
 | Miejsca treningu | app/more/settings.tsx | tests/locations-ui.test.tsx, tests/scenario-full.test.tsx, .maestro/06-miejsca.yaml |
@@ -115,19 +115,19 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | Miejsce treningu: {l}. Tapnij, by zmienić. | components/ActiveWorkout.tsx | tests/audit-journey-c.test.tsx, tests/locations-ui.test.tsx, tests/matrix-ui.test.tsx +2 |
 | min na stronę | components/LoadEditor.tsx | tests/matrix-ui.test.tsx |
 | Nazwa | app/exercise/[id].tsx | tests/regress.test.tsx, tests/scenario-full.test.tsx, .maestro/05-edycja-historii.yaml +1 |
-| Nie | app/exercise/[id].tsx | tests/decisions-0310.test.tsx, tests/eas-capabilities.test.ts, tests/edit-history.test.tsx +17 |
+| Nie | app/exercise/[id].tsx | tests/decisions-0310.test.tsx, tests/eas-capabilities.test.ts, tests/edit-history.test.tsx +19 |
 | Nie udało się zapisać danych | app/(tabs)/index.tsx | tests/matrix-ui.test.tsx, tests/regress.test.tsx |
 | Nie zamieniaj: {name} | components/ActiveWorkout.tsx | tests/scenario-full.test.tsx, tests/swap-alternates.test.tsx |
 | Notatka do treningu | app/history/edit/[id].tsx | tests/edit-history.test.tsx, tests/scenario-full.test.tsx |
 | Notatki techniczne | app/exercise/[id].tsx | tests/scenario-full.test.tsx |
 | np. samopoczucie, ból, sprzęt | app/history/edit/[id].tsx | tests/matrix-ui.test.tsx |
 | Obciążenie partii (z katalogu) | app/exercise/[id].tsx | tests/catalog-v2.test.ts |
-| od | components/LoadEditor.tsx | tests/app.tsx, tests/audit-ac5d764.test.tsx, tests/audit-backlog-q.test.tsx +116 |
+| od | components/LoadEditor.tsx | tests/app.tsx, tests/audit-ac5d764.test.tsx, tests/audit-backlog-q.test.tsx +118 |
 | Odrzuć | components/ActiveWorkout.tsx | tests/audit-close2-a.test.tsx, tests/edit-history.test.tsx, tests/flows.test.tsx +4 |
 | Odrzuć trening | app/history/edit/[id].tsx | tests/edit-history.test.tsx, tests/flows.test.tsx, tests/matrix-invariants.test.ts +3 |
 | Odrzuć zmiany | app/history/edit/[id].tsx | tests/edit-history.test.tsx, tests/matrix-ui.test.tsx, tests/scenario-full.test.tsx |
 | opcjonalne pole, nie wpływa na objętość | app/more/settings.tsx | tests/matrix-ui.test.tsx |
-| Partia | app/exercise/[id].tsx | tests/audit-r82b.test.tsx, tests/audit-r82c.test.tsx, tests/helpers.ts +4 |
+| Partia | app/exercise/[id].tsx | tests/audit-r82b.test.tsx, tests/audit-r82c.test.tsx, tests/helpers.ts +6 |
 | Partie główne (1 seria) | app/exercise/[id].tsx | tests/matrix-ui.test.tsx |
 | Partie pomocnicze (0,5 serii) | app/exercise/[id].tsx | tests/matrix-ui.test.tsx |
 | Pliki → Na moim iPhonie → {app} → Backup, ostatnie {n} | app/more/settings.tsx | tests/xcheck-0610.test.tsx |
@@ -138,7 +138,7 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | Pomiń | components/ActiveWorkout.tsx | tests/scenario-full.test.tsx, .maestro/05-edycja-historii.yaml |
 | Poprzednich danych nie dało się odczytać | app/(tabs)/index.tsx | tests/matrix-ui.test.tsx, tests/regress.test.tsx |
 | Postęp treningu: {d} z {n} serii | components/ActiveWorkout.tsx | tests/audit-backlog-r75.test.tsx, tests/scenario-full.test.tsx |
-| Postępy | app/(tabs)/more.tsx | tests/audit-perf-ui.test.tsx, tests/matrix-dim-langs1.test.tsx, tests/matrix-dim-langs2.test.tsx +5 |
+| Postępy | app/(tabs)/more.tsx | tests/audit-perf-ui.test.tsx, tests/matrix-data-fuzz.test.ts, tests/matrix-dim-langs1.test.tsx +6 |
 | pow. od | app/template/[id].tsx | tests/template-rows.test.tsx |
 | Powtórz ostatni ({name}) | app/(tabs)/index.tsx | tests/audit-close2-b.test.tsx, tests/scenario-full.test.tsx |
 | Powtórzenia | app/history/edit/[id].tsx | tests/audit-close2-b.test.tsx, tests/audit-journey-a.test.tsx, tests/audit-journey-c.test.tsx +5 |
@@ -160,24 +160,24 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | Skróć przerwę o 15 sekund | components/ActiveWorkout.tsx | tests/scenario-full.test.tsx |
 | Sprawdź zgodę na powiadomienia | app/more/settings.tsx | tests/matrix-ui.test.tsx, tests/scenario-full.test.tsx |
 | Sprzęt | app/exercise/[id].tsx | tests/audit-r83.test.tsx, tests/audit-r83b.test.tsx |
-| Start | app/(tabs)/index.tsx | tests/audit-backlog-q.test.tsx, tests/audit-backlog-r75.test.tsx, tests/audit-close-b.test.tsx +45 |
-| Start: {name} | app/(tabs)/index.tsx | tests/audit-close2-a.test.tsx, tests/audit-journey-a.test.tsx, tests/audit-journey-b.test.tsx +17 |
-| sztuk | components/LoadEditor.tsx | tests/locations-loads.test.ts, tests/matrix-ui.test.tsx, tests/scenario-full.test.tsx |
+| Start | app/(tabs)/index.tsx | tests/audit-backlog-q.test.tsx, tests/audit-backlog-r75.test.tsx, tests/audit-close-b.test.tsx +47 |
+| Start: {name} | app/(tabs)/index.tsx | tests/audit-close2-a.test.tsx, tests/audit-journey-a.test.tsx, tests/audit-journey-b.test.tsx +19 |
+| sztuk | components/LoadEditor.tsx | tests/locations-loads.test.ts, tests/matrix-i18n.test.tsx, tests/matrix-ui.test.tsx +1 |
 | Szukaj ćwiczenia… | app/more/progress.tsx | tests/audit-prephone.test.tsx, tests/audit-r82.test.tsx, tests/backlog-0410.test.tsx +13 |
 | Szukaj… | app/(tabs)/exercises.tsx | tests/regress.test.tsx, tests/scenario-full.test.tsx |
 | talerz ({u}) | components/LoadEditor.tsx | tests/scenario-full.test.tsx |
 | Tempo (opcjonalnie, np. 3-1-1) | app/exercise/[id].tsx | tests/scenario-full.test.tsx |
-| Trening | app/history/edit/[id].tsx | tests/audit-backlog-q.test.tsx, tests/audit-close-c.test.tsx, tests/audit-close2-a.test.tsx +27 |
+| Trening | app/history/edit/[id].tsx | tests/audit-backlog-q.test.tsx, tests/audit-close-c.test.tsx, tests/audit-close2-a.test.tsx +29 |
 | Tylko teraz | components/ActiveWorkout.tsx | tests/regress.test.tsx, tests/scenario-full.test.tsx |
 | Ukryj komunikat | app/(tabs)/index.tsx | tests/regress.test.tsx |
 | Ustaw jako główne | app/more/location/[id].tsx | tests/locations-ui.test.tsx, tests/scenario-full.test.tsx |
 | Ustawienia | app/(tabs)/more.tsx | tests/audit-backlog-r75.test.tsx, tests/audit-r72-b.test.ts, tests/i18n-multi.test.ts +16 |
-| usuń | app/history/edit/[id].tsx | tests/locations-ui.test.tsx, tests/regress.test.tsx, tests/ux.test.tsx |
-| Usuń | app/exercise/[id].tsx | tests/audit-r83.test.tsx, tests/audit-records-misc.test.tsx, tests/edit-history.test.tsx +10 |
+| usuń | app/history/edit/[id].tsx | tests/locations-ui.test.tsx, tests/matrix-data-shared.ts, tests/regress.test.tsx +1 |
+| Usuń | app/exercise/[id].tsx | tests/audit-r83.test.tsx, tests/audit-records-misc.test.tsx, tests/edit-history.test.tsx +11 |
 | Usuń ćwiczenie | app/exercise/[id].tsx | tests/edit-history.test.tsx, tests/matrix-ui.test.tsx, tests/scenario-full.test.tsx +2 |
 | Usuń ćwiczenie: {name} | app/history/edit/[id].tsx | tests/edit-history.test.tsx, tests/scenario-full.test.tsx |
 | Usuń gumę | app/more/bands.tsx | tests/audit-r83.test.tsx, tests/audit-records-misc.test.tsx, tests/matrix-ui.test.tsx +3 |
-| Usuń gumy… | app/more/location/[id].tsx | tests/scenario-full.test.tsx |
+| Usuń gumy… | app/more/location/[id].tsx | tests/matrix-i18n.test.tsx, tests/scenario-full.test.tsx |
 | Usuń odznaczone | components/LoadEditor.tsx | tests/scenario-full.test.tsx |
 | Usuń serię | app/template/[id].tsx | tests/edit-history.test.tsx, tests/matrix-ui.test.tsx, tests/scenario-full.test.tsx +2 |
 | Usuń serię {n} — {ex} | app/history/edit/[id].tsx | tests/edit-history.test.tsx, tests/matrix-ui.test.tsx, tests/scenario-full.test.tsx +2 |
@@ -192,7 +192,7 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | Wyczyść | app/more/settings.tsx | tests/audit-io-more.test.tsx, tests/audit-r83.test.tsx, tests/audit-r83b.test.tsx +5 |
 | Wyczyść wszystkie dane | app/more/settings.tsx | tests/audit-io-more.test.tsx, tests/audit-r83.test.tsx, tests/audit-r83b.test.tsx +5 |
 | Wydłuż przerwę o 15 sekund | components/ActiveWorkout.tsx | tests/scenario-full.test.tsx |
-| Wygląd | app/more/settings.tsx | tests/matrix-dim-langs1.test.tsx, tests/matrix-dim-langs2.test.tsx, tests/matrix-dim-langs3.test.tsx +4 |
+| Wygląd | app/more/settings.tsx | tests/matrix-dim-langs1.test.tsx, tests/matrix-dim-langs2.test.tsx, tests/matrix-dim-langs3.test.tsx +5 |
 | Wyjmij z supersetu | app/template/[id].tsx | tests/scenario-full.test.tsx |
 | Wykres słupkowy: {v} | components/Chart.tsx | tests/regress.test.tsx |
 | Wypełnij | components/LoadEditor.tsx | tests/audit-r82c.test.tsx, tests/locations-audit.test.tsx, tests/locations-ui.test.tsx +2 |
@@ -231,9 +231,9 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | {n}, główne: {m} | app/more/settings.tsx | tests/scenario-full.test.tsx, .maestro/06-miejsca.yaml |
 | {name}, wybrany | app/more/language.tsx | tests/matrix-logic.test.tsx, tests/scenario-full.test.tsx |
 | {p} zastąpi ciężary wpisane dla: {i}. | components/LoadEditor.tsx | tests/matrix-ui.test.tsx |
-| {u}/hant. | lib/store.ts | tests/audit-r82.test.tsx, tests/audit-r82b.test.tsx, tests/audit-r82c.test.tsx +3 |
-| {u}/hantel | lib/store.ts | tests/audit-r82.test.tsx, tests/audit-r82b.test.tsx, tests/audit-r82c.test.tsx +4 |
-| {u}/str. | lib/store.ts | tests/audit-r82.test.tsx, tests/audit-r82b.test.tsx, tests/audit-r82c.test.tsx +6 |
+| {u}/hant. | lib/store.ts | tests/audit-r82.test.tsx, tests/audit-r82b.test.tsx, tests/audit-r82c.test.tsx +4 |
+| {u}/hantel | lib/store.ts | tests/audit-r82.test.tsx, tests/audit-r82b.test.tsx, tests/audit-r82c.test.tsx +5 |
+| {u}/str. | lib/store.ts | tests/audit-r82.test.tsx, tests/audit-r82b.test.tsx, tests/audit-r82c.test.tsx +7 |
 | {u}/strona | lib/store.ts | tests/matrix-ui.test.tsx |
 | {u}/stronę | lib/store.ts | tests/audit-r82.test.tsx |
 | ↑ spróbuj {n} pow. | components/ActiveWorkout.tsx | tests/audit-backlog-r75.test.tsx, tests/audit-r82b.test.tsx, tests/audit-r82c.test.tsx +2 |
@@ -243,13 +243,13 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | ★ Miejsce główne — domyślne dla nowych treningów i szablonów bez własnego miejsca. | app/more/location/[id].tsx | tests/scenario-full.test.tsx |
 | Anulować trening? | components/ActiveWorkout.tsx | tests/matrix-ui.test.tsx, tests/scenario-full.test.tsx, tests/ux.test.tsx +1 |
 | Apple Health niedostępne | app/more/settings.tsx | tests/matrix-ui.test.tsx, tests/scenario-full.test.tsx |
-| Backup | app/_layout.tsx | tests/audit-backlog-r75.test.tsx, tests/audit-close-d.test.ts, tests/audit-io-flows.test.tsx +33 |
+| Backup | app/_layout.tsx | tests/audit-backlog-r75.test.tsx, tests/audit-close-d.test.ts, tests/audit-io-flows.test.tsx +35 |
 | Backup treningów | lib/backup.ts | tests/matrix-logic.test.tsx, tests/matrix-ui.test.tsx |
-| Backup z nowszej wersji aplikacji | app/more/backup.tsx | tests/matrix-ui.test.tsx, tests/scenario-full.test.tsx |
+| Backup z nowszej wersji aplikacji | app/more/backup.tsx | tests/matrix-data-fuzz.test.ts, tests/matrix-ui.test.tsx, tests/scenario-full.test.tsx |
 | bez miejsca | components/ActiveWorkout.tsx | tests/audit-r82.test.tsx, tests/audit-r82b.test.tsx, tests/audit-r82c.test.tsx +9 |
 | Bez serii — ćwiczenie nie zostanie zapisane. | app/history/edit/[id].tsx | tests/edit-history.test.tsx |
 | bez szablonu | app/(tabs)/index.tsx | tests/audit-close2-b.test.tsx, tests/ux.test.tsx |
-| brak | app/history/edit/[id].tsx | tests/app.tsx, tests/audit-backlog-r75.test.tsx, tests/audit-io-flows.test.tsx +47 |
+| brak | app/history/edit/[id].tsx | tests/app.tsx, tests/audit-backlog-r75.test.tsx, tests/audit-io-flows.test.tsx +48 |
 | brak ciężarów — podpowiedź „↑” jak bez miejsca | components/LoadEditor.tsx | tests/bar-no-plates.test.tsx, tests/matrix-ui.test.tsx |
 | Brak ćwiczeń — dodaj pierwsze. | app/history/edit/[id].tsx | tests/edit-history.test.tsx, tests/scenario-full.test.tsx |
 | Brak danych do wykresu. | components/Chart.tsx | tests/regress.test.tsx |
@@ -266,8 +266,8 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | Brak zgody | app/more/settings.tsx | tests/matrix-ui.test.tsx |
 | Brak zgody na zapis treningów. Włącz ją w aplikacji Zdrowie: profil → Aplikacje → {app}. | app/more/settings.tsx | tests/matrix-ui.test.tsx |
 | brak: {m} | app/picker.tsx | tests/locations-audit.test.tsx, tests/locations-catalog.test.ts, tests/locations-ui.test.tsx +4 |
-| Ciemny | app/more/settings.tsx | tests/scenario-full.test.tsx, tests/theme-choice.test.tsx, .maestro/09-jezyk-wyglad.yaml |
-| ciężar | app/history/[id].tsx | tests/audit-prephone.test.tsx, tests/audit-r82.test.tsx, tests/audit-r82b.test.tsx +53 |
+| Ciemny | app/more/settings.tsx | tests/matrix-i18n.test.tsx, tests/scenario-full.test.tsx, tests/theme-choice.test.tsx +1 |
+| ciężar | app/history/[id].tsx | tests/audit-prephone.test.tsx, tests/audit-r82.test.tsx, tests/audit-r82b.test.tsx +55 |
 | Ciężar od {a} do {b}. | components/LoadEditor.tsx | tests/scenario-full.test.tsx |
 | Ciężar serii na stacji wpisuj na stronę — tak, jak pokazuje urządzenie. | components/LoadEditor.tsx | tests/decisions-0310.test.tsx |
 | Ciężarów w tym zakresie: {c} — najwyżej {n}. Zwiększ krok. | components/LoadEditor.tsx | tests/locations-audit.test.tsx |
@@ -276,14 +276,14 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | CSV: ciężar w jednostce z ustawień ({u}), dystans w metrach. | app/more/backup.tsx | tests/matrix-ui.test.tsx |
 | Czas trwania: od 1 do 1440 minut. | lib/edit.ts | tests/matrix-time.test.ts, tests/matrix-ui.test.tsx |
 | ćw. | app/(tabs)/index.tsx | tests/scenario-full.test.tsx |
-| Ćwiczenia | app/(tabs)/_layout.tsx | tests/matrix-a11y.test.tsx, tests/matrix-data-shared.ts, tests/matrix-dim-langs1.test.tsx +7 |
+| Ćwiczenia | app/(tabs)/_layout.tsx | tests/matrix-a11y.test.tsx, tests/matrix-data-shared.ts, tests/matrix-dim-langs1.test.tsx +8 |
 | ćwiczenia dodasz w następnym kroku | app/history/add.tsx | tests/scenario-full.test.tsx |
 | Ćwiczenie | app/_layout.tsx | tests/swap-top3.test.ts, .maestro/08-szablon-wiersze.yaml |
 | dalej: {name} | components/ActiveWorkout.tsx | tests/matrix-ui.test.tsx |
 | Dane i kopie | app/more/settings.tsx | tests/phone-p1.test.tsx |
 | Dane nie zostały wyczyszczone | app/more/settings.tsx | tests/audit-r83.test.tsx |
 | Dane w telefonie | app/more/settings.tsx | tests/regress.test.tsx |
-| do upadku | lib/backup.ts | tests/edit-history.test.tsx, tests/matrix-dim-langs1.test.tsx, tests/matrix-dim-langs2.test.tsx +8 |
+| do upadku | lib/backup.ts | tests/edit-history.test.tsx, tests/matrix-data-fuzz.test.ts, tests/matrix-dim-langs1.test.tsx +9 |
 | Dodaj ciężar | components/LoadEditor.tsx | tests/locations-audit.test.tsx, tests/locations-ui.test.tsx, tests/matrix-ui.test.tsx +1 |
 | Dostępne ćwiczenia: {n} z {m} | app/more/location/[id].tsx | tests/locations-ui.test.tsx, tests/scenario-full.test.tsx, .maestro/06-miejsca.yaml |
 | dostępne: {n} ({r}) | components/LoadEditor.tsx | tests/locations-ui.test.tsx |
@@ -291,7 +291,7 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | e1RM (dociążenie) | app/more/progress.tsx | tests/matrix-ui.test.tsx |
 | e1RM (Epley, na stronę) | app/more/progress.tsx | tests/matrix-ui.test.tsx |
 | e1RM (Epley, per hantel) | app/more/progress.tsx | tests/scenario-full.test.tsx |
-| e1RM {v} (seria {s}) | lib/stats.ts | tests/audit-records-logic.test.ts, tests/audit-records-misc.test.tsx, tests/regress.test.tsx +2 |
+| e1RM {v} (seria {s}) | lib/stats.ts | tests/audit-records-logic.test.ts, tests/audit-records-misc.test.tsx, tests/matrix-i18n.test.tsx +3 |
 | Edycja sesji | app/_layout.tsx | .maestro/05-edycja-historii.yaml |
 | Eksport CSV | lib/backup.ts | tests/matrix-ui.test.tsx |
 | Eksport tworzy plik JSON z całą historią i szablonami — zapisz go w Plikach/iCloud albo wyślij sobie. Import przyjmuje ten sam format, także backup z wersji webowej. | app/more/backup.tsx | tests/matrix-dim-langs1.test.tsx, tests/matrix-dim-langs2.test.tsx, tests/matrix-dim-langs3.test.tsx +2 |
@@ -304,25 +304,25 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | Godzina {t} nie istnieje tego dnia (zmiana czasu). Wpisz inną. | lib/edit.ts | tests/edit-history.test.tsx, tests/matrix-time.test.ts |
 | Gryf ({u}) | components/LoadEditor.tsx | tests/matrix-ui.test.tsx |
 | gryf łamany | lib/swap.ts | tests/matrix-ui.test.tsx |
-| guma | app/(tabs)/exercises.tsx | tests/audit-close-d.test.ts, tests/audit-perf-equiv.test.ts, tests/audit-r72-b.test.ts +21 |
-| Guma | app/history/edit/[id].tsx | tests/audit-journey-a.test.tsx, tests/audit-journey-c.test.tsx, tests/audit-r83.test.tsx +11 |
+| guma | app/(tabs)/exercises.tsx | tests/audit-close-d.test.ts, tests/audit-perf-equiv.test.ts, tests/audit-r72-b.test.ts +23 |
+| Guma | app/history/edit/[id].tsx | tests/audit-journey-a.test.tsx, tests/audit-journey-c.test.tsx, tests/audit-r83.test.tsx +12 |
 | Guma jako opór: przy serii wybierasz gumę (poziom 1–7), rekordy liczą serie z gumą. | app/exercise/[id].tsx | tests/matrix-ui.test.tsx |
-| Gumy | app/_layout.tsx | tests/audit-r83.test.tsx, tests/invariants.test.ts, tests/matrix-ui.test.tsx +5 |
-| hantle | lib/swap.ts | tests/audit-backlog-r75.test.tsx, tests/audit-close-d.test.ts, tests/audit-journey-c.test.tsx +50 |
-| Historia | app/(tabs)/_layout.tsx | tests/edit-history.test.tsx, tests/integration-090.test.tsx, tests/matrix-a11y.test.tsx +8 |
+| Gumy | app/_layout.tsx | tests/audit-r83.test.tsx, tests/invariants.test.ts, tests/matrix-i18n.test.tsx +6 |
+| hantle | lib/swap.ts | tests/audit-backlog-r75.test.tsx, tests/audit-close-d.test.ts, tests/audit-journey-c.test.tsx +51 |
+| Historia | app/(tabs)/_layout.tsx | tests/edit-history.test.tsx, tests/integration-090.test.tsx, tests/matrix-a11y.test.tsx +10 |
 | Import przerwany | app/more/backup.tsx | tests/audit-r83.test.tsx, tests/audit-r83b.test.tsx, tests/matrix-ui.test.tsx |
 | Import zastąpi wszystkie obecne dane zawartością pliku. Obecne dane (także trening w toku) zapiszą się najpierw jako kopia w Plikach: {app} → Backup. | app/more/backup.tsx | tests/matrix-ui.test.tsx |
-| Inne | app/swap.tsx | tests/backlog-0410.test.tsx, tests/catalog-full.test.tsx, tests/matrix-logic.test.tsx +3 |
+| Inne | app/swap.tsx | tests/backlog-0410.test.tsx, tests/catalog-full.test.tsx, tests/matrix-data-fuzz.test.ts +4 |
 | Inne ▴ | app/swap.tsx | tests/matrix-logic.test.tsx, tests/matrix-ui.test.tsx |
 | Inne ▾ | app/swap.tsx | tests/matrix-logic.test.tsx, tests/matrix-ui.test.tsx, tests/swap-ui.test.tsx |
-| Jak w telefonie | app/more/language.tsx | tests/i18n-multi.test.ts, tests/logic.test.ts, tests/matrix-dim-langs1.test.tsx +7 |
-| Jasny | app/more/settings.tsx | tests/scenario-full.test.tsx, tests/theme-choice.test.tsx, .maestro/09-jezyk-wyglad.yaml |
+| Jak w telefonie | app/more/language.tsx | tests/i18n-multi.test.ts, tests/logic.test.ts, tests/matrix-dim-langs1.test.tsx +8 |
+| Jasny | app/more/settings.tsx | tests/matrix-i18n.test.tsx, tests/scenario-full.test.tsx, tests/theme-choice.test.tsx +1 |
 | Jedna sesja: {v}. Wykres pojawi się po drugiej. | components/Chart.tsx | tests/matrix-ui.test.tsx |
 | Jednostka sprzętu | components/LoadEditor.tsx | tests/locations-audit.test.tsx, tests/scenario-full.test.tsx |
 | Jeszcze pusto — pierwszy trening czeka. | app/(tabs)/history.tsx | tests/scenario-full.test.tsx |
 | Jutro wygasa podpis aplikacji | lib/signing.ts | tests/matrix-ui.test.tsx |
 | już w treningu | app/swap.tsx | tests/matrix-logic.test.tsx, tests/swap-logic.test.ts, tests/swap-ui.test.tsx |
-| kettlebell | lib/swap.ts | tests/catalog-v2.test.ts, tests/decisions-0310.test.tsx, tests/locations-catalog.test.ts +1 |
+| kettlebell | lib/swap.ts | tests/catalog-v2.test.ts, tests/decisions-0310.test.tsx, tests/locations-catalog.test.ts +2 |
 | Kolejność ćwiczeń | app/_layout.tsx | .maestro/03-kolejnosc.yaml |
 | Kolor i poziom trudności: 1 = cienka, 7 = bardzo gruba. Gumy nie mają kilogramów — przy serii zapisujesz, którą gumą pomagałeś. Rekordem są powtórzenia bez gumy, a postęp z gumą to zejście na niższy poziom. | app/more/bands.tsx | tests/matrix-ui.test.tsx |
 | Koniec przerwy da znać nawet na zablokowanym ekranie. | app/more/settings.tsx | tests/matrix-ui.test.tsx |
@@ -337,15 +337,15 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | łączny dystans | lib/stats.ts | tests/matrix-invariants.test.ts, tests/regress.test.tsx, tests/stats.test.ts |
 | Masa ciała: „±” to dociążenie (plus) albo asysta, np. maszyny (minus); guma to osobne pole z poziomem. Masa ciała nie wchodzi do obliczeń: rekord to suma powtórzeń bez asysty, a e1RM i objętość liczą się tylko z dociążenia. Ćwiczenia na czas mają w treningu stoper — po upływie celu seria odhacza się sama. Przerwa ustawiona w pozycji szablonu ma pierwszeństwo; puste pole przerwy w szablonie oznacza przerwę z tego ćwiczenia. | app/exercise/[id].tsx | tests/matrix-ui.test.tsx |
 | maszyna | lib/swap.ts | tests/catalog-v2.test.ts, tests/invariants.test.ts, tests/locations-audit.test.tsx +5 |
-| max ± | lib/stats.ts | tests/audit-backlog-q.test.tsx, tests/backlog-0410.test.tsx, tests/regress.test.tsx +1 |
-| max ciężar | lib/stats.ts | tests/stats.test.ts |
+| max ± | lib/stats.ts | tests/audit-backlog-q.test.tsx, tests/backlog-0410.test.tsx, tests/matrix-i18n.test.tsx +2 |
+| max ciężar | lib/stats.ts | tests/matrix-i18n.test.tsx, tests/stats.test.ts |
 | Max ciężar | app/more/progress.tsx | tests/regress.test.tsx, tests/scenario-full.test.tsx |
 | Max ciężar (na stronę) | app/more/progress.tsx | tests/regress.test.tsx |
 | Max ciężar (per hantel) | app/more/progress.tsx | tests/scenario-full.test.tsx |
 | max czas | lib/stats.ts | tests/matrix-ui.test.tsx |
 | Max dociążenie | app/more/progress.tsx | tests/matrix-ui.test.tsx |
 | max dystans | lib/stats.ts | tests/matrix-ui.test.tsx |
-| max pow. | lib/stats.ts | tests/matrix-ui.test.tsx |
+| max pow. | lib/stats.ts | tests/matrix-i18n.test.tsx, tests/matrix-ui.test.tsx |
 | Max powtórzeń bez asysty | app/more/progress.tsx | tests/matrix-ui.test.tsx |
 | Max powtórzeń w serii | app/more/progress.tsx | tests/audit-r72-d.test.ts, tests/scenario-full.test.tsx |
 | Max powtórzeń z asystą | app/more/progress.tsx | tests/matrix-ui.test.tsx |
@@ -369,7 +369,7 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | Nazwy ćwiczeń z biblioteki są po angielsku we wszystkich językach poza polskim. | app/more/language.tsx | tests/matrix-dim-langs1.test.tsx, tests/matrix-dim-langs2.test.tsx, tests/matrix-dim-langs3.test.tsx +3 |
 | Nic do zapisania. Odrzucić ten trening? | components/ActiveWorkout.tsx | tests/matrix-ui.test.tsx |
 | Nic nie pasuje. | app/(tabs)/exercises.tsx | tests/matrix-logic.test.tsx, tests/regress.test.tsx, tests/scenario-full.test.tsx |
-| nie | app/exercise/[id].tsx | tests/app.tsx, tests/audit-ac5d764.test.tsx, tests/audit-backlog-q.test.tsx +111 |
+| nie | app/exercise/[id].tsx | tests/app.tsx, tests/audit-ac5d764.test.tsx, tests/audit-backlog-q.test.tsx +113 |
 | Nie ma takiego ćwiczenia. | app/exercise/[id].tsx | tests/matrix-ui.test.tsx |
 | Nie ma takiego miejsca. | app/more/location/[id].tsx | tests/matrix-ui.test.tsx |
 | Nie ma takiego szablonu. | app/reorder.tsx | tests/reorder-t010.test.tsx |
@@ -377,10 +377,10 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | Nie ma żadnej serii z wynikiem — nic do zapisania. | app/history/edit/[id].tsx | tests/edit-history.test.tsx, tests/scenario-full.test.tsx |
 | Nie ma żadnej serii z wynikiem. | lib/edit.ts | tests/matrix-ui.test.tsx |
 | Nie masz jeszcze szablonów — utwórz pierwszy albo zacznij pusty trening. | app/(tabs)/index.tsx | tests/flows.test.tsx, tests/scenario-full.test.tsx, .maestro/subflows/szablon-testowy.yaml |
-| Nie udało się | app/(tabs)/index.tsx | tests/matrix-logic.test.tsx, tests/matrix-ui.test.tsx, tests/regress.test.tsx +1 |
+| Nie udało się | app/(tabs)/index.tsx | tests/matrix-data-fuzz.test.ts, tests/matrix-logic.test.tsx, tests/matrix-ui.test.tsx +2 |
 | Nie udało się otworzyć danych. | app/_layout.tsx | tests/regress.test.tsx, tests/splash-start-error.test.tsx |
-| Nie udało się zapisać | app/history/edit/[id].tsx | tests/matrix-logic.test.tsx, tests/matrix-ui.test.tsx, tests/regress.test.tsx |
-| Nie udało się zapisać kopii bezpieczeństwa w Plikach — dane nie zostały zmienione. | lib/backup.ts | tests/matrix-logic.test.tsx, tests/matrix-ui.test.tsx |
+| Nie udało się zapisać | app/history/edit/[id].tsx | tests/matrix-data-fuzz.test.ts, tests/matrix-logic.test.tsx, tests/matrix-ui.test.tsx +1 |
+| Nie udało się zapisać kopii bezpieczeństwa w Plikach — dane nie zostały zmienione. | lib/backup.ts | tests/matrix-data-fuzz.test.ts, tests/matrix-logic.test.tsx, tests/matrix-ui.test.tsx |
 | Nie zostałaby żadna seria z wynikiem. Usunąć tę sesję z historii? | app/history/edit/[id].tsx | tests/matrix-ui.test.tsx |
 | niedostępne w: {l} są wyszarzone | app/picker.tsx | tests/scenario-full.test.tsx, .maestro/06-miejsca.yaml |
 | Nieodhaczone serie z wpisanymi wynikami: {n} — nie zostaną zapisane. Seria zapisuje się po odhaczeniu ✓. | components/ActiveWorkout.tsx | tests/matrix-ui.test.tsx |
@@ -394,7 +394,7 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | Nowe rekordy: {n} | components/ActiveWorkout.tsx | tests/audit-records-misc.test.tsx |
 | Nowy rekord! | components/ActiveWorkout.tsx | tests/audit-records-misc.test.tsx, .maestro/10-gumy.yaml |
 | Nowy szablon | app/template/[id].tsx | tests/flows.test.tsx, tests/i18n-multi.test.ts, tests/matrix-ui.test.tsx +4 |
-| obj. | app/more/progress.tsx | tests/matrix-ui.test.tsx |
+| obj. | app/more/progress.tsx | tests/matrix-i18n.test.tsx, tests/matrix-ui.test.tsx |
 | objętość | app/history/[id].tsx | tests/audit-final-stats.test.ts, tests/audit-journey-a.test.tsx, tests/audit-r72-b.test.ts +22 |
 | Objętość per partia ({u}) — ten tydzień vs poprzedni | app/more/progress.tsx | tests/scenario-full.test.tsx |
 | Objętość serii roboczych (ciężar × powtórzenia × mnożnik ćwiczenia); partia główna liczy całość, pomocnicza połowę. Ćwiczenia bez ciężaru (masa ciała, gumy) się nie liczą. | app/more/progress.tsx | tests/matrix-ui.test.tsx |
@@ -418,7 +418,7 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | Partia główna liczy 1 serię, pomocnicza 0,5 (np. wyciskanie: klatka 1, triceps i barki po 0,5). Partie ustawisz w edycji ćwiczenia. | app/more/progress.tsx | tests/matrix-ui.test.tsx |
 | Pierwszy raz? Utwórz swój szablon („+ Nowy szablon” niżej) albo zacznij pusty trening. Wpisuj ciężar i powtórzenia, odhaczaj serie ✓ — przerwa odlicza się sama. Na koniec „Zakończ trening i zapisz”. | app/(tabs)/index.tsx | tests/matrix-ui.test.tsx |
 | Pierwszy raz? Wybierz szablon niżej, wpisz ciężar i powtórzenia, odhaczaj serie ✓ — przerwa odlicza się sama. Na koniec „Zakończ trening i zapisz”. Szablony i ćwiczenia zmienisz w zakładkach obok. | app/(tabs)/index.tsx | tests/matrix-ui.test.tsx |
-| Plik ma schemat {a}, a ta wersja obsługuje do {b}. Zaktualizuj aplikację. | lib/backup.ts | tests/matrix-ui.test.tsx |
+| Plik ma schemat {a}, a ta wersja obsługuje do {b}. Zaktualizuj aplikację. | lib/backup.ts | tests/matrix-data-fuzz.test.ts, tests/matrix-ui.test.tsx |
 | Po ukryciu komunikatu kopii nie da się już wysłać z aplikacji — najpierw ją wyślij, jeśli jest potrzebna. | app/(tabs)/index.tsx | tests/matrix-ui.test.tsx |
 | Podpis aplikacji wygasa dziś. | app/(tabs)/index.tsx | tests/matrix-ui.test.tsx |
 | Podpis aplikacji wygasa za {n} {d}. | app/(tabs)/index.tsx | tests/matrix-ui.test.tsx |
@@ -432,37 +432,37 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | poprz. | app/more/progress.tsx | tests/scenario-full.test.tsx |
 | Poprzednio | app/template/[id].tsx | tests/audit-final2-auto.test.ts, tests/audit-r72-b.test.ts, tests/audit-r72-d.test.ts +25 |
 | Poprzednio: {l} | components/ActiveWorkout.tsx | tests/audit-r82.test.tsx, tests/audit-r82b.test.tsx, tests/decisions-0310.test.tsx +4 |
-| pow. | app/history/[id].tsx | tests/matrix-ui.test.tsx, tests/scenario-full.test.tsx, tests/stats.test.ts +2 |
+| pow. | app/history/[id].tsx | tests/matrix-i18n.test.tsx, tests/matrix-ui.test.tsx, tests/scenario-full.test.tsx +3 |
 | Pow. | app/history/edit/[id].tsx | tests/matrix-ui.test.tsx |
 | Powiadomienia | app/more/settings.tsx | tests/matrix-ui.test.tsx, tests/phone-p1.test.tsx, tests/scenario-full.test.tsx |
 | Powiadomienia działają | app/more/settings.tsx | tests/matrix-ui.test.tsx, tests/scenario-full.test.tsx |
 | powtórzenia do | app/template/[id].tsx | tests/scenario-full.test.tsx, .maestro/08-szablon-wiersze.yaml |
 | powtórzenia od | app/template/[id].tsx | tests/scenario-full.test.tsx, tests/template-rows.test.tsx, .maestro/08-szablon-wiersze.yaml |
-| poziom {n} | app/more/location/[id].tsx | tests/audit-r83.test.tsx, tests/band-exercises.test.tsx, tests/flows.test.tsx +10 |
+| poziom {n} | app/more/location/[id].tsx | tests/audit-r83.test.tsx, tests/band-exercises.test.tsx, tests/flows.test.tsx +11 |
 | Poziomy gum, które masz w tym miejscu (1 = cienka, 7 = bardzo gruba). | app/more/location/[id].tsx | tests/matrix-ui.test.tsx |
 | Propozycje | app/swap.tsx | tests/maestro-failures.test.ts, tests/matrix-logic.test.tsx, tests/scenario-full.test.tsx +2 |
 | Przeciągnij za ≡, żeby zmienić kolejność. Superset przesuwa się w całości; kolejność w nim zmienisz uchwytami przy ćwiczeniach. | app/reorder.tsx | tests/matrix-ui.test.tsx |
-| przerwa | app/history/[id].tsx | tests/audit-io-flows.test.tsx, tests/audit-r72-d.test.ts, tests/audit-r83.test.tsx +24 |
+| przerwa | app/history/[id].tsx | tests/audit-io-flows.test.tsx, tests/audit-r72-d.test.ts, tests/audit-r83.test.tsx +25 |
 | Przerwa | lib/timer.ts | tests/audit-io-flows.test.tsx, tests/matrix-ui.test.tsx, tests/regress.test.tsx +4 |
 | Przerwa (sekundy) | components/ActiveWorkout.tsx | tests/regress.test.tsx, tests/scenario-full.test.tsx |
-| przerwa {s} | app/(tabs)/_layout.tsx | tests/audit-io-flows.test.tsx, tests/audit-r72-d.test.ts, tests/audit-r83.test.tsx +24 |
-| przerwa {s} s | lib/timer.ts | tests/audit-io-flows.test.tsx, tests/audit-r72-d.test.ts, tests/audit-r83.test.tsx +24 |
+| przerwa {s} | app/(tabs)/_layout.tsx | tests/audit-io-flows.test.tsx, tests/audit-r72-d.test.ts, tests/audit-r83.test.tsx +25 |
+| przerwa {s} s | lib/timer.ts | tests/audit-io-flows.test.tsx, tests/audit-r72-d.test.ts, tests/audit-r83.test.tsx +25 |
 | przerwa minęła | components/ActiveWorkout.tsx | tests/matrix-logic.test.tsx, tests/scenario-full.test.tsx |
 | Przerwa minęła | lib/timer.ts | tests/audit-io-flows.test.tsx, tests/matrix-ui.test.tsx |
 | przerwa z {s} | components/ActiveWorkout.tsx | tests/flows.test.tsx, tests/matrix-ui.test.tsx, tests/regress.test.tsx +3 |
 | Przesuń niżej | components/DragList.tsx | tests/template-cards.test.tsx |
 | Przesuń wyżej | components/DragList.tsx | tests/reorder-t010.test.tsx, tests/template-cards.test.tsx |
 | przyrząd: {impl} | components/ActiveWorkout.tsx | tests/audit-r82b.test.tsx, tests/matrix-invariants.test.ts, tests/matrix-logic.test.tsx +3 |
-| REKORDY | app/more/progress.tsx | tests/audit-records-ui.test.tsx, tests/scenario-full.test.tsx |
+| REKORDY | app/more/progress.tsx | tests/audit-records-ui.test.tsx, tests/matrix-i18n.test.tsx, tests/scenario-full.test.tsx |
 | robione {n}× | lib/swap.ts | tests/audit-r82.test.tsx |
-| sek. | app/history/edit/[id].tsx | tests/matrix-ui.test.tsx |
-| Seria | lib/timer.ts | tests/audit-close-b.test.tsx, tests/audit-close2-a.test.tsx, tests/audit-close2-b.test.tsx +24 |
+| sek. | app/history/edit/[id].tsx | tests/matrix-i18n.test.tsx, tests/matrix-ui.test.tsx |
+| Seria | lib/timer.ts | tests/audit-close-b.test.tsx, tests/audit-close2-a.test.tsx, tests/audit-close2-b.test.tsx +25 |
 | seria · bez celu | components/ActiveWorkout.tsx | tests/matrix-ui.test.tsx |
 | seria · cel {s} | components/ActiveWorkout.tsx | tests/matrix-ui.test.tsx, tests/scenario-full.test.tsx |
-| seria {n} | components/ActiveWorkout.tsx | tests/audit-backlog-q.test.tsx, tests/audit-backlog-r75.test.tsx, tests/audit-close2-b.test.tsx +45 |
-| Seria {n} | app/history/edit/[id].tsx | tests/audit-close-b.test.tsx, tests/audit-close2-a.test.tsx, tests/audit-close2-b.test.tsx +24 |
-| Seria {n} — {ex} | app/history/edit/[id].tsx | tests/audit-close-b.test.tsx, tests/audit-close2-a.test.tsx, tests/audit-close2-b.test.tsx +24 |
-| seria {s} s | lib/timer.ts | tests/audit-backlog-q.test.tsx, tests/audit-backlog-r75.test.tsx, tests/audit-close2-b.test.tsx +45 |
+| seria {n} | components/ActiveWorkout.tsx | tests/audit-backlog-q.test.tsx, tests/audit-backlog-r75.test.tsx, tests/audit-close2-b.test.tsx +46 |
+| Seria {n} | app/history/edit/[id].tsx | tests/audit-close-b.test.tsx, tests/audit-close2-a.test.tsx, tests/audit-close2-b.test.tsx +25 |
+| Seria {n} — {ex} | app/history/edit/[id].tsx | tests/audit-close-b.test.tsx, tests/audit-close2-a.test.tsx, tests/audit-close2-b.test.tsx +25 |
+| seria {s} s | lib/timer.ts | tests/audit-backlog-q.test.tsx, tests/audit-backlog-r75.test.tsx, tests/audit-close2-b.test.tsx +46 |
 | Seria jest już odhaczona. | components/ActiveWorkout.tsx | tests/matrix-ui.test.tsx |
 | Seria skończona | lib/timer.ts | tests/matrix-ui.test.tsx |
 | Serie bez ciężaru: {n}. | app/history/edit/[id].tsx | tests/integration-090.test.tsx |
@@ -479,15 +479,15 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | sprzęt w domu, na siłowni, w hotelu… | app/more/settings.tsx | tests/scenario-full.test.tsx, .maestro/06-miejsca.yaml |
 | stabilizacja | app/exercise/[id].tsx | tests/matrix-ui.test.tsx |
 | stacja | lib/swap.ts | tests/audit-r82c.test.tsx, tests/catalog-v2.test.ts, tests/decisions-0310.test.tsx +15 |
-| start | components/ActiveWorkout.tsx | tests/app.tsx, tests/audit-backlog-q.test.tsx, tests/audit-backlog-r75.test.tsx +105 |
+| start | components/ActiveWorkout.tsx | tests/app.tsx, tests/audit-backlog-q.test.tsx, tests/audit-backlog-r75.test.tsx +107 |
 | Start stopera serii | components/ActiveWorkout.tsx | tests/audit-close-b.test.tsx, tests/audit-close-c.test.tsx, tests/audit-close2-a.test.tsx +15 |
 | Stoper trwa | components/ActiveWorkout.tsx | tests/matrix-ui.test.tsx |
 | suma pow. | lib/stats.ts | tests/stats.test.ts |
-| superset | app/reorder.tsx | tests/audit-close-d.test.ts, tests/audit-final-ss.test.ts, tests/audit-final-timer.test.tsx +18 |
+| superset | app/reorder.tsx | tests/audit-close-d.test.ts, tests/audit-final-ss.test.ts, tests/audit-final-timer.test.tsx +19 |
 | superset · przerwa po rundzie {t} | components/ActiveWorkout.tsx | tests/scenario-full.test.tsx |
-| Szablon | app/_layout.tsx | tests/audit-persist.test.ts, tests/audit-r83.test.tsx, tests/brand-kreda.test.tsx +12 |
-| Szablony | app/(tabs)/_layout.tsx | tests/audit-persist.test.ts, tests/brand-kreda.test.tsx, tests/edit-history.test.tsx +9 |
-| sztanga | lib/swap.ts | tests/audit-backlog-q.test.tsx, tests/audit-backlog-r75.test.tsx, tests/audit-close-a.test.ts +56 |
+| Szablon | app/_layout.tsx | tests/audit-persist.test.ts, tests/audit-r83.test.tsx, tests/brand-kreda.test.tsx +13 |
+| Szablony | app/(tabs)/_layout.tsx | tests/audit-persist.test.ts, tests/brand-kreda.test.tsx, tests/edit-history.test.tsx +10 |
+| sztanga | lib/swap.ts | tests/audit-backlog-q.test.tsx, tests/audit-backlog-r75.test.tsx, tests/audit-close-a.test.ts +57 |
 | tak — przy serii wybierasz gumę | app/exercise/[id].tsx | tests/scenario-full.test.tsx |
 | Talerze: ciężar i liczba sztuk (wszystkie, dla obu hantli razem). | components/LoadEditor.tsx | tests/matrix-ui.test.tsx |
 | Talerze: ciężar i liczba sztuk (wszystkie, na obie strony razem). | components/LoadEditor.tsx | tests/matrix-ui.test.tsx |
@@ -497,7 +497,7 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | te same mięśnie | lib/swap.ts | tests/matrix-ui.test.tsx |
 | Tego ćwiczenia nie da się już zamienić. | app/swap.tsx | tests/matrix-logic.test.tsx, tests/matrix-ui.test.tsx |
 | Tej sesji nie ma już w historii. | lib/edit.ts | tests/edit-history.test.tsx |
-| tempo | app/(tabs)/exercises.tsx | tests/audit-close2-a.test.tsx, tests/audit-close2-b.test.tsx, tests/audit-close2-c.test.tsx +10 |
+| tempo | app/(tabs)/exercises.tsx | tests/audit-close2-a.test.tsx, tests/audit-close2-b.test.tsx, tests/audit-close2-c.test.tsx +12 |
 | ten sam ruch | lib/swap.ts | tests/scenario-full.test.tsx, tests/swap-logic.test.ts, tests/swap-top3.test.ts +1 |
 | Ten sam ruch, inny przyrząd | app/swap.tsx | tests/matrix-logic.test.tsx, tests/matrix-ui.test.tsx, tests/scenario-full.test.tsx +1 |
 | Ten termin nachodzi na sesję „{name}” ({d}). | app/history/edit/[id].tsx | tests/matrix-ui.test.tsx |
@@ -505,8 +505,8 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | Ten trening nie zostanie zapisany. | app/history/edit/[id].tsx | tests/matrix-ui.test.tsx |
 | Timer odlicza w aplikacji, a na koniec przerwy przychodzi powiadomienie — także przy zablokowanym telefonie. | app/more/settings.tsx | tests/matrix-ui.test.tsx |
 | To miejsce główne | app/more/location/[id].tsx | tests/locations-ui.test.tsx, tests/matrix-ui.test.tsx, tests/scenario-full.test.tsx |
-| To nie wygląda na backup z tej apki | app/more/backup.tsx | tests/scenario-full.test.tsx |
-| trap bar | lib/swap.ts | tests/bar-no-plates.test.tsx, tests/xcheck-0610b.test.tsx |
+| To nie wygląda na backup z tej apki | app/more/backup.tsx | tests/matrix-data-fuzz.test.ts, tests/scenario-full.test.tsx |
+| trap bar | lib/swap.ts | tests/bar-no-plates.test.tsx, tests/matrix-i18n.test.tsx, tests/xcheck-0610b.test.tsx |
 | Trening rozpoczęty o {t}, bez odhaczonych serii. Kontynuować czy odrzucić? | lib/timer.ts | tests/matrix-ui.test.tsx |
 | Trening rozpoczęty o {t}, bez odhaczonych serii. Otwórz, by kontynuować albo odrzucić. | lib/timer.ts | tests/matrix-ui.test.tsx |
 | Trening w toku | app/template/[id].tsx | tests/audit-persist.test.ts, tests/audit-r83.test.tsx, tests/matrix-ui.test.tsx +1 |
@@ -523,7 +523,7 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | ukryte: {n} | app/picker.tsx | tests/locations-ui.test.tsx, tests/scenario-full.test.tsx |
 | Ustawienia na stronę: {n} ({r}) | components/LoadEditor.tsx | tests/locations-ui.test.tsx |
 | Usunąć ćwiczenie? | app/exercise/[id].tsx | tests/matrix-ui.test.tsx, tests/scenario-full.test.tsx, tests/ux.test.tsx |
-| Usunąć gumę? | app/more/bands.tsx | tests/audit-r83.test.tsx, tests/audit-records-misc.test.tsx, tests/matrix-ui.test.tsx +3 |
+| Usunąć gumę? | app/more/bands.tsx | tests/audit-r83.test.tsx, tests/audit-records-misc.test.tsx, tests/matrix-i18n.test.tsx +4 |
 | Usunąć miejsce? | app/more/location/[id].tsx | tests/matrix-ui.test.tsx, tests/scenario-full.test.tsx |
 | Usunąć ostatnią serię? | components/ActiveWorkout.tsx | tests/matrix-ui.test.tsx |
 | Usunąć serię? | components/ActiveWorkout.tsx | tests/matrix-ui.test.tsx |
@@ -534,7 +534,7 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | Usunąć zamiennik? | app/template/[id].tsx | tests/swap-alternates.test.tsx |
 | Usunie ćwiczenia, szablony i całą historię oraz przywróci ustawienia domyślne (także miejsca, sprzęt i gumy). Przedtem obecne dane zapiszą się jako kopia w Plikach: {app} → Backup (można ją zaimportować). | app/more/settings.tsx | tests/matrix-ui.test.tsx |
 | usunięte | app/history/edit/[id].tsx | tests/audit-backlog-r75.test.tsx, tests/audit-r82b.test.tsx, tests/audit-r82c.test.tsx +21 |
-| Usunięte ćwiczenie | app/history/edit/[id].tsx | tests/matrix-logic.test.tsx, tests/swap-ui.test.tsx |
+| Usunięte ćwiczenie | app/history/edit/[id].tsx | tests/matrix-data-shared.ts, tests/matrix-logic.test.tsx, tests/swap-ui.test.tsx |
 | usunięte ćwiczenie (w bieżącym treningu) | app/(tabs)/exercises.tsx | tests/matrix-logic.test.tsx, tests/regress.test.tsx |
 | usunięte ćwiczenie z historią | app/(tabs)/exercises.tsx | tests/logic.test.ts, tests/matrix-logic.test.tsx, tests/regress.test.tsx +1 |
 | Usuń talerz | components/LoadEditor.tsx | tests/scenario-full.test.tsx |
@@ -543,7 +543,7 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | W trwającym treningu guma zniknie z nieodhaczonych serii. | app/more/bands.tsx | tests/matrix-ui.test.tsx |
 | W trwającym treningu zostanie oznaczone jako usunięte. | app/exercise/[id].tsx | tests/matrix-ui.test.tsx |
 | wcześniej zamieniane | lib/swap.ts | tests/swap-logic.test.ts, tests/swap-top3.test.ts |
-| Więcej | app/(tabs)/_layout.tsx | tests/audit-r83.test.tsx, tests/matrix-a11y.test.tsx, tests/matrix-dim-langs1.test.tsx +11 |
+| Więcej | app/(tabs)/_layout.tsx | tests/audit-r83.test.tsx, tests/matrix-a11y.test.tsx, tests/matrix-dim-langs1.test.tsx +12 |
 | Włącz powiadomienia dla {app} w Ustawieniach iOS. | app/more/settings.tsx | tests/matrix-ui.test.tsx |
 | Wpisane wartości zamiennika przepadną. | components/ActiveWorkout.tsx | tests/matrix-ui.test.tsx |
 | wpisz uchwyt i talerze | components/LoadEditor.tsx | tests/matrix-ui.test.tsx |
@@ -592,7 +592,7 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 
 | Pozycja | Źródło | Testy (pierwsze 3) |
 |---|---|---|
-| backup.buildBackup | lib/backup.ts | tests/audit-close-d.test.ts, tests/audit-io-flows.test.tsx, tests/audit-io-more.test.tsx +22 |
+| backup.buildBackup | lib/backup.ts | tests/audit-close-d.test.ts, tests/audit-io-flows.test.tsx, tests/audit-io-more.test.tsx +23 |
 | backup.exportBackup | lib/backup.ts | tests/matrix-logic.test.tsx |
 | backup.autoBackup | lib/backup.ts | tests/audit-backlog-r75.test.tsx, tests/audit-r83.test.tsx, tests/audit-r83b.test.tsx +6 |
 | backup.safetyBackup | lib/backup.ts | tests/audit-r83b.test.tsx, tests/matrix-logic.test.tsx |
@@ -600,11 +600,11 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | backup.isSafetyError | lib/backup.ts | tests/matrix-logic.test.tsx |
 | backup.onWorkoutSaved | lib/backup.ts | tests/audit-backlog-r75.test.tsx |
 | backup.onHistoryEdited | lib/backup.ts | tests/matrix-logic.test.tsx |
-| backup.buildCsv | lib/backup.ts | tests/audit-backlog-q.test.tsx, tests/audit-close-d.test.ts, tests/audit-io-flows.test.tsx +18 |
-| backup.exportCsv | lib/backup.ts | tests/audit-backlog-q.test.tsx |
-| backup.parseBackup | lib/backup.ts | tests/audit-close-d.test.ts, tests/audit-io-flows.test.tsx, tests/audit-io-more.test.tsx +25 |
+| backup.buildCsv | lib/backup.ts | tests/audit-backlog-q.test.tsx, tests/audit-close-d.test.ts, tests/audit-io-flows.test.tsx +19 |
+| backup.exportCsv | lib/backup.ts | tests/audit-backlog-q.test.tsx, tests/matrix-data-fuzz.test.ts |
+| backup.parseBackup | lib/backup.ts | tests/audit-close-d.test.ts, tests/audit-io-flows.test.tsx, tests/audit-io-more.test.tsx +26 |
 | backup.recheckHealthAfterImport | lib/backup.ts | tests/audit-io-flows.test.tsx |
-| backup.importBackup | lib/backup.ts | tests/audit-journey-c.test.tsx |
+| backup.importBackup | lib/backup.ts | tests/audit-journey-c.test.tsx, tests/matrix-data-fuzz.test.ts |
 | backup.exportRecovery | lib/backup.ts | tests/matrix-logic.test.tsx |
 | edit.touchDraft | lib/edit.ts | tests/edit-history.test.tsx, tests/integration-090.test.tsx, tests/matrix-invariants.test.ts +1 |
 | edit.useDraftTick | lib/edit.ts | tests/matrix-logic.test.tsx |
@@ -644,7 +644,7 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | equipment.presetEquipment | lib/equipment.ts | tests/catalog-full.test.tsx, tests/catalog-v2.test.ts, tests/locations-audit.test.tsx +14 |
 | equipment.fillOpts | lib/equipment.ts | tests/matrix-logic.test.tsx |
 | equipment.fillGym | lib/equipment.ts | tests/matrix-logic.test.tsx |
-| equipment.allLabels | lib/equipment.ts | tests/i18n-locales.test.ts |
+| equipment.allLabels | lib/equipment.ts | tests/i18n-locales.test.ts, tests/matrix-i18n.test.tsx |
 | equipment.capsOf | lib/equipment.ts | tests/catalog-full.test.tsx, tests/catalog-v2.test.ts, tests/locations-catalog.test.ts +9 |
 | equipment.availability | lib/equipment.ts | tests/catalog-full.test.tsx, tests/catalog-v2.test.ts, tests/locations-audit.test.tsx +12 |
 | equipment.missingLabel | lib/equipment.ts | tests/locations-catalog.test.ts |
@@ -657,15 +657,15 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | health.syncAfterFinish | lib/health.ts | tests/audit-io-more.test.tsx, tests/swap-history.test.tsx |
 | i18n.isLang | lib/i18n.ts | tests/matrix-logic.test.tsx |
 | i18n.detectLang | lib/i18n.ts | tests/matrix-logic.test.tsx |
-| i18n.applyLang | lib/i18n.ts | tests/audit-ac5d764.test.tsx, tests/catalog-v2.test.ts, tests/i18n-locales.test.ts +16 |
-| i18n.lang | lib/i18n.ts | tests/helpers.ts, tests/i18n-locales.test.ts, tests/i18n-multi.test.ts +12 |
+| i18n.applyLang | lib/i18n.ts | tests/audit-ac5d764.test.tsx, tests/catalog-v2.test.ts, tests/i18n-locales.test.ts +17 |
+| i18n.lang | lib/i18n.ts | tests/helpers.ts, tests/i18n-locales.test.ts, tests/i18n-multi.test.ts +13 |
 | i18n.appName | lib/i18n.ts | tests/i18n-locales.test.ts |
-| i18n.locale | lib/i18n.ts | tests/app.tsx, tests/audit-ac5d764.test.tsx, tests/audit-close2-b.test.tsx +16 |
-| i18n.decimalComma | lib/i18n.ts | tests/matrix-dim-catalog.test.tsx, tests/matrix-dim-equipment.test.tsx, tests/matrix-dim-langs1.test.tsx +6 |
-| i18n.t | lib/i18n.ts | tests/audit-backlog-q.test.tsx, tests/audit-close2-b.test.tsx, tests/audit-journey-b.test.tsx +63 |
+| i18n.locale | lib/i18n.ts | tests/app.tsx, tests/audit-ac5d764.test.tsx, tests/audit-close2-b.test.tsx +17 |
+| i18n.decimalComma | lib/i18n.ts | tests/matrix-dim-catalog.test.tsx, tests/matrix-dim-equipment.test.tsx, tests/matrix-dim-langs1.test.tsx +7 |
+| i18n.t | lib/i18n.ts | tests/audit-backlog-q.test.tsx, tests/audit-close2-b.test.tsx, tests/audit-journey-b.test.tsx +65 |
 | i18n.lbl | lib/i18n.ts | tests/audit-close2-b.test.tsx, tests/audit-journey-c.test.tsx, tests/audit-journey-d.test.tsx +9 |
-| i18n.tp | lib/i18n.ts | tests/edit-history.test.tsx, tests/i18n-multi.test.ts, tests/invariants.test.ts +4 |
-| i18n.exName | lib/i18n.ts | tests/audit-close2-a.test.tsx, tests/audit-close2-b.test.tsx, tests/audit-final-auto.test.tsx +23 |
+| i18n.tp | lib/i18n.ts | tests/edit-history.test.tsx, tests/i18n-multi.test.ts, tests/invariants.test.ts +6 |
+| i18n.exName | lib/i18n.ts | tests/audit-close2-a.test.tsx, tests/audit-close2-b.test.tsx, tests/audit-final-auto.test.tsx +24 |
 | i18n.fold | lib/i18n.ts | tests/catalog-v2.test.ts, tests/i18n-multi.test.ts |
 | i18n.tIn | lib/i18n.ts | tests/i18n-multi.test.ts, tests/matrix-dim-catalog.test.tsx, tests/matrix-dim-equipment.test.tsx +6 |
 | loads.toKg | lib/loads.ts | tests/locations-audit.test.tsx, tests/locations-loads.test.ts, tests/matrix-dim-catalog.test.tsx |
@@ -700,25 +700,25 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | locations.setBandColor | lib/locations.ts | tests/matrix-invariants.test.ts, tests/owner-0510c.test.tsx |
 | locations.setLoad | lib/locations.ts | tests/audit-perf-equiv.test.ts, tests/audit-r82c.test.tsx, tests/audit-r83.test.tsx +11 |
 | locations.locationLabel | lib/locations.ts | tests/locations-model.test.ts |
-| plural.pluralIndex | lib/plural.ts | tests/i18n-multi.test.ts |
+| plural.pluralIndex | lib/plural.ts | tests/i18n-multi.test.ts, tests/matrix-i18n.test.tsx |
 | seed.hasTime | lib/seed.ts | tests/audit-perf-equiv.test.ts, tests/matrix-dim-catalog.test.tsx, tests/matrix-dim-equipment.test.tsx +8 |
 | seed.hasReps | lib/seed.ts | tests/audit-perf-equiv.test.ts, tests/matrix-dim-catalog.test.tsx, tests/matrix-dim-equipment.test.tsx +7 |
 | seed.hasWeight | lib/seed.ts | tests/audit-perf-equiv.test.ts, tests/matrix-dim-catalog.test.tsx, tests/matrix-dim-equipment.test.tsx +6 |
 | seed.hasDistance | lib/seed.ts | tests/audit-perf-equiv.test.ts, tests/matrix-dim-catalog.test.tsx, tests/matrix-dim-equipment.test.tsx +7 |
 | seed.loadModeFor | lib/seed.ts | tests/catalog-v2.test.ts |
 | seed.loadMult | lib/seed.ts | tests/matrix-logic.test.tsx |
-| seed.uid | lib/seed.ts | tests/fixtures/demo-templates.ts, tests/matrix-dim-catalog.test.tsx, tests/matrix-dim-equipment.test.tsx +7 |
-| seed.base | lib/seed.ts | tests/audit-perf-equiv.test.ts, tests/audit-r72-a.test.ts, tests/audit-records-logic.test.ts +15 |
-| seed.defaultModules | lib/seed.ts | tests/matrix-logic.test.tsx |
+| seed.uid | lib/seed.ts | tests/fixtures/demo-templates.ts, tests/matrix-data-fuzz.test.ts, tests/matrix-dim-catalog.test.tsx +8 |
+| seed.base | lib/seed.ts | tests/audit-perf-equiv.test.ts, tests/audit-r72-a.test.ts, tests/audit-records-logic.test.ts +16 |
+| seed.defaultModules | lib/seed.ts | tests/matrix-data-fuzz.test.ts, tests/matrix-logic.test.tsx |
 | seed.muscleLoadOf | lib/seed.ts | tests/catalog-v2.test.ts, tests/matrix-ui.test.tsx |
 | seed.libExtraRevOf | lib/seed.ts | tests/swap-logic.test.ts |
 | seed.metricFor | lib/seed.ts | tests/catalog-v2.test.ts, tests/ux.test.tsx |
 | seed.musclesFor | lib/seed.ts | tests/catalog-v2.test.ts |
 | seed.equipFields | lib/seed.ts | tests/locations-catalog.test.ts |
-| seed.blankTimer | lib/seed.ts | tests/matrix-invariants.test.ts, tests/matrix-logic.test.tsx |
+| seed.blankTimer | lib/seed.ts | tests/matrix-data-fuzz.test.ts, tests/matrix-invariants.test.ts, tests/matrix-logic.test.tsx |
 | seed.defaultSettings | lib/seed.ts | tests/theme-choice.test.tsx |
 | seed.libExercise | lib/seed.ts | tests/matrix-logic.test.tsx |
-| seed.seedState | lib/seed.ts | tests/audit-persist.test.ts, tests/audit-r72-c.test.ts, tests/catalog-full.test.tsx +21 |
+| seed.seedState | lib/seed.ts | tests/audit-persist.test.ts, tests/audit-r72-c.test.ts, tests/catalog-full.test.tsx +22 |
 | signing.decodeB64 | lib/signing.ts | tests/audit-r83.test.tsx, tests/logic.test.ts |
 | signing.parseExpiry | lib/signing.ts | tests/logic.test.ts |
 | signing.parseTaskAllow | lib/signing.ts | tests/audit-r83b.test.tsx |
@@ -736,31 +736,31 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | stats.setTotal | lib/stats.ts | tests/audit-perf-equiv.test.ts, tests/q024.test.ts, tests/stats.test.ts |
 | stats.fmtTotal | lib/stats.ts | tests/audit-records-logic.test.ts, tests/audit-records-misc.test.tsx, tests/stats.test.ts |
 | stats.hasHistory | lib/stats.ts | tests/audit-perf-equiv.test.ts, tests/audit-perf-ui.test.tsx, tests/matrix-dim-catalog.test.tsx +2 |
-| stats.sessionsFor | lib/stats.ts | tests/audit-backlog-q.test.tsx, tests/audit-perf-equiv.test.ts, tests/audit-records-logic.test.ts +13 |
+| stats.sessionsFor | lib/stats.ts | tests/audit-backlog-q.test.tsx, tests/audit-perf-equiv.test.ts, tests/audit-records-logic.test.ts +14 |
 | stats.emptyRecords | lib/stats.ts | tests/audit-perf-equiv.test.ts |
-| stats.recordsFor | lib/stats.ts | tests/audit-backlog-q.test.tsx, tests/audit-final-stats.test.ts, tests/audit-journey-a.test.tsx +22 |
+| stats.recordsFor | lib/stats.ts | tests/audit-backlog-q.test.tsx, tests/audit-final-stats.test.ts, tests/audit-journey-a.test.tsx +23 |
 | stats.setPRs | lib/stats.ts | tests/audit-final-stats.test.ts, tests/stats.test.ts |
-| stats.prMap | lib/stats.ts | tests/audit-final-stats.test.ts, tests/audit-journey-a.test.tsx, tests/audit-perf-equiv.test.ts +18 |
-| stats.workoutPRs | lib/stats.ts | tests/audit-close-d.test.ts, tests/audit-close2-b.test.tsx, tests/audit-final-stats.test.ts +9 |
-| stats.chartKeysFor | lib/stats.ts | tests/regress.test.tsx, tests/scenario-full.test.tsx, tests/stats.test.ts |
+| stats.prMap | lib/stats.ts | tests/audit-final-stats.test.ts, tests/audit-journey-a.test.tsx, tests/audit-perf-equiv.test.ts +19 |
+| stats.workoutPRs | lib/stats.ts | tests/audit-close-d.test.ts, tests/audit-close2-b.test.tsx, tests/audit-final-stats.test.ts +10 |
+| stats.chartKeysFor | lib/stats.ts | tests/matrix-data-fuzz.test.ts, tests/regress.test.tsx, tests/scenario-full.test.tsx +1 |
 | stats.thisMonday | lib/stats.ts | tests/logic.test.ts, tests/matrix-dim-catalog.test.tsx, tests/matrix-dim-metrics.test.tsx +5 |
-| stats.weeklyTotals | lib/stats.ts | tests/edit-history.test.tsx, tests/logic.test.ts, tests/matrix-dim-catalog.test.tsx +7 |
+| stats.weeklyTotals | lib/stats.ts | tests/edit-history.test.tsx, tests/logic.test.ts, tests/matrix-data-fuzz.test.ts +8 |
 | stats.hasAnyHistory | lib/stats.ts | tests/stats.test.ts |
 | stats.weeklySetsByMuscle | lib/stats.ts | tests/logic.test.ts, tests/matrix-dim-catalog.test.tsx, tests/matrix-dim-metrics.test.tsx +4 |
 | stats.weeklyVolumeByMuscle | lib/stats.ts | tests/matrix-dim-catalog.test.tsx, tests/matrix-dim-metrics.test.tsx, tests/matrix-time.test.ts +1 |
 | store.dbDirectory | lib/store.ts | tests/audit-backlog-r75.test.tsx |
 | store.copyKv | lib/store.ts | tests/audit-backlog-r75.test.tsx |
-| store.init | lib/store.ts | tests/app.tsx, tests/audit-io-more.test.tsx, tests/audit-persist.test.ts +11 |
+| store.init | lib/store.ts | tests/app.tsx, tests/audit-io-more.test.tsx, tests/audit-persist.test.ts +12 |
 | store.applyPrefs | lib/store.ts | tests/audit-close-d.test.ts, tests/audit-close2-b.test.tsx, tests/audit-journey-c.test.tsx +9 |
-| store.migrate | lib/store.ts | tests/audit-io-more.test.tsx, tests/audit-prephone.test.tsx, tests/audit-r72-a.test.ts +25 |
-| store.flush | lib/store.ts | tests/audit-close-b.test.tsx, tests/audit-close-c.test.tsx, tests/audit-close2-a.test.tsx +46 |
-| store.getPersistError | lib/store.ts | tests/audit-persist.test.ts, tests/logic.test.ts, tests/regress.test.tsx |
-| store.getRecovery | lib/store.ts | tests/audit-io-more.test.tsx, tests/audit-r83b.test.tsx, tests/logic.test.ts +4 |
+| store.migrate | lib/store.ts | tests/audit-io-more.test.tsx, tests/audit-prephone.test.tsx, tests/audit-r72-a.test.ts +26 |
+| store.flush | lib/store.ts | tests/audit-close-b.test.tsx, tests/audit-close-c.test.tsx, tests/audit-close2-a.test.tsx +47 |
+| store.getPersistError | lib/store.ts | tests/audit-persist.test.ts, tests/logic.test.ts, tests/matrix-data-fuzz.test.ts +1 |
+| store.getRecovery | lib/store.ts | tests/audit-io-more.test.tsx, tests/audit-r83b.test.tsx, tests/logic.test.ts +5 |
 | store.clearRecovery | lib/store.ts | tests/matrix-logic.test.tsx, tests/regress.test.tsx |
 | store.readRecovery | lib/store.ts | tests/audit-io-more.test.tsx, tests/logic.test.ts, tests/regress.test.tsx |
-| store.save | lib/store.ts | tests/audit-backlog-q.test.tsx, tests/audit-backlog-r75.test.tsx, tests/audit-close-a.test.ts +74 |
-| store.getState | lib/store.ts | tests/audit-backlog-q.test.tsx, tests/audit-backlog-r75.test.tsx, tests/audit-close-a.test.ts +92 |
-| store.replaceState | lib/store.ts | tests/audit-close-d.test.ts, tests/audit-io-flows.test.tsx, tests/audit-io-more.test.tsx +12 |
+| store.save | lib/store.ts | tests/audit-backlog-q.test.tsx, tests/audit-backlog-r75.test.tsx, tests/audit-close-a.test.ts +75 |
+| store.getState | lib/store.ts | tests/audit-backlog-q.test.tsx, tests/audit-backlog-r75.test.tsx, tests/audit-close-a.test.ts +93 |
+| store.replaceState | lib/store.ts | tests/audit-close-d.test.ts, tests/audit-io-flows.test.tsx, tests/audit-io-more.test.tsx +13 |
 | store.useStore | lib/store.ts | tests/matrix-logic.test.tsx |
 | store.useTick | lib/store.ts | tests/logic.test.ts |
 | store.usePrefsTick | lib/store.ts | tests/matrix-logic.test.tsx, tests/matrix-ui.test.tsx |
@@ -770,8 +770,8 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | store.useHistTick | lib/store.ts | tests/regress.test.tsx |
 | store.memoHist | lib/store.ts | tests/matrix-logic.test.tsx |
 | store.memoHistBy | lib/store.ts | tests/matrix-logic.test.tsx |
-| store.exById | lib/store.ts | tests/edit-history.test.tsx, tests/flows.test.tsx, tests/invariants.test.ts +7 |
-| store.bandById | lib/store.ts | tests/scenario-full.test.tsx |
+| store.exById | lib/store.ts | tests/edit-history.test.tsx, tests/flows.test.tsx, tests/invariants.test.ts +8 |
+| store.bandById | lib/store.ts | tests/matrix-data-fuzz.test.ts, tests/scenario-full.test.tsx |
 | store.isBW | lib/store.ts | tests/audit-perf-equiv.test.ts, tests/invariants.test.ts, tests/matrix-invariants.test.ts +1 |
 | store.repsOf | lib/store.ts | tests/audit-journey-a.test.tsx, tests/audit-perf-equiv.test.ts, tests/matrix-invariants.test.ts |
 | store.loadOf | lib/store.ts | tests/audit-perf-equiv.test.ts, tests/audit-r83.test.tsx, tests/audit-r83b.test.tsx |
@@ -791,14 +791,14 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | store.restFor | lib/store.ts | tests/regress.test.tsx |
 | store.fmtSec | lib/store.ts | tests/invariants.test.ts, tests/regress.test.tsx, tests/scenario-full.test.tsx |
 | store.fmtDist | lib/store.ts | tests/regress.test.tsx |
-| store.reps | lib/store.ts | tests/audit-backlog-q.test.tsx, tests/audit-backlog-r75.test.tsx, tests/audit-close-a.test.ts +76 |
+| store.reps | lib/store.ts | tests/audit-backlog-q.test.tsx, tests/audit-backlog-r75.test.tsx, tests/audit-close-a.test.ts +78 |
 | store.fmtDur | lib/store.ts | tests/regress.test.tsx |
-| store.fmtDate | lib/store.ts | tests/matrix-time.test.ts, tests/matrix-ui.test.tsx, tests/regress.test.tsx |
-| store.fmtTime | lib/store.ts | tests/matrix-time.test.ts, tests/matrix-ui.test.tsx, tests/regress.test.tsx |
+| store.fmtDate | lib/store.ts | tests/matrix-i18n.test.tsx, tests/matrix-time.test.ts, tests/matrix-ui.test.tsx +1 |
+| store.fmtTime | lib/store.ts | tests/matrix-i18n.test.tsx, tests/matrix-time.test.ts, tests/matrix-ui.test.tsx +1 |
 | store.bandColor | lib/store.ts | tests/matrix-logic.test.tsx, tests/matrix-ui.test.tsx |
 | store.shortBand | lib/store.ts | tests/regress.test.tsx |
 | store.bandA11y | lib/store.ts | tests/regress.test.tsx |
-| store.finishedWorkouts | lib/store.ts | tests/audit-perf-equiv.test.ts, tests/edit-history.test.tsx, tests/matrix-invariants.test.ts +2 |
+| store.finishedWorkouts | lib/store.ts | tests/audit-perf-equiv.test.ts, tests/edit-history.test.tsx, tests/matrix-data-fuzz.test.ts +3 |
 | store.blocksOf | lib/store.ts | tests/audit-perf-equiv.test.ts |
 | store.workoutsWith | lib/store.ts | tests/audit-perf-equiv.test.ts, tests/edit-history.test.tsx, tests/matrix-logic.test.tsx |
 | store.previousFor | lib/store.ts | tests/audit-prephone.test.tsx, tests/audit-r82b.test.tsx, tests/edit-history.test.tsx +4 |
@@ -811,7 +811,7 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | store.setSummary | lib/store.ts | tests/audit-r83.test.tsx, tests/audit-r83b.test.tsx, tests/backlog-0410.test.tsx +8 |
 | store.setScore | lib/store.ts | tests/audit-perf-equiv.test.ts, tests/logic.test.ts |
 | store.setHasValue | lib/store.ts | tests/matrix-dim-metrics.test.tsx, tests/matrix-logic.test.tsx |
-| store.volume | lib/store.ts | tests/audit-close-d.test.ts, tests/audit-journey-a.test.tsx, tests/audit-perf-equiv.test.ts +18 |
+| store.volume | lib/store.ts | tests/audit-close-d.test.ts, tests/audit-journey-a.test.tsx, tests/audit-perf-equiv.test.ts +19 |
 | store.locationById | lib/store.ts | tests/audit-r82c.test.tsx, tests/decisions-0310.test.tsx, tests/locations-model.test.ts +2 |
 | store.startLocationId | lib/store.ts | tests/scenario-full.test.tsx, tests/swap-logic.test.ts |
 | store.offListAt | lib/store.ts | tests/audit-r82b.test.tsx, tests/swap-logic.test.ts |
@@ -834,7 +834,7 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | store.tplCycleBand | lib/store.ts | tests/matrix-invariants.test.ts, tests/template-rows.test.tsx |
 | store.tplSetRow | lib/store.ts | tests/matrix-invariants.test.ts, tests/template-rows.test.tsx |
 | store.tplSetKind | lib/store.ts | tests/matrix-dim-metrics.test.tsx, tests/matrix-invariants.test.ts, tests/template-rows.test.tsx |
-| store.startFromTemplate | lib/store.ts | tests/audit-close-b.test.tsx, tests/audit-close2-c.test.tsx, tests/audit-final-timer.test.tsx +31 |
+| store.startFromTemplate | lib/store.ts | tests/audit-close-b.test.tsx, tests/audit-close2-c.test.tsx, tests/audit-final-timer.test.tsx +32 |
 | store.startEmpty | lib/store.ts | tests/audit-backlog-q.test.tsx, tests/audit-backlog-r75.test.tsx, tests/audit-close-a.test.ts +68 |
 | store.repeatLast | lib/store.ts | tests/audit-close-d.test.ts, tests/audit-r82.test.tsx, tests/decisions-0310.test.tsx +9 |
 | store.addExerciseToActive | lib/store.ts | tests/audit-backlog-q.test.tsx, tests/audit-backlog-r75.test.tsx, tests/audit-close-a.test.ts +66 |
@@ -858,7 +858,7 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | store.prevOfActiveBlock | lib/store.ts | tests/matrix-logic.test.tsx |
 | store.restAfter | lib/store.ts | tests/audit-r72-d.test.ts, tests/store-rest.test.ts |
 | store.roundRest | lib/store.ts | tests/audit-r72-d.test.ts, tests/audit-r72-ui.test.tsx, tests/store-rest.test.ts |
-| store.toggleDone | lib/store.ts | tests/audit-backlog-q.test.tsx, tests/audit-backlog-r75.test.tsx, tests/audit-close-a.test.ts +46 |
+| store.toggleDone | lib/store.ts | tests/audit-backlog-q.test.tsx, tests/audit-backlog-r75.test.tsx, tests/audit-close-a.test.ts +47 |
 | store.lastActivity | lib/store.ts | tests/audit-persist.test.ts, tests/store-stale.test.ts |
 | store.staleKind | lib/store.ts | tests/matrix-dim-metrics.test.tsx, tests/store-stale.test.ts |
 | store.hasWorkDone | lib/store.ts | tests/matrix-dim-metrics.test.tsx, tests/store-stale.test.ts |
@@ -867,9 +867,9 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | store.markActivity | lib/store.ts | tests/store-stale.test.ts |
 | store.resolveColdStopwatch | lib/store.ts | tests/store-stale.test.ts |
 | store.autoFinishStale | lib/store.ts | tests/audit-backlog-q.test.tsx, tests/audit-close-a.test.ts, tests/audit-final2-auto.test.ts +6 |
-| store.finishWorkout | lib/store.ts | tests/audit-close-d.test.ts, tests/audit-io-more.test.tsx, tests/audit-persist.test.ts +19 |
+| store.finishWorkout | lib/store.ts | tests/audit-close-d.test.ts, tests/audit-io-more.test.tsx, tests/audit-persist.test.ts +20 |
 | store.cancelWorkout | lib/store.ts | tests/audit-r82.test.tsx, tests/audit-r82b.test.tsx, tests/decisions-0310.test.tsx +11 |
-| store.deleteWorkout | lib/store.ts | tests/edit-history.test.tsx, tests/invariants.test.ts, tests/matrix-invariants.test.ts +1 |
+| store.deleteWorkout | lib/store.ts | tests/edit-history.test.tsx, tests/invariants.test.ts, tests/matrix-data-fuzz.test.ts +2 |
 | store.setHasResult | lib/store.ts | tests/matrix-dim-catalog.test.tsx, tests/matrix-logic.test.tsx |
 | store.putHistoryWorkout | lib/store.ts | tests/matrix-invariants.test.ts, tests/swap-schema16.test.ts |
 | store.normalizeGroups | lib/store.ts | tests/logic.test.ts, tests/matrix-invariants.test.ts, tests/reorder-t010.test.tsx |
@@ -895,12 +895,12 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | store.deleteExercise | lib/store.ts | tests/backlog-0410.test.tsx, tests/flows.test.tsx, tests/logic.test.ts +6 |
 | store.visibleExercises | lib/store.ts | tests/logic.test.ts, tests/scenario-full.test.tsx, tests/swap-logic.test.ts |
 | store.newTemplate | lib/store.ts | tests/audit-close-b.test.tsx, tests/audit-close2-c.test.tsx, tests/audit-final-timer.test.tsx +26 |
-| store.dupTemplate | lib/store.ts | tests/matrix-invariants.test.ts, tests/regress.test.tsx, tests/swap-alternates.test.tsx |
+| store.dupTemplate | lib/store.ts | tests/matrix-data-fuzz.test.ts, tests/matrix-invariants.test.ts, tests/regress.test.tsx +1 |
 | store.deleteTemplate | lib/store.ts | tests/matrix-invariants.test.ts, tests/matrix-logic.test.tsx |
 | store.setModule | lib/store.ts | tests/matrix-logic.test.tsx |
-| store.resetAll | lib/store.ts | tests/audit-journey-c.test.tsx, tests/matrix-invariants.test.ts, tests/regress.test.tsx |
+| store.resetAll | lib/store.ts | tests/audit-journey-c.test.tsx, tests/matrix-data-fuzz.test.ts, tests/matrix-invariants.test.ts +1 |
 | store.isReadyForTests | lib/store.ts | tests/app.tsx |
-| store.__resetForTests | lib/store.ts | tests/app.tsx, tests/audit-io-more.test.tsx, tests/audit-persist.test.ts +7 |
+| store.__resetForTests | lib/store.ts | tests/app.tsx, tests/audit-io-more.test.tsx, tests/audit-persist.test.ts +8 |
 | swap.swapCandidates | lib/swap.ts | tests/catalog-full.test.tsx, tests/swap-logic.test.ts, tests/swap-top3.test.ts |
 | swap.sortOthers | lib/swap.ts | tests/catalog-full.test.tsx |
 | swap.implLabel | lib/swap.ts | tests/swap-top3.test.ts |
@@ -909,15 +909,16 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | swap.parseSwapTarget | lib/swap.ts | tests/matrix-logic.test.tsx |
 | theme.applyTheme | lib/theme.ts | tests/matrix-logic.test.tsx |
 | theme.useTheme | lib/theme.ts | tests/matrix-logic.test.tsx |
+| theme.applyFontsFor | lib/theme.ts | tests/matrix-i18n.test.tsx |
 | timer.ensurePermission | lib/timer.ts | tests/matrix-logic.test.tsx |
-| timer.start | lib/timer.ts | tests/app.tsx, tests/audit-close2-a.test.tsx, tests/audit-final-auto.test.tsx +42 |
+| timer.start | lib/timer.ts | tests/app.tsx, tests/audit-close2-a.test.tsx, tests/audit-final-auto.test.tsx +45 |
 | timer.adjust | lib/timer.ts | tests/matrix-logic.test.tsx, tests/matrix-time.test.ts, tests/regress.test.tsx |
 | timer.relabel | lib/timer.ts | tests/swap-ui.test.tsx |
 | timer.stop | lib/timer.ts | tests/audit-backlog-q.test.tsx, tests/audit-backlog-r75.test.tsx, tests/audit-close-a.test.ts +47 |
 | timer.stopIfFrom | lib/timer.ts | tests/matrix-invariants.test.ts, tests/matrix-logic.test.tsx |
 | timer.restore | lib/timer.ts | tests/audit-final-timer.test.tsx, tests/audit-final2-auto.test.ts, tests/audit-final2-fg.test.tsx +3 |
 | timer.onForeground | lib/timer.ts | tests/matrix-logic.test.tsx, tests/matrix-time.test.ts |
-| timer.resetAll | lib/timer.ts | tests/audit-journey-c.test.tsx, tests/matrix-invariants.test.ts, tests/regress.test.tsx |
+| timer.resetAll | lib/timer.ts | tests/audit-journey-c.test.tsx, tests/matrix-data-fuzz.test.ts, tests/matrix-invariants.test.ts +1 |
 | timer.startSet | lib/timer.ts | tests/audit-backlog-q.test.tsx, tests/audit-close-a.test.ts, tests/audit-final2-auto.test.ts +4 |
 | timer.refreshScheduled | lib/timer.ts | tests/audit-backlog-r75.test.tsx, tests/regress.test.tsx |
 | timer.stopSet | lib/timer.ts | tests/audit-backlog-q.test.tsx, tests/audit-backlog-r75.test.tsx, tests/audit-close-a.test.ts +45 |
@@ -930,14 +931,14 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | timer.staleBody | lib/timer.ts | tests/audit-stale-ui.test.tsx, tests/regress.test.tsx |
 | timer.scheduleStaleReminder | lib/timer.ts | tests/regress.test.tsx |
 | units.applyUnit | lib/units.ts | tests/audit-backlog-r75.test.tsx, tests/audit-close2-b.test.tsx, tests/audit-final-stats.test.ts +26 |
-| units.wu | lib/units.ts | tests/matrix-dim-catalog.test.tsx, tests/matrix-dim-equipment.test.tsx, tests/matrix-dim-langs1.test.tsx +7 |
+| units.wu | lib/units.ts | tests/matrix-data-fuzz.test.ts, tests/matrix-dim-catalog.test.tsx, tests/matrix-dim-equipment.test.tsx +8 |
 | units.wOut | lib/units.ts | tests/audit-backlog-r75.test.tsx, tests/audit-r83.test.tsx, tests/audit-training.test.ts +12 |
 | units.wField | lib/units.ts | tests/audit-close2-b.test.tsx, tests/logic.test.ts, tests/matrix-dim-catalog.test.tsx +8 |
 | units.wIn | lib/units.ts | tests/audit-backlog-r75.test.tsx, tests/audit-close-d.test.ts, tests/audit-r83.test.tsx +20 |
 | units.wInKeep | lib/units.ts | tests/matrix-dim-catalog.test.tsx, tests/matrix-dim-equipment.test.tsx, tests/matrix-dim-langs1.test.tsx +6 |
 | units.snapLb | lib/units.ts | tests/matrix-dim-equipment.test.tsx, tests/matrix-logic.test.tsx |
 | units.snapLegacyLb | lib/units.ts | tests/matrix-migrations.test.tsx, tests/regress.test.tsx, tests/units.test.ts |
-| units.fmtNum | lib/units.ts | tests/matrix-logic.test.tsx, tests/scenario-full.test.tsx, tests/units.test.ts |
+| units.fmtNum | lib/units.ts | tests/matrix-i18n.test.tsx, tests/matrix-logic.test.tsx, tests/scenario-full.test.tsx +1 |
 | units.volOut | lib/units.ts | tests/regress.test.tsx, tests/units.test.ts |
 | units.fmtVol | lib/units.ts | tests/invariants.test.ts, tests/matrix-logic.test.tsx, tests/regress.test.tsx +2 |
 | units.fmtW | lib/units.ts | tests/audit-close-d.test.ts, tests/audit-training.test.ts, tests/invariants.test.ts +3 |
@@ -949,7 +950,7 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | metryki ćwiczeń (METRICS) | lib/seed.ts | tests/matrix-dim-metrics.test.tsx |
 | typy serii (SET_KINDS) | lib/seed.ts | tests/matrix-dim-metrics.test.tsx |
 | partie mięśniowe (MUSCLES) | lib/seed.ts | tests/matrix-dim-catalog.test.tsx |
-| języki (LANGS) | lib/i18n.ts | tests/matrix-dim-langs1.test.tsx, tests/matrix-dim-langs2.test.tsx, tests/matrix-dim-langs3.test.tsx +1 |
+| języki (LANGS) | lib/i18n.ts | tests/matrix-dim-langs1.test.tsx, tests/matrix-dim-langs2.test.tsx, tests/matrix-dim-langs3.test.tsx +2 |
 | jednostki kg/lb (UNITS) | tests/matrix-dimensions.test.tsx | tests/matrix-dim-metrics.test.tsx |
 | motywy (THEMES) | tests/matrix-dimensions.test.tsx | tests/matrix-dim-langs1.test.tsx, tests/matrix-dim-langs2.test.tsx, tests/matrix-dim-langs3.test.tsx +1 |
 | pozycje sprzętu (EQUIPMENT) | lib/equipment.ts | tests/matrix-dim-equipment.test.tsx |

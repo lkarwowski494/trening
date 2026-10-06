@@ -18,12 +18,23 @@ export function useTheme(): Theme { return useColorScheme() === 'light' ? light 
  * Kroje pisma (Google Fonts, licencja OFL): Archivo — tekst i nagłówki, IBM Plex Mono — liczby (ciężary, powtórzenia, czas).
  * Nazwy = klucze w `FONT_FILES` (ładowane w app/_layout.tsx). Z własnym krojem nie ustawiamy fontWeight — grubość wybiera rodzina.
  */
-export const F = { regular: 'Archivo_400Regular', semibold: 'Archivo_600SemiBold', heavy: 'Archivo_800ExtraBold', mono: 'IBMPlexMono_500Medium', monoBold: 'IBMPlexMono_600SemiBold' } as const;
+const ARCHIVO = { regular: 'Archivo_400Regular', semibold: 'Archivo_600SemiBold', heavy: 'Archivo_800ExtraBold' } as const;
+/** Decyzja właściciela 06.10.2026 (wariant A): Archivo nie ma cyrylicy — dla bg/sr/uk krój tekstu IBM Plex Sans (ta sama rodzina co cyfry
+ * IBM Plex Mono; najgrubszy 700 zamiast 800). Znalezisko testu tests/matrix-i18n.test.tsx. */
+const PLEX_SANS = { regular: 'IBMPlexSans_400Regular', semibold: 'IBMPlexSans_600SemiBold', heavy: 'IBMPlexSans_700Bold' } as const;
+export const CYRILLIC_LANGS = ['bg', 'sr', 'uk'] as const;
+type FontSet = { regular: string; semibold: string; heavy: string; mono: string; monoBold: string };
+/** Kroje bieżącego języka — obiekt zmieniany przez applyFontsFor (style liczone przy renderze czytają aktualną wartość). */
+export const F: FontSet = { ...ARCHIVO, mono: 'IBMPlexMono_500Medium', monoBold: 'IBMPlexMono_600SemiBold' };
+export function applyFontsFor(lang: string) { Object.assign(F, (CYRILLIC_LANGS as readonly string[]).includes(lang) ? PLEX_SANS : ARCHIVO); }
 /* eslint-disable @typescript-eslint/no-var-requires */
 export const FONT_FILES = {
-  [F.regular]: require('@expo-google-fonts/archivo/400Regular/Archivo_400Regular.ttf'),
-  [F.semibold]: require('@expo-google-fonts/archivo/600SemiBold/Archivo_600SemiBold.ttf'),
-  [F.heavy]: require('@expo-google-fonts/archivo/800ExtraBold/Archivo_800ExtraBold.ttf'),
+  [ARCHIVO.regular]: require('@expo-google-fonts/archivo/400Regular/Archivo_400Regular.ttf'),
+  [ARCHIVO.semibold]: require('@expo-google-fonts/archivo/600SemiBold/Archivo_600SemiBold.ttf'),
+  [ARCHIVO.heavy]: require('@expo-google-fonts/archivo/800ExtraBold/Archivo_800ExtraBold.ttf'),
+  [PLEX_SANS.regular]: require('@expo-google-fonts/ibm-plex-sans/400Regular/IBMPlexSans_400Regular.ttf'),
+  [PLEX_SANS.semibold]: require('@expo-google-fonts/ibm-plex-sans/600SemiBold/IBMPlexSans_600SemiBold.ttf'),
+  [PLEX_SANS.heavy]: require('@expo-google-fonts/ibm-plex-sans/700Bold/IBMPlexSans_700Bold.ttf'),
   [F.mono]: require('@expo-google-fonts/ibm-plex-mono/500Medium/IBMPlexMono_500Medium.ttf'),
   [F.monoBold]: require('@expo-google-fonts/ibm-plex-mono/600SemiBold/IBMPlexMono_600SemiBold.ttf'),
 };

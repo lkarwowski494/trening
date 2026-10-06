@@ -251,6 +251,7 @@ export function draftSetImpl(key: string, blockId: string, impl: Impl) {
 /** Przesunięcie daty o dzień (przyciski ‹ ›). Nieczytelna data zostaje bez zmian. */
 export function shiftDate(date: string, days: number): string {
   const m = /^(\d{4})-(\d{1,2})-(\d{1,2})$/.exec(date.trim()); if (!m) return date;
+  const d0 = new Date(+m[1], +m[2] - 1, +m[3]); if (d0.getFullYear() !== +m[1] || d0.getMonth() !== +m[2] - 1 || d0.getDate() !== +m[3]) return date; /* niemożliwa data (30.02) — bez cichej „poprawki”; parseStart pokaże błąd (macierz czasu 06.10) */
   return dateText(new Date(+m[1], +m[2] - 1, +m[3] + days).getTime());
 }
 

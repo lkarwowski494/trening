@@ -1,0 +1,44 @@
+# Testy Jest w wielu strefach czasowych (polecenie właściciela 06.10.2026 — najpełniejsze darmowe testy automatyczne).
+# Lokalnie i w verify testy biegną w Europe/Warsaw (tests/global-setup.js); tu ten sam zestaw biegnie w strefach z dużym
+# przesunięciem, bez zmiany czasu, z półgodzinnym przesunięciem i z półgodzinną zmianą czasu. TZ ustawiamy przed startem
+# procesu (zmiana w trakcie nie działa — global-setup.js). Listę stref pilnuje tests/matrix-time.test.ts (CI_ZONES).
+# ubuntu-latest jest darmowy dla publicznego repozytorium; bez sekretów.
+name: tests-tz
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 3 * * *'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: tests-tz-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  jest:
+    name: jest (TZ=${{ matrix.tz }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        tz:
+          - Europe/Warsaw
+          - UTC
+          - America/Los_Angeles
+          - Pacific/Kiritimati
+          - Pacific/Pago_Pago
+          - Asia/Kolkata
+          - Australia/Lord_Howe
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: jest w strefie ${{ matrix.tz }}
+        run: TZ=${{ matrix.tz }} npx jest --maxWorkers=2
