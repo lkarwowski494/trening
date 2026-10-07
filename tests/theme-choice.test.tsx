@@ -1,5 +1,5 @@
 /* Decyzja właściciela 05.10.2026 (po instalacji, zrzut „Nie ma wyglądu kredy” — telefon w trybie ciemnym):
- * „Wybór motywu, domyślnie jasna Kreda” — Ustawienia → Wygląd: Jasny (domyślnie) / Ciemny / Jak w telefonie. */
+ * „Wybór motywu, domyślnie jasna Kreda” (od 07.10.2026 styl „Tuleja” — domyślnie nadal jasny) — Ustawienia → Wygląd: Jasny (domyślnie) / Ciemny / Jak w telefonie. */
 import { Appearance } from 'react-native';
 import { renderApp, flushAll, screen, go, tap } from './app';
 import * as store from '@/lib/store';

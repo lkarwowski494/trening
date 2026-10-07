@@ -69,3 +69,9 @@ test('Live Activity (Swift) w kolorach ciemnego motywu: tło = dark.bg, akcent =
   for (const c of cols) expect([c, near(c, rgb(dark.bg)) || near(c, rgb(dark.accent))]).toEqual([c, true]);
   expect(cols.some(c => near(c, rgb(dark.accent)))).toBe(true); expect(cols.some(c => near(c, rgb(dark.bg)))).toBe(true);
 });
+
+test('kolor akcentu rozszerzenia widżetu = kolor marki (jasny) i akcent ciemny — bez pomarańczu „Kredy” (przegląd 07.10.2026 wieczór)', () => {
+  const cfg = require('../targets/rest-widget/expo-target.config.js'); const { BRAND, dark } = require('@/lib/theme');
+  expect(JSON.stringify(cfg.colors.$accent).toLowerCase()).toBe(JSON.stringify({ light: BRAND.signal, dark: dark.accent }).toLowerCase());
+  expect(JSON.stringify(cfg).toLowerCase()).not.toContain('#ff8a3d');
+});

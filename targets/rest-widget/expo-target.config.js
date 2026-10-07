@@ -7,5 +7,5 @@ module.exports = {
   deploymentTarget: '16.2',
   frameworks: ['SwiftUI', 'WidgetKit', 'ActivityKit'],
   // Kształt: string albo { light, dark } (apple-targets 4.x) — wcześniejsze { color, darkColor } dawało pusty colorset.
-  colors: { $accent: '#FF8A3D' }, // Kreda (docs/16)
+  colors: { $accent: { light: '#1F5FD1', dark: '#6F9BF2' } }, // Tuleja (07.10.2026): BRAND.signal / dark.accent z lib/theme.ts — test: tests/brand-tuleja.test.tsx
 };

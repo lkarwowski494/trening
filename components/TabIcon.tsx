@@ -1,4 +1,4 @@
-/* Ikony zakładek w stylu „Kreda” (docs/16) — linie 1,8 pt jak na planszy marki; zamiast emoji, które wyglądały różnie na każdym iOS. */
+/* Ikony zakładek (od „Kredy”, docs/16; zostały w stylu „Tuleja”, 07.10.2026) — linie 1,8 pt jak na planszy marki; zamiast emoji, które wyglądały różnie na każdym iOS. */
 import React from 'react';
 import Svg, { Path, Rect, Circle } from 'react-native-svg';
 import type { ColorValue } from 'react-native';
