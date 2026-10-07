@@ -834,5 +834,13 @@
  "Zrób backup i odnów w Sideloadly (ok. 2 min). Dane zostają w telefonie.": "Tee varmuuskopio ja uusi Sideloadlyssä (n. 2 min). Tiedot säilyvät puhelimessa.",
  "Zrób backup, potem w GitHubie: Actions → iPhone (EAS) → build i zainstaluj z linku. Dane zostają w telefonie.": "Tee varmuuskopio, sitten GitHubissa: Actions → iPhone (EAS) → build, ja asenna linkistä. Tiedot säilyvät puhelimessa.",
  "Zwiń inne ćwiczenia": "Pienennä muut liikkeet",
- "Zwykle w: {l} — {name}. Zamienić?": "Yleensä paikassa {l} — {name}. Vaihdetaanko?"
+ "Zwykle w: {l} — {name}. Zamienić?": "Yleensä paikassa {l} — {name}. Vaihdetaanko?",
+ "stos na {v}": "painopakka: {v}",
+ "hantle: {v}": "käsipainot: {v}",
+ "kettlebell: {v}": "kahvakuula: {v}",
+ "na urządzeniu: {v}": "laitteessa: {v}",
+ "guma: {v}": "kuminauha: {v}",
+ "asysta gumą: {v}": "kuminauha-apu: {v}",
+ "dociążenie: {v}": "lisäpaino: {v}",
+ "asysta: {v}": "apu: {v}"
 }

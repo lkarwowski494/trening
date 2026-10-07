@@ -834,5 +834,13 @@
  "Teraz: {v}": "Dabar: {v}",
  "Seria zrobiona": "Serija atlikta",
  "Wartości zmienisz w wierszu serii poniżej.": "Reikšmes pakeisite serijos eilutėje žemiau.",
- "Seria zrobiona: {ex}, seria {n}": "Serija atlikta: {ex}, serija {n}"
+ "Seria zrobiona: {ex}, seria {n}": "Serija atlikta: {ex}, serija {n}",
+ "stos na {v}": "blokas ties {v}",
+ "hantle: {v}": "hanteliai: {v}",
+ "kettlebell: {v}": "gira: {v}",
+ "na urządzeniu: {v}": "įrenginyje: {v}",
+ "guma: {v}": "guma: {v}",
+ "asysta gumą: {v}": "pagalba guma: {v}",
+ "dociążenie: {v}": "papildomas svoris: {v}",
+ "asysta: {v}": "pagalba: {v}"
 }

@@ -8,6 +8,7 @@
 #   "Each side: 25 \+ 5 kg"       ← 'Na każdą stronę: {p}' (components/PlateBar.tsx, accessibilityLabel rysunku)
 #   "Set done"                    ← 'Seria zrobiona' (przycisk karty)
 #   "All sets ticked off"         ← 'Wszystkie serie odhaczone'
+#   "Skip"                        ← 'Pomiń' (przerwa w karcie „teraz”, RestPanel w components/ActiveWorkout.tsx)
 #   "Workout view"/"List"/"Focused" ← 'Widok treningu' / 'Lista' / 'Skupiony' (app/more/settings.tsx)
 appId: pl.lukasz.trening
 name: Widok skupiony i talerze
@@ -54,7 +55,11 @@ name: Widok skupiony i talerze
 - takeScreenshot: 41-karta-teraz-talerze
 - tapOn: "Set done"
 - extendedWaitUntil: { visible: "All sets ticked off", timeout: 15000 }
-- takeScreenshot: 42-wszystko-odhaczone
+# build 1004 (07.10.2026, pkt 3): przerwa w karcie — odliczanie i „Skip” w karcie, nie w dolnym pasku
+- assertVisible: "Skip"
+- takeScreenshot: 42-wszystko-odhaczone-przerwa-w-karcie
+- tapOn: "Skip"
+- assertNotVisible: "Skip"
 
 # --- przełącznik: widok listy chowa kartę ---
 - tapOn: "More, tab.*"

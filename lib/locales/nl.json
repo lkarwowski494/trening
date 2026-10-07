@@ -834,5 +834,13 @@
  "Zrób backup i odnów w Sideloadly (ok. 2 min). Dane zostają w telefonie.": "Maak een back-up en vernieuw in Sideloadly (ca. 2 min). Je gegevens blijven op de telefoon.",
  "Zrób backup, potem w GitHubie: Actions → iPhone (EAS) → build i zainstaluj z linku. Dane zostają w telefonie.": "Maak een back-up en ga dan op GitHub naar: Actions → iPhone (EAS) → build, en installeer via de link. Je gegevens blijven op de telefoon.",
  "Zwiń inne ćwiczenia": "Klap andere oefeningen in",
- "Zwykle w: {l} — {name}. Zamienić?": "Meestal op {l} — {name}. Wisselen?"
+ "Zwykle w: {l} — {name}. Zamienić?": "Meestal op {l} — {name}. Wisselen?",
+ "stos na {v}": "gewichtsstapel op {v}",
+ "hantle: {v}": "dumbbells: {v}",
+ "kettlebell: {v}": "kettlebell: {v}",
+ "na urządzeniu: {v}": "op het apparaat: {v}",
+ "guma: {v}": "band: {v}",
+ "asysta gumą: {v}": "hulp met band: {v}",
+ "dociążenie: {v}": "extra gewicht: {v}",
+ "asysta: {v}": "hulp: {v}"
 }

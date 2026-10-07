@@ -834,5 +834,13 @@
  "Teraz: {v}": "Сега: {v}",
  "Seria zrobiona": "Серията е готова",
  "Wartości zmienisz w wierszu serii poniżej.": "Стойностите се променят в реда на серията по-долу.",
- "Seria zrobiona: {ex}, seria {n}": "Серията е готова: {ex}, серия {n}"
+ "Seria zrobiona: {ex}, seria {n}": "Серията е готова: {ex}, серия {n}",
+ "stos na {v}": "стек на {v}",
+ "hantle: {v}": "дъмбели: {v}",
+ "kettlebell: {v}": "пудовка: {v}",
+ "na urządzeniu: {v}": "на уреда: {v}",
+ "guma: {v}": "ластик: {v}",
+ "asysta gumą: {v}": "помощ с ластик: {v}",
+ "dociążenie: {v}": "допълнителна тежест: {v}",
+ "asysta: {v}": "помощ: {v}"
 }

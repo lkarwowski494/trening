@@ -834,5 +834,13 @@
  "Teraz: {v}": "Tagad: {v}",
  "Seria zrobiona": "Sērija pabeigta",
  "Wartości zmienisz w wierszu serii poniżej.": "Vērtības maini sērijas rindā zemāk.",
- "Seria zrobiona: {ex}, seria {n}": "Sērija pabeigta: {ex}, sērija {n}"
+ "Seria zrobiona: {ex}, seria {n}": "Sērija pabeigta: {ex}, sērija {n}",
+ "stos na {v}": "bloks uz {v}",
+ "hantle: {v}": "hanteles: {v}",
+ "kettlebell: {v}": "svarbumba: {v}",
+ "na urządzeniu: {v}": "ierīcē: {v}",
+ "guma: {v}": "gumija: {v}",
+ "asysta gumą: {v}": "palīdzība ar gumiju: {v}",
+ "dociążenie: {v}": "papildu svars: {v}",
+ "asysta: {v}": "palīdzība: {v}"
 }

@@ -90,7 +90,7 @@ const DIMS = [
   ['metryki ćwiczeń', 'METRICS', 'lib/seed.ts'], ['typy serii', 'SET_KINDS', 'lib/seed.ts'], ['partie mięśniowe', 'MUSCLES', 'lib/seed.ts'],
   ['języki', 'LANGS', 'lib/i18n.ts'], ['jednostki kg/lb', 'UNITS', 'tests/matrix-dimensions.test.tsx'], ['motywy', 'THEMES', 'tests/matrix-dimensions.test.tsx'],
   ['pozycje sprzętu', 'EQUIPMENT', 'lib/equipment.ts'], ['presety miejsc', 'LOCATION_PRESETS', 'lib/equipment.ts'], ['presety modeli ciężarów', 'LOAD_PRESETS', 'lib/equipment.ts'],
-  ['widoki treningu', 'WORKOUT_VIEWS', 'lib/seed.ts'], ['kolory talerzy (IWF)', 'IWF_DISC', 'lib/plates.ts'],
+  ['widoki treningu', 'WORKOUT_VIEWS', 'lib/seed.ts'], ['przyrządy (grafika na karcie)', 'IMPLS', 'lib/seed.ts'], ['kolory talerzy (IWF)', 'IWF_DISC', 'lib/plates.ts'],
   ['ćwiczenia z katalogu', 'katalog (seedState().exercises)', 'lib/seed.ts'],
 ];
 const dimTests = tests.filter(t => /^tests\/matrix-/.test(t.f));

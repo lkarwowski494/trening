@@ -834,5 +834,13 @@
  "Teraz: {v}": "Зараз: {v}",
  "Seria zrobiona": "Підхід виконано",
  "Wartości zmienisz w wierszu serii poniżej.": "Значення змінюються в рядку підходу нижче.",
- "Seria zrobiona: {ex}, seria {n}": "Підхід виконано: {ex}, підхід {n}"
+ "Seria zrobiona: {ex}, seria {n}": "Підхід виконано: {ex}, підхід {n}",
+ "stos na {v}": "стек на {v}",
+ "hantle: {v}": "гантелі: {v}",
+ "kettlebell: {v}": "гиря: {v}",
+ "na urządzeniu: {v}": "на пристрої: {v}",
+ "guma: {v}": "гума: {v}",
+ "asysta gumą: {v}": "допомога гумою: {v}",
+ "dociążenie: {v}": "додаткова вага: {v}",
+ "asysta: {v}": "допомога: {v}"
 }

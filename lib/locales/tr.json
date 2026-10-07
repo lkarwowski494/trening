@@ -834,5 +834,13 @@
  "Zrób backup i odnów w Sideloadly (ok. 2 min). Dane zostają w telefonie.": "Yedek alın ve Sideloadly’de yenileyin (yaklaşık 2 dk). Verileriniz telefonda kalır.",
  "Zrób backup, potem w GitHubie: Actions → iPhone (EAS) → build i zainstaluj z linku. Dane zostają w telefonie.": "Yedek alın, sonra GitHub’da: Actions → iPhone (EAS) → build ve bağlantıdan yükleyin. Verileriniz telefonda kalır.",
  "Zwiń inne ćwiczenia": "Diğer egzersizleri daralt",
- "Zwykle w: {l} — {name}. Zamienić?": "Genelde: {l} — {name}. Değiştirilsin mi?"
+ "Zwykle w: {l} — {name}. Zamienić?": "Genelde: {l} — {name}. Değiştirilsin mi?",
+ "stos na {v}": "ağırlık yığını: {v}",
+ "hantle: {v}": "dambıllar: {v}",
+ "kettlebell: {v}": "kettlebell: {v}",
+ "na urządzeniu: {v}": "cihazda: {v}",
+ "guma: {v}": "bant: {v}",
+ "asysta gumą: {v}": "bant desteği: {v}",
+ "dociążenie: {v}": "ek ağırlık: {v}",
+ "asysta: {v}": "destek: {v}"
 }

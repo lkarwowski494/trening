@@ -834,5 +834,13 @@
  "Teraz: {v}": "Teď: {v}",
  "Seria zrobiona": "Série hotová",
  "Wartości zmienisz w wierszu serii poniżej.": "Hodnoty změníte v řádku série níže.",
- "Seria zrobiona: {ex}, seria {n}": "Série hotová: {ex}, série {n}"
+ "Seria zrobiona: {ex}, seria {n}": "Série hotová: {ex}, série {n}",
+ "stos na {v}": "stoh na {v}",
+ "hantle: {v}": "jednoručky: {v}",
+ "kettlebell: {v}": "kettlebell: {v}",
+ "na urządzeniu: {v}": "na zařízení: {v}",
+ "guma: {v}": "guma: {v}",
+ "asysta gumą: {v}": "dopomoc gumou: {v}",
+ "dociążenie: {v}": "přidaná zátěž: {v}",
+ "asysta: {v}": "dopomoc: {v}"
 }

@@ -7,7 +7,9 @@ import { Btn, Input, NumInput, Muted } from '@/components/ui';
 import { progressionFor, writeLoad, setActiveLocation, lastActivity, staleSince, staleRef, staleKind, ackStale, markActivity, useForegroundTick, bandA11y, clampName, loadLabelShort, getState, useTick, exById, prevOfActiveBlock, previousFor, canUndoSwap, undoSwap, pinnedImpl, rememberRest as storeRememberRest, canRememberAlt, rememberAlt, altHint, acceptAlt, skipAlt, occurrence, occurrences, hintFor, isBW, reps, fmtDur, fmtSec, fmtTime, setSummary, toggleDone, restAfter, roundRest, addSet, removeSet, removeSetById, removeExercise, finishWorkout, cancelWorkout, save, loadLabel, groupLabels, linkWithNext, unlink, cycleBand, findSet, shortBand, setHasValue, locationById, offListNote, liveBlockImpl, listLocFor, srcSetAt, usesBand, focusSet } from '@/lib/store';
 import { availability, missingLabel, plateSpecFor } from '@/lib/equipment';
 import { platesPerSide, plateList } from '@/lib/plates';
-import { PlateBar } from '@/components/PlateBar';
+import { EquipVisual } from '@/components/EquipVisual';
+import { equipVisFor } from '@/lib/equipvis';
+import Svg, { Circle } from 'react-native-svg';
 import { implLabel } from '@/lib/swap';
 import { SetBadge } from '@/components/SetBadge';
 import { locationLabel } from '@/lib/locations';
@@ -160,7 +162,7 @@ export default function ActiveWorkout() {
         <Muted style={{ textAlign: 'center', fontSize: 13, marginVertical: 10 }}>{tr('Trening w toku zapisuje się na bieżąco. Tapnij numer serii, by oznaczyć rozgrzewkę (W), drop set (D), serię do upadku (F) albo dodać notatkę.')}</Muted>
         <Btn title={tr('Anuluj trening')} kind="danger" block style={{ marginTop: 24 }} onPress={cancel} />
       </ScrollView>
-      <TimerBar onFinishSet={() => finishTimedSet()} />
+      <TimerBar onFinishSet={() => finishTimedSet()} restInCard={st.settings.workoutView !== 'list'} />
     </View>
   );
 }
@@ -377,7 +379,8 @@ export function platePlanFor(w: Workout, e: WExercise, set: WSet) {
 }
 /**
  * Widok skupiony (styl „Tuleja”, decyzja właściciela 07.10.2026; docs/21 pkt 3): karta serii „teraz” (store.focusSet) nad listą — ćwiczenie,
- * numer serii, ciężar × powtórzenia dużymi cyframi, „ostatnio …”, talerze na stronę i jeden duży przycisk, który działa jak ✓ w wierszu tej serii
+ * numer serii, notatka ćwiczenia, ciężar × powtórzenia dużymi cyframi, „ostatnio …”, grafika sprzętu (lib/equipvis.ts: talerze, stos, hantle, kettle,
+ * stacja, guma, dociążenie; 07.10.2026), pierścień serii na czas, przerwa w karcie z podglądem następnej serii („dalej: …”) i jeden duży przycisk, który działa jak ✓ w wierszu tej serii
  * (ta sama funkcja onDone — przerwa, stoper, Live Activity bez zmian), z własną etykietą VoiceOver (dwa przyciski o tej samej nazwie na jednym
  * ekranie — tests/matrix-a11y). Podpowiedź „↑” zostaje w nagłówku ćwiczenia (jedno miejsce). Wartości zmienia się w wierszu serii niżej.
  * Wszystko odhaczone — „Zakończ trening”. Wyłączenie: Ustawienia → Widok treningu → Lista.
@@ -386,25 +389,29 @@ function FocusCard({ w, onDone, onFinish }: { w: Workout; onDone: (ei: number, s
   const t = useTheme(); const pos = focusSet(w);
   if (!pos) return w.exercises.some(e => e.sets.length) ? (
     <View style={[s.focus, { backgroundColor: t.surface, borderColor: t.text }]}>
+      {timer.T.on ? <View style={[s.focusRest, { borderColor: t.accent }]}><RestPanel big={34} /></View> : null}
       <Text accessibilityRole="header" maxFontSizeMultiplier={1.3} style={{ color: t.text, fontSize: 20, fontFamily: F.heavy }}>{tr('Wszystkie serie odhaczone')}</Text>
       <Pressable accessibilityRole="button" onPress={onFinish} style={[s.focusBtn, { backgroundColor: t.text }]}><Text maxFontSizeMultiplier={1.3} style={{ color: t.bg, fontSize: 19, fontFamily: F.heavy }}>{tr('Zakończ trening')}</Text></Pressable>
     </View>) : null;
   const e = w.exercises[pos.ei]; const ex = exById(e.exerciseId)!; const set = e.sets[pos.si]; const m = ex.metric ?? 'weight_reps'; const lbl = setLabel(e, pos.si);
   const prev = prevOfActiveBlock(w, e); const p = hintFor(prev?.sets, e.sets, pos.si, ex);
-  const plan = platePlanFor(w, e, set); const work = e.sets.filter(x => x.kind !== 'warmup').length;
+  const vis = equipVisFor(w, e, set); const work = e.sets.filter(x => x.kind !== 'warmup').length; const resting = timer.T.on;
   const parts: string[] = []; if (hasWeight(m)) parts.push(bigLoad(ex, set)); if (hasReps(m)) parts.push(set.reps === '' || set.reps == null ? '—' : String(set.reps));
   if (hasDistance(m)) parts.push(set.distanceM === '' || set.distanceM == null ? '—' : `${set.distanceM} m`); if (hasTime(m)) parts.push(set.durationSec === '' || set.durationSec == null ? '—' : fmtSec(Number(set.durationSec)));
   const big = parts.join(' × '); const unitTxt = hasWeight(m) && !isBW(ex) && set.weight !== '' && set.weight != null ? wu() : '';
   const name = exName(ex); const ss = e.groupId ? `SS ${groupLabels(w.exercises)[e.groupId]} · ` : '';
   return (
     <View style={[s.focus, { backgroundColor: t.surface, borderColor: t.text }]}>
+      {resting ? <View style={[s.focusRest, { borderColor: t.accent }]}><RestPanel big={34} /></View> : null}
       <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'baseline', gap: 8 }}>
-        <Text accessibilityRole="header" maxFontSizeMultiplier={1.3} style={{ color: t.text, fontSize: 20, fontFamily: F.heavy, flexShrink: 1 }}>{ss}{name}</Text>
+        <Text accessibilityRole="header" maxFontSizeMultiplier={1.3} style={{ color: t.text, fontSize: 20, fontFamily: F.heavy, flexShrink: 1 }}>{ss}{resting ? tr('dalej: {name}', { name }) : name}</Text>
         <Text maxFontSizeMultiplier={1.3} style={{ color: t.muted, fontSize: 14, fontFamily: F.semibold }}>{set.kind === 'warmup' ? tr('rozgrzewka') : tr('seria {n} z {all}', { n: lbl, all: work })}</Text>
       </View>
+      {ex.notes?.trim() ? <Muted numberOfLines={3} style={{ fontSize: 13 }}>{ex.notes.trim()}</Muted> : null}
       <Text accessible accessibilityLabel={tr('Teraz: {v}', { v: [big, unitTxt].filter(Boolean).join(' ') })} adjustsFontSizeToFit numberOfLines={1} maxFontSizeMultiplier={1.2} style={{ color: t.text, fontSize: 64, lineHeight: 72, fontFamily: F.display }}>{big}{unitTxt ? <Text style={{ fontSize: 18, fontFamily: F.semibold, color: t.muted }}>{` ${unitTxt}`}</Text> : null}</Text>
       {p ? <Muted style={{ fontSize: 13 }}>{tr('ostatnio {s}', { s: setSummary(ex, p, 'calc') })}</Muted> : null}
-      {plan ? <PlateBar plan={plan} /> : null}
+      {vis.map((v, i) => <EquipVisual key={i} v={v} />)}
+      {hasTime(m) ? <TimedRing setId={set.id} /> : null}
       <Pressable accessibilityRole="button" accessibilityLabel={tr('Seria zrobiona: {ex}, seria {n}', { n: lbl, ex: name })} testID="focus-done" onPress={() => onDone(pos.ei, pos.si)} style={({ pressed }) => [s.focusBtn, { backgroundColor: t.text, opacity: pressed ? 0.8 : 1 }]}>
         <Text maxFontSizeMultiplier={1.3} style={{ color: t.bg, fontSize: 19, fontFamily: F.heavy }}>{tr('Seria zrobiona')}</Text>
       </Pressable>
@@ -414,7 +421,7 @@ function FocusCard({ w, onDone, onFinish }: { w: Workout; onDone: (ei: number, s
 }
 
 /** Dolny pasek: stoper serii czasowej (gdy trwa) albo timer przerwy. Odświeża się sam (250 ms), bez reszty ekranu. */
-function TimerBar({ onFinishSet }: { onFinishSet: () => void }) {
+function TimerBar({ onFinishSet, restInCard }: { onFinishSet: () => void; restInCard?: boolean }) {
   const t = useTheme(); const [, force] = useState(0); const { width } = useWindowDimensions(); const big = width < 360 ? 28 : 34;
   useEffect(() => timer.subscribe(() => force(x => x + 1)), []);
   useEffect(() => { const i = setInterval(() => { if (timer.S.on || timer.T.on) force(x => x + 1); }, 250); return () => clearInterval(i); }, []);
@@ -429,15 +436,32 @@ function TimerBar({ onFinishSet }: { onFinishSet: () => void }) {
       </View>
     );
   }
-  if (!timer.T.on) return null;
+  if (!timer.T.on || restInCard) return null; /* widok skupiony (07.10.2026): przerwa w karcie „teraz” (RestPanel) — jeden zestaw przycisków na ekranie */
+  return <View style={[s.timer, { backgroundColor: t.surface, borderColor: t.accent }]}><RestPanel big={big} /></View>;
+}
+
+/** Przerwa: odliczanie i −15 / +15 / Pomiń — w dolnym pasku (widok listy) albo w karcie „teraz” (widok skupiony, decyzja 07.10.2026 pkt 3). */
+function RestPanel({ big }: { big: number }) {
+  const t = useTheme(); const [, force] = useState(0);
+  useEffect(() => { const i = setInterval(() => { if (timer.T.on) force(x => x + 1); }, 250); return () => clearInterval(i); }, []);
   const left = Math.round((timer.T.endAt - Date.now()) / 1000); const over = left <= 0;
-  return (
-    <View style={[s.timer, { backgroundColor: t.surface, borderColor: t.accent }]}>
-      <View><Text style={{ color: over ? t.danger : t.accent, fontSize: big, fontFamily: F.monoBold }} maxFontSizeMultiplier={1.3}>{over ? '+' + fmtDur(-left) : fmtDur(left)}</Text><Muted style={{ fontSize: 12 }}>{over ? tr('przerwa minęła') : tr('przerwa z {s}', { s: fmtDur(timer.T.total) })}</Muted></View>
-      <View style={{ flex: 1 }} />
-      <Btn title="−15" small accessibilityLabel={tr('Skróć przerwę o 15 sekund')} onPress={() => timer.adjust(-15)} /><Btn title="+15" small accessibilityLabel={tr('Wydłuż przerwę o 15 sekund')} onPress={() => timer.adjust(15)} /><Btn title={tr('Pomiń')} small kind="primary" onPress={() => timer.stop()} />
-    </View>
-  );
+  return <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, flex: 1 }}>
+    <View><Text style={{ color: over ? t.danger : t.accent, fontSize: big, fontFamily: F.monoBold }} maxFontSizeMultiplier={1.3}>{over ? '+' + fmtDur(-left) : fmtDur(left)}</Text><Muted style={{ fontSize: 12 }}>{over ? tr('przerwa minęła') : tr('przerwa z {s}', { s: fmtDur(timer.T.total) })}</Muted></View>
+    <View style={{ flex: 1 }} />
+    <Btn title="−15" small accessibilityLabel={tr('Skróć przerwę o 15 sekund')} onPress={() => timer.adjust(-15)} /><Btn title="+15" small accessibilityLabel={tr('Wydłuż przerwę o 15 sekund')} onPress={() => timer.adjust(15)} /><Btn title={tr('Pomiń')} small kind="primary" onPress={() => timer.stop()} />
+  </View>;
+}
+/** Seria na czas w karcie „teraz”: pierścień postępu do celu (bez celu — sam czas). Dolny pasek stopera bez zmian (tam „Zakończ serię”). */
+function TimedRing({ setId }: { setId: string }) {
+  const t = useTheme(); const [, force] = useState(0);
+  useEffect(() => { const i = setInterval(() => force(x => x + 1), 250); return () => clearInterval(i); }, []);
+  if (!timer.S.on || timer.S.setId !== setId) return null;
+  const el = timer.setElapsed(); const target = timer.S.targetSec; const frac = target > 0 ? Math.min(1, el / target) : 0;
+  const R = 34, C = 2 * Math.PI * R; const txt = target > 0 ? fmtSec(Math.max(0, target - el)) : fmtSec(el);
+  return <View accessible accessibilityRole="progressbar" accessibilityLabel={target > 0 ? tr('seria · cel {s}', { s: fmtSec(target) }) : tr('seria · bez celu')} accessibilityValue={{ text: txt }} style={{ alignSelf: 'center', width: 84, height: 84, alignItems: 'center', justifyContent: 'center' }}>
+    <Svg width={84} height={84} style={{ position: 'absolute' }}><Circle cx={42} cy={42} r={R} stroke={t.line} strokeWidth={8} fill="none" /><Circle cx={42} cy={42} r={R} stroke={t.band} strokeWidth={8} fill="none" strokeDasharray={`${C * frac} ${C}`} strokeLinecap="round" transform="rotate(-90 42 42)" /></Svg>
+    <Text maxFontSizeMultiplier={1.2} style={{ color: t.text, fontSize: 18, fontFamily: F.monoBold }}>{txt}</Text>
+  </View>;
 }
 
 const s = StyleSheet.create({
@@ -450,6 +474,7 @@ const s = StyleSheet.create({
   bandBtn: { height: 44, borderRadius: 8, borderWidth: 1, alignItems: 'center', justifyContent: 'center' },
   actions: { flexDirection: 'row', gap: 8, marginTop: 8, flexWrap: 'wrap' },
   focus: { borderWidth: 2, borderRadius: 18, padding: 16, gap: 10, marginBottom: 18 },
+  focusRest: { borderWidth: 1, borderRadius: 12, padding: 10, flexDirection: 'row' },
   focusBtn: { minHeight: 60, borderRadius: 14, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 12 },
   timer: { position: 'absolute', left: 0, right: 0, bottom: 8, borderWidth: 1, borderRadius: 12, padding: 10, flexDirection: 'row', alignItems: 'center', gap: 8 },
 });

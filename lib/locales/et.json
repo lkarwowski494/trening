@@ -834,5 +834,13 @@
  "Teraz: {v}": "Praegu: {v}",
  "Seria zrobiona": "Seeria tehtud",
  "Wartości zmienisz w wierszu serii poniżej.": "Väärtusi muudad allpool seeria real.",
- "Seria zrobiona: {ex}, seria {n}": "Seeria tehtud: {ex}, seeria {n}"
+ "Seria zrobiona: {ex}, seria {n}": "Seeria tehtud: {ex}, seeria {n}",
+ "stos na {v}": "plokk: {v}",
+ "hantle: {v}": "hantlid: {v}",
+ "kettlebell: {v}": "sangpomm: {v}",
+ "na urządzeniu: {v}": "seadmel: {v}",
+ "guma: {v}": "kumm: {v}",
+ "asysta gumą: {v}": "kummiabi: {v}",
+ "dociążenie: {v}": "lisaraskus: {v}",
+ "asysta: {v}": "abi: {v}"
 }

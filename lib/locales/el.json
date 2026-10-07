@@ -834,5 +834,13 @@
  "Zrób backup i odnów w Sideloadly (ok. 2 min). Dane zostają w telefonie.": "Κάνε αντίγραφο και ανανέωσε στο Sideloadly (περίπου 2 λεπτά). Τα δεδομένα μένουν στο τηλέφωνο.",
  "Zrób backup, potem w GitHubie: Actions → iPhone (EAS) → build i zainstaluj z linku. Dane zostają w telefonie.": "Κάνε αντίγραφο, μετά στο GitHub: Actions → iPhone (EAS) → build, και εγκατάστησε από τον σύνδεσμο. Τα δεδομένα μένουν στο τηλέφωνο.",
  "Zwiń inne ćwiczenia": "Σύμπτυξη άλλων ασκήσεων",
- "Zwykle w: {l} — {name}. Zamienić?": "Συνήθως σε: {l} — {name}. Αλλαγή;"
+ "Zwykle w: {l} — {name}. Zamienić?": "Συνήθως σε: {l} — {name}. Αλλαγή;",
+ "stos na {v}": "στοίβα στα {v}",
+ "hantle: {v}": "αλτήρες: {v}",
+ "kettlebell: {v}": "kettlebell: {v}",
+ "na urządzeniu: {v}": "στη συσκευή: {v}",
+ "guma: {v}": "λάστιχο: {v}",
+ "asysta gumą: {v}": "υποβοήθηση με λάστιχο: {v}",
+ "dociążenie: {v}": "επιπλέον βάρος: {v}",
+ "asysta: {v}": "υποβοήθηση: {v}"
 }

@@ -834,5 +834,13 @@
  "Teraz: {v}": "Sada: {v}",
  "Seria zrobiona": "Serija gotova",
  "Wartości zmienisz w wierszu serii poniżej.": "Vrijednosti mijenjaš u retku serije ispod.",
- "Seria zrobiona: {ex}, seria {n}": "Serija gotova: {ex}, serija {n}"
+ "Seria zrobiona: {ex}, seria {n}": "Serija gotova: {ex}, serija {n}",
+ "stos na {v}": "slog na {v}",
+ "hantle: {v}": "bučice: {v}",
+ "kettlebell: {v}": "kettlebell: {v}",
+ "na urządzeniu: {v}": "na uređaju: {v}",
+ "guma: {v}": "guma: {v}",
+ "asysta gumą: {v}": "pomoć gumom: {v}",
+ "dociążenie: {v}": "dodatni teret: {v}",
+ "asysta: {v}": "pomoć: {v}"
 }

@@ -307,4 +307,13 @@ export const EN: Record<string, string> = {
   'Seria zrobiona': 'Set done',
   'Seria zrobiona: {ex}, seria {n}': 'Set done: {ex}, set {n}',
   'Wartości zmienisz w wierszu serii poniżej.': 'Change the values in the set row below.',
+  /* 07.10.2026: grafika sprzętu na karcie „teraz” */
+  'stos na {v}': 'stack at {v}',
+  'hantle: {v}': 'dumbbells: {v}',
+  'kettlebell: {v}': 'kettlebell: {v}',
+  'na urządzeniu: {v}': 'on the device: {v}',
+  'guma: {v}': 'band: {v}',
+  'asysta gumą: {v}': 'band assistance: {v}',
+  'dociążenie: {v}': 'added weight: {v}',
+  'asysta: {v}': 'assistance: {v}',
 };

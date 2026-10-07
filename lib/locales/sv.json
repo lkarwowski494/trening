@@ -834,5 +834,13 @@
  "Zrób backup i odnów w Sideloadly (ok. 2 min). Dane zostają w telefonie.": "Gör en säkerhetskopia och förnya i Sideloadly (ca 2 min). Din data finns kvar på telefonen.",
  "Zrób backup, potem w GitHubie: Actions → iPhone (EAS) → build i zainstaluj z linku. Dane zostają w telefonie.": "Gör en säkerhetskopia, sedan på GitHub: Actions → iPhone (EAS) → build och installera från länken. Din data finns kvar på telefonen.",
  "Zwiń inne ćwiczenia": "Fäll ihop andra övningar",
- "Zwykle w: {l} — {name}. Zamienić?": "Vanligtvis på {l} — {name}. Byta?"
+ "Zwykle w: {l} — {name}. Zamienić?": "Vanligtvis på {l} — {name}. Byta?",
+ "stos na {v}": "viktmagasin på {v}",
+ "hantle: {v}": "hantlar: {v}",
+ "kettlebell: {v}": "kettlebell: {v}",
+ "na urządzeniu: {v}": "på enheten: {v}",
+ "guma: {v}": "band: {v}",
+ "asysta gumą: {v}": "bandassistans: {v}",
+ "dociążenie: {v}": "extravikt: {v}",
+ "asysta: {v}": "assistans: {v}"
 }

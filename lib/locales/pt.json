@@ -834,5 +834,13 @@
  "Teraz: {v}": "Agora: {v}",
  "Seria zrobiona": "Série feita",
  "Wartości zmienisz w wierszu serii poniżej.": "Altera os valores na linha da série abaixo.",
- "Seria zrobiona: {ex}, seria {n}": "Série feita: {ex}, série {n}"
+ "Seria zrobiona: {ex}, seria {n}": "Série feita: {ex}, série {n}",
+ "stos na {v}": "pilha em {v}",
+ "hantle: {v}": "halteres: {v}",
+ "kettlebell: {v}": "kettlebell: {v}",
+ "na urządzeniu: {v}": "no aparelho: {v}",
+ "guma: {v}": "banda: {v}",
+ "asysta gumą: {v}": "assistência com banda: {v}",
+ "dociążenie: {v}": "lastro: {v}",
+ "asysta: {v}": "assistência: {v}"
 }

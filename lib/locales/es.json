@@ -834,5 +834,13 @@
  "Teraz: {v}": "Ahora: {v}",
  "Seria zrobiona": "Serie hecha",
  "Wartości zmienisz w wierszu serii poniżej.": "Cambia los valores en la fila de la serie de abajo.",
- "Seria zrobiona: {ex}, seria {n}": "Serie hecha: {ex}, serie {n}"
+ "Seria zrobiona: {ex}, seria {n}": "Serie hecha: {ex}, serie {n}",
+ "stos na {v}": "pila en {v}",
+ "hantle: {v}": "mancuernas: {v}",
+ "kettlebell: {v}": "kettlebell: {v}",
+ "na urządzeniu: {v}": "en el aparato: {v}",
+ "guma: {v}": "banda: {v}",
+ "asysta gumą: {v}": "asistencia con banda: {v}",
+ "dociążenie: {v}": "lastre: {v}",
+ "asysta: {v}": "asistencia: {v}"
 }

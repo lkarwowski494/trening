@@ -834,5 +834,13 @@
  "Zrób backup i odnów w Sideloadly (ok. 2 min). Dane zostają w telefonie.": "Mach ein Backup und erneuere in Sideloadly (ca. 2 Min.). Deine Daten bleiben auf dem iPhone.",
  "Zrób backup, potem w GitHubie: Actions → iPhone (EAS) → build i zainstaluj z linku. Dane zostają w telefonie.": "Mach ein Backup, dann auf GitHub: Actions → iPhone (EAS) → build, und installiere über den Link. Deine Daten bleiben auf dem iPhone.",
  "Zwiń inne ćwiczenia": "Andere Übungen einklappen",
- "Zwykle w: {l} — {name}. Zamienić?": "Meist in: {l} — {name}. Tauschen?"
+ "Zwykle w: {l} — {name}. Zamienić?": "Meist in: {l} — {name}. Tauschen?",
+ "stos na {v}": "Steckgewicht: {v}",
+ "hantle: {v}": "Kurzhanteln: {v}",
+ "kettlebell: {v}": "Kettlebell: {v}",
+ "na urządzeniu: {v}": "am Gerät: {v}",
+ "guma: {v}": "Band: {v}",
+ "asysta gumą: {v}": "Bandunterstützung: {v}",
+ "dociążenie: {v}": "Zusatzgewicht: {v}",
+ "asysta: {v}": "Unterstützung: {v}"
 }

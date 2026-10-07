@@ -834,5 +834,13 @@
  "Teraz: {v}": "Most: {v}",
  "Seria zrobiona": "Sorozat kész",
  "Wartości zmienisz w wierszu serii poniżej.": "Az értékeket lent, a sorozat sorában módosíthatod.",
- "Seria zrobiona: {ex}, seria {n}": "Sorozat kész: {ex}, {n}. sorozat"
+ "Seria zrobiona: {ex}, seria {n}": "Sorozat kész: {ex}, {n}. sorozat",
+ "stos na {v}": "súlyoszlop: {v}",
+ "hantle: {v}": "kézisúlyzók: {v}",
+ "kettlebell: {v}": "kettlebell: {v}",
+ "na urządzeniu: {v}": "a gépen: {v}",
+ "guma: {v}": "gumi: {v}",
+ "asysta gumą: {v}": "gumis segítség: {v}",
+ "dociążenie: {v}": "plusz súly: {v}",
+ "asysta: {v}": "segítség: {v}"
 }

@@ -834,5 +834,13 @@
  "Teraz: {v}": "Acum: {v}",
  "Seria zrobiona": "Serie gata",
  "Wartości zmienisz w wierszu serii poniżej.": "Modifici valorile în rândul seriei de mai jos.",
- "Seria zrobiona: {ex}, seria {n}": "Serie gata: {ex}, seria {n}"
+ "Seria zrobiona: {ex}, seria {n}": "Serie gata: {ex}, seria {n}",
+ "stos na {v}": "stivă la {v}",
+ "hantle: {v}": "gantere: {v}",
+ "kettlebell: {v}": "kettlebell: {v}",
+ "na urządzeniu: {v}": "pe aparat: {v}",
+ "guma: {v}": "bandă: {v}",
+ "asysta gumą: {v}": "asistență cu bandă: {v}",
+ "dociążenie: {v}": "greutate suplimentară: {v}",
+ "asysta: {v}": "asistență: {v}"
 }

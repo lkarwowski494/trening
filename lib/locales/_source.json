@@ -184,6 +184,14 @@
   "en": "Band assistance"
  },
  {
+  "pl": "asysta gumą: {v}",
+  "en": "band assistance: {v}"
+ },
+ {
+  "pl": "asysta: {v}",
+  "en": "assistance: {v}"
+ },
+ {
   "pl": "Automatyczna kopia po każdym treningu",
   "en": "Automatic backup after every workout"
  },
@@ -529,6 +537,10 @@
   "en": "added weight"
  },
  {
+  "pl": "dociążenie: {v}",
+  "en": "added weight: {v}"
+ },
+ {
   "pl": "dodaj ciężar",
   "en": "add weight"
  },
@@ -786,6 +798,10 @@
   "en": "Band: {b}. Tap to change."
  },
  {
+  "pl": "guma: {v}",
+  "en": "band: {v}"
+ },
+ {
   "pl": "gumy",
   "en": "bands"
  },
@@ -824,6 +840,10 @@
  {
   "pl": "Hantle na talerze (uchwyty + talerze)",
   "en": "Plate-loaded dumbbells (handles + plates)"
+ },
+ {
+  "pl": "hantle: {v}",
+  "en": "dumbbells: {v}"
  },
  {
   "pl": "Historia",
@@ -944,6 +964,10 @@
  {
   "pl": "Kettlebell",
   "en": "Kettlebells"
+ },
+ {
+  "pl": "kettlebell: {v}",
+  "en": "kettlebell: {v}"
  },
  {
   "pl": "klatka",
@@ -1416,6 +1440,10 @@
  {
   "pl": "Na pewno?",
   "en": "Are you sure?"
+ },
+ {
+  "pl": "na urządzeniu: {v}",
+  "en": "on the device: {v}"
  },
  {
   "pl": "Nadpisać dane?",
@@ -2472,6 +2500,10 @@
  {
   "pl": "Stoper trwa",
   "en": "Stopwatch running"
+ },
+ {
+  "pl": "stos na {v}",
+  "en": "stack at {v}"
  },
  {
   "pl": "Strongman",
