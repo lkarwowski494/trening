@@ -819,5 +819,20 @@
  "Brak zgody na zapis treningów. Włącz ją w aplikacji Zdrowie: profil → Aplikacje → {app}.": "Nėra leidimo įrašyti treniruočių. Įjunkite jį programoje „Sveikata“: profilis → Programos → {app}.",
  "Pliki → Na moim iPhonie → {app} → Backup, ostatnie {n}": "„Failai“ → Mano iPhone → {app} → Backup, paskutiniai {n}",
  "Włącz powiadomienia dla {app} w Ustawieniach iOS.": "Įjunkite pranešimus programai {app} iOS nustatymuose.",
- "Usunie ćwiczenia, szablony i całą historię oraz przywróci ustawienia domyślne (także miejsca, sprzęt i gumy). Przedtem obecne dane zapiszą się jako kopia w Plikach: {app} → Backup (można ją zaimportować).": "Bus ištrinti pratimai, šablonai ir visa istorija, o nustatymai grąžinti į numatytuosius (taip pat vietos, įranga ir gumos). Prieš tai dabartiniai duomenys išsaugomi kaip kopija programoje „Failai“: {app} → Backup (ją galima importuoti)."
+ "Usunie ćwiczenia, szablony i całą historię oraz przywróci ustawienia domyślne (także miejsca, sprzęt i gumy). Przedtem obecne dane zapiszą się jako kopia w Plikach: {app} → Backup (można ją zaimportować).": "Bus ištrinti pratimai, šablonai ir visa istorija, o nustatymai grąžinti į numatytuosius (taip pat vietos, įranga ir gumos). Prieš tai dabartiniai duomenys išsaugomi kaip kopija programoje „Failai“: {app} → Backup (ją galima importuoti).",
+ "Widok treningu": "Treniruotės vaizdas",
+ "Skupiony": "Sutelktas",
+ "Lista": "Sąrašas",
+ "Skupiony: bieżąca seria dużymi cyframi i talerze na stronę nad listą ćwiczeń.": "Sutelktas: dabartinė serija dideliais skaičiais ir diskai vienai pusei virš pratimų sąrašo.",
+ "Na każdą stronę: {p}": "Į kiekvieną pusę: {p}",
+ "Na każdą stronę": "Į kiekvieną pusę",
+ "sam gryf": "tik grifas",
+ "Wszystkie serie odhaczone": "Visos serijos pažymėtos",
+ "Zakończ trening": "Baigti treniruotę",
+ "rozgrzewka": "apšilimas",
+ "seria {n} z {all}": "serija {n} iš {all}",
+ "Teraz: {v}": "Dabar: {v}",
+ "Seria zrobiona": "Serija atlikta",
+ "Wartości zmienisz w wierszu serii poniżej.": "Reikšmes pakeisite serijos eilutėje žemiau.",
+ "Seria zrobiona: {ex}, seria {n}": "Serija atlikta: {ex}, serija {n}"
 }

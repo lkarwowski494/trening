@@ -19,9 +19,9 @@
   },
   "dependencies": {
     "@bacons/apple-targets": "^5.0.0",
-    "@expo-google-fonts/archivo": "^0.4.2",
     "@expo-google-fonts/ibm-plex-mono": "^0.4.1",
     "@expo-google-fonts/ibm-plex-sans": "^0.4.1",
+    "@expo-google-fonts/tektur": "^0.4.2",
     "@kingstinct/react-native-healthkit": "^8.7.2",
     "expo": "~57.0.26",
     "expo-asset": "~57.0.18",

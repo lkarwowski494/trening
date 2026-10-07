@@ -1,0 +1,68 @@
+# Styl „Tuleja” (07.10.2026): widok skupiony na bieżącej serii, talerze na stronę z talerzy miejsca, przełącznik „Widok treningu”.
+#
+# Literały (EN z lib/i18n.en.ts / lib/equipment.ts):
+#   "Full gym,.*"                 ← LOCATION_PRESET_LABEL.gym.en + hint (preset: sztanga 20 kg + talerze 25…1,25)
+#   "Back Squat,.*"               ← nazwa z lib/seed.ts (picker: „{nazwa}, …”)
+#   w-0-0 / r-0-0                 ← testID pól ciężaru i powtórzeń serii (components/ActiveWorkout.tsx)
+#   "Now: 80 × 5 kg"              ← 'Teraz: {v}' (karta „teraz”, accessibilityLabel dużej liczby)
+#   "Each side: 25 \+ 5 kg"       ← 'Na każdą stronę: {p}' (components/PlateBar.tsx, accessibilityLabel rysunku)
+#   "Set done"                    ← 'Seria zrobiona' (przycisk karty)
+#   "All sets ticked off"         ← 'Wszystkie serie odhaczone'
+#   "Workout view"/"List"/"Focused" ← 'Widok treningu' / 'Lista' / 'Skupiony' (app/more/settings.tsx)
+appId: pl.lukasz.trening
+name: Widok skupiony i talerze
+---
+- launchApp:
+    clearState: true
+    permissions: { all: allow }
+- extendedWaitUntil: { visible: "Start from a template", timeout: 60000 }
+
+# --- miejsce „Full gym” (sztanga + talerze) ---
+- tapOn: "More, tab.*"
+- extendedWaitUntil: { visible: "Settings", timeout: 30000 }
+- tapOn: "Settings"
+- scrollUntilVisible: { element: "Training places,.*", direction: DOWN, timeout: 60000 }
+- tapOn: "Training places,.*"
+- extendedWaitUntil: { visible: "\\+ Add place", timeout: 30000 }
+- tapOn: "\\+ Add place"
+- extendedWaitUntil: { visible: "Full gym,.*", timeout: 30000 }
+- tapOn: "Full gym,.*"
+- extendedWaitUntil: { visible: "Available exercises: .*", timeout: 30000 }
+- tapOn: "Back"
+- tapOn: "Back"
+- tapOn: "Back"
+
+# --- pusty trening + przysiad ze sztangą ---
+- tapOn: "Workout, tab.*"
+- scrollUntilVisible: { element: "Empty workout", direction: DOWN, timeout: 60000 }
+- tapOn: "Empty workout"
+- extendedWaitUntil: { visible: "\\+ Add exercise", timeout: 30000 }
+- tapOn: "\\+ Add exercise"
+- tapOn: "Search exercises…"
+- inputText: "Back Squat"
+- tapOn: { text: "Continue", optional: true }
+- tapOn: "Back Squat,.*"
+- extendedWaitUntil: { visible: "Set done", timeout: 30000 }
+- takeScreenshot: 40-karta-teraz-pusta
+- tapOn: { id: "w-0-0" }
+- inputText: "80"
+- tapOn: { id: "r-0-0" }
+- inputText: "5"
+- hideKeyboard
+- extendedWaitUntil: { visible: "Each side: 25 \\+ 5 kg", timeout: 15000 }
+- assertVisible: "Now: 80 × 5 kg"
+- takeScreenshot: 41-karta-teraz-talerze
+- tapOn: "Set done"
+- extendedWaitUntil: { visible: "All sets ticked off", timeout: 15000 }
+- takeScreenshot: 42-wszystko-odhaczone
+
+# --- przełącznik: widok listy chowa kartę ---
+- tapOn: "More, tab.*"
+- tapOn: "Settings"
+- extendedWaitUntil: { visible: "Workout view", timeout: 30000 }
+- tapOn: "List"
+- tapOn: "Back"
+- tapOn: "Workout, tab.*"
+- assertNotVisible: "All sets ticked off"
+- assertNotVisible: "Set done"
+- takeScreenshot: 43-widok-listy

@@ -4,8 +4,10 @@ import { useRouter } from 'expo-router';
 import { activateKeepAwakeAsync, deactivateKeepAwake } from 'expo-keep-awake';
 import { useTheme, F } from '@/lib/theme';
 import { Btn, Input, NumInput, Muted } from '@/components/ui';
-import { progressionFor, writeLoad, setActiveLocation, lastActivity, staleSince, staleRef, staleKind, ackStale, markActivity, useForegroundTick, bandA11y, clampName, loadLabelShort, getState, useTick, exById, prevOfActiveBlock, previousFor, canUndoSwap, undoSwap, pinnedImpl, rememberRest as storeRememberRest, canRememberAlt, rememberAlt, altHint, acceptAlt, skipAlt, occurrence, occurrences, hintFor, isBW, reps, fmtDur, fmtSec, fmtTime, setSummary, toggleDone, restAfter, roundRest, addSet, removeSet, removeSetById, removeExercise, finishWorkout, cancelWorkout, save, loadLabel, groupLabels, linkWithNext, unlink, cycleBand, findSet, shortBand, setHasValue, locationById, offListNote, liveBlockImpl, listLocFor, srcSetAt, usesBand } from '@/lib/store';
-import { availability, missingLabel } from '@/lib/equipment';
+import { progressionFor, writeLoad, setActiveLocation, lastActivity, staleSince, staleRef, staleKind, ackStale, markActivity, useForegroundTick, bandA11y, clampName, loadLabelShort, getState, useTick, exById, prevOfActiveBlock, previousFor, canUndoSwap, undoSwap, pinnedImpl, rememberRest as storeRememberRest, canRememberAlt, rememberAlt, altHint, acceptAlt, skipAlt, occurrence, occurrences, hintFor, isBW, reps, fmtDur, fmtSec, fmtTime, setSummary, toggleDone, restAfter, roundRest, addSet, removeSet, removeSetById, removeExercise, finishWorkout, cancelWorkout, save, loadLabel, groupLabels, linkWithNext, unlink, cycleBand, findSet, shortBand, setHasValue, locationById, offListNote, liveBlockImpl, listLocFor, srcSetAt, usesBand, focusSet } from '@/lib/store';
+import { availability, missingLabel, plateSpecFor } from '@/lib/equipment';
+import { platesPerSide, plateList } from '@/lib/plates';
+import { PlateBar } from '@/components/PlateBar';
 import { implLabel } from '@/lib/swap';
 import { SetBadge } from '@/components/SetBadge';
 import { locationLabel } from '@/lib/locations';
@@ -14,7 +16,7 @@ import { prMap, workoutPRs } from '@/lib/stats';
 import { onWorkoutSaved } from '@/lib/backup';
 import { hasTime, hasReps, hasWeight, hasDistance, SET_KIND_MARK, SET_KIND_LABEL, type WExercise, type WSet, type Workout } from '@/lib/seed';
 import { t as tr, tp, exName, lang } from '@/lib/i18n';
-import { wu, wField, wInKeep, fmtNum, fmtW } from '@/lib/units';
+import { wu, wField, wInKeep, fmtNum, fmtW, wOut } from '@/lib/units';
 
 /*
  * Trening w toku. Audyt 0.8.1:
@@ -150,6 +152,7 @@ export default function ActiveWorkout() {
           <View style={{ flex: 1 }}><Text accessibilityRole="header" style={{ color: t.text, fontSize: 24, fontFamily: F.heavy }}>{w.templateName || tr('Trening')}</Text><LocationChip w={w} /><SessionClock w={w} /><SessionProgress w={w} /></View>
           <Btn title={tr('Zakończ')} kind="primary" onPress={finish} />
         </View>
+        {st.settings.workoutView !== 'list' ? <FocusCard w={w} onDone={onDone} onFinish={finish} /> : null}
         {w.exercises.map((e, ei) => <ExerciseBlock key={e.id} w={w} e={e} ei={ei} onDone={onDone} onStartSet={startSet} labels={labels} prs={prs} />)}
         <View style={{ flexDirection: 'row', gap: 8 }}><Btn title={tr('+ Dodaj ćwiczenie')} style={{ flex: 1 }} onPress={() => router.push('/picker?target=active')} />{w.exercises.length > 1 ? <Btn title={tr('≡ Kolejność')} accessibilityLabel={tr('Zmień kolejność ćwiczeń')} onPress={() => router.push('/reorder?target=active')} /> : null}</View>
         <View style={{ marginTop: 16 }}><Muted style={{ marginBottom: 5 }}>{tr('Notatka do treningu')}</Muted><Input maxLength={1000} value={w.note} onChangeText={v => { w.note = v; save(w); }} placeholder={tr('np. samopoczucie, ból, sprzęt')} accessibilityLabel={tr('Notatka do treningu')} multiline /></View>
@@ -271,6 +274,9 @@ function ExerciseBlock({ w, e, ei, onDone, onStartSet, labels, prs }: { w: Worko
   /* E2 W3: „Zawsze w: <Miejsce>” (P1 a, P5a a) i podpowiedź zamiennika per miejsce — liczone przy renderze (pkt 4.2) */
   const remember = canRememberAlt(w, e); const hint = altHint(w, e); const hintEx = hint ? exById(hint.exerciseId) : undefined;
   const hintName = hintEx ? exName(hintEx) + (hint?.impl ? ` — ${implLabel(hint.impl)}` : '') : '';
+  /* styl „Tuleja” (07.10.2026): talerze na stronę dla następnej serii tego ćwiczenia — w widoku listy (w skupionym rysuje je karta „teraz”) */
+  const nextOpen = e.sets.find(x => !x.done); const nextPlan = st.settings.workoutView === 'list' && nextOpen ? platePlanFor(w, e, nextOpen) : null;
+  const platesTxt = nextPlan ? tr('Na każdą stronę: {p}', { p: nextPlan.plates.length ? `${plateList(nextPlan)} ${nextPlan.unit}` : tr('sam gryf') }) : '';
   const doneStyle = (set: WSet) => set.done ? { backgroundColor: t.done, borderColor: t.doneLine } : undefined;
   const inSS = !!e.groupId;
   const prog = progressionFor(ex, e.repMax, prev?.sets, listLocFor(e, w.locationId), pinnedImpl(e)); /* E2 D5: przypięty przyrząd */ /* T-017: cicha podpowiedź progresji; P-003: z ciężarów miejsca; runda 82b (LOW 5): blok innym przyrządem niż tutaj — bez listy miejsca */
@@ -305,6 +311,7 @@ function ExerciseBlock({ w, e, ei, onDone, onStartSet, labels, prs }: { w: Worko
       {hint && place ? <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', gap: 8, marginTop: -2, marginBottom: 6 }}><Muted style={{ fontSize: 12, flexShrink: 1 }}>{tr('Zwykle w: {l} — {name}. Zamienić?', { l: place.name, name: hintName })}</Muted><Btn title={tr('Zamień')} small accessibilityLabel={tr('Zamień na zamiennik: {name}', { name: hintName })} onPress={() => { const r = acceptAlt(e.id); if (r) afterSwap(r.goneSetIds); }} /><Btn title="✕" small kind="ghost" accessibilityLabel={tr('Nie zamieniaj: {name}', { name: hintName })} onPress={() => skipAlt(e.id)} /></View> : null}
       {place && avail && !avail.ok ? <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginTop: -2, marginBottom: 6 }}><Muted style={{ fontSize: 12, color: t.danger, flexShrink: 1 }} accessibilityLabel={tr('Brak sprzętu w: {l}. Brakuje: {m}', { l: place.name, m: missingLabel(avail.missing) })}>{tr('brak sprzętu w: {l}', { l: place.name })} ({missingLabel(avail.missing)})</Muted>{swappable ? <Btn title="⇄" small kind="ghost" accessibilityLabel={tr('Zamień ćwiczenie (brak sprzętu): {name}', { name: nm })} onPress={openSwap} /> : null}</View> : null}
       {prevElsewhere || offNote ? <Muted style={{ fontSize: 12, marginTop: -2, marginBottom: 6 }}>{[prevElsewhere ? tr('Poprzednio: {l}', { l: prevElsewhere }) : '', offNote].filter(Boolean).join(' · ')}</Muted> : null}
+      {platesTxt ? <Muted style={{ fontSize: 12, marginTop: -2, marginBottom: 6 }}>{platesTxt}</Muted> : null}
       <View style={[s.row, { gap: W.gap }]}>
         <Muted style={[s.c, { width: W.idx, textAlign: 'left' }]}>#</Muted>
         {prevInline ? <Muted numberOfLines={1} style={[s.c, { flex: 1, textAlign: 'left' }]}>{tr('Poprzednio')}</Muted> : <View style={{ flex: 1 }} />}
@@ -329,8 +336,8 @@ function ExerciseBlock({ w, e, ei, onDone, onStartSet, labels, prs }: { w: Worko
                 <SetBadge kind={kind} label={lbl} note={!!set.note} />
               </Pressable>
               <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', gap: 4 }}>{prevInline ? <Text maxFontSizeMultiplier={1.3} numberOfLines={1} style={{ flexShrink: 1, color: t.muted, fontSize: 13 }}>{prevTxt}</Text> : null}{pr ? <Text maxFontSizeMultiplier={1.3} style={{ color: t.band, fontSize: 11, fontFamily: F.semibold }}>PR</Text> : null}</View>
-              {hasWeight(m) ? <View style={{ width: W.w }}><NumInput weightTol decimal allowNegative={bw} value={wField(bw ? set.addKg : set.weight)} stored={bw ? set.addKg : set.weight} onNum={(v, keep) => { writeLoad(ex, set, wInKeep(v, keep)); /* runda 54: ciężar nieujemny; Q-021: ta sama liczba co na ekranie = te same kg; 83b: jeden zapis (store.writeLoad) */ tick(); }} placeholder={bw ? '±0' : wu()} style={doneStyle(set)} accessibilityLabel={loadLabel(ex, impl)} accessibilityHint={hint} /></View> : null}
-              {hasReps(m) ? <View style={{ width: W.reps }}><NumInput value={set.reps} onNum={v => { set.reps = v === '' ? '' : Math.max(0, Math.floor(v)); tick(); }} placeholder={e.repMin == null ? 'max' : reps(e.repMin, e.repMax)} style={doneStyle(set)} accessibilityLabel={tr('Powtórzenia')} accessibilityHint={hint} /></View> : null}
+              {hasWeight(m) ? <View style={{ width: W.w }}><NumInput weightTol decimal allowNegative={bw} value={wField(bw ? set.addKg : set.weight)} stored={bw ? set.addKg : set.weight} onNum={(v, keep) => { writeLoad(ex, set, wInKeep(v, keep)); /* runda 54: ciężar nieujemny; Q-021: ta sama liczba co na ekranie = te same kg; 83b: jeden zapis (store.writeLoad) */ tick(); }} placeholder={bw ? '±0' : wu()} style={doneStyle(set)} accessibilityLabel={loadLabel(ex, impl)} accessibilityHint={hint} testID={`w-${ei}-${si}`} /* E2E 11 */ /></View> : null}
+              {hasReps(m) ? <View style={{ width: W.reps }}><NumInput value={set.reps} onNum={v => { set.reps = v === '' ? '' : Math.max(0, Math.floor(v)); tick(); }} placeholder={e.repMin == null ? 'max' : reps(e.repMin, e.repMax)} style={doneStyle(set)} accessibilityLabel={tr('Powtórzenia')} accessibilityHint={hint} testID={`r-${ei}-${si}`} /></View> : null}
               {hasDistance(m) ? <View style={{ width: W.dist }}><NumInput value={set.distanceM} onNum={v => { set.distanceM = v === '' ? '' : Math.max(0, Math.round(v)); /* runda 55/56: pełne metry jak klawiatura */ tick(); }} placeholder="m" style={doneStyle(set)} accessibilityLabel={tr('dystans')} accessibilityHint={hint} /></View> : null}
               {hasTime(m) ? <View style={{ width: W.time }}><NumInput value={set.durationSec} onNum={v => { set.durationSec = v === '' ? '' : Math.min(86400, Math.max(0, Math.round(v))); /* runda 56: pełne sekundy jak klawiatura */ tick(); }} placeholder="s" style={doneStyle(set)} accessibilityLabel={tr('czas')} accessibilityHint={hint} /></View> : null}
               {hasTime(m) ? (
@@ -354,6 +361,54 @@ function ExerciseBlock({ w, e, ei, onDone, onStartSet, labels, prs }: { w: Worko
         {swappable ? <Btn title={tr('⇄ zamień')} small kind="ghost" accessibilityLabel={tr('Zamień ćwiczenie: {name}', { name: nm })} onPress={openSwap} /> : null}
         <Btn title={tr('usuń')} accessibilityLabel={tr('Usuń ćwiczenie: {name}', { name: nm })} small kind="ghost" onPress={() => Alert.alert(tr('Usunąć z treningu?'), nm, [{ text: tr('Nie') }, { text: tr('Usuń'), style: 'destructive', onPress: () => { const i = getState().active?.exercises.findIndex(x => x.id === e.id) ?? -1; if (i < 0) return; /* runda 10: po id — drugie okno nie usuwa sąsiada */ dropTimers(e.sets.map(x => x.id)); removeExercise(i); } }])} />
       </View>
+    </View>
+  );
+}
+
+/** Ciężar serii na tablicy: liczba w jednostce (masa ciała: „±X” dociążenia albo „masa ciała”), puste pole — „—”. */
+function bigLoad(ex: import('@/lib/seed').Exercise, set: WSet): string {
+  if (isBW(ex)) { const a = Number(set.addKg); return set.addKg === '' || set.addKg == null || !a ? tr('masa ciała') : (a > 0 ? '+' : '') + fmtNum(wOut(a), wu() === 'lb' ? 1 : 2); }
+  return set.weight === '' || set.weight == null ? '—' : fmtNum(wOut(Number(set.weight)), wu() === 'lb' ? 1 : 2);
+}
+/** Plan talerzy dla serii (sztanga, EZ, trap bar z opisem „gryf + talerze” w miejscu treningu) albo null. */
+export function platePlanFor(w: Workout, e: WExercise, set: WSet) {
+  const ex = exById(e.exerciseId); const loc = locationById(listLocFor(e, w.locationId)); if (!ex || isBW(ex) || !hasWeight(ex.metric ?? 'weight_reps') || typeof set.weight !== 'number') return null;
+  return platesPerSide(set.weight, plateSpecFor(ex, loc, pinnedImpl(e)));
+}
+/**
+ * Widok skupiony (styl „Tuleja”, decyzja właściciela 07.10.2026; docs/21 pkt 3): karta serii „teraz” (store.focusSet) nad listą — ćwiczenie,
+ * numer serii, ciężar × powtórzenia dużymi cyframi, „ostatnio …”, talerze na stronę i jeden duży przycisk, który działa jak ✓ w wierszu tej serii
+ * (ta sama funkcja onDone — przerwa, stoper, Live Activity bez zmian), z własną etykietą VoiceOver (dwa przyciski o tej samej nazwie na jednym
+ * ekranie — tests/matrix-a11y). Podpowiedź „↑” zostaje w nagłówku ćwiczenia (jedno miejsce). Wartości zmienia się w wierszu serii niżej.
+ * Wszystko odhaczone — „Zakończ trening”. Wyłączenie: Ustawienia → Widok treningu → Lista.
+ */
+function FocusCard({ w, onDone, onFinish }: { w: Workout; onDone: (ei: number, si: number) => void; onFinish: () => void }) {
+  const t = useTheme(); const pos = focusSet(w);
+  if (!pos) return w.exercises.some(e => e.sets.length) ? (
+    <View style={[s.focus, { backgroundColor: t.surface, borderColor: t.text }]}>
+      <Text accessibilityRole="header" maxFontSizeMultiplier={1.3} style={{ color: t.text, fontSize: 20, fontFamily: F.heavy }}>{tr('Wszystkie serie odhaczone')}</Text>
+      <Pressable accessibilityRole="button" onPress={onFinish} style={[s.focusBtn, { backgroundColor: t.text }]}><Text maxFontSizeMultiplier={1.3} style={{ color: t.bg, fontSize: 19, fontFamily: F.heavy }}>{tr('Zakończ trening')}</Text></Pressable>
+    </View>) : null;
+  const e = w.exercises[pos.ei]; const ex = exById(e.exerciseId)!; const set = e.sets[pos.si]; const m = ex.metric ?? 'weight_reps'; const lbl = setLabel(e, pos.si);
+  const prev = prevOfActiveBlock(w, e); const p = hintFor(prev?.sets, e.sets, pos.si, ex);
+  const plan = platePlanFor(w, e, set); const work = e.sets.filter(x => x.kind !== 'warmup').length;
+  const parts: string[] = []; if (hasWeight(m)) parts.push(bigLoad(ex, set)); if (hasReps(m)) parts.push(set.reps === '' || set.reps == null ? '—' : String(set.reps));
+  if (hasDistance(m)) parts.push(set.distanceM === '' || set.distanceM == null ? '—' : `${set.distanceM} m`); if (hasTime(m)) parts.push(set.durationSec === '' || set.durationSec == null ? '—' : fmtSec(Number(set.durationSec)));
+  const big = parts.join(' × '); const unitTxt = hasWeight(m) && !isBW(ex) && set.weight !== '' && set.weight != null ? wu() : '';
+  const name = exName(ex); const ss = e.groupId ? `SS ${groupLabels(w.exercises)[e.groupId]} · ` : '';
+  return (
+    <View style={[s.focus, { backgroundColor: t.surface, borderColor: t.text }]}>
+      <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'baseline', gap: 8 }}>
+        <Text accessibilityRole="header" maxFontSizeMultiplier={1.3} style={{ color: t.text, fontSize: 20, fontFamily: F.heavy, flexShrink: 1 }}>{ss}{name}</Text>
+        <Text maxFontSizeMultiplier={1.3} style={{ color: t.muted, fontSize: 14, fontFamily: F.semibold }}>{set.kind === 'warmup' ? tr('rozgrzewka') : tr('seria {n} z {all}', { n: lbl, all: work })}</Text>
+      </View>
+      <Text accessible accessibilityLabel={tr('Teraz: {v}', { v: [big, unitTxt].filter(Boolean).join(' ') })} adjustsFontSizeToFit numberOfLines={1} maxFontSizeMultiplier={1.2} style={{ color: t.text, fontSize: 64, lineHeight: 72, fontFamily: F.display }}>{big}{unitTxt ? <Text style={{ fontSize: 18, fontFamily: F.semibold, color: t.muted }}>{` ${unitTxt}`}</Text> : null}</Text>
+      {p ? <Muted style={{ fontSize: 13 }}>{tr('ostatnio {s}', { s: setSummary(ex, p, 'calc') })}</Muted> : null}
+      {plan ? <PlateBar plan={plan} /> : null}
+      <Pressable accessibilityRole="button" accessibilityLabel={tr('Seria zrobiona: {ex}, seria {n}', { n: lbl, ex: name })} testID="focus-done" onPress={() => onDone(pos.ei, pos.si)} style={({ pressed }) => [s.focusBtn, { backgroundColor: t.text, opacity: pressed ? 0.8 : 1 }]}>
+        <Text maxFontSizeMultiplier={1.3} style={{ color: t.bg, fontSize: 19, fontFamily: F.heavy }}>{tr('Seria zrobiona')}</Text>
+      </Pressable>
+      <Muted style={{ fontSize: 12, textAlign: 'center' }}>{tr('Wartości zmienisz w wierszu serii poniżej.')}</Muted>
     </View>
   );
 }
@@ -394,5 +449,7 @@ const s = StyleSheet.create({
   doneBtn: { height: 44, borderRadius: 8, borderWidth: 1, alignItems: 'center', justifyContent: 'center' },
   bandBtn: { height: 44, borderRadius: 8, borderWidth: 1, alignItems: 'center', justifyContent: 'center' },
   actions: { flexDirection: 'row', gap: 8, marginTop: 8, flexWrap: 'wrap' },
+  focus: { borderWidth: 2, borderRadius: 18, padding: 16, gap: 10, marginBottom: 18 },
+  focusBtn: { minHeight: 60, borderRadius: 14, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 12 },
   timer: { position: 'absolute', left: 0, right: 0, bottom: 8, borderWidth: 1, borderRadius: 12, padding: 10, flexDirection: 'row', alignItems: 'center', gap: 8 },
 });

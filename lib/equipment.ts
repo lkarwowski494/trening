@@ -379,3 +379,14 @@ export function implsAt(ex: Pick<Exercise, 'loadSource' | 'requires'>, loc: Loca
   }
   return out;
 }
+/**
+ * Styl „Tuleja” (07.10.2026): opis „gryf + talerze” przyrządu, z którego ćwiczenie bierze ciężar w miejscu — dla rysunku „co nałożyć na stronę”
+ * (lib/plates.ts). Tylko sztanga, gryf EZ i trap bar liczone łącznie (ciężar serii = gryf + talerze z obu stron); hantle, maszyny, stacje — null.
+ * Ten sam dobór pozycji co loadsFor (`prefer` — przyrząd przypięty w bloku). Gryf bez talerzy (noPlates) — null (ciężary nieznane, 06.10.2026).
+ */
+export function plateSpecFor(ex: Pick<Exercise, 'loadSource' | 'requires' | 'recommended' | 'loadMode' | 'implements'>, loc: Location | null | undefined, prefer?: Impl): LoadSpec | null {
+  if (!loc || (ex.loadMode ?? 'total') !== 'total' || (ex.implements ?? 1) !== 1) return null;
+  const { res, impl } = resolveLoads(ex, loc, prefer); if (res.kind !== 'loads' || !(impl === 'barbell' || impl === 'ez_bar' || impl === 'trap_bar')) return null;
+  const e = loc.equipment.find(x => x.item === res.item && !x.off); const spec = e?.load;
+  return spec && spec.kind === 'plates' && !noPlates(spec) ? spec : null;
+}

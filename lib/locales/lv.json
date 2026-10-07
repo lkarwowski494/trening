@@ -819,5 +819,20 @@
  "Brak zgody na zapis treningów. Włącz ją w aplikacji Zdrowie: profil → Aplikacje → {app}.": "Nav atļaujas saglabāt treniņus. Ieslēdziet to lietotnē Veselība: profils → Lietotnes → {app}.",
  "Pliki → Na moim iPhonie → {app} → Backup, ostatnie {n}": "Faili → Manā iPhone → {app} → Backup, pēdējie {n}",
  "Włącz powiadomienia dla {app} w Ustawieniach iOS.": "Iespējojiet paziņojumus lietotnei {app} iOS iestatījumos.",
- "Usunie ćwiczenia, szablony i całą historię oraz przywróci ustawienia domyślne (także miejsca, sprzęt i gumy). Przedtem obecne dane zapiszą się jako kopia w Plikach: {app} → Backup (można ją zaimportować).": "Tiks dzēsti vingrinājumi, veidnes un visa vēsture, un atjaunoti noklusējuma iestatījumi (arī vietas, aprīkojums un gumijas). Pirms tam pašreizējie dati tiks saglabāti kā kopija lietotnē Faili: {app} → Backup (to var importēt)."
+ "Usunie ćwiczenia, szablony i całą historię oraz przywróci ustawienia domyślne (także miejsca, sprzęt i gumy). Przedtem obecne dane zapiszą się jako kopia w Plikach: {app} → Backup (można ją zaimportować).": "Tiks dzēsti vingrinājumi, veidnes un visa vēsture, un atjaunoti noklusējuma iestatījumi (arī vietas, aprīkojums un gumijas). Pirms tam pašreizējie dati tiks saglabāti kā kopija lietotnē Faili: {app} → Backup (to var importēt).",
+ "Widok treningu": "Treniņa skats",
+ "Skupiony": "Fokusēts",
+ "Lista": "Saraksts",
+ "Skupiony: bieżąca seria dużymi cyframi i talerze na stronę nad listą ćwiczeń.": "Fokusēts: pašreizējā sērija lieliem cipariem un diski uz katru pusi virs vingrinājumu saraksta.",
+ "Na każdą stronę: {p}": "Uz katru pusi: {p}",
+ "Na każdą stronę": "Uz katru pusi",
+ "sam gryf": "tikai stienis",
+ "Wszystkie serie odhaczone": "Visas sērijas atzīmētas",
+ "Zakończ trening": "Pabeigt treniņu",
+ "rozgrzewka": "iesildīšanās",
+ "seria {n} z {all}": "sērija {n} no {all}",
+ "Teraz: {v}": "Tagad: {v}",
+ "Seria zrobiona": "Sērija pabeigta",
+ "Wartości zmienisz w wierszu serii poniżej.": "Vērtības maini sērijas rindā zemāk.",
+ "Seria zrobiona: {ex}, seria {n}": "Sērija pabeigta: {ex}, sērija {n}"
 }

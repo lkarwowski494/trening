@@ -39,14 +39,14 @@ const SAME_ANY = new Set([
 /** W jednym języku: wyraz pokrewny o tym samym zapisie i znaczeniu (słowa sprawdzone w języku docelowym). */
 const SAME_IN: Partial<Record<Lang, string[]>> = {
   cs: ['{n} z {all}', '{n} z {m}' /* „z” = z (czes.) */, '{u}/str.' /* strana */, '+ Guma', 'guma', 'Guma', 'gumy', 'Gumy' /* guma */, 'do', 'od', 'krok', 'obj.' /* objem */, 'REKORDY'],
-  sk: ['{n} z {all}', '{n} z {m}', '{u}/str.', '+ Guma', 'guma', 'Guma', 'gumy', 'Gumy', 'do', 'od', 'krok', 'obj.', 'REKORDY', 'nie', 'Nie' /* „nie” = nie (słow.) */, 'Partia' /* svalová partia */, 'sek.'],
+  sk: ['{n} z {all}', '{n} z {m}', '{u}/str.', '+ Guma', 'guma', 'Guma', 'gumy', 'Gumy', 'do', 'od', 'krok', 'obj.', 'REKORDY', 'nie', 'Nie' /* „nie” = nie (słow.) */, 'Partia' /* svalová partia */, 'sek.', 'Teraz: {v}' /* teraz = teraz (słow.) */],
   hr: ['{u}/str.' /* strana */, 'do', 'od', 'Dom', 'normalna', 'sek.', 'Trening' /* APP_NAME.hr */],
   sl: ['{u}/str.' /* stran */, 'do', 'od', 'Dom', 'sek.', 'Trening' /* APP_NAME.sl */],
   ro: ['seria {n}', 'Seria {n}', 'Seria {n} — {ex}', 'serii', 'e1RM {v} (seria {s})' /* rum. seria = seria (forma z rodzajnikiem), serii = serie */],
   lt: ['{u}/hant.' /* hantelis */, '+ Guma', 'guma', 'Guma' /* guma */, 'sek.'],
   lv: ['{u}/hant.' /* hantele */, 'sek.'],
   et: ['{u}/hant.', '{u}/hantel' /* hantel (est.) */],
-  es: ['Dieta'], pt: ['Dieta'],
+  es: ['Dieta', 'Lista'], pt: ['Dieta', 'Lista'] /* lista = lista (hiszp., port.) */, hu: ['Lista'] /* lista = lista (węg.) */,
 };
 const sameOk = (l: Lang, k: string) => SAME_ANY.has(k) || (SAME_IN[l] ?? []).includes(k);
 
@@ -232,26 +232,28 @@ function ttf(file: string) {
   return { has: (ch: string) => gid(ch.codePointAt(0)!) > 0, width };
 }
 const FONT_DIR = require('path').join(__dirname, '..', 'node_modules', '@expo-google-fonts') as string;
-const ARCHIVO = { regular: ttf(`${FONT_DIR}/archivo/400Regular/Archivo_400Regular.ttf`), semibold: ttf(`${FONT_DIR}/archivo/600SemiBold/Archivo_600SemiBold.ttf`), heavy: ttf(`${FONT_DIR}/archivo/800ExtraBold/Archivo_800ExtraBold.ttf`) };
+const SANS = { regular: ttf(`${FONT_DIR}/ibm-plex-sans/400Regular/IBMPlexSans_400Regular.ttf`), semibold: ttf(`${FONT_DIR}/ibm-plex-sans/600SemiBold/IBMPlexSans_600SemiBold.ttf`) };
+const TEKTUR = { heavy: ttf(`${FONT_DIR}/tektur/700Bold/Tektur_700Bold.ttf`), display: ttf(`${FONT_DIR}/tektur/800ExtraBold/Tektur_800ExtraBold.ttf`) };
 const PLEX = ttf(`${FONT_DIR}/ibm-plex-mono/500Medium/IBMPlexMono_500Medium.ttf`);
 const trIn = (l: Lang, k: string) => l === 'pl' ? k : dictOf(l)[k] ?? EN[k] ?? k;
 /** Litery (\p{L}) użyte w tekstach języka — bez symboli (strzałki, ★, ✓ są celowo z kroju systemowego, także po polsku). */
 const lettersOf = (l: Lang) => [...new Set((l === 'pl' ? SOURCE : Object.values(dictOf(l))).join('').match(/\p{L}/gu) ?? [])];
 
-describe('kroje pisma marki (Archivo, IBM Plex Mono) mają znaki każdego języka', () => {
+describe('kroje pisma marki (IBM Plex Sans, Tektur, IBM Plex Mono) mają znaki każdego języka', () => {
   /* @matrix LANGS */
-  const CYR: Lang[] = ['bg', 'sr', 'uk'];
-  test.each(LANGS.filter(l => !CYR.includes(l)))('%s: każda litera tłumaczeń jest w Archivo 400/600/800 (bez zastępowania krojem systemowym)', l => {
-    expect([l, lettersOf(l).filter(ch => !(ARCHIVO.regular.has(ch) && ARCHIVO.semibold.has(ch) && ARCHIVO.heavy.has(ch))).join('')]).toEqual([l, '']);
+  /* Styl „Tuleja” (decyzja właściciela 07.10.2026, wariant A „mieszany”): jeden zestaw krojów dla każdego języka — wcześniej Archivo bez cyrylicy
+   * wymagał zamiany kroju dla bg/sr/uk (06.10.2026). Każda litera tłumaczeń musi być w kroju tekstu (Plex Sans 400/600) i nagłówków (Tektur 700/800). */
+  test.each([...LANGS])('%s: każda litera tłumaczeń jest w IBM Plex Sans 400/600 i Tektur 700/800 (bez zastępowania krojem systemowym)', l => {
+    expect([l, lettersOf(l).filter(ch => !(SANS.regular.has(ch) && SANS.semibold.has(ch) && TEKTUR.heavy.has(ch) && TEKTUR.display.has(ch))).join('')]).toEqual([l, '']);
   });
-  /* NAPRAWIONE 06.10.2026 (decyzja właściciela, wariant A): Archivo nie ma cyrylicy, więc dla bg/sr/uk krój tekstu to IBM Plex Sans
-   * (lib/theme.ts applyFontsFor, CYRILLIC_LANGS). Test: każda litera tłumaczeń bg/sr/uk jest w Plex Sans 400/600/700, a F po zmianie języka wskazuje ten krój. */
-  const PLEX_SANS = { regular: ttf(`${FONT_DIR}/ibm-plex-sans/400Regular/IBMPlexSans_400Regular.ttf`), semibold: ttf(`${FONT_DIR}/ibm-plex-sans/600SemiBold/IBMPlexSans_600SemiBold.ttf`), heavy: ttf(`${FONT_DIR}/ibm-plex-sans/700Bold/IBMPlexSans_700Bold.ttf`) };
-  test.each(CYR)('%s: każda litera tłumaczeń jest w IBM Plex Sans 400/600/700, a krój interfejsu po zmianie języka to Plex Sans', l => {
-    expect([l, lettersOf(l).filter(ch => !(PLEX_SANS.regular.has(ch) && PLEX_SANS.semibold.has(ch) && PLEX_SANS.heavy.has(ch))).join('')]).toEqual([l, '']);
-    const th = require('@/lib/theme'); th.applyFontsFor(l); expect([th.F.regular, th.F.semibold, th.F.heavy]).toEqual(['IBMPlexSans_400Regular', 'IBMPlexSans_600SemiBold', 'IBMPlexSans_700Bold']);
-    th.applyFontsFor('pl'); expect(th.F.regular).toBe('Archivo_400Regular'); expect(Object.keys(th.FONT_FILES)).toEqual(expect.arrayContaining(['IBMPlexSans_400Regular', 'IBMPlexSans_600SemiBold', 'IBMPlexSans_700Bold', 'Archivo_400Regular']));
-    expect([...th.CYRILLIC_LANGS].sort()).toEqual([...CYR].sort());
+  test('jeden zestaw krojów dla wszystkich języków: F wskazuje Plex Sans / Tektur / Plex Mono, każdy z plikiem', () => {
+    const th = require('@/lib/theme');
+    expect([th.F.regular, th.F.semibold, th.F.heavy, th.F.display]).toEqual(['IBMPlexSans_400Regular', 'IBMPlexSans_600SemiBold', 'Tektur_700Bold', 'Tektur_800ExtraBold']);
+    expect(Object.keys(th.FONT_FILES).sort()).toEqual(Object.values(th.F).map(String).sort());
+    expect(th.applyFontsFor).toBeUndefined(); expect(th.CYRILLIC_LANGS).toBeUndefined();
+  });
+  test('Tektur (duże liczby w widoku skupionym) ma cyfry i znaki liczb (przecinek, kropka, ×, :)', () => {
+    expect([...'0123456789,.:×−-'].filter(ch => !TEKTUR.display.has(ch))).toEqual([]);
   });
   test('IBM Plex Mono (liczby: czas, ciężar) ma cyfry i znaki liczb we wszystkich regionach (przecinek, kropka, minus U+2212, ×, –, :)', () => {
     expect([...'0123456789,.:−-+×–—…/ ±%'].filter(ch => ch !== ' ' && !PLEX.has(ch))).toEqual([]);
@@ -260,7 +262,7 @@ describe('kroje pisma marki (Archivo, IBM Plex Mono) mają znaki każdego język
 
 /*
  * Długie teksty. Zasada aplikacji (components/ui.tsx): teksty przycisków, wierszy i chipów się ZAWIJAJĄ (bez numberOfLines), z limitem
- * powiększenia 1,3–1,4; ucinane są tylko: etykiety zakładek (React Navigation: numberOfLines=1, 10 pt, Archivo 600), opcje kontrolki
+ * powiększenia 1,3–1,4; ucinane są tylko: etykiety zakładek (React Navigation: numberOfLines=1, 10 pt, IBM Plex Sans 600), opcje kontrolki
  * segmentowej (numberOfLines=2, równe kolumny) i kolumny wiersza serii (szerokości liczy rowLayout — test w tests/ux.test.tsx).
  * Zawijanie na ekranach sprawdza tests/matrix-a11y.test.tsx (numberOfLines=1 tylko z listy). Tu: w każdym języku szerokość tłumaczenia
  * liczona z prawdziwych szerokości znaków kroju (czytnik TTF wyżej; bez kerningu, znak bez glifu 0,6 em) na najwęższym ekranie 375 pt
@@ -273,7 +275,7 @@ describe('długie tłumaczenia w miejscach, gdzie tekst może być ucięty', () 
   const TABS = ['Trening', 'Szablony', 'Ćwiczenia', 'Historia', 'Więcej'];
   /** Zakładka: 1/5 szerokości, padding 5 (BottomTabItem tabVerticalUiKit), etykieta 10 pt (labelBeneath), numberOfLines=1. */
   const TAB_AVAIL = W / 5 - 2 * 5;
-  const tabOverflow = (l: Lang) => TABS.map(k => trIn(l, k)).filter(s => ARCHIVO.semibold.width(s, 10) > TAB_AVAIL).map(s => `${s} (${ARCHIVO.semibold.width(s, 10).toFixed(1)} > ${TAB_AVAIL} pt)`);
+  const tabOverflow = (l: Lang) => TABS.map(k => trIn(l, k)).filter(s => SANS.semibold.width(s, 10) > TAB_AVAIL).map(s => `${s} (${SANS.semibold.width(s, 10).toFixed(1)} > ${TAB_AVAIL} pt)`);
   const TAB_KNOWN: Lang[] = []; /* es naprawione 06.10.2026 (decyzja właściciela, wariant A): „Entreno” zamiast „Entrenamiento” */
   test.each(LANGS.filter(l => !TAB_KNOWN.includes(l)))('%s: etykiety zakładek mieszczą się w jednej linii bez „…” na ekranie 375 pt', l => { expect([l, tabOverflow(l)]).toEqual([l, []]); });
   /* ZNALEZISKO (NISKIE): lib/locales/es.json „Trening” → „Entrenamiento” — na pasku zakładek (app/(tabs)/_layout.tsx:28, etykieta 10 pt,
@@ -283,10 +285,10 @@ describe('długie tłumaczenia w miejscach, gdzie tekst może być ucięty', () 
   test.each([...LANGS])('%s: kontrolka „Wygląd” (3 opcje, 14 pt, max 2 linie) — każda opcja mieści się w 2 liniach, także przy powiększeniu 1,3 (limit Segmented)', l => {
     const avail = (W - 2 * 14 - 2 * 1 - 2 * 2) / 3 - 2 * 6; /* Screen 14, ramka 1, padding 2, segItem padding 6 (ui.tsx) */
     const opts = ['Jasny', 'Ciemny', 'Jak w telefonie'].map(k => trIn(l, k));
-    for (const scale of [1, 1.3]) expect([l, scale, opts.filter(s => lines(s, x => ARCHIVO.semibold.width(x, 14 * scale), avail) > 2)]).toEqual([l, scale, []]);
+    for (const scale of [1, 1.3]) expect([l, scale, opts.filter(s => lines(s, x => SANS.semibold.width(x, 14 * scale), avail) > 2)]).toEqual([l, scale, []]);
   });
   test('czytnik TTF liczy szerokości jak krój (kontrola: „i” węższe niż „m”, szerokość rośnie liniowo z rozmiarem)', () => {
-    const f = ARCHIVO.semibold; expect(f.width('i', 10)).toBeLessThan(f.width('m', 10)); expect(f.width('Trening', 20)).toBeCloseTo(2 * f.width('Trening', 10), 6);
+    const f = SANS.semibold; expect(f.width('i', 10)).toBeLessThan(f.width('m', 10)); expect(f.width('Trening', 20)).toBeCloseTo(2 * f.width('Trening', 10), 6);
     expect(f.has('ą') && f.has('ő') && f.has('ș') && f.has('ė') && f.has('ā')).toBe(true); expect(PLEX.width('0000', 10)).toBeCloseTo(4 * PLEX.width('0', 10), 6);
   });
 });

@@ -819,5 +819,20 @@
  "Brak zgody na zapis treningów. Włącz ją w aplikacji Zdrowie: profil → Aplikacje → {app}.": "Няма разрешение за запис на тренировки. Включете го в приложението Здраве: профил → Приложения → {app}.",
  "Pliki → Na moim iPhonie → {app} → Backup, ostatnie {n}": "Файлове → На моя iPhone → {app} → Backup, последните {n}",
  "Włącz powiadomienia dla {app} w Ustawieniach iOS.": "Включете известията за {app} в Настройки на iOS.",
- "Usunie ćwiczenia, szablony i całą historię oraz przywróci ustawienia domyślne (także miejsca, sprzęt i gumy). Przedtem obecne dane zapiszą się jako kopia w Plikach: {app} → Backup (można ją zaimportować).": "Това изтрива упражненията, шаблоните и цялата история и връща настройките по подразбиране (включително места, оборудване и ластици). Текущите данни първо се запазват като копие във Файлове: {app} → Backup (можете да го импортирате)."
+ "Usunie ćwiczenia, szablony i całą historię oraz przywróci ustawienia domyślne (także miejsca, sprzęt i gumy). Przedtem obecne dane zapiszą się jako kopia w Plikach: {app} → Backup (można ją zaimportować).": "Това изтрива упражненията, шаблоните и цялата история и връща настройките по подразбиране (включително места, оборудване и ластици). Текущите данни първо се запазват като копие във Файлове: {app} → Backup (можете да го импортирате).",
+ "Widok treningu": "Изглед на тренировката",
+ "Skupiony": "Фокусиран",
+ "Lista": "Списък",
+ "Skupiony: bieżąca seria dużymi cyframi i talerze na stronę nad listą ćwiczeń.": "Фокусиран: текущата серия с големи цифри и дисковете на страна над списъка с упражнения.",
+ "Na każdą stronę: {p}": "На всяка страна: {p}",
+ "Na każdą stronę": "На всяка страна",
+ "sam gryf": "само лост",
+ "Wszystkie serie odhaczone": "Всички серии са отметнати",
+ "Zakończ trening": "Завършване на тренировката",
+ "rozgrzewka": "загрявка",
+ "seria {n} z {all}": "серия {n} от {all}",
+ "Teraz: {v}": "Сега: {v}",
+ "Seria zrobiona": "Серията е готова",
+ "Wartości zmienisz w wierszu serii poniżej.": "Стойностите се променят в реда на серията по-долу.",
+ "Seria zrobiona: {ex}, seria {n}": "Серията е готова: {ex}, серия {n}"
 }

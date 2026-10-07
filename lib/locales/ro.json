@@ -819,5 +819,20 @@
  "Brak zgody na zapis treningów. Włącz ją w aplikacji Zdrowie: profil → Aplikacje → {app}.": "Lipsește permisiunea de a salva antrenamentele. Activați-o în aplicația Sănătate: profil → Aplicații → {app}.",
  "Pliki → Na moim iPhonie → {app} → Backup, ostatnie {n}": "Fișiere → Pe iPhone-ul meu → {app} → Backup, ultimele {n}",
  "Włącz powiadomienia dla {app} w Ustawieniach iOS.": "Activați notificările pentru {app} în Configurări iOS.",
- "Usunie ćwiczenia, szablony i całą historię oraz przywróci ustawienia domyślne (także miejsca, sprzęt i gumy). Przedtem obecne dane zapiszą się jako kopia w Plikach: {app} → Backup (można ją zaimportować).": "Se vor șterge exercițiile, șabloanele și tot istoricul, iar setările revin la cele implicite (inclusiv locurile, echipamentul și benzile). Datele actuale se salvează mai întâi ca o copie în Fișiere: {app} → Backup (o puteți importa)."
+ "Usunie ćwiczenia, szablony i całą historię oraz przywróci ustawienia domyślne (także miejsca, sprzęt i gumy). Przedtem obecne dane zapiszą się jako kopia w Plikach: {app} → Backup (można ją zaimportować).": "Se vor șterge exercițiile, șabloanele și tot istoricul, iar setările revin la cele implicite (inclusiv locurile, echipamentul și benzile). Datele actuale se salvează mai întâi ca o copie în Fișiere: {app} → Backup (o puteți importa).",
+ "Widok treningu": "Vizualizare antrenament",
+ "Skupiony": "Concentrat",
+ "Lista": "Listă",
+ "Skupiony: bieżąca seria dużymi cyframi i talerze na stronę nad listą ćwiczeń.": "Concentrat: seria curentă cu cifre mari și discurile pe fiecare parte deasupra listei de exerciții.",
+ "Na każdą stronę: {p}": "Pe fiecare parte: {p}",
+ "Na każdą stronę": "Pe fiecare parte",
+ "sam gryf": "doar bara",
+ "Wszystkie serie odhaczone": "Toate seriile bifate",
+ "Zakończ trening": "Termină antrenamentul",
+ "rozgrzewka": "încălzire",
+ "seria {n} z {all}": "seria {n} din {all}",
+ "Teraz: {v}": "Acum: {v}",
+ "Seria zrobiona": "Serie gata",
+ "Wartości zmienisz w wierszu serii poniżej.": "Modifici valorile în rândul seriei de mai jos.",
+ "Seria zrobiona: {ex}, seria {n}": "Serie gata: {ex}, seria {n}"
 }

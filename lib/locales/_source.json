@@ -1070,6 +1070,10 @@
   "en": "Battle ropes"
  },
  {
+  "pl": "Lista",
+  "en": "List"
+ },
+ {
   "pl": "lista ćwiczeń z filtrami, które możesz zdjąć",
   "en": "exercise list with filters you can remove"
  },
@@ -1400,6 +1404,14 @@
  {
   "pl": "Moduły",
   "en": "Modules"
+ },
+ {
+  "pl": "Na każdą stronę",
+  "en": "Each side"
+ },
+ {
+  "pl": "Na każdą stronę: {p}",
+  "en": "Each side: {p}"
  },
  {
   "pl": "Na pewno?",
@@ -2184,6 +2196,10 @@
   "en": "Stationary / air bike"
  },
  {
+  "pl": "rozgrzewka",
+  "en": "warm-up"
+ },
+ {
   "pl": "Rozgrzewka (W)",
   "en": "Warm-up (W)"
  },
@@ -2194,6 +2210,10 @@
  {
   "pl": "RPE / RIR przy serii",
   "en": "RPE / RIR per set"
+ },
+ {
+  "pl": "sam gryf",
+  "en": "empty bar"
  },
  {
   "pl": "sanki",
@@ -2248,6 +2268,10 @@
   "en": "Set {n} — {ex}"
  },
  {
+  "pl": "seria {n} z {all}",
+  "en": "set {n} of {all}"
+ },
+ {
   "pl": "Seria {n} zrobiona — {ex}",
   "en": "Set {n} done — {ex}"
  },
@@ -2274,6 +2298,14 @@
  {
   "pl": "Seria skończona",
   "en": "Set finished"
+ },
+ {
+  "pl": "Seria zrobiona",
+  "en": "Set done"
+ },
+ {
+  "pl": "Seria zrobiona: {ex}, seria {n}",
+  "en": "Set done: {ex}, set {n}"
  },
  {
   "pl": "seria|serie|serii",
@@ -2356,6 +2388,14 @@
  {
   "pl": "Skrzynia / stopień",
   "en": "Plyo box / step"
+ },
+ {
+  "pl": "Skupiony",
+  "en": "Focused"
+ },
+ {
+  "pl": "Skupiony: bieżąca seria dużymi cyframi i talerze na stronę nad listą ćwiczeń.",
+  "en": "Focused: the current set in big numbers and plates per side above the exercise list."
  },
  {
   "pl": "Sprawdź datę i godzinę",
@@ -2608,6 +2648,10 @@
  {
   "pl": "Ten trening nie zostanie zapisany.",
   "en": "This workout won’t be saved."
+ },
+ {
+  "pl": "Teraz: {v}",
+  "en": "Now: {v}"
  },
  {
   "pl": "Timer odlicza w aplikacji, a na koniec przerwy przychodzi powiadomienie — także przy zablokowanym telefonie.",
@@ -2902,8 +2946,16 @@
   "en": "Weight ({u})"
  },
  {
+  "pl": "Wartości zmienisz w wierszu serii poniżej.",
+  "en": "Change the values in the set row below."
+ },
+ {
   "pl": "wcześniej zamieniane",
   "en": "swapped before"
+ },
+ {
+  "pl": "Widok treningu",
+  "en": "Workout view"
  },
  {
   "pl": "Więcej",
@@ -2968,6 +3020,10 @@
  {
   "pl": "wszystkie ćwiczenia z tą samą miarą",
   "en": "all exercises with the same measure"
+ },
+ {
+  "pl": "Wszystkie serie odhaczone",
+  "en": "All sets ticked off"
  },
  {
   "pl": "Wybierz ćwiczenie",
@@ -3116,6 +3172,10 @@
  {
   "pl": "Zakończ serię",
   "en": "Finish set"
+ },
+ {
+  "pl": "Zakończ trening",
+  "en": "Finish workout"
  },
  {
   "pl": "Zakończ trening i zapisz",

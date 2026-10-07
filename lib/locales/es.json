@@ -819,5 +819,20 @@
  "Brak zgody na zapis treningów. Włącz ją w aplikacji Zdrowie: profil → Aplikacje → {app}.": "Sin permiso para guardar entrenamientos. Actívalo en la app Salud: perfil → Apps → {app}.",
  "Pliki → Na moim iPhonie → {app} → Backup, ostatnie {n}": "Archivos → En mi iPhone → {app} → Backup, últimos {n}",
  "Włącz powiadomienia dla {app} w Ustawieniach iOS.": "Activa las notificaciones de {app} en Ajustes de iOS.",
- "Usunie ćwiczenia, szablony i całą historię oraz przywróci ustawienia domyślne (także miejsca, sprzęt i gumy). Przedtem obecne dane zapiszą się jako kopia w Plikach: {app} → Backup (można ją zaimportować).": "Esto elimina ejercicios, plantillas y todo el historial y restablece los ajustes predeterminados (también lugares, equipamiento y bandas). Antes, tus datos actuales se guardan como copia en Archivos: {app} → Backup (puedes importarla)."
+ "Usunie ćwiczenia, szablony i całą historię oraz przywróci ustawienia domyślne (także miejsca, sprzęt i gumy). Przedtem obecne dane zapiszą się jako kopia w Plikach: {app} → Backup (można ją zaimportować).": "Esto elimina ejercicios, plantillas y todo el historial y restablece los ajustes predeterminados (también lugares, equipamiento y bandas). Antes, tus datos actuales se guardan como copia en Archivos: {app} → Backup (puedes importarla).",
+ "Widok treningu": "Vista del entrenamiento",
+ "Skupiony": "Enfocada",
+ "Lista": "Lista",
+ "Skupiony: bieżąca seria dużymi cyframi i talerze na stronę nad listą ćwiczeń.": "Enfocada: la serie actual en números grandes y los discos por lado encima de la lista de ejercicios.",
+ "Na każdą stronę: {p}": "En cada lado: {p}",
+ "Na każdą stronę": "En cada lado",
+ "sam gryf": "solo la barra",
+ "Wszystkie serie odhaczone": "Todas las series marcadas",
+ "Zakończ trening": "Terminar entrenamiento",
+ "rozgrzewka": "calentamiento",
+ "seria {n} z {all}": "serie {n} de {all}",
+ "Teraz: {v}": "Ahora: {v}",
+ "Seria zrobiona": "Serie hecha",
+ "Wartości zmienisz w wierszu serii poniżej.": "Cambia los valores en la fila de la serie de abajo.",
+ "Seria zrobiona: {ex}, seria {n}": "Serie hecha: {ex}, serie {n}"
 }

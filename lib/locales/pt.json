@@ -819,5 +819,20 @@
  "Brak zgody na zapis treningów. Włącz ją w aplikacji Zdrowie: profil → Aplikacje → {app}.": "Sem permissão para guardar treinos. Ative-a na app Saúde: perfil → Apps → {app}.",
  "Pliki → Na moim iPhonie → {app} → Backup, ostatnie {n}": "Ficheiros → No meu iPhone → {app} → Backup, últimas {n}",
  "Włącz powiadomienia dla {app} w Ustawieniach iOS.": "Ative as notificações para {app} nas Definições do iOS.",
- "Usunie ćwiczenia, szablony i całą historię oraz przywróci ustawienia domyślne (także miejsca, sprzęt i gumy). Przedtem obecne dane zapiszą się jako kopia w Plikach: {app} → Backup (można ją zaimportować).": "Apaga os exercícios, modelos e todo o histórico e repõe as definições predefinidas (incluindo locais, equipamento e elásticos). Antes disso, os dados atuais são guardados como cópia em Ficheiros: {app} → Backup (pode importá-la)."
+ "Usunie ćwiczenia, szablony i całą historię oraz przywróci ustawienia domyślne (także miejsca, sprzęt i gumy). Przedtem obecne dane zapiszą się jako kopia w Plikach: {app} → Backup (można ją zaimportować).": "Apaga os exercícios, modelos e todo o histórico e repõe as definições predefinidas (incluindo locais, equipamento e elásticos). Antes disso, os dados atuais são guardados como cópia em Ficheiros: {app} → Backup (pode importá-la).",
+ "Widok treningu": "Vista do treino",
+ "Skupiony": "Focada",
+ "Lista": "Lista",
+ "Skupiony: bieżąca seria dużymi cyframi i talerze na stronę nad listą ćwiczeń.": "Focada: a série atual em números grandes e os discos por lado acima da lista de exercícios.",
+ "Na każdą stronę: {p}": "Em cada lado: {p}",
+ "Na każdą stronę": "Em cada lado",
+ "sam gryf": "só a barra",
+ "Wszystkie serie odhaczone": "Todas as séries marcadas",
+ "Zakończ trening": "Terminar treino",
+ "rozgrzewka": "aquecimento",
+ "seria {n} z {all}": "série {n} de {all}",
+ "Teraz: {v}": "Agora: {v}",
+ "Seria zrobiona": "Série feita",
+ "Wartości zmienisz w wierszu serii poniżej.": "Altera os valores na linha da série abaixo.",
+ "Seria zrobiona: {ex}, seria {n}": "Série feita: {ex}, série {n}"
 }

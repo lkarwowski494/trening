@@ -819,5 +819,20 @@
  "Brak zgody na zapis treningów. Włącz ją w aplikacji Zdrowie: profil → Aplikacje → {app}.": "Treeningute salvestamiseks puudub luba. Lülita see sisse rakenduses Tervis: profiil → Rakendused → {app}.",
  "Pliki → Na moim iPhonie → {app} → Backup, ostatnie {n}": "Failid → Minu iPhone’is → {app} → Backup, viimased {n}",
  "Włącz powiadomienia dla {app} w Ustawieniach iOS.": "Luba rakenduse {app} teavitused iOS-i seadetes.",
- "Usunie ćwiczenia, szablony i całą historię oraz przywróci ustawienia domyślne (także miejsca, sprzęt i gumy). Przedtem obecne dane zapiszą się jako kopia w Plikach: {app} → Backup (można ją zaimportować).": "See kustutab harjutused, mallid ja kogu ajaloo ning taastab vaikeseaded (ka kohad, varustuse ja kummid). Praegused andmed salvestatakse enne koopiana rakendusse Failid: {app} → Backup (saad selle importida)."
+ "Usunie ćwiczenia, szablony i całą historię oraz przywróci ustawienia domyślne (także miejsca, sprzęt i gumy). Przedtem obecne dane zapiszą się jako kopia w Plikach: {app} → Backup (można ją zaimportować).": "See kustutab harjutused, mallid ja kogu ajaloo ning taastab vaikeseaded (ka kohad, varustuse ja kummid). Praegused andmed salvestatakse enne koopiana rakendusse Failid: {app} → Backup (saad selle importida).",
+ "Widok treningu": "Treeningu vaade",
+ "Skupiony": "Keskendunud",
+ "Lista": "Loend",
+ "Skupiony: bieżąca seria dużymi cyframi i talerze na stronę nad listą ćwiczeń.": "Keskendunud: praegune seeria suurte numbritega ja kettad ühele poolele harjutuste loendi kohal.",
+ "Na każdą stronę: {p}": "Mõlemale poolele: {p}",
+ "Na każdą stronę": "Mõlemale poolele",
+ "sam gryf": "tühi kang",
+ "Wszystkie serie odhaczone": "Kõik seeriad märgitud",
+ "Zakończ trening": "Lõpeta treening",
+ "rozgrzewka": "soojendus",
+ "seria {n} z {all}": "seeria {n}/{all}",
+ "Teraz: {v}": "Praegu: {v}",
+ "Seria zrobiona": "Seeria tehtud",
+ "Wartości zmienisz w wierszu serii poniżej.": "Väärtusi muudad allpool seeria real.",
+ "Seria zrobiona: {ex}, seria {n}": "Seeria tehtud: {ex}, seeria {n}"
 }

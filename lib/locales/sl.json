@@ -819,5 +819,20 @@
  "Brak zgody na zapis treningów. Włącz ją w aplikacji Zdrowie: profil → Aplikacje → {app}.": "Ni dovoljenja za shranjevanje treningov. Vklopite ga v aplikaciji Zdravje: profil → Aplikacije → {app}.",
  "Pliki → Na moim iPhonie → {app} → Backup, ostatnie {n}": "Datoteke → V mojem iPhonu → {app} → Backup, zadnjih {n}",
  "Włącz powiadomienia dla {app} w Ustawieniach iOS.": "Vklopite obvestila za {app} v Nastavitvah iOS.",
- "Usunie ćwiczenia, szablony i całą historię oraz przywróci ustawienia domyślne (także miejsca, sprzęt i gumy). Przedtem obecne dane zapiszą się jako kopia w Plikach: {app} → Backup (można ją zaimportować).": "S tem izbrišete vaje, predloge in vso zgodovino ter obnovite privzete nastavitve (tudi mesta, opremo in elastike). Trenutni podatki se najprej shranijo kot kopija v Datoteke: {app} → Backup (lahko jo uvozite)."
+ "Usunie ćwiczenia, szablony i całą historię oraz przywróci ustawienia domyślne (także miejsca, sprzęt i gumy). Przedtem obecne dane zapiszą się jako kopia w Plikach: {app} → Backup (można ją zaimportować).": "S tem izbrišete vaje, predloge in vso zgodovino ter obnovite privzete nastavitve (tudi mesta, opremo in elastike). Trenutni podatki se najprej shranijo kot kopija v Datoteke: {app} → Backup (lahko jo uvozite).",
+ "Widok treningu": "Prikaz treninga",
+ "Skupiony": "Osredotočeni",
+ "Lista": "Seznam",
+ "Skupiony: bieżąca seria dużymi cyframi i talerze na stronę nad listą ćwiczeń.": "Osredotočeni: trenutna serija z velikimi številkami in plošče na stran nad seznamom vaj.",
+ "Na każdą stronę: {p}": "Na vsako stran: {p}",
+ "Na każdą stronę": "Na vsako stran",
+ "sam gryf": "samo palica",
+ "Wszystkie serie odhaczone": "Vse serije odkljukane",
+ "Zakończ trening": "Končaj trening",
+ "rozgrzewka": "ogrevanje",
+ "seria {n} z {all}": "serija {n} od {all}",
+ "Teraz: {v}": "Zdaj: {v}",
+ "Seria zrobiona": "Serija opravljena",
+ "Wartości zmienisz w wierszu serii poniżej.": "Vrednosti spremeniš v vrstici serije spodaj.",
+ "Seria zrobiona: {ex}, seria {n}": "Serija opravljena: {ex}, serija {n}"
 }

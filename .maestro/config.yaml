@@ -1,6 +1,7 @@
 # Testy E2E na symulatorze iOS (Maestro) — kolejność uruchamiania. Aplikacja startuje w języku symulatora (angielski).
 # subflows/ — podprzepływy wołane przez runFlow (np. szablon-testowy.yaml w 01, 02, 03, 05); nie są samodzielnymi przepływami.
 # 08–10 (polecenie właściciela 06.10.2026): szablon jak trening (wiersze, karty), język / wygląd / jednostka, gumy w miejscu i w treningu.
+# 11 (07.10.2026): styl „Tuleja” — widok skupiony na serii, talerze na stronę, przełącznik „Widok treningu”.
 flows:
   - 01-trening-z-szablonu.yaml
   - 02-przerwa-po-restarcie.yaml
@@ -12,3 +13,4 @@ flows:
   - 08-szablon-wiersze.yaml
   - 09-jezyk-wyglad.yaml
   - 10-gumy.yaml
+  - 11-widok-skupiony.yaml

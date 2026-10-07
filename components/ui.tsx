@@ -61,7 +61,7 @@ export function Input(props: TextInputProps & { center?: boolean }) {
   const t = useTheme(); const label = React.useContext(FieldLabel); const hint = React.useContext(FieldHint);
   return <TextInput placeholderTextColor={t.muted} maxFontSizeMultiplier={1.3} accessibilityLabel={label ?? (typeof props.placeholder === 'string' ? props.placeholder : undefined)} accessibilityHint={hint} {...props} style={[s.input, { backgroundColor: t.surface2, borderColor: t.line, color: t.text, fontFamily: F.regular }, props.center && { textAlign: 'center', paddingHorizontal: 4 }, props.style]} />;
 }
-/** Audyt cd60eec MEDIUM: wąskie pola (ciężar 56 pt, RPE 40 pt) — krój mono (0,6 em na znak) ucinał „102,5”; Archivo z cyframi tabelarycznymi. */
+/** Audyt cd60eec MEDIUM: wąskie pola (ciężar 56 pt, RPE 40 pt) — krój mono (0,6 em na znak) ucinał „102,5”; krój tekstu z cyframi tabelarycznymi. */
 export const NUM_FONT = { fontFamily: F.regular, fontVariant: ['tabular-nums' as const] };
 /** Liczba z tekstu pola (przecinek dziesiętny), bez przycinania; null = tekst niedokończony/nieliczbowy. */
 const parseRaw = (v: string): number | '' | null => { const n = v.trim().replace(',', '.'); if (n === '') return ''; const x = Number(n); return Number.isFinite(x) ? x : null; };

@@ -819,5 +819,20 @@
  "Brak zgody na zapis treningów. Włącz ją w aplikacji Zdrowie: profil → Aplikacje → {app}.": "Chýba povolenie na zápis tréningov. Zapnite ho v aplikácii Zdravie: profil → Aplikácie → {app}.",
  "Pliki → Na moim iPhonie → {app} → Backup, ostatnie {n}": "Súbory → Na mojom iPhone → {app} → Backup, posledných {n}",
  "Włącz powiadomienia dla {app} w Ustawieniach iOS.": "Zapnite upozornenia pre {app} v Nastaveniach iOS.",
- "Usunie ćwiczenia, szablony i całą historię oraz przywróci ustawienia domyślne (także miejsca, sprzęt i gumy). Przedtem obecne dane zapiszą się jako kopia w Plikach: {app} → Backup (można ją zaimportować).": "Vymaže cviky, šablóny a celú históriu a obnoví predvolené nastavenia (aj miesta, vybavenie a gumy). Predtým sa súčasné údaje uložia ako kópia v Súboroch: {app} → Backup (dá sa importovať)."
+ "Usunie ćwiczenia, szablony i całą historię oraz przywróci ustawienia domyślne (także miejsca, sprzęt i gumy). Przedtem obecne dane zapiszą się jako kopia w Plikach: {app} → Backup (można ją zaimportować).": "Vymaže cviky, šablóny a celú históriu a obnoví predvolené nastavenia (aj miesta, vybavenie a gumy). Predtým sa súčasné údaje uložia ako kópia v Súboroch: {app} → Backup (dá sa importovať).",
+ "Widok treningu": "Zobrazenie tréningu",
+ "Skupiony": "Sústredené",
+ "Lista": "Zoznam",
+ "Skupiony: bieżąca seria dużymi cyframi i talerze na stronę nad listą ćwiczeń.": "Sústredené: aktuálna séria veľkými číslicami a kotúče na stranu nad zoznamom cvikov.",
+ "Na każdą stronę: {p}": "Na každú stranu: {p}",
+ "Na każdą stronę": "Na každú stranu",
+ "sam gryf": "len os",
+ "Wszystkie serie odhaczone": "Všetky série odškrtnuté",
+ "Zakończ trening": "Dokončiť tréning",
+ "rozgrzewka": "rozcvička",
+ "seria {n} z {all}": "séria {n} z {all}",
+ "Teraz: {v}": "Teraz: {v}",
+ "Seria zrobiona": "Séria hotová",
+ "Wartości zmienisz w wierszu serii poniżej.": "Hodnoty zmeníte v riadku série nižšie.",
+ "Seria zrobiona: {ex}, seria {n}": "Séria hotová: {ex}, séria {n}"
 }

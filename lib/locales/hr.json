@@ -819,5 +819,20 @@
  "Brak zgody na zapis treningów. Włącz ją w aplikacji Zdrowie: profil → Aplikacje → {app}.": "Nema dopuštenja za spremanje treninga. Uključite ga u aplikaciji Zdravlje: profil → Aplikacije → {app}.",
  "Pliki → Na moim iPhonie → {app} → Backup, ostatnie {n}": "Datoteke → Na mom iPhoneu → {app} → Backup, zadnjih {n}",
  "Włącz powiadomienia dla {app} w Ustawieniach iOS.": "Uključite obavijesti za {app} u iOS Postavkama.",
- "Usunie ćwiczenia, szablony i całą historię oraz przywróci ustawienia domyślne (także miejsca, sprzęt i gumy). Przedtem obecne dane zapiszą się jako kopia w Plikach: {app} → Backup (można ją zaimportować).": "Ovo briše vježbe, predloške i cijelu povijest te vraća zadane postavke (uključujući mjesta, opremu i gume). Vaši trenutačni podaci najprije se spremaju kao kopija u Datoteke: {app} → Backup (možete je uvesti)."
+ "Usunie ćwiczenia, szablony i całą historię oraz przywróci ustawienia domyślne (także miejsca, sprzęt i gumy). Przedtem obecne dane zapiszą się jako kopia w Plikach: {app} → Backup (można ją zaimportować).": "Ovo briše vježbe, predloške i cijelu povijest te vraća zadane postavke (uključujući mjesta, opremu i gume). Vaši trenutačni podaci najprije se spremaju kao kopija u Datoteke: {app} → Backup (možete je uvesti).",
+ "Widok treningu": "Prikaz treninga",
+ "Skupiony": "Fokusirani",
+ "Lista": "Popis",
+ "Skupiony: bieżąca seria dużymi cyframi i talerze na stronę nad listą ćwiczeń.": "Fokusirani: trenutna serija velikim brojkama i ploče po strani iznad popisa vježbi.",
+ "Na każdą stronę: {p}": "Na svaku stranu: {p}",
+ "Na każdą stronę": "Na svaku stranu",
+ "sam gryf": "samo šipka",
+ "Wszystkie serie odhaczone": "Sve serije označene",
+ "Zakończ trening": "Završi trening",
+ "rozgrzewka": "zagrijavanje",
+ "seria {n} z {all}": "serija {n} od {all}",
+ "Teraz: {v}": "Sada: {v}",
+ "Seria zrobiona": "Serija gotova",
+ "Wartości zmienisz w wierszu serii poniżej.": "Vrijednosti mijenjaš u retku serije ispod.",
+ "Seria zrobiona: {ex}, seria {n}": "Serija gotova: {ex}, serija {n}"
 }

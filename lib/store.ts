@@ -3,7 +3,7 @@ import * as FileSystem from 'expo-file-system/legacy';
 import { useSyncExternalStore } from 'react';
 import { t, t as tr, tIn, applyLang, detectLang, locale, fold, isLang, lang } from './i18n';
 import { applyUnit, wu, wOut, wIn, KG_PER_LB, fmtW, fmtNum, snapLegacyLb } from './units';
-import { applyTheme, applyFontsFor } from './theme';
+import { applyTheme } from './theme';
 import { seedState, uid, base, defaultModules, defaultSettings, metricFor, loadModeFor, loadMult, blankTimer, musclesFor, hasTime, hasReps, hasWeight, hasDistance, METRICS, DEFAULT_REST, GROUPS, LIB, SCHEMA_VERSION, LOCAL_OWNER, MODULES, SET_KINDS, SINGLE_IMPLEMENT, equipFields, libExercise, LIB_EXTRA_REVS, LIB_EXTRA_REV, LIB_MUSCLE_FIXES, libExtraRevOf, LIB_BASE_NAMES, LOAD_SOURCE_BY_EQUIPMENT, IMPLS, own, type Impl, type SetKind, type Base, type State, type Workout, type WSet, type WExercise, type Exercise, type Template, type TemplateItem, type TemplateAlt, type TRow, type Morning, type Location } from './seed';
 import { equipById, loadsFor, implAt, implsAt, blankLoad, availability, fillGym, GYM_FILL, fillOpts, OPT_FILL } from './equipment';
 import { sanitizeLoadSpec, nextHeavier, hasLoadShown } from './loads';
@@ -125,7 +125,7 @@ export async function init(): Promise<void> {
 }
 
 /** Przenosi język i jednostkę z ustawień do warstwy wyświetlania. Wołane po starcie, imporcie i zmianie ustawień. */
-export function applyPrefs() { if (!S) return; applyLang(S.settings.language); applyFontsFor(lang()); applyUnit(S.settings.unit); applyTheme(S.settings.theme); }
+export function applyPrefs() { if (!S) return; applyLang(S.settings.language); applyUnit(S.settings.unit); applyTheme(S.settings.theme); }
 
 const isObj = (x: unknown): x is Record<string, any> => !!x && typeof x === 'object' && !Array.isArray(x);
 const arr = (x: unknown): any[] => Array.isArray(x) ? x.filter(isObj) : [];
@@ -318,7 +318,8 @@ export function migrate(raw: any): State {
     modules: (() => { const mods = { ...defaultModules(), ...(isObj(s.modules) ? s.modules : {}) }; MODULES.forEach(m => { if (typeof mods[m] !== 'boolean') mods[m] = false; }); mods.training = true; return mods; })(),
     language: s.language === 'auto' || isLang(s.language) ? s.language : d.language,
     unit: s.unit === 'lb' ? 'lb' : 'kg',
-    theme: s.theme === 'dark' || s.theme === 'auto' ? s.theme : 'light', /* decyzja 05.10.2026: domyślnie jasna Kreda, także dla starszych danych */
+    theme: s.theme === 'dark' || s.theme === 'auto' ? s.theme : 'light', /* decyzja 05.10.2026: domyślnie jasny, także dla starszych danych (potwierdzone 07.10.2026) */
+    workoutView: s.workoutView === 'list' ? 'list' : 'focus', /* 07.10.2026: widok skupiony domyślnie, także dla starszych danych (bez zmiany schematu) */
     ...fixLocations(s, stamp, raw.settings?.language), /* P-003 (schemat 14): bez tego biała lista gubiła miejsca przy każdym starcie i imporcie */
   };
   if (raw.equipFill !== GYM_FILL.rev) { for (const l of raw.settings.locations) fillGym(l, raw.settings.unit); raw.equipFill = GYM_FILL.rev; } /* decyzja 05.10.2026 (1.a): raz */
@@ -1416,3 +1417,18 @@ export type { WExercise };
 export const isReadyForTests = () => !!S;
 /** Tylko dla testów: czyści stan modułu (bez dotykania bazy). */
 export function __resetForTests() { persistQueue = Promise.resolve(); fullDirty = true; persistSeq = 0; S = null; db = null; rev = 0; histRev += 1; persistError = null; recovery = null; if (saveTimer) clearTimeout(saveTimer); saveTimer = null; listeners.clear(); }
+/**
+ * Widok skupiony (styl „Tuleja”, decyzja właściciela 07.10.2026; docs/21 pkt 3): seria „teraz” = pierwsza nieodhaczona seria w kolejności treningu.
+ * Superset — naprzemiennie: spośród ćwiczeń grupy to, którego pierwsza nieodhaczona seria ma najniższy numer (remis — wcześniejsze ćwiczenie),
+ * czyli A1, B1, A2, B2… Bloki usuniętych ćwiczeń (bez wpisu w bibliotece) są pomijane. null = wszystko odhaczone (albo pusty trening).
+ */
+export function focusSet(w: Workout | null | undefined): { ei: number; si: number } | null {
+  if (!w) return null; const firstOpen = (i: number) => exById(w.exercises[i].exerciseId) ? w.exercises[i].sets.findIndex(s => !s.done) : -1;
+  for (let ei = 0; ei < w.exercises.length; ei++) {
+    const si = firstOpen(ei); if (si < 0) continue; const g = w.exercises[ei].groupId; if (!g) return { ei, si };
+    let best = { ei, si };
+    for (let j = ei + 1; j < w.exercises.length; j++) { if (w.exercises[j].groupId !== g) continue; const k = firstOpen(j); if (k >= 0 && k < best.si) best = { ei: j, si: k }; }
+    return best;
+  }
+  return null;
+}

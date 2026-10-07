@@ -72,7 +72,11 @@ przyjmuje nazwę zlokalizowaną (sprawdzić na buildzie — teksty ścieżki zak
 
 *Decyzja właściciela 07.10.2026:* „Podoba mi się grafika B” → **kierunek B · Tuleja** (docs/21 pkt 6, makiety: https://claude.ai/artifact/VcG5ESWeNsPEVYiFA1kEru):
 kolory talerzy zawodniczych (IWF) zawsze z liczbą na talerzu, Tektur + IBM Plex Mono, ikona — koniec sztangi z talerzami z boku.
-Zastępuje Kredę (05.10) po wdrożeniu; zakres wdrożenia do ustalenia.
+Zastępuje Kredę (05.10). Zakres (07.10.2026): **wszystko naraz** (B) — ikona z wariantami iOS, kolory, kroje, talerze „co nałożyć na stronę”, widok
+skupiony na bieżącej serii (przełącznik Ustawienia → Widok treningu, domyślnie skupiony); krój **mieszany** (A): IBM Plex Sans tekst, Tektur nagłówki i duże
+liczby, IBM Plex Mono dane; domyślny wygląd **jasny** (A). Wdrożenie: `lib/theme.ts`, `lib/plates.ts`, `components/PlateBar.tsx`, `assets/brand/icon*.svg`
+(`node scripts/brand/icon.mjs`), testy `tests/brand-tuleja.test.tsx`, `tests/tuleja.test.tsx`, `tests/matrix-tuleja.test.tsx`; docs/09.
+Opis Kredy niżej zostaje jako historia decyzji.
 
 *Decyzja właściciela 05.10.2026:* „Podoba mi się kreda.” → **kierunek A · Kreda**. Tryb ciemny: „Kreda + ciemna wersja” (05.10.2026) — w trybie ciemnym grafitowe tło, kredowy tekst, ten sam pomarańcz.
 

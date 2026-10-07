@@ -819,5 +819,20 @@
  "Brak zgody na zapis treningów. Włącz ją w aplikacji Zdrowie: profil → Aplikacje → {app}.": "Nincs engedély az edzések mentéséhez. Kapcsolja be az Egészség appban: profil → Appok → {app}.",
  "Pliki → Na moim iPhonie → {app} → Backup, ostatnie {n}": "Fájlok → Az iPhone-omon → {app} → Backup, utolsó {n}",
  "Włącz powiadomienia dla {app} w Ustawieniach iOS.": "Engedélyezze a {app} értesítéseit az iOS Beállításokban.",
- "Usunie ćwiczenia, szablony i całą historię oraz przywróci ustawienia domyślne (także miejsca, sprzęt i gumy). Przedtem obecne dane zapiszą się jako kopia w Plikach: {app} → Backup (można ją zaimportować).": "Ez törli a gyakorlatokat, a sablonokat és a teljes előzményt, és visszaállítja az alapbeállításokat (a helyeket, a felszerelést és a gumikat is). A jelenlegi adatok előbb másolatként mentődnek a Fájlokba: {app} → Backup (importálhatja)."
+ "Usunie ćwiczenia, szablony i całą historię oraz przywróci ustawienia domyślne (także miejsca, sprzęt i gumy). Przedtem obecne dane zapiszą się jako kopia w Plikach: {app} → Backup (można ją zaimportować).": "Ez törli a gyakorlatokat, a sablonokat és a teljes előzményt, és visszaállítja az alapbeállításokat (a helyeket, a felszerelést és a gumikat is). A jelenlegi adatok előbb másolatként mentődnek a Fájlokba: {app} → Backup (importálhatja).",
+ "Widok treningu": "Edzésnézet",
+ "Skupiony": "Fókusz",
+ "Lista": "Lista",
+ "Skupiony: bieżąca seria dużymi cyframi i talerze na stronę nad listą ćwiczeń.": "Fókusz: az aktuális sorozat nagy számokkal és az oldalanként felteendő tárcsák a gyakorlatlista felett.",
+ "Na każdą stronę: {p}": "Oldalanként: {p}",
+ "Na każdą stronę": "Oldalanként",
+ "sam gryf": "üres rúd",
+ "Wszystkie serie odhaczone": "Minden sorozat kipipálva",
+ "Zakończ trening": "Edzés befejezése",
+ "rozgrzewka": "bemelegítés",
+ "seria {n} z {all}": "{n}./{all} sorozat",
+ "Teraz: {v}": "Most: {v}",
+ "Seria zrobiona": "Sorozat kész",
+ "Wartości zmienisz w wierszu serii poniżej.": "Az értékeket lent, a sorozat sorában módosíthatod.",
+ "Seria zrobiona: {ex}, seria {n}": "Sorozat kész: {ex}, {n}. sorozat"
 }

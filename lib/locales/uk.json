@@ -819,5 +819,20 @@
  "Brak zgody na zapis treningów. Włącz ją w aplikacji Zdrowie: profil → Aplikacje → {app}.": "Немає дозволу на запис тренувань. Увімкніть його в програмі «Здоров’я»: профіль → Програми → {app}.",
  "Pliki → Na moim iPhonie → {app} → Backup, ostatnie {n}": "Файли → На iPhone → {app} → Backup, останні {n}",
  "Włącz powiadomienia dla {app} w Ustawieniach iOS.": "Увімкніть сповіщення для {app} у Параметрах iOS.",
- "Usunie ćwiczenia, szablony i całą historię oraz przywróci ustawienia domyślne (także miejsca, sprzęt i gumy). Przedtem obecne dane zapiszą się jako kopia w Plikach: {app} → Backup (można ją zaimportować).": "Буде видалено вправи, шаблони й усю історію та відновлено типові налаштування (зокрема місця, обладнання й гумки). Поточні дані спершу буде збережено як копію у Файлах: {app} → Backup (її можна імпортувати)."
+ "Usunie ćwiczenia, szablony i całą historię oraz przywróci ustawienia domyślne (także miejsca, sprzęt i gumy). Przedtem obecne dane zapiszą się jako kopia w Plikach: {app} → Backup (można ją zaimportować).": "Буде видалено вправи, шаблони й усю історію та відновлено типові налаштування (зокрема місця, обладнання й гумки). Поточні дані спершу буде збережено як копію у Файлах: {app} → Backup (її можна імпортувати).",
+ "Widok treningu": "Вигляд тренування",
+ "Skupiony": "Зосереджений",
+ "Lista": "Список",
+ "Skupiony: bieżąca seria dużymi cyframi i talerze na stronę nad listą ćwiczeń.": "Зосереджений: поточний підхід великими цифрами та диски на кожен бік над списком вправ.",
+ "Na każdą stronę: {p}": "На кожен бік: {p}",
+ "Na każdą stronę": "На кожен бік",
+ "sam gryf": "лише гриф",
+ "Wszystkie serie odhaczone": "Усі підходи відмічено",
+ "Zakończ trening": "Завершити тренування",
+ "rozgrzewka": "розминка",
+ "seria {n} z {all}": "підхід {n} з {all}",
+ "Teraz: {v}": "Зараз: {v}",
+ "Seria zrobiona": "Підхід виконано",
+ "Wartości zmienisz w wierszu serii poniżej.": "Значення змінюються в рядку підходу нижче.",
+ "Seria zrobiona: {ex}, seria {n}": "Підхід виконано: {ex}, підхід {n}"
 }
