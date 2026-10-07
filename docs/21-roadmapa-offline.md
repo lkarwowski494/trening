@@ -82,6 +82,9 @@ głównym iOS): wchodzą osobnym buildem, jak wydanie „Health”, po sprawdzen
 | Widżet „Tydzień treningów” | gotowe w commicie df53ab9 (`feature/e2-swap`), cofnięte | dodanie widżetu, liczby po treningu, zera po końcu tygodnia; grupa aplikacji `group.pl.lukasz.trening` musi dać się podpisać (może wymagać kroku w Apple Developer) |
 | Kontrolka w Centrum sterowania | niezaczęte | — |
 
+Kompilacja bez podpisu (`ios-unsigned.yml`, 07.10.2026): przyciski — run 37658510716 (2e08c84) OK; widżet z przyciskami — run 37660845798
+(df53ab9) OK. Działanie na telefonie i podpis z grupą aplikacji — niesprawdzone.
+
 Przywrócenie: `git revert` commitu odwracającego (zapis w docs/18, 07.10 ok. 19:45), potem `npm run verify` i `ios-unsigned.yml`.
 
 ### 4b. Średnie (1–2 tygodnie)
