@@ -72,6 +72,11 @@ name: Szablon jak trening — wiersze serii, karty, start
 - tapOn: "To failure \\(F\\)"
 - extendedWaitUntil: { visible: "Set 4F, type: to failure.*", timeout: 15000 }
 - swipe: { from: { id: "tpl-row-0-3" }, direction: LEFT, duration: 400 }
+# Krótszy gest odsłania przycisk „Delete” pod wierszem (stan „open”) — wtedy stuknięcie; pełny od razu pyta (E2E run 37657730493).
+- runFlow:
+    when: { visible: { id: "tpl-row-0-3-del" } }
+    commands:
+      - tapOn: { id: "tpl-row-0-3-del" }
 - extendedWaitUntil: { visible: "Delete set\\?", timeout: 15000 }
 - tapOn: { text: "Delete", below: "Delete set\\?" }
 # W, 1, 2, 3F, 4D
@@ -145,6 +150,11 @@ name: Szablon jak trening — wiersze serii, karty, start
 - tapOn: "Bent Over Row \\(Dumbbell\\)"
 - extendedWaitUntil: { visible: "Set 3, type: normal.*", timeout: 15000 }
 - swipe: { from: { id: "tpl-item-1" }, direction: LEFT, duration: 400 }
+# Krótszy gest odsłania przycisk „Delete” pod wierszem (stan „open”) — wtedy stuknięcie; pełny od razu pyta (E2E run 37657730493).
+- runFlow:
+    when: { visible: { id: "tpl-item-1-del" } }
+    commands:
+      - tapOn: { id: "tpl-item-1-del" }
 - extendedWaitUntil: { visible: "Remove from template\\?", timeout: 15000 }
 - tapOn: { text: "Delete", below: "Remove from template\\?" }
 - extendedWaitUntil: { notVisible: "Remove from template\\?", timeout: 15000 }

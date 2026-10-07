@@ -56,3 +56,16 @@ test('regresja run 37645619096: każdy scenariusz .maestro/*.yaml jest na liści
   const listed = [...fs.readFileSync(path.join(dir, 'config.yaml'), 'utf8').matchAll(/^\s+-\s+(\S+\.yaml)\s*$/gm)].map((m: RegExpMatchArray) => m[1]);
   expect(listed).toEqual(files);
 });
+
+test('regresja run 37657730493: po przesunięciu wiersza scenariusz stuka odsłonięty przycisk <id>-del (gest Maestro nie sięga progu „od razu pytaj”); SwipeRow nadaje ten testID', () => {
+  let n = 0;
+  for (const f of files(dir)) {
+    const s = readFileSync(f, 'utf8');
+    for (const m of s.matchAll(/- swipe: \{ from: \{ id: "([^"]+)" \}, direction: LEFT[^\n]*\n((?:#[^\n]*\n)?)- runFlow:\n\s+when: \{ visible: \{ id: "([^"]+)" \} \}\n\s+commands:\n\s+- tapOn: \{ id: "([^"]+)" \}/g)) {
+      expect([m[3], m[4]]).toEqual([`${m[1]}-del`, `${m[1]}-del`]); n++;
+    }
+    expect((s.match(/- swipe: \{ from: \{ id: "[^"]+" \}, direction: LEFT/g) ?? []).length).toBe([...s.matchAll(/- swipe: \{ from: \{ id: "([^"]+)" \}, direction: LEFT[^\n]*\n(?:#[^\n]*\n)?- runFlow:/g)].length);
+  }
+  expect(n).toBeGreaterThanOrEqual(4);
+  expect(readFileSync(join(__dirname, '../components/SwipeRow.tsx'), 'utf8')).toContain('testID={testID ? `${testID}-del` : undefined}');
+});

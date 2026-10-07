@@ -6,7 +6,8 @@
 #   "Delete set\?"          ← 'Usunąć serię?'; przyciski "No" / "Delete" ('Nie' / 'Usuń')
 #   "\+ set"                ← '+ seria'
 #   "Set 2 done.*"          ← 'Seria {n} zrobiona — {ex}' (✓ w wierszu)
-# Pełne przesunięcie (szerokość ekranu) przekracza 2 szerokości przycisku — od razu pyta (components/SwipeRow.tsx, swipeDecision → 'ask').
+# Przesunięcie Maestro po elemencie nie sięga progu „od razu pytaj” (2 szerokości przycisku, components/SwipeRow.tsx swipeDecision) —
+# odsłania przycisk „Delete” (testID <wiersz>-del), który scenariusz stuka; potem pytanie (E2E run 37657730493, zrzuty).
 appId: pl.lukasz.trening
 name: Usuwanie przesunięciem w lewo i „Pomiń dziś”
 ---
@@ -28,6 +29,11 @@ name: Usuwanie przesunięciem w lewo i „Pomiń dziś”
 
 # --- przesunięcie w lewo → pytanie; „No” zostawia serię ---
 - swipe: { from: { id: "set-0-1" }, direction: LEFT, duration: 400 }
+# Krótszy gest odsłania przycisk „Delete” pod wierszem (stan „open”) — wtedy stuknięcie; pełny od razu pyta (E2E run 37657730493).
+- runFlow:
+    when: { visible: { id: "set-0-1-del" } }
+    commands:
+      - tapOn: { id: "set-0-1-del" }
 - extendedWaitUntil: { visible: "Delete set\\?", timeout: 15000 }
 - takeScreenshot: 44-usuwanie-pytanie
 - tapOn: { text: "No", below: "Delete set\\?" }
@@ -35,6 +41,11 @@ name: Usuwanie przesunięciem w lewo i „Pomiń dziś”
 
 # --- jeszcze raz → „Delete” usuwa serię ---
 - swipe: { from: { id: "set-0-1" }, direction: LEFT, duration: 400 }
+# Krótszy gest odsłania przycisk „Delete” pod wierszem (stan „open”) — wtedy stuknięcie; pełny od razu pyta (E2E run 37657730493).
+- runFlow:
+    when: { visible: { id: "set-0-1-del" } }
+    commands:
+      - tapOn: { id: "set-0-1-del" }
 - extendedWaitUntil: { visible: "Delete set\\?", timeout: 15000 }
 - tapOn: { text: "Delete", below: "Delete set\\?" }
 - extendedWaitUntil: { notVisible: "Set 2 done.*", timeout: 15000 }
