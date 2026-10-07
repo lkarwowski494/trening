@@ -1,8 +1,8 @@
 import ActivityKit
 import Foundation
 
-// Definicja atrybutów Live Activity. Ta sama struktura (nazwa i pola) musi istnieć w rozszerzeniu widgetu
-// (targets/rest-widget/RestTimerAttributes.swift) — ActivityKit dopasowuje aktywność po typie.
+// Definicja atrybutów Live Activity. Ta sama struktura (nazwa i pola) musi istnieć w module (modules/rest-activity/ios) oraz w
+// targets/rest-widget/_shared (widżet i cel aplikacji — intencja przycisków, 07.10.2026 wieczór) — ActivityKit dopasowuje aktywność po typie.
 @available(iOS 16.2, *)
 public struct RestTimerAttributes: ActivityAttributes {
   public struct ContentState: Codable, Hashable {

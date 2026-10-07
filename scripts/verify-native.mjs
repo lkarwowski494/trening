@@ -18,9 +18,12 @@ try {
   ok(!plist.includes('UIBackgroundModes'), 'Info.plist: UIBackgroundModes (nieużywany tryb w tle)');
   ok(/<key>NSSupportsLiveActivities<\/key>\s*<true\/>/.test(plist), 'Info.plist: NSSupportsLiveActivities ≠ true'); /* runda 64: wartość, nie sam klucz */
   for (const k of ['UIFileSharingEnabled', 'LSSupportsOpeningDocumentsInPlace']) ok(new RegExp(`<key>${k}</key>\\s*<true/>`).test(plist), `Info.plist: ${k} ≠ true (automatyczne kopie w Plikach, runda 75)`);
-  ok(readFileSync(root + 'modules/rest-activity/ios/RestTimerAttributes.swift', 'utf8') === readFileSync(root + 'targets/rest-widget/RestTimerAttributes.swift', 'utf8'), 'RestTimerAttributes.swift: moduł i widżet różnią się (Live Activity bez danych)');
+  ok(readFileSync(root + 'modules/rest-activity/ios/RestTimerAttributes.swift', 'utf8') === readFileSync(root + 'targets/rest-widget/_shared/RestTimerAttributes.swift', 'utf8'), 'RestTimerAttributes.swift: moduł i widżet różnią się (Live Activity bez danych)');
   const pbx = readFileSync(root + 'ios/Trening.xcodeproj/project.pbxproj', 'utf8');
   ok(pbx.includes('RestWidget'), 'projekt: brak celu widżetu RestWidget');
+  /* 07.10.2026 wieczór: przyciski ekranu blokady — intencja i atrybuty w celu aplikacji ORAZ widżetu (katalog _shared, @bacons/apple-targets) */
+  { const ex = /target = \w+ \/\* Trening \*\/;\s*membershipExceptions = \(([^)]*)\)/.exec(pbx)?.[1] ?? ''; /* folder widżetu synchronizowany (Xcode 16); pliki _shared dołączone do celu aplikacji wyjątkiem członkostwa */
+    for (const f of ['_shared/RestIntents.swift', '_shared/RestTimerAttributes.swift']) ok(ex.includes(f), `projekt: ${f} nie jest w celu aplikacji (przyciski ekranu blokady)`); }
   const color = JSON.parse(readFileSync(root + 'targets/rest-widget/Assets.xcassets/$accent.colorset/Contents.json', 'utf8'));
   ok(color.colors.length > 0, 'widżet: pusty kolor akcentu');
   const auto = execSync('npx expo-modules-autolinking resolve -p apple --json', { cwd: root }).toString();

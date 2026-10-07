@@ -39,6 +39,7 @@ jest.mock('@/modules/rest-activity', () => ({
   start: jest.fn(async (...a) => { global.__la.push(['start', ...a]); return false; }),
   update: jest.fn(async (...a) => { global.__la.push(['update', ...a]); return false; }),
   end: jest.fn(async () => { global.__la.push(['end']); return false; }),
+  takeAdjust: jest.fn(() => { const v = global.__laAdjust ?? null; global.__laAdjust = null; return v; }), /* 07.10.2026 wieczór: przyciski ekranu blokady */
 }));
 
 const { Alert } = require('react-native');

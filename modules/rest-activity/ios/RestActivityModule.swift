@@ -31,6 +31,15 @@ public class RestActivityModule: Module {
       return any
     }
 
+    // 07.10.2026 wieczór: stan po przycisku ekranu blokady (targets/rest-widget/_shared/RestIntents.swift zapisuje go w procesie aplikacji);
+    // odczyt zdejmuje wpis. Klucz — RestAdjust.adjustKey (test: tests/la-buttons.test.ts).
+    Function("takeAdjust") { () -> String? in
+      let key = "pl.lukasz.trening.restAdjust"
+      let value = UserDefaults.standard.string(forKey: key)
+      if value != nil { UserDefaults.standard.removeObject(forKey: key) }
+      return value
+    }
+
     AsyncFunction("end") { () -> Bool in
       guard #available(iOS 16.2, *) else { return false }
       var any = false
