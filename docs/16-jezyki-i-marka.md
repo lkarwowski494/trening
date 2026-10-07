@@ -70,6 +70,10 @@ przyjmuje nazwę zlokalizowaną (sprawdzić na buildzie — teksty ścieżki zak
 
 ## Styl marki
 
+*Decyzja właściciela 07.10.2026:* „Podoba mi się grafika B” → **kierunek B · Tuleja** (docs/21 pkt 6, makiety: https://claude.ai/artifact/VcG5ESWeNsPEVYiFA1kEru):
+kolory talerzy zawodniczych (IWF) zawsze z liczbą na talerzu, Tektur + IBM Plex Mono, ikona — koniec sztangi z talerzami z boku.
+Zastępuje Kredę (05.10) po wdrożeniu; zakres wdrożenia do ustalenia.
+
 *Decyzja właściciela 05.10.2026:* „Podoba mi się kreda.” → **kierunek A · Kreda**. Tryb ciemny: „Kreda + ciemna wersja” (05.10.2026) — w trybie ciemnym grafitowe tło, kredowy tekst, ten sam pomarańcz.
 
 Właściciel: „Grafika wydaje się defaultowa … Co możemy zrobić, żeby mieć swój własny brand style?” → wybrał „3 kierunki do wyboru”.
