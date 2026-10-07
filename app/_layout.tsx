@@ -3,7 +3,7 @@ import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import * as SplashScreen from 'expo-splash-screen';
 import { ActivityIndicator, View, Text, Pressable } from 'react-native';
-import { init, usePrefsTick, flush, refreshViews, autoFinishStale, resolveColdStopwatch, fmtTime, fmtDate, getState } from '@/lib/store';
+import { init, usePrefsTick, useHistTick, useForegroundTick, flush, refreshViews, autoFinishStale, resolveColdStopwatch, fmtTime, fmtDate, getState } from '@/lib/store';
 import { Alert } from 'react-native';
 import { onWorkoutSaved } from '@/lib/backup';
 import type { Workout } from '@/lib/seed';
@@ -12,6 +12,7 @@ import { t } from '@/lib/i18n';
 import * as timer from '@/lib/timer';
 import { useTheme, F, FONT_FILES } from '@/lib/theme';
 import * as Font from 'expo-font';
+import { pushWidget } from '@/lib/widget';
 
 /** Kroje marki (docs/16). Błąd lub brak odpowiedzi w 3 s nie blokuje startu — zostaje krój systemowy. */
 const loadFonts = () => { let to: ReturnType<typeof setTimeout> | undefined; return Promise.race([Font.loadAsync(FONT_FILES), new Promise(r => { to = setTimeout(r, 3000); })]).catch(() => {}).finally(() => clearTimeout(to)); };
@@ -39,7 +40,9 @@ export default function RootLayout() {
 
 /** Osobny komponent, bo useTick() wymaga zainicjowanego stanu; odświeża tytuły po zmianie języka. */
 function Root() {
-  const th = useTheme(); usePrefsTick();
+  const th = useTheme(); const prefs = usePrefsTick(); const hist = useHistTick(); const fg = useForegroundTick();
+  /* Widżet „Tydzień treningów” (lib/widget.ts): po starcie, zmianie historii, języka i powrocie z tła; ta sama treść — bez zapisu. */
+  useEffect(() => { pushWidget(); }, [prefs, hist, fg]);
   return (
     <>
       <StatusBar style="auto" />

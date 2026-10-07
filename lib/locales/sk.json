@@ -865,5 +865,11 @@
  "+ Nowy folder": "+ Nový priečinok",
  "Nazwa folderu": "Názov priečinka",
  "Przywróć z archiwum": "Obnoviť z archívu",
- "Archiwizuj": "Archivovať"
+ "Archiwizuj": "Archivovať",
+ "W tym tygodniu": "Tento týždeň",
+ "Ostatni trening": "Posledný tréning",
+ "Jeszcze bez treningu": "Zatiaľ bez tréningu",
+ "trening|treningi|treningów": "tréning|tréningy|tréningov",
+ "Tydzień treningów": "Tréningový týždeň",
+ "Treningi i serie w tym tygodniu oraz ostatni trening.": "Tréningy a série tento týždeň a posledný tréning."
 }

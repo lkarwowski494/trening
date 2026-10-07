@@ -865,5 +865,11 @@
  "+ Nowy folder": "+ Ny mapp",
  "Nazwa folderu": "Mappnamn",
  "Przywróć z archiwum": "Återställ från arkivet",
- "Archiwizuj": "Arkivera"
+ "Archiwizuj": "Arkivera",
+ "W tym tygodniu": "Den här veckan",
+ "Ostatni trening": "Senaste passet",
+ "Jeszcze bez treningu": "Inga pass än",
+ "trening|treningi|treningów": "pass|pass",
+ "Tydzień treningów": "Träningsvecka",
+ "Treningi i serie w tym tygodniu oraz ostatni trening.": "Pass och set den här veckan samt ditt senaste pass."
 }

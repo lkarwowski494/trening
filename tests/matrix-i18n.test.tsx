@@ -178,7 +178,7 @@ describe('liczba mnoga: lib/plural.ts zgodnie z CLDR (Intl.PluralRules) i tp() w
     for (const d of ['app', 'components', 'lib']) walk(path.join(__dirname, '..', d));
     const args = files.flatMap(f => [...fs.readFileSync(f, 'utf8').matchAll(/\btp\(([^,]+),\s*'/g)].map(m => m[1].trim()));
     expect(args.length).toBeGreaterThan(10);
-    expect(args.filter(a => !/(\.length|^Math\.round\(.*\)?|^(n|sets|days|w|ws\.length|points\.length))$/.test(a))).toEqual([]);
+    expect(args.filter(a => !/(\.length|^Math\.round\(.*\)?|^(n|sets|days|w|ws\.length|points\.length)|^\d+)$/.test(a))).toEqual([]); /* stała całkowita (np. 0 w widżecie, lib/widget.ts) — nie ułamek */
   });
 });
 

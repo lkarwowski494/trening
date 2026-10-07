@@ -865,5 +865,11 @@
  "+ Nowy folder": "+ Új mappa",
  "Nazwa folderu": "Mappa neve",
  "Przywróć z archiwum": "Visszaállítás az archívumból",
- "Archiwizuj": "Archiválás"
+ "Archiwizuj": "Archiválás",
+ "W tym tygodniu": "Ezen a héten",
+ "Ostatni trening": "Legutóbbi edzés",
+ "Jeszcze bez treningu": "Még nincs edzés",
+ "trening|treningi|treningów": "edzés|edzés",
+ "Tydzień treningów": "Edzéshét",
+ "Treningi i serie w tym tygodniu oraz ostatni trening.": "A heti edzések és sorozatok, valamint a legutóbbi edzés."
 }

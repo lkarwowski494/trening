@@ -23,9 +23,9 @@ test('mapowanie uprawnień: HealthKit → HEALTHKIT, części HealthKit bez osob
   expect(() => cap.capabilitiesFor({ 'com.apple.developer.nfc.readersession.formats': ['TAG'] })).toThrow(/Nieznane uprawnienie/);
 });
 
-test('dzisiejsza konfiguracja aplikacji: aplikacja potrzebuje tylko HealthKit, widżet niczego (push usunięty pluginem)', () => {
+test('dzisiejsza konfiguracja aplikacji: aplikacja HealthKit + grupa aplikacji, widżet tylko grupa aplikacji (07.10.2026: widżet „Tydzień treningów”; push usunięty pluginem)', () => {
   const cfg = JSON.parse(execFileSync('npx', ['expo', 'config', '--type', 'introspect', '--json'], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] }));
-  expect(cap.wantedFromConfig(cfg)).toEqual({ 'pl.lukasz.trening': ['HEALTHKIT'], 'pl.lukasz.trening.restwidget': [] });
+  expect(cap.wantedFromConfig(cfg)).toEqual({ 'pl.lukasz.trening': ['APP_GROUPS', 'HEALTHKIT'], 'pl.lukasz.trening.restwidget': ['APP_GROUPS'] });
 });
 
 /* Q-023 (runda 83): scripts/eas/configure-credentials.exp — wybór urządzeń w `eas credentials:configure-build` (eas-cli 24.8.0:

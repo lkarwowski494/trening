@@ -12,7 +12,8 @@ try {
   const ent = readFileSync(root + 'ios/Trening/Trening.entitlements', 'utf8');
   ok(ent.includes('com.apple.developer.healthkit'), 'entitlements: brak HealthKit');
   ok(!ent.includes('aps-environment'), 'entitlements: aps-environment (Push) — darmowe Apple ID tego nie podpisze');
-  { const keys = [...ent.matchAll(/<key>([^<]+)<\/key>/g)].map(m => m[1]); ok(keys.length === 1 && keys[0] === 'com.apple.developer.healthkit', 'entitlements: tylko HealthKit, są: ' + keys.join(', ')); } /* runda 63: dokładny zbiór kluczy */
+  { const keys = [...ent.matchAll(/<key>([^<]+)<\/key>/g)].map(m => m[1]); ok(keys.sort().join() === 'com.apple.developer.healthkit,com.apple.security.application-groups', 'entitlements: tylko HealthKit i grupa aplikacji, są: ' + keys.join(', ')); } /* runda 63: dokładny zbiór kluczy; 07.10.2026: grupa aplikacji dla widżetu */
+  ok(ent.includes('<string>group.pl.lukasz.trening</string>'), 'entitlements: brak grupy group.pl.lukasz.trening (widżet bez danych)');
   for (const l of ['pl', 'en']) { const p = root + `ios/Trening/Supporting/${l}.lproj/InfoPlist.strings`; ok(existsSync(p) && /NSHealthUpdateUsageDescription = "[^"]{10,}"/.test(readFileSync(p, 'utf8')) && /NSHealthShareUsageDescription = "[^"]{10,}"/.test(readFileSync(p, 'utf8')), `InfoPlist.strings ${l}: brak lub zły format`); }
   const plist = readFileSync(root + 'ios/Trening/Info.plist', 'utf8');
   ok(!plist.includes('UIBackgroundModes'), 'Info.plist: UIBackgroundModes (nieużywany tryb w tle)');

@@ -865,5 +865,11 @@
  "+ Nowy folder": "+ Jauna mape",
  "Nazwa folderu": "Mapes nosaukums",
  "Przywróć z archiwum": "Atjaunot no arhīva",
- "Archiwizuj": "Arhivēt"
+ "Archiwizuj": "Arhivēt",
+ "W tym tygodniu": "Šonedēļ",
+ "Ostatni trening": "Pēdējais treniņš",
+ "Jeszcze bez treningu": "Vēl nav treniņu",
+ "trening|treningi|treningów": "treniņu|treniņš|treniņi",
+ "Tydzień treningów": "Treniņu nedēļa",
+ "Treningi i serie w tym tygodniu oraz ostatni trening.": "Šīs nedēļas treniņi un sērijas, kā arī pēdējais treniņš."
 }

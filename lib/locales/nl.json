@@ -865,5 +865,11 @@
  "+ Nowy folder": "+ Nieuwe map",
  "Nazwa folderu": "Mapnaam",
  "Przywróć z archiwum": "Terugzetten uit archief",
- "Archiwizuj": "Archiveren"
+ "Archiwizuj": "Archiveren",
+ "W tym tygodniu": "Deze week",
+ "Ostatni trening": "Laatste training",
+ "Jeszcze bez treningu": "Nog geen training",
+ "trening|treningi|treningów": "training|trainingen",
+ "Tydzień treningów": "Trainingsweek",
+ "Treningi i serie w tym tygodniu oraz ostatni trening.": "Trainingen en sets van deze week en je laatste training."
 }

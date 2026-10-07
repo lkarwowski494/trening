@@ -865,5 +865,11 @@
  "+ Nowy folder": "+ Nová složka",
  "Nazwa folderu": "Název složky",
  "Przywróć z archiwum": "Obnovit z archivu",
- "Archiwizuj": "Archivovat"
+ "Archiwizuj": "Archivovat",
+ "W tym tygodniu": "Tento týden",
+ "Ostatni trening": "Poslední trénink",
+ "Jeszcze bez treningu": "Zatím bez tréninku",
+ "trening|treningi|treningów": "trénink|tréninky|tréninků",
+ "Tydzień treningów": "Tréninkový týden",
+ "Treningi i serie w tym tygodniu oraz ostatni trening.": "Tréninky a série tento týden a poslední trénink."
 }

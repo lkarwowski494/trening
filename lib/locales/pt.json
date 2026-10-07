@@ -865,5 +865,11 @@
  "+ Nowy folder": "+ Nova pasta",
  "Nazwa folderu": "Nome da pasta",
  "Przywróć z archiwum": "Repor do arquivo",
- "Archiwizuj": "Arquivar"
+ "Archiwizuj": "Arquivar",
+ "W tym tygodniu": "Esta semana",
+ "Ostatni trening": "Último treino",
+ "Jeszcze bez treningu": "Ainda sem treinos",
+ "trening|treningi|treningów": "treino|treinos",
+ "Tydzień treningów": "Semana de treino",
+ "Treningi i serie w tym tygodniu oraz ostatni trening.": "Treinos e séries desta semana e o último treino."
 }

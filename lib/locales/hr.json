@@ -865,5 +865,11 @@
  "+ Nowy folder": "+ Nova mapa",
  "Nazwa folderu": "Naziv mape",
  "Przywróć z archiwum": "Vrati iz arhive",
- "Archiwizuj": "Arhiviraj"
+ "Archiwizuj": "Arhiviraj",
+ "W tym tygodniu": "Ovaj tjedan",
+ "Ostatni trening": "Zadnji trening",
+ "Jeszcze bez treningu": "Još nema treninga",
+ "trening|treningi|treningów": "trening|treninga|treninga",
+ "Tydzień treningów": "Tjedan treninga",
+ "Treningi i serie w tym tygodniu oraz ostatni trening.": "Treninzi i serije ovaj tjedan te zadnji trening."
 }

@@ -42,6 +42,9 @@ jest.mock('@/modules/rest-activity', () => ({
   takeAdjust: jest.fn(() => { const v = global.__laAdjust ?? null; global.__laAdjust = null; return v; }), /* 07.10.2026 wieczór: przyciski ekranu blokady */
 }));
 
+/* 07.10.2026 wieczór: widżet na ekran główny — zapis do grupy aplikacji (lib/widget.ts) */
+global.__widget = [];
+jest.mock('@bacons/apple-targets', () => ({ ExtensionStorage: class { constructor(g) { this.g = g; } set(k, v) { global.__widget.push(['set', this.g, k, v]); } static reloadWidget(k) { global.__widget.push(['reload', k]); } } }));
 const { Alert } = require('react-native');
 Alert.alert = jest.fn((title, msg, buttons) => { global.__alerts.push({ title, msg, buttons }); });
 Alert.prompt = jest.fn((title, msg, buttons, type, def) => { global.__alerts.push({ title, msg, buttons, prompt: true, def }); });

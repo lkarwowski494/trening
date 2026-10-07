@@ -958,6 +958,10 @@
   "en": "unilateral (per side, ×2)"
  },
  {
+  "pl": "Jeszcze bez treningu",
+  "en": "No workout yet"
+ },
+ {
   "pl": "Jeszcze pusto — pierwszy trening czeka.",
   "en": "Nothing yet — your first workout is waiting."
  },
@@ -1800,6 +1804,10 @@
  {
   "pl": "Orbitrek",
   "en": "Elliptical"
+ },
+ {
+  "pl": "Ostatni trening",
+  "en": "Last workout"
  },
  {
   "pl": "Ostatnia rozgrzewka o {t}, bez serii roboczych. Kontynuować czy odrzucić?",
@@ -2810,12 +2818,25 @@
   "en": "A workout you didn’t log at the time. Set the date and pick a template — you’ll fill in the sets in the next step (values from your last workout before that date)."
  },
  {
+  "pl": "trening|treningi|treningów",
+  "en": "workout|workouts",
+  "plural": true
+ },
+ {
+  "pl": "Treningi i serie w tym tygodniu oraz ostatni trening.",
+  "en": "Workouts and sets this week, plus your last workout."
+ },
+ {
   "pl": "Treningi i szablony z tym miejscem pokażą „(usunięte miejsce)”.",
   "en": "Workouts and templates with this place will show “(deleted place)”."
  },
  {
   "pl": "triceps",
   "en": "triceps"
+ },
+ {
+  "pl": "Tydzień treningów",
+  "en": "Training week"
  },
  {
   "pl": "Tygodnie od poniedziałku. Objętość = ciężar × powtórzenia × mnożnik ćwiczenia; rozgrzewka poza.",
@@ -3064,6 +3085,10 @@
  {
   "pl": "W trwającym treningu zostanie oznaczone jako usunięte.",
   "en": "In the current workout it will be marked as deleted."
+ },
+ {
+  "pl": "W tym tygodniu",
+  "en": "This week"
  },
  {
   "pl": "Waga ({u})",

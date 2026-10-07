@@ -865,5 +865,11 @@
  "+ Nowy folder": "+ Dosar nou",
  "Nazwa folderu": "Numele dosarului",
  "Przywróć z archiwum": "Restabilește din arhivă",
- "Archiwizuj": "Arhivează"
+ "Archiwizuj": "Arhivează",
+ "W tym tygodniu": "Săptămâna aceasta",
+ "Ostatni trening": "Ultimul antrenament",
+ "Jeszcze bez treningu": "Încă niciun antrenament",
+ "trening|treningi|treningów": "antrenament|antrenamente|de antrenamente",
+ "Tydzień treningów": "Săptămâna de antrenament",
+ "Treningi i serie w tym tygodniu oraz ostatni trening.": "Antrenamentele și seriile din această săptămână și ultimul antrenament."
 }

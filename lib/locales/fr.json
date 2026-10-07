@@ -865,5 +865,11 @@
  "+ Nowy folder": "+ Nouveau dossier",
  "Nazwa folderu": "Nom du dossier",
  "Przywróć z archiwum": "Sortir des archives",
- "Archiwizuj": "Archiver"
+ "Archiwizuj": "Archiver",
+ "W tym tygodniu": "Cette semaine",
+ "Ostatni trening": "Dernière séance",
+ "Jeszcze bez treningu": "Aucune séance pour l’instant",
+ "trening|treningi|treningów": "séance|séances",
+ "Tydzień treningów": "Semaine d’entraînement",
+ "Treningi i serie w tym tygodniu oraz ostatni trening.": "Séances et séries de la semaine, et votre dernière séance."
 }

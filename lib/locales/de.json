@@ -865,5 +865,11 @@
  "+ Nowy folder": "+ Neuer Ordner",
  "Nazwa folderu": "Ordnername",
  "Przywróć z archiwum": "Aus dem Archiv holen",
- "Archiwizuj": "Archivieren"
+ "Archiwizuj": "Archivieren",
+ "W tym tygodniu": "Diese Woche",
+ "Ostatni trening": "Letztes Training",
+ "Jeszcze bez treningu": "Noch kein Training",
+ "trening|treningi|treningów": "Einheit|Einheiten",
+ "Tydzień treningów": "Trainingswoche",
+ "Treningi i serie w tym tygodniu oraz ostatni trening.": "Einheiten und Sätze dieser Woche sowie dein letztes Training."
 }

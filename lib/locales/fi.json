@@ -865,5 +865,11 @@
  "+ Nowy folder": "+ Uusi kansio",
  "Nazwa folderu": "Kansion nimi",
  "Przywróć z archiwum": "Palauta arkistosta",
- "Archiwizuj": "Arkistoi"
+ "Archiwizuj": "Arkistoi",
+ "W tym tygodniu": "Tällä viikolla",
+ "Ostatni trening": "Viimeisin treeni",
+ "Jeszcze bez treningu": "Ei vielä treenejä",
+ "trening|treningi|treningów": "treeni|treeniä",
+ "Tydzień treningów": "Treeniviikko",
+ "Treningi i serie w tym tygodniu oraz ostatni trening.": "Tämän viikon treenit ja sarjat sekä viimeisin treeni."
 }

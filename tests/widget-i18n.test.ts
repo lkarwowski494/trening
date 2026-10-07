@@ -10,12 +10,14 @@ import { LANGS, APP_NAME, applyLang, t } from '@/lib/i18n';
 
 const dir = path.join(__dirname, '..', 'targets', 'rest-widget');
 const esc = (s: string) => s.replace(/\\/g, '\\\\').replace(/"/g, '\\"');
-const labels = () => LANGS.map(l => { applyLang(l); const r = { l, rest: t('Przerwa'), set: t('Seria'), skip: t('Pomiń'), shorter: t('Skróć przerwę o 15 sekund'), longer: t('Wydłuż przerwę o 15 sekund') }; return r; }); /* 07.10.2026 wieczór: etykiety przycisków ekranu blokady */
+const labels = () => LANGS.map(l => { applyLang(l); const r = { l, rest: t('Przerwa'), set: t('Seria'), skip: t('Pomiń'), shorter: t('Skróć przerwę o 15 sekund'), longer: t('Wydłuż przerwę o 15 sekund'), title: t('Tydzień treningów'), description: t('Treningi i serie w tym tygodniu oraz ostatni trening.'), none: t('Jeszcze bez treningu') }; return r; }); /* 07.10.2026 wieczór: etykiety przycisków ekranu blokady */
 function expected(): Record<string, string> {
   const ls = labels(); applyLang('pl'); const out: Record<string, string> = {};
   for (const x of ls) out[`${x.l}.lproj/InfoPlist.strings`] = `/* Generowane: tests/widget-i18n.test.ts (UPDATE_WIDGET=1) — nie edytuj ręcznie. */\n"CFBundleDisplayName" = "${esc(`${APP_NAME[x.l]} — ${x.rest}`)}";\n`;
   out['RestLabels.swift'] = `// Generowane: tests/widget-i18n.test.ts (UPDATE_WIDGET=1) — nie edytuj ręcznie.\n// Etykiety rodzaju odliczania w 16 językach aplikacji (zapas, gdy aplikacja nie przekaże etykiety w polu kind).\nlet restLabels: [String: (rest: String, set: String, skip: String, shorter: String, longer: String)] = [\n` +
-    ls.map(x => `  "${x.l}": (rest: "${esc(x.rest)}", set: "${esc(x.set)}", skip: "${esc(x.skip)}", shorter: "${esc(x.shorter)}", longer: "${esc(x.longer)}"),`).join('\n') + `\n]\n`;
+    ls.map(x => `  "${x.l}": (rest: "${esc(x.rest)}", set: "${esc(x.set)}", skip: "${esc(x.skip)}", shorter: "${esc(x.shorter)}", longer: "${esc(x.longer)}"),`).join('\n') + `\n]\n` +
+    `// Widżet na ekran główny (SummaryWidget.swift, 07.10.2026 wieczór): nazwa i opis w galerii, tekst bez danych.\nlet summaryWidgetLabels: [String: (title: String, description: String, none: String)] = [\n` +
+    ls.map(x => `  "${x.l}": (title: "${esc(x.title)}", description: "${esc(x.description)}", none: "${esc(x.none)}"),`).join('\n') + `\n]\n`;
   return out;
 }
 test('pliki widżetu zgodne z APP_NAME i słownikami (wszystkie języki — LANGS)', () => {

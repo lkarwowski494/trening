@@ -865,5 +865,11 @@
  "+ Nowy folder": "+ Νέος φάκελος",
  "Nazwa folderu": "Όνομα φακέλου",
  "Przywróć z archiwum": "Επαναφορά από το αρχείο",
- "Archiwizuj": "Αρχειοθέτηση"
+ "Archiwizuj": "Αρχειοθέτηση",
+ "W tym tygodniu": "Αυτή την εβδομάδα",
+ "Ostatni trening": "Τελευταία προπόνηση",
+ "Jeszcze bez treningu": "Καμία προπόνηση ακόμη",
+ "trening|treningi|treningów": "προπόνηση|προπονήσεις",
+ "Tydzień treningów": "Εβδομάδα προπονήσεων",
+ "Treningi i serie w tym tygodniu oraz ostatni trening.": "Προπονήσεις και σετ αυτή την εβδομάδα και η τελευταία προπόνηση."
 }
