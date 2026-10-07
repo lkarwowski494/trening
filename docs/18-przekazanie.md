@@ -69,3 +69,4 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
 - 06.10.2026: **status tradera (DSA) od pierwszego dnia**; subskrypcja roczna 29 zł, najpierw **90 dni za darmo**, później 30 dni dla nowych (docs/15).
 - 06.10.2026: po wygaśnięciu subskrypcji — nowe treningi zablokowane, historia/kopia/eksport działają zawsze (potwierdzone).
 - 06.10.2026: scalenie 0.9.0 do `main` — **wariant B**: po zielonym E2E na `integration/0.9.0` (run 37512398240, `7c0781b`), potem pierwszy TestFlight.
+- 06.10.2026: E2E na `integration/0.9.0` zielone 10/10 (run 37512398240, `7c0781b`); 07.10.2026 na polecenie właściciela („B”) `integration/0.9.0` i `main` przesunięte (fast-forward). Następny krok: TestFlight (kroki właściciela wyżej).
