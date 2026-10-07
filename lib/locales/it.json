@@ -843,5 +843,13 @@
  "asysta gumą: {v}": "assistenza elastico: {v}",
  "dociążenie: {v}": "zavorra: {v}",
  "asysta: {v}": "assistenza: {v}",
- "Lista: ćwiczenia i serie jak w poprzednich wersjach, bez karty.": "Elenco: esercizi e serie come nelle versioni precedenti, senza la scheda."
+ "Lista: ćwiczenia i serie jak w poprzednich wersjach, bez karty.": "Elenco: esercizi e serie come nelle versioni precedenti, senza la scheda.",
+ "Usuń sesję: {name}": "Elimina sessione: {name}",
+ "Usuń szablon: {name}": "Elimina scheda: {name}",
+ "Usuń gumę: {name}": "Elimina elastico: {name}",
+ "Usuń miejsce: {name}": "Elimina luogo: {name}",
+ "Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✂ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.": "Tocca l’etichetta di una serie per cambiarne il tipo; scorri una riga verso sinistra per eliminarla. L’intervallo di ripetizioni è facoltativo — con esso compaiono i suggerimenti “↑”. “⇅ SS” collega un esercizio al successivo in un superset, “✂ SS” lo toglie dal gruppo. Ordine: “≡ Riordina”.",
+ "Seria {n}, typ: {k}. Tapnij, by zmienić typ.": "Serie {n}, tipo: {k}. Tocca per cambiare il tipo.",
+ "Usunąć talerz?": "Rimuovere il disco?",
+ "Usuń z biblioteki: {name}": "Elimina dalla libreria: {name}"
 }

@@ -843,5 +843,13 @@
  "asysta gumą: {v}": "bant desteği: {v}",
  "dociążenie: {v}": "ek ağırlık: {v}",
  "asysta: {v}": "destek: {v}",
- "Lista: ćwiczenia i serie jak w poprzednich wersjach, bez karty.": "Liste: egzersizler ve setler önceki sürümlerdeki gibi, kart olmadan."
+ "Lista: ćwiczenia i serie jak w poprzednich wersjach, bez karty.": "Liste: egzersizler ve setler önceki sürümlerdeki gibi, kart olmadan.",
+ "Usuń sesję: {name}": "Oturumu sil: {name}",
+ "Usuń szablon: {name}": "Şablonu sil: {name}",
+ "Usuń gumę: {name}": "Bandı sil: {name}",
+ "Usuń miejsce: {name}": "Yeri sil: {name}",
+ "Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✂ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.": "Türünü değiştirmek için set etiketine dokunun; silmek için satırı sola kaydırın. Tekrar aralığı isteğe bağlıdır — onunla “↑” ipuçları gelir. “⇅ SS” egzersizi sonrakiyle süpersette birleştirir, “✂ SS” gruptan çıkarır. Sıra: “≡ Sırala”.",
+ "Seria {n}, typ: {k}. Tapnij, by zmienić typ.": "Set {n}, tür: {k}. Türü değiştirmek için dokunun.",
+ "Usunąć talerz?": "Plaka kaldırılsın mı?",
+ "Usuń z biblioteki: {name}": "Kütüphaneden sil: {name}"
 }

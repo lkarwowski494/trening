@@ -843,5 +843,13 @@
  "asysta gumą: {v}": "υποβοήθηση με λάστιχο: {v}",
  "dociążenie: {v}": "επιπλέον βάρος: {v}",
  "asysta: {v}": "υποβοήθηση: {v}",
- "Lista: ćwiczenia i serie jak w poprzednich wersjach, bez karty.": "Λίστα: ασκήσεις και σετ όπως στις προηγούμενες εκδόσεις, χωρίς την κάρτα."
+ "Lista: ćwiczenia i serie jak w poprzednich wersjach, bez karty.": "Λίστα: ασκήσεις και σετ όπως στις προηγούμενες εκδόσεις, χωρίς την κάρτα.",
+ "Usuń sesję: {name}": "Διαγραφή συνεδρίας: {name}",
+ "Usuń szablon: {name}": "Διαγραφή προτύπου: {name}",
+ "Usuń gumę: {name}": "Διαγραφή λάστιχου: {name}",
+ "Usuń miejsce: {name}": "Διαγραφή χώρου: {name}",
+ "Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✂ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.": "Πάτα την ετικέτα σετ για αλλαγή τύπου· σύρε μια γραμμή αριστερά για διαγραφή. Το εύρος επαναλήψεων είναι προαιρετικό — με αυτό παίρνεις ενδείξεις «↑». Το «⇅ SS» ενώνει την άσκηση με την επόμενη σε superset, το «✂ SS» τη βγάζει. Σειρά: «≡ Σειρά».",
+ "Seria {n}, typ: {k}. Tapnij, by zmienić typ.": "Σετ {n}, τύπος: {k}. Πάτα για αλλαγή τύπου.",
+ "Usunąć talerz?": "Αφαίρεση δίσκου;",
+ "Usuń z biblioteki: {name}": "Διαγραφή από τη βιβλιοθήκη: {name}"
 }

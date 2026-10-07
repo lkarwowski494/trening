@@ -843,5 +843,13 @@
  "asysta gumą: {v}": "помощ с ластик: {v}",
  "dociążenie: {v}": "допълнителна тежест: {v}",
  "asysta: {v}": "помощ: {v}",
- "Lista: ćwiczenia i serie jak w poprzednich wersjach, bez karty.": "Списък: упражнения и серии като в предишните версии, без карта."
+ "Lista: ćwiczenia i serie jak w poprzednich wersjach, bez karty.": "Списък: упражнения и серии като в предишните версии, без карта.",
+ "Usuń sesję: {name}": "Изтриване на тренировката: {name}",
+ "Usuń szablon: {name}": "Изтриване на шаблона: {name}",
+ "Usuń gumę: {name}": "Изтриване на ластика: {name}",
+ "Usuń miejsce: {name}": "Изтриване на мястото: {name}",
+ "Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✂ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.": "Докоснете етикета на серията, за да смените типа ѝ; плъзнете реда наляво, за да го изтриете. Диапазонът на повторенията е по избор — с него се появяват подсказки „↑“. „⇅ SS“ свързва упражнението със следващото в суперсерия, „✂ SS“ го изважда от групата. Ред: „≡ Подредба“.",
+ "Seria {n}, typ: {k}. Tapnij, by zmienić typ.": "Серия {n}, тип: {k}. Докоснете, за да смените типа.",
+ "Usunąć talerz?": "Премахване на диска?",
+ "Usuń z biblioteki: {name}": "Изтриване от библиотеката: {name}"
 }

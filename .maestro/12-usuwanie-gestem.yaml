@@ -1,0 +1,42 @@
+# Usuwanie przesunięciem w lewo (decyzja właściciela 07.10.2026 wieczór, docs/18): prawdziwy gest palcem — „Nie” zostawia serię,
+# „Delete” ją usuwa; ostatnia seria bloku nie ma gestu. Logika i wszystkie miejsca usuwania: tests/swipe-delete.test.tsx.
+#
+# Literały (EN z lib/i18n.en.ts):
+#   set-0-1                 ← testID wiersza serii 2 bloku 0 (components/ActiveWorkout.tsx, SwipeRow)
+#   "Delete set\?"          ← 'Usunąć serię?'; przyciski "No" / "Delete" ('Nie' / 'Usuń')
+#   "\+ set"                ← '+ seria'
+#   "Set 2 done.*"          ← 'Seria {n} zrobiona — {ex}' (✓ w wierszu)
+# Pełne przesunięcie (szerokość ekranu) przekracza 2 szerokości przycisku — od razu pyta (components/SwipeRow.tsx, swipeDecision → 'ask').
+appId: pl.lukasz.trening
+name: Usuwanie przesunięciem w lewo
+---
+- launchApp:
+    clearState: true
+    permissions: { all: allow }
+- extendedWaitUntil: { visible: "Start from a template", timeout: 60000 }
+- scrollUntilVisible: { element: "Empty workout", direction: DOWN, timeout: 60000 }
+- tapOn: "Empty workout"
+- extendedWaitUntil: { visible: "\\+ Add exercise", timeout: 30000 }
+- tapOn: "\\+ Add exercise"
+- tapOn: "Search exercises…"
+- inputText: "Back Squat"
+- tapOn: { text: "Continue", optional: true }
+- tapOn: "Back Squat,.*"
+- extendedWaitUntil: { visible: "\\+ set", timeout: 30000 }
+- tapOn: "\\+ set"
+- extendedWaitUntil: { visible: "Set 2 done.*", timeout: 15000 }
+
+# --- przesunięcie w lewo → pytanie; „No” zostawia serię ---
+- swipe: { from: { id: "set-0-1" }, direction: LEFT, duration: 400 }
+- extendedWaitUntil: { visible: "Delete set\\?", timeout: 15000 }
+- takeScreenshot: 44-usuwanie-pytanie
+- tapOn: { text: "No", below: "Delete set\\?" }
+- assertVisible: "Set 2 done.*"
+
+# --- jeszcze raz → „Delete” usuwa serię ---
+- swipe: { from: { id: "set-0-1" }, direction: LEFT, duration: 400 }
+- extendedWaitUntil: { visible: "Delete set\\?", timeout: 15000 }
+- tapOn: { text: "Delete", below: "Delete set\\?" }
+- extendedWaitUntil: { notVisible: "Set 2 done.*", timeout: 15000 }
+- assertVisible: "Set 1 done.*"
+- takeScreenshot: 45-usuwanie-po

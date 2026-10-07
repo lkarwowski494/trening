@@ -843,5 +843,13 @@
  "asysta gumą: {v}": "pomoč elastike: {v}",
  "dociążenie: {v}": "dodatna obremenitev: {v}",
  "asysta: {v}": "pomoč: {v}",
- "Lista: ćwiczenia i serie jak w poprzednich wersjach, bez karty.": "Seznam: vaje in serije kot v prejšnjih različicah, brez kartice."
+ "Lista: ćwiczenia i serie jak w poprzednich wersjach, bez karty.": "Seznam: vaje in serije kot v prejšnjih različicah, brez kartice.",
+ "Usuń sesję: {name}": "Izbriši trening: {name}",
+ "Usuń szablon: {name}": "Izbriši predlogo: {name}",
+ "Usuń gumę: {name}": "Izbriši elastiko: {name}",
+ "Usuń miejsce: {name}": "Izbriši lokacijo: {name}",
+ "Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✂ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.": "Tapnite oznako serije, da spremenite vrsto; povlecite vrstico v levo, da jo izbrišete. Razpon ponovitev ni obvezen — z njim se prikazujejo namigi „↑“. „⇅ SS“ poveže vajo z naslednjo v superserijo, „✂ SS“ jo odstrani iz skupine. Vrstni red: „≡ Vrstni red“.",
+ "Seria {n}, typ: {k}. Tapnij, by zmienić typ.": "Serija {n}, vrsta: {k}. Tapnite, da spremenite vrsto.",
+ "Usunąć talerz?": "Odstranim ploščo?",
+ "Usuń z biblioteki: {name}": "Izbriši iz knjižnice: {name}"
 }

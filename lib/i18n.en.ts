@@ -317,4 +317,14 @@ export const EN: Record<string, string> = {
   'dociążenie: {v}': 'added weight: {v}',
   'asysta: {v}': 'assistance: {v}',
   'Lista: ćwiczenia i serie jak w poprzednich wersjach, bez karty.': 'List: exercises and sets as in earlier versions, without the card.',
+
+  /* 07.10.2026 wieczór: usuwanie przesunięciem w lewo (components/SwipeRow.tsx) */
+  'Usuń sesję: {name}': 'Delete session: {name}',
+  'Usuń szablon: {name}': 'Delete template: {name}',
+  'Usuń gumę: {name}': 'Delete band: {name}',
+  'Usuń miejsce: {name}': 'Delete place: {name}',
+  'Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✂ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.': 'Tap a set label to change its type; swipe a row left to delete it. The rep range is optional — with it you get “↑” hints. “⇅ SS” links an exercise with the next one in a superset, “✂ SS” takes it out of the group. Order: “≡ Reorder”.',
+  'Seria {n}, typ: {k}. Tapnij, by zmienić typ.': 'Set {n}, type: {k}. Tap to change the type.',
+  'Usunąć talerz?': 'Remove plate?',
+  'Usuń z biblioteki: {name}': 'Delete from library: {name}',
 };

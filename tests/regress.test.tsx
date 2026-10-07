@@ -5,7 +5,7 @@ import * as timer from '@/lib/timer';
 import * as units from '@/lib/units';
 import { buildCsv } from '@/lib/backup';
 import { fresh, ex, addWorkout, pressAlert, seedState, withDemoTemplates, seedWithDemo, legacyBandKg } from './helpers';
-import { renderApp, tap, type, flushAll, screen, go, act, openCard } from './app';
+import { renderApp, tap, type, flushAll, screen, go, act, openCard, swipeDelete, deleteActions } from './app';
 
 jest.setTimeout(30000);
 const at = (y: number, m: number, d: number, h = 18) => new Date(y, m - 1, d, h).getTime();
@@ -88,7 +88,8 @@ describe('runda 1 — ekrany', () => {
     await renderApp();
     await act(async () => { store.startEmpty(); store.addExerciseToActive(ex('Plank')); store.addSet(0); }); await flushAll(10);
     await tap(screen.getAllByLabelText('Start stopera serii')[1]); expect(timer.S.on).toBe(true);
-    await tap(screen.getByText('− seria')); await flushAll(10);
+    /* 07.10.2026 wieczór: „− seria” zastąpione usuwaniem przesunięciem wiersza (components/SwipeRow.tsx) */
+    await swipeDelete('Usuń serię 2 — Plank'); pressAlert('Usunąć serię?', 'Usuń'); await flushAll(10);
     expect(timer.S.on).toBe(false);
   });
   test('R1-21 po polsku przecinek w polach wstawionych przez apkę', async () => {
@@ -594,12 +595,14 @@ describe('runda 10', () => {
   });
   test('R10-03 podwójne „usuń” ćwiczenia w treningu usuwa jedno', async () => {
     await renderApp({ saved: seedWithDemo() }); await tap(screen.getByLabelText('Start: Upper A')); const n = store.getState().active!.exercises.length;
-    await press2(screen.getAllByText('usuń')[0]); global.__alerts.filter((a: any) => a.title === 'Usunąć z treningu?').forEach(() => pressAlert('Usunąć z treningu?', 'Usuń'));
+    const lbl = deleteActions().find(l => l.startsWith('Usuń ćwiczenie: '))!; await swipeDelete(lbl); await swipeDelete(lbl); /* 07.10.2026 wieczór: gest zamiast „usuń”; dwa potwierdzenia */
+    const al = global.__alerts.filter((a: any) => a.title === 'Usunąć z treningu?'); expect(al.length).toBe(2); await act(async () => { al.forEach((a: any) => a.buttons.find((b: any) => b.text === 'Usuń').onPress()); });
     await flushAll(10); expect(store.getState().active!.exercises.length).toBe(n - 1);
   });
   test('R10-04 podwójne „✕” w szablonie usuwa jedną pozycję', async () => {
     await renderApp({ saved: seedWithDemo() }); const tpl = store.getState().templates[0]; const n = tpl.items.length; await tap(screen.getByText(tpl.name)); await flushAll(10); await openCard(0);
-    await press2(screen.getAllByLabelText('Usuń z szablonu')[0]); global.__alerts.filter((a: any) => a.title === 'Usunąć z szablonu?').forEach(() => pressAlert('Usunąć z szablonu?', 'Usuń'));
+    const lbl = deleteActions().find(l => l.startsWith('Usuń ćwiczenie: '))!; await swipeDelete(lbl); await swipeDelete(lbl); /* 07.10.2026 wieczór: gest zamiast „✕” */
+    const al = global.__alerts.filter((a: any) => a.title === 'Usunąć z szablonu?'); expect(al.length).toBe(2); await act(async () => { al.forEach((a: any) => a.buttons.find((b: any) => b.text === 'Usuń').onPress()); });
     await flushAll(10); expect(tpl.items.length).toBe(n - 1);
   });
   test('R10-05 „Zapamiętaj” przerwę w bloku dodanym w trakcie nie zmienia szablonu', async () => {
@@ -633,8 +636,8 @@ describe('runda 11', () => {
   });
   test('R11-04 podwójne „Usuń sesję” nie wyrzuca z zakładki Historia', async () => {
     await renderApp(); const w = addWorkout(Date.now() - 3600e3, [['Back Squat', [{ weight: 100, reps: 5 }]]]); await go('/history'); await flushAll(10);
-    await tap(screen.getByText(w.templateName)); await flushAll(10);
-    await act(async () => { const { fireEvent } = require('@testing-library/react-native'); const b = screen.getByText('Usuń sesję'); fireEvent.press(b); fireEvent.press(b); });
+    /* 07.10.2026 wieczór: usuwanie sesji przesunięciem na liście Historii (bez przycisku w szczegółach) — dwa gesty, dwa potwierdzenia */
+    await swipeDelete(/^Usuń sesję: /); await swipeDelete(/^Usuń sesję: /);
     const al = global.__alerts.filter((x: any) => x.title === 'Usunąć tę sesję z historii?'); await act(async () => { al.forEach((x: any) => x.buttons.find((b: any) => b.text === 'Usuń').onPress()); }); await flushAll(10);
     expect(screen.getByText(/pierwszy trening czeka/)).toBeTruthy();
   });
@@ -1183,7 +1186,7 @@ describe('runda 48', () => {
   test('R48-05 usunięcie gumy zdejmuje ją z treningu w toku (P-001: ±kg zostaje)', async () => {
     await renderApp(); const st = store.getState(); st.bands.forEach(b => { legacyBandKg(b, 20); }); const ids = st.bands.map(b => b.id);
     await act(async () => { store.startEmpty(); store.addExerciseToActive(ex('Pull Up')); ids.slice(1).forEach(() => store.addSet(0)); st.active!.exercises[0].sets.forEach((s, i) => { s.bandId = ids[i]; s.addKg = -20; }); store.save(st.active); });
-    await go('/more/bands'); await flushAll(10); await tap(screen.getAllByLabelText('Usuń gumę')[0]); pressAlert('Usunąć gumę?', 'Usuń'); await flushAll(5);
+    await go('/more/bands'); await flushAll(10); await swipeDelete(/^Usuń gumę: /); pressAlert('Usunąć gumę?', 'Usuń'); await flushAll(5);
     const gone = ids.findIndex(id => !st.bands.some(b => b.id === id)); expect(gone).toBeGreaterThanOrEqual(0);
     const sets = st.active!.exercises[0].sets; expect([sets[gone].bandId, sets[gone].addKg]).toEqual(['', -20]); expect(sets.filter(s => s.bandId).length).toBe(ids.length - 1);
   });
@@ -1235,8 +1238,8 @@ describe('runda 49', () => {
   test('R49-06 VoiceOver: kontrolki wiersza szablonu i gumy mówią, czego dotyczą; chip wybranego ćwiczenia; nieaktywne moduły', async () => {
     await renderApp({ saved: seedWithDemo() }); const st = store.getState(); const tpl = st.templates[0]; await go(`/template/${tpl.id}`); await flushAll(10); await openCard(0);
     const name = store.exById(tpl.items[0].exerciseId)!.name;
-    expect(screen.getAllByLabelText('Usuń z szablonu')[0].props.accessibilityHint).toBe(name); expect(screen.getAllByLabelText('+ seria')[0].props.accessibilityHint).toBe(name);
-    await go('/more/bands'); await flushAll(10); expect(screen.getAllByLabelText('Usuń gumę')[0].props.accessibilityHint).toBeTruthy();
+    expect(deleteActions()).toContain(`Usuń ćwiczenie: ${name}`); expect(screen.getAllByLabelText('+ seria')[0].props.accessibilityHint).toBe(name); /* 07.10.2026 wieczór: akcja „usuń” zamiast przycisku */
+    await go('/more/bands'); await flushAll(10); expect(deleteActions().filter(l => /^Usuń gumę: .+/.test(l)).length).toBe(store.getState().bands.length);
     await go(`/more/progress?ex=${ex('Back Squat').id}`); await flushAll(10); const chip = screen.getByLabelText('Back Squat'); expect(chip.props.accessibilityHint).toMatch(/inne ćwiczenie/);
     /* moduły schowane 05.10.2026 (decyzja właściciela) — chip „Trening” nie jest już wyświetlany */
   });
@@ -1269,7 +1272,7 @@ describe('runda 50', () => {
     expect(screen.queryByText(/Dieta/)).toBeNull(); expect(screen.getByText('Dane w telefonie')).toBeTruthy();
   });
   test('R50-05 usunięcie nieużywanej gumy nie straszy historią ani treningiem', async () => {
-    await renderApp(); await go('/more/bands'); await flushAll(10); await tap(screen.getAllByLabelText('Usuń gumę')[0]);
+    await renderApp(); await go('/more/bands'); await flushAll(10); await swipeDelete(/^Usuń gumę: /);
     const a = global.__alerts.filter((x: any) => x.title === 'Usunąć gumę?').pop(); expect(a!.msg).toBeFalsy();
   });
   test('R50-06 historia: wiersz serii czytany jako „nagłówek: wartość”', async () => {
@@ -1406,7 +1409,7 @@ describe('runda 54', () => {
     await renderApp(); const st = store.getState(); st.bands.forEach(b => { legacyBandKg(b, 20); });
     await act(async () => { store.startEmpty(); store.addExerciseToActive(ex('Pull Up')); const s = st.active!.exercises[0].sets[0]; s.bandId = st.bands[0].id; s.addKg = -15; store.save(st.active); });
     await go('/more/bands'); await flushAll(10); const n = st.bands.length;
-    for (let i = 0; i < n; i++) { await tap(screen.getAllByLabelText('Usuń gumę')[0]); pressAlert('Usunąć gumę?', 'Usuń'); await flushAll(5); }
+    for (let i = 0; i < n; i++) { await swipeDelete(/^Usuń gumę: /); pressAlert('Usunąć gumę?', 'Usuń'); await flushAll(5); }
     const s = st.active!.exercises[0].sets[0]; expect([s.bandId, s.addKg]).toEqual(['', -15]); expect(screen.getByText(/Brak gum/)).toBeTruthy();
   });
   test('R54-03 link do postępów ćwiczenia przy otwartym ekranie postępów pokazuje to ćwiczenie', async () => {
@@ -1632,7 +1635,7 @@ describe('runda 67', () => {
   });
   test('R67-03 dwie pozycje szablonu z tym samym ćwiczeniem rozróżnialne dla VoiceOver', async () => {
     await renderApp(); const tpl = store.newTemplate(); const sq = ex('Back Squat'); for (const id of ['a', 'b']) tpl.items.push({ id, exerciseId: sq.id, sets: 3, repMin: 5, repMax: 8, restSec: null, startWeight: '', targetSec: '', groupId: null }); store.save(tpl);
-    await go(`/template/${tpl.id}`); await flushAll(10); const h: string[] = []; for (const i of [0, 1]) { await openCard(i); h.push(screen.getByLabelText('Usuń z szablonu').props.accessibilityHint); } expect(new Set(h).size).toBe(2); /* 06.10.2026: karty — otwarta jedna */
+    await go(`/template/${tpl.id}`); await flushAll(10); const h = deleteActions().filter(l => l.startsWith('Usuń ćwiczenie: ')); expect(h).toEqual(['Usuń ćwiczenie: Back Squat (1)', 'Usuń ćwiczenie: Back Squat (2)']); /* 07.10.2026 wieczór: akcja „usuń” nagłówka pozycji */
   });
   test('R67-04 koniec przerwy kończy Live Activity także poza zakładką Trening', async () => {
     await renderApp({ url: '/history' }); await act(async () => { store.startEmpty(); await timer.start(3); }); global.__la.length = 0;

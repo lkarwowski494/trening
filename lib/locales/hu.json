@@ -843,5 +843,13 @@
  "asysta gumą: {v}": "gumis segítség: {v}",
  "dociążenie: {v}": "plusz súly: {v}",
  "asysta: {v}": "segítség: {v}",
- "Lista: ćwiczenia i serie jak w poprzednich wersjach, bez karty.": "Lista: gyakorlatok és sorozatok, mint a korábbi verziókban, kártya nélkül."
+ "Lista: ćwiczenia i serie jak w poprzednich wersjach, bez karty.": "Lista: gyakorlatok és sorozatok, mint a korábbi verziókban, kártya nélkül.",
+ "Usuń sesję: {name}": "Edzés törlése: {name}",
+ "Usuń szablon: {name}": "Sablon törlése: {name}",
+ "Usuń gumę: {name}": "Gumiszalag törlése: {name}",
+ "Usuń miejsce: {name}": "Helyszín törlése: {name}",
+ "Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✂ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.": "Koppintson a sorozat jelölésére a típus módosításához; húzza balra a sort a törléséhez. Az ismétlési tartomány nem kötelező — vele „↑” tippeket kap. A „⇅ SS” szuperszettbe kapcsolja a gyakorlatot a következővel, a „✂ SS” kiveszi a csoportból. Sorrend: „≡ Átrendezés”.",
+ "Seria {n}, typ: {k}. Tapnij, by zmienić typ.": "{n}. sorozat, típus: {k}. Koppintson a típus módosításához.",
+ "Usunąć talerz?": "Eltávolítja a tárcsát?",
+ "Usuń z biblioteki: {name}": "Törlés a könyvtárból: {name}"
 }

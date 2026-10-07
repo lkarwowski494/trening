@@ -577,6 +577,10 @@
   "en": "Tap a set label to change its type or delete the set. The rep range is optional — with it you get “↑” hints. “⇅ SS” links an exercise with the next one in a superset, “✂ SS” takes it out of the group. Order: “≡ Reorder”."
  },
  {
+  "pl": "Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✂ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.",
+  "en": "Tap a set label to change its type; swipe a row left to delete it. The rep range is optional — with it you get “↑” hints. “⇅ SS” links an exercise with the next one in a superset, “✂ SS” takes it out of the group. Order: “≡ Reorder”."
+ },
+ {
   "pl": "drążek",
   "en": "pull-up bar"
  },
@@ -2316,6 +2320,10 @@
   "en": "Set {n}, type: {k}. Tap to change the type or delete the set."
  },
  {
+  "pl": "Seria {n}, typ: {k}. Tapnij, by zmienić typ.",
+  "en": "Set {n}, type: {k}. Tap to change the type."
+ },
+ {
   "pl": "seria {s} s",
   "en": "set {s} s"
  },
@@ -2850,6 +2858,10 @@
   "en": "Delete template?"
  },
  {
+  "pl": "Usunąć talerz?",
+  "en": "Remove plate?"
+ },
+ {
   "pl": "Usunąć tę sesję z historii?",
   "en": "Delete this session from history?"
  },
@@ -2906,8 +2918,16 @@
   "en": "Delete band"
  },
  {
+  "pl": "Usuń gumę: {name}",
+  "en": "Delete band: {name}"
+ },
+ {
   "pl": "Usuń gumy…",
   "en": "Delete bands…"
+ },
+ {
+  "pl": "Usuń miejsce: {name}",
+  "en": "Delete place: {name}"
  },
  {
   "pl": "Usuń odznaczone",
@@ -2926,12 +2946,24 @@
   "en": "Delete session"
  },
  {
+  "pl": "Usuń sesję: {name}",
+  "en": "Delete session: {name}"
+ },
+ {
+  "pl": "Usuń szablon: {name}",
+  "en": "Delete template: {name}"
+ },
+ {
   "pl": "Usuń talerz",
   "en": "Remove plate"
  },
  {
   "pl": "Usuń usunięte ćwiczenie z treningu",
   "en": "Remove the deleted exercise from this workout"
+ },
+ {
+  "pl": "Usuń z biblioteki: {name}",
+  "en": "Delete from library: {name}"
  },
  {
   "pl": "Usuń z szablonu",

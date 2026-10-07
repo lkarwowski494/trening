@@ -843,5 +843,13 @@
  "asysta gumą: {v}": "pagalba guma: {v}",
  "dociążenie: {v}": "papildomas svoris: {v}",
  "asysta: {v}": "pagalba: {v}",
- "Lista: ćwiczenia i serie jak w poprzednich wersjach, bez karty.": "Sąrašas: pratimai ir serijos kaip ankstesnėse versijose, be kortelės."
+ "Lista: ćwiczenia i serie jak w poprzednich wersjach, bez karty.": "Sąrašas: pratimai ir serijos kaip ankstesnėse versijose, be kortelės.",
+ "Usuń sesję: {name}": "Ištrinti treniruotę: {name}",
+ "Usuń szablon: {name}": "Ištrinti šabloną: {name}",
+ "Usuń gumę: {name}": "Ištrinti gumą: {name}",
+ "Usuń miejsce: {name}": "Ištrinti vietą: {name}",
+ "Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✂ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.": "Bakstelėkite serijos žymę, kad pakeistumėte tipą; perbraukite eilutę į kairę, kad ją ištrintumėte. Pakartojimų intervalas neprivalomas — su juo rodomi patarimai „↑“. „⇅ SS“ sujungia pratimą su kitu į superseriją, „✂ SS“ išima iš grupės. Tvarka: „≡ Rikiuoti“.",
+ "Seria {n}, typ: {k}. Tapnij, by zmienić typ.": "{n} serija, tipas: {k}. Bakstelėkite, kad pakeistumėte tipą.",
+ "Usunąć talerz?": "Pašalinti diską?",
+ "Usuń z biblioteki: {name}": "Ištrinti iš bibliotekos: {name}"
 }

@@ -3,7 +3,7 @@
 import * as store from '@/lib/store';
 import * as timer from '@/lib/timer';
 import { fresh, ex, pressAlert, withDemoTemplates } from './helpers';
-import { renderApp, flushAll, screen, go, tap, type, act, openCard } from './app';
+import { renderApp, flushAll, screen, go, tap, type, act, openCard, swipeDelete } from './app';
 import { userHome, loc } from './locations-fixtures';
 import { presetEquipment } from '@/lib/equipment';
 import { deleteLocation } from '@/lib/locations';
@@ -133,7 +133,7 @@ describe('W3 — ekrany', () => {
     await openCard(1); expect(screen.getByText(/brak sprzętu w: Dom/)).toBeTruthy(); /* Leg Press w Domu */
     await openCard(0); expect(screen.getByText('📍 Dom: Bench Press (hantle)')).toBeTruthy(); expect(screen.getByText('📍 (usunięte miejsce): Push Up')).toBeTruthy();
     await type(screen.getByLabelText('Przerwa zamiennika (s): Dom — Bench Press (hantle)'), '75'); expect(st().templates.find(x => x.id === tpl.id)!.items[0].alternates![0].restSec).toBe(75);
-    await tap(screen.getByLabelText('Usuń zamiennik: Dom — Bench Press (hantle)')); expect(st().templates.find(x => x.id === tpl.id)!.items[0].alternates).toHaveLength(2);
+    await swipeDelete('Usuń zamiennik: Dom — Bench Press (hantle)'); expect(st().templates.find(x => x.id === tpl.id)!.items[0].alternates).toHaveLength(2);
     await act(async () => pressAlert('Usunąć zamiennik?', 'Usuń')); await flushAll(5);
     expect(st().templates.find(x => x.id === tpl.id)!.items[0].alternates!.map(a => a.locationId)).toEqual(['gone']);
   });

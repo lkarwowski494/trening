@@ -843,5 +843,13 @@
  "asysta gumą: {v}": "assistência com banda: {v}",
  "dociążenie: {v}": "lastro: {v}",
  "asysta: {v}": "assistência: {v}",
- "Lista: ćwiczenia i serie jak w poprzednich wersjach, bez karty.": "Lista: exercícios e séries como nas versões anteriores, sem o cartão."
+ "Lista: ćwiczenia i serie jak w poprzednich wersjach, bez karty.": "Lista: exercícios e séries como nas versões anteriores, sem o cartão.",
+ "Usuń sesję: {name}": "Apagar sessão: {name}",
+ "Usuń szablon: {name}": "Apagar modelo: {name}",
+ "Usuń gumę: {name}": "Apagar elástico: {name}",
+ "Usuń miejsce: {name}": "Apagar local: {name}",
+ "Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✂ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.": "Toque na etiqueta de uma série para mudar o tipo; deslize uma linha para a esquerda para a apagar. O intervalo de repetições é opcional — com ele surgem as sugestões «↑». «⇅ SS» liga o exercício ao seguinte numa supersérie, «✂ SS» retira-o do grupo. Ordem: «≡ Reordenar».",
+ "Seria {n}, typ: {k}. Tapnij, by zmienić typ.": "Série {n}, tipo: {k}. Toque para mudar o tipo.",
+ "Usunąć talerz?": "Remover disco?",
+ "Usuń z biblioteki: {name}": "Apagar da biblioteca: {name}"
 }

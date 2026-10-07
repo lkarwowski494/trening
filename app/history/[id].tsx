@@ -40,7 +40,6 @@ export default function HistoryDetail() {
               {s.note ? <Muted style={{ fontSize: 13 }}>{s.note}</Muted> : null}
             </View>); })}
         </View>); })}
-      <Btn title={t('Usuń sesję')} kind="danger" onPress={() => Alert.alert(t('Usunąć tę sesję z historii?'), undefined, [{ text: t('Nie') }, { text: t('Usuń'), style: 'destructive', onPress: () => { if (!getState().workouts.some(x => x.id === w.id)) return; /* runda 11: drugie potwierdzenie */ deleteWorkout(w.id); if (router.canGoBack()) router.back(); else router.replace('/history'); } }])} />
     </ScrollView></Screen>
   );
 }

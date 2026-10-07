@@ -3,7 +3,8 @@ import { FlatList, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { Screen, H1, Item, Muted, Empty, Btn } from '@/components/ui';
-import { useHistTick, finishedWorkouts, fmtDate, fmtTime, fmtDur, volume } from '@/lib/store';
+import { useHistTick, finishedWorkouts, fmtDate, fmtTime, fmtDur, volume, deleteWorkout } from '@/lib/store';
+import { SwipeRow } from '@/components/SwipeRow';
 import { t, tp } from '@/lib/i18n';
 import { fmtVol } from '@/lib/units';
 
@@ -15,7 +16,7 @@ export default function HistoryScreen() {
       {/* Docs/12: trening wstecz — jak „Log a past workout” w Strong/Hevy */}
       <Btn title={t('+ Dodaj trening wstecz')} small style={{ marginBottom: 8, alignSelf: 'flex-start' }} onPress={() => router.push('/history/add')} />
       {/* Runda 69 (wydajność): FlatList renderuje tylko widoczne wiersze — przy 1000+ sesjach ekran otwierał się sekundy. */}
-      {ws.length ? <FlatList data={ws} keyExtractor={w => w.id} initialNumToRender={15} windowSize={7} renderItem={({ item: w }) => <Item title={w.templateName || t('Trening')} sub={(() => { const n = w.exercises.reduce((a, e) => a + e.sets.filter(s => s.kind !== 'warmup').length, 0); const v = volume(w); return [`${fmtDate(w.startedAt)} ${fmtTime(w.startedAt)}`, fmtDur(((w.finishedAt ?? w.startedAt) - w.startedAt) / 1000), `${n} ${tp(n, 'seria|serie|serii')}`, v ? fmtVol(v) : ''].filter(Boolean).join(' · '); })()} onPress={() => router.push(`/history/${w.id}`)} />} /> : <Empty>{t('Jeszcze pusto — pierwszy trening czeka.')}</Empty>}
+      {ws.length ? <FlatList data={ws} keyExtractor={w => w.id} initialNumToRender={15} windowSize={7} renderItem={({ item: w }) => <SwipeRow label={t('Usuń sesję: {name}', { name: `${w.templateName || t('Trening')}, ${fmtDate(w.startedAt)} ${fmtTime(w.startedAt)}` })} title={t('Usunąć tę sesję z historii?')} message={`${w.templateName || t('Trening')}, ${fmtDate(w.startedAt)}`} onDelete={() => deleteWorkout(w.id)}>{a11y => <Item a11y={a11y} title={w.templateName || t('Trening')} sub={(() => { const n = w.exercises.reduce((a, e) => a + e.sets.filter(s => s.kind !== 'warmup').length, 0); const v = volume(w); return [`${fmtDate(w.startedAt)} ${fmtTime(w.startedAt)}`, fmtDur(((w.finishedAt ?? w.startedAt) - w.startedAt) / 1000), `${n} ${tp(n, 'seria|serie|serii')}`, v ? fmtVol(v) : ''].filter(Boolean).join(' · '); })()} onPress={() => router.push(`/history/${w.id}`)} />}</SwipeRow>} /> : <Empty>{t('Jeszcze pusto — pierwszy trening czeka.')}</Empty>}
     </Screen></SafeAreaView>
   );
 }

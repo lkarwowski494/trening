@@ -4,7 +4,7 @@ import * as store from '@/lib/store';
 import * as stats from '@/lib/stats';
 import * as timer from '@/lib/timer';
 import { ex, addWorkout, pressAlert, fresh, legacyBandKg } from './helpers';
-import { renderApp, flushAll, screen, act, tap, go } from './app';
+import { renderApp, flushAll, screen, act, tap, go, swipeDelete } from './app';
 
 jest.setTimeout(60000);
 afterEach(async () => { try { store.getState(); } catch { return; } await timer.stop(); await timer.stopSet(); });
@@ -53,7 +53,7 @@ test('M4 deleting a band mid-workout turns assisted sets into unassisted records
   const a = store.getState().active!;
   expect(stats.prMap(a).size).toBe(0); // assisted: no record
   await go('/more/bands'); await flushAll(10);
-  await tap(screen.getAllByLabelText('Usuń gumę')[0]); pressAlert('Usunąć gumę?', 'Usuń'); await flushAll(10);
+  await swipeDelete(/^Usuń gumę: /); pressAlert('Usunąć gumę?', 'Usuń'); await flushAll(10);
   // eslint-disable-next-line no-console
   log('M4', JSON.stringify(a.exercises[0].sets.map(s => [s.reps, s.bandId, s.addKg])), JSON.stringify([...stats.prMap(a).values()]));
   expect(stats.prMap(a).size).toBe(0);

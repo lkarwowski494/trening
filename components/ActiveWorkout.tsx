@@ -7,6 +7,7 @@ import { Btn, Input, NumInput, Muted } from '@/components/ui';
 import { progressionFor, writeLoad, setActiveLocation, lastActivity, staleSince, staleRef, staleKind, ackStale, markActivity, useForegroundTick, bandA11y, clampName, loadLabelShort, getState, useTick, exById, prevOfActiveBlock, previousFor, canUndoSwap, undoSwap, pinnedImpl, rememberRest as storeRememberRest, canRememberAlt, rememberAlt, altHint, acceptAlt, skipAlt, occurrence, occurrences, hintFor, isBW, reps, fmtDur, fmtSec, fmtTime, setSummary, toggleDone, restAfter, roundRest, addSet, removeSet, removeSetById, removeExercise, finishWorkout, cancelWorkout, save, loadLabel, groupLabels, linkWithNext, unlink, cycleBand, findSet, shortBand, setHasValue, locationById, offListNote, liveBlockImpl, listLocFor, srcSetAt, usesBand, focusSet } from '@/lib/store';
 import { availability, missingLabel } from '@/lib/equipment';
 import { EquipVisual } from '@/components/EquipVisual';
+import { SwipeRow } from '@/components/SwipeRow';
 import { equipVisFor, equipSlotFor } from '@/lib/equipvis';
 import Svg, { Circle } from 'react-native-svg';
 import { implLabel } from '@/lib/swap';
@@ -254,7 +255,9 @@ function ExerciseBlock({ w, e, ei, onDone, onStartSet, labels, prs }: { w: Worko
   const k = occurrence(w.exercises, ei); const nOcc = occurrences(w.exercises, e.exerciseId); const prev = ex ? prevOfActiveBlock(w, e) : null; /* decyzja 8c: ostatni raz tym samym przyrządem; E2 pkt 3.6: zamiennik — najpierw z tej pozycji szablonu */ /* runda 50: bez useMemo — zależy też od szablonu (edycja w trakcie); ta sama podpowiedź co przy odhaczeniu */ // eslint-disable-line react-hooks/exhaustive-deps
   if (!ex) {
     // Ćwiczenie usunięte na stałe w trakcie treningu — pokazujemy blok, żeby dało się go usunąć (wcześniej znikał niewidoczny).
-    return <View style={[s.ex, { borderBottomColor: t.line }]}><Muted>{tr('Usunięte ćwiczenie')} · {e.sets.length} {tp(e.sets.length, 'seria|serie|serii')}</Muted><View style={s.actions}><Btn title={tr('usuń')} accessibilityLabel={tr('Usuń usunięte ćwiczenie z treningu')} small kind="ghost" onPress={() => { const i = getState().active?.exercises.findIndex(x => x.id === e.id) ?? -1; if (i >= 0) { const ids = e.sets.map(x => x.id); if (timer.S.on && ids.includes(timer.S.setId ?? '')) timer.stopSet(); if (timer.T.on && ids.includes(timer.T.setId ?? '')) timer.stop(); removeExercise(i); } }} /* runda 43: jak zwykłe „usuń” — timery tego bloku stop */ /></View></View>;
+    const dropGone = () => { const i = getState().active?.exercises.findIndex(x => x.id === e.id) ?? -1; if (i >= 0) { const ids = e.sets.map(x => x.id); if (timer.S.on && ids.includes(timer.S.setId ?? '')) timer.stopSet(); if (timer.T.on && ids.includes(timer.T.setId ?? '')) timer.stop(); removeExercise(i); } }; /* runda 43: timery tego bloku stop */
+    /* 07.10.2026 wieczór: usuwanie przesunięciem w lewo (components/SwipeRow.tsx), bez przycisku */
+    return <SwipeRow label={tr('Usuń usunięte ćwiczenie z treningu')} title={tr('Usunąć z treningu?')} message={tr('Usunięte ćwiczenie')} onDelete={dropGone} style={[s.ex, { borderBottomColor: t.line }]}>{a11y => <Text {...a11y} accessible maxFontSizeMultiplier={1.3} style={{ color: t.muted, fontFamily: F.regular, fontSize: 14 }}>{tr('Usunięte ćwiczenie')} · {e.sets.length} {tp(e.sets.length, 'seria|serie|serii')}</Text>}</SwipeRow>;
   }
   const bw = isBW(ex); const band = usesBand(ex); /* 06.10.2026: także opór gumy */
   /* P-003 E1: plakietka „brak sprzętu w: Dom” (nigdy automatyczna zamiana) i dopisek, gdy „Poprzednio” pochodzi z innego, znanego miejsca (8c: źródłem bywa każde miejsce) */
@@ -285,26 +288,26 @@ function ExerciseBlock({ w, e, ei, onDone, onStartSet, labels, prs }: { w: Worko
   // „Poprzednio” po numerze serii roboczej: rozgrzewki w tym treningu nie przesuwają podpowiedzi.
   const prevFor = (si: number) => hintFor(prev?.sets, e.sets, si, ex ?? undefined); // runda 9: w ramach rodziny serii (drop ↔ drop)
   const dropTimers = (ids: string[]) => { if (timer.S.on && ids.includes(timer.S.setId ?? '')) timer.stopSet(); if (timer.T.on && ids.includes(timer.T.setId ?? '')) timer.stop(); };
-  const removeLast = () => { const l = e.sets[e.sets.length - 1]; if (e.sets.length <= 1) return; const go = () => { const cur = getState().active?.exercises.find(x => x.id === e.id); if (!cur || cur.sets[cur.sets.length - 1]?.id !== l.id || cur.sets.length <= 1) return; /* runda 10: drugie potwierdzenie nie usuwa kolejnej serii */ dropTimers([l.id]); removeSet(getState().active!.exercises.indexOf(cur)); }; if (l.done) Alert.alert(tr('Usunąć ostatnią serię?'), tr('Seria jest już odhaczona.'), [{ text: tr('Nie') }, { text: tr('Usuń'), style: 'destructive', onPress: go }]); else go(); };
   const rememberRest = (n: number) => storeRememberRest(w, e, n); /* runda 10: tylko pozycja szablonu, z której powstał blok; blok dodany w trakcie zmienia tylko ćwiczenie; E2 W3: blok-zamiennik — przerwa wpisu zamiennika */
   const parseRest = (v?: string) => { const x = (v ?? '').trim(); if (!x) return null; const n = Math.round(Number(x.replace(',', '.'))); return n >= 0 && isFinite(n) ? Math.min(1800, n) : null; }; // runda 11: ten sam limit co w edycji ćwiczenia i szablonu
   const setMenu = (set: WSet, si: number) => {
-    const canDel = e.sets.length > 1; /* przegląd 06.10 (jak w szablonie): usunięcie wybranej serii, np. rozgrzewki dodanej przez pomyłkę */
-    const labels = [tr('Seria normalna'), tr('Rozgrzewka (W)'), tr('Drop set (D)'), tr('Do upadku (F)'), set.note ? tr('Edytuj notatkę') : tr('Dodaj notatkę'), ...(canDel ? [tr('Usuń serię')] : []), tr('Anuluj')];
+    /* 07.10.2026 wieczór: usuwanie serii — przesunięciem wiersza w lewo (deleteSet), nie z menu */
+    const labels = [tr('Seria normalna'), tr('Rozgrzewka (W)'), tr('Drop set (D)'), tr('Do upadku (F)'), set.note ? tr('Edytuj notatkę') : tr('Dodaj notatkę'), tr('Anuluj')];
     const kinds = ['normal', 'warmup', 'drop', 'failure'] as const;
-    ActionSheetIOS.showActionSheetWithOptions({ options: labels, cancelButtonIndex: labels.length - 1, ...(canDel ? { destructiveButtonIndex: 5 } : {}), title: tr('Seria {n}', { n: setLabel(e, si) }) }, i => {
+    ActionSheetIOS.showActionSheetWithOptions({ options: labels, cancelButtonIndex: labels.length - 1, title: tr('Seria {n}', { n: setLabel(e, si) }) }, i => {
       if (i < 4) { set.kind = kinds[i]; set.warmup = set.kind === 'warmup'; save(st.active); }
-      else if (i === 5 && canDel) { const go = () => { const cur = getState().active?.exercises.find(x => x.id === e.id); if (!cur) return; dropTimers([set.id]); removeSetById(getState().active!.exercises.indexOf(cur), set.id); };
-        if (set.done) Alert.alert(tr('Usunąć serię?'), tr('Seria jest już odhaczona.'), [{ text: tr('Nie') }, { text: tr('Usuń'), style: 'destructive', onPress: go }]); else go(); }
       else if (i === 4) Alert.prompt?.(tr('Notatka do serii'), undefined, [{ text: tr('Anuluj'), style: 'cancel' }, { text: tr('Zapisz'), onPress: (v?: string) => { set.note = clampName((v ?? '').trim(), 300); /* runda 49: limit notatki */ save(st.active); } }], 'plain-text', set.note);
     });
   };
+  /* 07.10.2026 wieczór (docs/18): usuwanie serii przesunięciem w lewo, zawsze z potwierdzeniem; ostatniej serii bloku się nie usuwa (jak wcześniej) */
+  const deleteSet = (id: string) => { const cur = getState().active?.exercises.find(x => x.id === e.id); if (!cur || cur.sets.length <= 1 || !cur.sets.some(x => x.id === id)) return; dropTimers([id]); removeSetById(getState().active!.exercises.indexOf(cur), id); };
+  const deleteEx = () => { const i = getState().active?.exercises.findIndex(x => x.id === e.id) ?? -1; if (i < 0) return; /* runda 10: po id — drugie okno nie usuwa sąsiada */ dropTimers(e.sets.map(x => x.id)); removeExercise(i); };
   return (
     <View style={[s.ex, { borderBottomColor: t.line }]}>
-      <View style={s.exHead}>
-        <Text accessibilityRole="header" style={{ color: t.text, fontSize: 17, fontFamily: F.semibold, flexGrow: 1, flexShrink: 1, minWidth: '58%' }}>{inSS ? <Text style={{ color: t.band }}>{`SS ${labels[e.groupId!]} · `}</Text> : null}{exName(ex)}{ex.archived ? <Text style={{ color: t.muted, fontSize: 13 }}>{' (' + tr('usunięte') + ')'}</Text> : null}</Text>
+      <SwipeRow label={tr('Usuń ćwiczenie: {name}', { name: nm })} title={tr('Usunąć z treningu?')} message={nm} onDelete={deleteEx}>{a11y => <View style={s.exHead}>
+        <Text {...a11y} accessibilityRole="header" style={{ color: t.text, fontSize: 17, fontFamily: F.semibold, flexGrow: 1, flexShrink: 1, minWidth: '58%' }}>{inSS ? <Text style={{ color: t.band }}>{`SS ${labels[e.groupId!]} · `}</Text> : null}{exName(ex)}{ex.archived ? <Text style={{ color: t.muted, fontSize: 13 }}>{' (' + tr('usunięte') + ')'}</Text> : null}</Text>
         <Muted numberOfLines={2} style={{ fontSize: 13, flexShrink: 1, flexGrow: 1, textAlign: 'right' }}>{headMeta}</Muted>
-      </View>
+      </View>}</SwipeRow>
       {insteadTxt || remember ? <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', gap: 8, marginTop: -2, marginBottom: 6 }}><Muted style={{ fontSize: 12, flexShrink: 1 }}>{insteadTxt || (e.impl ? tr('przyrząd: {impl}', { impl: implLabel(e.impl) }) : '')}</Muted>{canUndoSwap(e) ? <Btn title={tr('↺ cofnij')} small kind="ghost" accessibilityLabel={tr('Cofnij zamianę: {name}', { name: nm })} onPress={() => confirmUndoSwap(e.id)} /> : null}{remember && place ? <Btn title={tr('Zawsze w: {l}', { l: place.name })} small kind="ghost" accessibilityLabel={tr('Zawsze w: {l} — {name}', { l: place.name, name: nm })} accessibilityHint={tr('Zapisuje zamiennik w szablonie dla tego miejsca.')} onPress={() => rememberAlt(e.id)} /> : null}</View> : null}
       {hint && place ? <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', gap: 8, marginTop: -2, marginBottom: 6 }}><Muted style={{ fontSize: 12, flexShrink: 1 }}>{tr('Zwykle w: {l} — {name}. Zamienić?', { l: place.name, name: hintName })}</Muted><Btn title={tr('Zamień')} small accessibilityLabel={tr('Zamień na zamiennik: {name}', { name: hintName })} onPress={() => { const r = acceptAlt(e.id); if (r) afterSwap(r.goneSetIds); }} /><Btn title="✕" small kind="ghost" accessibilityLabel={tr('Nie zamieniaj: {name}', { name: hintName })} onPress={() => skipAlt(e.id)} /></View> : null}
       {place && avail && !avail.ok ? <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginTop: -2, marginBottom: 6 }}><Muted style={{ fontSize: 12, color: t.danger, flexShrink: 1 }} accessibilityLabel={tr('Brak sprzętu w: {l}. Brakuje: {m}', { l: place.name, m: missingLabel(avail.missing) })}>{tr('brak sprzętu w: {l}', { l: place.name })} ({missingLabel(avail.missing)})</Muted>{swappable ? <Btn title="⇄" small kind="ghost" accessibilityLabel={tr('Zamień ćwiczenie (brak sprzętu): {name}', { name: nm })} onPress={openSwap} /> : null}</View> : null}
@@ -327,9 +330,9 @@ function ExerciseBlock({ w, e, ei, onDone, onStartSet, labels, prs }: { w: Worko
         const pr = prs.get(set.id); const kind = set.kind ?? 'normal';
         const prevTxt = p ? setSummary(ex, p, 'calc') : '—'; /* audyt 83b (MEDIUM 1b): ciężar jak wpisze podpowiedź — tylko pole obecnego sprzętu */
         return (
-          <View key={set.id}>
+          <SwipeRow key={set.id} testID={`set-${ei}-${si}`} /* E2E 12 */ disabled={e.sets.length <= 1} label={tr('Usuń serię {n} — {ex}', { n: lbl, ex: nm })} title={tr('Usunąć serię?')} message={set.done ? tr('Seria jest już odhaczona.') : undefined} onDelete={() => deleteSet(set.id)}>{a11y => <View>
             <View style={[s.row, { gap: W.gap }]}>
-              <Pressable onPress={() => setMenu(set, si)} hitSlop={8} accessibilityHint={hint} /* runda 63 */ accessibilityRole="button" accessibilityLabel={tr('Seria {n}, typ: {k}. Tapnij, by zmienić typ lub dodać notatkę.', { n: lbl, k: tr(SET_KIND_LABEL[kind]) })} style={{ width: W.idx, minHeight: 44, justifyContent: 'center' }}>
+              <Pressable {...a11y} onPress={() => setMenu(set, si)} hitSlop={8} accessibilityHint={hint} /* runda 63 */ accessibilityRole="button" accessibilityLabel={tr('Seria {n}, typ: {k}. Tapnij, by zmienić typ lub dodać notatkę.', { n: lbl, k: tr(SET_KIND_LABEL[kind]) })} style={{ width: W.idx, minHeight: 44, justifyContent: 'center' }}>
                 <SetBadge kind={kind} label={lbl} note={!!set.note} />
               </Pressable>
               <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', gap: 4 }}>{prevInline ? <Text maxFontSizeMultiplier={1.3} numberOfLines={1} style={{ flexShrink: 1, color: t.muted, fontSize: 13 }}>{prevTxt}</Text> : null}{pr ? <Text maxFontSizeMultiplier={1.3} style={{ color: t.band, fontSize: 11, fontFamily: F.semibold }}>PR</Text> : null}</View>
@@ -347,16 +350,15 @@ function ExerciseBlock({ w, e, ei, onDone, onStartSet, labels, prs }: { w: Worko
             </View>
             {!prevInline && p ? <Muted numberOfLines={1} style={{ fontSize: 12, marginLeft: W.idx + W.gap, marginTop: -4, marginBottom: 6 }}>{tr('Poprzednio')}: {prevTxt}</Muted> : null}
             {set.note ? <Muted style={{ fontSize: 12, marginLeft: W.idx + W.gap, marginTop: -4, marginBottom: 6 }}>{set.note}</Muted> : null}
-          </View>
+          </View>}</SwipeRow>
         );
       })}
       <View style={s.actions}>
-        <Btn title={tr('+ seria')} small accessibilityHint={nm} onPress={() => addSet(ei)} /><Btn title={tr('+ rozgrzewka')} small kind="ghost" accessibilityHint={nm} onPress={() => addSet(ei, 'warmup')} /><Btn title={tr('+ drop set')} small kind="ghost" accessibilityHint={nm} onPress={() => addSet(ei, 'drop')} />{e.sets.length > 1 ? <Btn title={tr('− seria')} small accessibilityHint={nm} onPress={removeLast} /> : null}
+        <Btn title={tr('+ seria')} small accessibilityHint={nm} onPress={() => addSet(ei)} /><Btn title={tr('+ rozgrzewka')} small kind="ghost" accessibilityHint={nm} onPress={() => addSet(ei, 'warmup')} /><Btn title={tr('+ drop set')} small kind="ghost" accessibilityHint={nm} onPress={() => addSet(ei, 'drop')} />
         <Btn title={`⏱ ${fmtDur(e.restSec)}`} small accessibilityHint={nm} accessibilityLabel={tr('Przerwa: {s}. Tapnij, by zmienić.', { s: fmtDur(e.restSec) })} onPress={() => { Alert.prompt?.(tr('Przerwa (sekundy)'), tr('Zapamiętać dla tego ćwiczenia?'), [{ text: tr('Anuluj'), style: 'cancel' }, { text: tr('Tylko teraz'), onPress: (v?: string) => { const n = parseRest(v); if (n != null) { e.restSec = n; save(st.active); } } }, { text: tr('Zapamiętaj'), onPress: (v?: string) => { const n = parseRest(v); if (n != null) rememberRest(n); } }], 'plain-text', String(e.restSec), 'number-pad'); }} />
         {ei + 1 < w.exercises.length && (!inSS || w.exercises[ei + 1].groupId !== e.groupId) ? <Btn title="⇅ SS" small kind="ghost" accessibilityLabel={tr('Połącz z następnym w superset')} accessibilityHint={nm} onPress={() => linkWithNext(w.exercises, ei, w)} /> : null}
         {inSS ? <Btn title="✂ SS" small kind="ghost" accessibilityLabel={tr('Wyjmij z supersetu')} accessibilityHint={nm} onPress={() => unlink(w.exercises, ei, w)} /> : null}
         {swappable ? <Btn title={tr('⇄ zamień')} small kind="ghost" accessibilityLabel={tr('Zamień ćwiczenie: {name}', { name: nm })} onPress={openSwap} /> : null}
-        <Btn title={tr('usuń')} accessibilityLabel={tr('Usuń ćwiczenie: {name}', { name: nm })} small kind="ghost" onPress={() => Alert.alert(tr('Usunąć z treningu?'), nm, [{ text: tr('Nie') }, { text: tr('Usuń'), style: 'destructive', onPress: () => { const i = getState().active?.exercises.findIndex(x => x.id === e.id) ?? -1; if (i < 0) return; /* runda 10: po id — drugie okno nie usuwa sąsiada */ dropTimers(e.sets.map(x => x.id)); removeExercise(i); } }])} />
       </View>
     </View>
   );

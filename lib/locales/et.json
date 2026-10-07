@@ -843,5 +843,13 @@
  "asysta gumą: {v}": "kummiabi: {v}",
  "dociążenie: {v}": "lisaraskus: {v}",
  "asysta: {v}": "abi: {v}",
- "Lista: ćwiczenia i serie jak w poprzednich wersjach, bez karty.": "Loend: harjutused ja seeriad nagu varasemates versioonides, ilma kaardita."
+ "Lista: ćwiczenia i serie jak w poprzednich wersjach, bez karty.": "Loend: harjutused ja seeriad nagu varasemates versioonides, ilma kaardita.",
+ "Usuń sesję: {name}": "Kustuta treening: {name}",
+ "Usuń szablon: {name}": "Kustuta mall: {name}",
+ "Usuń gumę: {name}": "Kustuta kumm: {name}",
+ "Usuń miejsce: {name}": "Kustuta koht: {name}",
+ "Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✂ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.": "Puuduta seeria silti, et muuta tüüpi; libista rida vasakule, et see kustutada. Korduste vahemik on valikuline — sellega kuvatakse „↑“ vihjeid. „⇅ SS“ ühendab harjutuse järgmisega superseeriaks, „✂ SS“ võtab selle grupist välja. Järjekord: „≡ Järjestus“.",
+ "Seria {n}, typ: {k}. Tapnij, by zmienić typ.": "Seeria {n}, tüüp: {k}. Puuduta, et muuta tüüpi.",
+ "Usunąć talerz?": "Eemaldada ketas?",
+ "Usuń z biblioteki: {name}": "Kustuta teegist: {name}"
 }

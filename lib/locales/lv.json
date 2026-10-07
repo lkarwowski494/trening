@@ -843,5 +843,13 @@
  "asysta gumą: {v}": "palīdzība ar gumiju: {v}",
  "dociążenie: {v}": "papildu svars: {v}",
  "asysta: {v}": "palīdzība: {v}",
- "Lista: ćwiczenia i serie jak w poprzednich wersjach, bez karty.": "Saraksts: vingrinājumi un sērijas kā iepriekšējās versijās, bez kartītes."
+ "Lista: ćwiczenia i serie jak w poprzednich wersjach, bez karty.": "Saraksts: vingrinājumi un sērijas kā iepriekšējās versijās, bez kartītes.",
+ "Usuń sesję: {name}": "Dzēst sesiju: {name}",
+ "Usuń szablon: {name}": "Dzēst veidni: {name}",
+ "Usuń gumę: {name}": "Dzēst gumiju: {name}",
+ "Usuń miejsce: {name}": "Dzēst vietu: {name}",
+ "Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✂ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.": "Pieskarieties sērijas apzīmējumam, lai mainītu tās veidu; pavelciet rindu pa kreisi, lai to dzēstu. Atkārtojumu diapazons nav obligāts — ar to tiek rādīti padomi “↑”. “⇅ SS” savieno vingrinājumu ar nākamo supersērijā, “✂ SS” izņem to no grupas. Secība: “≡ Secība”.",
+ "Seria {n}, typ: {k}. Tapnij, by zmienić typ.": "{n}. sērija, veids: {k}. Pieskarieties, lai mainītu veidu.",
+ "Usunąć talerz?": "Noņemt disku?",
+ "Usuń z biblioteki: {name}": "Dzēst no bibliotēkas: {name}"
 }

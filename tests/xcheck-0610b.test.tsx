@@ -2,7 +2,8 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { act } from '@testing-library/react-native';
-import { renderApp, flushAll, screen, tap } from './app';
+import { renderApp, flushAll, screen, tap, swipeDelete, deleteActions } from './app';
+import { pressAlert } from './helpers';
 import * as store from '@/lib/store';
 import * as edit from '@/lib/edit';
 import { loadKindsFor, applyLoadPreset, LOAD_PRESETS } from '@/lib/equipment';
@@ -28,14 +29,14 @@ test('ŚREDNIE (sprzęt #4): lista ćwiczeń i wybór oznaczają „guma” tak�
   for (const f of ['app/picker.tsx', 'app/(tabs)/exercises.tsx']) { expect(src(f)).toMatch(/usesBand\(e\) \? ' · ' \+ t\('guma'\)/); expect(src(f)).not.toMatch(/e\.bandAssistable \? ' · '/); }
   expect(src('app/exercise/[id].tsx')).toMatch(/!e\.bandAssistable && usesBand\(e\)/);
 });
-test('ŚREDNIE (parytet #3): w treningu menu serii ma „Usuń serię” — usuwa wybraną serię (np. rozgrzewkę), nie ostatnią', async () => {
+test('ŚREDNIE (parytet #3): w treningu da się usunąć wybraną serię (np. rozgrzewkę), nie ostatnią — od 07.10.2026 wieczór przesunięciem wiersza', async () => {
   store.startEmpty(); store.addExerciseToActive(ex('Bench Press (sztanga)')); const e0 = store.getState().active!.exercises[0];
   e0.sets[0].weight = 80; e0.sets[0].reps = 8; store.addSet(0); store.addSet(0, 'warmup'); await store.flush();
   await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())) }); await flushAll(10);
   expect(store.getState().active!.exercises[0].sets.map(s => s.kind)).toEqual(['warmup', 'normal', 'normal']);
-  await tap(screen.getByLabelText(/^Seria W, typ: rozgrzewkowa/)); await act(async () => { (global as any).__pickSheet(5); }); await flushAll(5);
+  await swipeDelete('Usuń serię W — Bench Press (sztanga)'); await act(async () => { pressAlert('Usunąć serię?', 'Usuń'); }); await flushAll(5);
   expect(store.getState().active!.exercises[0].sets.map(s => [s.kind, s.weight])).toEqual([['normal', 80], ['normal', 80]]);
-  /* ostatnia seria bloku zostaje — menu bez „Usuń serię” */
+  /* ostatnia seria bloku zostaje — bez akcji usuwania, gdy w bloku jedna seria */
   store.removeSetById(0, store.getState().active!.exercises[0].sets[0].id); expect(store.getState().active!.exercises[0].sets).toHaveLength(1);
   store.removeSetById(0, store.getState().active!.exercises[0].sets[0].id); expect(store.getState().active!.exercises[0].sets).toHaveLength(1);
 });

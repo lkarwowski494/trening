@@ -843,5 +843,13 @@
  "asysta gumą: {v}": "kuminauha-apu: {v}",
  "dociążenie: {v}": "lisäpaino: {v}",
  "asysta: {v}": "apu: {v}",
- "Lista: ćwiczenia i serie jak w poprzednich wersjach, bez karty.": "Lista: liikkeet ja sarjat kuten aiemmissa versioissa, ilman korttia."
+ "Lista: ćwiczenia i serie jak w poprzednich wersjach, bez karty.": "Lista: liikkeet ja sarjat kuten aiemmissa versioissa, ilman korttia.",
+ "Usuń sesję: {name}": "Poista treeni: {name}",
+ "Usuń szablon: {name}": "Poista pohja: {name}",
+ "Usuń gumę: {name}": "Poista kuminauha: {name}",
+ "Usuń miejsce: {name}": "Poista paikka: {name}",
+ "Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✂ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.": "Napauta sarjan tunnistetta vaihtaaksesi tyypin; pyyhkäise rivi vasemmalle poistaaksesi sen. Toistoalue on valinnainen — sen kanssa saat ”↑”-vihjeitä. ”⇅ SS” yhdistää liikkeen seuraavaan supersarjaksi, ”✂ SS” poistaa sen ryhmästä. Järjestys: ”≡ Järjestä”.",
+ "Seria {n}, typ: {k}. Tapnij, by zmienić typ.": "Sarja {n}, tyyppi: {k}. Vaihda tyyppi napauttamalla.",
+ "Usunąć talerz?": "Poistetaanko levy?",
+ "Usuń z biblioteki: {name}": "Poista kirjastosta: {name}"
 }

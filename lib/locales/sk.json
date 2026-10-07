@@ -843,5 +843,13 @@
  "asysta gumą: {v}": "dopomoc gumou: {v}",
  "dociążenie: {v}": "pridaná záťaž: {v}",
  "asysta: {v}": "dopomoc: {v}",
- "Lista: ćwiczenia i serie jak w poprzednich wersjach, bez karty.": "Zoznam: cviky a série ako v predchádzajúcich verziách, bez karty."
+ "Lista: ćwiczenia i serie jak w poprzednich wersjach, bez karty.": "Zoznam: cviky a série ako v predchádzajúcich verziách, bez karty.",
+ "Usuń sesję: {name}": "Vymazať tréning: {name}",
+ "Usuń szablon: {name}": "Vymazať šablónu: {name}",
+ "Usuń gumę: {name}": "Vymazať gumu: {name}",
+ "Usuń miejsce: {name}": "Vymazať miesto: {name}",
+ "Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✂ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.": "Klepnutím na označenie série zmeníte jej typ; potiahnutím riadka doľava ho vymažete. Rozsah opakovaní je voliteľný — s ním sa zobrazujú tipy „↑“. „⇅ SS“ spojí cvik s ďalším do supersérie, „✂ SS“ ho zo skupiny vyberie. Poradie: „≡ Poradie“.",
+ "Seria {n}, typ: {k}. Tapnij, by zmienić typ.": "Séria {n}, typ: {k}. Klepnutím zmeníte typ.",
+ "Usunąć talerz?": "Odstrániť kotúč?",
+ "Usuń z biblioteki: {name}": "Vymazať z knižnice: {name}"
 }

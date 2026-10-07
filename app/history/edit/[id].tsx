@@ -9,6 +9,7 @@ import { draftOf, beginEdit, discardDraft, isDirty, touchDraft, useDraftTick, ch
 import { onHistoryEdited } from '@/lib/backup';
 import { locationLabel } from '@/lib/locations';
 import { hasTime, hasReps, hasWeight, hasDistance, SET_KIND_LABEL, type WExercise, type WSet } from '@/lib/seed';
+import { SwipeRow } from '@/components/SwipeRow';
 import { SetBadge } from '@/components/SetBadge';
 import { useTheme, F } from '@/lib/theme';
 import { t, tp, exName } from '@/lib/i18n';
@@ -83,7 +84,6 @@ function EditBlock({ d, e, ei, labels }: { d: Draft; e: WExercise; ei: number; l
   const th = useTheme(); const st = getState(); const ex = exById(e.exerciseId); const router = useRouter();
   const nOcc = occurrences(d.w.exercises, e.exerciseId); const nm = ex ? (nOcc > 1 ? `${exName(ex)} (${occurrence(d.w.exercises, ei) + 1})` : exName(ex)) : t('Usunięte ćwiczenie');
   const m = ex?.metric ?? 'weight_reps'; const bw = !!ex && isBW(ex); const band = usesBand(ex); /* 06.10.2026: także opór gumy */ const showRpe = st.settings.showRpe;
-  const removeEx = () => Alert.alert(t('Usunąć z treningu?'), nm, [{ text: t('Nie') }, { text: t('Usuń'), style: 'destructive', onPress: () => draftRemoveExercise(d.key, e.id) }]);
   const setMenu = (set: WSet, si: number) => {
     const opts = [t('Seria normalna'), t('Rozgrzewka (W)'), t('Drop set (D)'), t('Do upadku (F)'), set.note ? t('Edytuj notatkę') : t('Dodaj notatkę'), t('Anuluj')];
     const kinds = ['normal', 'warmup', 'drop', 'failure'] as const;
@@ -100,7 +100,8 @@ function EditBlock({ d, e, ei, labels }: { d: Draft; e: WExercise; ei: number; l
   const heads = ['#', ...(hasWeight(m) ? [ex ? loadLabelShort(ex, impl) : wu()] : []), ...(hasReps(m) ? [t('Pow.')] : []), ...(hasDistance(m) ? ['m'] : []), ...(hasTime(m) ? [t('sek.')] : []), ...(showRpe ? ['RPE'] : [])];
   return (
     <View style={[s.ex, { borderBottomColor: th.line }]}>
-      <Txt accessibilityRole="header" style={{ fontFamily: F.semibold, fontSize: 17, marginBottom: 6 }}>{e.groupId && labels[e.groupId] ? <Txt style={{ color: th.band, fontFamily: F.semibold }}>{`SS ${labels[e.groupId]} · `}</Txt> : null}{nm}{ex?.archived ? <Txt style={{ color: th.muted, fontSize: 13 }}>{' (' + t('usunięte') + ')'}</Txt> : null}</Txt>
+      {/* 07.10.2026 wieczór: usuwanie przesunięciem w lewo (components/SwipeRow.tsx), bez przycisków */}
+      <SwipeRow label={t('Usuń ćwiczenie: {name}', { name: nm })} title={t('Usunąć z treningu?')} message={nm} onDelete={() => draftRemoveExercise(d.key, e.id)}>{a11y => <View {...a11y} accessible accessibilityRole="header" accessibilityLabel={nm}><Txt style={{ fontFamily: F.semibold, fontSize: 17, marginBottom: 6 }}>{e.groupId && labels[e.groupId] ? <Txt style={{ color: th.band, fontFamily: F.semibold }}>{`SS ${labels[e.groupId]} · `}</Txt> : null}{nm}{ex?.archived ? <Txt style={{ color: th.muted, fontSize: 13 }}>{' (' + t('usunięte') + ')'}</Txt> : null}</Txt></View>}</SwipeRow>
       {off != null ? <Muted style={{ fontSize: 12, marginTop: -2, marginBottom: 6 }}>{t('ciężaru {w} nie ma tutaj — wpisz ciężar', { w: fmtW(off) })}</Muted> : null}
       <View style={s.row} accessibilityElementsHidden importantForAccessibility="no-hide-descendants">
         {heads.map((h, k) => <Muted key={k} numberOfLines={1} style={[s.head, k === 0 ? { width: 32, textAlign: 'left' } : { flex: 1 }]}>{h}</Muted>)}
@@ -110,9 +111,9 @@ function EditBlock({ d, e, ei, labels }: { d: Draft; e: WExercise; ei: number; l
       {e.sets.map((set, si) => {
         const lbl = setLabel(e, si); const hint = t('Seria {n} — {ex}', { n: lbl, ex: nm }); const kind = set.kind ?? 'normal';
         return (
-          <View key={set.id}>
+          <SwipeRow key={set.id} label={t('Usuń serię {n} — {ex}', { n: lbl, ex: nm })} title={t('Usunąć serię?')} message={nm} onDelete={() => draftRemoveSet(d.key, ei, set.id)}>{a11y => <View>
             <View style={s.row}>
-              <Pressable onPress={() => setMenu(set, si)} hitSlop={8} accessibilityRole="button" accessibilityHint={hint} accessibilityLabel={t('Seria {n}, typ: {k}. Tapnij, by zmienić typ lub dodać notatkę.', { n: lbl, k: t(SET_KIND_LABEL[kind]) })} style={{ width: 32, minHeight: 44, justifyContent: 'center' }}>
+              <Pressable {...a11y} onPress={() => setMenu(set, si)} hitSlop={8} accessibilityRole="button" accessibilityHint={hint} accessibilityLabel={t('Seria {n}, typ: {k}. Tapnij, by zmienić typ lub dodać notatkę.', { n: lbl, k: t(SET_KIND_LABEL[kind]) })} style={{ width: 32, minHeight: 44, justifyContent: 'center' }}>
                 <SetBadge kind={kind} label={lbl} note={!!set.note} /* przegląd 06.10: jak w treningu i szablonie */ />
               </Pressable>
               {hasWeight(m) ? <View style={s.cell}><NumInput weightTol decimal allowNegative={bw} value={wField(loadFieldValue(ex, set))} stored={loadFieldValue(ex, set)} onNum={(v, keep) => { writeLoad(ex, set, wInKeep(v, keep)); /* Q-021; audyt 83b (LOW 2): pole pokazuje to samo co ekran sesji (store.loadOf), wpis trafia do pola obecnego sprzętu */ touchDraft(); }} placeholder={bw ? '±0' : wu()} accessibilityLabel={ex ? loadLabel(ex, impl) : t('ciężar')} accessibilityHint={hint} /></View> : null}
@@ -121,17 +122,16 @@ function EditBlock({ d, e, ei, labels }: { d: Draft; e: WExercise; ei: number; l
               {hasTime(m) ? <View style={s.cell}><NumInput value={set.durationSec} onNum={v => { set.durationSec = v === '' ? '' : Math.min(86400, Math.max(0, Math.round(v))); touchDraft(); }} placeholder="s" accessibilityLabel={t('czas')} accessibilityHint={hint} /></View> : null}
               {showRpe ? <View style={s.cell}><NumInput decimal value={set.rpe} onNum={v => { set.rpe = v === '' ? '' : Math.min(10, Math.max(0, Math.round(v * 10) / 10)); touchDraft(); }} placeholder="—" accessibilityLabel="RPE" accessibilityHint={hint} /></View> : null}
               {band ? <Pressable accessibilityRole="button" accessibilityHint={hint} accessibilityLabel={t('Guma: {b}. Tapnij, by zmienić.', { b: set.bandId ? bandA11y(st.bands.find(b => b.id === set.bandId)) : t('brak') })} onPress={() => cycleBand(set)} style={[s.box, { width: 52, backgroundColor: th.surface2, borderColor: th.line }]}><Text maxFontSizeMultiplier={1.3} style={{ color: set.bandId ? th.band : th.muted, fontSize: 13, fontFamily: F.semibold }}>{set.bandId ? shortBand(st.bands.find(b => b.id === set.bandId)) : '—'}</Text></Pressable> : null}
-              <Pressable accessibilityRole="button" accessibilityLabel={t('Usuń serię {n} — {ex}', { n: lbl, ex: nm })} hitSlop={4} onPress={() => draftRemoveSet(d.key, ei, set.id)} style={[s.box, { width: 44, borderColor: 'transparent' }]}><Text maxFontSizeMultiplier={1.3} style={{ color: th.danger, fontSize: 18 }}>✕</Text></Pressable>
+              <View style={{ width: 44 }} />
             </View>
             {set.note ? <Muted style={{ fontSize: 12, marginLeft: 38, marginTop: -4, marginBottom: 6 }}>{set.note}</Muted> : null}
-          </View>
+          </View>}</SwipeRow>
         );
       })}
       {!e.sets.length ? <Muted style={{ fontSize: 13, marginBottom: 6 }}>{t('Bez serii — ćwiczenie nie zostanie zapisane.')}</Muted> : null}
       <View style={s.actions}>
         <Btn title={t('+ seria')} small accessibilityHint={nm} onPress={() => draftAddSet(d.key, ei)} /><Btn title={t('+ rozgrzewka')} small kind="ghost" accessibilityHint={nm} onPress={() => draftAddSet(d.key, ei, 'warmup')} /><Btn title={t('+ drop set')} small kind="ghost" accessibilityHint={nm} onPress={() => draftAddSet(d.key, ei, 'drop')} />
         <Btn title={t('⇄ zamień')} small kind="ghost" accessibilityLabel={t('Zamień ćwiczenie: {name}', { name: nm })} onPress={() => router.push(`/swap?target=edit:${d.key}:${e.id}`)} /* E2 D6 (H1) */ />
-        <Btn title={t('usuń')} small kind="ghost" accessibilityLabel={t('Usuń ćwiczenie: {name}', { name: nm })} onPress={removeEx} />
         <Muted style={{ fontSize: 13, alignSelf: 'center' }}>{`${e.sets.length} ${tp(e.sets.length, 'seria|serie|serii')}`}</Muted>
       </View>
     </View>

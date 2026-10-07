@@ -37,4 +37,4 @@ Brak któregoś rodzaju wymaga zapisanego powodu w docs/09 (wiersz tej zmiany), 
 - Jest: 120 plików testów, 2091 testów (2090 + 1 pominięty celowo: odtwarzanie kontrprzykładu na żądanie).
 - Macierz: 944 pozycji, 0 bez testu (`docs/19-macierz-testow.md`).
 - Losowe sekwencje: 100 przebiegów na stałym ziarnie przy każdym `jest` (`MATRIX_SEED=random` — dodatkowe ziarna).
-- E2E Maestro: 11 scenariuszy (01–11).
+- E2E Maestro: 12 scenariuszy (01–12; 12 — usuwanie przesunięciem, 07.10.2026 wieczór).

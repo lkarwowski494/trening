@@ -3,7 +3,7 @@ import * as store from '@/lib/store';
 import * as timer from '@/lib/timer';
 import { fireEvent } from '@testing-library/react-native';
 import { fresh, ex, addWorkout, withDemoTemplates } from './helpers';
-import { renderApp, flushAll, screen, go, tap, type, act, expandEquip } from './app';
+import { renderApp, flushAll, screen, go, tap, type, act, expandEquip, deleteActions } from './app';
 import { userHome } from './locations-fixtures';
 import { addLocation } from '@/lib/locations';
 
@@ -62,8 +62,10 @@ describe('Ustawienia → Miejsca treningu', () => {
     expect(screen.getByText('para: 8 (1,5–10 kg); jeden hantel: 21 (1,5–18,5 kg)')).toBeTruthy();
   });
   test('ustaw jako główne, duplikuj, usuń: głównego nie da się usunąć, dopóki jest inne', async () => {
-    const saved = await savedWithPlaces(); await renderApp({ saved }); await go('/more/location/home'); await flushAll(10); await expandEquip();
-    await tap(screen.getByText('Usuń')); expect(global.__alerts.slice(-1)[0].title).toBe('To miejsce główne');
+    const saved = await savedWithPlaces(); await renderApp({ saved });
+    /* 07.10.2026 wieczór: usuwanie przesunięciem na liście miejsc — główne (gdy jest inne) nie ma akcji „usuń” */
+    await go('/more/locations'); await flushAll(10); expect(deleteActions()).toEqual(['Usuń miejsce: Siłownia']);
+    await go('/more/location/home'); await flushAll(10); await expandEquip(); expect(screen.queryByText('Usuń')).toBeNull();
     const gym = store.getState().settings.locations[1]; await go(`/more/location/${gym.id}`); await flushAll(10); await expandEquip();
     await tap(screen.getByText('Ustaw jako główne')); expect(store.getState().settings.mainLocationId).toBe(gym.id);
     await tap(screen.getByText('Duplikuj')); await flushAll(10); expect(store.getState().settings.locations.map(l => l.name)).toEqual(['Dom', 'Siłownia', 'Siłownia (kopia)']);

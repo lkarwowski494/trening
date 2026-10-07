@@ -12,7 +12,7 @@ import { useTheme, F } from '@/lib/theme';
 
 /*
  * P-003 E1: jedno miejsce — nazwa, „Ustaw jako główne”, sprzęt w grupach (przełączniki iOS, jak P-002), opcje pozycji, edytor ciężarów
- * pod pozycjami z ciężarami, „Duplikuj”, „Usuń”. Każda zmiana zapisuje się od razu.
+ * pod pozycjami z ciężarami, „Duplikuj” (usuwanie — przesunięciem na liście miejsc, 07.10.2026 wieczór). Każda zmiana zapisuje się od razu.
  */
 export default function LocationEdit() {
   const { id } = useLocalSearchParams<{ id: string }>(); useTick(); const router = useRouter(); const once = useOnce();
@@ -49,11 +49,6 @@ export default function LocationEdit() {
         </View>); })}
       <View style={{ flexDirection: 'row', gap: 8, marginTop: 20 }}>
         <Btn title={t('Duplikuj')} onPress={once(() => { const c = duplicateLocation(l.id); if (c) router.replace(`/more/location/${c.id}`); })} />
-        <Btn title={t('Usuń')} kind="danger" onPress={() => {
-          if (!canDeleteLocation(l.id)) { Alert.alert(t('To miejsce główne'), t('Najpierw ustaw inne miejsce jako główne.')); return; }
-          const used = getState().workouts.some(w => w.locationId === l.id) || getState().templates.some(x => x.locationId === l.id);
-          Alert.alert(t('Usunąć miejsce?'), used ? t('Treningi i szablony z tym miejscem pokażą „(usunięte miejsce)”.') : undefined, [{ text: t('Nie') }, { text: t('Usuń'), style: 'destructive', onPress: () => { if (deleteLocation(l.id)) back(); } }]);
-        }} />
       </View>
     </ScrollView></Screen>
   );

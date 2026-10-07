@@ -13,7 +13,7 @@ import * as stats from '@/lib/stats';
 import * as backup from '@/lib/backup';
 import { SCHEMA_VERSION } from '@/lib/seed';
 import { fresh, ex, seedWithDemo, pressAlert, addWorkout } from './helpers';
-import { renderApp, flushAll, screen, go, tap, act, fireEvent, openCard } from './app';
+import { renderApp, flushAll, screen, go, tap, act, fireEvent, openCard, swipeDelete } from './app';
 import * as units from '@/lib/units';
 
 jest.setTimeout(60000);
@@ -114,7 +114,7 @@ describe('T-055 gumy bez kg: dawne nominalKg tylko przyjmowane przy imporcie', (
     await tap(screen.getAllByLabelText(/^Guma: /)[0]); await flushAll(5); const id = s0().bandId;
     await go('/more/bands'); await flushAll(10);
     const order = [...store.getState().bands].sort((a, b) => a.level - b.level); const row = order.findIndex(b => b.id === id); expect(row).toBe(0);
-    await tap(screen.getAllByLabelText('Usuń gumę')[0]); pressAlert('Usunąć gumę?', 'Usuń'); await flushAll(5);
+    await swipeDelete(/^Usuń gumę: /); pressAlert('Usunąć gumę?', 'Usuń'); await flushAll(5);
     expect([s0().bandId, s0().addKg]).toEqual(['', -7.5]);
   });
   test('jeden cykl gum (store.nextBandId) dla treningu i edytora historii: brak → cienka → … → gruba → brak; usunięta guma → od początku', async () => {

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Alert } from 'react-native';
 import { Btn, Chip, Field, Muted, NumInput, Segmented, FieldHint } from '@/components/ui';
+import { SwipeRow } from '@/components/SwipeRow';
 import { useTheme } from '@/lib/theme';
 import { locationEdited } from '@/lib/locations';
 import { LOAD_PRESETS, applyLoadPreset, equipLabel, type EquipItem } from '@/lib/equipment';
@@ -73,11 +74,11 @@ export default function LoadEditor({ loc, entry, item }: { loc: Location; entry:
         <Field label={item.id === 'db_plate' ? t('Uchwyt (jeden, {u})', { u: spec.unit }) : t('Gryf ({u})', { u: spec.unit })}><NumInput decimal value={r3(spec.base)} onNum={v => { spec.base = v === '' ? 0 : Math.max(0, Math.min(1000, v)); upd(); }} /></Field>
         <Muted style={{ fontSize: 12 }}>{(item.id === 'db_plate' ? t('Talerze: ciężar i liczba sztuk (wszystkie, dla obu hantli razem).') : t('Talerze: ciężar i liczba sztuk (wszystkie, na obie strony razem).')) + ' ' + t('Najwyżej {n} rodzajów.', { n: LOAD_LIMITS.plateRows })}</Muted>
         {spec.plates.map((p, i) => (
-          <View key={i} style={{ flexDirection: 'row', gap: 6, alignItems: 'flex-end' }}>
-            <View style={{ flex: 1 }}><Field label={t('talerz ({u})', { u: spec.unit })}><NumInput decimal value={r3(p.w)} onNum={v => { p.w = v === '' ? 0 : Math.max(0, Math.min(1000, v)); upd(); }} /></Field></View>
+          /* 07.10.2026 wieczór: usuwanie talerza przesunięciem w lewo (components/SwipeRow.tsx), z potwierdzeniem */
+          <SwipeRow key={i} label={lbl(t('Usuń talerz'))} title={t('Usunąć talerz?')} message={`${fmtNum(r3(p.w), 3)} ${spec.unit} × ${p.n}`} onDelete={() => { if (spec.plates[i] === p) { spec.plates.splice(i, 1); upd(); } }}>{a11y => <View style={{ flexDirection: 'row', gap: 6, alignItems: 'flex-end' }}>
+            <View style={{ flex: 1 }}><Field label={t('talerz ({u})', { u: spec.unit })}><NumInput {...a11y} decimal value={r3(p.w)} onNum={v => { p.w = v === '' ? 0 : Math.max(0, Math.min(1000, v)); upd(); }} /></Field></View>
             <View style={{ flex: 1 }}><Field label={t('sztuk')}><NumInput value={p.n} onNum={v => { p.n = v === '' ? 0 : Math.max(0, Math.min(100, Math.round(v))); upd(); }} /></Field></View>
-            <View style={{ marginBottom: 12 }}><Btn small kind="ghost" title="✕" accessibilityLabel={lbl(t('Usuń talerz'))} onPress={() => { spec.plates.splice(i, 1); upd(); }} /></View>
-          </View>))}
+          </View>}</SwipeRow>))}
         {spec.plates.length < LOAD_LIMITS.plateRows ? <Btn small title={t('+ talerz')} accessibilityLabel={lbl(t('+ talerz'))} onPress={() => { spec.plates.push({ w: 0, n: 2 }); upd(); }} /> : null}
       </> : null}
       {spec.kind === 'electric' ? <Muted style={{ fontSize: 12 }}>{t('Ciężar serii na stacji wpisuj na stronę — tak, jak pokazuje urządzenie.')}</Muted> : null /* decyzja 03.10.2026: „ViShape na stronę” */}

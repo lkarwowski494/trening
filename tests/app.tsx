@@ -42,3 +42,18 @@ export const go = async (href: string) => { await act(async () => { router.push(
 export const expandEquip = async () => { const { EQUIP_GROUPS, EQUIP_GROUP_LABEL, equipLabel } = require('@/lib/equipment'); for (const g of EQUIP_GROUPS) { const el = screen.queryByLabelText(equipLabel(EQUIP_GROUP_LABEL[g])); if (el && !el.props.accessibilityState?.expanded) await tap(el); } };
 /** Edytor szablonu (06.10.2026): karty ćwiczeń zwinięte, otwarta jedna — otwiera kartę nr `i` (kolejność na ekranie). */
 export const openCard = async (i = 0) => { const cards = screen.getAllByRole('button').filter(b => b.props.accessibilityState?.expanded !== undefined && b.props.accessibilityValue?.text !== undefined); if (cards[i] && !cards[i].props.accessibilityState?.expanded) await tap(cards[i]); };
+/**
+ * Usuwanie przesunięciem w lewo (decyzja właściciela 07.10.2026 wieczór): w testach — akcja dostępności „delete” o etykiecie `label`
+ * (ta sama etykieta co przycisk „Usuń” odsłaniany pod wierszem). Potwierdzenie: pressAlert(tytuł, 'Usuń') z tests/helpers.ts.
+ */
+export const swipeDelete = async (label: string | RegExp, nth = 0) => {
+  const hit = (l: string) => typeof label === 'string' ? l === label : label.test(l);
+  /* ten sam wiersz występuje w drzewie kilka razy (komponent i jego element natywny) — liczymy po funkcji akcji */
+  const all = screen.UNSAFE_root.findAll((n: { props: Record<string, any> }) => typeof n.props.onAccessibilityAction === 'function' && Array.isArray(n.props.accessibilityActions) && n.props.accessibilityActions.some((a: { name: string; label?: string }) => a.name === 'delete' && hit(a.label ?? '')));
+  const el = all.filter((n: { props: Record<string, any> }, i: number) => all.findIndex((m: { props: Record<string, any> }) => m.props.onAccessibilityAction === n.props.onAccessibilityAction) === i)[nth];
+  if (!el) throw new Error(`brak wiersza z akcją usuwania „${String(label)}”`);
+  await act(async () => { el.props.onAccessibilityAction({ nativeEvent: { actionName: 'delete' } }); });
+};
+/** Etykiety akcji „usuń” widoczne na ekranie (do sprawdzeń, że wiersz da się usunąć gestem). */
+export const deleteActions = (): string[] => screen.UNSAFE_root.findAll((n: { props: Record<string, any> }) => typeof n.props.onAccessibilityAction === 'function' && Array.isArray(n.props.accessibilityActions))
+  .flatMap((n: { props: Record<string, any> }) => n.props.accessibilityActions.filter((a: { name: string }) => a.name === 'delete').map((a: { label: string }) => a.label)).filter((v: string, i: number, a: string[]) => a.indexOf(v) === i);

@@ -13,7 +13,7 @@ import { LOAD_LIMITS } from '@/lib/loads';
 import { addLocation } from '@/lib/locations';
 import { t as tr, exName } from '@/lib/i18n';
 import { fresh, ex, addWorkout, pressAlert, withDemoTemplates } from './helpers';
-import { renderApp, flushAll, screen, go, tap, type, act, fireEvent, expandEquip, openCard } from './app';
+import { renderApp, flushAll, screen, go, tap, type, act, fireEvent, expandEquip, openCard, swipeDelete, deleteActions } from './app';
 import { loc } from './locations-fixtures';
 
 /* Zgoda na powiadomienia sterowana z testu (global.__notifDenied) — reszta jak w tests/setup.js. */
@@ -149,7 +149,7 @@ describe('/more/bands', () => {
       store.startEmpty(); store.addExerciseToActive(ex('Pull Up')); store.getState().active!.exercises[0].sets[0].bandId = b.id; });
     await renderApp({ saved }); await go('/more/bands'); await flushAll(10);
     const b = store.getState().bands.find(x => x.id === bandId)!;
-    await tap(byHint('Usuń gumę', store.bandColor(b)));
+    await swipeDelete(`Usuń gumę: ${store.bandColor(b)}`); /* 07.10.2026 wieczór: przesunięcie w lewo */
     expect(lastAlert()).toMatchObject({ title: 'Usunąć gumę?', msg: 'W historii serie z tą gumą pokażą „?”. W trwającym treningu guma zniknie z nieodhaczonych serii.' });
     await act(async () => { pressAlert('Usunąć gumę?', 'Usuń'); }); await flushAll(5);
     expect(store.getState().bands.some(x => x.id === bandId)).toBe(false); expect(store.getState().active!.exercises[0].sets[0].bandId).toBe('');
@@ -177,14 +177,12 @@ describe('/more/locations, /more/location/[id]', () => {
     expect(screen.getAllByLabelText(/: poziom 7$/)[0].props.accessibilityState.checked).toBe(!was);
   });
 
-  test('usuwanie: główne (gdy jest inne) → „Najpierw ustaw inne…”; używane → ostrzeżenie o „(usunięte miejsce)” i usunięcie', async () => {
+  test('usuwanie przesunięciem na liście (07.10.2026 wieczór): główne (gdy jest inne) — bez akcji; używane → ostrzeżenie o „(usunięte miejsce)” i usunięcie', async () => {
     const saved = await prepared(() => { const s = store.getState().settings; s.locations.push(loc('Dom', [], 'm1')); s.mainLocationId = 'm1'; const g = addLocation('gym', 'Siłownia');
       const w = addWorkout(Date.now() - DAY, [['Back Squat', [{ weight: 100, reps: 5 }]]]); w.locationId = g.id; });
-    await renderApp({ saved }); await go('/more/location/m1'); await flushAll(10);
-    await tap(screen.getByText('Usuń')); expect(lastAlert()).toMatchObject({ title: 'To miejsce główne', msg: 'Najpierw ustaw inne miejsce jako główne.' });
-    const gym = store.getState().settings.locations[1];
-    await go(`/more/location/${gym.id}`); await flushAll(10);
-    await tap(screen.getByText('Usuń'));
+    await renderApp({ saved }); await go('/more/locations'); await flushAll(10);
+    expect(deleteActions()).toEqual(['Usuń miejsce: Siłownia']); /* główne „Dom” — bez gestu, dopóki jest inne miejsce */
+    await swipeDelete('Usuń miejsce: Siłownia');
     expect(lastAlert()).toMatchObject({ title: 'Usunąć miejsce?', msg: 'Treningi i szablony z tym miejscem pokażą „(usunięte miejsce)”.' });
     await act(async () => { pressAlert('Usunąć miejsce?', 'Usuń'); }); await flushAll(10);
     expect(store.getState().settings.locations.map(l => l.id)).toEqual(['m1']);
@@ -291,7 +289,7 @@ describe('/exercise/[id]', () => {
     const saved = await prepared(() => { addWorkout(Date.now() - DAY, [['Back Squat', [{ weight: 100, reps: 5 }]]]); store.startEmpty(); store.addExerciseToActive(ex('Back Squat')); });
     await renderApp({ saved }); const id = ex('Back Squat').id; await go(`/exercise/${id}`); await flushAll(10);
     expect(screen.getByText('Uwaga: zmiana sprzętu, trybu liczenia lub metryki przelicza też dawne treningi (objętość, rekordy, wykresy).')).toBeTruthy();
-    await tap(screen.getByText('Usuń ćwiczenie'));
+    expect(screen.queryByText('Usuń ćwiczenie')).toBeNull(); await go('/exercises'); await flushAll(10); await swipeDelete('Usuń z biblioteki: Back Squat'); /* 07.10.2026 wieczór: z listy, przesunięciem */
     expect(lastAlert()).toMatchObject({ title: 'Usunąć ćwiczenie?', msg: 'Zniknie z list i szablonów; historia, wykresy i eksport zostaną. W trwającym treningu zostanie oznaczone jako usunięte.' });
     await act(async () => { pressAlert('Usunąć ćwiczenie?', 'Usuń'); }); await flushAll(10);
     expect(store.getState().exercises.find(x => x.id === id)!.archived).toBe(true);
@@ -418,14 +416,15 @@ describe('ActiveWorkout (/ z treningiem w toku)', () => {
     await act(async () => { pressAlert('Zakończyć trening?', 'Wróć'); }); expect(store.getState().active).not.toBeNull();
   });
 
-  test('„Anuluj trening” → „Serie z tej sesji przepadną.”; usunięcie odhaczonej serii (− seria i menu serii) pyta „Seria jest już odhaczona.”', async () => {
+  test('„Anuluj trening” → „Serie z tej sesji przepadną.”; usunięcie odhaczonej serii (przesunięciem, 07.10.2026 wieczór) pyta z dopiskiem „Seria jest już odhaczona.”; ostatniej serii — bez gestu', async () => {
     await startWith(['Back Squat'], () => { const e = store.getState().active!.exercises[0]; e.sets = [store.emptySet(), store.emptySet(), store.emptySet()]; e.sets.forEach(s => Object.assign(s, { weight: 100, reps: 5, done: true, completedAt: Date.now() })); });
-    await tap(screen.getByText('− seria'));
-    expect(lastAlert()).toMatchObject({ title: 'Usunąć ostatnią serię?', msg: 'Seria jest już odhaczona.' });
-    await act(async () => { pressAlert('Usunąć ostatnią serię?', 'Usuń'); }); await flushAll(5); expect(blk(0).sets).toHaveLength(2);
-    await tap(screen.getAllByLabelText(/^Seria 1, typ:/)[0]); await act(async () => { (global as any).__pickSheet(5); });
+    expect(screen.queryByText('− seria')).toBeNull();
+    await swipeDelete('Usuń serię 3 — Back Squat');
     expect(lastAlert()).toMatchObject({ title: 'Usunąć serię?', msg: 'Seria jest już odhaczona.' });
-    await act(async () => { pressAlert('Usunąć serię?', 'Usuń'); }); await flushAll(5); expect(blk(0).sets).toHaveLength(1);
+    await act(async () => { pressAlert('Usunąć serię?', 'Nie'); }); await flushAll(5); expect(blk(0).sets).toHaveLength(3);
+    await swipeDelete('Usuń serię 3 — Back Squat'); await act(async () => { pressAlert('Usunąć serię?', 'Usuń'); }); await flushAll(5); expect(blk(0).sets).toHaveLength(2);
+    await swipeDelete('Usuń serię 1 — Back Squat'); await act(async () => { pressAlert('Usunąć serię?', 'Usuń'); }); await flushAll(5); expect(blk(0).sets).toHaveLength(1);
+    expect(deleteActions().filter(l => l.startsWith('Usuń serię'))).toEqual([]);
     await tap(screen.getByText('Anuluj trening'));
     expect(lastAlert()).toMatchObject({ title: 'Anulować trening?', msg: 'Serie z tej sesji przepadną.' });
     await act(async () => { pressAlert('Anulować trening?', 'Anuluj trening'); }); await flushAll(5); expect(store.getState().active).toBeNull();
@@ -433,7 +432,7 @@ describe('ActiveWorkout (/ z treningiem w toku)', () => {
 
   test('blok usuniętego ćwiczenia: „Usuń usunięte ćwiczenie z treningu” usuwa blok', async () => {
     await startWith(['Back Squat', 'Push Up'], () => { store.getState().active!.exercises[0].exerciseId = 'usuniete'; });
-    await tap(screen.getByLabelText('Usuń usunięte ćwiczenie z treningu')); await flushAll(5);
+    await swipeDelete('Usuń usunięte ćwiczenie z treningu'); await act(async () => { pressAlert('Usunąć z treningu?', 'Usuń'); }); await flushAll(5); /* 07.10.2026 wieczór: z potwierdzeniem */
     expect(store.getState().active!.exercises.map(e => e.exerciseId)).toEqual([ex('Push Up').id]);
   });
 
@@ -622,7 +621,7 @@ describe('/template/[id], /reorder', () => {
       b.items[0].repMin = 8; b.items[0].repMax = 12; b.items[0].alternates = [{ locationId: g.id, exerciseId: ex('Machine Chest Press').id, restSec: null }];
       store.startFromTemplate(a); });
     await renderApp({ saved }); await go(`/template/${tplB}`); await flushAll(20);
-    expect(screen.getByText('Dotknij etykiety serii, by zmienić typ albo usunąć serię. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✂ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.')).toBeTruthy();
+    expect(screen.getByText('Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✂ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.')).toBeTruthy();
     await openCard(0); await flushAll(5);
     expect(screen.getByText('Zakres powtórzeń: 8–12 — po osiągnięciu górnej granicy podpowiedź „↑ więcej kg”.')).toBeTruthy();
     expect(screen.getByText('Zamienniki')).toBeTruthy(); expect(screen.getByText(`📍 Siłownia: ${exName(ex('Machine Chest Press'))}`)).toBeTruthy();
@@ -685,7 +684,7 @@ describe('/history/add, /history/edit/[id] (lib/edit)', () => {
     await act(async () => { pressAlert('Zapisać zmiany?', 'Zapisz'); }); await flushAll(50);
     expect(store.getState().workouts.find(x => x.id === w1.id)!.note).toBe('dobrze');
     await go(`/history/edit/${w2.id}`); await flushAll(20);
-    await tap(screen.getByLabelText('Usuń serię 1 — Push Up')); await tap(screen.getByText('Zapisz'));
+    await swipeDelete('Usuń serię 1 — Push Up'); await act(async () => { pressAlert('Usunąć serię?', 'Usuń'); }); await flushAll(5); await tap(screen.getByText('Zapisz'));
     expect(lastAlert()).toMatchObject({ title: 'Pusty trening', msg: 'Nie zostałaby żadna seria z wynikiem. Usunąć tę sesję z historii?' });
     await act(async () => { pressAlert('Pusty trening', 'Usuń sesję'); }); await flushAll(50);
     expect(store.getState().workouts.some(x => x.id === w2.id)).toBe(false);

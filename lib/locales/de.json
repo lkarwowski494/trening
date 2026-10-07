@@ -843,5 +843,13 @@
  "asysta gumą: {v}": "Bandunterstützung: {v}",
  "dociążenie: {v}": "Zusatzgewicht: {v}",
  "asysta: {v}": "Unterstützung: {v}",
- "Lista: ćwiczenia i serie jak w poprzednich wersjach, bez karty.": "Liste: Übungen und Sätze wie in früheren Versionen, ohne Karte."
+ "Lista: ćwiczenia i serie jak w poprzednich wersjach, bez karty.": "Liste: Übungen und Sätze wie in früheren Versionen, ohne Karte.",
+ "Usuń sesję: {name}": "Einheit löschen: {name}",
+ "Usuń szablon: {name}": "Vorlage löschen: {name}",
+ "Usuń gumę: {name}": "Band löschen: {name}",
+ "Usuń miejsce: {name}": "Ort löschen: {name}",
+ "Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✂ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.": "Tippe auf ein Satzlabel, um den Typ zu ändern; wische eine Zeile nach links, um sie zu löschen. Der Wiederholungsbereich ist optional — damit bekommst du „↑“-Hinweise. „⇅ SS“ verbindet eine Übung mit der nächsten zu einem Supersatz, „✂ SS“ nimmt sie aus der Gruppe. Reihenfolge: „≡ Reihenfolge“.",
+ "Seria {n}, typ: {k}. Tapnij, by zmienić typ.": "Satz {n}, Typ: {k}. Tippe, um den Typ zu ändern.",
+ "Usunąć talerz?": "Scheibe entfernen?",
+ "Usuń z biblioteki: {name}": "Aus der Bibliothek löschen: {name}"
 }
