@@ -865,11 +865,5 @@
  "+ Nowy folder": "+ Naujas aplankas",
  "Nazwa folderu": "Aplanko pavadinimas",
  "Przywróć z archiwum": "Atkurti iš archyvo",
- "Archiwizuj": "Archyvuoti",
- "W tym tygodniu": "Šią savaitę",
- "Ostatni trening": "Paskutinė treniruotė",
- "Jeszcze bez treningu": "Dar nėra treniruočių",
- "trening|treningi|treningów": "treniruotė|treniruotės|treniruočių",
- "Tydzień treningów": "Treniruočių savaitė",
- "Treningi i serie w tym tygodniu oraz ostatni trening.": "Šios savaitės treniruotės ir serijos bei paskutinė treniruotė."
+ "Archiwizuj": "Archyvuoti"
 }

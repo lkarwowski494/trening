@@ -31,10 +31,7 @@ const listeners = new Set<() => void>();
  */
 let laKind: 'rest' | 'set' | null = null;
 // Runda 37: etykieta rodzaju („Przerwa”/„Seria”) w języku aplikacji, przekazana w polu kind jako „rest|Przerwa” (widżet dzieli po „|”).
-/* Pole kind: „rodzaj|etykieta” w języku aplikacji; przerwa dokłada etykiety przycisków ekranu blokady (iOS 17+, 07.10.2026 wieczór):
- * „rest|Przerwa|Pomiń|Skróć…|Wydłuż…” (targets/rest-widget/RestLiveActivity.swift, kindParts). */
-const laKindText = (kind: 'rest' | 'set') => kind === 'set' ? `set|${t('Seria')}` : ['rest', t('Przerwa'), t('Pomiń'), t('Skróć przerwę o 15 sekund'), t('Wydłuż przerwę o 15 sekund')].join('|');
-const laStart = (kind: 'rest' | 'set', sub: string, endAt: number, total: number) => { laKind = kind; LA.start(title(), sub, endAt, total, laKindText(kind)).catch(() => {}); };
+const laStart = (kind: 'rest' | 'set', sub: string, endAt: number, total: number) => { laKind = kind; LA.start(title(), sub, endAt, total, `${kind}|${kind === 'set' ? t('Seria') : t('Przerwa')}`).catch(() => {}); };
 const laEnd = (kind: 'rest' | 'set') => { if (laKind !== kind) return; laKind = null; LA.end().catch(() => {}); handover(); };
 /** Po końcu jednej aktywności: pokaż drugi trwający timer (jeśli odlicza do celu). */
 function handover() {
@@ -98,28 +95,12 @@ export async function restore() {
     S.on = true; S.startAt = ts.setStartAt; S.targetSec = ts.setTarget; S.setId = ts.setId; S.alarmed = S.targetSec > 0 && Date.now() - S.startAt >= S.targetSec * 1000;
     if (S.targetSec > 0 && !S.alarmed) { await scheduleSetEnd(); if (laKind !== 'rest') laStart('set', t('seria {s} s', { s: S.targetSec }), S.startAt + S.targetSec * 1000, S.targetSec); }
   }
-  await syncFromActivity(); /* przycisk na ekranie blokady mógł uruchomić aplikację w tle */
   // Runda 20: po restarcie nikt nie „posiada” starej Live Activity — jeśli nic jej nie przejęło, kończymy ją od razu.
   if (!laKind) LA.end().catch(() => {});
   emit();
 }
 /** Powrót apki na pierwszy plan: zakończ Live Activity, jeśli przerwa minęła w tle (bez push nie da się tego zrobić w tle). */
-/**
- * Przyciski ekranu blokady (07.10.2026 wieczór): −15/+15/Pomiń wykonuje intencja w procesie aplikacji (Swift, _shared/RestIntents.swift) —
- * zmienia Live Activity i powiadomienie, a nowy stan zapisuje; tu przejmujemy go do timera aplikacji. Wpis starszy niż bieżąca przerwa
- * (atMs przed jej startem) albo bez trwającej przerwy — pomijany. Odczyt synchroniczny (powrót na pierwszy plan, start w tle).
- */
-export async function syncFromActivity() {
-  let a: { endAtMs?: unknown; totalSec?: unknown; ended?: unknown; atMs?: unknown } | null = null;
-  try { const raw = LA.takeAdjust(); a = raw ? JSON.parse(raw) : null; } catch { a = null; }
-  if (!a || !T.on || typeof a.atMs !== 'number' || a.atMs < T.endAt - T.total * 1000) return;
-  if (a.ended === true) { T.on = false; T.setId = null; setTimerState({ restEndAt: null, restTotal: 0, restSetId: null }); if (laKind === 'rest') laKind = null; emit(); await cancelScheduled(); return; }
-  const end = Number(a.endAtMs); const total = Number(a.totalSec); if (!Number.isFinite(end) || !Number.isFinite(total) || end <= 0) return;
-  T.endAt = end; T.total = Math.max(0, Math.round(total)); if (T.endAt > Date.now()) T.alarmed = false;
-  setTimerState({ restEndAt: T.endAt, restTotal: T.total }); emit(); await reschedule();
-}
 export function onForeground() {
-  syncFromActivity().catch(() => {}); /* stan zmieniany synchronicznie — sprawdzenia niżej widzą już nowy koniec przerwy */
   if (S.on && S.targetSec > 0 && !S.alarmed && Date.now() - S.startAt >= S.targetSec * 1000) { S.alarmed = true; laEnd('set'); emit(); }
   if (T.on && T.endAt <= Date.now()) { T.alarmed = true; laEnd('rest'); emit(); }
 }

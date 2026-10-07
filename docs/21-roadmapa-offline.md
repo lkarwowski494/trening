@@ -69,9 +69,20 @@ widocznej w treningu (pole istnieje, ekran treningu go nie pokazuje), pola RIR (
 | Kalkulator talerzy (co nałożyć na stronę) | z talerzy miejsca — mamy dane | nie (arytmetyka) |
 | Pomiń ćwiczenie dziś (bez usuwania z szablonu) | dziś tylko „usuń” | nie |
 | Foldery / archiwum szablonów | | nie |
-| Przyciski w Live Activity: „−15/+15 s”, „Pomiń przerwę” | iOS: przyciski działają po odblokowaniu (Face ID) — https://developer.apple.com/documentation/widgetkit/adding-interactivity-to-widgets-and-live-activities | nie |
-| Kontrolka w Centrum sterowania „Start przerwy / treningu” | https://developer.apple.com/documentation/widgetkit/creating-controls-to-perform-actions-across-the-system | nie |
-| Widżet na ekran główny (serie w tygodniu / ostatni trening) | rozszerzenie widżetu już jest | nie |
+| Przyciski w Live Activity: „−15/+15 s”, „Pomiń przerwę” — **odłożone do wydania natywnego (4n)** | iOS: przyciski działają po odblokowaniu (Face ID) — https://developer.apple.com/documentation/widgetkit/adding-interactivity-to-widgets-and-live-activities | nie |
+| Kontrolka w Centrum sterowania „Start przerwy / treningu” — **wydanie natywne (4n)** | https://developer.apple.com/documentation/widgetkit/creating-controls-to-perform-actions-across-the-system | nie |
+| Widżet na ekran główny (serie w tygodniu / ostatni trening) — **odłożone do wydania natywnego (4n)** | rozszerzenie widżetu już jest | nie |
+
+### 4n. Wydanie natywne — po najbliższej wersji (decyzja właściciela 07.10.2026 wieczór)
+Funkcje, których działania agent nie sprawdzi testami automatycznymi (Maestro na symulatorze nie steruje ekranem blokady ani ekranem
+głównym iOS): wchodzą osobnym buildem, jak wydanie „Health”, po sprawdzeniu przez właściciela na telefonie.
+| Funkcja | Stan | Co sprawdzić na telefonie |
+|---|---|---|
+| Przyciski przerwy −15 / +15 / Pomiń (Live Activity, iOS 17+) | gotowe w commicie 2e08c84 (`feature/e2-swap`), cofnięte | przyciski zmieniają licznik i powiadomienie; aplikacja po powrocie pokazuje ten sam czas |
+| Widżet „Tydzień treningów” | gotowe w commicie df53ab9 (`feature/e2-swap`), cofnięte | dodanie widżetu, liczby po treningu, zera po końcu tygodnia; grupa aplikacji `group.pl.lukasz.trening` musi dać się podpisać (może wymagać kroku w Apple Developer) |
+| Kontrolka w Centrum sterowania | niezaczęte | — |
+
+Przywrócenie: `git revert` commitu odwracającego (zapis w docs/18, 07.10 ok. 19:45), potem `npm run verify` i `ios-unsigned.yml`.
 
 ### 4b. Średnie (1–2 tygodnie)
 | Funkcja | Uwagi | Twierdzenie dziedzinowe? |

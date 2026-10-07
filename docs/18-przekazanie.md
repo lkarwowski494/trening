@@ -89,3 +89,8 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
   - **Usuwanie:** przesunięcie w lewo + potwierdzenie **wszędzie** (także serie w treningu; odrzucone „Cofnij” bez potwierdzenia); dotychczasowe przyciski „Usuń” **znikają**; VoiceOver — akcja „Usuń”.
   - **Kolejność:** czcionka → usuwanie gestem → kalendarz w Historii → „Pomiń ćwiczenie dziś” → przyciski przerwy na ekranie blokady → foldery szablonów → widżet; import Strong/Hevy, gdy będą pliki (właściciel: Strong, kolega: Hevy; do testów tylko zanonimizowany plik — repo publiczne). Wszystko poza „Health” w następnej wersji.
 - 07.10.2026 (ok. 18:15): właściciel — „Wdrażaj wszystko, o czym wspominałeś, oprócz Health”: w następnej wersji także przyciski przerwy na ekranie blokady (Live Activity, iOS 17+) i widżet na ekran główny, mimo ryzyk natywnych (rejestracja App Intent w module, App Group dla widżetu — może wymagać jednorazowego kroku w Apple Developer). Odrzucone: A (natywne w osobnym kroku), C (natywne w osobnym wydaniu).
+- 07.10.2026 (ok. 19:45): właściciel — „Skoro nie możesz przetestować, to wszystkie takie elementy wypychamy do oddzielnego buildu jak z Health,
+  wrzucamy w backlog i dodamy później. Elementy testowane po twojej stronie idą w najbliższą wersję”. Zasada: w najbliższej wersji tylko to, co
+  sprawdzają testy automatyczne agenta (jest, macierz, E2E Maestro na symulatorze). **Odłożone** (docs/21, „Wydanie natywne”): przyciski przerwy
+  na ekranie blokady (commit 2e08c84) i widżet na ekran główny (df53ab9) — cofnięte na `feature/e2-swap` commitem odwracającym; kod zostaje
+  w historii gałęzi, powrót = `git revert` tego commitu. Uchyla decyzję z 18:15 w tej części.

@@ -865,11 +865,5 @@
  "+ Nowy folder": "+ Нова папка",
  "Nazwa folderu": "Назва папки",
  "Przywróć z archiwum": "Відновити з архіву",
- "Archiwizuj": "Архівувати",
- "W tym tygodniu": "Цього тижня",
- "Ostatni trening": "Останнє тренування",
- "Jeszcze bez treningu": "Ще немає тренувань",
- "trening|treningi|treningów": "тренування|тренування|тренувань",
- "Tydzień treningów": "Тиждень тренувань",
- "Treningi i serie w tym tygodniu oraz ostatni trening.": "Тренування й підходи цього тижня та останнє тренування."
+ "Archiwizuj": "Архівувати"
 }

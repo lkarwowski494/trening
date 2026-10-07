@@ -344,11 +344,4 @@ export const EN: Record<string, string> = {
   'Nazwa folderu': 'Folder name',
   'Przywróć z archiwum': 'Restore from archive',
   'Archiwizuj': 'Archive',
-  /* 07.10.2026 wieczór: widżet na ekran główny (lib/widget.ts, SummaryWidget.swift) */
-  'W tym tygodniu': 'This week',
-  'Ostatni trening': 'Last workout',
-  'Jeszcze bez treningu': 'No workout yet',
-  'trening|treningi|treningów': 'workout|workouts',
-  'Tydzień treningów': 'Training week',
-  'Treningi i serie w tym tygodniu oraz ostatni trening.': 'Workouts and sets this week, plus your last workout.',
 };

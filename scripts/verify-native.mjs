@@ -12,19 +12,15 @@ try {
   const ent = readFileSync(root + 'ios/Trening/Trening.entitlements', 'utf8');
   ok(ent.includes('com.apple.developer.healthkit'), 'entitlements: brak HealthKit');
   ok(!ent.includes('aps-environment'), 'entitlements: aps-environment (Push) — darmowe Apple ID tego nie podpisze');
-  { const keys = [...ent.matchAll(/<key>([^<]+)<\/key>/g)].map(m => m[1]); ok(keys.sort().join() === 'com.apple.developer.healthkit,com.apple.security.application-groups', 'entitlements: tylko HealthKit i grupa aplikacji, są: ' + keys.join(', ')); } /* runda 63: dokładny zbiór kluczy; 07.10.2026: grupa aplikacji dla widżetu */
-  ok(ent.includes('<string>group.pl.lukasz.trening</string>'), 'entitlements: brak grupy group.pl.lukasz.trening (widżet bez danych)');
+  { const keys = [...ent.matchAll(/<key>([^<]+)<\/key>/g)].map(m => m[1]); ok(keys.length === 1 && keys[0] === 'com.apple.developer.healthkit', 'entitlements: tylko HealthKit, są: ' + keys.join(', ')); } /* runda 63: dokładny zbiór kluczy */
   for (const l of ['pl', 'en']) { const p = root + `ios/Trening/Supporting/${l}.lproj/InfoPlist.strings`; ok(existsSync(p) && /NSHealthUpdateUsageDescription = "[^"]{10,}"/.test(readFileSync(p, 'utf8')) && /NSHealthShareUsageDescription = "[^"]{10,}"/.test(readFileSync(p, 'utf8')), `InfoPlist.strings ${l}: brak lub zły format`); }
   const plist = readFileSync(root + 'ios/Trening/Info.plist', 'utf8');
   ok(!plist.includes('UIBackgroundModes'), 'Info.plist: UIBackgroundModes (nieużywany tryb w tle)');
   ok(/<key>NSSupportsLiveActivities<\/key>\s*<true\/>/.test(plist), 'Info.plist: NSSupportsLiveActivities ≠ true'); /* runda 64: wartość, nie sam klucz */
   for (const k of ['UIFileSharingEnabled', 'LSSupportsOpeningDocumentsInPlace']) ok(new RegExp(`<key>${k}</key>\\s*<true/>`).test(plist), `Info.plist: ${k} ≠ true (automatyczne kopie w Plikach, runda 75)`);
-  ok(readFileSync(root + 'modules/rest-activity/ios/RestTimerAttributes.swift', 'utf8') === readFileSync(root + 'targets/rest-widget/_shared/RestTimerAttributes.swift', 'utf8'), 'RestTimerAttributes.swift: moduł i widżet różnią się (Live Activity bez danych)');
+  ok(readFileSync(root + 'modules/rest-activity/ios/RestTimerAttributes.swift', 'utf8') === readFileSync(root + 'targets/rest-widget/RestTimerAttributes.swift', 'utf8'), 'RestTimerAttributes.swift: moduł i widżet różnią się (Live Activity bez danych)');
   const pbx = readFileSync(root + 'ios/Trening.xcodeproj/project.pbxproj', 'utf8');
   ok(pbx.includes('RestWidget'), 'projekt: brak celu widżetu RestWidget');
-  /* 07.10.2026 wieczór: przyciski ekranu blokady — intencja i atrybuty w celu aplikacji ORAZ widżetu (katalog _shared, @bacons/apple-targets) */
-  { const ex = /target = \w+ \/\* Trening \*\/;\s*membershipExceptions = \(([^)]*)\)/.exec(pbx)?.[1] ?? ''; /* folder widżetu synchronizowany (Xcode 16); pliki _shared dołączone do celu aplikacji wyjątkiem członkostwa */
-    for (const f of ['_shared/RestIntents.swift', '_shared/RestTimerAttributes.swift']) ok(ex.includes(f), `projekt: ${f} nie jest w celu aplikacji (przyciski ekranu blokady)`); }
   const color = JSON.parse(readFileSync(root + 'targets/rest-widget/Assets.xcassets/$accent.colorset/Contents.json', 'utf8'));
   ok(color.colors.length > 0, 'widżet: pusty kolor akcentu');
   const auto = execSync('npx expo-modules-autolinking resolve -p apple --json', { cwd: root }).toString();

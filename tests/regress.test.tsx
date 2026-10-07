@@ -836,7 +836,7 @@ describe('runda 22', () => {
     await tap(screen.getAllByLabelText('Start stopera serii')[0]); await flushAll(10e3); await tap(screen.getAllByText(/Zakończ serię/)[0]); await flushAll(10);
     await tap(screen.getAllByLabelText('Start stopera serii')[0]); pressAlert('Zmierzyć serię od nowa?', 'Zmierz'); await flushAll(5e3);
     global.__la.length = 0; await tap(screen.getAllByText(/Zakończ serię/)[0]); await flushAll(10);
-    const st = (global.__la as any[]).filter(x => x[0] === 'start'); expect(st.at(-1)![2]).toBe('Plank · seria 2'); expect(st.at(-1)![5]).toMatch(/^rest\|Przerwa\|/); /* 07.10.2026 wieczór: dalej etykiety przycisków ekranu blokady (tests/la-buttons.test.ts) */
+    const st = (global.__la as any[]).filter(x => x[0] === 'start'); expect(st.at(-1)![2]).toBe('Plank · seria 2'); expect(st.at(-1)![5]).toBe('rest|Przerwa');
   });
   test('R22-02 „Powtórz ostatni” zachowuje cel czasu z szablonu', async () => {
     await fresh(); const tpl = store.newTemplate(); tpl.items.push({ id: 'p', exerciseId: ex('Plank').id, sets: 2, repMin: null, repMax: null, restSec: null, startWeight: '', targetSec: 60, groupId: null });
@@ -1025,7 +1025,7 @@ describe('runda 37', () => {
   afterEach(async () => { await timer.stop(); });
   test('R37-01 etykieta Live Activity w języku aplikacji (nie telefonu)', async () => {
     await fresh(undefined, 'pl'); store.getState().settings.language = 'en'; store.applyPrefs(); store.startEmpty(); global.__la.length = 0;
-    await timer.start(60, null); const st = (global.__la as any[]).find(x => x[0] === 'start'); expect(st[5]).toMatch(/^rest\|Rest\|/);
+    await timer.start(60, null); const st = (global.__la as any[]).find(x => x[0] === 'start'); expect(st[5]).toBe('rest|Rest');
     store.getState().settings.language = 'pl'; store.applyPrefs();
   });
 });
