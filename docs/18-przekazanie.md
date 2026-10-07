@@ -94,3 +94,6 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
   sprawdzają testy automatyczne agenta (jest, macierz, E2E Maestro na symulatorze). **Odłożone** (docs/21, „Wydanie natywne”): przyciski przerwy
   na ekranie blokady (commit 2e08c84) i widżet na ekran główny (df53ab9) — cofnięte na `feature/e2-swap` commitem odwracającym; kod zostaje
   w historii gałęzi, powrót = `git revert` tego commitu. Uchyla decyzję z 18:15 w tej części.
+- 07.10.2026 (ok. 20:10): kolor akcentu w istniejącym liczniku przerwy na ekranie blokady (Tuleja zamiast pomarańczu „Kredy”, commity 9f15a05
+  i 446d5bc) — **zostaje w najbliższej wersji** (wariant A: sama wartość koloru w istniejącym elemencie, sprawdzana testem konfiguracji;
+  odrzucone B: cofnięcie do wydania natywnego). Pliki Strong/Hevy do importu — właściciel postara się dostarczyć 08.10.
