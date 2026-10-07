@@ -73,6 +73,15 @@ widocznej w treningu (pole istnieje, ekran treningu go nie pokazuje), pola RIR (
 | Kontrolka w Centrum sterowania „Start przerwy / treningu” — **wydanie natywne (4n)** | https://developer.apple.com/documentation/widgetkit/creating-controls-to-perform-actions-across-the-system | nie |
 | Widżet na ekran główny (serie w tygodniu / ostatni trening) — **odłożone do wydania natywnego (4n)** | rozszerzenie widżetu już jest | nie |
 
+### Format CSV Stronga (eksport „Export Workouts”, plik właściciela przejrzany 07.10.2026; bez danych w repo)
+- Ścieżka w Strong: ustawienia → „Data management” → „Export Workouts” („Export Measurements” — osobno, pomiary).
+- UTF-8 bez BOM, przecinki, cudzysłowy przy tekstach. Kolumny: `Date,Workout Name,Duration,Exercise Name,Set Order,Weight,Reps,Distance,Seconds,Notes,Workout Notes,RPE`.
+- Wiersz = seria; trening = ta sama para (Date, Workout Name). Date `RRRR-MM-DD GG:MM:SS` bez strefy (czas lokalny telefonu). Duration: `52m`, `1h 5m`, `1h`.
+- Set Order: liczba = seria robocza, `D` = drop, `F` = do upadku (inne pliki mogą mieć `W` — niesprawdzone); `Rest Timer` = osobny wiersz przerwy (Seconds = długość, reszta 0).
+- Weight/Reps jako liczby z `.0`; **brak jednostki** w pliku. Ćwiczenia na czas: Seconds > 0, Reps 0. Distance i RPE w tym pliku zawsze puste/0.
+- Nazwy ćwiczeń: standardowe Stronga po angielsku z dopiskiem sprzętu „(Barbell)”, „(Dumbbell)”… + własne użytkownika; dopasowanie po nazwie i zamianie
+  dopisku (Barbell→sztanga, Dumbbell→hantle) objęło 33 ze 134 nazw (~48% serii).
+
 ### 4n. Wydanie natywne — po najbliższej wersji (decyzja właściciela 07.10.2026 wieczór)
 Funkcje, których działania agent nie sprawdzi testami automatycznymi (Maestro na symulatorze nie steruje ekranem blokady ani ekranem
 głównym iOS): wchodzą osobnym buildem, jak wydanie „Health”, po sprawdzeniu przez właściciela na telefonie.
@@ -90,7 +99,7 @@ Przywrócenie: `git revert` commitu odwracającego (zapis w docs/18, 07.10 ok. 1
 ### 4b. Średnie (1–2 tygodnie)
 | Funkcja | Uwagi | Twierdzenie dziedzinowe? |
 |---|---|---|
-| Import CSV ze Strong i Hevy | Strong nie importuje nawet własnego CSV; Hevy importuje ze Strong — https://help.hevyapp.com/hc/en-us/articles/38001424401943 | nie |
+| Import CSV ze Strong i Hevy — **odłożony (07.10.2026)**; format Stronga niżej | Strong nie importuje nawet własnego CSV; Hevy importuje ze Strong — https://help.hevyapp.com/hc/en-us/articles/38001424401943 | nie |
 | Pole RIR obok RPE | skala: RPE 10 = 0 RIR, RPE 9 = 1 RIR (Zourdos 2016, streszczenie: https://pubmed.ncbi.nlm.nih.gov/26049792/) | tak — B1 |
 | Kalkulator rozgrzewki | schemat ustawia użytkownik albo nazwany „przykładem” | **[OTWARTE]** — brak źródła schematu |
 | Pomiary ciała + odczyt masy ciała z Apple Health | wymaga aktualizacji `@kingstinct/react-native-healthkit` 8 → 16 (osobne wydanie, nie razem ze zmianą schematu — CLAUDE.md) | siła względna = arytmetyka |

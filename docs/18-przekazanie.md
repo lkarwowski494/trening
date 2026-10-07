@@ -97,3 +97,6 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
 - 07.10.2026 (ok. 20:10): kolor akcentu w istniejącym liczniku przerwy na ekranie blokady (Tuleja zamiast pomarańczu „Kredy”, commity 9f15a05
   i 446d5bc) — **zostaje w najbliższej wersji** (wariant A: sama wartość koloru w istniejącym elemencie, sprawdzana testem konfiguracji;
   odrzucone B: cofnięcie do wydania natywnego). Pliki Strong/Hevy do importu — właściciel postara się dostarczyć 08.10.
+- 07.10.2026 (ok. 21:00): import ze Strong/Hevy — **odłożony** („Po prostu zignorujmy ten import na razie”). Plik Stronga właściciela przejrzany
+  (format zapisany w docs/21, 4b), kopia robocza usunięta, nic z niego w repo. Otwarte do czasu powrotu: jednostka (CSV bez kg/lb) i sposób
+  dopasowania ćwiczeń (opcje A/B/C w rozmowie 07.10).
