@@ -5,8 +5,7 @@ import { activateKeepAwakeAsync, deactivateKeepAwake } from 'expo-keep-awake';
 import { useTheme, F } from '@/lib/theme';
 import { Btn, Input, NumInput, Muted } from '@/components/ui';
 import { progressionFor, writeLoad, setActiveLocation, lastActivity, staleSince, staleRef, staleKind, ackStale, markActivity, useForegroundTick, bandA11y, clampName, loadLabelShort, getState, useTick, exById, prevOfActiveBlock, previousFor, canUndoSwap, undoSwap, pinnedImpl, rememberRest as storeRememberRest, canRememberAlt, rememberAlt, altHint, acceptAlt, skipAlt, occurrence, occurrences, hintFor, isBW, reps, fmtDur, fmtSec, fmtTime, setSummary, toggleDone, restAfter, roundRest, addSet, removeSet, removeSetById, removeExercise, finishWorkout, cancelWorkout, save, loadLabel, groupLabels, linkWithNext, unlink, cycleBand, findSet, shortBand, setHasValue, locationById, offListNote, liveBlockImpl, listLocFor, srcSetAt, usesBand, focusSet } from '@/lib/store';
-import { availability, missingLabel, plateSpecFor } from '@/lib/equipment';
-import { platesPerSide, plateList } from '@/lib/plates';
+import { availability, missingLabel } from '@/lib/equipment';
 import { EquipVisual } from '@/components/EquipVisual';
 import { equipVisFor } from '@/lib/equipvis';
 import Svg, { Circle } from 'react-native-svg';
@@ -276,9 +275,6 @@ function ExerciseBlock({ w, e, ei, onDone, onStartSet, labels, prs }: { w: Worko
   /* E2 W3: „Zawsze w: <Miejsce>” (P1 a, P5a a) i podpowiedź zamiennika per miejsce — liczone przy renderze (pkt 4.2) */
   const remember = canRememberAlt(w, e); const hint = altHint(w, e); const hintEx = hint ? exById(hint.exerciseId) : undefined;
   const hintName = hintEx ? exName(hintEx) + (hint?.impl ? ` — ${implLabel(hint.impl)}` : '') : '';
-  /* styl „Tuleja” (07.10.2026): talerze na stronę dla następnej serii tego ćwiczenia — w widoku listy (w skupionym rysuje je karta „teraz”) */
-  const nextOpen = e.sets.find(x => !x.done); const nextPlan = st.settings.workoutView === 'list' && nextOpen ? platePlanFor(w, e, nextOpen) : null;
-  const platesTxt = nextPlan ? tr('Na każdą stronę: {p}', { p: nextPlan.plates.length ? `${plateList(nextPlan)} ${nextPlan.unit}` : tr('sam gryf') }) : '';
   const doneStyle = (set: WSet) => set.done ? { backgroundColor: t.done, borderColor: t.doneLine } : undefined;
   const inSS = !!e.groupId;
   const prog = progressionFor(ex, e.repMax, prev?.sets, listLocFor(e, w.locationId), pinnedImpl(e)); /* E2 D5: przypięty przyrząd */ /* T-017: cicha podpowiedź progresji; P-003: z ciężarów miejsca; runda 82b (LOW 5): blok innym przyrządem niż tutaj — bez listy miejsca */
@@ -313,7 +309,6 @@ function ExerciseBlock({ w, e, ei, onDone, onStartSet, labels, prs }: { w: Worko
       {hint && place ? <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', gap: 8, marginTop: -2, marginBottom: 6 }}><Muted style={{ fontSize: 12, flexShrink: 1 }}>{tr('Zwykle w: {l} — {name}. Zamienić?', { l: place.name, name: hintName })}</Muted><Btn title={tr('Zamień')} small accessibilityLabel={tr('Zamień na zamiennik: {name}', { name: hintName })} onPress={() => { const r = acceptAlt(e.id); if (r) afterSwap(r.goneSetIds); }} /><Btn title="✕" small kind="ghost" accessibilityLabel={tr('Nie zamieniaj: {name}', { name: hintName })} onPress={() => skipAlt(e.id)} /></View> : null}
       {place && avail && !avail.ok ? <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginTop: -2, marginBottom: 6 }}><Muted style={{ fontSize: 12, color: t.danger, flexShrink: 1 }} accessibilityLabel={tr('Brak sprzętu w: {l}. Brakuje: {m}', { l: place.name, m: missingLabel(avail.missing) })}>{tr('brak sprzętu w: {l}', { l: place.name })} ({missingLabel(avail.missing)})</Muted>{swappable ? <Btn title="⇄" small kind="ghost" accessibilityLabel={tr('Zamień ćwiczenie (brak sprzętu): {name}', { name: nm })} onPress={openSwap} /> : null}</View> : null}
       {prevElsewhere || offNote ? <Muted style={{ fontSize: 12, marginTop: -2, marginBottom: 6 }}>{[prevElsewhere ? tr('Poprzednio: {l}', { l: prevElsewhere }) : '', offNote].filter(Boolean).join(' · ')}</Muted> : null}
-      {platesTxt ? <Muted style={{ fontSize: 12, marginTop: -2, marginBottom: 6 }}>{platesTxt}</Muted> : null}
       <View style={[s.row, { gap: W.gap }]}>
         <Muted style={[s.c, { width: W.idx, textAlign: 'left' }]}>#</Muted>
         {prevInline ? <Muted numberOfLines={1} style={[s.c, { flex: 1, textAlign: 'left' }]}>{tr('Poprzednio')}</Muted> : <View style={{ flex: 1 }} />}
@@ -371,11 +366,6 @@ function ExerciseBlock({ w, e, ei, onDone, onStartSet, labels, prs }: { w: Worko
 function bigLoad(ex: import('@/lib/seed').Exercise, set: WSet): string {
   if (isBW(ex)) { const a = Number(set.addKg); return set.addKg === '' || set.addKg == null || !a ? tr('masa ciała') : (a > 0 ? '+' : '') + fmtNum(wOut(a), wu() === 'lb' ? 1 : 2); }
   return set.weight === '' || set.weight == null ? '—' : fmtNum(wOut(Number(set.weight)), wu() === 'lb' ? 1 : 2);
-}
-/** Plan talerzy dla serii (sztanga, EZ, trap bar z opisem „gryf + talerze” w miejscu treningu) albo null. */
-export function platePlanFor(w: Workout, e: WExercise, set: WSet) {
-  const ex = exById(e.exerciseId); const loc = locationById(listLocFor(e, w.locationId)); if (!ex || isBW(ex) || !hasWeight(ex.metric ?? 'weight_reps') || typeof set.weight !== 'number') return null;
-  return platesPerSide(set.weight, plateSpecFor(ex, loc, pinnedImpl(e)));
 }
 /**
  * Widok skupiony (styl „Tuleja”, decyzja właściciela 07.10.2026; docs/21 pkt 3): karta serii „teraz” (store.focusSet) nad listą — ćwiczenie,

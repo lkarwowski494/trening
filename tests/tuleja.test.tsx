@@ -154,10 +154,10 @@ describe('ekran treningu: karta „teraz”', () => {
     await act(async () => { fireEvent(screen.getAllByLabelText('kg')[0], 'endEditing'); }); await flushAll(5);
     expect(screen.getByLabelText('Teraz: 60 × 8 kg')).toBeTruthy(); expect(screen.getByLabelText('Na każdą stronę: 20 kg')).toBeTruthy();
   });
-  test('widok listy (ustawienie): bez karty; pod ćwiczeniem napis z talerzami następnej serii', async () => {
+  test('widok listy (ustawienie): jak w poprzednich wersjach — bez karty i bez talerzy (decyzja właściciela 07.10.2026: jedyna różnica to karta)', async () => {
     await gymWorkout('list');
     expect(screen.queryByText('Seria zrobiona')).toBeNull();
-    expect(screen.getByText('Na każdą stronę: 25 + 5 kg')).toBeTruthy();
+    expect(screen.queryByText(/Na każdą stronę/)).toBeNull(); expect(screen.queryByLabelText(/Na każdą stronę/)).toBeNull();
   });
   test('English: karta i talerze po angielsku, kropka dziesiętna', async () => {
     await fresh(undefined, 'en'); addLocation('gym'); store.startEmpty(); store.addExerciseToActive(ex('Bench Press (sztanga)'));
@@ -174,6 +174,7 @@ describe('ekran Ustawień: „Widok treningu”', () => {
     expect(screen.getByText('Skupiony: bieżąca seria dużymi cyframi i talerze na stronę nad listą ćwiczeń.')).toBeTruthy();
     expect(screen.getByText('Skupiony')).toBeTruthy();
     await tap(screen.getByText('Lista')); await flushAll(5);
+    expect(screen.getByText('Lista: ćwiczenia i serie jak w poprzednich wersjach, bez karty.')).toBeTruthy(); /* opis zmienia się z wyborem */
     expect(S().settings.workoutView).toBe('list'); await act(async () => { await store.flush(); }); expect(saved().settings.workoutView).toBe('list');
     await tap(screen.getByText('Skupiony')); await flushAll(5); expect(S().settings.workoutView).toBe('focus');
   });

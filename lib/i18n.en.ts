@@ -316,4 +316,5 @@ export const EN: Record<string, string> = {
   'asysta gumą: {v}': 'band assistance: {v}',
   'dociążenie: {v}': 'added weight: {v}',
   'asysta: {v}': 'assistance: {v}',
+  'Lista: ćwiczenia i serie jak w poprzednich wersjach, bez karty.': 'List: exercises and sets as in earlier versions, without the card.',
 };

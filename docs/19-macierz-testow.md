@@ -9,7 +9,7 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 |---|---|---|---|
 | EKRAN | 20 | 20 | 0 |
 | UI | 178 | 178 | 0 |
-| TEKST | 386 | 386 | 0 |
+| TEKST | 387 | 387 | 0 |
 | LOGIKA | 360 | 360 | 0 |
 | WYMIAR | 13 | 13 | 0 |
 
@@ -344,6 +344,7 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | Kopia obejmie też poprzednie, nieczytelne dane. | lib/backup.ts | tests/matrix-logic.test.tsx, tests/matrix-ui.test.tsx |
 | Lista | app/more/settings.tsx | tests/matrix-i18n.test.tsx, tests/tuleja.test.tsx, .maestro/11-widok-skupiony.yaml |
 | lista ćwiczeń z filtrami, które możesz zdjąć | app/swap.tsx | tests/matrix-ui.test.tsx |
+| Lista: ćwiczenia i serie jak w poprzednich wersjach, bez karty. | app/more/settings.tsx | tests/tuleja.test.tsx |
 | łączny czas | lib/stats.ts | tests/matrix-invariants.test.ts, tests/regress.test.tsx, tests/stats.test.ts |
 | łączny dystans | lib/stats.ts | tests/matrix-invariants.test.ts, tests/regress.test.tsx, tests/stats.test.ts |
 | masa ciała | components/ActiveWorkout.tsx | tests/audit-backlog-r75.test.tsx, tests/audit-final-stats.test.ts, tests/audit-io-more.test.tsx +36 |
@@ -470,7 +471,7 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | REKORDY | app/more/progress.tsx | tests/audit-records-ui.test.tsx, tests/matrix-i18n.test.tsx, tests/scenario-full.test.tsx |
 | robione {n}× | lib/swap.ts | tests/audit-r82.test.tsx |
 | rozgrzewka | components/ActiveWorkout.tsx | tests/audit-backlog-q.test.tsx, tests/audit-backlog-r75.test.tsx, tests/audit-close2-a.test.tsx +20 |
-| sam gryf | components/ActiveWorkout.tsx | tests/matrix-dim-equipment.test.tsx |
+| sam gryf | components/PlateBar.tsx | tests/matrix-dim-equipment.test.tsx |
 | sek. | app/history/edit/[id].tsx | tests/matrix-i18n.test.tsx, tests/matrix-ui.test.tsx |
 | Seria | lib/timer.ts | tests/audit-close-b.test.tsx, tests/audit-close2-a.test.tsx, tests/audit-close2-b.test.tsx +29 |
 | seria · bez celu | components/ActiveWorkout.tsx | tests/matrix-ui.test.tsx |

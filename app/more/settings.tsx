@@ -22,7 +22,7 @@ export default function SettingsScreen() {
 
       <SectionTitle>{t('Trening')}</SectionTitle>
       <Field label={t('Widok treningu')}><Segmented label={t('Widok treningu')} options={[['focus', t('Skupiony')], ['list', t('Lista')]] as [WorkoutView, string][]} value={s.workoutView ?? 'focus'} onChange={v => { s.workoutView = v; save(); }} /></Field>
-      <Muted style={{ fontSize: 13, marginTop: -4, marginBottom: 8 }}>{t('Skupiony: bieżąca seria dużymi cyframi i talerze na stronę nad listą ćwiczeń.')}</Muted>
+      <Muted style={{ fontSize: 13, marginTop: -4, marginBottom: 8 }}>{s.workoutView === 'list' ? t('Lista: ćwiczenia i serie jak w poprzednich wersjach, bez karty.') : t('Skupiony: bieżąca seria dużymi cyframi i talerze na stronę nad listą ćwiczeń.')}</Muted>
       <Field label={t('Domyślna przerwa (sekundy)')}><NumInput value={s.defaultRest} onNum={v => { if (v === '') return; s.defaultRest = Math.min(1800, Math.max(0, Math.round(v))); save(); }} placeholder={String(DEFAULT_REST)} /></Field>
       <SwitchRow label={t('Dźwięk i wibracja na koniec przerwy')} value={s.sound} onChange={v => { s.sound = v; save(); timer.refreshScheduled().catch(() => {}); }} />
       <SwitchRow label={t('Ekran włączony podczas treningu')} value={s.wakeLock} onChange={v => { s.wakeLock = v; save(); }} />
