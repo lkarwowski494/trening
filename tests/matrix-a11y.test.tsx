@@ -36,7 +36,7 @@ const ACT_ROLES = new Set(['button', 'link', 'switch', 'checkbox', 'radio', 'tab
 const lum = (hex: string) => { const c = hex.replace('#', '').match(/../g)!.map(x => parseInt(x, 16) / 255).map(v => v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4); return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2]; };
 const ratio = (a: string, b: string) => { const [x, y] = [lum(a), lum(b)].sort((p, q) => q - p); return (x + 0.05) / (y + 0.05); };
 const hex6 = (c: unknown) => typeof c === 'string' && /^#[0-9a-f]{6}$/i.test(c) ? c.toLowerCase() : null;
-/** Pogrubienie w rozumieniu WCAG (≥ 700): Tektur Bold/ExtraBold i IBM Plex Mono SemiBold traktujemy jak pogrubione; Plex Sans SemiBold (600) — nie (ostrożnie). */
+/** Pogrubienie w rozumieniu WCAG (≥ 700): IBM Plex Sans Bold (nagłówki, duże liczby) i IBM Plex Mono SemiBold traktujemy jak pogrubione; Plex Sans SemiBold (600) — nie (ostrożnie). */
 const isBold = (st: Record<string, unknown>) => st.fontFamily === F.heavy || st.fontFamily === F.display || st.fontFamily === F.monoBold || st.fontWeight === 'bold' || Number(st.fontWeight) >= 700;
 
 /* ---------- stan i trasy ---------- */

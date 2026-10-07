@@ -57,7 +57,7 @@ potem 14 niezależnych recenzji (inny agent, bez dostępu do notatek tłumacza).
 | el | jak Apple; „;” jako znak zapytania | Training | Προπόνηση |
 
 Nazwa aplikacji wg reguły z 05.10 (lokalne słowo, gdy podobne do „Trening”, inaczej „Training”). Liczba mnoga: dwie formy; fr „one” = 0 i 1.
-Kroje (Plex Sans, Tektur) mają greckie litery — test `matrix-i18n`. Nazwy w App Store: `store/app-store-names.json` (App Store: „no” = nb).
+Kroje (IBM Plex Sans 400/600/700, IBM Plex Mono) mają greckie litery — test `matrix-i18n`. Nazwy w App Store: `store/app-store-names.json` (App Store: „no” = nb).
 
 *Proces (07.10.2026):* jak 05.10 — 10 tłumaczeń (osobny agent na język), potem 10 niezależnych recenzji (inny agent, bez notatek tłumacza).
 Recenzje zmieniły: el 46, fi 40, tr 38, nl 36, nb 24, sv 20, de 18, fr 13, da 10, it 10 wpisów. Najważniejsze: tr „yedek” było i kopią, i zamiennikiem
@@ -109,6 +109,7 @@ skupiony na bieżącej serii (przełącznik Ustawienia → Widok treningu, domy�
 liczby, IBM Plex Mono dane; domyślny wygląd **jasny** (A). Wdrożenie: `lib/theme.ts`, `lib/plates.ts`, `components/PlateBar.tsx`, `assets/brand/icon*.svg`
 (`node scripts/brand/icon.mjs`), testy `tests/brand-tuleja.test.tsx`, `tests/tuleja.test.tsx`, `tests/matrix-tuleja.test.tsx`; docs/09.
 Opis Kredy niżej zostaje jako historia decyzji.
+*Zmiana 07.10.2026 wieczór (decyzja właściciela, docs/18):* nagłówki i duże liczby — IBM Plex Sans Bold zamiast Tektur; pakiet `@expo-google-fonts/tektur` usunięty.
 
 *Decyzja właściciela 05.10.2026:* „Podoba mi się kreda.” → **kierunek A · Kreda**. Tryb ciemny: „Kreda + ciemna wersja” (05.10.2026) — w trybie ciemnym grafitowe tło, kredowy tekst, ten sam pomarańcz.
 

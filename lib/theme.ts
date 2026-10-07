@@ -15,23 +15,21 @@ export function applyTheme(x: 'light' | 'dark' | 'auto' | undefined) { try { App
 export function useTheme(): Theme { return useColorScheme() === 'light' ? light : dark; }
 
 /**
- * Kroje pisma (Google Fonts, licencja OFL) — decyzja właściciela 07.10.2026, wariant A „mieszany”:
- *  - IBM Plex Sans — zwykły tekst (regular, semibold);
- *  - Tektur — nagłówki (heavy) i duże liczby w widoku skupionym (display);
+ * Kroje pisma (Google Fonts, licencja OFL) — decyzje właściciela 07.10.2026 (rano wariant A „mieszany”, wieczorem bez Tektur — docs/18):
+ *  - IBM Plex Sans — zwykły tekst (regular, semibold), nagłówki (heavy) i duże liczby w widoku skupionym (display) — Bold 700;
  *  - IBM Plex Mono — liczby w tabelach i timery (mono, monoBold).
- * Wszystkie trzy mają polskie znaki i cyrylicę (test: tests/matrix-i18n.test.tsx) — jeden zestaw dla każdego języka.
+ * heavy i display to dziś ten sam plik — dwie nazwy zostają, żeby rolę dało się zmienić w jednym miejscu. Oba kroje mają polskie znaki i cyrylicę (test: tests/matrix-i18n.test.tsx) — jeden zestaw dla każdego języka.
  * Nazwy = klucze w `FONT_FILES` (ładowane w app/_layout.tsx). Z własnym krojem nie ustawiamy fontWeight — grubość wybiera rodzina.
  */
 export const F = {
-  regular: 'IBMPlexSans_400Regular', semibold: 'IBMPlexSans_600SemiBold', heavy: 'Tektur_700Bold', display: 'Tektur_800ExtraBold',
+  regular: 'IBMPlexSans_400Regular', semibold: 'IBMPlexSans_600SemiBold', heavy: 'IBMPlexSans_700Bold', display: 'IBMPlexSans_700Bold',
   mono: 'IBMPlexMono_500Medium', monoBold: 'IBMPlexMono_600SemiBold',
 } as const;
 /* eslint-disable @typescript-eslint/no-var-requires */
 export const FONT_FILES = {
   [F.regular]: require('@expo-google-fonts/ibm-plex-sans/400Regular/IBMPlexSans_400Regular.ttf'),
   [F.semibold]: require('@expo-google-fonts/ibm-plex-sans/600SemiBold/IBMPlexSans_600SemiBold.ttf'),
-  [F.heavy]: require('@expo-google-fonts/tektur/700Bold/Tektur_700Bold.ttf'),
-  [F.display]: require('@expo-google-fonts/tektur/800ExtraBold/Tektur_800ExtraBold.ttf'),
+  [F.heavy]: require('@expo-google-fonts/ibm-plex-sans/700Bold/IBMPlexSans_700Bold.ttf'), /* = F.display */
   [F.mono]: require('@expo-google-fonts/ibm-plex-mono/500Medium/IBMPlexMono_500Medium.ttf'),
   [F.monoBold]: require('@expo-google-fonts/ibm-plex-mono/600SemiBold/IBMPlexMono_600SemiBold.ttf'),
 };

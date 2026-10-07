@@ -22,7 +22,7 @@ test('kolory Tulei: papierowe tło i atramentowy tekst za dnia, grafit po zmroku
 test('kroje: każdy krój z F ma plik; start ładuje wszystkie', async () => {
   for (const f of Object.values(F)) expect([f, !!(FONT_FILES as Record<string, unknown>)[f]]).toEqual([f, true]);
   await renderApp(); await flushAll(10);
-  expect(Object.keys(load.mock.calls[0][0] as object).sort()).toEqual(Object.keys(FONT_FILES).sort()); /* Plex Sans, Tektur, Plex Mono (07.10.2026) */
+  expect(Object.keys(load.mock.calls[0][0] as object).sort()).toEqual(Object.keys(FONT_FILES).sort()); /* Plex Sans 400/600/700, Plex Mono (07.10.2026 wieczór: bez Tektur) */
   for (const f of Object.values(F)) expect(Object.keys(load.mock.calls[0][0] as object)).toContain(f);
 });
 

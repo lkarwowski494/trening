@@ -237,27 +237,28 @@ function ttf(file: string) {
 }
 const FONT_DIR = require('path').join(__dirname, '..', 'node_modules', '@expo-google-fonts') as string;
 const SANS = { regular: ttf(`${FONT_DIR}/ibm-plex-sans/400Regular/IBMPlexSans_400Regular.ttf`), semibold: ttf(`${FONT_DIR}/ibm-plex-sans/600SemiBold/IBMPlexSans_600SemiBold.ttf`) };
-const TEKTUR = { heavy: ttf(`${FONT_DIR}/tektur/700Bold/Tektur_700Bold.ttf`), display: ttf(`${FONT_DIR}/tektur/800ExtraBold/Tektur_800ExtraBold.ttf`) };
+const BOLD = ttf(`${FONT_DIR}/ibm-plex-sans/700Bold/IBMPlexSans_700Bold.ttf`); /* nagłówki i duże liczby (decyzja właściciela 07.10.2026 wieczór: zamiast Tektur) */
 const PLEX = ttf(`${FONT_DIR}/ibm-plex-mono/500Medium/IBMPlexMono_500Medium.ttf`);
 const trIn = (l: Lang, k: string) => l === 'pl' ? k : dictOf(l)[k] ?? EN[k] ?? k;
 /** Litery (\p{L}) użyte w tekstach języka — bez symboli (strzałki, ★, ✓ są celowo z kroju systemowego, także po polsku). */
 const lettersOf = (l: Lang) => [...new Set((l === 'pl' ? SOURCE : Object.values(dictOf(l))).join('').match(/\p{L}/gu) ?? [])];
 
-describe('kroje pisma marki (IBM Plex Sans, Tektur, IBM Plex Mono) mają znaki każdego języka', () => {
+describe('kroje pisma marki (IBM Plex Sans 400/600/700, IBM Plex Mono) mają znaki każdego języka', () => {
   /* @matrix LANGS */
   /* Styl „Tuleja” (decyzja właściciela 07.10.2026, wariant A „mieszany”): jeden zestaw krojów dla każdego języka — wcześniej Archivo bez cyrylicy
-   * wymagał zamiany kroju dla bg/sr/uk (06.10.2026). Każda litera tłumaczeń musi być w kroju tekstu (Plex Sans 400/600) i nagłówków (Tektur 700/800). */
-  test.each([...LANGS])('%s: każda litera tłumaczeń jest w IBM Plex Sans 400/600 i Tektur 700/800 (bez zastępowania krojem systemowym)', l => {
-    expect([l, lettersOf(l).filter(ch => !(SANS.regular.has(ch) && SANS.semibold.has(ch) && TEKTUR.heavy.has(ch) && TEKTUR.display.has(ch))).join('')]).toEqual([l, '']);
+   * wymagał zamiany kroju dla bg/sr/uk (06.10.2026). Każda litera tłumaczeń musi być w kroju tekstu (Plex Sans 400/600) i nagłówków (Plex Sans 700; do 07.10.2026 wieczór Tektur). */
+  test.each([...LANGS])('%s: każda litera tłumaczeń jest w IBM Plex Sans 400/600/700 (bez zastępowania krojem systemowym)', l => {
+    expect([l, lettersOf(l).filter(ch => !(SANS.regular.has(ch) && SANS.semibold.has(ch) && BOLD.has(ch))).join('')]).toEqual([l, '']);
   });
-  test('jeden zestaw krojów dla wszystkich języków: F wskazuje Plex Sans / Tektur / Plex Mono, każdy z plikiem', () => {
+  test('jeden zestaw krojów dla wszystkich języków: F wskazuje Plex Sans / Plex Mono, każdy z plikiem; bez Tektur', () => {
     const th = require('@/lib/theme');
-    expect([th.F.regular, th.F.semibold, th.F.heavy, th.F.display]).toEqual(['IBMPlexSans_400Regular', 'IBMPlexSans_600SemiBold', 'Tektur_700Bold', 'Tektur_800ExtraBold']);
-    expect(Object.keys(th.FONT_FILES).sort()).toEqual(Object.values(th.F).map(String).sort());
+    expect([th.F.regular, th.F.semibold, th.F.heavy, th.F.display]).toEqual(['IBMPlexSans_400Regular', 'IBMPlexSans_600SemiBold', 'IBMPlexSans_700Bold', 'IBMPlexSans_700Bold']);
+    expect(Object.keys(th.FONT_FILES).sort()).toEqual([...new Set(Object.values(th.F).map(String))].sort());
+    expect(JSON.stringify(Object.keys(th.FONT_FILES))).not.toMatch(/Tektur/); expect(require('../package.json').dependencies['@expo-google-fonts/tektur']).toBeUndefined();
     expect(th.applyFontsFor).toBeUndefined(); expect(th.CYRILLIC_LANGS).toBeUndefined();
   });
-  test('Tektur (duże liczby w widoku skupionym) ma cyfry i znaki liczb (przecinek, kropka, ×, :)', () => {
-    expect([...'0123456789,.:×−-'].filter(ch => !TEKTUR.display.has(ch))).toEqual([]);
+  test('IBM Plex Sans Bold (duże liczby w widoku skupionym) ma cyfry i znaki liczb (przecinek, kropka, ×, :)', () => {
+    expect([...'0123456789,.:×−-'].filter(ch => !BOLD.has(ch))).toEqual([]);
   });
   test('IBM Plex Mono (liczby: czas, ciężar) ma cyfry i znaki liczb we wszystkich regionach (przecinek, kropka, minus U+2212, ×, –, :)', () => {
     expect([...'0123456789,.:−-+×–—…/ ±%'].filter(ch => ch !== ' ' && !PLEX.has(ch))).toEqual([]);
