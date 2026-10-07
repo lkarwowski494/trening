@@ -6,7 +6,8 @@
 #   w-0-0 / r-0-0                 ← testID pól ciężaru i powtórzeń serii (components/ActiveWorkout.tsx)
 #   "Now: 80 × 5 kg"              ← 'Teraz: {v}' (karta „teraz”, accessibilityLabel dużej liczby)
 #   "Each side: 25 \+ 5 kg"       ← 'Na każdą stronę: {p}' (components/PlateBar.tsx, accessibilityLabel rysunku)
-#   "Set done"                    ← 'Seria zrobiona' (przycisk karty)
+#   "Set done.*"                  ← 'Seria zrobiona' (przycisk karty); etykieta VoiceOver „Set done: {ex}, set {n}” zastępuje tekst
+#                                   przycisku w drzewie dostępności — sam „Set done” nie pasuje (run 37600735711, krok 27)
 #   "All sets ticked off"         ← 'Wszystkie serie odhaczone'
 #   "Skip"                        ← 'Pomiń' (przerwa w karcie „teraz”, RestPanel w components/ActiveWorkout.tsx)
 #   "Workout view"/"List"/"Focused" ← 'Widok treningu' / 'Lista' / 'Skupiony' (app/more/settings.tsx)
@@ -43,7 +44,7 @@ name: Widok skupiony i talerze
 - inputText: "Back Squat"
 - tapOn: { text: "Continue", optional: true }
 - tapOn: "Back Squat,.*"
-- extendedWaitUntil: { visible: "Set done", timeout: 30000 }
+- extendedWaitUntil: { visible: "Set done.*", timeout: 30000 }
 - takeScreenshot: 40-karta-teraz-pusta
 - tapOn: { id: "w-0-0" }
 - inputText: "80"
@@ -53,7 +54,7 @@ name: Widok skupiony i talerze
 - extendedWaitUntil: { visible: "Each side: 25 \\+ 5 kg", timeout: 15000 }
 - assertVisible: "Now: 80 × 5 kg"
 - takeScreenshot: 41-karta-teraz-talerze
-- tapOn: "Set done"
+- tapOn: "Set done.*"
 - extendedWaitUntil: { visible: "All sets ticked off", timeout: 15000 }
 # build 1004 (07.10.2026, pkt 3): przerwa w karcie — odliczanie i „Skip” w karcie, nie w dolnym pasku
 - assertVisible: "Skip"
@@ -69,5 +70,5 @@ name: Widok skupiony i talerze
 - tapOn: "Back"
 - tapOn: "Workout, tab.*"
 - assertNotVisible: "All sets ticked off"
-- assertNotVisible: "Set done"
+- assertNotVisible: "Set done.*"
 - takeScreenshot: 43-widok-listy

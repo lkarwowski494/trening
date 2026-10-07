@@ -107,7 +107,7 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | kolor | app/more/bands.tsx | tests/audit-r83.test.tsx, tests/brand-tuleja.test.tsx, tests/flows.test.tsx +16 |
 | Kolor gumy | app/more/bands.tsx | tests/owner-0510c.test.tsx, tests/regress.test.tsx, tests/scenario-full.test.tsx +1 |
 | Kontynuuj | components/ActiveWorkout.tsx | tests/audit-close2-a.test.tsx, tests/audit-journey-b.test.tsx, tests/audit-r72-d.test.ts +4 |
-| krok | components/LoadEditor.tsx | tests/app.tsx, tests/audit-backlog-r75.test.tsx, tests/audit-r82b.test.tsx +23 |
+| krok | components/LoadEditor.tsx | tests/app.tsx, tests/audit-backlog-r75.test.tsx, tests/audit-r82b.test.tsx +24 |
 | max na stronę | components/LoadEditor.tsx | tests/matrix-ui.test.tsx, tests/scenario-full.test.tsx |
 | Miejsca i sprzęt | app/(tabs)/more.tsx | tests/matrix-dim-langs1.test.tsx, tests/matrix-dim-langs2.test.tsx, tests/matrix-dim-langs3.test.tsx +3 |
 | Miejsca treningu | app/more/settings.tsx | tests/locations-ui.test.tsx, tests/scenario-full.test.tsx, .maestro/06-miejsca.yaml |
@@ -123,7 +123,7 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | Notatki techniczne | app/exercise/[id].tsx | tests/scenario-full.test.tsx |
 | np. samopoczucie, ból, sprzęt | app/history/edit/[id].tsx | tests/matrix-ui.test.tsx |
 | Obciążenie partii (z katalogu) | app/exercise/[id].tsx | tests/catalog-v2.test.ts |
-| od | components/LoadEditor.tsx | tests/app.tsx, tests/audit-ac5d764.test.tsx, tests/audit-backlog-q.test.tsx +123 |
+| od | components/LoadEditor.tsx | tests/app.tsx, tests/audit-ac5d764.test.tsx, tests/audit-backlog-q.test.tsx +124 |
 | Odrzuć | components/ActiveWorkout.tsx | tests/audit-close2-a.test.tsx, tests/edit-history.test.tsx, tests/flows.test.tsx +4 |
 | Odrzuć trening | app/history/edit/[id].tsx | tests/edit-history.test.tsx, tests/flows.test.tsx, tests/matrix-invariants.test.ts +3 |
 | Odrzuć zmiany | app/history/edit/[id].tsx | tests/edit-history.test.tsx, tests/matrix-ui.test.tsx, tests/scenario-full.test.tsx |
@@ -154,11 +154,11 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | Pusty trening | app/(tabs)/index.tsx | tests/audit-r82.test.tsx, tests/edit-history.test.tsx, tests/flows.test.tsx +12 |
 | Rozgrzewka (W) | app/template/[id].tsx | tests/scenario-full.test.tsx |
 | RPE / RIR przy serii | app/more/settings.tsx | tests/flows.test.tsx, tests/matrix-ui.test.tsx, tests/phone-p1.test.tsx +1 |
-| Seria {n} zrobiona — {ex} | components/ActiveWorkout.tsx | tests/audit-close2-a.test.tsx, tests/audit-close2-b.test.tsx, tests/audit-final-auto.test.tsx +17 |
+| Seria {n} zrobiona — {ex} | components/ActiveWorkout.tsx | tests/audit-close2-a.test.tsx, tests/audit-close2-b.test.tsx, tests/audit-final-auto.test.tsx +18 |
 | Seria {n}, typ: {k}. Tapnij, by zmienić typ lub dodać notatkę. | app/history/edit/[id].tsx | tests/audit-close2-b.test.tsx, tests/audit-journey-c.test.tsx, tests/scenario-full.test.tsx +1 |
 | Seria {n}, typ: {k}. Tapnij, by zmienić typ lub usunąć serię. | app/template/[id].tsx | tests/scenario-full.test.tsx, .maestro/08-szablon-wiersze.yaml |
 | Seria normalna | app/template/[id].tsx | tests/scenario-full.test.tsx |
-| Seria zrobiona: {ex}, seria {n} | components/ActiveWorkout.tsx | tests/tuleja.test.tsx |
+| Seria zrobiona: {ex}, seria {n} | components/ActiveWorkout.tsx | tests/maestro-selectors.test.ts, tests/tuleja.test.tsx |
 | Skróć przerwę o 15 sekund | components/ActiveWorkout.tsx | tests/karta-sprzet.test.tsx, tests/scenario-full.test.tsx |
 | Sprawdź zgodę na powiadomienia | app/more/settings.tsx | tests/matrix-ui.test.tsx, tests/scenario-full.test.tsx |
 | Sprzęt | app/exercise/[id].tsx | tests/audit-r83.test.tsx, tests/audit-r83b.test.tsx |
@@ -473,17 +473,17 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | rozgrzewka | components/ActiveWorkout.tsx | tests/audit-backlog-q.test.tsx, tests/audit-backlog-r75.test.tsx, tests/audit-close2-a.test.tsx +20 |
 | sam gryf | components/PlateBar.tsx | tests/matrix-dim-equipment.test.tsx |
 | sek. | app/history/edit/[id].tsx | tests/matrix-i18n.test.tsx, tests/matrix-ui.test.tsx |
-| Seria | lib/timer.ts | tests/audit-close-b.test.tsx, tests/audit-close2-a.test.tsx, tests/audit-close2-b.test.tsx +29 |
+| Seria | lib/timer.ts | tests/audit-close-b.test.tsx, tests/audit-close2-a.test.tsx, tests/audit-close2-b.test.tsx +30 |
 | seria · bez celu | components/ActiveWorkout.tsx | tests/matrix-ui.test.tsx |
 | seria · cel {s} | components/ActiveWorkout.tsx | tests/matrix-ui.test.tsx, tests/scenario-full.test.tsx |
-| seria {n} | components/ActiveWorkout.tsx | tests/audit-backlog-q.test.tsx, tests/audit-backlog-r75.test.tsx, tests/audit-close2-b.test.tsx +49 |
-| Seria {n} | app/history/edit/[id].tsx | tests/audit-close-b.test.tsx, tests/audit-close2-a.test.tsx, tests/audit-close2-b.test.tsx +29 |
-| Seria {n} — {ex} | app/history/edit/[id].tsx | tests/audit-close-b.test.tsx, tests/audit-close2-a.test.tsx, tests/audit-close2-b.test.tsx +29 |
-| seria {n} z {all} | components/ActiveWorkout.tsx | tests/audit-backlog-q.test.tsx, tests/audit-backlog-r75.test.tsx, tests/audit-close2-b.test.tsx +49 |
-| seria {s} s | lib/timer.ts | tests/audit-backlog-q.test.tsx, tests/audit-backlog-r75.test.tsx, tests/audit-close2-b.test.tsx +49 |
+| seria {n} | components/ActiveWorkout.tsx | tests/audit-backlog-q.test.tsx, tests/audit-backlog-r75.test.tsx, tests/audit-close2-b.test.tsx +50 |
+| Seria {n} | app/history/edit/[id].tsx | tests/audit-close-b.test.tsx, tests/audit-close2-a.test.tsx, tests/audit-close2-b.test.tsx +30 |
+| Seria {n} — {ex} | app/history/edit/[id].tsx | tests/audit-close-b.test.tsx, tests/audit-close2-a.test.tsx, tests/audit-close2-b.test.tsx +30 |
+| seria {n} z {all} | components/ActiveWorkout.tsx | tests/audit-backlog-q.test.tsx, tests/audit-backlog-r75.test.tsx, tests/audit-close2-b.test.tsx +50 |
+| seria {s} s | lib/timer.ts | tests/audit-backlog-q.test.tsx, tests/audit-backlog-r75.test.tsx, tests/audit-close2-b.test.tsx +50 |
 | Seria jest już odhaczona. | components/ActiveWorkout.tsx | tests/matrix-ui.test.tsx |
 | Seria skończona | lib/timer.ts | tests/matrix-ui.test.tsx |
-| Seria zrobiona | components/ActiveWorkout.tsx | tests/karta-sprzet.test.tsx, tests/matrix-tuleja.test.tsx, tests/tuleja.test.tsx +1 |
+| Seria zrobiona | components/ActiveWorkout.tsx | tests/karta-sprzet.test.tsx, tests/maestro-selectors.test.ts, tests/matrix-tuleja.test.tsx +2 |
 | Serie bez ciężaru: {n}. | app/history/edit/[id].tsx | tests/integration-090.test.tsx |
 | Serie bez wyniku zostaną pominięte: {n}. | app/history/edit/[id].tsx | tests/edit-history.test.tsx, tests/scenario-full.test.tsx |
 | Serie per partia — ten tydzień vs poprzedni | app/more/progress.tsx | tests/scenario-full.test.tsx |

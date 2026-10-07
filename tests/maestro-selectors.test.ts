@@ -25,3 +25,20 @@ test('scenariusze rozwijają grupy sprzętu po angielskich nazwach z EQUIP_GROUP
   for (const f of fs.readdirSync(dir).filter((x: string) => x.endsWith('.yaml'))) for (const m of fs.readFileSync(path.join(dir, f), 'utf8').matchAll(/tapOn: "([^"]+)\.\*"/g)) if (/^[A-Z][a-z]+ (?:weights|and|dip)/.test(m[1])) used.push(m[1]);
   expect(used.length).toBeGreaterThanOrEqual(3); for (const u of used) expect(names).toContain(u);
 });
+
+test('regresja run 37600735711: przycisk karty „teraz” ma etykietę VoiceOver dłuższą niż tekst — selektory „Set done” dopasowują całą etykietę, nie ✓ wiersza', () => {
+  const { EN } = require('@/lib/i18n.en'); const fs = require('fs'); const path = require('path');
+  const card = EN['Seria zrobiona: {ex}, seria {n}'].replace('{ex}', 'Back Squat').replace('{n}', '1');
+  const row = EN['Seria {n} zrobiona — {ex}'].replace('{ex}', 'Back Squat').replace('{n}', '1');
+  const y = fs.readFileSync(path.join(__dirname, '..', '.maestro', '11-widok-skupiony.yaml'), 'utf8');
+  const sel = [...y.matchAll(/(?:visible|tapOn|assertNotVisible):\s*"(Set done[^"]*)"/g)].map(m => JSON.parse('"' + m[1] + '"'));
+  expect(sel.length).toBeGreaterThanOrEqual(3);
+  for (const s of sel) { const re = new RegExp('^(?:' + s + ')$'); expect({ s, card: re.test(card), row: re.test(row) }).toEqual({ s, card: true, row: false }); }
+});
+
+test('regresja run 37600735711: przycisk „Cancel workout” w oknie wskazany względem przycisku w tle, nie opisu (opis zachodzi na okno w kroju Tuleja)', () => {
+  const fs = require('fs'); const path = require('path');
+  const y = fs.readFileSync(path.join(__dirname, '..', '.maestro', '07-zamiana.yaml'), 'utf8');
+  expect(y).toContain('tapOn: { text: "Cancel workout", below: "Back", above: "Cancel workout" }');
+  expect(y).not.toMatch(/above: "The workout in progress saves/);
+});
