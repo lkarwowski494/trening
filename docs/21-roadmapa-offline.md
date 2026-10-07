@@ -116,7 +116,29 @@ widocznej w treningu (pole istnieje, ekran treningu go nie pokazuje), pola RIR (
 
 Uwagi właściciela 07.10.2026: „Fajnie, gdybyśmy zaprojektowali unikatowe grafiki. Na pewno na ikonę. W środku też coś odróżniającego się.
 Motyw kredy jest fajny, ale wygląda trochę jak typowa prezentacja w PowerPoint robiona przez kogoś młodego.”
-Research wyglądu w toku — kierunki z makietami w osobnej sekcji po jego zakończeniu.
+**Rynek (ikony i zrzuty 12 aplikacji, App Store 07.10.2026):** klisze do omijania — hantel/sztanga (Strong, Alpha, Setgraph, RP),
+monogram z litery (Hevy, Fitbod, Boostcamp, Ladder, Future), czerwono-pomarańczowe tło „energii” (StrengthLog, RP, Fitbod, Boostcamp),
+czerń z neonem (Setgraph, Ladder), maskotki (Liftosaur, StrengthLog). Nasz pomarańcz #E8590C jest blisko Gentler Streak i Boostcamp.
+
+**Makiety (artefakt „Trening — kierunki wyglądu”, https://claude.ai/artifact/VcG5ESWeNsPEVYiFA1kEru, prywatny):** ten sam ekran
+(widok skupiony na bieżącej serii, kierunek A z pkt 3) w trzech stylach, z ikoną w wersji domyślnej, ciemnej i małej:
+- **A · Tablica wyników** — ciemne tło, bursztynowy sygnał, matrycowy krój cyfr (Handjet) + Geologica; ikona: strzałka ↑ z kropek tablicy.
+  Plus: najczytelniejszy z daleka, wyraźnie inny niż Strong. Minus: ciemny domyślnie (dziś domyślny jest jasny — decyzja 05.10).
+- **B · Tuleja** — kolory talerzy zawodniczych jako jedyny kolor, zawsze z liczbą na talerzu; Tektur + IBM Plex Mono; ikona: koniec
+  sztangi z talerzami z boku; w aplikacji „co nałożyć na stronę” przy serii (= kalkulator talerzy z pkt 4a).
+  Źródła kolorów: IWF TCRR pkt 3.3.3.6 (wyd. 2019, https://pzpc.pl/download/file/3354; wydanie 2025 **[NIEZWERYFIKOWANE]**),
+  IPF Technical Rules 2026, rozdz. 2.3(b)6 — tylko 15/20/25 kg. Minus: Strong pokazuje kolorowe talerze w kalkulatorze (PRO);
+  czerwony/zielony mylą się przy deuteranomalii → liczba na talerzu obowiązkowa (WCAG 1.4.1).
+- **C · Dziennik** — papier w linie, czerwony margines, granatowy atrament, Literata + IBM Plex Mono, rekord jako pieczątka; ikona:
+  kartka z kreskami liczenia serii. Plus: ciepły, ludzki, najbliżej Kredy. Minus: ryzyko „staroświecko”, mniej czytelny z daleka.
+
+**Ikona w iOS 26** (HIG App icons, zmiana 08.06.2026): warstwy, warianty domyślny/ciemny/przezroczysty/barwiony; prosta forma z kilku
+kształtów. Dziś `app.json` ma jeden płaski PNG — do uzupełnienia o warianty ciemny i barwiony (`ios.icon` w Expo) niezależnie od kierunku.
+Kroje: wszystkie proponowane mają polskie znaki i cyrylicę (sprawdzone w plikach fontów); dzisiejszy problem Archivo bez cyrylicy jest
+już obsłużony (IBM Plex Sans dla bg/sr/uk, `applyFontsFor`).
+
+**Rekomendacja:** B (Tuleja) — jedyny kierunek, w którym grafika niesie funkcję (talerze = co nałożyć), a ikona jest z dziedziny i nie
+jest klišą; z ciemnym wariantem. Alternatywa: A, jeśli ważniejsza jest czytelność z daleka niż charakter.
 
 ## 7. Proponowana kolejność (do decyzji właściciela)
 
