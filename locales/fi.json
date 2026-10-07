@@ -1,0 +1,5 @@
+{
+  "CFBundleDisplayName": "Treeni",
+  "NSHealthShareUsageDescription": "Treeni ei lue terveystietoja — iOS edellyttää tätä kuvausta HealthKit-luvalle.",
+  "NSHealthUpdateUsageDescription": "Treeni tallentaa päättyneet voimaharjoitukset Apple Healthiin."
+}

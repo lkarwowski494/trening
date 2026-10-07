@@ -20,9 +20,9 @@ describe('liczba mnoga (CLDR, liczby całkowite)', () => {
 
 describe('języki aplikacji', () => {
   afterEach(() => applyLang('pl'));
-  test('lista 16 języków z nazwami własnymi; ustawienie języka i locale do dat/liczb', () => {
-    expect(LANGS).toEqual(['pl', 'en', 'cs', 'sk', 'hu', 'ro', 'bg', 'hr', 'sl', 'sr', 'lt', 'lv', 'et', 'uk', 'es', 'pt']);
-    expect(LANG_NAME.cs).toBe('Čeština'); expect(LANG_NAME.uk).toBe('Українська');
+  test('lista języków (LANGS, 26 od 07.10.2026) z nazwami własnymi; ustawienie języka i locale do dat/liczb', () => {
+    expect(LANGS).toEqual(['pl', 'en', 'cs', 'sk', 'hu', 'ro', 'bg', 'hr', 'sl', 'sr', 'lt', 'lv', 'et', 'uk', 'es', 'pt', 'de', 'fr', 'it', 'nl', 'sv', 'da', 'nb', 'fi', 'tr', 'el']);
+    expect(LANG_NAME.cs).toBe('Čeština'); expect(LANG_NAME.uk).toBe('Українська'); expect(LANG_NAME.de).toBe('Deutsch'); expect(LANG_NAME.el).toBe('Ελληνικά'); expect(LANG_NAME.nb).toBe('Norsk');
     applyLang('cs'); expect(lang()).toBe('cs'); expect(locale()).toMatch(/^cs/);
     applyLang('uk'); expect(locale()).toMatch(/^uk/);
   });
@@ -47,7 +47,7 @@ import * as store from '@/lib/store';
 import { renderApp, flushAll, screen, go, tap } from './app';
 describe('wybór języka (ekran)', () => {
   afterEach(() => applyLang('pl'));
-  test('Ustawienia → Język → lista 16 języków + „Jak w telefonie”; wybór zapisuje się i wraca do ustawień', async () => {
+  test('Ustawienia → Język → lista wszystkich języków (LANGS) + „Jak w telefonie”; wybór zapisuje się i wraca do ustawień', async () => {
     await renderApp(); await go('/more/settings'); await flushAll(10);
     await tap(screen.getByText('Język')); await flushAll(5);
     for (const l of LANGS) expect(screen.getByText(LANG_NAME[l])).toBeTruthy();

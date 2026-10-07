@@ -1,4 +1,4 @@
-/* Widżet przerwy (Live Activity) w 16 językach — polecenie właściciela 06.10.2026. Pliki widżetu są GENEROWANE z jednego źródła
+/* Widżet przerwy (Live Activity) we wszystkich językach (LANGS) — polecenie właściciela 06.10.2026. Pliki widżetu są GENEROWANE z jednego źródła
  * (APP_NAME + słowniki t('Przerwa') / t('Seria')); ten test porównuje je z wygenerowaną treścią. Po zmianie nazwy, języków albo tłumaczeń:
  *   UPDATE_WIDGET=1 npx jest tests/widget-i18n.test.ts
  * - targets/rest-widget/<język>.lproj/InfoPlist.strings — nazwa rozszerzenia (CFBundleDisplayName) „<nazwa aplikacji> — <przerwa>”,
@@ -18,7 +18,7 @@ function expected(): Record<string, string> {
     ls.map(x => `  "${x.l}": (rest: "${esc(x.rest)}", set: "${esc(x.set)}"),`).join('\n') + `\n]\n`;
   return out;
 }
-test('pliki widżetu zgodne z APP_NAME i słownikami (16 języków)', () => {
+test('pliki widżetu zgodne z APP_NAME i słownikami (wszystkie języki — LANGS)', () => {
   const exp = expected();
   if (process.env.UPDATE_WIDGET) for (const [f, c] of Object.entries(exp)) { fs.mkdirSync(path.dirname(path.join(dir, f)), { recursive: true }); fs.writeFileSync(path.join(dir, f), c); }
   for (const [f, c] of Object.entries(exp)) expect([f, fs.existsSync(path.join(dir, f)) ? fs.readFileSync(path.join(dir, f), 'utf8') : 'BRAK']).toEqual([f, c]);

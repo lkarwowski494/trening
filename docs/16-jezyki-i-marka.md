@@ -39,6 +39,38 @@ potem 14 niezależnych recenzji (inny agent, bez dostępu do notatek tłumacza).
 - Nazwy ćwiczeń z biblioteki w językach innych niż pl/en.
 - Opis w App Store w każdym języku — przy publikacji (docs/15).
 
+### Języki — wariant B (decyzja właściciela 07.10.2026)
+
+*Decyzja:* „Idziemy w B” — dodać de, fr, it, nl, sv, da, nb (bokmål), fi, tr, el (razem 26). Kolejność: najpierw build 1002 (nowy wygląd), języki w buildzie 1003.
+
+| Kod | Rejestr (wg iOS danego języka) | Nazwa aplikacji | Zakładka „Trening” |
+|---|---|---|---|
+| de | du | Training | Training |
+| fr | vous; spacja nierozdzielająca przed ? ! : ; i w « » | Training | Séance |
+| it | tu | Training | Allenamento |
+| nl | je/jij | Training | Training |
+| sv | du | Träning | Träning |
+| da | du | Træning | Træning |
+| nb | du | Trening | Trening |
+| fi | sinä; bez końcówek fleksyjnych przy {parametrach} | Treeni | Treeni |
+| tr | siz; bez przyrostków przy {parametrach} | Training | Antrenman |
+| el | jak Apple; „;” jako znak zapytania | Training | Προπόνηση |
+
+Nazwa aplikacji wg reguły z 05.10 (lokalne słowo, gdy podobne do „Trening”, inaczej „Training”). Liczba mnoga: dwie formy; fr „one” = 0 i 1.
+Kroje (Plex Sans, Tektur) mają greckie litery — test `matrix-i18n`. Nazwy w App Store: `store/app-store-names.json` (App Store: „no” = nb).
+
+*Proces (07.10.2026):* jak 05.10 — 10 tłumaczeń (osobny agent na język), potem 10 niezależnych recenzji (inny agent, bez notatek tłumacza).
+Recenzje zmieniły: el 46, fi 40, tr 38, nl 36, nb 24, sv 20, de 18, fr 13, da 10, it 10 wpisów. Najważniejsze: tr „yedek” było i kopią, i zamiennikiem
+→ „Alternatif”; nl „enkelbanden” (więzadła) → „enkelstraps”; el „στο {l}” tylko dla rodzaju nijakiego → „σε: {l}”; fr „principaux” → „principal”
+(miejsce główne); da „arbejdspause” (przerwa w pracy) → „Pause, arbejdssæt”; fi „Apin” → „sovelluksen”.
+
+*Otwarte (do native speakera; nie zgadujemy):*
+- „Apple Health” czy nazwa aplikacji Zdrowie w języku (de „Health”, fr „Santé”, it „Salute”, el „Υγεία”, fi „Terveys”, nl „Gezondheid”) — dziś mieszane w części języków.
+- „do upadku/failure”: sv „till failure”, da/nb „til udmattelse”, nl „tot falen”, fi „uupumukseen”.
+- „Jak w telefonie”: de „Wie System” vs „Automatisch”, it „Come il sistema” vs „Automatico”, el „Ρύθμιση τηλεφώνου” (17 znaków).
+- fr „core” → „gainage” (filtr) vs „sangle abdominale” (partia mięśniowa); it „cadenza” dla tempa; nl cudzysłowy “…” vs ‘…’; nl/tr nazwy maszyn mieszane EN/lokalne.
+- fi „Kumoa” (Anuluj) vs „Peru” (Cofnij); da/nb „roningsmaskine/roingsmaskin” (maszyna) obok „romaskine/romaskin” (ergometr).
+
 ## Nazwa aplikacji (decyzja właściciela 05.10.2026)
 
 *Pod ikoną* (`APP_NAME` w `lib/i18n.ts`, jedno źródło prawdy; `locales/<kod>.json` musi się zgadzać — test `tests/i18n-locales.test.ts`):

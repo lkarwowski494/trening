@@ -87,7 +87,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     const setScheme = jest.spyOn(Appearance, 'setColorScheme');
     await boot('/more'); await tap(screen.getByText('Ustawienia')); await flushAll(10);
     expect(screen.getByLabelText('Język, Jak w telefonie')).toBeTruthy();
-    /* język: lista 16 języków, wybrany „Jak w telefonie” */
+    /* język: lista wszystkich języków, wybrany „Jak w telefonie” */
     await tap(screen.getByText('Język')); await flushAll(10);
     expect(screen.getByLabelText('Jak w telefonie, wybrany')).toBeTruthy(); expect(screen.getByText('Polski')).toBeTruthy(); expect(screen.getByText('Українська')).toBeTruthy();
     await tap(screen.getByText('English')); await flushAll(10);

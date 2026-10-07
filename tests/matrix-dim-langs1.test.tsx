@@ -45,6 +45,8 @@ describe('LANGS × THEMES — główne ekrany w każdym języku i motywie', () =
   const TABS = ['Trening', 'Szablony', 'Ćwiczenia', 'Historia', 'Więcej'];
   /** Polskie teksty, które w innym języku nie mogą zostać na ekranie (wszystkie mają tłumaczenia w słownikach; bez „+ Guma” — „guma” to też
    * słowo czeskie, słowackie i litewskie). */
+  /** To samo słowo w języku docelowym (fiń. historia) — nie jest przeciekiem polskiego tekstu (07.10.2026; jak SAME_IN w matrix-i18n). */
+  const SAME_WORD: Partial<Record<string, string[]>> = { fi: ['Historia'] };
   const PL_SENTINELS = ['Zacznij z szablonu', 'Ustawienia', 'Pusty trening', 'Postępy', 'Szablony', 'Ćwiczenia', 'Więcej', 'Historia', '+ Dodaj miejsce', '+ Dodaj trening wstecz', 'Dźwięk i wibracja na koniec przerwy', 'Jednostka ciężaru', 'Wygląd'];
   const texts = () => { const out: string[] = []; const walk = (n: any) => { if (!n) return; if (typeof n === 'string') { out.push(n); return; } if (Array.isArray(n)) { n.forEach(walk); return; } walk(n.children); }; walk(screen.toJSON()); return out; };
   const bgs = () => { const out = new Set<string>(); const walk = (n: any) => { if (!n || typeof n === 'string') return; if (Array.isArray(n)) { n.forEach(walk); return; } for (const x of [n.props?.style].flat(9)) if (x && x.backgroundColor) out.add(String(x.backgroundColor)); walk(n.children); }; walk(screen.toJSON()); return out; };
@@ -58,7 +60,7 @@ describe('LANGS × THEMES — główne ekrany w każdym języku i motywie', () =
     for (const [route, sentinel] of ROUTES) { await go(route); await flushAll(10); expect([l, route, screen.queryAllByText(t(sentinel)).length > 0]).toEqual([l, route, true]); }
     const all = texts();
     if (l !== 'pl') {
-      for (const pl of PL_SENTINELS) expect([l, pl, t(pl) !== pl, all.includes(pl)]).toEqual([l, pl, true, false]);
+      for (const pl of PL_SENTINELS.filter(x => !SAME_WORD[l]?.includes(x))) expect([l, pl, t(pl) !== pl, all.includes(pl)]).toEqual([l, pl, true, false]);
       /* litery tylko polskie (ł, ś, ź, ż) — żaden tekst ekranu nie powinien ich mieć poza nazwą języka „Polski” */
       expect([l, all.filter(x => /[łśźżŁŚŹŻ]/.test(x))]).toEqual([l, []]);
     }
@@ -89,7 +91,7 @@ describe('LANGS × THEMES — główne ekrany w każdym języku i motywie', () =
     await go('/more/progress'); await flushAll(10); await go('/history'); await flushAll(10);
     const all = texts();
     if (l !== 'pl') {
-      for (const pl of [...PL_SENTINELS, '+ Dodaj ćwiczenie', 'Poprzednio', 'Co logujesz w serii', 'Edytuj', 'do upadku', 'rozgrzewkowa']) expect([l, pl, all.includes(pl)]).toEqual([l, pl, false]);
+      for (const pl of [...PL_SENTINELS, '+ Dodaj ćwiczenie', 'Poprzednio', 'Co logujesz w serii', 'Edytuj', 'do upadku', 'rozgrzewkowa'].filter(x => !SAME_WORD[l]?.includes(x))) expect([l, pl, all.includes(pl)]).toEqual([l, pl, false]);
       expect([l, all.filter(x => /[łśźżŁŚŹŻ]/.test(x))]).toEqual([l, []]);
     }
     const bg = bgs(); const pal = palette(th), other = pal === light ? dark : light;

@@ -14,7 +14,7 @@ Brak któregoś rodzaju wymaga zapisanego powodu w docs/09 (wiersz tej zmiany), 
 | 4 | Macierz | nowa wartość listy (metryka, typ serii, sprzęt, język…) wchodzi do pętli `@matrix`; kombinacje z istniejącymi wymiarami | `tests/matrix-dimensions.test.tsx` |
 | 5 | Niezmienniki | nowa akcja dopisana do alfabetu działań losowych sekwencji; nowe reguły spójności jako niezmienniki | `tests/matrix-invariants.test.ts` |
 | 6 | Dane | zapis → restart → ten sam stan; eksport → import bez strat; `migrate` idempotentne; CSV, gdy dotyczy | testy logiki/scenariusza |
-| 7 | Języki i wygląd | 16 języków (bez polskich tekstów poza pl), kg/lb, motyw jasny/ciemny; nowe teksty w słowniku EN i 14 plikach | `check:i18n`, `tests/i18n-locales.test.ts`, macierz |
+| 7 | Języki i wygląd | wszystkie języki z `LANGS` (26 od 07.10.2026; bez polskich tekstów poza pl), kg/lb, motyw jasny/ciemny; nowe teksty w słowniku EN i 24 plikach | `check:i18n`, `tests/i18n-locales.test.ts`, macierz |
 | 8 | Regresja | każdy znaleziony błąd: test, który go odtwarza (czerwony przed poprawką) | `tests/regress.test.tsx` lub plik zmiany |
 | 9 | E2E na symulatorze | przepływ widoczny dla użytkownika: scenariusz Maestro (nowy albo dopisany krok) | `.maestro/NN-*.yaml` |
 

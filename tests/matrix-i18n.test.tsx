@@ -1,7 +1,7 @@
 /*
  * Języki — jakość słowników, liczba mnoga wg CLDR, daty i liczby, długie teksty (polecenie właściciela 06.10.2026: najpełniejsze darmowe
  * testy automatyczne; docs/20 rodzaj 7). Uzupełnia — nie powtarza:
- *  - tests/i18n-locales.test.ts: komplet kluczy, {parametry} 14 słowników, liczba form, litery ąęłńśźż w 14 słownikach, nazwa aplikacji;
+ *  - tests/i18n-locales.test.ts: komplet kluczy, {parametry} każdego słownika, liczba form, litery ąęłńśźż w każdym słowniku, nazwa aplikacji;
  *  - scripts/check-i18n.mjs: każdy t()/tp() w kodzie ma wpis EN z tymi samymi {parametrami};
  *  - tests/matrix-dim-langs1–4: ekrany w każdym języku bez polskich tekstów, separator dziesiętny w opisie serii i CSV.
  * Tu: słownik EN tak samo jak 14 pozostałych (litery polskie, formy mnogie), litery ć/ó tam, gdzie język ich nie ma, tekst identyczny
@@ -47,21 +47,24 @@ const SAME_IN: Partial<Record<Lang, string[]>> = {
   lv: ['{u}/hant.' /* hantele */, 'sek.'],
   et: ['{u}/hant.', '{u}/hantel' /* hantel (est.) */],
   es: ['Dieta', 'Lista'], pt: ['Dieta', 'Lista'] /* lista = lista (hiszp., port.) */, hu: ['Lista'] /* lista = lista (węg.) */,
+  /* 07.10.2026 (wariant B) — te same słowa w języku docelowym */
+  it: ['Dieta', 'serie' /* wł. serie = serie (l.mn.) */], sv: ['(kopia)' /* kopia (szw.) */, '{u}/hantel', 'e1RM (Epley, per hantel)', 'per hantel (×2)' /* hantel, per (szw.) */, 'Lista', 'sek.'],
+  da: ['sek.'], nb: ['sek.', 'Trening' /* APP_NAME.nb */], fi: ['Historia', 'Lista' /* fiń. historia, lista */],
 };
 const sameOk = (l: Lang, k: string) => SAME_ANY.has(k) || (SAME_IN[l] ?? []).includes(k);
 
-/* Litery polskie, których dany język nie ma (ąęłńśźż w 14 słownikach sprawdza i18n-locales — tu ć i ó oraz cały komplet w EN). */
+/* Litery polskie, których dany język nie ma (ąęłńśźż w każdym słowniku sprawdza i18n-locales — tu ć i ó oraz cały komplet w EN). */
 const HAS_C_ACUTE: Lang[] = ['hr']; /* chorwacki: ć; serbski w aplikacji cyrylicą */
-const HAS_O_ACUTE: Lang[] = ['cs', 'sk', 'hu', 'es', 'pt'];
+const HAS_O_ACUTE: Lang[] = ['cs', 'sk', 'hu', 'es', 'pt', 'nl' /* niderl. akcent wyróżniający: „vóór”, „óf” (07.10.2026) */];
 const plLeak = (l: Lang): RegExp => l === 'en' ? /[ąćęłńóśźżĄĆĘŁŃÓŚŹŻ]/ : new RegExp(`[${HAS_C_ACUTE.includes(l) ? '' : 'ćĆ'}${HAS_O_ACUTE.includes(l) ? '' : 'óÓ'}]`);
 
 /* Interpunkcja końcowa: ta sama klasa co w kluczu (. ? ! : …). Kropka skrótu to nie koniec zdania: polskie skróty po stronie klucza
  * i krótkie skróty (≤ 3 wyrazy, ostatni ≤ 6 liter) po stronie tłumaczenia (np. „peso máx.”, „vnt.”). */
 const PL_ABBR = /(?:^|[\s/(])(pow|rozgrz|sek|obj|poprz|hant|str|ćw|max|maks|godz|min|kg)\.$/i;
-const endCls = (s: string) => { const m = s.trimEnd().match(/(\.\.\.|[.?!:…])$/); return m ? (m[1] === '...' ? '…' : m[1]) : ''; };
-const isAbbrevEnd = (s: string) => /(?:^|[\s/(])\p{L}{1,6}\.$/u.test(s) && s.trim().split(/\s+/).length <= 3;
-function punctMismatch(k: string, v: string): boolean {
-  const a = endCls(k), b = endCls(v); if (a === b) return false;
+const endCls = (s: string, greek = false) => { const m = s.trimEnd().match(/(\.\.\.|[.?!:…;\u037e])$/); if (!m) return ''; const c = m[1] === '...' ? '…' : m[1]; return c === ';' || c === '\u037e' ? (greek ? '?' : '') : c; }; /* el: „;” = znak zapytania (07.10.2026) */
+const isAbbrevEnd = (s: string) => /(?:^|[\s/(])\p{L}{1,6}\.$/u.test(s) && s.trim().split(/\s+/).filter(w => /\p{L}/u.test(w)).length <= 3; /* „+ plage de rép.” — znak „+” to nie wyraz */
+function punctMismatch(k: string, v: string, l?: Lang): boolean {
+  const a = endCls(k), b = endCls(v, l === 'el'); if (a === b) return false;
   if (a === '.' && b === '' && PL_ABBR.test(k)) return false; /* „max pow.” → „max reps” */
   if (a === '' && b === '.' && isAbbrevEnd(v)) return false; /* „max ciężar” → „peso máx.” */
   if (a === '.' && b === '' && isAbbrevEnd(k) && !/\s/.test(v.trim().replace(/\{\w+\}/g, ''))) return false;
@@ -95,7 +98,7 @@ describe('słowniki — jakość tekstów w każdym języku', () => {
     expect([punctMismatch('Usunąć gumę?', 'Delete band'), punctMismatch('Zapisano.', 'Saved'), punctMismatch('Uwaga:', 'Note'), punctMismatch('Usuń gumy…', 'Delete bands')]).toEqual([true, true, true, true]);
     expect([punctMismatch('max pow.', 'max reps'), punctMismatch('max ciężar', 'peso máx.'), punctMismatch('Usunąć gumę?', 'Delete band?'), punctMismatch('sztuk', 'vnt.')]).toEqual([false, false, false, false]);
   });
-  test('{parametry} — ten sam zestaw w KAŻDYM z 15 słowników (EN z importu modułu, nie z wyrażenia regularnego jak check-i18n)', () => {
+  test('{parametry} — ten sam zestaw w KAŻDYM słowniku (EN z importu modułu, nie z wyrażenia regularnego jak check-i18n)', () => {
     const ps = (x: string) => (x.match(/\{\w+\}/g) ?? []).sort().join(',');
     expect(NON_PL.flatMap(l => entries(l).filter(([k, v]) => ps(k) !== ps(v)).map(([k, v]) => `${l}: ${k} → ${v}`))).toEqual([]);
   });
@@ -106,7 +109,7 @@ describe('słowniki — jakość tekstów w każdym języku', () => {
     expect([unusedAny, unusedIn, redundant]).toEqual([[], [], []]);
   });
   test.each(NON_PL)('%s: interpunkcja końcowa (. ? ! : …) jak w kluczu — poza kropką skrótu', l => {
-    expect(entries(l).filter(([k, v]) => punctMismatch(k, v)).map(([k, v]) => `${k} → ${v}`)).toEqual([]);
+    expect(entries(l).filter(([k, v]) => punctMismatch(k, v, l)).map(([k, v]) => `${k} → ${v}`)).toEqual([]);
   });
   test.each(NON_PL)('%s: zdanie pytające zostaje pytaniem, wielokropek wielokropkiem (także w środku: „Usuń gumy…”)', l => {
     expect(entries(l).filter(([k, v]) => (k.includes('?') && !/[?;？]/.test(v)) || (/…$/.test(k) && !/(…|\.\.\.)$/.test(v))).map(([k, v]) => `${k} → ${v}`)).toEqual([]);
@@ -167,7 +170,7 @@ describe('liczba mnoga: lib/plural.ts zgodnie z CLDR (Intl.PluralRules) i tp() w
       for (const n of FR) expect([l, n, pluralIndex(l, n)]).toEqual([l, n, last]);
       if (FR.some(n => cldrIndex(l, pr, n) !== last)) differs.push(l);
     }
-    expect(differs).toEqual(['cs', 'sk', 'ro', 'hr', 'sl', 'sr', 'lt', 'lv']);
+    expect(differs).toEqual(['cs', 'sk', 'ro', 'hr', 'sl', 'sr', 'lt', 'lv', 'fr' /* fr: „one” dla 0 ≤ n < 2 (CLDR) — 0,5 i 1,5 */, 'da' /* da: „one” także dla 0,5 i 1,5 (t ≠ 0, i = 0/1) */]);
     /* wywołania tp() w kodzie: pierwszy argument to licznik (całkowity) — gdy ktoś poda wartość ułamkową, ten test trzeba rozszerzyć */
     const fs = require('fs') as typeof import('fs'); const path = require('path') as typeof import('path');
     const files: string[] = []; const walk = (d: string) => { for (const f of fs.readdirSync(d)) { const p = path.join(d, f); if (fs.statSync(p).isDirectory()) walk(p); else if (/\.tsx?$/.test(f) && !/i18n(\.en)?\.ts$/.test(f)) files.push(p); } };
@@ -183,7 +186,8 @@ describe('daty i liczby: fmtDate / fmtTime / fmtNum / locale() / decimalComma() 
   /* @matrix LANGS */
   afterAll(() => { global.__locales = [{ languageCode: 'pl', languageTag: 'pl-PL' }]; applyLang('pl'); });
   /** Ten sam język, inny region (telefon) — locale() bierze region telefonu (poza pl → pl-PL i sr → cyrylica). */
-  const ALT: Partial<Record<Lang, string>> = { en: 'en-GB', pt: 'pt-BR', es: 'es-MX', sr: 'sr-Latn-RS', hr: 'hr-BA', uk: 'uk-UA', hu: 'hu-HU', ro: 'ro-MD', pl: 'pl-GB', cs: 'cs-CZ', sk: 'sk-SK', bg: 'bg-BG', sl: 'sl-SI', lt: 'lt-LT', lv: 'lv-LV', et: 'et-EE' };
+  const ALT: Partial<Record<Lang, string>> = { en: 'en-GB', pt: 'pt-BR', es: 'es-MX', sr: 'sr-Latn-RS', hr: 'hr-BA', uk: 'uk-UA', hu: 'hu-HU', ro: 'ro-MD', pl: 'pl-GB', cs: 'cs-CZ', sk: 'sk-SK', bg: 'bg-BG', sl: 'sl-SI', lt: 'lt-LT', lv: 'lv-LV', et: 'et-EE',
+    de: 'de-AT', fr: 'fr-CA', it: 'it-CH', nl: 'nl-BE', sv: 'sv-FI', da: 'da-DK', nb: 'nb-NO', fi: 'fi-FI', tr: 'tr-TR', el: 'el-CY' /* 07.10.2026 */ };
   const now = new Date(); const D = new Date(now.getFullYear(), 2, 15, 9, 5).getTime(); const D_OLD = new Date(now.getFullYear() - 1, 10, 3, 18, 40).getTime();
   const cases = LANGS.flatMap(l => [[l, 'de-DE'], [l, ALT[l]!]] as [Lang, string][]);
   test.each(cases)('%s przy telefonie %s', (l, device) => {
@@ -197,13 +201,13 @@ describe('daty i liczby: fmtDate / fmtTime / fmtNum / locale() / decimalComma() 
     const s = fmtDate(D); const opts = { weekday: 'short', day: 'numeric', month: 'short' } as const;
     const parts = new Intl.DateTimeFormat(loc, opts).formatToParts(new Date(D)); const month = parts.find(p => p.type === 'month')!.value; const wd = parts.find(p => p.type === 'weekday')!.value;
     expect([l, device, s.includes(month), s.includes(wd), s.includes('15')]).toEqual([l, device, true, true, true]);
-    if (l !== 'en') expect([l, device, /\b(Mar|Sun)\b/.test(s)]).toEqual([l, device, false]);
+    if (l !== 'en' && l !== 'tr' /* tur. „Mar” = Mart (marzec) — skrót CLDR */) expect([l, device, /\b(Mar|Sun)\b/.test(s)]).toEqual([l, device, false]);
     if (['bg', 'sr', 'uk'].includes(l)) expect([l, s]).toEqual([l, expect.stringMatching(/\p{Script=Cyrillic}/u)]);
     expect(s.includes(String(now.getFullYear()))).toBe(false);
     expect(fmtDate(D_OLD).includes(String(now.getFullYear() - 1))).toBe(true);
     /* godzina: 9:05 / 18:40 (12- albo 24-godzinna wg regionu), cyfry arabskie */
     const tm = fmtTime(D), tm2 = fmtTime(D_OLD);
-    expect([l, device, /0?9\D05/.test(tm), /(18|0?6)\D40/.test(tm2), /^[\d\s:.,APMapm  hu\p{L}.]+$/u.test(tm)]).toEqual([l, device, true, true, true]);
+    expect([l, device, /0?9\D{1,3}05/.test(tm), /(18|0?6)\D{1,3}40/.test(tm2) /* fr-CA: „09 h 05” */, /^[\d\s:.,APMapm  hu\p{L}.]+$/u.test(tm)]).toEqual([l, device, true, true, true]);
     /* liczby: separator dziesiętny = decimalComma() = CLDR regionu; bez grupowania tysięcy; cyfry ASCII */
     const sep = decimalComma() ? ',' : '.';
     const intlSep = new Intl.NumberFormat(loc).formatToParts(1.5).find(p => p.type === 'decimal')!.value;
