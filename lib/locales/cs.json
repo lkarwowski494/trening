@@ -858,5 +858,12 @@
  "Pomiń dziś: {name}": "Dnes vynechat: {name}",
  "pominięte dziś": "dnes vynecháno",
  "Przywróć": "Obnovit",
- "Przywróć ćwiczenie: {name}": "Obnovit cvik: {name}"
+ "Przywróć ćwiczenie: {name}": "Obnovit cvik: {name}",
+ "Archiwum ({n})": "Archiv ({n})",
+ "Folder": "Složka",
+ "bez folderu": "bez složky",
+ "+ Nowy folder": "+ Nová složka",
+ "Nazwa folderu": "Název složky",
+ "Przywróć z archiwum": "Obnovit z archivu",
+ "Archiwizuj": "Archivovat"
 }

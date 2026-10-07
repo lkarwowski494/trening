@@ -858,5 +858,12 @@
  "Pomiń dziś: {name}": "Šiandien praleisti: {name}",
  "pominięte dziś": "šiandien praleista",
  "Przywróć": "Atkurti",
- "Przywróć ćwiczenie: {name}": "Atkurti pratimą: {name}"
+ "Przywróć ćwiczenie: {name}": "Atkurti pratimą: {name}",
+ "Archiwum ({n})": "Archyvas ({n})",
+ "Folder": "Aplankas",
+ "bez folderu": "be aplanko",
+ "+ Nowy folder": "+ Naujas aplankas",
+ "Nazwa folderu": "Aplanko pavadinimas",
+ "Przywróć z archiwum": "Atkurti iš archyvo",
+ "Archiwizuj": "Archyvuoti"
 }

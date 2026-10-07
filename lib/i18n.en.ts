@@ -336,4 +336,12 @@ export const EN: Record<string, string> = {
   'pominięte dziś': 'skipped today',
   'Przywróć': 'Restore',
   'Przywróć ćwiczenie: {name}': 'Restore exercise: {name}',
+  /* 07.10.2026 wieczór: foldery i archiwum szablonów */
+  'Archiwum ({n})': 'Archive ({n})',
+  'Folder': 'Folder',
+  'bez folderu': 'no folder',
+  '+ Nowy folder': '+ New folder',
+  'Nazwa folderu': 'Folder name',
+  'Przywróć z archiwum': 'Restore from archive',
+  'Archiwizuj': 'Archive',
 };

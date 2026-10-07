@@ -858,5 +858,12 @@
  "Pomiń dziś: {name}": "Spring over i dag: {name}",
  "pominięte dziś": "sprunget over i dag",
  "Przywróć": "Gendan",
- "Przywróć ćwiczenie: {name}": "Gendan øvelse: {name}"
+ "Przywróć ćwiczenie: {name}": "Gendan øvelse: {name}",
+ "Archiwum ({n})": "Arkiv ({n})",
+ "Folder": "Mappe",
+ "bez folderu": "ingen mappe",
+ "+ Nowy folder": "+ Ny mappe",
+ "Nazwa folderu": "Mappenavn",
+ "Przywróć z archiwum": "Gendan fra arkiv",
+ "Archiwizuj": "Arkivér"
 }

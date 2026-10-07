@@ -858,5 +858,12 @@
  "Pomiń dziś: {name}": "Saltar hoje: {name}",
  "pominięte dziś": "saltado hoje",
  "Przywróć": "Repor",
- "Przywróć ćwiczenie: {name}": "Repor exercício: {name}"
+ "Przywróć ćwiczenie: {name}": "Repor exercício: {name}",
+ "Archiwum ({n})": "Arquivo ({n})",
+ "Folder": "Pasta",
+ "bez folderu": "sem pasta",
+ "+ Nowy folder": "+ Nova pasta",
+ "Nazwa folderu": "Nome da pasta",
+ "Przywróć z archiwum": "Repor do arquivo",
+ "Archiwizuj": "Arquivar"
 }

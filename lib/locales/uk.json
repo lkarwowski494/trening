@@ -858,5 +858,12 @@
  "Pomiń dziś: {name}": "Пропустити сьогодні: {name}",
  "pominięte dziś": "пропущено сьогодні",
  "Przywróć": "Відновити",
- "Przywróć ćwiczenie: {name}": "Відновити вправу: {name}"
+ "Przywróć ćwiczenie: {name}": "Відновити вправу: {name}",
+ "Archiwum ({n})": "Архів ({n})",
+ "Folder": "Папка",
+ "bez folderu": "без папки",
+ "+ Nowy folder": "+ Нова папка",
+ "Nazwa folderu": "Назва папки",
+ "Przywróć z archiwum": "Відновити з архіву",
+ "Archiwizuj": "Архівувати"
 }

@@ -858,5 +858,12 @@
  "Pomiń dziś: {name}": "Danes izpusti: {name}",
  "pominięte dziś": "danes izpuščeno",
  "Przywróć": "Obnovi",
- "Przywróć ćwiczenie: {name}": "Obnovi vajo: {name}"
+ "Przywróć ćwiczenie: {name}": "Obnovi vajo: {name}",
+ "Archiwum ({n})": "Arhiv ({n})",
+ "Folder": "Mapa",
+ "bez folderu": "brez mape",
+ "+ Nowy folder": "+ Nova mapa",
+ "Nazwa folderu": "Ime mape",
+ "Przywróć z archiwum": "Obnovi iz arhiva",
+ "Archiwizuj": "Arhiviraj"
 }

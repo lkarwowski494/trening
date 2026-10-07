@@ -858,5 +858,12 @@
  "Pomiń dziś: {name}": "Saltar hoy: {name}",
  "pominięte dziś": "saltado hoy",
  "Przywróć": "Restaurar",
- "Przywróć ćwiczenie: {name}": "Restaurar ejercicio: {name}"
+ "Przywróć ćwiczenie: {name}": "Restaurar ejercicio: {name}",
+ "Archiwum ({n})": "Archivo ({n})",
+ "Folder": "Carpeta",
+ "bez folderu": "sin carpeta",
+ "+ Nowy folder": "+ Nueva carpeta",
+ "Nazwa folderu": "Nombre de la carpeta",
+ "Przywróć z archiwum": "Restaurar del archivo",
+ "Archiwizuj": "Archivar"
 }

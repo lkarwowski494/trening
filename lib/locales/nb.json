@@ -858,5 +858,12 @@
  "Pomiń dziś: {name}": "Hopp over i dag: {name}",
  "pominięte dziś": "hoppet over i dag",
  "Przywróć": "Gjenopprett",
- "Przywróć ćwiczenie: {name}": "Gjenopprett øvelse: {name}"
+ "Przywróć ćwiczenie: {name}": "Gjenopprett øvelse: {name}",
+ "Archiwum ({n})": "Arkiv ({n})",
+ "Folder": "Mappe",
+ "bez folderu": "ingen mappe",
+ "+ Nowy folder": "+ Ny mappe",
+ "Nazwa folderu": "Mappenavn",
+ "Przywróć z archiwum": "Hent fra arkivet",
+ "Archiwizuj": "Arkiver"
 }

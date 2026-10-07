@@ -858,5 +858,12 @@
  "Pomiń dziś: {name}": "Salta oggi: {name}",
  "pominięte dziś": "saltato oggi",
  "Przywróć": "Ripristina",
- "Przywróć ćwiczenie: {name}": "Ripristina esercizio: {name}"
+ "Przywróć ćwiczenie: {name}": "Ripristina esercizio: {name}",
+ "Archiwum ({n})": "Archivio ({n})",
+ "Folder": "Cartella",
+ "bez folderu": "senza cartella",
+ "+ Nowy folder": "+ Nuova cartella",
+ "Nazwa folderu": "Nome della cartella",
+ "Przywróć z archiwum": "Ripristina dall’archivio",
+ "Archiwizuj": "Archivia"
 }

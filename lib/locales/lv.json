@@ -858,5 +858,12 @@
  "Pomiń dziś: {name}": "Šodien izlaist: {name}",
  "pominięte dziś": "šodien izlaists",
  "Przywróć": "Atjaunot",
- "Przywróć ćwiczenie: {name}": "Atjaunot vingrinājumu: {name}"
+ "Przywróć ćwiczenie: {name}": "Atjaunot vingrinājumu: {name}",
+ "Archiwum ({n})": "Arhīvs ({n})",
+ "Folder": "Mape",
+ "bez folderu": "bez mapes",
+ "+ Nowy folder": "+ Jauna mape",
+ "Nazwa folderu": "Mapes nosaukums",
+ "Przywróć z archiwum": "Atjaunot no arhīva",
+ "Archiwizuj": "Arhivēt"
 }

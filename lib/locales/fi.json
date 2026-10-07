@@ -858,5 +858,12 @@
  "Pomiń dziś: {name}": "Ohita tänään: {name}",
  "pominięte dziś": "ohitettu tänään",
  "Przywróć": "Palauta",
- "Przywróć ćwiczenie: {name}": "Palauta liike: {name}"
+ "Przywróć ćwiczenie: {name}": "Palauta liike: {name}",
+ "Archiwum ({n})": "Arkisto ({n})",
+ "Folder": "Kansio",
+ "bez folderu": "ei kansiota",
+ "+ Nowy folder": "+ Uusi kansio",
+ "Nazwa folderu": "Kansion nimi",
+ "Przywróć z archiwum": "Palauta arkistosta",
+ "Archiwizuj": "Arkistoi"
 }

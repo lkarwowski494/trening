@@ -22,7 +22,7 @@ name: Trening z szablonu
 - takeScreenshot: 04-pytanie-o-zakonczenie
 - tapOn: { text: "Finish", below: "Finish workout\\?" }
 # Po zapisie aplikacja pokazuje zapisaną sesję
-- extendedWaitUntil: { visible: "Delete session", timeout: 30000 }
+- extendedWaitUntil: { visible: "Session", timeout: 30000 }  # tytuł ekranu sesji (07.10.2026 wieczór: przycisku „Delete session” już nie ma — usuwanie przesunięciem na liście)
 - assertVisible: "Upper A"
 - takeScreenshot: 05-zapisana-sesja
 - tapOn: "Back"

@@ -858,5 +858,12 @@
  "Pomiń dziś: {name}": "Пропусни днес: {name}",
  "pominięte dziś": "пропуснато днес",
  "Przywróć": "Възстанови",
- "Przywróć ćwiczenie: {name}": "Възстанови упражнението: {name}"
+ "Przywróć ćwiczenie: {name}": "Възстанови упражнението: {name}",
+ "Archiwum ({n})": "Архив ({n})",
+ "Folder": "Папка",
+ "bez folderu": "без папка",
+ "+ Nowy folder": "+ Нова папка",
+ "Nazwa folderu": "Име на папката",
+ "Przywróć z archiwum": "Възстанови от архива",
+ "Archiwizuj": "Архивирай"
 }

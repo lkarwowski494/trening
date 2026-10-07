@@ -858,5 +858,12 @@
  "Pomiń dziś: {name}": "Ma kihagyom: {name}",
  "pominięte dziś": "ma kihagyva",
  "Przywróć": "Visszaállítás",
- "Przywróć ćwiczenie: {name}": "Gyakorlat visszaállítása: {name}"
+ "Przywróć ćwiczenie: {name}": "Gyakorlat visszaállítása: {name}",
+ "Archiwum ({n})": "Archívum ({n})",
+ "Folder": "Mappa",
+ "bez folderu": "nincs mappa",
+ "+ Nowy folder": "+ Új mappa",
+ "Nazwa folderu": "Mappa neve",
+ "Przywróć z archiwum": "Visszaállítás az archívumból",
+ "Archiwizuj": "Archiválás"
 }

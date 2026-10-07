@@ -858,5 +858,12 @@
  "Pomiń dziś: {name}": "Bugün atla: {name}",
  "pominięte dziś": "bugün atlandı",
  "Przywróć": "Geri al",
- "Przywróć ćwiczenie: {name}": "Egzersizi geri al: {name}"
+ "Przywróć ćwiczenie: {name}": "Egzersizi geri al: {name}",
+ "Archiwum ({n})": "Arşiv ({n})",
+ "Folder": "Klasör",
+ "bez folderu": "klasörsüz",
+ "+ Nowy folder": "+ Yeni klasör",
+ "Nazwa folderu": "Klasör adı",
+ "Przywróć z archiwum": "Arşivden geri al",
+ "Archiwizuj": "Arşivle"
 }

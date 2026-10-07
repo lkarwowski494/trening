@@ -858,5 +858,12 @@
  "Pomiń dziś: {name}": "Jäta täna vahele: {name}",
  "pominięte dziś": "täna vahele jäetud",
  "Przywróć": "Taasta",
- "Przywróć ćwiczenie: {name}": "Taasta harjutus: {name}"
+ "Przywróć ćwiczenie: {name}": "Taasta harjutus: {name}",
+ "Archiwum ({n})": "Arhiiv ({n})",
+ "Folder": "Kaust",
+ "bez folderu": "kaustata",
+ "+ Nowy folder": "+ Uus kaust",
+ "Nazwa folderu": "Kausta nimi",
+ "Przywróć z archiwum": "Taasta arhiivist",
+ "Archiwizuj": "Arhiveeri"
 }

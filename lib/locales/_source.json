@@ -120,6 +120,10 @@
   "en": "+ New"
  },
  {
+  "pl": "+ Nowy folder",
+  "en": "+ New folder"
+ },
+ {
   "pl": "+ Nowy szablon",
   "en": "+ New template"
  },
@@ -174,6 +178,14 @@
  {
   "pl": "Apple Health niedostępne",
   "en": "Apple Health unavailable"
+ },
+ {
+  "pl": "Archiwizuj",
+  "en": "Archive"
+ },
+ {
+  "pl": "Archiwum ({n})",
+  "en": "Archive ({n})"
  },
  {
   "pl": "asekuracja",
@@ -242,6 +254,10 @@
  {
   "pl": "Beyond Power Voltra I (5–200 lb)",
   "en": "Beyond Power Voltra I (5–200 lb)"
+ },
+ {
+  "pl": "bez folderu",
+  "en": "no folder"
  },
  {
   "pl": "bez miejsca",
@@ -720,6 +736,10 @@
  {
   "pl": "fioletowa",
   "en": "purple"
+ },
+ {
+  "pl": "Folder",
+  "en": "Folder"
  },
  {
   "pl": "Gdzie trenujesz i jaki sprzęt tam masz. Wybór ćwiczenia pokazuje wtedy to, co da się zrobić w miejscu treningu, a podpowiedź „↑” proponuje ciężary, które naprawdę masz. Miejsce wybierasz na starcie treningu.",
@@ -1518,6 +1538,10 @@
   "en": "Name"
  },
  {
+  "pl": "Nazwa folderu",
+  "en": "Folder name"
+ },
+ {
   "pl": "Nazwy ćwiczeń z biblioteki są po angielsku we wszystkich językach poza polskim.",
   "en": "Library exercise names are in English in all languages except Polish."
  },
@@ -2186,6 +2210,10 @@
  {
   "pl": "Przywróć ćwiczenie: {name}",
   "en": "Restore exercise: {name}"
+ },
+ {
+  "pl": "Przywróć z archiwum",
+  "en": "Restore from archive"
  },
  {
   "pl": "Puste „pow. od” = seria do maksimum. „⇅ SS” łączy ćwiczenie z następnym w superset (wspólna przerwa po ostatnim z grupy), „✂” wyjmuje z grupy.",

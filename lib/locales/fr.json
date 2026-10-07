@@ -858,5 +858,12 @@
  "Pomiń dziś: {name}": "Passer aujourd’hui : {name}",
  "pominięte dziś": "passé aujourd’hui",
  "Przywróć": "Rétablir",
- "Przywróć ćwiczenie: {name}": "Rétablir l’exercice : {name}"
+ "Przywróć ćwiczenie: {name}": "Rétablir l’exercice : {name}",
+ "Archiwum ({n})": "Archives ({n})",
+ "Folder": "Dossier",
+ "bez folderu": "sans dossier",
+ "+ Nowy folder": "+ Nouveau dossier",
+ "Nazwa folderu": "Nom du dossier",
+ "Przywróć z archiwum": "Sortir des archives",
+ "Archiwizuj": "Archiver"
 }

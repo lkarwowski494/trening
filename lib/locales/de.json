@@ -858,5 +858,12 @@
  "Pomiń dziś: {name}": "Heute überspringen: {name}",
  "pominięte dziś": "heute übersprungen",
  "Przywróć": "Wiederherstellen",
- "Przywróć ćwiczenie: {name}": "Übung wiederherstellen: {name}"
+ "Przywróć ćwiczenie: {name}": "Übung wiederherstellen: {name}",
+ "Archiwum ({n})": "Archiv ({n})",
+ "Folder": "Ordner",
+ "bez folderu": "kein Ordner",
+ "+ Nowy folder": "+ Neuer Ordner",
+ "Nazwa folderu": "Ordnername",
+ "Przywróć z archiwum": "Aus dem Archiv holen",
+ "Archiwizuj": "Archivieren"
 }

@@ -858,5 +858,12 @@
  "Pomiń dziś: {name}": "Прескочи данас: {name}",
  "pominięte dziś": "прескочено данас",
  "Przywróć": "Врати",
- "Przywróć ćwiczenie: {name}": "Врати вежбу: {name}"
+ "Przywróć ćwiczenie: {name}": "Врати вежбу: {name}",
+ "Archiwum ({n})": "Архива ({n})",
+ "Folder": "Фасцикла",
+ "bez folderu": "без фасцикле",
+ "+ Nowy folder": "+ Нова фасцикла",
+ "Nazwa folderu": "Назив фасцикле",
+ "Przywróć z archiwum": "Врати из архиве",
+ "Archiwizuj": "Архивирај"
 }

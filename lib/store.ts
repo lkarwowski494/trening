@@ -265,7 +265,7 @@ export function migrate(raw: any): State {
       raw.libExtra = LIB_EXTRA_REVS[0]; raw.libExtraStep = LIB_EXTRA_REV; } }
   raw.templates = arr(raw.templates);
   raw.templates.forEach((t: any) => { stamp(t); if (typeof t.name !== 'string') t.name = ''; t.items = arr(t.items); t.items = t.items.filter((it: any) => idOf(it.exerciseId) != null); t.items.forEach((it: any) => { it.id = idOf(it.id) ?? uid(); it.exerciseId = idOf(it.exerciseId); { const v = parseNum(it.targetSec); it.targetSec = v == null || v < 0 ? '' : Math.min(86400, Math.round(v)); } /* runda 51 */ it.groupId = idOf(it.groupId); it.sets = intIn(it.sets, 1, 50) ?? 1; /* runda 15: liczba, nie tekst z importu */ if (it.startWeight === undefined) it.startWeight = ''; for (const k of ['repMin', 'repMax']) it[k] = intIn(it[k], 1, 100); { const v = parseNum(it.restSec); it.restSec = v == null || v < 0 ? null : Math.min(1800, Math.round(v)); } /* runda 49: także tekst, jak przerwa ćwiczenia */ /* runda 17: limit 1800 */ { const v = parseNum(it.startWeight); it.startWeight = v == null ? '' : kg2(snapL(v) as number); } fixAlternates(it); fixRows(it); }); });
-  raw.templates.forEach((x: any) => { const n = x.name.replace(/\s+/g, ' ').trim(); x.name = n || tIn(raw.settings?.language, 'Nowy szablon'); { const l = idOf(x.locationId); if (l) x.locationId = l; else delete x.locationId; } /* P-003 */ }); // runda 35: jak nazwy ćwiczeń
+  raw.templates.forEach((x: any) => { const n = x.name.replace(/\s+/g, ' ').trim(); x.name = n || tIn(raw.settings?.language, 'Nowy szablon'); { const l = idOf(x.locationId); if (l) x.locationId = l; else delete x.locationId; } /* P-003 */ { const f = typeof x.folder === 'string' ? cleanFolder(x.folder) : ''; if (f) x.folder = f; else delete x.folder; } if (x.archived !== true) delete x.archived; /* 07.10.2026 wieczór: folder i archiwum */ }); // runda 35: jak nazwy ćwiczeń
   /* Decyzja właściciela 03.10.2026 (08:11): aplikacja nie zmienia ciężarów ani treści szablonów użytkownika — także przy przejściu na schemat 15
    * (wcześniejsza jednorazowa zmiana 48 → 24 kg z P-004 usunięta: 48 zostaje 48). Zostaje tylko dotychczasowa normalizacja, ta sama co w main:
    * pola pozycji wyżej (liczby, zakresy, siatka kg), a niżej usunięcie pozycji, których ćwiczenia nie ma albo jest usunięte (runda 82b — docs/10). */
@@ -1411,7 +1411,23 @@ export function deleteExercise(id: string) {
 /** Ćwiczenia widoczne na listach i w wyborze (bez zarchiwizowanych). */
 export const visibleExercises = () => getState().exercises.filter(e => !e.archived);
 export function newTemplate(): Template { const tpl: Template = { ...base(getState().ownerId), name: tr('Nowy szablon'), items: [] }; getState().templates.push(tpl); save(); return tpl; }
-export function dupTemplate(id: string): Template { const src = getState().templates.find(x => x.id === id)!; const c: Template = JSON.parse(JSON.stringify(src)); Object.assign(c, base(getState().ownerId)); const suf = ' ' + tr('(kopia)'); c.name = clampName(src.name, NAME_MAX - suf.length) + suf; /* runda 39: limit nazwy */ const ids = new Map<string, string>(); c.items.forEach(i => { i.id = uid(); if (i.groupId) { if (!ids.has(i.groupId)) ids.set(i.groupId, uid()); i.groupId = ids.get(i.groupId)!; } }); getState().templates.push(c); save(); return c; }
+export function dupTemplate(id: string): Template { const src = getState().templates.find(x => x.id === id)!; const c: Template = JSON.parse(JSON.stringify(src)); Object.assign(c, base(getState().ownerId)); delete c.archived; /* kopia z archiwum trafia na listę */ const suf = ' ' + tr('(kopia)'); c.name = clampName(src.name, NAME_MAX - suf.length) + suf; /* runda 39: limit nazwy */ const ids = new Map<string, string>(); c.items.forEach(i => { i.id = uid(); if (i.groupId) { if (!ids.has(i.groupId)) ids.set(i.groupId, uid()); i.groupId = ids.get(i.groupId)!; } }); getState().templates.push(c); save(); return c; }
+/* ---------- foldery i archiwum szablonów (docs/21 4a, 07.10.2026 wieczór) — zmienia tylko użytkownik ---------- */
+export const FOLDER_MAX = 40;
+function cleanFolder(v: string) { return v.replace(/\s+/g, ' ').trim().slice(0, FOLDER_MAX).trim(); }
+const byName = (a: string, b: string) => a.localeCompare(b, locale());
+/** Foldery użyte w szablonach (także zarchiwizowanych), alfabetycznie wg języka aplikacji. */
+export function templateFolders(): string[] { return [...new Set(getState().templates.map(t => t.folder).filter((f): f is string => !!f))].sort(byName); }
+/** Lista startu i ekranu Szablony: najpierw bez folderu (kolejność dodania), potem foldery alfabetycznie; bez zarchiwizowanych. */
+export function templateGroups(): { folder: string | null; items: Template[] }[] {
+  const live = getState().templates.filter(t => !t.archived); const out: { folder: string | null; items: Template[] }[] = [];
+  const loose = live.filter(t => !t.folder); if (loose.length) out.push({ folder: null, items: loose });
+  for (const f of [...new Set(live.map(t => t.folder).filter((x): x is string => !!x))].sort(byName)) out.push({ folder: f, items: live.filter(t => t.folder === f) });
+  return out;
+}
+export function archivedTemplates(): Template[] { return getState().templates.filter(t => t.archived); }
+export function setTemplateFolder(tpl: Template, name: string | null) { const f = name ? cleanFolder(name) : ''; if (f) tpl.folder = f; else delete tpl.folder; save(tpl); }
+export function setTemplateArchived(tpl: Template, on: boolean) { if (on) tpl.archived = true; else delete tpl.archived; save(tpl); }
 export function deleteTemplate(id: string) { const st = getState(); st.templates = st.templates.filter(x => x.id !== id); save(); flush(); }
 /** Włączanie/wyłączanie modułu (ADR-011). 'training' jest zawsze włączony. */
 export function setModule(m: keyof State['settings']['modules'], on: boolean) { const s = getState().settings; s.modules[m] = m === 'training' ? true : on; save(); }

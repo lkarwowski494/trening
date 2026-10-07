@@ -858,5 +858,12 @@
  "Pomiń dziś: {name}": "Sari peste azi: {name}",
  "pominięte dziś": "sărit azi",
  "Przywróć": "Restabilește",
- "Przywróć ćwiczenie: {name}": "Restabilește exercițiul: {name}"
+ "Przywróć ćwiczenie: {name}": "Restabilește exercițiul: {name}",
+ "Archiwum ({n})": "Arhivă ({n})",
+ "Folder": "Dosar",
+ "bez folderu": "fără dosar",
+ "+ Nowy folder": "+ Dosar nou",
+ "Nazwa folderu": "Numele dosarului",
+ "Przywróć z archiwum": "Restabilește din arhivă",
+ "Archiwizuj": "Arhivează"
 }

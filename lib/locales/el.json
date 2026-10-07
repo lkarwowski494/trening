@@ -858,5 +858,12 @@
  "Pomiń dziś: {name}": "Παράλειψη σήμερα: {name}",
  "pominięte dziś": "παραλείφθηκε σήμερα",
  "Przywróć": "Επαναφορά",
- "Przywróć ćwiczenie: {name}": "Επαναφορά άσκησης: {name}"
+ "Przywróć ćwiczenie: {name}": "Επαναφορά άσκησης: {name}",
+ "Archiwum ({n})": "Αρχείο ({n})",
+ "Folder": "Φάκελος",
+ "bez folderu": "χωρίς φάκελο",
+ "+ Nowy folder": "+ Νέος φάκελος",
+ "Nazwa folderu": "Όνομα φακέλου",
+ "Przywróć z archiwum": "Επαναφορά από το αρχείο",
+ "Archiwizuj": "Αρχειοθέτηση"
 }

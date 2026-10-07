@@ -858,5 +858,12 @@
  "Pomiń dziś: {name}": "Preskoči danas: {name}",
  "pominięte dziś": "preskočeno danas",
  "Przywróć": "Vrati",
- "Przywróć ćwiczenie: {name}": "Vrati vježbu: {name}"
+ "Przywróć ćwiczenie: {name}": "Vrati vježbu: {name}",
+ "Archiwum ({n})": "Arhiva ({n})",
+ "Folder": "Mapa",
+ "bez folderu": "bez mape",
+ "+ Nowy folder": "+ Nova mapa",
+ "Nazwa folderu": "Naziv mape",
+ "Przywróć z archiwum": "Vrati iz arhive",
+ "Archiwizuj": "Arhiviraj"
 }

@@ -50,6 +50,7 @@ const SAME_IN: Partial<Record<Lang, string[]>> = {
   /* 07.10.2026 (wariant B) — te same słowa w języku docelowym */
   it: ['Dieta', 'serie' /* wł. serie = serie (l.mn.) */], sv: ['(kopia)' /* kopia (szw.) */, '{u}/hantel', 'e1RM (Epley, per hantel)', 'per hantel (×2)' /* hantel, per (szw.) */, 'Lista', 'sek.'],
   da: ['sek.'], nb: ['sek.', 'Trening' /* APP_NAME.nb */], fi: ['Historia', 'Lista' /* fiń. historia, lista */],
+  en: ['Folder' /* folder (ang.) — 07.10.2026 wieczór, foldery szablonów */],
 };
 const sameOk = (l: Lang, k: string) => SAME_ANY.has(k) || (SAME_IN[l] ?? []).includes(k);
 

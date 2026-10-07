@@ -858,5 +858,12 @@
  "Pomiń dziś: {name}": "Vandaag overslaan: {name}",
  "pominięte dziś": "vandaag overgeslagen",
  "Przywróć": "Herstellen",
- "Przywróć ćwiczenie: {name}": "Oefening herstellen: {name}"
+ "Przywróć ćwiczenie: {name}": "Oefening herstellen: {name}",
+ "Archiwum ({n})": "Archief ({n})",
+ "Folder": "Map",
+ "bez folderu": "geen map",
+ "+ Nowy folder": "+ Nieuwe map",
+ "Nazwa folderu": "Mapnaam",
+ "Przywróć z archiwum": "Terugzetten uit archief",
+ "Archiwizuj": "Archiveren"
 }
