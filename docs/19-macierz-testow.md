@@ -95,7 +95,7 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | Ekran włączony podczas treningu | app/more/settings.tsx | tests/phone-p1.test.tsx, tests/regress.test.tsx, tests/scenario-full.test.tsx |
 | Eksportuj backup (plik JSON) | app/more/backup.tsx | tests/matrix-ui.test.tsx, tests/scenario-full.test.tsx |
 | Eksportuj historię do CSV | app/more/backup.tsx | tests/matrix-ui.test.tsx, tests/scenario-full.test.tsx |
-| Folder | app/template/[id].tsx | tests/template-folders.test.tsx, .maestro/08-szablon-wiersze.yaml |
+| Folder | app/template/[id].tsx | tests/matrix-i18n.test.tsx, tests/template-folders.test.tsx, .maestro/08-szablon-wiersze.yaml |
 | główne | app/template/[id].tsx | tests/audit-r82.test.tsx, tests/audit-r82b.test.tsx, tests/audit-r82c.test.tsx +20 |
 | Godzina startu | components/WhenFields.tsx | tests/edit-history.test.tsx, tests/matrix-ui.test.tsx, tests/scenario-full.test.tsx |
 | Gotowe | app/reorder.tsx | tests/audit-prephone.test.tsx, tests/matrix-ui.test.tsx, tests/reorder-t010.test.tsx +1 |
