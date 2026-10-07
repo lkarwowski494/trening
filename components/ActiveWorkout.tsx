@@ -7,7 +7,7 @@ import { Btn, Input, NumInput, Muted } from '@/components/ui';
 import { progressionFor, writeLoad, setActiveLocation, lastActivity, staleSince, staleRef, staleKind, ackStale, markActivity, useForegroundTick, bandA11y, clampName, loadLabelShort, getState, useTick, exById, prevOfActiveBlock, previousFor, canUndoSwap, undoSwap, pinnedImpl, rememberRest as storeRememberRest, canRememberAlt, rememberAlt, altHint, acceptAlt, skipAlt, occurrence, occurrences, hintFor, isBW, reps, fmtDur, fmtSec, fmtTime, setSummary, toggleDone, restAfter, roundRest, addSet, removeSet, removeSetById, removeExercise, finishWorkout, cancelWorkout, save, loadLabel, groupLabels, linkWithNext, unlink, cycleBand, findSet, shortBand, setHasValue, locationById, offListNote, liveBlockImpl, listLocFor, srcSetAt, usesBand, focusSet } from '@/lib/store';
 import { availability, missingLabel } from '@/lib/equipment';
 import { EquipVisual } from '@/components/EquipVisual';
-import { equipVisFor } from '@/lib/equipvis';
+import { equipVisFor, equipSlotFor } from '@/lib/equipvis';
 import Svg, { Circle } from 'react-native-svg';
 import { implLabel } from '@/lib/swap';
 import { SetBadge } from '@/components/SetBadge';
@@ -377,6 +377,8 @@ function bigLoad(ex: import('@/lib/seed').Exercise, set: WSet): string {
  */
 function FocusCard({ w, onDone, onFinish }: { w: Workout; onDone: (ei: number, si: number) => void; onFinish: () => void }) {
   const t = useTheme(); const pos = focusSet(w);
+  /* wariant A (07.10.2026, E2E run 37611882320): miejsce na grafikę nie maleje w obrębie serii — wiersz pod kartą nie skacze pod klawiaturę */
+  const [slot, setSlot] = useState({ key: '', h: 0 });
   if (!pos) return w.exercises.some(e => e.sets.length) ? (
     <View style={[s.focus, { backgroundColor: t.surface, borderColor: t.text }]}>
       {timer.T.on ? <View style={[s.focusRest, { borderColor: t.accent }]}><RestPanel big={34} /></View> : null}
@@ -385,7 +387,7 @@ function FocusCard({ w, onDone, onFinish }: { w: Workout; onDone: (ei: number, s
     </View>) : null;
   const e = w.exercises[pos.ei]; const ex = exById(e.exerciseId)!; const set = e.sets[pos.si]; const m = ex.metric ?? 'weight_reps'; const lbl = setLabel(e, pos.si);
   const prev = prevOfActiveBlock(w, e); const p = hintFor(prev?.sets, e.sets, pos.si, ex);
-  const vis = equipVisFor(w, e, set); const work = e.sets.filter(x => x.kind !== 'warmup').length; const resting = timer.T.on;
+  const vis = equipVisFor(w, e, set); const ghost = vis.length ? [] : equipSlotFor(w, e, set); const minH = slot.key === set.id ? slot.h : 0; const work = e.sets.filter(x => x.kind !== 'warmup').length; const resting = timer.T.on;
   const parts: string[] = []; if (hasWeight(m)) parts.push(bigLoad(ex, set)); if (hasReps(m)) parts.push(set.reps === '' || set.reps == null ? '—' : String(set.reps));
   if (hasDistance(m)) parts.push(set.distanceM === '' || set.distanceM == null ? '—' : `${set.distanceM} m`); if (hasTime(m)) parts.push(set.durationSec === '' || set.durationSec == null ? '—' : fmtSec(Number(set.durationSec)));
   const big = parts.join(' × '); const unitTxt = hasWeight(m) && !isBW(ex) && set.weight !== '' && set.weight != null ? wu() : '';
@@ -400,7 +402,11 @@ function FocusCard({ w, onDone, onFinish }: { w: Workout; onDone: (ei: number, s
       {ex.notes?.trim() ? <Muted numberOfLines={3} style={{ fontSize: 13 }}>{ex.notes.trim()}</Muted> : null}
       <Text accessible accessibilityLabel={tr('Teraz: {v}', { v: [big, unitTxt].filter(Boolean).join(' ') })} adjustsFontSizeToFit numberOfLines={1} maxFontSizeMultiplier={1.2} style={{ color: t.text, fontSize: 64, lineHeight: 72, fontFamily: F.display }}>{big}{unitTxt ? <Text style={{ fontSize: 18, fontFamily: F.semibold, color: t.muted }}>{` ${unitTxt}`}</Text> : null}</Text>
       {p ? <Muted style={{ fontSize: 13 }}>{tr('ostatnio {s}', { s: setSummary(ex, p, 'calc') })}</Muted> : null}
-      {vis.map((v, i) => <EquipVisual key={i} v={v} />)}
+      {vis.length || ghost.length ? (
+        <View style={{ gap: 10, minHeight: minH }} onLayout={ev => { const h = Math.ceil(ev.nativeEvent.layout.height); if (slot.key !== set.id || h > slot.h) setSlot({ key: set.id, h }); }}>
+          {vis.map((v, i) => <EquipVisual key={i} v={v} />)}
+          {ghost.length ? <View style={{ gap: 10, opacity: 0 }} pointerEvents="none" accessibilityElementsHidden importantForAccessibility="no-hide-descendants">{ghost.map((v, i) => <EquipVisual key={i} v={v} />)}</View> : null}
+        </View>) : null}
       {hasTime(m) ? <TimedRing setId={set.id} /> : null}
       <Pressable accessibilityRole="button" accessibilityLabel={tr('Seria zrobiona: {ex}, seria {n}', { n: lbl, ex: name })} testID="focus-done" onPress={() => onDone(pos.ei, pos.si)} style={({ pressed }) => [s.focusBtn, { backgroundColor: t.text, opacity: pressed ? 0.8 : 1 }]}>
         <Text maxFontSizeMultiplier={1.3} style={{ color: t.bg, fontSize: 19, fontFamily: F.heavy }}>{tr('Seria zrobiona')}</Text>

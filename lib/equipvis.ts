@@ -54,3 +54,26 @@ const BAND_HEX: Record<string, string> = {
   'brązowa': '#7A4E2D', brown: '#7A4E2D', 'biała': '#FFFFFF', white: '#FFFFFF',
 };
 export const bandHex = (color: string): string | null => BAND_HEX[color.trim().toLowerCase()] ?? null;
+
+/**
+ * Miejsce na grafikę na karcie (decyzja właściciela 07.10.2026, wariant A; E2E run 37611882320): karta nie zmienia wysokości, gdy wpisujesz
+ * wartość w wierszu serii — inaczej pojawiające się talerze spychały wiersz pod klawiaturę. Ten sam przyrząd co equipVisFor, ale z wartością
+ * zastępczą (niezależną od wpisanej): talerze — sam gryf, stos — okno wokół 3. pozycji listy, reszta — 10 kg. Rysowane niewidocznie.
+ */
+export function equipSlotFor(w: Workout, e: WExercise, set: WSet): EquipVis[] {
+  const ex = exById(e.exerciseId); if (!ex) return [];
+  const m = ex.metric ?? 'weight_reps'; if (!hasWeight(m)) return equipVisFor(w, e, { ...set, weight: '', addKg: '' });
+  if (isBW(ex)) return equipVisFor(w, e, { ...set, addKg: 10 });
+  const impl = implFor(w, e); const loc = locationById(listLocFor(e, w.locationId));
+  const band = equipVisFor(w, e, { ...set, weight: '' });
+  if (impl === 'barbell' || impl === 'ez_bar' || impl === 'trap_bar') {
+    const spec = plateSpecFor(ex, loc, pinnedImpl(e));
+    return spec && spec.kind === 'plates' ? [{ kind: 'plates', plan: { unit: spec.unit, base: spec.base, plates: [] } }, ...band] : band;
+  }
+  if (impl === 'machine' || impl === 'cable') {
+    const l = loadsFor(ex, loc, pinnedImpl(e));
+    if (l.kind === 'loads' && l.loads.length) { const kg = l.loads[Math.min(2, l.loads.length - 1)]; return [{ kind: 'stack', kg, window: stackWindow(l.loads, kg) }, ...band]; }
+    return [{ kind: 'stack', kg: 10, window: null }, ...band];
+  }
+  return equipVisFor(w, e, { ...set, weight: 10 });
+}

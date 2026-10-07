@@ -9,6 +9,7 @@
 #   "Set done.*"                  ← 'Seria zrobiona' (przycisk karty); etykieta VoiceOver „Set done: {ex}, set {n}” zastępuje tekst
 #                                   przycisku w drzewie dostępności — sam „Set done” nie pasuje (run 37600735711, krok 27)
 #   "All sets ticked off"         ← 'Wszystkie serie odhaczone'
+#   "set 1 of 1"                  ← 'seria {n} z {all}' (nagłówek karty, zwykły tekst — tap chowa klawiaturę)
 #   "Skip"                        ← 'Pomiń' (przerwa w karcie „teraz”, RestPanel w components/ActiveWorkout.tsx)
 #   "Workout view"/"List"/"Focused" ← 'Widok treningu' / 'Lista' / 'Skupiony' (app/more/settings.tsx)
 appId: pl.lukasz.trening
@@ -50,7 +51,10 @@ name: Widok skupiony i talerze
 - inputText: "80"
 - tapOn: { id: "r-0-0" }
 - inputText: "5"
-- hideKeyboard
+# Klawiatura numeryczna nie ma akcji „schowaj” (run 37611882320: hideKeyboard nie działa) — tapnięcie w zwykły tekst karty ją chowa
+# (lista: keyboardShouldPersistTaps="handled"). W tamtym przebiegu talerze powiększały kartę i wiersz zjeżdżał pod klawiaturę — tap w
+# „r-0-0” trafiał w klawisz „3” (ciężar 8035); od wariantu A (07.10.2026) karta trzyma miejsce na grafikę, a „Now: 80 × 5 kg” to sprawdza.
+- tapOn: "set 1 of 1"
 - extendedWaitUntil: { visible: "Each side: 25 \\+ 5 kg", timeout: 15000 }
 - assertVisible: "Now: 80 × 5 kg"
 - takeScreenshot: 41-karta-teraz-talerze

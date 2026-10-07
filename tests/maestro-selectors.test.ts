@@ -42,3 +42,10 @@ test('regresja run 37600735711: przycisk „Cancel workout” w oknie wskazany w
   expect(y).toContain('tapOn: { text: "Cancel workout", below: "Back", above: "Cancel workout" }');
   expect(y).not.toMatch(/above: "The workout in progress saves/);
 });
+
+test('regresja run 37611882320: scenariusz 11 nie używa hideKeyboard (klawiatura numeryczna nie ma akcji „schowaj”) — tap w tekst karty', () => {
+  const fs = require('fs'); const path = require('path'); const { EN } = require('@/lib/i18n.en');
+  const y = fs.readFileSync(path.join(__dirname, '..', '.maestro', '11-widok-skupiony.yaml'), 'utf8');
+  expect(y).not.toMatch(/^- hideKeyboard/m);
+  expect(y).toContain(`- tapOn: "${EN['seria {n} z {all}'].replace('{n}', '1').replace('{all}', '1')}"`);
+});

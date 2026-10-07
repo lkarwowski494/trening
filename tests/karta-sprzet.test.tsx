@@ -7,7 +7,7 @@
 import * as store from '@/lib/store';
 import * as timer from '@/lib/timer';
 import { addLocation, setEquip } from '@/lib/locations';
-import { stackWindow, equipVisFor, bandHex, implFor } from '@/lib/equipvis';
+import { stackWindow, equipVisFor, equipSlotFor, bandHex, implFor } from '@/lib/equipvis';
 import { fresh, ex, saved } from './helpers';
 import { renderApp, tap, flushAll, screen, act } from './app';
 
@@ -53,6 +53,21 @@ describe('logika (lib/equipvis.ts)', () => {
     expect(equipVisFor(m.a, m.e, m.set)).toEqual([{ kind: 'stack', kg: 45, window: null }]);
     const bb = block('Bench Press (sztanga)', { weight: 80 }); expect(equipVisFor(bb.a, bb.e, bb.set)).toEqual([]); /* talerze tylko z opisem w miejscu */
   });
+  test('equipSlotFor (decyzja A 07.10, E2E run 37611882320): miejsce na grafikę z przyrządu, niezależne od wpisanej wartości — karta nie zmienia wysokości przy wpisywaniu', () => {
+    const g = addLocation('gym'); store.startEmpty(); S().active!.locationId = g.id;
+    const bb = block('Back Squat'); expect(equipSlotFor(bb.a, bb.e, bb.set)).toEqual([{ kind: 'plates', plan: { unit: 'kg', base: 20, plates: [] } }]);
+    bb.set.weight = 8035; expect(equipVisFor(bb.a, bb.e, bb.set)).toEqual([]); expect(equipSlotFor(bb.a, bb.e, bb.set)).toHaveLength(1); /* wartość spoza talerzy — miejsce zostaje */
+    const st = block('Pec Deck'); expect(equipSlotFor(st.a, st.e, st.set)).toEqual([{ kind: 'stack', kg: 10, window: null }]); /* preset: lista stosu pusta (nieznane ciężary) */
+    g.equipment.find(x => x.item === 'pec_deck')!.load = { kind: 'list', unit: 'kg', items: [5, 10, 15, 20, 25, 30, 35, 40].map(w => ({ w, on: true })) };
+    const sv = equipSlotFor(st.a, st.e, st.set)[0]; expect(sv).toEqual({ kind: 'stack', kg: 15, window: [5, 10, 15, 20, 25].map(kg => ({ kg, pin: kg === 15 })) });
+    const db = block('Bench Press (hantle)'); expect(equipSlotFor(db.a, db.e, db.set)).toEqual([{ kind: 'dumbbell', n: 2, eachKg: 10 }]);
+    const pu = block('Pull Up'); expect(equipSlotFor(pu.a, pu.e, pu.set)).toEqual([{ kind: 'bodyweight', addKg: 10 }]);
+    const pl = block('Plank'); expect(equipSlotFor(pl.a, pl.e, pl.set)).toEqual([]);
+  });
+  test('equipSlotFor bez miejsc: sztanga bez opisu talerzy — bez miejsca (jak equipVisFor); stos bez listy — pojedynczy pasek', () => {
+    store.startEmpty(); const bb = block('Bench Press (sztanga)'); expect(equipSlotFor(bb.a, bb.e, bb.set)).toEqual([]);
+    const m = block('Pec Deck'); expect(equipSlotFor(m.a, m.e, m.set)).toEqual([{ kind: 'stack', kg: 10, window: null }]);
+  });
 });
 
 async function boot(setup: () => void, locale: 'pl' | 'en' = 'pl') { setup(); await act(async () => { await store.flush(); }); await renderApp({ saved: JSON.parse(JSON.stringify(saved())), locale }); await flushAll(10); }
@@ -92,6 +107,13 @@ describe('ekran: karta „teraz”', () => {
     await boot(() => { store.startEmpty(); block('Plank', { durationSec: 60 }); });
     await tap(screen.getByLabelText('Start stopera serii')); await flushAll(10);
     expect(screen.getAllByRole('progressbar').some(x => /seria · (cel|bez celu)/.test(x.props.accessibilityLabel))).toBe(true);
+  });
+  test('regresja E2E run 37611882320: pusty ciężar — niewidoczne miejsce na talerze (VoiceOver go nie czyta); po wpisaniu — prawdziwa grafika', async () => {
+    await boot(() => { const g = addLocation('gym'); store.startEmpty(); S().active!.locationId = g.id; block('Back Squat', { reps: 5 }); });
+    expect(screen.queryByLabelText(/^Na każdą stronę/)).toBeNull();
+    expect(screen.getByLabelText(/^Na każdą stronę/, { includeHiddenElements: true })).toBeTruthy();
+    await act(async () => { S().active!.exercises[0].sets[0].weight = 80; store.save(S().active!); }); await flushAll(10);
+    expect(screen.getByLabelText('Na każdą stronę: 25 + 5 kg')).toBeTruthy();
   });
   test('English: podpisy grafik po angielsku', async () => {
     await fresh(undefined, 'en');
