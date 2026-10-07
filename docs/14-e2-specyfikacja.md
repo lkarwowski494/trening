@@ -390,7 +390,11 @@ Wynik: **0 wysokich, 2 średnie, 2 niskie** — wszystkie naprawione, każde z t
 
 ### E2E na symulatorze i build na trening 05.10.2026
 
-GOTOWE DO BUILDU: e900b61dcd7730c5d8f8e6a351993927dc37d19b — E2E run 37506280153 10/10 (aplikacja z przebiegu 37496797683 = kod e795731; e795731..e900b61 tylko scenariusz 04 i dokumentacja), audyt: znaleziska macierzy testów naprawione, otwarte tylko decyzje właściciela (docs/18) (06.10.2026, 18:40 UTC)
+GOTOWE DO BUILDU: 81a36d774e0a098bd429682aaa21c99cfddb2ca0 — E2E run 37619477378 11/11 (pełny build), build 1004 dla „Kolegów” (07.10.2026, 13:30 UTC)
+
+*Zakres:* jak e900b61 + 07.10: styl „Tuleja” (paleta, kroje IBM Plex/Tektur, ikona i warianty iOS, widżet), 26 języków (wariant B), talerze IWF „na każdą stronę”, karta „teraz” z grafiką sprzętu z wartości serii, notatką ćwiczenia, przerwą w karcie i stałą wysokością podczas wpisywania (wariant A), ustawienie „Widok treningu: Skupiony / Lista” (Lista = poprzedni format). Decyzje: docs/18 (07.10). Wcześniejsze przebiegi E2E tego dnia: 37600735711 (2 scenariusze — selektory), 37611882320 (wiersz pod klawiaturą → wariant A).
+
+*Poprzednio (zastąpione 07.10.2026, 13:30 UTC):* `GOTOWE DO BUILDU: e900b61dcd7730c5d8f8e6a351993927dc37d19b — E2E run 37506280153 10/10 (aplikacja z przebiegu 37496797683 = kod e795731; e795731..e900b61 tylko scenariusz 04 i dokumentacja), audyt: znaleziska macierzy testów naprawione, otwarte tylko decyzje właściciela (docs/18) (06.10.2026, 18:40 UTC)`
 
 *Zakres:* jak 70481ce + 06.10: macierz testów (docs/19, `check:matrix` w verify), definicja ukończenia (docs/20), scenariusze E2E 08–10, nazwa aplikacji i widżet w 16 językach, IBM Plex Sans dla bg/sr/uk, gryf bez talerzy = ciężary nieznane, powtórzone identyfikatory w imporcie (`uniqueIds`), poprawki z losowych sekwencji i fuzzingu danych (docs/09), `tests.yml`, `nightly.yml`, `tests-tz.yml`.
 
