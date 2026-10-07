@@ -851,5 +851,7 @@
  "Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✂ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.": "Pieskarieties sērijas apzīmējumam, lai mainītu tās veidu; pavelciet rindu pa kreisi, lai to dzēstu. Atkārtojumu diapazons nav obligāts — ar to tiek rādīti padomi “↑”. “⇅ SS” savieno vingrinājumu ar nākamo supersērijā, “✂ SS” izņem to no grupas. Secība: “≡ Secība”.",
  "Seria {n}, typ: {k}. Tapnij, by zmienić typ.": "{n}. sērija, veids: {k}. Pieskarieties, lai mainītu veidu.",
  "Usunąć talerz?": "Noņemt disku?",
- "Usuń z biblioteki: {name}": "Dzēst no bibliotēkas: {name}"
+ "Usuń z biblioteki: {name}": "Dzēst no bibliotēkas: {name}",
+ "Poprzedni miesiąc": "Iepriekšējais mēnesis",
+ "Następny miesiąc": "Nākamais mēnesis"
 }

@@ -851,5 +851,7 @@
  "Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✂ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.": "Tik op een setlabel om het type te wijzigen; veeg een rij naar links om hem te verwijderen. Het herhalingsbereik is optioneel — daarmee krijg je “↑”-tips. “⇅ SS” koppelt een oefening aan de volgende in een superset, “✂ SS” haalt hem uit de groep. Volgorde: “≡ Volgorde”.",
  "Seria {n}, typ: {k}. Tapnij, by zmienić typ.": "Set {n}, type: {k}. Tik om het type te wijzigen.",
  "Usunąć talerz?": "Schijf verwijderen?",
- "Usuń z biblioteki: {name}": "Verwijder uit bibliotheek: {name}"
+ "Usuń z biblioteki: {name}": "Verwijder uit bibliotheek: {name}",
+ "Poprzedni miesiąc": "Vorige maand",
+ "Następny miesiąc": "Volgende maand"
 }

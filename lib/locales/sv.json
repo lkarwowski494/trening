@@ -851,5 +851,7 @@
  "Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✂ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.": "Tryck på en setetikett för att ändra typ; svep en rad åt vänster för att radera den. Repsintervallet är valfritt — med det får du ”↑”-tips. ”⇅ SS” kopplar ihop övningen med nästa i ett superset, ”✂ SS” tar ut den ur gruppen. Ordning: ”≡ Ordning”.",
  "Seria {n}, typ: {k}. Tapnij, by zmienić typ.": "Set {n}, typ: {k}. Tryck för att ändra typ.",
  "Usunąć talerz?": "Ta bort skivan?",
- "Usuń z biblioteki: {name}": "Radera från biblioteket: {name}"
+ "Usuń z biblioteki: {name}": "Radera från biblioteket: {name}",
+ "Poprzedni miesiąc": "Föregående månad",
+ "Następny miesiąc": "Nästa månad"
 }

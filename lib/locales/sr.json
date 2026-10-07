@@ -851,5 +851,7 @@
  "Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✂ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.": "Додирните ознаку серије да промените врсту; превуците ред улево да га обришете. Опсег понављања није обавезан — уз њега се појављују савети „↑“. „⇅ SS“ повезује вежбу са следећом у суперсет, „✂ SS“ је вади из групе. Редослед: „≡ Редослед“.",
  "Seria {n}, typ: {k}. Tapnij, by zmienić typ.": "Серија {n}, врста: {k}. Додирните да промените врсту.",
  "Usunąć talerz?": "Уклонити тег?",
- "Usuń z biblioteki: {name}": "Обриши из библиотеке: {name}"
+ "Usuń z biblioteki: {name}": "Обриши из библиотеке: {name}",
+ "Poprzedni miesiąc": "Претходни месец",
+ "Następny miesiąc": "Следећи месец"
 }

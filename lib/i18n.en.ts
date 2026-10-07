@@ -327,4 +327,7 @@ export const EN: Record<string, string> = {
   'Seria {n}, typ: {k}. Tapnij, by zmienić typ.': 'Set {n}, type: {k}. Tap to change the type.',
   'Usunąć talerz?': 'Remove plate?',
   'Usuń z biblioteki: {name}': 'Delete from library: {name}',
+  /* 07.10.2026 wieczór: kalendarz w Historii (components/HistoryCalendar.tsx) */
+  'Poprzedni miesiąc': 'Previous month',
+  'Następny miesiąc': 'Next month',
 };

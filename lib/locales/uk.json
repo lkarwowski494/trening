@@ -851,5 +851,7 @@
  "Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✂ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.": "Торкніться позначки підходу, щоб змінити тип; проведіть рядок ліворуч, щоб видалити його. Діапазон повторень необов’язковий — з ним з’являються підказки «↑». «⇅ SS» об’єднує вправу з наступною в суперсет, «✂ SS» виймає її з групи. Порядок: «≡ Порядок».",
  "Seria {n}, typ: {k}. Tapnij, by zmienić typ.": "Підхід {n}, тип: {k}. Торкніться, щоб змінити тип.",
  "Usunąć talerz?": "Вилучити диск?",
- "Usuń z biblioteki: {name}": "Видалити з бібліотеки: {name}"
+ "Usuń z biblioteki: {name}": "Видалити з бібліотеки: {name}",
+ "Poprzedni miesiąc": "Попередній місяць",
+ "Następny miesiąc": "Наступний місяць"
 }

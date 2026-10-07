@@ -1510,6 +1510,10 @@
   "en": "Next set."
  },
  {
+  "pl": "Następny miesiąc",
+  "en": "Next month"
+ },
+ {
   "pl": "Nazwa",
   "en": "Name"
  },
@@ -1960,6 +1964,10 @@
  {
   "pl": "poprz.",
   "en": "prev."
+ },
+ {
+  "pl": "Poprzedni miesiąc",
+  "en": "Previous month"
  },
  {
   "pl": "Poprzednich danych nie dało się odczytać",

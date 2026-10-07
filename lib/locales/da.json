@@ -851,5 +851,7 @@
  "Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✂ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.": "Tryk på et sæts etiket for at ændre typen; stryg en række til venstre for at slette den. Gentagelsesintervallet er valgfrit — med det får du »↑«-tips. »⇅ SS« forbinder en øvelse med den næste i et supersæt, »✂ SS« tager den ud af gruppen. Rækkefølge: »≡ Omarranger«.",
  "Seria {n}, typ: {k}. Tapnij, by zmienić typ.": "Sæt {n}, type: {k}. Tryk for at ændre typen.",
  "Usunąć talerz?": "Fjern skive?",
- "Usuń z biblioteki: {name}": "Slet fra biblioteket: {name}"
+ "Usuń z biblioteki: {name}": "Slet fra biblioteket: {name}",
+ "Poprzedni miesiąc": "Forrige måned",
+ "Następny miesiąc": "Næste måned"
 }

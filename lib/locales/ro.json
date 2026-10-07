@@ -851,5 +851,7 @@
  "Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✂ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.": "Atingeți eticheta seriei pentru a-i schimba tipul; glisați un rând spre stânga pentru a-l șterge. Intervalul de repetări este opțional — cu el apar sugestiile „↑”. „⇅ SS” leagă exercițiul de următorul într-un superset, „✂ SS” îl scoate din grup. Ordinea: „≡ Ordine”.",
  "Seria {n}, typ: {k}. Tapnij, by zmienić typ.": "Seria {n}, tip: {k}. Atingeți pentru a schimba tipul.",
  "Usunąć talerz?": "Eliminați discul?",
- "Usuń z biblioteki: {name}": "Șterge din bibliotecă: {name}"
+ "Usuń z biblioteki: {name}": "Șterge din bibliotecă: {name}",
+ "Poprzedni miesiąc": "Luna anterioară",
+ "Następny miesiąc": "Luna următoare"
 }

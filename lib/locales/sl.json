@@ -851,5 +851,7 @@
  "Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✂ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.": "Tapnite oznako serije, da spremenite vrsto; povlecite vrstico v levo, da jo izbrišete. Razpon ponovitev ni obvezen — z njim se prikazujejo namigi „↑“. „⇅ SS“ poveže vajo z naslednjo v superserijo, „✂ SS“ jo odstrani iz skupine. Vrstni red: „≡ Vrstni red“.",
  "Seria {n}, typ: {k}. Tapnij, by zmienić typ.": "Serija {n}, vrsta: {k}. Tapnite, da spremenite vrsto.",
  "Usunąć talerz?": "Odstranim ploščo?",
- "Usuń z biblioteki: {name}": "Izbriši iz knjižnice: {name}"
+ "Usuń z biblioteki: {name}": "Izbriši iz knjižnice: {name}",
+ "Poprzedni miesiąc": "Prejšnji mesec",
+ "Następny miesiąc": "Naslednji mesec"
 }

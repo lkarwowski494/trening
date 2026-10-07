@@ -93,3 +93,14 @@ name: Edycja historii i trening wstecz
 - assertVisible: "Upper A, .*"
 - assertVisible: "Upper A E2E,.*"
 - takeScreenshot: 17-historia-dwie-sesje
+# Kalendarz w Historii (07.10.2026 wieczór, components/HistoryCalendar.tsx): dzień z treningiem (testID cal-RRRR-MM-DD) filtruje listę,
+# „Show all” ('Pokaż wszystkie') wraca; strzałki „Previous month” / „Next month” ('Poprzedni miesiąc' / 'Następny miesiąc').
+- assertVisible: "Previous month"
+- tapOn: { id: "cal-.*", index: 0 }
+- extendedWaitUntil: { visible: "Show all", timeout: 15000 }
+- takeScreenshot: 18-kalendarz-dzien
+- tapOn: "Show all"
+- extendedWaitUntil: { visible: "Upper A E2E,.*", timeout: 15000 }
+- tapOn: "Previous month"
+- tapOn: "Next month"
+- takeScreenshot: 19-kalendarz-miesiac

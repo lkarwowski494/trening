@@ -851,5 +851,7 @@
  "Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✂ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.": "Türünü değiştirmek için set etiketine dokunun; silmek için satırı sola kaydırın. Tekrar aralığı isteğe bağlıdır — onunla “↑” ipuçları gelir. “⇅ SS” egzersizi sonrakiyle süpersette birleştirir, “✂ SS” gruptan çıkarır. Sıra: “≡ Sırala”.",
  "Seria {n}, typ: {k}. Tapnij, by zmienić typ.": "Set {n}, tür: {k}. Türü değiştirmek için dokunun.",
  "Usunąć talerz?": "Plaka kaldırılsın mı?",
- "Usuń z biblioteki: {name}": "Kütüphaneden sil: {name}"
+ "Usuń z biblioteki: {name}": "Kütüphaneden sil: {name}",
+ "Poprzedni miesiąc": "Önceki ay",
+ "Następny miesiąc": "Sonraki ay"
 }

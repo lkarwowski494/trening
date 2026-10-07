@@ -944,9 +944,10 @@ describe('runda 31', () => {
   test('R31-01 Historia po powrocie z tła w nowym roku pokazuje rok przy starych sesjach', async () => {
     await renderApp(); jest.setSystemTime(new Date(2026, 11, 31, 20).getTime());
     await act(async () => { addWorkout(new Date(2026, 11, 30, 18).getTime(), [['Back Squat', [{ weight: 100, reps: 5 }]]]); }); await go('/history'); await flushAll(10);
-    expect(screen.queryByText(/2026/)).toBeNull();
+    const rows = () => screen.queryAllByText(/2026/).filter(n => !/^(grudzień|styczeń) 2026$/.test(String(n.props.children))); /* 07.10.2026 wieczór: tytuł kalendarza nad listą też ma rok */
+    expect(rows()).toHaveLength(0);
     jest.setSystemTime(new Date(2027, 0, 2, 9).getTime()); await act(async () => { store.refreshViews(); }); await flushAll(10);
-    expect(screen.getAllByText(/2026/).length).toBeGreaterThan(0);
+    expect(rows().length).toBeGreaterThan(0);
   });
 });
 
