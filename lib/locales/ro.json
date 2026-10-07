@@ -853,5 +853,10 @@
  "Usunąć talerz?": "Eliminați discul?",
  "Usuń z biblioteki: {name}": "Șterge din bibliotecă: {name}",
  "Poprzedni miesiąc": "Luna anterioară",
- "Następny miesiąc": "Luna următoare"
+ "Następny miesiąc": "Luna următoare",
+ "Pomiń dziś": "Sari peste azi",
+ "Pomiń dziś: {name}": "Sari peste azi: {name}",
+ "pominięte dziś": "sărit azi",
+ "Przywróć": "Restabilește",
+ "Przywróć ćwiczenie: {name}": "Restabilește exercițiul: {name}"
 }

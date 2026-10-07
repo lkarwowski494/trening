@@ -853,5 +853,10 @@
  "Usunąć talerz?": "Odstranim ploščo?",
  "Usuń z biblioteki: {name}": "Izbriši iz knjižnice: {name}",
  "Poprzedni miesiąc": "Prejšnji mesec",
- "Następny miesiąc": "Naslednji mesec"
+ "Następny miesiąc": "Naslednji mesec",
+ "Pomiń dziś": "Danes izpusti",
+ "Pomiń dziś: {name}": "Danes izpusti: {name}",
+ "pominięte dziś": "danes izpuščeno",
+ "Przywróć": "Obnovi",
+ "Przywróć ćwiczenie: {name}": "Obnovi vajo: {name}"
 }

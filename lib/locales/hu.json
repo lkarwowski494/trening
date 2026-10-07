@@ -853,5 +853,10 @@
  "Usunąć talerz?": "Eltávolítja a tárcsát?",
  "Usuń z biblioteki: {name}": "Törlés a könyvtárból: {name}",
  "Poprzedni miesiąc": "Előző hónap",
- "Następny miesiąc": "Következő hónap"
+ "Następny miesiąc": "Következő hónap",
+ "Pomiń dziś": "Ma kihagyom",
+ "Pomiń dziś: {name}": "Ma kihagyom: {name}",
+ "pominięte dziś": "ma kihagyva",
+ "Przywróć": "Visszaállítás",
+ "Przywróć ćwiczenie: {name}": "Gyakorlat visszaállítása: {name}"
 }

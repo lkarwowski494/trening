@@ -8,7 +8,7 @@
 #   "Set 2 done.*"          ← 'Seria {n} zrobiona — {ex}' (✓ w wierszu)
 # Pełne przesunięcie (szerokość ekranu) przekracza 2 szerokości przycisku — od razu pyta (components/SwipeRow.tsx, swipeDecision → 'ask').
 appId: pl.lukasz.trening
-name: Usuwanie przesunięciem w lewo
+name: Usuwanie przesunięciem w lewo i „Pomiń dziś”
 ---
 - launchApp:
     clearState: true
@@ -40,3 +40,13 @@ name: Usuwanie przesunięciem w lewo
 - extendedWaitUntil: { notVisible: "Set 2 done.*", timeout: 15000 }
 - assertVisible: "Set 1 done.*"
 - takeScreenshot: 45-usuwanie-po
+
+# --- „Pomiń dziś” ('Pomiń dziś' / 'pominięte dziś' / 'Przywróć'): blok zwija się do jednej linii; „Restore” go przywraca ---
+# przycisk ma etykietę VoiceOver „Skip today: Back Squat” — selektor z „.*” (lekcja z run 37600735711)
+- scrollUntilVisible: { element: "Skip today.*", direction: DOWN, timeout: 30000 }
+- tapOn: "Skip today.*"
+- extendedWaitUntil: { visible: "skipped today", timeout: 15000 }
+- assertNotVisible: "Set 1 done.*"
+- takeScreenshot: 46-pominiete-dzis
+- tapOn: "Restore exercise.*"
+- extendedWaitUntil: { visible: "Set 1 done.*", timeout: 15000 }

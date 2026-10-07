@@ -853,5 +853,10 @@
  "Usunąć talerz?": "Ukloniti ploču?",
  "Usuń z biblioteki: {name}": "Obriši iz knjižnice: {name}",
  "Poprzedni miesiąc": "Prethodni mjesec",
- "Następny miesiąc": "Sljedeći mjesec"
+ "Następny miesiąc": "Sljedeći mjesec",
+ "Pomiń dziś": "Preskoči danas",
+ "Pomiń dziś: {name}": "Preskoči danas: {name}",
+ "pominięte dziś": "preskočeno danas",
+ "Przywróć": "Vrati",
+ "Przywróć ćwiczenie: {name}": "Vrati vježbu: {name}"
 }

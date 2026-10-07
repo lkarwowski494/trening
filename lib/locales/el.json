@@ -853,5 +853,10 @@
  "Usunąć talerz?": "Αφαίρεση δίσκου;",
  "Usuń z biblioteki: {name}": "Διαγραφή από τη βιβλιοθήκη: {name}",
  "Poprzedni miesiąc": "Προηγούμενος μήνας",
- "Następny miesiąc": "Επόμενος μήνας"
+ "Następny miesiąc": "Επόμενος μήνας",
+ "Pomiń dziś": "Παράλειψη σήμερα",
+ "Pomiń dziś: {name}": "Παράλειψη σήμερα: {name}",
+ "pominięte dziś": "παραλείφθηκε σήμερα",
+ "Przywróć": "Επαναφορά",
+ "Przywróć ćwiczenie: {name}": "Επαναφορά άσκησης: {name}"
 }

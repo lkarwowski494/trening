@@ -330,4 +330,10 @@ export const EN: Record<string, string> = {
   /* 07.10.2026 wieczór: kalendarz w Historii (components/HistoryCalendar.tsx) */
   'Poprzedni miesiąc': 'Previous month',
   'Następny miesiąc': 'Next month',
+  /* 07.10.2026 wieczór: „Pomiń dziś” (components/ActiveWorkout.tsx) */
+  'Pomiń dziś': 'Skip today',
+  'Pomiń dziś: {name}': 'Skip today: {name}',
+  'pominięte dziś': 'skipped today',
+  'Przywróć': 'Restore',
+  'Przywróć ćwiczenie: {name}': 'Restore exercise: {name}',
 };

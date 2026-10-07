@@ -853,5 +853,10 @@
  "Usunąć talerz?": "Remover disco?",
  "Usuń z biblioteki: {name}": "Apagar da biblioteca: {name}",
  "Poprzedni miesiąc": "Mês anterior",
- "Następny miesiąc": "Mês seguinte"
+ "Następny miesiąc": "Mês seguinte",
+ "Pomiń dziś": "Saltar hoje",
+ "Pomiń dziś: {name}": "Saltar hoje: {name}",
+ "pominięte dziś": "saltado hoje",
+ "Przywróć": "Repor",
+ "Przywróć ćwiczenie: {name}": "Repor exercício: {name}"
 }

@@ -853,5 +853,10 @@
  "Usunąć talerz?": "Odstrániť kotúč?",
  "Usuń z biblioteki: {name}": "Vymazať z knižnice: {name}",
  "Poprzedni miesiąc": "Predchádzajúci mesiac",
- "Następny miesiąc": "Nasledujúci mesiac"
+ "Następny miesiąc": "Nasledujúci mesiac",
+ "Pomiń dziś": "Dnes vynechať",
+ "Pomiń dziś: {name}": "Dnes vynechať: {name}",
+ "pominięte dziś": "dnes vynechané",
+ "Przywróć": "Obnoviť",
+ "Przywróć ćwiczenie: {name}": "Obnoviť cvik: {name}"
 }

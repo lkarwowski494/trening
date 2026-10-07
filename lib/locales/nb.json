@@ -853,5 +853,10 @@
  "Usunąć talerz?": "Fjerne skiven?",
  "Usuń z biblioteki: {name}": "Slett fra biblioteket: {name}",
  "Poprzedni miesiąc": "Forrige måned",
- "Następny miesiąc": "Neste måned"
+ "Następny miesiąc": "Neste måned",
+ "Pomiń dziś": "Hopp over i dag",
+ "Pomiń dziś: {name}": "Hopp over i dag: {name}",
+ "pominięte dziś": "hoppet over i dag",
+ "Przywróć": "Gjenopprett",
+ "Przywróć ćwiczenie: {name}": "Gjenopprett øvelse: {name}"
 }

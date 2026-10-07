@@ -853,5 +853,10 @@
  "Usunąć talerz?": "Rimuovere il disco?",
  "Usuń z biblioteki: {name}": "Elimina dalla libreria: {name}",
  "Poprzedni miesiąc": "Mese precedente",
- "Następny miesiąc": "Mese successivo"
+ "Następny miesiąc": "Mese successivo",
+ "Pomiń dziś": "Salta oggi",
+ "Pomiń dziś: {name}": "Salta oggi: {name}",
+ "pominięte dziś": "saltato oggi",
+ "Przywróć": "Ripristina",
+ "Przywróć ćwiczenie: {name}": "Ripristina esercizio: {name}"
 }

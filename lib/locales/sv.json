@@ -853,5 +853,10 @@
  "Usunąć talerz?": "Ta bort skivan?",
  "Usuń z biblioteki: {name}": "Radera från biblioteket: {name}",
  "Poprzedni miesiąc": "Föregående månad",
- "Następny miesiąc": "Nästa månad"
+ "Następny miesiąc": "Nästa månad",
+ "Pomiń dziś": "Hoppa över i dag",
+ "Pomiń dziś: {name}": "Hoppa över i dag: {name}",
+ "pominięte dziś": "överhoppad i dag",
+ "Przywróć": "Återställ",
+ "Przywróć ćwiczenie: {name}": "Återställ övning: {name}"
 }

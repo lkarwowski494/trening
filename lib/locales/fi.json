@@ -853,5 +853,10 @@
  "Usunąć talerz?": "Poistetaanko levy?",
  "Usuń z biblioteki: {name}": "Poista kirjastosta: {name}",
  "Poprzedni miesiąc": "Edellinen kuukausi",
- "Następny miesiąc": "Seuraava kuukausi"
+ "Następny miesiąc": "Seuraava kuukausi",
+ "Pomiń dziś": "Ohita tänään",
+ "Pomiń dziś: {name}": "Ohita tänään: {name}",
+ "pominięte dziś": "ohitettu tänään",
+ "Przywróć": "Palauta",
+ "Przywróć ćwiczenie: {name}": "Palauta liike: {name}"
 }

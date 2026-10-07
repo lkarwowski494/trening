@@ -1946,8 +1946,20 @@
   "en": "Link with next into a superset"
  },
  {
+  "pl": "pominięte dziś",
+  "en": "skipped today"
+ },
+ {
   "pl": "Pomiń",
   "en": "Skip"
+ },
+ {
+  "pl": "Pomiń dziś",
+  "en": "Skip today"
+ },
+ {
+  "pl": "Pomiń dziś: {name}",
+  "en": "Skip today: {name}"
  },
  {
   "pl": "pomocnicza",
@@ -2164,8 +2176,16 @@
   "en": "adductors"
  },
  {
+  "pl": "Przywróć",
+  "en": "Restore"
+ },
+ {
   "pl": "Przywróć „{name}”",
   "en": "Restore “{name}”"
+ },
+ {
+  "pl": "Przywróć ćwiczenie: {name}",
+  "en": "Restore exercise: {name}"
  },
  {
   "pl": "Puste „pow. od” = seria do maksimum. „⇅ SS” łączy ćwiczenie z następnym w superset (wspólna przerwa po ostatnim z grupy), „✂” wyjmuje z grupy.",

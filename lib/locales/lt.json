@@ -853,5 +853,10 @@
  "Usunąć talerz?": "Pašalinti diską?",
  "Usuń z biblioteki: {name}": "Ištrinti iš bibliotekos: {name}",
  "Poprzedni miesiąc": "Ankstesnis mėnuo",
- "Następny miesiąc": "Kitas mėnuo"
+ "Następny miesiąc": "Kitas mėnuo",
+ "Pomiń dziś": "Šiandien praleisti",
+ "Pomiń dziś: {name}": "Šiandien praleisti: {name}",
+ "pominięte dziś": "šiandien praleista",
+ "Przywróć": "Atkurti",
+ "Przywróć ćwiczenie: {name}": "Atkurti pratimą: {name}"
 }

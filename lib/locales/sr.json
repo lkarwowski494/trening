@@ -853,5 +853,10 @@
  "Usunąć talerz?": "Уклонити тег?",
  "Usuń z biblioteki: {name}": "Обриши из библиотеке: {name}",
  "Poprzedni miesiąc": "Претходни месец",
- "Następny miesiąc": "Следећи месец"
+ "Następny miesiąc": "Следећи месец",
+ "Pomiń dziś": "Прескочи данас",
+ "Pomiń dziś: {name}": "Прескочи данас: {name}",
+ "pominięte dziś": "прескочено данас",
+ "Przywróć": "Врати",
+ "Przywróć ćwiczenie: {name}": "Врати вежбу: {name}"
 }

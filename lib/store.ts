@@ -197,6 +197,7 @@ function fixSwapFields(e: any, live: boolean) {
   if (e.implPinned !== true || e.impl === undefined) delete e.implPinned; /* M2 */
   { const v = live ? idOf(e.splitFrom) : null; if (v) e.splitFrom = v; else delete e.splitFrom; } /* M3 */
   if (!live || e.altSkip !== true) delete e.altSkip; /* M4 */
+  if (!live || e.skipped !== true) delete e.skipped; /* 07.10.2026 wieczór: „Pomiń dziś” — jak altSkip, tylko trening w toku */
 }
 /** Schemat 16 (E2 W3, docs/14 pkt 2.2, M5; M6 — po filtrze ćwiczeń, M7 — usunięte miejsce zostaje): zamienniki pozycji szablonu z importu —
  * biała lista pól, id tekstem, przerwa jak pozycji, przyrząd tylko znany; jeden wpis na miejsce (pierwszy); zamiennik = ćwiczenie pozycji bez przyrządu odpada. */
@@ -1036,6 +1037,10 @@ export function acceptAlt(blockId: string): { goneSetIds: string[]; blockId: str
   const r = swapImpl(blockId, alt.impl!); if (r && alt.restSec != null) { const b = w.exercises.find(x => x.id === r.blockId); if (b) { b.restSec = alt.restSec; save(w); } } return r;
 }
 /** „✕” przy podpowiedzi: tylko ten blok, tylko ten trening (M4). */
+/** „Pomiń dziś” (docs/21 4a, 07.10.2026 wieczór): reszta bloku pominięta w tym treningu — szablon bez zmian; odhaczone serie zostają.
+ * Timery serii bloku zatrzymuje ekran (jak przy usunięciu ćwiczenia — store nie zależy od lib/timer). */
+export function skipExercise(blockId: string) { const w = getState().active; const e = w?.exercises.find(x => x.id === blockId); if (!w || !e) return; e.skipped = true; save(w); }
+export function unskipExercise(blockId: string) { const w = getState().active; const e = w?.exercises.find(x => x.id === blockId); if (!w || !e) return; delete e.skipped; save(w); }
 export function skipAlt(blockId: string) { const w = getState().active; const e = w?.exercises.find(x => x.id === blockId); if (!w || !e) return; e.altSkip = true; save(w); }
 /** „Zapamiętaj” przerwę (⏱ w bloku): w bloku, który jest zamiennikiem tego miejsca — do wpisu zamiennika (dopisek właściciela do D4);
  * inaczej jak dotąd: pozycja szablonu, z której powstał blok (runda 10), i ćwiczenie. */
@@ -1240,7 +1245,7 @@ export function autoFinishStale(now = Date.now()): Workout | null {
 export function finishWorkout(at?: number): Workout | null {
   const st = getState(); const w = st.active; if (!w) return null;
   w.finishedAt = Math.max(w.startedAt, at != null && Number.isFinite(at) ? Math.min(at, Date.now()) : Date.now()); /* T4a: cofnięty zegar nie daje końca przed startem */ delete w.staleAck;
-  w.exercises = w.exercises.map(e => { const o = { ...e, sets: e.sets.filter(s => s.done).map(s => { delete s.pre; return s; }) }; delete o.splitFrom; delete o.altSkip; /* E2: tylko trening w toku (jak migrate M3/M4) */ return o; }).filter(e => e.sets.length);
+  w.exercises = w.exercises.map(e => { const o = { ...e, sets: e.sets.filter(s => s.done).map(s => { delete s.pre; return s; }) }; delete o.splitFrom; delete o.altSkip; delete o.skipped; /* E2: tylko trening w toku (jak migrate M3/M4) */ return o; }).filter(e => e.sets.length);
   normalizeGroups(w.exercises);
   st.workouts.push(w); st.active = null; st.userTouched = true; purgeOrphans(); save(w); flush();
   return w;
@@ -1272,7 +1277,7 @@ export function putHistoryWorkout(w: Workout, replaceId: string | null): boolean
     /* weryfikacja 2 (L3): znacznik Apple Health i data utworzenia z treningu ZAPISANEGO teraz, nie ze szkicu — zapis do Zdrowia mógł skończyć się w trakcie edycji */
     w.healthUUID = st.workouts[i].healthUUID; w.createdAt = st.workouts[i].createdAt; st.workouts.splice(i, 1); }
   w.exercises.forEach(e => e.sets.forEach(s => { s.done = true; s.warmup = s.kind === 'warmup'; delete s.pre; delete s.hinted; delete s.edited; if (s.noBand !== true || s.bandId) delete s.noBand; /* jak migrate — kopia wraca 1:1 */ }));
-  w.exercises = w.exercises.filter(e => e.sets.length); w.exercises.forEach(e => { delete e.splitFrom; delete e.altSkip; }); /* E2: tylko trening w toku */ normalizeGroups(w.exercises); delete w.staleAck;
+  w.exercises = w.exercises.filter(e => e.sets.length); w.exercises.forEach(e => { delete e.splitFrom; delete e.altSkip; delete e.skipped; }); /* E2: tylko trening w toku */ normalizeGroups(w.exercises); delete w.staleAck;
   /* Audyt M4: start w tej samej milisekundzie co inna sesja (albo trening w toku) — rekordy liczą się „przed startem” (<), więc obie
    * dostałyby PR, a „Poprzednio” zależałoby od kolejności wstawienia. Przesuwamy start, koniec i godziny serii o 1 s, aż start jest unikalny. */
   { const taken = new Set([...st.workouts, ...(st.active ? [st.active] : [])].map(x => x.startedAt)); let bump = 0; while (taken.has(w.startedAt + bump)) bump += 1000;
@@ -1423,7 +1428,7 @@ export function __resetForTests() { persistQueue = Promise.resolve(); fullDirty 
  * czyli A1, B1, A2, B2… Bloki usuniętych ćwiczeń (bez wpisu w bibliotece) są pomijane. null = wszystko odhaczone (albo pusty trening).
  */
 export function focusSet(w: Workout | null | undefined): { ei: number; si: number } | null {
-  if (!w) return null; const firstOpen = (i: number) => exById(w.exercises[i].exerciseId) ? w.exercises[i].sets.findIndex(s => !s.done) : -1;
+  if (!w) return null; const firstOpen = (i: number) => exById(w.exercises[i].exerciseId) && !w.exercises[i].skipped ? w.exercises[i].sets.findIndex(s => !s.done) : -1; /* „Pomiń dziś” — blok poza kartą */
   for (let ei = 0; ei < w.exercises.length; ei++) {
     const si = firstOpen(ei); if (si < 0) continue; const g = w.exercises[ei].groupId; if (!g) return { ei, si };
     let best = { ei, si };

@@ -853,5 +853,10 @@
  "Usunąć talerz?": "Plaka kaldırılsın mı?",
  "Usuń z biblioteki: {name}": "Kütüphaneden sil: {name}",
  "Poprzedni miesiąc": "Önceki ay",
- "Następny miesiąc": "Sonraki ay"
+ "Następny miesiąc": "Sonraki ay",
+ "Pomiń dziś": "Bugün atla",
+ "Pomiń dziś: {name}": "Bugün atla: {name}",
+ "pominięte dziś": "bugün atlandı",
+ "Przywróć": "Geri al",
+ "Przywróć ćwiczenie: {name}": "Egzersizi geri al: {name}"
 }

@@ -853,5 +853,10 @@
  "Usunąć talerz?": "Noņemt disku?",
  "Usuń z biblioteki: {name}": "Dzēst no bibliotēkas: {name}",
  "Poprzedni miesiąc": "Iepriekšējais mēnesis",
- "Następny miesiąc": "Nākamais mēnesis"
+ "Następny miesiąc": "Nākamais mēnesis",
+ "Pomiń dziś": "Šodien izlaist",
+ "Pomiń dziś: {name}": "Šodien izlaist: {name}",
+ "pominięte dziś": "šodien izlaists",
+ "Przywróć": "Atjaunot",
+ "Przywróć ćwiczenie: {name}": "Atjaunot vingrinājumu: {name}"
 }

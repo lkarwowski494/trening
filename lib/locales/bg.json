@@ -853,5 +853,10 @@
  "Usunąć talerz?": "Премахване на диска?",
  "Usuń z biblioteki: {name}": "Изтриване от библиотеката: {name}",
  "Poprzedni miesiąc": "Предишен месец",
- "Następny miesiąc": "Следващ месец"
+ "Następny miesiąc": "Следващ месец",
+ "Pomiń dziś": "Пропусни днес",
+ "Pomiń dziś: {name}": "Пропусни днес: {name}",
+ "pominięte dziś": "пропуснато днес",
+ "Przywróć": "Възстанови",
+ "Przywróć ćwiczenie: {name}": "Възстанови упражнението: {name}"
 }

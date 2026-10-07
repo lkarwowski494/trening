@@ -853,5 +853,10 @@
  "Usunąć talerz?": "Retirer le disque ?",
  "Usuń z biblioteki: {name}": "Supprimer de la bibliothèque : {name}",
  "Poprzedni miesiąc": "Mois précédent",
- "Następny miesiąc": "Mois suivant"
+ "Następny miesiąc": "Mois suivant",
+ "Pomiń dziś": "Passer aujourd’hui",
+ "Pomiń dziś: {name}": "Passer aujourd’hui : {name}",
+ "pominięte dziś": "passé aujourd’hui",
+ "Przywróć": "Rétablir",
+ "Przywróć ćwiczenie: {name}": "Rétablir l’exercice : {name}"
 }

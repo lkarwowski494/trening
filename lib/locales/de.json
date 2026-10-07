@@ -853,5 +853,10 @@
  "Usunąć talerz?": "Scheibe entfernen?",
  "Usuń z biblioteki: {name}": "Aus der Bibliothek löschen: {name}",
  "Poprzedni miesiąc": "Vorheriger Monat",
- "Następny miesiąc": "Nächster Monat"
+ "Następny miesiąc": "Nächster Monat",
+ "Pomiń dziś": "Heute überspringen",
+ "Pomiń dziś: {name}": "Heute überspringen: {name}",
+ "pominięte dziś": "heute übersprungen",
+ "Przywróć": "Wiederherstellen",
+ "Przywróć ćwiczenie: {name}": "Übung wiederherstellen: {name}"
 }

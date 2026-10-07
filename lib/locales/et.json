@@ -853,5 +853,10 @@
  "Usunąć talerz?": "Eemaldada ketas?",
  "Usuń z biblioteki: {name}": "Kustuta teegist: {name}",
  "Poprzedni miesiąc": "Eelmine kuu",
- "Następny miesiąc": "Järgmine kuu"
+ "Następny miesiąc": "Järgmine kuu",
+ "Pomiń dziś": "Jäta täna vahele",
+ "Pomiń dziś: {name}": "Jäta täna vahele: {name}",
+ "pominięte dziś": "täna vahele jäetud",
+ "Przywróć": "Taasta",
+ "Przywróć ćwiczenie: {name}": "Taasta harjutus: {name}"
 }

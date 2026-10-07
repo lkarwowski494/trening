@@ -853,5 +853,10 @@
  "Usunąć talerz?": "Schijf verwijderen?",
  "Usuń z biblioteki: {name}": "Verwijder uit bibliotheek: {name}",
  "Poprzedni miesiąc": "Vorige maand",
- "Następny miesiąc": "Volgende maand"
+ "Następny miesiąc": "Volgende maand",
+ "Pomiń dziś": "Vandaag overslaan",
+ "Pomiń dziś: {name}": "Vandaag overslaan: {name}",
+ "pominięte dziś": "vandaag overgeslagen",
+ "Przywróć": "Herstellen",
+ "Przywróć ćwiczenie: {name}": "Oefening herstellen: {name}"
 }
