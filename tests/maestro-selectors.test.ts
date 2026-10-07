@@ -49,3 +49,10 @@ test('regresja run 37611882320: scenariusz 11 nie używa hideKeyboard (klawiatur
   expect(y).not.toMatch(/^- hideKeyboard/m);
   expect(y).toContain(`- tapOn: "${EN['seria {n} z {all}'].replace('{n}', '1').replace('{all}', '1')}"`);
 });
+
+test('regresja run 37645619096: każdy scenariusz .maestro/*.yaml jest na liście flows w config.yaml (inaczej Maestro go pomija)', () => {
+  const fs = require('fs'); const path = require('path'); const dir = path.join(__dirname, '..', '.maestro');
+  const files = fs.readdirSync(dir).filter((f: string) => /^\d\d-.*\.yaml$/.test(f)).sort();
+  const listed = [...fs.readFileSync(path.join(dir, 'config.yaml'), 'utf8').matchAll(/^\s+-\s+(\S+\.yaml)\s*$/gm)].map((m: RegExpMatchArray) => m[1]);
+  expect(listed).toEqual(files);
+});
