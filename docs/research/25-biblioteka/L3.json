@@ -1,0 +1,1926 @@
+[
+ {
+  "name": "90/90 Hamstring",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Hamstring Stretch",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S1",
+   "L3-S3",
+   "L3-S12"
+  ],
+  "confidence": "umiarkowane",
+  "note": "W źródle (S17) to aktywne prostowanie kolana na powtórzenia („Repeat for 10-20 repetitions”), nie trzymanie; AAOS opisuje to samo ułożenie jako Supine Hamstring Stretch — duplikat Hamstring Stretch."
+ },
+ {
+  "name": "Adductor-SMR",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S5",
+   "L3-S7"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Rolowanie przyśrodkowej części uda (S17)."
+ },
+ {
+  "name": "Adductor/Groin",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "The Straddle",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S3"
+  ],
+  "confidence": "umiarkowane",
+  "note": "PNF z partnerem, nogi w rozkroku (S17)."
+ },
+ {
+  "name": "All Fours Quad Stretch",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "On Your Side Quad Stretch",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S1",
+   "L3-S3"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Ten sam ruch (pięta do pośladka, prostowanie biodra) w klęku podpartym — wariant pozycji."
+ },
+ {
+  "name": "Ankle Circles",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S3",
+   "L3-S4",
+   "L3-S15"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Krążenia stopą (S17); AAOS Ankle Range of Motion („write each letter of the alphabet”)."
+ },
+ {
+  "name": "Ankle On The Knee",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "name": "Supine Figure-Four Stretch"
+  },
+  "sources": [
+   "L3-S17",
+   "L3-S1",
+   "L3-S3",
+   "L3-S10",
+   "L3-S9"
+  ],
+  "confidence": "mocne",
+  "note": "= NHS Buttock stretch (identyczny opis) i ACE Supine 90-90 Hip Rotator Stretch. Pośladki + odwodziciele zgodne."
+ },
+ {
+  "name": "Anterior Tibialis-SMR",
+  "verdict": "USUNĄĆ",
+  "scope": "USUNĄĆ",
+  "fixes": {},
+  "sources": [
+   "L3-S17"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Narzędzie to wałek ręczny / wałek do ciasta (S17: „Using a Muscle Roller or a rolling pin”), nie roller — requires foam_roller błędne; rzadkie."
+ },
+ {
+  "name": "Arm Circles",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S3",
+   "L3-S4"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Krążenia ramion (S17) — klasyczny element rozgrzewki dynamicznej (S3/S4: ruch powtarzany). Reps poprawne."
+ },
+ {
+  "name": "Behind Head Chest Stretch",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Elbows Back",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S3"
+  ],
+  "confidence": "umiarkowane",
+  "note": "PNF z partnerem (S17)."
+ },
+ {
+  "name": "Brachialis-SMR",
+  "verdict": "USUNĄĆ",
+  "scope": "USUNĄĆ",
+  "fixes": {},
+  "sources": [
+   "L3-S17"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Bardzo rzadkie; opis (S17) to oparcie ramienia na rollerze bez toczenia — brak odpowiednika w innych źródłach."
+ },
+ {
+  "name": "Calf Stretch Elbows Against Wall",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Calf Stretch Hands Against Wall",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S1",
+   "L3-S3"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Różni się tylko oparciem na przedramionach — duplikat."
+ },
+ {
+  "name": "Calf Stretch Hands Against Wall",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "name": "Wall Calf Stretch"
+  },
+  "sources": [
+   "L3-S17",
+   "L3-S1",
+   "L3-S3",
+   "L3-S11",
+   "L3-S10",
+   "L3-S14",
+   "L3-S15",
+   "L3-S9"
+  ],
+  "confidence": "mocne",
+  "note": "Kanoniczne rozciąganie łydki przy ścianie (AAOS Heel Cord Stretch, NHS, ACE Standing Dorsi-Flexion: Gastrocnemius, Soleus)."
+ },
+ {
+  "name": "Calves-SMR",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S5",
+   "L3-S7",
+   "L3-S6"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Konrad 2022: brak poprawy zgięcia grzbietowego po rolowaniu łydek — mniejsza wartość."
+ },
+ {
+  "name": "Cat Stretch",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "name": "Cat-Cow",
+   "metric": "reps"
+  },
+  "sources": [
+   "L3-S17",
+   "L3-S1",
+   "L3-S3",
+   "L3-S9"
+  ],
+  "confidence": "umiarkowane",
+  "note": "W ACE „Cat-Cow” (Erector Spinae, Latissimus Dorsi, Trapezius) — zwykle wykonywany na powtórzenia (koci grzbiet ↔ krowa); S17 opisuje sam koci grzbiet 15 s. Proponowana ustalona nazwa i miara reps."
+ },
+ {
+  "name": "Chair Leg Extended Stretch",
+  "verdict": "USUNĄĆ",
+  "scope": "USUNĄĆ",
+  "fixes": {},
+  "sources": [
+   "L3-S17"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Nieustalona nazwa; w źródle ruch nogą w bok na krześle bez czasu ani powtórzeń — nie da się jednoznacznie zalogować; brak odpowiednika w ACE/AAOS/NHS."
+ },
+ {
+  "name": "Chair Lower Back Stretch",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Standing Lateral Stretch",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S1",
+   "L3-S3"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Nazwa myląca: w opisie (S17) to skłon boczny na krześle z ręką nad głową, nie rozciąganie lędźwi."
+ },
+ {
+  "name": "Chair Upper Body Stretch",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Elbows Back",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S1",
+   "L3-S3"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Chwyt oparcia krzesła za plecami, tułów w przód (S17) — rozciąganie klatki/przedniego aktonu."
+ },
+ {
+  "name": "Chest And Front Of Shoulder Stretch",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "recommended": []
+  },
+  "sources": [
+   "L3-S17",
+   "L3-S1",
+   "L3-S3"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Wykonywane z kijem/drążkiem (S17: „holding a bodybar or a broomstick”), nie z gumą — recommended „bands” błędne."
+ },
+ {
+  "name": "Chest Stretch on Stability Ball",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S1",
+   "L3-S3"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Łokieć na piłce, opuszczanie tułowia (S17); wymaganie piłki poprawne."
+ },
+ {
+  "name": "Child's Pose",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S1",
+   "L3-S3",
+   "L3-S9",
+   "L3-S13"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ACE Childs Pose (Adductors, Erector Spinae); AAOS Kneeling Back Extension (siad na piętach). Regiony prostowniki/najszersze/pośladki zgodne."
+ },
+ {
+  "name": "Chin To Chest Stretch",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S1",
+   "L3-S3",
+   "L3-S9"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Zgięcie szyi z dociśnięciem dłońmi (S17); ACE Neck Flexion and Extension (Levator Scapulae, Trapezius)."
+ },
+ {
+  "name": "Crossover Reverse Lunge",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S3",
+   "L3-S4",
+   "L3-S9"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Wykrok w tył z rotacją (S17) = ACE Reverse Lunge with Rotation. Pattern mobility dopuszczalny (bez obciążenia); bliski Reverse Lunge, ale cel mobilność."
+ },
+ {
+  "name": "Dancer's Stretch",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "name": "Seated Rotation Stretch"
+  },
+  "sources": [
+   "L3-S17",
+   "L3-S1",
+   "L3-S3",
+   "L3-S12",
+   "L3-S13"
+  ],
+  "confidence": "mocne",
+  "note": "Opis (S17) = AAOS Seated Rotation Stretch („Piriformis, external/internal oblique”). Nazwa ustalona: seated rotation / seated spinal twist."
+ },
+ {
+  "name": "Dynamic Back Stretch",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S3",
+   "L3-S4"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Wymachy ramion w górę 5–10× (S17) — dynamiczne, reps poprawne."
+ },
+ {
+  "name": "Dynamic Chest Stretch",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S3",
+   "L3-S4"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Dynamiczne rozwarcie ramion 5–10× (S17); reps poprawne."
+ },
+ {
+  "name": "Elbow Circles",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Arm Circles",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S3",
+   "L3-S4"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Krążenia barków z dłońmi na barkach (S17) — wariant krążeń ramion."
+ },
+ {
+  "name": "Elbows Back",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "name": "Standing Chest Stretch"
+  },
+  "sources": [
+   "L3-S17",
+   "L3-S1",
+   "L3-S3",
+   "L3-S9"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Dłonie na lędźwiach, łokcie do tyłu (S17) = ACE Standing Chest Stretch (pectoralis, „hold 15-30 seconds”). Kanoniczny wpis rozciągania klatki."
+ },
+ {
+  "name": "Foot-SMR",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "requires": []
+  },
+  "sources": [
+   "L3-S17",
+   "L3-S15"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Narzędzie: wałek do stóp / rura (S17) albo piłka golfowa (AAOS Golf Ball Roll, 2 min) — nie roller; requires foam_roller błędne, brak pozycji w słowniku."
+ },
+ {
+  "name": "Front Leg Raises",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "name": "Leg Swings (Front-to-Back)"
+  },
+  "sources": [
+   "L3-S17",
+   "L3-S3",
+   "L3-S4"
+  ],
+  "confidence": "jedno źródło",
+  "note": "W opisie (S17) to wymachy nogi przód–tył („Swing your leg forward”), nie unoszenie — ustalona nazwa „leg swings”; reps poprawne."
+ },
+ {
+  "name": "Groin and Back Stretch",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "name": "Butterfly Stretch"
+  },
+  "sources": [
+   "L3-S17",
+   "L3-S1",
+   "L3-S3",
+   "L3-S10",
+   "L3-S9"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Siad stopa do stopy = „motylek” (NHS Inner thigh stretch, ACE Seated Butterfly Stretch: Adductors). W S17 wersja z powtórzeniami; NHS/ACE trzymają 15–30 s — metric time zostaje, nazwa ustalona."
+ },
+ {
+  "name": "Groiners",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S3",
+   "L3-S4"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Ruch dynamiczny na powtórzenia (S17: „10-20 repetitions”) — reps poprawne."
+ },
+ {
+  "name": "Hamstring Stretch",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "name": "Supine Hamstring Stretch"
+  },
+  "sources": [
+   "L3-S17",
+   "L3-S1",
+   "L3-S3",
+   "L3-S12",
+   "L3-S14",
+   "L3-S10"
+  ],
+  "confidence": "mocne",
+  "note": "Kanoniczne rozciąganie dwugłowych leżąc (AAOS hip/knee, NHS). Taśma/ręcznik opcjonalne (AAOS: „loop a towel”). Mięśnie: dwugłowe (+ łydka przy zgiętej stopie — ACE Supine Hamstrings Stretch: Gastrocnemius, Hamstrings)."
+ },
+ {
+  "name": "Hamstring-SMR",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "name": "Foam Roll: Hamstrings"
+  },
+  "sources": [
+   "L3-S17",
+   "L3-S5",
+   "L3-S7",
+   "L3-S6"
+  ],
+  "confidence": "mocne",
+  "note": "Konrad 2022: efekt dla dwugłowych."
+ },
+ {
+  "name": "Hip Circles (Prone)",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S3",
+   "L3-S4"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Krążenie kolanem w klęku podpartym (S17). Reps poprawne."
+ },
+ {
+  "name": "Hug A Ball",
+  "verdict": "USUNĄĆ",
+  "scope": "USUNĄĆ",
+  "fixes": {},
+  "sources": [
+   "L3-S17"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Nieustalona nazwa (głęboki przysiad z piłką); brak odpowiednika w ACE/AAOS/NHS."
+ },
+ {
+  "name": "Hug Knees To Chest",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "One Knee To Chest",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S1",
+   "L3-S3",
+   "L3-S12"
+  ],
+  "confidence": "umiarkowane",
+  "note": "AAOS: obie nogi to końcówka tej samej sekwencji Knee to Chest („pull both legs in together”)."
+ },
+ {
+  "name": "IT Band and Glute Stretch",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S1",
+   "L3-S3",
+   "L3-S9"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Leżąc, noga przez ciało z taśmą (S17) ≈ ACE Supine IT Band Stretch (Abductors). Regiony zgodne."
+ },
+ {
+  "name": "Iliotibial Tract-SMR",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S5",
+   "L3-S7"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Rolowanie boku uda (S17); regiony odwodziciele/czworogłowe zgodne."
+ },
+ {
+  "name": "Inchworm",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S3",
+   "L3-S4",
+   "L3-S9"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ACE Inchworms. Reps poprawne."
+ },
+ {
+  "name": "Intermediate Groin Stretch",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S1",
+   "L3-S3"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Leżąc, noga w bok z taśmą (S17); w źródle główne dwugłowe, w opisie „groin and hamstring” — regiony adductors+hamstrings zgodne."
+ },
+ {
+  "name": "Intermediate Hip Flexor and Quad Stretch",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "On Your Side Quad Stretch",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S1",
+   "L3-S3"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Leżenie przodem, taśma na stopie, pięta do pośladka (S17) — ten sam cel."
+ },
+ {
+  "name": "Iron Crosses (Stretch)",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S3",
+   "L3-S4"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Leżąc przodem, pięta na przeciwną stronę (S17; w praktyce „scorpion”). Reps poprawne."
+ },
+ {
+  "name": "Knee Across The Body",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "name": "Supine Spinal Twist"
+  },
+  "sources": [
+   "L3-S17",
+   "L3-S1",
+   "L3-S3",
+   "L3-S9"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Leżący skręt kręgosłupa (S17) — w ACE „Supine Spinal Twist”. Regiony pośladki/odwodziciele/prostowniki/skośne zgodne."
+ },
+ {
+  "name": "Knee Circles",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S3",
+   "L3-S4"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Krążenia kolan (S17); brak źródła poza S17 dla celu ruchu — regiony to uproszczenie."
+ },
+ {
+  "name": "Kneeling Forearm Stretch",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S1",
+   "L3-S3"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Klęk, dłonie palcami do kolan (S17) — zginacze nadgarstka; region forearms zgodny."
+ },
+ {
+  "name": "Kneeling Hip Flexor",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "name": "Kneeling Hip Flexor Stretch"
+  },
+  "sources": [
+   "L3-S17",
+   "L3-S1",
+   "L3-S3",
+   "L3-S9"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ACE Kneeling Hip-flexor Stretch (Flexors, Quadriceps, Rectus Abdominus). Region quads to uproszczenie — zginacze biodra (biodrowo-lędźwiowy) nie mają regionu."
+ },
+ {
+  "name": "Latissimus Dorsi-SMR",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S5",
+   "L3-S7"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Rolowanie najszerszego (S17)."
+ },
+ {
+  "name": "Looking At Ceiling",
+  "verdict": "USUNĄĆ",
+  "scope": "USUNĄĆ",
+  "fixes": {},
+  "sources": [
+   "L3-S17"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Nazwa nieustalona; opis (klęk, chwyt pięt, wygięcie kręgosłupa) to pozycja jogi „wielbłąd” — głęboki przeprost, poza zakresem dziennika siłowego."
+ },
+ {
+  "name": "Lower Back-SMR",
+  "verdict": "USUNĄĆ",
+  "scope": "USUNĄĆ",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S8"
+  ],
+  "confidence": "jedno źródło",
+  "note": "NASM odradza roller na odcinek lędźwiowy (S8 — jedno źródło, szczebel 5). Zamiast tego: pośladki/piriformis, odcinek piersiowy."
+ },
+ {
+  "name": "Lying Bent Leg Groin",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Groin and Back Stretch",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S3"
+  ],
+  "confidence": "umiarkowane",
+  "note": "PNF z partnerem, stopy złączone (S17) = motylek leżąc."
+ },
+ {
+  "name": "Lying Crossover",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Knee Across The Body",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S3"
+  ],
+  "confidence": "umiarkowane",
+  "note": "PNF z partnerem, ta sama pozycja skrętu (S17)."
+ },
+ {
+  "name": "Lying Glute",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Ankle On The Knee",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S3"
+  ],
+  "confidence": "umiarkowane",
+  "note": "PNF z partnerem, ta sama pozycja „czwórki” (S17)."
+ },
+ {
+  "name": "Lying Hamstring",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Hamstring Stretch",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S3"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Rozciąganie PNF z partnerem (S17: „Your partner should be kneeling beside you”) — partnera nie da się wyrazić w wymaganiach; ta sama pozycja co Hamstring Stretch."
+ },
+ {
+  "name": "Lying Prone Quadriceps",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "On Your Side Quad Stretch",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S3"
+  ],
+  "confidence": "umiarkowane",
+  "note": "PNF z partnerem (S17)."
+ },
+ {
+  "name": "Middle Back Stretch",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S1",
+   "L3-S3"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Skręt tułowia w staniu (S17). Regiony skośne/plecy zgodne."
+ },
+ {
+  "name": "Neck-SMR",
+  "verdict": "USUNĄĆ",
+  "scope": "USUNĄĆ",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S8"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Narzędzie to wałek ręczny (S17), nie roller (requires błędne); NASM odradza roller na szyję (S8 — szczebel 5, jedno źródło). Aplikacja nie powinna podsuwać rolowania szyi."
+ },
+ {
+  "name": "On Your Side Quad Stretch",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "name": "Side-Lying Quad Stretch"
+  },
+  "sources": [
+   "L3-S17",
+   "L3-S1",
+   "L3-S3",
+   "L3-S10",
+   "L3-S9"
+  ],
+  "confidence": "mocne",
+  "note": "Kanoniczne rozciąganie czworogłowych (NHS Thigh stretch, ACE Side Lying Quadriceps Stretch)."
+ },
+ {
+  "name": "On-Your-Back Quad Stretch",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "On Your Side Quad Stretch",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S1",
+   "L3-S3"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Pięta do pośladka leżąc na ławce (S17) — wariant pozycji."
+ },
+ {
+  "name": "One Arm Against Wall",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "name": "Wall Lat Stretch"
+  },
+  "sources": [
+   "L3-S17",
+   "L3-S1",
+   "L3-S3",
+   "L3-S9"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Oparcie ramienia o ścianę i odchylenie (S17) — rozciąganie najszerszego (ACE: 90 Lat Stretch i Kneeling Lat Stretch — Latissimus Dorsi, inne ułożenie). Nazwa nieopisowa."
+ },
+ {
+  "name": "One Half Locust",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "On Your Side Quad Stretch",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S1",
+   "L3-S3"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Nazwa myląca (półszarańcza to unoszenie bez chwytu); w opisie (S17) chwyt stopy leżąc przodem = rozciąganie czworogłowych."
+ },
+ {
+  "name": "One Handed Hang",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Dead Hang",
+  "fixes": {},
+  "sources": [
+   "L3-S17"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Zwis jednorącz ze stopami na podłodze (S17) — bliski duplikat „Dead Hang” (inna część katalogu, czas, drążek)."
+ },
+ {
+  "name": "One Knee To Chest",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S1",
+   "L3-S3",
+   "L3-S12",
+   "L3-S13"
+  ],
+  "confidence": "mocne",
+  "note": "= AAOS Knee to Chest (Gluteus maximus, gluteus medius; w spine: quadratus lumborum). Regiony pośladki/prostowniki zgodne."
+ },
+ {
+  "name": "Overhead Lat",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "One Arm Against Wall",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S3"
+  ],
+  "confidence": "umiarkowane",
+  "note": "PNF z partnerem (S17)."
+ },
+ {
+  "name": "Overhead Stretch",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S1",
+   "L3-S3"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Wyciągnięcie ramion nad głowę w staniu (S17); regiony zgodne z opisem (brzuch, najszersze)."
+ },
+ {
+  "name": "Overhead Triceps",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Triceps Stretch",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S3"
+  ],
+  "confidence": "umiarkowane",
+  "note": "PNF z partnerem (S17); nazwa myląca z ćwiczeniem siłowym Overhead Triceps Extension."
+ },
+ {
+  "name": "Pelvic Tilt Into Bridge",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Glute Bridge",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S9"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Opis (S17): uniesienie miednicy aż do mostka — to Glute Bridge wykonywany segmentalnie (ACE Supine Pelvic Tilts + Glute Bridge). Uwaga: łączy wpis mobilności z ćwiczeniem siłowym."
+ },
+ {
+  "name": "Peroneals Stretch",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S1",
+   "L3-S3"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Inwersja stopy z taśmą (S17) — rozciąganie strzałkowych; ćwiczenie fizjoterapeutyczne, rzadkie w treningu siłowym. Region calves = najbliższy dostępny (uproszczenie)."
+ },
+ {
+  "name": "Peroneals-SMR",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S5",
+   "L3-S7"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Rolowanie boku podudzia (S17)."
+ },
+ {
+  "name": "Piriformis-SMR",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S5",
+   "L3-S7"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Roller pod pośladkiem (S17); region glutes zgodny."
+ },
+ {
+  "name": "Posterior Tibialis Stretch",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S1",
+   "L3-S3"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Ewersja stopy z taśmą (S17); jak wyżej, uproszczenie regionu calves."
+ },
+ {
+  "name": "Pyramid",
+  "verdict": "USUNĄĆ",
+  "scope": "USUNĄĆ",
+  "fixes": {},
+  "sources": [
+   "L3-S17"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Nazwa myląca (w jodze „piramida” to inna pozycja — skłon w wykroku); opis (S17) to leżenie przodem na piłce. Brak odpowiednika w ACE/AAOS/NHS."
+ },
+ {
+  "name": "Quadriceps-SMR",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "name": "Foam Roll: Quadriceps"
+  },
+  "sources": [
+   "L3-S17",
+   "L3-S5",
+   "L3-S7",
+   "L3-S6"
+  ],
+  "confidence": "mocne",
+  "note": "Konrad 2022: roller zwiększa ROM przy czworogłowych. Czas 30–120 s (S7) — metric time poprawne."
+ },
+ {
+  "name": "Rhomboids-SMR",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S5",
+   "L3-S7",
+   "L3-S8"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Rolowanie górnej/środkowej części pleców — odcinek piersiowy (bezpieczniejszy niż szyja i lędźwie wg S8)."
+ },
+ {
+  "name": "Round The World Shoulder Stretch",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "recommended": []
+  },
+  "sources": [
+   "L3-S17",
+   "L3-S3",
+   "L3-S4"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Kij/drążek za biodrami unoszony za głowę (S17) — „bands” w recommended błędne; ruch powtarzany (reps poprawne)."
+ },
+ {
+  "name": "Runner's Stretch",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S1",
+   "L3-S3"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Wykrok z dłońmi przy stopie przedniej (S17): dwugłowe przodu + biodro tyłu; regiony zgodne."
+ },
+ {
+  "name": "Seated Biceps",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Standing Biceps Stretch",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S3"
+  ],
+  "confidence": "umiarkowane",
+  "note": "PNF z partnerem (S17)."
+ },
+ {
+  "name": "Seated Calf Stretch",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S1",
+   "L3-S3",
+   "L3-S15",
+   "L3-S9"
+  ],
+  "confidence": "umiarkowane",
+  "note": "= AAOS Towel Stretch, ACE Seated Calf Stretch (Gastrocnemius)."
+ },
+ {
+  "name": "Seated Floor Hamstring Stretch",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S1",
+   "L3-S3",
+   "L3-S9"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Skłon do jednej nogi w siadzie (ACE Modified Hurdler's Stretch: Hamstrings). Wariant pozycji kanonicznego Hamstring Stretch."
+ },
+ {
+  "name": "Seated Front Deltoid",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Elbows Back",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S3",
+   "L3-S9"
+  ],
+  "confidence": "umiarkowane",
+  "note": "PNF z partnerem (S17); ACE: wariant Standing Chest Stretch z partnerem."
+ },
+ {
+  "name": "Seated Glute",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Ankle On The Knee",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S3"
+  ],
+  "confidence": "umiarkowane",
+  "note": "PNF z partnerem, „czwórka” w siadzie (S17)."
+ },
+ {
+  "name": "Seated Hamstring",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Seated Floor Hamstring Stretch",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S3"
+  ],
+  "confidence": "umiarkowane",
+  "note": "PNF z partnerem (S17); ta sama pozycja co skłon w siadzie."
+ },
+ {
+  "name": "Seated Hamstring and Calf Stretch",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Seated Floor Hamstring Stretch",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S1",
+   "L3-S3",
+   "L3-S9"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Siad, taśma przyciąga palce (S17) = ACE Seated Toe Touches (Gastrocnemius, Hamstrings); duplikat skłonu w siadzie."
+ },
+ {
+  "name": "Seated Overhead Stretch",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Standing Lateral Stretch",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S1",
+   "L3-S3",
+   "L3-S9"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Skłon boczny w siadzie (S17; ACE Seated Side-Straddle Stretch) — ten sam cel; region adductors w katalogu wątpliwy."
+ },
+ {
+  "name": "Shoulder Circles",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S3",
+   "L3-S4"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Krążenia barkami (S17). Reps poprawne."
+ },
+ {
+  "name": "Shoulder Raise",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Shoulder Circles",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S3",
+   "L3-S4"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Unoszenie barków do uszu bez ciężaru (S17); nazwa myli się z „Incline Shoulder Raise” (ćwiczenie siłowe)."
+ },
+ {
+  "name": "Shoulder Stretch",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "name": "Cross-Body Shoulder Stretch"
+  },
+  "sources": [
+   "L3-S17",
+   "L3-S1",
+   "L3-S3",
+   "L3-S16"
+  ],
+  "confidence": "mocne",
+  "note": "Ramię przez klatkę (S17) = AAOS Crossover Arm Stretch („posterior deltoid”). Regiony rear_delt + upper_back zgodne."
+ },
+ {
+  "name": "Side Leg Raises",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "name": "Leg Swings (Side-to-Side)"
+  },
+  "sources": [
+   "L3-S17",
+   "L3-S3",
+   "L3-S4"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Wymachy nogi w bok (S17); nazwa koliduje z ćwiczeniem siłowym odwodzenia leżąc bokiem."
+ },
+ {
+  "name": "Side Lying Groin Stretch",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S1",
+   "L3-S3"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Leżąc bokiem, kolano do barku (S17) — przywodziciele/dwugłowe zgodne."
+ },
+ {
+  "name": "Side Neck Stretch",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S1",
+   "L3-S3",
+   "L3-S11",
+   "L3-S9"
+  ],
+  "confidence": "umiarkowane",
+  "note": "= NHS Neck stretch, ACE Lateral Neck Flexion (Levator Scapulae, Trapezius). Regiony szyja/góra pleców zgodne."
+ },
+ {
+  "name": "Side Wrist Pull",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Shoulder Stretch",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S1",
+   "L3-S3"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Ramię przez linię środkową, ciągnięcie za nadgarstek (S17) — wariant rozciągania przez klatkę."
+ },
+ {
+  "name": "Side-Lying Floor Stretch",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Standing Lateral Stretch",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S1",
+   "L3-S3"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Wydłużenie boku ciała leżąc (S17) — ten sam cel co skłon boczny."
+ },
+ {
+  "name": "Spinal Stretch",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Middle Back Stretch",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S1",
+   "L3-S3"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Skręt tułowia na krześle (S17) — ten sam ruch co Middle Back Stretch."
+ },
+ {
+  "name": "Standing Biceps Stretch",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S1",
+   "L3-S3",
+   "L3-S9"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Splecione dłonie za plecami, unoszenie (S17) = wariant ACE Standing Chest Stretch („anterior deltoid”); ACE Seated Bent-Knee Biceps Stretch (Biceps). Regiony biceps/klatka/przód barku zgodne."
+ },
+ {
+  "name": "Standing Elevated Quad Stretch",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S1",
+   "L3-S3",
+   "L3-S14"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Stopa tylnej nogi na ławce (S17); ACE Standing quad / AAOS Standing quadriceps stretch — ten sam cel. recommended ławka/skrzynia poprawne."
+ },
+ {
+  "name": "Standing Gastrocnemius Calf Stretch",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S1",
+   "L3-S3",
+   "L3-S9"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Pięta na stopniu, przyciąganie palców (S17); ACE Step Stretch (Gastrocnemius) podobny. Regiony łydki + dwugłowe zgodne."
+ },
+ {
+  "name": "Standing Hamstring and Calf Stretch",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Standing Gastrocnemius Calf Stretch",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S1",
+   "L3-S3"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Noga przednia prosta, palce w górę, skłon (S17) — ta sama pozycja co Standing Gastrocnemius Calf Stretch (taśma opcjonalna)."
+ },
+ {
+  "name": "Standing Hip Circles",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S3",
+   "L3-S4",
+   "L3-S9"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Krążenie uniesionym kolanem (S17) ≈ ACE Standing Gate Openers (Adductors, Abductors…)."
+ },
+ {
+  "name": "Standing Hip Flexors",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Kneeling Hip Flexor",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S1",
+   "L3-S3",
+   "L3-S9"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Wersja w staniu (ACE Standing Lunge Stretch, Quadriceps); źródło (S17): „You can't get a thorough, deep stretch in this position”."
+ },
+ {
+  "name": "Standing Lateral Stretch",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S1",
+   "L3-S3",
+   "L3-S11"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Skłon boczny w staniu (NHS Sideways bend). Skośne/najszersze zgodne. Kanoniczny wpis dla skłonów bocznych."
+ },
+ {
+  "name": "Standing Pelvic Tilt",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S3",
+   "L3-S4"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Przodo-/tyłopochylenie miednicy w staniu (S17); ACE ma Supine Pelvic Tilts (Rectus Abdominus). Reps poprawne."
+ },
+ {
+  "name": "Standing Soleus And Achilles Stretch",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S1",
+   "L3-S3",
+   "L3-S15"
+  ],
+  "confidence": "umiarkowane",
+  "note": "= AAOS Heel Cord Stretch with Bent Knee („Soleus”)."
+ },
+ {
+  "name": "Standing Toe Touches",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S1",
+   "L3-S3"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Skłon w przód w staniu (S17), region dwugłowe/prostowniki/łydki zgodny z opisem."
+ },
+ {
+  "name": "The Straddle",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S1",
+   "L3-S3",
+   "L3-S9"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Siad rozkroczny ze skłonem = ACE Seated Straddle Stretch (Adductors). Zgodne: przywodziciele + dwugłowe."
+ },
+ {
+  "name": "Torso Rotation",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S3",
+   "L3-S4",
+   "L3-S9"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Skręty tułowia z piłką (S17) ≈ ACE Standing Trunk Rotation z piłką lekarską (Obliques…). requires piłka gimnastyczna LUB lekarska — poprawne."
+ },
+ {
+  "name": "Tricep Side Stretch",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Shoulder Stretch",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S1",
+   "L3-S3",
+   "L3-S16"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Ramię przez ciało nad przeciwny bark, chwyt za łokieć (S17) — ten sam ruch co Crossover Arm Stretch."
+ },
+ {
+  "name": "Triceps Stretch",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "name": "Overhead Triceps Stretch"
+  },
+  "sources": [
+   "L3-S17",
+   "L3-S1",
+   "L3-S3",
+   "L3-S9"
+  ],
+  "confidence": "umiarkowane",
+  "note": "= ACE Overhead Triceps Stretch (Triceps)."
+ },
+ {
+  "name": "Upper Back Stretch",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S1",
+   "L3-S3"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Splecione dłonie, zaokrąglenie barków (S17) — rozciąganie między łopatkami; regiony zgodne."
+ },
+ {
+  "name": "Upper Back-Leg Grab",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Seated Floor Hamstring Stretch",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S1",
+   "L3-S3"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Skłon w siadzie z objęciem ud (S17) — ten sam ruch co skłon w siadzie; nazwa nieustalona."
+ },
+ {
+  "name": "Windmills",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "name": "Lying Leg Crossover Swings"
+  },
+  "sources": [
+   "L3-S17",
+   "L3-S3",
+   "L3-S4"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Leżąc, wymach prostej nogi na drugą stronę (S17). Nazwa koliduje z „Kettlebell Windmill” (ACE High/Low Windmill) — proponowana jednoznaczna nazwa."
+ },
+ {
+  "name": "World's Greatest Stretch",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S3",
+   "L3-S4",
+   "L3-S9"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Wykrok + łokieć do śródstopia + rotacja (S17); rdzeń ruchu = ACE Lunge with Elbow Instep (Adductors, Erector Spinae, Hamstrings, Quadriceps). Nazwa z praktyki trenerskiej (szczebel 5)."
+ },
+ {
+  "name": "Wrist Circles",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S3",
+   "L3-S4"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Krążenia nadgarstków (S17). Reps poprawne."
+ },
+ {
+  "name": "Assault Bike",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L3-S34",
+   "L3-S23"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Rower powietrzny z ramionami; obciążenie ramion (0,25) bez źródła mięśniowego — uproszczenie. requires cardio.bike — znane ograniczenie słownika (catalog-notes)."
+ },
+ {
+  "name": "Bieg",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L3-S19"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Łydki (soleus, gastrocnemius) i mięśnie biodra (S19) — muscleLoad zgodne kierunkowo. Bez partii (cardio)."
+ },
+ {
+  "name": "Burpees",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L3-S9"
+  ],
+  "confidence": "jedno źródło",
+  "note": "ACE Burpee: Full Body/Integrated. Reps poprawne."
+ },
+ {
+  "name": "Incline Walk (bieżnia)",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L3-S20"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Pod górę rośnie aktywność prostowników biodra, kolana i stawu skokowego (S20) — glutes/hamstrings/quads/calves 0,5 zgodne."
+ },
+ {
+  "name": "Mountain Climbers",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L3-S9",
+   "L3-S17"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ACE: Gluteus Maximus, Abductors, Hamstrings, Quadriceps, Rectus Abdominus, Transverse Abdominus; S17: quadriceps główny. Core jako partia (docs/24) zgodne z ACE; opcjonalnie dodać glutes/hamstrings 0,25 w muscleLoad (ACE)."
+ },
+ {
+  "name": "Rower",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L3-S22",
+   "L3-S23"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Pedałowanie: prostowniki biodra i kolana, łydki (S22). muscleLoad zgodne."
+ },
+ {
+  "name": "Rowing Machine",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L3-S18"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Concept2: nogi inicjują, pośladki/dwugłowe prostują biodro, biceps i plecy na końcu. muscleLoad zgodne."
+ },
+ {
+  "name": "Skakanka",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L3-S27"
+  ],
+  "confidence": "jedno źródło",
+  "note": "EMG skakania: czworogłowe, dwugłowe, piszczelowy przedni, brzuchaty łydki (S27). calves 0,5 zgodne."
+ },
+ {
+  "name": "Battle Ropes",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L3-S26",
+   "L3-S9"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Metaanaliza: poprawa mocy kończyn górnych, chwytu i wytrzymałości core, niepewny efekt dla nóg (S26) — barki/przedramiona/core zgodne. Czas poprawny (ACE: fale)."
+ },
+ {
+  "name": "Carioca Quick Step",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L3-S17"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Ćwiczenie zwinnościowe (krok skrzyżny) — sport, nie siłownia."
+ },
+ {
+  "name": "Fast Skipping",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L3-S17"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Ćwiczenie biegowe (skipping)."
+ },
+ {
+  "name": "High Knees",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Popularny element rozgrzewki/kondycji; brak przeczytanego źródła dla mięśni — muscleLoad to uproszczenie."
+ },
+ {
+  "name": "Jumping Jacks",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Popularne pajacyki; brak przeczytanego źródła dla mięśni — uproszczenie."
+ },
+ {
+  "name": "Orbitrek",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L3-S21"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Orbitrek: większa aktywność pośladka wielkiego i obszernego bocznego niż w chodzie, mniejsza łydek (S21); ramiona nie badane — 0,25 to uproszczenie."
+ },
+ {
+  "name": "Recumbent Bike",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Rower",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S22"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Ten sam wymóg (cardio.bike), miara i mięśnie co „Rower” (jazda na rowerze stacjonarnym) — osobny wpis tylko rozdrabnia historię."
+ },
+ {
+  "name": "Single-Cone Sprint Drill",
+  "verdict": "USUNĄĆ",
+  "scope": "USUNĄĆ",
+  "fixes": {},
+  "sources": [
+   "L3-S17"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Nieustalona nazwa ćwiczenia zwinnościowego (bieg wokół pachołka) — poza zakresem dziennika siłowego."
+ },
+ {
+  "name": "Skating",
+  "verdict": "USUNĄĆ",
+  "scope": "USUNĄĆ",
+  "fixes": {},
+  "sources": [
+   "L3-S17"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Jazda na wrotkach (S17) — rekreacja, nie trening siłowy. Dodatkowo błąd mapowania: requires „outdoor” oznacza w słowniku „Rower (jazda na zewnątrz)” (lib/equipment.ts), więc ćwiczenie wymagało roweru."
+ },
+ {
+  "name": "Ski Erg",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L3-S24",
+   "L3-S25"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Analogia z double polingiem: przewaga górnej części ciała i tułowia (S25), udział nóg (S24) — najszersze/triceps/brzuch 0,5 zgodne kierunkowo."
+ },
+ {
+  "name": "Stair Climber",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L3-S20"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Brak przeczytanego badania stepera; analogia do chodu pod górę (S20) — uproszczenie."
+ },
+ {
+  "name": "Treadmill Walking",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L3-S20"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Chód po płaskim — niska aktywność (S20: poziom odniesienia); wszystkie 0,25 zgodne."
+ },
+ {
+  "name": "Farmer's Walk",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "muscleLoad": {
+    "forearms": 1,
+    "upper_back": 1,
+    "obliques": 0.5,
+    "abs": 0.5,
+    "quads": 0.25,
+    "glutes": 0.25,
+    "calves": 0.25,
+    "abductors": 0.25
+   }
+  },
+  "sources": [
+   "L3-S30",
+   "L3-S32",
+   "L3-S33",
+   "L3-S28",
+   "L3-S9"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Chwyt ogranicza wynik (S30) — przedramiona główne zgodne; EMG: pośladkowy średni 26–47 %MVIC, czworogłowe ~15 %MVIC (S32) — brak odwodzicieli w muscleLoad; core 8–16 %MVIC (S33). Partie bez zmian (docs/24)."
+ },
+ {
+  "name": "Suitcase Carry",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L3-S28",
+   "L3-S29",
+   "L3-S33",
+   "L3-S9"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Jednorącz większe obciążenie lędźwi (S29) i aktywność prostowników/wielodzielnego strony przeciwnej (S33: 21–29 %MVIC). Core główne zgodne; implements 1, total — zgodne z SINGLE_IMPLEMENT."
+ },
+ {
+  "name": "Conan's Wheel",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S30"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Konkurencja strongman; brak danych biomechanicznych (S30 nie obejmuje). requires landmine+sztanga czyni je dostępnym w zwykłej siłowni, co przeczy notatce z recenzji („Conan's Wheel nie jest dostępny w zwykłej siłowni”) — do decyzji (pytanie otwarte)."
+ },
+ {
+  "name": "Double Kettlebell Front Rack Carry",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L3-S35"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Wariant noszenia (praktyka trenerska, szczebel 5); McGill 2012: usztywnienie tułowia przy noszeniu kettli. Partie to uproszczenie; per_dumbbell + implements 2 poprawne."
+ },
+ {
+  "name": "Farmer's Walk (Farmers Handles)",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "muscleLoad": {
+    "forearms": 1,
+    "upper_back": 1,
+    "obliques": 0.5,
+    "abs": 0.5,
+    "quads": 0.25,
+    "glutes": 0.25,
+    "calves": 0.25,
+    "abductors": 0.25
+   }
+  },
+  "sources": [
+   "L3-S30",
+   "L3-S32",
+   "L3-S28"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Sprzęt strongman; spójność muscleLoad z Farmer's Walk."
+ },
+ {
+  "name": "Farmer's Walk (trap bar)",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "muscleLoad": {
+    "forearms": 1,
+    "upper_back": 1,
+    "abs": 0.5,
+    "obliques": 0.5,
+    "quads": 0.25,
+    "glutes": 0.25,
+    "calves": 0.25,
+    "abductors": 0.25
+   }
+  },
+  "sources": [
+   "L3-S30",
+   "L3-S32"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Ten sam ruch co Farmer's Walk innym przyrządem — spójność muscleLoad (odwodziciele)."
+ },
+ {
+  "name": "Overhead Carry (hantle)",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Brak przeczytanego źródła (ACE Waiter's Carry to w obecnej wersji chwyt „bottom-up” przy żebrach, nie nad głową). Partie core+barki — uproszczenie."
+ },
+ {
+  "name": "Rickshaw Carry",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L3-S17",
+   "L3-S30"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Strongman; brak danych (S30). Partie (przedramiona; pomocnicze plecy, czworogłowe) różnią się od Farmer's Walk (przedramiona + plecy) — uproszczenie, do ewentualnego ujednolicenia."
+ },
+ {
+  "name": "Yoke Walk",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "muscleLoad": {
+    "quads": 1,
+    "abs": 1,
+    "glutes": 0.5,
+    "upper_back": 0.5,
+    "lower_back": 0.5,
+    "abductors": 0.5,
+    "calves": 0.25
+   }
+  },
+  "sources": [
+   "L3-S28",
+   "L3-S31",
+   "L3-S30"
+  ],
+  "confidence": "jedno źródło",
+  "note": "McGill 2009: bardzo duże momenty odwodzenia w biodrze i największe obciążenie kręgosłupa (S28) — muscleLoad bez odwodzicieli; dodać 0,5."
+ }
+]
