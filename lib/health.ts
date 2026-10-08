@@ -17,8 +17,18 @@ function lib(): HK | null {
   return mod;
 }
 const WORKOUT_TYPE = 'HKWorkoutTypeIdentifier';
-const TRADITIONAL_STRENGTH = 50; // HKWorkoutActivityType.traditionalStrengthTraining
-const FUNCTIONAL_STRENGTH = 20;
+/** HKWorkoutActivityType (@kingstinct/react-native-healthkit 8.x, native-types.ts). Audyt 0.10 MER-18: trening z samych ćwiczeń cardio nie jest siłowy. */
+export const HK_ACTIVITY = { traditionalStrength: 50, functionalStrength: 20, running: 37, walking: 52, cycling: 13, rowing: 35, elliptical: 16, stairClimbing: 44, jumpRope: 64, mixedCardio: 73 } as const;
+/** Ćwiczenia cardio z biblioteki → rodzaj treningu w Zdrowiu (tylko mapowanie nazw biblioteki; inne cardio — mixedCardio). */
+const CARDIO_KIND: Record<string, number> = { 'Bieg': HK_ACTIVITY.running, 'Incline Walk (bieżnia)': HK_ACTIVITY.walking, 'Treadmill Walking': HK_ACTIVITY.walking, 'Rower': HK_ACTIVITY.cycling, 'Assault Bike': HK_ACTIVITY.cycling,
+  'Recumbent Bike': HK_ACTIVITY.cycling, 'Rowing Machine': HK_ACTIVITY.rowing, 'Orbitrek': HK_ACTIVITY.elliptical, 'Stair Climber': HK_ACTIVITY.stairClimbing, 'Skakanka': HK_ACTIVITY.jumpRope };
+/** Rodzaj treningu w Zdrowiu: same ćwiczenia cardio — jedno znane z biblioteki → jego rodzaj, inne → mixedCardio; same ćwiczenia z masą ciała — functionalStrength;
+ * pozostałe — traditionalStrength (jak dotąd). */
+export function workoutActivityType(w: Workout): number {
+  const exs = w.exercises.map(e => exById(e.exerciseId));
+  if (exs.length && exs.every(e => e?.group === 'cardio' || e?.pattern === 'cardio')) { const names = [...new Set(exs.map(e => (e?.lib ? e.name : '')))]; return names.length === 1 && Object.prototype.hasOwnProperty.call(CARDIO_KIND, names[0]) ? CARDIO_KIND[names[0]] : HK_ACTIVITY.mixedCardio; }
+  return exs.length && exs.every(e => e?.equipment === 'masa ciała') ? HK_ACTIVITY.functionalStrength : HK_ACTIVITY.traditionalStrength;
+}
 
 /** Prosi o zgodę na zapis treningów (tylko write). false = brak modułu, brak zgody albo brak HealthKit (iPad/symulator). */
 export async function ensureAuthorization(): Promise<boolean> {
@@ -33,18 +43,17 @@ export async function ensureAuthorization(): Promise<boolean> {
 }
 /** Start treningu w Zdrowiu: koniec − czas bez pauz (= start + suma pauz). */
 export const healthStart = (w: Workout) => Math.min(w.finishedAt ?? w.startedAt, w.startedAt + pausedTotal(w, w.finishedAt ?? w.startedAt));
-/** Zapisuje zakończony trening jako HKWorkout (siłowy). Idempotentne — drugi zapis tego samego treningu jest pomijany. */
+/** Zapisuje zakończony trening jako HKWorkout (rodzaj: workoutActivityType). Idempotentne — drugi zapis tego samego treningu jest pomijany. */
 const inFlight = new Set<string>();
 export async function saveWorkout(w: Workout): Promise<'saved' | 'skipped' | 'unavailable' | 'failed'> {
   const h = lib(); if (!h || !w.finishedAt) return 'unavailable';
   if (w.healthUUID || inFlight.has(w.id)) return 'skipped'; // podwójne wywołanie nie zapisze treningu dwa razy
   inFlight.add(w.id);
-  const bw = w.exercises.length > 0 && w.exercises.every(e => { const ex = exById(e.exerciseId); return ex?.equipment === 'masa ciała'; });
   try {
     /* 08.10.2026 (decyzja właściciela, wariant A): biblioteka 8.x zapisuje HKWorkout bez zdarzeń pauzy (workoutEvents: nil), a Zdrowie liczy
      * czas jako koniec − start — więc start w Zdrowiu przesunięty o sumę pauz: czas trwania jak w aplikacji, koniec prawdziwy, start później
      * o długość pauz (w aplikacji start bez zmian). Prawdziwe zdarzenia pauzy (Workout.pauses) — w wydaniu Health po aktualizacji biblioteki. */
-    const res = await h.saveWorkoutSample(bw ? FUNCTIONAL_STRENGTH : TRADITIONAL_STRENGTH, [], new Date(healthStart(w)), {
+    const res = await h.saveWorkoutSample(workoutActivityType(w), [], new Date(healthStart(w)), {
       end: new Date(w.finishedAt),
       metadata: { HKMetadataKeySyncIdentifier: w.id, HKMetadataKeySyncVersion: 1 /* T4b: HealthKit sam odrzuca drugi zapis tego treningu (np. po przywróceniu kopii sprzed zapisu) */, 'Workout': w.templateName || t('Trening'), 'VolumeKg': Math.round(volume(w)), 'Sets': w.exercises.reduce((a, e) => a + e.sets.filter(isWorking).length, 0) } // runda 7: jak w historii (bez rozgrzewek),
     });

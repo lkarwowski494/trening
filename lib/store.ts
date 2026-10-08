@@ -266,6 +266,7 @@ export function migrate(raw: any): State {
       raw.libExtra = LIB_EXTRA_REVS[0]; raw.libExtraStep = LIB_EXTRA_REV; } }
   raw.templates = arr(raw.templates);
   raw.templates.forEach((t: any) => { stamp(t); if (typeof t.name !== 'string') t.name = ''; t.items = arr(t.items); t.items = t.items.filter((it: any) => idOf(it.exerciseId) != null); t.items.forEach((it: any) => { it.id = idOf(it.id) ?? uid(); it.exerciseId = idOf(it.exerciseId); { const v = parseNum(it.targetSec); it.targetSec = v == null || v < 0 ? '' : Math.min(86400, Math.round(v)); } /* runda 51 */ it.groupId = idOf(it.groupId); it.sets = intIn(it.sets, 1, 50) ?? 1; /* runda 15: liczba, nie tekst z importu */ if (it.startWeight === undefined) it.startWeight = ''; for (const k of ['repMin', 'repMax']) it[k] = intIn(it[k], 1, 100); { const v = parseNum(it.restSec); it.restSec = v == null || v < 0 ? null : Math.min(1800, Math.round(v)); } /* runda 49: także tekst, jak przerwa ćwiczenia */ /* runda 17: limit 1800 */ { const v = parseNum(it.startWeight); it.startWeight = v == null ? '' : kg2(snapL(v) as number); } fixAlternates(it); fixRows(it); }); });
+  raw.templates.forEach((x: any) => { const n = typeof x.note === 'string' ? cleanNote(x.note) : ''; if (n) x.note = n; else delete x.note; }); /* audyt 0.10 UX-10: notatka szablonu */
   raw.templates.forEach((x: any) => { const n = x.name.replace(/\s+/g, ' ').trim(); x.name = n || tIn(raw.settings?.language, 'Nowy szablon'); { const l = idOf(x.locationId); if (l) x.locationId = l; else delete x.locationId; } /* P-003 */ { const f = typeof x.folder === 'string' ? cleanFolder(x.folder) : ''; if (f) x.folder = f; else delete x.folder; } if (x.archived !== true) delete x.archived; /* 07.10.2026 wieczór: folder i archiwum */ }); // runda 35: jak nazwy ćwiczeń
   /* Decyzja właściciela 03.10.2026 (08:11): aplikacja nie zmienia ciężarów ani treści szablonów użytkownika — także przy przejściu na schemat 15
    * (wcześniejsza jednorazowa zmiana 48 → 24 kg z P-004 usunięta: 48 zostaje 48). Zostaje tylko dotychczasowa normalizacja, ta sama co w main:
@@ -1488,6 +1489,10 @@ export function templateGroups(): { folder: string | null; items: Template[] }[]
   return out;
 }
 export function archivedTemplates(): Template[] { return getState().templates.filter(t => t.archived); }
+/** Audyt 0.10 UX-10: notatka szablonu (np. linijka wysiłku z generatora) — jedna linia tekstu, ≤ TEMPLATE_NOTE_MAX; pusta = brak. */
+export const TEMPLATE_NOTE_MAX = 200;
+function cleanNote(v: string) { return Array.from(v.replace(/\s+/g, ' ').trim()).slice(0, TEMPLATE_NOTE_MAX).join('').trim(); } /* po znakach — bez przecinania emoji (DAT-06) */
+export function setTemplateNote(tpl: Template, v: string) { const n = cleanNote(v); if (n) tpl.note = n; else delete tpl.note; save(tpl); }
 export function setTemplateFolder(tpl: Template, name: string | null) { const f = name ? cleanFolder(name) : ''; if (f) tpl.folder = f; else delete tpl.folder; save(tpl); }
 export function setTemplateArchived(tpl: Template, on: boolean) { if (on) tpl.archived = true; else delete tpl.archived; save(tpl); }
 export function deleteTemplate(id: string) { const st = getState(); st.templates = st.templates.filter(x => x.id !== id); save(); flush(); }

@@ -4,6 +4,10 @@
   "en": "“⏸ Pause” stops the workout clock; paused time doesn’t count towards the duration."
  },
  {
+  "pl": "„Bez ograniczeń sprzętu” = pełna siłownia (sztanga, hantle, maszyny i wyciągi).",
+  "en": "“No equipment limits” = a full gym (barbell, dumbbells, machines and cables)."
+ },
+ {
   "pl": "„do” jest mniejsze niż „od” — zakres pokaże się jako {n}+",
   "en": "“to” is lower than “from” — the range will show as {n}+"
  },
@@ -44,8 +48,8 @@
   "en": "{ex} — {s} × {a}–{b}, rest {r}"
  },
  {
-  "pl": "{goal}, {n}× w tygodniu",
-  "en": "{goal}, {n}× per week"
+  "pl": "{goal}, {n}× w tygodniu · {place}",
+  "en": "{goal}, {n}× per week · {place}"
  },
  {
   "pl": "{k}: {v}",
@@ -352,6 +356,10 @@
   "en": "no workouts"
  },
  {
+  "pl": "Bez treningów i poza aktywnym planem: {list}. „Zastąp” je usunie, „Zostaw” doda nowe obok.",
+  "en": "Not used in any workout or in the active plan: {list}. “Replace” deletes them, “Keep” adds the new ones alongside."
+ },
+ {
   "pl": "biceps",
   "en": "biceps"
  },
@@ -390,6 +398,10 @@
  {
   "pl": "Brak ćwiczeń dostępnych w tym miejscu.",
   "en": "No exercises available at this place."
+ },
+ {
+  "pl": "Brak ćwiczeń na: {list}.",
+  "en": "No exercises for: {list}."
  },
  {
   "pl": "Brak danych do wykresu.",
@@ -480,8 +492,8 @@
   "en": "Whole library"
  },
  {
-  "pl": "cały sprzęt; sztanga 20 kg + talerze 25…1,25; hantle 2,5–50 co 2,5",
-  "en": "all equipment; 20 kg bar + plates 25…1.25; dumbbells 2.5–50 by 2.5"
+  "pl": "cały sprzęt; sztanga {bar} {u} + talerze {max}…{min} {u}; hantle {a}–{b} {u} co {step}",
+  "en": "all equipment; {bar} {u} bar + plates {max}…{min} {u}; dumbbells {a}–{b} {u} by {step}"
  },
  {
   "pl": "cardio",
@@ -492,8 +504,12 @@
   "en": "Cardio"
  },
  {
-  "pl": "Cardio w planie: {n} min tygodniowo. Ruch w ciągu dnia też się liczy — razem zwykle 150–300 min tygodniowo (WHO, ACSM).",
-  "en": "Cardio in the plan: {n} min per week. Daily activity counts too — usually 150–300 min per week in total (WHO, ACSM)."
+  "pl": "Cardio w planie: {n} min tygodniowo. Zalecenie WHO: co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.",
+  "en": "Cardio in the plan: {n} min per week. WHO recommends at least {a}–{b} min of moderate activity per week (or {c}–{d} min of vigorous); moderate movement during the day counts too, e.g. brisk walking, even in short bouts."
+ },
+ {
+  "pl": "Cardio: jedna sesja umiarkowanego wysiłku w osobny dzień; jej długość = czas sesji — konwencja.",
+  "en": "Cardio: one session of moderate effort on a separate day; its length = the session length — a convention."
  },
  {
   "pl": "Cel",
@@ -918,10 +934,6 @@
   "en": "Where you train and what equipment you have there. The exercise picker then shows what you can do at the workout’s place, and the “↑” hint suggests weights you actually have. You pick the place when a workout starts."
  },
  {
-  "pl": "Generator planu",
-  "en": "Plan generator"
- },
- {
   "pl": "Generator szablonów i planu",
   "en": "Template and plan generator"
  },
@@ -1050,8 +1062,8 @@
   "en": "Dumbbells (fixed or quick-adjust)"
  },
  {
-  "pl": "hantle 2,5–25, ławka regulowana, bieżnia, rower",
-  "en": "dumbbells 2.5–25, adjustable bench, treadmill, bike"
+  "pl": "hantle {a}–{b} {u}, ławka regulowana, mata, bieżnia, rower",
+  "en": "dumbbells {a}–{b} {u}, adjustable bench, mat, treadmill, bike"
  },
  {
   "pl": "Hantle na talerze (uchwyty + talerze)",
@@ -1194,8 +1206,8 @@
   "en": "Current set card during a workout; the “List” view as before, selectable in Settings."
  },
  {
-  "pl": "Każda partia co najmniej 2 razy w tygodniu (ACSM, przeglądy badań). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.",
-  "en": "Each muscle group at least twice a week (ACSM, research reviews). The split (full body, upper/lower) is a convention — with the same number of sets it gives similar results."
+  "pl": "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: siła rośnie przy co najmniej {n} sesjach tygodniowo). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (jedno źródło). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.",
+  "en": "Each major muscle group on at least {n} days a week (WHO 2020 — a health recommendation; ACSM 2026: strength improves with at least {n} sessions a week). A day when the group only assists counts as {h} — a simplification (single source). The split (full body, upper/lower) is a convention — with the same number of sets it gives similar results."
  },
  {
   "pl": "kettlebell",
@@ -1326,8 +1338,8 @@
   "en": "Landmine"
  },
  {
-  "pl": "Liczba ćwiczeń z czasu sesji: (minuty − {w} min rozgrzewki) × 60 / ({s} s serii + przerwa) — uproszczenie, nie wynik badań.",
-  "en": "Number of exercises from session length: (minutes − {w} min warm-up) × 60 / ({s} s per set + rest) — a simplification, not a research finding."
+  "pl": "Liczba serii z czasu sesji: (minuty − {w} min rozgrzewki) × 60 / ({s} s serii + średnia przerwa {r} s) = {n}; ćwiczeń = serie / {k} (co najmniej {e}) — uproszczenie, nie wynik badań.",
+  "en": "Number of sets from session length: (minutes − {w} min warm-up) × 60 / ({s} s per set + average rest {r} s) = {n}; exercises = sets / {k} (at least {e}) — a simplification, not a research finding."
  },
  {
   "pl": "lina",
@@ -1474,8 +1486,8 @@
   "en": "Body weight: “±” is added weight (plus) or assistance, e.g. a machine (minus); a band is a separate field with its level. Body weight itself is not counted: the record is total unassisted reps, and e1RM and volume use only the added weight. Timed exercises get a stopwatch during the workout — the set ticks itself off when the target is reached. A rest set on a template item takes priority; an empty rest field in the template means this exercise’s rest."
  },
  {
-  "pl": "Masa: co najmniej 10 serii na partię w tygodniu, 8–12 powtórzeń (w domu 12–20), zwykle 1–3 powtórzenia w zapasie.",
-  "en": "Muscle: at least 10 sets per muscle group per week, 8–12 reps (at home 12–20), usually 1–3 reps in reserve."
+  "pl": "Masa: co najmniej {m} serii na partię w tygodniu, {a}–{b} powtórzeń (w domu {c}–{d}), zwykle {r1}–{r2} powtórzenia w zapasie.",
+  "en": "Muscle: at least {m} sets per muscle group per week, {a}–{b} reps (at home {c}–{d}), usually {r1}–{r2} reps in reserve."
  },
  {
   "pl": "maszyna",
@@ -1902,6 +1914,10 @@
   "en": "There’s no set with a result."
  },
  {
+  "pl": "Nie masz jeszcze miejsc treningu, więc plan zakłada pełną siłownię (sztanga, hantle, maszyny i wyciągi). Trenujesz w domu albo w hotelu? Stuknij „+ Dodaj miejsce” i zaznacz sprzęt — generator dobierze ćwiczenia.",
+  "en": "You have no training places yet, so the plan assumes a full gym (barbell, dumbbells, machines and cables). Training at home or in a hotel? Tap “+ Add place” and tick your equipment — the generator will pick exercises to match."
+ },
+ {
   "pl": "Nie masz jeszcze szablonów — utwórz pierwszy albo zacznij pusty trening.",
   "en": "No templates yet — create your first one or start an empty workout."
  },
@@ -1964,6 +1980,10 @@
  {
   "pl": "normalna",
   "en": "normal"
+ },
+ {
+  "pl": "Notatka",
+  "en": "Note"
  },
  {
   "pl": "Notatka do serii",
@@ -2298,6 +2318,14 @@
   "en": "Medicine ball"
  },
  {
+  "pl": "Plan „{name}” jest teraz aktywny.",
+  "en": "The plan “{name}” is now active."
+ },
+ {
+  "pl": "Plan „{name}” jest w „Inne plany”.",
+  "en": "The plan “{name}” is under “Other plans”."
+ },
+ {
   "pl": "Plan na 7 dni: {list}. Tapnij, by otworzyć Kalendarz.",
   "en": "7-day plan: {list}. Tap to open the Calendar."
  },
@@ -2382,6 +2410,10 @@
   "en": "Show other exercises"
  },
  {
+  "pl": "Pokaż szablony",
+  "en": "Show templates"
+ },
+ {
   "pl": "Pokaż więcej ({n})",
   "en": "Show more ({n})"
  },
@@ -2430,8 +2462,8 @@
   "en": "Monday — weigh yourself and log it in the morning check-in."
  },
  {
-  "pl": "Poniżej 10 serii tygodniowo: {list}. Pomoże więcej sesji, dłuższy czas albo więcej sprzętu w miejscu.",
-  "en": "Below 10 sets per week: {list}. More sessions, longer sessions or more equipment at the place will help."
+  "pl": "Poniżej {n} serii tygodniowo: {list}. Pomoże więcej sesji, dłuższy czas albo więcej sprzętu w miejscu.",
+  "en": "Below {n} sets per week: {list}. More sessions, longer sessions or more equipment at the place will help."
  },
  {
   "pl": "Poprawka zapisu: wszystkie serie bloku „{name}” przejdą pod wybrane ćwiczenie (wartości bez zmian).",
@@ -2672,6 +2704,10 @@
   "en": "Rest: {s}. Tap to change."
  },
  {
+  "pl": "Przerwy: {a} min po ciężkich seriach boju głównego, {b} min po innych wielostawowych, {c} min po jednostawowych i core — uproszczenie; przeglądy są niejednoznaczne (ACSM 2026: długość przerwy nie zmieniała przyrostu siły).",
+  "en": "Rest: {a} min after heavy sets of the main lift, {b} min after other compound exercises, {c} min after isolation and core exercises — a simplification; reviews are mixed (ACSM 2026: rest length did not change strength gains)."
+ },
+ {
   "pl": "Przesunięcie w lewo na liście usuwa szablon (z potwierdzeniem).",
   "en": "Swipe left on the list to delete a template (with confirmation)."
  },
@@ -2706,6 +2742,10 @@
  {
   "pl": "Przód",
   "en": "Front"
+ },
+ {
+  "pl": "Przyda się: {list}.",
+  "en": "Would help: {list}."
  },
  {
   "pl": "Przypomnienie o treningu z planu",
@@ -2857,6 +2897,10 @@
   "en": "RPE / RIR per set"
  },
  {
+  "pl": "Rzadziej niż {n} dni w tygodniu: {list} (dzień tylko z pracą pomocniczą = {h}).",
+  "en": "Fewer than {n} days a week: {list} (a day with assisting work only = {h})."
+ },
+ {
   "pl": "sam gryf",
   "en": "empty bar"
  },
@@ -2978,8 +3022,8 @@
   "en": "Sets without a result will be skipped: {n}."
  },
  {
-  "pl": "Serie na partię w tygodniu: {list}",
-  "en": "Sets per muscle group per week: {list}"
+  "pl": "Serie na partię w tygodniu (pomocnicza = {h} serii — uproszczenie, jedno źródło): {list}",
+  "en": "Sets per muscle group per week (assisting = {h} set — a simplification, single source): {list}"
  },
  {
   "pl": "Serie per partia — ten tydzień vs poprzedni",
@@ -2996,6 +3040,10 @@
  {
   "pl": "Serie z tej sesji przepadną.",
   "en": "Sets from this session will be lost."
+ },
+ {
+  "pl": "Serie: {s} na ćwiczenie — ACSM 2026 zaleca co najmniej {m}; więcej serii zwykle daje trochę więcej, z malejącym zyskiem. Liczba {s} to uproszczenie.",
+  "en": "Sets: {s} per exercise — ACSM 2026 advises at least {m}; more sets usually give a little more, with diminishing returns. {s} is a simplification."
  },
  {
   "pl": "serii",
@@ -3023,8 +3071,8 @@
   "en": "Sessions per week"
  },
  {
-  "pl": "Sesje w tygodniu (w tym 1 cardio)",
-  "en": "Sessions per week (incl. 1 cardio)"
+  "pl": "Sesje w tygodniu (w tym {n} cardio)",
+  "en": "Sessions per week (incl. {n} cardio)"
  },
  {
   "pl": "Sesje w tygodniu: {n}",
@@ -3035,8 +3083,12 @@
   "en": "Strength"
  },
  {
-  "pl": "Siła: bój główny na początku, 3 serie po 4–6 powtórzeń (ciężko, ok. 80% maksimum i więcej), pozostałe ćwiczenia 6–10.",
-  "en": "Strength: main lift first, 3 sets of 4–6 reps (heavy, about 80% of max or more), other exercises 6–10."
+  "pl": "Siła bez obciążenia zewnętrznego (sztanga, hantle, kettlebell, maszyny, wyciągi): ciężkich serii (ok. {p}% maksimum) tu nie zrobisz, więc plan jest jak na masę w domu — {s} × {a}–{b} powtórzeń blisko upadku. Siła też wtedy rośnie, ale zwykle mniej niż przy dużym ciężarze.",
+  "en": "Strength without external load (barbell, dumbbells, kettlebell, machines, cables): heavy sets (about {p}% of max) are not possible here, so the plan is like muscle training at home — {s} × {a}–{b} reps close to failure. Strength still improves, but usually less than with heavy loads."
+ },
+ {
+  "pl": "Siła: bój główny na początku, {s} × {a}–{b} powtórzeń (ciężko, ok. {p}% maksimum i więcej), pozostałe ćwiczenia {s} × {c}–{d}.",
+  "en": "Strength: main lift first, {s} × {a}–{b} reps (heavy, about {p}% of max or more), other exercises {s} × {c}–{d}."
  },
  {
   "pl": "skakanka",
@@ -3227,12 +3279,16 @@
   "en": "Templates go to the “Generated” folder, and the plan to “Other plans” or straight in as the active one."
  },
  {
-  "pl": "Szablony trafią do folderu „Wygenerowane”. Obecny plan zostanie w „Inne plany” — wrócisz do niego jednym przyciskiem.",
-  "en": "Templates will go to the “Generated” folder. The current plan stays under “Other plans” — you can return to it with one button."
+  "pl": "Szablony trafią do folderu „{folder}”, a plan — do „Inne plany” albo od razu jako aktywny.",
+  "en": "Templates will go to the “{folder}” folder, and the plan to “Other plans” or straight in as the active plan."
  },
  {
   "pl": "Szablony w folderach i archiwum, „Pomiń dziś” bez zmiany szablonu, usuwanie przesunięciem w lewo.",
   "en": "Templates in folders and archive, “Skip today” without changing the template, swipe left to delete."
+ },
+ {
+  "pl": "Szablony: {list} — w folderze „{folder}” na liście Szablony.",
+  "en": "Templates: {list} — in the “{folder}” folder on the Templates list."
  },
  {
   "pl": "sztanga",
@@ -4047,8 +4103,12 @@
   "en": "Fill with range"
  },
  {
-  "pl": "Wysiłek: zwykle 1–3 powtórzenia w zapasie; do upadku nie trzeba.",
-  "en": "Effort: usually 1–3 reps in reserve; training to failure is not needed."
+  "pl": "Wysiłek: zwykle {a}–{b} powtórzenia w zapasie (ACSM 2026: blisko upadku albo {c}–{d}; dokładnej liczby nie ustalono); do upadku nie trzeba.",
+  "en": "Effort: usually {a}–{b} reps in reserve (ACSM 2026: close to failure or {c}–{d}; the exact number has not been established); training to failure is not needed."
+ },
+ {
+  "pl": "Wysiłek: zwykle {a}–{b} powtórzenia w zapasie (RIR); do upadku nie trzeba.",
+  "en": "Effort: usually {a}–{b} reps in reserve (RIR); training to failure is not needed."
  },
  {
   "pl": "Wyślij kopię",
@@ -4147,8 +4207,8 @@
   "en": "Rep range: {r} — when you reach the top of the range you get a “↑ more {u}” hint."
  },
  {
-  "pl": "Zakresy powtórzeń (masa 8–12, w domu 12–20; przy sile dodatkowe 6–10) to uproszczenie: mięśnie rosną przy szerokim zakresie ciężarów, gdy serie są blisko upadku (ACSM, przeglądy badań).",
-  "en": "Rep ranges (muscle 8–12, at home 12–20; for strength other exercises 6–10) are a simplification: muscles grow across a wide range of loads when sets are close to failure (ACSM, research reviews)."
+  "pl": "Zakresy powtórzeń (masa {a}–{b}, w domu i bez obciążenia {c}–{d}; przy sile dodatkowe {e}–{f}) to uproszczenie: mięśnie rosną przy szerokim zakresie ciężarów, gdy serie są blisko upadku (ACSM, przeglądy badań).",
+  "en": "Rep ranges (muscle {a}–{b}, at home and without external load {c}–{d}; for strength other exercises {e}–{f}) are a simplification: muscles grow across a wide range of loads when sets are close to failure (ACSM, research reviews)."
  },
  {
   "pl": "Zalecenia",
@@ -4219,6 +4279,10 @@
   "en": "Working sets to be saved: {n}."
  },
  {
+  "pl": "Zapisano",
+  "en": "Saved"
+ },
+ {
   "pl": "Zapisany czas zostanie nadpisany.",
   "en": "The saved time will be overwritten."
  },
@@ -4261,6 +4325,10 @@
  {
   "pl": "Zastąp",
   "en": "Replace"
+ },
+ {
+  "pl": "Zastąpić poprzednio wygenerowane, nieużywane szablony?",
+  "en": "Replace previously generated, unused templates?"
  },
  {
   "pl": "Zastąpić wpisane ciężary?",
@@ -4307,6 +4375,10 @@
   "en": "Changes are not sent to Apple Health."
  },
  {
+  "pl": "Zmiany pojedynczych dni od dziś zostaną usunięte: {n}.",
+  "en": "Single-day changes from today on will be removed: {n}."
+ },
+ {
   "pl": "Zmiany sięgają dalej niż {n} dni.",
   "en": "Changes reach beyond {n} days."
  },
@@ -4337,6 +4409,10 @@
  {
   "pl": "Zniknie z list i szablonów.",
   "en": "It disappears from lists and templates."
+ },
+ {
+  "pl": "Zostaw",
+  "en": "Keep"
  },
  {
   "pl": "zrobione",

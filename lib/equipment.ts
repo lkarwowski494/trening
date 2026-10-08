@@ -1,6 +1,7 @@
 import { CATALOG_CAPS, type LoadSource } from './catalog.generated';
 import { achievable, noPlates, rangeValues, type LoadSpec, type LoadUnit } from './loads';
-import { lbl } from './i18n';
+import { lbl, t } from './i18n';
+import { fmtNum } from './units';
 import type { Exercise, Location, LocEquip, LoadMode, Impl } from './seed';
 
 /*
@@ -214,12 +215,10 @@ export type LocationPreset = typeof LOCATION_PRESETS[number];
 export const LOCATION_PRESET_LABEL: Record<LocationPreset, L> = {
   gym: { pl: 'Pełna siłownia', en: 'Full gym' }, home: { pl: 'Dom', en: 'Home' }, bodyweight: { pl: 'Tylko masa ciała', en: 'Bodyweight only' }, hotel: { pl: 'Hotel', en: 'Hotel' },
 };
-/** Opis presetu w kreatorze (wartości presetów do potwierdzenia — docs/10, sekcja 5). */
-export const LOCATION_PRESET_HINT: Record<LocationPreset, L> = {
-  gym: { pl: 'cały sprzęt; sztanga 20 kg + talerze 25…1,25; hantle 2,5–50 co 2,5', en: 'all equipment; 20 kg bar + plates 25…1.25; dumbbells 2.5–50 by 2.5' },
+/** Opis presetów bez ciężarów w kreatorze (wartości presetów do potwierdzenia — docs/10, sekcja 5). Siłownia i hotel — presetHint (z danych). */
+export const LOCATION_PRESET_HINT: Record<Exclude<LocationPreset, 'gym' | 'hotel'>, L> = {
   home: { pl: 'pusto — zaznaczysz, co masz', en: 'empty — tick what you have' },
   bodyweight: { pl: 'tylko mata', en: 'mat only' },
-  hotel: { pl: 'hantle 2,5–25, ławka regulowana, bieżnia, rower', en: 'dumbbells 2.5–25, adjustable bench, treadmill, bike' },
 };
 /** Pozycja z domyślnymi opcjami i opisem ciężarów. */
 export function equipEntry(id: string, unit: LoadUnit = 'kg', allOptions = false): LocEquip {
@@ -239,6 +238,16 @@ export function presetEquipment(p: LocationPreset, unit: LoadUnit = 'kg'): LocEq
     if (x.id === 'db_fixed') e.load = lb ? listOf(rangeValues(5, 100, 5), 'lb') : listOf(rangeValues(2.5, 50, 2.5));
     if (x.id === 'db_plate' || x.id === 'electric' || x.group === 'strongman') return null; /* siłownia: hantle stałe; stacji elektrycznej i sprzętu strongman zwykle nie ma */
     return e; }).filter((e): e is LocEquip => !!e);
+}
+
+/** Audyt 0.10 LOG-08: opis presetu w kreatorze z danych presetEquipment(p, unit) — liczby i jednostka takie, jakie preset naprawdę utworzy (kg albo lb). */
+export function presetHint(p: LocationPreset, unit: LoadUnit = 'kg'): string {
+  if (p === 'home' || p === 'bodyweight') return lbl(LOCATION_PRESET_HINT[p]);
+  const eq = presetEquipment(p, unit); const ws = (id: string) => { const l = eq.find(e => e.item === id)?.load; return l?.kind === 'list' ? l.items.map(x => x.w) : []; };
+  const db = ws('db_fixed'); const dbA = fmtNum(db[0] ?? 0), dbB = fmtNum(db[db.length - 1] ?? 0);
+  if (p === 'hotel') return t('hantle {a}–{b} {u}, ławka regulowana, mata, bieżnia, rower', { a: dbA, b: dbB, u: unit });
+  const bar = eq.find(e => e.item === 'barbell')?.load; const plates = bar?.kind === 'plates' ? bar.plates.map(x => x.w) : [];
+  return t('cały sprzęt; sztanga {bar} {u} + talerze {max}…{min} {u}; hantle {a}–{b} {u} co {step}', { bar: fmtNum(bar?.kind === 'plates' ? bar.base : 0), u: unit, max: fmtNum(Math.max(...plates)), min: fmtNum(Math.min(...plates)), a: dbA, b: dbB, step: fmtNum(db.length > 1 ? db[1] - db[0] : 0) });
 }
 
 /** Decyzja właściciela 05.10.2026 („1.a”): nowy sprzęt (katalog krok b i pełna baza, 04.10.2026) dopisany RAZ do zapisanych miejsc opartych na

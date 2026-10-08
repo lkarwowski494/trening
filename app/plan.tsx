@@ -5,6 +5,7 @@ import { Screen, Chip, Muted, H2, Btn, Item, Field, Input, SectionTitle } from '
 import { SwipeRow } from '@/components/SwipeRow';
 import { getState, useTick } from '@/lib/store';
 import { weekPlanDays, setWeekDay, planName, setPlanName, savedPlans, saveCopyAs, activatePlan, deletePlan, futureChanges, type PlanDays } from '@/lib/plan';
+import { activationNote } from '@/lib/planActivation';
 import { t, locale } from '@/lib/i18n';
 
 /*
@@ -21,9 +22,9 @@ const nameOr = (n: string) => n || t('Poprzedni plan');
 
 export default function PlanScreen() {
   useTick(); const router = useRouter(); const days = weekPlanDays(); const live = getState().templates.filter(x => !x.archived); const other = savedPlans();
-  const activate = (id: string, name: string) => { const n = futureChanges();
-    Alert.alert(t('Ustawić „{name}” jako aktywny plan?', { name: nameOr(name) }), n ? t('Obecny plan zostanie zapisany w „Inne plany”. Zmiany pojedynczych dni od dziś zostaną usunięte: {n}.', { n }) : t('Obecny plan zostanie zapisany w „Inne plany”.'), [
-      { text: t('Anuluj'), style: 'cancel' }, { text: t('Ustaw'), onPress: () => activatePlan(id) },
+  const activate = (id: string, name: string) => { /* audyt 0.10 B1: wspólny tekst z generatorem (lib/planActivation.ts) */
+    Alert.alert(t('Ustawić „{name}” jako aktywny plan?', { name: nameOr(name) }), activationNote(), [
+      { text: t('Anuluj'), style: 'cancel' }, { text: t('Ustaw'), style: futureChanges() ? 'destructive' : 'default', onPress: () => activatePlan(id) }, /* jak w generatorze: znikną zmiany dni */
     ]); };
   return (
     <Screen><ScrollView keyboardShouldPersistTaps="handled" contentContainerStyle={{ paddingVertical: 10, paddingBottom: 40 }}>

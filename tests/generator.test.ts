@@ -83,10 +83,10 @@ describe('zapis', () => {
     const tpls = templateIds.map(id => S().templates.find(x => x.id === id)!);
     expect(tpls.map(x => x.folder)).toEqual(['Wygenerowane', 'Wygenerowane']); expect(tpls.map(x => x.name)).toEqual(['FBW A (2)', 'FBW B']);
     expect(tpls[0].items[0]).toMatchObject({ exerciseId: r.templates[0].items[0].exerciseId, sets: 3, repMin: 8, repMax: 12, restSec: 120, startWeight: '', targetSec: '', groupId: null });
-    const p = plan.savedPlans().find(x => x.id === planId)!; expect(p.name).toBe('Masa, 3× w tygodniu');
+    const p = plan.savedPlans().find(x => x.id === planId)!; expect(p.name).toBe('Masa, 3× w tygodniu · Pełna siłownia'); /* audyt 0.10 UX-10: nazwa z miejscem (bez miejsca — pełna siłownia) */
     expect(p.days).toEqual([tpls[0].id, null, tpls[1].id, null, tpls[0].id, null, null]); expect(plan.hasPlan()).toBe(false);
     const r2 = saveGenerated(generate(inp({ goal: 'strength', sessions: 2 })), inp({ goal: 'strength', sessions: 2 }), true);
-    expect(plan.planName()).toBe('Siła, 2× w tygodniu'); expect(plan.savedPlans().some(x => x.id === r2.planId)).toBe(false);
+    expect(plan.planName()).toBe('Siła, 2× w tygodniu · Pełna siłownia'); expect(plan.savedPlans().some(x => x.id === r2.planId)).toBe(false);
   });
 });
 
