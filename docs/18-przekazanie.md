@@ -123,3 +123,8 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
 - 08.10.2026: **„Co nowego”** — przycisk „i” w lewym górnym rogu ekranu Trening rozwija sekcję (wzór: Organizer). Decyzje właściciela: tylko ekran
   Trening (odrzucone: każda zakładka); „i” + kropka po aktualizacji, nic nie wyskakuje samo (odrzucone: karta jak w Organizerze, „i” bez oznaczeń);
   bieżąca wersja na górze, starsze zwinięte (odrzucone: tylko bieżąca). Wpisy w `lib/whatsnew.ts`; numer buildu dopisuje się przy wydaniu.
+- 08.10.2026 (ok. 10:00 UTC): decyzje właściciela — **deload A+B**: podpowiedź w kalendarzu „zwykle co 4–6 tyg.” jako praktyka trenerów (S5, jeden
+  zespół — oznaczone), oraz po oznaczeniu tygodnia deload propozycja szablonów z ~40–50% mniej serii, ciężar bez zmian, do zatwierdzenia (odrzucone:
+  tylko B, tylko A, nic; automatyczne wyzwalacze z danych odpadają — brak walidacji, docs/research/22). **Generator A (pełny)**: szablony z ćwiczeniami
+  z katalogu dostępnymi w miejscu, serie, zakres powtórzeń, RIR, przerwy + plan tygodnia, do przejrzenia przed zapisem (odrzucone: B szkielet).
+  **Kolejność:** deload, potem generator. **Przypomnienia:** rano w dniu treningu, jedno lokalne powiadomienie (odrzucone: wybrana godzina, brak).
