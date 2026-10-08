@@ -45,7 +45,7 @@ name: Kalendarz z planem tygodnia
 - extendedWaitUntil: { visible: "Set", timeout: 15000 }
 - takeScreenshot: 60a-inne-plany
 - tapOn: "Set"
-- assertVisible: "Previous plan"
+- extendedWaitUntil: { visible: "Previous plan", timeout: 15000 }  # run 37771270988: asercja zaraz po zamknięciu okna — ekran jeszcze się odświeżał (zrzut: tekst jest)
 - tapOn: "Back"
 # --- Kalendarz: dziś zaplanowany; przesunięcie planu o 1 dzień i powrót ---
 - extendedWaitUntil: { visible: ".*, planned: Upper A", timeout: 30000 }
@@ -65,7 +65,7 @@ name: Kalendarz z planem tygodnia
 - extendedWaitUntil: { visible: "This day is taken", timeout: 15000 }
 - takeScreenshot: 62-dzien-zajety
 - tapOn: "Cancel"
-- assertVisible: "Planned: Upper A"
+- extendedWaitUntil: { visible: "Planned: Upper A", timeout: 15000 }
 # --- Propozycje (regeneracja partii): lista z opisem zmian; bez stosowania ---
 - scrollUntilVisible: { element: "Suggestions", direction: DOWN, timeout: 30000, centerElement: true }
 - tapOn: "Suggestions"

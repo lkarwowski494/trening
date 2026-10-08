@@ -111,3 +111,12 @@ test('regresja run 37761959586: po wejściu w Postępy (ekran stosu bez paska za
   }
   expect(bad).toEqual([]);
 });
+
+test('regresja run 37771270988: po przycisku okna (Set, Cancel, Make active, Fewer sets) sprawdzenie widoczności czeka (extendedWaitUntil), nie assertVisible od razu', () => {
+  const fs = require('fs'); const path = require('path'); const bad: string[] = []; const ALERT = new Set(['Set', 'Cancel', 'Make active', 'Fewer sets']);
+  for (const f of files(dir)) {
+    const steps = fs.readFileSync(f, 'utf8').split('\n').filter((l: string) => /^\s*-\s/.test(l));
+    steps.forEach((l: string, i: number) => { const m = l.match(/tapOn:\s*"([^"]+)"/); if (m && ALERT.has(m[1]) && /assertVisible/.test(steps[i + 1] ?? '')) bad.push(`${path.basename(f)}: ${m[1]} → ${steps[i + 1].trim()}`); });
+  }
+  expect(bad).toEqual([]);
+});
