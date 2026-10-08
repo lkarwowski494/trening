@@ -8,7 +8,10 @@ Rozmowa 05.10.2026, rano: „Chciałbym móc opublikować to w Apple Store” i 
 - **Wysyłka (gdy przyjdzie czas):** GitHub Actions i klucz App Store Connect API (.p8).
   - Build na darmowym macOS, jak `iphone-local.yml`. Wysyłka przez `xcrun altool`.
   - Klucz tylko jako sekret GitHub, nigdy w repo (CLAUDE.md, ADR-031). Bez `eas submit`: limitów darmowego planu dla Submit nie sprawdzono.
-- **Polityka prywatności:** GitHub Pages z tego repozytorium (`docs/`).
+- **Polityka prywatności:** GitHub Pages z tego repozytorium (`docs/`) — strona `docs/privacy.html` (PL/EN, 08.10.2026, audyt N2; treść zgodna
+  z kodem: brak wywołań sieciowych, HealthKit tylko zapis, powiadomienia lokalne). Krok właściciela po scaleniu do `main`: Settings → Pages →
+  Deploy from a branch → `main` / `/docs`; adres: https://lkarwowski494.github.io/trening/privacy.html (do App Store Connect → App Privacy).
+  `docs/.nojekyll` — bez przetwarzania Jekyllem (dokumenty .md podawane bez zmian).
   - Treść: brak zbierania danych, wszystko lokalnie na telefonie, HealthKit tylko zapis zakończonych treningów.
 - **Cena:** „Darmowa na start” (05.10.2026) — bez reklam i zakupów; w App Store Connect deklaracja „nie jestem traderem” (DSA), bez publicznego adresu.
 - ~~**Płatności później, wcześniejsi użytkownicy za darmo**~~ (odwołane 06.10.2026: płatna subskrypcja od pierwszej wersji, bez darmowych użytkowników; było — właściciel 05.10.2026: „Później najwyżej wprowadzimy płatności, ale tym, co już mają, to zostawimy darmową”).

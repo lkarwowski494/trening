@@ -4,7 +4,8 @@ import { t } from '@/lib/i18n';
 /*
  * „Co nowego” (decyzja właściciela 08.10.2026): przycisk „i” w lewym górnym rogu ekranu Trening rozwija sekcję; po aktualizacji na „i” jest
  * kropka, dopóki sekcji nie otworzysz; nic nie wyskakuje samo. Bieżący wpis na górze, starsze zwinięte. Wzór: Organizer (karta po aktualizacji).
- * Historia buildów: docs/18 (1001 — 06.10, wygaszony; 1002–1004 — 07.10, testerzy dostali 1004).
+ * Historia buildów: docs/18 (1001 — 06.10, wygaszony; 1002 — 07.10, f435c8c, zatwierdzony dla testerów zewnętrznych). Pakiet nazywany w planie
+ * „build 1004” wyszedł z testflight.yml jako 1002 (numer = 1000 + numer przebiegu; audyt NAT-02, potwierdzone w App Store Connect 08.10.2026).
  * Wpisy od najnowszego. `build` — numer buildu TestFlight (1000 + numer przebiegu testflight.yml); brak = zmiany jeszcze niewydane
  * („W tej wersji”) — numer dopisuje się przy wydaniu. `id` nie zmienia się po dopisaniu numeru (kropka nie wraca). Teksty przez t() (26 języków).
  */
@@ -22,7 +23,7 @@ export const WHATS_NEW: WhatsNewEntry[] = [
     t('Deload: podpowiedź w Kalendarzu i mniej serii przy starcie w tygodniu deload; przypomnienie rano w dniu treningu z planu.'),
     t('Nowy ekran Trening: dzisiejszy trening, tydzień w liczbach i ostatni trening; przewodnik po funkcjach w Więcej.'),
   ] },
-  { id: '2026-10-07', build: 1004, date: '2026-10-07', items: () => [
+  { id: '2026-10-07', build: 1002, date: '2026-10-07', items: () => [
     t('Nowy wygląd: kolory i kroje, grafika talerzy na sztandze.'),
     t('Karta bieżącej serii w treningu; widok „Lista” jak wcześniej do wyboru w Ustawieniach.'),
     t('10 nowych języków: niemiecki, francuski, włoski, niderlandzki, szwedzki, duński, norweski, fiński, turecki i grecki.'),

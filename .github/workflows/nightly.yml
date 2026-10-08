@@ -1,6 +1,7 @@
 # Nocny przebieg testów (polecenie właściciela 06.10.2026: „jeżeli nic nas nie kosztują, warto robić jak najpełniejsze i testować wszystko”).
 # Repozytorium publiczne (ADR-031): standardowe maszyny GitHuba (także macOS) bez opłat i bez limitu minut. Artefakty 1 dzień.
-# Co noc na gałęzi domyślnej; ręcznie (Run workflow) na dowolnej gałęzi:
+# Co noc na gałęziach z listy NIGHTLY_REFS (zmienna repozytorium, JSON; domyślnie main i gałąź wydania — audyt TST-01: wcześniej tylko
+# gałąź domyślna, więc kod idący do wydania nie był sprawdzany); ręcznie (Run workflow) na wybranej gałęzi. E2E nocą tylko na gałęzi domyślnej:
 #   1. losowe sekwencje działań z nowym ziarnem i 10× więcej przebiegów niż przy każdym commicie (ziarno w logu — do odtworzenia),
 #   2. testy mutacyjne (Stryker): ile celowo wprowadzonych błędów w logice testy wykrywają — raport jako artefakt,
 #   3. E2E na innym symulatorze (mały ekran) przy ciemnym wyglądzie systemu — wywołanie e2e-ios.yml.
@@ -19,9 +20,16 @@ concurrency:
 jobs:
   losowe:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        ref: ${{ fromJSON(github.event_name == 'schedule' && (vars.NIGHTLY_REFS || '["main","feature/e2-swap"]') || format('["{0}"]', github.ref_name)) }}
     timeout-minutes: 120
     steps:
       - uses: actions/checkout@v5
+        with:
+          ref: ${{ matrix.ref }}
+          persist-credentials: false
       - uses: actions/setup-node@v5
         with:
           node-version: 22
@@ -33,9 +41,16 @@ jobs:
         run: npx jest --maxWorkers=2
   mutacje:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        ref: ${{ fromJSON(github.event_name == 'schedule' && (vars.NIGHTLY_REFS || '["main","feature/e2-swap"]') || format('["{0}"]', github.ref_name)) }}
     timeout-minutes: 300
     steps:
       - uses: actions/checkout@v5
+        with:
+          ref: ${{ matrix.ref }}
+          persist-credentials: false
       - uses: actions/setup-node@v5
         with:
           node-version: 22
@@ -50,7 +65,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: mutacje
+          name: mutacje-${{ strategy.job-index }}
           retention-days: 1
           path: .stryker-tmp/report.json
   e2e-maly-ekran-ciemny:

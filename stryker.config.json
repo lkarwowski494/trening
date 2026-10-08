@@ -8,7 +8,14 @@
   },
   "mutate": [
     "lib/units.ts",
-    "lib/stats.ts"
+    "lib/stats.ts",
+    "lib/plan.ts",
+    "lib/generator.ts",
+    "lib/deload.ts",
+    "lib/deload-sets.ts",
+    "lib/planReminder.ts",
+    "lib/period.ts",
+    "lib/dashboard.ts"
   ],
   "coverageAnalysis": "perTest",
   "concurrency": 2,
@@ -36,5 +43,11 @@
     "excludedMutations": [
       "StringLiteral"
     ]
+  },
+  "dryRunTimeoutMinutes": 30,
+  "thresholds": {
+    "high": 80,
+    "low": 60,
+    "break": 40
   }
 }

@@ -1,9 +1,9 @@
 # Trening — zasady dla agenta
 
-- Repozytorium jest PUBLICZNE (ADR-031). Nigdy nie commituj sekretów (EXPO_TOKEN, certyfikaty, .p8/.p12, .env) ani danych
-  osobowych (UDID, e-mail). Przed commitem sprawdź `git diff --cached`. Logi CI też są publiczne — maskuj UDID jak w `iphone-local.yml`.
-- Narzędzia: 0 zł poza opłatą Apple. macOS w GitHub Actions jest darmowy tylko dlatego, że repo jest publiczne. Buildy w chmurze
-  Expo to ostateczność (15 buildów iOS/mies. na 3 aplikacje) — używaj `iphone-local.yml` (`eas build --local` + `eas upload`).
+- Repozytorium jest PUBLICZNE (ADR-031). Nigdy nie commituj sekretów (klucze API, tokeny, certyfikaty, .p8/.p12, .env) ani danych
+  osobowych (UDID, e-mail). Przed commitem sprawdź `git diff --cached`. Logi i artefakty CI też są publiczne — nie wypisuj w nich identyfikatorów ani UDID.
+- Narzędzia: 0 zł poza opłatą Apple. macOS w GitHub Actions jest darmowy tylko dlatego, że repo jest publiczne. Build na telefon i dla
+  testerów: `testflight.yml` (tylko narzędzia Apple; workflowy EAS usunięte 08.10.2026 — docs/18).
 - Testy przed kodem. Każdy błąd z audytu dostaje test, który go odtwarza (`tests/regress.test.tsx`, plan w `docs/09-plan-testow.md`).
 - Macierz testów (polecenie właściciela 06.10.2026): każdy ekran, element UI, komunikat, funkcja `lib/` i wartość wymiaru ma test;
   `npm run check:matrix` (część verify) blokuje braki, `docs/19-macierz-testow.md` generuje `node scripts/test-matrix.mjs --write`.
@@ -24,8 +24,9 @@
   opcjonalny generator szablonu i planu tygodnia na wyraźne polecenie użytkownika (cel, miejsce, liczba sesji) — tylko reguły potwierdzone
   źródłami (hierarchia niżej), wynik do przejrzenia przed zapisem; deload może przeliczać szablony tylko jako propozycja do zatwierdzenia.
 - Natywnego builda nie da się sprawdzić na Linuksie: `ios-unsigned.yml` (kompilacja), `e2e-ios.yml` (Maestro na symulatorze;
-  zmiana tylko scenariuszy → `aplikacja_z_przebiegu`), `iphone-local.yml` (instalacja na telefonie). Symulator na `macos-26` bywa wolny —
-  awaria przed pierwszym scenariuszem to maszyna; jedno powtórzenie, potem szukaj przyczyny.
+  zmiana tylko scenariuszy → `aplikacja_z_przebiegu`), `testflight.yml` (telefon, TestFlight). Symulator na `macos-26` bywa wolny —
+  awaria przed pierwszym scenariuszem to maszyna; jedno powtórzenie, potem szukaj przyczyny. Przebieg anulowany bez przydzielonej maszyny
+  („not acquired by Runner”, brak maszyn macOS u GitHuba) — ponawiaj od razu, aż dostanie maszynę (właściciel, 08.10.2026).
 - Gałęzie: praca na gałęzi funkcji od `integration/0.9.0`; scalenie do `main` tylko na polecenie właściciela. Nie łącz aktualizacji SDK ze zmianą
   schematu danych w jednym wydaniu.
 

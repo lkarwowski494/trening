@@ -109,9 +109,14 @@ jobs:
           [ "$WYGLAD" = dark ] && xcrun simctl ui "$DEV" appearance dark || true  # wejście „wyglad” (nocny przebieg)
           xcrun simctl install "$DEV" ios/build/Build/Products/Release-iphonesimulator/Trening.app
       - name: Install Maestro
+        # audyt 08.10.2026 (TST-11, SEC-05): wersja w logu; zmienna repozytorium MAESTRO_VERSION przypina wersję (pusta = najnowsza)
+        env:
+          MAESTRO_VERSION: ${{ vars.MAESTRO_VERSION }}
         run: |
+          [ -n "$MAESTRO_VERSION" ] || unset MAESTRO_VERSION
           curl -fsSL "https://get.maestro.mobile.dev" | bash
           echo "$HOME/.maestro/bin" >> "$GITHUB_PATH"
+          "$HOME/.maestro/bin/maestro" --version || true
       - name: Maestro
         env:
           MAESTRO_DRIVER_STARTUP_TIMEOUT: '480000'  # świeżo uruchomiony symulator potrzebuje więcej czasu na sterownik XCTest (04.10.2026: 2× „driver not ready” przy 240 s po 8-min. rozruchu symulatora)

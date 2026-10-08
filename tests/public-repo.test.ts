@@ -7,7 +7,7 @@ const wf = (n: string) => readFileSync(join(__dirname, '../.github/workflows', n
 
 describe('workflowy na publicznym repozytorium', () => {
   test('każdy workflow ma jawne uprawnienia tokenu tylko do odczytu treści i uruchamia się tylko ręcznie', () => {
-    for (const n of ['iphone-eas.yml', 'iphone-local.yml', 'ios-unsigned.yml', 'testflight.yml']) {
+    for (const n of ['ios-unsigned.yml', 'testflight.yml']) {
       const y = wf(n);
       expect(y).toMatch(/permissions:\n\s+contents: read/);
       expect(y).not.toMatch(/contents: write|pull_request_target|^\s+push:/m);
@@ -26,7 +26,7 @@ describe('workflowy na publicznym repozytorium', () => {
       expect([n, /permissions:\n\s+contents: read/.test(y), /contents: write|pull_request|^\s+push:/m.test(y), /secrets\./.test(y), /\n\s+schedule:\n/.test(y), /workflow_dispatch:/.test(y)]).toEqual([n, true, false, false, true, true]);
       const ups = y.split('actions/upload-artifact@v4').length - 1; expect([n, (y.match(/retention-days: 1\n/g) || []).length]).toEqual([n, ups]);
     }
-    const n = wf('nightly.yml'); expect(n).toMatch(/MATRIX_SEED=random/); expect(n).toMatch(/npx stryker run/); expect(n).toMatch(/uses: \.\/\.github\/workflows\/e2e-ios\.yml/); expect(n).toMatch(/wyglad: dark/);
+    const n = wf('nightly.yml'); for (const y of [n, wf('tests-tz.yml')]) { expect(y).toContain(`vars.NIGHTLY_REFS || '["main","feature/e2-swap"]'`); expect(y).toMatch(/ref: \$\{\{ matrix\.ref \}\}\n\s+persist-credentials: false/); } /* audyt TST-01: noc także na gałęzi wydania */ expect(n).toMatch(/MATRIX_SEED=random/); expect(n).toMatch(/npx stryker run/); expect(n).toMatch(/uses: \.\/\.github\/workflows\/e2e-ios\.yml/); expect(n).toMatch(/wyglad: dark/);
     const e = wf('e2e-ios.yml'); expect(e).toMatch(/workflow_call:/); expect(e).toMatch(/WANT: \$\{\{ inputs\.urzadzenie \}\}/); expect(e).toMatch(/simctl ui "\$DEV" appearance dark/);
   });
   test('artefakty E2E trzymane 1 dzień', () => {
@@ -35,23 +35,17 @@ describe('workflowy na publicznym repozytorium', () => {
     expect(uploads).toBeGreaterThan(0);
     expect((y.match(/retention-days: 1\n/g) || []).length).toBe(uploads);
   });
-  test('link rejestracji urządzenia nie powstaje na publicznym repo; UDID w logach zamaskowane', () => {
-    const y = wf('iphone-eas.yml');
-    const guard = y.indexOf('github.event.repository.private'); const url = y.indexOf('node scripts/eas/device-url.cjs');
-    expect(guard).toBeGreaterThan(0); expect(guard).toBeLessThan(url);
-    expect(y).toMatch(/2> >\(tee build\.err \| sed -E "\$UDID_SED" >&2\)/);
-    expect(y).toMatch(/configure-credentials\.exp 2>&1 \| sed -E "\$UDID_SED"/);
-    const sedExpr = /UDID_SED: '([^']+)'/.exec(y)![1];
-    const out = execFileSync('sed', ['-E', sedExpr], { input: 'iPhone (00008110-001A2B3C4D5E801E) stary 0123456789abcdef0123456789abcdef01234567 build 0fd66ae9-1234-4abc-9def-0123456789ab\n0123456789abcdef0123456789abcdef01234567,fedcba9876543210fedcba9876543210fedcba98 commit 0123456789abcdef0123456789abcdef012345678\n' }).toString();
-    expect(out).toBe('iPhone (<UDID>) stary <UDID> build 0fd66ae9-1234-4abc-9def-0123456789ab\n<UDID>,<UDID> commit 0123456789abcdef0123456789abcdef012345678\n'); // 41 znaków to nie UDID
-  });
-  test('build lokalny (bez limitu Expo): kompilacja na maszynie GitHuba, do Expo tylko eas upload; log z maskowaniem UDID', () => {
-    const y = wf('iphone-local.yml');
-    expect(y).toMatch(/runs-on: macos-26/); // od SDK 56 (Xcode 26.4+); wcześniej macos-15
-    expect(y).toMatch(/build -p ios --profile adhoc --local --non-interactive --output build\/Trening\.ipa 2>&1 \| sed -E "\$UDID_SED"/);
-    expect(y).toMatch(/upload -p ios --build-path build\/Trening\.ipa/);
-    expect(y).not.toMatch(/eas-cli@\$EAS_CLI build -p ios --profile adhoc --non-interactive/); // bez buildu w chmurze
-    expect(/UDID_SED: '([^']+)'/.exec(y)![1]).toBe(/UDID_SED: '([^']+)'/.exec(wf('iphone-eas.yml'))![1]);
+  test('decyzja właściciela 08.10.2026 (audyt M4): workflowy EAS usunięte — żaden workflow nie używa Expo ani sekretów spoza klucza App Store Connect', () => {
+    const fs = require('fs') as typeof import('fs'); const dir = join(__dirname, '../.github/workflows');
+    const files = fs.readdirSync(dir).filter(f => f.endsWith('.yml')).sort();
+    expect(files).toEqual(['e2e-ios.yml', 'ios-unsigned.yml', 'nightly.yml', 'testflight.yml', 'tests-tz.yml', 'tests.yml']);
+    expect(fs.existsSync(join(__dirname, '../scripts/eas'))).toBe(false);
+    const allowed = ['secrets.GITHUB_TOKEN', 'secrets.ASC_KEY_ID', 'secrets.ASC_ISSUER_ID', 'secrets.ASC_KEY_P8'];
+    for (const f of files) {
+      const y = wf(f);
+      expect([f, /EXPO_TOKEN|eas-cli|eas build|eas upload|ASC_API_KEY_P8|APPLE_TEAM_ID/.test(y)]).toEqual([f, false]);
+      for (const m of y.match(/secrets\.[A-Z_0-9]+/g) || []) expect([f, m, allowed.includes(m)]).toEqual([f, m, true]);
+    }
   });
   test('TestFlight (06.10.2026): tylko narzędzia Apple, klucz API z sekretów — nigdy wypisywany, usuwany zawsze; logi 1 dzień; numer buildu rośnie', () => {
     const y = wf('testflight.yml');
@@ -59,10 +53,16 @@ describe('workflowy na publicznym repozytorium', () => {
     for (const k of ['ASC_KEY_ID', 'ASC_ISSUER_ID', 'ASC_KEY_P8']) expect(y).toContain(`secrets.${k}`);
     expect(y).not.toMatch(/echo[^\n]*\$\{?ASC_KEY_P8/); expect(y).toMatch(/umask 077/);
     expect(y).toMatch(/- name: Usunięcie klucza z maszyny\n\s+if: always\(\)\n\s+run: rm -f "\$RUNNER_TEMP\/AuthKey\.p8"/);
-    expect(y).toMatch(/BUILD_NUMBER=\$\(\(1000 \+ GITHUB_RUN_NUMBER\)\)/); expect(y).not.toMatch(/\$\{\{[^}]*\+/); /* wyrażenia Actions nie liczą */ expect(y).toMatch(/retention-days: 1/);
+    expect(y).toMatch(/BUILD_BASE: \$\{\{ vars\.BUILD_BASE \|\| '1000' \}\}/); expect(y).toMatch(/BUILD_NUMBER=\$\(\(BUILD_BASE \+ GITHUB_RUN_NUMBER\)\)/); /* audyt NAT-03: baza w zmiennej repozytorium */ expect(y).not.toMatch(/\$\{\{[^}]*\+/); /* wyrażenia Actions nie liczą */ expect(y).toMatch(/retention-days: 1/);
     expect(y).toMatch(/<string>app-store-connect<\/string>/);
     expect(y.indexOf('AuthKey.p8"\n')).toBeGreaterThan(y.indexOf('pod install'));
     expect(y.indexOf('Sekrety obecne')).toBeLessThan(y.indexOf('npm ci')); /* brak sekretu kończy przebieg od razu */
+    /* audyt SEC-02: xcodebuild wypisuje pełną linię poleceń (z identyfikatorami) — przed artefaktem logi są czyszczone; filtr sprawdzony na przykładzie */
+    const mask = y.indexOf('Identyfikatory klucza wycięte z logów przed artefaktem'); expect(mask).toBeGreaterThan(y.indexOf('Eksport i wysyłka')); expect(mask).toBeLessThan(y.indexOf('actions/upload-artifact@v4'));
+    const step = y.slice(mask, y.indexOf('actions/upload-artifact@v4')); expect(step).toMatch(/if: failure\(\)/); expect(step).toContain('ios/xcodebuild.log export.log');
+    const exprs = [...step.matchAll(/-e "(s\/\$\{ASC_(?:KEY|ISSUER)_ID\}\/<[A-Z_]+>\/g)"/g)].map(m => m[1].replace('${ASC_KEY_ID}', 'ABC123DEFG').replace('${ASC_ISSUER_ID}', '69a6de70-0000-47e3-e053-5b8c7c11a4d1')); expect(exprs.length).toBe(2);
+    const line = 'Command line invocation: xcodebuild -authenticationKeyID ABC123DEFG -authenticationKeyIssuerID 69a6de70-0000-47e3-e053-5b8c7c11a4d1\n';
+    expect(execFileSync('sed', exprs.flatMap(e => ['-e', e]), { input: line }).toString()).toBe('Command line invocation: xcodebuild -authenticationKeyID <KEY_ID> -authenticationKeyIssuerID <ISSUER_ID>\n');
     expect((y.match(/unset ASC_KEY_ID ASC_ISSUER_ID/g) || []).length).toBe(2); expect(y).not.toMatch(/-authenticationKeyID "\$ASC_KEY_ID"/); /* logi w artefakcie bez identyfikatorów */ /* audyt 06.10: klucz na dysku dopiero przed archiwum */
   });
   test('deklaracja szyfrowania: aplikacja nie używa szyfrowania poza systemowym (bez pytania przy każdym buildzie w App Store Connect)', () => {
@@ -70,9 +70,23 @@ describe('workflowy na publicznym repozytorium', () => {
   });
   test('audyt 06.10.2026: artefakty buildu bez podpisu 1 dzień; .gitignore chroni pliki z sekretami', () => {
     const y = wf('ios-unsigned.yml'); expect((y.match(/retention-days: 1\n/g) || []).length).toBe(y.split('actions/upload-artifact@v4').length - 1);
-    const g = readFileSync(join(__dirname, '../.gitignore'), 'utf8'); for (const p of ['.env*', '*.p8', '*.p12', '*.mobileprovision', '*.cer']) expect(g.split('\n')).toContain(p);
+    const g = readFileSync(join(__dirname, '../.gitignore'), 'utf8'); for (const p of ['.env*', '*.p8', '*.p12', '*.mobileprovision', '*.cer', 'credentials.json', '*.pem', '*.key', '*.jks', '*.keystore', '*.xcarchive/', 'e2e-out/', '.claude/worktrees/']) expect(g.split('\n')).toContain(p); /* + audyt SEC-07 (08.10.2026) */
   });
   test('podspec modułu wskazuje właściwe repozytorium', () => {
     expect(readFileSync(join(__dirname, '../modules/rest-activity/RestActivity.podspec'), 'utf8')).toMatch(/s\.homepage\s+= 'https:\/\/github\.com\/lkarwowski494\/trening'/);
+  });
+});
+
+/* audyt 08.10.2026 (N2): polityka prywatności (docs/privacy.html, GitHub Pages) zgodna z kodem — zmiana działania aplikacji wymaga zmiany strony */
+describe('polityka prywatności zgodna z kodem', () => {
+  const fs = require('fs') as typeof import('fs'); const root = join(__dirname, '..');
+  const files = (d: string): string[] => fs.readdirSync(join(root, d), { withFileTypes: true }).flatMap(e => e.isDirectory() ? files(join(d, e.name)) : /\.(ts|tsx)$/.test(e.name) ? [join(d, e.name)] : []);
+  test('strona PL/EN istnieje, Pages bez Jekylla; aplikacja nie wykonuje żadnych wywołań sieciowych; HealthKit tylko zapis', () => {
+    const html = readFileSync(join(root, 'docs/privacy.html'), 'utf8');
+    expect(html).toMatch(/<section lang="pl">/); expect(html).toMatch(/<section lang="en">/); expect(fs.existsSync(join(root, 'docs/.nojekyll'))).toBe(true);
+    expect(html).toContain('nie łączy się z internetem'); expect(html).toContain('does not connect to the internet');
+    const net = ['lib', 'app', 'components'].flatMap(files).filter(f => /\bfetch\(|XMLHttpRequest|WebSocket|axios|EventSource/.test(readFileSync(join(root, f), 'utf8')));
+    expect(net).toEqual([]);
+    expect(readFileSync(join(root, 'lib/health.ts'), 'utf8')).toMatch(/requestAuthorization\(\[\], \[/); /* odczyt: pusta lista */
   });
 });

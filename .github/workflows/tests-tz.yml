@@ -2,7 +2,7 @@
 # Lokalnie i w verify testy biegną w Europe/Warsaw (tests/global-setup.js); tu ten sam zestaw biegnie w strefach z dużym
 # przesunięciem, bez zmiany czasu, z półgodzinnym przesunięciem i z półgodzinną zmianą czasu. TZ ustawiamy przed startem
 # procesu (zmiana w trakcie nie działa — global-setup.js). Listę stref pilnuje tests/matrix-time.test.ts (CI_ZONES).
-# ubuntu-latest jest darmowy dla publicznego repozytorium; bez sekretów.
+# ubuntu-latest jest darmowy dla publicznego repozytorium; bez sekretów. Nocą gałęzie z NIGHTLY_REFS (jak nightly.yml — audyt TST-01).
 name: tests-tz
 
 on:
@@ -19,12 +19,13 @@ concurrency:
 
 jobs:
   jest:
-    name: jest (TZ=${{ matrix.tz }})
+    name: jest (${{ matrix.ref }}, TZ=${{ matrix.tz }})
     runs-on: ubuntu-latest
     timeout-minutes: 60
     strategy:
       fail-fast: false
       matrix:
+        ref: ${{ fromJSON(github.event_name == 'schedule' && (vars.NIGHTLY_REFS || '["main","feature/e2-swap"]') || format('["{0}"]', github.ref_name)) }}
         tz:
           - Europe/Warsaw
           - UTC
@@ -35,6 +36,9 @@ jobs:
           - Australia/Lord_Howe
     steps:
       - uses: actions/checkout@v5
+        with:
+          ref: ${{ matrix.ref }}
+          persist-credentials: false
       - uses: actions/setup-node@v5
         with:
           node-version: 22

@@ -18,3 +18,17 @@ __pycache__/
 *.p12
 *.mobileprovision
 *.cer
+# audyt 08.10.2026 (SEC-07): poświadczenia i pliki budowania lokalnego
+credentials.json
+*.pem
+*.key
+*.jks
+*.keystore
+*.xcarchive/
+upload.json
+build.json
+build.err
+e2e-out/
+Trening-sim.zip
+.claude/worktrees/
+.claude/settings.local.json

@@ -27,8 +27,9 @@ import { t } from './i18n';
  *  wartość, nie obecność. Profil deweloperski z płatnego konta (rok) też ma true — wtedy także odnawia się go ponownym podpisaniem
  *  (Sideloadly/Xcode), nie buildem EAS, więc tekst Sideloadly pasuje.
  * Dlaczego nie sam okres ważności (runda 83): Apple ucina ważność odświeżonego profilu ad hoc do daty wygaśnięcia certyfikatu dystrybucyjnego,
- * a każdy `build` w .github/workflows/iphone-eas.yml odświeża profil (--refresh-ad-hoc-provisioning-profile) — build w ostatnich ~10 dniach
- * przed wygaśnięciem certyfikatu (rocznego, 02.10.2027) dałby krótki profil ad hoc mylony z darmowym Apple ID.
+ * a każdy build ad hoc przez EAS odświeżał profil (--refresh-ad-hoc-provisioning-profile) — build w ostatnich ~10 dniach przed wygaśnięciem
+ * certyfikatu (rocznego, 02.10.2027) dałby krótki profil ad hoc mylony z darmowym Apple ID. Workflowy EAS usunięte 08.10.2026 (docs/18);
+ * buildy z TestFlight nie mają embedded.mobileprovision — wtedy brak daty i brak przypomnienia.
  * ZAPASOWY sygnał, gdy klucza brak (lub ma inną wartość niż true/false): ExpirationDate − CreationDate ≤ FREE_PROFILE_MAX_DAYS (darmowe
  * Apple ID daje 7 dni) → Sideloadly, dłużej → nowy build. Inne pola nie wystarczą: ProvisionedDevices mają profile deweloperskie i ad hoc,
  * TeamName to po prostu nazwa zespołu/osoby. Brak klucza i brak CreationDate → przyjmujemy drogę główną.
