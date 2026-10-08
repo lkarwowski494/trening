@@ -1,0 +1,2572 @@
+[
+ {
+  "name": "Back Extension",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "muscles": [
+    "plecy",
+    "dwugłowe"
+   ],
+   "secondaryMuscles": [
+    "pośladki"
+   ],
+   "muscleLoad": {
+    "lower_back": 1,
+    "hamstrings": 1,
+    "glutes": 0.5
+   }
+  },
+  "sources": [
+   "S22",
+   "S23",
+   "S14",
+   "L4-S23",
+   "L4-S24"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Partie wg docs/24 (2.11): główne plecy + dwugłowe, pomocnicze pośladki; wtedy hamstrings w muscleLoad = 1 (test catalog-v2). Sprzęt OK (ławka rzymska lub GHD)."
+ },
+ {
+  "name": "Deadlift (hantle)",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "muscles": [
+    "dwugłowe",
+    "pośladki"
+   ],
+   "secondaryMuscles": [
+    "plecy"
+   ],
+   "muscleLoad": {
+    "lower_back": 1,
+    "hamstrings": 1,
+    "glutes": 1,
+    "forearms": 0.5,
+    "quads": 0.25,
+    "upper_back": 0.25,
+    "lats": 0.25
+   }
+  },
+  "sources": [
+   "S16",
+   "S17",
+   "S18",
+   "S19",
+   "S20",
+   "S21"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Partie wg docs/24 (2.3, analogia do sztangi): dwugłowe + pośladki / plecy; glutes = 1. Para hantli, per_dumbbell — OK."
+ },
+ {
+  "name": "Deadlift (sztanga)",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "muscles": [
+    "dwugłowe",
+    "pośladki"
+   ],
+   "secondaryMuscles": [
+    "plecy",
+    "czworogłowe"
+   ],
+   "muscleLoad": {
+    "lower_back": 1,
+    "hamstrings": 1,
+    "glutes": 1,
+    "quads": 0.5,
+    "upper_back": 0.5,
+    "forearms": 0.5,
+    "lats": 0.25,
+    "adductors": 0.25,
+    "abs": 0.25
+   }
+  },
+  "sources": [
+   "S16",
+   "S17",
+   "S18",
+   "S19",
+   "S20",
+   "S21",
+   "S14"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Partie wg docs/24 (2.3): dwugłowe + pośladki / plecy + czworogłowe; glutes = 1 (lower_back zostaje 1 — EMG S16). Sprzęt OK."
+ },
+ {
+  "name": "Glute Bridge",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "secondaryMuscles": []
+  },
+  "sources": [
+   "S2",
+   "S4"
+  ],
+  "confidence": "jedno źródło",
+  "note": "docs/24 (2.7, Q3): pomocnicze dwugłowe do usunięcia (brak wzrostu dwugłowych po hip thruście, S2 MRI). Sprzęt OK (podłoga, mata zalecana)."
+ },
+ {
+  "name": "Good Morning",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "S16",
+   "L4-S21"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Bez zmian. S16: „Good Morning provokes a similar muscular pattern activation as Romanian Deadlift”; L4-S21: dwugłowe i prostowniki. Gryf na plecach — stojaki wymagane, OK."
+ },
+ {
+  "name": "Hip Thrust (hantel)",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "secondaryMuscles": []
+  },
+  "sources": [
+   "S2",
+   "S4"
+  ],
+  "confidence": "jedno źródło",
+  "note": "docs/24 Q3: usunąć dwugłowe z pomocniczych (S2). Jeden hantel (implements 1, tryb łącznie), ławka lub skrzynia — OK."
+ },
+ {
+  "name": "Hip Thrust (sztanga)",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "secondaryMuscles": []
+  },
+  "sources": [
+   "S2",
+   "S4",
+   "S5",
+   "S25"
+  ],
+  "confidence": "jedno źródło",
+  "note": "docs/24 Q3: usunąć dwugłowe z pomocniczych (S2 MRI; EMG S25 — rozbieżność). Sprzęt OK."
+ },
+ {
+  "name": "Kettlebell Swing",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "S23",
+   "S24",
+   "L4-S25"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Bez zmian (docs/24). Wchłania Vertical Swing (hantel). L4-S25: swing, snatch i clean to różne ćwiczenia („not redundant”)."
+ },
+ {
+  "name": "RDL (hantle/linki)",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "S19",
+   "S20",
+   "S16",
+   "L4-S27"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Bez zmian. Wchłania Stiff-Legged Dumbbell Deadlift (L4-S27: SLDL „usually synonymous with the Romanian deadlift”, różnice „extremely minor”)."
+ },
+ {
+  "name": "RDL (sztanga)",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "S19",
+   "S20",
+   "S16",
+   "S23",
+   "S21",
+   "L4-S27"
+  ],
+  "confidence": "mocne",
+  "note": "Bez zmian (docs/24). Wchłania Romanian Deadlift from Deficit (ten sam ruch z podwyższenia)."
+ },
+ {
+  "name": "Sumo Deadlift",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "S16",
+   "S18"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Bez zmian (docs/24). Sprzęt OK."
+ },
+ {
+  "name": "Trap Bar Deadlift",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "muscles": [
+    "czworogłowe",
+    "pośladki"
+   ],
+   "secondaryMuscles": [
+    "dwugłowe",
+    "plecy"
+   ],
+   "muscleLoad": {
+    "quads": 1,
+    "lower_back": 1,
+    "glutes": 1,
+    "hamstrings": 0.5,
+    "upper_back": 0.5,
+    "forearms": 0.5
+   }
+  },
+  "sources": [
+   "S16",
+   "S17",
+   "S18"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Partie wg docs/24: czworogłowe + pośladki / dwugłowe + plecy; glutes = 1."
+ },
+ {
+  "name": "Bottoms-Up Clean From The Hang Position",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "group": "inne",
+   "muscles": [
+    "pośladki",
+    "dwugłowe"
+   ],
+   "secondaryMuscles": [
+    "przedramiona",
+    "plecy"
+   ],
+   "muscleLoad": {
+    "glutes": 1,
+    "hamstrings": 1,
+    "forearms": 0.5,
+    "upper_back": 0.5,
+    "front_delt": 0.25
+   }
+  },
+  "sources": [
+   "S24",
+   "L4-S25",
+   "L4-S29"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Zarzut kettlebella „dnem do góry” z zwisu. Grupa „biceps” błędna — jak pozostałe zarzuty kettlebella „inne”; partie spójne z Kettlebell Clean (pośladki + dwugłowe, chwyt jako pomocnicze), bo napęd to wyprost bioder (S24, L4-S25). Uchwyt dnem do góry — tylko wariant chwytu."
+ },
+ {
+  "name": "Barbell Snatch",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L4-S2",
+   "L4-S3",
+   "L4-S4",
+   "L4-S27"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Rwanie klasyczne (L4-S27: „Snatch”). Potrójny wyprost biodra-kolana-kostki (L4-S2, L4-S4) i odbiór w pełnym przysiadzie → pośladki + czworogłowe główne — nazwane uproszczenie (brak badań wzrostu). Sprzęt OK (talerze bumper poza słownikiem)."
+ },
+ {
+  "name": "Clean",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L4-S2",
+   "L4-S3",
+   "L4-S4",
+   "L4-S27"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Zarzut klasyczny (L4-S27 „Clean”). Partie jak rwanie (uproszczenie). Sprzęt OK."
+ },
+ {
+  "name": "Clean Pull",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "muscles": [
+    "pośladki",
+    "dwugłowe"
+   ],
+   "secondaryMuscles": [
+    "plecy",
+    "czworogłowe"
+   ],
+   "muscleLoad": {
+    "glutes": 1,
+    "hamstrings": 1,
+    "quads": 0.5,
+    "upper_back": 0.5,
+    "lower_back": 0.5,
+    "forearms": 0.5,
+    "calves": 0.25
+   }
+  },
+  "sources": [
+   "L4-S3",
+   "L4-S4",
+   "L4-S27"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Uznana pochodna (L4-S3: „The clean pull, snatch pull … are weightlifting pulling derivatives”). Partie spójnie z Snatch Pull i martwym ciągiem (pośladki + dwugłowe / plecy + czworogłowe; upper_back 0,5) — dziś te dwa ciągi są zmapowane różnie."
+ },
+ {
+  "name": "Clean and Jerk",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L4-S2",
+   "L4-S3",
+   "L4-S4",
+   "L4-S27"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Bój olimpijski (L4-S2). Partie OK (uproszczenie). Sprzęt OK."
+ },
+ {
+  "name": "Clean from Blocks",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "name": "Block Clean"
+  },
+  "sources": [
+   "L4-S27"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Ustalona nazwa „Block Clean” (L4-S27). Bloki poza słownikiem — skrzynie/asekuracja jako zastępstwo (nazwane uproszczenie)."
+ },
+ {
+  "name": "Double Kettlebell Alternating Hang Clean",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Double Kettlebell Clean",
+  "fixes": {},
+  "sources": [
+   "L4-S25",
+   "L4-S29"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Rzadki wariant naprzemienny; ten sam ruch co zarzut dwóch kettli — scalić."
+ },
+ {
+  "name": "Double Kettlebell Snatch",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "muscles": [
+    "pośladki",
+    "dwugłowe"
+   ],
+   "secondaryMuscles": [
+    "plecy",
+    "barki"
+   ],
+   "muscleLoad": {
+    "glutes": 1,
+    "hamstrings": 1,
+    "front_delt": 0.5,
+    "upper_back": 0.5,
+    "lower_back": 0.5
+   }
+  },
+  "sources": [
+   "S24",
+   "L4-S25"
+  ],
+  "confidence": "jedno źródło (analogia)",
+  "note": "Rwanie kettli to balistyczny wyprost bioder jak swing (S24; L4-S25: przedni akton bez istotnej różnicy między swing/snatch/clean) — barki pomocnicze, nie główne; spójnie z Kettlebell Swing."
+ },
+ {
+  "name": "Dumbbell Clean",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "muscles": [
+    "pośladki",
+    "czworogłowe"
+   ],
+   "secondaryMuscles": [
+    "dwugłowe",
+    "plecy"
+   ],
+   "muscleLoad": {
+    "glutes": 1,
+    "quads": 1,
+    "hamstrings": 0.5,
+    "upper_back": 0.5,
+    "lower_back": 0.25,
+    "forearms": 0.25,
+    "calves": 0.25
+   }
+  },
+  "sources": [
+   "L4-S2",
+   "L4-S4",
+   "L4-S29"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Zarzut hantli z podłogi z odbiorem w przysiadzie (opis L4-S29) — spójnie z zarzutem sztangi: pośladki + czworogłowe / dwugłowe + plecy."
+ },
+ {
+  "name": "Hang Clean",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L4-S2",
+   "L4-S3",
+   "L4-S4",
+   "L4-S27"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Uznana pochodna (L4-S27). Obejmuje też start spod kolan (L4-S27 wymienia pozycje „knee” i „below the knee”) — wchłania Hang Clean Below the Knees."
+ },
+ {
+  "name": "Hang Clean Below the Knees",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Hang Clean",
+  "fixes": {},
+  "sources": [
+   "L4-S27"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Hang Clean w bibliotece L4-S27 obejmuje pozycję „2-3 inches below the bottom of the knee cap” — to wysokość startu, nie osobne ćwiczenie."
+ },
+ {
+  "name": "Hang Snatch",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L4-S2",
+   "L4-S3",
+   "L4-S4",
+   "L4-S27"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Uznana pochodna (L4-S27 „Hang Snatch”). Partie OK (uproszczenie)."
+ },
+ {
+  "name": "Kettlebell Clean",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "S23",
+   "S24",
+   "L4-S25"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Jeden kettlebell, jednostronnie — OK. Partie jak swing (L4-S25: clean, snatch i swing — podobne całe ciało, różnice w prostownikach, skośnych i obszernym bocznym)."
+ },
+ {
+  "name": "Kettlebell Snatch",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "muscles": [
+    "pośladki",
+    "dwugłowe"
+   ],
+   "secondaryMuscles": [
+    "plecy",
+    "barki"
+   ],
+   "muscleLoad": {
+    "glutes": 1,
+    "hamstrings": 1,
+    "front_delt": 0.5,
+    "upper_back": 0.5,
+    "lower_back": 0.5
+   }
+  },
+  "sources": [
+   "S24",
+   "L4-S25"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Rwanie kettla (S24, L4-S25). Barki z głównych do pomocniczych (napęd z bioder; L4-S25 — przedni akton bez istotnej różnicy względem swingu); spójnie z Kettlebell Swing."
+ },
+ {
+  "name": "Muscle Snatch",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L4-S27"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Uznana pochodna (L4-S27 „Muscle Snatch”). Partie OK (uproszczenie: więcej pracy góry pleców)."
+ },
+ {
+  "name": "One-Arm Kettlebell Clean and Jerk",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L4-S25"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Wariant sportu kettlebell; partie i tryb OK (uproszczenie)."
+ },
+ {
+  "name": "One-Arm Kettlebell Split Snatch",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Kettlebell Snatch",
+  "fixes": {},
+  "sources": [
+   "L4-S25"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Rwanie kettla z odbiorem w wykroku — sposób odbioru, nie osobne ćwiczenie."
+ },
+ {
+  "name": "One-Arm Open Palm Kettlebell Clean",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Kettlebell Clean",
+  "fixes": {},
+  "sources": [
+   "L4-S29"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Zarzut z przerzuceniem i chwytem kettla na otwartą dłoń — sztuczka chwytu; brak w przeczytanych źródłach."
+ },
+ {
+  "name": "Open Palm Kettlebell Clean",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Kettlebell Clean",
+  "fixes": {},
+  "sources": [
+   "L4-S29"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Jak wyżej, oburącz; brak w przeczytanych źródłach — scalić z Kettlebell Clean."
+ },
+ {
+  "name": "Power Clean",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L4-S2",
+   "L4-S3",
+   "L4-S4",
+   "L4-S27"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Najczęstsza pochodna w przygotowaniu motorycznym (L4-S2). Partie OK (uproszczenie)."
+ },
+ {
+  "name": "Power Clean from Blocks",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "name": "Block Power Clean"
+  },
+  "sources": [
+   "L4-S27"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Ustalona nazwa „Block Power Clean” (L4-S27)."
+ },
+ {
+  "name": "Power Snatch",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "muscles": [
+    "pośladki",
+    "czworogłowe"
+   ],
+   "secondaryMuscles": [
+    "plecy",
+    "barki"
+   ],
+   "muscleLoad": {
+    "glutes": 1,
+    "quads": 1,
+    "hamstrings": 0.5,
+    "upper_back": 0.5,
+    "front_delt": 0.5,
+    "triceps": 0.25,
+    "lower_back": 0.25
+   }
+  },
+  "sources": [
+   "L4-S2",
+   "L4-S3",
+   "L4-S4",
+   "L4-S27"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Partie niespójne z Power Clean (tylko pośladki) — dodać czworogłowe jako główne (potrójny wyprost, L4-S2, L4-S4)."
+ },
+ {
+  "name": "Power Snatch from Blocks",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "name": "Block Power Snatch",
+   "muscles": [
+    "pośladki",
+    "czworogłowe"
+   ],
+   "secondaryMuscles": [
+    "plecy",
+    "barki"
+   ],
+   "muscleLoad": {
+    "glutes": 1,
+    "quads": 1,
+    "hamstrings": 0.5,
+    "upper_back": 0.5,
+    "front_delt": 0.5,
+    "triceps": 0.25
+   }
+  },
+  "sources": [
+   "L4-S27",
+   "L4-S2"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Nazwa „Block Power Snatch” (L4-S27); partie spójnie z Power Snatch."
+ },
+ {
+  "name": "Smith Machine Hang Power Clean",
+  "verdict": "USUNĄĆ",
+  "scope": "USUNĄĆ",
+  "fixes": {},
+  "sources": [
+   "L4-S2",
+   "L4-S3",
+   "L4-S27"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Nie jest uznaną pochodną: przeglądy i stanowisko NSCA (L4-S2, L4-S3) oraz 90 ćwiczeń zarzutu w L4-S27 dotyczą wolnej sztangi; prowadnica Smitha wymusza pionowy tor gryfu. Decyzja produktowa: usunąć (w historii użytkownika zostaje jako archiwalne)."
+ },
+ {
+  "name": "Snatch (hantel)",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "muscles": [
+    "pośladki",
+    "dwugłowe"
+   ],
+   "secondaryMuscles": [
+    "plecy",
+    "barki"
+   ],
+   "muscleLoad": {
+    "glutes": 1,
+    "hamstrings": 1,
+    "front_delt": 0.5,
+    "upper_back": 0.5,
+    "quads": 0.25
+   }
+  },
+  "sources": [
+   "S24",
+   "L4-S25"
+  ],
+  "confidence": "jedno źródło (analogia)",
+  "note": "Rwanie hantlem jednorącz — spójnie z Kettlebell Snatch: pośladki + dwugłowe / plecy + barki."
+ },
+ {
+  "name": "Snatch Pull",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L4-S3",
+   "L4-S4"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Uznana pochodna (L4-S3). Partie OK (wzorzec dla Clean Pull)."
+ },
+ {
+  "name": "Snatch from Blocks",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "name": "Block Snatch"
+  },
+  "sources": [
+   "L4-S27"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Ustalona nazwa „Block Snatch” (L4-S27)."
+ },
+ {
+  "name": "Split Clean",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L4-S27"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Uznany (L4-S27 „Split Clean”), dziś rzadki styl odbioru."
+ },
+ {
+  "name": "Split Snatch",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L4-S29"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Rzadki styl odbioru; brak w bibliotece L4-S27 (96 ćwiczeń rwania). Rozważyć scalenie z Barbell Snatch."
+ },
+ {
+  "name": "Tire Flip",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L4-S1",
+   "S34"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Strongman (L4-S1: „biomechanically similar to aspects of the initial lifting phase of the conventional and sumo deadlift”; S34). Ciężar = opona, OK."
+ },
+ {
+  "name": "Two-Arm Kettlebell Clean",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "name": "Double Kettlebell Clean"
+  },
+  "sources": [
+   "L4-S29"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Dwa kettle (opis L4-S29) — nazwa wg konwencji katalogu „Double Kettlebell …” (przegląd 04.10). Wchłania wariant naprzemienny."
+ },
+ {
+  "name": "Power Stairs",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "group": "plecy"
+  },
+  "sources": [
+   "L4-S1",
+   "L4-S29"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Strongman; sprzęt (schody/„duck walk”) poza słownikiem — zastępstwa nazwane w notatce. Grupa „nogi” niespójna z innymi bojami strongman (plecy)."
+ },
+ {
+  "name": "Atlas Stone Trainer",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Atlas Stones",
+  "fixes": {},
+  "sources": [
+   "L4-S1",
+   "S34"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Przyrząd zastępczy dla kamienia; wymaganie „talerz” fałszywie pokazuje ćwiczenie jako dostępne — scalić z Atlas Stones."
+ },
+ {
+  "name": "Atlas Stones",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L4-S1",
+   "S34"
+  ],
+  "confidence": "umiarkowane",
+  "note": "S34: „the need to integrate the hip extensors before the back extensors … substantial loading on the back”; L4-S1: technika „similar to a Romanian deadlift”. Plecy + pośladki główne — OK."
+ },
+ {
+  "name": "Axle Deadlift",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "muscles": [
+    "dwugłowe",
+    "pośladki"
+   ],
+   "secondaryMuscles": [
+    "plecy",
+    "czworogłowe"
+   ],
+   "muscleLoad": {
+    "lower_back": 1,
+    "hamstrings": 1,
+    "glutes": 1,
+    "forearms": 1,
+    "quads": 0.5,
+    "upper_back": 0.5,
+    "lats": 0.25,
+    "adductors": 0.25,
+    "abs": 0.25
+   }
+  },
+  "sources": [
+   "S16",
+   "S17",
+   "S18"
+  ],
+  "confidence": "umiarkowane (analogia)",
+  "note": "Martwy ciąg grubym gryfem — partie jak Deadlift (sztanga) wg docs/24; glutes 1 (forearms 1 zostaje — chwyt)."
+ },
+ {
+  "name": "Band Good Morning",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "S16",
+   "L4-S21"
+  ],
+  "confidence": "umiarkowane (analogia)",
+  "note": "Skłon z gumą — partie jak Good Morning; miara powtórzenia (guma) OK."
+ },
+ {
+  "name": "Band Good Morning (Pull Through)",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Band Good Morning",
+  "fixes": {},
+  "sources": [
+   "L4-S29"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Ten sam skłon z gumą, inne zaczepienie gumy (słup za plecami) — scalić."
+ },
+ {
+  "name": "Cable Deadlift",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "muscles": [
+    "czworogłowe",
+    "pośladki"
+   ],
+   "secondaryMuscles": [
+    "dwugłowe",
+    "plecy"
+   ],
+   "muscleLoad": {
+    "quads": 1,
+    "lower_back": 1,
+    "glutes": 1,
+    "hamstrings": 0.5,
+    "forearms": 0.5
+   }
+  },
+  "sources": [
+   "S16",
+   "S17",
+   "L4-S29"
+  ],
+  "confidence": "jedno źródło (analogia)",
+  "note": "Uchwyty z dwóch dolnych wyciągów po bokach (opis L4-S29) — jak gryf heksagonalny: partie wg docs/24 dla Trap Bar (czworogłowe + pośladki / dwugłowe + plecy), glutes 1."
+ },
+ {
+  "name": "Car Deadlift",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Rickshaw Deadlift",
+  "fixes": {},
+  "sources": [
+   "L4-S1"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Martwy ciąg z ramy z uchwytami po bokach; wymaga tej samej „rikszy”; ciężaru na uchwytach nie da się podać (dźwignia) — scalić z Rickshaw Deadlift."
+ },
+ {
+  "name": "Clean Deadlift",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "muscles": [
+    "dwugłowe",
+    "pośladki"
+   ],
+   "secondaryMuscles": [
+    "plecy",
+    "czworogłowe"
+   ],
+   "muscleLoad": {
+    "glutes": 1,
+    "hamstrings": 1,
+    "quads": 0.5,
+    "lower_back": 0.5,
+    "upper_back": 0.5,
+    "forearms": 0.25
+   }
+  },
+  "sources": [
+   "L4-S27",
+   "S16"
+  ],
+  "confidence": "brak źródła — uproszczenie (analogia)",
+  "note": "Uznane (L4-S27). Partie niespójne z Snatch Deadlift i martwym ciągiem — wg docs/24: dwugłowe + pośladki / plecy + czworogłowe."
+ },
+ {
+  "name": "Clean Shrug",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "secondaryMuscles": [
+    "czworogłowe"
+   ],
+   "muscleLoad": {
+    "upper_back": 1,
+    "forearms": 0.5,
+    "quads": 0.5,
+    "glutes": 0.25,
+    "hamstrings": 0.25,
+    "calves": 0.25,
+    "lower_back": 0.25
+   }
+  },
+  "sources": [
+   "L4-S27"
+  ],
+  "confidence": "jedno źródło",
+  "note": "L4-S27 (Snatch Shrug, analogicznie Clean Shrug): wyprost nóg „primarily with movement at the knees, with the trunk remaining essentially vertical”, potem szrug → pomocnicze czworogłowe zamiast pośladków i dwugłowych."
+ },
+ {
+  "name": "Deadlift with Bands",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "muscles": [
+    "dwugłowe",
+    "pośladki"
+   ],
+   "secondaryMuscles": [
+    "plecy",
+    "czworogłowe"
+   ],
+   "muscleLoad": {
+    "lower_back": 1,
+    "hamstrings": 1,
+    "glutes": 1,
+    "quads": 0.5,
+    "upper_back": 0.5,
+    "forearms": 0.5,
+    "lats": 0.25,
+    "adductors": 0.25,
+    "abs": 0.25
+   }
+  },
+  "sources": [
+   "S16",
+   "L4-S5"
+  ],
+  "confidence": "umiarkowane (analogia)",
+  "note": "Opór zmienny (S16 bada martwy ciąg z gumami). Zostaje osobno: zapisany ciężar = sam gryf, nieporównywalny z klasycznym (L4-S5 — VRT to metoda obciążenia). Partie jak Deadlift (sztanga) wg docs/24."
+ },
+ {
+  "name": "Deadlift with Chains",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "muscles": [
+    "dwugłowe",
+    "pośladki"
+   ],
+   "secondaryMuscles": [
+    "plecy",
+    "czworogłowe"
+   ],
+   "muscleLoad": {
+    "lower_back": 1,
+    "hamstrings": 1,
+    "glutes": 1,
+    "quads": 0.5,
+    "upper_back": 0.5,
+    "forearms": 0.5,
+    "lats": 0.25,
+    "adductors": 0.25,
+    "abs": 0.25
+   }
+  },
+  "sources": [
+   "S16",
+   "L4-S5"
+  ],
+  "confidence": "umiarkowane (analogia)",
+  "note": "Jak wyżej (łańcuchy; S16)."
+ },
+ {
+  "name": "Deficit Deadlift",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "muscles": [
+    "dwugłowe",
+    "pośladki"
+   ],
+   "secondaryMuscles": [
+    "plecy",
+    "czworogłowe"
+   ],
+   "muscleLoad": {
+    "lower_back": 1,
+    "hamstrings": 1,
+    "glutes": 1,
+    "quads": 0.5,
+    "upper_back": 0.5,
+    "forearms": 0.5,
+    "lats": 0.25,
+    "adductors": 0.25,
+    "abs": 0.25
+   }
+  },
+  "sources": [
+   "S16"
+  ],
+  "confidence": "umiarkowane (analogia)",
+  "note": "Martwy ciąg z podwyższenia; partie jak Deadlift (sztanga) wg docs/24."
+ },
+ {
+  "name": "Good Morning off Pins",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "S16",
+   "L4-S21"
+  ],
+  "confidence": "umiarkowane (analogia)",
+  "note": "Wariant Good Morning z asekuracji; OK."
+ },
+ {
+  "name": "Hyperextensions With No Hyperextension Bench",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Back Extension",
+  "fixes": {},
+  "sources": [
+   "S22",
+   "L4-S29"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "To samo co Back Extension na zwykłej ławce z partnerem (partner poza słownikiem, krótszy zakres) — scalić."
+ },
+ {
+  "name": "Keg Load",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L4-S1",
+   "S34"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Strongman; partie jak Atlas Stones (uproszczenie)."
+ },
+ {
+  "name": "Kettlebell One-Legged Deadlift",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Single Leg RDL (hantel)",
+  "fixes": {},
+  "sources": [
+   "L4-S16",
+   "L4-S28"
+  ],
+  "confidence": "umiarkowane",
+  "note": "To samo co Single Leg RDL (hantel) z kettlem — scalić i dopuścić kettlebell w wymaganiach (wzór: Goblet Squat [db|kb])."
+ },
+ {
+  "name": "Kettlebell Sumo High Pull",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L4-S3"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Odpowiednik „high pull” (L4-S3 wymienia hang high pull); partie OK (uproszczenie)."
+ },
+ {
+  "name": "Leverage Deadlift",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "muscles": [
+    "czworogłowe",
+    "pośladki"
+   ],
+   "secondaryMuscles": [
+    "dwugłowe",
+    "plecy"
+   ],
+   "muscleLoad": {
+    "quads": 1,
+    "lower_back": 1,
+    "glutes": 1,
+    "hamstrings": 0.5,
+    "forearms": 0.5
+   }
+  },
+  "sources": [
+   "S16",
+   "S17"
+  ],
+  "confidence": "jedno źródło (analogia)",
+  "note": "Maszyna z uchwytami po bokach — jak Trap Bar wg docs/24; glutes 1."
+ },
+ {
+  "name": "One-Arm Side Deadlift",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "S34"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Martwy ciąg „walizkowy” sztangą (znany też jako suitcase deadlift — nazwa niepotwierdzona źródłem). Skośne brzucha główne — analogia do Suitcase Carry (S34). Tryb jednostronny OK."
+ },
+ {
+  "name": "Rack Pull",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L4-S26",
+   "S16"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Martwy ciąg z częściowego zakresu; osobne ćwiczenie, bo 1RM z wysokości kolan wyższy o ~18% (L4-S26: „PROM 1RM DL scores (226.0 …) were significantly greater”). Partie: brak badań — zostają (uproszczenie)."
+ },
+ {
+  "name": "Rack Pull with Bands",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L4-S26",
+   "L4-S5"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Wariant oporu zmiennego; ciężar = gryf. OK."
+ },
+ {
+  "name": "Reverse Band Deadlift",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "muscles": [
+    "dwugłowe",
+    "pośladki"
+   ],
+   "secondaryMuscles": [
+    "plecy",
+    "czworogłowe"
+   ],
+   "muscleLoad": {
+    "lower_back": 1,
+    "hamstrings": 1,
+    "glutes": 1,
+    "quads": 0.5,
+    "upper_back": 0.5,
+    "forearms": 0.5,
+    "lats": 0.25,
+    "adductors": 0.25,
+    "abs": 0.25
+   }
+  },
+  "sources": [
+   "S16",
+   "L4-S5"
+  ],
+  "confidence": "umiarkowane (analogia)",
+  "note": "Gumy odciążają dół — zapisany ciężar zawyża obciążenie; musi zostać osobno (scalenie zawyżyłoby rekordy martwego ciągu). Partie jak Deadlift (sztanga) wg docs/24."
+ },
+ {
+  "name": "Reverse Band Sumo Deadlift",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "S16",
+   "L4-S5"
+  ],
+  "confidence": "umiarkowane (analogia)",
+  "note": "Jak wyżej; partie jak Sumo Deadlift — OK."
+ },
+ {
+  "name": "Rickshaw Deadlift",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L4-S1"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Strongman (rama, uchwyty po bokach). Partie jak Trap Bar — spójne z docs/24. Wchłania Car Deadlift."
+ },
+ {
+  "name": "Romanian Deadlift from Deficit",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "RDL (sztanga)",
+  "fixes": {},
+  "sources": [
+   "S16",
+   "L4-S27"
+  ],
+  "confidence": "umiarkowane",
+  "note": "RDL z podwyższenia — zakres ruchu, nie osobne ćwiczenie."
+ },
+ {
+  "name": "Sandbag Load",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L4-S1"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Strongman/funkcjonalne; partie OK (uproszczenie)."
+ },
+ {
+  "name": "Seated Good Mornings",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L4-S27",
+   "S35"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Uznane (L4-S27 „Seated Good Morning”). Prostowniki główne, dwugłowe 0,25 — przy zgiętych kolanach (S35: dwugłowe zginają kolano i prostują udo) — nazwane uproszczenie."
+ },
+ {
+  "name": "Single Arm RDL (hantel/linka)",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "S19",
+   "S20",
+   "S16"
+  ],
+  "confidence": "umiarkowane (analogia)",
+  "note": "Decyzja właściciela 04.10 (jednorącz ≠ oburącz). Partie jak RDL. OK."
+ },
+ {
+  "name": "Single Leg RDL (hantel)",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "requires": [
+    [
+     "db",
+     "kb"
+    ]
+   ]
+  },
+  "sources": [
+   "L4-S16",
+   "L4-S19",
+   "L4-S28"
+  ],
+  "confidence": "umiarkowane",
+  "note": "L4-S16: martwy ciąg jednonóż — pośladek wielki i średni ~59% MVIC; L4-S28 (ACE) — hip hinge na jednej nodze. Dwugłowe + pośladki główne OK. Wchłania Kettlebell One-Legged Deadlift → dopuścić kettlebell."
+ },
+ {
+  "name": "Single Leg RDL (linki)",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L4-S16",
+   "L4-S28"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Jak wersja z hantlem; jedna linka — OK."
+ },
+ {
+  "name": "Smith Machine Stiff-Legged Deadlift",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "S16",
+   "S20"
+  ],
+  "confidence": "umiarkowane (analogia)",
+  "note": "Wariant w suwnicy Smitha; partie jak RDL — OK."
+ },
+ {
+  "name": "Snatch Deadlift",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L4-S27",
+   "S16"
+  ],
+  "confidence": "brak źródła — uproszczenie (analogia)",
+  "note": "Uznane (L4-S27). Partie już jak Deadlift wg docs/24 — OK."
+ },
+ {
+  "name": "Snatch Shrug",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "secondaryMuscles": [
+    "czworogłowe"
+   ],
+   "muscleLoad": {
+    "upper_back": 1,
+    "forearms": 0.5,
+    "quads": 0.5,
+    "glutes": 0.25,
+    "hamstrings": 0.25,
+    "calves": 0.25,
+    "lower_back": 0.25
+   }
+  },
+  "sources": [
+   "L4-S27"
+  ],
+  "confidence": "jedno źródło",
+  "note": "L4-S27: „performed primarily with movement at the knees”, „useful for training the final aggressive extension of the legs” → pomocnicze czworogłowe zamiast pośladków i dwugłowych."
+ },
+ {
+  "name": "Stiff-Legged Barbell Deadlift",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "S20",
+   "S16",
+   "L4-S27"
+  ],
+  "confidence": "mocne",
+  "note": "Wzrost dwugłowych zmierzony (S20). L4-S27: w podnoszeniu ciężarów „usually synonymous with the Romanian deadlift”, poza nim start z podłogi — różnice „extremely minor”. Niszowe obok RDL (sztanga); do rozważenia scalenie (pytanie otwarte). Wchłania Wide Stance SLDL."
+ },
+ {
+  "name": "Stiff-Legged Dumbbell Deadlift",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "RDL (hantle/linki)",
+  "fixes": {},
+  "sources": [
+   "L4-S27",
+   "S20"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Z hantlami nie do odróżnienia od RDL (hantle/linki) (L4-S27: różnice „extremely minor”)."
+ },
+ {
+  "name": "Sumo Deadlift with Bands",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "S16",
+   "L4-S5"
+  ],
+  "confidence": "umiarkowane (analogia)",
+  "note": "Opór zmienny; partie jak Sumo Deadlift — OK. Zalecane „db” (kotwica gum) — dopuszczalne."
+ },
+ {
+  "name": "Sumo Deadlift with Chains",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "S16",
+   "L4-S5"
+  ],
+  "confidence": "umiarkowane (analogia)",
+  "note": "Jak wyżej; OK."
+ },
+ {
+  "name": "Weighted Ball Hyperextension",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L4-S29"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Wyprost tułowia na piłce z talerzem (głównie odcinek lędźwiowy); OK (uproszczenie)."
+ },
+ {
+  "name": "Wide Stance Stiff-Legged Deadlift",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Stiff-Legged Barbell Deadlift",
+  "fixes": {},
+  "sources": [
+   "L4-S6",
+   "L4-S8"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Szerokość rozstawu to zmienna techniki (w przysiadzie nie izoluje mięśni, L4-S6, L4-S8); scalić."
+ },
+ {
+  "name": "Cable Pull Through",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L4-S22",
+   "S4"
+  ],
+  "confidence": "jedno źródło",
+  "note": "L4-S22: przy pull-through (wobec RDL) spada aktywność prostowników, dwugłowej i półścięgnistego — pośladki główne, dwugłowe pomocnicze OK."
+ },
+ {
+  "name": "Frog Pump",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L4-S28"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Mostek z ustawieniem stóp „po żabiemu” (L4-S28 opisuje „frog-like” ustawienie pięt). Partie OK."
+ },
+ {
+  "name": "Glute Bridge (sztanga)",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "secondaryMuscles": []
+  },
+  "sources": [
+   "S2",
+   "S4"
+  ],
+  "confidence": "jedno źródło (analogia)",
+  "note": "Spójnie z docs/24 Q3: usunąć dwugłowe z pomocniczych."
+ },
+ {
+  "name": "Hip Lift with Band",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Glute Bridge",
+  "fixes": {},
+  "sources": [
+   "S2",
+   "L4-S29"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Mostek z gumą na biodrach — opór gumy niemierzalny; to Glute Bridge."
+ },
+ {
+  "name": "Kneeling Squat",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "secondaryMuscles": [],
+   "muscleLoad": {
+    "glutes": 1,
+    "hamstrings": 0.25,
+    "adductors": 0.25,
+    "lower_back": 0.25,
+    "abs": 0.25
+   }
+  },
+  "sources": [
+   "S35",
+   "L4-S29"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Wyprost bioder z klęku ze sztangą. Usunąć dwugłowe z pomocniczych (zgięte kolana, S35 — dwugłowe zginają kolano; uproszczenie, spójnie z Q3)."
+ },
+ {
+  "name": "Machine Hip Thrust",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "S2",
+   "S4"
+  ],
+  "confidence": "jedno źródło (analogia)",
+  "note": "Analogia do Hip Thrust; partie OK (już bez dwugłowych)."
+ },
+ {
+  "name": "One-Arm Kettlebell Swings",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "S23",
+   "S24",
+   "L4-S25"
+  ],
+  "confidence": "umiarkowane",
+  "note": "L4-S25 badał właśnie swing jednorącz; partie jak Kettlebell Swing — OK."
+ },
+ {
+  "name": "Physioball Hip Bridge",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "name": "Stability Ball Hip Bridge",
+   "secondaryMuscles": []
+  },
+  "sources": [
+   "S2",
+   "S4"
+  ],
+  "confidence": "jedno źródło (analogia)",
+  "note": "Hip thrust z plecami na piłce. Spójnie z docs/24 Q3: bez dwugłowych; nazwa wg konwencji katalogu „Stability Ball …”."
+ },
+ {
+  "name": "Reverse Hyperextension",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "muscles": [
+    "pośladki",
+    "dwugłowe"
+   ],
+   "secondaryMuscles": [
+    "plecy"
+   ],
+   "muscleLoad": {
+    "glutes": 1,
+    "hamstrings": 1,
+    "lower_back": 0.5
+   }
+  },
+  "sources": [
+   "L4-S22",
+   "L4-S23",
+   "L4-S24"
+  ],
+  "confidence": "umiarkowane",
+  "note": "EMG trzech zespołów: L4-S22 — wobec RDL wzrost pośladka (+19,5%), dwugłowej (+27,9%), półścięgnistego; L4-S23 — wyższe niż hiperekstensja we wszystkich mięśniach; L4-S24 — równa aktywność prostowników. Dwugłowe do głównych (jak Back Extension w docs/24). Brak badań wzrostu."
+ },
+ {
+  "name": "Single Leg Glute Bridge",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "secondaryMuscles": []
+  },
+  "sources": [
+   "S2",
+   "L4-S30"
+  ],
+  "confidence": "jedno źródło (analogia)",
+  "note": "Spójnie z docs/24 Q3: bez dwugłowych."
+ },
+ {
+  "name": "Single Leg Hip Thrust",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "secondaryMuscles": []
+  },
+  "sources": [
+   "S2",
+   "S4"
+  ],
+  "confidence": "jedno źródło (analogia)",
+  "note": "Spójnie z docs/24 Q3: bez dwugłowych."
+ },
+ {
+  "name": "Smith Machine Hip Thrust",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "secondaryMuscles": []
+  },
+  "sources": [
+   "S2",
+   "S4"
+  ],
+  "confidence": "jedno źródło (analogia)",
+  "note": "Spójnie z docs/24 Q3: bez dwugłowych."
+ },
+ {
+  "name": "Sumo Deadlift (kettlebell)",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "group": "plecy"
+  },
+  "sources": [
+   "S16"
+  ],
+  "confidence": "umiarkowane (analogia)",
+  "note": "Decyzja 04.10: zostaje obok Sumo Squat (hantel). Grupa „pośladki” niespójna z Sumo Deadlift (plecy) — ujednolicić."
+ },
+ {
+  "name": "Vertical Swing",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Kettlebell Swing",
+  "fixes": {},
+  "sources": [
+   "S24",
+   "L4-S29"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Swing hantlem nad głowę z podskokiem — Kettlebell Swing już dopuszcza hantel; scalić."
+ },
+ {
+  "name": "Back Squat",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "secondaryMuscles": [
+    "pośladki"
+   ]
+  },
+  "sources": [
+   "S1",
+   "S2",
+   "S38",
+   "S4",
+   "S5",
+   "S6",
+   "L4-S6"
+  ],
+  "confidence": "mocne",
+  "note": "docs/24 (2.1): usunąć dwugłowe z pomocniczych (S1, S2 MRI). Wchłania Narrow/Wide Stance (L4-S6: „stance width … do not significantly affect muscle activation”). hamstrings 0,5 w muscleLoad — kandydat 0,25 (docs/24 Q4, otwarte)."
+ },
+ {
+  "name": "Box Squat",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "S1",
+   "S2",
+   "S6"
+  ],
+  "confidence": "umiarkowane (analogia)",
+  "note": "Bez zmian (docs/24). Sprzęt OK."
+ },
+ {
+  "name": "Front Squat",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "S1",
+   "S2",
+   "S33",
+   "L4-S11",
+   "L4-S12"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Bez zmian. L4-S11: „The front squat was as effective as the back squat in terms of overall muscle recruitment”; L4-S12: więcej obszernego przyśrodkowego. Wchłania Frankenstein Squat i Front Barbell Squat to a Bench."
+ },
+ {
+  "name": "Goblet Squat",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "S1",
+   "S2",
+   "S6"
+  ],
+  "confidence": "umiarkowane (analogia)",
+  "note": "Bez zmian; [db|kb] OK."
+ },
+ {
+  "name": "Hack Squat",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "S1",
+   "S2",
+   "S6"
+  ],
+  "confidence": "umiarkowane (analogia)",
+  "note": "Bez zmian. Wchłania Narrow Stance Hack Squat."
+ },
+ {
+  "name": "Leg Press",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "S3",
+   "S4",
+   "S6",
+   "L4-S9"
+  ],
+  "confidence": "mocne",
+  "note": "Bez zmian. Wchłania Narrow Stance Leg Press (L4-S9: rozstaw zmienia głównie siły w kolanie i aktywność dwugłowych, nie czworogłowych)."
+ },
+ {
+  "name": "Przysiad z pasem (linki)",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "S1",
+   "S2",
+   "S18",
+   "L4-S14",
+   "L4-S15"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Bez zmian. L4-S15: belt squat — podobna praca czworogłowych, mniej pośladków i prostowników; L4-S14: mniej pośladka wielkiego."
+ },
+ {
+  "name": "Wall Sit",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "S35"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Bez zmian; miara czas OK."
+ },
+ {
+  "name": "Heaving Snatch Balance",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Snatch Balance",
+  "fixes": {},
+  "sources": [
+   "L4-S27"
+  ],
+  "confidence": "jedno źródło",
+  "note": "L4-S27: „a variation of the snatch balance in which the feet remain planted” — wariant ustawienia stóp."
+ },
+ {
+  "name": "Kettlebell Thruster",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L4-S11",
+   "S6"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Dwa kettle (per_dumbbell, implements 2) — OK; partie jak Thruster (hantle)."
+ },
+ {
+  "name": "Snatch Balance",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "secondaryMuscles": [
+    "pośladki",
+    "barki"
+   ]
+  },
+  "sources": [
+   "L4-S27",
+   "L4-S13"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Uznane (L4-S27). Pomocnicze spójnie z Overhead Squat (pośladki + barki zamiast barki + plecy)."
+ },
+ {
+  "name": "Thruster (hantle)",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "S6",
+   "S15",
+   "L4-S11"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Przysiad przedni + wyciskanie; partie OK (analogia: przysiad przedni i wyciskanie nad głowę, docs/24)."
+ },
+ {
+  "name": "Band Squat",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L4-S29"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Przysiad z gumą; miara powtórzenia OK."
+ },
+ {
+  "name": "Barbell Hack Squat",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "secondaryMuscles": [
+    "pośladki"
+   ]
+  },
+  "sources": [
+   "S1",
+   "S2"
+  ],
+  "confidence": "brak źródła — uproszczenie (analogia)",
+  "note": "Przysiad ze sztangą za nogami. Usunąć „przedramiona” z pomocniczych — chwyt nie jest partią pomocniczą w martwych ciągach (docs/24); forearms 0,5 zostaje w obciążeniu."
+ },
+ {
+  "name": "Belt Squat Machine",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L4-S14",
+   "L4-S15"
+  ],
+  "confidence": "umiarkowane",
+  "note": "L4-S14, L4-S15: czworogłowe jak w przysiadzie, mniej pośladków — partie OK."
+ },
+ {
+  "name": "Bodyweight Squat",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "S1",
+   "S2"
+  ],
+  "confidence": "brak źródła — uproszczenie (analogia)",
+  "note": "OK."
+ },
+ {
+  "name": "Box Squat with Bands",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "secondaryMuscles": [
+    "pośladki"
+   ]
+  },
+  "sources": [
+   "S1",
+   "S2",
+   "L4-S5"
+  ],
+  "confidence": "umiarkowane (analogia)",
+  "note": "Opór zmienny (L4-S5); osobno, bo ciężar = gryf. Spójnie z Back Squat (docs/24): bez dwugłowych w pomocniczych."
+ },
+ {
+  "name": "Box Squat with Chains",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "secondaryMuscles": [
+    "pośladki"
+   ]
+  },
+  "sources": [
+   "S1",
+   "S2",
+   "L4-S5"
+  ],
+  "confidence": "umiarkowane (analogia)",
+  "note": "Opór zmienny (L4-S5); osobno, bo ciężar = gryf. Spójnie z Back Squat (docs/24): bez dwugłowych w pomocniczych."
+ },
+ {
+  "name": "Reverse Band Box Squat",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "secondaryMuscles": [
+    "pośladki"
+   ]
+  },
+  "sources": [
+   "S1",
+   "S2",
+   "L4-S5"
+  ],
+  "confidence": "umiarkowane (analogia)",
+  "note": "Opór zmienny (L4-S5); osobno, bo ciężar = gryf. Spójnie z Back Squat (docs/24): bez dwugłowych w pomocniczych."
+ },
+ {
+  "name": "Reverse Band Power Squat",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "secondaryMuscles": [
+    "pośladki"
+   ]
+  },
+  "sources": [
+   "S1",
+   "S2",
+   "L4-S5"
+  ],
+  "confidence": "umiarkowane (analogia)",
+  "note": "Opór zmienny (L4-S5); osobno, bo ciężar = gryf. Spójnie z Back Squat (docs/24): bez dwugłowych w pomocniczych."
+ },
+ {
+  "name": "Squat with Bands",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "secondaryMuscles": [
+    "pośladki"
+   ]
+  },
+  "sources": [
+   "S1",
+   "S2",
+   "L4-S5"
+  ],
+  "confidence": "umiarkowane (analogia)",
+  "note": "Opór zmienny (L4-S5); osobno, bo ciężar = gryf. Spójnie z Back Squat (docs/24): bez dwugłowych w pomocniczych."
+ },
+ {
+  "name": "Squat with Chains",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "secondaryMuscles": [
+    "pośladki"
+   ]
+  },
+  "sources": [
+   "S1",
+   "S2",
+   "L4-S5"
+  ],
+  "confidence": "umiarkowane (analogia)",
+  "note": "Opór zmienny (L4-S5); osobno, bo ciężar = gryf. Spójnie z Back Squat (docs/24): bez dwugłowych w pomocniczych."
+ },
+ {
+  "name": "Cable Squat",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "requires": [
+    [
+     "cable.low"
+    ]
+   ]
+  },
+  "sources": [
+   "S1",
+   "S2"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Wymaganie dwóch wyciągów zawęża dostępność — wystarczy dolny wyciąg z drążkiem (precedens: RDL (hantle/linki), cables 2 tylko na stacji)."
+ },
+ {
+  "name": "Dip Belt Squat",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "secondaryMuscles": [
+    "pośladki"
+   ]
+  },
+  "sources": [
+   "S1",
+   "S2",
+   "L4-S15"
+  ],
+  "confidence": "umiarkowane (analogia)",
+  "note": "Belt squat z pasem i talerzami na podwyższeniach. Przywodziciele z pomocniczych usunąć — niespójne z Back Squat i decyzją 04.10 (docs/24 Q1)."
+ },
+ {
+  "name": "Double Kettlebell Front Squat",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L4-S11"
+  ],
+  "confidence": "brak źródła — uproszczenie (analogia)",
+  "note": "Jak przysiad przedni; OK."
+ },
+ {
+  "name": "Dumbbell Squat",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "secondaryMuscles": [
+    "pośladki"
+   ]
+  },
+  "sources": [
+   "S1",
+   "S2"
+  ],
+  "confidence": "umiarkowane (analogia)",
+  "note": "Przywodziciele z pomocniczych usunąć (spójność z Back Squat, docs/24 Q1). Wchłania Dumbbell Squat to a Bench."
+ },
+ {
+  "name": "Dumbbell Squat to a Bench",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Dumbbell Squat",
+  "fixes": {},
+  "sources": [
+   "L4-S29"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Ławka tylko jako znacznik głębokości."
+ },
+ {
+  "name": "Frankenstein Squat",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Front Squat",
+  "fixes": {},
+  "sources": [
+   "L4-S27",
+   "L4-S29"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Ćwiczenie pozycji (lekki przysiad przedni bez rąk); brak w L4-S27."
+ },
+ {
+  "name": "Front Barbell Squat to a Bench",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Front Squat",
+  "fixes": {},
+  "sources": [
+   "L4-S29"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Przysiad przedni z ławką jako znacznikiem głębokości."
+ },
+ {
+  "name": "Jefferson Squat",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "secondaryMuscles": [
+    "pośladki"
+   ]
+  },
+  "sources": [
+   "L4-S29"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Przywodziciele z pomocniczych usunąć (spójność, docs/24 Q1)."
+ },
+ {
+  "name": "Jerk Dip Squat",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L4-S27"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Uznane (L4-S27 „Jerk Dip Squat”). OK."
+ },
+ {
+  "name": "Landmine Squat",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "S1",
+   "S2"
+  ],
+  "confidence": "brak źródła — uproszczenie (analogia)",
+  "note": "OK."
+ },
+ {
+  "name": "Lying Machine Squat",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L4-S29"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Rzadka maszyna; „maszyna dźwigniowa” jako przybliżenie. OK."
+ },
+ {
+  "name": "Narrow Stance Hack Squat",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Hack Squat",
+  "fixes": {},
+  "sources": [
+   "L4-S6",
+   "L4-S8",
+   "L4-S9"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Rozstaw stóp to technika, nie ćwiczenie."
+ },
+ {
+  "name": "Narrow Stance Leg Press",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Leg Press",
+  "fixes": {},
+  "sources": [
+   "L4-S9"
+  ],
+  "confidence": "jedno źródło",
+  "note": "L4-S9: rozstaw zmienia głównie siły w kolanie i dwugłowe przy wysokim ustawieniu."
+ },
+ {
+  "name": "Narrow Stance Squats",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Back Squat",
+  "fixes": {},
+  "sources": [
+   "L4-S6",
+   "L4-S8",
+   "L4-S7"
+  ],
+  "confidence": "umiarkowane",
+  "note": "L4-S8: „stance width does not cause isolation within the quadriceps”."
+ },
+ {
+  "name": "One-Arm Overhead Kettlebell Squat",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L4-S13"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "OK (jednostronnie)."
+ },
+ {
+  "name": "Overhead Squat",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L4-S13",
+   "L4-S27"
+  ],
+  "confidence": "jedno źródło",
+  "note": "L4-S13: mniejsza aktywność dolnych kończyn niż w back squat, mięśnie brzucha tylko nieznacznie wyżej. Partie OK."
+ },
+ {
+  "name": "Pendulum Squat",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "S3"
+  ],
+  "confidence": "brak źródła — uproszczenie (analogia)",
+  "note": "Analogia do Hack Squat; OK."
+ },
+ {
+  "name": "Smith Machine Leg Press",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L4-S29"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Improwizowana suwnica (stopy na gryfie Smitha) — asekuracja konieczna; NISZOWE."
+ },
+ {
+  "name": "Smith Machine Squat",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L4-S10"
+  ],
+  "confidence": "jedno źródło",
+  "note": "L4-S10: mniejsza aktywność łydek, dwugłowych i VM niż w wolnym przysiadzie, wzorzec ten sam — partie OK."
+ },
+ {
+  "name": "Sumo Squat (hantel)",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L4-S7",
+   "L4-S8"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Szeroki rozstaw → więcej pośladka wielkiego (L4-S7) i mięśni przyśrodkowych (L4-S8) — pośladki główne OK."
+ },
+ {
+  "name": "Wide Stance Barbell Squat",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Back Squat",
+  "fixes": {},
+  "sources": [
+   "L4-S6",
+   "L4-S7",
+   "L4-S8"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Rozstaw to technika (L4-S6); więcej pośladka (L4-S7) — za mało na osobne ćwiczenie w dzienniku."
+ },
+ {
+  "name": "Zercher Squat",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L4-S11"
+  ],
+  "confidence": "brak źródła — uproszczenie (analogia)",
+  "note": "Gryf w zgięciu łokci; OK."
+ },
+ {
+  "name": "Bulgarian Split Squat (hantle)",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "secondaryMuscles": []
+  },
+  "sources": [
+   "S26",
+   "S18",
+   "S6",
+   "L4-S20"
+  ],
+  "confidence": "umiarkowane",
+  "note": "docs/24: usunąć dwugłowe z pomocniczych. Uwaga: L4-S20 — wysoka koaktywacja dwugłowej w RFESS (76% MVIC) — sprzeczność EMG (pytanie otwarte), muscleLoad bez zmian."
+ },
+ {
+  "name": "Lunges (hantle)",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "S6",
+   "S18",
+   "S26"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Bez zmian (docs/24)."
+ },
+ {
+  "name": "Pistol Squat",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "S18",
+   "L4-S16",
+   "L4-S17",
+   "L4-S19"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Bez zmian. Przysiad jednonóż — wysoka aktywność pośladków (L4-S16, L4-S17, L4-S19). Wchłania Kettlebell Pistol Squat (+kg)."
+ },
+ {
+  "name": "Reverse Lunge",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "S6",
+   "S18",
+   "S26"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Bez zmian (docs/24, R3)."
+ },
+ {
+  "name": "Step Up",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "S18",
+   "S35",
+   "L4-S18"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Bez zmian. L4-S18: step-up — najwyższa aktywność pośladka wielkiego. Wchłania Step-up with Knee Raise."
+ },
+ {
+  "name": "Walking Lunges",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "S6",
+   "S18",
+   "S26"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Bez zmian (docs/24, R3)."
+ },
+ {
+  "name": "Barbell Side Split Squat",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "secondaryMuscles": []
+  },
+  "sources": [
+   "L4-S28"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Wykrok boczny ze sztangą — przywodziciele z pomocniczych usunąć dla spójności z Lateral Lunge (docs/24 Q1)."
+ },
+ {
+  "name": "Barbell Step Up",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L4-S18"
+  ],
+  "confidence": "jedno źródło (analogia)",
+  "note": "OK."
+ },
+ {
+  "name": "Barbell Walking Lunge",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "secondaryMuscles": []
+  },
+  "sources": [
+   "S26"
+  ],
+  "confidence": "umiarkowane (analogia)",
+  "note": "Przywodziciele z pomocniczych usunąć (spójność z Walking Lunges, Q1)."
+ },
+ {
+  "name": "Cossack Squat",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Nie znaleziono przeczytanego źródła; mapowanie jak Lateral Lunge (uproszczenie). Kandydat do przywodzicieli (docs/24 Q1)."
+ },
+ {
+  "name": "Curtsy Lunge",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L4-S28"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Uznane (ACE: „curtsy lunge”, L4-S28). R3 — OK."
+ },
+ {
+  "name": "Elevated Back Lunge",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "secondaryMuscles": []
+  },
+  "sources": [
+   "S26"
+  ],
+  "confidence": "brak źródła — uproszczenie (analogia)",
+  "note": "Wykrok w tył z podwyższenia (deficyt). Przywodziciele z pomocniczych usunąć (Q1)."
+ },
+ {
+  "name": "Kettlebell Pistol Squat",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Pistol Squat",
+  "fixes": {},
+  "sources": [
+   "L4-S29"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Pistol z kettlem jako przeciwwagą = Pistol Squat z dociążeniem (+kg)."
+ },
+ {
+  "name": "Lateral Lunge",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L4-S28"
+  ],
+  "confidence": "jedno źródło",
+  "note": "ACE (L4-S28): „Lateral Lunge”, cel „Butt/Hips, Legs - Thighs”, hantle. OK."
+ },
+ {
+  "name": "Lunge Pass Through",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "S26"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "OK."
+ },
+ {
+  "name": "Lunge Sprint",
+  "verdict": "USUNĄĆ",
+  "scope": "USUNĄĆ",
+  "fixes": {},
+  "sources": [
+   "L4-S29"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Nazwa nieuznana (obciążone wyskoki w wykroku w suwnicy Smitha); brak w przeczytanych źródłach; decyzja produktowa — usunąć (istnieje Split Jump)."
+ },
+ {
+  "name": "Lunges (sztanga)",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "S26",
+   "S6"
+  ],
+  "confidence": "umiarkowane (analogia)",
+  "note": "OK."
+ },
+ {
+  "name": "One Leg Barbell Squat",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "name": "Bulgarian Split Squat (sztanga)"
+  },
+  "sources": [
+   "S6",
+   "L4-S20"
+  ],
+  "confidence": "umiarkowane",
+  "note": "To przysiad bułgarski ze sztangą (opis L4-S29; RFESS w L4-S20) — ustalona nazwa „Bulgarian Split Squat” (S6)."
+ },
+ {
+  "name": "Single Leg Press",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "S3"
+  ],
+  "confidence": "brak źródła — uproszczenie (analogia)",
+  "note": "OK (jednostronnie)."
+ },
+ {
+  "name": "Single-Leg High Box Squat",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L4-S16"
+  ],
+  "confidence": "brak źródła — uproszczenie (analogia)",
+  "note": "OK."
+ },
+ {
+  "name": "Slider Reverse Lunge",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "S26"
+  ],
+  "confidence": "brak źródła — uproszczenie (analogia)",
+  "note": "Dodane decyzją 04.10 (krok b). OK (konwencja ślizgaczy: inne/powtórzenia)."
+ },
+ {
+  "name": "Smith Machine Pistol Squat",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L4-S16"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "OK."
+ },
+ {
+  "name": "Smith Machine Single-Leg Split Squat",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "name": "Smith Machine Bulgarian Split Squat"
+  },
+  "sources": [
+   "L4-S20",
+   "S6"
+  ],
+  "confidence": "umiarkowane (analogia)",
+  "note": "Przysiad bułgarski w suwnicy Smitha — nazwa ustalona „Bulgarian Split Squat” (S6)."
+ },
+ {
+  "name": "Split Squat",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L4-S20",
+   "S6"
+  ],
+  "confidence": "umiarkowane",
+  "note": "L4-S20: split squat, przysiad jednonóż i RFESS — podobny bodziec dla pośladka i czworogłowych. OK."
+ },
+ {
+  "name": "Split Squat (linki)",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L4-S20"
+  ],
+  "confidence": "umiarkowane (analogia)",
+  "note": "OK."
+ },
+ {
+  "name": "Step-up with Knee Raise",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Step Up",
+  "fixes": {},
+  "sources": [
+   "L4-S18"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Step Up z wymachem kolana — wariant wykonania."
+ },
+ {
+  "name": "Suspended Split Squat",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L4-S20"
+  ],
+  "confidence": "brak źródła — uproszczenie (analogia)",
+  "note": "Noga tylna w taśmach TRX. OK."
+ }
+]
