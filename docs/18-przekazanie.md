@@ -205,3 +205,5 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
   poprawkami na produkcję”. **Zgoda z góry na scalenie do `main` i build TestFlight** po: falach napraw 1–2, researchu biblioteki i grafik
   (wdrożonych), pełnym verify, zielonym E2E i audycie kontrolnym z naprawionymi znaleziskami. Dodanie buildu do grupy testerów zewnętrznych
   i wysłanie do beta review robi właściciel w App Store Connect.
+- 08.10.2026 (ok. 21:45): właściciel — po wydaniu 1 **kolejny pełny audyt, poprawki i kolejne wydanie** (ta sama droga: verify, E2E,
+  scalenie do `main`, TestFlight); gdy audyt nic nie znajdzie — stop po audycie i raport.
