@@ -201,3 +201,7 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
   (podgląd „jak trening” ze „Start”, zmiany dopiero po „Edytuj”) — to samo ryzyko przypadkowej zmiany, a szablon otwiera się najczęściej.
   Ekrany konfiguracji (miejsca, gumy, ustawienia, plan tygodnia) zostają edytowalne od razu — wchodzi się do nich, żeby coś zmienić.
   Odrzucone: przytrzymanie, by edytować (niewidoczne), osobny ekran bez szkicu (zmiany zapisywane od razu — to samo ryzyko).
+- 08.10.2026 (ok. 21:35): właściciel — „po wykonaniu wszystkiego, co zaplanowałeś po wznowieniu, możesz wdrożyć nową wersję ze wszystkimi
+  poprawkami na produkcję”. **Zgoda z góry na scalenie do `main` i build TestFlight** po: falach napraw 1–2, researchu biblioteki i grafik
+  (wdrożonych), pełnym verify, zielonym E2E i audycie kontrolnym z naprawionymi znaleziskami. Dodanie buildu do grupy testerów zewnętrznych
+  i wysłanie do beta review robi właściciel w App Store Connect.
