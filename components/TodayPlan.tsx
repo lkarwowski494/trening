@@ -46,7 +46,7 @@ export function TodayPlan() {
           <Muted style={{ fontSize: 12, fontFamily: F.semibold, textTransform: 'uppercase', letterSpacing: 0.5 }}>{deload ? `${t('Dziś')} · ${t('Tydzień deload')}` : t('Dziś')}</Muted>
           <Txt style={{ fontFamily: F.semibold, fontSize: 18 }}>{title}</Txt>
           {cur.status === 'other' ? <Muted style={{ fontSize: 13 }}>{t('Zrobiony inny trening: {name}', { name: names(today) })}</Muted> : null}
-          {tpl && pending(cur) && !tpl.items.length ? <Pressable accessibilityRole="link" onPress={() => router.push(`/template/${tpl.id}`)}><Muted style={{ fontSize: 13 }}>{t('Szablon jest pusty — dodaj ćwiczenia')}</Muted></Pressable> : null}
+          {tpl && pending(cur) && !tpl.items.length ? <Pressable accessibilityRole="link" onPress={() => router.push(`/template/${tpl.id}?edit=1`)}><Muted style={{ fontSize: 13 }}>{t('Szablon jest pusty — dodaj ćwiczenia')}</Muted></Pressable> : null}
         </View>
         {canStart ? <Btn small kind="primary" title={t('Start')} accessibilityLabel={t('Start zaplanowanego treningu: {name}', { name: tpl!.name })} onPress={() => startTemplate(tpl!)} />
           : !plan ? <Btn small title={t('Plan tygodnia')} onPress={() => router.push('/plan')} /> : null}

@@ -1,7 +1,7 @@
 /* Warstwa B planu testów (09): przepływy na prawdziwych ekranach. */
 import * as store from '@/lib/store';
 import * as timer from '@/lib/timer';
-import { renderApp, tap, type, flushAll, screen, go, act, openCard, swipeDelete } from './app';
+import { renderApp, tap, type, flushAll, screen, go, act, openCard, swipeDelete, startEdit, saveEdit, tplDraft } from './app';
 import { ex, pressAlert, addWorkout, seedWithDemo } from './helpers';
 
 jest.setTimeout(30000);
@@ -119,13 +119,15 @@ test('B9 zakończenie bez serii → odrzucenie, bez pustej sesji', async () => {
 
 test('B10 edytor szablonu: „+ seria / − seria” (05.10.2026: serie jako wiersze, dawne pole „serie”), potwierdzenie usunięcia', async () => {
   await renderApp({ saved: seedWithDemo() }); const tpl = store.getState().templates[0];
-  await go(`/template/${tpl.id}`); await screen.findByText('Duplikuj'); await openCard(0); const n0 = tpl.items[0].sets;
-  await tap(screen.getAllByText('+ seria')[0]); expect(tpl.items[0].sets).toBe(n0 + 1);
+  await go(`/template/${tpl.id}`); await screen.findByText('Duplikuj'); await startEdit(); await openCard(0); /* edycja na żądanie (decyzja właściciela 08.10.2026): „Edytuj” → szkic → „Zapisz” */
+  const d = tplDraft(tpl.id); const n0 = d.items[0].sets;
+  await tap(screen.getAllByText('+ seria')[0]); expect(d.items[0].sets).toBe(n0 + 1);
   /* 07.10.2026 wieczór: „− seria” i przycisk usuwania zastąpione przesunięciem w lewo (z potwierdzeniem) */
-  await swipeDelete(new RegExp(`^Usuń serię ${n0 + 1} — `)); expect(tpl.items[0].sets).toBe(n0 + 1); pressAlert('Usunąć serię?', 'Usuń'); await flushAll(); expect(tpl.items[0].sets).toBe(n0);
-  const n = tpl.items.length;
-  await swipeDelete(/^Usuń ćwiczenie: /); expect(tpl.items.length).toBe(n);
-  pressAlert('Usunąć z szablonu?', 'Usuń'); await flushAll(); expect(tpl.items.length).toBe(n - 1);
+  await swipeDelete(new RegExp(`^Usuń serię ${n0 + 1} — `)); expect(d.items[0].sets).toBe(n0 + 1); pressAlert('Usunąć serię?', 'Usuń'); await flushAll(); expect(d.items[0].sets).toBe(n0);
+  const n = d.items.length;
+  await swipeDelete(/^Usuń ćwiczenie: /); expect(d.items.length).toBe(n);
+  pressAlert('Usunąć z szablonu?', 'Usuń'); await flushAll(); expect(d.items.length).toBe(n - 1); expect(tpl.items.length).toBe(n); /* dane bez zmian do „Zapisz” */
+  await saveEdit(); expect(tpl.items.length).toBe(n - 1);
 });
 
 test('B11 usunięcie ćwiczenia z historią: znika z listy, historia zna nazwę', async () => {

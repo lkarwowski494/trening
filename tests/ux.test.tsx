@@ -5,7 +5,7 @@ import * as timer from '@/lib/timer';
 import { dark, light } from '@/lib/theme';
 import { LIB, metricFor, type Equipment } from '@/lib/seed';
 import { rowLayout } from '@/components/ActiveWorkout';
-import { renderApp, tap, flushAll, screen, go, act, type, openCard, swipeDelete } from './app';
+import { renderApp, tap, flushAll, screen, go, act, type, openCard, swipeDelete, startEdit } from './app';
 import { ex, pressAlert, seedWithDemo } from './helpers';
 
 jest.setTimeout(60000);
@@ -97,7 +97,7 @@ test('C7 akcje niszczące wymagają potwierdzenia', async () => {
   /* 07.10.2026 wieczór: usuwanie przesunięciem w lewo — każde z potwierdzeniem */
   await go('/templates'); await flushAll(10);
   await expectConfirm(() => swipeDelete(`Usuń szablon: ${s.templates[0].name}`), 'Usunąć szablon?'); expect(s.templates.length).toBe(nTpl);
-  await go(`/template/${s.templates[0].id}`); await flushAll(10);
+  await go(`/template/${s.templates[0].id}`); await flushAll(10); await startEdit();
   await expectConfirm(() => swipeDelete(/^Usuń ćwiczenie: /), 'Usunąć z szablonu?');
   await go('/exercises'); await flushAll(10);
   await expectConfirm(() => swipeDelete('Usuń z biblioteki: Back Squat'), 'Usunąć ćwiczenie?'); expect(ex('Back Squat').archived).toBeFalsy();

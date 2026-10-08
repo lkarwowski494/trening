@@ -54,7 +54,7 @@ export function DayPanel({ day }: { day: string }) {
   else if (changed) lines.push(<Muted key="plan" style={{ fontSize: 13 }}>{t('zmiana planu')}</Muted>);
   if (activeHere) lines.push(<Muted key="active" style={{ fontSize: 13 }}>{t('Trening w toku')}</Muted>);
   const empty = !!tpl && !tpl.items.length && pending(st);
-  if (empty) lines.push(<Pressable key="empty" accessibilityRole="link" onPress={() => router.push(`/template/${tpl!.id}`)}><Muted style={{ fontSize: 13 }}>{t('Szablon jest pusty — dodaj ćwiczenia')}</Muted></Pressable>);
+  if (empty) lines.push(<Pressable key="empty" accessibilityRole="link" onPress={() => router.push(`/template/${tpl!.id}?edit=1`)}><Muted style={{ fontSize: 13 }}>{t('Szablon jest pusty — dodaj ćwiczenia')}</Muted></Pressable>);
 
   /* ---- akcje: główne (najwyżej 3) i „Więcej opcji” ---- */
   const primary: Act[] = []; const extra: Act[] = [];

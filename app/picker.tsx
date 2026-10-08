@@ -8,6 +8,7 @@ import { afterSwap } from '@/components/ActiveWorkout';
 import { availability, capsOf, missingLabel, type Availability } from '@/lib/equipment';
 import { uid } from '@/lib/seed';
 import { draftAddExercise, draftOf, draftSwapExercise, swapTargetOk } from '@/lib/edit';
+import { templateForEdit } from '@/lib/draft';
 import { parseSwapTarget } from '@/lib/swap';
 import { GROUPS, GROUP_TO_MUSCLE, hasReps, type Exercise } from '@/lib/seed';
 import { t, exName, locale, fold } from '@/lib/i18n';
@@ -34,7 +35,7 @@ export default function PickerScreen() {
   const swapBlk = swapW?.exercises.find(x => x.id === swapId); const swapEx = swapBlk ? exById(swapBlk.exerciseId) : undefined;
   /* D6 (H3): w edytorze — ta sama reguła co przepięcie (swapTargetOk: blok usuniętego ćwiczenia bez filtra miary) */
   const swapOk = (e: Exercise) => !sw || (swapDraft && swapBlk ? swapTargetOk(swapDraft, swapBlk, e, e.archived === true /* „Przywróć …” jak w treningu (backlog 04.10) */) : !!swapEx && e.id !== swapEx.id && (e.metric ?? 'weight_reps') === (swapEx.metric ?? 'weight_reps'));
-  const ctx = target === 'active' || sw?.kind === 'active' ? locationById(st.active?.locationId) : sw?.kind === 'edit' ? locationById(swapW?.locationId) : target.startsWith('template:') ? locationById(st.templates.find(x => x.id === target.slice(9))?.locationId)
+  const ctx = target === 'active' || sw?.kind === 'active' ? locationById(st.active?.locationId) : sw?.kind === 'edit' ? locationById(swapW?.locationId) : target.startsWith('template:') ? locationById(templateForEdit(target.slice(9))?.locationId)
     : target.startsWith('edit:') ? locationById(draftOf(target.slice(5))?.w.locationId) : undefined;
   const [allOn, setAllOn] = useState(st.settings.pickerShowAll); const showAll = !ctx || allOn; const caps = ctx ? capsOf(ctx) : null; const av = new Map<string, Availability>();
   const avail = (e: Exercise) => { if (!caps) return null; let a = av.get(e.id); if (!a) { a = availability(e, ctx, caps); av.set(e.id, a); } return a; };
@@ -46,7 +47,7 @@ export default function PickerScreen() {
     else if (sw?.kind === 'active') { const r = swapBlock(swapId, ex.id); if (r) afterSwap(r.goneSetIds); }
     else if (sw?.kind === 'edit') draftSwapExercise(sw.key, swapId, ex.id);
     else if (target.startsWith('edit:')) draftAddExercise(target.slice(5), ex);
-    else if (target?.startsWith('template:')) { const tpl = st.templates.find(x => x.id === target.slice(9)); tpl?.items.push({ id: uid(), exerciseId: ex.id, sets: 3, repMin: null, repMax: null, /* decyzja 05.10.2026: zakres opcjonalny — dodawany w szablonie */ restSec: null, startWeight: '', targetSec: '', groupId: null }); save(tpl); }
+    else if (target?.startsWith('template:')) { const tpl = templateForEdit(target.slice(9)); /* edycja na żądanie: do szkicu szablonu (lib/draft.ts) */ tpl?.items.push({ id: uid(), exerciseId: ex.id, sets: 3, repMin: null, repMax: null, /* decyzja 05.10.2026: zakres opcjonalny — dodawany w szablonie */ restSec: null, startWeight: '', targetSec: '', groupId: null }); save(tpl); }
     if (router.canGoBack()) router.back(); else router.replace('/');
   };
   let last = ''; const rows: React.ReactNode[] = [];

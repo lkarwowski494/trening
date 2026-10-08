@@ -453,7 +453,14 @@ function bump(hist: boolean) { rev++; if (hist) histRev++; }
  * Zapis: natychmiast w pamięci + zdebouncowany zapis do SQLite (300 ms). Przekazane encje dostają updatedAt = teraz.
  * Zmiana samego treningu w toku (save(active)) nie unieważnia cache historii.
  */
+/** Edycja na żądanie (decyzja właściciela 08.10.2026, docs/18): szkice ćwiczenia i szablonu (lib/draft.ts) to kopie poza stanem — `save(szkic)`
+ * tylko odświeża ekran (bez zapisu do bazy, bez znacznika zmiany i bez unieważniania cache historii); dane zmienia dopiero „Zapisz”. */
+const draftObjs = new WeakSet<object>();
+export function markDraft<T extends object>(x: T): T { draftObjs.add(x); return x; }
+export const isDraftObj = (x: unknown): boolean => !!x && typeof x === 'object' && draftObjs.has(x as object);
 export function save(...touched: (Base | null | undefined)[]) {
+  if (touched.length && touched.every(x => x && draftObjs.has(x))) { rev++; emit(); return; }
+  touched = touched.filter(x => !x || !draftObjs.has(x));
   const now = Date.now(); touched.forEach(x => { if (x) x.updatedAt = now; });
   const onlyActive = touched.length > 0 && touched.every(x => x && S && x === S.active);
   bump(!onlyActive); if (!onlyActive) fullDirty = true;

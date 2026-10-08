@@ -57,3 +57,10 @@ export const swipeDelete = async (label: string | RegExp, nth = 0) => {
 /** Etykiety akcji „usuń” widoczne na ekranie (do sprawdzeń, że wiersz da się usunąć gestem). */
 export const deleteActions = (): string[] => screen.UNSAFE_root.findAll((n: { props: Record<string, any> }) => typeof n.props.onAccessibilityAction === 'function' && Array.isArray(n.props.accessibilityActions))
   .flatMap((n: { props: Record<string, any> }) => n.props.accessibilityActions.filter((a: { name: string }) => a.name === 'delete').map((a: { label: string }) => a.label)).filter((v: string, i: number, a: string[]) => a.indexOf(v) === i);
+/** Edycja na żądanie (decyzja właściciela 08.10.2026, docs/18): ekran szablonu i ćwiczenia otwiera się w podglądzie — `startEdit` tapuje „Edytuj”
+ * (gdy ekran jest w podglądzie), `saveEdit` — „Zapisz” w nagłówku (zmiany trafiają do danych dopiero wtedy). */
+export const startEdit = async () => { const { t } = require('@/lib/i18n'); const b = screen.queryByLabelText(t('Edytuj szablon')) ?? screen.queryByLabelText(t('Edytuj ćwiczenie')); if (b) { await tap(b); await flushAll(5); } };
+export const saveEdit = async () => { const { t } = require('@/lib/i18n'); const b = screen.queryByLabelText(t('Zapisz szablon')) ?? screen.queryByLabelText(t('Zapisz ćwiczenie')); if (!b) throw new Error('saveEdit: brak „Zapisz” — ekran nie jest w edycji'); await tap(b); await flushAll(5); };
+/** Szkic w trakcie edycji (lib/draft.ts) — do sprawdzania wpisów przed „Zapisz”. */
+export const tplDraft = (id: string) => require('@/lib/draft').objDraft('template', id) as import('@/lib/seed').Template;
+export const exDraft = (id: string) => require('@/lib/draft').objDraft('exercise', id) as import('@/lib/seed').Exercise;

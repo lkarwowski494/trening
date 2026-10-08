@@ -12,7 +12,7 @@ import * as timer from '@/lib/timer';
 import { addLocation } from '@/lib/locations';
 import { SwipeRow, swipeDecision, SWIPE } from '@/components/SwipeRow';
 import { fresh, ex, addWorkout, pressAlert, saved } from './helpers';
-import { renderApp, flushAll, screen, go, act, swipeDelete, deleteActions, openCard } from './app';
+import { renderApp, flushAll, screen, go, act, swipeDelete, deleteActions, openCard, startEdit, tplDraft } from './app';
 
 jest.setTimeout(60000);
 const S = () => store.getState();
@@ -68,8 +68,8 @@ const PLACES: Place[] = [
   { name: 'guma', setup: async () => { await boot(); await go('/more/bands'); await flushAll(10); }, label: /^Usuń gumę: /, title: 'Usunąć gumę?', count: () => S().bands.length },
   { name: 'miejsce (inne niż główne)', setup: async () => { await boot(() => { addLocation('home'); addLocation('gym'); }); await go('/more/locations'); await flushAll(10); }, label: /^Usuń miejsce: /, title: 'Usunąć miejsce?', count: () => S().settings.locations.length },
   { name: 'talerz (opis sprzętu)', setup: async () => { let id = ''; await boot(() => { id = addLocation('gym').id; }); await go(`/more/location/${id}`); await flushAll(10); const { expandEquip } = require('./app'); await expandEquip(); }, label: /^Usuń talerz — Sztanga/, title: 'Usunąć talerz?', count: () => S().settings.locations[0].equipment.find(e => e.item === 'barbell')!.load!.kind === 'plates' ? (S().settings.locations[0].equipment.find(e => e.item === 'barbell')!.load as { plates: unknown[] }).plates.length : -1 },
-  { name: 'pozycja szablonu', setup: async () => { let id = ''; await boot(() => { id = tplWith().id; }); await go(`/template/${id}`); await flushAll(10); }, label: 'Usuń ćwiczenie: Back Squat', title: 'Usunąć z szablonu?', count: () => S().templates[0].items.length },
-  { name: 'seria szablonu', setup: async () => { let id = ''; await boot(() => { id = tplWith().id; }); await go(`/template/${id}`); await flushAll(10); await openCard(0); }, label: 'Usuń serię 2 — Back Squat', title: 'Usunąć serię?', count: () => store.tplRows(S().templates[0].items[0]).length },
+  { name: 'pozycja szablonu', setup: async () => { let id = ''; await boot(() => { id = tplWith().id; }); await go(`/template/${id}`); await flushAll(10); await startEdit(); }, label: 'Usuń ćwiczenie: Back Squat', title: 'Usunąć z szablonu?', count: () => (tplDraft(S().templates[0].id) ?? S().templates[0]).items.length /* edycja na żądanie: szkic */ },
+  { name: 'seria szablonu', setup: async () => { let id = ''; await boot(() => { id = tplWith().id; }); await go(`/template/${id}`); await flushAll(10); await startEdit(); await openCard(0); }, label: 'Usuń serię 2 — Back Squat', title: 'Usunąć serię?', count: () => store.tplRows((tplDraft(S().templates[0].id) ?? S().templates[0]).items[0]).length },
   { name: 'ćwiczenie w treningu', setup: async () => { await boot(() => { store.startEmpty(); store.addExerciseToActive(ex('Back Squat')); store.addExerciseToActive(ex('Plank')); }); }, label: 'Usuń ćwiczenie: Back Squat', title: 'Usunąć z treningu?', count: () => S().active!.exercises.length },
   { name: 'seria w treningu', setup: async () => { await boot(() => { store.startEmpty(); store.addExerciseToActive(ex('Back Squat')); store.addSet(0); }); }, label: 'Usuń serię 2 — Back Squat', title: 'Usunąć serię?', count: () => S().active!.exercises[0].sets.length },
   { name: 'usunięte ćwiczenie w treningu', setup: async () => { await boot(() => { store.startEmpty(); store.addExerciseToActive(ex('Back Squat')); store.addExerciseToActive(ex('Plank')); S().active!.exercises[0].exerciseId = 'usuniete'; }); }, label: 'Usuń usunięte ćwiczenie z treningu', title: 'Usunąć z treningu?', count: () => S().active!.exercises.length },

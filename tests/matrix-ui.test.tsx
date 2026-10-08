@@ -13,7 +13,7 @@ import { LOAD_LIMITS } from '@/lib/loads';
 import { addLocation } from '@/lib/locations';
 import { t as tr, exName } from '@/lib/i18n';
 import { fresh, ex, addWorkout, pressAlert, withDemoTemplates } from './helpers';
-import { renderApp, flushAll, screen, go, tap, type, act, fireEvent, expandEquip, openCard, swipeDelete, deleteActions } from './app';
+import { renderApp, flushAll, screen, go, tap, type, act, fireEvent, expandEquip, openCard, swipeDelete, deleteActions, startEdit, exDraft } from './app';
 import { loc } from './locations-fixtures';
 
 /* Zgoda na powiadomienia sterowana z testu (global.__notifDenied) — reszta jak w tests/setup.js. */
@@ -262,8 +262,8 @@ describe('/exercise/[id]', () => {
   });
 
   test('pola: „Co logujesz w serii”, „jak robocza”, partie główne i pomocnicze; opis masy ciała', async () => {
-    await renderApp(); const id = ex('Bench Press (sztanga)').id; await go(`/exercise/${id}`); await flushAll(10);
-    const e = () => store.getState().exercises.find(x => x.id === id)!;
+    await renderApp(); const id = ex('Bench Press (sztanga)').id; await go(`/exercise/${id}`); await flushAll(10); await startEdit(); /* edycja na żądanie (decyzja właściciela 08.10.2026): „Edytuj” → szkic → „Zapisz” */
+    const e = () => exDraft(id);
     expect(screen.getByText('Co logujesz w serii')).toBeTruthy();
     await tap(byHint('ciężar + czas', 'Co logujesz w serii')); expect(e().metric).toBe('weight_time');
     await tap(byHint('ciężar + powtórzenia', 'Co logujesz w serii')); expect(e().metric).toBe('weight_reps');
@@ -290,7 +290,7 @@ describe('/exercise/[id]', () => {
 
   test('ćwiczenie z historią i w trwającym treningu: ostrzeżenie o przeliczeniu i dopisek w oknie usuwania; „Usuń” oznacza je w treningu', async () => {
     const saved = await prepared(() => { addWorkout(Date.now() - DAY, [['Back Squat', [{ weight: 100, reps: 5 }]]]); store.startEmpty(); store.addExerciseToActive(ex('Back Squat')); });
-    await renderApp({ saved }); const id = ex('Back Squat').id; await go(`/exercise/${id}`); await flushAll(10);
+    await renderApp({ saved }); const id = ex('Back Squat').id; await go(`/exercise/${id}`); await flushAll(10); await startEdit();
     expect(screen.getByText('Uwaga: zmiana sprzętu, trybu liczenia lub metryki przelicza też dawne treningi (objętość, rekordy, wykresy).')).toBeTruthy();
     expect(screen.queryByText('Usuń ćwiczenie')).toBeNull(); await go('/exercises'); await flushAll(10); await swipeDelete('Usuń z biblioteki: Back Squat'); /* 07.10.2026 wieczór: z listy, przesunięciem */
     expect(lastAlert()).toMatchObject({ title: 'Usunąć ćwiczenie?', msg: 'Zniknie z list i szablonów; historia, wykresy i eksport zostaną. W trwającym treningu zostanie oznaczone jako usunięte.' });
@@ -300,7 +300,7 @@ describe('/exercise/[id]', () => {
 
   test('język inny niż polski: „Wyświetlane jako: …” (przetłumaczona nazwa z biblioteki)', async () => {
     await renderApp({ locale: 'en' }); const e = ex('Bench Press (sztanga)'); expect(exName(e)).not.toBe(e.name);
-    await go(`/exercise/${e.id}`); await flushAll(10);
+    await go(`/exercise/${e.id}`); await flushAll(10); await startEdit();
     expect(screen.getByText(tr('Wyświetlane jako: {n}', { n: exName(e) }))).toBeTruthy();
     expect(screen.getByText(`Shown as: ${exName(e)}`)).toBeTruthy();
   });
@@ -627,13 +627,14 @@ describe('/template/[id], /reorder', () => {
       b.items[0].repMin = 8; b.items[0].repMax = 12; b.items[0].alternates = [{ locationId: g.id, exerciseId: ex('Machine Chest Press').id, restSec: null }];
       store.startFromTemplate(a); });
     await renderApp({ saved }); await go(`/template/${tplB}`); await flushAll(20);
+    await tap(screen.getByText('Trening w toku')); /* podgląd: Start przy treningu w toku z innego szablonu */
+    expect(lastAlert()).toMatchObject({ title: 'Trening w toku', msg: 'Najpierw zakończ albo anuluj bieżący trening.' });
+    await startEdit(); /* edycja na żądanie (decyzja właściciela 08.10.2026): „Edytuj” → szkic → „Zapisz” */
     expect(screen.getByText('Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✂ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.')).toBeTruthy();
     await openCard(0); await flushAll(5);
     /* MER-13 (audyt 0.10): opis jak prawdziwa podpowiedź („↑ spróbuj …”) */
     expect(screen.getByText('Zakres powtórzeń: 8–12 — gdy ostatnio wszystkie serie robocze miały co najmniej 12 powt., przy ćwiczeniu pojawi się podpowiedź „↑ spróbuj …”: większy ciężar albo powtórzenie więcej (poza tygodniem deload).')).toBeTruthy();
     expect(screen.getByText('Zamienniki')).toBeTruthy(); expect(screen.getByText(`📍 Siłownia: ${exName(ex('Machine Chest Press'))}`)).toBeTruthy();
-    await tap(screen.getByText('Trening w toku'));
-    expect(lastAlert()).toMatchObject({ title: 'Trening w toku', msg: 'Najpierw zakończ albo anuluj bieżący trening.' });
     expect(store.getState().active!.templateId).not.toBe(tplB);
   });
 

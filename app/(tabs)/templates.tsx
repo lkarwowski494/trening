@@ -16,7 +16,7 @@ export default function TemplatesScreen() {
   /* 07.10.2026 wieczór (docs/21 4a): foldery jako nagłówki, archiwum zwinięte na dole; przenosi i archiwizuje tylko użytkownik (edytor szablonu) */
   return (
     <SafeAreaView style={{ flex: 1 }} edges={['top']}><Screen>
-      <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginVertical: 10 }}><H1>{tr('Szablony')}</H1><Btn title={tr('+ Nowy')} small onPress={once(() => { const t = newTemplate(); router.push(`/template/${t.id}`); })} /></View>
+      <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginVertical: 10 }}><H1>{tr('Szablony')}</H1><Btn title={tr('+ Nowy')} small onPress={once(() => { const t = newTemplate(); router.push(`/template/${t.id}?edit=1&new=1`); })} /></View>
       <Btn title={tr('Wygeneruj szablony i plan')} small onPress={() => router.push('/generator')} style={{ alignSelf: 'flex-start', marginBottom: 8 }} />{/* 08.10.2026: generator na polecenie (docs/24) */}
       <ScrollView>
         {st.templates.length ? <>

@@ -8,7 +8,7 @@ import { applyUnit } from '@/lib/units';
 import { BW_SHARE } from '@/lib/stats';
 import { base, uid, type Template } from '@/lib/seed';
 import { fresh, saved, addWorkout, ex } from './helpers';
-import { renderApp, flushAll, screen, go, act, fireEvent, openCard, type as typeText } from './app';
+import { renderApp, flushAll, screen, go, act, fireEvent, openCard, type as typeText, startEdit, tplDraft } from './app';
 
 jest.setTimeout(30000);
 const NOW = new Date(2026, 9, 8, 18).getTime();
@@ -85,7 +85,7 @@ describe('D3 / UI-13: liczba serii roboczych na ekranach — rozgrzewka poza, dr
     await boot(() => { S().templates.push(tplD()); });
     expect(screen.getByLabelText(/^D, /).props.accessibilityLabel).toMatch(/3 serie/);
     await go('/reorder?target=template:td'); await flushAll(10); expect(screen.getByText('3 serie')).toBeTruthy(); expect(screen.queryByText(/^[45] serie$/)).toBeNull();
-    await go('/template/td'); await flushAll(10); expect(screen.getByText(/^3 serie · 1 rozgrz\./)).toBeTruthy();
+    await go('/template/td'); await flushAll(10); expect(screen.getByText(/· 3 serie$/)).toBeTruthy(); /* podgląd: „1 ćw. · 3 serie” */ await startEdit(); expect(screen.getByText(/^3 serie · 1 rozgrz\./)).toBeTruthy();
   });
   test('trening w toku — Kolejność liczy serie robocze, ✓ — odhaczone robocze', async () => {
     await boot(() => { S().templates.push(tplD()); store.startFromTemplate(S().templates.find(t => t.id === 'td')!); const a = S().active!; a.exercises[0].sets[0].done = true; a.exercises[0].sets[1].done = true; store.save(a); });
@@ -102,12 +102,12 @@ describe('D3 / UI-13: liczba serii roboczych na ekranach — rozgrzewka poza, dr
 describe('E5: teksty prawdziwe dla działania aplikacji', () => {
   test('MER-13: edytor szablonu — opis podpowiedzi „↑ spróbuj …” z górą zakresu; brak przy zakresie otwartym „8+” i przy wyłączonej podpowiedzi', async () => {
     await boot(() => { const t = tplD(); t.items[0].rows = rows(['normal', 'normal']); S().templates.push(t); });
-    await go('/template/td'); await flushAll(10); await openCard(0);
+    await go('/template/td'); await flushAll(10); await startEdit(); await openCard(0);
     expect(screen.getByText('Zakres powtórzeń: 5–8 — gdy ostatnio wszystkie serie robocze miały co najmniej 8 powt., przy ćwiczeniu pojawi się podpowiedź „↑ spróbuj …”: większy ciężar albo powtórzenie więcej (poza tygodniem deload).')).toBeTruthy();
     expect(screen.queryByText(/↑ więcej/)).toBeNull();
-    await act(async () => { const it = S().templates.find(t => t.id === 'td')!.items[0]; it.repMax = 3; store.save(); }); await flushAll(5); /* „do” < „od” → „5+” */
+    await act(async () => { const it = tplDraft('td').items[0]; it.repMax = 3; store.save(); }); await flushAll(5); /* „do” < „od” → „5+” */
     expect(screen.queryByText(/^Zakres powtórzeń: 5\+/)).toBeNull();
-    await act(async () => { const it = S().templates.find(t => t.id === 'td')!.items[0]; it.repMax = 8; S().settings.progressHint = false; store.save(); }); await flushAll(5);
+    await act(async () => { const it = tplDraft('td').items[0]; it.repMax = 8; S().settings.progressHint = false; store.save(); }); await flushAll(5);
     expect(screen.queryByText(/^Zakres powtórzeń: 5–8 —/)).toBeNull();
   });
   test('MER-15: ekran Gumy — zdanie prawdziwe dla asysty i oporu', async () => {

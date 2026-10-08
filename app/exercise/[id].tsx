@@ -1,25 +1,88 @@
-import React, { useEffect, useRef } from 'react';
-import { ScrollView, View, Alert } from 'react-native';
+import React, { useEffect, useRef, useState } from 'react';
+import { ScrollView, View } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import { Screen, Field, Input, NumInput, Btn, Muted, Chip } from '@/components/ui';
-import { getState, useTick, exById, previousFor, save, deleteExercise, setSummary, fmtDate, setEquipment, exerciseInHistory, exerciseUsed, usesBand } from '@/lib/store';
+import { Screen, Field, Input, NumInput, Btn, Muted, Chip, H1, Txt, useOnce } from '@/components/ui';
+import { DraftHeader, confirmDiscard } from '@/components/DraftHeader';
+import { Stack } from 'expo-router';
+import { getState, useTick, exById, previousFor, save, setSummary, fmtDate, fmtSec, setEquipment, exerciseInHistory, usesBand, finishedWorkouts } from '@/lib/store';
+import { beginObjDraft, objDraft, objDirty, discardObjDraft, commitObjDraft, dropUnsavedNew } from '@/lib/draft';
+import type { Exercise } from '@/lib/seed';
 import { GROUPS, GROUP_TO_MUSCLE, METRICS, METRIC_LABEL, LOAD_MODE_LABEL, MUSCLES, REGION_LABEL, muscleLoadOf, musclesSourced, hasWeight, type Equipment, type LoadMode } from '@/lib/seed';
 import { BW_SHARE } from '@/lib/stats';
 import { t, exName, lang } from '@/lib/i18n';
 
 const EQ: Equipment[] = ['hantle', 'sztanga', 'masa ciała', 'maszyna', 'linki', 'inne'];
 
-export default function ExerciseEdit() {
-  const { id } = useLocalSearchParams<{ id: string }>(); useTick(); const router = useRouter();
-  // Nowe, nietknięte ćwiczenie bez historii znika po wyjściu (runda 2).
-  useEffect(() => { const created = exById(id!)?.createdAt ?? 0; return () => { const x = exById(id!); if (x && x.name === t('Nowe ćwiczenie') && !x.lib && x.updatedAt === created && !exerciseUsed(x.id) && !getState().templates.some(tp => tp.items.some(i => i.exerciseId === x.id))) { /* runda 42: ćwiczenie z szablonu zostaje */ const st = getState(); st.exercises = st.exercises.filter(y => y.id !== x.id); save(); } }; }, [id]);
-  const initialName = useRef(exById(id!)?.name ?? '');
-  const e = exById(id!); if (!e) return <Screen><Muted>{t('Nie ma takiego ćwiczenia.')}</Muted></Screen>;
+/*
+ * Ekran ćwiczenia (decyzja właściciela 08.10.2026 ok. 21:30, docs/18): najpierw PODGLĄD (nazwa, partie, sprzęt, sposób logowania, przerwy,
+ * notatka, historia i postępy); „Edytuj” otwiera edycję na szkicu (lib/draft.ts) z „Anuluj” / „Zapisz” w nagłówku — ten sam wzór co edycja
+ * sesji w historii (components/DraftHeader). „+ Nowe” otwiera od razu edycję (`?edit=1&new=1`); „Anuluj” nowego, niezapisanego ćwiczenia je usuwa.
+ */
+export default function ExerciseScreen() {
+  const p = useLocalSearchParams<{ id: string; edit?: string; new?: string }>(); const id = typeof p.id === 'string' ? p.id : ''; useTick(); const router = useRouter();
+  const isNew = useRef(p.new === '1'); const once = useOnce();
+  const [editing, setEditing] = useState(() => p.edit === '1' && !!beginObjDraft('exercise', id));
+  /* zamknięcie ekranu w jakikolwiek sposób wyrzuca szkic; nowe ćwiczenie, którego nigdy nie zapisano (albo nietknięte „Nowe ćwiczenie”), znika — runda 2 */
+  useEffect(() => () => { discardObjDraft('exercise', id); const x = exById(id); if (x && (isNew.current || x.name === t('Nowe ćwiczenie'))) dropUnsavedNew('exercise', id); }, [id]);
+  const real = exById(id); const d = editing ? objDraft<Exercise>('exercise', id) : undefined;
+  if (!real) return <Screen><Muted>{t('Nie ma takiego ćwiczenia.')}</Muted></Screen>;
+  const close = () => { if (router.canGoBack()) router.back(); else router.replace('/exercises'); };
+  if (editing && d) {
+    const cancel = () => confirmDiscard(objDirty('exercise', id), isNew.current ? t('Nowe ćwiczenie nie zostanie zapisane.') : t('Ćwiczenie zostanie bez zmian.'), () => {
+      discardObjDraft('exercise', id); setEditing(false); if (isNew.current) { dropUnsavedNew('exercise', id); close(); } }, () => objDraft('exercise', id) === d);
+    const commit = () => { commitObjDraft('exercise', id); isNew.current = false; setEditing(false); };
+    return <><DraftHeader title={isNew.current ? t('Nowe ćwiczenie') : t('Edycja ćwiczenia')} onCancel={cancel} onSave={commit} cancelLabel={t('Anuluj edycję ćwiczenia')} saveLabel={t('Zapisz ćwiczenie')} /><EditForm e={d} /></>;
+  }
+  return <><Stack.Screen options={{ title: t('Ćwiczenie'), headerBackVisible: true, gestureEnabled: true, headerLeft: undefined, headerRight: undefined }} /><Preview e={real} onEdit={() => { if (beginObjDraft('exercise', id)) setEditing(true); } /* podwójne tapnięcie — ten sam szkic */} onOpen={(wid: string) => router.push(`/history/${wid}`)} onProgress={once(() => router.push(`/more/progress?ex=${real.id}`))} /></>;
+}
+
+/** Opis zasad liczenia (masa ciała, e1RM, stoper, przerwa z szablonu) — ten sam w podglądzie i edycji. */
+const bwNote = () => [t('Masa ciała: „±” to dociążenie (plus) albo asysta, np. maszyny (minus); guma to osobne pole z poziomem. Rekord to suma powtórzeń bez asysty, a objętość liczy się tylko z dociążenia.'), t('e1RM w ćwiczeniach z masą ciała liczy się tylko z masą ciała wpisaną w Ustawieniach i tylko tam, gdzie wiadomo, jaką jej część podnosisz: podciąganie (cała — uproszczenie), pompki (ok. {p}% — badania z platformą siłową).', { p: Math.round(BW_SHARE['Push Up'] * 100) }), t('Ćwiczenia na czas mają w treningu stoper — po upływie celu seria odhacza się sama. Przerwa ustawiona w pozycji szablonu ma pierwszeństwo; puste pole przerwy w szablonie oznacza przerwę z tego ćwiczenia.')].join(' ');
+/** Wiersz podglądu: etykieta i wartość, czytane razem przez VoiceOver. */
+function Row({ label, value }: { label: string; value: string }) {
+  return <View accessible accessibilityLabel={`${label}: ${value}`} style={{ marginBottom: 10 }}><Muted style={{ fontSize: 13 }}>{label}</Muted><Txt>{value}</Txt></View>;
+}
+/** Ostatnie sesje z tym ćwiczeniem (najnowsze pierwsze). */
+const HISTORY_ROWS = 5;
+function Preview({ e, onEdit, onOpen, onProgress }: { e: Exercise; onEdit: () => void; onOpen: (id: string) => void; onProgress: () => void }) {
+  const translated = lang() !== 'pl' && exName(e) !== e.name; const m = e.metric ?? 'weight_reps'; const def = getState().settings.defaultRest;
+  const hist = finishedWorkouts().filter(w => w.exercises.some(x => x.exerciseId === e.id)).slice(0, HISTORY_ROWS);
+  const mus = (xs: readonly string[] | undefined) => (xs ?? []).length ? (xs ?? []).map(x => t(x)).join(', ') : '—';
+  return (
+    <Screen><ScrollView contentContainerStyle={{ paddingVertical: 10, paddingBottom: 120 }}>
+      <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 10 }}><View style={{ flex: 1 }}><H1>{exName(e)}</H1>{translated ? <Muted style={{ fontSize: 12 }}>{e.name}</Muted> : null}</View><Btn title={t('Edytuj')} small accessibilityLabel={t('Edytuj ćwiczenie')} onPress={onEdit} /></View>
+      <Row label={t('Partia')} value={t(e.group)} />
+      <Row label={t('Sprzęt')} value={t(e.equipment)} />
+      <Row label={t('Co logujesz w serii')} value={t(METRIC_LABEL[m])} />
+      {hasWeight(m) && e.equipment !== 'masa ciała' ? <Row label={t('Jak liczyć ciężar w objętości')} value={t(LOAD_MODE_LABEL[e.loadMode ?? 'total'])} /> : null}
+      <Row label={t('Przerwa robocza')} value={e.restSec != null ? fmtSec(e.restSec) : t('domyślna {s}', { s: fmtSec(def) })} />
+      <Row label={t('Przerwa po rozgrzewce')} value={e.restWarmupSec != null ? fmtSec(e.restWarmupSec) : t('jak robocza')} />
+      <Row label={t('Partie główne (1 seria)')} value={mus(e.muscles)} />
+      <Row label={t('Partie pomocnicze (0,5 serii)')} value={mus(e.secondaryMuscles)} />
+      {!musclesSourced(e) ? <Muted style={{ fontSize: 12, marginTop: -4, marginBottom: 10 }}>{t('Przypisanie partii mięśniowych — uproszczenie, nie wynik badań. Od niego zależą serie na partię, mapa mięśni, generator i propozycje w kalendarzu.')}</Muted> : null /* E4 (audyt 0.10, MER-10) */}
+      {muscleLoadOf(e).length ? <Field label={t('Obciążenie partii (z katalogu)')}><Muted style={{ fontSize: 13 }} accessibilityLabel={muscleLoadOf(e).map(([r, w]) => `${t(REGION_LABEL[r])}: ${w === 1 ? t('główna') : w === 0.5 ? t('pomocnicza') : t('stabilizacja')}`).join(', ')}>{muscleLoadOf(e).map(([r, w]) => `${t(REGION_LABEL[r])} ${w === 1 ? '●●●' : w === 0.5 ? '●●' : '●'}`).join(' · ')}</Muted><Muted style={{ fontSize: 11, marginTop: 2 }}>{t('●●● główna · ●● pomocnicza · ● stabilizacja')}</Muted></Field> : null}
+      <Row label={t('Asysta gumą')} value={e.bandAssistable ? t('tak — przy serii wybierasz gumę') : t('nie')} />
+      {!e.bandAssistable && usesBand(e) ? <Muted style={{ fontSize: 12, marginTop: -6, marginBottom: 10 }}>{t('Guma jako opór: przy serii wybierasz gumę (poziom 1–7), rekordy liczą serie z gumą.')}</Muted> : null}
+      {e.tempo ? <Row label={t('Tempo')} value={e.tempo} /> : null}
+      {e.notes ? <Row label={t('Notatki techniczne')} value={e.notes} /> : null}
+      {/* ExerciseCues — fala 2 (fix-cues) */}
+      <Muted style={{ fontSize: 13, marginBottom: 12 }}>{bwNote()}</Muted>
+      <Muted accessibilityRole="header" style={{ fontSize: 13, marginTop: 6, marginBottom: 4 }}>{t('Historia')}</Muted>
+      {hist.length ? hist.map(w => { const sets = w.exercises.filter(x => x.exerciseId === e.id).flatMap(x => x.sets); const line = `${fmtDate(w.startedAt)} · ${sets.map(x => setSummary(e, x)).join(', ')}`;
+        return <Btn key={w.id} kind="ghost" small title={line} accessibilityLabel={t('Sesja {d}: {s}', { d: fmtDate(w.startedAt), s: sets.map(x => setSummary(e, x)).join(', ') })} style={{ justifyContent: 'flex-start', paddingHorizontal: 0 }} onPress={() => onOpen(w.id)} />; })
+        : <Muted style={{ fontSize: 13, marginBottom: 6 }}>{t('Jeszcze nie było w treningu.')}</Muted>}
+      <View style={{ flexDirection: 'row', gap: 8, marginTop: 8 }}><Btn title={t('Postępy')} onPress={onProgress} /></View>
+    </ScrollView></Screen>
+  );
+}
+
+/** Edycja na szkicu — pola jak dotąd; zmiany trafiają do ćwiczenia dopiero po „Zapisz”. */
+function EditForm({ e }: { e: Exercise }) {
   const p = previousFor(e.id);
   const translated = lang() !== 'pl' && exName(e) !== e.name;
   return (
     <Screen><ScrollView keyboardShouldPersistTaps="handled" automaticallyAdjustKeyboardInsets contentContainerStyle={{ paddingVertical: 10, paddingBottom: 120 }}>
-      <Field label={t('Nazwa')}><Input selectTextOnFocus maxLength={80} value={e.name} onChangeText={v => { e.name = v; save(e); }} onEndEditing={() => { const n = e.name.replace(/\s+/g, ' ').trim(); if (!n) { e.name = initialName.current || t('Nowe ćwiczenie'); save(e); } else { if (n !== e.name) { e.name = n; save(e); } initialName.current = n; /* runda 49 */ } }} /></Field>
+      <Field label={t('Nazwa')}><Input selectTextOnFocus maxLength={80} value={e.name} onChangeText={v => { e.name = v; save(e); }} /* G2 (audyt 0.10): pusta nazwa przy „Zapisz” wraca do poprzedniej (lib/draft.cleanName) */ /></Field>
       {translated ? <Muted style={{ fontSize: 12, marginTop: -6, marginBottom: 10 }}>{t('Wyświetlane jako: {n}', { n: exName(e) })}</Muted> : null}
       <Field label={t('Partia')}><ScrollView horizontal keyboardShouldPersistTaps="handled" showsHorizontalScrollIndicator={false}>{GROUPS.map(g => <Chip key={g} label={t(g)} on={e.group === g} onPress={() => { const old = e.group; const auto = old ? GROUP_TO_MUSCLE[old] : undefined; const cur = e.muscles ?? []; e.group = g; const mu = GROUP_TO_MUSCLE[g]; /* runda 5: automatyczna partia z poprzedniej grupy jest podmieniana, a nowa znika z pomocniczych */ if (!cur.length || (cur.length === 1 && cur[0] === auto)) { e.muscles = mu ? [mu] : []; if (mu) e.secondaryMuscles = (e.secondaryMuscles ?? []).filter(x => x !== mu); } save(e); }} />)}</ScrollView></Field>
       <Field label={t('Sprzęt')}><ScrollView horizontal keyboardShouldPersistTaps="handled" showsHorizontalScrollIndicator={false}>{EQ.map(g => <Chip key={g} label={t(g)} on={e.equipment === g} onPress={() => setEquipment(e, g)} />)}</ScrollView></Field>
@@ -39,8 +102,7 @@ export default function ExerciseEdit() {
       {exerciseInHistory(e.id) ? <Muted style={{ fontSize: 12, marginBottom: 10 }}>{t('Uwaga: zmiana sprzętu, trybu liczenia lub metryki przelicza też dawne treningi (objętość, rekordy, wykresy).')}</Muted> : null}
       {p ? <Muted style={{ fontSize: 13, marginBottom: 10 }}>{t('Ostatnio {d}:', { d: fmtDate(p.workout.startedAt) })} {p.sets.map(x => setSummary(e, x)).join(', ')}</Muted> : null}
       {/* E1 (audyt 0.10): e1RM w ćwiczeniach z masą ciała — tylko z masą ciała z Ustawień i udziałem ze źródeł (stats.BW_SHARE) */}
-      <Muted style={{ fontSize: 13, marginBottom: 16 }}>{[t('Masa ciała: „±” to dociążenie (plus) albo asysta, np. maszyny (minus); guma to osobne pole z poziomem. Rekord to suma powtórzeń bez asysty, a objętość liczy się tylko z dociążenia.'), t('e1RM w ćwiczeniach z masą ciała liczy się tylko z masą ciała wpisaną w Ustawieniach i tylko tam, gdzie wiadomo, jaką jej część podnosisz: podciąganie (cała — uproszczenie), pompki (ok. {p}% — badania z platformą siłową).', { p: Math.round(BW_SHARE['Push Up'] * 100) }), t('Ćwiczenia na czas mają w treningu stoper — po upływie celu seria odhacza się sama. Przerwa ustawiona w pozycji szablonu ma pierwszeństwo; puste pole przerwy w szablonie oznacza przerwę z tego ćwiczenia.')].join(' ')}</Muted>
-      <View style={{ flexDirection: 'row', gap: 8 }}><Btn title={t('Postępy')} onPress={() => router.push(`/more/progress?ex=${e.id}`)} /></View>
+      <Muted style={{ fontSize: 13, marginBottom: 16 }}>{bwNote()}</Muted>
     </ScrollView></Screen>
   );
 }

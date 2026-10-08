@@ -6,7 +6,7 @@
  */
 import * as store from '@/lib/store';
 import { fresh, ex, saved, pressAlert } from './helpers';
-import { renderApp, flushAll, screen, go, tap, act } from './app';
+import { renderApp, flushAll, screen, go, tap, act, startEdit, saveEdit } from './app';
 
 jest.setTimeout(60000);
 const S = () => store.getState();
@@ -54,12 +54,12 @@ describe('ekran', () => {
     expect(screen.getAllByText('Siła').some(x => x.props.accessibilityRole === 'header')).toBe(true);
   });
   test('edytor: folder z listy, „+ Nowy folder” (nazwa w oknie), „bez folderu”; „Archiwizuj” i „Przywróć z archiwum”', async () => {
-    let id = ''; await boot(() => { id = mk('A').id; mk('B', 'Siła'); }, '/templates'); await go(`/template/${id}`); await flushAll(10);
-    await tap(screen.getByLabelText('Folder: Siła')); expect(S().templates.find(t => t.id === id)!.folder).toBe('Siła');
-    await tap(screen.getByText('+ Nowy folder')); expect(global.__alerts.at(-1)).toMatchObject({ title: 'Nazwa folderu', prompt: true });
-    await act(async () => { pressAlert('Nazwa folderu', 'Zapisz', '  Push  '); }); await flushAll(5); expect(S().templates.find(t => t.id === id)!.folder).toBe('Push');
-    await tap(screen.getByLabelText('Folder: bez folderu')); expect('folder' in S().templates.find(t => t.id === id)!).toBe(false);
-    await tap(screen.getByText('Archiwizuj')); expect(S().templates.find(t => t.id === id)!.archived).toBe(true);
+    let id = ''; await boot(() => { id = mk('A').id; mk('B', 'Siła'); }, '/templates'); await go(`/template/${id}`); await flushAll(10); await startEdit(); /* edycja na żądanie (08.10.2026): folder w edycji, zapis po „Zapisz” */
+    await tap(screen.getByLabelText('Folder: Siła')); expect(S().templates.find(t => t.id === id)!.folder).toBeUndefined(); await saveEdit(); expect(S().templates.find(t => t.id === id)!.folder).toBe('Siła');
+    await startEdit(); await tap(screen.getByText('+ Nowy folder')); expect(global.__alerts.at(-1)).toMatchObject({ title: 'Nazwa folderu', prompt: true });
+    await act(async () => { pressAlert('Nazwa folderu', 'Zapisz', '  Push  '); }); await flushAll(5); expect(screen.getByLabelText('Folder: Push').props.accessibilityState.selected).toBe(true); await saveEdit(); expect(S().templates.find(t => t.id === id)!.folder).toBe('Push');
+    await startEdit(); await tap(screen.getByLabelText('Folder: bez folderu')); await saveEdit(); expect('folder' in S().templates.find(t => t.id === id)!).toBe(false);
+    await tap(screen.getByText('Archiwizuj')); /* archiwum — akcja na całym szablonie w podglądzie */ expect(S().templates.find(t => t.id === id)!.archived).toBe(true);
     await tap(screen.getByText('Przywróć z archiwum')); expect('archived' in S().templates.find(t => t.id === id)!).toBe(false);
   });
   test('ekran Trening: same zarchiwizowane szablony — jak brak szablonów („+ Nowy szablon”)', async () => {
@@ -70,7 +70,7 @@ describe('ekran', () => {
     await fresh(undefined, 'en'); mk('A'); mk('E', 'Strength', true); await act(async () => { await store.flush(); });
     await renderApp({ saved: JSON.parse(JSON.stringify(saved())), locale: 'en', url: '/templates' }); await flushAll(10);
     expect(screen.getByLabelText('Archive (1)')).toBeTruthy(); await go(`/template/${S().templates[0].id}`); await flushAll(10);
-    expect(screen.getByText('+ New folder')).toBeTruthy(); expect(screen.getByText('Archive')).toBeTruthy(); expect(screen.getByLabelText('Folder: no folder')).toBeTruthy();
+    expect(screen.getByText('Archive')).toBeTruthy(); await startEdit(); expect(screen.getByText('+ New folder')).toBeTruthy(); expect(screen.getByLabelText('Folder: no folder')).toBeTruthy();
   });
   test('niezmiennik: aplikacja sama nie zmienia folderów ani archiwum (start, zakończenie treningu, restart)', async () => {
     let id = ''; await boot(() => { id = mk('A', 'Siła').id; mk('E', 'Siła', true); }, '/');

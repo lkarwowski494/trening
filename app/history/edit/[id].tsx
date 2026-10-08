@@ -11,6 +11,7 @@ import { locationLabel } from '@/lib/locations';
 import { hasTime, hasReps, hasWeight, hasDistance, SET_KIND_LABEL, type WExercise, type WSet } from '@/lib/seed';
 import { SwipeRow } from '@/components/SwipeRow';
 import { SetBadge } from '@/components/SetBadge';
+import { DraftHeader, HeaderButton, confirmDiscard } from '@/components/DraftHeader';
 import { useTheme, F } from '@/lib/theme';
 import { t, tp, exName } from '@/lib/i18n';
 import { wu, wField, wInKeep, fmtW } from '@/lib/units';
@@ -30,12 +31,12 @@ export default function EditWorkout() {
   useEffect(() => () => { discardDraft(key); }, [key]);
   const d = draftOf(key);
   const close = () => { leaving.current = true; Keyboard.dismiss(); if (router.canGoBack()) router.back(); else router.replace('/history'); };
-  const header = (title: string, onPress: () => void, bold?: boolean) => () => <Pressable accessibilityRole="button" accessibilityLabel={title} hitSlop={10} onPress={onPress} style={{ minHeight: 44, minWidth: 44, justifyContent: 'center' }}><Text maxFontSizeMultiplier={1.4} style={{ color: th.accent, fontSize: 17, fontFamily: bold ? F.semibold : F.regular }}>{title}</Text></Pressable>;
-  if (!d) return <Screen><Stack.Screen options={{ headerLeft: header(t('Wróć'), close) }} />{leaving.current ? null : <><Muted style={{ marginTop: 14 }}>{t('Brak sesji.')}</Muted><Btn title={t('Wróć')} block style={{ marginTop: 12 }} onPress={close} /></>}</Screen>;
+  if (!d) return <Screen><Stack.Screen options={{ headerLeft: () => <HeaderButton title={t('Wróć')} onPress={close} /> }} />{leaving.current ? null : <><Muted style={{ marginTop: 14 }}>{t('Brak sesji.')}</Muted><Btn title={t('Wróć')} block style={{ marginTop: 12 }} onPress={close} /></>}</Screen>;
 
+  /* wspólny wzór edycji na szkicu (components/DraftHeader — także ćwiczenie i szablon, decyzja właściciela 08.10.2026) */
   const cancel = () => {
-    const cur = draftOf(key); if (!cur || !isDirty(cur)) { discardDraft(key); close(); return; }
-    Alert.alert(t('Odrzucić zmiany?'), cur.sourceId ? t('Sesja w historii zostanie bez zmian.') : t('Ten trening nie zostanie zapisany.'), [{ text: t('Wróć') }, { text: t('Odrzuć zmiany'), style: 'destructive', onPress: () => { if (draftOf(key) !== cur) return; discardDraft(key); close(); } }]);
+    const cur = draftOf(key); if (!cur) { close(); return; }
+    confirmDiscard(isDirty(cur), cur.sourceId ? t('Sesja w historii zostanie bez zmian.') : t('Ten trening nie zostanie zapisany.'), () => { discardDraft(key); close(); }, () => draftOf(key) === cur);
   };
   const commit = () => {
     const sourceId = draftOf(key)?.sourceId ?? null; const r = commitDraft(key);
@@ -62,7 +63,7 @@ export default function EditWorkout() {
   const health = st.settings.healthSync || !!st.workouts.find(x => x.id === d.sourceId)?.healthUUID;
   return (
     <Screen>
-      <Stack.Screen options={{ title: d.sourceId ? t('Edycja sesji') : t('Trening wstecz'), headerBackVisible: false, headerLeft: header(t('Anuluj'), cancel), headerRight: header(t('Zapisz'), saveDraft, true) }} />
+      <DraftHeader title={d.sourceId ? t('Edycja sesji') : t('Trening wstecz')} onCancel={cancel} onSave={saveDraft} />
       <ScrollView keyboardShouldPersistTaps="handled" keyboardDismissMode="interactive" automaticallyAdjustKeyboardInsets contentContainerStyle={{ paddingVertical: 10, paddingBottom: 80 }}>
         {health ? <Muted style={{ fontSize: 13, marginBottom: 10 }}>{t('Zmiany nie trafiają do Apple Health.')}</Muted> : null}
         {w.locationId ? <Text accessibilityLabel={`${t('Miejsce')}: ${locationLabel(w.locationId)}`} maxFontSizeMultiplier={1.3} style={{ color: th.muted, fontSize: 14, fontFamily: F.semibold, marginBottom: 10 }}>{`📍 ${locationLabel(w.locationId)}`}</Text> : null /* integracja 0.9.0: miejsce treningu tylko do odczytu (edycja go nie zmienia) */}

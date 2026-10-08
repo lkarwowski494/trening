@@ -5,7 +5,7 @@ import * as timer from '@/lib/timer';
 import * as units from '@/lib/units';
 import { buildCsv } from '@/lib/backup';
 import { fresh, ex, addWorkout, pressAlert, seedState, withDemoTemplates, seedWithDemo, legacyBandKg } from './helpers';
-import { renderApp, tap, type, flushAll, screen, go, act, openCard, swipeDelete, deleteActions } from './app';
+import { renderApp, tap, type, flushAll, screen, go, act, openCard, swipeDelete, deleteActions, startEdit, saveEdit, tplDraft, exDraft } from './app';
 
 jest.setTimeout(30000);
 const at = (y: number, m: number, d: number, h = 18) => new Date(y, m - 1, d, h).getTime();
@@ -194,16 +194,16 @@ describe('runda 2 — ekrany', () => {
     await tap(screen.getAllByLabelText(/Seria 1, typ/)[0]); expect((global as any).__sheets.at(-1).opts.title).toBe('Seria 1');
   });
   test('R2-22 pusta nazwa ćwiczenia wraca do domyślnej po edycji', async () => {
-    await renderApp(); const e = ex('Back Squat'); await go(`/exercise/${e.id}`); await flushAll(10);
-    const f = screen.getByDisplayValue('Back Squat'); await type(f, ''); await act(async () => { f.props.onEndEditing?.(); }); expect(e.name.trim()).not.toBe('');
+    await renderApp(); const e = ex('Back Squat'); await go(`/exercise/${e.id}`); await flushAll(10); await startEdit(); /* edycja na żądanie (08.10.2026) */
+    const f = screen.getByDisplayValue('Back Squat'); await type(f, ''); await act(async () => { f.props.onEndEditing?.(); }); await saveEdit(); expect(e.name.trim()).not.toBe('');
   });
   test('R2-23 (05.10.2026: poranny wpis usunięty z ekranu) wpis z BB = 0 i samymi godzinami snu zostaje w danych bez zmian', async () => {
     const saved = require('@/lib/seed').seedState(); saved.mornings.push({ id: 'm', ownerId: 'local', createdAt: 0, updatedAt: 0, date: store.localISODate(), bb: 0, sleepScore: '', sleepH: 7.5, weight: '' });
     await renderApp({ saved }); expect(store.getState().mornings[0]).toMatchObject({ bb: 0, sleepH: 7.5 }); expect(screen.queryByText(/BB 0/)).toBeNull();
   });
   test('R2-24 pole liczbowe pokazuje po edycji wartość zapisaną (po przycięciu)', async () => {
-    await renderApp({ saved: seedWithDemo() }); const tpl = store.getState().templates[0]; await go(`/template/${tpl.id}`); await flushAll(10); await openCard(0);
-    const f = screen.getAllByLabelText('przerwa s')[0]; await type(f, '1800'); await type(f, '2500'); expect(tpl.items[0].restSec).toBe(1800); /* 05.10.2026: pole „serie” zastąpione wierszami — ta sama zasada na polu przerwy (limit 1800) */
+    await renderApp({ saved: seedWithDemo() }); const tpl = store.getState().templates[0]; await go(`/template/${tpl.id}`); await flushAll(10); await startEdit(); await openCard(0);
+    const f = screen.getAllByLabelText('przerwa s')[0]; await type(f, '1800'); await type(f, '2500'); expect(tplDraft(tpl.id).items[0].restSec).toBe(1800); /* 05.10.2026: pole „serie” zastąpione wierszami — ta sama zasada na polu przerwy (limit 1800) */
     await act(async () => { f.props.onEndEditing?.(); }); expect(f.props.value).toBe('1800');
   });
   test('R2-25 zmiana języka przeformatowuje separator w polach', async () => {
@@ -252,8 +252,8 @@ describe('runda 3', () => {
   });
   test('R3-05 skasowana nazwa wraca do poprzedniej; pusty zapisany szablon nie znika', async () => {
     await renderApp(); const tpl = store.newTemplate(); tpl.name = 'Mobilność'; store.save(tpl);
-    await go(`/template/${tpl.id}`); await flushAll(10); await openCard(0);
-    const f = screen.getByDisplayValue('Mobilność'); await type(f, ''); await act(async () => { f.props.onEndEditing?.(); });
+    await go(`/template/${tpl.id}`); await flushAll(10); await startEdit(); await openCard(0);
+    const f = screen.getByDisplayValue('Mobilność'); await type(f, ''); await act(async () => { f.props.onEndEditing?.(); }); await saveEdit();
     expect(tpl.name).toBe('Mobilność');
     const { router } = require('expo-router'); await act(async () => { router.back(); }); await flushAll(10);
     expect(store.getState().templates.some(t => t.id === tpl.id)).toBe(true);
@@ -278,7 +278,7 @@ describe('runda 3', () => {
     await renderApp({ saved }); expect(screen.queryByLabelText('Start: Pusty')).toBeNull();
   });
   test('R3-10 pola w edytorze szablonu i porannym wpisie mają opis dla VoiceOver', async () => {
-    await renderApp({ saved: seedWithDemo() }); await go(`/template/${store.getState().templates[0].id}`); await flushAll(10);
+    await renderApp({ saved: seedWithDemo() }); await go(`/template/${store.getState().templates[0].id}`); await flushAll(10); await startEdit();
     const { TextInput } = require('react-native');
     expect(screen.UNSAFE_getAllByType(TextInput).filter((i: any) => !i.props.accessibilityLabel)).toHaveLength(0);
     await go('/more/morning'); await flushAll(10);
@@ -386,10 +386,11 @@ describe('runda 5', () => {
   });
   test('R5-06 zmiana partii: automatyczna partia główna jest podmieniana i nie dubluje pomocniczej', async () => {
     await renderApp(); let e: any; await act(async () => { e = store.newExercise('Moje ćwiczenie'); e.secondaryMuscles = ['plecy']; store.save(e); });
-    await go(`/exercise/${e.id}`); await flushAll(10);
-    await tap(screen.getAllByText('klatka')[0]); expect(e.muscles).toEqual(['klatka']);
-    await tap(screen.getAllByText('plecy')[0]); expect(e.muscles).toEqual(['plecy']); expect(e.secondaryMuscles).toEqual([]);
-    e.muscles = ['plecy', 'biceps']; await tap(screen.getAllByText('klatka')[0]); expect(e.muscles).toEqual(['plecy', 'biceps']);
+    await go(`/exercise/${e.id}`); await flushAll(10); await startEdit(); const d = exDraft(e.id);
+    await tap(screen.getAllByText('klatka')[0]); expect(d.muscles).toEqual(['klatka']);
+    await tap(screen.getAllByText('plecy')[0]); expect(d.muscles).toEqual(['plecy']); expect(d.secondaryMuscles).toEqual([]);
+    d.muscles = ['plecy', 'biceps']; await tap(screen.getAllByText('klatka')[0]); expect(d.muscles).toEqual(['plecy', 'biceps']);
+    await saveEdit(); expect(e.muscles).toEqual(['plecy', 'biceps']); expect(e.group).toBe('klatka');
   });
   test('R5-07 pola na ekranie gum mają opisy dla VoiceOver', async () => {
     await renderApp(); await go('/more/bands'); await flushAll(10);
@@ -454,8 +455,8 @@ describe('runda 6', () => {
   });
   test('R6-10 szablon: start ±kg dla ćwiczenia z masą ciała przyjmuje asystę (ujemne)', async () => {
     await renderApp({ saved: seedWithDemo() }); const tpl = store.getState().templates.find(x => x.items.some(i => i.exerciseId === ex('Chin Up').id))!; const it = tpl.items.find(i => i.exerciseId === ex('Chin Up').id)!;
-    await go(`/template/${tpl.id}`); await flushAll(10); await openCard(tpl.items.indexOf(it)); /* 06.10.2026: karta ćwiczenia z masą ciała */
-    const inputs = screen.getAllByLabelText(store.loadLabel(ex('Chin Up'))); await type(inputs[0], '-10'); expect(it.startWeight).toBe(-10); expect(it.rows![0].weight).toBe(-10); /* 05.10.2026: wiersz serii */
+    await go(`/template/${tpl.id}`); await flushAll(10); await startEdit(); await openCard(tpl.items.indexOf(it)); /* 06.10.2026: karta ćwiczenia z masą ciała */
+    const inputs = screen.getAllByLabelText(store.loadLabel(ex('Chin Up'))); await type(inputs[0], '-10'); await saveEdit(); const it2 = tpl.items.find(i => i.id === it.id)!; /* „Zapisz” podmienia pozycje szkicem */ expect(it2.startWeight).toBe(-10); expect(it2.rows![0].weight).toBe(-10); /* 05.10.2026: wiersz serii */
   });
   test('R6-11 wyszukiwanie bez wyników pokazuje tekst (Ćwiczenia i Postępy, ze spacją na końcu)', async () => {
     await renderApp(); await go('/exercises'); await flushAll(10); await type(screen.getByPlaceholderText('Szukaj…'), 'zzzz'); expect(screen.getByText('Nic nie pasuje.')).toBeTruthy();
@@ -604,10 +605,10 @@ describe('runda 10', () => {
     await flushAll(10); expect(store.getState().active!.exercises.length).toBe(n - 1);
   });
   test('R10-04 podwójne „✕” w szablonie usuwa jedną pozycję', async () => {
-    await renderApp({ saved: seedWithDemo() }); const tpl = store.getState().templates[0]; const n = tpl.items.length; await tap(screen.getByText(tpl.name)); await flushAll(10); await openCard(0);
+    await renderApp({ saved: seedWithDemo() }); const tpl = store.getState().templates[0]; const n = tpl.items.length; await tap(screen.getByText(tpl.name)); await flushAll(10); await startEdit(); await openCard(0);
     const lbl = deleteActions().find(l => l.startsWith('Usuń ćwiczenie: '))!; await swipeDelete(lbl); await swipeDelete(lbl); /* 07.10.2026 wieczór: gest zamiast „✕” */
     const al = global.__alerts.filter((a: any) => a.title === 'Usunąć z szablonu?'); expect(al.length).toBe(2); await act(async () => { al.forEach((a: any) => a.buttons.find((b: any) => b.text === 'Usuń').onPress()); });
-    await flushAll(10); expect(tpl.items.length).toBe(n - 1);
+    await flushAll(10); await saveEdit(); expect(tpl.items.length).toBe(n - 1);
   });
   test('R10-05 „Zapamiętaj” przerwę w bloku dodanym w trakcie nie zmienia szablonu', async () => {
     await renderApp(); const sq = ex('Back Squat').id; let tpl: any;
@@ -1006,7 +1007,8 @@ describe('runda 35', () => {
   });
   test('R35-02 Start i Duplikuj używają uporządkowanej nazwy szablonu', async () => {
     await renderApp({ saved: seedWithDemo() }); const tpl = store.getState().templates[0]; const orig = tpl.name; await go('/templates'); await flushAll(10); await tap(screen.getByText(orig)); await flushAll(10);
-    await act(async () => { tpl.name = '   '; store.save(tpl); }); await tap(screen.getByText('Start')); await flushAll(10);
+    await startEdit(); await type(screen.getByDisplayValue(orig), '   '); await saveEdit(); /* edycja na żądanie: pusta nazwa nie trafia do danych (lib/draft.cleanName) */ expect(tpl.name).toBe(orig);
+    await tap(screen.getByText('Start')); await flushAll(10);
     expect(store.getState().active!.templateName).toBe(orig);
   });
   test('R35-03 komunikat o nieczytelnych danych można ukryć', async () => {
@@ -1243,7 +1245,7 @@ describe('runda 49', () => {
     const m = store.migrate(raw); expect(m.templates[0].items[0].restSec).toBe(60); expect([m.timer.restTotal, m.timer.restEndAt, m.timer.setId]).toEqual([0, null, null]);
   });
   test('R49-06 VoiceOver: kontrolki wiersza szablonu i gumy mówią, czego dotyczą; chip wybranego ćwiczenia; nieaktywne moduły', async () => {
-    await renderApp({ saved: seedWithDemo() }); const st = store.getState(); const tpl = st.templates[0]; await go(`/template/${tpl.id}`); await flushAll(10); await openCard(0);
+    await renderApp({ saved: seedWithDemo() }); const st = store.getState(); const tpl = st.templates[0]; await go(`/template/${tpl.id}`); await flushAll(10); await startEdit(); await openCard(0);
     const name = store.exById(tpl.items[0].exerciseId)!.name;
     expect(deleteActions()).toContain(`Usuń ćwiczenie: ${name}`); expect(screen.getAllByLabelText('+ seria')[0].props.accessibilityHint).toBe(name); /* 07.10.2026 wieczór: akcja „usuń” zamiast przycisku */
     await go('/more/bands'); await flushAll(10); expect(deleteActions().filter(l => /^Usuń gumę: .+/.test(l)).length).toBe(store.getState().bands.length);
@@ -1251,9 +1253,9 @@ describe('runda 49', () => {
     /* moduły schowane 05.10.2026 (decyzja właściciela) — chip „Trening” nie jest już wyświetlany */
   });
   test('R49-07 pusta nazwa wraca do ostatniej zapisanej, nie do tej sprzed otwarcia ekranu', async () => {
-    await renderApp(); const e = ex('Back Squat'); await go(`/exercise/${e.id}`); await flushAll(10);
-    const f = screen.getByLabelText('Nazwa'); await type(f, 'Front Squat'); await act(async () => { f.props.onEndEditing?.(); });
-    await type(f, ''); await act(async () => { f.props.onEndEditing?.(); }); expect(e.name).toBe('Front Squat');
+    await renderApp(); const e = ex('Back Squat'); await go(`/exercise/${e.id}`); await flushAll(10); await startEdit();
+    await type(screen.getByLabelText('Nazwa'), 'Front Squat'); await saveEdit(); expect(e.name).toBe('Front Squat');
+    await startEdit(); await type(screen.getByLabelText('Nazwa'), ''); await saveEdit(); expect(e.name).toBe('Front Squat'); /* G2: pusta nazwa — poprzednia */
   });
 });
 
@@ -1599,9 +1601,9 @@ describe('runda 63', () => {
   test('R63-01 przycisk numeru serii mówi, którego ćwiczenia dotyczy; szablon: „start kg/hantel”, serie do 50', async () => {
     await renderApp({ saved: seedWithDemo() }); await tap(screen.getByLabelText('Start: Upper A')); await flushAll(10);
     expect(screen.getAllByLabelText(/^Seria 1, typ: normalna/)[0].props.accessibilityHint).toMatch(/Seria 1 — /);
-    const tpl = store.getState().templates[0]; await go(`/template/${tpl.id}`); await flushAll(10); await openCard(0);
+    const tpl = store.getState().templates[0]; await go(`/template/${tpl.id}`); await flushAll(10); await startEdit(); await openCard(0);
     expect(screen.getAllByLabelText(/kg\/hantel|±kg|^kg$/).length).toBeGreaterThan(0); /* 05.10.2026: wiersze serii — etykieta ciężaru jak w treningu */
-    await act(async () => { for (let i = 0; i < 60; i++) store.tplAddRow(tpl, tpl.items[0].id); }); await flushAll(5); expect(tpl.items[0].sets).toBe(50); /* limit 50 serii */
+    await act(async () => { const d = tplDraft(tpl.id); for (let i = 0; i < 60; i++) store.tplAddRow(d, d.items[0].id); }); await flushAll(5); await saveEdit(); expect(tpl.items[0].sets).toBe(50); /* limit 50 serii */
   });
 });
 
@@ -1643,7 +1645,7 @@ describe('runda 67', () => {
   });
   test('R67-03 dwie pozycje szablonu z tym samym ćwiczeniem rozróżnialne dla VoiceOver', async () => {
     await renderApp(); const tpl = store.newTemplate(); const sq = ex('Back Squat'); for (const id of ['a', 'b']) tpl.items.push({ id, exerciseId: sq.id, sets: 3, repMin: 5, repMax: 8, restSec: null, startWeight: '', targetSec: '', groupId: null }); store.save(tpl);
-    await go(`/template/${tpl.id}`); await flushAll(10); const h = deleteActions().filter(l => l.startsWith('Usuń ćwiczenie: ')); expect(h).toEqual(['Usuń ćwiczenie: Back Squat (1)', 'Usuń ćwiczenie: Back Squat (2)']); /* 07.10.2026 wieczór: akcja „usuń” nagłówka pozycji */
+    await go(`/template/${tpl.id}`); await flushAll(10); await startEdit(); const h = deleteActions().filter(l => l.startsWith('Usuń ćwiczenie: ')); expect(h).toEqual(['Usuń ćwiczenie: Back Squat (1)', 'Usuń ćwiczenie: Back Squat (2)']); /* 07.10.2026 wieczór: akcja „usuń” nagłówka pozycji */
   });
   test('R67-04 koniec przerwy kończy Live Activity także poza zakładką Trening', async () => {
     await renderApp({ url: '/history' }); await act(async () => { store.startEmpty(); await timer.start(3); }); global.__la.length = 0;
@@ -1809,7 +1811,7 @@ describe('runda 71 (audyt tematyczny T1b/T3)', () => {
   });
   test('R71-07 szablon: krótka etykieta ciężaru startowego, pełna dla VoiceOver', async () => {
     await renderApp({ saved: seedWithDemo() }); const st = store.getState(); const tpl = st.templates[0]; const db = st.exercises.find(e => e.loadMode === 'per_dumbbell' && !e.archived)!; tpl.items[0].exerciseId = db.id; store.save(tpl);
-    await go('/template/' + tpl.id); await flushAll(10); await openCard(0);
+    await go('/template/' + tpl.id); await flushAll(10); await startEdit(); await openCard(0);
     const short = store.loadLabelShort(db), full = store.loadLabel(db); expect(short).not.toBe(full); /* 05.10.2026: wiersze serii — krótka etykieta w polu, pełna dla VoiceOver */
     expect(screen.getAllByPlaceholderText(short).length).toBeGreaterThan(0); expect(screen.getAllByLabelText(full).length).toBeGreaterThan(0);
   });
