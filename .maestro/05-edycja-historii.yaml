@@ -129,6 +129,7 @@ name: Edycja historii i trening wstecz
 # Deload A+B (decyzje właściciela 08.10.2026): bieżący tydzień oznaczony wyżej („Deload week”) — Kalendarz pokazuje „This week: deload…”
 # ('Ten tydzień: deload. …', components/DeloadHint.tsx); „Start: Upper A” pyta „Deload week” ('Tydzień deload') z liczbą serii
 # ('Zacząć z mniejszą liczbą serii: {a} zamiast {b} serii roboczych? …' — Upper A: 2 ćw. × 3 serie → 2 + 2 = 4 zamiast 6), „Fewer sets” ('Mniej serii').
+- tapOn: "Back"  # run 37761959586: Postępy to ekran stosu bez paska zakładek — najpierw powrót do „Więcej”
 - tapOn: "Calendar, tab.*"
 - extendedWaitUntil: { visible: "This week: deload.*", timeout: 30000 }
 - takeScreenshot: 22-deload-kalendarz
