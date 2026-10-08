@@ -223,6 +223,7 @@ describe('D1+ (decyzja 08.10.2026, koordynator: „lepsza opcja”): powtórzeni
     await fresh(); const t = tpl([['normal', 'normal', 'normal', 'normal'], ['normal', 'normal', 'normal']]); const w = doneDeload(t);
     expect(w.exercises.map(e => work(e.sets))).toEqual([2, 2]);
     expect(repeatCounts(w)).toEqual({ full: 7, less: 4, single: false, shortened: true });
+    expect(store.deloadTail(w, w.exercises[0]).map(x => x.kind)).toEqual(['normal', 'normal']); expect(store.deloadTail({ ...w, deload: undefined }, w.exercises[0])).toEqual([]); /* zwykły trening — nic */
   });
   test('D1+: repeatLast({ deload }) skróconego — powtarza go jak jest (2 → 2, nie 1), znacznik i pełne liczby zostają', async () => {
     await fresh(); const t = tpl([['normal', 'normal', 'normal', 'normal']]); doneDeload(t);

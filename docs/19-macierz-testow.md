@@ -10,7 +10,7 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | EKRAN | 23 | 23 | 0 |
 | UI | 244 | 244 | 0 |
 | TEKST | 579 | 579 | 0 |
-| LOGIKA | 461 | 460 | 0 |
+| LOGIKA | 461 | 461 | 0 |
 | WYMIAR | 13 | 13 | 0 |
 
 ## EKRAN
@@ -1217,7 +1217,7 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | store.startFromTemplate | lib/store.ts | tests/audit-0.10-live-logic.test.ts, tests/audit-0.10-live.test.tsx, tests/audit-close-b.test.tsx +38 |
 | store.startEmpty | lib/store.ts | tests/audit-0.10-live-logic.test.ts, tests/audit-0.10-live.test.tsx, tests/audit-backlog-q.test.tsx +79 |
 | store.repeatLast | lib/store.ts | tests/audit-0.10-live-logic.test.ts, tests/audit-close-d.test.ts, tests/audit-r82.test.tsx +10 |
-| store.deloadTail | lib/store.ts | WYJĄTEK: BRAK |
+| store.deloadTail | lib/store.ts | tests/audit-0.10-live-logic.test.ts |
 | store.addExerciseToActive | lib/store.ts | tests/audit-0.10-live-logic.test.ts, tests/audit-0.10-live.test.tsx, tests/audit-backlog-q.test.tsx +76 |
 | store.swapBlock | lib/store.ts | tests/audit-0.10-live-logic.test.ts, tests/invariants.test.ts, tests/matrix-invariants.test.ts +7 |
 | store.swapImpl | lib/store.ts | tests/matrix-invariants.test.ts, tests/swap-alternates.test.tsx, tests/swap-logic.test.ts |
