@@ -1,0 +1,1838 @@
+[
+ {
+  "name": "Barbell Curl",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L2-S1",
+   "24-S12",
+   "24-S13",
+   "24-S6"
+  ],
+  "confidence": "mocne",
+  "note": "ExRx BBCurl: target biceps, synergiści brachialis i brachioradialis — forearms 0,25 zgodne. Partie jak w docs/research/24."
+ },
+ {
+  "name": "Biceps Curl (hantle)",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L2-S1",
+   "24-S12",
+   "24-S13",
+   "24-S6"
+  ],
+  "confidence": "mocne",
+  "note": "ExRx DBCurl: target biceps. Para hantli, per_dumbbell — poprawnie."
+ },
+ {
+  "name": "Cable Curl",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L2-S1",
+   "24-S12",
+   "24-S13"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx CBCurl (wyciąg dolny, drążek) — jedna linka, cable.low poprawne."
+ },
+ {
+  "name": "Cable Fly",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L2-S3",
+   "24-S6",
+   "24-S35"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx CBStandingFly: target pec major (mostkowa), synergiści m.in. obojczykowa; front_delt 0,5 zgodne z DBFly (przedni akton synergistą). Dwie linki — cable.dual poprawne."
+ },
+ {
+  "name": "Cable Kickback",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L2-S20",
+   "24-S4",
+   "24-S35"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx CBGluteKickback: target glute max, synergista adductor magnus, dwugłowe „dynamic stabilizers”. Opaska na kostkę na wyciągu dolnym."
+ },
+ {
+  "name": "Cable Lateral Raise",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L2-S4",
+   "24-S31",
+   "L2-S27"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx CBOneArmLateralRaise: target bark boczny; jednorącz z wyciągu dolnego. Wzrost aktonu bocznego po wznosach linkami (24-S31)."
+ },
+ {
+  "name": "Cable Overhead Extension",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L2-S2",
+   "24-S29"
+  ],
+  "confidence": "mocne",
+  "note": "ExRx CBTriExt / CBStandingTricepsExtensionRope: target triceps, brak synergistów. Wyciąg górny lub dolny — oba warianty istnieją."
+ },
+ {
+  "name": "Calf Press (leg press)",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L2-S21",
+   "24-S30"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx SL45CalfPress: target brzuchaty łydki, synergista płaszczkowaty. Na suwnicy (plate_loaded) — poprawnie."
+ },
+ {
+  "name": "Chest Fly (hantle)",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L2-S3",
+   "24-S6",
+   "24-S35"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx DBFly: target pec major, synergiści przedni akton i krótka głowa bicepsa — muscleLoad zgodne."
+ },
+ {
+  "name": "Concentration Curl (hantle)",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "loadMode": "unilateral"
+  },
+  "sources": [
+   "L2-S1",
+   "L2-S23"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx DBConcentrationCurl: jeden hantel, jedna ręka (target brachialis, synergista biceps — partia „biceps” jako uproszczenie). implements 1, a tryb z kodu to per_dumbbell (bo hantle) — mnożnik ten sam (×2), ale etykieta „per hantel” myli; spójnie z innymi jednorącz: unilateral (w kodzie: lista wyjątków jak SINGLE_IMPLEMENT)."
+ },
+ {
+  "name": "EZ Bar Curl",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L2-S1",
+   "24-S12",
+   "24-S13"
+  ],
+  "confidence": "mocne",
+  "note": "ExRx BBCurl (gryf łamany to wariant chwytu). Wymaga ez_bar — poprawnie."
+ },
+ {
+  "name": "Front Raise",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L2-S5",
+   "L2-S27",
+   "24-S6"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx DBFrontRaise: target przedni akton, synergiści pec obojczykowa, akton boczny; Coratella 2020: front raise głównie przedni akton i pec major — chest 0,25 uzasadnione."
+ },
+ {
+  "name": "Hammer Curl",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L2-S1",
+   "24-S12",
+   "24-S13"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx DBHammerCurl: target brachioradialis, synergiści brachialis i biceps — forearms 0,5 uzasadnione (ramienno-promieniowy liczony do przedramion)."
+ },
+ {
+  "name": "Hip Abduction",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L2-S19",
+   "24-S35"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx LVSeatedHipAbduction: target odwodziciele, synergiści pośladkowy średni, mały, wielki — muscleLoad abductors 1, glutes 0,5 zgodne."
+ },
+ {
+  "name": "Hip Adduction",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L2-S19",
+   "24-S35"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx LVSeatedHipAdduction: target przywodziciele, synergiści grzebieniowy, smukły."
+ },
+ {
+  "name": "Incline Curl (hantle)",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L2-S1",
+   "24-S12",
+   "24-S13"
+  ],
+  "confidence": "mocne",
+  "note": "ExRx DBInclineCurl: target biceps; ławka skośna — bench.incline poprawne."
+ },
+ {
+  "name": "Lateral Raise (hantle)",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L2-S4",
+   "24-S31",
+   "L2-S27"
+  ],
+  "confidence": "mocne",
+  "note": "ExRx DBLateralRaise: target akton boczny, synergiści przedni akton, nadgrzebieniowy, czworoboczny środkowy/dolny — muscleLoad zgodne. Wzrost (24-S31), EMG (Coratella 2020)."
+ },
+ {
+  "name": "Leg Curl",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L2-S17",
+   "24-S27",
+   "24-S28"
+  ],
+  "confidence": "mocne",
+  "note": "ExRx LVSeatedLegCurl: target dwugłowe, synergista brzuchaty łydki — calves 0,25 zgodne. Słownik nie rozróżnia maszyny siedzącej i leżącej (otwarte z catalog-notes)."
+ },
+ {
+  "name": "Leg Extension",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L2-S18",
+   "24-S3"
+  ],
+  "confidence": "mocne",
+  "note": "ExRx LVLegExtension: target czworogłowe, brak synergistów."
+ },
+ {
+  "name": "Lying Leg Curl",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L2-S17",
+   "24-S27",
+   "24-S28"
+  ],
+  "confidence": "mocne",
+  "note": "ExRx LVLyingLegCurl: target dwugłowe, synergista brzuchaty łydki."
+ },
+ {
+  "name": "Nordic Curl",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L2-S17",
+   "24-S28",
+   "24-S22"
+  ],
+  "confidence": "mocne",
+  "note": "ExRx BWHamstringRaise („Inverse Leg Curl”): target dwugłowe, pośladek wielki tylko stabilizator — glutes 0,25 zgodne. Zakotwiczenie stóp — jak w catalog-notes (dom niewyrażalny)."
+ },
+ {
+  "name": "Overhead Triceps Extension (hantel)",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L2-S2",
+   "24-S29"
+  ],
+  "confidence": "mocne",
+  "note": "ExRx DBTriExt: target triceps; jeden hantel oburącz — implements 1, tryb total poprawne."
+ },
+ {
+  "name": "Pec Deck",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L2-S3",
+   "24-S6"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx LVPecDeckFly: target pec major; front_delt 0,5 — ExRx wymienia tylko pec obojczykową i kruczo-ramienny (uproszczenie, spójne z innymi rozpiętkami)."
+ },
+ {
+  "name": "Preacher Curl",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L2-S1",
+   "24-S12",
+   "24-S13"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx DBPreacherCurl (target brachialis, synergista biceps). Modlitewnik wymagany — poprawnie."
+ },
+ {
+  "name": "Rear Delt Raise (hantle)",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Reverse Fly (hantle)",
+  "fixes": {},
+  "sources": [
+   "L2-S6",
+   "24-S35"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Ten sam ruch co Reverse Fly (hantle): ExRx nazywa go „Dumbbell Rear Lateral Raise” (target akton tylny). Duplikat zgłoszony już w catalog-notes i docs/10 pkt 5 (decyzja otwarta). Scalić z migracją historii."
+ },
+ {
+  "name": "Reverse Fly (hantle)",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L2-S6",
+   "24-S35"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx DBRearLateralRaise: target akton tylny, synergiści podgrzebieniowy, obły mniejszy, czworoboczny środkowy/dolny, równoległoboczne — upper_back 0,5 zgodne."
+ },
+ {
+  "name": "Reverse Pec Deck",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L2-S6",
+   "24-S35"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx LVSeatedRearDeltFly / LVRearDeltFlyGriplessPecDeck („on pec deck”): target akton tylny — pec_deck poprawne."
+ },
+ {
+  "name": "Seated Calf Raise",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L2-S21",
+   "24-S30"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx LVSeatedCalfRaise: target płaszczkowaty, synergista brzuchaty; 24-S30: siedząc brzuchaty nie rósł — region calves obejmuje oba."
+ },
+ {
+  "name": "Shrugs (hantle)",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L2-S14",
+   "L2-S28",
+   "24-S35"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx DBShrug: target czworoboczny górny; Ekstrom 2003: wzruszanie — największa aktywność czworobocznego górnego. forearms 0,5 (chwyt) — uproszczenie."
+ },
+ {
+  "name": "Shrugs (sztanga)",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L2-S14",
+   "L2-S28",
+   "24-S35"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx BBShrug: target czworoboczny górny, synergiści czworoboczny środkowy, dźwigacz łopatki."
+ },
+ {
+  "name": "Sissy Squat",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L2-S18",
+   "24-S35"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx BWSissySquat: target czworogłowe, „Mechanics: Isolated”, brak synergistów; stabilizatory m.in. prosty brzucha — abs 0,25 zgodne; wzorzec isolation poprawny."
+ },
+ {
+  "name": "Skullcrusher (EZ)",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L2-S2",
+   "24-S29"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx BBLyingTriExt: target triceps; ławka płaska wymagana."
+ },
+ {
+  "name": "Skullcrusher (hantle)",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L2-S2",
+   "24-S29"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx DBLyingTriExt: target triceps."
+ },
+ {
+  "name": "Spider Curl",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L2-S1",
+   "24-S12",
+   "24-S13"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx BBProneInclineCurl („Prone Incline Curl”): klatką na ławce skośnej — bench.incline poprawne."
+ },
+ {
+  "name": "Standing Calf Raise",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L2-S21",
+   "24-S30"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx LVStandingCalfRaise: target brzuchaty, synergista płaszczkowaty; 24-S30: stojąc rosną oba."
+ },
+ {
+  "name": "Straight Arm Pulldown",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "muscleLoad": {
+    "lats": 1,
+    "chest": 0.25,
+    "triceps": 0.25,
+    "rear_delt": 0.25,
+    "abs": 0.25
+   }
+  },
+  "sources": [
+   "L2-S15",
+   "24-S35",
+   "24-S37"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx CBPullover (stojąc, proste ręce): target najszerszy, synergiści pec mostkowa, długa głowa tricepsa, obły większy, akton tylny. Dodać chest 0,25 — spójnie z Machine Pullover."
+ },
+ {
+  "name": "Triceps Kickback",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "loadMode": "unilateral"
+  },
+  "sources": [
+   "L2-S2",
+   "24-S29"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx DBKickback: target triceps; jeden hantel (implements 1) — tryb unilateral zamiast per_dumbbell z kodu (mnożnik ten sam, etykieta poprawna). rear_delt 0,25 — akton tylny stabilizatorem w ExRx."
+ },
+ {
+  "name": "Triceps Pushdown",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L2-S2",
+   "24-S29"
+  ],
+  "confidence": "mocne",
+  "note": "ExRx CBPushdown: target triceps, brak synergistów."
+ },
+ {
+  "name": "Upright Row",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "name": "Upright Row (hantle)"
+  },
+  "sources": [
+   "L2-S7",
+   "24-S35"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx DBUprightRow: target akton boczny, synergiści przedni akton, nadgrzebieniowy, biceps, ramienny, czworoboczny — muscleLoad zgodne. Nazwa bez przyrządu (R2), a w katalogu są już Upright Row (sztanga) i (linki) — dopisać „(hantle)” (R1), zmiana nazwy z migracją."
+ },
+ {
+  "name": "Łydki na stopniu",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L2-S21",
+   "24-S30"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx DBStandingCalfRaise / BWStandingCalfRaise: target brzuchaty, synergista płaszczkowaty. R3 (bez wymagań) — jak w catalog-notes."
+ },
+ {
+  "name": "Alternating Deltoid Raise",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L2-S23",
+   "L2-S4",
+   "L2-S5"
+  ],
+  "confidence": "umiarkowane",
+  "note": "fedb: naprzemiennie wznos w przód i bokiem (para hantli). front_delt 1 + side_delt 1 — uproszczenie (połowa powtórzeń każdy)."
+ },
+ {
+  "name": "Back Flyes - With Bands",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Band Pull Apart",
+  "fixes": {},
+  "sources": [
+   "L2-S23",
+   "L2-S6"
+  ],
+  "confidence": "jedno źródło",
+  "note": "fedb: guma zaczepiona o słupek, ręce z przodu odwodzone poziomo w tył — ten sam ruch (odwodzenie poziome z gumą) co Band Pull Apart (zakres L1/inne części). Gdyby zostawić — nazwa „Band Reverse Fly”."
+ },
+ {
+  "name": "Barbell Incline Shoulder Raise",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "muscles": [],
+   "secondaryMuscles": [
+    "klatka"
+   ],
+   "muscleLoad": {
+    "chest": 0.5,
+    "front_delt": 0.25,
+    "triceps": 0.25
+   }
+  },
+  "sources": [
+   "L2-S12",
+   "L2-S23"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx BBInclineShoulderRaise: target zębaty przedni, synergista pec obojczykowa, przedni akton tylko stabilizatorem. Zębaty nie ma regionu — „barki” jako główna zawyża serie barków. Propozycja: bez partii głównej (jak szyja), klatka pomocnicza. Otwarte Q2."
+ },
+ {
+  "name": "Bent Over Low-Pulley Side Lateral",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "name": "One-Arm Cable Rear Lateral Raise"
+  },
+  "sources": [
+   "L2-S6",
+   "L2-S23"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx CBOneArmRearLateralRaise: target akton tylny, synergista akton boczny — muscleLoad zgodne. Nazwa z fedb nieczytelna (mówi „side lateral”, a to wznos na tył) — nazwa ExRx."
+ },
+ {
+  "name": "Cable Front Raise",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L2-S5",
+   "L2-S27"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx CBFrontRaise: target przedni akton. Jeden wyciąg dolny."
+ },
+ {
+  "name": "Cable Internal Rotation",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "muscles": [],
+   "secondaryMuscles": [
+    "barki"
+   ],
+   "muscleLoad": {
+    "front_delt": 0.5,
+    "chest": 0.25
+   }
+  },
+  "sources": [
+   "L2-S11",
+   "L2-S23",
+   "24-S6"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx CBInternalRotation: target podłopatkowy, synergiści pec major, najszerszy, obły większy, przedni akton. Stożek rotatorów nie ma regionu; naramienny nie jest „primary force generator” (definicja 24-S6) — barki tylko pomocnicze, front_delt 0,5. Otwarte Q1."
+ },
+ {
+  "name": "Cable Reverse Fly",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L2-S6"
+  ],
+  "confidence": "jedno źródło",
+  "note": "ExRx CBStandingReverseFly: target akton tylny, synergiści akton boczny, czworoboczny, równoległoboczne. Dwie linki skrzyżowane — cable.dual poprawne."
+ },
+ {
+  "name": "Cable Seated Lateral Raise",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L2-S4",
+   "L2-S23"
+  ],
+  "confidence": "jedno źródło",
+  "note": "ExRx CBSeatedLateralRaise: target akton boczny. Uwaga: opis fedb (tułów na udach) to w praktyce wznos na tył — wpis trzyma się nazwy i ExRx. Wariant siedzący Cable Lateral Raise."
+ },
+ {
+  "name": "Cable Y Raise",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L2-S8"
+  ],
+  "confidence": "jedno źródło",
+  "note": "ExRx CBYRaise: target akton boczny, synergiści nadgrzebieniowy, czworoboczny dolny/środkowy, akton przedni i tylny — muscleLoad zgodne."
+ },
+ {
+  "name": "Car Drivers",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L2-S23"
+  ],
+  "confidence": "jedno źródło",
+  "note": "fedb: talerz trzymany przed sobą, obracany jak kierownica (ramiona — przytrzymanie w zgięciu). Brak w ExRx. Rzadkie — ukryć."
+ },
+ {
+  "name": "Crucifix",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L2-S23"
+  ],
+  "confidence": "jedno źródło",
+  "note": "fedb (strongman): statyczne trzymanie ciężarów w odwiedzeniu na czas — metric weight_time i para hantli poprawne. Konkurencja strongman."
+ },
+ {
+  "name": "Cuban Press",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L2-S23",
+   "L2-S10"
+  ],
+  "confidence": "jedno źródło",
+  "note": "fedb: wiosłowanie pionowe → rotacja zewnętrzna → wyciskanie. Brak w ExRx. Rozkład obciążenia (rear_delt 1 za stożek rotatorów) to uproszczenie — por. Q1."
+ },
+ {
+  "name": "Dumbbell Incline Shoulder Raise",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "muscles": [],
+   "secondaryMuscles": [
+    "klatka"
+   ],
+   "muscleLoad": {
+    "chest": 0.5,
+    "front_delt": 0.25,
+    "triceps": 0.25
+   }
+  },
+  "sources": [
+   "L2-S12",
+   "L2-S23"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx DBInclineShoulderRaise: target zębaty przedni (jak wersja ze sztangą) — ta sama poprawka. Q2."
+ },
+ {
+  "name": "Dumbbell Lying One-Arm Rear Lateral Raise",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L2-S6",
+   "L2-S23"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx DBOneArmRearLateralRaise („Dumbbell Lying One Arm Rear Lateral Raise”): target akton tylny. Jednorącz — unilateral, implements 1 poprawne."
+ },
+ {
+  "name": "Dumbbell One-Arm Upright Row",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L2-S7",
+   "L2-S23"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx DBOneArmUprightRow: target akton boczny, synergiści jak przy wiosłowaniu pionowym."
+ },
+ {
+  "name": "Dumbbell Scaption",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L2-S9",
+   "L2-S23"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx DBFullCanLateralRaise / DBFrontLateralRaise: target nadgrzebieniowy, synergiści akton boczny i przedni. Nadgrzebieniowy bez regionu — front_delt/side_delt to uproszczenie. Ćwiczenie korekcyjne."
+ },
+ {
+  "name": "External Rotation (hantel)",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "muscles": [],
+   "secondaryMuscles": [
+    "barki"
+   ],
+   "muscleLoad": {
+    "rear_delt": 0.5,
+    "upper_back": 0.25
+   }
+  },
+  "sources": [
+   "L2-S10",
+   "L2-S24",
+   "24-S6"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx DBLyingExternalRotation: target podgrzebieniowy, synergiści obły mniejszy, akton tylny. Reinold 2004: rotacja w leżeniu bokiem — najwyższa aktywność podgrzebieniowego (62% MVIC) i obłego mniejszego. Brak regionu stożka — barki pomocnicze, rear_delt 0,5. Q1."
+ },
+ {
+  "name": "External Rotation (linki)",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "muscles": [],
+   "secondaryMuscles": [
+    "barki"
+   ],
+   "muscleLoad": {
+    "rear_delt": 0.5,
+    "upper_back": 0.25
+   }
+  },
+  "sources": [
+   "L2-S10",
+   "L2-S24",
+   "24-S6"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx CBStandingExternalRotation: target podgrzebieniowy, synergiści obły mniejszy, akton tylny. Jak wersja z hantlem. Q1."
+ },
+ {
+  "name": "External Rotation with Band",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "muscles": [],
+   "secondaryMuscles": [
+    "barki"
+   ],
+   "muscleLoad": {
+    "rear_delt": 0.5,
+    "upper_back": 0.25
+   }
+  },
+  "sources": [
+   "L2-S10",
+   "L2-S23",
+   "L2-S24"
+  ],
+  "confidence": "umiarkowane",
+  "note": "fedb: guma na wysokości łokcia; ruch = ExRx CBStandingExternalRotation. Ta sama poprawka co linki. Q1."
+ },
+ {
+  "name": "Front Incline Dumbbell Raise",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L2-S5",
+   "L2-S23"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx DBAlternInclineFrontRaise: target przedni akton, synergista pec obojczykowa."
+ },
+ {
+  "name": "Front Plate Raise",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L2-S5",
+   "L2-S23",
+   "L2-S27"
+  ],
+  "confidence": "umiarkowane",
+  "note": "fedb: talerz oburącz, wznos w przód — wariant front raise (ExRx DBFrontRaise). Talerz — plate, tryb total poprawne."
+ },
+ {
+  "name": "Internal Rotation with Band",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "muscles": [],
+   "secondaryMuscles": [
+    "barki"
+   ],
+   "muscleLoad": {
+    "front_delt": 0.5,
+    "chest": 0.25
+   }
+  },
+  "sources": [
+   "L2-S11",
+   "L2-S23"
+  ],
+  "confidence": "umiarkowane",
+  "note": "fedb: guma na wysokości łokcia, rotacja do wewnątrz = ExRx CBStandingInternalRotation (target podłopatkowy). Jak Cable Internal Rotation. Q1."
+ },
+ {
+  "name": "Isometric Neck Exercise - Front And Back",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L2-S23",
+   "L2-S30"
+  ],
+  "confidence": "umiarkowane",
+  "note": "fedb: izometria szyi z oporem dłoni, na czas — metric time poprawne. Conley 1995: zginanie — mostkowo-obojczykowo-sutkowy, prostowanie — płatowaty i półkolcowy (region neck). Ruch zdrowotny/prewencja — bez ciężaru do śledzenia."
+ },
+ {
+  "name": "Isometric Neck Exercise - Sides",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L2-S23",
+   "L2-S30"
+  ],
+  "confidence": "umiarkowane",
+  "note": "fedb: izometria zgięcia bocznego; Conley 1995: zgięcie boczne — mostkowo-obojczykowo-sutkowy."
+ },
+ {
+  "name": "Kettlebell Halo",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L2-S23"
+  ],
+  "confidence": "jedno źródło",
+  "note": "fedb: kettlebell za rogi krążący wokół głowy. Brak w ExRx; raczej rozgrzewka/mobilność barków niż ćwiczenie siłowe."
+ },
+ {
+  "name": "Kettlebell Halo with Overhead Extension",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L2-S23"
+  ],
+  "confidence": "jedno źródło",
+  "note": "fedb: halo + prostowanie łokci nad głową; triceps główny zgodny z fedb (shoulders, triceps)."
+ },
+ {
+  "name": "Lateral Raise - With Bands",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "name": "Band Lateral Raise"
+  },
+  "sources": [
+   "L2-S23",
+   "L2-S4"
+  ],
+  "confidence": "umiarkowane",
+  "note": "fedb: stojąc na gumie, wznosy bokiem = ExRx lateral raise. Nazwa z myślnikiem z fedb — ustalona „Band Lateral Raise” (spójnie z Band Pull Apart, Band Squat)."
+ },
+ {
+  "name": "Lying Face Down Plate Neck Resistance",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "name": "Lying Neck Extension (talerz)"
+  },
+  "sources": [
+   "L2-S13",
+   "L2-S29",
+   "L2-S23"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx WtLyingNeckExtension: target płatowaty, synergiści czworoboczny górny, dźwigacz łopatki, prostowniki szyjne. Conley 1997: prostowanie głowy z oporem — wzrost płatowatego i półkolcowych (~24%). Nazwa ExRx."
+ },
+ {
+  "name": "Lying Face Up Plate Neck Resistance",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "name": "Lying Neck Flexion (talerz)"
+  },
+  "sources": [
+   "L2-S13",
+   "L2-S30",
+   "L2-S23"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx WtLyingNeckFlexion: target mostkowo-obojczykowo-sutkowy. Nazwa ExRx."
+ },
+ {
+  "name": "Machine Lateral Raise",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L2-S4"
+  ],
+  "confidence": "jedno źródło",
+  "note": "ExRx LVLateralRaise: target akton boczny, synergiści przedni akton, nadgrzebieniowy, czworoboczny."
+ },
+ {
+  "name": "One-Arm Incline Lateral Raise",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L2-S4",
+   "L2-S23"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx DBInclineLateralRaise: leżąc bokiem na ławce skośnej, target akton boczny, synergista akton tylny. Rzadki wariant."
+ },
+ {
+  "name": "One-Arm Side Laterals",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "name": "One-Arm Lateral Raise (hantel)"
+  },
+  "sources": [
+   "L2-S4",
+   "L2-S23"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx DBOneArmLateralRaise: target akton boczny. Jednorącz ≠ oburącz (decyzja właściciela 04.10) — zostaje osobno; nazwa ustalona (ExRx „One Arm Lateral Raise”)."
+ },
+ {
+  "name": "Reverse Flyes With External Rotation",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L2-S23",
+   "L2-S6"
+  ],
+  "confidence": "jedno źródło",
+  "note": "fedb: odwrotne rozpiętki leżąc na ławce skośnej z rotacją zewnętrzną na końcu. Brak w ExRx."
+ },
+ {
+  "name": "Seated Bent-Over Rear Delt Raise",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Reverse Fly (hantle)",
+  "fixes": {},
+  "sources": [
+   "L2-S6",
+   "L2-S23"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx DBSeatedRearLateralRaise — ten sam ruch, sprzęt i partie co Reverse Fly (hantle); różni się tylko pozycją (siedząc w opadzie). Ocena produktowa: wariant pozycji, nie osobne ćwiczenie."
+ },
+ {
+  "name": "Seated Head Harness Neck Resistance",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "name": "Neck Harness Extension"
+  },
+  "sources": [
+   "L2-S13",
+   "L2-S29",
+   "L2-S23"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx WtNeckHarnessExt: target płatowaty. Conley 1997 — prostowanie głowy, wzrost prostowników szyi. Nazwa ExRx."
+ },
+ {
+  "name": "Seated Side Lateral Raise",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Lateral Raise (hantle)",
+  "fixes": {},
+  "sources": [
+   "L2-S4",
+   "L2-S23"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx DBSeatedLateralRaise — te same mięśnie co DBLateralRaise; para hantli, siedząc. Ocena produktowa: wariant pozycji."
+ },
+ {
+  "name": "Side Laterals to Front Raise",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Alternating Deltoid Raise",
+  "fixes": {},
+  "sources": [
+   "L2-S23"
+  ],
+  "confidence": "jedno źródło",
+  "note": "fedb: ta sama para ruchów (w przód i bokiem) co Alternating Deltoid Raise, inna kolejność — prawie duplikat."
+ },
+ {
+  "name": "Single Dumbbell Raise",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "name": "Single Dumbbell Front Raise"
+  },
+  "sources": [
+   "L2-S23",
+   "L2-S5"
+  ],
+  "confidence": "umiarkowane",
+  "note": "fedb: jeden hantel trzymany oburącz, wznos w przód = front raise (ExRx DBFrontRaise). implements 1, total poprawne. Nazwa z dopiskiem „Front”."
+ },
+ {
+  "name": "Sled Reverse Flye",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L2-S23"
+  ],
+  "confidence": "jedno źródło",
+  "note": "fedb: odwrotne rozpiętki z liną przy sankach. Sprzęt rzadki; ciężar sanek ≠ opór (tarcie)."
+ },
+ {
+  "name": "Smith Incline Shoulder Raise",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "muscles": [],
+   "secondaryMuscles": [
+    "klatka"
+   ],
+   "muscleLoad": {
+    "chest": 0.5,
+    "front_delt": 0.25,
+    "triceps": 0.25
+   }
+  },
+  "sources": [
+   "L2-S12",
+   "L2-S23"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx SMInclineShoulderRaise: target zębaty przedni — jak wersja ze sztangą. Q2."
+ },
+ {
+  "name": "Smith Machine One-Arm Upright Row",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L2-S7",
+   "L2-S23"
+  ],
+  "confidence": "umiarkowane",
+  "note": "fedb + ExRx SMUprightRow (analogia, jednorącz)."
+ },
+ {
+  "name": "Smith Machine Upright Row",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L2-S7",
+   "L2-S23"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx SMUprightRow: target akton boczny (fedb: traps) — rozbieżność; muscleLoad side_delt 1 + upper_back 0,5 obejmuje oba."
+ },
+ {
+  "name": "Standing Dumbbell Straight-Arm Front Delt Raise Above Head",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "name": "Dumbbell Front Raise to Overhead"
+  },
+  "sources": [
+   "L2-S23",
+   "L2-S5"
+  ],
+  "confidence": "jedno źródło",
+  "note": "fedb: wznos hantli w przód aż nad głowę. Wariant front raise o większym zakresie; nazwa skrócona."
+ },
+ {
+  "name": "Standing Front Barbell Raise Over Head",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "name": "Barbell Front Raise to Overhead"
+  },
+  "sources": [
+   "L2-S5",
+   "L2-S23"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx BBFrontRaise (target przedni akton) — tu z zakresem nad głowę (fedb). Nazwa skrócona, spójna z wersją z hantlami."
+ },
+ {
+  "name": "Straight Raises on Incline Bench",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L2-S23"
+  ],
+  "confidence": "jedno źródło",
+  "note": "fedb: leżąc przodem na ławce skośnej, wznos sztangi prostymi rękami w przód. Brak w ExRx — mapa obciążenia to uproszczenie."
+ },
+ {
+  "name": "Upright Row (linki)",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L2-S7"
+  ],
+  "confidence": "jedno źródło",
+  "note": "ExRx CBUprightRow / CBBarUprightRow: jeden wyciąg dolny z drążkiem lub liną."
+ },
+ {
+  "name": "Upright Row (sztanga)",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L2-S7"
+  ],
+  "confidence": "jedno źródło",
+  "note": "ExRx BBUprightRow: target akton boczny; gryf prosty lub łamany."
+ },
+ {
+  "name": "Upright Row With Bands",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "name": "Band Upright Row"
+  },
+  "sources": [
+   "L2-S23",
+   "L2-S7"
+  ],
+  "confidence": "umiarkowane",
+  "note": "fedb „Upright Row - With Bands”; ruch = ExRx upright row. Nazwa ustalona."
+ },
+ {
+  "name": "Y Raise (hantle)",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L2-S8"
+  ],
+  "confidence": "jedno źródło",
+  "note": "ExRx STYShoulderRaise / CBYRaise: target akton boczny, synergiści czworoboczny dolny/środkowy, akton tylny."
+ },
+ {
+  "name": "Reverse Wrist Curl (hantle)",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L2-S16"
+  ],
+  "confidence": "jedno źródło",
+  "note": "ExRx DBReverseWristCurl: target prostowniki nadgarstka, brak synergistów. Prawie duplikat „Seated One-Arm Dumbbell Palms-Down Wrist Curl” (inna część, grupa biceps) — tamten do scalenia z tym; grupy wpisów nadgarstka niespójne (inne vs biceps) — Q4."
+ },
+ {
+  "name": "Wrist Curl (hantle)",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L2-S16"
+  ],
+  "confidence": "jedno źródło",
+  "note": "ExRx DBWristCurl: target zginacze nadgarstka. Prawie duplikat „Seated One-Arm Dumbbell Palms-Up Wrist Curl” (inna część). Q4."
+ },
+ {
+  "name": "Glute Ham Raise",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L2-S17",
+   "24-S28"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx WTGluteHamRaise / BWGluteHamRaiseHead: target dwugłowe, synergiści pośladek wielki, przywodziciel wielki, brzuchaty — muscleLoad glutes 0,5, calves 0,25 zgodne."
+ },
+ {
+  "name": "Hip Flexion with Band",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "muscles": [],
+   "secondaryMuscles": [
+    "czworogłowe"
+   ],
+   "muscleLoad": {
+    "quads": 0.5,
+    "abs": 0.25
+   }
+  },
+  "sources": [
+   "L2-S22",
+   "L2-S23",
+   "24-S35"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx CBStandingLegRaise: target biodrowo-lędźwiowy, prosty uda tylko „dynamic stabilizer”. Zginacze biodra nie mają regionu — czworogłowe jako główna zawyża serie. Bez partii głównej, czworogłowe pomocnicze."
+ },
+ {
+  "name": "Leg Curl (hantel)",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L2-S17",
+   "24-S27"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Uginanie leżąc z hantlem między stopami — analogia do ExRx LVLyingLegCurl (target dwugłowe). Dom bez maszyny — przydatne."
+ },
+ {
+  "name": "Prone Manual Hamstring",
+  "verdict": "USUNĄĆ",
+  "scope": "USUNĄĆ",
+  "fixes": {},
+  "sources": [
+   "L2-S23"
+  ],
+  "confidence": "jedno źródło",
+  "note": "fedb: opór daje partner ręką. Oporu nie da się zmierzyć ani powtórzyć (logger nie śledzi progresu), partner niewyrażalny w sprzęcie — ocena produktowa."
+ },
+ {
+  "name": "Reverse Nordic",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L2-S31",
+   "L2-S32"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Pereira 2024 (EMG): aktywacja ekscentryczna prostego uda i obszernego przyśrodkowego jak w przysiadach z masą ciała; Alonso-Fernandez 2019 (USG): wzrost grubości i CSA prostego uda po 8 tyg. — czworogłowe główne."
+ },
+ {
+  "name": "Seated Band Hamstring Curl",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L2-S23",
+   "L2-S17"
+  ],
+  "confidence": "umiarkowane",
+  "note": "fedb: siedząc, guma za kostkami — ruch = ExRx LVSeatedLegCurl."
+ },
+ {
+  "name": "Single-Leg Leg Extension",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L2-S18",
+   "L2-S23"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx LVAlternatingLegExtension / „Unilateral Machine”: target czworogłowe. Jednonóż ≠ obunóż (decyzja 04.10)."
+ },
+ {
+  "name": "Slider Hamstring Curl",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "secondaryMuscles": [],
+   "muscleLoad": {
+    "hamstrings": 1,
+    "glutes": 0.25,
+    "lower_back": 0.25
+   }
+  },
+  "sources": [
+   "L2-S17"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Analogia do ExRx BWBallLegCurl: target dwugłowe, pośladek wielki tylko stabilizatorem — glutes 0,5 i pośladki pomocnicze zawyżone; 0,25 bez partii pomocniczej."
+ },
+ {
+  "name": "Stability Ball Hamstring Curl",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "secondaryMuscles": [],
+   "muscleLoad": {
+    "hamstrings": 1,
+    "glutes": 0.25,
+    "lower_back": 0.25
+   }
+  },
+  "sources": [
+   "L2-S17"
+  ],
+  "confidence": "jedno źródło",
+  "note": "ExRx BWBallLegCurl: target dwugłowe, synergiści brzuchaty, krawiecki, smukły; pośladek wielki i prostowniki — stabilizatory."
+ },
+ {
+  "name": "Standing Cable Leg Curl",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L2-S17"
+  ],
+  "confidence": "jedno źródło",
+  "note": "ExRx CBStandingLegCurl: target dwugłowe, synergista brzuchaty. Opaska na kostkę zalecana."
+ },
+ {
+  "name": "Standing Leg Curl",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L2-S17",
+   "L2-S23"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx LVStandingLegCurl: target dwugłowe. Maszyna rzadsza niż siedząca/leżąca; słownik ma jedno leg_curl."
+ },
+ {
+  "name": "Weighted Sissy Squat",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Sissy Squat",
+  "fixes": {},
+  "sources": [
+   "L2-S18",
+   "L2-S23"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx WTSissySquat i BWSissySquat — te same mięśnie; Sissy Squat ma już miarę ciężar + powtórzenia, więc obciążenie (talerz) wpisuje się w nim."
+ },
+ {
+  "name": "Barbell Shrug Behind The Back",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L2-S14",
+   "L2-S23"
+  ],
+  "confidence": "umiarkowane",
+  "note": "fedb: sztanga za plecami, wzruszanie = ExRx BBShrug (target czworoboczny górny)."
+ },
+ {
+  "name": "Bent-Arm Barbell Pullover",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "muscles": [
+    "plecy"
+   ],
+   "secondaryMuscles": [
+    "klatka"
+   ],
+   "muscleLoad": {
+    "lats": 1,
+    "chest": 0.5,
+    "triceps": 0.25,
+    "abs": 0.25
+   }
+  },
+  "sources": [
+   "L2-S15",
+   "L2-S23"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx BBBentArmPullover: target najszerszy, pec mostkowa tylko synergistą — klatka nie główna, lecz pomocnicza (0,5)."
+ },
+ {
+  "name": "Cable Incline Pushdown",
+  "verdict": "USUNĄĆ",
+  "scope": "USUNĄĆ",
+  "fixes": {},
+  "sources": [
+   "L2-S15",
+   "L2-S23"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Źródła sprzeczne: ExRx CBInclinePushdown to prostowanie łokci (target triceps), fedb pod tą nazwą opisuje ruch prostymi rękami na najszerszy z niejasnym „keeping the upper arms stationary”. Nieidentyfikowalne; ruch na najszerszy jest w Straight Arm Pulldown."
+ },
+ {
+  "name": "Calf-Machine Shoulder Shrug",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L2-S14",
+   "L2-S23"
+  ],
+  "confidence": "umiarkowane",
+  "note": "fedb: wzruszanie na maszynie do łydek stojąc — ruch = ExRx shrug (LVShrug)."
+ },
+ {
+  "name": "Leverage Shrug",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L2-S14",
+   "L2-S23"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx LVShrug: target czworoboczny górny. lever_machine — najbliższa możliwość."
+ },
+ {
+  "name": "Machine Pullover",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L2-S15"
+  ],
+  "confidence": "jedno źródło",
+  "note": "ExRx LVPullover: target najszerszy, synergiści pec mostkowa, długa głowa tricepsa — chest 0,25, triceps 0,25 zgodne."
+ },
+ {
+  "name": "Middle Back Shrug",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L2-S23",
+   "L2-S28"
+  ],
+  "confidence": "umiarkowane",
+  "note": "fedb: leżąc przodem na ławce skośnej, ściąganie łopatek (retrakcja) — czworoboczny środkowy (Ekstrom 2003: środkowy czworoboczny aktywny przy odwodzeniu poziomym w leżeniu). upper_back 1 zgodne."
+ },
+ {
+  "name": "Rope Straight-Arm Pulldown",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Straight Arm Pulldown",
+  "fixes": {},
+  "sources": [
+   "L2-S15",
+   "L2-S23"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx CBPullover — ten sam ruch; różni się tylko końcówką (lina). Końcówka to nie osobne ćwiczenie."
+ },
+ {
+  "name": "Scapular Pull-Up",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L2-S23",
+   "24-S35"
+  ],
+  "confidence": "jedno źródło",
+  "note": "fedb: zwis, obniżenie łopatek bez zginania łokci. Brak w ExRx; czworoboczny (część dolna) obniża łopatkę (24-S35, tab. 11.8). Popularne ćwiczenie przygotowawcze do podciągania."
+ },
+ {
+  "name": "Shrugs (linki)",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "requires": [
+    [
+     "cable.low"
+    ]
+   ],
+   "cables": 1
+  },
+  "sources": [
+   "L2-S14"
+  ],
+  "confidence": "jedno źródło",
+  "note": "ExRx CBShrug (drążek na jednym wyciągu) i CBShrugDualPulley — oba istnieją. Notatka wpisu mówi „drążek na jednym wyciągu”, a wymaga cable.dual i cables 2 — sprzeczność. Propozycja: wariant z drążkiem (cable.low, 1 linka) — szersza dostępność."
+ },
+ {
+  "name": "Smith Machine Behind the Back Shrug",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L2-S14",
+   "L2-S23"
+  ],
+  "confidence": "umiarkowane",
+  "note": "fedb + ExRx SMShrug (target czworoboczny górny)."
+ },
+ {
+  "name": "Band Hip Adductions",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "name": "Band Hip Adduction"
+  },
+  "sources": [
+   "L2-S19",
+   "L2-S23"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Nazwa = przywodzenie (ExRx CBHipAdduction: target przywodziciele), ale opis fedb („raise your right leg out to the side” przy gumie od drugiej strony) to odwodzenie — sprzeczność w źródle. Wpis zostaje przywodzeniem (guma zaczepiona po stronie ćwiczącej nogi); nazwa w liczbie pojedynczej."
+ },
+ {
+  "name": "Cable Hip Abduction",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L2-S19",
+   "24-S35"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx CBHipAbduction: target odwodziciele, synergiści pośladkowy średni, mały, napinacz powięzi."
+ },
+ {
+  "name": "Cable Hip Adduction",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "muscleLoad": {
+    "adductors": 1,
+    "glutes": 0.25
+   }
+  },
+  "sources": [
+   "L2-S19"
+  ],
+  "confidence": "jedno źródło",
+  "note": "ExRx CBHipAdduction: target przywodziciele, synergiści grzebieniowy, smukły, dolne włókna pośladka wielkiego — glutes 0,25 zamiast obliques 0,25 (spójnie z Hip Adduction)."
+ },
+ {
+  "name": "Clamshell",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L2-S25",
+   "L2-S26",
+   "L2-S34"
+  ],
+  "confidence": "mocne",
+  "note": "Distefano 2009: pośladkowy średni 38–40% MVIC, wielki 34% MVIC; Selkowitz 2013: pośladkowe >> napinacz powięzi (indeks 115); Kim 2026: aktywacja m.in. pośladkowego średniego i rotatorów — abductors 1, glutes 0,5 zgodne."
+ },
+ {
+  "name": "Donkey Kick",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L2-S26",
+   "L2-S20"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Selkowitz 2013: „quadruped hip extension (knee flexed)” — pośladkowe istotnie bardziej aktywne niż napinacz; ExRx kickback: target pośladek wielki."
+ },
+ {
+  "name": "Fire Hydrant",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "24-S35",
+   "L2-S19"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Odwodzenie biodra w podporze — nie znaleziono badania EMG ani strony ExRx; przypisanie przez anatomię odwodzenia (24-S35) i analogię do ExRx hip abduction. Q3."
+ },
+ {
+  "name": "Hip Extension with Bands",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L2-S20",
+   "L2-S23"
+  ],
+  "confidence": "umiarkowane",
+  "note": "fedb: guma przy kostce, wyprost biodra stojąc = ExRx CBStandingHipExtension (target pośladek wielki, synergista dwugłowe)."
+ },
+ {
+  "name": "Lateral Band Walk",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L2-S25",
+   "L2-S26",
+   "L2-S33"
+  ],
+  "confidence": "mocne",
+  "note": "Distefano 2009 (lateral band walk: pośladek wielki 27% MVIC), Selkowitz 2013 (sidestep, indeks 64), przegląd 2025: umiarkowana do wysokiej aktywacja pośladkowego średniego i wielkiego."
+ },
+ {
+  "name": "Machine Glute Kickback",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L2-S20"
+  ],
+  "confidence": "jedno źródło",
+  "note": "ExRx LVBentOverRearKick: target pośladek wielki, synergista przywodziciel wielki."
+ },
+ {
+  "name": "Monster Walk",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L2-S33",
+   "L2-S23"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Przegląd 2025 (monster walk i lateral band walk) + fedb (target odwodziciele). Bliski Lateral Band Walk — kierunek po skosie."
+ },
+ {
+  "name": "Prone Flutter Kicks",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L2-S23"
+  ],
+  "confidence": "jedno źródło",
+  "note": "fedb „Flutter Kicks”: leżąc przodem na ławce, naprzemienny wyprost bioder (glutes, hamstrings). Zmiana nazwy (od nożyc na brzuch) słuszna."
+ },
+ {
+  "name": "Standing Leg Lift",
+  "verdict": "USUNĄĆ",
+  "scope": "USUNĄĆ",
+  "fixes": {},
+  "sources": [
+   "L2-S23"
+  ],
+  "confidence": "jedno źródło",
+  "note": "fedb „Leg Lift”: noga w tył „as if performing a leg curl” — niejasne, czy wyprost biodra czy uginanie; bez obciążenia (obciążnik na kostkę poza słownikiem). Wyprost biodra pokrywają Hip Extension with Bands i Cable Kickback."
+ },
+ {
+  "name": "Barbell Seated Calf Raise",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L2-S21",
+   "L2-S23"
+  ],
+  "confidence": "umiarkowane",
+  "note": "fedb + ExRx SBSeatedCalfRaise: target płaszczkowaty, synergista brzuchaty."
+ },
+ {
+  "name": "Calf Raise (linki)",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L2-S21"
+  ],
+  "confidence": "jedno źródło",
+  "note": "ExRx CBStandingCalfRaise: target brzuchaty, synergista płaszczkowaty."
+ },
+ {
+  "name": "Calf Raise (sztanga)",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L2-S21",
+   "24-S30"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx BBStandingCalfRaise. Sztanga na plecach — rack wymagany (zgodnie z konwencją)."
+ },
+ {
+  "name": "Calf Raise On A Dumbbell",
+  "verdict": "USUNĄĆ",
+  "scope": "USUNĄĆ",
+  "fixes": {},
+  "sources": [
+   "L2-S23"
+  ],
+  "confidence": "jedno źródło",
+  "note": "fedb: stanie na toczącym się gryfie hantla (celowo niestabilne). Ryzyko upadku/skręcenia bez korzyści nad wspięciem na stopniu (Łydki na stopniu) — ocena produktowa/bezpieczeństwa."
+ },
+ {
+  "name": "Calf Raises with Bands",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "name": "Band Calf Raise"
+  },
+  "sources": [
+   "L2-S23",
+   "L2-S21"
+  ],
+  "confidence": "umiarkowane",
+  "note": "fedb: stojąc na gumie, wspięcia = ExRx standing calf raise. Nazwa ustalona, liczba pojedyncza."
+ },
+ {
+  "name": "Donkey Calf Raises",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "name": "Donkey Calf Raise"
+  },
+  "sources": [
+   "L2-S21",
+   "L2-S23"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx LVDonkeyCalfRaise / WTDonkeyCalfRaise: target brzuchaty, synergista płaszczkowaty. calf_machine to przybliżenie (osobna maszyna) — catalog-notes. Liczba pojedyncza jak inne wpisy."
+ },
+ {
+  "name": "Dumbbell Seated One-Leg Calf Raise",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L2-S21",
+   "L2-S23"
+  ],
+  "confidence": "umiarkowane",
+  "note": "fedb; ruch = ExRx seated calf raise (płaszczkowaty). Jednonóż — unilateral poprawne."
+ },
+ {
+  "name": "Rocking Standing Calf Raise",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Calf Raise (sztanga)",
+  "fixes": {},
+  "sources": [
+   "L2-S23",
+   "L2-S21"
+  ],
+  "confidence": "umiarkowane",
+  "note": "fedb: wspięcie ze sztangą + uniesienie palców (piszczelowy przedni). To technika Calf Raise (sztanga) z dodatkiem; piszczelowy nie ma regionu."
+ },
+ {
+  "name": "Seated Calf Raise (hantle)",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L2-S21",
+   "24-S30"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Ruch = ExRx seated calf raise (target płaszczkowaty). Para hantli na kolanach — per_dumbbell poprawne. Domowa alternatywa maszyny."
+ },
+ {
+  "name": "Single Leg Calf Raise",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L2-S21"
+  ],
+  "confidence": "jedno źródło",
+  "note": "ExRx DBSingleLegCalfRaise: target brzuchaty, synergista płaszczkowaty. R3 jak Łydki na stopniu."
+ },
+ {
+  "name": "Smith Machine Calf Raise",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L2-S21"
+  ],
+  "confidence": "jedno źródło",
+  "note": "ExRx SMStandingCalfRaise: target brzuchaty, synergista płaszczkowaty."
+ },
+ {
+  "name": "Smith Machine Reverse Calf Raises",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "name": "Smith Machine Reverse Calf Raise",
+   "muscles": [],
+   "muscleLoad": {}
+  },
+  "sources": [
+   "L2-S21",
+   "L2-S23"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx BBReverseCalfRaise: target piszczelowy przedni, brak synergistów — to nie łydki (tył goleni). Region „calves” 1 i partia „łydki” błędne; regionu piszczelowego brak — bez partii i bez obciążenia na mapie, dopóki właściciel nie zdecyduje (Q5; test catalog-v2 może wymagać niepustego muscleLoad)."
+ }
+]
