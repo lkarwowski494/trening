@@ -1,5 +1,5 @@
 {
   "CFBundleDisplayName": "Тренинг",
   "NSHealthShareUsageDescription": "Тренинг не чита здравствене податке — iOS захтева овај опис за дозволу HealthKit.",
-  "NSHealthUpdateUsageDescription": "Тренинг чува завршене тренинге снаге у Apple Health."
+  "NSHealthUpdateUsageDescription": "Тренинг чува завршене тренинге — снаге и кардио — у Apple Health."
 }

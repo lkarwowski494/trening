@@ -12,7 +12,7 @@ import { equipEntry } from '@/lib/equipment';
 import { LOAD_LIMITS } from '@/lib/loads';
 import { addLocation } from '@/lib/locations';
 import { t as tr, exName } from '@/lib/i18n';
-import { fresh, ex, addWorkout, pressAlert, withDemoTemplates } from './helpers';
+import { setBodyMass, fresh, ex, addWorkout, pressAlert, withDemoTemplates } from './helpers';
 import { renderApp, flushAll, screen, go, tap, type, act, fireEvent, expandEquip, openCard, swipeDelete, deleteActions } from './app';
 import { loc } from './locations-fixtures';
 
@@ -292,7 +292,7 @@ describe('/exercise/[id]', () => {
     const saved = await prepared(() => { addWorkout(Date.now() - DAY, [['Back Squat', [{ weight: 100, reps: 5 }]]]); store.startEmpty(); store.addExerciseToActive(ex('Back Squat')); });
     await renderApp({ saved }); const id = ex('Back Squat').id; await go(`/exercise/${id}`); await flushAll(10);
     expect(screen.getByText('Uwaga: zmiana sprzętu, trybu liczenia lub metryki przelicza też dawne treningi (objętość, rekordy, wykresy).')).toBeTruthy();
-    expect(screen.queryByText('Usuń ćwiczenie')).toBeNull(); await go('/exercises'); await flushAll(10); await swipeDelete('Usuń z biblioteki: Back Squat'); /* 07.10.2026 wieczór: z listy, przesunięciem */
+    expect(screen.queryByText('Usuń ćwiczenie')).toBeNull(); await go('/exercises'); await flushAll(10); await type(screen.getByPlaceholderText('Szukaj…'), 'Back Squat'); /* N3: lista wirtualizowana */ await swipeDelete('Usuń z biblioteki: Back Squat'); /* 07.10.2026 wieczór: z listy, przesunięciem */
     expect(lastAlert()).toMatchObject({ title: 'Usunąć ćwiczenie?', msg: 'Zniknie z list i szablonów; historia, wykresy i eksport zostaną. W trwającym treningu zostanie oznaczone jako usunięte.' });
     await act(async () => { pressAlert('Usunąć ćwiczenie?', 'Usuń'); }); await flushAll(10);
     expect(store.getState().exercises.find(x => x.id === id)!.archived).toBe(true);
@@ -552,7 +552,7 @@ describe('/more/progress (+ Chart)', () => {
     await renderApp({ saved }); await go(`/more/progress?ex=${ex('Pull Up').id}`); await flushAll(10);
     for (const l of ['e1RM pojawi się po wpisaniu masy ciała w Ustawieniach.', 'Max dociążenie', 'Max powtórzeń bez asysty', 'Max powtórzeń z asystą', 'Najwięcej powtórzeń na treningu']) expect(screen.getAllByText(l).length).toBeGreaterThan(0);
     expect(screen.getByText('Max dociążenie').parent).toBeTruthy(); expect(screen.queryByText('e1RM (Epley)')).toBeNull();
-    await act(async () => { store.getState().settings.bodyMass = 80; store.save(); }); await flushAll(5);
+    await act(async () => { setBodyMass(80); }); await flushAll(5);
     expect(screen.getByText('e1RM (Epley)')).toBeTruthy(); expect(screen.getAllByText('e1RM').length).toBeGreaterThan(0); /* chip wykresu */
   });
 

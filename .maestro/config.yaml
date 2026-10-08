@@ -19,3 +19,4 @@ flows:
   - 12-usuwanie-gestem.yaml
   - 13-kalendarz-plan.yaml
   - 14-generator.yaml
+  - 15-masa-licencje.yaml

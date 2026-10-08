@@ -2,7 +2,7 @@
 // Sprawdza: entitlements (tylko HealthKit), lokalizacje InfoPlist.strings, linkowanie modułu RestActivity,
 // cel widżetu i kolor akcentu, brak UIBackgroundModes, NSSupportsLiveActivities = true, UIFileSharingEnabled i LSSupportsOpeningDocumentsInPlace (kopie w Plikach, runda 75), identyczny RestTimerAttributes.swift
 // w module i widżecie (rundy 63–64); audyt NAT-05 (08.10.2026): MARKETING_VERSION = app.json, iPhone, cele ≤ aplikacja, tylko opisy HealthKit,
-// ikona 1024, InfoPlist.strings we wszystkich językach. Kod wyjścia 1 = błąd.
+// ikona 1024, InfoPlist.strings we wszystkich językach; NAT-07: bez ExtensionStorage, ekran startowy z wariantem ciemnym. Kod wyjścia 1 = błąd.
 import { execSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { readFileSync, existsSync, rmSync } from 'node:fs';
@@ -45,6 +45,10 @@ try {
   for (const d of lproj) { const t = readFileSync(root + `ios/Trening/Supporting/${d}/InfoPlist.strings`, 'utf8'); ok(/NSHealthUpdateUsageDescription = "[^"]{10,}"/.test(t) && /NSHealthShareUsageDescription = "[^"]{10,}"/.test(t), `InfoPlist.strings ${d}: brak lub zły format`); }
   const auto = execSync('npx expo-modules-autolinking resolve -p apple --json', { cwd: root }).toString();
   ok(/"podName":"RestActivity"/.test(auto.replace(/\s/g, '')), 'autolinking: moduł RestActivity nie jest linkowany (Live Activity byłoby martwe)');
+  /* audyt 0.10 NAT-07: martwy moduł ExtensionStorage (@bacons/apple-targets, App Group widżetu wycofanego 07.10) poza aplikacją; ekran startowy z wariantem ciemnym */
+  ok(!/"podName":"ExtensionStorage"/.test(auto.replace(/\s/g, '')), 'autolinking: ExtensionStorage linkowany do aplikacji (package.json expo.autolinking.exclude)');
+  const splashDir = root + 'ios/Trening/Images.xcassets/'; const splash = readdirSync(splashDir).filter(d => /^Splash.*\.colorset$/.test(d)).map(d => readFileSync(splashDir + d + '/Contents.json', 'utf8')).join('\n');
+  ok(/"value"\s*:\s*"dark"/.test(splash), 'ekran startowy: brak koloru tła dla trybu ciemnego (expo-splash-screen „dark”)');
 } finally { rmSync(root + 'ios', { recursive: true, force: true }); }
 console.log(errs.length ? 'BŁĘDY natywne:\n' + errs.map(e => '  ' + e).join('\n') : 'natywne: OK');
 process.exit(errs.length ? 1 : 0);

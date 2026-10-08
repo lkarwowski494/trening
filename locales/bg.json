@@ -1,5 +1,5 @@
 {
   "CFBundleDisplayName": "Training",
   "NSHealthShareUsageDescription": "Training не чете здравни данни — iOS изисква това описание за разрешението за HealthKit.",
-  "NSHealthUpdateUsageDescription": "Training записва завършените силови тренировки в Apple Health."
+  "NSHealthUpdateUsageDescription": "Training записва завършените тренировки — силови и кардио — в Apple Health."
 }

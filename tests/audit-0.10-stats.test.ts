@@ -13,7 +13,7 @@ import { generate } from '@/lib/generator';
 import { swapCandidates, FULL_BASE_REV } from '@/lib/swap';
 import { muscleLoadOf, catalogKey, isLibBase, libExtraRevOf, libKeyFromFields, musclesSourced, MUSCLE_SOURCES, base, uid, LIB, type Template } from '@/lib/seed';
 import { applyUnit } from '@/lib/units';
-import { fresh, saved, addWorkout, ex, set } from './helpers';
+import { setBodyMass, fresh, saved, addWorkout, ex, set } from './helpers';
 
 const NOW = new Date(2026, 9, 8, 18).getTime();
 const at = (m: number, d: number, h = 18) => new Date(2026, m, d, h).getTime();
@@ -139,7 +139,7 @@ describe('E2 / X-03: trwały klucz katalogu (libKey) — zmiana nazwy ćwiczenia
 });
 
 describe('E1 / MER-03 / LOG-02: e1RM w ćwiczeniach z masą ciała — Epley na podnoszonym ciężarze (masa ciała z Ustawień), bez masy ciała — brak e1RM', () => {
-  const bm = (kg?: number) => { if (kg == null) delete S().settings.bodyMass; else S().settings.bodyMass = kg; store.save(); };
+  const bm = (kg?: number) => setBodyMass(kg); /* fala 2: pomiar z dniem przed historią testu */
   test('bez masy ciała: brak e1RM i odznaki e1RM dla Pull Up (było: e1RM z samego dociążenia, +30 × 3 „biło” +20 × 8)', () => {
     const pu = ex('Pull Up'); addWorkout(at(9, 1), [['Pull Up', [{ addKg: 20, reps: 8 }]]]);
     const rec = recordsFor(pu); expect(rec.bestE1rm).toBe(0); expect(rec.e1rmAny).toBe(false);
@@ -151,8 +151,8 @@ describe('E1 / MER-03 / LOG-02: e1RM w ćwiczeniach z masą ciała — Epley na 
   test('z masą ciała 80 kg: e1RM = Epley(80 + 20, 8) = 126,7; +30 × 3 (Epley 121) nie jest rekordem — kolejność jak w rachunku', () => {
     bm(80); const pu = ex('Pull Up'); addWorkout(at(9, 1), [['Pull Up', [{ addKg: 20, reps: 8 }]]]);
     const rec = recordsFor(pu); expect(rec.bestE1rm).toBeCloseTo(e1rm(100, 8), 6); expect(rec.bestE1rm).toBeCloseTo(126.667, 2);
-    expect(setPRs(pu, set({ addKg: 30, reps: 3 }), rec)).toEqual([]); expect(e1rm(110, 3)).toBeCloseTo(121, 6);
-    expect(setPRs(pu, set({ addKg: 30, reps: 6 }), rec)).toEqual(['e1RM']); /* Epley(110, 6) = 132 > 126,7 */
+    expect(setPRs(pu, set({ addKg: 30, reps: 3 }), rec, 80)).toEqual([]); expect(e1rm(110, 3)).toBeCloseTo(121, 6);
+    expect(setPRs(pu, set({ addKg: 30, reps: 6 }), rec, 80)).toEqual(['e1RM']); /* Epley(110, 6) = 132 > 126,7 */
     expect(chartKeysFor(pu).find(k => k.key === 'bestE1rm')!.label).toBe('e1RM');
   });
   test('LOG-02: historia +15 × 8, nowy trening +20 × 3 — przy masie ciała to nie jest rekord e1RM (95 × 8 = 120,3 > 100 × 3 = 110)', () => {
@@ -176,21 +176,21 @@ describe('E1 / MER-03 / LOG-02: e1RM w ćwiczeniach z masą ciała — Epley na 
   });
   test('liftedLoad / bwE1Diff / fmtE1: podnoszony ciężar i opis „masa ciała ± X”', () => {
     const pu = ex('Pull Up'), push = ex('Push Up'), sq = ex('Back Squat');
-    expect(liftedLoad(pu, set({ addKg: 20, reps: 5 }))).toBe(0); expect(bwE1Diff(pu, 100)).toBeNull(); expect(fmtE1(pu, 100)).toBe('100 kg'); /* bez masy ciała */
-    bm(80); expect(liftedLoad(pu, set({ addKg: 20, reps: 5 }))).toBe(100); expect(liftedLoad(pu, set({ addKg: -20, reps: 5 }))).toBe(60); expect(liftedLoad(pu, set({ addKg: -90, reps: 5 }))).toBe(0);
-    expect(liftedLoad(push, set({ addKg: 10, reps: 5 }))).toBeCloseTo(BW_SHARE['Push Up'] * 80 + 10, 9); expect(liftedLoad(sq, set({ weight: 100, reps: 5 }))).toBe(100);
-    expect(bwE1Diff(pu, 126.67)).toBeCloseTo(46.67, 6); expect(bwE1Diff(sq, 120)).toBeNull();
-    expect(fmtE1(pu, 126.67)).toBe('126,67 kg (masa ciała + 46,67)'); expect(fmtE1(pu, 70)).toBe('70 kg (masa ciała − 10)'); expect(fmtE1(sq, 120)).toBe('120 kg');
-    applyUnit('lb'); expect(fmtE1(pu, 100)).toBe('220,5 lb (masa ciała + 44,1)'); applyUnit('kg');
+    expect(liftedLoad(pu, set({ addKg: 20, reps: 5 }), undefined)).toBe(0); expect(bwE1Diff(pu, 100, undefined)).toBeNull(); expect(fmtE1(pu, 100, undefined)).toBe('100 kg'); /* bez masy ciała */
+    expect(liftedLoad(pu, set({ addKg: 20, reps: 5 }), 80)).toBe(100); expect(liftedLoad(pu, set({ addKg: -20, reps: 5 }), 80)).toBe(60); expect(liftedLoad(pu, set({ addKg: -90, reps: 5 }), 80)).toBe(0);
+    expect(liftedLoad(push, set({ addKg: 10, reps: 5 }), 80)).toBeCloseTo(BW_SHARE['Push Up'] * 80 + 10, 9); expect(liftedLoad(sq, set({ weight: 100, reps: 5 }), undefined)).toBe(100);
+    expect(bwE1Diff(pu, 126.67, 80)).toBeCloseTo(46.67, 6); expect(bwE1Diff(sq, 120, 80)).toBeNull();
+    expect(fmtE1(pu, 126.67, 80)).toBe('126,67 kg (masa ciała + 46,67)'); expect(fmtE1(pu, 70, 80)).toBe('70 kg (masa ciała − 10)'); expect(fmtE1(sq, 120, 80)).toBe('120 kg');
+    applyUnit('lb'); expect(fmtE1(pu, 100, 80)).toBe('220,5 lb (masa ciała + 44,1)'); applyUnit('kg');
   });
   test('podsumowanie po treningu: „e1RM 126,7 kg (masa ciała + 46,7; seria +20 kg × 8)”', () => {
     bm(80); addWorkout(at(9, 1), [['Pull Up', [{ addKg: 10, reps: 8 }]]]); const w2 = addWorkout(at(9, 3), [['Pull Up', [{ addKg: 20, reps: 8 }]]]);
     const d = workoutPRs(w2).flatMap(p => p.details); expect(d).toContain('e1RM 126,67 kg (masa ciała + 46,67; seria 20 kg × 8)');
   });
-  test('masa ciała: ustawienie opcjonalne w kg — migrate odrzuca złe wartości, kopia zapasowa ją przenosi; zmiana przelicza rekordy', async () => {
-    bm(82.5); const back = parseBackup(JSON.stringify(buildBackup())); expect(back.settings.bodyMass).toBe(82.5);
+  test('masa ciała: dawne ustawienie bez daty (Settings.bodyMass) — migrate przenosi poprawną wartość do pierwszego pomiaru, złe odrzuca; kopia zapasowa przenosi pomiary; zmiana przelicza rekordy', async () => {
+    bm(82.5); const back = parseBackup(JSON.stringify(buildBackup())); expect(back.bodyMassLog).toEqual([{ date: '2000-01-01', kg: 82.5 }]);
     for (const [v, out] of [[0, undefined], [-5, undefined], ['abc', undefined], [1e9, undefined], ['80,4', 80.4], [80.456, 80.46], [null, undefined]] as [unknown, number | undefined][]) {
-      const st = JSON.parse(JSON.stringify(S())); st.settings.bodyMass = v; const m = store.migrate(st); expect(m.settings.bodyMass).toBe(out); if (out === undefined) expect('bodyMass' in m.settings).toBe(false);
+      const st = JSON.parse(JSON.stringify(S())); delete st.bodyMassLog; st.settings.bodyMass = v; const m = store.migrate(st); expect([v, m.bodyMassLog?.[0]?.kg]).toEqual([v, out]); expect('bodyMass' in m.settings).toBe(false);
       expect(store.migrate(JSON.parse(JSON.stringify(m)))).toEqual(m);
     }
     addWorkout(at(9, 1), [['Pull Up', [{ addKg: 0, reps: 5 }]]]); const r1 = recordsFor(ex('Pull Up')).bestE1rm; bm(90); expect(recordsFor(ex('Pull Up')).bestE1rm).toBeGreaterThan(r1);

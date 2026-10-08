@@ -7,7 +7,7 @@ import fc from 'fast-check';
 import * as store from '@/lib/store';
 import * as stats from '@/lib/stats';
 import * as units from '@/lib/units';
-import { fresh, ex } from './helpers';
+import { setBodyMass, fresh, ex } from './helpers';
 import { hasReps, hasWeight, hasTime, hasDistance, type Exercise, type MetricType, type WSet, type Workout } from '@/lib/seed';
 
 jest.setTimeout(300000);
@@ -21,7 +21,7 @@ const foreignLoad = (e: Exercise, s: WSet) => hasWeight(e.metric ?? 'weight_reps
 const unknownAssist = (e: Exercise, s: WSet) => (isBW(e) && !!s.bandId && e.bandAssistable && !(Number(s.addKg) < 0)) || foreignLoad(e, s); /* przegląd 06.10: guma oporowa to nie asysta */
 const e1rmOf = (s: WSet, load: number) => s.kind === 'drop' || repsOf(s) > stats.E1RM_MAX_REPS ? 0 : stats.e1rm(load, repsOf(s));
 /* audyt 0.10 (E1, zamierzona zmiana dopisana do wzorca): ćwiczenia z masą ciała — Epley na (udział × masa ciała z Ustawień + ±kg), bez masy ciała / udziału — 0 */
-const lifted = (e: Exercise, s: WSet) => { if (!isBW(e)) return effectiveLoad(e, s); const bm = store.getState().settings.bodyMass; const sh = e.lib && e.libKey ? stats.BW_SHARE[e.libKey] : undefined; return bm && sh ? Math.max(0, sh * bm + setLoad(e, s)) : 0; };
+const lifted = (e: Exercise, s: WSet) => { if (!isBW(e)) return effectiveLoad(e, s); const bm = store.bodyMassLog()[0]?.kg; /* fala 2: pomiar sprzed całej historii testu */ const sh = e.lib && e.libKey ? stats.BW_SHARE[e.libKey] : undefined; return bm && sh ? Math.max(0, sh * bm + setLoad(e, s)) : 0; };
 const recE1 = (e: Exercise, s: WSet) => unknownAssist(e, s) ? 0 : e1rmOf(s, lifted(e, s)); /* runda 75: bez masy ciała z poranka — bez `at` */
 const recVol = (e: Exercise, s: WSet) => unknownAssist(e, s) ? 0 : setVolume(e, s);
 const freeOf = (e: Exercise, s: WSet) => { const m = e.metric ?? 'weight_reps'; return !(s.bandId && e.bandAssistable) && !foreignLoad(e, s) && (!hasWeight(m) || (isBW(e) && setLoad(e, s) >= 0)); };
@@ -31,7 +31,7 @@ function refSummarize(e: Exercise, w: Workout, sets: WSet[]) {
   const scored = sets.some(s => performed(m, s)) ? sets.filter(s => performed(m, s)) : sets;
   const bestSet = scored.reduce((a, s) => setScore(e, s) > setScore(e, a) ? s : a, scored[0]);
   return {
-    workout: w, date: at, sets, bestSet, total: sets.reduce((a, s) => a + stats.setTotal(e, s), 0),
+    workout: w, date: at, sets, bestSet, bodyMass: isBW(e) ? store.bodyMassLog()[0]?.kg : undefined, /* fala 2: masa ciała z dnia treningu */ total: sets.reduce((a, s) => a + stats.setTotal(e, s), 0),
     /* runda 74: Q-008 (guma bez kg nie jest „±0”) i Q-005 (drop set nie jest max powtórzeń) — zamierzone zmiany dopisane do wzorca */
     maxLoad: hasWeight(m) ? (loads => loads.length ? Math.max(...loads) : 0)(sets.filter(s => performed(m, s) && !unknownAssist(e, s)).map(s => setLoad(e, s))) : 0,
     hasLoad: hasWeight(m) && sets.some(s => performed(m, s) && !unknownAssist(e, s)),
@@ -50,7 +50,7 @@ function refSessions(e: Exercise, before?: number) {
 function refRecords(e: Exercise, before?: number) {
   const r = stats.emptyRecords();
   for (const s of refSessions(e, before)) {
-    r.any = true; r.bestTotal = Math.max(r.bestTotal, s.total); r.maxLoad = Math.max(r.maxLoad, s.maxLoad); r.bestE1rm = Math.max(r.bestE1rm, s.bestE1rm); if (s.bestE1rm > 0) r.e1rmAny = true; if (s.total > 0) r.totalAny = true; /* Q-026 (audyt 04.10): zamierzona zmiana */ r.maxReps = Math.max(r.maxReps, s.maxReps);
+    r.any = true; r.bestTotal = Math.max(r.bestTotal, s.total); r.maxLoad = Math.max(r.maxLoad, s.maxLoad); if (s.bestE1rm > r.bestE1rm) r.bestE1rmBm = s.bodyMass; r.bestE1rm = Math.max(r.bestE1rm, s.bestE1rm); if (s.bestE1rm > 0) r.e1rmAny = true; if (s.total > 0) r.totalAny = true; /* Q-026 (audyt 04.10): zamierzona zmiana */ r.maxReps = Math.max(r.maxReps, s.maxReps);
     r.maxDuration = Math.max(r.maxDuration, s.maxDuration); r.maxDistance = Math.max(r.maxDistance, s.maxDistance);
     s.sets.forEach(set => { r.bestSetVolume = Math.max(r.bestSetVolume, recVol(e, set)); if (freeOf(e, set) && set.kind !== 'drop') r.maxRepsFree = Math.max(r.maxRepsFree, repsOf(set)); });
   }
@@ -66,7 +66,7 @@ const workout = fc.record({ day: fc.nat(40), blocks: fc.array(block, { minLength
 const history = fc.record({ ws: fc.array(workout, { minLength: 0, maxLength: 14 }), lb: fc.boolean(), morning: fc.constantFrom<number | ''>('', 70, 90), bodyMass: fc.constantFrom<number | undefined>(undefined, 80) /* E1 */ });
 
 async function load(h: { ws: { day: number; blocks: { n: number; sets: any[] }[]; bw: number }[]; lb: boolean; morning: number | ''; bodyMass?: number }) {
-  await fresh(); const st = store.getState(); const base = new Date(2026, 0, 1, 18).getTime(); if (h.bodyMass) st.settings.bodyMass = h.bodyMass;
+  await fresh(); const st = store.getState(); const base = new Date(2026, 0, 1, 18).getTime(); if (h.bodyMass) setBodyMass(h.bodyMass);
   const band = st.bands[0]?.id ?? '';
   if (h.morning !== '') st.mornings.push({ id: 'm1', ownerId: 'local', createdAt: base, updatedAt: base, date: '2026-01-15', weight: h.morning, bb: '', sleepScore: '', sleepH: '' } as never);
   h.ws.forEach((w, i) => { const at = base + w.day * 86400e3; /* ten sam dzień dwa razy = remis dat */

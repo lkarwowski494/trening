@@ -89,4 +89,35 @@ describe('polityka prywatności zgodna z kodem', () => {
     expect(net).toEqual([]);
     expect(readFileSync(join(root, 'lib/health.ts'), 'utf8')).toMatch(/requestAuthorization\(\[\], \[/); /* odczyt: pusta lista */
   });
+  /* fala 2 audytu 0.10: masa ciała z datą (State.bodyMassLog), Zdrowie — siłowe i cardio z ponowieniem, CSV bez masy ciała, pliki udostępniania usuwane */
+  test('strona mówi to, co robi kod: pomiary masy ciała z datą (kopia tak, CSV nie), Zdrowie — siłowe i cardio z ponowieniem, sprzątanie plików udostępniania', () => {
+    const html = readFileSync(join(root, 'docs/privacy.html'), 'utf8'); const seed = readFileSync(join(root, 'lib/seed.ts'), 'utf8'); const backup = readFileSync(join(root, 'lib/backup.ts'), 'utf8'); const health = readFileSync(join(root, 'lib/health.ts'), 'utf8');
+    expect(seed).toMatch(/bodyMassLog\?: BodyMassEntry\[\]/); expect(html).toContain('pomiary masy ciała z datą pomiaru'); expect(html).toContain('body-mass measurements with their dates');
+    expect(html).toContain('Kopia zapasowa obejmuje wszystkie dane'); expect(html).toContain('eksport CSV zawiera tylko serie treningów (bez masy ciała)'); expect(html).toContain('a CSV\nexport contains only workout sets (no body mass)');
+    expect(backup).toMatch(/state: getState\(\)/); /* kopia = cały stan (z pomiarami) */ expect(backup).toContain("'Date,Workout Name,Duration,Exercise Name,Set Order,Weight,Reps,Distance,Seconds,Notes,Workout Notes,RPE'"); /* CSV bez kolumny masy ciała */
+    expect(html).toContain('siłowe i cardio'); expect(html).toContain('strength and cardio'); expect(health).toMatch(/HK_ACTIVITY\.running/); expect(health).toMatch(/export function retryHealth/);
+    expect(html).toContain('ponownie przy kolejnym uruchomieniu'); expect(html).toContain('saved again the next time the app starts');
+    expect(html).toContain('usuwa ze swojej pamięci podręcznej'); expect(backup).toMatch(/finally \{ await FileSystem\.deleteAsync\(path/);
+  });
+});
+
+/* audyt 0.10 SEC-06, SEC-08, NAT-07 (fala 2) */
+describe('zależności i konfiguracja natywna', () => {
+  const fs = require('fs') as typeof import('fs'); const root = join(__dirname, '..');
+  const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')); const lock = JSON.parse(readFileSync(join(root, 'package-lock.json'), 'utf8'));
+  test('SEC-06: query-string nie jest zależnością bezpośrednią (kod jej nie importuje; zostaje jako zależność expo-router)', () => {
+    expect(pkg.dependencies['query-string']).toBeUndefined(); expect(lock.packages[''].dependencies['query-string']).toBeUndefined();
+    expect(lock.packages['node_modules/expo-router'].dependencies['query-string']).toBeTruthy();
+    const files = (d: string): string[] => fs.readdirSync(join(root, d), { withFileTypes: true }).flatMap(e => e.isDirectory() ? files(join(d, e.name)) : /\.(ts|tsx)$/.test(e.name) ? [join(d, e.name)] : []);
+    expect(['lib', 'app', 'components'].flatMap(files).filter(f => /from 'query-string'|require\('query-string'\)/.test(readFileSync(join(root, f), 'utf8')))).toEqual([]);
+  });
+  test('SEC-08: lista licencji zgodna z package-lock i node_modules (scripts/licenses.mjs --check, także w verify)', () => {
+    expect(pkg.scripts['check:licenses']).toBe('node scripts/licenses.mjs --check'); expect(pkg.scripts.verify).toContain('npm run check:licenses');
+    expect(require('child_process').execFileSync('node', ['scripts/licenses.mjs', '--check'], { cwd: root }).toString()).toMatch(/^licencje: OK/);
+  });
+  test('NAT-07: ekran startowy z wariantem ciemnym (tło jak motyw ciemny), martwy moduł ExtensionStorage poza autolinkowaniem', () => {
+    const app = JSON.parse(readFileSync(join(root, 'app.json'), 'utf8')); const sp = app.expo.plugins.find((p: unknown) => Array.isArray(p) && p[0] === 'expo-splash-screen')[1];
+    expect(sp.dark.backgroundColor).toBe(require('../lib/theme').dark.bg); expect(sp.backgroundColor).toBe('#F4F3EF');
+    expect(pkg.expo.autolinking.exclude).toEqual(['@bacons/apple-targets']);
+  });
 });

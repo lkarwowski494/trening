@@ -17,7 +17,7 @@ export async function fresh(saved?: unknown, locale: 'pl' | 'en' = 'pl') {
   return store.getState();
 }
 /** Zapisany stan tak, jak go wczyta aplikacja: pełny stan + nowszy trening w toku/timer z klucza „live” (runda 69). */
-export const saved = (): State => { const s = JSON.parse(global.__kv.get('state')!); const l = global.__kv.has('live') ? JSON.parse(global.__kv.get('live')!) : null; if (l && (Number.isFinite(l.seq) && Number.isFinite(s.saveSeq) ? l.seq >= s.saveSeq : l.at >= (s.metaUpdatedAt || 0))) { s.active = l.active; s.timer = l.timer; } return s; };
+export const saved = (): State => { const s = JSON.parse(global.__kv.get('state')!); const l = global.__kv.has('live') ? JSON.parse(global.__kv.get('live')!) : null; if (l && (Number.isFinite(l.seq) && Number.isFinite(s.saveSeq) ? l.seq >= s.saveSeq : l.at >= (s.metaUpdatedAt || 0))) { s.active = l.active; s.timer = l.timer; } if (global.__kv.has('cfg')) store.applyCfg(s, JSON.parse(global.__kv.get('cfg')!)); /* PERF-03 (A): nowsza konfiguracja z klucza „cfg” — jak przy starcie */ return s; };
 export const ex = (name: string) => { const e = store.getState().exercises.find(x => x.name === name); if (!e) throw new Error('no exercise ' + name); return e; };
 export const set = (p: Partial<WSet> = {}): WSet => ({ id: Math.random().toString(36).slice(2), weight: '', reps: '', durationSec: '', distanceM: '', rpe: '', bandId: '', addKg: '', kind: 'normal', warmup: false, note: '', done: true, completedAt: null, actualRest: null, ...p });
 /** Dodaje zakończony trening z blokami [nazwa ćwiczenia, serie]. */
@@ -41,3 +41,6 @@ export { seedState };
 /** T-055: dawne pole asysty kg gumy (sprzed P-001) — aplikacja go już nie zapisuje ani nie czyta, a migrate je usuwa. Testy dokładają je do
  * gumy w pamięci (jak obiekt ze starej kopii przed migracją), żeby sprawdzić, że nadal nie wpływa na ±kg, podpowiedzi ani rekordy. */
 export function legacyBandKg(b: Band, kg: unknown) { (b as Band & { nominalKg?: unknown }).nominalKg = kg; }
+/** Fala 2 audytu 0.10 (masa ciała z datą): pomiar masy ciała dla testów — domyślnie z dniem przed całą historią testu (= dawne Settings.bodyMass,
+ * obowiązujące dla wszystkich treningów); bez argumentu — brak pomiarów. */
+export function setBodyMass(kg?: number, date = '2000-01-01') { const st = store.getState(); if (kg == null) delete st.bodyMassLog; else st.bodyMassLog = [{ date, kg }]; store.save(); }

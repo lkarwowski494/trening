@@ -299,13 +299,15 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
   test('04 biblioteka ćwiczeń: lista z partiami, szukanie, otwarcie, partie główne/pomocnicze, przerwy, tempo, notatki, nowe ćwiczenia, usuwanie bez historii', async () => {
     await boot('/exercises');
     const n0 = store.visibleExercises().length; expect(screen.getByText(String(n0))).toBeTruthy();
-    for (const g of ['klatka', 'plecy', 'nogi', 'core', 'cardio']) expect(screen.getAllByText(g).length).toBeGreaterThan(0); /* nagłówki partii */
+    /* N3 / PERF-01 (audyt 0.10): lista wirtualizowana — na ekranie pierwsze wiersze, reszta w danych listy (pojawia się przy przewijaniu) */
+    const listed = () => screen.getByTestId('exercises-list').props.data as { kind: string; group?: string; e?: { name: string } }[];
+    expect(screen.getAllByText('klatka').length).toBeGreaterThan(0); for (const g of ['klatka', 'plecy', 'nogi', 'core', 'cardio']) expect(listed().some(r => r.kind === 'group' && r.group === g)).toBe(true); /* nagłówki partii */
     /* UWAGA: zakładka Ćwiczenia nie ma filtra partii (tylko pole szukania) — filtr partii jest w oknie wyboru ćwiczenia (krok 05). */
     const q = () => screen.getByPlaceholderText('Szukaj…');
     await type(q(), 'bench press (h'); expect(screen.getByText('Bench Press (hantle)')).toBeTruthy(); expect(screen.queryByText('Back Squat')).toBeNull();
     await type(q(), 'WIOSLOWANIE'); expect(screen.getByText('Wiosłowanie na linkach (siedząc)')).toBeTruthy(); /* bez polskich znaków i wielkości liter */
     await type(q(), 'zzqq nic'); expect(screen.getByText('Nic nie pasuje.')).toBeTruthy(); expect(screen.getByText('Utwórz „zzqq nic”')).toBeTruthy();
-    await type(q(), ''); expect(screen.getByText('Back Squat')).toBeTruthy();
+    await type(q(), ''); expect(listed().some(r => r.e?.name === 'Back Squat')).toBe(true);
     /* otwarcie ćwiczenia z biblioteki i edycja */
     await type(q(), 'Bench Press (hantle)'); await tap(screen.getByText('Bench Press (hantle)')); await flushAll(10);
     const bench = ex('Bench Press (hantle)');
@@ -350,7 +352,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     /* własne ćwiczenie bez historii — „Usuń ćwiczenie” usuwa je na stałe */
     await type(q(), ''); await flushAll(1100); await tap(screen.getByText('+ Nowe')); await flushAll(10);
     await type(screen.getByLabelText('Nazwa'), 'Do usunięcia'); const tmp = S().exercises.find(e => e.name === 'Do usunięcia')!;
-    expect(screen.queryByText('Usuń ćwiczenie')).toBeNull(); await back(); /* 07.10.2026 wieczór: usuwanie przesunięciem na liście ćwiczeń */
+    expect(screen.queryByText('Usuń ćwiczenie')).toBeNull(); await back(); /* 07.10.2026 wieczór: usuwanie przesunięciem na liście ćwiczeń */ await type(q(), 'Do usunięcia'); /* N3: lista wirtualizowana — wiersz z „inne” przez szukanie */
     await swipeDelete('Usuń z biblioteki: Do usunięcia'); expect(lastAlert()).toMatchObject({ title: 'Usunąć ćwiczenie?', msg: 'Zniknie z list i szablonów.' });
     pressAlert('Usunąć ćwiczenie?', 'Nie'); expect(S().exercises).toContain(tmp);
     await swipeDelete('Usuń z biblioteki: Do usunięcia'); pressAlert('Usunąć ćwiczenie?', 'Usuń'); await flushAll(10);

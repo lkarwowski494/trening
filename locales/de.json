@@ -1,5 +1,5 @@
 {
   "CFBundleDisplayName": "Training",
   "NSHealthShareUsageDescription": "Training liest keine Gesundheitsdaten — iOS verlangt diese Beschreibung für die HealthKit-Berechtigung.",
-  "NSHealthUpdateUsageDescription": "Training speichert abgeschlossene Krafttrainings in Apple Health."
+  "NSHealthUpdateUsageDescription": "Training speichert abgeschlossene Trainings – Kraft und Cardio – in Apple Health."
 }

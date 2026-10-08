@@ -7,7 +7,7 @@ import { EN } from '@/lib/i18n.en';
 import { buildCsv, parseBackup, buildBackup } from '@/lib/backup';
 import { decodeB64, parseExpiry } from '@/lib/signing';
 import { SCHEMA_VERSION, GROUPS, MUSCLES, METRIC_LABEL, LOAD_MODE_LABEL, MODULE_LABEL, SET_KIND_LABEL, LIB, seedState } from '@/lib/seed';
-import { fresh, saved, ex, addWorkout, set } from './helpers';
+import { setBodyMass, fresh, saved, ex, addWorkout, set } from './helpers';
 
 const DAY = 86400e3;
 const at = (y: number, m: number, d: number, h = 18) => new Date(y, m - 1, d, h).getTime();
@@ -254,6 +254,6 @@ test('A4b poranna waga nie zmienia objętości ani e1RM; objętość z dociąże
   s.mornings.push({ id: 'a', ownerId: 'local', createdAt: 0, updatedAt: 0, date: '2026-09-01', bb: '', sleepScore: '', sleepH: '', weight: 80 }); store.save();
   expect([store.volume(w), stats.recordsFor(pull).bestE1rm]).toEqual(before);
   expect(before[0]).toBe(50); expect(before[1]).toBe(0);
-  s.settings.bodyMass = 80; store.save(); expect(store.volume(w)).toBe(50); expect(stats.recordsFor(pull).bestE1rm).toBeCloseTo(Math.max(stats.e1rm(90, 5), stats.e1rm(80, 8), stats.e1rm(65, 10)), 6);
+  setBodyMass(80); expect(store.volume(w)).toBe(50); expect(stats.recordsFor(pull).bestE1rm).toBeCloseTo(Math.max(stats.e1rm(90, 5), stats.e1rm(80, 8), stats.e1rm(65, 10)), 6);
   void DAY;
 });

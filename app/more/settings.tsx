@@ -2,15 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { ScrollView, Alert, View, Linking } from 'react-native';
 import { Screen, Field, NumInput, Btn, Muted, SwitchRow, Segmented, SectionTitle, Item } from '@/components/ui';
 import { useRouter } from 'expo-router';
-import { getState, useTick, save, resetAll, applyPrefs, useForegroundTick } from '@/lib/store';
-import { DEFAULT_REST, type ThemeSetting, type WorkoutView, BODY_MASS_MAX } from '@/lib/seed';
+import { getState, useTick, save, saveCfg, resetAll, applyPrefs, useForegroundTick, latestBodyMass, fmtDate, localDateTs } from '@/lib/store';
+import { DEFAULT_REST, type ThemeSetting, type WorkoutView } from '@/lib/seed';
 import * as timer from '@/lib/timer';
 import { PLAN_REMINDER_HOUR, reminderPermission, type ReminderPermission } from '@/lib/planReminder';
 import { safetyBackup, safetyRecoveryNote, AUTO_KEEP } from '@/lib/backup';
 import * as health from '@/lib/health';
 import { t, LANG_NAME, type Lang, appName } from '@/lib/i18n';
-import { type Unit, wu, wField, wInKeep } from '@/lib/units';
-import { BW_SHARE } from '@/lib/stats';
+import { type Unit, fmtW } from '@/lib/units';
 
 
 export default function SettingsScreen() {
@@ -23,29 +22,32 @@ export default function SettingsScreen() {
     <Screen><ScrollView keyboardShouldPersistTaps="handled" automaticallyAdjustKeyboardInsets contentContainerStyle={{ paddingVertical: 10, paddingBottom: 60 }}>
       <SectionTitle>{t('Ogólne')}</SectionTitle>
       <Item title={t('Język')} sub={s.language && s.language !== 'auto' ? LANG_NAME[s.language as Lang] : t('Jak w telefonie')} onPress={() => router.push('/more/language')} /* 05.10.2026: 16 języków — osobna lista */ />
-      <Field label={t('Wygląd')}><Segmented label={t('Wygląd')} options={[['light', t('Jasny')], ['dark', t('Ciemny')], ['auto', t('Jak w telefonie')]] as [ThemeSetting, string][]} value={s.theme ?? 'light'} onChange={v => { s.theme = v; applyPrefs(); save(); }} /></Field>
+      <Field label={t('Wygląd')}><Segmented label={t('Wygląd')} options={[['light', t('Jasny')], ['dark', t('Ciemny')], ['auto', t('Jak w telefonie')]] as [ThemeSetting, string][]} value={s.theme ?? 'light'} onChange={v => { s.theme = v; applyPrefs(); saveCfg(); }} /></Field>
       <Field label={t('Jednostka ciężaru')}><Segmented label={t('Jednostka ciężaru')} options={[['kg', 'kg'], ['lb', 'lb']] as [Unit, string][]} value={(s.unit ?? 'kg') as Unit} onChange={u => { s.unit = u; applyPrefs(); save(); }} /></Field>
 
       <SectionTitle>{t('Trening')}</SectionTitle>
-      <Field label={t('Widok treningu')}><Segmented label={t('Widok treningu')} options={[['focus', t('Skupiony')], ['list', t('Lista')]] as [WorkoutView, string][]} value={s.workoutView ?? 'focus'} onChange={v => { s.workoutView = v; save(); }} /></Field>
+      <Field label={t('Widok treningu')}><Segmented label={t('Widok treningu')} options={[['focus', t('Skupiony')], ['list', t('Lista')]] as [WorkoutView, string][]} value={s.workoutView ?? 'focus'} onChange={v => { s.workoutView = v; saveCfg(); }} /></Field>
       <Muted style={{ fontSize: 13, marginTop: -4, marginBottom: 8 }}>{s.workoutView === 'list' ? t('Lista: ćwiczenia i serie jak w poprzednich wersjach, bez karty.') : t('Skupiony: bieżąca seria dużymi cyframi i talerze na stronę nad listą ćwiczeń.')}</Muted>
-      <Field label={t('Domyślna przerwa (sekundy)')}><NumInput value={s.defaultRest} onNum={v => { if (v === '') return; s.defaultRest = Math.min(1800, Math.max(0, Math.round(v))); save(); }} placeholder={String(DEFAULT_REST)} /></Field>
-      <SwitchRow label={t('Dźwięk i wibracja na koniec przerwy')} value={s.sound} onChange={v => { s.sound = v; save(); timer.refreshScheduled().catch(() => {}); }} />
-      <SwitchRow label={t('Ekran włączony podczas treningu')} value={s.wakeLock} onChange={v => { s.wakeLock = v; save(); }} />
-      <SwitchRow label={t('RPE / RIR przy serii')} detail={t('opcjonalne pole, nie wpływa na objętość')} value={s.showRpe} onChange={v => { s.showRpe = v; save(); }} />
+      <Field label={t('Domyślna przerwa (sekundy)')}><NumInput value={s.defaultRest} onNum={v => { if (v === '') return; s.defaultRest = Math.min(1800, Math.max(0, Math.round(v))); saveCfg(); }} placeholder={String(DEFAULT_REST)} /></Field>
+      <SwitchRow label={t('Dźwięk i wibracja na koniec przerwy')} value={s.sound} onChange={v => { s.sound = v; saveCfg(); timer.refreshScheduled().catch(() => {}); }} />
+      <SwitchRow label={t('Ekran włączony podczas treningu')} value={s.wakeLock} onChange={v => { s.wakeLock = v; saveCfg(); }} />
+      <SwitchRow label={t('RPE / RIR przy serii')} detail={t('opcjonalne pole, nie wpływa na objętość')} value={s.showRpe} onChange={v => { s.showRpe = v; saveCfg(); }} />
       {s.showRpe ? <>
-        <Field label={t('Skala wysiłku')}><Segmented label={t('Skala wysiłku')} options={[['rpe', 'RPE'], ['rir', 'RIR']] as ['rpe' | 'rir', string][]} value={s.effortScale ?? 'rpe'} onChange={v => { if (v === 'rir') s.effortScale = v; else delete s.effortScale; save(); }} /></Field>
+        <Field label={t('Skala wysiłku')}><Segmented label={t('Skala wysiłku')} options={[['rpe', 'RPE'], ['rir', 'RIR']] as ['rpe' | 'rir', string][]} value={s.effortScale ?? 'rpe'} onChange={v => { if (v === 'rir') s.effortScale = v; else delete s.effortScale; saveCfg(); }} /></Field>
         <Muted style={{ fontSize: 13, marginTop: -4, marginBottom: 8 }}>{t('RIR — powtórzenia w zapasie: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR; Zourdos i in., JSCR 2016). Zapisane wartości przeliczają się przy zmianie skali.')}</Muted>
       </> : null}
       <Item title={t('Miejsca treningu')} sub={s.locations.length ? t('{n}, główne: {m}', { n: s.locations.length, m: mainLoc?.name ?? '—' }) : t('sprzęt w domu, na siłowni, w hotelu…')} onPress={() => router.push('/more/locations')} /* P-003 E1 */ />
-      <SwitchRow label={t('Podpowiedź progresji')} detail={t('↑ przy ćwiczeniu, gdy ostatnio wszystkie serie były na górze zakresu powtórzeń')} value={s.progressHint} onChange={v => { s.progressHint = v; save(); }} />
-      {/* audyt 0.10 (E1, decyzja właściciela 08.10.2026, wariant B): opcjonalna masa ciała — zapis w kg, tylko w telefonie (kopia zapasowa ją obejmuje) */}
-      <Field label={t('Masa ciała ({u})', { u: wu() })}><NumInput decimal weightTol value={wField(s.bodyMass)} stored={s.bodyMass ?? ''} placeholder="—" onNum={(v, keep) => { const kg = wInKeep(v, keep); if (kg === '' || !(kg > 0)) delete s.bodyMass; else s.bodyMass = Math.min(BODY_MASS_MAX, kg); save(); }} /></Field>
-      <Muted style={{ fontSize: 13, marginTop: -4, marginBottom: 8 }}>{t('Opcjonalnie, tylko w telefonie. Z nią aplikacja liczy e1RM w podciąganiu (cała masa ciała — uproszczenie) i w pompkach (ok. {p}% masy ciała — badania z platformą siłową). Zmiana przelicza e1RM wszystkich treningów; puste pole — bez e1RM w tych ćwiczeniach.', { p: Math.round(BW_SHARE['Push Up'] * 100) })}</Muted>
+      <SwitchRow label={t('Podpowiedź progresji')} detail={t('↑ przy ćwiczeniu, gdy ostatnio wszystkie serie były na górze zakresu powtórzeń')} value={s.progressHint} onChange={v => { s.progressHint = v; saveCfg(); }} />
+      {/* audyt 0.10 (E1, wariant B; fala 2 — masa ciała z datą): pomiary na osobnym ekranie (historia, data pomiaru), tu ostatni */}
+      <Item title={t('Masa ciała')} sub={(b => b ? t('{v} · pomiar z {d}', { v: fmtW(b.kg), d: fmtDate(localDateTs(b.date)) }) : t('nie podano — e1RM podciągania i pompek'))(latestBodyMass())} onPress={() => router.push('/more/bodymass')} />
 
       <SectionTitle>{t('Dane i kopie')}</SectionTitle>
       <SwitchRow label={t('Zapisuj zakończone treningi do Apple Health')} value={s.healthSync} onChange={async v => { if (!v) { s.healthSync = false; save(); return; } const ok = await health.ensureAuthorization(); if (ok) { s.healthSync = true; save(); } else Alert.alert(t('Apple Health niedostępne'), t('Brak zgody na zapis treningów. Włącz ją w aplikacji Zdrowie: profil → Aplikacje → {app}.', { app: appName() })); }} />
-      <SwitchRow label={t('Automatyczna kopia po każdym treningu')} detail={t('Pliki → Na moim iPhonie → {app} → Backup, ostatnie {n}', { app: appName(), n: AUTO_KEEP })} value={s.autoBackup} onChange={v => { s.autoBackup = v; save(); }} />
+      {s.healthSync && health.healthPending().length ? <View testID="health-pending-count" style={{ gap: 6, marginTop: -2, marginBottom: 8 }}>{/* audyt 0.10 J2 (DAT-04 B): licznik i ponowienie */}
+        <Muted style={{ fontSize: 13 }}>{t('Czeka na zapis w Apple Health: {n}. Ponawiam przy uruchomieniu i powrocie do aplikacji.', { n: health.healthPending().length })}</Muted>
+        <Btn small title={t('Ponów teraz')} style={{ alignSelf: 'flex-start' }} onPress={() => { health.retryHealth().then(() => { if (health.healthPending().length) Alert.alert(t('Nie udało się'), t('Treningi nadal czekają na zapis w Apple Health. Sprawdź zgodę w aplikacji Zdrowie: profil → Aplikacje → {app}.', { app: appName() })); }).catch(() => {}); }} />
+      </View> : null}
+      <SwitchRow label={t('Automatyczna kopia po każdym treningu')} detail={t('Pliki → Na moim iPhonie → {app} → Backup, ostatnie {n}', { app: appName(), n: AUTO_KEEP })} value={s.autoBackup} onChange={v => { s.autoBackup = v; saveCfg(); }} />
 
       <SectionTitle>{t('Powiadomienia')}</SectionTitle>
       <SwitchRow label={t('Przypomnienie o treningu z planu')} detail={t('rano o {h}:00 w dniu zaplanowanego treningu', { h: PLAN_REMINDER_HOUR })} value={s.planReminder !== false} onChange={v => { if (v) { delete s.planReminder; timer.ensurePermission().then(refreshPerm).catch(() => {}); } else s.planReminder = false; save(); }} />{/* 08.10.2026 (decyzja właściciela) */}

@@ -3,9 +3,10 @@ import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import * as SplashScreen from 'expo-splash-screen';
 import { ActivityIndicator, View, Text, Pressable } from 'react-native';
-import { init, usePrefsTick, flush, refreshViews, autoFinishStale, resolveColdStopwatch, fmtTime, fmtDate, getState, getNewerSchema } from '@/lib/store';
+import { wallTs, init, usePrefsTick, flush, refreshViews, autoFinishStale, resolveColdStopwatch, fmtTime, fmtDate, getState, getNewerSchema } from '@/lib/store';
 import { Alert } from 'react-native';
-import { onWorkoutSaved, exportRawData } from '@/lib/backup';
+import { onWorkoutSaved, exportRawData, cleanShareLeftovers } from '@/lib/backup';
+import { retryHealth } from '@/lib/health';
 import { SCHEMA_VERSION, type Workout } from '@/lib/seed';
 import { AppState } from 'react-native';
 import { t } from '@/lib/i18n';
@@ -23,14 +24,14 @@ export default function RootLayout() {
   const th = useTheme(); const [ready, setReady] = useState(false); const [err, setErr] = useState<string | null>(null);
   // Runda 69: trening porzucony ponad 6 h temu zapisuje się sam (koniec = ostatnia odhaczona seria) — przy starcie i powrocie z tła.
   const autoSaved = (w: Workout | null) => { if (!w) return; timer.stop().catch(() => {}); timer.stopSet().catch(() => {}); timer.cancelStaleReminder().catch(() => {}); onWorkoutSaved(w).catch(() => {});
-    setTimeout(() => Alert.alert(t('Zapisałem trening'), t('Trening z {d} {s} nie miał aktywności od 6 godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w Historii.', { d: fmtDate(w.startedAt), s: fmtTime(w.startedAt), e: fmtTime(w.finishedAt ?? w.startedAt) })), 500); };
-  const start = () => { setErr(null); Promise.all([init(), loadFonts()]).then(() => { resolveColdStopwatch(); /* Q-002 */ autoSaved(autoFinishStale()); return timer.restore().catch(() => {}); }).then(() => setReady(true)).catch(e => setErr(e instanceof Error ? e.message : String(e))); };
+    setTimeout(() => Alert.alert(t('Zapisałem trening'), t('Trening z {d} {s} nie miał aktywności od 6 godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w Historii.', { d: fmtDate(wallTs(w)), s: fmtTime(wallTs(w)), e: fmtTime(wallTs(w, w.finishedAt ?? w.startedAt)) })), 500); };
+  const start = () => { setErr(null); Promise.all([init(), loadFonts()]).then(() => { resolveColdStopwatch(); /* Q-002 */ autoSaved(autoFinishStale()); retryHealth().catch(() => {}); /* J2: zapisy do Zdrowia, które się nie udały */ cleanShareLeftovers().catch(() => {}); /* SEC-09 */ return timer.restore().catch(() => {}); }).then(() => setReady(true)).catch(e => setErr(e instanceof Error ? e.message : String(e))); };
   useEffect(start, []);
   /* T-051 (SDK 56+, audyt aktualizacji): expo-router trzyma ekran powitalny, dopóki nie zamontuje się nawigator — ekran błędu startu
    * (poniżej) nie ma nawigatora, więc zostałby pod logo i aplikacja wyglądałaby na zawieszoną. Przy błędzie chowamy go sami. */
   useEffect(() => { if (err) SplashScreen.hideAsync().catch(() => {}); }, [err]);
   // Zapis wymuszony przy wyjściu do tła — debounce 300 ms nie może zgubić ostatniej zmiany, gdy system ubije apkę.
-  useEffect(() => { const sub = AppState.addEventListener('change', st => { if (st !== 'active') flush(); else { const w = autoFinishStale(); /* runda 74 (audyt): stoper zdjęty z zapisu przez cichy zapis (Q-011, seria z celem odhaczona) nie liczy dalej w pamięci */ if (!w && timer.S.on && !getState().timer?.setStartAt) timer.stopSet().catch(() => {}); autoSaved(w); timer.onForeground(); refreshViews(); } }); return () => sub.remove(); }, []);
+  useEffect(() => { const sub = AppState.addEventListener('change', st => { if (st !== 'active') flush(); else { const w = autoFinishStale(); /* runda 74 (audyt): stoper zdjęty z zapisu przez cichy zapis (Q-011, seria z celem odhaczona) nie liczy dalej w pamięci */ if (!w && timer.S.on && !getState().timer?.setStartAt) timer.stopSet().catch(() => {}); autoSaved(w); timer.onForeground(); refreshViews(); retryHealth().catch(() => {}); /* J2 */ } }); return () => sub.remove(); }, []);
   /* Audyt 0.10 J1 (DAT-05): dane z nowszej wersji aplikacji — niczego nie nadpisujemy; „zaktualizuj” i wysłanie surowych danych. */
   const newer = err ? getNewerSchema() : null;
   if (newer != null) return <View testID="newer-data" style={{ flex: 1, backgroundColor: th.bg, alignItems: 'center', justifyContent: 'center', padding: 24, gap: 12 }}>
@@ -69,6 +70,9 @@ function Root() {
         <Stack.Screen name="more/bands" options={{ title: t('Gumy') }} />
         <Stack.Screen name="more/progress" options={{ title: t('Postępy') }} />
         <Stack.Screen name="more/settings" options={{ title: t('Ustawienia') }} />
+        <Stack.Screen name="more/bodymass" options={{ title: t('Masa ciała') }} />
+        <Stack.Screen name="more/about" options={{ title: t('O aplikacji') }} />{/* SEC-08 */}
+        <Stack.Screen name="more/licenses" options={{ title: t('Licencje open source') }} />{/* fala 2 audytu 0.10: masa ciała z datą */}
         <Stack.Screen name="more/backup" options={{ title: t('Backup') }} />
         <Stack.Screen name="more/language" options={{ title: t('Język') }} />
         <Stack.Screen name="more/locations" options={{ title: t('Miejsca treningu') }} />

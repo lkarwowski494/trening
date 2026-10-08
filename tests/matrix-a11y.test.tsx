@@ -52,6 +52,7 @@ async function richState(l: 'pl' | 'en') {
 const routesFor = (w: { id: string }, tpl: { id: string }, exId: string) => [
   '/', '/templates', '/exercises', '/history', '/more', '/more/settings', '/more/progress', '/more/locations', '/more/backup', '/more/language', '/more/bands',
   `/template/${tpl.id}`, `/exercise/${exId}`, `/history/${w.id}`, `/history/edit/${w.id}`,
+  '/more/bodymass', '/more/about', '/more/licenses', /* audyt 0.10 fala 2: masa ciała z datą, O aplikacji, licencje (SEC-08) */
 ];
 /* Trasa „/” w stanie z treningiem w toku = ekran aktywnego treningu (components/ActiveWorkout.tsx). */
 
@@ -127,9 +128,9 @@ describe.each([['pl', 'light'], ['en', 'dark']] as const)('dostępność ekranó
   afterAll(() => { jest.restoreAllMocks(); applyLang('pl'); });
 
   test('przegląd objął wszystkie ekrany i elementy (stan z danymi, właściwy motyw)', () => {
-    expect(R.routes).toHaveLength(15);
-    expect(R.pressables).toBeGreaterThan(900); /* lista ćwiczeń ~860 wierszy + reszta */
-    expect(R.inputs).toBeGreaterThan(5); expect(R.texts).toBeGreaterThan(1000);
+    expect(R.routes).toHaveLength(18);
+    expect(R.pressables).toBeGreaterThan(380); /* N3 / PERF-01 (audyt 0.10): lista ćwiczeń wirtualizowana — na ekranie pierwsze ~30 jednakowych wierszy (wcześniej ~860) + reszta ekranów */
+    expect(R.inputs).toBeGreaterThan(5); expect(R.texts).toBeGreaterThan(700); /* N3: lista ćwiczeń wirtualizowana (wcześniej > 1000) */
     expect(R.colorsSeen.has(pal.text.toLowerCase())).toBe(true); expect(R.colorsSeen.has(pal.muted.toLowerCase())).toBe(true);
     expect([other.muted, other.danger, other.band].filter(c => R.colorsSeen.has(c.toLowerCase()))).toEqual([]); /* other.text pomijamy: w ciemnym accentInk = grafit = light.text */
     expect(R.nonHex).toEqual([]); /* każdy kolor tekstu i tła z palety (hex) — inaczej kontrast nie byłby sprawdzony */
@@ -184,7 +185,7 @@ describe('Dynamic Type: skala czcionki 2,0 (największe rozmiary dostępności i
     }
   });
   afterAll(() => jest.restoreAllMocks());
-  test('wszystkie ekrany renderują się przy skali 2,0 bez błędów Reacta', () => { expect(R.routes).toHaveLength(15); expect(errs).toEqual([]); expect(RN.PixelRatio.getFontScale()).toBe(2); });
+  test('wszystkie ekrany renderują się przy skali 2,0 bez błędów Reacta', () => { expect(R.routes).toHaveLength(18); expect(errs).toEqual([]); expect(RN.PixelRatio.getFontScale()).toBe(2); });
   test('każde pole tekstowe na każdym ekranie (nie tylko w treningu — C10) ma limit powiększenia 0 < max ≤ 1,3 (components/ui.tsx Input)', () => {
     expect(R.inputs.length).toBeGreaterThan(5);
     expect(R.inputs.filter(i => !(typeof i.m === 'number' && i.m > 0 && i.m <= 1.3))).toEqual([]);

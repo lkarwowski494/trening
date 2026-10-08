@@ -1,6 +1,6 @@
 import * as Notifications from 'expo-notifications';
 import { Alert } from 'react-native';
-import { getState } from '@/lib/store';
+import { workoutDay, getState } from '@/lib/store';
 import { hasPlan, plannedOn, addDays, dayKeyOf, dayStatus, pending } from '@/lib/plan';
 import { t, lang } from '@/lib/i18n';
 
@@ -18,7 +18,7 @@ export const planReminderOn = () => getState().settings.planReminder !== false;
 const idOf = (k: string) => `plan-${k}`;
 const whenOf = (k: string) => new Date(+k.slice(0, 4), +k.slice(5, 7) - 1, +k.slice(8, 10), PLAN_REMINDER_HOUR, 0).getTime();
 /** Dzień z treningiem w toku — bez przypomnienia. */
-const activeDay = () => { const a = getState().active; return a ? dayKeyOf(a.startedAt) : null; };
+const activeDay = () => { const a = getState().active; return a ? workoutDay(a) : null; };
 /** Nazwa treningu do przypomnienia w dniu `k` albo null. Ta sama funkcja stanu dnia co kalendarz (audyt 0.10 A5): zaplanowany czeka
  * (bez treningu albo po innym treningu); nie — gdy zrobiony, w toku albo szablon pusty (A8). */
 function reminderName(k: string, active: string | null): string | null {

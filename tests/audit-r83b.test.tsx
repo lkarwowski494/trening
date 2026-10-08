@@ -12,7 +12,7 @@ import * as signing from '@/lib/signing';
 import * as stats from '@/lib/stats';
 import * as backup from '@/lib/backup';
 import * as edit from '@/lib/edit';
-import { fresh, ex, pressAlert, addWorkout } from './helpers';
+import { setBodyMass, fresh, ex, pressAlert, addWorkout } from './helpers';
 import { renderApp, flushAll, screen, go, tap, type, act } from './app';
 
 jest.setTimeout(60000);
@@ -39,7 +39,7 @@ describe('MEDIUM 1 — obca wartość po zmianie sprzętu: widok tak, obliczenia
     const w3 = addWorkout(Date.now() - 3600e3, [['Wiosło Q18', [{ addKg: 20, reps: 8 }]]]);
     /* audyt 0.10 (E1): ćwiczenie własne z masą ciała nie ma e1RM (brak źródła udziału masy ciała — także z masą ciała w Ustawieniach); max dociążenie zostaje */
     const r1 = stats.recordsFor(x); expect(r1.maxLoad).toBe(20); expect(r1.bestE1rm).toBe(0);
-    store.getState().settings.bodyMass = 80; store.save(); expect(stats.recordsFor(x).bestE1rm).toBe(0);
+    setBodyMass(80); expect(stats.recordsFor(x).bestE1rm).toBe(0);
     expect(stats.prMap(w3).get(w3.exercises[0].sets[0].id) ?? []).not.toContain('e1RM'); /* wcześniej poprzeczka 53,8 z 42,5 kg maszyny; od E1 — bez e1RM */
     /* objętość — ta sama reguła co rekordy (jedna definicja objętości, A4): 42,5 kg maszyny to nie dociążenie */
     expect(store.volume(store.getState().workouts.find(w => w.exercises[0].sets[0].weight === 42.5)!)).toBe(0);
