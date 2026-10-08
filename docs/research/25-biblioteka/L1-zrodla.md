@@ -12,19 +12,19 @@ Data: 08.10.2026. Zlecenie właściciela: „mamy trochę za szeroką bibliotek�
 
 ## 2. Podsumowanie
 
-- Werdykt: OK **51**, POPRAWIĆ **27**, SCALIĆ **17**, USUNĄĆ **5**.
-- Zakres: ZOSTAJE **24**, NISZOWE **54**, SCALIĆ **17**, USUNĄĆ **5**.
+- Werdykt: OK **49**, POPRAWIĆ **28**, SCALIĆ **18**, USUNĄĆ **5**.
+- Zakres: ZOSTAJE **24**, NISZOWE **53**, SCALIĆ **18**, USUNĄĆ **5**.
 - Pewność: mocne 1, umiarkowane 77, jedno źródło 10, brak źródła — uproszczenie 12.
-- Poprawki pól (liczba rekordów): name 12, secondaryMuscles 10, requires 8, muscleLoad 5, recommended 5.
-- Źródła nowe: 40 (L1-S1…L1-S40); ponownie użyte z docs/24: S6, S12, S13, S29, S37.
+- Poprawki pól (liczba rekordów): requires 11, name 10, secondaryMuscles 10, recommended 7, muscleLoad 5.
+- Źródła nowe: 57 (L1-S1…L1-S57); ponownie użyte z docs/24: S6, S12, S13, S29, S37.
 
 ### 2.1 Najważniejsze poprawki
 
 1. **Uginania młotkowe** (Cross Body Hammer Curl, Hammer Curl (linki), Incline Hammer Curl, Preacher Hammer Dumbbell Curl): usunąć „przedramiona” z pomocniczych — spójność z bazowym Hammer Curl (docs/24: „biceps / —”; ramienno-promieniowy jest zginaczem łokcia — OpenStax). Uginania nachwytem (Reverse …) zostają z „przedramiona” jako główną: Kleiber 2015 — udział ramienno-promieniowego rośnie tylko w nachwycie; ExRx — prostowniki nadgarstka jako stabilizatory.
 2. **Rozpiętki** (Band Chest Fly, Cable Fly (low to high), Flat Bench Cable Fly, Incline Cable Fly, Incline Chest Fly (hantle)): usunąć „barki” z pomocniczych — spójność z Chest Fly / Cable Fly / Pec Deck (docs/24: „klatka / —”); ujednolicić `muscleLoad` (przedni akton 0,5, biceps 0,25 — Solstad 2020).
-3. **Wymagania sprzętowe:** uginania nadgarstków sztangą/hantlem wymagają siedziska lub ławki (ExRx: „Rest forearms on thighs”; fedb: przedramiona na ławce) — z zalecanych do wymaganych; One Arm Dumbbell Preacher Curl — dopuścić oparcie ławki skośnej (fedb: „preacher bench or the incline bench”); Svend Press — talerz|hantel (notatka mówiła o talerzu, requires miało tylko hantel); Single Arm Cable Fly — także górny wyciąg; Behind-the-Back Wrist Curl — stojak zalecany.
-4. **Nazwy uznane:** Barbell Wrist Curl / Barbell Reverse Wrist Curl (ExRx), One-Arm Dumbbell (Reverse) Wrist Curl, Spider Curl (sztanga), Two-Arm Dumbbell Kickback, Band Overhead Triceps Extension, Bodyweight Triceps Extension, One-Arm Lying Dumbbell Triceps Extension, Dumbbell Pronation / Supination.
-5. **Pronacja / supinacja leżąc:** opisy free-exercise-db pod tymi nazwami to w rzeczywistości rotacja zewnętrzna barku — katalog słusznie opisuje ruch przedramienia; zmienić nazwy na jednoznaczne.
+3. **Wymagania sprzętowe:** uginania nadgarstków sztangą/hantlem wymagają siedziska lub ławki (ExRx: „Rest forearms on thighs”; fedb: przedramiona na ławce) — z zalecanych do wymaganych; One Arm Dumbbell Preacher Curl — dopuścić oparcie ławki skośnej (fedb: „preacher bench or the incline bench”); Svend Press — talerz|hantel (notatka mówiła o talerzu, requires miało tylko hantel); Single Arm Cable Fly — także górny wyciąg; Kneeling Cable Triceps Extension — także środkowy wyciąg (ExRx); Behind-the-Back Wrist Curl — stojak zalecany.
+4. **Nazwy uznane:** Barbell Wrist Curl / Barbell Reverse Wrist Curl (ExRx), One-Arm Dumbbell (Reverse) Wrist Curl, Spider Curl (sztanga), Two-Arm Dumbbell Kickback, Band Overhead Triceps Extension, Bodyweight Triceps Extension, One-Arm Lying Dumbbell Triceps Extension.
+5. **Pronacja / supinacja leżąc:** nazwy zgodne z ExRx (ruch przedramienia); opisy free-exercise-db pod tymi nazwami to w rzeczywistości rotacja zewnętrzna barku — trzymać definicję ExRx; ławka tylko zalecana („Lie on bench or mat”).
 6. **Wrist Roller:** „barki” pomocnicze zawyżają serie barków (praca tylko izometryczna) — usunąć, front_delt 0,25. Drag Curl: dodać rear_delt 0,25 (ExRx — synergista).
 
 ### 2.2 Duplikaty (SCALIĆ → zostaje)
@@ -42,6 +42,7 @@ Data: 08.10.2026. Zlecenie właściciela: „mamy trochę za szeroką bibliotek�
 - Wide-Grip Standing Barbell Curl → **Barbell Curl**
 - Incline Dumbbell Fly With A Twist → **Incline Chest Fly (hantle)**
 - Single-Arm Cable Crossover → **Single Arm Cable Fly**
+- Cable One Arm Triceps Extension → **Single Arm Triceps Pushdown**
 - Dumbbell Tricep Extension - Pronated Grip → **Skullcrusher (hantle)**
 - One Arm Supinated Dumbbell Triceps Extension → **One Arm Pronated Dumbbell Triceps Extension**
 - Seated Bent-Over One-Arm Dumbbell Triceps Extension → **Triceps Kickback**
@@ -59,7 +60,7 @@ Poza tym w katalogu: bazowy **Cable Fly** ma notatkę „Any pulley height (high
 
 ### 2.4 Pytania otwarte (do właściciela — sprawy produktowe; opcje i rekomendacja)
 
-- **Q1. Sekcja ćwiczeń przedramion.** 13 ćwiczeń L1 z partią główną „przedramiona” (uginania nadgarstków, pronacja, Wrist Roller…) leży w grupie „biceps”, a Wrist Curl (hantle) i Reverse Wrist Curl (hantle) — w „inne”. Niespójne. Opcje: A) wszystkie ćwiczenia przedramion w „biceps” (sekcja ramion; najmniej zmian — 2 przenosiny); B) wszystkie w „inne”; C) nowa grupa „przedramiona” (najczytelniej, ale zmiana listy GROUPS, migracja i testy). **Rekomendacja: A** teraz, C przy porządkowaniu sekcji.
+- **Q1. Sekcja ćwiczeń przedramion.** 12 ćwiczeń L1 z jedyną partią główną „przedramiona” (uginania nadgarstków, pronacja, Wrist Roller…) leży w grupie „biceps”, a Wrist Curl (hantle) i Reverse Wrist Curl (hantle) — w „inne”. Niespójne. Opcje: A) wszystkie ćwiczenia przedramion w „biceps” (sekcja ramion; najmniej zmian — 2 przenosiny); B) wszystkie w „inne”; C) nowa grupa „przedramiona” (najczytelniej, ale zmiana listy GROUPS, migracja i testy). **Rekomendacja: A** teraz, C przy porządkowaniu sekcji.
 - **Q2. Cable Fly a warianty wysokości.** A) zostawić Cable Fly (dowolna wysokość) + oba warianty (dziś); B) scalić warianty do Cable Fly; C) zawęzić Cable Fly do wysokości środkowej. Partie są te same (aplikacja ma jedną partię klatki). **Rekomendacja: A** (warianty dodano celowo pod stację z dwiema linkami), z poprawionym `muscleLoad`.
 - **Q3. Warianty chwytu i pozycji (siad/stanie, wąsko/szeroko).** Proponowane scalenia (Close-/Wide-Grip Barbell Curl, Close-Grip EZ, Seated Dumbbell Curl, Inner-Biceps, Twist, Pronated/Supinated) opierają się na braku źródła, że zmieniają przypisanie partii. Opcje: A) scalić (rek. — węższa biblioteka); B) zostawić jako niszowe. Zasada „jednorącz ≠ oburącz” (04.10) jest zachowana — żadne scalenie nie łączy wersji jednorącz z oburącz.
 - **Q4. Przedramiona w uginaniach młotkowych** — przy pojawieniu się badania wzrostu ramienno-promieniowego po uginaniach młotkowych wrócić do docs/24 Q5 (wtedy „przedramiona” pomocnicze dla Hammer Curl i wszystkich wariantów naraz).
@@ -70,106 +71,106 @@ Poza tym w katalogu: bazowy **Cable Fly** ma notatkę „Any pulley height (high
 
 | Ćwiczenie | Werdykt | Zakres | Poprawki | Źródła | Pewność |
 |---|---|---|---|---|---|
-| Barbell Curls Lying Against An Incline | POPRAWIĆ | NISZOWE | name → "Spider Curl (sztanga)"; requires → [["barbell", "ez_bar"], ["bench.incline", "preacher_bench"]] | L1-S7, L1-S40, S12, S13, S6 | umiarkowane |
-| Barbell Preacher Curl | OK | NISZOWE | — | L1-S8, L1-S2, L1-S40, S12, S13, S6 | umiarkowane |
+| Barbell Curls Lying Against An Incline | POPRAWIĆ | NISZOWE | name → "Spider Curl (sztanga)"; requires → [["barbell", "ez_bar"], ["bench.incline", "preacher_bench"]] | L1-S7, L1-S57, S12, S13, S6 | umiarkowane |
+| Barbell Preacher Curl | OK | NISZOWE | — | L1-S8, L1-S2, L1-S57, S12, S13, S6 | umiarkowane |
 | Bayesian Curl | OK | ZOSTAJE | — | L1-S9, S12, S13, S6 | umiarkowane |
 | Cable Curl (dwie linki) | OK | ZOSTAJE | — | L1-S10, S12, S13, S6 | umiarkowane |
-| Cable Preacher Curl | OK | NISZOWE | — | L1-S11, L1-S40, S12, S13, S6 | umiarkowane |
-| Cable Wrist Curl | OK | NISZOWE | — | L1-S12, L1-S6, L1-S40 | umiarkowane |
-| Close-Grip EZ Bar Curl | SCALIĆ | SCALIĆ | scalić z „EZ Bar Curl” | L1-S13, L1-S2, L1-S40 | umiarkowane |
-| Close-Grip EZ-Bar Curl with Band | SCALIĆ | SCALIĆ | scalić z „EZ Bar Curl” | L1-S13, L1-S40 | brak źródła — uproszczenie |
-| Close-Grip Standing Barbell Curl | SCALIĆ | SCALIĆ | scalić z „Barbell Curl” | L1-S13, L1-S40 | umiarkowane |
-| Cross Body Hammer Curl | POPRAWIĆ | ZOSTAJE | secondaryMuscles → [] | L1-S14, L1-S6, S6, L1-S40 | umiarkowane |
-| Drag Curl | POPRAWIĆ | NISZOWE | muscleLoad → {"biceps": 1, "forearms": 0.25, "rear_delt": 0.25} | L1-S15, L1-S40, S12, S13, S6 | umiarkowane |
-| Dumbbell Lying Pronation | POPRAWIĆ | NISZOWE | name → "Dumbbell Pronation" | L1-S16, L1-S6, L1-S40 | jedno źródło |
-| Dumbbell Lying Supination | POPRAWIĆ | NISZOWE | name → "Dumbbell Supination" | L1-S17, L1-S6, L1-S40 | jedno źródło |
-| EZ-Bar Spider Curl | SCALIĆ | SCALIĆ | scalić z „Barbell Curls Lying Against An Incline” | L1-S7, L1-S40 | umiarkowane |
-| Finger Curls | SCALIĆ | SCALIĆ | scalić z „Palms-Up Barbell Wrist Curl Over A Bench” | L1-S18, L1-S40 | umiarkowane |
+| Cable Preacher Curl | OK | NISZOWE | — | L1-S11, L1-S57, S12, S13, S6 | umiarkowane |
+| Cable Wrist Curl | OK | NISZOWE | — | L1-S12, L1-S6, L1-S57 | umiarkowane |
+| Close-Grip EZ Bar Curl | SCALIĆ | SCALIĆ | scalić z „EZ Bar Curl” | L1-S13, L1-S2, L1-S57 | umiarkowane |
+| Close-Grip EZ-Bar Curl with Band | SCALIĆ | SCALIĆ | scalić z „EZ Bar Curl” | L1-S13, L1-S57 | brak źródła — uproszczenie |
+| Close-Grip Standing Barbell Curl | SCALIĆ | SCALIĆ | scalić z „Barbell Curl” | L1-S13, L1-S57 | umiarkowane |
+| Cross Body Hammer Curl | POPRAWIĆ | ZOSTAJE | secondaryMuscles → [] | L1-S14, L1-S6, S6, L1-S57 | umiarkowane |
+| Drag Curl | POPRAWIĆ | NISZOWE | muscleLoad → {"biceps": 1, "forearms": 0.25, "rear_delt": 0.25} | L1-S15, L1-S57, S12, S13, S6 | umiarkowane |
+| Dumbbell Lying Pronation | POPRAWIĆ | NISZOWE | requires → [["db"]]; recommended → ["bench.flat"] | L1-S16, L1-S6, L1-S57 | jedno źródło |
+| Dumbbell Lying Supination | POPRAWIĆ | NISZOWE | requires → [["db"]]; recommended → ["bench.flat"] | L1-S17, L1-S6, L1-S57 | jedno źródło |
+| EZ-Bar Spider Curl | SCALIĆ | SCALIĆ | scalić z „Barbell Curls Lying Against An Incline” | L1-S7, L1-S57 | umiarkowane |
+| Finger Curls | SCALIĆ | SCALIĆ | scalić z „Palms-Up Barbell Wrist Curl Over A Bench” | L1-S18, L1-S57 | umiarkowane |
 | Hammer Curl (linki) | POPRAWIĆ | ZOSTAJE | secondaryMuscles → [] | L1-S19, L1-S6, S6 | umiarkowane |
 | High Cable Curl | OK | NISZOWE | — | S12, S13, S6 | umiarkowane |
-| Incline Hammer Curl | POPRAWIĆ | NISZOWE | secondaryMuscles → [] | L1-S14, L1-S20, L1-S40, S6 | umiarkowane |
-| Incline Inner Biceps Curl | SCALIĆ | SCALIĆ | scalić z „Incline Curl (hantle)” | L1-S20, L1-S40 | umiarkowane |
-| Lying Cable Curl | OK | NISZOWE | — | L1-S21, L1-S40, S12, S13, S6 | umiarkowane |
-| Lying Close-Grip Bar Curl On High Pulley | OK | NISZOWE | — | L1-S40, S12, S13, S6 | umiarkowane |
-| Lying High Bench Barbell Curl | SCALIĆ | SCALIĆ | scalić z „Barbell Curls Lying Against An Incline” | L1-S7, L1-S40 | umiarkowane |
-| Lying Supine Dumbbell Curl | OK | NISZOWE | — | L1-S40, L1-S20, S12, S13, S6 | umiarkowane |
+| Incline Hammer Curl | POPRAWIĆ | NISZOWE | secondaryMuscles → [] | L1-S14, L1-S20, L1-S57, S6 | umiarkowane |
+| Incline Inner Biceps Curl | SCALIĆ | SCALIĆ | scalić z „Incline Curl (hantle)” | L1-S20, L1-S57 | umiarkowane |
+| Lying Cable Curl | OK | NISZOWE | — | L1-S21, L1-S57, S12, S13, S6 | umiarkowane |
+| Lying Close-Grip Bar Curl On High Pulley | OK | NISZOWE | — | L1-S57, S12, S13, S6 | umiarkowane |
+| Lying High Bench Barbell Curl | SCALIĆ | SCALIĆ | scalić z „Barbell Curls Lying Against An Incline” | L1-S7, L1-S57 | umiarkowane |
+| Lying Supine Dumbbell Curl | OK | NISZOWE | — | L1-S57, L1-S20, S12, S13, S6 | umiarkowane |
 | Machine Biceps Curl | OK | ZOSTAJE | — | L1-S22, S12, S13, S6 | umiarkowane |
-| One Arm Dumbbell Preacher Curl | POPRAWIĆ | ZOSTAJE | requires → [["db"], ["preacher_bench", "bench.incline"]] | L1-S23, L1-S40, S12, S13, S6 | umiarkowane |
-| Palms-Down Barbell Wrist Curl Over A Bench | POPRAWIĆ | ZOSTAJE | name → "Barbell Reverse Wrist Curl"; requires → [["barbell"], ["bench.flat", "box"]]; recommended → [] | L1-S24, L1-S6, L1-S40 | umiarkowane |
-| Palms-Up Barbell Wrist Curl Over A Bench | POPRAWIĆ | ZOSTAJE | name → "Barbell Wrist Curl"; requires → [["barbell"], ["bench.flat", "box"]]; recommended → [] | L1-S18, L1-S6, L1-S40 | umiarkowane |
+| One Arm Dumbbell Preacher Curl | POPRAWIĆ | ZOSTAJE | requires → [["db"], ["preacher_bench", "bench.incline"]] | L1-S23, L1-S57, S12, S13, S6 | umiarkowane |
+| Palms-Down Barbell Wrist Curl Over A Bench | POPRAWIĆ | ZOSTAJE | name → "Barbell Reverse Wrist Curl"; requires → [["barbell"], ["bench.flat", "box"]]; recommended → [] | L1-S24, L1-S6, L1-S57 | umiarkowane |
+| Palms-Up Barbell Wrist Curl Over A Bench | POPRAWIĆ | ZOSTAJE | name → "Barbell Wrist Curl"; requires → [["barbell"], ["bench.flat", "box"]]; recommended → [] | L1-S18, L1-S6, L1-S57 | umiarkowane |
 | Preacher Curl (EZ) | OK | ZOSTAJE | — | L1-S8, L1-S2, S12, S13, S6 | mocne |
-| Preacher Hammer Dumbbell Curl | POPRAWIĆ | NISZOWE | secondaryMuscles → [] | L1-S14, L1-S23, L1-S40, S6 | umiarkowane |
-| Reverse Cable Curl | OK | NISZOWE | — | L1-S25, L1-S26, L1-S1, L1-S40 | umiarkowane |
+| Preacher Hammer Dumbbell Curl | POPRAWIĆ | NISZOWE | secondaryMuscles → [] | L1-S14, L1-S23, L1-S57, S6 | umiarkowane |
+| Reverse Cable Curl | OK | NISZOWE | — | L1-S25, L1-S26, L1-S1, L1-S57 | umiarkowane |
 | Reverse Curl | OK | ZOSTAJE | — | L1-S26, L1-S1 | umiarkowane |
-| Reverse EZ-Bar Preacher Curl | OK | NISZOWE | — | L1-S26, L1-S1, L1-S40 | umiarkowane |
-| Reverse Plate Curls | OK | NISZOWE | — | L1-S26, L1-S1, L1-S40 | umiarkowane |
-| Seated Close-Grip Concentration Barbell Curl | OK | NISZOWE | — | L1-S27, L1-S40, S12, S13, S6 | umiarkowane |
-| Seated Dumbbell Curl | SCALIĆ | SCALIĆ | scalić z „Biceps Curl (hantle)” | L1-S28, L1-S40 | umiarkowane |
-| Seated Dumbbell Inner Biceps Curl | SCALIĆ | SCALIĆ | scalić z „Standing Inner-Biceps Curl” | L1-S40 | brak źródła — uproszczenie |
-| Seated One-Arm Dumbbell Palms-Down Wrist Curl | POPRAWIĆ | NISZOWE | name → "One-Arm Dumbbell Reverse Wrist Curl"; requires → [["db"], ["bench.flat", "box"]]; recommended → [] | L1-S29, L1-S40 | umiarkowane |
-| Seated One-Arm Dumbbell Palms-Up Wrist Curl | POPRAWIĆ | NISZOWE | name → "One-Arm Dumbbell Wrist Curl"; requires → [["db"], ["bench.flat", "box"]]; recommended → [] | L1-S30, L1-S40 | umiarkowane |
-| Standing Concentration Curl | OK | NISZOWE | — | L1-S40, S12, S13, S6 | umiarkowane |
-| Standing Dumbbell Reverse Curl | OK | NISZOWE | — | L1-S26, L1-S1, L1-S40 | umiarkowane |
-| Standing Inner-Biceps Curl | OK | NISZOWE | — | L1-S40, L1-S28, S12, S13, S6 | umiarkowane |
-| Standing Olympic Plate Hand Squeeze | USUNĄĆ | USUNĄĆ | — | L1-S40 | brak źródła — uproszczenie |
-| Standing One-Arm Cable Curl | OK | ZOSTAJE | — | L1-S9, L1-S40, S12, S13, S6 | umiarkowane |
-| Standing One-Arm Dumbbell Curl Over Incline Bench | SCALIĆ | SCALIĆ | scalić z „One Arm Dumbbell Preacher Curl” | L1-S40 | umiarkowane |
-| Standing Palms-Up Barbell Behind The Back Wrist Curl | POPRAWIĆ | NISZOWE | name → "Behind-the-Back Barbell Wrist Curl"; recommended → ["rack"] | L1-S40, L1-S6 | jedno źródło |
-| Wide-Grip Standing Barbell Curl | SCALIĆ | SCALIĆ | scalić z „Barbell Curl” | L1-S13, L1-S40 | umiarkowane |
-| Wrist Roller | POPRAWIĆ | ZOSTAJE | secondaryMuscles → []; muscleLoad → {"forearms": 1, "front_delt": 0.25} | L1-S40, L1-S6 | brak źródła — uproszczenie |
-| Wrist Rotations with Straight Bar | USUNĄĆ | USUNĄĆ | — | L1-S40 | brak źródła — uproszczenie |
+| Reverse EZ-Bar Preacher Curl | OK | NISZOWE | — | L1-S27, L1-S26, L1-S1, L1-S57 | umiarkowane |
+| Reverse Plate Curls | OK | NISZOWE | — | L1-S26, L1-S1, L1-S57 | umiarkowane |
+| Seated Close-Grip Concentration Barbell Curl | OK | NISZOWE | — | L1-S28, L1-S57, S12, S13, S6 | umiarkowane |
+| Seated Dumbbell Curl | SCALIĆ | SCALIĆ | scalić z „Biceps Curl (hantle)” | L1-S29, L1-S57 | umiarkowane |
+| Seated Dumbbell Inner Biceps Curl | SCALIĆ | SCALIĆ | scalić z „Standing Inner-Biceps Curl” | L1-S57 | brak źródła — uproszczenie |
+| Seated One-Arm Dumbbell Palms-Down Wrist Curl | POPRAWIĆ | NISZOWE | name → "One-Arm Dumbbell Reverse Wrist Curl"; requires → [["db"], ["bench.flat", "box"]]; recommended → [] | L1-S30, L1-S57 | umiarkowane |
+| Seated One-Arm Dumbbell Palms-Up Wrist Curl | POPRAWIĆ | NISZOWE | name → "One-Arm Dumbbell Wrist Curl"; requires → [["db"], ["bench.flat", "box"]]; recommended → [] | L1-S31, L1-S57 | umiarkowane |
+| Standing Concentration Curl | OK | NISZOWE | — | L1-S57, S12, S13, S6 | umiarkowane |
+| Standing Dumbbell Reverse Curl | OK | NISZOWE | — | L1-S26, L1-S1, L1-S57 | umiarkowane |
+| Standing Inner-Biceps Curl | OK | NISZOWE | — | L1-S57, L1-S29, S12, S13, S6 | umiarkowane |
+| Standing Olympic Plate Hand Squeeze | USUNĄĆ | USUNĄĆ | — | L1-S57 | brak źródła — uproszczenie |
+| Standing One-Arm Cable Curl | OK | ZOSTAJE | — | L1-S9, L1-S57, S12, S13, S6 | umiarkowane |
+| Standing One-Arm Dumbbell Curl Over Incline Bench | SCALIĆ | SCALIĆ | scalić z „One Arm Dumbbell Preacher Curl” | L1-S23, L1-S57 | umiarkowane |
+| Standing Palms-Up Barbell Behind The Back Wrist Curl | POPRAWIĆ | NISZOWE | name → "Behind-the-Back Barbell Wrist Curl"; recommended → ["rack"] | L1-S57, L1-S6 | jedno źródło |
+| Wide-Grip Standing Barbell Curl | SCALIĆ | SCALIĆ | scalić z „Barbell Curl” | L1-S13, L1-S57 | umiarkowane |
+| Wrist Roller | POPRAWIĆ | ZOSTAJE | secondaryMuscles → []; muscleLoad → {"forearms": 1, "front_delt": 0.25} | L1-S57, L1-S6 | brak źródła — uproszczenie |
+| Wrist Rotations with Straight Bar | USUNĄĆ | USUNĄĆ | — | L1-S57 | brak źródła — uproszczenie |
 | Zottman Curl | OK | ZOSTAJE | — | L1-S1, L1-S6, S12, S13, S6 | jedno źródło |
-| Zottman Preacher Curl | OK | NISZOWE | — | L1-S1, L1-S40, S12, S13, S6 | jedno źródło |
-| Around The Worlds | OK | NISZOWE | — | L1-S40 | brak źródła — uproszczenie |
-| Band Chest Fly | POPRAWIĆ | ZOSTAJE | secondaryMuscles → [] | L1-S40, S6, L1-S3, L1-S4 | umiarkowane |
-| Bodyweight Fly (rolling bars) | USUNĄĆ | USUNĄĆ | — | L1-S40 | brak źródła — uproszczenie |
-| Cable Fly (high to low) | POPRAWIĆ | ZOSTAJE | muscleLoad → {"chest": 1, "front_delt": 0.5, "biceps": 0.25} | S6, L1-S3, L1-S4 | umiarkowane |
-| Cable Fly (low to high) | POPRAWIĆ | ZOSTAJE | secondaryMuscles → []; muscleLoad → {"chest": 1, "front_delt": 0.5, "biceps": 0.25} | S6, L1-S3, L1-S4 | umiarkowane |
-| Decline Dumbbell Fly | OK | NISZOWE | — | L1-S40, S6, L1-S3, L1-S4 | umiarkowane |
-| Flat Bench Cable Fly | POPRAWIĆ | NISZOWE | secondaryMuscles → [] | L1-S40, S6, L1-S3, L1-S4 | umiarkowane |
-| Front Raise And Pullover | OK | NISZOWE | — | L1-S5, S37, L1-S40 | jedno źródło |
-| Incline Cable Fly | POPRAWIĆ | NISZOWE | secondaryMuscles → []; muscleLoad → {"chest": 1, "front_delt": 0.5, "biceps": 0.25} | S6, L1-S3, L1-S4 | umiarkowane |
-| Incline Chest Fly (hantle) | POPRAWIĆ | ZOSTAJE | secondaryMuscles → [] | S6, L1-S3, L1-S4 | umiarkowane |
-| Incline Dumbbell Fly With A Twist | SCALIĆ | SCALIĆ | scalić z „Incline Chest Fly (hantle)” | L1-S40 | umiarkowane |
-| Isometric Chest Squeezes | USUNĄĆ | USUNĄĆ | — | L1-S40 | brak źródła — uproszczenie |
-| One-Arm Flat Bench Dumbbell Fly | OK | NISZOWE | — | L1-S40, S6, L1-S3, L1-S4 | umiarkowane |
-| Pullover (hantel) | OK | ZOSTAJE | — | L1-S5, S37 | umiarkowane |
-| Single Arm Cable Fly | POPRAWIĆ | NISZOWE | requires → [["cable.high", "cable.mid", "cable.low"]] | L1-S40, S6, L1-S3, L1-S4 | umiarkowane |
-| Single-Arm Cable Crossover | SCALIĆ | SCALIĆ | scalić z „Single Arm Cable Fly” | L1-S40 | umiarkowane |
+| Zottman Preacher Curl | OK | NISZOWE | — | L1-S1, L1-S57, S12, S13, S6 | jedno źródło |
+| Around The Worlds | OK | NISZOWE | — | L1-S57 | brak źródła — uproszczenie |
+| Band Chest Fly | POPRAWIĆ | ZOSTAJE | secondaryMuscles → [] | L1-S32, L1-S57, S6, L1-S3, L1-S4 | umiarkowane |
+| Bodyweight Fly (rolling bars) | USUNĄĆ | USUNĄĆ | — | L1-S57 | brak źródła — uproszczenie |
+| Cable Fly (high to low) | POPRAWIĆ | ZOSTAJE | muscleLoad → {"chest": 1, "front_delt": 0.5, "biceps": 0.25} | L1-S32, S6, L1-S3, L1-S4 | umiarkowane |
+| Cable Fly (low to high) | POPRAWIĆ | ZOSTAJE | secondaryMuscles → []; muscleLoad → {"chest": 1, "front_delt": 0.5, "biceps": 0.25} | L1-S33, S6, L1-S3, L1-S4 | umiarkowane |
+| Decline Dumbbell Fly | OK | NISZOWE | — | L1-S34, L1-S57, S6, L1-S3, L1-S4 | umiarkowane |
+| Flat Bench Cable Fly | POPRAWIĆ | NISZOWE | secondaryMuscles → [] | L1-S35, L1-S57, S6, L1-S3, L1-S4 | umiarkowane |
+| Front Raise And Pullover | OK | NISZOWE | — | L1-S5, S37, L1-S57 | jedno źródło |
+| Incline Cable Fly | POPRAWIĆ | NISZOWE | secondaryMuscles → []; muscleLoad → {"chest": 1, "front_delt": 0.5, "biceps": 0.25} | L1-S36, S6, L1-S3, L1-S4 | umiarkowane |
+| Incline Chest Fly (hantle) | POPRAWIĆ | ZOSTAJE | secondaryMuscles → [] | L1-S37, S6, L1-S3, L1-S4 | umiarkowane |
+| Incline Dumbbell Fly With A Twist | SCALIĆ | SCALIĆ | scalić z „Incline Chest Fly (hantle)” | L1-S37, L1-S57 | umiarkowane |
+| Isometric Chest Squeezes | USUNĄĆ | USUNĄĆ | — | L1-S57 | brak źródła — uproszczenie |
+| One-Arm Flat Bench Dumbbell Fly | OK | NISZOWE | — | L1-S38, L1-S57, S6, L1-S3, L1-S4 | umiarkowane |
+| Pullover (hantel) | OK | ZOSTAJE | — | L1-S39, L1-S5, S37 | umiarkowane |
+| Single Arm Cable Fly | POPRAWIĆ | NISZOWE | requires → [["cable.high", "cable.mid", "cable.low"]] | L1-S57, S6, L1-S3, L1-S4 | umiarkowane |
+| Single-Arm Cable Crossover | SCALIĆ | SCALIĆ | scalić z „Single Arm Cable Fly” | L1-S57 | umiarkowane |
 | Svend Press | POPRAWIĆ | NISZOWE | requires → [["plate", "db"]] | — | brak źródła — uproszczenie |
-| Wide-Grip Decline Barbell Pullover | OK | NISZOWE | — | L1-S5, S37, L1-S40 | umiarkowane |
-| Band Skull Crusher | OK | NISZOWE | — | L1-S31, L1-S40, S6 | umiarkowane |
-| Body Tricep Press | POPRAWIĆ | NISZOWE | name → "Bodyweight Triceps Extension" | L1-S40 | jedno źródło |
-| Body-Up | OK | NISZOWE | — | L1-S40 | brak źródła — uproszczenie |
-| Cable Incline Triceps Extension | OK | NISZOWE | — | L1-S40, S29, S6 | umiarkowane |
-| Cable Lying Triceps Extension | OK | NISZOWE | — | L1-S40, S29, S6 | umiarkowane |
-| Cable One Arm Triceps Extension | OK | NISZOWE | — | L1-S40, S29, S6 | umiarkowane |
-| Chain Handle Extension | OK | NISZOWE | — | L1-S40, L1-S32 | jedno źródło |
-| Decline Dumbbell Triceps Extension | OK | NISZOWE | — | L1-S33, L1-S40, S6 | umiarkowane |
-| Decline EZ Bar Triceps Extension | OK | NISZOWE | — | L1-S31, L1-S40, S6 | umiarkowane |
-| Dumbbell One-Arm Triceps Extension | OK | ZOSTAJE | — | L1-S34, L1-S40, S29, S6 | umiarkowane |
-| Dumbbell Tricep Extension - Pronated Grip | SCALIĆ | SCALIĆ | scalić z „Skullcrusher (hantle)” | L1-S32, L1-S40 | umiarkowane |
-| Incline Barbell Triceps Extension | OK | NISZOWE | — | L1-S35, L1-S40, S6 | umiarkowane |
-| Kettlebell Overhead Triceps Extension | OK | NISZOWE | — | L1-S36, L1-S40, S29, S6 | umiarkowane |
-| Kneeling Cable Triceps Extension | OK | NISZOWE | — | L1-S40, S29, S6 | umiarkowane |
-| Lying Close-Grip Barbell Triceps Extension Behind The Head | OK | NISZOWE | — | L1-S31, L1-S40, S6 | umiarkowane |
-| Machine Triceps Extension | OK | ZOSTAJE | — | S6 | umiarkowane |
-| One Arm Pronated Dumbbell Triceps Extension | POPRAWIĆ | NISZOWE | name → "One-Arm Lying Dumbbell Triceps Extension" | L1-S32, L1-S40 | umiarkowane |
-| One Arm Supinated Dumbbell Triceps Extension | SCALIĆ | SCALIĆ | scalić z „One Arm Pronated Dumbbell Triceps Extension” | L1-S32, L1-S40 | umiarkowane |
-| Overhead Triceps Extension (EZ) | OK | ZOSTAJE | — | L1-S37, S29, S6 | umiarkowane |
-| Reverse Grip Triceps Pushdown | OK | NISZOWE | — | L1-S38, L1-S40, S29 | umiarkowane |
-| Seated Bent-Over One-Arm Dumbbell Triceps Extension | SCALIĆ | SCALIĆ | scalić z „Triceps Kickback” | L1-S39, L1-S40 | umiarkowane |
-| Seated Bent-Over Two-Arm Dumbbell Triceps Extension | SCALIĆ | SCALIĆ | scalić z „Standing Bent-Over Two-Arm Dumbbell Triceps Extension” | L1-S39, L1-S40 | umiarkowane |
-| Single Arm Triceps Pushdown | OK | ZOSTAJE | — | S29 | umiarkowane |
-| Skullcrusher (sztanga) | OK | ZOSTAJE | — | L1-S31, S6 | umiarkowane |
-| Sled Overhead Triceps Extension | OK | NISZOWE | — | L1-S40 | jedno źródło |
-| Speed Band Overhead Triceps | POPRAWIĆ | NISZOWE | name → "Band Overhead Triceps Extension" | L1-S40, S29 | jedno źródło |
-| Standing Bent-Over Two-Arm Dumbbell Triceps Extension | POPRAWIĆ | NISZOWE | name → "Two-Arm Dumbbell Kickback" | L1-S39, L1-S40 | umiarkowane |
-| Standing Low-Pulley One-Arm Triceps Extension | OK | NISZOWE | — | L1-S40, S29, S6 | umiarkowane |
-| Standing Overhead Barbell Triceps Extension | OK | NISZOWE | — | L1-S37, L1-S40, S29, S6 | umiarkowane |
-| Standing Towel Triceps Extension | USUNĄĆ | USUNĄĆ | — | L1-S40 | brak źródła — uproszczenie |
-| Tate Press | OK | NISZOWE | — | L1-S32, S6 | brak źródła — uproszczenie |
-| Triceps Kickback (linki) | OK | ZOSTAJE | — | L1-S39, S6 | umiarkowane |
+| Wide-Grip Decline Barbell Pullover | OK | NISZOWE | — | L1-S5, S37, L1-S57 | umiarkowane |
+| Band Skull Crusher | OK | NISZOWE | — | L1-S40, L1-S57, S6 | umiarkowane |
+| Body Tricep Press | POPRAWIĆ | NISZOWE | name → "Bodyweight Triceps Extension" | L1-S41, L1-S57 | jedno źródło |
+| Body-Up | OK | NISZOWE | — | L1-S57 | brak źródła — uproszczenie |
+| Cable Incline Triceps Extension | OK | NISZOWE | — | L1-S42, L1-S57, S29, S6 | umiarkowane |
+| Cable Lying Triceps Extension | OK | NISZOWE | — | L1-S43, L1-S57, S29, S6 | umiarkowane |
+| Cable One Arm Triceps Extension | SCALIĆ | SCALIĆ | scalić z „Single Arm Triceps Pushdown” | L1-S44, L1-S45, L1-S57 | umiarkowane |
+| Chain Handle Extension | OK | NISZOWE | — | L1-S57, L1-S46 | jedno źródło |
+| Decline Dumbbell Triceps Extension | OK | NISZOWE | — | L1-S47, L1-S57, S6 | umiarkowane |
+| Decline EZ Bar Triceps Extension | OK | NISZOWE | — | L1-S48, L1-S57, S6 | umiarkowane |
+| Dumbbell One-Arm Triceps Extension | OK | ZOSTAJE | — | L1-S49, L1-S57, S29, S6 | umiarkowane |
+| Dumbbell Tricep Extension - Pronated Grip | SCALIĆ | SCALIĆ | scalić z „Skullcrusher (hantle)” | L1-S46, L1-S57 | umiarkowane |
+| Incline Barbell Triceps Extension | OK | NISZOWE | — | L1-S50, L1-S57, S6 | umiarkowane |
+| Kettlebell Overhead Triceps Extension | OK | NISZOWE | — | L1-S51, L1-S57, S29, S6 | umiarkowane |
+| Kneeling Cable Triceps Extension | POPRAWIĆ | NISZOWE | requires → [["cable.high", "cable.mid"], ["bench.flat"]] | L1-S52, L1-S57, S29, S6 | umiarkowane |
+| Lying Close-Grip Barbell Triceps Extension Behind The Head | OK | NISZOWE | — | L1-S40, L1-S57, S6 | umiarkowane |
+| Machine Triceps Extension | OK | ZOSTAJE | — | L1-S53, S6 | umiarkowane |
+| One Arm Pronated Dumbbell Triceps Extension | POPRAWIĆ | NISZOWE | name → "One-Arm Lying Dumbbell Triceps Extension" | L1-S46, L1-S57 | umiarkowane |
+| One Arm Supinated Dumbbell Triceps Extension | SCALIĆ | SCALIĆ | scalić z „One Arm Pronated Dumbbell Triceps Extension” | L1-S46, L1-S57 | umiarkowane |
+| Overhead Triceps Extension (EZ) | OK | ZOSTAJE | — | L1-S54, S29, S6 | umiarkowane |
+| Reverse Grip Triceps Pushdown | OK | NISZOWE | — | L1-S55, L1-S57, S29 | umiarkowane |
+| Seated Bent-Over One-Arm Dumbbell Triceps Extension | SCALIĆ | SCALIĆ | scalić z „Triceps Kickback” | L1-S56, L1-S57 | umiarkowane |
+| Seated Bent-Over Two-Arm Dumbbell Triceps Extension | SCALIĆ | SCALIĆ | scalić z „Standing Bent-Over Two-Arm Dumbbell Triceps Extension” | L1-S56, L1-S57 | umiarkowane |
+| Single Arm Triceps Pushdown | OK | ZOSTAJE | — | L1-S44, S29 | umiarkowane |
+| Skullcrusher (sztanga) | OK | ZOSTAJE | — | L1-S40, S6 | umiarkowane |
+| Sled Overhead Triceps Extension | OK | NISZOWE | — | L1-S57 | jedno źródło |
+| Speed Band Overhead Triceps | POPRAWIĆ | NISZOWE | name → "Band Overhead Triceps Extension" | L1-S57, S29 | jedno źródło |
+| Standing Bent-Over Two-Arm Dumbbell Triceps Extension | POPRAWIĆ | NISZOWE | name → "Two-Arm Dumbbell Kickback" | L1-S56, L1-S57 | umiarkowane |
+| Standing Low-Pulley One-Arm Triceps Extension | OK | NISZOWE | — | L1-S57, S29, S6 | umiarkowane |
+| Standing Overhead Barbell Triceps Extension | OK | NISZOWE | — | L1-S54, L1-S57, S29, S6 | umiarkowane |
+| Standing Towel Triceps Extension | USUNĄĆ | USUNĄĆ | — | L1-S57 | brak źródła — uproszczenie |
+| Tate Press | OK | NISZOWE | — | L1-S46, S6 | brak źródła — uproszczenie |
+| Triceps Kickback (linki) | OK | ZOSTAJE | — | L1-S56, S6 | umiarkowane |
 
 Uzasadnienia — pole `note` w `L1.json`.
 
@@ -203,20 +204,37 @@ Szczebel wg CLAUDE.md (1 wzory, 2 przeglądy/stanowiska, 3 pojedyncze badania i 
 - **L1-S24** ExRx.net — „Barbell Reverse Wrist Curl” (karta ćwiczenia). https://exrx.net/WeightExercises/WristExtensors/BBReverseWristCurl (czytane z kopii Internet Archive 2023–2024: https://web.archive.org/web/2023/https://exrx.net/WeightExercises/WristExtensors/BBReverseWristCurl; serwis blokuje bezpośredni dostęp). Szczebel 4, **PT**. „Target: Wrist Extensors; Synergists: None”; Preparation: „Sit and grasp bar with narrow to shoulder width overhand grip. Rest forearms on thighs with wrists just beyond knees., Execution, Raise barbell by pointing knuckles upward as high as possible. Return until knuckles are p”
 - **L1-S25** ExRx.net — „Cable Reverse Curl” (karta ćwiczenia). https://exrx.net/WeightExercises/Brachioradialis/CBReverseCurl (czytane z kopii Internet Archive 2023–2024: https://web.archive.org/web/2023/https://exrx.net/WeightExercises/Brachioradialis/CBReverseCurl; serwis blokuje bezpośredni dostęp). Szczebel 4, **PT**. „Target: Brachioradialis; Synergists: Brachialis, Biceps Brachii”; Preparation: „Grasp cable bar with shoulder width overhand grip., Execution, With elbows to side, raise bar until forearms are vertical. Lower until arms are fully extended. Repeat.”
 - **L1-S26** ExRx.net — „Barbell Reverse Curl” (karta ćwiczenia). https://exrx.net/WeightExercises/Brachioradialis/BBReverseCurl (czytane z kopii Internet Archive 2023–2024: https://web.archive.org/web/2023/https://exrx.net/WeightExercises/Brachioradialis/BBReverseCurl; serwis blokuje bezpośredni dostęp). Szczebel 4, **PT**. „Target: Brachioradialis; Synergists: Brachialis, Biceps Brachii”; Preparation: „Grasp bar with shoulder width overhand grip., Execution, With elbows to side, raise bar until forearms are vertical. Lower until arms are fully extended. Repeat.”
-- **L1-S27** ExRx.net — „Dumbbell Concentration Curl” (karta ćwiczenia). https://exrx.net/WeightExercises/Brachialis/DBConcentrationCurl (czytane z kopii Internet Archive 2023–2024: https://web.archive.org/web/2023/https://exrx.net/WeightExercises/Brachialis/DBConcentrationCurl; serwis blokuje bezpośredni dostęp). Szczebel 4, **PT**. „Target: Brachialis; Synergists: Biceps Brachii, Brachioradialis”; Preparation: „Sit on bench. Grasp dumbbell between feet. Place back of upper arm to inner thigh. Lean into leg to raise elbow slightly., Execution, Raise dumbbell to front of shoulder. Lower dumbbell until arm is fully extended. Repea”
-- **L1-S28** ExRx.net — „Dumbbell Curl” (karta ćwiczenia). https://exrx.net/WeightExercises/Biceps/DBCurl (czytane z kopii Internet Archive 2023–2024: https://web.archive.org/web/2023/https://exrx.net/WeightExercises/Biceps/DBCurl; serwis blokuje bezpośredni dostęp). Szczebel 4, **PT**. „Target: Biceps Brachii; Synergists: Brachialis, Brachioradialis”; Preparation: „Position two dumbbells to sides, palms facing in, arms straight., Execution, With elbows to sides, raise one dumbbell and rotate forearm until forearm is vertical and palm faces shoulder. Lower to original position and r”
-- **L1-S29** ExRx.net — „Dumbbell Reverse Wrist Curl” (karta ćwiczenia). https://exrx.net/WeightExercises/WristExtensors/DBReverseWristCurl (czytane z kopii Internet Archive 2023–2024: https://web.archive.org/web/2023/https://exrx.net/WeightExercises/WristExtensors/DBReverseWristCurl; serwis blokuje bezpośredni dostęp). Szczebel 4, **PT**. „Target: Wrist Extensors; Synergists: None”; Preparation: „Sit and grip dumbbell with overhand grip. Rest forearm on thigh with wrist just beyond knee., Execution, Raise dummbell by pointing knuckles upward as high as possible. Return until knuckles are pointing downward as far ”
-- **L1-S30** ExRx.net — „Dumbbell Wrist Curl” (karta ćwiczenia). https://exrx.net/WeightExercises/WristFlexors/DBWristCurl (czytane z kopii Internet Archive 2023–2024: https://web.archive.org/web/2023/https://exrx.net/WeightExercises/WristFlexors/DBWristCurl; serwis blokuje bezpośredni dostęp). Szczebel 4, **PT**. „Target: Wrist Flexors; Synergists: None”; Preparation: „Sit and grasp dumbbell with underhand grip. Rest forearm on thigh with wrist just beyond knee., Execution, Allow dumbbell to roll out of palm down to fingers. Raise dumbbell back up by gripping and pointing knuckles up a”
-- **L1-S31** ExRx.net — „Barbell Lying Triceps Extension” (karta ćwiczenia). https://exrx.net/WeightExercises/Triceps/BBLyingTriExt (czytane z kopii Internet Archive 2023–2024: https://web.archive.org/web/2023/https://exrx.net/WeightExercises/Triceps/BBLyingTriExt; serwis blokuje bezpośredni dostęp). Szczebel 4, **PT**. „Target: Triceps Brachii; Synergists: None”; Preparation: „Lie on bench with narrow overhand grip on barbell. Position barbell over forehead with arms extended., Execution, Lower bar by bending elbows. As bar nears head, move elbows slightly back just enough to allow bar to clea”
-- **L1-S32** ExRx.net — „Dumbbell Lying Triceps Extension” (karta ćwiczenia). https://exrx.net/WeightExercises/Triceps/DBLyingTriExt (czytane z kopii Internet Archive 2023–2024: https://web.archive.org/web/2023/https://exrx.net/WeightExercises/Triceps/DBLyingTriExt; serwis blokuje bezpośredni dostęp). Szczebel 4, **PT**. „Target: Triceps Brachii; Synergists: None”; Preparation: „Lie on bench and position dumbbells over head with arms extended., Execution, Lower dumbbells by bending elbow until they are to sides of head. Extend arm. Repeat.”
-- **L1-S33** ExRx.net — „Dumbbell Decline Triceps Extension” (karta ćwiczenia). https://exrx.net/WeightExercises/Triceps/DBDeclineTriExt (czytane z kopii Internet Archive 2023–2024: https://web.archive.org/web/2023/https://exrx.net/WeightExercises/Triceps/DBDeclineTriExt; serwis blokuje bezpośredni dostęp). Szczebel 4, **PT**. „Target: Triceps Brachii; Synergists: None”; Preparation: „Lie on decline bench and position dumbbells over shoulders with arms extended., Execution, Lower dumbbells by bending elbow until they are to sides of head; dumbbells touch shoulder. Extend arm. Repeat.”
-- **L1-S34** ExRx.net — „Dumbbell One Arm Triceps Extension” (karta ćwiczenia). https://exrx.net/WeightExercises/Triceps/DBOneArmTriExt (czytane z kopii Internet Archive 2023–2024: https://web.archive.org/web/2023/https://exrx.net/WeightExercises/Triceps/DBOneArmTriExt; serwis blokuje bezpośredni dostęp). Szczebel 4, **PT**. „Target: Triceps Brachii; Synergists: None”; Preparation: „Sit on seat with back support just below shoulder height. Position dumbbell overhead with arm straight up or slightly back., Execution, Lower dumbbell behind neck or shoulder while maintaining upper arm's vertical positi”
-- **L1-S35** ExRx.net — „Barbell Incline Triceps Extension” (karta ćwiczenia). https://exrx.net/WeightExercises/Triceps/BBInclineTriExt (czytane z kopii Internet Archive 2023–2024: https://web.archive.org/web/2023/https://exrx.net/WeightExercises/Triceps/BBInclineTriExt; serwis blokuje bezpośredni dostęp). Szczebel 4, **PT**. „Target: Triceps Brachii; Synergists: None”; Preparation: „Lie on slightly incline bench with narrow overhand grip on barbell. Position barbell over shoulders with arms extended., Execution, Lower bar by bending elbows. As bar nears head, move elbows slightly back just enough to”
-- **L1-S36** ExRx.net — „Dumbbell Triceps Extension” (karta ćwiczenia). https://exrx.net/WeightExercises/Triceps/DBTriExt (czytane z kopii Internet Archive 2023–2024: https://web.archive.org/web/2023/https://exrx.net/WeightExercises/Triceps/DBTriExt; serwis blokuje bezpośredni dostęp). Szczebel 4, **PT**. „Target: Triceps Brachii; Synergists: None”; Preparation: „Position one dumbbell over head with both hands under inner plate (heart shaped grip)., Execution, With elbows over head, lower forearm behind upper arm by flexing elbows. Flex wrists at bottom to avoid hitting dumbbell ”
-- **L1-S37** ExRx.net — „Barbell Triceps Extension” (karta ćwiczenia). https://exrx.net/WeightExercises/Triceps/BBTriExt (czytane z kopii Internet Archive 2023–2024: https://web.archive.org/web/2023/https://exrx.net/WeightExercises/Triceps/BBTriExt; serwis blokuje bezpośredni dostęp). Szczebel 4, **PT**. „Target: Triceps Brachii; Synergists: None”; Preparation: „Sit on utility weight bench with barbell. Position barbell overhead with narrow overhand grip., Execution, Lower barbell behind upper shoulders by flexing elbows allowing forearms to travel behind upper arms with elbows ”
-- **L1-S38** ExRx.net — „Cable Pushdown” (karta ćwiczenia). https://exrx.net/WeightExercises/Triceps/CBPushdown (czytane z kopii Internet Archive 2023–2024: https://web.archive.org/web/2023/https://exrx.net/WeightExercises/Triceps/CBPushdown; serwis blokuje bezpośredni dostęp). Szczebel 4, **PT**. „Target: Triceps Brachii; Synergists: None”; Preparation: „Face high pulley and grasp cable attachment with narrow overhand grip. Position elbows to side., Execution, Extend arms down. Return until forearm is close to upper arm. Repeat.”
-- **L1-S39** ExRx.net — „Dumbbell Kickback” (karta ćwiczenia). https://exrx.net/WeightExercises/Triceps/DBKickback (czytane z kopii Internet Archive 2023–2024: https://web.archive.org/web/2023/https://exrx.net/WeightExercises/Triceps/DBKickback; serwis blokuje bezpośredni dostęp). Szczebel 4, **PT**. „Target: Triceps Brachii; Synergists: None”; Preparation: „Kneel over bench with arm supporting body. Grasp dumbbell. Position upper arm parallel to floor., Execution, Extend arm until it is straight. Return and repeat. Continue with opposite arm.”
-- **L1-S40** free-exercise-db (yuhonas), dist/exercises.json — opisy wykonania („instructions”) pozycji źródłowych katalogu (pole fedb). Domena publiczna (Unlicense), autorstwo opisów nieznane. https://github.com/yuhonas/free-exercise-db (plik https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/dist/exercises.json). Szczebel 5, **PT**. Użyte wyłącznie do ustalenia, JAK ćwiczenie jest wykonywane (sprzęt, pozycja) — nie jako źródło partii. Cytaty w polu note poszczególnych rekordów.
+- **L1-S27** ExRx.net — „Barbell Reverse Preacher Curl” (karta ćwiczenia). https://exrx.net/WeightExercises/Brachioradialis/BBReversePreacherCurl (czytane z kopii Internet Archive 2023–2024: https://web.archive.org/web/2023/https://exrx.net/WeightExercises/Brachioradialis/BBReversePreacherCurl; serwis blokuje bezpośredni dostęp). Szczebel 4, **PT**. „Target: Brachioradialis; Synergists: Brachialis, Biceps Brachii”; Preparation: „Sit on preacher bench placing back of arms on pad. Grasp curl bar with shoulder width overhand grip., Execution, Raise bar until forearms are vertical. Lower barbell until arm is fully extended. Repeat.”
+- **L1-S28** ExRx.net — „Dumbbell Concentration Curl” (karta ćwiczenia). https://exrx.net/WeightExercises/Brachialis/DBConcentrationCurl (czytane z kopii Internet Archive 2023–2024: https://web.archive.org/web/2023/https://exrx.net/WeightExercises/Brachialis/DBConcentrationCurl; serwis blokuje bezpośredni dostęp). Szczebel 4, **PT**. „Target: Brachialis; Synergists: Biceps Brachii, Brachioradialis”; Preparation: „Sit on bench. Grasp dumbbell between feet. Place back of upper arm to inner thigh. Lean into leg to raise elbow slightly., Execution, Raise dumbbell to front of shoulder. Lower dumbbell until arm is fully extended. Repea”
+- **L1-S29** ExRx.net — „Dumbbell Curl” (karta ćwiczenia). https://exrx.net/WeightExercises/Biceps/DBCurl (czytane z kopii Internet Archive 2023–2024: https://web.archive.org/web/2023/https://exrx.net/WeightExercises/Biceps/DBCurl; serwis blokuje bezpośredni dostęp). Szczebel 4, **PT**. „Target: Biceps Brachii; Synergists: Brachialis, Brachioradialis”; Preparation: „Position two dumbbells to sides, palms facing in, arms straight., Execution, With elbows to sides, raise one dumbbell and rotate forearm until forearm is vertical and palm faces shoulder. Lower to original position and r”
+- **L1-S30** ExRx.net — „Dumbbell Reverse Wrist Curl” (karta ćwiczenia). https://exrx.net/WeightExercises/WristExtensors/DBReverseWristCurl (czytane z kopii Internet Archive 2023–2024: https://web.archive.org/web/2023/https://exrx.net/WeightExercises/WristExtensors/DBReverseWristCurl; serwis blokuje bezpośredni dostęp). Szczebel 4, **PT**. „Target: Wrist Extensors; Synergists: None”; Preparation: „Sit and grip dumbbell with overhand grip. Rest forearm on thigh with wrist just beyond knee., Execution, Raise dummbell by pointing knuckles upward as high as possible. Return until knuckles are pointing downward as far ”
+- **L1-S31** ExRx.net — „Dumbbell Wrist Curl” (karta ćwiczenia). https://exrx.net/WeightExercises/WristFlexors/DBWristCurl (czytane z kopii Internet Archive 2023–2024: https://web.archive.org/web/2023/https://exrx.net/WeightExercises/WristFlexors/DBWristCurl; serwis blokuje bezpośredni dostęp). Szczebel 4, **PT**. „Target: Wrist Flexors; Synergists: None”; Preparation: „Sit and grasp dumbbell with underhand grip. Rest forearm on thigh with wrist just beyond knee., Execution, Allow dumbbell to roll out of palm down to fingers. Raise dumbbell back up by gripping and pointing knuckles up a”
+- **L1-S32** ExRx.net — „Cable Isolateral Standing Fly” (karta ćwiczenia). https://exrx.net/WeightExercises/PectoralSternal/CBStandingFly (czytane z kopii Internet Archive 2023–2024: https://web.archive.org/web/2023/https://exrx.net/WeightExercises/PectoralSternal/CBStandingFly; serwis blokuje bezpośredni dostęp). Szczebel 4, **PT**. „Target: Pectoralis Major, Sternal; Synergists: Pectoralis Major, Clavicular, Pectoralis Minor, Rhomboids, Levator Scapulae, Latissimus Dorsi, Coracobrachialis”; Preparation: „Grasp two opposing high pulley dumbbell attachments. Stand with pulleys to each side. Bend over slightly by flexing hips and knees. Bend elbows slightly and internally rotate shoulders so elbows are back initially., Exec”
+- **L1-S33** ExRx.net — „Cable Standing Incline Fly” (karta ćwiczenia). https://exrx.net/WeightExercises/PectoralClavicular/CBStandingInclineFly (czytane z kopii Internet Archive 2023–2024: https://web.archive.org/web/2023/https://exrx.net/WeightExercises/PectoralClavicular/CBStandingInclineFly; serwis blokuje bezpośredni dostęp). Szczebel 4, **PT**. „Target: Pectoralis Major, Clavicular; Synergists: Pectoralis Major, Sternal, Deltoid, Anterior, Biceps Brachii, Short Head”; Preparation: „Stand between two pulleys position hip height and arms width or slightly wider apart. Grasp stirrups, one in each hand. Extend arms out with elbows slightly bent, pointed back and downward slightly. Step forward until ca”
+- **L1-S34** ExRx.net — „Dumbbell Decline Fly” (karta ćwiczenia). https://exrx.net/WeightExercises/PectoralSternal/DBDeclineFly (czytane z kopii Internet Archive 2023–2024: https://web.archive.org/web/2023/https://exrx.net/WeightExercises/PectoralSternal/DBDeclineFly; serwis blokuje bezpośredni dostęp). Szczebel 4, **PT**. „Target: Pectoralis Major, Sternal; Synergists: Pectoralis Major, Clavicular, Deltoid, Anterior, Biceps Brachii, Short Head”; Preparation: „Grasp two dumbbells. Lie supine on decline bench. Support dumbbells above upper abdomen with arms fixed in slightly bent position. Internally rotate shoulders so elbows are to sides., Execution, Lower dumbbells to sides ”
+- **L1-S35** ExRx.net — „Cable Lying Fly” (karta ćwiczenia). https://exrx.net/WeightExercises/PectoralSternal/CBLyingFly (czytane z kopii Internet Archive 2023–2024: https://web.archive.org/web/2023/https://exrx.net/WeightExercises/PectoralSternal/CBLyingFly; serwis blokuje bezpośredni dostęp). Szczebel 4, **PT**. „Target: Pectoralis Major, Sternal; Synergists: Pectoralis Major, Clavicular, Deltoid, Anterior, Biceps Brachii, Short Head”; Preparation: „Grasp two opposing low pulley stirrup attachments. Lie supine on bench, in middle and perpendicular to both pulleys. Slightly bend elbows and internally rotate shoulders so elbows are back., Execution, Bring cable attach”
+- **L1-S36** ExRx.net — „Cable Isolateral Incline Fly” (karta ćwiczenia). https://exrx.net/WeightExercises/PectoralClavicular/CBInclineFly (czytane z kopii Internet Archive 2023–2024: https://web.archive.org/web/2023/https://exrx.net/WeightExercises/PectoralClavicular/CBInclineFly; serwis blokuje bezpośredni dostęp). Szczebel 4, **PT**. „Target: Pectoralis Major, Clavicular; Synergists: Pectoralis Major, Sternal, Deltoid, Anterior, Biceps Brachii, Short Head, Coracobrachialis”; Preparation: „Sit on seat with stirrups in each hand (attached to low cable pulleys). Lie back on incline back support. Position stirrups out to each side of chest with bent arm under each wrist. Press stirrups over each shoulder unti”
+- **L1-S37** ExRx.net — „Dumbbell Incline Fly” (karta ćwiczenia). https://exrx.net/WeightExercises/PectoralClavicular/DBInclineFly (czytane z kopii Internet Archive 2023–2024: https://web.archive.org/web/2023/https://exrx.net/WeightExercises/PectoralClavicular/DBInclineFly; serwis blokuje bezpośredni dostęp). Szczebel 4, **PT**. „Target: Pectoralis Major, Clavicular; Synergists: Pectoralis Major, Sternal, Deltoid, Anterior, Biceps Brachii, Short Head, Coracobrachialis”; Preparation: „Grasp two dumbbells. Lie supine on bench. Support dumbbells above upper chest with arms fixed in slightly bent position. Bend elbows slightly and internally rotate shoulders so elbows point out to sides., Execution, Lowe”
+- **L1-S38** ExRx.net — „Dumbbell Fly” (karta ćwiczenia). https://exrx.net/WeightExercises/PectoralSternal/DBFly (czytane z kopii Internet Archive 2023–2024: https://web.archive.org/web/2023/https://exrx.net/WeightExercises/PectoralSternal/DBFly; serwis blokuje bezpośredni dostęp). Szczebel 4, **PT**. „Target: Pectoralis Major, Sternal; Synergists: Pectoralis Major, Clavicular, Deltoid, Anterior, Biceps Brachii, Short Head”; Preparation: „Grasp two dumbbells. Lie supine on bench. Support dumbbells above chest with arms fixed in slightly bent position. Internally rotate shoulders so elbows point out to sides., Execution, Lower dumbbells to sides until ches”
+- **L1-S39** ExRx.net — „Dumbbell Pullover” (karta ćwiczenia). https://exrx.net/WeightExercises/PectoralSternal/DBPullover (czytane z kopii Internet Archive 2023–2024: https://web.archive.org/web/2023/https://exrx.net/WeightExercises/PectoralSternal/DBPullover; serwis blokuje bezpośredni dostęp). Szczebel 4, **PT**. „Target: Pectoralis Major, Sternal; Synergists: Latissimus Dorsi, Teres Major, Triceps, Long Head, Deltoid, Posterior, Pectoralis Minor, Rhomboids, Levator Scapulae”; Preparation: „Lie on upper back perpendicular to bench. Flex hips slightly. Grasp one dumbbell from behind or from side with both hands under inner plate of dumbbell. Position dumbbell over chest with elbows slightly bent., Execution,”
+- **L1-S40** ExRx.net — „Barbell Lying Triceps Extension” (karta ćwiczenia). https://exrx.net/WeightExercises/Triceps/BBLyingTriExt (czytane z kopii Internet Archive 2023–2024: https://web.archive.org/web/2023/https://exrx.net/WeightExercises/Triceps/BBLyingTriExt; serwis blokuje bezpośredni dostęp). Szczebel 4, **PT**. „Target: Triceps Brachii; Synergists: None”; Preparation: „Lie on bench with narrow overhand grip on barbell. Position barbell over forehead with arms extended., Execution, Lower bar by bending elbows. As bar nears head, move elbows slightly back just enough to allow bar to clea”
+- **L1-S41** ExRx.net — „Suspended Triceps Extension” (karta ćwiczenia). https://exrx.net/WeightExercises/Triceps/STTricepsExtension (czytane z kopii Internet Archive 2023–2024: https://web.archive.org/web/2023/https://exrx.net/WeightExercises/Triceps/STTricepsExtension; serwis blokuje bezpośredni dostęp). Szczebel 4, **PT**. „Target: Triceps Brachii; Synergists: None”; Preparation: „Grasp handles and step forward between suspension trainers. Position arms downward and slightly forward, nearly parallel with suspension straps. Lean forward, placing upper body weight onto handles with arms straight, wh”
+- **L1-S42** ExRx.net — „Cable Incline Triceps Extension” (karta ćwiczenia). https://exrx.net/WeightExercises/Triceps/CBInclineTriExt (czytane z kopii Internet Archive 2023–2024: https://web.archive.org/web/2023/https://exrx.net/WeightExercises/Triceps/CBInclineTriExt; serwis blokuje bezpośredni dostęp). Szczebel 4, **PT**. „Target: Triceps Brachii; Synergists: None”; Preparation: „Grasp cable bar from behind with narrow overhand grip. Position elbows overhead., Execution, Extend forearm overhead until elbows are straight. Lower until forearms are against upper arms. Repeat.”
+- **L1-S43** ExRx.net — „Cable Lying Triceps Extension” (karta ćwiczenia). https://exrx.net/WeightExercises/Triceps/CBLyingTriExt (czytane z kopii Internet Archive 2023–2024: https://web.archive.org/web/2023/https://exrx.net/WeightExercises/Triceps/CBLyingTriExt; serwis blokuje bezpośredni dostęp). Szczebel 4, **PT**. „Target: Triceps Brachii; Synergists: None”; Preparation: „Lie on bench and grasp bar with narrow overhand grip. With arms extended, position bar over forehead., Execution, Lower bar by bending elbow. As bar nears head, move elbows slightly back just enough to allow bar to clear”
+- **L1-S44** ExRx.net — „Cable One Arm Pushdown” (karta ćwiczenia). https://exrx.net/WeightExercises/Triceps/CBOneArmPushdown (czytane z kopii Internet Archive 2023–2024: https://web.archive.org/web/2023/https://exrx.net/WeightExercises/Triceps/CBOneArmPushdown; serwis blokuje bezpośredni dostęp). Szczebel 4, **PT**. „Target: Triceps Brachii; Synergists: None”; Preparation: „Grasp dumbbell cable attachment with underhand grip. Position elbow to side., Execution, Extend arm down. Return until forearm is close to upper arm. Repeat. Continue with opposite arm.”
+- **L1-S45** ExRx.net — „Cable One Arm Triceps Extension (supinated grip)” (karta ćwiczenia). https://exrx.net/WeightExercises/Triceps/CBOneArmTriExt (czytane z kopii Internet Archive 2023–2024: https://web.archive.org/web/2023/https://exrx.net/WeightExercises/Triceps/CBOneArmTriExt; serwis blokuje bezpośredni dostęp). Szczebel 4, **PT**. „Target: Triceps Brachii; Synergists: None”; Preparation: „Grasp stirrup cable attachment from behind. Place hand with cable behind neck; palm toward neck and elbow positioned upward., Execution, Extend arm upward. Return and repeat. Continue with opposite arm.”
+- **L1-S46** ExRx.net — „Dumbbell Lying Triceps Extension” (karta ćwiczenia). https://exrx.net/WeightExercises/Triceps/DBLyingTriExt (czytane z kopii Internet Archive 2023–2024: https://web.archive.org/web/2023/https://exrx.net/WeightExercises/Triceps/DBLyingTriExt; serwis blokuje bezpośredni dostęp). Szczebel 4, **PT**. „Target: Triceps Brachii; Synergists: None”; Preparation: „Lie on bench and position dumbbells over head with arms extended., Execution, Lower dumbbells by bending elbow until they are to sides of head. Extend arm. Repeat.”
+- **L1-S47** ExRx.net — „Dumbbell Decline Triceps Extension” (karta ćwiczenia). https://exrx.net/WeightExercises/Triceps/DBDeclineTriExt (czytane z kopii Internet Archive 2023–2024: https://web.archive.org/web/2023/https://exrx.net/WeightExercises/Triceps/DBDeclineTriExt; serwis blokuje bezpośredni dostęp). Szczebel 4, **PT**. „Target: Triceps Brachii; Synergists: None”; Preparation: „Lie on decline bench and position dumbbells over shoulders with arms extended., Execution, Lower dumbbells by bending elbow until they are to sides of head; dumbbells touch shoulder. Extend arm. Repeat.”
+- **L1-S48** ExRx.net — „Barbell Decline Triceps Extension” (karta ćwiczenia). https://exrx.net/WeightExercises/Triceps/BBDeclineTriExt (czytane z kopii Internet Archive 2023–2024: https://web.archive.org/web/2023/https://exrx.net/WeightExercises/Triceps/BBDeclineTriExt; serwis blokuje bezpośredni dostęp). Szczebel 4, **PT**. „Target: Triceps Brachii; Synergists: None”; Preparation: „Lie on decline bench with narrow overhand grip on barbell. Position barbell over shoulders with arms extended., Execution, Lower bar by bending elbows. As bar nears head, move elbows slightly back just enough to allow ba”
+- **L1-S49** ExRx.net — „Dumbbell One Arm Triceps Extension” (karta ćwiczenia). https://exrx.net/WeightExercises/Triceps/DBOneArmTriExt (czytane z kopii Internet Archive 2023–2024: https://web.archive.org/web/2023/https://exrx.net/WeightExercises/Triceps/DBOneArmTriExt; serwis blokuje bezpośredni dostęp). Szczebel 4, **PT**. „Target: Triceps Brachii; Synergists: None”; Preparation: „Sit on seat with back support just below shoulder height. Position dumbbell overhead with arm straight up or slightly back., Execution, Lower dumbbell behind neck or shoulder while maintaining upper arm's vertical positi”
+- **L1-S50** ExRx.net — „Barbell Incline Triceps Extension” (karta ćwiczenia). https://exrx.net/WeightExercises/Triceps/BBInclineTriExt (czytane z kopii Internet Archive 2023–2024: https://web.archive.org/web/2023/https://exrx.net/WeightExercises/Triceps/BBInclineTriExt; serwis blokuje bezpośredni dostęp). Szczebel 4, **PT**. „Target: Triceps Brachii; Synergists: None”; Preparation: „Lie on slightly incline bench with narrow overhand grip on barbell. Position barbell over shoulders with arms extended., Execution, Lower bar by bending elbows. As bar nears head, move elbows slightly back just enough to”
+- **L1-S51** ExRx.net — „Dumbbell Triceps Extension” (karta ćwiczenia). https://exrx.net/WeightExercises/Triceps/DBTriExt (czytane z kopii Internet Archive 2023–2024: https://web.archive.org/web/2023/https://exrx.net/WeightExercises/Triceps/DBTriExt; serwis blokuje bezpośredni dostęp). Szczebel 4, **PT**. „Target: Triceps Brachii; Synergists: None”; Preparation: „Position one dumbbell over head with both hands under inner plate (heart shaped grip)., Execution, With elbows over head, lower forearm behind upper arm by flexing elbows. Flex wrists at bottom to avoid hitting dumbbell ”
+- **L1-S52** ExRx.net — „Cable Kneeling Triceps Extension” (karta ćwiczenia). https://exrx.net/WeightExercises/Triceps/CBKneelingTriExt (czytane z kopii Internet Archive 2023–2024: https://web.archive.org/web/2023/https://exrx.net/WeightExercises/Triceps/CBKneelingTriExt; serwis blokuje bezpośredni dostęp). Szczebel 4, **PT**. „Target: Triceps Brachii; Synergists: None”; Preparation: „Grasp cable bar from middle pulley with narrow or shoulder width overhand grip. Turn body away from pulley apparatus with cable bar above head. Kneel before bench, bend over and place elbows on edge of bench. Maintain up”
+- **L1-S53** ExRx.net — „Lever Triceps Extension” (karta ćwiczenia). https://exrx.net/WeightExercises/Triceps/LVTriExt (czytane z kopii Internet Archive 2023–2024: https://web.archive.org/web/2023/https://exrx.net/WeightExercises/Triceps/LVTriExt; serwis blokuje bezpośredni dostęp). Szczebel 4, **PT**. „Target: Triceps Brachii; Synergists: None”; Preparation: „Sit on seat. Grasp handles and place back of upper arms parallel on padding with elbows approximately in line with lever's fulcrum., Execution, Push lever down until arms are fully extended. Return until forearms contact”
+- **L1-S54** ExRx.net — „Barbell Triceps Extension” (karta ćwiczenia). https://exrx.net/WeightExercises/Triceps/BBTriExt (czytane z kopii Internet Archive 2023–2024: https://web.archive.org/web/2023/https://exrx.net/WeightExercises/Triceps/BBTriExt; serwis blokuje bezpośredni dostęp). Szczebel 4, **PT**. „Target: Triceps Brachii; Synergists: None”; Preparation: „Sit on utility weight bench with barbell. Position barbell overhead with narrow overhand grip., Execution, Lower barbell behind upper shoulders by flexing elbows allowing forearms to travel behind upper arms with elbows ”
+- **L1-S55** ExRx.net — „Cable Pushdown” (karta ćwiczenia). https://exrx.net/WeightExercises/Triceps/CBPushdown (czytane z kopii Internet Archive 2023–2024: https://web.archive.org/web/2023/https://exrx.net/WeightExercises/Triceps/CBPushdown; serwis blokuje bezpośredni dostęp). Szczebel 4, **PT**. „Target: Triceps Brachii; Synergists: None”; Preparation: „Face high pulley and grasp cable attachment with narrow overhand grip. Position elbows to side., Execution, Extend arms down. Return until forearm is close to upper arm. Repeat.”
+- **L1-S56** ExRx.net — „Dumbbell Kickback” (karta ćwiczenia). https://exrx.net/WeightExercises/Triceps/DBKickback (czytane z kopii Internet Archive 2023–2024: https://web.archive.org/web/2023/https://exrx.net/WeightExercises/Triceps/DBKickback; serwis blokuje bezpośredni dostęp). Szczebel 4, **PT**. „Target: Triceps Brachii; Synergists: None”; Preparation: „Kneel over bench with arm supporting body. Grasp dumbbell. Position upper arm parallel to floor., Execution, Extend arm until it is straight. Return and repeat. Continue with opposite arm.”
+- **L1-S57** free-exercise-db (yuhonas), dist/exercises.json — opisy wykonania („instructions”) pozycji źródłowych katalogu (pole fedb). Domena publiczna (Unlicense), autorstwo opisów nieznane. https://github.com/yuhonas/free-exercise-db (plik https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/dist/exercises.json). Szczebel 5, **PT**. Użyte wyłącznie do ustalenia, JAK ćwiczenie jest wykonywane (sprzęt, pozycja) — nie jako źródło partii. Cytaty w polu note poszczególnych rekordów.
 
 Ponownie użyte z `docs/research/24-przypisanie-partii.md` (pełne opisy i cytaty tam):
 - **S6** — Pelland i in. 2024/2026 — klasyfikacja serii bezpośrednich/pośrednich (tab. 1A: uginania = seria bezpośrednia bicepsa; „Flat Dumbbell Fly” = klatka).
@@ -224,5 +242,3 @@ Ponownie użyte z `docs/research/24-przypisanie-partii.md` (pełne opisy i cytat
 - **S13** — Mannarino i in. 2021 — uginanie: przyrost zginaczy łokcia 11,06%.
 - **S29** — Maeo i in. 2023 — wzrost tricepsa po wyprostach na wyciągu nad głową (+19,9%) i przy tułowiu (+13,9%).
 - **S37** — Di Fonza i in. 2026 — przegląd EMG najszerszego: m.in. „pullover”.
-
-Nieprzeczytane (strona niedostępna w archiwum — nie cytowane): CBBentoverTriExt, CBInclineFly, CBInclineTriExt, CBKneelingTriExt, CBLyingFly, CBLyingTriExt, CBOneArmPushdown, CBOneArmTriExt, CBStandingFly, CBStandingInclineFly, DBDeclineFly, DBFly, DBInclineFly, DBPullover, DBStandingPreacherCurlInclineBench, LVTriExt, STTricepsExtension.
