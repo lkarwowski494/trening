@@ -17,20 +17,22 @@ const S = () => store.getState();
 afterEach(() => { applyLang('pl'); });
 const at = (m: number, d: number, h = 18) => new Date(2026, m, d, h).getTime();
 const sq = (m: number, d: number, kg = 100) => addWorkout(at(m, d), [['Back Squat', [{ weight: kg, reps: 5 }, { weight: kg, reps: 5 }]]]);
+/** Plan ustawiony 1.09 — audyt 0.10 A1: plan obowiązuje od dnia ustawienia, przeszłe dni tego tygodnia mają plan tylko z historii. */
+const since0901 = (fn: () => void) => { jest.setSystemTime(new Date(2026, 8, 1, 9).getTime()); fn(); jest.setSystemTime(NOW.getTime()); };
 
 describe('logika', () => {
   beforeEach(async () => { jest.useFakeTimers({ now: NOW }); await fresh(); });
   test('pasek tygodnia pon…nd: zrobione, opuszczony, zaplanowany, wolne, dziś', () => {
-    const t = withDemoTemplates(); plan.setWeekDay(0, t[0].id); plan.setWeekDay(1, t[1].id); plan.setWeekDay(4, t[0].id); sq(9, 6);
-    const w = weekStrip(NOW.getTime());
+    const t = withDemoTemplates(); since0901(() => { plan.setWeekDay(0, t[0].id); plan.setWeekDay(1, t[1].id); plan.setWeekDay(4, t[0].id); }); sq(9, 6).templateId = t[1].id;
+    const w = weekStrip(NOW.getTime()); /* audyt 0.10 A5: „zrobione” tylko zaplanowanym szablonem (inny trening — 'other', tests/audit-0.10-plan.test.ts) */
     expect(w.map(d => [d.date, d.status, d.today])).toEqual([['2026-10-05', 'missed', false], ['2026-10-06', 'done', false], ['2026-10-07', 'rest', false], ['2026-10-08', 'rest', true],
       ['2026-10-09', 'planned', false], ['2026-10-10', 'rest', false], ['2026-10-11', 'rest', false]]);
   });
   test('kafelki: treningi, serie, czas — ten tydzień i poprzedni; zaplanowane dni tylko z planem', () => {
     sq(9, 6); sq(9, 7); sq(8, 29);
     expect(weekTiles(NOW.getTime())).toMatchObject({ workouts: 2, sets: 4, planned: null, prev: { workouts: 1, sets: 2 } });
-    const t = withDemoTemplates(); plan.setWeekDay(1, t[0].id); plan.setWeekDay(3, t[0].id); plan.setWeekDay(5, t[0].id);
-    expect(weekTiles(NOW.getTime()).planned).toBe(3);
+    const t = withDemoTemplates(); since0901(() => { plan.setWeekDay(1, t[0].id); plan.setWeekDay(3, t[0].id); plan.setWeekDay(5, t[0].id); });
+    expect(weekTiles(NOW.getTime())).toMatchObject({ planned: 3, planDone: 0 }); /* audyt 0.10 A5: wt. — trening bez szablonu, nie zalicza dnia z planu */
   });
   test('ostatni trening: nazwa, serie robocze, objętość, rekordy; brak treningów — null', () => {
     expect(lastWorkout()).toBeNull(); sq(9, 1, 80); const w = sq(9, 6, 100);
@@ -65,11 +67,11 @@ describe('ekran', () => {
     expect(screen.queryByText('Wygeneruj szablony i plan')).toBeNull(); expect(screen.getAllByText('✓').length).toBeGreaterThanOrEqual(2);
   });
   test('po treningach: kafelki z poprzednim tygodniem (VoiceOver), opis z planem, ostatni trening z rekordami → szczegóły', async () => {
-    await boot(() => { sq(8, 29, 80); sq(9, 6, 100); const t = withDemoTemplates(); plan.setWeekDay(1, t[0].id); plan.setWeekDay(3, t[0].id); });
+    await boot(() => { sq(8, 29, 80); const t = withDemoTemplates(); sq(9, 6, 100).templateId = t[0].id; since0901(() => { plan.setWeekDay(1, t[0].id); plan.setWeekDay(3, t[0].id); }); });
     expect(screen.queryByTestId('first-steps')).toBeNull(); expect(screen.getByText('Ten tydzień')).toBeTruthy();
-    expect(screen.getByLabelText('Treningi: 1 / 2, poprzedni tydzień 1')).toBeTruthy(); expect(screen.getByLabelText('Serie: 2, poprzedni tydzień 2')).toBeTruthy();
+    expect(screen.getByLabelText('Treningi: 1, poprzedni tydzień 1')).toBeTruthy(); /* audyt 0.10 A5: kafelek liczy sesje, dni planu w opisie niżej */ expect(screen.getByLabelText('Serie: 2, poprzedni tydzień 2')).toBeTruthy();
     expect(screen.getByLabelText('Czas: 1 h, poprzedni tydzień 1 h')).toBeTruthy(); /* pełna godzina — bez „0 min” */ expect(screen.getAllByText(/^poprz\.: /).length).toBe(3); expect('poprz.: {v}'.replace('{v}', '2')).toBe('poprz.: 2'); expect(screen.getAllByText('poprz.: 2').length).toBe(1); /* tekst z t() — macierz */
-    expect(screen.getByText('Treningi: zrobione / zaplanowane w tym tygodniu.')).toBeTruthy();
+    expect(screen.getByText('Z planu w tym tygodniu: zrobione 1 z 2.')).toBeTruthy(); expect('Z planu w tym tygodniu: zrobione {done} z {n}.').toContain('{done}'); /* tekst z t() — macierz; audyt 0.10 A5 */
     expect(screen.getByText('Ostatni trening')).toBeTruthy();
     const last = lastWorkout()!; const item = screen.getByText(new RegExp(` · 2 serie · .* · ${last.prs} (rekord|rekordy|rekordów)$`)); expect(item).toBeTruthy();
     await tap(item); await flushAll(10); expect(screen.getByLabelText('Edytuj sesję')).toBeTruthy();

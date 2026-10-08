@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import { Btn, Muted } from '@/components/ui';
 import { useTheme } from '@/lib/theme';
 import { toggleDeloadWeek, useTick } from '@/lib/store';
-import { deloadHint, DELOAD_EVERY } from '@/lib/deload';
+import { deloadHint, snoozeDeloadHint, DELOAD_EVERY } from '@/lib/deload';
 import { t, locale } from '@/lib/i18n';
 
 /*
@@ -20,7 +20,10 @@ export function DeloadHint() {
   if (h.kind === 'suggest') return (
     <View testID="deload-hint" style={box}>
       <Muted style={{ fontSize: 13 }}>{t('Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka, nie wynik badań.', { n: h.weeks, a: DELOAD_EVERY[0], b: DELOAD_EVERY[1] })}</Muted>
-      <Btn small title={t('Zaplanuj deload od {date}', { date: day(h.from) })} onPress={() => toggleDeloadWeek(keyTs(h.from))} style={{ alignSelf: 'flex-start' }} />
+      <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6 }}>
+        <Btn small title={t('Zaplanuj deload od {date}', { date: day(h.from) })} onPress={() => toggleDeloadWeek(keyTs(h.from))} />
+        <Btn small kind="ghost" title={t('Nie teraz')} accessibilityHint={t('Podpowiedź wróci w przyszłym tygodniu.')} onPress={() => snoozeDeloadHint(h.from)} />{/* audyt 0.10 D4 (UX-06) */}
+      </View>
     </View>);
   return (
     <View testID="deload-hint" style={box}>

@@ -47,10 +47,9 @@ describe('treść i logika', () => {
 test('macierz: każdy tekst przewodnika (i punkt „Co nowego”) jest w treści tematów albo wpisów', () => {
   const texts = [
     '„⏸ Pauza” zatrzymuje zegar treningu; czas pauzy nie liczy się do czasu trwania.',
-    '„Propozycje” układają tydzień z najmniejszą liczbą zmian, z uwzględnieniem regeneracji partii.',
     '„Wygeneruj szablony i plan” (Szablony albo Plan tygodnia): wybierz cel, miejsce, liczbę i długość sesji.',
     'Automatyczna kopia po każdym treningu trafia do Plików (Ustawienia).',
-    'Kilka planów: „Zapisz kopię jako nowy plan” i „Ustaw jako aktywny” w „Inne plany”.',
+    'Kilka planów: „+ Nowy plan” tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.', /* audyt 0.10 B2 A, B1 */
     'Kopia zapasowa',
     'Lista ćwiczeń, zamiany i generator pokazują to, co da się zrobić w wybranym miejscu.',
     'Mapa mięśni i serie na partię z kreską 10 serii tygodniowo.',
@@ -61,7 +60,9 @@ test('macierz: każdy tekst przewodnika (i punkt „Co nowego”) jest w treści
     'Postępy i rekordy',
     'Przejrzyj podgląd i „Na czym to oparte” — wynik zapisuje się dopiero po zatwierdzeniu.',
     'Przesunięcie w lewo na liście usuwa szablon (z potwierdzeniem).',
-    'Stuknij dzień w Kalendarzu: przesuń plan o 1 dzień, przesuń tylko ten trening albo zmień go na inny.',
+    'Stuknij dzień w Kalendarzu: „Przesuń albo pomiń” pokazuje możliwości — przesunięcie planu o 1 dzień, tylko tego treningu, zamianę albo wolne.', /* audyt 0.10 UX-13 A */
+    'Na górze listy jest polecana: wraca do rutyny i nie gubi treningu, potem unika par dzień po dniu z tymi samymi partiami i zmienia najmniej dni.',
+    'W Kalendarzu: stuknij dzień, potem „Więcej opcji” → „Oznacz tydzień jako deload” — także przyszły tydzień.', /* audyt 0.10 D4 */
     'Szablony trafiają do folderu „Wygenerowane”, a plan do „Inne plany” albo od razu jako aktywny.',
     'Trening i serie',
     'Tydzień oznaczysz też w Postępach przełącznikiem „Tydzień deload”.',

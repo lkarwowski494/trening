@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { ScrollView, Alert, Keyboard } from 'react-native';
-import { useRouter } from 'expo-router';
+import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Screen, H2, Muted, Item } from '@/components/ui';
 import { WhenFields } from '@/components/WhenFields';
 import { getState, useTick, exById, tplWorkSets } from '@/lib/store';
@@ -12,7 +12,10 @@ import { t, tp } from '@/lib/i18n';
  * (domyślnie wczoraj 18:00, 60 min) i szablon albo pusty trening, potem ten sam edytor co przy edycji sesji z historii.
  */
 export default function AddPastWorkout() {
-  useTick(); const router = useRouter(); const [when, setWhen] = useState(defaultPastWhen); const busy = useRef(false);
+  useTick(); const router = useRouter(); const busy = useRef(false);
+  /* audyt 0.10 A4: „Zapisz trening z tego dnia” z panelu dnia w Kalendarzu — data tego dnia (18:00) i szablon z planu na górze listy */
+  const q = useLocalSearchParams<{ date?: string; tpl?: string }>();
+  const [when, setWhen] = useState(() => (typeof q.date === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(q.date) ? { ...defaultPastWhen(), date: q.date } : defaultPastWhen()));
   const start = (tplId: string | null) => {
     if (busy.current) return; Keyboard.dismiss();
     const r = parseWhen(when.date, when.time, when.min);
@@ -21,7 +24,7 @@ export default function AddPastWorkout() {
     busy.current = true; const d = beginPast(tplId, r.start, r.end);
     router.replace(`/history/edit/${encodeURIComponent(d.key)}`);
   };
-  const tpls = getState().templates.filter(x => x.items.some(it => { const e = exById(it.exerciseId); return e && !e.archived; }));
+  const tpls = getState().templates.filter(x => x.items.some(it => { const e = exById(it.exerciseId); return e && !e.archived; })).sort((a, b) => (b.id === q.tpl ? 1 : 0) - (a.id === q.tpl ? 1 : 0));
   return (
     <Screen><ScrollView keyboardShouldPersistTaps="handled" automaticallyAdjustKeyboardInsets contentContainerStyle={{ paddingVertical: 10, paddingBottom: 60 }}>
       <Muted style={{ fontSize: 13, marginBottom: 12 }}>{t('Trening, którego nie zapisałeś na bieżąco. Ustaw termin i wybierz szablon — serie uzupełnisz w następnym kroku (wartości z ostatniego treningu przed tą datą).')}</Muted>

@@ -1,6 +1,6 @@
 /*
  * Deload A+B na ekranach (decyzje właściciela 08.10.2026). A: Kalendarz — podpowiedź po 4 tygodniach treningu z rzędu (praktyka, nie wynik badań),
- * „Zaplanuj deload od …”, informacja o oznaczonym tygodniu, „Zdejmij oznaczenie deload”, tło wiersza tygodnia deload + objaśnienie, VoiceOver.
+ * „Zaplanuj deload od …”, informacja o oznaczonym tygodniu, „Zdejmij oznaczenie deload”, ramka wiersza tygodnia deload + objaśnienie (audyt 0.10 A11-05), VoiceOver.
  * B: w tygodniu deload każdy „Start” z szablonu (ekran treningu, „Dziś”, panel dnia, ekran szablonu) pyta: mniej serii / pełny trening / anuluj.
  * Języki: EN. Logika: tests/deload-plan.test.ts. E2E: .maestro/13.
  */
@@ -37,10 +37,10 @@ describe('A: Kalendarz', () => {
     expect(screen.getByText(/^Od pon\.,? 12\.10: tydzień deload\. Przy starcie treningu zaproponuję mniej serii \(około połowy\), ciężary bez zmian\.$/)).toBeTruthy();
     const nx = 'Od {date}: tydzień deload. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.'; expect(screen.getByText(new RegExp('^' + nx.split('{date}')[0]))).toBeTruthy(); /* tekst z t() — macierz */
     expect(screen.getByTestId('cal-deload-2026-10-12')).toBeTruthy(); expect(screen.queryByTestId('cal-deload-2026-10-05')).toBeNull();
-    expect(screen.getByText('Wiersz z tłem — tydzień deload.')).toBeTruthy();
+    expect(screen.getByText('Wiersz w ramce — tydzień deload.')).toBeTruthy(); /* audyt 0.10 A11-05: ramka (kontrast ≥ 3:1), nie tylko tło */
     expect(screen.getByLabelText('14 października 2026, tydzień deload')).toBeTruthy();
     await tap(screen.getByText('Zdejmij oznaczenie deload')); await flushAll(5); expect(S().deloadWeeks).toBeUndefined();
-    expect(screen.queryByText('Wiersz z tłem — tydzień deload.')).toBeNull();
+    expect(screen.queryByText('Wiersz w ramce — tydzień deload.')).toBeNull();
   });
   test('bieżący tydzień oznaczony: „Ten tydzień: deload…”; zdjęcie oznaczenia', async () => {
     await boot(() => { store.toggleDeloadWeek(NOW.getTime()); });
@@ -87,7 +87,7 @@ describe('English', () => {
     expect(screen.getByText(/^Plan a deload from /)).toBeTruthy();
     act(() => { store.toggleDeloadWeek(NOW.getTime()); }); await flushAll(5);
     expect(screen.getByText('This week: deload. When you start a workout I will suggest fewer sets (about half), same weights.')).toBeTruthy();
-    expect(screen.getByText('Row with background — deload week.')).toBeTruthy();
+    expect(screen.getByText('Outlined row — deload week.')).toBeTruthy(); /* audyt 0.10 A11-05 */
     expect(t.length).toBeGreaterThan(0);
   });
 });

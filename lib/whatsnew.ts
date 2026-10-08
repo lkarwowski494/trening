@@ -13,7 +13,7 @@ export type WhatsNewEntry = { id: string; build?: number; date: string; items: (
 export const WHATS_NEW: WhatsNewEntry[] = [
   { id: '2026-10-08', date: '2026-10-08', items: () => [
     t('Kalendarz zamiast Historii: plan tygodnia, przesuwanie treningów i propozycje zmian z myślą o regeneracji partii.'),
-    t('Na ekranie treningu: dzisiejszy trening z planu i podgląd 7 dni.'),
+    t('Na ekranie treningu: dzisiejszy trening z planu, bieżący tydzień i najbliższe treningi z nazwą.'), /* audyt 0.10 A9: dawny tekst obiecywał „podgląd 7 dni” */
     t('Pauza treningu — czas pauzy nie liczy się do czasu trwania.'),
     t('Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik 10 serii na partię w tygodniu i oznaczanie tygodnia deload.'),
     t('Skala wysiłku RPE albo RIR w Ustawieniach.'),

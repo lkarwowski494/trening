@@ -6,6 +6,8 @@ import { getState, useTick, exById, fmtDur } from '@/lib/store';
 import { generate, saveGenerated, GEN_SESSIONS, GEN_MINUTES, MAJOR, WARMUP_MIN, SET_WORK_SEC, type Goal, type GenInput } from '@/lib/generator';
 import { t, locale, exName } from '@/lib/i18n';
 import { fmtNum } from '@/lib/units';
+import { plansFull } from '@/lib/plan';
+import { SAVED_PLANS_MAX } from '@/lib/store';
 
 /*
  * Generator szablonów i planu tygodnia (decyzje właściciela 08.10.2026, wariant A; docs/24). Na wyraźne polecenie: założenia → podgląd → zapis po
@@ -22,7 +24,7 @@ export default function GeneratorScreen() {
   const goalNote = inp.goal === 'strength' ? t('Siła: bój główny na początku, 3 serie po 4–6 powtórzeń (ciężko, ok. 80% maksimum i więcej), pozostałe ćwiczenia 6–10.')
     : inp.goal === 'hypertrophy' ? t('Masa: co najmniej 10 serii na partię w tygodniu, 8–12 powtórzeń (w domu 12–20), zwykle 1–3 powtórzenia w zapasie.')
       : t('Redukcja: trening jak na masę (chroni mięśnie) i jedna sesja umiarkowanego cardio.');
-  const save = () => Alert.alert(t('Ustawić nowy plan jako aktywny?'), t('Szablony trafią do folderu „Wygenerowane”. Obecny plan zostanie w „Inne plany” — wrócisz do niego jednym przyciskiem.'), [
+  const save = () => plansFull() ? Alert.alert(t('Za dużo zapisanych planów'), t('W „Inne plany” jest już {n} planów — usuń któryś, by dodać nowy.', { n: SAVED_PLANS_MAX })) /* audyt 0.10 B3: limit jak w migrate */ : Alert.alert(t('Ustawić nowy plan jako aktywny?'), t('Szablony trafią do folderu „Wygenerowane”. Obecny plan zostanie w „Inne plany” — wrócisz do niego jednym przyciskiem.'), [
     { text: t('Anuluj'), style: 'cancel' },
     { text: t('Tylko zapisz'), onPress: () => { saveGenerated(r, inp, false); router.replace('/plan'); } },
     { text: t('Ustaw jako aktywny'), onPress: () => { saveGenerated(r, inp, true); router.replace('/plan'); } },
