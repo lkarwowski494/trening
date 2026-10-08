@@ -84,7 +84,7 @@ describe('ekran ćwiczenia: podgląd → Edytuj → Anuluj / Zapisz', () => {
     await boot(); const e = ex('Back Squat'); const before = snap(); await go(`/exercise/${e.id}`); await flushAll(10);
     await startEdit(); const n = global.__alerts.length; await tap(screen.getByLabelText('Anuluj edycję ćwiczenia')); await flushAll(5); expect(global.__alerts.length).toBe(n); expect(screen.getByLabelText('Edytuj ćwiczenie')).toBeTruthy();
     await startEdit(); await tap(screen.getAllByText('klatka')[0]); await tap(screen.getByLabelText('Anuluj edycję ćwiczenia'));
-    expect(lastAlert()).toMatchObject({ title: 'Odrzucić zmiany?', msg: 'Ćwiczenie zostanie bez zmian.' }); expect(lastAlert().buttons.map((b: { text: string; style?: string }) => [b.text, b.style])).toEqual([['Wróć', 'cancel'], ['Odrzuć zmiany', 'destructive']]);
+    expect(lastAlert()).toMatchObject({ title: 'Odrzucić zmiany?', msg: 'Ćwiczenie zostanie bez zmian.' }); expect(lastAlert().buttons!.map((b: { text: string; style?: string }) => [b.text, b.style])).toEqual([['Wróć', 'cancel'], ['Odrzuć zmiany', 'destructive']]);
     await act(async () => { pressAlert('Odrzucić zmiany?', 'Wróć'); }); expect(screen.getByLabelText('Zapisz ćwiczenie')).toBeTruthy(); expect(exDraft(e.id).group).toBe('klatka');
     await tap(screen.getByLabelText('Anuluj edycję ćwiczenia')); await act(async () => { pressAlert('Odrzucić zmiany?', 'Odrzuć zmiany'); }); await flushAll(5);
     expect(screen.getByLabelText('Edytuj ćwiczenie')).toBeTruthy(); expect(e.group).toBe('nogi'); expect(exDraft(e.id)).toBeUndefined(); expect(snap()).toBe(before);

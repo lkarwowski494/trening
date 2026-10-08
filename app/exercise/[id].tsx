@@ -4,7 +4,7 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Screen, Field, Input, NumInput, Btn, Muted, Chip, H1, Txt, useOnce } from '@/components/ui';
 import { DraftHeader, confirmDiscard } from '@/components/DraftHeader';
 import { Stack } from 'expo-router';
-import { getState, useTick, exById, previousFor, save, setSummary, fmtDate, fmtSec, setEquipment, exerciseInHistory, usesBand, finishedWorkouts } from '@/lib/store';
+import { getState, useTick, exById, previousFor, save, setSummary, fmtDate, fmtSec, setEquipment, exerciseInHistory, usesBand, finishedWorkouts , REST_MAX } from '@/lib/store';
 import { beginObjDraft, objDraft, objDirty, discardObjDraft, commitObjDraft, dropUnsavedNew } from '@/lib/draft';
 import type { Exercise } from '@/lib/seed';
 import { GROUPS, GROUP_TO_MUSCLE, METRICS, METRIC_LABEL, LOAD_MODE_LABEL, MUSCLES, REGION_LABEL, muscleLoadOf, musclesSourced, hasWeight, type Equipment, type LoadMode } from '@/lib/seed';
@@ -67,7 +67,7 @@ function Preview({ e, onEdit, onOpen, onProgress }: { e: Exercise; onEdit: () =>
       {e.notes ? <Row label={t('Notatki techniczne')} value={e.notes} /> : null}
       {/* ExerciseCues — fala 2 (fix-cues) */}
       <Muted style={{ fontSize: 13, marginBottom: 12 }}>{bwNote()}</Muted>
-      <Muted accessibilityRole="header" style={{ fontSize: 13, marginTop: 6, marginBottom: 4 }}>{t('Historia')}</Muted>
+      <Muted accessibilityRole="header" style={{ fontSize: 13, marginTop: 6, marginBottom: 4 }}>{t('Ostatnie treningi')}</Muted>
       {hist.length ? hist.map(w => { const sets = w.exercises.filter(x => x.exerciseId === e.id).flatMap(x => x.sets); const line = `${fmtDate(w.startedAt)} · ${sets.map(x => setSummary(e, x)).join(', ')}`;
         return <Btn key={w.id} kind="ghost" small title={line} accessibilityLabel={t('Sesja {d}: {s}', { d: fmtDate(w.startedAt), s: sets.map(x => setSummary(e, x)).join(', ') })} style={{ justifyContent: 'flex-start', paddingHorizontal: 0 }} onPress={() => onOpen(w.id)} />; })
         : <Muted style={{ fontSize: 13, marginBottom: 6 }}>{t('Jeszcze nie było w treningu.')}</Muted>}
@@ -89,8 +89,8 @@ function EditForm({ e }: { e: Exercise }) {
       <Field label={t('Co logujesz w serii')}><ScrollView horizontal keyboardShouldPersistTaps="handled" showsHorizontalScrollIndicator={false}>{METRICS.map(m => <Chip key={m} label={t(METRIC_LABEL[m])} on={(e.metric ?? 'weight_reps') === m} onPress={() => { e.metric = m; save(e); }} />)}</ScrollView></Field>
       {hasWeight(e.metric ?? 'weight_reps') && e.equipment !== 'masa ciała' ? <Field label={t('Jak liczyć ciężar w objętości')}><ScrollView horizontal keyboardShouldPersistTaps="handled" showsHorizontalScrollIndicator={false}>{(Object.keys(LOAD_MODE_LABEL) as LoadMode[]).map(m => <Chip key={m} label={t(LOAD_MODE_LABEL[m])} on={(e.loadMode ?? 'total') === m} onPress={() => { e.loadMode = m; save(e); }} />)}</ScrollView></Field> : null}
       <View style={{ flexDirection: 'row', gap: 10 }}>
-        <View style={{ flex: 1 }}><Field label={t('Przerwa robocza (s)')}><NumInput value={e.restSec ?? ''} onNum={v => { e.restSec = v === '' ? null : Math.min(1800, Math.max(0, Math.round(v))); save(e); }} placeholder={t('domyślna {s}', { s: getState().settings.defaultRest })} /></Field></View>
-        <View style={{ flex: 1 }}><Field label={t('Przerwa po rozgrzewce (s)')}><NumInput value={e.restWarmupSec ?? ''} onNum={v => { e.restWarmupSec = v === '' ? null : Math.min(1800, Math.max(0, Math.round(v))); save(e); }} placeholder={t('jak robocza')} /></Field></View>
+        <View style={{ flex: 1 }}><Field label={t('Przerwa robocza (s)')}><NumInput value={e.restSec ?? ''} onNum={v => { e.restSec = v === '' ? null : Math.min(REST_MAX, Math.max(0, Math.round(v))); save(e); }} placeholder={t('domyślna {s}', { s: getState().settings.defaultRest })} /></Field></View>
+        <View style={{ flex: 1 }}><Field label={t('Przerwa po rozgrzewce (s)')}><NumInput value={e.restWarmupSec ?? ''} onNum={v => { e.restWarmupSec = v === '' ? null : Math.min(REST_MAX, Math.max(0, Math.round(v))); save(e); }} placeholder={t('jak robocza')} /></Field></View>
       </View>
       <Field label={t('Partie główne (1 seria)')}><View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 4 }}>{MUSCLES.map(mu => <Chip key={mu} label={t(mu)} on={(e.muscles ?? []).includes(mu)} onPress={() => { const has = (e.muscles ?? []).includes(mu); e.muscles = has ? e.muscles.filter(x => x !== mu) : [...(e.muscles ?? []), mu]; if (!has) e.secondaryMuscles = (e.secondaryMuscles ?? []).filter(x => x !== mu); save(e); }} />)}</View></Field>
       <Field label={t('Partie pomocnicze (0,5 serii)')}><View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 4 }}>{MUSCLES.map(mu => <Chip key={mu} label={t(mu)} on={(e.secondaryMuscles ?? []).includes(mu)} onPress={() => { const has = (e.secondaryMuscles ?? []).includes(mu); e.secondaryMuscles = has ? e.secondaryMuscles.filter(x => x !== mu) : [...(e.secondaryMuscles ?? []), mu]; if (!has) e.muscles = (e.muscles ?? []).filter(x => x !== mu); save(e); }} />)}</View></Field>

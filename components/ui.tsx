@@ -13,13 +13,13 @@ export function H2({ children, style }: { children: React.ReactNode; style?: Sty
 export function Muted({ children, style, numberOfLines, accessibilityRole, accessibilityLabel }: { children: React.ReactNode; style?: StyleProp<TextStyle>; numberOfLines?: number; accessibilityRole?: 'header'; accessibilityLabel?: string }) { const t = useTheme(); return <Text numberOfLines={numberOfLines} accessibilityRole={accessibilityRole} accessibilityLabel={accessibilityLabel} maxFontSizeMultiplier={1.4} style={[{ color: t.muted, fontSize: 14, fontFamily: F.regular }, style]}>{children}</Text>; }
 export function Txt({ children, style, accessibilityRole, maxFontSizeMultiplier }: { children: React.ReactNode; style?: StyleProp<TextStyle>; accessibilityRole?: 'header'; maxFontSizeMultiplier?: number }) { const t = useTheme(); return <Text accessibilityRole={accessibilityRole} maxFontSizeMultiplier={maxFontSizeMultiplier} style={[{ color: t.text, fontSize: 16, fontFamily: F.regular }, style]}>{children}</Text>; }
 
-export function Btn({ title, onPress, kind = 'default', small, block, style, accessibilityLabel, accessibilityHint }: { title: string; onPress: () => void; kind?: 'default' | 'primary' | 'ghost' | 'danger'; small?: boolean; block?: boolean; style?: StyleProp<ViewStyle>; accessibilityLabel?: string; accessibilityHint?: string }) {
-  const t = useTheme();
+export function Btn({ title, onPress, kind = 'default', small, block, style, accessibilityLabel, accessibilityHint, nav }: { title: string; onPress: () => void; kind?: 'default' | 'primary' | 'ghost' | 'danger'; small?: boolean; block?: boolean; style?: StyleProp<ViewStyle>; accessibilityLabel?: string; accessibilityHint?: string; /** F7 (audyt 0.10, UI-08): przycisk przejścia do innego ekranu — podwójne tapnięcie otwiera jeden ekran (jak Item, useOnce) */ nav?: boolean }) {
+  const t = useTheme(); const once = useOnce(700); const press = nav ? once(onPress) : onPress;
   const bg = kind === 'primary' ? t.accent : kind === 'ghost' || kind === 'danger' ? 'transparent' : t.surface2;
   const fg = kind === 'primary' ? t.accentInk : kind === 'danger' ? t.danger : t.text;
   const border = kind === 'primary' ? t.accent : kind === 'danger' ? t.danger : kind === 'ghost' ? 'transparent' : t.line;
   return (
-    <Pressable onPress={onPress} accessibilityRole="button" accessibilityLabel={accessibilityLabel ?? title} accessibilityHint={accessibilityHint} hitSlop={small ? 4 : 0} style={({ pressed }) => [s.btn, { backgroundColor: bg, borderColor: border, opacity: pressed ? 0.7 : 1 }, small && { paddingVertical: 7, paddingHorizontal: 11, minHeight: 40 }, block && { alignSelf: 'stretch' }, style]}>
+    <Pressable onPress={press} accessibilityRole="button" accessibilityLabel={accessibilityLabel ?? title} accessibilityHint={accessibilityHint} hitSlop={small ? 4 : 0} style={({ pressed }) => [s.btn, { backgroundColor: bg, borderColor: border, opacity: pressed ? 0.7 : 1 }, small && { paddingVertical: 7, paddingHorizontal: 11, minHeight: 40 }, block && { alignSelf: 'stretch' }, style]}>
       <Text maxFontSizeMultiplier={1.4} style={{ color: fg, fontFamily: F.semibold, fontSize: small ? 14 : 16 }}>{title}</Text>
     </Pressable>
   );

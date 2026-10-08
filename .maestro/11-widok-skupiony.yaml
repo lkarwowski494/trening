@@ -24,8 +24,8 @@ name: Widok skupiony i talerze
 - tapOn: "More, tab.*"
 - extendedWaitUntil: { visible: "Settings", timeout: 30000 }
 - tapOn: "Settings"
-- scrollUntilVisible: { element: "Training places,.*", direction: DOWN, timeout: 60000 }
-- tapOn: "Training places,.*"
+- scrollUntilVisible: { element: "Places and equipment,.*", direction: DOWN, timeout: 60000 }
+- tapOn: "Places and equipment,.*"
 - extendedWaitUntil: { visible: "\\+ Add place", timeout: 30000 }
 - tapOn: "\\+ Add place"
 - extendedWaitUntil: { visible: "Full gym,.*", timeout: 30000 }

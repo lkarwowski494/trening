@@ -3,6 +3,7 @@ import { ScrollView, View, Alert } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Screen, H1, Muted, Btn, Txt, useOnce } from '@/components/ui';
 import { beginEdit } from '@/lib/edit';
+import { templateFromWorkout } from '@/lib/tplsync';
 import { effortLabel, effortOut, workoutDurSec, getState, useTick, exById, isBW, bandById, loadLabel, fmtDate, fmtTime, fmtDur, fmtSec, fmtDist, volume, deleteWorkout, groupLabels, shortBand, bandA11y, loadLabelShort, blockImpl, shownLoad } from '@/lib/store';
 import { hasTime, hasReps, hasWeight, hasDistance, SET_KIND_LABEL } from '@/lib/seed';
 import { setMarkOf } from '@/lib/live';
@@ -21,6 +22,8 @@ export default function HistoryDetail() {
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}><View style={{ flex: 1 }}><H1>{w.templateName || t('Trening')}</H1></View><Btn title={t('Edytuj')} small accessibilityLabel={t('Edytuj sesję')} onPress={once(() => { if (beginEdit(w.id)) router.push(`/history/edit/${encodeURIComponent(w.id)}`); })} /></View>
       <Muted style={{ marginBottom: 14 }}>{fmtDate(w.startedAt)} {fmtTime(w.startedAt)} · {fmtDur(workoutDurSec(w))}{volume(w) > 0 ? ` · ${t('objętość')} ${fmtVol(volume(w))}` : ''}{w.deload ? ` · ${t('deload — mniej serii')}` /* audyt 0.10 (D1+) */ : ''}</Muted>
       {w.note ? <Muted style={{ marginBottom: 10 }}>{w.note}</Muted> : null}
+      {/* H5 (audyt 0.10, wariant B): nowy szablon ze składu sesji — tylko na polecenie użytkownika (decyzja 03.10.2026: aplikacja sama szablonów nie tworzy) */}
+      {w.exercises.some(e => { const x = exById(e.exerciseId); return x && !x.archived; }) ? <Btn title={t('Zapisz jako szablon')} small kind="ghost" accessibilityHint={t('Nowy szablon z ćwiczeniami i seriami tej sesji.')} style={{ alignSelf: 'flex-start', marginBottom: 12 }} onPress={once(() => { const tpl = templateFromWorkout(w); router.push(`/template/${tpl.id}`); })} /> : null}
       {w.exercises.map((e, i) => { const ex = exById(e.exerciseId); const m = ex?.metric ?? 'weight_reps'; const rpe = getState().settings.showRpe; const anyBand = e.sets.some(s => s.bandId);
         // Nagłówki i komórki z tych samych warunków (wcześniej dla usuniętego ćwiczenia kolumny się rozjeżdżały).
         const showW = hasWeight(m);

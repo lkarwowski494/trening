@@ -81,8 +81,8 @@ describe('/more/settings', () => {
     await act(async () => { store.getState().settings.defaultRest = 333; store.save(); });
     await go('/more/settings'); await flushAll(10);
     await tap(screen.getByText('Wyczyść wszystkie dane'));
-    expect(lastAlert()).toMatchObject({ title: 'Na pewno?', msg: 'Usunie ćwiczenia, szablony i całą historię oraz przywróci ustawienia domyślne (także miejsca, sprzęt i gumy). Przedtem obecne dane zapiszą się jako kopia w Plikach: Trening → Backup (można ją zaimportować). Kopia obejmie też poprzednie, nieczytelne dane.' });
-    await act(async () => { pressAlert('Na pewno?', 'Wyczyść'); }); await flushAll(50);
+    expect(lastAlert()).toMatchObject({ title: 'Wyczyścić wszystkie dane?', msg: 'Usunie ćwiczenia, szablony i całą historię oraz przywróci ustawienia domyślne (także miejsca, sprzęt i gumy). Przedtem obecne dane zapiszą się jako kopia w Plikach: Trening → Backup (można ją zaimportować). Kopia obejmie też poprzednie, nieczytelne dane.' });
+    await act(async () => { pressAlert('Wyczyścić wszystkie dane?', 'Wyczyść'); }); await flushAll(50);
     expect(store.getState().settings.defaultRest).not.toBe(333); expect(store.getRecovery()).toBeNull();
   });
 });
@@ -374,7 +374,7 @@ describe('app/_layout', () => {
       Object.assign(a.exercises[0].sets[0], { weight: 100, reps: 5, done: true, completedAt: last }); });
     await renderApp({ saved }); await flushAll(600);
     expect(store.getState().active).toBeNull();
-    expect(alertOf('Zapisałem trening')!.msg).toBe(`Trening z ${store.fmtDate(start)} ${store.fmtTime(start)} nie miał aktywności od 6 godzin, więc zapisał się sam. Koniec: ${store.fmtTime(last)} (ostatnia seria). Znajdziesz go w Historii.`);
+    expect(alertOf('Zapisałem trening')!.msg).toBe(`Trening z ${store.fmtDate(start)} ${store.fmtTime(start)} nie miał aktywności od 6 godzin, więc zapisał się sam. Koniec: ${store.fmtTime(last)} (ostatnia seria). Znajdziesz go w Kalendarzu.`);
   });
 
   test('tytuł okna wyboru ćwiczenia: „Wybierz ćwiczenie”', async () => {
@@ -419,7 +419,7 @@ describe('ActiveWorkout (/ z treningiem w toku)', () => {
     await act(async () => { pressAlert('Zakończyć trening?', 'Wróć'); }); expect(store.getState().active).not.toBeNull();
   });
 
-  test('„Anuluj trening” → „Serie z tej sesji przepadną.”; usunięcie odhaczonej serii (przesunięciem, 07.10.2026 wieczór) pyta z dopiskiem „Seria jest już odhaczona.”; ostatniej serii — bez gestu', async () => {
+  test('„Odrzuć trening” → „Serie z tej sesji przepadną.”; usunięcie odhaczonej serii (przesunięciem, 07.10.2026 wieczór) pyta z dopiskiem „Seria jest już odhaczona.”; ostatniej serii — bez gestu', async () => {
     await startWith(['Back Squat'], () => { const e = store.getState().active!.exercises[0]; e.sets = [store.emptySet(), store.emptySet(), store.emptySet()]; e.sets.forEach(s => Object.assign(s, { weight: 100, reps: 5, done: true, completedAt: Date.now() })); });
     expect(screen.queryByText('− seria')).toBeNull();
     await swipeDelete('Usuń serię 3 — Back Squat');
@@ -428,9 +428,9 @@ describe('ActiveWorkout (/ z treningiem w toku)', () => {
     await swipeDelete('Usuń serię 3 — Back Squat'); await act(async () => { pressAlert('Usunąć serię?', 'Usuń'); }); await flushAll(5); expect(blk(0).sets).toHaveLength(2);
     await swipeDelete('Usuń serię 1 — Back Squat'); await act(async () => { pressAlert('Usunąć serię?', 'Usuń'); }); await flushAll(5); expect(blk(0).sets).toHaveLength(1);
     expect(deleteActions().filter(l => l.startsWith('Usuń serię'))).toEqual([]);
-    await tap(screen.getByText('Anuluj trening'));
-    expect(lastAlert()).toMatchObject({ title: 'Anulować trening?', msg: 'Serie z tej sesji przepadną.' });
-    await act(async () => { pressAlert('Anulować trening?', 'Anuluj trening'); }); await flushAll(5); expect(store.getState().active).toBeNull();
+    await tap(screen.getByText('Odrzuć trening'));
+    expect(lastAlert()).toMatchObject({ title: 'Odrzucić trening?', msg: 'Serie z tej sesji przepadną.' });
+    await act(async () => { pressAlert('Odrzucić trening?', 'Odrzuć trening'); }); await flushAll(5); expect(store.getState().active).toBeNull();
   });
 
   test('blok usuniętego ćwiczenia: „Usuń usunięte ćwiczenie z treningu” usuwa blok', async () => {
@@ -597,9 +597,9 @@ describe('/swap', () => {
     await startIn('home', ['Bent Over Row (sztanga)']);
     await tap(screen.getByLabelText('Zamień ćwiczenie: Bent Over Row (sztanga)')); await flushAll(20);
     expect(screen.getByText('Brak podobnych ćwiczeń w tym miejscu — rozwiń „Inne”.')).toBeTruthy();
-    expect(screen.getByText('lista ćwiczeń z filtrami, które możesz zdjąć')).toBeTruthy(); expect(screen.getByText('Inne ▾')).toBeTruthy();
+    expect(screen.getByText('lista ćwiczeń z filtrami, które możesz zdjąć')).toBeTruthy(); expect(screen.getByText('Inne')).toBeTruthy();
     await tap(screen.getByLabelText('Pokaż inne ćwiczenia')); await flushAll(5);
-    expect(screen.getByText('Inne ▴')).toBeTruthy(); expect(screen.getByLabelText('Zwiń inne ćwiczenia')).toBeTruthy();
+    expect(screen.getByText('Inne')).toBeTruthy(); expect(screen.getByLabelText('Zwiń inne ćwiczenia')).toBeTruthy();
     await tap(screen.getByLabelText(/^Filtr partii: /)); await tap(screen.getByLabelText(/^Filtr miejsca: /)); await flushAll(5);
     const more = screen.getByText(/^Pokaż więcej \(\d+\)$/); const n = Number(/\((\d+)\)/.exec(more.props.children)![1]);
     expect(screen.getByLabelText(`Pokaż więcej ćwiczeń: zostało ${n}`)).toBeTruthy(); expect(more.props.children).toBe(`Pokaż więcej (${n})`);

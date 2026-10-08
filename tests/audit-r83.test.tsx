@@ -207,13 +207,13 @@ describe('Q-019 kopia bezpieczeństwa przed importem i „Wyczyść dane”', ()
   test('„Wyczyść wszystkie dane”: najpierw kopia (trening w toku, historia), potem czyszczenie; nieudana kopia → dane zostają', async () => {
     await renderApp(); addWorkout(Date.now() - 86400e3, [['Back Squat', [{ weight: 90, reps: 5 }]]]); await inProgress(); setupFs([...AUTO]);
     await go('/more/settings'); await flushAll(10);
-    await tap(screen.getByText('Wyczyść wszystkie dane')); await act(async () => { pressAlert('Na pewno?', 'Wyczyść'); }); await flushAll(50);
+    await tap(screen.getByText('Wyczyść wszystkie dane')); await act(async () => { pressAlert('Wyczyścić wszystkie dane?', 'Wyczyść'); }); await flushAll(50);
     const w = writes(/\/Backup\/trening-przed-czyszczeniem-\d{4}-\d{2}-\d{2}-\d{6}\.json$/); expect(w).toHaveLength(1);
     const k = JSON.parse(w[0][1]).state; expect(k.workouts).toHaveLength(1); expect(k.active.exercises[0].sets[0].weight).toBe(100);
     expect(store.getState().workouts).toHaveLength(0); expect(store.getState().active).toBeNull(); expect(FS.deleteAsync).not.toHaveBeenCalled();
     await renderApp(); addWorkout(Date.now() - 86400e3, [['Back Squat', [{ weight: 90, reps: 5 }]]]); setupFs([]); FS.writeAsStringAsync.mockImplementation(async () => { throw new Error('dysk pełny'); });
     await go('/more/settings'); await flushAll(10);
-    await tap(screen.getByText('Wyczyść wszystkie dane')); await act(async () => { pressAlert('Na pewno?', 'Wyczyść'); }); await flushAll(50);
+    await tap(screen.getByText('Wyczyść wszystkie dane')); await act(async () => { pressAlert('Wyczyścić wszystkie dane?', 'Wyczyść'); }); await flushAll(50);
     expect(store.getState().workouts).toHaveLength(1); expect(global.__alerts.some(a => a.title === 'Dane nie zostały wyczyszczone')).toBe(true);
   });
 });

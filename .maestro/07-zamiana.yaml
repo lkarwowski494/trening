@@ -1,7 +1,7 @@
 # E2 (docs/14 pkt 7, Maestro 07): zamiana ćwiczenia w trakcie treningu — W1 „tylko dziś”: zamiana w miejscu, cofnięcie, podział po odhaczonej serii.
 #
 # Literały (EN z lib/i18n.en.ts / lib/equipment.ts, chyba że zaznaczono inaczej):
-#   "Start from a template", "More, tab.*", "Settings", "Training places,.*", "\+ Add place", "Back", "Workout, tab.*",
+#   "Start from a template", "More, tab.*", "Settings", "Places and equipment,.*", "\+ Add place", "Back", "Workout, tab.*",
 #   "Empty workout", "\+ Add exercise", "Search exercises…", "Cancel", "Place filter: X.*" (chip filtra miejsca)  ← jak przepływ 06
 #   "Home,.*"                        ← LOCATION_PRESET_LABEL.home.en 'Home' + hint 'empty — tick what you have' (lib/equipment.ts)
 #   sw-Adjustable bench              ← testID przełącznika SwitchRow: 'sw-' + EQUIPMENT bench_adj.en (lib/equipment.ts)
@@ -29,8 +29,8 @@ name: Zamiana ćwiczenia w trakcie treningu (E2 W1)
 - tapOn: "More, tab.*"
 - extendedWaitUntil: { visible: "Settings", timeout: 30000 }
 - tapOn: "Settings"
-- scrollUntilVisible: { element: "Training places,.*", direction: DOWN, timeout: 60000 }
-- tapOn: "Training places,.*"
+- scrollUntilVisible: { element: "Places and equipment,.*", direction: DOWN, timeout: 60000 }
+- tapOn: "Places and equipment,.*"
 - extendedWaitUntil: { visible: "\\+ Add place", timeout: 30000 }
 - tapOn: "\\+ Add place"
 - extendedWaitUntil: { visible: "Home,.*", timeout: 30000 }
@@ -49,7 +49,7 @@ name: Zamiana ćwiczenia w trakcie treningu (E2 W1)
 - tapOn: "Back"
 - extendedWaitUntil: { visible: "\\+ Add place", timeout: 30000 }
 - tapOn: "Back"
-- extendedWaitUntil: { visible: "Training places,.*", timeout: 30000 }
+- extendedWaitUntil: { visible: "Places and equipment,.*", timeout: 30000 }
 - tapOn: "Back"
 - extendedWaitUntil: { visible: "Workout, tab.*", timeout: 30000 }
 - tapOn: "Workout, tab.*"
@@ -155,7 +155,7 @@ name: Zamiana ćwiczenia w trakcie treningu (E2 W1)
 # --- W3: „Always at Home” w treningu z szablonu i podpowiedź przy ponownym starcie (docs/14 pkt 7, krok 9 — rekomendacja) ---
 #   "Always at Home — X"             ← 'Zawsze w: {l} — {name}' (accessibilityLabel przycisku „Zawsze w: Dom” w linijce „zamiast”)
 #   "Usually at Home — X. Swap\?"    ← 'Zwykle w: {l} — {name}. Zamienić?' (podpowiedź liczona przy renderze)
-#   "Cancel workout", "Cancel workout\?" ← 'Anuluj trening' / 'Anulować trening?'
+#   "Discard workout", "Discard workout\?" ← 'Odrzuć trening' / 'Odrzucić trening?' (audyt 0.10 H2: jedna nazwa akcji, dawniej „Cancel workout”)
 - tapOn: "Back"
 - extendedWaitUntil: { visible: "Start from a template", timeout: 30000 }
 - runFlow: subflows/szablon-testowy.yaml
@@ -169,14 +169,14 @@ name: Zamiana ćwiczenia w trakcie treningu (E2 W1)
 - tapOn: "Always at Home — .*"
 - assertNotVisible: "Always at Home — .*"
 - takeScreenshot: 36-zawsze-w-domu
-- scrollUntilVisible: { element: "Cancel workout", direction: DOWN, timeout: 60000 }
-- tapOn: "Cancel workout"
-- extendedWaitUntil: { visible: "Cancel workout\\?", timeout: 30000 }
-# Pod tytułem okna są dwa „Cancel workout”: przycisk okna i przycisk w tle (lista przewinięta do dołu) — „below: tytuł”
+- scrollUntilVisible: { element: "Discard workout", direction: DOWN, timeout: 60000 }
+- tapOn: "Discard workout"
+- extendedWaitUntil: { visible: "Discard workout\\?", timeout: 30000 }
+# Pod tytułem okna są dwa „Discard workout”: przycisk okna i przycisk w tle (lista przewinięta do dołu) — „below: tytuł”
 # trafiał w ten w tle, zasłonięty oknem (run 37197114478, zrzut kroku 150). Przycisk okna: pod „Back”, nad przyciskiem w tle.
 # (Do 07.10.2026 kotwicą był opis w tle „The workout in progress saves…” — w kroju Tuleja opis zachodzi na przycisk okna, run 37600735711, krok 154.)
-- tapOn: { text: "Cancel workout", below: "Back", above: "Cancel workout" }
-- extendedWaitUntil: { notVisible: "Cancel workout\\?", timeout: 30000 }
+- tapOn: { text: "Discard workout", below: "Back", above: "Discard workout" }
+- extendedWaitUntil: { notVisible: "Discard workout\\?", timeout: 30000 }
 - scrollUntilVisible: { element: "Start: Upper A", direction: UP, timeout: 60000 }
 - tapOn: "Start: Upper A"
 - extendedWaitUntil: { visible: "Usually at Home — .*\\. Swap\\?", timeout: 30000 }

@@ -4,7 +4,7 @@
 #   "Start from a template"          ← 'Zacznij z szablonu'                 (app/(tabs)/index.tsx)
 #   "More, tab.*" / "Workout, tab.*" ← 'Więcej' / 'Trening' + etykieta zakładki „{label}, tab, {i} of {n}” (React Navigation; od SDK 56 jej kopia w expo-router — ten sam format)
 #   "Settings"                       ← 'Ustawienia'                         (Item w app/(tabs)/more.tsx)
-#   "Training places,.*"             ← 'Miejsca treningu' + sub 'sprzęt w domu, na siłowni, w hotelu…'
+#   "Places and equipment,.*"             ← 'Miejsca i sprzęt' (audyt 0.10 H2, dawniej 'Miejsca treningu') + sub 'sprzęt w domu, na siłowni, w hotelu…'
 #                                      (Item w app/more/settings.tsx; accessibilityLabel „{title}, {sub}”)
 #   "\+ Add place"                   ← '+ Dodaj miejsce'                    (app/more/locations.tsx)
 #   "Bodyweight only,.*"             ← LOCATION_PRESET_LABEL.bodyweight.en + LOCATION_PRESET_HINT.bodyweight.en 'mat only' (lib/equipment.ts)
@@ -13,7 +13,7 @@
 #   "Back"                           ← 'Wróć' (headerBackTitle w app/_layout.tsx)
 #   ".*Bodyweight only, main.*"      ← Item listy miejsc: '★ ' + nazwa, sub 'główne' → 'main' · '{n} equipment items'
 #                                      ('pozycja sprzętu|…' → 'equipment item|equipment items') (app/more/locations.tsx)
-#   "Training places,.*Bodyweight only" ← Item w Ustawieniach, sub '{n}, główne: {m}' → '{n}, main: {m}'
+#   "Places and equipment,.*Bodyweight only" ← Item w Ustawieniach, sub '{n}, główne: {m}' → '{n}, main: {m}'
 #   "Empty workout"                  ← 'Pusty trening'                      (Btn w app/(tabs)/index.tsx)
 #   "+ Add exercise"                 ← '+ Dodaj ćwiczenie'                  (jak flow 04)
 #   "only available at Bodyweight only.*"     ← 'tylko dostępne w: {l}' → 'only available at {l}' (+ ' · hidden: {n}') (app/picker.tsx)
@@ -36,8 +36,8 @@ name: Miejsca treningu i filtr ćwiczeń
 - tapOn: "More, tab.*"
 - extendedWaitUntil: { visible: "Settings", timeout: 30000 }
 - tapOn: "Settings"
-- scrollUntilVisible: { element: "Training places,.*", direction: DOWN, timeout: 60000 }
-- tapOn: "Training places,.*"
+- scrollUntilVisible: { element: "Places and equipment,.*", direction: DOWN, timeout: 60000 }
+- tapOn: "Places and equipment,.*"
 - extendedWaitUntil: { visible: "\\+ Add place", timeout: 30000 }
 - takeScreenshot: 20-miejsca-pusto
 - tapOn: "\\+ Add place"
@@ -67,7 +67,7 @@ name: Miejsca treningu i filtr ćwiczeń
 - extendedWaitUntil: { visible: "\\+ Add place", timeout: 30000 }
 - assertVisible: ".*Bodyweight only, main.*"
 - tapOn: "Back"
-- extendedWaitUntil: { visible: "Training places,.*Bodyweight only", timeout: 30000 }
+- extendedWaitUntil: { visible: "Places and equipment,.*Bodyweight only", timeout: 30000 }
 - tapOn: "Back"
 - extendedWaitUntil: { visible: "Workout, tab.*", timeout: 30000 }
 - tapOn: "Workout, tab.*"

@@ -28,7 +28,7 @@ describe('bez miejsc — ekrany jak dotąd', () => {
     expect(screen.queryByLabelText(/^Filtr miejsca/)).toBeNull(); expect(screen.queryAllByText(/brak:/)).toHaveLength(0); expect(screen.getByText('Back Squat')).toBeTruthy();
   });
   test('Ustawienia → Miejsca treningu: pusta lista z wyjaśnieniem', async () => {
-    await renderApp(); await go('/more/settings'); await flushAll(10); await tap(screen.getByText('Miejsca treningu')); await flushAll(10);
+    await renderApp(); await go('/more/settings'); await flushAll(10); await tap(screen.getByText('Miejsca i sprzęt')); await flushAll(10);
     expect(screen.getByText(/Brak miejsc — wszystkie ćwiczenia są dostępne/)).toBeTruthy();
   });
 });

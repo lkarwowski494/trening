@@ -4,11 +4,13 @@ import { useRouter } from 'expo-router';
 import { activateKeepAwakeAsync, deactivateKeepAwake } from 'expo-keep-awake';
 import { useTheme, F } from '@/lib/theme';
 import { Btn, Input, NumInput, Muted, useOnce } from '@/components/ui';
-import { effortLabel, effortField, effortIn, isPaused, workoutDurSec, pauseWorkout, resumeWorkout, progressionFor, skipExercise, unskipExercise, writeLoad, setActiveLocation, lastActivity, staleSince, staleRef, staleKind, ackStale, markActivity, useForegroundTick, bandA11y, clampName, loadLabelShort, getState, useTick, exById, prevOfActiveBlock, previousFor, canUndoSwap, undoSwap, pinnedImpl, rememberRest as storeRememberRest, canRememberAlt, rememberAlt, altHint, acceptAlt, skipAlt, occurrence, occurrences, hintFor, isBW, reps, fmtDur, fmtSec, fmtTime, setSummary, toggleDone, restAfter, roundRest, addSet, removeSet, removeSetById, removeExercise, finishWorkout, cancelWorkout, save, loadLabel, groupLabels, linkWithNext, unlink, cycleBand, findSet, shortBand, setHasValue, locationById, offListNote, liveBlockImpl, listLocFor, srcSetAt, usesBand, focusSet, isDeloadWeek } from '@/lib/store';
+import { effortLabel, effortField, effortIn, isPaused, workoutDurSec, pauseWorkout, resumeWorkout, progressionFor, skipExercise, unskipExercise, writeLoad, setActiveLocation, lastActivity, staleSince, staleRef, staleKind, ackStale, markActivity, useForegroundTick, bandA11y, clampName, loadLabelShort, getState, useTick, exById, prevOfActiveBlock, previousFor, canUndoSwap, undoSwap, pinnedImpl, rememberRest as storeRememberRest, canRememberAlt, rememberAlt, altHint, acceptAlt, skipAlt, occurrence, occurrences, hintFor, isBW, reps, fmtDur, fmtSec, fmtTime, setSummary, toggleDone, restAfter, roundRest, addSet, removeSet, removeSetById, removeExercise, finishWorkout, cancelWorkout, save, loadLabel, groupLabels, linkWithNext, unlink, cycleBand, findSet, shortBand, setHasValue, locationById, offListNote, liveBlockImpl, listLocFor, srcSetAt, usesBand, focusSet, isDeloadWeek, workCount, workSetCount, REPS_MAX, REST_MAX } from '@/lib/store';
 import { restLabel, setLabel, nowParts, focusCounter } from '@/lib/live';
 import { availability, missingLabel } from '@/lib/equipment';
 import { EquipVisual } from '@/components/EquipVisual';
-import { SwipeRow } from '@/components/SwipeRow';
+import { SwipeRow, lastSetBlock } from '@/components/SwipeRow';
+import { MedicalNote } from '@/components/MedicalNote';
+import { templateDiff, templateDiffText, updateTemplateFromWorkout } from '@/lib/tplsync';
 import { equipVisFor, equipSlotFor } from '@/lib/equipvis';
 import Svg, { Circle } from 'react-native-svg';
 import { implLabel } from '@/lib/swap';
@@ -94,8 +96,12 @@ export default function ActiveWorkout() {
     if (finishing.current) return; finishing.current = true;
     if (at == null && timer.S.on) await finishTimedSet(); // stoper kończymy dopiero po potwierdzeniu — „Wróć” go nie rusza (runda 4)
     const prs = workoutPRs(w); const cur = getState().active;
+    /* H5 (audyt 0.10, wariant A): skład treningu z szablonu porównany PRZED zapisem (z nieodhaczonymi seriami) — pytanie tylko, gdy się różni */
+    const tplNow = cur?.templateId ? getState().templates.find(x => x.id === cur.templateId) : undefined; const snap: Workout | null = cur ? JSON.parse(JSON.stringify(cur)) : null;
+    const diff = snap ? templateDiff(tplNow, snap) : null;
+    const askTpl = () => { if (!diff || !tplNow || !snap) return; Alert.alert(tr('Zaktualizować szablon „{name}”?', { name: tplNow.name }), [templateDiffText(diff), tr('Szablon zmieni się tylko po „Zaktualizuj szablon”.')].join('\n'), [{ text: tr('Tylko ten raz'), style: 'cancel' }, { text: tr('Zaktualizuj szablon'), onPress: () => { if (getState().templates.includes(tplNow)) updateTemplateFromWorkout(tplNow, snap); } }]); };
     const saved = finishWorkout(at != null && cur ? Math.max(at, lastActivity(cur)) : at); /* T1: koniec nie wcześniej niż ostatnia zapisana seria */ timer.stop(); timer.stopSet(); timer.cancelStaleReminder().catch(() => {});
-    if (saved) { onWorkoutSaved(saved).catch(() => {}); router.push(`/history/${saved.id}`); const nPR = prCountOf(prs); /* T13: liczba rekordów, nie serii; E3 (audyt 0.10): ta sama funkcja co karta „Ostatni trening” */ if (prs.length) setTimeout(() => Alert.alert(nPR === 1 ? tr('Nowy rekord!') : tr('Nowe rekordy: {n}', { n: nPR }), [...prs.slice(0, 6).map(p => `${exName(p.exercise)}: ${p.details.join('; ')}`) /* runda 73: suma treningu i e1RM z wartościami */, prs.length > 6 ? '…' : ''].filter(Boolean).join('\n')), 400); }
+    if (saved) { onWorkoutSaved(saved).catch(() => {}); router.push(`/history/${saved.id}`); const nPR = prCountOf(prs); /* T13: liczba rekordów, nie serii; E3 (audyt 0.10): ta sama funkcja co karta „Ostatni trening” */ if (prs.length) setTimeout(() => Alert.alert(nPR === 1 ? tr('Nowy rekord!') : tr('Nowe rekordy: {n}', { n: nPR }), [...prs.slice(0, 6).map(p => `${exName(p.exercise)}: ${p.details.join('; ')}`) /* runda 73: suma treningu i e1RM z wartościami */, prs.length > 6 ? '…' : ''].filter(Boolean).join('\n'), diff ? [{ text: tr('OK'), onPress: askTpl }] : undefined /* H5: pytanie o szablon po zamknięciu okna rekordów */), 400); else if (diff) setTimeout(askTpl, 400); }
   };
   // Runda 69: porzucony trening — po 2 h bez odhaczonej serii pytanie przy otwarciu (także po powrocie z tła);
   // przypomnienie w powiadomieniu 2 h po ostatniej serii.
@@ -118,7 +124,7 @@ export default function ActiveWorkout() {
     Alert.alert(tr('Trening wciąż trwa'), timer.staleBody(k, since, true, cur.pausedAt), [
       { text: tr('Kontynuuj'), onPress: () => { done(); if (same()) ackStale(); } },
       ...(k === 'work' ? [{ text: tr('Zakończ i zapisz'), onPress: () => { done(); if (same()) finalize(since); } }] : []),
-      { text: tr('Odrzuć'), style: 'destructive' as const, onPress: () => { Alert.alert(tr('Odrzucić trening?'), tr('Serie z tej sesji przepadną.'), [{ text: tr('Wróć'), onPress: () => { done(); askStale(); } }, { text: tr('Odrzuć trening'), style: 'destructive', onPress: () => { done(); if (!same()) return; cancelWorkout(); timer.stop(); timer.stopSet(); timer.cancelStaleReminder().catch(() => {}); } }]); } }, /* T1: potwierdzenie — okno pojawia się niespodziewanie */
+      { text: tr('Odrzuć'), style: 'destructive' as const, onPress: () => { Alert.alert(tr('Odrzucić trening?'), tr('Serie z tej sesji przepadną.'), [{ text: tr('Wróć'), style: 'cancel', onPress: () => { done(); askStale(); } }, { text: tr('Odrzuć trening'), style: 'destructive', onPress: () => { done(); if (!same()) return; cancelWorkout(); timer.stop(); timer.stopSet(); timer.cancelStaleReminder().catch(() => {}); } }]); } }, /* T1: potwierdzenie — okno pojawia się niespodziewanie */
     ]);
   };
   useEffect(() => { askStale(); }, [fg, minute]); // eslint-disable-line react-hooks/exhaustive-deps
@@ -143,21 +149,21 @@ export default function ActiveWorkout() {
     const pendingLine = [pending ? tr('Nieodhaczone serie z wpisanymi wynikami: {n} — nie zostaną zapisane. Seria zapisuje się po odhaczeniu ✓.', { n: pending }) : '',
       rest ? (pending ? tr('Pozostałe nieodhaczone serie: {n} — też nie zostaną zapisane.', { n: rest }) : tr('Nieodhaczone serie: {n} — nie zostaną zapisane.', { n: rest })) : ''].filter(Boolean).join('\n');
     // Bez odhaczonych serii nie zapisujemy pustej sesji (stałaby się źródłem „Powtórz ostatni”).
-    if (!done) { ask(tr('Brak odhaczonych serii'), [tr('Nic do zapisania. Odrzucić ten trening?'), pendingLine].filter(Boolean).join('\n'), [{ text: tr('Wróć') }, { text: tr('Odrzuć trening'), style: 'destructive', onPress: () => { cancelWorkout(); timer.stop(); timer.stopSet(); } }]); return; }
+    if (!done) { ask(tr('Brak odhaczonych serii'), [tr('Nic do zapisania. Odrzucić ten trening?'), pendingLine].filter(Boolean).join('\n'), [{ text: tr('Wróć'), style: 'cancel' }, { text: tr('Odrzuć trening'), style: 'destructive', onPress: () => { cancelWorkout(); timer.stop(); timer.stopSet(); } }]); return; }
     // Zawsze potwierdzenie + ostrzeżenia: wpisane, nieodhaczone serie; odhaczone serie bez powtórzeń.
     const zeroReps = w.exercises.reduce((a, e) => { const ex = exById(e.exerciseId); return a + (ex && hasReps(ex.metric ?? 'weight_reps') ? e.sets.filter(s => s.done && s.kind !== 'warmup' && !(Number(s.reps) > 0)).length : 0); }, 0);
     // Runda 52/53: odhaczone (i mierzona właśnie) serie bez czasu/dystansu; mierzona dostanie czas przy „Zakończ”, dystansu — nie.
     const zeroVal = w.exercises.reduce((a, e) => { const ex = exById(e.exerciseId); const m = ex?.metric ?? 'weight_reps'; return a + (ex && (hasTime(m) || hasDistance(m)) ? e.sets.filter(s => (s.done || s.id === runId) && s.kind !== 'warmup' && ((hasTime(m) && !(Number(s.durationSec) > 0) && s.id !== rset?.id) || (hasDistance(m) && !(Number(s.distanceM) > 0)))).length : 0); }, 0);
     // Runda 6: sama rozgrzewka — jasny komunikat i możliwość odrzucenia (pusta sesja psułaby „Powtórz ostatni”).
-    if (!doneWork) { ask(tr('Tylko rozgrzewka'), [tr('Odhaczone są tylko serie rozgrzewkowe ({n}). Zapisać taki trening?', { n: done }), pendingLine].filter(Boolean).join('\n'), [{ text: tr('Wróć') }, { text: tr('Odrzuć trening'), style: 'destructive', onPress: () => { cancelWorkout(); timer.stop(); timer.stopSet(); } }, { text: tr('Zapisz'), onPress: () => { go(); } }]); return; }
+    if (!doneWork) { ask(tr('Tylko rozgrzewka'), [tr('Odhaczone są tylko serie rozgrzewkowe ({n}). Zapisać taki trening?', { n: done }), pendingLine].filter(Boolean).join('\n'), [{ text: tr('Wróć'), style: 'cancel' }, { text: tr('Odrzuć trening'), style: 'destructive', onPress: () => { cancelWorkout(); timer.stop(); timer.stopSet(); } }, { text: tr('Zapisz'), onPress: () => { go(); } }]); return; }
     /* weryfikacja 3 (L1): odhaczone serie robocze ćwiczeń z ciężarem (nie masa ciała) bez wpisanego ciężaru — ostrzeżenie jak przy powtórzeniach */
     const zeroW = w.exercises.reduce((a, e) => { const ex = exById(e.exerciseId); return a + (ex && !isBW(ex) && hasWeight(ex.metric ?? 'weight_reps') ? e.sets.filter(s => s.done && s.kind !== 'warmup' && (s.weight === '' || s.weight == null)).length : 0); }, 0);
     const msg = [tr('Zapisane zostaną serie robocze: {n}.', { n: doneWork }), pendingLine, zeroReps ? tr('Odhaczone serie bez powtórzeń: {n}.', { n: zeroReps }) : '', zeroW ? tr('Odhaczone serie bez ciężaru: {n}.', { n: zeroW }) : '', zeroVal ? tr('Odhaczone serie bez czasu lub dystansu: {n}.', { n: zeroVal }) : ''].filter(Boolean).join('\n');
-    ask(tr('Zakończyć trening?'), msg, [{ text: tr('Wróć') }, { text: tr('Zakończ'), onPress: () => { go(); } }]);
+    ask(tr('Zakończyć trening?'), msg, [{ text: tr('Wróć'), style: 'cancel' }, { text: tr('Zakończ'), onPress: () => { go(); } }]);
   };
   /* Audyt 0.10 (LIVE-12): blokada jak w „Zakończ” — dwa szybkie tapnięcia nie otwierają dwóch okien */
   const cancel = () => { if (finishing.current || asking.current) return; asking.current = true; const done = () => { asking.current = false; };
-    Alert.alert(tr('Anulować trening?'), tr('Serie z tej sesji przepadną.'), [{ text: tr('Wróć'), onPress: done }, { text: tr('Anuluj trening'), style: 'destructive', onPress: () => { done(); cancelWorkout(); timer.stop(); timer.stopSet(); } }]); };
+    Alert.alert(tr('Odrzucić trening?'), tr('Serie z tej sesji przepadną.'), [{ text: tr('Wróć'), style: 'cancel', onPress: done }, { text: tr('Odrzuć trening'), style: 'destructive', onPress: () => { done(); cancelWorkout(); timer.stop(); timer.stopSet(); } }]); };
   const once = useOnce(); /* audyt 0.10 (UI-08): przejścia z ekranu treningu bez podwójnego ekranu */
   /* Audyt 0.10 (LIVE-07, wariant A): dolny pasek przerwy w widoku skupionym, gdy przerwa w karcie jest poza ekranem (przewinięcie listy) */
   const restY = useRef<{ card: number | null; panel: number | null }>({ card: null, panel: null }); const scrollY = useRef(0); const [restOff, setRestOff] = useState(false);
@@ -173,13 +179,14 @@ export default function ActiveWorkout() {
           <View style={{ flex: 1 }}><Text accessibilityRole="header" style={{ color: t.text, fontSize: 24, fontFamily: F.heavy }}>{w.templateName || tr('Trening')}</Text><LocationChip w={w} /><SessionClock w={w} /><SessionProgress w={w} /></View>
           <Btn title={tr('Zakończ')} kind="primary" onPress={finish} />
         </View>
+        <TemplateNote w={w} />
         {st.settings.workoutView !== 'list' ? <FocusCard w={w} onDone={onDone} onFinish={finish} onStartSet={startSet} onCardY={y => { restY.current.card = y; checkRest(); }} onRestY={y => { restY.current.panel = y; checkRest(); }} /> : null}
         {w.exercises.map((e, ei) => <ExerciseBlock key={e.id} w={w} e={e} ei={ei} onDone={onDone} onStartSet={startSet} labels={labels} prs={prs} />)}
         <View style={{ flexDirection: 'row', gap: 8 }}><Btn title={tr('+ Dodaj ćwiczenie')} style={{ flex: 1 }} onPress={once(() => router.push('/picker?target=active'))} />{w.exercises.length > 1 ? <Btn title={tr('≡ Kolejność')} accessibilityLabel={tr('Zmień kolejność ćwiczeń')} onPress={once(() => router.push('/reorder?target=active'))} /> : null}</View>
-        <View style={{ marginTop: 16 }}><Muted style={{ marginBottom: 5 }}>{tr('Notatka do treningu')}</Muted><Input maxLength={1000} value={w.note} onChangeText={v => { w.note = v; save(w); }} placeholder={tr('np. samopoczucie, ból, sprzęt')} accessibilityLabel={tr('Notatka do treningu')} multiline /></View>
+        <View style={{ marginTop: 16 }}><Muted style={{ marginBottom: 5 }}>{tr('Notatka do treningu')}</Muted><Input maxLength={1000} value={w.note} onChangeText={v => { w.note = v; save(w); }} placeholder={tr('np. samopoczucie, ból, sprzęt')} accessibilityLabel={tr('Notatka do treningu')} multiline /><MedicalNote /></View>
         <Btn title={tr('Zakończ trening i zapisz')} kind="primary" block style={{ marginTop: 10, minHeight: 52 }} onPress={finish} />
-        <Muted style={{ textAlign: 'center', fontSize: 13, marginVertical: 10 }}>{tr('Trening w toku zapisuje się na bieżąco. Tapnij numer serii, by oznaczyć rozgrzewkę (W), drop set (D), serię do upadku (F) albo dodać notatkę.')}</Muted>
-        <Btn title={tr('Anuluj trening')} kind="danger" block style={{ marginTop: 24 }} onPress={cancel} />
+        <Muted style={{ textAlign: 'center', fontSize: 13, marginVertical: 10 }}>{tr('Trening w toku zapisuje się na bieżąco. Tapnij numer serii, by oznaczyć rozgrzewkę (W), drop set (D), serię do upadku (F) albo dodać notatkę.')} {tr('Przesuń serię albo nazwę ćwiczenia w lewo, by je usunąć.') /* UI-07 (audyt 0.10): opis gestu także w treningu */}</Muted>
+        <Btn title={tr('Odrzuć trening')} kind="danger" block style={{ marginTop: 24 }} onPress={cancel} />
       </ScrollView>
       <TimerBar onFinishSet={() => finishTimedSet()} restInCard={st.settings.workoutView !== 'list' && !restOff} />
     </View>
@@ -200,7 +207,7 @@ export function afterSwap(goneSetIds: string[]) {
 export function confirmUndoSwap(blockId: string, done?: () => void) {
   const e = getState().active?.exercises.find(x => x.id === blockId); if (!e) return;
   const go = () => { const r = undoSwap(blockId); if (r) afterSwap(r.goneSetIds); done?.(); };
-  if (e.sets.some(x => x.edited)) Alert.alert(tr('Cofnąć zamianę?'), tr('Wpisane wartości zamiennika przepadną.'), [{ text: tr('Nie') }, { text: tr('Cofnij'), style: 'destructive', onPress: go }]); else go();
+  if (e.sets.some(x => x.edited)) Alert.alert(tr('Cofnąć zamianę?'), tr('Wpisane wartości zamiennika przepadną.'), [{ text: tr('Nie'), style: 'cancel' }, { text: tr('Cofnij'), style: 'destructive', onPress: go }]); else go();
 }
 /** E2 (pkt 3.2): „zamiast: A · ostatnio 3 serie 80×8” — ostatnia sesja A (previousFor), bez przeliczania. */
 function insteadLine(e: WExercise): string {
@@ -243,14 +250,22 @@ function SessionClock({ w }: { w: Workout }) {
   </View>;
 }
 
-/** Runda 75 (T-016): postęp sesji — odhaczone serie / wszystkie (z rozgrzewkami), cienki pasek pod zegarem. */
+/** Runda 75 (T-016): postęp sesji, cienki pasek pod zegarem. Audyt 0.10 (D3, fala 2): serie ROBOCZE jedną funkcją store.workCount / workSetCount —
+ * bez rozgrzewek, drop set razem z serią przed nim (jak Postępy, karta szablonu i lista Historii); „Pomiń dziś” — liczą się tylko odhaczone serie bloku. */
 function SessionProgress({ w }: { w: Workout }) {
-  const t = useTheme(); let all = 0, done = 0; for (const e of w.exercises) for (const x of e.sets) { if (e.skipped && !x.done) continue; /* „Pomiń dziś” — reszta bloku nie czeka */ all++; if (x.done) done++; }
+  const t = useTheme(); let all = 0, done = 0; for (const e of w.exercises) { const sets = e.skipped ? e.sets.filter(x => x.done) : e.sets; all += workCount(sets.map(x => x.kind)); done += workSetCount(e.sets); }
   if (!all) return null; const pct = Math.min(100, Math.round(done / all * 100));
   return <View accessible accessibilityRole="progressbar" accessibilityLabel={tr('Postęp treningu: {d} z {n} serii', { d: done, n: all })} accessibilityValue={{ min: 0, max: all, now: done }} style={{ marginTop: 4, flexDirection: 'row', alignItems: 'center', gap: 6 }}>
     <View style={{ flex: 1, height: 4, borderRadius: 2, backgroundColor: t.line, overflow: 'hidden' }}><View style={{ width: `${pct}%`, height: 4, backgroundColor: t.accent }} /></View>
     <Muted style={{ fontSize: 12 }}>{done}/{all}</Muted>
   </View>;
+}
+
+/** Notatka szablonu w trakcie treningu (fala 2 audytu 0.10): np. linijka wysiłku z generatora („Wysiłek: zwykle 0–3 powtórzenia w zapasie…”) —
+ * widoczna tam, gdzie się ją stosuje; zmienia się ją w szablonie („Edytuj”). */
+function TemplateNote({ w }: { w: Workout }) {
+  const t = useTheme(); const note = w.templateId ? getState().templates.find(x => x.id === w.templateId)?.note : undefined; if (!note) return null;
+  return <View accessible accessibilityLabel={`${tr('Notatka szablonu')}: ${note}`} style={{ borderLeftWidth: 3, borderLeftColor: t.accent, paddingLeft: 10, marginBottom: 10 }}><Muted style={{ fontSize: 13, color: t.text }}>{note}</Muted></View>;
 }
 
 /** Gotowość z porannego wpisu w nagłówku sesji (0.2.1): „tracker wie, jak spałeś”. */
@@ -300,7 +315,7 @@ function ExerciseBlock({ w, e, ei, onDone, onStartSet, labels, prs }: { w: Worko
    * a jej podpis liczy się od nowa (relabelRest — następna seria jak na karcie). */
   const skipToday = () => {
     const go = () => { if (timer.S.on && e.sets.some(x => x.id === timer.S.setId)) timer.stopSet(); skipExercise(e.id); relabelRest(); };
-    if (timer.S.on && e.sets.some(x => x.id === timer.S.setId)) Alert.alert(tr('Trwa pomiar serii'), tr('Pominięcie ćwiczenia przerwie pomiar — ten czas się nie zapisze.'), [{ text: tr('Wróć') }, { text: tr('Pomiń dziś'), style: 'destructive', onPress: go }]);
+    if (timer.S.on && e.sets.some(x => x.id === timer.S.setId)) Alert.alert(tr('Trwa pomiar serii'), tr('Pominięcie ćwiczenia przerwie pomiar — ten czas się nie zapisze.'), [{ text: tr('Wróć'), style: 'cancel' }, { text: tr('Pomiń dziś'), style: 'destructive', onPress: go }]);
     else go();
   };
   const removeBlock = () => { const i = getState().active?.exercises.findIndex(x => x.id === e.id) ?? -1; if (i < 0) return; /* runda 10: po id — drugie okno nie usuwa sąsiada */ dropBlockTimers(); removeExercise(i); };
@@ -331,7 +346,9 @@ function ExerciseBlock({ w, e, ei, onDone, onStartSet, labels, prs }: { w: Worko
   const prevFor = (si: number) => hintFor(prev?.sets, e.sets, si, ex ?? undefined); // runda 9: w ramach rodziny serii (drop ↔ drop)
   const dropTimers = (ids: string[]) => { if (timer.S.on && ids.includes(timer.S.setId ?? '')) timer.stopSet(); if (timer.T.on && ids.includes(timer.T.setId ?? '')) timer.stop(); };
   const rememberRest = (n: number) => storeRememberRest(w, e, n); /* runda 10: tylko pozycja szablonu, z której powstał blok; blok dodany w trakcie zmienia tylko ćwiczenie; E2 W3: blok-zamiennik — przerwa wpisu zamiennika */
-  const parseRest = (v?: string) => { const x = (v ?? '').trim(); if (!x) return null; const n = Math.round(Number(x.replace(',', '.'))); return n >= 0 && isFinite(n) ? Math.min(1800, n) : null; }; // runda 11: ten sam limit co w edycji ćwiczenia i szablonu
+  /* UI-16 (audyt 0.10): odrzucony wpis nie znika po cichu */
+  const badRest = () => Alert.alert(tr('Nie zmieniono przerwy'), tr('Wpisz liczbę sekund od 0 do {n}.', { n: REST_MAX }));
+  const parseRest = (v?: string) => { const x = (v ?? '').trim(); if (!x) return null; const n = Math.round(Number(x.replace(',', '.'))); return n >= 0 && isFinite(n) ? Math.min(REST_MAX, n) : null; }; // runda 11: ten sam limit co w edycji ćwiczenia i szablonu
   const setMenu = (set: WSet, si: number) => {
     /* 07.10.2026 wieczór: usuwanie serii — przesunięciem wiersza w lewo (deleteSet), nie z menu */
     const labels = [tr('Seria normalna'), tr('Rozgrzewka (W)'), tr('Drop set (D)'), tr('Do upadku (F)'), set.note ? tr('Edytuj notatkę') : tr('Dodaj notatkę'), tr('Anuluj')];
@@ -371,14 +388,14 @@ function ExerciseBlock({ w, e, ei, onDone, onStartSet, labels, prs }: { w: Worko
         const pr = prs.get(set.id); const kind = set.kind ?? 'normal';
         const prevTxt = p ? setSummary(ex, p, 'calc') : '—'; /* audyt 83b (MEDIUM 1b): ciężar jak wpisze podpowiedź — tylko pole obecnego sprzętu */
         return (
-          <SwipeRow key={set.id} testID={`set-${ei}-${si}`} /* E2E 12 */ disabled={e.sets.length <= 1} label={tr('Usuń serię {n} — {ex}', { n: lbl, ex: nm })} title={tr('Usunąć serię?')} message={set.done ? tr('Seria jest już odhaczona.') : undefined} onDelete={() => deleteSet(set.id)}>{a11y => <View>
+          <SwipeRow key={set.id} testID={`set-${ei}-${si}`} /* E2E 12 */ disabled={e.sets.length <= 1} blocked={lastSetBlock()} label={tr('Usuń serię {n} — {ex}', { n: lbl, ex: nm })} title={tr('Usunąć serię?')} message={set.done ? tr('Seria jest już odhaczona.') : undefined} onDelete={() => deleteSet(set.id)}>{a11y => <View>
             <View style={[s.row, { gap: W.gap }]}>
               <Pressable {...a11y} onPress={() => setMenu(set, si)} hitSlop={8} accessibilityHint={hint} /* runda 63 */ accessibilityRole="button" accessibilityLabel={tr('Seria {n}, typ: {k}. Tapnij, by zmienić typ lub dodać notatkę.', { n: lbl, k: tr(SET_KIND_LABEL[kind]) })} style={{ width: W.idx, minHeight: 44, justifyContent: 'center' }}>
                 <SetBadge kind={kind} label={lbl} note={!!set.note} />
               </Pressable>
               <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', gap: 4 }}>{prevInline ? <Text maxFontSizeMultiplier={1.3} numberOfLines={1} style={{ flexShrink: 1, color: t.muted, fontSize: 13, fontFamily: F.regular /* audyt 0.10 (LIVE-13 / UI-11) */ }}>{prevTxt}</Text> : null}{pr ? <Text maxFontSizeMultiplier={1.3} style={{ color: t.band, fontSize: 11, fontFamily: F.semibold }}>PR</Text> : null}</View>
               {hasWeight(m) ? <View style={{ width: W.w }}><NumInput weightTol decimal allowNegative={bw} value={wField(bw ? set.addKg : set.weight)} stored={bw ? set.addKg : set.weight} onNum={(v, keep) => { writeLoad(ex, set, wInKeep(v, keep)); /* runda 54: ciężar nieujemny; Q-021: ta sama liczba co na ekranie = te same kg; 83b: jeden zapis (store.writeLoad) */ tick(); }} placeholder={bw ? '±0' : wu()} style={doneStyle(set)} accessibilityLabel={loadLabel(ex, impl)} accessibilityHint={hint} testID={`w-${ei}-${si}`} /* E2E 11 */ /></View> : null}
-              {hasReps(m) ? <View style={{ width: W.reps }}><NumInput value={set.reps} onNum={v => { set.reps = v === '' ? '' : Math.max(0, Math.floor(v)); tick(); }} placeholder={e.repMin == null ? 'max' : reps(e.repMin, e.repMax)} style={doneStyle(set)} accessibilityLabel={tr('Powtórzenia')} accessibilityHint={hint} testID={`r-${ei}-${si}`} /></View> : null}
+              {hasReps(m) ? <View style={{ width: W.reps }}><NumInput value={set.reps} onNum={v => { set.reps = v === '' ? '' : Math.min(REPS_MAX, Math.max(0, Math.floor(v))); tick(); /* UI-16 */ }} placeholder={e.repMin == null ? 'max' : reps(e.repMin, e.repMax)} style={doneStyle(set)} accessibilityLabel={tr('Powtórzenia')} accessibilityHint={hint} testID={`r-${ei}-${si}`} /></View> : null}
               {hasDistance(m) ? <View style={{ width: W.dist }}><NumInput value={set.distanceM} onNum={v => { set.distanceM = v === '' ? '' : Math.max(0, Math.round(v)); /* runda 55/56: pełne metry jak klawiatura */ tick(); }} placeholder="m" style={doneStyle(set)} accessibilityLabel={tr('dystans')} accessibilityHint={hint} /></View> : null}
               {hasTime(m) ? <View style={{ width: W.time }}><NumInput value={set.durationSec} onNum={v => { set.durationSec = v === '' ? '' : Math.min(86400, Math.max(0, Math.round(v))); /* runda 56: pełne sekundy jak klawiatura */ tick(); }} placeholder="s" style={doneStyle(set)} accessibilityLabel={tr('czas')} accessibilityHint={hint} /></View> : null}
               {hasTime(m) ? (
@@ -396,7 +413,7 @@ function ExerciseBlock({ w, e, ei, onDone, onStartSet, labels, prs }: { w: Worko
       })}
       <View style={s.actions}>
         <Btn title={tr('+ seria')} small accessibilityHint={nm} onPress={() => addSet(ei)} /><Btn title={tr('+ rozgrzewka')} small kind="ghost" accessibilityHint={nm} onPress={() => addSet(ei, 'warmup')} /><Btn title={tr('+ drop set')} small kind="ghost" accessibilityHint={nm} onPress={() => addSet(ei, 'drop')} />
-        <Btn title={`⏱ ${fmtDur(e.restSec)}`} small accessibilityHint={nm} accessibilityLabel={tr('Przerwa: {s}. Tapnij, by zmienić.', { s: fmtDur(e.restSec) })} onPress={() => { Alert.prompt?.(tr('Przerwa (sekundy)'), tr('Zapamiętać dla tego ćwiczenia?'), [{ text: tr('Anuluj'), style: 'cancel' }, { text: tr('Tylko teraz'), onPress: (v?: string) => { const n = parseRest(v); if (n != null) { e.restSec = n; save(st.active); } } }, { text: tr('Zapamiętaj'), onPress: (v?: string) => { const n = parseRest(v); if (n != null) rememberRest(n); } }], 'plain-text', String(e.restSec), 'number-pad'); }} />
+        <Btn title={`⏱ ${fmtDur(e.restSec)}`} small accessibilityHint={nm} accessibilityLabel={tr('Przerwa: {s}. Tapnij, by zmienić.', { s: fmtDur(e.restSec) })} onPress={() => { Alert.prompt?.(tr('Przerwa (sekundy)'), tr('Zapamiętać dla tego ćwiczenia?'), [{ text: tr('Anuluj'), style: 'cancel' }, { text: tr('Tylko teraz'), onPress: (v?: string) => { const n = parseRest(v); if (n != null) { e.restSec = n; save(st.active); } else badRest(); } }, { text: tr('Zapamiętaj'), onPress: (v?: string) => { const n = parseRest(v); if (n != null) rememberRest(n); else badRest(); } }], 'plain-text', String(e.restSec), 'number-pad'); }} />
         {ei + 1 < w.exercises.length && (!inSS || w.exercises[ei + 1].groupId !== e.groupId) ? <Btn title="⇅ SS" small kind="ghost" accessibilityLabel={tr('Połącz z następnym w superset')} accessibilityHint={nm} onPress={() => linkWithNext(w.exercises, ei, w)} /> : null}
         {inSS ? <Btn title="✂ SS" small kind="ghost" accessibilityLabel={tr('Wyjmij z supersetu')} accessibilityHint={nm} onPress={() => unlink(w.exercises, ei, w)} /> : null}
         {swappable ? <Btn title={tr('⇄ zamień')} small kind="ghost" accessibilityLabel={tr('Zamień ćwiczenie: {name}', { name: nm })} onPress={openSwap} /> : null}
@@ -413,7 +430,7 @@ function startTimed(w: Workout, e: WExercise, set: WSet, si: number, onStartSet:
   const tplTarget = Number(it?.targetSec) || 0; /* runda 18: ponowny pomiar liczy od nowa — cel z szablonu albo bez limitu, nie stary wynik */
   const ei = w.exercises.indexOf(e); const nm = occurrences(w.exercises, e.exerciseId) > 1 ? `${exName(exById(e.exerciseId))} (${occurrence(w.exercises, ei) + 1})` : exName(exById(e.exerciseId));
   const go = () => onStartSet(set.id, set.done ? tplTarget : Number(set.durationSec) || tplTarget /* runda 22: pusty czas → cel z szablonu */, `${nm} · ${tr('seria {n}', { n: setLabel(e, si) })}`, set.done);
-  if (set.done) Alert.alert(tr('Zmierzyć serię od nowa?'), tr('Zapisany czas zostanie nadpisany.'), [{ text: tr('Nie') }, { text: tr('Zmierz'), onPress: go }]); else go();
+  if (set.done) Alert.alert(tr('Zmierzyć serię od nowa?'), tr('Zapisany czas zostanie nadpisany.'), [{ text: tr('Nie'), style: 'cancel' }, { text: tr('Zmierz'), onPress: go }]); else go();
 }
 /**
  * Widok skupiony (styl „Tuleja”, decyzja właściciela 07.10.2026; docs/21 pkt 3): karta serii „teraz” (store.focusSet) nad listą — ćwiczenie,

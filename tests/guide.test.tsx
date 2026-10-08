@@ -20,7 +20,7 @@ afterEach(() => { applyLang('pl'); });
 describe('treść i logika', () => {
   beforeEach(async () => { await fresh(); });
   test('tematy: unikalne id, 2–4 kroki, zdania z kropką; ścieżki „Pokaż” istnieją w app/', () => {
-    const ids = GUIDE.map(g => g.id); expect(new Set(ids).size).toBe(ids.length); expect(GUIDE.length).toBe(8);
+    const ids = GUIDE.map(g => g.id); expect(new Set(ids).size).toBe(ids.length); expect(GUIDE.length).toBe(10); /* H1 (audyt 0.10): + „Zmiany w trakcie treningu”, „Edycja sesji i trening wstecz” */
     for (const g of GUIDE) {
       const st = g.steps(); expect(st.length).toBeGreaterThanOrEqual(2); expect(st.length).toBeLessThanOrEqual(4); st.forEach(s => expect(s).toMatch(/[.…]”?\.?$/));
       const file = g.route === '/' ? 'app/(tabs)/index.tsx' : g.route === '/templates' || g.route === '/history' ? `app/(tabs)${g.route}.tsx` : `app${g.route}.tsx`;
@@ -34,7 +34,7 @@ describe('treść i logika', () => {
     expect(missing).toEqual([]);
   });
   test('postęp i odhaczanie: nieznane id pomijane, bez powtórzeń, bez userTouched', () => {
-    expect(guideProgress()).toEqual({ seen: 0, total: 8 }); markGuideSeen('plan'); markGuideSeen('plan'); markGuideSeen('xyz');
+    expect(guideProgress()).toEqual({ seen: 0, total: 10 }); markGuideSeen('plan'); markGuideSeen('plan'); markGuideSeen('xyz');
     expect(guideSeen()).toEqual(['plan']); expect(guideProgress().seen).toBe(1); expect(S().userTouched).not.toBe(true);
   });
   test('dane: zapis i odczyt; sanityzacja (teksty ≤ 40, bez powtórzeń); dane bez pola 1:1', async () => {
@@ -59,18 +59,19 @@ test('macierz: każdy tekst przewodnika (i punkt „Co nowego”) jest w treści
     'Po kilku tygodniach treningu z rzędu Kalendarz podpowie „Zaplanuj deload od …”.',
     'Postępy i rekordy',
     'Przejrzyj podgląd i „Na czym to oparte” — wynik zapisuje się dopiero po zatwierdzeniu.',
-    'Przesunięcie w lewo na liście usuwa szablon (z potwierdzeniem).',
     'Stuknij dzień w Kalendarzu: „Przesuń albo pomiń” pokazuje możliwości — przesunięcie planu o 1 dzień, tylko tego treningu, zamianę albo wolne.', /* audyt 0.10 UX-13 A */
     'Na górze listy jest polecana: wraca do rutyny i nie gubi treningu, potem unika par dzień po dniu z tymi samymi partiami i zmienia najmniej dni.',
     'W Kalendarzu: stuknij dzień, potem „Więcej opcji” → „Oznacz tydzień jako deload” — także przyszły tydzień.', /* audyt 0.10 D4 */
     'Szablony trafiają do folderu „Wygenerowane”, a plan do „Inne plany” albo od razu jako aktywny.',
     'Trening i serie',
     'Tydzień oznaczysz też w Postępach przełącznikiem „Tydzień deload”.',
-    'W edytorze szablonu przeniesiesz go do folderu albo archiwum.',
+    'Szablon otwiera się w podglądzie ze „Start”; zmiany (także folder) dopiero po „Edytuj” — zapisuje je „Zapisz”.',
+    '„Archiwizuj” w podglądzie chowa szablon; przesunięcie w lewo na liście usuwa go (z potwierdzeniem).',
+    'Zmiany w trakcie treningu', 'Edycja sesji i trening wstecz',
     'W Kalendarzu „Plan tygodnia” przypisuje szablony do dni — plan powtarza się co tydzień.',
     'W tygodniu deload „Start” i „Powtórz ostatni” zaproponują „Mniej serii”: o około 1/3–1/2 mniej serii (np. 2 z 3; ćwiczenia z 1 serią bez zmian); ciężary i szablon bez zmian.', /* audyt 0.10 (D1, MER-04) */
     'W zakładce Szablony „+ Nowy” tworzy szablon: ćwiczenia, serie, zakres powtórzeń i przerwy.',
-    'Więcej → Backup: eksport wszystkich danych do pliku i import z pliku.',
+    'Więcej → Kopia zapasowa: eksport wszystkich danych do pliku i import z pliku.',
     'Więcej → Miejsca i sprzęt: dom, siłownia, hotel — każdy ze swoim sprzętem i ciężarami.',
     'Więcej → Postępy: podsumowanie tygodnia lub miesiąca z poprzednim okresem obok.',
     'Wpisz ciężar i powtórzenia, odhacz serię ✓ — przerwa odlicza się sama.',
@@ -87,30 +88,35 @@ describe('ekrany', () => {
   };
   test('przewodnik: opis, postęp, tematy zwinięte; rozwinięcie — kroki, ✓, VoiceOver; zwinięcie', async () => {
     await boot('/guide');
-    expect(screen.getByText('Najważniejsze funkcje w kilku krokach. „Pokaż” otwiera opisany ekran.')).toBeTruthy(); expect(screen.getByText('Przeczytane: 0 z 8')).toBeTruthy();
+    expect(screen.getByText('Najważniejsze funkcje w kilku krokach. „Pokaż” otwiera opisany ekran.')).toBeTruthy(); expect(screen.getByText('Przeczytane: 0 z 10')).toBeTruthy();
     expect(screen.getByLabelText('Plan tygodnia i Kalendarz, nieprzeczytane')).toBeTruthy(); expect(screen.queryByText(/^1\. W Kalendarzu/)).toBeNull();
     await tap(screen.getByLabelText('Plan tygodnia i Kalendarz, nieprzeczytane')); await flushAll(5);
     GUIDE.find(g => g.id === 'plan')!.steps().forEach((s, i) => expect(screen.getByText(`${i + 1}. ${s}`)).toBeTruthy());
-    expect(screen.getByText('Przeczytane: 1 z 8')).toBeTruthy(); expect(screen.getByLabelText('Plan tygodnia i Kalendarz, przeczytane').props.accessibilityState).toEqual({ expanded: true });
+    expect(screen.getByText('Przeczytane: 1 z 10')).toBeTruthy(); expect(screen.getByLabelText('Plan tygodnia i Kalendarz, przeczytane').props.accessibilityState).toEqual({ expanded: true });
     await tap(screen.getByLabelText('Plan tygodnia i Kalendarz, przeczytane')); await flushAll(5); expect(screen.queryByText(/^1\. W Kalendarzu/)).toBeNull();
   });
   test('wszystkie tematy po polsku na ekranie; „Pokaż” otwiera opisany ekran', async () => {
     const expectOn: Record<string, () => void> = {
       workout: () => expect(screen.getByText('Zacznij z szablonu')).toBeTruthy(), templates: () => expect(screen.getByText('+ Nowy')).toBeTruthy(),
       plan: () => expect(screen.getByRole('header', { name: 'Kalendarz' })).toBeTruthy(), generator: () => expect(screen.getByText('Podgląd')).toBeTruthy(),
-      deload: () => expect(screen.getByRole('header', { name: 'Kalendarz' })).toBeTruthy(), progress: () => expect(screen.getByText('Wykresy pojawią się po pierwszym zakończonym treningu.')).toBeTruthy(), /* ekran Postępów bez treningów */
+      deload: () => expect(screen.getByText('Wykresy pojawią się po pierwszym zakończonym treningu.')).toBeTruthy(), /* H1: Postępy z przełącznikiem „Tydzień deload” */
+      during: () => expect(screen.getByText('Zacznij z szablonu')).toBeTruthy(), history: () => expect(screen.getByRole('header', { name: 'Kalendarz' })).toBeTruthy(), progress: () => expect(screen.getByText('Wykresy pojawią się po pierwszym zakończonym treningu.')).toBeTruthy(), /* ekran Postępów bez treningów */
       places: () => expect(screen.getAllByText(/Miejsc|miejsc/).length).toBeGreaterThan(0), backup: () => expect(screen.getAllByText(/Eksport|eksport/).length).toBeGreaterThan(0),
     };
     for (const g of GUIDE) {
       await boot('/guide'); await tap(screen.getByLabelText(`${g.title()}, nieprzeczytane`)); await flushAll(5);
       g.steps().forEach((s, i) => expect(screen.getByText(`${i + 1}. ${s}`)).toBeTruthy());
       await tap(screen.getByLabelText(`Pokaż: ${g.title()}`)); await flushAll(10); expectOn[g.id]();
+      /* H1 (audyt 0.10, UI-04/UX-09): „Pokaż” zakładki nie kładzie drugiego zestawu zakładek na stos — jeden „(tabs)” */
+      const { store: rs } = require('expo-router/build/global-state/router-store'); const names: string[] = [];
+      const walk = (st: { routes?: { name: string; state?: unknown }[] } | undefined) => st?.routes?.forEach(r => { names.push(r.name); walk(r.state as never); }); walk(rs.navigationRef.getRootState());
+      expect([g.id, names.filter((n: string) => n === '(tabs)').length]).toEqual([g.id, 1]);
     }
   });
   test('wejścia: Więcej (z postępem), „Pierwsze kroki” (nowa osoba), „Co nowego” (po aktualizacji)', async () => {
     await boot('/more', () => { markGuideSeen('workout'); });
-    expect(screen.getByText('Przewodnik')).toBeTruthy(); expect(screen.getByText('Przeczytane: 1 z 8')).toBeTruthy();
-    await tap(screen.getByText('Przewodnik')); await flushAll(10); expect(screen.getByText('Przeczytane: 1 z 8')).toBeTruthy();
+    expect(screen.getByText('Przewodnik')).toBeTruthy(); expect(screen.getByText('Przeczytane: 1 z 10')).toBeTruthy();
+    await tap(screen.getByText('Przewodnik')); await flushAll(10); expect(screen.getByText('Przeczytane: 1 z 10')).toBeTruthy();
     await boot('/'); await tap(screen.getByLabelText('Przewodnik po funkcjach')); await flushAll(10); expect(screen.getByText(/^Najważniejsze funkcje/)).toBeTruthy();
     await boot('/', () => { addWorkout(new Date(2026, 9, 7, 18).getTime(), [['Back Squat', [{ weight: 100, reps: 5 }]]]); });
     await tap(screen.getByTestId('whats-new-i')); await flushAll(5); await tap(screen.getByText('Przewodnik po funkcjach')); await flushAll(10);
@@ -118,7 +124,7 @@ describe('ekrany', () => {
   });
   test('English', async () => {
     await boot('/guide', () => {}, 'en');
-    expect(screen.getByText('Read: 0 of 8')).toBeTruthy(); await tap(screen.getByLabelText('Weekly plan and Calendar, unread')); await flushAll(5);
+    expect(screen.getByText('Read: 0 of 10')).toBeTruthy(); await tap(screen.getByLabelText('Weekly plan and Calendar, unread')); await flushAll(5);
     expect(screen.getByText('1. In the Calendar, “Weekly plan” assigns templates to days — the plan repeats every week.')).toBeTruthy();
     expect(screen.getByLabelText('Show: Weekly plan and Calendar')).toBeTruthy();
   });

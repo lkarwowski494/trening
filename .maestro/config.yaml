@@ -3,6 +3,7 @@
 # 08–10 (polecenie właściciela 06.10.2026): szablon jak trening (wiersze, karty), język / wygląd / jednostka, gumy w miejscu i w treningu.
 # 11 (07.10.2026): styl „Tuleja” — widok skupiony na serii, talerze na stronę, przełącznik „Widok treningu”.
 # 12 (07.10.2026 wieczór): usuwanie przesunięciem w lewo i „Pomiń dziś”.
+# 15 (08.10.2026 wieczór): edycja na żądanie — podgląd ćwiczenia, „Edit exercise”, Anuluj/Zapisz.
 # 13 (08.10.2026): kalendarz z planem tygodnia (plan, przesunięcie planu, konflikt, „Dziś”). 14 (08.10.2026): generator szablonów i planu. Każdy plik .yaml z katalogu musi być tu wpisany (tests/maestro-selectors.test.ts).
 flows:
   - 01-trening-z-szablonu.yaml
@@ -19,3 +20,4 @@ flows:
   - 12-usuwanie-gestem.yaml
   - 13-kalendarz-plan.yaml
   - 14-generator.yaml
+  - 15-edycja-na-zadanie.yaml

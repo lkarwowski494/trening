@@ -3,7 +3,7 @@
 # (opór gumy) i Pull Up (asysta gumą) — przycisk gumy przechodzi tylko przez poziomy miejsca; zakończenie i guma w zapisanej sesji.
 #
 # Literały (EN z lib/i18n.en.ts / lib/equipment.ts, chyba że zaznaczono inaczej):
-#   "Start from a template", "More, tab.*", "Settings", "Training places,.*", "\+ Add place", "Home,.*", "Available exercises: .*",
+#   "Start from a template", "More, tab.*", "Settings", "Places and equipment,.*", "\+ Add place", "Home,.*", "Available exercises: .*",
 #   "Back", "Workout, tab.*", "Empty workout", "\+ Add exercise", "Search exercises…", "Place filter: Home.*",
 #   "Finish", "Finish workout\?", "Session", "Skip"   ← jak przepływy 05, 06 i 07
 #   "Bars and dip stations.*", sw-Pull-up bar \(doorway, wall-mounted\) ← jak przepływ 06 (EQUIP_GROUP_LABEL.bars, SwitchRow)
@@ -30,8 +30,8 @@ name: Gumy w miejscu i w treningu
 - tapOn: "More, tab.*"
 - extendedWaitUntil: { visible: "Settings", timeout: 30000 }
 - tapOn: "Settings"
-- scrollUntilVisible: { element: "Training places,.*", direction: DOWN, timeout: 60000 }
-- tapOn: "Training places,.*"
+- scrollUntilVisible: { element: "Places and equipment,.*", direction: DOWN, timeout: 60000 }
+- tapOn: "Places and equipment,.*"
 - extendedWaitUntil: { visible: "\\+ Add place", timeout: 30000 }
 - tapOn: "\\+ Add place"
 - extendedWaitUntil: { visible: "Home,.*", timeout: 30000 }
@@ -63,7 +63,7 @@ name: Gumy w miejscu i w treningu
 - tapOn: "Back"
 - extendedWaitUntil: { visible: "\\+ Add place", timeout: 30000 }
 - tapOn: "Back"
-- extendedWaitUntil: { visible: "Training places,.*", timeout: 30000 }
+- extendedWaitUntil: { visible: "Places and equipment,.*", timeout: 30000 }
 - tapOn: "Back"
 - extendedWaitUntil: { visible: "Workout, tab.*", timeout: 30000 }
 - tapOn: "Workout, tab.*"

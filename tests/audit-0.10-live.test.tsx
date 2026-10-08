@@ -132,11 +132,11 @@ describe('F6 (LIVE-06 / LIVE-07): widok skupiony', () => {
 });
 
 describe('F7 (LIVE-12 / UI-08): podwójne tapnięcie przy starcie, anulowaniu i przejściach z ekranu treningu', () => {
-  test('F7 (LIVE-12): „Anuluj trening” dwa razy szybko → jedno okno', async () => {
+  test('F7 (LIVE-12): „Odrzuć trening” dwa razy szybko → jedno okno', async () => {
     await fresh(); store.startEmpty(); store.addExerciseToActive(ex('Bench Press (sztanga)')); await boot();
-    const btn = screen.getByText('Anuluj trening'); await tap(btn); await tap(btn);
-    expect(global.__alerts.filter(x => x.title === 'Anulować trening?')).toHaveLength(1);
-    await act(async () => { pressAlert('Anulować trening?', 'Wróć'); }); await tap(btn); expect(global.__alerts.filter(x => x.title === 'Anulować trening?')).toHaveLength(2); /* po „Wróć” znów działa */
+    const btn = screen.getByText('Odrzuć trening'); await tap(btn); await tap(btn);
+    expect(global.__alerts.filter(x => x.title === 'Odrzucić trening?')).toHaveLength(1);
+    await act(async () => { pressAlert('Odrzucić trening?', 'Wróć'); }); await tap(btn); expect(global.__alerts.filter(x => x.title === 'Odrzucić trening?')).toHaveLength(2); /* po „Wróć” znów działa */
   });
   test('F7 (LIVE-12): podwójne „Start” w tygodniu deload → jedno pytanie; podwójne „Pusty trening” / „Powtórz ostatni” → jeden trening', async () => {
     await fresh(); const t = withDemoTemplates(); store.toggleDeloadWeek(Date.now()); await boot();

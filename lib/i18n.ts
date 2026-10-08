@@ -44,6 +44,11 @@ export const lang = () => current;
 export const appName = () => APP_NAME[current];
 /** Locale do dat i liczb: region telefonu, gdy pasuje do języka (en-GB, pt-BR…), inaczej domyślny region języka. */
 /* Audyt ac5d764 LOW 2: porównanie po podtagu języka; serbski interfejs jest cyrylicą, więc daty też (telefon może mieć sr-Latn). */
+/** Regiony, w których ciężary podaje się zwyczajowo w funtach (H4 / UX-12, audyt 0.10) — tylko domyślna jednostka świeżej instalacji
+ * (uproszczenie produktowe, nie twierdzenie pokazywane w aplikacji; jednostkę zmienia się w Ustawieniach). */
+export const LB_REGIONS = ['US', 'LR', 'MM'] as const;
+/** Domyślna jednostka masy z regionu urządzenia (np. en-US → lb). */
+export function deviceUnit(tag: string = deviceTag): 'kg' | 'lb' { const r = (tag.split(/[-_]/).find((x, i) => i > 0 && /^[A-Za-z]{2}$/.test(x)) ?? '').toUpperCase(); return (LB_REGIONS as readonly string[]).includes(r) ? 'lb' : 'kg'; }
 export const locale = () => current === 'pl' ? 'pl-PL' : current === 'sr' ? 'sr-Cyrl-RS' : deviceTag.split(/[-_]/)[0].toLowerCase() === current ? deviceTag : TAG[current];
 /** Przecinek dziesiętny w polach liczbowych — ten sam separator co w fmtNum (audyt ac5d764 MEDIUM 1: dotąd tylko po polsku). */
 let commaCache: [string, boolean] | null = null; /* audyt cd60eec LOW: bez toLocaleString przy każdym renderze pola */

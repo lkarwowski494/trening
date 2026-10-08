@@ -156,7 +156,7 @@ test('B13 gumy: pusty kolor nie wywraca treningu z gumą', async () => {
 test('B15 reset danych zatrzymuje timery', async () => {
   await renderApp({ saved: seedWithDemo() }); await startTemplate('Upper A'); await tap(screen.getAllByLabelText(/^Seria 1 zrobiona/)[0]); expect(timer.T.on).toBe(true);
   await go('/more/settings'); await screen.findByText('Wyczyść wszystkie dane');
-  await tap(screen.getByText('Wyczyść wszystkie dane')); pressAlert('Na pewno?', 'Wyczyść'); await flushAll(10);
+  await tap(screen.getByText('Wyczyść wszystkie dane')); pressAlert('Wyczyścić wszystkie dane?', 'Wyczyść'); await flushAll(10);
   expect(timer.T.on).toBe(false); expect(store.getState().active).toBeNull();
 });
 

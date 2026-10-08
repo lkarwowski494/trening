@@ -1,16 +1,23 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ScrollView, View, Pressable } from 'react-native';
-import { useRouter } from 'expo-router';
+import { useRouter, useLocalSearchParams } from 'expo-router';
 import { Screen, Muted, Txt, Btn } from '@/components/ui';
 import { useTheme, F } from '@/lib/theme';
 import { useTick } from '@/lib/store';
 import { GUIDE, guideSeen, guideProgress, markGuideSeen } from '@/lib/guide';
 import { t } from '@/lib/i18n';
 
+/** Trasy zakładek (app/(tabs)) — „Pokaż” przechodzi do nich bez nowego zestawu zakładek na stosie. */
+export const TAB_ROUTES = ['/', '/templates', '/exercises', '/history', '/more'];
 /* Przewodnik (decyzja właściciela 08.10.2026, wariant A): tematy rozwijane w miejscu, kroki, „Pokaż” otwiera ekran; przeczytane — ✓. Treść: lib/guide.ts. */
 export default function GuideScreen() {
-  useTick(); const router = useRouter(); const th = useTheme(); const [open, setOpen] = useState<string | null>(null);
+  useTick(); const router = useRouter(); const th = useTheme(); const q = useLocalSearchParams<{ topic?: string }>();
+  /* UX-12 A (audyt 0.10): „Jak to działa” z „Pierwszych kroków” otwiera od razu temat (/guide?topic=workout) */
+  const [open, setOpen] = useState<string | null>(() => (typeof q.topic === 'string' && GUIDE.some(g => g.id === q.topic) ? q.topic : null));
+  useEffect(() => { if (open) markGuideSeen(open); }, []); // eslint-disable-line react-hooks/exhaustive-deps
   const seen = guideSeen(); const p = guideProgress();
+  /* H1 (audyt 0.10, UI-04): zakładka — zamknięcie stosu i przejście do istniejącej zakładki (jak goHome szablonu), bez drugiego zestawu zakładek */
+  const show = (route: string) => { if (TAB_ROUTES.includes(route)) { if (router.canDismiss()) router.dismissAll(); router.navigate(route as never); } else router.push(route as never); };
   return (
     <Screen><ScrollView contentContainerStyle={{ paddingVertical: 10, paddingBottom: 60 }}>
       <Muted style={{ fontSize: 13, marginBottom: 4 }}>{t('Najważniejsze funkcje w kilku krokach. „Pokaż” otwiera opisany ekran.')}</Muted>
@@ -27,7 +34,7 @@ export default function GuideScreen() {
           </Pressable>
           {on ? <View style={{ paddingHorizontal: 12, paddingBottom: 12, gap: 6 }}>
             {g.steps().map((s, i) => <Txt key={i} style={{ fontSize: 14 }}>{`${i + 1}. ${s}`}</Txt>)}
-            <Btn small kind="primary" title={t('Pokaż')} accessibilityLabel={t('Pokaż: {name}', { name: g.title() })} onPress={() => router.push(g.route as never)} style={{ alignSelf: 'flex-start', marginTop: 4 }} />
+            <Btn nav small kind="primary" title={t('Pokaż')} accessibilityLabel={t('Pokaż: {name}', { name: g.title() })} onPress={() => show(g.route)} style={{ alignSelf: 'flex-start', marginTop: 4 }} />
           </View> : null}
         </View>); })}
     </ScrollView></Screen>

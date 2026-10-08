@@ -10,8 +10,10 @@ import { getState, useTick, finishedWorkouts, templateGroups, startEmpty, newTem
 import { exportRecovery } from '@/lib/backup';
 import { TodayPlan } from '@/components/TodayPlan';
 import { WeekStats, FirstSteps } from '@/components/Dashboard';
+import { firstSteps } from '@/lib/dashboard';
 import { WhatsNewHeader } from '@/components/WhatsNew';
 import { startTemplate, startRepeatLast } from '@/lib/start';
+import { hasPlan, dayStatus, dayKeyOf, pending } from '@/lib/plan';
 import { signingState, scheduleReminder, renewTexts, type RenewKind } from '@/lib/signing';
 import { t, tp, locale } from '@/lib/i18n';
 import { fmtW, fmtNum } from '@/lib/units';
@@ -32,13 +34,17 @@ function DataBanners() {
   const err = getPersistError(); const rec = getRecovery();
   return <>
     {err ? <Item title={t('Nie udało się zapisać danych')} sub={t('Tapnij, by spróbować ponownie. Zrób też backup.')} onPress={() => flush()} /> : null}
-    {rec ? <Item title={t('Poprzednich danych nie dało się odczytać')} sub={t('Kopia jest zachowana w telefonie. Tapnij, by ją wysłać, a potem zaimportuj backup.')} onPress={() => Alert.alert(t('Poprzednich danych nie dało się odczytać'), t('Po ukryciu komunikatu kopii nie da się już wysłać z aplikacji — najpierw ją wyślij, jeśli jest potrzebna.'), [{ text: t('Anuluj'), style: 'cancel' }, { text: t('Ukryj komunikat'), onPress: () => clearRecovery() }, { text: t('Wyślij kopię'), onPress: () => { exportRecovery().then(ok => { if (!ok) Alert.alert(t('Nie udało się'), t('Spróbuj ponownie.')); }).catch(() => {}); } }])} /> : null /* runda 35: komunikat da się ukryć */}
+    {rec ? <Item title={t('Poprzednich danych nie dało się odczytać')} sub={t('Kopia jest zachowana w telefonie. Tapnij, by ją wysłać, a potem zaimportuj backup.')} onPress={() => Alert.alert(t('Poprzednich danych nie dało się odczytać'), t('Po ukryciu komunikatu kopii nie da się już wysłać z aplikacji — najpierw ją wyślij, jeśli jest potrzebna.'), [{ text: t('Anuluj'), style: 'cancel' }, { text: t('Ukryj komunikat'), style: 'destructive' /* G5 (audyt 0.10 UI-14): kopii nie da się potem wysłać */, onPress: () => clearRecovery() }, { text: t('Wyślij kopię'), onPress: () => { exportRecovery().then(ok => { if (!ok) Alert.alert(t('Nie udało się'), t('Spróbuj ponownie.')); }).catch(() => {}); } }])} /> : null /* runda 35: komunikat da się ukryć */}
   </>;
 }
 
 function Home() {
   const st = getState(); const router = useRouter(); const once = useOnce(); const th = useTheme();
   const fin = finishedWorkouts(); const last = fin[0];
+  const repeat = !!last && last.exercises.some(e => { const x = exById(e.exerciseId); return x && !x.archived; }); /* runda 42: nie proponujemy pustego treningu */
+  /* UX-16 A (audyt 0.10): dziś czeka inny trening z planu — „Powtórz ostatni” niżej i mniej wyraźny (nie konkuruje z kartą „Dziś”) */
+  const today = dayKeyOf(Date.now()); const ds = hasPlan() ? dayStatus(today, today) : null; const repeatLow = !!ds && pending(ds) && !!ds.templateId && ds.templateId !== last?.templateId;
+  const repeatBtn = last ? <Btn title={t('Powtórz ostatni ({name})', { name: last.templateName || t('bez szablonu') })} kind={repeatLow ? 'ghost' : 'default'} block onPress={once(() => startRepeatLast()) /* audyt 0.10 (D1): w tygodniu deload to samo pytanie co Start */} /> : null;
   return (
     <ScrollView contentContainerStyle={{ paddingBottom: 40 }}>
       <WhatsNewHeader>{/* 08.10.2026: „i” — Co nowego (decyzja właściciela) */}<H1>{t('Trening')}</H1><Muted>{new Date().toLocaleDateString(locale(), { weekday: 'long', day: 'numeric', month: 'long' })}</Muted></WhatsNewHeader>
@@ -50,13 +56,14 @@ function Home() {
       <FirstSteps />
       <WeekStats />
       <H2 style={{ marginTop: 22 }}>{t('Zacznij z szablonu')}</H2>
-      {!st.templates.some(x => !x.archived) /* 07.10.2026 wieczór: same zarchiwizowane — jak brak szablonów */ ? <><Muted style={{ fontSize: 13, marginBottom: 8 }}>{t('Nie masz jeszcze szablonów — utwórz pierwszy albo zacznij pusty trening.')}</Muted><Btn title={t('+ Nowy szablon')} block onPress={once(() => { const x = newTemplate(); router.push(`/template/${x.id}?edit=1&new=1`); })} /></> : null /* runda 8: pusty stan; od 03.10.2026 — stan świeżej instalacji */}
+      {!st.templates.some(x => !x.archived) && !firstSteps() /* 07.10.2026 wieczór: same zarchiwizowane — jak brak szablonów; UX-12 A: bez powtórzenia „Pierwszych kroków” */ ? <><Muted style={{ fontSize: 13, marginBottom: 8 }}>{t('Nie masz jeszcze szablonów — utwórz pierwszy albo zacznij pusty trening.')}</Muted><Btn title={t('+ Nowy szablon')} block onPress={once(() => { const x = newTemplate(); router.push(`/template/${x.id}?edit=1&new=1`); })} /></> : null /* runda 8: pusty stan; od 03.10.2026 — stan świeżej instalacji */}
       {/* 07.10.2026 wieczór: foldery jako nagłówki, bez zarchiwizowanych (store.templateGroups) */}
       {templateGroups().map(g => <React.Fragment key={g.folder ?? ''}>{g.folder ? <SectionTitle>{g.folder}</SectionTitle> : null}{g.items.map(tpl => { const lw = fin.find(x => x.templateId === tpl.id); const sets = tplWorkSets(tpl); return (
         <Item key={tpl.id} title={tpl.name} sub={`${tpl.items.length} ${t('ćw.')} · ${sets} ${tp(sets, 'seria|serie|serii')}${lw ? ' · ' + t('ostatnio') + ' ' + fmtDate(lw.startedAt) : ''}`} onPress={() => router.push(`/template/${tpl.id}`)} right={tpl.items.length ? <Btn title={t('Start')} kind="primary" small accessibilityLabel={t('Start: {name}', { name: tpl.name })} onPress={once(() => startTemplate(tpl)) /* audyt 0.10 (LIVE-12): podwójne tapnięcie — jedno pytanie / jeden trening */} /> : undefined} />); })}</React.Fragment>)}
       <View style={{ gap: 8, marginTop: 22 }}>
-        {last && last.exercises.some(e => { const x = exById(e.exerciseId); return x && !x.archived; }) /* runda 42: nie proponujemy pustego treningu */ ? <Btn title={t('Powtórz ostatni ({name})', { name: last.templateName || t('bez szablonu') })} block onPress={once(() => startRepeatLast()) /* audyt 0.10 (D1): w tygodniu deload to samo pytanie co Start */} /> : null}
+        {repeat && !repeatLow ? repeatBtn : null}
         <Btn title={t('Pusty trening')} kind="ghost" block onPress={once(() => { startEmpty(); })} />
+        {repeat && repeatLow ? repeatBtn : null}
       </View>
     </ScrollView>
   );

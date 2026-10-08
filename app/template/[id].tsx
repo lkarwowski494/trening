@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { ScrollView, View, Alert, Pressable, ActionSheetIOS, useWindowDimensions } from 'react-native';
 import { SetBadge, kindLabel } from '@/components/SetBadge';
-import { SwipeRow } from '@/components/SwipeRow';
+import { SwipeRow, lastSetBlock } from '@/components/SwipeRow';
 import { rowLayout } from '@/components/ActiveWorkout';
 import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
 import { DraftHeader, confirmDiscard } from '@/components/DraftHeader';
@@ -10,7 +10,7 @@ import { ScrollView as HScroll } from 'react-native';
 import { locationLabel } from '@/lib/locations';
 import { availability } from '@/lib/equipment';
 import { implLabel } from '@/lib/swap';
-import { getState, useTick, exById, save, dupTemplate, templateFolders, setTemplateFolder, setTemplateArchived, TEMPLATE_NOTE_MAX, groupLabels, linkWithNext, unlink, removeItem, restFor, isBW, loadLabel, loadLabelShort, occurrence, occurrences, implAtLoc, startLocationId, locationById, tplRows, tplAddRow, tplRemoveRow, tplSetRow, tplSetKind, previousBlockFor, srcSetAt, setSummary, reps, usesBand, tplCycleBand, bandA11y, shortBand, workCount, tplWorkSets, fmtSec } from '@/lib/store';
+import { getState, useTick, exById, save, dupTemplate, templateFolders, setTemplateFolder, setTemplateArchived, TEMPLATE_NOTE_MAX, groupLabels, linkWithNext, unlink, removeItem, restFor, isBW, loadLabel, loadLabelShort, occurrence, occurrences, implAtLoc, startLocationId, locationById, tplRows, tplAddRow, tplRemoveRow, tplSetRow, tplSetKind, previousBlockFor, srcSetAt, setSummary, reps, usesBand, tplCycleBand, bandA11y, shortBand, workCount, tplWorkSets, fmtSec , REPS_MAX , REST_MAX } from '@/lib/store';
 import { beginObjDraft, objDraft, objDirty, discardObjDraft, commitObjDraft, dropUnsavedNew } from '@/lib/draft';
 import { nowParts } from '@/lib/live';
 import { useTheme, F } from '@/lib/theme';
@@ -147,7 +147,7 @@ function Alternates({ tpl, itemId }: { tpl: Template; itemId: string }) {
       const name = `${locationLabel(a.locationId)}: ${exName(B)}${a.impl ? ` — ${implLabel(a.impl)}` : ''}`; const key = `${locationLabel(a.locationId)} — ${exName(B)}`;
       return <SwipeRow key={a.locationId} label={t('Usuń zamiennik: {name}', { name: key })} title={t('Usunąć zamiennik?')} message={name} onDelete={() => { if (!it.alternates) return; it.alternates = it.alternates.filter(x => x !== a); if (!it.alternates.length) delete it.alternates; save(tpl); }}>{a11y => <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
         <View style={{ flex: 1 }}><View {...a11y} accessible accessibilityLabel={name}><Txt style={{ fontSize: 14 }}>{`📍 ${name}`}</Txt></View>{av && !av.ok ? <Muted style={{ fontSize: 12, color: th.danger }}>{t('brak sprzętu w: {l}', { l: place!.name })}</Muted> : null}</View>
-        <View style={{ width: 72 }}><NumInput value={a.restSec ?? ''} onNum={v => { a.restSec = v === '' ? null : Math.min(1800, Math.max(0, Math.round(v))); save(tpl); }} placeholder={String(it.restSec ?? restFor(itEx))} accessibilityLabel={t('Przerwa zamiennika (s): {name}', { name: key })} /></View>
+        <View style={{ width: 72 }}><NumInput value={a.restSec ?? ''} onNum={v => { a.restSec = v === '' ? null : Math.min(REST_MAX, Math.max(0, Math.round(v))); save(tpl); }} placeholder={String(it.restSec ?? restFor(itEx))} accessibilityLabel={t('Przerwa zamiennika (s): {name}', { name: key })} /></View>
       </View>}</SwipeRow>; })}
   </View>;
 }
@@ -174,11 +174,11 @@ function TplRows({ tpl, it, ii, nm }: { tpl: Template; it: TemplateItem; ii: num
     <FieldHint.Provider value={nm}><View style={{ gap: 2 }}>
       {rows.map((r, k) => { const lbl = kindLabel(kinds, k); const work = r.kind !== 'warmup' && r.kind !== 'drop'; const p = work ? srcSetAt(src, j++) : null; const prevTxt = p && ex ? setSummary(ex, p, 'calc') : '—';
         return (
-          <SwipeRow key={r.id} testID={`tpl-row-${ii}-${k}`} /* E2E 08 */ disabled={rows.length <= 1} label={t('Usuń serię {n} — {ex}', { n: lbl, ex: nm })} title={t('Usunąć serię?')} message={nm} onDelete={() => { if (tplRows(it).length > 1) tplRemoveRow(tpl, it.id, r.id); }}>{a11y => <View style={{ flexDirection: 'row', alignItems: 'center', gap: W.gap, minHeight: 48 }}>
+          <SwipeRow key={r.id} testID={`tpl-row-${ii}-${k}`} /* E2E 08 */ disabled={rows.length <= 1} blocked={lastSetBlock()} label={t('Usuń serię {n} — {ex}', { n: lbl, ex: nm })} title={t('Usunąć serię?')} message={nm} onDelete={() => { if (tplRows(it).length > 1) tplRemoveRow(tpl, it.id, r.id); }}>{a11y => <View style={{ flexDirection: 'row', alignItems: 'center', gap: W.gap, minHeight: 48 }}>
             <Pressable {...a11y} onPress={() => menu(r.id, lbl)} hitSlop={8} accessibilityRole="button" accessibilityLabel={t('Seria {n}, typ: {k}. Tapnij, by zmienić typ.', { n: lbl, k: t(SET_KIND_LABEL[r.kind]) })} style={{ width: W.idx, minHeight: 44, justifyContent: 'center' }}><SetBadge kind={r.kind} label={lbl} /></Pressable>
             <View style={{ flex: 1 }}>{L.prevInline ? <Muted numberOfLines={1} style={{ fontSize: 13 }}>{prevTxt}</Muted> : null}</View>
             {hasWeight(m) ? <View style={{ width: W.w }}><NumInput weightTol decimal allowNegative={!!ex && isBW(ex)} value={wField(r.weight)} stored={r.weight} placeholder={ex ? loadLabelShort(ex, impl) : wu()} testID={`tpl-w-${ii}-${k}`} /* E2E (Maestro 08): pole ciężaru wiersza k pozycji ii */ accessibilityLabel={ex ? loadLabel(ex, impl) : wu()} onNum={(v, keep) => tplSetRow(tpl, it.id, r.id, { weight: v === '' ? '' : wInKeep(ex && isBW(ex) ? v : Math.max(0, v), keep) })} /></View> : null}
-            {hasReps(m) ? <View style={{ width: W.reps }}><NumInput value={r.reps} placeholder={it.repMin != null ? reps(it.repMin, it.repMax) : t('pow.')} testID={`tpl-r-${ii}-${k}`} /* E2E (Maestro 08) */ accessibilityLabel={t('Powtórzenia')} onNum={v => tplSetRow(tpl, it.id, r.id, { reps: v === '' ? '' : Math.max(0, Math.floor(v)) })} /></View> : null}
+            {hasReps(m) ? <View style={{ width: W.reps }}><NumInput value={r.reps} placeholder={it.repMin != null ? reps(it.repMin, it.repMax) : t('pow.')} testID={`tpl-r-${ii}-${k}`} /* E2E (Maestro 08) */ accessibilityLabel={t('Powtórzenia')} onNum={v => tplSetRow(tpl, it.id, r.id, { reps: v === '' ? '' : Math.min(REPS_MAX, Math.max(0, Math.floor(v))) }) /* UI-16 */} /></View> : null}
             {hasDistance(m) ? <View style={{ width: W.dist }}><NumInput value={r.distanceM} placeholder="m" accessibilityLabel={t('dystans')} onNum={v => tplSetRow(tpl, it.id, r.id, { distanceM: v === '' ? '' : Math.max(0, Math.round(v)) })} /></View> : null}
             {hasTime(m) ? <View style={{ width: W.time }}><NumInput value={r.durationSec} placeholder={t('cel s')} accessibilityLabel={t('cel s')} onNum={v => tplSetRow(tpl, it.id, r.id, { durationSec: v === '' ? '' : Math.min(86400, Math.max(0, Math.round(v))) })} /></View> : null}
             {band ? <Pressable accessibilityRole="button" accessibilityHint={nm} accessibilityLabel={t('Guma: {b}. Tapnij, by zmienić.', { b: r.bandId ? bandA11y(bands.find(b => b.id === r.bandId)) : t('brak') })} onPress={() => tplCycleBand(tpl, it.id, r.id)} style={{ width: W.band, minHeight: 40, borderRadius: 8, borderWidth: 1, borderColor: th.line, backgroundColor: th.surface2, alignItems: 'center', justifyContent: 'center' }}><Txt style={{ color: r.bandId ? th.band : th.muted, fontSize: 13, fontFamily: F.semibold }}>{r.bandId ? shortBand(bands.find(b => b.id === r.bandId)) : '—'}</Txt></Pressable> : null}
@@ -190,7 +190,7 @@ function TplRows({ tpl, it, ii, nm }: { tpl: Template; it: TemplateItem; ii: num
         <Btn title={t('+ drop set')} small kind="ghost" accessibilityHint={nm} onPress={() => tplAddRow(tpl, it.id, 'drop')} />
       </View>
       <View style={{ flexDirection: 'row', gap: 8, alignItems: 'flex-end', marginTop: 4 }}>
-        <View style={{ width: 96 }}><Field label={t('przerwa s')}><NumInput value={it.restSec ?? ''} onNum={v => { it.restSec = int(v, 0, 1800); save(tpl); }} placeholder={String(restFor(ex))} /></Field></View>
+        <View style={{ width: 96 }}><Field label={t('przerwa s')}><NumInput value={it.restSec ?? ''} onNum={v => { it.restSec = int(v, 0, REST_MAX); save(tpl); }} placeholder={String(restFor(ex))} /></Field></View>
         {hasReps(m) && !range ? <Btn title={t('+ zakres powtórzeń')} small kind="ghost" accessibilityHint={nm} style={{ marginBottom: 12 }} onPress={() => setRange(true)} /> : null}
         {hasReps(m) && range ? <>
           <View style={{ width: 72 }}><Field label={t('pow. od')}><NumInput value={it.repMin ?? ''} accessibilityLabel={`${t('powtórzenia od')} — ${nm}`} onNum={v => { it.repMin = int(v, 1, 100); save(tpl); }} /></Field></View>
@@ -209,5 +209,5 @@ function TplRows({ tpl, it, ii, nm }: { tpl: Template; it: TemplateItem; ii: num
 /** Linijka zwiniętej karty: liczba serii (rozgrzewki osobno), zakres, przerwa. */
 function tplSummary(it: TemplateItem): string {
   const rows = tplRows(it); const w = workCount(rows.map(r => r.kind)), wu = rows.filter(r => r.kind === 'warmup').length; const ex = exById(it.exerciseId); /* D3 (audyt 0.10): drop razem z serią */
-  return [`${w} ${tp(w, 'seria|serie|serii')}`, wu ? t('{n} rozgrz.', { n: wu }) : '', it.repMin != null ? reps(it.repMin, it.repMax) : '', `${it.restSec ?? restFor(ex)} s`].filter(Boolean).join(' · ');
+  return [`${w} ${tp(w, 'seria|serie|serii')}`, wu ? t('{n} rozgrz.', { n: wu }) : '', it.repMin != null ? reps(it.repMin, it.repMax) : '', fmtSec(it.restSec ?? restFor(ex)) /* H3 (audyt 0.10 UI-13): przerwa jak w treningu i historii (2:30) */].filter(Boolean).join(' · ');
 }

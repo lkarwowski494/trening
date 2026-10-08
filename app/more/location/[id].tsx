@@ -1,10 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { ScrollView, View, Alert, Pressable, Text } from 'react-native';
+import { BandColorInput } from '@/components/BandColorInput';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Screen, Field, Input, Btn, Muted, SwitchRow, Chip, useOnce } from '@/components/ui';
 import LoadEditor from '@/components/LoadEditor';
 import { getState, useTick, locationById, visibleExercises, bandColor } from '@/lib/store';
-import { setMainLocation, renameLocation, commitLocationName, duplicateLocation, deleteLocation, canDeleteLocation, setEquip, setOpt, activeEquip, setBandLevel, setBandColor } from '@/lib/locations';
+import { setMainLocation, renameLocation, commitLocationName, duplicateLocation, deleteLocation, canDeleteLocation, setEquip, setOpt, activeEquip, setBandLevel } from '@/lib/locations';
 import type { Location } from '@/lib/seed';
 import { EQUIPMENT, EQUIP_GROUPS, EQUIP_GROUP_LABEL, equipLabel, availability, capsOf } from '@/lib/equipment';
 import { t } from '@/lib/i18n';
@@ -64,9 +65,9 @@ function BandLevels({ l, levels, label }: { l: Location; levels?: number[]; labe
       {on.map(n => { const b = bands.find(x => x.level === n); return b ? (
         <View key={n} style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
           <Muted style={{ width: 70 }}>{t('poziom {n}', { n })}</Muted>
-          <View style={{ flex: 1 }}><Input maxLength={30} selectTextOnFocus placeholder={t('kolor')} accessibilityLabel={`${t('Kolor gumy')}: ${t('poziom {n}', { n })}`} value={b.color ? bandColor(b) : ''} onChangeText={v => setBandColor(n, v)} /></View>
+          <View style={{ flex: 1 }}><BandColorInput band={b} accessibilityLabel={`${t('Kolor gumy')}: ${t('poziom {n}', { n })}`} /* G2 (audyt 0.10): ta sama zasada co ekran Gumy */ /></View>
         </View>) : null; })}
-      <Btn title={t('Usuń gumy…')} small kind="ghost" style={{ alignSelf: 'flex-start' }} onPress={() => router.push('/more/bands')} />
+      <Btn nav title={t('Usuń gumy…')} small kind="ghost" style={{ alignSelf: 'flex-start' }} onPress={() => router.push('/more/bands')} />
     </View>
   );
 }

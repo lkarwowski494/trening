@@ -887,7 +887,7 @@ describe('EKRAN /swap', () => {
     await go(swapUrl('active:' + blk(bi).id)); await flushAll(20);
     expect(screen.getByText('Brak podobnych ćwiczeń w tym miejscu — rozwiń „Inne”.')).toBeTruthy();
     await tap(screen.getByLabelText('Pokaż inne ćwiczenia')); await flushAll(5);
-    expect(screen.getByText('Inne ▴')).toBeTruthy(); expect(screen.getByLabelText('Zwiń inne ćwiczenia')).toBeTruthy();
+    expect(screen.getByText('Inne')).toBeTruthy(); expect(screen.getByLabelText('Zwiń inne ćwiczenia')).toBeTruthy();
     const grp = 'Filtr partii: klatka. Tapnij, by zdjąć.', locL = 'Filtr miejsca: Dom. Tapnij, by zdjąć.';
     expect(screen.getByLabelText(grp)).toBeTruthy(); expect(screen.getByLabelText(locL)).toBeTruthy();
     expect(screen.queryByText('Goblet Squat')).toBeNull(); expect(screen.getAllByText('Push Up').length).toBeGreaterThan(0);
@@ -970,7 +970,7 @@ describe('EKRAN /swap', () => {
     await go(swapUrl('active:' + blk(0).id)); await flushAll(20);
     expect(screen.getByText('Suggestions')).toBeTruthy(); expect(screen.getByText('Cancel')).toBeTruthy();
     await tap(screen.getByLabelText('Show other exercises')); await flushAll(5);
-    const txt = JSON.stringify(screen.toJSON()); expect(txt).not.toMatch(/Propozycje|Inne ▴|Anuluj|Szukaj ćwiczenia|Filtr partii|Zamiana tylko/);
+    const txt = JSON.stringify(screen.toJSON()); expect(txt).not.toMatch(/Propozycje|Zwiń inne ćwiczenia|Anuluj|Szukaj ćwiczenia|Filtr partii|Zamiana tylko/);
   });
 });
 

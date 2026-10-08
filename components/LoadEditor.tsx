@@ -13,7 +13,7 @@ import type { Location, LocEquip } from '@/lib/seed';
 /*
  * P-003 E1: edytor dostępnych ciężarów pozycji sprzętu (docs/10, sekcja 3.2). Wartości w jednostce sprzętu (kg albo lb — talerz
  * 45 lb ≠ 20 kg); każda zmiana zapisuje się od razu. Lista: ciężary z przełącznikiem (odznaczasz kg, których nie masz) i skrót
- * „wypełnij zakresem”; uchwyt/gryf + talerze w sztukach; stacja elektryczna: zakres na stronę + krok.
+ * „wypełnij zakresem” (dopisuje — audyt 0.10 G1); uchwyt/gryf + talerze w sztukach; stacja elektryczna: zakres na stronę + krok.
  * Audyt E1: limity wspólne z sanityzacją (LOAD_LIMITS) widoczne w edytorze, nic nie jest ucinane po cichu (H1, M11); zmiana jednostki
  * przelicza wartości (M4); preset modelu nie nadpisuje wpisanych ciężarów bez pytania (M5); przyciski i ciężary z nazwą pozycji (M7).
  */
@@ -46,7 +46,7 @@ export default function LoadEditor({ loc, entry, item }: { loc: Location; entry:
   const presets = LOAD_PRESETS.filter(p => p.item === item.id);
   const applyPreset = (p: typeof presets[number]) => { const go = () => { applyLoadPreset(entry, p); upd(); };
     if (!filled(spec)) { go(); return; }
-    Alert.alert(t('Zastąpić wpisane ciężary?'), t('{p} zastąpi ciężary wpisane dla: {i}.', { p: equipLabel(p.label), i: name }), [{ text: t('Nie') }, { text: t('Zastąp'), style: 'destructive', onPress: go }]); };
+    Alert.alert(t('Zastąpić wpisane ciężary?'), t('{p} zastąpi ciężary wpisane dla: {i}.', { p: equipLabel(p.label), i: name }), [{ text: t('Nie'), style: 'cancel' }, { text: t('Zastąp'), style: 'destructive', onPress: go }]); };
   const problem = validateSpec(spec);
   return (
     <FieldHint.Provider value={name}><View style={{ marginLeft: 12, paddingLeft: 10, borderLeftWidth: 2, borderLeftColor: th.line, marginVertical: 6, gap: 6 }}>
@@ -60,14 +60,15 @@ export default function LoadEditor({ loc, entry, item }: { loc: Location; entry:
           <View style={{ flex: 1 }}><Field label={t('od')}><NumInput decimal value={rng.min} onNum={v => setRng({ ...rng, min: v })} /></Field></View>
           <View style={{ flex: 1 }}><Field label={t('do')}><NumInput decimal value={rng.max} onNum={v => setRng({ ...rng, max: v })} /></Field></View>
           <View style={{ flex: 1 }}><Field label={t('co')}><NumInput decimal value={rng.step} onNum={v => setRng({ ...rng, step: v })} /></Field></View>
-          <View style={{ marginBottom: 12 }}><Btn small title={t('Wypełnij')} accessibilityLabel={lbl(t('Wypełnij zakresem'))} onPress={() => { if (rng.min === '' || rng.max === '' || rng.step === '') return; const items = fillRange(spec.items, rng.min, rng.max, rng.step);
-            if (!items) { const c = rangeCount(rng.min, rng.max, rng.step); setMsg(c == null || rng.min < W_MIN || rng.max > W_MAX || rng.step < W_MIN ? t('Zakres jest niepoprawny: „do” musi być ≥ „od”, krok > 0, wartości od {a} do {b}.', { a: fmtNum(W_MIN, 3), b: W_MAX }) : t('Ciężarów w tym zakresie: {c} — najwyżej {n}. Zwiększ krok.', { c, n: LOAD_LIMITS.listItems })); return; }
+          <View style={{ marginBottom: 12 }}><Btn small title={t('Wypełnij')} accessibilityLabel={lbl(t('Wypełnij zakresem'))} onPress={() => { if (rng.min === '' || rng.max === '' || rng.step === '') return; const items = fillRange(spec.items, rng.min, rng.max, rng.step); /* G1 (audyt 0.10, wariant A): zakres dopisuje, nic nie znika */
+            if (!items) { const c = rangeCount(rng.min, rng.max, rng.step); const all = fillRange(spec.items, rng.min, rng.max, rng.step, Infinity); setMsg(c == null || !all ? t('Zakres jest niepoprawny: „do” musi być ≥ „od”, krok > 0, wartości od {a} do {b}.', { a: fmtNum(W_MIN, 3), b: W_MAX }) : c > LOAD_LIMITS.listItems ? t('Ciężarów w tym zakresie: {c} — najwyżej {n}. Zwiększ krok.', { c, n: LOAD_LIMITS.listItems }) : t('Po dopisaniu zakresu byłoby ciężarów: {c} — najwyżej {n}. Zwiększ krok albo usuń odznaczone.', { c: all.length, n: LOAD_LIMITS.listItems })); return; }
             spec.items = items; upd(); }} /></View>
         </View>
         <View style={{ flexDirection: 'row', gap: 6, alignItems: 'flex-end' }}>
           <View style={{ flex: 1 }}><Field label={t('dodaj ciężar')}><NumInput decimal value={add} onNum={setAdd} /></Field></View>
           <View style={{ marginBottom: 12 }}><Btn small title="+" accessibilityLabel={lbl(t('Dodaj ciężar'))} onPress={() => { if (add === '' || add < W_MIN || add > W_MAX) { if (add !== '') setMsg(t('Ciężar od {a} do {b}.', { a: fmtNum(W_MIN, 3), b: W_MAX })); return; } if (!spec.items.some(x => Math.abs(x.w - add) < 1e-9)) { if (spec.items.length >= LOAD_LIMITS.listItems) { setMsg(t('Za dużo ciężarów (najwyżej {n}).', { n: LOAD_LIMITS.listItems })); return; } spec.items.push({ w: Math.round(add * 1000) / 1000, on: true }); } setAdd(''); upd(); }} /></View>
-          {spec.items.some(x => !x.on) ? <View style={{ marginBottom: 12 }}><Btn small kind="ghost" title={t('Usuń odznaczone')} accessibilityLabel={lbl(t('Usuń odznaczone'))} onPress={() => { spec.items = spec.items.filter(x => x.on); upd(); }} /></View> : null}
+          {spec.items.some(x => !x.on) ? <View style={{ marginBottom: 12 }}><Btn small kind="ghost" title={t('Usuń odznaczone')} accessibilityLabel={lbl(t('Usuń odznaczone'))} onPress={() => { const off = spec.items.filter(x => !x.on).sort((a, b) => a.w - b.w); /* G1 (audyt 0.10, wariant B): przycisk zostaje, z potwierdzeniem jak usuwanie gestem (chipów nie da się przesunąć) */
+            Alert.alert(t('Usunąć odznaczone ciężary?'), `${off.map(x => n(x.w)).join(', ')} ${spec.unit}\n${name}`, [{ text: t('Nie'), style: 'cancel' }, { text: t('Usuń'), style: 'destructive', onPress: () => { spec.items = spec.items.filter(x => x.on); upd(); } }]); }} /></View> : null}
         </View>
       </> : null}
       {spec.kind === 'plates' ? <>

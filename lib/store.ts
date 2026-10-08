@@ -2,7 +2,7 @@ import { deloadSets } from '@/lib/deload-sets';
 import * as SQLite from 'expo-sqlite';
 import * as FileSystem from 'expo-file-system/legacy';
 import { useSyncExternalStore } from 'react';
-import { t, t as tr, tIn, applyLang, detectLang, locale, fold, isLang, lang } from './i18n';
+import { t, t as tr, tIn, applyLang, detectLang, locale, fold, isLang, lang, deviceUnit } from './i18n';
 import { applyUnit, wu, wOut, wIn, KG_PER_LB, fmtW, fmtNum, snapLegacyLb } from './units';
 import { applyTheme } from './theme';
 import { seedState, uid, base, defaultModules, defaultSettings, metricFor, loadModeFor, loadMult, blankTimer, musclesFor, hasTime, hasReps, hasWeight, hasDistance, METRICS, DEFAULT_REST, GROUPS, LIB, SCHEMA_VERSION, LOCAL_OWNER, MODULES, SET_KINDS, SINGLE_IMPLEMENT, equipFields, libExercise, LIB_EXTRA_REVS, LIB_EXTRA_REV, LIB_MUSCLE_FIXES, libExtraRevOf, LIB_BASE_NAMES, LOAD_SOURCE_BY_EQUIPMENT, IMPLS, own, type Impl, type SetKind, type Base, type State, type Workout, type WSet, type WExercise, type Exercise, type Template, type TemplateItem, type TemplateAlt, type TRow, type Morning, type Location, type PlanSegment, LIB_KEYS, catalogKey, libKeyFromFields, BODY_MASS_MAX } from './seed';
@@ -122,7 +122,7 @@ export async function init(): Promise<void> {
     }
   }
   if (!recovery) { try { const m = await db.getFirstAsync<{ v: string }>('SELECT v FROM kv WHERE k = ?', 'recovery'); const r = m ? JSON.parse(m.v) : null; if (r && typeof r.key === 'string') recovery = { key: r.key, at: Number(r.at) || 0 }; } catch {} }
-  if (!S) { S = seedState(detectLang()); needsPersist = true; }
+  if (!S) { S = seedState(detectLang()); S.settings.unit = deviceUnit(); /* H4 (audyt 0.10 UX-12): świeża instalacja — jednostka z regionu (en-US → lb) */ needsPersist = true; }
   applyPrefs();
   if (needsPersist) await persistNow().catch(() => {});
   bump(true); emit();
@@ -373,6 +373,7 @@ export function migrate(raw: any): State {
     if (typeof raw.deloadSnooze !== 'string' || !DATE_KEY.test(raw.deloadSnooze)) delete raw.deloadSnooze; }
   { const g = [...new Set((Array.isArray(raw.guideSeen) ? raw.guideSeen : []).filter((x: unknown) => typeof x === 'string' && x && x.length <= 40))].slice(0, 50); if (g.length) raw.guideSeen = g; else delete raw.guideSeen; } /* przewodnik (08.10.2026) */
   if (typeof raw.whatsNewSeen !== 'string' || !raw.whatsNewSeen || raw.whatsNewSeen.length > 40) delete raw.whatsNewSeen; /* „Co nowego” (08.10.2026) */
+  if (raw.planHintHidden !== true) delete raw.planHintHidden; /* audyt 0.10 UX-16 A: tylko true (pole opcjonalne schematu 18) */
   if (raw.optFill !== OPT_FILL.rev) { for (const l of raw.settings.locations) fillOpts(l); raw.optFill = OPT_FILL.rev; } /* bieżnia: nachylenie (05.10.2026), raz */
   raw.ownerId = owner;
   if (!Number.isFinite(raw.v)) raw.v = 2; if (raw.metaUpdatedAt != null && tsOf(raw.metaUpdatedAt) == null) delete raw.metaUpdatedAt; /* runda 53 */
@@ -587,6 +588,8 @@ export const reps = (min: number | null, max: number | null) => min == null ? 'm
 /** Czas „m:ss”, od godziny „h:mm:ss” (wcześniej 95:00 zamiast 1:35:00). */
 export const fmtDur = (sec: number) => { sec = Math.max(0, Math.round(sec)); const h = Math.floor(sec / 3600), m = Math.floor((sec % 3600) / 60), r = sec % 60; return h ? `${h}:${String(m).padStart(2, '0')}:${String(r).padStart(2, '0')}` : `${m}:${String(r).padStart(2, '0')}`; };
 /** Data do list. Runda 14: rok, gdy nie bieżący — sesje sprzed roku nie wyglądają jak tegoroczne. */
+/** H3 (audyt 0.10 UI-13): dzień „RRRR-MM-DD” w tym samym formacie co fmtDate („pon., 12 paź”; rok, gdy inny niż bieżący) — panel dnia, podpowiedź deload, „Dziś”, okna planu. */
+export const fmtDayKey = (k: string) => { const ts = localDateTs(k); return Number.isFinite(ts) ? fmtDate(ts + 12 * 3600e3) : k; };
 export const fmtDate = (ts: number) => { const d = new Date(ts); return d.toLocaleDateString(locale(), { weekday: 'short', day: 'numeric', month: 'short', ...(d.getFullYear() !== new Date().getFullYear() ? { year: 'numeric' as const } : {}) }); };
 export const fmtTime = (ts: number) => new Date(ts).toLocaleTimeString(locale(), { hour: '2-digit', minute: '2-digit' });
 /** Dzisiejsza data w strefie telefonu (RRRR-MM-DD). toISOString() dawało datę UTC — w Polsce po północy „wczoraj”. */
@@ -971,7 +974,7 @@ function fixRows(it: any) {
   if (!Array.isArray(it.rows)) { delete it.rows; return; }
   const num = (v: unknown, min: number, max: number, int = true) => { const x = parseNum(v); return x == null ? '' : Math.min(max, Math.max(min, int ? Math.round(x) : x)); };
   it.rows = it.rows.filter(isObj).slice(0, 50).map((r: any) => ({ id: typeof r.id === 'string' && r.id ? r.id : uid(), kind: (SET_KINDS as readonly string[]).includes(r.kind) ? r.kind : 'normal',
-    reps: num(r.reps, 0, 1000), weight: (v => v == null ? '' : kg2(snapL(v) as number))(parseNum(r.weight)), durationSec: num(r.durationSec, 0, 86400), distanceM: num(r.distanceM, 0, 1e6), ...(typeof r.bandId === 'string' && r.bandId ? { bandId: r.bandId } : {}) }));
+    reps: num(r.reps, 0, REPS_MAX), weight: (v => v == null ? '' : kg2(snapL(v) as number))(parseNum(r.weight)), durationSec: num(r.durationSec, 0, 86400), distanceM: num(r.distanceM, 0, 1e6), ...(typeof r.bandId === 'string' && r.bandId ? { bandId: r.bandId } : {}) }));
   syncItem(it);
 }
 /** Pozycja szablonu, która trafi do treningu przy starcie (runda 42: usunięte ćwiczenie, np. z importu, nie wraca do treningu). Audyt 0.10 (LOG-17):
@@ -1542,6 +1545,10 @@ export function setTimerState(patch: Partial<State['timer']>) { const st = getSt
 /* ---------- misc ---------- */
 /** Runda 39: wspólny limit długości nazw (pola edycji mają maxLength = NAME_MAX). */
 export const NAME_MAX = 80;
+/** UI-16 (audyt 0.10): jedna górna granica powtórzeń serii — trening, szablon, edycja historii i wczytanie (fixRows). */
+export const REPS_MAX = 1000;
+/** Najdłuższa przerwa ustawiana ręcznie (s) — ćwiczenie, pozycja szablonu, zamiennik, trening. */
+export const REST_MAX = 1800;
 /** Runda 40: przycięcie do n jednostek UTF-16 bez rozcinania emoji (pary zastępczej) i bez spacji na końcu. */
 export const clampName = (s: string, n = NAME_MAX) => { let r = s.slice(0, Math.max(0, n)); if (/[\uD800-\uDBFF]$/.test(r)) r = r.slice(0, -1); return r.trimEnd(); };
 /* ---------- plan tygodnia: liczby i porządkowanie danych w jednym miejscu (audyt 0.10: A1, B3, B4 — migrate i lib/plan.ts) ---------- */
@@ -1633,8 +1640,10 @@ export function deleteTemplate(id: string) { const st = getState(); st.templates
 /** Włączanie/wyłączanie modułu (ADR-011). 'training' jest zawsze włączony. */
 export function setModule(m: keyof State['settings']['modules'], on: boolean) { const s = getState().settings; s.modules[m] = m === 'training' ? true : on; save(); }
 /** Reset: nowe dane startowe w języku, który będzie widoczny po resecie (ustawienie wraca na „auto” = język telefonu). */
-export function resetAll() { replaceState(seedState(detectLang())); clearRecovery(); flush(); }
+export function resetAll() { const s = seedState(detectLang()); s.settings.unit = deviceUnit(); /* jak świeża instalacja (UX-12) */ replaceState(s); clearRecovery(); flush(); }
 export type { WExercise };
+/** UX-16 A (audyt 0.10): „Ukryj” zachętę do planu tygodnia (karta „Dziś” i Kalendarz); `false` — pokaż znowu. Stan ekranu — bez userTouched. */
+export function setPlanHintHidden(on: boolean) { const st = getState(); if (on) st.planHintHidden = true; else delete st.planHintHidden; save(); }
 /** Tylko dla testów: czy store jest zainicjowany. */
 export const isReadyForTests = () => !!S;
 /** Tylko dla testów: czyści stan modułu (bez dotykania bazy). */

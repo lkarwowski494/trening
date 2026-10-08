@@ -11,7 +11,7 @@ const tpl3 = () => { const st = store.getState(); const t = { ...st.templates[0]
 test('karty zwinięte z podsumowaniem; dotknięcie otwiera jedną (inne się zwijają); bez strzałek ↑↓', async () => {
   await fresh(); tpl3(); await store.flush(); await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())) }); await go('/template/tc'); await flushAll(10); await startEdit();
   expect(cards().map(c => c.props.accessibilityState.expanded)).toEqual([false, false, false]);
-  expect(cards()[0].props.accessibilityValue.text).toBe('3 serie · 8–12 · 120 s'); expect(screen.queryByLabelText('Przesuń wyżej')).toBeNull(); expect(screen.queryByLabelText('Przesuń niżej')).toBeNull();
+  expect(cards()[0].props.accessibilityValue.text).toBe('3 serie · 8–12 · 2:00'); expect(screen.queryByLabelText('Przesuń wyżej')).toBeNull(); expect(screen.queryByLabelText('Przesuń niżej')).toBeNull();
   await tap(cards()[1]); expect(cards().map(c => c.props.accessibilityState.expanded)).toEqual([false, true, false]); expect(screen.getAllByText('+ seria').length).toBe(1);
   await tap(cards()[2]); expect(cards().map(c => c.props.accessibilityState.expanded)).toEqual([false, false, true]);
   await tap(cards()[2]); expect(cards().map(c => c.props.accessibilityState.expanded)).toEqual([false, false, false]);

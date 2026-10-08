@@ -1,0 +1,66 @@
+# Edycja na żądanie (decyzja właściciela 08.10.2026 ok. 21:30, docs/18): ekran ćwiczenia otwiera się w podglądzie (bez pól), „Edit exercise”
+# zaczyna edycję na szkicu z „Cancel …” / „Save …” w nagłówku; „Cancel” ze zmianami pyta „Discard changes?”, a zapis zostaje po restarcie.
+# Szablon — ten sam wzór w 08 (podgląd, „Edit template”, „Discard changes”) i w podprzepływie szablon-testowy.yaml („Save template”).
+# Logika i ekrany: tests/edit-on-demand.test.tsx.
+#
+# Literały (EN z lib/i18n.en.ts):
+#   "Exercises, tab.*"           ← 'Ćwiczenia' + etykieta zakładki (jak „Calendar, tab.*” w 05)
+#   "Search…"                    ← 'Szukaj…' (pole wyszukiwania na zakładce Ćwiczenia)
+#   "Back Squat, barbell.*"      ← wiersz listy: „{nazwa}, {sprzęt}” (Item, components/ui.tsx; 'sztanga' → barbell)
+#   "Edit exercise"              ← 'Edytuj ćwiczenie' (accessibilityLabel przycisku „Edytuj” w podglądzie, app/exercise/[id].tsx)
+#   "Body part: legs"            ← wiersz podglądu „{etykieta}: {wartość}” ('Partia' → Body part, 'nogi' → legs)
+#   "Save exercise" / "Cancel exercise editing" ← 'Zapisz ćwiczenie' / 'Anuluj edycję ćwiczenia' (nagłówek edycji, components/DraftHeader.tsx)
+#   "weight \+ time"             ← chip 'ciężar + czas' (pole „What you log per set”)
+#   "What you log per set: weight \+ time" ← wiersz podglądu po zapisie
+#   "Discard changes\?" → "Discard changes" ← 'Odrzucić zmiany?' → 'Odrzuć zmiany'
+appId: pl.lukasz.trening
+name: Edycja na żądanie — ekran ćwiczenia
+---
+- launchApp:
+    clearState: true
+    permissions: { all: allow }
+- extendedWaitUntil: { visible: "Start from a template", timeout: 60000 }
+- tapOn: "Exercises, tab.*"
+- extendedWaitUntil: { visible: "Search…", timeout: 30000 }
+- tapOn: "Search…"
+- inputText: "Back Squat"
+- tapOn: { text: "Continue", optional: true }
+- tapOn: "Back Squat, barbell.*"
+
+# --- podgląd: wiersze z wartościami, bez pól edycji ---
+- extendedWaitUntil: { visible: "Edit exercise", timeout: 30000 }
+- assertVisible: "Body part: legs"
+- assertNotVisible: "Save exercise"
+- takeScreenshot: 50-podglad-cwiczenia
+
+# --- „Edit exercise” → zmiana → „Cancel” → „Discard changes?” → „Discard changes”: dane bez zmian ---
+- tapOn: "Edit exercise"
+- extendedWaitUntil: { visible: "Save exercise", timeout: 15000 }
+- tapOn: "weight \\+ time"
+- takeScreenshot: 51-edycja-cwiczenia
+- tapOn: "Cancel exercise editing"
+- extendedWaitUntil: { visible: "Discard changes\\?", timeout: 15000 }
+- tapOn: "Discard changes"
+- extendedWaitUntil: { visible: "Edit exercise", timeout: 15000 }
+- assertVisible: "What you log per set: weight \\+ reps"
+
+# --- „Edit exercise” → zmiana → „Save exercise”: zapis i podgląd; zostaje po restarcie ---
+- tapOn: "Edit exercise"
+- extendedWaitUntil: { visible: "Save exercise", timeout: 15000 }
+- tapOn: "weight \\+ time"
+- tapOn: "Save exercise"
+- extendedWaitUntil: { visible: "Edit exercise", timeout: 15000 }
+- assertVisible: "What you log per set: weight \\+ time"
+- stopApp
+- launchApp:
+    clearState: false
+- extendedWaitUntil: { visible: "Start from a template", timeout: 60000 }
+- tapOn: "Exercises, tab.*"
+- extendedWaitUntil: { visible: "Search…", timeout: 30000 }
+- tapOn: "Search…"
+- inputText: "Back Squat"
+- tapOn: { text: "Continue", optional: true }
+- tapOn: "Back Squat, barbell.*"
+- extendedWaitUntil: { visible: "Edit exercise", timeout: 30000 }
+- assertVisible: "What you log per set: weight \\+ time"
+- takeScreenshot: 52-po-restarcie

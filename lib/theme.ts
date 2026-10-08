@@ -6,9 +6,9 @@ import { Appearance, useColorScheme } from 'react-native';
  * Kontrast (WCAG): tests/ux.test.tsx C5 — akcent #1F5FD1 na papierze 5,3:1, w ciemnym motywie jaśniejszy #6F9BF2.
  */
 export const BRAND = { paper: '#F4F3EF', ink: '#15171A', signal: '#1F5FD1' } as const;
-export const light: Record<'bg' | 'surface' | 'surface2' | 'line' | 'text' | 'muted' | 'accent' | 'accentInk' | 'done' | 'doneLine' | 'danger' | 'band', string> = { bg: BRAND.paper, surface: '#ffffff', surface2: '#e9e7e1', line: '#d6d3cb', text: BRAND.ink, muted: '#4a4d53', accent: BRAND.signal, accentInk: '#ffffff', done: '#e2ece0', doneLine: '#2e7d4f', danger: '#b3261e', band: '#136f75' };
+export const light: Record<'bg' | 'surface' | 'surface2' | 'line' | 'text' | 'muted' | 'accent' | 'accentInk' | 'done' | 'doneLine' | 'danger' | 'dangerInk' | 'band', string> = { bg: BRAND.paper, surface: '#ffffff', surface2: '#e9e7e1', line: '#d6d3cb', text: BRAND.ink, muted: '#4a4d53', accent: BRAND.signal, accentInk: '#ffffff', done: '#e2ece0', doneLine: '#2e7d4f', danger: '#b3261e', dangerInk: '#ffffff' /* UI-09 (audyt 0.10): tekst na tle danger */, band: '#136f75' };
 /** Ciemna wersja: grafitowe tło, papierowy tekst, ten sam niebieski (jaśniejszy). */
-export const dark: typeof light = { bg: '#121316', surface: '#1b1d21', surface2: '#26282d', line: '#3a3d43', text: '#eceae4', muted: '#a6a9af', accent: '#6f9bf2', accentInk: '#121316', done: '#1f2e24', doneLine: '#4e9a6a', danger: '#ec7a72', band: '#5fc3c9' };
+export const dark: typeof light = { bg: '#121316', surface: '#1b1d21', surface2: '#26282d', line: '#3a3d43', text: '#eceae4', muted: '#a6a9af', accent: '#6f9bf2', accentInk: '#121316', done: '#1f2e24', doneLine: '#4e9a6a', danger: '#ec7a72', dangerInk: '#121316' /* UI-09: 6,7:1 zamiast 2,77:1 (biały na #ec7a72) */, band: '#5fc3c9' };
 export type Theme = typeof dark;
 /** Wygląd z ustawień (decyzja 05.10.2026, domyślnie jasny — potwierdzone 07.10.2026). Nadpisuje tryb systemu dla całej aplikacji. */
 export function applyTheme(x: 'light' | 'dark' | 'auto' | undefined) { try { Appearance.setColorScheme(x === 'dark' ? 'dark' : x === 'auto' ? 'unspecified' : 'light'); } catch { /* bez natywnego modułu (web) — tryb systemu */ } }
