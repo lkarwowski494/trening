@@ -151,3 +151,9 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
 - 08.10.2026: kolejność — **A: najpierw wydanie 0.10.0 (po zielonym E2E), potem wstrzymanie nowych funkcji i głęboki audyt** (logika i liczby
   w `lib/`, sens funkcji i źródła, spójność ekranów i komunikatów, dane i migracje, tłumaczenia; każdy błąd z testem regresji).
   Odrzucone: B audyt przed wydaniem (dłużej na starej wersji), C krótki audyt nowości przed wydaniem.
+- 08.10.2026: **audyt 0.10.0** (polecenie właściciela: „super głęboki audyt wszystkich możliwych warstw”, w tym spójność logik) wykonany na
+  d2a1e85 przez 10 niezależnych audytorów; raport `docs/25-audyt-0.10.md` (ok. 95 problemów w grupach A–N, opcje i rekomendacje),
+  raporty źródłowe `docs/audyt-0.10/`. Czcionka na karcie „teraz” w 0.10.0 zgodna z decyzją (dwa niezależne pomiary). Do decyzji
+  właściciela: wydanie 0.10.0 przed czy po partii napraw; decyzje w grupach (lista w docs/25). E2E 0.10.0 (run 37793333239) czeka na
+  maszynę macOS — GitHub od 14:32 UTC anuluje przebieg bez przydzielenia maszyny („capacity constraints”, macOS arm64); ponawiane od razu
+  po każdym anulowaniu (polecenie właściciela).
