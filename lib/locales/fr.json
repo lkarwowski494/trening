@@ -899,7 +899,6 @@
  "Kreska = {n} serii na partię w tygodniu. Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; każdy trening siłowy daje przyrost w porównaniu z brakiem treningu. Uproszczenie: serie pomocnicze liczymy po 0,5.": "Trait = {n} séries par groupe musculaire par semaine. Position ACSM 2026 : avec au moins {n} séries par groupe musculaire et par semaine, la prise de muscle était plus grande qu’avec un volume moindre ; tout entraînement de force fait progresser le muscle par rapport à aucun entraînement. Simplification : les séries secondaires comptent pour 0,5.",
  "co najmniej {n}": "au moins {n}",
  "Tydzień deload": "Semaine de décharge",
- "Twoje oznaczenie, np. lżejszy tydzień. Aplikacja go nie ocenia ani nie planuje.": "Votre propre étiquette, p. ex. une semaine plus légère. L’app ne la juge ni ne la planifie.",
  "Poprzedni tydzień jest oznaczony jako deload.": "La semaine précédente est marquée comme décharge.",
  "D — tydzień oznaczony jako deload.": "D — semaine marquée comme décharge.",
  "Kalendarz": "Calendrier",
@@ -960,5 +959,16 @@
  "Karta bieżącej serii w treningu; widok „Lista” jak wcześniej do wyboru w Ustawieniach.": "Carte de la série en cours pendant la séance ; la vue « Liste » comme avant, au choix dans les Réglages.",
  "10 nowych języków: niemiecki, francuski, włoski, niderlandzki, szwedzki, duński, norweski, fiński, turecki i grecki.": "10 nouvelles langues : allemand, français, italien, néerlandais, suédois, danois, norvégien, finnois, turc et grec.",
  "Pierwsza wersja testowa: treningi z szablonów, historia, postępy i rekordy, kopia zapasowa w Plikach.": "Première version de test : séances à partir de modèles, historique, progrès et records, sauvegarde dans Fichiers.",
- "16 języków; wygląd jasny, ciemny albo jak w telefonie.": "16 langues ; apparence claire, sombre ou comme le téléphone."
+ "16 języków; wygląd jasny, ciemny albo jak w telefonie.": "16 langues ; apparence claire, sombre ou comme le téléphone.",
+ "Zacząć z mniejszą liczbą serii: {a} zamiast {b} serii roboczych? Ciężary bez zmian, szablon się nie zmienia.": "Commencer avec moins de séries : {a} au lieu de {b} séries de travail ? Mêmes charges, le modèle ne change pas.",
+ "Pełny trening": "Séance complète",
+ "Mniej serii": "Moins de séries",
+ "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka, nie wynik badań.": "Semaines d’entraînement d’affilée sans décharge : {n}. Les entraîneurs font généralement une décharge toutes les {a}–{b} semaines — c’est une pratique, pas un résultat de recherche.",
+ "Zaplanuj deload od {date}": "Prévoir une décharge à partir du {date}",
+ "Ten tydzień: deload. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Cette semaine : décharge. Au début de la séance, je proposerai moins de séries (environ la moitié), mêmes charges.",
+ "Od {date}: tydzień deload. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "À partir du {date} : semaine de décharge. Au début de la séance, je proposerai moins de séries (environ la moitié), mêmes charges.",
+ "Zdejmij oznaczenie deload": "Retirer la marque de décharge",
+ "tydzień deload": "semaine de décharge",
+ "Wiersz z tłem — tydzień deload.": "Ligne avec fond — semaine de décharge.",
+ "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Votre propre étiquette, p. ex. une semaine plus légère. Au début de la séance, je proposerai moins de séries (environ la moitié), mêmes charges."
 }

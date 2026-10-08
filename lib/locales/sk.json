@@ -899,7 +899,6 @@
  "Kreska = {n} serii na partię w tygodniu. Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; każdy trening siłowy daje przyrost w porównaniu z brakiem treningu. Uproszczenie: serie pomocnicze liczymy po 0,5.": "Čiara = {n} sérií na partiu za týždeň. Stanovisko ACSM 2026: pri aspoň {n} sériách na partiu týždenne bol nárast svalov väčší ako pri menšom objeme; akýkoľvek silový tréning prináša nárast oproti žiadnemu tréningu. Zjednodušenie: pomocné série počítame po 0,5.",
  "co najmniej {n}": "aspoň {n}",
  "Tydzień deload": "Deload týždeň",
- "Twoje oznaczenie, np. lżejszy tydzień. Aplikacja go nie ocenia ani nie planuje.": "Vaše označenie, napr. ľahší týždeň. Aplikácia ho nehodnotí ani neplánuje.",
  "Poprzedni tydzień jest oznaczony jako deload.": "Predchádzajúci týždeň je označený ako deload.",
  "D — tydzień oznaczony jako deload.": "D — týždeň označený ako deload.",
  "Kalendarz": "Kalendár",
@@ -960,5 +959,16 @@
  "Karta bieżącej serii w treningu; widok „Lista” jak wcześniej do wyboru w Ustawieniach.": "Karta aktuálnej série v tréningu; zobrazenie „Zoznam“ ako predtým, voliteľné v Nastaveniach.",
  "10 nowych języków: niemiecki, francuski, włoski, niderlandzki, szwedzki, duński, norweski, fiński, turecki i grecki.": "10 nových jazykov: nemčina, francúzština, taliančina, holandčina, švédčina, dánčina, nórčina, fínčina, turečtina a gréčtina.",
  "Pierwsza wersja testowa: treningi z szablonów, historia, postępy i rekordy, kopia zapasowa w Plikach.": "Prvá testovacia verzia: tréningy zo šablón, história, pokrok a rekordy, záloha v aplikácii Súbory.",
- "16 języków; wygląd jasny, ciemny albo jak w telefonie.": "16 jazykov; vzhľad svetlý, tmavý alebo podľa telefónu."
+ "16 języków; wygląd jasny, ciemny albo jak w telefonie.": "16 jazykov; vzhľad svetlý, tmavý alebo podľa telefónu.",
+ "Zacząć z mniejszą liczbą serii: {a} zamiast {b} serii roboczych? Ciężary bez zmian, szablon się nie zmienia.": "Začať s menším počtom sérií: {a} namiesto {b} pracovných sérií? Váhy bez zmeny, šablóna sa nemení.",
+ "Pełny trening": "Celý tréning",
+ "Mniej serii": "Menej sérií",
+ "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka, nie wynik badań.": "Tréningové týždne za sebou bez deloadu: {n}. Tréneri zvyčajne zaraďujú deload každých {a}–{b} týždňov — je to prax, nie výsledok výskumu.",
+ "Zaplanuj deload od {date}": "Naplánovať deload od {date}",
+ "Ten tydzień: deload. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Tento týždeň: deload. Pri štarte tréningu navrhnem menej sérií (asi polovicu), váhy bez zmeny.",
+ "Od {date}: tydzień deload. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Od {date}: deload týždeň. Pri štarte tréningu navrhnem menej sérií (asi polovicu), váhy bez zmeny.",
+ "Zdejmij oznaczenie deload": "Zrušiť označenie deload",
+ "tydzień deload": "deload týždeň",
+ "Wiersz z tłem — tydzień deload.": "Riadok s pozadím — deload týždeň.",
+ "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Vaše označenie, napr. ľahší týždeň. Pri štarte tréningu navrhnem menej sérií (asi polovicu), váhy bez zmeny."
 }

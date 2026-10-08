@@ -899,7 +899,6 @@
  "Kreska = {n} serii na partię w tygodniu. Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; każdy trening siłowy daje przyrost w porównaniu z brakiem treningu. Uproszczenie: serie pomocnicze liczymy po 0,5.": "Viiva = {n} sarjaa lihasryhmää kohden viikossa. ACSM:n kannanotto 2026: vähintään {n} sarjalla lihasryhmää kohden viikossa lihaskasvu oli suurempaa kuin pienemmällä volyymilla; mikä tahansa voimaharjoittelu kasvattaa lihasta verrattuna harjoittelemattomuuteen. Yksinkertaistus: avustavat sarjat lasketaan 0,5:nä.",
  "co najmniej {n}": "vähintään {n}",
  "Tydzień deload": "Kevennysviikko",
- "Twoje oznaczenie, np. lżejszy tydzień. Aplikacja go nie ocenia ani nie planuje.": "Oma merkintäsi, esim. kevyempi viikko. Sovellus ei arvioi eikä suunnittele sitä.",
  "Poprzedni tydzień jest oznaczony jako deload.": "Edellinen viikko on merkitty kevennysviikoksi.",
  "D — tydzień oznaczony jako deload.": "D — kevennysviikoksi merkitty viikko.",
  "Kalendarz": "Kalenteri",
@@ -960,5 +959,16 @@
  "Karta bieżącej serii w treningu; widok „Lista” jak wcześniej do wyboru w Ustawieniach.": "Nykyisen sarjan kortti treenin aikana; näkymä ”Lista” kuten ennen, valittavissa asetuksissa.",
  "10 nowych języków: niemiecki, francuski, włoski, niderlandzki, szwedzki, duński, norweski, fiński, turecki i grecki.": "10 uutta kieltä: saksa, ranska, italia, hollanti, ruotsi, tanska, norja, suomi, turkki ja kreikka.",
  "Pierwsza wersja testowa: treningi z szablonów, historia, postępy i rekordy, kopia zapasowa w Plikach.": "Ensimmäinen testiversio: treenit pohjista, historia, kehitys ja ennätykset, varmuuskopio Tiedostot-appiin.",
- "16 języków; wygląd jasny, ciemny albo jak w telefonie.": "16 kieltä; vaalea, tumma tai puhelimen mukainen ulkoasu."
+ "16 języków; wygląd jasny, ciemny albo jak w telefonie.": "16 kieltä; vaalea, tumma tai puhelimen mukainen ulkoasu.",
+ "Zacząć z mniejszą liczbą serii: {a} zamiast {b} serii roboczych? Ciężary bez zmian, szablon się nie zmienia.": "Aloitetaanko vähemmillä sarjoilla: {a} työsarjaa {b} sijaan? Painot ennallaan, pohja ei muutu.",
+ "Pełny trening": "Koko treeni",
+ "Mniej serii": "Vähemmän sarjoja",
+ "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka, nie wynik badań.": "Treeniviikkoja putkeen ilman kevennystä: {n}. Valmentajat pitävät yleensä kevennysviikon {a}–{b} viikon välein — tämä on käytäntö, ei tutkimustulos.",
+ "Zaplanuj deload od {date}": "Suunnittele kevennys alkaen {date}",
+ "Ten tydzień: deload. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Tällä viikolla: kevennys. Kun aloitat treenin, ehdotan vähemmän sarjoja (noin puolet), painot ennallaan.",
+ "Od {date}: tydzień deload. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Alkaen {date}: kevennysviikko. Kun aloitat treenin, ehdotan vähemmän sarjoja (noin puolet), painot ennallaan.",
+ "Zdejmij oznaczenie deload": "Poista kevennysmerkintä",
+ "tydzień deload": "kevennysviikko",
+ "Wiersz z tłem — tydzień deload.": "Taustallinen rivi — kevennysviikko.",
+ "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Oma merkintäsi, esim. kevyempi viikko. Kun aloitat treenin, ehdotan vähemmän sarjoja (noin puolet), painot ennallaan."
 }

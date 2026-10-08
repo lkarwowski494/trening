@@ -4,7 +4,7 @@ import { useTheme, F } from '@/lib/theme';
 import { t as tr, tp } from '@/lib/i18n';
 import { monthGrid, shiftMonth, weekdayLabels, monthTitle, dayTitle, dayKey } from '@/lib/calendar';
 import { plannedOn } from '@/lib/plan';
-import { getState } from '@/lib/store';
+import { getState, isDeloadWeek } from '@/lib/store';
 import type { Workout } from '@/lib/seed';
 
 /*
@@ -31,8 +31,8 @@ export function HistoryCalendar({ byDay, selected, onSelect }: { byDay: Map<stri
       <View style={{ flexDirection: 'row' }} accessibilityElementsHidden importantForAccessibility="no-hide-descendants">
         {heads.map((h, i) => <Text key={i} maxFontSizeMultiplier={1.2} numberOfLines={1} style={{ flex: 1, textAlign: 'center', color: t.muted, fontSize: 12, fontFamily: F.semibold }}>{h}</Text>)}
       </View>
-      {weeks.map((w, wi) => (
-        <View key={wi} style={{ flexDirection: 'row' }}>
+      {weeks.map((w, wi) => { const dl = isDeloadWeek(new Date(+w[0].key.slice(0, 4), +w[0].key.slice(5, 7) - 1, +w[0].key.slice(8, 10), 12).getTime()); /* 08.10.2026: tydzień deload — tło wiersza */ return (
+        <View key={wi} testID={dl ? `cal-deload-${w[0].key}` : undefined} style={{ flexDirection: 'row', borderRadius: 18, backgroundColor: dl ? t.surface2 : 'transparent' }}>
           {w.map(c => { const n = c.inMonth ? byDay.get(c.key)?.length ?? 0 : 0; const on = selected === c.key; const isToday = c.key === today;
             /* 08.10.2026 (kalendarz z planem): dzień zaplanowany — obwódka i kropka; opuszczony (przed dziś, bez sesji) — szara kropka */
             const plan = c.inMonth && !n ? plannedOn(c.key) : null; const planName = plan ? getState().templates.find(x => x.id === plan)?.name ?? '' : ''; const missed = !!plan && c.key < today;
@@ -41,13 +41,14 @@ export function HistoryCalendar({ byDay, selected, onSelect }: { byDay: Map<stri
                 <Text maxFontSizeMultiplier={1.2} style={{ color: n ? t.accentInk : c.inMonth ? (missed ? t.muted : t.text) : t.line, fontSize: 14, fontFamily: n || plan ? F.heavy : F.regular }}>{c.d}</Text>
                 {plan ? <View style={{ position: 'absolute', bottom: 3, width: 4, height: 4, borderRadius: 2, backgroundColor: missed ? t.muted : t.accent }} /> : null}
               </View>);
-            const label = n ? `${dayTitle(c)}, ${n} ${tp(n, 'sesja|sesje|sesji')}` : plan ? `${dayTitle(c)}, ${missed ? tr('opuszczony: {name}', { name: planName }) : tr('zaplanowany: {name}', { name: planName })}` : dayTitle(c);
+            const label = n ? `${dayTitle(c)}, ${n} ${tp(n, 'sesja|sesje|sesji')}` : plan ? `${dayTitle(c)}, ${missed ? tr('opuszczony: {name}', { name: planName }) : tr('zaplanowany: {name}', { name: planName })}` : dayTitle(c) + (dl ? `, ${tr('tydzień deload')}` : '');
             return (
               <View key={c.key} style={{ flex: 1, alignItems: 'center', paddingVertical: 2 }}>
                 {c.inMonth ? <Pressable testID={`cal-${c.key}`} accessibilityRole="button" accessibilityState={{ selected: on }} accessibilityLabel={label} onPress={() => onSelect(on ? null : c.key)} hitSlop={2}>{face}</Pressable>
                   : <View accessibilityElementsHidden importantForAccessibility="no-hide-descendants">{face}</View>}
               </View>); })}
-        </View>))}
+        </View>); })}
+      {weeks.some(w => isDeloadWeek(new Date(+w[0].key.slice(0, 4), +w[0].key.slice(5, 7) - 1, +w[0].key.slice(8, 10), 12).getTime())) ? <Text maxFontSizeMultiplier={1.4} style={{ color: t.muted, fontSize: 12, marginTop: 4, fontFamily: F.regular }}>{tr('Wiersz z tłem — tydzień deload.')}</Text> : null}
     </View>
   );
 }

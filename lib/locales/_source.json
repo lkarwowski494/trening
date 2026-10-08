@@ -1558,6 +1558,10 @@
   "en": "less"
  },
  {
+  "pl": "Mniej serii",
+  "en": "Fewer sets"
+ },
+ {
   "pl": "modlitewnik",
   "en": "preacher bench"
  },
@@ -1870,6 +1874,10 @@
   "en": "from"
  },
  {
+  "pl": "Od {date}: tydzień deload. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.",
+  "en": "From {date}: deload week. When you start a workout I will suggest fewer sets (about half), same weights."
+ },
+ {
   "pl": "Odhaczone są tylko serie rozgrzewkowe ({n}). Zapisać taki trening?",
   "en": "Only warm-up sets are ticked ({n}). Save this workout anyway?"
  },
@@ -2028,6 +2036,10 @@
  {
   "pl": "Pełna siłownia",
   "en": "Full gym"
+ },
+ {
+  "pl": "Pełny trening",
+  "en": "Full workout"
  },
  {
   "pl": "pendulum squat",
@@ -3010,6 +3022,10 @@
   "en": "This workout won’t be saved."
  },
  {
+  "pl": "Ten tydzień: deload. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.",
+  "en": "This week: deload. When you start a workout I will suggest fewer sets (about half), same weights."
+ },
+ {
   "pl": "Teraz: {v}",
   "en": "Now: {v}"
  },
@@ -3082,12 +3098,16 @@
   "en": "triceps"
  },
  {
-  "pl": "Twoje oznaczenie, np. lżejszy tydzień. Aplikacja go nie ocenia ani nie planuje.",
-  "en": "Your own label, e.g. a lighter week. The app does not judge or plan it."
+  "pl": "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.",
+  "en": "Your own label, e.g. a lighter week. When you start a workout I will suggest fewer sets (about half), same weights."
  },
  {
   "pl": "Tydzień",
   "en": "Week"
+ },
+ {
+  "pl": "tydzień deload",
+  "en": "deload week"
  },
  {
   "pl": "Tydzień deload",
@@ -3096,6 +3116,10 @@
  {
   "pl": "Tygodnie od poniedziałku. Objętość = ciężar × powtórzenia × mnożnik ćwiczenia; rozgrzewka poza.",
   "en": "Weeks start on Monday. Volume = weight × reps × exercise multiplier; warm-ups excluded."
+ },
+ {
+  "pl": "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka, nie wynik badań.",
+  "en": "Training weeks in a row without a deload: {n}. Coaches usually deload every {a}–{b} weeks — this is practice, not a research finding."
  },
  {
   "pl": "tylko dostępne w: {l}",
@@ -3386,6 +3410,10 @@
   "en": "Workout view"
  },
  {
+  "pl": "Wiersz z tłem — tydzień deload.",
+  "en": "Row with background — deload week."
+ },
+ {
   "pl": "więcej",
   "en": "more"
  },
@@ -3610,6 +3638,10 @@
   "en": "Too many settings (at most {n}) — increase the step."
  },
  {
+  "pl": "Zacząć z mniejszą liczbą serii: {a} zamiast {b} serii roboczych? Ciężary bez zmian, szablon się nie zmienia.",
+  "en": "Start with fewer sets: {a} instead of {b} working sets? Same weights, the template stays unchanged."
+ },
+ {
   "pl": "Zacznij z szablonu",
   "en": "Start from a template"
  },
@@ -3750,6 +3782,10 @@
   "en": "Planned: {name}"
  },
  {
+  "pl": "Zaplanuj deload od {date}",
+  "en": "Plan a deload from {date}"
+ },
+ {
   "pl": "Zastąp",
   "en": "Replace"
  },
@@ -3776,6 +3812,10 @@
  {
   "pl": "zaznaczone: {n} z {m}",
   "en": "selected: {n} of {m}"
+ },
+ {
+  "pl": "Zdejmij oznaczenie deload",
+  "en": "Remove deload mark"
  },
  {
   "pl": "ze skosem w dół",

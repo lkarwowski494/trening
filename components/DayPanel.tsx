@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { View, Alert } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Btn, Chip, Muted, Txt, H2 } from '@/components/ui';
-import { getState, startFromTemplate, useTick } from '@/lib/store';
+import { getState, useTick } from '@/lib/store';
 import { plannedOn, isChanged, shiftPlan, moveOnly, swapDays, setDayPlan, resetDay, addDays, dayKeyOf, suggest, applySuggestion, backToBack, RETURN_DAYS, type ShiftResult, type Suggestion } from '@/lib/plan';
 import { t, locale } from '@/lib/i18n';
+import { startTemplate } from '@/lib/start';
 
 /*
  * Panel wybranego dnia w Kalendarzu (priorytet właściciela 08.10.2026): co jest zaplanowane i co z tym zrobić.
@@ -23,7 +24,7 @@ export function DayPanel({ day }: { day: string }) {
   const id = plannedOn(day); const changed = isChanged(day); const past = day < today; const hasActive = !!getState().active;
   const [mode, setMode] = useState<'none' | 'move' | 'pick' | 'suggest'>('none');
   const live = getState().templates.filter(x => !x.archived);
-  const start = () => { const tpl = getState().templates.find(x => x.id === id); if (!tpl) return; startFromTemplate(tpl); router.navigate('/'); };
+  const start = () => { const tpl = getState().templates.find(x => x.id === id); if (!tpl) return; startTemplate(tpl, () => router.navigate('/')); };
   const pairs = () => new Set(backToBack(day < today ? today : day).map(p => p.a + p.b));
   const shift = () => { const before = pairs(); const r = shiftPlan(day); setMode('none'); if (!r.moved.length) return;
     const fresh = backToBack(day < today ? today : day).filter(p => !before.has(p.a + p.b));

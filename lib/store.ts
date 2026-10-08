@@ -1,3 +1,4 @@
+import { deloadSets } from '@/lib/deload-sets';
 import * as SQLite from 'expo-sqlite';
 import * as FileSystem from 'expo-file-system/legacy';
 import { useSyncExternalStore } from 'react';
@@ -901,7 +902,8 @@ function fixRows(it: any) {
     reps: num(r.reps, 0, 1000), weight: (v => v == null ? '' : kg2(snapL(v) as number))(parseNum(r.weight)), durationSec: num(r.durationSec, 0, 86400), distanceM: num(r.distanceM, 0, 1e6), ...(typeof r.bandId === 'string' && r.bandId ? { bandId: r.bandId } : {}) }));
   syncItem(it);
 }
-export function startFromTemplate(tpl: Template) {
+/** `deload` (decyzja 08.10.2026, B): około połowy serii roboczych na ćwiczenie, ciężary bez zmian, szablon bez zmian (lib/deload-sets). */
+export function startFromTemplate(tpl: Template, opts?: { deload?: boolean }) {
   const st = getState(); const w = newWorkout(tpl.id, tpl.name, tpl.locationId);
   tpl.items.forEach((it, ii) => {
     const ex = exById(it.exerciseId); if (!ex || ex.archived) return; // runda 42: usunięte ćwiczenie (np. z importu) nie wraca do treningu
@@ -911,7 +913,7 @@ export function startFromTemplate(tpl: Template) {
     const rows = tplRows(it); /* schemat 17: typy i plan z wierszy szablonu */
     const sets = prefillSets(ex, rows.map(r => r.kind), prevAll, w.locationId, impl, it.targetSec, it.startWeight, 0, false, rows);
     // Przerwa: ustawiona w pozycji szablonu wygrywa; puste pole w szablonie (null) = przerwa z ćwiczenia albo domyślna.
-    w.exercises.push({ id: uid(), exerciseId: ex.id, restSec: typeof it.restSec === 'number' && it.restSec >= 0 ? it.restSec : restFor(ex), /* null w szablonie = przerwa z ćwiczenia */ repMin: it.repMin, repMax: it.repMax, groupId: it.groupId ?? null, sets, tplItemId: it.id, ...(impl ? { impl } : {}) });
+    w.exercises.push({ id: uid(), exerciseId: ex.id, restSec: typeof it.restSec === 'number' && it.restSec >= 0 ? it.restSec : restFor(ex), /* null w szablonie = przerwa z ćwiczenia */ repMin: it.repMin, repMax: it.repMax, groupId: it.groupId ?? null, sets: opts?.deload ? deloadSets(sets) : sets, tplItemId: it.id, ...(impl ? { impl } : {}) });
   });
   normalizeGroups(w.exercises);
   st.active = w; save(); flush();
@@ -1271,8 +1273,9 @@ export function finishWorkout(at?: number): Workout | null {
   st.workouts.push(w); st.active = null; st.userTouched = true; purgeOrphans(); save(w); flush();
   return w;
 }
-/* ---------- tydzień deload (pakiet C, 08.10.2026): ręczna etykieta tygodnia, bez porad — brak podstaw dla automatycznego deloadu (docs/21 B8) ---------- */
-const mondayKey = (ts: number) => { const d = new Date(ts); return localISODate(new Date(d.getFullYear(), d.getMonth(), d.getDate() - (d.getDay() + 6) % 7)); };
+/* ---------- tydzień deload (pakiet C, 08.10.2026): etykieta tygodnia ustawiana przez użytkownika — bez automatycznego oznaczania z danych (brak walidacji,
+ * docs/research/22); od decyzji A+B (08.10.2026) podpowiedź „zwykle co 4–6 tyg.” i mniej serii przy starcie — lib/deload.ts ---------- */
+export const mondayKey = (ts: number) => { const d = new Date(ts); return localISODate(new Date(d.getFullYear(), d.getMonth(), d.getDate() - (d.getDay() + 6) % 7)); };
 /** Czy tydzień zawierający `ts` jest oznaczony jako deload. */
 export const isDeloadWeek = (ts: number) => !!S?.deloadWeeks?.includes(mondayKey(ts));
 /** Oznaczenie / zdjęcie oznaczenia tygodnia zawierającego `ts`. */

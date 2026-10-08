@@ -899,7 +899,6 @@
  "Kreska = {n} serii na partię w tygodniu. Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; każdy trening siłowy daje przyrost w porównaniu z brakiem treningu. Uproszczenie: serie pomocnicze liczymy po 0,5.": "Streep = {n} sets per spiergroep per week. ACSM-standpunt 2026: bij minstens {n} sets per spiergroep per week was de spiergroei groter dan bij minder volume; elke krachttraining laat spieren groeien vergeleken met niet trainen. Vereenvoudiging: secundaire sets tellen als 0,5.",
  "co najmniej {n}": "minstens {n}",
  "Tydzień deload": "Deloadweek",
- "Twoje oznaczenie, np. lżejszy tydzień. Aplikacja go nie ocenia ani nie planuje.": "Je eigen label, bijv. een lichtere week. De app beoordeelt of plant die niet.",
  "Poprzedni tydzień jest oznaczony jako deload.": "De vorige week is gemarkeerd als deload.",
  "D — tydzień oznaczony jako deload.": "D — week gemarkeerd als deload.",
  "Kalendarz": "Kalender",
@@ -960,5 +959,16 @@
  "Karta bieżącej serii w treningu; widok „Lista” jak wcześniej do wyboru w Ustawieniach.": "Kaart van de huidige set tijdens de training; de weergave ‘Lijst’ zoals voorheen, te kiezen in Instellingen.",
  "10 nowych języków: niemiecki, francuski, włoski, niderlandzki, szwedzki, duński, norweski, fiński, turecki i grecki.": "10 nieuwe talen: Duits, Frans, Italiaans, Nederlands, Zweeds, Deens, Noors, Fins, Turks en Grieks.",
  "Pierwsza wersja testowa: treningi z szablonów, historia, postępy i rekordy, kopia zapasowa w Plikach.": "Eerste testversie: trainingen uit sjablonen, historie, voortgang en records, back-up in Bestanden.",
- "16 języków; wygląd jasny, ciemny albo jak w telefonie.": "16 talen; licht, donker of zoals de telefoon."
+ "16 języków; wygląd jasny, ciemny albo jak w telefonie.": "16 talen; licht, donker of zoals de telefoon.",
+ "Zacząć z mniejszą liczbą serii: {a} zamiast {b} serii roboczych? Ciężary bez zmian, szablon się nie zmienia.": "Beginnen met minder sets: {a} in plaats van {b} werksets? Gewichten gelijk, het sjabloon verandert niet.",
+ "Pełny trening": "Volledige training",
+ "Mniej serii": "Minder sets",
+ "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka, nie wynik badań.": "Trainingsweken op rij zonder deload: {n}. Trainers doen meestal elke {a}–{b} weken een deload — dit is praktijk, geen onderzoeksresultaat.",
+ "Zaplanuj deload od {date}": "Deload plannen vanaf {date}",
+ "Ten tydzień: deload. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Deze week: deload. Bij het starten van een training stel ik minder sets voor (ongeveer de helft), gelijke gewichten.",
+ "Od {date}: tydzień deload. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Vanaf {date}: deloadweek. Bij het starten van een training stel ik minder sets voor (ongeveer de helft), gelijke gewichten.",
+ "Zdejmij oznaczenie deload": "Deloadmarkering verwijderen",
+ "tydzień deload": "deloadweek",
+ "Wiersz z tłem — tydzień deload.": "Rij met achtergrond — deloadweek.",
+ "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Je eigen label, bijv. een lichtere week. Bij het starten van een training stel ik minder sets voor (ongeveer de helft), gelijke gewichten."
 }

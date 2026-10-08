@@ -3,8 +3,9 @@ import { View, Pressable } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Btn, Muted, Txt } from '@/components/ui';
 import { useTheme, F } from '@/lib/theme';
-import { getState, startFromTemplate, finishedWorkouts, useForegroundTick } from '@/lib/store';
+import { getState, finishedWorkouts, useForegroundTick } from '@/lib/store';
 import { hasPlan, upcoming, dayKeyOf } from '@/lib/plan';
+import { startTemplate } from '@/lib/start';
 import { t, locale } from '@/lib/i18n';
 
 /*
@@ -21,7 +22,7 @@ export function TodayPlan() {
     <View testID="today-plan" style={{ marginTop: 14, padding: 12, borderRadius: 10, backgroundColor: th.surface2, gap: 8 }}>
       <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
         <Txt style={{ fontFamily: F.semibold, flexShrink: 1 }}>{id ? t('Dziś: {name}', { name: name(id) }) : t('Dziś wolne')}{id && doneToday ? ` · ${t('zrobione')}` : ''}</Txt>
-        {id && !doneToday ? <Btn small kind="primary" title={t('Start')} accessibilityLabel={t('Start zaplanowanego treningu: {name}', { name: name(id) })} onPress={() => { const tpl = getState().templates.find(x => x.id === id); if (tpl) startFromTemplate(tpl); }} /> : null}
+        {id && !doneToday ? <Btn small kind="primary" title={t('Start')} accessibilityLabel={t('Start zaplanowanego treningu: {name}', { name: name(id) })} onPress={() => { const tpl = getState().templates.find(x => x.id === id); if (tpl) startTemplate(tpl); }} /> : null}
       </View>
       <Pressable accessibilityRole="button" accessibilityLabel={t('Plan na 7 dni: {list}. Tapnij, by otworzyć Kalendarz.', { list: days.map(d => `${wd(d.date)} ${d.templateId ? name(d.templateId) : t('wolne')}`).join(', ') })} onPress={() => router.push('/history')} style={{ flexDirection: 'row' }}>
         {days.map(d => (

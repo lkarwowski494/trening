@@ -88,6 +88,7 @@ widocznej w treningu (pole istnieje, ekran treningu go nie pokazuje), pola RIR (
   tygodnie deload (już oznaczane), przyszły generator planu tygodnia. Bez twierdzeń dziedzinowych (planowanie = dane użytkownika).
   **Zrobione 08.10.2026:** zakładka Kalendarz, plan tygodnia, dwa tryby przesuwania, „Dziś” na ekranie treningu, propozycje z regeneracją partii
   (docs/research/23). Otwarte: przypomnienia.
+- **Deload A+B** (08.10.2026) — podpowiedź „zwykle co 4–6 tyg.” (praktyka) i mniej serii przy starcie w tygodniu deload. **Zrobione 08.10.2026.**
 - **„Co nowego”** (08.10.2026) — „i” na ekranie Trening, kropka po aktualizacji, starsze wersje zwinięte. **Zrobione 08.10.2026.**
 
 ### Backlog bez priorytetu (decyzja właściciela 08.10.2026)

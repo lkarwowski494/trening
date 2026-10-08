@@ -899,7 +899,6 @@
  "Kreska = {n} serii na partię w tygodniu. Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; każdy trening siłowy daje przyrost w porównaniu z brakiem treningu. Uproszczenie: serie pomocnicze liczymy po 0,5.": "Риска = {n} підходів на групу м’язів за тиждень. Позиція ACSM 2026: за щонайменше {n} підходів на групу м’язів на тиждень приріст м’язів був більшим, ніж за меншого обсягу; будь-яке силове тренування дає приріст порівняно з відсутністю тренувань. Спрощення: допоміжні підходи рахуємо як 0,5.",
  "co najmniej {n}": "щонайменше {n}",
  "Tydzień deload": "Тиждень розвантаження",
- "Twoje oznaczenie, np. lżejszy tydzień. Aplikacja go nie ocenia ani nie planuje.": "Ваша позначка, напр. легший тиждень. Застосунок її не оцінює і не планує.",
  "Poprzedni tydzień jest oznaczony jako deload.": "Попередній тиждень позначено як розвантаження.",
  "D — tydzień oznaczony jako deload.": "D — тиждень, позначений як розвантаження.",
  "Kalendarz": "Календар",
@@ -960,5 +959,16 @@
  "Karta bieżącej serii w treningu; widok „Lista” jak wcześniej do wyboru w Ustawieniach.": "Картка поточного підходу під час тренування; вигляд «Список» як раніше, на вибір у Параметрах.",
  "10 nowych języków: niemiecki, francuski, włoski, niderlandzki, szwedzki, duński, norweski, fiński, turecki i grecki.": "10 нових мов: німецька, французька, італійська, нідерландська, шведська, данська, норвезька, фінська, турецька та грецька.",
  "Pierwsza wersja testowa: treningi z szablonów, historia, postępy i rekordy, kopia zapasowa w Plikach.": "Перша тестова версія: тренування з шаблонів, історія, прогрес і рекорди, резервна копія у Файлах.",
- "16 języków; wygląd jasny, ciemny albo jak w telefonie.": "16 мов; світлий, темний вигляд або як у телефоні."
+ "16 języków; wygląd jasny, ciemny albo jak w telefonie.": "16 мов; світлий, темний вигляд або як у телефоні.",
+ "Zacząć z mniejszą liczbą serii: {a} zamiast {b} serii roboczych? Ciężary bez zmian, szablon się nie zmienia.": "Почати з меншою кількістю підходів: {a} замість {b} робочих підходів? Ваги ті самі, шаблон не змінюється.",
+ "Pełny trening": "Повне тренування",
+ "Mniej serii": "Менше підходів",
+ "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka, nie wynik badań.": "Тижнів тренувань поспіль без розвантаження: {n}. Тренери зазвичай роблять розвантаження кожні {a}–{b} тижнів — це практика, а не результат досліджень.",
+ "Zaplanuj deload od {date}": "Запланувати розвантаження з {date}",
+ "Ten tydzień: deload. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Цей тиждень: розвантаження. На старті тренування запропоную менше підходів (приблизно половину), ваги ті самі.",
+ "Od {date}: tydzień deload. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "З {date}: тиждень розвантаження. На старті тренування запропоную менше підходів (приблизно половину), ваги ті самі.",
+ "Zdejmij oznaczenie deload": "Зняти позначку розвантаження",
+ "tydzień deload": "тиждень розвантаження",
+ "Wiersz z tłem — tydzień deload.": "Рядок із фоном — тиждень розвантаження.",
+ "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Ваша позначка, напр. легший тиждень. На старті тренування запропоную менше підходів (приблизно половину), ваги ті самі."
 }

@@ -899,7 +899,6 @@
  "Kreska = {n} serii na partię w tygodniu. Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; każdy trening siłowy daje przyrost w porównaniu z brakiem treningu. Uproszczenie: serie pomocnicze liczymy po 0,5.": "Crta = {n} serija po mišićnoj skupini tjedno. Stav ACSM 2026: uz najmanje {n} serija po mišićnoj skupini tjedno rast mišića bio je veći nego uz manji volumen; svaki trening snage povećava mišiće u usporedbi s netreniranjem. Pojednostavljenje: pomoćne serije računamo kao 0,5.",
  "co najmniej {n}": "najmanje {n}",
  "Tydzień deload": "Tjedan rasterećenja",
- "Twoje oznaczenie, np. lżejszy tydzień. Aplikacja go nie ocenia ani nie planuje.": "Tvoja oznaka, npr. lakši tjedan. Aplikacija je ne ocjenjuje niti planira.",
  "Poprzedni tydzień jest oznaczony jako deload.": "Prethodni tjedan označen je kao rasterećenje.",
  "D — tydzień oznaczony jako deload.": "D — tjedan označen kao rasterećenje.",
  "Kalendarz": "Kalendar",
@@ -960,5 +959,16 @@
  "Karta bieżącej serii w treningu; widok „Lista” jak wcześniej do wyboru w Ustawieniach.": "Kartica trenutne serije tijekom treninga; prikaz „Popis” kao prije, po izboru u Postavkama.",
  "10 nowych języków: niemiecki, francuski, włoski, niderlandzki, szwedzki, duński, norweski, fiński, turecki i grecki.": "10 novih jezika: njemački, francuski, talijanski, nizozemski, švedski, danski, norveški, finski, turski i grčki.",
  "Pierwsza wersja testowa: treningi z szablonów, historia, postępy i rekordy, kopia zapasowa w Plikach.": "Prva testna verzija: treninzi iz predložaka, povijest, napredak i rekordi, sigurnosna kopija u Datotekama.",
- "16 języków; wygląd jasny, ciemny albo jak w telefonie.": "16 jezika; svijetli, tamni izgled ili kao na telefonu."
+ "16 języków; wygląd jasny, ciemny albo jak w telefonie.": "16 jezika; svijetli, tamni izgled ili kao na telefonu.",
+ "Zacząć z mniejszą liczbą serii: {a} zamiast {b} serii roboczych? Ciężary bez zmian, szablon się nie zmienia.": "Započeti s manje serija: {a} umjesto {b} radnih serija? Težine iste, predložak se ne mijenja.",
+ "Pełny trening": "Cijeli trening",
+ "Mniej serii": "Manje serija",
+ "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka, nie wynik badań.": "Tjedni treninga zaredom bez rasterećenja: {n}. Treneri obično rade rasterećenje svakih {a}–{b} tjedana — to je praksa, a ne rezultat istraživanja.",
+ "Zaplanuj deload od {date}": "Planiraj rasterećenje od {date}",
+ "Ten tydzień: deload. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Ovaj tjedan: rasterećenje. Pri pokretanju treninga predložit ću manje serija (otprilike pola), iste težine.",
+ "Od {date}: tydzień deload. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Od {date}: tjedan rasterećenja. Pri pokretanju treninga predložit ću manje serija (otprilike pola), iste težine.",
+ "Zdejmij oznaczenie deload": "Ukloni oznaku rasterećenja",
+ "tydzień deload": "tjedan rasterećenja",
+ "Wiersz z tłem — tydzień deload.": "Red s pozadinom — tjedan rasterećenja.",
+ "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Tvoja oznaka, npr. lakši tjedan. Pri pokretanju treninga predložit ću manje serija (otprilike pola), iste težine."
 }

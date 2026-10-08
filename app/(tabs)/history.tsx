@@ -7,6 +7,7 @@ import { workoutDurSec, useHistTick, finishedWorkouts, fmtDate, fmtTime, fmtDur,
 import { SwipeRow } from '@/components/SwipeRow';
 import { HistoryCalendar } from '@/components/HistoryCalendar';
 import { DayPanel } from '@/components/DayPanel';
+import { DeloadHint } from '@/components/DeloadHint';
 import { hasPlan } from '@/lib/plan';
 import { workoutsByDay } from '@/lib/calendar';
 import { t, tp } from '@/lib/i18n';
@@ -27,6 +28,7 @@ export default function HistoryScreen() {
       </View>
       {/* Runda 69 (wydajność): FlatList renderuje tylko widoczne wiersze — przy 1000+ sesjach ekran otwierał się sekundy. */}
       <FlatList data={ws} keyExtractor={w => w.id} initialNumToRender={15} windowSize={7} ListHeaderComponent={<>
+        <DeloadHint />{/* 08.10.2026: deload A */}
         <HistoryCalendar byDay={byDay} selected={day} onSelect={setDay} />
         {!hasPlan() ? <Muted style={{ fontSize: 13, marginBottom: 8 }}>{t('Ustaw plan tygodnia, by widzieć zaplanowane treningi i przesuwać je w kalendarzu.')}</Muted> : null}
         {day ? <DayPanel day={day} /> : null}

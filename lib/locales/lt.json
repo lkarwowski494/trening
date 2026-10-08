@@ -899,7 +899,6 @@
  "Kreska = {n} serii na partię w tygodniu. Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; każdy trening siłowy daje przyrost w porównaniu z brakiem treningu. Uproszczenie: serie pomocnicze liczymy po 0,5.": "Linija = {n} priėjimų raumenų grupei per savaitę. ACSM 2026 pozicija: atliekant bent {n} priėjimų raumenų grupei per savaitę raumenys augo labiau nei esant mažesnei apimčiai; bet kokia jėgos treniruotė didina raumenis, palyginti su netreniravimusi. Supaprastinimas: pagalbiniai priėjimai skaičiuojami kaip 0,5.",
  "co najmniej {n}": "bent {n}",
  "Tydzień deload": "Iškrovos savaitė",
- "Twoje oznaczenie, np. lżejszy tydzień. Aplikacja go nie ocenia ani nie planuje.": "Jūsų žymė, pvz., lengvesnė savaitė. Programa jos nevertina ir neplanuoja.",
  "Poprzedni tydzień jest oznaczony jako deload.": "Ankstesnė savaitė pažymėta kaip iškrovos.",
  "D — tydzień oznaczony jako deload.": "D — iškrovos savaitė.",
  "Kalendarz": "Kalendorius",
@@ -960,5 +959,16 @@
  "Karta bieżącej serii w treningu; widok „Lista” jak wcześniej do wyboru w Ustawieniach.": "Dabartinės serijos kortelė treniruotėje; rodinys „Sąrašas“ kaip anksčiau, pasirenkamas Nustatymuose.",
  "10 nowych języków: niemiecki, francuski, włoski, niderlandzki, szwedzki, duński, norweski, fiński, turecki i grecki.": "10 naujų kalbų: vokiečių, prancūzų, italų, nyderlandų, švedų, danų, norvegų, suomių, turkų ir graikų.",
  "Pierwsza wersja testowa: treningi z szablonów, historia, postępy i rekordy, kopia zapasowa w Plikach.": "Pirmoji bandomoji versija: treniruotės iš šablonų, istorija, progresas ir rekordai, atsarginė kopija Failuose.",
- "16 języków; wygląd jasny, ciemny albo jak w telefonie.": "16 kalbų; šviesi, tamsi išvaizda arba kaip telefone."
+ "16 języków; wygląd jasny, ciemny albo jak w telefonie.": "16 kalbų; šviesi, tamsi išvaizda arba kaip telefone.",
+ "Zacząć z mniejszą liczbą serii: {a} zamiast {b} serii roboczych? Ciężary bez zmian, szablon się nie zmienia.": "Pradėti su mažiau priėjimų: {a} vietoj {b} darbinių priėjimų? Svoriai tie patys, šablonas nesikeičia.",
+ "Pełny trening": "Visa treniruotė",
+ "Mniej serii": "Mažiau priėjimų",
+ "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka, nie wynik badań.": "Treniruočių savaitės iš eilės be iškrovos: {n}. Treneriai paprastai daro iškrovą kas {a}–{b} savaites — tai praktika, ne tyrimų rezultatas.",
+ "Zaplanuj deload od {date}": "Planuoti iškrovą nuo {date}",
+ "Ten tydzień: deload. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Ši savaitė: iškrova. Pradedant treniruotę pasiūlysiu mažiau priėjimų (maždaug pusę), svoriai tie patys.",
+ "Od {date}: tydzień deload. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Nuo {date}: iškrovos savaitė. Pradedant treniruotę pasiūlysiu mažiau priėjimų (maždaug pusę), svoriai tie patys.",
+ "Zdejmij oznaczenie deload": "Pašalinti iškrovos žymą",
+ "tydzień deload": "iškrovos savaitė",
+ "Wiersz z tłem — tydzień deload.": "Eilutė su fonu — iškrovos savaitė.",
+ "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Jūsų žymė, pvz., lengvesnė savaitė. Pradedant treniruotę pasiūlysiu mažiau priėjimų (maždaug pusę), svoriai tie patys."
 }

@@ -899,7 +899,6 @@
  "Kreska = {n} serii na partię w tygodniu. Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; każdy trening siłowy daje przyrost w porównaniu z brakiem treningu. Uproszczenie: serie pomocnicze liczymy po 0,5.": "Streg = {n} sæt pr. muskelgruppe pr. uge. ACSM-holdning 2026: med mindst {n} sæt pr. muskelgruppe om ugen var muskelvæksten større end ved lavere volumen; al styrketræning øger musklerne sammenlignet med ingen træning. Forenkling: sekundære sæt tæller 0,5.",
  "co najmniej {n}": "mindst {n}",
  "Tydzień deload": "Deload-uge",
- "Twoje oznaczenie, np. lżejszy tydzień. Aplikacja go nie ocenia ani nie planuje.": "Din egen markering, fx en lettere uge. Appen vurderer eller planlægger den ikke.",
  "Poprzedni tydzień jest oznaczony jako deload.": "Den forrige uge er markeret som deload.",
  "D — tydzień oznaczony jako deload.": "D — uge markeret som deload.",
  "Kalendarz": "Kalender",
@@ -960,5 +959,16 @@
  "Karta bieżącej serii w treningu; widok „Lista” jak wcześniej do wyboru w Ustawieniach.": "Kort for det aktuelle sæt under træningen; visningen “Liste” som før, kan vælges i Indstillinger.",
  "10 nowych języków: niemiecki, francuski, włoski, niderlandzki, szwedzki, duński, norweski, fiński, turecki i grecki.": "10 nye sprog: tysk, fransk, italiensk, hollandsk, svensk, dansk, norsk, finsk, tyrkisk og græsk.",
  "Pierwsza wersja testowa: treningi z szablonów, historia, postępy i rekordy, kopia zapasowa w Plikach.": "Første testversion: træninger fra skabeloner, historik, fremgang og rekorder, sikkerhedskopi i Arkiver.",
- "16 języków; wygląd jasny, ciemny albo jak w telefonie.": "16 sprog; lyst, mørkt eller som telefonen."
+ "16 języków; wygląd jasny, ciemny albo jak w telefonie.": "16 sprog; lyst, mørkt eller som telefonen.",
+ "Zacząć z mniejszą liczbą serii: {a} zamiast {b} serii roboczych? Ciężary bez zmian, szablon się nie zmienia.": "Start med færre sæt: {a} i stedet for {b} arbejdssæt? Samme vægte, skabelonen ændres ikke.",
+ "Pełny trening": "Fuld træning",
+ "Mniej serii": "Færre sæt",
+ "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka, nie wynik badań.": "Træningsuger i træk uden deload: {n}. Trænere laver normalt deload hver {a}.–{b}. uge — det er praksis, ikke et forskningsresultat.",
+ "Zaplanuj deload od {date}": "Planlæg deload fra {date}",
+ "Ten tydzień: deload. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Denne uge: deload. Når du starter en træning, foreslår jeg færre sæt (cirka halvdelen), samme vægte.",
+ "Od {date}: tydzień deload. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Fra {date}: deload-uge. Når du starter en træning, foreslår jeg færre sæt (cirka halvdelen), samme vægte.",
+ "Zdejmij oznaczenie deload": "Fjern deload-markering",
+ "tydzień deload": "deload-uge",
+ "Wiersz z tłem — tydzień deload.": "Række med baggrund — deload-uge.",
+ "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Din egen markering, fx en lettere uge. Når du starter en træning, foreslår jeg færre sæt (cirka halvdelen), samme vægte."
 }

@@ -32,7 +32,7 @@ describe('ekran Postępy', () => {
   const boot = async (fn: () => void = () => {}, locale: 'pl' | 'en' = 'pl') => { await fresh(undefined, locale); addWorkout(new Date(2026, 9, 6, 18).getTime(), [['Back Squat', [{ weight: 100, reps: 5 }]]]); fn(); await act(async () => { await store.flush(); }); await renderApp({ saved: JSON.parse(JSON.stringify(saved())), locale, url: '/more/progress' }); jest.setSystemTime(NOW.getTime()); await flushAll(10); };
   test('przełącznik „Tydzień deload” z opisem; oznaczenie zapisuje się i dodaje „D” na wykresach tygodniowych z objaśnieniem', async () => {
     await boot();
-    expect(screen.getByText('Twoje oznaczenie, np. lżejszy tydzień. Aplikacja go nie ocenia ani nie planuje.')).toBeTruthy();
+    expect(screen.getByText('Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.')).toBeTruthy();
     expect(screen.queryByText(/D — tydzień oznaczony jako deload\./)).toBeNull();
     await tap(screen.getByText('Tydzień deload')); await flushAll(5);
     expect(S().deloadWeeks).toEqual(['2026-10-05']); expect(screen.getAllByLabelText(/^Wykres słupkowy: .* D: /).length).toBe(2); /* oba wykresy tygodniowe — etykieta tygodnia z „D” */
@@ -45,6 +45,6 @@ describe('ekran Postępy', () => {
   });
   test('English', async () => {
     await boot(() => {}, 'en'); expect(screen.getByText('Deload week')).toBeTruthy();
-    expect(screen.getByText('Your own label, e.g. a lighter week. The app does not judge or plan it.')).toBeTruthy();
+    expect(screen.getByText('Your own label, e.g. a lighter week. When you start a workout I will suggest fewer sets (about half), same weights.')).toBeTruthy();
   });
 });

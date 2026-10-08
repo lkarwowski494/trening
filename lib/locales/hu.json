@@ -899,7 +899,6 @@
  "Kreska = {n} serii na partię w tygodniu. Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; każdy trening siłowy daje przyrost w porównaniu z brakiem treningu. Uproszczenie: serie pomocnicze liczymy po 0,5.": "Vonal = heti {n} sorozat izomcsoportonként. ACSM 2026 állásfoglalás: heti legalább {n} sorozat izomcsoportonként nagyobb izomnövekedést hozott, mint a kisebb volumen; bármilyen erőedzés izmot épít az edzés hiányához képest. Egyszerűsítés: a segítő sorozatok 0,5-nek számítanak.",
  "co najmniej {n}": "legalább {n}",
  "Tydzień deload": "Deload hét",
- "Twoje oznaczenie, np. lżejszy tydzień. Aplikacja go nie ocenia ani nie planuje.": "Saját jelölés, pl. könnyebb hét. Az alkalmazás nem értékeli és nem tervezi.",
  "Poprzedni tydzień jest oznaczony jako deload.": "Az előző hét deloadként van jelölve.",
  "D — tydzień oznaczony jako deload.": "D — deloadként jelölt hét.",
  "Kalendarz": "Naptár",
@@ -960,5 +959,16 @@
  "Karta bieżącej serii w treningu; widok „Lista” jak wcześniej do wyboru w Ustawieniach.": "Az aktuális sorozat kártyája edzés közben; a „Lista” nézet a korábbiak szerint, a Beállításokban választható.",
  "10 nowych języków: niemiecki, francuski, włoski, niderlandzki, szwedzki, duński, norweski, fiński, turecki i grecki.": "10 új nyelv: német, francia, olasz, holland, svéd, dán, norvég, finn, török és görög.",
  "Pierwsza wersja testowa: treningi z szablonów, historia, postępy i rekordy, kopia zapasowa w Plikach.": "Első tesztverzió: edzések sablonokból, előzmények, fejlődés és rekordok, biztonsági mentés a Fájlok appba.",
- "16 języków; wygląd jasny, ciemny albo jak w telefonie.": "16 nyelv; világos, sötét vagy a telefonnak megfelelő megjelenés."
+ "16 języków; wygląd jasny, ciemny albo jak w telefonie.": "16 nyelv; világos, sötét vagy a telefonnak megfelelő megjelenés.",
+ "Zacząć z mniejszą liczbą serii: {a} zamiast {b} serii roboczych? Ciężary bez zmian, szablon się nie zmienia.": "Kevesebb sorozattal kezdjünk: {b} helyett {a} munkasorozat? A súlyok változatlanok, a sablon nem változik.",
+ "Pełny trening": "Teljes edzés",
+ "Mniej serii": "Kevesebb sorozat",
+ "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka, nie wynik badań.": "Egymást követő edzéshetek deload nélkül: {n}. Az edzők általában {a}–{b} hetente tartanak deloadot — ez gyakorlat, nem kutatási eredmény.",
+ "Zaplanuj deload od {date}": "Deload tervezése ettől: {date}",
+ "Ten tydzień: deload. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Ez a hét: deload. Edzés indításakor kevesebb sorozatot javaslok (nagyjából a felét), azonos súlyokkal.",
+ "Od {date}: tydzień deload. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "{date}-tól: deload hét. Edzés indításakor kevesebb sorozatot javaslok (nagyjából a felét), azonos súlyokkal.",
+ "Zdejmij oznaczenie deload": "Deload jelölés törlése",
+ "tydzień deload": "deload hét",
+ "Wiersz z tłem — tydzień deload.": "Háttérrel jelölt sor — deload hét.",
+ "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Saját jelölés, pl. könnyebb hét. Edzés indításakor kevesebb sorozatot javaslok (nagyjából a felét), azonos súlyokkal."
 }

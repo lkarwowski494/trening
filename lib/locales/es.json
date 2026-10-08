@@ -899,7 +899,6 @@
  "Kreska = {n} serii na partię w tygodniu. Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; każdy trening siłowy daje przyrost w porównaniu z brakiem treningu. Uproszczenie: serie pomocnicze liczymy po 0,5.": "Línea = {n} series por grupo muscular por semana. Posicionamiento ACSM 2026: con al menos {n} series por grupo muscular a la semana, la hipertrofia fue mayor que con menos volumen; cualquier entrenamiento de fuerza aumenta el músculo frente a no entrenar. Simplificación: las series secundarias cuentan 0,5.",
  "co najmniej {n}": "al menos {n}",
  "Tydzień deload": "Semana de descarga",
- "Twoje oznaczenie, np. lżejszy tydzień. Aplikacja go nie ocenia ani nie planuje.": "Tu propia etiqueta, p. ej. una semana más ligera. La app no la evalúa ni la planifica.",
  "Poprzedni tydzień jest oznaczony jako deload.": "La semana anterior está marcada como descarga.",
  "D — tydzień oznaczony jako deload.": "D — semana marcada como descarga.",
  "Kalendarz": "Calendario",
@@ -960,5 +959,16 @@
  "Karta bieżącej serii w treningu; widok „Lista” jak wcześniej do wyboru w Ustawieniach.": "Tarjeta de la serie actual durante el entreno; la vista «Lista» como antes, a elegir en Ajustes.",
  "10 nowych języków: niemiecki, francuski, włoski, niderlandzki, szwedzki, duński, norweski, fiński, turecki i grecki.": "10 idiomas nuevos: alemán, francés, italiano, neerlandés, sueco, danés, noruego, finés, turco y griego.",
  "Pierwsza wersja testowa: treningi z szablonów, historia, postępy i rekordy, kopia zapasowa w Plikach.": "Primera versión de prueba: entrenos desde plantillas, historial, progreso y récords, copia de seguridad en Archivos.",
- "16 języków; wygląd jasny, ciemny albo jak w telefonie.": "16 idiomas; aspecto claro, oscuro o como el teléfono."
+ "16 języków; wygląd jasny, ciemny albo jak w telefonie.": "16 idiomas; aspecto claro, oscuro o como el teléfono.",
+ "Zacząć z mniejszą liczbą serii: {a} zamiast {b} serii roboczych? Ciężary bez zmian, szablon się nie zmienia.": "¿Empezar con menos series: {a} en lugar de {b} series efectivas? Mismos pesos, la plantilla no cambia.",
+ "Pełny trening": "Entreno completo",
+ "Mniej serii": "Menos series",
+ "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka, nie wynik badań.": "Semanas de entreno seguidas sin descarga: {n}. Los entrenadores suelen hacer una descarga cada {a}–{b} semanas — es práctica, no un resultado de investigación.",
+ "Zaplanuj deload od {date}": "Planificar descarga desde el {date}",
+ "Ten tydzień: deload. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Esta semana: descarga. Al empezar un entreno propondré menos series (alrededor de la mitad), mismos pesos.",
+ "Od {date}: tydzień deload. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Desde el {date}: semana de descarga. Al empezar un entreno propondré menos series (alrededor de la mitad), mismos pesos.",
+ "Zdejmij oznaczenie deload": "Quitar marca de descarga",
+ "tydzień deload": "semana de descarga",
+ "Wiersz z tłem — tydzień deload.": "Fila con fondo — semana de descarga.",
+ "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Tu propia etiqueta, p. ej. una semana más ligera. Al empezar un entreno propondré menos series (alrededor de la mitad), mismos pesos."
 }

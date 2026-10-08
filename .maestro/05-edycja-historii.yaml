@@ -126,3 +126,16 @@ name: Edycja historii i trening wstecz
 - tapOn: "Previous period"
 - assertVisible: "Workouts: .*, previously .*"
 - takeScreenshot: 21-podsumowanie-miesiac-wstecz
+# Deload A+B (decyzje właściciela 08.10.2026): bieżący tydzień oznaczony wyżej („Deload week”) — Kalendarz pokazuje „This week: deload…”
+# ('Ten tydzień: deload. …', components/DeloadHint.tsx); „Start: Upper A” pyta „Deload week” ('Tydzień deload') z liczbą serii
+# ('Zacząć z mniejszą liczbą serii: {a} zamiast {b} serii roboczych? …' — Upper A: 2 ćw. × 3 serie → 2 + 2 = 4 zamiast 6), „Fewer sets” ('Mniej serii').
+- tapOn: "Calendar, tab.*"
+- extendedWaitUntil: { visible: "This week: deload.*", timeout: 30000 }
+- takeScreenshot: 22-deload-kalendarz
+- tapOn: "Workout, tab.*"
+- extendedWaitUntil: { visible: "Start: Upper A", timeout: 30000 }
+- tapOn: "Start: Upper A"
+- extendedWaitUntil: { visible: "Start with fewer sets: 4 instead of 6 working sets.*", timeout: 15000 }
+- takeScreenshot: 23-deload-pytanie
+- tapOn: "Fewer sets"
+- extendedWaitUntil: { visible: "Set 1 done.*", timeout: 30000 }

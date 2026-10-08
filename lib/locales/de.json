@@ -899,7 +899,6 @@
  "Kreska = {n} serii na partię w tygodniu. Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; każdy trening siłowy daje przyrost w porównaniu z brakiem treningu. Uproszczenie: serie pomocnicze liczymy po 0,5.": "Linie = {n} Sätze pro Muskelgruppe pro Woche. ACSM-Positionspapier 2026: Bei mindestens {n} Sätzen pro Muskelgruppe und Woche war der Muskelzuwachs größer als bei geringerem Volumen; jedes Krafttraining baut Muskeln auf im Vergleich zu keinem Training. Vereinfachung: Nebensätze zählen als 0,5.",
  "co najmniej {n}": "mindestens {n}",
  "Tydzień deload": "Deload-Woche",
- "Twoje oznaczenie, np. lżejszy tydzień. Aplikacja go nie ocenia ani nie planuje.": "Ihre eigene Markierung, z. B. eine leichtere Woche. Die App bewertet oder plant sie nicht.",
  "Poprzedni tydzień jest oznaczony jako deload.": "Die vorherige Woche ist als Deload markiert.",
  "D — tydzień oznaczony jako deload.": "D — als Deload markierte Woche.",
  "Kalendarz": "Kalender",
@@ -960,5 +959,16 @@
  "Karta bieżącej serii w treningu; widok „Lista” jak wcześniej do wyboru w Ustawieniach.": "Karte des aktuellen Satzes im Training; die Ansicht „Liste“ wie bisher, wählbar in den Einstellungen.",
  "10 nowych języków: niemiecki, francuski, włoski, niderlandzki, szwedzki, duński, norweski, fiński, turecki i grecki.": "10 neue Sprachen: Deutsch, Französisch, Italienisch, Niederländisch, Schwedisch, Dänisch, Norwegisch, Finnisch, Türkisch und Griechisch.",
  "Pierwsza wersja testowa: treningi z szablonów, historia, postępy i rekordy, kopia zapasowa w Plikach.": "Erste Testversion: Trainings aus Vorlagen, Verlauf, Fortschritt und Rekorde, Sicherung in Dateien.",
- "16 języków; wygląd jasny, ciemny albo jak w telefonie.": "16 Sprachen; helles, dunkles oder System-Erscheinungsbild."
+ "16 języków; wygląd jasny, ciemny albo jak w telefonie.": "16 Sprachen; helles, dunkles oder System-Erscheinungsbild.",
+ "Zacząć z mniejszą liczbą serii: {a} zamiast {b} serii roboczych? Ciężary bez zmian, szablon się nie zmienia.": "Mit weniger Sätzen beginnen: {a} statt {b} Arbeitssätzen? Gewichte unverändert, die Vorlage bleibt gleich.",
+ "Pełny trening": "Volles Training",
+ "Mniej serii": "Weniger Sätze",
+ "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka, nie wynik badań.": "Trainingswochen in Folge ohne Deload: {n}. Trainer machen meist alle {a}–{b} Wochen einen Deload — das ist Praxis, kein Forschungsergebnis.",
+ "Zaplanuj deload od {date}": "Deload ab {date} planen",
+ "Ten tydzień: deload. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Diese Woche: Deload. Beim Trainingsstart schlage ich weniger Sätze vor (etwa die Hälfte), gleiche Gewichte.",
+ "Od {date}: tydzień deload. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Ab {date}: Deload-Woche. Beim Trainingsstart schlage ich weniger Sätze vor (etwa die Hälfte), gleiche Gewichte.",
+ "Zdejmij oznaczenie deload": "Deload-Markierung entfernen",
+ "tydzień deload": "Deload-Woche",
+ "Wiersz z tłem — tydzień deload.": "Zeile mit Hintergrund — Deload-Woche.",
+ "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Ihre eigene Markierung, z. B. eine leichtere Woche. Beim Trainingsstart schlage ich weniger Sätze vor (etwa die Hälfte), gleiche Gewichte."
 }

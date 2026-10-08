@@ -899,7 +899,6 @@
  "Kreska = {n} serii na partię w tygodniu. Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; każdy trening siłowy daje przyrost w porównaniu z brakiem treningu. Uproszczenie: serie pomocnicze liczymy po 0,5.": "Linea = {n} serie per gruppo muscolare a settimana. Position stand ACSM 2026: con almeno {n} serie per gruppo muscolare a settimana l’ipertrofia è stata maggiore che con volumi inferiori; qualsiasi allenamento di forza aumenta il muscolo rispetto a nessun allenamento. Semplificazione: le serie secondarie contano 0,5.",
  "co najmniej {n}": "almeno {n}",
  "Tydzień deload": "Settimana di scarico",
- "Twoje oznaczenie, np. lżejszy tydzień. Aplikacja go nie ocenia ani nie planuje.": "La tua etichetta, ad es. una settimana più leggera. L’app non la valuta né la pianifica.",
  "Poprzedni tydzień jest oznaczony jako deload.": "La settimana precedente è segnata come scarico.",
  "D — tydzień oznaczony jako deload.": "D — settimana segnata come scarico.",
  "Kalendarz": "Calendario",
@@ -960,5 +959,16 @@
  "Karta bieżącej serii w treningu; widok „Lista” jak wcześniej do wyboru w Ustawieniach.": "Scheda della serie in corso durante l’allenamento; la vista «Elenco» come prima, selezionabile nelle Impostazioni.",
  "10 nowych języków: niemiecki, francuski, włoski, niderlandzki, szwedzki, duński, norweski, fiński, turecki i grecki.": "10 nuove lingue: tedesco, francese, italiano, olandese, svedese, danese, norvegese, finlandese, turco e greco.",
  "Pierwsza wersja testowa: treningi z szablonów, historia, postępy i rekordy, kopia zapasowa w Plikach.": "Prima versione di test: allenamenti da modelli, cronologia, progressi e record, backup in File.",
- "16 języków; wygląd jasny, ciemny albo jak w telefonie.": "16 lingue; aspetto chiaro, scuro o come il telefono."
+ "16 języków; wygląd jasny, ciemny albo jak w telefonie.": "16 lingue; aspetto chiaro, scuro o come il telefono.",
+ "Zacząć z mniejszą liczbą serii: {a} zamiast {b} serii roboczych? Ciężary bez zmian, szablon się nie zmienia.": "Iniziare con meno serie: {a} invece di {b} serie allenanti? Carichi invariati, il modello non cambia.",
+ "Pełny trening": "Allenamento completo",
+ "Mniej serii": "Meno serie",
+ "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka, nie wynik badań.": "Settimane di allenamento di fila senza scarico: {n}. Gli allenatori di solito fanno uno scarico ogni {a}–{b} settimane — è una pratica, non un risultato di ricerca.",
+ "Zaplanuj deload od {date}": "Pianifica lo scarico dal {date}",
+ "Ten tydzień: deload. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Questa settimana: scarico. All’avvio dell’allenamento proporrò meno serie (circa la metà), carichi invariati.",
+ "Od {date}: tydzień deload. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Dal {date}: settimana di scarico. All’avvio dell’allenamento proporrò meno serie (circa la metà), carichi invariati.",
+ "Zdejmij oznaczenie deload": "Togli il segno di scarico",
+ "tydzień deload": "settimana di scarico",
+ "Wiersz z tłem — tydzień deload.": "Riga con sfondo — settimana di scarico.",
+ "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "La tua etichetta, ad es. una settimana più leggera. All’avvio dell’allenamento proporrò meno serie (circa la metà), carichi invariati."
 }

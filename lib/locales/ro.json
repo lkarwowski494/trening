@@ -899,7 +899,6 @@
  "Kreska = {n} serii na partię w tygodniu. Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; każdy trening siłowy daje przyrost w porównaniu z brakiem treningu. Uproszczenie: serie pomocnicze liczymy po 0,5.": "Linie = {n} serii pe grupă musculară pe săptămână. Poziția ACSM 2026: cu cel puțin {n} serii pe grupă musculară pe săptămână, creșterea musculară a fost mai mare decât la un volum mai mic; orice antrenament de forță crește mușchiul față de lipsa antrenamentului. Simplificare: seriile secundare contează 0,5.",
  "co najmniej {n}": "cel puțin {n}",
  "Tydzień deload": "Săptămână de descărcare",
- "Twoje oznaczenie, np. lżejszy tydzień. Aplikacja go nie ocenia ani nie planuje.": "Eticheta ta, de ex. o săptămână mai ușoară. Aplicația nu o evaluează și nu o planifică.",
  "Poprzedni tydzień jest oznaczony jako deload.": "Săptămâna anterioară este marcată ca descărcare.",
  "D — tydzień oznaczony jako deload.": "D — săptămână marcată ca descărcare.",
  "Kalendarz": "Calendar",
@@ -960,5 +959,16 @@
  "Karta bieżącej serii w treningu; widok „Lista” jak wcześniej do wyboru w Ustawieniach.": "Cardul seriei curente în antrenament; vizualizarea „Listă” ca înainte, la alegere în Configurări.",
  "10 nowych języków: niemiecki, francuski, włoski, niderlandzki, szwedzki, duński, norweski, fiński, turecki i grecki.": "10 limbi noi: germană, franceză, italiană, neerlandeză, suedeză, daneză, norvegiană, finlandeză, turcă și greacă.",
  "Pierwsza wersja testowa: treningi z szablonów, historia, postępy i rekordy, kopia zapasowa w Plikach.": "Prima versiune de test: antrenamente din șabloane, istoric, progres și recorduri, copie de rezervă în Fișiere.",
- "16 języków; wygląd jasny, ciemny albo jak w telefonie.": "16 limbi; aspect luminos, întunecat sau ca telefonul."
+ "16 języków; wygląd jasny, ciemny albo jak w telefonie.": "16 limbi; aspect luminos, întunecat sau ca telefonul.",
+ "Zacząć z mniejszą liczbą serii: {a} zamiast {b} serii roboczych? Ciężary bez zmian, szablon się nie zmienia.": "Începi cu mai puține serii: {a} în loc de {b} serii de lucru? Aceleași greutăți, șablonul nu se schimbă.",
+ "Pełny trening": "Antrenament complet",
+ "Mniej serii": "Mai puține serii",
+ "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka, nie wynik badań.": "Săptămâni de antrenament la rând fără descărcare: {n}. Antrenorii fac de obicei o descărcare la fiecare {a}–{b} săptămâni — este o practică, nu un rezultat al cercetării.",
+ "Zaplanuj deload od {date}": "Planifică descărcarea de la {date}",
+ "Ten tydzień: deload. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Săptămâna aceasta: descărcare. La pornirea antrenamentului voi propune mai puține serii (cam jumătate), aceleași greutăți.",
+ "Od {date}: tydzień deload. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "De la {date}: săptămână de descărcare. La pornirea antrenamentului voi propune mai puține serii (cam jumătate), aceleași greutăți.",
+ "Zdejmij oznaczenie deload": "Elimină marcajul de descărcare",
+ "tydzień deload": "săptămână de descărcare",
+ "Wiersz z tłem — tydzień deload.": "Rând cu fundal — săptămână de descărcare.",
+ "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Eticheta ta, de ex. o săptămână mai ușoară. La pornirea antrenamentului voi propune mai puține serii (cam jumătate), aceleași greutăți."
 }

@@ -899,7 +899,6 @@
  "Kreska = {n} serii na partię w tygodniu. Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; każdy trening siłowy daje przyrost w porównaniu z brakiem treningu. Uproszczenie: serie pomocnicze liczymy po 0,5.": "Γραμμή = {n} σετ ανά μυϊκή ομάδα την εβδομάδα. Θέση ACSM 2026: με τουλάχιστον {n} σετ ανά μυϊκή ομάδα την εβδομάδα η μυϊκή ανάπτυξη ήταν μεγαλύτερη από ό,τι με μικρότερο όγκο· κάθε προπόνηση με αντιστάσεις αυξάνει τον μυ σε σύγκριση με καμία προπόνηση. Απλοποίηση: τα βοηθητικά σετ μετρούν 0,5.",
  "co najmniej {n}": "τουλάχιστον {n}",
  "Tydzień deload": "Εβδομάδα αποφόρτισης",
- "Twoje oznaczenie, np. lżejszy tydzień. Aplikacja go nie ocenia ani nie planuje.": "Δική σου σήμανση, π.χ. μια πιο ελαφριά εβδομάδα. Η εφαρμογή δεν την αξιολογεί ούτε την προγραμματίζει.",
  "Poprzedni tydzień jest oznaczony jako deload.": "Η προηγούμενη εβδομάδα έχει σημανθεί ως αποφόρτιση.",
  "D — tydzień oznaczony jako deload.": "D — εβδομάδα σημασμένη ως αποφόρτιση.",
  "Kalendarz": "Ημερολόγιο",
@@ -960,5 +959,16 @@
  "Karta bieżącej serii w treningu; widok „Lista” jak wcześniej do wyboru w Ustawieniach.": "Κάρτα του τρέχοντος σετ στην προπόνηση· η προβολή «Λίστα» όπως πριν, με επιλογή στις Ρυθμίσεις.",
  "10 nowych języków: niemiecki, francuski, włoski, niderlandzki, szwedzki, duński, norweski, fiński, turecki i grecki.": "10 νέες γλώσσες: γερμανικά, γαλλικά, ιταλικά, ολλανδικά, σουηδικά, δανικά, νορβηγικά, φινλανδικά, τουρκικά και ελληνικά.",
  "Pierwsza wersja testowa: treningi z szablonów, historia, postępy i rekordy, kopia zapasowa w Plikach.": "Πρώτη δοκιμαστική έκδοση: προπονήσεις από πρότυπα, ιστορικό, πρόοδος και ρεκόρ, αντίγραφο ασφαλείας στα Αρχεία.",
- "16 języków; wygląd jasny, ciemny albo jak w telefonie.": "16 γλώσσες· ανοιχτή, σκούρα ή όπως στο τηλέφωνο εμφάνιση."
+ "16 języków; wygląd jasny, ciemny albo jak w telefonie.": "16 γλώσσες· ανοιχτή, σκούρα ή όπως στο τηλέφωνο εμφάνιση.",
+ "Zacząć z mniejszą liczbą serii: {a} zamiast {b} serii roboczych? Ciężary bez zmian, szablon się nie zmienia.": "Έναρξη με λιγότερα σετ: {a} αντί για {b} σετ εργασίας; Ίδια βάρη, το πρότυπο δεν αλλάζει.",
+ "Pełny trening": "Πλήρης προπόνηση",
+ "Mniej serii": "Λιγότερα σετ",
+ "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka, nie wynik badań.": "Εβδομάδες προπόνησης στη σειρά χωρίς αποφόρτιση: {n}. Οι προπονητές συνήθως κάνουν αποφόρτιση κάθε {a}–{b} εβδομάδες — είναι πρακτική, όχι εύρημα έρευνας.",
+ "Zaplanuj deload od {date}": "Προγραμματισμός αποφόρτισης από {date}",
+ "Ten tydzień: deload. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Αυτή την εβδομάδα: αποφόρτιση. Στην έναρξη προπόνησης θα προτείνω λιγότερα σετ (περίπου τα μισά), ίδια βάρη.",
+ "Od {date}: tydzień deload. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Από {date}: εβδομάδα αποφόρτισης. Στην έναρξη προπόνησης θα προτείνω λιγότερα σετ (περίπου τα μισά), ίδια βάρη.",
+ "Zdejmij oznaczenie deload": "Αφαίρεση σήμανσης αποφόρτισης",
+ "tydzień deload": "εβδομάδα αποφόρτισης",
+ "Wiersz z tłem — tydzień deload.": "Γραμμή με φόντο — εβδομάδα αποφόρτισης.",
+ "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Δική σου σήμανση, π.χ. μια πιο ελαφριά εβδομάδα. Στην έναρξη προπόνησης θα προτείνω λιγότερα σετ (περίπου τα μισά), ίδια βάρη."
 }

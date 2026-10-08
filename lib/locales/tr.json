@@ -899,7 +899,6 @@
  "Kreska = {n} serii na partię w tygodniu. Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; każdy trening siłowy daje przyrost w porównaniu z brakiem treningu. Uproszczenie: serie pomocnicze liczymy po 0,5.": "Çizgi = kas grubu başına haftada {n} set. ACSM 2026 tutum bildirgesi: kas grubu başına haftada en az {n} set ile kas gelişimi daha düşük hacme göre daha büyüktü; her direnç antrenmanı, hiç antrenman yapmamaya kıyasla kas geliştirir. Basitleştirme: yardımcı setler 0,5 sayılır.",
  "co najmniej {n}": "en az {n}",
  "Tydzień deload": "Deload haftası",
- "Twoje oznaczenie, np. lżejszy tydzień. Aplikacja go nie ocenia ani nie planuje.": "Kendi işaretin, ör. daha hafif bir hafta. Uygulama bunu değerlendirmez ya da planlamaz.",
  "Poprzedni tydzień jest oznaczony jako deload.": "Önceki hafta deload olarak işaretli.",
  "D — tydzień oznaczony jako deload.": "D — deload olarak işaretli hafta.",
  "Kalendarz": "Takvim",
@@ -960,5 +959,16 @@
  "Karta bieżącej serii w treningu; widok „Lista” jak wcześniej do wyboru w Ustawieniach.": "Antrenmanda geçerli set kartı; “Liste” görünümü eskisi gibi, Ayarlar’dan seçilebilir.",
  "10 nowych języków: niemiecki, francuski, włoski, niderlandzki, szwedzki, duński, norweski, fiński, turecki i grecki.": "10 yeni dil: Almanca, Fransızca, İtalyanca, Felemenkçe, İsveççe, Danca, Norveççe, Fince, Türkçe ve Yunanca.",
  "Pierwsza wersja testowa: treningi z szablonów, historia, postępy i rekordy, kopia zapasowa w Plikach.": "İlk test sürümü: şablonlardan antrenmanlar, geçmiş, ilerleme ve rekorlar, Dosyalar’da yedekleme.",
- "16 języków; wygląd jasny, ciemny albo jak w telefonie.": "16 dil; açık, koyu veya telefondaki gibi görünüm."
+ "16 języków; wygląd jasny, ciemny albo jak w telefonie.": "16 dil; açık, koyu veya telefondaki gibi görünüm.",
+ "Zacząć z mniejszą liczbą serii: {a} zamiast {b} serii roboczych? Ciężary bez zmian, szablon się nie zmienia.": "Daha az setle başlansın mı: {b} yerine {a} çalışma seti? Ağırlıklar aynı, şablon değişmez.",
+ "Pełny trening": "Tam antrenman",
+ "Mniej serii": "Daha az set",
+ "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka, nie wynik badań.": "Deload olmadan art arda antrenman haftası: {n}. Antrenörler genellikle her {a}–{b} haftada bir deload yapar — bu bir uygulamadır, araştırma bulgusu değil.",
+ "Zaplanuj deload od {date}": "{date} itibarıyla deload planla",
+ "Ten tydzień: deload. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Bu hafta: deload. Antrenmana başlarken daha az set önereceğim (yaklaşık yarısı), ağırlıklar aynı.",
+ "Od {date}: tydzień deload. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "{date} itibarıyla: deload haftası. Antrenmana başlarken daha az set önereceğim (yaklaşık yarısı), ağırlıklar aynı.",
+ "Zdejmij oznaczenie deload": "Deload işaretini kaldır",
+ "tydzień deload": "deload haftası",
+ "Wiersz z tłem — tydzień deload.": "Arka planlı satır — deload haftası.",
+ "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Kendi işaretin, ör. daha hafif bir hafta. Antrenmana başlarken daha az set önereceğim (yaklaşık yarısı), ağırlıklar aynı."
 }
