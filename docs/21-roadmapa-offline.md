@@ -65,10 +65,10 @@ widocznej w treningu (pole istnieje, ekran treningu go nie pokazuje), pola RIR (
 | Funkcja | Uwagi | Twierdzenie dziedzinowe? |
 |---|---|---|
 | Notatka ćwiczenia widoczna w treningu | pole już jest | nie |
-| Kalendarz w Historii (miesiąc, dni z treningiem) | | nie |
+| Kalendarz w Historii (miesiąc, dni z treningiem) — **zrobione 07.10.2026** (feature/e2-swap) | | nie |
 | Kalkulator talerzy (co nałożyć na stronę) | z talerzy miejsca — mamy dane | nie (arytmetyka) |
-| Pomiń ćwiczenie dziś (bez usuwania z szablonu) | dziś tylko „usuń” | nie |
-| Foldery / archiwum szablonów | | nie |
+| Pomiń ćwiczenie dziś (bez usuwania z szablonu) — **zrobione 07.10.2026** (feature/e2-swap) | dziś tylko „usuń” | nie |
+| Foldery / archiwum szablonów — **zrobione 07.10.2026** (feature/e2-swap) | | nie |
 | Przyciski w Live Activity: „−15/+15 s”, „Pomiń przerwę” — **odłożone do wydania natywnego (4n)** | iOS: przyciski działają po odblokowaniu (Face ID) — https://developer.apple.com/documentation/widgetkit/adding-interactivity-to-widgets-and-live-activities | nie |
 | Kontrolka w Centrum sterowania „Start przerwy / treningu” — **wydanie natywne (4n)** | https://developer.apple.com/documentation/widgetkit/creating-controls-to-perform-actions-across-the-system | nie |
 | Widżet na ekran główny (serie w tygodniu / ostatni trening) — **odłożone do wydania natywnego (4n)** | rozszerzenie widżetu już jest | nie |

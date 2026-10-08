@@ -100,3 +100,5 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
 - 07.10.2026 (ok. 21:00): import ze Strong/Hevy — **odłożony** („Po prostu zignorujmy ten import na razie”). Plik Stronga właściciela przejrzany
   (format zapisany w docs/21, 4b), kopia robocza usunięta, nic z niego w repo. Otwarte do czasu powrotu: jednostka (CSV bez kg/lb) i sposób
   dopasowania ćwiczeń (opcje A/B/C w rozmowie 07.10).
+- 08.10.2026: wydanie pakietu (czcionka, usuwanie gestem, kalendarz, „Pomiń dziś”, foldery; E2E 12/12, run 37669619362) — **wstrzymane** (wariant B:
+  dołożyć kolejne funkcje do tej wersji; odrzucone A: wydanie od razu). Gałąź `feature/e2-swap` bez scalenia do `main`.
