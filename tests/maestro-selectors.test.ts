@@ -69,3 +69,18 @@ test('regresja run 37657730493: po przesunięciu wiersza scenariusz stuka odsło
   expect(n).toBeGreaterThanOrEqual(4);
   expect(readFileSync(join(__dirname, '../components/SwipeRow.tsx'), 'utf8')).toContain('testID={testID ? `${testID}-del` : undefined}');
 });
+
+/* Zawężone do „+ Add exercise” (ekran treningu w zakładce — pod nim pasek zakładek). Pozostałe przewinięcia (33) zostają: część elementów
+ * leży na końcu listy, gdzie wyśrodkowanie jest niemożliwe i Maestro czekałby do limitu czasu. */
+test('regresja run 37730170793: przewinięcie do „+ Add exercise” na ekranie treningu wyśrodkowuje go (inaczej stuknięcie trafia w pasek zakładek)', () => {
+  const bad: string[] = [];
+  for (const f of files(dir).filter(x => !x.includes('/subflows/'))) { /* podprzepływy: edytor szablonu — ekran bez paska zakładek */
+    const lines = readFileSync(f, 'utf8').split('\n').filter(l => l.trim() && !l.trim().startsWith('#'));
+    lines.forEach((l, i) => {
+      const m = /^- scrollUntilVisible: \{ element: ("(?:[^"\\]|\\.)*")/.exec(l); if (!m) return; if (m[1] !== '"\\\\+ Add exercise"') return;
+      const next = lines[i + 1] ?? ''; const tapsSame = next.startsWith(`- tapOn: ${m[1]}`) || next.startsWith(`- tapOn: { text: ${m[1]}`);
+      if (tapsSame && !/centerElement: true/.test(l)) bad.push(`${f.split('/').pop()}: ${l.trim()}`);
+    });
+  }
+  expect(bad).toEqual([]);
+});

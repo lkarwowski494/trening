@@ -91,7 +91,7 @@ name: Zamiana ćwiczenia w trakcie treningu (E2 W1)
 - extendedWaitUntil: { visible: "instead of: Bench Press \\(Barbell\\).*", timeout: 30000 }
 
 # --- Podział: drugie ćwiczenie z 3 seriami, 1 odhaczona → zamiana ---
-- scrollUntilVisible: { element: "\\+ Add exercise", direction: DOWN, timeout: 60000 }
+- scrollUntilVisible: { element: "\\+ Add exercise", direction: DOWN, timeout: 60000, centerElement: true }  # run 37730170793: bez wyśrodkowania stuknięcie trafiło w pasek zakładek
 - tapOn: "\\+ Add exercise"
 - extendedWaitUntil: { visible: "Search exercises…", timeout: 30000 }
 - tapOn: "Search exercises…"
