@@ -140,6 +140,8 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
   nowym („Pierwsze kroki”) i po aktualizacji („Co nowego”), zawsze w Więcej (odrzucone: tylko w Więcej). Kolejność dalej: RIR → wydanie → rejestr decyzji.
 - 08.10.2026: przypomnienie o treningu z planu **o 8:00** (odrzucone: 7:00, 9:00); **wersja 0.10.0** dla tego wydania (odrzucone: 0.9.0 z nowym buildem).
   RIR = 10 − RPE: drugie niezależne źródło znalezione (Bastos i in. 2024) — skala zostaje.
+- 08.10.2026: rejestr decyzji na Google Drive („03 Rejestr decyzji (ADR) — Trening App”) uzupełniony o ADR-037–042 (kalendarz i plany, regeneracja,
+  serie i RIR, deload, generator, zakres wydania 0.10.0) ze źródłami i odrzuconymi alternatywami.
 - 08.10.2026: do backlogu bez priorytetu — znajomi i wyzwania w grupie („tablica wyników”), pomysł: grupa jak w Organizerze; wszystko do decyzji
   później (właściciel: „na razie zapisujemy pomysł, żeby go odkopać, gdy będzie czas”); otwarte pytania w docs/21.
 - 08.10.2026: ekran startowy — **dashboard tygodnia (wariant A)**: karta „Dziś” z paskiem tygodnia, 3 kafelki z poprzednim tygodniem, ostatni trening,
