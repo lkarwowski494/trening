@@ -327,6 +327,11 @@ export function migrate(raw: any): State {
   if (raw.equipFill !== GYM_FILL.rev) { for (const l of raw.settings.locations) fillGym(l, raw.settings.unit); raw.equipFill = GYM_FILL.rev; } /* decyzja 05.10.2026 (1.a): raz */
   /* pakiet C: tygodnie deload — daty poniedziałków, bez powtórzeń, posortowane, najwyżej 10 lat; pusta lista znika (dane sprzed zmiany 1:1); nie `arr` — ta przepuszcza tylko obiekty */
   { const u = [...new Set((Array.isArray(raw.deloadWeeks) ? raw.deloadWeeks : []).filter((x: unknown) => typeof x === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(x) && new Date(+x.slice(0, 4), +x.slice(5, 7) - 1, +x.slice(8, 10)).getDay() === 1))].sort().slice(-520) as string[]; if (u.length) raw.deloadWeeks = u; else delete raw.deloadWeeks; }
+  /* kalendarz (08.10.2026): plan tygodnia — 7 pozycji (id tekstem albo null), pusty znika; zmiany dni — klucze-daty, wartości id albo null */
+  { const d = isObj(raw.weekPlan) && Array.isArray(raw.weekPlan.days) ? raw.weekPlan.days : null; const days = Array.from({ length: 7 }, (_, i) => (d && typeof d[i] === 'string' && d[i] ? d[i] : null));
+    if (days.some(Boolean)) raw.weekPlan = { days }; else delete raw.weekPlan;
+    const ov = isObj(raw.planOverrides) ? Object.fromEntries(Object.entries(raw.planOverrides).filter(([k, v]) => /^\d{4}-\d{2}-\d{2}$/.test(k) && (v === null || (typeof v === 'string' && v)))) : {};
+    if (Object.keys(ov).length) raw.planOverrides = ov; else delete raw.planOverrides; }
   if (raw.optFill !== OPT_FILL.rev) { for (const l of raw.settings.locations) fillOpts(l); raw.optFill = OPT_FILL.rev; } /* bieżnia: nachylenie (05.10.2026), raz */
   raw.ownerId = owner;
   if (!Number.isFinite(raw.v)) raw.v = 2; if (raw.metaUpdatedAt != null && tsOf(raw.metaUpdatedAt) == null) delete raw.metaUpdatedAt; /* runda 53 */

@@ -1,0 +1,104 @@
+/*
+ * Kalendarz z planem tygodnia — logika (priorytet właściciela 08.10.2026, docs/18): plan pon…nd + zmiany dni, dwa tryby przesuwania.
+ * Rodzaje (docs/20): logika (łańcuch tylko do pierwszego wolnego dnia, brak przesunięcia na zajęty dzień bez polecenia, zamiana na polecenie,
+ * powrót do rutyny), dane (sanityzacja, zapis/odczyt, szablon w archiwum/usunięty), niezmiennik (liczba treningów zachowana przy przesunięciu,
+ * plan tygodnia nietknięty). Ekran — tests/plan-calendar-ui.test.tsx.
+ */
+import * as store from '@/lib/store';
+import * as plan from '@/lib/plan';
+import { fresh, saved, withDemoTemplates, addWorkout } from './helpers';
+
+const NOW = new Date(2026, 9, 8, 9, 0); /* czwartek 8.10.2026 */
+const S = () => store.getState();
+let A = '', B = '', C = '';
+beforeEach(async () => { jest.useFakeTimers({ now: NOW }); await fresh(); const t = withDemoTemplates(); [A, B, C] = [t[0].id, t[1].id, t[2].id]; });
+const week = (...d: (string | null)[]) => d.forEach((id, i) => plan.setWeekDay(i, id));
+const range = (from: string, n: number) => Array.from({ length: n }, (_, i) => plan.plannedOn(plan.addDays(from, i)));
+
+describe('plan tygodnia', () => {
+  test('dni tygodnia od poniedziałku; dzień bez zmiany = plan tygodnia; pusty plan znika z danych', () => {
+    expect([plan.weekdayIdx('2026-10-05'), plan.weekdayIdx('2026-10-11')]).toEqual([0, 6]);
+    week(A, null, B, null, A, null, null);
+    expect(range('2026-10-05', 7)).toEqual([A, null, B, null, A, null, null]);
+    expect(range('2026-10-12', 7)).toEqual([A, null, B, null, A, null, null]); /* powtarza się co tydzień */
+    week(null, null, null, null, null, null, null); expect(S().weekPlan).toBeUndefined();
+  });
+  test('szablon w archiwum albo usunięty — dzień bez treningu (bez błędu)', () => {
+    week(A, null, null, null, null, null, null); S().templates.find(t => t.id === A)!.archived = true;
+    expect(plan.plannedOn('2026-10-12')).toBeNull(); S().templates = S().templates.filter(t => t.id !== A); expect(plan.plannedOn('2026-10-12')).toBeNull();
+  });
+});
+
+describe('przesuń plan o 1 dzień (łańcuch do pierwszego wolnego dnia)', () => {
+  test('przykład właściciela: dziś FBW A, jutro FBW B, potem wolne → A jutro, B pojutrze, nic więcej', () => {
+    week(null, null, null, A, B, null, A); /* czw. A, pt. B, sob. wolne, nd. A */
+    const r = plan.shiftPlan('2026-10-08');
+    expect(range('2026-10-08', 5)).toEqual([null, A, B, A, null]); /* czw. wolne, pt. A, sob. B, nd. A (bez zmian), pon. wolne */
+    expect(r).toEqual({ moved: [{ from: '2026-10-08', to: '2026-10-09', id: A }, { from: '2026-10-09', to: '2026-10-10', id: B }] });
+    expect(range('2026-10-15', 4)).toEqual([A, B, null, A]); /* następny tydzień — rutyna bez zmian */
+    expect(S().weekPlan!.days).toEqual([null, null, null, A, B, null, A]);
+  });
+  test('przesunięcie zachowuje liczbę treningów (niezmiennik); dzień bez treningu — nic', () => {
+    week(A, B, null, C, A, null, null); const before = range('2026-10-05', 14).filter(Boolean).length;
+    plan.shiftPlan('2026-10-05'); expect(range('2026-10-05', 14).filter(Boolean).length).toBe(before);
+    expect(plan.shiftPlan('2026-10-10')).toEqual({ moved: [] }); /* sobota — wolne */
+  });
+  test('plan bez dni wolnych: łańcuch kończy się po SHIFT_MAX_DAYS, ostatni trening wypada (zwracany)', () => {
+    week(A, B, C, A, B, C, A); const r = plan.shiftPlan('2026-10-08');
+    expect(r.moved).toHaveLength(plan.SHIFT_MAX_DAYS); expect(r.dropped).toBeTruthy();
+  });
+  test('zmiana równa planowi tygodnia nie zostaje w danych (powrót do rutyny)', () => {
+    week(null, null, null, A, null, null, null); plan.shiftPlan('2026-10-08'); expect(Object.keys(S().planOverrides!)).toEqual(['2026-10-08', '2026-10-09']);
+    plan.moveOnly('2026-10-09', '2026-10-08'); expect(S().planOverrides).toBeUndefined();
+  });
+});
+
+describe('przesuń tylko ten trening', () => {
+  test('na wolny dzień — tak; na dzień z innym treningiem — konflikt, nic się nie zmienia', () => {
+    week(null, null, null, A, B, null, null);
+    expect(plan.moveOnly('2026-10-08', '2026-10-09')).toEqual({ ok: false, conflict: B });
+    expect(range('2026-10-08', 3)).toEqual([A, B, null]);
+    expect(plan.moveOnly('2026-10-08', '2026-10-10')).toEqual({ ok: true }); expect(range('2026-10-08', 3)).toEqual([null, B, A]);
+  });
+  test('wyraźne polecenie: zamiana miejscami', () => {
+    week(null, null, null, A, B, null, null); plan.swapDays('2026-10-08', '2026-10-09'); expect(range('2026-10-08', 2)).toEqual([B, A]);
+  });
+  test('pojedynczy dzień: inny trening / wolne / powrót do planu', () => {
+    week(A, null, null, null, null, null, null);
+    plan.setDayPlan('2026-10-12', C); expect(plan.plannedOn('2026-10-12')).toBe(C); expect(plan.isChanged('2026-10-12')).toBe(true);
+    plan.setDayPlan('2026-10-12', null); expect(plan.plannedOn('2026-10-12')).toBeNull();
+    plan.resetDay('2026-10-12'); expect([plan.plannedOn('2026-10-12'), plan.isChanged('2026-10-12')]).toEqual([A, false]);
+  });
+});
+
+describe('pomocnicze', () => {
+  test('dayKeyOf — data lokalna RRRR-MM-DD; hasPlan — plan tygodnia albo zmiany dni', () => {
+    expect(plan.dayKeyOf(new Date(2026, 9, 8, 23, 59).getTime())).toBe('2026-10-08');
+    expect(plan.hasPlan()).toBe(false); plan.setDayPlan('2026-10-09', A); expect(plan.hasPlan()).toBe(true);
+    plan.resetDay('2026-10-09'); expect(plan.hasPlan()).toBe(false); week(null, A, null, null, null, null, null); expect(plan.hasPlan()).toBe(true);
+  });
+  test('opis przesunięcia z treningiem, który wypada (plan bez dni wolnych)', () => {
+    const { shiftSummary } = require('@/components/DayPanel');
+    week(A, B, C, A, B, C, A); const r = plan.shiftPlan('2026-10-08'); const name = S().templates.find(x => x.id === r.dropped)!.name;
+    expect(shiftSummary(r)).toMatch(new RegExp(` · wypada: ${name.replace(/[()]/g, '\\$&')}$`));
+  });
+});
+
+describe('stan dnia i dane', () => {
+  test('zrobiony / zaplanowany / opuszczony / wolny', () => {
+    week(A, A, A, A, A, null, null);
+    addWorkout(new Date(2026, 9, 6, 18).getTime(), [['Back Squat', [{ weight: 100, reps: 5 }]]]);
+    expect(['2026-10-05', '2026-10-06', '2026-10-08', '2026-10-10'].map(k => plan.dayStatus(k, '2026-10-08').status)).toEqual(['missed', 'done', 'planned', 'rest']);
+    expect(plan.upcoming(3, '2026-10-08')).toEqual([{ date: '2026-10-08', templateId: A }, { date: '2026-10-09', templateId: A }, { date: '2026-10-10', templateId: null }]);
+  });
+  test('sanityzacja: plan 7 dni, złe klucze i wartości zmian usunięte; zapis i odczyt', async () => {
+    (S() as any).weekPlan = { days: [A, 5, null, 'x'] }; (S() as any).planOverrides = { '2026-10-08': B, 'zła': A, '2026-10-09': 7, '2026-10-10': null };
+    store.save(); await store.flush(); await fresh(saved());
+    expect(S().weekPlan).toEqual({ days: [A, null, null, 'x', null, null, null] }); expect(S().planOverrides).toEqual({ '2026-10-08': B, '2026-10-10': null });
+    (S() as any).weekPlan = { days: [] }; (S() as any).planOverrides = {}; store.save(); await store.flush(); await fresh(saved());
+    expect(['weekPlan' in S(), 'planOverrides' in S()]).toEqual([false, false]);
+  });
+  test('zmiany starsze niż 60 dni są sprzątane przy zmianie planu', () => {
+    S().planOverrides = { '2026-07-01': A, '2026-10-01': B }; plan.setWeekDay(0, A); expect(Object.keys(S().planOverrides!)).toEqual(['2026-10-01']);
+  });
+});

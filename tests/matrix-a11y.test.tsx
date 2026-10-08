@@ -61,7 +61,7 @@ const routesFor = (w: { id: string }, tpl: { id: string }, exId: string) => [
  *  - „Poprzednio” i nagłówek kolumny ciężaru („kg/hant.” itp.): szerokości kolumn wiersza serii liczy rowLayout (ActiveWorkout.tsx,
  *    test szerokości: tests/ux.test.tsx), a przy wąskim ekranie „Poprzednio” schodzi pod wiersz.
  */
-const ONE_LINE_OK = ['Trening', 'Szablony', 'Ćwiczenia', 'Historia', 'Więcej', 'Poprzednio'];
+const ONE_LINE_OK = ['Trening', 'Szablony', 'Ćwiczenia', 'Kalendarz', 'Więcej', 'Poprzednio'];
 const ONE_LINE_OK_RE = /^(kg|lb)\/|^Poprzednio: |^Previous: /;
 
 type Sweep = {

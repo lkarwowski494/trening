@@ -1707,7 +1707,7 @@ test('R69-10 przypomnienie o porzuconym treningu planowane 2 h po ostatniej seri
 describe('runda 68 (testy dopisane)', () => {
   /* R68-01 (udział masy ciała przy zmianie sprzętu) — nieaktualne od rundy 75 (Q-001). */
   test('R68-02 tytuły ekranów to nagłówki dla VoiceOver', async () => {
-    await renderApp({ url: '/history' }); await flushAll(10); expect(screen.getByRole('header', { name: 'Historia' })).toBeTruthy();
+    await renderApp({ url: '/history' }); await flushAll(10); expect(screen.getByRole('header', { name: 'Kalendarz' })).toBeTruthy();
   });
   test('R68-03 stoper z celem po czasie kończy Live Activity także bez ekranu treningu', async () => {
     await fresh(); store.startEmpty(); store.addExerciseToActive(ex('Plank')); const id = store.getState().active!.exercises[0].sets[0].id; const t0 = Date.now();

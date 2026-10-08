@@ -27,7 +27,7 @@ export default function TabsLayout() {
       <Tabs.Screen name="index" options={{ title: tr('Trening'), tabBarIcon: icon('workout'), tabBarBadge: badge, tabBarAccessibilityLabel: full ? `${tr('Trening')}, ${tr('przerwa {s}', { s: full })}` : undefined /* runda 30: VoiceOver czyta przerwę */, tabBarBadgeStyle: { backgroundColor: t.accent, color: t.accentInk, fontSize: 11 } }} />
       <Tabs.Screen name="templates" options={{ title: tr('Szablony'), tabBarIcon: icon('templates') }} />
       <Tabs.Screen name="exercises" options={{ title: tr('Ćwiczenia'), tabBarIcon: icon('exercises') }} />
-      <Tabs.Screen name="history" options={{ title: tr('Historia'), tabBarIcon: icon('history') }} />
+      <Tabs.Screen name="history" options={{ title: tr('Kalendarz') /* 08.10.2026: Historia → Kalendarz (decyzja 1A) */, tabBarIcon: icon('history') }} />
       <Tabs.Screen name="more" options={{ title: tr('Więcej'), tabBarIcon: icon('more') }} />
     </Tabs>
   );

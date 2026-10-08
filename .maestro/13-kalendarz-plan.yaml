@@ -1,0 +1,61 @@
+# Kalendarz z planem tygodnia (decyzje właściciela 08.10.2026: 1A zakładka Kalendarz, 2A plan tygodnia + dwa tryby przesuwania).
+# Logika i wszystkie przypadki: tests/plan-calendar.test.ts, tests/plan-calendar-ui.test.tsx. Tu: prawdziwe stuknięcia na symulatorze.
+#
+# Literały (EN z lib/i18n.en.ts):
+#   "Calendar, tab.*"               ← 'Kalendarz' + etykieta zakładki
+#   "Weekly plan"                   ← 'Plan tygodnia' (przycisk w Kalendarzu i tytuł ekranu)
+#   "Monday: Upper A" … "Sunday: Upper A" ← app/plan.tsx: '{dzień tygodnia}: {szablon}' (etykieta chipa)
+#   ".*, planned: Upper A"          ← components/HistoryCalendar.tsx: '{data}, zaplanowany: {name}' (dziś i dalej)
+#   "Move plan by 1 day" / "Plan moved" ← 'Przesuń plan o 1 dzień' / 'Plan przesunięty'
+#   "Rest · plan changed"           ← 'Wolne' + ' · ' + 'zmiana planu'
+#   "Restore from plan" / "Planned: Upper A" ← 'Przywróć z planu' / 'Zaplanowany: {name}'
+#   "Move only this workout", ".*, taken: Upper A", "This day is taken", "Cancel" ← 'Przesuń tylko ten trening', '{day}, zajęty: {name}', 'Ten dzień jest zajęty', 'Anuluj'
+#   "Today: Upper A", "Start planned workout: Upper A" ← components/TodayPlan.tsx
+appId: pl.lukasz.trening
+name: Kalendarz z planem tygodnia
+---
+- launchApp:
+    clearState: true
+    permissions: { all: allow }
+- extendedWaitUntil: { visible: "Start from a template", timeout: 60000 }
+- runFlow: subflows/szablon-testowy.yaml
+# --- Plan tygodnia: Upper A każdego dnia (dzień symulatora nieznany — dziś zawsze zaplanowany) ---
+- tapOn: "Calendar, tab.*"
+- extendedWaitUntil: { visible: "Weekly plan", timeout: 30000 }
+- tapOn: "Weekly plan"
+- extendedWaitUntil: { visible: "Monday: Upper A", timeout: 30000 }
+- tapOn: "Monday: Upper A"
+- tapOn: "Tuesday: Upper A"
+- tapOn: "Wednesday: Upper A"
+- scrollUntilVisible: { element: "Sunday: Upper A", direction: DOWN, timeout: 30000, centerElement: true }
+- tapOn: "Thursday: Upper A"
+- tapOn: "Friday: Upper A"
+- tapOn: "Saturday: Upper A"
+- tapOn: "Sunday: Upper A"
+- takeScreenshot: 60-plan-tygodnia
+- tapOn: "Back"
+# --- Kalendarz: dziś zaplanowany; przesunięcie planu o 1 dzień i powrót ---
+- extendedWaitUntil: { visible: ".*, planned: Upper A", timeout: 30000 }
+- tapOn: { text: ".*, planned: Upper A", index: 0 }
+- extendedWaitUntil: { visible: "Planned: Upper A", timeout: 15000 }
+- takeScreenshot: 61-panel-dnia
+- tapOn: "Move plan by 1 day"
+- extendedWaitUntil: { visible: "Plan moved", timeout: 15000 }
+- tapOn: "OK"
+- extendedWaitUntil: { visible: "Rest · plan changed", timeout: 15000 }
+- tapOn: "Restore from plan"
+- extendedWaitUntil: { visible: "Planned: Upper A", timeout: 15000 }
+# --- Tylko ten trening na zajęty dzień: pytanie, „Cancel” nic nie zmienia ---
+- tapOn: "Move only this workout"
+- extendedWaitUntil: { visible: ".*, taken: Upper A", timeout: 15000 }
+- tapOn: { text: ".*, taken: Upper A", index: 0 }
+- extendedWaitUntil: { visible: "This day is taken", timeout: 15000 }
+- takeScreenshot: 62-dzien-zajety
+- tapOn: "Cancel"
+- assertVisible: "Planned: Upper A"
+# --- Ekran treningu: „Today: Upper A” i start ---
+- tapOn: "Workout, tab.*"
+- extendedWaitUntil: { visible: "Today: Upper A", timeout: 30000 }
+- takeScreenshot: 63-dzis
+- tapOn: "Start planned workout: Upper A"
+- extendedWaitUntil: { visible: "Set 1 done.*", timeout: 30000 }

@@ -40,8 +40,8 @@ const SAME_ANY = new Set([
 const SAME_IN: Partial<Record<Lang, string[]>> = {
   cs: ['guma: {v}' /* guma (07.10.2026) */, '{n} z {all}', '{n} z {m}' /* „z” = z (czes.) */, '{u}/str.' /* strana */, '+ Guma', 'guma', 'Guma', 'gumy', 'Gumy' /* guma */, 'do', 'od', 'krok', 'obj.' /* objem */, 'REKORDY', 'pauza', '⏸ Pauza' /* pauza = pauza (08.10.2026) */],
   sk: ['guma: {v}' /* guma (07.10.2026) */, '{n} z {all}', '{n} z {m}', '{u}/str.', '+ Guma', 'guma', 'Guma', 'gumy', 'Gumy', 'do', 'od', 'krok', 'obj.', 'REKORDY', 'nie', 'Nie' /* „nie” = nie (słow.) */, 'Partia' /* svalová partia */, 'sek.', 'Teraz: {v}' /* teraz = teraz (słow.) */, 'pauza', '⏸ Pauza' /* pauza = pauza (08.10.2026) */],
-  hr: ['guma: {v}' /* guma (07.10.2026) */, '{u}/str.' /* strana */, 'do', 'od', 'Dom', 'normalna', 'sek.', 'Trening' /* APP_NAME.hr */, 'pauza', '⏸ Pauza' /* pauza = pauza (08.10.2026) */],
-  sl: ['{u}/str.' /* stran */, 'do', 'od', 'Dom', 'sek.', 'Trening' /* APP_NAME.sl */, 'Treningi' /* sl: mn. „trening” — to samo słowo */],
+  hr: ['guma: {v}' /* guma (07.10.2026) */, '{u}/str.' /* strana */, 'do', 'od', 'Dom', 'normalna', 'sek.', 'Trening' /* APP_NAME.hr */, 'pauza', '⏸ Pauza' /* pauza = pauza (08.10.2026) */, 'Dodaj trening' /* „dodaj” = dodaj (08.10.2026) */],
+  sl: ['{u}/str.' /* stran */, 'do', 'od', 'Dom', 'sek.', 'Trening' /* APP_NAME.sl */, 'Treningi' /* sl: mn. „trening” — to samo słowo */, 'Dodaj trening' /* „dodaj” = dodaj (08.10.2026) */],
   ro: ['seria {n}', 'Seria {n}', 'Seria {n} — {ex}', 'serii', 'e1RM {v} (seria {s})' /* rum. seria = seria (forma z rodzajnikiem), serii = serie */],
   lt: ['guma: {v}' /* guma (07.10.2026) */, '{u}/hant.' /* hantelis */, '+ Guma', 'guma', 'Guma' /* guma */, 'sek.'],
   lv: ['{u}/hant.' /* hantele */, 'sek.'],
@@ -278,7 +278,7 @@ describe('długie tłumaczenia w miejscach, gdzie tekst może być ucięty', () 
   /* @matrix LANGS */
   const W = 375;
   const lines = (s: string, w: (x: string) => number, avail: number) => { let n = 1, cur = 0; const sp = w(' '); for (const word of s.split(/\s+/)) { const ww = w(word); if (ww > avail) { n += Math.ceil(ww / avail) - (cur ? 0 : 1); cur = ww % avail; continue; } if (cur && cur + sp + ww > avail) { n++; cur = ww; } else cur += (cur ? sp : 0) + ww; } return n; };
-  const TABS = ['Trening', 'Szablony', 'Ćwiczenia', 'Historia', 'Więcej'];
+  const TABS = ['Trening', 'Szablony', 'Ćwiczenia', 'Kalendarz', 'Więcej'];
   /** Zakładka: 1/5 szerokości, padding 5 (BottomTabItem tabVerticalUiKit), etykieta 10 pt (labelBeneath), numberOfLines=1. */
   const TAB_AVAIL = W / 5 - 2 * 5;
   const tabOverflow = (l: Lang) => TABS.map(k => trIn(l, k)).filter(s => SANS.semibold.width(s, 10) > TAB_AVAIL).map(s => `${s} (${SANS.semibold.width(s, 10).toFixed(1)} > ${TAB_AVAIL} pt)`);

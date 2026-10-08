@@ -16,6 +16,14 @@
   "en": "{c}, level {n}"
  },
  {
+  "pl": "{day}, zajęty: {name}",
+  "en": "{day}, taken: {name}"
+ },
+ {
+  "pl": "{day}: {name}. Bez Twojej zgody nie przesuwam na dzień z innym treningiem.",
+  "en": "{day}: {name}. I won’t move onto a day with another workout without your say-so."
+ },
+ {
   "pl": "{k}: {v}",
   "en": "{k}: {v}"
  },
@@ -601,6 +609,10 @@
   "en": "Add note"
  },
  {
+  "pl": "Dodaj trening",
+  "en": "Add workout"
+ },
+ {
   "pl": "Dom",
   "en": "Home"
  },
@@ -688,6 +700,14 @@
  {
   "pl": "Dziś rano",
   "en": "This morning"
+ },
+ {
+  "pl": "Dziś wolne",
+  "en": "Rest day today"
+ },
+ {
+  "pl": "Dziś: {name}",
+  "en": "Today: {name}"
  },
  {
   "pl": "Dźwięk i wibracja na koniec przerwy",
@@ -950,6 +970,10 @@
   "en": "Other equipment: {impl}"
  },
  {
+  "pl": "Inny trening",
+  "en": "Other workout"
+ },
+ {
   "pl": "Jak liczyć ciężar w objętości",
   "en": "How weight counts toward volume"
  },
@@ -1004,6 +1028,10 @@
  {
   "pl": "już w treningu",
   "en": "already in workout"
+ },
+ {
+  "pl": "Kalendarz",
+  "en": "Calendar"
  },
  {
   "pl": "kamienie atlas",
@@ -1526,6 +1554,10 @@
   "en": "Each side: {p}"
  },
  {
+  "pl": "Na który dzień? Zajęte dni są oznaczone nazwą treningu.",
+  "en": "Which day? Taken days show the workout name."
+ },
+ {
   "pl": "Na pewno?",
   "en": "Are you sure?"
  },
@@ -1652,6 +1684,10 @@
  {
   "pl": "Nie masz jeszcze szablonów — utwórz pierwszy albo zacznij pusty trening.",
   "en": "No templates yet — create your first one or start an empty workout."
+ },
+ {
+  "pl": "Nie masz jeszcze szablonów.",
+  "en": "You have no templates yet."
  },
  {
   "pl": "Nie udało się",
@@ -1866,6 +1902,14 @@
   "en": "Tire (flips)"
  },
  {
+  "pl": "opuszczony: {name}",
+  "en": "missed: {name}"
+ },
+ {
+  "pl": "Opuszczony: {name}",
+  "en": "Missed: {name}"
+ },
+ {
   "pl": "orbitrek",
   "en": "elliptical"
  },
@@ -1984,6 +2028,22 @@
  {
   "pl": "Piłka lekarska",
   "en": "Medicine ball"
+ },
+ {
+  "pl": "Plan na 7 dni: {list}. Tapnij, by otworzyć Kalendarz.",
+  "en": "7-day plan: {list}. Tap to open the Calendar."
+ },
+ {
+  "pl": "Plan powtarza się co tydzień. Pojedyncze dni zmienisz w Kalendarzu.",
+  "en": "The plan repeats every week. Change single days in the Calendar."
+ },
+ {
+  "pl": "Plan przesunięty",
+  "en": "Plan moved"
+ },
+ {
+  "pl": "Plan tygodnia",
+  "en": "Weekly plan"
  },
  {
   "pl": "plecy",
@@ -2220,6 +2280,10 @@
   "en": "forearms"
  },
  {
+  "pl": "Przenieś na dziś",
+  "en": "Move to today"
+ },
+ {
   "pl": "przerwa",
   "en": "rest"
  },
@@ -2276,6 +2340,14 @@
   "en": "Move down"
  },
  {
+  "pl": "Przesuń plan o 1 dzień",
+  "en": "Move plan by 1 day"
+ },
+ {
+  "pl": "Przesuń tylko ten trening",
+  "en": "Move only this workout"
+ },
+ {
   "pl": "Przesuń wyżej",
   "en": "Move up"
  },
@@ -2310,6 +2382,10 @@
  {
   "pl": "Przywróć z archiwum",
   "en": "Restore from archive"
+ },
+ {
+  "pl": "Przywróć z planu",
+  "en": "Restore from plan"
  },
  {
   "pl": "Puste „pow. od” = seria do maksimum. „⇅ SS” łączy ćwiczenie z następnym w superset (wspólna przerwa po ostatnim z grupy), „✂” wyjmuje z grupy.",
@@ -2662,6 +2738,10 @@
   "en": "Start set stopwatch"
  },
  {
+  "pl": "Start zaplanowanego treningu: {name}",
+  "en": "Start planned workout: {name}"
+ },
+ {
   "pl": "Start: {name}",
   "en": "Start: {name}"
  },
@@ -2842,6 +2922,10 @@
   "en": "Tempo (optional, e.g. 3-1-1)"
  },
  {
+  "pl": "Ten dzień jest zajęty",
+  "en": "This day is taken"
+ },
+ {
   "pl": "ten sam ruch",
   "en": "same movement"
  },
@@ -3012,6 +3096,10 @@
  {
   "pl": "Ustaw jako główne",
   "en": "Set as main"
+ },
+ {
+  "pl": "Ustaw plan tygodnia, by widzieć zaplanowane treningi i przesuwać je w kalendarzu.",
+  "en": "Set a weekly plan to see planned workouts and move them in the calendar."
  },
  {
   "pl": "Ustawienia",
@@ -3242,8 +3330,20 @@
   "en": "Enable notifications for {app} in iOS Settings."
  },
  {
+  "pl": "wolne",
+  "en": "rest"
+ },
+ {
+  "pl": "Wolne",
+  "en": "Rest"
+ },
+ {
   "pl": "Wolne ciężary",
   "en": "Free weights"
+ },
+ {
+  "pl": "Wolne w tym dniu",
+  "en": "Rest this day"
  },
  {
   "pl": "worek z piaskiem",
@@ -3360,6 +3460,10 @@
  {
   "pl": "Wykresy pojawią się po pierwszym zakończonym treningu.",
   "en": "Charts appear after your first finished workout."
+ },
+ {
+  "pl": "wypada: {name}",
+  "en": "dropped: {name}"
  },
  {
   "pl": "Wypełnij",
@@ -3494,6 +3598,10 @@
   "en": "Swap exercise: {name}"
  },
  {
+  "pl": "Zamień miejscami",
+  "en": "Swap places"
+ },
+ {
   "pl": "Zamień na zamiennik: {name}",
   "en": "Swap to substitute: {name}"
  },
@@ -3538,6 +3646,14 @@
   "en": "Save changes"
  },
  {
+  "pl": "zaplanowany: {name}",
+  "en": "planned: {name}"
+ },
+ {
+  "pl": "Zaplanowany: {name}",
+  "en": "Planned: {name}"
+ },
+ {
   "pl": "Zastąp",
   "en": "Replace"
  },
@@ -3566,6 +3682,10 @@
   "en": "The workout clock is stopped and the pause does not count towards the duration. The rest timer keeps running; ticking off a set resumes the workout."
  },
  {
+  "pl": "zmiana planu",
+  "en": "plan changed"
+ },
+ {
   "pl": "Zmiany nie trafiają do Apple Health.",
   "en": "Changes are not sent to Apple Health."
  },
@@ -3592,6 +3712,10 @@
  {
   "pl": "Zniknie z list i szablonów.",
   "en": "It disappears from lists and templates."
+ },
+ {
+  "pl": "zrobione",
+  "en": "done"
  },
  {
   "pl": "Zrób backup (Więcej → Backup) i odnów w Sideloadly. Dane zostają.",

@@ -8,6 +8,7 @@ import ActiveWorkout from '@/components/ActiveWorkout';
 import { Alert } from 'react-native';
 import { getState, useTick, finishedWorkouts, templateGroups, startFromTemplate, startEmpty, newTemplate, useForegroundTick, repeatLast, fmtDate, localISODate, getPersistError, getRecovery, clearRecovery, flush, exById, tplWorkSets } from '@/lib/store';
 import { exportRecovery } from '@/lib/backup';
+import { TodayPlan } from '@/components/TodayPlan';
 import { signingState, scheduleReminder, renewTexts, type RenewKind } from '@/lib/signing';
 import { t, tp, locale } from '@/lib/i18n';
 import { fmtW, fmtNum } from '@/lib/units';
@@ -40,6 +41,7 @@ function Home() {
       <View style={{ marginVertical: 10 }}><H1>{t('Trening')}</H1><Muted>{new Date().toLocaleDateString(locale(), { weekday: 'long', day: 'numeric', month: 'long' })}</Muted></View>
       <DataBanners />
       <SigningBanner />
+      <TodayPlan />{/* 08.10.2026: kalendarz z planem (decyzja 1A) */}
       {/* Decyzja 03.10.2026 (08:11): świeża instalacja nie ma szablonów (użytkownik ustawia je sam) — wskazówka pierwszego startu nie odsyła wtedy
           do „szablonu niżej”, tylko do „+ Nowy szablon” albo pustego treningu */}
       {!last ? <View style={{ marginTop: 16, padding: 12, borderRadius: 10, borderWidth: 1, borderStyle: 'dashed', borderColor: th.line }}><Muted style={{ fontSize: 13 }}>{st.templates.some(x => !x.archived) ? t('Pierwszy raz? Wybierz szablon niżej, wpisz ciężar i powtórzenia, odhaczaj serie ✓ — przerwa odlicza się sama. Na koniec „Zakończ trening i zapisz”. Szablony i ćwiczenia zmienisz w zakładkach obok.') : t('Pierwszy raz? Utwórz swój szablon („+ Nowy szablon” niżej) albo zacznij pusty trening. Wpisuj ciężar i powtórzenia, odhaczaj serie ✓ — przerwa odlicza się sama. Na koniec „Zakończ trening i zapisz”.')}</Muted></View> : null}

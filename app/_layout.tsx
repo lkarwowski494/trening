@@ -50,6 +50,7 @@ function Root() {
         <Stack.Screen name="+not-found" options={{ headerShown: false, animation: 'none' }} />
         <Stack.Screen name="_sitemap" options={{ headerShown: false, animation: 'none' }} />
         <Stack.Screen name="template/[id]" options={{ title: t('Szablon') }} />
+        <Stack.Screen name="plan" options={{ title: t('Plan tygodnia') }} />
         <Stack.Screen name="reorder" options={{ title: t('Kolejność ćwiczeń') }} />
         <Stack.Screen name="exercise/[id]" options={{ title: t('Ćwiczenie') }} />
         <Stack.Screen name="history/[id]" options={{ title: t('Sesja') }} />

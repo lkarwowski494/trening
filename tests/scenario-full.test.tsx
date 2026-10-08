@@ -59,7 +59,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     expect(screen.getByText('Nie masz jeszcze szablonów — utwórz pierwszy albo zacznij pusty trening.')).toBeTruthy();
     expect(screen.getByText('+ Nowy szablon')).toBeTruthy(); expect(screen.getByText('Pusty trening')).toBeTruthy();
     expect(screen.queryByText(/^Powtórz ostatni/)).toBeNull(); expect(screen.queryByLabelText(/^Start: /)).toBeNull();
-    for (const tab of ['Trening', 'Szablony', 'Ćwiczenia', 'Historia', 'Więcej']) expect(screen.getAllByText(tab).length).toBeGreaterThan(0);
+    for (const tab of ['Trening', 'Szablony', 'Ćwiczenia', 'Kalendarz', 'Więcej']) expect(screen.getAllByText(tab).length).toBeGreaterThan(0);
     /* pusty trening bez serii → „Brak odhaczonych serii” → odrzucenie; nic nie zostaje w historii */
     await tap(screen.getByText('Pusty trening')); await flushAll(10);
     expect(S().active).not.toBeNull(); expect(S().active!.templateId).toBeNull(); expect(screen.getAllByText('Zakończ trening i zapisz').length).toBe(1);

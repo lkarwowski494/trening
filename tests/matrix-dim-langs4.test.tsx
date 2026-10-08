@@ -42,12 +42,12 @@ describe('LANGS × THEMES — główne ekrany w każdym języku i motywie', () =
     ['/more/backup', 'Eksport tworzy plik JSON z całą historią i szablonami — zapisz go w Plikach/iCloud albo wyślij sobie. Import przyjmuje ten sam format, także backup z wersji webowej.'],
     ['/more/language', 'Nazwy ćwiczeń z biblioteki są po angielsku we wszystkich językach poza polskim.'], ['/more/bands', '+ Guma'],
   ];
-  const TABS = ['Trening', 'Szablony', 'Ćwiczenia', 'Historia', 'Więcej'];
+  const TABS = ['Trening', 'Szablony', 'Ćwiczenia', 'Kalendarz', 'Więcej']; /* 08.10.2026: Historia → Kalendarz */
   /** Polskie teksty, które w innym języku nie mogą zostać na ekranie (wszystkie mają tłumaczenia w słownikach; bez „+ Guma” — „guma” to też
    * słowo czeskie, słowackie i litewskie). */
   /** To samo słowo w języku docelowym (fiń. historia) — nie jest przeciekiem polskiego tekstu (07.10.2026; jak SAME_IN w matrix-i18n). */
-  const SAME_WORD: Partial<Record<string, string[]>> = { fi: ['Historia'] };
-  const PL_SENTINELS = ['Zacznij z szablonu', 'Ustawienia', 'Pusty trening', 'Postępy', 'Szablony', 'Ćwiczenia', 'Więcej', 'Historia', '+ Dodaj miejsce', '+ Dodaj trening wstecz', 'Dźwięk i wibracja na koniec przerwy', 'Jednostka ciężaru', 'Wygląd'];
+  const SAME_WORD: Partial<Record<string, string[]>> = {}; /* fi „Historia” — zakładka to teraz Kalendarz (Kalenteri) */
+  const PL_SENTINELS = ['Zacznij z szablonu', 'Ustawienia', 'Pusty trening', 'Postępy', 'Szablony', 'Ćwiczenia', 'Więcej', 'Kalendarz', '+ Dodaj miejsce', '+ Dodaj trening wstecz', 'Dźwięk i wibracja na koniec przerwy', 'Jednostka ciężaru', 'Wygląd'];
   const texts = () => { const out: string[] = []; const walk = (n: any) => { if (!n) return; if (typeof n === 'string') { out.push(n); return; } if (Array.isArray(n)) { n.forEach(walk); return; } walk(n.children); }; walk(screen.toJSON()); return out; };
   const bgs = () => { const out = new Set<string>(); const walk = (n: any) => { if (!n || typeof n === 'string') return; if (Array.isArray(n)) { n.forEach(walk); return; } for (const x of [n.props?.style].flat(9)) if (x && x.backgroundColor) out.add(String(x.backgroundColor)); walk(n.children); }; walk(screen.toJSON()); return out; };
   const palette = (th: ThemeSetting) => (th === 'auto' ? system : th) === 'light' ? light : dark;

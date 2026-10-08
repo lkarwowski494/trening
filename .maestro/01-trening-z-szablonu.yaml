@@ -33,6 +33,6 @@ name: Trening z szablonu
 - assertVisible: "Upper A"
 - takeScreenshot: 05-zapisana-sesja
 - tapOn: "Back"
-- tapOn: "History.*"
+- tapOn: "Calendar.*"  # 08.10.2026: zakładka Historia → Kalendarz
 - assertVisible: "Upper A.*"
 - takeScreenshot: 06-historia
