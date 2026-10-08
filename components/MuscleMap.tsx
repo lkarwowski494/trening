@@ -5,7 +5,7 @@ import { useTheme } from '@/lib/theme';
 import { t } from '@/lib/i18n';
 import { fmtNum } from '@/lib/units';
 import { MUSCLES } from '@/lib/seed';
-import { PARTS, shadeLevel, SHADE_OPACITY, rankedMuscles, type View as Side } from '@/lib/musclemap';
+import { PARTS, shadeLevel, shadeColor, rankedMuscles, type View as Side } from '@/lib/musclemap';
 import { Muted } from '@/components/ui';
 
 /*
@@ -18,10 +18,10 @@ export function MuscleMap({ sets }: { sets: Partial<Record<string, number>> }) {
   const side = (view: Side, dx: number) => (
     <G key={view}>{PARTS.filter(p => p.view === view).map((p, i) => {
       const lvl = p.muscle ? shadeLevel(sets[p.muscle] ?? 0, max) : 0;
-      const fill = p.muscle == null ? th.surface2 : lvl ? th.accent : th.line; const op = p.muscle && lvl ? SHADE_OPACITY[lvl] : 1;
+      const fill = p.muscle == null ? th.surface2 : shadeColor(lvl, th.line, th.accent);
       return p.shapes.map((s, j) => 'e' in s
-        ? <Ellipse key={`${i}-${j}`} cx={s.e[0] + dx} cy={s.e[1]} rx={s.e[2]} ry={s.e[3]} fill={fill} fillOpacity={op} />
-        : <Path key={`${i}-${j}`} d={s.d} translateX={dx} fill={fill} fillOpacity={op} />);
+        ? <Ellipse key={`${i}-${j}`} cx={s.e[0] + dx} cy={s.e[1]} rx={s.e[2]} ry={s.e[3]} fill={fill} />
+        : <Path key={`${i}-${j}`} d={s.d} translateX={dx} fill={fill} />);
     })}</G>);
   return (
     <View testID="muscle-map" accessible accessibilityRole="image" accessibilityLabel={label} style={{ marginTop: 12 }}>
@@ -34,7 +34,7 @@ export function MuscleMap({ sets }: { sets: Partial<Record<string, number>> }) {
       </View>
       <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 4, marginTop: 6 }}>
         <Muted style={{ fontSize: 12, marginRight: 4 }}>{t('mniej')}</Muted>
-        {[1, 2, 3, 4].map(l => <View key={l} style={{ width: 16, height: 10, borderRadius: 3, backgroundColor: th.accent, opacity: SHADE_OPACITY[l] }} />)}
+        {[0, 1, 2, 3, 4].map(l => <View key={l} style={{ width: 16, height: 10, borderRadius: 3, backgroundColor: shadeColor(l, th.line, th.accent) }} />)}
         <Muted style={{ fontSize: 12, marginLeft: 4 }}>{t('więcej')}</Muted>
       </View>
       <Muted style={{ fontSize: 12, marginTop: 6 }}>{t('Kolor względem partii z największą liczbą serii w tym okresie (partia główna 1 seria, pomocnicza 0,5). Szare — bez serii.')}</Muted>

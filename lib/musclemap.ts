@@ -50,8 +50,16 @@ export function shadeLevel(value: number, max: number): 0 | 1 | 2 | 3 | 4 {
   if (!(value > 0) || !(max > 0)) return 0;
   return Math.min(4, Math.max(1, Math.ceil((4 * value) / max))) as 1 | 2 | 3 | 4;
 }
-/** Krycie koloru akcentu dla stopnia (0 — kolor neutralny partii). */
-export const SHADE_OPACITY = [0, 0.3, 0.5, 0.75, 1] as const;
+/** Udział koloru akcentu w kolorze partii dla stopnia (0 — sam kolor neutralny partii). Kolory pełne (bez przezroczystości), żeby
+ * najsłabszy stopień odróżniał się od „bez serii” także w ciemnym motywie (podgląd 08.10.2026: przy kryciu 0,3 zlewał się z szarym). */
+export const SHADE_MIX = [0, 0.4, 0.6, 0.8, 1] as const;
+/** Mieszanie dwóch kolorów #RRGGBB: t = 0 → a, t = 1 → b. */
+export function mixHex(a: string, b: string, t: number): string {
+  const p = (h: string) => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16)); const x = p(a), y = p(b);
+  return '#' + x.map((v, i) => Math.round(v + (y[i] - v) * t).toString(16).padStart(2, '0')).join('').toUpperCase();
+}
+/** Kolor partii dla stopnia (motyw: part = neutralny, accent = akcent). */
+export const shadeColor = (lvl: number, part: string, accent: string) => lvl ? mixHex(part, accent, SHADE_MIX[lvl]) : part;
 
 /** Partie z seriami w okresie, od największej liczby (opis dla VoiceOver i do testów). */
 export function rankedMuscles(sets: Partial<Record<string, number>>): [Muscle, number][] {
@@ -63,8 +71,8 @@ export function svgMarkup(sets: Partial<Record<string, number>>, colors = { body
   const max = Math.max(0, ...MUSCLES.map(m => sets[m] ?? 0));
   const one = (view: View, dx: number) => PARTS.filter(p => p.view === view).map(p => {
     const lvl = p.muscle ? shadeLevel(sets[p.muscle] ?? 0, max) : 0;
-    const fill = p.muscle == null ? colors.body : lvl ? colors.accent : colors.part; const op = p.muscle && lvl ? SHADE_OPACITY[lvl] : 1;
-    return p.shapes.map(s => 'e' in s ? `<ellipse cx="${s.e[0] + dx}" cy="${s.e[1]}" rx="${s.e[2]}" ry="${s.e[3]}" fill="${fill}" fill-opacity="${op}"/>` : `<path transform="translate(${dx},0)" d="${s.d}" fill="${fill}" fill-opacity="${op}"/>`).join('');
+    const fill = p.muscle == null ? colors.body : shadeColor(lvl, colors.part, colors.accent);
+    return p.shapes.map(s => 'e' in s ? `<ellipse cx="${s.e[0] + dx}" cy="${s.e[1]}" rx="${s.e[2]}" ry="${s.e[3]}" fill="${fill}"/>` : `<path transform="translate(${dx},0)" d="${s.d}" fill="${fill}"/>`).join('');
   }).join('');
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 260">${one('front', 0)}${one('back', 130)}</svg>`;
 }

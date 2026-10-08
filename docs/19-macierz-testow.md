@@ -10,7 +10,7 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | EKRAN | 20 | 20 | 0 |
 | UI | 199 | 199 | 0 |
 | TEKST | 400 | 400 | 0 |
-| LOGIKA | 382 | 382 | 0 |
+| LOGIKA | 384 | 384 | 0 |
 | WYMIAR | 13 | 13 | 0 |
 
 ## EKRAN
@@ -773,6 +773,8 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | locations.setLoad | lib/locations.ts | tests/audit-perf-equiv.test.ts, tests/audit-r82c.test.tsx, tests/audit-r83.test.tsx +11 |
 | locations.locationLabel | lib/locations.ts | tests/locations-model.test.ts |
 | musclemap.shadeLevel | lib/musclemap.ts | tests/muscle-map.test.tsx |
+| musclemap.mixHex | lib/musclemap.ts | tests/muscle-map.test.tsx |
+| musclemap.shadeColor | lib/musclemap.ts | tests/muscle-map.test.tsx |
 | musclemap.rankedMuscles | lib/musclemap.ts | tests/muscle-map.test.tsx |
 | musclemap.svgMarkup | lib/musclemap.ts | tests/muscle-map.test.tsx |
 | period.periodRange | lib/period.ts | tests/period-summary.test.tsx |

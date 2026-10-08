@@ -10,7 +10,7 @@ import * as store from '@/lib/store';
 import { applyLang } from '@/lib/i18n';
 import { MUSCLES } from '@/lib/seed';
 import { setsByMuscle, weeklySetsByMuscle, thisMonday } from '@/lib/stats';
-import { PARTS, shadeLevel, rankedMuscles, SHADE_OPACITY, svgMarkup } from '@/lib/musclemap';
+import { PARTS, shadeLevel, rankedMuscles, SHADE_MIX, svgMarkup, mixHex, shadeColor } from '@/lib/musclemap';
 import { light, dark } from '@/lib/theme';
 import { fresh, addWorkout, saved } from './helpers';
 import { renderApp, flushAll, screen, go, act } from './app';
@@ -24,7 +24,8 @@ describe('logika', () => {
   test('stopnie: 0 bez serii, potem ćwiartki największej partii (1–4); max 0 albo wartości niepoprawne → 0', () => {
     expect([0, 0.5, 1, 2.5, 2.6, 5, 7.5, 7.6, 10].map(v => shadeLevel(v, 10))).toEqual([0, 1, 1, 1, 2, 2, 3, 4, 4]);
     expect([shadeLevel(3, 0), shadeLevel(NaN, 10), shadeLevel(-1, 10), shadeLevel(20, 10)]).toEqual([0, 0, 0, 4]);
-    expect(SHADE_OPACITY[0]).toBe(0); expect([...SHADE_OPACITY].slice(1)).toEqual([...SHADE_OPACITY].slice(1).sort());
+    expect(SHADE_MIX[0]).toBe(0); expect(SHADE_MIX[4]).toBe(1); expect([...SHADE_MIX]).toEqual([...SHADE_MIX].sort());
+    expect([mixHex('#000000', '#FFFFFF', 0), mixHex('#000000', '#FFFFFF', 1), mixHex('#000000', '#FFFFFF', 0.5)]).toEqual(['#000000', '#FFFFFF', '#808080']);
   });
   test('ranking partii od największej liczby serii, bez zer', () => {
     expect(rankedMuscles({ klatka: 3, triceps: 1.5, barki: 1.5, plecy: 0 })).toEqual([['klatka', 3], ['barki', 1.5], ['triceps', 1.5]]) /* remis — kolejność z MUSCLES */;
@@ -50,7 +51,7 @@ describe('dane rysunku', () => {
     for (const p of PARTS) { const c = p.shapes.map(sh => { const x = xs(sh); return Math.min(...x) + Math.max(...x) - 120; }).sort((a, b) => a - b); expect({ part: p.muscle, c }).toEqual({ part: p.muscle, c: c.map(v => -v).sort((a, b) => a - b).map(v => v + 0) }); }
   });
   test('podgląd SVG (ten sam rysunek): partia bez serii — kolor neutralny, partia z serią — akcent', () => {
-    const svg = svgMarkup({ klatka: 4 }); expect(svg).toContain('fill="#1F5FD1" fill-opacity="1"'); expect(svg).toContain('fill="#C9CFDA"');
+    const svg = svgMarkup({ klatka: 4 }); expect(svg).toContain('fill="#1F5FD1"'); expect(svg).toContain('fill="#C9CFDA"');
   });
 });
 
@@ -67,8 +68,12 @@ describe('ekran', () => {
   test('kolory z motywu (jasny i ciemny), bez stałych kolorów w komponencie', async () => {
     const src = fs.readFileSync(path.join(__dirname, '../components/MuscleMap.tsx'), 'utf8'); expect(src).not.toMatch(/#[0-9a-fA-F]{3,6}\b/);
     await boot(() => { addWorkout(at(9, 6), [['Bench Press (sztanga)', [{ weight: 80, reps: 5 }]]]); });
-    const fills = screen.UNSAFE_root.findAll((n: any) => n.props && typeof n.props.fill === 'string' && n.props.fillOpacity != null).map((n: any) => n.props.fill);
-    expect(fills).toContain(light.accent); expect(fills).toContain(light.line); expect(fills).toContain(light.surface2); expect(dark.accent).not.toBe(light.accent);
+    const fills = screen.UNSAFE_root.findAll((n: any) => n.props && typeof n.props.fill === 'string' && (n.props.cx != null || n.props.d != null)).map((n: any) => n.props.fill.toUpperCase());
+    expect(fills).toContain(shadeColor(4, light.line, light.accent)); expect(fills).toContain(light.line.toUpperCase()); expect(fills).toContain(light.surface2.toUpperCase());
+  });
+  test('stopnie odróżnialne w obu motywach: kolejne kolory legendy różnią się wyraźnie (min. 12 na kanał), także „bez serii” od stopnia 1', () => {
+    const rgb = (h: string) => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16));
+    for (const th of [light, dark]) for (let l = 0; l < 4; l++) { const a = rgb(shadeColor(l, th.line, th.accent).toUpperCase()), b = rgb(shadeColor(l + 1, th.line, th.accent).toUpperCase()); expect(Math.max(...a.map((v, i) => Math.abs(v - b[i])))).toBeGreaterThanOrEqual(12); }
   });
   test('English', async () => {
     await boot(() => { addWorkout(at(9, 6), [['Bench Press (sztanga)', [{ weight: 80, reps: 5 }]]]); }, 'en');
