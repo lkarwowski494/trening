@@ -1108,5 +1108,10 @@
  "Od {date}: tydzień deload. Przy starcie treningu zaproponuję {less}, ciężary bez zmian.": "Nuo {date}: iškrovos savaitė. Pradedant treniruotę pasiūlysiu {less}, svoriai tie patys.",
  "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję {less}, ciężary bez zmian.": "Jūsų žymė, pvz., lengvesnė savaitė. Pradedant treniruotę pasiūlysiu {less}, svoriai tie patys.",
  "W tygodniu deload „Start” i „Powtórz ostatni” zaproponują „Mniej serii”: {less}; ciężary i szablon bez zmian.": "Iškrovos savaitę „Pradėti“ ir „Kartoti paskutinę“ pasiūlo „Mažiau priėjimų“: {less}; svoriai ir šablonas nesikeičia.",
- "Deload: podpowiedź w Kalendarzu, a w tygodniu deload przy starcie {less}; przypomnienie rano w dniu treningu z planu.": "Iškrova: patarimas Kalendoriuje, o iškrovos savaitę pradedant {less}; rytinis priminimas suplanuotų treniruočių dienomis."
+ "Deload: podpowiedź w Kalendarzu, a w tygodniu deload przy starcie {less}; przypomnienie rano w dniu treningu z planu.": "Iškrova: patarimas Kalendoriuje, o iškrovos savaitę pradedant {less}; rytinis priminimas suplanuotų treniruočių dienomis.",
+ "Ostatni trening był już skrócony — „Mniej serii” powtórzy go bez dalszego cięcia.": "Paskutinė treniruotė jau buvo sutrumpinta — „Mažiau priėjimų“ ją pakartos be papildomo trumpinimo.",
+ "Ostatni trening był lżejszy": "Paskutinė treniruotė buvo lengvesnė",
+ "Był skrócony w tygodniu deload: {a} zamiast {b} serii roboczych. Powtórzyć pełny trening?": "Ji buvo sutrumpinta iškrovos savaitę: {a} vietoj {b} darbinių priėjimų. Kartoti visą treniruotę?",
+ "Jak ostatnio": "Kaip paskutinį kartą",
+ "deload — mniej serii": "iškrova — mažiau priėjimų"
 }

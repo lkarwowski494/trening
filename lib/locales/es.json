@@ -1108,5 +1108,10 @@
  "Od {date}: tydzień deload. Przy starcie treningu zaproponuję {less}, ciężary bez zmian.": "Desde el {date}: semana de descarga. Al empezar un entreno propondré {less}, mismos pesos.",
  "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję {less}, ciężary bez zmian.": "Tu propia etiqueta, p. ej. una semana más ligera. Al empezar un entreno propondré {less}, mismos pesos.",
  "W tygodniu deload „Start” i „Powtórz ostatni” zaproponują „Mniej serii”: {less}; ciężary i szablon bez zmian.": "En una semana de descarga, «Empezar» y «Repetir el último» ofrecen «Menos series»: {less}; pesos y plantilla sin cambios.",
- "Deload: podpowiedź w Kalendarzu, a w tygodniu deload przy starcie {less}; przypomnienie rano w dniu treningu z planu.": "Descarga: aviso en el Calendario y, en una semana de descarga, {less} al empezar; recordatorio por la mañana los días de entreno planificado."
+ "Deload: podpowiedź w Kalendarzu, a w tygodniu deload przy starcie {less}; przypomnienie rano w dniu treningu z planu.": "Descarga: aviso en el Calendario y, en una semana de descarga, {less} al empezar; recordatorio por la mañana los días de entreno planificado.",
+ "Ostatni trening był już skrócony — „Mniej serii” powtórzy go bez dalszego cięcia.": "El último entrenamiento ya estaba recortado — «Menos series» lo repite sin recortar de nuevo.",
+ "Ostatni trening był lżejszy": "El último entrenamiento fue más ligero",
+ "Był skrócony w tygodniu deload: {a} zamiast {b} serii roboczych. Powtórzyć pełny trening?": "Se recortó en una semana de descarga: {a} en lugar de {b} series efectivas. ¿Repetir el entrenamiento completo?",
+ "Jak ostatnio": "Como la última vez",
+ "deload — mniej serii": "descarga — menos series"
 }

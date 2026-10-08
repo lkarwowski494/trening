@@ -1108,5 +1108,10 @@
  "Od {date}: tydzień deload. Przy starcie treningu zaproponuję {less}, ciężary bez zmian.": "От {date}: седмица на разтоварване. При старт на тренировка ще предложа {less}, същите тежести.",
  "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję {less}, ciężary bez zmian.": "Ваше обозначение, напр. по-лека седмица. При старт на тренировка ще предложа {less}, същите тежести.",
  "W tygodniu deload „Start” i „Powtórz ostatni” zaproponują „Mniej serii”: {less}; ciężary i szablon bez zmian.": "В седмица на разтоварване „Старт“ и „Повтаряне на последната“ предлагат „По-малко серии“: {less}; тежестите и шаблонът без промяна.",
- "Deload: podpowiedź w Kalendarzu, a w tygodniu deload przy starcie {less}; przypomnienie rano w dniu treningu z planu.": "Разтоварване: подсказка в Календара, а в седмица на разтоварване при старт {less}; сутрешно напомняне в дните с планирана тренировка."
+ "Deload: podpowiedź w Kalendarzu, a w tygodniu deload przy starcie {less}; przypomnienie rano w dniu treningu z planu.": "Разтоварване: подсказка в Календара, а в седмица на разтоварване при старт {less}; сутрешно напомняне в дните с планирана тренировка.",
+ "Ostatni trening był już skrócony — „Mniej serii” powtórzy go bez dalszego cięcia.": "Последната тренировка вече беше съкратена — „По-малко серии“ ще я повтори без ново съкращаване.",
+ "Ostatni trening był lżejszy": "Последната тренировка беше по-лека",
+ "Był skrócony w tygodniu deload: {a} zamiast {b} serii roboczych. Powtórzyć pełny trening?": "Беше съкратена в седмица на разтоварване: {a} вместо {b} работни серии. Да се повтори ли пълната тренировка?",
+ "Jak ostatnio": "Като последния път",
+ "deload — mniej serii": "разтоварване — по-малко серии"
 }

@@ -1108,5 +1108,10 @@
  "Od {date}: tydzień deload. Przy starcie treningu zaproponuję {less}, ciężary bez zmian.": "{date} itibarıyla: deload haftası. Antrenmana başlarken {less} önereceğim, ağırlıklar aynı.",
  "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję {less}, ciężary bez zmian.": "Kendi işaretin, ör. daha hafif bir hafta. Antrenmana başlarken {less} önereceğim, ağırlıklar aynı.",
  "W tygodniu deload „Start” i „Powtórz ostatni” zaproponują „Mniej serii”: {less}; ciężary i szablon bez zmian.": "Deload haftasında “Başlat” ve “Sonuncuyu tekrarla”, “Daha az set” seçeneğini sunar: {less}; ağırlıklar ve şablon aynı kalır.",
- "Deload: podpowiedź w Kalendarzu, a w tygodniu deload przy starcie {less}; przypomnienie rano w dniu treningu z planu.": "Deload: Takvim’de ipucu, deload haftasında başlarken {less}; planlı antrenman günlerinde sabah hatırlatıcısı."
+ "Deload: podpowiedź w Kalendarzu, a w tygodniu deload przy starcie {less}; przypomnienie rano w dniu treningu z planu.": "Deload: Takvim’de ipucu, deload haftasında başlarken {less}; planlı antrenman günlerinde sabah hatırlatıcısı.",
+ "Ostatni trening był już skrócony — „Mniej serii” powtórzy go bez dalszego cięcia.": "Son antrenman zaten kısaltılmıştı — “Daha az set” onu yeniden kısaltmadan tekrarlar.",
+ "Ostatni trening był lżejszy": "Son antrenman daha hafifti",
+ "Był skrócony w tygodniu deload: {a} zamiast {b} serii roboczych. Powtórzyć pełny trening?": "Deload haftasında kısaltılmıştı: {b} yerine {a} çalışma seti. Tam antrenman tekrarlansın mı?",
+ "Jak ostatnio": "Geçen seferki gibi",
+ "deload — mniej serii": "deload — daha az set"
 }

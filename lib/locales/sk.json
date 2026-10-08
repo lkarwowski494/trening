@@ -1108,5 +1108,10 @@
  "Od {date}: tydzień deload. Przy starcie treningu zaproponuję {less}, ciężary bez zmian.": "Od {date}: deload týždeň. Pri štarte tréningu navrhnem {less}, váhy bez zmeny.",
  "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję {less}, ciężary bez zmian.": "Vaše označenie, napr. ľahší týždeň. Pri štarte tréningu navrhnem {less}, váhy bez zmeny.",
  "W tygodniu deload „Start” i „Powtórz ostatni” zaproponują „Mniej serii”: {less}; ciężary i szablon bez zmian.": "V týždni deload ponúknu „Štart“ a „Zopakovať posledný“ „Menej sérií“: {less}; váhy aj šablóna bez zmeny.",
- "Deload: podpowiedź w Kalendarzu, a w tygodniu deload przy starcie {less}; przypomnienie rano w dniu treningu z planu.": "Deload: tip v Kalendári a v týždni deload pri štarte {less}; ranná pripomienka v dňoch plánovaného tréningu."
+ "Deload: podpowiedź w Kalendarzu, a w tygodniu deload przy starcie {less}; przypomnienie rano w dniu treningu z planu.": "Deload: tip v Kalendári a v týždni deload pri štarte {less}; ranná pripomienka v dňoch plánovaného tréningu.",
+ "Ostatni trening był już skrócony — „Mniej serii” powtórzy go bez dalszego cięcia.": "Posledný tréning už bol skrátený — „Menej sérií“ ho zopakuje bez ďalšieho skracovania.",
+ "Ostatni trening był lżejszy": "Posledný tréning bol ľahší",
+ "Był skrócony w tygodniu deload: {a} zamiast {b} serii roboczych. Powtórzyć pełny trening?": "Bol skrátený v týždni deload: {a} namiesto {b} pracovných sérií. Zopakovať celý tréning?",
+ "Jak ostatnio": "Ako minule",
+ "deload — mniej serii": "deload — menej sérií"
 }

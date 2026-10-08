@@ -587,4 +587,9 @@ export const EN: Record<string, string> = {
   'Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję {less}, ciężary bez zmian.': 'Your own label, e.g. a lighter week. When you start a workout I will suggest {less}, same weights.',
   'W tygodniu deload „Start” i „Powtórz ostatni” zaproponują „Mniej serii”: {less}; ciężary i szablon bez zmian.': 'In a deload week “Start” and “Repeat last” offer “Fewer sets”: {less}; weights and template unchanged.',
   'Deload: podpowiedź w Kalendarzu, a w tygodniu deload przy starcie {less}; przypomnienie rano w dniu treningu z planu.': 'Deload: a hint in the Calendar and, in a deload week, {less} at start; a morning reminder on planned workout days.',
+  'Ostatni trening był już skrócony — „Mniej serii” powtórzy go bez dalszego cięcia.': 'The last workout was already shortened — “Fewer sets” repeats it without cutting again.',
+  'Ostatni trening był lżejszy': 'The last workout was lighter',
+  'Był skrócony w tygodniu deload: {a} zamiast {b} serii roboczych. Powtórzyć pełny trening?': 'It was shortened in a deload week: {a} instead of {b} working sets. Repeat the full workout?',
+  'Jak ostatnio': 'As last time',
+  'deload — mniej serii': 'deload — fewer sets',
 };

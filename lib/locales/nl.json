@@ -1108,5 +1108,10 @@
  "Od {date}: tydzień deload. Przy starcie treningu zaproponuję {less}, ciężary bez zmian.": "Vanaf {date}: deloadweek. Bij het starten van een training stel ik {less} voor, gelijke gewichten.",
  "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję {less}, ciężary bez zmian.": "Je eigen label, bijv. een lichtere week. Bij het starten van een training stel ik {less} voor, gelijke gewichten.",
  "W tygodniu deload „Start” i „Powtórz ostatni” zaproponują „Mniej serii”: {less}; ciężary i szablon bez zmian.": "In een deloadweek bieden ‘Start’ en ‘Herhaal laatste’ ‘Minder sets’ aan: {less}; gewichten en sjabloon blijven gelijk.",
- "Deload: podpowiedź w Kalendarzu, a w tygodniu deload przy starcie {less}; przypomnienie rano w dniu treningu z planu.": "Deload: hint in de Kalender en in een deloadweek bij de start {less}; herinnering ’s ochtends op geplande trainingsdagen."
+ "Deload: podpowiedź w Kalendarzu, a w tygodniu deload przy starcie {less}; przypomnienie rano w dniu treningu z planu.": "Deload: hint in de Kalender en in een deloadweek bij de start {less}; herinnering ’s ochtends op geplande trainingsdagen.",
+ "Ostatni trening był już skrócony — „Mniej serii” powtórzy go bez dalszego cięcia.": "De laatste training was al ingekort — ‘Minder sets’ herhaalt die zonder opnieuw in te korten.",
+ "Ostatni trening był lżejszy": "De laatste training was lichter",
+ "Był skrócony w tygodniu deload: {a} zamiast {b} serii roboczych. Powtórzyć pełny trening?": "Die werd ingekort in een deloadweek: {a} in plaats van {b} werksets. De volledige training herhalen?",
+ "Jak ostatnio": "Zoals de vorige keer",
+ "deload — mniej serii": "deload — minder sets"
 }

@@ -1108,5 +1108,10 @@
  "Od {date}: tydzień deload. Przy starcie treningu zaproponuję {less}, ciężary bez zmian.": "No {date}: atslodzes nedēļa. Sākot treniņu, ieteikšu {less}, svari nemainās.",
  "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję {less}, ciężary bez zmian.": "Jūsu atzīme, piem., vieglāka nedēļa. Sākot treniņu, ieteikšu {less}, svari nemainās.",
  "W tygodniu deload „Start” i „Powtórz ostatni” zaproponują „Mniej serii”: {less}; ciężary i szablon bez zmian.": "Atslodzes nedēļā “Sākt” un “Atkārtot pēdējo” piedāvā “Mazāk sēriju”: {less}; svari un veidne nemainās.",
- "Deload: podpowiedź w Kalendarzu, a w tygodniu deload przy starcie {less}; przypomnienie rano w dniu treningu z planu.": "Atslodze: padoms Kalendārā, bet atslodzes nedēļā sākumā {less}; rīta atgādinājums plānoto treniņu dienās."
+ "Deload: podpowiedź w Kalendarzu, a w tygodniu deload przy starcie {less}; przypomnienie rano w dniu treningu z planu.": "Atslodze: padoms Kalendārā, bet atslodzes nedēļā sākumā {less}; rīta atgādinājums plānoto treniņu dienās.",
+ "Ostatni trening był już skrócony — „Mniej serii” powtórzy go bez dalszego cięcia.": "Pēdējais treniņš jau bija saīsināts — “Mazāk sēriju” to atkārtos bez papildu saīsināšanas.",
+ "Ostatni trening był lżejszy": "Pēdējais treniņš bija vieglāks",
+ "Był skrócony w tygodniu deload: {a} zamiast {b} serii roboczych. Powtórzyć pełny trening?": "Tas tika saīsināts atslodzes nedēļā: {a} {b} darba sēriju vietā. Atkārtot pilnu treniņu?",
+ "Jak ostatnio": "Kā pēdējoreiz",
+ "deload — mniej serii": "atslodze — mazāk sēriju"
 }

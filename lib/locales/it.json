@@ -1108,5 +1108,10 @@
  "Od {date}: tydzień deload. Przy starcie treningu zaproponuję {less}, ciężary bez zmian.": "Dal {date}: settimana di scarico. All’avvio dell’allenamento proporrò {less}, carichi invariati.",
  "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję {less}, ciężary bez zmian.": "La tua etichetta, ad es. una settimana più leggera. All’avvio dell’allenamento proporrò {less}, carichi invariati.",
  "W tygodniu deload „Start” i „Powtórz ostatni” zaproponują „Mniej serii”: {less}; ciężary i szablon bez zmian.": "Nella settimana di scarico «Inizia» e «Ripeti l’ultimo» propongono «Meno serie»: {less}; pesi e scheda invariati.",
- "Deload: podpowiedź w Kalendarzu, a w tygodniu deload przy starcie {less}; przypomnienie rano w dniu treningu z planu.": "Scarico: suggerimento nel Calendario e, nella settimana di scarico, {less} all’avvio; promemoria al mattino nei giorni di allenamento pianificato."
+ "Deload: podpowiedź w Kalendarzu, a w tygodniu deload przy starcie {less}; przypomnienie rano w dniu treningu z planu.": "Scarico: suggerimento nel Calendario e, nella settimana di scarico, {less} all’avvio; promemoria al mattino nei giorni di allenamento pianificato.",
+ "Ostatni trening był już skrócony — „Mniej serii” powtórzy go bez dalszego cięcia.": "L’ultimo allenamento era già ridotto — «Meno serie» lo ripete senza ridurlo ancora.",
+ "Ostatni trening był lżejszy": "L’ultimo allenamento era più leggero",
+ "Był skrócony w tygodniu deload: {a} zamiast {b} serii roboczych. Powtórzyć pełny trening?": "È stato ridotto nella settimana di scarico: {a} invece di {b} serie allenanti. Ripetere l’allenamento completo?",
+ "Jak ostatnio": "Come l’ultima volta",
+ "deload — mniej serii": "scarico — meno serie"
 }

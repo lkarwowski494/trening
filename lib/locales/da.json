@@ -1108,5 +1108,10 @@
  "Od {date}: tydzień deload. Przy starcie treningu zaproponuję {less}, ciężary bez zmian.": "Fra {date}: deload-uge. Når du starter en træning, foreslår jeg {less}, samme vægte.",
  "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję {less}, ciężary bez zmian.": "Din egen markering, fx en lettere uge. Når du starter en træning, foreslår jeg {less}, samme vægte.",
  "W tygodniu deload „Start” i „Powtórz ostatni” zaproponują „Mniej serii”: {less}; ciężary i szablon bez zmian.": "I en deload-uge tilbyder “Start” og “Gentag seneste” “Færre sæt”: {less}; vægte og skabelon uændret.",
- "Deload: podpowiedź w Kalendarzu, a w tygodniu deload przy starcie {less}; przypomnienie rano w dniu treningu z planu.": "Deload: tip i Kalenderen og i en deload-uge {less} ved start; påmindelse om morgenen på planlagte træningsdage."
+ "Deload: podpowiedź w Kalendarzu, a w tygodniu deload przy starcie {less}; przypomnienie rano w dniu treningu z planu.": "Deload: tip i Kalenderen og i en deload-uge {less} ved start; påmindelse om morgenen på planlagte træningsdage.",
+ "Ostatni trening był już skrócony — „Mniej serii” powtórzy go bez dalszego cięcia.": "Seneste træning var allerede forkortet — “Færre sæt” gentager den uden at skære mere.",
+ "Ostatni trening był lżejszy": "Seneste træning var lettere",
+ "Był skrócony w tygodniu deload: {a} zamiast {b} serii roboczych. Powtórzyć pełny trening?": "Den blev forkortet i en deload-uge: {a} i stedet for {b} arbejdssæt. Gentag den fulde træning?",
+ "Jak ostatnio": "Som sidst",
+ "deload — mniej serii": "deload — færre sæt"
 }

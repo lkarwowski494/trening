@@ -1108,5 +1108,10 @@
  "Od {date}: tydzień deload. Przy starcie treningu zaproponuję {less}, ciężary bez zmian.": "Ab {date}: Deload-Woche. Beim Trainingsstart schlage ich {less} vor, gleiche Gewichte.",
  "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję {less}, ciężary bez zmian.": "Ihre eigene Markierung, z. B. eine leichtere Woche. Beim Trainingsstart schlage ich {less} vor, gleiche Gewichte.",
  "W tygodniu deload „Start” i „Powtórz ostatni” zaproponują „Mniej serii”: {less}; ciężary i szablon bez zmian.": "In einer Deload-Woche bieten „Start“ und „Letztes Training wiederholen“ „Weniger Sätze“ an: {less}; Gewichte und Vorlage bleiben gleich.",
- "Deload: podpowiedź w Kalendarzu, a w tygodniu deload przy starcie {less}; przypomnienie rano w dniu treningu z planu.": "Deload: Hinweis im Kalender und in einer Deload-Woche beim Start {less}; morgendliche Erinnerung an geplanten Trainingstagen."
+ "Deload: podpowiedź w Kalendarzu, a w tygodniu deload przy starcie {less}; przypomnienie rano w dniu treningu z planu.": "Deload: Hinweis im Kalender und in einer Deload-Woche beim Start {less}; morgendliche Erinnerung an geplanten Trainingstagen.",
+ "Ostatni trening był już skrócony — „Mniej serii” powtórzy go bez dalszego cięcia.": "Das letzte Training war schon gekürzt — „Weniger Sätze“ wiederholt es ohne weitere Kürzung.",
+ "Ostatni trening był lżejszy": "Das letzte Training war leichter",
+ "Był skrócony w tygodniu deload: {a} zamiast {b} serii roboczych. Powtórzyć pełny trening?": "Es wurde in einer Deload-Woche gekürzt: {a} statt {b} Arbeitssätzen. Volles Training wiederholen?",
+ "Jak ostatnio": "Wie zuletzt",
+ "deload — mniej serii": "Deload — weniger Sätze"
 }

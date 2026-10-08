@@ -1108,5 +1108,10 @@
  "Od {date}: tydzień deload. Przy starcie treningu zaproponuję {less}, ciężary bez zmian.": "Od {date}: tjedan rasterećenja. Pri pokretanju treninga predložit ću {less}, iste težine.",
  "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję {less}, ciężary bez zmian.": "Tvoja oznaka, npr. lakši tjedan. Pri pokretanju treninga predložit ću {less}, iste težine.",
  "W tygodniu deload „Start” i „Powtórz ostatni” zaproponują „Mniej serii”: {less}; ciężary i szablon bez zmian.": "U tjednu rasterećenja „Započni” i „Ponovi zadnji” nude „Manje serija”: {less}; težine i predložak bez promjene.",
- "Deload: podpowiedź w Kalendarzu, a w tygodniu deload przy starcie {less}; przypomnienie rano w dniu treningu z planu.": "Rasterećenje: savjet u Kalendaru, a u tjednu rasterećenja pri pokretanju {less}; jutarnji podsjetnik na dane planiranog treninga."
+ "Deload: podpowiedź w Kalendarzu, a w tygodniu deload przy starcie {less}; przypomnienie rano w dniu treningu z planu.": "Rasterećenje: savjet u Kalendaru, a u tjednu rasterećenja pri pokretanju {less}; jutarnji podsjetnik na dane planiranog treninga.",
+ "Ostatni trening był już skrócony — „Mniej serii” powtórzy go bez dalszego cięcia.": "Zadnji trening već je bio skraćen — „Manje serija” ponavlja ga bez daljnjeg skraćivanja.",
+ "Ostatni trening był lżejszy": "Zadnji trening bio je lakši",
+ "Był skrócony w tygodniu deload: {a} zamiast {b} serii roboczych. Powtórzyć pełny trening?": "Skraćen je u tjednu rasterećenja: {a} umjesto {b} radnih serija. Ponoviti cijeli trening?",
+ "Jak ostatnio": "Kao prošli put",
+ "deload — mniej serii": "rasterećenje — manje serija"
 }

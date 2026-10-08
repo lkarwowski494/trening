@@ -287,7 +287,8 @@ export function migrate(raw: any): State {
   const fixWorkout = (w: any) => {
     if (typeof w.loggedBy !== 'string' || !w.loggedBy) w.loggedBy = owner; if (typeof w.sessionMode !== 'string' || !w.sessionMode) w.sessionMode = 'solo'; if (typeof w.healthUUID !== 'string' || !w.healthUUID) w.healthUUID = null; /* runda 52 */ delete w.bodyWeightKg; /* schemat 13 (Q-001): bez zamrożonej masy ciała */
     w.startedAt = tsOf(w.startedAt); w.finishedAt = w === raw.active ? null : (tsOf(w.finishedAt) ?? w.startedAt); if (w !== raw.active || tsOf(w.staleAck) == null) delete w.staleAck; else w.staleAck = tsOf(w.staleAck); /* 08.10.2026: pauza — przedziały uporządkowane w granicach treningu (cleanPauses), pausedAt tylko w treningu w toku i nie przed startem */ { if (w.startedAt != null) setPauses(w, cleanPauses(w.pauses, w.startedAt, w.finishedAt)); else delete w.pauses; delete w.pausedMs; const pa = tsOf(w.pausedAt); if (w === raw.active && pa != null && w.startedAt != null && pa >= w.startedAt) w.pausedAt = pa; else delete w.pausedAt; } /* runda 69 */ /* runda 49/51: trening z historii zawsze zakończony; trening w toku — nie */ /* runda 49: zakończony (choć nieczytelny) trening zostaje w historii */ if (w.finishedAt != null && w.finishedAt < w.startedAt) w.finishedAt = w.startedAt; /* runda 48 */ if (typeof w.templateName !== 'string') w.templateName = ''; if (typeof w.note !== 'string') w.note = ''; w.templateId = idOf(w.templateId); { const l = idOf(w.locationId); if (l) w.locationId = l; else delete w.locationId; } /* P-003: miejsce zostaje także po usunięciu miejsca („(usunięte miejsce)”) */
-    w.exercises = arr(w.exercises).filter((e: any) => idOf(e.exerciseId) != null); /* runda 50/51 */ if (w !== raw.active) { w.exercises.forEach((e: any) => { e.sets = arr(e.sets).filter((s: any) => !!s.done); e.sets.forEach((s: any) => { delete s.pre; }); }); w.exercises = w.exercises.filter((e: any) => e.sets.length); } /* runda 59: historia = tylko odhaczone serie, jak po „Zakończ” */ w.exercises.forEach((e: any) => { e.exerciseId = idOf(e.exerciseId); e.id = idOf(e.id) ?? uid(); if (e.tplItemId != null) e.tplItemId = idOf(e.tplItemId) ?? undefined; if (!(IMPLS as readonly unknown[]).includes(e.impl)) delete e.impl; /* schemat 15 (decyzja 8c): tylko znany przyrząd */ fixSwapFields(e, w === raw.active); /* schemat 16 (E2) */ for (const k of ['repMin', 'repMax']) e[k] = intIn(e[k], 1, 100); /* runda 49: jak w szablonie */ e.groupId = idOf(e.groupId); { const v = parseNum(e.restSec); e.restSec = v == null || v < 0 ? DEFAULT_REST : Math.min(1800, Math.round(v)); } e.sets = arr(e.sets); e.sets.forEach(fixSet); }); normalizeGroups(w.exercises);
+    if (w.deload !== true) delete w.deload; /* audyt 0.10 (D1+): znacznik treningu deload — tylko true */
+    w.exercises = arr(w.exercises).filter((e: any) => idOf(e.exerciseId) != null); /* runda 50/51 */ if (w !== raw.active) { w.exercises.forEach((e: any) => { e.sets = arr(e.sets).filter((s: any) => !!s.done); e.sets.forEach((s: any) => { delete s.pre; }); }); w.exercises = w.exercises.filter((e: any) => e.sets.length); } /* runda 59: historia = tylko odhaczone serie, jak po „Zakończ” */ w.exercises.forEach((e: any) => { e.exerciseId = idOf(e.exerciseId); e.id = idOf(e.id) ?? uid(); if (e.tplItemId != null) e.tplItemId = idOf(e.tplItemId) ?? undefined; if (!(IMPLS as readonly unknown[]).includes(e.impl)) delete e.impl; /* schemat 15 (decyzja 8c): tylko znany przyrząd */ fixSwapFields(e, w === raw.active); /* schemat 16 (E2) */ { const n = w.deload === true ? parseNum(e.deloadFull) : null; if (n != null && n >= 1) e.deloadFull = Math.min(50, Math.round(n)); else delete e.deloadFull; } /* audyt 0.10 (D1+): pole opcjonalne bez zmiany schematu */ for (const k of ['repMin', 'repMax']) e[k] = intIn(e[k], 1, 100); /* runda 49: jak w szablonie */ e.groupId = idOf(e.groupId); { const v = parseNum(e.restSec); e.restSec = v == null || v < 0 ? DEFAULT_REST : Math.min(1800, Math.round(v)); } e.sets = arr(e.sets); e.sets.forEach(fixSet); }); normalizeGroups(w.exercises);
   };
   raw.bands = arr(raw.bands); raw.bands.forEach((b: any) => { stamp(b); delete b.nominalKg; /* T-055: dawna asysta kg gumy (przed P-001) — stara kopia się importuje, pole odpada; starsze wersje aplikacji czytają brak pola jako „bez kg” */ if (typeof b.color !== 'string' || !b.color.trim()) b.color = '?'; b.color = b.color.replace(/\s+/g, ' ').trim(); b.level = intIn(b.level, 1, 7) ?? 1; /* runda 51 */ });
   raw.workouts = arr(raw.workouts).filter(w => tsOf(w.startedAt) != null); raw.workouts.forEach((w: any) => { w.startedAt = tsOf(w.startedAt); }); raw.workouts.forEach((w: any) => { stamp(w, w.finishedAt || w.startedAt); fixWorkout(w); }); raw.workouts = raw.workouts.filter((w: any) => w.exercises.length); /* runda 60: bez pustych sesji w historii (jak po „Zakończ”, B9) */
@@ -925,13 +926,16 @@ export function startFromTemplate(tpl: Template, opts?: { deload?: boolean }): b
     const rows = tplRows(it); /* schemat 17: typy i plan z wierszy szablonu */
     const sets = prefillSets(ex, rows.map(r => r.kind), prevAll, w.locationId, impl, it.targetSec, it.startWeight, 0, false, rows);
     // Przerwa: ustawiona w pozycji szablonu wygrywa; puste pole w szablonie (null) = przerwa z ćwiczenia albo domyślna.
-    w.exercises.push({ id: uid(), exerciseId: ex.id, restSec: typeof it.restSec === 'number' && it.restSec >= 0 ? it.restSec : restFor(ex), /* null w szablonie = przerwa z ćwiczenia */ repMin: it.repMin, repMax: it.repMax, groupId: it.groupId ?? null, sets: opts?.deload ? deloadSets(sets) : sets, tplItemId: it.id, ...(impl ? { impl } : {}) });
+    const cut = opts?.deload ? deloadSets(sets) : sets; const nFull = sets.filter(isRoundSet).length; /* audyt 0.10 (D1+): pełna liczba serii roboczych przyciętego bloku */
+    w.exercises.push({ id: uid(), exerciseId: ex.id, restSec: typeof it.restSec === 'number' && it.restSec >= 0 ? it.restSec : restFor(ex), /* null w szablonie = przerwa z ćwiczenia */ repMin: it.repMin, repMax: it.repMax, groupId: it.groupId ?? null, sets: cut, tplItemId: it.id, ...(impl ? { impl } : {}), ...(cut.filter(isRoundSet).length < nFull ? { deloadFull: nFull } : {}) });
   });
-  normalizeGroups(w.exercises);
+  normalizeGroups(w.exercises); if (opts?.deload) w.deload = true; /* audyt 0.10 (D1+): znacznik treningu deload */
   st.active = w; save(); flush(); return true;
 }
 export function startEmpty(): boolean { if (getState().active) return false; /* audyt 0.10 (LIVE-12) */ getState().active = newWorkout(null, ''); save(); flush(); return true; }
-/** „Powtórz ostatni”. `deload` (audyt 0.10, D1 / MER-05): w tygodniu deload to samo cięcie co przy starcie z szablonu (deloadSets na blok). */
+/** „Powtórz ostatni”. `deload` (audyt 0.10, D1 / MER-05) — wynik ma być lżejszy: zwykły trening dostaje to samo cięcie co start z szablonu
+ * (deloadSets na blok), a trening już skrócony (Workout.deload) powtarza się jak jest — NIGDY drugiego cięcia (D1+, decyzja 08.10.2026).
+ * Bez `deload` — pełny trening: skrócony wraca do pełnego (deloadTail: wiersze szablonu albo zapamiętana liczba serii). */
 export function repeatLast(opts?: { deload?: boolean }): boolean {
   const last = finishedWorkouts()[0]; if (!last || getState().active) return false; /* audyt 0.10 (LIVE-12): trening w toku zostaje */
   // Powtarza to, co faktycznie zrobiono (także ćwiczenia dodane/usunięte w trakcie), a nie szablon, z którego wystartowano (runda 2).
@@ -949,10 +953,29 @@ export function repeatLast(opts?: { deload?: boolean }): boolean {
     nw.sets = e.sets.map(s => ({ ...blankSet(), ...(assistLost(exById(e.exerciseId), s) ? {} : copyVals(s)), durationSec: s.kind === 'warmup' ? '' : tgt(e), kind: s.kind === 'failure' ? 'normal' : s.kind ?? (s.warmup ? 'warmup' : 'normal') /* T11: upadek to wynik, nie plan (jak addSet i szablon) */, warmup: s.warmup })).map(s => { const ex = exById(e.exerciseId); /* ciężar spoza listy tutaj z sesji „gdzie indziej” nie jest wstawiany (ani same powtórzenia) */
       if (away && offListAt(ex, w.locationId, s.weight, pinnedImpl(nw))) { s.weight = ''; s.reps = ''; }
       return markPre(stripUnused(ex, s)); });
-    if (opts?.deload) nw.sets = deloadSets(nw.sets);
+    /* audyt 0.10 (D1+): skrócony — „jak ostatnio” albo przywrócenie pełnego; zwykły — cięcie z zapamiętaniem pełnej liczby */
+    const nNow = nw.sets.filter(isRoundSet).length; delete nw.deloadFull;
+    if (last.deload) { const tail = deloadTail(last, e); const nFull = nNow + tail.filter(x => x.kind !== 'drop').length;
+      if (opts?.deload) { if (nFull > nNow) nw.deloadFull = nFull; }
+      else { const ex = exById(e.exerciseId); const lastWork = [...nw.sets].reverse().find(isRoundSet); const lastDrop = [...nw.sets].reverse().find(x => x.kind === 'drop');
+        nw.sets.push(...tail.map(({ kind, row }) => markPre(stripUnused(ex, { ...blankSet(), ...copyVals(kind === 'drop' ? lastDrop ?? row : lastWork ?? row), kind, warmup: false })))); } }
+    else if (opts?.deload) { nw.sets = deloadSets(nw.sets); if (nw.sets.filter(isRoundSet).length < nNow) nw.deloadFull = nNow; }
     return nw; });
-  normalizeGroups(w.exercises);
+  normalizeGroups(w.exercises); if (opts?.deload) w.deload = true; /* audyt 0.10 (D1+) */
   getState().active = w; save(); flush(); return true;
+}
+/**
+ * Audyt 0.10 (D1+, decyzja 08.10.2026): czego brakuje skróconemu treningowi (Workout.deload) do pełnego — rodzaje serii do dołożenia na końcu bloku:
+ * gdy szablon wciąż ma pozycję bloku z tym samym ćwiczeniem — jego wiersze po k-tej serii roboczej (k = serie robocze bloku; drop sety należą do
+ * serii, po której są), inaczej brakujące serie robocze do zapamiętanej liczby `deloadFull`. Zwykły trening (albo brak informacji) — nic.
+ */
+export function deloadTail(last: Workout, e: WExercise): { kind: SetKind; row?: TRow }[] {
+  if (!last.deload) return [];
+  const now = e.sets.filter(isRoundSet).length;
+  const tpl = last.templateId ? getState().templates.find(x => x.id === last.templateId) : null; const it = tpl && e.tplItemId ? tpl.items.find(x => x.id === e.tplItemId && x.exerciseId === e.exerciseId) : null;
+  if (it) { const rows = tplRows(it).filter(r => r.kind !== 'warmup'); let seen = 0, i = 0; for (; i < rows.length; i++) if (rows[i].kind !== 'drop') { if (seen === now) break; seen++; }
+    return rows.slice(i).map(r => ({ kind: r.kind === 'failure' ? 'normal' : r.kind, row: r })); }
+  return Array.from({ length: Math.max(0, (Number(e.deloadFull) || 0) - now) }, () => ({ kind: 'normal' as SetKind }));
 }
 export function addExerciseToActive(ex: Exercise) {
   const a = getState().active; if (!a) return;

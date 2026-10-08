@@ -1108,5 +1108,10 @@
  "Od {date}: tydzień deload. Przy starcie treningu zaproponuję {less}, ciężary bez zmian.": "{date}-tól: deload hét. Edzés indításakor ezt javaslom: {less}, azonos súlyokkal.",
  "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję {less}, ciężary bez zmian.": "Saját jelölés, pl. könnyebb hét. Edzés indításakor ezt javaslom: {less}, azonos súlyokkal.",
  "W tygodniu deload „Start” i „Powtórz ostatni” zaproponują „Mniej serii”: {less}; ciężary i szablon bez zmian.": "Deload héten az „Indítás” és a „Legutóbbi megismétlése” felajánlja a „Kevesebb sorozat” lehetőséget: {less}; a súlyok és a sablon változatlanok.",
- "Deload: podpowiedź w Kalendarzu, a w tygodniu deload przy starcie {less}; przypomnienie rano w dniu treningu z planu.": "Deload: tipp a Naptárban, deload héten pedig induláskor {less}; reggeli emlékeztető a tervezett edzésnapokon."
+ "Deload: podpowiedź w Kalendarzu, a w tygodniu deload przy starcie {less}; przypomnienie rano w dniu treningu z planu.": "Deload: tipp a Naptárban, deload héten pedig induláskor {less}; reggeli emlékeztető a tervezett edzésnapokon.",
+ "Ostatni trening był już skrócony — „Mniej serii” powtórzy go bez dalszego cięcia.": "Az utolsó edzés már rövidített volt — a „Kevesebb sorozat” további rövidítés nélkül ismétli meg.",
+ "Ostatni trening był lżejszy": "Az utolsó edzés könnyebb volt",
+ "Był skrócony w tygodniu deload: {a} zamiast {b} serii roboczych. Powtórzyć pełny trening?": "Deload héten rövidített volt: {b} helyett {a} munkasorozat. Megismétli a teljes edzést?",
+ "Jak ostatnio": "Mint legutóbb",
+ "deload — mniej serii": "deload — kevesebb sorozat"
 }

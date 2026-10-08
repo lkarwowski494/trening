@@ -1108,5 +1108,10 @@
  "Od {date}: tydzień deload. Przy starcie treningu zaproponuję {less}, ciężary bez zmian.": "З {date}: тиждень розвантаження. На старті тренування запропоную {less}, ваги ті самі.",
  "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję {less}, ciężary bez zmian.": "Ваша позначка, напр. легший тиждень. На старті тренування запропоную {less}, ваги ті самі.",
  "W tygodniu deload „Start” i „Powtórz ostatni” zaproponują „Mniej serii”: {less}; ciężary i szablon bez zmian.": "У тиждень розвантаження «Почати» й «Повторити останнє» пропонують «Менше підходів»: {less}; ваги й шаблон без змін.",
- "Deload: podpowiedź w Kalendarzu, a w tygodniu deload przy starcie {less}; przypomnienie rano w dniu treningu z planu.": "Розвантаження: підказка в Календарі, а в тиждень розвантаження на старті {less}; ранкове нагадування в дні запланованих тренувань."
+ "Deload: podpowiedź w Kalendarzu, a w tygodniu deload przy starcie {less}; przypomnienie rano w dniu treningu z planu.": "Розвантаження: підказка в Календарі, а в тиждень розвантаження на старті {less}; ранкове нагадування в дні запланованих тренувань.",
+ "Ostatni trening był już skrócony — „Mniej serii” powtórzy go bez dalszego cięcia.": "Останнє тренування вже було скорочене — «Менше підходів» повторить його без нового скорочення.",
+ "Ostatni trening był lżejszy": "Останнє тренування було легшим",
+ "Był skrócony w tygodniu deload: {a} zamiast {b} serii roboczych. Powtórzyć pełny trening?": "Його скоротили в тиждень розвантаження: {a} замість {b} робочих підходів. Повторити повне тренування?",
+ "Jak ostatnio": "Як минулого разу",
+ "deload — mniej serii": "розвантаження — менше підходів"
 }

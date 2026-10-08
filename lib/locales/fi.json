@@ -1108,5 +1108,10 @@
  "Od {date}: tydzień deload. Przy starcie treningu zaproponuję {less}, ciężary bez zmian.": "Alkaen {date}: kevennysviikko. Kun aloitat treenin, ehdotan {less}, painot ennallaan.",
  "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję {less}, ciężary bez zmian.": "Oma merkintäsi, esim. kevyempi viikko. Kun aloitat treenin, ehdotan {less}, painot ennallaan.",
  "W tygodniu deload „Start” i „Powtórz ostatni” zaproponują „Mniej serii”: {less}; ciężary i szablon bez zmian.": "Kevennysviikolla ”Aloita” ja ”Toista viimeisin” tarjoavat ”Vähemmän sarjoja”: {less}; painot ja pohja ennallaan.",
- "Deload: podpowiedź w Kalendarzu, a w tygodniu deload przy starcie {less}; przypomnienie rano w dniu treningu z planu.": "Kevennys: vihje Kalenterissa ja kevennysviikolla aloituksessa {less}; aamumuistutus suunniteltuina treenipäivinä."
+ "Deload: podpowiedź w Kalendarzu, a w tygodniu deload przy starcie {less}; przypomnienie rano w dniu treningu z planu.": "Kevennys: vihje Kalenterissa ja kevennysviikolla aloituksessa {less}; aamumuistutus suunniteltuina treenipäivinä.",
+ "Ostatni trening był już skrócony — „Mniej serii” powtórzy go bez dalszego cięcia.": "Viimeisin treeni oli jo lyhennetty — ”Vähemmän sarjoja” toistaa sen lyhentämättä uudelleen.",
+ "Ostatni trening był lżejszy": "Viimeisin treeni oli kevyempi",
+ "Był skrócony w tygodniu deload: {a} zamiast {b} serii roboczych. Powtórzyć pełny trening?": "Sitä lyhennettiin kevennysviikolla: {a} työsarjaa {b} sijaan. Toistetaanko koko treeni?",
+ "Jak ostatnio": "Kuten viimeksi",
+ "deload — mniej serii": "kevennys — vähemmän sarjoja"
 }

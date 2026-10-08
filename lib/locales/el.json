@@ -1108,5 +1108,10 @@
  "Od {date}: tydzień deload. Przy starcie treningu zaproponuję {less}, ciężary bez zmian.": "Από {date}: εβδομάδα αποφόρτισης. Στην έναρξη προπόνησης θα προτείνω {less}, ίδια βάρη.",
  "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję {less}, ciężary bez zmian.": "Δική σου σήμανση, π.χ. μια πιο ελαφριά εβδομάδα. Στην έναρξη προπόνησης θα προτείνω {less}, ίδια βάρη.",
  "W tygodniu deload „Start” i „Powtórz ostatni” zaproponują „Mniej serii”: {less}; ciężary i szablon bez zmian.": "Σε εβδομάδα αποφόρτισης τα «Έναρξη» και «Επανάληψη τελευταίας» προτείνουν «Λιγότερα σετ»: {less}· ίδια βάρη και πρότυπο.",
- "Deload: podpowiedź w Kalendarzu, a w tygodniu deload przy starcie {less}; przypomnienie rano w dniu treningu z planu.": "Αποφόρτιση: υπόδειξη στο Ημερολόγιο και, σε εβδομάδα αποφόρτισης, {less} στην έναρξη· πρωινή υπενθύμιση τις μέρες προγραμματισμένης προπόνησης."
+ "Deload: podpowiedź w Kalendarzu, a w tygodniu deload przy starcie {less}; przypomnienie rano w dniu treningu z planu.": "Αποφόρτιση: υπόδειξη στο Ημερολόγιο και, σε εβδομάδα αποφόρτισης, {less} στην έναρξη· πρωινή υπενθύμιση τις μέρες προγραμματισμένης προπόνησης.",
+ "Ostatni trening był już skrócony — „Mniej serii” powtórzy go bez dalszego cięcia.": "Η τελευταία προπόνηση ήταν ήδη μειωμένη — το «Λιγότερα σετ» την επαναλαμβάνει χωρίς νέα μείωση.",
+ "Ostatni trening był lżejszy": "Η τελευταία προπόνηση ήταν πιο ελαφριά",
+ "Był skrócony w tygodniu deload: {a} zamiast {b} serii roboczych. Powtórzyć pełny trening?": "Μειώθηκε σε εβδομάδα αποφόρτισης: {a} αντί για {b} σετ εργασίας. Επανάληψη της πλήρους προπόνησης;",
+ "Jak ostatnio": "Όπως την τελευταία φορά",
+ "deload — mniej serii": "αποφόρτιση — λιγότερα σετ"
 }

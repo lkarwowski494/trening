@@ -1108,5 +1108,10 @@
  "Od {date}: tydzień deload. Przy starcie treningu zaproponuję {less}, ciężary bez zmian.": "De la {date}: săptămână de descărcare. La pornirea antrenamentului voi propune {less}, aceleași greutăți.",
  "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję {less}, ciężary bez zmian.": "Eticheta ta, de ex. o săptămână mai ușoară. La pornirea antrenamentului voi propune {less}, aceleași greutăți.",
  "W tygodniu deload „Start” i „Powtórz ostatni” zaproponują „Mniej serii”: {less}; ciężary i szablon bez zmian.": "În săptămâna de descărcare, „Start” și „Repetă ultimul” propun „Mai puține serii”: {less}; greutăți și șablon neschimbate.",
- "Deload: podpowiedź w Kalendarzu, a w tygodniu deload przy starcie {less}; przypomnienie rano w dniu treningu z planu.": "Descărcare: sugestie în Calendar, iar în săptămâna de descărcare, la pornire, {less}; memento dimineața în zilele de antrenament planificat."
+ "Deload: podpowiedź w Kalendarzu, a w tygodniu deload przy starcie {less}; przypomnienie rano w dniu treningu z planu.": "Descărcare: sugestie în Calendar, iar în săptămâna de descărcare, la pornire, {less}; memento dimineața în zilele de antrenament planificat.",
+ "Ostatni trening był już skrócony — „Mniej serii” powtórzy go bez dalszego cięcia.": "Ultimul antrenament a fost deja scurtat — „Mai puține serii” îl repetă fără o nouă scurtare.",
+ "Ostatni trening był lżejszy": "Ultimul antrenament a fost mai ușor",
+ "Był skrócony w tygodniu deload: {a} zamiast {b} serii roboczych. Powtórzyć pełny trening?": "A fost scurtat în săptămâna de descărcare: {a} în loc de {b} serii de lucru. Repeți antrenamentul complet?",
+ "Jak ostatnio": "Ca data trecută",
+ "deload — mniej serii": "descărcare — mai puține serii"
 }

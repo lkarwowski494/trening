@@ -10,7 +10,8 @@ import { deloadKeep } from '@/lib/deload';
 import { beginEdit, draftSetWhen, checkDraft, commitDraft, activeEnd } from '@/lib/edit';
 import { applyUnit } from '@/lib/units';
 import { nearestLoad } from '@/lib/equipvis';
-import { fresh, ex, addWorkout } from './helpers';
+import { fresh, ex, addWorkout, saved } from './helpers';
+import { buildBackup, parseBackup } from '@/lib/backup';
 import type { SetKind, Workout } from '@/lib/seed';
 
 const S = () => store.getState();
@@ -177,20 +178,20 @@ describe('D1 / LOG-17: deload — ten sam dobór serii przy starcie, w pytaniu i
   const tpl = (sets: number[]) => { const t = store.newTemplate(); t.items = sets.map((n, i) => ({ id: 'i' + i, exerciseId: ex(['Back Squat', 'Bench Press (sztanga)', 'Lat Pulldown'][i % 3]).id, sets: n, repMin: 8, repMax: 12, restSec: 120, startWeight: '', targetSec: '', groupId: null })); store.save(); return t; };
   test('LOG-17: pozycja z usuniętym ćwiczeniem nie liczy się w pytaniu (audyt: „4 zamiast 7”, a start 2 z 3)', async () => {
     await fresh(); const t = tpl([3, 4]); ex('Bench Press (sztanga)').archived = true;
-    expect(deloadCounts(t)).toEqual({ full: 3, less: 2, single: false });
+    expect(deloadCounts(t)).toEqual({ full: 3, less: 2, single: false, shortened: false });
     store.startFromTemplate(t, { deload: true }); expect(S().active!.exercises.map(e => e.sets.length)).toEqual([2]);
   });
   test('D1 (MER-05): repeatCounts / repeatLast({ deload }) — cięcie deloadKeep na blok, rozgrzewki i drop sety jak przy szablonie', async () => {
     await fresh();
     addWorkout(Date.now() - 86400e3, [['Back Squat', [{ kind: 'warmup', warmup: true, weight: 40, reps: 10 }, { weight: 100, reps: 8 }, { weight: 100, reps: 8 }, { weight: 100, reps: 8 }, { kind: 'drop', weight: 80, reps: 6 }]], ['Plank', [{ durationSec: 60 }]]]);
-    expect(repeatCounts(store.finishedWorkouts()[0])).toEqual({ full: 4, less: 3, single: true });
+    expect(repeatCounts(store.finishedWorkouts()[0])).toEqual({ full: 4, less: 3, single: true, shortened: false });
     store.repeatLast({ deload: true }); const a = S().active!;
     expect(a.exercises.map(e => e.sets.map(s => s.kind))).toEqual([['warmup', 'normal', 'normal'], ['normal']]);
     expect(a.exercises[0].sets.map(s => s.weight)).toEqual([40, 100, 100]); /* ciężary bez zmian */
   });
   test('D1 (MER-05): ostatni trening z usuniętym ćwiczeniem — liczy tylko bloki, które „Powtórz ostatni” wstawi', async () => {
     await fresh(); addWorkout(Date.now() - 86400e3, [['Back Squat', [{ weight: 100, reps: 8 }, { weight: 100, reps: 8 }]], ['Leg Press', [{ weight: 100, reps: 8 }, { weight: 100, reps: 8 }]]]);
-    ex('Leg Press').archived = true; expect(repeatCounts(store.finishedWorkouts()[0])).toEqual({ full: 2, less: 1, single: false });
+    ex('Leg Press').archived = true; expect(repeatCounts(store.finishedWorkouts()[0])).toEqual({ full: 2, less: 1, single: false, shortened: false });
     expect(store.repeatBlocks(store.finishedWorkouts()[0]).map(e => e.exerciseId)).toEqual([ex('Back Squat').id]);
     const it = { id: 'x', exerciseId: ex('Leg Press').id, sets: 1, repMin: null, repMax: null, restSec: null, startWeight: '' as const, targetSec: '' as const, groupId: null };
     expect(store.startableItem(it)).toBe(false); expect(store.startableItem({ ...it, exerciseId: ex('Back Squat').id })).toBe(true); expect(store.startableItem({ ...it, exerciseId: 'nie-ma' })).toBe(false);
@@ -199,6 +200,71 @@ describe('D1 / LOG-17: deload — ten sam dobór serii przy starcie, w pytaniu i
     await fresh(); const after = jest.fn(); startRepeatLast(after); expect(S().active).toBeNull(); expect(after).not.toHaveBeenCalled();
     addWorkout(Date.now() - 86400e3, [['Back Squat', [{ weight: 100, reps: 8 }, { weight: 100, reps: 8 }]]]); global.__alerts.length = 0;
     startRepeatLast(after); expect(global.__alerts).toHaveLength(0); expect(S().active!.exercises[0].sets).toHaveLength(2); expect(after).toHaveBeenCalledTimes(1);
+  });
+});
+
+describe('D1+ (decyzja 08.10.2026, koordynator: „lepsza opcja”): powtórzenie skróconego treningu — bez drugiego cięcia, z przywróceniem pełnego', () => {
+  const tpl = (rows: ('normal' | 'drop' | 'warmup')[][], names = ['Back Squat', 'Bench Press (sztanga)', 'Plank']) => {
+    const t = store.newTemplate(); t.name = 'Upper';
+    t.items = rows.map((r, i) => ({ id: 'i' + i, exerciseId: ex(names[i]).id, sets: r.length, repMin: 8, repMax: 12, restSec: 120, startWeight: '' as const, targetSec: '' as const, groupId: null, rows: r.map((k, j) => ({ id: `r${i}_${j}`, kind: k, reps: 8 as number | '', weight: (k === 'drop' ? 60 : k === 'warmup' ? 40 : 100) as number | '', durationSec: '' as const, distanceM: '' as const })) }));
+    store.save(); return t;
+  };
+  /** Start z cięciem deload, odhaczenie wszystkiego (wartości z szablonu), zakończenie. */
+  const doneDeload = (t: ReturnType<typeof tpl>) => { store.startFromTemplate(t, { deload: true }); const a = S().active!; a.exercises.forEach((e, ei) => e.sets.forEach((_, si) => store.toggleDone(ei, si))); return store.finishWorkout()!; };
+  const work = (sets: { kind?: string }[]) => sets.filter(s => s.kind !== 'warmup' && s.kind !== 'drop').length;
+  test('D1+: start z „Mniej serii” oznacza trening (deload) i zapamiętuje pełną liczbę serii roboczych przyciętych bloków; zostaje po „Zakończ”', async () => {
+    await fresh(); const t = tpl([['warmup', 'normal', 'normal', 'normal', 'drop'], ['normal']]); store.startFromTemplate(t, { deload: true });
+    const a = S().active!; expect(a.deload).toBe(true); expect(a.exercises.map(e => e.deloadFull)).toEqual([3, undefined]); /* 1 seria — bez cięcia, bez znacznika */
+    a.exercises.forEach((e, ei) => e.sets.forEach((_, si) => store.toggleDone(ei, si))); const w = store.finishWorkout()!;
+    expect(w.deload).toBe(true); expect(w.exercises.map(e => e.deloadFull)).toEqual([3, undefined]);
+    store.startFromTemplate(t); expect(S().active!.deload).toBeUndefined(); expect(S().active!.exercises.every(e => e.deloadFull === undefined)).toBe(true); /* pełny start bez znacznika */
+  });
+  test('D1+: repeatCounts skróconego — „mniej” = jak ostatnio (bez drugiego cięcia), „pełny” = przywrócony z szablonu', async () => {
+    await fresh(); const t = tpl([['normal', 'normal', 'normal', 'normal'], ['normal', 'normal', 'normal']]); const w = doneDeload(t);
+    expect(w.exercises.map(e => work(e.sets))).toEqual([2, 2]);
+    expect(repeatCounts(w)).toEqual({ full: 7, less: 4, single: false, shortened: true });
+  });
+  test('D1+: repeatLast({ deload }) skróconego — powtarza go jak jest (2 → 2, nie 1), znacznik i pełne liczby zostają', async () => {
+    await fresh(); const t = tpl([['normal', 'normal', 'normal', 'normal']]); doneDeload(t);
+    store.repeatLast({ deload: true }); const a = S().active!; expect(work(a.exercises[0].sets)).toBe(2); expect(a.deload).toBe(true); expect(a.exercises[0].deloadFull).toBe(4);
+  });
+  test('D1+: repeatLast() skróconego — przywraca pełny trening z szablonu: brakujące serie robocze (wartości ostatniej serii) i drop set; bez znacznika', async () => {
+    await fresh(); const t = tpl([['warmup', 'normal', 'normal', 'normal', 'drop']]); const w = doneDeload(t); expect(w.exercises[0].sets.map(s => s.kind)).toEqual(['warmup', 'normal', 'normal']);
+    store.repeatLast(); const a = S().active!; const e = a.exercises[0];
+    expect(e.sets.map(s => s.kind)).toEqual(['warmup', 'normal', 'normal', 'normal', 'drop']); expect(e.sets.map(s => s.weight)).toEqual([40, 100, 100, 100, 60]);
+    expect(e.sets.map(s => s.reps)).toEqual([8, 8, 8, 8, 8]); expect(e.sets.every(s => !s.done)).toBe(true); expect(new Set(e.sets.map(s => s.id)).size).toBe(5);
+    expect(a.deload).toBeUndefined(); expect(e.deloadFull).toBeUndefined();
+  });
+  test('D1+: bez szablonu (usunięty) — przywrócenie z zapamiętanej liczby; szablon zmieniony później — wygrywa szablon', async () => {
+    await fresh(); const t = tpl([['normal', 'normal', 'normal']]); doneDeload(t);
+    t.items[0].rows!.push({ id: 'x', kind: 'normal', reps: 6, weight: 110, durationSec: '', distanceM: '' }); store.save(t);
+    expect(repeatCounts(store.finishedWorkouts()[0])).toMatchObject({ full: 4, less: 2 }); /* szablon ma teraz 4 serie */
+    store.deleteTemplate(t.id); expect(repeatCounts(store.finishedWorkouts()[0])).toMatchObject({ full: 3, less: 2 }); /* zapamiętane deloadFull = 3 */
+    store.repeatLast(); expect(S().active!.exercises[0].sets.map(s => [s.kind, s.weight, s.reps])).toEqual([['normal', 100, 8], ['normal', 100, 8], ['normal', 100, 8]]);
+  });
+  test('D1+: powtórzenie zwykłego treningu z cięciem zapamiętuje pełną liczbę — kolejne powtórzenie znów może wrócić do pełnego', async () => {
+    await fresh(); addWorkout(Date.now() - 86400e3, [['Back Squat', [1, 2, 3, 4, 5].map(() => ({ weight: 100, reps: 5 }))]]);
+    store.repeatLast({ deload: true }); let a = S().active!; expect(a.deload).toBe(true); expect(work(a.exercises[0].sets)).toBe(3); expect(a.exercises[0].deloadFull).toBe(5);
+    a.exercises[0].sets.forEach((_, si) => store.toggleDone(0, si)); store.finishWorkout();
+    expect(repeatCounts(store.finishedWorkouts()[0])).toEqual({ full: 5, less: 3, single: false, shortened: true });
+    store.repeatLast(); a = S().active!; expect(work(a.exercises[0].sets)).toBe(5); expect(a.deload).toBeUndefined();
+  });
+  test('D1+ (dane): migrate — deload tylko true, deloadFull liczba całkowita 1–50 i tylko w treningu deload; idempotentne; kopia eksport → import bez strat', async () => {
+    await fresh(); const t = tpl([['normal', 'normal', 'normal']]); doneDeload(t);
+    const raw: any = JSON.parse(JSON.stringify(S()));
+    raw.workouts.push({ ...JSON.parse(JSON.stringify(raw.workouts[0])), id: 'zly', startedAt: raw.workouts[0].startedAt - 864e5, finishedAt: raw.workouts[0].finishedAt - 864e5, deload: 'tak', exercises: raw.workouts[0].exercises.map((e: any) => ({ ...e, id: 'z' + e.id, deloadFull: 3 })) });
+    raw.workouts.push({ ...JSON.parse(JSON.stringify(raw.workouts[0])), id: 'zly2', startedAt: raw.workouts[0].startedAt - 2 * 864e5, finishedAt: raw.workouts[0].finishedAt - 2 * 864e5, exercises: raw.workouts[0].exercises.map((e: any, i: number) => ({ ...e, id: 'y' + e.id, deloadFull: ['x', 0, 2.5, 999, -3][i] ?? 'x' })) });
+    const m = store.migrate(JSON.parse(JSON.stringify(raw)));
+    const by = (id: string) => m.workouts.find(w => w.id === id)!;
+    expect(by(raw.workouts[0].id).deload).toBe(true); expect(by(raw.workouts[0].id).exercises[0].deloadFull).toBe(3);
+    expect('deload' in by('zly')).toBe(false); expect('deloadFull' in by('zly').exercises[0]).toBe(false); /* bez znacznika — bez liczby */
+    expect(by('zly2').deload).toBe(true); expect(by('zly2').exercises.map(e => e.deloadFull)).toEqual([undefined]); /* „x” odpada */
+    const m2 = store.migrate(JSON.parse(JSON.stringify(m))); expect(m2.workouts).toEqual(m.workouts);
+    expect(store.migrate({ ...JSON.parse(JSON.stringify(raw)), workouts: [{ ...raw.workouts[0], exercises: [{ ...raw.workouts[0].exercises[0], deloadFull: 2.6 }] }] }).workouts[0].exercises[0].deloadFull).toBe(3);
+    expect(store.migrate({ ...JSON.parse(JSON.stringify(raw)), workouts: [{ ...raw.workouts[0], exercises: [{ ...raw.workouts[0].exercises[0], deloadFull: 80 }] }] }).workouts[0].exercises[0].deloadFull).toBe(50);
+    const before = JSON.parse(JSON.stringify(S())); const after = parseBackup(JSON.stringify(buildBackup()));
+    expect(after.workouts).toEqual(before.workouts); expect(after.workouts[0].deload).toBe(true);
+    store.startFromTemplate(t, { deload: true }); await store.flush(); await fresh(saved()); expect(S().active!.deload).toBe(true); expect(S().active!.exercises[0].deloadFull).toBe(3); /* trening w toku po restarcie */
   });
 });
 

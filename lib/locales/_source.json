@@ -480,6 +480,10 @@
   "en": "Pec deck"
  },
  {
+  "pl": "Był skrócony w tygodniu deload: {a} zamiast {b} serii roboczych. Powtórzyć pełny trening?",
+  "en": "It was shortened in a deload week: {a} instead of {b} working sets. Repeat the full workout?"
+ },
+ {
   "pl": "Cała biblioteka",
   "en": "Whole library"
  },
@@ -667,6 +671,10 @@
  {
   "pl": "Deload",
   "en": "Deload"
+ },
+ {
+  "pl": "deload — mniej serii",
+  "en": "deload — fewer sets"
  },
  {
   "pl": "Deload: podpowiedź w Kalendarzu, a w tygodniu deload przy starcie {less}; przypomnienie rano w dniu treningu z planu.",
@@ -1128,6 +1136,10 @@
  {
   "pl": "Jak liczyć ciężar w objętości",
   "en": "How weight counts toward volume"
+ },
+ {
+  "pl": "Jak ostatnio",
+  "en": "As last time"
  },
  {
   "pl": "jak robocza",
@@ -2224,6 +2236,14 @@
  {
   "pl": "Ostatni trening",
   "en": "Last workout"
+ },
+ {
+  "pl": "Ostatni trening był już skrócony — „Mniej serii” powtórzy go bez dalszego cięcia.",
+  "en": "The last workout was already shortened — “Fewer sets” repeats it without cutting again."
+ },
+ {
+  "pl": "Ostatni trening był lżejszy",
+  "en": "The last workout was lighter"
  },
  {
   "pl": "Ostatnia rozgrzewka o {t}, bez serii roboczych. Kontynuować czy odrzucić?",

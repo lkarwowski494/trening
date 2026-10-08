@@ -1108,5 +1108,10 @@
  "Od {date}: tydzień deload. Przy starcie treningu zaproponuję {less}, ciężary bez zmian.": "Alates {date}: kergendusnädal. Treeningu alustamisel pakun {less}, raskused samad.",
  "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję {less}, ciężary bez zmian.": "Sinu enda märge, nt kergem nädal. Treeningu alustamisel pakun {less}, raskused samad.",
  "W tygodniu deload „Start” i „Powtórz ostatni” zaproponują „Mniej serii”: {less}; ciężary i szablon bez zmian.": "Kergendusnädalal pakuvad „Alusta“ ja „Korda viimast“ „Vähem seeriaid“: {less}; raskused ja mall jäävad samaks.",
- "Deload: podpowiedź w Kalendarzu, a w tygodniu deload przy starcie {less}; przypomnienie rano w dniu treningu z planu.": "Kergendus: vihje Kalendris ja kergendusnädalal alustamisel {less}; hommikune meeldetuletus plaanitud trennipäevadel."
+ "Deload: podpowiedź w Kalendarzu, a w tygodniu deload przy starcie {less}; przypomnienie rano w dniu treningu z planu.": "Kergendus: vihje Kalendris ja kergendusnädalal alustamisel {less}; hommikune meeldetuletus plaanitud trennipäevadel.",
+ "Ostatni trening był już skrócony — „Mniej serii” powtórzy go bez dalszego cięcia.": "Viimane treening oli juba lühendatud — „Vähem seeriaid“ kordab seda ilma uue lühendamiseta.",
+ "Ostatni trening był lżejszy": "Viimane treening oli kergem",
+ "Był skrócony w tygodniu deload: {a} zamiast {b} serii roboczych. Powtórzyć pełny trening?": "Seda lühendati kergendusnädalal: {a} {b} tööseeria asemel. Kas korrata täis treeningut?",
+ "Jak ostatnio": "Nagu eelmisel korral",
+ "deload — mniej serii": "kergendus — vähem seeriaid"
 }

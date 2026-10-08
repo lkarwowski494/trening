@@ -1108,5 +1108,10 @@
  "Od {date}: tydzień deload. Przy starcie treningu zaproponuję {less}, ciężary bez zmian.": "À partir du {date} : semaine de décharge. Au début de la séance, je proposerai {less}, mêmes charges.",
  "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję {less}, ciężary bez zmian.": "Votre propre étiquette, p. ex. une semaine plus légère. Au début de la séance, je proposerai {less}, mêmes charges.",
  "W tygodniu deload „Start” i „Powtórz ostatni” zaproponują „Mniej serii”: {less}; ciężary i szablon bez zmian.": "En semaine de décharge, « Démarrer » et « Répéter la dernière » proposent « Moins de séries » : {less} ; charges et modèle inchangés.",
- "Deload: podpowiedź w Kalendarzu, a w tygodniu deload przy starcie {less}; przypomnienie rano w dniu treningu z planu.": "Décharge : indication dans le Calendrier et, en semaine de décharge, {less} au début ; rappel le matin les jours de séance prévue."
+ "Deload: podpowiedź w Kalendarzu, a w tygodniu deload przy starcie {less}; przypomnienie rano w dniu treningu z planu.": "Décharge : indication dans le Calendrier et, en semaine de décharge, {less} au début ; rappel le matin les jours de séance prévue.",
+ "Ostatni trening był już skrócony — „Mniej serii” powtórzy go bez dalszego cięcia.": "La dernière séance était déjà réduite — « Moins de séries » la répète sans réduire à nouveau.",
+ "Ostatni trening był lżejszy": "La dernière séance était plus légère",
+ "Był skrócony w tygodniu deload: {a} zamiast {b} serii roboczych. Powtórzyć pełny trening?": "Elle a été réduite en semaine de décharge : {a} au lieu de {b} séries de travail. Répéter la séance complète ?",
+ "Jak ostatnio": "Comme la dernière fois",
+ "deload — mniej serii": "décharge — moins de séries"
 }

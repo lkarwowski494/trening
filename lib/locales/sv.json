@@ -1108,5 +1108,10 @@
  "Od {date}: tydzień deload. Przy starcie treningu zaproponuję {less}, ciężary bez zmian.": "Från {date}: deloadvecka. När du startar ett pass föreslår jag {less}, samma vikter.",
  "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję {less}, ciężary bez zmian.": "Din egen markering, t.ex. en lättare vecka. När du startar ett pass föreslår jag {less}, samma vikter.",
  "W tygodniu deload „Start” i „Powtórz ostatni” zaproponują „Mniej serii”: {less}; ciężary i szablon bez zmian.": "Under en deloadvecka erbjuder ”Start” och ”Upprepa senaste” ”Färre set”: {less}; vikter och mall oförändrade.",
- "Deload: podpowiedź w Kalendarzu, a w tygodniu deload przy starcie {less}; przypomnienie rano w dniu treningu z planu.": "Deload: tips i Kalendern och under en deloadvecka {less} vid start; påminnelse på morgonen på planerade träningsdagar."
+ "Deload: podpowiedź w Kalendarzu, a w tygodniu deload przy starcie {less}; przypomnienie rano w dniu treningu z planu.": "Deload: tips i Kalendern och under en deloadvecka {less} vid start; påminnelse på morgonen på planerade träningsdagar.",
+ "Ostatni trening był już skrócony — „Mniej serii” powtórzy go bez dalszego cięcia.": "Senaste passet var redan förkortat — ”Färre set” upprepar det utan att korta mer.",
+ "Ostatni trening był lżejszy": "Senaste passet var lättare",
+ "Był skrócony w tygodniu deload: {a} zamiast {b} serii roboczych. Powtórzyć pełny trening?": "Det förkortades under en deloadvecka: {a} i stället för {b} arbetsset. Upprepa hela passet?",
+ "Jak ostatnio": "Som senast",
+ "deload — mniej serii": "deload — färre set"
 }
