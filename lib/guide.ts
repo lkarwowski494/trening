@@ -22,9 +22,9 @@ export const GUIDE: GuideTopic[] = [
   ] },
   { id: 'plan', route: '/history', title: () => t('Plan tygodnia i Kalendarz'), steps: () => [
     t('W Kalendarzu „Plan tygodnia” przypisuje szablony do dni — plan powtarza się co tydzień.'),
-    t('Stuknij dzień w Kalendarzu: przesuń plan o 1 dzień, przesuń tylko ten trening albo zmień go na inny.'),
-    t('„Propozycje” układają tydzień z najmniejszą liczbą zmian, z uwzględnieniem regeneracji partii.'),
-    t('Kilka planów: „Zapisz kopię jako nowy plan” i „Ustaw jako aktywny” w „Inne plany”.'),
+    t('Stuknij dzień w Kalendarzu: „Przesuń albo pomiń” pokazuje możliwości — przesunięcie planu o 1 dzień, tylko tego treningu, zamianę albo wolne.'),
+    t('Na górze listy jest polecana: wraca do rutyny i nie gubi treningu, potem unika par dzień po dniu z tymi samymi partiami i zmienia najmniej dni.'),
+    t('Kilka planów: „+ Nowy plan” tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.'),
   ] },
   { id: 'generator', route: '/generator', title: () => t('Generator szablonów i planu'), steps: () => [
     t('„Wygeneruj szablony i plan” (Szablony albo Plan tygodnia): wybierz cel, miejsce, liczbę i długość sesji.'),
@@ -34,6 +34,7 @@ export const GUIDE: GuideTopic[] = [
   { id: 'deload', route: '/history', title: () => t('Deload'), steps: () => [
     t('Po kilku tygodniach treningu z rzędu Kalendarz podpowie „Zaplanuj deload od …”.'),
     t('Tydzień oznaczysz też w Postępach przełącznikiem „Tydzień deload”.'),
+    t('W Kalendarzu: stuknij dzień, potem „Więcej opcji” → „Oznacz tydzień jako deload” — także przyszły tydzień.'),
     t('W tygodniu deload „Start” zaproponuje „Mniej serii” — ciężary i szablon bez zmian.'),
   ] },
   { id: 'progress', route: '/more/progress', title: () => t('Postępy i rekordy'), steps: () => [

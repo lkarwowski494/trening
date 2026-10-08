@@ -1,5 +1,5 @@
 import { finishedWorkouts, getState, isWorking, exById, volume, workoutDurSec } from '@/lib/store';
-import { dayStatus, plannedOn, hasPlan, addDays, dayKeyOf, type DayStatus } from '@/lib/plan';
+import { dayStatus, hasPlan, addDays, dayKeyOf, type DayStatus } from '@/lib/plan';
 import { periodSummary } from '@/lib/period';
 import { thisMonday, workoutPRs } from '@/lib/stats';
 
@@ -14,11 +14,13 @@ export function weekStrip(now = Date.now()): WeekDay[] {
   const today = dayKeyOf(now); const mon = dayKeyOf(thisMonday(0, new Date(now)));
   return Array.from({ length: 7 }, (_, i) => { const k = addDays(mon, i); const s = dayStatus(k, today); return { date: k, status: s.status, templateId: s.templateId, today: k === today }; });
 }
-/** Treningi, serie robocze i czas w tym tygodniu, poprzedni tydzień obok; `planned` — dni z planem w tym tygodniu (null bez planu). */
+/** Treningi, serie robocze i czas w tym tygodniu, poprzedni tydzień obok; `planned` — dni z planem w tym tygodniu (null bez planu), `planDone` —
+ * z nich zrobione zaplanowanym szablonem (audyt 0.10 A5: ta sama funkcja stanu dnia co kalendarz i pasek; inny trening nie zalicza dnia z planu). */
 export function weekTiles(now = Date.now()) {
   const s = periodSummary('week', 0, new Date(now)); const days = weekStrip(now);
-  const planned = hasPlan() ? days.filter(d => plannedOn(d.date)).length : null;
-  return { workouts: s.workouts, sets: s.sets, durationSec: s.durationSec, prev: s.prev, planned };
+  const plan = hasPlan(dayKeyOf(now)) || days.some(d => d.templateId);
+  const planned = plan ? days.filter(d => d.templateId).length : null; const planDone = plan ? days.filter(d => d.templateId && d.status === 'done').length : null;
+  return { workouts: s.workouts, sets: s.sets, durationSec: s.durationSec, prev: s.prev, planned, planDone };
 }
 /** Ostatni zakończony trening: nazwa, start, czas bez pauz, serie robocze, objętość, liczba rekordów. */
 export function lastWorkout() {

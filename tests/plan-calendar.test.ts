@@ -12,7 +12,8 @@ const NOW = new Date(2026, 9, 8, 9, 0); /* czwartek 8.10.2026 */
 const S = () => store.getState();
 let A = '', B = '', C = '';
 beforeEach(async () => { jest.useFakeTimers({ now: NOW }); await fresh(); const t = withDemoTemplates(); [A, B, C] = [t[0].id, t[1].id, t[2].id]; });
-const week = (...d: (string | null)[]) => d.forEach((id, i) => plan.setWeekDay(i, id));
+/* audyt 0.10 A1 (historia planu, schemat 18): plan obowiązuje od dnia ustawienia — testy minionych dni ustawiają go wcześniej (1.09.2026) */
+const week = (...d: (string | null)[]) => { const now = Date.now(); jest.setSystemTime(new Date(2026, 8, 1, 9).getTime()); d.forEach((id, i) => plan.setWeekDay(i, id)); jest.setSystemTime(now); };
 const range = (from: string, n: number) => Array.from({ length: n }, (_, i) => plan.plannedOn(plan.addDays(from, i)));
 
 describe('plan tygodnia', () => {
@@ -41,7 +42,7 @@ describe('przesuń plan o 1 dzień (łańcuch do pierwszego wolnego dnia)', () =
   test('przesunięcie zachowuje liczbę treningów (niezmiennik); dzień bez treningu — nic', () => {
     week(A, B, null, C, A, null, null); const before = range('2026-10-05', 14).filter(Boolean).length;
     plan.shiftPlan('2026-10-05'); expect(range('2026-10-05', 14).filter(Boolean).length).toBe(before);
-    expect(plan.shiftPlan('2026-10-10')).toEqual({ moved: [] }); /* sobota — wolne */
+    expect(plan.shiftPlan('2026-10-11')).toEqual({ moved: [] }); /* niedziela — wolna (audyt 0.10 A4: miniony poniedziałek przesuwa się od dziś, łańcuch kończy się w sobotę) */
   });
   test('plan bez dni wolnych: łańcuch kończy się po SHIFT_MAX_DAYS, ostatni trening wypada (zwracany)', () => {
     week(A, B, C, A, B, C, A); const r = plan.shiftPlan('2026-10-08');
@@ -77,18 +78,19 @@ describe('pomocnicze', () => {
     expect(plan.hasPlan()).toBe(false); plan.setDayPlan('2026-10-09', A); expect(plan.hasPlan()).toBe(true);
     plan.resetDay('2026-10-09'); expect(plan.hasPlan()).toBe(false); week(null, A, null, null, null, null, null); expect(plan.hasPlan()).toBe(true);
   });
-  test('opis przesunięcia z treningiem, który wypada (plan bez dni wolnych)', () => {
-    const { shiftSummary } = require('@/components/DayPanel');
-    week(A, B, C, A, B, C, A); const r = plan.shiftPlan('2026-10-08'); const name = S().templates.find(x => x.id === r.dropped)!.name;
-    expect(shiftSummary(r)).toMatch(new RegExp(` · wypada: ${name.replace(/[()]/g, '\\$&')}$`));
+  test('opis przesunięcia w liście „Przesuń albo pomiń” (audyt 0.10 UX-13 A — zamiast okna po przesunięciu): treningi na nowych dniach i trening, który wypada', () => {
+    const { suggestionTexts } = require('@/components/DayPanel');
+    week(A, B, C, A, B, C, A); const sh = plan.suggest('2026-10-08').find(x => x.kind === 'shift')!; const d = suggestionTexts('2026-10-08', sh).details as string[];
+    const nameA = S().templates.find(x => x.id === A)!.name.replace(/[()]/g, '\\$&'); expect(d[0]).toMatch(new RegExp(`^${nameA} → pt\\.,? 9\\.10`)); expect(d).toContain('Wypada treningów: 1');
   });
 });
 
 describe('stan dnia i dane', () => {
   test('zrobiony / zaplanowany / opuszczony / wolny', () => {
     week(A, A, A, A, A, null, null);
-    addWorkout(new Date(2026, 9, 6, 18).getTime(), [['Back Squat', [{ weight: 100, reps: 5 }]]]);
-    expect(['2026-10-05', '2026-10-06', '2026-10-08', '2026-10-10'].map(k => plan.dayStatus(k, '2026-10-08').status)).toEqual(['missed', 'done', 'planned', 'rest']);
+    addWorkout(new Date(2026, 9, 6, 18).getTime(), [['Back Squat', [{ weight: 100, reps: 5 }]]]).templateId = A; /* audyt 0.10 A5: „zrobione” = zaplanowany szablon */
+    addWorkout(new Date(2026, 9, 7, 18).getTime(), [['Back Squat', [{ weight: 100, reps: 5 }]]]); /* inny trening — „other” */
+    expect(['2026-10-05', '2026-10-06', '2026-10-07', '2026-10-08', '2026-10-10'].map(k => plan.dayStatus(k, '2026-10-08').status)).toEqual(['missed', 'done', 'other', 'planned', 'rest']);
     expect(plan.upcoming(3, '2026-10-08')).toEqual([{ date: '2026-10-08', templateId: A }, { date: '2026-10-09', templateId: A }, { date: '2026-10-10', templateId: null }]);
   });
   test('sanityzacja: plan 7 dni, złe klucze i wartości zmian usunięte; zapis i odczyt', async () => {
@@ -98,8 +100,8 @@ describe('stan dnia i dane', () => {
     (S() as any).weekPlan = { days: [] }; (S() as any).planOverrides = {}; store.save(); await store.flush(); await fresh(saved());
     expect(['weekPlan' in S(), 'planOverrides' in S()]).toEqual([false, false]);
   });
-  test('zmiany starsze niż 60 dni są sprzątane przy zmianie planu', () => {
-    S().planOverrides = { '2026-07-01': A, '2026-10-01': B }; plan.setWeekDay(0, A); expect(Object.keys(S().planOverrides!)).toEqual(['2026-10-01']);
+  test('audyt 0.10 A1 (DAT-01 P3): minione zmiany dni zostają przy zmianie planu (dawniej kasowane po 60 dniach — „wolne” wracało jako „opuszczony”)', () => {
+    S().planOverrides = { '2026-07-01': A, '2026-10-01': B }; plan.setWeekDay(0, A); expect(Object.keys(S().planOverrides!)).toEqual(['2026-07-01', '2026-10-01']);
   });
 });
 
@@ -121,7 +123,8 @@ describe('propozycje z regeneracją partii', () => {
     expect(s[0]).toMatchObject({ kind: 'shift', dropped: 0, changes: 2, returns: true });
     expect(s[0].newBackToBack).toEqual([{ a: '2026-10-08', b: '2026-10-09' }]); /* czw. B, pt. A */
     expect(s.find(x => x.kind === 'skip')).toMatchObject({ dropped: 1 }); expect(s[s.length - 1].kind).toBe('skip');
-    expect(s.some(x => x.kind === 'swap')).toBe(false); /* dziś — bez wstawiania innego treningu na dziś */
+    /* audyt 0.10 UX-13 A: jedna lista zastępuje „Przesuń tylko ten trening” — zamiana na wyraźne polecenie także dziś, ale na końcu przy tej samej liczbie sesji */
+    const firstSwap = s.findIndex(x => x.kind === 'swap'); expect(firstSwap).toBeGreaterThan(s.findIndex(x => x.kind === 'move')); expect(s[0].kind).not.toBe('swap');
   });
   test('gdy jest układ bez nowej pary pod rząd, wygrywa on (przy tej samej liczbie sesji)', () => {
     jest.setSystemTime(new Date(2026, 9, 5, 9).getTime()); week(A, D, null, B, null, null, null); /* pon. A, wt. Legs-dom, czw. B */

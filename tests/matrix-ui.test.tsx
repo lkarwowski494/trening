@@ -70,10 +70,10 @@ describe('/more/settings', () => {
   test('Sprawdź zgodę na powiadomienia: zgoda → „działają”, brak zgody → „Brak zgody” z drogą do Ustawień iOS', async () => {
     await renderApp(); await go('/more/settings'); await flushAll(10);
     await tap(screen.getByText('Sprawdź zgodę na powiadomienia')); await flushAll(10);
-    expect(lastAlert()).toMatchObject({ title: 'Powiadomienia działają', msg: 'Koniec przerwy da znać nawet na zablokowanym ekranie.' });
+    expect(lastAlert()).toMatchObject({ title: 'Powiadomienia działają', msg: 'Koniec przerwy i przypomnienie o treningu z planu przyjdą także przy zablokowanym ekranie.' }); /* audyt 0.10 I1: komunikat obejmuje też przypomnienie z planu */
     (global as any).__notifDenied = true;
     await tap(screen.getByText('Sprawdź zgodę na powiadomienia')); await flushAll(10);
-    expect(lastAlert()).toMatchObject({ title: 'Brak zgody', msg: 'Włącz powiadomienia dla Trening w Ustawieniach iOS.' });
+    expect(lastAlert()).toMatchObject({ title: 'Brak zgody', msg: 'Włącz powiadomienia dla Trening w Ustawieniach iOS.' }); expect(lastAlert()!.buttons!.map((b: any) => b.text)).toEqual(['Anuluj', 'Otwórz Ustawienia iOS']); /* audyt 0.10 I1: droga do Ustawień iOS */
   });
 
   test('Wyczyść wszystkie dane: ostrzeżenie (z dopiskiem o nieczytelnych danych) i reset po „Wyczyść”', async () => {

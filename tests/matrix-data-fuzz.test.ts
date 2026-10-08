@@ -181,7 +181,7 @@ describe('import — przypadki brzegowe (deterministyczne)', () => {
 
   test('schemat z przyszłości (w kopercie, w stanie, tekstem, 1e400) → komunikat „Plik ma schemat …” z numerem tej wersji', () => {
     const st = JSON.parse(TXT).state;
-    for (const [doc, a] of [[{ format: 'trening-backup', schemaVersion: SCHEMA_VERSION + 1, state: st }, SCHEMA_VERSION + 1], [{ ...st, schemaVersion: 99 }, 99], [{ format: 'trening-backup', schemaVersion: '18', state: st }, 18], [{ format: 'trening-backup', schemaVersion: 1, state: { ...st, schemaVersion: 1e6 } }, 1e6]] as const)
+    for (const [doc, a] of [[{ format: 'trening-backup', schemaVersion: SCHEMA_VERSION + 1, state: st }, SCHEMA_VERSION + 1], [{ ...st, schemaVersion: 99 }, 99], [{ format: 'trening-backup', schemaVersion: String(SCHEMA_VERSION + 1), state: st }, SCHEMA_VERSION + 1] /* audyt 0.10 A1: „przyszły” = bieżący + 1, nie stała */, [{ format: 'trening-backup', schemaVersion: 1, state: { ...st, schemaVersion: 1e6 } }, 1e6]] as const)
       expect(() => parseBackup(J(doc))).toThrow(t('Plik ma schemat {a}, a ta wersja obsługuje do {b}. Zaktualizuj aplikację.', { a, b: SCHEMA_VERSION }));
     expect(() => parseBackup(TXT.replace(`"schemaVersion":${SCHEMA_VERSION}`, '"schemaVersion":1e400'))).toThrow(/^Plik ma schemat/);
     /* nieczytelny numer (tekst, ujemny, NaN tekstem) = dane starsze — import przechodzi, jak goły stan web 0.3 */

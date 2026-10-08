@@ -4,15 +4,17 @@
 # Literały (EN z lib/i18n.en.ts):
 #   "Calendar, tab.*"               ← 'Kalendarz' + etykieta zakładki
 #   "Weekly plan"                   ← 'Plan tygodnia' (przycisk w Kalendarzu i tytuł ekranu)
-#   "Monday: Upper A" … "Sunday: Upper A" ← app/plan.tsx: '{dzień tygodnia}: {szablon}' (etykieta chipa)
-#   ".*, planned: Upper A"          ← components/HistoryCalendar.tsx: '{data}, zaplanowany: {name}' (dziś i dalej)
-#   "Move plan by 1 day" / "Plan moved" ← 'Przesuń plan o 1 dzień' / 'Plan przesunięty'
-#   "Rest · plan changed"           ← 'Wolne' + ' · ' + 'zmiana planu'
-#   "Restore from plan" / "Planned: Upper A" ← 'Przywróć z planu' / 'Zaplanowany: {name}'
-#   "Move only this workout", ".*, taken: Upper A", "This day is taken", "Cancel" ← 'Przesuń tylko ten trening', '{day}, zajęty: {name}', 'Ten dzień jest zajęty', 'Anuluj'
+#   "Monday, Rest" … "Sunday, Rest" ← app/plan.tsx: wiersz dnia '{dzień tygodnia}, {szablon albo Wolne}' (audyt 0.10 UX-15 A: 7 wierszy zamiast chipów)
+#   "Monday: Upper A" … "Sunday: Upper A" ← app/plan.tsx: '{dzień tygodnia}: {szablon}' (chip w rozwiniętym wierszu)
+#   "+ New plan", "This plan is not active yet.*", "Make active: New plan", "Set", "Plan until .*" ← app/plan.tsx, lib/plan.ts:
+#        '+ Nowy plan', 'Ten plan jeszcze nie obowiązuje…', 'Ustaw jako aktywny: {name}', 'Ustaw', 'Plan do {date}' (audyt 0.10 B2 A: nowy plan edytowany
+#        przed aktywacją; plan bez nazwy po wyłączeniu dostaje datę)
+#   ".*, planned: Upper A"          ← components/HistoryCalendar.tsx: '{data}[, dziś], zaplanowany: {name}' (dziś i dalej)
+#   "Planned: Upper A", "Rest · plan changed" ← 'Zaplanowany: {name}', 'Wolne' + ' · ' + 'zmiana planu'
+#   "Move or skip", "Apply: Move plan by 1 day", "Days changed: .*" ← components/DayPanel.tsx: 'Przesuń albo pomiń', 'Zastosuj: {title}',
+#        'Przesuń plan o 1 dzień', 'Zmienione dni: {n}' (audyt 0.10 UX-13 A: jedna lista przesunięć zamiast „Propozycji” i osobnych przycisków)
+#   "More options", "Restore from plan" ← 'Więcej opcji', 'Przywróć z planu'
 #   "Today: Upper A", "Start planned workout: Upper A" ← components/TodayPlan.tsx
-#   "Suggestions", "Days changed: .*", "Apply: .*" ← components/DayPanel.tsx: 'Propozycje', 'Zmienione dni: {n}', 'Zastosuj: {title}' (08.10.2026)
-#   "Save a copy as a new plan", "Other plans", "Make active: Copy: My plan", "Set" ← app/plan.tsx: kilka planów (08.10.2026, docs/24)
 #   "What's new", "In this version", "Close"   ← components/WhatsNew.tsx: 'Co nowego' (etykieta „i”), 'W tej wersji', 'Zamknij' (08.10.2026)
 appId: pl.lukasz.trening
 name: Kalendarz z planem tygodnia
@@ -22,56 +24,51 @@ name: Kalendarz z planem tygodnia
     permissions: { all: allow }
 - extendedWaitUntil: { visible: "Start from a template", timeout: 60000 }
 - runFlow: subflows/szablon-testowy.yaml
-# --- Plan tygodnia: Upper A każdego dnia (dzień symulatora nieznany — dziś zawsze zaplanowany) ---
+# --- Plan tygodnia: Upper A każdego dnia (dzień symulatora nieznany — dziś zawsze zaplanowany); wiersz dnia → wybór szablonu ---
 - tapOn: "Calendar, tab.*"
 - extendedWaitUntil: { visible: "Weekly plan", timeout: 30000 }
 - tapOn: "Weekly plan"
-- extendedWaitUntil: { visible: "Monday: Upper A", timeout: 30000 }
+- extendedWaitUntil: { visible: "Monday, Rest", timeout: 30000 }
+- tapOn: "Monday, Rest"
 - tapOn: "Monday: Upper A"
+- tapOn: "Tuesday, Rest"
 - tapOn: "Tuesday: Upper A"
+- tapOn: "Wednesday, Rest"
 - tapOn: "Wednesday: Upper A"
-- scrollUntilVisible: { element: "Sunday: Upper A", direction: DOWN, timeout: 30000, centerElement: true }
+- scrollUntilVisible: { element: "Sunday, Rest", direction: DOWN, timeout: 30000, centerElement: true }
+- tapOn: "Thursday, Rest"
 - tapOn: "Thursday: Upper A"
+- tapOn: "Friday, Rest"
 - tapOn: "Friday: Upper A"
+- tapOn: "Saturday, Rest"
 - tapOn: "Saturday: Upper A"
+- scrollUntilVisible: { element: "Sunday, Rest", direction: DOWN, timeout: 30000, centerElement: true }
+- tapOn: "Sunday, Rest"
 - tapOn: "Sunday: Upper A"
 - takeScreenshot: 60-plan-tygodnia
-# --- Kilka planów: kopia jako nowy plan i ustawienie jej jako aktywnej (te same dni — reszta scenariusza bez zmian) ---
-- scrollUntilVisible: { element: "Save a copy as a new plan", direction: DOWN, timeout: 30000, centerElement: true }
-- tapOn: "Save a copy as a new plan"
-- scrollUntilVisible: { element: "Make active: Copy: My plan", direction: DOWN, timeout: 30000, centerElement: true }
-- assertVisible: "Other plans"
-- tapOn: "Make active: Copy: My plan"
+# --- Kilka planów (audyt 0.10 B2 A): „+ New plan” — osobny wpis edytowany przed aktywacją (te same dni — reszta scenariusza bez zmian) ---
+- scrollUntilVisible: { element: "\\+ New plan", direction: UP, timeout: 30000, centerElement: true }
+- tapOn: "\\+ New plan"
+- extendedWaitUntil: { visible: "This plan is not active yet.*", timeout: 15000 }
+- tapOn: "Make active: New plan"
 - extendedWaitUntil: { visible: "Set", timeout: 15000 }
 - takeScreenshot: 60a-inne-plany
 - tapOn: "Set"
-- extendedWaitUntil: { visible: "Previous plan, .*", timeout: 15000 }  # run 37784561635: wiersz ma etykietę „tytuł, dni” — regex musi objąć całość (tests/plans-multi-ui)
+- extendedWaitUntil: { visible: "Plan until .*", timeout: 15000 }  # plan bez nazwy po wyłączeniu: „Plan do <data>” (wiersz „tytuł, dni” — regex obejmuje całość, tests/plans-multi-ui)
 - tapOn: "Back"
-# --- Kalendarz: dziś zaplanowany; przesunięcie planu o 1 dzień i powrót ---
+# --- Kalendarz: dziś zaplanowany; „Move or skip” → przesunięcie planu o 1 dzień i powrót („More options” → „Restore from plan”) ---
 - extendedWaitUntil: { visible: ".*, planned: Upper A", timeout: 30000 }
 - tapOn: { text: ".*, planned: Upper A", index: 0 }
 - extendedWaitUntil: { visible: "Planned: Upper A", timeout: 15000 }
 - takeScreenshot: 61-panel-dnia
-- tapOn: "Move plan by 1 day"
-- extendedWaitUntil: { visible: "Plan moved", timeout: 15000 }
-- tapOn: "OK"
+- tapOn: "Move or skip"
+- extendedWaitUntil: { visible: "Days changed: .*", timeout: 15000 }
+- takeScreenshot: 64-propozycje
+- tapOn: "Apply: Move plan by 1 day"
 - extendedWaitUntil: { visible: "Rest · plan changed", timeout: 15000 }
+- tapOn: "More options"
 - tapOn: "Restore from plan"
 - extendedWaitUntil: { visible: "Planned: Upper A", timeout: 15000 }
-# --- Tylko ten trening na zajęty dzień: pytanie, „Cancel” nic nie zmienia ---
-- tapOn: "Move only this workout"
-- extendedWaitUntil: { visible: ".*, taken: Upper A", timeout: 15000 }
-- tapOn: { text: ".*, taken: Upper A", index: 0 }
-- extendedWaitUntil: { visible: "This day is taken", timeout: 15000 }
-- takeScreenshot: 62-dzien-zajety
-- tapOn: "Cancel"
-- extendedWaitUntil: { visible: "Planned: Upper A", timeout: 15000 }
-# --- Propozycje (regeneracja partii): lista z opisem zmian; bez stosowania ---
-- scrollUntilVisible: { element: "Suggestions", direction: DOWN, timeout: 30000, centerElement: true }
-- tapOn: "Suggestions"
-- extendedWaitUntil: { visible: "Days changed: .*", timeout: 15000 }
-- assertVisible: "Apply: .*"
-- takeScreenshot: 64-propozycje
 # --- Ekran treningu: „Today: Upper A” i start ---
 - tapOn: "Workout, tab.*"
 - extendedWaitUntil: { visible: "Today: Upper A", timeout: 30000 }

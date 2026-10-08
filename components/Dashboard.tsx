@@ -26,11 +26,11 @@ export function WeekStats() {
   return <>
     <SectionTitle>{t('Ten tydzień')}</SectionTitle>
     <View testID="week-tiles" style={{ flexDirection: 'row', gap: 8 }}>
-      <Tile label={t('Treningi')} value={w.planned != null ? `${w.workouts} / ${w.planned}` : String(w.workouts)} prev={String(w.prev.workouts)} />
+      <Tile label={t('Treningi')} value={String(w.workouts)} prev={String(w.prev.workouts)} />
       <Tile label={t('Serie')} value={String(w.sets)} prev={String(w.prev.sets)} />
       <Tile label={t('Czas')} value={hm(w.durationSec)} prev={hm(w.prev.durationSec)} />
     </View>
-    {w.planned != null ? <Muted style={{ fontSize: 11, marginTop: 4 }}>{t('Treningi: zrobione / zaplanowane w tym tygodniu.')}</Muted> : null}
+    {w.planned != null ? <Muted style={{ fontSize: 12, marginTop: 4 }}>{t('Z planu w tym tygodniu: zrobione {done} z {n}.', { done: w.planDone ?? 0, n: w.planned })}</Muted> : null}{/* audyt 0.10 A5/X-04: dni z planu zrobione zaplanowanym szablonem (ten sam stan dnia co kalendarz) — sesje i dni planu osobno */}
     <SectionTitle>{t('Ostatni trening')}</SectionTitle>
     <Item title={last.name || t('Trening')} sub={[fmtDate(last.startedAt), fmtDur(last.durationSec), `${last.sets} ${tp(last.sets, 'seria|serie|serii')}`, fmtVol(last.volume), ...(last.prs ? [`${last.prs} ${tp(last.prs, 'rekord|rekordy|rekordów')}`] : [])].join(' · ')} onPress={() => router.push(`/history/${last.id}`)} />
   </>;

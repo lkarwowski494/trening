@@ -5,14 +5,25 @@ Decyzje właściciela: docs/18 (08.10.2026). Reguły merytoryczne: docs/research
 
 ## 1. Kilka planów tygodnia, jeden aktywny
 - Aktywny plan: `State.weekPlan` (dni pon…nd + opcjonalna nazwa) — dane sprzed zmiany przechodzą 1:1.
-- Inne plany: `State.savedPlans` (id, nazwa, dni). „Ustaw jako aktywny” zamienia miejscami; zmiany pojedynczych dni **od dziś** (planOverrides)
-  należą do poprzedniego planu i są usuwane (komunikat mówi to przed potwierdzeniem); przeszłe zostają.
-- „Zapisz kopię jako nowy plan”, zmiana nazwy, usuwanie gestem (z potwierdzeniem).
+- Inne plany: `State.savedPlans` (id, nazwa, dni, od 08.10.2026 wieczór także `overrides`). „Ustaw jako aktywny” zamienia miejscami.
+- Audyt 0.10 (decyzje właściciela 08.10.2026 wieczór — wariant lepszy, nie tańszy):
+  - **B1 (DAT-02 B):** zmiany pojedynczych dni **od dziś** należą do swojego planu — przy wyłączeniu zapisują się w nim (`SavedPlan.overrides`),
+    przy ponownej aktywacji wracają (te, które nie minęły); przeszłe zostają w kalendarzu. Okno aktywacji (ekran planu i generator — jeden tekst,
+    `lib/plan.ts` `activationNote`) mówi, ile zmian przejdzie z obecnym planem i ile wróci z nowym; bez obecnego planu nie obiecuje zapisu.
+  - **B2 A (UX-04 A):** „+ Nowy plan” tworzy osobny wpis w „Inne plany” (kopia dni aktywnego planu), który edytuje się (nazwa, dni) przed
+    „Ustaw jako aktywny”; aktywny plan i jego nazwa bez zmian. Plan bez nazwy, gdy przestaje obowiązywać, dostaje nazwę z datą („Plan do 8.10”).
+    Zmiana nazwy: tapnięcie planu w „Inne plany”. Nazwy bez powtórzeń („Masa, 3× w tygodniu (2)”, także z generatora).
+  - **B3:** najwyżej 50 zapisanych planów — ten sam limit w `migrate` i w UI (bez „+ Nowy plan”, generator pokazuje komunikat).
+  - **B4:** nazwa planu zapisywana przy każdej zmianie pola, porządkowana przy końcu edycji (spacje, ≤ 40 znaków bez rozcinania emoji; idempotentnie).
+- Usuwanie gestem (z potwierdzeniem).
+- **Historia planu (schemat 18, audyt 0.10 A1, wariant B):** `State.planHistory` — odcinki `{from, days}`; każda zmiana planu (dzień, aktywacja,
+  generator) dopisuje odcinek od dziś; miniony dzień liczy się wg planu, który wtedy obowiązywał; dni sprzed pierwszego planu nie są „opuszczone”.
+  Dane sprzed 18: plan obowiązuje od dnia migracji. Zmiany dni z przeszłości nie są kasowane (dawniej po 60 dniach).
 
 ## 2. Generator — wejście i założenia
 - Wejście: ekran Szablony („Wygeneruj szablony i plan”) i ekran Plan tygodnia (ten sam kreator).
 - Założenia: cel (siła / masa / redukcja = masa + cardio), miejsce (sprzęt z Miejsc), sesje siłowe w tygodniu (2–6), czas sesji (45 / 60 / 90 min).
-- Wynik: szablony w folderze „Wygenerowane”, nowy plan tygodnia zapisany obok innych; pytanie, czy ma od razu obowiązywać.
+- Wynik: szablony w folderze „Wygenerowane”, nowy plan tygodnia zapisany obok innych (nazwa bez powtórzeń); pytanie, czy ma od razu obowiązywać.
 
 ## 3. Reguły (z docs/research/22 sekcja 3; status jak tam)
 | Element | Reguła w generatorze | Podstawa / status |

@@ -1,4 +1,4 @@
-import { finishedWorkouts, isDeloadWeek, mondayKey } from '@/lib/store';
+import { finishedWorkouts, isDeloadWeek, mondayKey, getState, save } from '@/lib/store';
 export { deloadKeep, deloadSets } from '@/lib/deload-sets';
 
 /*
@@ -27,5 +27,7 @@ export type DeloadHint = { kind: 'none' } | { kind: 'current' } | { kind: 'next'
 export function deloadHint(now: number): DeloadHint {
   if (isDeloadWeek(now)) return { kind: 'current' };
   const from = nextMonday(now); if (isDeloadWeek(keyTs(from))) return { kind: 'next', from };
-  const weeks = trainingStreakWeeks(now); return weeks >= DELOAD_EVERY[0] ? { kind: 'suggest', weeks, from } : { kind: 'none' };
+  const weeks = trainingStreakWeeks(now); return weeks >= DELOAD_EVERY[0] && getState().deloadSnooze !== from ? { kind: 'suggest', weeks, from } : { kind: 'none' };
 }
+/** Audyt 0.10 D4 (UX-06): „Nie teraz” — podpowiedź znika do następnego tygodnia (wraca, gdy proponowany tydzień się zmieni). */
+export function snoozeDeloadHint(from: string) { getState().deloadSnooze = from; save(); }

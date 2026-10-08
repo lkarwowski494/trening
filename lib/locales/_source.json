@@ -8,10 +8,6 @@
   "en": "“to” is lower than “from” — the range will show as {n}+"
  },
  {
-  "pl": "„Propozycje” układają tydzień z najmniejszą liczbą zmian, z uwzględnieniem regeneracji partii.",
-  "en": "“Suggestions” arrange the week with the fewest changes, taking muscle-group recovery into account."
- },
- {
   "pl": "„Wygeneruj szablony i plan” (Szablony albo Plan tygodnia): wybierz cel, miejsce, liczbę i długość sesji.",
   "en": "“Generate templates and plan” (Templates or Weekly plan): choose goal, place, number and length of sessions."
  },
@@ -26,14 +22,6 @@
  {
   "pl": "{c}, poziom {n}",
   "en": "{c}, level {n}"
- },
- {
-  "pl": "{day}, zajęty: {name}",
-  "en": "{day}, taken: {name}"
- },
- {
-  "pl": "{day}: {name}. Bez Twojej zgody nie przesuwam na dzień z innym treningiem.",
-  "en": "{day}: {name}. I won’t move onto a day with another workout without your say-so."
  },
  {
   "pl": "{ex} — {n} min, umiarkowane tempo",
@@ -168,6 +156,10 @@
   "en": "+ New folder"
  },
  {
+  "pl": "+ Nowy plan",
+  "en": "+ New plan"
+ },
+ {
   "pl": "+ Nowy szablon",
   "en": "+ New template"
  },
@@ -238,6 +230,10 @@
  {
   "pl": "Apple Health niedostępne",
   "en": "Apple Health unavailable"
+ },
+ {
+  "pl": "Archiwizować szablon?",
+  "en": "Archive template?"
  },
  {
   "pl": "Archiwizuj",
@@ -452,6 +448,10 @@
   "en": "No permission"
  },
  {
+  "pl": "Brak zgody na powiadomienia — przypomnienia i koniec przerwy nie przyjdą. Zgodę włączysz w Ustawieniach iOS.",
+  "en": "No notification permission — reminders and end-of-rest alerts will not arrive. You can allow notifications in iOS Settings."
+ },
+ {
   "pl": "Brak zgody na zapis treningów. Włącz ją w aplikacji Zdrowie: profil → Aplikacje → {app}.",
   "en": "No permission to save workouts. Turn it on in the Health app: profile → Apps → {app}."
  },
@@ -637,6 +637,10 @@
   "en": "D — week marked as a deload."
  },
  {
+  "pl": "Dalej",
+  "en": "Continue"
+ },
+ {
   "pl": "dalej: {name}",
   "en": "next: {name}"
  },
@@ -653,6 +657,18 @@
   "en": "Data on this phone"
  },
  {
+  "pl": "Dane w telefonie zapisała nowsza wersja (schemat {a}); ta wersja obsługuje do {b}. Niczego nie zmieniam — zainstaluj najnowszą wersję (TestFlight). Dane możesz też wysłać jako plik.",
+  "en": "The data on this phone was saved by a newer version (schema {a}); this version supports up to {b}. Nothing is changed — install the latest version (TestFlight). You can also send the data as a file."
+ },
+ {
+  "pl": "Dane z nowszej wersji aplikacji",
+  "en": "Data from a newer app version"
+ },
+ {
+  "pl": "Dane z nowszej wersji aplikacji — zaktualizuj aplikację",
+  "en": "Data from a newer app version — update the app"
+ },
+ {
   "pl": "Data (RRRR-MM-DD)",
   "en": "Date (YYYY-MM-DD)"
  },
@@ -667,6 +683,10 @@
  {
   "pl": "Dieta",
   "en": "Diet"
+ },
+ {
+  "pl": "Dni tygodnia",
+  "en": "Days of the week"
  },
  {
   "pl": "do",
@@ -806,6 +826,10 @@
   "plural": true
  },
  {
+  "pl": "dziś",
+  "en": "today"
+ },
+ {
   "pl": "Dziś",
   "en": "Today"
  },
@@ -816,6 +840,10 @@
  {
   "pl": "Dziś wolne",
   "en": "Rest day today"
+ },
+ {
+  "pl": "Dziś zrobione: {name}",
+  "en": "Done today: {name}"
  },
  {
   "pl": "Dziś: {name}",
@@ -1166,6 +1194,10 @@
   "en": "Language"
  },
  {
+  "pl": "jutro",
+  "en": "tomorrow"
+ },
+ {
   "pl": "Jutro wygasa podpis aplikacji",
   "en": "App signature expires tomorrow"
  },
@@ -1198,6 +1230,10 @@
   "en": "Each muscle group at least twice a week (ACSM, research reviews). The split (full body, upper/lower) is a convention — with the same number of sets it gives similar results."
  },
  {
+  "pl": "Każda z tych możliwości wraca do rutyny w ciągu {n} dni.",
+  "en": "Each of these options returns to routine within {n} days."
+ },
+ {
   "pl": "kettlebell",
   "en": "kettlebell"
  },
@@ -1210,8 +1246,8 @@
   "en": "kettlebell: {v}"
  },
  {
-  "pl": "Kilka planów: „Zapisz kopię jako nowy plan” i „Ustaw jako aktywny” w „Inne plany”.",
-  "en": "Several plans: “Save a copy as a new plan” and “Make active” under “Other plans”."
+  "pl": "Kilka planów: „+ Nowy plan” tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.",
+  "en": "Several plans: “+ New plan” creates a copy to change, and “Make active” under “Other plans” switches to it — day changes come back with their plan."
  },
  {
   "pl": "klatka",
@@ -1238,6 +1274,10 @@
   "en": "Exercise order"
  },
  {
+  "pl": "Kolejność: najpierw zmiany, po których plan wraca do rutyny w ciągu {n} dni, potem bez utraty treningów, bez nowych par dzień po dniu z tymi samymi partiami i z najmniejszą liczbą zmienionych dni.",
+  "en": "Order: first changes after which the plan returns to routine within {n} days, then no lost workouts, no new back-to-back days with the same muscle groups, and the fewest changed days."
+ },
+ {
   "pl": "kolor",
   "en": "colour"
  },
@@ -1254,8 +1294,8 @@
   "en": "Colour relative to the muscle group with the most sets in this period (main group 1 set, secondary 0.5). Grey — no sets."
  },
  {
-  "pl": "Koniec przerwy da znać nawet na zablokowanym ekranie.",
-  "en": "The end of rest will alert you even on a locked screen."
+  "pl": "Koniec przerwy i przypomnienie o treningu z planu przyjdą także przy zablokowanym ekranie.",
+  "en": "End-of-rest alerts and planned-workout reminders will arrive even on a locked screen."
  },
  {
   "pl": "Koniec treningu ({t}) jest w przyszłości. Zmień datę, godzinę albo czas trwania.",
@@ -1282,16 +1322,16 @@
   "en": "Copy of unreadable data"
  },
  {
+  "pl": "Kopia obecnego planu w „Inne plany” — zmienisz ją przed ustawieniem jako aktywny.",
+  "en": "A copy of the current plan in “Other plans” — you change it before making it active."
+ },
+ {
   "pl": "Kopia obejmie też poprzednie, nieczytelne dane.",
   "en": "The copy will also include the earlier unreadable data."
  },
  {
   "pl": "Kopia zapasowa",
   "en": "Backup"
- },
- {
-  "pl": "Kopia: {name}",
-  "en": "Copy: {name}"
  },
  {
   "pl": "kółka gimnastyczne",
@@ -1368,6 +1408,10 @@
  {
   "pl": "Lista ćwiczeń, zamiany i generator pokazują to, co da się zrobić w wybranym miejscu.",
   "en": "The exercise list, swaps and the generator show what can be done at the chosen place."
+ },
+ {
+  "pl": "Lista możliwości: przesunięcie planu, przeniesienie tylko tego treningu, zamiana albo wolne — z uwzględnieniem regeneracji partii.",
+  "en": "List of options: move the plan, move only this workout, swap or rest — with muscle-group recovery in mind."
  },
  {
   "pl": "Lista: ćwiczenia i serie jak w poprzednich wersjach, bez karty.",
@@ -1722,6 +1766,10 @@
   "en": "less"
  },
  {
+  "pl": "Mniej opcji",
+  "en": "Fewer options"
+ },
+ {
   "pl": "Mniej serii",
   "en": "Fewer sets"
  },
@@ -1750,8 +1798,12 @@
   "en": "On the Workout screen tap “Start” next to a template or “Empty workout”."
  },
  {
-  "pl": "Na ekranie treningu: dzisiejszy trening z planu i podgląd 7 dni.",
-  "en": "On the workout screen: today's planned workout and a 7-day preview."
+  "pl": "Na ekranie treningu: dzisiejszy trening z planu, bieżący tydzień i najbliższe treningi z nazwą.",
+  "en": "On the workout screen: today's planned workout, the current week and the next workouts by name."
+ },
+ {
+  "pl": "Na górze listy jest polecana: wraca do rutyny i nie gubi treningu, potem unika par dzień po dniu z tymi samymi partiami i zmienia najmniej dni.",
+  "en": "The recommended option is at the top: it returns to routine without losing a workout, then avoids back-to-back days with the same muscle groups and changes the fewest days."
  },
  {
   "pl": "Na każdą stronę",
@@ -1764,10 +1816,6 @@
  {
   "pl": "Na koniec „Zakończ trening i zapisz” — sesja trafi do Kalendarza.",
   "en": "At the end tap “Finish and save workout” — the session goes to the Calendar."
- },
- {
-  "pl": "Na który dzień? Zajęte dni są oznaczone nazwą treningu.",
-  "en": "Which day? Taken days show the workout name."
  },
  {
   "pl": "Na pewno?",
@@ -1838,6 +1886,10 @@
   "en": "Next set."
  },
  {
+  "pl": "Następne: {list}",
+  "en": "Next: {list}"
+ },
+ {
   "pl": "Następny miesiąc",
   "en": "Next month"
  },
@@ -1886,6 +1938,10 @@
   "en": "Place not found."
  },
  {
+  "pl": "Nie ma takiego planu.",
+  "en": "This plan does not exist."
+ },
+ {
   "pl": "Nie ma takiego szablonu.",
   "en": "Template not found."
  },
@@ -1908,6 +1964,10 @@
  {
   "pl": "Nie masz jeszcze szablonów.",
   "en": "You have no templates yet."
+ },
+ {
+  "pl": "Nie teraz",
+  "en": "Not now"
  },
  {
   "pl": "Nie udało się",
@@ -2002,6 +2062,10 @@
   "en": "New Workout screen: today’s workout, the week in numbers and your last workout; feature guide under More."
  },
  {
+  "pl": "Nowy plan",
+  "en": "New plan"
+ },
+ {
   "pl": "Nowy rekord!",
   "en": "New record!"
  },
@@ -2030,12 +2094,12 @@
   "en": "Muscle load (from the catalog)"
  },
  {
-  "pl": "Obecny plan zostanie zapisany w „Inne plany”.",
-  "en": "The current plan will be saved under “Other plans”."
+  "pl": "Obecny plan zostanie w „Inne plany” — wrócisz do niego jednym przyciskiem.",
+  "en": "The current plan stays under “Other plans” — you can return to it with one button."
  },
  {
-  "pl": "Obecny plan zostanie zapisany w „Inne plany”. Zmiany pojedynczych dni od dziś zostaną usunięte: {n}.",
-  "en": "The current plan will be saved under “Other plans”. Single-day changes from today on will be removed: {n}."
+  "pl": "Obecny plan zostanie w „Inne plany” razem ze zmianami pojedynczych dni od dziś ({n}) — wrócą, gdy znów go ustawisz.",
+  "en": "The current plan stays under “Other plans” together with its single-day changes from today on ({n}) — they come back when you make it active again."
  },
  {
   "pl": "obj.",
@@ -2074,8 +2138,8 @@
   "en": "In brackets — the whole previous period. Working sets exclude warm-ups; records as in the workout summary."
  },
  {
-  "pl": "Obowiązuje jeden plan naraz. Po okresie przejściowym wrócisz do poprzedniego jednym przyciskiem.",
-  "en": "One plan applies at a time. After a temporary period, you can return to the previous one with one button."
+  "pl": "Obowiązuje jeden plan naraz. Po okresie przejściowym wrócisz do poprzedniego jednym przyciskiem. Tapnij plan, by zmienić jego nazwę i dni.",
+  "en": "One plan applies at a time. After a temporary period, you can return to the previous one with one button. Tap a plan to change its name and days."
  },
  {
   "pl": "od",
@@ -2202,6 +2266,18 @@
   "en": "last time {s}"
  },
  {
+  "pl": "Otwiera ten dzień w Kalendarzu.",
+  "en": "Opens this day in the Calendar."
+ },
+ {
+  "pl": "Otwórz Ustawienia iOS",
+  "en": "Open iOS Settings"
+ },
+ {
+  "pl": "Oznacz tydzień jako deload",
+  "en": "Mark week as deload"
+ },
+ {
   "pl": "para: {a} ({r}); jeden hantel: {b} ({r1})",
   "en": "pair: {a} ({r}); single dumbbell: {b} ({r1})"
  },
@@ -2298,16 +2374,12 @@
   "en": "Medicine ball"
  },
  {
-  "pl": "Plan na 7 dni: {list}. Tapnij, by otworzyć Kalendarz.",
-  "en": "7-day plan: {list}. Tap to open the Calendar."
+  "pl": "Plan do {date}",
+  "en": "Plan until {date}"
  },
  {
   "pl": "Plan powtarza się co tydzień. Pojedyncze dni zmienisz w Kalendarzu.",
   "en": "The plan repeats every week. Change single days in the Calendar."
- },
- {
-  "pl": "Plan przesunięty",
-  "en": "Plan moved"
  },
  {
   "pl": "Plan tygodnia",
@@ -2332,6 +2404,10 @@
  {
   "pl": "Po kilku tygodniach treningu z rzędu Kalendarz podpowie „Zaplanuj deload od …”.",
   "en": "After several training weeks in a row the Calendar will suggest “Plan a deload from …”."
+ },
+ {
+  "pl": "Po przywróceniu z archiwum szablon wróci do planu.",
+  "en": "When restored from the archive, the template returns to the plan."
  },
  {
   "pl": "Po ukryciu komunikatu kopii nie da się już wysłać z aplikacji — najpierw ją wyślij, jeśli jest potrzebna.",
@@ -2366,6 +2442,10 @@
   "en": "Progression hint"
  },
  {
+  "pl": "Podpowiedź wróci w przyszłym tygodniu.",
+  "en": "The hint comes back next week."
+ },
+ {
   "pl": "Podsumowanie",
   "en": "Summary"
  },
@@ -2394,8 +2474,16 @@
   "en": "Show all"
  },
  {
+  "pl": "Pokaż wszystkie ({n})",
+  "en": "Show all ({n})"
+ },
+ {
   "pl": "Pokaż: {name}",
   "en": "Show: {name}"
+ },
+ {
+  "pl": "polecane",
+  "en": "recommended"
  },
  {
   "pl": "Połącz z następnym w superset",
@@ -2416,10 +2504,6 @@
  {
   "pl": "Pomiń dziś: {name}",
   "en": "Skip today: {name}"
- },
- {
-  "pl": "Pomiń ten trening",
-  "en": "Skip this workout"
  },
  {
   "pl": "pomocnicza",
@@ -2567,6 +2651,10 @@
   "en": "Band levels you have at this place (1 = thin, 7 = very thick)."
  },
  {
+  "pl": "Pozostałe akcje dla tego dnia.",
+  "en": "Other actions for this day."
+ },
+ {
   "pl": "pozycja sprzętu|pozycje sprzętu|pozycji sprzętu",
   "en": "equipment item|equipment items",
   "plural": true
@@ -2614,10 +2702,6 @@
  {
   "pl": "Przenieś na {day}",
   "en": "Move to {day}"
- },
- {
-  "pl": "Przenieś na dziś",
-  "en": "Move to today"
  },
  {
   "pl": "przerwa",
@@ -2676,6 +2760,10 @@
   "en": "Swipe left on the list to delete a template (with confirmation)."
  },
  {
+  "pl": "Przesuń albo pomiń",
+  "en": "Move or skip"
+ },
+ {
   "pl": "Przesuń niżej",
   "en": "Move down"
  },
@@ -2684,12 +2772,8 @@
   "en": "Move plan by 1 day"
  },
  {
-  "pl": "Przesuń plan od tego dnia",
-  "en": "Shift the plan from this day"
- },
- {
-  "pl": "Przesuń tylko ten trening",
-  "en": "Move only this workout"
+  "pl": "Przesuń plan od dziś",
+  "en": "Move plan from today"
  },
  {
   "pl": "Przesuń wyżej",
@@ -2762,6 +2846,10 @@
  {
   "pl": "rano o {h}:00 w dniu zaplanowanego treningu",
   "en": "in the morning at {h}:00 on a planned workout day"
+ },
+ {
+  "pl": "Rano o {h}:00 w dniu zaplanowanego treningu przyjdzie powiadomienie. Potrzebna jest zgoda na powiadomienia — iOS zapyta o nią po „Dalej”.",
+  "en": "At {h}:00 in the morning on a planned workout day you get a notification. This needs notification permission — iOS asks for it after “Continue”."
  },
  {
   "pl": "Redukcja",
@@ -3175,8 +3263,8 @@
   "en": "Strongman"
  },
  {
-  "pl": "Stuknij dzień w Kalendarzu: przesuń plan o 1 dzień, przesuń tylko ten trening albo zmień go na inny.",
-  "en": "Tap a day in the Calendar: move the plan by 1 day, move only this workout or change it to another one."
+  "pl": "Stuknij dzień w Kalendarzu: „Przesuń albo pomiń” pokazuje możliwości — przesunięcie planu o 1 dzień, tylko tego treningu, zamianę albo wolne.",
+  "en": "Tap a day in the Calendar: “Move or skip” shows the options — move the plan by 1 day, move only this workout, swap or rest."
  },
  {
   "pl": "suma pow.",
@@ -3217,6 +3305,10 @@
  {
   "pl": "Szablon",
   "en": "Template"
+ },
+ {
+  "pl": "Szablon jest pusty — dodaj ćwiczenia",
+  "en": "The template is empty — add exercises"
  },
  {
   "pl": "Szablony",
@@ -3343,8 +3435,8 @@
   "en": "Tempo (optional, e.g. 3-1-1)"
  },
  {
-  "pl": "Ten dzień jest zajęty",
-  "en": "This day is taken"
+  "pl": "Ten plan jeszcze nie obowiązuje. Zmień nazwę i dni, potem „Ustaw jako aktywny”.",
+  "en": "This plan is not active yet. Change its name and days, then “Make active”."
  },
  {
   "pl": "ten sam ruch",
@@ -3369,10 +3461,6 @@
  {
   "pl": "Ten tydzień",
   "en": "This week"
- },
- {
-  "pl": "Ten tydzień: {list}. Tapnij, by otworzyć Kalendarz.",
-  "en": "This week: {list}. Tap to open the Calendar."
  },
  {
   "pl": "Ten tydzień: deload. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.",
@@ -3435,6 +3523,10 @@
   "en": "Past workout"
  },
  {
+  "pl": "Trening wstecz z datą tego dnia.",
+  "en": "A past workout dated this day."
+ },
+ {
   "pl": "Trening z {d} {s} nie miał aktywności od 6 godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w Historii.",
   "en": "The workout from {d} {s} had no activity for 6 hours, so it was saved automatically. End: {e} (last set). You will find it in History."
  },
@@ -3455,12 +3547,12 @@
   "en": "Workouts and templates with this place will show “(deleted place)”."
  },
  {
-  "pl": "Treningi: zrobione / zaplanowane w tym tygodniu.",
-  "en": "Workouts: done / planned this week."
- },
- {
   "pl": "triceps",
   "en": "triceps"
+ },
+ {
+  "pl": "Trwa trening z tego szablonu — zostanie bez zmian.",
+  "en": "A workout from this template is in progress — it stays unchanged."
  },
  {
   "pl": "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.",
@@ -3547,12 +3639,8 @@
   "en": "hidden: {n}"
  },
  {
-  "pl": "Ułożenie tygodnia z najmniejszą liczbą zmian, z uwzględnieniem regeneracji partii.",
-  "en": "Arrange the week with the fewest changes, taking muscle-group recovery into account."
- },
- {
-  "pl": "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM). Po zmianach plan wraca do rutyny w ciągu {n} dni.",
-  "en": "Simplification: usually a rest day between sessions with the same main muscle groups; two days in a row are also fine with the same weekly number of sets (research reviews, ACSM). After changes the plan returns to routine within {n} days."
+  "pl": "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM).",
+  "en": "Simplification: usually a rest day between sessions with the same main muscle groups; two days in a row are also fine with the same weekly number of sets (research reviews, ACSM)."
  },
  {
   "pl": "uprząż na szyję",
@@ -3675,6 +3763,10 @@
   "en": "deleted exercise with history"
  },
  {
+  "pl": "usunięty szablon",
+  "en": "deleted template"
+ },
+ {
   "pl": "usuń",
   "en": "remove"
  },
@@ -3783,6 +3875,10 @@
   "en": "ViShape SmartGym Pro (1.5–65 kg/side)"
  },
  {
+  "pl": "W „Inne plany” jest już {n} planów — usuń któryś, by dodać nowy.",
+  "en": "There are already {n} plans in “Other plans” — delete one to add a new one."
+ },
+ {
   "pl": "W edytorze szablonu przeniesiesz go do folderu albo archiwum.",
   "en": "In the template editor you can move it to a folder or the archive."
  },
@@ -3793,6 +3889,14 @@
  {
   "pl": "W Kalendarzu „Plan tygodnia” przypisuje szablony do dni — plan powtarza się co tydzień.",
   "en": "In the Calendar, “Weekly plan” assigns templates to days — the plan repeats every week."
+ },
+ {
+  "pl": "W Kalendarzu: stuknij dzień, potem „Więcej opcji” → „Oznacz tydzień jako deload” — także przyszły tydzień.",
+  "en": "In the Calendar: tap a day, then “More options” → “Mark week as deload” — a future week too."
+ },
+ {
+  "pl": "W planie tygodnia: {days} — te dni będą wolne.",
+  "en": "In the weekly plan: {days} — these days will be rest days."
  },
  {
   "pl": "w poniedziałek o 7:00",
@@ -3819,6 +3923,10 @@
   "en": "On the Templates tab, “+ New” creates a template: exercises, sets, rep range and rest."
  },
  {
+  "pl": "W zapisanych planach: {names}.",
+  "en": "In saved plans: {names}."
+ },
+ {
   "pl": "Waga ({u})",
   "en": "Weight ({u})"
  },
@@ -3839,8 +3947,8 @@
   "en": "Workout view"
  },
  {
-  "pl": "Wiersz z tłem — tydzień deload.",
-  "en": "Row with background — deload week."
+  "pl": "Wiersz w ramce — tydzień deload.",
+  "en": "Outlined row — deload week."
  },
  {
   "pl": "więcej",
@@ -3861,6 +3969,14 @@
  {
   "pl": "Więcej → Postępy: podsumowanie tygodnia lub miesiąca z poprzednim okresem obok.",
   "en": "More → Progress: weekly or monthly summary with the previous period alongside."
+ },
+ {
+  "pl": "Więcej możliwości ({n})",
+  "en": "Show {n} more"
+ },
+ {
+  "pl": "Więcej opcji",
+  "en": "More options"
  },
  {
   "pl": "Wiosłowanie T-bar",
@@ -3923,6 +4039,10 @@
   "en": "enter the per-side range and step"
  },
  {
+  "pl": "Wrócą zmiany pojedynczych dni zapisane z tym planem: {n}.",
+  "en": "Single-day changes saved with this plan come back: {n}."
+ },
+ {
   "pl": "Wróć",
   "en": "Back"
  },
@@ -3945,6 +4065,10 @@
  {
   "pl": "Wybierz ćwiczenie",
   "en": "Choose exercise"
+ },
+ {
+  "pl": "Wybierz szablon na ten dzień.",
+  "en": "Choose a template for this day."
  },
  {
   "pl": "wyciąg",
@@ -4035,10 +4159,6 @@
   "en": "Workouts dropped: {n}"
  },
  {
-  "pl": "wypada: {name}",
-  "en": "dropped: {name}"
- },
- {
   "pl": "Wypełnij",
   "en": "Fill"
  },
@@ -4049,6 +4169,10 @@
  {
   "pl": "Wysiłek: zwykle 1–3 powtórzenia w zapasie; do upadku nie trzeba.",
   "en": "Effort: usually 1–3 reps in reserve; training to failure is not needed."
+ },
+ {
+  "pl": "Wyślij dane",
+  "en": "Send data"
  },
  {
   "pl": "Wyślij kopię",
@@ -4075,6 +4199,10 @@
   "en": "with incline back"
  },
  {
+  "pl": "Z planu w tym tygodniu: zrobione {done} z {n}.",
+  "en": "Planned this week: {done} of {n} done."
+ },
+ {
   "pl": "z regulacją nachylenia (marsz pod górę)",
   "en": "with incline (uphill walking)"
  },
@@ -4097,6 +4225,10 @@
  {
   "pl": "Za dużo ustawień (najwyżej {n}) — zwiększ krok.",
   "en": "Too many settings (at most {n}) — increase the step."
+ },
+ {
+  "pl": "Za dużo zapisanych planów",
+  "en": "Too many saved plans"
  },
  {
   "pl": "Zacząć z mniejszą liczbą serii: {a} zamiast {b} serii roboczych? Ciężary bez zmian, szablon się nie zmienia.",
@@ -4183,10 +4315,6 @@
   "en": "Swap exercise: {name}"
  },
  {
-  "pl": "Zamień miejscami",
-  "en": "Swap places"
- },
- {
   "pl": "Zamień na zamiennik: {name}",
   "en": "Swap to substitute: {name}"
  },
@@ -4235,16 +4363,20 @@
   "en": "Save"
  },
  {
-  "pl": "Zapisz kopię jako nowy plan",
-  "en": "Save a copy as a new plan"
- },
- {
   "pl": "Zapisz szablony i plan",
   "en": "Save templates and plan"
  },
  {
+  "pl": "Zapisz trening z tego dnia",
+  "en": "Log a workout for this day"
+ },
+ {
   "pl": "Zapisz zmiany",
   "en": "Save changes"
+ },
+ {
+  "pl": "Zaplanowany też na: {days} — te dni będą wolne.",
+  "en": "Also planned on: {days} — these days will be rest days."
  },
  {
   "pl": "zaplanowany: {name}",
@@ -4299,12 +4431,24 @@
   "en": "The workout clock is stopped and the pause does not count towards the duration. The rest timer keeps running; ticking off a set resumes the workout."
  },
  {
+  "pl": "Zgody na powiadomienia jeszcze nie ma — „Sprawdź zgodę na powiadomienia” poprosi o nią.",
+  "en": "Notification permission not granted yet — “Check notification permission” will ask for it."
+ },
+ {
   "pl": "zmiana planu",
   "en": "plan changed"
  },
  {
+  "pl": "zmiany dni: {n}",
+  "en": "day changes: {n}"
+ },
+ {
   "pl": "Zmiany nie trafiają do Apple Health.",
   "en": "Changes are not sent to Apple Health."
+ },
+ {
+  "pl": "Zmiany pojedynczych dni zapisane z tym planem: {n} — wrócą po aktywacji.",
+  "en": "Single-day changes saved with this plan: {n} — they come back when it is activated."
  },
  {
   "pl": "Zmiany sięgają dalej niż {n} dni.",
@@ -4341,6 +4485,26 @@
  {
   "pl": "zrobione",
   "en": "done"
+ },
+ {
+  "pl": "zrobione: {name}",
+  "en": "done: {name}"
+ },
+ {
+  "pl": "Zrobione: {name}",
+  "en": "Done: {name}"
+ },
+ {
+  "pl": "zrobiony inny trening",
+  "en": "did a different workout"
+ },
+ {
+  "pl": "zrobiony inny trening: {name}",
+  "en": "did a different workout: {name}"
+ },
+ {
+  "pl": "Zrobiony inny trening: {name}",
+  "en": "Did a different workout: {name}"
  },
  {
   "pl": "Zrób backup (Więcej → Backup) i odnów w Sideloadly. Dane zostają.",

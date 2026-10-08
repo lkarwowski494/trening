@@ -76,7 +76,7 @@ test('B7/B8 (runda 75): stare pola masy ciała (Ustawienia, trening, udział %) 
   st.workouts = [at(2026, 9, 1)].map((t, i) => ({ id: 'w' + i, startedAt: t, finishedAt: t + 1, bodyWeightKg: 80, exercises: [{ exerciseId: pu.id, sets: [set({ addKg: 0, reps: 5 })] }] }));
   const s = backup.parseBackup(JSON.stringify({ format: 'trening-backup', schemaVersion: 12, state: st }));
   expect('bodyWeightKg' in s.settings).toBe(false); expect('bodyWeightKg' in s.workouts[0]).toBe(false); expect('bodyweightPct' in s.exercises.find(e => e.name === 'Pull Up')!).toBe(false);
-  expect(s.schemaVersion).toBe(17); /* P-003 E1: schemat 14 (miejsca treningu); 15 — przyrząd bloku (8c); migracja P-004 usunięta w rundzie 82; 16 — E2 */
+  expect(s.schemaVersion).toBe(18); /* P-003 E1: schemat 14 (miejsca treningu); 15 — przyrząd bloku (8c); migracja P-004 usunięta w rundzie 82; 16 — E2; 18 — historia planu (audyt 0.10 A1) */
   store.replaceState(s); expect(store.volume(store.getState().workouts[0])).toBe(0);
 });
 
