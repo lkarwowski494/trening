@@ -189,3 +189,8 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
   - Bez zmian, bo rekomendacja jest lepsza merytorycznie, a nie tylko tańsza: C1 (A), F3 (B — mniej szumu), LIVE-10 (B), PERF-03 (A —
     wariant B z treningami jako osobnymi wierszami SQLite groziłby utratą danych przy cofnięciu do starszego buildu z TestFlight), NAT-03 (A).
   - Nie zmieniam decyzji spoza okna 4 godzin i działań nieodwracalnych: N1 (dane w historii repo) zostaje jak 06.10 (A — bez przepisywania historii).
+- 08.10.2026 (ok. 21:20): właściciel — „mamy trochę za szeroką bibliotekę ćwiczeń, a przynajmniej nie jestem przekonany, czy są poprawnie
+  pomapowane — zrób głęboki research i potwierdź każde z nich”. Uruchomione 6 badań (części L1–L6, razem 854 ćwiczenia): prawdziwość i nazwa,
+  sprzęt, wzorzec, metryka i sposób liczenia ciężaru, partie główne/pomocnicze ze źródłami, rekomendacja zakresu (zostaje / niszowe / scalić /
+  usunąć). Wyniki: docs/research/25-biblioteka/. Decyzja o zakresie wg zasady z 20:20 (opcja lepsza mimo nakładu pracy); treningi i szablony
+  z ćwiczeniami spoza nowego zakresu nie tracą danych (archiwum).
