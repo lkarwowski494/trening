@@ -29,7 +29,7 @@ describe('ekran Postępy', () => {
     await boot(() => { bench(12); });
     expect(screen.getByLabelText(/^klatka: 12 \(poprz\. 0\), co najmniej 10$/)).toBeTruthy();
     expect(screen.getByLabelText(/^triceps: 6 \(poprz\. 0\)$/)).toBeTruthy(); /* pomocnicza 0,5 × 12 — poniżej kreski, bez dopisku */
-    expect(screen.getByText('Kreska = 10 serii na partię w tygodniu. Stanowisko ACSM 2026: przy co najmniej 10 seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; każdy trening siłowy daje przyrost w porównaniu z brakiem treningu. Uproszczenie: serie pomocnicze liczymy po 0,5.')).toBeTruthy();
+    expect(screen.getByText(/^Kreska = 10 serii na partię w tygodniu. Stanowisko ACSM 2026: przy co najmniej 10 seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; każdy trening siłowy daje przyrost w porównaniu z brakiem treningu. Uproszczenie: serie pomocnicze liczymy po 0,5\. Uproszczenie: drop set liczy się razem z serią, po której jest\.$/)).toBeTruthy(); /* D3 (audyt 0.10): dopisane uproszczenie drop setu */
     await boot(() => { bench(20); }); expect(screen.getByTestId('mark-klatka').props.style.left).toBe('50%');
   });
   test('mała objętość: skala obejmuje kreskę (widoczna na końcu paska); kreski tylko przy seriach, nie przy objętości', async () => {

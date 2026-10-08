@@ -3,7 +3,7 @@ import { ScrollView, View } from 'react-native';
 import { useLocalSearchParams } from 'expo-router';
 import { Screen, Muted, Txt, Chip, Input, Empty, H2 } from '@/components/ui';
 import { isDeloadWeek, useTick, exById, setSummary, fmtDate, fmtSec, fmtDist, isBW, getState } from '@/lib/store';
-import { sessionsFor, recordsFor, hasHistory, chartKeysFor, totalKind, fmtTotal, weeklyTotals, hasAnyHistory, weeklySetsByMuscle, weeklyVolumeByMuscle, thisMonday, WEEKLY_SETS_MARK, type ChartKey } from '@/lib/stats';
+import { sessionsFor, recordsFor, hasHistory, chartKeysFor, totalKind, fmtTotal, weeklyTotals, hasAnyHistory, weeklySetsByMuscle, weeklyVolumeByMuscle, thisMonday, WEEKLY_SETS_MARK, fmtE1, bwShare, type ChartKey } from '@/lib/stats';
 import { MUSCLES } from '@/lib/seed';
 import { LineChart, BarChart, TIME_STEPS } from '@/components/Chart';
 import { PeriodSummary } from '@/components/PeriodSummary';
@@ -45,7 +45,7 @@ export default function Progress() {
           <Muted style={{ fontSize: 12, marginTop: 4, marginBottom: 14 }}>{t('Tygodnie od poniedziałku. Objętość = ciężar × powtórzenia × mnożnik ćwiczenia; rozgrzewka poza.')}{weeks.some(w => isDeloadWeek(w.weekStart)) ? ' ' + t('D — tydzień oznaczony jako deload.') : ''}</Muted>
           <H2>{t('Serie per partia — ten tydzień vs poprzedni')}</H2>
           <MuscleCompare cur={weeklySetsByMuscle(thisMonday())} prev={weeklySetsByMuscle(thisMonday(-1))} fmt={v => fmtNum(v, 1)} mark={WEEKLY_SETS_MARK} />
-          <Muted style={{ fontSize: 12, marginTop: 4 }}>{t('Kreska = {n} serii na partię w tygodniu. Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; każdy trening siłowy daje przyrost w porównaniu z brakiem treningu. Uproszczenie: serie pomocnicze liczymy po 0,5.', { n: WEEKLY_SETS_MARK })}</Muted>
+          <Muted style={{ fontSize: 12, marginTop: 4 }}>{t('Kreska = {n} serii na partię w tygodniu. Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; każdy trening siłowy daje przyrost w porównaniu z brakiem treningu. Uproszczenie: serie pomocnicze liczymy po 0,5.', { n: WEEKLY_SETS_MARK })} {t('Uproszczenie: drop set liczy się razem z serią, po której jest.') /* D3 (audyt 0.10): brak źródła, jak liczyć drop sety w objętości tygodniowej — docs/research/22 */}</Muted>
           <Muted style={{ fontSize: 12, marginTop: 4, marginBottom: 14 }}>{t('Partia główna liczy 1 serię, pomocnicza 0,5 (np. wyciskanie: klatka 1, triceps i barki po 0,5). Partie ustawisz w edycji ćwiczenia.')}</Muted>
           <H2>{t('Objętość per partia ({u}) — ten tydzień vs poprzedni', { u: wu() })}</H2>
           <MuscleCompare cur={weeklyVolumeByMuscle(thisMonday())} prev={weeklyVolumeByMuscle(thisMonday(-1))} fmt={v => { const x = volOut(v); return x >= 10000 ? `${fmtNum(x / 1000, 1)}k` : fmtNum(Math.round(x)); }} />
@@ -68,7 +68,10 @@ export default function Progress() {
   const recRows: [string, string][] = [];
   /* Runda 73: rekord = suma na treningu (pierwszy wiersz) + e1RM; pozostałe wiersze to maksima informacyjne */
   { const tk = totalKind(ex); if (tk && rec.bestTotal > 0) recRows.push([tk === 'objętość treningu' ? t('Najlepszy trening (objętość)') : tk === 'suma powtórzeń' ? t('Najwięcej powtórzeń na treningu') : tk === 'łączny czas' ? t('Najdłużej łącznie na treningu') : t('Najdłuższy dystans na treningu'), fmtTotal(ex, rec.bestTotal)]); }
-  if (rec.bestE1rm) recRows.push([isBW(ex) ? t('e1RM (dociążenie)') : ex.loadMode === 'per_dumbbell' ? t('e1RM (Epley, per hantel)') : ex.loadMode === 'unilateral' ? t('e1RM (Epley, na stronę)') : 'e1RM (Epley)', kg(rec.bestE1rm)]); /* runda 59 */
+  if (rec.bestE1rm) recRows.push([isBW(ex) ? 'e1RM (Epley)' : ex.loadMode === 'per_dumbbell' ? t('e1RM (Epley, per hantel)') : ex.loadMode === 'unilateral' ? t('e1RM (Epley, na stronę)') : 'e1RM (Epley)', fmtE1(ex, rec.bestE1rm)]); /* runda 59; E1 (audyt 0.10): masa ciała — „126,7 kg (masa ciała + 46,7)” */
+  /* E1: dlaczego e1RM ćwiczenia z masą ciała jest albo go nie ma (masa ciała z Ustawień, udział masy ciała ze źródeł) */
+  const sh = isBW(ex) && hasWeight(m) && hasReps(m) ? bwShare(ex) : undefined;
+  const bwNote = !isBW(ex) || !hasWeight(m) || !hasReps(m) ? '' : !sh ? t('Bez e1RM: brak źródeł, jaką część masy ciała podnosisz w tym ćwiczeniu.') : !getState().settings.bodyMass ? t('e1RM pojawi się po wpisaniu masy ciała w Ustawieniach.') : t('e1RM: wzór Epleya na {p}% masy ciała z Ustawień plus dociążenie (uproszczenie).', { p: Math.round(sh * 100) });
   if (hasWeight(m) && rec.maxLoad) recRows.push([isBW(ex) ? t('Max dociążenie') : (ex.loadMode === 'per_dumbbell' ? t('Max ciężar (per hantel)') : ex.loadMode === 'unilateral' ? t('Max ciężar (na stronę)') : t('Max ciężar')), kg(rec.maxLoad)]);
   if (rec.bestSetVolume) recRows.push([t('Najlepsza seria (objętość)'), fmtVol(rec.bestSetVolume)]);
   if (hasReps(m) && isBW(ex)) { /* T7: jak próg rekordu — bez asysty osobno, z asystą tylko gdy więcej */ if (rec.maxRepsFree) recRows.push([t('Max powtórzeń bez asysty'), `${rec.maxRepsFree}`]); if (rec.maxReps > rec.maxRepsFree) recRows.push([t('Max powtórzeń z asystą'), `${rec.maxReps}`]); }
@@ -84,8 +87,9 @@ export default function Progress() {
         <View style={{ marginTop: 10 }}>{active ? <LineChart points={points} fmt={active.fmt} scale={active.scale} minStep={active.minStep} intOnly={active.intOnly} steps={active.time ? TIME_STEPS : undefined} /> : null}</View>
         {recRows.length ? <View style={{ marginTop: 12, padding: 12, borderRadius: 10, backgroundColor: th.surface2, gap: 6 }}>
           <Muted style={{ fontSize: 12, fontFamily: F.semibold }}>{t('REKORDY')}</Muted>
-          {recRows.map(([l, v]) => <View key={l} style={{ flexDirection: 'row', justifyContent: 'space-between' }}><Muted>{l}</Muted><Txt style={{ fontFamily: F.monoBold }}>{v}</Txt></View>)}
+          {recRows.map(([l, v]) => <View key={l} style={{ flexDirection: 'row', justifyContent: 'space-between' }}><Muted>{l}</Muted><Txt style={{ fontFamily: F.monoBold, flexShrink: 1, textAlign: 'right', marginLeft: 8 }}>{v}</Txt></View>)}
         </View> : null}
+        {bwNote ? <Muted style={{ fontSize: 12, marginTop: 6 }}>{bwNote}</Muted> : null}
         <H2 style={{ marginTop: 16 }}>{t('Sesje')}</H2>
         {[...sessions].reverse().slice(0, 20).map((s, i) => (
           <View key={i} style={{ paddingVertical: 8, borderBottomWidth: 1, borderBottomColor: th.line }}>

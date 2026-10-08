@@ -1,7 +1,7 @@
 import { getState, visibleExercises, workoutsWith, finishedWorkouts, memoHist, locationById } from './store';
 import { availability, capsOf, implsAt } from './equipment';
 import { t, exName, locale, fold } from './i18n';
-import { libExtraRevOf, LIB_EXTRA_REVS, type Exercise, type Impl, type Location, type Workout } from './seed';
+import { libExtraRevOf, LIB_EXTRA_REVS, catalogKey, type Exercise, type Impl, type Location, type Workout } from './seed';
 
 /*
  * E2 „Zamiana ćwiczenia w trakcie treningu” (docs/14) — ranking propozycji zamiennika. Czysta funkcja nad stanem (bez zapisu):
@@ -70,7 +70,7 @@ export function swapCandidates(exId: string, ctx: SwapCtx): SwapCandidate[] {
   /* pełna baza (05.10.2026, ~870): przy remisie punktów najpierw biblioteka przejrzana przez właściciela (kroki katalogu 04.10 i własne
    * ćwiczenia), dopiero potem pełna baza (krok 05.10) — inaczej remisy „ten sam sprzęt” i nazwa wypychały znane ćwiczenia rzadkimi wariantami
    * (Bench Press with Chains przed Bench Press (hantle)). W obrębie każdej z tych dwóch części — decyzja D7: ten sam sprzęt, sesje, nazwa. */
-  const step = new Map(out.map(c => { const b = getState().exercises.find(e => e.id === c.exId); const r = b?.lib ? libExtraRevOf(b.name) : undefined; return [c.exId, r ? LIB_EXTRA_REVS.indexOf(r) : -1]; }));
+  const step = new Map(out.map(c => { const b = getState().exercises.find(e => e.id === c.exId); const k = catalogKey(b); const r = k ? libExtraRevOf(k) : undefined; /* E2 (audyt 0.10): krok katalogu po kluczu */ return [c.exId, r ? LIB_EXTRA_REVS.indexOf(r) : -1]; }));
   const full = LIB_EXTRA_REVS.indexOf(FULL_BASE_REV); const tier = (id: string) => full >= 0 && step.get(id)! >= full ? 1 : 0;
   return out.sort((x, y) => y.score - x.score || tier(x.exId) - tier(y.exId) || sameEq.get(y.exId)! - sameEq.get(x.exId)! || y.sessions - x.sessions || step.get(x.exId)! - step.get(y.exId)! || name.get(x.exId)!.localeCompare(name.get(y.exId)!, locale()));
 }

@@ -117,7 +117,9 @@ describe('serie wykresu wg metryki', () => {
   const keys = (n: string) => stats.chartKeysFor(ex(n)).map(k => k.key);
   test('kolejność: rekord (suma), e1RM, potem informacyjne', () => {
     expect(keys('Back Squat')).toEqual(['volume', 'bestE1rm', 'maxLoad', 'maxReps']);
-    expect(keys('Pull Up')).toEqual(['total', 'bestE1rm', 'maxLoad', 'volume', 'maxReps']);
+    /* audyt 0.10 (E1): ćwiczenie z masą ciała bez masy ciała w Ustawieniach — bez e1RM (było: e1RM z samego dociążenia); z masą ciała — jak dawniej */
+    expect(keys('Pull Up')).toEqual(['total', 'maxLoad', 'volume', 'maxReps']);
+    store.getState().settings.bodyMass = 80; expect(keys('Pull Up')).toEqual(['total', 'bestE1rm', 'maxLoad', 'volume', 'maxReps']); delete store.getState().settings.bodyMass;
     expect(keys('Burpees')).toEqual(['total', 'maxReps']);
     expect(keys('Plank')).toEqual(['total', 'maxDuration']);
     expect(keys("Farmer's Walk")).toEqual(['total', 'maxLoad', 'maxDuration']);
@@ -178,10 +180,12 @@ describe('sumy tygodniowe i partie', () => {
 });
 
 describe('runda 73 — mutanty z drugiego przebiegu', () => {
-  test('runda 75 (Q-001): asysta (−kg) to obciążenie 0 — bez e1RM; dociążenie (+kg) daje e1RM z samego dociążenia', () => {
+  /* audyt 0.10 (E1, MER-03/LOG-02): e1RM z samego dociążenia nie jest szacunkiem Epleya — bez masy ciała brak e1RM, z masą ciała Epley na (masa + ±kg) */
+  test('E1: guma z asystą bez masy ciała — bez e1RM; dociążenie bez masy ciała — bez e1RM; z masą ciała 80 kg — Epley(95, 6)', () => {
     const b = store.getState().bands[0].id; addWorkout(at(2026, 9, 1), [['Pull Up', [{ reps: 10, bandId: b, addKg: -20 }]]]);
     expect(stats.recordsFor(ex('Pull Up')).bestE1rm).toBe(0);
-    addWorkout(at(2026, 9, 2), [['Pull Up', [{ reps: 6, addKg: 15 }]]]); expect(stats.recordsFor(ex('Pull Up')).bestE1rm).toBeCloseTo(15 * (1 + 6 / 30), 6);
+    addWorkout(at(2026, 9, 2), [['Pull Up', [{ reps: 6, addKg: 15 }]]]); expect(stats.recordsFor(ex('Pull Up')).bestE1rm).toBe(0);
+    store.getState().settings.bodyMass = 80; store.save(); expect(stats.recordsFor(ex('Pull Up')).bestE1rm).toBeCloseTo(95 * (1 + 6 / 30), 6);
   });
   test('rozgrzewka nie jest rekordem; ćwiczenie bez metryki liczy e1RM jak ciężar × powtórzenia', () => {
     addWorkout(at(2026, 9, 1), [['Back Squat', [{ weight: 100, reps: 5 }]]]); const rec = stats.recordsFor(ex('Back Squat'));

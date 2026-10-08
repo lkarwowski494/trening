@@ -1,7 +1,7 @@
 import { getState, save } from '@/lib/store';
 import { addPlan } from '@/lib/plan';
 import { availability, capsOf } from '@/lib/equipment';
-import { base, uid, LIB_BASE_NAMES, type Exercise, type Template, type TemplateItem } from '@/lib/seed';
+import { base, uid, isLibBase, type Exercise, type Template, type TemplateItem } from '@/lib/seed';
 import { t } from '@/lib/i18n';
 
 /*
@@ -66,7 +66,7 @@ export const goalLabel = (g: Goal) => ({ strength: t('Siła'), hypertrophy: t('M
 function pool(locationId: string | null): { base: Exercise[]; full: Exercise[] } {
   const loc = getState().settings.locations.find(l => l.id === locationId) ?? null; const caps = capsOf(loc);
   const full = getState().exercises.filter(e => !e.archived && e.lib && (!loc || availability(e, loc, caps).ok));
-  return { base: full.filter(e => LIB_BASE_NAMES.has(e.name)), full };
+  return { base: full.filter(isLibBase), full }; /* E2 (audyt 0.10, X-03): katalog bazowy po kluczu — zmiana nazwy nie zmienia wyboru */
 }
 
 export function generate(inp: GenInput): GenResult {

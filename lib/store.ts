@@ -5,7 +5,7 @@ import { useSyncExternalStore } from 'react';
 import { t, t as tr, tIn, applyLang, detectLang, locale, fold, isLang, lang } from './i18n';
 import { applyUnit, wu, wOut, wIn, KG_PER_LB, fmtW, fmtNum, snapLegacyLb } from './units';
 import { applyTheme } from './theme';
-import { seedState, uid, base, defaultModules, defaultSettings, metricFor, loadModeFor, loadMult, blankTimer, musclesFor, hasTime, hasReps, hasWeight, hasDistance, METRICS, DEFAULT_REST, GROUPS, LIB, SCHEMA_VERSION, LOCAL_OWNER, MODULES, SET_KINDS, SINGLE_IMPLEMENT, equipFields, libExercise, LIB_EXTRA_REVS, LIB_EXTRA_REV, LIB_MUSCLE_FIXES, libExtraRevOf, LIB_BASE_NAMES, LOAD_SOURCE_BY_EQUIPMENT, IMPLS, own, type Impl, type SetKind, type Base, type State, type Workout, type WSet, type WExercise, type Exercise, type Template, type TemplateItem, type TemplateAlt, type TRow, type Morning, type Location } from './seed';
+import { seedState, uid, base, defaultModules, defaultSettings, metricFor, loadModeFor, loadMult, blankTimer, musclesFor, hasTime, hasReps, hasWeight, hasDistance, METRICS, DEFAULT_REST, GROUPS, LIB, SCHEMA_VERSION, LOCAL_OWNER, MODULES, SET_KINDS, SINGLE_IMPLEMENT, equipFields, libExercise, LIB_EXTRA_REVS, LIB_EXTRA_REV, LIB_MUSCLE_FIXES, libExtraRevOf, LIB_BASE_NAMES, LIB_KEYS, catalogKey, libKeyFromFields, BODY_MASS_MAX, LOAD_SOURCE_BY_EQUIPMENT, IMPLS, own, type Impl, type SetKind, type Base, type State, type Workout, type WSet, type WExercise, type Exercise, type Template, type TemplateItem, type TemplateAlt, type TRow, type Morning, type Location } from './seed';
 import { equipById, loadsFor, implAt, implsAt, blankLoad, availability, fillGym, GYM_FILL, fillOpts, OPT_FILL } from './equipment';
 import { sanitizeLoadSpec, nextHeavier, hasLoadShown } from './loads';
 import { CATALOG, CATALOG_REV, CABLES } from './catalog.generated';
@@ -167,13 +167,14 @@ const LOAD_SOURCES = ['barbell', 'dumbbell', 'cable', 'machine_stack', 'bodyweig
 const PATTERNS = new Set(Object.values(CATALOG).map(c => c.pattern as string).concat('other'));
 function fixEquipFields(e: any) {
   /* audyt M6: ćwiczenie z biblioteki z wymaganiami z innej wersji katalogu (i nieedytowane: catalogRev ≠ 'user') dostaje aktualne */
-  const fromCatalog = e.lib === true && Object.prototype.hasOwnProperty.call(CATALOG, e.name);
-  if (!Array.isArray(e.requires) || (fromCatalog && e.catalogRev !== 'user' && e.catalogRev !== CATALOG_REV)) { const f = equipFields(e.name, e.equipment, e.lib === true); delete e.implements; delete e.pattern; delete e.catalogRev; Object.assign(e, f); return; }
+  const key: string = catalogKey(e) ?? e.name; /* E2 (audyt 0.10): katalog po kluczu — przemianowane ćwiczenie biblioteki dalej dostaje odświeżone wymagania */
+  const fromCatalog = e.lib === true && Object.prototype.hasOwnProperty.call(CATALOG, key);
+  if (!Array.isArray(e.requires) || (fromCatalog && e.catalogRev !== 'user' && e.catalogRev !== CATALOG_REV)) { const f = equipFields(key, e.equipment, e.lib === true); delete e.implements; delete e.pattern; delete e.catalogRev; Object.assign(e, f); return; }
   if (!fromCatalog && e.catalogRev !== 'user') delete e.catalogRev;
   const strs = (a: unknown): string[] => Array.isArray(a) ? [...new Set(a.filter((x: unknown): x is string => typeof x === 'string' && !!x))] : [];
   /* audyt (LOW): uszkodzona grupa wymagań czyni ćwiczenie MNIEJ dostępnym — grupa bez żadnej poprawnej możliwości = „?” (niespełnialna) */
   e.requires = e.requires.map((g: unknown) => { const v = strs(g); return v.length ? v : ['?']; }); e.recommended = strs(e.recommended);
-  if (!LOAD_SOURCES.includes(e.loadSource)) e.loadSource = equipFields(e.name, e.equipment, e.lib === true).loadSource;
+  if (!LOAD_SOURCES.includes(e.loadSource)) e.loadSource = equipFields(key, e.equipment, e.lib === true).loadSource;
   if (!PATTERNS.has(e.pattern)) delete e.pattern; if (e.implements !== 1 && e.implements !== 2) delete e.implements;
 }
 /** P-003: miejsca treningu z importu — znane pozycje sprzętu i opcje, poprawne opisy ciężarów; miejsce główne zawsze istnieje, gdy są miejsca. */
@@ -234,22 +235,31 @@ export function migrate(raw: any): State {
     for (const st of arr(x.sets)) { if (w !== raw.active && !st.done) continue; if ((parseNum(st?.weight) ?? 0) > 0 || (parseNum(st?.addKg) ?? 0) !== 0) o.w = true; if ((parseNum(st?.reps) ?? 0) > 0) o.r = true; } logged.set(id, o); }
   raw.exercises.forEach((e: any) => {
     stamp(e);
+    const nm: string = e.lib === true && typeof e.libKey === 'string' && LIB_KEYS.has(e.libKey) ? e.libKey : e.name; /* E2: wartości z katalogu po kluczu */
     // Runda 16: wartości spoza słownika / nieliczbowe (np. z ręcznie edytowanego backupu) wracają do domyślnych.
-    if (!(METRICS as readonly string[]).includes(e.metric)) { const lib = metricFor(e.name); const g = logged.get(idOf(e.id) ?? ''); e.metric = g && ((g.w && !hasWeight(lib)) || (g.r && !hasReps(lib))) ? (g.w ? 'weight_reps' : 'reps') : lib; }
-    if (!['per_dumbbell', 'total', 'unilateral'].includes(e.loadMode)) e.loadMode = loadModeFor(e.equipment, e.name);
+    if (!(METRICS as readonly string[]).includes(e.metric)) { const lib = metricFor(nm); const g = logged.get(idOf(e.id) ?? ''); e.metric = g && ((g.w && !hasWeight(lib)) || (g.r && !hasReps(lib))) ? (g.w ? 'weight_reps' : 'reps') : lib; }
+    if (!['per_dumbbell', 'total', 'unilateral'].includes(e.loadMode)) e.loadMode = loadModeFor(e.equipment, nm);
     for (const k of ['restSec', 'restWarmupSec']) { const v = parseNum(e[k]); e[k] = v == null || v < 0 ? null : Math.min(1800, Math.round(v)); }
-    if (!Array.isArray(e.muscles)) { const [a, b] = musclesFor(e.name, e.group); e.muscles = a; e.secondaryMuscles = b; }
+    if (!Array.isArray(e.muscles)) { const [a, b] = musclesFor(nm, e.group); e.muscles = a; e.secondaryMuscles = b; }
     if (!Array.isArray(e.secondaryMuscles)) e.secondaryMuscles = []; e.muscles = e.muscles.filter((x: unknown) => typeof x === 'string'); e.secondaryMuscles = e.secondaryMuscles.filter((x: unknown) => typeof x === 'string');
     delete e.bodyweightPct; /* schemat 13 (runda 75, Q-001): masa ciała nie wchodzi do obliczeń — udział % usunięty */
     if (e.lib === undefined && LIB_NAMES.has(e.name) && (Number(raw.schemaVersion) || 0) < 10) e.lib = true; /* runda 52/56: tylko dane sprzed schematu 10 — stała granica, nie ruchome SCHEMA_VERSION (podbicie do 11 cofało poprawkę) */ if (e.lib !== true) delete e.lib;
+    /* E2 (audyt 0.10, X-03): klucz katalogu — prawidłowy zostaje; brak → nazwa kanoniczna, gdy nazwa jest w katalogu (dane sprzed klucza);
+     * przemianowane przed poprawką — odzyskiwane niżej (libKeyFromFields), inaczej bez klucza. Ćwiczenia własne nie mają klucza. */
+    if (e.lib === true && !(typeof e.libKey === 'string' && LIB_KEYS.has(e.libKey))) { if (LIB_KEYS.has(e.name)) e.libKey = e.name; else delete e.libKey; } else if (e.lib !== true) delete e.libKey;
     if (typeof e.tempo !== 'string') e.tempo = ''; if (typeof e.notes !== 'string') e.notes = '';
     e.bandAssistable = !!e.bandAssistable;
     // Runda 41: tylko prawdziwe true archiwizuje; partia i sprzęt spoza słownika → „inne”.
     if (e.archived !== true) delete e.archived; if (!(GROUPS as readonly string[]).includes(e.group)) e.group = 'inne'; if (!['hantle', 'sztanga', 'masa ciała', 'maszyna', 'linki', 'inne'].includes(e.equipment)) e.equipment = 'inne';
     // Schemat 10: ćwiczenia jednym hantlem z biblioteki liczone ×1 (poprzednio ×2 — zawyżona objętość).
-    if (e.lib && SINGLE_IMPLEMENT.has(e.name) && e.loadMode === 'per_dumbbell' && (Number(raw.schemaVersion) || 0) < 10) e.loadMode = 'total';
+    if (e.lib && SINGLE_IMPLEMENT.has(e.libKey ?? e.name) && e.loadMode === 'per_dumbbell' && (Number(raw.schemaVersion) || 0) < 10) e.loadMode = 'total';
     fixEquipFields(e);
   });
+  /* E2 (audyt 0.10): przemianowane ćwiczenie biblioteki bez klucza — klucz z jednoznacznego zestawu pól katalogu (seed.libKeyFromFields), tylko gdy
+   * żadne inne ćwiczenie go nie ma i pasuje dokładnie jedno ćwiczenie; pola są wtedy z bieżącego katalogu (znacznik wersji — idempotentnie). */
+  { const taken = new Set(raw.exercises.map((e: any) => e.libKey).filter(Boolean)); const cand = new Map<string, any[]>();
+    for (const e of raw.exercises) if (e.lib === true && e.libKey === undefined) { const k = libKeyFromFields(e); if (k && !taken.has(k)) cand.set(k, [...(cand.get(k) ?? []), e]); }
+    for (const [k, list] of cand) if (list.length === 1) { list[0].libKey = k; if (list[0].catalogRev !== 'user') list[0].catalogRev = CATALOG_REV; } }
   /* Katalog 04.10.2026 (decyzja właściciela: rozbudowa katalogu): dane bez znacznika katalogu dostają nowe ćwiczenia biblioteki RAZ (znacznik
    * State.libExtra — ćwiczenie usunięte później przez użytkownika nie wraca); pomijane, gdy istnieje ćwiczenie o tej samej nazwie (także własne).
    * Audyt 04.10 (HIGH): znacznik zamiast granicy schematu — build 01f2bee miał już schemat 16 bez katalogu. */
@@ -258,10 +268,10 @@ export function migrate(raw: any): State {
   /* Audyt kroku b (MEDIUM): libExtra zostaje wartością pierwszego kroku (build 643cba7 porównuje ją dosłownie i przy innej dopisałby usunięte
    * ćwiczenia po powrocie do starszej wersji); kolejne kroki — w libExtraStep. */
   { const mark = typeof raw.libExtraStep === 'string' ? raw.libExtraStep : raw.libExtra; const done = typeof mark === 'string' ? LIB_EXTRA_REVS.indexOf(mark) : -1;
-    if (done >= 0 || typeof mark !== 'string') { const have = new Set(raw.exercises.map((e: any) => fold(e.name)));
+    if (done >= 0 || typeof mark !== 'string') { const have = new Set(raw.exercises.flatMap((e: any) => [fold(e.name), ...(e.libKey ? [fold(e.libKey)] : [])])); /* E2: przemianowane ćwiczenie z kluczem nie wraca pod starą nazwą */
       for (const rev of LIB_EXTRA_REVS.slice(done + 1)) {
         for (const row of LIB) if (libExtraRevOf(row[0]) === rev && !have.has(fold(row[0]))) { raw.exercises.push(libExercise(row, owner)); have.add(fold(row[0])); }
-        for (const f of LIB_MUSCLE_FIXES) if (f.rev === rev) for (const e of raw.exercises) if (e.lib === true && e.name === f.name && sameList(e.muscles, f.from[0]) && sameList(e.secondaryMuscles, f.from[1])) { const [a, b] = musclesFor(e.name, e.group); e.muscles = a; e.secondaryMuscles = b; }
+        for (const f of LIB_MUSCLE_FIXES) if (f.rev === rev) for (const e of raw.exercises) if (e.lib === true && e.libKey === f.name && sameList(e.muscles, f.from[0]) && sameList(e.secondaryMuscles, f.from[1])) { const [a, b] = musclesFor(f.name, e.group); /* E2: po kluczu */ e.muscles = a; e.secondaryMuscles = b; }
       }
       raw.libExtra = LIB_EXTRA_REVS[0]; raw.libExtraStep = LIB_EXTRA_REV; } }
   raw.templates = arr(raw.templates);
@@ -315,7 +325,7 @@ export function migrate(raw: any): State {
     sound: typeof s.sound === 'boolean' ? s.sound : d.sound,
     wakeLock: typeof s.wakeLock === 'boolean' ? s.wakeLock : d.wakeLock,
     showRpe: typeof s.showRpe === 'boolean' ? s.showRpe : d.showRpe,
-    ...(s.effortScale === 'rir' ? { effortScale: 'rir' as const } : {}), ...(s.planReminder === false ? { planReminder: false as const } : {}), /* przypomnienie z planu (08.10.2026): tylko wyłączenie zapisane */ /* pakiet C: tylko wybór RIR zapisany — dane sprzed zmiany przechodzą 1:1 (swap-schema16) */
+    ...(s.effortScale === 'rir' ? { effortScale: 'rir' as const } : {}), ...((v => v != null && kg2(v) > 0 && v <= BODY_MASS_MAX ? { bodyMass: kg2(v) } : {})(parseNum(s.bodyMass))), /* E1 (audyt 0.10): masa ciała — opcjonalna, kg na siatce 0,01; zła wartość odpada */ ...(s.planReminder === false ? { planReminder: false as const } : {}), /* przypomnienie z planu (08.10.2026): tylko wyłączenie zapisane */ /* pakiet C: tylko wybór RIR zapisany — dane sprzed zmiany przechodzą 1:1 (swap-schema16) */
     healthSync: typeof s.healthSync === 'boolean' ? s.healthSync : d.healthSync,
     progressHint: typeof s.progressHint === 'boolean' ? s.progressHint : d.progressHint, autoBackup: typeof s.autoBackup === 'boolean' ? s.autoBackup : d.autoBackup, weighReminder: typeof s.weighReminder === 'boolean' ? s.weighReminder : d.weighReminder, /* runda 75 */
     modules: (() => { const mods = { ...defaultModules(), ...(isObj(s.modules) ? s.modules : {}) }; MODULES.forEach(m => { if (typeof mods[m] !== 'boolean') mods[m] = false; }); mods.training = true; return mods; })(),
@@ -490,9 +500,20 @@ export function localDateTs(iso: string): number { const m = /^(\d{4})-(\d{2})-(
  * Runda 75 (Q-001, decyzja 02.10.2026): masa ciała nie wchodzi do żadnych obliczeń — rekord to „moja masa ciała” albo „masa ciała + 10 kg”. */
 export function effectiveLoad(ex: Exercise, s: Pick<WSet, 'weight' | 'addKg'>): number { return Math.max(0, setLoad(ex, s)); }
 /** Mnożnik objętości: per hantel / jednostronne ×2, łącznie ×1; ćwiczenia z masą ciała zawsze ×1. */
-export const exMult = (ex: Exercise) => isBW(ex) ? 1 : loadMult(ex.loadMode ?? loadModeFor(ex.equipment, ex.name));
+export const exMult = (ex: Exercise) => isBW(ex) ? 1 : loadMult(ex.loadMode ?? loadModeFor(ex.equipment, catalogKey(ex) ?? ex.name));
 /** Seria robocza = odhaczona i nie rozgrzewkowa. */
 export const isWorking = (s: WSet) => s.done && s.kind !== 'warmup' && !s.warmup;
+/** D3 (audyt 0.10, decyzja A, 08.10.2026): JEDNA definicja liczby serii roboczych — bez rozgrzewek, a drop set liczy się razem z serią, po której jest
+ * (jak cięcie deload i rundy supersetu); drop bez serii przed nim liczy się sam. Uproszczenie: brak źródła, jak liczyć drop sety w tygodniowej
+ * objętości (docs/research/22, pytanie otwarte). Używane w kartach szablonów, Postępach, kafelkach, seriach na partię, mapie mięśni, pytaniu deload,
+ * Kolejności, edycji historii, liście Historii i w Zdrowiu. */
+export function workCount(kinds: readonly (SetKind | undefined)[]): number {
+  let n = 0, prev = false; for (const k of kinds) { if (k === 'warmup') continue; if (!(k === 'drop' && prev)) n++; prev = true; } return n;
+}
+/** Serie robocze bloku (odhaczone, bez rozgrzewek; drop razem z poprzednią serią). */
+export const workSetCount = (sets: readonly WSet[]) => workCount(sets.filter(isWorking).map(s => s.kind));
+/** X-15 (audyt 0.10): serie robocze treningu — bloki bez ćwiczenia (np. z importu) pominięte, jak w kafelkach i Postępach. */
+export const workingSets = (w: Workout) => w.exercises.reduce((a, e) => a + (exById(e.exerciseId) ? workSetCount(e.sets) : 0), 0);
 /** Objętość jednej serii — JEDYNA definicja, używana w historii, Postępach, rekordach i PR (audyt 0.8.1). */
 export function setVolume(ex: Exercise, s: WSet, impl?: Impl | null): number {
   const m = ex.metric ?? 'weight_reps'; if (!isWorking(s) || !hasWeight(m) || !hasReps(m)) return 0;
@@ -501,7 +522,7 @@ export function setVolume(ex: Exercise, s: WSet, impl?: Impl | null): number {
 /** Q-024 (decyzja właściciela 04.10.2026: „×2 dla dwóch linek”): blok na stacji (`impl` 'electric' — ciężar wpisywany NA STRONĘ) przy ćwiczeniu
  * biblioteki na dwie linki (katalog: CABLES 2) liczy objętość ×2 zamiast mnożnika trybu liczenia (RDL „na hantel” zostaje ×2, nie ×4). Wyciąg siłowni,
  * hantle, jedna linka, ćwiczenia własne i bloki bez zapisanego przyrządu — bez zmian. */
-export const blockMult = (ex: Exercise, impl?: Impl | null) => !isBW(ex) && impl === 'electric' && ex.lib === true && own(CABLES as Record<string, 1 | 2>, ex.name) === 2 ? 2 : exMult(ex);
+export const blockMult = (ex: Exercise, impl?: Impl | null) => { const k = catalogKey(ex); return !isBW(ex) && impl === 'electric' && !!k && own(CABLES as Record<string, 1 | 2>, k) === 2 ? 2 : exMult(ex); }; /* E2 (audyt 0.10, X-03): po kluczu katalogu — zmiana nazwy nie zmienia objętości dawnych sesji */
 /** Rdzeń setVolume dla znanego obciążenia efektywnego i powtórzeń (runda 74: statystyki liczą je raz na serię). */
 export const volOf = (ex: Exercise, load: number, reps: number, impl?: Impl | null) => blockMult(ex, impl) * dispKg(load) * reps;
 /** Runda 73 (T13): w lb ciężar serii liczony tak, jak go widać (0,1 lb) — wpis 100 lb zapisany jako 45,35 kg dawał objętość 2999 lb zamiast 3000.
@@ -712,10 +733,14 @@ export function setScore(ex: Exercise, s: WSet): number {
 export const effortScale = (): 'rpe' | 'rir' => (S?.settings.effortScale === 'rir' ? 'rir' : 'rpe');
 export const effortLabel = () => (effortScale() === 'rir' ? 'RIR' : 'RPE');
 const clamp10 = (v: number) => Math.min(10, Math.max(0, Math.round(v * 10) / 10));
+/** MER-14 / LOG-15 (audyt 0.10): skala RPE-RIR ma wartości 1–10 (Helms i in. 2016, PMC4961270: „descriptors of effort for values below 5 (1–2 RPE =
+ * ‘little to no effort,’ 3–4 RPE = ‘light effort’)” — RPE 0 nie istnieje), więc zapis RPE w 1–10, a RIR w 0–9. */
+export const RPE_MIN = 1, RPE_MAX = 10;
+const clampRpe = (v: number) => Math.min(RPE_MAX, Math.max(RPE_MIN, Math.round(v * 10) / 10));
 /** Zapisane RPE → wartość pokazywana w bieżącej skali. */
 export const effortOut = (rpe: number) => (effortScale() === 'rir' ? clamp10(10 - rpe) : rpe);
-/** Wpisana wartość w bieżącej skali → RPE do zapisu ('' = puste). */
-export const effortIn = (v: number | ''): number | '' => (v === '' ? '' : clamp10(effortScale() === 'rir' ? 10 - v : v));
+/** Wpisana wartość w bieżącej skali → RPE do zapisu ('' = puste); RIR > 9 → RPE 1, nie 0 (MER-14). */
+export const effortIn = (v: number | ''): number | '' => (v === '' ? '' : clampRpe(effortScale() === 'rir' ? 10 - v : v));
 /** Wartość pola wysiłku do wyświetlenia w polu edycji. */
 export const effortField = (rpe: number | '' | null | undefined): number | '' => (rpe === '' || rpe == null ? '' : effortOut(Number(rpe)));
 export const setHasValue = (s: WSet) => [s.weight, s.reps, s.durationSec, s.distanceM, s.addKg].some(v => v !== '' && v != null);
@@ -874,7 +899,7 @@ export function tplRows(it: TemplateItem): TRow[] {
 }
 const isWork = (k: SetKind) => k === 'normal' || k === 'failure';
 /** Serie szablonu bez rozgrzewek — jedna reguła dla ekranu głównego, „Dodaj trening wstecz”, karty szablonu i listy Historii (scenariusz 06.10, krok 05b). */
-export const tplWorkSets = (tpl: { items: TemplateItem[] }) => tpl.items.reduce((a, i) => a + tplRows(i).filter(r => r.kind !== 'warmup').length, 0);
+export const tplWorkSets = (tpl: { items: TemplateItem[] }) => tpl.items.reduce((a, i) => a + workCount(tplRows(i).map(r => r.kind)), 0); /* D3: jak w treningu */
 /** Wiersze pozycji, gdy rodzaje serii bloku wciąż się z nimi zgadzają (cofnięcie zamiany — „wartości jak przy starcie”, audyt 85364ad M2). */
 const rowsFor = (it: TemplateItem | undefined, kinds: readonly SetKind[]) => { if (!it) return undefined; const r = tplRows(it); return r.length === kinds.length && r.every((x, i) => x.kind === kinds[i]) ? r : undefined; };
 /** Liczba serii, ciężar startowy i cel czasu z wierszy (reszta kodu — zamiana, trening wstecz — czyta te pola). */
@@ -1444,7 +1469,7 @@ export const NAME_MAX = 80;
 export const clampName = (s: string, n = NAME_MAX) => { let r = s.slice(0, Math.max(0, n)); if (/[\uD800-\uDBFF]$/.test(r)) r = r.slice(0, -1); return r.trimEnd(); };
 export function newExercise(name = t('Nowe ćwiczenie')): Exercise { const e: Exercise = { ...base(getState().ownerId), name: clampName(name), group: 'inne', equipment: 'inne', metric: 'weight_reps', loadMode: 'total', restSec: null, restWarmupSec: null, muscles: [], secondaryMuscles: [], bandAssistable: false, tempo: '', notes: '', ...equipFields('', 'inne', false) }; getState().exercises.push(e); save(); return e; }
 /** Zmiana sprzętu ustawia domyślny tryb liczenia (wcześniej zostawał stary — np. ×2 dla masy ciała). */
-export function setEquipment(e: Exercise, eq: Exercise['equipment']) { if (e.equipment === eq) return; /* runda 40: ten sam chip nie resetuje ustawień */ e.equipment = eq; e.loadMode = loadModeFor(eq, e.name); e.loadSource = LOAD_SOURCE_BY_EQUIPMENT[eq]; /* P-003: źródło obciążenia za sprzętem */
+export function setEquipment(e: Exercise, eq: Exercise['equipment']) { if (e.equipment === eq) return; /* runda 40: ten sam chip nie resetuje ustawień */ e.equipment = eq; e.loadMode = loadModeFor(eq, catalogKey(e) ?? e.name); e.loadSource = LOAD_SOURCE_BY_EQUIPMENT[eq]; /* P-003: źródło obciążenia za sprzętem */
   /* weryfikacja 3 (L5): ćwiczenie z biblioteki po zmianie sprzętu nie trzyma wymagań katalogu (np. hantle przy ruchu na linkach) — bez wymagań (zawsze dostępne),
    * catalogRev 'user' (start aplikacji go nie nadpisze katalogiem) */
   if (e.lib) { e.requires = []; e.recommended = []; delete e.implements; e.catalogRev = 'user'; }

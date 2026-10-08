@@ -246,12 +246,14 @@ describe('A9 podpis', () => {
 });
 
 test('A2b localDateTs to lokalna północ', () => { const t = store.localDateTs('2026-09-30'); const d = new Date(t); expect([d.getHours(), d.getDate()]).toEqual([0, 30]); });
-test('A4b masa ciała poza obliczeniami (runda 75, Q-001): poranna waga nie zmienia objętości ani e1RM; liczy się tylko dociążenie', async () => {
+/* audyt 0.10 (E1): e1RM ćwiczeń z masą ciała tylko z masą ciała z Ustawień (Epley na masie + ±kg); poranna waga nadal nic nie zmienia */
+test('A4b poranna waga nie zmienia objętości ani e1RM; objętość z dociążenia; e1RM tylko z masą ciała z Ustawień (E1)', async () => {
   await fresh(); const s = store.getState(); const pull = ex('Pull Up');
   const w = addWorkout(at(2026, 9, 10), [['Pull Up', [{ addKg: 10, reps: 5 }, { addKg: 0, reps: 8 }, { addKg: -15, reps: 10 }]]]);
   const before = [store.volume(w), stats.recordsFor(pull).bestE1rm];
   s.mornings.push({ id: 'a', ownerId: 'local', createdAt: 0, updatedAt: 0, date: '2026-09-01', bb: '', sleepScore: '', sleepH: '', weight: 80 }); store.save();
   expect([store.volume(w), stats.recordsFor(pull).bestE1rm]).toEqual(before);
-  expect(before[0]).toBe(50); expect(before[1]).toBeCloseTo(stats.e1rm(10, 5), 6);
+  expect(before[0]).toBe(50); expect(before[1]).toBe(0);
+  s.settings.bodyMass = 80; store.save(); expect(store.volume(w)).toBe(50); expect(stats.recordsFor(pull).bestE1rm).toBeCloseTo(Math.max(stats.e1rm(90, 5), stats.e1rm(80, 8), stats.e1rm(65, 10)), 6);
   void DAY;
 });

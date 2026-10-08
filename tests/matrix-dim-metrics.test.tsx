@@ -56,8 +56,10 @@ describe('METRICS × SET_KINDS × UNITS — pełna ścieżka serii: trening → 
     expect(sets.filter(store.isWorking).map(s => s.kind)).toEqual(work);
 
     /* tydzień: liczba serii roboczych, treningów, objętość = objętość treningu */
-    const wk = stats.weeklyTotals(1)[0]; expect([wk.sets, wk.workouts]).toEqual([3, 1]); expect(wk.volume).toBeCloseTo(vol, 9);
-    const mon = stats.thisMonday(); const perM: Record<string, number> = {}; ex.muscles.forEach(mu => { perM[mu] = (perM[mu] ?? 0) + 3; }); ex.secondaryMuscles.forEach(mu => { perM[mu] = (perM[mu] ?? 0) + 1.5; });
+    /* D3 (audyt 0.10, decyzja A): drop set liczy się razem z serią przed nim — W, N, F, D = 2 serie robocze (było 3) */
+    const nWork = store.workCount(KINDS_ORDER); expect(nWork).toBe(2);
+    const wk = stats.weeklyTotals(1)[0]; expect([wk.sets, wk.workouts]).toEqual([nWork, 1]); expect(wk.volume).toBeCloseTo(vol, 9);
+    const mon = stats.thisMonday(); const perM: Record<string, number> = {}; ex.muscles.forEach(mu => { perM[mu] = (perM[mu] ?? 0) + nWork; }); ex.secondaryMuscles.forEach(mu => { perM[mu] = (perM[mu] ?? 0) + nWork / 2; });
     expect(stats.weeklySetsByMuscle(mon)).toEqual(perM);
     const perV: Record<string, number> = {}; if (vol) { ex.muscles.forEach(mu => { perV[mu] = (perV[mu] ?? 0) + vol; }); ex.secondaryMuscles.forEach(mu => { perV[mu] = (perV[mu] ?? 0) + vol * 0.5; }); }
     expect(stats.weeklyVolumeByMuscle(mon)).toEqual(perV);
@@ -73,7 +75,7 @@ describe('METRICS × SET_KINDS × UNITS — pełna ścieżka serii: trening → 
     expect(rec.maxDuration).toBe(!T ? 0 : D ? Math.max(...work.map(k => DIST_V[k][1])) : Math.max(...work.map(k => TIME_V[k])));
     expect(rec.maxDistance).toBe(D ? Math.max(...work.map(k => DIST_V[k][0])) : 0);
     if (W) expect(rec.maxLoad).toBeCloseTo(Math.max(...work.map(kgOf)), 9); else expect(rec.maxLoad).toBe(0);
-    expect(rec.bestE1rm).toBeCloseTo(W && R ? Math.max(epley(kgOf('normal'), REPS_V.normal), epley(kgOf('failure'), REPS_V.failure)) : 0, 5);
+    expect(rec.bestE1rm).toBeCloseTo(W && R && !r.bw /* E1 (audyt 0.10): masa ciała bez masy ciała w Ustawieniach — bez e1RM */ ? Math.max(epley(kgOf('normal'), REPS_V.normal), epley(kgOf('failure'), REPS_V.failure)) : 0, 5);
 
     /* „Poprzednio” i podpowiedź progresji (tylko ciężar + powtórzenia; drop set poza warunkiem) */
     const prev = store.previousFor(ex.id)!; expect(prev.sets.map(s => s.kind)).toEqual(work);
@@ -91,7 +93,7 @@ describe('METRICS × SET_KINDS × UNITS — pełna ścieżka serii: trening → 
     const rows = parseCsv(buildCsv()); expect(rows[0]).toEqual(['Date', 'Workout Name', 'Duration', 'Exercise Name', 'Set Order', 'Weight', 'Reps', 'Distance', 'Seconds', 'Notes', 'Workout Notes', 'RPE']);
     const body = rows.slice(1); expect(body).toHaveLength(4);
     body.forEach((row, i) => { const k = KINDS_ORDER[i]; const l = loadDisp(r, u, k);
-      expect([k, row[3], row[4], row[5], row[6], row[7], row[8], row[9]]).toEqual([k, ex.name, k === 'warmup' ? 'W' : String(i), String(W ? Number(l) || 0 : 0), String(R ? REPS_V[k] : 0), String(D ? DIST_V[k][0] : 0), String(!T ? 0 : D ? DIST_V[k][1] : TIME_V[k]), k === 'drop' ? 'drop set' : k === 'failure' ? 'do upadku' : '']); });
+      expect([k, row[3], row[4], row[5], row[6], row[7], row[8], row[9]]).toEqual([k, ex.name, k === 'warmup' ? 'W' : k === 'drop' ? 'D' : k === 'failure' ? 'F' : String(i), String(W ? Number(l) || 0 : 0), String(R ? REPS_V[k] : 0), String(D ? DIST_V[k][0] : 0), String(!T ? 0 : D ? DIST_V[k][1] : TIME_V[k]), '']); }); /* LOG-14 (audyt 0.10): Set Order jak w Strongu — W/D/F, numer tylko zwykłych serii; typ nie trafia do Notes */
 
     /* JSON backup: eksport → import daje te same treningi; statystyki i CSV bez zmian */
     const before = JSON.parse(JSON.stringify(S().workouts)); const csv0 = buildCsv();
@@ -143,7 +145,7 @@ describe('METRICS × SET_KINDS × UNITS — pełna ścieżka serii: trening → 
     store.save(b); b.exercises[0].sets.forEach((_, i) => store.toggleDone(0, i, b.startedAt + 1000 + i * 1000));
     const w3 = store.finishWorkout(b.startedAt + 10000)!;
     const kinds = stats.workoutPRs(w3).flatMap(x => x.kinds).sort();
-    const tk = stats.totalKind(ex)!; const expK = [tk, ...(m === 'weight_reps' ? ['e1RM'] : [])].sort();
+    const tk = stats.totalKind(ex)!; const expK = [tk, ...(m === 'weight_reps' && !r.bw ? ['e1RM'] : [])].sort(); /* E1 (audyt 0.10): masa ciała bez masy ciała w Ustawieniach / udziału ze źródeł — bez e1RM */
     expect(kinds).toEqual(expK);
     expect(stats.sessionsFor(ex)).toHaveLength(3); expect(stats.recordsFor(ex, w3.startedAt).bestTotal).toBeCloseTo(stats.sessionsFor(ex)[0].total, 9);
   });
@@ -155,21 +157,21 @@ describe('METRICS × SET_KINDS × UNITS — pełna ścieżka serii: trening → 
     const w = doWorkout(ex, r, u, [k, k]); const working = k !== 'warmup';
     expect(S().workouts[0].exercises[0].sets.map(s => [s.kind, s.warmup])).toEqual([[k, k === 'warmup'], [k, k === 'warmup']]);
     expect(store.hasWorkDone(w)).toBe(working); expect(store.staleKind(w)).toBe(working ? 'work' : 'warmup');
-    expect(stats.weeklyTotals(1)[0].sets).toBe(working ? 2 : 0);
+    expect(stats.weeklyTotals(1)[0].sets).toBe(store.workCount([k, k])); /* D3: dwa drop sety pod rząd = 1 seria robocza */ expect(store.workCount([k, k])).toBe(!working ? 0 : k === 'drop' ? 1 : 2);
     expect(stats.sessionsFor(ex)).toHaveLength(working ? 1 : 0); expect(stats.hasHistory(ex.id)).toBe(working);
     const vol = store.volume(w); const exp = working && hasWeight(m) && hasReps(m) ? 2 * multOf(ex) * Math.max(0, Number(loadDisp(r, u, k)) || 0) * REPS_V[k] : 0;
     expect(vol).toBeCloseTo(exp, 9);
     const rec = stats.recordsFor(ex);
     if (hasReps(m)) expect(rec.maxReps).toBe(working && k !== 'drop' ? REPS_V[k] : 0); /* drop set to nie „max powtórzeń” */
-    if (hasWeight(m) && hasReps(m)) expect(rec.bestE1rm).toBeCloseTo(working && k !== 'drop' ? epley(Number(loadDisp(r, u, k)) || 0, REPS_V[k]) : 0, 5);
-    const csv = parseCsv(buildCsv()).slice(1); expect(csv.map(x => x[4])).toEqual(working ? ['1', '2'] : ['W', 'W']);
-    expect(csv.map(x => x[9])).toEqual(Array(2).fill(k === 'drop' ? 'drop set' : k === 'failure' ? 'do upadku' : ''));
+    if (hasWeight(m) && hasReps(m)) expect(rec.bestE1rm).toBeCloseTo(working && k !== 'drop' && !r.bw /* E1: masa ciała bez masy ciała w Ustawieniach — bez e1RM */ ? epley(Number(loadDisp(r, u, k)) || 0, REPS_V[k]) : 0, 5);
+    const csv = parseCsv(buildCsv()).slice(1); expect(csv.map(x => x[4])).toEqual(k === 'warmup' ? ['W', 'W'] : k === 'drop' ? ['D', 'D'] : k === 'failure' ? ['F', 'F'] : ['1', '2']); /* LOG-14 */
+    expect(csv.map(x => x[9])).toEqual(Array(2).fill(''));
     /* „Powtórz ostatni”: typ serii przechodzi, poza „do upadku” (upadek to wynik, nie plan) */
     store.repeatLast(); expect(S().active!.exercises[0].sets.map(s => s.kind)).toEqual(Array(2).fill(k === 'failure' ? 'normal' : k)); store.cancelWorkout();
     /* szablon z wierszami tego typu → trening z tymi samymi typami serii */
     const tpl = store.newTemplate(); tpl.items.push({ id: uid(), exerciseId: ex.id, sets: 2, repMin: null, repMax: null, restSec: null, startWeight: '', targetSec: '', groupId: null }); store.save(tpl);
     for (const row of store.tplRows(tpl.items[0]).map(x => x.id)) store.tplSetKind(tpl, tpl.items[0].id, row, k);
-    expect(store.tplWorkSets(tpl)).toBe(working ? 2 : 0);
+    expect(store.tplWorkSets(tpl)).toBe(store.workCount([k, k])); /* D3: jak w treningu */
     store.startFromTemplate(tpl); expect(S().active!.exercises[0].sets.map(s => [s.kind, s.warmup])).toEqual(Array(2).fill([k, k === 'warmup']));
     store.cancelWorkout();
   });

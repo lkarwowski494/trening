@@ -1,7 +1,7 @@
-import { finishedWorkouts, getState, isWorking, exById, volume, workoutDurSec } from '@/lib/store';
+import { finishedWorkouts, getState, workingSets, volume, workoutDurSec } from '@/lib/store';
 import { dayStatus, plannedOn, hasPlan, addDays, dayKeyOf, type DayStatus } from '@/lib/plan';
 import { periodSummary } from '@/lib/period';
-import { thisMonday, workoutPRs } from '@/lib/stats';
+import { thisMonday, prCount } from '@/lib/stats';
 
 /*
  * Dashboard ekranu Trening (decyzja właściciela 08.10.2026, wariant A): karta „Dziś” z paskiem bieżącego tygodnia (pon…nd: zrobione /
@@ -23,8 +23,8 @@ export function weekTiles(now = Date.now()) {
 /** Ostatni zakończony trening: nazwa, start, czas bez pauz, serie robocze, objętość, liczba rekordów. */
 export function lastWorkout() {
   const w = finishedWorkouts()[0]; if (!w) return null;
-  const sets = w.exercises.reduce((a, e) => a + (exById(e.exerciseId) ? e.sets.filter(isWorking).length : 0), 0);
-  return { id: w.id, name: w.templateName, startedAt: w.startedAt, durationSec: Math.round(workoutDurSec(w)), sets, volume: volume(w), prs: workoutPRs(w).length };
+  /* audyt 0.10: serie jak wszędzie (D3, store.workingSets), rekordy jak okno po treningu (E3, stats.prCount — liczba rekordów, nie serii) */
+  return { id: w.id, name: w.templateName, startedAt: w.startedAt, durationSec: Math.round(workoutDurSec(w)), sets: workingSets(w), volume: volume(w), prs: prCount(w) };
 }
 /** „Pierwsze kroki” — widoczne do pierwszego zakończonego treningu. */
 export function firstSteps() {

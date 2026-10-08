@@ -4,7 +4,7 @@ import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
 import { Screen, Muted, Btn, Txt, Field, Input, NumInput, Empty } from '@/components/ui';
 import { WhenFields } from '@/components/WhenFields';
 import { setLabel } from '@/components/ActiveWorkout';
-import { effortLabel, effortField, effortIn, getState, useTick, exById, isBW, loadLabel, loadLabelShort, groupLabels, occurrence, occurrences, deleteWorkout, bandA11y, shortBand, clampName, NAME_MAX, blockImpl, liveBlockImpl, nextBandId, loadFieldValue, writeLoad, usesBand } from '@/lib/store';
+import { effortLabel, effortField, effortIn, getState, useTick, exById, isBW, loadLabel, loadLabelShort, groupLabels, occurrence, occurrences, deleteWorkout, bandA11y, shortBand, clampName, NAME_MAX, blockImpl, liveBlockImpl, nextBandId, loadFieldValue, writeLoad, usesBand, workCount } from '@/lib/store';
 import { draftOf, beginEdit, discardDraft, isDirty, touchDraft, useDraftTick, checkDraft, commitDraft, draftAddSet, draftRemoveSet, draftRemoveExercise, draftSetWhen, dateText, timeText, prefilledOffList, type Draft } from '@/lib/edit';
 import { onHistoryEdited } from '@/lib/backup';
 import { locationLabel } from '@/lib/locations';
@@ -132,7 +132,7 @@ function EditBlock({ d, e, ei, labels }: { d: Draft; e: WExercise; ei: number; l
       <View style={s.actions}>
         <Btn title={t('+ seria')} small accessibilityHint={nm} onPress={() => draftAddSet(d.key, ei)} /><Btn title={t('+ rozgrzewka')} small kind="ghost" accessibilityHint={nm} onPress={() => draftAddSet(d.key, ei, 'warmup')} /><Btn title={t('+ drop set')} small kind="ghost" accessibilityHint={nm} onPress={() => draftAddSet(d.key, ei, 'drop')} />
         <Btn title={t('⇄ zamień')} small kind="ghost" accessibilityLabel={t('Zamień ćwiczenie: {name}', { name: nm })} onPress={() => router.push(`/swap?target=edit:${d.key}:${e.id}`)} /* E2 D6 (H1) */ />
-        <Muted style={{ fontSize: 13, alignSelf: 'center' }}>{`${e.sets.length} ${tp(e.sets.length, 'seria|serie|serii')}`}</Muted>
+        <Muted style={{ fontSize: 13, alignSelf: 'center' }}>{(() => { const n = workCount(e.sets.map(x => x.kind)), w = e.sets.filter(x => x.kind === 'warmup').length; return [`${n} ${tp(n, 'seria|serie|serii')}`, w ? t('{n} rozgrz.', { n: w }) : ''].filter(Boolean).join(' · '); })() /* UI-13 / D3 (audyt 0.10): serie robocze jak w edytorze szablonu */}</Muted>
       </View>
     </View>
   );

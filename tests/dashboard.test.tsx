@@ -7,7 +7,7 @@
 import * as store from '@/lib/store';
 import * as plan from '@/lib/plan';
 import { weekStrip, weekTiles, lastWorkout, firstSteps } from '@/lib/dashboard';
-import { workoutPRs } from '@/lib/stats';
+import { workoutPRs, prCount } from '@/lib/stats';
 import { applyLang } from '@/lib/i18n';
 import { fresh, saved, withDemoTemplates, addWorkout } from './helpers';
 import { renderApp, flushAll, screen, tap, act } from './app';
@@ -34,7 +34,8 @@ describe('logika', () => {
   });
   test('ostatni trening: nazwa, serie robocze, objętość, rekordy; brak treningów — null', () => {
     expect(lastWorkout()).toBeNull(); sq(9, 1, 80); const w = sq(9, 6, 100);
-    expect(lastWorkout()).toMatchObject({ id: w.id, sets: 2, volume: store.volume(w), prs: workoutPRs(w).length }); expect(lastWorkout()!.prs).toBeGreaterThan(0);
+    /* E3 (audyt 0.10, X-08): rekordy liczone jak okno po treningu (liczba rekordów, nie wpisów/serii — decyzja T13) */
+    expect(lastWorkout()).toMatchObject({ id: w.id, sets: 2, volume: store.volume(w), prs: workoutPRs(w).reduce((a, p) => a + p.details.length, 0) }); expect(lastWorkout()!.prs).toBe(prCount(w)); expect(lastWorkout()!.prs).toBeGreaterThan(0);
   });
   test('pierwsze kroki: szablon (z ćwiczeniami), plan; po pierwszym treningu znikają', () => {
     expect(firstSteps()).toEqual({ template: false, plan: false });

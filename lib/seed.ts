@@ -70,7 +70,7 @@ export type Equipment = 'hantle' | 'sztanga' | 'masa ciała' | 'maszyna' | 'link
 export const GROUPS = ['klatka','plecy','barki','biceps','triceps','nogi','pośladki','łydki','core','cardio','inne'] as const;
 export type Group = typeof GROUPS[number];
 
-export interface Exercise extends Base { name: string; group: Group; equipment: Equipment; metric: MetricType; loadMode: LoadMode; restSec: number | null; restWarmupSec: number | null; muscles: Muscle[]; secondaryMuscles: Muscle[]; bandAssistable: boolean; tempo: string; notes: string; lib?: boolean; archived?: boolean; /** P-003 (schemat 14): wymagania sprzętowe — każda grupa musi być spełniona, w grupie wystarczy jedna możliwość (lib/equipment.ts). Ćwiczenia własne: [] = zawsze dostępne. */ requires?: string[][]; recommended?: string[]; pattern?: Pattern; /** skąd brać dostępne ciężary (lib/equipment.ts loadsFor) */ loadSource?: LoadSource; /** hantle: 1 = jeden hantel, 2 = para (z której listy brać ciężary) */ implements?: 1 | 2; /** audyt E1 (M6): wersja katalogu, z której skopiowano wymagania ('user' = edytowane — nie odświeżać) */ catalogRev?: string }
+export interface Exercise extends Base { name: string; group: Group; equipment: Equipment; metric: MetricType; loadMode: LoadMode; restSec: number | null; restWarmupSec: number | null; muscles: Muscle[]; secondaryMuscles: Muscle[]; bandAssistable: boolean; tempo: string; notes: string; lib?: boolean; /** audyt 0.10 (E2 / X-03, 08.10.2026): trwały klucz katalogu = nazwa kanoniczna z biblioteki (tylko `lib`). Reguły zależne od tożsamości ćwiczenia z katalogu (mnożnik linek, obciążenie partii, katalog bazowy generatora, krok katalogu, odświeżanie wymagań, poprawki partii, udział masy ciała) idą po nim — nazwa jest tylko do wyświetlania i można ją zmieniać. Brak = ćwiczenie własne albo przemianowane przed poprawką bez możliwości odzyskania (migrate). */ libKey?: string; archived?: boolean; /** P-003 (schemat 14): wymagania sprzętowe — każda grupa musi być spełniona, w grupie wystarczy jedna możliwość (lib/equipment.ts). Ćwiczenia własne: [] = zawsze dostępne. */ requires?: string[][]; recommended?: string[]; pattern?: Pattern; /** skąd brać dostępne ciężary (lib/equipment.ts loadsFor) */ loadSource?: LoadSource; /** hantle: 1 = jeden hantel, 2 = para (z której listy brać ciężary) */ implements?: 1 | 2; /** audyt E1 (M6): wersja katalogu, z której skopiowano wymagania ('user' = edytowane — nie odświeżać) */ catalogRev?: string }
 /** Guma (P-001, 02.10.2026): tylko kolor i poziom 1–7 — bez kilogramów. Dawne pole nominalKg (asysta kg, 0.5) jest przy imporcie
  * starych kopii przyjmowane i usuwane w migrate (T-055); aplikacja go nie zapisuje ani nie czyta. */
 export interface Band extends Base { color: string; level: number }
@@ -97,7 +97,7 @@ export type ThemeSetting = 'light' | 'dark' | 'auto';
 /** Widok treningu w toku (styl „Tuleja”, decyzja właściciela 07.10.2026; docs/21 pkt 3): karta bieżącej serii na górze albo sama lista ćwiczeń. */
 export const WORKOUT_VIEWS = ['focus', 'list'] as const;
 export type WorkoutView = typeof WORKOUT_VIEWS[number];
-export interface Settings { defaultRest: number; sound: boolean; wakeLock: boolean; showRpe: boolean; /** 08.10.2026 (pakiet C): skala pola wysiłku — zapis zawsze jako RPE, RIR = 10 − RPE (Zourdos i in. 2016; niezależnie opisane: Bastos i in. 2024, PMC11127506) */ effortScale?: 'rpe' | 'rir'; /** 08.10.2026: przypomnienie o treningu z planu — brak = włączone; zapisywane tylko false (lib/planReminder) */ planReminder?: false; healthSync: boolean; /** runda 75 (T-017): cicha podpowiedź progresji */ progressHint: boolean; /** runda 75 (T-012): kopia JSON po każdym treningu w Plikach */ autoBackup: boolean; /** runda 75 (T-013): przypomnienie o wadze w poniedziałek rano */ weighReminder: boolean; modules: Record<ModuleId, boolean>; language: LangSetting; unit: Unit; /** P-003 (schemat 14): miejsca treningu; brak miejsc = zachowanie jak przed schematem 14 */ locations: Location[]; mainLocationId: string | null; /** wybór ćwiczenia: pokaż także niedostępne w miejscu (zapamiętany przełącznik) */ pickerShowAll: boolean; /** decyzja 05.10.2026: wygląd — domyślnie jasna Kreda; 'auto' = jak w telefonie */ theme: ThemeSetting; /** 07.10.2026: domyślnie 'focus' */ workoutView: WorkoutView }
+export interface Settings { defaultRest: number; sound: boolean; wakeLock: boolean; showRpe: boolean; /** 08.10.2026 (pakiet C): skala pola wysiłku — zapis zawsze jako RPE, RIR = 10 − RPE (Zourdos i in. 2016; niezależnie opisane: Bastos i in. 2024, PMC11127506) */ effortScale?: 'rpe' | 'rir'; /** audyt 0.10 (E1, decyzja właściciela 08.10.2026, wariant B): masa ciała w kg — opcjonalna, tylko w telefonie; z nią e1RM ćwiczeń z masą ciała (stats.liftedLoad), bez niej — brak e1RM; brak pola = nie podano */ bodyMass?: number; /** 08.10.2026: przypomnienie o treningu z planu — brak = włączone; zapisywane tylko false (lib/planReminder) */ planReminder?: false; healthSync: boolean; /** runda 75 (T-017): cicha podpowiedź progresji */ progressHint: boolean; /** runda 75 (T-012): kopia JSON po każdym treningu w Plikach */ autoBackup: boolean; /** runda 75 (T-013): przypomnienie o wadze w poniedziałek rano */ weighReminder: boolean; modules: Record<ModuleId, boolean>; language: LangSetting; unit: Unit; /** P-003 (schemat 14): miejsca treningu; brak miejsc = zachowanie jak przed schematem 14 */ locations: Location[]; mainLocationId: string | null; /** wybór ćwiczenia: pokaż także niedostępne w miejscu (zapamiętany przełącznik) */ pickerShowAll: boolean; /** decyzja 05.10.2026: wygląd — domyślnie jasna Kreda; 'auto' = jak w telefonie */ theme: ThemeSetting; /** 07.10.2026: domyślnie 'focus' */ workoutView: WorkoutView }
 /** P-003: sprzęt w miejscu — pozycja z lib/equipment.ts, zaznaczone opcje i (dla sprzętu z ciężarami) opis dostępnych ciężarów. */
 export interface LocEquip { item: string; opts: string[]; load?: LoadSpec; /** audyt E1 (M5): pozycja odznaczona — opcje i ciężary zostają na wypadek ponownego zaznaczenia */ off?: true; /** gumy (decyzja właściciela 05.10.2026): posiadane poziomy 1–7 w tym miejscu (jak lista ciężarów); brak = wszystkie gumy */ levels?: number[] }
 export interface Location extends Base { name: string; equipment: LocEquip[] }
@@ -134,7 +134,7 @@ const LIB_BASE: [string, Group, Equipment, boolean?][] = [
 /** Katalog 04.10.2026: regiony mięśni do obciążenia partii (dane w catalog.json; przyszła regeneracja partii). */
 export const REGION_LABEL: Record<MuscleRegion, string> = { chest: 'klatka', front_delt: 'barki — przód', side_delt: 'barki — bok', rear_delt: 'barki — tył', lats: 'najszersze grzbietu', upper_back: 'góra pleców', lower_back: 'prostowniki grzbietu', biceps: 'biceps', triceps: 'triceps', forearms: 'przedramiona', abs: 'brzuch', obliques: 'skośne brzucha', glutes: 'pośladki', quads: 'czworogłowe', hamstrings: 'dwugłowe', adductors: 'przywodziciele', abductors: 'odwodziciele', calves: 'łydki', neck: 'szyja' };
 /** Obciążenie partii ćwiczenia z biblioteki (1 główny, 0,5 pomocniczy, 0,25 stabilizacja), od największego; ćwiczenia własne i przemianowane — brak. */
-export const muscleLoadOf = (e: Pick<Exercise, 'name' | 'lib'>): [MuscleRegion, number][] => { const m = e.lib ? own(MUSCLE_LOAD as Record<string, Partial<Record<MuscleRegion, number>>>, e.name) : undefined; return m ? (Object.entries(m) as [MuscleRegion, number][]).sort((a, b) => b[1] - a[1]) : []; };
+export const muscleLoadOf = (e: Pick<Exercise, 'lib' | 'libKey'>): [MuscleRegion, number][] => { const k = catalogKey(e); const m = k ? own(MUSCLE_LOAD as Record<string, Partial<Record<MuscleRegion, number>>>, k) : undefined; /* E2: po kluczu katalogu */ return m ? (Object.entries(m) as [MuscleRegion, number][]).sort((a, b) => b[1] - a[1]) : []; };
 /** Katalog 04.10.2026 (decyzja właściciela: rozbudowa własnego katalogu): nowe ćwiczenia biblioteki — JEDNO źródło: docs/research/equipment/catalog.json
  * (pola group/equipment/metric/loadMode/muscles), generowane do lib/catalog.generated.ts. */
 const EXTRA = new Map(CATALOG_LIB_EXTRA.map(r => [r[0], r]));
@@ -155,6 +155,12 @@ export const LIB_MUSCLE_FIXES: readonly { rev: string; name: string; from: [Musc
   { rev: 'katalog-2026-10-04b', name: 'Copenhagen Plank', from: [['core'], []] },
 ];
 export const LIB: [string, Group, Equipment, boolean?][] = [...LIB_BASE, ...CATALOG_LIB_EXTRA.map(r => [r[0], r[1] as Group, r[2] as Equipment, r[3]] as [string, Group, Equipment, boolean])];
+/** E2 (audyt 0.10): nazwy kanoniczne całego katalogu — dozwolone wartości Exercise.libKey. */
+export const LIB_KEYS: ReadonlySet<string> = new Set(LIB.map(r => r[0]));
+/** E2 (audyt 0.10, X-03): klucz katalogu ćwiczenia z biblioteki (tylko prawidłowy) — nazwa wyświetlana nie wpływa na reguły. */
+export const catalogKey = (e: Pick<Exercise, 'lib' | 'libKey'> | null | undefined): string | undefined => e?.lib === true && typeof e.libKey === 'string' && LIB_KEYS.has(e.libKey) ? e.libKey : undefined;
+/** E2: ćwiczenie z 125 podstawowych (generator bierze je najpierw) — po kluczu, nie po nazwie. */
+export const isLibBase = (e: Pick<Exercise, 'lib' | 'libKey'>): boolean => { const k = catalogKey(e); return !!k && LIB_BASE_NAMES.has(k); };
 /** Metryka dla pozycji biblioteki innych niż ciężar+powtórzenia. Używane też w migracji (po nazwie). */
 export const METRIC_BY_NAME: Record<string, MetricType> = {
   'Plank': 'time', 'Side Plank': 'time', 'Wall Sit': 'time', 'Hollow Hold': 'time', 'Skakanka': 'time', 'Mountain Climbers': 'time',
@@ -176,6 +182,16 @@ export const MUSCLES_BY_NAME: Record<string, [Muscle[], Muscle[]]> = {
   'Hip Adduction': [['przywodziciele'], []], 'Hip Thrust (sztanga)': [['pośladki'], ['dwugłowe']], 'Hip Thrust (hantel)': [['pośladki'], ['dwugłowe']], 'Glute Bridge': [['pośladki'], ['dwugłowe']], 'Kettlebell Swing': [['pośladki', 'dwugłowe'], ['plecy']],
   "Farmer's Walk": [['przedramiona', 'plecy'], ['core']], 'Suitcase Carry': [['core'], ['przedramiona']],
 };
+/** E4 (audyt 0.10, MER-10; decyzja właściciela 08.10.2026: teraz wariant B, źródła — wariant A — osobnym researchem): partie z katalogu są
+ * uproszczeniem bez źródeł (docs/research/equipment/catalog-notes.md; przykład sprzeczny z badaniem: Back Squat → dwugłowe, Kubo i in. 2019).
+ * Ćwiczenie katalogu dostaje tu wpis (klucz → źródła, docs/research), gdy jego przypisanie ma źródła — wtedy ekran ćwiczenia przestaje pokazywać
+ * dopisek „uproszczenie” (tylko gdy partie są nadal takie jak w katalogu). Na razie pusto. */
+export const MUSCLE_SOURCES: Readonly<Record<string, string>> = {};
+export const musclesSourced = (e: Pick<Exercise, 'lib' | 'libKey' | 'group' | 'muscles' | 'secondaryMuscles'>): boolean => {
+  const k = catalogKey(e); if (!k || !own(MUSCLE_SOURCES, k)) return false;
+  const [a, b] = musclesFor(k, e.group); const same = (x: readonly string[], y: readonly string[]) => x.length === y.length && x.every(v => y.includes(v));
+  return same(e.muscles ?? [], a) && same(e.secondaryMuscles ?? [], b);
+};
 export const GROUP_TO_MUSCLE: Partial<Record<Group, Muscle>> = { klatka: 'klatka', plecy: 'plecy', barki: 'barki', biceps: 'biceps', triceps: 'triceps', nogi: 'czworogłowe', pośladki: 'pośladki', łydki: 'łydki', core: 'core' };
 export const musclesFor = (name: string, group: Group): [Muscle[], Muscle[]] => own(MUSCLES_BY_NAME, name) ?? (EXTRA.has(name) ? [[...EXTRA.get(name)![6]] as Muscle[], [...EXTRA.get(name)![7]] as Muscle[]] : null) ?? [GROUP_TO_MUSCLE[group] ? [GROUP_TO_MUSCLE[group]!] : [], []];
 
@@ -190,11 +206,24 @@ export function equipFields(name: string, equipment: Equipment, lib: boolean): P
 export const blankTimer = (): TimerState => ({ restEndAt: null, restTotal: 0, restSetId: null, setStartAt: null, setTarget: 0, setId: null });
 /** Domyślne ustawienia — jedno źródło dla seeda i migracji (audyt 0.8.1: 90 s żyło w 4 miejscach). */
 export const DEFAULT_REST = 90;
+/** E1 (audyt 0.10): górna granica masy ciała w Ustawieniach (kg) — tylko walidacja wpisu i importu, bez znaczenia merytorycznego. */
+export const BODY_MASS_MAX = 500;
 export const defaultSettings = (): Settings => ({ defaultRest: DEFAULT_REST, sound: true, wakeLock: true, showRpe: false, healthSync: false, progressHint: true, autoBackup: true, weighReminder: false, modules: defaultModules(), language: 'auto', unit: 'kg', locations: [], mainLocationId: null, pickerShowAll: false, theme: 'light', workoutView: 'focus' });
 
 /** Ćwiczenie z biblioteki (wpis LIB) — wspólne dla stanu startowego i migracji dopisującej ćwiczenia katalogu 04.10.2026. */
 export function libExercise([name, group, equipment, band]: [string, Group, Equipment, boolean?], owner: string = LOCAL_OWNER): Exercise {
-  const [mu, mu2] = musclesFor(name, group); return { ...base(owner), name, group, equipment, metric: metricFor(name), loadMode: loadModeFor(equipment, name), restSec: null, restWarmupSec: null, muscles: mu, secondaryMuscles: mu2, bandAssistable: !!band, tempo: '', notes: '', lib: true, ...equipFields(name, equipment, true) };
+  const [mu, mu2] = musclesFor(name, group); return { ...base(owner), name, group, equipment, metric: metricFor(name), loadMode: loadModeFor(equipment, name), restSec: null, restWarmupSec: null, muscles: mu, secondaryMuscles: mu2, bandAssistable: !!band, tempo: '', notes: '', lib: true, libKey: name /* E2: klucz katalogu */, ...equipFields(name, equipment, true) };
+}
+/** E2 (audyt 0.10, X-03): odzyskanie klucza katalogu ćwiczenia z biblioteki przemianowanego przed wprowadzeniem libKey — po polach skopiowanych
+ * z katalogu przy tworzeniu (partia, sprzęt, metryka, tryb, asysta gumą, partie mięśni, wymagania, zalecany sprzęt, wzorzec, źródło obciążenia, liczba
+ * przyrządów). Tylko gdy ten zestaw pól jest w całym katalogu jednoznaczny (inaczej undefined) — migrate przypisuje go dodatkowo tylko wtedy,
+ * gdy żadne inne ćwiczenie nie ma już tego klucza. Pola zmienione przez użytkownika albo z innej wersji katalogu → brak dopasowania (bez zgadywania). */
+type FpFields = Pick<Exercise, 'group' | 'equipment' | 'metric' | 'loadMode' | 'bandAssistable' | 'muscles' | 'secondaryMuscles' | 'requires' | 'recommended' | 'pattern' | 'loadSource' | 'implements'>;
+const fpOf = (e: FpFields) => JSON.stringify([e.group, e.equipment, e.metric, e.loadMode, !!e.bandAssistable, e.muscles ?? [], e.secondaryMuscles ?? [], e.requires ?? null, e.recommended ?? null, e.pattern ?? null, e.loadSource ?? null, e.implements ?? null]);
+let LIB_FP: Map<string, string | null> | null = null;
+export function libKeyFromFields(e: FpFields): string | undefined {
+  if (!LIB_FP) { const m = new Map<string, string | null>(); for (const r of LIB) { const k = fpOf(libExercise(r)); m.set(k, m.has(k) ? null : r[0]); } LIB_FP = m; }
+  return LIB_FP.get(fpOf(e)) ?? undefined;
 }
 /** Stan startowy: biblioteka ćwiczeń i gumy, BEZ szablonów (decyzja właściciela 03.10.2026, 08:11: „Nie przenoś do aplikacji żadnych moich szablonów.
  * Sam je ustawię.” — świeża instalacja ma `templates: []`; dawne cztery szablony żyją tylko w danych testowych: tests/fixtures/demo-templates.ts).

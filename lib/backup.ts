@@ -89,8 +89,11 @@ export async function onHistoryEdited(): Promise<void> { await autoBackup(); }
 /**
  * Eksport CSV w układzie kolumn Strong (0.2.1): Date, Workout Name, Duration, Exercise Name, Set Order,
  * Weight, Reps, Distance, Seconds, Notes, Workout Notes, RPE. Ciężar hantli zostaje per hantel (jak w Strong na iOS).
- * Guma i typ serii trafiają do Notes, bo Strong nie ma na nie pól.
+ * Guma trafia do Notes, bo Strong nie ma na nią pola. LOG-14 (audyt 0.10): format z docs/21 („Format CSV Stronga”) — Set Order: numer zwykłej serii,
+ * `D` = drop set, `F` = do upadku (rozgrzewka `W` — jak dotąd; w pliku Stronga niesprawdzone); Duration: `52m`, `1h 5m`, `1h`.
  */
+/** LOG-14: czas treningu jak w eksporcie Stronga — „52m”, „1h 5m”, „1h”. */
+export const strongDur = (min: number) => { const m = Math.max(0, Math.round(min)), h = Math.floor(m / 60), r = m % 60; return h ? (r ? `${h}h ${r}m` : `${h}h`) : `${r}m`; };
 export function buildCsv(): string {
   // Runda 21: tekst zaczynający się od = + - @ nie staje się formułą w arkuszu (liczby, także ujemne, zostają liczbami).
   const q = (v: unknown) => { let s = v == null ? '' : String(v); if (typeof v === 'string' && /^[=+\-@\t\r]/.test(s)) s = "'" + s; return /[",\r\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s; };
@@ -98,12 +101,12 @@ export function buildCsv(): string {
   const dt = (ts: number) => { const d = new Date(ts); return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`; };
   const rows: string[] = ['Date,Workout Name,Duration,Exercise Name,Set Order,Weight,Reps,Distance,Seconds,Notes,Workout Notes,RPE'];
   for (const w of [...finishedWorkouts()].reverse()) {
-    const dur = Math.round(workoutDurSec(w) / 60) + 'm'; /* bez pauz (08.10.2026) */
+    const dur = strongDur(Math.round(workoutDurSec(w) / 60)); /* bez pauz (08.10.2026) */
     w.exercises.forEach(e => { const ex = exById(e.exerciseId); /* T4b: usunięte ćwiczenie eksportujemy jako „?”, jak w historii — serie nie znikają z pliku */
-      let n = 0; // numer serii roboczej — rozgrzewki mają „W” i nie przesuwają numeracji
-      e.sets.forEach(s => { const b = s.bandId ? bandById(s.bandId) : null; const bandTxt = b ? `${t('guma')} ${bandColor(b)} ${b.level}` : s.bandId ? `${t('guma')} ?` : ''; const mark = SET_KIND_MARK[s.kind ?? (s.warmup ? 'warmup' : 'normal')]; if (mark !== 'W') n++;
-        const notes = [s.note, bandTxt, mark === 'D' ? 'drop set' : mark === 'F' ? t('do upadku') : ''].filter(Boolean).join('; ');
-        rows.push([dt(w.startedAt), w.templateName || t('Trening'), dur, exName(ex), mark === 'W' ? 'W' : String(n), wOut(shownLoad(ex, s)) /* runda 7: w jednostce użytkownika, jak eksport Stronga; T4b/Q-018/83b: store.shownLoad — jak ekran sesji w historii */, s.reps || 0, s.distanceM || 0, s.durationSec || 0, notes, w.note, s.rpe === '' || s.rpe == null ? '' : s.rpe /* runda 18: RIR 0 też */].map(q).join(','));
+      let n = 0; // numer zwykłej serii — rozgrzewka „W”, drop „D”, do upadku „F” nie przesuwają numeracji (LOG-14)
+      e.sets.forEach(s => { const b = s.bandId ? bandById(s.bandId) : null; const bandTxt = b ? `${t('guma')} ${bandColor(b)} ${b.level}` : s.bandId ? `${t('guma')} ?` : ''; const mark = SET_KIND_MARK[s.kind ?? (s.warmup ? 'warmup' : 'normal')]; if (!mark) n++;
+        const notes = [s.note, bandTxt].filter(Boolean).join('; ');
+        rows.push([dt(w.startedAt), w.templateName || t('Trening'), dur, exName(ex), mark || String(n), wOut(shownLoad(ex, s)) /* runda 7: w jednostce użytkownika, jak eksport Stronga; T4b/Q-018/83b: store.shownLoad — jak ekran sesji w historii */, s.reps || 0, s.distanceM || 0, s.durationSec || 0, notes, w.note, s.rpe === '' || s.rpe == null ? '' : s.rpe /* runda 18: RIR 0 też */].map(q).join(','));
       }); });
   }
   return rows.join('\n') + '\n';

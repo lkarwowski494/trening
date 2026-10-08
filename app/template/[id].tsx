@@ -9,7 +9,7 @@ import { ScrollView as HScroll } from 'react-native';
 import { locationLabel } from '@/lib/locations';
 import { availability } from '@/lib/equipment';
 import { implLabel } from '@/lib/swap';
-import { getState, useTick, exById, save, dupTemplate, deleteTemplate, templateFolders, setTemplateFolder, setTemplateArchived, groupLabels, linkWithNext, unlink, moveItem, removeItem, restFor, isBW, loadLabel, loadLabelShort, occurrence, occurrences, implAtLoc, startLocationId, locationById, tplRows, tplAddRow, tplRemoveRow, tplSetRow, tplSetKind, previousBlockFor, srcSetAt, setSummary, reps, usesBand, tplCycleBand, bandA11y, shortBand } from '@/lib/store';
+import { getState, useTick, exById, save, dupTemplate, deleteTemplate, templateFolders, setTemplateFolder, setTemplateArchived, groupLabels, linkWithNext, unlink, moveItem, removeItem, restFor, isBW, loadLabel, loadLabelShort, occurrence, occurrences, implAtLoc, startLocationId, locationById, tplRows, workCount, tplAddRow, tplRemoveRow, tplSetRow, tplSetKind, previousBlockFor, srcSetAt, setSummary, reps, usesBand, tplCycleBand, bandA11y, shortBand } from '@/lib/store';
 import { useTheme, F } from '@/lib/theme';
 import { hasTime, hasReps, hasWeight, hasDistance, SET_KIND_LABEL, type Template, type TemplateItem } from '@/lib/seed';
 import { t, tp, exName } from '@/lib/i18n';
@@ -142,7 +142,9 @@ function TplRows({ tpl, it, ii, nm }: { tpl: Template; it: TemplateItem; ii: num
           <Btn title="✕" small kind="ghost" accessibilityLabel={t('Usuń zakres powtórzeń')} accessibilityHint={nm} style={{ marginBottom: 12 }} onPress={() => { it.repMin = null; it.repMax = null; save(tpl); setRange(false); }} />
         </> : null}
       </View>
-      {hasReps(m) && it.repMin != null ? <Muted style={{ fontSize: 12 }}>{t('Zakres powtórzeń: {r} — po osiągnięciu górnej granicy podpowiedź „↑ więcej {u}”.', { r: reps(it.repMin, it.repMax), u: wu() })}</Muted> : null}
+      {/* MER-13 (audyt 0.10): opis zgodny z podpowiedzią („↑ spróbuj 62,5”, „↑ spróbuj 9 pow.”) i tylko tam, gdzie ona się pojawia (store.progressionFor:
+       * ciężar + powtórzenia, zamknięty zakres, włączona w Ustawieniach) — przy zakresie otwartym „8+” jej nie ma */}
+      {m === 'weight_reps' && it.repMin != null && it.repMax != null && it.repMax >= it.repMin && getState().settings.progressHint ? <Muted style={{ fontSize: 12 }}>{t('Zakres powtórzeń: {r} — gdy ostatnio wszystkie serie robocze miały co najmniej {n} powt., przy ćwiczeniu pojawi się podpowiedź „↑ spróbuj …”: większy ciężar albo powtórzenie więcej (poza tygodniem deload).', { r: reps(it.repMin, it.repMax), n: it.repMax })}</Muted> : null}
       {hasReps(m) && it.repMin != null && it.repMax != null && it.repMax < it.repMin ? <Muted style={{ fontSize: 12, color: th.danger }}>{t('„do” jest mniejsze niż „od” — zakres pokaże się jako {n}+', { n: it.repMin })}</Muted> : null}
     </View></FieldHint.Provider>
   );
@@ -150,6 +152,6 @@ function TplRows({ tpl, it, ii, nm }: { tpl: Template; it: TemplateItem; ii: num
 
 /** Linijka zwiniętej karty: liczba serii (rozgrzewki osobno), zakres, przerwa. */
 function tplSummary(it: TemplateItem): string {
-  const rows = tplRows(it); const w = rows.filter(r => r.kind !== 'warmup').length, wu = rows.length - w; const ex = exById(it.exerciseId);
+  const rows = tplRows(it); const w = workCount(rows.map(r => r.kind)), wu = rows.filter(r => r.kind === 'warmup').length; const ex = exById(it.exerciseId); /* D3 (audyt 0.10): drop razem z serią */
   return [`${w} ${tp(w, 'seria|serie|serii')}`, wu ? t('{n} rozgrz.', { n: wu }) : '', it.repMin != null ? reps(it.repMin, it.repMax) : '', `${it.restSec ?? restFor(ex)} s`].filter(Boolean).join(' · ');
 }
