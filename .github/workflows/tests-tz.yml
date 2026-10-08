@@ -25,7 +25,6 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        ref: ${{ fromJSON(github.event_name == 'schedule' && (vars.NIGHTLY_REFS || '["main","feature/e2-swap"]') || format('["{0}"]', github.ref_name)) }}
         tz:
           - Europe/Warsaw
           - UTC
@@ -34,6 +33,7 @@ jobs:
           - Pacific/Pago_Pago
           - Asia/Kolkata
           - Australia/Lord_Howe
+        ref: ${{ fromJSON(github.event_name == 'schedule' && (vars.NIGHTLY_REFS || '["main","feature/e2-swap"]') || format('["{0}"]', github.ref_name)) }}
     steps:
       - uses: actions/checkout@v5
         with:
