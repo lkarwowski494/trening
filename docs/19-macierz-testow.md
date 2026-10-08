@@ -10,7 +10,7 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | EKRAN | 20 | 20 | 0 |
 | UI | 199 | 199 | 0 |
 | TEKST | 406 | 406 | 0 |
-| LOGIKA | 387 | 387 | 0 |
+| LOGIKA | 389 | 389 | 0 |
 | WYMIAR | 13 | 13 | 0 |
 
 ## EKRAN
@@ -172,7 +172,7 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | Skróć przerwę o 15 sekund | components/ActiveWorkout.tsx | tests/karta-sprzet.test.tsx, tests/scenario-full.test.tsx |
 | Sprawdź zgodę na powiadomienia | app/more/settings.tsx | tests/matrix-ui.test.tsx, tests/scenario-full.test.tsx |
 | Sprzęt | app/exercise/[id].tsx | tests/audit-r83.test.tsx, tests/audit-r83b.test.tsx |
-| Start | app/(tabs)/index.tsx | tests/audit-backlog-q.test.tsx, tests/audit-backlog-r75.test.tsx, tests/audit-close-b.test.tsx +52 |
+| Start | app/(tabs)/index.tsx | tests/audit-backlog-q.test.tsx, tests/audit-backlog-r75.test.tsx, tests/audit-close-b.test.tsx +53 |
 | Start: {name} | app/(tabs)/index.tsx | tests/audit-close2-a.test.tsx, tests/audit-journey-a.test.tsx, tests/audit-journey-b.test.tsx +20 |
 | sztuk | components/LoadEditor.tsx | tests/locations-loads.test.ts, tests/matrix-i18n.test.tsx, tests/matrix-ui.test.tsx +2 |
 | Szukaj ćwiczenia… | app/more/progress.tsx | tests/audit-prephone.test.tsx, tests/audit-r82.test.tsx, tests/backlog-0410.test.tsx +13 |
@@ -731,7 +731,8 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | equipvis.bandHex | lib/equipvis.ts | tests/karta-sprzet.test.tsx |
 | equipvis.equipSlotFor | lib/equipvis.ts | tests/karta-sprzet.test.tsx |
 | health.ensureAuthorization | lib/health.ts | tests/regress.test.tsx |
-| health.saveWorkout | lib/health.ts | tests/edit-history.test.tsx, tests/regress.test.tsx, tests/swap-history.test.tsx |
+| health.healthStart | lib/health.ts | tests/pause.test.tsx |
+| health.saveWorkout | lib/health.ts | tests/edit-history.test.tsx, tests/pause.test.tsx, tests/regress.test.tsx +1 |
 | health.syncAfterFinish | lib/health.ts | tests/audit-io-more.test.tsx, tests/swap-history.test.tsx |
 | i18n.isLang | lib/i18n.ts | tests/matrix-logic.test.tsx |
 | i18n.detectLang | lib/i18n.ts | tests/matrix-logic.test.tsx |
@@ -963,6 +964,7 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | store.autoFinishStale | lib/store.ts | tests/audit-backlog-q.test.tsx, tests/audit-close-a.test.ts, tests/audit-final2-auto.test.ts +7 |
 | store.finishWorkout | lib/store.ts | tests/audit-close-d.test.ts, tests/audit-io-more.test.tsx, tests/audit-persist.test.ts +23 |
 | store.isPaused | lib/store.ts | tests/pause.test.tsx |
+| store.cleanPauses | lib/store.ts | tests/pause.test.tsx |
 | store.pauseWorkout | lib/store.ts | tests/pause.test.tsx |
 | store.resumeWorkout | lib/store.ts | tests/pause.test.tsx |
 | store.cancelWorkout | lib/store.ts | tests/audit-r82.test.tsx, tests/audit-r82b.test.tsx, tests/decisions-0310.test.tsx +11 |

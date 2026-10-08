@@ -1,7 +1,7 @@
 import { Platform } from 'react-native';
 import type { Workout } from './seed';
 import { t } from './i18n';
-import { getState, save, exById, volume, isWorking } from './store';
+import { getState, save, exById, volume, isWorking, pausedTotal } from './store';
 
 /*
  * Zapis treningu do Apple Health (0.6, HealthKit write). Biblioteka @kingstinct/react-native-healthkit 8.x
@@ -31,6 +31,8 @@ export async function ensureAuthorization(): Promise<boolean> {
     return true;
   } catch { return false; }
 }
+/** Start treningu w Zdrowiu: koniec − czas bez pauz (= start + suma pauz). */
+export const healthStart = (w: Workout) => Math.min(w.finishedAt ?? w.startedAt, w.startedAt + pausedTotal(w, w.finishedAt ?? w.startedAt));
 /** Zapisuje zakończony trening jako HKWorkout (siłowy). Idempotentne — drugi zapis tego samego treningu jest pomijany. */
 const inFlight = new Set<string>();
 export async function saveWorkout(w: Workout): Promise<'saved' | 'skipped' | 'unavailable' | 'failed'> {
@@ -39,7 +41,10 @@ export async function saveWorkout(w: Workout): Promise<'saved' | 'skipped' | 'un
   inFlight.add(w.id);
   const bw = w.exercises.length > 0 && w.exercises.every(e => { const ex = exById(e.exerciseId); return ex?.equipment === 'masa ciała'; });
   try {
-    const res = await h.saveWorkoutSample(bw ? FUNCTIONAL_STRENGTH : TRADITIONAL_STRENGTH, [], new Date(w.startedAt), {
+    /* 08.10.2026 (decyzja właściciela, wariant A): biblioteka 8.x zapisuje HKWorkout bez zdarzeń pauzy (workoutEvents: nil), a Zdrowie liczy
+     * czas jako koniec − start — więc start w Zdrowiu przesunięty o sumę pauz: czas trwania jak w aplikacji, koniec prawdziwy, start później
+     * o długość pauz (w aplikacji start bez zmian). Prawdziwe zdarzenia pauzy (Workout.pauses) — w wydaniu Health po aktualizacji biblioteki. */
+    const res = await h.saveWorkoutSample(bw ? FUNCTIONAL_STRENGTH : TRADITIONAL_STRENGTH, [], new Date(healthStart(w)), {
       end: new Date(w.finishedAt),
       metadata: { HKMetadataKeySyncIdentifier: w.id, HKMetadataKeySyncVersion: 1 /* T4b: HealthKit sam odrzuca drugi zapis tego treningu (np. po przywróceniu kopii sprzed zapisu) */, 'Workout': w.templateName || t('Trening'), 'VolumeKg': Math.round(volume(w)), 'Sets': w.exercises.reduce((a, e) => a + e.sets.filter(isWorking).length, 0) } // runda 7: jak w historii (bez rozgrzewek),
     });
