@@ -82,6 +82,11 @@ widocznej w treningu (pole istnieje, ekran treningu go nie pokazuje), pola RIR (
 - Nazwy ćwiczeń: standardowe Stronga po angielsku z dopiskiem sprzętu „(Barbell)”, „(Dumbbell)”… + własne użytkownika; dopasowanie po nazwie i zamianie
   dopisku (Barbell→sztanga, Dumbbell→hantle) objęło 33 ze 134 nazw (~48% serii).
 
+### Priorytet (decyzja właściciela 08.10.2026)
+- **Kalendarz z planowaniem treningów** — „sensowna forma kalendarza (może być też z planowaniem treningów)”. Dziś: kalendarz miesiąca w Historii
+  (tylko przeszłe sesje). Do decyzji właściciela: miejsce w aplikacji, powtarzalny plan tygodnia vs pojedyncze wpisy, przypomnienia. Powiązania:
+  tygodnie deload (już oznaczane), przyszły generator planu tygodnia. Bez twierdzeń dziedzinowych (planowanie = dane użytkownika).
+
 ### Backlog bez priorytetu (decyzja właściciela 08.10.2026)
 Wrócimy za jakiś czas; w rozmowie wymieniane tylko zbiorczo, dopóki właściciel nie poprosi o listę (CLAUDE.md).
 - Wydanie natywne — sekcja 4n niżej (przyciski przerwy na ekranie blokady, widżet, kontrolka w Centrum sterowania).

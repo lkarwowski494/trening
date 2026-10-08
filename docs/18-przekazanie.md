@@ -111,3 +111,4 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
   (np. hipertrofia, dom, 3× w tygodniu; hipertrofia + spalanie, 4 sesje: 3 siłowe + 1 cardio). „Wszystkie potwierdzone badaniami.” Deload: „fajnie,
   jakby automatycznie przeliczał szablony i sugerował w kalendarzu, kiedy włączyć”. Zlecony przegląd źródeł: serie na partię dla siły, masy i redukcji;
   deload; zasady generatora (docs/research/22). Reguła z 03.10 uzupełniona o wyjątek (CLAUDE.md).
+- 08.10.2026: **priorytet** — kalendarz z planowaniem treningów (docs/21, „Priorytet”). Warianty do decyzji przedstawione właścicielowi.
