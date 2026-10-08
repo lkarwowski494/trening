@@ -908,11 +908,17 @@ function fixRows(it: any) {
     reps: num(r.reps, 0, 1000), weight: (v => v == null ? '' : kg2(snapL(v) as number))(parseNum(r.weight)), durationSec: num(r.durationSec, 0, 86400), distanceM: num(r.distanceM, 0, 1e6), ...(typeof r.bandId === 'string' && r.bandId ? { bandId: r.bandId } : {}) }));
   syncItem(it);
 }
-/** `deload` (decyzja 08.10.2026, B): około połowy serii roboczych na ćwiczenie, ciężary bez zmian, szablon bez zmian (lib/deload-sets). */
-export function startFromTemplate(tpl: Template, opts?: { deload?: boolean }) {
-  const st = getState(); const w = newWorkout(tpl.id, tpl.name, tpl.locationId);
+/** Pozycja szablonu, która trafi do treningu przy starcie (runda 42: usunięte ćwiczenie, np. z importu, nie wraca do treningu). Audyt 0.10 (LOG-17):
+ * ten sam filtr liczy serie w pytaniu deload (lib/start.ts deloadCounts). */
+export const startableItem = (it: TemplateItem) => { const ex = exById(it.exerciseId); return !!ex && !ex.archived; };
+/** Bloki ostatniego treningu, które wstawi „Powtórz ostatni” (ćwiczenie istnieje i nie jest usunięte) — także dla pytania deload (audyt 0.10, D1). */
+export const repeatBlocks = (w: Workout) => w.exercises.filter(e => { const ex = exById(e.exerciseId); return !!ex && !ex.archived; });
+/** `deload` (decyzja 08.10.2026, B): mniej serii roboczych na ćwiczenie (deloadKeep: o około 1/3–1/2), ciężary bez zmian, szablon bez zmian (lib/deload-sets).
+ * Audyt 0.10 (LIVE-12): przy treningu w toku nic nie robi i zwraca false — drugi start (podwójne tapnięcie, drugie okno deload) nie nadpisuje treningu. */
+export function startFromTemplate(tpl: Template, opts?: { deload?: boolean }): boolean {
+  const st = getState(); if (st.active) return false; const w = newWorkout(tpl.id, tpl.name, tpl.locationId);
   tpl.items.forEach((it, ii) => {
-    const ex = exById(it.exerciseId); if (!ex || ex.archived) return; // runda 42: usunięte ćwiczenie (np. z importu) nie wraca do treningu
+    if (!startableItem(it)) return; const ex = exById(it.exerciseId)!;
     // Runda 7: drop sety poprzedniej sesji nie są źródłem wartości dla zwykłych serii szablonu (jak przy odhaczaniu, runda 6).
     const impl = implAtLoc(ex, w.locationId); /* decyzja 8c: „Poprzednio” = ostatni raz tym samym przyrządem */
     const prevAll = previousBlockFor(it.exerciseId, occurrence(tpl.items, ii), occurrences(tpl.items, it.exerciseId), it.id, tpl.id, impl);
@@ -922,11 +928,12 @@ export function startFromTemplate(tpl: Template, opts?: { deload?: boolean }) {
     w.exercises.push({ id: uid(), exerciseId: ex.id, restSec: typeof it.restSec === 'number' && it.restSec >= 0 ? it.restSec : restFor(ex), /* null w szablonie = przerwa z ćwiczenia */ repMin: it.repMin, repMax: it.repMax, groupId: it.groupId ?? null, sets: opts?.deload ? deloadSets(sets) : sets, tplItemId: it.id, ...(impl ? { impl } : {}) });
   });
   normalizeGroups(w.exercises);
-  st.active = w; save(); flush();
+  st.active = w; save(); flush(); return true;
 }
-export function startEmpty() { getState().active = newWorkout(null, ''); save(); flush(); }
-export function repeatLast() {
-  const last = finishedWorkouts()[0]; if (!last) return;
+export function startEmpty(): boolean { if (getState().active) return false; /* audyt 0.10 (LIVE-12) */ getState().active = newWorkout(null, ''); save(); flush(); return true; }
+/** „Powtórz ostatni”. `deload` (audyt 0.10, D1 / MER-05): w tygodniu deload to samo cięcie co przy starcie z szablonu (deloadSets na blok). */
+export function repeatLast(opts?: { deload?: boolean }): boolean {
+  const last = finishedWorkouts()[0]; if (!last || getState().active) return false; /* audyt 0.10 (LIVE-12): trening w toku zostaje */
   // Powtarza to, co faktycznie zrobiono (także ćwiczenia dodane/usunięte w trakcie), a nie szablon, z którego wystartowano (runda 2).
   /* Integracja 0.9.0: ostatni trening bez locationId (sprzed miejsc, z importu), choć miejsca są — to „nieznane miejsce”, nie „inne miejsce”:
    * nowy trening dostaje miejsce główne, a wartości kopiujemy bez wstrzymywania ciężarów spoza listy (jak treningi sprzed miejsc
@@ -937,14 +944,15 @@ export function repeatLast() {
   const tplOf = last.templateId ? getState().templates.find(x => x.id === last.templateId) : null;
   const tgt = (e: WExercise): number | '' => { const it = tplOf && e.tplItemId ? tplOf.items.find(x => x.id === e.tplItemId && x.exerciseId === e.exerciseId) : null; return it && Number(it.targetSec) > 0 ? Number(it.targetSec) : ''; };
   const keepPin = (e: WExercise) => { const ex = exById(e.exerciseId); const loc = locationById(w.locationId); return !!(e.implPinned && e.impl && ex && loc && last.locationId === w.locationId && implsAt(ex, loc).includes(e.impl)); };
-  w.exercises = last.exercises.filter(e => { const ex = exById(e.exerciseId); return ex && !ex.archived; }).map(e => { const nw: WExercise = keepPin(e) ? { ...e, id: uid(), sets: [] } : stampImpl({ ...e, id: uid(), sets: [] }, w.locationId); if (!keepPin(e)) delete nw.implPinned; /* decyzja 8c: przyrząd w miejscu NOWEGO treningu (nie kopiowany z poprzedniego); E2 D5 (pkt 3.7.5): przyrząd wybrany ręcznie zostaje w tym samym miejscu, gdy wciąż tam jest */
+  w.exercises = repeatBlocks(last).map(e => { const nw: WExercise = keepPin(e) ? { ...e, id: uid(), sets: [] } : stampImpl({ ...e, id: uid(), sets: [] }, w.locationId); if (!keepPin(e)) delete nw.implPinned; /* decyzja 8c: przyrząd w miejscu NOWEGO treningu (nie kopiowany z poprzedniego); E2 D5 (pkt 3.7.5): przyrząd wybrany ręcznie zostaje w tym samym miejscu, gdy wciąż tam jest */
     const away = prevFromOther({ workout: last, sets: e.sets }, e.exerciseId, w.locationId, nw.impl); /* weryfikacja 3 (L2) + LOW 3: jak przy starcie z szablonu — inne, znane miejsce albo znany, inny przyrząd */
     nw.sets = e.sets.map(s => ({ ...blankSet(), ...(assistLost(exById(e.exerciseId), s) ? {} : copyVals(s)), durationSec: s.kind === 'warmup' ? '' : tgt(e), kind: s.kind === 'failure' ? 'normal' : s.kind ?? (s.warmup ? 'warmup' : 'normal') /* T11: upadek to wynik, nie plan (jak addSet i szablon) */, warmup: s.warmup })).map(s => { const ex = exById(e.exerciseId); /* ciężar spoza listy tutaj z sesji „gdzie indziej” nie jest wstawiany (ani same powtórzenia) */
       if (away && offListAt(ex, w.locationId, s.weight, pinnedImpl(nw))) { s.weight = ''; s.reps = ''; }
       return markPre(stripUnused(ex, s)); });
+    if (opts?.deload) nw.sets = deloadSets(nw.sets);
     return nw; });
   normalizeGroups(w.exercises);
-  getState().active = w; save(); flush();
+  getState().active = w; save(); flush(); return true;
 }
 export function addExerciseToActive(ex: Exercise) {
   const a = getState().active; if (!a) return;
@@ -1159,6 +1167,13 @@ function fillFromHints(e: WExercise, si: number) {
   if (hasReps(m) && isEmpty(s.reps) && e.repMin != null) { s.reps = e.repMin; hinted.reps = e.repMin; }
   s.hinted = Object.keys(hinted).length ? hinted : undefined;
 }
+/** Seria liczona w rundzie supersetu: robocza bez drop setu (drop set to część serii, po której jest — runda 72, T6). */
+const isRoundSet = (y: WSet) => y.kind !== 'warmup' && y.kind !== 'drop';
+/** E2 (docs/14 pkt 3.5): bloki rozdzielone zamianą (łańcuch splitFrom: A z odhaczonymi + zamiennik B) to JEDEN członek grupy — runda liczona
+ * sumą ich serii; bez tego B1 po podziale A liczyło rundę 1 i odpalało przerwę w środku rundy 2. Bez podziałów członek = blok (jak dotąd).
+ * Wspólne dla przerw (restAfter) i karty „teraz” (focusSet, audyt 0.10 LIVE-02). */
+function ssRoot(list: WExercise[], x: WExercise): string { let c = x; const seen = new Set<string>(); while (c.splitFrom && !seen.has(c.id)) { seen.add(c.id); const p = list.find(y => y.id === c.splitFrom && y.groupId === x.groupId); if (!p) break; c = p; } return c.id; }
+function ssMembers(list: WExercise[], pick: (x: WExercise) => boolean): Map<string, WExercise[]> { const m = new Map<string, WExercise[]>(); for (const x of list) if (pick(x)) { const k = ssRoot(list, x); const l = m.get(k); if (l) l.push(x); else m.set(k, [x]); } return m; }
 /** Przerwa po serii (ei, si) treningu w toku; null = superset bez przerwy. Wspólne dla odhaczenia i ponownego pomiaru (runda 19). */
 export function restAfter(ei: number, si: number): number | null {
   const a = getState().active; const e = a?.exercises[ei]; const s = e?.sets[si]; if (!a || !e || !s) return null; const ex = exById(e.exerciseId);
@@ -1167,26 +1182,25 @@ export function restAfter(ei: number, si: number): number | null {
   // Runda 72 (T6): drop set to część serii, po której następuje — bez przerwy przed nim, a w supersecie nie liczy się jako osobna runda.
   if (s.kind !== 'warmup') { const nx = e.sets[si + 1]; if (nx && nx.kind === 'drop' && !nx.done) return null; }
   if (e.groupId) {
-    /* E2 (docs/14 pkt 3.5): bloki rozdzielone zamianą (łańcuch splitFrom: A z odhaczonymi + zamiennik B) to JEDEN członek grupy — runda liczona
-     * sumą ich serii; bez tego B1 po podziale A liczyło rundę 1 i odpalało przerwę w środku rundy 2. Bez podziałów członek = blok (jak dotąd). */
-    const root = (x: WExercise) => { let c = x; const seen = new Set<string>(); while (c.splitFrom && !seen.has(c.id)) { seen.add(c.id); const p = a.exercises.find(y => y.id === c.splitFrom && y.groupId === x.groupId); if (!p) break; c = p; } return c.id; };
-    const members = new Map<string, WExercise[]>(); for (const x of a.exercises) if (x.groupId === e.groupId) { const k = root(x); const l = members.get(k); if (l) l.push(x); else members.set(k, [x]); }
-    const mineK = root(e); const mine = members.get(mineK)!;
-    const work = (xs: WExercise[]) => xs.flatMap(x => x.sets.filter(y => y.kind !== 'warmup' && y.kind !== 'drop')); const r = work(mine).filter(y => y.done).length;
+    /* Audyt 0.10 (LIVE-01): blok „Pomiń dziś” nie jest członkiem rundy — inaczej jego zaległe serie wstrzymywały przerwy drugiego ćwiczenia do końca. */
+    const inGroup = (x: WExercise) => x.groupId === e.groupId && (x === e || !x.skipped);
+    const members = ssMembers(a.exercises, inGroup); const mineK = ssRoot(a.exercises, e); const mine = members.get(mineK)!;
+    const work = (xs: WExercise[]) => xs.flatMap(x => x.sets.filter(isRoundSet)); const r = work(mine).filter(y => y.done).length;
     const others = [...members].filter(([k]) => k !== mineK).map(([, v]) => v);
     /* Runda 75 (Q-006): ostatnia seria ostatniego ćwiczenia grupy zamyka rundę, także gdy wcześniejsze ćwiczenie ma pominiętą serię.
      * Warunek: każde zaległe ćwiczenie ma już choć jedną zrobioną serię — inaczej B1 przed A1 (także przy jednej serii) odpalałoby przerwę. */
-    const closesGroup = !a.exercises.some((x, j) => j > ei && x.groupId === e.groupId && !mine.includes(x)) && !work(mine).some(y => !y.done) && others.every(x => work(x).some(y => y.done) || !work(x).some(y => !y.done));
-    if (s.kind === 'warmup' ? a.exercises.some((x, j) => j > ei && x.groupId === e.groupId && !mine.includes(x) && x.sets.some(y => !y.done)) || others.some(x => work(x).filter(y => y.done).length > r) /* Q-006: rozgrzewka w trwającej rundzie — bez przerwy */
+    const closesGroup = !a.exercises.some((x, j) => j > ei && inGroup(x) && !mine.includes(x)) && !work(mine).some(y => !y.done) && others.every(x => work(x).some(y => y.done) || !work(x).some(y => !y.done));
+    if (s.kind === 'warmup' ? a.exercises.some((x, j) => j > ei && inGroup(x) && !mine.includes(x) && x.sets.some(y => !y.done)) || others.some(x => work(x).filter(y => y.done).length > r) /* Q-006: rozgrzewka w trwającej rundzie — bez przerwy */
       : !closesGroup && others.some(x => work(x).filter(y => y.done).length < r && work(x).some(y => !y.done))) return null; } /* T9: pominięty drop set nie blokuje przerwy po ostatniej rundzie */
   if (s.kind === 'warmup' && ex?.restWarmupSec != null) return ex.restWarmupSec;
   if (e.groupId && s.kind !== 'warmup') return roundRest(ei); /* runda 72: koniec rundy poza kolejnością — przerwa rundy (ostatniego ćwiczenia grupy) */
   return e.restSec ?? restFor(ex);
 }
-/** Przerwa rundy supersetu (ostatniego ćwiczenia grupy) albo własna przerwa ćwiczenia — dla ponownego pomiaru (runda 21). */
+/** Przerwa rundy supersetu (ostatniego ćwiczenia grupy) albo własna przerwa ćwiczenia — dla ponownego pomiaru (runda 21).
+ * Audyt 0.10 (LIVE-01): ostatni NIEPOMINIĘTY członek grupy („Pomiń dziś”). */
 export function roundRest(ei: number): number | null {
   const a = getState().active; const e = a?.exercises[ei]; if (!a || !e) return null;
-  const last = e.groupId ? [...a.exercises].reverse().find(x => x.groupId === e.groupId) ?? e : e;
+  const last = e.groupId ? [...a.exercises].reverse().find(x => x.groupId === e.groupId && (x === e || !x.skipped)) ?? e : e;
   return last.restSec ?? restFor(exById(last.exerciseId));
 }
 /** Odhacza serię; zwraca długość przerwy do odpalenia (lub null: odznaczono albo superset bez przerwy). */
@@ -1502,15 +1516,24 @@ export const isReadyForTests = () => !!S;
 export function __resetForTests() { persistQueue = Promise.resolve(); fullDirty = true; persistSeq = 0; S = null; db = null; rev = 0; histRev += 1; persistError = null; recovery = null; if (saveTimer) clearTimeout(saveTimer); saveTimer = null; listeners.clear(); }
 /**
  * Widok skupiony (styl „Tuleja”, decyzja właściciela 07.10.2026; docs/21 pkt 3): seria „teraz” = pierwsza nieodhaczona seria w kolejności treningu.
- * Superset — naprzemiennie: spośród ćwiczeń grupy to, którego pierwsza nieodhaczona seria ma najniższy numer (remis — wcześniejsze ćwiczenie),
- * czyli A1, B1, A2, B2… Bloki usuniętych ćwiczeń (bez wpisu w bibliotece) są pomijane. null = wszystko odhaczone (albo pusty trening).
+ * Superset — rundami (audyt 0.10, LIVE-02): spośród członków grupy z nieodhaczoną serią ten, który ma NAJMNIEJ odhaczonych serii roboczych (remis —
+ * wcześniejsze ćwiczenie); w nim pierwsza nieodhaczona seria — więc rozgrzewka członka idzie tuż przed jego pierwszą serią roboczą (AW, A1, B1… /
+ * A1, BW, B1…), a drop set tuż po serii, do której należy. Członek = blok albo łańcuch bloków rozdzielonych zamianą (ssRoot, jak w restAfter).
+ * Bloki usuniętych ćwiczeń (bez wpisu w bibliotece) i „Pomiń dziś” są pomijane. null = wszystko odhaczone (albo pusty trening).
+ * `assumeDone` — id serii traktowanej jak odhaczona: stan PO odhaczeniu, wspólny z podpisem przerwy (lib/live.ts restLabel, audyt 0.10 LIVE-04).
  */
-export function focusSet(w: Workout | null | undefined): { ei: number; si: number } | null {
-  if (!w) return null; const firstOpen = (i: number) => exById(w.exercises[i].exerciseId) && !w.exercises[i].skipped ? w.exercises[i].sets.findIndex(s => !s.done) : -1; /* „Pomiń dziś” — blok poza kartą */
-  for (let ei = 0; ei < w.exercises.length; ei++) {
-    const si = firstOpen(ei); if (si < 0) continue; const g = w.exercises[ei].groupId; if (!g) return { ei, si };
-    let best = { ei, si };
-    for (let j = ei + 1; j < w.exercises.length; j++) { if (w.exercises[j].groupId !== g) continue; const k = firstOpen(j); if (k >= 0 && k < best.si) best = { ei: j, si: k }; }
+export function focusSet(w: Workout | null | undefined, assumeDone?: string | null): { ei: number; si: number } | null {
+  if (!w) return null; const list = w.exercises; const isDone = (s: WSet) => s.done || (assumeDone != null && s.id === assumeDone);
+  const firstOpen = (i: number) => exById(list[i].exerciseId) && !list[i].skipped ? list[i].sets.findIndex(s => !isDone(s)) : -1; /* „Pomiń dziś” — blok poza kartą */
+  for (let ei = 0; ei < list.length; ei++) {
+    const si = firstOpen(ei); if (si < 0) continue; const g = list[ei].groupId; if (!g) return { ei, si };
+    const members = ssMembers(list, x => x.groupId === g); let best = { ei, si }; let bestKey = Infinity;
+    for (let j = ei; j < list.length; j++) {
+      const x = list[j]; if (x.groupId !== g) continue; const k = firstOpen(j); if (k < 0) continue;
+      const done = members.get(ssRoot(list, x))!.reduce((n, b) => n + b.sets.filter(y => isDone(y) && isRoundSet(y)).length, 0);
+      const key = done - (x.sets[k].kind === 'drop' && k > 0 && isDone(x.sets[k - 1]) ? 1 : 0); /* drop set w rundzie swojej serii */
+      if (key < bestKey) { bestKey = key; best = { ei: j, si: k }; }
+    }
     return best;
   }
   return null;

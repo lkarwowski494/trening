@@ -200,6 +200,10 @@
   "en": "⏸ Pause"
  },
  {
+  "pl": "▶ Start",
+  "en": "▶ Start"
+ },
+ {
   "pl": "▶ Wznów",
   "en": "▶ Resume"
  },
@@ -624,6 +628,10 @@
   "en": "add exercises in the next step"
  },
  {
+  "pl": "Ćwiczenia z 1 serią bez zmian.",
+  "en": "Exercises with 1 set unchanged."
+ },
+ {
   "pl": "Ćwiczenie",
   "en": "Exercise"
  },
@@ -661,8 +669,8 @@
   "en": "Deload"
  },
  {
-  "pl": "Deload: podpowiedź w Kalendarzu i mniej serii przy starcie w tygodniu deload; przypomnienie rano w dniu treningu z planu.",
-  "en": "Deload: a hint in the Calendar and fewer sets at start in a deload week; a morning reminder on planned workout days."
+  "pl": "Deload: podpowiedź w Kalendarzu, a w tygodniu deload przy starcie {less}; przypomnienie rano w dniu treningu z planu.",
+  "en": "Deload: a hint in the Calendar and, in a deload week, {less} at start; a morning reminder on planned workout days."
  },
  {
   "pl": "Dieta",
@@ -1196,6 +1204,10 @@
  {
   "pl": "Każda partia co najmniej 2 razy w tygodniu (ACSM, przeglądy badań). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.",
   "en": "Each muscle group at least twice a week (ACSM, research reviews). The split (full body, upper/lower) is a convention — with the same number of sets it gives similar results."
+ },
+ {
+  "pl": "Każde ćwiczenie ma tu 1 serię — liczba serii zostaje bez zmian (ćwiczenia z 1 serią nie są skracane). Ciężary bez zmian.",
+  "en": "Every exercise here has 1 set — the number of sets stays the same (exercises with 1 set are not cut). Same weights."
  },
  {
   "pl": "kettlebell",
@@ -1866,8 +1878,24 @@
   "en": "Nothing to save. Discard this workout?"
  },
  {
+  "pl": "Nic nie odhaczono — wszystkie ćwiczenia pominięte",
+  "en": "Nothing ticked — all exercises skipped"
+ },
+ {
   "pl": "Nic nie pasuje.",
   "en": "No matches."
+ },
+ {
+  "pl": "nic więcej do zrobienia",
+  "en": "nothing more to do"
+ },
+ {
+  "pl": "Nic więcej do zrobienia — możesz zakończyć trening.",
+  "en": "Nothing more to do — you can finish the workout."
+ },
+ {
+  "pl": "Nic więcej do zrobienia (część pominięta)",
+  "en": "Nothing more to do (some skipped)"
  },
  {
   "pl": "nie",
@@ -1876,6 +1904,14 @@
  {
   "pl": "Nie",
   "en": "No"
+ },
+ {
+  "pl": "Nie da się ułożyć z talerzy ({l})",
+  "en": "Can’t be made with the plates ({l})"
+ },
+ {
+  "pl": "Nie da się ułożyć z talerzy ({l}) — najbliżej {v}",
+  "en": "Can’t be made with the plates ({l}) — nearest {v}"
  },
  {
   "pl": "Nie ma takiego ćwiczenia.",
@@ -1944,6 +1980,10 @@
  {
   "pl": "Nieodhaczone serie z wpisanymi wynikami: {n} — nie zostaną zapisane. Seria zapisuje się po odhaczeniu ✓.",
   "en": "Unticked sets with entered results: {n} — they won’t be saved. A set is saved when you tick ✓."
+ },
+ {
+  "pl": "Nieodhaczone serie: {n} — nie zostaną zapisane.",
+  "en": "Unticked sets: {n} — they won’t be saved."
  },
  {
   "pl": "Nieprawidłowa data. Wpisz RRRR-MM-DD, np. {d}.",
@@ -2026,6 +2066,10 @@
   "en": "e.g. how you feel, pain, equipment"
  },
  {
+  "pl": "o około 1/3–1/2 mniej serii (np. {k} z {n}; ćwiczenia z 1 serią bez zmian)",
+  "en": "about 1/3–1/2 fewer sets (e.g. {k} of {n}; exercises with 1 set unchanged)"
+ },
+ {
   "pl": "Obciążenie partii (z katalogu)",
   "en": "Muscle load (from the catalog)"
  },
@@ -2082,8 +2126,16 @@
   "en": "from"
  },
  {
-  "pl": "Od {date}: tydzień deload. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.",
-  "en": "From {date}: deload week. When you start a workout I will suggest fewer sets (about half), same weights."
+  "pl": "Od {date}: tydzień deload. Przy starcie treningu zaproponuję {less}, ciężary bez zmian.",
+  "en": "From {date}: deload week. When you start a workout I will suggest {less}, same weights."
+ },
+ {
+  "pl": "Odhacz bez pomiaru",
+  "en": "Tick without timing"
+ },
+ {
+  "pl": "Odhacz bez pomiaru: {ex}, seria {n}",
+  "en": "Tick without timing: {ex}, set {n}"
  },
  {
   "pl": "Odhaczone są tylko serie rozgrzewkowe ({n}). Zapisać taki trening?",
@@ -2100,6 +2152,10 @@
  {
   "pl": "Odhaczone serie bez powtórzeń: {n}.",
   "en": "Ticked sets without reps: {n}."
+ },
+ {
+  "pl": "Odhaczone serie: {n} — przepadną.",
+  "en": "Ticked sets: {n} — they will be lost."
  },
  {
   "pl": "Odrzucić trening?",
@@ -2402,6 +2458,10 @@
   "en": "Link with next into a superset"
  },
  {
+  "pl": "Pominięcie ćwiczenia przerwie pomiar — ten czas się nie zapisze.",
+  "en": "Skipping the exercise stops the timing — this time won’t be saved."
+ },
+ {
   "pl": "pominięte dziś",
   "en": "skipped today"
  },
@@ -2565,6 +2625,10 @@
  {
   "pl": "Poziomy gum, które masz w tym miejscu (1 = cienka, 7 = bardzo gruba).",
   "en": "Band levels you have at this place (1 = thin, 7 = very thick)."
+ },
+ {
+  "pl": "Pozostałe nieodhaczone serie: {n} — też nie zostaną zapisane.",
+  "en": "Other unticked sets: {n} — they won’t be saved either."
  },
  {
   "pl": "pozycja sprzętu|pozycje sprzętu|pozycji sprzętu",
@@ -2917,6 +2981,10 @@
   "en": "set {n} of {all}"
  },
  {
+  "pl": "seria {n} z {all} · drop set",
+  "en": "set {n} of {all} · drop set"
+ },
+ {
   "pl": "Seria {n} zrobiona — {ex}",
   "en": "Set {n} done — {ex}"
  },
@@ -3141,6 +3209,10 @@
  {
   "pl": "Start stopera serii",
   "en": "Start set stopwatch"
+ },
+ {
+  "pl": "Start stopera: {ex}, seria {n}",
+  "en": "Start stopwatch: {ex}, set {n}"
  },
  {
   "pl": "Start zaplanowanego treningu: {name}",
@@ -3375,8 +3447,8 @@
   "en": "This week: {list}. Tap to open the Calendar."
  },
  {
-  "pl": "Ten tydzień: deload. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.",
-  "en": "This week: deload. When you start a workout I will suggest fewer sets (about half), same weights."
+  "pl": "Ten tydzień: deload. Przy starcie treningu zaproponuję {less}, ciężary bez zmian.",
+  "en": "This week: deload. When you start a workout I will suggest {less}, same weights."
  },
  {
   "pl": "Teraz: {v}",
@@ -3417,6 +3489,10 @@
  {
   "pl": "Trening rozpoczęty o {t}, bez odhaczonych serii. Otwórz, by kontynuować albo odrzucić.",
   "en": "Workout started at {t}, no sets ticked. Open to continue or discard."
+ },
+ {
+  "pl": "Trening w pauzie od {t}.",
+  "en": "Workout paused since {t}."
  },
  {
   "pl": "Trening w toku",
@@ -3463,8 +3539,12 @@
   "en": "triceps"
  },
  {
-  "pl": "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.",
-  "en": "Your own label, e.g. a lighter week. When you start a workout I will suggest fewer sets (about half), same weights."
+  "pl": "Trwa pomiar serii",
+  "en": "Set is being timed"
+ },
+ {
+  "pl": "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję {less}, ciężary bez zmian.",
+  "en": "Your own label, e.g. a lighter week. When you start a workout I will suggest {less}, same weights."
  },
  {
   "pl": "Tydzień",
@@ -3811,8 +3891,8 @@
   "en": "In the current workout it will be marked as deleted."
  },
  {
-  "pl": "W tygodniu deload „Start” zaproponuje „Mniej serii” — ciężary i szablon bez zmian.",
-  "en": "In a deload week “Start” offers “Fewer sets” — weights and template unchanged."
+  "pl": "W tygodniu deload „Start” i „Powtórz ostatni” zaproponują „Mniej serii”: {less}; ciężary i szablon bez zmian.",
+  "en": "In a deload week “Start” and “Repeat last” offer “Fewer sets”: {less}; weights and template unchanged."
  },
  {
   "pl": "W zakładce Szablony „+ Nowy” tworzy szablon: ćwiczenia, serie, zakres powtórzeń i przerwy.",

@@ -4,7 +4,7 @@
 #   "Full gym,.*"                 ← LOCATION_PRESET_LABEL.gym.en + hint (preset: sztanga 20 kg + talerze 25…1,25)
 #   "Back Squat,.*"               ← nazwa z lib/seed.ts (picker: „{nazwa}, …”)
 #   w-0-0 / r-0-0                 ← testID pól ciężaru i powtórzeń serii (components/ActiveWorkout.tsx)
-#   "Now: 80 × 5 kg"              ← 'Teraz: {v}' (karta „teraz”, accessibilityLabel dużej liczby)
+#   "Now: 80 kg × 5"              ← 'Teraz: {v}' (karta „teraz”, accessibilityLabel dużej liczby; audyt 0.10 UI-10: jednostka przy ciężarze)
 #   "Each side: 25 \+ 5 kg"       ← 'Na każdą stronę: {p}' (components/PlateBar.tsx, accessibilityLabel rysunku)
 #   "Set done.*"                  ← 'Seria zrobiona' (przycisk karty); etykieta VoiceOver „Set done: {ex}, set {n}” zastępuje tekst
 #                                   przycisku w drzewie dostępności — sam „Set done” nie pasuje (run 37600735711, krok 27)
@@ -53,10 +53,10 @@ name: Widok skupiony i talerze
 - inputText: "5"
 # Klawiatura numeryczna nie ma akcji „schowaj” (run 37611882320: hideKeyboard nie działa) — tapnięcie w zwykły tekst karty ją chowa
 # (lista: keyboardShouldPersistTaps="handled"). W tamtym przebiegu talerze powiększały kartę i wiersz zjeżdżał pod klawiaturę — tap w
-# „r-0-0” trafiał w klawisz „3” (ciężar 8035); od wariantu A (07.10.2026) karta trzyma miejsce na grafikę, a „Now: 80 × 5 kg” to sprawdza.
+# „r-0-0” trafiał w klawisz „3” (ciężar 8035); od wariantu A (07.10.2026) karta trzyma miejsce na grafikę, a „Now: 80 kg × 5” to sprawdza.
 - tapOn: "set 1 of 1"
 - extendedWaitUntil: { visible: "Each side: 25 \\+ 5 kg", timeout: 15000 }
-- assertVisible: "Now: 80 × 5 kg"
+- assertVisible: "Now: 80 kg × 5"
 - takeScreenshot: 41-karta-teraz-talerze
 - tapOn: "Set done.*"
 - extendedWaitUntil: { visible: "All sets ticked off", timeout: 15000 }

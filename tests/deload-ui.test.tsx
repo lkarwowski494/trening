@@ -34,8 +34,9 @@ describe('A: Kalendarz', () => {
     expect(screen.getByText('Tygodnie treningu z rzędu bez deloadu: 4. Trenerzy zwykle robią deload co 4–6 tygodni — to praktyka, nie wynik badań.')).toBeTruthy();
     await tap(screen.getByText(/^Zaplanuj deload od pon\.,? 12\.10/)); await flushAll(5);
     expect(S().deloadWeeks).toEqual(['2026-10-12']);
-    expect(screen.getByText(/^Od pon\.,? 12\.10: tydzień deload\. Przy starcie treningu zaproponuję mniej serii \(około połowy\), ciężary bez zmian\.$/)).toBeTruthy();
-    const nx = 'Od {date}: tydzień deload. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.'; expect(screen.getByText(new RegExp('^' + nx.split('{date}')[0]))).toBeTruthy(); /* tekst z t() — macierz */
+    /* audyt 0.10 (MER-04, wariant A): „o około 1/3–1/2 mniej serii (np. 2 z 3)” zamiast „około połowy” (3 serie → 2) */
+    expect(screen.getByText(/^Od pon\.,? 12\.10: tydzień deload\. Przy starcie treningu zaproponuję o około 1\/3–1\/2 mniej serii \(np\. 2 z 3; ćwiczenia z 1 serią bez zmian\), ciężary bez zmian\.$/)).toBeTruthy();
+    const nx = 'Od {date}: tydzień deload. Przy starcie treningu zaproponuję {less}, ciężary bez zmian.'; expect(screen.getByText(new RegExp('^' + nx.split('{date}')[0]))).toBeTruthy(); /* tekst z t() — macierz */
     expect(screen.getByTestId('cal-deload-2026-10-12')).toBeTruthy(); expect(screen.queryByTestId('cal-deload-2026-10-05')).toBeNull();
     expect(screen.getByText('Wiersz z tłem — tydzień deload.')).toBeTruthy();
     expect(screen.getByLabelText('14 października 2026, tydzień deload')).toBeTruthy();
@@ -44,7 +45,7 @@ describe('A: Kalendarz', () => {
   });
   test('bieżący tydzień oznaczony: „Ten tydzień: deload…”; zdjęcie oznaczenia', async () => {
     await boot(() => { store.toggleDeloadWeek(NOW.getTime()); });
-    expect(screen.getByText('Ten tydzień: deload. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.')).toBeTruthy();
+    expect(screen.getByText('Ten tydzień: deload. Przy starcie treningu zaproponuję o około 1/3–1/2 mniej serii (np. 2 z 3; ćwiczenia z 1 serią bez zmian), ciężary bez zmian.')).toBeTruthy(); /* audyt 0.10 (MER-04) */
     await tap(screen.getByText('Zdejmij oznaczenie deload')); await flushAll(5); expect(S().deloadWeeks).toBeUndefined(); expect(screen.queryByTestId('deload-hint')).toBeNull();
   });
 });
@@ -86,7 +87,7 @@ describe('English', () => {
     expect(screen.getByText('Training weeks in a row without a deload: 4. Coaches usually deload every 4–6 weeks — this is practice, not a research finding.')).toBeTruthy();
     expect(screen.getByText(/^Plan a deload from /)).toBeTruthy();
     act(() => { store.toggleDeloadWeek(NOW.getTime()); }); await flushAll(5);
-    expect(screen.getByText('This week: deload. When you start a workout I will suggest fewer sets (about half), same weights.')).toBeTruthy();
+    expect(screen.getByText('This week: deload. When you start a workout I will suggest about 1/3–1/2 fewer sets (e.g. 2 of 3; exercises with 1 set unchanged), same weights.')).toBeTruthy(); /* audyt 0.10 (MER-04) */
     expect(screen.getByText('Row with background — deload week.')).toBeTruthy();
     expect(t.length).toBeGreaterThan(0);
   });

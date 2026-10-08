@@ -49,10 +49,10 @@ describe('ekran', () => {
     await tap(screen.getByLabelText('Przywróć ćwiczenie: Back Squat')); await flushAll(5);
     expect(screen.getByLabelText('Seria 1 zrobiona — Back Squat')).toBeTruthy(); expect(screen.queryByText('pominięte dziś')).toBeNull();
   });
-  test('wszystkie serie odhaczone albo pominięte → „Wszystkie serie odhaczone”; „Pomiń dziś” znika, gdy blok skończony', async () => {
+  test('reszta pominięta → „Nic więcej do zrobienia (część pominięta)” (audyt 0.10, LIVE-08: wcześniej „Wszystkie serie odhaczone”); „Pomiń dziś” znika, gdy blok skończony', async () => {
     await boot(); const w = S().active!; await act(async () => { w.exercises[0].sets.forEach(s => Object.assign(s, { weight: 100, reps: 5, done: true })); store.save(w); }); await flushAll(5);
     expect(screen.queryByLabelText('Pomiń dziś: Back Squat')).toBeNull();
-    await tap(screen.getByLabelText('Pomiń dziś: Plank')); await flushAll(5); expect(screen.getByText('Wszystkie serie odhaczone')).toBeTruthy();
+    await tap(screen.getByLabelText('Pomiń dziś: Plank')); await flushAll(5); expect(screen.getByText('Nic więcej do zrobienia (część pominięta)')).toBeTruthy(); expect(screen.queryByText('Wszystkie serie odhaczone')).toBeNull();
   });
   test('„Zakończ”: wpisane, nieodhaczone serie pominiętego bloku nie straszą ostrzeżeniem', async () => {
     await boot(); const w = S().active!; await act(async () => { Object.assign(w.exercises[1].sets[0], { durationSec: 60, done: true }); Object.assign(w.exercises[0].sets[0], { weight: 100, reps: 5 }); w.exercises[0].sets[0].edited = true; store.save(w); }); await flushAll(5);
@@ -61,10 +61,11 @@ describe('ekran', () => {
     await act(async () => { pressAlert('Zakończyć trening?', 'Zakończ'); }); await flushAll(600);
     expect(S().workouts.at(-1)!.exercises.map(e => store.exById(e.exerciseId)!.name)).toEqual(['Plank']); expect(JSON.stringify(S().templates[0].items.map(i => i.exerciseId))).toBe(JSON.stringify([ex('Back Squat').id, ex('Plank').id]));
   });
-  test('„Pomiń dziś” zatrzymuje stoper serii tego bloku (jak usunięcie ćwiczenia)', async () => {
+  test('„Pomiń dziś” zatrzymuje stoper serii tego bloku — po potwierdzeniu, bo pomiar przepada (audyt 0.10, LIVE-03)', async () => {
     store.startEmpty(); store.addExerciseToActive(ex('Plank')); await act(async () => { await store.flush(); }); await renderApp({ saved: JSON.parse(JSON.stringify(saved())) }); await flushAll(10);
     await tap(screen.getByLabelText('Start stopera serii')); expect(timer.S.on).toBe(true);
-    await tap(screen.getByLabelText('Pomiń dziś: Plank')); await flushAll(5); expect(timer.S.on).toBe(false);
+    await tap(screen.getByLabelText('Pomiń dziś: Plank')); await flushAll(5); expect(timer.S.on).toBe(true);
+    await act(async () => { pressAlert('Trwa pomiar serii', 'Pomiń dziś'); }); await flushAll(5); expect(timer.S.on).toBe(false);
   });
   test('English', async () => {
     await fresh(undefined, 'en'); tpl2(); store.startFromTemplate(S().templates[0]); await act(async () => { await store.flush(); });

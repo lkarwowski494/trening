@@ -47,6 +47,10 @@ export function EquipVisual({ v }: { v: EquipVis }) {
       const hex = bandHex(v.color);
       return box(label, <View style={{ height: 14, width: 60 + v.level * 18, borderRadius: 7, backgroundColor: hex ?? t.surface2, borderWidth: !hex || hex === '#FFFFFF' ? 1.5 : 0, borderColor: t.text }} />);
     }
+    case 'noplates': { /* audyt 0.10 (LIVE-17) */
+      const label = v.nearestKg != null ? tr('Nie da się ułożyć z talerzy ({l}) — najbliżej {v}', { l: v.place, v: fmtW(v.nearestKg) }) : tr('Nie da się ułożyć z talerzy ({l})', { l: v.place });
+      return <View accessible accessibilityLabel={label}>{caption(label)}</View>; /* podpis, nie rysunek */
+    }
     case 'bodyweight': {
       const label = v.addKg > 0 ? tr('dociążenie: {v}', { v: fmtW(v.addKg) }) : tr('asysta: {v}', { v: fmtW(-v.addKg) });
       return box(label, null);

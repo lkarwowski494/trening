@@ -33,8 +33,9 @@ for (const [loc, unit, w1, w2] of [['pl', 'kg', '100', '80'], ['en', 'lb', '225'
     await type(field(tr('Powtórzenia'), h('2F')), '4');
     await tap(screen.getByLabelText(tr('Seria {n} zrobiona — {ex}', { n: '2F', ex: bench })));
     expect(timer.T.on).toBe(false); // next is drop → no rest
-    await type(field(lbl, h('3D')), w2); await type(field(tr('Powtórzenia'), h('3D')), '8');
-    await tap(screen.getByLabelText(tr('Seria {n} zrobiona — {ex}', { n: '3D', ex: bench })));
+    /* audyt 0.10 (LIVE-14): drop set z numerem serii, po której jest — „2D” (wcześniej „3D”) */
+    await type(field(lbl, h('2D')), w2); await type(field(tr('Powtórzenia'), h('2D')), '8');
+    await tap(screen.getByLabelText(tr('Seria {n} zrobiona — {ex}', { n: '2D', ex: bench })));
     expect(timer.T.on).toBe(true);
     const a = store.getState().active!;
     expect(a.exercises[0].sets.map(s => [units.wField(s.weight), s.reps, s.kind])).toEqual([[Number(w1), 5, 'normal'], [Number(w1), 4, 'failure'], [Number(w2), 8, 'drop']]);
@@ -54,7 +55,7 @@ for (const [loc, unit, w1, w2] of [['pl', 'kg', '100', '80'], ['en', 'lb', '225'
     expect(b.exercises[1].sets[0].durationSec).toBe('');
     // displayed field values equal what was typed
     expect(String(field(lbl, h(1)).props.value)).toBe(w1);
-    for (let i = 0; i < 3; i++) await tap(screen.getByLabelText(tr('Seria {n} zrobiona — {ex}', { n: ['1', '2', '3D'][i], ex: bench })));
+    for (let i = 0; i < 3; i++) await tap(screen.getByLabelText(tr('Seria {n} zrobiona — {ex}', { n: ['1', '2', '2D'][i] /* audyt 0.10 (LIVE-14) */, ex: bench })));
     expect(stats.workoutPRs(b).length).toBe(0);
     global.__alerts.length = 0; await finish();
     expect(global.__alerts.find(x => /rekord|record/i.test(x.title))).toBeUndefined();

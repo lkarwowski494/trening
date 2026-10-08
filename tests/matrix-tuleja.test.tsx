@@ -6,7 +6,7 @@ import React from 'react';
 import { render } from '@testing-library/react-native';
 import * as store from '@/lib/store';
 import * as timer from '@/lib/timer';
-import { WORKOUT_VIEWS, hasWeight } from '@/lib/seed';
+import { WORKOUT_VIEWS, hasWeight, hasTime } from '@/lib/seed';
 import { IWF_DISC, PLATE_COLORS } from '@/lib/plates';
 import { PlateBar } from '@/components/PlateBar';
 import { addLocation } from '@/lib/locations';
@@ -20,11 +20,13 @@ afterEach(async () => { await timer.stop(); await timer.stopSet(); });
 describe('widok treningu × jednostka × metryka', () => {
   /* @matrix WORKOUT_VIEWS */
   const cases = WORKOUT_VIEWS.flatMap(v => UNITS.flatMap(u => REPS.map(r => [v, u, r.name, r.metric] as const)));
-  test.each(cases)('%s / %s / %s (%s): karta „teraz” tylko w widoku skupionym; przycisk karty odhacza tę samą serię co ✓ w wierszu', async (v, u, name) => {
+  test.each(cases)('%s / %s / %s (%s): karta „teraz” tylko w widoku skupionym; przycisk karty odhacza tę samą serię co ✓ w wierszu', async (v, u, name, metric) => {
     await fresh(); addLocation('gym'); setUnit(u); S().settings.workoutView = v; store.startEmpty(); store.addExerciseToActive(ex(name)); store.addSet(0);
     await act(async () => { await store.flush(); }); await renderApp({ saved: JSON.parse(JSON.stringify(saved())) }); await flushAll(10);
-    const btn = screen.queryByText('Seria zrobiona');
-    if (v === 'list') { expect(btn).toBeNull(); return; }
+    /* audyt 0.10 (LIVE-06, wariant A): seria na czas — duży „▶ Start” i mały „Odhacz bez pomiaru” (ten odhacza jak ✓ w wierszu) */
+    const btn = hasTime(metric) ? screen.queryByText('Odhacz bez pomiaru') : screen.queryByText('Seria zrobiona');
+    if (v === 'list') { expect(btn).toBeNull(); expect(screen.queryByText('▶ Start')).toBeNull(); return; }
+    expect(!!screen.queryByText('▶ Start')).toBe(hasTime(metric));
     expect(btn).not.toBeNull(); expect(screen.getByText('seria 1 z 2')).toBeTruthy();
     await tap(btn!); await flushAll(10);
     expect(S().active!.exercises[0].sets.map(x => x.done)).toEqual([true, false]);
@@ -35,7 +37,7 @@ describe('widok treningu × jednostka × metryka', () => {
     const a = S().active!; a.exercises[0].sets[0].weight = 80; a.exercises[0].sets[0].reps = 5; store.save(a); await act(async () => { await store.flush(); });
     await renderApp({ saved: JSON.parse(JSON.stringify(saved())) }); await flushAll(10);
     expect(screen.getByLabelText('Na każdą stronę: 25 + 5 kg')).toBeTruthy();
-    expect(screen.getByLabelText(u === 'kg' ? 'Teraz: 80 × 5 kg' : 'Teraz: 176,4 × 5 lb')).toBeTruthy();
+    expect(screen.getByLabelText(u === 'kg' ? 'Teraz: 80 kg × 5' : 'Teraz: 176,4 lb × 5')).toBeTruthy(); /* audyt 0.10 (UI-10, wariant A): jednostka przy ciężarze */
     expect(hasWeight(ex('Back Squat').metric ?? 'weight_reps')).toBe(true);
   });
 });

@@ -5,10 +5,12 @@ import { useTheme } from '@/lib/theme';
 import { toggleDeloadWeek, useTick } from '@/lib/store';
 import { deloadHint, DELOAD_EVERY } from '@/lib/deload';
 import { t, locale } from '@/lib/i18n';
+import { deloadLessText } from '@/lib/start';
 
 /*
  * Deload A w Kalendarzu (decyzja właściciela 08.10.2026): podpowiedź „zwykle co 4–6 tygodni” opisana jako praktyka trenerów, nie wynik badań
- * (docs/research/22); „Zaplanuj deload od …” oznacza następny tydzień. Oznaczony tydzień — informacja, co się stanie przy starcie treningu.
+ * (docs/research/22); „Zaplanuj deload od …” oznacza następny tydzień. Oznaczony tydzień — informacja, co się stanie przy starcie treningu
+ * (audyt 0.10, MER-04 wariant A: „o około 1/3–1/2 mniej serii (np. 2 z 3)” — zgodnie z deloadKeep, nie „około połowy”).
  */
 const keyTs = (k: string) => new Date(+k.slice(0, 4), +k.slice(5, 7) - 1, +k.slice(8, 10), 12).getTime();
 const day = (k: string) => new Date(keyTs(k)).toLocaleDateString(locale(), { weekday: 'short', day: 'numeric', month: 'numeric' });
@@ -24,7 +26,7 @@ export function DeloadHint() {
     </View>);
   return (
     <View testID="deload-hint" style={box}>
-      <Muted style={{ fontSize: 13 }}>{h.kind === 'current' ? t('Ten tydzień: deload. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.') : t('Od {date}: tydzień deload. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.', { date: day(h.from) })}</Muted>
+      <Muted style={{ fontSize: 13 }}>{h.kind === 'current' ? t('Ten tydzień: deload. Przy starcie treningu zaproponuję {less}, ciężary bez zmian.', { less: deloadLessText() }) : t('Od {date}: tydzień deload. Przy starcie treningu zaproponuję {less}, ciężary bez zmian.', { date: day(h.from), less: deloadLessText() })}</Muted>
       <Btn small kind="ghost" title={t('Zdejmij oznaczenie deload')} onPress={() => toggleDeloadWeek(h.kind === 'current' ? Date.now() : keyTs(h.from))} style={{ alignSelf: 'flex-start' }} />
     </View>);
 }

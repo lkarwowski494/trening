@@ -16,6 +16,10 @@ name: Plank ze stoperem
 - tapOn: { text: "Continue", optional: true }
 - tapOn: "Plank, body weight"
 - extendedWaitUntil: { visible: "Start set stopwatch", timeout: 30000 }
+# Audyt 0.10 (LIVE-06, wariant A): karta „teraz” serii na czas — duży „▶ Start” ('Start stopera: {ex}, seria {n}') i mały
+# „Odhacz bez pomiaru” ('Odhacz bez pomiaru: {ex}, seria {n}'); etykieta VoiceOver zastępuje tekst przycisku w drzewie dostępności
+- assertVisible: "Start stopwatch: Plank, set 1"
+- assertVisible: "Tick without timing: Plank, set 1"
 - tapOn: { text: "Start set stopwatch", index: 0 }
 - assertVisible: "Finish set"
 - takeScreenshot: 08-stoper

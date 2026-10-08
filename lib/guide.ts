@@ -1,5 +1,6 @@
 import { getState, save } from '@/lib/store';
 import { t } from '@/lib/i18n';
+import { deloadLessText } from '@/lib/start';
 
 /*
  * Przewodnik po najważniejszych funkcjach (decyzja właściciela 08.10.2026, wariant A): tematy z 2–4 krokami i przyciskiem „Pokaż”, który otwiera
@@ -34,7 +35,7 @@ export const GUIDE: GuideTopic[] = [
   { id: 'deload', route: '/history', title: () => t('Deload'), steps: () => [
     t('Po kilku tygodniach treningu z rzędu Kalendarz podpowie „Zaplanuj deload od …”.'),
     t('Tydzień oznaczysz też w Postępach przełącznikiem „Tydzień deload”.'),
-    t('W tygodniu deload „Start” zaproponuje „Mniej serii” — ciężary i szablon bez zmian.'),
+    t('W tygodniu deload „Start” i „Powtórz ostatni” zaproponują „Mniej serii”: {less}; ciężary i szablon bez zmian.', { less: deloadLessText() }), /* audyt 0.10 (D1, MER-04) */
   ] },
   { id: 'progress', route: '/more/progress', title: () => t('Postępy i rekordy'), steps: () => [
     t('Więcej → Postępy: podsumowanie tygodnia lub miesiąca z poprzednim okresem obok.'),

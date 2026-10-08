@@ -207,7 +207,7 @@ describe('UNITS — kg ↔ lb: dane zawsze w kg, jednostka tylko na wejściu i w
 
 describe('UNITS × METRICS na ekranie sesji w historii', () => {
   /* @matrix UNITS */ /* @matrix METRICS */ /* @matrix SET_KINDS */
-  test.each(UNITS)('%s: objętość sesji, wartości serii i oznaczenia typów (W, 1, 2F, 3D) dla każdej metryki', async (u) => {
+  test.each(UNITS)('%s: objętość sesji, wartości serii i oznaczenia typów (W, 1, 2F, 2D — audyt 0.10 LIVE-14: drop z numerem swojej serii) dla każdej metryki', async (u) => {
     await fresh(); setUnit(u); const exs = REPS.map(r => S().exercises.find(e => e.name === r.name)!);
     store.startEmpty(); const a = S().active!; a.startedAt = Date.now() - 3600e3; exs.forEach(ex => store.addExerciseToActive(ex));
     a.exercises.forEach((b, i) => { store.addSet(i, 'warmup'); store.addSet(i); store.addSet(i, 'drop'); b.sets[2].kind = 'failure'; b.sets.forEach((st, si) => fill(exs[i], REPS[i], u, st, KINDS_ORDER[si])); });
@@ -217,7 +217,7 @@ describe('UNITS × METRICS na ekranie sesji w historii', () => {
     await renderApp({ saved: JSON.parse(JSON.stringify(S())), url: `/history/${w.id}` }); await flushAll(10);
     expect(screen.getAllByText(new RegExp(`objętość ${Math.round(volDisp)} ${u}$`)).length).toBe(1);
     const cells = (() => { const out: string[] = []; const walk = (x: any) => { if (!x) return; if (typeof x === 'string') { out.push(x); return; } if (Array.isArray(x)) { x.forEach(walk); return; } if (x.props?.testID === 'week-tiles') return; /* kafelki dashboardu na zakładce Trening (08.10.2026) — inny ekran */ walk(x.children); }; walk(screen.toJSON()); return out; })();
-    for (const mark of ['W', '1', '2F', '3D']) expect([mark, cells.filter(c => c === mark).length]).toEqual([mark, REPS.length]);
+    for (const mark of ['W', '1', '2F', '2D']) expect([mark, cells.filter(c => c === mark).length]).toEqual([mark, REPS.length]);
     for (const [i, r] of REPS.entries()) { if (!hasWeight(r.metric)) continue;
       for (const k of KINDS_ORDER) { const v = loadDisp(r, u, k); const txt = fmtPl(Number(v) || 0); expect([exs[i].name, k, cells.includes(txt)]).toEqual([exs[i].name, k, true]); } }
   });

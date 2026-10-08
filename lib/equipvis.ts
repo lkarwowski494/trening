@@ -1,6 +1,6 @@
 import { getState, exById, isBW, locationById, listLocFor, pinnedImpl, liveBlockImpl } from './store';
 import { loadsFor, plateSpecFor } from './equipment';
-import { hasLoad } from './loads';
+import { hasLoad, achievable } from './loads';
 import { platesPerSide, type PlatePlan } from './plates';
 import { hasWeight, type Exercise, type Impl, type WExercise, type WSet, type Workout } from './seed';
 
@@ -15,7 +15,9 @@ export type EquipVis =
   | { kind: 'dumbbell' | 'kettlebell'; n: 1 | 2; eachKg: number }
   | { kind: 'electric'; kg: number }
   | { kind: 'band'; color: string; level: number; role: 'resist' | 'assist' }
-  | { kind: 'bodyweight'; addKg: number };
+  | { kind: 'bodyweight'; addKg: number }
+  /** Audyt 0.10 (LIVE-17): ciężaru nie da się ułożyć z talerzy miejsca — podpis z miejscem i najbliższym osiągalnym ciężarem (null — żaden). */
+  | { kind: 'noplates'; place: string; nearestKg: number | null };
 
 const SOURCE_IMPL: Partial<Record<NonNullable<Exercise['loadSource']>, Impl>> = { barbell: 'barbell', ez_bar: 'ez_bar', trap_bar: 'trap_bar', dumbbell: 'dumbbell', kettlebell: 'kettlebell', cable: 'cable', machine_stack: 'machine' };
 /** Przyrząd bloku: z miejsca treningu albo (bez miejsc) z rodzaju obciążenia ćwiczenia. Maszyna z talerzami (plate_loaded) — bez grafiki stosu. */
@@ -30,6 +32,10 @@ export function stackWindow(loads: readonly number[], kg: number, size = 5): { k
   return loads.slice(from, to).map((v, j) => ({ kg: v, pin: from + j === i }));
 }
 
+/** Najbliższy ciężar z listy osiągalnych (kg); remis — lżejszy; pusta lista — null (audyt 0.10, LIVE-17). */
+export function nearestLoad(loads: readonly number[], kg: number): number | null {
+  let best: number | null = null; for (const v of loads) if (best == null || Math.abs(v - kg) < Math.abs(best - kg) - 1e-9) best = v; return best;
+}
 /** Grafiki dla serii (kolejność wyświetlania): obciążenie przyrządu, potem guma. Pusta lista — bez grafiki (sama liczba na karcie). */
 export function equipVisFor(w: Workout, e: WExercise, set: WSet): EquipVis[] {
   const ex = exById(e.exerciseId); if (!ex) return [];
@@ -37,7 +43,8 @@ export function equipVisFor(w: Workout, e: WExercise, set: WSet): EquipVis[] {
   if (isBW(ex)) { const a = Number(set.addKg); if (hasWeight(m) && set.addKg !== '' && set.addKg != null && a) out.push({ kind: 'bodyweight', addKg: a }); }
   else if (hasWeight(m) && kg != null) {
     const impl = implFor(w, e); const loc = locationById(listLocFor(e, w.locationId));
-    if (impl === 'barbell' || impl === 'ez_bar' || impl === 'trap_bar') { const plan = platesPerSide(kg, plateSpecFor(ex, loc, pinnedImpl(e))); if (plan) out.push({ kind: 'plates', plan }); }
+    if (impl === 'barbell' || impl === 'ez_bar' || impl === 'trap_bar') { const spec = plateSpecFor(ex, loc, pinnedImpl(e)); const plan = platesPerSide(kg, spec);
+      if (plan) out.push({ kind: 'plates', plan }); else if (spec && loc) out.push({ kind: 'noplates', place: loc.name, nearestKg: nearestLoad(achievable(spec), kg) }); /* audyt 0.10 (LIVE-17): zamiast pustego miejsca */ }
     else if (impl === 'dumbbell' || impl === 'kettlebell') { const mode = ex.loadMode ?? 'total'; out.push(mode === 'unilateral' ? { kind: impl, n: 1, eachKg: kg } : mode === 'per_dumbbell' ? { kind: impl, n: 2, eachKg: kg } : { kind: impl, n: (ex.implements ?? 1) === 2 ? 2 : 1, eachKg: (ex.implements ?? 1) === 2 ? kg / 2 : kg }); }
     else if (impl === 'electric') out.push({ kind: 'electric', kg });
     else if (impl === 'machine' || impl === 'cable') { const l = loadsFor(ex, loc, pinnedImpl(e)); out.push({ kind: 'stack', kg, window: l.kind === 'loads' ? stackWindow(l.loads, kg) : null }); }

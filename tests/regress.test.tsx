@@ -183,7 +183,9 @@ describe('runda 2 — ekrany', () => {
   test('R2-20 ostrzeżenie przy zakończeniu nie liczy wartości z podpowiedzi', async () => {
     await renderApp({ saved: seedWithDemo() }); await tap(screen.getByLabelText('Start: Upper A')); await flushAll(10);
     await tap(screen.getAllByLabelText(/^Seria 1 zrobiona/)[0]); await tap(screen.getAllByText('Zakończ')[0]);
-    const a = global.__alerts[global.__alerts.length - 1]; expect(a.msg).not.toMatch(/Nieodhaczone/);
+    const a = global.__alerts[global.__alerts.length - 1]; expect(a.msg).not.toMatch(/z wpisanymi wynikami/);
+    /* audyt 0.10 (LIVE-05, wariant B): serie wstawione z planu w zaczętym ćwiczeniu są teraz policzone osobną linią (wcześniej przepadały bez słowa) */
+    expect(a.msg).toMatch(/^Zapisane zostaną serie robocze: 1\.\nNieodhaczone serie: [1-9]\d* — nie zostaną zapisane\./);
   });
   test('R2-21 numer serii w dostępności i menu = numer na ekranie (po rozgrzewce)', async () => {
     await renderApp(); await act(async () => { store.startEmpty(); store.addExerciseToActive(ex('Back Squat')); store.addSet(0); }); await flushAll(10);
@@ -847,12 +849,14 @@ describe('runda 22', () => {
 
 describe('runda 23', () => {
   afterEach(async () => { try { store.getState(); } catch { return; } await timer.stop(); await timer.stopSet(); });
-  test('R23-01 podpis przerwy w supersecie wskazuje pierwsze ćwiczenie następnej rundy; odznaczenie go nie zmienia', async () => {
+  test('R23-01 podpis przerwy w supersecie wskazuje pierwsze ćwiczenie następnej rundy; po odznaczeniu — to, co karta „teraz” (audyt 0.10, LIVE-04)', async () => {
     await renderApp(); await act(async () => { store.startEmpty(); store.addExerciseToActive(ex('Back Squat')); store.addExerciseToActive(ex('Leg Press')); const a = store.getState().active!; store.linkWithNext(a.exercises, 0, a); store.addSet(0); store.addSet(1); }); await flushAll(10);
     await tap(screen.getAllByLabelText(/^Seria 1 zrobiona — Back Squat/)[0]); await tap(screen.getAllByLabelText(/^Seria 1 zrobiona — Leg Press/)[0]); await flushAll(10);
     expect(timer.T.sub).toBe('Back Squat · seria 2');
     await tap(screen.getAllByLabelText(/^Seria 1 zrobiona — Back Squat/)[0]); await flushAll(10); // odznaczenie innej serii
-    global.__la.length = 0; await act(async () => { await timer.adjust(15); }); const up = (global.__la as any[]).find(x => x[0] === 'update'); expect(up?.[1]).toBe('Back Squat · seria 2');
+    /* audyt 0.10 (LIVE-04): podpis liczony regułą karty — po odznaczeniu Back Squat 1 następna jest właśnie ta seria (wcześniej podpis zostawał „seria 2”, inaczej niż karta) */
+    expect(timer.T.sub).toBe('Back Squat · seria 1'); expect(store.focusSet(store.getState().active)).toEqual({ ei: 0, si: 0 });
+    global.__la.length = 0; await act(async () => { await timer.adjust(15); }); const up = (global.__la as any[]).find(x => x[0] === 'update'); expect(up?.[1]).toBe('Back Squat · seria 1');
   });
 });
 
@@ -1540,7 +1544,7 @@ describe('runda 59', () => {
     await renderApp(); const e = ex('Bulgarian Split Squat (hantle)'); e.loadMode = 'unilateral'; store.save(e);
     const w = addWorkout(Date.now() - 86400e3, [['Bulgarian Split Squat (hantle)', [{ weight: 20, reps: 8 }, { weight: 10, reps: 8, kind: 'drop' } as any]]]);
     await go(`/more/progress?ex=${e.id}`); await flushAll(10); expect(screen.getByText('Max ciężar (na stronę)')).toBeTruthy();
-    await go(`/history/${w.id}`); await flushAll(10); expect(screen.getByLabelText(/^#: 2 drop set,/)).toBeTruthy();
+    await go(`/history/${w.id}`); await flushAll(10); expect(screen.getByLabelText(/^#: 1 drop set,/)).toBeTruthy(); /* audyt 0.10 (LIVE-14): drop serii 1 („1D”, wcześniej „2D”) */
   });
 });
 
