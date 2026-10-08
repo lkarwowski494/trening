@@ -2336,6 +2336,10 @@
   "en": "Rickshaw"
  },
  {
+  "pl": "RIR — powtórzenia w zapasie: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR; Zourdos i in., JSCR 2016). Zapisane wartości przeliczają się przy zmianie skali.",
+  "en": "RIR — reps in reserve: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR; Zourdos et al., JSCR 2016). Saved values convert when you switch scales."
+ },
+ {
   "pl": "robione {n}×",
   "en": "done {n}×"
  },
@@ -2548,6 +2552,10 @@
  {
   "pl": "Skakanka",
   "en": "Jump rope"
+ },
+ {
+  "pl": "Skala wysiłku",
+  "en": "Effort scale"
  },
  {
   "pl": "ski erg",

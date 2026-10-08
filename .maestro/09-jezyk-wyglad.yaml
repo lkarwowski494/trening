@@ -114,3 +114,20 @@ name: Język, wygląd i jednostka
 - assertVisible: "kg"
 - assertNotVisible: "lb"
 - takeScreenshot: 56-jednostka-kg
+
+# --- Skala wysiłku RPE / RIR (pakiet C, 08.10.2026; app/more/settings.tsx): przełącznik „RPE / RIR per set” (testID sw-RPE / RIR per set),
+# „Effort scale” ('Skala wysiłku'), wybór „RIR”; w treningu nagłówek kolumny „RIR”.
+- tapOn: "More, tab.*"
+- extendedWaitUntil: { visible: "Settings", timeout: 30000 }
+- tapOn: "Settings"
+- extendedWaitUntil: { visible: "Weight unit", timeout: 30000 }
+- scrollUntilVisible: { element: { id: "sw-RPE / RIR per set" }, direction: DOWN, timeout: 20000 }
+- tapOn: { id: "sw-RPE / RIR per set" }
+- scrollUntilVisible: { element: "RIR", direction: DOWN, timeout: 20000 }
+- tapOn: "RIR"
+- takeScreenshot: 57-skala-rir
+- tapOn: "Back"
+- tapOn: "Workout, tab.*"
+- extendedWaitUntil: { visible: "Set 1 done — Bench Press \\(Barbell\\)", timeout: 30000 }
+- scrollUntilVisible: { element: "RIR", direction: DOWN, timeout: 20000 }
+- takeScreenshot: 58-trening-kolumna-rir

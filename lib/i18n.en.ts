@@ -372,4 +372,6 @@ export const EN: Record<string, string> = {
   'Wznów trening': 'Resume workout',
   'Pauza treningu': 'Pause workout',
   'Zegar treningu stoi i pauza nie wlicza się do czasu trwania. Przerwa między seriami liczy dalej; odhaczenie serii wznawia trening.': 'The workout clock is stopped and the pause does not count towards the duration. The rest timer keeps running; ticking off a set resumes the workout.',
+  'Skala wysiłku': 'Effort scale',
+  'RIR — powtórzenia w zapasie: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR; Zourdos i in., JSCR 2016). Zapisane wartości przeliczają się przy zmianie skali.': 'RIR — reps in reserve: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR; Zourdos et al., JSCR 2016). Saved values convert when you switch scales.',
 };

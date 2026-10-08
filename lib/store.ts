@@ -314,6 +314,7 @@ export function migrate(raw: any): State {
     sound: typeof s.sound === 'boolean' ? s.sound : d.sound,
     wakeLock: typeof s.wakeLock === 'boolean' ? s.wakeLock : d.wakeLock,
     showRpe: typeof s.showRpe === 'boolean' ? s.showRpe : d.showRpe,
+    ...(s.effortScale === 'rir' ? { effortScale: 'rir' as const } : {}), /* pakiet C: tylko wybór RIR zapisany — dane sprzed zmiany przechodzą 1:1 (swap-schema16) */
     healthSync: typeof s.healthSync === 'boolean' ? s.healthSync : d.healthSync,
     progressHint: typeof s.progressHint === 'boolean' ? s.progressHint : d.progressHint, autoBackup: typeof s.autoBackup === 'boolean' ? s.autoBackup : d.autoBackup, weighReminder: typeof s.weighReminder === 'boolean' ? s.weighReminder : d.weighReminder, /* runda 75 */
     modules: (() => { const mods = { ...defaultModules(), ...(isObj(s.modules) ? s.modules : {}) }; MODULES.forEach(m => { if (typeof mods[m] !== 'boolean') mods[m] = false; }); mods.training = true; return mods; })(),
@@ -680,7 +681,7 @@ export function setSummary(ex: Exercise, s: WSet, load: 'shown' | 'calc' = 'show
   else if (m === 'weight_time') core = `${fmtW(l, false)}${wu()}×${fmtSec(Number(s.durationSec) || 0)}`;
   else if (m === 'reps') core = `${s.reps || 0}`;
   else { core = isBW(ex) ? `${s.reps || 0}${l ? '@' + (l > 0 ? '+' : '') + fmtW(l, false) : ''}` : `${fmtW(l, false)}×${s.reps || 0}`; }
-  return core + (b ? ` (${shortBand(b)})` : '') + (s.rpe !== '' && s.rpe != null ? ` @${fmtNum(Number(s.rpe), 1)}` : '');
+  return core + (b ? ` (${shortBand(b)})` : '') + (s.rpe !== '' && s.rpe != null ? (effortScale() === 'rir' ? ` RIR ${fmtNum(effortOut(Number(s.rpe)), 1)}` : ` @${fmtNum(Number(s.rpe), 1)}`) : '');
 }
 /** Wynik serii do porównań „najlepsza seria”: ciężar×1000+pow. / czas / dystans (przy równym dystansie krótszy czas lepszy). */
 export function setScore(ex: Exercise, s: WSet): number {
@@ -692,6 +693,16 @@ export function setScore(ex: Exercise, s: WSet): number {
   return setLoad(ex, s) * 1000 + repsOf(s);
 }
 /** Czy seria ma jakikolwiek wpisany wynik (do autouzupełniania i podsumowań). */
+/* ---------- skala wysiłku (pakiet C, 08.10.2026): w danych zawsze RPE; RIR = 10 − RPE (Zourdos i in., JSCR 2016: „RPE-10 = 0-RIR, RPE-9 = 1-RIR”) ---------- */
+export const effortScale = (): 'rpe' | 'rir' => (S?.settings.effortScale === 'rir' ? 'rir' : 'rpe');
+export const effortLabel = () => (effortScale() === 'rir' ? 'RIR' : 'RPE');
+const clamp10 = (v: number) => Math.min(10, Math.max(0, Math.round(v * 10) / 10));
+/** Zapisane RPE → wartość pokazywana w bieżącej skali. */
+export const effortOut = (rpe: number) => (effortScale() === 'rir' ? clamp10(10 - rpe) : rpe);
+/** Wpisana wartość w bieżącej skali → RPE do zapisu ('' = puste). */
+export const effortIn = (v: number | ''): number | '' => (v === '' ? '' : clamp10(effortScale() === 'rir' ? 10 - v : v));
+/** Wartość pola wysiłku do wyświetlenia w polu edycji. */
+export const effortField = (rpe: number | '' | null | undefined): number | '' => (rpe === '' || rpe == null ? '' : effortOut(Number(rpe)));
 export const setHasValue = (s: WSet) => [s.weight, s.reps, s.durationSec, s.distanceM, s.addKg].some(v => v !== '' && v != null);
 export function volume(w: Workout): number {
   let v = 0;
