@@ -1,0 +1,1784 @@
+[
+ {
+  "name": "Cable Crunch",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "recommended": [
+    "floor_mat",
+    "cable.rope"
+   ]
+  },
+  "sources": [
+   "S32",
+   "L6-S1",
+   "L6-S18"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Klękając, lina na górnym wyciągu. Partie bez zmian (brzuch, EMG jak w crunchu). Do zalecanych dopisać linę — spójnie ze Standing Rope Crunch i wersją ze skrętami."
+ },
+ {
+  "name": "Crunch",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "S32",
+   "L6-S1",
+   "L6-S2",
+   "L6-S18"
+  ],
+  "confidence": "mocne",
+  "note": "Brzuszek: prosty brzucha główny w EMG trzech zespołów (Escamilla 2006/2010, Maeo 2013 w S32: RA ~45% MVIC)."
+ },
+ {
+  "name": "Hanging Knee Raise",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L6-S1",
+   "L6-S7"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Escamilla 2006: „hanging knee-up with straps” wśród najwyższych RA, IO, EO i najszerszego; ACE/SDSU: captain's chair 1. dla skośnych, 2. dla RA. Wcześniej (docs 24) bez źródła. Uproszczenie: zginacze bioder (biodrowo-lędźwiowy) nie mają partii w aplikacji."
+ },
+ {
+  "name": "Hanging Leg Raise",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L6-S1",
+   "L6-S7"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Analogia do unoszenia kolan w zwisie (S1, S7); zginacze bioder pracują mocno — nazwane uproszczenie (brak partii)."
+ },
+ {
+  "name": "Reverse Crunch",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "muscleLoad": {
+    "abs": 1,
+    "obliques": 0.5
+   }
+  },
+  "sources": [
+   "L6-S1",
+   "L6-S7",
+   "L6-S19"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Escamilla 2006 (reverse crunch 30°: wysokie RA, IO); ACE/SDSU: 3. miejsce dla skośnych (zwykły crunch 11.). Skośne 0,25 → 0,5, spójnie z Hanging Knee Raise."
+ },
+ {
+  "name": "3/4 Sit-Up",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Sit Up",
+  "fixes": {},
+  "sources": [
+   "L6-S17"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Sit-up z niepełnym zakresem w dół — ten sam ruch co Sit Up; wariant zakresu, nie osobne ćwiczenie."
+ },
+ {
+  "name": "Bicycle Crunch",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L6-S7"
+  ],
+  "confidence": "jedno źródło",
+  "note": "ACE/SDSU (EMG, raport prasowy, nierecenzowany): 1. dla RA, 2. dla skośnych — zgodne z abs 1 / obliques 1."
+ },
+ {
+  "name": "Bosu Ball Cable Crunch With Side Bends",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S17",
+   "S32"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Rzadki wariant (bosu + dwa dolne wyciągi). Wymagania zgodne z opisem źródła listy."
+ },
+ {
+  "name": "Bottoms Up",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Reverse Crunch",
+  "fixes": {},
+  "sources": [
+   "L6-S17",
+   "L6-S19"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Opis: przyciągnięcie kolan, wyprost nóg pionowo i uniesienie miednicy — odwrotny brzuszek z wyprostem nóg. Duplikat funkcjonalny."
+ },
+ {
+  "name": "Butt-Ups",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S17"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Unoszenie bioder z podporu na przedramionach; przestarzały wariant, partie jako uproszczenie."
+ },
+ {
+  "name": "Cable Reverse Crunch",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S17",
+   "L6-S1"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Odwrotny brzuszek z oporem wyciągu (opaski na kostki) — analogia do S1."
+ },
+ {
+  "name": "Cable Seated Crunch",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S17",
+   "S32"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Wariant Cable Crunch na siedząco (ławka tyłem do górnego wyciągu) — wymagania zgodne."
+ },
+ {
+  "name": "Cocoons",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S17",
+   "S32"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Tuck-up (kolana i ręce spotykają się nad tułowiem); analogia do V-sits (S32)."
+ },
+ {
+  "name": "Cross-Body Crunch",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L6-S8",
+   "L6-S7"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Skręt tułowia przy zgięciu — skośne „twisting at waist” (OpenStax). Cel scalenia dla Oblique Crunches."
+ },
+ {
+  "name": "Crunch - Hands Overhead",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S7"
+  ],
+  "confidence": "jedno źródło",
+  "note": "„Long arm crunch” — w ACE/SDSU osobna pozycja (6. dla RA vs crunch 11.), więc nie duplikat; wariant dźwigni."
+ },
+ {
+  "name": "Crunch - Legs On Exercise Ball",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S17",
+   "L6-S18"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Crunch z łydkami na piłce; analogia do crunchu."
+ },
+ {
+  "name": "Decline Crunch",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "S32",
+   "L6-S1"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Crunch na ławce skośnej w dół (analogia do crunchu)."
+ },
+ {
+  "name": "Decline Oblique Crunch",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S17",
+   "L6-S8"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Skośny brzuszek na ławce skośnej; skośne główne (OpenStax)."
+ },
+ {
+  "name": "Decline Reverse Crunch",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S1"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Escamilla 2006 badał właśnie odwrotny brzuszek na skosie 30° (wysokie RA)."
+ },
+ {
+  "name": "Exercise Ball Pull-In",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "name": "Stability Ball Knee Tuck"
+  },
+  "sources": [
+   "L6-S2",
+   "L6-S25"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Ustalona nazwa w ACE: „Stability Ball Knee Tucks”; w katalogu inne ćwiczenia z piłką mają prefiks „Stability Ball”. Escamilla 2010: knee-up na piłce — umiarkowane RA, najszerszy 17–25% MVIC."
+ },
+ {
+  "name": "Frog Sit-Ups",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S17"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Wariant sit-upu z ułożeniem „żaby”; partie analogią do sit-upu."
+ },
+ {
+  "name": "GHD Sit Up",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S17",
+   "L6-S1"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Wymaga GHD; mocny udział zginaczy bioder (quads 0,25 przez prosty uda — zgodnie z S1 dla sit-upu)."
+ },
+ {
+  "name": "Gorilla Chin/Crunch",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S17"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Podciągnięcie podchwytem z jednoczesnym podciągnięciem kolan; partie (core + plecy) uproszczenie."
+ },
+ {
+  "name": "Hanging Alternating Knee Raise",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Hanging Knee Raise",
+  "fixes": {},
+  "sources": [
+   "L6-S17",
+   "L6-S1"
+  ],
+  "confidence": "jedno źródło",
+  "note": "W źródle „Wind Sprints” — naprzemienne unoszenie kolan w zwisie; ten sam ruch co Hanging Knee Raise."
+ },
+ {
+  "name": "Janda Sit-Up",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S17"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Sit-up z napięciem pośladków/dwugłowych (hamowanie zginaczy bioder) — rzadki wariant."
+ },
+ {
+  "name": "Kneeling Cable Crunch With Alternating Oblique Twists",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S17",
+   "L6-S8"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Wariant Cable Crunch ze skrętem; skośne 1 zgodne z funkcją (OpenStax)."
+ },
+ {
+  "name": "L-Sit",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Znane ćwiczenie gimnastyczne (izometria); nie znaleziono przeczytanego źródła partii — core jako uproszczenie, zginacze bioder bez partii."
+ },
+ {
+  "name": "Leg Pull-In",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S17"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Przyciąganie kolan z wyprostu w leżeniu (bez uniesienia miednicy) — bliskie Reverse Crunch/Lying Leg Raise; kandydat do scalenia, decyzja produktowa."
+ },
+ {
+  "name": "Lying Leg Raise",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "S32"
+  ],
+  "confidence": "jedno źródło",
+  "note": "S32 (Park & Park 2019): bilateral leg raise aktywuje RA ~64% MVIC. Zginacze bioder bez partii — uproszczenie."
+ },
+ {
+  "name": "Machine Crunch",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L6-S32"
+  ],
+  "confidence": "jedno źródło",
+  "note": "ACE „Seated Crunch” (maszyna, cel: Abs)."
+ },
+ {
+  "name": "Oblique Crunches",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Cross-Body Crunch",
+  "fixes": {},
+  "sources": [
+   "L6-S17"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Opis źródła: łokieć do przeciwnego kolana, stopy na podwyższeniu — ten sam skręt co Cross-Body Crunch; nazwa „Oblique Crunches” myli się z „Oblique Crunches - On The Floor” (bokiem)."
+ },
+ {
+  "name": "Otis-Up",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S17"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Sit-up z wyciśnięciem talerza nad głowę; partie uproszczenie."
+ },
+ {
+  "name": "Press Sit-Up",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S17"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Sit-up na ławce skośnej z wyciskaniem sztangi; partie uproszczenie."
+ },
+ {
+  "name": "Scissor Kick",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S17",
+   "S32"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Wariant unoszenia nóg w leżeniu (S32: leg raise)."
+ },
+ {
+  "name": "Seated Flat Bench Leg Pull-In",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S17"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Przyciąganie kolan w siadzie na ławce."
+ },
+ {
+  "name": "Sit Up",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "muscleLoad": {
+    "abs": 1,
+    "obliques": 0.25,
+    "quads": 0.25
+   }
+  },
+  "sources": [
+   "S32",
+   "L6-S1",
+   "L6-S2",
+   "L6-S3"
+  ],
+  "confidence": "umiarkowane",
+  "note": "RA ~43% MVIC (Maeo w S32). Prosty uda: „Rectus femoris muscle EMG activity was highest for … bent-knee sit-up” (S1), podobnie S3 — dopisać quads 0,25 (spójnie z 3/4 Sit-Up i GHD Sit Up)."
+ },
+ {
+  "name": "Smith Machine Hip Raise",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S17"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Obciążony odwrotny brzuszek w suwnicy Smitha — rzadki."
+ },
+ {
+  "name": "Stability Ball Crunch",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L6-S7",
+   "L6-S26"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ACE/SDSU: crunch na piłce 3. ogółem; ACE „Stability Ball Sit-ups / Crunches” (Abs)."
+ },
+ {
+  "name": "Standing Rope Crunch",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S17"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Stojąca wersja Cable Crunch."
+ },
+ {
+  "name": "Supine One-Arm Overhead Throw",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S17",
+   "L6-S5"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Sit-up z rzutem piłki lekarskiej (potrzebna ściana/partner); wzorzec core_flexion poprawny (ruch = sit-up)."
+ },
+ {
+  "name": "Supine Two-Arm Overhead Throw",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S17",
+   "L6-S5"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Jak wyżej, oburącz."
+ },
+ {
+  "name": "Suspended Reverse Crunch",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S28",
+   "S32"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ACE „TRX Suspended Knee Tucks” (Abs, Chest); S32 (Cugliari 2017): suspended knee-tuck — wysokie RA."
+ },
+ {
+  "name": "Toe Touchers",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S31"
+  ],
+  "confidence": "jedno źródło",
+  "note": "ACE „Vertical Toe Touches” (Abs)."
+ },
+ {
+  "name": "Toes to Bar",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L6-S1"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Analogia do unoszenia nóg w zwisie (S1); zginacze bioder bez partii."
+ },
+ {
+  "name": "Tuck Crunch",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S7",
+   "L6-S17"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Crunch z udami pionowo; ACE/SDSU „vertical leg crunch” 4. dla RA."
+ },
+ {
+  "name": "V-Up",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "muscleLoad": {
+    "abs": 1,
+    "obliques": 0.5
+   }
+  },
+  "sources": [
+   "S32",
+   "L6-S30"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Maeo 2013 (w S32): V-sits RA ~80%, EO ~66% MVIC — skośne 0,25 → 0,5."
+ },
+ {
+  "name": "Weighted Sit-Ups - With Bands",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S17"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Sit-up na ławce skośnej z oporem gum; nazwa ze źródła nieporęczna — rzadki wariant."
+ },
+ {
+  "name": "Ab Wheel",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "S32",
+   "L6-S1",
+   "L6-S2"
+  ],
+  "confidence": "mocne",
+  "note": "Roll-out: najwyższe RA/EO/IO i najszerszy (Escamilla 2006 i 2010; S32) — lats 0,5 uzasadnione."
+ },
+ {
+  "name": "Dead Bug",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L6-S23"
+  ],
+  "confidence": "jedno źródło",
+  "note": "ACE „Supine Dead Bug” (Abs). W docs 24 bez źródła — teraz jedno."
+ },
+ {
+  "name": "Hollow Hold",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Uwaga: „hollowing” w badaniach EMG to wciąganie brzucha (inne ćwiczenie) — nie użyto. Bez przeczytanego źródła."
+ },
+ {
+  "name": "Plank",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "S32",
+   "L6-S22"
+  ],
+  "confidence": "mocne",
+  "note": "S32 (RA ~78% MVIC) i ACE Front Plank."
+ },
+ {
+  "name": "Barbell Ab Rollout",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "name": "Standing Barbell Rollout"
+  },
+  "sources": [
+   "L6-S17",
+   "L6-S2"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Wg opisu źródła to roll-out z pozycji pompki (ze stóp); obok jest „Rollout (sztanga)” z klęku — nazwa myląca. Propozycja nazwy opisowej."
+ },
+ {
+  "name": "Barbell Rollout from Bench",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S17"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Roll-out z klęku na ławce."
+ },
+ {
+  "name": "Dragon Flag",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Zaawansowane; nie znaleziono przeczytanego źródła EMG."
+ },
+ {
+  "name": "Rollout (sztanga)",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L6-S29",
+   "L6-S1"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ACE „Roll Out” (sztanga, z klęku, Abs) — dokładnie to ćwiczenie; analogia do Ab Wheel."
+ },
+ {
+  "name": "Suspended Fallout",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S27",
+   "S32"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ACE „TRX Front Rollout”; S32: suspended roll-out — najwyższe RA."
+ },
+ {
+  "name": "Bird Dog",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "S32",
+   "L6-S21"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ACE: Abs, Back, Butt/Hips — zgodne z obciążeniem."
+ },
+ {
+  "name": "Pallof Press",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "loadMode": "unilateral"
+  },
+  "sources": [
+   "L6-S15",
+   "L6-S8"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Pilotaż EMG (n=4, abstrakt): skośne aktywne w wersji anty-rotacyjnej i rotacyjnej. Wykonywane na stronę — tryb „unilateral” spójnie z Pallof Press With Rotation, Cable Woodchop (dziś „total” z reguły sprzętu linki)."
+ },
+ {
+  "name": "Pallof Press With Rotation",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S15"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Wariant rotacyjny Pallof (S15)."
+ },
+ {
+  "name": "Plank Shoulder Taps",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L6-S51"
+  ],
+  "confidence": "jedno źródło",
+  "note": "ACE „Single Arm Plank” (podpór z odrywaniem dłoni do biodra, Abs)."
+ },
+ {
+  "name": "Russian Twist",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L6-S8",
+   "L6-S34"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Rotacja: skośne „twisting at waist” (OpenStax); ACE V-twist (siad, skręty). Cel scalenia dla Plate Twist."
+ },
+ {
+  "name": "Side Plank",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "muscleLoad": {
+    "obliques": 1,
+    "abs": 0.5,
+    "abductors": 0.5,
+    "side_delt": 0.25,
+    "lower_back": 0.25
+   }
+  },
+  "sources": [
+   "S32",
+   "L6-S3",
+   "L6-S24"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Escamilla 2016: „Lumbar paraspinal activity was significantly greater in the 3 side position exercises” — dopisać lower_back 0,25."
+ },
+ {
+  "name": "Alternate Heel Touchers",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S17",
+   "L6-S8"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Skłony boczne w leżeniu; skośne (zgięcie boczne)."
+ },
+ {
+  "name": "Barbell Side Bend",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S8"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Skłon boczny ze sztangą na plecach; skośne i czworoboczny lędźwi (OpenStax)."
+ },
+ {
+  "name": "Bent Press",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S17"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Historyczny bój strongmana (wyciskanie z odchyleniem tułowia); partie uproszczenie."
+ },
+ {
+  "name": "Cable Judo Flip",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S17",
+   "L6-S8"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Rotacyjne przeciąganie liny z dolnego wyciągu."
+ },
+ {
+  "name": "Cable Russian Twists",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S17",
+   "L6-S33"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Skręty na piłce z wyciągiem (ACE Russian Twist to wersja na piłce bez wyciągu)."
+ },
+ {
+  "name": "Cable Woodchop",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L6-S35",
+   "L6-S8"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ACE Kneeling Wood Chop / Standing Rotational Chop; rotacja = skośne."
+ },
+ {
+  "name": "Copenhagen Plank",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L6-S6"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Przegląd systematyczny: CAE zwiększa siłę ekscentryczną przywodzicieli, nEMG przywodziciela długiego 108%. Uwaga: oryginał jest dynamiczny (partner trzyma nogę); wersja izometryczna na ławce — wariant."
+ },
+ {
+  "name": "Double Kettlebell Windmill",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S17",
+   "L6-S38"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Wiatrak z dwoma kettlami; partie uproszczenie."
+ },
+ {
+  "name": "Kettlebell Figure 8",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S37"
+  ],
+  "confidence": "jedno źródło",
+  "note": "ACE „Figure Eight” (Full Body)."
+ },
+ {
+  "name": "Kettlebell Windmill",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S38"
+  ],
+  "confidence": "jedno źródło",
+  "note": "ACE „High Windmill” (Full Body)."
+ },
+ {
+  "name": "Landmine Rotation",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S8"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Rotacja z gryfem w landmine; partie tylko z funkcji skośnych — uproszczenie."
+ },
+ {
+  "name": "Medicine Ball Full Twist",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S17"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Wymaga partnera (brak w słowniku sprzętu) — dostępność zawsze zawyżona."
+ },
+ {
+  "name": "Oblique Crunches - On The Floor",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S17",
+   "L6-S3"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Brzuszek w leżeniu bokiem; S3: side crunch — wysokie EO."
+ },
+ {
+  "name": "One-Arm High-Pulley Cable Side Bends",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S17",
+   "L6-S8"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Skłon boczny z górnym wyciągiem."
+ },
+ {
+  "name": "Plate Twist",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Russian Twist",
+  "fixes": {},
+  "sources": [
+   "L6-S17"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Opis źródła = Russian Twist z talerzem; Russian Twist już ma notę „med ball or plate equally common”."
+ },
+ {
+  "name": "Seated Barbell Twist",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S17"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Skręty ze sztangą na barkach w siadzie — przestarzałe, ruch z rozpędu; partie uproszczenie."
+ },
+ {
+  "name": "Side Bend (hantel)",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L6-S8"
+  ],
+  "confidence": "jedno źródło",
+  "note": "OpenStax: zgięcie boczne — skośne i czworoboczny lędźwi."
+ },
+ {
+  "name": "Side Jackknife",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S16"
+  ],
+  "confidence": "jedno źródło",
+  "note": "W źródle listy brak instrukcji, ale ćwiczenie opisane (leżenie bokiem, uniesienie barku i górnej nogi) — identyfikowalne."
+ },
+ {
+  "name": "Spell Caster",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S17"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Rotacyjne przenoszenie dwóch hantli; partie uproszczenie."
+ },
+ {
+  "name": "Stomach Vacuum",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "muscleLoad": {
+    "obliques": 1,
+    "abs": 0.25
+   }
+  },
+  "sources": [
+   "S32"
+  ],
+  "confidence": "jedno źródło",
+  "note": "„Hollowing” (Maeo 2013 w S32): RA ~5%, IO ~64% MVIC — obciążenie przesunąć na skośne (IO); poprzeczny brzucha nie ma regionu. Ćwiczenie oddechowo-izometryczne, nie siłowe."
+ },
+ {
+  "name": "Weighted Ball Side Bend",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "muscleLoad": {
+    "obliques": 1,
+    "abs": 0.25,
+    "lower_back": 0.25
+   }
+  },
+  "sources": [
+   "L6-S3"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Escamilla 2016: side crunch na piłce — EO 50% MVIC, prostowniki wyżej niż w pozycjach na plecach/brzuchu — dopisać lower_back 0,25."
+ },
+ {
+  "name": "Box Jump",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "group": "nogi",
+   "muscles": [
+    "czworogłowe"
+   ],
+   "secondaryMuscles": [
+    "pośladki",
+    "łydki"
+   ],
+   "muscleLoad": {
+    "quads": 1,
+    "glutes": 0.5,
+    "calves": 0.5,
+    "hamstrings": 0.25
+   }
+  },
+  "sources": [
+   "L6-S4",
+   "L6-S5",
+   "L6-S39"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Spójność ze skokami: Grgic 2021 (przegląd) — plyometria daje przerost mięśni nóg podobny do treningu oporowego (czworogłowe). Dziś partia z grupy cardio = brak partii. Propozycja (decyzja właściciela, ćw. bazowe): grupa nogi, główna czworogłowe, pomocnicze pośladki + łydki. Wzorzec other poprawny (brak wzorca „skok”)."
+ },
+ {
+  "name": "Medicine Ball Slam",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L6-S48",
+   "L6-S5"
+  ],
+  "confidence": "jedno źródło",
+  "note": "ACE „Overhead Slams”. Bez partii (kondycja/moc) — wzór dla pozostałych rzutów piłką."
+ },
+ {
+  "name": "Iron Cross",
+  "verdict": "USUNĄĆ",
+  "scope": "USUNĄĆ",
+  "fixes": {},
+  "sources": [
+   "L6-S17"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Niemożliwe do zidentyfikowania: wpis źródła bez instrukcji, nazwa koliduje z „Iron Crosses (Stretch)” i elementem na kółkach; katalog zgadywał ruch."
+ },
+ {
+  "name": "Kettlebell Pirate Ships",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S17"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Wymachy kettla na boki do wysokości głowy; partie uproszczenie."
+ },
+ {
+  "name": "Sled Overhead Backward Walk",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S17",
+   "L6-S14"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Sanki ciągnięte tyłem z rękami nad głową; partie uproszczenie."
+ },
+ {
+  "name": "Plate Pinch",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "pattern": "isolation"
+  },
+  "sources": [
+   "L6-S10"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Chwyt szczypcowy talerzy — zginacze palców i kciuka (OpenStax). Wzorzec other → isolation, spójnie z „Standing Olympic Plate Hand Squeeze”, Finger Curls (ćwiczenia chwytu)."
+ },
+ {
+  "name": "Box Skip",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "group": "nogi"
+  },
+  "sources": [
+   "L6-S4",
+   "L6-S5"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Skipy na skrzynie. Grupa cardio → nogi (22 inne skoki są w nogi; spójność)."
+ },
+ {
+  "name": "Broad Jump",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "group": "nogi"
+  },
+  "sources": [
+   "L6-S4",
+   "L6-S5",
+   "L6-S47"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Skok w dal z miejsca (ACE Forward Linear Jumps). Grupa cardio → nogi."
+ },
+ {
+  "name": "Knee Tuck Jump",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "name": "Tuck Jump",
+   "group": "nogi"
+  },
+  "sources": [
+   "L6-S4",
+   "L6-S5",
+   "L6-S41"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Ustalona nazwa: „Tuck Jump” (ACE, Davies). Grupa cardio → nogi."
+ },
+ {
+  "name": "Lateral Bound",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "group": "nogi"
+  },
+  "sources": [
+   "L6-S4",
+   "L6-S5"
+  ],
+  "confidence": "umiarkowane",
+  "note": "„Lateral bounding” (Davies, tab. 6). Grupa cardio → nogi."
+ },
+ {
+  "name": "Lateral Box Jump",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "group": "nogi"
+  },
+  "sources": [
+   "L6-S4",
+   "L6-S5"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Skoki bokiem na skrzynię. Grupa cardio → nogi."
+ },
+ {
+  "name": "Lateral Cone Hops",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "group": "nogi",
+   "muscles": [
+    "czworogłowe"
+   ],
+   "secondaryMuscles": [
+    "łydki",
+    "pośladki"
+   ],
+   "muscleLoad": {
+    "quads": 1,
+    "calves": 0.5,
+    "glutes": 0.5,
+    "adductors": 0.25,
+    "abductors": 0.25
+   }
+  },
+  "sources": [
+   "L6-S4",
+   "L6-S5",
+   "L6-S43",
+   "L6-S42"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Ten sam dril co Front Cone Hops (czworogłowe główne), inny kierunek; ACE Lateral Cone Jumps: Butt/Hips, Calves, Thighs. Główna łydki → czworogłowe, pomocnicze łydki + pośladki; grupa cardio → nogi."
+ },
+ {
+  "name": "Linear 3-Part Start Technique",
+  "verdict": "USUNĄĆ",
+  "scope": "USUNĄĆ",
+  "fixes": {},
+  "sources": [
+   "L6-S17",
+   "L6-S52"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Dril techniki biegu sprinterskiego (opis źródła listy: start / akcent ramion / krok), nie ćwiczenie oporowe — nie da się go sensownie zapisać w dzienniku siłowym (ocena produktowa)."
+ },
+ {
+  "name": "Linear Acceleration Wall Drill",
+  "verdict": "USUNĄĆ",
+  "scope": "USUNĄĆ",
+  "fixes": {},
+  "sources": [
+   "L6-S17",
+   "L6-S52"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Dril techniki biegu sprinterskiego (opis źródła listy: start / akcent ramion / krok), nie ćwiczenie oporowe — nie da się go sensownie zapisać w dzienniku siłowym (ocena produktowa)."
+ },
+ {
+  "name": "Moving Claw Series",
+  "verdict": "USUNĄĆ",
+  "scope": "USUNĄĆ",
+  "fixes": {},
+  "sources": [
+   "L6-S17",
+   "L6-S52"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Dril techniki biegu sprinterskiego (opis źródła listy: start / akcent ramion / krok), nie ćwiczenie oporowe — nie da się go sensownie zapisać w dzienniku siłowym (ocena produktowa)."
+ },
+ {
+  "name": "One-Arm Medicine Ball Slam",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S48"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Wariant jednorącz Medicine Ball Slam; bez partii — spójne."
+ },
+ {
+  "name": "Sledgehammer Swings",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S17"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Młot + opona (sprzęt strongman); bez partii — spójne ze slamami."
+ },
+ {
+  "name": "Wall Ball",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L6-S5"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Przysiad przedni + rzut piłką do celu; czworogłowe główne jako analogia do przysiadu (uproszczenie). Grupa cardio zostaje (kondycja)."
+ },
+ {
+  "name": "Spider Crawl",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S50"
+  ],
+  "confidence": "jedno źródło",
+  "note": "ACE „Spider Walks” (Arms, Full Body); wzorzec other poprawny."
+ },
+ {
+  "name": "Turkish Get Up",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L6-S36",
+   "L6-S11"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ACE Turkish Get-up; St-Onge 2019: duża aktywność mięśni barku (etapy 2 i 5). Core główne — uproszczenie. Wzorzec other poprawny (ruch złożony)."
+ },
+ {
+  "name": "Backward Medicine Ball Throw",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "muscles": [],
+   "secondaryMuscles": []
+  },
+  "sources": [
+   "L6-S5",
+   "L6-S49"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Rzut piłką lekarską (moc). Spójność z Medicine Ball Slam (bazowe, bez partii) i z brakiem dowodu przerostu z rzutów kończyn górnych (Davies: mało badań UE): bez partii głównych/pomocniczych, obciążenie mapy zostaje."
+ },
+ {
+  "name": "Jerk Balance",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S17"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Dril techniczny podrzutu (sztanga); wzorzec other poprawny dla drilu."
+ },
+ {
+  "name": "Kneeling Arm Drill",
+  "verdict": "USUNĄĆ",
+  "scope": "USUNĄĆ",
+  "fixes": {},
+  "sources": [
+   "L6-S17",
+   "L6-S52"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Dril techniki biegu sprinterskiego (opis źródła listy: start / akcent ramion / krok), nie ćwiczenie oporowe — nie da się go sensownie zapisać w dzienniku siłowym (ocena produktowa)."
+ },
+ {
+  "name": "Medicine Ball Scoop Throw",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "muscles": [],
+   "secondaryMuscles": []
+  },
+  "sources": [
+   "L6-S5"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Rzut piłką lekarską (moc). Spójność z Medicine Ball Slam (bazowe, bez partii) i z brakiem dowodu przerostu z rzutów kończyn górnych (Davies: mało badań UE): bez partii głównych/pomocniczych, obciążenie mapy zostaje."
+ },
+ {
+  "name": "Rack Delivery",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S17"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Dril techniczny zarzutu (pusty gryf)."
+ },
+ {
+  "name": "Standing Two-Arm Overhead Throw",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "muscles": [],
+   "secondaryMuscles": []
+  },
+  "sources": [
+   "L6-S5",
+   "L6-S49"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Rzut piłką lekarską (moc). Spójność z Medicine Ball Slam (bazowe, bez partii) i z brakiem dowodu przerostu z rzutów kończyn górnych (Davies: mało badań UE): bez partii głównych/pomocniczych, obciążenie mapy zostaje."
+ },
+ {
+  "name": "Sled Forward Drag with Press",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S17",
+   "L6-S14"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Sanki + wypchnięcie rąk co krok; partie uproszczenie."
+ },
+ {
+  "name": "Supine Chest Throw",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "group": "inne",
+   "muscles": [],
+   "secondaryMuscles": []
+  },
+  "sources": [
+   "L6-S5"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Rzut piłką lekarską (moc). Spójność z Medicine Ball Slam (bazowe, bez partii) i z brakiem dowodu przerostu z rzutów kończyn górnych (Davies: mało badań UE): bez partii głównych/pomocniczych, obciążenie mapy zostaje. Grupa klatka → inne (jak pozostałe rzuty)."
+ },
+ {
+  "name": "Alternate Leg Diagonal Bound",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S4",
+   "L6-S5"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Wieloskoki ukośne (bounding)."
+ },
+ {
+  "name": "Backward Drag",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S14"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Ciągnięcie sanek tyłem (West 2014: backward sled drag jako trening). Partie (czworogłowe) uproszczenie."
+ },
+ {
+  "name": "Bear Crawl Sled Drag",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S17"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Czworakowanie z sankami na pasie."
+ },
+ {
+  "name": "Bench Jump",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S4",
+   "L6-S5"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Przeskoki przez ławkę."
+ },
+ {
+  "name": "Bench Sprint",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "name": "Alternate Leg Push-Off"
+  },
+  "sources": [
+   "L6-S4",
+   "L6-S5",
+   "L6-S45"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Naprzemienne wybicia ze stopą na skrzyni — ustalona nazwa ACE „Alternate Leg Push-off”."
+ },
+ {
+  "name": "Depth Jump Leap",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Linear Depth Jump",
+  "fixes": {},
+  "sources": [
+   "L6-S4",
+   "L6-S5"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Zeskok ze skrzyni i wyskok na drugą skrzynię — to samo co Linear Depth Jump (Davies: „drop jump to second box”)."
+ },
+ {
+  "name": "Double Leg Butt Kick",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S4",
+   "L6-S5"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Wyskok pionowy z piętami do pośladków."
+ },
+ {
+  "name": "Dumbbell Seated Box Jump",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S4",
+   "L6-S5"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Skok na skrzynię z siadu z hantlem."
+ },
+ {
+  "name": "Frog Hops",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S4",
+   "L6-S5",
+   "L6-S47"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Seria skoków w dal z przysiadu."
+ },
+ {
+  "name": "Front Cone Hops",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S4",
+   "L6-S5",
+   "L6-S42"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ACE Forward Cone Jumps."
+ },
+ {
+  "name": "Jump Squat",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L6-S4",
+   "L6-S5",
+   "L6-S40"
+  ],
+  "confidence": "mocne",
+  "note": "Grgic (Earp 2015): jump squats → przerost czworogłowych jak przysiad; ACE Squat Jump(s)."
+ },
+ {
+  "name": "Linear Depth Jump",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "name": "Depth Jump"
+  },
+  "sources": [
+   "L6-S4",
+   "L6-S5"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Po scaleniu z Depth Jump Leap — ustalona nazwa „Depth Jump” (Davies). Wymaga nadzoru techniki (Davies)."
+ },
+ {
+  "name": "Side Hop-Sprint",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S4",
+   "L6-S5"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Przeskoki boczne + krótki sprint (sprint niezapisywalny)."
+ },
+ {
+  "name": "Side Standing Long Jump",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S4",
+   "L6-S5"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Skok w dal bokiem."
+ },
+ {
+  "name": "Side to Side Box Shuffle",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S4",
+   "L6-S5"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Davies: „side to side push off jumps”."
+ },
+ {
+  "name": "Single Leg Butt Kick",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S4",
+   "L6-S5"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Wariant jednonóż."
+ },
+ {
+  "name": "Single Leg Push-Off",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S4",
+   "L6-S5",
+   "L6-S46"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ACE Single Leg Push-off; Davies „single leg push off box”."
+ },
+ {
+  "name": "Single-Leg Hop Progression",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S4",
+   "L6-S5"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Davies „single leg hops”."
+ },
+ {
+  "name": "Single-Leg Lateral Hop",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S4",
+   "L6-S5"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Przeskoki boczne jednonóż."
+ },
+ {
+  "name": "Single-Leg Stride Jump",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S4",
+   "L6-S5"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Wybicie z nogi na skrzyni."
+ },
+ {
+  "name": "Sled Drag (Harness)",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S14"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Ciągnięcie sanek w uprzęży (pas do dipów jako najbliższa możliwość). Partie uproszczenie."
+ },
+ {
+  "name": "Sled Push",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L6-S13"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Cahill 2020: pchanie sanek to uznana forma treningu oporowanego sprintu. Partie (czworogłowe) bez przeczytanego badania — uproszczenie. Miara ciężar+czas; zwykle zadaje się dystans — pytanie otwarte."
+ },
+ {
+  "name": "Split Jump",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L6-S4",
+   "L6-S5",
+   "L6-S44"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ACE Cycled Split-Squat Jump; Davies „split squat jumps”."
+ },
+ {
+  "name": "Star Jump",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L6-S4",
+   "L6-S5"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Wyskok z rozłożeniem rąk i nóg."
+ },
+ {
+  "name": "Weighted Jump Squat",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S4"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Grgic (Earp 2015): jump squats z 0–30% 1RM. Sztanga na plecach — stojak wymagany poprawnie."
+ },
+ {
+  "name": "Dead Hang",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L6-S10",
+   "L6-S12"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Zwis: zginacze palców (OpenStax); czas zwisu jako miara chwytu (Sepehri Rahnama 2025). Wzorzec other poprawny."
+ },
+ {
+  "name": "London Bridges",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S17"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Wymaga liny do wspinania i podparcia stóp; rzadkie."
+ },
+ {
+  "name": "Lower Back Curl",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S9",
+   "S32"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Wyprost tułowia w leżeniu przodem (tylko klatka) — prostowniki: „primary extensor of the vertebral column” (OpenStax), back extension na podłodze ES ~63% (S32). Bliski wariant Superman — kandydat do scalenia."
+ },
+ {
+  "name": "Superman",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L6-S20",
+   "L6-S9",
+   "S32"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ACE Supermans (Back, Butt/Hips); ES ~63% MVIC (S32). Wzorzec other poprawny — wyprost kręgosłupa, nie zawias biodrowy (zmiana na hinge wstawiłaby go do slotu „hingeBack” generatora)."
+ },
+ {
+  "name": "Downward Facing Balance",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S17"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Utrzymanie nóg w górze w leżeniu przodem na piłce — ćwiczenie równowagi/izometria."
+ },
+ {
+  "name": "Kneeling Jump Squat",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L6-S17"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Wybicie z klęku do stania ze sztangą; partie uproszczenie."
+ },
+ {
+  "name": "Balance Board",
+  "verdict": "USUNĄĆ",
+  "scope": "USUNĄĆ",
+  "fixes": {},
+  "sources": [
+   "L6-S17"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Ćwiczenie równowagi (stanie na desce), nie oporowe; deski nie ma w słowniku (bosu to inny przyrząd), łydki jako główna bez podstaw."
+ }
+]
