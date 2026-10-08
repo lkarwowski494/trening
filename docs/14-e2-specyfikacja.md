@@ -144,6 +144,10 @@ docs/13 A4 pkt 4 zakładał, że A z samymi odhaczonymi seriami „nie blokuje p
 - **Przerwa:** przerwa po odhaczonej serii A trwa dalej (seria zostaje w A; `T.setId`).
 - **Podtytuł Live Activity — wynik sprawdzenia „do sprawdzenia” z A4 pkt 7:** podtytuł przerwy zawiera nazwę **następnego** ćwiczenia („A · seria 2” albo „dalej: A” — `restLabels`, `components/ActiveWorkout.tsx:53-61`) i jest **zamrażany na starcie przerwy** (`T.sub = labels.subtitle`, `lib/timer.ts:54`; korekta ±15 s używa `T.sub` — `lib/timer.ts:68`). Po zamianie w trakcie przerwy ekran blokady pokazywałby starą nazwę. Wymaganie: `timer.relabel(subtitle)` — ustawia `T.sub` i woła `LA.update`, gdy trwa przerwa (wzór: `lib/timer.ts:70`); ekran po zamianie liczy `restLabels` dla serii, która uruchomiła przerwę (`findSet(T.setId)`).
 - Brak ćwiczenia `swappedFrom` (usunięte i wyczyszczone przez `purgeOrphans`) → bez linijki „zamiast”, „cofnij” ukryte.
+- **Aktualizacja 08.10.2026 (audyt 0.10, LIVE-03/04/15):** podpis przerwy liczy `lib/live.ts` `restLabel` — ta sama reguła co karta „teraz”
+  (`store.focusSet` w stanie po odhaczeniu, bez bloków „Pomiń dziś” i usuniętych ćwiczeń); ekran przelicza go po każdej zmianie treningu
+  (`relabelRest` → `timer.relabel`), a `timer.restore` po restarcie z `restSetId`. Po ostatniej serii treningu przerwa zostaje, podpis
+  „nic więcej do zrobienia”, powiadomienie bez „Następna seria.” (decyzja B).
 
 ## 4. W3 — zamienniki per miejsce w szablonie
 
