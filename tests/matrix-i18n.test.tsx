@@ -40,7 +40,7 @@ const SAME_ANY = new Set([
 const SAME_IN: Partial<Record<Lang, string[]>> = {
   cs: ['guma: {v}' /* guma (07.10.2026) */, '{n} z {all}', '{n} z {m}' /* „z” = z (czes.) */, '{u}/str.' /* strana */, '+ Guma', 'guma', 'Guma', 'gumy', 'Gumy' /* guma */, 'do', 'od', 'krok', 'obj.' /* objem */, 'REKORDY', 'pauza', '⏸ Pauza' /* pauza = pauza (08.10.2026) */],
   sk: ['guma: {v}' /* guma (07.10.2026) */, '{n} z {all}', '{n} z {m}', '{u}/str.', '+ Guma', 'guma', 'Guma', 'gumy', 'Gumy', 'do', 'od', 'krok', 'obj.', 'REKORDY', 'nie', 'Nie' /* „nie” = nie (słow.) */, 'Partia' /* svalová partia */, 'sek.', 'Teraz: {v}' /* teraz = teraz (słow.) */, 'pauza', '⏸ Pauza' /* pauza = pauza (08.10.2026) */],
-  hr: ['guma: {v}' /* guma (07.10.2026) */, 'Masa' /* masa = masa (chorw., cel generatora 08.10.2026) */, '{u}/str.' /* strana */, 'do', 'od', 'Dom', 'normalna', 'sek.', 'Trening' /* APP_NAME.hr */, 'pauza', '⏸ Pauza' /* pauza = pauza (08.10.2026) */, 'Dodaj trening' /* „dodaj” = dodaj (08.10.2026) */],
+  hr: ['guma: {v}' /* guma (07.10.2026) */, 'Masa' /* masa = masa (chorw., cel generatora 08.10.2026) */, '{u}/str.' /* strana */, 'do', 'od', 'Dom', 'normalna', 'sek.', 'Trening' /* APP_NAME.hr */, 'pauza', '⏸ Pauza' /* pauza = pauza (08.10.2026) */, 'Dodaj trening' /* „dodaj” = dodaj (08.10.2026) */, 'Plan do {date}' /* plan do = plan do (chorw.; nazwa planu bez nazwy po wyłączeniu, audyt 0.10 B2) */],
   sl: ['{u}/str.' /* stran */, 'do', 'od', 'Dom', 'sek.', 'Trening' /* APP_NAME.sl */, 'Treningi' /* sl: mn. „trening” — to samo słowo */, 'Dodaj trening' /* „dodaj” = dodaj (08.10.2026) */],
   ro: ['seria {n}', 'Seria {n}', 'Seria {n} — {ex}', 'serii', 'e1RM {v} (seria {s})' /* rum. seria = seria (forma z rodzajnikiem), serii = serie */],
   lt: ['guma: {v}' /* guma (07.10.2026) */, '{u}/hant.' /* hantelis */, '+ Guma', 'guma', 'Guma' /* guma */, 'sek.'],
@@ -48,7 +48,7 @@ const SAME_IN: Partial<Record<Lang, string[]>> = {
   et: ['{u}/hant.', '{u}/hantel' /* hantel (est.) */],
   es: ['Dieta', 'Lista', 'Masa' /* masa (hiszp., cel generatora 08.10.2026) */], pt: ['Dieta', 'Lista'] /* lista = lista (hiszp., port.) */, hu: ['Lista'] /* lista = lista (węg.) */,
   /* 07.10.2026 (wariant B) — te same słowa w języku docelowym */
-  it: ['Dieta', 'serie' /* wł. serie = serie (l.mn.) */, 'Serie' /* nagłówek kafelka (08.10.2026) */], sv: ['(kopia)' /* kopia (szw.) */, 'Kopia: {name}' /* kopia (szw., 08.10.2026) */, '{u}/hantel', 'e1RM (Epley, per hantel)', 'per hantel (×2)' /* hantel, per (szw.) */, 'Lista', 'sek.'],
+  it: ['Dieta', 'serie' /* wł. serie = serie (l.mn.) */, 'Serie' /* nagłówek kafelka (08.10.2026) */], sv: ['(kopia)' /* kopia (szw.) */, '{u}/hantel', 'e1RM (Epley, per hantel)', 'per hantel (×2)' /* hantel, per (szw.) */, 'Lista', 'sek.'],
   da: ['sek.'], nb: ['sek.', 'Trening' /* APP_NAME.nb */], fi: ['Historia', 'Lista' /* fiń. historia, lista */],
   en: ['Folder' /* folder (ang.) — 07.10.2026 wieczór, foldery szablonów */],
 };
