@@ -298,7 +298,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
 
   test('04 biblioteka ćwiczeń: lista z partiami, szukanie, otwarcie, partie główne/pomocnicze, przerwy, tempo, notatki, nowe ćwiczenia, usuwanie bez historii', async () => {
     await boot('/exercises');
-    const used0 = store.exercisesInUse(); const n0 = store.visibleExercises().filter(e => store.inCoreList(e, used0)).length; expect(screen.getByText(String(n0))).toBeTruthy(); /* research 09.10.2026: licznik = lista domyślna (bez niszowych) */
+    const used0 = store.exercisesInUse(); const n0 = store.visibleExercises().filter(e => store.inCoreList(e, used0)).length; const nv = store.visibleExercises().length; expect(screen.getByText(String(n0))).toBeTruthy(); /* research 09.10.2026: licznik = lista domyślna (bez niszowych) */
     for (const g of ['klatka', 'plecy', 'nogi', 'core', 'cardio']) expect(screen.getAllByText(g).length).toBeGreaterThan(0); /* nagłówki partii */
     /* UWAGA: zakładka Ćwiczenia nie ma filtra partii (tylko pole szukania) — filtr partii jest w oknie wyboru ćwiczenia (krok 05). */
     const q = () => screen.getByPlaceholderText('Szukaj…');
@@ -333,8 +333,8 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     expect(screen.getByLabelText('Bench Press (hantle), hantle · tempo 3-1-1')).toBeTruthy();
     /* „+ Nowe” nietknięte znika po wyjściu */
     await type(q(), '');
-    await tap(screen.getByText('+ Nowe')); await flushAll(10); expect(screen.getByLabelText('Nazwa').props.value).toBe('Nowe ćwiczenie'); expect(store.visibleExercises()).toHaveLength(n0 + 1);
-    await back(); expect(store.visibleExercises()).toHaveLength(n0); expect(S().exercises.some(e => e.name === 'Nowe ćwiczenie')).toBe(false);
+    await tap(screen.getByText('+ Nowe')); await flushAll(10); expect(screen.getByLabelText('Nazwa').props.value).toBe('Nowe ćwiczenie'); expect(store.visibleExercises()).toHaveLength(nv + 1);
+    await back(); expect(store.visibleExercises()).toHaveLength(nv); expect(S().exercises.some(e => e.name === 'Nowe ćwiczenie')).toBe(false);
     /* „Utwórz „…”” z wyszukiwania — własne ćwiczenie z partią, sprzętem, miarą, mięśniami, asystą gumą */
     await flushAll(1100); await type(q(), 'Wiosłowanie z ręcznikiem'); await tap(screen.getByText('Utwórz „Wiosłowanie z ręcznikiem”')); await flushAll(10);
     const own = S().exercises.find(e => e.name === 'Wiosłowanie z ręcznikiem')!; expect(own).toMatchObject({ group: 'inne', equipment: 'inne', metric: 'weight_reps', muscles: [] }); expect(own.lib).toBeFalsy();
@@ -354,7 +354,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     await swipeDelete('Usuń z biblioteki: Do usunięcia'); expect(lastAlert()).toMatchObject({ title: 'Usunąć ćwiczenie?', msg: 'Zniknie z list i szablonów.' });
     pressAlert('Usunąć ćwiczenie?', 'Nie'); expect(S().exercises).toContain(tmp);
     await swipeDelete('Usuń z biblioteki: Do usunięcia'); pressAlert('Usunąć ćwiczenie?', 'Usuń'); await flushAll(10);
-    expect(S().exercises.some(e => e.id === tmp.id)).toBe(false); expect(store.visibleExercises()).toHaveLength(n0 + 1);
+    expect(S().exercises.some(e => e.id === tmp.id)).toBe(false); expect(store.visibleExercises()).toHaveLength(nv + 1);
     expect(screen.getByText(String(n0 + 1))).toBeTruthy();
   });
 

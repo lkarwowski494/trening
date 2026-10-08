@@ -38,10 +38,10 @@ describe('Ustawienia → Miejsca treningu', () => {
     await renderApp(); await go('/more/locations'); await flushAll(10);
     await tap(screen.getByText('+ Dodaj miejsce')); await tap(screen.getByText('Dom')); await flushAll(10);
     const s = store.getState().settings; expect(s.locations).toHaveLength(1); expect(s.mainLocationId).toBe(s.locations[0].id);
-    expect(screen.getByText(/Miejsce główne/)).toBeTruthy(); expect(screen.getByText('Dostępne ćwiczenia: 191 z 854')).toBeTruthy();
+    expect(screen.getByText(/Miejsce główne/)).toBeTruthy(); expect(screen.getByText(`Dostępne ćwiczenia: ${store.getState().exercises.filter(e => !(e.requires ?? []).length).length} z 709`)).toBeTruthy(); /* research 09.10.2026: 709 ćwiczeń */
     await expandEquip(); await toggle('Ławka regulowana', true); expect(s.locations[0].equipment.map(e => e.item)).toEqual(['bench_adj']);
     await toggle('Ławka regulowana: ze skosem w dół', true); /* audyt M7: opcja z nazwą pozycji */ expect(s.locations[0].equipment[0].opts).toEqual(['decline']);
-    await toggle('Drążek do podciągania (rozporowy, ścienny)', true); expect(screen.getByText(/Dostępne ćwiczenia: \d+ z 854/)).toBeTruthy();
+    await toggle('Drążek do podciągania (rozporowy, ścienny)', true); expect(screen.getByText(/Dostępne ćwiczenia: \d+ z 709/)).toBeTruthy();
     await flushAll(400); expect(JSON.parse(global.__kv.get('state')!).settings.locations[0].equipment).toHaveLength(2); /* zapis bez „Wróć” */
   });
   test('hantle: „wypełnij zakresem” 2–24 co 2, odznaczenie 4 kg, dodanie 5 kg; podsumowanie dostępnych', async () => {
@@ -82,7 +82,7 @@ describe('trening i wybór ćwiczenia w miejscu', () => {
   });
   test('wybór ćwiczenia: domyślnie tylko dostępne w Dom; „Pokaż wszystkie” zapamiętany, niedostępne wyszarzone z „brak: …”', async () => {
     const saved = await savedWithPlaces(true); await renderApp({ saved }); await go('/picker?target=active'); await flushAll(10);
-    expect(screen.getByText('Bench Press (hantle)')).toBeTruthy(); expect(screen.getByText(/tylko dostępne w: Dom · ukryte: 452/)).toBeTruthy();
+    expect(screen.getByText('Bench Press (hantle)')).toBeTruthy(); expect(screen.getByText(/tylko dostępne w: Dom · ukryte: \d+$/)).toBeTruthy(); expect(screen.getByText(/^niszowe ukryte: \d+/)).toBeTruthy(); /* research 09.10.2026: najpierw filtr „Podstawowe”, potem miejsce */
     await tap(screen.getAllByText('nogi')[0]); await flushAll(5); expect(screen.queryByText('Back Squat')).toBeNull(); /* pełna baza: lista wirtualizowana — grupa */
     await tap(screen.getByLabelText(/^Filtr miejsca: Dom/)); /* decyzja 04.10: filtr-etykieta zamiast przełącznika */ expect(store.getState().settings.pickerShowAll).toBe(true);
     expect(screen.getByText('Back Squat')).toBeTruthy(); expect(screen.getAllByText('sztanga · brak: sztanga, klatka / stojaki').length).toBeGreaterThanOrEqual(3); /* Back/Front/Box Squat, Good Morning */

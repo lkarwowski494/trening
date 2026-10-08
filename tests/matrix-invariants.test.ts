@@ -460,7 +460,7 @@ function statsCheck(where: string) {
   const wk = stats.weeklyTotals(8); const end = stats.thisMonday(1);
   const exp = wk.map(b => ({ weekStart: b.weekStart, volume: 0, sets: 0, workouts: 0 }));
   for (const w of fin) { if (w.startedAt < exp[0].weekStart || w.startedAt >= end) continue; let i = exp.length - 1; while (i > 0 && w.startedAt < exp[i].weekStart) i--;
-    exp[i].workouts++; for (const e of w.exercises) { const ex = store.exById(e.exerciseId); if (!ex) continue; exp[i].sets += e.sets.filter(working).length; exp[i].volume += e.sets.reduce((q, z) => q + myVol(ex, z, e.impl), 0); } }
+    exp[i].workouts++; for (const e of w.exercises) { const ex = store.exById(e.exerciseId); if (!ex) continue; { let prev = false; for (const z of e.sets.filter(working)) { if (!(z.kind === 'drop' && prev)) exp[i].sets++; prev = true; } } /* D3 (audyt 0.10): drop set liczy się razem z serią przed nim */ exp[i].volume += e.sets.reduce((q, z) => q + myVol(ex, z, e.impl), 0); } }
   wk.forEach((b, i) => { ok(b.workouts === exp[i].workouts && b.sets === exp[i].sets, where, 'weeklyTotals: treningi/serie', { lib: b, mine: exp[i] });
     if (st.settings.unit === 'kg') ok(Math.abs(b.volume - exp[i].volume) <= 1e-6 * Math.max(1, exp[i].volume), where, 'weeklyTotals: objętość', { lib: b, mine: exp[i] }); });
   const mon = stats.thisMonday(); const d = new Date(mon); const nx = new Date(d.getFullYear(), d.getMonth(), d.getDate() + 7).getTime(); const mus: Record<string, number> = {};

@@ -8,8 +8,8 @@ import { addLocation, setEquip, setBandLevel } from '@/lib/locations';
 jest.setTimeout(60000);
 const bandEx = () => store.getState().exercises.filter(e => !e.archived && (e.bandAssistable || (e.requires ?? []).some(g => g.includes('bands'))));
 
-test('wszystkie ćwiczenia z gumami (opór i asysta) mają przycisk gumy — w katalogu co najmniej 34 z oporem gumy', async () => {
-  await fresh(); const all = bandEx(); expect(all.filter(e => !e.bandAssistable).length).toBeGreaterThanOrEqual(34);
+test('wszystkie ćwiczenia z gumami (opór i asysta) mają przycisk gumy — w katalogu co najmniej 30 z oporem gumy (34 przed researchem biblioteki 09.10.2026 — część scalona)', async () => {
+  await fresh(); const all = bandEx(); expect(all.filter(e => !e.bandAssistable).length).toBeGreaterThanOrEqual(30);
   for (const e of all) expect([e.name, store.usesBand(e)]).toEqual([e.name, true]);
   expect(store.usesBand(ex('Bench Press (sztanga)'))).toBe(false);
 });
