@@ -231,7 +231,7 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
   Stiff-Legged Deadlift osobno jako niszowe (Q-L4-2), strongman w katalogu jako niszowe (Q-L4-7), pompki `bandAssistable` false wszędzie (L5 Q2),
   ćwiczenia za karkiem niszowe (L5 Q4), przedramiona w grupie „biceps” do czasu porządkowania sekcji (L1 Q1, L2 Q4), scalanie wariantów
   różniących się tylko chwytem/pozycją (L1 Q3, L2 Q6, L5 Q1) — nigdy jednorącz z oburącz. **Lepsze mimo pracy:** brakujący sprzęt w słowniku
-  (circus bell, poręcze do dipów, ściana — L5 Q7) i metryka ciężar + dystans dla spacerów farmera (schemat 18 jest w tym wydaniu, bez
+  (circus bell, maszyna do dipów — poręcze `dip.bars` już były — i ściana; L5 Q7) i metryka ciężar + dystans dla spacerów farmera (schemat 18 jest w tym wydaniu, bez
   aktualizacji SDK). Otwarte (bez zmian w tym wydaniu): tryb liczenia ciężaru ćwiczeń jednonóż (Q-L4-4 — zmiana zmienia sens dawnych wpisów;
   osobna decyzja z migracją), regiony dla mięśni spoza mapy (zębaty przedni, piszczelowy przedni — L2 Q2/Q5: do czasu dodania regionu bez
   partii głównej, z oznaczeniem). Rejestr decyzji na Dysku — wpis zbiorczy po wdrożeniu.
