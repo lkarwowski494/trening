@@ -111,7 +111,7 @@ describe('LOW 4 — bez miejsc w trakcie treningu etykieta bez przyrządu (jak m
     await fresh(); places(); store.startFromTemplate(tplAt(RDL, 'garage')); const a = store.getState().active!; expect(a.exercises[0].impl).toBe('electric');
     const s = store.getState().settings; s.locations = []; s.mainLocationId = null; store.save();
     expect([store.blockImpl(a.exercises[0], a.locationId), store.liveBlockImpl(a.exercises[0], a.locationId)]).toEqual(['electric', undefined]);
-    await show(); expect(screen.getByText('kg/hant.')).toBeTruthy(); expect(screen.queryByText('kg/str.')).toBeNull(); expect(screen.getAllByLabelText('kg/hantel').length).toBe(1);
+    await show(); expect(screen.getByText('kg/hant.', { includeHiddenElements: true } /* nagłówek kolumny ukryty przed VoiceOver — A11-18 */)).toBeTruthy(); expect(screen.queryByText('kg/str.', { includeHiddenElements: true } /* nagłówek kolumny ukryty przed VoiceOver — A11-18 */)).toBeNull(); expect(screen.getAllByLabelText('kg/hantel').length).toBe(1);
     a.exercises[0].sets[0].weight = 30; a.exercises[0].sets[0].reps = 8; store.toggleDone(0, 0); const w = store.finishWorkout()!; expect(w.exercises[0].impl).toBe('electric');
     await store.flush(); await renderApp({ saved: snapshot() }); await go('/history/' + w.id); await flushAll(10);
     expect(screen.getByText('kg/str.', { includeHiddenElements: true })).toBeTruthy(); /* docs/10: historia prawdziwie zapisuje wpis na stronę */

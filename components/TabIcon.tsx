@@ -1,7 +1,9 @@
 /* Ikony zakładek (od „Kredy”, docs/16; zostały w stylu „Tuleja”, 07.10.2026) — linie 1,8 pt jak na planszy marki; zamiast emoji, które wyglądały różnie na każdym iOS. */
 import React from 'react';
 import Svg, { Path, Rect, Circle } from 'react-native-svg';
-import type { ColorValue } from 'react-native';
+import { Text, type ColorValue } from 'react-native';
+import { F } from '@/lib/theme';
+import { lang } from '@/lib/i18n';
 
 export type TabIconName = 'workout' | 'templates' | 'exercises' | 'history' | 'more';
 export function TabIcon({ name, color, size = 26 }: { name: TabIconName; color: ColorValue; size?: number }) {
@@ -15,4 +17,13 @@ export function TabIcon({ name, color, size = 26 }: { name: TabIconName; color: 
       {name === 'more' ? <><Circle cx={6} cy={12} r={1.6} fill={color} /><Circle cx={12} cy={12} r={1.6} fill={color} /><Circle cx={18} cy={12} r={1.6} fill={color} /></> : null}
     </Svg>
   );
+}
+
+/** Audyt 0.10 (A11-03): etykieta zakładki — jedna linia jak w React Navigation (10 pt pod ikoną, 13 pt obok w poziomie), ale długie tłumaczenia
+ * (bg „Упражнения”, lv „Vingrinājumi”…) zmniejszają się do TAB_LABEL_MIN_SCALE zamiast „…” na ekranie 320 pt (SE i mini z Display Zoom).
+ * allowFontScaling=false jak w BottomTabItem (iOS pokazuje etykietę w Large Content Viewer). Test: tests/matrix-i18n (W = 320) i audit-0.10-lang-ui. Używa: app/(tabs)/_layout.tsx. */
+export const TAB_LABEL_MIN_SCALE = 0.8;
+export function TabLabel({ color, position, children }: { color: ColorValue; position: 'beside-icon' | 'below-icon'; children: string }) {
+  return <Text accessibilityLanguage={lang()} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={TAB_LABEL_MIN_SCALE} allowFontScaling={false}
+    style={[{ color, fontFamily: F.semibold, textAlign: 'center', backgroundColor: 'transparent' }, position === 'below-icon' ? { fontSize: 10 } : { fontSize: 13, marginStart: 5, marginEnd: 12, lineHeight: 24 } /* jak labelBeside + labelBesideUikit */]}>{children}</Text>;
 }

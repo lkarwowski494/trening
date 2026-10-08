@@ -52,12 +52,28 @@
   "en": "{label}: {v}, previously {p}"
  },
  {
+  "pl": "{n} h",
+  "en": "{n} h"
+ },
+ {
+  "pl": "{n} km",
+  "en": "{n} km"
+ },
+ {
+  "pl": "{n} m",
+  "en": "{n} m"
+ },
+ {
   "pl": "{n} min",
   "en": "{n} min"
  },
  {
   "pl": "{n} rozgrz.",
   "en": "{n} warm-up"
+ },
+ {
+  "pl": "{n} s",
+  "en": "{n} s"
  },
  {
   "pl": "{n} z {all}",
@@ -986,24 +1002,24 @@
   "en": "Full Body B"
  },
  {
-  "pl": "Filtr miejsca wyłączony: {l}. Tapnij, by pokazać tylko dostępne.",
-  "en": "Place filter off: {l}. Tap to show only available."
+  "pl": "Filtr miejsca wyłączony: {l}",
+  "en": "Place filter off: {l}"
  },
  {
-  "pl": "Filtr miejsca: {l}. Tapnij, by zdjąć.",
-  "en": "Place filter: {l}. Tap to remove."
+  "pl": "Filtr miejsca: {l}",
+  "en": "Place filter: {l}"
  },
  {
-  "pl": "Filtr partii wyłączony: {g}. Tapnij, by włączyć.",
-  "en": "Muscle group filter off: {g}. Tap to turn on."
+  "pl": "Filtr partii wyłączony: {g}",
+  "en": "Muscle group filter off: {g}"
  },
  {
-  "pl": "Filtr partii: {g}. Tapnij, by zdjąć.",
-  "en": "Muscle group filter: {g}. Tap to remove."
+  "pl": "Filtr partii: {g}",
+  "en": "Muscle group filter: {g}"
  },
  {
-  "pl": "Filtr: podstawowe ćwiczenia. Tapnij, by pokazać wszystkie.",
-  "en": "Filter: basic exercises. Tap to show all."
+  "pl": "Filtr: podstawowe ćwiczenia",
+  "en": "Filter: basic exercises"
  },
  {
   "pl": "fioletowa",
@@ -1106,8 +1122,8 @@
   "en": "Band as resistance: pick a band (level 1–7) for each set; records count sets with a band."
  },
  {
-  "pl": "Guma: {b}. Tapnij, by zmienić.",
-  "en": "Band: {b}. Tap to change."
+  "pl": "Guma: {b}",
+  "en": "Band: {b}"
  },
  {
   "pl": "guma: {v}",
@@ -1758,6 +1774,10 @@
   "en": "mat and wall"
  },
  {
+  "pl": "max",
+  "en": "max"
+ },
+ {
   "pl": "max ±",
   "en": "max ±"
  },
@@ -1830,8 +1850,8 @@
   "en": "Place of this workout"
  },
  {
-  "pl": "Miejsce treningu: {l}. Tapnij, by zmienić.",
-  "en": "Workout place: {l}. Tap to change."
+  "pl": "Miejsce treningu: {l}",
+  "en": "Workout place: {l}"
  },
  {
   "pl": "Miesiąc",
@@ -2622,8 +2642,8 @@
   "en": "Summary"
  },
  {
-  "pl": "Pokazane wszystkie ćwiczenia, także niszowe. Tapnij, by zostawić podstawowe.",
-  "en": "Showing all exercises, including niche ones. Tap to keep only the basic ones."
+  "pl": "Pokazane wszystkie ćwiczenia, także niszowe",
+  "en": "Showing all exercises, including niche ones"
  },
  {
   "pl": "Pokazano {n} z {m} — wpisz nazwę, by zawęzić.",
@@ -2940,8 +2960,8 @@
   "en": "Substitute rest (s): {name}"
  },
  {
-  "pl": "Przerwa: {s}. Tapnij, by zmienić.",
-  "en": "Rest: {s}. Tap to change."
+  "pl": "Przerwa: {s}",
+  "en": "Rest: {s}"
  },
  {
   "pl": "Przerwy: {a} min po ciężkich seriach boju głównego, {b} min po innych wielostawowych, {c} min po jednostawowych i core — uproszczenie; przeglądy są niejednoznaczne (ACSM 2026: długość przerwy nie zmieniała przyrostu siły).",
@@ -3058,6 +3078,10 @@
  {
   "pl": "Redukcja: trening jak na masę (chroni mięśnie) i jedna sesja umiarkowanego cardio.",
   "en": "Fat loss: training as for muscle (protects muscle) and one session of moderate cardio."
+ },
+ {
+  "pl": "Rekord: {list}",
+  "en": "Record: {list}"
  },
  {
   "pl": "rekord|rekordy|rekordów",
@@ -3217,16 +3241,12 @@
   "en": "Set {n} done — {ex}"
  },
  {
-  "pl": "Seria {n}, typ: {k}. Tapnij, by zmienić typ lub dodać notatkę.",
-  "en": "Set {n}, type: {k}. Tap to change the type or add a note."
+  "pl": "Seria {n}, typ: {k}",
+  "en": "Set {n}, type: {k}"
  },
  {
   "pl": "Seria {n}, typ: {k}. Tapnij, by zmienić typ lub usunąć serię.",
   "en": "Set {n}, type: {k}. Tap to change the type or delete the set."
- },
- {
-  "pl": "Seria {n}, typ: {k}. Tapnij, by zmienić typ.",
-  "en": "Set {n}, type: {k}. Tap to change the type."
  },
  {
   "pl": "seria {s} s",
@@ -3623,8 +3643,20 @@
   "en": "Tap to untick (I don’t have it)"
  },
  {
+  "pl": "Tapnij, by pokazać tylko dostępne.",
+  "en": "Tap to show only available."
+ },
+ {
+  "pl": "Tapnij, by pokazać wszystkie.",
+  "en": "Tap to show all."
+ },
+ {
   "pl": "Tapnij, by spróbować ponownie. Zrób też backup.",
   "en": "Tap to try again. Also make a backup."
+ },
+ {
+  "pl": "Tapnij, by włączyć.",
+  "en": "Tap to turn on."
  },
  {
   "pl": "Tapnij, by wybrać inne ćwiczenie.",
@@ -3633,6 +3665,26 @@
  {
   "pl": "Tapnij, by zaznaczyć",
   "en": "Tap to tick"
+ },
+ {
+  "pl": "Tapnij, by zdjąć.",
+  "en": "Tap to remove."
+ },
+ {
+  "pl": "Tapnij, by zmienić typ lub dodać notatkę.",
+  "en": "Tap to change the type or add a note."
+ },
+ {
+  "pl": "Tapnij, by zmienić typ.",
+  "en": "Tap to change the type."
+ },
+ {
+  "pl": "Tapnij, by zmienić.",
+  "en": "Tap to change."
+ },
+ {
+  "pl": "Tapnij, by zostawić podstawowe.",
+  "en": "Tap to keep only the basic ones."
  },
  {
   "pl": "taśmy TRX",

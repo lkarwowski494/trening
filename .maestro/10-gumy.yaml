@@ -13,7 +13,7 @@
 #                                      (świeża instalacja ma gumy poziomów 2, 4, 6 — lib/seed.ts; włączenie gum zaznacza te poziomy)
 #   "Band colour: level 1"           ← '{Kolor gumy}: {poziom {n}}' (pole koloru; nowa guma ma kolor 'nowa' → „new”)
 #   "Band Pull Apart, .*" / "Pull Up, .*" ← Item pickera „{title}, {sub}” (sub: sprzęt + ' · band', app/picker.tsx)
-#   "Band: X. Tap to change."        ← 'Guma: {b}. Tapnij, by zmienić.' (components/ActiveWorkout.tsx); b = bandA11y '{c}, poziom {n}' → „green, level 1”
+#   "Band: X"                        ← 'Guma: {b}' (instrukcja „Tap to change.” w podpowiedzi — audyt 0.10 A11-18) (components/ActiveWorkout.tsx); b = bandA11y '{c}, poziom {n}' → „green, level 1”
 #                                      albo 'brak' → „none”; kolejność: poziomy miejsca rosnąco (store.nextBandId), potem brak
 #   "Set 1 done — X"                 ← 'Seria {n} zrobiona — {ex}'
 #   ".*band: green, level 1.*"       ← wiersz serii zapisanej sesji (app/history/[id].tsx): accessibilityLabel „{nagłówek}: {wartość}, …”,
@@ -82,17 +82,17 @@ name: Gumy w miejscu i w treningu
 - tapOn: "Band Pull Apart, .*"
 - extendedWaitUntil: { visible: "Set 1 done — Band Pull Apart", timeout: 30000 }
 # Cykl gumy: brak → 1 → 2 → 4 → brak (6 odznaczone w miejscu) → 1
-- tapOn: "Band: none\\. Tap to change\\."
-- extendedWaitUntil: { visible: "Band: green, level 1\\. Tap to change\\.", timeout: 15000 }
-- tapOn: "Band: green, level 1\\. Tap to change\\."
-- extendedWaitUntil: { visible: "Band: red, level 2\\. Tap to change\\.", timeout: 15000 }
-- tapOn: "Band: red, level 2\\. Tap to change\\."
-- extendedWaitUntil: { visible: "Band: black, level 4\\. Tap to change\\.", timeout: 15000 }
-- tapOn: "Band: black, level 4\\. Tap to change\\."
-- extendedWaitUntil: { visible: "Band: none\\. Tap to change\\.", timeout: 15000 }
+- tapOn: "Band: none"
+- extendedWaitUntil: { visible: "Band: green, level 1", timeout: 15000 }
+- tapOn: "Band: green, level 1"
+- extendedWaitUntil: { visible: "Band: red, level 2", timeout: 15000 }
+- tapOn: "Band: red, level 2"
+- extendedWaitUntil: { visible: "Band: black, level 4", timeout: 15000 }
+- tapOn: "Band: black, level 4"
+- extendedWaitUntil: { visible: "Band: none", timeout: 15000 }
 - assertNotVisible: "Band: purple, level 6.*"
-- tapOn: "Band: none\\. Tap to change\\."
-- extendedWaitUntil: { visible: "Band: green, level 1\\. Tap to change\\.", timeout: 15000 }
+- tapOn: "Band: none"
+- extendedWaitUntil: { visible: "Band: green, level 1", timeout: 15000 }
 - takeScreenshot: 61-guma-band-pull-apart
 - tapOn: "Set 1 done — Band Pull Apart"
 - tapOn: { text: "Skip", optional: true }
@@ -107,12 +107,12 @@ name: Gumy w miejscu i w treningu
 - extendedWaitUntil: { visible: "Pull Up, .*", timeout: 30000 }
 - tapOn: "Pull Up, .*"
 - extendedWaitUntil: { visible: "Set 1 done — Pull Up", timeout: 30000 }
-- scrollUntilVisible: { element: "Band: none\\. Tap to change\\.", direction: DOWN, timeout: 30000, centerElement: true }
-- tapOn: "Band: none\\. Tap to change\\."
+- scrollUntilVisible: { element: "Band: none", direction: DOWN, timeout: 30000, centerElement: true }
+- tapOn: "Band: none"
 # Band Pull Apart (wyżej) i Pull Up mają teraz poziom 1 — drugi przycisk to Pull Up
-- extendedWaitUntil: { visible: { text: "Band: green, level 1\\. Tap to change\\.", index: 1 }, timeout: 15000 }
-- tapOn: { text: "Band: green, level 1\\. Tap to change\\.", index: 1 }
-- extendedWaitUntil: { visible: "Band: red, level 2\\. Tap to change\\.", timeout: 15000 }
+- extendedWaitUntil: { visible: { text: "Band: green, level 1", index: 1 }, timeout: 15000 }
+- tapOn: { text: "Band: green, level 1", index: 1 }
+- extendedWaitUntil: { visible: "Band: red, level 2", timeout: 15000 }
 - takeScreenshot: 62-guma-pull-up
 - tapOn: "Set 1 done — Pull Up"
 - tapOn: { text: "Skip", optional: true }

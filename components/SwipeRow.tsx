@@ -1,7 +1,7 @@
 import React, { useMemo, useRef, useState } from 'react';
 import { View, Text, Pressable, Animated, PanResponder, Alert, StyleSheet, type StyleProp, type ViewStyle, type AccessibilityActionEvent } from 'react-native';
 import { useTheme, F } from '@/lib/theme';
-import { t as tr } from '@/lib/i18n';
+import { t as tr, lang } from '@/lib/i18n';
 
 /*
  * Usuwanie przesunięciem w lewo (decyzja właściciela 07.10.2026 wieczór, docs/18): wszędzie ten sam gest, zawsze z potwierdzeniem,
@@ -56,9 +56,9 @@ export function SwipeRow({ label, title, message, onDelete, bg, style, testID, d
     <View style={[{ overflow: 'hidden' }, style]} testID={testID}>
       <View style={[StyleSheet.absoluteFill, { flexDirection: 'row', justifyContent: 'flex-end' }]} pointerEvents={open ? 'auto' : 'none'}
         accessibilityElementsHidden={!open} importantForAccessibility={open ? 'auto' : 'no-hide-descendants'}>
-        <Pressable accessibilityRole="button" accessibilityLabel={label} onPress={ask} testID={testID ? `${testID}-del` : undefined}
+        <Pressable accessibilityLanguage={lang()} accessibilityRole="button" accessibilityLabel={label} onPress={ask} testID={testID ? `${testID}-del` : undefined}
           style={({ pressed }) => ({ width: SWIPE.button, backgroundColor: t.danger, alignItems: 'center', justifyContent: 'center', opacity: pressed ? 0.8 : 1 })}>
-          <Text maxFontSizeMultiplier={1.3} style={{ color: '#FFFFFF', fontFamily: F.semibold, fontSize: 15 }}>{tr('Usuń')}</Text>
+          <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={1.3} style={{ color: t.dangerInk /* A11-04 */, fontFamily: F.semibold, fontSize: 15 }}>{tr('Usuń')}</Text>
         </Pressable>
       </View>
       <Animated.View {...pan.panHandlers} style={{ transform: [{ translateX: x }], backgroundColor: bg ?? t.bg }}>{children(a11y)}</Animated.View>

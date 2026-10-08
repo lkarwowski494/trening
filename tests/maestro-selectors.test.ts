@@ -47,7 +47,8 @@ test('regresja run 37611882320: scenariusz 11 nie używa hideKeyboard (klawiatur
   const fs = require('fs'); const path = require('path'); const { EN } = require('@/lib/i18n.en');
   const y = fs.readFileSync(path.join(__dirname, '..', '.maestro', '11-widok-skupiony.yaml'), 'utf8');
   expect(y).not.toMatch(/^- hideKeyboard/m);
-  expect(y).toContain(`- tapOn: "${EN['seria {n} z {all}'].replace('{n}', '1').replace('{all}', '1')}"`);
+  /* audyt 0.10 (A11-19): licznik z NBSP (glue) — selektor z „.” zamiast spacji (regex Maestro: „.” pasuje do NBSP) */
+  expect(y).toContain(`- tapOn: "${EN['seria {n} z {all}'].replace('{n}', '1').replace('{all}', '1').replace(/ /g, '.')}"`);
 });
 
 test('regresja run 37645619096: każdy scenariusz .maestro/*.yaml jest na liście flows w config.yaml (inaczej Maestro go pomija)', () => {

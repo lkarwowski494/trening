@@ -1,13 +1,13 @@
 import React from 'react';
 import { View, Pressable } from 'react-native';
 import { useRouter } from 'expo-router';
-import { Btn, Muted, Txt } from '@/components/ui';
-import { useTheme, F } from '@/lib/theme';
+import { Btn, Muted, Txt, upperText } from '@/components/ui';
+import { useTheme, F, NUM_SCALE_MAX } from '@/lib/theme';
 import { getState, finishedWorkouts, useForegroundTick, isDeloadWeek } from '@/lib/store';
 import { hasPlan, dayKeyOf, doneOn, upcoming, pending, planTplName, addDays, type DayStatus } from '@/lib/plan';
 import { weekStrip } from '@/lib/dashboard';
 import { startTemplate } from '@/lib/start';
-import { t, locale } from '@/lib/i18n';
+import { t, locale, lang } from '@/lib/i18n';
 
 /*
  * Karta „Dziś” na ekranie treningu (decyzje właściciela 08.10.2026: 1A, potem dashboard wariant A): „Dziś: X” ze startem i pasek bieżącego
@@ -43,10 +43,10 @@ export function TodayPlan() {
     <View testID="today-plan" style={{ marginTop: 6, padding: 14, borderRadius: 12, backgroundColor: th.surface, borderWidth: 1, borderColor: th.line, gap: 10 }}>
       <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
         <View style={{ flexShrink: 1 }}>
-          <Muted style={{ fontSize: 12, fontFamily: F.semibold, textTransform: 'uppercase', letterSpacing: 0.5 }}>{deload ? `${t('Dziś')} · ${t('Tydzień deload')}` : t('Dziś')}</Muted>
+          {(() => { const u = upperText(deload ? `${t('Dziś')} · ${t('Tydzień deload')}` : t('Dziś')); /* A11-02: wersaliki z regułami języka */ return <Muted accessibilityLabel={u.label} style={[{ fontSize: 12, fontFamily: F.semibold, letterSpacing: 0.5 }, u.style]}>{u.text}</Muted>; })()}
           <Txt style={{ fontFamily: F.semibold, fontSize: 18 }}>{title}</Txt>
           {cur.status === 'other' ? <Muted style={{ fontSize: 13 }}>{t('Zrobiony inny trening: {name}', { name: names(today) })}</Muted> : null}
-          {tpl && pending(cur) && !tpl.items.length ? <Pressable accessibilityRole="link" onPress={() => router.push(`/template/${tpl.id}`)}><Muted style={{ fontSize: 13 }}>{t('Szablon jest pusty — dodaj ćwiczenia')}</Muted></Pressable> : null}
+          {tpl && pending(cur) && !tpl.items.length ? <Pressable accessibilityLanguage={lang()} accessibilityRole="link" onPress={() => router.push(`/template/${tpl.id}`)}><Muted style={{ fontSize: 13 }}>{t('Szablon jest pusty — dodaj ćwiczenia')}</Muted></Pressable> : null}
         </View>
         {canStart ? <Btn small kind="primary" title={t('Start')} accessibilityLabel={t('Start zaplanowanego treningu: {name}', { name: tpl!.name })} onPress={() => startTemplate(tpl!)} />
           : !plan ? <Btn small title={t('Plan tygodnia')} onPress={() => router.push('/plan')} /> : null}
@@ -56,10 +56,10 @@ export function TodayPlan() {
           const label = [dateOf(d.date).toLocaleDateString(locale(), { weekday: 'long', day: 'numeric', month: 'long' }), ...(d.today ? [t('dziś')] : []), word(d), ...(deload ? [t('tydzień deload')] : [])].join(', ');
           const filled = d.status === 'done' || d.status === 'other';
           return (
-            <Pressable key={d.date} testID={`strip-${d.date}`} accessibilityRole="button" accessibilityLabel={label} accessibilityHint={t('Otwiera ten dzień w Kalendarzu.')} onPress={() => router.push(`/history?day=${d.date}`)} style={({ pressed }) => ({ flex: 1, alignItems: 'center', gap: 4, opacity: pressed ? 0.6 : 1 })}>
+            <Pressable accessibilityLanguage={lang()} key={d.date} testID={`strip-${d.date}`} accessibilityRole="button" accessibilityLabel={label} accessibilityHint={t('Otwiera ten dzień w Kalendarzu.')} onPress={() => router.push(`/history?day=${d.date}`)} style={({ pressed }) => ({ flex: 1, minHeight: 44 /* A11-15 */, alignItems: 'center', gap: 4, opacity: pressed ? 0.6 : 1 })}>
               <Muted style={{ fontSize: 11, fontFamily: d.today ? F.semibold : F.regular, color: d.today ? th.text : th.muted }}>{wd(d.date)}</Muted>
               <View style={{ width: 22, height: 22, borderRadius: 11, alignItems: 'center', justifyContent: 'center', backgroundColor: filled ? th.accent : 'transparent', borderWidth: d.status === 'planned' || (d.today && !filled) ? 2 : 0, borderColor: d.today ? th.text : th.accent }}>
-                {d.status === 'missed' ? <View style={{ width: 6, height: 6, borderRadius: 3, backgroundColor: th.muted }} /> : filled ? <Txt style={{ color: th.accentInk, fontSize: 12, fontFamily: F.semibold }}>✓</Txt> : null}
+                {d.status === 'missed' ? <View style={{ width: 6, height: 6, borderRadius: 3, backgroundColor: th.muted }} /> : filled ? <Txt maxFontSizeMultiplier={NUM_SCALE_MAX} /* A11-07: znak w kółku 22–24 pt */ style={{ color: th.accentInk, fontSize: 12, fontFamily: F.semibold }}>✓</Txt> : null}
               </View>
               {d.status === 'other' ? <View style={{ width: 4, height: 4, borderRadius: 2, backgroundColor: d.date < today ? th.muted : th.accent }} /> : null}
             </Pressable>); })}

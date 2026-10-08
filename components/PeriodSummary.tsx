@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { View, Text, Pressable } from 'react-native';
 import { useTheme, F } from '@/lib/theme';
-import { t, exName, locale } from '@/lib/i18n';
+import { t, exName, locale, lang } from '@/lib/i18n';
 import { fmtSec, isDeloadWeek, toggleDeloadWeek, useTick } from '@/lib/store';
 import { fmtVol } from '@/lib/units';
 import { periodSummary, periodTitle, type PeriodKind } from '@/lib/period';
-import { Chip, H2, Muted, Txt } from '@/components/ui';
+import { Chip, H2, Muted, Txt, monoSafe } from '@/components/ui';
 import { MuscleMap } from '@/components/MuscleMap';
 import { setsByMuscle } from '@/lib/stats';
 import { deloadLessText } from '@/lib/start';
@@ -19,9 +19,9 @@ export function PeriodSummary() {
   useTick(); const s = periodSummary(kind, offset); const deload = kind === 'week' && isDeloadWeek(s.start); const prevDeload = kind === 'week' && isDeloadWeek(s.start - 86400e3);
   const pick = (k: PeriodKind) => { setKind(k); setOffset(0); };
   const arrow = (label: string, glyph: string, delta: number, disabled = false) => (
-    <Pressable accessibilityRole="button" accessibilityLabel={label} accessibilityState={{ disabled }} disabled={disabled} onPress={() => setOffset(o => o + delta)} hitSlop={8}
+    <Pressable accessibilityLanguage={lang()} accessibilityRole="button" accessibilityLabel={label} accessibilityState={{ disabled }} disabled={disabled} onPress={() => setOffset(o => o + delta)} hitSlop={8}
       style={({ pressed }) => ({ minWidth: 44, minHeight: 44, alignItems: 'center', justifyContent: 'center', opacity: disabled ? 0.25 : pressed ? 0.5 : 1 })}>
-      <Text maxFontSizeMultiplier={1.3} style={{ color: th.text, fontSize: 22, fontFamily: F.semibold }}>{glyph}</Text>
+      <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={1.3} style={{ color: th.text, fontSize: 22, fontFamily: F.semibold }}>{glyph}</Text>
     </Pressable>);
   const rows: [string, string, string][] = [
     [t('Treningi'), `${s.workouts}`, `${s.prev.workouts}`],
@@ -39,7 +39,7 @@ export function PeriodSummary() {
       </View>
       <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginTop: 6 }}>
         {arrow(t('Poprzedni okres'), '‹', -1)}
-        <Text accessibilityRole="header" maxFontSizeMultiplier={1.3} style={{ color: th.text, fontSize: 16, fontFamily: F.heavy, flexShrink: 1, textAlign: 'center' }}>{periodTitle(kind, s.start)}</Text>
+        <Text accessibilityLanguage={lang()} accessibilityRole="header" maxFontSizeMultiplier={1.3} style={{ color: th.text, fontSize: 16, fontFamily: F.heavy, flexShrink: 1, textAlign: 'center' }}>{periodTitle(kind, s.start)}</Text>
         {arrow(t('Następny okres'), '›', 1, offset >= 0)}
       </View>
       {kind === 'week' ? <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 8, flexWrap: 'wrap' }}>
@@ -49,9 +49,9 @@ export function PeriodSummary() {
       {prevDeload ? <Muted style={{ fontSize: 12, marginBottom: 6 }}>{t('Poprzedni tydzień jest oznaczony jako deload.')}</Muted> : null}
       <View style={{ padding: 12, borderRadius: 10, backgroundColor: th.surface2, gap: 6 }}>
         {rows.map(([l, v, p]) => (
-          <View key={l} accessible accessibilityLabel={t('{label}: {v}, poprzednio {p}', { label: l, v, p })} style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'baseline' }}>
+          <View accessibilityLanguage={lang()} key={l} accessible accessibilityLabel={t('{label}: {v}, poprzednio {p}', { label: l, v, p })} style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'baseline' }}>
             <Muted>{l}</Muted>
-            <Txt maxFontSizeMultiplier={1.4} style={{ fontFamily: F.monoBold }}>{v} <Muted style={{ fontSize: 12, fontFamily: F.mono }}>({t('poprz.')} {p})</Muted></Txt>
+            <Txt maxFontSizeMultiplier={1.4} style={{ fontFamily: F.monoBold }}>{monoSafe(v, true)} <Muted style={{ fontSize: 12 }}>({t('poprz.')}{'\u00a0'}<Muted style={{ fontSize: 12, fontFamily: F.mono }}>{monoSafe(p)}</Muted>)</Muted>{/* A11-11: słowo krojem tekstu (Plex Mono bez greckich liter), liczba mono */}</Txt>
           </View>))}
       </View>
       <MuscleMap sets={setsByMuscle(s.start, s.end)} />

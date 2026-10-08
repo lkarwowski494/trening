@@ -29,8 +29,8 @@ describe('C1 / MER-01: „Siła” w miejscu bez obciążenia', () => {
     await boot('/generator', () => { addLocation('bodyweight', 'Dom'); });
     await tap(screen.getByText('Siła')); await flushAll(5);
     expect(screen.getByText('Siła bez obciążenia zewnętrznego (sztanga, hantle, kettlebell, maszyny, wyciągi): ciężkich serii (ok. 80% maksimum) tu nie zrobisz, więc plan jest jak na masę w domu — 3 × 12–20 powtórzeń blisko upadku. Siła też wtedy rośnie, ale zwykle mniej niż przy dużym ciężarze.')).toBeTruthy();
-    expect(screen.queryByText(/ciężko, ok\. 80% maksimum i więcej/)).toBeNull(); expect(screen.queryByText(/ — 3 × 4–6, /)).toBeNull();
-    expect(screen.getAllByText(/ — 3 × 12–20, przerwa /).length).toBeGreaterThan(0); expect(screen.getByText('Dead Bug — 3 × 12–20, przerwa 1:30')).toBeTruthy();
+    expect(screen.queryByText(/ciężko, ok\. 80% maksimum i więcej/)).toBeNull(); expect(screen.queryByText(/ — 3 × 4–\u20606, /)).toBeNull();
+    expect(screen.getAllByText(/ — 3 × 12–\u206020, przerwa /).length).toBeGreaterThan(0); expect(screen.getByText('Dead Bug — 3 × 12–\u206020, przerwa 1:30')).toBeTruthy();
     /* pełna siłownia: zwykły opis siły, bój główny 3 × 4–6 */
     await tap(screen.getByText('Bez ograniczeń sprzętu')); await flushAll(5);
     expect(screen.getByText(/^Siła: bój główny na początku, 3 × 4–6 powtórzeń \(ciężko, ok\. 80% maksimum i więcej\)/)).toBeTruthy(); expect(screen.queryByText(/^Siła bez obciążenia/)).toBeNull();

@@ -118,7 +118,7 @@ describe('runda 1 — ekrany', () => {
   test('R1-25 plakietka z czasem przerwy na zakładce Trening', async () => {
     await renderApp({ saved: seedWithDemo() }); await tap(screen.getByLabelText('Start: Upper A')); await flushAll(10);
     await tap(screen.getAllByLabelText(/^Seria 1 zrobiona/)[0]); await go('/history'); await flushAll(1000);
-    expect(screen.getAllByText(/^[0-9]+[ms]$/).length).toBeGreaterThan(0); /* 02.10.2026: skrót „2m/45s” — „2:28” było ucinane na iOS */
+    expect(screen.getAllByText(/^[0-9]+[′″]$/).length).toBeGreaterThan(0); /* audyt 0.10 A11-17: 2′/45″; 02.10.2026: skrót „2m/45s” — „2:28” było ucinane na iOS */
     expect(screen.getByLabelText(/^Trening, przerwa [0-9]+:[0-9]{2}$/)).toBeTruthy(); // VoiceOver: pełny czas
   });
   test('R1-26 wiersz szablonu na ekranie głównym otwiera podgląd, nie start', async () => {
@@ -221,7 +221,7 @@ describe('runda 2 — ekrany', () => {
   test('R2-27 plakietka po czasie pokazuje nadwyżkę', async () => {
     await renderApp({ saved: seedWithDemo() }); await tap(screen.getByLabelText('Start: Upper A')); await flushAll(10);
     await tap(screen.getAllByLabelText(/^Seria 1 zrobiona/)[0]); await go('/history'); await flushAll(200e3);
-    expect(screen.getAllByText(/^\+[0-9]+[ms]$/).length).toBeGreaterThan(0); // 02.10.2026: skrót na plakietce
+    expect(screen.getAllByText(/^\+[0-9]+[′″]$/).length).toBeGreaterThan(0); /* A11-17 */ // 02.10.2026: skrót na plakietce
   });
 });
 

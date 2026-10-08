@@ -6,10 +6,19 @@ import { Appearance, useColorScheme } from 'react-native';
  * Kontrast (WCAG): tests/ux.test.tsx C5 — akcent #1F5FD1 na papierze 5,3:1, w ciemnym motywie jaśniejszy #6F9BF2.
  */
 export const BRAND = { paper: '#F4F3EF', ink: '#15171A', signal: '#1F5FD1' } as const;
-export const light: Record<'bg' | 'surface' | 'surface2' | 'line' | 'text' | 'muted' | 'accent' | 'accentInk' | 'done' | 'doneLine' | 'danger' | 'band', string> = { bg: BRAND.paper, surface: '#ffffff', surface2: '#e9e7e1', line: '#d6d3cb', text: BRAND.ink, muted: '#4a4d53', accent: BRAND.signal, accentInk: '#ffffff', done: '#e2ece0', doneLine: '#2e7d4f', danger: '#b3261e', band: '#136f75' };
+/* Audyt 0.10 (A11-04, A11-06): dangerInk — tekst na tle danger (przycisk „Usuń” pod wierszem; dawniej #FFFFFF: 2,77:1 w ciemnym);
+ * ctrlLine — granica elementu sterującego (ramka pola, puste pole ✓, tor wyłączonego przełącznika): ≥ 3:1 do bg, surface i surface2 (WCAG 1.4.11);
+ * line zostaje dla linii dekoracyjnych (separatory, karty). Test: tests/matrix-a11y (paleta), tests/audit-0.10-lang-ui. */
+export const light: Record<'bg' | 'surface' | 'surface2' | 'line' | 'ctrlLine' | 'text' | 'muted' | 'accent' | 'accentInk' | 'done' | 'doneLine' | 'danger' | 'dangerInk' | 'band', string> = { bg: BRAND.paper, surface: '#ffffff', surface2: '#e9e7e1', line: '#d6d3cb', ctrlLine: '#767a80', text: BRAND.ink, muted: '#4a4d53', accent: BRAND.signal, accentInk: '#ffffff', done: '#e2ece0', doneLine: '#2e7d4f', danger: '#b3261e', dangerInk: '#ffffff', band: '#136f75' };
 /** Ciemna wersja: grafitowe tło, papierowy tekst, ten sam niebieski (jaśniejszy). */
-export const dark: typeof light = { bg: '#121316', surface: '#1b1d21', surface2: '#26282d', line: '#3a3d43', text: '#eceae4', muted: '#a6a9af', accent: '#6f9bf2', accentInk: '#121316', done: '#1f2e24', doneLine: '#4e9a6a', danger: '#ec7a72', band: '#5fc3c9' };
+export const dark: typeof light = { bg: '#121316', surface: '#1b1d21', surface2: '#26282d', line: '#3a3d43', ctrlLine: '#74777e', text: '#eceae4', muted: '#a6a9af', accent: '#6f9bf2', accentInk: '#121316', done: '#1f2e24', doneLine: '#4e9a6a', danger: '#ec7a72', dangerInk: '#121316', band: '#5fc3c9' };
 export type Theme = typeof dark;
+/**
+ * Audyt 0.10 (A11-07, WCAG 1.4.4): limity powiększenia tekstu (Dynamic Type) — jedno źródło. Teksty, które się zawijają (opisy, przyciski,
+ * wiersze ustawień, nagłówki sekcji): do 200%. Kolumny liczb o stałej szerokości (wiersz serii, nagłówki kolumn, pola): 130%.
+ */
+export const TEXT_SCALE_MAX = 2;
+export const NUM_SCALE_MAX = 1.3;
 /** Wygląd z ustawień (decyzja 05.10.2026, domyślnie jasny — potwierdzone 07.10.2026). Nadpisuje tryb systemu dla całej aplikacji. */
 export function applyTheme(x: 'light' | 'dark' | 'auto' | undefined) { try { Appearance.setColorScheme(x === 'dark' ? 'dark' : x === 'auto' ? 'unspecified' : 'light'); } catch { /* bez natywnego modułu (web) — tryb systemu */ } }
 export function useTheme(): Theme { return useColorScheme() === 'light' ? light : dark; }
@@ -18,7 +27,7 @@ export function useTheme(): Theme { return useColorScheme() === 'light' ? light 
  * Kroje pisma (Google Fonts, licencja OFL) — decyzje właściciela 07.10.2026 (rano wariant A „mieszany”, wieczorem bez Tektur — docs/18):
  *  - IBM Plex Sans — zwykły tekst (regular, semibold), nagłówki (heavy) i duże liczby w widoku skupionym (display) — Bold 700;
  *  - IBM Plex Mono — liczby w tabelach i timery (mono, monoBold).
- * heavy i display to dziś ten sam plik — dwie nazwy zostają, żeby rolę dało się zmienić w jednym miejscu. Oba kroje mają polskie znaki i cyrylicę (test: tests/matrix-i18n.test.tsx) — jeden zestaw dla każdego języka.
+ * heavy i display to dziś ten sam plik — dwie nazwy zostają, żeby rolę dało się zmienić w jednym miejscu. Oba kroje mają polskie znaki i cyrylicę (test: tests/matrix-i18n.test.tsx) — jeden zestaw dla każdego języka; Plex Mono nie ma liter greckich (A11-11: components/ui.tsx monoSafe).
  * Nazwy = klucze w `FONT_FILES` (ładowane w app/_layout.tsx). Z własnym krojem nie ustawiamy fontWeight — grubość wybiera rodzina.
  */
 export const F = {

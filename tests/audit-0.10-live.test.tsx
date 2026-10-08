@@ -204,7 +204,7 @@ describe('F9: karta „teraz”, komunikaty i drobne poprawki', () => {
     const prev = screen.getAllByText('100×5').map(n => StyleSheet.flatten(n.props.style)?.fontFamily); expect(prev.length).toBeGreaterThan(0); expect(prev.every(f => f === F.regular)).toBe(true);
     expect(StyleSheet.flatten(screen.getByText('—').props.style)?.fontFamily).toBe(F.regular);
     await tap(screen.getByLabelText('Seria 1 zrobiona — Back Squat')); await flushAll(10); expect(timer.T.on).toBe(true);
-    const left = Math.round((timer.T.endAt - Date.now()) / 1000); const badge = left >= 60 ? `${Math.floor(left / 60)}m` : `${left}s`;
+    const left = Math.round((timer.T.endAt - Date.now()) / 1000); const badge = left >= 60 ? `${Math.floor(left / 60)}′` : `${left}″`; /* A11-17: ′ i ″ */
     const b = screen.getAllByText(badge).map(n => StyleSheet.flatten(n.props.style)?.fontFamily); expect(b).toContain(F.semibold);
   });
   test('F9 (LIVE-13 / UI-11): każdy tekst ekranu treningu (lista i karta, z przerwą i „Poprzednio”) ma krój aplikacji — poza znakami-ikonami ✓ ▶ …', async () => {

@@ -46,12 +46,12 @@ for (const [loc, unit] of [['pl', 'kg'], ['en', 'lb']] as const) {
     await tap(screen.getByLabelText(l.done(2, bench)));
     expect(a.exercises[0].sets[1].reps).toBe(8); expect(a.exercises[0].sets[1].weight).toBe(24);
     // bench set 4 -> failure, + seria -> drop
-    await tap(screen.getAllByLabelText(new RegExp('^' + tr('Seria {n}, typ: {k}. Tapnij, by zmienić typ lub dodać notatkę.', { n: 4, k: 'X' }).split(',')[0]))[0]);
+    await tap(screen.getAllByLabelText(new RegExp('^' + tr('Seria {n}, typ: {k}', { n: 4, k: 'X' }).split(',')[0]))[0]);
     await act(async () => { (global as any).__pickSheet(3); });
     expect(a.exercises[0].sets[3].kind).toBe('failure');
     await tap(screen.getAllByLabelText(tr('+ seria'))[0]);
     expect(a.exercises[0].sets.length).toBe(5); expect(a.exercises[0].sets[4].kind).toBe('normal');
-    await tap(screen.getAllByLabelText(new RegExp('^' + tr('Seria {n}, typ: {k}. Tapnij, by zmienić typ lub dodać notatkę.', { n: 5, k: 'X' }).split(',')[0]))[0]);
+    await tap(screen.getAllByLabelText(new RegExp('^' + tr('Seria {n}, typ: {k}', { n: 5, k: 'X' }).split(',')[0]))[0]);
     await act(async () => { (global as any).__pickSheet(2); });
     expect(a.exercises[0].sets[4].kind).toBe('drop');
     const dropLbl = '4D'; /* audyt 0.10 (LIVE-14): drop po serii 4F — „4D” (wcześniej „5D”) */
@@ -67,7 +67,7 @@ for (const [loc, unit] of [['pl', 'kg'], ['en', 'lb']] as const) {
     await tap(screen.getByLabelText(l.done(4, row)));
     log(loc, 'rest after row 4:', timer.T.on, timer.T.total);
     // chin ups with band
-    const bandBtn = screen.getAllByLabelText(new RegExp('^' + tr('Guma: {b}. Tapnij, by zmienić.', { b: 'X' }).split(':')[0] + ':')).filter(x => x.props.accessibilityHint === l.hint(1, chin))[0];
+    const bandBtn = screen.getAllByLabelText(new RegExp('^' + tr('Guma: {b}', { b: 'X' }).split(':')[0] + ':')).filter(x => String(x.props.accessibilityHint).startsWith(l.hint(1, chin)))[0] /* A11-18 */;
     await tap(bandBtn);
     await type(field(tr('Powtórzenia'), l.hint(1, chin)), '8'); await tap(screen.getByLabelText(l.done(1, chin)));
     const ce = a.exercises.find(e => e.exerciseId === ex('Chin Up').id)!;

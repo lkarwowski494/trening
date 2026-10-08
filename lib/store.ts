@@ -2,7 +2,7 @@ import { deloadSets } from '@/lib/deload-sets';
 import * as SQLite from 'expo-sqlite';
 import * as FileSystem from 'expo-file-system/legacy';
 import { useSyncExternalStore } from 'react';
-import { t, t as tr, tIn, applyLang, detectLang, locale, fold, isLang, lang } from './i18n';
+import { t, t as tr, tIn, applyLang, detectLang, locale, fold, isLang, lang, upper } from './i18n';
 import { applyUnit, wu, wOut, wIn, KG_PER_LB, fmtW, fmtNum, snapLegacyLb } from './units';
 import { applyTheme } from './theme';
 import { seedState, uid, base, defaultModules, defaultSettings, metricFor, loadModeFor, loadMult, blankTimer, musclesFor, hasTime, hasReps, hasWeight, hasDistance, METRICS, DEFAULT_REST, GROUPS, LIB, SCHEMA_VERSION, LOCAL_OWNER, MODULES, SET_KINDS, SINGLE_IMPLEMENT, equipFields, libExercise, LIB_EXTRA_REVS, LIB_EXTRA_REV, LIB_MUSCLE_FIXES, LIB_FIELD_FIXES, LIB_RENAMED, LIB_MERGED, LIB_RETIRED, libExtraRevOf, LIB_BASE_NAMES_V1, LOAD_SOURCE_BY_EQUIPMENT, IMPLS, own, type Impl, type SetKind, type Base, type State, type Workout, type WSet, type WExercise, type Exercise, type Template, type TemplateItem, type TemplateAlt, type TRow, type Morning, type Location, type PlanSegment, LIB_KEYS, catalogKey, libKeyFromFields, BODY_MASS_MAX, isNiche } from './seed';
@@ -637,10 +637,10 @@ export const loadLabelShort = (ex: Exercise, impl?: Impl | null) => isBW(ex) ? `
 export const loadLabel = (ex: Exercise, impl?: Impl | null) => isBW(ex) ? `±${wu()}` : perSide(impl) ? t('{u}/stronę', { u: wu() }) : (ex.loadMode === 'per_dumbbell' ? t('{u}/hantel', { u: wu() }) : ex.loadMode === 'unilateral' ? t('{u}/strona', { u: wu() }) : wu());
 /** Domyślna przerwa dla ćwiczenia: zapamiętana w ćwiczeniu albo globalna. */
 export const restFor = (ex: Exercise | undefined, warmup = false): number => { const s = getState().settings; const def = typeof s.defaultRest === 'number' && s.defaultRest >= 0 ? s.defaultRest : 90; if (!ex) return def; if (warmup && ex.restWarmupSec != null) return ex.restWarmupSec; return ex.restSec ?? def; };
-export const fmtSec = (sec: number) => { sec = Math.max(0, Math.round(sec)); if (sec >= 3600) return fmtDur(sec); /* runda 12: godzina i więcej jak czas sesji */ const m = Math.floor(sec / 60), r = sec % 60; return m ? `${m}:${String(r).padStart(2, '0')}` : `${r}s`; };
-export const fmtDist = (m: number) => m >= 1000 ? `${fmtNum(m / 1000, 2)} km` : `${Math.round(m)} m`;
+export const fmtSec = (sec: number) => { sec = Math.max(0, Math.round(sec)); if (sec >= 3600) return fmtDur(sec); /* runda 12: godzina i więcej jak czas sesji */ const m = Math.floor(sec / 60), r = sec % 60; return m ? `${m}:${String(r).padStart(2, '0')}` : t('{n} s', { n: r }); /* A11-17: jednostka przez t() (uk „с”, el „δευτ.”, hu „mp”, tr „sn”) */ };
+export const fmtDist = (m: number) => m >= 1000 ? t('{n} km', { n: fmtNum(m / 1000, 2) }) : t('{n} m', { n: Math.round(m) }); /* A11-17 */
 /** Zakres powtórzeń do wyświetlenia: „max”, „8”, „8–10”, a przy braku lub odwróconym „do” — „8+”. */
-export const reps = (min: number | null, max: number | null) => min == null ? 'max' : (max == null || max < min ? `${min}+` : min === max ? `${min}` : `${min}–${max}`);
+export const reps = (min: number | null, max: number | null) => min == null ? t('max') /* A11-17 */ : (max == null || max < min ? `${min}+` : min === max ? `${min}` : `${min}–${max}`);
 /** Czas „m:ss”, od godziny „h:mm:ss” (wcześniej 95:00 zamiast 1:35:00). */
 export const fmtDur = (sec: number) => { sec = Math.max(0, Math.round(sec)); const h = Math.floor(sec / 3600), m = Math.floor((sec % 3600) / 60), r = sec % 60; return h ? `${h}:${String(m).padStart(2, '0')}:${String(r).padStart(2, '0')}` : `${m}:${String(r).padStart(2, '0')}`; };
 /** Data do list. Runda 14: rok, gdy nie bieżący — sesje sprzed roku nie wyglądają jak tegoroczne. */
@@ -651,7 +651,7 @@ export const localISODate = (d: Date = new Date()) => `${d.getFullYear()}-${Stri
 /** Skrót gumy do wąskiej kolumny: pierwsza litera koloru (po tłumaczeniu) + poziom; odporne na pusty kolor. */
 /** Nazwa koloru gumy w języku interfejsu (kolory z zestawu startowego tłumaczone jak nazwy ćwiczeń z biblioteki) — runda 51: ta sama na ekranie Gumy, w treningu, historii i CSV. */
 export const bandColor = (b: { color: string }) => t(b.color || '?');
-export const shortBand = (b?: { color: string; level: number } | null) => b ? ((Array.from(bandColor(b))[0] ?? '?').toUpperCase() || '?') + b.level : '—'; // runda 52: emoji całe
+export const shortBand = (b?: { color: string; level: number } | null) => b ? (upper(Array.from(bandColor(b))[0] ?? '?') || '?') + b.level : '—'; /* A11-02: wielka litera wg języka (tr „İ”, el bez tonosu) */ // runda 52: emoji całe
 /** Pełna nazwa gumy dla VoiceOver (litera z poziomem nic nie mówi). */
 export const bandA11y = (b?: { color: string; level: number } | null) => b ? t('{c}, poziom {n}', { c: bandColor(b), n: b.level }) : t('brak');
 

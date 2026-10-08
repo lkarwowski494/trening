@@ -2,7 +2,7 @@ import React, { createContext, useContext, useLayoutEffect, useMemo, useRef, use
 import { AccessibilityInfo, Animated, PanResponder, Platform, ScrollView, Text, View, type PanResponderInstance, type StyleProp, type ViewStyle } from 'react-native';
 import * as Haptics from 'expo-haptics';
 import { useTheme } from '@/lib/theme';
-import { t } from '@/lib/i18n';
+import { t, lang } from '@/lib/i18n';
 
 /*
  * T-010 (02.10.2026): lista z przeciąganiem za uchwyt „≡”. Bez nowych modułów natywnych — PanResponder + Animated z RN
@@ -91,11 +91,11 @@ export function DragList<T>({ items, keyOf, label, onMove, renderItem }: Props<T
 
   return <View>{items.map((x, i) => { const k = keys[i]; const nm = label(x); const dragging = active === k;
     const acts = [i > 0 ? { name: 'up', label: t('Przesuń wyżej') } : null, i < items.length - 1 ? { name: 'down', label: t('Przesuń niżej') } : null].filter(Boolean) as { name: string; label: string }[];
-    const handle = <View {...responder(k).panHandlers} testID={'drag-' + k} accessible accessibilityRole="adjustable" accessibilityLabel={t('Zmień kolejność: {name}', { name: nm })}
+    const handle = <View accessibilityLanguage={lang()} {...responder(k).panHandlers} testID={'drag-' + k} accessible accessibilityRole="adjustable" accessibilityLabel={t('Zmień kolejność: {name}', { name: nm })}
       accessibilityValue={{ text: t('{n} z {all}', { n: i + 1, all: items.length }) }} accessibilityActions={[...acts, ...acts.map(a => ({ name: a.name === 'up' ? 'decrement' : 'increment' }))]}
       onAccessibilityAction={e => { const n = e.nativeEvent.actionName; const to = n === 'up' || n === 'decrement' ? i - 1 : n === 'down' || n === 'increment' ? i + 1 : i; if (to !== i && to >= 0 && to < items.length && latest.current.onMove(k, to) !== false) AccessibilityInfo.announceForAccessibility?.(t('{n} z {all}', { n: to + 1, all: latest.current.n })); }}
       hitSlop={6} style={{ width: 40, minHeight: 44, alignItems: 'center', justifyContent: 'center' }}>
-      <Text style={{ color: dragging ? th.accent : th.muted, fontSize: 22, lineHeight: 24 }} maxFontSizeMultiplier={1.3}>≡</Text></View>;
+      <Text accessibilityLanguage={lang()} style={{ color: dragging ? th.accent : th.muted, fontSize: 22, lineHeight: 24 }} maxFontSizeMultiplier={1.3}>≡</Text></View>;
     return <Animated.View key={k} onLayout={e => { heights.current.set(k, e.nativeEvent.layout.height); }}
       style={{ transform: [{ translateY: av(k) }], zIndex: dragging ? 10 : 0, ...(dragging ? { shadowColor: '#000', shadowOpacity: 0.35, shadowRadius: 10, shadowOffset: { width: 0, height: 4 } } : null) }}>
       {renderItem(x, handle, dragging)}</Animated.View>; })}</View>;

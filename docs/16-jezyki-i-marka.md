@@ -57,7 +57,7 @@ potem 14 niezależnych recenzji (inny agent, bez dostępu do notatek tłumacza).
 | el | jak Apple; „;” jako znak zapytania | Training | Προπόνηση |
 
 Nazwa aplikacji wg reguły z 05.10 (lokalne słowo, gdy podobne do „Trening”, inaczej „Training”). Liczba mnoga: dwie formy; fr „one” = 0 i 1.
-Kroje (IBM Plex Sans 400/600/700, IBM Plex Mono) mają greckie litery — test `matrix-i18n`. Nazwy w App Store: `store/app-store-names.json` (App Store: „no” = nb).
+Kroje: IBM Plex Sans 400/600/700 ma litery wszystkich 26 języków, w tym greckie — test `matrix-i18n`. IBM Plex Mono (liczby, czasy) ma łacinę, cyrylicę i cyfry, ale **nie ma liter greckich** (sprostowanie 09.10.2026, audyt 0.10 A11-11; wcześniej ten akapit twierdził inaczej): litery greckie w tekście krojem mono dostają krój Plex Sans (`components/ui.tsx` `monoSafe`), a słowa przy liczbach (np. „poprz.”) są krojem tekstu — test `audit-0.10-lang-ui` (ekrany w el) i `matrix-i18n`. Nazwy w App Store: `store/app-store-names.json` (App Store: „no” = nb).
 
 *Proces (07.10.2026):* jak 05.10 — 10 tłumaczeń (osobny agent na język), potem 10 niezależnych recenzji (inny agent, bez notatek tłumacza).
 Recenzje zmieniły: el 46, fi 40, tr 38, nl 36, nb 24, sv 20, de 18, fr 13, da 10, it 10 wpisów. Najważniejsze: tr „yedek” było i kopią, i zamiennikiem

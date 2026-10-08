@@ -2,7 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 import Svg, { Ellipse, Path, G } from 'react-native-svg';
 import { useTheme } from '@/lib/theme';
-import { t } from '@/lib/i18n';
+import { t, lang } from '@/lib/i18n';
 import { fmtNum } from '@/lib/units';
 import { MUSCLES } from '@/lib/seed';
 import { PARTS, shadeLevel, shadeColor, rankedMuscles, type View as Side } from '@/lib/musclemap';
@@ -24,7 +24,7 @@ export function MuscleMap({ sets }: { sets: Partial<Record<string, number>> }) {
         : <Path key={`${i}-${j}`} d={s.d} translateX={dx} fill={fill} />);
     })}</G>);
   return (
-    <View testID="muscle-map" accessible accessibilityRole="image" accessibilityLabel={label} style={{ marginTop: 12 }}>
+    <View accessibilityLanguage={lang()} testID="muscle-map" accessible accessibilityRole="image" accessibilityLabel={label} style={{ marginTop: 12 }}>
       <Muted style={{ fontSize: 12, marginBottom: 6 }}>{t('Mapa mięśni')}</Muted>
       <View style={{ alignItems: 'center' }}>
         <Svg width="100%" height={220} viewBox="0 0 250 260" preserveAspectRatio="xMidYMid meet">{side('front', 0)}{side('back', 130)}</Svg>

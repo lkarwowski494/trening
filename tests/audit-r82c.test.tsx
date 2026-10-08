@@ -95,7 +95,7 @@ describe('LOW 2 — zmiana sprzętu miejsca w trakcie treningu: przyrząd blokó
     expect(store.progressionFor(ex(RDL), e.repMax, prevOf(0)?.sets, store.listLocFor(e, 'home'))).toEqual({ kind: 'load', kg: 22 });
     expect(vals(e.sets)).toEqual([[20, 8]]); /* wpisane wartości zostają (A-002) */
     await show(); expect(screen.getByText(/↑ spróbuj 22 kg/)).toBeTruthy(); expect(screen.queryByText(/↑ spróbuj 21 kg/)).toBeNull();
-    expect(screen.getByText('kg/hant.')).toBeTruthy(); expect(screen.queryByText('kg/str.')).toBeNull(); expect(screen.getAllByLabelText('kg/hantel')).toHaveLength(1);
+    expect(screen.getByText('kg/hant.', { includeHiddenElements: true } /* nagłówek kolumny ukryty przed VoiceOver — A11-18 */)).toBeTruthy(); expect(screen.queryByText('kg/str.', { includeHiddenElements: true } /* nagłówek kolumny ukryty przed VoiceOver — A11-18 */)).toBeNull(); expect(screen.getAllByLabelText('kg/hantel')).toHaveLength(1);
   });
   test('kontrola przed poprawką: bez przeliczenia przyrządu blok na stacji wyłączał listę (21 kg, „kg/str.”)', async () => {
     await fresh(); places([]); hist(day(3), RDL, [{ weight: 20, reps: 8 }]); store.startFromTemplate(tplAt(RDL, 'home')); const e = store.getState().active!.exercises[0];

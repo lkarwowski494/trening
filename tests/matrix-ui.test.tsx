@@ -464,7 +464,7 @@ describe('ActiveWorkout (/ z treningiem w toku)', () => {
 
   test('chip miejsca: menu „Miejsce tego treningu” zmienia miejsce sesji', async () => {
     await startWith(['Back Squat'], () => { addLocation('gym', 'Siłownia'); addLocation('home', 'Dom'); store.getState().active!.locationId = store.getState().settings.locations[0].id; });
-    await tap(screen.getByLabelText('Miejsce treningu: Siłownia. Tapnij, by zmienić.'));
+    await tap(screen.getByLabelText('Miejsce treningu: Siłownia'));
     const sh = (global as any).__sheets[(global as any).__sheets.length - 1]; expect(sh.opts.title).toBe('Miejsce tego treningu'); expect(sh.opts.options).toEqual(['Siłownia', 'Dom', 'Anuluj']);
     await act(async () => { (global as any).__pickSheet(1); }); await flushAll(5);
     expect(store.getState().active!.locationId).toBe(store.getState().settings.locations[1].id);

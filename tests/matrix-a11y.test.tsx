@@ -9,11 +9,13 @@
  */
 import * as RN from 'react-native';
 import * as store from '@/lib/store';
-import { light, dark, F, type Theme } from '@/lib/theme';
+import { light, dark, F, TEXT_SCALE_MAX, type Theme } from '@/lib/theme';
 import { applyLang } from '@/lib/i18n';
 import { EN } from '@/lib/i18n.en';
 import { renderApp, flushAll, screen, go } from './app';
 import { fresh, seedWithDemo } from './helpers';
+import * as plan from '@/lib/plan';
+import * as locations from '@/lib/locations';
 
 jest.setTimeout(180000);
 
@@ -44,15 +46,21 @@ const isBold = (st: Record<string, unknown>) => st.fontFamily === F.heavy || st.
 async function richState(l: 'pl' | 'en') {
   await fresh(seedWithDemo(l), l);
   const S = store.getState(); const tpl = S.templates[0];
+  /* audyt 0.10 (A11-10, TST-03): miejsce treningu i plan tygodnia — nowe ekrany (szczegóły miejsca, plan, kalendarz z planem) z danymi */
+  const loc = locations.addLocation('gym'); for (let i = 0; i < 7; i += 2) plan.setWeekDay(i, tpl.id);
   store.startFromTemplate(tpl); store.toggleDone(0, 0); store.toggleDone(0, 1);
   const w = store.finishWorkout(Date.now())!;
   store.startFromTemplate(tpl); store.toggleDone(0, 0);
-  return { s: JSON.parse(JSON.stringify(store.getState())), w, tpl, exId: S.exercises[0].id };
+  return { s: JSON.parse(JSON.stringify(store.getState())), w, tpl, exId: S.exercises[0].id, locId: loc.id, blockId: store.getState().active!.exercises[0].id };
 }
-const routesFor = (w: { id: string }, tpl: { id: string }, exId: string) => [
+/** Trasy przeglądu. Audyt 0.10 (A11-10): także ekrany 0.10 — plan, generator, przewodnik, zamiana, wybór ćwiczenia, kolejność, trening wstecz,
+ * szczegóły miejsca (dashboard bez treningu w toku: osobny przegląd niżej). Indeks 13 = szczegóły sesji (test kroju mono niżej). */
+const routesFor = (w: { id: string }, tpl: { id: string }, exId: string, locId: string, blockId: string) => [
   '/', '/templates', '/exercises', '/history', '/more', '/more/settings', '/more/progress', '/more/locations', '/more/backup', '/more/language', '/more/bands',
   `/template/${tpl.id}`, `/exercise/${exId}`, `/history/${w.id}`, `/history/edit/${w.id}`,
+  '/plan', '/generator', '/guide', `/swap?target=active:${blockId}`, '/picker?target=active', '/reorder?target=active', '/history/add', `/more/location/${locId}`,
 ];
+const ROUTES_N = 23;
 /* Trasa „/” w stanie z treningiem w toku = ekran aktywnego treningu (components/ActiveWorkout.tsx). */
 
 /**
@@ -69,11 +77,19 @@ type Sweep = {
   noName: string[]; noRole: string[]; dup: string[]; inputNoLabel: string[]; switchBad: string[];
   contrast: string[]; oneLine: string[]; colorsSeen: Set<string>; nonHex: string[];
 };
-async function sweep(l: 'pl' | 'en', theme: 'light' | 'dark'): Promise<Sweep> {
+/** Audyt 0.10 (A11-10): dashboard (bez treningu w toku) z planem tygodnia, zakończonym treningiem i bieżącym tygodniem deload; kalendarz z planem i deloadem. */
+async function dashState(l: 'pl' | 'en') {
+  await fresh(seedWithDemo(l), l);
+  const S = store.getState(); const tpl = S.templates[0]; for (let i = 0; i < 7; i++) plan.setWeekDay(i, i % 2 ? null : tpl.id);
+  store.startFromTemplate(tpl); store.toggleDone(0, 0); store.finishWorkout(Date.now()); store.toggleDeloadWeek(Date.now());
+  return JSON.parse(JSON.stringify(store.getState()));
+}
+const DASH_ROUTES = ['/', '/history', '/plan'];
+async function sweep(l: 'pl' | 'en', theme: 'light' | 'dark', dash = false): Promise<Sweep> {
   const pal: Theme = theme === 'light' ? light : dark;
-  const { s, w, tpl, exId } = await richState(l); s.settings.theme = theme;
+  const { s, w, tpl, exId, locId, blockId } = dash ? { s: await dashState(l), w: null, tpl: null, exId: '', locId: '', blockId: '' } : await richState(l); s.settings.theme = theme;
   await renderApp({ saved: s, locale: l }); await flushAll(10);
-  const out: Sweep = { routes: routesFor(w, tpl, exId), pressables: 0, texts: 0, inputs: 0, noName: [], noRole: [], dup: [], inputNoLabel: [], switchBad: [], contrast: [], oneLine: [], colorsSeen: new Set(), nonHex: [] };
+  const out: Sweep = { routes: dash ? DASH_ROUTES : routesFor(w!, tpl!, exId, locId, blockId), pressables: 0, texts: 0, inputs: 0, noName: [], noRole: [], dup: [], inputNoLabel: [], switchBad: [], contrast: [], oneLine: [], colorsSeen: new Set(), nonHex: [] };
   const uiTexts = new Set<string>([...Object.keys(EN), ...Object.values(EN)].filter(x => !x.includes('{')));
   for (const r of out.routes) {
     await go(r); await flushAll(10);
@@ -105,7 +121,8 @@ async function sweep(l: 'pl' | 'en', theme: 'light' | 'dark'): Promise<Sweep> {
       let bg: string | null = null; let dim = false;
       for (let x: Node = tx; x; x = x.parent) {
         const ps2 = flat(x.props?.style);
-        if (typeof ps2.opacity === 'number' && ps2.opacity < 1) dim = true; /* wyszarzone = nieaktywne (WCAG 1.4.3: wyjątek dla nieaktywnych elementów) */
+        /* audyt 0.10 (A11-16): wyjątek WCAG 1.4.3 tylko dla elementów naprawdę nieaktywnych (accessibilityState.disabled) — sama przezroczystość
+         * nie zwalnia (wyszarzony, ale aktywny wiersz w wyborze ćwiczenia musi mieć pełny kontrast) */
         if (x.props?.accessibilityState?.disabled) dim = true;
         const b = ps2.backgroundColor; if (b && b !== 'transparent') { bg = hex6(b); if (!bg) out.nonHex.push(`${r}: tło ${String(b)}`); break; }
       }
@@ -118,6 +135,15 @@ async function sweep(l: 'pl' | 'en', theme: 'light' | 'dark'): Promise<Sweep> {
   return out;
 }
 
+describe.each([['pl', 'light'], ['en', 'dark']] as const)('dostępność: dashboard z planem i tygodniem deload, kalendarz, plan (A11-10) — język %s, motyw %s', (l, theme) => {
+  let R: Sweep;
+  beforeAll(async () => { jest.spyOn(RN, 'useColorScheme').mockImplementation((() => theme) as never); R = await sweep(l, theme, true); });
+  afterAll(() => { jest.restoreAllMocks(); applyLang('pl'); });
+  test('przegląd objął dashboard (karta „Dziś”, kafelki), kalendarz i plan', () => { expect(R.routes).toEqual(DASH_ROUTES); expect(R.pressables).toBeGreaterThan(30); expect(R.texts).toBeGreaterThan(60); expect(R.nonHex).toEqual([]); });
+  test('nazwa i rola każdego elementu naciskanego, bez powtórzeń; pola i przełączniki z etykietą', () => { expect([R.noName, R.noRole, R.dup, R.inputNoLabel, R.switchBad]).toEqual([[], [], [], [], []]); });
+  test('kontrast WCAG każdego tekstu; teksty interfejsu bez ucinania do jednej linii', () => { expect([R.contrast, R.oneLine]).toEqual([[], []]); });
+});
+
 describe.each([['pl', 'light'], ['en', 'dark']] as const)('dostępność ekranów: język %s, motyw %s', (l, theme) => {
   let R: Sweep; const pal = theme === 'light' ? light : dark; const other = theme === 'light' ? dark : light;
   beforeAll(async () => {
@@ -127,7 +153,7 @@ describe.each([['pl', 'light'], ['en', 'dark']] as const)('dostępność ekranó
   afterAll(() => { jest.restoreAllMocks(); applyLang('pl'); });
 
   test('przegląd objął wszystkie ekrany i elementy (stan z danymi, właściwy motyw)', () => {
-    expect(R.routes).toHaveLength(15);
+    expect(R.routes).toHaveLength(ROUTES_N);
     expect(R.pressables).toBeGreaterThan(600); /* lista Ćwiczeń domyślnie bez niszowych (research 09.10.2026: ~300 wierszy) + reszta */
     expect(R.inputs).toBeGreaterThan(5); expect(R.texts).toBeGreaterThan(1000);
     expect(R.colorsSeen.has(pal.text.toLowerCase())).toBe(true); expect(R.colorsSeen.has(pal.muted.toLowerCase())).toBe(true);
@@ -155,6 +181,10 @@ describe('kontrast palety (WCAG 2.1) — pary używane w kodzie, których nie sp
     need(th.muted, th.surface, 4.5, 'muted na surface (zakładka)'); need(th.muted, th.surface2, 4.5, 'muted na surface2 (chip)'); need(th.accentInk, th.accent, 4.5, 'accentInk na accent (plakietka)');
     /* tekst w odhaczonej serii: muted i band (guma) na done */
     need(th.muted, th.done, 4.5, 'muted na done'); need(th.band, th.done, 4.5, 'band na done'); need(th.danger, th.done, 4.5, 'danger na done');
+    /* audyt 0.10: A11-04 — „Usuń” odsłaniany pod wierszem (SwipeRow, 15 pt): dangerInk na danger; A11-06 (WCAG 1.4.11) — granica pola, pustego ✓
+     * i tor wyłączonego przełącznika (ctrlLine) do każdego tła, na którym stoją */
+    need(th.dangerInk, th.danger, 4.5, 'dangerInk na danger (Usuń pod wierszem)');
+    for (const bg of ['bg', 'surface', 'surface2'] as const) need(th.ctrlLine, th[bg], 3, `ctrlLine na ${bg} (granica elementu sterującego)`);
     expect(fails).toEqual([]);
   });
 });
@@ -166,9 +196,9 @@ describe('Dynamic Type: skala czcionki 2,0 (największe rozmiary dostępności i
     jest.spyOn(RN.PixelRatio, 'getFontScale').mockReturnValue(2);
     const dims = RN.Dimensions.get; jest.spyOn(RN.Dimensions, 'get').mockImplementation(((k: 'window' | 'screen') => ({ ...dims(k), fontScale: 2 })) as never);
     jest.spyOn(console, 'error').mockImplementation((...a: unknown[]) => { const m = String(a[0]); if (!/not wrapped in act/.test(m)) errs.push(m.slice(0, 200)); });
-    const { s, w, tpl, exId } = await richState('pl');
+    const { s, w, tpl, exId, locId, blockId } = await richState('pl');
     await renderApp({ saved: s }); await flushAll(10);
-    R = { routes: routesFor(w, tpl, exId), inputs: [], monoNoLimit: [], btnNoLimit: [], btnTexts: 0, maxEff: 0 };
+    R = { routes: routesFor(w, tpl, exId, locId, blockId), inputs: [], monoNoLimit: [], btnNoLimit: [], btnTexts: 0, maxEff: 0 };
     for (const r of R.routes) {
       await go(r); await flushAll(10);
       const all: Node[] = visibleNodes();
@@ -178,13 +208,13 @@ describe('Dynamic Type: skala czcionki 2,0 (największe rozmiary dostępności i
         if ((st.fontFamily === F.mono || st.fontFamily === F.monoBold) && !(m > 0)) R.monoNoLimit.push(`${r}: „${textOf(tx)}”`);
         let p = tx.parent; while (p && !(p.props?.accessibilityRole === 'button' && typeof p.props?.onPress === 'function')) p = p.parent;
         const ps = p ? flat(p.props.style) : {}; /* Btn (ui.tsx s.btn): ramka 1, promień 10, min. wysokość 40/44 */
-        if (p && kind(p) === 'Pressable' && ps.borderRadius === 10 && ps.borderWidth === 1 && ps.minHeight >= 40 && (R.btnTexts++, !(m > 0))) R.btnNoLimit.push(`${r}: „${textOf(tx)}”`);
+        if (p && kind(p) === 'Pressable' && ps.borderRadius === 10 && ps.borderWidth === 1 && ps.minHeight >= 40 && (R.btnTexts++, !(m >= TEXT_SCALE_MAX))) R.btnNoLimit.push(`${r}: „${textOf(tx)}” (${m})`); /* A11-07: przyciski się zawijają — do 200% */
         R.maxEff = Math.max(R.maxEff, fs * Math.min(2, m > 0 ? m : 2));
       }
     }
   });
   afterAll(() => jest.restoreAllMocks());
-  test('wszystkie ekrany renderują się przy skali 2,0 bez błędów Reacta', () => { expect(R.routes).toHaveLength(15); expect(errs).toEqual([]); expect(RN.PixelRatio.getFontScale()).toBe(2); });
+  test('wszystkie ekrany renderują się przy skali 2,0 bez błędów Reacta', () => { expect(R.routes).toHaveLength(ROUTES_N); expect(errs).toEqual([]); expect(RN.PixelRatio.getFontScale()).toBe(2); });
   test('każde pole tekstowe na każdym ekranie (nie tylko w treningu — C10) ma limit powiększenia 0 < max ≤ 1,3 (components/ui.tsx Input)', () => {
     expect(R.inputs.length).toBeGreaterThan(5);
     expect(R.inputs.filter(i => !(typeof i.m === 'number' && i.m > 0 && i.m <= 1.3))).toEqual([]);
@@ -194,7 +224,7 @@ describe('Dynamic Type: skala czcionki 2,0 (największe rozmiary dostępności i
    * w kolumnie ~50–75 pt (5–7 kolumn na 375 pt) — „102,5” (5 znaków × ~0,6 em ≈ 84 pt) łamie się w środku liczby. Poprawka: limit 1,3 jak w treningu. */
   test('NAPRAWIONE 06.10: liczby krojem mono (tabela serii w historii — app/history/[id].tsx:17) mają limit powiększenia', () => { expect(R.monoNoLimit).toEqual([]); });
   test('liczby krojem mono poza tabelą historii mają limit powiększenia (zasada: ui.tsx, R9-06)', () => { expect(R.monoNoLimit.filter(x => !x.startsWith(R.routes[13] + ':'))).toEqual([]); });
-  test('etykiety przycisków Btn mają limit powiększenia (1,4 — ui.tsx)', () => { expect(R.btnTexts).toBeGreaterThan(20); expect(R.btnNoLimit).toEqual([]); });
+  test('etykiety przycisków Btn rosną do 200% (TEXT_SCALE_MAX — audyt 0.10 A11-07, WCAG 1.4.4; dawniej 1,4)', () => { expect(R.btnTexts).toBeGreaterThan(20); expect(R.btnNoLimit).toEqual([]); });
   test('największy efektywny rozmiar tekstu przy skali 2,0 jest skończony (rozmiar × min(2, limit))', () => { expect(Number.isFinite(R.maxEff) && R.maxEff > 24).toBe(true); });
 });
 

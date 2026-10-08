@@ -7,8 +7,8 @@
 #   "Bench Press \(Dumbbell\), dumbbells", "Bent Over Row \(Dumbbell\), dumbbells" ← jak podprzepływ subflows/szablon-testowy.yaml
 #   "Bench Press \(Dumbbell\)"       ← accessibilityLabel nagłówka karty ćwiczenia (Pressable w app/template/[id].tsx; tapnięcie zwija/rozwija)
 #   "\+ set" / "\+ warm-up" / "\+ drop set" ← '+ seria' / '+ rozgrzewka' / '+ drop set' (TplRows)
-#   "Set N, type: K.*"               ← 'Seria {n}, typ: {k}. Tapnij, by zmienić typ.' (etykieta wiersza szablonu; od 07.10.2026 wieczór bez „lub usunąć serię”);
-#                                      w treningu 'Seria {n}, typ: {k}. Tapnij, by zmienić typ lub dodać notatkę.' (components/ActiveWorkout.tsx);
+#   "Set N, type: K.*"               ← 'Seria {n}, typ: {k}' (instrukcja w podpowiedzi — A11-18) (etykieta wiersza szablonu; od 07.10.2026 wieczór bez „lub usunąć serię”);
+#                                      w treningu ta sama etykieta, podpowiedź z kontekstem (components/ActiveWorkout.tsx);
 #                                      {n} = kindLabel/setLabel (W, 1, 2, 3F, 3D — drop set z numerem serii, po której jest; audyt 0.10 LIVE-14); {k} = SET_KIND_LABEL:
 #                                      'normalna' → normal, 'rozgrzewkowa' → warm-up, 'drop set' → drop set, 'do upadku' → to failure
 #   "To failure \(F\)"             ← 'Do upadku (F)' (ActionSheet etykiety serii)

@@ -54,7 +54,7 @@ name: Widok skupiony i talerze
 # Klawiatura numeryczna nie ma akcji „schowaj” (run 37611882320: hideKeyboard nie działa) — tapnięcie w zwykły tekst karty ją chowa
 # (lista: keyboardShouldPersistTaps="handled"). W tamtym przebiegu talerze powiększały kartę i wiersz zjeżdżał pod klawiaturę — tap w
 # „r-0-0” trafiał w klawisz „3” (ciężar 8035); od wariantu A (07.10.2026) karta trzyma miejsce na grafikę, a „Now: 80 kg × 5” to sprawdza.
-- tapOn: "set 1 of 1"
+- tapOn: "set.1.of.1"  # audyt 0.10 (A11-19): spacje nierozdzielające (NBSP) między liczbą a wyrazem — „.” zamiast spacji
 - extendedWaitUntil: { visible: "Each side: 25 \\+ 5 kg", timeout: 15000 }
 - assertVisible: "Now: 80 kg × 5"
 - takeScreenshot: 41-karta-teraz-talerze

@@ -10,7 +10,8 @@ import { t } from '@/lib/i18n';
  */
 export function LibScopeChip({ all, hidden, searching, onToggle, compact }: { all: boolean; hidden: number; searching: boolean; onToggle: () => void; compact?: boolean }) {
   const chip = <Chip label={all ? `+ ${t('Podstawowe')}` : `${t('Podstawowe')} ✕`} on={!all} onPress={onToggle}
-    a11yLabel={all ? t('Pokazane wszystkie ćwiczenia, także niszowe. Tapnij, by zostawić podstawowe.') : t('Filtr: podstawowe ćwiczenia. Tapnij, by pokazać wszystkie.')} />;
+    a11yLabel={all ? t('Pokazane wszystkie ćwiczenia, także niszowe') : t('Filtr: podstawowe ćwiczenia')}
+    a11yHint={all ? t('Tapnij, by zostawić podstawowe.') : t('Tapnij, by pokazać wszystkie.')} /* A11-18: instrukcja w podpowiedzi, jak filtr miejsca */ />;
   if (compact) return chip;
   return <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', gap: 6, marginTop: 8 }}>
     {chip}

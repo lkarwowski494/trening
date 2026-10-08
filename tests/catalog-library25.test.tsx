@@ -211,7 +211,7 @@ describe('miara ciężar + dystans (noszenie, sanki)', () => {
     addWorkout(Date.UTC(2026, 9, 1), [["Farmer's Walk", [{ weight: 32, distanceM: 30 }]]]);
     await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())) });
     store.startEmpty(); store.addExerciseToActive(store.exById(fw.id)!); await flushAll(20);
-    expect(screen.getAllByText('m').length).toBeGreaterThan(0); expect(screen.queryByText('▶')).toBeNull();
+    expect(screen.getAllByText('m', { includeHiddenElements: true }) /* A11-18: nagłówki kolumn ukryte przed VoiceOver */.length).toBeGreaterThan(0); expect(screen.queryByText('▶')).toBeNull();
     await go(`/more/progress?ex=${fw.id}`); await flushAll(20); expect(screen.getByText('Najdłuższy dystans')).toBeTruthy();
   });
 });
@@ -245,9 +245,9 @@ describe('ekran: filtr „Podstawowe” (lista Ćwiczeń, wybór ćwiczenia, zam
     expect(screen.getByText(t('niszowe ukryte: {n} — znajdziesz je wyszukiwaniem', { n: nicheCount }))).toBeTruthy();
     expect(screen.queryByText(niche)).toBeNull(); expect(screen.getByText('Moje ćwiczenie')).toBeTruthy(); expect(screen.getByText('Floor Press with Chains')).toBeTruthy();
     await type(screen.getByPlaceholderText('Szukaj…'), 'svend'); await flushAll(5); expect(screen.getByText(niche)).toBeTruthy(); expect(screen.getByText('wyszukiwanie obejmuje też niszowe')).toBeTruthy();
-    await type(screen.getByPlaceholderText('Szukaj…'), ''); await tap(screen.getByLabelText('Filtr: podstawowe ćwiczenia. Tapnij, by pokazać wszystkie.')); await flushAll(5);
+    await type(screen.getByPlaceholderText('Szukaj…'), ''); await tap(screen.getByLabelText('Filtr: podstawowe ćwiczenia')); await flushAll(5);
     expect(store.getState().settings.libShowAll).toBe(true); expect(screen.getByText('wszystkie ćwiczenia, także niszowe')).toBeTruthy();
-    await tap(screen.getByLabelText('Pokazane wszystkie ćwiczenia, także niszowe. Tapnij, by zostawić podstawowe.')); expect(store.getState().settings.libShowAll).toBeUndefined();
+    await tap(screen.getByLabelText('Pokazane wszystkie ćwiczenia, także niszowe')); expect(store.getState().settings.libShowAll).toBeUndefined();
   });
   test('wybór ćwiczenia do szablonu: niszowe ukryte do wyszukania; ten sam zapamiętany filtr', async () => {
     await fresh(); const st = store.getState(); st.templates.push({ id: 'tp', ownerId: 'local', createdAt: 1, updatedAt: 1, name: 'A', items: [] }); store.save();
