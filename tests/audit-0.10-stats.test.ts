@@ -127,10 +127,10 @@ describe('E2 / X-03: trwały klucz katalogu (libKey) — zmiana nazwy ćwiczenia
     expect(amb.length).toBeGreaterThan(0); /* niektóre ćwiczenia mają te same pola co inne — tych nie odzyskujemy (bez zgadywania) */
   });
   test('E4: musclesSourced — dopisek „uproszczenie” znika tylko dla ćwiczenia ze źródłami i nietkniętymi partiami', () => {
-    const sq = ex('Back Squat'); expect(musclesSourced(sq)).toBe(false); expect(Object.keys(MUSCLE_SOURCES)).toEqual([]);
-    const reg = MUSCLE_SOURCES as Record<string, string>; reg['Back Squat'] = 'test';
-    try { expect(musclesSourced(sq)).toBe(true); expect(musclesSourced({ ...sq, secondaryMuscles: [] })).toBe(false); expect(musclesSourced({ ...sq, lib: undefined })).toBe(false); }
-    finally { delete reg['Back Squat']; }
+    /* research biblioteki (09.10.2026, E4 wariant A): źródła z docs/research/24 i 25 — „mocne” i „umiarkowane” ukrywają dopisek; „jedno źródło” i „brak źródła” — nie */
+    const sq = ex('Back Squat'); expect(MUSCLE_SOURCES['Back Squat']).toMatch(/^docs\/research\/25-biblioteka\/L4: /); expect(musclesSourced(sq)).toBe(true);
+    expect(musclesSourced({ ...sq, secondaryMuscles: ['pośladki', 'dwugłowe'] })).toBe(false); expect(musclesSourced({ ...sq, lib: undefined })).toBe(false);
+    expect(musclesSourced(ex('Dead Bug'))).toBe(false); /* L6: jedno źródło */ expect(musclesSourced(ex('Hip Thrust (sztanga)'))).toBe(false); /* jedno źródło */
   });
   test('kopia zapasowa: libKey przechodzi eksport → import bez zmian', () => {
     const sq = ex('Back Squat'); sq.name = 'Przysiad'; store.save(sq);

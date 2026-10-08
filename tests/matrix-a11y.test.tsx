@@ -128,7 +128,7 @@ describe.each([['pl', 'light'], ['en', 'dark']] as const)('dostępność ekranó
 
   test('przegląd objął wszystkie ekrany i elementy (stan z danymi, właściwy motyw)', () => {
     expect(R.routes).toHaveLength(15);
-    expect(R.pressables).toBeGreaterThan(900); /* lista ćwiczeń ~860 wierszy + reszta */
+    expect(R.pressables).toBeGreaterThan(600); /* lista Ćwiczeń domyślnie bez niszowych (research 09.10.2026: ~300 wierszy) + reszta */
     expect(R.inputs).toBeGreaterThan(5); expect(R.texts).toBeGreaterThan(1000);
     expect(R.colorsSeen.has(pal.text.toLowerCase())).toBe(true); expect(R.colorsSeen.has(pal.muted.toLowerCase())).toBe(true);
     expect([other.muted, other.danger, other.band].filter(c => R.colorsSeen.has(c.toLowerCase()))).toEqual([]); /* other.text pomijamy: w ciemnym accentInk = grafit = light.text */

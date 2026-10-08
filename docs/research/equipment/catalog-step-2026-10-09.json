@@ -1,0 +1,510 @@
+{
+ "rev": "katalog-2026-10-09",
+ "renamed": {
+  "Barbell Curls Lying Against An Incline": "Spider Curl (sztanga)",
+  "Palms-Down Barbell Wrist Curl Over A Bench": "Barbell Reverse Wrist Curl",
+  "Palms-Up Barbell Wrist Curl Over A Bench": "Barbell Wrist Curl",
+  "Seated One-Arm Dumbbell Palms-Down Wrist Curl": "One-Arm Dumbbell Reverse Wrist Curl",
+  "Seated One-Arm Dumbbell Palms-Up Wrist Curl": "One-Arm Dumbbell Wrist Curl",
+  "Standing Palms-Up Barbell Behind The Back Wrist Curl": "Behind-the-Back Barbell Wrist Curl",
+  "Body Tricep Press": "Bodyweight Triceps Extension",
+  "One Arm Pronated Dumbbell Triceps Extension": "One-Arm Lying Dumbbell Triceps Extension",
+  "Speed Band Overhead Triceps": "Band Overhead Triceps Extension",
+  "Standing Bent-Over Two-Arm Dumbbell Triceps Extension": "Two-Arm Dumbbell Kickback",
+  "Upright Row": "Upright Row (hantle)",
+  "Bent Over Low-Pulley Side Lateral": "One-Arm Cable Rear Lateral Raise",
+  "Lateral Raise - With Bands": "Band Lateral Raise",
+  "Lying Face Down Plate Neck Resistance": "Lying Neck Extension (talerz)",
+  "Lying Face Up Plate Neck Resistance": "Lying Neck Flexion (talerz)",
+  "One-Arm Side Laterals": "One-Arm Lateral Raise (hantel)",
+  "Seated Head Harness Neck Resistance": "Neck Harness Extension",
+  "Single Dumbbell Raise": "Single Dumbbell Front Raise",
+  "Standing Dumbbell Straight-Arm Front Delt Raise Above Head": "Dumbbell Front Raise to Overhead",
+  "Standing Front Barbell Raise Over Head": "Barbell Front Raise to Overhead",
+  "Upright Row With Bands": "Band Upright Row",
+  "Band Hip Adductions": "Band Hip Adduction",
+  "Calf Raises with Bands": "Band Calf Raise",
+  "Donkey Calf Raises": "Donkey Calf Raise",
+  "Smith Machine Reverse Calf Raises": "Smith Machine Reverse Calf Raise",
+  "Ankle On The Knee": "Supine Figure-Four Stretch",
+  "Calf Stretch Hands Against Wall": "Wall Calf Stretch",
+  "Cat Stretch": "Cat-Cow",
+  "Dancer's Stretch": "Seated Rotation Stretch",
+  "Elbows Back": "Standing Chest Stretch",
+  "Front Leg Raises": "Leg Swings (Front-to-Back)",
+  "Groin and Back Stretch": "Butterfly Stretch",
+  "Hamstring Stretch": "Supine Hamstring Stretch",
+  "Hamstring-SMR": "Foam Roll: Hamstrings",
+  "Knee Across The Body": "Supine Spinal Twist",
+  "Kneeling Hip Flexor": "Kneeling Hip Flexor Stretch",
+  "On Your Side Quad Stretch": "Side-Lying Quad Stretch",
+  "One Arm Against Wall": "Wall Lat Stretch",
+  "Quadriceps-SMR": "Foam Roll: Quadriceps",
+  "Shoulder Stretch": "Cross-Body Shoulder Stretch",
+  "Side Leg Raises": "Leg Swings (Side-to-Side)",
+  "Triceps Stretch": "Overhead Triceps Stretch",
+  "Windmills": "Lying Leg Crossover Swings",
+  "Clean from Blocks": "Block Clean",
+  "Power Clean from Blocks": "Block Power Clean",
+  "Power Snatch from Blocks": "Block Power Snatch",
+  "Snatch from Blocks": "Block Snatch",
+  "Two-Arm Kettlebell Clean": "Double Kettlebell Clean",
+  "Physioball Hip Bridge": "Stability Ball Hip Bridge",
+  "One Leg Barbell Squat": "Bulgarian Split Squat (sztanga)",
+  "Smith Machine Single-Leg Split Squat": "Smith Machine Bulgarian Split Squat",
+  "Push-Ups - Close Triceps Position": "Close-Grip Push-Up",
+  "Reverse Triceps Bench Press": "Reverse Grip Bench Press",
+  "Shoulder Press - With Bands": "Band Shoulder Press",
+  "Standing Bradford Press": "Bradford Press",
+  "Two-Arm Kettlebell Military Press": "Double Kettlebell Press",
+  "Dips - Triceps Version": "Triceps Dip",
+  "Reverse Grip Bent-Over Rows": "Reverse Grip Bent Over Row",
+  "Underhand Cable Pulldowns": "Underhand Lat Pulldown",
+  "Exercise Ball Pull-In": "Stability Ball Knee Tuck",
+  "Barbell Ab Rollout": "Standing Barbell Rollout",
+  "Knee Tuck Jump": "Tuck Jump",
+  "Bench Sprint": "Alternate Leg Push-Off",
+  "Linear Depth Jump": "Depth Jump"
+ },
+ "merged": {
+  "Close-Grip EZ Bar Curl": "EZ Bar Curl",
+  "Close-Grip EZ-Bar Curl with Band": "EZ Bar Curl",
+  "Close-Grip Standing Barbell Curl": "Barbell Curl",
+  "EZ-Bar Spider Curl": "Spider Curl (sztanga)",
+  "Finger Curls": "Barbell Wrist Curl",
+  "Incline Inner Biceps Curl": "Incline Curl (hantle)",
+  "Lying High Bench Barbell Curl": "Spider Curl (sztanga)",
+  "Seated Dumbbell Curl": "Biceps Curl (hantle)",
+  "Seated Dumbbell Inner Biceps Curl": "Standing Inner-Biceps Curl",
+  "Standing One-Arm Dumbbell Curl Over Incline Bench": "One Arm Dumbbell Preacher Curl",
+  "Wide-Grip Standing Barbell Curl": "Barbell Curl",
+  "Incline Dumbbell Fly With A Twist": "Incline Chest Fly (hantle)",
+  "Single-Arm Cable Crossover": "Single Arm Cable Fly",
+  "Cable One Arm Triceps Extension": "Single Arm Triceps Pushdown",
+  "Dumbbell Tricep Extension - Pronated Grip": "Skullcrusher (hantle)",
+  "One Arm Supinated Dumbbell Triceps Extension": "One-Arm Lying Dumbbell Triceps Extension",
+  "Seated Bent-Over One-Arm Dumbbell Triceps Extension": "Triceps Kickback",
+  "Seated Bent-Over Two-Arm Dumbbell Triceps Extension": "Two-Arm Dumbbell Kickback",
+  "Rear Delt Raise (hantle)": "Reverse Fly (hantle)",
+  "Back Flyes - With Bands": "Band Pull Apart",
+  "Seated Bent-Over Rear Delt Raise": "Reverse Fly (hantle)",
+  "Seated Side Lateral Raise": "Lateral Raise (hantle)",
+  "Side Laterals to Front Raise": "Alternating Deltoid Raise",
+  "Weighted Sissy Squat": "Sissy Squat",
+  "Rope Straight-Arm Pulldown": "Straight Arm Pulldown",
+  "Rocking Standing Calf Raise": "Calf Raise (sztanga)",
+  "90/90 Hamstring": "Supine Hamstring Stretch",
+  "Adductor/Groin": "The Straddle",
+  "All Fours Quad Stretch": "Side-Lying Quad Stretch",
+  "Behind Head Chest Stretch": "Standing Chest Stretch",
+  "Calf Stretch Elbows Against Wall": "Wall Calf Stretch",
+  "Chair Lower Back Stretch": "Standing Lateral Stretch",
+  "Chair Upper Body Stretch": "Standing Chest Stretch",
+  "Elbow Circles": "Arm Circles",
+  "Hug Knees To Chest": "One Knee To Chest",
+  "Intermediate Hip Flexor and Quad Stretch": "Side-Lying Quad Stretch",
+  "Lying Bent Leg Groin": "Butterfly Stretch",
+  "Lying Crossover": "Supine Spinal Twist",
+  "Lying Glute": "Supine Figure-Four Stretch",
+  "Lying Hamstring": "Supine Hamstring Stretch",
+  "Lying Prone Quadriceps": "Side-Lying Quad Stretch",
+  "On-Your-Back Quad Stretch": "Side-Lying Quad Stretch",
+  "One Half Locust": "Side-Lying Quad Stretch",
+  "One Handed Hang": "Dead Hang",
+  "Overhead Lat": "Wall Lat Stretch",
+  "Overhead Triceps": "Overhead Triceps Stretch",
+  "Pelvic Tilt Into Bridge": "Glute Bridge",
+  "Seated Biceps": "Standing Biceps Stretch",
+  "Seated Front Deltoid": "Standing Chest Stretch",
+  "Seated Glute": "Supine Figure-Four Stretch",
+  "Seated Hamstring": "Seated Floor Hamstring Stretch",
+  "Seated Hamstring and Calf Stretch": "Seated Floor Hamstring Stretch",
+  "Seated Overhead Stretch": "Standing Lateral Stretch",
+  "Shoulder Raise": "Shoulder Circles",
+  "Side Wrist Pull": "Cross-Body Shoulder Stretch",
+  "Side-Lying Floor Stretch": "Standing Lateral Stretch",
+  "Spinal Stretch": "Middle Back Stretch",
+  "Standing Hamstring and Calf Stretch": "Standing Gastrocnemius Calf Stretch",
+  "Standing Hip Flexors": "Kneeling Hip Flexor Stretch",
+  "Tricep Side Stretch": "Cross-Body Shoulder Stretch",
+  "Upper Back-Leg Grab": "Seated Floor Hamstring Stretch",
+  "Recumbent Bike": "Rower",
+  "Double Kettlebell Alternating Hang Clean": "Double Kettlebell Clean",
+  "Hang Clean Below the Knees": "Hang Clean",
+  "One-Arm Kettlebell Split Snatch": "Kettlebell Snatch",
+  "One-Arm Open Palm Kettlebell Clean": "Kettlebell Clean",
+  "Open Palm Kettlebell Clean": "Kettlebell Clean",
+  "Atlas Stone Trainer": "Atlas Stones",
+  "Band Good Morning (Pull Through)": "Band Good Morning",
+  "Car Deadlift": "Rickshaw Deadlift",
+  "Hyperextensions With No Hyperextension Bench": "Back Extension",
+  "Kettlebell One-Legged Deadlift": "Single Leg RDL (hantel)",
+  "Romanian Deadlift from Deficit": "RDL (sztanga)",
+  "Stiff-Legged Dumbbell Deadlift": "RDL (hantle/linki)",
+  "Wide Stance Stiff-Legged Deadlift": "Stiff-Legged Barbell Deadlift",
+  "Hip Lift with Band": "Glute Bridge",
+  "Vertical Swing": "Kettlebell Swing",
+  "Heaving Snatch Balance": "Snatch Balance",
+  "Dumbbell Squat to a Bench": "Dumbbell Squat",
+  "Frankenstein Squat": "Front Squat",
+  "Front Barbell Squat to a Bench": "Front Squat",
+  "Narrow Stance Hack Squat": "Hack Squat",
+  "Narrow Stance Leg Press": "Leg Press",
+  "Narrow Stance Squats": "Back Squat",
+  "Wide Stance Barbell Squat": "Back Squat",
+  "Kettlebell Pistol Squat": "Pistol Squat",
+  "Step-up with Knee Raise": "Step Up",
+  "Return Push from Stance": "Medicine Ball Chest Pass",
+  "Alternating Kettlebell Floor Press": "Floor Press (hantle)",
+  "Chest Push from 3 Point Stance": "Medicine Ball Chest Pass",
+  "Dumbbell Bench Press with Neutral Grip": "Bench Press (hantle)",
+  "Extended Range One-Arm Kettlebell Floor Press": "One-Arm Kettlebell Floor Press",
+  "Hammer Grip Incline DB Bench Press": "Incline Bench Press (hantle)",
+  "Incline Push-Up Wide": "Incline Push Up",
+  "Kneeling Chest Push (single response)": "Medicine Ball Chest Pass",
+  "Wide-Grip Decline Barbell Bench Press": "Decline Bench Press",
+  "Close-Grip Push-Up off of a Dumbbell": "Close-Grip Push-Up",
+  "One-Arm Kettlebell Para Press": "Kettlebell Press",
+  "Seated Bradford/Rocky Press": "Bradford Press",
+  "Standing Palm-In One-Arm Dumbbell Press": "Single Arm Overhead Press (hantel)",
+  "Standing Palms-In Dumbbell Press": "Overhead Press (hantle)",
+  "Weighted Bench Dip": "Triceps Dips (ławka)",
+  "Bent Over Two-Dumbbell Row With Palms In": "Bent Over Row (hantle)",
+  "Bodyweight Mid Row": "Inverted Row",
+  "Kneeling Single-Arm High Pulley Row": "Single Arm Lat Pulldown",
+  "One-Arm Kettlebell Row": "One Arm Row (hantle)",
+  "Two-Arm Kettlebell Row": "Bent Over Row (hantle)",
+  "Kipping Muscle Up": "Muscle Up",
+  "Rocky Pull-Ups/Pulldowns": "Pull Up",
+  "3/4 Sit-Up": "Sit Up",
+  "Bottoms Up": "Reverse Crunch",
+  "Hanging Alternating Knee Raise": "Hanging Knee Raise",
+  "Oblique Crunches": "Cross-Body Crunch",
+  "Plate Twist": "Russian Twist",
+  "Depth Jump Leap": "Depth Jump"
+ },
+ "removed": [
+  "Standing Olympic Plate Hand Squeeze",
+  "Wrist Rotations with Straight Bar",
+  "Bodyweight Fly (rolling bars)",
+  "Isometric Chest Squeezes",
+  "Standing Towel Triceps Extension",
+  "Prone Manual Hamstring",
+  "Cable Incline Pushdown",
+  "Standing Leg Lift",
+  "Calf Raise On A Dumbbell",
+  "Anterior Tibialis-SMR",
+  "Brachialis-SMR",
+  "Chair Leg Extended Stretch",
+  "Hug A Ball",
+  "Looking At Ceiling",
+  "Lower Back-SMR",
+  "Neck-SMR",
+  "Pyramid",
+  "Single-Cone Sprint Drill",
+  "Skating",
+  "Smith Machine Hang Power Clean",
+  "Lunge Sprint",
+  "Heavy Bag Thrust",
+  "One Arm Floor Press",
+  "Anti-Gravity Press",
+  "Iron Cross",
+  "Linear 3-Part Start Technique",
+  "Linear Acceleration Wall Drill",
+  "Moving Claw Series",
+  "Kneeling Arm Drill",
+  "Balance Board"
+ ],
+ "fieldFixes": [
+  {
+   "name": "Concentration Curl (hantle)",
+   "field": "loadMode",
+   "from": "per_dumbbell",
+   "to": "unilateral"
+  },
+  {
+   "name": "Triceps Kickback",
+   "field": "loadMode",
+   "from": "per_dumbbell",
+   "to": "unilateral"
+  },
+  {
+   "name": "Back Extension",
+   "field": "muscles",
+   "from": [
+    "plecy"
+   ],
+   "to": [
+    "plecy",
+    "dwugłowe"
+   ]
+  },
+  {
+   "name": "Back Extension",
+   "field": "secondaryMuscles",
+   "from": [
+    "pośladki",
+    "dwugłowe"
+   ],
+   "to": [
+    "pośladki"
+   ]
+  },
+  {
+   "name": "Deadlift (hantle)",
+   "field": "muscles",
+   "from": [
+    "plecy",
+    "dwugłowe"
+   ],
+   "to": [
+    "dwugłowe",
+    "pośladki"
+   ]
+  },
+  {
+   "name": "Deadlift (hantle)",
+   "field": "secondaryMuscles",
+   "from": [
+    "pośladki"
+   ],
+   "to": [
+    "plecy"
+   ]
+  },
+  {
+   "name": "Deadlift (sztanga)",
+   "field": "muscles",
+   "from": [
+    "plecy",
+    "dwugłowe"
+   ],
+   "to": [
+    "dwugłowe",
+    "pośladki"
+   ]
+  },
+  {
+   "name": "Deadlift (sztanga)",
+   "field": "secondaryMuscles",
+   "from": [
+    "pośladki",
+    "czworogłowe"
+   ],
+   "to": [
+    "plecy",
+    "czworogłowe"
+   ]
+  },
+  {
+   "name": "Glute Bridge",
+   "field": "secondaryMuscles",
+   "from": [
+    "dwugłowe"
+   ],
+   "to": []
+  },
+  {
+   "name": "Hip Thrust (hantel)",
+   "field": "secondaryMuscles",
+   "from": [
+    "dwugłowe"
+   ],
+   "to": []
+  },
+  {
+   "name": "Hip Thrust (sztanga)",
+   "field": "secondaryMuscles",
+   "from": [
+    "dwugłowe"
+   ],
+   "to": []
+  },
+  {
+   "name": "Trap Bar Deadlift",
+   "field": "muscles",
+   "from": [
+    "czworogłowe",
+    "plecy"
+   ],
+   "to": [
+    "czworogłowe",
+    "pośladki"
+   ]
+  },
+  {
+   "name": "Trap Bar Deadlift",
+   "field": "secondaryMuscles",
+   "from": [
+    "pośladki",
+    "dwugłowe"
+   ],
+   "to": [
+    "dwugłowe",
+    "plecy"
+   ]
+  },
+  {
+   "name": "Bulgarian Split Squat (hantle)",
+   "field": "secondaryMuscles",
+   "from": [
+    "dwugłowe"
+   ],
+   "to": []
+  },
+  {
+   "name": "Pallof Press",
+   "field": "loadMode",
+   "from": "total",
+   "to": "unilateral"
+  },
+  {
+   "name": "Box Jump",
+   "field": "group",
+   "from": "cardio",
+   "to": "nogi"
+  },
+  {
+   "name": "Box Jump",
+   "field": "muscles",
+   "from": [],
+   "to": [
+    "czworogłowe"
+   ]
+  },
+  {
+   "name": "Box Jump",
+   "field": "secondaryMuscles",
+   "from": [],
+   "to": [
+    "pośladki",
+    "łydki"
+   ]
+  },
+  {
+   "name": "Wrist Curl (hantle)",
+   "field": "group",
+   "from": "inne",
+   "to": "biceps"
+  },
+  {
+   "name": "Reverse Wrist Curl (hantle)",
+   "field": "group",
+   "from": "inne",
+   "to": "biceps"
+  },
+  {
+   "name": "Back Squat",
+   "field": "secondaryMuscles",
+   "from": [
+    "pośladki",
+    "dwugłowe"
+   ],
+   "to": [
+    "pośladki",
+    "przywodziciele"
+   ]
+  },
+  {
+   "name": "Leg Press",
+   "field": "secondaryMuscles",
+   "from": [
+    "pośladki"
+   ],
+   "to": [
+    "pośladki",
+    "przywodziciele"
+   ]
+  },
+  {
+   "name": "Farmer's Walk",
+   "field": "metric",
+   "from": "weight_time",
+   "to": "weight_distance"
+  },
+  {
+   "name": "Suitcase Carry",
+   "field": "metric",
+   "from": "weight_time",
+   "to": "weight_distance"
+  },
+  {
+   "name": "Overhead Carry (hantle)",
+   "field": "metric",
+   "from": "weight_time",
+   "to": "weight_distance"
+  },
+  {
+   "name": "Double Kettlebell Front Rack Carry",
+   "field": "metric",
+   "from": "weight_time",
+   "to": "weight_distance"
+  },
+  {
+   "name": "Farmer's Walk (trap bar)",
+   "field": "metric",
+   "from": "weight_time",
+   "to": "weight_distance"
+  },
+  {
+   "name": "Farmer's Walk (Farmers Handles)",
+   "field": "metric",
+   "from": "weight_time",
+   "to": "weight_distance"
+  },
+  {
+   "name": "Rickshaw Carry",
+   "field": "metric",
+   "from": "weight_time",
+   "to": "weight_distance"
+  },
+  {
+   "name": "Yoke Walk",
+   "field": "metric",
+   "from": "weight_time",
+   "to": "weight_distance"
+  },
+  {
+   "name": "Conan's Wheel",
+   "field": "metric",
+   "from": "weight_time",
+   "to": "weight_distance"
+  },
+  {
+   "name": "Sled Push",
+   "field": "metric",
+   "from": "weight_time",
+   "to": "weight_distance"
+  },
+  {
+   "name": "Sled Forward Drag with Press",
+   "field": "metric",
+   "from": "weight_time",
+   "to": "weight_distance"
+  },
+  {
+   "name": "Sled Overhead Backward Walk",
+   "field": "metric",
+   "from": "weight_time",
+   "to": "weight_distance"
+  },
+  {
+   "name": "Backward Drag",
+   "field": "metric",
+   "from": "weight_time",
+   "to": "weight_distance"
+  },
+  {
+   "name": "Sled Drag (Harness)",
+   "field": "metric",
+   "from": "weight_time",
+   "to": "weight_distance"
+  },
+  {
+   "name": "Bear Crawl Sled Drag",
+   "field": "metric",
+   "from": "weight_time",
+   "to": "weight_distance"
+  }
+ ]
+}

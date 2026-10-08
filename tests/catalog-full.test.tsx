@@ -54,10 +54,10 @@ describe('pełna baza — audyt kodu 04.10 wieczór', () => {
 });
 
 /* Decyzja właściciela 05.10.2026 („1.a”): nowy sprzęt (krok b i pełna baza) dopisany jednorazowo do miejsc opartych na presecie siłowni. */
-import { presetEquipment, GYM_FILL, capsOf, availability } from '@/lib/equipment';
+import { presetEquipment, GYM_FILL, EQUIP_FILL2, capsOf, availability } from '@/lib/equipment';
 import { seedState } from '@/lib/seed';
 describe('pełna baza — nowy sprzęt w zapisanych miejscach (decyzja 1.a)', () => {
-  const oldGym = () => presetEquipment('gym').filter(e => !GYM_FILL.items.includes(e.item)).map(e => ({ ...e, opts: e.opts.filter(o => !(GYM_FILL.opts[e.item] ?? []).includes(o)) }));
+  const oldGym = () => presetEquipment('gym').filter(e => !GYM_FILL.items.includes(e.item) && !EQUIP_FILL2.all.includes(e.item) && !EQUIP_FILL2.gym.includes(e.item)).map(e => ({ ...e, opts: e.opts.filter(o => !(GYM_FILL.opts[e.item] ?? []).includes(o)) }));
   const withLocs = (locs: any[]) => { const s: any = JSON.parse(JSON.stringify(seedState('pl'))); delete s.equipFill; s.settings.locations = locs; s.settings.mainLocationId = locs[0].id; return s; };
   const L = (id: string, equipment: any[]) => ({ id, ownerId: 'local', createdAt: 1, updatedAt: 1, name: id, equipment });
   test('siłownia z dawnego presetu (także z kilkoma usuniętymi pozycjami) dostaje nowy sprzęt i opaski przy wyciągach; dom — nie; raz', async () => {

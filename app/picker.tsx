@@ -3,7 +3,8 @@ import { FlatList, ScrollView, Pressable, Text, View } from 'react-native';
 import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
 import { useTheme, F } from '@/lib/theme';
 import { Screen, Input, Chip, Item, Muted, Empty } from '@/components/ui';
-import { getState, addExerciseToActive, newExercise, save, visibleExercises, exerciseInHistory, locationById, swapBlock, exById, usesBand, restoreExercise } from '@/lib/store';
+import { getState, addExerciseToActive, newExercise, save, visibleExercises, exerciseInHistory, locationById, swapBlock, exById, usesBand, restoreExercise, exercisesInUse, inCoreList, libShowAll, setLibShowAll } from '@/lib/store';
+import { LibScopeChip } from '@/components/LibScope';
 import { afterSwap } from '@/components/ActiveWorkout';
 import { availability, capsOf, missingLabel, type Availability } from '@/lib/equipment';
 import { uid } from '@/lib/seed';
@@ -38,8 +39,10 @@ export default function PickerScreen() {
     : target.startsWith('edit:') ? locationById(draftOf(target.slice(5))?.w.locationId) : undefined;
   const [allOn, setAllOn] = useState(st.settings.pickerShowAll); const showAll = !ctx || allOn; const caps = ctx ? capsOf(ctx) : null; const av = new Map<string, Availability>();
   const avail = (e: Exercise) => { if (!caps) return null; let a = av.get(e.id); if (!a) { a = availability(e, ctx, caps); av.set(e.id, a); } return a; };
-  let hidden = 0;
-  const list = visibleExercises().filter(swapOk).filter(e => (!g || e.group === g || exact(e)) && (!ql || fold(e.name).includes(ql) || fold(exName(e)).includes(ql))).filter(e => { if (showAll || exact(e) || avail(e)!.ok) return true; hidden++; return false; }).sort((a, b) => GROUPS.indexOf(a.group) - GROUPS.indexOf(b.group) || exName(a).localeCompare(exName(b), locale()));
+  let hidden = 0, nicheHidden = 0;
+  /* research biblioteki (decyzja 09.10.2026, wariant B): domyślnie tylko podstawowe + własne + użyte; wyszukiwanie — cała biblioteka */
+  const [libAll, setLibAll] = useState(libShowAll()); const used = useMemo(() => exercisesInUse(), []); // eslint-disable-line react-hooks/exhaustive-deps
+  const list = visibleExercises().filter(swapOk).filter(e => (!g || e.group === g || exact(e)) && (!ql || fold(e.name).includes(ql) || fold(exName(e)).includes(ql))).filter(e => { if (libAll || ql || inCoreList(e, used)) return true; nicheHidden++; return false; }).filter(e => { if (showAll || exact(e) || avail(e)!.ok) return true; hidden++; return false; }).sort((a, b) => GROUPS.indexOf(a.group) - GROUPS.indexOf(b.group) || exName(a).localeCompare(exName(b), locale()));
   const choose = (ex: Exercise) => {
     if (chosen.current) return; chosen.current = true; // podwójne tapnięcie nie doda ćwiczenia dwa razy ani nie cofnie o dwa ekrany
     if (target === 'active') addExerciseToActive(ex);
@@ -67,10 +70,11 @@ export default function PickerScreen() {
         <Chip label={showAll ? `+ 📍 ${ctx.name}` : `📍 ${ctx.name} ✕`} on={!showAll} onPress={() => { const v = !showAll; setAllOn(v); st.settings.pickerShowAll = v; save(); }} a11yLabel={showAll ? t('Filtr miejsca wyłączony: {l}. Tapnij, by pokazać tylko dostępne.', { l: ctx.name }) : t('Filtr miejsca: {l}. Tapnij, by zdjąć.', { l: ctx.name })} />
         <Muted style={{ fontSize: 12, flexShrink: 1 }}>{showAll ? t('niedostępne w: {l} są wyszarzone', { l: ctx.name }) : t('tylko dostępne w: {l}', { l: ctx.name }) + (hidden ? ' · ' + t('ukryte: {n}', { n: hidden }) : '')}</Muted>
       </View> : null}
+      <LibScopeChip all={libAll} hidden={nicheHidden} searching={!!ql} onToggle={() => { const v = !libAll; setLibAll(v); setLibShowAll(v); }} />
       <ScrollView horizontal keyboardShouldPersistTaps="handled" showsHorizontalScrollIndicator={false} style={{ flexGrow: 0, flexShrink: 0, marginVertical: 8 }} /* runda 69: chipy nie są ściskane do zera */>
         <Chip label={t('Wszystkie')} on={g === ''} onPress={() => setG('')} />{GROUPS.map(x => <Chip key={x} label={t(x)} on={g === x} onPress={() => setG(x)} />)}
       </ScrollView>
-      {/* pełna baza ćwiczeń (04.10.2026, ~870): lista wirtualizowana — ScrollView renderował wszystkie wiersze naraz (270 → 433 ms w Node, npm run perf) */}
+      {/* pełna baza ćwiczeń (04.10.2026; po researchu 09.10.2026 — CATALOG): lista wirtualizowana — ScrollView renderował wszystkie wiersze naraz (270 → 433 ms w Node, npm run perf) */}
       <FlatList data={rows} renderItem={({ item }) => item as React.ReactElement} keyExtractor={(x, i) => String((x as React.ReactElement)?.key ?? i)} initialNumToRender={30} maxToRenderPerBatch={30} windowSize={11}
         keyboardShouldPersistTaps="handled" automaticallyAdjustKeyboardInsets contentContainerStyle={{ paddingBottom: 40 }} ListEmptyComponent={<Empty>{t('Nic nie pasuje.')}</Empty>} />
     </Screen>

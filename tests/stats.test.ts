@@ -15,7 +15,7 @@ describe('suma na treningu (rekord) — rodzaj, wkład serii, format', () => {
     expect(stats.totalKind(ex('Pull Up'))).toBe('suma powtórzeń');
     expect(stats.totalKind(ex('Burpees'))).toBe('suma powtórzeń');
     expect(stats.totalKind(ex('Plank'))).toBe('łączny czas');
-    expect(stats.totalKind(ex("Farmer's Walk"))).toBe('łączny czas');
+    expect(stats.totalKind(ex('Crucifix'))).toBe('łączny czas'); expect(stats.totalKind(ex("Farmer's Walk"))).toBe('łączny dystans'); /* 09.10.2026: ciężar + dystans */
     expect(stats.totalKind(ex('Bieg'))).toBe('łączny dystans');
     expect(stats.totalKind({ ...ex('Back Squat'), metric: undefined } as any)).toBe('objętość treningu');
   });
@@ -122,7 +122,7 @@ describe('serie wykresu wg metryki', () => {
     store.getState().settings.bodyMass = 80; expect(keys('Pull Up')).toEqual(['total', 'bestE1rm', 'maxLoad', 'volume', 'maxReps']); delete store.getState().settings.bodyMass;
     expect(keys('Burpees')).toEqual(['total', 'maxReps']);
     expect(keys('Plank')).toEqual(['total', 'maxDuration']);
-    expect(keys("Farmer's Walk")).toEqual(['total', 'maxLoad', 'maxDuration']);
+    expect(keys('Crucifix')).toEqual(['total', 'maxLoad', 'maxDuration']); expect(keys("Farmer's Walk")).toEqual(['total', 'maxLoad', 'maxDistance']);
     expect(keys('Bieg')).toEqual(['total', 'maxDistance']);
     expect(stats.chartKeysFor({ ...ex('Back Squat'), metric: undefined } as any).map(k => k.key)).toEqual(['volume', 'bestE1rm', 'maxLoad', 'maxReps']);
   });
@@ -163,15 +163,15 @@ describe('sumy tygodniowe i partie', () => {
     addWorkout(mon - 3600e3, [['Back Squat', [{ weight: 100, reps: 5 }]]]);
     addWorkout(mon + 8 * 86400e3, [['Back Squat', [{ weight: 100, reps: 5 }]]]);
     const g = addWorkout(mon + 7200e3, [['Back Squat', [{ weight: 100, reps: 5 }]]]); g.exercises[0].exerciseId = 'usuniete'; store.save();
-    expect(stats.weeklySetsByMuscle(mon)).toEqual({ 'czworogłowe': 2, 'pośladki': 1, 'dwugłowe': 1 });
+    expect(stats.weeklySetsByMuscle(mon)).toEqual({ 'czworogłowe': 2, 'pośladki': 1, 'przywodziciele': 1 }); /* Back Squat: docs/24 (09.10.2026) — bez dwugłowych, z przywodzicielami */
   });
   test('objętość per partia (06.10.2026): ciężar × powtórzenia, główna 1, pomocnicza 0,5; rozgrzewki, inne tygodnie i usunięte pominięte', () => {
     const mon = stats.thisMonday(0, now);
     addWorkout(mon + 3600e3, [['Back Squat', [{ weight: 100, reps: 5 }, { weight: 100, reps: 5 }, { weight: 40, reps: 10, kind: 'warmup' }]]]);
     addWorkout(mon - 3600e3, [['Back Squat', [{ weight: 100, reps: 5 }]]]);
     const g = addWorkout(mon + 7200e3, [['Back Squat', [{ weight: 100, reps: 5 }]]]); g.exercises[0].exerciseId = 'usuniete'; store.save();
-    expect(stats.weeklyVolumeByMuscle(mon)).toEqual({ 'czworogłowe': 1000, 'pośladki': 500, 'dwugłowe': 500 });
-    expect(stats.weeklyVolumeByMuscle(stats.thisMonday(-1, now))).toEqual({ 'czworogłowe': 500, 'pośladki': 250, 'dwugłowe': 250 });
+    expect(stats.weeklyVolumeByMuscle(mon)).toEqual({ 'czworogłowe': 1000, 'pośladki': 500, 'przywodziciele': 500 });
+    expect(stats.weeklyVolumeByMuscle(stats.thisMonday(-1, now))).toEqual({ 'czworogłowe': 500, 'pośladki': 250, 'przywodziciele': 250 });
   });
   test('czy jest historia: tylko zakończone treningi', () => {
     expect(stats.hasAnyHistory()).toBe(false); store.startEmpty(); expect(stats.hasAnyHistory()).toBe(false);
@@ -212,6 +212,6 @@ describe('runda 73 — mutanty z drugiego przebiegu', () => {
     addWorkout(stats.thisMonday(-7, now), [['Back Squat', [{ weight: 100, reps: 5 }]]]); addWorkout(stats.thisMonday(1, now), [['Back Squat', [{ weight: 100, reps: 5 }]]]);
     const w = stats.weeklyTotals(8, now); expect(w[0].workouts).toBe(1); expect(w.reduce((a, x) => a + x.workouts, 0)).toBe(1);
     addWorkout(mon, [['Back Squat', [{ weight: 100, reps: 5 }]], ['Leg Curl', [{ weight: 30, reps: 10, kind: 'warmup' }]]]);
-    expect(stats.weeklySetsByMuscle(mon)).toEqual({ 'czworogłowe': 1, 'pośladki': 0.5, 'dwugłowe': 0.5 });
+    expect(stats.weeklySetsByMuscle(mon)).toEqual({ 'czworogłowe': 1, 'pośladki': 0.5, 'przywodziciele': 0.5 });
   });
 });

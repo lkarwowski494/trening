@@ -59,6 +59,8 @@ export const CAP_LABEL: Record<string, L> = {
   'tire': { pl: 'opona', en: 'tire' }, 'sledgehammer': { pl: 'młot', en: 'sledgehammer' }, 'atlas_stones': { pl: 'kamienie atlas', en: 'atlas stones' }, 'yoke': { pl: 'jarzmo (yoke)', en: 'yoke' },
   'log_bar': { pl: 'kłoda (log)', en: 'log bar' }, 'keg': { pl: 'beczka (keg)', en: 'keg' }, 'axle_bar': { pl: 'gryf gruby (axle)', en: 'axle bar' }, 'farmers_handles': { pl: 'uchwyty farmerskie', en: "farmer's handles" },
   'rickshaw': { pl: 'riksza', en: 'rickshaw' },
+  /* research biblioteki, L5 Q7 (decyzja właściciela 09.10.2026): brakujący sprzęt w słowniku */
+  'circus_bell': { pl: 'circus bell', en: 'circus bell' }, 'dip_machine': { pl: 'maszyna do dipów', en: 'dip machine' }, 'wall': { pl: 'ściana', en: 'wall' },
 };
 export const capLabel = (c: string) => { const l = Object.prototype.hasOwnProperty.call(CAP_LABEL, c) ? CAP_LABEL[c] : undefined; return l ? lbl(l) : c; };
 
@@ -149,6 +151,7 @@ export const EQUIPMENT: readonly EquipItem[] = [
   it('pendulum_squat', 'machines', 'Pendulum squat', 'Pendulum squat machine', ['pendulum_squat'], { load: 'machine', defaultLoad: 'list' }),
   it('lever_machine', 'machines', 'Maszyny dźwigniowe na talerze (wiosłowanie, wyciskanie, martwy ciąg…)', 'Plate-loaded lever machines (row, press, deadlift…)', ['lever_machine'], { load: 'machine', defaultLoad: 'list' }),
   it('reverse_hyper', 'machines', 'Reverse hyper (odwrotne hiperekstensje)', 'Reverse hyper machine', ['reverse_hyper'], { load: 'machine', defaultLoad: 'list' }),
+  it('dip_machine', 'machines', 'Maszyna do dipów', 'Dip machine', ['dip_machine'], { load: 'machine', defaultLoad: 'list' }), /* L5 Q7 (09.10.2026) */
   /* akcesoria */
   it('bands', 'accessories', 'Gumy oporowe', 'Resistance bands', ['bands']),
   it('ab_wheel', 'accessories', 'Kółko do brzucha', 'Ab wheel', ['ab_wheel']),
@@ -162,6 +165,7 @@ export const EQUIPMENT: readonly EquipItem[] = [
   it('bosu', 'accessories', 'Bosu / platforma balansowa', 'BOSU / balance board', ['bosu']),
   it('wrist_roller', 'accessories', 'Roller na nadgarstki', 'Wrist roller', ['wrist_roller']),
   it('neck_harness', 'accessories', 'Uprząż na szyję', 'Neck harness', ['neck_harness']),
+  it('wall', 'accessories', 'Wolna ściana (stanie na rękach, wall sit)', 'Free wall (handstands, wall sit)', ['wall']), /* L5 Q7 (09.10.2026) */
   /* cardio */
   it('treadmill', 'cardio', 'Bieżnia', 'Treadmill', ['cardio.treadmill'], { options: [op('incline', 'z regulacją nachylenia (marsz pod górę)', 'with incline (uphill walking)', ['cardio.treadmill_incline'], true)] }), /* uwaga właściciela 05.10.2026 */
   it('bike', 'cardio', 'Rower stacjonarny / air bike', 'Stationary / air bike', ['cardio.bike']),
@@ -179,6 +183,7 @@ export const EQUIPMENT: readonly EquipItem[] = [
   it('axle_bar', 'strongman', 'Gryf gruby (axle)', 'Axle bar', ['axle_bar']),
   it('farmers_handles', 'strongman', 'Uchwyty farmerskie', "Farmer's walk handles", ['farmers_handles']),
   it('rickshaw', 'strongman', 'Riksza (rickshaw)', 'Rickshaw', ['rickshaw']),
+  it('circus_bell', 'strongman', 'Circus bell (hantel z grubym uchwytem)', 'Circus bell', ['circus_bell']), /* L5 Q7 (09.10.2026) */
   it('bicycle', 'cardio', 'Rower (jazda na zewnątrz)', 'Bicycle (outdoors)', ['outdoor']),
 ];
 const BY_ID = new Map(EQUIPMENT.map(x => [x.id, x]));
@@ -218,7 +223,7 @@ export const LOCATION_PRESET_LABEL: Record<LocationPreset, L> = {
 /** Opis presetów bez ciężarów w kreatorze (wartości presetów do potwierdzenia — docs/10, sekcja 5). Siłownia i hotel — presetHint (z danych). */
 export const LOCATION_PRESET_HINT: Record<Exclude<LocationPreset, 'gym' | 'hotel'>, L> = {
   home: { pl: 'pusto — zaznaczysz, co masz', en: 'empty — tick what you have' },
-  bodyweight: { pl: 'tylko mata', en: 'mat only' },
+  bodyweight: { pl: 'mata i ściana', en: 'mat and wall' },
 };
 /** Pozycja z domyślnymi opcjami i opisem ciężarów. */
 export function equipEntry(id: string, unit: LoadUnit = 'kg', allOptions = false): LocEquip {
@@ -230,8 +235,8 @@ const LB_PLATES = [45, 35, 25, 10, 5, 2.5];
 export function presetEquipment(p: LocationPreset, unit: LoadUnit = 'kg'): LocEquip[] {
   const lb = unit === 'lb';
   if (p === 'home') return [];
-  if (p === 'bodyweight') return [equipEntry('floor_mat', unit)];
-  if (p === 'hotel') { const db = equipEntry('db_fixed', unit); db.load = lb ? listOf(rangeValues(5, 50, 5), 'lb') : listOf(rangeValues(2.5, 25, 2.5)); return [db, equipEntry('bench_adj'), equipEntry('floor_mat'), equipEntry('treadmill'), equipEntry('bike')]; }
+  if (p === 'bodyweight') return [equipEntry('floor_mat', unit), equipEntry('wall', unit)];
+  if (p === 'hotel') { const db = equipEntry('db_fixed', unit); db.load = lb ? listOf(rangeValues(5, 50, 5), 'lb') : listOf(rangeValues(2.5, 25, 2.5)); return [db, equipEntry('bench_adj'), equipEntry('floor_mat'), equipEntry('wall'), equipEntry('treadmill'), equipEntry('bike')]; }
   return EQUIPMENT.map(x => { const e = equipEntry(x.id, unit, true);
     if (x.id === 'electric') e.opts = e.opts.filter(o => o !== 'bench'); /* ławki siłowni są osobno */
     if (x.id === 'barbell' || x.id === 'trap_bar' || x.id === 'ez_bar') e.load = lb ? { kind: 'plates', unit: 'lb', base: x.id === 'ez_bar' ? 25 : 45, plates: LB_PLATES.map(w => ({ w, n: 8 })) } : { kind: 'plates', unit: 'kg', base: x.id === 'ez_bar' ? 10 : 20, plates: OLY_PLATES.map(w => ({ w, n: 8 })) };
@@ -245,7 +250,7 @@ export function presetHint(p: LocationPreset, unit: LoadUnit = 'kg'): string {
   if (p === 'home' || p === 'bodyweight') return lbl(LOCATION_PRESET_HINT[p]);
   const eq = presetEquipment(p, unit); const ws = (id: string) => { const l = eq.find(e => e.item === id)?.load; return l?.kind === 'list' ? l.items.map(x => x.w) : []; };
   const db = ws('db_fixed'); const dbA = fmtNum(db[0] ?? 0), dbB = fmtNum(db[db.length - 1] ?? 0);
-  if (p === 'hotel') return t('hantle {a}–{b} {u}, ławka regulowana, mata, bieżnia, rower', { a: dbA, b: dbB, u: unit });
+  if (p === 'hotel') return t('hantle {a}–{b} {u}, ławka regulowana, mata, ściana, bieżnia, rower', { a: dbA, b: dbB, u: unit });
   const bar = eq.find(e => e.item === 'barbell')?.load; const plates = bar?.kind === 'plates' ? bar.plates.map(x => x.w) : [];
   return t('cały sprzęt; sztanga {bar} {u} + talerze {max}…{min} {u}; hantle {a}–{b} {u} co {step}', { bar: fmtNum(bar?.kind === 'plates' ? bar.base : 0), u: unit, max: fmtNum(Math.max(...plates)), min: fmtNum(Math.min(...plates)), a: dbA, b: dbB, step: fmtNum(db.length > 1 ? db[1] - db[0] : 0) });
 }
@@ -265,11 +270,26 @@ export const GYM_FILL = {
  * nie zniknęło po aktualizacji (bieżnia: „marsz pod górę” wymaga od 05.10.2026 nachylenia). Odznaczenie później zostaje.
  */
 export const OPT_FILL = { rev: 'opcje-2026-10-05', opts: { treadmill: ['incline'] } as Readonly<Record<string, readonly string[]>> };
+/**
+ * Research biblioteki (L5 Q7, decyzja właściciela 09.10.2026): nowy sprzęt w słowniku, dopisywany RAZ (State.equipFill2 = rev) do zapisanych miejsc —
+ * ściana do każdego miejsca (ćwiczenia przy ścianie były dotąd dostępne wszędzie; odznaczenie później zostaje), maszyna do dipów do miejsc opartych
+ * na presecie siłowni (Dip Machine wymagała dotąd maszyny do tricepsa). Circus bell (strongman) — poza presetami, nie dopisywany.
+ */
+export const EQUIP_FILL2 = { rev: 'sprzet-2026-10-09', all: ['wall'] as readonly string[], gym: ['dip_machine'] as readonly string[] };
+export function fillEquip2(loc: Pick<Location, 'equipment'>, unit: LoadUnit = 'kg') {
+  const have = new Set(loc.equipment.map(e => e.item)); const gym = gymBased(loc);
+  for (const id of [...EQUIP_FILL2.all, ...(gym ? EQUIP_FILL2.gym : [])]) if (!have.has(id)) loc.equipment.push(equipEntry(id, unit, true));
+}
 export function fillOpts(loc: Pick<Location, 'equipment'>) { for (const e of loc.equipment) for (const o of OPT_FILL.opts[e.item] ?? []) if (!e.opts.includes(o)) e.opts.push(o); }
 /** Dopisuje nowy sprzęt do miejsca opartego na presecie siłowni; zwraca, czy miejsce się kwalifikowało. */
+/** Miejsce oparte na presecie siłowni: co najmniej GYM_FILL.share zaznaczonych pozycji presetu sprzed 05.10.2026 (bez sprzętu dopisanego później). */
+function gymBased(loc: Pick<Location, 'equipment'>): boolean {
+  const old = presetEquipment('gym').map(e => e.item).filter(id => !GYM_FILL.items.includes(id) && !EQUIP_FILL2.all.includes(id) && !EQUIP_FILL2.gym.includes(id)); const on = new Set(loc.equipment.filter(e => !e.off).map(e => e.item)); /* audyt 05.10 (MEDIUM): kwalifikują tylko zaznaczone pozycje */
+  return !!old.length && old.filter(id => on.has(id)).length >= old.length * GYM_FILL.share;
+}
 export function fillGym(loc: Pick<Location, 'equipment'>, unit: LoadUnit = 'kg'): boolean {
-  const old = presetEquipment('gym', unit).map(e => e.item).filter(id => !GYM_FILL.items.includes(id)); const have = new Set(loc.equipment.map(e => e.item)); const on = new Set(loc.equipment.filter(e => !e.off).map(e => e.item)); /* audyt 05.10 (MEDIUM): kwalifikują tylko zaznaczone pozycje */
-  if (!old.length || old.filter(id => on.has(id)).length < old.length * GYM_FILL.share) return false;
+  const have = new Set(loc.equipment.map(e => e.item));
+  if (!gymBased(loc)) return false;
   for (const id of GYM_FILL.items) if (!have.has(id) && equipById(id)) loc.equipment.push(equipEntry(id, unit, true));
   for (const e of loc.equipment) if (!e.off) for (const o of GYM_FILL.opts[e.item] ?? []) if (!e.opts.includes(o)) e.opts.push(o); /* audyt 05.10 (LOW): tylko zaznaczone wyciągi */
   return true;

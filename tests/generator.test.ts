@@ -64,9 +64,14 @@ describe('wynik', () => {
     expect(r.below10).toEqual(['klatka', 'plecy', 'barki', 'biceps', 'triceps', 'czworogłowe', 'dwugłowe', 'pośladki'].filter(m => (r.weeklySets[m] ?? 0) < 10));
     expect(generate(inp({ goal: 'strength' })).below10).toEqual([]);
   });
-  test('5 sesji: pary dzień po dniu z tymi samymi głównymi partiami są pokazane (ostrzeżenie, nie blokada)', () => {
-    const r = generate(inp({ sessions: 5 })); expect(r.backToBack.length).toBeGreaterThan(0);
-    expect(generate(inp({ sessions: 3 })).backToBack).toEqual([]);
+  test('pary dzień po dniu: każda para sąsiednich dni ze wspólną partią główną jest pokazana (ostrzeżenie, nie blokada); po researchu partii 0 par', () => {
+    /* research biblioteki (docs/research/24 pkt 5.3, wdrożenie 09.10.2026): martwy ciąg bez „plecy” głównych + poprawione sloty → w 4–6 sesjach 0 par
+     * (wcześniej 1–2 pary „plecy”, np. przy 5 sesjach); reguła wykrywania bez zmian — sprawdzana niezależnym przeliczeniem par z dni i szablonów */
+    for (const sessions of [2, 3, 4, 5, 6]) for (const goal of ['strength', 'hypertrophy'] as const) {
+      const r = generate(inp({ goal, sessions })); const prim = (ti: number | null) => new Set(ti == null ? [] : r.templates[ti].items.filter(i => !i.targetSec).flatMap(i => ex(i.exerciseId).muscles));
+      const want: [number, number][] = []; for (let d = 0; d < 7; d++) { const a = prim(r.days[d]), b = prim(r.days[(d + 1) % 7]); if ([...a].some(m => b.has(m))) want.push([d, (d + 1) % 7]); }
+      expect([goal, sessions, r.backToBack]).toEqual([goal, sessions, want]); expect(r.backToBack).toEqual([]);
+    }
   });
   test('redukcja: sesja cardio (umiarkowane, minuty sesji jako cel czasu), minuty cardio w tygodniu', () => {
     const r = generate(inp({ goal: 'cut', sessions: 4, minutes: 45 }));

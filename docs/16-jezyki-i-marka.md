@@ -22,7 +22,7 @@ Języki (16): pl, en, cs, sk, hu, ro, bg, hr, sl, sr, lt, lv, et, uk, es, pt.
 - Opisy uprawnień iOS (HealthKit) w danym języku: `locales/<kod>.json` + `app.json` (`CFBundleLocalizations`, `locales`).
 - Test `tests/i18n-locales.test.ts` pilnuje: komplet kluczy, te same `{parametry}`, liczba form liczby mnogiej,
   brak polskich liter (przeciek nieprzetłumaczonego tekstu), zgodność `app.json` z listą języków.
-- Nazwy ćwiczeń z biblioteki: po polsku tylko w języku polskim, w pozostałych po angielsku (tłumaczenie 854 nazw — otwarte).
+- Nazwy ćwiczeń z biblioteki: po polsku tylko w języku polskim, w pozostałych po angielsku (tłumaczenie nazw biblioteki — otwarte; po researchu biblioteki 09.10.2026 jest ich 709).
 
 *Proces (05.10.2026):* 14 tłumaczeń (osobny agent AI na język, wytyczne: rejestr iOS, terminy siłowni, długość ≤ ~130% EN),
 potem 14 niezależnych recenzji (inny agent, bez dostępu do notatek tłumacza). Recenzje zmieniły 5–36 wpisów na język
