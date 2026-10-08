@@ -112,3 +112,9 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
   jakby automatycznie przeliczał szablony i sugerował w kalendarzu, kiedy włączyć”. Zlecony przegląd źródeł: serie na partię dla siły, masy i redukcji;
   deload; zasady generatora (docs/research/22). Reguła z 03.10 uzupełniona o wyjątek (CLAUDE.md).
 - 08.10.2026: **priorytet** — kalendarz z planowaniem treningów (docs/21, „Priorytet”). Warianty do decyzji przedstawione właścicielowi.
+- 08.10.2026: kalendarz — **1A**: zakładka Historia → Kalendarz (miesiąc: odbyte + zaplanowane + deload, niżej lista sesji), na ekranie treningu „Dziś: …”
+  i podgląd tygodnia. **2A**: stały plan tygodnia + zmiany pojedynczych dni, z zastrzeżeniem właściciela: przesunięcie treningu ma dwa tryby —
+  (a) przesunięcie planu o 1 dzień: następne treningi przesuwają się tylko tak daleko, jak wymagają konflikty (przykład: dziś FBW A, jutro FBW B,
+  potem przerwa → A na jutro, B na pojutrze, nic więcej), (b) przesunięcie tylko tego treningu — nigdy na dzień z innym treningiem bez wyraźnego
+  polecenia. Do tego regeneracja grup mięśniowych: sugestie zmian w tym tygodniu z jak najmniejszą liczbą zmian, by po 7–10 dniach wrócić do
+  pierwotnej rutyny (reguła regeneracji — przegląd źródeł w toku, docs/research/23). Przypomnienia (pyt. 3) — bez odpowiedzi.
