@@ -101,6 +101,10 @@ Wrócimy za jakiś czas; w rozmowie wymieniane tylko zbiorczo, dopóki właścic
 - Nagranie siebie podczas ćwiczenia i ocena AI poprawności ruchu (dodane 08.10.2026). Przed pracą **[OTWARTE]**: źródła dla kryteriów techniki
   i dokładności oceny z obrazu (w 4c „liczenie powtórzeń kamerą” odłożone z braku udokumentowanej dokładności); granica porad zdrowotnych
   (ból, kontuzje → specjalista); prywatność nagrań (tylko na telefonie?); koszt modelu (0 zł poza Apple).
+- Znajomi i wyzwania w grupie (dodane 08.10.2026, właściciel: „sparowanie z kolegami i rzucanie sobie wyzwań w grupie, jak tablica wyników
+  na siłowni”). Przed pracą **[OTWARTE]**: aplikacja jest dziś offline, bez kont i serwera — potrzebny serwer albo synchronizacja (koszt: zasada 0 zł
+  poza Apple; darmowe limity do sprawdzenia, np. iCloud/CloudKit w ramach Apple Developer); prywatność (dane treningowe innych osób, zgoda, RODO);
+  zasady porównań, które nie nagradzają ryzyka (np. wyzwania na regularność / liczbę treningów zamiast samego ciężaru); moderacja zaproszeń.
 - Układanie treningów według preferencji i celu (dodane 08.10.2026). Przed pracą **[OTWARTE]**: koliduje z decyzją 03.10.2026 („szablony ustawia
   właściciel — aplikacja ich nie tworzy”) — wymaga nowej decyzji właściciela; zasady układania tylko ze źródeł (ACSM 2026, przeglądy) wg hierarchii.
 
