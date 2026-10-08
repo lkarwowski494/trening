@@ -210,3 +210,10 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
 - 08.10.2026 (ok. 21:50): właściciel — „nic nie ograniczaj, ale wznawiaj pracę zawsze po resecie limitu Claude, bez płatnego dodatku”.
   Wdrożone: strażnik co godzinę (Routine „Wznawianie pracy po limicie”) sprawdza, czy sekwencja trwa, i wznawia ją po przerwie; płatnych
   dodatków nie włączam (to ustawienie konta właściciela). Strażnik wyłączany po zakończeniu sekwencji.
+- 08.10.2026 (ok. 23:50): **grafiki i wskazówki techniki** (pytanie właściciela o grafiki/animacje na karcie ćwiczenia; research
+  docs/research/26). Decyzja wg zasady z 20:20: **wariant A etapami** — (1) własne wskazówki tekstowe dla 125 ćwiczeń bazowych z ≥2
+  przeczytanymi źródłami (też jako opis dla VoiceOver), (2–3) własne figury SVG (szkielet z kątami stawów, 2–3 klatki i krótka pętla, przy
+  „Ogranicz ruch” klatki statyczne, kolory motywu, wszystko w paczce, offline). Odrzucone: zdjęcia free-exercise-db (najpewniej z
+  Bodybuilding.com — brak praw, wizerunek modeli, błędy merytoryczne), wger (niewiarygodne licencje pojedynczych obrazów), Everkinetic
+  (CC BY-SA: tylko ~50 ze 125, obcy styl, nierozstrzygnięty DRM w App Store), płatne/API (0 zł, brak sieci), sam tekst (mniej pomocny).
+  Nazwy ćwiczeń z katalogu zostają (fakty, nie utwór); opis free-exercise-db jako „domeny publicznej” w catalog-notes do poprawy.
