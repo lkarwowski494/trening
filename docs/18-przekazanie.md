@@ -157,3 +157,15 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
   właściciela: wydanie 0.10.0 przed czy po partii napraw; decyzje w grupach (lista w docs/25). E2E 0.10.0 (run 37793333239) czeka na
   maszynę macOS — GitHub od 14:32 UTC anuluje przebieg bez przydzielenia maszyny („capacity constraints”, macOS arm64); ponawiane od razu
   po każdym anulowaniu (polecenie właściciela).
+- 08.10.2026 (po audycie, decyzje właściciela): **naprawiamy wszystko, co audyt znalazł**, potem audyt kontrolny („później terminujesz
+  audyt”); wydanie 0.10.0 dopiero po naprawach (odrzucone: wydanie d2a1e85 od razu, partia 1 przed wydaniem). Pozostałe decyzje z docs/25 —
+  **rekomendacje hurtem**; osobno pytam tylko o rzeczy nieodwracalne lub zewnętrzne.
+  - **Plan wstecz (A1): wariant B — historia planów** (dzień liczony wg planu, który wtedy obowiązywał). To zmiana schematu danych —
+    dozwolona w tym wydaniu, bo nie ma w nim aktualizacji SDK (expo ~57.0.26 jak na `main`). Odrzucone: A (data „od”), C (bez „opuszczony”).
+  - **e1RM w ćwiczeniach z masą ciała (E1): wariant B — opcjonalna masa ciała w Ustawieniach**; e1RM z (masa ± dociążenie/pomoc), pokazane
+    np. „126,7 kg (masa ciała + 46,7)”; bez masy ciała — bez e1RM (jak A). Właściciel pytał o „masę ciała jako niewiadomą”: nie da się,
+    bo wzór Epleya mnoży cały ciężar przez (1 + r/30) — wynik nie jest „masą ciała + X” (wyjaśnione w rozmowie). Zmienia decyzję Q-001
+    („e1RM z samego dociążenia”). Ułamek masy ciała dla danego ćwiczenia (np. pompki) tylko ze źródłami — bez źródła brak e1RM.
+  - **Workflowy EAS (M4): usunąć `iphone-eas.yml` i `iphone-local.yml`**; instalacja przez `testflight.yml`; sekrety EXPO_TOKEN
+    i ASC_API_KEY_P8 kasuje właściciel w ustawieniach repo. Odrzucone: utwardzenie i pozostawienie.
+  - E2E d2a1e85 (run 37793333239) dostało maszynę przy 11. próbie (ok. 17:50 UTC) — wynik jako punkt odniesienia; wydanie po naprawach i nowym E2E.
