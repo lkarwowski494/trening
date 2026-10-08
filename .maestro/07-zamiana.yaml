@@ -71,6 +71,7 @@ name: Zamiana ćwiczenia w trakcie treningu (E2 W1)
 - takeScreenshot: 31-brak-sprzetu
 
 # --- Zamiana w miejscu: propozycje → Bench Press (Dumbbell) ---
+- scrollUntilVisible: { element: "Swap exercise: Bench Press \\(Barbell\\)", direction: DOWN, timeout: 30000, centerElement: true }  # run 37738868663: przycisk nad paskiem zakładek
 - tapOn: "Swap exercise: Bench Press \\(Barbell\\)"
 - extendedWaitUntil: { visible: "Suggestion 1: Bench Press \\(Dumbbell\\).*", timeout: 30000 }
 - takeScreenshot: 32-arkusz-propozycje
@@ -85,6 +86,7 @@ name: Zamiana ćwiczenia w trakcie treningu (E2 W1)
 - tapOn: "Undo swap: Bench Press \\(Dumbbell\\)"
 - extendedWaitUntil: { visible: "Swap exercise: Bench Press \\(Barbell\\)", timeout: 30000 }
 - assertNotVisible: "instead of: .*"
+- scrollUntilVisible: { element: "Swap exercise: Bench Press \\(Barbell\\)", direction: DOWN, timeout: 30000, centerElement: true }  # run 37738868663: przycisk nad paskiem zakładek
 - tapOn: "Swap exercise: Bench Press \\(Barbell\\)"
 - extendedWaitUntil: { visible: "Suggestion 1: Bench Press \\(Dumbbell\\).*", timeout: 30000 }
 - tapOn: "Suggestion 1: Bench Press \\(Dumbbell\\).*"
@@ -106,7 +108,7 @@ name: Zamiana ćwiczenia w trakcie treningu (E2 W1)
 - scrollUntilVisible: { element: "Set 3 done — Overhead Press \\(Barbell\\)", direction: DOWN, timeout: 60000 }
 - tapOn: "Set 1 done — Overhead Press \\(Barbell\\)"
 - tapOn: { text: "Skip", optional: true }
-- scrollUntilVisible: { element: "Swap exercise: Overhead Press \\(Barbell\\)", direction: DOWN, timeout: 60000 }
+- scrollUntilVisible: { element: "Swap exercise: Overhead Press \\(Barbell\\)", direction: DOWN, timeout: 60000, centerElement: true }  # jak wyżej — przycisk nad paskiem zakładek
 - tapOn: "Swap exercise: Overhead Press \\(Barbell\\)"
 - extendedWaitUntil: { visible: "Suggestion 1: Arnold Press.*", timeout: 30000 }
 - tapOn: "Suggestion 1: Arnold Press.*"
@@ -138,7 +140,7 @@ name: Zamiana ćwiczenia w trakcie treningu (E2 W1)
 #   "Edit session", "Save", "Save changes\?" ← jak przepływ 05; „⇄ zamień” w edytorze ma ten sam opis „Swap exercise: X”
 - tapOn: "Edit session"
 - extendedWaitUntil: { visible: "Swap exercise: Overhead Press \\(Barbell\\)", timeout: 30000 }
-- tapOn: "Swap exercise: Overhead Press \\(Barbell\\)"
+- tapOn: "Swap exercise: Overhead Press \\(Barbell\\)"  # ekran bez paska zakładek (edytor historii)
 - extendedWaitUntil: { visible: "Suggestion \\d: Overhead Press \\(Dumbbell\\).*", timeout: 30000 }
 - takeScreenshot: 38-edytor-arkusz
 - tapOn: "Suggestion \\d: Overhead Press \\(Dumbbell\\).*"
@@ -159,6 +161,7 @@ name: Zamiana ćwiczenia w trakcie treningu (E2 W1)
 - runFlow: subflows/szablon-testowy.yaml
 - tapOn: "Start: Upper A"
 - extendedWaitUntil: { visible: "Swap exercise: Bench Press \\(Dumbbell\\)", timeout: 30000 }
+- scrollUntilVisible: { element: "Swap exercise: Bench Press \\(Dumbbell\\)", direction: DOWN, timeout: 30000, centerElement: true }  # run 37738868663: przycisk nad paskiem zakładek
 - tapOn: "Swap exercise: Bench Press \\(Dumbbell\\)"
 - extendedWaitUntil: { visible: "Suggestion 1: .*", timeout: 30000 }
 - tapOn: "Suggestion 1: .*"

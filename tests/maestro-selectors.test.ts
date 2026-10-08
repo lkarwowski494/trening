@@ -84,3 +84,17 @@ test('regresja run 37730170793: przewinięcie do „+ Add exercise” na ekranie
   }
   expect(bad).toEqual([]);
 });
+
+test('regresja run 37738868663: każde stuknięcie „Swap exercise: …” na ekranie treningu poprzedza przewinięcie z wyśrodkowaniem (wyjątek oznaczony: ekran bez paska zakładek); w 05 „Month” po powrocie w górę', () => {
+  const bad: string[] = [];
+  for (const f of files(dir)) {
+    const lines = readFileSync(f, 'utf8').split('\n').filter(l => l.trim() && !l.trim().startsWith('#'));
+    lines.forEach((l, i) => {
+      const m = /^- tapOn: ("Swap exercise: [^"]+")/.exec(l); if (!m || /ekran bez paska zakładek/.test(l)) return;
+      const prev = lines[i - 1] ?? '';
+      if (!(prev.startsWith(`- scrollUntilVisible: { element: ${m[1]},`) && /centerElement: true/.test(prev))) bad.push(`${f.split('/').pop()}: ${l.trim()}`);
+    });
+    if (/05-/.test(f)) { const k = lines.findIndex(l => l.startsWith('- tapOn: "Month"')); if (k >= 0 && !/scrollUntilVisible: \{ element: "Month", direction: UP/.test(lines[k - 1] ?? '')) bad.push('05: „Month” bez przewinięcia w górę'); }
+  }
+  expect(bad).toEqual([]);
+});
