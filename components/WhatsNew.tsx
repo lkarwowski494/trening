@@ -38,7 +38,7 @@ export function WhatsNewPanel({ onClose }: { onClose: () => void }) {
       <Entry e={cur} />
       {rest.map(e => { const on = older === e.id; return (
         <View key={e.id} style={{ gap: 4 }}>
-          <Pressable accessibilityLanguage={lang()} onPress={() => setOlder(on ? null : e.id)} accessibilityRole="button" accessibilityState={{ expanded: on }} hitSlop={6} /* A11-15: 32 + 2×6 = 44 pt */ style={{ minHeight: 32, justifyContent: 'center' }}>
+          <Pressable accessibilityLanguage={lang()} onPress={() => setOlder(on ? null : e.id)} accessibilityRole="button" accessibilityLabel={entryTitle(e)} /* A11-18: bez „▸/▾” w etykiecie (stan niesie expanded) */ accessibilityState={{ expanded: on }} hitSlop={6} /* A11-15: 32 + 2×6 = 44 pt */ style={{ minHeight: 32, justifyContent: 'center' }}>
             <Muted style={{ fontSize: 13, fontFamily: F.semibold }}>{`${on ? '▾' : '▸'} ${entryTitle(e)}`}</Muted>
           </Pressable>
           {on ? <Entry e={e} /> : null}

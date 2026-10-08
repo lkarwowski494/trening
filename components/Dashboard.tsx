@@ -6,7 +6,7 @@ import { useTheme, F, NUM_SCALE_MAX } from '@/lib/theme';
 import { fmtDate, fmtDur, getState, useTick } from '@/lib/store';
 import { weekTiles, lastWorkout, firstSteps } from '@/lib/dashboard';
 import { fmtVol } from '@/lib/units';
-import { t, tp, lang } from '@/lib/i18n';
+import { t, tp, lang, glue } from '@/lib/i18n';
 
 /* Dashboard ekranu Trening (decyzja właściciela 08.10.2026, wariant A) — dane: lib/dashboard.ts. */
 function Tile({ label, value, prev }: { label: string; value: string; prev: string }) {
@@ -18,7 +18,7 @@ function Tile({ label, value, prev }: { label: string; value: string; prev: stri
       <Muted style={{ fontSize: 11, marginTop: 2 }}>{t('poprz.: {v}', { v: prev })}</Muted>
     </View>);
 }
-const hm = (sec: number) => { const m = Math.round(sec / 60); return m >= 60 ? `${Math.floor(m / 60)} h${m % 60 ? ` ${m % 60} min` : ''}` : `${m} min`; };
+const hm = (sec: number) => { const m = Math.round(sec / 60); return m >= 60 ? `${t('{n} h', { n: Math.floor(m / 60) })}${m % 60 ? ` ${t('{n} min', { n: m % 60 })}` : ''}` : t('{n} min', { n: m }); }; /* A11-17: jednostki przez t() */
 
 /** Kafelki tygodnia i ostatni trening (od pierwszego zakończonego treningu). */
 export function WeekStats() {
@@ -32,7 +32,7 @@ export function WeekStats() {
     </View>
     {w.planned != null ? <Muted style={{ fontSize: 12, marginTop: 4 }}>{t('Z planu w tym tygodniu: zrobione {done} z {n}.', { done: w.planDone ?? 0, n: w.planned })}</Muted> : null}{/* audyt 0.10 A5/X-04: dni z planu zrobione zaplanowanym szablonem (ten sam stan dnia co kalendarz) — sesje i dni planu osobno */}
     <SectionTitle>{t('Ostatni trening')}</SectionTitle>
-    <Item title={last.name || t('Trening')} sub={[fmtDate(last.startedAt), fmtDur(last.durationSec), `${last.sets} ${tp(last.sets, 'seria|serie|serii')}`, fmtVol(last.volume), ...(last.prs ? [`${last.prs} ${tp(last.prs, 'rekord|rekordy|rekordów')}`] : [])].join(' · ')} onPress={() => router.push(`/history/${last.id}`)} />
+    <Item title={last.name || t('Trening')} sub={[fmtDate(last.startedAt), fmtDur(last.durationSec), `${last.sets} ${tp(last.sets, 'seria|serie|serii')}`, fmtVol(last.volume), ...(last.prs ? [`${last.prs} ${tp(last.prs, 'rekord|rekordy|rekordów')}`] : [])].map(glue).join(' · ') /* A11-19 */} onPress={() => router.push(`/history/${last.id}`)} />
   </>;
 }
 

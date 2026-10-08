@@ -75,7 +75,7 @@ describe('Ustawienia → Miejsca treningu', () => {
 describe('trening i wybór ćwiczenia w miejscu', () => {
   test('chip „📍 Dom ▾” i zmiana miejsca tylko dla tej sesji', async () => {
     const saved = await savedWithPlaces(true); await renderApp({ saved }); await flushAll(10);
-    const chip = screen.getByLabelText('Miejsce treningu: Dom. Tapnij, by zmienić.'); expect(screen.getByText('📍 Dom ▾')).toBeTruthy();
+    const chip = screen.getByLabelText('Miejsce treningu: Dom'); expect(screen.getByText('📍 Dom ▾')).toBeTruthy();
     await tap(chip); await act(async () => { (global as any).__pickSheet(1); }); await flushAll(5);
     expect(store.getState().active!.locationId).toBe(store.getState().settings.locations[1].id); expect(store.getState().settings.mainLocationId).toBe('home');
     expect(screen.getByText('📍 Siłownia ▾')).toBeTruthy();

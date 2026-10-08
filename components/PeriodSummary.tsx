@@ -5,7 +5,7 @@ import { t, exName, locale, lang } from '@/lib/i18n';
 import { fmtSec, isDeloadWeek, toggleDeloadWeek, useTick } from '@/lib/store';
 import { fmtVol } from '@/lib/units';
 import { periodSummary, periodTitle, type PeriodKind } from '@/lib/period';
-import { Chip, H2, Muted, Txt } from '@/components/ui';
+import { Chip, H2, Muted, Txt, monoSafe } from '@/components/ui';
 import { MuscleMap } from '@/components/MuscleMap';
 import { setsByMuscle } from '@/lib/stats';
 import { deloadLessText } from '@/lib/start';
@@ -51,7 +51,7 @@ export function PeriodSummary() {
         {rows.map(([l, v, p]) => (
           <View accessibilityLanguage={lang()} key={l} accessible accessibilityLabel={t('{label}: {v}, poprzednio {p}', { label: l, v, p })} style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'baseline' }}>
             <Muted>{l}</Muted>
-            <Txt maxFontSizeMultiplier={1.4} style={{ fontFamily: F.monoBold }}>{v} <Muted style={{ fontSize: 12 }}>({t('poprz.')} <Muted style={{ fontSize: 12, fontFamily: F.mono }}>{p}</Muted>)</Muted>{/* A11-11: słowo krojem tekstu (Plex Mono bez greckich liter), liczba mono */}</Txt>
+            <Txt maxFontSizeMultiplier={1.4} style={{ fontFamily: F.monoBold }}>{monoSafe(v, true)} <Muted style={{ fontSize: 12 }}>({t('poprz.')}{'\u00a0'}<Muted style={{ fontSize: 12, fontFamily: F.mono }}>{monoSafe(p)}</Muted>)</Muted>{/* A11-11: słowo krojem tekstu (Plex Mono bez greckich liter), liczba mono */}</Txt>
           </View>))}
       </View>
       <MuscleMap sets={setsByMuscle(s.start, s.end)} />

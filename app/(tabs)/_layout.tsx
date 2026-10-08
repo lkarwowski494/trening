@@ -15,11 +15,12 @@ const icon = (name: TabIconName) => ({ color }: { color: ColorValue }) => <TabIc
 const label = ({ color, position, children }: { focused: boolean; color: ColorValue; position: 'beside-icon' | 'below-icon'; children: string }) => <TabLabel color={color} position={position}>{children}</TabLabel>;
 
 /** Plakietka i etykieta VoiceOver pozostałej przerwy. Test na symulatorze iOS (02.10.2026): plakietka mieści ok. 2–3 znaki — „2:28” było ucinane
- * do „2:…”. Na plakietce skrót (2m / 45s, po czasie +1m), pełny czas czyta VoiceOver i pokazuje pasek przerwy na ekranie treningu.
+ * do „2:…”. Na plakietce skrót (2′ / 45″, po czasie +1′; A11-17), pełny czas czyta VoiceOver i pokazuje pasek przerwy na ekranie treningu.
  * `key` — to, co widać (PERF-06): plakietka, a przy VoiceOver także pełny czas. */
 function restBadge(screenReader: boolean): { badge?: string; full?: string; key: string } {
   const left = timer.T.on ? Math.round((timer.T.endAt - Date.now()) / 1000) : null; if (left == null) return { key: '' };
-  const short = (sec: number) => sec >= 60 ? `${Math.floor(sec / 60)}m` : `${sec}s`;
+  /* A11-17: znaki minuty ′ i sekundy ″ (2′, 45″) — bez liter, więc bez tłumaczenia; „2m” czytało się też jak metry */
+  const short = (sec: number) => sec >= 60 ? `${Math.floor(sec / 60)}′` : `${sec}″`;
   const full = left > 0 ? fmtDur(left) : '+' + fmtDur(-left); // po czasie: nadwyżka jak na pasku
   const badge = left > 0 ? short(left) : '+' + short(-left);
   return { badge, full, key: screenReader ? `${badge}|${full}` : badge };

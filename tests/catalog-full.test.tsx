@@ -21,7 +21,7 @@ describe('pełna baza — listy', () => {
     await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())) }); await flushAll(20);
     await tap(screen.getByLabelText('Zamień ćwiczenie: Bench Press (sztanga)')); await flushAll(20);
     await tap(screen.getByLabelText('Pokaż inne ćwiczenia')); await flushAll(5);
-    await tap(screen.getByLabelText('Filtr partii: klatka. Tapnij, by zdjąć.')); await flushAll(5);
+    await tap(screen.getByLabelText('Filtr partii: klatka')); await flushAll(5);
     const rows = () => screen.getAllByText('⇄').length;
     expect(rows()).toBeLessThanOrEqual(SWAP_PAGE + 3 /* propozycje */ + 1);
     const more = screen.getByLabelText(/^Pokaż więcej ćwiczeń: zostało \d+$/); await tap(more); await flushAll(5);
@@ -45,7 +45,7 @@ describe('pełna baza — audyt kodu 04.10 wieczór', () => {
     await fresh(); store.startEmpty(); store.addExerciseToActive(ex('Bench Press (sztanga)')); await store.flush();
     await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())) }); await flushAll(20);
     await tap(screen.getByLabelText('Zamień ćwiczenie: Bench Press (sztanga)')); await flushAll(20);
-    await tap(screen.getByLabelText('Pokaż inne ćwiczenia')); await flushAll(5); await tap(screen.getByLabelText('Filtr partii: klatka. Tapnij, by zdjąć.')); await flushAll(5);
+    await tap(screen.getByLabelText('Pokaż inne ćwiczenia')); await flushAll(5); await tap(screen.getByLabelText('Filtr partii: klatka')); await flushAll(5);
     const first = screen.getAllByText('⇄').length; await tap(screen.getByLabelText(/^Pokaż więcej ćwiczeń/)); await flushAll(5); expect(screen.getAllByText('⇄').length).toBeGreaterThan(first);
     const wait = async () => { await act(async () => { jest.advanceTimersByTime(800); }); }; /* Item: useOnce(700) — ochrona przed podwójnym tapnięciem */
     await wait(); await tap(screen.getByLabelText('Zwiń inne ćwiczenia')); await flushAll(5); await wait(); await tap(screen.getByLabelText('Pokaż inne ćwiczenia')); await flushAll(5);

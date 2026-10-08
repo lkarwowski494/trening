@@ -50,7 +50,7 @@ test('ŚREDNIE (parytet #5) i NISKIE (#9): edytor historii ma „+ rozgrzewka”
 });
 test('NISKIE (parytet #13): edytor historii pokazuje typ serii plakietką SetBadge; w szablonie guma po kolumnie czasu (jak w treningu)', () => {
   expect(src('app/history/edit/[id].tsx')).toMatch(/<SetBadge kind=\{kind\} label=\{lbl\} note=\{!!set\.note\}/);
-  const tpl = src('app/template/[id].tsx'); expect(tpl.indexOf("{hasTime(m) ? <View style={{ width: W.time }}>")).toBeLessThan(tpl.indexOf("{band ? <Pressable accessibilityRole=\"button\" accessibilityHint={nm}"));
+  const tpl = src('app/template/[id].tsx'); expect(tpl.indexOf("{hasTime(m) ? <View style={{ width: W.time }}>")).toBeLessThan(tpl.indexOf("{band ? <Pressable accessibilityLanguage={lang()} accessibilityRole=\"button\"") /* A11-09/A11-18: atrybuty przycisku gumy */);
 });
 test('NISKIE (wygląd #7): etykiety wykresów i „Anuluj” w wyborze/zamianie w kroju aplikacji', () => {
   const c = src('components/Chart.tsx'); expect((c.match(/<SvgText /g) ?? []).length).toBe((c.match(/<SvgText fontFamily=\{F\.regular\} /g) ?? []).length);

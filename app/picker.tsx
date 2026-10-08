@@ -64,7 +64,7 @@ export default function PickerScreen() {
       <Input value={q} onChangeText={setQ} placeholder={t('Szukaj ćwiczenia…')} maxLength={80} autoFocus autoCorrect={false} />
       {ctx ? <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', gap: 6, marginTop: 8 }}>
         {/* decyzja właściciela 04.10.2026: miejsce jako filtr-etykieta (jak etykieta w JIRA) — „📍 Dom ✕” zdejmuje filtr, „+ 📍 Dom” przywraca; wybór zapamiętany */}
-        <Chip label={showAll ? `+ 📍 ${ctx.name}` : `📍 ${ctx.name} ✕`} on={!showAll} onPress={() => { const v = !showAll; setAllOn(v); st.settings.pickerShowAll = v; save(); }} a11yLabel={showAll ? t('Filtr miejsca wyłączony: {l}. Tapnij, by pokazać tylko dostępne.', { l: ctx.name }) : t('Filtr miejsca: {l}. Tapnij, by zdjąć.', { l: ctx.name })} />
+        <Chip label={showAll ? `+ 📍 ${ctx.name}` : `📍 ${ctx.name} ✕`} on={!showAll} onPress={() => { const v = !showAll; setAllOn(v); st.settings.pickerShowAll = v; save(); }} a11yLabel={showAll ? t('Filtr miejsca wyłączony: {l}', { l: ctx.name }) : t('Filtr miejsca: {l}', { l: ctx.name })} a11yHint={showAll ? t('Tapnij, by pokazać tylko dostępne.') : t('Tapnij, by zdjąć.')} /* A11-18: instrukcja w podpowiedzi */ />
         <Muted style={{ fontSize: 12, flexShrink: 1 }}>{showAll ? t('niedostępne w: {l} są wyszarzone', { l: ctx.name }) : t('tylko dostępne w: {l}', { l: ctx.name }) + (hidden ? ' · ' + t('ukryte: {n}', { n: hidden }) : '')}</Muted>
       </View> : null}
       <ScrollView horizontal keyboardShouldPersistTaps="handled" showsHorizontalScrollIndicator={false} style={{ flexGrow: 0, flexShrink: 0, marginVertical: 8 }} /* runda 69: chipy nie są ściskane do zera */>

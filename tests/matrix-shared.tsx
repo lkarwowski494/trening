@@ -45,7 +45,7 @@ export const isBWx = (e: Pick<Exercise, 'equipment'>) => e.equipment === 'masa c
 export const multOf = (e: Exercise) => isBWx(e) ? 1 : e.loadMode === 'total' ? 1 : 2;
 export const epley = (load: number, reps: number) => load > 0 && reps > 0 ? (reps === 1 ? load : load * (1 + reps / 30)) : 0;
 export const fmtPl = (v: number) => String(v).replace('.', ',');
-export const secTxt = (s: number) => { const m = Math.floor(s / 60), r = s % 60; return m ? `${m}:${String(r).padStart(2, '0')}` : `${r}s`; };
+export const secTxt = (s: number) => { const m = Math.floor(s / 60), r = s % 60; return m ? `${m}:${String(r).padStart(2, '0')}` : `${r} s`; }; /* audyt 0.10 A11-17: jednostka przez t() („{n} s”) */
 export const distTxt = (m: number) => m >= 1000 ? `${fmtPl(m / 1000)} km` : `${m} m`;
 export const setUnit = (u: Unit) => { S().settings.unit = u; store.applyPrefs(); store.save(); };
 /** Prosty parser CSV (cudzysłowy, przecinki w polach). */

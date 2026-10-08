@@ -124,5 +124,11 @@ export function upper(s: string, l: Lang = current): string {
   return out.toUpperCase().normalize('NFC');
 }
 
+/**
+ * Audyt 0.10 (A11-19): bez złamań linii między liczbą a sąsiednim wyrazem („1 / rekord”, „seria 1 z / 4”) i po półpauzie zakresu („8– / 12”):
+ * spacja nierozdzielająca (NBSP) i łącznik bez szerokości (U+2060) po „–” między cyframi. Tylko do wyświetlania.
+ */
+export const glue = (s: string) => s.replace(/(\d) (?=\p{L})/gu, '$1\u00a0').replace(/(\p{L}) (?=\d)/gu, '$1\u00a0').replace(/(\d)–(?=\d)/g, '$1–\u2060');
+
 /** Runda 36: tekst w konkretnym języku danych (ustawienie 'auto' → język telefonu), niezależnie od bieżącego języka ekranu. */
 export function tIn(setting: unknown, pl: string): string { const l = isLang(setting) ? setting : detectLang(); return lookup(l, pl); }

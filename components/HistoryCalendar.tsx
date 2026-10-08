@@ -31,7 +31,7 @@ export function HistoryCalendar({ byDay, selected, onSelect }: { byDay: Map<stri
         {arrow(tr('Następny miesiąc'), '›', 1)}
       </View>
       <View style={{ flexDirection: 'row' }} accessibilityElementsHidden importantForAccessibility="no-hide-descendants">
-        {heads.map((h, i) => <Text accessibilityLanguage={lang()} key={i} maxFontSizeMultiplier={1.2} numberOfLines={1} style={{ flex: 1, textAlign: 'center', color: t.muted, fontSize: 12, fontFamily: F.semibold }}>{h}</Text>)}
+        {heads.map((h, i) => <Text accessibilityLanguage={lang()} key={i} maxFontSizeMultiplier={1.2} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.7} /* A11-19: lv „Ceturtdiena” bez „…” */ style={{ flex: 1, textAlign: 'center', color: t.muted, fontSize: 12, fontFamily: F.semibold }}>{h}</Text>)}
       </View>
       {weeks.map((w, wi) => { const dl = isDeloadWeek(new Date(+w[0].key.slice(0, 4), +w[0].key.slice(5, 7) - 1, +w[0].key.slice(8, 10), 12).getTime()); /* 08.10.2026: tydzień deload — tło wiersza; audyt 0.10 A11-05: ramka muted */ return (
         <View key={wi} testID={dl ? `cal-deload-${w[0].key}` : undefined} style={{ flexDirection: 'row', borderRadius: 18, backgroundColor: dl ? t.surface2 : 'transparent', borderWidth: 1, borderColor: dl ? t.muted : 'transparent' }}>

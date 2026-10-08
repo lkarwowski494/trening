@@ -888,11 +888,11 @@ describe('EKRAN /swap', () => {
     expect(screen.getByText('Brak podobnych ćwiczeń w tym miejscu — rozwiń „Inne”.')).toBeTruthy();
     await tap(screen.getByLabelText('Pokaż inne ćwiczenia')); await flushAll(5);
     expect(screen.getByText('Inne ▴')).toBeTruthy(); expect(screen.getByLabelText('Zwiń inne ćwiczenia')).toBeTruthy();
-    const grp = 'Filtr partii: klatka. Tapnij, by zdjąć.', locL = 'Filtr miejsca: Dom. Tapnij, by zdjąć.';
+    const grp = 'Filtr partii: klatka', locL = 'Filtr miejsca: Dom';
     expect(screen.getByLabelText(grp)).toBeTruthy(); expect(screen.getByLabelText(locL)).toBeTruthy();
     expect(screen.queryByText('Goblet Squat')).toBeNull(); expect(screen.getAllByText('Push Up').length).toBeGreaterThan(0);
-    await tap(screen.getByLabelText(grp)); await flushAll(5); expect(screen.getByLabelText('Filtr partii wyłączony: klatka. Tapnij, by włączyć.')).toBeTruthy();
-    await tap(screen.getByLabelText(locL)); await flushAll(5); expect(screen.getByLabelText('Filtr miejsca wyłączony: Dom. Tapnij, by pokazać tylko dostępne.')).toBeTruthy();
+    await tap(screen.getByLabelText(grp)); await flushAll(5); expect(screen.getByLabelText('Filtr partii wyłączony: klatka')).toBeTruthy();
+    await tap(screen.getByLabelText(locL)); await flushAll(5); expect(screen.getByLabelText('Filtr miejsca wyłączony: Dom')).toBeTruthy();
     /* bez filtrów: cała baza tej miary — porcjami SWAP_PAGE, „Pokaż więcej” dokłada 2 porcje */
     const more = screen.getByLabelText(/^Pokaż więcej ćwiczeń: zostało \d+$/); const left = Number(/(\d+)$/.exec(more.props.accessibilityLabel)![1]);
     expect(left).toBeGreaterThan(100); expect(screen.getByText(`Pokaż więcej (${left})`)).toBeTruthy();
@@ -900,11 +900,11 @@ describe('EKRAN /swap', () => {
     /* niedostępne w Domu (miejsce wyłączone) — z dopiskiem „brak: …” */
     const q = () => screen.getAllByPlaceholderText('Szukaj ćwiczenia…').pop()!;
     await type(q(), 'Leg Press'); await flushAll(5); expect(screen.getAllByText(/brak: suwnica na nogi/).length).toBeGreaterThan(0);
-    await tap(screen.getByLabelText('Filtr miejsca wyłączony: Dom. Tapnij, by pokazać tylko dostępne.')); await flushAll(5);
+    await tap(screen.getByLabelText('Filtr miejsca wyłączony: Dom')); await flushAll(5);
     expect(screen.queryByText(/brak: suwnica na nogi/)).toBeNull();
     /* dokładna nazwa innej miary → nic do pokazania i nic do utworzenia */
     await type(q(), 'Skakanka'); await flushAll(5); expect(screen.getByText('Nic nie pasuje.')).toBeTruthy(); expect(screen.queryByText(/^Utwórz/)).toBeNull();
-    await tap(screen.getByLabelText('Filtr partii wyłączony: klatka. Tapnij, by włączyć.')); await flushAll(5);
+    await tap(screen.getByLabelText('Filtr partii wyłączony: klatka')); await flushAll(5);
     await type(q(), 'Push Up'); await flushAll(5); await tap(screen.getAllByText('Push Up').pop()!); await flushAll(20);
     expect(blk(bi).exerciseId).toBe(ex('Push Up').id);
   });
@@ -935,7 +935,7 @@ describe('EKRAN /swap', () => {
     await renderApp({ saved: st }); await flushAll(20);
     await go(swapUrl('active:' + blk(0).id)); await flushAll(20);
     await tap(screen.getByLabelText('Pokaż inne ćwiczenia')); await flushAll(5);
-    await tap(screen.getByLabelText('Filtr miejsca: Dom. Tapnij, by zdjąć.')); await flushAll(5);
+    await tap(screen.getByLabelText('Filtr miejsca: Dom')); await flushAll(5);
     await type(screen.getAllByPlaceholderText('Szukaj ćwiczenia…').pop()!, 'Pec Deck'); await flushAll(5);
     expect(screen.getByText('usunięte ćwiczenie (w bieżącym treningu)')).toBeTruthy();
   });

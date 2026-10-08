@@ -18,7 +18,7 @@
 #   "+ Add exercise"                 ← '+ Dodaj ćwiczenie'                  (jak flow 04)
 #   "only available at Bodyweight only.*"     ← 'tylko dostępne w: {l}' → 'only available at {l}' (+ ' · hidden: {n}') (app/picker.tsx)
 #   "unavailable at Bodyweight only are greyed out" ← 'niedostępne w: {l} są wyszarzone' → 'unavailable at {l} are greyed out'
-#   "Place filter: X.*"             ← 'Filtr miejsca: {l}. Tapnij, by zdjąć.' (chip-etykieta „📍 X ✕” w app/picker.tsx; od 04.10.2026 zamiast przełącznika „Pokaż wszystkie”)
+#   "Place filter: X.*"             ← 'Filtr miejsca: {l}' (instrukcja w podpowiedzi — A11-18) (chip-etykieta „📍 X ✕” w app/picker.tsx; od 04.10.2026 zamiast przełącznika „Pokaż wszystkie”)
 #   "Search exercises…"              ← 'Szukaj ćwiczenia…'                  (jak flow 04)
 #   "Pull Up,.*"                     ← nazwa ćwiczenia z lib/seed.ts (EN bez zmian, exName) — wymaga pullup.bar|rings (catalog.generated.ts)
 #   "Lat Pulldown,.*"                ← nazwa z lib/seed.ts — wymaga lat_pulldown|cable.high → niedostępne w „Bodyweight only”

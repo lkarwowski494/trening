@@ -6,7 +6,7 @@ import * as store from '@/lib/store';
 import * as plan from '@/lib/plan';
 import { applyLang, t, type Lang } from '@/lib/i18n';
 import { LOCALES } from '@/lib/locales';
-import { renderApp, flushAll, screen, go } from './app';
+import { renderApp, flushAll, screen, go, tap, openCard } from './app';
 import { fresh, withDemoTemplates } from './helpers';
 
 jest.setTimeout(300000);
@@ -160,5 +160,59 @@ describe('K2/K3: kontrast, pola dotyku, przełącznik-chip, wyszarzone wiersze',
     for (const r of rows.slice(0, 5)) { expect(flat(r.props.style).opacity ?? 1).toBe(1); }
     const dimTitles = texts().filter(x => [light.muted, dark.muted].includes(flat(x.props.style).color) && flat(x.props.style).fontSize === 16);
     expect(dimTitles.length).toBeGreaterThan(0);
+  });
+});
+
+describe('K3 (A11-18, A11-19): szum VoiceOver, podwójne glify, złamania linii', () => {
+  const labels = () => screen.UNSAFE_root.findAll((n: Node) => typeof n.type === 'string' && typeof n.props.accessibilityLabel === 'string').map((n: Node) => n.props.accessibilityLabel as string);
+  test('instrukcje „Tapnij, by…” są w podpowiedziach, nie w etykietach (trening, szablon, wybór ćwiczenia, zamiana)', async () => {
+    let tplId = '';
+    await bootIn('pl', '/', () => { const st = store.getState(); tplId = st.templates[0].id; st.settings.showRpe = true; const locations = require('@/lib/locations'); locations.addLocation('gym'); store.startFromTemplate(st.templates[0]); });
+    const bad: string[] = []; const hints: string[] = [];
+    const scan = () => { bad.push(...labels().filter(l => /Tapnij|Stuknij/.test(l) && !/^Nie udało się zapisać/.test(l) /* baner błędu zapisu: widoczny tekst wiersza */)); hints.push(...screen.UNSAFE_root.findAll((n: Node) => typeof n.type === 'string' && /Tapnij, by/.test(String(n.props.accessibilityHint ?? ''))).map((n: Node) => n.props.accessibilityHint)); };
+    scan();
+    const blk = store.getState().active!.exercises[0].id;
+    for (const r of [`/template/${tplId}`, '/picker?target=active', `/swap?target=active:${blk}`]) { await go(r); await flushAll(10); scan(); }
+    expect(bad).toEqual([]); expect(hints.length).toBeGreaterThan(3);
+    expect(hints.some(h => h.endsWith('Tapnij, by zmienić typ lub dodać notatkę.'))).toBe(true);
+  });
+  test('trening: nagłówki kolumn „#”, „✓”, „▶” ukryte przed VoiceOver; plakietka „PR” czytana jako rekord', async () => {
+    await bootIn('pl', '/', () => { const st = store.getState(); store.startFromTemplate(st.templates[0]); });
+    expect(screen.queryByText('#')).toBeNull(); expect(screen.getAllByText('#', { includeHiddenElements: true }).length).toBeGreaterThan(0);
+    const src = require('fs').readFileSync(require('path').join(__dirname, '..', 'components', 'ActiveWorkout.tsx'), 'utf8') as string;
+    expect(src).toMatch(/accessibilityLabel=\{tr\('Rekord: \{list\}'/);
+  });
+  test('zamiana: „↺ przywróć” i „Inne ▾” bez drugiego glifu obok; „Co nowego”: starsze wpisy bez „▸” w etykiecie', async () => {
+    await bootIn('pl', '/', () => { const st = store.getState(); store.startFromTemplate(st.templates[0]); });
+    const blk = store.getState().active!.exercises[0].id; await go(`/swap?target=active:${blk}`); await flushAll(10);
+    const glyphs = screen.UNSAFE_root.findAll((n: Node) => n.type === 'Text' && n.props.accessible === false && ['▾', '▴', '↺'].includes(str(n)));
+    expect(glyphs.map(str)).toEqual([]);
+    await go('/'); await flushAll(10); await go('/more'); await flushAll(10);
+    expect(labels().filter(l => /^[▸▾] /.test(l))).toEqual([]);
+  });
+  test('glue: NBSP między liczbą a wyrazem, łącznik bez szerokości po „–” między cyframi; karta treningu „seria 1 z 4” bez złamania', async () => {
+    const { glue } = require('@/lib/i18n');
+    expect(glue('3 serie · 1 rekord')).toBe('3 serie · 1 rekord'); expect(glue('seria 1 z 4')).toBe('seria 1 z 4');
+    expect(glue('Bench — 3 × 8–12, vila 2:00')).toBe('Bench — 3 × 8–⁠12, vila 2:00'); expect(glue('Ελληνικά')).toBe('Ελληνικά');
+    await bootIn('pl', '/', () => { const st = store.getState(); st.settings.workoutView = 'focus'; store.startFromTemplate(st.templates[0]); });
+    expect(texts().some(x => /^seria 1 z \d+$/.test(str(x)))).toBe(true);
+  });
+});
+
+describe('K3 (A11-18): podpowiedzi VoiceOver po przeniesieniu instrukcji z etykiet', () => {
+  const hintOf = (label: string | RegExp) => screen.UNSAFE_root.findAll((n: Node) => typeof n.type === 'string' && (typeof label === 'string' ? n.props.accessibilityLabel === label : label.test(String(n.props.accessibilityLabel ?? '')))).map((n: Node) => String(n.props.accessibilityHint ?? ''));
+  test('filtry (wybór ćwiczenia, zamiana), typ serii w szablonie, przerwa i guma — etykieta = nazwa i wartość, podpowiedź = instrukcja', async () => {
+    let tplId = '';
+    await bootIn('pl', '/', () => { const st = store.getState(); tplId = st.templates[0].id; const locations = require('@/lib/locations'); const l = locations.addLocation('gym'); locations.setMainLocation(l.id); store.startFromTemplate(st.templates[0]); });
+    expect(hintOf(/^Przerwa: \d/).some(h => h.endsWith('Tapnij, by zmienić.'))).toBe(true);
+    const blk = store.getState().active!.exercises[0].id;
+    await go('/picker?target=active'); await flushAll(10);
+    expect(hintOf(/^Filtr miejsca(?: wyłączony)?: /).every(h => ['Tapnij, by zdjąć.', 'Tapnij, by pokazać tylko dostępne.'].includes(h))).toBe(true);
+    await go(`/swap?target=active:${blk}`); await flushAll(10); await tap(screen.getByLabelText('Pokaż inne ćwiczenia')); await flushAll(5);
+    const grp = screen.UNSAFE_root.findAll((n: Node) => typeof n.type === 'string' && /^Filtr partii: /.test(String(n.props.accessibilityLabel ?? '')))[0];
+    expect(grp.props.accessibilityHint).toBe('Tapnij, by zdjąć.'); await tap(grp); await flushAll(5);
+    expect(hintOf(/^Filtr partii wyłączony: /)).toContain('Tapnij, by włączyć.');
+    await go(`/template/${tplId}`); await flushAll(10); await openCard(0); await flushAll(5);
+    expect(hintOf(/^Seria \d+, typ: /)).toContain('Tapnij, by zmienić typ.');
   });
 });

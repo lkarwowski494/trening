@@ -32,7 +32,7 @@ test('domyślnie: masa, 3 sesje, 60 min, bez ograniczeń sprzętu; podgląd zgod
   expect(screen.getByText('Masa: co najmniej 10 serii na partię w tygodniu, 8–12 powtórzeń (w domu 12–20), zwykle 0–3 powtórzenia w zapasie.')).toBeTruthy(); /* audyt 0.10 MER-06: 0–3 (ACSM 2026: blisko upadku albo 2–3) */
   const r = generate({ goal: 'hypertrophy', locationId: null, sessions: 3, minutes: 60 });
   expect(screen.getByText(/^pon\.? FBW A · śr\.? FBW B · pt\.? FBW A$/)).toBeTruthy();
-  const it = r.templates[0].items[0]; expect(screen.getByText(`${exName(store.exById(it.exerciseId))} — 3 × 8–12, przerwa 2:00`)).toBeTruthy();
+  const it = r.templates[0].items[0]; expect(screen.getByText(`${exName(store.exById(it.exerciseId))} — 3 × 8–\u206012, przerwa 2:00`)).toBeTruthy();
   expect(screen.getByText(/^Serie na partię w tygodniu \(pomocnicza = 0,5 serii — uproszczenie, jedno źródło\): klatka \d/)).toBeTruthy(); /* MER-17 */
   expect(screen.getByText(`Poniżej 10 serii tygodniowo: ${r.below10.join(', ')}. Pomoże więcej sesji, dłuższy czas albo więcej sprzętu w miejscu.`)).toBeTruthy();
   /* audyt 0.10 (C2 atrybucja, C4 MER-06/07/12): wszystkie punkty „Na czym to oparte” — pełne brzmienie w tests/audit-0.10-gen-ui.test.tsx */
@@ -40,7 +40,7 @@ test('domyślnie: masa, 3 sesje, 60 min, bez ograniczeń sprzętu; podgląd zgod
     /^• Zakresy powtórzeń \(masa 8–12, w domu i bez obciążenia 12–20; przy sile dodatkowe 6–10\)/, /^• Wysiłek: zwykle 0–3 powtórzenia w zapasie/, /^• Przerwy: 3 min/, /^• Progresja: gdy zrobisz górę zakresu powtórzeń, dołóż ciężar — konwencja\.$/]) expect(screen.getByText(x)).toBeTruthy();
   await tap(screen.getByText('Siła')); await flushAll(5);
   expect(screen.getByText('Siła: bój główny na początku, 3 × 4–6 powtórzeń (ciężko, ok. 80% maksimum i więcej), pozostałe ćwiczenia 3 × 6–10.')).toBeTruthy(); /* LOG-11: liczby ze stałych */
-  expect(screen.getAllByText(/ — 3 × 4–6, przerwa 3:00$/).length).toBe(2); /* bój główny w FBW A i B */ expect(screen.queryByText(/^Poniżej 10 serii/)).toBeNull();
+  expect(screen.getAllByText(/ — 3 × 4–\u20606, przerwa 3:00$/).length).toBe(2); /* bój główny w FBW A i B */ expect(screen.queryByText(/^Poniżej 10 serii/)).toBeNull();
 });
 test('redukcja: sesje 3–6 (w tym 1 cardio), cardio w podglądzie i licznik minut; 2 sesje przeskakują na 3', async () => {
   await boot('/generator'); await tap(screen.getByLabelText('Sesje w tygodniu: 2')); await flushAll(5);
@@ -56,11 +56,11 @@ test('5 sesji — ostrzeżenie o parach dzień po dniu; miejsce z listy miejsc; 
   await boot('/generator', () => { addLocation('bodyweight', 'Dom'); });
   await tap(screen.getByLabelText('Sesje w tygodniu: 5')); await flushAll(5);
   const pairs = /^Dzień po dniu te same główne partie: .+\. Zwykle lepiej z dniem przerwy; przy tej samej liczbie serii w tygodniu to też jest w porządku\.$/;
-  expect(screen.getAllByText(/ — 3 × 12–20, przerwa /).length).toBeGreaterThan(0); /* miejsce główne „Dom” (masa ciała) wybrane na starcie */
+  expect(screen.getAllByText(/ — 3 × 12–\u206020, przerwa /).length).toBeGreaterThan(0); /* miejsce główne „Dom” (masa ciała) wybrane na starcie */
   expect(screen.queryByText(pairs)).toBeNull(); /* audyt 0.10 LOG-10: w domu układ dni bez par (dawniej pokazywał parę, której dało się uniknąć) */
-  await tap(screen.getByText('Bez ograniczeń sprzętu')); await flushAll(5); expect(screen.queryByText(/ — 3 × 12–20, /)).toBeNull();
+  await tap(screen.getByText('Bez ograniczeń sprzętu')); await flushAll(5); expect(screen.queryByText(/ — 3 × 12–\u206020, /)).toBeNull();
   expect(screen.getByText(pairs)).toBeTruthy(); /* pełna siłownia, 5 sesji: jedna para nie do uniknięcia — ostrzeżenie, nie blokada */
-  await tap(screen.getByText('Dom')); await flushAll(5); expect(screen.getAllByText(/ — 3 × 12–20, przerwa /).length).toBeGreaterThan(0);
+  await tap(screen.getByText('Dom')); await flushAll(5); expect(screen.getAllByText(/ — 3 × 12–\u206020, przerwa /).length).toBeGreaterThan(0);
   await tap(screen.getByText('Bez ograniczeń sprzętu')); await flushAll(5);
   act(() => { S().exercises.forEach(e => { e.archived = true; }); }); await tap(screen.getByText('90 min')); await flushAll(5); /* wszystkie ćwiczenia usunięte (w pamięci — migracja usuwa nieużywane zarchiwizowane) */
   expect(screen.getAllByText('Brak ćwiczeń dostępnych w tym miejscu.').length).toBeGreaterThan(0);

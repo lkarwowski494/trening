@@ -30,7 +30,7 @@ const entries = (l: Lang) => Object.entries(dictOf(l));
  * źródłowy używa bez tłumaczenia (te same w innych językach — tak jak nazwy ćwiczeń z biblioteki po angielsku, lib/i18n.ts exName). */
 const SAME_ANY = new Set([
   /* marki i modele (nazwy własne) */ 'Beyond Power Voltra I (5–200 lb)', 'Gymtek 2,5–24 kg', 'Hop-Sport 2×10 kg', 'ViShape SmartGym Lite (1,5–35 kg/str.)', 'ViShape SmartGym Pro (1,5–65 kg/str.)',
-  /* symbole i wzory */ '{k}: {v}', 'max ±', 'e1RM', '{n} min' /* jednostka (generator, 08.10.2026) */,
+  /* symbole i wzory */ '{k}: {v}', 'max ±', 'e1RM', '{n} min' /* jednostka (generator, 08.10.2026) */, '{n} s', '{n} h', '{n} m', '{n} km', 'max' /* jednostki SI i skrót — audyt 0.10 A11-17 (cyrylica i el mają własne) */, 'Rekord: {list}' /* „rekord” w wielu językach (A11-18, etykieta plakietki PR) */,
   /* angielskie terminy siłowni użyte w polskim źródle */ 'drop set', '+ drop set', 'Drop set (D)', 'superset', 'Deload' /* termin (tytuł tematu przewodnika, 08.10.2026) */, 'core', 'kettlebell', 'Kettlebell', 'landmine', 'T-bar', 'trap bar', 'kettlebell: {v}' /* 07.10.2026: podpis grafiki na karcie */,
   'GHD', 'GHD (glute-ham developer)', 'glute-ham raise', 'reverse hyper', 'ski erg', 'Ski erg', 'Strongman', 'hack squat', 'Hack squat', 'pendulum squat', 'Pendulum squat',
   'butterfly (pec deck)', 'Butterfly (pec deck)', 'tempo', 'biceps', 'triceps',
@@ -38,12 +38,12 @@ const SAME_ANY = new Set([
 ]);
 /** W jednym języku: wyraz pokrewny o tym samym zapisie i znaczeniu (słowa sprawdzone w języku docelowym). */
 const SAME_IN: Partial<Record<Lang, string[]>> = {
-  cs: ['guma: {v}' /* guma (07.10.2026) */, '{n} z {all}', '{n} z {m}' /* „z” = z (czes.) */, '{u}/str.' /* strana */, '+ Guma', 'guma', 'Guma', 'gumy', 'Gumy' /* guma */, 'do', 'od', 'krok', 'obj.' /* objem */, 'REKORDY' /* „pauza” (08.10.2026) usunięte 09.10.2026: pauza treningu = „pozastavit”, A11-01 */],
-  sk: ['guma: {v}' /* guma (07.10.2026) */, '{n} z {all}', '{n} z {m}', '{u}/str.', '+ Guma', 'guma', 'Guma', 'gumy', 'Gumy', 'do', 'od', 'krok', 'obj.', 'REKORDY', 'nie', 'Nie' /* „nie” = nie (słow.) */, 'Partia' /* svalová partia */, 'sek.', 'Teraz: {v}' /* teraz = teraz (słow.) */ /* „pauza” usunięte 09.10.2026: pauza treningu = „pozastaviť”, A11-01 */],
+  cs: ['guma: {v}' /* guma (07.10.2026) */, '{n} z {all}', '{n} z {m}' /* „z” = z (czes.) */, '{u}/str.' /* strana */, '+ Guma', 'guma', 'Guma', 'gumy', 'Gumy' /* guma */, 'do', 'od', 'krok', 'obj.' /* objem */, 'REKORDY', 'Guma: {b}' /* guma (A11-18: etykieta bez instrukcji) */ /* „pauza” (08.10.2026) usunięte 09.10.2026: pauza treningu = „pozastavit”, A11-01 */],
+  sk: ['guma: {v}' /* guma (07.10.2026) */, '{n} z {all}', '{n} z {m}', '{u}/str.', '+ Guma', 'guma', 'Guma', 'gumy', 'Gumy', 'do', 'od', 'krok', 'obj.', 'REKORDY', 'nie', 'Nie' /* „nie” = nie (słow.) */, 'Partia' /* svalová partia */, 'sek.', 'Teraz: {v}' /* teraz = teraz (słow.) */, 'Guma: {b}' /* A11-18 */ /* „pauza” usunięte 09.10.2026: pauza treningu = „pozastaviť”, A11-01 */],
   hr: ['guma: {v}' /* guma (07.10.2026) */, 'Masa' /* masa = masa (chorw., cel generatora 08.10.2026) */, '{u}/str.' /* strana */, 'do', 'od', 'Dom', 'normalna', 'sek.', 'Trening' /* APP_NAME.hr */, 'pauza', '⏸ Pauza' /* pauza = pauza (08.10.2026) */, 'Dodaj trening' /* „dodaj” = dodaj (08.10.2026) */, 'Plan do {date}' /* plan do = plan do (chorw.; nazwa planu bez nazwy po wyłączeniu, audyt 0.10 B2) */],
   sl: ['{u}/str.' /* stran */, 'do', 'od', 'Dom', 'sek.', 'Trening' /* APP_NAME.sl */, 'Treningi' /* sl: mn. „trening” — to samo słowo */, 'Dodaj trening' /* „dodaj” = dodaj (08.10.2026) */],
   ro: ['seria {n}', 'Seria {n}', 'Seria {n} — {ex}', 'serii', 'e1RM {v} (seria {s})' /* rum. seria = seria (forma z rodzajnikiem), serii = serie */],
-  lt: ['guma: {v}' /* guma (07.10.2026) */, '{u}/hant.' /* hantelis */, '+ Guma', 'guma', 'Guma' /* guma */, 'sek.'],
+  lt: ['guma: {v}' /* guma (07.10.2026) */, '{u}/hant.' /* hantelis */, '+ Guma', 'guma', 'Guma', 'Guma: {b}' /* guma */, 'sek.'],
   lv: ['{u}/hant.' /* hantele */, 'sek.'],
   et: ['{u}/hant.', '{u}/hantel' /* hantel (est.) */],
   es: ['Dieta', 'Lista', 'Masa' /* masa (hiszp., cel generatora 08.10.2026) */], pt: ['Dieta', 'Lista'] /* lista = lista (hiszp., port.) */, hu: ['Lista'] /* lista = lista (węg.) */,

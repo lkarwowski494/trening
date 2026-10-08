@@ -573,10 +573,10 @@ export const loadLabelShort = (ex: Exercise, impl?: Impl | null) => isBW(ex) ? `
 export const loadLabel = (ex: Exercise, impl?: Impl | null) => isBW(ex) ? `±${wu()}` : perSide(impl) ? t('{u}/stronę', { u: wu() }) : (ex.loadMode === 'per_dumbbell' ? t('{u}/hantel', { u: wu() }) : ex.loadMode === 'unilateral' ? t('{u}/strona', { u: wu() }) : wu());
 /** Domyślna przerwa dla ćwiczenia: zapamiętana w ćwiczeniu albo globalna. */
 export const restFor = (ex: Exercise | undefined, warmup = false): number => { const s = getState().settings; const def = typeof s.defaultRest === 'number' && s.defaultRest >= 0 ? s.defaultRest : 90; if (!ex) return def; if (warmup && ex.restWarmupSec != null) return ex.restWarmupSec; return ex.restSec ?? def; };
-export const fmtSec = (sec: number) => { sec = Math.max(0, Math.round(sec)); if (sec >= 3600) return fmtDur(sec); /* runda 12: godzina i więcej jak czas sesji */ const m = Math.floor(sec / 60), r = sec % 60; return m ? `${m}:${String(r).padStart(2, '0')}` : `${r}s`; };
-export const fmtDist = (m: number) => m >= 1000 ? `${fmtNum(m / 1000, 2)} km` : `${Math.round(m)} m`;
+export const fmtSec = (sec: number) => { sec = Math.max(0, Math.round(sec)); if (sec >= 3600) return fmtDur(sec); /* runda 12: godzina i więcej jak czas sesji */ const m = Math.floor(sec / 60), r = sec % 60; return m ? `${m}:${String(r).padStart(2, '0')}` : t('{n} s', { n: r }); /* A11-17: jednostka przez t() (uk „с”, el „δευτ.”, hu „mp”, tr „sn”) */ };
+export const fmtDist = (m: number) => m >= 1000 ? t('{n} km', { n: fmtNum(m / 1000, 2) }) : t('{n} m', { n: Math.round(m) }); /* A11-17 */
 /** Zakres powtórzeń do wyświetlenia: „max”, „8”, „8–10”, a przy braku lub odwróconym „do” — „8+”. */
-export const reps = (min: number | null, max: number | null) => min == null ? 'max' : (max == null || max < min ? `${min}+` : min === max ? `${min}` : `${min}–${max}`);
+export const reps = (min: number | null, max: number | null) => min == null ? t('max') /* A11-17 */ : (max == null || max < min ? `${min}+` : min === max ? `${min}` : `${min}–${max}`);
 /** Czas „m:ss”, od godziny „h:mm:ss” (wcześniej 95:00 zamiast 1:35:00). */
 export const fmtDur = (sec: number) => { sec = Math.max(0, Math.round(sec)); const h = Math.floor(sec / 3600), m = Math.floor((sec % 3600) / 60), r = sec % 60; return h ? `${h}:${String(m).padStart(2, '0')}:${String(r).padStart(2, '0')}` : `${m}:${String(r).padStart(2, '0')}`; };
 /** Data do list. Runda 14: rok, gdy nie bieżący — sesje sprzed roku nie wyglądają jak tegoroczne. */

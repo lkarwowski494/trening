@@ -78,3 +78,39 @@ describe('K2 (A11-02): upper() — wersaliki z regułami języka zamiast textTra
     expect([l, bad]).toEqual([l, []]);
   });
 });
+
+describe('K3 (A11-17): jednostki przez t() — w cyrylicy i po grecku bez łacińskich „s”, „min”, „h”, „m”, „km”, „max”', () => {
+  const LOCAL: Lang[] = ['uk', 'bg', 'sr', 'el'];
+  test.each(LOCAL)('%s: żaden tekst słownika nie ma łacińskiej jednostki po liczbie/parametrze ani łacińskiego „max/min”', l => {
+    const bad = Object.entries(dictOf(l)).filter(([, v]) => /(\d|\})\s?(s|min|h|m|km)\b|\b(max|min)\b/.test(v.replace(/\{(min|max)\}/g, ''))).map(([k, v]) => `${k} → ${v}`);
+    expect([l, bad]).toEqual([l, []]);
+  });
+  test('fmtSec / fmtDist / reps / czas na kafelku w języku aplikacji (uk, el, hu, tr); pl i en jak dotąd', () => {
+    const store = require('@/lib/store'); const { applyLang } = require('@/lib/i18n');
+    const out = (l: Lang) => { applyLang(l); const r = [store.fmtSec(45), store.fmtSec(95), store.fmtDist(800), store.fmtDist(1500), store.reps(null, null), store.reps(8, 12)]; applyLang('pl'); return r; };
+    expect(out('pl')).toEqual(['45 s', '1:35', '800 m', '1,5 km', 'max', '8–12']);
+    expect(out('en')).toEqual(['45 s', '1:35', '800 m', '1.5 km', 'max', '8–12']);
+    expect(out('uk')).toEqual(['45 с', '1:35', '800 м', '1,5 км', 'макс.', '8–12']);
+    expect(out('el')).toEqual(['45 δευτ.', '1:35', '800 μ', '1,5 χλμ', 'μέγ.', '8–12']);
+    expect(out('hu').slice(0, 1)).toEqual(['45 mp']); expect(out('tr').slice(0, 1)).toEqual(['45 sn']);
+  });
+});
+
+describe('K2 (A11-08, A11-20): jeden termin dla jednego pojęcia w obrębie języka', () => {
+  /** Synonimy, które zastąpiono jednym terminem (09.10.2026): it „scheda” (zakładka „Schede”), lt „serija”, et „seeria”, sl przerwa „počitek”. */
+  const FORBIDDEN: [Lang, RegExp, string][] = [['it', /modell/i, 'Szablon = „scheda”'], ['lt', /priėjim/i, 'Seria = „serija”'],
+    ['et', /\bsar(i|ja|ju|jad|jade|jas)\b|töösarj|abisarj/i, 'Seria = „seeria”'], ['sl', /odmor/i, 'Przerwa = „počitek”']];
+  test.each(FORBIDDEN)('%s: bez synonimu %s (%s)', (l, re) => {
+    expect([l, Object.entries(dictOf(l)).filter(([, v]) => re.test(v)).map(([k, v]) => `${k} → ${v}`)]).toEqual([l, []]);
+  });
+  test('it: „scheda” nie oznacza karty ekranu — „Nella scheda Schede” → „Nella sezione Schede”', () => { expect(Object.values(dictOf('it')).filter(v => /scheda Schede/.test(v))).toEqual([]); });
+  test('lv: liczba mnoga — forma „zero” (0, 10–20, 30…) w dopełniaczu l.mn. we wszystkich wpisach (jak CLDR: „{0} dienu”)', () => {
+    const plural = Object.keys(EN).filter(k => k.includes('|'));
+    expect(plural.filter(k => !/u$/.test(dictOf('lv')[k].split('|')[0]))).toEqual([]);
+  });
+  test.each(LANGS.filter(l => l !== 'pl'))('%s: A11-20 — nagłówek „Inne”, przełącznik „Inne ▾/▴” i cytat w komunikacie to ta sama forma', l => {
+    const h = tr(l, 'Inne'); const tog = tr(l, 'Inne ▾').replace(/\s*▾$/, ''); const tog2 = tr(l, 'Inne ▴').replace(/\s*▴$/, '');
+    const msg = tr(l, 'Brak podobnych ćwiczeń w tym miejscu — rozwiń „Inne”.');
+    expect([l, h === tog, h === tog2, msg.includes(h)]).toEqual([l, true, true, true]);
+  });
+});
