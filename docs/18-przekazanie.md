@@ -207,3 +207,6 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
   i wysłanie do beta review robi właściciel w App Store Connect.
 - 08.10.2026 (ok. 21:45): właściciel — po wydaniu 1 **kolejny pełny audyt, poprawki i kolejne wydanie** (ta sama droga: verify, E2E,
   scalenie do `main`, TestFlight); gdy audyt nic nie znajdzie — stop po audycie i raport.
+- 08.10.2026 (ok. 21:50): właściciel — „nic nie ograniczaj, ale wznawiaj pracę zawsze po resecie limitu Claude, bez płatnego dodatku”.
+  Wdrożone: strażnik co godzinę (Routine „Wznawianie pracy po limicie”) sprawdza, czy sekwencja trwa, i wznawia ją po przerwie; płatnych
+  dodatków nie włączam (to ustawienie konta właściciela). Strażnik wyłączany po zakończeniu sekwencji.
