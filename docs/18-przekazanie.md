@@ -146,3 +146,8 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
   później (właściciel: „na razie zapisujemy pomysł, żeby go odkopać, gdy będzie czas”); otwarte pytania w docs/21.
 - 08.10.2026: ekran startowy — **dashboard tygodnia (wariant A)**: karta „Dziś” z paskiem tygodnia, 3 kafelki z poprzednim tygodniem, ostatni trening,
   szablony (odrzucone: B minimalny, C pełny z mapą i rekordami); nowa osoba — **lista „Pierwsze kroki”** (odrzucone: jedna karta powitalna).
+- 08.10.2026: czcionka na karcie aktywnego ćwiczenia „nadal nie ta” — przyczyna: na telefonie jest TestFlight build 1004 z `main` (f435c8c,
+  Tektur); IBM Plex Sans Bold jest tylko na `feature/e2-swap` i trafi na telefon z 0.10.0. Timery na karcie celowo w IBM Plex Mono.
+- 08.10.2026: kolejność — **A: najpierw wydanie 0.10.0 (po zielonym E2E), potem wstrzymanie nowych funkcji i głęboki audyt** (logika i liczby
+  w `lib/`, sens funkcji i źródła, spójność ekranów i komunikatów, dane i migracje, tłumaczenia; każdy błąd z testem regresji).
+  Odrzucone: B audyt przed wydaniem (dłużej na starej wersji), C krótki audyt nowości przed wydaniem.
