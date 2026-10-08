@@ -313,7 +313,7 @@ Decyzja właściciela: docs/18, 08.10.2026 (ok. 23:50) — wariant A etapami; et
 **Wskazówki**
 
 - Na górze wyprostuj ręce do końca. — ACE: [Seated Lat Pulldown (#158)](https://www.acefitness.org/resources/everyone/exercise-library/158/seated-lat-pulldown/) (Step 4 (until your elbows are fully extended)); ExRx.net: [CBFrontPulldown](https://web.archive.org/web/20221216151339/https://exrx.net/WeightExercises/LatissimusDorsi/CBFrontPulldown) (Execution (arms and shoulders fully extended)) `lpd.fullStretch`
-- Kończ ściąganie przy górnej części klatki — niżej ruch już nie idzie w dół, tylko w tył. — ACE: [Seated Lat Pulldown (#158)](https://www.acefitness.org/resources/everyone/exercise-library/158/seated-lat-pulldown/) (Step 3 (until the bar nears the chest or elbows begin to move backwards)); ExRx.net: [CBFrontPulldown](https://web.archive.org/web/20221216151339/https://exrx.net/WeightExercises/LatissimusDorsi/CBFrontPulldown) (Execution (to upper chest)) `lpd.toChest`
+- Ściągaj do górnej części klatki — nie dalej. — ACE: [Seated Lat Pulldown (#158)](https://www.acefitness.org/resources/everyone/exercise-library/158/seated-lat-pulldown/) (Step 3 (until the bar nears the chest or elbows begin to move backwards)); ExRx.net: [CBFrontPulldown](https://web.archive.org/web/20221216151339/https://exrx.net/WeightExercises/LatissimusDorsi/CBFrontPulldown) (Execution (to upper chest)) `lpd.toChest`
 
 ### Pull Up
 
@@ -974,12 +974,12 @@ Decyzja właściciela: docs/18, 08.10.2026 (ok. 23:50) — wariant A etapami; et
 
 **Ruch**
 
-- Unieś ramiona bokiem do wysokości barków, potem opuść je powoli. — ACE: [Lateral Raise (#26)](https://www.acefitness.org/resources/everyone/exercise-library/26/lateral-raise/) (Step 3; Step 4); ExRx.net: [DBLateralRaise](https://web.archive.org/web/20240105210847/https://exrx.net/WeightExercises/DeltoidLateral/DBLateralRaise) (Execution) `lat.move`
+- Unieś ramiona bokiem, potem opuść je powoli. — ACE: [Lateral Raise (#26)](https://www.acefitness.org/resources/everyone/exercise-library/26/lateral-raise/) (Step 3; Step 4); ExRx.net: [DBLateralRaise](https://web.archive.org/web/20240105210847/https://exrx.net/WeightExercises/DeltoidLateral/DBLateralRaise) (Execution) `lat.move`
 
 **Wskazówki**
 
 - Łokcie lekko ugięte i prowadzą ruch — są na wysokości dłoni lub wyżej. — ACE: [Lateral Raise (#26)](https://www.acefitness.org/resources/everyone/exercise-library/26/lateral-raise/) (Step 3 (elbows and upper arms rise slightly ahead of the forearms)); ExRx.net: [DBLateralRaise](https://web.archive.org/web/20240105210847/https://exrx.net/WeightExercises/DeltoidLateral/DBLateralRaise) (Execution; Comments (elbows above or equal to wrists)) `lat.elbows`
-- Nie podnoś wyżej niż do linii barków. — ACE: [Lateral Raise (#26)](https://www.acefitness.org/resources/everyone/exercise-library/26/lateral-raise/) (Step 3 (until your arms are level with your shoulders)); ExRx.net: [DBLateralRaise](https://web.archive.org/web/20240105210847/https://exrx.net/WeightExercises/DeltoidLateral/DBLateralRaise) (Execution (until elbows are shoulder height)) `lat.height`
+- Unoś mniej więcej do wysokości barków. — ACE: [Lateral Raise (#26)](https://www.acefitness.org/resources/everyone/exercise-library/26/lateral-raise/) (Step 3 (until your arms are level with your shoulders)); ExRx.net: [DBLateralRaise](https://web.archive.org/web/20240105210847/https://exrx.net/WeightExercises/DeltoidLateral/DBLateralRaise) (Execution (until elbows are shoulder height)) `lat.height`
 
 ### Cable Lateral Raise
 
@@ -989,12 +989,12 @@ Decyzja właściciela: docs/18, 08.10.2026 (ok. 23:50) — wariant A etapami; et
 
 **Ruch**
 
-- Unieś ramiona bokiem do wysokości barków, potem opuść je powoli. — ExRx.net: [CBOneArmLateralRaise](https://web.archive.org/web/20231121100641/https://exrx.net/WeightExercises/DeltoidLateral/CBOneArmLateralRaise) (Execution); ACE: [Lateral Raise (#26)](https://www.acefitness.org/resources/everyone/exercise-library/26/lateral-raise/) (Step 3; Step 4 (hantle — ten sam ruch)) `lat.move`
+- Unieś ramiona bokiem, potem opuść je powoli. — ExRx.net: [CBOneArmLateralRaise](https://web.archive.org/web/20231121100641/https://exrx.net/WeightExercises/DeltoidLateral/CBOneArmLateralRaise) (Execution); ACE: [Lateral Raise (#26)](https://www.acefitness.org/resources/everyone/exercise-library/26/lateral-raise/) (Step 3; Step 4 (hantle — ten sam ruch)) `lat.move`
 
 **Wskazówki**
 
 - Łokcie lekko ugięte i prowadzą ruch — są na wysokości dłoni lub wyżej. — ExRx.net: [CBOneArmLateralRaise](https://web.archive.org/web/20231121100641/https://exrx.net/WeightExercises/DeltoidLateral/CBOneArmLateralRaise) (Comments (fixed, slightly bent elbow)); ACE: [Lateral Raise (#26)](https://www.acefitness.org/resources/everyone/exercise-library/26/lateral-raise/) (Step 3) `lat.elbows`
-- Nie podnoś wyżej niż do linii barków. — ExRx.net: [CBLateralRaise](https://web.archive.org/web/20230306032138/https://exrx.net/WeightExercises/DeltoidLateral/CBLateralRaise) (Execution (until elbows are shoulder height)); ACE: [Lateral Raise (#26)](https://www.acefitness.org/resources/everyone/exercise-library/26/lateral-raise/) (Step 3) `lat.height`
+- Unoś mniej więcej do wysokości barków. — ExRx.net: [CBLateralRaise](https://web.archive.org/web/20230306032138/https://exrx.net/WeightExercises/DeltoidLateral/CBLateralRaise) (Execution (until elbows are shoulder height)); ACE: [Lateral Raise (#26)](https://www.acefitness.org/resources/everyone/exercise-library/26/lateral-raise/) (Step 3) `lat.height`
 
 ### Front Raise
 
@@ -1004,12 +1004,12 @@ Decyzja właściciela: docs/18, 08.10.2026 (ok. 23:50) — wariant A etapami; et
 
 **Ruch**
 
-- Unieś ręce przed sobą mniej więcej do wysokości barków, potem opuść je powoli. — ACE: [Front Raise (#54)](https://www.acefitness.org/resources/everyone/exercise-library/54/front-raise/) (Step 3; Step 4); ExRx.net: [DBFrontRaise](https://web.archive.org/web/20220816182633/https://exrx.net/WeightExercises/DeltoidAnterior/DBFrontRaise) (Execution; Comments (height just above horizontal)) `front.move`
+- Unieś ręce przed sobą, potem opuść je powoli. — ACE: [Front Raise (#54)](https://www.acefitness.org/resources/everyone/exercise-library/54/front-raise/) (Step 3; Step 4); ExRx.net: [DBFrontRaise](https://web.archive.org/web/20220816182633/https://exrx.net/WeightExercises/DeltoidAnterior/DBFrontRaise) (Execution; Comments (height just above horizontal)) `front.move`
 
 **Wskazówki**
 
 - Łokcie proste lub lekko ugięte — w tym samym ustawieniu przez cały ruch. — ACE: [Front Raise (#54)](https://www.acefitness.org/resources/everyone/exercise-library/54/front-raise/) (Step 1; Step 4 (elbows extended or holding a slight bend)); ExRx.net: [DBFrontRaise](https://web.archive.org/web/20220816182633/https://exrx.net/WeightExercises/DeltoidAnterior/DBFrontRaise) (Comments (elbows straight or slightly bent throughout)) `front.elbows`
-- Nie podnoś wyżej niż do linii barków. — ACE: [Front Raise (#54)](https://www.acefitness.org/resources/everyone/exercise-library/54/front-raise/) (Step 3 (level with your shoulders)); ExRx.net: [DBFrontRaise](https://web.archive.org/web/20220816182633/https://exrx.net/WeightExercises/DeltoidAnterior/DBFrontRaise) (Comments (height just above horizontal may be adequate)) `lat.height`
+- Unoś mniej więcej do wysokości barków. — ACE: [Front Raise (#54)](https://www.acefitness.org/resources/everyone/exercise-library/54/front-raise/) (Step 3 (level with your shoulders)); ExRx.net: [DBFrontRaise](https://web.archive.org/web/20220816182633/https://exrx.net/WeightExercises/DeltoidAnterior/DBFrontRaise) (Comments (height just above horizontal may be adequate)) `lat.height`
 
 ### Rear Delt Raise (hantle)
 

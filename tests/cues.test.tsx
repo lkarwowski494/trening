@@ -33,7 +33,7 @@ describe('dane wskazówek', () => {
   });
   test('każda wskazówka: ≥ 2 przeczytane źródła z różnych organizacji, z miejscem w źródle; źródło ma adres https', () => {
     for (const [ex, x] of Object.entries(CUE_DATA.exercises)) for (const sec of CUE_SECTIONS) for (const r of x[sec] ?? []) {
-      const orgs = new Set(r.s.map(([sid]) => CUE_DATA.sources[sid]?.org));
+      const orgs = new Set<string | undefined>(r.s.map(([sid]) => CUE_DATA.sources[sid]?.org));
       expect([ex, r.c, orgs.has(undefined)]).toEqual([ex, r.c, false]);
       expect([ex, r.c, orgs.size >= 2]).toEqual([ex, r.c, true]);
       for (const [, at] of r.s) expect(at.trim().length).toBeGreaterThan(2);
@@ -122,7 +122,9 @@ describe('komponent ExerciseCues', () => {
     for (const h of ['Ustawienie', 'Ruch', 'Wskazówki', 'Częste błędy']) expect(screen.getByRole('header', { name: h })).toBeTruthy();
     const first = cueText(CUE_DATA.exercises['Deadlift (sztanga)'].setup[0].c, 'pl');
     expect(screen.getByText(`• ${first}`).props.accessibilityLabel).toBe(first);
-    expect(screen.getByText(/^Na podstawie: ACE, NASM, ExRx\.net.*\. Własne sformułowania\.$/)).toBeTruthy();
+    const foot = `Na podstawie: ${cueOrgs('Deadlift (sztanga)').join(', ')}. Własne sformułowania.`;
+    expect(foot.startsWith('Na podstawie: ACE, NASM, ExRx.net')).toBe(true);
+    expect(screen.getByText(foot)).toBeTruthy();
     expect(screen.getByText('Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.')).toBeTruthy();
     fireEvent.press(screen.getByRole('button', { name: 'Technika' }));
     expect(screen.queryByText('Ustawienie')).toBeNull();
