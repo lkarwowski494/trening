@@ -5,8 +5,8 @@ import { useSyncExternalStore } from 'react';
 import { t, t as tr, tIn, applyLang, detectLang, locale, fold, isLang, lang } from './i18n';
 import { applyUnit, wu, wOut, wIn, KG_PER_LB, fmtW, fmtNum, snapLegacyLb } from './units';
 import { applyTheme } from './theme';
-import { seedState, uid, base, defaultModules, defaultSettings, metricFor, loadModeFor, loadMult, blankTimer, musclesFor, hasTime, hasReps, hasWeight, hasDistance, METRICS, DEFAULT_REST, GROUPS, LIB, SCHEMA_VERSION, LOCAL_OWNER, MODULES, SET_KINDS, SINGLE_IMPLEMENT, equipFields, libExercise, LIB_EXTRA_REVS, LIB_EXTRA_REV, LIB_MUSCLE_FIXES, libExtraRevOf, LIB_BASE_NAMES, LOAD_SOURCE_BY_EQUIPMENT, IMPLS, own, type Impl, type SetKind, type Base, type State, type Workout, type WSet, type WExercise, type Exercise, type Template, type TemplateItem, type TemplateAlt, type TRow, type Morning, type Location, type PlanSegment, LIB_KEYS, catalogKey, libKeyFromFields, BODY_MASS_MAX } from './seed';
-import { equipById, loadsFor, implAt, implsAt, blankLoad, availability, fillGym, GYM_FILL, fillOpts, OPT_FILL } from './equipment';
+import { seedState, uid, base, defaultModules, defaultSettings, metricFor, loadModeFor, loadMult, blankTimer, musclesFor, hasTime, hasReps, hasWeight, hasDistance, METRICS, DEFAULT_REST, GROUPS, LIB, SCHEMA_VERSION, LOCAL_OWNER, MODULES, SET_KINDS, SINGLE_IMPLEMENT, equipFields, libExercise, LIB_EXTRA_REVS, LIB_EXTRA_REV, LIB_MUSCLE_FIXES, LIB_FIELD_FIXES, LIB_RENAMED, LIB_MERGED, LIB_RETIRED, libExtraRevOf, LIB_BASE_NAMES_V1, LOAD_SOURCE_BY_EQUIPMENT, IMPLS, own, type Impl, type SetKind, type Base, type State, type Workout, type WSet, type WExercise, type Exercise, type Template, type TemplateItem, type TemplateAlt, type TRow, type Morning, type Location, type PlanSegment, LIB_KEYS, catalogKey, libKeyFromFields, BODY_MASS_MAX, isNiche } from './seed';
+import { equipById, loadsFor, implAt, implsAt, blankLoad, availability, fillGym, GYM_FILL, fillOpts, OPT_FILL, fillEquip2, EQUIP_FILL2 } from './equipment';
 import { sanitizeLoadSpec, nextHeavier, hasLoadShown } from './loads';
 import { CATALOG, CATALOG_REV, CABLES } from './catalog.generated';
 
@@ -133,7 +133,7 @@ export function applyPrefs() { if (!S) return; applyLang(S.settings.language); a
 
 const isObj = (x: unknown): x is Record<string, any> => !!x && typeof x === 'object' && !Array.isArray(x);
 const arr = (x: unknown): any[] => Array.isArray(x) ? x.filter(isObj) : [];
-const LIB_NAMES = LIB_BASE_NAMES; /* audyt 04.10 (LOW): reguła danych sprzed schematu 10 tylko dla pierwszych 125 nazw — własne ćwiczenie „Svend Press” z web 0.3 nie staje się biblioteką */
+const LIB_NAMES = LIB_BASE_NAMES_V1; /* audyt 04.10 (LOW): reguła danych sprzed schematu 10 tylko dla pierwszych 125 nazw (pierwsza wersja — także później scalone i przemianowane) — własne ćwiczenie „Svend Press” z web 0.3 nie staje się biblioteką */
 
 /**
  * Migracja do bieżącego schematu. Przyjmuje backupy web 0.3, natywnej 0.1.0 i każdą późniejszą wersję;
@@ -142,7 +142,7 @@ const LIB_NAMES = LIB_BASE_NAMES; /* audyt 04.10 (LOW): reguła danych sprzed sc
  */
 /** Pola Settings znane tej wersji — pola domyślne plus opcjonalne (nowe pole opcjonalne dopisz tutaj, inaczej jego zła wartość z importu
  * przejdzie jak nieznane ustawienie); reszta zostaje bez zmian — audyt 0.10 J1. */
-const SETTINGS_KEYS = new Set([...Object.keys(defaultSettings()), 'effortScale', 'planReminder', 'bodyMass']);
+const SETTINGS_KEYS = new Set([...Object.keys(defaultSettings()), 'effortScale', 'planReminder', 'bodyMass', 'libShowAll']);
 const PROTO_KEYS = new Set(['__proto__', 'constructor', 'prototype']);
 /** Ustawienia usunięte w schemacie 13 (runda 75, Q-001: masa ciała poza obliczeniami) — w danych sprzed 13 odpadają jak dotąd. */
 const LEGACY_SETTINGS_13 = new Set(['bodyWeightKg']);
@@ -255,7 +255,11 @@ export function migrate(raw: any): State {
     if (e.lib === undefined && LIB_NAMES.has(e.name) && (Number(raw.schemaVersion) || 0) < 10) e.lib = true; /* runda 52/56: tylko dane sprzed schematu 10 — stała granica, nie ruchome SCHEMA_VERSION (podbicie do 11 cofało poprawkę) */ if (e.lib !== true) delete e.lib;
     /* E2 (audyt 0.10, X-03): klucz katalogu — prawidłowy zostaje; brak → nazwa kanoniczna, gdy nazwa jest w katalogu (dane sprzed klucza);
      * przemianowane przed poprawką — odzyskiwane niżej (libKeyFromFields), inaczej bez klucza. Ćwiczenia własne nie mają klucza. */
-    if (e.lib === true && !(typeof e.libKey === 'string' && LIB_KEYS.has(e.libKey))) { if (LIB_KEYS.has(e.name)) e.libKey = e.name; else delete e.libKey; } else if (e.lib !== true) delete e.libKey;
+    /* Research biblioteki (09.10.2026): klucz przemianowany → nowy (nazwa równa dawnemu kluczowi też — wyniki wstecz bez zmian, E2); klucz scalony
+     * albo usunięty zostaje do retireCatalog niżej (przenosi dane i znika). Idempotentne: nowy klucz nie jest już dawnym. */
+    if (e.lib === true) { const k0 = typeof e.libKey === 'string' && (LIB_KEYS.has(e.libKey) || LIB_RETIRED.has(e.libKey) || own(LIB_RENAMED, e.libKey)) ? e.libKey : LIB_KEYS.has(e.name) || LIB_RETIRED.has(e.name) || own(LIB_RENAMED, e.name) ? e.name : undefined;
+      const k = k0 !== undefined ? own(LIB_RENAMED, k0) ?? k0 : undefined; if (k0 !== undefined && k !== k0 && e.name === k0) e.name = k;
+      if (k !== undefined) e.libKey = k; else delete e.libKey; } else delete e.libKey;
     if (typeof e.tempo !== 'string') e.tempo = ''; if (typeof e.notes !== 'string') e.notes = '';
     e.bandAssistable = !!e.bandAssistable;
     // Runda 41: tylko prawdziwe true archiwizuje; partia i sprzęt spoza słownika → „inne”.
@@ -281,6 +285,9 @@ export function migrate(raw: any): State {
       for (const rev of LIB_EXTRA_REVS.slice(done + 1)) {
         for (const row of LIB) if (libExtraRevOf(row[0]) === rev && !have.has(fold(row[0]))) { raw.exercises.push(libExercise(row, owner)); have.add(fold(row[0])); }
         for (const f of LIB_MUSCLE_FIXES) if (f.rev === rev) for (const e of raw.exercises) if (e.lib === true && e.libKey === f.name && sameList(e.muscles, f.from[0]) && sameList(e.secondaryMuscles, f.from[1])) { const [a, b] = musclesFor(f.name, e.group); /* E2: po kluczu */ e.muscles = a; e.secondaryMuscles = b; }
+        /* research biblioteki (09.10.2026): poprawki pól — tylko wartość równa dawnej domyślnej; miara tylko ćwiczenia bez serii i pozycji szablonu (nic nie znika z widoku) */
+        { const fixes = LIB_FIELD_FIXES.filter(f => f.rev === rev); if (fixes.length) { const inUse = usedIds(raw);
+          for (const f of fixes) for (const e of raw.exercises) if (e.lib === true && e.libKey === f.name && JSON.stringify(e[f.field]) === JSON.stringify(f.from) && (f.field !== 'metric' || !inUse.has(e.id))) e[f.field] = JSON.parse(JSON.stringify(f.to)); } }
       }
       raw.libExtra = LIB_EXTRA_REVS[0]; raw.libExtraStep = LIB_EXTRA_REV; } }
   raw.templates = arr(raw.templates);
@@ -320,6 +327,7 @@ export function migrate(raw: any): State {
   raw.mornings.forEach((m: any) => { stamp(m, localDateTs(m.date)); for (const k of ['bb', 'sleepScore', 'sleepH', 'weight']) m[k] = posNum(m[k]); /* runda 50: liczba albo '' (obiekt z importu wywracał ekran) */ if (m.bb !== '') m.bb = Math.min(100, Math.round(m.bb)); if (m.sleepScore !== '') m.sleepScore = Math.min(100, Math.round(m.sleepScore)); if (m.sleepH !== '') m.sleepH = Math.min(24, Math.round(m.sleepH * 100) / 100); if (m.weight !== '') { const w = kg2(snapL(m.weight) as number); m.weight = w > 0 && w <= 1000 ? w : ''; } /* runda 61: najpierw zaokrąglenie, potem zakres */ /* runda 51: 0 = brak wpisu */ });
   if (isObj(raw.active) && tsOf(raw.active.startedAt) != null) { stamp(raw.active, raw.active.startedAt); fixWorkout(raw.active); } else raw.active = null;
   uniqueIds(raw); /* przed porządkowaniem nieużywanych ćwiczeń — inaczej drugie wczytanie zmieniałoby dane (migrate-idem) */
+  retireCatalog(raw); /* research biblioteki (09.10.2026): scalone → ćwiczenie docelowe, usunięte → własne albo znikają */
   // Runda 41: jak purgeOrphans — usunięte ćwiczenia bez żadnego treningu znikają także przy starcie i imporcie.
   { const used = new Set<string>(); for (const w of [...raw.workouts, ...(raw.active ? [raw.active] : [])]) for (const x of w.exercises) used.add(x.exerciseId); raw.exercises = raw.exercises.filter((e: any) => e.archived !== true || used.has(e.id)); }
   // Runda 43: pozycje szablonów wskazujące brakujące lub usunięte ćwiczenie odpadają (jak przy usuwaniu ćwiczenia w aplikacji).
@@ -340,7 +348,7 @@ export function migrate(raw: any): State {
     sound: typeof s.sound === 'boolean' ? s.sound : d.sound,
     wakeLock: typeof s.wakeLock === 'boolean' ? s.wakeLock : d.wakeLock,
     showRpe: typeof s.showRpe === 'boolean' ? s.showRpe : d.showRpe,
-    ...(s.effortScale === 'rir' ? { effortScale: 'rir' as const } : {}), ...((v => v != null && kg2(v) > 0 && v <= BODY_MASS_MAX ? { bodyMass: kg2(v) } : {})(parseNum(s.bodyMass))), /* E1 (audyt 0.10): masa ciała — opcjonalna, kg na siatce 0,01; zła wartość odpada */ ...(s.planReminder === false ? { planReminder: false as const } : {}), /* przypomnienie z planu (08.10.2026): tylko wyłączenie zapisane */ /* pakiet C: tylko wybór RIR zapisany — dane sprzed zmiany przechodzą 1:1 (swap-schema16) */
+    ...(s.effortScale === 'rir' ? { effortScale: 'rir' as const } : {}), ...(s.libShowAll === true ? { libShowAll: true as const } : {}), /* research biblioteki (09.10.2026): tylko zdjęty filtr zapisany */ ...((v => v != null && kg2(v) > 0 && v <= BODY_MASS_MAX ? { bodyMass: kg2(v) } : {})(parseNum(s.bodyMass))), /* E1 (audyt 0.10): masa ciała — opcjonalna, kg na siatce 0,01; zła wartość odpada */ ...(s.planReminder === false ? { planReminder: false as const } : {}), /* przypomnienie z planu (08.10.2026): tylko wyłączenie zapisane */ /* pakiet C: tylko wybór RIR zapisany — dane sprzed zmiany przechodzą 1:1 (swap-schema16) */
     healthSync: typeof s.healthSync === 'boolean' ? s.healthSync : d.healthSync,
     progressHint: typeof s.progressHint === 'boolean' ? s.progressHint : d.progressHint, autoBackup: typeof s.autoBackup === 'boolean' ? s.autoBackup : d.autoBackup, weighReminder: typeof s.weighReminder === 'boolean' ? s.weighReminder : d.weighReminder, /* runda 75 */
     modules: (() => { const mods = { ...defaultModules(), ...(isObj(s.modules) ? s.modules : {}) }; MODULES.forEach(m => { if (typeof mods[m] !== 'boolean') mods[m] = false; }); mods.training = true; return mods; })(),
@@ -351,6 +359,7 @@ export function migrate(raw: any): State {
     ...fixLocations(s, stamp, raw.settings?.language), /* P-003 (schemat 14): bez tego biała lista gubiła miejsca przy każdym starcie i imporcie */
   };
   if (raw.equipFill !== GYM_FILL.rev) { for (const l of raw.settings.locations) fillGym(l, raw.settings.unit); raw.equipFill = GYM_FILL.rev; } /* decyzja 05.10.2026 (1.a): raz */
+  if (raw.equipFill2 !== EQUIP_FILL2.rev) { for (const l of raw.settings.locations) fillEquip2(l, raw.settings.unit); raw.equipFill2 = EQUIP_FILL2.rev; } /* research biblioteki (L5 Q7, 09.10.2026): ściana, maszyna do dipów — raz */
   /* pakiet C: tygodnie deload — daty poniedziałków, bez powtórzeń, posortowane, najwyżej 10 lat; pusta lista znika (dane sprzed zmiany 1:1); nie `arr` — ta przepuszcza tylko obiekty */
   { const u = [...new Set((Array.isArray(raw.deloadWeeks) ? raw.deloadWeeks : []).filter((x: unknown) => typeof x === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(x) && new Date(+x.slice(0, 4), +x.slice(5, 7) - 1, +x.slice(8, 10)).getDay() === 1))].sort().slice(-520) as string[]; if (u.length) raw.deloadWeeks = u; else delete raw.deloadWeeks; }
   /* kalendarz (08.10.2026): plan tygodnia — 7 pozycji (id tekstem albo null), pusty znika; zmiany dni — klucze-daty, wartości id albo null */
@@ -383,6 +392,61 @@ export function migrate(raw: any): State {
  * nic nie ginie (dotąd usunięcie jednego treningu kasowało oba, drugie ćwiczenie/guma było nieosiągalne). Pierwsze wystąpienie zachowuje id,
  * więc odwołania (pozycje szablonów, bloki, gumy serii) wskazują to samo co przedtem. Idempotentne: przy unikalnych id nic nie zmienia.
  * Znalezisko tests/matrix-data-fuzz.test.ts. */
+/** Id ćwiczeń użytych w treningach (historia, trening w toku) i szablonach (pozycje, zamienniki) — na surowych danych (przed sanityzacją też). */
+function usedIds(raw: any): Set<string> {
+  const out = new Set<string>(); const add = (v: unknown) => { const id = idOf(v); if (id != null) out.add(id); };
+  for (const w of [...arr(raw.workouts), ...(isObj(raw.active) ? [raw.active] : [])]) for (const x of arr(w.exercises)) { add(x.exerciseId); add(x.swappedFrom); }
+  for (const tp of arr(raw.templates)) for (const it of arr(tp.items)) { add(it.exerciseId); for (const a of arr(it.alternates)) add(a.exerciseId); }
+  return out;
+}
+/**
+ * Research biblioteki (decyzja właściciela 09.10.2026, wariant B — docs/18): ćwiczenia wycofane z katalogu.
+ *  - SCALIĆ: treningi (historia i w toku, także „zamienione z”), szablony (pozycje i zamienniki) przechodzą na ćwiczenie docelowe; notatka, przerwy
+ *    i tempo scalanego wpisu dopisują się do docelowego, gdy tam pusto (notatki — obie); wpis znika. Brak docelowego (usunięte na stałe) — scalany
+ *    wpis sam staje się docelowym (to samo id, historia bez zmian). Gdy przeniesienie zmieniłoby sens zapisanych wartości (inne pola miary,
+ *    masa ciała ↔ ciężar zewnętrzny z dociążeniem, inny mnożnik objętości, guma) albo użytkownik zmienił nazwę — wpis zostaje jako ćwiczenie własne.
+ *    Ciężar zewnętrzny → ćwiczenie z masą ciała (Kettlebell Pistol Squat → Pistol Squat): zapisany ciężar staje się dociążeniem.
+ *  - USUNĄĆ: znika z biblioteki; użyte w treningu albo szablonie (albo z notatką, przerwą, tempem, inną nazwą) — zostaje jako ćwiczenie własne.
+ * Idempotentne: po pierwszym przebiegu żaden wpis nie ma wycofanego klucza.
+ */
+function retireCatalog(raw: any) {
+  const retired = raw.exercises.filter((e: any) => e.lib === true && typeof e.libKey === 'string' && LIB_RETIRED.has(e.libKey)); if (!retired.length) return;
+  const ws: any[] = [...raw.workouts, ...(raw.active ? [raw.active] : [])]; const used = usedIds(raw); const drop = new Set<string>();
+  const personal = (e: any) => !!e.notes || e.restSec != null || e.restWarmupSec != null || !!e.tempo;
+  const detach = (e: any) => { delete e.lib; delete e.libKey; if (e.catalogRev !== 'user') delete e.catalogRev; };
+  const nz = (v: unknown) => v !== '' && v != null && Number(v) !== 0;
+  for (const x of retired) {
+    const key: string = x.libKey; const target = own(LIB_MERGED, key);
+    if (!target) { if (used.has(x.id) || personal(x) || x.name !== key) detach(x); else drop.add(x.id); continue; }
+    const T = raw.exercises.find((e: any) => e !== x && !drop.has(e.id) && e.lib === true && e.libKey === target && e.archived !== true) ?? raw.exercises.find((e: any) => e !== x && !drop.has(e.id) && e.lib === true && e.libKey === target);
+    const row = LIB.find(r => r[0] === target); const def: Exercise | undefined = row ? libExercise(row, x.ownerId) : undefined;
+    const to: any = T ?? def; if (!to || x.name !== key) { detach(x); continue; }
+    /* dane zapisane przy scalanym ćwiczeniu (serie treningów i wiersze szablonów) — czy docelowe pokaże je z tym samym sensem */
+    const blocks = ws.flatMap(w => w.exercises.filter((b: any) => b.exerciseId === x.id)); const rows = raw.templates.flatMap((tp: any) => tp.items.filter((it: any) => it.exerciseId === x.id).flatMap((it: any) => arr(it.rows)));
+    const sets = blocks.flatMap((b: any) => b.sets); const m = (to.metric ?? 'weight_reps') as Exercise['metric'];
+    const hasW = sets.some((st: any) => nz(st.weight) || nz(st.addKg)) || rows.some((r: any) => nz(r.weight));
+    const ok = !(sets.some((st: any) => nz(st.reps)) || rows.some((r: any) => nz(r.reps))) || hasReps(m);
+    const okT = !(sets.some((st: any) => nz(st.durationSec)) || rows.some((r: any) => nz(r.durationSec))) || hasTime(m);
+    const okD = !(sets.some((st: any) => nz(st.distanceM)) || rows.some((r: any) => nz(r.distanceM))) || hasDistance(m);
+    const xBW = x.equipment === 'masa ciała', tBW = to.equipment === 'masa ciała';
+    const okW = !hasW || (hasWeight(m) && (xBW === tBW ? (tBW || loadMult(x.loadMode) === loadMult(to.loadMode)) : !xBW));
+    const okB = !sets.some((st: any) => !!st.bandId) || !!x.bandAssistable === !!to.bandAssistable;
+    if (!(ok && okT && okD && okW && okB)) { detach(x); continue; }
+    const toAdd = hasW && !xBW && tBW; /* ciężar zewnętrzny → dociążenie przy ćwiczeniu z masą ciała */
+    if (toAdd) { for (const st of sets) { if (nz(st.weight)) { st.addKg = st.weight; st.weight = ''; } if (st.pre && 'weight' in st.pre) { st.pre.addKg = st.pre.weight; delete st.pre.weight; } } for (const b of blocks) for (const st of b.sets) if (st.hinted && 'weight' in st.hinted) { st.hinted.addKg = st.hinted.weight; delete st.hinted.weight; } }
+    if (!T) { /* docelowego nie ma — scalany wpis przejmuje jego klucz i pola z katalogu (id, notatka, przerwy, archiwum bez zmian) */
+      x.libKey = target; x.name = target; for (const k of ['group', 'equipment', 'metric', 'loadMode', 'bandAssistable', 'muscles', 'secondaryMuscles', 'requires', 'recommended', 'pattern', 'loadSource', 'catalogRev']) x[k] = (def as any)[k];
+      delete x.implements; if (def!.implements) x.implements = def!.implements; continue; }
+    for (const w of ws) for (const b of w.exercises) { if (b.exerciseId === x.id) b.exerciseId = T.id; if (b.swappedFrom === x.id) b.swappedFrom = T.id; if (b.swappedFrom === b.exerciseId) delete b.swappedFrom; }
+    for (const tp of raw.templates) for (const it of tp.items) { if (it.exerciseId === x.id) it.exerciseId = T.id;
+      if (it.alternates) { for (const a of it.alternates) if (a.exerciseId === x.id) a.exerciseId = T.id; it.alternates = it.alternates.filter((a: any) => a.exerciseId !== it.exerciseId || a.impl); if (!it.alternates.length) delete it.alternates; } }
+    if (x.notes && x.notes !== T.notes) T.notes = T.notes ? `${T.notes}\n${x.notes}` : x.notes;
+    if (T.restSec == null && x.restSec != null) T.restSec = x.restSec; if (T.restWarmupSec == null && x.restWarmupSec != null) T.restWarmupSec = x.restWarmupSec; if (!T.tempo && x.tempo) T.tempo = x.tempo;
+    if (T.archived === true && x.archived !== true) delete T.archived;
+    drop.add(x.id);
+  }
+  if (drop.size) raw.exercises = raw.exercises.filter((e: any) => !drop.has(e.id));
+}
 function uniqueIds(raw: any) {
   /* nowe id deterministyczne („<id>~2”, „~3”…): dwa wczytania tych samych danych dają ten sam wynik (porównania eksport → import, restart) */
   const fresh = (list: any[]) => { const seen = new Set<string>(list.map(o => o?.id).filter((x: unknown) => typeof x === 'string'));
@@ -749,6 +813,7 @@ export function setSummary(ex: Exercise, s: WSet, load: 'shown' | 'calc' = 'show
   if (m === 'time') core = fmtSec(Number(s.durationSec) || 0);
   else if (m === 'distance_time') core = `${fmtDist(Number(s.distanceM) || 0)} ${fmtSec(Number(s.durationSec) || 0)}`;
   else if (m === 'weight_time') core = `${fmtW(l, false)}${wu()}×${fmtSec(Number(s.durationSec) || 0)}`;
+  else if (m === 'weight_distance') core = `${fmtW(l, false)}${wu()}×${fmtDist(Number(s.distanceM) || 0)}`; /* research biblioteki 09.10.2026: noszenie, sanki */
   else if (m === 'reps') core = `${s.reps || 0}`;
   else { core = isBW(ex) ? `${s.reps || 0}${l ? '@' + (l > 0 ? '+' : '') + fmtW(l, false) : ''}` : `${fmtW(l, false)}×${s.reps || 0}`; }
   return core + (b ? ` (${shortBand(b)})` : '') + (s.rpe !== '' && s.rpe != null ? (effortScale() === 'rir' ? ` RIR ${fmtNum(effortOut(Number(s.rpe)), 1)}` : ` @${fmtNum(Number(s.rpe), 1)}`) : '');
@@ -759,6 +824,7 @@ export function setScore(ex: Exercise, s: WSet): number {
   if (m === 'time') return Number(s.durationSec) || 0;
   if (m === 'distance_time') { const d = Number(s.durationSec) || 0; return (Number(s.distanceM) || 0) * 1e6 - (d > 0 ? d : 999999); } // runda 60: ten sam dystans bez czasu — na końcu
   if (m === 'weight_time') return setLoad(ex, s) * 10000 + (Number(s.durationSec) || 0);
+  if (m === 'weight_distance') return setLoad(ex, s) * 1e6 + (Number(s.distanceM) || 0); /* cięższy wygrywa, przy równym — dłuższy dystans */
   if (m === 'reps') return repsOf(s);
   return setLoad(ex, s) * 1000 + repsOf(s);
 }
@@ -1600,6 +1666,19 @@ export function deleteExercise(id: string) {
 }
 /** Ćwiczenia widoczne na listach i w wyborze (bez zarchiwizowanych). */
 export const visibleExercises = () => getState().exercises.filter(e => !e.archived);
+/** Research biblioteki (decyzja właściciela 09.10.2026, wariant B): id ćwiczeń już użytych — treningi (historia, w toku, „zamienione z”) i szablony
+ * (pozycje i zamienniki; plan tygodnia wskazuje szablony). Takie ćwiczenie jest na liście domyślnej, nawet gdy jest niszowe. */
+export function exercisesInUse(): Set<string> {
+  const st = getState(); const out = new Set<string>();
+  for (const w of [...st.workouts, ...(st.active ? [st.active] : [])]) for (const x of w.exercises) { out.add(x.exerciseId); if (x.swappedFrom) out.add(x.swappedFrom); }
+  for (const tp of st.templates) for (const it of tp.items) { out.add(it.exerciseId); for (const a of it.alternates ?? []) out.add(a.exerciseId); }
+  return out;
+}
+/** Lista domyślna (Ćwiczenia, wybór ćwiczenia, „Inne” w zamianie): ćwiczenia ZOSTAJE, własne i już użyte; niszowe — wyszukiwaniem albo po zdjęciu filtra. */
+export const inCoreList = (e: Exercise, used: ReadonlySet<string>) => !isNiche(e) || used.has(e.id);
+/** Filtr „Podstawowe” zdjęty (zapamiętane, wspólne dla listy Ćwiczeń, wyboru i zamiany — jak filtr miejsca). */
+export const libShowAll = () => getState().settings.libShowAll === true;
+export function setLibShowAll(on: boolean) { const st = getState(); if (on) st.settings.libShowAll = true; else delete st.settings.libShowAll; save(); }
 export function newTemplate(): Template { const tpl: Template = { ...base(getState().ownerId), name: tr('Nowy szablon'), items: [] }; getState().templates.push(tpl); save(); return tpl; }
 export function dupTemplate(id: string): Template { const src = getState().templates.find(x => x.id === id)!; const c: Template = JSON.parse(JSON.stringify(src)); Object.assign(c, base(getState().ownerId)); delete c.archived; /* kopia z archiwum trafia na listę */ const suf = ' ' + tr('(kopia)'); c.name = clampName(src.name, NAME_MAX - suf.length) + suf; /* runda 39: limit nazwy */ const ids = new Map<string, string>(); c.items.forEach(i => { i.id = uid(); if (i.groupId) { if (!ids.has(i.groupId)) ids.set(i.groupId, uid()); i.groupId = ids.get(i.groupId)!; } }); getState().templates.push(c); save(); return c; }
 /* ---------- foldery i archiwum szablonów (docs/21 4a, 07.10.2026 wieczór) — zmienia tylko użytkownik ---------- */

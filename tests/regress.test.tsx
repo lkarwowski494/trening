@@ -1480,8 +1480,8 @@ describe('runda 57', () => {
 
 describe('runda 58', () => {
   test('R58-01 ciężar × 0 s (seria na czas z ciężarem) nie jest rekordem ciężaru i nie blokuje prawdziwego', async () => {
-    const stats = require('@/lib/stats'); await fresh(); addWorkout(at(2026, 9, 1), [["Farmer's Walk", [{ weight: 40, durationSec: 60 }]]]);
-    store.startEmpty(); store.addExerciseToActive(ex("Farmer's Walk")); store.addSet(0); const a = store.getState().active!; const [s1, s2] = a.exercises[0].sets;
+    const stats = require('@/lib/stats'); await fresh(); addWorkout(at(2026, 9, 1), [['Crucifix', [{ weight: 40, durationSec: 60 }]]]);
+    store.startEmpty(); store.addExerciseToActive(ex('Crucifix')); store.addSet(0); const a = store.getState().active!; const [s1, s2] = a.exercises[0].sets;
     s1.weight = 50; s1.durationSec = 0; store.toggleDone(0, 0); s2.weight = 50; s2.durationSec = 70; store.toggleDone(0, 1);
     const prs = stats.prMap(a); expect(prs.get(s1.id)).toBeUndefined(); expect(prs.get(s2.id)).toEqual(['łączny czas']); /* runda 73: rekord = łączny czas na treningu */
   });

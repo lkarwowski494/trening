@@ -82,7 +82,7 @@ const EX_FULL: Record<string, string> = {
   'Wyciskanie nad głowę (linki)': 'Cable Overhead Press', 'Przysiad z pasem (linki)': 'Belt Squat (cable)',
   'Łydki na stopniu': 'Calf Raise on Step', 'Bieg': 'Running', 'Rower': 'Cycling', 'Skakanka': 'Jump Rope', 'Orbitrek': 'Elliptical',
 };
-const EX_PAREN: Record<string, string> = { 'sztanga': 'Barbell', 'hantle': 'Dumbbell', 'hantel': 'Dumbbell', 'linki': 'Cable', 'ławka': 'Bench', 'bieżnia': 'Treadmill', 'hantle/linki': 'Dumbbell/Cable', 'hantel/linka': 'Dumbbell/Cable', 'dwie linki': 'Two Cables' /* katalog 04.10.2026 */ };
+const EX_PAREN: Record<string, string> = { 'sztanga': 'Barbell', 'hantle': 'Dumbbell', 'hantel': 'Dumbbell', 'linki': 'Cable', 'ławka': 'Bench', 'bieżnia': 'Treadmill', 'hantle/linki': 'Dumbbell/Cable', 'hantel/linka': 'Dumbbell/Cable', 'dwie linki': 'Two Cables' /* katalog 04.10.2026 */, 'talerz': 'Plate' /* research biblioteki 09.10.2026: Lying Neck Extension (talerz) */ };
 /** Nazwa ćwiczenia do wyświetlenia. Ćwiczenia własne i przemianowane pokazujemy tak, jak je nazwał użytkownik. */
 export function exName(e: { name: string; lib?: boolean } | undefined | null): string {
   if (!e) return '?';

@@ -62,7 +62,7 @@ export function totalKind(ex: Exercise): TotalKind | null {
   const m = ex.metric ?? 'weight_reps';
   if (hasReps(m) && (isBW(ex) || !hasWeight(m))) return 'suma powtórzeń';
   if (hasWeight(m) && hasReps(m)) return 'objętość treningu';
-  if (m === 'distance_time') return 'łączny dystans';
+  if (hasDistance(m)) return 'łączny dystans'; /* dystans + czas, ciężar + dystans (09.10.2026) */
   if (hasTime(m)) return 'łączny czas';
   return null;
 }

@@ -3,7 +3,8 @@ import { ScrollView, Pressable, Text, View } from 'react-native';
 import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
 import { useTheme, F } from '@/lib/theme';
 import { Screen, Item, Muted, Empty, SectionTitle, Chip, Input } from '@/components/ui';
-import { getState, useTick, exById, swapBlock, swapImpl, canUndoSwap, locationById, visibleExercises, newExercise, save, exerciseInHistory, restoreExercise } from '@/lib/store';
+import { getState, useTick, exById, swapBlock, swapImpl, canUndoSwap, locationById, visibleExercises, newExercise, save, exerciseInHistory, restoreExercise, exercisesInUse, inCoreList, libShowAll, setLibShowAll } from '@/lib/store';
+import { LibScopeChip } from '@/components/LibScope';
 import { availability, capsOf, missingLabel } from '@/lib/equipment';
 import { draftOf, useDraftTick, draftSwapExercise, canRestoreExercise, draftRestoreExercise, draftImplChoices, draftSetImpl, swapTargetOk } from '@/lib/edit';
 import { swapCandidates, reasonText, otherImpls, implLabel, parseSwapTarget, SWAP_TOP, SWAP_PAGE, sortOthers } from '@/lib/swap';
@@ -23,7 +24,7 @@ export default function SwapScreen() {
   const raw = useLocalSearchParams<{ target?: string | string[] }>().target; const target = typeof raw === 'string' ? raw : ''; const router = useRouter();
   const th = useTheme(); useTick(); useDraftTick(); const chosen = useRef(false);
   /* „Inne” (decyzja właściciela 04.10.2026): rozwijana lista z filtrami-etykietami partii i miejsca, które da się zdjąć (✕) */
-  const [open, setOpen] = useState(false); const [grpOn, setGrpOn] = useState(true); const [locOn, setLocOn] = useState(true); const [q, setQ] = useState(''); const [lim, setLim] = useState(SWAP_PAGE);
+  const [open, setOpen] = useState(false); const [grpOn, setGrpOn] = useState(true); const [locOn, setLocOn] = useState(true); const [q, setQ] = useState(''); const [lim, setLim] = useState(SWAP_PAGE); const [libAll, setLibAll] = useState(libShowAll());
   const close = () => { if (router.canGoBack()) router.back(); else router.replace('/'); };
   const headerOpts = useMemo(() => ({ headerRight: () => <Pressable accessibilityRole="button" hitSlop={10} onPress={() => { if (chosen.current) return; chosen.current = true; close(); }}><Text style={{ color: th.accent, fontSize: 17, fontFamily: F.regular }}>{t('Anuluj')}</Text></Pressable> }), [th, router]); // eslint-disable-line react-hooks/exhaustive-deps
   const tg = parseSwapTarget(target);
@@ -48,7 +49,8 @@ export default function SwapScreen() {
   const archived = open && ql ? getState().exercises.filter(b => b.archived && okEx(b) && hit(b)) : [];
   const exact = (b: Exercise) => fold(b.name) === ql || fold(exName(b)) === ql;
   const canCreate = open && !!ql && !getState().exercises.some(exact);
-  const others = open ? visibleExercises().filter(b => okEx(b) && (!grpOn || !ex || b.group === ex.group) && (!locOn || !caps || availability(b, place, caps).ok) && (!ql || fold(b.name).includes(ql) || fold(exName(b)).includes(ql)))
+  const used = open ? exercisesInUse() : null; /* research biblioteki (09.10.2026): filtr „Podstawowe” jak na liście i w wyborze */
+  const others = open ? visibleExercises().filter(b => okEx(b) && (!grpOn || !ex || b.group === ex.group) && (!locOn || !caps || availability(b, place, caps).ok) && (libAll || !!ql || inCoreList(b, used!)) && (!ql || fold(b.name).includes(ql) || fold(exName(b)).includes(ql)))
      : []; const othersSorted = sortOthers(others, ql);
   return (
     <Screen style={{ paddingTop: 10 }}>
@@ -67,6 +69,7 @@ export default function SwapScreen() {
         {open ? <View>
           <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6, marginVertical: 8 }}>
             {ex ? <Chip label={grpOn ? `${t(ex.group)} ✕` : `+ ${t(ex.group)}`} on={grpOn} onPress={() => { setGrpOn(x => !x); setLim(SWAP_PAGE); }} a11yLabel={grpOn ? t('Filtr partii: {g}. Tapnij, by zdjąć.', { g: t(ex.group) }) : t('Filtr partii wyłączony: {g}. Tapnij, by włączyć.', { g: t(ex.group) })} /> : null}
+            <LibScopeChip compact all={libAll} hidden={0} searching={!!ql} onToggle={() => { const v = !libAll; setLibAll(v); setLibShowAll(v); setLim(SWAP_PAGE); }} />
             {place ? <Chip label={locOn ? `📍 ${place.name} ✕` : `+ 📍 ${place.name}`} on={locOn} onPress={() => { setLocOn(x => !x); setLim(SWAP_PAGE); }} a11yLabel={locOn ? t('Filtr miejsca: {l}. Tapnij, by zdjąć.', { l: place.name }) : t('Filtr miejsca wyłączony: {l}. Tapnij, by pokazać tylko dostępne.', { l: place.name })} /> : null}
           </View>
           <Input value={q} onChangeText={v => { setQ(v); setLim(SWAP_PAGE); }} placeholder={t('Szukaj ćwiczenia…')} maxLength={80} autoCorrect={false} />

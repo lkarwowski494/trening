@@ -66,7 +66,10 @@ describe('E1: masa ciała w Ustawieniach i e1RM w Postępach', () => {
 
 describe('E4 / MER-10: przypisanie partii — „uproszczenie, nie wynik badań” na ekranie ćwiczenia', () => {
   test('ćwiczenie z biblioteki i własne: dopisek przy partiach (do czasu źródeł dla danego ćwiczenia — seed.MUSCLE_SOURCES)', async () => {
+    /* research biblioteki (09.10.2026): Back Squat ma źródła („mocne”) — bez dopisku; Dead Bug — jedno źródło: dopisek zostaje */
     await boot(); await go(`/exercise/${ex('Back Squat').id}`); await flushAll(10);
+    expect(screen.queryByText(/^Przypisanie partii mięśniowych — uproszczenie, nie wynik badań\./)).toBeNull();
+    await go(`/exercise/${ex('Dead Bug').id}`); await flushAll(10);
     expect(screen.getByText(/^Przypisanie partii mięśniowych — uproszczenie, nie wynik badań\./)).toBeTruthy();
     const own = store.newExercise('Moje'); await flushAll(5); await go(`/exercise/${own.id}`); await flushAll(10);
     expect(screen.getByText(/^Przypisanie partii mięśniowych — uproszczenie, nie wynik badań\./)).toBeTruthy();

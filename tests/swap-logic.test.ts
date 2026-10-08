@@ -1,4 +1,4 @@
-import { libExtraRevOf } from '@/lib/seed';
+import { libExtraRevOf, isNiche } from '@/lib/seed';
 import { FULL_BASE_REV } from '@/lib/swap';
 /* E2 (docs/14 pkt 6, test 11 z pkt 7) — ranking propozycji zamiany: czysta funkcja lib/swap.ts swapCandidates. */
 import fc from 'fast-check';
@@ -326,7 +326,7 @@ describe('ranking — decyzja właściciela 04.10.2026 (D7)', () => {
     const c = swapCandidates(ex('Bench Press (sztanga)').id, { locationId: 'gym', showAll: false, inWorkout: new Set() });
     const sameEq = (id: string) => getState().exercises.find(e => e.id === id)!.equipment === 'sztanga';
     /* pełna baza (05.10): przy remisie najpierw biblioteka przejrzana przez właściciela, potem pełna baza; w każdej części — ten sam sprzęt */
-    const tier = (id: string) => { const e = getState().exercises.find(x => x.id === id)!; return e.lib && libExtraRevOf(e.name) === FULL_BASE_REV ? 1 : 0; };
+    const tier = (id: string) => { const e = getState().exercises.find(x => x.id === id)!; return isNiche(e) ? 2 : e.lib && libExtraRevOf(e.name) === FULL_BASE_REV ? 1 : 0; }; /* research 09.10.2026: niszowe na końcu remisu */
     for (let k = 1; k < c.length; k++) if (c[k - 1].score === c[k].score) { expect(tier(c[k - 1].exId) <= tier(c[k].exId)).toBe(true);
       if (tier(c[k - 1].exId) === tier(c[k].exId)) expect(Number(sameEq(c[k - 1].exId)) >= Number(sameEq(c[k].exId))).toBe(true); }
     expect(c.slice(0, 3).every(x => tier(x.exId) === 0)).toBe(true);

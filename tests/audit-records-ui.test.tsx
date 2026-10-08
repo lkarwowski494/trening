@@ -18,7 +18,7 @@ const data: [string, any[], any[]][] = [
   ['Bench Press (hantle)', [{ weight: 30, reps: 8 }], [{ weight: 32, reps: 8 }, { weight: 32, reps: 8 }]],
   ['Pull Up', [{ reps: 5 }], [{ reps: 6 }, { reps: 5 }]],
   ['Plank', [{ durationSec: 60 }], [{ durationSec: 50 }, { durationSec: 50 }]],
-  ["Farmer's Walk", [{ weight: 30, durationSec: 40 }], [{ weight: 32, durationSec: 30 }, { weight: 32, durationSec: 30 }]],
+  ['Crucifix' /* ciężar + czas (Farmer's Walk od 09.10.2026: ciężar + dystans) */, [{ weight: 30, durationSec: 40 }], [{ weight: 32, durationSec: 30 }, { weight: 32, durationSec: 30 }]],
   ['Bieg', [{ distanceM: 3000, durationSec: 900 }], [{ distanceM: 2000, durationSec: 600 }, { distanceM: 2000, durationSec: 600 }]],
   ['Burpees', [{ reps: 10 }], [{ reps: 8 }, { reps: 8 }]],
 ];

@@ -15,9 +15,9 @@ describe('katalog generowany', () => {
   test('lib/catalog.generated.ts jest aktualny względem catalog.json (gen.mjs --check)', () => {
     expect(() => execFileSync('node', [join(root, 'scripts/equipment/gen.mjs'), '--check'], { stdio: 'pipe' })).not.toThrow();
   });
-  test('katalog obejmuje dokładnie 854 ćwiczenia biblioteki (125 + 123 z katalogu 04.10.2026 + 22 z kroku b + 584 z pełnej bazy 05.10), z tymi samymi danymi co JSON', () => {
+  test('katalog obejmuje dokładnie 709 ćwiczeń biblioteki (854 przed researchem biblioteki 09.10.2026: 125 + 123 z katalogu 04.10.2026 + 22 z kroku b + 584 z pełnej bazy 05.10; minus 115 scalonych i 30 usuniętych), z tymi samymi danymi co JSON', () => {
     expect(Object.keys(CATALOG).sort()).toEqual(LIB.map(l => l[0]).sort());
-    expect(catalog).toHaveLength(854);
+    expect(catalog).toHaveLength(709);
     for (const e of catalog) { const g = CATALOG[e.name]; expect(g.requires).toEqual(e.requires); expect(g.recommended).toEqual(e.recommended); expect(g.loadSource).toBe(e.loadSource); expect(g.pattern).toBe(e.pattern); expect(g.implements).toBe(e.implements); }
   });
   test('każdy wpis używa tylko słownika możliwości; słownik = możliwości z katalogu + kilka sprzętowych', () => {
@@ -66,16 +66,18 @@ describe('sprzęt', () => {
   });
 });
 
+const BW_COUNT = 144;
 describe('presety miejsc i dostępność', () => {
   const ex = seedState().exercises;
-  test('„Pełna siłownia” → wszystko poza sprzętem strongman (843/854; strongman poza presetem)', () => {
-    const g = loc('Siłownia', presetEquipment('gym')); expect(ex.filter(e => availability(e, g).ok)).toHaveLength(843);
-    const SM = new Set(['tire', 'sledgehammer', 'atlas_stones', 'yoke', 'log_bar', 'keg', 'axle_bar', 'farmers_handles', 'rickshaw']);
+  test('„Pełna siłownia” → wszystko poza sprzętem strongman (698/709; strongman poza presetem — także circus bell od 09.10.2026)', () => {
+    const g = loc('Siłownia', presetEquipment('gym')); expect(ex.filter(e => availability(e, g).ok)).toHaveLength(698);
+    const SM = new Set(['tire', 'sledgehammer', 'atlas_stones', 'yoke', 'log_bar', 'keg', 'axle_bar', 'farmers_handles', 'rickshaw', 'circus_bell']);
     expect(ex.filter(e => !availability(e, g).ok).every(e => availability(e, g).missing.every(gr => gr.every(c => SM.has(c))))).toBe(true);
   });
-  test('„Tylko masa ciała” → dokładnie ćwiczenia z pustą listą wymagań (45 od katalogu 04.10.2026, 191 z pełną bazą — w tym rozciąganie; decyzja 4a)', () => {
+  test('„Tylko masa ciała” (mata i ściana) → dokładnie ćwiczenia z pustą listą wymagań albo wymagające tylko ściany (45 od katalogu 04.10.2026, 191 z pełną bazą, 144 po researchu 09.10.2026; decyzja 4a)', () => {
     const b = loc('BW', presetEquipment('bodyweight')); const ok = ex.filter(e => availability(e, b).ok).map(e => e.name).sort();
-    expect(ok).toEqual(catalog.filter(e => !e.requires.length).map(e => e.name).sort()); expect(ok).toHaveLength(191);
+    expect(ok).toEqual(catalog.filter(e => e.requires.every((g: string[]) => g.includes('wall') || g.includes('floor_mat'))).map(e => e.name).sort()); expect(ok).toHaveLength(BW_COUNT);
+    for (const n of ['Handstand Push Up', 'Wall Sit']) expect(ok).toContain(n); /* L5 Q7: ściana w presecie „Tylko masa ciała” */
     for (const n of ['Walking Lunges', 'Reverse Lunge', 'Russian Twist']) expect(ok).toContain(n); /* 4a: bez hantli */
     expect(ok).not.toContain('Lunges (hantle)'); expect(ok).not.toContain('Step Up'); /* Step Up wymaga skrzyni/ławki */
   });
@@ -91,7 +93,7 @@ describe('presety miejsc i dostępność', () => {
     for (const n of ['Incline Bench Press (hantle)', 'RDL (hantle/linki)', 'Bulgarian Split Squat (hantle)', 'Hip Thrust (hantel)', 'Łydki na stopniu', 'Wiosłowanie na linkach (siedząc)', 'Hanging Leg Raise']) expect(ok(n)).toBe(true);
     for (const n of ['Lat Pulldown', 'Face Pull', 'Triceps Pushdown', 'Leg Press', 'Bench Press (sztanga)', 'Decline Bench Press']) expect(ok(n)).toBe(false); /* ViShape: bez wyciągu górnego */
     /* pełna lista do przejrzenia z użytkownikiem (docs/10, „Implementacja E1”) — 70 ze 125 przed katalogiem 04.10.2026, 147 z 248 po katalogu, 149 z 270 po kroku b, teraz 402 z 854 (pełna baza) */
-    expect(ex.filter(e => availability(e, h).ok)).toHaveLength(402);
+    expect(ex.filter(e => availability(e, h).ok)).toHaveLength(318); /* 09.10.2026: 709 ćwiczeń po researchu biblioteki; miejsce bez ściany (fixture — w danych użytkownika migracja ją dopisuje, EQUIP_FILL2) */
     /* szablon „Legs — dom” w całości dostępny w domu */
     const sd = seedState(); const tpl = demoTemplates(sd.exercises).find(t => t.name === 'Legs — dom')!; /* szablon właściciela — dane testowe (od 03.10.2026 nie ma go w seedzie) */
     for (const i of tpl.items) expect(availability(sd.exercises.find(e => e.id === i.exerciseId)!, h).ok).toBe(true);
@@ -113,7 +115,7 @@ describe('presety miejsc i dostępność', () => {
     expect(loadKindsFor(CATALOG['Kettlebell Swing'])).toEqual(['kettlebell', 'dumbbell']);
     expect(loadKindsFor(CATALOG['Pull Up'])).toEqual([]);
   });
-  test('dane: seedState ma pola sprzętowe dla wszystkich 854 ćwiczeń, zgodne z katalogiem', () => {
+  test('dane: seedState ma pola sprzętowe dla wszystkich 709 ćwiczeń, zgodne z katalogiem', () => {
     for (const e of seedState().exercises) { const c = CATALOG[e.name]; expect(e.requires).toEqual(c.requires); expect(e.loadSource).toBe(c.loadSource); expect(e.pattern).toBe(c.pattern); expect(e.implements).toBe(c.implements); }
   });
 });

@@ -148,7 +148,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     /* „+ Dodaj miejsce” → presety; „Anuluj” chowa listę */
     await tap(screen.getByText('+ Dodaj miejsce'));
     /* audyt 0.10 LOG-08: opisy z danych presetu (jednostka, mata w hotelu) */
-    for (const [n, h] of [['Pełna siłownia', 'cały sprzęt; sztanga 20 kg + talerze 25…1,25 kg; hantle 2,5–50 kg co 2,5'], ['Dom', 'pusto — zaznaczysz, co masz'], ['Tylko masa ciała', 'tylko mata'], ['Hotel', 'hantle 2,5–25 kg, ławka regulowana, mata, bieżnia, rower']]) expect(screen.getByLabelText(`${n}, ${h}`)).toBeTruthy();
+    for (const [n, h] of [['Pełna siłownia', 'cały sprzęt; sztanga 20 kg + talerze 25…1,25 kg; hantle 2,5–50 kg co 2,5'], ['Dom', 'pusto — zaznaczysz, co masz'], ['Tylko masa ciała', 'mata i ściana'], ['Hotel', 'hantle 2,5–25 kg, ławka regulowana, mata, ściana, bieżnia, rower']]) expect(screen.getByLabelText(`${n}, ${h}`)).toBeTruthy();
     await tap(screen.getByText('Anuluj')); expect(screen.queryByText('Nowe miejsce')).toBeNull(); expect(S().settings.locations).toHaveLength(0);
 
     /* 1) Pełna siłownia — pierwsze miejsce staje się główne */
@@ -267,11 +267,11 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     expect(screen.getByLabelText(/^★ Dom testowy, główne · 9 pozycji sprzętu$/)).toBeTruthy(); expect(screen.getByLabelText(/^Pełna siłownia, \d+ pozycj\S+ sprzętu$/)).toBeTruthy();
 
     /* 3) Tylko masa ciała, 4) Hotel → duplikat → usunięcie duplikatu */
-    await tap(screen.getByText('+ Dodaj miejsce')); await tap(screen.getByLabelText('Tylko masa ciała, tylko mata')); await flushAll(10);
-    expect(loc('Tylko masa ciała').equipment.map(e => e.item)).toEqual(['floor_mat']); await back();
-    expect(screen.getByLabelText('Tylko masa ciała, 1 pozycja sprzętu')).toBeTruthy();
+    await tap(screen.getByText('+ Dodaj miejsce')); await tap(screen.getByLabelText('Tylko masa ciała, mata i ściana')); await flushAll(10);
+    expect(loc('Tylko masa ciała').equipment.map(e => e.item)).toEqual(['floor_mat', 'wall']); await back(); /* L5 Q7 (09.10.2026): ściana */
+    expect(screen.getByLabelText('Tylko masa ciała, 2 pozycje sprzętu')).toBeTruthy();
     await flushAll(1000); await tap(screen.getByText('+ Dodaj miejsce')); await tap(screen.getByLabelText(/^Hotel, /)); await flushAll(10);
-    expect(loc('Hotel').equipment.map(e => e.item)).toEqual(['db_fixed', 'bench_adj', 'floor_mat', 'treadmill', 'bike']);
+    expect(loc('Hotel').equipment.map(e => e.item)).toEqual(['db_fixed', 'bench_adj', 'floor_mat', 'wall', 'treadmill', 'bike']);
     await flushAll(1000); await tap(screen.getByText('Duplikuj')); await flushAll(10);
     const copy = loc('Hotel (kopia)'); expect(screen.getByLabelText('Nazwa').props.value).toBe('Hotel (kopia)'); expect(copy.equipment).toEqual(loc('Hotel').equipment); expect(copy.id).not.toBe(loc('Hotel').id);
     expect(screen.queryByText('Usuń')).toBeNull(); await back(); /* 07.10.2026 wieczór: usuwanie przesunięciem na liście miejsc */
@@ -298,7 +298,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
 
   test('04 biblioteka ćwiczeń: lista z partiami, szukanie, otwarcie, partie główne/pomocnicze, przerwy, tempo, notatki, nowe ćwiczenia, usuwanie bez historii', async () => {
     await boot('/exercises');
-    const n0 = store.visibleExercises().length; expect(screen.getByText(String(n0))).toBeTruthy();
+    const used0 = store.exercisesInUse(); const n0 = store.visibleExercises().filter(e => store.inCoreList(e, used0)).length; const nv = store.visibleExercises().length; expect(screen.getByText(String(n0))).toBeTruthy(); /* research 09.10.2026: licznik = lista domyślna (bez niszowych) */
     for (const g of ['klatka', 'plecy', 'nogi', 'core', 'cardio']) expect(screen.getAllByText(g).length).toBeGreaterThan(0); /* nagłówki partii */
     /* UWAGA: zakładka Ćwiczenia nie ma filtra partii (tylko pole szukania) — filtr partii jest w oknie wyboru ćwiczenia (krok 05). */
     const q = () => screen.getByPlaceholderText('Szukaj…');
@@ -333,8 +333,8 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     expect(screen.getByLabelText('Bench Press (hantle), hantle · tempo 3-1-1')).toBeTruthy();
     /* „+ Nowe” nietknięte znika po wyjściu */
     await type(q(), '');
-    await tap(screen.getByText('+ Nowe')); await flushAll(10); expect(screen.getByLabelText('Nazwa').props.value).toBe('Nowe ćwiczenie'); expect(store.visibleExercises()).toHaveLength(n0 + 1);
-    await back(); expect(store.visibleExercises()).toHaveLength(n0); expect(S().exercises.some(e => e.name === 'Nowe ćwiczenie')).toBe(false);
+    await tap(screen.getByText('+ Nowe')); await flushAll(10); expect(screen.getByLabelText('Nazwa').props.value).toBe('Nowe ćwiczenie'); expect(store.visibleExercises()).toHaveLength(nv + 1);
+    await back(); expect(store.visibleExercises()).toHaveLength(nv); expect(S().exercises.some(e => e.name === 'Nowe ćwiczenie')).toBe(false);
     /* „Utwórz „…”” z wyszukiwania — własne ćwiczenie z partią, sprzętem, miarą, mięśniami, asystą gumą */
     await flushAll(1100); await type(q(), 'Wiosłowanie z ręcznikiem'); await tap(screen.getByText('Utwórz „Wiosłowanie z ręcznikiem”')); await flushAll(10);
     const own = S().exercises.find(e => e.name === 'Wiosłowanie z ręcznikiem')!; expect(own).toMatchObject({ group: 'inne', equipment: 'inne', metric: 'weight_reps', muscles: [] }); expect(own.lib).toBeFalsy();
@@ -354,7 +354,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     await swipeDelete('Usuń z biblioteki: Do usunięcia'); expect(lastAlert()).toMatchObject({ title: 'Usunąć ćwiczenie?', msg: 'Zniknie z list i szablonów.' });
     pressAlert('Usunąć ćwiczenie?', 'Nie'); expect(S().exercises).toContain(tmp);
     await swipeDelete('Usuń z biblioteki: Do usunięcia'); pressAlert('Usunąć ćwiczenie?', 'Usuń'); await flushAll(10);
-    expect(S().exercises.some(e => e.id === tmp.id)).toBe(false); expect(store.visibleExercises()).toHaveLength(n0 + 1);
+    expect(S().exercises.some(e => e.id === tmp.id)).toBe(false); expect(store.visibleExercises()).toHaveLength(nv + 1);
     expect(screen.getByText(String(n0 + 1))).toBeTruthy();
   });
 

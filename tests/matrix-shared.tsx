@@ -81,6 +81,7 @@ export function fill(ex: Exercise, r: Rep, u: Unit, s: WSet, k: SetKind) {
   if (hasWeight(m)) { const v = loadDisp(r, u, k); store.writeLoad(ex, s, v === '' ? '' : wIn(v)); }
   if (hasReps(m)) s.reps = REPS_V[k];
   if (m === 'distance_time') { s.distanceM = DIST_V[k][0]; s.durationSec = DIST_V[k][1]; } else if (hasTime(m)) s.durationSec = TIME_V[k];
+  if (m === 'weight_distance') s.distanceM = DIST_V[k][0]; /* 09.10.2026: noszenie i sanki */
 }
 /** Trening: jedno ćwiczenie, serie o rodzajach `kinds`, wszystkie odhaczone; zwraca zapisany trening. */
 export function doWorkout(ex: Exercise, r: Rep, u: Unit, kinds: SetKind[], agoMs = 600e3, values = true): Workout {
@@ -97,6 +98,7 @@ export function expSummary(r: Rep, u: Unit, k: SetKind): string {
   if (m === 'time') return secTxt(TIME_V[k]);
   if (m === 'distance_time') return `${distTxt(DIST_V[k][0])} ${secTxt(DIST_V[k][1])}`;
   if (m === 'weight_time') return `${fmtPl(Number(l) || 0)}${u}×${secTxt(TIME_V[k])}`;
+  if (m === 'weight_distance') return `${fmtPl(Number(l) || 0)}${u}×${distTxt(DIST_V[k][0])}`;
   if (m === 'reps') return `${REPS_V[k]}`;
   return r.bw ? `${REPS_V[k]}${l ? '@+' + fmtPl(Number(l)) : ''}` : `${fmtPl(Number(l))}×${REPS_V[k]}`;
 }

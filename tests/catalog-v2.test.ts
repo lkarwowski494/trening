@@ -1,7 +1,7 @@
 /* Katalog ćwiczeń 04.10.2026 (decyzja właściciela: rozbudowa własnego katalogu, każde ćwiczenie z obciążeniem partii; „zastosuj metody
  * weryfikacji, żeby było jak najmniej błędów”). Automatyczne reguły spójności całej biblioteki — dane w docs/research/equipment/catalog.json. */
-import { CATALOG, MUSCLE_LOAD, MUSCLE_REGIONS, CABLES, CATALOG_LIB_EXTRA } from '@/lib/catalog.generated';
-import { LIB, LIB_EXTRA_NAMES, seedState, musclesFor, metricFor, loadModeFor, MUSCLES_BY_NAME } from '@/lib/seed';
+import { CATALOG, MUSCLE_LOAD, MUSCLE_REGIONS, CABLES, CATALOG_LIB_EXTRA, CATALOG_UNMAPPED } from '@/lib/catalog.generated';
+import { LIB, LIB_EXTRA_NAMES, LIB_BASE_NAMES, LIB_EXTRA_REV, seedState, musclesFor, metricFor, loadModeFor, MUSCLES_BY_NAME } from '@/lib/seed';
 import { presetEquipment, availability, capsOf, implsAt, CAPABILITIES } from '@/lib/equipment';
 import { exName, fold, applyLang } from '@/lib/i18n';
 import { loc, userHome } from './locations-fixtures';
@@ -19,7 +19,7 @@ describe('katalog ćwiczeń — spójność', () => {
     expect(new Set(names.map(fold)).size).toBe(names.length);
     applyLang('en'); const en = lib().map(e => fold(exName(e))); applyLang('pl');
     expect(new Set(en).size).toBe(en.length);
-    expect(CATALOG_LIB_EXTRA.length).toBe(LIB_EXTRA_NAMES.length); expect(names.length).toBe(125 + LIB_EXTRA_NAMES.length);
+    expect(CATALOG_LIB_EXTRA.length).toBe(LIB_EXTRA_NAMES.length); expect(names.length).toBe(LIB_BASE_NAMES.size + LIB_EXTRA_NAMES.length); expect(LIB_BASE_NAMES.size).toBe(124); /* research 09.10.2026: Rear Delt Raise (hantle) scalone z Reverse Fly (hantle) */
   });
 
   test('obciążenie partii zgodne z partiami ćwiczenia: główna → region z wagą 1, pomocnicza → region ≥ 0,5', () => {
@@ -29,7 +29,7 @@ describe('katalog ćwiczeń — spójność', () => {
       const of = (m: string) => Object.entries(ml).filter(([r]) => (MUSCLE_REGIONS as Record<string, string | null>)[r] === m).map(([, w]) => w);
       for (const m of e.muscles) if (!of(m).some(w => w === 1)) bad.push(`${e.name}: główna ${m}`);
       for (const m of e.secondaryMuscles) if (!of(m).some(w => w >= 0.5)) bad.push(`${e.name}: pomocnicza ${m}`);
-      if (e.group !== 'cardio' && e.pattern !== 'mobility' /* rozciąganie (pełna baza 04.10): bez obciążenia, tylko 0,25 */ && !Object.values(ml).includes(1)) bad.push(`${e.name}: brak regionu głównego`);
+      if (e.group !== 'cardio' && e.pattern !== 'mobility' /* rozciąganie (pełna baza 04.10): bez obciążenia, tylko 0,25 */ && !CATALOG_UNMAPPED[e.name] /* decyzja 09.10.2026 (L2 Q1/Q2/Q5): mięsień docelowy spoza mapy — bez partii głównej, z oznaczeniem */ && !Object.values(ml).includes(1)) bad.push(`${e.name}: brak regionu głównego`);
       if (e.pattern === 'mobility' && (e.muscles.length || e.secondaryMuscles.length || Object.values(ml).some(w => w > 0.25))) bad.push(`${e.name}: rozciąganie liczone jako trening partii`);
     }
     expect(bad).toEqual([]);
@@ -83,7 +83,7 @@ describe('katalog ćwiczeń — migracja na telefonie', () => {
     const m = store.migrate(raw); const names = m.exercises.map(e => e.name);
     expect(names.filter(n => fold(n) === fold(first))).toHaveLength(1);
     for (const n of LIB_EXTRA_NAMES.slice(1)) expect([n, names.includes(n)]).toEqual([n, true]);
-    expect(m.exercises.length).toBe(fx.state.exercises.length + LIB_EXTRA_NAMES.length);
+    expect(m.exercises.length).toBe(fx.state.exercises.length + LIB_EXTRA_NAMES.length - 1); /* research 09.10.2026: nieużywane Rear Delt Raise (hantle) scalone z Reverse Fly (hantle) — wpis znika */
     const again = store.migrate(JSON.parse(JSON.stringify(m))); expect(again.exercises.length).toBe(m.exercises.length);
     const gone = JSON.parse(JSON.stringify(m)); gone.exercises = gone.exercises.filter((e: any) => e.name !== LIB_EXTRA_NAMES[1]);
     expect(store.migrate(gone).exercises.some(e => e.name === LIB_EXTRA_NAMES[1])).toBe(false); /* schemat 16 — bez ponownego dopisywania */
@@ -152,7 +152,7 @@ describe('katalog ćwiczeń — decyzje 04.10 wieczór', () => {
 
 describe('katalog ćwiczeń — migracja kroku 04.10 b', () => {
   test('dane po pierwszym kroku katalogu: dopisane tylko nowe ćwiczenia; usunięte z pierwszego kroku nie wracają; partie przywodzicieli poprawione tylko, gdy domyślne', async () => {
-    expect(LIB_EXTRA_REVS).toEqual(['katalog-2026-10-04', 'katalog-2026-10-04b', 'katalog-2026-10-05']);
+    expect(LIB_EXTRA_REVS).toEqual(['katalog-2026-10-04', 'katalog-2026-10-04b', 'katalog-2026-10-05', 'katalog-2026-10-09']); /* 09.10: krok researchu biblioteki (bez nowych ćwiczeń) */
     const b = new Set(CATALOG_LIB_EXTRA.filter(r => r[8] === 'katalog-2026-10-04b').map(r => r[0])); expect(b.size).toBe(22);
     await fresh(); const raw: any = JSON.parse(JSON.stringify(seedState('pl'))); raw.libExtra = 'katalog-2026-10-04'; delete raw.libExtraStep; /* jak dane z buildu 643cba7 */
     raw.exercises = raw.exercises.filter((e: any) => !b.has(e.name) && e.name !== 'Cossack Squat'); /* Cossack Squat (krok 1) usunięty przez użytkownika */
@@ -160,7 +160,7 @@ describe('katalog ćwiczeń — migracja kroku 04.10 b', () => {
     const cp = raw.exercises.find((e: any) => e.name === 'Copenhagen Plank'); cp.muscles = ['core']; cp.secondaryMuscles = ['barki']; /* zmienione przez użytkownika */
     const m = store.migrate(raw); const names = m.exercises.map(e => e.name);
     for (const n of b) expect([n, names.includes(n)]).toEqual([n, true]); expect(names.includes('Cossack Squat')).toBe(false);
-    expect(m).toMatchObject({ libExtra: 'katalog-2026-10-04', libExtraStep: 'katalog-2026-10-05' }); /* audyt kroku b (MEDIUM): libExtra jak w 643cba7 */
+    expect(m).toMatchObject({ libExtra: 'katalog-2026-10-04', libExtraStep: LIB_EXTRA_REV }); /* audyt kroku b (MEDIUM): libExtra jak w 643cba7 */
     expect(m.exercises.find(e => e.name === 'Hip Adduction')!.muscles).toEqual(['przywodziciele']);
     expect(m.exercises.find(e => e.name === 'Copenhagen Plank')!).toMatchObject({ muscles: ['core'], secondaryMuscles: ['barki'] });
     const again = store.migrate(JSON.parse(JSON.stringify(m))); expect(again.exercises.length).toBe(m.exercises.length);
@@ -182,7 +182,7 @@ describe('katalog ćwiczeń — migracja kroku 04.10 b', () => {
 describe('katalog ćwiczeń — audyt kroku b (MEDIUM: powrót do starszego buildu)', () => {
   test('dane nowej wersji czytane regułą buildu 643cba7 (libExtra !== „katalog-2026-10-04” → dopisz) nie dopisują usuniętych; ponowna aktualizacja też nie', async () => {
     await fresh(); const s: any = JSON.parse(JSON.stringify(seedState('pl')));
-    expect(s).toMatchObject({ libExtra: 'katalog-2026-10-04', libExtraStep: 'katalog-2026-10-05' });
+    expect(s).toMatchObject({ libExtra: 'katalog-2026-10-04', libExtraStep: LIB_EXTRA_REV });
     s.exercises = s.exercises.filter((e: any) => e.name !== 'Cossack Squat' && e.name !== 'Machine Row');
     const m: any = store.migrate(s); expect(m.libExtra !== 'katalog-2026-10-04').toBe(false); /* stara reguła — nic nie dopisze */
     expect(store.migrate(JSON.parse(JSON.stringify(m))).exercises.some(e => e.name === 'Cossack Squat' || e.name === 'Machine Row')).toBe(false);
@@ -191,11 +191,11 @@ describe('katalog ćwiczeń — audyt kroku b (MEDIUM: powrót do starszego buil
 
 describe('pełna baza (krok 05.10, „dodawaj resztę”) — migracja', () => {
   test('dane po kroku b: dopisane tylko ćwiczenia kroku c; usunięte z kroku b nie wracają; nowa instalacja ma wszystko', async () => {
-    const c = new Set(CATALOG_LIB_EXTRA.filter(r => r[8] === 'katalog-2026-10-05').map(r => r[0])); expect(c.size).toBeGreaterThan(500);
+    const c = new Set(CATALOG_LIB_EXTRA.filter(r => r[8] === 'katalog-2026-10-05').map(r => r[0])); expect(c.size).toBe(440); /* 584 przed researchem biblioteki 09.10.2026 (scalone i usunięte znikają) */
     await fresh(); const raw: any = JSON.parse(JSON.stringify(seedState('pl'))); raw.libExtraStep = 'katalog-2026-10-04b';
     raw.exercises = raw.exercises.filter((e: any) => !c.has(e.name) && e.name !== 'Machine Row');
     const m = store.migrate(raw); const names = new Set(m.exercises.map(e => e.name));
-    expect([...c].filter(n => !names.has(n))).toEqual([]); expect(names.has('Machine Row')).toBe(false); expect(m.libExtraStep).toBe('katalog-2026-10-05');
+    expect([...c].filter(n => !names.has(n))).toEqual([]); expect(names.has('Machine Row')).toBe(false); expect(m.libExtraStep).toBe(LIB_EXTRA_REV);
     expect(seedState('pl').exercises.length).toBe(LIB.length);
   });
 });

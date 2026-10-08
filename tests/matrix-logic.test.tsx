@@ -11,7 +11,7 @@ import * as edit from '@/lib/edit';
 import * as backup from '@/lib/backup';
 import * as i18n from '@/lib/i18n';
 import * as units from '@/lib/units';
-import { capLabel, blankLoad, fillOpts, fillGym, equipById, presetEquipment, GYM_FILL, OPT_FILL } from '@/lib/equipment';
+import { capLabel, blankLoad, fillOpts, fillGym, equipById, presetEquipment, GYM_FILL, OPT_FILL, EQUIP_FILL2 } from '@/lib/equipment';
 import { commitLocationName, canDeleteLocation, locationEdited, addLocation } from '@/lib/locations';
 import { loadMult, defaultModules, blankTimer, libExercise, SCHEMA_VERSION, type WSet, type LocEquip } from '@/lib/seed';
 import { parseSwapTarget } from '@/lib/swap';
@@ -214,7 +214,7 @@ describe('equipment.fillOpts', () => {
 });
 
 describe('equipment.fillGym', () => {
-  const oldGym = (unit: 'kg' | 'lb' = 'kg') => ({ equipment: presetEquipment('gym', unit).filter(e => !GYM_FILL.items.includes(e.item)) });
+  const oldGym = (unit: 'kg' | 'lb' = 'kg') => ({ equipment: presetEquipment('gym', unit).filter(e => !GYM_FILL.items.includes(e.item) && !EQUIP_FILL2.all.includes(e.item) && !EQUIP_FILL2.gym.includes(e.item)) /* sprzęt z 09.10.2026 też dopisany później */ });
   test('dawny preset siłowni — dopisuje nowy sprzęt (raz) i opaski do zaznaczonych wyciągów', () => {
     const l = oldGym(); l.equipment.find(e => e.item === 'cable_cross')!.opts = ['rope'];
     expect(fillGym(l)).toBe(true);
@@ -573,7 +573,7 @@ describe('store.prevOfActiveBlock', () => {
 
 describe('store.setHasResult', () => {
   test('wynik w metryce ćwiczenia: powtórzenia, czas, dystans albo czas; bez ćwiczenia — jakakolwiek wartość', async () => {
-    await fresh(); const bp = ex('Bench Press (sztanga)'), pl = ex('Plank'), run = ex('Bieg'), fw = ex("Farmer's Walk"), bur = ex('Burpees');
+    await fresh(); const bp = ex('Bench Press (sztanga)'), pl = ex('Plank'), run = ex('Bieg'), fw = ex('Crucifix') /* ciężar + czas */, bur = ex('Burpees');
     expect(store.setHasResult(bp, mkSet({ weight: 100, reps: 0 }))).toBe(false); expect(store.setHasResult(bp, mkSet({ reps: 1 }))).toBe(true);
     expect(store.setHasResult(bp, mkSet({ reps: '' }))).toBe(false);
     expect(store.setHasResult(pl, mkSet({ durationSec: 0 }))).toBe(false); expect(store.setHasResult(pl, mkSet({ durationSec: 30 }))).toBe(true);

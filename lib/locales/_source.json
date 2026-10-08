@@ -548,6 +548,10 @@
   "en": "weight + time"
  },
  {
+  "pl": "ciężar + dystans",
+  "en": "weight + distance"
+ },
+ {
   "pl": "ciężar + powtórzenia",
   "en": "weight + reps"
  },
@@ -566,6 +570,14 @@
  {
   "pl": "ciężaru {w} nie ma tutaj — wpisz ciężar",
   "en": "{w} isn’t available here — enter a weight"
+ },
+ {
+  "pl": "circus bell",
+  "en": "circus bell"
+ },
+ {
+  "pl": "Circus bell (hantel z grubym uchwytem)",
+  "en": "Circus bell"
  },
  {
   "pl": "co",
@@ -990,6 +1002,10 @@
   "en": "Muscle group filter: {g}. Tap to remove."
  },
  {
+  "pl": "Filtr: podstawowe ćwiczenia. Tapnij, by pokazać wszystkie.",
+  "en": "Filter: basic exercises. Tap to show all."
+ },
+ {
   "pl": "fioletowa",
   "en": "purple"
  },
@@ -1130,8 +1146,8 @@
   "en": "Dumbbells (fixed or quick-adjust)"
  },
  {
-  "pl": "hantle {a}–{b} {u}, ławka regulowana, mata, bieżnia, rower",
-  "en": "dumbbells {a}–{b} {u}, adjustable bench, mat, treadmill, bike"
+  "pl": "hantle {a}–{b} {u}, ławka regulowana, mata, ściana, bieżnia, rower",
+  "en": "dumbbells {a}–{b} {u}, adjustable bench, mat, wall, treadmill, bike"
  },
  {
   "pl": "Hantle na talerze (uchwyty + talerze)",
@@ -1606,6 +1622,14 @@
   "en": "Ab crunch machine"
  },
  {
+  "pl": "maszyna do dipów",
+  "en": "dip machine"
+ },
+ {
+  "pl": "Maszyna do dipów",
+  "en": "Dip machine"
+ },
+ {
   "pl": "maszyna do hip thrustu",
   "en": "hip thrust machine"
  },
@@ -1728,6 +1752,10 @@
  {
   "pl": "Mata",
   "en": "Mat"
+ },
+ {
+  "pl": "mata i ściana",
+  "en": "mat and wall"
  },
  {
   "pl": "max ±",
@@ -2112,6 +2140,10 @@
  {
   "pl": "nieprzeczytane",
   "en": "unread"
+ },
+ {
+  "pl": "niszowe ukryte: {n} — znajdziesz je wyszukiwaniem",
+  "en": "niche hidden: {n} — find them by searching"
  },
  {
   "pl": "nogi",
@@ -2582,8 +2614,16 @@
   "en": "The hint comes back next week."
  },
  {
+  "pl": "Podstawowe",
+  "en": "Basic"
+ },
+ {
   "pl": "Podsumowanie",
   "en": "Summary"
+ },
+ {
+  "pl": "Pokazane wszystkie ćwiczenia, także niszowe. Tapnij, by zostawić podstawowe.",
+  "en": "Showing all exercises, including niche ones. Tap to keep only the basic ones."
  },
  {
   "pl": "Pokazano {n} z {m} — wpisz nazwę, by zawęzić.",
@@ -3535,6 +3575,10 @@
   "en": "neck"
  },
  {
+  "pl": "ściana",
+  "en": "wall"
+ },
+ {
   "pl": "ślizgacze",
   "en": "sliders"
  },
@@ -3781,10 +3825,6 @@
  {
   "pl": "Tylko masa ciała",
   "en": "Bodyweight only"
- },
- {
-  "pl": "tylko mata",
-  "en": "mat only"
  },
  {
   "pl": "Tylko rozgrzewka",
@@ -4195,6 +4235,10 @@
   "en": "Enable notifications for {app} in iOS Settings."
  },
  {
+  "pl": "Wolna ściana (stanie na rękach, wall sit)",
+  "en": "Free wall (handstands, wall sit)"
+ },
+ {
   "pl": "wolne",
   "en": "rest"
  },
@@ -4253,6 +4297,10 @@
  {
   "pl": "wszystkie ćwiczenia z tą samą miarą",
   "en": "all exercises with the same measure"
+ },
+ {
+  "pl": "wszystkie ćwiczenia, także niszowe",
+  "en": "all exercises, including niche ones"
  },
  {
   "pl": "Wszystkie serie odhaczone",
@@ -4369,6 +4417,10 @@
  {
   "pl": "Wysiłek: zwykle {a}–{b} powtórzenia w zapasie (RIR); do upadku nie trzeba.",
   "en": "Effort: usually {a}–{b} reps in reserve (RIR); training to failure is not needed."
+ },
+ {
+  "pl": "wyszukiwanie obejmuje też niszowe",
+  "en": "search also covers niche ones"
  },
  {
   "pl": "Wyślij dane",
