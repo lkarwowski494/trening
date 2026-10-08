@@ -1,0 +1,1495 @@
+[
+ {
+  "name": "Barbell Curls Lying Against An Incline",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "name": "Spider Curl (sztanga)",
+   "requires": [
+    [
+     "barbell",
+     "ez_bar"
+    ],
+    [
+     "bench.incline",
+     "preacher_bench"
+    ]
+   ]
+  },
+  "sources": [
+   "L1-S7",
+   "L1-S57",
+   "S12",
+   "S13",
+   "S6"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Uznane ćwiczenie: ExRx „Barbell Prone Incline Curl” (leżąc przodem na ławce skośnej, „grasp curl bar”); potocznie „spider curl”. Proponowana nazwa w konwencji aplikacji (bazowy Spider Curl = hantle). Do tego wpisu scalić EZ-Bar Spider Curl i Lying High Bench Barbell Curl (ten sam ruch, inna podpórka) — stąd OR sztanga|EZ i ławka skośna|modlitewnik. Partie: biceps (analogia do uginań, D12/D13/S6)."
+ },
+ {
+  "name": "Barbell Preacher Curl",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L1-S8",
+   "L1-S2",
+   "L1-S57",
+   "S12",
+   "S13",
+   "S6"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx „Barbell Preacher Curl”. Prosta sztanga vs EZ: Marcolin 2018 — różnica BC/EZ mała, „a matter of subjective comfort”; zostaje osobno tylko dlatego, że baza trzyma osobno Barbell Curl i EZ Bar Curl (inne listy ciężarów). Uwaga: pozycja źródłowa fedb „Preacher Curl” opisuje gryf EZ — duplikat treściowy z Preacher Curl (EZ); ten wpis to wersja z prostą sztangą (rzadsza → niszowe)."
+ },
+ {
+  "name": "Bayesian Curl",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L1-S9",
+   "S12",
+   "S13",
+   "S6"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Uginanie na wyciągu jednorącz tyłem do wyciągu (ramię za tułowiem). Nazwa spopularyzowana przez trenerów (szczebel 5 — brak przeczytanego źródła nazwy); ruch = Cable One Arm Curl z ramieniem w wyproście barku. Partie: biceps (analogia do uginań)."
+ },
+ {
+  "name": "Cable Curl (dwie linki)",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L1-S10",
+   "S12",
+   "S13",
+   "S6"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx „Cable Curl (with stirrups)”: „Stand between or facing double low pulleys. Grasp stirrups to each side”. Wymagania (cable.dual + cable.low) zgodne. Wersja pod stację z dwiema linkami; sposób liczenia ciężaru na stacji — otwarte Q-024."
+ },
+ {
+  "name": "Cable Preacher Curl",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L1-S11",
+   "L1-S57",
+   "S12",
+   "S13",
+   "S6"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx „Cable Preacher Curl”: modlitewnik + drążek z dolnego wyciągu. Wymagania zgodne."
+ },
+ {
+  "name": "Cable Wrist Curl",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L1-S12",
+   "L1-S6",
+   "L1-S57"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx „Cable Wrist Curl”: target Wrist Flexors, „Sit … Rest forearms on thighs” — siedzisko potrzebne (bench.flat|box zgodne). Grupa „biceps” dla ćwiczenia przedramion — patrz pytanie otwarte o sekcję przedramion."
+ },
+ {
+  "name": "Close-Grip EZ Bar Curl",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "EZ Bar Curl",
+  "fixes": {},
+  "sources": [
+   "L1-S13",
+   "L1-S2",
+   "L1-S57"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Wariant szerokości chwytu EZ Bar Curl (ExRx: „Movement with cambered bar … is also known as EZ Barbell Curl”, chwyt na wewnętrznych przegięciach to typowe wykonanie). Brak przeczytanego źródła, że szerokość chwytu zmienia przypisanie partii — duplikat do scalenia (chwyt można zapisać w notatce ćwiczenia). Decyzja produktowa."
+ },
+ {
+  "name": "Close-Grip EZ-Bar Curl with Band",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "EZ Bar Curl",
+  "fixes": {},
+  "sources": [
+   "L1-S13",
+   "L1-S57"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "EZ Bar Curl z gumą przy końcach gryfu (opór zmienny); ciężar w aplikacji = tylko gryf, więc zapis i tak nie oddaje oporu gumy. Rzadki wariant — scalić z EZ Bar Curl (guma w notatce). Alternatywa: zostawić jako niszowe."
+ },
+ {
+  "name": "Close-Grip Standing Barbell Curl",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Barbell Curl",
+  "fixes": {},
+  "sources": [
+   "L1-S13",
+   "L1-S57"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Barbell Curl wąskim chwytem — ten sam ruch i sprzęt (ExRx Barbell Curl: „Grasp bar with shoulder width underhand grip”). Duplikat wariantu chwytu."
+ },
+ {
+  "name": "Cross Body Hammer Curl",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "secondaryMuscles": []
+  },
+  "sources": [
+   "L1-S14",
+   "L1-S6",
+   "S6",
+   "L1-S57"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Uginanie chwytem młotkowym: ExRx — mięsień docelowy ramienno-promieniowy, który anatomicznie jest zginaczem łokcia (OpenStax: „The biceps brachii, brachialis, and brachioradialis flex the forearm”). Bazowy Hammer Curl ma w docs/research/24 „biceps / —” (przedramiona rozważone i odrzucone — brak źródła wzrostu); dla spójności usunąć „przedramiona” z pomocniczych (muscleLoad forearms 0,5 zostaje, jak w bazowym)."
+ },
+ {
+  "name": "Drag Curl",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "muscleLoad": {
+    "biceps": 1,
+    "forearms": 0.25,
+    "rear_delt": 0.25
+   }
+  },
+  "sources": [
+   "L1-S15",
+   "L1-S57",
+   "S12",
+   "S13",
+   "S6"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx „Barbell Drag Curl”: target Biceps Brachii; synergists Brachialis, Brachioradialis, Deltoid Posterior, Deltoid Anterior („elbows travel back”). Dodać rear_delt 0,25 (wyprost barku) w muscleLoad; partie bez zmian."
+ },
+ {
+  "name": "Dumbbell Lying Pronation",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "requires": [
+    [
+     "db"
+    ]
+   ],
+   "recommended": [
+    "bench.flat"
+   ]
+  },
+  "sources": [
+   "L1-S16",
+   "L1-S6",
+   "L1-S57"
+  ],
+  "confidence": "jedno źródło",
+  "note": "ExRx „Dumbbell Lying Pronation”: target Pronators; „Lie on bench or mat … grasp unilaterally loaded dumbbell … Rotate dumbbell so thumb turns downward (pronation)” — nazwa uznana, partia „przedramiona” zgodna (pronatory — OpenStax). Ławka niekonieczna („bench or mat”) → z wymaganych do zalecanych. UWAGA: opis w free-exercise-db pod tą nazwą to w praktyce rotacja zewnętrzna barku — trzymać definicję ExRx (tak opisuje ją notatka katalogu). Lekki ciężar, rehabilitacyjne → niszowe."
+ },
+ {
+  "name": "Dumbbell Lying Supination",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "requires": [
+    [
+     "db"
+    ]
+   ],
+   "recommended": [
+    "bench.flat"
+   ]
+  },
+  "sources": [
+   "L1-S17",
+   "L1-S6",
+   "L1-S57"
+  ],
+  "confidence": "jedno źródło",
+  "note": "ExRx „Dumbbell Lying Supination”: target Supinator, synergist Biceps Brachii; „Lie on bench or mat” — ławka zalecana, nie wymagana. Biceps 0,25 w muscleLoad zgodny (OpenStax: biceps „also taking part in supinating the forearm”). Opis fedb to rotacja zewnętrzna barku leżąc bokiem — trzymać definicję ExRx."
+ },
+ {
+  "name": "EZ-Bar Spider Curl",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Barbell Curls Lying Against An Incline",
+  "fixes": {},
+  "sources": [
+   "L1-S7",
+   "L1-S57"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Spider curl z gryfem EZ na pionowej stronie modlitewnika — ten sam ruch co ExRx „Barbell Prone Incline Curl”, inna podpórka. Scalić do proponowanego „Spider Curl (sztanga)” (sztanga|EZ, ławka skośna|modlitewnik)."
+ },
+ {
+  "name": "Finger Curls",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Palms-Up Barbell Wrist Curl Over A Bench",
+  "fixes": {},
+  "sources": [
+   "L1-S18",
+   "L1-S57"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx „Barbell Wrist Curl” już zawiera ten ruch: „Allow barbell to roll out of palms down to fingers. Raise barbell back up by gripping”. Osobny wpis to duplikat fazy uginania nadgarstków sztangą."
+ },
+ {
+  "name": "Hammer Curl (linki)",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "secondaryMuscles": []
+  },
+  "sources": [
+   "L1-S19",
+   "L1-S6",
+   "S6"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx „Cable Hammer Curl” (lina, dolny wyciąg) — wymagania zgodne. Uginanie chwytem młotkowym: ExRx — mięsień docelowy ramienno-promieniowy, który anatomicznie jest zginaczem łokcia (OpenStax: „The biceps brachii, brachialis, and brachioradialis flex the forearm”). Bazowy Hammer Curl ma w docs/research/24 „biceps / —” (przedramiona rozważone i odrzucone — brak źródła wzrostu); dla spójności usunąć „przedramiona” z pomocniczych (muscleLoad forearms 0,5 zostaje, jak w bazowym)."
+ },
+ {
+  "name": "High Cable Curl",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "S12",
+   "S13",
+   "S6"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Uginanie z dwóch górnych wyciągów, ramiona w odwiedzeniu (popularne „overhead cable curl”). Brak strony ExRx/ACE dla tej wersji — partie przez analogię do uginań (biceps). Wymagania (cable.dual + high|mid) zgodne."
+ },
+ {
+  "name": "Incline Hammer Curl",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "secondaryMuscles": []
+  },
+  "sources": [
+   "L1-S14",
+   "L1-S20",
+   "L1-S57",
+   "S6"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Uginanie chwytem młotkowym: ExRx — mięsień docelowy ramienno-promieniowy, który anatomicznie jest zginaczem łokcia (OpenStax: „The biceps brachii, brachialis, and brachioradialis flex the forearm”). Bazowy Hammer Curl ma w docs/research/24 „biceps / —” (przedramiona rozważone i odrzucone — brak źródła wzrostu); dla spójności usunąć „przedramiona” z pomocniczych (muscleLoad forearms 0,5 zostaje, jak w bazowym)."
+ },
+ {
+  "name": "Incline Inner Biceps Curl",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Incline Curl (hantle)",
+  "fixes": {},
+  "sources": [
+   "L1-S20",
+   "L1-S57"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Incline Curl z łokciami na boki (ruch „na zewnątrz”) — wariant toru Incline Curl (hantle); brak źródła, że zmienia przypisanie partii. Rzadka nazwa (tylko fedb)."
+ },
+ {
+  "name": "Lying Cable Curl",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L1-S21",
+   "L1-S57",
+   "S12",
+   "S13",
+   "S6"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx „Cable Supine Curl”: „Sit on floor with feet or heels against pulley machine … Lie back on floor”. Wymagania (cable.low, mata zalecana) zgodne."
+ },
+ {
+  "name": "Lying Close-Grip Bar Curl On High Pulley",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L1-S57",
+   "S12",
+   "S13",
+   "S6"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Leżąc pod górnym wyciągiem, ramiona pionowo — rzadki wariant (tylko fedb). Wymagania (górny wyciąg|ściąganie + ławka) zgodne z opisem. Partie przez analogię."
+ },
+ {
+  "name": "Lying High Bench Barbell Curl",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Barbell Curls Lying Against An Incline",
+  "fixes": {},
+  "sources": [
+   "L1-S7",
+   "L1-S57"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Leżąc przodem na wysokiej ławce, ramiona zwisają — ten sam ruch co spider/prone incline curl sztangą; wymaga nietypowo wysokiej ławki. Scalić."
+ },
+ {
+  "name": "Lying Supine Dumbbell Curl",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L1-S57",
+   "L1-S20",
+   "S12",
+   "S13",
+   "S6"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Leżąc tyłem na płaskiej ławce, ramiona poniżej tułowia — skrajna wersja Incline Curl (rozciągnięta pozycja). Rzadka, ale jednoznaczna."
+ },
+ {
+  "name": "Machine Biceps Curl",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L1-S22",
+   "S12",
+   "S13",
+   "S6"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx „Lever Curl”: target Biceps Brachii. Wymaga maszyny do bicepsa — zgodne."
+ },
+ {
+  "name": "One Arm Dumbbell Preacher Curl",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "requires": [
+    [
+     "db"
+    ],
+    [
+     "preacher_bench",
+     "bench.incline"
+    ]
+   ]
+  },
+  "sources": [
+   "L1-S23",
+   "L1-S57",
+   "S12",
+   "S13",
+   "S6"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx „Dumbbell Preacher Curl” to wersja jednorącz. Opis (fedb): „place the upper arm on top of the preacher bench or the incline bench” — dopuścić oparcie ławki skośnej (catalog-notes: „preacher substitute on an incline backrest”). Do tego wpisu scalić Standing One-Arm Dumbbell Curl Over Incline Bench."
+ },
+ {
+  "name": "Palms-Down Barbell Wrist Curl Over A Bench",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "name": "Barbell Reverse Wrist Curl",
+   "requires": [
+    [
+     "barbell"
+    ],
+    [
+     "bench.flat",
+     "box"
+    ]
+   ],
+   "recommended": []
+  },
+  "sources": [
+   "L1-S24",
+   "L1-S6",
+   "L1-S57"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Uznana nazwa: ExRx „Barbell Reverse Wrist Curl” (target Wrist Extensors). Przedramiona oparte na ławce (fedb, klęcząc) albo na udach w siadzie (ExRx) — w obu wersjach potrzebna ławka/siedzisko, więc wymagane, nie zalecane."
+ },
+ {
+  "name": "Palms-Up Barbell Wrist Curl Over A Bench",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "name": "Barbell Wrist Curl",
+   "requires": [
+    [
+     "barbell"
+    ],
+    [
+     "bench.flat",
+     "box"
+    ]
+   ],
+   "recommended": []
+  },
+  "sources": [
+   "L1-S18",
+   "L1-S6",
+   "L1-S57"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Uznana nazwa: ExRx „Barbell Wrist Curl” (target Wrist Flexors). Jak wyżej — siedzisko/ławka wymagane. Do tego wpisu scalić Finger Curls."
+ },
+ {
+  "name": "Preacher Curl (EZ)",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L1-S8",
+   "L1-S2",
+   "S12",
+   "S13",
+   "S6"
+  ],
+  "confidence": "mocne",
+  "note": "ExRx „Barbell Preacher Curl” (gryf łamany, „curl bar”); uginanie na modlitewniku jest w S6 serią bezpośrednią bicepsa, wzrost po uginaniach — D12/D13. Wymagania zgodne."
+ },
+ {
+  "name": "Preacher Hammer Dumbbell Curl",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "secondaryMuscles": []
+  },
+  "sources": [
+   "L1-S14",
+   "L1-S23",
+   "L1-S57",
+   "S6"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Uginanie chwytem młotkowym: ExRx — mięsień docelowy ramienno-promieniowy, który anatomicznie jest zginaczem łokcia (OpenStax: „The biceps brachii, brachialis, and brachioradialis flex the forearm”). Bazowy Hammer Curl ma w docs/research/24 „biceps / —” (przedramiona rozważone i odrzucone — brak źródła wzrostu); dla spójności usunąć „przedramiona” z pomocniczych (muscleLoad forearms 0,5 zostaje, jak w bazowym)."
+ },
+ {
+  "name": "Reverse Cable Curl",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L1-S25",
+   "L1-S26",
+   "L1-S1",
+   "L1-S57"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Uginanie nachwytem (ExRx: target Brachioradialis, stabilizator Wrist Extensors). Kleiber 2015 (EMG): udział ramienno-promieniowego istotnie inny w nachwycie niż w podchwycie i chwycie neutralnym — uzasadnia „przedramiona” jako główną obok bicepsa, w odróżnieniu od uginań młotkowych. EMG — aktywacja, nie wzrost."
+ },
+ {
+  "name": "Reverse Curl",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L1-S26",
+   "L1-S1"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx „Barbell Reverse Curl”: target Brachioradialis; synergists Brachialis, Biceps Brachii; stabilizer Wrist Extensors. Kleiber 2015 (EMG) — patrz Reverse Cable Curl. Sztanga|EZ OR-owane — zgodne z konwencją."
+ },
+ {
+  "name": "Reverse EZ-Bar Preacher Curl",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L1-S27",
+   "L1-S26",
+   "L1-S1",
+   "L1-S57"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Odwrotne uginanie na modlitewniku (ExRx „Barbell Reverse Preacher Curl”: target Brachioradialis, stabilizer Wrist Extensors, „Grasp curl bar … overhand grip”). Partie jak Reverse Curl."
+ },
+ {
+  "name": "Reverse Plate Curls",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L1-S26",
+   "L1-S1",
+   "L1-S57"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Reverse curl z talerzem trzymanym nachwytem (fedb). Partie jak Reverse Curl; wymaga talerza — zgodne."
+ },
+ {
+  "name": "Seated Close-Grip Concentration Barbell Curl",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L1-S28",
+   "L1-S57",
+   "S12",
+   "S13",
+   "S6"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Uginanie skoncentrowane sztangą/EZ w siadzie, ramiona na udach (fedb). Rzadkie; partie przez analogię do Concentration Curl."
+ },
+ {
+  "name": "Seated Dumbbell Curl",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Biceps Curl (hantle)",
+  "fixes": {},
+  "sources": [
+   "L1-S29",
+   "L1-S57"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Biceps Curl (hantle) w siadzie — ten sam ruch i sprzęt (ExRx „Dumbbell Curl”: z supinacją, para hantli). Pozycja (siad/stanie) jako notatka. Decyzja produktowa; alternatywa — niszowe."
+ },
+ {
+  "name": "Seated Dumbbell Inner Biceps Curl",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Standing Inner-Biceps Curl",
+  "fixes": {},
+  "sources": [
+   "L1-S57"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Siedząca wersja Standing Inner-Biceps Curl (opisy fedb identyczne poza pozycją). Duplikat."
+ },
+ {
+  "name": "Seated One-Arm Dumbbell Palms-Down Wrist Curl",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "name": "One-Arm Dumbbell Reverse Wrist Curl",
+   "requires": [
+    [
+     "db"
+    ],
+    [
+     "bench.flat",
+     "box"
+    ]
+   ],
+   "recommended": []
+  },
+  "sources": [
+   "L1-S30",
+   "L1-S57"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx „Dumbbell Reverse Wrist Curl” (jednorącz, „Rest forearm on thigh”) — target Wrist Extensors. Wymaga siedziska. Jednorącz ≠ oburącz (decyzja właściciela 04.10) — osobno od Reverse Wrist Curl (hantle), ale niszowe."
+ },
+ {
+  "name": "Seated One-Arm Dumbbell Palms-Up Wrist Curl",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "name": "One-Arm Dumbbell Wrist Curl",
+   "requires": [
+    [
+     "db"
+    ],
+    [
+     "bench.flat",
+     "box"
+    ]
+   ],
+   "recommended": []
+  },
+  "sources": [
+   "L1-S31",
+   "L1-S57"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx „Dumbbell Wrist Curl” (jednorącz, przedramię na udzie) — target Wrist Flexors. Jak wyżej."
+ },
+ {
+  "name": "Standing Concentration Curl",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L1-S57",
+   "S12",
+   "S13",
+   "S6"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Uginanie skoncentrowane w opadzie tułowia, ramię swobodnie (fedb). Jednorącz, jeden hantel — zgodne."
+ },
+ {
+  "name": "Standing Dumbbell Reverse Curl",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L1-S26",
+   "L1-S1",
+   "L1-S57"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Reverse curl z parą hantli. Partie jak Reverse Curl."
+ },
+ {
+  "name": "Standing Inner-Biceps Curl",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L1-S57",
+   "L1-S29",
+   "S12",
+   "S13",
+   "S6"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Uginanie hantlami z torem na zewnątrz (przedramiona w linii bocznych aktonów). Rzadka nazwa (fedb); partie jak uginania. Do tego wpisu scalić wersję siedzącą."
+ },
+ {
+  "name": "Standing Olympic Plate Hand Squeeze",
+  "verdict": "USUNĄĆ",
+  "scope": "USUNĄĆ",
+  "fixes": {},
+  "sources": [
+   "L1-S57"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Zginanie palców z talerzami trzymanymi za krawędź — nazwa występuje tylko w fedb (nieuznana). Ruch pokrywają Barbell Wrist Curl (z toczeniem do palców) i Plate Pinch; ciężar niejednoznaczny (dwa talerze, tryb „łącznie”). Ocena produktowa."
+ },
+ {
+  "name": "Standing One-Arm Cable Curl",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L1-S9",
+   "L1-S57",
+   "S12",
+   "S13",
+   "S6"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx „Cable One Arm Curl”. Wymagania i tryb jednostronny zgodne."
+ },
+ {
+  "name": "Standing One-Arm Dumbbell Curl Over Incline Bench",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "One Arm Dumbbell Preacher Curl",
+  "fixes": {},
+  "sources": [
+   "L1-S23",
+   "L1-S57"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Uginanie jednorącz z ramieniem na oparciu ławki skośnej = modlitewnik jednorącz (ExRx „Dumbbell Preacher Curl”) z zastępczą podpórką; fedb dla One Arm Dumbbell Preacher Curl sam dopuszcza „the preacher bench or the incline bench”. Scalić z One Arm Dumbbell Preacher Curl, któremu dopuszczono bench.incline."
+ },
+ {
+  "name": "Standing Palms-Up Barbell Behind The Back Wrist Curl",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "name": "Behind-the-Back Barbell Wrist Curl",
+   "recommended": [
+    "rack"
+   ]
+  },
+  "sources": [
+   "L1-S57",
+   "L1-S6"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Uginanie nadgarstków ze sztangą za plecami (fedb; zginacze nadgarstka). fedb: „It is easiest to either pick it up from a squat rack” — stojak jako zalecany. Krótsza, rozpoznawalna nazwa."
+ },
+ {
+  "name": "Wide-Grip Standing Barbell Curl",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Barbell Curl",
+  "fixes": {},
+  "sources": [
+   "L1-S13",
+   "L1-S57"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Barbell Curl szerokim chwytem — wariant chwytu, nie osobne ćwiczenie. Uwaga: opis fedb mówi o „wide outer handle” (gryf EZ)."
+ },
+ {
+  "name": "Wrist Roller",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "secondaryMuscles": [],
+   "muscleLoad": {
+    "forearms": 1,
+    "front_delt": 0.25
+   }
+  },
+  "sources": [
+   "L1-S57",
+   "L1-S6"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Klasyczne ćwiczenie przedramion (zwijanie linki z ciężarem). Barki pracują tylko izometrycznie (ramiona trzymane w przodzie — fedb „parallel to the floor”); 0,5 serii barków tygodniowo to zawyżenie — usunąć „barki” z pomocniczych, front_delt 0,25 (stabilizacja). Brak przeczytanego źródła EMG/ExRx — uproszczenie."
+ },
+ {
+  "name": "Wrist Rotations with Straight Bar",
+  "verdict": "USUNĄĆ",
+  "scope": "USUNĄĆ",
+  "fixes": {},
+  "sources": [
+   "L1-S57"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Naprzemienne wyprosty nadgarstków trzymając sztangę „do upadku” — nazwa tylko w fedb, brak uznanego odpowiednika; powtórzenia i ciężar niejednoznaczne. Funkcję pokrywa Wrist Roller i Barbell Reverse Wrist Curl. Ocena produktowa."
+ },
+ {
+  "name": "Zottman Curl",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L1-S1",
+   "L1-S6",
+   "S12",
+   "S13",
+   "S6"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Uginanie podchwytem, opuszczanie nachwytem. „Przedramiona” pomocnicze uzasadnione fazą nachwytu (Kleiber 2015 — większy udział ramienno-promieniowego w nachwycie); między Hammer Curl (bez) a Reverse Curl (główna). Brak źródła dla samego Zottmana."
+ },
+ {
+  "name": "Zottman Preacher Curl",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L1-S1",
+   "L1-S57",
+   "S12",
+   "S13",
+   "S6"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Zottman na modlitewniku lub oparciu ławki skośnej (fedb: „preacher bench or the incline bench”) — wymagania zgodne."
+ },
+ {
+  "name": "Around The Worlds",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L1-S57"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Leżąc, łuk hantlami od bioder za głowę (fedb). Rzadkie ćwiczenie kulturystyczne; brak przeczytanego źródła EMG — przypisanie klatka/barki to uproszczenie."
+ },
+ {
+  "name": "Band Chest Fly",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "secondaryMuscles": []
+  },
+  "sources": [
+   "L1-S32",
+   "L1-S57",
+   "S6",
+   "L1-S3",
+   "L1-S4"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Rozpiętki z gumą zaczepioną z tyłu (fedb „Cross Over - With Bands”). Miara „reps” spójna z innymi ćwiczeniami z gumą. Rozpiętki (karty ExRx: target Pectoralis Major, synergiści m.in. Deltoid Anterior i Biceps Brachii Short Head — zgodne z muscleLoad front_delt 0,5 i biceps 0,25): bazowe Chest Fly / Cable Fly / Pec Deck mają w docs/research/24 „klatka / —”; dla spójności bez „barki” w pomocniczych (przedni akton zostaje w muscleLoad 0,5)."
+ },
+ {
+  "name": "Bodyweight Fly (rolling bars)",
+  "verdict": "USUNĄĆ",
+  "scope": "USUNĄĆ",
+  "fixes": {},
+  "sources": [
+   "L1-S57"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Rozpiętki w podporze na dwóch toczących się, obciążonych gryfach — nietypowa konfiguracja (dwa gryfy, których słownik nie wyraża), duże obciążenie klatki w rozciągnięciu bez kontroli toru. Bezpieczniejsze odpowiedniki z tym samym ruchem: rozpiętki na kółkach/taśmach. Ocena produktowa (ryzyko bez asekuracji)."
+ },
+ {
+  "name": "Cable Fly (high to low)",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "muscleLoad": {
+    "chest": 1,
+    "front_delt": 0.5,
+    "biceps": 0.25
+   }
+  },
+  "sources": [
+   "L1-S32",
+   "S6",
+   "L1-S3",
+   "L1-S4"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx „Cable Standing Fly” (górne wyciągi). Obciążenie partii ujednolicić z bazowym Cable Fly (front_delt 0,5, biceps 0,25 — Solstad 2020: biceps jako antagonista wyżej w rozpiętkach). Uwaga: bazowy Cable Fly ma notatkę „Any pulley height” — pokrywa się z tym wpisem (pytanie otwarte)."
+ },
+ {
+  "name": "Cable Fly (low to high)",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "secondaryMuscles": [],
+   "muscleLoad": {
+    "chest": 1,
+    "front_delt": 0.5,
+    "biceps": 0.25
+   }
+  },
+  "sources": [
+   "L1-S33",
+   "S6",
+   "L1-S3",
+   "L1-S4"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx „Cable Standing Incline Fly” (dolne wyciągi, tor w górę). Rozpiętki (karty ExRx: target Pectoralis Major, synergiści m.in. Deltoid Anterior i Biceps Brachii Short Head — zgodne z muscleLoad front_delt 0,5 i biceps 0,25): bazowe Chest Fly / Cable Fly / Pec Deck mają w docs/research/24 „klatka / —”; dla spójności bez „barki” w pomocniczych (przedni akton zostaje w muscleLoad 0,5). Pokrywa się z bazowym Cable Fly („Any pulley height”) — pytanie otwarte."
+ },
+ {
+  "name": "Decline Dumbbell Fly",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L1-S34",
+   "L1-S57",
+   "S6",
+   "L1-S3",
+   "L1-S4"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx „Dumbbell Decline Fly”. front_delt 0,25 (mniej niż w płaskiej) kierunkowo zgodne z mniejszym zgięciem barku na skosie w dół — uproszczenie."
+ },
+ {
+  "name": "Flat Bench Cable Fly",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "secondaryMuscles": []
+  },
+  "sources": [
+   "L1-S35",
+   "L1-S57",
+   "S6",
+   "L1-S3",
+   "L1-S4"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx „Cable Lying Fly” (ławka między dolnymi wyciągami). Rozpiętki (karty ExRx: target Pectoralis Major, synergiści m.in. Deltoid Anterior i Biceps Brachii Short Head — zgodne z muscleLoad front_delt 0,5 i biceps 0,25): bazowe Chest Fly / Cable Fly / Pec Deck mają w docs/research/24 „klatka / —”; dla spójności bez „barki” w pomocniczych (przedni akton zostaje w muscleLoad 0,5)."
+ },
+ {
+  "name": "Front Raise And Pullover",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L1-S5",
+   "S37",
+   "L1-S57"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Wznos sztangi z ud za głowę leżąc (fedb) — łączy wznos przodem i pullover. Klatka główna, najszersze/barki pomocnicze — przez analogię do pullovera (Marchetti 2011: „emphasized the muscle action of the pectoralis major more than that of the latissimus dorsi”). Rzadkie."
+ },
+ {
+  "name": "Incline Cable Fly",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "secondaryMuscles": [],
+   "muscleLoad": {
+    "chest": 1,
+    "front_delt": 0.5,
+    "biceps": 0.25
+   }
+  },
+  "sources": [
+   "L1-S36",
+   "S6",
+   "L1-S3",
+   "L1-S4"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx „Cable Incline Fly”. Rozpiętki (karty ExRx: target Pectoralis Major, synergiści m.in. Deltoid Anterior i Biceps Brachii Short Head — zgodne z muscleLoad front_delt 0,5 i biceps 0,25): bazowe Chest Fly / Cable Fly / Pec Deck mają w docs/research/24 „klatka / —”; dla spójności bez „barki” w pomocniczych (przedni akton zostaje w muscleLoad 0,5)."
+ },
+ {
+  "name": "Incline Chest Fly (hantle)",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "secondaryMuscles": []
+  },
+  "sources": [
+   "L1-S37",
+   "S6",
+   "L1-S3",
+   "L1-S4"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx „Dumbbell Incline Fly”. Rozpiętki (karty ExRx: target Pectoralis Major, synergiści m.in. Deltoid Anterior i Biceps Brachii Short Head — zgodne z muscleLoad front_delt 0,5 i biceps 0,25): bazowe Chest Fly / Cable Fly / Pec Deck mają w docs/research/24 „klatka / —”; dla spójności bez „barki” w pomocniczych (przedni akton zostaje w muscleLoad 0,5)."
+ },
+ {
+  "name": "Incline Dumbbell Fly With A Twist",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Incline Chest Fly (hantle)",
+  "fixes": {},
+  "sources": [
+   "L1-S37",
+   "L1-S57"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Rozpiętki na skosie z rotacją nadgarstków — wariant wykonania Incline Chest Fly (hantle); brak źródła, że zmienia partie. Duplikat."
+ },
+ {
+  "name": "Isometric Chest Squeezes",
+  "verdict": "USUNĄĆ",
+  "scope": "USUNĄĆ",
+  "fixes": {},
+  "sources": [
+   "L1-S57"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Ściskanie dłoni przed klatką (izometria bez obciążenia zewnętrznego; fedb kategoria „plyometrics”). Opór niemierzalny i nieskalowalny — aplikacja nie policzy progresji ani objętości; brak źródła skuteczności. Ocena produktowa."
+ },
+ {
+  "name": "One-Arm Flat Bench Dumbbell Fly",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L1-S38",
+   "L1-S57",
+   "S6",
+   "L1-S3",
+   "L1-S4"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Rozpiętki jednorącz na płaskiej ławce (fedb). Jednorącz ≠ oburącz — osobny wpis, niszowy."
+ },
+ {
+  "name": "Pullover (hantel)",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L1-S39",
+   "L1-S5",
+   "S37"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Klatka + najszersze jako główne: Marchetti 2011 (EMG, pullover sztangą — klatka > najszerszy, zależnie od ramienia siły), przegląd D37 wymienia pullover wśród ćwiczeń najszerszego. EMG — aktywacja, nie wzrost. Jeden hantel oburącz (implements 1, tryb łącznie) — zgodne."
+ },
+ {
+  "name": "Single Arm Cable Fly",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "requires": [
+    [
+     "cable.high",
+     "cable.mid",
+     "cable.low"
+    ]
+   ]
+  },
+  "sources": [
+   "L1-S57",
+   "S6",
+   "L1-S3",
+   "L1-S4"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Rozpiętka jednorącz na wyciągu na dowolnej wysokości. Po scaleniu Single-Arm Cable Crossover (tor z góry) dopuścić cable.high."
+ },
+ {
+  "name": "Single-Arm Cable Crossover",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Single Arm Cable Fly",
+  "fixes": {},
+  "sources": [
+   "L1-S57"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Ta sama rozpiętka jednorącz, tylko z górnego wyciągu (opis fedb: naprzemiennie, uchwyt w każdej ręce). Duplikat Single Arm Cable Fly różniący się wysokością bloczka."
+ },
+ {
+  "name": "Svend Press",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "requires": [
+    [
+     "plate",
+     "db"
+    ]
+   ]
+  },
+  "sources": [],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Wyciskanie ściskanego talerza przed klatką. Notatka wpisu mówi o talerzu, ale requires ma tylko db — słownik ma już „plate”, więc OR talerz|hantel. Brak przeczytanego źródła EMG — „klatka” to uproszczenie."
+ },
+ {
+  "name": "Wide-Grip Decline Barbell Pullover",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L1-S5",
+   "S37",
+   "L1-S57"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Pullover sztangą na ławce skośnej w dół (fedb). Partie jak Pullover (Marchetti 2011 — pullover sztangą)."
+ },
+ {
+  "name": "Band Skull Crusher",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L1-S40",
+   "L1-S57",
+   "S6"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Wyprost łokci leżąc z gumą zaczepioną za głową (fedb). Partie jak skullcrusher (ExRx: Triceps Brachii, „Synergists: None”)."
+ },
+ {
+  "name": "Body Tricep Press",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "name": "Bodyweight Triceps Extension"
+  },
+  "sources": [
+   "L1-S41",
+   "L1-S57"
+  ],
+  "confidence": "jedno źródło",
+  "note": "„Skullcrusher” z masą ciała opierając się o drążek w stojaku/Smithie (fedb). ExRx ma odpowiednik na taśmach („Suspended Triceps Extension”). Proponowana nazwa opisowa, bardziej rozpoznawalna."
+ },
+ {
+  "name": "Body-Up",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L1-S57"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Z podporu na przedramionach wyprost łokci do podporu na dłoniach (fedb). Rzadka nazwa; triceps główny, core pomocniczy — uproszczenie bez przeczytanego źródła EMG."
+ },
+ {
+  "name": "Cable Incline Triceps Extension",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L1-S42",
+   "L1-S57",
+   "S29",
+   "S6"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx „Cable Incline Triceps Extension”. Ramię nad głową — Maeo 2023 (D29) wzrost tricepsa po wyprostach na wyciągu. Wymagania zgodne."
+ },
+ {
+  "name": "Cable Lying Triceps Extension",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L1-S43",
+   "L1-S57",
+   "S29",
+   "S6"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx „Cable Lying Triceps Extension”. Wymagania (dolny wyciąg + ławka) zgodne."
+ },
+ {
+  "name": "Cable One Arm Triceps Extension",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Single Arm Triceps Pushdown",
+  "fixes": {},
+  "sources": [
+   "L1-S44",
+   "L1-S45",
+   "L1-S57"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Wg fedb (źródło wpisu) to pushdown jednorącz podchwytem z górnego wyciągu. ExRx „Cable One Arm Pushdown” to właśnie ta wersja („Grasp dumbbell cable attachment with underhand grip”), a ExRx pod nazwą „Cable One Arm Triceps Extension (supinated grip)” opisuje INNE ćwiczenie (wyprost nad głową zza karku) — nazwa myląca. Chwyt to wariant Single Arm Triceps Pushdown (oba jednorącz) → scalić."
+ },
+ {
+  "name": "Chain Handle Extension",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L1-S57",
+   "L1-S46"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Wyprost łokci leżąc z łańcuchami na uchwytach (fedb, kategoria powerlifting). Sprzęt specjalny → niszowe."
+ },
+ {
+  "name": "Decline Dumbbell Triceps Extension",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L1-S47",
+   "L1-S57",
+   "S6"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx „Dumbbell Decline Triceps Extension”: target Triceps Brachii."
+ },
+ {
+  "name": "Decline EZ Bar Triceps Extension",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L1-S48",
+   "L1-S57",
+   "S6"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Skullcrusher EZ na ławce skośnej w dół (ExRx „Barbell Decline Triceps Extension”: target Triceps Brachii, synergists None). Partie jak Skullcrusher (EZ)."
+ },
+ {
+  "name": "Dumbbell One-Arm Triceps Extension",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L1-S49",
+   "L1-S57",
+   "S29",
+   "S6"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Wyprost jednorącz nad głową (fedb). Jednorącz ≠ Overhead Triceps Extension (hantel) (oburącz, jeden hantel)."
+ },
+ {
+  "name": "Dumbbell Tricep Extension - Pronated Grip",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Skullcrusher (hantle)",
+  "fixes": {},
+  "sources": [
+   "L1-S46",
+   "L1-S57"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Leżąc, para hantli opuszczana do uszu — to Skullcrusher (hantle) (ExRx „Dumbbell Lying Triceps Extension”); różni się tylko ustawieniem dłoni. Duplikat."
+ },
+ {
+  "name": "Incline Barbell Triceps Extension",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L1-S50",
+   "L1-S57",
+   "S6"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx „Barbell Incline Triceps Extension”: target Triceps Brachii, synergists None."
+ },
+ {
+  "name": "Kettlebell Overhead Triceps Extension",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L1-S51",
+   "L1-S57",
+   "S29",
+   "S6"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Jak Overhead Triceps Extension (hantel), kettlebell za rogi (fedb). Inny przyrząd (lista ciężarów kettli) — osobno, niszowe. Klasa sprzętu „hantle” zgodna z konwencją (Kettlebell Swing)."
+ },
+ {
+  "name": "Kneeling Cable Triceps Extension",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "requires": [
+    [
+     "cable.high",
+     "cable.mid"
+    ],
+    [
+     "bench.flat"
+    ]
+   ]
+  },
+  "sources": [
+   "L1-S52",
+   "L1-S57",
+   "S29",
+   "S6"
+  ],
+  "confidence": "umiarkowane",
+  "note": "fedb: górny wyciąg; ExRx „Cable Kneeling Triceps Extension”: „Grasp cable bar from middle pulley … Kneel before bench … place elbows on edge of bench”. Dopuścić środkową wysokość (cable.high|cable.mid); ławka wymagana — zgodne."
+ },
+ {
+  "name": "Lying Close-Grip Barbell Triceps Extension Behind The Head",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L1-S40",
+   "L1-S57",
+   "S6"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Skullcrusher z opuszczaniem za głowę (ramiona odchylone za głowę — dłuższe rozciągnięcie). Blisko Skullcrusher (sztanga); zostaje jako niszowe, bo ustawienie ramion jest inne (pozycja „nad głową”, por. D29)."
+ },
+ {
+  "name": "Machine Triceps Extension",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L1-S53",
+   "S6"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx „Lever Triceps Extension”. Maszyna do tricepsa — zgodne."
+ },
+ {
+  "name": "One Arm Pronated Dumbbell Triceps Extension",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "name": "One-Arm Lying Dumbbell Triceps Extension"
+  },
+  "sources": [
+   "L1-S46",
+   "L1-S57"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Leżąc, jednorącz (fedb). Nazwa z „pronated” sugeruje osobne ćwiczenie od wersji z podchwytem — proponowana jedna nazwa, do niej scalić wersję supinowaną."
+ },
+ {
+  "name": "One Arm Supinated Dumbbell Triceps Extension",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "One Arm Pronated Dumbbell Triceps Extension",
+  "fixes": {},
+  "sources": [
+   "L1-S46",
+   "L1-S57"
+  ],
+  "confidence": "umiarkowane",
+  "note": "To samo ćwiczenie co wersja „pronated”, inny chwyt (opisy fedb identyczne poza dłonią). Duplikat."
+ },
+ {
+  "name": "Overhead Triceps Extension (EZ)",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L1-S54",
+   "S29",
+   "S6"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx „Barbell Triceps Extension” (siedząc, nad głową, „narrow overhand grip”). Maeo 2023: wyprost w pozycji nad głową — większy wzrost tricepsa (na wyciągu; tu analogia)."
+ },
+ {
+  "name": "Reverse Grip Triceps Pushdown",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L1-S55",
+   "L1-S57",
+   "S29"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Pushdown podchwytem (fedb). Partie jak Triceps Pushdown (D29: wyprost przy tułowiu daje wzrost tricepsa)."
+ },
+ {
+  "name": "Seated Bent-Over One-Arm Dumbbell Triceps Extension",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Triceps Kickback",
+  "fixes": {},
+  "sources": [
+   "L1-S56",
+   "L1-S57"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Kickback jednorącz w siadzie (fedb) — ten sam ruch co Triceps Kickback (ExRx „Dumbbell Kickback”, jednorącz), inna pozycja tułowia. Duplikat."
+ },
+ {
+  "name": "Seated Bent-Over Two-Arm Dumbbell Triceps Extension",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Standing Bent-Over Two-Arm Dumbbell Triceps Extension",
+  "fixes": {},
+  "sources": [
+   "L1-S56",
+   "L1-S57"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Kickback oburącz w siadzie — duplikat wersji stojącej (oburącz)."
+ },
+ {
+  "name": "Single Arm Triceps Pushdown",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L1-S44",
+   "S29"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx „Cable One Arm Pushdown”. Wymagania i tryb jednostronny zgodne."
+ },
+ {
+  "name": "Skullcrusher (sztanga)",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L1-S40",
+   "S6"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx „Barbell Lying Triceps Extension”: target Triceps Brachii, synergists None. Prosta sztanga dla siłowni bez EZ — zgodne z bazowym Skullcrusher (EZ) (docs/24: triceps / —)."
+ },
+ {
+  "name": "Sled Overhead Triceps Extension",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L1-S57"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Wyprost nad głową z liną od obciążonych sanek (fedb). Ciężar = ładunek sanek, ale opór zależy od tarcia — zapis ciężaru tylko orientacyjny. Sprzęt specjalny → niszowe."
+ },
+ {
+  "name": "Speed Band Overhead Triceps",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "name": "Band Overhead Triceps Extension"
+  },
+  "sources": [
+   "L1-S57",
+   "S29"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Wyprost nad głową z gumą (fedb). „Speed” to tempo, nie inne ćwiczenie — nazwa opisowa jak Band Skull Crusher."
+ },
+ {
+  "name": "Standing Bent-Over Two-Arm Dumbbell Triceps Extension",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "name": "Two-Arm Dumbbell Kickback"
+  },
+  "sources": [
+   "L1-S56",
+   "L1-S57"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Kickback oburącz w opadzie (fedb). Rozpoznawalna nazwa; jednorącz = Triceps Kickback. Do tego wpisu scalić wersję siedzącą."
+ },
+ {
+  "name": "Standing Low-Pulley One-Arm Triceps Extension",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L1-S57",
+   "S29",
+   "S6"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Wyprost jednorącz nad głową z dolnego wyciągu (fedb). Jednorącz ≠ Cable Overhead Extension (oburącz). Pozycja nad głową — D29."
+ },
+ {
+  "name": "Standing Overhead Barbell Triceps Extension",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L1-S54",
+   "L1-S57",
+   "S29",
+   "S6"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Jak Overhead Triceps Extension (EZ), prosta sztanga (ExRx ma wersję siedzącą). Prosta sztanga rzadsza → niszowe."
+ },
+ {
+  "name": "Standing Towel Triceps Extension",
+  "verdict": "USUNĄĆ",
+  "scope": "USUNĄĆ",
+  "fixes": {},
+  "sources": [
+   "L1-S57"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Opór zadaje partner ciągnący ręcznik (fedb) — niemierzalny i niepowtarzalny, ręcznika nie ma w słowniku. Aplikacja nie policzy progresji. Ocena produktowa."
+ },
+ {
+  "name": "Tate Press",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L1-S46",
+   "S6"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Wyprost łokci leżąc, hantle opuszczane do klatki łokciami na boki (praktyka trenerska — szczebel 5, opis bez przeczytanego źródła). Brak strony ExRx; triceps główny przez analogię do wyprostów leżąc, chest 0,25 — uproszczenie."
+ },
+ {
+  "name": "Triceps Kickback (linki)",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L1-S56",
+   "S6"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Kickback na wyciągu (dolny/środkowy). Brak karty ExRx dla tej wersji — partie jak Triceps Kickback (ExRx „Dumbbell Kickback”: target Triceps Brachii, synergists None; docs/24: triceps / —)."
+ }
+]
