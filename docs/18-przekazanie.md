@@ -169,3 +169,23 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
   - **Workflowy EAS (M4): usunąć `iphone-eas.yml` i `iphone-local.yml`**; instalacja przez `testflight.yml`; sekrety EXPO_TOKEN
     i ASC_API_KEY_P8 kasuje właściciel w ustawieniach repo. Odrzucone: utwardzenie i pozostawienie.
   - E2E d2a1e85 (run 37793333239) dostało maszynę przy 11. próbie (ok. 17:50 UTC) — wynik jako punkt odniesienia; wydanie po naprawach i nowym E2E.
+- 08.10.2026 (ok. 20:20): **zasada właściciela na czas jego nieobecności** — agent decyduje sam: zawsze opcja rekomendowana, z wyjątkiem: gdy
+  opcja nierekomendowana jest ogólnie lepsza, a odradzana była tylko z powodu nakładu pracy — wtedy ta lepsza („nie boimy się ilości pracy,
+  jeżeli niesie to coś dobrego”). Wszystko ma być spójne, intuicyjne i przejść najgorliwszy audyt. Przegląd decyzji z ostatnich 4 godzin
+  pod tym kątem (zmiany względem „rekomendacji hurtem” z docs/25):
+  - **B1:** zmiany pojedynczych dni zapisywane razem z planem i przywracane przy jego ponownej aktywacji (obietnica „wrócisz jednym
+    przyciskiem” prawdziwa); wcześniej: tylko tekst ostrzeżenia.
+  - **B2 → wariant A:** „Nowy plan” jako osobny wpis edytowany przed aktywacją, oryginał zachowuje nazwę, plan bez nazwy z datą; wcześniej: B (minimum).
+  - **A5 → dopasowanie po szablonie:** dzień „zrobiony” tylko, gdy zrobiono zaplanowany trening; inny trening = „Zrobiony inny trening: …”,
+    zaplanowany czeka na przesunięcie; jedna funkcja stanu dnia wszędzie; wcześniej: B (sama nazwa faktycznej sesji).
+  - **A10 (UX-13) → wariant A:** panel dnia z maks. 3 głównymi akcjami + „Więcej opcji” i przewinięcie; wcześniej: B (samo przewinięcie).
+  - **E4 → wariant A:** źródła dla przypisania partii mięśniowych ćwiczeń bazowych (osobne zadanie badawcze); do tego czasu dopisek
+    „uproszczenie” (B) jako stan przejściowy.
+  - **H5 → A+B:** „Zapisz jako szablon” w szczegółach sesji oraz pytanie po treningu z szablonu „Zaktualizować szablon?” tylko na polecenie
+    użytkownika i tylko gdy skład się różni (zgodne z zasadą 03.10: aplikacja nie zmienia szablonów sama).
+  - **J3 / DAT-07 → wariant B:** dzień i tydzień treningu liczone ze strefy czasowej zapisanej przy starcie treningu (podróże); wcześniej: A (tylko opis).
+  - **M1:** nocne porażki zgłaszane automatycznie (zgłoszenie w repozytorium); wcześniej tylko lista gałęzi.
+  - **UX-16 → pełny A**, **LOG-09 → A** (biblioteka przejrzana przez właściciela przed punktami w zamianie).
+  - Bez zmian, bo rekomendacja jest lepsza merytorycznie, a nie tylko tańsza: C1 (A), F3 (B — mniej szumu), LIVE-10 (B), PERF-03 (A —
+    wariant B z treningami jako osobnymi wierszami SQLite groziłby utratą danych przy cofnięciu do starszego buildu z TestFlight), NAT-03 (A).
+  - Nie zmieniam decyzji spoza okna 4 godzin i działań nieodwracalnych: N1 (dane w historii repo) zostaje jak 06.10 (A — bez przepisywania historii).
