@@ -944,5 +944,21 @@
  "Zmiany sięgają dalej niż {n} dni.": "Promjene sežu dalje od {n} dana.",
  "Zastosuj": "Primijeni",
  "Zastosuj: {title}": "Primijeni: {title}",
- "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM). Po zmianach plan wraca do rutyny w ciągu {n} dni.": "Pojednostavljenje: obično dan odmora između treninga s istim glavnim skupinama; dva dana zaredom također su u redu uz isti tjedni broj serija (pregledi, ACSM). Nakon promjena plan se vraća na rutinu unutar {n} dana."
+ "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM). Po zmianach plan wraca do rutyny w ciągu {n} dni.": "Pojednostavljenje: obično dan odmora između treninga s istim glavnim skupinama; dva dana zaredom također su u redu uz isti tjedni broj serija (pregledi, ACSM). Nakon promjena plan se vraća na rutinu unutar {n} dana.",
+ "Co nowego": "Što je novo",
+ "Co nowego — są nowe zmiany": "Što je novo — nove promjene",
+ "W tej wersji": "U ovoj verziji",
+ "Wersja testowa {n} · {date}": "Testna verzija {n} · {date}",
+ "Zamknij": "Zatvori",
+ "Kalendarz zamiast Historii: plan tygodnia, przesuwanie treningów i propozycje zmian z myślą o regeneracji partii.": "Kalendar umjesto Povijesti: tjedni plan, premještanje treninga i prijedlozi promjena uz oporavak mišićnih skupina.",
+ "Na ekranie treningu: dzisiejszy trening z planu i podgląd 7 dni.": "Na zaslonu treninga: današnji trening iz plana i pregled 7 dana.",
+ "Pauza treningu — czas pauzy nie liczy się do czasu trwania.": "Pauza treninga — vrijeme pauze ne ubraja se u trajanje.",
+ "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik 10 serii na partię w tygodniu i oznaczanie tygodnia deload.": "Napredak: sažetak tjedna i mjeseca s mapom mišića, oznaka 10 serija po mišićnoj skupini tjedno i označavanje tjedna rasterećenja.",
+ "Skala wysiłku RPE albo RIR w Ustawieniach.": "Ljestvica napora RPE ili RIR u Postavkama.",
+ "Szablony w folderach i archiwum, „Pomiń dziś” bez zmiany szablonu, usuwanie przesunięciem w lewo.": "Predlošci u mapama i arhivi, „Preskoči danas” bez promjene predloška, brisanje povlačenjem ulijevo.",
+ "Nowy wygląd: kolory i kroje, grafika talerzy na sztandze.": "Novi izgled: boje i fontovi, grafika utega na šipki.",
+ "Karta bieżącej serii w treningu; widok „Lista” jak wcześniej do wyboru w Ustawieniach.": "Kartica trenutne serije tijekom treninga; prikaz „Popis” kao prije, po izboru u Postavkama.",
+ "10 nowych języków: niemiecki, francuski, włoski, niderlandzki, szwedzki, duński, norweski, fiński, turecki i grecki.": "10 novih jezika: njemački, francuski, talijanski, nizozemski, švedski, danski, norveški, finski, turski i grčki.",
+ "Pierwsza wersja testowa: treningi z szablonów, historia, postępy i rekordy, kopia zapasowa w Plikach.": "Prva testna verzija: treninzi iz predložaka, povijest, napredak i rekordi, sigurnosna kopija u Datotekama.",
+ "16 języków; wygląd jasny, ciemny albo jak w telefonie.": "16 jezika; svijetli, tamni izgled ili kao na telefonu."
 }

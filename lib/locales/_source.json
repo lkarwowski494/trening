@@ -180,6 +180,14 @@
   "en": "★ Main place — default for new workouts and for templates without their own place."
  },
  {
+  "pl": "10 nowych języków: niemiecki, francuski, włoski, niderlandzki, szwedzki, duński, norweski, fiński, turecki i grecki.",
+  "en": "10 new languages: German, French, Italian, Dutch, Swedish, Danish, Norwegian, Finnish, Turkish and Greek."
+ },
+ {
+  "pl": "16 języków; wygląd jasny, ciemny albo jak w telefonie.",
+  "en": "16 languages; light, dark or system appearance."
+ },
+ {
   "pl": "Akcesoria",
   "en": "Accessories"
  },
@@ -478,6 +486,14 @@
  {
   "pl": "co najmniej {n}",
   "en": "at least {n}"
+ },
+ {
+  "pl": "Co nowego",
+  "en": "What's new"
+ },
+ {
+  "pl": "Co nowego — są nowe zmiany",
+  "en": "What's new — new changes"
  },
  {
   "pl": "Cofnąć zamianę?",
@@ -1034,12 +1050,20 @@
   "en": "Calendar"
  },
  {
+  "pl": "Kalendarz zamiast Historii: plan tygodnia, przesuwanie treningów i propozycje zmian z myślą o regeneracji partii.",
+  "en": "Calendar instead of History: weekly plan, moving workouts and suggested changes that take muscle-group recovery into account."
+ },
+ {
   "pl": "kamienie atlas",
   "en": "atlas stones"
  },
  {
   "pl": "Kamienie atlas",
   "en": "Atlas stones"
+ },
+ {
+  "pl": "Karta bieżącej serii w treningu; widok „Lista” jak wcześniej do wyboru w Ustawieniach.",
+  "en": "Current set card during a workout; the “List” view as before, selectable in Settings."
  },
  {
   "pl": "kettlebell",
@@ -1546,6 +1570,10 @@
   "en": "Modules"
  },
  {
+  "pl": "Na ekranie treningu: dzisiejszy trening z planu i podgląd 7 dni.",
+  "en": "On the workout screen: today's planned workout and a 7-day preview."
+ },
+ {
   "pl": "Na każdą stronę",
   "en": "Each side"
  },
@@ -1782,6 +1810,10 @@
   "en": "New template"
  },
  {
+  "pl": "Nowy wygląd: kolory i kroje, grafika talerzy na sztandze.",
+  "en": "New look: colours and typefaces, plate graphics on the bar."
+ },
+ {
   "pl": "np. 60",
   "en": "e.g. 60"
  },
@@ -1990,6 +2022,10 @@
   "en": "Pause workout"
  },
  {
+  "pl": "Pauza treningu — czas pauzy nie liczy się do czasu trwania.",
+  "en": "Workout pause — paused time doesn't count towards the duration."
+ },
+ {
   "pl": "Pełna siłownia",
   "en": "Full gym"
  },
@@ -2004,6 +2040,10 @@
  {
   "pl": "per hantel (×2)",
   "en": "per dumbbell (×2)"
+ },
+ {
+  "pl": "Pierwsza wersja testowa: treningi z szablonów, historia, postępy i rekordy, kopia zapasowa w Plikach.",
+  "en": "First test version: workouts from templates, history, progress and records, backup in Files."
  },
  {
   "pl": "Pierwszy raz? Utwórz swój szablon („+ Nowy szablon” niżej) albo zacznij pusty trening. Wpisuj ciężar i powtórzenia, odhaczaj serie ✓ — przerwa odlicza się sama. Na koniec „Zakończ trening i zapisz”.",
@@ -2196,6 +2236,10 @@
  {
   "pl": "Postępy",
   "en": "Progress"
+ },
+ {
+  "pl": "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik 10 serii na partię w tygodniu i oznaczanie tygodnia deload.",
+  "en": "Progress: weekly and monthly summary with a muscle map, a 10-sets-per-muscle-group weekly mark and marking a week as deload."
  },
  {
   "pl": "pośladki",
@@ -2662,6 +2706,10 @@
   "en": "Effort scale"
  },
  {
+  "pl": "Skala wysiłku RPE albo RIR w Ustawieniach.",
+  "en": "Effort scale RPE or RIR in Settings."
+ },
+ {
   "pl": "ski erg",
   "en": "ski erg"
  },
@@ -2824,6 +2872,10 @@
  {
   "pl": "Szablony",
   "en": "Templates"
+ },
+ {
+  "pl": "Szablony w folderach i archiwum, „Pomiń dziś” bez zmiany szablonu, usuwanie przesunięciem w lewo.",
+  "en": "Templates in folders and archive, “Skip today” without changing the template, swipe left to delete."
  },
  {
   "pl": "sztanga",
@@ -3302,6 +3354,10 @@
   "en": "Monday at 7:00"
  },
  {
+  "pl": "W tej wersji",
+  "en": "In this version"
+ },
+ {
   "pl": "W trwającym treningu guma zniknie z nieodhaczonych serii.",
   "en": "In the current workout the band will be removed from sets not yet ticked."
  },
@@ -3320,6 +3376,10 @@
  {
   "pl": "wcześniej zamieniane",
   "en": "swapped before"
+ },
+ {
+  "pl": "Wersja testowa {n} · {date}",
+  "en": "Test build {n} · {date}"
  },
  {
   "pl": "Widok treningu",
@@ -3636,6 +3696,10 @@
  {
   "pl": "Zamień z {day} ({name})",
   "en": "Swap with {day} ({name})"
+ },
+ {
+  "pl": "Zamknij",
+  "en": "Close"
  },
  {
   "pl": "Zapamiętać dla tego ćwiczenia?",

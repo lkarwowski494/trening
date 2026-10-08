@@ -944,5 +944,21 @@
  "Zmiany sięgają dalej niż {n} dni.": "Промене сежу даље од {n} дана.",
  "Zastosuj": "Примени",
  "Zastosuj: {title}": "Примени: {title}",
- "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM). Po zmianach plan wraca do rutyny w ciągu {n} dni.": "Поједностављење: обично дан одмора између тренинга са истим главним групама; два дана заредом су у реду уз исти недељни број серија (прегледи, ACSM). После промена план се враћа на рутину у року од {n} дана."
+ "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM). Po zmianach plan wraca do rutyny w ciągu {n} dni.": "Поједностављење: обично дан одмора између тренинга са истим главним групама; два дана заредом су у реду уз исти недељни број серија (прегледи, ACSM). После промена план се враћа на рутину у року од {n} дана.",
+ "Co nowego": "Шта је ново",
+ "Co nowego — są nowe zmiany": "Шта је ново — нове измене",
+ "W tej wersji": "У овој верзији",
+ "Wersja testowa {n} · {date}": "Тест верзија {n} · {date}",
+ "Zamknij": "Затвори",
+ "Kalendarz zamiast Historii: plan tygodnia, przesuwanie treningów i propozycje zmian z myślą o regeneracji partii.": "Календар уместо Историје: недељни план, померање тренинга и предлози измена уз опоравак мишићних група.",
+ "Na ekranie treningu: dzisiejszy trening z planu i podgląd 7 dni.": "На екрану тренинга: данашњи тренинг из плана и преглед 7 дана.",
+ "Pauza treningu — czas pauzy nie liczy się do czasu trwania.": "Пауза тренинга — време паузе се не рачуна у трајање.",
+ "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik 10 serii na partię w tygodniu i oznaczanie tygodnia deload.": "Напредак: преглед недеље и месеца са мапом мишића, ознака 10 серија по мишићној групи недељно и означавање недеље растерећења.",
+ "Skala wysiłku RPE albo RIR w Ustawieniach.": "Скала напора RPE или RIR у Подешавањима.",
+ "Szablony w folderach i archiwum, „Pomiń dziś” bez zmiany szablonu, usuwanie przesunięciem w lewo.": "Шаблони у фасциклама и архиви, „Прескочи данас” без промене шаблона, брисање превлачењем улево.",
+ "Nowy wygląd: kolory i kroje, grafika talerzy na sztandze.": "Нови изглед: боје и фонтови, графика тегова на шипки.",
+ "Karta bieżącej serii w treningu; widok „Lista” jak wcześniej do wyboru w Ustawieniach.": "Картица тренутне серије током тренинга; приказ „Листа” као раније, по избору у Подешавањима.",
+ "10 nowych języków: niemiecki, francuski, włoski, niderlandzki, szwedzki, duński, norweski, fiński, turecki i grecki.": "10 нових језика: немачки, француски, италијански, холандски, шведски, дански, норвешки, фински, турски и грчки.",
+ "Pierwsza wersja testowa: treningi z szablonów, historia, postępy i rekordy, kopia zapasowa w Plikach.": "Прва тест верзија: тренинзи из шаблона, историја, напредак и рекорди, резервна копија у Датотекама.",
+ "16 języków; wygląd jasny, ciemny albo jak w telefonie.": "16 језика; светли, тамни изглед или као на телефону."
 }

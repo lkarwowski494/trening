@@ -11,6 +11,8 @@
 #   "Restore from plan" / "Planned: Upper A" ← 'Przywróć z planu' / 'Zaplanowany: {name}'
 #   "Move only this workout", ".*, taken: Upper A", "This day is taken", "Cancel" ← 'Przesuń tylko ten trening', '{day}, zajęty: {name}', 'Ten dzień jest zajęty', 'Anuluj'
 #   "Today: Upper A", "Start planned workout: Upper A" ← components/TodayPlan.tsx
+#   "Suggestions", "Days changed: .*", "Apply: .*" ← components/DayPanel.tsx: 'Propozycje', 'Zmienione dni: {n}', 'Zastosuj: {title}' (08.10.2026)
+#   "What's new", "In this version", "Close"   ← components/WhatsNew.tsx: 'Co nowego' (etykieta „i”), 'W tej wersji', 'Zamknij' (08.10.2026)
 appId: pl.lukasz.trening
 name: Kalendarz z planem tygodnia
 ---
@@ -53,9 +55,21 @@ name: Kalendarz z planem tygodnia
 - takeScreenshot: 62-dzien-zajety
 - tapOn: "Cancel"
 - assertVisible: "Planned: Upper A"
+# --- Propozycje (regeneracja partii): lista z opisem zmian; bez stosowania ---
+- scrollUntilVisible: { element: "Suggestions", direction: DOWN, timeout: 30000, centerElement: true }
+- tapOn: "Suggestions"
+- extendedWaitUntil: { visible: "Days changed: .*", timeout: 15000 }
+- assertVisible: "Apply: .*"
+- takeScreenshot: 64-propozycje
 # --- Ekran treningu: „Today: Upper A” i start ---
 - tapOn: "Workout, tab.*"
 - extendedWaitUntil: { visible: "Today: Upper A", timeout: 30000 }
 - takeScreenshot: 63-dzis
+# --- „i” — Co nowego (nowa instalacja: bez kropki) ---
+- tapOn: "What's new"
+- extendedWaitUntil: { visible: "In this version", timeout: 15000 }
+- takeScreenshot: 65-co-nowego
+- tapOn: "Close"
+- assertNotVisible: "In this version"
 - tapOn: "Start planned workout: Upper A"
 - extendedWaitUntil: { visible: "Set 1 done.*", timeout: 30000 }

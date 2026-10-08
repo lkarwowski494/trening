@@ -944,5 +944,21 @@
  "Zmiany sięgają dalej niż {n} dni.": "Les changements dépassent {n} jours.",
  "Zastosuj": "Appliquer",
  "Zastosuj: {title}": "Appliquer : {title}",
- "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM). Po zmianach plan wraca do rutyny w ciągu {n} dni.": "Simplification : en général un jour de repos entre les séances avec les mêmes groupes principaux ; deux jours d’affilée conviennent aussi à volume hebdomadaire égal (revues, ACSM). Après les changements, le plan revient à la routine en {n} jours."
+ "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM). Po zmianach plan wraca do rutyny w ciągu {n} dni.": "Simplification : en général un jour de repos entre les séances avec les mêmes groupes principaux ; deux jours d’affilée conviennent aussi à volume hebdomadaire égal (revues, ACSM). Après les changements, le plan revient à la routine en {n} jours.",
+ "Co nowego": "Nouveautés",
+ "Co nowego — są nowe zmiany": "Nouveautés — nouvelles modifications",
+ "W tej wersji": "Dans cette version",
+ "Wersja testowa {n} · {date}": "Version de test {n} · {date}",
+ "Zamknij": "Fermer",
+ "Kalendarz zamiast Historii: plan tygodnia, przesuwanie treningów i propozycje zmian z myślą o regeneracji partii.": "Calendrier à la place de l’Historique : programme de la semaine, déplacement des séances et suggestions tenant compte de la récupération musculaire.",
+ "Na ekranie treningu: dzisiejszy trening z planu i podgląd 7 dni.": "Sur l’écran d’entraînement : la séance prévue aujourd’hui et un aperçu de 7 jours.",
+ "Pauza treningu — czas pauzy nie liczy się do czasu trwania.": "Pause de séance — le temps de pause ne compte pas dans la durée.",
+ "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik 10 serii na partię w tygodniu i oznaczanie tygodnia deload.": "Progrès : bilan de la semaine et du mois avec carte musculaire, repère de 10 séries par groupe musculaire et par semaine, et marquage d’une semaine de décharge.",
+ "Skala wysiłku RPE albo RIR w Ustawieniach.": "Échelle d’effort RPE ou RIR dans les Réglages.",
+ "Szablony w folderach i archiwum, „Pomiń dziś” bez zmiany szablonu, usuwanie przesunięciem w lewo.": "Modèles dans des dossiers et archives, « Passer aujourd’hui » sans modifier le modèle, suppression par balayage vers la gauche.",
+ "Nowy wygląd: kolory i kroje, grafika talerzy na sztandze.": "Nouvel aspect : couleurs et polices, illustration des disques sur la barre.",
+ "Karta bieżącej serii w treningu; widok „Lista” jak wcześniej do wyboru w Ustawieniach.": "Carte de la série en cours pendant la séance ; la vue « Liste » comme avant, au choix dans les Réglages.",
+ "10 nowych języków: niemiecki, francuski, włoski, niderlandzki, szwedzki, duński, norweski, fiński, turecki i grecki.": "10 nouvelles langues : allemand, français, italien, néerlandais, suédois, danois, norvégien, finnois, turc et grec.",
+ "Pierwsza wersja testowa: treningi z szablonów, historia, postępy i rekordy, kopia zapasowa w Plikach.": "Première version de test : séances à partir de modèles, historique, progrès et records, sauvegarde dans Fichiers.",
+ "16 języków; wygląd jasny, ciemny albo jak w telefonie.": "16 langues ; apparence claire, sombre ou comme le téléphone."
 }

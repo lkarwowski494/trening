@@ -944,5 +944,21 @@
  "Zmiany sięgają dalej niż {n} dni.": "Değişiklikler {n} günden ileriye uzanıyor.",
  "Zastosuj": "Uygula",
  "Zastosuj: {title}": "Uygula: {title}",
- "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM). Po zmianach plan wraca do rutyny w ciągu {n} dni.": "Basitleştirme: aynı ana kas gruplarını çalıştıran seanslar arasında genellikle bir dinlenme günü; haftalık set sayısı aynıysa art arda iki gün de uygundur (derlemeler, ACSM). Değişikliklerden sonra plan {n} gün içinde rutine döner."
+ "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM). Po zmianach plan wraca do rutyny w ciągu {n} dni.": "Basitleştirme: aynı ana kas gruplarını çalıştıran seanslar arasında genellikle bir dinlenme günü; haftalık set sayısı aynıysa art arda iki gün de uygundur (derlemeler, ACSM). Değişikliklerden sonra plan {n} gün içinde rutine döner.",
+ "Co nowego": "Yenilikler",
+ "Co nowego — są nowe zmiany": "Yenilikler — yeni değişiklikler",
+ "W tej wersji": "Bu sürümde",
+ "Wersja testowa {n} · {date}": "Test sürümü {n} · {date}",
+ "Zamknij": "Kapat",
+ "Kalendarz zamiast Historii: plan tygodnia, przesuwanie treningów i propozycje zmian z myślą o regeneracji partii.": "Geçmiş yerine Takvim: haftalık plan, antrenmanları taşıma ve kas grubu toparlanmasını dikkate alan değişiklik önerileri.",
+ "Na ekranie treningu: dzisiejszy trening z planu i podgląd 7 dni.": "Antrenman ekranında: bugünün planlı antrenmanı ve 7 günlük önizleme.",
+ "Pauza treningu — czas pauzy nie liczy się do czasu trwania.": "Antrenman molası — mola süresi toplam süreye sayılmaz.",
+ "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik 10 serii na partię w tygodniu i oznaczanie tygodnia deload.": "İlerleme: kas haritalı haftalık ve aylık özet, kas grubu başına haftada 10 set işareti ve bir haftayı deload olarak işaretleme.",
+ "Skala wysiłku RPE albo RIR w Ustawieniach.": "Ayarlar’da RPE veya RIR efor ölçeği.",
+ "Szablony w folderach i archiwum, „Pomiń dziś” bez zmiany szablonu, usuwanie przesunięciem w lewo.": "Klasörlerde ve arşivde şablonlar, şablonu değiştirmeden “Bugün atla”, sola kaydırarak silme.",
+ "Nowy wygląd: kolory i kroje, grafika talerzy na sztandze.": "Yeni görünüm: renkler ve yazı tipleri, bar üzerindeki plaka görseli.",
+ "Karta bieżącej serii w treningu; widok „Lista” jak wcześniej do wyboru w Ustawieniach.": "Antrenmanda geçerli set kartı; “Liste” görünümü eskisi gibi, Ayarlar’dan seçilebilir.",
+ "10 nowych języków: niemiecki, francuski, włoski, niderlandzki, szwedzki, duński, norweski, fiński, turecki i grecki.": "10 yeni dil: Almanca, Fransızca, İtalyanca, Felemenkçe, İsveççe, Danca, Norveççe, Fince, Türkçe ve Yunanca.",
+ "Pierwsza wersja testowa: treningi z szablonów, historia, postępy i rekordy, kopia zapasowa w Plikach.": "İlk test sürümü: şablonlardan antrenmanlar, geçmiş, ilerleme ve rekorlar, Dosyalar’da yedekleme.",
+ "16 języków; wygląd jasny, ciemny albo jak w telefonie.": "16 dil; açık, koyu veya telefondaki gibi görünüm."
 }

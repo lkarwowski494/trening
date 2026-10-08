@@ -944,5 +944,21 @@
  "Zmiany sięgają dalej niż {n} dni.": "Pakeitimai siekia toliau nei {n} d.",
  "Zastosuj": "Taikyti",
  "Zastosuj: {title}": "Taikyti: {title}",
- "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM). Po zmianach plan wraca do rutyny w ciągu {n} dni.": "Supaprastinimas: paprastai poilsio diena tarp treniruočių su tomis pačiomis pagrindinėmis grupėmis; dvi dienos iš eilės irgi tinka esant tam pačiam savaitiniam priėjimų skaičiui (apžvalgos, ACSM). Po pakeitimų planas grįžta į įprastą per {n} d."
+ "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM). Po zmianach plan wraca do rutyny w ciągu {n} dni.": "Supaprastinimas: paprastai poilsio diena tarp treniruočių su tomis pačiomis pagrindinėmis grupėmis; dvi dienos iš eilės irgi tinka esant tam pačiam savaitiniam priėjimų skaičiui (apžvalgos, ACSM). Po pakeitimų planas grįžta į įprastą per {n} d.",
+ "Co nowego": "Kas naujo",
+ "Co nowego — są nowe zmiany": "Kas naujo — nauji pakeitimai",
+ "W tej wersji": "Šioje versijoje",
+ "Wersja testowa {n} · {date}": "Bandomoji versija {n} · {date}",
+ "Zamknij": "Uždaryti",
+ "Kalendarz zamiast Historii: plan tygodnia, przesuwanie treningów i propozycje zmian z myślą o regeneracji partii.": "Kalendorius vietoj Istorijos: savaitės planas, treniruočių perkėlimas ir pakeitimų pasiūlymai atsižvelgiant į raumenų grupių atsigavimą.",
+ "Na ekranie treningu: dzisiejszy trening z planu i podgląd 7 dni.": "Treniruotės ekrane: šiandienos suplanuota treniruotė ir 7 dienų peržiūra.",
+ "Pauza treningu — czas pauzy nie liczy się do czasu trwania.": "Treniruotės pauzė — pauzės laikas neįskaičiuojamas į trukmę.",
+ "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik 10 serii na partię w tygodniu i oznaczanie tygodnia deload.": "Progresas: savaitės ir mėnesio suvestinė su raumenų žemėlapiu, 10 serijų raumenų grupei per savaitę žyma ir savaitės pažymėjimas kaip deload.",
+ "Skala wysiłku RPE albo RIR w Ustawieniach.": "Pastangų skalė RPE arba RIR Nustatymuose.",
+ "Szablony w folderach i archiwum, „Pomiń dziś” bez zmiany szablonu, usuwanie przesunięciem w lewo.": "Šablonai aplankuose ir archyve, „Šiandien praleisti“ nekeičiant šablono, ištrynimas braukiant į kairę.",
+ "Nowy wygląd: kolory i kroje, grafika talerzy na sztandze.": "Nauja išvaizda: spalvos ir šriftai, svorių diskų grafika ant grifo.",
+ "Karta bieżącej serii w treningu; widok „Lista” jak wcześniej do wyboru w Ustawieniach.": "Dabartinės serijos kortelė treniruotėje; rodinys „Sąrašas“ kaip anksčiau, pasirenkamas Nustatymuose.",
+ "10 nowych języków: niemiecki, francuski, włoski, niderlandzki, szwedzki, duński, norweski, fiński, turecki i grecki.": "10 naujų kalbų: vokiečių, prancūzų, italų, nyderlandų, švedų, danų, norvegų, suomių, turkų ir graikų.",
+ "Pierwsza wersja testowa: treningi z szablonów, historia, postępy i rekordy, kopia zapasowa w Plikach.": "Pirmoji bandomoji versija: treniruotės iš šablonų, istorija, progresas ir rekordai, atsarginė kopija Failuose.",
+ "16 języków; wygląd jasny, ciemny albo jak w telefonie.": "16 kalbų; šviesi, tamsi išvaizda arba kaip telefone."
 }

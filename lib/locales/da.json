@@ -944,5 +944,21 @@
  "Zmiany sięgają dalej niż {n} dni.": "Ændringerne rækker længere end {n} dage.",
  "Zastosuj": "Anvend",
  "Zastosuj: {title}": "Anvend: {title}",
- "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM). Po zmianach plan wraca do rutyny w ciągu {n} dni.": "Forenkling: som regel en hviledag mellem træninger med de samme hovedmuskelgrupper; to dage i træk er også fint med samme antal sæt om ugen (oversigtsstudier, ACSM). Efter ændringer vender planen tilbage til rutinen inden for {n} dage."
+ "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM). Po zmianach plan wraca do rutyny w ciągu {n} dni.": "Forenkling: som regel en hviledag mellem træninger med de samme hovedmuskelgrupper; to dage i træk er også fint med samme antal sæt om ugen (oversigtsstudier, ACSM). Efter ændringer vender planen tilbage til rutinen inden for {n} dage.",
+ "Co nowego": "Nyheder",
+ "Co nowego — są nowe zmiany": "Nyheder — nye ændringer",
+ "W tej wersji": "I denne version",
+ "Wersja testowa {n} · {date}": "Testversion {n} · {date}",
+ "Zamknij": "Luk",
+ "Kalendarz zamiast Historii: plan tygodnia, przesuwanie treningów i propozycje zmian z myślą o regeneracji partii.": "Kalender i stedet for Historik: ugeplan, flytning af træninger og forslag, der tager hensyn til musklernes restitution.",
+ "Na ekranie treningu: dzisiejszy trening z planu i podgląd 7 dni.": "På træningsskærmen: dagens planlagte træning og en forhåndsvisning af 7 dage.",
+ "Pauza treningu — czas pauzy nie liczy się do czasu trwania.": "Pause i træningen — pausetiden tælles ikke med i varigheden.",
+ "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik 10 serii na partię w tygodniu i oznaczanie tygodnia deload.": "Fremgang: uge- og månedsoversigt med muskelkort, markering for 10 sæt pr. muskelgruppe pr. uge og markering af en deload-uge.",
+ "Skala wysiłku RPE albo RIR w Ustawieniach.": "Anstrengelsesskala RPE eller RIR i Indstillinger.",
+ "Szablony w folderach i archiwum, „Pomiń dziś” bez zmiany szablonu, usuwanie przesunięciem w lewo.": "Skabeloner i mapper og arkiv, “Spring over i dag” uden at ændre skabelonen, slet ved at stryge til venstre.",
+ "Nowy wygląd: kolory i kroje, grafika talerzy na sztandze.": "Nyt udseende: farver og skrifttyper, grafik af vægtskiver på stangen.",
+ "Karta bieżącej serii w treningu; widok „Lista” jak wcześniej do wyboru w Ustawieniach.": "Kort for det aktuelle sæt under træningen; visningen “Liste” som før, kan vælges i Indstillinger.",
+ "10 nowych języków: niemiecki, francuski, włoski, niderlandzki, szwedzki, duński, norweski, fiński, turecki i grecki.": "10 nye sprog: tysk, fransk, italiensk, hollandsk, svensk, dansk, norsk, finsk, tyrkisk og græsk.",
+ "Pierwsza wersja testowa: treningi z szablonów, historia, postępy i rekordy, kopia zapasowa w Plikach.": "Første testversion: træninger fra skabeloner, historik, fremgang og rekorder, sikkerhedskopi i Arkiver.",
+ "16 języków; wygląd jasny, ciemny albo jak w telefonie.": "16 sprog; lyst, mørkt eller som telefonen."
 }

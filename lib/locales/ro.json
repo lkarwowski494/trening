@@ -944,5 +944,21 @@
  "Zmiany sięgają dalej niż {n} dni.": "Schimbările depășesc {n} zile.",
  "Zastosuj": "Aplică",
  "Zastosuj: {title}": "Aplică: {title}",
- "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM). Po zmianach plan wraca do rutyny w ciągu {n} dni.": "Simplificare: de obicei o zi de pauză între sesiunile cu aceleași grupe principale; două zile la rând sunt în regulă la același număr săptămânal de serii (sinteze, ACSM). După schimbări, planul revine la rutină în {n} zile."
+ "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM). Po zmianach plan wraca do rutyny w ciągu {n} dni.": "Simplificare: de obicei o zi de pauză între sesiunile cu aceleași grupe principale; două zile la rând sunt în regulă la același număr săptămânal de serii (sinteze, ACSM). După schimbări, planul revine la rutină în {n} zile.",
+ "Co nowego": "Ce este nou",
+ "Co nowego — są nowe zmiany": "Ce este nou — modificări noi",
+ "W tej wersji": "În această versiune",
+ "Wersja testowa {n} · {date}": "Versiune de test {n} · {date}",
+ "Zamknij": "Închide",
+ "Kalendarz zamiast Historii: plan tygodnia, przesuwanie treningów i propozycje zmian z myślą o regeneracji partii.": "Calendar în loc de Istoric: plan săptămânal, mutarea antrenamentelor și propuneri care țin cont de refacerea grupelor musculare.",
+ "Na ekranie treningu: dzisiejszy trening z planu i podgląd 7 dni.": "Pe ecranul de antrenament: antrenamentul planificat azi și o previzualizare pe 7 zile.",
+ "Pauza treningu — czas pauzy nie liczy się do czasu trwania.": "Pauză de antrenament — timpul de pauză nu se adaugă la durată.",
+ "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik 10 serii na partię w tygodniu i oznaczanie tygodnia deload.": "Progres: rezumatul săptămânii și al lunii cu harta mușchilor, marcaj de 10 serii pe grupă musculară pe săptămână și marcarea unei săptămâni de deload.",
+ "Skala wysiłku RPE albo RIR w Ustawieniach.": "Scala efortului RPE sau RIR în Configurări.",
+ "Szablony w folderach i archiwum, „Pomiń dziś” bez zmiany szablonu, usuwanie przesunięciem w lewo.": "Șabloane în dosare și arhivă, „Sari peste azi” fără a modifica șablonul, ștergere prin glisare spre stânga.",
+ "Nowy wygląd: kolory i kroje, grafika talerzy na sztandze.": "Aspect nou: culori și fonturi, grafica discurilor pe bară.",
+ "Karta bieżącej serii w treningu; widok „Lista” jak wcześniej do wyboru w Ustawieniach.": "Cardul seriei curente în antrenament; vizualizarea „Listă” ca înainte, la alegere în Configurări.",
+ "10 nowych języków: niemiecki, francuski, włoski, niderlandzki, szwedzki, duński, norweski, fiński, turecki i grecki.": "10 limbi noi: germană, franceză, italiană, neerlandeză, suedeză, daneză, norvegiană, finlandeză, turcă și greacă.",
+ "Pierwsza wersja testowa: treningi z szablonów, historia, postępy i rekordy, kopia zapasowa w Plikach.": "Prima versiune de test: antrenamente din șabloane, istoric, progres și recorduri, copie de rezervă în Fișiere.",
+ "16 języków; wygląd jasny, ciemny albo jak w telefonie.": "16 limbi; aspect luminos, întunecat sau ca telefonul."
 }

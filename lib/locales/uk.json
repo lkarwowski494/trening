@@ -944,5 +944,21 @@
  "Zmiany sięgają dalej niż {n} dni.": "Зміни сягають далі ніж {n} днів.",
  "Zastosuj": "Застосувати",
  "Zastosuj: {title}": "Застосувати: {title}",
- "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM). Po zmianach plan wraca do rutyny w ciągu {n} dni.": "Спрощення: зазвичай день відпочинку між сесіями з тими самими основними групами; два дні поспіль теж нормально за тієї самої кількості підходів на тиждень (огляди, ACSM). Після змін план повертається до рутини протягом {n} днів."
+ "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM). Po zmianach plan wraca do rutyny w ciągu {n} dni.": "Спрощення: зазвичай день відпочинку між сесіями з тими самими основними групами; два дні поспіль теж нормально за тієї самої кількості підходів на тиждень (огляди, ACSM). Після змін план повертається до рутини протягом {n} днів.",
+ "Co nowego": "Що нового",
+ "Co nowego — są nowe zmiany": "Що нового — нові зміни",
+ "W tej wersji": "У цій версії",
+ "Wersja testowa {n} · {date}": "Тестова версія {n} · {date}",
+ "Zamknij": "Закрити",
+ "Kalendarz zamiast Historii: plan tygodnia, przesuwanie treningów i propozycje zmian z myślą o regeneracji partii.": "Календар замість Історії: тижневий план, перенесення тренувань і пропозиції змін з урахуванням відновлення м’язових груп.",
+ "Na ekranie treningu: dzisiejszy trening z planu i podgląd 7 dni.": "На екрані тренування: сьогоднішнє заплановане тренування і перегляд на 7 днів.",
+ "Pauza treningu — czas pauzy nie liczy się do czasu trwania.": "Пауза тренування — час паузи не зараховується до тривалості.",
+ "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik 10 serii na partię w tygodniu i oznaczanie tygodnia deload.": "Прогрес: підсумок тижня і місяця з картою м’язів, позначка 10 підходів на м’язову групу за тиждень і позначення тижня розвантаження.",
+ "Skala wysiłku RPE albo RIR w Ustawieniach.": "Шкала зусилля RPE або RIR у Параметрах.",
+ "Szablony w folderach i archiwum, „Pomiń dziś” bez zmiany szablonu, usuwanie przesunięciem w lewo.": "Шаблони в папках і архіві, «Пропустити сьогодні» без зміни шаблону, видалення свайпом ліворуч.",
+ "Nowy wygląd: kolory i kroje, grafika talerzy na sztandze.": "Новий вигляд: кольори та шрифти, зображення дисків на грифі.",
+ "Karta bieżącej serii w treningu; widok „Lista” jak wcześniej do wyboru w Ustawieniach.": "Картка поточного підходу під час тренування; вигляд «Список» як раніше, на вибір у Параметрах.",
+ "10 nowych języków: niemiecki, francuski, włoski, niderlandzki, szwedzki, duński, norweski, fiński, turecki i grecki.": "10 нових мов: німецька, французька, італійська, нідерландська, шведська, данська, норвезька, фінська, турецька та грецька.",
+ "Pierwsza wersja testowa: treningi z szablonów, historia, postępy i rekordy, kopia zapasowa w Plikach.": "Перша тестова версія: тренування з шаблонів, історія, прогрес і рекорди, резервна копія у Файлах.",
+ "16 języków; wygląd jasny, ciemny albo jak w telefonie.": "16 мов; світлий, темний вигляд або як у телефоні."
 }

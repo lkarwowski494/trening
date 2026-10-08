@@ -944,5 +944,21 @@
  "Zmiany sięgają dalej niż {n} dni.": "Ändringarna sträcker sig längre än {n} dagar.",
  "Zastosuj": "Använd",
  "Zastosuj: {title}": "Använd: {title}",
- "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM). Po zmianach plan wraca do rutyny w ciągu {n} dni.": "Förenkling: oftast en vilodag mellan pass med samma huvudmuskelgrupper; två dagar i rad går också bra med samma antal set per vecka (översikter, ACSM). Efter ändringar återgår planen till rutinen inom {n} dagar."
+ "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM). Po zmianach plan wraca do rutyny w ciągu {n} dni.": "Förenkling: oftast en vilodag mellan pass med samma huvudmuskelgrupper; två dagar i rad går också bra med samma antal set per vecka (översikter, ACSM). Efter ändringar återgår planen till rutinen inom {n} dagar.",
+ "Co nowego": "Nyheter",
+ "Co nowego — są nowe zmiany": "Nyheter — nya ändringar",
+ "W tej wersji": "I den här versionen",
+ "Wersja testowa {n} · {date}": "Testversion {n} · {date}",
+ "Zamknij": "Stäng",
+ "Kalendarz zamiast Historii: plan tygodnia, przesuwanie treningów i propozycje zmian z myślą o regeneracji partii.": "Kalender i stället för Historik: veckoplan, flytta pass och förslag som tar hänsyn till musklernas återhämtning.",
+ "Na ekranie treningu: dzisiejszy trening z planu i podgląd 7 dni.": "På träningsskärmen: dagens planerade pass och en förhandsvisning av 7 dagar.",
+ "Pauza treningu — czas pauzy nie liczy się do czasu trwania.": "Paus i passet — paustiden räknas inte in i längden.",
+ "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik 10 serii na partię w tygodniu i oznaczanie tygodnia deload.": "Framsteg: vecko- och månadssammanfattning med muskelkarta, markering för 10 set per muskelgrupp och vecka samt markering av deloadvecka.",
+ "Skala wysiłku RPE albo RIR w Ustawieniach.": "Ansträngningsskala RPE eller RIR i Inställningar.",
+ "Szablony w folderach i archiwum, „Pomiń dziś” bez zmiany szablonu, usuwanie przesunięciem w lewo.": "Mallar i mappar och arkiv, ”Hoppa över i dag” utan att ändra mallen, radera genom att svepa åt vänster.",
+ "Nowy wygląd: kolory i kroje, grafika talerzy na sztandze.": "Nytt utseende: färger och typsnitt, grafik av viktskivor på stången.",
+ "Karta bieżącej serii w treningu; widok „Lista” jak wcześniej do wyboru w Ustawieniach.": "Kort för aktuellt set under passet; vyn ”Lista” som tidigare, valbar i Inställningar.",
+ "10 nowych języków: niemiecki, francuski, włoski, niderlandzki, szwedzki, duński, norweski, fiński, turecki i grecki.": "10 nya språk: tyska, franska, italienska, nederländska, svenska, danska, norska, finska, turkiska och grekiska.",
+ "Pierwsza wersja testowa: treningi z szablonów, historia, postępy i rekordy, kopia zapasowa w Plikach.": "Första testversionen: pass från mallar, historik, framsteg och rekord, säkerhetskopia i Filer.",
+ "16 języków; wygląd jasny, ciemny albo jak w telefonie.": "16 språk; ljust, mörkt eller som telefonen."
 }

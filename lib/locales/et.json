@@ -944,5 +944,21 @@
  "Zmiany sięgają dalej niż {n} dni.": "Muudatused ulatuvad kaugemale kui {n} päeva.",
  "Zastosuj": "Rakenda",
  "Zastosuj: {title}": "Rakenda: {title}",
- "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM). Po zmianach plan wraca do rutyny w ciągu {n} dni.": "Lihtsustus: tavaliselt puhkepäev samade peamiste lihasrühmadega treeningute vahel; kaks päeva järjest sobib ka sama nädalase sarjade arvu korral (ülevaated, ACSM). Pärast muudatusi naaseb plaan rutiini {n} päeva jooksul."
+ "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM). Po zmianach plan wraca do rutyny w ciągu {n} dni.": "Lihtsustus: tavaliselt puhkepäev samade peamiste lihasrühmadega treeningute vahel; kaks päeva järjest sobib ka sama nädalase sarjade arvu korral (ülevaated, ACSM). Pärast muudatusi naaseb plaan rutiini {n} päeva jooksul.",
+ "Co nowego": "Mis on uut",
+ "Co nowego — są nowe zmiany": "Mis on uut — uued muudatused",
+ "W tej wersji": "Selles versioonis",
+ "Wersja testowa {n} · {date}": "Testversioon {n} · {date}",
+ "Zamknij": "Sulge",
+ "Kalendarz zamiast Historii: plan tygodnia, przesuwanie treningów i propozycje zmian z myślą o regeneracji partii.": "Ajaloo asemel kalender: nädalaplaan, trennide liigutamine ja muudatusettepanekud lihasrühmade taastumist arvestades.",
+ "Na ekranie treningu: dzisiejszy trening z planu i podgląd 7 dni.": "Treeningu ekraanil: tänane plaanitud trenn ja 7 päeva eelvaade.",
+ "Pauza treningu — czas pauzy nie liczy się do czasu trwania.": "Treeningu paus — pausi aeg kestusesse ei lähe.",
+ "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik 10 serii na partię w tygodniu i oznaczanie tygodnia deload.": "Edenemine: nädala ja kuu kokkuvõte lihaskaardiga, 10 seeria märk lihasrühma kohta nädalas ja nädala märkimine kergendusnädalaks.",
+ "Skala wysiłku RPE albo RIR w Ustawieniach.": "Pingutuse skaala RPE või RIR seadetes.",
+ "Szablony w folderach i archiwum, „Pomiń dziś” bez zmiany szablonu, usuwanie przesunięciem w lewo.": "Mallid kaustades ja arhiivis, „Jäta täna vahele“ malli muutmata, kustutamine vasakule libistades.",
+ "Nowy wygląd: kolory i kroje, grafika talerzy na sztandze.": "Uus välimus: värvid ja kirjatüübid, raskusketaste pilt kangil.",
+ "Karta bieżącej serii w treningu; widok „Lista” jak wcześniej do wyboru w Ustawieniach.": "Käimasoleva seeria kaart treeningu ajal; vaade „Loend“ nagu varem, valitav seadetes.",
+ "10 nowych języków: niemiecki, francuski, włoski, niderlandzki, szwedzki, duński, norweski, fiński, turecki i grecki.": "10 uut keelt: saksa, prantsuse, itaalia, hollandi, rootsi, taani, norra, soome, türgi ja kreeka.",
+ "Pierwsza wersja testowa: treningi z szablonów, historia, postępy i rekordy, kopia zapasowa w Plikach.": "Esimene testversioon: trennid mallidest, ajalugu, edenemine ja rekordid, varukoopia rakendusse Failid.",
+ "16 języków; wygląd jasny, ciemny albo jak w telefonie.": "16 keelt; hele, tume või telefoni järgi välimus."
 }

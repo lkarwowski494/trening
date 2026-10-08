@@ -944,5 +944,21 @@
  "Zmiany sięgają dalej niż {n} dni.": "Muutokset ulottuvat yli {n} päivän.",
  "Zastosuj": "Käytä",
  "Zastosuj: {title}": "Käytä: {title}",
- "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM). Po zmianach plan wraca do rutyny w ciągu {n} dni.": "Yksinkertaistus: yleensä lepopäivä samojen päälihasryhmien treenien välissä; kaksi päivää peräkkäin sopii myös samalla viikoittaisella sarjamäärällä (katsaukset, ACSM). Muutosten jälkeen suunnitelma palaa rutiiniin {n} päivässä."
+ "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM). Po zmianach plan wraca do rutyny w ciągu {n} dni.": "Yksinkertaistus: yleensä lepopäivä samojen päälihasryhmien treenien välissä; kaksi päivää peräkkäin sopii myös samalla viikoittaisella sarjamäärällä (katsaukset, ACSM). Muutosten jälkeen suunnitelma palaa rutiiniin {n} päivässä.",
+ "Co nowego": "Uutta",
+ "Co nowego — są nowe zmiany": "Uutta — uusia muutoksia",
+ "W tej wersji": "Tässä versiossa",
+ "Wersja testowa {n} · {date}": "Testiversio {n} · {date}",
+ "Zamknij": "Sulje",
+ "Kalendarz zamiast Historii: plan tygodnia, przesuwanie treningów i propozycje zmian z myślą o regeneracji partii.": "Kalenteri Historian tilalla: viikkosuunnitelma, treenien siirtäminen ja muutosehdotukset lihasryhmien palautuminen huomioiden.",
+ "Na ekranie treningu: dzisiejszy trening z planu i podgląd 7 dni.": "Treeninäkymässä: tämän päivän suunniteltu treeni ja 7 päivän esikatselu.",
+ "Pauza treningu — czas pauzy nie liczy się do czasu trwania.": "Treenin tauko — taukoaika ei lasketa kestoon.",
+ "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik 10 serii na partię w tygodniu i oznaczanie tygodnia deload.": "Kehitys: viikon ja kuukauden yhteenveto lihaskartalla, 10 sarjan merkintä lihasryhmää kohden viikossa ja viikon merkitseminen kevennysviikoksi.",
+ "Skala wysiłku RPE albo RIR w Ustawieniach.": "Kuormitusasteikko RPE tai RIR asetuksissa.",
+ "Szablony w folderach i archiwum, „Pomiń dziś” bez zmiany szablonu, usuwanie przesunięciem w lewo.": "Pohjat kansioissa ja arkistossa, ”Ohita tänään” muuttamatta pohjaa, poisto pyyhkäisemällä vasemmalle.",
+ "Nowy wygląd: kolory i kroje, grafika talerzy na sztandze.": "Uusi ulkoasu: värit ja kirjasimet, levypainojen kuva tangossa.",
+ "Karta bieżącej serii w treningu; widok „Lista” jak wcześniej do wyboru w Ustawieniach.": "Nykyisen sarjan kortti treenin aikana; näkymä ”Lista” kuten ennen, valittavissa asetuksissa.",
+ "10 nowych języków: niemiecki, francuski, włoski, niderlandzki, szwedzki, duński, norweski, fiński, turecki i grecki.": "10 uutta kieltä: saksa, ranska, italia, hollanti, ruotsi, tanska, norja, suomi, turkki ja kreikka.",
+ "Pierwsza wersja testowa: treningi z szablonów, historia, postępy i rekordy, kopia zapasowa w Plikach.": "Ensimmäinen testiversio: treenit pohjista, historia, kehitys ja ennätykset, varmuuskopio Tiedostot-appiin.",
+ "16 języków; wygląd jasny, ciemny albo jak w telefonie.": "16 kieltä; vaalea, tumma tai puhelimen mukainen ulkoasu."
 }

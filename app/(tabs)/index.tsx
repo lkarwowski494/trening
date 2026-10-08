@@ -9,6 +9,7 @@ import { Alert } from 'react-native';
 import { getState, useTick, finishedWorkouts, templateGroups, startFromTemplate, startEmpty, newTemplate, useForegroundTick, repeatLast, fmtDate, localISODate, getPersistError, getRecovery, clearRecovery, flush, exById, tplWorkSets } from '@/lib/store';
 import { exportRecovery } from '@/lib/backup';
 import { TodayPlan } from '@/components/TodayPlan';
+import { WhatsNewHeader } from '@/components/WhatsNew';
 import { signingState, scheduleReminder, renewTexts, type RenewKind } from '@/lib/signing';
 import { t, tp, locale } from '@/lib/i18n';
 import { fmtW, fmtNum } from '@/lib/units';
@@ -38,7 +39,7 @@ function Home() {
   const fin = finishedWorkouts(); const last = fin[0];
   return (
     <ScrollView contentContainerStyle={{ paddingBottom: 40 }}>
-      <View style={{ marginVertical: 10 }}><H1>{t('Trening')}</H1><Muted>{new Date().toLocaleDateString(locale(), { weekday: 'long', day: 'numeric', month: 'long' })}</Muted></View>
+      <WhatsNewHeader>{/* 08.10.2026: „i” — Co nowego (decyzja właściciela) */}<H1>{t('Trening')}</H1><Muted>{new Date().toLocaleDateString(locale(), { weekday: 'long', day: 'numeric', month: 'long' })}</Muted></WhatsNewHeader>
       <DataBanners />
       <SigningBanner />
       <TodayPlan />{/* 08.10.2026: kalendarz z planem (decyzja 1A) */}

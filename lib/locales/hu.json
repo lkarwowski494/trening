@@ -944,5 +944,21 @@
  "Zmiany sięgają dalej niż {n} dni.": "A változások {n} napnál tovább érnek.",
  "Zastosuj": "Alkalmaz",
  "Zastosuj: {title}": "Alkalmaz: {title}",
- "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM). Po zmianach plan wraca do rutyny w ciągu {n} dni.": "Egyszerűsítés: általában egy pihenőnap az azonos fő izomcsoportokat terhelő edzések között; két egymást követő nap is rendben van azonos heti sorozatszámnál (áttekintések, ACSM). A változások után a terv {n} napon belül visszatér a rutinhoz."
+ "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM). Po zmianach plan wraca do rutyny w ciągu {n} dni.": "Egyszerűsítés: általában egy pihenőnap az azonos fő izomcsoportokat terhelő edzések között; két egymást követő nap is rendben van azonos heti sorozatszámnál (áttekintések, ACSM). A változások után a terv {n} napon belül visszatér a rutinhoz.",
+ "Co nowego": "Újdonságok",
+ "Co nowego — są nowe zmiany": "Újdonságok — új változások",
+ "W tej wersji": "Ebben a verzióban",
+ "Wersja testowa {n} · {date}": "Tesztverzió {n} · {date}",
+ "Zamknij": "Bezárás",
+ "Kalendarz zamiast Historii: plan tygodnia, przesuwanie treningów i propozycje zmian z myślą o regeneracji partii.": "Előzmények helyett Naptár: heti terv, edzések áthelyezése és az izomcsoportok regenerációját figyelembe vevő javaslatok.",
+ "Na ekranie treningu: dzisiejszy trening z planu i podgląd 7 dni.": "Az edzés képernyőn: a mai tervezett edzés és 7 napos előnézet.",
+ "Pauza treningu — czas pauzy nie liczy się do czasu trwania.": "Edzésszünet — a szünet ideje nem számít bele az időtartamba.",
+ "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik 10 serii na partię w tygodniu i oznaczanie tygodnia deload.": "Fejlődés: heti és havi összesítő izomtérképpel, izomcsoportonként heti 10 sorozat jelölése és egy hét deload hétként jelölése.",
+ "Skala wysiłku RPE albo RIR w Ustawieniach.": "RPE vagy RIR terhelési skála a Beállításokban.",
+ "Szablony w folderach i archiwum, „Pomiń dziś” bez zmiany szablonu, usuwanie przesunięciem w lewo.": "Sablonok mappákban és archívumban, „Ma kihagyom” a sablon módosítása nélkül, törlés balra húzással.",
+ "Nowy wygląd: kolory i kroje, grafika talerzy na sztandze.": "Új megjelenés: színek és betűtípusok, a súlytárcsák ábrája a rúdon.",
+ "Karta bieżącej serii w treningu; widok „Lista” jak wcześniej do wyboru w Ustawieniach.": "Az aktuális sorozat kártyája edzés közben; a „Lista” nézet a korábbiak szerint, a Beállításokban választható.",
+ "10 nowych języków: niemiecki, francuski, włoski, niderlandzki, szwedzki, duński, norweski, fiński, turecki i grecki.": "10 új nyelv: német, francia, olasz, holland, svéd, dán, norvég, finn, török és görög.",
+ "Pierwsza wersja testowa: treningi z szablonów, historia, postępy i rekordy, kopia zapasowa w Plikach.": "Első tesztverzió: edzések sablonokból, előzmények, fejlődés és rekordok, biztonsági mentés a Fájlok appba.",
+ "16 języków; wygląd jasny, ciemny albo jak w telefonie.": "16 nyelv; világos, sötét vagy a telefonnak megfelelő megjelenés."
 }

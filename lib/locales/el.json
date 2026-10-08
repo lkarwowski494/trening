@@ -944,5 +944,21 @@
  "Zmiany sięgają dalej niż {n} dni.": "Οι αλλαγές ξεπερνούν τις {n} μέρες.",
  "Zastosuj": "Εφαρμογή",
  "Zastosuj: {title}": "Εφαρμογή: {title}",
- "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM). Po zmianach plan wraca do rutyny w ciągu {n} dni.": "Απλοποίηση: συνήθως μια μέρα ξεκούρασης ανάμεσα σε προπονήσεις με τις ίδιες κύριες ομάδες· δύο συνεχόμενες μέρες είναι επίσης εντάξει με τον ίδιο εβδομαδιαίο αριθμό σετ (ανασκοπήσεις, ACSM). Μετά τις αλλαγές το πρόγραμμα επιστρέφει στη ρουτίνα μέσα σε {n} μέρες."
+ "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM). Po zmianach plan wraca do rutyny w ciągu {n} dni.": "Απλοποίηση: συνήθως μια μέρα ξεκούρασης ανάμεσα σε προπονήσεις με τις ίδιες κύριες ομάδες· δύο συνεχόμενες μέρες είναι επίσης εντάξει με τον ίδιο εβδομαδιαίο αριθμό σετ (ανασκοπήσεις, ACSM). Μετά τις αλλαγές το πρόγραμμα επιστρέφει στη ρουτίνα μέσα σε {n} μέρες.",
+ "Co nowego": "Τι νέο υπάρχει",
+ "Co nowego — są nowe zmiany": "Τι νέο υπάρχει — νέες αλλαγές",
+ "W tej wersji": "Σε αυτή την έκδοση",
+ "Wersja testowa {n} · {date}": "Δοκιμαστική έκδοση {n} · {date}",
+ "Zamknij": "Κλείσιμο",
+ "Kalendarz zamiast Historii: plan tygodnia, przesuwanie treningów i propozycje zmian z myślą o regeneracji partii.": "Ημερολόγιο αντί για Ιστορικό: εβδομαδιαίο πρόγραμμα, μετακίνηση προπονήσεων και προτάσεις αλλαγών με βάση την αποκατάσταση των μυϊκών ομάδων.",
+ "Na ekranie treningu: dzisiejszy trening z planu i podgląd 7 dni.": "Στην οθόνη προπόνησης: η σημερινή προπόνηση από το πρόγραμμα και προεπισκόπηση 7 ημερών.",
+ "Pauza treningu — czas pauzy nie liczy się do czasu trwania.": "Παύση προπόνησης — ο χρόνος παύσης δεν μετράει στη διάρκεια.",
+ "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik 10 serii na partię w tygodniu i oznaczanie tygodnia deload.": "Πρόοδος: σύνοψη εβδομάδας και μήνα με χάρτη μυών, σήμανση 10 σετ ανά μυϊκή ομάδα την εβδομάδα και σήμανση εβδομάδας αποφόρτισης.",
+ "Skala wysiłku RPE albo RIR w Ustawieniach.": "Κλίμακα προσπάθειας RPE ή RIR στις Ρυθμίσεις.",
+ "Szablony w folderach i archiwum, „Pomiń dziś” bez zmiany szablonu, usuwanie przesunięciem w lewo.": "Πρότυπα σε φακέλους και αρχείο, «Παράλειψη σήμερα» χωρίς αλλαγή του προτύπου, διαγραφή με σάρωση προς τα αριστερά.",
+ "Nowy wygląd: kolory i kroje, grafika talerzy na sztandze.": "Νέα εμφάνιση: χρώματα και γραμματοσειρές, γραφικό των δίσκων στην μπάρα.",
+ "Karta bieżącej serii w treningu; widok „Lista” jak wcześniej do wyboru w Ustawieniach.": "Κάρτα του τρέχοντος σετ στην προπόνηση· η προβολή «Λίστα» όπως πριν, με επιλογή στις Ρυθμίσεις.",
+ "10 nowych języków: niemiecki, francuski, włoski, niderlandzki, szwedzki, duński, norweski, fiński, turecki i grecki.": "10 νέες γλώσσες: γερμανικά, γαλλικά, ιταλικά, ολλανδικά, σουηδικά, δανικά, νορβηγικά, φινλανδικά, τουρκικά και ελληνικά.",
+ "Pierwsza wersja testowa: treningi z szablonów, historia, postępy i rekordy, kopia zapasowa w Plikach.": "Πρώτη δοκιμαστική έκδοση: προπονήσεις από πρότυπα, ιστορικό, πρόοδος και ρεκόρ, αντίγραφο ασφαλείας στα Αρχεία.",
+ "16 języków; wygląd jasny, ciemny albo jak w telefonie.": "16 γλώσσες· ανοιχτή, σκούρα ή όπως στο τηλέφωνο εμφάνιση."
 }

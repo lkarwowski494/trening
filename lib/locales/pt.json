@@ -944,5 +944,21 @@
  "Zmiany sięgają dalej niż {n} dni.": "As alterações vão além de {n} dias.",
  "Zastosuj": "Aplicar",
  "Zastosuj: {title}": "Aplicar: {title}",
- "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM). Po zmianach plan wraca do rutyny w ciągu {n} dni.": "Simplificação: normalmente um dia de descanso entre sessões com os mesmos grupos principais; dois dias seguidos também estão bem com o mesmo número de séries semanais (revisões, ACSM). Após as alterações o plano volta à rotina em {n} dias."
+ "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM). Po zmianach plan wraca do rutyny w ciągu {n} dni.": "Simplificação: normalmente um dia de descanso entre sessões com os mesmos grupos principais; dois dias seguidos também estão bem com o mesmo número de séries semanais (revisões, ACSM). Após as alterações o plano volta à rotina em {n} dias.",
+ "Co nowego": "Novidades",
+ "Co nowego — są nowe zmiany": "Novidades — novas alterações",
+ "W tej wersji": "Nesta versão",
+ "Wersja testowa {n} · {date}": "Versão de teste {n} · {date}",
+ "Zamknij": "Fechar",
+ "Kalendarz zamiast Historii: plan tygodnia, przesuwanie treningów i propozycje zmian z myślą o regeneracji partii.": "Calendário em vez de Histórico: plano semanal, mover treinos e propostas de alterações que têm em conta a recuperação muscular.",
+ "Na ekranie treningu: dzisiejszy trening z planu i podgląd 7 dni.": "No ecrã de treino: o treino planeado de hoje e uma pré-visualização de 7 dias.",
+ "Pauza treningu — czas pauzy nie liczy się do czasu trwania.": "Pausa do treino — o tempo de pausa não conta para a duração.",
+ "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik 10 serii na partię w tygodniu i oznaczanie tygodnia deload.": "Progresso: resumo da semana e do mês com mapa muscular, marca de 10 séries por grupo muscular por semana e marcação de uma semana de deload.",
+ "Skala wysiłku RPE albo RIR w Ustawieniach.": "Escala de esforço RPE ou RIR nas Definições.",
+ "Szablony w folderach i archiwum, „Pomiń dziś” bez zmiany szablonu, usuwanie przesunięciem w lewo.": "Modelos em pastas e arquivo, «Saltar hoje» sem alterar o modelo, apagar deslizando para a esquerda.",
+ "Nowy wygląd: kolory i kroje, grafika talerzy na sztandze.": "Novo aspeto: cores e tipos de letra, gráfico dos discos na barra.",
+ "Karta bieżącej serii w treningu; widok „Lista” jak wcześniej do wyboru w Ustawieniach.": "Cartão da série atual durante o treino; a vista «Lista» como antes, à escolha nas Definições.",
+ "10 nowych języków: niemiecki, francuski, włoski, niderlandzki, szwedzki, duński, norweski, fiński, turecki i grecki.": "10 novos idiomas: alemão, francês, italiano, neerlandês, sueco, dinamarquês, norueguês, finlandês, turco e grego.",
+ "Pierwsza wersja testowa: treningi z szablonów, historia, postępy i rekordy, kopia zapasowa w Plikach.": "Primeira versão de teste: treinos a partir de modelos, histórico, progresso e recordes, cópia de segurança em Ficheiros.",
+ "16 języków; wygląd jasny, ciemny albo jak w telefonie.": "16 idiomas; aspeto claro, escuro ou como o telefone."
 }

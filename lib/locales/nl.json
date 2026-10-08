@@ -944,5 +944,21 @@
  "Zmiany sięgają dalej niż {n} dni.": "Wijzigingen reiken verder dan {n} dagen.",
  "Zastosuj": "Toepassen",
  "Zastosuj: {title}": "Toepassen: {title}",
- "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM). Po zmianach plan wraca do rutyny w ciągu {n} dni.": "Vereenvoudiging: meestal een rustdag tussen sessies met dezelfde hoofdspiergroepen; twee dagen achter elkaar is ook prima bij hetzelfde aantal sets per week (reviews, ACSM). Na wijzigingen keert het plan binnen {n} dagen terug naar de routine."
+ "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM). Po zmianach plan wraca do rutyny w ciągu {n} dni.": "Vereenvoudiging: meestal een rustdag tussen sessies met dezelfde hoofdspiergroepen; twee dagen achter elkaar is ook prima bij hetzelfde aantal sets per week (reviews, ACSM). Na wijzigingen keert het plan binnen {n} dagen terug naar de routine.",
+ "Co nowego": "Wat is er nieuw",
+ "Co nowego — są nowe zmiany": "Wat is er nieuw — nieuwe wijzigingen",
+ "W tej wersji": "In deze versie",
+ "Wersja testowa {n} · {date}": "Testversie {n} · {date}",
+ "Zamknij": "Sluiten",
+ "Kalendarz zamiast Historii: plan tygodnia, przesuwanie treningów i propozycje zmian z myślą o regeneracji partii.": "Kalender in plaats van Historie: weekplan, trainingen verplaatsen en voorstellen die rekening houden met spierherstel.",
+ "Na ekranie treningu: dzisiejszy trening z planu i podgląd 7 dni.": "Op het trainingsscherm: de geplande training van vandaag en een voorbeeld van 7 dagen.",
+ "Pauza treningu — czas pauzy nie liczy się do czasu trwania.": "Trainingspauze — pauzetijd telt niet mee in de duur.",
+ "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik 10 serii na partię w tygodniu i oznaczanie tygodnia deload.": "Voortgang: week- en maandoverzicht met spierkaart, markering van 10 sets per spiergroep per week en het markeren van een deloadweek.",
+ "Skala wysiłku RPE albo RIR w Ustawieniach.": "Inspanningsschaal RPE of RIR in Instellingen.",
+ "Szablony w folderach i archiwum, „Pomiń dziś” bez zmiany szablonu, usuwanie przesunięciem w lewo.": "Sjablonen in mappen en archief, ‘Vandaag overslaan’ zonder het sjabloon te wijzigen, verwijderen door naar links te vegen.",
+ "Nowy wygląd: kolory i kroje, grafika talerzy na sztandze.": "Nieuw uiterlijk: kleuren en lettertypen, afbeelding van de schijven op de stang.",
+ "Karta bieżącej serii w treningu; widok „Lista” jak wcześniej do wyboru w Ustawieniach.": "Kaart van de huidige set tijdens de training; de weergave ‘Lijst’ zoals voorheen, te kiezen in Instellingen.",
+ "10 nowych języków: niemiecki, francuski, włoski, niderlandzki, szwedzki, duński, norweski, fiński, turecki i grecki.": "10 nieuwe talen: Duits, Frans, Italiaans, Nederlands, Zweeds, Deens, Noors, Fins, Turks en Grieks.",
+ "Pierwsza wersja testowa: treningi z szablonów, historia, postępy i rekordy, kopia zapasowa w Plikach.": "Eerste testversie: trainingen uit sjablonen, historie, voortgang en records, back-up in Bestanden.",
+ "16 języków; wygląd jasny, ciemny albo jak w telefonie.": "16 talen; licht, donker of zoals de telefoon."
 }

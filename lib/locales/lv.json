@@ -944,5 +944,21 @@
  "Zmiany sięgają dalej niż {n} dni.": "Izmaiņas sniedzas tālāk par {n} dienām.",
  "Zastosuj": "Lietot",
  "Zastosuj: {title}": "Lietot: {title}",
- "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM). Po zmianach plan wraca do rutyny w ciągu {n} dni.": "Vienkāršojums: parasti atpūtas diena starp treniņiem ar tām pašām galvenajām grupām; divas dienas pēc kārtas arī ir labi, ja nedēļas sēriju skaits ir tas pats (pārskati, ACSM). Pēc izmaiņām plāns atgriežas rutīnā {n} dienu laikā."
+ "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM). Po zmianach plan wraca do rutyny w ciągu {n} dni.": "Vienkāršojums: parasti atpūtas diena starp treniņiem ar tām pašām galvenajām grupām; divas dienas pēc kārtas arī ir labi, ja nedēļas sēriju skaits ir tas pats (pārskati, ACSM). Pēc izmaiņām plāns atgriežas rutīnā {n} dienu laikā.",
+ "Co nowego": "Kas jauns",
+ "Co nowego — są nowe zmiany": "Kas jauns — jaunas izmaiņas",
+ "W tej wersji": "Šajā versijā",
+ "Wersja testowa {n} · {date}": "Testa versija {n} · {date}",
+ "Zamknij": "Aizvērt",
+ "Kalendarz zamiast Historii: plan tygodnia, przesuwanie treningów i propozycje zmian z myślą o regeneracji partii.": "Kalendārs Vēstures vietā: nedēļas plāns, treniņu pārcelšana un izmaiņu ieteikumi, ņemot vērā muskuļu grupu atjaunošanos.",
+ "Na ekranie treningu: dzisiejszy trening z planu i podgląd 7 dni.": "Treniņa ekrānā: šodienas plānotais treniņš un 7 dienu priekšskatījums.",
+ "Pauza treningu — czas pauzy nie liczy się do czasu trwania.": "Treniņa pauze — pauzes laiks netiek ieskaitīts ilgumā.",
+ "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik 10 serii na partię w tygodniu i oznaczanie tygodnia deload.": "Progress: nedēļas un mēneša kopsavilkums ar muskuļu karti, atzīme par 10 sērijām uz muskuļu grupu nedēļā un nedēļas atzīmēšana kā deload.",
+ "Skala wysiłku RPE albo RIR w Ustawieniach.": "Piepūles skala RPE vai RIR Iestatījumos.",
+ "Szablony w folderach i archiwum, „Pomiń dziś” bez zmiany szablonu, usuwanie przesunięciem w lewo.": "Veidnes mapēs un arhīvā, “Šodien izlaist” bez veidnes maiņas, dzēšana, pavelkot pa kreisi.",
+ "Nowy wygląd: kolory i kroje, grafika talerzy na sztandze.": "Jauns izskats: krāsas un fonti, svaru disku attēls uz stieņa.",
+ "Karta bieżącej serii w treningu; widok „Lista” jak wcześniej do wyboru w Ustawieniach.": "Pašreizējās sērijas kartīte treniņā; skats “Saraksts” kā iepriekš, izvēlams Iestatījumos.",
+ "10 nowych języków: niemiecki, francuski, włoski, niderlandzki, szwedzki, duński, norweski, fiński, turecki i grecki.": "10 jaunas valodas: vācu, franču, itāļu, nīderlandiešu, zviedru, dāņu, norvēģu, somu, turku un grieķu.",
+ "Pierwsza wersja testowa: treningi z szablonów, historia, postępy i rekordy, kopia zapasowa w Plikach.": "Pirmā testa versija: treniņi no veidnēm, vēsture, progress un rekordi, rezerves kopija lietotnē Faili.",
+ "16 języków; wygląd jasny, ciemny albo jak w telefonie.": "16 valodas; gaišs, tumšs izskats vai kā tālrunī."
 }

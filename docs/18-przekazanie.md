@@ -118,3 +118,8 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
   potem przerwa → A na jutro, B na pojutrze, nic więcej), (b) przesunięcie tylko tego treningu — nigdy na dzień z innym treningiem bez wyraźnego
   polecenia. Do tego regeneracja grup mięśniowych: sugestie zmian w tym tygodniu z jak najmniejszą liczbą zmian, by po 7–10 dniach wrócić do
   pierwotnej rutyny (reguła regeneracji — przegląd źródeł w toku, docs/research/23). Przypomnienia (pyt. 3) — bez odpowiedzi.
+- 08.10.2026: propozycje z regeneracją partii wdrożone (K3, `5d63427`) — reguły z docs/research/23 jako nazwane uproszczenie (dzień przerwy między
+  sesjami z tymi samymi głównymi partiami; dzień po dniu — ostrzeżenie, nie blokada; najpierw zachować liczbę sesji; powrót do rutyny w 10 dni).
+- 08.10.2026: **„Co nowego”** — przycisk „i” w lewym górnym rogu ekranu Trening rozwija sekcję (wzór: Organizer). Decyzje właściciela: tylko ekran
+  Trening (odrzucone: każda zakładka); „i” + kropka po aktualizacji, nic nie wyskakuje samo (odrzucone: karta jak w Organizerze, „i” bez oznaczeń);
+  bieżąca wersja na górze, starsze zwinięte (odrzucone: tylko bieżąca). Wpisy w `lib/whatsnew.ts`; numer buildu dopisuje się przy wydaniu.
