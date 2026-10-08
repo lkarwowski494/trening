@@ -47,7 +47,7 @@ type VKey = typeof VKEYS[number];
 const vals = (s: WSet) => JSON.stringify(VKEYS.map(k => s[k] ?? ''));
 const snap = (d: Draft) => JSON.stringify([d.w, d.date, d.time, d.min]);
 function make(key: string, sourceId: string | null, w: Workout): Draft {
-  const end = w.finishedAt ?? w.startedAt; const date = dateText(w.startedAt), time = timeText(w.startedAt), min = minText(w.startedAt, end);
+  const end = w.finishedAt ?? w.startedAt; const date = dateText(w.startedAt), time = timeText(w.startedAt), min = minText(w.startedAt, end - (Number(w.pausedMs) || 0)); /* 08.10.2026: pole „min” = czas bez pauz */
   const origVals: Record<string, string> = {}; if (sourceId != null) w.exercises.forEach(e => e.sets.forEach(s => { origVals[s.id] = vals(s); }));
   const origEx: Draft['origEx'] = {}; w.exercises.forEach(e => { origEx[e.id] = { exerciseId: e.exerciseId, swappedFrom: e.swappedFrom, impl: e.impl, implPinned: e.implPinned }; });
   const d: Draft = { key, sourceId, w, date, time, min, orig: '', origStart: w.startedAt, origEnd: end, oDate: date, oTime: time, oMin: min, origVals, prefilled: {}, prefillAt: w.startedAt, origEx };
@@ -288,7 +288,7 @@ function resolveWhen(d: Draft, now: number): { start: number; end: number; chang
   const startSame = d.date.trim() === d.oDate && d.time.trim() === d.oTime, minSame = d.min.trim() === d.oMin;
   if (d.sourceId != null && startSame && minSame) return { start: d.origStart, end: d.origEnd, changed: false };
   let start = d.origStart; if (!startSame) { const r = parseStart(d.date, d.time, now); if (typeof r === 'string') return { error: r }; start = r; }
-  let dur = d.origEnd - d.origStart; if (!minSame) { const m = parseMin(d.min); if (typeof m === 'string') return { error: m }; dur = m * 60000; }
+  let dur = d.origEnd - d.origStart; if (!minSame) { const m = parseMin(d.min); if (typeof m === 'string') return { error: m }; dur = m * 60000 + (Number(d.w.pausedMs) || 0); } /* pauzy zostają — koniec = start + czas bez pauz + pauzy */
   const end = start + dur; if (end > now) return { error: futureError(end) };
   return { start, end, changed: true };
 }

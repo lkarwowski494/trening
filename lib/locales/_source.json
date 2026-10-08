@@ -156,6 +156,14 @@
   "en": "≡ Reorder"
  },
  {
+  "pl": "⏸ Pauza",
+  "en": "⏸ Pause"
+ },
+ {
+  "pl": "▶ Wznów",
+  "en": "▶ Resume"
+ },
+ {
   "pl": "●●● główna · ●● pomocnicza · ● stabilizacja",
   "en": "●●● primary · ●● secondary · ● stabilizer"
  },
@@ -1918,6 +1926,14 @@
   "en": "Dip belt"
  },
  {
+  "pl": "pauza",
+  "en": "paused"
+ },
+ {
+  "pl": "Pauza treningu",
+  "en": "Pause workout"
+ },
+ {
   "pl": "Pełna siłownia",
   "en": "Full gym"
  },
@@ -3330,6 +3346,10 @@
   "en": "Shown as: {n}"
  },
  {
+  "pl": "Wznów trening",
+  "en": "Resume workout"
+ },
+ {
   "pl": "z asekuracją",
   "en": "with safety arms"
  },
@@ -3508,6 +3528,10 @@
  {
   "pl": "ze skosem w dół",
   "en": "with decline"
+ },
+ {
+  "pl": "Zegar treningu stoi i pauza nie wlicza się do czasu trwania. Przerwa między seriami liczy dalej; odhaczenie serii wznawia trening.",
+  "en": "The workout clock is stopped and the pause does not count towards the duration. The rest timer keeps running; ticking off a set resumes the workout."
  },
  {
   "pl": "Zmiany nie trafiają do Apple Health.",

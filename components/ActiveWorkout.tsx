@@ -4,7 +4,7 @@ import { useRouter } from 'expo-router';
 import { activateKeepAwakeAsync, deactivateKeepAwake } from 'expo-keep-awake';
 import { useTheme, F } from '@/lib/theme';
 import { Btn, Input, NumInput, Muted } from '@/components/ui';
-import { progressionFor, skipExercise, unskipExercise, writeLoad, setActiveLocation, lastActivity, staleSince, staleRef, staleKind, ackStale, markActivity, useForegroundTick, bandA11y, clampName, loadLabelShort, getState, useTick, exById, prevOfActiveBlock, previousFor, canUndoSwap, undoSwap, pinnedImpl, rememberRest as storeRememberRest, canRememberAlt, rememberAlt, altHint, acceptAlt, skipAlt, occurrence, occurrences, hintFor, isBW, reps, fmtDur, fmtSec, fmtTime, setSummary, toggleDone, restAfter, roundRest, addSet, removeSet, removeSetById, removeExercise, finishWorkout, cancelWorkout, save, loadLabel, groupLabels, linkWithNext, unlink, cycleBand, findSet, shortBand, setHasValue, locationById, offListNote, liveBlockImpl, listLocFor, srcSetAt, usesBand, focusSet } from '@/lib/store';
+import { isPaused, workoutDurSec, pauseWorkout, resumeWorkout, progressionFor, skipExercise, unskipExercise, writeLoad, setActiveLocation, lastActivity, staleSince, staleRef, staleKind, ackStale, markActivity, useForegroundTick, bandA11y, clampName, loadLabelShort, getState, useTick, exById, prevOfActiveBlock, previousFor, canUndoSwap, undoSwap, pinnedImpl, rememberRest as storeRememberRest, canRememberAlt, rememberAlt, altHint, acceptAlt, skipAlt, occurrence, occurrences, hintFor, isBW, reps, fmtDur, fmtSec, fmtTime, setSummary, toggleDone, restAfter, roundRest, addSet, removeSet, removeSetById, removeExercise, finishWorkout, cancelWorkout, save, loadLabel, groupLabels, linkWithNext, unlink, cycleBand, findSet, shortBand, setHasValue, locationById, offListNote, liveBlockImpl, listLocFor, srcSetAt, usesBand, focusSet } from '@/lib/store';
 import { availability, missingLabel } from '@/lib/equipment';
 import { EquipVisual } from '@/components/EquipVisual';
 import { SwipeRow } from '@/components/SwipeRow';
@@ -219,7 +219,16 @@ function isPrefill(_e: WExercise, s: WSet) { return !s.edited; } // runda 2: lic
 function SessionClock({ w }: { w: Workout }) {
   const [, force] = useState(0);
   useEffect(() => { const i = setInterval(() => force(x => x + 1), 1000); return () => clearInterval(i); }, []);
-  return <Muted style={{ fontSize: 13 }}>{tr('start')} {fmtTime(w.startedAt)} · {fmtDur((Date.now() - w.startedAt) / 1000)}</Muted>;
+  /* 08.10.2026 (decyzja właściciela): pauza zatrzymuje zegar treningu i odejmuje się od czasu trwania; przerwa i stoper serii liczą dalej,
+   * odhaczenie serii wznawia trening (store.toggleDone). */
+  const paused = isPaused(w);
+  return <View>
+    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
+      <Muted style={{ fontSize: 13 }}>{tr('start')} {fmtTime(w.startedAt)} · {fmtDur(workoutDurSec(w))}{paused ? ` · ${tr('pauza')}` : ''}</Muted>
+      <Btn small kind={paused ? 'primary' : 'ghost'} title={paused ? tr('▶ Wznów') : tr('⏸ Pauza')} accessibilityLabel={paused ? tr('Wznów trening') : tr('Pauza treningu')} onPress={() => { if (paused) resumeWorkout(); else pauseWorkout(); force(x => x + 1); }} />
+    </View>
+    {paused ? <Muted style={{ fontSize: 12 }}>{tr('Zegar treningu stoi i pauza nie wlicza się do czasu trwania. Przerwa między seriami liczy dalej; odhaczenie serii wznawia trening.')}</Muted> : null}
+  </View>;
 }
 
 /** Runda 75 (T-016): postęp sesji — odhaczone serie / wszystkie (z rozgrzewkami), cienki pasek pod zegarem. */

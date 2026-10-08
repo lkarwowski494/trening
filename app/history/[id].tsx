@@ -3,7 +3,7 @@ import { ScrollView, View, Alert } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Screen, H1, Muted, Btn, Txt, useOnce } from '@/components/ui';
 import { beginEdit } from '@/lib/edit';
-import { getState, useTick, exById, isBW, bandById, loadLabel, fmtDate, fmtTime, fmtDur, fmtSec, fmtDist, volume, deleteWorkout, groupLabels, shortBand, bandA11y, loadLabelShort, blockImpl, shownLoad } from '@/lib/store';
+import { workoutDurSec, getState, useTick, exById, isBW, bandById, loadLabel, fmtDate, fmtTime, fmtDur, fmtSec, fmtDist, volume, deleteWorkout, groupLabels, shortBand, bandA11y, loadLabelShort, blockImpl, shownLoad } from '@/lib/store';
 import { hasTime, hasReps, hasWeight, hasDistance, SET_KIND_MARK, SET_KIND_LABEL } from '@/lib/seed';
 import { prMap } from '@/lib/stats';
 import { useTheme, F } from '@/lib/theme';
@@ -18,7 +18,7 @@ export default function HistoryDetail() {
   return (
     <Screen><ScrollView contentContainerStyle={{ paddingVertical: 10, paddingBottom: 60 }}>
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}><View style={{ flex: 1 }}><H1>{w.templateName || t('Trening')}</H1></View><Btn title={t('Edytuj')} small accessibilityLabel={t('Edytuj sesję')} onPress={once(() => { if (beginEdit(w.id)) router.push(`/history/edit/${encodeURIComponent(w.id)}`); })} /></View>
-      <Muted style={{ marginBottom: 14 }}>{fmtDate(w.startedAt)} {fmtTime(w.startedAt)} · {fmtDur(((w.finishedAt ?? w.startedAt) - w.startedAt) / 1000)}{volume(w) > 0 ? ` · ${t('objętość')} ${fmtVol(volume(w))}` : ''}</Muted>
+      <Muted style={{ marginBottom: 14 }}>{fmtDate(w.startedAt)} {fmtTime(w.startedAt)} · {fmtDur(workoutDurSec(w))}{volume(w) > 0 ? ` · ${t('objętość')} ${fmtVol(volume(w))}` : ''}</Muted>
       {w.note ? <Muted style={{ marginBottom: 10 }}>{w.note}</Muted> : null}
       {w.exercises.map((e, i) => { const ex = exById(e.exerciseId); const m = ex?.metric ?? 'weight_reps'; const rpe = getState().settings.showRpe; const anyBand = e.sets.some(s => s.bandId);
         // Nagłówki i komórki z tych samych warunków (wcześniej dla usuniętego ćwiczenia kolumny się rozjeżdżały).

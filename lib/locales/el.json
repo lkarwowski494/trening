@@ -887,5 +887,11 @@
  "więcej": "περισσότερα",
  "Mapa mięśni: {list}": "Χάρτης μυών: {list}",
  "Mapa mięśni: brak serii w tym okresie.": "Χάρτης μυών: κανένα σετ σε αυτή την περίοδο.",
- "Kolor względem partii z największą liczbą serii w tym okresie (partia główna 1 seria, pomocnicza 0,5). Szare — bez serii.": "Χρώμα σε σχέση με τη μυϊκή ομάδα με τα περισσότερα σετ της περιόδου (κύρια ομάδα 1 σετ, βοηθητική 0,5). Γκρι — χωρίς σετ."
+ "Kolor względem partii z największą liczbą serii w tym okresie (partia główna 1 seria, pomocnicza 0,5). Szare — bez serii.": "Χρώμα σε σχέση με τη μυϊκή ομάδα με τα περισσότερα σετ της περιόδου (κύρια ομάδα 1 σετ, βοηθητική 0,5). Γκρι — χωρίς σετ.",
+ "pauza": "σε παύση",
+ "▶ Wznów": "▶ Συνέχεια",
+ "⏸ Pauza": "⏸ Παύση",
+ "Wznów trening": "Συνέχεια προπόνησης",
+ "Pauza treningu": "Παύση προπόνησης",
+ "Zegar treningu stoi i pauza nie wlicza się do czasu trwania. Przerwa między seriami liczy dalej; odhaczenie serii wznawia trening.": "Το ρολόι της προπόνησης έχει σταματήσει και η παύση δεν μετράει στη διάρκεια. Το διάλειμμα μεταξύ σετ συνεχίζει· η σήμανση ενός σετ συνεχίζει την προπόνηση."
 }

@@ -366,4 +366,10 @@ export const EN: Record<string, string> = {
   'Mapa mięśni: {list}': 'Muscle map: {list}',
   'Mapa mięśni: brak serii w tym okresie.': 'Muscle map: no sets in this period.',
   'Kolor względem partii z największą liczbą serii w tym okresie (partia główna 1 seria, pomocnicza 0,5). Szare — bez serii.': 'Colour relative to the muscle group with the most sets in this period (main group 1 set, secondary 0.5). Grey — no sets.',
+  'pauza': 'paused',
+  '▶ Wznów': '▶ Resume',
+  '⏸ Pauza': '⏸ Pause',
+  'Wznów trening': 'Resume workout',
+  'Pauza treningu': 'Pause workout',
+  'Zegar treningu stoi i pauza nie wlicza się do czasu trwania. Przerwa między seriami liczy dalej; odhaczenie serii wznawia trening.': 'The workout clock is stopped and the pause does not count towards the duration. The rest timer keeps running; ticking off a set resumes the workout.',
 };

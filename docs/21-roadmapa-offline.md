@@ -105,7 +105,7 @@ Przywrócenie: `git revert` commitu odwracającego (zapis w docs/18, 07.10 ok. 1
 | Pomiary ciała + odczyt masy ciała z Apple Health | wymaga aktualizacji `@kingstinct/react-native-healthkit` 8 → 16 (osobne wydanie, nie razem ze zmianą schematu — CLAUDE.md) | siła względna = arytmetyka |
 | Raport tygodnia / miesiąca (podsumowanie po treningu i okresowe) — **zrobione 08.10.2026** (Postępy → Podsumowanie) | | nie, jeśli tylko liczby użytkownika |
 | Mapa mięśni (rysunek z seriami na partię) — **zrobione 08.10.2026** (Postępy → Podsumowanie) | dane mamy; potrzebna grafika SVG | nie |
-| Pauza treningu | do decyzji: czy pauza odejmuje czas trwania | nie |
+| Pauza treningu — **zrobione 08.10.2026** (odejmuje się od czasu trwania) | do decyzji: czy pauza odejmuje czas trwania | nie |
 
 ### 4c. Duże (tygodnie) — później
 | Funkcja | Uwagi |

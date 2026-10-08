@@ -887,5 +887,11 @@
  "więcej": "enemmän",
  "Mapa mięśni: {list}": "Lihaskartta: {list}",
  "Mapa mięśni: brak serii w tym okresie.": "Lihaskartta: ei sarjoja tällä jaksolla.",
- "Kolor względem partii z największą liczbą serii w tym okresie (partia główna 1 seria, pomocnicza 0,5). Szare — bez serii.": "Väri suhteessa lihasryhmään, jolla on eniten sarjoja jaksolla (pääryhmä 1 sarja, avustava 0,5). Harmaa — ei sarjoja."
+ "Kolor względem partii z największą liczbą serii w tym okresie (partia główna 1 seria, pomocnicza 0,5). Szare — bez serii.": "Väri suhteessa lihasryhmään, jolla on eniten sarjoja jaksolla (pääryhmä 1 sarja, avustava 0,5). Harmaa — ei sarjoja.",
+ "pauza": "tauolla",
+ "▶ Wznów": "▶ Jatka",
+ "⏸ Pauza": "⏸ Tauko",
+ "Wznów trening": "Jatka treeniä",
+ "Pauza treningu": "Keskeytä treeni",
+ "Zegar treningu stoi i pauza nie wlicza się do czasu trwania. Przerwa między seriami liczy dalej; odhaczenie serii wznawia trening.": "Treenikello on pysähdyksissä, eikä tauko lasketa kestoon. Sarjapalautus jatkuu; sarjan kuittaaminen jatkaa treeniä."
 }

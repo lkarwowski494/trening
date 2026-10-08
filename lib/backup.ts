@@ -1,7 +1,7 @@
 import * as FileSystem from 'expo-file-system/legacy';
 import * as Sharing from 'expo-sharing';
 import * as DocumentPicker from 'expo-document-picker';
-import { bandColor, getState, save, replaceState, clearRecovery, migrate, finishedWorkouts, exById, shownLoad, bandById, localISODate, flush, readRecovery, getRecovery } from './store';
+import { bandColor, getState, save, replaceState, clearRecovery, migrate, finishedWorkouts, exById, workoutDurSec, shownLoad, bandById, localISODate, flush, readRecovery, getRecovery } from './store';
 import { t, exName } from './i18n';
 import { wOut } from './units';
 import { ensureAuthorization, syncAfterFinish } from './health';
@@ -98,7 +98,7 @@ export function buildCsv(): string {
   const dt = (ts: number) => { const d = new Date(ts); return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`; };
   const rows: string[] = ['Date,Workout Name,Duration,Exercise Name,Set Order,Weight,Reps,Distance,Seconds,Notes,Workout Notes,RPE'];
   for (const w of [...finishedWorkouts()].reverse()) {
-    const dur = Math.round(Math.max(0, (w.finishedAt ?? w.startedAt) - w.startedAt) / 60000) + 'm';
+    const dur = Math.round(workoutDurSec(w) / 60) + 'm'; /* bez pauz (08.10.2026) */
     w.exercises.forEach(e => { const ex = exById(e.exerciseId); /* T4b: usunięte ćwiczenie eksportujemy jako „?”, jak w historii — serie nie znikają z pliku */
       let n = 0; // numer serii roboczej — rozgrzewki mają „W” i nie przesuwają numeracji
       e.sets.forEach(s => { const b = s.bandId ? bandById(s.bandId) : null; const bandTxt = b ? `${t('guma')} ${bandColor(b)} ${b.level}` : s.bandId ? `${t('guma')} ?` : ''; const mark = SET_KIND_MARK[s.kind ?? (s.warmup ? 'warmup' : 'normal')]; if (mark !== 'W') n++;

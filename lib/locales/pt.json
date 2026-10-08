@@ -887,5 +887,11 @@
  "więcej": "mais",
  "Mapa mięśni: {list}": "Mapa muscular: {list}",
  "Mapa mięśni: brak serii w tym okresie.": "Mapa muscular: sem séries neste período.",
- "Kolor względem partii z największą liczbą serii w tym okresie (partia główna 1 seria, pomocnicza 0,5). Szare — bez serii.": "Cor relativa ao grupo com mais séries no período (grupo principal 1 série, secundário 0,5). Cinzento — sem séries."
+ "Kolor względem partii z największą liczbą serii w tym okresie (partia główna 1 seria, pomocnicza 0,5). Szare — bez serii.": "Cor relativa ao grupo com mais séries no período (grupo principal 1 série, secundário 0,5). Cinzento — sem séries.",
+ "pauza": "em pausa",
+ "▶ Wznów": "▶ Retomar",
+ "⏸ Pauza": "⏸ Pausa",
+ "Wznów trening": "Retomar treino",
+ "Pauza treningu": "Pausar treino",
+ "Zegar treningu stoi i pauza nie wlicza się do czasu trwania. Przerwa między seriami liczy dalej; odhaczenie serii wznawia trening.": "O relógio do treino está parado e a pausa não conta para a duração. O descanso entre séries continua; marcar uma série retoma o treino."
 }

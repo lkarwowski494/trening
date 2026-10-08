@@ -887,5 +887,11 @@
  "więcej": "più",
  "Mapa mięśni: {list}": "Mappa muscolare: {list}",
  "Mapa mięśni: brak serii w tym okresie.": "Mappa muscolare: nessuna serie in questo periodo.",
- "Kolor względem partii z największą liczbą serii w tym okresie (partia główna 1 seria, pomocnicza 0,5). Szare — bez serii.": "Colore relativo al gruppo con più serie nel periodo (gruppo principale 1 serie, secondario 0,5). Grigio — nessuna serie."
+ "Kolor względem partii z największą liczbą serii w tym okresie (partia główna 1 seria, pomocnicza 0,5). Szare — bez serii.": "Colore relativo al gruppo con più serie nel periodo (gruppo principale 1 serie, secondario 0,5). Grigio — nessuna serie.",
+ "pauza": "in pausa",
+ "▶ Wznów": "▶ Riprendi",
+ "⏸ Pauza": "⏸ Pausa",
+ "Wznów trening": "Riprendi allenamento",
+ "Pauza treningu": "Metti in pausa l’allenamento",
+ "Zegar treningu stoi i pauza nie wlicza się do czasu trwania. Przerwa między seriami liczy dalej; odhaczenie serii wznawia trening.": "Il cronometro dell’allenamento è fermo e la pausa non conta nella durata. Il recupero tra le serie continua; spuntare una serie riprende l’allenamento."
 }

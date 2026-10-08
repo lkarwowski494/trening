@@ -887,5 +887,11 @@
  "więcej": "daugiau",
  "Mapa mięśni: {list}": "Raumenų žemėlapis: {list}",
  "Mapa mięśni: brak serii w tym okresie.": "Raumenų žemėlapis: šiuo laikotarpiu priėjimų nėra.",
- "Kolor względem partii z największą liczbą serii w tym okresie (partia główna 1 seria, pomocnicza 0,5). Szare — bez serii.": "Spalva pagal raumenų grupę, turinčią daugiausia priėjimų šiuo laikotarpiu (pagrindinė grupė 1 priėjimas, pagalbinė 0,5). Pilka — be priėjimų."
+ "Kolor względem partii z największą liczbą serii w tym okresie (partia główna 1 seria, pomocnicza 0,5). Szare — bez serii.": "Spalva pagal raumenų grupę, turinčią daugiausia priėjimų šiuo laikotarpiu (pagrindinė grupė 1 priėjimas, pagalbinė 0,5). Pilka — be priėjimų.",
+ "pauza": "pauzė",
+ "▶ Wznów": "▶ Tęsti",
+ "⏸ Pauza": "⏸ Pauzė",
+ "Wznów trening": "Tęsti treniruotę",
+ "Pauza treningu": "Pristabdyti treniruotę",
+ "Zegar treningu stoi i pauza nie wlicza się do czasu trwania. Przerwa między seriami liczy dalej; odhaczenie serii wznawia trening.": "Treniruotės laikrodis sustabdytas, pauzė neįskaičiuojama į trukmę. Poilsis tarp priėjimų tęsiasi; pažymėjus priėjimą treniruotė tęsiama."
 }

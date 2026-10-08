@@ -1,4 +1,4 @@
-import { finishedWorkouts, volume, exById, isWorking } from './store';
+import { finishedWorkouts, volume, exById, isWorking, workoutDurSec } from './store';
 import { thisMonday, workoutPRs, type WorkoutPR } from './stats';
 import { locale } from './i18n';
 
@@ -25,7 +25,7 @@ const inRange = (start: number, end: number) => finishedWorkouts().filter(w => w
 function totals(start: number, end: number): PeriodTotals {
   const ws = inRange(start, end); let sets = 0, vol = 0, dur = 0;
   for (const w of ws) {
-    vol += volume(w); dur += Math.max(0, Math.round(((w.finishedAt ?? w.startedAt) - w.startedAt) / 1000));
+    vol += volume(w); dur += Math.round(workoutDurSec(w)); /* bez pauz (decyzja 08.10.2026) */
     w.exercises.forEach(e => { if (exById(e.exerciseId)) sets += e.sets.filter(isWorking).length; });
   }
   return { workouts: ws.length, sets, volume: vol, durationSec: dur };

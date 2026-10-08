@@ -285,7 +285,7 @@ export function migrate(raw: any): State {
   };
   const fixWorkout = (w: any) => {
     if (typeof w.loggedBy !== 'string' || !w.loggedBy) w.loggedBy = owner; if (typeof w.sessionMode !== 'string' || !w.sessionMode) w.sessionMode = 'solo'; if (typeof w.healthUUID !== 'string' || !w.healthUUID) w.healthUUID = null; /* runda 52 */ delete w.bodyWeightKg; /* schemat 13 (Q-001): bez zamrożonej masy ciała */
-    w.startedAt = tsOf(w.startedAt); w.finishedAt = w === raw.active ? null : (tsOf(w.finishedAt) ?? w.startedAt); if (w !== raw.active || tsOf(w.staleAck) == null) delete w.staleAck; else w.staleAck = tsOf(w.staleAck); /* runda 69 */ /* runda 49/51: trening z historii zawsze zakończony; trening w toku — nie */ /* runda 49: zakończony (choć nieczytelny) trening zostaje w historii */ if (w.finishedAt != null && w.finishedAt < w.startedAt) w.finishedAt = w.startedAt; /* runda 48 */ if (typeof w.templateName !== 'string') w.templateName = ''; if (typeof w.note !== 'string') w.note = ''; w.templateId = idOf(w.templateId); { const l = idOf(w.locationId); if (l) w.locationId = l; else delete w.locationId; } /* P-003: miejsce zostaje także po usunięciu miejsca („(usunięte miejsce)”) */
+    w.startedAt = tsOf(w.startedAt); w.finishedAt = w === raw.active ? null : (tsOf(w.finishedAt) ?? w.startedAt); if (w !== raw.active || tsOf(w.staleAck) == null) delete w.staleAck; else w.staleAck = tsOf(w.staleAck); /* 08.10.2026: pauza — liczby skończone ≥ 0, pausedAt tylko w treningu w toku, suma pauz nie dłuższa niż trening */ { const pm = Number(w.pausedMs); if (Number.isFinite(pm) && pm > 0) w.pausedMs = Math.round(pm); else delete w.pausedMs; const pa = tsOf(w.pausedAt); if (w === raw.active && pa != null && w.startedAt != null && pa >= w.startedAt) w.pausedAt = pa; else delete w.pausedAt; if (w.finishedAt != null && w.pausedMs != null) { w.pausedMs = Math.min(w.pausedMs, Math.max(0, w.finishedAt - w.startedAt)); if (!w.pausedMs) delete w.pausedMs; } } /* runda 69 */ /* runda 49/51: trening z historii zawsze zakończony; trening w toku — nie */ /* runda 49: zakończony (choć nieczytelny) trening zostaje w historii */ if (w.finishedAt != null && w.finishedAt < w.startedAt) w.finishedAt = w.startedAt; /* runda 48 */ if (typeof w.templateName !== 'string') w.templateName = ''; if (typeof w.note !== 'string') w.note = ''; w.templateId = idOf(w.templateId); { const l = idOf(w.locationId); if (l) w.locationId = l; else delete w.locationId; } /* P-003: miejsce zostaje także po usunięciu miejsca („(usunięte miejsce)”) */
     w.exercises = arr(w.exercises).filter((e: any) => idOf(e.exerciseId) != null); /* runda 50/51 */ if (w !== raw.active) { w.exercises.forEach((e: any) => { e.sets = arr(e.sets).filter((s: any) => !!s.done); e.sets.forEach((s: any) => { delete s.pre; }); }); w.exercises = w.exercises.filter((e: any) => e.sets.length); } /* runda 59: historia = tylko odhaczone serie, jak po „Zakończ” */ w.exercises.forEach((e: any) => { e.exerciseId = idOf(e.exerciseId); e.id = idOf(e.id) ?? uid(); if (e.tplItemId != null) e.tplItemId = idOf(e.tplItemId) ?? undefined; if (!(IMPLS as readonly unknown[]).includes(e.impl)) delete e.impl; /* schemat 15 (decyzja 8c): tylko znany przyrząd */ fixSwapFields(e, w === raw.active); /* schemat 16 (E2) */ for (const k of ['repMin', 'repMax']) e[k] = intIn(e[k], 1, 100); /* runda 49: jak w szablonie */ e.groupId = idOf(e.groupId); { const v = parseNum(e.restSec); e.restSec = v == null || v < 0 ? DEFAULT_REST : Math.min(1800, Math.round(v)); } e.sets = arr(e.sets); e.sets.forEach(fixSet); }); normalizeGroups(w.exercises);
   };
   raw.bands = arr(raw.bands); raw.bands.forEach((b: any) => { stamp(b); delete b.nominalKg; /* T-055: dawna asysta kg gumy (przed P-001) — stara kopia się importuje, pole odpada; starsze wersje aplikacji czytają brak pola jako „bez kg” */ if (typeof b.color !== 'string' || !b.color.trim()) b.color = '?'; b.color = b.color.replace(/\s+/g, ' ').trim(); b.level = intIn(b.level, 1, 7) ?? 1; /* runda 51 */ });
@@ -1175,6 +1175,7 @@ export function toggleDone(ei: number, si: number, at?: number): number | null {
     fillFromHints(e, si);
     const now = at != null && Number.isFinite(at) ? Math.min(at, Date.now()) : Date.now(); const prev = lastCompletedAt(a, s);
     s.completedAt = now; s.actualRest = prev && now > prev && now - prev < 3600e3 ? Math.round((now - prev) / 1000) : null; // runda 30: cofnięty zegar → brak przerwy, nie ujemna
+    if (a.pausedAt != null) resumeWorkout(now, a); /* 08.10.2026: odhaczenie serii w trakcie pauzy kończy pauzę (od godziny serii) */
     // Autouzupełnianie: tylko puste pola następnej, nieodhaczonej serii tego samego rodzaju (rozgrzewka nie nadpisuje roboczej).
     const nxt = e.sets[si + 1];
     // Runda 6: rodziny serii — rozgrzewka, drop set, reszta (zwykła/do upadku). Ciężar dropu nie trafia do serii roboczej i odwrotnie.
@@ -1216,7 +1217,7 @@ export const hasWorkDone = (w: Workout) => w.exercises.some(e => e.sets.some(s =
 export function staleSince(now = Date.now()): number | null { const a = S?.active; if (!a) return null; const last = lastActivity(a); return now - staleRef(a, now) >= STALE_ASK_MS ? last : null; }
 export function ackStale() { const a = S?.active; if (!a) return; a.staleAck = Date.now(); save(a); }
 /** Q-010: ponowny pomiar odhaczonej serii to aktywność — przesuwa znacznik jak „Kontynuuj” (pytanie o porzucony trening liczy od niego). */
-export function markActivity(a: Workout, at: number) { if (Number.isFinite(at) && at > (Number(a.staleAck) || 0)) a.staleAck = Math.min(at, Date.now()); }
+export function markActivity(a: Workout, at: number) { if (Number.isFinite(at) && at > (Number(a.staleAck) || 0)) a.staleAck = Math.min(at, Date.now()); if (a.pausedAt != null && Number.isFinite(at)) resumeWorkout(at, a); /* 08.10.2026: odhaczenie serii kończy pauzę */ }
 /** Runda 75 (Q-002, decyzja 02.10.2026): po zamknięciu aplikacji stoper serii BEZ celu nie wraca. Seria odhacza się z czasem
  * z pola serii (wpisanym albo wstawionym z „Poprzednio”), a gdy pole jest puste — zostaje nieodhaczona do ręcznego wpisu.
  * Ponowny pomiar odhaczonej serii zostawia jej poprzedni czas. Stoper z celem kończy się jak dotąd (start + cel). Wołane raz przy starcie aplikacji. */
@@ -1245,11 +1246,26 @@ export function autoFinishStale(now = Date.now()): Workout | null {
 export function finishWorkout(at?: number): Workout | null {
   const st = getState(); const w = st.active; if (!w) return null;
   w.finishedAt = Math.max(w.startedAt, at != null && Number.isFinite(at) ? Math.min(at, Date.now()) : Date.now()); /* T4a: cofnięty zegar nie daje końca przed startem */ delete w.staleAck;
+  closePause(w, w.finishedAt); /* 08.10.2026: pauza trwająca przy „Zakończ” kończy się z treningiem; pauza po końcu (auto-zapis na ostatniej serii) nie liczy się */
   w.exercises = w.exercises.map(e => { const o = { ...e, sets: e.sets.filter(s => s.done).map(s => { delete s.pre; return s; }) }; delete o.splitFrom; delete o.altSkip; delete o.skipped; /* E2: tylko trening w toku (jak migrate M3/M4) */ return o; }).filter(e => e.sets.length);
   normalizeGroups(w.exercises);
   st.workouts.push(w); st.active = null; st.userTouched = true; purgeOrphans(); save(w); flush();
   return w;
 }
+/* ---------- pauza treningu (decyzja właściciela 08.10.2026: czas pauzy odejmuje się od czasu trwania) ---------- */
+/** Suma pauz w ms, łącznie z trwającą (do `now`). */
+export const pausedTotal = (w: Workout, now = Date.now()) => (Number(w.pausedMs) || 0) + (w.pausedAt != null ? Math.max(0, now - w.pausedAt) : 0);
+export const isPaused = (w: Workout | null | undefined) => w?.pausedAt != null;
+/** Czas trwania bez pauz (s): zakończony — koniec − start − pauzy; w toku — do `now`. */
+export const workoutDurSec = (w: Workout, now = Date.now()) => Math.max(0, ((w.finishedAt ?? now) - w.startedAt - pausedTotal(w, w.finishedAt ?? now)) / 1000);
+function closePause(w: Workout, end: number) {
+  if (w.pausedAt != null) { const add = Math.max(0, end - w.pausedAt); if (add) w.pausedMs = (Number(w.pausedMs) || 0) + add; delete w.pausedAt; }
+  if (w.finishedAt != null && w.pausedMs != null) { w.pausedMs = Math.min(w.pausedMs, Math.max(0, w.finishedAt - w.startedAt)); if (!w.pausedMs) delete w.pausedMs; }
+}
+/** Pauza treningu w toku (zegar treningu stoi; przerwa i stoper serii działają dalej). */
+export function pauseWorkout(now = Date.now()) { const w = S?.active; if (!w || w.pausedAt != null) return; w.pausedAt = Math.max(w.startedAt, Math.min(now, Date.now())); save(w); }
+/** Wznowienie: czas pauzy dopisany do sumy. `at` — chwila wznowienia (odhaczenie serii w trakcie pauzy wznawia od godziny serii). */
+export function resumeWorkout(at = Date.now(), w: Workout | null | undefined = S?.active) { if (!w || w.pausedAt == null) return; closePause(w, Math.max(w.pausedAt, Math.min(at, Date.now()))); save(w); }
 export function cancelWorkout() { getState().active = null; purgeOrphans(); save(); flush(); }
 export function deleteWorkout(id: string) { const st = getState(); st.workouts = st.workouts.filter(w => w.id !== id); purgeOrphans(); save(); flush(); }
 

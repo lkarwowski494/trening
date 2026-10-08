@@ -12,6 +12,13 @@ name: Trening z szablonu
 - tapOn: "Start: Upper A"
 - extendedWaitUntil: { visible: "Set 1 done.*", timeout: 30000 }
 - takeScreenshot: 02-trening
+# Pauza treningu (08.10.2026, components/ActiveWorkout.tsx SessionClock): „Pause workout” / „Resume workout” ('Pauza treningu' / 'Wznów trening').
+- tapOn: "Pause workout"
+- extendedWaitUntil: { visible: "Resume workout", timeout: 15000 }
+- assertVisible: ".* · paused"
+- takeScreenshot: 02b-pauza
+- tapOn: "Resume workout"
+- extendedWaitUntil: { visible: "Pause workout", timeout: 15000 }
 - tapOn: { text: "Set 1 done.*", index: 0 }
 - assertVisible: "Skip"
 - takeScreenshot: 03-przerwa
