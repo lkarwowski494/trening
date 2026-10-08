@@ -111,6 +111,10 @@ name: Edycja historii i trening wstecz
 - extendedWaitUntil: { visible: "Summary", timeout: 30000 }
 - assertVisible: "Workouts: [1-9].*, previously .*"
 - takeScreenshot: 20-podsumowanie-tydzien
+# Tydzień deload (pakiet C, 08.10.2026): przełącznik „Deload week” ('Tydzień deload') z opisem „Your own label…”.
+- tapOn: "Deload week"
+- assertVisible: "Your own label.*"
+- takeScreenshot: 20a-tydzien-deload
 # Mapa mięśni (08.10.2026, components/MuscleMap.tsx): opis VoiceOver „Muscle map: …” ('Mapa mięśni: {list}'), przewinięcie do niej.
 - scrollUntilVisible: { element: "Muscle map: .*", direction: DOWN, timeout: 20000 }
 - takeScreenshot: 20b-mapa-miesni

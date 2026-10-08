@@ -897,5 +897,9 @@
  "Skala wysiłku": "Échelle d’effort",
  "RIR — powtórzenia w zapasie: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR; Zourdos i in., JSCR 2016). Zapisane wartości przeliczają się przy zmianie skali.": "RIR — répétitions en réserve : RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR ; Zourdos et al., JSCR 2016). Les valeurs enregistrées sont converties au changement d’échelle.",
  "Kreska = {n} serii na partię w tygodniu. Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; każdy trening siłowy daje przyrost w porównaniu z brakiem treningu. Uproszczenie: serie pomocnicze liczymy po 0,5.": "Trait = {n} séries par groupe musculaire par semaine. Position ACSM 2026 : avec au moins {n} séries par groupe musculaire et par semaine, la prise de muscle était plus grande qu’avec un volume moindre ; tout entraînement de force fait progresser le muscle par rapport à aucun entraînement. Simplification : les séries secondaires comptent pour 0,5.",
- "co najmniej {n}": "au moins {n}"
+ "co najmniej {n}": "au moins {n}",
+ "Tydzień deload": "Semaine de décharge",
+ "Twoje oznaczenie, np. lżejszy tydzień. Aplikacja go nie ocenia ani nie planuje.": "Votre propre étiquette, p. ex. une semaine plus légère. L’app ne la juge ni ne la planifie.",
+ "Poprzedni tydzień jest oznaczony jako deload.": "La semaine précédente est marquée comme décharge.",
+ "D — tydzień oznaczony jako deload.": "D — semaine marquée comme décharge."
 }

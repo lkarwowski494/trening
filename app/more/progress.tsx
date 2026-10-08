@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { ScrollView, View } from 'react-native';
 import { useLocalSearchParams } from 'expo-router';
 import { Screen, Muted, Txt, Chip, Input, Empty, H2 } from '@/components/ui';
-import { useTick, exById, setSummary, fmtDate, fmtSec, fmtDist, isBW, getState } from '@/lib/store';
+import { isDeloadWeek, useTick, exById, setSummary, fmtDate, fmtSec, fmtDist, isBW, getState } from '@/lib/store';
 import { sessionsFor, recordsFor, hasHistory, chartKeysFor, totalKind, fmtTotal, weeklyTotals, hasAnyHistory, weeklySetsByMuscle, weeklyVolumeByMuscle, thisMonday, WEEKLY_SETS_MARK, type ChartKey } from '@/lib/stats';
 import { MUSCLES } from '@/lib/seed';
 import { LineChart, BarChart, TIME_STEPS } from '@/components/Chart';
@@ -39,10 +39,10 @@ export default function Progress() {
         {any ? <>
           <PeriodSummary />
           <H2>{t('Objętość tygodniowo ({u})', { u: wu() })}</H2>
-          <BarChart bars={weeks.map(w => ({ label: short(w.weekStart), value: volOut(w.volume) }))} fmt={v => v >= 1000 ? `${fmtNum(v / 1000, 1)}k` : `${v}`} />
+          <BarChart bars={weeks.map(w => ({ label: short(w.weekStart) + (isDeloadWeek(w.weekStart) ? ' D' : ''), value: volOut(w.volume) }))} fmt={v => v >= 1000 ? `${fmtNum(v / 1000, 1)}k` : `${v}`} />
           <H2 style={{ marginTop: 14 }}>{t('Serie robocze tygodniowo')}</H2>
-          <BarChart bars={weeks.map(w => ({ label: short(w.weekStart), value: w.sets }))} fmt={v => `${v}`} height={110} />
-          <Muted style={{ fontSize: 12, marginTop: 4, marginBottom: 14 }}>{t('Tygodnie od poniedziałku. Objętość = ciężar × powtórzenia × mnożnik ćwiczenia; rozgrzewka poza.')}</Muted>
+          <BarChart bars={weeks.map(w => ({ label: short(w.weekStart) + (isDeloadWeek(w.weekStart) ? ' D' : ''), value: w.sets }))} fmt={v => `${v}`} height={110} />
+          <Muted style={{ fontSize: 12, marginTop: 4, marginBottom: 14 }}>{t('Tygodnie od poniedziałku. Objętość = ciężar × powtórzenia × mnożnik ćwiczenia; rozgrzewka poza.')}{weeks.some(w => isDeloadWeek(w.weekStart)) ? ' ' + t('D — tydzień oznaczony jako deload.') : ''}</Muted>
           <H2>{t('Serie per partia — ten tydzień vs poprzedni')}</H2>
           <MuscleCompare cur={weeklySetsByMuscle(thisMonday())} prev={weeklySetsByMuscle(thisMonday(-1))} fmt={v => fmtNum(v, 1)} mark={WEEKLY_SETS_MARK} />
           <Muted style={{ fontSize: 12, marginTop: 4 }}>{t('Kreska = {n} serii na partię w tygodniu. Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; każdy trening siłowy daje przyrost w porównaniu z brakiem treningu. Uproszczenie: serie pomocnicze liczymy po 0,5.', { n: WEEKLY_SETS_MARK })}</Muted>

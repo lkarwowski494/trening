@@ -897,5 +897,9 @@
  "Skala wysiłku": "Anstrengelsesskala",
  "RIR — powtórzenia w zapasie: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR; Zourdos i in., JSCR 2016). Zapisane wartości przeliczają się przy zmianie skali.": "RIR — repetisjoner i reserve: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR; Zourdos mfl., JSCR 2016). Lagrede verdier regnes om når du bytter skala.",
  "Kreska = {n} serii na partię w tygodniu. Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; każdy trening siłowy daje przyrost w porównaniu z brakiem treningu. Uproszczenie: serie pomocnicze liczymy po 0,5.": "Strek = {n} sett per muskelgruppe per uke. ACSM-standpunkt 2026: med minst {n} sett per muskelgruppe per uke var muskelveksten større enn ved lavere volum; all styrketrening bygger muskler sammenlignet med ingen trening. Forenkling: sekundære sett teller 0,5.",
- "co najmniej {n}": "minst {n}"
+ "co najmniej {n}": "minst {n}",
+ "Tydzień deload": "Deload-uke",
+ "Twoje oznaczenie, np. lżejszy tydzień. Aplikacja go nie ocenia ani nie planuje.": "Din egen merking, f.eks. en lettere uke. Appen vurderer eller planlegger den ikke.",
+ "Poprzedni tydzień jest oznaczony jako deload.": "Forrige uke er merket som deload.",
+ "D — tydzień oznaczony jako deload.": "D — uke merket som deload."
 }

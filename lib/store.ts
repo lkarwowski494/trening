@@ -325,6 +325,8 @@ export function migrate(raw: any): State {
     ...fixLocations(s, stamp, raw.settings?.language), /* P-003 (schemat 14): bez tego biała lista gubiła miejsca przy każdym starcie i imporcie */
   };
   if (raw.equipFill !== GYM_FILL.rev) { for (const l of raw.settings.locations) fillGym(l, raw.settings.unit); raw.equipFill = GYM_FILL.rev; } /* decyzja 05.10.2026 (1.a): raz */
+  /* pakiet C: tygodnie deload — daty poniedziałków, bez powtórzeń, posortowane, najwyżej 10 lat; pusta lista znika (dane sprzed zmiany 1:1); nie `arr` — ta przepuszcza tylko obiekty */
+  { const u = [...new Set((Array.isArray(raw.deloadWeeks) ? raw.deloadWeeks : []).filter((x: unknown) => typeof x === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(x) && new Date(+x.slice(0, 4), +x.slice(5, 7) - 1, +x.slice(8, 10)).getDay() === 1))].sort().slice(-520) as string[]; if (u.length) raw.deloadWeeks = u; else delete raw.deloadWeeks; }
   if (raw.optFill !== OPT_FILL.rev) { for (const l of raw.settings.locations) fillOpts(l); raw.optFill = OPT_FILL.rev; } /* bieżnia: nachylenie (05.10.2026), raz */
   raw.ownerId = owner;
   if (!Number.isFinite(raw.v)) raw.v = 2; if (raw.metaUpdatedAt != null && tsOf(raw.metaUpdatedAt) == null) delete raw.metaUpdatedAt; /* runda 53 */
@@ -1262,6 +1264,15 @@ export function finishWorkout(at?: number): Workout | null {
   normalizeGroups(w.exercises);
   st.workouts.push(w); st.active = null; st.userTouched = true; purgeOrphans(); save(w); flush();
   return w;
+}
+/* ---------- tydzień deload (pakiet C, 08.10.2026): ręczna etykieta tygodnia, bez porad — brak podstaw dla automatycznego deloadu (docs/21 B8) ---------- */
+const mondayKey = (ts: number) => { const d = new Date(ts); return localISODate(new Date(d.getFullYear(), d.getMonth(), d.getDate() - (d.getDay() + 6) % 7)); };
+/** Czy tydzień zawierający `ts` jest oznaczony jako deload. */
+export const isDeloadWeek = (ts: number) => !!S?.deloadWeeks?.includes(mondayKey(ts));
+/** Oznaczenie / zdjęcie oznaczenia tygodnia zawierającego `ts`. */
+export function toggleDeloadWeek(ts: number) {
+  const st = getState(); const k = mondayKey(ts); const cur = st.deloadWeeks ?? [];
+  const next = cur.includes(k) ? cur.filter(x => x !== k) : [...cur, k].sort(); if (next.length) st.deloadWeeks = next; else delete st.deloadWeeks; st.userTouched = true; save();
 }
 /* ---------- pauza treningu (decyzja właściciela 08.10.2026: czas pauzy odejmuje się od czasu trwania) ---------- */
 /** Suma pauz w ms, łącznie z trwającą (do `now`). */

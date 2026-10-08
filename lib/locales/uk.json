@@ -897,5 +897,9 @@
  "Skala wysiłku": "Шкала зусилля",
  "RIR — powtórzenia w zapasie: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR; Zourdos i in., JSCR 2016). Zapisane wartości przeliczają się przy zmianie skali.": "RIR — повторення в запасі: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR; Zourdos та ін., JSCR 2016). Збережені значення перераховуються при зміні шкали.",
  "Kreska = {n} serii na partię w tygodniu. Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; każdy trening siłowy daje przyrost w porównaniu z brakiem treningu. Uproszczenie: serie pomocnicze liczymy po 0,5.": "Риска = {n} підходів на групу м’язів за тиждень. Позиція ACSM 2026: за щонайменше {n} підходів на групу м’язів на тиждень приріст м’язів був більшим, ніж за меншого обсягу; будь-яке силове тренування дає приріст порівняно з відсутністю тренувань. Спрощення: допоміжні підходи рахуємо як 0,5.",
- "co najmniej {n}": "щонайменше {n}"
+ "co najmniej {n}": "щонайменше {n}",
+ "Tydzień deload": "Тиждень розвантаження",
+ "Twoje oznaczenie, np. lżejszy tydzień. Aplikacja go nie ocenia ani nie planuje.": "Ваша позначка, напр. легший тиждень. Застосунок її не оцінює і не планує.",
+ "Poprzedni tydzień jest oznaczony jako deload.": "Попередній тиждень позначено як розвантаження.",
+ "D — tydzień oznaczony jako deload.": "D — тиждень, позначений як розвантаження."
 }

@@ -897,5 +897,9 @@
  "Skala wysiłku": "Κλίμακα προσπάθειας",
  "RIR — powtórzenia w zapasie: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR; Zourdos i in., JSCR 2016). Zapisane wartości przeliczają się przy zmianie skali.": "RIR — επαναλήψεις σε απόθεμα: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR· Zourdos κ.ά., JSCR 2016). Οι αποθηκευμένες τιμές μετατρέπονται όταν αλλάζεις κλίμακα.",
  "Kreska = {n} serii na partię w tygodniu. Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; każdy trening siłowy daje przyrost w porównaniu z brakiem treningu. Uproszczenie: serie pomocnicze liczymy po 0,5.": "Γραμμή = {n} σετ ανά μυϊκή ομάδα την εβδομάδα. Θέση ACSM 2026: με τουλάχιστον {n} σετ ανά μυϊκή ομάδα την εβδομάδα η μυϊκή ανάπτυξη ήταν μεγαλύτερη από ό,τι με μικρότερο όγκο· κάθε προπόνηση με αντιστάσεις αυξάνει τον μυ σε σύγκριση με καμία προπόνηση. Απλοποίηση: τα βοηθητικά σετ μετρούν 0,5.",
- "co najmniej {n}": "τουλάχιστον {n}"
+ "co najmniej {n}": "τουλάχιστον {n}",
+ "Tydzień deload": "Εβδομάδα αποφόρτισης",
+ "Twoje oznaczenie, np. lżejszy tydzień. Aplikacja go nie ocenia ani nie planuje.": "Δική σου σήμανση, π.χ. μια πιο ελαφριά εβδομάδα. Η εφαρμογή δεν την αξιολογεί ούτε την προγραμματίζει.",
+ "Poprzedni tydzień jest oznaczony jako deload.": "Η προηγούμενη εβδομάδα έχει σημανθεί ως αποφόρτιση.",
+ "D — tydzień oznaczony jako deload.": "D — εβδομάδα σημασμένη ως αποφόρτιση."
 }

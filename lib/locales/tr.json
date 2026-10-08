@@ -897,5 +897,9 @@
  "Skala wysiłku": "Efor ölçeği",
  "RIR — powtórzenia w zapasie: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR; Zourdos i in., JSCR 2016). Zapisane wartości przeliczają się przy zmianie skali.": "RIR — yedekte kalan tekrar: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR; Zourdos ve ark., JSCR 2016). Kayıtlı değerler ölçek değişince dönüştürülür.",
  "Kreska = {n} serii na partię w tygodniu. Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; każdy trening siłowy daje przyrost w porównaniu z brakiem treningu. Uproszczenie: serie pomocnicze liczymy po 0,5.": "Çizgi = kas grubu başına haftada {n} set. ACSM 2026 tutum bildirgesi: kas grubu başına haftada en az {n} set ile kas gelişimi daha düşük hacme göre daha büyüktü; her direnç antrenmanı, hiç antrenman yapmamaya kıyasla kas geliştirir. Basitleştirme: yardımcı setler 0,5 sayılır.",
- "co najmniej {n}": "en az {n}"
+ "co najmniej {n}": "en az {n}",
+ "Tydzień deload": "Deload haftası",
+ "Twoje oznaczenie, np. lżejszy tydzień. Aplikacja go nie ocenia ani nie planuje.": "Kendi işaretin, ör. daha hafif bir hafta. Uygulama bunu değerlendirmez ya da planlamaz.",
+ "Poprzedni tydzień jest oznaczony jako deload.": "Önceki hafta deload olarak işaretli.",
+ "D — tydzień oznaczony jako deload.": "D — deload olarak işaretli hafta."
 }

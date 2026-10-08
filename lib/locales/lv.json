@@ -897,5 +897,9 @@
  "Skala wysiłku": "Piepūles skala",
  "RIR — powtórzenia w zapasie: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR; Zourdos i in., JSCR 2016). Zapisane wartości przeliczają się przy zmianie skali.": "RIR — atkārtojumi rezervē: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR; Zourdos u. c., JSCR 2016). Saglabātās vērtības tiek pārrēķinātas, mainot skalu.",
  "Kreska = {n} serii na partię w tygodniu. Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; każdy trening siłowy daje przyrost w porównaniu z brakiem treningu. Uproszczenie: serie pomocnicze liczymy po 0,5.": "Līnija = {n} sērijas uz muskuļu grupu nedēļā. ACSM 2026 nostāja: ar vismaz {n} sērijām uz muskuļu grupu nedēļā muskuļu pieaugums bija lielāks nekā ar mazāku apjomu; jebkurš spēka treniņš palielina muskuļus salīdzinājumā ar netrenēšanos. Vienkāršojums: palīgsērijas skaitām kā 0,5.",
- "co najmniej {n}": "vismaz {n}"
+ "co najmniej {n}": "vismaz {n}",
+ "Tydzień deload": "Atslodzes nedēļa",
+ "Twoje oznaczenie, np. lżejszy tydzień. Aplikacja go nie ocenia ani nie planuje.": "Jūsu atzīme, piem., vieglāka nedēļa. Lietotne to nevērtē un neplāno.",
+ "Poprzedni tydzień jest oznaczony jako deload.": "Iepriekšējā nedēļa ir atzīmēta kā atslodzes nedēļa.",
+ "D — tydzień oznaczony jako deload.": "D — atslodzes nedēļa."
 }

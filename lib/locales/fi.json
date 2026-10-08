@@ -897,5 +897,9 @@
  "Skala wysiłku": "Rasitusasteikko",
  "RIR — powtórzenia w zapasie: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR; Zourdos i in., JSCR 2016). Zapisane wartości przeliczają się przy zmianie skali.": "RIR — toistoja varastossa: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR; Zourdos ym., JSCR 2016). Tallennetut arvot muunnetaan, kun vaihdat asteikkoa.",
  "Kreska = {n} serii na partię w tygodniu. Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; każdy trening siłowy daje przyrost w porównaniu z brakiem treningu. Uproszczenie: serie pomocnicze liczymy po 0,5.": "Viiva = {n} sarjaa lihasryhmää kohden viikossa. ACSM:n kannanotto 2026: vähintään {n} sarjalla lihasryhmää kohden viikossa lihaskasvu oli suurempaa kuin pienemmällä volyymilla; mikä tahansa voimaharjoittelu kasvattaa lihasta verrattuna harjoittelemattomuuteen. Yksinkertaistus: avustavat sarjat lasketaan 0,5:nä.",
- "co najmniej {n}": "vähintään {n}"
+ "co najmniej {n}": "vähintään {n}",
+ "Tydzień deload": "Kevennysviikko",
+ "Twoje oznaczenie, np. lżejszy tydzień. Aplikacja go nie ocenia ani nie planuje.": "Oma merkintäsi, esim. kevyempi viikko. Sovellus ei arvioi eikä suunnittele sitä.",
+ "Poprzedni tydzień jest oznaczony jako deload.": "Edellinen viikko on merkitty kevennysviikoksi.",
+ "D — tydzień oznaczony jako deload.": "D — kevennysviikoksi merkitty viikko."
 }

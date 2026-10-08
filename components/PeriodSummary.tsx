@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, Pressable } from 'react-native';
 import { useTheme, F } from '@/lib/theme';
 import { t, exName, locale } from '@/lib/i18n';
-import { fmtSec } from '@/lib/store';
+import { fmtSec, isDeloadWeek, toggleDeloadWeek, useTick } from '@/lib/store';
 import { fmtVol } from '@/lib/units';
 import { periodSummary, periodTitle, type PeriodKind } from '@/lib/period';
 import { Chip, H2, Muted, Txt } from '@/components/ui';
@@ -15,7 +15,7 @@ import { setsByMuscle } from '@/lib/stats';
  */
 export function PeriodSummary() {
   const th = useTheme(); const [kind, setKind] = useState<PeriodKind>('week'); const [offset, setOffset] = useState(0);
-  const s = periodSummary(kind, offset);
+  useTick(); const s = periodSummary(kind, offset); const deload = kind === 'week' && isDeloadWeek(s.start); const prevDeload = kind === 'week' && isDeloadWeek(s.start - 86400e3);
   const pick = (k: PeriodKind) => { setKind(k); setOffset(0); };
   const arrow = (label: string, glyph: string, delta: number, disabled = false) => (
     <Pressable accessibilityRole="button" accessibilityLabel={label} accessibilityState={{ disabled }} disabled={disabled} onPress={() => setOffset(o => o + delta)} hitSlop={8}
@@ -41,6 +41,11 @@ export function PeriodSummary() {
         <Text accessibilityRole="header" maxFontSizeMultiplier={1.3} style={{ color: th.text, fontSize: 16, fontFamily: F.heavy, flexShrink: 1, textAlign: 'center' }}>{periodTitle(kind, s.start)}</Text>
         {arrow(t('Następny okres'), '›', 1, offset >= 0)}
       </View>
+      {kind === 'week' ? <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 8, flexWrap: 'wrap' }}>
+        <Chip label={t('Tydzień deload')} on={deload} toggle onPress={() => toggleDeloadWeek(s.start)} />
+        <Muted style={{ fontSize: 12, flexShrink: 1 }}>{t('Twoje oznaczenie, np. lżejszy tydzień. Aplikacja go nie ocenia ani nie planuje.')}</Muted>
+      </View> : null}
+      {prevDeload ? <Muted style={{ fontSize: 12, marginBottom: 6 }}>{t('Poprzedni tydzień jest oznaczony jako deload.')}</Muted> : null}
       <View style={{ padding: 12, borderRadius: 10, backgroundColor: th.surface2, gap: 6 }}>
         {rows.map(([l, v, p]) => (
           <View key={l} accessible accessibilityLabel={t('{label}: {v}, poprzednio {p}', { label: l, v, p })} style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'baseline' }}>

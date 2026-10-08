@@ -897,5 +897,9 @@
  "Skala wysiłku": "Pastangų skalė",
  "RIR — powtórzenia w zapasie: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR; Zourdos i in., JSCR 2016). Zapisane wartości przeliczają się przy zmianie skali.": "RIR — atsarginiai pakartojimai: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR; Zourdos ir kt., JSCR 2016). Išsaugotos reikšmės perskaičiuojamos pakeitus skalę.",
  "Kreska = {n} serii na partię w tygodniu. Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; każdy trening siłowy daje przyrost w porównaniu z brakiem treningu. Uproszczenie: serie pomocnicze liczymy po 0,5.": "Linija = {n} priėjimų raumenų grupei per savaitę. ACSM 2026 pozicija: atliekant bent {n} priėjimų raumenų grupei per savaitę raumenys augo labiau nei esant mažesnei apimčiai; bet kokia jėgos treniruotė didina raumenis, palyginti su netreniravimusi. Supaprastinimas: pagalbiniai priėjimai skaičiuojami kaip 0,5.",
- "co najmniej {n}": "bent {n}"
+ "co najmniej {n}": "bent {n}",
+ "Tydzień deload": "Iškrovos savaitė",
+ "Twoje oznaczenie, np. lżejszy tydzień. Aplikacja go nie ocenia ani nie planuje.": "Jūsų žymė, pvz., lengvesnė savaitė. Programa jos nevertina ir neplanuoja.",
+ "Poprzedni tydzień jest oznaczony jako deload.": "Ankstesnė savaitė pažymėta kaip iškrovos.",
+ "D — tydzień oznaczony jako deload.": "D — iškrovos savaitė."
 }

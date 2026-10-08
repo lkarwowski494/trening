@@ -897,5 +897,9 @@
  "Skala wysiłku": "Anstrengungsskala",
  "RIR — powtórzenia w zapasie: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR; Zourdos i in., JSCR 2016). Zapisane wartości przeliczają się przy zmianie skali.": "RIR — Wiederholungen in Reserve: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR; Zourdos u. a., JSCR 2016). Gespeicherte Werte werden beim Wechsel der Skala umgerechnet.",
  "Kreska = {n} serii na partię w tygodniu. Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; każdy trening siłowy daje przyrost w porównaniu z brakiem treningu. Uproszczenie: serie pomocnicze liczymy po 0,5.": "Linie = {n} Sätze pro Muskelgruppe pro Woche. ACSM-Positionspapier 2026: Bei mindestens {n} Sätzen pro Muskelgruppe und Woche war der Muskelzuwachs größer als bei geringerem Volumen; jedes Krafttraining baut Muskeln auf im Vergleich zu keinem Training. Vereinfachung: Nebensätze zählen als 0,5.",
- "co najmniej {n}": "mindestens {n}"
+ "co najmniej {n}": "mindestens {n}",
+ "Tydzień deload": "Deload-Woche",
+ "Twoje oznaczenie, np. lżejszy tydzień. Aplikacja go nie ocenia ani nie planuje.": "Ihre eigene Markierung, z. B. eine leichtere Woche. Die App bewertet oder plant sie nicht.",
+ "Poprzedni tydzień jest oznaczony jako deload.": "Die vorherige Woche ist als Deload markiert.",
+ "D — tydzień oznaczony jako deload.": "D — als Deload markierte Woche."
 }

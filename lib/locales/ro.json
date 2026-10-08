@@ -897,5 +897,9 @@
  "Skala wysiłku": "Scala efortului",
  "RIR — powtórzenia w zapasie: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR; Zourdos i in., JSCR 2016). Zapisane wartości przeliczają się przy zmianie skali.": "RIR — repetări în rezervă: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR; Zourdos et al., JSCR 2016). Valorile salvate se convertesc la schimbarea scalei.",
  "Kreska = {n} serii na partię w tygodniu. Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; każdy trening siłowy daje przyrost w porównaniu z brakiem treningu. Uproszczenie: serie pomocnicze liczymy po 0,5.": "Linie = {n} serii pe grupă musculară pe săptămână. Poziția ACSM 2026: cu cel puțin {n} serii pe grupă musculară pe săptămână, creșterea musculară a fost mai mare decât la un volum mai mic; orice antrenament de forță crește mușchiul față de lipsa antrenamentului. Simplificare: seriile secundare contează 0,5.",
- "co najmniej {n}": "cel puțin {n}"
+ "co najmniej {n}": "cel puțin {n}",
+ "Tydzień deload": "Săptămână de descărcare",
+ "Twoje oznaczenie, np. lżejszy tydzień. Aplikacja go nie ocenia ani nie planuje.": "Eticheta ta, de ex. o săptămână mai ușoară. Aplicația nu o evaluează și nu o planifică.",
+ "Poprzedni tydzień jest oznaczony jako deload.": "Săptămâna anterioară este marcată ca descărcare.",
+ "D — tydzień oznaczony jako deload.": "D — săptămână marcată ca descărcare."
 }

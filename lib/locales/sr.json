@@ -897,5 +897,9 @@
  "Skala wysiłku": "Скала напора",
  "RIR — powtórzenia w zapasie: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR; Zourdos i in., JSCR 2016). Zapisane wartości przeliczają się przy zmianie skali.": "RIR — понављања у резерви: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR; Zourdos и сар., JSCR 2016). Сачуване вредности се прерачунавају при промени скале.",
  "Kreska = {n} serii na partię w tygodniu. Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; każdy trening siłowy daje przyrost w porównaniu z brakiem treningu. Uproszczenie: serie pomocnicze liczymy po 0,5.": "Црта = {n} серија по мишићној групи недељно. Став ACSM 2026: уз најмање {n} серија по мишићној групи недељно раст мишића био је већи него уз мањи волумен; сваки тренинг снаге повећава мишиће у односу на нетренирање. Поједностављење: помоћне серије рачунамо као 0,5.",
- "co najmniej {n}": "најмање {n}"
+ "co najmniej {n}": "најмање {n}",
+ "Tydzień deload": "Недеља растерећења",
+ "Twoje oznaczenie, np. lżejszy tydzień. Aplikacja go nie ocenia ani nie planuje.": "Твоја ознака, нпр. лакша недеља. Апликација је не оцењује нити планира.",
+ "Poprzedni tydzień jest oznaczony jako deload.": "Претходна недеља је означена као растерећење.",
+ "D — tydzień oznaczony jako deload.": "D — недеља означена као растерећење."
 }

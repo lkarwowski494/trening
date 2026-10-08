@@ -541,6 +541,10 @@
   "plural": true
  },
  {
+  "pl": "D — tydzień oznaczony jako deload.",
+  "en": "D — week marked as a deload."
+ },
+ {
   "pl": "dalej: {name}",
   "en": "next: {name}"
  },
@@ -2090,6 +2094,10 @@
   "en": "Previous period"
  },
  {
+  "pl": "Poprzedni tydzień jest oznaczony jako deload.",
+  "en": "The previous week is marked as a deload."
+ },
+ {
   "pl": "Poprzednich danych nie dało się odczytać",
   "en": "Your previous data could not be read"
  },
@@ -2926,8 +2934,16 @@
   "en": "triceps"
  },
  {
+  "pl": "Twoje oznaczenie, np. lżejszy tydzień. Aplikacja go nie ocenia ani nie planuje.",
+  "en": "Your own label, e.g. a lighter week. The app does not judge or plan it."
+ },
+ {
   "pl": "Tydzień",
   "en": "Week"
+ },
+ {
+  "pl": "Tydzień deload",
+  "en": "Deload week"
  },
  {
   "pl": "Tygodnie od poniedziałku. Objętość = ciężar × powtórzenia × mnożnik ćwiczenia; rozgrzewka poza.",

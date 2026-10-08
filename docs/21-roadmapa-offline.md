@@ -107,7 +107,7 @@ Przywrócenie: `git revert` commitu odwracającego (zapis w docs/18, 07.10 ok. 1
 | Funkcja | Uwagi | Twierdzenie dziedzinowe? |
 |---|---|---|
 | Import CSV ze Strong i Hevy — **odłożony (07.10.2026)**; format Stronga niżej | Strong nie importuje nawet własnego CSV; Hevy importuje ze Strong — https://help.hevyapp.com/hc/en-us/articles/38001424401943 | nie |
-| Pole RIR obok RPE | skala: RPE 10 = 0 RIR, RPE 9 = 1 RIR (Zourdos 2016, streszczenie: https://pubmed.ncbi.nlm.nih.gov/26049792/) | tak — B1 |
+| Pole RIR obok RPE — **zrobione 08.10.2026** (skala RPE/RIR w ustawieniach) | skala: RPE 10 = 0 RIR, RPE 9 = 1 RIR (Zourdos 2016, streszczenie: https://pubmed.ncbi.nlm.nih.gov/26049792/) | tak — B1 |
 | Kalkulator rozgrzewki | schemat ustawia użytkownik albo nazwany „przykładem” | **[OTWARTE]** — brak źródła schematu |
 | Pomiary ciała + odczyt masy ciała z Apple Health | wymaga aktualizacji `@kingstinct/react-native-healthkit` 8 → 16 (osobne wydanie, nie razem ze zmianą schematu — CLAUDE.md) | siła względna = arytmetyka |
 | Raport tygodnia / miesiąca (podsumowanie po treningu i okresowe) — **zrobione 08.10.2026** (Postępy → Podsumowanie) | | nie, jeśli tylko liczby użytkownika |
