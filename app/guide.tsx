@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { ScrollView, View, Pressable } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Screen, Muted, Txt, Btn } from '@/components/ui';
-import { useTheme, F } from '@/lib/theme';
+import { useTheme, F, NUM_SCALE_MAX } from '@/lib/theme';
 import { useTick } from '@/lib/store';
 import { GUIDE, guideSeen, guideProgress, markGuideSeen } from '@/lib/guide';
-import { t } from '@/lib/i18n';
+import { t, lang } from '@/lib/i18n';
 
 /* Przewodnik (decyzja właściciela 08.10.2026, wariant A): tematy rozwijane w miejscu, kroki, „Pokaż” otwiera ekran; przeczytane — ✓. Treść: lib/guide.ts. */
 export default function GuideScreen() {
@@ -17,10 +17,10 @@ export default function GuideScreen() {
       <Muted style={{ fontSize: 13, marginBottom: 10 }}>{t('Przeczytane: {n} z {m}', { n: p.seen, m: p.total })}</Muted>
       {GUIDE.map(g => { const on = open === g.id; const done = seen.includes(g.id); return (
         <View key={g.id} testID={`guide-${g.id}`} style={{ marginBottom: 8, borderRadius: 10, borderWidth: 1, borderColor: th.line, backgroundColor: th.surface }}>
-          <Pressable accessibilityRole="button" accessibilityState={{ expanded: on }} accessibilityLabel={`${g.title()}, ${done ? t('przeczytane') : t('nieprzeczytane')}`}
+          <Pressable accessibilityLanguage={lang()} accessibilityRole="button" accessibilityState={{ expanded: on }} accessibilityLabel={`${g.title()}, ${done ? t('przeczytane') : t('nieprzeczytane')}`}
             onPress={() => { if (!on) markGuideSeen(g.id); setOpen(on ? null : g.id); }} style={{ flexDirection: 'row', alignItems: 'center', gap: 10, padding: 12, minHeight: 48 }}>
             <View style={{ width: 22, height: 22, borderRadius: 11, alignItems: 'center', justifyContent: 'center', backgroundColor: done ? th.accent : 'transparent', borderWidth: done ? 0 : 1.5, borderColor: th.line }}>
-              {done ? <Txt style={{ color: th.accentInk, fontSize: 12, fontFamily: F.semibold }}>✓</Txt> : null}
+              {done ? <Txt maxFontSizeMultiplier={NUM_SCALE_MAX} /* A11-07: znak w kółku 22–24 pt */ style={{ color: th.accentInk, fontSize: 12, fontFamily: F.semibold }}>✓</Txt> : null}
             </View>
             <Txt style={{ flex: 1, fontFamily: F.semibold }}>{g.title()}</Txt>
             <Muted>{on ? '▾' : '▸'}</Muted>

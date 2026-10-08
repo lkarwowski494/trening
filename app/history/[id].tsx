@@ -1,21 +1,21 @@
 import React from 'react';
 import { ScrollView, View, Alert } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import { Screen, H1, Muted, Btn, Txt, useOnce } from '@/components/ui';
+import { Screen, H1, Muted, Btn, Txt, useOnce, monoSafe } from '@/components/ui';
 import { beginEdit } from '@/lib/edit';
 import { effortLabel, effortOut, workoutDurSec, getState, useTick, exById, isBW, bandById, loadLabel, fmtDate, fmtTime, fmtDur, fmtSec, fmtDist, volume, deleteWorkout, groupLabels, shortBand, bandA11y, loadLabelShort, blockImpl, shownLoad } from '@/lib/store';
 import { hasTime, hasReps, hasWeight, hasDistance, SET_KIND_LABEL } from '@/lib/seed';
 import { setMarkOf } from '@/lib/live';
 import { prMap } from '@/lib/stats';
 import { useTheme, F } from '@/lib/theme';
-import { t, exName } from '@/lib/i18n';
+import { t, exName, lang } from '@/lib/i18n';
 import { fmtW, fmtVol, fmtNum } from '@/lib/units';
 
 export default function HistoryDetail() {
   const { id } = useLocalSearchParams<{ id: string }>(); useTick(); const router = useRouter(); const th = useTheme(); const once = useOnce(); /* audyt (LOW): podwójne „Edytuj” nie otwiera dwóch edytorów */
   const w = getState().workouts.find(x => x.id === id); if (!w) return <Screen><Muted>{t('Brak sesji.')}</Muted></Screen>;
   const labels = groupLabels(w.exercises); const prs = prMap(w); let wn = 0; // numer serii roboczej
-  const cell = (v: React.ReactNode, flex = 1) => <Txt maxFontSizeMultiplier={1.3} /* jak wiersze serii w treningu (matrix-a11y, 06.10) */ style={{ flex, fontSize: 14, fontFamily: F.mono }}>{v}</Txt>;
+  const cell = (v: React.ReactNode, flex = 1) => <Txt maxFontSizeMultiplier={1.3} /* jak wiersze serii w treningu (matrix-a11y, 06.10) */ style={{ flex, fontSize: 14, fontFamily: F.mono }}>{monoSafe(v) /* A11-11 */}</Txt>;
   return (
     <Screen><ScrollView contentContainerStyle={{ paddingVertical: 10, paddingBottom: 60 }}>
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}><View style={{ flex: 1 }}><H1>{w.templateName || t('Trening')}</H1></View><Btn title={t('Edytuj')} small accessibilityLabel={t('Edytuj sesję')} onPress={once(() => { if (beginEdit(w.id)) router.push(`/history/edit/${encodeURIComponent(w.id)}`); })} /></View>
@@ -35,7 +35,7 @@ export default function HistoryDetail() {
             return (
             <View key={s.id}>
               {/* Runda 50: wiersz czytany przez VoiceOver jako całość „nagłówek: wartość” (wcześniej same liczby). */}
-              <View accessible accessibilityLabel={heads.map((h, k) => `${k === 1 && showW && ex ? loadLabel(ex, impl) : h}: ${spoken[k]}`).join(', ')} style={{ flexDirection: 'row', paddingVertical: 4 }}>{vals.map((v, k) => <React.Fragment key={k}>{cell(v, k === 0 ? 0.5 : undefined)}</React.Fragment>)}</View>
+              <View accessibilityLanguage={lang()} accessible accessibilityLabel={heads.map((h, k) => `${k === 1 && showW && ex ? loadLabel(ex, impl) : h}: ${spoken[k]}`).join(', ')} style={{ flexDirection: 'row', paddingVertical: 4 }}>{vals.map((v, k) => <React.Fragment key={k}>{cell(v, k === 0 ? 0.5 : undefined)}</React.Fragment>)}</View>
               {prs.get(s.id) ? <Muted style={{ fontSize: 12, color: th.band, fontFamily: F.semibold }}>PR: {prs.get(s.id)!.map(k => t(k)).join(', ')}</Muted> : null}
               {s.note ? <Muted style={{ fontSize: 13 }}>{s.note}</Muted> : null}
             </View>); })}

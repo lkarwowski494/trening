@@ -7,7 +7,7 @@ import { getState, useTick, templateGroups, SAVED_PLANS_MAX } from '@/lib/store'
 import { useTheme, F } from '@/lib/theme';
 import { weekPlanDays, setWeekDay, planName, setPlanName, typePlanName, savedPlans, newPlan, setSavedDay, typeSavedName, renamePlan, activatePlan, deletePlan, plansFull, activationNote, savedChanges, hasPlan, type PlanDays } from '@/lib/plan';
 import { askReminderPermission } from '@/lib/planReminder';
-import { t, locale } from '@/lib/i18n';
+import { t, locale, lang } from '@/lib/i18n';
 
 /*
  * Plan tygodnia (kalendarz, decyzja właściciela 08.10.2026, wariant 2A): dla każdego dnia pon…nd szablon albo „Wolne”. Plan powtarza się co tydzień;
@@ -34,7 +34,7 @@ function DayRows({ days, onSet }: { days: PlanDays; onSet: (i: number, id: strin
   const th = useTheme(); const [open, setOpen] = useState<number | null>(null); const groups = templateGroups();
   return <>{days.map((id, i) => { const nm = tplName(id) || t('Wolne'); const isOpen = open === i; return (
     <View key={i} testID={`plan-day-${i}`} style={{ borderBottomWidth: 1, borderBottomColor: th.line }}>
-      <Pressable accessibilityRole="button" accessibilityLabel={`${weekdayName(i)}, ${nm}`} accessibilityHint={t('Wybierz szablon na ten dzień.')} accessibilityState={{ expanded: isOpen }} onPress={() => setOpen(isOpen ? null : i)}
+      <Pressable accessibilityLanguage={lang()} accessibilityRole="button" accessibilityLabel={`${weekdayName(i)}, ${nm}`} accessibilityHint={t('Wybierz szablon na ten dzień.')} accessibilityState={{ expanded: isOpen }} onPress={() => setOpen(isOpen ? null : i)}
         style={({ pressed }) => ({ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', minHeight: 48, gap: 8, opacity: pressed ? 0.6 : 1 })}>
         <Txt style={{ fontFamily: F.semibold }}>{weekdayName(i)}</Txt>
         <Txt style={{ flexShrink: 1, textAlign: 'right', color: tplName(id) ? th.text : th.muted }}>{`${nm} ${isOpen ? '▾' : '›'}`}</Txt>

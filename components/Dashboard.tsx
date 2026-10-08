@@ -2,17 +2,17 @@ import React from 'react';
 import { View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Btn, Muted, Txt, SectionTitle, Item } from '@/components/ui';
-import { useTheme, F } from '@/lib/theme';
+import { useTheme, F, NUM_SCALE_MAX } from '@/lib/theme';
 import { fmtDate, fmtDur, getState, useTick } from '@/lib/store';
 import { weekTiles, lastWorkout, firstSteps } from '@/lib/dashboard';
 import { fmtVol } from '@/lib/units';
-import { t, tp } from '@/lib/i18n';
+import { t, tp, lang } from '@/lib/i18n';
 
 /* Dashboard ekranu Trening (decyzja właściciela 08.10.2026, wariant A) — dane: lib/dashboard.ts. */
 function Tile({ label, value, prev }: { label: string; value: string; prev: string }) {
   const th = useTheme();
   return (
-    <View accessible accessibilityLabel={t('{label}: {v}, poprzedni tydzień {p}', { label, v: value, p: prev })} style={{ flex: 1, padding: 10, borderRadius: 10, backgroundColor: th.surface, borderWidth: 1, borderColor: th.line }}>
+    <View accessibilityLanguage={lang()} accessible accessibilityLabel={t('{label}: {v}, poprzedni tydzień {p}', { label, v: value, p: prev })} style={{ flex: 1, padding: 10, borderRadius: 10, backgroundColor: th.surface, borderWidth: 1, borderColor: th.line }}>
       <Txt maxFontSizeMultiplier={1.4} style={{ fontFamily: F.heavy, fontSize: 20 }}>{value}</Txt>
       <Muted style={{ fontSize: 12 }}>{label}</Muted>
       <Muted style={{ fontSize: 11, marginTop: 2 }}>{t('poprz.: {v}', { v: prev })}</Muted>
@@ -41,9 +41,9 @@ export function FirstSteps() {
   useTick(); const router = useRouter(); const th = useTheme(); const f = firstSteps(); if (!f) return null;
   const live = getState().templates.some(x => !x.archived);
   const step = (done: boolean, n: number, text: string, actions?: React.ReactNode) => (
-    <View key={n} accessible={!actions} accessibilityLabel={`${n}. ${text} ${done ? t('zrobione') : t('do zrobienia')}`} style={{ flexDirection: 'row', gap: 10, paddingVertical: 8 }}>
+    <View accessibilityLanguage={lang()} key={n} accessible={!actions} accessibilityLabel={`${n}. ${text} ${done ? t('zrobione') : t('do zrobienia')}`} style={{ flexDirection: 'row', gap: 10, paddingVertical: 8 }}>
       <View style={{ width: 24, height: 24, borderRadius: 12, alignItems: 'center', justifyContent: 'center', backgroundColor: done ? th.accent : 'transparent', borderWidth: done ? 0 : 1.5, borderColor: th.line }}>
-        <Txt style={{ fontSize: 12, fontFamily: F.semibold, color: done ? th.accentInk : th.muted }}>{done ? '✓' : String(n)}</Txt>
+        <Txt maxFontSizeMultiplier={NUM_SCALE_MAX} /* A11-07: znak w kółku 22–24 pt */ style={{ fontSize: 12, fontFamily: F.semibold, color: done ? th.accentInk : th.muted }}>{done ? '✓' : String(n)}</Txt>
       </View>
       <View style={{ flex: 1, gap: 6 }}><Txt style={{ fontSize: 14, color: done ? th.muted : th.text }}>{text}</Txt>{actions}</View>
     </View>);

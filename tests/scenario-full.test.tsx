@@ -521,7 +521,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     expect(screen.getByText('Push A')).toBeTruthy(); expect(screen.getByText('📍 Dom testowy ▾')).toBeTruthy();
     expect(screen.getByLabelText('Postęp treningu: 0 z 16 serii')).toBeTruthy(); expect(screen.getAllByText('SS A · ')).toHaveLength(2);
     expect(screen.getByText(/8–12 pow\. · superset · przerwa po rundzie 2:00 · 3-1-1/)).toBeTruthy(); /* zakres, superset, przerwa rundy, tempo z ćwiczenia */
-    expect(screen.getByText('Notatka do treningu')).toBeTruthy(); expect(screen.getAllByText('RPE').length).toBeGreaterThan(0); /* RPE włączone w Ustawieniach */
+    expect(screen.getByText('Notatka do treningu')).toBeTruthy(); expect(screen.getAllByText('RPE', { includeHiddenElements: true }).length).toBeGreaterThan(0); /* RPE włączone w Ustawieniach; nagłówek kolumny ukryty przed VoiceOver (audyt 0.10, A11-18) */
     /* zmiana miejsca tylko dla tej sesji: masa ciała → plakietka braku sprzętu; Anuluj; powrót do domu */
     const chipLoc = () => screen.getByLabelText(/^Miejsce treningu: .*\. Tapnij, by zmienić\.$/);
     await tap(chipLoc()); expect((global as any).__sheets.at(-1).opts.options).toEqual(['Pełna siłownia', 'Dom testowy', 'Tylko masa ciała', 'Hotel', 'Anuluj']);

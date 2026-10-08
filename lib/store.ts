@@ -2,7 +2,7 @@ import { deloadSets } from '@/lib/deload-sets';
 import * as SQLite from 'expo-sqlite';
 import * as FileSystem from 'expo-file-system/legacy';
 import { useSyncExternalStore } from 'react';
-import { t, t as tr, tIn, applyLang, detectLang, locale, fold, isLang, lang } from './i18n';
+import { t, t as tr, tIn, applyLang, detectLang, locale, fold, isLang, lang, upper } from './i18n';
 import { applyUnit, wu, wOut, wIn, KG_PER_LB, fmtW, fmtNum, snapLegacyLb } from './units';
 import { applyTheme } from './theme';
 import { seedState, uid, base, defaultModules, defaultSettings, metricFor, loadModeFor, loadMult, blankTimer, musclesFor, hasTime, hasReps, hasWeight, hasDistance, METRICS, DEFAULT_REST, GROUPS, LIB, SCHEMA_VERSION, LOCAL_OWNER, MODULES, SET_KINDS, SINGLE_IMPLEMENT, equipFields, libExercise, LIB_EXTRA_REVS, LIB_EXTRA_REV, LIB_MUSCLE_FIXES, libExtraRevOf, LIB_BASE_NAMES, LOAD_SOURCE_BY_EQUIPMENT, IMPLS, own, type Impl, type SetKind, type Base, type State, type Workout, type WSet, type WExercise, type Exercise, type Template, type TemplateItem, type TemplateAlt, type TRow, type Morning, type Location, type PlanSegment, LIB_KEYS, catalogKey, libKeyFromFields, BODY_MASS_MAX } from './seed';
@@ -587,7 +587,7 @@ export const localISODate = (d: Date = new Date()) => `${d.getFullYear()}-${Stri
 /** Skrót gumy do wąskiej kolumny: pierwsza litera koloru (po tłumaczeniu) + poziom; odporne na pusty kolor. */
 /** Nazwa koloru gumy w języku interfejsu (kolory z zestawu startowego tłumaczone jak nazwy ćwiczeń z biblioteki) — runda 51: ta sama na ekranie Gumy, w treningu, historii i CSV. */
 export const bandColor = (b: { color: string }) => t(b.color || '?');
-export const shortBand = (b?: { color: string; level: number } | null) => b ? ((Array.from(bandColor(b))[0] ?? '?').toUpperCase() || '?') + b.level : '—'; // runda 52: emoji całe
+export const shortBand = (b?: { color: string; level: number } | null) => b ? (upper(Array.from(bandColor(b))[0] ?? '?') || '?') + b.level : '—'; /* A11-02: wielka litera wg języka (tr „İ”, el bez tonosu) */ // runda 52: emoji całe
 /** Pełna nazwa gumy dla VoiceOver (litera z poziomem nic nie mówi). */
 export const bandA11y = (b?: { color: string; level: number } | null) => b ? t('{c}, poziom {n}', { c: bandColor(b), n: b.level }) : t('brak');
 

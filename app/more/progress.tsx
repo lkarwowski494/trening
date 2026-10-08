@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { ScrollView, View } from 'react-native';
 import { useLocalSearchParams } from 'expo-router';
-import { Screen, Muted, Txt, Chip, Input, Empty, H2 } from '@/components/ui';
+import { Screen, Muted, Txt, Chip, Input, Empty, H2, monoSafe } from '@/components/ui';
 import { isDeloadWeek, useTick, exById, setSummary, fmtDate, fmtSec, fmtDist, isBW, getState } from '@/lib/store';
 import { sessionsFor, recordsFor, hasHistory, chartKeysFor, totalKind, fmtTotal, weeklyTotals, hasAnyHistory, weeklySetsByMuscle, weeklyVolumeByMuscle, thisMonday, WEEKLY_SETS_MARK, fmtE1, bwShare, type ChartKey } from '@/lib/stats';
 import { MUSCLES } from '@/lib/seed';
@@ -9,7 +9,7 @@ import { LineChart, BarChart, TIME_STEPS } from '@/components/Chart';
 import { PeriodSummary } from '@/components/PeriodSummary';
 import { useTheme, F } from '@/lib/theme';
 import { hasWeight, hasReps, hasTime, hasDistance } from '@/lib/seed';
-import { t, exName, locale, fold } from '@/lib/i18n';
+import { t, exName, locale, fold, lang } from '@/lib/i18n';
 import { fmtW, fmtVol, volOut, wu, fmtNum } from '@/lib/units';
 
 /*
@@ -87,7 +87,7 @@ export default function Progress() {
         <View style={{ marginTop: 10 }}>{active ? <LineChart points={points} fmt={active.fmt} scale={active.scale} minStep={active.minStep} intOnly={active.intOnly} steps={active.time ? TIME_STEPS : undefined} /> : null}</View>
         {recRows.length ? <View style={{ marginTop: 12, padding: 12, borderRadius: 10, backgroundColor: th.surface2, gap: 6 }}>
           <Muted style={{ fontSize: 12, fontFamily: F.semibold }}>{t('REKORDY')}</Muted>
-          {recRows.map(([l, v]) => <View key={l} style={{ flexDirection: 'row', justifyContent: 'space-between' }}><Muted>{l}</Muted><Txt style={{ fontFamily: F.monoBold, flexShrink: 1, textAlign: 'right', marginLeft: 8 }}>{v}</Txt></View>)}
+          {recRows.map(([l, v]) => <View key={l} style={{ flexDirection: 'row', justifyContent: 'space-between' }}><Muted>{l}</Muted><Txt style={{ fontFamily: F.monoBold, flexShrink: 1, textAlign: 'right', marginLeft: 8 }}>{monoSafe(v, true) /* A11-11 */}</Txt></View>)}
         </View> : null}
         {bwNote ? <Muted style={{ fontSize: 12, marginTop: 6 }}>{bwNote}</Muted> : null}
         <H2 style={{ marginTop: 16 }}>{t('Sesje')}</H2>
@@ -107,7 +107,7 @@ function MuscleCompare({ cur, prev, fmt, mark }: { cur: Record<string, number>; 
   const th = useTheme(); const rows = MUSCLES.filter(mu => (cur[mu] ?? 0) > 0 || (prev[mu] ?? 0) > 0); const max = Math.max(1, mark ?? 0, ...rows.map(mu => Math.max(cur[mu] ?? 0, prev[mu] ?? 0)));
   if (!rows.length) return <Muted style={{ fontSize: 13 }}>{t('Brak serii w tym i poprzednim tygodniu.')}</Muted>;
   return <>{rows.map(mu => { const c = cur[mu] ?? 0, p = prev[mu] ?? 0; return (
-    <View key={mu} style={{ marginBottom: 8 }} accessible accessibilityLabel={`${t(mu)}: ${fmt(c)} (${t('poprz.')} ${fmt(p)})${mark && c >= mark ? ', ' + t('co najmniej {n}', { n: mark }) : ''}`}>
+    <View accessibilityLanguage={lang()} key={mu} style={{ marginBottom: 8 }} accessible accessibilityLabel={`${t(mu)}: ${fmt(c)} (${t('poprz.')} ${fmt(p)})${mark && c >= mark ? ', ' + t('co najmniej {n}', { n: mark }) : ''}`}>
       <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}><Txt style={{ fontSize: 14 }}>{t(mu)}</Txt><Muted style={{ fontSize: 13, fontFamily: F.mono }}>{fmt(c)} <Muted style={{ fontSize: 12 }}>({t('poprz.')} {fmt(p)})</Muted></Muted></View>
       <View style={{ height: 6, backgroundColor: th.line, borderRadius: 3, marginTop: 4 }}>
         <View style={{ width: `${Math.round(100 * c / max)}%`, height: 6, backgroundColor: th.accent, borderRadius: 3 }} />

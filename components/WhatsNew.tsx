@@ -4,7 +4,7 @@ import { useRouter } from 'expo-router';
 import { Btn, H2, Muted, Txt } from '@/components/ui';
 import { useTheme, F } from '@/lib/theme';
 import { WHATS_NEW, whatsNewUnseen, markWhatsNewSeen, type WhatsNewEntry } from '@/lib/whatsnew';
-import { t, locale } from '@/lib/i18n';
+import { t, locale, lang } from '@/lib/i18n';
 
 /* „Co nowego” (decyzja właściciela 08.10.2026): przycisk „i” w lewym górnym rogu ekranu Trening, kropka po aktualizacji, sekcja rozwijana. */
 const entryTitle = (e: WhatsNewEntry) => {
@@ -15,10 +15,10 @@ const entryTitle = (e: WhatsNewEntry) => {
 export function WhatsNewButton({ open, onPress }: { open: boolean; onPress: () => void }) {
   const th = useTheme(); const dot = whatsNewUnseen();
   return (
-    <Pressable testID="whats-new-i" onPress={onPress} hitSlop={8} accessibilityRole="button" accessibilityState={{ expanded: open }}
+    <Pressable accessibilityLanguage={lang()} testID="whats-new-i" onPress={onPress} hitSlop={8} accessibilityRole="button" accessibilityState={{ expanded: open }}
       accessibilityLabel={dot ? t('Co nowego — są nowe zmiany') : t('Co nowego')}
       style={({ pressed }) => ({ width: 32, height: 32, borderRadius: 16, borderWidth: 1.5, borderColor: open ? th.accent : th.line, alignItems: 'center', justifyContent: 'center', opacity: pressed ? 0.7 : 1 })}>
-      <Text maxFontSizeMultiplier={1.2} style={{ color: open ? th.accent : th.text, fontSize: 17, fontFamily: F.semibold }}>i</Text>
+      <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={1.2} style={{ color: open ? th.accent : th.text, fontSize: 17, fontFamily: F.semibold }}>i</Text>
       {dot ? <View testID="whats-new-dot" style={{ position: 'absolute', top: -2, right: -2, width: 10, height: 10, borderRadius: 5, backgroundColor: th.accent, borderWidth: 1.5, borderColor: th.bg }} /> : null}
     </Pressable>
   );
@@ -38,7 +38,7 @@ export function WhatsNewPanel({ onClose }: { onClose: () => void }) {
       <Entry e={cur} />
       {rest.map(e => { const on = older === e.id; return (
         <View key={e.id} style={{ gap: 4 }}>
-          <Pressable onPress={() => setOlder(on ? null : e.id)} accessibilityRole="button" accessibilityState={{ expanded: on }} hitSlop={4} style={{ minHeight: 32, justifyContent: 'center' }}>
+          <Pressable accessibilityLanguage={lang()} onPress={() => setOlder(on ? null : e.id)} accessibilityRole="button" accessibilityState={{ expanded: on }} hitSlop={6} /* A11-15: 32 + 2×6 = 44 pt */ style={{ minHeight: 32, justifyContent: 'center' }}>
             <Muted style={{ fontSize: 13, fontFamily: F.semibold }}>{`${on ? '▾' : '▸'} ${entryTitle(e)}`}</Muted>
           </Pressable>
           {on ? <Entry e={e} /> : null}

@@ -6,7 +6,7 @@ import { getState, useTick, isDeloadWeek, toggleDeloadWeek } from '@/lib/store';
 import { useTheme, F } from '@/lib/theme';
 import { plannedOn, isChanged, setDayPlan, resetDay, addDays, dayKeyOf, suggest, applySuggestion, dayStatus, doneOn, pending, planTplName, hasPlan, RETURN_DAYS, type Suggestion } from '@/lib/plan';
 import { askReminderPermission } from '@/lib/planReminder';
-import { t, locale } from '@/lib/i18n';
+import { t, locale, lang } from '@/lib/i18n';
 import { startTemplate } from '@/lib/start';
 
 /*
@@ -46,7 +46,7 @@ export function DayPanel({ day }: { day: string }) {
 
   /* ---- stan dnia ---- */
   const lines: React.ReactElement[] = [];
-  const link = (key: string, text: string, wid: string) => <Pressable key={key} accessibilityRole="link" accessibilityLabel={text} onPress={() => router.push(`/history/${wid}`)} hitSlop={6} style={({ pressed }) => ({ opacity: pressed ? 0.5 : 1, paddingVertical: 2 })}><Txt style={{ fontSize: 15, color: th.accent, fontFamily: F.semibold }}>{`${text} ›`}</Txt></Pressable>;
+  const link = (key: string, text: string, wid: string) => <Pressable accessibilityLanguage={lang()} key={key} accessibilityRole="link" accessibilityLabel={text} onPress={() => router.push(`/history/${wid}`)} hitSlop={6} style={({ pressed }) => ({ opacity: pressed ? 0.5 : 1, paddingVertical: 2 })}><Txt style={{ fontSize: 15, color: th.accent, fontFamily: F.semibold }}>{`${text} ›`}</Txt></Pressable>;
   const ch = changed ? ` · ${t('zmiana planu')}` : '';
   if (st.status === 'done' || st.status === 'other') doneOn(day).forEach(w => lines.push(link(w.id, st.status === 'done' ? t('Zrobione: {name}', { name: w.templateName || t('Trening') }) : t('Zrobiony inny trening: {name}', { name: w.templateName || t('Trening') }), w.id)));
   if (st.status === 'other' || st.status === 'planned' || st.status === 'missed') lines.push(<Txt key="plan" style={{ fontSize: 15 }}>{(past ? t('Opuszczony: {name}', { name: tplName(id) }) : t('Zaplanowany: {name}', { name: tplName(id) })) + ch}</Txt>);
@@ -54,7 +54,7 @@ export function DayPanel({ day }: { day: string }) {
   else if (changed) lines.push(<Muted key="plan" style={{ fontSize: 13 }}>{t('zmiana planu')}</Muted>);
   if (activeHere) lines.push(<Muted key="active" style={{ fontSize: 13 }}>{t('Trening w toku')}</Muted>);
   const empty = !!tpl && !tpl.items.length && pending(st);
-  if (empty) lines.push(<Pressable key="empty" accessibilityRole="link" onPress={() => router.push(`/template/${tpl!.id}`)}><Muted style={{ fontSize: 13 }}>{t('Szablon jest pusty — dodaj ćwiczenia')}</Muted></Pressable>);
+  if (empty) lines.push(<Pressable accessibilityLanguage={lang()} key="empty" accessibilityRole="link" onPress={() => router.push(`/template/${tpl!.id}`)}><Muted style={{ fontSize: 13 }}>{t('Szablon jest pusty — dodaj ćwiczenia')}</Muted></Pressable>);
 
   /* ---- akcje: główne (najwyżej 3) i „Więcej opcji” ---- */
   const primary: Act[] = []; const extra: Act[] = [];

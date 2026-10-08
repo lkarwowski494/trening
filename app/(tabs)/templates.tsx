@@ -8,7 +8,7 @@ import { getState, useHistTick, exById, newTemplate, templateGroups, archivedTem
 import { removeTemplate, templateUsageText } from '@/lib/plan';
 import type { Template } from '@/lib/seed';
 import { SwipeRow } from '@/components/SwipeRow';
-import { t as tr, exName } from '@/lib/i18n';
+import { t as tr, exName, lang } from '@/lib/i18n';
 
 export default function TemplatesScreen() {
   useHistTick(); const st = getState(); const router = useRouter(); const once = useOnce(); const [showArch, setShowArch] = useState(false); const arch = archivedTemplates();
@@ -21,7 +21,7 @@ export default function TemplatesScreen() {
       <ScrollView>
         {st.templates.length ? <>
           {templateGroups().map(g => <React.Fragment key={g.folder ?? ''}>{g.folder ? <SectionTitle>{g.folder}</SectionTitle> : null}{g.items.map(row)}</React.Fragment>)}
-          {arch.length ? <Pressable accessibilityRole="button" accessibilityLabel={tr('Archiwum ({n})', { n: arch.length })} accessibilityState={{ expanded: showArch }} onPress={() => setShowArch(v => !v)} style={{ paddingVertical: 12 }}><Muted style={{ fontSize: 13 }}>{`${showArch ? '▾' : '▸'} ${tr('Archiwum ({n})', { n: arch.length })}`}</Muted></Pressable> : null}
+          {arch.length ? <Pressable accessibilityLanguage={lang()} accessibilityRole="button" accessibilityLabel={tr('Archiwum ({n})', { n: arch.length })} accessibilityState={{ expanded: showArch }} onPress={() => setShowArch(v => !v)} style={{ paddingVertical: 12 }}><Muted style={{ fontSize: 13 }}>{`${showArch ? '▾' : '▸'} ${tr('Archiwum ({n})', { n: arch.length })}`}</Muted></Pressable> : null}
           {showArch ? arch.map(row) : null}
         </> : <Empty>{tr('Brak szablonów — dodaj pierwszy.')}</Empty>}
       </ScrollView>

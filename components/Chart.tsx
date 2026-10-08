@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, type LayoutChangeEvent } from 'react-native';
 import Svg, { Polyline, Circle, Line, Rect, Text as SvgText } from 'react-native-svg';
 import { useTheme, F } from '@/lib/theme';
-import { t as tr, tp } from '@/lib/i18n';
+import { t as tr, tp, lang } from '@/lib/i18n';
 
 /*
  * Lekkie wykresy na react-native-svg (T-030). Bez bibliotek wykresowych — dwa kształty wystarczą:
@@ -34,7 +34,7 @@ export function LineChart({ points, fmt, height = 180, color, scale = 1, minStep
   const t = useTheme(); const [w, setW] = React.useState(0);
   const onLayout = (e: LayoutChangeEvent) => setW(e.nativeEvent.layout.width);
   const c = color ?? t.accent;
-  if (points.length < 2) return <View onLayout={onLayout} style={{ height, justifyContent: 'center' }}><Text style={{ color: t.muted, textAlign: 'center', fontSize: 13, fontFamily: F.regular }}>{points.length === 1 ? tr('Jedna sesja: {v}. Wykres pojawi się po drugiej.', { v: fmt(points[0].y) }) : tr('Brak danych do wykresu.')}</Text></View>;
+  if (points.length < 2) return <View onLayout={onLayout} style={{ height, justifyContent: 'center' }}><Text accessibilityLanguage={lang()} style={{ color: t.muted, textAlign: 'center', fontSize: 13, fontFamily: F.regular }}>{points.length === 1 ? tr('Jedna sesja: {v}. Wykres pojawi się po drugiej.', { v: fmt(points[0].y) }) : tr('Brak danych do wykresu.')}</Text></View>;
   const padR = 12, padT = 14, padB = 26;
   // Runda 69: podziałki liczone w jednostkach wyświetlanych (lb!), krok nie mniejszy niż rozdzielczość etykiet,
   // dla serii całkowitych (powtórzenia, sekundy) tylko kroki całkowite 1/2/5×10^k — etykiety się nie powtarzają i odpowiadają liniom.
@@ -48,7 +48,7 @@ export function LineChart({ points, fmt, height = 180, color, scale = 1, minStep
   // Runda 50: wartości są tylko w SVG — VoiceOver dostaje streszczenie wykresu.
   const a11y = tr('Wykres, {n} {s}: od {a} ({x}) do {b} ({y}), najlepiej {c} ({z}).', { n: points.length, s: tp(points.length, 'sesja|sesje|sesji'), a: fmt(points[0].y), x: points[0].label, b: fmt(last.y), y: last.label, c: fmt(best.y), z: best.label });
   return (
-    <View onLayout={onLayout} style={{ height }} accessible accessibilityRole="image" accessibilityLabel={a11y}>
+    <View accessibilityLanguage={lang()} onLayout={onLayout} style={{ height }} accessible accessibilityRole="image" accessibilityLabel={a11y}>
       {w > 0 ? (
         <Svg width={w} height={height}>
           {ticks.map((v, i) => <React.Fragment key={i}><Line x1={padL} x2={w - padR} y1={Y(v)} y2={Y(v)} stroke={t.line} strokeWidth={1} /><SvgText fontFamily={F.regular} x={padL - 6} y={Y(v) + 4} fill={t.muted} fontSize={10} textAnchor="end">{tickLabels[i]}</SvgText></React.Fragment>)}
@@ -68,7 +68,7 @@ export function BarChart({ bars, fmt, height = 140, color }: { bars: { label: st
   const c = color ?? t.accent; const max = Math.max(1, ...bars.map(b => b.value));
   const padT = 16, padB = 22; const gap = 6; const bw = bars.length ? (w - gap * (bars.length - 1)) / bars.length : 0;
   return (
-    <View onLayout={onLayout} style={{ height }} accessible accessibilityRole="image" accessibilityLabel={tr('Wykres słupkowy: {v}', { v: bars.map(b => `${b.label}: ${fmt(b.value)}`).join(', ') })}>
+    <View accessibilityLanguage={lang()} onLayout={onLayout} style={{ height }} accessible accessibilityRole="image" accessibilityLabel={tr('Wykres słupkowy: {v}', { v: bars.map(b => `${b.label}: ${fmt(b.value)}`).join(', ') })}>
       {w > 0 ? (
         <Svg width={w} height={height}>
           {bars.map((b, i) => { const h = (height - padT - padB) * (b.value / max); const x = i * (bw + gap); const y = height - padB - h; return (

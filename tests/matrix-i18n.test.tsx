@@ -261,6 +261,13 @@ describe('kroje pisma marki (IBM Plex Sans 400/600/700, IBM Plex Mono) mają zna
   test('IBM Plex Sans Bold (duże liczby w widoku skupionym) ma cyfry i znaki liczb (przecinek, kropka, ×, :)', () => {
     expect([...'0123456789,.:×−-'].filter(ch => !BOLD.has(ch))).toEqual([]);
   });
+  /* Audyt 0.10 (A11-11): docs/16 twierdził, że Plex Mono ma greckie litery — nie ma. Litery, których brakuje w Plex Mono, to dokładnie te, które
+   * monoSafe (components/ui.tsx) przełącza na krój tekstu; inne litery (łacina, cyrylica) są w Plex Mono. */
+  test.each([...LANGS])('%s: litery spoza IBM Plex Mono to tylko te, które monoSafe przełącza na Plex Sans (MONO_MISSING)', l => {
+    const { MONO_MISSING } = require('@/components/ui') as typeof import('@/components/ui');
+    expect([l, lettersOf(l).filter(ch => !PLEX.has(ch) && !MONO_MISSING.test(ch)).join('')]).toEqual([l, '']);
+    if (l === 'el') expect(lettersOf(l).filter(ch => /\p{Script=Greek}/u.test(ch)).some(ch => !PLEX.has(ch))).toBe(true); /* fakt z A11-11 przypięty */
+  });
   test('IBM Plex Mono (liczby: czas, ciężar) ma cyfry i znaki liczb we wszystkich regionach (przecinek, kropka, minus U+2212, ×, –, :)', () => {
     expect([...'0123456789,.:−-+×–—…/ ±%'].filter(ch => ch !== ' ' && !PLEX.has(ch))).toEqual([]);
   });
@@ -288,10 +295,38 @@ describe('długie tłumaczenia w miejscach, gdzie tekst może być ucięty', () 
    * numberOfLines=1) ok. 68 pt przy 65 pt miejsca na iPhonie 375 pt → „Entrenamien…”. Na 390+ pt się mieści. Opcje dla właściciela:
    * krótsza etykieta zakładki (np. „Entreno”) albo zostawić (ucięcie tylko na najmniejszych iPhone'ach). */
   if (TAB_KNOWN.length) test.failing.each(TAB_KNOWN)('ZNALEZISKO: %s — etykiety zakładek mieszczą się na ekranie 375 pt', l => { expect([l, tabOverflow(l)]).toEqual([l, []]); });
+  /* Audyt 0.10 (A11-03): ekran 320 pt (SE 2/3, 12/13 mini z Display Zoom) — 54 pt na etykietę; długie tłumaczenia (bg, el, hu, it, lt, lv, ro, uk)
+   * się nie mieszczą, więc etykieta (components/TabIcon.tsx TabLabel) zmniejsza krój do TAB_LABEL_MIN_SCALE zamiast „…”. */
+  test.each([...LANGS])('%s: etykiety zakładek na ekranie 320 pt mieszczą się po zmniejszeniu kroju (adjustsFontSizeToFit, min. skala TabLabel)', l => {
+    const { TAB_LABEL_MIN_SCALE } = require('@/components/TabIcon') as typeof import('@/components/TabIcon'); const avail = 320 / 5 - 2 * 5;
+    expect(TAB_LABEL_MIN_SCALE).toBeGreaterThanOrEqual(0.75); /* 7,5 pt — dolna granica czytelności */
+    expect([l, TABS.map(k => trIn(l, k)).filter(s => SANS.semibold.width(s, 10 * TAB_LABEL_MIN_SCALE) > avail)]).toEqual([l, []]);
+  });
   test.each([...LANGS])('%s: kontrolka „Wygląd” (3 opcje, 14 pt, max 2 linie) — każda opcja mieści się w 2 liniach, także przy powiększeniu 1,3 (limit Segmented)', l => {
     const avail = (W - 2 * 14 - 2 * 1 - 2 * 2) / 3 - 2 * 6; /* Screen 14, ramka 1, padding 2, segItem padding 6 (ui.tsx) */
     const opts = ['Jasny', 'Ciemny', 'Jak w telefonie'].map(k => trIn(l, k));
     for (const scale of [1, 1.3]) expect([l, scale, opts.filter(s => lines(s, x => SANS.semibold.width(x, 14 * scale), avail) > 2)]).toEqual([l, scale, []]);
+  });
+  /* Audyt 0.10 (A11-12): każda kontrolka segmentowa na ekranie 320 pt — opcja jednowyrazowa (1 linia) mieści się po zmniejszeniu do SEG_MIN_SCALE;
+   * opcja z kilku wyrazów: żaden wyraz nie jest szerszy niż opcja (bez łamania w środku wyrazu) i najwyżej 2 linie; przy powiększonym tekście
+   * opcje są jedna pod drugą (components/ui.tsx Segmented) — wyraz mieści się w wierszu przy 200%. */
+  test.each([...LANGS])('%s: wszystkie Segmented (Wygląd, Widok treningu, Cel w generatorze) na ekranie 320 pt — bez łamania wyrazu i bez „…”', l => {
+    const { SEG_MIN_SCALE } = require('@/components/ui') as typeof import('@/components/ui');
+    const SEGS: string[][] = [['Jasny', 'Ciemny', 'Jak w telefonie'], ['Skupiony', 'Lista'], ['Siła', 'Masa', 'Redukcja']];
+    const bad: string[] = [];
+    for (const keys of SEGS) {
+      const avail = (320 - 2 * 14 - 2 * 1 - 2 * 2) / keys.length - 2 * 6; /* Screen 14, ramka 1, padding 2, segItem padding 6 (ui.tsx) */
+      for (const k of keys) {
+        const s = trIn(l, k); const w = (x: string, sc = 1) => SANS.semibold.width(x, 14 * sc);
+        if (!/\s/.test(s.trim())) { if (w(s, SEG_MIN_SCALE) > avail) bad.push(`${s} (1 linia: ${w(s, SEG_MIN_SCALE).toFixed(1)} > ${avail.toFixed(1)})`); continue; }
+        { const long = s.split(/\s+/).filter(x => w(x) > avail); /* zmniejszanie kroju nie chroni przed łamaniem wyrazu w tekście 2-liniowym — wyraz musi się zmieścić w pełnym rozmiarze */ if (long.length) bad.push(`${s} (wyraz ${long.join(', ')})`); }
+        if (lines(s, x => w(x, SEG_MIN_SCALE), avail) > 2) bad.push(`${s} (> 2 linie)`);
+      }
+      /* powiększony tekst: opcje jedna pod drugą na pełnej szerokości, do 200% — żaden wyraz nie szerszy niż wiersz */
+      const full = 320 - 2 * 14 - 2 * 1 - 2 * 2 - 2 * 6;
+      for (const k of keys) for (const x of trIn(l, k).split(/\s+/)) if (SANS.semibold.width(x, 14 * 2) > full) bad.push(`${x} (pionowo, 200%)`);
+    }
+    expect([l, bad]).toEqual([l, []]);
   });
   test('czytnik TTF liczy szerokości jak krój (kontrola: „i” węższe niż „m”, szerokość rośnie liniowo z rozmiarem)', () => {
     const f = SANS.semibold; expect(f.width('i', 10)).toBeLessThan(f.width('m', 10)); expect(f.width('Trening', 20)).toBeCloseTo(2 * f.width('Trening', 10), 6);

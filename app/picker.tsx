@@ -10,7 +10,7 @@ import { uid } from '@/lib/seed';
 import { draftAddExercise, draftOf, draftSwapExercise, swapTargetOk } from '@/lib/edit';
 import { parseSwapTarget } from '@/lib/swap';
 import { GROUPS, GROUP_TO_MUSCLE, hasReps, type Exercise } from '@/lib/seed';
-import { t, exName, locale, fold } from '@/lib/i18n';
+import { t, exName, locale, fold, lang } from '@/lib/i18n';
 
 /** target = 'active' (dodaj do treningu) | 'template:<id>' (dodaj do szablonu) | 'edit:<klucz szkicu>' (edytor historii, docs/12)
  *  | 'swap:active:<id bloku>' (E2: zamiana ćwiczenia bloku treningu w toku — „Cała biblioteka” z arkusza app/swap.tsx)
@@ -20,7 +20,7 @@ export default function PickerScreen() {
   // Runda 26: parametr z linku może być tablicą (powtórzony ?target=) — tylko tekst, inaczej nic nie dodajemy.
   const raw = useLocalSearchParams<{ target?: string | string[] }>().target; const target = typeof raw === 'string' ? raw : ''; const router = useRouter();
   const th = useTheme(); const [q, setQ] = useState(''); const [g, setG] = useState(''); const st = getState(); const chosen = useRef(false);
-  const headerOpts = useMemo(() => ({ headerRight: () => <Pressable accessibilityRole="button" hitSlop={10} onPress={() => { if (chosen.current) return; chosen.current = true; /* weryfikacja: podwójne „Anuluj” zamykało też ekran pod spodem */ if (router.canGoBack()) router.back(); else router.replace('/'); }}><Text style={{ color: th.accent, fontSize: 17, fontFamily: F.regular }}>{t('Anuluj')}</Text></Pressable> }), [th, router]); // eslint-disable-line react-hooks/exhaustive-deps
+  const headerOpts = useMemo(() => ({ headerRight: () => <Pressable accessibilityLanguage={lang()} accessibilityRole="button" hitSlop={10} onPress={() => { if (chosen.current) return; chosen.current = true; /* weryfikacja: podwójne „Anuluj” zamykało też ekran pod spodem */ if (router.canGoBack()) router.back(); else router.replace('/'); }}><Text accessibilityLanguage={lang()} style={{ color: th.accent, fontSize: 17, fontFamily: F.regular }}>{t('Anuluj')}</Text></Pressable> }), [th, router]); // eslint-disable-line react-hooks/exhaustive-deps
   const ql = fold(q.trim());
   // Runda 6: dokładne trafienie nazwy pokazujemy mimo filtra partii — inaczej picker proponował utworzenie duplikatu.
   const exact = (e: Exercise) => !!ql && (fold(e.name) === ql || fold(exName(e)) === ql);

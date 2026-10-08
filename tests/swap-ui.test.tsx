@@ -100,7 +100,7 @@ describe('W1 — ekran treningu i arkusz zamiany', () => {
     await tap(screen.getByLabelText('Zamień ćwiczenie: RDL (hantle/linki)')); await flushAll(20);
     expect(screen.getByText('Ten sam ruch, inny przyrząd')).toBeTruthy();
     await tap(screen.getByLabelText('Inny przyrząd: stacja')); await flushAll(20);
-    expect(blk(0)).toMatchObject({ impl: 'electric', implPinned: true }); expect(screen.getAllByText('kg/str.').length).toBeGreaterThan(0);
+    expect(blk(0)).toMatchObject({ impl: 'electric', implPinned: true }); expect(screen.getAllByText('kg/str.', { includeHiddenElements: true }).length).toBeGreaterThan(0); /* nagłówek kolumny ukryty przed VoiceOver (A11-18) */
     await tap(screen.getByLabelText('Zamień ćwiczenie: RDL (hantle/linki)')); await flushAll(20);
     expect(screen.getByLabelText('Inny przyrząd: hantle')).toBeTruthy(); expect(screen.queryByLabelText('Inny przyrząd: stacja')).toBeNull();
   });

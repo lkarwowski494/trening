@@ -4,7 +4,7 @@
  */
 import { EN } from '@/lib/i18n.en';
 import { LOCALES } from '@/lib/locales';
-import { LANGS, type Lang } from '@/lib/i18n';
+import { LANGS, upper, LOCALE_UPPER, type Lang } from '@/lib/i18n';
 
 const dictOf = (l: Lang): Record<string, string> => l === 'en' ? EN : (LOCALES[l] ?? {});
 const tr = (l: Lang, k: string) => l === 'pl' ? k : dictOf(l)[k] ?? EN[k] ?? k;
@@ -55,6 +55,26 @@ describe('K1 (A11-01): przerwa ≠ pauza w każdym języku', () => {
     for (const k of PAUSE_KEYS) { const v = tr(l, k); if (!pause.test(v) || rest.test(v)) bad.push(`P ${k} → ${v}`); }
     for (const k of MIXED_KEYS) { const v = tr(l, k); if (!pause.test(v) || !rest.test(v)) bad.push(`M ${k} → ${v}`); }
     for (const k of KEYS.filter(x => REST_DAY.test(x))) { const v = tr(l, k); if (pause.test(v)) bad.push(`D ${k} → ${v}`); }
+    expect([l, bad]).toEqual([l, []]);
+  });
+});
+
+describe('K2 (A11-02): upper() — wersaliki z regułami języka zamiast textTransform (iOS: uppercaseString bez języka)', () => {
+  test('el: bez tonosu, dialytika zostaje, „άι/άυ” → „ΑΪ/ΑΫ”; tr: i → İ, ı → I; inne języki jak toUpperCase', () => {
+    expect(upper('Γενικά', 'el')).toBe('ΓΕΝΙΚΑ'); expect(upper('Προπόνηση', 'el')).toBe('ΠΡΟΠΟΝΗΣΗ'); expect(upper('Μάιος', 'el')).toBe('ΜΑΪΟΣ');
+    expect(upper('άυλος', 'el')).toBe('ΑΫΛΟΣ'); expect(upper('είναι', 'el')).toBe('ΕΙΝΑΙ'); expect(upper('ΐ', 'el')).toBe('Ϊ'); expect(upper('σετ ή όχι', 'el')).toBe('ΣΕΤ Ή ΟΧΙ' /* samodzielne „ή” = albo */); expect(upper('κοροϊδεύω', 'el')).toBe('ΚΟΡΟΪΔΕΥΩ');
+    expect(upper('Bildirimler', 'tr')).toBe('BİLDİRİMLER'); expect(upper('ılık', 'tr')).toBe('ILIK');
+    expect(upper('Ogólne', 'pl')).toBe('OGÓLNE'); expect(upper('Maß', 'de')).toBe('MASS'); expect(upper('Ελληνικά', 'en')).toBe('ΕΛΛΗΝΙΚΆ' /* poza el — jak system */); expect(upper('', 'el')).toBe('');
+  });
+  test.each(LANGS.filter(l => !LOCALE_UPPER.includes(l)))('%s: systemowe wersaliki bez języka (iOS textTransform = toUpperCase) dają to samo co reguły języka — textTransform zostaje', l => {
+    const vals = l === 'pl' ? Object.keys(EN) : Object.values(dictOf(l));
+    expect([l, vals.filter(v => v.toUpperCase() !== v.toLocaleUpperCase(l)).slice(0, 5)]).toEqual([l, []]);
+  });
+  test('LOCALE_UPPER = dokładnie języki, w których systemowe wersaliki są błędne (el, tr)', () => {
+    expect(LANGS.filter(l => (l === 'pl' ? Object.keys(EN) : Object.values(dictOf(l))).some(v => v.toUpperCase() !== v.toLocaleUpperCase(l))).sort()).toEqual([...LOCALE_UPPER].sort());
+  });
+  test.each([...LANGS])('%s: każdy tekst słownika — upper() = toLocaleUpperCase(język) z ICU (reguły CLDR)', l => {
+    const bad = Object.values(l === 'pl' ? Object.fromEntries(Object.keys(EN).map(k => [k, k])) : dictOf(l)).filter(v => upper(v, l) !== v.toLocaleUpperCase(l)).slice(0, 5);
     expect([l, bad]).toEqual([l, []]);
   });
 });

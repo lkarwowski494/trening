@@ -8,7 +8,7 @@ import { availability, capsOf, missingLabel } from '@/lib/equipment';
 import { draftOf, useDraftTick, draftSwapExercise, canRestoreExercise, draftRestoreExercise, draftImplChoices, draftSetImpl, swapTargetOk } from '@/lib/edit';
 import { swapCandidates, reasonText, otherImpls, implLabel, parseSwapTarget, SWAP_TOP, SWAP_PAGE, sortOthers } from '@/lib/swap';
 import { afterSwap, confirmUndoSwap } from '@/components/ActiveWorkout';
-import { t, exName, locale, fold } from '@/lib/i18n';
+import { t, exName, locale, fold, lang } from '@/lib/i18n';
 import type { Exercise, Impl, WExercise } from '@/lib/seed';
 
 /**
@@ -25,7 +25,7 @@ export default function SwapScreen() {
   /* „Inne” (decyzja właściciela 04.10.2026): rozwijana lista z filtrami-etykietami partii i miejsca, które da się zdjąć (✕) */
   const [open, setOpen] = useState(false); const [grpOn, setGrpOn] = useState(true); const [locOn, setLocOn] = useState(true); const [q, setQ] = useState(''); const [lim, setLim] = useState(SWAP_PAGE);
   const close = () => { if (router.canGoBack()) router.back(); else router.replace('/'); };
-  const headerOpts = useMemo(() => ({ headerRight: () => <Pressable accessibilityRole="button" hitSlop={10} onPress={() => { if (chosen.current) return; chosen.current = true; close(); }}><Text style={{ color: th.accent, fontSize: 17, fontFamily: F.regular }}>{t('Anuluj')}</Text></Pressable> }), [th, router]); // eslint-disable-line react-hooks/exhaustive-deps
+  const headerOpts = useMemo(() => ({ headerRight: () => <Pressable accessibilityLanguage={lang()} accessibilityRole="button" hitSlop={10} onPress={() => { if (chosen.current) return; chosen.current = true; close(); }}><Text accessibilityLanguage={lang()} style={{ color: th.accent, fontSize: 17, fontFamily: F.regular }}>{t('Anuluj')}</Text></Pressable> }), [th, router]); // eslint-disable-line react-hooks/exhaustive-deps
   const tg = parseSwapTarget(target);
   const d = tg?.kind === 'edit' ? draftOf(tg.key) : undefined; const a = tg?.kind === 'active' ? getState().active : null;
   const w = d ? d.w : a; const e: WExercise | undefined = tg && w ? w.exercises.find(x => x.id === tg.blockId) : undefined; const ex = e ? exById(e.exerciseId) : undefined;
