@@ -194,3 +194,10 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
   sprzęt, wzorzec, metryka i sposób liczenia ciężaru, partie główne/pomocnicze ze źródłami, rekomendacja zakresu (zostaje / niszowe / scalić /
   usunąć). Wyniki: docs/research/25-biblioteka/. Decyzja o zakresie wg zasady z 20:20 (opcja lepsza mimo nakładu pracy); treningi i szablony
   z ćwiczeniami spoza nowego zakresu nie tracą danych (archiwum).
+- 08.10.2026 (ok. 21:30): właściciel — „łatwo edytować któreś ćwiczenie, bo wchodząc w nie od razu mamy możliwość edycji; edycja powinna być
+  wywołana na żądanie, nie przez samo wejście — łatwo o missclick”. Decyzja (zasada z 20:20): **ekran ćwiczenia najpierw do podglądu**
+  (nazwa, partie, sprzęt, sposób logowania, przerwy, notatka, historia i postępy), **„Edytuj” otwiera edycję na szkicu z „Anuluj” / „Zapisz”**
+  — ten sam wzór co edycja sesji w historii (spójność); nowe ćwiczenie („+ Nowe”) od razu w edycji. Ten sam wzór także dla **szablonu**
+  (podgląd „jak trening” ze „Start”, zmiany dopiero po „Edytuj”) — to samo ryzyko przypadkowej zmiany, a szablon otwiera się najczęściej.
+  Ekrany konfiguracji (miejsca, gumy, ustawienia, plan tygodnia) zostają edytowalne od razu — wchodzi się do nich, żeby coś zmienić.
+  Odrzucone: przytrzymanie, by edytować (niewidoczne), osobny ekran bez szkicu (zmiany zapisywane od razu — to samo ryzyko).
