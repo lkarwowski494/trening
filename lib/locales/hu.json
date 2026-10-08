@@ -879,5 +879,13 @@
  "Rekordy w tym okresie": "Rekordok ebben az időszakban",
  "Bez nowych rekordów w tym okresie.": "Nincs új rekord ebben az időszakban.",
  "Brak treningów w tym okresie.": "Nincs edzés ebben az időszakban.",
- "Obok w nawiasie — cały poprzedni okres. Serie robocze bez rozgrzewki; rekordy jak w podsumowaniu treningu.": "Zárójelben — a teljes előző időszak. Munkasorozatok bemelegítés nélkül; rekordok, mint az edzés összesítésében."
+ "Obok w nawiasie — cały poprzedni okres. Serie robocze bez rozgrzewki; rekordy jak w podsumowaniu treningu.": "Zárójelben — a teljes előző időszak. Munkasorozatok bemelegítés nélkül; rekordok, mint az edzés összesítésében.",
+ "Mapa mięśni": "Izomtérkép",
+ "Przód": "Elöl",
+ "Tył": "Hátul",
+ "mniej": "kevesebb",
+ "więcej": "több",
+ "Mapa mięśni: {list}": "Izomtérkép: {list}",
+ "Mapa mięśni: brak serii w tym okresie.": "Izomtérkép: nincs sorozat ebben az időszakban.",
+ "Kolor względem partii z największą liczbą serii w tym okresie (partia główna 1 seria, pomocnicza 0,5). Szare — bez serii.": "Szín a legtöbb sorozatot kapott izomcsoporthoz viszonyítva (fő izomcsoport 1 sorozat, segítő 0,5). Szürke — nincs sorozat."
 }

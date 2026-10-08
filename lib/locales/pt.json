@@ -879,5 +879,13 @@
  "Rekordy w tym okresie": "Recordes neste período",
  "Bez nowych rekordów w tym okresie.": "Sem novos recordes neste período.",
  "Brak treningów w tym okresie.": "Sem treinos neste período.",
- "Obok w nawiasie — cały poprzedni okres. Serie robocze bez rozgrzewki; rekordy jak w podsumowaniu treningu.": "Entre parênteses — todo o período anterior. Séries de trabalho sem aquecimento; recordes como no resumo do treino."
+ "Obok w nawiasie — cały poprzedni okres. Serie robocze bez rozgrzewki; rekordy jak w podsumowaniu treningu.": "Entre parênteses — todo o período anterior. Séries de trabalho sem aquecimento; recordes como no resumo do treino.",
+ "Mapa mięśni": "Mapa muscular",
+ "Przód": "Frente",
+ "Tył": "Costas",
+ "mniej": "menos",
+ "więcej": "mais",
+ "Mapa mięśni: {list}": "Mapa muscular: {list}",
+ "Mapa mięśni: brak serii w tym okresie.": "Mapa muscular: sem séries neste período.",
+ "Kolor względem partii z największą liczbą serii w tym okresie (partia główna 1 seria, pomocnicza 0,5). Szare — bez serii.": "Cor relativa ao grupo com mais séries no período (grupo principal 1 série, secundário 0,5). Cinzento — sem séries."
 }

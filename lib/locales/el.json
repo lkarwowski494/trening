@@ -879,5 +879,13 @@
  "Rekordy w tym okresie": "Ρεκόρ σε αυτή την περίοδο",
  "Bez nowych rekordów w tym okresie.": "Κανένα νέο ρεκόρ σε αυτή την περίοδο.",
  "Brak treningów w tym okresie.": "Καμία προπόνηση σε αυτή την περίοδο.",
- "Obok w nawiasie — cały poprzedni okres. Serie robocze bez rozgrzewki; rekordy jak w podsumowaniu treningu.": "Σε παρένθεση — ολόκληρη η προηγούμενη περίοδος. Σετ εργασίας χωρίς ζέσταμα· ρεκόρ όπως στη σύνοψη της προπόνησης."
+ "Obok w nawiasie — cały poprzedni okres. Serie robocze bez rozgrzewki; rekordy jak w podsumowaniu treningu.": "Σε παρένθεση — ολόκληρη η προηγούμενη περίοδος. Σετ εργασίας χωρίς ζέσταμα· ρεκόρ όπως στη σύνοψη της προπόνησης.",
+ "Mapa mięśni": "Χάρτης μυών",
+ "Przód": "Μπροστά",
+ "Tył": "Πίσω",
+ "mniej": "λιγότερα",
+ "więcej": "περισσότερα",
+ "Mapa mięśni: {list}": "Χάρτης μυών: {list}",
+ "Mapa mięśni: brak serii w tym okresie.": "Χάρτης μυών: κανένα σετ σε αυτή την περίοδο.",
+ "Kolor względem partii z największą liczbą serii w tym okresie (partia główna 1 seria, pomocnicza 0,5). Szare — bez serii.": "Χρώμα σε σχέση με τη μυϊκή ομάδα με τα περισσότερα σετ της περιόδου (κύρια ομάδα 1 σετ, βοηθητική 0,5). Γκρι — χωρίς σετ."
 }

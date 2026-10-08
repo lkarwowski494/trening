@@ -879,5 +879,13 @@
  "Rekordy w tym okresie": "Rekorder i perioden",
  "Bez nowych rekordów w tym okresie.": "Ingen nye rekorder i perioden.",
  "Brak treningów w tym okresie.": "Ingen økter i perioden.",
- "Obok w nawiasie — cały poprzedni okres. Serie robocze bez rozgrzewki; rekordy jak w podsumowaniu treningu.": "I parentes — hele forrige periode. Arbeidssett uten oppvarming; rekorder som i øktoppsummeringen."
+ "Obok w nawiasie — cały poprzedni okres. Serie robocze bez rozgrzewki; rekordy jak w podsumowaniu treningu.": "I parentes — hele forrige periode. Arbeidssett uten oppvarming; rekorder som i øktoppsummeringen.",
+ "Mapa mięśni": "Muskelkart",
+ "Przód": "Forside",
+ "Tył": "Bakside",
+ "mniej": "mindre",
+ "więcej": "mer",
+ "Mapa mięśni: {list}": "Muskelkart: {list}",
+ "Mapa mięśni: brak serii w tym okresie.": "Muskelkart: ingen sett i perioden.",
+ "Kolor względem partii z największą liczbą serii w tym okresie (partia główna 1 seria, pomocnicza 0,5). Szare — bez serii.": "Farge i forhold til muskelgruppen med flest sett i perioden (hovedgruppe 1 sett, sekundær 0,5). Grå — ingen sett."
 }

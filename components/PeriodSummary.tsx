@@ -6,6 +6,8 @@ import { fmtSec } from '@/lib/store';
 import { fmtVol } from '@/lib/units';
 import { periodSummary, periodTitle, type PeriodKind } from '@/lib/period';
 import { Chip, H2, Muted, Txt } from '@/components/ui';
+import { MuscleMap } from '@/components/MuscleMap';
+import { setsByMuscle } from '@/lib/stats';
 
 /*
  * Podsumowanie tygodnia / miesiąca na ekranie Postępy (decyzja właściciela 08.10.2026, lib/period.ts): treningi, serie robocze,
@@ -46,6 +48,7 @@ export function PeriodSummary() {
             <Txt maxFontSizeMultiplier={1.4} style={{ fontFamily: F.monoBold }}>{v} <Muted style={{ fontSize: 12, fontFamily: F.mono }}>({t('poprz.')} {p})</Muted></Txt>
           </View>))}
       </View>
+      <MuscleMap sets={setsByMuscle(s.start, s.end)} />
       <Muted style={{ fontSize: 12, fontFamily: F.semibold, marginTop: 10, marginBottom: 4 }}>{t('Rekordy w tym okresie')}</Muted>
       {s.prs.length ? s.prs.map(({ workoutId, at, pr }) => (
         <View key={workoutId + pr.exercise.id + pr.set.id} style={{ paddingVertical: 4 }}>

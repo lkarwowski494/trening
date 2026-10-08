@@ -879,5 +879,13 @@
  "Rekordy w tym okresie": "Records in deze periode",
  "Bez nowych rekordów w tym okresie.": "Geen nieuwe records in deze periode.",
  "Brak treningów w tym okresie.": "Geen trainingen in deze periode.",
- "Obok w nawiasie — cały poprzedni okres. Serie robocze bez rozgrzewki; rekordy jak w podsumowaniu treningu.": "Tussen haakjes — de hele vorige periode. Werksets zonder warming-up; records zoals in het trainingsoverzicht."
+ "Obok w nawiasie — cały poprzedni okres. Serie robocze bez rozgrzewki; rekordy jak w podsumowaniu treningu.": "Tussen haakjes — de hele vorige periode. Werksets zonder warming-up; records zoals in het trainingsoverzicht.",
+ "Mapa mięśni": "Spierkaart",
+ "Przód": "Voorkant",
+ "Tył": "Achterkant",
+ "mniej": "minder",
+ "więcej": "meer",
+ "Mapa mięśni: {list}": "Spierkaart: {list}",
+ "Mapa mięśni: brak serii w tym okresie.": "Spierkaart: geen sets in deze periode.",
+ "Kolor względem partii z największą liczbą serii w tym okresie (partia główna 1 seria, pomocnicza 0,5). Szare — bez serii.": "Kleur ten opzichte van de spiergroep met de meeste sets in deze periode (hoofdgroep 1 set, secundair 0,5). Grijs — geen sets."
 }

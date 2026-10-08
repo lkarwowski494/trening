@@ -879,5 +879,13 @@
  "Rekordy w tym okresie": "Rekordai šiuo laikotarpiu",
  "Bez nowych rekordów w tym okresie.": "Šiuo laikotarpiu naujų rekordų nėra.",
  "Brak treningów w tym okresie.": "Šiuo laikotarpiu treniruočių nėra.",
- "Obok w nawiasie — cały poprzedni okres. Serie robocze bez rozgrzewki; rekordy jak w podsumowaniu treningu.": "Skliaustuose — visas ankstesnis laikotarpis. Darbiniai priėjimai be apšilimo; rekordai kaip treniruotės suvestinėje."
+ "Obok w nawiasie — cały poprzedni okres. Serie robocze bez rozgrzewki; rekordy jak w podsumowaniu treningu.": "Skliaustuose — visas ankstesnis laikotarpis. Darbiniai priėjimai be apšilimo; rekordai kaip treniruotės suvestinėje.",
+ "Mapa mięśni": "Raumenų žemėlapis",
+ "Przód": "Priekis",
+ "Tył": "Nugara",
+ "mniej": "mažiau",
+ "więcej": "daugiau",
+ "Mapa mięśni: {list}": "Raumenų žemėlapis: {list}",
+ "Mapa mięśni: brak serii w tym okresie.": "Raumenų žemėlapis: šiuo laikotarpiu priėjimų nėra.",
+ "Kolor względem partii z największą liczbą serii w tym okresie (partia główna 1 seria, pomocnicza 0,5). Szare — bez serii.": "Spalva pagal raumenų grupę, turinčią daugiausia priėjimų šiuo laikotarpiu (pagrindinė grupė 1 priėjimas, pagalbinė 0,5). Pilka — be priėjimų."
 }

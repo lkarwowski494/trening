@@ -879,5 +879,13 @@
  "Rekordy w tym okresie": "Rekordi u ovom razdoblju",
  "Bez nowych rekordów w tym okresie.": "Nema novih rekorda u ovom razdoblju.",
  "Brak treningów w tym okresie.": "Nema treninga u ovom razdoblju.",
- "Obok w nawiasie — cały poprzedni okres. Serie robocze bez rozgrzewki; rekordy jak w podsumowaniu treningu.": "U zagradi — cijelo prethodno razdoblje. Radne serije bez zagrijavanja; rekordi kao u sažetku treninga."
+ "Obok w nawiasie — cały poprzedni okres. Serie robocze bez rozgrzewki; rekordy jak w podsumowaniu treningu.": "U zagradi — cijelo prethodno razdoblje. Radne serije bez zagrijavanja; rekordi kao u sažetku treninga.",
+ "Mapa mięśni": "Karta mišića",
+ "Przód": "Sprijeda",
+ "Tył": "Straga",
+ "mniej": "manje",
+ "więcej": "više",
+ "Mapa mięśni: {list}": "Karta mišića: {list}",
+ "Mapa mięśni: brak serii w tym okresie.": "Karta mišića: nema serija u ovom razdoblju.",
+ "Kolor względem partii z największą liczbą serii w tym okresie (partia główna 1 seria, pomocnicza 0,5). Szare — bez serii.": "Boja u odnosu na mišićnu skupinu s najviše serija u razdoblju (glavna skupina 1 serija, pomoćna 0,5). Sivo — bez serija."
 }

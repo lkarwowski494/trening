@@ -879,5 +879,13 @@
  "Rekordy w tym okresie": "Rekordi šajā periodā",
  "Bez nowych rekordów w tym okresie.": "Šajā periodā nav jaunu rekordu.",
  "Brak treningów w tym okresie.": "Šajā periodā nav treniņu.",
- "Obok w nawiasie — cały poprzedni okres. Serie robocze bez rozgrzewki; rekordy jak w podsumowaniu treningu.": "Iekavās — viss iepriekšējais periods. Darba sērijas bez iesildīšanās; rekordi kā treniņa kopsavilkumā."
+ "Obok w nawiasie — cały poprzedni okres. Serie robocze bez rozgrzewki; rekordy jak w podsumowaniu treningu.": "Iekavās — viss iepriekšējais periods. Darba sērijas bez iesildīšanās; rekordi kā treniņa kopsavilkumā.",
+ "Mapa mięśni": "Muskuļu karte",
+ "Przód": "Priekša",
+ "Tył": "Mugura",
+ "mniej": "mazāk",
+ "więcej": "vairāk",
+ "Mapa mięśni: {list}": "Muskuļu karte: {list}",
+ "Mapa mięśni: brak serii w tym okresie.": "Muskuļu karte: šajā periodā nav sēriju.",
+ "Kolor względem partii z największą liczbą serii w tym okresie (partia główna 1 seria, pomocnicza 0,5). Szare — bez serii.": "Krāsa attiecībā pret muskuļu grupu ar visvairāk sērijām periodā (galvenā grupa 1 sērija, palīggrupa 0,5). Pelēks — nav sēriju."
 }

@@ -358,4 +358,12 @@ export const EN: Record<string, string> = {
   'Bez nowych rekordów w tym okresie.': 'No new records in this period.',
   'Brak treningów w tym okresie.': 'No workouts in this period.',
   'Obok w nawiasie — cały poprzedni okres. Serie robocze bez rozgrzewki; rekordy jak w podsumowaniu treningu.': 'In brackets — the whole previous period. Working sets exclude warm-ups; records as in the workout summary.',
+  'Mapa mięśni': 'Muscle map',
+  'Przód': 'Front',
+  'Tył': 'Back',
+  'mniej': 'less',
+  'więcej': 'more',
+  'Mapa mięśni: {list}': 'Muscle map: {list}',
+  'Mapa mięśni: brak serii w tym okresie.': 'Muscle map: no sets in this period.',
+  'Kolor względem partii z największą liczbą serii w tym okresie (partia główna 1 seria, pomocnicza 0,5). Szare — bez serii.': 'Colour relative to the muscle group with the most sets in this period (main group 1 set, secondary 0.5). Grey — no sets.',
 };

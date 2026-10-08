@@ -224,8 +224,12 @@ export const hasAnyHistory = () => getState().workouts.some(w => w.finishedAt);
 
 /** Serie robocze per partia w tygodniu zaczynającym się `weekStart` (główna = 1, pomocnicza = 0,5), jak w Hevy/Boostcamp. */
 export function weeklySetsByMuscle(weekStart: number): Record<string, number> {
-  const out: Record<string, number> = {}; const d = new Date(weekStart); const end = new Date(d.getFullYear(), d.getMonth(), d.getDate() + 7).getTime();
-  for (const w of finishedWorkouts()) { if (w.startedAt < weekStart || w.startedAt >= end) continue;
+  const d = new Date(weekStart); return setsByMuscle(weekStart, new Date(d.getFullYear(), d.getMonth(), d.getDate() + 7).getTime());
+}
+/** Serie robocze per partia w okresie [start, end) — tydzień w Postępach, okres podsumowania i mapa mięśni (08.10.2026). */
+export function setsByMuscle(start: number, end: number): Record<string, number> {
+  const out: Record<string, number> = {};
+  for (const w of finishedWorkouts()) { if (w.startedAt < start || w.startedAt >= end) continue;
     w.exercises.forEach(e => { const ex = exById(e.exerciseId); if (!ex) return; const n = e.sets.filter(isWorking).length; if (!n) return;
       (ex.muscles ?? []).forEach(mu => { out[mu] = (out[mu] ?? 0) + n; }); (ex.secondaryMuscles ?? []).forEach(mu => { out[mu] = (out[mu] ?? 0) + n * 0.5; }); }); }
   return out;

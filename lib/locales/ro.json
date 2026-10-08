@@ -879,5 +879,13 @@
  "Rekordy w tym okresie": "Recorduri în această perioadă",
  "Bez nowych rekordów w tym okresie.": "Niciun record nou în această perioadă.",
  "Brak treningów w tym okresie.": "Niciun antrenament în această perioadă.",
- "Obok w nawiasie — cały poprzedni okres. Serie robocze bez rozgrzewki; rekordy jak w podsumowaniu treningu.": "În paranteză — întreaga perioadă anterioară. Serii de lucru fără încălzire; recorduri ca în rezumatul antrenamentului."
+ "Obok w nawiasie — cały poprzedni okres. Serie robocze bez rozgrzewki; rekordy jak w podsumowaniu treningu.": "În paranteză — întreaga perioadă anterioară. Serii de lucru fără încălzire; recorduri ca în rezumatul antrenamentului.",
+ "Mapa mięśni": "Hartă musculară",
+ "Przód": "Față",
+ "Tył": "Spate",
+ "mniej": "mai puțin",
+ "więcej": "mai mult",
+ "Mapa mięśni: {list}": "Hartă musculară: {list}",
+ "Mapa mięśni: brak serii w tym okresie.": "Hartă musculară: nicio serie în această perioadă.",
+ "Kolor względem partii z największą liczbą serii w tym okresie (partia główna 1 seria, pomocnicza 0,5). Szare — bez serii.": "Culoare relativă la grupa cu cele mai multe serii în perioadă (grupa principală 1 serie, secundară 0,5). Gri — fără serii."
 }

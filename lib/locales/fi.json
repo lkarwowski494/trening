@@ -879,5 +879,13 @@
  "Rekordy w tym okresie": "Ennätykset tällä jaksolla",
  "Bez nowych rekordów w tym okresie.": "Ei uusia ennätyksiä tällä jaksolla.",
  "Brak treningów w tym okresie.": "Ei treenejä tällä jaksolla.",
- "Obok w nawiasie — cały poprzedni okres. Serie robocze bez rozgrzewki; rekordy jak w podsumowaniu treningu.": "Suluissa — koko edellinen jakso. Työsarjat ilman lämmittelyä; ennätykset kuten treenin yhteenvedossa."
+ "Obok w nawiasie — cały poprzedni okres. Serie robocze bez rozgrzewki; rekordy jak w podsumowaniu treningu.": "Suluissa — koko edellinen jakso. Työsarjat ilman lämmittelyä; ennätykset kuten treenin yhteenvedossa.",
+ "Mapa mięśni": "Lihaskartta",
+ "Przód": "Edestä",
+ "Tył": "Takaa",
+ "mniej": "vähemmän",
+ "więcej": "enemmän",
+ "Mapa mięśni: {list}": "Lihaskartta: {list}",
+ "Mapa mięśni: brak serii w tym okresie.": "Lihaskartta: ei sarjoja tällä jaksolla.",
+ "Kolor względem partii z największą liczbą serii w tym okresie (partia główna 1 seria, pomocnicza 0,5). Szare — bez serii.": "Väri suhteessa lihasryhmään, jolla on eniten sarjoja jaksolla (pääryhmä 1 sarja, avustava 0,5). Harmaa — ei sarjoja."
 }

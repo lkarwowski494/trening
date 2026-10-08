@@ -13,7 +13,7 @@ import { renderApp, flushAll, screen, go, tap, act } from './app';
 
 const NOW = new Date(2026, 9, 8, 18, 0); /* czwartek */
 const at = (m: number, d: number, h = 18) => new Date(2026, m, d, h).getTime();
-beforeEach(async () => { jest.setSystemTime(NOW.getTime()); await fresh(); });
+beforeEach(async () => { jest.useFakeTimers({ now: NOW }); await fresh(); });
 afterEach(() => { applyLang('pl'); });
 
 describe('logika (lib/period.ts)', () => {

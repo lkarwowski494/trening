@@ -879,5 +879,13 @@
  "Rekordy w tym okresie": "Рекорди през периода",
  "Bez nowych rekordów w tym okresie.": "Няма нови рекорди през периода.",
  "Brak treningów w tym okresie.": "Няма тренировки през периода.",
- "Obok w nawiasie — cały poprzedni okres. Serie robocze bez rozgrzewki; rekordy jak w podsumowaniu treningu.": "В скоби — целият предишен период. Работни серии без загрявка; рекорди като в обобщението на тренировката."
+ "Obok w nawiasie — cały poprzedni okres. Serie robocze bez rozgrzewki; rekordy jak w podsumowaniu treningu.": "В скоби — целият предишен период. Работни серии без загрявка; рекорди като в обобщението на тренировката.",
+ "Mapa mięśni": "Карта на мускулите",
+ "Przód": "Отпред",
+ "Tył": "Отзад",
+ "mniej": "по-малко",
+ "więcej": "повече",
+ "Mapa mięśni: {list}": "Карта на мускулите: {list}",
+ "Mapa mięśni: brak serii w tym okresie.": "Карта на мускулите: няма серии през периода.",
+ "Kolor względem partii z największą liczbą serii w tym okresie (partia główna 1 seria, pomocnicza 0,5). Szare — bez serii.": "Цвят спрямо мускулната група с най-много серии през периода (основна група 1 серия, помощна 0,5). Сиво — без серии."
 }

@@ -879,5 +879,13 @@
  "Rekordy w tym okresie": "Rekordi v tem obdobju",
  "Bez nowych rekordów w tym okresie.": "V tem obdobju ni novih rekordov.",
  "Brak treningów w tym okresie.": "V tem obdobju ni treningov.",
- "Obok w nawiasie — cały poprzedni okres. Serie robocze bez rozgrzewki; rekordy jak w podsumowaniu treningu.": "V oklepaju — celotno prejšnje obdobje. Delovne serije brez ogrevanja; rekordi kot v povzetku treninga."
+ "Obok w nawiasie — cały poprzedni okres. Serie robocze bez rozgrzewki; rekordy jak w podsumowaniu treningu.": "V oklepaju — celotno prejšnje obdobje. Delovne serije brez ogrevanja; rekordi kot v povzetku treninga.",
+ "Mapa mięśni": "Zemljevid mišic",
+ "Przód": "Spredaj",
+ "Tył": "Zadaj",
+ "mniej": "manj",
+ "więcej": "več",
+ "Mapa mięśni: {list}": "Zemljevid mišic: {list}",
+ "Mapa mięśni: brak serii w tym okresie.": "Zemljevid mišic: v tem obdobju ni serij.",
+ "Kolor względem partii z największą liczbą serii w tym okresie (partia główna 1 seria, pomocnicza 0,5). Szare — bez serii.": "Barva glede na mišično skupino z največ serijami v obdobju (glavna skupina 1 serija, pomožna 0,5). Sivo — brez serij."
 }

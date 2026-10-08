@@ -879,5 +879,13 @@
  "Rekordy w tym okresie": "Rekorde in diesem Zeitraum",
  "Bez nowych rekordów w tym okresie.": "Keine neuen Rekorde in diesem Zeitraum.",
  "Brak treningów w tym okresie.": "Keine Trainings in diesem Zeitraum.",
- "Obok w nawiasie — cały poprzedni okres. Serie robocze bez rozgrzewki; rekordy jak w podsumowaniu treningu.": "In Klammern — der gesamte vorherige Zeitraum. Arbeitssätze ohne Aufwärmen; Rekorde wie in der Trainingsübersicht."
+ "Obok w nawiasie — cały poprzedni okres. Serie robocze bez rozgrzewki; rekordy jak w podsumowaniu treningu.": "In Klammern — der gesamte vorherige Zeitraum. Arbeitssätze ohne Aufwärmen; Rekorde wie in der Trainingsübersicht.",
+ "Mapa mięśni": "Muskelkarte",
+ "Przód": "Vorne",
+ "Tył": "Hinten",
+ "mniej": "weniger",
+ "więcej": "mehr",
+ "Mapa mięśni: {list}": "Muskelkarte: {list}",
+ "Mapa mięśni: brak serii w tym okresie.": "Muskelkarte: keine Sätze in diesem Zeitraum.",
+ "Kolor względem partii z największą liczbą serii w tym okresie (partia główna 1 seria, pomocnicza 0,5). Szare — bez serii.": "Farbe relativ zur Muskelgruppe mit den meisten Sätzen in diesem Zeitraum (Hauptgruppe 1 Satz, Nebengruppe 0,5). Grau — keine Sätze."
 }

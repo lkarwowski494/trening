@@ -879,5 +879,13 @@
  "Rekordy w tym okresie": "Rekordy v tomto období",
  "Bez nowych rekordów w tym okresie.": "V tomto období žiadne nové rekordy.",
  "Brak treningów w tym okresie.": "V tomto období žiadne tréningy.",
- "Obok w nawiasie — cały poprzedni okres. Serie robocze bez rozgrzewki; rekordy jak w podsumowaniu treningu.": "V zátvorke — celé predchádzajúce obdobie. Pracovné série bez rozcvičky; rekordy ako v súhrne tréningu."
+ "Obok w nawiasie — cały poprzedni okres. Serie robocze bez rozgrzewki; rekordy jak w podsumowaniu treningu.": "V zátvorke — celé predchádzajúce obdobie. Pracovné série bez rozcvičky; rekordy ako v súhrne tréningu.",
+ "Mapa mięśni": "Mapa svalov",
+ "Przód": "Spredu",
+ "Tył": "Zozadu",
+ "mniej": "menej",
+ "więcej": "viac",
+ "Mapa mięśni: {list}": "Mapa svalov: {list}",
+ "Mapa mięśni: brak serii w tym okresie.": "Mapa svalov: v tomto období žiadne série.",
+ "Kolor względem partii z największą liczbą serii w tym okresie (partia główna 1 seria, pomocnicza 0,5). Szare — bez serii.": "Farba voči partii s najviac sériami v tomto období (hlavná partia 1 séria, pomocná 0,5). Sivá — bez sérií."
 }

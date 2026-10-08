@@ -1046,6 +1046,10 @@
   "en": "Colour and difficulty level: 1 = thin, 7 = very thick. Bands have no kilograms — for each set you record which band helped. The record is reps without a band; progress with bands means moving to a lower level."
  },
  {
+  "pl": "Kolor względem partii z największą liczbą serii w tym okresie (partia główna 1 seria, pomocnicza 0,5). Szare — bez serii.",
+  "en": "Colour relative to the muscle group with the most sets in this period (main group 1 set, secondary 0.5). Grey — no sets."
+ },
+ {
   "pl": "Koniec przerwy da znać nawet na zablokowanym ekranie.",
   "en": "The end of rest will alert you even on a locked screen."
  },
@@ -1216,6 +1220,18 @@
  {
   "pl": "łydki",
   "en": "calves"
+ },
+ {
+  "pl": "Mapa mięśni",
+  "en": "Muscle map"
+ },
+ {
+  "pl": "Mapa mięśni: {list}",
+  "en": "Muscle map: {list}"
+ },
+ {
+  "pl": "Mapa mięśni: brak serii w tym okresie.",
+  "en": "Muscle map: no sets in this period."
  },
  {
   "pl": "masa ciała",
@@ -1464,6 +1480,10 @@
  {
   "pl": "Młot",
   "en": "Sledgehammer"
+ },
+ {
+  "pl": "mniej",
+  "en": "less"
  },
  {
   "pl": "modlitewnik",
@@ -2228,6 +2248,10 @@
   "en": "Move up"
  },
  {
+  "pl": "Przód",
+  "en": "Front"
+ },
+ {
   "pl": "Przypomnienie o wadze",
   "en": "Weigh-in reminder"
  },
@@ -2898,6 +2922,10 @@
   "en": "This time only"
  },
  {
+  "pl": "Tył",
+  "en": "Back"
+ },
+ {
   "pl": "Uchwyt (jeden, {u})",
   "en": "Handle (one, {u})"
  },
@@ -3136,6 +3164,10 @@
  {
   "pl": "Widok treningu",
   "en": "Workout view"
+ },
+ {
+  "pl": "więcej",
+  "en": "more"
  },
  {
   "pl": "Więcej",

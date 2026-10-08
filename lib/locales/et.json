@@ -879,5 +879,13 @@
  "Rekordy w tym okresie": "Rekordid sel perioodil",
  "Bez nowych rekordów w tym okresie.": "Sel perioodil uusi rekordeid pole.",
  "Brak treningów w tym okresie.": "Sel perioodil treeninguid pole.",
- "Obok w nawiasie — cały poprzedni okres. Serie robocze bez rozgrzewki; rekordy jak w podsumowaniu treningu.": "Sulgudes — kogu eelmine periood. Töösarjad ilma soojenduseta; rekordid nagu treeningu kokkuvõttes."
+ "Obok w nawiasie — cały poprzedni okres. Serie robocze bez rozgrzewki; rekordy jak w podsumowaniu treningu.": "Sulgudes — kogu eelmine periood. Töösarjad ilma soojenduseta; rekordid nagu treeningu kokkuvõttes.",
+ "Mapa mięśni": "Lihaste kaart",
+ "Przód": "Eest",
+ "Tył": "Tagant",
+ "mniej": "vähem",
+ "więcej": "rohkem",
+ "Mapa mięśni: {list}": "Lihaste kaart: {list}",
+ "Mapa mięśni: brak serii w tym okresie.": "Lihaste kaart: sel perioodil sarju pole.",
+ "Kolor względem partii z największą liczbą serii w tym okresie (partia główna 1 seria, pomocnicza 0,5). Szare — bez serii.": "Värv võrreldes lihasrühmaga, millel on perioodil kõige rohkem sarju (põhirühm 1 sari, abirühm 0,5). Hall — sarju pole."
 }

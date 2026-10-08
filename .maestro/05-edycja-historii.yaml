@@ -111,6 +111,9 @@ name: Edycja historii i trening wstecz
 - extendedWaitUntil: { visible: "Summary", timeout: 30000 }
 - assertVisible: "Workouts: [1-9].*, previously .*"
 - takeScreenshot: 20-podsumowanie-tydzien
+# Mapa mięśni (08.10.2026, components/MuscleMap.tsx): opis VoiceOver „Muscle map: …” ('Mapa mięśni: {list}'), przewinięcie do niej.
+- scrollUntilVisible: { element: "Muscle map: .*", direction: DOWN, timeout: 20000 }
+- takeScreenshot: 20b-mapa-miesni
 - tapOn: "Month"
 - tapOn: "Previous period"
 - assertVisible: "Workouts: .*, previously .*"
