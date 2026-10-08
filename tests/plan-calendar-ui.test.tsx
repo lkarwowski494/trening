@@ -8,6 +8,7 @@ import * as plan from '@/lib/plan';
 import { applyLang } from '@/lib/i18n';
 import { fresh, saved, withDemoTemplates, addWorkout } from './helpers';
 import { renderApp, flushAll, screen, tap, act, go } from './app';
+import { suggestionTexts } from '@/components/DayPanel';
 
 const NOW = new Date(2026, 9, 8, 9, 0); /* czwartek */
 const S = () => store.getState();
@@ -78,6 +79,45 @@ describe('Kalendarz', () => {
     await tap(screen.getByText('Wolne w tym dniu')); await flushAll(5); expect(plan.plannedOn('2026-10-08')).toBeNull(); expect(screen.getByText('Wolne · zmiana planu')).toBeTruthy();
     await tap(screen.getByTestId('cal-2026-10-10')); await flushAll(5); await tap(screen.getByText('Dodaj trening')); await flushAll(5); await tap(screen.getByText(t[1].name)); await flushAll(5);
     expect(plan.plannedOn('2026-10-10')).toBe(t[1].id);
+  });
+  test('przesunięcie planu tworzące parę dzień po dniu z tymi samymi partiami — ostrzeżenie w komunikacie (docs/research/23)', async () => {
+    const t = await boot(ids => { plan.setWeekDay(3, ids[0]); plan.setWeekDay(5, ids[1]); }); /* czw. Upper A, sob. Upper B */
+    await tap(screen.getByTestId('cal-2026-10-08')); await flushAll(5); await tap(screen.getByText('Przesuń plan o 1 dzień')); await flushAll(5);
+    const a = global.__alerts.find(x => x.title === 'Plan przesunięty')!;
+    expect(a.msg).toMatch(new RegExp(`^${t[0].name} → .*9\\.10\nUwaga: .*9\\.10 i .*10\\.10 dzień po dniu — te same główne partie\\.$`));
+  });
+  test('„Propozycje”: najwyżej 3, opis zmian i ostrzeżeń, podpis uproszczenia; „Zastosuj” zmienia plan i zamyka listę', async () => {
+    const t = await boot(ids => { plan.setWeekDay(3, ids[0]); plan.setWeekDay(5, ids[1]); });
+    await tap(screen.getByTestId('cal-2026-10-08')); await flushAll(5);
+    expect(screen.getByHintText('Ułożenie tygodnia z najmniejszą liczbą zmian, z uwzględnieniem regeneracji partii.')).toBeTruthy();
+    await tap(screen.getByText('Propozycje')); await flushAll(5);
+    expect(screen.getByTestId('suggestions')).toBeTruthy();
+    const list = plan.suggest('2026-10-08', '2026-10-08').slice(0, 3); expect(list.length).toBe(3);
+    for (const sg of list) { const { title, details } = suggestionTexts('2026-10-08', sg); expect(screen.getByLabelText(`Zastosuj: ${title}`)).toBeTruthy(); details.forEach(d => expect(screen.getAllByText(d).length).toBeGreaterThan(0)); }
+    expect(screen.getAllByText(/^Zmienione dni: \d+$/).length).toBe(3);
+    expect(screen.getByText(/^Uproszczenie: zwykle dzień przerwy .* w ciągu 10 dni\.$/)).toBeTruthy();
+    const first = suggestionTexts('2026-10-08', list[0]).title; const want = list[0].ov;
+    await tap(screen.getByLabelText(`Zastosuj: ${first}`)); await flushAll(5);
+    for (const [k, v] of Object.entries(want)) expect(plan.plannedOn(k)).toBe(v);
+    expect(screen.queryByTestId('suggestions')).toBeNull(); expect(t.length).toBeGreaterThan(1);
+  });
+  test('opisy propozycji: przeniesienie, zamiana, pominięcie, utrata sesji, zmiany poza oknem powrotu', async () => {
+    const t = await boot(ids => { plan.setWeekDay(3, ids[0]); });
+    const base = { changes: 2, newBackToBack: [], dropped: 0, returns: true, ov: {} };
+    expect(suggestionTexts('2026-10-08', { ...base, kind: 'move', to: '2026-10-10' }).title).toMatch(/^Przenieś na sob\.,? 10\.10/);
+    expect(suggestionTexts('2026-10-12', { ...base, kind: 'swap', to: '2026-10-15' }).title).toMatch(new RegExp(`^Zamień z czw\\.,? 15\\.10.* \\(${t[0].name}\\)$`));
+    const sh = suggestionTexts('2026-10-08', { ...base, kind: 'shift', newBackToBack: [{ a: '2026-10-09', b: '2026-10-10' }] });
+    expect(sh.title).toBe('Przesuń plan od tego dnia');
+    const warn = 'Uwaga: {a} i {b} dzień po dniu — te same główne partie.'; expect(sh.details[1]).toMatch(new RegExp('^' + warn.split('{a}')[0] + 'pt\\.,? 9\\.10 i sob\\.,? 10\\.10' + warn.split('{b}')[1].replace('.', '\\.') + '$'));
+    const cap = 'Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM). Po zmianach plan wraca do rutyny w ciągu {n} dni.';
+    expect(cap.replace('{n}', '10')).toMatch(/^Uproszczenie: .* 10 dni\.$/); /* tekst z t() — macierz; na ekranie sprawdzany w teście „Propozycje” */
+    const sk = suggestionTexts('2026-10-08', { ...base, kind: 'skip', dropped: 1, returns: false, changes: 1 });
+    expect(sk).toEqual({ title: 'Pomiń ten trening', details: ['Zmienione dni: 1', 'Wypada treningów: 1', 'Zmiany sięgają dalej niż 10 dni.'] });
+  });
+  test('English: suggestions', async () => {
+    await boot(ids => { plan.setWeekDay(3, ids[0]); plan.setWeekDay(5, ids[1]); }, '/history', 'en');
+    await tap(screen.getByTestId('cal-2026-10-08')); await flushAll(5); await tap(screen.getByText('Suggestions')); await flushAll(5);
+    expect(screen.getAllByText(/^Days changed: \d+$/).length).toBe(3);
   });
   test('start zaplanowanego treningu z panelu dziś', async () => {
     const t = await boot(ids => { plan.setWeekDay(3, ids[0]); });

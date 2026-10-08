@@ -2130,6 +2130,10 @@
   "en": "Skip today: {name}"
  },
  {
+  "pl": "Pomiń ten trening",
+  "en": "Skip this workout"
+ },
+ {
   "pl": "pomocnicza",
   "en": "secondary"
  },
@@ -2280,6 +2284,10 @@
   "en": "forearms"
  },
  {
+  "pl": "Przenieś na {day}",
+  "en": "Move to {day}"
+ },
+ {
   "pl": "Przenieś na dziś",
   "en": "Move to today"
  },
@@ -2342,6 +2350,10 @@
  {
   "pl": "Przesuń plan o 1 dzień",
   "en": "Move plan by 1 day"
+ },
+ {
+  "pl": "Przesuń plan od tego dnia",
+  "en": "Shift the plan from this day"
  },
  {
   "pl": "Przesuń tylko ten trening",
@@ -3086,6 +3098,14 @@
   "en": "hidden: {n}"
  },
  {
+  "pl": "Ułożenie tygodnia z najmniejszą liczbą zmian, z uwzględnieniem regeneracji partii.",
+  "en": "Arrange the week with the fewest changes, taking muscle-group recovery into account."
+ },
+ {
+  "pl": "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM). Po zmianach plan wraca do rutyny w ciągu {n} dni.",
+  "en": "Simplification: usually a rest day between sessions with the same main muscle groups; two days in a row are also fine with the same weekly number of sets (research reviews, ACSM). After changes the plan returns to routine within {n} days."
+ },
+ {
   "pl": "uprząż na szyję",
   "en": "neck harness"
  },
@@ -3256,6 +3276,10 @@
  {
   "pl": "Utwórz „{name}”",
   "en": "Create “{name}”"
+ },
+ {
+  "pl": "Uwaga: {a} i {b} dzień po dniu — te same główne partie.",
+  "en": "Note: {a} and {b} back to back — same main muscle groups."
  },
  {
   "pl": "Uwaga: zmiana sprzętu, trybu liczenia lub metryki przelicza też dawne treningi (objętość, rekordy, wykresy).",
@@ -3462,6 +3486,10 @@
   "en": "Charts appear after your first finished workout."
  },
  {
+  "pl": "Wypada treningów: {n}",
+  "en": "Workouts dropped: {n}"
+ },
+ {
   "pl": "wypada: {name}",
   "en": "dropped: {name}"
  },
@@ -3606,6 +3634,10 @@
   "en": "Swap to substitute: {name}"
  },
  {
+  "pl": "Zamień z {day} ({name})",
+  "en": "Swap with {day} ({name})"
+ },
+ {
   "pl": "Zapamiętać dla tego ćwiczenia?",
   "en": "Remember for this exercise?"
  },
@@ -3662,6 +3694,14 @@
   "en": "Replace the weights you entered?"
  },
  {
+  "pl": "Zastosuj",
+  "en": "Apply"
+ },
+ {
+  "pl": "Zastosuj: {title}",
+  "en": "Apply: {title}"
+ },
+ {
   "pl": "Zawsze w: {l}",
   "en": "Always at {l}"
  },
@@ -3688,6 +3728,14 @@
  {
   "pl": "Zmiany nie trafiają do Apple Health.",
   "en": "Changes are not sent to Apple Health."
+ },
+ {
+  "pl": "Zmiany sięgają dalej niż {n} dni.",
+  "en": "Changes reach beyond {n} days."
+ },
+ {
+  "pl": "Zmienione dni: {n}",
+  "en": "Days changed: {n}"
  },
  {
   "pl": "Zmień kolejność ćwiczeń",

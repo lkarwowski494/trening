@@ -932,5 +932,17 @@
  "Dziś wolne": "Vila i dag",
  "zrobione": "klart",
  "Plan na 7 dni: {list}. Tapnij, by otworzyć Kalendarz.": "Plan för 7 dagar: {list}. Tryck för att öppna Kalendern.",
- "wolne": "vila"
+ "wolne": "vila",
+ "Uwaga: {a} i {b} dzień po dniu — te same główne partie.": "Obs: {a} och {b} i rad — samma huvudmuskelgrupper.",
+ "Ułożenie tygodnia z najmniejszą liczbą zmian, z uwzględnieniem regeneracji partii.": "Lägg upp veckan med minst ändringar, med hänsyn till muskelåterhämtning.",
+ "Przesuń plan od tego dnia": "Flytta planen från denna dag",
+ "Przenieś na {day}": "Flytta till {day}",
+ "Zamień z {day} ({name})": "Byt med {day} ({name})",
+ "Pomiń ten trening": "Hoppa över detta pass",
+ "Zmienione dni: {n}": "Ändrade dagar: {n}",
+ "Wypada treningów: {n}": "Bortfallna pass: {n}",
+ "Zmiany sięgają dalej niż {n} dni.": "Ändringarna sträcker sig längre än {n} dagar.",
+ "Zastosuj": "Använd",
+ "Zastosuj: {title}": "Använd: {title}",
+ "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM). Po zmianach plan wraca do rutyny w ciągu {n} dni.": "Förenkling: oftast en vilodag mellan pass med samma huvudmuskelgrupper; två dagar i rad går också bra med samma antal set per vecka (översikter, ACSM). Efter ändringar återgår planen till rutinen inom {n} dagar."
 }

@@ -102,3 +102,43 @@ describe('stan dnia i dane', () => {
     S().planOverrides = { '2026-07-01': A, '2026-10-01': B }; plan.setWeekDay(0, A); expect(Object.keys(S().planOverrides!)).toEqual(['2026-10-01']);
   });
 });
+
+/*
+ * Propozycje z regeneracją partii (docs/research/23): pary dni pod rząd z tymi samymi głównymi partiami — ostrzeżenie (uproszczenie, nie blokada);
+ * kolejność: zmiany w oknie powrotu (RETURN_DAYS) → bez utraty sesji → bez nowych par pod rząd → najmniej zmian.
+ */
+describe('propozycje z regeneracją partii', () => {
+  let D = ''; /* Legs — dom: bez wspólnych partii z Upper A/B */
+  beforeEach(() => { D = S().templates[3].id; });
+  test('partie szablonu i pary pod rząd z tymi samymi partiami', () => {
+    expect([...plan.templateMuscles(A)].sort()).toEqual(['barki', 'biceps', 'klatka', 'plecy', 'triceps']);
+    week(A, B, null, D, A, null, null);
+    expect(plan.backToBack('2026-10-05', 7)).toEqual([{ a: '2026-10-05', b: '2026-10-06' }]); /* A–B dzielą partie; D–A nie */
+  });
+  test('przykład: pon. A, śr. B, pt. A; w środę „nie dam rady” → bez utraty sesji, najmniej zmian; ostrzeżenie o B i A dzień po dniu; pominięcie na końcu', () => {
+    jest.setSystemTime(new Date(2026, 9, 7, 9).getTime()); week(A, null, B, null, A, null, null);
+    const s = plan.suggest('2026-10-07', '2026-10-07');
+    expect(s[0]).toMatchObject({ kind: 'shift', dropped: 0, changes: 2, returns: true });
+    expect(s[0].newBackToBack).toEqual([{ a: '2026-10-08', b: '2026-10-09' }]); /* czw. B, pt. A */
+    expect(s.find(x => x.kind === 'skip')).toMatchObject({ dropped: 1 }); expect(s[s.length - 1].kind).toBe('skip');
+    expect(s.some(x => x.kind === 'swap')).toBe(false); /* dziś — bez wstawiania innego treningu na dziś */
+  });
+  test('gdy jest układ bez nowej pary pod rząd, wygrywa on (przy tej samej liczbie sesji)', () => {
+    jest.setSystemTime(new Date(2026, 9, 5, 9).getTime()); week(A, D, null, B, null, null, null); /* pon. A, wt. Legs-dom, czw. B */
+    const s = plan.suggest('2026-10-05', '2026-10-05');
+    expect(s[0]).toMatchObject({ kind: 'move', to: '2026-10-10', dropped: 0, newBackToBack: [], changes: 2 }); /* najmniej zmian: A na sobotę */
+    const sh = s.find(x => x.kind === 'shift')!; expect(sh).toMatchObject({ dropped: 0, newBackToBack: [], changes: 3 }); /* wt. A, śr. Legs-dom, czw. B */
+    plan.applySuggestion(sh); expect(range('2026-10-05', 4)).toEqual([null, A, D, B]);
+    expect(range('2026-10-12', 4)).toEqual([A, D, null, B]); /* następny tydzień — rutyna */
+  });
+  test('opuszczony dzień w przeszłości: propozycje od dziś, przeszłość bez zmian poza zdjęciem treningu', () => {
+    week(null, A, null, null, null, null, null); /* wt. 6.10 A — opuszczony; dziś czw. 8.10 */
+    const s = plan.suggest('2026-10-06', '2026-10-08');
+    const mv = s.find(x => x.kind === 'move')!; expect(mv.to! >= '2026-10-08').toBe(true);
+    expect(s.every(x => x.returns)).toBe(true);
+  });
+  test('dzień bez treningu — brak propozycji; przyszły dzień — także zamiana z najbliższym treningiem', () => {
+    week(A, null, B, null, A, null, null); expect(plan.suggest('2026-10-13', '2026-10-08')).toEqual([]);
+    const s = plan.suggest('2026-10-12', '2026-10-08'); const sw = s.find(x => x.kind === 'swap')!; expect(sw.to).toBe('2026-10-14');
+  });
+});

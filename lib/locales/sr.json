@@ -932,5 +932,17 @@
  "Dziś wolne": "Данас одмор",
  "zrobione": "урађено",
  "Plan na 7 dni: {list}. Tapnij, by otworzyć Kalendarz.": "План за 7 дана: {list}. Додирни да отвориш Календар.",
- "wolne": "одмор"
+ "wolne": "одмор",
+ "Uwaga: {a} i {b} dzień po dniu — te same główne partie.": "Пажња: {a} и {b} заредом — исте главне мишићне групе.",
+ "Ułożenie tygodnia z najmniejszą liczbą zmian, z uwzględnieniem regeneracji partii.": "Распоред недеље са најмање промена, уз опоравак мишићних група.",
+ "Przesuń plan od tego dnia": "Помери план од овог дана",
+ "Przenieś na {day}": "Премести на {day}",
+ "Zamień z {day} ({name})": "Замени са {day} ({name})",
+ "Pomiń ten trening": "Прескочи овај тренинг",
+ "Zmienione dni: {n}": "Промењени дани: {n}",
+ "Wypada treningów: {n}": "Испали тренинзи: {n}",
+ "Zmiany sięgają dalej niż {n} dni.": "Промене сежу даље од {n} дана.",
+ "Zastosuj": "Примени",
+ "Zastosuj: {title}": "Примени: {title}",
+ "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM). Po zmianach plan wraca do rutyny w ciągu {n} dni.": "Поједностављење: обично дан одмора између тренинга са истим главним групама; два дана заредом су у реду уз исти недељни број серија (прегледи, ACSM). После промена план се враћа на рутину у року од {n} дана."
 }

@@ -932,5 +932,17 @@
  "Dziś wolne": "Šodien atpūta",
  "zrobione": "izdarīts",
  "Plan na 7 dni: {list}. Tapnij, by otworzyć Kalendarz.": "7 dienu plāns: {list}. Pieskaries, lai atvērtu Kalendāru.",
- "wolne": "atpūta"
+ "wolne": "atpūta",
+ "Uwaga: {a} i {b} dzień po dniu — te same główne partie.": "Uzmanību: {a} un {b} pēc kārtas — tās pašas galvenās muskuļu grupas.",
+ "Ułożenie tygodnia z najmniejszą liczbą zmian, z uwzględnieniem regeneracji partii.": "Sakārtot nedēļu ar vismazāk izmaiņām, ņemot vērā muskuļu atjaunošanos.",
+ "Przesuń plan od tego dnia": "Pārbīdīt plānu no šīs dienas",
+ "Przenieś na {day}": "Pārcelt uz {day}",
+ "Zamień z {day} ({name})": "Samainīt ar {day} ({name})",
+ "Pomiń ten trening": "Izlaist šo treniņu",
+ "Zmienione dni: {n}": "Mainītās dienas: {n}",
+ "Wypada treningów: {n}": "Izkritušie treniņi: {n}",
+ "Zmiany sięgają dalej niż {n} dni.": "Izmaiņas sniedzas tālāk par {n} dienām.",
+ "Zastosuj": "Lietot",
+ "Zastosuj: {title}": "Lietot: {title}",
+ "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM). Po zmianach plan wraca do rutyny w ciągu {n} dni.": "Vienkāršojums: parasti atpūtas diena starp treniņiem ar tām pašām galvenajām grupām; divas dienas pēc kārtas arī ir labi, ja nedēļas sēriju skaits ir tas pats (pārskati, ACSM). Pēc izmaiņām plāns atgriežas rutīnā {n} dienu laikā."
 }

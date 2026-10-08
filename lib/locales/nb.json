@@ -932,5 +932,17 @@
  "Dziś wolne": "Hvile i dag",
  "zrobione": "ferdig",
  "Plan na 7 dni: {list}. Tapnij, by otworzyć Kalendarz.": "Plan for 7 dager: {list}. Trykk for å åpne Kalenderen.",
- "wolne": "hvile"
+ "wolne": "hvile",
+ "Uwaga: {a} i {b} dzień po dniu — te same główne partie.": "Merk: {a} og {b} på rad — samme hovedmuskelgrupper.",
+ "Ułożenie tygodnia z najmniejszą liczbą zmian, z uwzględnieniem regeneracji partii.": "Legg opp uken med færrest endringer, med tanke på muskelrestitusjon.",
+ "Przesuń plan od tego dnia": "Flytt planen fra denne dagen",
+ "Przenieś na {day}": "Flytt til {day}",
+ "Zamień z {day} ({name})": "Bytt med {day} ({name})",
+ "Pomiń ten trening": "Hopp over denne økten",
+ "Zmienione dni: {n}": "Endrede dager: {n}",
+ "Wypada treningów: {n}": "Bortfalte økter: {n}",
+ "Zmiany sięgają dalej niż {n} dni.": "Endringene strekker seg lenger enn {n} dager.",
+ "Zastosuj": "Bruk",
+ "Zastosuj: {title}": "Bruk: {title}",
+ "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM). Po zmianach plan wraca do rutyny w ciągu {n} dni.": "Forenkling: vanligvis en hviledag mellom økter med samme hovedmuskelgrupper; to dager på rad går også fint med samme antall sett per uke (oversikter, ACSM). Etter endringer går planen tilbake til rutinen innen {n} dager."
 }

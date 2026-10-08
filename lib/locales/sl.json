@@ -932,5 +932,17 @@
  "Dziś wolne": "Danes počitek",
  "zrobione": "opravljeno",
  "Plan na 7 dni: {list}. Tapnij, by otworzyć Kalendarz.": "Načrt za 7 dni: {list}. Tapni za odprtje Koledarja.",
- "wolne": "počitek"
+ "wolne": "počitek",
+ "Uwaga: {a} i {b} dzień po dniu — te same główne partie.": "Pozor: {a} in {b} zapored — iste glavne mišične skupine.",
+ "Ułożenie tygodnia z najmniejszą liczbą zmian, z uwzględnieniem regeneracji partii.": "Razporedi teden z najmanj spremembami ob upoštevanju regeneracije mišic.",
+ "Przesuń plan od tego dnia": "Premakni načrt od tega dne",
+ "Przenieś na {day}": "Premakni na {day}",
+ "Zamień z {day} ({name})": "Zamenjaj z {day} ({name})",
+ "Pomiń ten trening": "Preskoči ta trening",
+ "Zmienione dni: {n}": "Spremenjeni dnevi: {n}",
+ "Wypada treningów: {n}": "Izpadli treningi: {n}",
+ "Zmiany sięgają dalej niż {n} dni.": "Spremembe segajo dlje od {n} dni.",
+ "Zastosuj": "Uporabi",
+ "Zastosuj: {title}": "Uporabi: {title}",
+ "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM). Po zmianach plan wraca do rutyny w ciągu {n} dni.": "Poenostavitev: običajno dan počitka med treningi z istimi glavnimi skupinami; dva dni zapored sta pri enakem tedenskem številu serij tudi v redu (pregledi, ACSM). Po spremembah se načrt vrne k rutini v {n} dneh."
 }

@@ -932,5 +932,17 @@
  "Dziś wolne": "Oggi riposo",
  "zrobione": "fatto",
  "Plan na 7 dni: {list}. Tapnij, by otworzyć Kalendarz.": "Piano di 7 giorni: {list}. Tocca per aprire il Calendario.",
- "wolne": "riposo"
+ "wolne": "riposo",
+ "Uwaga: {a} i {b} dzień po dniu — te same główne partie.": "Attenzione: {a} e {b} di seguito — stessi gruppi muscolari principali.",
+ "Ułożenie tygodnia z najmniejszą liczbą zmian, z uwzględnieniem regeneracji partii.": "Organizza la settimana con il minor numero di modifiche, considerando il recupero muscolare.",
+ "Przesuń plan od tego dnia": "Sposta il piano da questo giorno",
+ "Przenieś na {day}": "Sposta a {day}",
+ "Zamień z {day} ({name})": "Scambia con {day} ({name})",
+ "Pomiń ten trening": "Salta questo allenamento",
+ "Zmienione dni: {n}": "Giorni modificati: {n}",
+ "Wypada treningów: {n}": "Allenamenti persi: {n}",
+ "Zmiany sięgają dalej niż {n} dni.": "Le modifiche vanno oltre {n} giorni.",
+ "Zastosuj": "Applica",
+ "Zastosuj: {title}": "Applica: {title}",
+ "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM). Po zmianach plan wraca do rutyny w ciągu {n} dni.": "Semplificazione: di solito un giorno di riposo tra sedute con gli stessi gruppi principali; due giorni di seguito vanno bene anche con lo stesso numero di serie settimanali (revisioni, ACSM). Dopo le modifiche il piano torna alla routine entro {n} giorni."
 }

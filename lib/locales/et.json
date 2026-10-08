@@ -932,5 +932,17 @@
  "Dziś wolne": "Täna puhkus",
  "zrobione": "tehtud",
  "Plan na 7 dni: {list}. Tapnij, by otworzyć Kalendarz.": "7 päeva plaan: {list}. Puuduta, et avada Kalender.",
- "wolne": "puhkus"
+ "wolne": "puhkus",
+ "Uwaga: {a} i {b} dzień po dniu — te same główne partie.": "Tähelepanu: {a} ja {b} järjest — samad peamised lihasrühmad.",
+ "Ułożenie tygodnia z najmniejszą liczbą zmian, z uwzględnieniem regeneracji partii.": "Korralda nädal kõige väiksemate muudatustega, arvestades lihaste taastumist.",
+ "Przesuń plan od tego dnia": "Nihuta plaani alates sellest päevast",
+ "Przenieś na {day}": "Tõsta päevale {day}",
+ "Zamień z {day} ({name})": "Vaheta päevaga {day} ({name})",
+ "Pomiń ten trening": "Jäta see treening vahele",
+ "Zmienione dni: {n}": "Muudetud päevi: {n}",
+ "Wypada treningów: {n}": "Ära jäävaid treeninguid: {n}",
+ "Zmiany sięgają dalej niż {n} dni.": "Muudatused ulatuvad kaugemale kui {n} päeva.",
+ "Zastosuj": "Rakenda",
+ "Zastosuj: {title}": "Rakenda: {title}",
+ "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM). Po zmianach plan wraca do rutyny w ciągu {n} dni.": "Lihtsustus: tavaliselt puhkepäev samade peamiste lihasrühmadega treeningute vahel; kaks päeva järjest sobib ka sama nädalase sarjade arvu korral (ülevaated, ACSM). Pärast muudatusi naaseb plaan rutiini {n} päeva jooksul."
 }

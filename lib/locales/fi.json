@@ -932,5 +932,17 @@
  "Dziś wolne": "Tänään lepo",
  "zrobione": "tehty",
  "Plan na 7 dni: {list}. Tapnij, by otworzyć Kalendarz.": "7 päivän suunnitelma: {list}. Napauta avataksesi Kalenterin.",
- "wolne": "lepo"
+ "wolne": "lepo",
+ "Uwaga: {a} i {b} dzień po dniu — te same główne partie.": "Huom: {a} ja {b} peräkkäin — samat päälihasryhmät.",
+ "Ułożenie tygodnia z najmniejszą liczbą zmian, z uwzględnieniem regeneracji partii.": "Järjestä viikko vähimmillä muutoksilla lihasten palautuminen huomioiden.",
+ "Przesuń plan od tego dnia": "Siirrä suunnitelmaa tästä päivästä",
+ "Przenieś na {day}": "Siirrä päivälle {day}",
+ "Zamień z {day} ({name})": "Vaihda päivän {day} kanssa ({name})",
+ "Pomiń ten trening": "Ohita tämä treeni",
+ "Zmienione dni: {n}": "Muutetut päivät: {n}",
+ "Wypada treningów: {n}": "Pois jäävät treenit: {n}",
+ "Zmiany sięgają dalej niż {n} dni.": "Muutokset ulottuvat yli {n} päivän.",
+ "Zastosuj": "Käytä",
+ "Zastosuj: {title}": "Käytä: {title}",
+ "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM). Po zmianach plan wraca do rutyny w ciągu {n} dni.": "Yksinkertaistus: yleensä lepopäivä samojen päälihasryhmien treenien välissä; kaksi päivää peräkkäin sopii myös samalla viikoittaisella sarjamäärällä (katsaukset, ACSM). Muutosten jälkeen suunnitelma palaa rutiiniin {n} päivässä."
 }

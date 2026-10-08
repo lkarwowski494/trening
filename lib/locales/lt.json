@@ -932,5 +932,17 @@
  "Dziś wolne": "Šiandien poilsis",
  "zrobione": "atlikta",
  "Plan na 7 dni: {list}. Tapnij, by otworzyć Kalendarz.": "7 dienų planas: {list}. Bakstelėk, kad atidarytum Kalendorių.",
- "wolne": "poilsis"
+ "wolne": "poilsis",
+ "Uwaga: {a} i {b} dzień po dniu — te same główne partie.": "Dėmesio: {a} ir {b} iš eilės — tos pačios pagrindinės raumenų grupės.",
+ "Ułożenie tygodnia z najmniejszą liczbą zmian, z uwzględnieniem regeneracji partii.": "Sudėlioti savaitę su mažiausiai pakeitimų, atsižvelgiant į raumenų atsigavimą.",
+ "Przesuń plan od tego dnia": "Perkelti planą nuo šios dienos",
+ "Przenieś na {day}": "Perkelti į {day}",
+ "Zamień z {day} ({name})": "Sukeisti su {day} ({name})",
+ "Pomiń ten trening": "Praleisti šią treniruotę",
+ "Zmienione dni: {n}": "Pakeistų dienų: {n}",
+ "Wypada treningów: {n}": "Iškritusių treniruočių: {n}",
+ "Zmiany sięgają dalej niż {n} dni.": "Pakeitimai siekia toliau nei {n} d.",
+ "Zastosuj": "Taikyti",
+ "Zastosuj: {title}": "Taikyti: {title}",
+ "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM). Po zmianach plan wraca do rutyny w ciągu {n} dni.": "Supaprastinimas: paprastai poilsio diena tarp treniruočių su tomis pačiomis pagrindinėmis grupėmis; dvi dienos iš eilės irgi tinka esant tam pačiam savaitiniam priėjimų skaičiui (apžvalgos, ACSM). Po pakeitimų planas grįžta į įprastą per {n} d."
 }

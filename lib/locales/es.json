@@ -932,5 +932,17 @@
  "Dziś wolne": "Hoy descanso",
  "zrobione": "hecho",
  "Plan na 7 dni: {list}. Tapnij, by otworzyć Kalendarz.": "Plan de 7 días: {list}. Toca para abrir el Calendario.",
- "wolne": "descanso"
+ "wolne": "descanso",
+ "Uwaga: {a} i {b} dzień po dniu — te same główne partie.": "Atención: {a} y {b} seguidos — mismos grupos musculares principales.",
+ "Ułożenie tygodnia z najmniejszą liczbą zmian, z uwzględnieniem regeneracji partii.": "Organizar la semana con el menor número de cambios, teniendo en cuenta la recuperación muscular.",
+ "Przesuń plan od tego dnia": "Desplazar el plan desde este día",
+ "Przenieś na {day}": "Mover a {day}",
+ "Zamień z {day} ({name})": "Intercambiar con {day} ({name})",
+ "Pomiń ten trening": "Saltar este entrenamiento",
+ "Zmienione dni: {n}": "Días cambiados: {n}",
+ "Wypada treningów: {n}": "Entrenamientos perdidos: {n}",
+ "Zmiany sięgają dalej niż {n} dni.": "Los cambios van más allá de {n} días.",
+ "Zastosuj": "Aplicar",
+ "Zastosuj: {title}": "Aplicar: {title}",
+ "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM). Po zmianach plan wraca do rutyny w ciągu {n} dni.": "Simplificación: normalmente un día de descanso entre sesiones con los mismos grupos principales; dos días seguidos también están bien con el mismo número de series semanales (revisiones, ACSM). Tras los cambios el plan vuelve a la rutina en {n} días."
 }

@@ -932,5 +932,17 @@
  "Dziś wolne": "Heute frei",
  "zrobione": "erledigt",
  "Plan na 7 dni: {list}. Tapnij, by otworzyć Kalendarz.": "Plan für 7 Tage: {list}. Tippen, um den Kalender zu öffnen.",
- "wolne": "frei"
+ "wolne": "frei",
+ "Uwaga: {a} i {b} dzień po dniu — te same główne partie.": "Achtung: {a} und {b} direkt hintereinander — dieselben Hauptmuskelgruppen.",
+ "Ułożenie tygodnia z najmniejszą liczbą zmian, z uwzględnieniem regeneracji partii.": "Woche mit den wenigsten Änderungen planen, unter Berücksichtigung der Muskelregeneration.",
+ "Przesuń plan od tego dnia": "Plan ab diesem Tag verschieben",
+ "Przenieś na {day}": "Auf {day} verlegen",
+ "Zamień z {day} ({name})": "Mit {day} tauschen ({name})",
+ "Pomiń ten trening": "Dieses Training auslassen",
+ "Zmienione dni: {n}": "Geänderte Tage: {n}",
+ "Wypada treningów: {n}": "Entfallende Trainings: {n}",
+ "Zmiany sięgają dalej niż {n} dni.": "Änderungen reichen über {n} Tage hinaus.",
+ "Zastosuj": "Übernehmen",
+ "Zastosuj: {title}": "Übernehmen: {title}",
+ "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM). Po zmianach plan wraca do rutyny w ciągu {n} dni.": "Vereinfachung: meist ein Ruhetag zwischen Einheiten mit denselben Hauptmuskelgruppen; zwei Tage hintereinander sind bei gleicher Wochenzahl an Sätzen ebenfalls in Ordnung (Übersichtsarbeiten, ACSM). Nach Änderungen kehrt der Plan innerhalb von {n} Tagen zur Routine zurück."
 }

@@ -932,5 +932,17 @@
  "Dziś wolne": "Σήμερα ξεκούραση",
  "zrobione": "έγινε",
  "Plan na 7 dni: {list}. Tapnij, by otworzyć Kalendarz.": "Πρόγραμμα 7 ημερών: {list}. Πάτησε για άνοιγμα του Ημερολογίου.",
- "wolne": "ξεκούραση"
+ "wolne": "ξεκούραση",
+ "Uwaga: {a} i {b} dzień po dniu — te same główne partie.": "Προσοχή: {a} και {b} συνεχόμενα — ίδιες κύριες μυϊκές ομάδες.",
+ "Ułożenie tygodnia z najmniejszą liczbą zmian, z uwzględnieniem regeneracji partii.": "Οργάνωση εβδομάδας με τις λιγότερες αλλαγές, με βάση την αποκατάσταση των μυών.",
+ "Przesuń plan od tego dnia": "Μετακίνηση προγράμματος από αυτή τη μέρα",
+ "Przenieś na {day}": "Μεταφορά σε {day}",
+ "Zamień z {day} ({name})": "Αντιμετάθεση με {day} ({name})",
+ "Pomiń ten trening": "Παράλειψη αυτής της προπόνησης",
+ "Zmienione dni: {n}": "Αλλαγμένες μέρες: {n}",
+ "Wypada treningów: {n}": "Προπονήσεις που χάνονται: {n}",
+ "Zmiany sięgają dalej niż {n} dni.": "Οι αλλαγές ξεπερνούν τις {n} μέρες.",
+ "Zastosuj": "Εφαρμογή",
+ "Zastosuj: {title}": "Εφαρμογή: {title}",
+ "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM). Po zmianach plan wraca do rutyny w ciągu {n} dni.": "Απλοποίηση: συνήθως μια μέρα ξεκούρασης ανάμεσα σε προπονήσεις με τις ίδιες κύριες ομάδες· δύο συνεχόμενες μέρες είναι επίσης εντάξει με τον ίδιο εβδομαδιαίο αριθμό σετ (ανασκοπήσεις, ACSM). Μετά τις αλλαγές το πρόγραμμα επιστρέφει στη ρουτίνα μέσα σε {n} μέρες."
 }

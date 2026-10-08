@@ -932,5 +932,17 @@
  "Dziś wolne": "Azi pauză",
  "zrobione": "gata",
  "Plan na 7 dni: {list}. Tapnij, by otworzyć Kalendarz.": "Plan pe 7 zile: {list}. Atinge pentru a deschide Calendarul.",
- "wolne": "pauză"
+ "wolne": "pauză",
+ "Uwaga: {a} i {b} dzień po dniu — te same główne partie.": "Atenție: {a} și {b} la rând — aceleași grupe musculare principale.",
+ "Ułożenie tygodnia z najmniejszą liczbą zmian, z uwzględnieniem regeneracji partii.": "Organizează săptămâna cu cele mai puține schimbări, ținând cont de refacerea musculară.",
+ "Przesuń plan od tego dnia": "Mută planul de la această zi",
+ "Przenieś na {day}": "Mută pe {day}",
+ "Zamień z {day} ({name})": "Schimbă cu {day} ({name})",
+ "Pomiń ten trening": "Sari peste acest antrenament",
+ "Zmienione dni: {n}": "Zile schimbate: {n}",
+ "Wypada treningów: {n}": "Antrenamente pierdute: {n}",
+ "Zmiany sięgają dalej niż {n} dni.": "Schimbările depășesc {n} zile.",
+ "Zastosuj": "Aplică",
+ "Zastosuj: {title}": "Aplică: {title}",
+ "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM). Po zmianach plan wraca do rutyny w ciągu {n} dni.": "Simplificare: de obicei o zi de pauză între sesiunile cu aceleași grupe principale; două zile la rând sunt în regulă la același număr săptămânal de serii (sinteze, ACSM). După schimbări, planul revine la rutină în {n} zile."
 }

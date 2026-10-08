@@ -1,4 +1,4 @@
-import { getState, save, finishedWorkouts, localISODate } from './store';
+import { getState, save, finishedWorkouts, localISODate, exById } from './store';
 
 /*
  * Plan tygodnia i kalendarz (priorytet właściciela 08.10.2026, docs/18; docs/21 „Priorytet”). Same dane użytkownika — bez twierdzeń dziedzinowych
@@ -88,3 +88,75 @@ export function dayStatus(k: string, today = dayKeyOf(Date.now())): { status: Da
 }
 /** Najbliższe dni z planem (dziś i dalej) — do podglądu tygodnia na ekranie treningu. */
 export const upcoming = (days = 7, today = dayKeyOf(Date.now())) => Array.from({ length: days }, (_, i) => addDays(today, i)).map(k => ({ date: k, templateId: plannedOn(k) }));
+
+/* ---------- sugestie z regeneracją partii (decyzja właściciela 08.10.2026; reguły i źródła: docs/research/23) ----------
+ * Uproszczenie (nazwane): sesje z tymi samymi głównymi partiami dzień po dniu — ostrzeżenie, nie blokada. Podstawa: przebieg regeneracji 24–48 h
+ * (Morán-Navarro 2017 / Pareja-Blanco 2019–2020 — jeden zespół; Soares 2015; Paulsen 2012), ACSM „48 h” tylko z cytatu wtórnego (Cuthbert 2021);
+ * dzień po dniu przy równej objętości tygodnia nie szkodzi (Schoenfeld 2019, Grgic 2018, Cuthbert 2021, Pedersen 2024) — dlatego ostrzeżenie.
+ * Priorytet: zachować liczbę sesji, najmniej zmienionych dni, powrót do rutyny w RETURN_DAYS dni. */
+/** Okno powrotu do rutyny (decyzja właściciela: „po 7–10 dniach wrócić do pierwotnej rutyny”). */
+export const RETURN_DAYS = 10;
+/** Główne partie szablonu (ćwiczenia z biblioteki: pole muscles). */
+export function templateMuscles(id: string | null): Set<string> {
+  const tpl = id ? getState().templates.find(x => x.id === id) : undefined; const out = new Set<string>();
+  tpl?.items.forEach(it => (exById(it.exerciseId)?.muscles ?? []).forEach(m => out.add(m)));
+  return out;
+}
+const overlap = (a: string | null, b: string | null) => { if (!a || !b) return false; const A = templateMuscles(a); for (const m of templateMuscles(b)) if (A.has(m)) return true; return false; };
+/** Pary dni pod rząd z tymi samymi głównymi partiami w oknie [from, from + n). */
+export function backToBack(from: string, n = RETURN_DAYS, on: (k: string) => string | null = plannedOn): { a: string; b: string }[] {
+  const out: { a: string; b: string }[] = [];
+  for (let i = -1; i < n; i++) { const a = addDays(from, i), b = addDays(from, i + 1); if (overlap(on(a), on(b))) out.push({ a, b }); }
+  return out;
+}
+
+type Ov = Record<string, string | null>;
+type Sim = { ov: Ov };
+const simOn = (sim: Sim) => (k: string): string | null => { const id = k in sim.ov ? sim.ov[k] : weekPlanDays()[weekdayIdx(k)]; return liveTemplate(id) ? id : null; };
+const simSet = (sim: Sim, k: string, id: string | null) => { if (id === baseOn(k)) delete sim.ov[k]; else sim.ov[k] = id; };
+
+export type Suggestion = {
+  kind: 'shift' | 'move' | 'swap' | 'skip'; to?: string;
+  /** zmienione dni względem planu tygodnia w oknie powrotu */ changes: number;
+  /** pary pod rząd z tymi samymi partiami, których nie ma w planie tygodnia */ newBackToBack: { a: string; b: string }[];
+  /** sesje, które wypadają w oknie */ dropped: number;
+  /** czy wszystkie zmiany mieszczą się w oknie powrotu */ returns: boolean;
+  ov: Ov;
+};
+/**
+ * Propozycje dla treningu z dnia `from` (przesunięty, opuszczony albo „nie dam rady”): przesunięcie planu, przeniesienie na wolny dzień,
+ * zamiana z najbliższym treningiem, pominięcie. Kolejność: zmiany w oknie powrotu → bez utraty sesji → bez nowych par pod rząd z tymi samymi partiami → najmniej zmian
+ * (zmiany poza oknem powrotu — na końcu). Dzień startu: `from`, a dla dnia sprzed dzisiaj — dziś (przeszłości nie przestawiamy).
+ */
+export function suggest(from: string, today = dayKeyOf(Date.now())): Suggestion[] {
+  const id = plannedOn(from); if (!id) return [];
+  const start = from < today ? today : from; const base0 = { ...(getState().planOverrides ?? {}) };
+  const winFrom = from < today ? from : start; const win = Array.from({ length: RETURN_DAYS + 1 }, (_, i) => addDays(winFrom, i));
+  const baseOnly = (k: string) => baseOn(k);
+  const baseB2B = new Set(backToBack(winFrom, RETURN_DAYS, baseOnly).map(p => p.a + p.b));
+  const count = (on: (k: string) => string | null) => win.filter(k => !!on(k)).length;
+  const baseCount = count(baseOnly);
+  const make = (kind: Suggestion['kind'], sim: Sim, to?: string): Suggestion => {
+    const on = simOn(sim); const changed = win.filter(k => on(k) !== baseOnly(k));
+    const lastChange = Object.keys(sim.ov).filter(k => k >= winFrom).sort().pop();
+    return { kind, to, changes: changed.length, newBackToBack: backToBack(winFrom, RETURN_DAYS, on).filter(p => !baseB2B.has(p.a + p.b)), dropped: Math.max(0, baseCount - count(on)),
+      returns: !lastChange || lastChange <= addDays(winFrom, RETURN_DAYS - 1), ov: sim.ov };
+  };
+  const out: Suggestion[] = [];
+  /* 1. przesunięcie planu (łańcuch do pierwszego wolnego dnia) — od dnia startu */
+  { const sim: Sim = { ov: { ...base0 } }; const on = simOn(sim); let carry: string | null = id; if (from !== start) simSet(sim, from, null);
+    let d = start; if (from === start) simSet(sim, start, null); else { const there = on(start); simSet(sim, start, carry); carry = there; }
+    for (let i = 0; i < SHIFT_MAX_DAYS && carry; i++) { const next = addDays(d, 1); const there = on(next); simSet(sim, next, carry); carry = there; d = next; }
+    out.push(make('shift', sim)); }
+  /* 2. przeniesienie tylko tego treningu na wolny dzień (najbliższe 6 dni) */
+  for (let i = from === start ? 1 : 0; i <= 6; i++) { const k = addDays(start, i); const sim: Sim = { ov: { ...base0 } }; if (simOn(sim)(k)) continue; simSet(sim, from, null); simSet(sim, k, id); out.push(make('move', sim, k)); }
+  /* 3. zamiana z najbliższym innym treningiem */
+  if (from > today) for (let i = 1; i <= 6; i++) { const k = addDays(from, i); const sim: Sim = { ov: { ...base0 } }; const there = simOn(sim)(k); if (!there) continue; simSet(sim, from, there); simSet(sim, k, id); out.push(make('swap', sim, k)); break; } /* tylko dla dni przyszłych — „dziś nie dam rady” nie wstawia innego treningu na dziś */
+  /* 4. pominięcie */
+  { const sim: Sim = { ov: { ...base0 } }; simSet(sim, from, null); out.push(make('skip', sim)); }
+  /* docs/research/23 reguła 4: najpierw zachować sesje (objętość tygodnia), potem unikać nowych par pod rząd (reguła 1–2: ostrzeżenie), potem najmniej zmian */
+  const score = (x: Suggestion) => [x.returns ? 0 : 1, x.dropped, x.newBackToBack.length, x.changes];
+  return out.sort((a, b) => { const sa = score(a), sb = score(b); for (let i = 0; i < sa.length; i++) if (sa[i] !== sb[i]) return sa[i] - sb[i]; return 0; });
+}
+/** Zastosowanie propozycji (na polecenie użytkownika). */
+export function applySuggestion(sg: Suggestion) { const st = getState(); if (Object.keys(sg.ov).length) st.planOverrides = { ...sg.ov }; else delete st.planOverrides; tidy(); commit(); }

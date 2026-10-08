@@ -932,5 +932,17 @@
  "Dziś wolne": "Repos aujourd’hui",
  "zrobione": "fait",
  "Plan na 7 dni: {list}. Tapnij, by otworzyć Kalendarz.": "Plan sur 7 jours : {list}. Touchez pour ouvrir le Calendrier.",
- "wolne": "repos"
+ "wolne": "repos",
+ "Uwaga: {a} i {b} dzień po dniu — te same główne partie.": "Attention : {a} et {b} d’affilée — mêmes groupes musculaires principaux.",
+ "Ułożenie tygodnia z najmniejszą liczbą zmian, z uwzględnieniem regeneracji partii.": "Organiser la semaine avec le moins de changements, en tenant compte de la récupération musculaire.",
+ "Przesuń plan od tego dnia": "Décaler le plan à partir de ce jour",
+ "Przenieś na {day}": "Déplacer au {day}",
+ "Zamień z {day} ({name})": "Échanger avec {day} ({name})",
+ "Pomiń ten trening": "Sauter cette séance",
+ "Zmienione dni: {n}": "Jours modifiés : {n}",
+ "Wypada treningów: {n}": "Séances perdues : {n}",
+ "Zmiany sięgają dalej niż {n} dni.": "Les changements dépassent {n} jours.",
+ "Zastosuj": "Appliquer",
+ "Zastosuj: {title}": "Appliquer : {title}",
+ "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM). Po zmianach plan wraca do rutyny w ciągu {n} dni.": "Simplification : en général un jour de repos entre les séances avec les mêmes groupes principaux ; deux jours d’affilée conviennent aussi à volume hebdomadaire égal (revues, ACSM). Après les changements, le plan revient à la routine en {n} jours."
 }

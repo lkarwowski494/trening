@@ -932,5 +932,17 @@
  "Dziś wolne": "Dnes voľno",
  "zrobione": "hotovo",
  "Plan na 7 dni: {list}. Tapnij, by otworzyć Kalendarz.": "Plán na 7 dní: {list}. Ťukni pre otvorenie Kalendára.",
- "wolne": "voľno"
+ "wolne": "voľno",
+ "Uwaga: {a} i {b} dzień po dniu — te same główne partie.": "Pozor: {a} a {b} deň po dni — rovnaké hlavné partie.",
+ "Ułożenie tygodnia z najmniejszą liczbą zmian, z uwzględnieniem regeneracji partii.": "Usporiadať týždeň s najmenším počtom zmien s ohľadom na regeneráciu partií.",
+ "Przesuń plan od tego dnia": "Posunúť plán od tohto dňa",
+ "Przenieś na {day}": "Presunúť na {day}",
+ "Zamień z {day} ({name})": "Vymeniť s {day} ({name})",
+ "Pomiń ten trening": "Vynechať tento tréning",
+ "Zmienione dni: {n}": "Zmenené dni: {n}",
+ "Wypada treningów: {n}": "Vypadnuté tréningy: {n}",
+ "Zmiany sięgają dalej niż {n} dni.": "Zmeny siahajú ďalej ako {n} dní.",
+ "Zastosuj": "Použiť",
+ "Zastosuj: {title}": "Použiť: {title}",
+ "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM). Po zmianach plan wraca do rutyny w ciągu {n} dni.": "Zjednodušenie: zvyčajne deň voľna medzi tréningami s rovnakými hlavnými partiami; dva dni po sebe sú pri rovnakom týždennom počte sérií tiež v poriadku (prehľady štúdií, ACSM). Po zmenách sa plán vráti k rutine do {n} dní."
 }

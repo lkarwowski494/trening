@@ -932,5 +932,17 @@
  "Dziś wolne": "Vandaag rust",
  "zrobione": "gedaan",
  "Plan na 7 dni: {list}. Tapnij, by otworzyć Kalendarz.": "Plan voor 7 dagen: {list}. Tik om de Kalender te openen.",
- "wolne": "rust"
+ "wolne": "rust",
+ "Uwaga: {a} i {b} dzień po dniu — te same główne partie.": "Let op: {a} en {b} achter elkaar — dezelfde hoofdspiergroepen.",
+ "Ułożenie tygodnia z najmniejszą liczbą zmian, z uwzględnieniem regeneracji partii.": "Week indelen met de minste wijzigingen, rekening houdend met spierherstel.",
+ "Przesuń plan od tego dnia": "Plan vanaf deze dag opschuiven",
+ "Przenieś na {day}": "Verplaatsen naar {day}",
+ "Zamień z {day} ({name})": "Wisselen met {day} ({name})",
+ "Pomiń ten trening": "Deze training overslaan",
+ "Zmienione dni: {n}": "Gewijzigde dagen: {n}",
+ "Wypada treningów: {n}": "Vervallen trainingen: {n}",
+ "Zmiany sięgają dalej niż {n} dni.": "Wijzigingen reiken verder dan {n} dagen.",
+ "Zastosuj": "Toepassen",
+ "Zastosuj: {title}": "Toepassen: {title}",
+ "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM). Po zmianach plan wraca do rutyny w ciągu {n} dni.": "Vereenvoudiging: meestal een rustdag tussen sessies met dezelfde hoofdspiergroepen; twee dagen achter elkaar is ook prima bij hetzelfde aantal sets per week (reviews, ACSM). Na wijzigingen keert het plan binnen {n} dagen terug naar de routine."
 }

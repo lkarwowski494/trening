@@ -932,5 +932,17 @@
  "Dziś wolne": "Ma pihenő",
  "zrobione": "kész",
  "Plan na 7 dni: {list}. Tapnij, by otworzyć Kalendarz.": "7 napos terv: {list}. Koppints a Naptár megnyitásához.",
- "wolne": "pihenő"
+ "wolne": "pihenő",
+ "Uwaga: {a} i {b} dzień po dniu — te same główne partie.": "Figyelem: {a} és {b} egymás után — ugyanazok a fő izomcsoportok.",
+ "Ułożenie tygodnia z najmniejszą liczbą zmian, z uwzględnieniem regeneracji partii.": "A hét beosztása a legkevesebb változtatással, az izmok regenerációját figyelembe véve.",
+ "Przesuń plan od tego dnia": "Terv eltolása ettől a naptól",
+ "Przenieś na {day}": "Áthelyezés: {day}",
+ "Zamień z {day} ({name})": "Csere ezzel: {day} ({name})",
+ "Pomiń ten trening": "Edzés kihagyása",
+ "Zmienione dni: {n}": "Módosított napok: {n}",
+ "Wypada treningów: {n}": "Kieső edzések: {n}",
+ "Zmiany sięgają dalej niż {n} dni.": "A változások {n} napnál tovább érnek.",
+ "Zastosuj": "Alkalmaz",
+ "Zastosuj: {title}": "Alkalmaz: {title}",
+ "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM). Po zmianach plan wraca do rutyny w ciągu {n} dni.": "Egyszerűsítés: általában egy pihenőnap az azonos fő izomcsoportokat terhelő edzések között; két egymást követő nap is rendben van azonos heti sorozatszámnál (áttekintések, ACSM). A változások után a terv {n} napon belül visszatér a rutinhoz."
 }
