@@ -105,7 +105,7 @@ Wrócimy za jakiś czas; w rozmowie wymieniane tylko zbiorczo, dopóki właścic
   na siłowni”). Przed pracą **[OTWARTE]**: aplikacja jest dziś offline, bez kont i serwera — potrzebny serwer albo synchronizacja (koszt: zasada 0 zł
   poza Apple; darmowe limity do sprawdzenia, np. iCloud/CloudKit w ramach Apple Developer); prywatność (dane treningowe innych osób, zgoda, RODO);
   zasady porównań, które nie nagradzają ryzyka (np. wyzwania na regularność / liczbę treningów zamiast samego ciężaru); moderacja zaproszeń.
-  **Grupa jak w Organizerze** (właściciel 08.10.2026): stałe ID grupy (9 cyfr, zmienia właściciel), zaproszenie kodem 6 cyfr ważnym 24 h dla wielu
+  Pomysł właściciela (08.10.2026, **nie decyzja — tylko zapis do odkopania**): grupa jak w Organizerze — stałe ID grupy (9 cyfr, zmienia właściciel), zaproszenie kodem 6 cyfr ważnym 24 h dla wielu
   osób z limitem nieudanych prób, link https (GitHub Pages + Universal Links), role właściciel/admin/członek, usuwanie grupy do kosza na 30 dni —
   wzór: organizer `docs/adr/0020-id-grupy-i-kod.md`, `0007-grupy-i-wydarzenia.md`, `0004-zaproszenia-i-usuwanie-konta.md`. Organizer ma backend Supabase
   (plan Free); **[OTWARTE]**: wspólny projekt Supabase z Organizerem czy osobny (limity planu Free na projekt), konta i logowanie w Treningu (dziś brak),

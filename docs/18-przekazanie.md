@@ -136,6 +136,7 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
   poprzedniego: aktywny plan i wybór, który ma obowiązywać” → **kilka zapisanych planów tygodnia, jeden aktywny** (powrót do starej rutyny po
   okresie przejściowym). Cardio w generatorze: „umiarkowane” z licznikiem minut — bez „na czczo” i „strefy 2” (źródła ich nie potwierdzają,
   docs/research/22 sekcja 4; właściciel poinformowany). Projekt: docs/24.
-- 08.10.2026: do backlogu bez priorytetu — znajomi i wyzwania w grupie („tablica wyników”); otwarte pytania w docs/21.
+- 08.10.2026: do backlogu bez priorytetu — znajomi i wyzwania w grupie („tablica wyników”), pomysł: grupa jak w Organizerze; wszystko do decyzji
+  później (właściciel: „na razie zapisujemy pomysł, żeby go odkopać, gdy będzie czas”); otwarte pytania w docs/21.
 - 08.10.2026: ekran startowy — **dashboard tygodnia (wariant A)**: karta „Dziś” z paskiem tygodnia, 3 kafelki z poprzednim tygodniem, ostatni trening,
   szablony (odrzucone: B minimalny, C pełny z mapą i rekordami); nowa osoba — **lista „Pierwsze kroki”** (odrzucone: jedna karta powitalna).
