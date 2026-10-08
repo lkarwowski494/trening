@@ -20,6 +20,7 @@ export const WHATS_NEW: WhatsNewEntry[] = [
     t('Szablony w folderach i archiwum, „Pomiń dziś” bez zmiany szablonu, usuwanie przesunięciem w lewo.'),
     t('Generator szablonów i planu tygodnia na Twoje polecenie (cel, miejsce, liczba i długość sesji) oraz kilka planów z wyborem aktywnego.'),
     t('Deload: podpowiedź w Kalendarzu i mniej serii przy starcie w tygodniu deload; przypomnienie rano w dniu treningu z planu.'),
+    t('Nowy ekran Trening: dzisiejszy trening, tydzień w liczbach i ostatni trening; przewodnik po funkcjach w Więcej.'),
   ] },
   { id: '2026-10-07', build: 1004, date: '2026-10-07', items: () => [
     t('Nowy wygląd: kolory i kroje, grafika talerzy na sztandze.'),

@@ -8,6 +8,7 @@
 #   "Save templates and plan"        ← 'Zapisz szablony i plan'
 #   "Make the new plan active\?"     ← 'Ustawić nowy plan jako aktywny?'
 #   "Make active"                    ← 'Ustaw jako aktywny' (przycisk w Alercie)
+#   "Guide", "Read: .*", "Weekly plan and Calendar, unread", "Show: Weekly plan and Calendar" ← app/guide.tsx (przewodnik, 08.10.2026)
 #   "Monday: Full Body A"            ← app/plan.tsx: '{dzień}: {szablon}', nazwa szablonu 'FBW A' → 'Full Body A'
 appId: pl.lukasz.trening
 name: Generator szablonów i planu
@@ -29,3 +30,13 @@ name: Generator szablonów i planu
 - tapOn: "Make active"
 - extendedWaitUntil: { visible: "Monday: Full Body A", timeout: 30000 }
 - takeScreenshot: 72-plan-z-generatora
+# --- Przewodnik (08.10.2026): Więcej → Przewodnik → temat → „Show” otwiera Kalendarz ---
+- tapOn: "Back"
+- tapOn: "More, tab.*"
+- tapOn: "Guide.*"
+- extendedWaitUntil: { visible: "Read: .*", timeout: 15000 }
+- tapOn: "Weekly plan and Calendar, unread"
+- extendedWaitUntil: { visible: "Show: Weekly plan and Calendar", timeout: 15000 }
+- takeScreenshot: 73-przewodnik
+- tapOn: "Show: Weekly plan and Calendar"
+- extendedWaitUntil: { visible: "Weekly plan", timeout: 30000 }

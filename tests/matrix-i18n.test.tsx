@@ -31,7 +31,7 @@ const entries = (l: Lang) => Object.entries(dictOf(l));
 const SAME_ANY = new Set([
   /* marki i modele (nazwy własne) */ 'Beyond Power Voltra I (5–200 lb)', 'Gymtek 2,5–24 kg', 'Hop-Sport 2×10 kg', 'ViShape SmartGym Lite (1,5–35 kg/str.)', 'ViShape SmartGym Pro (1,5–65 kg/str.)',
   /* symbole i wzory */ '{k}: {v}', 'max ±', 'e1RM', '{n} min' /* jednostka (generator, 08.10.2026) */,
-  /* angielskie terminy siłowni użyte w polskim źródle */ 'drop set', '+ drop set', 'Drop set (D)', 'superset', 'core', 'kettlebell', 'Kettlebell', 'landmine', 'T-bar', 'trap bar', 'kettlebell: {v}' /* 07.10.2026: podpis grafiki na karcie */,
+  /* angielskie terminy siłowni użyte w polskim źródle */ 'drop set', '+ drop set', 'Drop set (D)', 'superset', 'Deload' /* termin (tytuł tematu przewodnika, 08.10.2026) */, 'core', 'kettlebell', 'Kettlebell', 'landmine', 'T-bar', 'trap bar', 'kettlebell: {v}' /* 07.10.2026: podpis grafiki na karcie */,
   'GHD', 'GHD (glute-ham developer)', 'glute-ham raise', 'reverse hyper', 'ski erg', 'Ski erg', 'Strongman', 'hack squat', 'Hack squat', 'pendulum squat', 'Pendulum squat',
   'butterfly (pec deck)', 'Butterfly (pec deck)', 'tempo', 'biceps', 'triceps',
   /* zapożyczenia międzynarodowe (to samo słowo w języku docelowym) */ 'cardio', 'Cardio', 'Backup', 'Start', 'start {u}', 'Start: {name}', 'Hotel',

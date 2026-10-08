@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, Pressable, Text } from 'react-native';
+import { useRouter } from 'expo-router';
 import { Btn, H2, Muted, Txt } from '@/components/ui';
 import { useTheme, F } from '@/lib/theme';
 import { WHATS_NEW, whatsNewUnseen, markWhatsNewSeen, type WhatsNewEntry } from '@/lib/whatsnew';
@@ -28,7 +29,7 @@ function Entry({ e }: { e: WhatsNewEntry }) {
 }
 
 export function WhatsNewPanel({ onClose }: { onClose: () => void }) {
-  const th = useTheme(); const [older, setOlder] = useState<string | null>(null);
+  const th = useTheme(); const router = useRouter(); const [older, setOlder] = useState<string | null>(null);
   const [cur, ...rest] = WHATS_NEW;
   return (
     <View testID="whats-new" style={{ marginBottom: 10, padding: 12, borderRadius: 10, backgroundColor: th.surface2, gap: 8 }}>
@@ -42,7 +43,10 @@ export function WhatsNewPanel({ onClose }: { onClose: () => void }) {
           </Pressable>
           {on ? <Entry e={e} /> : null}
         </View>); })}
-      <Btn small kind="ghost" title={t('Zamknij')} onPress={onClose} style={{ alignSelf: 'flex-start' }} />
+      <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6 }}>
+        <Btn small title={t('Przewodnik po funkcjach')} onPress={() => { onClose(); router.push('/guide'); }} />{/* 08.10.2026: po aktualizacji — przewodnik */}
+        <Btn small kind="ghost" title={t('Zamknij')} onPress={onClose} />
+      </View>
     </View>
   );
 }

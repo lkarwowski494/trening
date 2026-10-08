@@ -338,6 +338,7 @@ export function migrate(raw: any): State {
       if (sp.length) raw.savedPlans = sp.slice(0, 50); else delete raw.savedPlans; }
     const ov = isObj(raw.planOverrides) ? Object.fromEntries(Object.entries(raw.planOverrides).filter(([k, v]) => /^\d{4}-\d{2}-\d{2}$/.test(k) && (v === null || (typeof v === 'string' && v)))) : {};
     if (Object.keys(ov).length) raw.planOverrides = ov; else delete raw.planOverrides; }
+  { const g = [...new Set((Array.isArray(raw.guideSeen) ? raw.guideSeen : []).filter((x: unknown) => typeof x === 'string' && x && x.length <= 40))].slice(0, 50); if (g.length) raw.guideSeen = g; else delete raw.guideSeen; } /* przewodnik (08.10.2026) */
   if (typeof raw.whatsNewSeen !== 'string' || !raw.whatsNewSeen || raw.whatsNewSeen.length > 40) delete raw.whatsNewSeen; /* „Co nowego” (08.10.2026) */
   if (raw.optFill !== OPT_FILL.rev) { for (const l of raw.settings.locations) fillOpts(l); raw.optFill = OPT_FILL.rev; } /* bieżnia: nachylenie (05.10.2026), raz */
   raw.ownerId = owner;

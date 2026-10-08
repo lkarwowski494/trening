@@ -7,6 +7,7 @@ import Constants from 'expo-constants';
 import { getProfileExpiry } from '@/lib/signing';
 import { useHistTick } from '@/lib/store';
 import { t, locale, appName } from '@/lib/i18n';
+import { guideProgress } from '@/lib/guide';
 
 export default function MoreScreen() {
   const tick = useHistTick(); const router = useRouter(); const [exp, setExp] = useState<Date | null>(null);
@@ -15,6 +16,7 @@ export default function MoreScreen() {
   return (
     <SafeAreaView style={{ flex: 1 }} edges={['top']}><Screen>
       <View style={{ marginVertical: 10 }}><H1>{t('Więcej')}</H1></View>
+      <Item title={t('Przewodnik')} sub={(p => t('Przeczytane: {n} z {m}', { n: p.seen, m: p.total }))(guideProgress())} onPress={() => router.push('/guide')} />{/* 08.10.2026: przewodnik (decyzja właściciela) */}
       <Item title={t('Postępy')} onPress={() => router.push('/more/progress')} />
       <Item title={t('Miejsca i sprzęt')} onPress={() => router.push('/more/locations')} /* decyzja 05.10.2026: osobna pozycja, nie tylko w Ustawieniach */ />
       {/* decyzja 05.10.2026: gumy w dodawaniu sprzętu (Miejsca i sprzęt → Gumy oporowe); ekran /more/bands zostaje dla usuwania gum */}

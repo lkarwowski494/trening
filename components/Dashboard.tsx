@@ -49,7 +49,10 @@ export function FirstSteps() {
     </View>);
   return (
     <View testID="first-steps" style={{ marginTop: 6, padding: 12, borderRadius: 12, backgroundColor: th.surface, borderWidth: 1, borderColor: th.line }}>
-      <Txt accessibilityRole="header" style={{ fontFamily: F.semibold, fontSize: 17 }}>{t('Pierwsze kroki')}</Txt>
+      <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
+        <Txt accessibilityRole="header" style={{ fontFamily: F.semibold, fontSize: 17 }}>{t('Pierwsze kroki')}</Txt>
+        <Btn small kind="ghost" title={t('Przewodnik')} accessibilityLabel={t('Przewodnik po funkcjach')} onPress={() => router.push('/guide')} />{/* 08.10.2026 */}
+      </View>
       {step(f.template, 1, t('Utwórz szablon („+ Nowy szablon” niżej) albo wygeneruj szablony i plan.'), !f.template ? <Btn small title={t('Wygeneruj szablony i plan')} onPress={() => router.push('/generator')} style={{ alignSelf: 'flex-start' }} /> : undefined)}
       {step(f.plan, 2, t('Ustaw plan tygodnia — zobaczysz tu dzisiejszy trening i dostaniesz przypomnienie.'), !f.plan ? <Btn small title={t('Plan tygodnia')} onPress={() => router.push('/plan')} style={{ alignSelf: 'flex-start' }} /> : undefined)}
       {step(false, 3, live ? t('Pierwszy raz? Wybierz szablon niżej, wpisz ciężar i powtórzenia, odhaczaj serie ✓ — przerwa odlicza się sama. Na koniec „Zakończ trening i zapisz”. Szablony i ćwiczenia zmienisz w zakładkach obok.') : t('Pierwszy raz? Utwórz swój szablon („+ Nowy szablon” niżej) albo zacznij pusty trening. Wpisuj ciężar i powtórzenia, odhaczaj serie ✓ — przerwa odlicza się sama. Na koniec „Zakończ trening i zapisz”.'))}

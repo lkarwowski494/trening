@@ -1,7 +1,19 @@
 [
  {
+  "pl": "„⏸ Pauza” zatrzymuje zegar treningu; czas pauzy nie liczy się do czasu trwania.",
+  "en": "“⏸ Pause” stops the workout clock; paused time doesn’t count towards the duration."
+ },
+ {
   "pl": "„do” jest mniejsze niż „od” — zakres pokaże się jako {n}+",
   "en": "“to” is lower than “from” — the range will show as {n}+"
+ },
+ {
+  "pl": "„Propozycje” układają tydzień z najmniejszą liczbą zmian, z uwzględnieniem regeneracji partii.",
+  "en": "“Suggestions” arrange the week with the fewest changes, taking muscle-group recovery into account."
+ },
+ {
+  "pl": "„Wygeneruj szablony i plan” (Szablony albo Plan tygodnia): wybierz cel, miejsce, liczbę i długość sesji.",
+  "en": "“Generate templates and plan” (Templates or Weekly plan): choose goal, place, number and length of sessions."
  },
  {
   "pl": "(kopia)",
@@ -254,6 +266,10 @@
  {
   "pl": "Automatyczna kopia po każdym treningu",
   "en": "Automatic backup after every workout"
+ },
+ {
+  "pl": "Automatyczna kopia po każdym treningu trafia do Plików (Ustawienia).",
+  "en": "An automatic backup after every workout goes to Files (Settings)."
  },
  {
   "pl": "Backup",
@@ -641,6 +657,10 @@
   "en": "Date (YYYY-MM-DD)"
  },
  {
+  "pl": "Deload",
+  "en": "Deload"
+ },
+ {
   "pl": "Deload: podpowiedź w Kalendarzu i mniej serii przy starcie w tygodniu deload; przypomnienie rano w dniu treningu z planu.",
   "en": "Deload: a hint in the Calendar and fewer sets at start in a deload week; a morning reminder on planned workout days."
  },
@@ -900,6 +920,10 @@
  {
   "pl": "Generator planu",
   "en": "Plan generator"
+ },
+ {
+  "pl": "Generator szablonów i planu",
+  "en": "Template and plan generator"
  },
  {
   "pl": "Generator szablonów i planu tygodnia na Twoje polecenie (cel, miejsce, liczba i długość sesji) oraz kilka planów z wyborem aktywnego.",
@@ -1186,6 +1210,10 @@
   "en": "kettlebell: {v}"
  },
  {
+  "pl": "Kilka planów: „Zapisz kopię jako nowy plan” i „Ustaw jako aktywny” w „Inne plany”.",
+  "en": "Several plans: “Save a copy as a new plan” and “Make active” under “Other plans”."
+ },
+ {
   "pl": "klatka",
   "en": "chest"
  },
@@ -1256,6 +1284,10 @@
  {
   "pl": "Kopia obejmie też poprzednie, nieczytelne dane.",
   "en": "The copy will also include the earlier unreadable data."
+ },
+ {
+  "pl": "Kopia zapasowa",
+  "en": "Backup"
  },
  {
   "pl": "Kopia: {name}",
@@ -1332,6 +1364,10 @@
  {
   "pl": "lista ćwiczeń z filtrami, które możesz zdjąć",
   "en": "exercise list with filters you can remove"
+ },
+ {
+  "pl": "Lista ćwiczeń, zamiany i generator pokazują to, co da się zrobić w wybranym miejscu.",
+  "en": "The exercise list, swaps and the generator show what can be done at the chosen place."
  },
  {
   "pl": "Lista: ćwiczenia i serie jak w poprzednich wersjach, bez karty.",
@@ -1412,6 +1448,10 @@
  {
   "pl": "Mapa mięśni",
   "en": "Muscle map"
+ },
+ {
+  "pl": "Mapa mięśni i serie na partię z kreską 10 serii tygodniowo.",
+  "en": "Muscle map and sets per muscle group with a 10-sets-per-week line."
  },
  {
   "pl": "Mapa mięśni: {list}",
@@ -1706,6 +1746,10 @@
   "en": "What this is based on"
  },
  {
+  "pl": "Na ekranie Trening stuknij „Start” przy szablonie albo „Pusty trening”.",
+  "en": "On the Workout screen tap “Start” next to a template or “Empty workout”."
+ },
+ {
   "pl": "Na ekranie treningu: dzisiejszy trening z planu i podgląd 7 dni.",
   "en": "On the workout screen: today's planned workout and a 7-day preview."
  },
@@ -1716,6 +1760,10 @@
  {
   "pl": "Na każdą stronę: {p}",
   "en": "Each side: {p}"
+ },
+ {
+  "pl": "Na koniec „Zakończ trening i zapisz” — sesja trafi do Kalendarza.",
+  "en": "At the end tap “Finish and save workout” — the session goes to the Calendar."
  },
  {
   "pl": "Na który dzień? Zajęte dni są oznaczone nazwą treningu.",
@@ -1772,6 +1820,10 @@
  {
   "pl": "najszersze grzbietu",
   "en": "lats"
+ },
+ {
+  "pl": "Najważniejsze funkcje w kilku krokach. „Pokaż” otwiera opisany ekran.",
+  "en": "Key features in a few steps. “Show” opens the screen described."
  },
  {
   "pl": "Najwięcej powtórzeń na treningu",
@@ -1902,6 +1954,10 @@
   "en": "Invalid time. Enter HH:MM, e.g. 18:00."
  },
  {
+  "pl": "nieprzeczytane",
+  "en": "unread"
+ },
+ {
   "pl": "nogi",
   "en": "legs"
  },
@@ -1940,6 +1996,10 @@
  {
   "pl": "Nowe rekordy: {n}",
   "en": "New records: {n}"
+ },
+ {
+  "pl": "Nowy ekran Trening: dzisiejszy trening, tydzień w liczbach i ostatni trening; przewodnik po funkcjach w Więcej.",
+  "en": "New Workout screen: today’s workout, the week in numbers and your last workout; feature guide under More."
  },
  {
   "pl": "Nowy rekord!",
@@ -2254,6 +2314,10 @@
   "en": "Weekly plan"
  },
  {
+  "pl": "Plan tygodnia i Kalendarz",
+  "en": "Weekly plan and Calendar"
+ },
+ {
   "pl": "plecy",
   "en": "back"
  },
@@ -2264,6 +2328,10 @@
  {
   "pl": "Pliki → Na moim iPhonie → {app} → Backup, ostatnie {n}",
   "en": "Files → On My iPhone → {app} → Backup, last {n}"
+ },
+ {
+  "pl": "Po kilku tygodniach treningu z rzędu Kalendarz podpowie „Zaplanuj deload od …”.",
+  "en": "After several training weeks in a row the Calendar will suggest “Plan a deload from …”."
  },
  {
   "pl": "Po ukryciu komunikatu kopii nie da się już wysłać z aplikacji — najpierw ją wyślij, jeśli jest potrzebna.",
@@ -2306,6 +2374,10 @@
   "en": "Showing {n} of {m} — type a name to narrow down."
  },
  {
+  "pl": "Pokaż",
+  "en": "Show"
+ },
+ {
   "pl": "Pokaż inne ćwiczenia",
   "en": "Show other exercises"
  },
@@ -2320,6 +2392,10 @@
  {
   "pl": "Pokaż wszystkie",
   "en": "Show all"
+ },
+ {
+  "pl": "Pokaż: {name}",
+  "en": "Show: {name}"
  },
  {
   "pl": "Połącz z następnym w superset",
@@ -2422,6 +2498,10 @@
   "en": "Progress"
  },
  {
+  "pl": "Postępy i rekordy",
+  "en": "Progress and records"
+ },
+ {
   "pl": "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik 10 serii na partię w tygodniu i oznaczanie tygodnia deload.",
   "en": "Progress: weekly and monthly summary with a muscle map, a 10-sets-per-muscle-group weekly mark and marking a week as deload."
  },
@@ -2516,8 +2596,20 @@
   "en": "Drag by ≡ to change the order. A superset moves as a whole; use the handles next to its exercises to reorder within it."
  },
  {
+  "pl": "przeczytane",
+  "en": "read"
+ },
+ {
+  "pl": "Przeczytane: {n} z {m}",
+  "en": "Read: {n} of {m}"
+ },
+ {
   "pl": "przedramiona",
   "en": "forearms"
+ },
+ {
+  "pl": "Przejrzyj podgląd i „Na czym to oparte” — wynik zapisuje się dopiero po zatwierdzeniu.",
+  "en": "Review the preview and “What this is based on” — nothing is saved until you confirm."
  },
  {
   "pl": "Przenieś na {day}",
@@ -2580,6 +2672,10 @@
   "en": "Rest: {s}. Tap to change."
  },
  {
+  "pl": "Przesunięcie w lewo na liście usuwa szablon (z potwierdzeniem).",
+  "en": "Swipe left on the list to delete a template (with confirmation)."
+ },
+ {
   "pl": "Przesuń niżej",
   "en": "Move down"
  },
@@ -2598,6 +2694,14 @@
  {
   "pl": "Przesuń wyżej",
   "en": "Move up"
+ },
+ {
+  "pl": "Przewodnik",
+  "en": "Guide"
+ },
+ {
+  "pl": "Przewodnik po funkcjach",
+  "en": "Feature guide"
  },
  {
   "pl": "Przód",
@@ -3071,6 +3175,10 @@
   "en": "Strongman"
  },
  {
+  "pl": "Stuknij dzień w Kalendarzu: przesuń plan o 1 dzień, przesuń tylko ten trening albo zmień go na inny.",
+  "en": "Tap a day in the Calendar: move the plan by 1 day, move only this workout or change it to another one."
+ },
+ {
   "pl": "suma pow.",
   "en": "session reps"
  },
@@ -3113,6 +3221,10 @@
  {
   "pl": "Szablony",
   "en": "Templates"
+ },
+ {
+  "pl": "Szablony trafiają do folderu „Wygenerowane”, a plan do „Inne plany” albo od razu jako aktywny.",
+  "en": "Templates go to the “Generated” folder, and the plan to “Other plans” or straight in as the active one."
  },
  {
   "pl": "Szablony trafią do folderu „Wygenerowane”. Obecny plan zostanie w „Inne plany” — wrócisz do niego jednym przyciskiem.",
@@ -3291,6 +3403,10 @@
   "en": "Workout"
  },
  {
+  "pl": "Trening i serie",
+  "en": "Workouts and sets"
+ },
+ {
   "pl": "Trening jest zawsze włączony. Pozostałe moduły pojawią się w kolejnych wersjach — przełącznik już czeka. Schemat danych: v{v}.",
   "en": "Training is always on. Other modules arrive in later versions — the switch is ready. Data schema: v{v}."
  },
@@ -3361,6 +3477,10 @@
  {
   "pl": "Tydzień deload",
   "en": "Deload week"
+ },
+ {
+  "pl": "Tydzień oznaczysz też w Postępach przełącznikiem „Tydzień deload”.",
+  "en": "You can also mark a week in Progress with the “Deload week” switch."
  },
  {
   "pl": "Tygodnie od poniedziałku. Objętość = ciężar × powtórzenia × mnożnik ćwiczenia; rozgrzewka poza.",
@@ -3663,8 +3783,16 @@
   "en": "ViShape SmartGym Pro (1.5–65 kg/side)"
  },
  {
+  "pl": "W edytorze szablonu przeniesiesz go do folderu albo archiwum.",
+  "en": "In the template editor you can move it to a folder or the archive."
+ },
+ {
   "pl": "W historii serie z tą gumą pokażą „?”.",
   "en": "Sets with this band will show “?” in history."
+ },
+ {
+  "pl": "W Kalendarzu „Plan tygodnia” przypisuje szablony do dni — plan powtarza się co tydzień.",
+  "en": "In the Calendar, “Weekly plan” assigns templates to days — the plan repeats every week."
  },
  {
   "pl": "w poniedziałek o 7:00",
@@ -3681,6 +3809,14 @@
  {
   "pl": "W trwającym treningu zostanie oznaczone jako usunięte.",
   "en": "In the current workout it will be marked as deleted."
+ },
+ {
+  "pl": "W tygodniu deload „Start” zaproponuje „Mniej serii” — ciężary i szablon bez zmian.",
+  "en": "In a deload week “Start” offers “Fewer sets” — weights and template unchanged."
+ },
+ {
+  "pl": "W zakładce Szablony „+ Nowy” tworzy szablon: ćwiczenia, serie, zakres powtórzeń i przerwy.",
+  "en": "On the Templates tab, “+ New” creates a template: exercises, sets, rep range and rest."
  },
  {
   "pl": "Waga ({u})",
@@ -3713,6 +3849,18 @@
  {
   "pl": "Więcej",
   "en": "More"
+ },
+ {
+  "pl": "Więcej → Backup: eksport wszystkich danych do pliku i import z pliku.",
+  "en": "More → Backup: export all data to a file and import from a file."
+ },
+ {
+  "pl": "Więcej → Miejsca i sprzęt: dom, siłownia, hotel — każdy ze swoim sprzętem i ciężarami.",
+  "en": "More → Places and equipment: home, gym, hotel — each with its own equipment and weights."
+ },
+ {
+  "pl": "Więcej → Postępy: podsumowanie tygodnia lub miesiąca z poprzednim okresem obok.",
+  "en": "More → Progress: weekly or monthly summary with the previous period alongside."
  },
  {
   "pl": "Wiosłowanie T-bar",
@@ -3761,6 +3909,10 @@
  {
   "pl": "Wpisane wartości zamiennika przepadną.",
   "en": "Values entered for the substitute will be lost."
+ },
+ {
+  "pl": "Wpisz ciężar i powtórzenia, odhacz serię ✓ — przerwa odlicza się sama.",
+  "en": "Enter weight and reps, tick the set ✓ — the rest timer starts by itself."
  },
  {
   "pl": "wpisz uchwyt i talerze",
@@ -3869,6 +4021,10 @@
  {
   "pl": "Wykres, {n} {s}: od {a} ({x}) do {b} ({y}), najlepiej {c} ({z}).",
   "en": "Chart, {n} {s}: from {a} ({x}) to {b} ({y}), best {c} ({z})."
+ },
+ {
+  "pl": "Wykresy ćwiczeń i rekordy; rekord w trakcie treningu widać przy serii.",
+  "en": "Exercise charts and records; during a workout a record shows next to the set."
  },
  {
   "pl": "Wykresy pojawią się po pierwszym zakończonym treningu.",
