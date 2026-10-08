@@ -102,3 +102,4 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
   dopasowania ćwiczeń (opcje A/B/C w rozmowie 07.10).
 - 08.10.2026: wydanie pakietu (czcionka, usuwanie gestem, kalendarz, „Pomiń dziś”, foldery; E2E 12/12, run 37669619362) — **wstrzymane** (wariant B:
   dołożyć kolejne funkcje do tej wersji; odrzucone A: wydanie od razu). Gałąź `feature/e2-swap` bez scalenia do `main`.
+- 08.10.2026: do tej wersji — **A pauza treningu, B podsumowanie tygodnia/miesiąca, C mapa mięśni** (wszystkie trzy). Otwarte: czy pauza odejmuje czas trwania.

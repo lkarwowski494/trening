@@ -865,5 +865,19 @@
  "+ Nowy folder": "+ Neuer Ordner",
  "Nazwa folderu": "Ordnername",
  "Przywróć z archiwum": "Aus dem Archiv holen",
- "Archiwizuj": "Archivieren"
+ "Archiwizuj": "Archivieren",
+ "Podsumowanie": "Übersicht",
+ "Tydzień": "Woche",
+ "Miesiąc": "Monat",
+ "Poprzedni okres": "Vorheriger Zeitraum",
+ "Następny okres": "Nächster Zeitraum",
+ "Treningi": "Trainings",
+ "Serie robocze": "Arbeitssätze",
+ "Objętość": "Volumen",
+ "Czas treningów": "Trainingszeit",
+ "{label}: {v}, poprzednio {p}": "{label}: {v}, zuvor {p}",
+ "Rekordy w tym okresie": "Rekorde in diesem Zeitraum",
+ "Bez nowych rekordów w tym okresie.": "Keine neuen Rekorde in diesem Zeitraum.",
+ "Brak treningów w tym okresie.": "Keine Trainings in diesem Zeitraum.",
+ "Obok w nawiasie — cały poprzedni okres. Serie robocze bez rozgrzewki; rekordy jak w podsumowaniu treningu.": "In Klammern — der gesamte vorherige Zeitraum. Arbeitssätze ohne Aufwärmen; Rekorde wie in der Trainingsübersicht."
 }

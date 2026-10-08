@@ -41,7 +41,7 @@ const SAME_IN: Partial<Record<Lang, string[]>> = {
   cs: ['guma: {v}' /* guma (07.10.2026) */, '{n} z {all}', '{n} z {m}' /* „z” = z (czes.) */, '{u}/str.' /* strana */, '+ Guma', 'guma', 'Guma', 'gumy', 'Gumy' /* guma */, 'do', 'od', 'krok', 'obj.' /* objem */, 'REKORDY'],
   sk: ['guma: {v}' /* guma (07.10.2026) */, '{n} z {all}', '{n} z {m}', '{u}/str.', '+ Guma', 'guma', 'Guma', 'gumy', 'Gumy', 'do', 'od', 'krok', 'obj.', 'REKORDY', 'nie', 'Nie' /* „nie” = nie (słow.) */, 'Partia' /* svalová partia */, 'sek.', 'Teraz: {v}' /* teraz = teraz (słow.) */],
   hr: ['guma: {v}' /* guma (07.10.2026) */, '{u}/str.' /* strana */, 'do', 'od', 'Dom', 'normalna', 'sek.', 'Trening' /* APP_NAME.hr */],
-  sl: ['{u}/str.' /* stran */, 'do', 'od', 'Dom', 'sek.', 'Trening' /* APP_NAME.sl */],
+  sl: ['{u}/str.' /* stran */, 'do', 'od', 'Dom', 'sek.', 'Trening' /* APP_NAME.sl */, 'Treningi' /* sl: mn. „trening” — to samo słowo */],
   ro: ['seria {n}', 'Seria {n}', 'Seria {n} — {ex}', 'serii', 'e1RM {v} (seria {s})' /* rum. seria = seria (forma z rodzajnikiem), serii = serie */],
   lt: ['guma: {v}' /* guma (07.10.2026) */, '{u}/hant.' /* hantelis */, '+ Guma', 'guma', 'Guma' /* guma */, 'sek.'],
   lv: ['{u}/hant.' /* hantele */, 'sek.'],

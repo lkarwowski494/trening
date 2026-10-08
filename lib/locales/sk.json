@@ -865,5 +865,19 @@
  "+ Nowy folder": "+ Nový priečinok",
  "Nazwa folderu": "Názov priečinka",
  "Przywróć z archiwum": "Obnoviť z archívu",
- "Archiwizuj": "Archivovať"
+ "Archiwizuj": "Archivovať",
+ "Podsumowanie": "Súhrn",
+ "Tydzień": "Týždeň",
+ "Miesiąc": "Mesiac",
+ "Poprzedni okres": "Predchádzajúce obdobie",
+ "Następny okres": "Ďalšie obdobie",
+ "Treningi": "Tréningy",
+ "Serie robocze": "Pracovné série",
+ "Objętość": "Objem",
+ "Czas treningów": "Čas tréningov",
+ "{label}: {v}, poprzednio {p}": "{label}: {v}, predtým {p}",
+ "Rekordy w tym okresie": "Rekordy v tomto období",
+ "Bez nowych rekordów w tym okresie.": "V tomto období žiadne nové rekordy.",
+ "Brak treningów w tym okresie.": "V tomto období žiadne tréningy.",
+ "Obok w nawiasie — cały poprzedni okres. Serie robocze bez rozgrzewki; rekordy jak w podsumowaniu treningu.": "V zátvorke — celé predchádzajúce obdobie. Pracovné série bez rozcvičky; rekordy ako v súhrne tréningu."
 }

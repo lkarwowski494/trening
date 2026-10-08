@@ -6,6 +6,7 @@ import { useTick, exById, setSummary, fmtDate, fmtSec, fmtDist, isBW, getState }
 import { sessionsFor, recordsFor, hasHistory, chartKeysFor, totalKind, fmtTotal, weeklyTotals, hasAnyHistory, weeklySetsByMuscle, weeklyVolumeByMuscle, thisMonday, type ChartKey } from '@/lib/stats';
 import { MUSCLES } from '@/lib/seed';
 import { LineChart, BarChart, TIME_STEPS } from '@/components/Chart';
+import { PeriodSummary } from '@/components/PeriodSummary';
 import { useTheme, F } from '@/lib/theme';
 import { hasWeight, hasReps, hasTime, hasDistance } from '@/lib/seed';
 import { t, exName, locale, fold } from '@/lib/i18n';
@@ -36,6 +37,7 @@ export default function Progress() {
     return (
       <Screen><ScrollView keyboardShouldPersistTaps="handled" automaticallyAdjustKeyboardInsets contentContainerStyle={{ paddingVertical: 10, paddingBottom: 40 }}>
         {any ? <>
+          <PeriodSummary />
           <H2>{t('Objętość tygodniowo ({u})', { u: wu() })}</H2>
           <BarChart bars={weeks.map(w => ({ label: short(w.weekStart), value: volOut(w.volume) }))} fmt={v => v >= 1000 ? `${fmtNum(v / 1000, 1)}k` : `${v}`} />
           <H2 style={{ marginTop: 14 }}>{t('Serie robocze tygodniowo')}</H2>

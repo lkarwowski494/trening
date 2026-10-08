@@ -865,5 +865,19 @@
  "+ Nowy folder": "+ Jauna mape",
  "Nazwa folderu": "Mapes nosaukums",
  "Przywróć z archiwum": "Atjaunot no arhīva",
- "Archiwizuj": "Arhivēt"
+ "Archiwizuj": "Arhivēt",
+ "Podsumowanie": "Kopsavilkums",
+ "Tydzień": "Nedēļa",
+ "Miesiąc": "Mēnesis",
+ "Poprzedni okres": "Iepriekšējais periods",
+ "Następny okres": "Nākamais periods",
+ "Treningi": "Treniņi",
+ "Serie robocze": "Darba sērijas",
+ "Objętość": "Apjoms",
+ "Czas treningów": "Treniņu laiks",
+ "{label}: {v}, poprzednio {p}": "{label}: {v}, iepriekš {p}",
+ "Rekordy w tym okresie": "Rekordi šajā periodā",
+ "Bez nowych rekordów w tym okresie.": "Šajā periodā nav jaunu rekordu.",
+ "Brak treningów w tym okresie.": "Šajā periodā nav treniņu.",
+ "Obok w nawiasie — cały poprzedni okres. Serie robocze bez rozgrzewki; rekordy jak w podsumowaniu treningu.": "Iekavās — viss iepriekšējais periods. Darba sērijas bez iesildīšanās; rekordi kā treniņa kopsavilkumā."
 }

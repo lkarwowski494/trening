@@ -865,5 +865,19 @@
  "+ Nowy folder": "+ Yeni klasör",
  "Nazwa folderu": "Klasör adı",
  "Przywróć z archiwum": "Arşivden geri al",
- "Archiwizuj": "Arşivle"
+ "Archiwizuj": "Arşivle",
+ "Podsumowanie": "Özet",
+ "Tydzień": "Hafta",
+ "Miesiąc": "Ay",
+ "Poprzedni okres": "Önceki dönem",
+ "Następny okres": "Sonraki dönem",
+ "Treningi": "Antrenmanlar",
+ "Serie robocze": "Çalışma setleri",
+ "Objętość": "Hacim",
+ "Czas treningów": "Antrenman süresi",
+ "{label}: {v}, poprzednio {p}": "{label}: {v}, önceki {p}",
+ "Rekordy w tym okresie": "Bu dönemdeki rekorlar",
+ "Bez nowych rekordów w tym okresie.": "Bu dönemde yeni rekor yok.",
+ "Brak treningów w tym okresie.": "Bu dönemde antrenman yok.",
+ "Obok w nawiasie — cały poprzedni okres. Serie robocze bez rozgrzewki; rekordy jak w podsumowaniu treningu.": "Parantez içinde — önceki dönemin tamamı. Çalışma setleri ısınma hariç; rekorlar antrenman özetindeki gibi."
 }

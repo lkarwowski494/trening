@@ -865,5 +865,19 @@
  "+ Nowy folder": "+ Új mappa",
  "Nazwa folderu": "Mappa neve",
  "Przywróć z archiwum": "Visszaállítás az archívumból",
- "Archiwizuj": "Archiválás"
+ "Archiwizuj": "Archiválás",
+ "Podsumowanie": "Összesítés",
+ "Tydzień": "Hét",
+ "Miesiąc": "Hónap",
+ "Poprzedni okres": "Előző időszak",
+ "Następny okres": "Következő időszak",
+ "Treningi": "Edzések",
+ "Serie robocze": "Munkasorozatok",
+ "Objętość": "Volumen",
+ "Czas treningów": "Edzésidő",
+ "{label}: {v}, poprzednio {p}": "{label}: {v}, korábban {p}",
+ "Rekordy w tym okresie": "Rekordok ebben az időszakban",
+ "Bez nowych rekordów w tym okresie.": "Nincs új rekord ebben az időszakban.",
+ "Brak treningów w tym okresie.": "Nincs edzés ebben az időszakban.",
+ "Obok w nawiasie — cały poprzedni okres. Serie robocze bez rozgrzewki; rekordy jak w podsumowaniu treningu.": "Zárójelben — a teljes előző időszak. Munkasorozatok bemelegítés nélkül; rekordok, mint az edzés összesítésében."
 }

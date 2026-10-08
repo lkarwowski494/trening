@@ -865,5 +865,19 @@
  "+ Nowy folder": "+ Nieuwe map",
  "Nazwa folderu": "Mapnaam",
  "Przywróć z archiwum": "Terugzetten uit archief",
- "Archiwizuj": "Archiveren"
+ "Archiwizuj": "Archiveren",
+ "Podsumowanie": "Overzicht",
+ "Tydzień": "Week",
+ "Miesiąc": "Maand",
+ "Poprzedni okres": "Vorige periode",
+ "Następny okres": "Volgende periode",
+ "Treningi": "Trainingen",
+ "Serie robocze": "Werksets",
+ "Objętość": "Volume",
+ "Czas treningów": "Trainingstijd",
+ "{label}: {v}, poprzednio {p}": "{label}: {v}, eerder {p}",
+ "Rekordy w tym okresie": "Records in deze periode",
+ "Bez nowych rekordów w tym okresie.": "Geen nieuwe records in deze periode.",
+ "Brak treningów w tym okresie.": "Geen trainingen in deze periode.",
+ "Obok w nawiasie — cały poprzedni okres. Serie robocze bez rozgrzewki; rekordy jak w podsumowaniu treningu.": "Tussen haakjes — de hele vorige periode. Werksets zonder warming-up; records zoals in het trainingsoverzicht."
 }

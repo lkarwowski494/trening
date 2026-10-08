@@ -865,5 +865,19 @@
  "+ Nowy folder": "+ Nouveau dossier",
  "Nazwa folderu": "Nom du dossier",
  "Przywróć z archiwum": "Sortir des archives",
- "Archiwizuj": "Archiver"
+ "Archiwizuj": "Archiver",
+ "Podsumowanie": "Résumé",
+ "Tydzień": "Semaine",
+ "Miesiąc": "Mois",
+ "Poprzedni okres": "Période précédente",
+ "Następny okres": "Période suivante",
+ "Treningi": "Séances",
+ "Serie robocze": "Séries de travail",
+ "Objętość": "Volume",
+ "Czas treningów": "Temps d’entraînement",
+ "{label}: {v}, poprzednio {p}": "{label} : {v}, avant {p}",
+ "Rekordy w tym okresie": "Records de la période",
+ "Bez nowych rekordów w tym okresie.": "Aucun nouveau record sur cette période.",
+ "Brak treningów w tym okresie.": "Aucune séance sur cette période.",
+ "Obok w nawiasie — cały poprzedni okres. Serie robocze bez rozgrzewki; rekordy jak w podsumowaniu treningu.": "Entre parenthèses — toute la période précédente. Séries de travail sans échauffement ; records comme dans le résumé de séance."
 }

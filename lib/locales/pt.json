@@ -865,5 +865,19 @@
  "+ Nowy folder": "+ Nova pasta",
  "Nazwa folderu": "Nome da pasta",
  "Przywróć z archiwum": "Repor do arquivo",
- "Archiwizuj": "Arquivar"
+ "Archiwizuj": "Arquivar",
+ "Podsumowanie": "Resumo",
+ "Tydzień": "Semana",
+ "Miesiąc": "Mês",
+ "Poprzedni okres": "Período anterior",
+ "Następny okres": "Período seguinte",
+ "Treningi": "Treinos",
+ "Serie robocze": "Séries de trabalho",
+ "Objętość": "Volume",
+ "Czas treningów": "Tempo de treino",
+ "{label}: {v}, poprzednio {p}": "{label}: {v}, antes {p}",
+ "Rekordy w tym okresie": "Recordes neste período",
+ "Bez nowych rekordów w tym okresie.": "Sem novos recordes neste período.",
+ "Brak treningów w tym okresie.": "Sem treinos neste período.",
+ "Obok w nawiasie — cały poprzedni okres. Serie robocze bez rozgrzewki; rekordy jak w podsumowaniu treningu.": "Entre parênteses — todo o período anterior. Séries de trabalho sem aquecimento; recordes como no resumo do treino."
 }

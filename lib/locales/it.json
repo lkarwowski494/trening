@@ -865,5 +865,19 @@
  "+ Nowy folder": "+ Nuova cartella",
  "Nazwa folderu": "Nome della cartella",
  "Przywróć z archiwum": "Ripristina dall’archivio",
- "Archiwizuj": "Archivia"
+ "Archiwizuj": "Archivia",
+ "Podsumowanie": "Riepilogo",
+ "Tydzień": "Settimana",
+ "Miesiąc": "Mese",
+ "Poprzedni okres": "Periodo precedente",
+ "Następny okres": "Periodo successivo",
+ "Treningi": "Allenamenti",
+ "Serie robocze": "Serie allenanti",
+ "Objętość": "Volume",
+ "Czas treningów": "Tempo di allenamento",
+ "{label}: {v}, poprzednio {p}": "{label}: {v}, prima {p}",
+ "Rekordy w tym okresie": "Record del periodo",
+ "Bez nowych rekordów w tym okresie.": "Nessun nuovo record in questo periodo.",
+ "Brak treningów w tym okresie.": "Nessun allenamento in questo periodo.",
+ "Obok w nawiasie — cały poprzedni okres. Serie robocze bez rozgrzewki; rekordy jak w podsumowaniu treningu.": "Tra parentesi — l’intero periodo precedente. Serie allenanti senza riscaldamento; record come nel riepilogo dell’allenamento."
 }

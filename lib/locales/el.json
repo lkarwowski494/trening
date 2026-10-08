@@ -865,5 +865,19 @@
  "+ Nowy folder": "+ Νέος φάκελος",
  "Nazwa folderu": "Όνομα φακέλου",
  "Przywróć z archiwum": "Επαναφορά από το αρχείο",
- "Archiwizuj": "Αρχειοθέτηση"
+ "Archiwizuj": "Αρχειοθέτηση",
+ "Podsumowanie": "Σύνοψη",
+ "Tydzień": "Εβδομάδα",
+ "Miesiąc": "Μήνας",
+ "Poprzedni okres": "Προηγούμενη περίοδος",
+ "Następny okres": "Επόμενη περίοδος",
+ "Treningi": "Προπονήσεις",
+ "Serie robocze": "Σετ εργασίας",
+ "Objętość": "Όγκος",
+ "Czas treningów": "Χρόνος προπόνησης",
+ "{label}: {v}, poprzednio {p}": "{label}: {v}, πριν {p}",
+ "Rekordy w tym okresie": "Ρεκόρ σε αυτή την περίοδο",
+ "Bez nowych rekordów w tym okresie.": "Κανένα νέο ρεκόρ σε αυτή την περίοδο.",
+ "Brak treningów w tym okresie.": "Καμία προπόνηση σε αυτή την περίοδο.",
+ "Obok w nawiasie — cały poprzedni okres. Serie robocze bez rozgrzewki; rekordy jak w podsumowaniu treningu.": "Σε παρένθεση — ολόκληρη η προηγούμενη περίοδος. Σετ εργασίας χωρίς ζέσταμα· ρεκόρ όπως στη σύνοψη της προπόνησης."
 }

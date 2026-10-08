@@ -865,5 +865,19 @@
  "+ Nowy folder": "+ Нова фасцикла",
  "Nazwa folderu": "Назив фасцикле",
  "Przywróć z archiwum": "Врати из архиве",
- "Archiwizuj": "Архивирај"
+ "Archiwizuj": "Архивирај",
+ "Podsumowanie": "Резиме",
+ "Tydzień": "Недеља",
+ "Miesiąc": "Месец",
+ "Poprzedni okres": "Претходни период",
+ "Następny okres": "Следећи период",
+ "Treningi": "Тренинзи",
+ "Serie robocze": "Радне серије",
+ "Objętość": "Волумен",
+ "Czas treningów": "Време тренинга",
+ "{label}: {v}, poprzednio {p}": "{label}: {v}, раније {p}",
+ "Rekordy w tym okresie": "Рекорди у овом периоду",
+ "Bez nowych rekordów w tym okresie.": "Нема нових рекорда у овом периоду.",
+ "Brak treningów w tym okresie.": "Нема тренинга у овом периоду.",
+ "Obok w nawiasie — cały poprzedni okres. Serie robocze bez rozgrzewki; rekordy jak w podsumowaniu treningu.": "У загради — цео претходни период. Радне серије без загревања; рекорди као у резимеу тренинга."
 }

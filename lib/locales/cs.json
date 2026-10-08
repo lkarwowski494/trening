@@ -865,5 +865,19 @@
  "+ Nowy folder": "+ Nová složka",
  "Nazwa folderu": "Název složky",
  "Przywróć z archiwum": "Obnovit z archivu",
- "Archiwizuj": "Archivovat"
+ "Archiwizuj": "Archivovat",
+ "Podsumowanie": "Souhrn",
+ "Tydzień": "Týden",
+ "Miesiąc": "Měsíc",
+ "Poprzedni okres": "Předchozí období",
+ "Następny okres": "Další období",
+ "Treningi": "Tréninky",
+ "Serie robocze": "Pracovní série",
+ "Objętość": "Objem",
+ "Czas treningów": "Čas tréninků",
+ "{label}: {v}, poprzednio {p}": "{label}: {v}, předtím {p}",
+ "Rekordy w tym okresie": "Rekordy v tomto období",
+ "Bez nowych rekordów w tym okresie.": "V tomto období žádné nové rekordy.",
+ "Brak treningów w tym okresie.": "V tomto období žádné tréninky.",
+ "Obok w nawiasie — cały poprzedni okres. Serie robocze bez rozgrzewki; rekordy jak w podsumowaniu treningu.": "V závorce — celé předchozí období. Pracovní série bez rozcvičky; rekordy jako v souhrnu tréninku."
 }

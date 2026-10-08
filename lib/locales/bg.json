@@ -865,5 +865,19 @@
  "+ Nowy folder": "+ Нова папка",
  "Nazwa folderu": "Име на папката",
  "Przywróć z archiwum": "Възстанови от архива",
- "Archiwizuj": "Архивирай"
+ "Archiwizuj": "Архивирай",
+ "Podsumowanie": "Обобщение",
+ "Tydzień": "Седмица",
+ "Miesiąc": "Месец",
+ "Poprzedni okres": "Предишен период",
+ "Następny okres": "Следващ период",
+ "Treningi": "Тренировки",
+ "Serie robocze": "Работни серии",
+ "Objętość": "Обем",
+ "Czas treningów": "Време за тренировки",
+ "{label}: {v}, poprzednio {p}": "{label}: {v}, преди {p}",
+ "Rekordy w tym okresie": "Рекорди през периода",
+ "Bez nowych rekordów w tym okresie.": "Няма нови рекорди през периода.",
+ "Brak treningów w tym okresie.": "Няма тренировки през периода.",
+ "Obok w nawiasie — cały poprzedni okres. Serie robocze bez rozgrzewki; rekordy jak w podsumowaniu treningu.": "В скоби — целият предишен период. Работни серии без загрявка; рекорди като в обобщението на тренировката."
 }

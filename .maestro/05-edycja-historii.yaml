@@ -104,3 +104,14 @@ name: Edycja historii i trening wstecz
 - tapOn: "Previous month"
 - tapOn: "Next month"
 - takeScreenshot: 19-kalendarz-miesiac
+# Podsumowanie tygodnia / miesiąca w Postępach (08.10.2026, components/PeriodSummary.tsx): „Summary” ('Podsumowanie'), wiersz VoiceOver
+# „Workouts: N, previously M” ('{label}: {v}, poprzednio {p}'), „Month” ('Miesiąc'), „Previous period” ('Poprzedni okres').
+- tapOn: "More, tab.*"
+- tapOn: "Progress.*"
+- extendedWaitUntil: { visible: "Summary", timeout: 30000 }
+- assertVisible: "Workouts: [1-9].*, previously .*"
+- takeScreenshot: 20-podsumowanie-tydzien
+- tapOn: "Month"
+- tapOn: "Previous period"
+- assertVisible: "Workouts: .*, previously .*"
+- takeScreenshot: 21-podsumowanie-miesiac-wstecz

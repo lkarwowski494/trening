@@ -865,5 +865,19 @@
  "+ Nowy folder": "+ Dosar nou",
  "Nazwa folderu": "Numele dosarului",
  "Przywróć z archiwum": "Restabilește din arhivă",
- "Archiwizuj": "Arhivează"
+ "Archiwizuj": "Arhivează",
+ "Podsumowanie": "Rezumat",
+ "Tydzień": "Săptămână",
+ "Miesiąc": "Lună",
+ "Poprzedni okres": "Perioada anterioară",
+ "Następny okres": "Perioada următoare",
+ "Treningi": "Antrenamente",
+ "Serie robocze": "Serii de lucru",
+ "Objętość": "Volum",
+ "Czas treningów": "Timp de antrenament",
+ "{label}: {v}, poprzednio {p}": "{label}: {v}, anterior {p}",
+ "Rekordy w tym okresie": "Recorduri în această perioadă",
+ "Bez nowych rekordów w tym okresie.": "Niciun record nou în această perioadă.",
+ "Brak treningów w tym okresie.": "Niciun antrenament în această perioadă.",
+ "Obok w nawiasie — cały poprzedni okres. Serie robocze bez rozgrzewki; rekordy jak w podsumowaniu treningu.": "În paranteză — întreaga perioadă anterioară. Serii de lucru fără încălzire; recorduri ca în rezumatul antrenamentului."
 }

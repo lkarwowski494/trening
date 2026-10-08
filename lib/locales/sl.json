@@ -865,5 +865,19 @@
  "+ Nowy folder": "+ Nova mapa",
  "Nazwa folderu": "Ime mape",
  "Przywróć z archiwum": "Obnovi iz arhiva",
- "Archiwizuj": "Arhiviraj"
+ "Archiwizuj": "Arhiviraj",
+ "Podsumowanie": "Povzetek",
+ "Tydzień": "Teden",
+ "Miesiąc": "Mesec",
+ "Poprzedni okres": "Prejšnje obdobje",
+ "Następny okres": "Naslednje obdobje",
+ "Treningi": "Treningi",
+ "Serie robocze": "Delovne serije",
+ "Objętość": "Volumen",
+ "Czas treningów": "Čas treningov",
+ "{label}: {v}, poprzednio {p}": "{label}: {v}, prej {p}",
+ "Rekordy w tym okresie": "Rekordi v tem obdobju",
+ "Bez nowych rekordów w tym okresie.": "V tem obdobju ni novih rekordov.",
+ "Brak treningów w tym okresie.": "V tem obdobju ni treningov.",
+ "Obok w nawiasie — cały poprzedni okres. Serie robocze bez rozgrzewki; rekordy jak w podsumowaniu treningu.": "V oklepaju — celotno prejšnje obdobje. Delovne serije brez ogrevanja; rekordi kot v povzetku treninga."
 }

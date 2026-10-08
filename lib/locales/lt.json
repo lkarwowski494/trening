@@ -865,5 +865,19 @@
  "+ Nowy folder": "+ Naujas aplankas",
  "Nazwa folderu": "Aplanko pavadinimas",
  "Przywróć z archiwum": "Atkurti iš archyvo",
- "Archiwizuj": "Archyvuoti"
+ "Archiwizuj": "Archyvuoti",
+ "Podsumowanie": "Suvestinė",
+ "Tydzień": "Savaitė",
+ "Miesiąc": "Mėnuo",
+ "Poprzedni okres": "Ankstesnis laikotarpis",
+ "Następny okres": "Kitas laikotarpis",
+ "Treningi": "Treniruotės",
+ "Serie robocze": "Darbiniai priėjimai",
+ "Objętość": "Apimtis",
+ "Czas treningów": "Treniruočių laikas",
+ "{label}: {v}, poprzednio {p}": "{label}: {v}, anksčiau {p}",
+ "Rekordy w tym okresie": "Rekordai šiuo laikotarpiu",
+ "Bez nowych rekordów w tym okresie.": "Šiuo laikotarpiu naujų rekordų nėra.",
+ "Brak treningów w tym okresie.": "Šiuo laikotarpiu treniruočių nėra.",
+ "Obok w nawiasie — cały poprzedni okres. Serie robocze bez rozgrzewki; rekordy jak w podsumowaniu treningu.": "Skliaustuose — visas ankstesnis laikotarpis. Darbiniai priėjimai be apšilimo; rekordai kaip treniruotės suvestinėje."
 }

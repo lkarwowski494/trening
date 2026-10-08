@@ -865,5 +865,19 @@
  "+ Nowy folder": "+ Uus kaust",
  "Nazwa folderu": "Kausta nimi",
  "Przywróć z archiwum": "Taasta arhiivist",
- "Archiwizuj": "Arhiveeri"
+ "Archiwizuj": "Arhiveeri",
+ "Podsumowanie": "Kokkuvõte",
+ "Tydzień": "Nädal",
+ "Miesiąc": "Kuu",
+ "Poprzedni okres": "Eelmine periood",
+ "Następny okres": "Järgmine periood",
+ "Treningi": "Treeningud",
+ "Serie robocze": "Töösarjad",
+ "Objętość": "Maht",
+ "Czas treningów": "Treeninguaeg",
+ "{label}: {v}, poprzednio {p}": "{label}: {v}, varem {p}",
+ "Rekordy w tym okresie": "Rekordid sel perioodil",
+ "Bez nowych rekordów w tym okresie.": "Sel perioodil uusi rekordeid pole.",
+ "Brak treningów w tym okresie.": "Sel perioodil treeninguid pole.",
+ "Obok w nawiasie — cały poprzedni okres. Serie robocze bez rozgrzewki; rekordy jak w podsumowaniu treningu.": "Sulgudes — kogu eelmine periood. Töösarjad ilma soojenduseta; rekordid nagu treeningu kokkuvõttes."
 }

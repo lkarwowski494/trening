@@ -20,6 +20,10 @@
   "en": "{k}: {v}"
  },
  {
+  "pl": "{label}: {v}, poprzednio {p}",
+  "en": "{label}: {v}, previously {p}"
+ },
+ {
   "pl": "{n} rozgrz.",
   "en": "{n} warm-up"
  },
@@ -264,6 +268,10 @@
   "en": "no place"
  },
  {
+  "pl": "Bez nowych rekordów w tym okresie.",
+  "en": "No new records in this period."
+ },
+ {
   "pl": "Bez serii — ćwiczenie nie zostanie zapisane.",
   "en": "No sets — this exercise won’t be saved."
  },
@@ -354,6 +362,10 @@
  {
   "pl": "Brak szablonów z ćwiczeniami — utworzysz je w zakładce Szablony. Możesz też zacząć od pustego treningu.",
   "en": "No templates with exercises — create them in the Templates tab. You can also start from an empty workout."
+ },
+ {
+  "pl": "Brak treningów w tym okresie.",
+  "en": "No workouts in this period."
  },
  {
   "pl": "Brak zapisanych sesji z tym ćwiczeniem.",
@@ -474,6 +486,10 @@
  {
   "pl": "czas",
   "en": "time"
+ },
+ {
+  "pl": "Czas treningów",
+  "en": "Workout time"
  },
  {
   "pl": "Czas trwania (min)",
@@ -1430,6 +1446,10 @@
   "en": "Workout place: {l}. Tap to change."
  },
  {
+  "pl": "Miesiąc",
+  "en": "Month"
+ },
+ {
   "pl": "min na stronę",
   "en": "min per side"
  },
@@ -1532,6 +1552,10 @@
  {
   "pl": "Następny miesiąc",
   "en": "Next month"
+ },
+ {
+  "pl": "Następny okres",
+  "en": "Next period"
  },
  {
   "pl": "Nazwa",
@@ -1706,6 +1730,10 @@
   "en": "volume"
  },
  {
+  "pl": "Objętość",
+  "en": "Volume"
+ },
+ {
   "pl": "Objętość per partia ({u}) — ten tydzień vs poprzedni",
   "en": "Volume per muscle ({u}) — this week vs last"
  },
@@ -1724,6 +1752,10 @@
  {
   "pl": "Objętość tygodniowo ({u})",
   "en": "Weekly volume ({u})"
+ },
+ {
+  "pl": "Obok w nawiasie — cały poprzedni okres. Serie robocze bez rozgrzewki; rekordy jak w podsumowaniu treningu.",
+  "en": "In brackets — the whole previous period. Working sets exclude warm-ups; records as in the workout summary."
  },
  {
   "pl": "od",
@@ -1946,6 +1978,10 @@
   "en": "Progression hint"
  },
  {
+  "pl": "Podsumowanie",
+  "en": "Summary"
+ },
+ {
   "pl": "Pokazano {n} z {m} — wpisz nazwę, by zawęzić.",
   "en": "Showing {n} of {m} — type a name to narrow down."
  },
@@ -2004,6 +2040,10 @@
  {
   "pl": "Poprzedni miesiąc",
   "en": "Previous month"
+ },
+ {
+  "pl": "Poprzedni okres",
+  "en": "Previous period"
  },
  {
   "pl": "Poprzednich danych nie dało się odczytać",
@@ -2236,6 +2276,10 @@
   "en": "RECORDS"
  },
  {
+  "pl": "Rekordy w tym okresie",
+  "en": "Records in this period"
+ },
+ {
   "pl": "reverse hyper",
   "en": "reverse hyper"
  },
@@ -2423,6 +2467,10 @@
  {
   "pl": "Serie per partia — ten tydzień vs poprzedni",
   "en": "Sets per muscle — this week vs last"
+ },
+ {
+  "pl": "Serie robocze",
+  "en": "Working sets"
  },
  {
   "pl": "Serie robocze tygodniowo",
@@ -2810,12 +2858,20 @@
   "en": "A workout you didn’t log at the time. Set the date and pick a template — you’ll fill in the sets in the next step (values from your last workout before that date)."
  },
  {
+  "pl": "Treningi",
+  "en": "Workouts"
+ },
+ {
   "pl": "Treningi i szablony z tym miejscem pokażą „(usunięte miejsce)”.",
   "en": "Workouts and templates with this place will show “(deleted place)”."
  },
  {
   "pl": "triceps",
   "en": "triceps"
+ },
+ {
+  "pl": "Tydzień",
+  "en": "Week"
  },
  {
   "pl": "Tygodnie od poniedziałku. Objętość = ciężar × powtórzenia × mnożnik ćwiczenia; rozgrzewka poza.",

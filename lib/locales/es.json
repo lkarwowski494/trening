@@ -865,5 +865,19 @@
  "+ Nowy folder": "+ Nueva carpeta",
  "Nazwa folderu": "Nombre de la carpeta",
  "Przywróć z archiwum": "Restaurar del archivo",
- "Archiwizuj": "Archivar"
+ "Archiwizuj": "Archivar",
+ "Podsumowanie": "Resumen",
+ "Tydzień": "Semana",
+ "Miesiąc": "Mes",
+ "Poprzedni okres": "Periodo anterior",
+ "Następny okres": "Periodo siguiente",
+ "Treningi": "Entrenamientos",
+ "Serie robocze": "Series efectivas",
+ "Objętość": "Volumen",
+ "Czas treningów": "Tiempo de entrenamiento",
+ "{label}: {v}, poprzednio {p}": "{label}: {v}, antes {p}",
+ "Rekordy w tym okresie": "Récords en este periodo",
+ "Bez nowych rekordów w tym okresie.": "Sin récords nuevos en este periodo.",
+ "Brak treningów w tym okresie.": "Sin entrenamientos en este periodo.",
+ "Obok w nawiasie — cały poprzedni okres. Serie robocze bez rozgrzewki; rekordy jak w podsumowaniu treningu.": "Entre paréntesis — todo el periodo anterior. Series efectivas sin calentamiento; récords como en el resumen del entrenamiento."
 }

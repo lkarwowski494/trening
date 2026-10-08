@@ -865,5 +865,19 @@
  "+ Nowy folder": "+ Ny mappe",
  "Nazwa folderu": "Mappenavn",
  "Przywróć z archiwum": "Gendan fra arkiv",
- "Archiwizuj": "Arkivér"
+ "Archiwizuj": "Arkivér",
+ "Podsumowanie": "Oversigt",
+ "Tydzień": "Uge",
+ "Miesiąc": "Måned",
+ "Poprzedni okres": "Forrige periode",
+ "Następny okres": "Næste periode",
+ "Treningi": "Træninger",
+ "Serie robocze": "Arbejdssæt",
+ "Objętość": "Volumen",
+ "Czas treningów": "Træningstid",
+ "{label}: {v}, poprzednio {p}": "{label}: {v}, tidligere {p}",
+ "Rekordy w tym okresie": "Rekorder i perioden",
+ "Bez nowych rekordów w tym okresie.": "Ingen nye rekorder i perioden.",
+ "Brak treningów w tym okresie.": "Ingen træninger i perioden.",
+ "Obok w nawiasie — cały poprzedni okres. Serie robocze bez rozgrzewki; rekordy jak w podsumowaniu treningu.": "I parentes — hele den forrige periode. Arbejdssæt uden opvarmning; rekorder som i træningsoversigten."
 }
