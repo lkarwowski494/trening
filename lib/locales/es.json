@@ -970,5 +970,8 @@
  "Zdejmij oznaczenie deload": "Quitar marca de descarga",
  "tydzień deload": "semana de descarga",
  "Wiersz z tłem — tydzień deload.": "Fila con fondo — semana de descarga.",
- "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Tu propia etiqueta, p. ej. una semana más ligera. Al empezar un entreno propondré menos series (alrededor de la mitad), mismos pesos."
+ "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Tu propia etiqueta, p. ej. una semana más ligera. Al empezar un entreno propondré menos series (alrededor de la mitad), mismos pesos.",
+ "Przypomnienie o treningu z planu": "Recordatorio de entrenos planificados",
+ "rano o {h}:00 w dniu zaplanowanego treningu": "por la mañana a las {h}:00 el día de un entreno planificado",
+ "Trening z Twojego planu tygodnia. Otwórz aplikację, by zacząć.": "Entreno de tu plan semanal. Abre la app para empezar."
 }

@@ -970,5 +970,8 @@
  "Zdejmij oznaczenie deload": "Deload işaretini kaldır",
  "tydzień deload": "deload haftası",
  "Wiersz z tłem — tydzień deload.": "Arka planlı satır — deload haftası.",
- "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Kendi işaretin, ör. daha hafif bir hafta. Antrenmana başlarken daha az set önereceğim (yaklaşık yarısı), ağırlıklar aynı."
+ "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Kendi işaretin, ör. daha hafif bir hafta. Antrenmana başlarken daha az set önereceğim (yaklaşık yarısı), ağırlıklar aynı.",
+ "Przypomnienie o treningu z planu": "Planlı antrenman hatırlatıcısı",
+ "rano o {h}:00 w dniu zaplanowanego treningu": "planlı antrenman gününde sabah {h}:00’da",
+ "Trening z Twojego planu tygodnia. Otwórz aplikację, by zacząć.": "Haftalık planından antrenman. Başlamak için uygulamayı aç."
 }

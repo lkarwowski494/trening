@@ -2424,6 +2424,10 @@
   "en": "Front"
  },
  {
+  "pl": "Przypomnienie o treningu z planu",
+  "en": "Reminder for planned workouts"
+ },
+ {
   "pl": "Przypomnienie o wadze",
   "en": "Weigh-in reminder"
  },
@@ -2470,6 +2474,10 @@
  {
   "pl": "ramiona regulowane / wysoki wyciąg",
   "en": "adjustable arms / high pulley"
+ },
+ {
+  "pl": "rano o {h}:00 w dniu zaplanowanego treningu",
+  "en": "in the morning at {h}:00 on a planned workout day"
  },
  {
   "pl": "REKORDY",
@@ -3080,6 +3088,10 @@
  {
   "pl": "Trening z {d} {s} nie miał aktywności od 6 godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w Historii.",
   "en": "The workout from {d} {s} had no activity for 6 hours, so it was saved automatically. End: {e} (last set). You will find it in History."
+ },
+ {
+  "pl": "Trening z Twojego planu tygodnia. Otwórz aplikację, by zacząć.",
+  "en": "Workout from your weekly plan. Open the app to start."
  },
  {
   "pl": "Trening, którego nie zapisałeś na bieżąco. Ustaw termin i wybierz szablon — serie uzupełnisz w następnym kroku (wartości z ostatniego treningu przed tą datą).",

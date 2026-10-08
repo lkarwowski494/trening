@@ -449,4 +449,7 @@ export const EN: Record<string, string> = {
   'Zdejmij oznaczenie deload': 'Remove deload mark',
   'tydzień deload': 'deload week',
   'Wiersz z tłem — tydzień deload.': 'Row with background — deload week.',
+  'Przypomnienie o treningu z planu': 'Reminder for planned workouts',
+  'rano o {h}:00 w dniu zaplanowanego treningu': 'in the morning at {h}:00 on a planned workout day',
+  'Trening z Twojego planu tygodnia. Otwórz aplikację, by zacząć.': 'Workout from your weekly plan. Open the app to start.',
 };

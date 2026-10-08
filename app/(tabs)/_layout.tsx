@@ -7,6 +7,7 @@ import { useTheme, F } from '@/lib/theme';
 import { TabIcon, type TabIconName } from '@/components/TabIcon';
 import { t as tr } from '@/lib/i18n';
 import { usePrefsTick } from '@/lib/store';
+import { PlanReminderSync } from '@/components/PlanReminderSync';
 
 // SDK 56: zakładki expo-router (fork React Navigation) podają kolor jako ColorValue, nie string — Text przyjmuje oba.
 const icon = (name: TabIconName) => ({ color }: { color: ColorValue }) => <TabIcon name={name} color={color} />;
@@ -22,7 +23,8 @@ export default function TabsLayout() {
   const short = (sec: number) => sec >= 60 ? `${Math.floor(sec / 60)}m` : `${sec}s`;
   const full = left == null ? undefined : left > 0 ? fmtDur(left) : '+' + fmtDur(-left); // po czasie: nadwyżka jak na pasku
   const badge = left == null ? undefined : left > 0 ? short(left) : '+' + short(-left);
-  return (
+  return (<>
+    <PlanReminderSync />{/* 08.10.2026: przypomnienie o treningu z planu */}
     <Tabs screenOptions={{ headerShown: false, tabBarStyle: { backgroundColor: t.surface, borderTopColor: t.line }, tabBarActiveTintColor: t.accent, tabBarInactiveTintColor: t.muted, tabBarLabelStyle: { fontFamily: F.semibold }, sceneStyle: { backgroundColor: t.bg } }}>
       <Tabs.Screen name="index" options={{ title: tr('Trening'), tabBarIcon: icon('workout'), tabBarBadge: badge, tabBarAccessibilityLabel: full ? `${tr('Trening')}, ${tr('przerwa {s}', { s: full })}` : undefined /* runda 30: VoiceOver czyta przerwę */, tabBarBadgeStyle: { backgroundColor: t.accent, color: t.accentInk, fontSize: 11 } }} />
       <Tabs.Screen name="templates" options={{ title: tr('Szablony'), tabBarIcon: icon('templates') }} />
@@ -30,5 +32,5 @@ export default function TabsLayout() {
       <Tabs.Screen name="history" options={{ title: tr('Kalendarz') /* 08.10.2026: Historia → Kalendarz (decyzja 1A) */, tabBarIcon: icon('history') }} />
       <Tabs.Screen name="more" options={{ title: tr('Więcej'), tabBarIcon: icon('more') }} />
     </Tabs>
-  );
+  </>);
 }

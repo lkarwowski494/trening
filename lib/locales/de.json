@@ -970,5 +970,8 @@
  "Zdejmij oznaczenie deload": "Deload-Markierung entfernen",
  "tydzień deload": "Deload-Woche",
  "Wiersz z tłem — tydzień deload.": "Zeile mit Hintergrund — Deload-Woche.",
- "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Ihre eigene Markierung, z. B. eine leichtere Woche. Beim Trainingsstart schlage ich weniger Sätze vor (etwa die Hälfte), gleiche Gewichte."
+ "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Ihre eigene Markierung, z. B. eine leichtere Woche. Beim Trainingsstart schlage ich weniger Sätze vor (etwa die Hälfte), gleiche Gewichte.",
+ "Przypomnienie o treningu z planu": "Erinnerung an geplante Trainings",
+ "rano o {h}:00 w dniu zaplanowanego treningu": "morgens um {h}:00 Uhr an einem geplanten Trainingstag",
+ "Trening z Twojego planu tygodnia. Otwórz aplikację, by zacząć.": "Training aus deinem Wochenplan. Öffne die App, um zu starten."
 }

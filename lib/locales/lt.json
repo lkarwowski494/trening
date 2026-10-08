@@ -970,5 +970,8 @@
  "Zdejmij oznaczenie deload": "Pašalinti iškrovos žymą",
  "tydzień deload": "iškrovos savaitė",
  "Wiersz z tłem — tydzień deload.": "Eilutė su fonu — iškrovos savaitė.",
- "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Jūsų žymė, pvz., lengvesnė savaitė. Pradedant treniruotę pasiūlysiu mažiau priėjimų (maždaug pusę), svoriai tie patys."
+ "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Jūsų žymė, pvz., lengvesnė savaitė. Pradedant treniruotę pasiūlysiu mažiau priėjimų (maždaug pusę), svoriai tie patys.",
+ "Przypomnienie o treningu z planu": "Priminimas apie suplanuotą treniruotę",
+ "rano o {h}:00 w dniu zaplanowanego treningu": "ryte {h}:00 suplanuotos treniruotės dieną",
+ "Trening z Twojego planu tygodnia. Otwórz aplikację, by zacząć.": "Treniruotė iš tavo savaitės plano. Atidaryk programą ir pradėk."
 }

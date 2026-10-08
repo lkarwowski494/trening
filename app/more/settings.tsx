@@ -5,6 +5,7 @@ import { useRouter } from 'expo-router';
 import { getState, useTick, save, resetAll, applyPrefs } from '@/lib/store';
 import { DEFAULT_REST, type ThemeSetting, type WorkoutView } from '@/lib/seed';
 import * as timer from '@/lib/timer';
+import { PLAN_REMINDER_HOUR } from '@/lib/planReminder';
 import { safetyBackup, safetyRecoveryNote, AUTO_KEEP } from '@/lib/backup';
 import * as health from '@/lib/health';
 import { t, LANG_NAME, type Lang, appName } from '@/lib/i18n';
@@ -39,6 +40,7 @@ export default function SettingsScreen() {
       <SwitchRow label={t('Automatyczna kopia po każdym treningu')} detail={t('Pliki → Na moim iPhonie → {app} → Backup, ostatnie {n}', { app: appName(), n: AUTO_KEEP })} value={s.autoBackup} onChange={v => { s.autoBackup = v; save(); }} />
 
       <SectionTitle>{t('Powiadomienia')}</SectionTitle>
+      <SwitchRow label={t('Przypomnienie o treningu z planu')} detail={t('rano o {h}:00 w dniu zaplanowanego treningu', { h: PLAN_REMINDER_HOUR })} value={s.planReminder !== false} onChange={v => { if (v) { delete s.planReminder; timer.ensurePermission().catch(() => {}); } else s.planReminder = false; save(); }} />{/* 08.10.2026 (decyzja właściciela) */}
       <Btn title={t('Sprawdź zgodę na powiadomienia')} style={{ marginTop: 12 }} onPress={async () => { const ok = await timer.ensurePermission(); Alert.alert(ok ? t('Powiadomienia działają') : t('Brak zgody'), ok ? t('Koniec przerwy da znać nawet na zablokowanym ekranie.') : t('Włącz powiadomienia dla {app} w Ustawieniach iOS.', { app: appName() })); }} />
       <Muted style={{ fontSize: 13, marginVertical: 12 }}>{t('Timer odlicza w aplikacji, a na koniec przerwy przychodzi powiadomienie — także przy zablokowanym telefonie.')}</Muted>
 

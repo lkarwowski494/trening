@@ -970,5 +970,8 @@
  "Zdejmij oznaczenie deload": "Ukloni oznaku rasterećenja",
  "tydzień deload": "tjedan rasterećenja",
  "Wiersz z tłem — tydzień deload.": "Red s pozadinom — tjedan rasterećenja.",
- "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Tvoja oznaka, npr. lakši tjedan. Pri pokretanju treninga predložit ću manje serija (otprilike pola), iste težine."
+ "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Tvoja oznaka, npr. lakši tjedan. Pri pokretanju treninga predložit ću manje serija (otprilike pola), iste težine.",
+ "Przypomnienie o treningu z planu": "Podsjetnik na planirani trening",
+ "rano o {h}:00 w dniu zaplanowanego treningu": "ujutro u {h}:00 na dan planiranog treninga",
+ "Trening z Twojego planu tygodnia. Otwórz aplikację, by zacząć.": "Trening iz tvog tjednog plana. Otvori aplikaciju za početak."
 }

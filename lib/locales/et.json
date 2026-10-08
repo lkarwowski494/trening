@@ -970,5 +970,8 @@
  "Zdejmij oznaczenie deload": "Eemalda kergendusmärge",
  "tydzień deload": "kergendusnädal",
  "Wiersz z tłem — tydzień deload.": "Taustaga rida — kergendusnädal.",
- "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Sinu enda märge, nt kergem nädal. Treeningu alustamisel pakun vähem seeriaid (umbes poole), raskused samad."
+ "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Sinu enda märge, nt kergem nädal. Treeningu alustamisel pakun vähem seeriaid (umbes poole), raskused samad.",
+ "Przypomnienie o treningu z planu": "Meeldetuletus plaanitud trennist",
+ "rano o {h}:00 w dniu zaplanowanego treningu": "hommikul kell {h}:00 plaanitud trenni päeval",
+ "Trening z Twojego planu tygodnia. Otwórz aplikację, by zacząć.": "Trenn sinu nädalaplaanist. Ava rakendus, et alustada."
 }

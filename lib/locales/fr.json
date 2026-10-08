@@ -970,5 +970,8 @@
  "Zdejmij oznaczenie deload": "Retirer la marque de décharge",
  "tydzień deload": "semaine de décharge",
  "Wiersz z tłem — tydzień deload.": "Ligne avec fond — semaine de décharge.",
- "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Votre propre étiquette, p. ex. une semaine plus légère. Au début de la séance, je proposerai moins de séries (environ la moitié), mêmes charges."
+ "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Votre propre étiquette, p. ex. une semaine plus légère. Au début de la séance, je proposerai moins de séries (environ la moitié), mêmes charges.",
+ "Przypomnienie o treningu z planu": "Rappel des séances prévues",
+ "rano o {h}:00 w dniu zaplanowanego treningu": "le matin à {h} h 00 un jour de séance prévue",
+ "Trening z Twojego planu tygodnia. Otwórz aplikację, by zacząć.": "Séance de ton programme de la semaine. Ouvre l’app pour commencer."
 }

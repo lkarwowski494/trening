@@ -970,5 +970,8 @@
  "Zdejmij oznaczenie deload": "Fjern deload-merking",
  "tydzień deload": "deload-uke",
  "Wiersz z tłem — tydzień deload.": "Rad med bakgrunn — deload-uke.",
- "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Din egen merking, f.eks. en lettere uke. Når du starter en økt, foreslår jeg færre sett (omtrent halvparten), samme vekter."
+ "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Din egen merking, f.eks. en lettere uke. Når du starter en økt, foreslår jeg færre sett (omtrent halvparten), samme vekter.",
+ "Przypomnienie o treningu z planu": "Påminnelse om planlagte økter",
+ "rano o {h}:00 w dniu zaplanowanego treningu": "om morgenen kl. {h}:00 på en planlagt treningsdag",
+ "Trening z Twojego planu tygodnia. Otwórz aplikację, by zacząć.": "Økt fra ukeplanen din. Åpne appen for å starte."
 }

@@ -970,5 +970,8 @@
  "Zdejmij oznaczenie deload": "Deloadmarkering verwijderen",
  "tydzień deload": "deloadweek",
  "Wiersz z tłem — tydzień deload.": "Rij met achtergrond — deloadweek.",
- "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Je eigen label, bijv. een lichtere week. Bij het starten van een training stel ik minder sets voor (ongeveer de helft), gelijke gewichten."
+ "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Je eigen label, bijv. een lichtere week. Bij het starten van een training stel ik minder sets voor (ongeveer de helft), gelijke gewichten.",
+ "Przypomnienie o treningu z planu": "Herinnering aan geplande trainingen",
+ "rano o {h}:00 w dniu zaplanowanego treningu": "’s ochtends om {h}:00 op een geplande trainingsdag",
+ "Trening z Twojego planu tygodnia. Otwórz aplikację, by zacząć.": "Training uit je weekplan. Open de app om te beginnen."
 }

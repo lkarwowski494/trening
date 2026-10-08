@@ -970,5 +970,8 @@
  "Zdejmij oznaczenie deload": "Αφαίρεση σήμανσης αποφόρτισης",
  "tydzień deload": "εβδομάδα αποφόρτισης",
  "Wiersz z tłem — tydzień deload.": "Γραμμή με φόντο — εβδομάδα αποφόρτισης.",
- "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Δική σου σήμανση, π.χ. μια πιο ελαφριά εβδομάδα. Στην έναρξη προπόνησης θα προτείνω λιγότερα σετ (περίπου τα μισά), ίδια βάρη."
+ "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Δική σου σήμανση, π.χ. μια πιο ελαφριά εβδομάδα. Στην έναρξη προπόνησης θα προτείνω λιγότερα σετ (περίπου τα μισά), ίδια βάρη.",
+ "Przypomnienie o treningu z planu": "Υπενθύμιση προγραμματισμένων προπονήσεων",
+ "rano o {h}:00 w dniu zaplanowanego treningu": "το πρωί στις {h}:00 σε μέρα προγραμματισμένης προπόνησης",
+ "Trening z Twojego planu tygodnia. Otwórz aplikację, by zacząć.": "Προπόνηση από το εβδομαδιαίο πρόγραμμά σου. Άνοιξε την εφαρμογή για να ξεκινήσεις."
 }

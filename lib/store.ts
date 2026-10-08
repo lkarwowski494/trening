@@ -315,7 +315,7 @@ export function migrate(raw: any): State {
     sound: typeof s.sound === 'boolean' ? s.sound : d.sound,
     wakeLock: typeof s.wakeLock === 'boolean' ? s.wakeLock : d.wakeLock,
     showRpe: typeof s.showRpe === 'boolean' ? s.showRpe : d.showRpe,
-    ...(s.effortScale === 'rir' ? { effortScale: 'rir' as const } : {}), /* pakiet C: tylko wybór RIR zapisany — dane sprzed zmiany przechodzą 1:1 (swap-schema16) */
+    ...(s.effortScale === 'rir' ? { effortScale: 'rir' as const } : {}), ...(s.planReminder === false ? { planReminder: false as const } : {}), /* przypomnienie z planu (08.10.2026): tylko wyłączenie zapisane */ /* pakiet C: tylko wybór RIR zapisany — dane sprzed zmiany przechodzą 1:1 (swap-schema16) */
     healthSync: typeof s.healthSync === 'boolean' ? s.healthSync : d.healthSync,
     progressHint: typeof s.progressHint === 'boolean' ? s.progressHint : d.progressHint, autoBackup: typeof s.autoBackup === 'boolean' ? s.autoBackup : d.autoBackup, weighReminder: typeof s.weighReminder === 'boolean' ? s.weighReminder : d.weighReminder, /* runda 75 */
     modules: (() => { const mods = { ...defaultModules(), ...(isObj(s.modules) ? s.modules : {}) }; MODULES.forEach(m => { if (typeof mods[m] !== 'boolean') mods[m] = false; }); mods.training = true; return mods; })(),

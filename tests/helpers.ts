@@ -4,7 +4,7 @@ import { lang, type Lang } from '@/lib/i18n';
 import { demoTemplates } from './fixtures/demo-templates';
 
 declare global { // eslint-disable-next-line no-var
-  var __kv: Map<string, string>; var __dbFail: boolean; var __locales: { languageCode: string; languageTag: string }[]; var __alerts: { title: string; msg?: string; buttons?: { text: string; onPress?: (v?: string) => void; style?: string }[]; prompt?: boolean; def?: string }[]; var __notifications: unknown[]; var __la: unknown[];
+  var __kv: Map<string, string>; var __dbFail: boolean; var __locales: { languageCode: string; languageTag: string }[]; var __alerts: { title: string; msg?: string; buttons?: { text: string; onPress?: (v?: string) => void; style?: string }[]; prompt?: boolean; def?: string }[]; var __notifications: unknown[]; var __cancelled: string[]; var __la: unknown[];
 }
 
 /** Świeży store: opcjonalnie z zapisanym stanem (obiekt lub surowy tekst) w „SQLite”. */

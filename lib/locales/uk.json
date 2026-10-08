@@ -970,5 +970,8 @@
  "Zdejmij oznaczenie deload": "Зняти позначку розвантаження",
  "tydzień deload": "тиждень розвантаження",
  "Wiersz z tłem — tydzień deload.": "Рядок із фоном — тиждень розвантаження.",
- "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Ваша позначка, напр. легший тиждень. На старті тренування запропоную менше підходів (приблизно половину), ваги ті самі."
+ "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Ваша позначка, напр. легший тиждень. На старті тренування запропоную менше підходів (приблизно половину), ваги ті самі.",
+ "Przypomnienie o treningu z planu": "Нагадування про заплановане тренування",
+ "rano o {h}:00 w dniu zaplanowanego treningu": "вранці о {h}:00 у день запланованого тренування",
+ "Trening z Twojego planu tygodnia. Otwórz aplikację, by zacząć.": "Тренування з твого тижневого плану. Відкрий застосунок, щоб почати."
 }

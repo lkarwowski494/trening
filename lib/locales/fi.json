@@ -970,5 +970,8 @@
  "Zdejmij oznaczenie deload": "Poista kevennysmerkintä",
  "tydzień deload": "kevennysviikko",
  "Wiersz z tłem — tydzień deload.": "Taustallinen rivi — kevennysviikko.",
- "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Oma merkintäsi, esim. kevyempi viikko. Kun aloitat treenin, ehdotan vähemmän sarjoja (noin puolet), painot ennallaan."
+ "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Oma merkintäsi, esim. kevyempi viikko. Kun aloitat treenin, ehdotan vähemmän sarjoja (noin puolet), painot ennallaan.",
+ "Przypomnienie o treningu z planu": "Muistutus suunnitelluista treeneistä",
+ "rano o {h}:00 w dniu zaplanowanego treningu": "aamulla klo {h}:00 suunniteltuna treenipäivänä",
+ "Trening z Twojego planu tygodnia. Otwórz aplikację, by zacząć.": "Treeni viikkosuunnitelmastasi. Avaa sovellus aloittaaksesi."
 }

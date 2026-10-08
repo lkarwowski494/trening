@@ -970,5 +970,8 @@
  "Zdejmij oznaczenie deload": "Zrušiť označenie deload",
  "tydzień deload": "deload týždeň",
  "Wiersz z tłem — tydzień deload.": "Riadok s pozadím — deload týždeň.",
- "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Vaše označenie, napr. ľahší týždeň. Pri štarte tréningu navrhnem menej sérií (asi polovicu), váhy bez zmeny."
+ "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Vaše označenie, napr. ľahší týždeň. Pri štarte tréningu navrhnem menej sérií (asi polovicu), váhy bez zmeny.",
+ "Przypomnienie o treningu z planu": "Pripomienka plánovaného tréningu",
+ "rano o {h}:00 w dniu zaplanowanego treningu": "ráno o {h}:00 v deň plánovaného tréningu",
+ "Trening z Twojego planu tygodnia. Otwórz aplikację, by zacząć.": "Tréning z tvojho týždenného plánu. Otvor aplikáciu a začni."
 }

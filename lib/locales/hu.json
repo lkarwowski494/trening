@@ -970,5 +970,8 @@
  "Zdejmij oznaczenie deload": "Deload jelölés törlése",
  "tydzień deload": "deload hét",
  "Wiersz z tłem — tydzień deload.": "Háttérrel jelölt sor — deload hét.",
- "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Saját jelölés, pl. könnyebb hét. Edzés indításakor kevesebb sorozatot javaslok (nagyjából a felét), azonos súlyokkal."
+ "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Saját jelölés, pl. könnyebb hét. Edzés indításakor kevesebb sorozatot javaslok (nagyjából a felét), azonos súlyokkal.",
+ "Przypomnienie o treningu z planu": "Emlékeztető a tervezett edzésekről",
+ "rano o {h}:00 w dniu zaplanowanego treningu": "reggel {h}:00-kor a tervezett edzés napján",
+ "Trening z Twojego planu tygodnia. Otwórz aplikację, by zacząć.": "Edzés a heti tervedből. Nyisd meg az alkalmazást a kezdéshez."
 }
