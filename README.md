@@ -16,8 +16,9 @@ tygodniowo), rekordy per ćwiczenie i oznaczanie PR w trakcie treningu, w podsum
 Od 0.4.0: supersety (`groupId` na ćwiczeniu w treningu i szablonie; przerwa dopiero po ostatnim ćwiczeniu grupy),
 partie mięśniowe główne/pomocnicze per ćwiczenie i serie tygodniowo per partia (1 / 0,5) w Postępach.
 Od 0.5.0: ćwiczenia z masą ciała mają pole ±kg (plus = dociążenie, minus = asysta). Gumy od P-001 (02.10.2026) mają tylko
-kolor i poziom 1–7 — bez kg; wybór gumy nie zmienia ±kg (dawne pole kg ze starych kopii odpada przy imporcie, T-055). Od rundy 75 (schemat 13) masa ciała nie wchodzi do obliczeń: rekord to suma
-powtórzeń bez asysty, a e1RM i objętość liczą się tylko z dociążenia.
+kolor i poziom 1–7 — bez kg; wybór gumy nie zmienia ±kg (dawne pole kg ze starych kopii odpada przy imporcie, T-055). Od rundy 75 (schemat 13) masa ciała nie wchodzi do objętości ani rekordu: rekord to suma
+powtórzeń bez asysty, a objętość liczy się tylko z dociążenia. Od audytu 0.10 (08.10.2026) e1RM tych ćwiczeń liczy się tylko z opcjonalną
+masą ciała w Ustawieniach (Epley na udziale masy ciała ± kg; udział ze źródeł — podciąganie, pompki: docs/research/masa-ciala-e1rm-2026-10.md).
 Od rundy 75: podpowiedź progresji (↑ w nagłówku ćwiczenia), kopia automatyczna po treningu (Pliki → Na moim iPhonie →
 Trening → Backup), przypomnienie o wadze w poniedziałek, pasek postępu sesji; baza w Library/SQLite (poza Plikami).
 Od 0.9.0 (Q-019): przed importem i przed „Wyczyść wszystkie dane” zawsze kopia bezpieczeństwa w tym samym katalogu

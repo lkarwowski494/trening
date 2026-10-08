@@ -29,7 +29,7 @@ const unknownAssist = (ex: Exercise, s: WSet) => (isBW(ex) && !!s.bandId && ex.b
 /**
  * E1 (audyt 0.10: MER-03, LOG-02; decyzja właściciela 08.10.2026, wariant B). Wzór Epleya mnoży CAŁY podnoszony ciężar przez (1 + r/30), więc e1RM
  * z samego dociążenia nie jest szacunkiem 1RM i odwraca kolejność serii (+30 × 3 „biło” +20 × 8). Ćwiczenia z masą ciała: podnoszony ciężar =
- * udział masy ciała × masa ciała z Ustawień + ±kg (asysta odejmuje). Udział tylko ze źródłami (docs/research/24-masa-ciala-e1rm.md):
+ * udział masy ciała × masa ciała z Ustawień + ±kg (asysta odejmuje). Udział tylko ze źródłami (docs/research/masa-ciala-e1rm-2026-10.md):
  *  - podciąganie nachwytem (Pull Up): cała masa ciała — Sánchez-Moreno i in. 2017 (IJSPP 12(10), 1378–1384): „PU maximal strength (1RM) was calculated
  *    as the sum of the maximum weight lifted and the subject's BM”; Talaber i in. 2022 (BMC SSMR, PMC9208152): „The 1RM weight documented was the
  *    officer's body weight plus the additional weight lifted”. Podchwyt i chwyt neutralny — ten sam ruch w zwisie (uproszczenie: cała masa ciała,
