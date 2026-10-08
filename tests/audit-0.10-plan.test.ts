@@ -331,7 +331,7 @@ describe('macierz — funkcje pomocnicze planu i danych (audyt 0.10, każdy przy
   });
   test('plan.dayStatusFrom: wolne, opuszczony, zaplanowany, zrobione (zaplanowany szablon albo dzień bez planu), zrobiony inny (A5)', () => {
     since('2026-09-01', () => { plan.setWeekDay(0, A); plan.setWeekDay(4, A); });
-    const w = (tpl?: string) => ({ ...addWorkout(at('2026-10-05'), [['Back Squat', [{ weight: 100, reps: 5 }]]]), templateId: tpl });
+    const w = (tpl?: string) => ({ ...addWorkout(at('2026-10-05'), [['Back Squat', [{ weight: 100, reps: 5 }]]]), templateId: tpl ?? null });
     expect(plan.dayStatusFrom('2026-10-06', []).status).toBe('rest'); expect(plan.dayStatusFrom('2026-10-05', []).status).toBe('missed'); expect(plan.dayStatusFrom('2026-10-09', []).status).toBe('planned');
     expect(plan.dayStatusFrom('2026-10-05', [w(A)])).toMatchObject({ status: 'done', templateId: A }); expect(plan.dayStatusFrom('2026-10-05', [w(B)]).status).toBe('other');
     expect(plan.dayStatusFrom('2026-10-06', [w(B)]).status).toBe('done'); expect(plan.pending(plan.dayStatusFrom('2026-10-05', [w(B)]))).toBe(true);

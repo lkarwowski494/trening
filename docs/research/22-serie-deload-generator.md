@@ -69,15 +69,16 @@ Niezależnie: De Marco 2024 (ankieta, A), RCT Coleman 2024 (PT) i Pancar 2026 (P
 
 | Reguła | Podstawa | Status |
 |---|---|---|
-| R1 Każda główna grupa (góra/dół × pchanie/ciąganie) ≥ 2×/tydz. | WHO 2020, PAG 2018, ACSM 2011, ACSM 2026, Grgic 2018 | potwierdzone; podział (2 → FBW×2, 3 → FBW A/B/A, 4 → góra/dół×2) = **konwencja** (przy równej objętości brak różnicy) |
+| R1 Każda główna partia (grupa mięśni) ≥ 2 dni/tydz. — zalecenie zdrowotne WHO; dla siły ACSM 2026 ≥ 2 sesje/tydz. (audyt 0.10, 08.10.2026: dawniej „grupy ruchów”, a ekran mówił o partiach i podawał ACSM) | WHO 2020 (PT, cytat 7a), PAG 2018, ACSM 2011; ACSM 2026 (PT, 7b) — siła; przy masie częstotliwość obojętna przy równej objętości (ACSM 2026, Pelland 2026 — 7c) | potwierdzone; liczenie dni z partią tylko pomocniczą jako 0,5 = metoda „fractional” Pelland 2026 — **jedno źródło**, nazwane uproszczeniem; podział (2 → FBW×2, 3 → FBW A/B/A, 4 → góra/dół×2) = **konwencja** (przy równej objętości brak różnicy) |
 | R2 Masa: 10–20 serii/partię/tydz. | ACSM, Schoenfeld 2017, Baz-Valle 2022, Pelland | dolny próg potwierdzony; 20 — jedno źródło |
-| R3 Siła: bój główny na początku, ≥ 80% 1RM (≈ 1–8 powt.), 2–3 serie | ciężar: ACSM, Currier, Lopez, Schoenfeld; kolejność i 2–3 serie: ACSM | ciężar potwierdzony; reszta jedno źródło |
+| R3 Siła: bój główny na początku, ≥ 80% 1RM (≈ 1–8 powt.), 2–3 serie — **tylko z obciążeniem zewnętrznym**; bez niego (dom, masa ciała, gumy) nie da się trenować ≥ 80% 1RM — plan jak R4 „w domu” z ostrzeżeniem: siła też rośnie, zwykle mniej niż przy dużym ciężarze (audyt 0.10 MER-01) | ciężar: ACSM (7b), Currier, Lopez, Schoenfeld; kolejność i 2–3 serie: ACSM; siła rośnie także przy treningu w domu i z gumami: ACSM 2026 (7b) | ciężar potwierdzony; reszta jedno źródło |
 | R4 Masa: 6–15 powt. na siłowni; w domu lżej, > 15 powt. blisko upadku | ACSM, Schoenfeld 2017, Lopez 2021, Currier 2023 | zakres 30–100% 1RM potwierdzony; konkretne liczby = uproszczenie |
-| R5 1–3 RIR, upadek nieobowiązkowy | ACSM, Refalo, Robinson | potwierdzone kierunkowo |
-| R6 Przerwy: masa 90–120 s, ciężkie serie siłowe 2–3 min | Singer 2024, Grgic 2017; ACSM — rozbieżność | pokazać jako „zwykle” |
+| R5 Zwykle 0–3 RIR (ACSM 2026: „near-failure” albo 2–3 RIR; dokładnego RIR nie ustalono), upadek nieobowiązkowy (audyt 0.10 MER-06: dawniej „1–3” bez źródła wprost) | ACSM (7d), Refalo, Robinson | potwierdzone kierunkowo; „0–3” = część wspólna źródeł (wiersz „Blisko upadku” w sekcji 1) |
+| R6 Przerwy: masa 90–120 s, ciężkie serie siłowe 2–3 min (generator: bój główny 3 min, inne wielostawowe 2 min, jednostawowe i core 1,5 min) | Singer 2024, Grgic 2017; ACSM — rozbieżność (7e) | **uproszczenie**, w podglądzie z dopiskiem „przeglądy niejednoznaczne” |
 | R7 Baza wielostawowa; jednostawowe dla mięśni pominiętych; maszyny / wolne ciężary / gumy równoważne | Haugen 2023 (PT), ACSM, Lopes 2019 (PT), RCT Gentil 2013 / de França 2015 (A), RCT MSSE 2026 (PT) | potwierdzone; liczba ćwiczeń na partię = konwencja |
-| R8 „Masa + redukcja”: cardio umiarkowane; licznik do 150–300 min/tydz. (z aktywnością codzienną), sesje cardio oddzielone od siłowych | WHO, PAG, ACSM 2009/2011, Schumann 2022; ostrożnie Wilson 2012 | potwierdzone |
+| R8 „Masa + redukcja”: cardio umiarkowane; WHO: **co najmniej** 150–300 min umiarkowanego (albo 75–150 min intensywnego) wysiłku tygodniowo, liczy się też umiarkowany ruch w ciągu dnia w odcinkach dowolnej długości (audyt 0.10 MER-08: dawniej „razem zwykle 150–300 min”); sesje cardio oddzielone od siłowych; długość sesji cardio = czas sesji — **konwencja** | WHO (7f), PAG, ACSM 2009/2011, Schumann 2022; ostrożnie Wilson 2012 | potwierdzone |
 | R9 Progresja: zwiększyć ciężar po górze zakresu powtórzeń przy docelowym RIR | zasada progresji: ACSM 2026, ACSM 2011 (jedna organizacja); mechanika | **konwencja** |
+| R10 Serie na ćwiczenie: co najmniej 2 (generator: 3 — uproszczenie); więcej serii daje zwykle trochę więcej, z malejącym zyskiem | ACSM 2026 (7g); Pelland 2026 (A, 7c); Ralston 2017 (PT) | potwierdzone kierunkowo; „3” = uproszczenie |
 
 ## 4. Czego NIE da się potwierdzić (nie wchodzi do aplikacji jako fakt)
 - Cardio na czczo daje więcej utraty tłuszczu w tygodniach — Schoenfeld 2014 RCT (PT), Hackett & Hagstrom 2017 (A): różnice „trivial”; Vieira 2016: tylko efekt ostry.
@@ -112,3 +113,20 @@ Spiering 2021 PMID 33629972; Bickel 2011 PMID 21131862; Tavares 2017 10.1080/174
 Ogasawara 2011/2013; Meeusen 2013 10.1249/mss.0b013e318279a10a; Grandou 2020 10.1080/02640414.2020.1763077; De Marco 2024 10.1519/jsc.0000000000004932;
 Pritchard 2016 10.1519/jsc.0000000000001292; Travis 2021 10.1519/jsc.0000000000004177; taper 2026 10.1007/s40279-026-02500-w; Gentil 2013; de França 2015.
 Nie przeczytane: pełny dokument WHO, stanowiska NSCA i ISSN o programowaniu, Rosa 2023, Nuzzo 2023, Pritchard 2015, Grgic 2017 (deload).
+
+## 7. Cytaty do reguł generatora (audyt 0.10.0, 08.10.2026 — teksty przeczytane: ACSM 2026 i WHO 2020 w pełnym tekście z Europe PMC, Pelland 2026 — streszczenie)
+- **7a WHO 2020** (Bull i in., PMC7719906): „Adults should also do muscle-strengthening activities at moderate or greater intensity that involve all major
+  muscle groups on 2 or more days a week, as these provide additional health benefits.”
+- **7b ACSM 2026** (Currier i in., PMC12965823), tab. 6 (siła): „Strength is improved by RT, including circuit RT, elastic band RT, home-based RT, and
+  velocity-based RT. Frequency: ≥2 sessions/wk Intensity: ≥80% 1RM (dose-response) … Volume: 2–3 sets/session Exercise order: Beginning of training session”.
+- **7c Pelland 2026** (PMID 41343037, streszczenie): „weekly set volume/frequency for indirect sets was quantified as 1 for 'total,' 0.5 for 'fractional,' and 0
+  for 'direct.' … The relative evidence for the 'fractional' quantification method was strongest”; „both best-fit models suggest diminishing returns”;
+  „frequency's effect on hypertrophy … compatibility with negligible effects. In contrast, … strength gains increase with increasing frequency”.
+- **7d ACSM 2026**: „completion of 'near-failure' or a target of 2–3 repetitions in reserve (RIR)”; „While training to failure is not obligatory for optimizing
+  results, there is insufficient evidence to quantify exact RIR and perceived exertion targets”.
+- **7e ACSM 2026**: „Strength was not affected by RT performed with … short (<1 min) versus long (>1 min) between-set rest intervals”.
+- **7f WHO 2020**: „Adults should do at least 150–300 min of moderate-intensity aerobic physical activity, or at least 75–150 min of vigorous-intensity aerobic
+  physical activity”; „MVPA bouts of any duration now count towards these recommendations”; umiarkowany wysiłek przykładowo: „not exceeding the demands of
+  brisk walking”.
+- **7g ACSM 2026**: „a dose-response that plateaued and showed diminishing returns beyond ~2–3 sets/exercise for strength and ~18–20 weekly sets for
+  hypertrophy …; thus, healthy adults are advised to complete at least two sets per exercise”.

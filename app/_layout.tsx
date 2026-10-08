@@ -59,7 +59,7 @@ function Root() {
         <Stack.Screen name="_sitemap" options={{ headerShown: false, animation: 'none' }} />
         <Stack.Screen name="template/[id]" options={{ title: t('Szablon') }} />
         <Stack.Screen name="plan" options={{ title: t('Plan tygodnia') }} />
-        <Stack.Screen name="generator" options={{ title: t('Generator planu') }} />
+        <Stack.Screen name="generator" options={{ title: t('Generator szablonów i planu') }} />{/* audyt 0.10 UX-14: jedna nazwa (przewodnik, przycisk „Wygeneruj szablony i plan”) */}
         <Stack.Screen name="guide" options={{ title: t('Przewodnik') }} />
         <Stack.Screen name="reorder" options={{ title: t('Kolejność ćwiczeń') }} />
         <Stack.Screen name="exercise/[id]" options={{ title: t('Ćwiczenie') }} />

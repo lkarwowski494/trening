@@ -131,11 +131,11 @@ export const futureChanges = (today = todayKey()) => Object.keys(getState().plan
 export const savedChanges = (id: string, today = todayKey()) => Object.keys(savedPlans().find(p => p.id === id)?.overrides ?? {}).filter(k => k >= today).length;
 /** Okno aktywacji (ekran planu i generator — jeden tekst, audyt 0.10 B1): co stanie się z obecnym planem i jego zmianami dni, co wróci z nowym. */
 export function activationNote(id?: string, today = todayKey()): string {
-  const cur = weekPlanDays().some(Boolean) || !!cleanPlanName(planName()); const n = futureChanges(today); const m = id ? savedChanges(id, today) : 0;
+  const n = futureChanges(today); const cur = weekPlanDays().some(Boolean) || !!cleanPlanName(planName()) || n > 0; /* sam plan ze zmianami dni też się zapisuje (B1) */ const m = id ? savedChanges(id, today) : 0;
   return [cur ? (n ? t('Obecny plan zostanie w „Inne plany” razem ze zmianami pojedynczych dni od dziś ({n}) — wrócą, gdy znów go ustawisz.', { n }) : t('Obecny plan zostanie w „Inne plany” — wrócisz do niego jednym przyciskiem.')) : '',
     m ? t('Wrócą zmiany pojedynczych dni zapisane z tym planem: {n}.', { n: m }) : ''].filter(Boolean).join(' ');
 }
-/** Ustawienie zapisanego planu jako aktywnego: poprzedni aktywny trafia do zapisanych pod swoją nazwą (bez nazwy — „Plan do <data>”) razem ze
+/** Ustawienie zapisanego planu jako aktywnego: poprzedni aktywny (z dniem, nazwą albo zmianami dni od dziś) trafia do zapisanych pod swoją nazwą (bez nazwy — „Plan do <data>”) razem ze
  * swoimi zmianami dni od dziś (B1); zmiany dni zapisane z nowym planem wracają (te od dziś); przeszłe zmiany zostają (historia); od dziś
  * obowiązuje nowy odcinek historii — minione dni bez zmian (A1). */
 export function activatePlan(id: string) {
@@ -143,7 +143,7 @@ export function activatePlan(id: string) {
   const rest = savedPlans().filter(x => x.id !== id); const cur = weekPlanDays(); const nm = cleanPlanName(planName());
   const ov = getState().planOverrides ?? {}; const past = Object.fromEntries(Object.entries(ov).filter(([k]) => k < today));
   const mine = Object.fromEntries(Object.entries(ov).filter(([k]) => k >= today && isChanged(k, today)));
-  putSaved(cur.some(Boolean) || nm ? [...rest, { id: uid(), name: uniqueIn(rest.map(x => x.name), nm || datedName(today)), days: cur, ...(Object.keys(mine).length ? { overrides: mine } : {}) }] : rest);
+  putSaved(cur.some(Boolean) || nm || Object.keys(mine).length ? [...rest, { id: uid(), name: uniqueIn(rest.map(x => x.name), nm || datedName(today)), days: cur, ...(Object.keys(mine).length ? { overrides: mine } : {}) }] : rest);
   putActive(planDays(p.days).map(x => (exists(x) ? x : null)) /* audyt 0.10 A7: usunięty szablon — dzień wolny */, p.name, today);
   putOv({ ...past, ...Object.fromEntries(Object.entries(p.overrides ?? {}).filter(([k]) => k >= today)) });
   tidy(today); commit();

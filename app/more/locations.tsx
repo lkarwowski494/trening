@@ -5,7 +5,7 @@ import { Screen, Item, Btn, Muted, Empty, SectionTitle, useOnce } from '@/compon
 import { getState, useTick } from '@/lib/store';
 import { addLocation, canDeleteLocation, deleteLocation } from '@/lib/locations';
 import { SwipeRow } from '@/components/SwipeRow';
-import { LOCATION_PRESETS, LOCATION_PRESET_LABEL, LOCATION_PRESET_HINT, equipLabel } from '@/lib/equipment';
+import { LOCATION_PRESETS, LOCATION_PRESET_LABEL, presetHint, equipLabel } from '@/lib/equipment';
 import { t, tp } from '@/lib/i18n';
 
 /* P-003 E1: Ustawienia → Miejsca treningu (docs/10, sekcja 5). Lista miejsc (główne oznaczone) i „+ Dodaj miejsce” z presetami. */
@@ -21,7 +21,7 @@ export default function Locations() {
       {s.locations.length ? null : <Empty>{t('Brak miejsc — wszystkie ćwiczenia są dostępne, a podpowiedzi działają jak dotąd.')}</Empty>}
       {adding ? <>
         <SectionTitle>{t('Nowe miejsce')}</SectionTitle>
-        {LOCATION_PRESETS.map(p => <Item key={p} title={equipLabel(LOCATION_PRESET_LABEL[p])} sub={equipLabel(LOCATION_PRESET_HINT[p])} icon="+" onPress={once(() => { const l = addLocation(p); setAdding(false); router.push(`/more/location/${l.id}`); })} />)}
+        {LOCATION_PRESETS.map(p => <Item key={p} title={equipLabel(LOCATION_PRESET_LABEL[p])} sub={presetHint(p, s.unit)} /* audyt 0.10 LOG-08: opis z danych presetu, w jednostce aplikacji */ icon="+" onPress={once(() => { const l = addLocation(p); setAdding(false); router.push(`/more/location/${l.id}`); })} />)}
         <Btn title={t('Anuluj')} kind="ghost" style={{ marginTop: 8 }} onPress={() => setAdding(false)} />
       </> : <Btn title={t('+ Dodaj miejsce')} block style={{ marginTop: 14 }} onPress={() => setAdding(true)} />}
     </ScrollView></Screen>

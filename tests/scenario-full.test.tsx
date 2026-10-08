@@ -147,7 +147,8 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     expect(screen.getByText('Brak miejsc — wszystkie ćwiczenia są dostępne, a podpowiedzi działają jak dotąd.')).toBeTruthy();
     /* „+ Dodaj miejsce” → presety; „Anuluj” chowa listę */
     await tap(screen.getByText('+ Dodaj miejsce'));
-    for (const [n, h] of [['Pełna siłownia', 'cały sprzęt; sztanga 20 kg + talerze 25…1,25; hantle 2,5–50 co 2,5'], ['Dom', 'pusto — zaznaczysz, co masz'], ['Tylko masa ciała', 'tylko mata'], ['Hotel', 'hantle 2,5–25, ławka regulowana, bieżnia, rower']]) expect(screen.getByLabelText(`${n}, ${h}`)).toBeTruthy();
+    /* audyt 0.10 LOG-08: opisy z danych presetu (jednostka, mata w hotelu) */
+    for (const [n, h] of [['Pełna siłownia', 'cały sprzęt; sztanga 20 kg + talerze 25…1,25 kg; hantle 2,5–50 kg co 2,5'], ['Dom', 'pusto — zaznaczysz, co masz'], ['Tylko masa ciała', 'tylko mata'], ['Hotel', 'hantle 2,5–25 kg, ławka regulowana, mata, bieżnia, rower']]) expect(screen.getByLabelText(`${n}, ${h}`)).toBeTruthy();
     await tap(screen.getByText('Anuluj')); expect(screen.queryByText('Nowe miejsce')).toBeNull(); expect(S().settings.locations).toHaveLength(0);
 
     /* 1) Pełna siłownia — pierwsze miejsce staje się główne */

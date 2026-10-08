@@ -20,6 +20,7 @@ import * as units from '@/lib/units';
 import * as edit from '@/lib/edit';
 import * as locs from '@/lib/locations';
 import * as plan from '@/lib/plan';
+import * as gen from '@/lib/generator';
 import { buildBackup, parseBackup } from '@/lib/backup';
 import { implsAt, EQUIPMENT, LOCATION_PRESETS } from '@/lib/equipment';
 import { CABLES } from '@/lib/catalog.generated';
@@ -37,6 +38,8 @@ const KINDS = {
   /* szablony — jawne edycje właściciela (jedyne, po których szablony mogą się zmienić) */
   tplNew: 2, tplRename: 1, tplDup: 1, tplDel: 1, tplAddItem: 4, tplRmItem: 1, tplMove: 1, tplLink: 2, tplUnlink: 1,
   tplAddRow: 3, tplRmRow: 2, tplKind: 2, tplRow: 3, tplBand: 1, tplLoc: 1, rememberAlt: 2, rememberRest: 1,
+  /* audyt 0.10 (generator, UX-10): zapis z generatora (aktywacja, zastąpienie nieużywanych) i notatka szablonu */
+  gen: 4, tplNote: 1,
   /* trening w toku */
   startTpl: 14, startEmpty: 4, repeat: 5, addEx: 7, rmEx: 1, addSet: 6, rmSet: 1, rmSetById: 1, type: 14, tick: 24, kind: 3, band: 3,
   link: 2, unlink: 1, moveBlock: 1, swap: 7, swapImpl: 4, undoSwap: 5, acceptAlt: 4, skipAlt: 1, setLoc: 3, timerRest: 1, timerSet: 1,
@@ -79,7 +82,7 @@ const session = fc.tuple(start, fc.array(inSession, { minLength: 3, maxLength: 2
 const seqArb = fc.array(fc.oneof({ weight: 3, arbitrary: actArb.map(x => [x]) }, { weight: 2, arbitrary: session }), { minLength: 6, maxLength: 30 });
 
 /** Kategorie: jawne edycje szablonów, zmiany historii; w pozostałych działaniach trening w toku ma zostać co do bajtu (ACTIVE_FROZEN). */
-const TPL_EDIT = new Set<K>(['tplNew', 'tplRename', 'tplDup', 'tplDel', 'tplAddItem', 'tplRmItem', 'tplMove', 'tplLink', 'tplUnlink', 'tplAddRow', 'tplRmRow', 'tplKind', 'tplRow', 'tplBand', 'tplLoc', 'rememberAlt', 'rememberRest']);
+const TPL_EDIT = new Set<K>(['tplNew', 'tplRename', 'tplDup', 'tplDel', 'tplAddItem', 'tplRmItem', 'tplMove', 'tplLink', 'tplUnlink', 'tplAddRow', 'tplRmRow', 'tplKind', 'tplRow', 'tplBand', 'tplLoc', 'rememberAlt', 'rememberRest', 'gen', 'tplNote']);
 const ACTIVE_FROZEN = new Set<K>([...[...TPL_EDIT].filter(k => k !== 'rememberRest'), 'delW', 'past', 'edit', 'unit', 'lang', 'newEx', 'metric', 'bandAssist', 'delEx', 'restoreEx', 'addLoc', 'setMain', 'dupLoc', 'renameLoc', 'setBandColor', 'reload', 'roundtrip', 'migrate', 'stats', 'planDay', 'planDayOv', 'planShift', 'planMove', 'planNew', 'planActivate']);
 /** Audyt 0.10 A1/A7: działania, po których żaden miniony dzień nie może zmienić statusu (poza dniem, którego działanie dotyczy wprost). */
 const PAST_FROZEN = new Set<K>(['planDay', 'planDayOv', 'planShift', 'planMove', 'planNew', 'planActivate', 'tplDel', 'tplNew', 'tplDup', 'tplRename']);
@@ -165,6 +168,17 @@ async function step(x: Act, m: Model, where: string) {
   switch (x.t) {
     /* ===== szablony (jawne edycje) ===== */
     case 'tplNew': { const n = st.templates.length; const t = store.newTemplate(); ok(S().templates.length === n + 1 && t.items.length === 0, where, 'nowy szablon'); hit('tplNew'); break; }
+    case 'tplNote': if (tpl) { store.setTemplateNote(tpl, NAMES[x.b % NAMES.length]); ok(tpl.note === undefined || (tpl.note.length <= store.TEMPLATE_NOTE_MAX && tpl.note === tpl.note.trim() && !!tpl.note), where, 'notatka szablonu', tpl.note); othersSame(tpl.id); hit('tplNote'); } break; /* app/template/[id].tsx: pole „Notatka” */
+    case 'gen': { /* app/generator.tsx: zapis; zastąpienie usuwa tylko nieużywane wygenerowane szablony i plany zrobione tylko z nich */
+      const goal = (['strength', 'hypertrophy', 'cut'] as const)[x.a % 3]; const ss = gen.GEN_SESSIONS[goal];
+      const inp = { goal, locationId: x.b % 4 === 0 ? null : pick(st.settings.locations, x.b)?.id ?? null, sessions: ss[x.b % ss.length], minutes: gen.GEN_MINUTES[x.c % gen.GEN_MINUTES.length] };
+      const live = new Set(st.templates.map(t => t.id)); const refs = [...st.workouts.map(w => w.templateId), st.active?.templateId, ...(st.weekPlan?.days ?? []), ...Object.values(st.planOverrides ?? {})].filter((id): id is string => !!id && live.has(id));
+      const res = gen.saveGenerated(gen.generate(inp), inp, x.c % 2 === 0, x.c % 3 === 0); const ids = new Set(S().templates.map(t => t.id));
+      ok(refs.every(id => ids.has(id)), where, 'zastąpienie usunęło szablon w użyciu', refs.filter(id => !ids.has(id)));
+      ok(res.templateIds.every(id => (S().templates.find(t => t.id === id)?.items.length ?? 0) > 0), where, 'pusty szablon z generatora');
+      const days = x.c % 2 === 0 ? S().weekPlan?.days ?? [] : S().savedPlans?.find(p => p.id === res.planId)?.days ?? [];
+      ok(days.length === 7 && days.every(d => !d || res.templateIds.includes(d)), where, 'plan z generatora wskazuje nie swoje szablony', days);
+      hit('gen'); break; }
     case 'tplRename': if (tpl) { const prev = tpl.name; tpl.name = NAMES[x.b % NAMES.length].slice(0, 80); store.save(tpl); const n = tpl.name.replace(/\s+/g, ' ').trim(); tpl.name = n || prev; store.save(tpl); othersSame(tpl.id); } break; /* app/template/[id].tsx: onChangeText + commitName */
     case 'tplDup': if (tpl) { const c = store.dupTemplate(tpl.id); ok(c.id !== tpl.id && c.items.length === tpl.items.length && c.items.every((it, i) => it.id !== tpl.items[i].id && it.exerciseId === tpl.items[i].exerciseId), where, 'kopia szablonu'); othersSame(c.id); hit('tplDup'); } break;
     case 'tplDel': if (tpl) { plan.removeTemplate(tpl.id); ok(!S().templates.some(t => t.id === tpl.id), where, 'usunięcie szablonu'); othersSame(tpl.id);
@@ -485,7 +499,7 @@ describe('macierz niezmienników — losowe sekwencje działań na prawdziwym AP
     }), { numRuns: RUNS, seed: SEED });
     if (process.env.MATRIX_COVERAGE) console.log(J(ran)); // eslint-disable-line no-console
     /* pokrycie: kluczowe ścieżki naprawdę się wykonały (inaczej niezmienniki byłyby puste) */
-    if (RUNS >= 50 && !process.env.MATRIX_SEED) /* kontrola pokrycia tylko dla stałego ziarna — losowe może nie wylosować rzadkiej akcji */ for (const k of ['startTpl', 'finish', 'tick', 'swap', 'split', 'undoSwap', 'pastCommit', 'editCommit', 'draftSwap', 'delExArchive', 'delExHard', 'reload', 'roundtrip', 'addLoc', 'setLoc', 'tplAddRow', 'tplRmRow', 'tplKind', 'tplDup', 'repeat', 'unit', 'lang', 'rememberAlt', 'rememberRest'])
+    if (RUNS >= 50 && !process.env.MATRIX_SEED) /* kontrola pokrycia tylko dla stałego ziarna — losowe może nie wylosować rzadkiej akcji */ for (const k of ['startTpl', 'finish', 'tick', 'swap', 'split', 'undoSwap', 'pastCommit', 'editCommit', 'draftSwap', 'delExArchive', 'delExHard', 'reload', 'roundtrip', 'addLoc', 'setLoc', 'tplAddRow', 'tplRmRow', 'tplKind', 'tplDup', 'repeat', 'unit', 'lang', 'rememberAlt', 'rememberRest', 'gen', 'tplNote'])
       expect([k, (ran[k] ?? 0) > 0]).toEqual([k, true]);
   });
 });
