@@ -1033,5 +1033,21 @@
  "Wygenerowane": "Gerados",
  "{goal}, {n}× w tygodniu": "{goal}, {n}× por semana",
  "Generator szablonów i planu tygodnia na Twoje polecenie (cel, miejsce, liczba i długość sesji) oraz kilka planów z wyborem aktywnego.": "Gerador de modelos e plano semanal a pedido (objetivo, local, número e duração das sessões) e vários planos com escolha do ativo.",
- "Deload: podpowiedź w Kalendarzu i mniej serii przy starcie w tygodniu deload; przypomnienie rano w dniu treningu z planu.": "Descarga: sugestão no Calendário e menos séries ao iniciar numa semana de descarga; lembrete de manhã nos dias de treino planeado."
+ "Deload: podpowiedź w Kalendarzu i mniej serii przy starcie w tygodniu deload; przypomnienie rano w dniu treningu z planu.": "Descarga: sugestão no Calendário e menos séries ao iniciar numa semana de descarga; lembrete de manhã nos dias de treino planeado.",
+ "{label}: {v}, poprzedni tydzień {p}": "{label}: {v}, semana anterior {p}",
+ "poprz.: {v}": "ant.: {v}",
+ "Ten tydzień": "Esta semana",
+ "Serie": "Séries",
+ "Czas": "Tempo",
+ "Treningi: zrobione / zaplanowane w tym tygodniu.": "Treinos: feitos / planeados esta semana.",
+ "Ostatni trening": "Último treino",
+ "do zrobienia": "por fazer",
+ "Pierwsze kroki": "Primeiros passos",
+ "Utwórz szablon („+ Nowy szablon” niżej) albo wygeneruj szablony i plan.": "Cria um modelo («+ Novo modelo» abaixo) ou gera modelos e um plano.",
+ "Ustaw plan tygodnia — zobaczysz tu dzisiejszy trening i dostaniesz przypomnienie.": "Define um plano semanal — vais ver aqui o treino de hoje e receber um lembrete.",
+ "rekord|rekordy|rekordów": "recorde|recordes",
+ "Dziś": "Hoje",
+ "Bez planu tygodnia": "Sem plano semanal",
+ "Ten tydzień: {list}. Tapnij, by otworzyć Kalendarz.": "Esta semana: {list}. Toca para abrir o Calendário.",
+ "Ustaw plan tygodnia, by widzieć tu dzisiejszy trening i dostawać przypomnienie.": "Define um plano semanal para veres aqui o treino de hoje e receberes um lembrete."
 }

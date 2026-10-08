@@ -127,17 +127,25 @@ describe('Kalendarz', () => {
 });
 
 describe('ekran treningu: „Dziś” i podgląd tygodnia', () => {
-  test('bez planu — brak karty; z planem — „Dziś: X”, start, podgląd 7 dni dla VoiceOver; dzień wolny; po treningu „zrobione”', async () => {
+  test('nowa osoba bez planu — brak karty; z planem — „Dziś: X”, start, pasek tygodnia pon…nd dla VoiceOver; dzień wolny; po treningu „zrobione”', async () => {
     await boot(() => {}, '/'); expect(screen.queryByTestId('today-plan')).toBeNull();
-    const t = await boot(ids => { plan.setWeekDay(3, ids[0]); plan.setWeekDay(4, ids[1]); }, '/');
+    const t = await boot(ids => { plan.setWeekDay(0, ids[1]); plan.setWeekDay(3, ids[0]); plan.setWeekDay(4, ids[1]); }, '/');
     expect(screen.getByText(`Dziś: ${t[0].name}`)).toBeTruthy();
-    expect(screen.getByLabelText(new RegExp(`^Plan na 7 dni: czw\\. ${t[0].name}, pt\\. ${t[1].name}, sob\\. wolne, .*Tapnij, by otworzyć Kalendarz\\.$`))).toBeTruthy();
-    const strip = 'Plan na 7 dni: {list}. Tapnij, by otworzyć Kalendarz.'; expect(screen.getByLabelText(new RegExp('^' + strip.split('{list}')[0]))).toBeTruthy(); /* tekst z t() — macierz */
-    await tap(screen.getByLabelText(new RegExp('^Plan na 7 dni:'))); await flushAll(10); expect(screen.getByRole('header', { name: 'Kalendarz' })).toBeTruthy(); await go('/'); await flushAll(10);
+    expect(screen.getByLabelText(new RegExp(`^Ten tydzień: pon\\. opuszczony: ${t[1].name}, wt\\. wolne, śr\\. wolne, czw\\. zaplanowany: ${t[0].name}, pt\\. zaplanowany: ${t[1].name}, sob\\. wolne, niedz\\. wolne\\. Tapnij, by otworzyć Kalendarz\\.$`))).toBeTruthy();
+    const strip = 'Ten tydzień: {list}. Tapnij, by otworzyć Kalendarz.'; expect(screen.getByLabelText(new RegExp('^' + strip.split('{list}')[0]))).toBeTruthy(); /* tekst z t() — macierz */
+    await tap(screen.getByTestId('week-strip')); await flushAll(10); expect(screen.getByRole('header', { name: 'Kalendarz' })).toBeTruthy(); await go('/'); await flushAll(10);
     await tap(screen.getByLabelText(`Start zaplanowanego treningu: ${t[0].name}`)); await flushAll(10); expect(S().active?.templateId).toBe(t[0].id);
     await boot(ids => { plan.setWeekDay(4, ids[1]); }, '/'); expect(screen.getByText('Dziś wolne')).toBeTruthy();
     const t3 = await boot(ids => { plan.setWeekDay(3, ids[0]); addWorkout(new Date(2026, 9, 8, 7).getTime(), [['Back Squat', [{ weight: 100, reps: 5 }]]]); }, '/');
     expect(screen.getByText(`Dziś: ${t3[0].name} · zrobione`)).toBeTruthy(); expect(screen.queryByLabelText(`Start zaplanowanego treningu: ${t3[0].name}`)).toBeNull();
+    expect(screen.getByLabelText(/, czw\. zrobione, /)).toBeTruthy();
+  });
+  test('bez planu, z treningami — karta z tygodniem, „Bez planu tygodnia”, zachęta i „Plan tygodnia”', async () => {
+    await boot(() => { addWorkout(new Date(2026, 9, 6, 18).getTime(), [['Back Squat', [{ weight: 100, reps: 5 }]]]); }, '/');
+    expect(screen.getByText('Dziś')).toBeTruthy(); expect(screen.getByText('Bez planu tygodnia')).toBeTruthy();
+    expect(screen.getByText('Ustaw plan tygodnia, by widzieć tu dzisiejszy trening i dostawać przypomnienie.')).toBeTruthy();
+    expect(screen.getByLabelText(/^Ten tydzień: pon\. wolne, wt\. zrobione, /)).toBeTruthy();
+    await tap(screen.getAllByText('Plan tygodnia')[0]); await flushAll(10); expect(screen.getByText('Plan powtarza się co tydzień. Pojedyncze dni zmienisz w Kalendarzu.')).toBeTruthy();
   });
   test('lista sesji w Kalendarzu pokazuje czas bez pauz', async () => {
     await boot(() => { const w = addWorkout(new Date(2026, 9, 7, 18).getTime(), [['Back Squat', [{ weight: 100, reps: 5 }]]]); w.pauses = [[w.startedAt + 60e3, w.startedAt + 16 * 60e3]]; store.save(); });

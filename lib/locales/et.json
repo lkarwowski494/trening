@@ -1033,5 +1033,21 @@
  "Wygenerowane": "Loodud",
  "{goal}, {n}× w tygodniu": "{goal}, {n}× nädalas",
  "Generator szablonów i planu tygodnia na Twoje polecenie (cel, miejsce, liczba i długość sesji) oraz kilka planów z wyborem aktywnego.": "Mallide ja nädalaplaani generaator soovi korral (eesmärk, koht, trennide arv ja kestus) ning mitu plaani aktiivse valikuga.",
- "Deload: podpowiedź w Kalendarzu i mniej serii przy starcie w tygodniu deload; przypomnienie rano w dniu treningu z planu.": "Kergendus: vihje Kalendris ja vähem seeriaid alustamisel kergendusnädalal; hommikune meeldetuletus plaanitud trennipäevadel."
+ "Deload: podpowiedź w Kalendarzu i mniej serii przy starcie w tygodniu deload; przypomnienie rano w dniu treningu z planu.": "Kergendus: vihje Kalendris ja vähem seeriaid alustamisel kergendusnädalal; hommikune meeldetuletus plaanitud trennipäevadel.",
+ "{label}: {v}, poprzedni tydzień {p}": "{label}: {v}, eelmisel nädalal {p}",
+ "poprz.: {v}": "eelm.: {v}",
+ "Ten tydzień": "See nädal",
+ "Serie": "Seeriad",
+ "Czas": "Aeg",
+ "Treningi: zrobione / zaplanowane w tym tygodniu.": "Trennid: tehtud / plaanitud sel nädalal.",
+ "Ostatni trening": "Viimane trenn",
+ "do zrobienia": "teha",
+ "Pierwsze kroki": "Esimesed sammud",
+ "Utwórz szablon („+ Nowy szablon” niżej) albo wygeneruj szablony i plan.": "Loo mall („+ Uus mall“ allpool) või loo mallid ja plaan generaatoriga.",
+ "Ustaw plan tygodnia — zobaczysz tu dzisiejszy trening i dostaniesz przypomnienie.": "Sea nädalaplaan — näed siin tänast trenni ja saad meeldetuletuse.",
+ "rekord|rekordy|rekordów": "rekord|rekordit",
+ "Dziś": "Täna",
+ "Bez planu tygodnia": "Nädalaplaan puudub",
+ "Ten tydzień: {list}. Tapnij, by otworzyć Kalendarz.": "See nädal: {list}. Puuduta, et avada Kalender.",
+ "Ustaw plan tygodnia, by widzieć tu dzisiejszy trening i dostawać przypomnienie.": "Sea nädalaplaan, et näha siin tänast trenni ja saada meeldetuletus."
 }

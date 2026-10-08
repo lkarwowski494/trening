@@ -1033,5 +1033,21 @@
  "Wygenerowane": "Générés",
  "{goal}, {n}× w tygodniu": "{goal}, {n}× par semaine",
  "Generator szablonów i planu tygodnia na Twoje polecenie (cel, miejsce, liczba i długość sesji) oraz kilka planów z wyborem aktywnego.": "Générateur de modèles et de programme de la semaine à la demande (objectif, lieu, nombre et durée des séances) et plusieurs programmes avec choix de l’actif.",
- "Deload: podpowiedź w Kalendarzu i mniej serii przy starcie w tygodniu deload; przypomnienie rano w dniu treningu z planu.": "Décharge : indication dans le Calendrier et moins de séries au début en semaine de décharge ; rappel le matin les jours de séance prévue."
+ "Deload: podpowiedź w Kalendarzu i mniej serii przy starcie w tygodniu deload; przypomnienie rano w dniu treningu z planu.": "Décharge : indication dans le Calendrier et moins de séries au début en semaine de décharge ; rappel le matin les jours de séance prévue.",
+ "{label}: {v}, poprzedni tydzień {p}": "{label} : {v}, semaine précédente {p}",
+ "poprz.: {v}": "préc. : {v}",
+ "Ten tydzień": "Cette semaine",
+ "Serie": "Séries",
+ "Czas": "Durée",
+ "Treningi: zrobione / zaplanowane w tym tygodniu.": "Séances : faites / prévues cette semaine.",
+ "Ostatni trening": "Dernière séance",
+ "do zrobienia": "à faire",
+ "Pierwsze kroki": "Premiers pas",
+ "Utwórz szablon („+ Nowy szablon” niżej) albo wygeneruj szablony i plan.": "Crée un modèle (« + Nouveau modèle » ci-dessous) ou génère des modèles et un programme.",
+ "Ustaw plan tygodnia — zobaczysz tu dzisiejszy trening i dostaniesz przypomnienie.": "Définis un programme de la semaine — tu verras ici la séance du jour et recevras un rappel.",
+ "rekord|rekordy|rekordów": "record|records",
+ "Dziś": "Aujourd’hui",
+ "Bez planu tygodnia": "Pas de programme de la semaine",
+ "Ten tydzień: {list}. Tapnij, by otworzyć Kalendarz.": "Cette semaine : {list}. Touche pour ouvrir le Calendrier.",
+ "Ustaw plan tygodnia, by widzieć tu dzisiejszy trening i dostawać przypomnienie.": "Définis un programme de la semaine pour voir ici la séance du jour et recevoir un rappel."
 }

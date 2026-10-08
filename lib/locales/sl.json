@@ -1033,5 +1033,21 @@
  "Wygenerowane": "Ustvarjeno",
  "{goal}, {n}× w tygodniu": "{goal}, {n}× na teden",
  "Generator szablonów i planu tygodnia na Twoje polecenie (cel, miejsce, liczba i długość sesji) oraz kilka planów z wyborem aktywnego.": "Generator predlog in tedenskega načrta na zahtevo (cilj, mesto, število in trajanje treningov) ter več načrtov z izbiro aktivnega.",
- "Deload: podpowiedź w Kalendarzu i mniej serii przy starcie w tygodniu deload; przypomnienie rano w dniu treningu z planu.": "Razbremenitev: namig v Koledarju in manj serij ob začetku v tednu razbremenitve; jutranji opomnik na dneve načrtovanega treninga."
+ "Deload: podpowiedź w Kalendarzu i mniej serii przy starcie w tygodniu deload; przypomnienie rano w dniu treningu z planu.": "Razbremenitev: namig v Koledarju in manj serij ob začetku v tednu razbremenitve; jutranji opomnik na dneve načrtovanega treninga.",
+ "{label}: {v}, poprzedni tydzień {p}": "{label}: {v}, prejšnji teden {p}",
+ "poprz.: {v}": "prej.: {v}",
+ "Ten tydzień": "Ta teden",
+ "Serie": "Serije",
+ "Czas": "Čas",
+ "Treningi: zrobione / zaplanowane w tym tygodniu.": "Treningi: opravljeni / načrtovani ta teden.",
+ "Ostatni trening": "Zadnji trening",
+ "do zrobienia": "še čaka",
+ "Pierwsze kroki": "Prvi koraki",
+ "Utwórz szablon („+ Nowy szablon” niżej) albo wygeneruj szablony i plan.": "Ustvari predlogo (»+ Nova predloga« spodaj) ali ustvari predloge in načrt z generatorjem.",
+ "Ustaw plan tygodnia — zobaczysz tu dzisiejszy trening i dostaniesz przypomnienie.": "Nastavi tedenski načrt — tu boš videl današnji trening in dobil opomnik.",
+ "rekord|rekordy|rekordów": "rekord|rekorda|rekordi|rekordov",
+ "Dziś": "Danes",
+ "Bez planu tygodnia": "Brez tedenskega načrta",
+ "Ten tydzień: {list}. Tapnij, by otworzyć Kalendarz.": "Ta teden: {list}. Tapni za odpiranje Koledarja.",
+ "Ustaw plan tygodnia, by widzieć tu dzisiejszy trening i dostawać przypomnienie.": "Nastavi tedenski načrt, da boš tu videl današnji trening in dobival opomnik."
 }

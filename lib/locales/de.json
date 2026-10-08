@@ -1033,5 +1033,21 @@
  "Wygenerowane": "Erstellt",
  "{goal}, {n}× w tygodniu": "{goal}, {n}× pro Woche",
  "Generator szablonów i planu tygodnia na Twoje polecenie (cel, miejsce, liczba i długość sesji) oraz kilka planów z wyborem aktywnego.": "Generator für Vorlagen und Wochenplan auf Wunsch (Ziel, Ort, Anzahl und Dauer der Einheiten) sowie mehrere Pläne mit Auswahl des aktiven.",
- "Deload: podpowiedź w Kalendarzu i mniej serii przy starcie w tygodniu deload; przypomnienie rano w dniu treningu z planu.": "Deload: Hinweis im Kalender und weniger Sätze beim Start in einer Deload-Woche; morgendliche Erinnerung an geplanten Trainingstagen."
+ "Deload: podpowiedź w Kalendarzu i mniej serii przy starcie w tygodniu deload; przypomnienie rano w dniu treningu z planu.": "Deload: Hinweis im Kalender und weniger Sätze beim Start in einer Deload-Woche; morgendliche Erinnerung an geplanten Trainingstagen.",
+ "{label}: {v}, poprzedni tydzień {p}": "{label}: {v}, Vorwoche {p}",
+ "poprz.: {v}": "Vorw.: {v}",
+ "Ten tydzień": "Diese Woche",
+ "Serie": "Sätze",
+ "Czas": "Zeit",
+ "Treningi: zrobione / zaplanowane w tym tygodniu.": "Trainings: erledigt / geplant in dieser Woche.",
+ "Ostatni trening": "Letztes Training",
+ "do zrobienia": "offen",
+ "Pierwsze kroki": "Erste Schritte",
+ "Utwórz szablon („+ Nowy szablon” niżej) albo wygeneruj szablony i plan.": "Erstelle eine Vorlage („+ Neue Vorlage“ unten) oder lass Vorlagen und Plan erstellen.",
+ "Ustaw plan tygodnia — zobaczysz tu dzisiejszy trening i dostaniesz przypomnienie.": "Lege einen Wochenplan fest — du siehst hier das heutige Training und bekommst eine Erinnerung.",
+ "rekord|rekordy|rekordów": "Rekord|Rekorde",
+ "Dziś": "Heute",
+ "Bez planu tygodnia": "Kein Wochenplan",
+ "Ten tydzień: {list}. Tapnij, by otworzyć Kalendarz.": "Diese Woche: {list}. Tippen, um den Kalender zu öffnen.",
+ "Ustaw plan tygodnia, by widzieć tu dzisiejszy trening i dostawać przypomnienie.": "Lege einen Wochenplan fest, um hier das heutige Training zu sehen und Erinnerungen zu bekommen."
 }

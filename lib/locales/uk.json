@@ -1033,5 +1033,21 @@
  "Wygenerowane": "Згенеровані",
  "{goal}, {n}× w tygodniu": "{goal}, {n}× на тиждень",
  "Generator szablonów i planu tygodnia na Twoje polecenie (cel, miejsce, liczba i długość sesji) oraz kilka planów z wyborem aktywnego.": "Генератор шаблонів і тижневого плану на запит (мета, місце, кількість і тривалість тренувань) та кілька планів із вибором активного.",
- "Deload: podpowiedź w Kalendarzu i mniej serii przy starcie w tygodniu deload; przypomnienie rano w dniu treningu z planu.": "Розвантаження: підказка в Календарі й менше підходів на старті в тиждень розвантаження; ранкове нагадування в дні запланованих тренувань."
+ "Deload: podpowiedź w Kalendarzu i mniej serii przy starcie w tygodniu deload; przypomnienie rano w dniu treningu z planu.": "Розвантаження: підказка в Календарі й менше підходів на старті в тиждень розвантаження; ранкове нагадування в дні запланованих тренувань.",
+ "{label}: {v}, poprzedni tydzień {p}": "{label}: {v}, минулого тижня {p}",
+ "poprz.: {v}": "попер.: {v}",
+ "Ten tydzień": "Цей тиждень",
+ "Serie": "Підходи",
+ "Czas": "Час",
+ "Treningi: zrobione / zaplanowane w tym tygodniu.": "Тренування: виконані / заплановані цього тижня.",
+ "Ostatni trening": "Останнє тренування",
+ "do zrobienia": "залишилось",
+ "Pierwsze kroki": "Перші кроки",
+ "Utwórz szablon („+ Nowy szablon” niżej) albo wygeneruj szablony i plan.": "Створи шаблон («+ Новий шаблон» нижче) або згенеруй шаблони й план.",
+ "Ustaw plan tygodnia — zobaczysz tu dzisiejszy trening i dostaniesz przypomnienie.": "Встанови тижневий план — тут бачитимеш сьогоднішнє тренування й отримуватимеш нагадування.",
+ "rekord|rekordy|rekordów": "рекорд|рекорди|рекордів",
+ "Dziś": "Сьогодні",
+ "Bez planu tygodnia": "Без тижневого плану",
+ "Ten tydzień: {list}. Tapnij, by otworzyć Kalendarz.": "Цей тиждень: {list}. Торкнися, щоб відкрити Календар.",
+ "Ustaw plan tygodnia, by widzieć tu dzisiejszy trening i dostawać przypomnienie.": "Встанови тижневий план, щоб бачити тут сьогоднішнє тренування й отримувати нагадування."
 }

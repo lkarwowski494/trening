@@ -1033,5 +1033,21 @@
  "Wygenerowane": "Vygenerované",
  "{goal}, {n}× w tygodniu": "{goal}, {n}× týždenne",
  "Generator szablonów i planu tygodnia na Twoje polecenie (cel, miejsce, liczba i długość sesji) oraz kilka planów z wyborem aktywnego.": "Generátor šablón a týždenného plánu na požiadanie (cieľ, miesto, počet a dĺžka tréningov) a viac plánov s výberom aktívneho.",
- "Deload: podpowiedź w Kalendarzu i mniej serii przy starcie w tygodniu deload; przypomnienie rano w dniu treningu z planu.": "Deload: tip v Kalendári a menej sérií pri štarte v týždni deload; ranná pripomienka v dňoch plánovaného tréningu."
+ "Deload: podpowiedź w Kalendarzu i mniej serii przy starcie w tygodniu deload; przypomnienie rano w dniu treningu z planu.": "Deload: tip v Kalendári a menej sérií pri štarte v týždni deload; ranná pripomienka v dňoch plánovaného tréningu.",
+ "{label}: {v}, poprzedni tydzień {p}": "{label}: {v}, minulý týždeň {p}",
+ "poprz.: {v}": "min.: {v}",
+ "Ten tydzień": "Tento týždeň",
+ "Serie": "Série",
+ "Czas": "Čas",
+ "Treningi: zrobione / zaplanowane w tym tygodniu.": "Tréningy: hotové / plánované tento týždeň.",
+ "Ostatni trening": "Posledný tréning",
+ "do zrobienia": "zostáva",
+ "Pierwsze kroki": "Prvé kroky",
+ "Utwórz szablon („+ Nowy szablon” niżej) albo wygeneruj szablony i plan.": "Vytvor šablónu („+ Nová šablóna“ nižšie) alebo vygeneruj šablóny a plán.",
+ "Ustaw plan tygodnia — zobaczysz tu dzisiejszy trening i dostaniesz przypomnienie.": "Nastav týždenný plán — uvidíš tu dnešný tréning a dostaneš pripomienku.",
+ "rekord|rekordy|rekordów": "rekord|rekordy|rekordov",
+ "Dziś": "Dnes",
+ "Bez planu tygodnia": "Bez týždenného plánu",
+ "Ten tydzień: {list}. Tapnij, by otworzyć Kalendarz.": "Tento týždeň: {list}. Ťuknutím otvoríš Kalendár.",
+ "Ustaw plan tygodnia, by widzieć tu dzisiejszy trening i dostawać przypomnienie.": "Nastav týždenný plán, aby si tu videl dnešný tréning a dostával pripomienku."
 }

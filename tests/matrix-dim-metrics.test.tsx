@@ -216,7 +216,7 @@ describe('UNITS × METRICS na ekranie sesji w historii', () => {
     const volDisp = REPS.reduce((acc, r, i) => acc + (hasWeight(r.metric) && hasReps(r.metric) ? (['normal', 'failure', 'drop'] as SetKind[]).reduce((x, k) => x + multOf(exs[i]) * Math.max(0, Number(loadDisp(r, u, k)) || 0) * REPS_V[k], 0) : 0), 0);
     await renderApp({ saved: JSON.parse(JSON.stringify(S())), url: `/history/${w.id}` }); await flushAll(10);
     expect(screen.getAllByText(new RegExp(`objętość ${Math.round(volDisp)} ${u}$`)).length).toBe(1);
-    const cells = (() => { const out: string[] = []; const walk = (x: any) => { if (!x) return; if (typeof x === 'string') { out.push(x); return; } if (Array.isArray(x)) { x.forEach(walk); return; } walk(x.children); }; walk(screen.toJSON()); return out; })();
+    const cells = (() => { const out: string[] = []; const walk = (x: any) => { if (!x) return; if (typeof x === 'string') { out.push(x); return; } if (Array.isArray(x)) { x.forEach(walk); return; } if (x.props?.testID === 'week-tiles') return; /* kafelki dashboardu na zakładce Trening (08.10.2026) — inny ekran */ walk(x.children); }; walk(screen.toJSON()); return out; })();
     for (const mark of ['W', '1', '2F', '3D']) expect([mark, cells.filter(c => c === mark).length]).toEqual([mark, REPS.length]);
     for (const [i, r] of REPS.entries()) { if (!hasWeight(r.metric)) continue;
       for (const k of KINDS_ORDER) { const v = loadDisp(r, u, k); const txt = fmtPl(Number(v) || 0); expect([exs[i].name, k, cells.includes(txt)]).toEqual([exs[i].name, k, true]); } }

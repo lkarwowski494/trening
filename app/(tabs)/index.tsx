@@ -9,6 +9,7 @@ import { Alert } from 'react-native';
 import { getState, useTick, finishedWorkouts, templateGroups, startEmpty, newTemplate, useForegroundTick, repeatLast, fmtDate, localISODate, getPersistError, getRecovery, clearRecovery, flush, exById, tplWorkSets } from '@/lib/store';
 import { exportRecovery } from '@/lib/backup';
 import { TodayPlan } from '@/components/TodayPlan';
+import { WeekStats, FirstSteps } from '@/components/Dashboard';
 import { WhatsNewHeader } from '@/components/WhatsNew';
 import { startTemplate } from '@/lib/start';
 import { signingState, scheduleReminder, renewTexts, type RenewKind } from '@/lib/signing';
@@ -44,9 +45,10 @@ function Home() {
       <DataBanners />
       <SigningBanner />
       <TodayPlan />{/* 08.10.2026: kalendarz z planem (decyzja 1A) */}
-      {/* Decyzja 03.10.2026 (08:11): świeża instalacja nie ma szablonów (użytkownik ustawia je sam) — wskazówka pierwszego startu nie odsyła wtedy
-          do „szablonu niżej”, tylko do „+ Nowy szablon” albo pustego treningu */}
-      {!last ? <View style={{ marginTop: 16, padding: 12, borderRadius: 10, borderWidth: 1, borderStyle: 'dashed', borderColor: th.line }}><Muted style={{ fontSize: 13 }}>{st.templates.some(x => !x.archived) ? t('Pierwszy raz? Wybierz szablon niżej, wpisz ciężar i powtórzenia, odhaczaj serie ✓ — przerwa odlicza się sama. Na koniec „Zakończ trening i zapisz”. Szablony i ćwiczenia zmienisz w zakładkach obok.') : t('Pierwszy raz? Utwórz swój szablon („+ Nowy szablon” niżej) albo zacznij pusty trening. Wpisuj ciężar i powtórzenia, odhaczaj serie ✓ — przerwa odlicza się sama. Na koniec „Zakończ trening i zapisz”.')}</Muted></View> : null}
+      {/* 08.10.2026 (dashboard, wariant A): kafelki tygodnia i ostatni trening; nowa osoba — „Pierwsze kroki” (zastępują dawną wskazówkę
+          „Pierwszy raz?” z 03.10.2026, której tekst jest krokiem 3) */}
+      <FirstSteps />
+      <WeekStats />
       <H2 style={{ marginTop: 22 }}>{t('Zacznij z szablonu')}</H2>
       {!st.templates.some(x => !x.archived) /* 07.10.2026 wieczór: same zarchiwizowane — jak brak szablonów */ ? <><Muted style={{ fontSize: 13, marginBottom: 8 }}>{t('Nie masz jeszcze szablonów — utwórz pierwszy albo zacznij pusty trening.')}</Muted><Btn title={t('+ Nowy szablon')} block onPress={once(() => { const x = newTemplate(); router.push(`/template/${x.id}`); })} /></> : null /* runda 8: pusty stan; od 03.10.2026 — stan świeżej instalacji */}
       {/* 07.10.2026 wieczór: foldery jako nagłówki, bez zarchiwizowanych (store.templateGroups) */}

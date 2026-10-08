@@ -1033,5 +1033,21 @@
  "Wygenerowane": "Luodut",
  "{goal}, {n}× w tygodniu": "{goal}, {n}× viikossa",
  "Generator szablonów i planu tygodnia na Twoje polecenie (cel, miejsce, liczba i długość sesji) oraz kilka planów z wyborem aktywnego.": "Pohjien ja viikkosuunnitelman generaattori pyynnöstä (tavoite, paikka, treenien määrä ja kesto) sekä useita suunnitelmia, joista valitset aktiivisen.",
- "Deload: podpowiedź w Kalendarzu i mniej serii przy starcie w tygodniu deload; przypomnienie rano w dniu treningu z planu.": "Kevennys: vihje Kalenterissa ja vähemmän sarjoja aloituksessa kevennysviikolla; aamumuistutus suunniteltuina treenipäivinä."
+ "Deload: podpowiedź w Kalendarzu i mniej serii przy starcie w tygodniu deload; przypomnienie rano w dniu treningu z planu.": "Kevennys: vihje Kalenterissa ja vähemmän sarjoja aloituksessa kevennysviikolla; aamumuistutus suunniteltuina treenipäivinä.",
+ "{label}: {v}, poprzedni tydzień {p}": "{label}: {v}, edellinen viikko {p}",
+ "poprz.: {v}": "edell.: {v}",
+ "Ten tydzień": "Tämä viikko",
+ "Serie": "Sarjat",
+ "Czas": "Aika",
+ "Treningi: zrobione / zaplanowane w tym tygodniu.": "Treenit: tehty / suunniteltu tällä viikolla.",
+ "Ostatni trening": "Viimeisin treeni",
+ "do zrobienia": "tekemättä",
+ "Pierwsze kroki": "Ensimmäiset askeleet",
+ "Utwórz szablon („+ Nowy szablon” niżej) albo wygeneruj szablony i plan.": "Luo pohja (”+ Uusi pohja” alla) tai luo pohjat ja suunnitelma generaattorilla.",
+ "Ustaw plan tygodnia — zobaczysz tu dzisiejszy trening i dostaniesz przypomnienie.": "Aseta viikkosuunnitelma — näet tässä päivän treenin ja saat muistutuksen.",
+ "rekord|rekordy|rekordów": "ennätys|ennätystä",
+ "Dziś": "Tänään",
+ "Bez planu tygodnia": "Ei viikkosuunnitelmaa",
+ "Ten tydzień: {list}. Tapnij, by otworzyć Kalendarz.": "Tämä viikko: {list}. Napauta avataksesi Kalenterin.",
+ "Ustaw plan tygodnia, by widzieć tu dzisiejszy trening i dostawać przypomnienie.": "Aseta viikkosuunnitelma, niin näet tässä päivän treenin ja saat muistutuksen."
 }

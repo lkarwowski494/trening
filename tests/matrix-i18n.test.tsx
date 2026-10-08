@@ -48,7 +48,7 @@ const SAME_IN: Partial<Record<Lang, string[]>> = {
   et: ['{u}/hant.', '{u}/hantel' /* hantel (est.) */],
   es: ['Dieta', 'Lista', 'Masa' /* masa (hiszp., cel generatora 08.10.2026) */], pt: ['Dieta', 'Lista'] /* lista = lista (hiszp., port.) */, hu: ['Lista'] /* lista = lista (węg.) */,
   /* 07.10.2026 (wariant B) — te same słowa w języku docelowym */
-  it: ['Dieta', 'serie' /* wł. serie = serie (l.mn.) */], sv: ['(kopia)' /* kopia (szw.) */, 'Kopia: {name}' /* kopia (szw., 08.10.2026) */, '{u}/hantel', 'e1RM (Epley, per hantel)', 'per hantel (×2)' /* hantel, per (szw.) */, 'Lista', 'sek.'],
+  it: ['Dieta', 'serie' /* wł. serie = serie (l.mn.) */, 'Serie' /* nagłówek kafelka (08.10.2026) */], sv: ['(kopia)' /* kopia (szw.) */, 'Kopia: {name}' /* kopia (szw., 08.10.2026) */, '{u}/hantel', 'e1RM (Epley, per hantel)', 'per hantel (×2)' /* hantel, per (szw.) */, 'Lista', 'sek.'],
   da: ['sek.'], nb: ['sek.', 'Trening' /* APP_NAME.nb */], fi: ['Historia', 'Lista' /* fiń. historia, lista */],
   en: ['Folder' /* folder (ang.) — 07.10.2026 wieczór, foldery szablonów */],
 };
@@ -178,7 +178,7 @@ describe('liczba mnoga: lib/plural.ts zgodnie z CLDR (Intl.PluralRules) i tp() w
     for (const d of ['app', 'components', 'lib']) walk(path.join(__dirname, '..', d));
     const args = files.flatMap(f => [...fs.readFileSync(f, 'utf8').matchAll(/\btp\(([^,]+),\s*'/g)].map(m => m[1].trim()));
     expect(args.length).toBeGreaterThan(10);
-    expect(args.filter(a => !/(\.length|^Math\.round\(.*\)?|^(n|sets|days|w|ws\.length|points\.length))$/.test(a))).toEqual([]);
+    expect(args.filter(a => !/(\.length|^Math\.round\(.*\)?|^(n|sets|days|w|ws\.length|points\.length|last\.sets|last\.prs))$/.test(a))).toEqual([]);
   });
 });
 

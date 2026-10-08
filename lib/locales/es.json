@@ -1033,5 +1033,21 @@
  "Wygenerowane": "Generadas",
  "{goal}, {n}× w tygodniu": "{goal}, {n}× por semana",
  "Generator szablonów i planu tygodnia na Twoje polecenie (cel, miejsce, liczba i długość sesji) oraz kilka planów z wyborem aktywnego.": "Generador de plantillas y plan semanal a petición (objetivo, lugar, número y duración de las sesiones) y varios planes con elección del activo.",
- "Deload: podpowiedź w Kalendarzu i mniej serii przy starcie w tygodniu deload; przypomnienie rano w dniu treningu z planu.": "Descarga: aviso en el Calendario y menos series al empezar en una semana de descarga; recordatorio por la mañana los días de entreno planificado."
+ "Deload: podpowiedź w Kalendarzu i mniej serii przy starcie w tygodniu deload; przypomnienie rano w dniu treningu z planu.": "Descarga: aviso en el Calendario y menos series al empezar en una semana de descarga; recordatorio por la mañana los días de entreno planificado.",
+ "{label}: {v}, poprzedni tydzień {p}": "{label}: {v}, semana anterior {p}",
+ "poprz.: {v}": "ant.: {v}",
+ "Ten tydzień": "Esta semana",
+ "Serie": "Series",
+ "Czas": "Tiempo",
+ "Treningi: zrobione / zaplanowane w tym tygodniu.": "Entrenos: hechos / planificados esta semana.",
+ "Ostatni trening": "Último entreno",
+ "do zrobienia": "pendiente",
+ "Pierwsze kroki": "Primeros pasos",
+ "Utwórz szablon („+ Nowy szablon” niżej) albo wygeneruj szablony i plan.": "Crea una plantilla («+ Nueva plantilla» abajo) o genera plantillas y un plan.",
+ "Ustaw plan tygodnia — zobaczysz tu dzisiejszy trening i dostaniesz przypomnienie.": "Configura un plan semanal — verás aquí el entreno de hoy y recibirás un recordatorio.",
+ "rekord|rekordy|rekordów": "récord|récords",
+ "Dziś": "Hoy",
+ "Bez planu tygodnia": "Sin plan semanal",
+ "Ten tydzień: {list}. Tapnij, by otworzyć Kalendarz.": "Esta semana: {list}. Toca para abrir el Calendario.",
+ "Ustaw plan tygodnia, by widzieć tu dzisiejszy trening i dostawać przypomnienie.": "Configura un plan semanal para ver aquí el entreno de hoy y recibir un recordatorio."
 }

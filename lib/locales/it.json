@@ -1033,5 +1033,21 @@
  "Wygenerowane": "Generati",
  "{goal}, {n}× w tygodniu": "{goal}, {n}× a settimana",
  "Generator szablonów i planu tygodnia na Twoje polecenie (cel, miejsce, liczba i długość sesji) oraz kilka planów z wyborem aktywnego.": "Generatore di modelli e piano settimanale su richiesta (obiettivo, luogo, numero e durata delle sessioni) e più piani con scelta di quello attivo.",
- "Deload: podpowiedź w Kalendarzu i mniej serii przy starcie w tygodniu deload; przypomnienie rano w dniu treningu z planu.": "Scarico: suggerimento nel Calendario e meno serie all’avvio nella settimana di scarico; promemoria al mattino nei giorni di allenamento pianificato."
+ "Deload: podpowiedź w Kalendarzu i mniej serii przy starcie w tygodniu deload; przypomnienie rano w dniu treningu z planu.": "Scarico: suggerimento nel Calendario e meno serie all’avvio nella settimana di scarico; promemoria al mattino nei giorni di allenamento pianificato.",
+ "{label}: {v}, poprzedni tydzień {p}": "{label}: {v}, settimana precedente {p}",
+ "poprz.: {v}": "prec.: {v}",
+ "Ten tydzień": "Questa settimana",
+ "Serie": "Serie",
+ "Czas": "Tempo",
+ "Treningi: zrobione / zaplanowane w tym tygodniu.": "Allenamenti: fatti / pianificati questa settimana.",
+ "Ostatni trening": "Ultimo allenamento",
+ "do zrobienia": "da fare",
+ "Pierwsze kroki": "Primi passi",
+ "Utwórz szablon („+ Nowy szablon” niżej) albo wygeneruj szablony i plan.": "Crea una scheda («+ Nuova scheda» qui sotto) oppure genera schede e piano.",
+ "Ustaw plan tygodnia — zobaczysz tu dzisiejszy trening i dostaniesz przypomnienie.": "Imposta un piano settimanale — qui vedrai l’allenamento di oggi e riceverai un promemoria.",
+ "rekord|rekordy|rekordów": "record|record",
+ "Dziś": "Oggi",
+ "Bez planu tygodnia": "Nessun piano settimanale",
+ "Ten tydzień: {list}. Tapnij, by otworzyć Kalendarz.": "Questa settimana: {list}. Tocca per aprire il Calendario.",
+ "Ustaw plan tygodnia, by widzieć tu dzisiejszy trening i dostawać przypomnienie.": "Imposta un piano settimanale per vedere qui l’allenamento di oggi e ricevere un promemoria."
 }

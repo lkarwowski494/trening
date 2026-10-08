@@ -1033,5 +1033,21 @@
  "Wygenerowane": "Gegenereerd",
  "{goal}, {n}× w tygodniu": "{goal}, {n}× per week",
  "Generator szablonów i planu tygodnia na Twoje polecenie (cel, miejsce, liczba i długość sesji) oraz kilka planów z wyborem aktywnego.": "Generator voor sjablonen en weekplan op verzoek (doel, plek, aantal en duur van sessies) en meerdere plannen met keuze van het actieve.",
- "Deload: podpowiedź w Kalendarzu i mniej serii przy starcie w tygodniu deload; przypomnienie rano w dniu treningu z planu.": "Deload: hint in de Kalender en minder sets bij de start in een deloadweek; herinnering ’s ochtends op geplande trainingsdagen."
+ "Deload: podpowiedź w Kalendarzu i mniej serii przy starcie w tygodniu deload; przypomnienie rano w dniu treningu z planu.": "Deload: hint in de Kalender en minder sets bij de start in een deloadweek; herinnering ’s ochtends op geplande trainingsdagen.",
+ "{label}: {v}, poprzedni tydzień {p}": "{label}: {v}, vorige week {p}",
+ "poprz.: {v}": "vorig: {v}",
+ "Ten tydzień": "Deze week",
+ "Serie": "Sets",
+ "Czas": "Tijd",
+ "Treningi: zrobione / zaplanowane w tym tygodniu.": "Trainingen: gedaan / gepland deze week.",
+ "Ostatni trening": "Laatste training",
+ "do zrobienia": "te doen",
+ "Pierwsze kroki": "Eerste stappen",
+ "Utwórz szablon („+ Nowy szablon” niżej) albo wygeneruj szablony i plan.": "Maak een sjabloon (‘+ Nieuw sjabloon’ hieronder) of genereer sjablonen en een plan.",
+ "Ustaw plan tygodnia — zobaczysz tu dzisiejszy trening i dostaniesz przypomnienie.": "Stel een weekplan in — je ziet hier de training van vandaag en krijgt een herinnering.",
+ "rekord|rekordy|rekordów": "record|records",
+ "Dziś": "Vandaag",
+ "Bez planu tygodnia": "Geen weekplan",
+ "Ten tydzień: {list}. Tapnij, by otworzyć Kalendarz.": "Deze week: {list}. Tik om de Kalender te openen.",
+ "Ustaw plan tygodnia, by widzieć tu dzisiejszy trening i dostawać przypomnienie.": "Stel een weekplan in om hier de training van vandaag te zien en een herinnering te krijgen."
 }

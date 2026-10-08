@@ -1033,5 +1033,21 @@
  "Wygenerowane": "Generate",
  "{goal}, {n}× w tygodniu": "{goal}, de {n}× pe săptămână",
  "Generator szablonów i planu tygodnia na Twoje polecenie (cel, miejsce, liczba i długość sesji) oraz kilka planów z wyborem aktywnego.": "Generator de șabloane și plan săptămânal la cerere (obiectiv, loc, numărul și durata sesiunilor) și mai multe planuri cu alegerea celui activ.",
- "Deload: podpowiedź w Kalendarzu i mniej serii przy starcie w tygodniu deload; przypomnienie rano w dniu treningu z planu.": "Descărcare: sugestie în Calendar și mai puține serii la pornire în săptămâna de descărcare; memento dimineața în zilele de antrenament planificat."
+ "Deload: podpowiedź w Kalendarzu i mniej serii przy starcie w tygodniu deload; przypomnienie rano w dniu treningu z planu.": "Descărcare: sugestie în Calendar și mai puține serii la pornire în săptămâna de descărcare; memento dimineața în zilele de antrenament planificat.",
+ "{label}: {v}, poprzedni tydzień {p}": "{label}: {v}, săptămâna trecută {p}",
+ "poprz.: {v}": "ant.: {v}",
+ "Ten tydzień": "Săptămâna aceasta",
+ "Serie": "Serii",
+ "Czas": "Timp",
+ "Treningi: zrobione / zaplanowane w tym tygodniu.": "Antrenamente: făcute / planificate săptămâna aceasta.",
+ "Ostatni trening": "Ultimul antrenament",
+ "do zrobienia": "de făcut",
+ "Pierwsze kroki": "Primii pași",
+ "Utwórz szablon („+ Nowy szablon” niżej) albo wygeneruj szablony i plan.": "Creează un șablon („+ Șablon nou” mai jos) sau generează șabloane și un plan.",
+ "Ustaw plan tygodnia — zobaczysz tu dzisiejszy trening i dostaniesz przypomnienie.": "Setează un plan săptămânal — vei vedea aici antrenamentul de azi și vei primi un memento.",
+ "rekord|rekordy|rekordów": "record|recorduri|de recorduri",
+ "Dziś": "Azi",
+ "Bez planu tygodnia": "Fără plan săptămânal",
+ "Ten tydzień: {list}. Tapnij, by otworzyć Kalendarz.": "Săptămâna aceasta: {list}. Atinge pentru a deschide Calendarul.",
+ "Ustaw plan tygodnia, by widzieć tu dzisiejszy trening i dostawać przypomnienie.": "Setează un plan săptămânal ca să vezi aici antrenamentul de azi și să primești un memento."
 }

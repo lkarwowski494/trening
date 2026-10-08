@@ -1033,5 +1033,21 @@
  "Wygenerowane": "Δημιουργημένα",
  "{goal}, {n}× w tygodniu": "{goal}, {n}× την εβδομάδα",
  "Generator szablonów i planu tygodnia na Twoje polecenie (cel, miejsce, liczba i długość sesji) oraz kilka planów z wyborem aktywnego.": "Γεννήτρια προτύπων και εβδομαδιαίου προγράμματος κατόπιν αιτήματος (στόχος, μέρος, αριθμός και διάρκεια συνεδριών) και πολλά προγράμματα με επιλογή του ενεργού.",
- "Deload: podpowiedź w Kalendarzu i mniej serii przy starcie w tygodniu deload; przypomnienie rano w dniu treningu z planu.": "Αποφόρτιση: υπόδειξη στο Ημερολόγιο και λιγότερα σετ στην έναρξη σε εβδομάδα αποφόρτισης· πρωινή υπενθύμιση τις μέρες προγραμματισμένης προπόνησης."
+ "Deload: podpowiedź w Kalendarzu i mniej serii przy starcie w tygodniu deload; przypomnienie rano w dniu treningu z planu.": "Αποφόρτιση: υπόδειξη στο Ημερολόγιο και λιγότερα σετ στην έναρξη σε εβδομάδα αποφόρτισης· πρωινή υπενθύμιση τις μέρες προγραμματισμένης προπόνησης.",
+ "{label}: {v}, poprzedni tydzień {p}": "{label}: {v}, προηγούμενη εβδομάδα {p}",
+ "poprz.: {v}": "προηγ.: {v}",
+ "Ten tydzień": "Αυτή την εβδομάδα",
+ "Serie": "Σετ",
+ "Czas": "Χρόνος",
+ "Treningi: zrobione / zaplanowane w tym tygodniu.": "Προπονήσεις: έγιναν / προγραμματισμένες αυτή την εβδομάδα.",
+ "Ostatni trening": "Τελευταία προπόνηση",
+ "do zrobienia": "εκκρεμεί",
+ "Pierwsze kroki": "Πρώτα βήματα",
+ "Utwórz szablon („+ Nowy szablon” niżej) albo wygeneruj szablony i plan.": "Δημιούργησε πρότυπο («+ Νέο πρότυπο» παρακάτω) ή δημιούργησε πρότυπα και πρόγραμμα αυτόματα.",
+ "Ustaw plan tygodnia — zobaczysz tu dzisiejszy trening i dostaniesz przypomnienie.": "Όρισε εβδομαδιαίο πρόγραμμα — θα βλέπεις εδώ τη σημερινή προπόνηση και θα παίρνεις υπενθύμιση.",
+ "rekord|rekordy|rekordów": "ρεκόρ|ρεκόρ",
+ "Dziś": "Σήμερα",
+ "Bez planu tygodnia": "Χωρίς εβδομαδιαίο πρόγραμμα",
+ "Ten tydzień: {list}. Tapnij, by otworzyć Kalendarz.": "Αυτή την εβδομάδα: {list}. Πάτησε για να ανοίξει το Ημερολόγιο.",
+ "Ustaw plan tygodnia, by widzieć tu dzisiejszy trening i dostawać przypomnienie.": "Όρισε εβδομαδιαίο πρόγραμμα για να βλέπεις εδώ τη σημερινή προπόνηση και να παίρνεις υπενθύμιση."
 }

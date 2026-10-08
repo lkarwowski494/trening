@@ -40,6 +40,10 @@
   "en": "{k}: {v}"
  },
  {
+  "pl": "{label}: {v}, poprzedni tydzień {p}",
+  "en": "{label}: {v}, previous week {p}"
+ },
+ {
   "pl": "{label}: {v}, poprzednio {p}",
   "en": "{label}: {v}, previously {p}"
  },
@@ -316,6 +320,10 @@
   "en": "No equipment limits"
  },
  {
+  "pl": "Bez planu tygodnia",
+  "en": "No weekly plan"
+ },
+ {
   "pl": "Bez serii — ćwiczenie nie zostanie zapisane.",
   "en": "No sets — this exercise won’t be saved."
  },
@@ -560,6 +568,10 @@
   "en": "time"
  },
  {
+  "pl": "Czas",
+  "en": "Time"
+ },
+ {
   "pl": "Czas sesji",
   "en": "Session length"
  },
@@ -647,6 +659,10 @@
  {
   "pl": "Do upadku (F)",
   "en": "To failure (F)"
+ },
+ {
+  "pl": "do zrobienia",
+  "en": "to do"
  },
  {
   "pl": "dociążenie",
@@ -768,6 +784,10 @@
   "pl": "dzień|dni|dni",
   "en": "day|days",
   "plural": true
+ },
+ {
+  "pl": "Dziś",
+  "en": "Today"
  },
  {
   "pl": "Dziś rano",
@@ -2086,6 +2106,10 @@
   "en": "Elliptical"
  },
  {
+  "pl": "Ostatni trening",
+  "en": "Last workout"
+ },
+ {
   "pl": "Ostatnia rozgrzewka o {t}, bez serii roboczych. Kontynuować czy odrzucić?",
   "en": "Last warm-up at {t}, no working sets. Continue or discard?"
  },
@@ -2184,6 +2208,10 @@
  {
   "pl": "Pierwsza wersja testowa: treningi z szablonów, historia, postępy i rekordy, kopia zapasowa w Plikach.",
   "en": "First test version: workouts from templates, history, progress and records, backup in Files."
+ },
+ {
+  "pl": "Pierwsze kroki",
+  "en": "First steps"
  },
  {
   "pl": "Pierwszy raz? Utwórz swój szablon („+ Nowy szablon” niżej) albo zacznij pusty trening. Wpisuj ciężar i powtórzenia, odhaczaj serie ✓ — przerwa odlicza się sama. Na koniec „Zakończ trening i zapisz”.",
@@ -2336,6 +2364,10 @@
  {
   "pl": "poprz.",
   "en": "prev."
+ },
+ {
+  "pl": "poprz.: {v}",
+  "en": "prev.: {v}"
  },
  {
   "pl": "Poprzedni miesiąc",
@@ -2636,6 +2668,11 @@
   "en": "Fat loss: training as for muscle (protects muscle) and one session of moderate cardio."
  },
  {
+  "pl": "rekord|rekordy|rekordów",
+  "en": "record|records",
+  "plural": true
+ },
+ {
   "pl": "REKORDY",
   "en": "RECORDS"
  },
@@ -2823,6 +2860,10 @@
  {
   "pl": "serie",
   "en": "sets"
+ },
+ {
+  "pl": "Serie",
+  "en": "Sets"
  },
  {
   "pl": "Serie bez ciężaru: {n}.",
@@ -3214,6 +3255,14 @@
   "en": "This workout won’t be saved."
  },
  {
+  "pl": "Ten tydzień",
+  "en": "This week"
+ },
+ {
+  "pl": "Ten tydzień: {list}. Tapnij, by otworzyć Kalendarz.",
+  "en": "This week: {list}. Tap to open the Calendar."
+ },
+ {
   "pl": "Ten tydzień: deload. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.",
   "en": "This week: deload. When you start a workout I will suggest fewer sets (about half), same weights."
  },
@@ -3288,6 +3337,10 @@
  {
   "pl": "Treningi i szablony z tym miejscem pokażą „(usunięte miejsce)”.",
   "en": "Workouts and templates with this place will show “(deleted place)”."
+ },
+ {
+  "pl": "Treningi: zrobione / zaplanowane w tym tygodniu.",
+  "en": "Workouts: done / planned this week."
  },
  {
   "pl": "triceps",
@@ -3404,6 +3457,14 @@
  {
   "pl": "Ustaw jako główne",
   "en": "Set as main"
+ },
+ {
+  "pl": "Ustaw plan tygodnia — zobaczysz tu dzisiejszy trening i dostaniesz przypomnienie.",
+  "en": "Set a weekly plan — you will see today’s workout here and get a reminder."
+ },
+ {
+  "pl": "Ustaw plan tygodnia, by widzieć tu dzisiejszy trening i dostawać przypomnienie.",
+  "en": "Set a weekly plan to see today’s workout here and get a reminder."
  },
  {
   "pl": "Ustaw plan tygodnia, by widzieć zaplanowane treningi i przesuwać je w kalendarzu.",
@@ -3580,6 +3641,10 @@
  {
   "pl": "Utwórz „{name}”",
   "en": "Create “{name}”"
+ },
+ {
+  "pl": "Utwórz szablon („+ Nowy szablon” niżej) albo wygeneruj szablony i plan.",
+  "en": "Create a template (“+ New template” below) or generate templates and a plan."
  },
  {
   "pl": "Uwaga: {a} i {b} dzień po dniu — te same główne partie.",

@@ -36,3 +36,11 @@ name: Trening z szablonu
 - tapOn: "Calendar.*"  # 08.10.2026: zakładka Historia → Kalendarz
 - assertVisible: "Upper A.*"
 - takeScreenshot: 06-historia
+# Dashboard ekranu Trening (08.10.2026, components/Dashboard.tsx): po treningu kafelki „This week” ('Ten tydzień'), „Workouts: 1, previous week 0”
+# ('{label}: {v}, poprzedni tydzień {p}') i „Last workout” ('Ostatni trening'); karta „Today” bez planu ('Dziś', 'Bez planu tygodnia').
+- tapOn: "Workout, tab.*"
+- extendedWaitUntil: { visible: "This week", timeout: 30000 }
+- assertVisible: "Workouts: 1, previous week 0"
+- assertVisible: "No weekly plan"
+- takeScreenshot: 07-dashboard
+- scrollUntilVisible: { element: "Last workout", direction: DOWN, timeout: 20000 }

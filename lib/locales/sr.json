@@ -1033,5 +1033,21 @@
  "Wygenerowane": "Генерисано",
  "{goal}, {n}× w tygodniu": "{goal}, {n}× недељно",
  "Generator szablonów i planu tygodnia na Twoje polecenie (cel, miejsce, liczba i długość sesji) oraz kilka planów z wyborem aktywnego.": "Генератор шаблона и недељног плана на захтев (циљ, место, број и трајање тренинга) и више планова са избором активног.",
- "Deload: podpowiedź w Kalendarzu i mniej serii przy starcie w tygodniu deload; przypomnienie rano w dniu treningu z planu.": "Растерећење: савет у Календару и мање серија при покретању у недељи растерећења; јутарњи подсетник у дане планираног тренинга."
+ "Deload: podpowiedź w Kalendarzu i mniej serii przy starcie w tygodniu deload; przypomnienie rano w dniu treningu z planu.": "Растерећење: савет у Календару и мање серија при покретању у недељи растерећења; јутарњи подсетник у дане планираног тренинга.",
+ "{label}: {v}, poprzedni tydzień {p}": "{label}: {v}, прошле недеље {p}",
+ "poprz.: {v}": "прет.: {v}",
+ "Ten tydzień": "Ове недеље",
+ "Serie": "Серије",
+ "Czas": "Време",
+ "Treningi: zrobione / zaplanowane w tym tygodniu.": "Тренинзи: урађени / планирани ове недеље.",
+ "Ostatni trening": "Последњи тренинг",
+ "do zrobienia": "преостаје",
+ "Pierwsze kroki": "Први кораци",
+ "Utwórz szablon („+ Nowy szablon” niżej) albo wygeneruj szablony i plan.": "Направи шаблон („+ Нови шаблон” испод) или генериши шаблоне и план.",
+ "Ustaw plan tygodnia — zobaczysz tu dzisiejszy trening i dostaniesz przypomnienie.": "Постави недељни план — овде ћеш видети данашњи тренинг и добити подсетник.",
+ "rekord|rekordy|rekordów": "рекорд|рекорда|рекорда",
+ "Dziś": "Данас",
+ "Bez planu tygodnia": "Без недељног плана",
+ "Ten tydzień: {list}. Tapnij, by otworzyć Kalendarz.": "Ове недеље: {list}. Додирни да отвориш Календар.",
+ "Ustaw plan tygodnia, by widzieć tu dzisiejszy trening i dostawać przypomnienie.": "Постави недељни план да би овде видео данашњи тренинг и добијао подсетник."
 }

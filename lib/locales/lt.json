@@ -1033,5 +1033,21 @@
  "Wygenerowane": "Sugeneruoti",
  "{goal}, {n}× w tygodniu": "{goal}, {n}× per savaitę",
  "Generator szablonów i planu tygodnia na Twoje polecenie (cel, miejsce, liczba i długość sesji) oraz kilka planów z wyborem aktywnego.": "Šablonų ir savaitės plano generatorius pagal pageidavimą (tikslas, vieta, treniruočių skaičius ir trukmė) ir keli planai su aktyvaus pasirinkimu.",
- "Deload: podpowiedź w Kalendarzu i mniej serii przy starcie w tygodniu deload; przypomnienie rano w dniu treningu z planu.": "Iškrova: patarimas Kalendoriuje ir mažiau priėjimų pradedant iškrovos savaitę; rytinis priminimas suplanuotų treniruočių dienomis."
+ "Deload: podpowiedź w Kalendarzu i mniej serii przy starcie w tygodniu deload; przypomnienie rano w dniu treningu z planu.": "Iškrova: patarimas Kalendoriuje ir mažiau priėjimų pradedant iškrovos savaitę; rytinis priminimas suplanuotų treniruočių dienomis.",
+ "{label}: {v}, poprzedni tydzień {p}": "{label}: {v}, praėjusią savaitę {p}",
+ "poprz.: {v}": "ankst.: {v}",
+ "Ten tydzień": "Ši savaitė",
+ "Serie": "Priėjimai",
+ "Czas": "Laikas",
+ "Treningi: zrobione / zaplanowane w tym tygodniu.": "Treniruotės: atliktos / suplanuotos šią savaitę.",
+ "Ostatni trening": "Paskutinė treniruotė",
+ "do zrobienia": "liko",
+ "Pierwsze kroki": "Pirmieji žingsniai",
+ "Utwórz szablon („+ Nowy szablon” niżej) albo wygeneruj szablony i plan.": "Sukurk šabloną („+ Naujas šablonas“ žemiau) arba sugeneruok šablonus ir planą.",
+ "Ustaw plan tygodnia — zobaczysz tu dzisiejszy trening i dostaniesz przypomnienie.": "Nustatyk savaitės planą — čia matysi šiandienos treniruotę ir gausi priminimą.",
+ "rekord|rekordy|rekordów": "rekordas|rekordai|rekordų",
+ "Dziś": "Šiandien",
+ "Bez planu tygodnia": "Nėra savaitės plano",
+ "Ten tydzień: {list}. Tapnij, by otworzyć Kalendarz.": "Ši savaitė: {list}. Bakstelėk, kad atidarytum Kalendorių.",
+ "Ustaw plan tygodnia, by widzieć tu dzisiejszy trening i dostawać przypomnienie.": "Nustatyk savaitės planą, kad čia matytum šiandienos treniruotę ir gautum priminimą."
 }

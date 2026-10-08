@@ -1033,5 +1033,21 @@
  "Wygenerowane": "Genererade",
  "{goal}, {n}× w tygodniu": "{goal}, {n}× per vecka",
  "Generator szablonów i planu tygodnia na Twoje polecenie (cel, miejsce, liczba i długość sesji) oraz kilka planów z wyborem aktywnego.": "Generator för mallar och veckoplan på begäran (mål, plats, antal och längd på pass) samt flera planer med val av den aktiva.",
- "Deload: podpowiedź w Kalendarzu i mniej serii przy starcie w tygodniu deload; przypomnienie rano w dniu treningu z planu.": "Deload: tips i Kalendern och färre set vid start under en deloadvecka; påminnelse på morgonen på planerade träningsdagar."
+ "Deload: podpowiedź w Kalendarzu i mniej serii przy starcie w tygodniu deload; przypomnienie rano w dniu treningu z planu.": "Deload: tips i Kalendern och färre set vid start under en deloadvecka; påminnelse på morgonen på planerade träningsdagar.",
+ "{label}: {v}, poprzedni tydzień {p}": "{label}: {v}, förra veckan {p}",
+ "poprz.: {v}": "förra: {v}",
+ "Ten tydzień": "Den här veckan",
+ "Serie": "Set",
+ "Czas": "Tid",
+ "Treningi: zrobione / zaplanowane w tym tygodniu.": "Pass: gjorda / planerade den här veckan.",
+ "Ostatni trening": "Senaste passet",
+ "do zrobienia": "att göra",
+ "Pierwsze kroki": "Första stegen",
+ "Utwórz szablon („+ Nowy szablon” niżej) albo wygeneruj szablony i plan.": "Skapa en mall (”+ Ny mall” nedan) eller generera mallar och en plan.",
+ "Ustaw plan tygodnia — zobaczysz tu dzisiejszy trening i dostaniesz przypomnienie.": "Ställ in en veckoplan — du ser dagens pass här och får en påminnelse.",
+ "rekord|rekordy|rekordów": "rekord|rekord",
+ "Dziś": "I dag",
+ "Bez planu tygodnia": "Ingen veckoplan",
+ "Ten tydzień: {list}. Tapnij, by otworzyć Kalendarz.": "Den här veckan: {list}. Tryck för att öppna Kalendern.",
+ "Ustaw plan tygodnia, by widzieć tu dzisiejszy trening i dostawać przypomnienie.": "Ställ in en veckoplan för att se dagens pass här och få en påminnelse."
 }

@@ -1033,5 +1033,21 @@
  "Wygenerowane": "Genererte",
  "{goal}, {n}× w tygodniu": "{goal}, {n}× per uke",
  "Generator szablonów i planu tygodnia na Twoje polecenie (cel, miejsce, liczba i długość sesji) oraz kilka planów z wyborem aktywnego.": "Generator for maler og ukeplan på forespørsel (mål, sted, antall og lengde på økter) og flere planer med valg av den aktive.",
- "Deload: podpowiedź w Kalendarzu i mniej serii przy starcie w tygodniu deload; przypomnienie rano w dniu treningu z planu.": "Deload: tips i Kalenderen og færre sett ved start i en deload-uke; påminnelse om morgenen på planlagte treningsdager."
+ "Deload: podpowiedź w Kalendarzu i mniej serii przy starcie w tygodniu deload; przypomnienie rano w dniu treningu z planu.": "Deload: tips i Kalenderen og færre sett ved start i en deload-uke; påminnelse om morgenen på planlagte treningsdager.",
+ "{label}: {v}, poprzedni tydzień {p}": "{label}: {v}, forrige uke {p}",
+ "poprz.: {v}": "forr.: {v}",
+ "Ten tydzień": "Denne uken",
+ "Serie": "Sett",
+ "Czas": "Tid",
+ "Treningi: zrobione / zaplanowane w tym tygodniu.": "Økter: gjort / planlagt denne uken.",
+ "Ostatni trening": "Siste økt",
+ "do zrobienia": "gjenstår",
+ "Pierwsze kroki": "Første steg",
+ "Utwórz szablon („+ Nowy szablon” niżej) albo wygeneruj szablony i plan.": "Lag en mal («+ Ny mal» nedenfor) eller generer maler og en plan.",
+ "Ustaw plan tygodnia — zobaczysz tu dzisiejszy trening i dostaniesz przypomnienie.": "Lag en ukeplan — du ser dagens økt her og får en påminnelse.",
+ "rekord|rekordy|rekordów": "rekord|rekorder",
+ "Dziś": "I dag",
+ "Bez planu tygodnia": "Ingen ukeplan",
+ "Ten tydzień: {list}. Tapnij, by otworzyć Kalendarz.": "Denne uken: {list}. Trykk for å åpne Kalenderen.",
+ "Ustaw plan tygodnia, by widzieć tu dzisiejszy trening i dostawać przypomnienie.": "Lag en ukeplan for å se dagens økt her og få en påminnelse."
 }

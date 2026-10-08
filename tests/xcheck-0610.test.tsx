@@ -47,7 +47,8 @@ test('NISKIE: ostrzeżenie „Wyczyść wszystkie dane” mówi, że wracają te
   const s = src('app/more/settings.tsx'); expect(s).toMatch(/przywróci ustawienia domyślne \(także miejsca, sprzęt i gumy\)/); expect(s).not.toMatch(/build IPA|Expo Go go nie ma/);
 });
 test('NISKIE: ramka wskazówki pierwszego startu w kolorze z motywu (nie stały #5a5f6b — niewidoczna różnica w jasnym motywie)', () => {
-  expect(src('app/(tabs)/index.tsx')).not.toMatch(/#5a5f6b/); expect(src('app/(tabs)/index.tsx')).toMatch(/borderColor: th\.line/);
+  /* 08.10.2026: wskazówka „Pierwszy raz?” jest krokiem 3 „Pierwszych kroków” (components/Dashboard.tsx) — ten sam warunek koloru ramki */
+  expect(src('app/(tabs)/index.tsx')).not.toMatch(/#5a5f6b/); expect(src('components/Dashboard.tsx')).not.toMatch(/#5a5f6b/); expect(src('components/Dashboard.tsx')).toMatch(/borderColor: th\.line/);
 });
 test('ŚREDNIE (scenariusz 05b): liczba serii szablonu bez rozgrzewek wszędzie — ekran główny, trening wstecz, karta, Historia', () => {
   const tpl = { items: [{ id: 'i', exerciseId: 'x', sets: 3, rows: [{ id: 'a', kind: 'warmup', reps: '', weight: '', durationSec: '', distanceM: '' }, { id: 'b', kind: 'normal', reps: '', weight: '', durationSec: '', distanceM: '' }, { id: 'c', kind: 'drop', reps: '', weight: '', durationSec: '', distanceM: '' }] }] } as any;

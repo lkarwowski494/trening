@@ -1033,5 +1033,21 @@
  "Wygenerowane": "Oluşturulanlar",
  "{goal}, {n}× w tygodniu": "{goal}, haftada {n}×",
  "Generator szablonów i planu tygodnia na Twoje polecenie (cel, miejsce, liczba i długość sesji) oraz kilka planów z wyborem aktywnego.": "İsteğe bağlı şablon ve haftalık plan oluşturucu (hedef, yer, seans sayısı ve süresi) ve etkin olanı seçebileceğin birden fazla plan.",
- "Deload: podpowiedź w Kalendarzu i mniej serii przy starcie w tygodniu deload; przypomnienie rano w dniu treningu z planu.": "Deload: Takvim’de ipucu ve deload haftasında başlarken daha az set; planlı antrenman günlerinde sabah hatırlatıcısı."
+ "Deload: podpowiedź w Kalendarzu i mniej serii przy starcie w tygodniu deload; przypomnienie rano w dniu treningu z planu.": "Deload: Takvim’de ipucu ve deload haftasında başlarken daha az set; planlı antrenman günlerinde sabah hatırlatıcısı.",
+ "{label}: {v}, poprzedni tydzień {p}": "{label}: {v}, önceki hafta {p}",
+ "poprz.: {v}": "önceki: {v}",
+ "Ten tydzień": "Bu hafta",
+ "Serie": "Setler",
+ "Czas": "Süre",
+ "Treningi: zrobione / zaplanowane w tym tygodniu.": "Antrenmanlar: bu hafta yapılan / planlanan.",
+ "Ostatni trening": "Son antrenman",
+ "do zrobienia": "yapılacak",
+ "Pierwsze kroki": "İlk adımlar",
+ "Utwórz szablon („+ Nowy szablon” niżej) albo wygeneruj szablony i plan.": "Bir şablon oluştur (aşağıda “+ Yeni şablon”) ya da şablon ve plan oluştur.",
+ "Ustaw plan tygodnia — zobaczysz tu dzisiejszy trening i dostaniesz przypomnienie.": "Haftalık plan ayarla — bugünkü antrenmanı burada görür ve hatırlatma alırsın.",
+ "rekord|rekordy|rekordów": "rekor|rekor",
+ "Dziś": "Bugün",
+ "Bez planu tygodnia": "Haftalık plan yok",
+ "Ten tydzień: {list}. Tapnij, by otworzyć Kalendarz.": "Bu hafta: {list}. Takvimi açmak için dokun.",
+ "Ustaw plan tygodnia, by widzieć tu dzisiejszy trening i dostawać przypomnienie.": "Bugünkü antrenmanı burada görmek ve hatırlatma almak için haftalık plan ayarla."
 }
