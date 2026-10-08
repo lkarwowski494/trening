@@ -1182,5 +1182,13 @@
  "Ostatni trening był lżejszy": "Pēdējais treniņš bija vieglāks",
  "Był skrócony w tygodniu deload: {a} zamiast {b} serii roboczych. Powtórzyć pełny trening?": "Tas tika saīsināts atslodzes nedēļā: {a} {b} darba sēriju vietā. Atkārtot pilnu treniņu?",
  "Jak ostatnio": "Kā pēdējoreiz",
- "deload — mniej serii": "atslodze — mazāk sēriju"
+ "deload — mniej serii": "atslodze — mazāk sēriju",
+ "Technika": "Tehnika",
+ "Ustawienie, ruch, wskazówki i częste błędy.": "Sākuma stāvoklis, kustība, padomi un biežākās kļūdas.",
+ "Ustawienie": "Sākuma stāvoklis",
+ "Ruch": "Kustība",
+ "Wskazówki": "Padomi",
+ "Częste błędy": "Biežākās kļūdas",
+ "Na podstawie: {list}. Własne sformułowania.": "Pēc: {list}. Pašu formulējums.",
+ "Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.": "Lietotne nesniedz medicīniskus padomus. Sāpju, traumas vai slimības gadījumā konsultējies ar ārstu vai fizioterapeitu."
 }

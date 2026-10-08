@@ -1182,5 +1182,13 @@
  "Ostatni trening był lżejszy": "Последњи тренинг је био лакши",
  "Był skrócony w tygodniu deload: {a} zamiast {b} serii roboczych. Powtórzyć pełny trening?": "Скраћен је у недељи растерећења: {a} уместо {b} радних серија. Поновити цео тренинг?",
  "Jak ostatnio": "Као прошли пут",
- "deload — mniej serii": "растерећење — мање серија"
+ "deload — mniej serii": "растерећење — мање серија",
+ "Technika": "Техника",
+ "Ustawienie, ruch, wskazówki i częste błędy.": "Почетни положај, покрет, савети и честе грешке.",
+ "Ustawienie": "Почетни положај",
+ "Ruch": "Покрет",
+ "Wskazówki": "Савети",
+ "Częste błędy": "Честе грешке",
+ "Na podstawie: {list}. Własne sformułowania.": "Према: {list}. Сопствене формулације.",
+ "Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.": "Апликација не даје медицинске савете. Код бола, повреде или болести посаветуј се са лекаром или физиотерапеутом."
 }

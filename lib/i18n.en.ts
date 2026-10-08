@@ -664,4 +664,12 @@ export const EN: Record<string, string> = {
   'Był skrócony w tygodniu deload: {a} zamiast {b} serii roboczych. Powtórzyć pełny trening?': 'It was shortened in a deload week: {a} instead of {b} working sets. Repeat the full workout?',
   'Jak ostatnio': 'As last time',
   'deload — mniej serii': 'deload — fewer sets',
+  'Technika': 'Technique',
+  'Ustawienie, ruch, wskazówki i częste błędy.': 'Setup, movement, tips and common mistakes.',
+  'Ustawienie': 'Setup',
+  'Ruch': 'Movement',
+  'Wskazówki': 'Tips',
+  'Częste błędy': 'Common mistakes',
+  'Na podstawie: {list}. Własne sformułowania.': 'Based on: {list}. Our own wording.',
+  'Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.': 'The app does not give medical advice. If you have pain, an injury or an illness, consult a doctor or physiotherapist.',
 };

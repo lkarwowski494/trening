@@ -1182,5 +1182,13 @@
  "Ostatni trening był lżejszy": "Ultimul antrenament a fost mai ușor",
  "Był skrócony w tygodniu deload: {a} zamiast {b} serii roboczych. Powtórzyć pełny trening?": "A fost scurtat în săptămâna de descărcare: {a} în loc de {b} serii de lucru. Repeți antrenamentul complet?",
  "Jak ostatnio": "Ca data trecută",
- "deload — mniej serii": "descărcare — mai puține serii"
+ "deload — mniej serii": "descărcare — mai puține serii",
+ "Technika": "Tehnică",
+ "Ustawienie, ruch, wskazówki i częste błędy.": "Poziția de start, mișcarea, sfaturi și greșeli frecvente.",
+ "Ustawienie": "Poziția de start",
+ "Ruch": "Mișcarea",
+ "Wskazówki": "Sfaturi",
+ "Częste błędy": "Greșeli frecvente",
+ "Na podstawie: {list}. Własne sformułowania.": "După: {list}. Formulare proprie.",
+ "Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.": "Aplicația nu oferă sfaturi medicale. În caz de durere, accidentare sau boală, consultă un medic sau un kinetoterapeut."
 }

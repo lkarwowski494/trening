@@ -1182,5 +1182,13 @@
  "Ostatni trening był lżejszy": "Senaste passet var lättare",
  "Był skrócony w tygodniu deload: {a} zamiast {b} serii roboczych. Powtórzyć pełny trening?": "Det förkortades under en deloadvecka: {a} i stället för {b} arbetsset. Upprepa hela passet?",
  "Jak ostatnio": "Som senast",
- "deload — mniej serii": "deload — färre set"
+ "deload — mniej serii": "deload — färre set",
+ "Technika": "Teknik",
+ "Ustawienie, ruch, wskazówki i częste błędy.": "Utgångsläge, rörelse, tips och vanliga fel.",
+ "Ustawienie": "Utgångsläge",
+ "Ruch": "Rörelse",
+ "Wskazówki": "Tips",
+ "Częste błędy": "Vanliga fel",
+ "Na podstawie: {list}. Własne sformułowania.": "Baserat på: {list}. Egna formuleringar.",
+ "Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.": "Appen ger inga medicinska råd. Vid smärta, skada eller sjukdom – kontakta läkare eller fysioterapeut."
 }

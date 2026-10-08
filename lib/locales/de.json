@@ -1182,5 +1182,13 @@
  "Ostatni trening był lżejszy": "Das letzte Training war leichter",
  "Był skrócony w tygodniu deload: {a} zamiast {b} serii roboczych. Powtórzyć pełny trening?": "Es wurde in einer Deload-Woche gekürzt: {a} statt {b} Arbeitssätzen. Volles Training wiederholen?",
  "Jak ostatnio": "Wie zuletzt",
- "deload — mniej serii": "Deload — weniger Sätze"
+ "deload — mniej serii": "Deload — weniger Sätze",
+ "Technika": "Technik",
+ "Ustawienie, ruch, wskazówki i częste błędy.": "Ausgangsposition, Bewegung, Tipps und häufige Fehler.",
+ "Ustawienie": "Ausgangsposition",
+ "Ruch": "Bewegung",
+ "Wskazówki": "Tipps",
+ "Częste błędy": "Häufige Fehler",
+ "Na podstawie: {list}. Własne sformułowania.": "Grundlage: {list}. Eigene Formulierung.",
+ "Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.": "Die App gibt keine medizinischen Ratschläge. Bei Schmerzen, Verletzungen oder Krankheit lass dich ärztlich oder physiotherapeutisch beraten."
 }

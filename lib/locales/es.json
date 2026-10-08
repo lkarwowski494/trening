@@ -1182,5 +1182,13 @@
  "Ostatni trening był lżejszy": "El último entrenamiento fue más ligero",
  "Był skrócony w tygodniu deload: {a} zamiast {b} serii roboczych. Powtórzyć pełny trening?": "Se recortó en una semana de descarga: {a} en lugar de {b} series efectivas. ¿Repetir el entrenamiento completo?",
  "Jak ostatnio": "Como la última vez",
- "deload — mniej serii": "descarga — menos series"
+ "deload — mniej serii": "descarga — menos series",
+ "Technika": "Técnica",
+ "Ustawienie, ruch, wskazówki i częste błędy.": "Posición inicial, movimiento, consejos y errores frecuentes.",
+ "Ustawienie": "Posición inicial",
+ "Ruch": "Movimiento",
+ "Wskazówki": "Consejos",
+ "Częste błędy": "Errores frecuentes",
+ "Na podstawie: {list}. Własne sformułowania.": "Según: {list}. Redacción propia.",
+ "Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.": "La app no ofrece consejo médico. Si tienes dolor, una lesión o una enfermedad, consulta a un médico o fisioterapeuta."
 }

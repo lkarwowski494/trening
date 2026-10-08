@@ -1182,5 +1182,13 @@
  "Ostatni trening był lżejszy": "Az utolsó edzés könnyebb volt",
  "Był skrócony w tygodniu deload: {a} zamiast {b} serii roboczych. Powtórzyć pełny trening?": "Deload héten rövidített volt: {b} helyett {a} munkasorozat. Megismétli a teljes edzést?",
  "Jak ostatnio": "Mint legutóbb",
- "deload — mniej serii": "deload — kevesebb sorozat"
+ "deload — mniej serii": "deload — kevesebb sorozat",
+ "Technika": "Technika",
+ "Ustawienie, ruch, wskazówki i częste błędy.": "Kiinduló helyzet, mozgás, tippek és gyakori hibák.",
+ "Ustawienie": "Kiinduló helyzet",
+ "Ruch": "Mozgás",
+ "Wskazówki": "Tippek",
+ "Częste błędy": "Gyakori hibák",
+ "Na podstawie: {list}. Własne sformułowania.": "Forrás: {list}. Saját megfogalmazás.",
+ "Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.": "Az alkalmazás nem ad orvosi tanácsot. Fájdalom, sérülés vagy betegség esetén fordulj orvoshoz vagy gyógytornászhoz."
 }

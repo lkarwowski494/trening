@@ -1182,5 +1182,13 @@
  "Ostatni trening był lżejszy": "De laatste training was lichter",
  "Był skrócony w tygodniu deload: {a} zamiast {b} serii roboczych. Powtórzyć pełny trening?": "Die werd ingekort in een deloadweek: {a} in plaats van {b} werksets. De volledige training herhalen?",
  "Jak ostatnio": "Zoals de vorige keer",
- "deload — mniej serii": "deload — minder sets"
+ "deload — mniej serii": "deload — minder sets",
+ "Technika": "Techniek",
+ "Ustawienie, ruch, wskazówki i częste błędy.": "Uitgangshouding, beweging, tips en veelgemaakte fouten.",
+ "Ustawienie": "Uitgangshouding",
+ "Ruch": "Beweging",
+ "Wskazówki": "Tips",
+ "Częste błędy": "Veelgemaakte fouten",
+ "Na podstawie: {list}. Własne sformułowania.": "Gebaseerd op: {list}. Eigen formulering.",
+ "Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.": "De app geeft geen medisch advies. Raadpleeg bij pijn, een blessure of ziekte een arts of fysiotherapeut."
 }

@@ -1182,5 +1182,13 @@
  "Ostatni trening był lżejszy": "Η τελευταία προπόνηση ήταν πιο ελαφριά",
  "Był skrócony w tygodniu deload: {a} zamiast {b} serii roboczych. Powtórzyć pełny trening?": "Μειώθηκε σε εβδομάδα αποφόρτισης: {a} αντί για {b} σετ εργασίας. Επανάληψη της πλήρους προπόνησης;",
  "Jak ostatnio": "Όπως την τελευταία φορά",
- "deload — mniej serii": "αποφόρτιση — λιγότερα σετ"
+ "deload — mniej serii": "αποφόρτιση — λιγότερα σετ",
+ "Technika": "Τεχνική",
+ "Ustawienie, ruch, wskazówki i częste błędy.": "Αρχική θέση, κίνηση, συμβουλές και συχνά λάθη.",
+ "Ustawienie": "Αρχική θέση",
+ "Ruch": "Κίνηση",
+ "Wskazówki": "Συμβουλές",
+ "Częste błędy": "Συχνά λάθη",
+ "Na podstawie: {list}. Własne sformułowania.": "Με βάση: {list}. Δική μας διατύπωση.",
+ "Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.": "Η εφαρμογή δεν παρέχει ιατρικές συμβουλές. Σε περίπτωση πόνου, τραυματισμού ή ασθένειας, συμβουλέψου γιατρό ή φυσικοθεραπευτή."
 }

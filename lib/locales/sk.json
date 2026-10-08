@@ -1182,5 +1182,13 @@
  "Ostatni trening był lżejszy": "Posledný tréning bol ľahší",
  "Był skrócony w tygodniu deload: {a} zamiast {b} serii roboczych. Powtórzyć pełny trening?": "Bol skrátený v týždni deload: {a} namiesto {b} pracovných sérií. Zopakovať celý tréning?",
  "Jak ostatnio": "Ako minule",
- "deload — mniej serii": "deload — menej sérií"
+ "deload — mniej serii": "deload — menej sérií",
+ "Technika": "Technika",
+ "Ustawienie, ruch, wskazówki i częste błędy.": "Východisková poloha, pohyb, tipy a časté chyby.",
+ "Ustawienie": "Východisková poloha",
+ "Ruch": "Pohyb",
+ "Wskazówki": "Tipy",
+ "Częste błędy": "Časté chyby",
+ "Na podstawie: {list}. Własne sformułowania.": "Podľa: {list}. Vlastné formulácie.",
+ "Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.": "Aplikácia neposkytuje lekárske rady. Pri bolesti, zranení alebo chorobe sa poraď s lekárom alebo fyzioterapeutom."
 }

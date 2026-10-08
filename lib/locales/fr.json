@@ -1182,5 +1182,13 @@
  "Ostatni trening był lżejszy": "La dernière séance était plus légère",
  "Był skrócony w tygodniu deload: {a} zamiast {b} serii roboczych. Powtórzyć pełny trening?": "Elle a été réduite en semaine de décharge : {a} au lieu de {b} séries de travail. Répéter la séance complète ?",
  "Jak ostatnio": "Comme la dernière fois",
- "deload — mniej serii": "décharge — moins de séries"
+ "deload — mniej serii": "décharge — moins de séries",
+ "Technika": "Technique",
+ "Ustawienie, ruch, wskazówki i częste błędy.": "Position de départ, mouvement, conseils et erreurs fréquentes.",
+ "Ustawienie": "Position de départ",
+ "Ruch": "Mouvement",
+ "Wskazówki": "Conseils",
+ "Częste błędy": "Erreurs fréquentes",
+ "Na podstawie: {list}. Własne sformułowania.": "D’après : {list}. Rédaction originale.",
+ "Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.": "L’app ne donne pas de conseils médicaux. En cas de douleur, de blessure ou de maladie, consulte un médecin ou un kinésithérapeute."
 }

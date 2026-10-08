@@ -1182,5 +1182,13 @@
  "Ostatni trening był lżejszy": "Viimeisin treeni oli kevyempi",
  "Był skrócony w tygodniu deload: {a} zamiast {b} serii roboczych. Powtórzyć pełny trening?": "Sitä lyhennettiin kevennysviikolla: {a} työsarjaa {b} sijaan. Toistetaanko koko treeni?",
  "Jak ostatnio": "Kuten viimeksi",
- "deload — mniej serii": "kevennys — vähemmän sarjoja"
+ "deload — mniej serii": "kevennys — vähemmän sarjoja",
+ "Technika": "Tekniikka",
+ "Ustawienie, ruch, wskazówki i częste błędy.": "Alkuasento, liike, vinkit ja yleiset virheet.",
+ "Ustawienie": "Alkuasento",
+ "Ruch": "Liike",
+ "Wskazówki": "Vinkit",
+ "Częste błędy": "Yleiset virheet",
+ "Na podstawie: {list}. Własne sformułowania.": "Lähteet: {list}. Omin sanoin.",
+ "Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.": "Sovellus ei anna lääketieteellisiä neuvoja. Jos sinulla on kipua, vamma tai sairaus, käänny lääkärin tai fysioterapeutin puoleen."
 }

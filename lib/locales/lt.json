@@ -1182,5 +1182,13 @@
  "Ostatni trening był lżejszy": "Paskutinė treniruotė buvo lengvesnė",
  "Był skrócony w tygodniu deload: {a} zamiast {b} serii roboczych. Powtórzyć pełny trening?": "Ji buvo sutrumpinta iškrovos savaitę: {a} vietoj {b} darbinių priėjimų. Kartoti visą treniruotę?",
  "Jak ostatnio": "Kaip paskutinį kartą",
- "deload — mniej serii": "iškrova — mažiau priėjimų"
+ "deload — mniej serii": "iškrova — mažiau priėjimų",
+ "Technika": "Technika",
+ "Ustawienie, ruch, wskazówki i częste błędy.": "Pradinė padėtis, judesys, patarimai ir dažnos klaidos.",
+ "Ustawienie": "Pradinė padėtis",
+ "Ruch": "Judesys",
+ "Wskazówki": "Patarimai",
+ "Częste błędy": "Dažnos klaidos",
+ "Na podstawie: {list}. Własne sformułowania.": "Pagal: {list}. Savos formuluotės.",
+ "Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.": "Programėlė neteikia medicininių patarimų. Jei jauti skausmą, patyrei traumą ar sergi, kreipkis į gydytoją arba kineziterapeutą."
 }

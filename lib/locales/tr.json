@@ -1182,5 +1182,13 @@
  "Ostatni trening był lżejszy": "Son antrenman daha hafifti",
  "Był skrócony w tygodniu deload: {a} zamiast {b} serii roboczych. Powtórzyć pełny trening?": "Deload haftasında kısaltılmıştı: {b} yerine {a} çalışma seti. Tam antrenman tekrarlansın mı?",
  "Jak ostatnio": "Geçen seferki gibi",
- "deload — mniej serii": "deload — daha az set"
+ "deload — mniej serii": "deload — daha az set",
+ "Technika": "Teknik",
+ "Ustawienie, ruch, wskazówki i częste błędy.": "Başlangıç pozisyonu, hareket, ipuçları ve sık yapılan hatalar.",
+ "Ustawienie": "Başlangıç pozisyonu",
+ "Ruch": "Hareket",
+ "Wskazówki": "İpuçları",
+ "Częste błędy": "Sık yapılan hatalar",
+ "Na podstawie: {list}. Własne sformułowania.": "Kaynak: {list}. Kendi ifademizle.",
+ "Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.": "Uygulama tıbbi tavsiye vermez. Ağrı, sakatlık veya hastalık durumunda bir doktora ya da fizyoterapiste danış."
 }

@@ -1182,5 +1182,13 @@
  "Ostatni trening był lżejszy": "Viimane treening oli kergem",
  "Był skrócony w tygodniu deload: {a} zamiast {b} serii roboczych. Powtórzyć pełny trening?": "Seda lühendati kergendusnädalal: {a} {b} tööseeria asemel. Kas korrata täis treeningut?",
  "Jak ostatnio": "Nagu eelmisel korral",
- "deload — mniej serii": "kergendus — vähem seeriaid"
+ "deload — mniej serii": "kergendus — vähem seeriaid",
+ "Technika": "Tehnika",
+ "Ustawienie, ruch, wskazówki i częste błędy.": "Algasend, liikumine, nõuanded ja sagedased vead.",
+ "Ustawienie": "Algasend",
+ "Ruch": "Liikumine",
+ "Wskazówki": "Nõuanded",
+ "Częste błędy": "Sagedased vead",
+ "Na podstawie: {list}. Własne sformułowania.": "Allikad: {list}. Oma sõnastus.",
+ "Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.": "Rakendus ei anna meditsiinilist nõu. Valu, vigastuse või haiguse korral pöördu arsti või füsioterapeudi poole."
 }
