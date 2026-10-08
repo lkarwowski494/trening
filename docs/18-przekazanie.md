@@ -217,3 +217,21 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
   Bodybuilding.com — brak praw, wizerunek modeli, błędy merytoryczne), wger (niewiarygodne licencje pojedynczych obrazów), Everkinetic
   (CC BY-SA: tylko ~50 ze 125, obcy styl, nierozstrzygnięty DRM w App Store), płatne/API (0 zł, brak sieci), sam tekst (mniej pomocny).
   Nazwy ćwiczeń z katalogu zostają (fakty, nie utwór); opis free-exercise-db jako „domeny publicznej” w catalog-notes do poprawy.
+- 09.10.2026 (ok. 00:10): **zakres biblioteki ćwiczeń** — research L1–L6 zakończony (854 ćwiczenia; docs/research/25-biblioteka/L1…L6.json
+  i *-zrodla.md; raporty: L1 100, L2 138, L3 mobilność, L4 168, L5 165, L6). Decyzja wg zasady z 20:20 — **wariant B** (rekomendacja wszystkich
+  części): ZOSTAJE — widoczne domyślnie na liście i w wyborze ćwiczenia; NISZOWE — w katalogu, poza listą domyślną (wyszukiwanie i „Pokaż
+  wszystkie”); SCALIĆ — wpis znika, treningi, szablony, rekordy i plan przechodzą na ćwiczenie docelowe (migracja, jak LIB_MUSCLE_FIXES,
+  idempotentna); USUNĄĆ — znika z biblioteki, a ćwiczenie użyte w treningu lub szablonie zostaje u użytkownika jako jego własne (nic nie ginie);
+  POPRAWIĆ — partie, wagi, sprzęt, wzorzec, metryka i nazwy wg rekordów (zmiana nazwy przez klucz katalogu `libKey`, wyniki wstecz bez zmian — E2).
+  Odrzucone: A — samo usunięcie niszowych (traci się ćwiczenia, które ktoś realnie robi; ukrycie daje ten sam porządek bez straty); C — tylko
+  etykiety bez zmian zakresu (lista zostaje za szeroka — problem zgłoszony przez właściciela).
+  Rozstrzygnięcia pytań otwartych: merytoryczne — wg hierarchii źródeł (rekomendacje researchu tam, gdzie oparte na przeczytanych źródłach;
+  przy sprzecznych badaniach tego samego szczebla zostaje stan dzisiejszy z oznaczeniem, np. dwugłowe w przysiadzie bułgarskim, Q-L4-3);
+  produktowe — rekomendacje: warianty z gumami/łańcuchami i Rack Pull osobno jako niszowe (inny sens zapisanego ciężaru — Q-L4-1),
+  Stiff-Legged Deadlift osobno jako niszowe (Q-L4-2), strongman w katalogu jako niszowe (Q-L4-7), pompki `bandAssistable` false wszędzie (L5 Q2),
+  ćwiczenia za karkiem niszowe (L5 Q4), przedramiona w grupie „biceps” do czasu porządkowania sekcji (L1 Q1, L2 Q4), scalanie wariantów
+  różniących się tylko chwytem/pozycją (L1 Q3, L2 Q6, L5 Q1) — nigdy jednorącz z oburącz. **Lepsze mimo pracy:** brakujący sprzęt w słowniku
+  (circus bell, poręcze do dipów, ściana — L5 Q7) i metryka ciężar + dystans dla spacerów farmera (schemat 18 jest w tym wydaniu, bez
+  aktualizacji SDK). Otwarte (bez zmian w tym wydaniu): tryb liczenia ciężaru ćwiczeń jednonóż (Q-L4-4 — zmiana zmienia sens dawnych wpisów;
+  osobna decyzja z migracją), regiony dla mięśni spoza mapy (zębaty przedni, piszczelowy przedni — L2 Q2/Q5: do czasu dodania regionu bez
+  partii głównej, z oznaczeniem). Rejestr decyzji na Dysku — wpis zbiorczy po wdrożeniu.
