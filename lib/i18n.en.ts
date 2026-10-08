@@ -374,4 +374,6 @@ export const EN: Record<string, string> = {
   'Zegar treningu stoi i pauza nie wlicza się do czasu trwania. Przerwa między seriami liczy dalej; odhaczenie serii wznawia trening.': 'The workout clock is stopped and the pause does not count towards the duration. The rest timer keeps running; ticking off a set resumes the workout.',
   'Skala wysiłku': 'Effort scale',
   'RIR — powtórzenia w zapasie: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR; Zourdos i in., JSCR 2016). Zapisane wartości przeliczają się przy zmianie skali.': 'RIR — reps in reserve: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR; Zourdos et al., JSCR 2016). Saved values convert when you switch scales.',
+  'Kreska = {n} serii na partię w tygodniu. Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; każdy trening siłowy daje przyrost w porównaniu z brakiem treningu. Uproszczenie: serie pomocnicze liczymy po 0,5.': 'Line = {n} sets per muscle group per week. ACSM 2026 position stand: with at least {n} sets per muscle group per week, muscle growth was greater than with lower volume; any resistance training builds muscle compared with none. Simplification: secondary sets count as 0.5.',
+  'co najmniej {n}': 'at least {n}',
 };

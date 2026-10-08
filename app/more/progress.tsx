@@ -3,7 +3,7 @@ import { ScrollView, View } from 'react-native';
 import { useLocalSearchParams } from 'expo-router';
 import { Screen, Muted, Txt, Chip, Input, Empty, H2 } from '@/components/ui';
 import { useTick, exById, setSummary, fmtDate, fmtSec, fmtDist, isBW, getState } from '@/lib/store';
-import { sessionsFor, recordsFor, hasHistory, chartKeysFor, totalKind, fmtTotal, weeklyTotals, hasAnyHistory, weeklySetsByMuscle, weeklyVolumeByMuscle, thisMonday, type ChartKey } from '@/lib/stats';
+import { sessionsFor, recordsFor, hasHistory, chartKeysFor, totalKind, fmtTotal, weeklyTotals, hasAnyHistory, weeklySetsByMuscle, weeklyVolumeByMuscle, thisMonday, WEEKLY_SETS_MARK, type ChartKey } from '@/lib/stats';
 import { MUSCLES } from '@/lib/seed';
 import { LineChart, BarChart, TIME_STEPS } from '@/components/Chart';
 import { PeriodSummary } from '@/components/PeriodSummary';
@@ -44,7 +44,8 @@ export default function Progress() {
           <BarChart bars={weeks.map(w => ({ label: short(w.weekStart), value: w.sets }))} fmt={v => `${v}`} height={110} />
           <Muted style={{ fontSize: 12, marginTop: 4, marginBottom: 14 }}>{t('Tygodnie od poniedziałku. Objętość = ciężar × powtórzenia × mnożnik ćwiczenia; rozgrzewka poza.')}</Muted>
           <H2>{t('Serie per partia — ten tydzień vs poprzedni')}</H2>
-          <MuscleCompare cur={weeklySetsByMuscle(thisMonday())} prev={weeklySetsByMuscle(thisMonday(-1))} fmt={v => fmtNum(v, 1)} />
+          <MuscleCompare cur={weeklySetsByMuscle(thisMonday())} prev={weeklySetsByMuscle(thisMonday(-1))} fmt={v => fmtNum(v, 1)} mark={WEEKLY_SETS_MARK} />
+          <Muted style={{ fontSize: 12, marginTop: 4 }}>{t('Kreska = {n} serii na partię w tygodniu. Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; każdy trening siłowy daje przyrost w porównaniu z brakiem treningu. Uproszczenie: serie pomocnicze liczymy po 0,5.', { n: WEEKLY_SETS_MARK })}</Muted>
           <Muted style={{ fontSize: 12, marginTop: 4, marginBottom: 14 }}>{t('Partia główna liczy 1 serię, pomocnicza 0,5 (np. wyciskanie: klatka 1, triceps i barki po 0,5). Partie ustawisz w edycji ćwiczenia.')}</Muted>
           <H2>{t('Objętość per partia ({u}) — ten tydzień vs poprzedni', { u: wu() })}</H2>
           <MuscleCompare cur={weeklyVolumeByMuscle(thisMonday())} prev={weeklyVolumeByMuscle(thisMonday(-1))} fmt={v => { const x = volOut(v); return x >= 10000 ? `${fmtNum(x / 1000, 1)}k` : fmtNum(Math.round(x)); }} />
@@ -96,13 +97,17 @@ export default function Progress() {
   );
 }
 
-/** Porównanie partii: ten tydzień (pasek) vs poprzedni (liczba w nawiasie) — serie albo objętość (06.10.2026). */
-function MuscleCompare({ cur, prev, fmt }: { cur: Record<string, number>; prev: Record<string, number>; fmt: (v: number) => string }) {
-  const th = useTheme(); const rows = MUSCLES.filter(mu => (cur[mu] ?? 0) > 0 || (prev[mu] ?? 0) > 0); const max = Math.max(1, ...rows.map(mu => Math.max(cur[mu] ?? 0, prev[mu] ?? 0)));
+/** Porównanie partii: ten tydzień (pasek) vs poprzedni (liczba w nawiasie) — serie albo objętość (06.10.2026). `mark` — pionowa kreska
+ * (pakiet C: WEEKLY_SETS_MARK przy seriach, ACSM 2026); skala paska obejmuje kreskę, żeby była widoczna także przy mniejszej objętości. */
+function MuscleCompare({ cur, prev, fmt, mark }: { cur: Record<string, number>; prev: Record<string, number>; fmt: (v: number) => string; mark?: number }) {
+  const th = useTheme(); const rows = MUSCLES.filter(mu => (cur[mu] ?? 0) > 0 || (prev[mu] ?? 0) > 0); const max = Math.max(1, mark ?? 0, ...rows.map(mu => Math.max(cur[mu] ?? 0, prev[mu] ?? 0)));
   if (!rows.length) return <Muted style={{ fontSize: 13 }}>{t('Brak serii w tym i poprzednim tygodniu.')}</Muted>;
-  return <>{rows.map(mu => (
-    <View key={mu} style={{ marginBottom: 8 }}>
-      <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}><Txt style={{ fontSize: 14 }}>{t(mu)}</Txt><Muted style={{ fontSize: 13, fontFamily: F.mono }}>{fmt(cur[mu] ?? 0)} <Muted style={{ fontSize: 12 }}>({t('poprz.')} {fmt(prev[mu] ?? 0)})</Muted></Muted></View>
-      <View style={{ height: 6, backgroundColor: th.line, borderRadius: 3, marginTop: 4 }}><View style={{ width: `${Math.round(100 * (cur[mu] ?? 0) / max)}%`, height: 6, backgroundColor: th.accent, borderRadius: 3 }} /></View>
-    </View>))}</>;
+  return <>{rows.map(mu => { const c = cur[mu] ?? 0, p = prev[mu] ?? 0; return (
+    <View key={mu} style={{ marginBottom: 8 }} accessible accessibilityLabel={`${t(mu)}: ${fmt(c)} (${t('poprz.')} ${fmt(p)})${mark && c >= mark ? ', ' + t('co najmniej {n}', { n: mark }) : ''}`}>
+      <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}><Txt style={{ fontSize: 14 }}>{t(mu)}</Txt><Muted style={{ fontSize: 13, fontFamily: F.mono }}>{fmt(c)} <Muted style={{ fontSize: 12 }}>({t('poprz.')} {fmt(p)})</Muted></Muted></View>
+      <View style={{ height: 6, backgroundColor: th.line, borderRadius: 3, marginTop: 4 }}>
+        <View style={{ width: `${Math.round(100 * c / max)}%`, height: 6, backgroundColor: th.accent, borderRadius: 3 }} />
+        {mark ? <View testID={`mark-${mu}`} style={{ position: 'absolute', left: `${Math.round(100 * mark / max)}%`, top: -3, width: 2, height: 12, marginLeft: -1, backgroundColor: th.text }} /> : null}
+      </View>
+    </View>); })}</>;
 }

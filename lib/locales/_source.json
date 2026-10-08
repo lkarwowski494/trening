@@ -468,6 +468,10 @@
   "en": "What you log per set"
  },
  {
+  "pl": "co najmniej {n}",
+  "en": "at least {n}"
+ },
+ {
   "pl": "Cofnąć zamianę?",
   "en": "Undo swap?"
  },
@@ -1104,6 +1108,10 @@
  {
   "pl": "Kółko do brzucha",
   "en": "Ab wheel"
+ },
+ {
+  "pl": "Kreska = {n} serii na partię w tygodniu. Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; każdy trening siłowy daje przyrost w porównaniu z brakiem treningu. Uproszczenie: serie pomocnicze liczymy po 0,5.",
+  "en": "Line = {n} sets per muscle group per week. ACSM 2026 position stand: with at least {n} sets per muscle group per week, muscle growth was greater than with lower volume; any resistance training builds muscle compared with none. Simplification: secondary sets count as 0.5."
  },
  {
   "pl": "krok",

@@ -895,5 +895,7 @@
  "Pauza treningu": "Začasno ustavi trening",
  "Zegar treningu stoi i pauza nie wlicza się do czasu trwania. Przerwa między seriami liczy dalej; odhaczenie serii wznawia trening.": "Ura treninga stoji in premor se ne šteje v trajanje. Počitek med serijami teče naprej; označitev serije nadaljuje trening.",
  "Skala wysiłku": "Lestvica napora",
- "RIR — powtórzenia w zapasie: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR; Zourdos i in., JSCR 2016). Zapisane wartości przeliczają się przy zmianie skali.": "RIR — ponovitve v rezervi: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR; Zourdos in sod., JSCR 2016). Shranjene vrednosti se pri menjavi lestvice preračunajo."
+ "RIR — powtórzenia w zapasie: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR; Zourdos i in., JSCR 2016). Zapisane wartości przeliczają się przy zmianie skali.": "RIR — ponovitve v rezervi: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR; Zourdos in sod., JSCR 2016). Shranjene vrednosti se pri menjavi lestvice preračunajo.",
+ "Kreska = {n} serii na partię w tygodniu. Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; każdy trening siłowy daje przyrost w porównaniu z brakiem treningu. Uproszczenie: serie pomocnicze liczymy po 0,5.": "Črta = {n} serij na mišično skupino na teden. Stališče ACSM 2026: pri vsaj {n} serijah na mišično skupino tedensko je bila rast mišic večja kot pri manjšem volumnu; vsak trening moči poveča mišice v primerjavi z netreniranjem. Poenostavitev: pomožne serije štejemo po 0,5.",
+ "co najmniej {n}": "vsaj {n}"
 }

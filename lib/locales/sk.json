@@ -895,5 +895,7 @@
  "Pauza treningu": "Pozastaviť tréning",
  "Zegar treningu stoi i pauza nie wlicza się do czasu trwania. Przerwa między seriami liczy dalej; odhaczenie serii wznawia trening.": "Hodiny tréningu stoja a pauza sa nezapočítava do dĺžky. Prestávka medzi sériami beží ďalej; odškrtnutie série tréning obnoví.",
  "Skala wysiłku": "Škála úsilia",
- "RIR — powtórzenia w zapasie: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR; Zourdos i in., JSCR 2016). Zapisane wartości przeliczają się przy zmianie skali.": "RIR — opakovania v rezerve: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR; Zourdos a kol., JSCR 2016). Uložené hodnoty sa pri zmene škály prepočítajú."
+ "RIR — powtórzenia w zapasie: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR; Zourdos i in., JSCR 2016). Zapisane wartości przeliczają się przy zmianie skali.": "RIR — opakovania v rezerve: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR; Zourdos a kol., JSCR 2016). Uložené hodnoty sa pri zmene škály prepočítajú.",
+ "Kreska = {n} serii na partię w tygodniu. Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; każdy trening siłowy daje przyrost w porównaniu z brakiem treningu. Uproszczenie: serie pomocnicze liczymy po 0,5.": "Čiara = {n} sérií na partiu za týždeň. Stanovisko ACSM 2026: pri aspoň {n} sériách na partiu týždenne bol nárast svalov väčší ako pri menšom objeme; akýkoľvek silový tréning prináša nárast oproti žiadnemu tréningu. Zjednodušenie: pomocné série počítame po 0,5.",
+ "co najmniej {n}": "aspoň {n}"
 }

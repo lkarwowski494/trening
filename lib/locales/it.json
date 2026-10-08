@@ -895,5 +895,7 @@
  "Pauza treningu": "Metti in pausa l’allenamento",
  "Zegar treningu stoi i pauza nie wlicza się do czasu trwania. Przerwa między seriami liczy dalej; odhaczenie serii wznawia trening.": "Il cronometro dell’allenamento è fermo e la pausa non conta nella durata. Il recupero tra le serie continua; spuntare una serie riprende l’allenamento.",
  "Skala wysiłku": "Scala di sforzo",
- "RIR — powtórzenia w zapasie: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR; Zourdos i in., JSCR 2016). Zapisane wartości przeliczają się przy zmianie skali.": "RIR — ripetizioni di riserva: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR; Zourdos et al., JSCR 2016). I valori salvati si convertono cambiando scala."
+ "RIR — powtórzenia w zapasie: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR; Zourdos i in., JSCR 2016). Zapisane wartości przeliczają się przy zmianie skali.": "RIR — ripetizioni di riserva: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR; Zourdos et al., JSCR 2016). I valori salvati si convertono cambiando scala.",
+ "Kreska = {n} serii na partię w tygodniu. Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; każdy trening siłowy daje przyrost w porównaniu z brakiem treningu. Uproszczenie: serie pomocnicze liczymy po 0,5.": "Linea = {n} serie per gruppo muscolare a settimana. Position stand ACSM 2026: con almeno {n} serie per gruppo muscolare a settimana l’ipertrofia è stata maggiore che con volumi inferiori; qualsiasi allenamento di forza aumenta il muscolo rispetto a nessun allenamento. Semplificazione: le serie secondarie contano 0,5.",
+ "co najmniej {n}": "almeno {n}"
 }

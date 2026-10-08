@@ -222,6 +222,11 @@ export function weeklyTotals(weeks = 8, now = new Date()): { weekStart: number; 
 }
 export const hasAnyHistory = () => getState().workouts.some(w => w.finishedAt);
 
+/** Znacznik przy „Serie per partia” (pakiet C, 08.10.2026). Źródło: ACSM Position Stand 2026 (Currier i in., MSSE 58(4), pełny tekst
+ * PMC12965823, sekcja „Improving hypertrophy”): „Between RTx, hypertrophy was enhanced by … higher volume (≥10 sets/muscle group/wk)”;
+ * to samo stanowisko: każdy trening siłowy poprawia hipertrofię względem braku treningu — znacznik nie jest progiem „działa / nie działa”.
+ * Uproszczenie: u nas serie pomocnicze liczą się po 0,5 (Pelland 2026, docs/21 B3), w stanowisku — serie na partię bez tego rozróżnienia. */
+export const WEEKLY_SETS_MARK = 10;
 /** Serie robocze per partia w tygodniu zaczynającym się `weekStart` (główna = 1, pomocnicza = 0,5), jak w Hevy/Boostcamp. */
 export function weeklySetsByMuscle(weekStart: number): Record<string, number> {
   const d = new Date(weekStart); return setsByMuscle(weekStart, new Date(d.getFullYear(), d.getMonth(), d.getDate() + 7).getTime());

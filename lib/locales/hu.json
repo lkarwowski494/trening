@@ -895,5 +895,7 @@
  "Pauza treningu": "Edzés szüneteltetése",
  "Zegar treningu stoi i pauza nie wlicza się do czasu trwania. Przerwa między seriami liczy dalej; odhaczenie serii wznawia trening.": "Az edzés órája áll, és a szünet nem számít bele az időtartamba. A sorozatok közti pihenő tovább fut; egy sorozat kipipálása folytatja az edzést.",
  "Skala wysiłku": "Erőfeszítési skála",
- "RIR — powtórzenia w zapasie: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR; Zourdos i in., JSCR 2016). Zapisane wartości przeliczają się przy zmianie skali.": "RIR — tartalék ismétlések: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR; Zourdos és mtsai, JSCR 2016). A mentett értékek skálaváltáskor átszámolódnak."
+ "RIR — powtórzenia w zapasie: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR; Zourdos i in., JSCR 2016). Zapisane wartości przeliczają się przy zmianie skali.": "RIR — tartalék ismétlések: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR; Zourdos és mtsai, JSCR 2016). A mentett értékek skálaváltáskor átszámolódnak.",
+ "Kreska = {n} serii na partię w tygodniu. Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; każdy trening siłowy daje przyrost w porównaniu z brakiem treningu. Uproszczenie: serie pomocnicze liczymy po 0,5.": "Vonal = heti {n} sorozat izomcsoportonként. ACSM 2026 állásfoglalás: heti legalább {n} sorozat izomcsoportonként nagyobb izomnövekedést hozott, mint a kisebb volumen; bármilyen erőedzés izmot épít az edzés hiányához képest. Egyszerűsítés: a segítő sorozatok 0,5-nek számítanak.",
+ "co najmniej {n}": "legalább {n}"
 }

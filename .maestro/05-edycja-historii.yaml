@@ -114,6 +114,9 @@ name: Edycja historii i trening wstecz
 # Mapa mięśni (08.10.2026, components/MuscleMap.tsx): opis VoiceOver „Muscle map: …” ('Mapa mięśni: {list}'), przewinięcie do niej.
 - scrollUntilVisible: { element: "Muscle map: .*", direction: DOWN, timeout: 20000 }
 - takeScreenshot: 20b-mapa-miesni
+# Znacznik 10 serii na partię tygodniowo (pakiet C, 08.10.2026): opis kreski „Line = 10 sets…” (ACSM 2026).
+- scrollUntilVisible: { element: "Line = 10 sets per muscle group per week.*", direction: DOWN, timeout: 20000 }
+- takeScreenshot: 20c-kreska-10-serii
 - tapOn: "Month"
 - tapOn: "Previous period"
 - assertVisible: "Workouts: .*, previously .*"
