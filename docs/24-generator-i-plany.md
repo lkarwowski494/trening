@@ -31,4 +31,4 @@ Decyzje właściciela: docs/18 (08.10.2026). Reguły merytoryczne: docs/research
 
 ## 4. Otwarte
 - [OTWARTE] Godzina przypomnienia 8:00 (docs/18).
-- [OTWARTE] RIR = 10 − RPE — drugie niezależne źródło przed wydaniem (docs/research/22 sekcja 5).
+- RIR = 10 − RPE — drugie niezależne źródło znalezione 08.10.2026 (Bastos i in. 2024, docs/research/22 sekcja 5) — zamknięte.

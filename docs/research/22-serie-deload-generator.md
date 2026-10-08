@@ -90,8 +90,12 @@ Niezależnie: De Marco 2024 (ankieta, A), RCT Coleman 2024 (PT) i Pancar 2026 (P
 
 ## 5. Funkcje już w aplikacji — weryfikacja
 - Kreska „10 serii na partię tygodniowo” (pakiet C): poza ACSM 2026 potwierdzają ją Schoenfeld 2017, Baz-Valle 2022, Pelland 2026 — **zostaje**.
-- Skala RIR = 10 − RPE: Zourdos 2016 (A) — skala RPE oparta na RIR; Helms 2016 (PMC4961270, PT, wcześniej) — **do potwierdzenia drugim
-  niezależnym źródłem** przed wydaniem **[OTWARTE]**.
+- Skala RIR = 10 − RPE: Zourdos 2016 (A) — skala RPE oparta na RIR; Helms 2016 (PMC4961270, PT; ten sam zespół). **Drugie niezależne źródło
+  (08.10.2026):** Bastos, Machado, Teixeira 2024, przegląd zakresowy (PMC11127506, PT, zespół z Portugalii): „Zourdos et al. (2016) created a 10-point
+  RIR-based rating of perceived exertion scale (RPE-RIR) (i.e., each RPE score has an RIR-based descriptor; e.g., RPE-9 has a description of one repetition
+  remaining [1-RIR])”; zgodna wcześniejsza skala praktyków (Tuchscherer 2008, S5): „still 1 rep left in the tank” dla RPE-9. Przeliczenie RIR = 10 − RPE
+  to definicja skali, potwierdzona przez dwa niezależne zespoły → **zostaje**. Zastrzeżenie (Bastos 2024; Halperin 2022 cytowany tamże): trafność
+  samooceny RIR bywa niższa u mniej doświadczonych i daleko od upadku — aplikacja nie twierdzi nic o trafności, tylko przelicza skalę.
 
 ## 6. Źródła (wybór; pełna lista w raportach przeglądu)
 ACSM 2026 PMC12965823 (PT); WHO 2020 Bull PMC7719906 (PT); Ralston 2017 PMC5684266 (PT); Lopez 2021 PMC8126497 (PT); Currier 2023 PMC10579494 (PT);
