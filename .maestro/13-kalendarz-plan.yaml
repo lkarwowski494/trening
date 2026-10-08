@@ -45,7 +45,7 @@ name: Kalendarz z planem tygodnia
 - extendedWaitUntil: { visible: "Set", timeout: 15000 }
 - takeScreenshot: 60a-inne-plany
 - tapOn: "Set"
-- extendedWaitUntil: { visible: "Previous plan", timeout: 15000 }  # run 37771270988: asercja zaraz po zamknięciu okna — ekran jeszcze się odświeżał (zrzut: tekst jest)
+- extendedWaitUntil: { visible: "Previous plan, .*", timeout: 15000 }  # run 37784561635: wiersz ma etykietę „tytuł, dni” — regex musi objąć całość (tests/plans-multi-ui)
 - tapOn: "Back"
 # --- Kalendarz: dziś zaplanowany; przesunięcie planu o 1 dzień i powrót ---
 - extendedWaitUntil: { visible: ".*, planned: Upper A", timeout: 30000 }

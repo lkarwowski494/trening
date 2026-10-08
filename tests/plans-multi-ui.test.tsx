@@ -58,3 +58,13 @@ test('English', async () => {
   expect(screen.getByText('Other plans')).toBeTruthy(); expect(screen.getByText('Previous plan')).toBeTruthy(); expect(screen.getByText('Save a copy as a new plan')).toBeTruthy();
   await tap(screen.getByLabelText('Make active: Previous plan')); await flushAll(5); expect(lastAlert('Make “Previous plan” the active plan?')).toBeTruthy();
 });
+test('regresja run 37784561635: wiersz „Previous plan” ma etykietę „tytuł, dni” — selektory E2E (.maestro/13) pasują do całej etykiety', async () => {
+  await boot(ids => { plan.setWeekDay(0, ids[0]); }, 'en');
+  await tap(screen.getByText('Save a copy as a new plan')); await flushAll(5);
+  await tap(screen.getByLabelText('Make active: Copy: My plan')); await flushAll(5); await press('Make “Copy: My plan” the active plan?', 'Set');
+  const label: string = screen.getByLabelText(/^Previous plan, /).props.accessibilityLabel; expect(label).toMatch(/^Previous plan, Mon /);
+  const fs = require('fs'); const path = require('path');
+  const yaml = fs.readFileSync(path.join(__dirname, '../.maestro/13-kalendarz-plan.yaml'), 'utf8') as string;
+  const sels = [...yaml.matchAll(/visible:\s*"([^"]*Previous plan[^"]*)"/g)].map(m => m[1]); expect(sels.length).toBeGreaterThan(0);
+  for (const s of sels) expect(new RegExp(`^(?:${s})$`).test(label)).toBe(true); /* Maestro: textRegex dopasowuje całą etykietę */
+});
