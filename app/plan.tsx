@@ -1,5 +1,6 @@
 import React from 'react';
 import { ScrollView, View, Alert } from 'react-native';
+import { useRouter } from 'expo-router';
 import { Screen, Chip, Muted, H2, Btn, Item, Field, Input, SectionTitle } from '@/components/ui';
 import { SwipeRow } from '@/components/SwipeRow';
 import { getState, useTick } from '@/lib/store';
@@ -19,7 +20,7 @@ export const planSummary = (days: PlanDays) => days.map((id, i) => (tplName(id) 
 const nameOr = (n: string) => n || t('Poprzedni plan');
 
 export default function PlanScreen() {
-  useTick(); const days = weekPlanDays(); const live = getState().templates.filter(x => !x.archived); const other = savedPlans();
+  useTick(); const router = useRouter(); const days = weekPlanDays(); const live = getState().templates.filter(x => !x.archived); const other = savedPlans();
   const activate = (id: string, name: string) => { const n = futureChanges();
     Alert.alert(t('Ustawić „{name}” jako aktywny plan?', { name: nameOr(name) }), n ? t('Obecny plan zostanie zapisany w „Inne plany”. Zmiany pojedynczych dni od dziś zostaną usunięte: {n}.', { n }) : t('Obecny plan zostanie zapisany w „Inne plany”.'), [
       { text: t('Anuluj'), style: 'cancel' }, { text: t('Ustaw'), onPress: () => activatePlan(id) },
@@ -37,6 +38,7 @@ export default function PlanScreen() {
             {live.map(x => <Chip key={x.id} label={x.name} on={x.id === id} a11yLabel={`${weekdayName(i)}: ${x.name}`} onPress={() => setWeekDay(i, x.id)} />)}
           </View>
         </View>))}
+      <Btn title={t('Wygeneruj szablony i plan')} small onPress={() => router.push('/generator')} style={{ alignSelf: 'flex-start', marginBottom: 8 }} />{/* 08.10.2026: generator (docs/24) */}
       <Btn title={t('Zapisz kopię jako nowy plan')} small onPress={() => saveCopyAs(t('Kopia: {name}', { name: planName() || t('Mój plan') }))} style={{ alignSelf: 'flex-start' }} />
       {other.length ? <>
         <SectionTitle>{t('Inne plany')}</SectionTitle>

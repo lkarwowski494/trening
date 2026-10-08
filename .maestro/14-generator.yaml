@@ -1,0 +1,31 @@
+# Generator szablonów i planu tygodnia (decyzje właściciela 08.10.2026, docs/24). Logika i wszystkie przypadki: tests/generator.test.ts,
+# tests/generator-ui.test.tsx. Tu: prawdziwe stuknięcia na symulatorze — wejście z Szablonów, podgląd, zapis i aktywacja planu.
+#
+# Literały (EN z lib/i18n.en.ts):
+#   "Templates, tab.*"               ← 'Szablony' + etykieta zakładki
+#   "Generate templates and plan"    ← 'Wygeneruj szablony i plan' (app/(tabs)/templates.tsx, app/plan.tsx)
+#   "Preview", "What this is based on" ← 'Podgląd', 'Na czym to oparte' (app/generator.tsx)
+#   "Save templates and plan"        ← 'Zapisz szablony i plan'
+#   "Make the new plan active\?"     ← 'Ustawić nowy plan jako aktywny?'
+#   "Make active"                    ← 'Ustaw jako aktywny' (przycisk w Alercie)
+#   "Monday: Full Body A"            ← app/plan.tsx: '{dzień}: {szablon}', nazwa szablonu 'FBW A' → 'Full Body A'
+appId: pl.lukasz.trening
+name: Generator szablonów i planu
+---
+- launchApp:
+    clearState: true
+    permissions: { all: allow }
+- extendedWaitUntil: { visible: "Start from a template", timeout: 60000 }
+- tapOn: "Templates, tab.*"
+- extendedWaitUntil: { visible: "Generate templates and plan", timeout: 30000 }
+- tapOn: "Generate templates and plan"
+- extendedWaitUntil: { visible: "Preview", timeout: 30000 }
+- takeScreenshot: 70-generator
+- scrollUntilVisible: { element: "What this is based on", direction: DOWN, timeout: 30000 }
+- takeScreenshot: 71-generator-zrodla
+- scrollUntilVisible: { element: "Save templates and plan", direction: DOWN, timeout: 30000, centerElement: true }
+- tapOn: "Save templates and plan"
+- extendedWaitUntil: { visible: "Make the new plan active\\?", timeout: 15000 }
+- tapOn: "Make active"
+- extendedWaitUntil: { visible: "Monday: Full Body A", timeout: 30000 }
+- takeScreenshot: 72-plan-z-generatora

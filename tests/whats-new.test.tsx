@@ -16,12 +16,12 @@ beforeEach(async () => { jest.useFakeTimers({ now: NOW }); await fresh(); });
 afterEach(() => { applyLang('pl'); });
 
 describe('logika i dane', () => {
-  test('wpisy: unikalne id, od najnowszego, numery buildów rosną; niewydany (bez numeru) tylko na górze; każdy ma 2–6 punktów', () => {
+  test('wpisy: unikalne id, od najnowszego, numery buildów rosną; niewydany (bez numeru) tylko na górze; każdy ma 2–8 punktów', () => {
     const ids = WHATS_NEW.map(e => e.id); expect(new Set(ids).size).toBe(ids.length);
     expect([...WHATS_NEW].sort((a, b) => b.date.localeCompare(a.date)).map(e => e.id)).toEqual(ids);
     const builds = WHATS_NEW.map(e => e.build).filter((b): b is number => b != null); expect([...builds].sort((a, b) => b - a)).toEqual(builds);
     expect(WHATS_NEW.slice(1).every(e => e.build! > 1000)).toBe(true);
-    WHATS_NEW.forEach(e => { const it = e.items(); expect(it.length).toBeGreaterThanOrEqual(2); expect(it.length).toBeLessThanOrEqual(6); it.forEach(x => expect(x).toMatch(/\.$/)); });
+    WHATS_NEW.forEach(e => { const it = e.items(); expect(it.length).toBeGreaterThanOrEqual(2); expect(it.length).toBeLessThanOrEqual(8); it.forEach(x => expect(x).toMatch(/\.$/)); });
   });
   test('kropka: nowa osoba (bez treningów) — nie; po treningu — tak; otwarcie zapisuje id najnowszego wpisu; nowy wpis — znowu tak', () => {
     expect(whatsNewUnseen()).toBe(false);
@@ -69,6 +69,8 @@ describe('ekran Trening', () => {
   });
   test('treść wpisów po polsku na ekranie (wszystkie rozwinięte po kolei)', async () => {
     const texts = [
+      'Generator szablonów i planu tygodnia na Twoje polecenie (cel, miejsce, liczba i długość sesji) oraz kilka planów z wyborem aktywnego.',
+      'Deload: podpowiedź w Kalendarzu i mniej serii przy starcie w tygodniu deload; przypomnienie rano w dniu treningu z planu.',
       '10 nowych języków: niemiecki, francuski, włoski, niderlandzki, szwedzki, duński, norweski, fiński, turecki i grecki.',
       '16 języków; wygląd jasny, ciemny albo jak w telefonie.',
       'Kalendarz zamiast Historii: plan tygodnia, przesuwanie treningów i propozycje zmian z myślą o regeneracji partii.',

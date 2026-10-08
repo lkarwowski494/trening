@@ -18,6 +18,8 @@ export const WHATS_NEW: WhatsNewEntry[] = [
     t('Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik 10 serii na partię w tygodniu i oznaczanie tygodnia deload.'),
     t('Skala wysiłku RPE albo RIR w Ustawieniach.'),
     t('Szablony w folderach i archiwum, „Pomiń dziś” bez zmiany szablonu, usuwanie przesunięciem w lewo.'),
+    t('Generator szablonów i planu tygodnia na Twoje polecenie (cel, miejsce, liczba i długość sesji) oraz kilka planów z wyborem aktywnego.'),
+    t('Deload: podpowiedź w Kalendarzu i mniej serii przy starcie w tygodniu deload; przypomnienie rano w dniu treningu z planu.'),
   ] },
   { id: '2026-10-07', build: 1004, date: '2026-10-07', items: () => [
     t('Nowy wygląd: kolory i kroje, grafika talerzy na sztandze.'),
