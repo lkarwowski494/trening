@@ -102,6 +102,8 @@ const hit = (k: string) => { ran[k] = (ran[k] ?? 0) + 1; };
 function fail(where: string, msg: string, data?: unknown): never { throw new Error(`${where}: ${msg}${data !== undefined ? '\n' + J(data) : ''}`); }
 const ok = (c: unknown, where: string, msg: string, data?: unknown) => { if (!c) fail(where, msg, data); };
 const working = (s: WSet) => s.done && s.kind !== 'warmup';
+/** D3 (audyt 0.10): seria robocza — drop zaraz po serii roboczej to ta sama seria (niezależna wyrocznia dla store.workSetCount). */
+const workN = (sets: WSet[]) => { let n = 0, prev = false; for (const s of sets.filter(working)) { if (!(s.kind === 'drop' && prev)) n++; prev = true; } return n; };
 const repsOf = (s: WSet) => Math.max(0, Math.floor(Number(s.reps) || 0));
 const maxOf = (xs: number[]) => xs.reduce((a, b) => Math.max(a, b), 0);
 
@@ -460,11 +462,11 @@ function statsCheck(where: string) {
   const wk = stats.weeklyTotals(8); const end = stats.thisMonday(1);
   const exp = wk.map(b => ({ weekStart: b.weekStart, volume: 0, sets: 0, workouts: 0 }));
   for (const w of fin) { if (w.startedAt < exp[0].weekStart || w.startedAt >= end) continue; let i = exp.length - 1; while (i > 0 && w.startedAt < exp[i].weekStart) i--;
-    exp[i].workouts++; for (const e of w.exercises) { const ex = store.exById(e.exerciseId); if (!ex) continue; exp[i].sets += e.sets.filter(working).length; exp[i].volume += e.sets.reduce((q, z) => q + myVol(ex, z, e.impl), 0); } }
+    exp[i].workouts++; for (const e of w.exercises) { const ex = store.exById(e.exerciseId); if (!ex) continue; exp[i].sets += workN(e.sets); exp[i].volume += e.sets.reduce((q, z) => q + myVol(ex, z, e.impl), 0); } }
   wk.forEach((b, i) => { ok(b.workouts === exp[i].workouts && b.sets === exp[i].sets, where, 'weeklyTotals: treningi/serie', { lib: b, mine: exp[i] });
     if (st.settings.unit === 'kg') ok(Math.abs(b.volume - exp[i].volume) <= 1e-6 * Math.max(1, exp[i].volume), where, 'weeklyTotals: objętość', { lib: b, mine: exp[i] }); });
   const mon = stats.thisMonday(); const d = new Date(mon); const nx = new Date(d.getFullYear(), d.getMonth(), d.getDate() + 7).getTime(); const mus: Record<string, number> = {};
-  for (const w of fin) { if (w.startedAt < mon || w.startedAt >= nx) continue; for (const e of w.exercises) { const ex = store.exById(e.exerciseId); if (!ex) continue; const n = e.sets.filter(working).length; if (!n) continue;
+  for (const w of fin) { if (w.startedAt < mon || w.startedAt >= nx) continue; for (const e of w.exercises) { const ex = store.exById(e.exerciseId); if (!ex) continue; const n = workN(e.sets); if (!n) continue;
     ex.muscles.forEach(q => { mus[q] = (mus[q] ?? 0) + n; }); ex.secondaryMuscles.forEach(q => { mus[q] = (mus[q] ?? 0) + n * 0.5; }); } }
   expect({ where, m: stats.weeklySetsByMuscle(mon) }).toEqual({ where, m: mus });
 }
