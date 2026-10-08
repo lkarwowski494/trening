@@ -4,14 +4,14 @@
  * Rodzaje (docs/20): logika, dane (migrate, kopia), niezmienniki (te same liczby w każdym miejscu), regresja. Ekrany: tests/audit-0.10-stats-ui.test.tsx.
  */
 import * as store from '@/lib/store';
-import { e1rm, setPRs, recordsFor, prMap, workoutPRs, prCount, weeklyTotals, setsByMuscle, thisMonday, chartKeysFor, sessionsFor, bwShare, BW_SHARE } from '@/lib/stats';
+import { e1rm, setPRs, recordsFor, prMap, workoutPRs, prCount, prCountOf, weeklyTotals, setsByMuscle, thisMonday, chartKeysFor, sessionsFor, bwShare, BW_SHARE, liftedLoad, bwE1Diff, fmtE1 } from '@/lib/stats';
 import { periodSummary } from '@/lib/period';
 import { lastWorkout, weekTiles } from '@/lib/dashboard';
 import { deloadCounts } from '@/lib/start';
-import { buildCsv, buildBackup, parseBackup } from '@/lib/backup';
+import { buildCsv, buildBackup, parseBackup, strongDur } from '@/lib/backup';
 import { generate } from '@/lib/generator';
 import { swapCandidates, FULL_BASE_REV } from '@/lib/swap';
-import { muscleLoadOf, catalogKey, isLibBase, libExtraRevOf, base, uid, LIB, type Template } from '@/lib/seed';
+import { muscleLoadOf, catalogKey, isLibBase, libExtraRevOf, libKeyFromFields, musclesSourced, MUSCLE_SOURCES, base, uid, LIB, type Template } from '@/lib/seed';
 import { applyUnit } from '@/lib/units';
 import { fresh, saved, addWorkout, ex, set } from './helpers';
 
@@ -26,7 +26,7 @@ describe('E3 / X-08 / LOG-06: liczba rekordów treningu — jedna funkcja (rekor
     addWorkout(at(9, 1), [['Back Squat', [{ weight: 100, reps: 5 }, { weight: 100, reps: 5 }]]]);
     const w2 = addWorkout(at(9, 3), [['Back Squat', [{ weight: 100, reps: 5 }, { weight: 110, reps: 5 }]]]);
     const dialog = workoutPRs(w2).reduce((a, p) => a + p.details.length, 0); /* jak okno po „Zakończ” */
-    expect(dialog).toBe(2); expect(prCount(w2)).toBe(2); expect(lastWorkout()!.prs).toBe(2);
+    expect(dialog).toBe(2); expect(prCount(w2)).toBe(2); expect(prCountOf(workoutPRs(w2))).toBe(2); expect(prCountOf([])).toBe(0); expect(lastWorkout()!.prs).toBe(2);
   });
   test('trening bez rekordu: 0; pierwszy trening ćwiczenia: 0 (T5)', () => {
     const w1 = addWorkout(at(9, 1), [['Back Squat', [{ weight: 100, reps: 5 }]]]); expect(prCount(w1)).toBe(0);
@@ -41,6 +41,10 @@ describe('D3 / LOG-07 / X-13 / UI-13: jedna definicja serii roboczych — drop s
     expect(store.workCount(kinds('normal', 'drop', 'drop', 'failure'))).toBe(2);
     expect(store.workCount(kinds('warmup', 'drop'))).toBe(1);
     expect(store.workCount([])).toBe(0); expect(store.workCount(kinds('warmup', 'warmup'))).toBe(0);
+  });
+  test('workSetCount: tylko odhaczone serie robocze bloku, drop razem z poprzednią', () => {
+    const sets = [set({ kind: 'warmup', warmup: true }), set({ kind: 'normal' }), set({ kind: 'drop' }), set({ kind: 'normal', done: false }), set({ kind: 'failure' })];
+    expect(store.workSetCount(sets)).toBe(2); expect(store.workSetCount([])).toBe(0); expect(store.workSetCount([set({ kind: 'drop' })])).toBe(1);
   });
   test('szablon: rozgrzewka + 3 serie + drop — karta szablonu, pytanie deload i trening liczą 3 (LOG-07: było 4 / 3 / 4)', () => {
     const it = { id: uid(), exerciseId: ex('Back Squat').id, sets: 5, repMin: 5, repMax: 8, restSec: 120, startWeight: 100 as const, targetSec: '' as const, groupId: null,
@@ -117,6 +121,17 @@ describe('E2 / X-03: trwały klucz katalogu (libKey) — zmiana nazwy ćwiczenia
     expect(keyed('Rozpiętki')).toBe('Cable Fly'); expect(keyed('Podciąganie')).toBeUndefined();
     expect(LIB.filter(r => r[0] === 'Cable Fly').length).toBe(1);
   });
+  test('libKeyFromFields: jednoznaczny zestaw pól katalogu → klucz; zmienione pola albo zestaw wspólny kilku ćwiczeń → undefined', () => {
+    const cf = ex('Cable Fly'); expect(libKeyFromFields(cf)).toBe('Cable Fly'); expect(libKeyFromFields({ ...cf, muscles: ['biceps'] })).toBeUndefined();
+    const amb = LIB.map(r => r[0]).filter(n => { const e = S().exercises.find(x => x.name === n); return e && libKeyFromFields(e) === undefined; });
+    expect(amb.length).toBeGreaterThan(0); /* niektóre ćwiczenia mają te same pola co inne — tych nie odzyskujemy (bez zgadywania) */
+  });
+  test('E4: musclesSourced — dopisek „uproszczenie” znika tylko dla ćwiczenia ze źródłami i nietkniętymi partiami', () => {
+    const sq = ex('Back Squat'); expect(musclesSourced(sq)).toBe(false); expect(Object.keys(MUSCLE_SOURCES)).toEqual([]);
+    const reg = MUSCLE_SOURCES as Record<string, string>; reg['Back Squat'] = 'test';
+    try { expect(musclesSourced(sq)).toBe(true); expect(musclesSourced({ ...sq, secondaryMuscles: [] })).toBe(false); expect(musclesSourced({ ...sq, lib: undefined })).toBe(false); }
+    finally { delete reg['Back Squat']; }
+  });
   test('kopia zapasowa: libKey przechodzi eksport → import bez zmian', () => {
     const sq = ex('Back Squat'); sq.name = 'Przysiad'; store.save(sq);
     const back = parseBackup(JSON.stringify(buildBackup())); expect(back.exercises.find(e => e.id === sq.id)!.libKey).toBe('Back Squat');
@@ -159,6 +174,15 @@ describe('E1 / MER-03 / LOG-02: e1RM w ćwiczeniach z masą ciała — Epley na 
     /* po zmianie nazwy udział zostaje (klucz katalogu) */
     ex('Pull Up').name = 'Podciąganie'; expect(bwShare(ex('Podciąganie'))).toBe(1);
   });
+  test('liftedLoad / bwE1Diff / fmtE1: podnoszony ciężar i opis „masa ciała ± X”', () => {
+    const pu = ex('Pull Up'), push = ex('Push Up'), sq = ex('Back Squat');
+    expect(liftedLoad(pu, set({ addKg: 20, reps: 5 }))).toBe(0); expect(bwE1Diff(pu, 100)).toBeNull(); expect(fmtE1(pu, 100)).toBe('100 kg'); /* bez masy ciała */
+    bm(80); expect(liftedLoad(pu, set({ addKg: 20, reps: 5 }))).toBe(100); expect(liftedLoad(pu, set({ addKg: -20, reps: 5 }))).toBe(60); expect(liftedLoad(pu, set({ addKg: -90, reps: 5 }))).toBe(0);
+    expect(liftedLoad(push, set({ addKg: 10, reps: 5 }))).toBeCloseTo(BW_SHARE['Push Up'] * 80 + 10, 9); expect(liftedLoad(sq, set({ weight: 100, reps: 5 }))).toBe(100);
+    expect(bwE1Diff(pu, 126.67)).toBeCloseTo(46.67, 6); expect(bwE1Diff(sq, 120)).toBeNull();
+    expect(fmtE1(pu, 126.67)).toBe('126,67 kg (masa ciała + 46,67)'); expect(fmtE1(pu, 70)).toBe('70 kg (masa ciała − 10)'); expect(fmtE1(sq, 120)).toBe('120 kg');
+    applyUnit('lb'); expect(fmtE1(pu, 100)).toBe('220,5 lb (masa ciała + 44,1)'); applyUnit('kg');
+  });
   test('podsumowanie po treningu: „e1RM 126,7 kg (masa ciała + 46,7; seria +20 kg × 8)”', () => {
     bm(80); addWorkout(at(9, 1), [['Pull Up', [{ addKg: 10, reps: 8 }]]]); const w2 = addWorkout(at(9, 3), [['Pull Up', [{ addKg: 20, reps: 8 }]]]);
     const d = workoutPRs(w2).flatMap(p => p.details); expect(d).toContain('e1RM 126,67 kg (masa ciała + 46,67; seria 20 kg × 8)');
@@ -188,5 +212,6 @@ describe('E5: RIR w skali RPE-RIR, CSV w układzie Stronga', () => {
     expect(rows.map(r => r[9])).toEqual(['', '', '', '', '']); /* typ serii nie trafia już do Notes */
     w.finishedAt = t0 + 60 * 60e3; store.save(); expect(buildCsv().split('\n')[1].split(',')[2]).toBe('1h');
     w.finishedAt = t0 + 52 * 60e3; store.save(); expect(buildCsv().split('\n')[1].split(',')[2]).toBe('52m');
+    expect([0, 1, 52, 60, 65, 125, 59.6].map(strongDur)).toEqual(['0m', '1m', '52m', '1h', '1h 5m', '2h 5m', '1h']);
   });
 });

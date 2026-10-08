@@ -16,7 +16,7 @@
 #   "Delete set\?" / "Remove from template\?" → "Delete" ← 'Usunąć serię?' / 'Usunąć z szablonu?' → 'Usuń'
 #   "\+ rep range"                   ← '+ zakres powtórzeń'
 #   "reps from — X" / "reps to — X"  ← '{powtórzenia od} — {nazwa}' / '{powtórzenia do} — {nazwa}' (accessibilityLabel pól zakresu)
-#   "Rep range: 8.12.*"              ← 'Zakres powtórzeń: {r} — po osiągnięciu górnej granicy…' (r = reps(8, 12) = „8–12”)
+#   "Rep range: 8.12.*"              ← 'Zakres powtórzeń: {r} — gdy ostatnio wszystkie serie robocze…' (MER-13, audyt 0.10; tylko ciężar + powtórzenia i zamknięty zakres) (r = reps(8, 12) = „8–12”)
 #   "Remove rep range"               ← 'Usuń zakres powtórzeń' (przycisk „✕”)
 #   tpl-w-<poz>-<wiersz> / tpl-r-<poz>-<wiersz> ← testID pól ciężaru / powtórzeń wiersza szablonu (app/template/[id].tsx, dodane 06.10.2026 dla tego scenariusza)
 #   (do 07.10.2026: „Remove from template” — przycisk usunięty; dziś przesunięcie nagłówka tpl-item-<poz>)

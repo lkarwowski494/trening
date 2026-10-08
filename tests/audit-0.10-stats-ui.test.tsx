@@ -27,7 +27,8 @@ const sqDrop = (d: number) => addWorkout(at(9, d), [['Back Squat', [{ kind: 'war
 describe('E1: masa ciała w Ustawieniach i e1RM w Postępach', () => {
   test('Ustawienia: pole „Masa ciała (kg)” z opisem; wpis 80 zapisuje kg, puste pole usuwa; w lb — wpis w funtach, zapis w kg', async () => {
     await boot(undefined, '/more/settings');
-    const p = Math.round(BW_SHARE['Push Up'] * 100); expect(screen.getByText(new RegExp(`w pompkach \\(ok\\. ${p}% masy ciała — badania z platformą siłową\\)`))).toBeTruthy();
+    const p = Math.round(BW_SHARE['Push Up'] * 100);
+    expect(screen.getByText('Opcjonalnie, tylko w telefonie. Z nią aplikacja liczy e1RM w podciąganiu (cała masa ciała — uproszczenie) i w pompkach (ok. {p}% masy ciała — badania z platformą siłową). Zmiana przelicza e1RM wszystkich treningów; puste pole — bez e1RM w tych ćwiczeniach.'.replace('{p}', String(p)))).toBeTruthy();
     const f = screen.getByLabelText('Masa ciała (kg)'); expect(f.props.value).toBe('');
     await typeText(f, '80,5'); await endEdit(f); await flushAll(5); expect(S().settings.bodyMass).toBe(80.5);
     await typeText(screen.getByLabelText('Masa ciała (kg)'), ''); await flushAll(5); expect('bodyMass' in S().settings).toBe(false);
