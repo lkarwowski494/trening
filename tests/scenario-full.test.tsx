@@ -408,8 +408,8 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     expect(screen.getAllByLabelText(/^Seria [123], typ: normalna/)).toHaveLength(3);
     await tap(byHint('+ seria', B)); expect(kinds()).toEqual(['normal', 'normal', 'normal', 'normal']); expect(it0().sets).toBe(4);
     await tap(byHint('+ rozgrzewka', B)); expect(kinds()).toEqual(['warmup', 'normal', 'normal', 'normal', 'normal']); expect(kindBtn('W', 'rozgrzewkowa')).toBeTruthy();
-    await tap(byHint('+ drop set', B)); expect(kinds()).toEqual(['warmup', 'normal', 'normal', 'normal', 'normal', 'drop']); expect(kindBtn('5D', 'drop set')).toBeTruthy();
-    await swipeDelete(`Usuń serię 5D — ${B}`); pressAlert('Usunąć serię?', 'Usuń'); await flushAll(5); expect(kinds()).toEqual(['warmup', 'normal', 'normal', 'normal', 'normal']);
+    await tap(byHint('+ drop set', B)); expect(kinds()).toEqual(['warmup', 'normal', 'normal', 'normal', 'normal', 'drop']); expect(kindBtn('4D', 'drop set')).toBeTruthy(); /* audyt 0.10 (LIVE-14): drop set z numerem swojej serii (wcześniej „5D”) */
+    await swipeDelete(`Usuń serię 4D — ${B}`); pressAlert('Usunąć serię?', 'Usuń'); await flushAll(5); expect(kinds()).toEqual(['warmup', 'normal', 'normal', 'normal', 'normal']);
     await tap(kindBtn('4', 'normalna')); expect((global as any).__sheets.at(-1).opts.options).toEqual(['Seria normalna', 'Rozgrzewka (W)', 'Drop set (D)', 'Do upadku (F)', 'Anuluj']);
     await sheet(3); expect(kinds()[4]).toBe('failure'); expect(kindBtn('4F', 'do upadku')).toBeTruthy();
     await tap(kindBtn('4F', 'do upadku')); await sheet(4); expect(kinds()[4]).toBe('failure'); /* Anuluj */
@@ -558,8 +558,8 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     await tap(bandP(2)); expect(store.bandById(blk(P).sets[1].bandId)!.level).toBe(2);
     expect(field('±kg', h(3, P)).props.value).toBe('-5'); await type(field('±kg', h(2, P)), '2,5'); expect(blk(P).sets[1].addKg).toBe(2.5);
     await tap(byHint('+ rozgrzewka', P)); expect(blk(P).sets.map(x => x.kind)).toEqual(['warmup', 'normal', 'normal', 'normal']); expect(field('±kg', h('W', P))).toBeTruthy();
-    await tap(byHint('+ drop set', P)); expect(blk(P).sets.map(x => x.kind)).toEqual(['warmup', 'normal', 'normal', 'normal', 'drop']); expect(screen.getByLabelText(`Seria 4D zrobiona — ${P}`)).toBeTruthy();
-    await swipeDelete(`Usuń serię 4D — ${P}`); expect(lastAlert()).toMatchObject({ title: 'Usunąć serię?', msg: undefined }); pressAlert('Usunąć serię?', 'Usuń'); await flushAll(5); expect(blk(P).sets.map(x => x.kind)).toEqual(['warmup', 'normal', 'normal', 'normal']); /* 07.10.2026 wieczór: potwierdzenie zawsze */
+    await tap(byHint('+ drop set', P)); expect(blk(P).sets.map(x => x.kind)).toEqual(['warmup', 'normal', 'normal', 'normal', 'drop']); expect(screen.getByLabelText(`Seria 3D zrobiona — ${P}`)).toBeTruthy(); /* audyt 0.10 (LIVE-14): „3D” (wcześniej „4D”) */
+    await swipeDelete(`Usuń serię 3D — ${P}`); expect(lastAlert()).toMatchObject({ title: 'Usunąć serię?', msg: undefined }); pressAlert('Usunąć serię?', 'Usuń'); await flushAll(5); expect(blk(P).sets.map(x => x.kind)).toEqual(['warmup', 'normal', 'normal', 'normal']); /* 07.10.2026 wieczór: potwierdzenie zawsze */
     const kindP = (n: string, k: string) => screen.getAllByLabelText(`Seria ${n}, typ: ${k}. Tapnij, by zmienić typ lub dodać notatkę.`).find(x => x.props.accessibilityHint === h(n, P))!;
     await tap(kindP('1', 'normalna')); expect((global as any).__sheets.at(-1).opts.options).toEqual(['Seria normalna', 'Rozgrzewka (W)', 'Drop set (D)', 'Do upadku (F)', 'Dodaj notatkę', 'Anuluj']);
     await sheet(4); expect(lastAlert()).toMatchObject({ title: 'Notatka do serii', prompt: true, def: '' });
@@ -641,7 +641,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     await type(screen.getByLabelText('Notatka do treningu'), 'dobry dzień'); expect(S().active!.note).toBe('dobry dzień');
     /* reszta serii: Bench 2, 3 i drop (24 kg przeszło z serii 1), Cable (stacja/wyciąg), Pull Up 2–3, Band Pull Apart, Lateral Raise 2 */
     await flushAll(60000); await done(2, B); await done(1, `${C} (2)`); expect(timer.T.on).toBe(true); /* runda 2 zamknięta zamiennikiem przyrządu */
-    await done(3, B); await done('4D', B); await done(2, `${C} (2)`); await tap(screen.getByText('Pomiń'));
+    await done(3, B); await done('3D' /* audyt 0.10 (LIVE-14) */, B); await done(2, `${C} (2)`); await tap(screen.getByText('Pomiń'));
     expect(blk(B).sets.map(x => [x.kind, x.weight, x.reps, x.done])).toEqual([['warmup', 10, 12, true], ['normal', 24, 11, true], ['normal', 24, 11, true], ['normal', 24, 11, true], ['drop', 16, 8, true]]); /* wpis w serii 1 zastępuje wartości wstawione z szablonu w kolejnych seriach */
     await done(2, P); await done(3, P); await tap(screen.getByText('Pomiń'));
     for (const n of [1, 2]) await done(n, BP);

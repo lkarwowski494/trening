@@ -3,8 +3,9 @@ import { View, Text, ScrollView, Pressable, Alert, StyleSheet, useWindowDimensio
 import { useRouter } from 'expo-router';
 import { activateKeepAwakeAsync, deactivateKeepAwake } from 'expo-keep-awake';
 import { useTheme, F } from '@/lib/theme';
-import { Btn, Input, NumInput, Muted } from '@/components/ui';
-import { effortLabel, effortField, effortIn, isPaused, workoutDurSec, pauseWorkout, resumeWorkout, progressionFor, skipExercise, unskipExercise, writeLoad, setActiveLocation, lastActivity, staleSince, staleRef, staleKind, ackStale, markActivity, useForegroundTick, bandA11y, clampName, loadLabelShort, getState, useTick, exById, prevOfActiveBlock, previousFor, canUndoSwap, undoSwap, pinnedImpl, rememberRest as storeRememberRest, canRememberAlt, rememberAlt, altHint, acceptAlt, skipAlt, occurrence, occurrences, hintFor, isBW, reps, fmtDur, fmtSec, fmtTime, setSummary, toggleDone, restAfter, roundRest, addSet, removeSet, removeSetById, removeExercise, finishWorkout, cancelWorkout, save, loadLabel, groupLabels, linkWithNext, unlink, cycleBand, findSet, shortBand, setHasValue, locationById, offListNote, liveBlockImpl, listLocFor, srcSetAt, usesBand, focusSet } from '@/lib/store';
+import { Btn, Input, NumInput, Muted, useOnce } from '@/components/ui';
+import { effortLabel, effortField, effortIn, isPaused, workoutDurSec, pauseWorkout, resumeWorkout, progressionFor, skipExercise, unskipExercise, writeLoad, setActiveLocation, lastActivity, staleSince, staleRef, staleKind, ackStale, markActivity, useForegroundTick, bandA11y, clampName, loadLabelShort, getState, useTick, exById, prevOfActiveBlock, previousFor, canUndoSwap, undoSwap, pinnedImpl, rememberRest as storeRememberRest, canRememberAlt, rememberAlt, altHint, acceptAlt, skipAlt, occurrence, occurrences, hintFor, isBW, reps, fmtDur, fmtSec, fmtTime, setSummary, toggleDone, restAfter, roundRest, addSet, removeSet, removeSetById, removeExercise, finishWorkout, cancelWorkout, save, loadLabel, groupLabels, linkWithNext, unlink, cycleBand, findSet, shortBand, setHasValue, locationById, offListNote, liveBlockImpl, listLocFor, srcSetAt, usesBand, focusSet, isDeloadWeek } from '@/lib/store';
+import { restLabel, setLabel, nowParts, focusCounter } from '@/lib/live';
 import { availability, missingLabel } from '@/lib/equipment';
 import { EquipVisual } from '@/components/EquipVisual';
 import { SwipeRow } from '@/components/SwipeRow';
@@ -16,9 +17,9 @@ import { locationLabel } from '@/lib/locations';
 import * as timer from '@/lib/timer';
 import { prMap, workoutPRs, prCountOf } from '@/lib/stats';
 import { onWorkoutSaved } from '@/lib/backup';
-import { hasTime, hasReps, hasWeight, hasDistance, SET_KIND_MARK, SET_KIND_LABEL, type WExercise, type WSet, type Workout } from '@/lib/seed';
+import { hasTime, hasReps, hasWeight, hasDistance, SET_KIND_LABEL, type WExercise, type WSet, type Workout } from '@/lib/seed';
 import { t as tr, tp, exName, lang } from '@/lib/i18n';
-import { wu, wField, wInKeep, fmtNum, fmtW, wOut } from '@/lib/units';
+import { wu, wField, wInKeep, fmtW } from '@/lib/units';
 
 /*
  * Trening w toku. Audyt 0.8.1:
@@ -55,11 +56,15 @@ export default function ActiveWorkout() {
     if (set.done) { if (rest && live) await timer.start(rest, set.id, at); else await timer.stop(); }
     else await timer.stopIfFrom(set.id);
   };
-  /** Podpis przerwy na Live Activity: następna seria albo następne ćwiczenie (runda 22: wspólny dla odhaczenia i ponownego pomiaru). */
+  /** Podpis przerwy na Live Activity: następna seria albo następne ćwiczenie (runda 22: wspólny dla odhaczenia i ponownego pomiaru; audyt 0.10 LIVE-04:
+   * ta sama reguła co karta „teraz”, po ostatniej serii — `last`). */
   const restLabels = (ei: number, si: number) => {
     const a = getState().active; if (!a) return; const e = a.exercises[ei]; if (!e) return; timer.labels.title = a.templateName || tr('Trening');
-    timer.labels.subtitle = restSubtitle(a, ei, si);
+    const r = restLabel(a, ei, si); timer.labels.subtitle = r.sub; timer.labels.last = r.last;
   };
+  /* Audyt 0.10 (LIVE-03/04): podpis trwającej przerwy liczony po każdej zmianie treningu („Pomiń dziś”, „Przywróć”, + seria, usunięcie, kolejność) —
+   * zawsze ta sama następna seria co na karcie; bez zmiany nic się nie dzieje (timer.relabel porównuje). */
+  useEffect(() => { relabelRest(); });
   /** Koniec serii czasowej (auto po osiągnięciu celu, ✓ albo ręcznie): zapisuje czas (maks. cel) i odhacza. */
   const closingSet = useRef(false); /* T11: domykanie serii czasowej w toku — pytanie o porzucony trening czeka */
   const finishTimedSet = async () => { closingSet.current = true; try { await finishTimedSetInner(); } finally { closingSet.current = false; } };
@@ -77,7 +82,8 @@ export default function ActiveWorkout() {
   const startSet = async (setId: string, target: number, subtitle: string, remeasure = false) => {
     Keyboard.dismiss(); /* jak przy ✓ — pasek stopera widoczny */
     if (timer.S.on && timer.S.setId !== setId) await finishTimedSet(); // poprzedni pomiar nie przepada
-    timer.labels.title = w.templateName || tr('Trening'); timer.labels.subtitle = subtitle;
+    timer.labels.title = w.templateName || tr('Trening'); timer.labels.subtitle = subtitle; timer.labels.last = false;
+    { const a = getState().active; if (a && isPaused(a)) resumeWorkout(); } /* audyt 0.10 (LIVE-09): start pomiaru w pauzie wznawia trening od tej chwili, jak ✓ */
     // Runda 19: jeden timer naraz — ponowny pomiar zatrzymuje przerwę, a po nim startuje nowa (runda 21: pełna przerwa
     // rundy, bez pamiętania przerwanej — nic nie trzeba przechowywać między restartami ani sprzątać po odznaczeniu).
     void remeasure; await timer.startSet(setId, target);
@@ -96,7 +102,8 @@ export default function ActiveWorkout() {
   const fg = useForegroundTick(); const last = w ? lastActivity(w) : 0; const ref = w ? staleRef(w) : 0; /* T1b: z trwającym stoperem serii — jak pytanie */
   const kind: timer.StaleKind = w ? staleKind(w) : 'none'; const lng = lang(), snd = getState().settings.sound;
   const [minute, setMinute] = useState(0); useEffect(() => { const i = setInterval(() => setMinute(x => x + 1), 60e3); return () => clearInterval(i); }, []); /* T1: sprawdzenie także przy otwartej aplikacji */
-  useEffect(() => { if (w) timer.scheduleStaleReminder(ref, last, kind).catch(() => {}); return () => { if (!getState().active) timer.cancelStaleReminder().catch(() => {}); }; }, [ref, kind, last, lng, snd]); /* T4a/T4b: godzina w treści, język i dźwięk przypomnienia aktualne */ // eslint-disable-line react-hooks/exhaustive-deps
+  const pausedAt = w?.pausedAt ?? null; /* audyt 0.10 (LIVE-10, wariant B): treść wspomina pauzę */
+  useEffect(() => { if (w) timer.scheduleStaleReminder(ref, last, kind, pausedAt).catch(() => {}); return () => { if (!getState().active) timer.cancelStaleReminder().catch(() => {}); }; }, [ref, kind, last, lng, snd, pausedAt]); /* T4a/T4b: godzina w treści, język i dźwięk przypomnienia aktualne */ // eslint-disable-line react-hooks/exhaustive-deps
   /** Pytanie o porzucony trening. Runda 71: blokada na poziomie modułu (dwa zamontowane ekrany nie otwierają dwóch okien),
    * przyciski działają tylko na tym samym treningu (T3), a „Wróć” z potwierdzenia odrzucenia wraca do pytania. */
   const askStale = (tries = 0) => {
@@ -108,7 +115,7 @@ export default function ActiveWorkout() {
     const cur = getState().active; const since = staleSince(); if (!cur || since == null || staleOpenFor === cur.id || asking.current || finishing.current) return;
     const id = cur.id; staleOpenFor = id; asking.current = true; const done = () => { asking.current = false; staleOpenFor = null; };
     const same = () => getState().active?.id === id; const k = staleKind(cur);
-    Alert.alert(tr('Trening wciąż trwa'), timer.staleBody(k, since, true), [
+    Alert.alert(tr('Trening wciąż trwa'), timer.staleBody(k, since, true, cur.pausedAt), [
       { text: tr('Kontynuuj'), onPress: () => { done(); if (same()) ackStale(); } },
       ...(k === 'work' ? [{ text: tr('Zakończ i zapisz'), onPress: () => { done(); if (same()) finalize(since); } }] : []),
       { text: tr('Odrzuć'), style: 'destructive' as const, onPress: () => { Alert.alert(tr('Odrzucić trening?'), tr('Serie z tej sesji przepadną.'), [{ text: tr('Wróć'), onPress: () => { done(); askStale(); } }, { text: tr('Odrzuć trening'), style: 'destructive', onPress: () => { done(); if (!same()) return; cancelWorkout(); timer.stop(); timer.stopSet(); timer.cancelStaleReminder().catch(() => {}); } }]); } }, /* T1: potwierdzenie — okno pojawia się niespodziewanie */
@@ -127,8 +134,14 @@ export default function ActiveWorkout() {
     const doneWork = w.exercises.reduce((a, e) => a + e.sets.filter(s => s.done && s.kind !== 'warmup').length, 0) + runningWork;
     const go = () => finalize();
     // Runda 7: wpisane, nieodhaczone serie liczymy przed wszystkimi oknami — każde o nich ostrzega.
-    const pending = w.exercises.reduce((a, e) => a + (e.skipped ? 0 /* „Pomiń dziś” — świadomie pominięte */ : e.sets.filter(s => !s.done && s.id !== runId && setHasValue(s) && !isPrefill(e, s)).length), 0);
-    const pendingLine = pending ? tr('Nieodhaczone serie z wpisanymi wynikami: {n} — nie zostaną zapisane. Seria zapisuje się po odhaczeniu ✓.', { n: pending }) : '';
+    const typed = (e: WExercise, s: WSet) => !e.skipped /* „Pomiń dziś” — świadomie pominięte */ && !s.done && s.id !== runId && setHasValue(s) && !isPrefill(e, s);
+    const pending = w.exercises.reduce((a, e) => a + e.sets.filter(s => typed(e, s)).length, 0);
+    /* Audyt 0.10 (LIVE-05, wariant B): pozostałe nieodhaczone serie (także wstawione z planu) w ćwiczeniach zaczętych (≥ 1 odhaczona albo mierzona) —
+     * bez szumu przy świadomie przerwanym treningu (ćwiczenia niezaczęte i pominięte się nie liczą); rozłącznie z liczbą wpisanych wyników. */
+    const started = (e: WExercise) => !e.skipped && e.sets.some(s => s.done || s.id === runId);
+    const rest = w.exercises.reduce((a, e) => a + (started(e) ? e.sets.filter(s => !s.done && s.id !== runId && !typed(e, s)).length : 0), 0);
+    const pendingLine = [pending ? tr('Nieodhaczone serie z wpisanymi wynikami: {n} — nie zostaną zapisane. Seria zapisuje się po odhaczeniu ✓.', { n: pending }) : '',
+      rest ? (pending ? tr('Pozostałe nieodhaczone serie: {n} — też nie zostaną zapisane.', { n: rest }) : tr('Nieodhaczone serie: {n} — nie zostaną zapisane.', { n: rest })) : ''].filter(Boolean).join('\n');
     // Bez odhaczonych serii nie zapisujemy pustej sesji (stałaby się źródłem „Powtórz ostatni”).
     if (!done) { ask(tr('Brak odhaczonych serii'), [tr('Nic do zapisania. Odrzucić ten trening?'), pendingLine].filter(Boolean).join('\n'), [{ text: tr('Wróć') }, { text: tr('Odrzuć trening'), style: 'destructive', onPress: () => { cancelWorkout(); timer.stop(); timer.stopSet(); } }]); return; }
     // Zawsze potwierdzenie + ostrzeżenia: wpisane, nieodhaczone serie; odhaczone serie bez powtórzeń.
@@ -142,47 +155,46 @@ export default function ActiveWorkout() {
     const msg = [tr('Zapisane zostaną serie robocze: {n}.', { n: doneWork }), pendingLine, zeroReps ? tr('Odhaczone serie bez powtórzeń: {n}.', { n: zeroReps }) : '', zeroW ? tr('Odhaczone serie bez ciężaru: {n}.', { n: zeroW }) : '', zeroVal ? tr('Odhaczone serie bez czasu lub dystansu: {n}.', { n: zeroVal }) : ''].filter(Boolean).join('\n');
     ask(tr('Zakończyć trening?'), msg, [{ text: tr('Wróć') }, { text: tr('Zakończ'), onPress: () => { go(); } }]);
   };
-  const cancel = () => Alert.alert(tr('Anulować trening?'), tr('Serie z tej sesji przepadną.'), [{ text: tr('Wróć') }, { text: tr('Anuluj trening'), style: 'destructive', onPress: () => { cancelWorkout(); timer.stop(); timer.stopSet(); } }]);
+  /* Audyt 0.10 (LIVE-12): blokada jak w „Zakończ” — dwa szybkie tapnięcia nie otwierają dwóch okien */
+  const cancel = () => { if (finishing.current || asking.current) return; asking.current = true; const done = () => { asking.current = false; };
+    Alert.alert(tr('Anulować trening?'), tr('Serie z tej sesji przepadną.'), [{ text: tr('Wróć'), onPress: done }, { text: tr('Anuluj trening'), style: 'destructive', onPress: () => { done(); cancelWorkout(); timer.stop(); timer.stopSet(); } }]); };
+  const once = useOnce(); /* audyt 0.10 (UI-08): przejścia z ekranu treningu bez podwójnego ekranu */
+  /* Audyt 0.10 (LIVE-07, wariant A): dolny pasek przerwy w widoku skupionym, gdy przerwa w karcie jest poza ekranem (przewinięcie listy) */
+  const restY = useRef<{ card: number | null; panel: number | null }>({ card: null, panel: null }); const scrollY = useRef(0); const [restOff, setRestOff] = useState(false);
+  const checkRest = () => { const { card, panel } = restY.current; const off = card != null && panel != null && scrollY.current > card + panel; setRestOff(off); };
 
   if (!w) return null; // runda 48: druga instancja ekranu po zakończeniu treningu
   const labels = groupLabels(w.exercises);
   const prs = prMap(w);
   return (
     <View style={{ flex: 1 }}>
-      <ScrollView contentContainerStyle={{ paddingBottom: 170 }} keyboardShouldPersistTaps="handled" keyboardDismissMode="interactive" automaticallyAdjustKeyboardInsets>
+      <ScrollView testID="workout-scroll" contentContainerStyle={{ paddingBottom: 170 }} keyboardShouldPersistTaps="handled" keyboardDismissMode="interactive" automaticallyAdjustKeyboardInsets scrollEventThrottle={64} onScroll={ev => { scrollY.current = ev.nativeEvent.contentOffset.y; checkRest(); }}>
         <View style={s.head}>
           <View style={{ flex: 1 }}><Text accessibilityRole="header" style={{ color: t.text, fontSize: 24, fontFamily: F.heavy }}>{w.templateName || tr('Trening')}</Text><LocationChip w={w} /><SessionClock w={w} /><SessionProgress w={w} /></View>
           <Btn title={tr('Zakończ')} kind="primary" onPress={finish} />
         </View>
-        {st.settings.workoutView !== 'list' ? <FocusCard w={w} onDone={onDone} onFinish={finish} /> : null}
+        {st.settings.workoutView !== 'list' ? <FocusCard w={w} onDone={onDone} onFinish={finish} onStartSet={startSet} onCardY={y => { restY.current.card = y; checkRest(); }} onRestY={y => { restY.current.panel = y; checkRest(); }} /> : null}
         {w.exercises.map((e, ei) => <ExerciseBlock key={e.id} w={w} e={e} ei={ei} onDone={onDone} onStartSet={startSet} labels={labels} prs={prs} />)}
-        <View style={{ flexDirection: 'row', gap: 8 }}><Btn title={tr('+ Dodaj ćwiczenie')} style={{ flex: 1 }} onPress={() => router.push('/picker?target=active')} />{w.exercises.length > 1 ? <Btn title={tr('≡ Kolejność')} accessibilityLabel={tr('Zmień kolejność ćwiczeń')} onPress={() => router.push('/reorder?target=active')} /> : null}</View>
+        <View style={{ flexDirection: 'row', gap: 8 }}><Btn title={tr('+ Dodaj ćwiczenie')} style={{ flex: 1 }} onPress={once(() => router.push('/picker?target=active'))} />{w.exercises.length > 1 ? <Btn title={tr('≡ Kolejność')} accessibilityLabel={tr('Zmień kolejność ćwiczeń')} onPress={once(() => router.push('/reorder?target=active'))} /> : null}</View>
         <View style={{ marginTop: 16 }}><Muted style={{ marginBottom: 5 }}>{tr('Notatka do treningu')}</Muted><Input maxLength={1000} value={w.note} onChangeText={v => { w.note = v; save(w); }} placeholder={tr('np. samopoczucie, ból, sprzęt')} accessibilityLabel={tr('Notatka do treningu')} multiline /></View>
         <Btn title={tr('Zakończ trening i zapisz')} kind="primary" block style={{ marginTop: 10, minHeight: 52 }} onPress={finish} />
         <Muted style={{ textAlign: 'center', fontSize: 13, marginVertical: 10 }}>{tr('Trening w toku zapisuje się na bieżąco. Tapnij numer serii, by oznaczyć rozgrzewkę (W), drop set (D), serię do upadku (F) albo dodać notatkę.')}</Muted>
         <Btn title={tr('Anuluj trening')} kind="danger" block style={{ marginTop: 24 }} onPress={cancel} />
       </ScrollView>
-      <TimerBar onFinishSet={() => finishTimedSet()} restInCard={st.settings.workoutView !== 'list'} />
+      <TimerBar onFinishSet={() => finishTimedSet()} restInCard={st.settings.workoutView !== 'list' && !restOff} />
     </View>
   );
 }
 
-/** Podpis przerwy po serii (ei, si): następna seria albo następne ćwiczenie. Runda 23: następna do zrobienia = pierwsza nieodhaczona seria
- * od początku supersetu (albo od tego ćwiczenia) w kolejności treningu. Wspólny dla odhaczenia, ponownego pomiaru i zamiany (E2 pkt 3.8). */
-export function restSubtitle(a: Workout, ei: number, si: number): string {
-  const e = a.exercises[ei]; if (!e) return '';
-  const from = e.groupId ? a.exercises.findIndex(x => x.groupId === e.groupId) : ei;
-  for (let j = from; j < a.exercises.length; j++) { const x = a.exercises[j]; const k = x.sets.findIndex((y, i) => !y.done && !(j === ei && i === si)); if (k < 0) continue;
-    const nm = exName(exById(x.exerciseId)); const same = j === ei || (!!e.groupId && x.groupId === e.groupId);
-    return same ? `${nm} · ${tr('seria {n}', { n: setLabel(x, k) })}` : tr('dalej: {name}', { name: nm }); }
-  return exName(exById(e.exerciseId));
-}
+/** Podpis TRWAJĄCEJ przerwy liczony od nowa dla serii, która ją uruchomiła (lib/live.ts restLabel) — po zamianie (E2 pkt 3.8), „Pomiń dziś”
+ * i każdej innej zmianie treningu (audyt 0.10, LIVE-03/04). Bez przerwy albo bez tej serii — nic. */
+export function relabelRest() { const a = getState().active; const pos = timer.T.on ? findSet(timer.T.setId) : null; if (a && pos) { const r = restLabel(a, pos.ei, pos.si); timer.relabel(r.sub, r.last); } }
 /** E2 (docs/14 pkt 3.8): po zamianie albo cofnięciu zamiany — stoper usuniętej serii stop (jak „usuń”), przerwa trwa (seria, która ją uruchomiła,
  * zostaje w bloku A), a jej podpis — także na Live Activity — liczony od nowa dla serii, która ją uruchomiła. */
 export function afterSwap(goneSetIds: string[]) {
   if (timer.S.on && goneSetIds.includes(timer.S.setId ?? '')) timer.stopSet();
   if (timer.T.on && goneSetIds.includes(timer.T.setId ?? '')) timer.stop();
-  const a = getState().active; const pos = timer.T.on ? findSet(timer.T.setId) : null; if (a && pos) timer.relabel(restSubtitle(a, pos.ei, pos.si));
+  relabelRest();
 }
 /** E2 (pkt 3.4): „↺ cofnij zamianę” — z potwierdzeniem, gdy w seriach zamiennika są wpisane wartości (C7). */
 export function confirmUndoSwap(blockId: string, done?: () => void) {
@@ -209,8 +221,8 @@ function LocationChip({ w }: { w: Workout }) {
     <Text maxFontSizeMultiplier={1.3} style={{ color: t.accent, fontSize: 14, fontFamily: F.semibold }}>{`📍 ${name} ▾`}</Text></Pressable>;
 }
 
-/** Etykieta serii jak na ekranie: „W” dla rozgrzewki, inaczej numer serii roboczej (+D/F) — ta sama w dostępności, menu i Live Activity. */
-export function setLabel(e: WExercise, si: number): string { const s = e.sets[si]; if (!s) return String(si + 1); if (s.kind === 'warmup') return 'W'; const n = e.sets.slice(0, si + 1).filter(x => x.kind !== 'warmup').length; return `${n}${SET_KIND_MARK[s.kind ?? 'normal']}`; }
+/** Etykieta serii (lib/live.ts — wspólna z podpisem przerwy w timerze); eksport zostaje dla ekranów, które importują ją stąd. */
+export { setLabel };
 
 /** Czy nieodhaczona seria zawiera tylko wartości wstawione automatycznie (ciężar startowy / „Poprzednio”), a nie wpisane ręcznie. */
 function isPrefill(_e: WExercise, s: WSet) { return !s.edited; } // runda 2: liczą się tylko pola wpisane ręcznie
@@ -259,7 +271,7 @@ export function rowLayout(m: import('@/lib/seed').MetricType, band: boolean, sho
 }
 
 function ExerciseBlock({ w, e, ei, onDone, onStartSet, labels, prs }: { w: Workout; e: WExercise; ei: number; onDone: (ei: number, si: number) => void; onStartSet: (setId: string, target: number, subtitle: string, remeasure?: boolean) => void; labels: Record<string, string>; prs: Map<string, string[]> }) {
-  const t = useTheme(); const st = getState(); const { width } = useWindowDimensions(); const router = useRouter();
+  const t = useTheme(); const st = getState(); const { width } = useWindowDimensions(); const router = useRouter(); const once = useOnce(); /* audyt 0.10 (UI-08): „⇄ zamień” */
   const ex = exById(e.exerciseId);
   const k = occurrence(w.exercises, ei); const nOcc = occurrences(w.exercises, e.exerciseId); const prev = ex ? prevOfActiveBlock(w, e) : null; /* decyzja 8c: ostatni raz tym samym przyrządem; E2 pkt 3.6: zamiennik — najpierw z tej pozycji szablonu */ /* runda 50: bez useMemo — zależy też od szablonu (edycja w trakcie); ta sama podpowiedź co przy odhaczeniu */ // eslint-disable-line react-hooks/exhaustive-deps
   if (!ex) {
@@ -282,11 +294,20 @@ function ExerciseBlock({ w, e, ei, onDone, onStartSet, labels, prs }: { w: Worko
   const impl = liveBlockImpl(e, w.locationId); /* MEDIUM 2: stacja — kolumna „kg/str.” (na stronę); runda 82b (LOW 4): bez miejsc — jak w main */
   const nm = nOcc > 1 ? `${exName(ex)} (${k + 1})` : exName(ex); /* runda 66: dwa bloki tego samego ćwiczenia rozróżnialne dla VoiceOver */
   const dropBlockTimers = () => { const ids = e.sets.map(x => x.id); if (timer.S.on && ids.includes(timer.S.setId ?? '')) timer.stopSet(); if (timer.T.on && ids.includes(timer.T.setId ?? '')) timer.stop(); };
+  /* Audyt 0.10 (LIVE-11): okno usuwania mówi, ile odhaczonych serii przepadnie (jak „Seria jest już odhaczona.” przy serii) */
+  const nDone = e.sets.filter(x => x.done).length; const delMsg = [nm, nDone ? tr('Odhaczone serie: {n} — przepadną.', { n: nDone }) : ''].filter(Boolean).join('\n');
+  /* Audyt 0.10 (LIVE-03): „Pomiń dziś” zatrzymuje tylko stoper serii tego bloku (z pytaniem, bo pomiar przepada); przerwa po odhaczonej serii trwa,
+   * a jej podpis liczy się od nowa (relabelRest — następna seria jak na karcie). */
+  const skipToday = () => {
+    const go = () => { if (timer.S.on && e.sets.some(x => x.id === timer.S.setId)) timer.stopSet(); skipExercise(e.id); relabelRest(); };
+    if (timer.S.on && e.sets.some(x => x.id === timer.S.setId)) Alert.alert(tr('Trwa pomiar serii'), tr('Pominięcie ćwiczenia przerwie pomiar — ten czas się nie zapisze.'), [{ text: tr('Wróć') }, { text: tr('Pomiń dziś'), style: 'destructive', onPress: go }]);
+    else go();
+  };
   const removeBlock = () => { const i = getState().active?.exercises.findIndex(x => x.id === e.id) ?? -1; if (i < 0) return; /* runda 10: po id — drugie okno nie usuwa sąsiada */ dropBlockTimers(); removeExercise(i); };
   /* „Pomiń dziś” (docs/21 4a, 07.10.2026 wieczór): blok zwinięty do jednej linii; szablon bez zmian; odhaczone serie zapiszą się jak zawsze */
   if (e.skipped) return (
     <View style={[s.ex, { borderBottomColor: t.line }]}>
-      <SwipeRow label={tr('Usuń ćwiczenie: {name}', { name: nm })} title={tr('Usunąć z treningu?')} message={nm} onDelete={removeBlock}>{a11y => <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+      <SwipeRow label={tr('Usuń ćwiczenie: {name}', { name: nm })} title={tr('Usunąć z treningu?')} message={delMsg} onDelete={removeBlock}>{a11y => <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
         <Text {...a11y} accessibilityRole="header" maxFontSizeMultiplier={1.3} style={{ color: t.muted, fontSize: 17, fontFamily: F.semibold, flexShrink: 1 }}>{exName(ex)}</Text>
         <Muted style={{ fontSize: 13, flexGrow: 1 }}>{tr('pominięte dziś')}</Muted>
         <Btn title={tr('Przywróć')} small kind="ghost" accessibilityLabel={tr('Przywróć ćwiczenie: {name}', { name: nm })} onPress={() => unskipExercise(e.id)} />
@@ -294,14 +315,15 @@ function ExerciseBlock({ w, e, ei, onDone, onStartSet, labels, prs }: { w: Worko
     </View>);
   const m = ex.metric ?? 'weight_reps'; const showRpe = st.settings.showRpe;
   /* E2 W1: „⇄ zamień” — ukryty, gdy wszystkie serie odhaczone (D3 a); arkusz app/swap.tsx */
-  const swappable = e.sets.some(x => !x.done); const openSwap = () => router.push(`/swap?target=active:${e.id}`); const insteadTxt = insteadLine(e);
+  const swappable = e.sets.some(x => !x.done); const openSwap = once(() => router.push(`/swap?target=active:${e.id}`)); const insteadTxt = insteadLine(e);
   /* E2 W3: „Zawsze w: <Miejsce>” (P1 a, P5a a) i podpowiedź zamiennika per miejsce — liczone przy renderze (pkt 4.2) */
   const remember = canRememberAlt(w, e); const hint = altHint(w, e); const hintEx = hint ? exById(hint.exerciseId) : undefined;
   const hintName = hintEx ? exName(hintEx) + (hint?.impl ? ` — ${implLabel(hint.impl)}` : '') : '';
   const doneStyle = (set: WSet) => set.done ? { backgroundColor: t.done, borderColor: t.doneLine } : undefined;
   const inSS = !!e.groupId;
   const prog = progressionFor(ex, e.repMax, prev?.sets, listLocFor(e, w.locationId), pinnedImpl(e)); /* E2 D5: przypięty przyrząd */ /* T-017: cicha podpowiedź progresji; P-003: z ciężarów miejsca; runda 82b (LOW 5): blok innym przyrządem niż tutaj — bez listy miejsca */
-  const progText = prog ? (prog.kind === 'reps' ? tr('↑ spróbuj {n} pow.', { n: prog.reps }) : (bw && prog.kg === 0 ? tr('↑ spróbuj bez asysty') : tr('↑ spróbuj {v}', { v: (bw && prog.kg > 0 ? '+' : '') + fmtW(prog.kg) }))) : '';
+  /* Audyt 0.10 (D1 / MER-05): w tygodniu deload bez „↑ spróbuj” — ciężary bez zmian (Rogerson 2024, Travis 2020: intensywność utrzymana albo niższa) */
+  const progText = prog && !isDeloadWeek(w.startedAt) ? (prog.kind === 'reps' ? tr('↑ spróbuj {n} pow.', { n: prog.reps }) : (bw && prog.kg === 0 ? tr('↑ spróbuj bez asysty') : tr('↑ spróbuj {v}', { v: (bw && prog.kg > 0 ? '+' : '') + fmtW(prog.kg) }))) : '';
   const headMeta = [e.implPinned && e.impl ? implLabel(e.impl) /* E2 D5: przyrząd wybrany ręcznie */ : '', hasReps(m) && e.repMin != null ? reps(e.repMin, e.repMax) + ' ' + tr('pow.') : '', progText, inSS ? tr('superset · przerwa po rundzie {t}', { t: fmtDur(roundRest(ei) ?? e.restSec) }) /* T7: przerwa po zamknięciu rundy, niezależnie od kolejności odhaczania */ : tr('przerwa') + ' ' + fmtDur(e.restSec), ex.tempo].filter(Boolean).join(' · ');
   // Szerokość: czy kolumna „Poprzednio” zmieści się w wierszu (ekran − marginesy 2×14).
   const { prevInline, W } = rowLayout(m, band, showRpe, width);
@@ -323,7 +345,7 @@ function ExerciseBlock({ w, e, ei, onDone, onStartSet, labels, prs }: { w: Worko
   const deleteSet = (id: string) => { const cur = getState().active?.exercises.find(x => x.id === e.id); if (!cur || cur.sets.length <= 1 || !cur.sets.some(x => x.id === id)) return; dropTimers([id]); removeSetById(getState().active!.exercises.indexOf(cur), id); };
   return (
     <View style={[s.ex, { borderBottomColor: t.line }]}>
-      <SwipeRow label={tr('Usuń ćwiczenie: {name}', { name: nm })} title={tr('Usunąć z treningu?')} message={nm} onDelete={removeBlock}>{a11y => <View style={s.exHead}>
+      <SwipeRow label={tr('Usuń ćwiczenie: {name}', { name: nm })} title={tr('Usunąć z treningu?')} message={delMsg} onDelete={removeBlock}>{a11y => <View style={s.exHead}>
         <Text {...a11y} accessibilityRole="header" style={{ color: t.text, fontSize: 17, fontFamily: F.semibold, flexGrow: 1, flexShrink: 1, minWidth: '58%' }}>{inSS ? <Text style={{ color: t.band }}>{`SS ${labels[e.groupId!]} · `}</Text> : null}{exName(ex)}{ex.archived ? <Text style={{ color: t.muted, fontSize: 13 }}>{' (' + tr('usunięte') + ')'}</Text> : null}</Text>
         <Muted numberOfLines={2} style={{ fontSize: 13, flexShrink: 1, flexGrow: 1, textAlign: 'right' }}>{headMeta}</Muted>
       </View>}</SwipeRow>
@@ -354,13 +376,13 @@ function ExerciseBlock({ w, e, ei, onDone, onStartSet, labels, prs }: { w: Worko
               <Pressable {...a11y} onPress={() => setMenu(set, si)} hitSlop={8} accessibilityHint={hint} /* runda 63 */ accessibilityRole="button" accessibilityLabel={tr('Seria {n}, typ: {k}. Tapnij, by zmienić typ lub dodać notatkę.', { n: lbl, k: tr(SET_KIND_LABEL[kind]) })} style={{ width: W.idx, minHeight: 44, justifyContent: 'center' }}>
                 <SetBadge kind={kind} label={lbl} note={!!set.note} />
               </Pressable>
-              <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', gap: 4 }}>{prevInline ? <Text maxFontSizeMultiplier={1.3} numberOfLines={1} style={{ flexShrink: 1, color: t.muted, fontSize: 13 }}>{prevTxt}</Text> : null}{pr ? <Text maxFontSizeMultiplier={1.3} style={{ color: t.band, fontSize: 11, fontFamily: F.semibold }}>PR</Text> : null}</View>
+              <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', gap: 4 }}>{prevInline ? <Text maxFontSizeMultiplier={1.3} numberOfLines={1} style={{ flexShrink: 1, color: t.muted, fontSize: 13, fontFamily: F.regular /* audyt 0.10 (LIVE-13 / UI-11) */ }}>{prevTxt}</Text> : null}{pr ? <Text maxFontSizeMultiplier={1.3} style={{ color: t.band, fontSize: 11, fontFamily: F.semibold }}>PR</Text> : null}</View>
               {hasWeight(m) ? <View style={{ width: W.w }}><NumInput weightTol decimal allowNegative={bw} value={wField(bw ? set.addKg : set.weight)} stored={bw ? set.addKg : set.weight} onNum={(v, keep) => { writeLoad(ex, set, wInKeep(v, keep)); /* runda 54: ciężar nieujemny; Q-021: ta sama liczba co na ekranie = te same kg; 83b: jeden zapis (store.writeLoad) */ tick(); }} placeholder={bw ? '±0' : wu()} style={doneStyle(set)} accessibilityLabel={loadLabel(ex, impl)} accessibilityHint={hint} testID={`w-${ei}-${si}`} /* E2E 11 */ /></View> : null}
               {hasReps(m) ? <View style={{ width: W.reps }}><NumInput value={set.reps} onNum={v => { set.reps = v === '' ? '' : Math.max(0, Math.floor(v)); tick(); }} placeholder={e.repMin == null ? 'max' : reps(e.repMin, e.repMax)} style={doneStyle(set)} accessibilityLabel={tr('Powtórzenia')} accessibilityHint={hint} testID={`r-${ei}-${si}`} /></View> : null}
               {hasDistance(m) ? <View style={{ width: W.dist }}><NumInput value={set.distanceM} onNum={v => { set.distanceM = v === '' ? '' : Math.max(0, Math.round(v)); /* runda 55/56: pełne metry jak klawiatura */ tick(); }} placeholder="m" style={doneStyle(set)} accessibilityLabel={tr('dystans')} accessibilityHint={hint} /></View> : null}
               {hasTime(m) ? <View style={{ width: W.time }}><NumInput value={set.durationSec} onNum={v => { set.durationSec = v === '' ? '' : Math.min(86400, Math.max(0, Math.round(v))); /* runda 56: pełne sekundy jak klawiatura */ tick(); }} placeholder="s" style={doneStyle(set)} accessibilityLabel={tr('czas')} accessibilityHint={hint} /></View> : null}
               {hasTime(m) ? (
-                <Pressable accessibilityRole="button" accessibilityLabel={running ? tr('Stoper trwa') : tr('Start stopera serii')} accessibilityHint={hint} onPress={() => { if (running) return; const tplTarget = (() => { const tpl = w.templateId ? st.templates.find(x => x.id === w.templateId) : null; const it = tpl && e.tplItemId ? tpl.items.find(x => x.id === e.tplItemId) : null; return Number(it?.targetSec) || 0; })(); /* runda 18: ponowny pomiar liczy od nowa — cel z szablonu albo bez limitu, nie stary wynik */ const go = () => onStartSet(set.id, set.done ? tplTarget : Number(set.durationSec) || tplTarget /* runda 22: pusty czas → cel z szablonu */, `${nm} · ${tr('seria {n}', { n: lbl })}`, set.done); if (set.done) Alert.alert(tr('Zmierzyć serię od nowa?'), tr('Zapisany czas zostanie nadpisany.'), [{ text: tr('Nie') }, { text: tr('Zmierz'), onPress: go }]); else go(); }} style={[s.doneBtn, { width: W.play, backgroundColor: running ? t.accent : t.surface2, borderColor: running ? t.accent : t.line }]}>
+                <Pressable accessibilityRole="button" accessibilityLabel={running ? tr('Stoper trwa') : tr('Start stopera serii')} accessibilityHint={hint} onPress={() => { if (!running) startTimed(w, e, set, si, onStartSet); }} style={[s.doneBtn, { width: W.play, backgroundColor: running ? t.accent : t.surface2, borderColor: running ? t.accent : t.line }]}>
                   <Text maxFontSizeMultiplier={1.3} style={{ color: running ? t.accentInk : t.text, fontSize: 16 }}>{running ? '…' : '▶'}</Text>
                 </Pressable>) : null}
               {showRpe ? <View style={{ width: W.rpe }}><NumInput decimal value={effortField(set.rpe)} onNum={v => { set.rpe = effortIn(v); tick(); }} placeholder="—" style={doneStyle(set)} accessibilityLabel={effortLabel()} accessibilityHint={hint} /></View> : null}
@@ -378,16 +400,20 @@ function ExerciseBlock({ w, e, ei, onDone, onStartSet, labels, prs }: { w: Worko
         {ei + 1 < w.exercises.length && (!inSS || w.exercises[ei + 1].groupId !== e.groupId) ? <Btn title="⇅ SS" small kind="ghost" accessibilityLabel={tr('Połącz z następnym w superset')} accessibilityHint={nm} onPress={() => linkWithNext(w.exercises, ei, w)} /> : null}
         {inSS ? <Btn title="✂ SS" small kind="ghost" accessibilityLabel={tr('Wyjmij z supersetu')} accessibilityHint={nm} onPress={() => unlink(w.exercises, ei, w)} /> : null}
         {swappable ? <Btn title={tr('⇄ zamień')} small kind="ghost" accessibilityLabel={tr('Zamień ćwiczenie: {name}', { name: nm })} onPress={openSwap} /> : null}
-        {e.sets.some(x => !x.done) ? <Btn title={tr('Pomiń dziś')} small kind="ghost" accessibilityLabel={tr('Pomiń dziś: {name}', { name: nm })} onPress={() => { dropBlockTimers(); skipExercise(e.id); }} /> : null}
+        {e.sets.some(x => !x.done) ? <Btn title={tr('Pomiń dziś')} small kind="ghost" accessibilityLabel={tr('Pomiń dziś: {name}', { name: nm })} onPress={skipToday} /> : null}
       </View>
     </View>
   );
 }
 
-/** Ciężar serii na tablicy: liczba w jednostce (masa ciała: „±X” dociążenia albo „masa ciała”), puste pole — „—”. */
-function bigLoad(ex: import('@/lib/seed').Exercise, set: WSet): string {
-  if (isBW(ex)) { const a = Number(set.addKg); return set.addKg === '' || set.addKg == null || !a ? tr('masa ciała') : (a > 0 ? '+' : '') + fmtNum(wOut(a), wu() === 'lb' ? 1 : 2); }
-  return set.weight === '' || set.weight == null ? '—' : fmtNum(wOut(Number(set.weight)), wu() === 'lb' ? 1 : 2);
+/** Start stopera serii na czas (▶ w wierszu i „▶ Start” na karcie — audyt 0.10, LIVE-06): cel z pola serii albo z szablonu; ponowny pomiar odhaczonej
+ * serii — z pytaniem, cel z szablonu albo bez limitu (runda 18/22). */
+function startTimed(w: Workout, e: WExercise, set: WSet, si: number, onStartSet: (setId: string, target: number, subtitle: string, remeasure?: boolean) => void) {
+  const tpl = w.templateId ? getState().templates.find(x => x.id === w.templateId) : null; const it = tpl && e.tplItemId ? tpl.items.find(x => x.id === e.tplItemId) : null;
+  const tplTarget = Number(it?.targetSec) || 0; /* runda 18: ponowny pomiar liczy od nowa — cel z szablonu albo bez limitu, nie stary wynik */
+  const ei = w.exercises.indexOf(e); const nm = occurrences(w.exercises, e.exerciseId) > 1 ? `${exName(exById(e.exerciseId))} (${occurrence(w.exercises, ei) + 1})` : exName(exById(e.exerciseId));
+  const go = () => onStartSet(set.id, set.done ? tplTarget : Number(set.durationSec) || tplTarget /* runda 22: pusty czas → cel z szablonu */, `${nm} · ${tr('seria {n}', { n: setLabel(e, si) })}`, set.done);
+  if (set.done) Alert.alert(tr('Zmierzyć serię od nowa?'), tr('Zapisany czas zostanie nadpisany.'), [{ text: tr('Nie') }, { text: tr('Zmierz'), onPress: go }]); else go();
 }
 /**
  * Widok skupiony (styl „Tuleja”, decyzja właściciela 07.10.2026; docs/21 pkt 3): karta serii „teraz” (store.focusSet) nad listą — ćwiczenie,
@@ -397,32 +423,41 @@ function bigLoad(ex: import('@/lib/seed').Exercise, set: WSet): string {
  * ekranie — tests/matrix-a11y). Podpowiedź „↑” zostaje w nagłówku ćwiczenia (jedno miejsce). Wartości zmienia się w wierszu serii niżej.
  * Wszystko odhaczone — „Zakończ trening”. Wyłączenie: Ustawienia → Widok treningu → Lista.
  */
-function FocusCard({ w, onDone, onFinish }: { w: Workout; onDone: (ei: number, si: number) => void; onFinish: () => void }) {
+function FocusCard({ w, onDone, onFinish, onStartSet, onCardY, onRestY }: { w: Workout; onDone: (ei: number, si: number) => void; onFinish: () => void; onStartSet: (setId: string, target: number, subtitle: string, remeasure?: boolean) => void; onCardY?: (y: number) => void; onRestY?: (y: number) => void }) {
   const t = useTheme(); const pos = focusSet(w);
   /* wariant A (07.10.2026, E2E run 37611882320): miejsce na grafikę nie maleje w obrębie serii — wiersz pod kartą nie skacze pod klawiaturę */
   const [slot, setSlot] = useState({ key: '', h: 0 });
-  if (!pos) return w.exercises.some(e => e.sets.length) ? (
-    <View style={[s.focus, { backgroundColor: t.surface, borderColor: t.text }]}>
-      {timer.T.on ? <View style={[s.focusRest, { borderColor: t.accent }]}><RestPanel big={34} /></View> : null}
-      <Text accessibilityRole="header" maxFontSizeMultiplier={1.3} style={{ color: t.text, fontSize: 20, fontFamily: F.heavy }}>{tr('Wszystkie serie odhaczone')}</Text>
-      <Pressable accessibilityRole="button" onPress={onFinish} style={[s.focusBtn, { backgroundColor: t.text }]}><Text maxFontSizeMultiplier={1.3} style={{ color: t.bg, fontSize: 19, fontFamily: F.heavy }}>{tr('Zakończ trening')}</Text></Pressable>
-    </View>) : null;
+  const cardLayout = (ev: { nativeEvent: { layout: { y: number } } }) => onCardY?.(ev.nativeEvent.layout.y);
+  const restPanel = <View testID="focus-rest" onLayout={ev => onRestY?.(ev.nativeEvent.layout.y + ev.nativeEvent.layout.height)} style={[s.focusRest, { borderColor: t.accent }]}><RestPanel big={34} /></View>;
+  if (!pos) {
+    if (!w.exercises.some(e => e.sets.length)) return null;
+    /* Audyt 0.10 (LIVE-08): „Wszystkie serie odhaczone” tylko, gdy naprawdę wszystkie; reszta pominięta — inny tekst; nic nie odhaczono — jeszcze inny */
+    const all = w.exercises.every(e => e.sets.every(x => x.done)); const any = w.exercises.some(e => e.sets.some(x => x.done));
+    return (
+      <View testID="focus-card" onLayout={cardLayout} style={[s.focus, { backgroundColor: t.surface, borderColor: t.text }]}>
+        {timer.T.on ? restPanel : null}
+        <Text accessibilityRole="header" maxFontSizeMultiplier={1.3} style={{ color: t.text, fontSize: 20, fontFamily: F.heavy }}>{all ? tr('Wszystkie serie odhaczone') : any ? tr('Nic więcej do zrobienia (część pominięta)') : tr('Nic nie odhaczono — wszystkie ćwiczenia pominięte')}</Text>
+        <Pressable accessibilityRole="button" onPress={onFinish} style={[s.focusBtn, { backgroundColor: t.text }]}><Text maxFontSizeMultiplier={1.3} style={{ color: t.bg, fontSize: 19, fontFamily: F.heavy }}>{tr('Zakończ trening')}</Text></Pressable>
+      </View>);
+  }
   const e = w.exercises[pos.ei]; const ex = exById(e.exerciseId)!; const set = e.sets[pos.si]; const m = ex.metric ?? 'weight_reps'; const lbl = setLabel(e, pos.si);
   const prev = prevOfActiveBlock(w, e); const p = hintFor(prev?.sets, e.sets, pos.si, ex);
-  const vis = equipVisFor(w, e, set); const ghost = vis.length ? [] : equipSlotFor(w, e, set); const minH = slot.key === set.id ? slot.h : 0; const work = e.sets.filter(x => x.kind !== 'warmup').length; const resting = timer.T.on;
-  const parts: string[] = []; if (hasWeight(m)) parts.push(bigLoad(ex, set)); if (hasReps(m)) parts.push(set.reps === '' || set.reps == null ? '—' : String(set.reps));
-  if (hasDistance(m)) parts.push(set.distanceM === '' || set.distanceM == null ? '—' : `${set.distanceM} m`); if (hasTime(m)) parts.push(set.durationSec === '' || set.durationSec == null ? '—' : fmtSec(Number(set.durationSec)));
-  const big = parts.join(' × '); const unitTxt = hasWeight(m) && !isBW(ex) && set.weight !== '' && set.weight != null ? wu() : '';
+  const vis = equipVisFor(w, e, set); const ghost = vis.some(v => v.kind !== 'noplates') ? [] : equipSlotFor(w, e, set); const minH = slot.key === set.id ? slot.h : 0; const resting = timer.T.on;
+  /* Audyt 0.10 (UI-10 / LIVE-14, wariant A): „80 kg × 8” — jednostka przy ciężarze, ta sama treść dla VoiceOver; licznik bez drop setów */
+  const big = nowParts(ex, set); const bigTxt = `${big.num}${big.unit ? ' ' + big.unit : ''}${big.tail}`; const cnt = focusCounter(e, pos.si);
+  const counter = cnt.kind === 'warmup' ? tr('rozgrzewka') : cnt.kind === 'drop' ? tr('seria {n} z {all} · drop set', { n: cnt.n, all: cnt.all }) : tr('seria {n} z {all}', { n: cnt.n, all: cnt.all });
   const name = exName(ex); const ss = e.groupId ? `SS ${groupLabels(w.exercises)[e.groupId]} · ` : '';
+  /* Audyt 0.10 (LIVE-06, wariant A): seria na czas bez trwającego pomiaru — duży „▶ Start”, pod nim mały „Odhacz bez pomiaru” (czas z pola serii) */
+  const timedIdle = hasTime(m) && !(timer.S.on && timer.S.setId === set.id);
   return (
-    <View style={[s.focus, { backgroundColor: t.surface, borderColor: t.text }]}>
-      {resting ? <View style={[s.focusRest, { borderColor: t.accent }]}><RestPanel big={34} /></View> : null}
+    <View testID="focus-card" onLayout={cardLayout} style={[s.focus, { backgroundColor: t.surface, borderColor: t.text }]}>
+      {resting ? restPanel : null}
       <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'baseline', gap: 8 }}>
         <Text accessibilityRole="header" maxFontSizeMultiplier={1.3} style={{ color: t.text, fontSize: 20, fontFamily: F.heavy, flexShrink: 1 }}>{ss}{resting ? tr('dalej: {name}', { name }) : name}</Text>
-        <Text maxFontSizeMultiplier={1.3} style={{ color: t.muted, fontSize: 14, fontFamily: F.semibold }}>{set.kind === 'warmup' ? tr('rozgrzewka') : tr('seria {n} z {all}', { n: lbl, all: work })}</Text>
+        <Text maxFontSizeMultiplier={1.3} style={{ color: t.muted, fontSize: 14, fontFamily: F.semibold }}>{counter}</Text>
       </View>
       {ex.notes?.trim() ? <Muted numberOfLines={3} style={{ fontSize: 13 }}>{ex.notes.trim()}</Muted> : null}
-      <Text accessible accessibilityLabel={tr('Teraz: {v}', { v: [big, unitTxt].filter(Boolean).join(' ') })} adjustsFontSizeToFit numberOfLines={1} maxFontSizeMultiplier={1.2} style={{ color: t.text, fontSize: 64, lineHeight: 72, fontFamily: F.display }}>{big}{unitTxt ? <Text style={{ fontSize: 18, fontFamily: F.semibold, color: t.muted }}>{` ${unitTxt}`}</Text> : null}</Text>
+      <Text accessible accessibilityLabel={tr('Teraz: {v}', { v: bigTxt })} adjustsFontSizeToFit numberOfLines={1} maxFontSizeMultiplier={1.2} style={{ color: t.text, fontSize: 64, lineHeight: 72, fontFamily: F.display }}>{big.num}{big.unit ? <Text style={{ fontSize: 18, fontFamily: F.semibold, color: t.muted }}>{` ${big.unit}`}</Text> : null}{big.tail}</Text>
       {p ? <Muted style={{ fontSize: 13 }}>{tr('ostatnio {s}', { s: setSummary(ex, p, 'calc') })}</Muted> : null}
       {vis.length || ghost.length ? (
         <View style={{ gap: 10, minHeight: minH }} onLayout={ev => { const h = Math.ceil(ev.nativeEvent.layout.height); if (slot.key !== set.id || h > slot.h) setSlot({ key: set.id, h }); }}>
@@ -430,9 +465,15 @@ function FocusCard({ w, onDone, onFinish }: { w: Workout; onDone: (ei: number, s
           {ghost.length ? <View style={{ gap: 10, opacity: 0 }} pointerEvents="none" accessibilityElementsHidden importantForAccessibility="no-hide-descendants">{ghost.map((v, i) => <EquipVisual key={i} v={v} />)}</View> : null}
         </View>) : null}
       {hasTime(m) ? <TimedRing setId={set.id} /> : null}
-      <Pressable accessibilityRole="button" accessibilityLabel={tr('Seria zrobiona: {ex}, seria {n}', { n: lbl, ex: name })} testID="focus-done" onPress={() => onDone(pos.ei, pos.si)} style={({ pressed }) => [s.focusBtn, { backgroundColor: t.text, opacity: pressed ? 0.8 : 1 }]}>
-        <Text maxFontSizeMultiplier={1.3} style={{ color: t.bg, fontSize: 19, fontFamily: F.heavy }}>{tr('Seria zrobiona')}</Text>
-      </Pressable>
+      {timedIdle ? <>
+        <Pressable accessibilityRole="button" accessibilityLabel={tr('Start stopera: {ex}, seria {n}', { n: lbl, ex: name })} testID="focus-start" onPress={() => startTimed(w, e, set, pos.si, onStartSet)} style={({ pressed }) => [s.focusBtn, { backgroundColor: t.text, opacity: pressed ? 0.8 : 1 }]}>
+          <Text maxFontSizeMultiplier={1.3} style={{ color: t.bg, fontSize: 19, fontFamily: F.heavy }}>{tr('▶ Start')}</Text>
+        </Pressable>
+        <Btn small kind="ghost" title={tr('Odhacz bez pomiaru')} accessibilityLabel={tr('Odhacz bez pomiaru: {ex}, seria {n}', { n: lbl, ex: name })} onPress={() => onDone(pos.ei, pos.si)} style={{ alignSelf: 'center' }} />
+      </> : (
+        <Pressable accessibilityRole="button" accessibilityLabel={tr('Seria zrobiona: {ex}, seria {n}', { n: lbl, ex: name })} testID="focus-done" onPress={() => onDone(pos.ei, pos.si)} style={({ pressed }) => [s.focusBtn, { backgroundColor: t.text, opacity: pressed ? 0.8 : 1 }]}>
+          <Text maxFontSizeMultiplier={1.3} style={{ color: t.bg, fontSize: 19, fontFamily: F.heavy }}>{tr('Seria zrobiona')}</Text>
+        </Pressable>)}
       <Muted style={{ fontSize: 12, textAlign: 'center' }}>{tr('Wartości zmienisz w wierszu serii poniżej.')}</Muted>
     </View>
   );
@@ -471,9 +512,9 @@ function RestPanel({ big }: { big: number }) {
 }
 /** Seria na czas w karcie „teraz”: pierścień postępu do celu (bez celu — sam czas). Dolny pasek stopera bez zmian (tam „Zakończ serię”). */
 function TimedRing({ setId }: { setId: string }) {
-  const t = useTheme(); const [, force] = useState(0);
-  useEffect(() => { const i = setInterval(() => force(x => x + 1), 250); return () => clearInterval(i); }, []);
-  if (!timer.S.on || timer.S.setId !== setId) return null;
+  const t = useTheme(); const [, force] = useState(0); const on = timer.S.on && timer.S.setId === setId;
+  useEffect(() => { if (!on) return; const i = setInterval(() => force(x => x + 1), 250); return () => clearInterval(i); }, [on]); /* audyt 0.10 (PERF-06): odświeżanie tylko w trakcie pomiaru */
+  if (!on) return null;
   const el = timer.setElapsed(); const target = timer.S.targetSec; const frac = target > 0 ? Math.min(1, el / target) : 0;
   const R = 34, C = 2 * Math.PI * R; const txt = target > 0 ? fmtSec(Math.max(0, target - el)) : fmtSec(el);
   return <View accessible accessibilityRole="progressbar" accessibilityLabel={target > 0 ? tr('seria · cel {s}', { s: fmtSec(target) }) : tr('seria · bez celu')} accessibilityValue={{ text: txt }} style={{ alignSelf: 'center', width: 84, height: 84, alignItems: 'center', justifyContent: 'center' }}>

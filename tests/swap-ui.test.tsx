@@ -66,18 +66,19 @@ describe('W1 — ekran treningu i arkusz zamiany', () => {
   });
 
   test('stoper usuwanej serii zatrzymany, przerwa trwa, timer.relabel po zamianie w przerwie', async () => {
-    await renderApp({ saved: await savedWith(['Plank', 'Bench Press (sztanga)'], { places: false }) }); await flushAll(20);
+    /* audyt 0.10 (LIVE-04): podpis przerwy = następna seria jak na karcie „teraz” — ławka przed plankiem, inaczej podpis wskazywałby nieodhaczony plank */
+    await renderApp({ saved: await savedWith(['Bench Press (sztanga)', 'Plank'], { places: false }) }); await flushAll(20);
     /* przerwa po serii 1 ławki, potem stoper planka; zamiana ławki (podział) w trakcie przerwy */
-    await act(async () => { blk(1).sets[0].weight = 100; blk(1).sets[0].reps = 5; }); await tap(screen.getAllByLabelText(/^Seria 1 zrobiona — Bench Press \(sztanga\)/)[0]); await flushAll(5);
+    await act(async () => { blk(0).sets[0].weight = 100; blk(0).sets[0].reps = 5; }); await tap(screen.getAllByLabelText(/^Seria 1 zrobiona — Bench Press \(sztanga\)/)[0]); await flushAll(5);
     expect(timer.T.on).toBe(true); const restSet = timer.T.setId;
     expect(timer.T.sub).toMatch(/Bench Press \(sztanga\) · seria 2/);
     await tap(screen.getByLabelText('Zamień ćwiczenie: Bench Press (sztanga)')); await flushAll(20);
     await tap(screen.getByLabelText(/^Propozycja 1: /)); await flushAll(20);
-    const B = blk(2); expect(B.splitFrom).toBe(blk(1).id);
+    const B = blk(1); expect(B.splitFrom).toBe(blk(0).id);
     expect(timer.T.on).toBe(true); expect(timer.T.setId).toBe(restSet);
     expect(timer.T.sub).toContain(store.exById(B.exerciseId)!.name); expect((global.__la as any[]).some(x => JSON.stringify(x).includes(store.exById(B.exerciseId)!.name))).toBe(true);
     /* stoper serii czasowej w bloku, który zamieniamy w miejscu */
-    await act(async () => { await timer.startSet(blk(0).sets[0].id, 30); }); expect(timer.S.on).toBe(true);
+    await act(async () => { await timer.startSet(blk(2).sets[0].id, 30); }); expect(timer.S.on).toBe(true);
     await tap(screen.getByLabelText('Zamień ćwiczenie: Plank')); await flushAll(20);
     await tap(screen.getByLabelText(/^Propozycja 1: /)); await flushAll(20);
     expect(timer.S.on).toBe(false);

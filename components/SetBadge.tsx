@@ -2,10 +2,12 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import { useTheme, F } from '@/lib/theme';
-import { SET_KIND_MARK, type SetKind } from '@/lib/seed';
+import { type SetKind } from '@/lib/seed';
+import { setMarkOf } from '@/lib/live';
 
-/** „W” dla rozgrzewki, numer serii roboczej z literą typu (np. „2D”). */
-export function kindLabel(kinds: readonly SetKind[], i: number): string { const k = kinds[i]; if (!k) return String(i + 1); if (k === 'warmup') return 'W'; const n = kinds.slice(0, i + 1).filter(x => x !== 'warmup').length; return `${n}${SET_KIND_MARK[k]}`; }
+/** „W” dla rozgrzewki, numer serii roboczej z literą typu (np. „2F”), drop set z numerem serii, po której jest („2D”) — ta sama numeracja co w treningu
+ * (lib/live.ts setMarkOf; audyt 0.10, LIVE-14). */
+export function kindLabel(kinds: readonly SetKind[], i: number): string { return setMarkOf(kinds, i); }
 export function SetBadge({ kind, label, note }: { kind: SetKind; label: string; note?: boolean }) {
   const t = useTheme(); const txt = `${label}${note ? '•' : ''}`;
   return kind !== 'normal'

@@ -30,7 +30,7 @@ describe('treść i logika', () => {
   test('cytowane w krokach nazwy przycisków („…”) to teksty z interfejsu — zmiana nazwy przycisku wymaga zmiany przewodnika', () => {
     const quoted = GUIDE.flatMap(g => g.steps()).flatMap(s => [...s.matchAll(/„([^”]+)”/g)].map(m => m[1]));
     expect(quoted.length).toBeGreaterThan(10);
-    const missing = quoted.map(q => (q === 'Zaplanuj deload od …' ? 'Zaplanuj deload od {date}' : q)).filter(q => !(q in EN));
+    const missing = quoted.map(q => (q === 'Zaplanuj deload od …' ? 'Zaplanuj deload od {date}' : q === 'Powtórz ostatni' ? 'Powtórz ostatni ({name})' /* przycisk z nazwą treningu */ : q)).filter(q => !(q in EN));
     expect(missing).toEqual([]);
   });
   test('postęp i odhaczanie: nieznane id pomijane, bez powtórzeń, bez userTouched', () => {
@@ -68,7 +68,7 @@ test('macierz: każdy tekst przewodnika (i punkt „Co nowego”) jest w treści
     'Tydzień oznaczysz też w Postępach przełącznikiem „Tydzień deload”.',
     'W edytorze szablonu przeniesiesz go do folderu albo archiwum.',
     'W Kalendarzu „Plan tygodnia” przypisuje szablony do dni — plan powtarza się co tydzień.',
-    'W tygodniu deload „Start” zaproponuje „Mniej serii” — ciężary i szablon bez zmian.',
+    'W tygodniu deload „Start” i „Powtórz ostatni” zaproponują „Mniej serii”: o około 1/3–1/2 mniej serii (np. 2 z 3; ćwiczenia z 1 serią bez zmian); ciężary i szablon bez zmian.', /* audyt 0.10 (D1, MER-04) */
     'W zakładce Szablony „+ Nowy” tworzy szablon: ćwiczenia, serie, zakres powtórzeń i przerwy.',
     'Więcej → Backup: eksport wszystkich danych do pliku i import z pliku.',
     'Więcej → Miejsca i sprzęt: dom, siłownia, hotel — każdy ze swoim sprzętem i ciężarami.',

@@ -56,7 +56,8 @@ describe('logika (lib/equipvis.ts)', () => {
   test('equipSlotFor (decyzja A 07.10, E2E run 37611882320): miejsce na grafikę z przyrządu, niezależne od wpisanej wartości — karta nie zmienia wysokości przy wpisywaniu', () => {
     const g = addLocation('gym'); store.startEmpty(); S().active!.locationId = g.id;
     const bb = block('Back Squat'); expect(equipSlotFor(bb.a, bb.e, bb.set)).toEqual([{ kind: 'plates', plan: { unit: 'kg', base: 20, plates: [] } }]);
-    bb.set.weight = 8035; expect(equipVisFor(bb.a, bb.e, bb.set)).toEqual([]); expect(equipSlotFor(bb.a, bb.e, bb.set)).toHaveLength(1); /* wartość spoza talerzy — miejsce zostaje */
+    bb.set.weight = 8035; expect(equipVisFor(bb.a, bb.e, bb.set)).toEqual([{ kind: 'noplates', place: g.name, nearestKg: expect.any(Number) }]); /* audyt 0.10 (LIVE-17): podpis zamiast pustego miejsca */
+    expect(equipSlotFor(bb.a, bb.e, bb.set)).toHaveLength(1); /* wartość spoza talerzy — miejsce zostaje */
     const st = block('Pec Deck'); expect(equipSlotFor(st.a, st.e, st.set)).toEqual([{ kind: 'stack', kg: 10, window: null }]); /* preset: lista stosu pusta (nieznane ciężary) */
     g.equipment.find(x => x.item === 'pec_deck')!.load = { kind: 'list', unit: 'kg', items: [5, 10, 15, 20, 25, 30, 35, 40].map(w => ({ w, on: true })) };
     const sv = equipSlotFor(st.a, st.e, st.set)[0]; expect(sv).toEqual({ kind: 'stack', kg: 15, window: [5, 10, 15, 20, 25].map(kg => ({ kg, pin: kg === 15 })) });

@@ -4,7 +4,8 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Screen, H1, Muted, Btn, Txt, useOnce } from '@/components/ui';
 import { beginEdit } from '@/lib/edit';
 import { effortLabel, effortOut, workoutDurSec, getState, useTick, exById, isBW, bandById, loadLabel, fmtDate, fmtTime, fmtDur, fmtSec, fmtDist, volume, deleteWorkout, groupLabels, shortBand, bandA11y, loadLabelShort, blockImpl, shownLoad } from '@/lib/store';
-import { hasTime, hasReps, hasWeight, hasDistance, SET_KIND_MARK, SET_KIND_LABEL } from '@/lib/seed';
+import { hasTime, hasReps, hasWeight, hasDistance, SET_KIND_LABEL } from '@/lib/seed';
+import { setMarkOf } from '@/lib/live';
 import { prMap } from '@/lib/stats';
 import { useTheme, F } from '@/lib/theme';
 import { t, exName } from '@/lib/i18n';
@@ -18,7 +19,7 @@ export default function HistoryDetail() {
   return (
     <Screen><ScrollView contentContainerStyle={{ paddingVertical: 10, paddingBottom: 60 }}>
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}><View style={{ flex: 1 }}><H1>{w.templateName || t('Trening')}</H1></View><Btn title={t('Edytuj')} small accessibilityLabel={t('Edytuj sesję')} onPress={once(() => { if (beginEdit(w.id)) router.push(`/history/edit/${encodeURIComponent(w.id)}`); })} /></View>
-      <Muted style={{ marginBottom: 14 }}>{fmtDate(w.startedAt)} {fmtTime(w.startedAt)} · {fmtDur(workoutDurSec(w))}{volume(w) > 0 ? ` · ${t('objętość')} ${fmtVol(volume(w))}` : ''}</Muted>
+      <Muted style={{ marginBottom: 14 }}>{fmtDate(w.startedAt)} {fmtTime(w.startedAt)} · {fmtDur(workoutDurSec(w))}{volume(w) > 0 ? ` · ${t('objętość')} ${fmtVol(volume(w))}` : ''}{w.deload ? ` · ${t('deload — mniej serii')}` /* audyt 0.10 (D1+) */ : ''}</Muted>
       {w.note ? <Muted style={{ marginBottom: 10 }}>{w.note}</Muted> : null}
       {w.exercises.map((e, i) => { const ex = exById(e.exerciseId); const m = ex?.metric ?? 'weight_reps'; const rpe = getState().settings.showRpe; const anyBand = e.sets.some(s => s.bandId);
         // Nagłówki i komórki z tych samych warunków (wcześniej dla usuniętego ćwiczenia kolumny się rozjeżdżały).
@@ -29,8 +30,7 @@ export default function HistoryDetail() {
         <View key={e.id ?? i} style={{ marginBottom: 16, borderBottomWidth: 1, borderBottomColor: th.line, paddingBottom: 8 }}>
           <Txt accessibilityRole="header" style={{ fontFamily: F.semibold, fontSize: 17, marginBottom: 6 }}>{e.groupId ? <Txt style={{ color: th.band, fontFamily: F.semibold }}>{`SS ${labels[e.groupId]} · `}</Txt> : null}{exName(ex)}</Txt>
           <View style={{ flexDirection: 'row' }} accessibilityElementsHidden importantForAccessibility="no-hide-descendants">{heads.map((h, k) => <Muted key={k} numberOfLines={1} style={{ flex: k === 0 ? 0.5 : 1, fontSize: 13, paddingRight: 6 }}>{h}</Muted>)}</View>
-          {(() => { wn = 0; return null; })()}
-          {e.sets.map((s) => { const vals: (string | number)[] = [s.kind === 'warmup' || s.warmup ? 'W' : `${++wn}${SET_KIND_MARK[s.kind ?? 'normal']}`, ...(showW ? [fmtW(shownLoad(ex, s), false)] : []) /* Q-018/83b: widok jak CSV i edytor (store.loadOf) — po zmianie sprzętu nie 0 */, ...(hasReps(m) ? [s.reps || 0] : []), ...(hasDistance(m) ? [fmtDist(Number(s.distanceM) || 0)] : []), ...(hasTime(m) ? [fmtSec(Number(s.durationSec) || 0)] : []), ...(rpe ? [s.rpe !== '' && s.rpe != null ? fmtNum(effortOut(Number(s.rpe)), 1) : '—'] : []), ...(anyBand ? [s.bandId ? (bandById(s.bandId) ? shortBand(bandById(s.bandId)) : '?') : '—'] : []), s.actualRest ? fmtDur(s.actualRest) : '—'];
+          {e.sets.map((s, si) => { const mk = setMarkOf(e.sets.map(x => x.kind === 'warmup' || x.warmup ? 'warmup' : x.kind), si); wn = parseInt(mk, 10) || 0; /* audyt 0.10 (LIVE-14): numeracja jak w treningu — drop set z numerem swojej serii */ const vals: (string | number)[] = [mk, ...(showW ? [fmtW(shownLoad(ex, s), false)] : []) /* Q-018/83b: widok jak CSV i edytor (store.loadOf) — po zmianie sprzętu nie 0 */, ...(hasReps(m) ? [s.reps || 0] : []), ...(hasDistance(m) ? [fmtDist(Number(s.distanceM) || 0)] : []), ...(hasTime(m) ? [fmtSec(Number(s.durationSec) || 0)] : []), ...(rpe ? [s.rpe !== '' && s.rpe != null ? fmtNum(effortOut(Number(s.rpe)), 1) : '—'] : []), ...(anyBand ? [s.bandId ? (bandById(s.bandId) ? shortBand(bandById(s.bandId)) : '?') : '—'] : []), s.actualRest ? fmtDur(s.actualRest) : '—'];
             const kindK = s.kind === 'warmup' || s.warmup ? 'warmup' : (s.kind ?? 'normal'); const spoken = vals.map((v, k) => k === 0 && kindK !== 'normal' ? (kindK === 'warmup' ? t(SET_KIND_LABEL.warmup) : `${wn} ${t(SET_KIND_LABEL[kindK])}`) /* runda 59: litera W/D/F słownie */ : anyBand && k === vals.length - 2 && s.bandId && bandById(s.bandId) ? bandA11y(bandById(s.bandId)) : v); /* runda 52: pełna nazwa gumy */
             return (
             <View key={s.id}>

@@ -71,7 +71,7 @@ describe('ekran Trening', () => {
     const texts = [
       'Nowy ekran Trening: dzisiejszy trening, tydzień w liczbach i ostatni trening; przewodnik po funkcjach w Więcej.',
       'Generator szablonów i planu tygodnia na Twoje polecenie (cel, miejsce, liczba i długość sesji) oraz kilka planów z wyborem aktywnego.',
-      'Deload: podpowiedź w Kalendarzu i mniej serii przy starcie w tygodniu deload; przypomnienie rano w dniu treningu z planu.',
+      'Deload: podpowiedź w Kalendarzu, a w tygodniu deload przy starcie o około 1/3–1/2 mniej serii (np. 2 z 3; ćwiczenia z 1 serią bez zmian); przypomnienie rano w dniu treningu z planu.', /* audyt 0.10 (MER-04) */
       '10 nowych języków: niemiecki, francuski, włoski, niderlandzki, szwedzki, duński, norweski, fiński, turecki i grecki.',
       '16 języków; wygląd jasny, ciemny albo jak w telefonie.',
       'Kalendarz zamiast Historii: plan tygodnia, przesuwanie treningów i propozycje zmian z myślą o regeneracji partii.',

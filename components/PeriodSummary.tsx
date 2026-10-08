@@ -8,6 +8,7 @@ import { periodSummary, periodTitle, type PeriodKind } from '@/lib/period';
 import { Chip, H2, Muted, Txt } from '@/components/ui';
 import { MuscleMap } from '@/components/MuscleMap';
 import { setsByMuscle } from '@/lib/stats';
+import { deloadLessText } from '@/lib/start';
 
 /*
  * Podsumowanie tygodnia / miesiąca na ekranie Postępy (decyzja właściciela 08.10.2026, lib/period.ts): treningi, serie robocze,
@@ -43,7 +44,7 @@ export function PeriodSummary() {
       </View>
       {kind === 'week' ? <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 8, flexWrap: 'wrap' }}>
         <Chip label={t('Tydzień deload')} on={deload} toggle onPress={() => toggleDeloadWeek(s.start)} />
-        <Muted style={{ fontSize: 12, flexShrink: 1 }}>{t('Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.')}</Muted>
+        <Muted style={{ fontSize: 12, flexShrink: 1 }}>{t('Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję {less}, ciężary bez zmian.', { less: deloadLessText() }) /* audyt 0.10 (MER-04) */}</Muted>
       </View> : null}
       {prevDeload ? <Muted style={{ fontSize: 12, marginBottom: 6 }}>{t('Poprzedni tydzień jest oznaczony jako deload.')}</Muted> : null}
       <View style={{ padding: 12, borderRadius: 10, backgroundColor: th.surface2, gap: 6 }}>

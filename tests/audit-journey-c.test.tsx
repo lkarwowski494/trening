@@ -54,7 +54,7 @@ for (const [loc, unit] of [['pl', 'kg'], ['en', 'lb']] as const) {
     await tap(screen.getAllByLabelText(new RegExp('^' + tr('Seria {n}, typ: {k}. Tapnij, by zmienić typ lub dodać notatkę.', { n: 5, k: 'X' }).split(',')[0]))[0]);
     await act(async () => { (global as any).__pickSheet(2); });
     expect(a.exercises[0].sets[4].kind).toBe('drop');
-    const dropLbl = '5D';
+    const dropLbl = '4D'; /* audyt 0.10 (LIVE-14): drop po serii 4F — „4D” (wcześniej „5D”) */
     await type(field(lbl, l.hint(dropLbl, bench)), unit === 'lb' ? '35' : '16'); await type(field(tr('Powtórzenia'), l.hint(dropLbl, bench)), '12');
     // remaining sets
     await tap(screen.getByLabelText(l.done(2, row)));

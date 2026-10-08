@@ -17,5 +17,5 @@ test('w treningu: przyciski typów widoczne pod ćwiczeniem, etykieta typu z naz
   await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())) }); await flushAll(10);
   await tap(screen.getByText('+ rozgrzewka')); await tap(screen.getByText('+ drop set')); await flushAll(5);
   expect(store.getState().active!.exercises[0].sets.map(s => s.kind)).toEqual(['warmup', 'normal', 'drop']);
-  expect(screen.getByLabelText(/^Seria W, typ: rozgrzewkowa/)).toBeTruthy(); expect(screen.getByLabelText(/^Seria 2D, typ: drop set/)).toBeTruthy();
+  expect(screen.getByLabelText(/^Seria W, typ: rozgrzewkowa/)).toBeTruthy(); expect(screen.getByLabelText(/^Seria 1D, typ: drop set/)).toBeTruthy(); /* audyt 0.10 (LIVE-14): drop serii 1 (wcześniej „2D”) */
 });

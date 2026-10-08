@@ -2,14 +2,16 @@ import * as Notifications from 'expo-notifications';
 import * as Haptics from 'expo-haptics';
 import { Platform } from 'react-native';
 import { getState, setTimerState, findSet, fmtTime, STALE_ASK_MS } from './store';
+import { restLabel } from './live';
 import * as LA from '@/modules/rest-activity';
 import { t } from './i18n';
 
 /** Ustawienie „Dźwięk i wibracja” (do 0.7.1 przełącznik istniał, ale nic nie wyłączał — T-039). */
 const soundOn = () => { try { return getState().settings.sound !== false; } catch { return true; } };
 
-/** Etykiety do Live Activity — ustawiane przez ekran treningu przed startem timera. */
-export const labels = { title: '', subtitle: '' };
+/** Etykiety do Live Activity — ustawiane przez ekran treningu przed startem timera. `last` — przerwa po ostatniej serii treningu (audyt 0.10,
+ * LIVE-04 decyzja B): przerwa zostaje, a powiadomienie nie mówi „Następna seria.”. */
+export const labels = { title: '', subtitle: '', last: false };
 const title = () => labels.title || (() => { try { return getState().active?.templateName || t('Trening'); } catch { return t('Trening'); } })();
 
 /*
@@ -39,7 +41,7 @@ function handover() {
   if (T.on && !T.alarmed && T.endAt > now) laStart('rest', T.sub || t('przerwa {s} s', { s: Math.round(T.total) }), T.endAt, T.total);
   else if (S.on && S.targetSec > 0 && !S.alarmed && S.startAt + S.targetSec * 1000 > now) laStart('set', t('seria {s} s', { s: S.targetSec }), S.startAt + S.targetSec * 1000, S.targetSec);
 }
-export const T = { endAt: 0, total: 0, on: false, alarmed: false, setId: null as string | null, sub: '' };
+export const T = { endAt: 0, total: 0, on: false, alarmed: false, setId: null as string | null, sub: '', last: false };
 
 export async function ensurePermission(): Promise<boolean> {
   const cur = await Notifications.getPermissionsAsync();
@@ -51,7 +53,7 @@ export async function ensurePermission(): Promise<boolean> {
 /** Start przerwy; `setId` = seria, która ją uruchomiła. */
 /** `from` — początek przerwy, gdy seria skończyła się wcześniej niż teraz (stoper z celem, T8); przerwa trwa `sec` od tej chwili. */
 export async function start(sec: number, setId: string | null = null, from?: number) {
-  T.endAt = (from != null && Number.isFinite(from) ? Math.min(from, Date.now()) : Date.now()) + sec * 1000; T.total = sec; T.on = true; T.alarmed = false; T.setId = setId; T.sub = labels.subtitle; // runda 23: podpis należy do tej przerwy
+  T.endAt = (from != null && Number.isFinite(from) ? Math.min(from, Date.now()) : Date.now()) + sec * 1000; T.total = sec; T.on = true; T.alarmed = false; T.setId = setId; T.sub = labels.subtitle; T.last = labels.last; // runda 23: podpis należy do tej przerwy
   setTimerState({ restEndAt: T.endAt, restTotal: T.total, restSetId: setId });
   await reschedule();
   laStart('rest', labels.subtitle || t('przerwa {s} s', { s: Math.round(sec) }), T.endAt, T.total);
@@ -70,10 +72,14 @@ export async function adjust(delta: number) {
   if (T.alarmed && T.endAt > Date.now()) { T.alarmed = false; if (laKind !== 'set') laStart('rest', sub, T.endAt, T.total); } else if (laKind === 'rest') LA.update(sub, T.endAt, T.total).catch(() => {});
   await reschedule(); emit();
 }
-/** E2 (docs/14 pkt 3.8): nowy podpis TRWAJĄCEJ przerwy — po zamianie ćwiczenia (podpis jest zamrażany na starcie przerwy, T.sub), także na Live Activity. */
-export function relabel(sub: string) {
-  if (!T.on || !sub || sub === T.sub) return; T.sub = sub; labels.subtitle = sub;
-  if (laKind === 'rest' && !T.alarmed) LA.update(sub, T.endAt, T.total).catch(() => {}); emit();
+/** E2 (docs/14 pkt 3.8): nowy podpis TRWAJĄCEJ przerwy — po zamianie ćwiczenia (podpis jest zamrażany na starcie przerwy, T.sub), także na Live Activity.
+ * Audyt 0.10 (LIVE-03/04): także po „Pomiń dziś”, „Przywróć”, dodaniu/usunięciu serii — ekran liczy podpis po każdej zmianie (lib/live.ts restLabel);
+ * zmiana `last` przeplanowuje powiadomienie (treść „Następna seria.” albo „Nic więcej do zrobienia…”). */
+export function relabel(sub: string, last = false) {
+  if (!T.on || !sub || (sub === T.sub && last === T.last)) return; const lastChanged = last !== T.last; T.sub = sub; T.last = last; labels.subtitle = sub; labels.last = last;
+  if (laKind === 'rest' && !T.alarmed) LA.update(sub, T.endAt, T.total).catch(() => {});
+  if (lastChanged && !T.alarmed && T.endAt > Date.now()) reschedule().catch(() => {});
+  emit();
 }
 export async function stop() { const was = T.on; T.on = false; T.setId = null; setTimerState({ restEndAt: null, restTotal: 0, restSetId: null }); await cancelScheduled(); if (was) laEnd('rest'); emit(); }
 /** Zatrzymuje przerwę tylko wtedy, gdy uruchomiła ją ta seria (cofnięcie odhaczenia starszej serii nie kasuje bieżącej przerwy). */
@@ -88,7 +94,11 @@ export async function restore() {
   laKind = null; // wołane przy starcie: właściciel Live Activity sprzed restartu jest nieznany
   const st = getState(); const ts = st.timer;
   if (!ts || !st.active) { laKind = null; LA.end().catch(() => {}); if (ts && (ts.restEndAt || ts.setStartAt)) setTimerState({ restEndAt: null, restTotal: 0, restSetId: null, setStartAt: null, setTarget: 0, setId: null }); return; }
-  if (ts.restEndAt && ts.restEndAt > Date.now() - 3600e3 && ts.restEndAt <= Date.now() + (Number(ts.restTotal) || 0) * 1000 + 60e3 /* runda 53: koniec dalej niż cała przerwa = uszkodzony zapis */) { T.endAt = ts.restEndAt; T.total = ts.restTotal; T.on = true; T.setId = ts.restSetId ?? null; T.alarmed = ts.restEndAt <= Date.now(); if (!T.alarmed) { await reschedule(); laStart('rest', t('przerwa {s} s', { s: Math.round(T.total) }), T.endAt, T.total); } }
+  if (ts.restEndAt && ts.restEndAt > Date.now() - 3600e3 && ts.restEndAt <= Date.now() + (Number(ts.restTotal) || 0) * 1000 + 60e3 /* runda 53: koniec dalej niż cała przerwa = uszkodzony zapis */) {
+    T.endAt = ts.restEndAt; T.total = ts.restTotal; T.on = true; T.setId = ts.restSetId ?? null; T.alarmed = ts.restEndAt <= Date.now();
+    /* Audyt 0.10 (LIVE-15): podpis przerwy liczony od nowa z serii, która ją uruchomiła (restSetId) — po restarcie Live Activity nie traci „dalej: …” */
+    const pos = findSet(T.setId); const lb = pos ? restLabel(st.active, pos.ei, pos.si) : { sub: '', last: false }; T.sub = lb.sub; T.last = lb.last; labels.subtitle = lb.sub; labels.last = lb.last;
+    if (!T.alarmed) { await reschedule(); laStart('rest', T.sub || t('przerwa {s} s', { s: Math.round(T.total) }), T.endAt, T.total); } }
   // Stoper z celem wraca, dopóki seria istnieje (stopSet przycina do celu — seria kończy się o starcie + cel). Runda 75 (Q-002):
   // stoper bez celu nie wraca — store.resolveColdStopwatch() przy starcie odhacza serię z czasem z pola albo ją zostawia.
   if (ts.setStartAt && ts.setStartAt <= Date.now() + 60e3 /* runda 53: start w przyszłości */ && ts.setTarget > 0 && findSet(ts.setId)) {
@@ -114,7 +124,7 @@ async function reschedule() {
   try {
     await Notifications.scheduleNotificationAsync({
       identifier: REST_ID,
-      content: { title: t('Przerwa minęła'), body: t('Następna seria.'), sound: soundOn() },
+      content: { title: t('Przerwa minęła'), body: T.last ? t('Nic więcej do zrobienia — możesz zakończyć trening.') /* audyt 0.10, LIVE-04 (decyzja B) */ : t('Następna seria.'), sound: soundOn() },
       trigger: { type: Notifications.SchedulableTriggerInputTypes.TIME_INTERVAL, seconds, repeats: false },
     });
   } catch {}
@@ -179,13 +189,15 @@ const STALE_ID = 'stale-reminder';
 export async function cancelStaleReminder() { try { await Notifications.cancelScheduledNotificationAsync(STALE_ID); } catch {} }
 /** Runda 71 (T3): treść zależy od tego, co już zrobiono — bez serii roboczych nie ma czego „zakończyć i zapisać”. */
 export type StaleKind = 'work' | 'warmup' | 'none';
-export const staleBody = (kind: StaleKind, at: number, prompt = false) => kind === 'work'
+/** Audyt 0.10 (LIVE-10, wariant B): trening w pauzie — logika bez zmian, treść dopisuje „Trening w pauzie od …”. */
+export const staleBody = (kind: StaleKind, at: number, prompt = false, pausedAt?: number | null) => staleBodyCore(kind, at, prompt) + (pausedAt != null && Number.isFinite(pausedAt) ? '\n' + t('Trening w pauzie od {t}.', { t: fmtTime(pausedAt) }) : '');
+const staleBodyCore = (kind: StaleKind, at: number, prompt: boolean) => kind === 'work'
   ? (prompt ? t('Ostatnia seria o {t}. Zakończyć trening z tą godziną końca?', { t: fmtTime(at) }) : t('Ostatnia seria o {t}. Otwórz, by zakończyć albo kontynuować.', { t: fmtTime(at) }))
   : kind === 'warmup'
     ? (prompt ? t('Ostatnia rozgrzewka o {t}, bez serii roboczych. Kontynuować czy odrzucić?', { t: fmtTime(at) }) : t('Ostatnia rozgrzewka o {t}, bez serii roboczych. Otwórz, by kontynuować albo odrzucić.', { t: fmtTime(at) }))
     : (prompt ? t('Trening rozpoczęty o {t}, bez odhaczonych serii. Kontynuować czy odrzucić?', { t: fmtTime(at) }) : t('Trening rozpoczęty o {t}, bez odhaczonych serii. Otwórz, by kontynuować albo odrzucić.', { t: fmtTime(at) }));
-export async function scheduleStaleReminder(fromMs: number, lastSetMs = fromMs, kind: StaleKind = 'work') {
+export async function scheduleStaleReminder(fromMs: number, lastSetMs = fromMs, kind: StaleKind = 'work', pausedAt?: number | null) {
   await cancelStaleReminder(); const secs = Math.round((fromMs + STALE_ASK_MS - Date.now()) / 1000); if (!(secs >= 1) || secs > 86400) return;
-  try { await Notifications.scheduleNotificationAsync({ identifier: STALE_ID, content: { title: t('Trening wciąż trwa'), body: staleBody(kind, lastSetMs), sound: soundOn() }, trigger: { type: Notifications.SchedulableTriggerInputTypes.TIME_INTERVAL, seconds: secs, repeats: false } }); } catch {}
+  try { await Notifications.scheduleNotificationAsync({ identifier: STALE_ID, content: { title: t('Trening wciąż trwa'), body: staleBody(kind, lastSetMs, false, pausedAt), sound: soundOn() }, trigger: { type: Notifications.SchedulableTriggerInputTypes.TIME_INTERVAL, seconds: secs, repeats: false } }); } catch {}
 }
 

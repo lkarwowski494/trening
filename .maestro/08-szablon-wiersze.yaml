@@ -9,7 +9,7 @@
 #   "\+ set" / "\+ warm-up" / "\+ drop set" ← '+ seria' / '+ rozgrzewka' / '+ drop set' (TplRows)
 #   "Set N, type: K.*"               ← 'Seria {n}, typ: {k}. Tapnij, by zmienić typ.' (etykieta wiersza szablonu; od 07.10.2026 wieczór bez „lub usunąć serię”);
 #                                      w treningu 'Seria {n}, typ: {k}. Tapnij, by zmienić typ lub dodać notatkę.' (components/ActiveWorkout.tsx);
-#                                      {n} = kindLabel/setLabel (W, 1, 2, 3F, 4D — drop set liczy się do numeru); {k} = SET_KIND_LABEL:
+#                                      {n} = kindLabel/setLabel (W, 1, 2, 3F, 3D — drop set z numerem serii, po której jest; audyt 0.10 LIVE-14); {k} = SET_KIND_LABEL:
 #                                      'normalna' → normal, 'rozgrzewkowa' → warm-up, 'drop set' → drop set, 'do upadku' → to failure
 #   "To failure \(F\)"             ← 'Do upadku (F)' (ActionSheet etykiety serii)
 #   tpl-row-<poz>-<wiersz>, tpl-item-<poz> ← testID wierszy (app/template/[id].tsx, SwipeRow) — usuwanie przesunięciem w lewo (07.10.2026 wieczór)
@@ -60,9 +60,9 @@ name: Szablon jak trening — wiersze serii, karty, start
 - extendedWaitUntil: { visible: "Set W, type: warm-up.*", timeout: 15000 }
 - scrollUntilVisible: { element: "\\+ drop set", direction: DOWN, timeout: 30000, centerElement: true }
 - tapOn: "\\+ drop set"
-- scrollUntilVisible: { element: "Set 5D, type: drop set.*", direction: DOWN, timeout: 30000 }
+- scrollUntilVisible: { element: "Set 4D, type: drop set.*", direction: DOWN, timeout: 30000 }
 - takeScreenshot: 40-szablon-wiersze
-# W, 1, 2, 3, 4, 5D
+# W, 1, 2, 3, 4, 4D
 
 # --- Menu etykiety serii: zmiana typu i usunięcie ---
 - scrollUntilVisible: { element: "Set 4, type: normal.*", direction: UP, timeout: 30000 }
@@ -79,10 +79,10 @@ name: Szablon jak trening — wiersze serii, karty, start
       - tapOn: { id: "tpl-row-0-3-del" }
 - extendedWaitUntil: { visible: "Delete set\\?", timeout: 15000 }
 - tapOn: { text: "Delete", below: "Delete set\\?" }
-# W, 1, 2, 3F, 4D
+# W, 1, 2, 3F, 3D
 - extendedWaitUntil: { visible: "Set 3F, type: to failure.*", timeout: 15000 }
-- assertVisible: "Set 4D, type: drop set.*"
-- assertNotVisible: "Set 5D, type: .*"
+- assertVisible: "Set 3D, type: drop set.*"
+- assertNotVisible: "Set 4D, type: .*"
 - assertNotVisible: "Set 3, type: normal.*"
 
 # --- Opcjonalny zakres powtórzeń: dodanie, podpowiedź, usunięcie ---
@@ -177,7 +177,7 @@ name: Szablon jak trening — wiersze serii, karty, start
 - extendedWaitUntil: { visible: "Set W done — Bench Press \\(Dumbbell\\)", timeout: 30000 }
 - assertVisible: "Set W, type: warm-up.*"
 - assertVisible: "Set 1, type: normal.*"
-- scrollUntilVisible: { element: "Set 4D, type: drop set.*", direction: DOWN, timeout: 30000 }
+- scrollUntilVisible: { element: "Set 3D, type: drop set.*", direction: DOWN, timeout: 30000 }
 - assertVisible: "Set 3F, type: to failure.*"
 - assertVisible: "20"
 - assertVisible: "37"

@@ -282,14 +282,23 @@ export function activeOverlapError(start: number, end: number): string | null {
   const a = getState().active; if (!a || end <= a.startedAt) return null; void start;
   return t('Ten termin nachodzi na trening w toku (start {t}). Wybierz wcześniejszy.', { t: `${dateText(a.startedAt)} ${timeText(a.startedAt)}` });
 }
+/** Koniec treningu, przy którym czas bez pauz = `activeMs` (audyt 0.10, LOG-04): przejście po pauzach (już przesuniętych ze startem) i dodawanie czasu
+ * aktywnego; pauzy po nowym końcu odpadną przy przycięciu (cleanPauses), pauza przecięta końcem — też. Wcześniej koniec = start + czas + WSZYSTKIE pauzy,
+ * więc przy pauzie na końcu wpisane 20 min dawało 30. */
+export function activeEnd(start: number, activeMs: number, pauses: readonly (readonly [number, number])[]): number {
+  let at = start, left = activeMs;
+  for (const [f, t] of [...pauses].sort((x, y) => x[0] - y[0])) { if (t <= at) continue; const from = Math.max(f, at); if (from - at >= left) break; left -= from - at; at = t; }
+  return at + left;
+}
 /** Termin szkicu. Pola nieruszone zostają co do sekundy: sama zmiana czasu trwania nie przesuwa startu, sama zmiana daty/godziny
  * zachowuje dawny czas trwania (także > 24 h z importu). `changed` — termin inny niż przy otwarciu (albo nowy trening). */
 function resolveWhen(d: Draft, now: number): { start: number; end: number; changed: boolean } | { error: string } {
   const startSame = d.date.trim() === d.oDate && d.time.trim() === d.oTime, minSame = d.min.trim() === d.oMin;
   if (d.sourceId != null && startSame && minSame) return { start: d.origStart, end: d.origEnd, changed: false };
   let start = d.origStart; if (!startSame) { const r = parseStart(d.date, d.time, now); if (typeof r === 'string') return { error: r }; start = r; }
-  let dur = d.origEnd - d.origStart; if (!minSame) { const m = parseMin(d.min); if (typeof m === 'string') return { error: m }; dur = m * 60000 + pausedTotal(d.w, d.origEnd); } /* pauzy zostają — koniec = start + czas bez pauz + pauzy */
-  const end = start + dur; if (end > now) return { error: futureError(end) };
+  let end = start + (d.origEnd - d.origStart);
+  if (!minSame) { const m = parseMin(d.min); if (typeof m === 'string') return { error: m }; end = activeEnd(start, m * 60000, cleanPauses(d.w.pauses, d.origStart, d.origEnd).map(([f, t]) => [f - d.origStart + start, t - d.origStart + start])); }
+  if (end > now) return { error: futureError(end) };
   return { start, end, changed: true };
 }
 export type DraftCheck = { error: string } | { w: Workout; dropped: number; noWeight: number; empty: boolean; overlap: Workout | null };

@@ -1,5 +1,6 @@
 import { getState, save, finishedWorkouts } from '@/lib/store';
 import { t } from '@/lib/i18n';
+import { deloadLessText } from '@/lib/start';
 
 /*
  * „Co nowego” (decyzja właściciela 08.10.2026): przycisk „i” w lewym górnym rogu ekranu Trening rozwija sekcję; po aktualizacji na „i” jest
@@ -20,7 +21,7 @@ export const WHATS_NEW: WhatsNewEntry[] = [
     t('Skala wysiłku RPE albo RIR w Ustawieniach.'),
     t('Szablony w folderach i archiwum, „Pomiń dziś” bez zmiany szablonu, usuwanie przesunięciem w lewo.'),
     t('Generator szablonów i planu tygodnia na Twoje polecenie (cel, miejsce, liczba i długość sesji) oraz kilka planów z wyborem aktywnego.'),
-    t('Deload: podpowiedź w Kalendarzu i mniej serii przy starcie w tygodniu deload; przypomnienie rano w dniu treningu z planu.'),
+    t('Deload: podpowiedź w Kalendarzu, a w tygodniu deload przy starcie {less}; przypomnienie rano w dniu treningu z planu.', { less: deloadLessText() }), /* audyt 0.10 (MER-04) */
     t('Nowy ekran Trening: dzisiejszy trening, tydzień w liczbach i ostatni trening; przewodnik po funkcjach w Więcej.'),
   ] },
   { id: '2026-10-07', build: 1002, date: '2026-10-07', items: () => [

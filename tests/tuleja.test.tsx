@@ -130,10 +130,10 @@ async function gymWorkout(view: 'focus' | 'list' = 'focus') {
   await renderApp({ saved: JSON.parse(JSON.stringify(saved())) }); await flushAll(10);
 }
 describe('ekran treningu: karta „teraz”', () => {
-  test('ćwiczenie, numer serii, duże „80 × 8 kg”, talerze 25 + 5 na stronę; „Seria zrobiona” odhacza serię i startuje przerwę, karta przechodzi dalej', async () => {
+  test('ćwiczenie, numer serii, duże „80 kg × 8” (audyt 0.10, UI-10: jednostka przy ciężarze), talerze 25 + 5 na stronę; „Seria zrobiona” odhacza serię i startuje przerwę, karta przechodzi dalej', async () => {
     await gymWorkout();
     expect(screen.getByText('seria 1 z 2')).toBeTruthy();
-    expect(screen.getByLabelText('Teraz: 80 × 8 kg')).toBeTruthy();
+    expect(screen.getByLabelText('Teraz: 80 kg × 8')).toBeTruthy();
     expect(screen.getByLabelText('Na każdą stronę: 25 + 5 kg')).toBeTruthy();
     await tap(screen.getByText('Seria zrobiona')); await flushAll(10);
     expect(S().active!.exercises[0].sets[0].done).toBe(true); expect(timer.T.on).toBe(true);
@@ -152,7 +152,7 @@ describe('ekran treningu: karta „teraz”', () => {
     await gymWorkout();
     await act(async () => { const a = S().active!; a.exercises[0].sets[0].weight = 60; store.save(a); }); await flushAll(10);
     await act(async () => { fireEvent(screen.getAllByLabelText('kg')[0], 'endEditing'); }); await flushAll(5);
-    expect(screen.getByLabelText('Teraz: 60 × 8 kg')).toBeTruthy(); expect(screen.getByLabelText('Na każdą stronę: 20 kg')).toBeTruthy();
+    expect(screen.getByLabelText('Teraz: 60 kg × 8')).toBeTruthy(); /* audyt 0.10 (UI-10) */ expect(screen.getByLabelText('Na każdą stronę: 20 kg')).toBeTruthy();
   });
   test('widok listy (ustawienie): jak w poprzednich wersjach — bez karty i bez talerzy (decyzja właściciela 07.10.2026: jedyna różnica to karta)', async () => {
     await gymWorkout('list');
