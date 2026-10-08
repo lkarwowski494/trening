@@ -1,4 +1,4 @@
-import { finishedWorkouts, volume, exById, isWorking, workoutDurSec } from './store';
+import { finishedWorkouts, volume, workingSets, workoutDurSec } from './store';
 import { thisMonday, workoutPRs, type WorkoutPR } from './stats';
 import { locale } from './i18n';
 
@@ -6,7 +6,7 @@ import { locale } from './i18n';
  * Podsumowanie tygodnia i miesiąca (decyzja właściciela 08.10.2026, docs/21 4b „Raport tygodnia / miesiąca”): same liczby z historii
  * użytkownika — treningi, serie robocze, objętość, łączny czas, rekordy z okresu — i te same liczby z poprzedniego okresu obok.
  * Bez ocen i zaleceń. Tydzień od poniedziałku (jak statystyki i kalendarz), miesiąc kalendarzowy; granice z dat kalendarzowych (DST).
- * Definicje jak w reszcie aplikacji: serie robocze = isWorking (bez rozgrzewki), objętość = store.volume (jak historia i Postępy),
+ * Definicje jak w reszcie aplikacji: serie robocze = store.workingSets (bez rozgrzewki, drop razem z serią — D3, audyt 0.10), objętość = store.volume (jak historia i Postępy),
  * rekordy = workoutPRs (ten sam silnik co odznaki przy seriach i podsumowanie po treningu), trening liczy się w okresie swojego startu.
  */
 export type PeriodKind = 'week' | 'month';
@@ -26,7 +26,7 @@ function totals(start: number, end: number): PeriodTotals {
   const ws = inRange(start, end); let sets = 0, vol = 0, dur = 0;
   for (const w of ws) {
     vol += volume(w); dur += Math.round(workoutDurSec(w)); /* bez pauz (decyzja 08.10.2026) */
-    w.exercises.forEach(e => { if (exById(e.exerciseId)) sets += e.sets.filter(isWorking).length; });
+    sets += workingSets(w); /* D3 (audyt 0.10): jedna definicja serii roboczych */
   }
   return { workouts: ws.length, sets, volume: vol, durationSec: dur };
 }

@@ -18,10 +18,11 @@ describe('logika', () => {
   test('RPE: bez zmian; RIR: 10 − RPE w obie strony, z dziesiątymi, w granicach 0–10; puste zostaje puste', () => {
     scale('rpe'); expect([store.effortOut(8), store.effortIn(8), store.effortLabel()]).toEqual([8, 8, 'RPE']);
     scale('rir'); expect([store.effortOut(8), store.effortOut(10), store.effortOut(8.5), store.effortIn(2), store.effortIn(1.5), store.effortLabel()]).toEqual([2, 0, 1.5, 8, 8.5, 'RIR']);
-    expect([store.effortIn(12), store.effortIn(-3), store.effortIn(''), store.effortField(''), store.effortField(null), store.effortField(7)]).toEqual([0, 10, '', '', '', 3]);
+    /* MER-14 / LOG-15 (audyt 0.10): RIR > 9 zapisuje RPE 1 (skala RPE-RIR ma 1–10), nie 0 */
+    expect([store.effortIn(12), store.effortIn(-3), store.effortIn(''), store.effortField(''), store.effortField(null), store.effortField(7)]).toEqual([1, 10, '', '', '', 3]);
   });
   test('niezmiennik: RPE → RIR → RPE daje to samo dla całej skali co 0,5', () => {
-    scale('rir'); for (let r = 0; r <= 10; r += 0.5) expect(store.effortIn(store.effortOut(r))).toBe(r);
+    scale('rir'); for (let r = 1; r <= 10; r += 0.5) expect(store.effortIn(store.effortOut(r))).toBe(r); /* MER-14: skala 1–10 */
   });
   test('opis serii: RPE „@8”, RIR „RIR 2”', () => {
     const w = addWorkout(Date.now() - 864e5, [['Back Squat', [{ weight: 100, reps: 5, rpe: 8 }]]]); const e = ex('Back Squat'); const s = w.exercises[0].sets[0];

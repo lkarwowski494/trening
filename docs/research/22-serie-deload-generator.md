@@ -88,6 +88,11 @@ Niezależnie: De Marco 2024 (ankieta, A), RCT Coleman 2024 (PT) i Pancar 2026 (P
 - Wyższość FBW nad splitem / PPL / góra-dół (konwencja).
 - Stały deload co N tygodni jako optymalny; korzyść deloadu dla przyrostów; automatyczne wyzwalacze deloadu.
 - Konkretne reguły progresji (+2,5 kg, podwójna progresja) — konwencja.
+- **Pytanie otwarte (audyt 0.10, 08.10.2026, D3 / LOG-07):** jak liczyć **drop set** w tygodniowej liczbie serii na partię (kreska 10 serii). Źródła
+  z sekcji 1 i 6 liczą serie robocze bez rozróżnienia drop setów; brak przeczytanego źródła, które to rozstrzyga. W aplikacji (decyzja A z docs/25):
+  drop set liczy się **razem z serią, po której jest** — tak samo w kartach szablonów, Postępach, kafelkach, seriach na partię, mapie mięśni,
+  pytaniu deload, Kolejności, edycji i liście Historii oraz w Zdrowiu (`store.workCount`). To **uproszczenie** (napisane w Postępach przy kresce);
+  do zmiany, gdy znajdą się źródła (np. przegląd o drop setach i objętości — do wyszukania i przeczytania).
 
 ## 5. Funkcje już w aplikacji — weryfikacja
 - Kreska „10 serii na partię tygodniowo” (pakiet C): poza ACSM 2026 potwierdzają ją Schoenfeld 2017, Baz-Valle 2022, Pelland 2026 — **zostaje**.

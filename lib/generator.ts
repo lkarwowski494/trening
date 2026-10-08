@@ -1,7 +1,7 @@
 import { getState, save } from '@/lib/store';
 import { addPlan, deletePlan, planName as activePlanName, savedPlans } from '@/lib/plan';
 import { availability, capsOf, capLabel, equipById, implAt, LOCATION_PRESET_LABEL } from '@/lib/equipment';
-import { base, uid, LIB_BASE_NAMES, type Exercise, type Location, type Template, type TemplateItem } from '@/lib/seed';
+import { base, uid, LIB_BASE_NAMES, type Exercise, type Location, type Template, type TemplateItem, isLibBase } from '@/lib/seed';
 import { WEEKLY_SETS_MARK } from '@/lib/stats';
 import { t, tIn, lbl, locale, LANGS } from '@/lib/i18n';
 import { fmtNum } from '@/lib/units';
@@ -131,7 +131,7 @@ const locById = (id: string | null): Location | null => getState().settings.loca
 function pool(locationId: string | null): { base: Exercise[]; full: Exercise[] } {
   const loc = getState().settings.locations.find(l => l.id === locationId) ?? null; const caps = capsOf(loc);
   const full = getState().exercises.filter(e => !e.archived && e.lib && (!loc || availability(e, loc, caps).ok));
-  return { base: full.filter(e => LIB_BASE_NAMES.has(e.name)), full };
+  return { base: full.filter(isLibBase), full }; /* E2 (audyt 0.10, X-03): katalog bazowy po kluczu — zmiana nazwy nie zmienia wyboru */
 }
 
 const isLift = (e: Exercise) => e.metric === 'weight_reps' || e.metric === 'reps';

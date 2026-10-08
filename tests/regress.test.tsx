@@ -417,7 +417,9 @@ describe('runda 6', () => {
     await fresh();
     addWorkout(at(2026, 9, 1), [['Chin Up', [{ addKg: 10, reps: 5 }]]]);
     const w = addWorkout(at(2026, 9, 3), [['Chin Up', [{ addKg: 12.5, reps: 5 }]]]);
-    expect([...stats.prMap(w).values()][0]).toEqual(['e1RM']);
+    /* E1 (audyt 0.10): e1RM ćwiczeń z masą ciała tylko z masą ciała w Ustawieniach (Epley na masie + dociążeniu) — bez niej brak rekordu e1RM */
+    expect([...stats.prMap(w).values()][0]).toBeUndefined();
+    store.getState().settings.bodyMass = 80; store.save(); expect([...stats.prMap(w).values()][0]).toEqual(['e1RM']);
   });
   test('R6-05 przycisk Start na ekranie głównym jest osobnym elementem (nie w wierszu)', async () => {
     await renderApp({ saved: seedWithDemo() }); const start = screen.getByLabelText('Start: Upper A');
@@ -1602,7 +1604,8 @@ describe('runda 63', () => {
 describe('runda 65', () => {
   test('R65-01 ćwiczenie z masą ciała: objętość i e1RM z samego dociążenia (runda 75: masa ciała poza obliczeniami)', async () => {
     const stats = require('@/lib/stats'); await fresh(); const e = ex('Hanging Leg Raise'); const w = addWorkout(at(2026, 9, 1), [['Hanging Leg Raise', [{ addKg: 10, reps: 10 }]]]);
-    const v0 = store.volume(w), e0 = stats.recordsFor(e).bestE1rm; expect(v0).toBe(100); expect(e0).toBeCloseTo(10 * (1 + 10 / 30), 6); /* 10 powt. (≤ 10) — e1RM z dociążenia */
+    const v0 = store.volume(w), e0 = stats.recordsFor(e).bestE1rm; expect(v0).toBe(100); expect(e0).toBe(0); /* E1 (audyt 0.10): e1RM z samego dociążenia to nie szacunek Epleya — bez masy ciała i udziału ze źródeł brak e1RM; objętość z dociążenia zostaje */
+    store.getState().settings.bodyMass = 80; store.save(); expect(stats.recordsFor(e).bestE1rm).toBe(0); /* Hanging Leg Raise — brak źródła udziału masy ciała */
   });
   test('R65-02 wyłączona asysta gumą: „+ seria” i odhaczenie nie przenoszą ukrytej gumy ani jej asysty', async () => {
     await fresh(); const st = store.getState(); legacyBandKg(st.bands[0], 20); const pu = ex('Pull Up'); store.startEmpty(); store.addExerciseToActive(pu);

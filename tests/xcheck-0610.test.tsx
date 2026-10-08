@@ -38,7 +38,8 @@ test('NISKIE: liczba kopii automatycznych w tekstach pochodzi z AUTO_KEEP (nie w
   expect(t('Pliki → Na moim iPhonie → {app} → Backup, ostatnie {n}', { app: 'Trening', n: AUTO_KEEP })).toContain(`ostatnie ${AUTO_KEEP}`);
 });
 test('NISKIE: podpowiedź zakresu w szablonie mówi o jednostce z ustawień, nie zawsze „kg”', () => {
-  expect(src('app/template/[id].tsx')).not.toMatch(/więcej kg/); expect(src('app/template/[id].tsx')).toMatch(/więcej \{u\}”\.', \{ r: reps\(it\.repMin, it\.repMax\), u: wu\(\) \}/);
+  /* MER-13 (audyt 0.10): opis bez jednostki — tekst jak prawdziwa podpowiedź „↑ spróbuj …” (ciężar albo powtórzenie), góra zakresu z danych */
+  expect(src('app/template/[id].tsx')).not.toMatch(/więcej kg|więcej \{u\}/); expect(src('app/template/[id].tsx')).toMatch(/podpowiedź „↑ spróbuj …”.*\{ r: reps\(it\.repMin, it\.repMax\), n: it\.repMax \}/);
 });
 test('NISKIE: teksty LoadEditor bez odmiany zależnej od liczby („1 ustawień”, „3 ciężarów”)', () => {
   const s = src('components/LoadEditor.tsx'); expect(s).not.toMatch(/\{n\} ustawień|to \{c\} ciężarów/);
@@ -52,6 +53,6 @@ test('NISKIE: ramka wskazówki pierwszego startu w kolorze z motywu (nie stały 
 });
 test('ŚREDNIE (scenariusz 05b): liczba serii szablonu bez rozgrzewek wszędzie — ekran główny, trening wstecz, karta, Historia', () => {
   const tpl = { items: [{ id: 'i', exerciseId: 'x', sets: 3, rows: [{ id: 'a', kind: 'warmup', reps: '', weight: '', durationSec: '', distanceM: '' }, { id: 'b', kind: 'normal', reps: '', weight: '', durationSec: '', distanceM: '' }, { id: 'c', kind: 'drop', reps: '', weight: '', durationSec: '', distanceM: '' }] }] } as any;
-  expect(store.tplWorkSets(tpl)).toBe(2);
+  expect(store.tplWorkSets(tpl)).toBe(1); /* D3 (audyt 0.10, decyzja A): drop set liczy się razem z serią przed nim — rozgrzewka + seria + drop = 1 seria robocza */
   for (const f of ['app/(tabs)/index.tsx', 'app/history/add.tsx']) { expect(src(f)).toMatch(/tplWorkSets\(tpl\)/); expect(src(f)).not.toMatch(/a \+ i\.sets/); }
 });

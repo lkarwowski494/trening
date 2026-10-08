@@ -3,10 +3,10 @@ import { View } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Screen, Btn, Muted, Txt, Empty } from '@/components/ui';
 import { DragList, DragScroll } from '@/components/DragList';
-import { getState, useTick, exById, groupLabels, blockRanges, moveBlockOf, moveInGroup, occurrence, occurrences, type Grouped } from '@/lib/store';
+import { getState, useTick, exById, groupLabels, blockRanges, moveBlockOf, moveInGroup, occurrence, occurrences, workCount, workSetCount, tplRows, type Grouped } from '@/lib/store';
 import { useTheme, F } from '@/lib/theme';
 import { t, tp, exName } from '@/lib/i18n';
-import type { Base } from '@/lib/seed';
+import type { Base, TemplateItem, WSet } from '@/lib/seed';
 
 /*
  * T-010 (02.10.2026): kolejność ćwiczeń przeciąganiem — w szablonie i w trakcie treningu (target = 'active' | 'template:<id>').
@@ -26,7 +26,8 @@ export default function ReorderScreen() {
 
   const labels = groupLabels(list);
   const name = (r: Row) => { const ex = exById(r.exerciseId); const base = ex ? exName(ex) : t('Usunięte ćwiczenie'); const i = list.indexOf(r); return occurrences(list, r.exerciseId) > 1 ? `${base} (${occurrence(list, i) + 1})` : base; };
-  const sub = (r: Row) => { if ('sets' in r && Array.isArray(r.sets)) { const n = r.sets.length, d = r.sets.filter((x: { done: boolean }) => x.done).length; return `${n} ${tp(n, 'seria|serie|serii')}${d ? ` · ✓ ${d}` : ''}`; } const n = Number((r as { sets?: number }).sets) || 0; return `${n} ${tp(n, 'seria|serie|serii')}`; };
+  /* UI-13 / D3 (audyt 0.10): serie robocze jak w Treningu i edytorze — bez rozgrzewek, drop razem z serią (store.workCount) */
+  const sub = (r: Row) => { if ('sets' in r && Array.isArray(r.sets)) { const sets = r.sets as WSet[]; const n = workCount(sets.map(x => x.kind)), d = workSetCount(sets); return `${n} ${tp(n, 'seria|serie|serii')}${d ? ` · ✓ ${d}` : ''}`; } const n = workCount(tplRows(r as unknown as TemplateItem).map(x => x.kind)); return `${n} ${tp(n, 'seria|serie|serii')}`; };
   const blocks = blockRanges(list).map(([s, e]) => list.slice(s, e + 1));
   const card = (dragging: boolean) => ({ backgroundColor: dragging ? th.surface2 : th.surface, borderColor: dragging ? th.accent : th.line, borderWidth: 1, borderRadius: 10, marginBottom: 8, overflow: 'hidden' as const });
   const line = (r: Row, handle: React.ReactNode, small?: boolean) => <View style={{ flexDirection: 'row', alignItems: 'center', minHeight: 48, paddingRight: 12 }}>{handle}<View style={{ flex: 1 }}><Txt style={{ fontFamily: small ? F.regular : F.semibold }}>{name(r)}</Txt><Muted style={{ fontSize: 12 }}>{sub(r)}</Muted></View></View>;

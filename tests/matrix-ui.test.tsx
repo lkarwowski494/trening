@@ -136,7 +136,8 @@ describe('/more/bands', () => {
   test('opis gum; pusta lista → „Brak gum…”, „+ Guma” dodaje gumę', async () => {
     const saved = await prepared(() => { store.getState().bands = []; });
     await renderApp({ saved }); await go('/more/bands'); await flushAll(10);
-    expect(screen.getByText('Kolor i poziom trudności: 1 = cienka, 7 = bardzo gruba. Gumy nie mają kilogramów — przy serii zapisujesz, którą gumą pomagałeś. Rekordem są powtórzenia bez gumy, a postęp z gumą to zejście na niższy poziom.')).toBeTruthy();
+    /* MER-15 (audyt 0.10): zdanie prawdziwe dla gumy jako asysty i jako oporu */
+    expect(screen.getByText('Kolor i poziom trudności: 1 = cienka, 7 = bardzo gruba. Gumy nie mają kilogramów — przy serii zapisujesz, której gumy użyłeś. Guma jako asysta (np. podciąganie): rekordem są powtórzenia bez gumy, a postęp to zejście na niższy poziom. Guma jako opór: rekordy liczą serie z gumą.')).toBeTruthy();
     expect(screen.getByText('Brak gum. Dodaj pierwszą, by zapisywać asystę przy podciąganiu.')).toBeTruthy();
     await tap(screen.getByText('+ Guma')); await flushAll(5);
     expect(store.getState().bands).toHaveLength(1); expect(screen.queryByText('Brak gum. Dodaj pierwszą, by zapisywać asystę przy podciąganiu.')).toBeNull();
@@ -270,7 +271,9 @@ describe('/exercise/[id]', () => {
     expect(screen.getByText('Partie główne (1 seria)')).toBeTruthy(); expect(screen.getByText('Partie pomocnicze (0,5 serii)')).toBeTruthy();
     await tap(byHint('plecy', 'Partie główne (1 seria)')); expect(e().muscles).toContain('plecy');
     await tap(byHint('plecy', 'Partie pomocnicze (0,5 serii)')); expect(e().secondaryMuscles).toContain('plecy'); expect(e().muscles).not.toContain('plecy');
-    expect(screen.getByText('Masa ciała: „±” to dociążenie (plus) albo asysta, np. maszyny (minus); guma to osobne pole z poziomem. Masa ciała nie wchodzi do obliczeń: rekord to suma powtórzeń bez asysty, a e1RM i objętość liczą się tylko z dociążenia. Ćwiczenia na czas mają w treningu stoper — po upływie celu seria odhacza się sama. Przerwa ustawiona w pozycji szablonu ma pierwszeństwo; puste pole przerwy w szablonie oznacza przerwę z tego ćwiczenia.')).toBeTruthy();
+    /* E1 (audyt 0.10): opis mówi prawdę o e1RM ćwiczeń z masą ciała (masa ciała z Ustawień, udział ze źródeł); E4: dopisek przy partiach */
+    expect(screen.getByText('Masa ciała: „±” to dociążenie (plus) albo asysta, np. maszyny (minus); guma to osobne pole z poziomem. Rekord to suma powtórzeń bez asysty, a objętość liczy się tylko z dociążenia. e1RM w ćwiczeniach z masą ciała liczy się tylko z masą ciała wpisaną w Ustawieniach i tylko tam, gdzie wiadomo, jaką jej część podnosisz: podciąganie (cała — uproszczenie), pompki (ok. 64% — badania z platformą siłową). Ćwiczenia na czas mają w treningu stoper — po upływie celu seria odhacza się sama. Przerwa ustawiona w pozycji szablonu ma pierwszeństwo; puste pole przerwy w szablonie oznacza przerwę z tego ćwiczenia.')).toBeTruthy();
+    expect(screen.getByText('Przypisanie partii mięśniowych — uproszczenie, nie wynik badań. Od niego zależą serie na partię, mapa mięśni, generator i propozycje w kalendarzu.')).toBeTruthy();
   });
 
   test('obciążenie partii z katalogu: legenda i „stabilizacja” w opisie VoiceOver', async () => {
@@ -543,11 +546,14 @@ describe('/more/progress (+ Chart)', () => {
     await tap(chip); await flushAll(5); expect(screen.getByPlaceholderText('Szukaj ćwiczenia…')).toBeTruthy();
   });
 
-  test('masa ciała z dociążeniem i gumą: e1RM (dociążenie), Max dociążenie, Max powtórzeń bez asysty / z asystą, Najwięcej powtórzeń na treningu', async () => {
+  /* E1 (audyt 0.10): „e1RM (dociążenie)” zniknęło — bez masy ciała w Ustawieniach wskazówka, z masą ciała e1RM (Epley) na masie + dociążeniu */
+  test('masa ciała z dociążeniem i gumą: wskazówka e1RM, Max dociążenie, Max powtórzeń bez asysty / z asystą, Najwięcej powtórzeń na treningu; z masą ciała — e1RM (Epley)', async () => {
     const saved = await prepared(() => { const b = store.getState().bands[0]; addWorkout(at(3), [['Pull Up', [{ addKg: 10, reps: 5 }, { reps: 8 }, { reps: 12, bandId: b.id }]]]); });
     await renderApp({ saved }); await go(`/more/progress?ex=${ex('Pull Up').id}`); await flushAll(10);
-    for (const l of ['e1RM (dociążenie)', 'Max dociążenie', 'Max powtórzeń bez asysty', 'Max powtórzeń z asystą', 'Najwięcej powtórzeń na treningu']) expect(screen.getAllByText(l).length).toBeGreaterThan(0); /* e1RM także jako chip wykresu */
-    expect(screen.getByText('Max dociążenie').parent).toBeTruthy();
+    for (const l of ['e1RM pojawi się po wpisaniu masy ciała w Ustawieniach.', 'Max dociążenie', 'Max powtórzeń bez asysty', 'Max powtórzeń z asystą', 'Najwięcej powtórzeń na treningu']) expect(screen.getAllByText(l).length).toBeGreaterThan(0);
+    expect(screen.getByText('Max dociążenie').parent).toBeTruthy(); expect(screen.queryByText('e1RM (Epley)')).toBeNull();
+    await act(async () => { store.getState().settings.bodyMass = 80; store.save(); }); await flushAll(5);
+    expect(screen.getByText('e1RM (Epley)')).toBeTruthy(); expect(screen.getAllByText('e1RM').length).toBeGreaterThan(0); /* chip wykresu */
   });
 
   test('jednostronne: „e1RM (Epley, na stronę)”; na czas (1 sesja): „max czas”, „Najdłużej łącznie na treningu”, „Jedna sesja: … Wykres pojawi się po drugiej.”', async () => {
@@ -623,7 +629,8 @@ describe('/template/[id], /reorder', () => {
     await renderApp({ saved }); await go(`/template/${tplB}`); await flushAll(20);
     expect(screen.getByText('Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✂ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.')).toBeTruthy();
     await openCard(0); await flushAll(5);
-    expect(screen.getByText('Zakres powtórzeń: 8–12 — po osiągnięciu górnej granicy podpowiedź „↑ więcej kg”.')).toBeTruthy();
+    /* MER-13 (audyt 0.10): opis jak prawdziwa podpowiedź („↑ spróbuj …”) */
+    expect(screen.getByText('Zakres powtórzeń: 8–12 — gdy ostatnio wszystkie serie robocze miały co najmniej 12 powt., przy ćwiczeniu pojawi się podpowiedź „↑ spróbuj …”: większy ciężar albo powtórzenie więcej (poza tygodniem deload).')).toBeTruthy();
     expect(screen.getByText('Zamienniki')).toBeTruthy(); expect(screen.getByText(`📍 Siłownia: ${exName(ex('Machine Chest Press'))}`)).toBeTruthy();
     await tap(screen.getByText('Trening w toku'));
     expect(lastAlert()).toMatchObject({ title: 'Trening w toku', msg: 'Najpierw zakończ albo anuluj bieżący trening.' });

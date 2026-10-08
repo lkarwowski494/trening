@@ -3,7 +3,7 @@ import { FlatList, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Screen, H1, Item, Muted, Empty, Btn, Chip } from '@/components/ui';
-import { workoutDurSec, useHistTick, finishedWorkouts, fmtDate, fmtTime, fmtDur, volume, deleteWorkout } from '@/lib/store';
+import { workoutDurSec, useHistTick, finishedWorkouts, fmtDate, fmtTime, fmtDur, volume, deleteWorkout, workingSets } from '@/lib/store';
 import { SwipeRow } from '@/components/SwipeRow';
 import { HistoryCalendar } from '@/components/HistoryCalendar';
 import { DayPanel } from '@/components/DayPanel';
@@ -40,7 +40,7 @@ export default function HistoryScreen() {
         {!hasPlan() ? <Muted style={{ fontSize: 13, marginBottom: 8 }}>{t('Ustaw plan tygodnia, by widzieć zaplanowane treningi i przesuwać je w kalendarzu.')}</Muted> : null}
         {day ? <View testID="day-panel-wrap" onLayout={e => { const first = panelY.current == null; panelY.current = e.nativeEvent.layout.y; if (first) toPanel(); }}><DayPanel day={day} /></View> : null}
         {day ? <View style={{ flexDirection: 'row', marginBottom: 6 }}><Chip label={t('Pokaż wszystkie')} on={false} onPress={() => setDay(null)} /></View> : null}
-      </>} renderItem={({ item: w }) => <SwipeRow label={t('Usuń sesję: {name}', { name: `${w.templateName || t('Trening')}, ${fmtDate(w.startedAt)} ${fmtTime(w.startedAt)}` })} title={t('Usunąć tę sesję z historii?')} message={`${w.templateName || t('Trening')}, ${fmtDate(w.startedAt)}`} onDelete={() => deleteWorkout(w.id)}>{a11y => <Item a11y={a11y} title={w.templateName || t('Trening')} sub={(() => { const n = w.exercises.reduce((a, e) => a + e.sets.filter(s => s.kind !== 'warmup').length, 0); const v = volume(w); return [`${fmtDate(w.startedAt)} ${fmtTime(w.startedAt)}`, fmtDur(workoutDurSec(w)) /* bez pauz (08.10.2026) */, `${n} ${tp(n, 'seria|serie|serii')}`, v ? fmtVol(v) : ''].filter(Boolean).join(' · '); })()} onPress={() => router.push(`/history/${w.id}`)} />}</SwipeRow>} ListEmptyComponent={all.length ? null : <Empty>{t('Jeszcze pusto — pierwszy trening czeka.')}</Empty>} />
+      </>} renderItem={({ item: w }) => <SwipeRow label={t('Usuń sesję: {name}', { name: `${w.templateName || t('Trening')}, ${fmtDate(w.startedAt)} ${fmtTime(w.startedAt)}` })} title={t('Usunąć tę sesję z historii?')} message={`${w.templateName || t('Trening')}, ${fmtDate(w.startedAt)}`} onDelete={() => deleteWorkout(w.id)}>{a11y => <Item a11y={a11y} title={w.templateName || t('Trening')} sub={(() => { const n = workingSets(w) /* X-15, D3 (audyt 0.10): jak kafelki, Postępy i Zdrowie */; const v = volume(w); return [`${fmtDate(w.startedAt)} ${fmtTime(w.startedAt)}`, fmtDur(workoutDurSec(w)) /* bez pauz (08.10.2026) */, `${n} ${tp(n, 'seria|serie|serii')}`, v ? fmtVol(v) : ''].filter(Boolean).join(' · '); })()} onPress={() => router.push(`/history/${w.id}`)} />}</SwipeRow>} ListEmptyComponent={all.length ? null : <Empty>{t('Jeszcze pusto — pierwszy trening czeka.')}</Empty>} />
     </Screen></SafeAreaView>
   );
 }

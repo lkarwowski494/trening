@@ -1,7 +1,7 @@
 import { Platform } from 'react-native';
 import type { Workout } from './seed';
 import { t } from './i18n';
-import { getState, save, exById, volume, isWorking, pausedTotal } from './store';
+import { getState, save, exById, volume, workingSets, pausedTotal } from './store';
 
 /*
  * Zapis treningu do Apple Health (0.6, HealthKit write). Biblioteka @kingstinct/react-native-healthkit 8.x
@@ -55,7 +55,7 @@ export async function saveWorkout(w: Workout): Promise<'saved' | 'skipped' | 'un
      * o długość pauz (w aplikacji start bez zmian). Prawdziwe zdarzenia pauzy (Workout.pauses) — w wydaniu Health po aktualizacji biblioteki. */
     const res = await h.saveWorkoutSample(workoutActivityType(w), [], new Date(healthStart(w)), {
       end: new Date(w.finishedAt),
-      metadata: { HKMetadataKeySyncIdentifier: w.id, HKMetadataKeySyncVersion: 1 /* T4b: HealthKit sam odrzuca drugi zapis tego treningu (np. po przywróceniu kopii sprzed zapisu) */, 'Workout': w.templateName || t('Trening'), 'VolumeKg': Math.round(volume(w)), 'Sets': w.exercises.reduce((a, e) => a + e.sets.filter(isWorking).length, 0) } // runda 7: jak w historii (bez rozgrzewek),
+      metadata: { HKMetadataKeySyncIdentifier: w.id, HKMetadataKeySyncVersion: 1 /* T4b: HealthKit sam odrzuca drugi zapis tego treningu (np. po przywróceniu kopii sprzed zapisu) */, 'Workout': w.templateName || t('Trening'), 'VolumeKg': Math.round(volume(w)), 'Sets': workingSets(w) } // runda 7: jak w historii (bez rozgrzewek); X-15 (audyt 0.10): ta sama funkcja co lista Historii i kafelki,
     });
     if (res === false) return 'failed'; // biblioteka zwraca false przy odmowie zapisu — nie oznaczamy jako zapisane
     // Gdy HealthKit nie zwróci UUID, zapisujemy znacznik 'saved' (nie identyfikator) — tylko po to, by nie dublować zapisu.

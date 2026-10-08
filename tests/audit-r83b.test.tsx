@@ -37,8 +37,10 @@ describe('MEDIUM 1 — obca wartość po zmianie sprzętu: widok tak, obliczenia
     const r0 = stats.recordsFor(x); expect(r0.maxLoad).toBe(0); expect(r0.bestE1rm).toBe(0);
     addWorkout(Date.now() - 2 * 3600e3, [['Wiosło Q18', [{ addKg: 10, reps: 8 }]]]); /* pierwszy e1RM w historii nie jest odznaką (runda 72) */
     const w3 = addWorkout(Date.now() - 3600e3, [['Wiosło Q18', [{ addKg: 20, reps: 8 }]]]);
-    const r1 = stats.recordsFor(x); expect(r1.maxLoad).toBe(20); expect(r1.bestE1rm).toBeCloseTo(stats.e1rm(20, 8), 6);
-    expect(stats.prMap(w3).get(w3.exercises[0].sets[0].id) ?? []).toContain('e1RM'); /* wcześniej poprzeczka 53,8 z 42,5 kg maszyny */
+    /* audyt 0.10 (E1): ćwiczenie własne z masą ciała nie ma e1RM (brak źródła udziału masy ciała — także z masą ciała w Ustawieniach); max dociążenie zostaje */
+    const r1 = stats.recordsFor(x); expect(r1.maxLoad).toBe(20); expect(r1.bestE1rm).toBe(0);
+    store.getState().settings.bodyMass = 80; store.save(); expect(stats.recordsFor(x).bestE1rm).toBe(0);
+    expect(stats.prMap(w3).get(w3.exercises[0].sets[0].id) ?? []).not.toContain('e1RM'); /* wcześniej poprzeczka 53,8 z 42,5 kg maszyny; od E1 — bez e1RM */
     /* objętość — ta sama reguła co rekordy (jedna definicja objętości, A4): 42,5 kg maszyny to nie dociążenie */
     expect(store.volume(store.getState().workouts.find(w => w.exercises[0].sets[0].weight === 42.5)!)).toBe(0);
   });

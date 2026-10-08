@@ -20,7 +20,9 @@ const { repsOf, isWorking, setScore, setLoad, effectiveLoad, setVolume, isBW } =
 const foreignLoad = (e: Exercise, s: WSet) => hasWeight(e.metric ?? 'weight_reps') && !store.loadOf(e, s).own;
 const unknownAssist = (e: Exercise, s: WSet) => (isBW(e) && !!s.bandId && e.bandAssistable && !(Number(s.addKg) < 0)) || foreignLoad(e, s); /* przegląd 06.10: guma oporowa to nie asysta */
 const e1rmOf = (s: WSet, load: number) => s.kind === 'drop' || repsOf(s) > stats.E1RM_MAX_REPS ? 0 : stats.e1rm(load, repsOf(s));
-const recE1 = (e: Exercise, s: WSet) => unknownAssist(e, s) ? 0 : e1rmOf(s, effectiveLoad(e, s)); /* runda 75: bez masy ciała — bez `at` */
+/* audyt 0.10 (E1, zamierzona zmiana dopisana do wzorca): ćwiczenia z masą ciała — Epley na (udział × masa ciała z Ustawień + ±kg), bez masy ciała / udziału — 0 */
+const lifted = (e: Exercise, s: WSet) => { if (!isBW(e)) return effectiveLoad(e, s); const bm = store.getState().settings.bodyMass; const sh = e.lib && e.libKey ? stats.BW_SHARE[e.libKey] : undefined; return bm && sh ? Math.max(0, sh * bm + setLoad(e, s)) : 0; };
+const recE1 = (e: Exercise, s: WSet) => unknownAssist(e, s) ? 0 : e1rmOf(s, lifted(e, s)); /* runda 75: bez masy ciała z poranka — bez `at` */
 const recVol = (e: Exercise, s: WSet) => unknownAssist(e, s) ? 0 : setVolume(e, s);
 const freeOf = (e: Exercise, s: WSet) => { const m = e.metric ?? 'weight_reps'; return !(s.bandId && e.bandAssistable) && !foreignLoad(e, s) && (!hasWeight(m) || (isBW(e) && setLoad(e, s) >= 0)); };
 const performed = (m: MetricType, s: WSet) => hasReps(m) ? repsOf(s) > 0 : hasDistance(m) ? Number(s.distanceM) > 0 || Number(s.durationSec) > 0 : hasTime(m) ? Number(s.durationSec) > 0 : true;
@@ -61,10 +63,10 @@ const set = fc.record({ weight: val, reps: fc.constantFrom<number | ''>('', 0, 1
   kind: fc.constantFrom('normal', 'normal', 'warmup', 'drop', 'failure'), done: fc.constantFrom(true, true, true, false) });
 const block = fc.record({ n: fc.nat(NAMES.length - 1), sets: fc.array(set, { minLength: 0, maxLength: 4 }) });
 const workout = fc.record({ day: fc.nat(40), blocks: fc.array(block, { minLength: 1, maxLength: 4 }), bw: fc.constantFrom(0, 0, 75, 82.5) });
-const history = fc.record({ ws: fc.array(workout, { minLength: 0, maxLength: 14 }), lb: fc.boolean(), morning: fc.constantFrom<number | ''>('', 70, 90) });
+const history = fc.record({ ws: fc.array(workout, { minLength: 0, maxLength: 14 }), lb: fc.boolean(), morning: fc.constantFrom<number | ''>('', 70, 90), bodyMass: fc.constantFrom<number | undefined>(undefined, 80) /* E1 */ });
 
-async function load(h: { ws: { day: number; blocks: { n: number; sets: any[] }[]; bw: number }[]; lb: boolean; morning: number | '' }) {
-  await fresh(); const st = store.getState(); const base = new Date(2026, 0, 1, 18).getTime();
+async function load(h: { ws: { day: number; blocks: { n: number; sets: any[] }[]; bw: number }[]; lb: boolean; morning: number | ''; bodyMass?: number }) {
+  await fresh(); const st = store.getState(); const base = new Date(2026, 0, 1, 18).getTime(); if (h.bodyMass) st.settings.bodyMass = h.bodyMass;
   const band = st.bands[0]?.id ?? '';
   if (h.morning !== '') st.mornings.push({ id: 'm1', ownerId: 'local', createdAt: base, updatedAt: base, date: '2026-01-15', weight: h.morning, bb: '', sleepScore: '', sleepH: '' } as never);
   h.ws.forEach((w, i) => { const at = base + w.day * 86400e3; /* ten sam dzień dwa razy = remis dat */

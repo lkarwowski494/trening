@@ -64,6 +64,20 @@ Decyzja właściciela 04.10.2026: rozbudowa **własnego** katalogu (źródła ze
 - **Otwarte (do właściciela):** ~~liczba linek przy „Wiosłowanie na linkach (siedząc)” i „RDL (hantle/linki)”~~ i ~~Hip Adduction bez zgrubnej partii~~ — rozstrzygnięte w kroku b (niżej); Sumo Squat (hantel) vs Sumo Deadlift (kettlebell) — oba zostają; grupy Single Leg RDL → plecy (jak RDL).
 - **Braki słownika sprzętu** (stan przed krokiem b; uzupełnione niżej poza asystowanym podciąganiem): maszyny z płytami/stosem do wiosłowania siedząc, asystowanego podciągania, brzucha, wznosów bokiem, bicepsa/tricepsa, kickbacku, hip thrustu; belt squat, pendulum, reverse hyper; sanki, liny, schody, orbitrek, ski erg; piłka fitness, slidery.
 
+## Otwarte: źródła przypisania partii (audyt 0.10, 08.10.2026 — MER-10, docs/25 E4)
+
+Przypisanie partii (główna / pomocnicza) i `muscleLoad` powstały jako szkic agentów z niezależnym recenzentem (wyżej) — **bez źródeł merytorycznych
+przy ćwiczeniach**. Napędzają kreskę 10 serii, mapę mięśni, braki w generatorze i propozycje w kalendarzu (regeneracja partii). Przykład sprzeczny
+z badaniem: Back Squat ma dwugłowe jako partię pomocniczą (+0,5 serii za serię przysiadu), a Kubo, Ikebukuro, Yata 2019 (Eur J Appl Physiol,
+https://doi.org/10.1007/s00421-019-04181-y, PMID 31230110, streszczenie przeczytane 08.10.2026): „The volumes of knee extensor muscles significantly
+increased … whereas that of rectus femoris and hamstring muscles did not change in either group. The volumes of adductor and gluteus maximus muscles
+significantly increased”.
+
+- **Teraz (decyzja właściciela 08.10.2026, wariant B):** ekran ćwiczenia pokazuje „Przypisanie partii mięśniowych — uproszczenie, nie wynik badań”.
+  Dopisek znika dla ćwiczenia, które dostanie wpis w `lib/seed.ts` `MUSCLE_SOURCES` (klucz katalogu → źródła), o ile jego partie są nadal takie jak w katalogu.
+- **Do zrobienia (wariant A, osobny research w następnej partii):** źródła (EMG, przyrost objętości mięśni — szczeble 2–3, kilka zespołów) dla 125
+  podstawowych ćwiczeń, zaczynając od najczęstszych; zmiana danych katalogu tylko ze źródłami (najpierw Back Squat: dwugłowe → przywodziciele?).
+
 ## Krok b (04.10.2026, wieczór) — 248 → 270
 
 Decyzje właściciela (odpowiedzi na 3 pytania): „Przecież istnieje RDL i wiosłowanie jedną ręką jak i dwoma. To dwa inne ćwiczenia.”; partia „przywodziciele” — tak; dopisać brakujący sprzęt i ćwiczenia — tak.

@@ -1,7 +1,7 @@
 import { t, tp } from './i18n';
 import { fmtW, fmtVol, fmtNum, wu, KG_PER_LB, volOut } from './units';
-import { getState, exById, volume, finishedWorkouts, setSummary, isBW, setLoad, loadOf, effectiveLoad, setVolume, blockMult, setScore, isWorking, repsOf, memoHist, memoHistBy, workoutsWith, volOf, fmtSec, fmtDist } from './store';
-import { hasReps, hasWeight, hasTime, hasDistance, type Exercise, type Impl, type MetricType, type WSet, type Workout } from './seed';
+import { getState, exById, volume, finishedWorkouts, setSummary, isBW, setLoad, loadOf, effectiveLoad, setVolume, blockMult, setScore, isWorking, workSetCount, repsOf, memoHist, memoHistBy, workoutsWith, volOf, fmtSec, fmtDist } from './store';
+import { hasReps, hasWeight, hasTime, hasDistance, catalogKey, own, type Exercise, type Impl, type MetricType, type WSet, type Workout } from './seed';
 
 /*
  * Statystyki i rekordy (T-030, 0.3). Wszystko liczone z historii — bez osobnych tabel (jedno źródło prawdy: workouts).
@@ -9,7 +9,9 @@ import { hasReps, hasWeight, hasTime, hasDistance, type Exercise, type Impl, typ
  *
  * Audyt 0.8.1: objętość serii ma jedną definicję (store.setVolume) — ta sama w historii, Postępach, rekordach i PR;
  * PR-y liczy jeden silnik (prMap), który podnosi poprzeczkę po każdej serii, więc odznaka przy serii, historia
- * i podsumowanie po treningu zawsze się zgadzają. Runda 75 (Q-001): masa ciała nie wchodzi do obliczeń — w ćwiczeniach z masą ciała liczy się tylko ±kg.
+ * i podsumowanie po treningu zawsze się zgadzają. Runda 75 (Q-001): masa ciała nie wchodzi do objętości ani rekordu sumy — w ćwiczeniach z masą ciała liczy się
+ * tylko ±kg. Audyt 0.10 (E1, decyzja właściciela 08.10.2026, wariant B — zmienia Q-001 w części e1RM): e1RM z masą ciała tylko na podnoszonym ciężarze
+ * (liftedLoad: udział masy ciała ze źródeł + ±kg) i tylko przy masie ciała podanej w Ustawieniach; bez niej — brak e1RM i rekordu e1RM.
  */
 
 /** e1RM (Epley). Runda 26: zaokrąglenie do 1e-6 — remis (np. 82,5×6 i 90×3 = 99) nie jest „rekordem” przez błąd float. */
@@ -24,7 +26,33 @@ const e1rmOf = (s: WSet, load: number) => e1rmR(s, load, repsOf(s));
  * sprzed zmiany na masę ciała) — obciążenie dla obecnego sprzętu nieznane: bez rekordów, „max ±” i rekordu powtórzeń bez asysty. Widok (shownLoad) bez zmian. */
 const foreignLoad = (ex: Exercise, s: WSet) => hasWeight(ex.metric ?? 'weight_reps') && !loadOf(ex, s).own;
 const unknownAssist = (ex: Exercise, s: WSet) => (isBW(ex) && !!s.bandId && ex.bandAssistable && !(setLoad(ex, s) < 0)) || foreignLoad(ex, s); /* Q-018/83b: ciężar do obliczeń z jednego źródła (store.setLoad → loadOf) */
-const recE1 = (ex: Exercise, s: WSet) => unknownAssist(ex, s) ? 0 : e1rmOf(s, effectiveLoad(ex, s));
+/**
+ * E1 (audyt 0.10: MER-03, LOG-02; decyzja właściciela 08.10.2026, wariant B). Wzór Epleya mnoży CAŁY podnoszony ciężar przez (1 + r/30), więc e1RM
+ * z samego dociążenia nie jest szacunkiem 1RM i odwraca kolejność serii (+30 × 3 „biło” +20 × 8). Ćwiczenia z masą ciała: podnoszony ciężar =
+ * udział masy ciała × masa ciała z Ustawień + ±kg (asysta odejmuje). Udział tylko ze źródłami (docs/research/masa-ciala-e1rm-2026-10.md):
+ *  - podciąganie nachwytem (Pull Up): cała masa ciała — Sánchez-Moreno i in. 2017 (IJSPP 12(10), 1378–1384): „PU maximal strength (1RM) was calculated
+ *    as the sum of the maximum weight lifted and the subject's BM”; Talaber i in. 2022 (BMC SSMR, PMC9208152): „The 1RM weight documented was the
+ *    officer's body weight plus the additional weight lifted”. Podchwyt i chwyt neutralny — ten sam ruch w zwisie (uproszczenie: cała masa ciała,
+ *    choć dłonie i część przedramion nie są unoszone);
+ *  - pompki (Push Up): ok. 64% masy ciała na rękach — van den Tillaar i Ball 2020 (J Hum Kinet, PMC7386139): 62,6–65,1%, „similar to previous studies
+ *    (64.0 and 63.2%)”, Suprak i in. 2011: 69% (siły specjalne); Gouvali i Boudolos 2005: 66,4% (streszczenie). 0,64 — uproszczenie w tym przedziale;
+ *    dociążenie liczone w całości jak w przykładzie van den Tillaara (1RM = 62,6% masy ciała + dodatkowy ciężar).
+ * Bez źródła (dipy, inne pompki, ćwiczenia własne) — brak e1RM, także z masą ciała (pytanie otwarte). Liczby wyłącznie tutaj.
+ */
+export const BW_SHARE: Readonly<Record<string, number>> = { 'Pull Up': 1, 'Chin Up': 1, 'Neutral Grip Pull Up': 1, 'Push Up': 0.64 };
+/** Udział masy ciała w podnoszonym ciężarze (po kluczu katalogu — zmiana nazwy go nie zmienia); undefined = brak źródła. */
+export const bwShare = (ex: Exercise): number | undefined => isBW(ex) ? own(BW_SHARE, catalogKey(ex) ?? '') : undefined;
+/** Ciężar do e1RM: zwykłe ćwiczenia — obciążenie efektywne; z masą ciała — udział × masa ciała + ±kg (0 = nie liczymy: brak masy ciała albo udziału). */
+export function liftedLoad(ex: Exercise, s: WSet): number {
+  if (!isBW(ex)) return effectiveLoad(ex, s);
+  const bm = getState().settings.bodyMass; const sh = bwShare(ex); if (!bm || !sh) return 0;
+  return Math.max(0, sh * bm + setLoad(ex, s));
+}
+const recE1 = (ex: Exercise, s: WSet) => unknownAssist(ex, s) ? 0 : e1rmOf(s, liftedLoad(ex, s));
+/** E1: e1RM ćwiczenia z masą ciała pokazany jako „126,7 kg (masa ciała + 46,7)” — różnica = dociążenie, z którym wyszłoby 1 powtórzenie. */
+export function bwE1Diff(ex: Exercise, v: number): number | null { const bm = getState().settings.bodyMass; const sh = bwShare(ex); return isBW(ex) && bm && sh ? v - sh * bm : null; }
+const signedW = (kg: number) => `${kg < 0 ? '−' : '+'} ${fmtW(Math.abs(kg), false)}`;
+export function fmtE1(ex: Exercise, v: number): string { const d = bwE1Diff(ex, v); return d == null ? fmtW(v) : t('{v} (masa ciała {d})', { v: fmtW(v), d: signedW(d) }); }
 export const e1rm = (load: number, reps: number) => (load > 0 && reps > 0) ? Math.round((reps === 1 ? load : load * (1 + reps / 30)) * 1e6) / 1e6 : 0;
 
 /** Runda 73 (decyzja 01.10): REKORD ćwiczenia = suma na treningu (objętość / powtórzenia / czas / dystans wg metryki) + e1RM.
@@ -96,7 +124,7 @@ function summarize(ex: Exercise, w: Workout, sets: WSet[], impls: (Impl | undefi
     if (performed(m, s, reps)) { if (sc > bestPS) { bestP = s; bestPS = sc; } if (W && !unknownAssist(ex, s)) { maxLoad = Math.max(maxLoad, setLoad(ex, s)); hasLoad = true; } } /* Q-008: guma bez wpisanych kg — obciążenie nieznane, nie „±0” */
     const load = W && R ? effectiveLoad(ex, s) : 0; const v = W && R ? volOf(ex, load, reps, impls[i]) : 0; volume += v;
     total += totalOf(tk, ex, s, v, reps);
-    if (!unknownAssist(ex, s)) { bestSetVolume = Math.max(bestSetVolume, v); if (W && R) bestE1rm = Math.max(bestE1rm, e1rmR(s, load, reps)); }
+    if (!unknownAssist(ex, s)) { bestSetVolume = Math.max(bestSetVolume, v); if (W && R) bestE1rm = Math.max(bestE1rm, e1rmR(s, isBW(ex) ? liftedLoad(ex, s) : load, reps)); } /* E1: z masą ciała — podnoszony ciężar */
     if (R && s.kind !== 'drop') maxReps = Math.max(maxReps, reps); /* Q-005: drop set (na zmęczeniu, lżej) to nie „max powtórzeń w serii” — jak przy e1RM */
     if (T) maxDuration = Math.max(maxDuration, Number(s.durationSec) || 0);
     if (D) maxDistance = Math.max(maxDistance, Number(s.distanceM) || 0);
@@ -179,8 +207,13 @@ export function workoutPRs(w: Workout): WorkoutPR[] {
   const total = (ex: Exercise) => w.exercises.filter(e => e.exerciseId === ex.id).reduce((a, e) => a + e.sets.reduce((b, s) => b + setTotal(ex, s, e.impl), 0), 0);
   return out.map(x => ({ ...x, kinds: x.kinds.filter(k => last.get(x.exercise.id + '|' + k) === x) })).filter(x => x.kinds.length)
     .map(x => ({ ...x, details: [...x.kinds].sort((a, b) => (a === 'e1RM' ? 1 : 0) - (b === 'e1RM' ? 1 : 0)) /* T13: najpierw suma (główny rekord), potem e1RM */
-      .map(k => k === 'e1RM' ? t('e1RM {v} (seria {s})', { v: fmtW(recE1(x.exercise, x.set)), s: isBW(x.exercise) ? `${fmtW(effectiveLoad(x.exercise, x.set))} × ${repsOf(x.set)}` /* T13: „seria 6” wyglądało jak numer serii */ : setSummary(x.exercise, x.set) }) : t('{k}: {v}', { k: t(k), v: fmtTotal(x.exercise, total(x.exercise)) })) }));
+      .map(k => k === 'e1RM' ? (isBW(x.exercise) ? t('e1RM {v} (masa ciała {d}; seria {s})', { v: fmtW(recE1(x.exercise, x.set)), d: signedW(bwE1Diff(x.exercise, recE1(x.exercise, x.set)) ?? 0), s: `${fmtW(setLoad(x.exercise, x.set))} × ${repsOf(x.set)}` /* T13: „seria 6” wyglądało jak numer serii; E1: „masa ciała + X” */ }) : t('e1RM {v} (seria {s})', { v: fmtW(recE1(x.exercise, x.set)), s: setSummary(x.exercise, x.set) })) : t('{k}: {v}', { k: t(k), v: fmtTotal(x.exercise, total(x.exercise)) })) }));
 }
+
+/** E3 (audyt 0.10: X-08, LOG-06): liczba rekordów treningu — JEDNA funkcja dla okna po treningu i karty „Ostatni trening” (decyzja T13: liczba
+ * rekordów, nie serii — suma treningu i e1RM tej samej serii to dwa rekordy). */
+export const prCountOf = (prs: readonly WorkoutPR[]) => prs.reduce((a, p) => a + p.details.length, 0);
+export const prCount = (w: Workout) => prCountOf(workoutPRs(w));
 
 /** Serie wykresu dostępne dla metryki ćwiczenia. */
 export type ChartKey = 'total' | 'maxLoad' | 'bestE1rm' | 'volume' | 'maxReps' | 'maxDuration' | 'maxDistance';
@@ -195,7 +228,7 @@ export function chartKeysFor(ex: Exercise): ChartKeyDef[] {
   if (tk === 'łączny dystans') out.push({ key: 'total', label: t('łączny dystans'), fmt: v => fmtDist(v), intOnly: true, minStep: 10 });
   const vol: ChartKeyDef = { key: 'volume', label: t('objętość'), fmt: fmtVol, scale: ws.scale, minStep: 1, intOnly: true /* T3: etykiety całkowite — krok 2,5 dawał powtórzone etykiety */ }; // runda 7: jak w historii
   if (tk === 'objętość treningu') out.push(vol);
-  if (hasWeight(m) && hasReps(m)) out.push({ key: 'bestE1rm', label: isBW(ex) ? t('e1RM (dociążenie)') : 'e1RM', fmt: kg, ...ws });
+  if (hasWeight(m) && hasReps(m) && (!isBW(ex) || (bwShare(ex) && getState().settings.bodyMass))) out.push({ key: 'bestE1rm', label: 'e1RM', fmt: kg, ...ws }); /* E1: masa ciała — tylko z masą ciała i udziałem ze źródeł */
   if (hasWeight(m)) out.push({ key: 'maxLoad', label: isBW(ex) ? t('max ±') : t('max ciężar'), fmt: kg, ...ws });
   if (hasWeight(m) && hasReps(m) && tk !== 'objętość treningu') out.push({ key: 'volume', label: t('objętość'), fmt: fmtVol, scale: ws.scale, minStep: 1, intOnly: true /* T3: etykiety całkowite — krok 2,5 dawał powtórzone etykiety */ }); // runda 7: jak w historii
   if (hasReps(m)) out.push({ key: 'maxReps', label: t('max pow.'), fmt: v => fmtNum(Math.round(v)), intOnly: true }); // runda 15: oś bez „2.5999999999999996”
@@ -216,7 +249,7 @@ export function weeklyTotals(weeks = 8, now = new Date()): { weekStart: number; 
     if (w.startedAt < out[0].weekStart || w.startedAt >= end) continue;
     let idx = weeks - 1; while (idx > 0 && w.startedAt < out[idx].weekStart) idx--;
     out[idx].workouts++; out[idx].volume += volume(w); // suma objętości treningów = to samo co w historii
-    w.exercises.forEach(e => { if (!exById(e.exerciseId)) return; out[idx].sets += e.sets.filter(isWorking).length; });
+    w.exercises.forEach(e => { if (!exById(e.exerciseId)) return; out[idx].sets += workSetCount(e.sets); }); /* D3: drop razem z serią */
   }
   return out;
 }
@@ -235,7 +268,7 @@ export function weeklySetsByMuscle(weekStart: number): Record<string, number> {
 export function setsByMuscle(start: number, end: number): Record<string, number> {
   const out: Record<string, number> = {};
   for (const w of finishedWorkouts()) { if (w.startedAt < start || w.startedAt >= end) continue;
-    w.exercises.forEach(e => { const ex = exById(e.exerciseId); if (!ex) return; const n = e.sets.filter(isWorking).length; if (!n) return;
+    w.exercises.forEach(e => { const ex = exById(e.exerciseId); if (!ex) return; const n = workSetCount(e.sets); if (!n) return; /* D3: drop razem z serią (uproszczenie) */
       (ex.muscles ?? []).forEach(mu => { out[mu] = (out[mu] ?? 0) + n; }); (ex.secondaryMuscles ?? []).forEach(mu => { out[mu] = (out[mu] ?? 0) + n * 0.5; }); }); }
   return out;
 }

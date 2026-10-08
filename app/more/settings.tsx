@@ -3,13 +3,14 @@ import { ScrollView, Alert, View, Linking } from 'react-native';
 import { Screen, Field, NumInput, Btn, Muted, SwitchRow, Segmented, SectionTitle, Item } from '@/components/ui';
 import { useRouter } from 'expo-router';
 import { getState, useTick, save, resetAll, applyPrefs, useForegroundTick } from '@/lib/store';
-import { DEFAULT_REST, type ThemeSetting, type WorkoutView } from '@/lib/seed';
+import { DEFAULT_REST, type ThemeSetting, type WorkoutView, BODY_MASS_MAX } from '@/lib/seed';
 import * as timer from '@/lib/timer';
 import { PLAN_REMINDER_HOUR, reminderPermission, type ReminderPermission } from '@/lib/planReminder';
 import { safetyBackup, safetyRecoveryNote, AUTO_KEEP } from '@/lib/backup';
 import * as health from '@/lib/health';
 import { t, LANG_NAME, type Lang, appName } from '@/lib/i18n';
-import { type Unit } from '@/lib/units';
+import { type Unit, wu, wField, wInKeep } from '@/lib/units';
+import { BW_SHARE } from '@/lib/stats';
 
 
 export default function SettingsScreen() {
@@ -38,6 +39,9 @@ export default function SettingsScreen() {
       </> : null}
       <Item title={t('Miejsca treningu')} sub={s.locations.length ? t('{n}, główne: {m}', { n: s.locations.length, m: mainLoc?.name ?? '—' }) : t('sprzęt w domu, na siłowni, w hotelu…')} onPress={() => router.push('/more/locations')} /* P-003 E1 */ />
       <SwitchRow label={t('Podpowiedź progresji')} detail={t('↑ przy ćwiczeniu, gdy ostatnio wszystkie serie były na górze zakresu powtórzeń')} value={s.progressHint} onChange={v => { s.progressHint = v; save(); }} />
+      {/* audyt 0.10 (E1, decyzja właściciela 08.10.2026, wariant B): opcjonalna masa ciała — zapis w kg, tylko w telefonie (kopia zapasowa ją obejmuje) */}
+      <Field label={t('Masa ciała ({u})', { u: wu() })}><NumInput decimal weightTol value={wField(s.bodyMass)} stored={s.bodyMass ?? ''} placeholder="—" onNum={(v, keep) => { const kg = wInKeep(v, keep); if (kg === '' || !(kg > 0)) delete s.bodyMass; else s.bodyMass = Math.min(BODY_MASS_MAX, kg); save(); }} /></Field>
+      <Muted style={{ fontSize: 13, marginTop: -4, marginBottom: 8 }}>{t('Opcjonalnie, tylko w telefonie. Z nią aplikacja liczy e1RM w podciąganiu (cała masa ciała — uproszczenie) i w pompkach (ok. {p}% masy ciała — badania z platformą siłową). Zmiana przelicza e1RM wszystkich treningów; puste pole — bez e1RM w tych ćwiczeniach.', { p: Math.round(BW_SHARE['Push Up'] * 100) })}</Muted>
 
       <SectionTitle>{t('Dane i kopie')}</SectionTitle>
       <SwitchRow label={t('Zapisuj zakończone treningi do Apple Health')} value={s.healthSync} onChange={async v => { if (!v) { s.healthSync = false; save(); return; } const ok = await health.ensureAuthorization(); if (ok) { s.healthSync = true; save(); } else Alert.alert(t('Apple Health niedostępne'), t('Brak zgody na zapis treningów. Włącz ją w aplikacji Zdrowie: profil → Aplikacje → {app}.', { app: appName() })); }} />

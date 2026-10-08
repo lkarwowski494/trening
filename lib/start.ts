@@ -1,12 +1,12 @@
 import { Alert } from 'react-native';
-import { startFromTemplate, isDeloadWeek, tplRows } from '@/lib/store';
+import { startFromTemplate, isDeloadWeek, tplRows, workCount } from '@/lib/store';
 import { deloadKeep } from '@/lib/deload-sets';
 import { t } from '@/lib/i18n';
 import type { Template } from '@/lib/seed';
 
 /** Serie robocze szablonu (bez rozgrzewek i drop setów): pełne i po cięciu deload. */
 export function deloadCounts(tpl: Template) {
-  const per = tpl.items.map(it => tplRows(it).filter(r => r.kind !== 'warmup' && r.kind !== 'drop').length);
+  const per = tpl.items.map(it => workCount(tplRows(it).map(r => r.kind))); /* D3 (audyt 0.10): ta sama definicja co karta szablonu i Postępy */
   return { full: per.reduce((a, n) => a + n, 0), less: per.reduce((a, n) => a + deloadKeep(n), 0) };
 }
 
