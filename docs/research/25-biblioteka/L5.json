@@ -1,0 +1,2209 @@
+[
+ {
+  "name": "Bench Press (hantle)",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L5-S4",
+   "L5-S28",
+   "24:S7"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Bazowe; partie wg docs/research/24 (analogia do sztangi). ExRx: cel piersiowy mostkowy, synergiści przedni akton i triceps."
+ },
+ {
+  "name": "Bench Press (sztanga)",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L5-S1",
+   "L5-S26",
+   "24:S7",
+   "24:S8",
+   "24:S6"
+  ],
+  "confidence": "mocne",
+  "note": "Bazowe; zgodne z ExRx (L5-S1) i docs/24 2.4."
+ },
+ {
+  "name": "Close Grip Bench Press",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L5-S13",
+   "L5-S27",
+   "24:S6"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Bazowe; ExRx klasyfikuje jako ćwiczenie tricepsa (cel: triceps), Lehman 2005: węższy chwyt zwiększa aktywność tricepsa. W docs/24 „jedno źródło” — teraz dwa niezależne (S6 + ExRx/Lehman)."
+ },
+ {
+  "name": "Decline Bench Press",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L5-S3",
+   "24:S6"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Bazowe; ExRx: cel piersiowy mostkowy; przedni akton też synergista (dziś tylko w muscleLoad 0,25 — spójne z docs/24, bez zmiany)."
+ },
+ {
+  "name": "Diamond Push Up",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L5-S15",
+   "24:S36",
+   "L5-S31"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Bazowe; ExRx (close grip push-up): cel triceps; Cogley 2005: wąskie ustawienie dłoni — większa aktywność tricepsa i piersiowego."
+ },
+ {
+  "name": "Incline Bench Press (hantle)",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L5-S2",
+   "24:S10",
+   "24:S6",
+   "L5-S4"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Bazowe; ExRx: cel piersiowy obojczykowy, synergiści przedni akton, triceps."
+ },
+ {
+  "name": "Incline Bench Press (sztanga)",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L5-S2",
+   "24:S10",
+   "24:S6"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Bazowe; zgodne z ExRx i docs/24."
+ },
+ {
+  "name": "Incline Push Up",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L5-S7",
+   "24:S9"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Bazowe; ExRx: cel piersiowy mostkowy, synergiści przedni akton, triceps (przedni akton — tylko w muscleLoad, jak w docs/24)."
+ },
+ {
+  "name": "Machine Chest Press",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L5-S9",
+   "24:S6"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Bazowe; ExRx lever chest press: synergista przedni akton — wspiera opcjonalną zmianę z docs/24 (barki pomocnicze), decyzja tam."
+ },
+ {
+  "name": "Push Up",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L5-S5",
+   "24:S9",
+   "L5-S29",
+   "L5-S31"
+  ],
+  "confidence": "mocne",
+  "note": "Bazowe; ExRx: stabilizatory prosty brzucha i skośne — zgodne z abs 0,25."
+ },
+ {
+  "name": "Wyciskanie na linkach (stojąc)",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L5-S11",
+   "L5-S32"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Bazowe; ExRx cable standing chest press: cel piersiowy, synergiści akton i triceps; Santana 2007: w wersji stojącej ograniczeniem jest tułów (core)."
+ },
+ {
+  "name": "Return Push from Stance",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Medicine Ball Chest Pass",
+  "fixes": {
+   "group": "klatka"
+  },
+  "sources": [
+   "L5-S44"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Ćwiczenie z partnerem (bieg + odbiór + odrzut piłki) — wariant rzutu sprzed klatki; nie da się go zapisać inaczej niż Chest Pass (powtórzenia). Grupa „inne” niespójna z innymi rzutami („klatka”)."
+ },
+ {
+  "name": "Alternating Kettlebell Floor Press",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Floor Press (hantle)",
+  "fixes": {},
+  "sources": [
+   "L5-S4",
+   "L5-S28",
+   "L5-S44"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Para kettli, naprzemiennie — ten sam ruch co Floor Press (hantle); przy scaleniu dopisać kettlebell jako przyrząd ([db|kb], jak Goblet Squat). Pola sprzętowe i tryb (×2) poprawne."
+ },
+ {
+  "name": "Band Bench Press",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L5-S1",
+   "L5-S26",
+   "24:S7",
+   "24:S8",
+   "24:S6",
+   "L5-S44"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Opór gumy — miara powtórzenia (spójnie z Band Pull Apart). Partie jak wyciskanie."
+ },
+ {
+  "name": "Barbell Guillotine Bench Press",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L5-S1",
+   "L5-S26",
+   "24:S7",
+   "24:S8",
+   "24:S6",
+   "L5-S44"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Gryf opuszczany do szyi; brak przeczytanego źródła o ryzyku — zostaje niszowe z uwagą o asekuracji (pytanie otwarte Q6). Partie: analogia do wyciskania."
+ },
+ {
+  "name": "Bench Press with Chains",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L5-S1",
+   "L5-S26",
+   "24:S7",
+   "24:S8",
+   "24:S6"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Wyciskanie z łańcuchami — partie jak wyciskanie. Metaanaliza Soria-Gila 2015 o oporze zmiennym jest WYCOFANA — nie użyta."
+ },
+ {
+  "name": "Chain Press",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L5-S4",
+   "L5-S44"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Łańcuchy na uchwytach linek, ruch jak wyciskanie hantli; ciężar łańcucha odciążanego o podłogę — przybliżony (loadSource none poprawne)."
+ },
+ {
+  "name": "Chest Push from 3 Point Stance",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Medicine Ball Chest Pass",
+  "fixes": {},
+  "sources": [
+   "L5-S44"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Rzut piłką lekarską sprzed klatki z dwóch kroków — wariant Chest Pass (ta sama miara)."
+ },
+ {
+  "name": "Clock Push-Up",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "metric": "reps",
+   "bandAssistable": false
+  },
+  "sources": [
+   "L5-S5",
+   "L5-S44"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Wg opisu źródła ruch plyometryczny („until you are air borne”) → miara jak Plyo Push-Up (powtórzenia); asysta gumą niespójna z Push Up (false)."
+ },
+ {
+  "name": "Decline Bench Press (hantle)",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L5-S3",
+   "24:S6"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx DB decline bench press: cel piersiowy mostkowy. Spójne z Decline Bench Press. Przegląd właściciela 04.10."
+ },
+ {
+  "name": "Decline Push Up",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L5-S6"
+  ],
+  "confidence": "jedno źródło",
+  "note": "ExRx: cel piersiowy obojczykowy, synergiści akton przedni, triceps — zgodne (klatka / barki + triceps)."
+ },
+ {
+  "name": "Drop Push",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L5-S5",
+   "L5-S44"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Ćwiczenie plyometryczne (zeskok z podwyższeń); partie — analogia do pompki."
+ },
+ {
+  "name": "Dumbbell Bench Press with Neutral Grip",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Bench Press (hantle)",
+  "fixes": {},
+  "sources": [
+   "L5-S4",
+   "L5-S28"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Różni się tylko ustawieniem dłoni; sprzęt, miara, tryb i partie identyczne. Chwyt można zapisać w notatce."
+ },
+ {
+  "name": "Extended Range One-Arm Kettlebell Floor Press",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "One-Arm Kettlebell Floor Press",
+  "fixes": {},
+  "sources": [
+   "L5-S44"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Ten sam ruch z dłuższym zakresem (przywiedzenie ponad linię środkową)."
+ },
+ {
+  "name": "Floor Press (hantle)",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "secondaryMuscles": [
+    "triceps",
+    "barki"
+   ]
+  },
+  "sources": [
+   "L5-S1",
+   "L5-S4",
+   "24:S7"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Spójność z wyciskaniem i pozostałymi floor press (triceps + barki); przedni akton synergistą w ExRx; muscleLoad front_delt 0,5 już jest."
+ },
+ {
+  "name": "Floor Press (sztanga)",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "secondaryMuscles": [
+    "triceps",
+    "barki"
+   ]
+  },
+  "sources": [
+   "L5-S1",
+   "L5-S26",
+   "24:S7",
+   "24:S8",
+   "24:S6"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Jak wyżej — dodać „barki” do pomocniczych (Floor Press with Chains i One Arm Floor Press już je mają)."
+ },
+ {
+  "name": "Floor Press with Chains",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L5-S1",
+   "L5-S26",
+   "24:S7",
+   "24:S8",
+   "24:S6"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Wariant z łańcuchami."
+ },
+ {
+  "name": "Hammer Grip Incline DB Bench Press",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Incline Bench Press (hantle)",
+  "fixes": {},
+  "sources": [
+   "L5-S2",
+   "24:S10",
+   "24:S6",
+   "L5-S4"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Tylko chwyt neutralny — jak wyżej."
+ },
+ {
+  "name": "Heavy Bag Thrust",
+  "verdict": "USUNĄĆ",
+  "scope": "USUNĄĆ",
+  "fixes": {},
+  "sources": [
+   "L5-S44"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Wymaga wiszącego worka bokserskiego (brak w słowniku; „sandbag” to inny sprzęt — dzisiejsze mapowanie błędne); dynamiczne pchnięcie worka bez mierzalnego obciążenia — ćwiczenie kondycyjne, nie siłowe."
+ },
+ {
+  "name": "Incline Cable Chest Press",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L5-S11"
+  ],
+  "confidence": "jedno źródło",
+  "note": "ExRx cable incline chest press: cel piersiowy obojczykowy; wymagania (dwie dolne linki + ławka skośna) poprawne."
+ },
+ {
+  "name": "Incline Push-Up Depth Jump",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L5-S5",
+   "L5-S44"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Plyometria; partie — analogia do pompki."
+ },
+ {
+  "name": "Incline Push-Up Reverse Grip",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L5-S7",
+   "L5-S27"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Lehman 2005: chwyt podchwytem zwiększa aktywność bicepsa i części obojczykowej piersiowego — biceps 0,25 w muscleLoad uzasadniony."
+ },
+ {
+  "name": "Incline Push-Up Wide",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Incline Push Up",
+  "fixes": {},
+  "sources": [
+   "L5-S7",
+   "L5-S31"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Różni się tylko szerokością rąk; ta sama miara i sprzęt."
+ },
+ {
+  "name": "Isometric Wipers",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "bandAssistable": false
+  },
+  "sources": [
+   "L5-S5",
+   "L5-S44"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Przenoszenie ciężaru w pozycji pompki; asysta gumą niespójna z Push Up."
+ },
+ {
+  "name": "Kneeling Chest Push (single response)",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Medicine Ball Chest Pass",
+  "fixes": {},
+  "sources": [
+   "L5-S44"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Rzut piłką z klęku — wariant Chest Pass."
+ },
+ {
+  "name": "Leverage Decline Chest Press",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L5-S9"
+  ],
+  "confidence": "jedno źródło",
+  "note": "ExRx lever decline chest press (płytowa): cel piersiowy mostkowy."
+ },
+ {
+  "name": "Leverage Incline Chest Press",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L5-S9",
+   "L5-S2"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Maszyna płytowa do wyciskania skośnego — częsta w siłowniach; partie jak wyciskanie skośne (ExRx)."
+ },
+ {
+  "name": "Medicine Ball Chest Pass",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L5-S44"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Ćwiczenie mocy (rzut); zostaje jako jedyny wpis rodziny rzutów sprzed klatki (cel scaleń). Partie — uproszczenie przez analogię do pompki."
+ },
+ {
+  "name": "One Arm Dumbbell Bench Press",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L5-S4",
+   "L5-S28",
+   "L5-S34"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Jednorącz — tryb „na stronę” poprawny; skośne 0,25: Saeterbakken 2012 (jednorącz ↑ aktywność skośnych — w wyciskaniu nad głowę; analogia)."
+ },
+ {
+  "name": "One Arm Floor Press",
+  "verdict": "USUNĄĆ",
+  "scope": "USUNĄĆ",
+  "fixes": {},
+  "sources": [
+   "L5-S44"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Wg opisu źródła: sztanga podawana przez partnera do jednej ręki, chwyt neutralny — niestabilny gryf nad tułowiem bez stojaków; wymaganie „rack” przeczy notatce. Ruch pokrywają One-Arm Kettlebell Floor Press i One Arm Dumbbell Bench Press."
+ },
+ {
+  "name": "One-Arm Kettlebell Floor Press",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L5-S4",
+   "L5-S28",
+   "L5-S44"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Kettle jednorącz na podłodze; pola poprawne."
+ },
+ {
+  "name": "Plyo Kettlebell Push-Ups",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L5-S5",
+   "L5-S44"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Kettlebell jako podpórka, obciążenie = masa ciała — loadSource bodyweight poprawne."
+ },
+ {
+  "name": "Plyo Push-Up",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L5-S5"
+  ],
+  "confidence": "jedno źródło",
+  "note": "ExRx wymienia „plyometric variations” jako utrudnienie pompki; miara powtórzenia."
+ },
+ {
+  "name": "Push Up to Side Plank",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "bandAssistable": false
+  },
+  "sources": [
+   "L5-S5",
+   "L5-S44"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Kombinacja pompki i podporu bokiem; asysta gumą niespójna z Push Up."
+ },
+ {
+  "name": "Push-Up Wide",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "bandAssistable": false
+  },
+  "sources": [
+   "L5-S5",
+   "L5-S31"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Cogley 2005: szerokie ustawienie — mniejsza aktywność piersiowego i tricepsa niż wąskie; partie bez zmian. Asysta gumą niespójna z Push Up."
+ },
+ {
+  "name": "Push-Ups With Feet On A Stability Ball",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L5-S6"
+  ],
+  "confidence": "jedno źródło",
+  "note": "ExRx decline push-up on ball: cel piersiowy obojczykowy."
+ },
+ {
+  "name": "Reverse Band Bench Press",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L5-S1",
+   "L5-S26",
+   "24:S7",
+   "24:S8",
+   "24:S6"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Gumy zawieszone u góry klatki (rack) — wymaganie rack (nie stojaki ławki) poprawne."
+ },
+ {
+  "name": "Seated Cable Chest Press",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L5-S11"
+  ],
+  "confidence": "jedno źródło",
+  "note": "ExRx cable chest press (siedząc): cel piersiowy mostkowy, synergiści akton, triceps."
+ },
+ {
+  "name": "Single Arm Cable Chest Press",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L5-S11",
+   "L5-S32"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Santana 2007: wersja jednorącz stojąc — mięśnie tułowia (skośne, najszerszy) aktywne jak przedni akton i piersiowy; skośne 0,25 uzasadnione. Przegląd właściciela 04.10."
+ },
+ {
+  "name": "Single-Arm Push-Up",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "bandAssistable": false
+  },
+  "sources": [
+   "L5-S5"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Zaawansowany wariant; asysta gumą niespójna z Push Up."
+ },
+ {
+  "name": "Smith Machine Bench Press",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "secondaryMuscles": [
+    "triceps",
+    "barki"
+   ]
+  },
+  "sources": [
+   "L5-S10",
+   "L5-S28"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx Smith bench: synergista przedni akton; Saeterbakken 2011: aktywność piersiowego i aktonu bez różnic Smith/sztanga → pomocnicze jak Bench Press (sztanga)."
+ },
+ {
+  "name": "Smith Machine Decline Press",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L5-S3",
+   "L5-S28"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Spójne z Decline Bench Press."
+ },
+ {
+  "name": "Smith Machine Incline Press",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L5-S2",
+   "L5-S28"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Spójne z wyciskaniem skośnym."
+ },
+ {
+  "name": "Squeeze Press (hantle)",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L5-S4",
+   "L5-S28"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Hantle ściskane do siebie; partie — analogia do wyciskania hantli (przeczytanego źródła na sam wariant brak). Przegląd właściciela 04.10."
+ },
+ {
+  "name": "Suspended Push-Up",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L5-S12",
+   "L5-S30"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx suspended chest press; Calatayud 2014: pompki na taśmach — wysoka aktywność tricepsa i mięśni tułowia (abs 0,5 uzasadnione)."
+ },
+ {
+  "name": "Wide-Grip Barbell Bench Press",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L5-S1",
+   "L5-S26",
+   "24:S7",
+   "24:S8",
+   "24:S6",
+   "L5-S27"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Lehman 2005: szerszy chwyt — więcej części mostkowej piersiowego, mniej tricepsa; partie bez zmian."
+ },
+ {
+  "name": "Wide-Grip Decline Barbell Bench Press",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Decline Bench Press",
+  "fixes": {},
+  "sources": [
+   "L5-S3",
+   "24:S6",
+   "L5-S27"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Rzadki wariant różniący się tylko szerokością chwytu."
+ },
+ {
+  "name": "Board Press",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "group": "klatka",
+   "muscles": [
+    "klatka"
+   ],
+   "secondaryMuscles": [
+    "triceps",
+    "barki"
+   ],
+   "muscleLoad": {
+    "chest": 1,
+    "triceps": 0.5,
+    "front_delt": 0.5
+   }
+  },
+  "sources": [
+   "L5-S1",
+   "L5-S26",
+   "24:S7",
+   "24:S8",
+   "24:S6"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Wyciskanie w niepełnym zakresie (do desek). Triceps jako główna — tylko praktyka trójboistów (szczebel 5, nieprzeczytana); bez źródła reguła spójności → jak wyciskanie. Pytanie otwarte Q5."
+ },
+ {
+  "name": "Close-Grip Dumbbell Press",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L5-S13",
+   "L5-S27",
+   "24:S6"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Jeden hantel trzymany oburącz — implements 1, tryb łącznie poprawne; partie jak wąskie wyciskanie (analogia)."
+ },
+ {
+  "name": "Close-Grip EZ-Bar Press",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "note": "EZ bar, inner grip, bar over a bench (rack or bench uprights, same rule as Close Grip Bench Press)."
+  },
+  "sources": [
+   "L5-S13",
+   "L5-S27",
+   "24:S6"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Wymagania (rack|stojaki) zgodne z konwencją „sztanga nad ławką”, ale notatka mówi „rack optional” — poprawić notatkę, nie wymagania."
+ },
+ {
+  "name": "Close-Grip Push-Up off of a Dumbbell",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Push-Ups - Close Triceps Position",
+  "fixes": {},
+  "sources": [
+   "L5-S15"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Hantel tylko jako podpórka — to pompka wąska."
+ },
+ {
+  "name": "Decline Close-Grip Bench To Skull Crusher",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "recommended": [
+    "rack.safeties"
+   ]
+  },
+  "sources": [
+   "L5-S13",
+   "L5-S27",
+   "24:S6"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Kombinacja wąskiego wyciskania i francuskiego; zalecane zabezpieczenia jak przy innych wyciskaniach sztangą nad ławką."
+ },
+ {
+  "name": "Incline Push-Up Close-Grip",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "bandAssistable": false
+  },
+  "sources": [
+   "L5-S15"
+  ],
+  "confidence": "jedno źródło",
+  "note": "ExRx close-grip incline push-up (na drążku): cel triceps — zgodne. Asysta gumą niespójna z Push Up."
+ },
+ {
+  "name": "JM Press",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L5-S14"
+  ],
+  "confidence": "jedno źródło",
+  "note": "ExRx JM Press: cel triceps; synergiści akton przedni, piersiowy. Przegląd właściciela 04.10."
+ },
+ {
+  "name": "Pin Press",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "group": "klatka",
+   "muscles": [
+    "klatka"
+   ],
+   "secondaryMuscles": [
+    "triceps",
+    "barki"
+   ],
+   "muscleLoad": {
+    "chest": 1,
+    "triceps": 0.5,
+    "front_delt": 0.5
+   }
+  },
+  "sources": [
+   "L5-S1",
+   "L5-S26",
+   "24:S7",
+   "24:S8",
+   "24:S6"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Wyciskanie z bolców (bez fazy ekscentrycznej) — jak Board Press: bez źródła reguła spójności z wyciskaniem. Q5."
+ },
+ {
+  "name": "Push-Ups - Close Triceps Position",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "name": "Close-Grip Push-Up",
+   "bandAssistable": false
+  },
+  "sources": [
+   "L5-S15",
+   "L5-S31"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Ustalona nazwa (ExRx): „Close Grip Push-up”, cel triceps. Różni się od Diamond Push Up (dłonie złączone) — zostaje osobno, ale niszowe."
+ },
+ {
+  "name": "Reverse Triceps Bench Press",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "name": "Reverse Grip Bench Press"
+  },
+  "sources": [
+   "L5-S27",
+   "L5-S13",
+   "L5-S27",
+   "24:S6"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Lehman 2005: chwyt podchwytem ↑ biceps i część obojczykowa piersiowego, węższy chwyt ↑ triceps — triceps główną przy wąskim chwycie zostawić; nazwa z „Triceps” nie jest ustalona."
+ },
+ {
+  "name": "Smith Machine Close-Grip Bench Press",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L5-S13"
+  ],
+  "confidence": "jedno źródło",
+  "note": "ExRx Smith close grip bench: cel triceps."
+ },
+ {
+  "name": "Arnold Press",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L5-S17",
+   "L5-S33",
+   "24:S6",
+   "24:S15"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Bazowe; ExRx Arnold press: cel przedni akton, synergiści boczny akton, triceps."
+ },
+ {
+  "name": "Chest Dip",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L5-S8",
+   "L5-S37"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Bazowe; ExRx: cel piersiowy mostkowy, synergiści akton przedni, triceps; McKenzie 2022: pompki na poręczach angażują piersiowy i triceps. Pewność wyższa niż w docs/24 (tam brak źródła)."
+ },
+ {
+  "name": "Machine Shoulder Press",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L5-S17",
+   "L5-S35"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Bazowe; Coratella 2022: maszyna — mniejsze pobudzenie niż sztanga, te same mięśnie."
+ },
+ {
+  "name": "Overhead Press (hantle)",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L5-S17",
+   "L5-S33",
+   "24:S6",
+   "24:S15"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Bazowe; ExRx DB shoulder press + Saeterbakken 2013."
+ },
+ {
+  "name": "Overhead Press (sztanga)",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L5-S17",
+   "L5-S33",
+   "24:S6",
+   "24:S15",
+   "L5-S35"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Bazowe; ExRx military press: cel przedni akton; synergiści piersiowy obojczykowy, triceps, boczny akton."
+ },
+ {
+  "name": "Push Press",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L5-S19",
+   "L5-S17"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Bazowe; ExRx push press: praca dynamiczna — wyprost bioder, kolan, zgięcie/odwiedzenie barku, wyprost łokcia — wspiera czworogłowe jako pomocnicze (w docs/24 bez źródła)."
+ },
+ {
+  "name": "Seated Shoulder Press (hantle)",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L5-S17",
+   "L5-S33",
+   "24:S6",
+   "24:S15"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Bazowe; Saeterbakken 2013: siedząc mniejsza aktywność aktonów niż stojąc, te same mięśnie."
+ },
+ {
+  "name": "Triceps Dips (ławka)",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L5-S16",
+   "L5-S37"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Bazowe; ExRx bench dip: cel triceps; McKenzie 2022: „The bench dip predominantly targets the triceps brachii”."
+ },
+ {
+  "name": "Wyciskanie nad głowę (linki)",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L5-S17"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Bazowe; ExRx cable shoulder press: cel przedni akton, synergiści boczny akton, triceps."
+ },
+ {
+  "name": "Anti-Gravity Press",
+  "verdict": "USUNĄĆ",
+  "scope": "USUNĄĆ",
+  "fixes": {},
+  "sources": [
+   "L5-S44"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Nazwa występuje tylko w free-exercise-db (brak w ExRx); ruch (wypychanie gryfu przed głowę w leżeniu przodem na ławce skośnej) jest ćwiczeniem dolnego czworobocznego, nie wyciskaniem pionowym — wzorzec v_push i partie niepotwierdzone."
+ },
+ {
+  "name": "Circus Bell",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "requires": [
+    [
+     "circus_bell"
+    ]
+   ]
+  },
+  "sources": [
+   "L5-S44"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Konkurencja strongman (duży hantel z grubym uchwytem). Dziś wymaga „db”, więc pojawia się w domu — sprzeczne z zasadą, że strongman jest poza presetami. Brak możliwości w słowniku → pytanie otwarte Q7."
+ },
+ {
+  "name": "Clean and Press",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L5-S19",
+   "L5-S17",
+   "L5-S44"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Zarzut + wyciskanie. Podział partii (barki + pośladki) bez badań — nazwane uproszczenie."
+ },
+ {
+  "name": "Double Kettlebell Jerk",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L5-S19",
+   "L5-S17",
+   "L5-S20",
+   "L5-S36",
+   "L5-S17"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Para kettli — per_dumbbell poprawne."
+ },
+ {
+  "name": "Double Kettlebell Push Press",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L5-S19",
+   "L5-S17",
+   "L5-S20",
+   "L5-S36",
+   "L5-S17"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Para kettli — per_dumbbell poprawne."
+ },
+ {
+  "name": "Handstand Push Up",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L5-S18"
+  ],
+  "confidence": "jedno źródło",
+  "note": "ExRx handstand push-up: cel przedni akton, synergiści piersiowy obojczykowy, triceps, boczny akton. Przegląd właściciela 04.10."
+ },
+ {
+  "name": "Kettlebell Arnold Press",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L5-S20",
+   "L5-S36",
+   "L5-S17",
+   "L5-S17"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Analogia do Arnold Press (ExRx)."
+ },
+ {
+  "name": "Kettlebell Press",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L5-S20",
+   "L5-S36",
+   "L5-S17"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx Kettlebell Press (zgięcie/odwiedzenie barku, wyprost łokcia); Błażkiewicz 2022: kettle vs hantel — bez istotnych różnic aktywności."
+ },
+ {
+  "name": "Kettlebell Seated Press",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L5-S20",
+   "L5-S36",
+   "L5-S17",
+   "L5-S33"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Siedząc na podłodze."
+ },
+ {
+  "name": "Landmine Linear Jammer",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L5-S19",
+   "L5-S17",
+   "L5-S44"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Wyciskanie landmine z napędem nóg; partie — analogia do push press."
+ },
+ {
+  "name": "Landmine Press",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L5-S17"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Brak przeczytanego badania; partie (akton przedni / klatka + triceps) — analogia do wyciskania skośnego/nad głowę. Przegląd właściciela 04.10."
+ },
+ {
+  "name": "Log Lift",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L5-S19",
+   "L5-S17",
+   "L5-S44"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Strongman (kłoda) — zarzut i wypchnięcie; wymaga log_bar (poza presetem) — poprawne."
+ },
+ {
+  "name": "One-Arm Kettlebell Jerk",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L5-S19",
+   "L5-S17",
+   "L5-S20",
+   "L5-S36",
+   "L5-S17"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Jednorącz — unilateral poprawne."
+ },
+ {
+  "name": "One-Arm Kettlebell Para Press",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Kettlebell Press",
+  "fixes": {},
+  "sources": [
+   "L5-S20",
+   "L5-S36",
+   "L5-S17"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Różni się tylko ustawieniem łokcia/dłoni."
+ },
+ {
+  "name": "One-Arm Kettlebell Push Press",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L5-S19",
+   "L5-S17",
+   "L5-S20",
+   "L5-S36",
+   "L5-S17"
+  ],
+  "confidence": "jedno źródło",
+  "note": ""
+ },
+ {
+  "name": "One-Arm Kettlebell Split Jerk",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L5-S19",
+   "L5-S17",
+   "L5-S20",
+   "L5-S36",
+   "L5-S17"
+  ],
+  "confidence": "jedno źródło",
+  "note": ""
+ },
+ {
+  "name": "Pike Push Up",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L5-S18"
+  ],
+  "confidence": "jedno źródło",
+  "note": "ExRx pike press: cel przedni akton, synergiści piersiowy obojczykowy, triceps. Przegląd właściciela 04.10."
+ },
+ {
+  "name": "Push Press - Behind the Neck",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L5-S19",
+   "L5-S17",
+   "L5-S35"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Start z gryfem na plecach — wymaga rack (spójne z Standing Barbell Press Behind Neck)."
+ },
+ {
+  "name": "Seated Barbell Military Press",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L5-S17",
+   "L5-S33"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx seated military press: cel przedni akton. Siedząc nie da się zarzucić — rack wymagany, poprawnie."
+ },
+ {
+  "name": "Seated Bradford/Rocky Press",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Standing Bradford Press",
+  "fixes": {},
+  "sources": [
+   "L5-S35",
+   "L5-S44"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Ten sam ruch (naprzemiennie przed/za głowę) siedząc; jedna pozycja „Bradford Press” wystarczy."
+ },
+ {
+  "name": "Seated Cable Shoulder Press",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L5-S17"
+  ],
+  "confidence": "jedno źródło",
+  "note": "ExRx cable shoulder press (siedząc, dwie dolne linki) — wymagania zgodne."
+ },
+ {
+  "name": "See-Saw Press (Alternating Side Press)",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L5-S17",
+   "L5-S34"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Naprzemiennie z pochyleniem bocznym — skośne 0,5 (Saeterbakken 2012: jednorącz ↑ skośne)."
+ },
+ {
+  "name": "Shoulder Press - With Bands",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "name": "Band Shoulder Press"
+  },
+  "sources": [
+   "L5-S17"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Nazwa ujednolicona z „Band Bench Press”."
+ },
+ {
+  "name": "Single Arm Overhead Press (hantel)",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L5-S17",
+   "L5-S34"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx DB one-arm shoulder press: synergiści m.in. skośne — obliques 0,25 uzasadnione. Przegląd właściciela 04.10."
+ },
+ {
+  "name": "Single-Arm Linear Jammer",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L5-S19",
+   "L5-S17",
+   "L5-S44"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Jednorącz z napędem nóg."
+ },
+ {
+  "name": "Smith Machine Shoulder Press",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L5-S17"
+  ],
+  "confidence": "jedno źródło",
+  "note": "ExRx Smith shoulder press: cel przedni akton."
+ },
+ {
+  "name": "Standing Barbell Press Behind Neck",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L5-S17",
+   "L5-S35"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx behind neck press: cel przedni akton; Coratella 2022: za głowę ↑ boczny i tylny akton — side_delt/upper_back 0,5 uzasadnione."
+ },
+ {
+  "name": "Standing Bradford Press",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "name": "Bradford Press"
+  },
+  "sources": [
+   "L5-S35",
+   "L5-S44"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Cel scalenia wersji siedzącej; nazwa bez „Standing”."
+ },
+ {
+  "name": "Standing Palm-In One-Arm Dumbbell Press",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Single Arm Overhead Press (hantel)",
+  "fixes": {},
+  "sources": [
+   "L5-S17"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Różni się tylko chwytem neutralnym."
+ },
+ {
+  "name": "Standing Palms-In Dumbbell Press",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Overhead Press (hantle)",
+  "fixes": {},
+  "sources": [
+   "L5-S17",
+   "L5-S33"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Różni się tylko chwytem neutralnym."
+ },
+ {
+  "name": "Two-Arm Kettlebell Military Press",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "name": "Double Kettlebell Press"
+  },
+  "sources": [
+   "L5-S20",
+   "L5-S36",
+   "L5-S17"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Nazwa wg konwencji katalogu („Double Kettlebell …”, recenzja 04.10)."
+ },
+ {
+  "name": "Power Jerk",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L5-S19",
+   "L5-S17"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Bój olimpijski; czworogłowe + barki główne — praca dynamiczna nóg i ramion (ExRx: wyprost bioder/kolan, zgięcie barku, wyprost łokcia)."
+ },
+ {
+  "name": "Split Jerk",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L5-S19",
+   "L5-S17"
+  ],
+  "confidence": "jedno źródło",
+  "note": "ExRx split jerk."
+ },
+ {
+  "name": "Squat Jerk",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L5-S19",
+   "L5-S17",
+   "L5-S44"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Odbiór w pełnym przysiadzie; rzadki."
+ },
+ {
+  "name": "Dip Machine",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L5-S16"
+  ],
+  "confidence": "jedno źródło",
+  "note": "ExRx lever triceps dip (maszyna siedząca): cel triceps. Mapowanie na triceps_ext_machine to przybliżenie — pytanie otwarte Q7."
+ },
+ {
+  "name": "Dips - Triceps Version",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "name": "Triceps Dip"
+  },
+  "sources": [
+   "L5-S16",
+   "L5-S37"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Ustalona nazwa (ExRx): „Triceps Dip” — tułów pionowo, cel triceps; Chest Dip osobno (ExRx też rozdziela)."
+ },
+ {
+  "name": "Ring Dips",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L5-S37"
+  ],
+  "confidence": "jedno źródło",
+  "note": "McKenzie 2022: na kółkach szczytowa aktywność tricepsa jak na poręczach, trzy mięśnie wyżej."
+ },
+ {
+  "name": "Weighted Bench Dip",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Triceps Dips (ławka)",
+  "fixes": {},
+  "sources": [
+   "L5-S16",
+   "L5-S37"
+  ],
+  "confidence": "umiarkowane",
+  "note": "To samo ćwiczenie z obciążeniem na udach; przy ćwiczeniach z masą ciała ciężar dodatkowy wpisuje się w serii (weight_reps). Wymaganie drugiej ławki i obciążenia może przejść jako „zalecane”."
+ },
+ {
+  "name": "Bent Over Row (hantle)",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L5-S21",
+   "L5-S43",
+   "24:S13",
+   "24:S37"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Bazowe; ExRx: cel „Back, General”, prostowniki grzbietu jako stabilizator (muscleLoad lower_back 0,5 — por. pytanie otwarte Q3)."
+ },
+ {
+  "name": "Bent Over Row (sztanga)",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L5-S21",
+   "L5-S43",
+   "24:S13",
+   "24:S37"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Bazowe; Fenwick 2009: duża aktywność pleców od góry do dołu, największe obciążenie kręgosłupa."
+ },
+ {
+  "name": "Chest Supported Row",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L5-S22",
+   "24:S13",
+   "24:S37"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Bazowe; ExRx DB lying row (klatką na ławce) — ten sam ruch."
+ },
+ {
+  "name": "Face Pull",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L5-S23",
+   "24:S35"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Bazowe; brak strony ExRx dla face pull — analogia do rear delt row (cel tylny akton)."
+ },
+ {
+  "name": "Inverted Row",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L5-S22",
+   "L5-S43",
+   "24:S37"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Bazowe; ExRx supine row: cel plecy; Fenwick 2009: najwyższa aktywność najszerszego i góry pleców spośród 3 wiosłowań."
+ },
+ {
+  "name": "One Arm Row (hantle)",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L5-S22",
+   "24:S13"
+  ],
+  "confidence": "mocne",
+  "note": "Bazowe; badane wprost (docs/24)."
+ },
+ {
+  "name": "Pendlay Row",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L5-S21",
+   "L5-S43",
+   "24:S13",
+   "24:S37"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Bazowe; analogia do wiosłowania sztangą."
+ },
+ {
+  "name": "Seated Cable Row",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L5-S22",
+   "L5-S39",
+   "24:S6"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Bazowe; zbliżone do „Wiosłowanie na linkach (siedząc)” — rozdzielone decyzją właściciela 04.10.2026 (liczba linek), bez zmiany."
+ },
+ {
+  "name": "T-Bar Row",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L5-S21",
+   "L5-S43",
+   "24:S13",
+   "24:S37"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Bazowe; ExRx lever T-bar row: cel plecy."
+ },
+ {
+  "name": "Wiosłowanie na linkach (siedząc)",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L5-S22",
+   "L5-S39",
+   "24:S6"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Bazowe; wersja oburącz na dwóch linkach (decyzja właściciela 04.10.2026)."
+ },
+ {
+  "name": "Band Pull Apart",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "pattern": "isolation"
+  },
+  "sources": [
+   "L5-S23",
+   "24:S35"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Odwodzenie poziome ramion (jak Reverse Fly, który ma wzorzec isolation) — nie wiosłowanie. Partie: analogia do rear delt (ExRx), anatomia. Przegląd właściciela 04.10."
+ },
+ {
+  "name": "Barbell Rear Delt Row",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L5-S23"
+  ],
+  "confidence": "jedno źródło",
+  "note": "ExRx BB rear delt row: cel tylny akton; synergiści czworoboczny środkowy/dolny, równoległoboczne."
+ },
+ {
+  "name": "Cable Rope Rear-Delt Rows",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L5-S23"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Analogia do rear delt row (ExRx ma wersje z linką)."
+ },
+ {
+  "name": "Bent Over Row (linki)",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L5-S21",
+   "L5-S43",
+   "24:S13",
+   "24:S37"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Dwie dolne linki (stacja właściciela); spójne z Bent Over Row."
+ },
+ {
+  "name": "Bent Over Two-Dumbbell Row With Palms In",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Bent Over Row (hantle)",
+  "fixes": {},
+  "sources": [
+   "L5-S21",
+   "L5-S43",
+   "24:S13",
+   "24:S37"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Tylko chwyt neutralny."
+ },
+ {
+  "name": "Bodyweight Mid Row",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Inverted Row",
+  "fixes": {},
+  "sources": [
+   "L5-S22",
+   "L5-S44"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Wiosłowanie ciężarem ciała w zwisie z nogami zahaczonymi o drążek — ten sam wzorzec co Inverted Row, nietypowe ustawienie."
+ },
+ {
+  "name": "Kneeling High Pulley Row",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L5-S22"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Wiosłowanie liną z górnego wyciągu do górnej klatki (łokcie na boki)."
+ },
+ {
+  "name": "Kneeling Single-Arm High Pulley Row",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Single Arm Lat Pulldown",
+  "fixes": {},
+  "sources": [
+   "L5-S24"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Ciągnięcie jednej rączki z górnego wyciągu w dół do tułowia — w praktyce ściąganie jednorącz."
+ },
+ {
+  "name": "Leverage High Row",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L5-S22"
+  ],
+  "confidence": "jedno źródło",
+  "note": "ExRx lever seated high row: cel plecy."
+ },
+ {
+  "name": "Lying T-Bar Row",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L5-S21"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Wiosłowanie T-bar z podparciem klatki; ExRx lever T-bar row."
+ },
+ {
+  "name": "Machine Row",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L5-S22"
+  ],
+  "confidence": "jedno źródło",
+  "note": "ExRx lever seated row (oparcie klatki). Przegląd właściciela 04.10b."
+ },
+ {
+  "name": "Meadows Row",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L5-S21",
+   "L5-S43",
+   "24:S13",
+   "24:S37"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Jednorącz z końcem sztangi w landmine — analogia do wiosłowania jednorącz. Przegląd właściciela 04.10."
+ },
+ {
+  "name": "One-Arm Kettlebell Row",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "One Arm Row (hantle)",
+  "fixes": {},
+  "sources": [
+   "L5-S22",
+   "L5-S36"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Ten sam ruch innym przyrządem; przy scaleniu dopisać kettlebell jako przyrząd ([db|kb])."
+ },
+ {
+  "name": "Renegade Row",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L5-S21",
+   "L5-S43",
+   "24:S13",
+   "24:S37"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Wiosłowanie w podporze; partie główne plecy + core — brak przeczytanego badania, uproszczenie. Przegląd właściciela 04.10."
+ },
+ {
+  "name": "Reverse Grip Bent-Over Rows",
+  "verdict": "POPRAWIĆ",
+  "scope": "NISZOWE",
+  "fixes": {
+   "name": "Reverse Grip Bent Over Row"
+  },
+  "sources": [
+   "L5-S21"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx underhand bent-over row: cel plecy. Nazwa w liczbie pojedynczej jak pozostałe."
+ },
+ {
+  "name": "Seal Row (sztanga)",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L5-S22"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Klatką na wysokiej ławce (ExRx lying row — ten sam układ). Przegląd właściciela 04.10."
+ },
+ {
+  "name": "Single Arm Cable Row",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L5-S43",
+   "L5-S22"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Fenwick 2009: wiosłowanie jednorącz na linkach obciąża skręt tułowia. Decyzja właściciela 04.10."
+ },
+ {
+  "name": "Sled Row",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L5-S44"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Sanki — sprzęt specjalny."
+ },
+ {
+  "name": "Smith Machine Bent Over Row",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L5-S21"
+  ],
+  "confidence": "jedno źródło",
+  "note": "ExRx Smith bent-over row."
+ },
+ {
+  "name": "Standing Cable Row",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L5-S43"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Fenwick 2009 (standing cable row). Przegląd właściciela 04.10."
+ },
+ {
+  "name": "Two-Arm Kettlebell Row",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Bent Over Row (hantle)",
+  "fixes": {},
+  "sources": [
+   "L5-S21",
+   "L5-S43",
+   "24:S13",
+   "24:S37"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Ten sam ruch parą kettli; przy scaleniu dopisać kettlebell jako przyrząd."
+ },
+ {
+  "name": "Chin Up",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L5-S25",
+   "L5-S38",
+   "24:S11",
+   "24:S12"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Bazowe; Youdas 2010: biceps i piersiowy wyżej w chin-up niż w pull-up."
+ },
+ {
+  "name": "Lat Pulldown",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L5-S24",
+   "L5-S39",
+   "L5-S40",
+   "L5-S42",
+   "24:S11",
+   "24:S12"
+  ],
+  "confidence": "mocne",
+  "note": "Bazowe; ExRx: cel najszerszy; Signorile 2002: szeroki chwyt przed głową — najwyższa aktywność najszerszego."
+ },
+ {
+  "name": "Neutral Grip Pull Up",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L5-S25",
+   "L5-S38",
+   "24:S11",
+   "24:S12"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Bazowe; analogia do pull-up / parallel grip pulldown (ExRx)."
+ },
+ {
+  "name": "Pull Up",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L5-S25",
+   "L5-S38",
+   "24:S11",
+   "24:S12"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Bazowe; Youdas 2010: najszerszy 117–130 % MVIC, biceps 78–96 %."
+ },
+ {
+  "name": "Close-Grip Front Lat Pulldown",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L5-S24",
+   "L5-S39",
+   "L5-S40",
+   "L5-S42",
+   "24:S11",
+   "24:S12"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Andersen 2014: podobna aktywność najszerszego przy trzech szerokościach nachwytu."
+ },
+ {
+  "name": "Full Range-Of-Motion Lat Pulldown",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L5-S24",
+   "L5-S39",
+   "L5-S40",
+   "L5-S42",
+   "24:S11",
+   "24:S12"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Dwie górne linki skrzyżowane — cables 2 poprawne (sprawdzone w audycie)."
+ },
+ {
+  "name": "Gironda Sternum Chins",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L5-S25",
+   "L5-S38",
+   "24:S11",
+   "24:S12"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Podchwyt z odchyleniem — analogia do chin-up."
+ },
+ {
+  "name": "Kipping Muscle Up",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Muscle Up",
+  "fixes": {},
+  "sources": [
+   "L5-S44"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Ta sama umiejętność z wymachem (technika, nie osobne ćwiczenie do zapisu)."
+ },
+ {
+  "name": "Mixed Grip Chin",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L5-S25",
+   "L5-S38",
+   "24:S11",
+   "24:S12"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Chwyt mieszany — analogia do pull-up/chin-up."
+ },
+ {
+  "name": "Muscle Up",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L5-S25",
+   "L5-S38",
+   "24:S11",
+   "24:S12",
+   "L5-S37",
+   "L5-S44"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Podciągnięcie + przejście + dip; podział partii — uproszczenie (analogia do pull-up i dipa)."
+ },
+ {
+  "name": "One Arm Chin-Up",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L5-S25"
+  ],
+  "confidence": "jedno źródło",
+  "note": "ExRx one-arm pull-up: cel najszerszy, synergista biceps. Biceps jako główna (tu) — uproszczenie, bez źródła."
+ },
+ {
+  "name": "Rocky Pull-Ups/Pulldowns",
+  "verdict": "SCALIĆ",
+  "scope": "SCALIĆ",
+  "mergeInto": "Pull Up",
+  "fixes": {},
+  "sources": [
+   "L5-S25",
+   "L5-S38",
+   "24:S11",
+   "24:S12",
+   "L5-S44"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Naprzemiennie do klatki i za kark — rzadkie; wersję za karkiem ma Wide-Grip Rear Pull-Up."
+ },
+ {
+  "name": "Rope Climb",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L5-S44"
+  ],
+  "confidence": "brak źródła — uproszczenie",
+  "note": "Wspinaczka po linie; brak przeczytanego źródła na partie — uproszczenie."
+ },
+ {
+  "name": "Side To Side Chins",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L5-S25"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Podobne do archer pull-up (ExRx: cel najszerszy), ale obie ręce pracują."
+ },
+ {
+  "name": "Single Arm Lat Pulldown",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L5-S24",
+   "L5-S39",
+   "L5-S40",
+   "L5-S42",
+   "24:S11",
+   "24:S12"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Przegląd właściciela 04.10."
+ },
+ {
+  "name": "Underhand Cable Pulldowns",
+  "verdict": "POPRAWIĆ",
+  "scope": "ZOSTAJE",
+  "fixes": {
+   "name": "Underhand Lat Pulldown"
+  },
+  "sources": [
+   "L5-S24",
+   "L5-S39",
+   "L5-S40",
+   "L5-S42",
+   "24:S11",
+   "24:S12"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx underhand pulldown: cel najszerszy; Lehman 2004: chwyt podchwytem nie zmienia aktywności bicepsa. Nazwa w liczbie pojedynczej, jak Lat Pulldown."
+ },
+ {
+  "name": "V-Bar Pulldown",
+  "verdict": "OK",
+  "scope": "ZOSTAJE",
+  "fixes": {},
+  "sources": [
+   "L5-S24",
+   "L5-S39",
+   "L5-S40",
+   "L5-S42",
+   "24:S11",
+   "24:S12",
+   "L5-S41"
+  ],
+  "confidence": "umiarkowane",
+  "note": "ExRx parallel grip pulldown; Sperandei 2009: V-bar „could be used as an alternative”."
+ },
+ {
+  "name": "Wide-Grip Pulldown Behind The Neck",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L5-S24",
+   "L5-S39",
+   "L5-S40",
+   "L5-S42",
+   "24:S11",
+   "24:S12",
+   "L5-S41"
+  ],
+  "confidence": "umiarkowane",
+  "note": "Sperandei 2009: „BNL is not a good lat pull-down technique and should be avoided”; Signorile 2002: przed głową > za głową dla najszerszego. Niszowe (nie usunięte — źródła mówią o skuteczności, nie o zakazie)."
+ },
+ {
+  "name": "Wide-Grip Rear Pull-Up",
+  "verdict": "OK",
+  "scope": "NISZOWE",
+  "fixes": {},
+  "sources": [
+   "L5-S25",
+   "L5-S38",
+   "24:S11",
+   "24:S12",
+   "L5-S40"
+  ],
+  "confidence": "jedno źródło",
+  "note": "Podciąganie za kark — analogia do ściągania za kark."
+ }
+]
