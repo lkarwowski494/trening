@@ -87,7 +87,7 @@ widocznej w treningu (pole istnieje, ekran treningu go nie pokazuje), pola RIR (
   (tylko przeszłe sesje). Do decyzji właściciela: miejsce w aplikacji, powtarzalny plan tygodnia vs pojedyncze wpisy, przypomnienia. Powiązania:
   tygodnie deload (już oznaczane), przyszły generator planu tygodnia. Bez twierdzeń dziedzinowych (planowanie = dane użytkownika).
   **Zrobione 08.10.2026:** zakładka Kalendarz, plan tygodnia, dwa tryby przesuwania, „Dziś” na ekranie treningu, propozycje z regeneracją partii
-  (docs/research/23). Przypomnienie rano w dniu treningu — **zrobione 08.10.2026** (godzina 8:00 do potwierdzenia).
+  (docs/research/23). Przypomnienie rano w dniu treningu — **zrobione 08.10.2026** (8:00, potwierdzone).
 - **Deload A+B** (08.10.2026) — podpowiedź „zwykle co 4–6 tyg.” (praktyka) i mniej serii przy starcie w tygodniu deload. **Zrobione 08.10.2026.**
 - **Generator szablonów i planu** (wariant A) i **kilka planów z aktywnym** (08.10.2026, docs/24). **Zrobione 08.10.2026.**
 - **„Co nowego”** (08.10.2026) — „i” na ekranie Trening, kropka po aktualizacji, starsze wersje zwinięte. **Zrobione 08.10.2026.**

@@ -4,8 +4,8 @@ import { hasPlan, plannedOn, addDays, dayKeyOf } from '@/lib/plan';
 import { t } from '@/lib/i18n';
 
 /*
- * Przypomnienie o treningu z planu (decyzja właściciela 08.10.2026: „rano w dniu treningu”, jedno lokalne powiadomienie). Godzina 8:00 — wybór
- * agenta dla „rano”, do potwierdzenia przez właściciela. Planujemy 7 dni naprzód (limit iOS: 64 zaplanowane powiadomienia); każda synchronizacja
+ * Przypomnienie o treningu z planu (decyzja właściciela 08.10.2026: „rano w dniu treningu”, jedno lokalne powiadomienie). Godzina 8:00 —
+ * potwierdzona przez właściciela 08.10.2026. Planujemy 7 dni naprzód (limit iOS: 64 zaplanowane powiadomienia); każda synchronizacja
  * odwołuje poprzednie (identyfikatory `plan-RRRR-MM-DD`). Bez dnia, w którym trening już zrobiony albo trwa. Wyłączenie: Settings.planReminder = false.
  */
 export const PLAN_REMINDER_HOUR = 8;

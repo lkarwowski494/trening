@@ -1,6 +1,6 @@
 /*
  * Przypomnienie o treningu z planu (decyzja właściciela 08.10.2026: „rano w dniu treningu”). Jedno lokalne powiadomienie na dzień z planu,
- * o PLAN_REMINDER_HOUR (8:00 — wybór agenta dla „rano”, do potwierdzenia przez właściciela), na 7 dni naprzód; bez dnia, w którym trening już
+ * o PLAN_REMINDER_HOUR (8:00 — potwierdzona przez właściciela 08.10.2026), na 7 dni naprzód; bez dnia, w którym trening już
  * jest zrobiony albo trwa; wyłączane w Ustawieniach (Settings.planReminder zapisane tylko jako false — dane bez pola 1:1).
  * Rodzaje (docs/20): logika (plan, zmiany dni, wolne, zrobione, godzina minęła, wyłączenie, odwołanie starych), dane (sanityzacja), ekran
  * (Ustawienia; synchronizacja po zmianie planu), języki (EN). E2E: nie — powiadomienia systemowe poza zasięgiem Maestro na symulatorze (docs/09).
