@@ -318,3 +318,58 @@ describe('A10, I — propozycje i przypomnienia', () => {
     plan.setDayPlan('2026-10-08', null); global.__cancelled.length = 0; await syncPlanReminders(t0); expect(global.__cancelled).toContain('plan-2026-10-08');
   });
 });
+
+describe('macierz — funkcje pomocnicze planu i danych (audyt 0.10, każdy przypadek wprost)', () => {
+  test('store.planDays / store.normPlanHistory / store.cleanOverrides: 7 dni, poprawne daty, porządek, scalanie, śmieci odrzucone', () => {
+    expect(store.planDays([A, '', 5, null, B])).toEqual([A, null, null, null, B, null, null]); expect(store.planDays('x')).toEqual(Array(7).fill(null));
+    const d = (x: string | null) => [x, null, null, null, null, null, null];
+    expect(store.normPlanHistory([{ from: '2026-09-10', days: d(B) }, { from: '2026-09-01', days: d(A) }, { from: '2026-09-05', days: d(A) }, { from: 'zła', days: d(C) }, 7]))
+      .toEqual([{ from: '2026-09-01', days: d(A) }, { from: '2026-09-10', days: d(B) }]); /* rosnąco, równe sąsiednie scalone */
+    expect(store.normPlanHistory([{ from: '2026-09-01', days: d(null) }, { from: '2026-09-02', days: d(A) }])).toEqual([{ from: '2026-09-02', days: d(A) }]); /* bez pustego początku */
+    expect(store.normPlanHistory(null)).toEqual([]);
+    expect(store.cleanOverrides({ '2026-10-09': A, '2026-10-10': null, 'zły': A, '2026-10-11': '', '2026-10-12': 3 })).toEqual({ '2026-10-09': A, '2026-10-10': null }); expect(store.cleanOverrides([])).toEqual({});
+  });
+  test('plan.dayStatusFrom: wolne, opuszczony, zaplanowany, zrobione (zaplanowany szablon albo dzień bez planu), zrobiony inny (A5)', () => {
+    since('2026-09-01', () => { plan.setWeekDay(0, A); plan.setWeekDay(4, A); });
+    const w = (tpl?: string) => ({ ...addWorkout(at('2026-10-05'), [['Back Squat', [{ weight: 100, reps: 5 }]]]), templateId: tpl });
+    expect(plan.dayStatusFrom('2026-10-06', []).status).toBe('rest'); expect(plan.dayStatusFrom('2026-10-05', []).status).toBe('missed'); expect(plan.dayStatusFrom('2026-10-09', []).status).toBe('planned');
+    expect(plan.dayStatusFrom('2026-10-05', [w(A)])).toMatchObject({ status: 'done', templateId: A }); expect(plan.dayStatusFrom('2026-10-05', [w(B)]).status).toBe('other');
+    expect(plan.dayStatusFrom('2026-10-06', [w(B)]).status).toBe('done'); expect(plan.pending(plan.dayStatusFrom('2026-10-05', [w(B)]))).toBe(true);
+  });
+  test('plan.doneInfo: partie i szablony zrobionych treningów i treningu w toku w oknie; poza oknem — nic', () => {
+    const w = addWorkout(at('2026-10-06'), [['Back Squat', [{ weight: 100, reps: 5 }]]]); w.templateId = A; addWorkout(at('2026-09-20'), [['Back Squat', [{ weight: 100, reps: 5 }]]]);
+    const i = plan.doneInfo('2026-10-05', 7); expect([...i.tpls.get('2026-10-06')!]).toEqual([A]); expect(i.muscles.get('2026-10-06')!.size).toBeGreaterThan(0); expect(i.tpls.has('2026-09-20')).toBe(false);
+    store.startFromTemplate(S().templates.find(x => x.id === B)!); expect(plan.doneInfo('2026-10-05', 7).tpls.get('2026-10-08')!.has(B)).toBe(true);
+  });
+  test('plan.templateUsage: dni planu, zmiany od dziś (bez minionych), zapisane plany, trening w toku', () => {
+    plan.setWeekDay(1, A); plan.setDayPlan('2026-10-10', A); S().planOverrides!['2026-10-01'] = A; plan.addPlan('Wakacje', [null, null, A, null, null, null, null], false);
+    expect(plan.templateUsage(A)).toEqual({ weekDays: [1], dates: ['2026-10-10'], saved: ['Wakacje'], active: false });
+    store.startFromTemplate(S().templates.find(x => x.id === A)!); expect(plan.templateUsage(A).active).toBe(true); expect(plan.templateUsage(C)).toEqual({ weekDays: [], dates: [], saved: [], active: false });
+  });
+  test('deload.snoozeDeloadHint (D4): „Nie teraz” chowa podpowiedź dla tego tygodnia i przetrwa restart', async () => {
+    const { snoozeDeloadHint, deloadHint } = require('@/lib/deload');
+    ['2026-09-14', '2026-09-21', '2026-09-28', '2026-10-06'].forEach(k => addWorkout(at(k), [['Back Squat', [{ weight: 100, reps: 5 }]]]));
+    const h = deloadHint(NOW); expect(h.kind).toBe('suggest'); snoozeDeloadHint(h.from); expect(deloadHint(NOW).kind).toBe('none');
+    await restart(); expect(S().deloadSnooze).toBe(h.from); expect(require('@/lib/deload').deloadHint(NOW).kind).toBe('none');
+  });
+  test('planReminder.reminderPermission / askReminderPermission (I1): stan zgody; okno tylko przy „nie pytano” i włączonym przypomnieniu', async () => {
+    const { reminderPermission, askReminderPermission } = require('@/lib/planReminder'); const g = global as any;
+    try {
+      g.__notifPerm = { granted: true }; expect(await reminderPermission()).toBe('granted');
+      g.__notifPerm = { granted: false, canAskAgain: false, status: 'denied' }; expect(await reminderPermission()).toBe('denied');
+      g.__notifPerm = { granted: false, canAskAgain: true, status: 'undetermined' }; expect(await reminderPermission()).toBe('undetermined');
+      global.__alerts.length = 0; S().settings.planReminder = false; await askReminderPermission(); expect(global.__alerts).toHaveLength(0);
+      delete S().settings.planReminder; g.__notifPermAsked = 0; await askReminderPermission(); const a = global.__alerts.at(-1)!;
+      expect(a.title).toBe('Przypomnienie o treningu z planu'); expect(a.buttons!.map(b => b.text)).toEqual(['Nie teraz', 'Dalej']);
+      a.buttons![1].onPress?.(); await Promise.resolve(); expect(g.__notifPermAsked).toBe(1);
+      g.__notifPerm = { granted: false, canAskAgain: false, status: 'denied' }; global.__alerts.length = 0; await askReminderPermission(); expect(global.__alerts).toHaveLength(0);
+    } finally { delete g.__notifPerm; delete g.__notifPermAsked; }
+  });
+  test('backup.exportRawData (J1): surowe dane do pliku „trening-dane-<data>.json” i udostępnienie; brak danych — false', async () => {
+    const { exportRawData } = require('@/lib/backup'); const fs = require('expo-file-system/legacy'); const sh = require('expo-sharing');
+    await store.flush(); fs.writeAsStringAsync.mockClear(); sh.shareAsync.mockClear();
+    expect(await exportRawData()).toBe(true); expect(fs.writeAsStringAsync.mock.calls[0][0]).toBe('file:///cache/trening-dane-2026-10-08.json');
+    expect(JSON.parse(fs.writeAsStringAsync.mock.calls[0][1]).format).toBe('trening-recovery'); expect(sh.shareAsync).toHaveBeenCalledTimes(1);
+    global.__kv.clear(); expect(await exportRawData()).toBe(false);
+  });
+});

@@ -280,3 +280,37 @@ describe('English', () => {
     await go('/plan'); await flushAll(10); expect(screen.getByText('+ New plan')).toBeTruthy(); expect(screen.getByText('Days of the week')).toBeTruthy();
   });
 });
+
+describe('macierz — podpowiedzi VoiceOver i teksty pomocnicze ekranów planu (audyt 0.10)', () => {
+  const hint = (label: string) => screen.getByLabelText(label).props.accessibilityHint;
+  test('panel dnia: „Zapisz trening z tego dnia” (podpowiedź), „Więcej opcji” ↔ „Mniej opcji”, lista możliwości z kolejnością i uproszczeniem', async () => {
+    await boot(ids => { since(() => plan.setWeekDay(0, ids[0])); });
+    await openDay('2026-10-05');
+    expect(hint('Zapisz trening z tego dnia')).toBe('Trening wstecz z datą tego dnia.'); expect(hint('Więcej opcji')).toBe('Pozostałe akcje dla tego dnia.');
+    expect(screen.queryByTestId('day-more')).toBeNull(); await tap(screen.getByLabelText('Więcej opcji')); await flushAll(5);
+    expect(screen.getByTestId('day-more')).toBeTruthy(); expect(screen.getByText('Mniej opcji')).toBeTruthy();
+    await tap(screen.getByLabelText('Więcej opcji')); await flushAll(5); expect(screen.queryByTestId('day-more')).toBeNull(); expect(screen.getByText('Więcej opcji')).toBeTruthy();
+    await tap(screen.getByText('Przesuń albo pomiń')); await flushAll(5);
+    expect(screen.getByText(`Kolejność: najpierw zmiany, po których plan wraca do rutyny w ciągu ${plan.RETURN_DAYS} dni, potem bez utraty treningów, bez nowych par dzień po dniu z tymi samymi partiami i z najmniejszą liczbą zmienionych dni.`)).toBeTruthy();
+    const simpl = 'Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM).';
+    expect(screen.getByText(new RegExp('^' + simpl.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')))).toBeTruthy();
+  });
+  test('pasek tygodnia na ekranie Trening: dzień to przycisk z podpowiedzią „Otwiera ten dzień w Kalendarzu.”', async () => {
+    await boot(ids => { plan.setWeekDay(3, ids[0]); }, '/');
+    expect(screen.getByTestId('strip-2026-10-08').props.accessibilityHint).toBe('Otwiera ten dzień w Kalendarzu.');
+  });
+  test('podpowiedź deload: „Nie teraz” z podpowiedzią „Podpowiedź wróci w przyszłym tygodniu.”', async () => {
+    await boot(() => { ['2026-09-14', '2026-09-21', '2026-09-28', '2026-10-06'].forEach(k => addWorkout(at(k), [['Back Squat', [{ weight: 100, reps: 5 }]]])); });
+    expect(hint('Nie teraz')).toBe('Podpowiedź wróci w przyszłym tygodniu.');
+  });
+  test('Plan tygodnia: podpowiedzi „+ Nowy plan” i wierszy dni, „Pokaż wszystkie (n)” przy > 3 planach, nieistniejący plan, zmiany dni zapisane z planem', async () => {
+    await boot(ids => { plan.setWeekDay(0, ids[0]); ['P1', 'P2', 'P3', 'P4'].forEach(n => plan.addPlan(n, [ids[1], null, null, null, null, null, null], false)); }, '/plan');
+    expect(hint('+ Nowy plan')).toBe('Kopia obecnego planu w „Inne plany” — zmienisz ją przed ustawieniem jako aktywny.');
+    expect(screen.getByLabelText(/^poniedziałek, /).props.accessibilityHint).toBe('Wybierz szablon na ten dzień.');
+    expect(screen.queryByLabelText('Ustaw jako aktywny: P4')).toBeNull(); await tap(screen.getByText('Pokaż wszystkie (4)')); await flushAll(5); expect(screen.getByLabelText('Ustaw jako aktywny: P4')).toBeTruthy();
+    await go('/plan?id=brak'); await flushAll(10); expect(screen.getByText('Nie ma takiego planu.')).toBeTruthy();
+    act(() => { plan.setDayPlan('2026-10-10', S().templates[2].id); plan.activatePlan(plan.savedPlans().find(p => p.name === 'P1')!.id); });
+    const prev = plan.savedPlans().find(p => p.overrides && Object.keys(p.overrides).length)!; await go(`/plan?id=${prev.id}`); await flushAll(10);
+    expect(screen.getByText('Zmiany pojedynczych dni zapisane z tym planem: 1 — wrócą po aktywacji.')).toBeTruthy();
+  });
+});
