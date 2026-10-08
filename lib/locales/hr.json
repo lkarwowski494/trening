@@ -973,5 +973,21 @@
  "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Tvoja oznaka, npr. lakši tjedan. Pri pokretanju treninga predložit ću manje serija (otprilike pola), iste težine.",
  "Przypomnienie o treningu z planu": "Podsjetnik na planirani trening",
  "rano o {h}:00 w dniu zaplanowanego treningu": "ujutro u {h}:00 na dan planiranog treninga",
- "Trening z Twojego planu tygodnia. Otwórz aplikację, by zacząć.": "Trening iz tvog tjednog plana. Otvori aplikaciju za početak."
+ "Trening z Twojego planu tygodnia. Otwórz aplikację, by zacząć.": "Trening iz tvog tjednog plana. Otvori aplikaciju za početak.",
+ "bez treningów": "bez treninga",
+ "Poprzedni plan": "Prethodni plan",
+ "Ustawić „{name}” jako aktywny plan?": "Postaviti „{name}” kao aktivni plan?",
+ "Obecny plan zostanie zapisany w „Inne plany”. Zmiany pojedynczych dni od dziś zostaną usunięte: {n}.": "Trenutačni plan bit će spremljen u „Ostali planovi”. Promjene pojedinih dana od danas bit će uklonjene: {n}.",
+ "Obecny plan zostanie zapisany w „Inne plany”.": "Trenutačni plan bit će spremljen u „Ostali planovi”.",
+ "Ustaw": "Postavi",
+ "Nazwa planu": "Naziv plana",
+ "Mój plan": "Moj plan",
+ "Zapisz kopię jako nowy plan": "Spremi kopiju kao novi plan",
+ "Kopia: {name}": "Kopija: {name}",
+ "Inne plany": "Ostali planovi",
+ "Obowiązuje jeden plan naraz. Po okresie przejściowym wrócisz do poprzedniego jednym przyciskiem.": "Vrijedi jedan plan u isto vrijeme. Nakon prijelaznog razdoblja vraćaš se na prethodni jednim gumbom.",
+ "Usuń plan: {name}": "Izbriši plan: {name}",
+ "Usunąć ten plan?": "Izbrisati ovaj plan?",
+ "Ustaw jako aktywny": "Postavi kao aktivni",
+ "Ustaw jako aktywny: {name}": "Postavi kao aktivni: {name}"
 }

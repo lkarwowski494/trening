@@ -973,5 +973,21 @@
  "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Din egen markering, t.ex. en lättare vecka. När du startar ett pass föreslår jag färre set (ungefär hälften), samma vikter.",
  "Przypomnienie o treningu z planu": "Påminnelse om planerade pass",
  "rano o {h}:00 w dniu zaplanowanego treningu": "på morgonen kl. {h}:00 en planerad träningsdag",
- "Trening z Twojego planu tygodnia. Otwórz aplikację, by zacząć.": "Pass från din veckoplan. Öppna appen för att börja."
+ "Trening z Twojego planu tygodnia. Otwórz aplikację, by zacząć.": "Pass från din veckoplan. Öppna appen för att börja.",
+ "bez treningów": "inga pass",
+ "Poprzedni plan": "Föregående plan",
+ "Ustawić „{name}” jako aktywny plan?": "Göra ”{name}” till aktiv plan?",
+ "Obecny plan zostanie zapisany w „Inne plany”. Zmiany pojedynczych dni od dziś zostaną usunięte: {n}.": "Den nuvarande planen sparas under ”Andra planer”. Ändringar av enskilda dagar från och med i dag tas bort: {n}.",
+ "Obecny plan zostanie zapisany w „Inne plany”.": "Den nuvarande planen sparas under ”Andra planer”.",
+ "Ustaw": "Ange",
+ "Nazwa planu": "Planens namn",
+ "Mój plan": "Min plan",
+ "Zapisz kopię jako nowy plan": "Spara en kopia som ny plan",
+ "Kopia: {name}": "Kopia: {name}",
+ "Inne plany": "Andra planer",
+ "Obowiązuje jeden plan naraz. Po okresie przejściowym wrócisz do poprzedniego jednym przyciskiem.": "En plan gäller åt gången. Efter en övergångsperiod går du tillbaka till den förra med en knapp.",
+ "Usuń plan: {name}": "Radera plan: {name}",
+ "Usunąć ten plan?": "Radera den här planen?",
+ "Ustaw jako aktywny": "Gör aktiv",
+ "Ustaw jako aktywny: {name}": "Gör aktiv: {name}"
 }

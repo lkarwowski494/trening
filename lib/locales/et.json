@@ -973,5 +973,21 @@
  "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Sinu enda märge, nt kergem nädal. Treeningu alustamisel pakun vähem seeriaid (umbes poole), raskused samad.",
  "Przypomnienie o treningu z planu": "Meeldetuletus plaanitud trennist",
  "rano o {h}:00 w dniu zaplanowanego treningu": "hommikul kell {h}:00 plaanitud trenni päeval",
- "Trening z Twojego planu tygodnia. Otwórz aplikację, by zacząć.": "Trenn sinu nädalaplaanist. Ava rakendus, et alustada."
+ "Trening z Twojego planu tygodnia. Otwórz aplikację, by zacząć.": "Trenn sinu nädalaplaanist. Ava rakendus, et alustada.",
+ "bez treningów": "trennideta",
+ "Poprzedni plan": "Eelmine plaan",
+ "Ustawić „{name}” jako aktywny plan?": "Kas teha „{name}“ aktiivseks plaaniks?",
+ "Obecny plan zostanie zapisany w „Inne plany”. Zmiany pojedynczych dni od dziś zostaną usunięte: {n}.": "Praegune plaan salvestatakse jaotisse „Muud plaanid“. Üksikute päevade muudatused alates tänasest eemaldatakse: {n}.",
+ "Obecny plan zostanie zapisany w „Inne plany”.": "Praegune plaan salvestatakse jaotisse „Muud plaanid“.",
+ "Ustaw": "Määra",
+ "Nazwa planu": "Plaani nimi",
+ "Mój plan": "Minu plaan",
+ "Zapisz kopię jako nowy plan": "Salvesta koopia uue plaanina",
+ "Kopia: {name}": "Koopia: {name}",
+ "Inne plany": "Muud plaanid",
+ "Obowiązuje jeden plan naraz. Po okresie przejściowym wrócisz do poprzedniego jednym przyciskiem.": "Korraga kehtib üks plaan. Pärast üleminekuperioodi naased eelmise juurde ühe nupuga.",
+ "Usuń plan: {name}": "Kustuta plaan: {name}",
+ "Usunąć ten plan?": "Kas kustutada see plaan?",
+ "Ustaw jako aktywny": "Tee aktiivseks",
+ "Ustaw jako aktywny: {name}": "Tee aktiivseks: {name}"
 }

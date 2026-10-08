@@ -973,5 +973,21 @@
  "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Vaše označenie, napr. ľahší týždeň. Pri štarte tréningu navrhnem menej sérií (asi polovicu), váhy bez zmeny.",
  "Przypomnienie o treningu z planu": "Pripomienka plánovaného tréningu",
  "rano o {h}:00 w dniu zaplanowanego treningu": "ráno o {h}:00 v deň plánovaného tréningu",
- "Trening z Twojego planu tygodnia. Otwórz aplikację, by zacząć.": "Tréning z tvojho týždenného plánu. Otvor aplikáciu a začni."
+ "Trening z Twojego planu tygodnia. Otwórz aplikację, by zacząć.": "Tréning z tvojho týždenného plánu. Otvor aplikáciu a začni.",
+ "bez treningów": "bez tréningov",
+ "Poprzedni plan": "Predchádzajúci plán",
+ "Ustawić „{name}” jako aktywny plan?": "Nastaviť „{name}“ ako aktívny plán?",
+ "Obecny plan zostanie zapisany w „Inne plany”. Zmiany pojedynczych dni od dziś zostaną usunięte: {n}.": "Súčasný plán sa uloží do „Ďalšie plány“. Zmeny jednotlivých dní od dnes budú odstránené: {n}.",
+ "Obecny plan zostanie zapisany w „Inne plany”.": "Súčasný plán sa uloží do „Ďalšie plány“.",
+ "Ustaw": "Nastaviť",
+ "Nazwa planu": "Názov plánu",
+ "Mój plan": "Môj plán",
+ "Zapisz kopię jako nowy plan": "Uložiť kópiu ako nový plán",
+ "Kopia: {name}": "Kópia: {name}",
+ "Inne plany": "Ďalšie plány",
+ "Obowiązuje jeden plan naraz. Po okresie przejściowym wrócisz do poprzedniego jednym przyciskiem.": "Platí vždy jeden plán. Po prechodnom období sa k predchádzajúcemu vrátiš jedným tlačidlom.",
+ "Usuń plan: {name}": "Zmazať plán: {name}",
+ "Usunąć ten plan?": "Zmazať tento plán?",
+ "Ustaw jako aktywny": "Nastaviť ako aktívny",
+ "Ustaw jako aktywny: {name}": "Nastaviť ako aktívny: {name}"
 }

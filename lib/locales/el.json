@@ -973,5 +973,21 @@
  "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Δική σου σήμανση, π.χ. μια πιο ελαφριά εβδομάδα. Στην έναρξη προπόνησης θα προτείνω λιγότερα σετ (περίπου τα μισά), ίδια βάρη.",
  "Przypomnienie o treningu z planu": "Υπενθύμιση προγραμματισμένων προπονήσεων",
  "rano o {h}:00 w dniu zaplanowanego treningu": "το πρωί στις {h}:00 σε μέρα προγραμματισμένης προπόνησης",
- "Trening z Twojego planu tygodnia. Otwórz aplikację, by zacząć.": "Προπόνηση από το εβδομαδιαίο πρόγραμμά σου. Άνοιξε την εφαρμογή για να ξεκινήσεις."
+ "Trening z Twojego planu tygodnia. Otwórz aplikację, by zacząć.": "Προπόνηση από το εβδομαδιαίο πρόγραμμά σου. Άνοιξε την εφαρμογή για να ξεκινήσεις.",
+ "bez treningów": "χωρίς προπονήσεις",
+ "Poprzedni plan": "Προηγούμενο πρόγραμμα",
+ "Ustawić „{name}” jako aktywny plan?": "Να γίνει το «{name}» το ενεργό πρόγραμμα;",
+ "Obecny plan zostanie zapisany w „Inne plany”. Zmiany pojedynczych dni od dziś zostaną usunięte: {n}.": "Το τρέχον πρόγραμμα θα αποθηκευτεί στα «Άλλα προγράμματα». Οι αλλαγές μεμονωμένων ημερών από σήμερα θα αφαιρεθούν: {n}.",
+ "Obecny plan zostanie zapisany w „Inne plany”.": "Το τρέχον πρόγραμμα θα αποθηκευτεί στα «Άλλα προγράμματα».",
+ "Ustaw": "Ορισμός",
+ "Nazwa planu": "Όνομα προγράμματος",
+ "Mój plan": "Το πρόγραμμά μου",
+ "Zapisz kopię jako nowy plan": "Αποθήκευση αντιγράφου ως νέο πρόγραμμα",
+ "Kopia: {name}": "Αντίγραφο: {name}",
+ "Inne plany": "Άλλα προγράμματα",
+ "Obowiązuje jeden plan naraz. Po okresie przejściowym wrócisz do poprzedniego jednym przyciskiem.": "Ισχύει ένα πρόγραμμα κάθε φορά. Μετά από μια μεταβατική περίοδο επιστρέφεις στο προηγούμενο με ένα κουμπί.",
+ "Usuń plan: {name}": "Διαγραφή προγράμματος: {name}",
+ "Usunąć ten plan?": "Διαγραφή αυτού του προγράμματος;",
+ "Ustaw jako aktywny": "Ορισμός ως ενεργό",
+ "Ustaw jako aktywny: {name}": "Ορισμός ως ενεργό: {name}"
 }

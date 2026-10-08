@@ -973,5 +973,21 @@
  "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Je eigen label, bijv. een lichtere week. Bij het starten van een training stel ik minder sets voor (ongeveer de helft), gelijke gewichten.",
  "Przypomnienie o treningu z planu": "Herinnering aan geplande trainingen",
  "rano o {h}:00 w dniu zaplanowanego treningu": "’s ochtends om {h}:00 op een geplande trainingsdag",
- "Trening z Twojego planu tygodnia. Otwórz aplikację, by zacząć.": "Training uit je weekplan. Open de app om te beginnen."
+ "Trening z Twojego planu tygodnia. Otwórz aplikację, by zacząć.": "Training uit je weekplan. Open de app om te beginnen.",
+ "bez treningów": "zonder trainingen",
+ "Poprzedni plan": "Vorig plan",
+ "Ustawić „{name}” jako aktywny plan?": "‘{name}’ als actief plan instellen?",
+ "Obecny plan zostanie zapisany w „Inne plany”. Zmiany pojedynczych dni od dziś zostaną usunięte: {n}.": "Het huidige plan wordt bewaard onder ‘Andere plannen’. Wijzigingen van losse dagen vanaf vandaag worden verwijderd: {n}.",
+ "Obecny plan zostanie zapisany w „Inne plany”.": "Het huidige plan wordt bewaard onder ‘Andere plannen’.",
+ "Ustaw": "Instellen",
+ "Nazwa planu": "Plannaam",
+ "Mój plan": "Mijn plan",
+ "Zapisz kopię jako nowy plan": "Kopie opslaan als nieuw plan",
+ "Kopia: {name}": "Kopie: {name}",
+ "Inne plany": "Andere plannen",
+ "Obowiązuje jeden plan naraz. Po okresie przejściowym wrócisz do poprzedniego jednym przyciskiem.": "Er geldt één plan tegelijk. Na een overgangsperiode ga je met één knop terug naar het vorige.",
+ "Usuń plan: {name}": "Plan verwijderen: {name}",
+ "Usunąć ten plan?": "Dit plan verwijderen?",
+ "Ustaw jako aktywny": "Actief maken",
+ "Ustaw jako aktywny: {name}": "Actief maken: {name}"
 }

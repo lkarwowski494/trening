@@ -973,5 +973,21 @@
  "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Kendi işaretin, ör. daha hafif bir hafta. Antrenmana başlarken daha az set önereceğim (yaklaşık yarısı), ağırlıklar aynı.",
  "Przypomnienie o treningu z planu": "Planlı antrenman hatırlatıcısı",
  "rano o {h}:00 w dniu zaplanowanego treningu": "planlı antrenman gününde sabah {h}:00’da",
- "Trening z Twojego planu tygodnia. Otwórz aplikację, by zacząć.": "Haftalık planından antrenman. Başlamak için uygulamayı aç."
+ "Trening z Twojego planu tygodnia. Otwórz aplikację, by zacząć.": "Haftalık planından antrenman. Başlamak için uygulamayı aç.",
+ "bez treningów": "antrenman yok",
+ "Poprzedni plan": "Önceki plan",
+ "Ustawić „{name}” jako aktywny plan?": "“{name}” etkin plan yapılsın mı?",
+ "Obecny plan zostanie zapisany w „Inne plany”. Zmiany pojedynczych dni od dziś zostaną usunięte: {n}.": "Mevcut plan “Diğer planlar” altına kaydedilecek. Bugünden itibaren tek gün değişiklikleri silinecek: {n}.",
+ "Obecny plan zostanie zapisany w „Inne plany”.": "Mevcut plan “Diğer planlar” altına kaydedilecek.",
+ "Ustaw": "Ayarla",
+ "Nazwa planu": "Plan adı",
+ "Mój plan": "Planım",
+ "Zapisz kopię jako nowy plan": "Kopyayı yeni plan olarak kaydet",
+ "Kopia: {name}": "Kopya: {name}",
+ "Inne plany": "Diğer planlar",
+ "Obowiązuje jeden plan naraz. Po okresie przejściowym wrócisz do poprzedniego jednym przyciskiem.": "Aynı anda tek plan geçerlidir. Geçici bir dönemden sonra tek düğmeyle öncekine dönersin.",
+ "Usuń plan: {name}": "Planı sil: {name}",
+ "Usunąć ten plan?": "Bu plan silinsin mi?",
+ "Ustaw jako aktywny": "Etkin yap",
+ "Ustaw jako aktywny: {name}": "Etkin yap: {name}"
 }

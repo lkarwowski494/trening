@@ -973,5 +973,21 @@
  "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Ваше обозначение, напр. по-лека седмица. При старт на тренировка ще предложа по-малко серии (около половината), същите тежести.",
  "Przypomnienie o treningu z planu": "Напомняне за планирана тренировка",
  "rano o {h}:00 w dniu zaplanowanego treningu": "сутрин в {h}:00 в деня на планирана тренировка",
- "Trening z Twojego planu tygodnia. Otwórz aplikację, by zacząć.": "Тренировка от седмичния ти план. Отвори приложението, за да започнеш."
+ "Trening z Twojego planu tygodnia. Otwórz aplikację, by zacząć.": "Тренировка от седмичния ти план. Отвори приложението, за да започнеш.",
+ "bez treningów": "без тренировки",
+ "Poprzedni plan": "Предишен план",
+ "Ustawić „{name}” jako aktywny plan?": "Да стане ли „{name}“ активният план?",
+ "Obecny plan zostanie zapisany w „Inne plany”. Zmiany pojedynczych dni od dziś zostaną usunięte: {n}.": "Текущият план ще бъде запазен в „Други планове“. Промените на отделни дни от днес нататък ще бъдат премахнати: {n}.",
+ "Obecny plan zostanie zapisany w „Inne plany”.": "Текущият план ще бъде запазен в „Други планове“.",
+ "Ustaw": "Задай",
+ "Nazwa planu": "Име на плана",
+ "Mój plan": "Моят план",
+ "Zapisz kopię jako nowy plan": "Запази копие като нов план",
+ "Kopia: {name}": "Копие: {name}",
+ "Inne plany": "Други планове",
+ "Obowiązuje jeden plan naraz. Po okresie przejściowym wrócisz do poprzedniego jednym przyciskiem.": "Важи един план в даден момент. След преходен период се връщаш към предишния с един бутон.",
+ "Usuń plan: {name}": "Изтрий плана: {name}",
+ "Usunąć ten plan?": "Да се изтрие ли този план?",
+ "Ustaw jako aktywny": "Направи активен",
+ "Ustaw jako aktywny: {name}": "Направи активен: {name}"
 }

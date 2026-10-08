@@ -8,9 +8,9 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | Rodzaj | Pozycji | Z testem | Wyjątki |
 |---|---|---|---|
 | EKRAN | 21 | 21 | 0 |
-| UI | 217 | 217 | 0 |
-| TEKST | 467 | 467 | 0 |
-| LOGIKA | 427 | 427 | 0 |
+| UI | 225 | 225 | 0 |
+| TEKST | 475 | 475 | 0 |
+| LOGIKA | 435 | 435 | 0 |
 | WYMIAR | 13 | 13 | 0 |
 
 ## EKRAN
@@ -19,7 +19,7 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 |---|---|---|
 | /exercises | app/(tabs)/exercises.tsx | tests/matrix-a11y.test.tsx, tests/matrix-data-fuzz.test.ts, tests/matrix-dim-langs1.test.tsx +9 |
 | /history | app/(tabs)/history.tsx | tests/audit-r82.test.tsx, tests/audit-r82b.test.tsx, tests/audit-r83.test.tsx +25 |
-| / | app/(tabs)/index.tsx | tests/app.tsx, tests/audit-backlog-q.test.tsx, tests/audit-backlog-r75.test.tsx +86 |
+| / | app/(tabs)/index.tsx | tests/app.tsx, tests/audit-backlog-q.test.tsx, tests/audit-backlog-r75.test.tsx +87 |
 | /more | app/(tabs)/more.tsx | tests/audit-io-flows.test.tsx, tests/audit-io-more.test.tsx, tests/audit-journey-c.test.tsx +38 |
 | /templates | app/(tabs)/templates.tsx | tests/matrix-a11y.test.tsx, tests/matrix-data-fuzz.test.ts, tests/matrix-dim-langs1.test.tsx +8 |
 | /exercise | app/exercise/[id].tsx | tests/catalog-v2.test.ts, tests/matrix-a11y.test.tsx, tests/matrix-data-fuzz.test.ts +9 |
@@ -34,7 +34,7 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | /more/progress | app/more/progress.tsx | tests/audit-journey-c.test.tsx, tests/audit-perf-ui.test.tsx, tests/audit-records-ui.test.tsx +15 |
 | /more/settings | app/more/settings.tsx | tests/audit-io-flows.test.tsx, tests/audit-io-more.test.tsx, tests/audit-r83.test.tsx +21 |
 | /picker | app/picker.tsx | tests/audit-prephone.test.tsx, tests/backlog-0410.test.tsx, tests/catalog-full.test.tsx +7 |
-| /plan | app/plan.tsx | tests/plan-calendar-ui.test.tsx |
+| /plan | app/plan.tsx | tests/plan-calendar-ui.test.tsx, tests/plans-multi-ui.test.tsx |
 | /reorder | app/reorder.tsx | tests/reorder-t010.test.tsx |
 | /swap | app/swap.tsx | tests/matrix-logic.test.tsx, tests/matrix-ui.test.tsx |
 | /template | app/template/[id].tsx | tests/audit-prephone.test.tsx, tests/audit-r82.test.tsx, tests/audit-r83.test.tsx +20 |
@@ -63,7 +63,7 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | + talerz | components/LoadEditor.tsx | tests/locations-loads.test.ts, tests/locations-ui.test.tsx, tests/matrix-ui.test.tsx +2 |
 | + zakres powtórzeń | app/template/[id].tsx | tests/scenario-full.test.tsx, tests/template-rows.test.tsx, .maestro/08-szablon-wiersze.yaml |
 | ≡ Kolejność | app/template/[id].tsx | tests/matrix-ui.test.tsx, tests/reorder-t010.test.tsx |
-| Anuluj | app/(tabs)/index.tsx | tests/audit-prephone.test.tsx, tests/backlog-0410.test.tsx, tests/deload-ui.test.tsx +12 |
+| Anuluj | app/(tabs)/index.tsx | tests/audit-prephone.test.tsx, tests/backlog-0410.test.tsx, tests/deload-ui.test.tsx +13 |
 | Anuluj trening | components/ActiveWorkout.tsx | tests/matrix-ui.test.tsx, tests/scenario-full.test.tsx, tests/ux.test.tsx +1 |
 | Archiwum ({n}) | app/(tabs)/templates.tsx | tests/template-folders.test.tsx |
 | Asysta gumą | app/exercise/[id].tsx | tests/scenario-full.test.tsx |
@@ -72,14 +72,14 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | bez folderu | app/template/[id].tsx | tests/template-folders.test.tsx |
 | Brak sprzętu w: {l}. Brakuje: {m} | components/ActiveWorkout.tsx | tests/scenario-full.test.tsx |
 | cel s | app/template/[id].tsx | tests/audit-stale-ui.test.tsx, tests/regress.test.tsx, tests/scenario-full.test.tsx +1 |
-| co | components/LoadEditor.tsx | tests/app.tsx, tests/audit-ac5d764.test.tsx, tests/audit-backlog-q.test.tsx +150 |
+| co | components/LoadEditor.tsx | tests/app.tsx, tests/audit-ac5d764.test.tsx, tests/audit-backlog-q.test.tsx +152 |
 | Co logujesz w serii | app/exercise/[id].tsx | tests/matrix-dim-langs1.test.tsx, tests/matrix-dim-langs2.test.tsx, tests/matrix-dim-langs3.test.tsx +2 |
 | Cofnij | components/ActiveWorkout.tsx | tests/matrix-logic.test.tsx, tests/matrix-ui.test.tsx, tests/scenario-full.test.tsx +2 |
 | Cofnij zamianę: {name} | components/ActiveWorkout.tsx | tests/matrix-ui.test.tsx, tests/scenario-full.test.tsx, tests/swap-ui.test.tsx +1 |
 | czas | app/history/edit/[id].tsx | tests/app.tsx, tests/audit-backlog-q.test.tsx, tests/audit-backlog-r75.test.tsx +32 |
 | Czas trwania (min) | components/WhenFields.tsx | tests/edit-history.test.tsx, tests/matrix-ui.test.tsx, tests/scenario-full.test.tsx |
 | Data (RRRR-MM-DD) | components/WhenFields.tsx | tests/edit-history.test.tsx, tests/integration-090.test.tsx, tests/matrix-ui.test.tsx +1 |
-| do | app/template/[id].tsx | tests/app.tsx, tests/audit-backlog-q.test.tsx, tests/audit-backlog-r75.test.tsx +145 |
+| do | app/template/[id].tsx | tests/app.tsx, tests/audit-backlog-q.test.tsx, tests/audit-backlog-r75.test.tsx +147 |
 | Do upadku (F) | app/template/[id].tsx | tests/scenario-full.test.tsx, .maestro/08-szablon-wiersze.yaml |
 | dodaj ciężar | components/LoadEditor.tsx | tests/locations-ui.test.tsx, tests/matrix-ui.test.tsx, tests/scenario-full.test.tsx |
 | Dodaj notatkę | components/ActiveWorkout.tsx | tests/scenario-full.test.tsx |
@@ -120,8 +120,10 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | Miejsce treningu: {l}. Tapnij, by zmienić. | components/ActiveWorkout.tsx | tests/audit-journey-c.test.tsx, tests/locations-ui.test.tsx, tests/matrix-ui.test.tsx +2 |
 | Miesiąc | components/PeriodSummary.tsx | tests/deload-week.test.tsx, tests/period-summary.test.tsx, .maestro/05-edycja-historii.yaml |
 | min na stronę | components/LoadEditor.tsx | tests/matrix-ui.test.tsx |
+| Mój plan | app/plan.tsx | tests/plans-multi-ui.test.tsx, tests/plans-multi.test.ts |
 | Na każdą stronę: {p} | components/PlateBar.tsx | tests/karta-sprzet.test.tsx, tests/matrix-karta.test.tsx, tests/matrix-tuleja.test.tsx +2 |
-| Nazwa | app/exercise/[id].tsx | tests/regress.test.tsx, tests/scenario-full.test.tsx, tests/template-folders.test.tsx +3 |
+| Nazwa | app/exercise/[id].tsx | tests/plans-multi-ui.test.tsx, tests/regress.test.tsx, tests/scenario-full.test.tsx +4 |
+| Nazwa planu | app/plan.tsx | tests/plans-multi-ui.test.tsx |
 | Nie | app/more/backup.tsx | tests/decisions-0310.test.tsx, tests/eas-capabilities.test.ts, tests/edit-history.test.tsx +24 |
 | Nie udało się zapisać danych | app/(tabs)/index.tsx | tests/matrix-ui.test.tsx, tests/regress.test.tsx |
 | Nie zamieniaj: {name} | components/ActiveWorkout.tsx | tests/scenario-full.test.tsx, tests/swap-alternates.test.tsx |
@@ -129,7 +131,7 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | Notatki techniczne | app/exercise/[id].tsx | tests/scenario-full.test.tsx |
 | np. samopoczucie, ból, sprzęt | app/history/edit/[id].tsx | tests/matrix-ui.test.tsx |
 | Obciążenie partii (z katalogu) | app/exercise/[id].tsx | tests/catalog-v2.test.ts |
-| od | components/LoadEditor.tsx | tests/app.tsx, tests/audit-ac5d764.test.tsx, tests/audit-backlog-q.test.tsx +143 |
+| od | components/LoadEditor.tsx | tests/app.tsx, tests/audit-ac5d764.test.tsx, tests/audit-backlog-q.test.tsx +145 |
 | Odrzuć | components/ActiveWorkout.tsx | tests/audit-close2-a.test.tsx, tests/edit-history.test.tsx, tests/flows.test.tsx +4 |
 | Odrzuć trening | app/history/edit/[id].tsx | tests/edit-history.test.tsx, tests/flows.test.tsx, tests/matrix-invariants.test.ts +3 |
 | Odrzuć zmiany | app/history/edit/[id].tsx | tests/edit-history.test.tsx, tests/matrix-ui.test.tsx, tests/scenario-full.test.tsx |
@@ -138,7 +140,7 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | Partie główne (1 seria) | app/exercise/[id].tsx | tests/matrix-ui.test.tsx |
 | Partie pomocnicze (0,5 serii) | app/exercise/[id].tsx | tests/matrix-ui.test.tsx |
 | Plan na 7 dni: {list}. Tapnij, by otworzyć Kalendarz. | components/TodayPlan.tsx | tests/plan-calendar-ui.test.tsx |
-| Plan tygodnia | app/(tabs)/history.tsx | tests/plan-calendar-ui.test.tsx, .maestro/13-kalendarz-plan.yaml |
+| Plan tygodnia | app/(tabs)/history.tsx | tests/plan-calendar-ui.test.tsx, tests/plans-multi-ui.test.tsx, .maestro/13-kalendarz-plan.yaml |
 | Pliki → Na moim iPhonie → {app} → Backup, ostatnie {n} | app/more/settings.tsx | tests/xcheck-0610.test.tsx |
 | Podpowiedź progresji | app/more/settings.tsx | tests/matrix-ui.test.tsx, tests/phone-p1.test.tsx, tests/scenario-full.test.tsx |
 | Pokaż więcej ({n}) | app/swap.tsx | tests/matrix-logic.test.tsx, tests/matrix-ui.test.tsx |
@@ -195,6 +197,9 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | Tydzień deload | components/PeriodSummary.tsx | tests/deload-ui.test.tsx, tests/deload-week.test.tsx, .maestro/05-edycja-historii.yaml |
 | Tylko teraz | components/ActiveWorkout.tsx | tests/regress.test.tsx, tests/scenario-full.test.tsx |
 | Ukryj komunikat | app/(tabs)/index.tsx | tests/regress.test.tsx |
+| Ustaw | app/plan.tsx | tests/audit-backlog-r75.test.tsx, tests/audit-r72-a.test.ts, tests/audit-r72-b.test.ts +24 |
+| Ustaw jako aktywny | app/plan.tsx | tests/plans-multi-ui.test.tsx |
+| Ustaw jako aktywny: {name} | app/plan.tsx | tests/plans-multi-ui.test.tsx |
 | Ustaw jako główne | app/more/location/[id].tsx | tests/locations-ui.test.tsx, tests/scenario-full.test.tsx |
 | Ustawienia | app/(tabs)/more.tsx | tests/audit-backlog-r75.test.tsx, tests/audit-r72-b.test.ts, tests/effort-scale.test.tsx +19 |
 | Usunąć ćwiczenie? | app/(tabs)/exercises.tsx | tests/matrix-ui.test.tsx, tests/scenario-full.test.tsx, tests/swipe-delete.test.tsx +1 |
@@ -203,16 +208,18 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | Usunąć serię? | app/history/edit/[id].tsx | tests/edit-history.test.tsx, tests/flows.test.tsx, tests/matrix-ui.test.tsx +7 |
 | Usunąć szablon? | app/(tabs)/templates.tsx | tests/scenario-full.test.tsx, tests/swipe-delete.test.tsx, tests/ux.test.tsx |
 | Usunąć talerz? | components/LoadEditor.tsx | tests/scenario-full.test.tsx, tests/swipe-delete.test.tsx |
+| Usunąć ten plan? | app/plan.tsx | tests/plans-multi-ui.test.tsx |
 | Usunąć tę sesję z historii? | app/(tabs)/history.tsx | tests/matrix-ui.test.tsx, tests/regress.test.tsx, tests/scenario-full.test.tsx +1 |
 | Usunąć z szablonu? | app/template/[id].tsx | tests/flows.test.tsx, tests/regress.test.tsx, tests/scenario-full.test.tsx +3 |
 | Usunąć z treningu? | app/history/edit/[id].tsx | tests/edit-history.test.tsx, tests/matrix-ui.test.tsx, tests/regress.test.tsx +3 |
 | Usunąć zamiennik? | app/template/[id].tsx | tests/swap-alternates.test.tsx |
-| Usuń | components/SwipeRow.tsx | tests/app.tsx, tests/audit-r83.test.tsx, tests/audit-records-misc.test.tsx +14 |
+| Usuń | components/SwipeRow.tsx | tests/app.tsx, tests/audit-r83.test.tsx, tests/audit-records-misc.test.tsx +15 |
 | Usuń ćwiczenie: {name} | app/history/edit/[id].tsx | tests/edit-history.test.tsx, tests/flows.test.tsx, tests/regress.test.tsx +4 |
 | Usuń gumę: {name} | app/more/bands.tsx | tests/audit-r83.test.tsx, tests/audit-records-misc.test.tsx, tests/matrix-ui.test.tsx +4 |
 | Usuń gumy… | app/more/location/[id].tsx | tests/matrix-i18n.test.tsx, tests/scenario-full.test.tsx |
 | Usuń miejsce: {name} | app/more/locations.tsx | tests/locations-ui.test.tsx, tests/matrix-ui.test.tsx, tests/scenario-full.test.tsx +1 |
 | Usuń odznaczone | components/LoadEditor.tsx | tests/scenario-full.test.tsx |
+| Usuń plan: {name} | app/plan.tsx | tests/plans-multi-ui.test.tsx |
 | Usuń serię {n} — {ex} | app/history/edit/[id].tsx | tests/edit-history.test.tsx, tests/flows.test.tsx, tests/matrix-ui.test.tsx +6 |
 | Usuń sesję | app/history/edit/[id].tsx | tests/edit-history.test.tsx, tests/matrix-ui.test.tsx, tests/regress.test.tsx +2 |
 | Usuń sesję: {name} | app/(tabs)/history.tsx | tests/regress.test.tsx, tests/scenario-full.test.tsx, tests/swipe-delete.test.tsx |
@@ -247,7 +254,8 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | Zamknij | components/WhatsNew.tsx | tests/whats-new.test.tsx, .maestro/13-kalendarz-plan.yaml |
 | Zapamiętaj | components/ActiveWorkout.tsx | tests/regress.test.tsx, tests/scenario-full.test.tsx, tests/swap-alternates.test.tsx |
 | Zapisuj zakończone treningi do Apple Health | app/more/settings.tsx | tests/matrix-ui.test.tsx, tests/phone-p1.test.tsx, tests/scenario-full.test.tsx |
-| Zapisz | app/history/edit/[id].tsx | tests/edit-history.test.tsx, tests/integration-090.test.tsx, tests/matrix-ui.test.tsx +4 |
+| Zapisz | app/history/edit/[id].tsx | tests/edit-history.test.tsx, tests/integration-090.test.tsx, tests/matrix-ui.test.tsx +5 |
+| Zapisz kopię jako nowy plan | app/plan.tsx | tests/plans-multi-ui.test.tsx |
 | Zapisz zmiany | app/history/edit/[id].tsx | tests/edit-history.test.tsx, tests/scenario-full.test.tsx, .maestro/05-edycja-historii.yaml |
 | Zaplanuj deload od {date} | components/DeloadHint.tsx | tests/deload-ui.test.tsx |
 | Zastąp | components/LoadEditor.tsx | tests/locations-audit.test.tsx, tests/matrix-ui.test.tsx, tests/scenario-full.test.tsx |
@@ -303,7 +311,8 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | Bez nowych rekordów w tym okresie. | components/PeriodSummary.tsx | tests/period-summary.test.tsx |
 | Bez serii — ćwiczenie nie zostanie zapisane. | app/history/edit/[id].tsx | tests/edit-history.test.tsx |
 | bez szablonu | app/(tabs)/index.tsx | tests/audit-close2-b.test.tsx, tests/ux.test.tsx |
-| brak | app/history/edit/[id].tsx | tests/app.tsx, tests/audit-backlog-r75.test.tsx, tests/audit-io-flows.test.tsx +59 |
+| bez treningów | app/plan.tsx | tests/period-summary.test.tsx, tests/plans-multi-ui.test.tsx, tests/whats-new.test.tsx |
+| brak | app/history/edit/[id].tsx | tests/app.tsx, tests/audit-backlog-r75.test.tsx, tests/audit-io-flows.test.tsx +60 |
 | brak ciężarów — podpowiedź „↑” jak bez miejsca | components/LoadEditor.tsx | tests/bar-no-plates.test.tsx, tests/matrix-ui.test.tsx |
 | Brak ćwiczeń — dodaj pierwsze. | app/history/edit/[id].tsx | tests/edit-history.test.tsx, tests/scenario-full.test.tsx |
 | Brak danych do wykresu. | components/Chart.tsx | tests/regress.test.tsx |
@@ -377,9 +386,10 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | hantle: {v} | components/EquipVisual.tsx | tests/catalog-v2.test.ts, tests/karta-sprzet.test.tsx, tests/locations-ui.test.tsx +1 |
 | Import przerwany | app/more/backup.tsx | tests/audit-r83.test.tsx, tests/audit-r83b.test.tsx, tests/matrix-ui.test.tsx |
 | Import zastąpi wszystkie obecne dane zawartością pliku. Obecne dane (także trening w toku) zapiszą się najpierw jako kopia w Plikach: {app} → Backup. | app/more/backup.tsx | tests/matrix-ui.test.tsx |
-| Inne | app/swap.tsx | tests/backlog-0410.test.tsx, tests/catalog-full.test.tsx, tests/matrix-data-fuzz.test.ts +4 |
+| Inne | app/swap.tsx | tests/backlog-0410.test.tsx, tests/catalog-full.test.tsx, tests/matrix-data-fuzz.test.ts +5 |
 | Inne ▴ | app/swap.tsx | tests/matrix-logic.test.tsx, tests/matrix-ui.test.tsx |
 | Inne ▾ | app/swap.tsx | tests/matrix-logic.test.tsx, tests/matrix-ui.test.tsx, tests/swap-ui.test.tsx |
+| Inne plany | app/plan.tsx | tests/plans-multi-ui.test.tsx |
 | Inny trening | components/DayPanel.tsx | tests/plan-calendar-ui.test.tsx |
 | Jak w telefonie | app/more/language.tsx | tests/i18n-multi.test.ts, tests/logic.test.ts, tests/matrix-dim-langs1.test.tsx +8 |
 | Jasny | app/more/settings.tsx | tests/matrix-i18n.test.tsx, tests/scenario-full.test.tsx, tests/theme-choice.test.tsx +1 |
@@ -403,6 +413,7 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | Kopia jest zachowana w telefonie. Tapnij, by ją wysłać, a potem zaimportuj backup. | app/(tabs)/index.tsx | tests/matrix-ui.test.tsx |
 | Kopia nieczytelnych danych | lib/backup.ts | tests/matrix-logic.test.tsx, tests/matrix-ui.test.tsx |
 | Kopia obejmie też poprzednie, nieczytelne dane. | lib/backup.ts | tests/matrix-logic.test.tsx, tests/matrix-ui.test.tsx |
+| Kopia: {name} | app/plan.tsx | tests/matrix-i18n.test.tsx, tests/plans-multi-ui.test.tsx |
 | Kreska = {n} serii na partię w tygodniu. Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; każdy trening siłowy daje przyrost w porównaniu z brakiem treningu. Uproszczenie: serie pomocnicze liczymy po 0,5. | app/more/progress.tsx | tests/sets-mark.test.tsx |
 | Lista | app/more/settings.tsx | tests/matrix-i18n.test.tsx, tests/tuleja.test.tsx, tests/whats-new.test.tsx +1 |
 | lista ćwiczeń z filtrami, które możesz zdjąć | app/swap.tsx | tests/matrix-ui.test.tsx |
@@ -455,7 +466,7 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | Nazwy ćwiczeń z biblioteki są po angielsku we wszystkich językach poza polskim. | app/more/language.tsx | tests/matrix-dim-langs1.test.tsx, tests/matrix-dim-langs2.test.tsx, tests/matrix-dim-langs3.test.tsx +3 |
 | Nic do zapisania. Odrzucić ten trening? | components/ActiveWorkout.tsx | tests/matrix-ui.test.tsx |
 | Nic nie pasuje. | app/(tabs)/exercises.tsx | tests/matrix-logic.test.tsx, tests/regress.test.tsx, tests/scenario-full.test.tsx |
-| nie | app/exercise/[id].tsx | tests/app.tsx, tests/audit-ac5d764.test.tsx, tests/audit-backlog-q.test.tsx +135 |
+| nie | app/exercise/[id].tsx | tests/app.tsx, tests/audit-ac5d764.test.tsx, tests/audit-backlog-q.test.tsx +137 |
 | Nie ma takiego ćwiczenia. | app/exercise/[id].tsx | tests/matrix-ui.test.tsx |
 | Nie ma takiego miejsca. | app/more/location/[id].tsx | tests/matrix-ui.test.tsx |
 | Nie ma takiego szablonu. | app/reorder.tsx | tests/reorder-t010.test.tsx |
@@ -482,6 +493,8 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | Nowy rekord! | components/ActiveWorkout.tsx | tests/audit-records-misc.test.tsx, .maestro/10-gumy.yaml |
 | Nowy szablon | app/template/[id].tsx | tests/flows.test.tsx, tests/i18n-multi.test.ts, tests/matrix-ui.test.tsx +5 |
 | Nowy wygląd: kolory i kroje, grafika talerzy na sztandze. | lib/whatsnew.ts | tests/whats-new.test.tsx |
+| Obecny plan zostanie zapisany w „Inne plany”. | app/plan.tsx | tests/plans-multi-ui.test.tsx |
+| Obecny plan zostanie zapisany w „Inne plany”. Zmiany pojedynczych dni od dziś zostaną usunięte: {n}. | app/plan.tsx | tests/plans-multi-ui.test.tsx |
 | obj. | app/more/progress.tsx | tests/matrix-i18n.test.tsx, tests/matrix-ui.test.tsx |
 | objętość | app/history/[id].tsx | tests/audit-final-stats.test.ts, tests/audit-journey-a.test.tsx, tests/audit-r72-b.test.ts +24 |
 | Objętość | components/PeriodSummary.tsx | tests/matrix-invariants.test.ts, tests/matrix-ui.test.tsx, tests/scenario-full.test.tsx |
@@ -489,6 +502,7 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | Objętość serii roboczych (ciężar × powtórzenia × mnożnik ćwiczenia); partia główna liczy całość, pomocnicza połowę. Ćwiczenia bez ciężaru (masa ciała, gumy) się nie liczą. | app/more/progress.tsx | tests/matrix-ui.test.tsx |
 | Objętość tygodniowo ({u}) | app/more/progress.tsx | tests/scenario-full.test.tsx |
 | Obok w nawiasie — cały poprzedni okres. Serie robocze bez rozgrzewki; rekordy jak w podsumowaniu treningu. | components/PeriodSummary.tsx | tests/period-summary.test.tsx |
+| Obowiązuje jeden plan naraz. Po okresie przejściowym wrócisz do poprzedniego jednym przyciskiem. | app/plan.tsx | tests/plans-multi-ui.test.tsx |
 | Od {date}: tydzień deload. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian. | components/DeloadHint.tsx | tests/deload-ui.test.tsx |
 | Odhaczone są tylko serie rozgrzewkowe ({n}). Zapisać taki trening? | components/ActiveWorkout.tsx | tests/matrix-ui.test.tsx |
 | Odhaczone serie bez ciężaru: {n}. | components/ActiveWorkout.tsx | tests/locations-verify3.test.tsx |
@@ -535,6 +549,7 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | poprz. | app/more/progress.tsx | tests/scenario-full.test.tsx |
 | Poprzedni miesiąc | components/HistoryCalendar.tsx | tests/history-calendar.test.tsx, .maestro/05-edycja-historii.yaml |
 | Poprzedni okres | components/PeriodSummary.tsx | tests/period-summary.test.tsx, .maestro/05-edycja-historii.yaml |
+| Poprzedni plan | app/plan.tsx | tests/plans-multi-ui.test.tsx, tests/plans-multi.test.ts |
 | Poprzedni tydzień jest oznaczony jako deload. | components/PeriodSummary.tsx | tests/deload-week.test.tsx |
 | Poprzednio | app/template/[id].tsx | tests/audit-final2-auto.test.ts, tests/audit-r72-b.test.ts, tests/audit-r72-d.test.ts +25 |
 | Poprzednio: {l} | components/ActiveWorkout.tsx | tests/audit-r82.test.tsx, tests/audit-r82b.test.tsx, tests/decisions-0310.test.tsx +4 |
@@ -655,9 +670,10 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | Ułożenie tygodnia z najmniejszą liczbą zmian, z uwzględnieniem regeneracji partii. | components/DayPanel.tsx | tests/plan-calendar-ui.test.tsx |
 | Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM). Po zmianach plan wraca do rutyny w ciągu {n} dni. | components/DayPanel.tsx | tests/plan-calendar-ui.test.tsx |
 | Ustaw plan tygodnia, by widzieć zaplanowane treningi i przesuwać je w kalendarzu. | app/(tabs)/history.tsx | tests/plan-calendar-ui.test.tsx |
+| Ustawić „{name}” jako aktywny plan? | app/plan.tsx | tests/plans-multi-ui.test.tsx |
 | Ustawienia na stronę: {n} ({r}) | components/LoadEditor.tsx | tests/locations-ui.test.tsx |
 | Usunie ćwiczenia, szablony i całą historię oraz przywróci ustawienia domyślne (także miejsca, sprzęt i gumy). Przedtem obecne dane zapiszą się jako kopia w Plikach: {app} → Backup (można ją zaimportować). | app/more/settings.tsx | tests/matrix-ui.test.tsx |
-| usunięte | app/history/edit/[id].tsx | tests/audit-backlog-r75.test.tsx, tests/audit-r82b.test.tsx, tests/audit-r82c.test.tsx +25 |
+| usunięte | app/history/edit/[id].tsx | tests/audit-backlog-r75.test.tsx, tests/audit-r82b.test.tsx, tests/audit-r82c.test.tsx +26 |
 | Usunięte ćwiczenie | app/history/edit/[id].tsx | tests/matrix-data-shared.ts, tests/matrix-logic.test.tsx, tests/swap-ui.test.tsx |
 | usunięte ćwiczenie (w bieżącym treningu) | app/(tabs)/exercises.tsx | tests/matrix-logic.test.tsx, tests/regress.test.tsx |
 | usunięte ćwiczenie z historią | app/(tabs)/exercises.tsx | tests/logic.test.ts, tests/matrix-logic.test.tsx, tests/regress.test.tsx +1 |
@@ -821,12 +837,12 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | health.syncAfterFinish | lib/health.ts | tests/audit-io-more.test.tsx, tests/swap-history.test.tsx |
 | i18n.isLang | lib/i18n.ts | tests/matrix-logic.test.tsx |
 | i18n.detectLang | lib/i18n.ts | tests/matrix-logic.test.tsx |
-| i18n.applyLang | lib/i18n.ts | tests/audit-ac5d764.test.tsx, tests/catalog-v2.test.ts, tests/deload-ui.test.tsx +29 |
+| i18n.applyLang | lib/i18n.ts | tests/audit-ac5d764.test.tsx, tests/catalog-v2.test.ts, tests/deload-ui.test.tsx +30 |
 | i18n.lang | lib/i18n.ts | tests/helpers.ts, tests/i18n-locales.test.ts, tests/i18n-multi.test.ts +13 |
 | i18n.appName | lib/i18n.ts | tests/i18n-locales.test.ts |
-| i18n.locale | lib/i18n.ts | tests/app.tsx, tests/audit-ac5d764.test.tsx, tests/audit-close2-b.test.tsx +33 |
+| i18n.locale | lib/i18n.ts | tests/app.tsx, tests/audit-ac5d764.test.tsx, tests/audit-close2-b.test.tsx +34 |
 | i18n.decimalComma | lib/i18n.ts | tests/matrix-dim-catalog.test.tsx, tests/matrix-dim-equipment.test.tsx, tests/matrix-dim-langs1.test.tsx +7 |
-| i18n.t | lib/i18n.ts | tests/audit-backlog-q.test.tsx, tests/audit-close2-b.test.tsx, tests/audit-journey-b.test.tsx +76 |
+| i18n.t | lib/i18n.ts | tests/audit-backlog-q.test.tsx, tests/audit-close2-b.test.tsx, tests/audit-journey-b.test.tsx +78 |
 | i18n.lbl | lib/i18n.ts | tests/audit-close2-b.test.tsx, tests/audit-journey-c.test.tsx, tests/audit-journey-d.test.tsx +10 |
 | i18n.tp | lib/i18n.ts | tests/edit-history.test.tsx, tests/i18n-multi.test.ts, tests/invariants.test.ts +6 |
 | i18n.exName | lib/i18n.ts | tests/audit-close2-a.test.tsx, tests/audit-close2-b.test.tsx, tests/audit-final-auto.test.tsx +24 |
@@ -875,12 +891,20 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | plan.dayKeyOf | lib/plan.ts | tests/plan-calendar.test.ts |
 | plan.addDays | lib/plan.ts | tests/matrix-time.test.ts, tests/plan-calendar.test.ts, tests/plan-reminder.test.tsx |
 | plan.weekdayIdx | lib/plan.ts | tests/plan-calendar.test.ts |
-| plan.weekPlanDays | lib/plan.ts | tests/plan-calendar-ui.test.tsx |
-| plan.hasPlan | lib/plan.ts | tests/plan-calendar.test.ts |
+| plan.weekPlanDays | lib/plan.ts | tests/plan-calendar-ui.test.tsx, tests/plans-multi-ui.test.tsx, tests/plans-multi.test.ts |
+| plan.hasPlan | lib/plan.ts | tests/plan-calendar.test.ts, tests/plans-multi.test.ts |
 | plan.plannedOn | lib/plan.ts | tests/plan-calendar-ui.test.tsx, tests/plan-calendar.test.ts |
 | plan.isChanged | lib/plan.ts | tests/plan-calendar.test.ts |
-| plan.setWeekDay | lib/plan.ts | tests/deload-ui.test.tsx, tests/plan-calendar-ui.test.tsx, tests/plan-calendar.test.ts +1 |
-| plan.setDayPlan | lib/plan.ts | tests/plan-calendar.test.ts, tests/plan-reminder.test.tsx |
+| plan.setWeekDay | lib/plan.ts | tests/deload-ui.test.tsx, tests/plan-calendar-ui.test.tsx, tests/plan-calendar.test.ts +3 |
+| plan.planName | lib/plan.ts | tests/plans-multi-ui.test.tsx, tests/plans-multi.test.ts |
+| plan.setPlanName | lib/plan.ts | tests/plans-multi.test.ts |
+| plan.savedPlans | lib/plan.ts | tests/plans-multi-ui.test.tsx, tests/plans-multi.test.ts |
+| plan.saveCopyAs | lib/plan.ts | tests/plans-multi.test.ts |
+| plan.activatePlan | lib/plan.ts | tests/plans-multi.test.ts |
+| plan.addPlan | lib/plan.ts | tests/plans-multi-ui.test.tsx, tests/plans-multi.test.ts |
+| plan.renamePlan | lib/plan.ts | tests/plans-multi.test.ts |
+| plan.deletePlan | lib/plan.ts | tests/plans-multi.test.ts |
+| plan.setDayPlan | lib/plan.ts | tests/plan-calendar.test.ts, tests/plan-reminder.test.tsx, tests/plans-multi-ui.test.tsx +1 |
 | plan.resetDay | lib/plan.ts | tests/plan-calendar.test.ts |
 | plan.shiftPlan | lib/plan.ts | tests/plan-calendar.test.ts |
 | plan.moveOnly | lib/plan.ts | tests/plan-calendar.test.ts |
@@ -954,13 +978,13 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | store.init | lib/store.ts | tests/app.tsx, tests/audit-io-more.test.tsx, tests/audit-persist.test.ts +12 |
 | store.applyPrefs | lib/store.ts | tests/audit-close-d.test.ts, tests/audit-close2-b.test.tsx, tests/audit-journey-c.test.tsx +9 |
 | store.migrate | lib/store.ts | tests/audit-io-more.test.tsx, tests/audit-prephone.test.tsx, tests/audit-r72-a.test.ts +27 |
-| store.flush | lib/store.ts | tests/audit-close-b.test.tsx, tests/audit-close-c.test.tsx, tests/audit-close2-a.test.tsx +66 |
+| store.flush | lib/store.ts | tests/audit-close-b.test.tsx, tests/audit-close-c.test.tsx, tests/audit-close2-a.test.tsx +68 |
 | store.getPersistError | lib/store.ts | tests/audit-persist.test.ts, tests/logic.test.ts, tests/matrix-data-fuzz.test.ts +1 |
 | store.getRecovery | lib/store.ts | tests/audit-io-more.test.tsx, tests/audit-r83b.test.tsx, tests/logic.test.ts +5 |
 | store.clearRecovery | lib/store.ts | tests/matrix-logic.test.tsx, tests/regress.test.tsx |
 | store.readRecovery | lib/store.ts | tests/audit-io-more.test.tsx, tests/logic.test.ts, tests/regress.test.tsx |
-| store.save | lib/store.ts | tests/audit-backlog-q.test.tsx, tests/audit-backlog-r75.test.tsx, tests/audit-close-a.test.ts +90 |
-| store.getState | lib/store.ts | tests/audit-backlog-q.test.tsx, tests/audit-backlog-r75.test.tsx, tests/audit-close-a.test.ts +108 |
+| store.save | lib/store.ts | tests/audit-backlog-q.test.tsx, tests/audit-backlog-r75.test.tsx, tests/audit-close-a.test.ts +91 |
+| store.getState | lib/store.ts | tests/audit-backlog-q.test.tsx, tests/audit-backlog-r75.test.tsx, tests/audit-close-a.test.ts +110 |
 | store.replaceState | lib/store.ts | tests/audit-close-d.test.ts, tests/audit-io-flows.test.tsx, tests/audit-io-more.test.tsx +13 |
 | store.useStore | lib/store.ts | tests/matrix-logic.test.tsx |
 | store.useTick | lib/store.ts | tests/logic.test.ts |

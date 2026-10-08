@@ -973,5 +973,21 @@
  "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "A tua própria etiqueta, p. ex. uma semana mais leve. Ao iniciar um treino vou propor menos séries (cerca de metade), mesmos pesos.",
  "Przypomnienie o treningu z planu": "Lembrete de treinos planeados",
  "rano o {h}:00 w dniu zaplanowanego treningu": "de manhã às {h}:00 no dia de um treino planeado",
- "Trening z Twojego planu tygodnia. Otwórz aplikację, by zacząć.": "Treino do teu plano semanal. Abre a app para começar."
+ "Trening z Twojego planu tygodnia. Otwórz aplikację, by zacząć.": "Treino do teu plano semanal. Abre a app para começar.",
+ "bez treningów": "sem treinos",
+ "Poprzedni plan": "Plano anterior",
+ "Ustawić „{name}” jako aktywny plan?": "Tornar «{name}» o plano ativo?",
+ "Obecny plan zostanie zapisany w „Inne plany”. Zmiany pojedynczych dni od dziś zostaną usunięte: {n}.": "O plano atual será guardado em «Outros planos». As alterações de dias individuais a partir de hoje serão removidas: {n}.",
+ "Obecny plan zostanie zapisany w „Inne plany”.": "O plano atual será guardado em «Outros planos».",
+ "Ustaw": "Definir",
+ "Nazwa planu": "Nome do plano",
+ "Mój plan": "O meu plano",
+ "Zapisz kopię jako nowy plan": "Guardar uma cópia como novo plano",
+ "Kopia: {name}": "Cópia: {name}",
+ "Inne plany": "Outros planos",
+ "Obowiązuje jeden plan naraz. Po okresie przejściowym wrócisz do poprzedniego jednym przyciskiem.": "Aplica-se um plano de cada vez. Após um período de transição, voltas ao anterior com um botão.",
+ "Usuń plan: {name}": "Eliminar plano: {name}",
+ "Usunąć ten plan?": "Eliminar este plano?",
+ "Ustaw jako aktywny": "Tornar ativo",
+ "Ustaw jako aktywny: {name}": "Tornar ativo: {name}"
 }

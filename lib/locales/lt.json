@@ -973,5 +973,21 @@
  "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Jūsų žymė, pvz., lengvesnė savaitė. Pradedant treniruotę pasiūlysiu mažiau priėjimų (maždaug pusę), svoriai tie patys.",
  "Przypomnienie o treningu z planu": "Priminimas apie suplanuotą treniruotę",
  "rano o {h}:00 w dniu zaplanowanego treningu": "ryte {h}:00 suplanuotos treniruotės dieną",
- "Trening z Twojego planu tygodnia. Otwórz aplikację, by zacząć.": "Treniruotė iš tavo savaitės plano. Atidaryk programą ir pradėk."
+ "Trening z Twojego planu tygodnia. Otwórz aplikację, by zacząć.": "Treniruotė iš tavo savaitės plano. Atidaryk programą ir pradėk.",
+ "bez treningów": "be treniruočių",
+ "Poprzedni plan": "Ankstesnis planas",
+ "Ustawić „{name}” jako aktywny plan?": "Padaryti „{name}“ aktyviu planu?",
+ "Obecny plan zostanie zapisany w „Inne plany”. Zmiany pojedynczych dni od dziś zostaną usunięte: {n}.": "Dabartinis planas bus išsaugotas skiltyje „Kiti planai“. Atskirų dienų pakeitimai nuo šiandien bus pašalinti: {n}.",
+ "Obecny plan zostanie zapisany w „Inne plany”.": "Dabartinis planas bus išsaugotas skiltyje „Kiti planai“.",
+ "Ustaw": "Nustatyti",
+ "Nazwa planu": "Plano pavadinimas",
+ "Mój plan": "Mano planas",
+ "Zapisz kopię jako nowy plan": "Išsaugoti kopiją kaip naują planą",
+ "Kopia: {name}": "Kopija: {name}",
+ "Inne plany": "Kiti planai",
+ "Obowiązuje jeden plan naraz. Po okresie przejściowym wrócisz do poprzedniego jednym przyciskiem.": "Vienu metu galioja vienas planas. Po pereinamojo laikotarpio prie ankstesnio grįši vienu mygtuku.",
+ "Usuń plan: {name}": "Ištrinti planą: {name}",
+ "Usunąć ten plan?": "Ištrinti šį planą?",
+ "Ustaw jako aktywny": "Padaryti aktyviu",
+ "Ustaw jako aktywny: {name}": "Padaryti aktyviu: {name}"
 }

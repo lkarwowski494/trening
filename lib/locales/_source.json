@@ -304,6 +304,10 @@
   "en": "no template"
  },
  {
+  "pl": "bez treningów",
+  "en": "no workouts"
+ },
+ {
   "pl": "biceps",
   "en": "biceps"
  },
@@ -982,6 +986,10 @@
   "en": "Other ▾"
  },
  {
+  "pl": "Inne plany",
+  "en": "Other plans"
+ },
+ {
   "pl": "Inny przyrząd: {impl}",
   "en": "Other equipment: {impl}"
  },
@@ -1148,6 +1156,10 @@
  {
   "pl": "Kopia obejmie też poprzednie, nieczytelne dane.",
   "en": "The copy will also include the earlier unreadable data."
+ },
+ {
+  "pl": "Kopia: {name}",
+  "en": "Copy: {name}"
  },
  {
   "pl": "kółka gimnastyczne",
@@ -1574,6 +1586,10 @@
   "en": "Modules"
  },
  {
+  "pl": "Mój plan",
+  "en": "My plan"
+ },
+ {
   "pl": "Na ekranie treningu: dzisiejszy trening z planu i podgląd 7 dni.",
   "en": "On the workout screen: today's planned workout and a 7-day preview."
  },
@@ -1668,6 +1684,10 @@
  {
   "pl": "Nazwa folderu",
   "en": "Folder name"
+ },
+ {
+  "pl": "Nazwa planu",
+  "en": "Plan name"
  },
  {
   "pl": "Nazwy ćwiczeń z biblioteki są po angielsku we wszystkich językach poza polskim.",
@@ -1834,6 +1854,14 @@
   "en": "Muscle load (from the catalog)"
  },
  {
+  "pl": "Obecny plan zostanie zapisany w „Inne plany”.",
+  "en": "The current plan will be saved under “Other plans”."
+ },
+ {
+  "pl": "Obecny plan zostanie zapisany w „Inne plany”. Zmiany pojedynczych dni od dziś zostaną usunięte: {n}.",
+  "en": "The current plan will be saved under “Other plans”. Single-day changes from today on will be removed: {n}."
+ },
+ {
   "pl": "obj.",
   "en": "vol."
  },
@@ -1868,6 +1896,10 @@
  {
   "pl": "Obok w nawiasie — cały poprzedni okres. Serie robocze bez rozgrzewki; rekordy jak w podsumowaniu treningu.",
   "en": "In brackets — the whole previous period. Working sets exclude warm-ups; records as in the workout summary."
+ },
+ {
+  "pl": "Obowiązuje jeden plan naraz. Po okresie przejściowym wrócisz do poprzedniego jednym przyciskiem.",
+  "en": "One plan applies at a time. After a temporary period, you can return to the previous one with one button."
  },
  {
   "pl": "od",
@@ -2208,6 +2240,10 @@
  {
   "pl": "Poprzedni okres",
   "en": "Previous period"
+ },
+ {
+  "pl": "Poprzedni plan",
+  "en": "Previous plan"
  },
  {
   "pl": "Poprzedni tydzień jest oznaczony jako deload.",
@@ -3202,12 +3238,28 @@
   "en": "Neck harness"
  },
  {
+  "pl": "Ustaw",
+  "en": "Set"
+ },
+ {
+  "pl": "Ustaw jako aktywny",
+  "en": "Make active"
+ },
+ {
+  "pl": "Ustaw jako aktywny: {name}",
+  "en": "Make active: {name}"
+ },
+ {
   "pl": "Ustaw jako główne",
   "en": "Set as main"
  },
  {
   "pl": "Ustaw plan tygodnia, by widzieć zaplanowane treningi i przesuwać je w kalendarzu.",
   "en": "Set a weekly plan to see planned workouts and move them in the calendar."
+ },
+ {
+  "pl": "Ustawić „{name}” jako aktywny plan?",
+  "en": "Make “{name}” the active plan?"
  },
  {
   "pl": "Ustawienia",
@@ -3244,6 +3296,10 @@
  {
   "pl": "Usunąć talerz?",
   "en": "Remove plate?"
+ },
+ {
+  "pl": "Usunąć ten plan?",
+  "en": "Delete this plan?"
  },
  {
   "pl": "Usunąć tę sesję z historii?",
@@ -3316,6 +3372,10 @@
  {
   "pl": "Usuń odznaczone",
   "en": "Remove unticked"
+ },
+ {
+  "pl": "Usuń plan: {name}",
+  "en": "Delete plan: {name}"
  },
  {
   "pl": "Usuń serię",
@@ -3780,6 +3840,10 @@
  {
   "pl": "Zapisz",
   "en": "Save"
+ },
+ {
+  "pl": "Zapisz kopię jako nowy plan",
+  "en": "Save a copy as a new plan"
  },
  {
   "pl": "Zapisz zmiany",

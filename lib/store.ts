@@ -330,7 +330,12 @@ export function migrate(raw: any): State {
   { const u = [...new Set((Array.isArray(raw.deloadWeeks) ? raw.deloadWeeks : []).filter((x: unknown) => typeof x === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(x) && new Date(+x.slice(0, 4), +x.slice(5, 7) - 1, +x.slice(8, 10)).getDay() === 1))].sort().slice(-520) as string[]; if (u.length) raw.deloadWeeks = u; else delete raw.deloadWeeks; }
   /* kalendarz (08.10.2026): plan tygodnia — 7 pozycji (id tekstem albo null), pusty znika; zmiany dni — klucze-daty, wartości id albo null */
   { const d = isObj(raw.weekPlan) && Array.isArray(raw.weekPlan.days) ? raw.weekPlan.days : null; const days = Array.from({ length: 7 }, (_, i) => (d && typeof d[i] === 'string' && d[i] ? d[i] : null));
-    if (days.some(Boolean)) raw.weekPlan = { days }; else delete raw.weekPlan;
+    const nm = isObj(raw.weekPlan) && typeof raw.weekPlan.name === 'string' ? raw.weekPlan.name.trim().slice(0, 40) : '';
+    if (days.some(Boolean) || nm) raw.weekPlan = { days, ...(nm ? { name: nm } : {}) }; else delete raw.weekPlan;
+    /* 08.10.2026 (docs/24): zapisane plany — id tekstem bez powtórzeń, nazwa ≤ 40, 7 dni; pusta lista znika */
+    { const seen = new Set<string>(); const sp = (Array.isArray(raw.savedPlans) ? raw.savedPlans : []).filter((p: any) => isObj(p) && typeof p.id === 'string' && p.id && !seen.has(p.id) && (seen.add(p.id), true))
+        .map((p: any) => ({ id: p.id, name: typeof p.name === 'string' ? p.name.trim().slice(0, 40) : '', days: Array.from({ length: 7 }, (_, i) => (Array.isArray(p.days) && typeof p.days[i] === 'string' && p.days[i] ? p.days[i] : null)) }));
+      if (sp.length) raw.savedPlans = sp.slice(0, 50); else delete raw.savedPlans; }
     const ov = isObj(raw.planOverrides) ? Object.fromEntries(Object.entries(raw.planOverrides).filter(([k, v]) => /^\d{4}-\d{2}-\d{2}$/.test(k) && (v === null || (typeof v === 'string' && v)))) : {};
     if (Object.keys(ov).length) raw.planOverrides = ov; else delete raw.planOverrides; }
   if (typeof raw.whatsNewSeen !== 'string' || !raw.whatsNewSeen || raw.whatsNewSeen.length > 40) delete raw.whatsNewSeen; /* „Co nowego” (08.10.2026) */

@@ -973,5 +973,21 @@
  "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Eticheta ta, de ex. o săptămână mai ușoară. La pornirea antrenamentului voi propune mai puține serii (cam jumătate), aceleași greutăți.",
  "Przypomnienie o treningu z planu": "Memento pentru antrenamentele planificate",
  "rano o {h}:00 w dniu zaplanowanego treningu": "dimineața la {h}:00 în ziua unui antrenament planificat",
- "Trening z Twojego planu tygodnia. Otwórz aplikację, by zacząć.": "Antrenament din planul tău săptămânal. Deschide aplicația pentru a începe."
+ "Trening z Twojego planu tygodnia. Otwórz aplikację, by zacząć.": "Antrenament din planul tău săptămânal. Deschide aplicația pentru a începe.",
+ "bez treningów": "fără antrenamente",
+ "Poprzedni plan": "Planul anterior",
+ "Ustawić „{name}” jako aktywny plan?": "Setezi „{name}” ca plan activ?",
+ "Obecny plan zostanie zapisany w „Inne plany”. Zmiany pojedynczych dni od dziś zostaną usunięte: {n}.": "Planul curent va fi salvat la „Alte planuri”. Modificările zilelor individuale de azi încolo vor fi șterse: {n}.",
+ "Obecny plan zostanie zapisany w „Inne plany”.": "Planul curent va fi salvat la „Alte planuri”.",
+ "Ustaw": "Setează",
+ "Nazwa planu": "Numele planului",
+ "Mój plan": "Planul meu",
+ "Zapisz kopię jako nowy plan": "Salvează o copie ca plan nou",
+ "Kopia: {name}": "Copie: {name}",
+ "Inne plany": "Alte planuri",
+ "Obowiązuje jeden plan naraz. Po okresie przejściowym wrócisz do poprzedniego jednym przyciskiem.": "Se aplică un singur plan odată. După o perioadă de tranziție revii la cel anterior cu un singur buton.",
+ "Usuń plan: {name}": "Șterge planul: {name}",
+ "Usunąć ten plan?": "Ștergi acest plan?",
+ "Ustaw jako aktywny": "Fă-l activ",
+ "Ustaw jako aktywny: {name}": "Fă-l activ: {name}"
 }

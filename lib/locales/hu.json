@@ -973,5 +973,21 @@
  "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Saját jelölés, pl. könnyebb hét. Edzés indításakor kevesebb sorozatot javaslok (nagyjából a felét), azonos súlyokkal.",
  "Przypomnienie o treningu z planu": "Emlékeztető a tervezett edzésekről",
  "rano o {h}:00 w dniu zaplanowanego treningu": "reggel {h}:00-kor a tervezett edzés napján",
- "Trening z Twojego planu tygodnia. Otwórz aplikację, by zacząć.": "Edzés a heti tervedből. Nyisd meg az alkalmazást a kezdéshez."
+ "Trening z Twojego planu tygodnia. Otwórz aplikację, by zacząć.": "Edzés a heti tervedből. Nyisd meg az alkalmazást a kezdéshez.",
+ "bez treningów": "edzések nélkül",
+ "Poprzedni plan": "Előző terv",
+ "Ustawić „{name}” jako aktywny plan?": "Legyen a(z) „{name}” az aktív terv?",
+ "Obecny plan zostanie zapisany w „Inne plany”. Zmiany pojedynczych dni od dziś zostaną usunięte: {n}.": "A jelenlegi terv a „További tervek” közé kerül. A mai naptól kezdődő egyes napi módosítások törlődnek: {n}.",
+ "Obecny plan zostanie zapisany w „Inne plany”.": "A jelenlegi terv a „További tervek” közé kerül.",
+ "Ustaw": "Beállítás",
+ "Nazwa planu": "Terv neve",
+ "Mój plan": "Saját terv",
+ "Zapisz kopię jako nowy plan": "Másolat mentése új tervként",
+ "Kopia: {name}": "Másolat: {name}",
+ "Inne plany": "További tervek",
+ "Obowiązuje jeden plan naraz. Po okresie przejściowym wrócisz do poprzedniego jednym przyciskiem.": "Egyszerre egy terv érvényes. Átmeneti időszak után egy gombbal visszatérhetsz az előzőhöz.",
+ "Usuń plan: {name}": "Terv törlése: {name}",
+ "Usunąć ten plan?": "Törlöd ezt a tervet?",
+ "Ustaw jako aktywny": "Legyen aktív",
+ "Ustaw jako aktywny: {name}": "Legyen aktív: {name}"
 }

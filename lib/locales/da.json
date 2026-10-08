@@ -973,5 +973,21 @@
  "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Din egen markering, fx en lettere uge. Når du starter en træning, foreslår jeg færre sæt (cirka halvdelen), samme vægte.",
  "Przypomnienie o treningu z planu": "Påmindelse om planlagte træninger",
  "rano o {h}:00 w dniu zaplanowanego treningu": "om morgenen kl. {h}:00 på en planlagt træningsdag",
- "Trening z Twojego planu tygodnia. Otwórz aplikację, by zacząć.": "Træning fra din ugeplan. Åbn appen for at starte."
+ "Trening z Twojego planu tygodnia. Otwórz aplikację, by zacząć.": "Træning fra din ugeplan. Åbn appen for at starte.",
+ "bez treningów": "ingen træninger",
+ "Poprzedni plan": "Tidligere plan",
+ "Ustawić „{name}” jako aktywny plan?": "Gøre “{name}” til den aktive plan?",
+ "Obecny plan zostanie zapisany w „Inne plany”. Zmiany pojedynczych dni od dziś zostaną usunięte: {n}.": "Den nuværende plan gemmes under “Andre planer”. Ændringer af enkelte dage fra i dag fjernes: {n}.",
+ "Obecny plan zostanie zapisany w „Inne plany”.": "Den nuværende plan gemmes under “Andre planer”.",
+ "Ustaw": "Angiv",
+ "Nazwa planu": "Plannavn",
+ "Mój plan": "Min plan",
+ "Zapisz kopię jako nowy plan": "Gem en kopi som ny plan",
+ "Kopia: {name}": "Kopi: {name}",
+ "Inne plany": "Andre planer",
+ "Obowiązuje jeden plan naraz. Po okresie przejściowym wrócisz do poprzedniego jednym przyciskiem.": "Der gælder én plan ad gangen. Efter en overgangsperiode vender du tilbage til den forrige med én knap.",
+ "Usuń plan: {name}": "Slet plan: {name}",
+ "Usunąć ten plan?": "Slet denne plan?",
+ "Ustaw jako aktywny": "Gør aktiv",
+ "Ustaw jako aktywny: {name}": "Gør aktiv: {name}"
 }

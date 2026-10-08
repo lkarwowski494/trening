@@ -12,6 +12,7 @@
 #   "Move only this workout", ".*, taken: Upper A", "This day is taken", "Cancel" ← 'Przesuń tylko ten trening', '{day}, zajęty: {name}', 'Ten dzień jest zajęty', 'Anuluj'
 #   "Today: Upper A", "Start planned workout: Upper A" ← components/TodayPlan.tsx
 #   "Suggestions", "Days changed: .*", "Apply: .*" ← components/DayPanel.tsx: 'Propozycje', 'Zmienione dni: {n}', 'Zastosuj: {title}' (08.10.2026)
+#   "Save a copy as a new plan", "Other plans", "Make active: Copy: My plan", "Set" ← app/plan.tsx: kilka planów (08.10.2026, docs/24)
 #   "What's new", "In this version", "Close"   ← components/WhatsNew.tsx: 'Co nowego' (etykieta „i”), 'W tej wersji', 'Zamknij' (08.10.2026)
 appId: pl.lukasz.trening
 name: Kalendarz z planem tygodnia
@@ -35,6 +36,16 @@ name: Kalendarz z planem tygodnia
 - tapOn: "Saturday: Upper A"
 - tapOn: "Sunday: Upper A"
 - takeScreenshot: 60-plan-tygodnia
+# --- Kilka planów: kopia jako nowy plan i ustawienie jej jako aktywnej (te same dni — reszta scenariusza bez zmian) ---
+- scrollUntilVisible: { element: "Save a copy as a new plan", direction: DOWN, timeout: 30000, centerElement: true }
+- tapOn: "Save a copy as a new plan"
+- scrollUntilVisible: { element: "Make active: Copy: My plan", direction: DOWN, timeout: 30000, centerElement: true }
+- assertVisible: "Other plans"
+- tapOn: "Make active: Copy: My plan"
+- extendedWaitUntil: { visible: "Set", timeout: 15000 }
+- takeScreenshot: 60a-inne-plany
+- tapOn: "Set"
+- assertVisible: "Previous plan"
 - tapOn: "Back"
 # --- Kalendarz: dziś zaplanowany; przesunięcie planu o 1 dzień i powrót ---
 - extendedWaitUntil: { visible: ".*, planned: Upper A", timeout: 30000 }

@@ -1,4 +1,5 @@
 import { getState, save, finishedWorkouts, localISODate, exById } from './store';
+import { uid, type SavedPlan } from './seed';
 
 /*
  * Plan tygodnia i kalendarz (priorytet właściciela 08.10.2026, docs/18; docs/21 „Priorytet”). Same dane użytkownika — bez twierdzeń dziedzinowych
@@ -46,9 +47,37 @@ const commit = () => { getState().userTouched = true; save(); };
 
 /** Ustawienie planu tygodnia (pon…nd). */
 export function setWeekDay(i: number, id: string | null) {
-  const st = getState(); const days = weekPlanDays(); days[i] = id && liveTemplate(id) ? id : null;
-  if (days.some(Boolean)) st.weekPlan = { days }; else delete st.weekPlan; tidy(); commit();
+  const days = weekPlanDays(); days[i] = id && liveTemplate(id) ? id : null; putActive(days, planName()); tidy(); commit();
 }
+
+/* ---------- kilka planów tygodnia, jeden aktywny (decyzja właściciela 08.10.2026, docs/24 sekcja 1) ---------- */
+const putActive = (days: PlanDays, name: string) => { const st = getState(); if (days.some(Boolean) || name) st.weekPlan = { days, ...(name ? { name } : {}) }; else delete st.weekPlan; };
+const cleanName = (n: string) => n.trim().slice(0, 40);
+/** Nazwa aktywnego planu ('' — ekran pokazuje „Mój plan”). */
+export const planName = () => getState().weekPlan?.name ?? '';
+export function setPlanName(n: string) { putActive(weekPlanDays(), cleanName(n)); commit(); }
+export const savedPlans = (): SavedPlan[] => getState().savedPlans ?? [];
+const putSaved = (list: SavedPlan[]) => { const st = getState(); if (list.length) st.savedPlans = list; else delete st.savedPlans; };
+/** Kopia aktywnego planu jako nowy zapisany plan. */
+export function saveCopyAs(name: string): string { const id = uid(); putSaved([...savedPlans(), { id, name: cleanName(name), days: weekPlanDays() }]); commit(); return id; }
+/** Zmiany pojedynczych dni od dziś — należą do aktywnego planu i znikają przy zmianie planu. */
+export const futureChanges = (today = dayKeyOf(Date.now())) => Object.keys(getState().planOverrides ?? {}).filter(k => k >= today).length;
+/** Ustawienie zapisanego planu jako aktywnego: poprzedni aktywny trafia do zapisanych, zmiany dni od dziś są usuwane (przeszłe zostają). */
+export function activatePlan(id: string) {
+  const st = getState(); const p = savedPlans().find(x => x.id === id); if (!p) return;
+  const rest = savedPlans().filter(x => x.id !== id); const cur = weekPlanDays(); const nm = planName();
+  putSaved(cur.some(Boolean) || nm ? [...rest, { id: uid(), name: nm, days: cur }] : rest);
+  putActive(p.days.slice(0, 7), p.name);
+  const today = dayKeyOf(Date.now()); if (st.planOverrides) { const ov = Object.fromEntries(Object.entries(st.planOverrides).filter(([k]) => k < today)); if (Object.keys(ov).length) st.planOverrides = ov; else delete st.planOverrides; }
+  tidy(); commit();
+}
+/** Nowy plan (np. z generatora); `activate` — od razu obowiązuje. */
+export function addPlan(name: string, days: PlanDays, activate: boolean): string {
+  const id = uid(); putSaved([...savedPlans(), { id, name: cleanName(name), days: Array.from({ length: 7 }, (_, i) => days[i] ?? null) }]);
+  if (activate) activatePlan(id); else commit(); return id;
+}
+export function renamePlan(id: string, name: string) { putSaved(savedPlans().map(p => (p.id === id ? { ...p, name: cleanName(name) } : p))); commit(); }
+export function deletePlan(id: string) { if (!savedPlans().some(p => p.id === id)) return; putSaved(savedPlans().filter(p => p.id !== id)); commit(); }
 /** Pojedynczy dzień: inny trening albo wolne (null). */
 export function setDayPlan(k: string, id: string | null) { setDay(k, id && liveTemplate(id) ? id : null); commit(); }
 /** Powrót dnia do planu tygodnia. */

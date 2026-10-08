@@ -973,5 +973,21 @@
  "Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję mniej serii (około połowy), ciężary bez zmian.": "Ihre eigene Markierung, z. B. eine leichtere Woche. Beim Trainingsstart schlage ich weniger Sätze vor (etwa die Hälfte), gleiche Gewichte.",
  "Przypomnienie o treningu z planu": "Erinnerung an geplante Trainings",
  "rano o {h}:00 w dniu zaplanowanego treningu": "morgens um {h}:00 Uhr an einem geplanten Trainingstag",
- "Trening z Twojego planu tygodnia. Otwórz aplikację, by zacząć.": "Training aus deinem Wochenplan. Öffne die App, um zu starten."
+ "Trening z Twojego planu tygodnia. Otwórz aplikację, by zacząć.": "Training aus deinem Wochenplan. Öffne die App, um zu starten.",
+ "bez treningów": "ohne Trainings",
+ "Poprzedni plan": "Vorheriger Plan",
+ "Ustawić „{name}” jako aktywny plan?": "„{name}“ als aktiven Plan festlegen?",
+ "Obecny plan zostanie zapisany w „Inne plany”. Zmiany pojedynczych dni od dziś zostaną usunięte: {n}.": "Der aktuelle Plan wird unter „Andere Pläne“ gespeichert. Änderungen einzelner Tage ab heute werden entfernt: {n}.",
+ "Obecny plan zostanie zapisany w „Inne plany”.": "Der aktuelle Plan wird unter „Andere Pläne“ gespeichert.",
+ "Ustaw": "Festlegen",
+ "Nazwa planu": "Planname",
+ "Mój plan": "Mein Plan",
+ "Zapisz kopię jako nowy plan": "Kopie als neuen Plan speichern",
+ "Kopia: {name}": "Kopie: {name}",
+ "Inne plany": "Andere Pläne",
+ "Obowiązuje jeden plan naraz. Po okresie przejściowym wrócisz do poprzedniego jednym przyciskiem.": "Es gilt immer ein Plan. Nach einer Übergangszeit kehrst du mit einem Tippen zum vorherigen zurück.",
+ "Usuń plan: {name}": "Plan löschen: {name}",
+ "Usunąć ten plan?": "Diesen Plan löschen?",
+ "Ustaw jako aktywny": "Als aktiv festlegen",
+ "Ustaw jako aktywny: {name}": "Als aktiv festlegen: {name}"
 }
