@@ -3,10 +3,10 @@ import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import * as SplashScreen from 'expo-splash-screen';
 import { ActivityIndicator, View, Text, Pressable } from 'react-native';
-import { init, usePrefsTick, flush, refreshViews, autoFinishStale, resolveColdStopwatch, fmtTime, fmtDate, getState } from '@/lib/store';
+import { init, usePrefsTick, flush, refreshViews, autoFinishStale, resolveColdStopwatch, fmtTime, fmtDate, getState, getNewerSchema } from '@/lib/store';
 import { Alert } from 'react-native';
-import { onWorkoutSaved } from '@/lib/backup';
-import type { Workout } from '@/lib/seed';
+import { onWorkoutSaved, exportRawData } from '@/lib/backup';
+import { SCHEMA_VERSION, type Workout } from '@/lib/seed';
 import { AppState } from 'react-native';
 import { t } from '@/lib/i18n';
 import * as timer from '@/lib/timer';
@@ -31,6 +31,14 @@ export default function RootLayout() {
   useEffect(() => { if (err) SplashScreen.hideAsync().catch(() => {}); }, [err]);
   // Zapis wymuszony przy wyjściu do tła — debounce 300 ms nie może zgubić ostatniej zmiany, gdy system ubije apkę.
   useEffect(() => { const sub = AppState.addEventListener('change', st => { if (st !== 'active') flush(); else { const w = autoFinishStale(); /* runda 74 (audyt): stoper zdjęty z zapisu przez cichy zapis (Q-011, seria z celem odhaczona) nie liczy dalej w pamięci */ if (!w && timer.S.on && !getState().timer?.setStartAt) timer.stopSet().catch(() => {}); autoSaved(w); timer.onForeground(); refreshViews(); } }); return () => sub.remove(); }, []);
+  /* Audyt 0.10 J1 (DAT-05): dane z nowszej wersji aplikacji — niczego nie nadpisujemy; „zaktualizuj” i wysłanie surowych danych. */
+  const newer = err ? getNewerSchema() : null;
+  if (newer != null) return <View testID="newer-data" style={{ flex: 1, backgroundColor: th.bg, alignItems: 'center', justifyContent: 'center', padding: 24, gap: 12 }}>
+    <Text accessibilityRole="header" style={{ color: th.text, fontSize: 18, textAlign: 'center', fontFamily: F.semibold }}>{t('Dane z nowszej wersji aplikacji — zaktualizuj aplikację')}</Text>
+    <Text style={{ color: th.muted, textAlign: 'center' }}>{t('Dane w telefonie zapisała nowsza wersja (schemat {a}); ta wersja obsługuje do {b}. Niczego nie zmieniam — zainstaluj najnowszą wersję (TestFlight). Dane możesz też wysłać jako plik.', { a: newer, b: SCHEMA_VERSION })}</Text>
+    <Pressable accessibilityRole="button" onPress={() => { exportRawData().then(ok => { if (!ok) Alert.alert(t('Nie udało się'), t('Spróbuj ponownie.')); }).catch(() => {}); }} style={{ padding: 12 }}><Text style={{ color: th.accent, fontSize: 16, fontFamily: F.semibold }}>{t('Wyślij dane')}</Text></Pressable>
+    <Pressable accessibilityRole="button" onPress={start} style={{ padding: 12 }}><Text style={{ color: th.accent, fontSize: 16, fontFamily: F.semibold }}>{t('Spróbuj ponownie')}</Text></Pressable>
+  </View>;
   // Błąd startu (np. baza niedostępna) — komunikat i ponowienie zamiast wiecznego kółka (runda 2).
   if (err) return <View style={{ flex: 1, backgroundColor: th.bg, alignItems: 'center', justifyContent: 'center', padding: 24, gap: 12 }}><Text style={{ color: th.text, fontSize: 17, textAlign: 'center' }}>{t('Nie udało się otworzyć danych.')}</Text><Text style={{ color: th.muted, textAlign: 'center' }}>{err}</Text><Pressable accessibilityRole="button" onPress={start} style={{ padding: 12 }}><Text style={{ color: th.accent, fontSize: 16, fontFamily: F.semibold }}>{t('Spróbuj ponownie')}</Text></Pressable></View>;
   if (!ready) return <View style={{ flex: 1, backgroundColor: th.bg, alignItems: 'center', justifyContent: 'center' }}><ActivityIndicator color={th.accent} /></View>;

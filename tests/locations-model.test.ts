@@ -21,7 +21,7 @@ function twoPlaces(trexo: number[] = [3, 6, 9, 12, 15, 18, 21, 24]) {
 
 describe('schemat 14 i migracja', () => {
   test('wersja schematu 15 (14: miejsca, 15: przyrząd bloku — bez migracji P-004, usuniętej w rundzie 82); domyślnie brak miejsc, brak miejsca głównego, filtr „pokaż wszystkie” wyłączony', async () => {
-    const st = await fresh(); expect(SCHEMA_VERSION).toBe(17); /* E2: 16 — pola zamiany (docs/14 pkt 2) */
+    const st = await fresh(); expect(SCHEMA_VERSION).toBe(18); /* E2: 16 — pola zamiany (docs/14 pkt 2); 18 — historia planu tygodnia (audyt 0.10 A1) */
     expect(st.settings.locations).toEqual([]); expect(st.settings.mainLocationId).toBeNull(); expect(st.settings.pickerShowAll).toBe(false);
   });
   test('dane sprzed schematu 14: ćwiczenia z biblioteki dostają wymagania z katalogu, własne — brak wymagań i źródło obciążenia ze sprzętu', async () => {
@@ -33,7 +33,7 @@ describe('schemat 14 i migracja', () => {
     const bp = m.exercises.find(e => e.name === 'Bench Press (hantle)' && e.lib)!; expect(bp.requires).toEqual(CATALOG['Bench Press (hantle)'].requires); expect(bp.implements).toBe(2); expect(bp.pattern).toBe('h_push');
     const own = m.exercises.find(e => e.id === 'own1')!; expect(own.requires).toEqual([]); expect(own.loadSource).toBe('cable'); expect(own.pattern).toBeUndefined();
     const dup = m.exercises.find(e => e.id === 'own2')!; expect(dup.requires).toEqual([]); expect(dup.loadSource).toBe('dumbbell'); /* własne o nazwie z biblioteki (bez flagi lib, schemat 13) — bez wymagań */
-    expect(m.settings.locations).toEqual([]); expect(m.settings.mainLocationId).toBeNull(); expect(m.schemaVersion).toBe(17);
+    expect(m.settings.locations).toEqual([]); expect(m.settings.mainLocationId).toBeNull(); expect(m.schemaVersion).toBe(18); /* audyt 0.10 A1: schemat 18 */
   });
   test('stary backup z wersji web 0.3 wczytuje się; ćwiczenia biblioteki mają wymagania', async () => {
     await fresh(); const raw = readFileSync(join(__dirname, 'fixtures/web03-backup.json'), 'utf8');

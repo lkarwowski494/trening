@@ -28,7 +28,7 @@ describe('schemat 16 — migracja pól zamiany', () => {
     expect('swappedFrom' in h3).toBe(false); expect('implPinned' in h3).toBe(false);
     expect(a1).toMatchObject({ swappedFrom: 'S', splitFrom: '7', altSkip: true }); expect('implPinned' in a1).toBe(false); expect('impl' in a1).toBe(false);
     expect('splitFrom' in a2).toBe(false); expect('altSkip' in a2).toBe(false);
-    expect(m.schemaVersion).toBe(17);
+    expect(m.schemaVersion).toBe(18); /* audyt 0.10 A1: schemat 18 — historia planu tygodnia */
     /* blok bez zamiany wygląda bit w bit jak w schemacie 15 */
     expect(Object.keys(m.workouts[0].exercises[0]).filter(k => !['swappedFrom', 'implPinned', 'impl'].includes(k)).sort()).toEqual(['exerciseId', 'groupId', 'id', 'repMax', 'repMin', 'restSec', 'sets']);
   });
@@ -41,7 +41,7 @@ describe('schemat 16 — migracja pól zamiany', () => {
     /* restart: trening w toku z klucza „live” */
     const st2 = await fresh(saved()); expect(st2.active!.exercises[1].splitFrom).toBe(st2.active!.exercises[0].id); expect(st2.active!.exercises[1].swappedFrom).toBe(ex('Bench Press (sztanga)').id);
     /* eksport → import */
-    const env = JSON.parse(JSON.stringify(buildBackup())); expect(env.schemaVersion).toBe(17);
+    const env = JSON.parse(JSON.stringify(buildBackup())); expect(env.schemaVersion).toBe(18); /* audyt 0.10 A1: schemat 18 — historia planu tygodnia */
     const back = parseBackup(JSON.stringify(env)); expect(back.active!.exercises).toEqual(st2.active!.exercises);
     /* historia po „Zakończ”: bez splitFrom, z swappedFrom */
     store.toggleDone(1, 0); const w = store.finishWorkout()!; expect(w.exercises[1].splitFrom).toBeUndefined(); expect(w.exercises[1].swappedFrom).toBe(ex('Bench Press (sztanga)').id);
@@ -50,7 +50,7 @@ describe('schemat 16 — migracja pól zamiany', () => {
     let err = '';
     jest.isolateModules(() => { jest.doMock('@/lib/seed', () => ({ ...jest.requireActual('@/lib/seed'), SCHEMA_VERSION: 15 }));
       const old = require('@/lib/backup'); try { old.parseBackup(env2); } catch (e) { err = (e as Error).message; } });
-    expect(err).toMatch(/17.*15/); expect(SCHEMA_VERSION).toBe(17);
+    expect(err).toMatch(/18.*15/); expect(SCHEMA_VERSION).toBe(18); /* audyt 0.10 A1: schemat 18 — historia planu tygodnia */
   });
 
   test('putHistoryWorkout (edytor historii) usuwa splitFrom i altSkip — historia = to samo, co zwraca migracja', async () => {
@@ -73,7 +73,7 @@ describe('schemat 15 → 16 na danych z prawdziwej wersji 0.9.0', () => {
     /* katalog 04.10.2026: migracja z 15 dopisuje nowe ćwiczenia biblioteki (osobny test w tests/catalog-v2.test.ts) — poza nimi dane 1:1 */
     const strip = (s: any) => { const c = JSON.parse(JSON.stringify(s)); delete c.schemaVersion; delete c.metaUpdatedAt; delete c.saveSeq; delete c.libExtra; delete c.libExtraStep; delete c.equipFill; if (c.settings) { delete c.settings.theme; delete c.settings.workoutView; /* 07.10.2026: widok treningu — nowe pole z wartością domyślną, sprawdzane niżej */ } delete c.optFill; for (const l of c.settings?.locations ?? []) for (const e of l.equipment) e.opts = e.opts.filter((o: string) => !(OPT_FILL.opts[e.item] ?? []).includes(o)); /* 05.10: nachylenie bieżni — tests/owner-0510c */ /* decyzja 05.10: wygląd — nowe pole z wartością domyślną, sprawdzane niżej */ /* decyzja 05.10 (1.a): nowy sprzęt w siłowni z presetu — sprawdzane osobno */ for (const l of c.settings?.locations ?? []) { l.equipment = l.equipment.filter((e: any) => !GYM_FILL.items.includes(e.item)); for (const e of l.equipment) e.opts = e.opts.filter((o: string) => !(GYM_FILL.opts[e.item] ?? []).includes(o)); } c.exercises = c.exercises.filter((e: any) => !LIB_EXTRA_NAMES.includes(e.name)); c.exercises.forEach((e: any) => { delete e.catalogRev; if (e.name === 'Hip Adduction') delete e.muscles; if (e.name === 'Incline Walk (bieżnia)') delete e.requires; /* 05.10: wymaga nachylenia */ }); /* nowa wersja katalogu — wymagania odświeżone, te same; Hip Adduction: partia „przywodziciele” (krok b, sprawdzone niżej) */ return c; };
     const want = strip({ ...fx.state, active: fx.live.active, timer: fx.live.timer });
-    expect(st.schemaVersion).toBe(17); expect(strip(st)).toEqual(want); expect(st.settings.theme).toBe('light'); expect(st.settings.workoutView).toBe('focus'); expect(st.exercises.find(e => e.name === 'Hip Adduction')!.muscles).toEqual(['przywodziciele']); expect(st.settings.locations.find(l => l.id === 'gym')!.equipment.some(e => e.item === 'row_machine')).toBe(true); expect(st.settings.locations.find(l => l.id === 'home')!.equipment.some(e => e.item === 'row_machine')).toBe(false); expect(st.exercises.length).toBe(fx.state.exercises.length + LIB_EXTRA_NAMES.length);
+    expect(st.schemaVersion).toBe(18); /* audyt 0.10 A1 */ expect(strip(st)).toEqual(want); expect(st.settings.theme).toBe('light'); expect(st.settings.workoutView).toBe('focus'); expect(st.exercises.find(e => e.name === 'Hip Adduction')!.muscles).toEqual(['przywodziciele']); expect(st.settings.locations.find(l => l.id === 'gym')!.equipment.some(e => e.item === 'row_machine')).toBe(true); expect(st.settings.locations.find(l => l.id === 'home')!.equipment.some(e => e.item === 'row_machine')).toBe(false); expect(st.exercises.length).toBe(fx.state.exercises.length + LIB_EXTRA_NAMES.length);
     expect(st.workouts).toHaveLength(6); expect(st.active!.exercises[0].sets[0].done).toBe(true); expect(st.timer.restSetId).toBe(fx.live.timer.restSetId);
     /* zapis po migracji ma już schemat 16, a ponowne wczytanie niczego nie zmienia */
     await store.flush(); const again = await fresh(saved()); expect(strip(again)).toEqual(want);

@@ -67,6 +67,13 @@ Miejsca w kodzie: pozycje szablonów `lib/store.ts:230`, bloki treningów `lib/s
 - **Kopia z pliku:** odrzucona (wyżej). Nie da się więc „wgrać” danych 16 do 15.
 - **Baza na telefonie po powrocie do starszego buildu:** `init` woła `migrate(raw)` bez sprawdzania wersji (`lib/store.ts:99`), a `migrate` nie ma białej listy pól pozycji szablonu (`lib/store.ts:230`) ani bloku (`lib/store.ts:252`) — nowe pola **przetrwają**, schemat zapisze się jako 15, a po ponownej aktualizacji migracja 16 je wyczyści (M1–M7). Skutki uboczne w 15: `restampUntouched` (`lib/store.ts:721`) nadpisze ręczny przyrząd bloku w toku; `deleteExercise` (`lib/store.ts:1108`) zostawi wpis zamiennika z usuniętym ćwiczeniem (16 go usunie — M6). Utraty historii brak.
 - **NIEZWERYFIKOWANE:** czy iOS pozwala zainstalować ad hoc starszy build na nowszy (powrót wersji). Niezależnie od odpowiedzi skutki są wyżej i są bezpieczne.
+- **Od schematu 18 (audyt 0.10 J1 / DAT-05, 08.10.2026):** wersja 18 i nowsze nie migrują bazy ze schematem wyższym niż obsługiwany — start
+  zatrzymuje się na ekranie „Dane z nowszej wersji aplikacji — zaktualizuj aplikację” (z „Wyślij dane”), zapis zostaje nietknięty; `migrate`
+  nie obniża numeru schematu i zachowuje nieznane klucze `settings` (bez `__proto__`/`constructor`/`prototype`; pola usunięte w 13 odpadają
+  tylko w danych sprzed 13). Buildy sprzed 18 (np. 1004, d2a1e85) tej bariery nie mają — opis wyżej dalej ich dotyczy (prośba do testerów:
+  nie instalować starszych buildów). Pola planu z 18: `planHistory` i `deloadSnooze` (klucze najwyższego
+  poziomu) starszy build zostawia bez zmian; `SavedPlan.overrides` usunie (biała lista zapisanych planów) — zmiany dni zapisane z planem nie
+  wrócą. Po powrocie na 18 `migrate` dopisuje odcinek historii od dnia, w którym plan różni się od ostatniego odcinka (zmiana ze starszego buildu).
 
 ## 3. W1 — „zamień tylko dziś” (trening w toku)
 

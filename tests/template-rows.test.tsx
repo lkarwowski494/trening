@@ -37,7 +37,7 @@ describe('model: wiersze serii w pozycji szablonu', () => {
     expect(sets.map(s => [s.kind, s.weight, s.reps])).toEqual([['warmup', 40, 10], ['normal', 65, 9], ['normal', 65, 9], ['normal', 65, 8]]);
   });
   test('zakres opcjonalny: nowa pozycja bez zakresu (bez podpowiedzi ↑); zapis/odczyt wierszy; zły zapis naprawiony; schemat 17', async () => {
-    expect(SCHEMA_VERSION).toBe(17);
+    expect(SCHEMA_VERSION).toBe(18); /* audyt 0.10 A1: schemat 18 — historia planu tygodnia */
     await fresh(); const t = tplWith('Bench Press (sztanga)'); store.tplAddRow(t, 'iq', 'warmup'); await store.flush();
     const raw = JSON.parse(JSON.stringify(store.getState())); const rit = raw.templates.find((x: any) => x.id === 'tq').items[0];
     rit.rows.push({ id: 5, kind: 'nonsense', reps: 'x', weight: -3 }); rit.rows.push('zły');
@@ -71,7 +71,7 @@ test('kopia ze schematem 17 (wiersze szablonu) odrzucana przez wersję 16 — be
   await fresh(); const t = tplWith('Bench Press (sztanga)'); store.tplAddRow(t, 'iq', 'warmup');
   const { buildBackup } = require('@/lib/backup'); const env = JSON.stringify(buildBackup()); let err = '';
   jest.isolateModules(() => { jest.doMock('@/lib/seed', () => ({ ...jest.requireActual('@/lib/seed'), SCHEMA_VERSION: 16 })); const old = require('@/lib/backup'); try { old.parseBackup(env); } catch (e) { err = (e as Error).message; } });
-  expect(err).toMatch(/17.*16/);
+  expect(err).toMatch(new RegExp(`${SCHEMA_VERSION}.*16`)); /* audyt 0.10 A1: kopia ma bieżący schemat (18) */
 });
 
 describe('audyt 85364ad', () => {

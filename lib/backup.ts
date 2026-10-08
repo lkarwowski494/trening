@@ -1,7 +1,7 @@
 import * as FileSystem from 'expo-file-system/legacy';
 import * as Sharing from 'expo-sharing';
 import * as DocumentPicker from 'expo-document-picker';
-import { bandColor, getState, save, replaceState, clearRecovery, migrate, finishedWorkouts, exById, workoutDurSec, shownLoad, bandById, localISODate, flush, readRecovery, getRecovery } from './store';
+import { bandColor, getState, save, replaceState, clearRecovery, migrate, finishedWorkouts, exById, workoutDurSec, shownLoad, bandById, localISODate, flush, readRecovery, getRecovery, readRawData } from './store';
 import { t, exName } from './i18n';
 import { wOut } from './units';
 import { ensureAuthorization, syncAfterFinish } from './health';
@@ -151,6 +151,17 @@ export async function importBackup(): Promise<boolean> {
 }
 
 /** Udostępnia surową kopię zapisu, którego nie dało się odczytać przy starcie (store.getRecovery). */
+/** Audyt 0.10 J1: wysłanie surowych danych z nowszej wersji aplikacji (ekran startu „Dane z nowszej wersji”) — bez zmiany danych. */
+export async function exportRawData(): Promise<boolean> {
+  try {
+    const txt = await readRawData(); if (!txt) return false;
+    const path = `${FileSystem.cacheDirectory}trening-dane-${localISODate()}.json`;
+    await FileSystem.writeAsStringAsync(path, txt);
+    if (!(await Sharing.isAvailableAsync())) return false;
+    await Sharing.shareAsync(path, { mimeType: 'application/json', dialogTitle: t('Dane z nowszej wersji aplikacji') });
+    return true;
+  } catch { return false; }
+}
 export async function exportRecovery(): Promise<boolean> {
   try { // runda 36: każdy błąd (np. brak miejsca) = false → komunikat „Nie udało się”
     const txt = await readRecovery(); if (!txt) return false;

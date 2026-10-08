@@ -5,7 +5,7 @@ import { useSyncExternalStore } from 'react';
 import { t, t as tr, tIn, applyLang, detectLang, locale, fold, isLang, lang } from './i18n';
 import { applyUnit, wu, wOut, wIn, KG_PER_LB, fmtW, fmtNum, snapLegacyLb } from './units';
 import { applyTheme } from './theme';
-import { seedState, uid, base, defaultModules, defaultSettings, metricFor, loadModeFor, loadMult, blankTimer, musclesFor, hasTime, hasReps, hasWeight, hasDistance, METRICS, DEFAULT_REST, GROUPS, LIB, SCHEMA_VERSION, LOCAL_OWNER, MODULES, SET_KINDS, SINGLE_IMPLEMENT, equipFields, libExercise, LIB_EXTRA_REVS, LIB_EXTRA_REV, LIB_MUSCLE_FIXES, libExtraRevOf, LIB_BASE_NAMES, LOAD_SOURCE_BY_EQUIPMENT, IMPLS, own, type Impl, type SetKind, type Base, type State, type Workout, type WSet, type WExercise, type Exercise, type Template, type TemplateItem, type TemplateAlt, type TRow, type Morning, type Location } from './seed';
+import { seedState, uid, base, defaultModules, defaultSettings, metricFor, loadModeFor, loadMult, blankTimer, musclesFor, hasTime, hasReps, hasWeight, hasDistance, METRICS, DEFAULT_REST, GROUPS, LIB, SCHEMA_VERSION, LOCAL_OWNER, MODULES, SET_KINDS, SINGLE_IMPLEMENT, equipFields, libExercise, LIB_EXTRA_REVS, LIB_EXTRA_REV, LIB_MUSCLE_FIXES, libExtraRevOf, LIB_BASE_NAMES, LOAD_SOURCE_BY_EQUIPMENT, IMPLS, own, type Impl, type SetKind, type Base, type State, type Workout, type WSet, type WExercise, type Exercise, type Template, type TemplateItem, type TemplateAlt, type TRow, type Morning, type Location, type PlanSegment } from './seed';
 import { equipById, loadsFor, implAt, implsAt, blankLoad, availability, fillGym, GYM_FILL, fillOpts, OPT_FILL } from './equipment';
 import { sanitizeLoadSpec, nextHeavier, hasLoadShown } from './loads';
 import { CATALOG, CATALOG_REV, CABLES } from './catalog.generated';
@@ -90,6 +90,9 @@ export async function init(): Promise<void> {
   await db.execAsync('CREATE TABLE IF NOT EXISTS kv (k TEXT PRIMARY KEY, v TEXT NOT NULL)');
   const row = await db.getFirstAsync<{ v: string }>('SELECT v FROM kv WHERE k = ?', 'state');
   let needsPersist = false;
+  /* Audyt 0.10 J1 (DAT-05): baza zapisana przez nowszą wersję (wyższy schemat) — niczego nie migrujemy ani nie zapisujemy; ekran startu
+   * mówi „zaktualizuj aplikację” i pozwala wysłać surowe dane (readRawData). */
+  if (row) { let ver = 0; try { ver = Number(JSON.parse(row.v)?.schemaVersion) || 0; } catch {} if (ver > SCHEMA_VERSION) { newerSchema = ver; throw Object.assign(new Error(t('Dane z nowszej wersji aplikacji — zaktualizuj aplikację')), { newerSchema: ver }); } }
   if (row) {
     try {
       const raw = JSON.parse(row.v); const before = raw?.schemaVersion;
@@ -137,6 +140,12 @@ const LIB_NAMES = LIB_BASE_NAMES; /* audyt 04.10 (LOW): reguła danych sprzed sc
  * dopisuje brakujące pola, pomija uszkodzone wpisy (null, nie-obiekty) zamiast się wywracać.
  * Idempotentna — można ją wołać na stanie już zmigrowanym.
  */
+/** Pola Settings znane tej wersji — pola domyślne plus opcjonalne (nowe pole opcjonalne dopisz tutaj, inaczej jego zła wartość z importu
+ * przejdzie jak nieznane ustawienie); reszta zostaje bez zmian — audyt 0.10 J1. */
+const SETTINGS_KEYS = new Set([...Object.keys(defaultSettings()), 'effortScale', 'planReminder']);
+const PROTO_KEYS = new Set(['__proto__', 'constructor', 'prototype']);
+/** Ustawienia usunięte w schemacie 13 (runda 75, Q-001: masa ciała poza obliczeniami) — w danych sprzed 13 odpadają jak dotąd. */
+const LEGACY_SETTINGS_13 = new Set(['bodyWeightKg']);
 /** Runda 51: liczba z importu — także z tekstu (przecinek dziesiętny); null dla nieskończoności, NaN, obiektów i absurdalnych rzędów wielkości. */
 function parseNum(v: unknown): number | null { const n = typeof v === 'number' ? v : typeof v === 'string' && v.trim() !== '' ? Number(v.trim().replace(/^(-?\d*),(\d+)$/, '$1.$2')) : NaN; return Number.isFinite(n) && Math.abs(n) <= 1e7 ? n : null; }
 /** Runda 51: identyfikator jako tekst (liczbowe id z ręcznie edytowanych backupów), inaczej null. */
@@ -310,7 +319,11 @@ export function migrate(raw: any): State {
   raw.relations = arr(raw.relations); raw.feedback = arr(raw.feedback); raw.instructions = arr(raw.instructions);
   // Ustawienia: pole po polu na domyślnych, żeby częściowy obiekt nie dał undefined (np. przerwa → „NaNs”).
   const d = defaultSettings(); const s = isObj(raw.settings) ? raw.settings : {};
-  raw.settings = {
+  /* Audyt 0.10 J1 (DAT-05): ustawienia, których ta wersja nie zna (zapisała je nowsza), zostają — powrót do nowszej wersji ich nie gubi;
+   * bez kluczy, które mogłyby zatruć prototyp. Znane pola niżej — jak dotąd, pole po polu. */
+  const legacy = (Number(raw.schemaVersion) || 0) < 13 ? LEGACY_SETTINGS_13 : new Set<string>(); /* pola usunięte w 13 (Q-001) — nie wracają z dawnych danych */
+  const unknownSettings = Object.fromEntries(Object.keys(s).filter(k => !SETTINGS_KEYS.has(k) && !PROTO_KEYS.has(k) && !legacy.has(k)).map(k => [k, s[k]]));
+  raw.settings = { ...unknownSettings,
     defaultRest: (v => v != null && v >= 0 ? Math.min(1800, Math.round(v)) : d.defaultRest)(parseNum(s.defaultRest)), // runda 17: ten sam limit co wszędzie
     sound: typeof s.sound === 'boolean' ? s.sound : d.sound,
     wakeLock: typeof s.wakeLock === 'boolean' ? s.wakeLock : d.wakeLock,
@@ -329,21 +342,29 @@ export function migrate(raw: any): State {
   /* pakiet C: tygodnie deload — daty poniedziałków, bez powtórzeń, posortowane, najwyżej 10 lat; pusta lista znika (dane sprzed zmiany 1:1); nie `arr` — ta przepuszcza tylko obiekty */
   { const u = [...new Set((Array.isArray(raw.deloadWeeks) ? raw.deloadWeeks : []).filter((x: unknown) => typeof x === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(x) && new Date(+x.slice(0, 4), +x.slice(5, 7) - 1, +x.slice(8, 10)).getDay() === 1))].sort().slice(-520) as string[]; if (u.length) raw.deloadWeeks = u; else delete raw.deloadWeeks; }
   /* kalendarz (08.10.2026): plan tygodnia — 7 pozycji (id tekstem albo null), pusty znika; zmiany dni — klucze-daty, wartości id albo null */
-  { const d = isObj(raw.weekPlan) && Array.isArray(raw.weekPlan.days) ? raw.weekPlan.days : null; const days = Array.from({ length: 7 }, (_, i) => (d && typeof d[i] === 'string' && d[i] ? d[i] : null));
-    const nm = isObj(raw.weekPlan) && typeof raw.weekPlan.name === 'string' ? raw.weekPlan.name.trim().slice(0, 40) : '';
+  { const days = planDays(isObj(raw.weekPlan) ? raw.weekPlan.days : null);
+    const nm = isObj(raw.weekPlan) && typeof raw.weekPlan.name === 'string' ? cleanPlanName(raw.weekPlan.name) : ''; /* audyt 0.10 B4 (DAT-06): idempotentnie, bez rozcinania emoji */
     if (days.some(Boolean) || nm) raw.weekPlan = { days, ...(nm ? { name: nm } : {}) }; else delete raw.weekPlan;
-    /* 08.10.2026 (docs/24): zapisane plany — id tekstem bez powtórzeń, nazwa ≤ 40, 7 dni; pusta lista znika */
+    /* 08.10.2026 (docs/24): zapisane plany — id tekstem bez powtórzeń, nazwa ≤ 40, 7 dni; pusta lista znika; najwyżej SAVED_PLANS_MAX (ten sam limit w UI — audyt 0.10 B3) */
     { const seen = new Set<string>(); const sp = (Array.isArray(raw.savedPlans) ? raw.savedPlans : []).filter((p: any) => isObj(p) && typeof p.id === 'string' && p.id && !seen.has(p.id) && (seen.add(p.id), true))
-        .map((p: any) => ({ id: p.id, name: typeof p.name === 'string' ? p.name.trim().slice(0, 40) : '', days: Array.from({ length: 7 }, (_, i) => (Array.isArray(p.days) && typeof p.days[i] === 'string' && p.days[i] ? p.days[i] : null)) }));
-      if (sp.length) raw.savedPlans = sp.slice(0, 50); else delete raw.savedPlans; }
-    const ov = isObj(raw.planOverrides) ? Object.fromEntries(Object.entries(raw.planOverrides).filter(([k, v]) => /^\d{4}-\d{2}-\d{2}$/.test(k) && (v === null || (typeof v === 'string' && v)))) : {};
-    if (Object.keys(ov).length) raw.planOverrides = ov; else delete raw.planOverrides; }
+        .map((p: any) => { const ov = cleanOverrides(p.overrides); return { id: p.id, name: typeof p.name === 'string' ? cleanPlanName(p.name) : '', days: planDays(p.days), ...(Object.keys(ov).length ? { overrides: ov } : {}) }; }); /* audyt 0.10 B1: zmiany dni zapisane z planem */
+      if (sp.length) raw.savedPlans = sp.slice(0, SAVED_PLANS_MAX); else delete raw.savedPlans; }
+    const ov = cleanOverrides(raw.planOverrides);
+    if (Object.keys(ov).length) raw.planOverrides = ov; else delete raw.planOverrides;
+    /* Schemat 18 (audyt 0.10 A1, decyzja właściciela 08.10.2026 — wariant B): historia planu. Dane bez historii (≤ 17): plan tygodnia obowiązuje
+     * od dnia migracji — nie wiemy, od kiedy był ustawiony, więc żaden wcześniejszy dzień nie staje się „opuszczony”. Ostatni odcinek = weekPlan:
+     * gdy się różnią (plan zmieniony w starszej wersji, która historii nie zna), dochodzi odcinek od dziś. Po zgodzie — bez zmian (idempotentne). */
+    { const today = localISODate(); let h = normPlanHistory(raw.planHistory); const last = h[h.length - 1];
+      if (last ? !sameDays(last.days, days) : days.some(Boolean)) h = appendPlanSegment(h, today, days);
+      if (h.length) raw.planHistory = h; else delete raw.planHistory; }
+    /* audyt 0.10 D4: „Nie teraz” przy podpowiedzi deload — data poniedziałku albo brak */
+    if (typeof raw.deloadSnooze !== 'string' || !DATE_KEY.test(raw.deloadSnooze)) delete raw.deloadSnooze; }
   { const g = [...new Set((Array.isArray(raw.guideSeen) ? raw.guideSeen : []).filter((x: unknown) => typeof x === 'string' && x && x.length <= 40))].slice(0, 50); if (g.length) raw.guideSeen = g; else delete raw.guideSeen; } /* przewodnik (08.10.2026) */
   if (typeof raw.whatsNewSeen !== 'string' || !raw.whatsNewSeen || raw.whatsNewSeen.length > 40) delete raw.whatsNewSeen; /* „Co nowego” (08.10.2026) */
   if (raw.optFill !== OPT_FILL.rev) { for (const l of raw.settings.locations) fillOpts(l); raw.optFill = OPT_FILL.rev; } /* bieżnia: nachylenie (05.10.2026), raz */
   raw.ownerId = owner;
   if (!Number.isFinite(raw.v)) raw.v = 2; if (raw.metaUpdatedAt != null && tsOf(raw.metaUpdatedAt) == null) delete raw.metaUpdatedAt; /* runda 53 */
-  raw.schemaVersion = SCHEMA_VERSION;
+  raw.schemaVersion = Math.max(SCHEMA_VERSION, Number(raw.schemaVersion) || 0); /* audyt 0.10 J1: numer schematu nigdy w dół (dane z nowszej wersji zatrzymuje init i import) */
   return raw as State;
 }
 /** Decyzja właściciela 06.10.2026 (wariant A): powtórzony identyfikator w danych (np. kopia sklejona ręcznie z dwóch plików) dostaje nowy —
@@ -397,6 +418,17 @@ export const getRecovery = () => recovery;
 /** Runda 33: po imporcie backupu albo wyczyszczeniu danych komunikat o nieczytelnych danych znika (kopia w bazie zostaje). */
 export function clearRecovery() { if (!recovery) return; recovery = null; rev++; emit(); db?.runAsync('DELETE FROM kv WHERE k = ?', 'recovery').catch(() => {}); }
 /** Surowy tekst odłożonego, nieczytelnego zapisu — do wysłania sobie i ręcznego odzyskania. */
+/** Audyt 0.10 J1: schemat danych z nowszej wersji, które zatrzymały start (null — brak). */
+let newerSchema: number | null = null;
+export const getNewerSchema = () => newerSchema;
+/** Audyt 0.10 J1: surowy zapis (stan + trening w toku) do wysłania z ekranu „Dane z nowszej wersji” — koperta jak kopia nieczytelnych danych
+ * (nowsza wersja wczyta ją importem). */
+export async function readRawData(): Promise<string | null> {
+  if (!db) return null; const r = await db.getFirstAsync<{ v: string }>('SELECT v FROM kv WHERE k = ?', 'state'); if (!r) return null;
+  const l = await db.getFirstAsync<{ v: string }>('SELECT v FROM kv WHERE k = ?', 'live').catch(() => null);
+  const js = (x: string) => { try { return JSON.parse(x); } catch { return x; } };
+  return JSON.stringify({ format: 'trening-recovery', note: 'state = zapis z nowszej wersji aplikacji, live = trening w toku', state: js(r.v), ...(l ? { live: js(l.v) } : {}) });
+}
 export async function readRecovery(): Promise<string | null> { if (!db || !recovery) return null; const r = await db.getFirstAsync<{ v: string }>('SELECT v FROM kv WHERE k = ?', recovery.key); const l = await db.getFirstAsync<{ v: string }>('SELECT v FROM kv WHERE k = ?', recovery.key + '_live').catch(() => null); if (!r) return null; if (!l) return r.v;
   /* T4b: koperta JSON zamiast dopisku po stanie — plik da się po poprawce wczytać importem (parseBackup); stan jako obiekt, gdy jest poprawnym JSON-em, inaczej jako tekst */
   const js = (x: string) => { try { return JSON.parse(x); } catch { return x; } };
@@ -1442,6 +1474,39 @@ export function setTimerState(patch: Partial<State['timer']>) { const st = getSt
 export const NAME_MAX = 80;
 /** Runda 40: przycięcie do n jednostek UTF-16 bez rozcinania emoji (pary zastępczej) i bez spacji na końcu. */
 export const clampName = (s: string, n = NAME_MAX) => { let r = s.slice(0, Math.max(0, n)); if (/[\uD800-\uDBFF]$/.test(r)) r = r.slice(0, -1); return r.trimEnd(); };
+/* ---------- plan tygodnia: liczby i porządkowanie danych w jednym miejscu (audyt 0.10: A1, B3, B4 — migrate i lib/plan.ts) ---------- */
+/** Nazwa planu (pole „Nazwa planu”, zapisane plany). */
+export const PLAN_NAME_MAX = 40;
+/** Najwyżej tyle zapisanych planów („Inne plany”) — ten sam limit w migrate i w UI (audyt 0.10 B3 / DAT-03). */
+export const SAVED_PLANS_MAX = 50;
+/** Najwyżej tyle odcinków historii planu (najstarsze odpadają) — co najmniej kilka lat zmian planu raz w tygodniu. */
+export const PLAN_HISTORY_MAX = 520;
+/** Audyt 0.10 B4 / DAT-06: nazwa planu — spacje złączone, bez spacji na brzegach, ≤ PLAN_NAME_MAX bez rozcinania emoji; idempotentne. */
+export const cleanPlanName = (n: string) => clampName(n.replace(/\s+/g, ' ').trim(), PLAN_NAME_MAX);
+const DATE_KEY = /^\d{4}-\d{2}-\d{2}$/;
+/** 7 dni planu (id tekstem albo null) z dowolnej wartości. */
+export const planDays = (d: unknown): (string | null)[] => Array.from({ length: 7 }, (_, i) => (Array.isArray(d) && typeof d[i] === 'string' && d[i] ? d[i] : null));
+export const sameDays = (a: readonly (string | null)[], b: readonly (string | null)[]) => a.length === b.length && a.every((x, i) => x === b[i]);
+/**
+ * Historia planu (schemat 18, audyt 0.10 A1): odcinki z poprawną datą, rosnąco; ten sam dzień — wygrywa późniejszy wpis; kolejny odcinek
+ * równy poprzedniemu znika (bez zmiany planu); odcinki „bez planu” na początku znikają (przed pierwszym planem i tak nie ma planu);
+ * najwyżej PLAN_HISTORY_MAX najnowszych. Idempotentne.
+ */
+export function normPlanHistory(list: unknown): PlanSegment[] {
+  const byFrom = new Map<string, PlanSegment>();
+  for (const x of Array.isArray(list) ? list : []) if (isObj(x) && typeof x.from === 'string' && DATE_KEY.test(x.from)) byFrom.set(x.from, { from: x.from, days: planDays(x.days) });
+  const out: PlanSegment[] = [];
+  for (const sg of [...byFrom.values()].sort((a, b) => (a.from < b.from ? -1 : a.from > b.from ? 1 : 0))) {
+    if (!out.length && !sg.days.some(Boolean)) continue;
+    if (out.length && sameDays(out[out.length - 1].days, sg.days)) continue;
+    out.push(sg);
+  }
+  return out.slice(-PLAN_HISTORY_MAX);
+}
+/** Zmiany pojedynczych dni: klucze-daty, wartości id tekstem albo null (wolne). */
+export const cleanOverrides = (x: unknown): Record<string, string | null> => (isObj(x) ? Object.fromEntries(Object.entries(x).filter(([k, v]) => DATE_KEY.test(k) && (v === null || (typeof v === 'string' && !!v)))) as Record<string, string | null> : {});
+/** Nowy odcinek od dnia `from` (zmiana planu dziś): odcinki od tego dnia i późniejsze ustępują nowemu. */
+export const appendPlanSegment = (list: PlanSegment[], from: string, days: (string | null)[]): PlanSegment[] => normPlanHistory([...list.filter(x => x.from < from), { from, days: planDays(days) }]);
 export function newExercise(name = t('Nowe ćwiczenie')): Exercise { const e: Exercise = { ...base(getState().ownerId), name: clampName(name), group: 'inne', equipment: 'inne', metric: 'weight_reps', loadMode: 'total', restSec: null, restWarmupSec: null, muscles: [], secondaryMuscles: [], bandAssistable: false, tempo: '', notes: '', ...equipFields('', 'inne', false) }; getState().exercises.push(e); save(); return e; }
 /** Zmiana sprzętu ustawia domyślny tryb liczenia (wcześniej zostawał stary — np. ×2 dla masy ciała). */
 export function setEquipment(e: Exercise, eq: Exercise['equipment']) { if (e.equipment === eq) return; /* runda 40: ten sam chip nie resetuje ustawień */ e.equipment = eq; e.loadMode = loadModeFor(eq, e.name); e.loadSource = LOAD_SOURCE_BY_EQUIPMENT[eq]; /* P-003: źródło obciążenia za sprzętem */
@@ -1499,7 +1564,7 @@ export type { WExercise };
 /** Tylko dla testów: czy store jest zainicjowany. */
 export const isReadyForTests = () => !!S;
 /** Tylko dla testów: czyści stan modułu (bez dotykania bazy). */
-export function __resetForTests() { persistQueue = Promise.resolve(); fullDirty = true; persistSeq = 0; S = null; db = null; rev = 0; histRev += 1; persistError = null; recovery = null; if (saveTimer) clearTimeout(saveTimer); saveTimer = null; listeners.clear(); }
+export function __resetForTests() { newerSchema = null; persistQueue = Promise.resolve(); fullDirty = true; persistSeq = 0; S = null; db = null; rev = 0; histRev += 1; persistError = null; recovery = null; if (saveTimer) clearTimeout(saveTimer); saveTimer = null; listeners.clear(); }
 /**
  * Widok skupiony (styl „Tuleja”, decyzja właściciela 07.10.2026; docs/21 pkt 3): seria „teraz” = pierwsza nieodhaczona seria w kolejności treningu.
  * Superset — naprzemiennie: spośród ćwiczeń grupy to, którego pierwsza nieodhaczona seria ma najniższy numer (remis — wcześniejsze ćwiczenie),
