@@ -128,3 +128,11 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
   tylko B, tylko A, nic; automatyczne wyzwalacze z danych odpadają — brak walidacji, docs/research/22). **Generator A (pełny)**: szablony z ćwiczeniami
   z katalogu dostępnymi w miejscu, serie, zakres powtórzeń, RIR, przerwy + plan tygodnia, do przejrzenia przed zapisem (odrzucone: B szkielet).
   **Kolejność:** deload, potem generator. **Przypomnienia:** rano w dniu treningu, jedno lokalne powiadomienie (odrzucone: wybrana godzina, brak).
+- 08.10.2026: deload B — **przy starcie treningu** (pytanie: mniej serii / pełny), szablony bez zmian (odrzucone: kopie szablonów na tydzień); **około
+  połowy serii roboczych** (ceil(n/2), cięcie 33–50%) (odrzucone: wybór przy każdym starcie). Wdrożone `f32f3c1`. Przypomnienie: `1f0c264`, godzina 8:00
+  — wybór agenta dla „rano”, **[OTWARTE] do potwierdzenia**.
+- 08.10.2026: generator — wejście z ekranu Szablony i z Planu tygodnia (odrzucone: tylko jedno z nich); założenia: cel, miejsce, sesje/tydz. **i czas
+  sesji** (przeliczenie minut na serie = nazwane uproszczenie, bez źródła); istniejący plan: właściciel — „zastąpić, ale z łatwym przywróceniem
+  poprzedniego: aktywny plan i wybór, który ma obowiązywać” → **kilka zapisanych planów tygodnia, jeden aktywny** (powrót do starej rutyny po
+  okresie przejściowym). Cardio w generatorze: „umiarkowane” z licznikiem minut — bez „na czczo” i „strefy 2” (źródła ich nie potwierdzają,
+  docs/research/22 sekcja 4; właściciel poinformowany). Projekt: docs/24.
