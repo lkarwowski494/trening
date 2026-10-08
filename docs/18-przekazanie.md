@@ -235,3 +235,10 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
   aktualizacji SDK). Otwarte (bez zmian w tym wydaniu): tryb liczenia ciężaru ćwiczeń jednonóż (Q-L4-4 — zmiana zmienia sens dawnych wpisów;
   osobna decyzja z migracją), regiony dla mięśni spoza mapy (zębaty przedni, piszczelowy przedni — L2 Q2/Q5: do czasu dodania regionu bez
   partii głównej, z oznaczeniem). Rejestr decyzji na Dysku — wpis zbiorczy po wdrożeniu.
+- 09.10.2026 (ok. 01:30): **K1 — „Przerwa” i „Pauza” w 25 językach** (audyt 0.10, A11-01) — wariant B zamiast rekomendowanego A (zasada
+  z 20:20: B ogólnie lepszy). Tam, gdzie „pauza” to zwykłe słowo siłowni na odpoczynek między seriami, zostaje ono dla przerwy, a zatrzymanie
+  zegara treningu dostaje czasownik jak w iOS: cs/sk „Pozastavit/Pozastaviť”, ro „Întrerupe”, et „Peata”, de „Anhalten”; da/nb przerwa
+  „hvile”, fi „palautus”, sl „počitek”, tr pauza „duraklatma”. Odrzucone: A — wszędzie nowe słowo dla przerwy (obce na siłowni). Test:
+  w każdym języku teksty o przerwie mają termin przerwy i nie mają terminu pauzy (i odwrotnie). Otwarte: potwierdzenie przez rodzimego
+  użytkownika terminów cs, sk, ro, et, de i „hvile” (da, nb). Przy scaleniu: filtr „Podstawowe” z katalogu dostał podział etykieta/podpowiedź
+  VoiceOver jak pozostałe filtry (A11-18).

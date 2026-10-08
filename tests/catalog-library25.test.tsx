@@ -245,8 +245,9 @@ describe('ekran: filtr „Podstawowe” (lista Ćwiczeń, wybór ćwiczenia, zam
     expect(screen.getByText(t('niszowe ukryte: {n} — znajdziesz je wyszukiwaniem', { n: nicheCount }))).toBeTruthy();
     expect(screen.queryByText(niche)).toBeNull(); expect(screen.getByText('Moje ćwiczenie')).toBeTruthy(); expect(screen.getByText('Floor Press with Chains')).toBeTruthy();
     await type(screen.getByPlaceholderText('Szukaj…'), 'svend'); await flushAll(5); expect(screen.getByText(niche)).toBeTruthy(); expect(screen.getByText('wyszukiwanie obejmuje też niszowe')).toBeTruthy();
-    await type(screen.getByPlaceholderText('Szukaj…'), ''); await tap(screen.getByLabelText('Filtr: podstawowe ćwiczenia')); await flushAll(5);
+    await type(screen.getByPlaceholderText('Szukaj…'), ''); expect(screen.getByLabelText('Filtr: podstawowe ćwiczenia').props.accessibilityHint).toBe('Tapnij, by pokazać wszystkie.'); await tap(screen.getByLabelText('Filtr: podstawowe ćwiczenia')); await flushAll(5);
     expect(store.getState().settings.libShowAll).toBe(true); expect(screen.getByText('wszystkie ćwiczenia, także niszowe')).toBeTruthy();
+    expect(screen.getByLabelText('Pokazane wszystkie ćwiczenia, także niszowe').props.accessibilityHint).toBe('Tapnij, by zostawić podstawowe.'); /* A11-18 */
     await tap(screen.getByLabelText('Pokazane wszystkie ćwiczenia, także niszowe')); expect(store.getState().settings.libShowAll).toBeUndefined();
   });
   test('wybór ćwiczenia do szablonu: niszowe ukryte do wyszukania; ten sam zapamiętany filtr', async () => {

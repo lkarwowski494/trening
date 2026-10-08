@@ -9,7 +9,7 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 |---|---|---|---|
 | EKRAN | 23 | 23 | 0 |
 | UI | 251 | 251 | 0 |
-| TEKST | 662 | 660 | 0 |
+| TEKST | 662 | 662 | 0 |
 | LOGIKA | 518 | 518 | 0 |
 | WYMIAR | 13 | 13 | 0 |
 
@@ -793,7 +793,7 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | Talerze: ciężar i liczba sztuk (wszystkie, na obie strony razem). | components/LoadEditor.tsx | tests/matrix-ui.test.tsx |
 | Tapnij numer serii, by zmienić typ (W, D, F) albo dodać notatkę. Serie bez wyniku nie zostaną zapisane. | app/history/edit/[id].tsx | tests/matrix-ui.test.tsx |
 | Tapnij, by pokazać tylko dostępne. | app/picker.tsx | tests/audit-0.10-lang-ui.test.tsx |
-| Tapnij, by pokazać wszystkie. | components/LibScope.tsx | WYJĄTEK: BRAK |
+| Tapnij, by pokazać wszystkie. | components/LibScope.tsx | tests/catalog-library25.test.tsx |
 | Tapnij, by spróbować ponownie. Zrób też backup. | app/(tabs)/index.tsx | tests/matrix-ui.test.tsx |
 | Tapnij, by włączyć. | app/swap.tsx | tests/audit-0.10-lang-ui.test.tsx |
 | Tapnij, by wybrać inne ćwiczenie. | app/more/progress.tsx | tests/matrix-ui.test.tsx |
@@ -801,7 +801,7 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | Tapnij, by zmienić typ lub dodać notatkę. | app/history/edit/[id].tsx | tests/audit-0.10-lang-ui.test.tsx |
 | Tapnij, by zmienić typ. | app/template/[id].tsx | tests/audit-0.10-lang-ui.test.tsx |
 | Tapnij, by zmienić. | app/history/edit/[id].tsx | tests/audit-0.10-lang-ui.test.tsx |
-| Tapnij, by zostawić podstawowe. | components/LibScope.tsx | WYJĄTEK: BRAK |
+| Tapnij, by zostawić podstawowe. | components/LibScope.tsx | tests/catalog-library25.test.tsx |
 | te same mięśnie | lib/swap.ts | tests/matrix-ui.test.tsx |
 | Tego ćwiczenia nie da się już zamienić. | app/swap.tsx | tests/matrix-logic.test.tsx, tests/matrix-ui.test.tsx |
 | Tej sesji nie ma już w historii. | lib/edit.ts | tests/edit-history.test.tsx |
