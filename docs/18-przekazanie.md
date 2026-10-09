@@ -394,3 +394,8 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
   czekanie: zamknięty test Google Play (wg wiedzy z 09.10: 12 testerów przez 14 dni — do sprawdzenia), przeglądy Google; koszt konta
   Google Play ok. 25 USD jednorazowo (wyjątek od zasady 0 zł — decyzja właściciela przy starcie prac). Przy wdrażaniu subskrypcji
   preferowana biblioteka obsługująca iOS i Androida (żeby nie przerabiać później) — bez zmiany zakresu iOS.
+- 09.10.2026 (wieczór): właściciel — **„Co nowego” 0.11: akceptacja** (treść z raportu fix-a11b, 10 punktów); szkic osierocony po „Wróć do
+  edycji” — zostaje (opcja 1, rekomendacja). **Sprawdzanie scenariuszy E2E przed symulatorem: A + B wg rekomendacji** (podgląd web w rozmiarze
+  iPhone’a sprawdza, czy element jest na ekranie bez przewinięcia; reguły pisania scenariuszy pilnowane testem; stała praktyka D — powtórka
+  samych nieudanych scenariuszy na zbudowanej aplikacji), **po wydaniu 0.11**. Po zielonym E2E — bez kolejnego audytu (zasada „jeden audyt
+  na wydanie”).
