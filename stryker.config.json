@@ -15,7 +15,10 @@
     "lib/deload-sets.ts",
     "lib/planReminder.ts",
     "lib/period.ts",
-    "lib/dashboard.ts"
+    "lib/dashboard.ts",
+    "lib/timer.ts",
+    "lib/whatsnew.ts",
+    "lib/backup.ts"
   ],
   "coverageAnalysis": "perTest",
   "concurrency": 2,
@@ -45,6 +48,7 @@
     ]
   },
   "dryRunTimeoutMinutes": 30,
+  "disableTypeChecks": "lib/**/*.ts",
   "thresholds": {
     "high": 80,
     "low": 60,

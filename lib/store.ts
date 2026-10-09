@@ -386,7 +386,7 @@ export function migrate(raw: any): State {
   if (raw.equipFill !== GYM_FILL.rev) { for (const l of raw.settings.locations) fillGym(l, raw.settings.unit); raw.equipFill = GYM_FILL.rev; } /* decyzja 05.10.2026 (1.a): raz */
   if (raw.equipFill2 !== EQUIP_FILL2.rev) { for (const l of raw.settings.locations) fillEquip2(l, raw.settings.unit); raw.equipFill2 = EQUIP_FILL2.rev; } /* research biblioteki (L5 Q7, 09.10.2026): ściana, maszyna do dipów — raz */
   /* pakiet C: tygodnie deload — daty poniedziałków, bez powtórzeń, posortowane, najwyżej 10 lat; pusta lista znika (dane sprzed zmiany 1:1); nie `arr` — ta przepuszcza tylko obiekty */
-  { const u = [...new Set((Array.isArray(raw.deloadWeeks) ? raw.deloadWeeks : []).filter((x: unknown) => typeof x === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(x) && new Date(+x.slice(0, 4), +x.slice(5, 7) - 1, +x.slice(8, 10)).getDay() === 1))].sort().slice(-520) as string[]; if (u.length) raw.deloadWeeks = u; else delete raw.deloadWeeks; }
+  { const u = [...new Set((Array.isArray(raw.deloadWeeks) ? raw.deloadWeeks : []).filter((x: unknown) => typeof x === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(x) && new Date(+x.slice(0, 4), +x.slice(5, 7) - 1, +x.slice(8, 10)).getDay() === 1))].sort().slice(-DELOAD_WEEKS_MAX) as string[]; if (u.length) raw.deloadWeeks = u; else delete raw.deloadWeeks; }
   /* kalendarz (08.10.2026): plan tygodnia — 7 pozycji (id tekstem albo null), pusty znika; zmiany dni — klucze-daty, wartości id albo null */
   { const days = planDays(isObj(raw.weekPlan) ? raw.weekPlan.days : null);
     const nm = isObj(raw.weekPlan) && typeof raw.weekPlan.name === 'string' ? cleanPlanName(raw.weekPlan.name) : ''; /* audyt 0.10 B4 (DAT-06): idempotentnie, bez rozcinania emoji */
@@ -1330,7 +1330,10 @@ const sameAlt = (x: TemplateAlt | undefined, y: TemplateAlt) => !!x && x.exercis
 /** „Zawsze w: <Miejsce>” (pkt 4.1, P1 a, P5a a): trening ma istniejące miejsce i szablon z pozycją bloku, blok zastępuje ćwiczenie pozycji (albo ma
  * przypięty przyrząd), a takiego wpisu dla tego miejsca jeszcze nie ma. */
 export function canRememberAlt(w: Workout, e: WExercise): boolean {
-  const c = altCtx(w, e); const n = c ? altOfBlock(c, e) : null; return !!c && !!n && !sameAlt(c.item.alternates?.find(x => x.locationId === c.loc.id), n);
+  const c = altCtx(w, e); const n = c ? altOfBlock(c, e) : null; if (!c || !n) return false;
+  /* audyt 0.10 TST-01 (nocne losowe sekwencje 08.10): zamiennik usunięty w trakcie treningu (archiwum) nie trafia do szablonu */
+  const x = exById(n.exerciseId); if (!x || x.archived) return false;
+  return !sameAlt(c.item.alternates?.find(z => z.locationId === c.loc.id), n);
 }
 /** Zapis zamiennika w pozycji szablonu bloku — tylko na wyraźne stuknięcie (decyzja 08:11 zachowana); wpis tego miejsca jest zastępowany (z przerwą). */
 export function rememberAlt(blockId: string): boolean {
@@ -1748,6 +1751,8 @@ export const PLAN_NAME_MAX = 40;
 export const SAVED_PLANS_MAX = 50;
 /** Najwyżej tyle odcinków historii planu (najstarsze odpadają) — co najmniej kilka lat zmian planu raz w tygodniu. */
 export const PLAN_HISTORY_MAX = 520;
+/** Najwyżej tyle oznaczonych tygodni deload (najstarsze odpadają) — 10 lat (liczba w jednym miejscu; audyt 0.10 M2 — wcześniej literał w migrate). */
+export const DELOAD_WEEKS_MAX = 520;
 /** Audyt 0.10 B4 / DAT-06: nazwa planu — spacje złączone, bez spacji na brzegach, ≤ PLAN_NAME_MAX bez rozcinania emoji; idempotentne. */
 export const cleanPlanName = (n: string) => clampName(n.replace(/\s+/g, ' ').trim(), PLAN_NAME_MAX);
 const DATE_KEY = /^\d{4}-\d{2}-\d{2}$/;

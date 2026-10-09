@@ -16,6 +16,7 @@ import { renderApp, flushAll, screen, go } from './app';
 import { fresh, seedWithDemo } from './helpers';
 import * as plan from '@/lib/plan';
 import * as locations from '@/lib/locations';
+import { appRoutes, routeGaps } from './routes';
 
 jest.setTimeout(180000);
 
@@ -167,6 +168,17 @@ describe.each([['pl', 'light'], ['en', 'dark']] as const)('dostępność ekranó
   test('każde pole tekstowe ma etykietę (accessibilityLabel albo placeholder); przełączniki — etykietę i rolę switch', () => { expect([R.inputNoLabel, R.switchBad]).toEqual([[], []]); });
   test('kontrast WCAG 2.1 każdego tekstu względem jego tła na ekranie: ≥ 4,5 (zwykły), ≥ 3 (≥ 18 pt albo ≥ 14 pt pogrubiony)', () => { expect(R.contrast).toEqual([]); });
   test('teksty interfejsu (t()) nie są ucinane do jednej linii poza listą dozwolonych (długie tłumaczenia się zawijają)', () => { expect(R.oneLine).toEqual([]); });
+});
+
+/* ---------- trasy z app/ (audyt 0.10 M3, A11-10 / TST-03): nowa trasa bez przeglądu dostępności nie przejdzie ---------- */
+describe('przegląd dostępności obejmuje każdą trasę z app/', () => {
+  test('każdy plik ekranu w app/ ma trasę w przeglądzie (routesFor albo DASH_ROUTES); każda trasa przeglądu to istniejący ekran', () => {
+    const routes = [...routesFor({ id: 'w1' }, { id: 't1' }, 'e1', 'l1', 'b1'), ...DASH_ROUTES];
+    expect(appRoutes().length).toBeGreaterThanOrEqual(26);
+    expect(routeGaps(routes)).toEqual({ missing: [], unknown: [] });
+    expect(routeGaps([...routes.filter(r => r !== '/plan'), '/nie-ma'])).toEqual({ missing: ['app/plan.tsx'], unknown: ['/nie-ma'] }); /* bramka działa */
+    expect(routesFor({ id: 'w1' }, { id: 't1' }, 'e1', 'l1', 'b1')).toHaveLength(ROUTES_N);
+  });
 });
 
 /* ---------- kontrast palety: pary nieobjęte tests/ux.test.tsx C5 ---------- */

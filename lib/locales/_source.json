@@ -228,10 +228,6 @@
   "en": "+ rep range"
  },
  {
-  "pl": "− seria",
-  "en": "− set"
- },
- {
   "pl": "≡ Kolejność",
   "en": "≡ Reorder"
  },
@@ -360,10 +356,6 @@
   "en": "rear delts"
  },
  {
-  "pl": "BB, sen, waga — 20 sekund",
-  "en": "BB, sleep, weight — 20 seconds"
- },
- {
   "pl": "beczka (keg)",
   "en": "keg"
  },
@@ -476,10 +468,6 @@
   "en": "No similar exercises at this place — expand “Other”."
  },
  {
-  "pl": "Brak podobnych ćwiczeń w tym miejscu — wybierz z całej biblioteki.",
-  "en": "No similar exercises at this place — choose from the whole library."
- },
- {
   "pl": "Brak pomiarów.",
   "en": "No measurements."
  },
@@ -554,10 +542,6 @@
  {
   "pl": "Był skrócony w tygodniu deload: {a} zamiast {b} serii roboczych. Powtórzyć pełny trening?",
   "en": "It was shortened in a deload week: {a} instead of {b} working sets. Repeat the full workout?"
- },
- {
-  "pl": "Cała biblioteka",
-  "en": "Whole library"
  },
  {
   "pl": "cały sprzęt; sztanga {bar} {u} + talerze {max}…{min} {u}; hantle {a}–{b} {u} co {step}",
@@ -837,10 +821,6 @@
   "en": "to do"
  },
  {
-  "pl": "dociążenie",
-  "en": "added weight"
- },
- {
   "pl": "dociążenie: {v}",
   "en": "added weight: {v}"
  },
@@ -883,10 +863,6 @@
  {
   "pl": "dostępne: {n} ({r})",
   "en": "available: {n} ({r})"
- },
- {
-  "pl": "Dotknij etykiety serii, by zmienić typ albo usunąć serię. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✂ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.",
-  "en": "Tap a set label to change its type or delete the set. The rep range is optional — with it you get “↑” hints. “⇅ SS” links an exercise with the next one in a superset, “✂ SS” takes it out of the group. Order: “≡ Reorder”."
  },
  {
   "pl": "Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✂ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.",
@@ -968,10 +944,6 @@
  {
   "pl": "Dziś",
   "en": "Today"
- },
- {
-  "pl": "Dziś rano",
-  "en": "This morning"
  },
  {
   "pl": "Dziś wolne",
@@ -1260,10 +1232,6 @@
  {
   "pl": "hantle: {v}",
   "en": "dumbbells: {v}"
- },
- {
-  "pl": "Historia",
-  "en": "History"
  },
  {
   "pl": "Hop-Sport 2×10 kg",
@@ -2018,10 +1986,6 @@
   "en": "Preacher bench"
  },
  {
-  "pl": "Moduły",
-  "en": "Modules"
- },
- {
   "pl": "Mój plan",
   "en": "My plan"
  },
@@ -2092,10 +2056,6 @@
  {
   "pl": "Najlepszy trening (objętość)",
   "en": "Best session (volume)"
- },
- {
-  "pl": "Najpierw ustaw inne miejsce jako główne.",
-  "en": "Set another place as main first."
  },
  {
   "pl": "Najpierw utwórz szablon.",
@@ -2386,14 +2346,6 @@
   "en": "New look: colours and typefaces, plate graphics on the bar."
  },
  {
-  "pl": "np. 60",
-  "en": "e.g. 60"
- },
- {
-  "pl": "np. 73",
-  "en": "e.g. 73"
- },
- {
   "pl": "np. samopoczucie, ból, sprzęt",
   "en": "e.g. how you feel, pain, equipment"
  },
@@ -2432,10 +2384,6 @@
  {
   "pl": "Objętość per partia ({u}) — ten tydzień vs poprzedni",
   "en": "Volume per muscle ({u}) — this week vs last"
- },
- {
-  "pl": "objętość serii",
-  "en": "set volume"
  },
  {
   "pl": "Objętość serii roboczych (ciężar × powtórzenia × mnożnik ćwiczenia); partia główna liczy całość, pomocnicza połowę. Ćwiczenia bez ciężaru (masa ciała, gumy) się nie liczą.",
@@ -2596,10 +2544,6 @@
  {
   "pl": "Ostatnia seria o {t}. Zakończyć trening z tą godziną końca?",
   "en": "Last set at {t}. Finish the workout with that end time?"
- },
- {
-  "pl": "Ostatnie",
-  "en": "Recent"
  },
  {
   "pl": "Ostatnie treningi",
@@ -2914,10 +2858,6 @@
   "en": "secondary"
  },
  {
-  "pl": "Poniedziałek — zważ się i zapisz wagę w porannym wpisie.",
-  "en": "Monday — weigh yourself and log it in the morning check-in."
- },
- {
   "pl": "Poniżej {n} serii tygodniowo: {list}. Pomoże więcej sesji, dłuższy czas albo więcej sprzętu w miejscu.",
   "en": "Below {n} sets per week: {list}. More sessions, longer sessions or more equipment at the place will help."
  },
@@ -2964,14 +2904,6 @@
  {
   "pl": "Poprzednio: {l}",
   "en": "Previous: {l}"
- },
- {
-  "pl": "Poranne wpisy",
-  "en": "Morning check-ins"
- },
- {
-  "pl": "Poranny wpis",
-  "en": "Morning check-in"
  },
  {
   "pl": "poręcze",
@@ -3240,10 +3172,6 @@
   "en": "Reminder for planned workouts"
  },
  {
-  "pl": "Przypomnienie o wadze",
-  "en": "Weigh-in reminder"
- },
- {
   "pl": "przyrząd: {impl}",
   "en": "equipment: {impl}"
  },
@@ -3274,10 +3202,6 @@
  {
   "pl": "Pusta nazwa folderu",
   "en": "Empty folder name"
- },
- {
-  "pl": "Puste „pow. od” = seria do maksimum. „⇅ SS” łączy ćwiczenie z następnym w superset (wspólna przerwa po ostatnim z grupy), „✂” wyjmuje z grupy.",
-  "en": "Empty “reps from” = set to max. “⇅ SS” links the exercise with the next one into a superset (shared rest after the last in the group), “✂” removes it from the group."
  },
  {
   "pl": "pusto — zaznaczysz, co masz",
@@ -3429,14 +3353,6 @@
   "en": "Sleep"
  },
  {
-  "pl": "Sen (godziny)",
-  "en": "Sleep (hours)"
- },
- {
-  "pl": "Sen (wynik)",
-  "en": "Sleep (score)"
- },
- {
   "pl": "Seria",
   "en": "Set"
  },
@@ -3477,10 +3393,6 @@
   "en": "Set {n}, type: {k}"
  },
  {
-  "pl": "Seria {n}, typ: {k}. Tapnij, by zmienić typ lub usunąć serię.",
-  "en": "Set {n}, type: {k}. Tap to change the type or delete the set."
- },
- {
   "pl": "seria {s} s",
   "en": "set {s} s"
  },
@@ -3508,10 +3420,6 @@
   "pl": "seria|serie|serii",
   "en": "set|sets",
   "plural": true
- },
- {
-  "pl": "serie",
-  "en": "sets"
  },
  {
   "pl": "Serie",
@@ -3693,10 +3601,6 @@
  {
   "pl": "Start",
   "en": "Start"
- },
- {
-  "pl": "start {u}",
-  "en": "start {u}"
  },
  {
   "pl": "Start stopera serii",
@@ -3899,10 +3803,6 @@
   "en": "Tap a set number to change its type (W, D, F) or add a note. Sets without a result won’t be saved."
  },
  {
-  "pl": "Tapnij, by odznaczyć (nie mam)",
-  "en": "Tap to untick (I don’t have it)"
- },
- {
   "pl": "Tapnij, by pokazać tylko dostępne.",
   "en": "Tap to show only available."
  },
@@ -3921,10 +3821,6 @@
  {
   "pl": "Tapnij, by wybrać inne ćwiczenie.",
   "en": "Tap to choose another exercise."
- },
- {
-  "pl": "Tapnij, by zaznaczyć",
-  "en": "Tap to tick"
  },
  {
   "pl": "Tapnij, by zdjąć.",
@@ -4045,10 +3941,6 @@
  {
   "pl": "Trening i serie",
   "en": "Workouts and sets"
- },
- {
-  "pl": "Trening jest zawsze włączony. Pozostałe moduły pojawią się w kolejnych wersjach — przełącznik już czeka. Schemat danych: v{v}.",
-  "en": "Training is always on. Other modules arrive in later versions — the switch is ready. Data schema: v{v}."
  },
  {
   "pl": "Trening rozpoczęty o {t}, bez odhaczonych serii. Kontynuować czy odrzucić?",
@@ -4211,10 +4103,6 @@
   "en": "Hide message"
  },
  {
-  "pl": "Ukryj to, czego nie używasz",
-  "en": "Hide what you don’t use"
- },
- {
   "pl": "Ukryj zachętę do planu tygodnia",
   "en": "Hide the weekly plan prompt"
  },
@@ -4307,10 +4195,6 @@
   "en": "Delete the unticked weights?"
  },
  {
-  "pl": "Usunąć ostatnią serię?",
-  "en": "Remove the last set?"
- },
- {
   "pl": "Usunąć pomiar?",
   "en": "Delete measurement?"
  },
@@ -4375,24 +4259,12 @@
   "en": "deleted template"
  },
  {
-  "pl": "usuń",
-  "en": "remove"
- },
- {
   "pl": "Usuń",
   "en": "Delete"
  },
  {
-  "pl": "Usuń ćwiczenie",
-  "en": "Delete exercise"
- },
- {
   "pl": "Usuń ćwiczenie: {name}",
   "en": "Remove exercise: {name}"
- },
- {
-  "pl": "Usuń gumę",
-  "en": "Delete band"
  },
  {
   "pl": "Usuń gumę: {name}",
@@ -4417,10 +4289,6 @@
  {
   "pl": "Usuń pomiar: {v}, {d}",
   "en": "Delete measurement: {v}, {d}"
- },
- {
-  "pl": "Usuń serię",
-  "en": "Delete set"
  },
  {
   "pl": "Usuń serię {n} — {ex}",
@@ -4449,10 +4317,6 @@
  {
   "pl": "Usuń z biblioteki: {name}",
   "en": "Delete from library: {name}"
- },
- {
-  "pl": "Usuń z szablonu",
-  "en": "Remove from template"
  },
  {
   "pl": "Usuń zakres powtórzeń",
@@ -4515,10 +4379,6 @@
   "en": "In the weekly plan: {days} — these days will be rest days."
  },
  {
-  "pl": "w poniedziałek o 7:00",
-  "en": "Monday at 7:00"
- },
- {
   "pl": "W tej wersji",
   "en": "In this version"
  },
@@ -4541,10 +4401,6 @@
  {
   "pl": "W zapisanych planach: {names}.",
   "en": "In saved plans: {names}."
- },
- {
-  "pl": "Waga ({u})",
-  "en": "Weight ({u})"
  },
  {
   "pl": "Wartości zmienisz w wierszu serii poniżej.",
@@ -4609,10 +4465,6 @@
  {
   "pl": "Wioślarz",
   "en": "Rowing machine"
- },
- {
-  "pl": "wkrótce",
-  "en": "coming soon"
  },
  {
   "pl": "Włącz powiadomienia dla {app} w Ustawieniach iOS.",
@@ -4693,10 +4545,6 @@
  {
   "pl": "Wszystkie",
   "en": "All"
- },
- {
-  "pl": "wszystkie ćwiczenia z tą samą miarą",
-  "en": "all exercises with the same measure"
  },
  {
   "pl": "wszystkie ćwiczenia, także niszowe",
