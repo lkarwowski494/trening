@@ -129,8 +129,12 @@ function run(a: A) {
     case 'swap': { const e = blk(a.e); if (e && exs.length) { const to = exs[a.i % exs.length]; const n = act!.exercises.length; const r = store.swapBlock(e.id, to.id); if (r) { ran.swap++;
       const b = act!.exercises.find(x => x.id === r.blockId)!; expect(b.exerciseId).toBe(to.id); expect(b.sets.every(x => !x.done && !x.edited)).toBe(true);
       if (act!.exercises.length > n) { ran.split++; const A = act!.exercises[act!.exercises.indexOf(b) - 1]; expect(b.splitFrom).toBe(A.id); expect(A.sets.every(x => x.done)).toBe(true); expect(b.groupId).toBe(A.groupId); } } } break; }
-    case 'undoSwap': { const u = act ? act.exercises.filter(store.canUndoSwap) : []; const e = u.length ? u[a.e % u.length] : null; if (e) { const n = act!.exercises.length; const split = !!e.splitFrom && act!.exercises.some(x => x.id === e.splitFrom);
-      store.undoSwap(e.id); ran.undo++; expect(act!.exercises.length).toBe(split ? n - 1 : n); } break; } /* „↺ cofnij” tylko tam, gdzie ekran go pokazuje */
+    case 'undoSwap': { const u = act ? act.exercises.filter(store.canUndoSwap) : []; const e = u.length ? u[a.e % u.length] : null; if (e) { const n = act!.exercises.length; const orig = e.swappedFrom; const k = e.sets.length;
+      /* audyt L1 (04.10.2026, docs/14 pkt 10): scalenie z blokiem podziału tylko, gdy to wciąż oryginał (A); po A→X w miejscu i X→Y z podziałem Y wraca do A w miejscu (INV-UNDO, 09.10.2026) */
+      const P = e.splitFrom ? act!.exercises.find(x => x.id === e.splitFrom && x.exerciseId === orig) : undefined; const pk = P?.sets.length ?? 0;
+      store.undoSwap(e.id); ran.undo++; expect(act!.exercises.length).toBe(P ? n - 1 : n);
+      if (P) expect([act!.exercises.includes(e), P.sets.length]).toEqual([false, pk + k]);
+      else expect([act!.exercises.includes(e), e.exerciseId, e.swappedFrom ?? null, e.splitFrom ?? null, e.sets.length, e.sets.some(x => x.done)]).toEqual([true, orig, null, null, k, false]); } break; } /* „↺ cofnij” tylko tam, gdzie ekran go pokazuje */
     case 'link': if (act && act.exercises.length > 1) { store.linkWithNext(act.exercises, a.e % (act.exercises.length - 1), act); } break;
     case 'unlink': if (act?.exercises.length) store.unlink(act.exercises, a.e % act.exercises.length, act); break;
     case 'unit': st.settings.unit = st.settings.unit === 'lb' ? 'kg' : 'lb'; store.applyPrefs(); store.save(); break;
@@ -229,5 +233,30 @@ describe('niezmienniki — oś wykresu', () => {
         if (kind === 'time' && ticks.length > 1) { const st = ticks[1] - ticks[0]; expect(TIME_STEPS.includes(st) || st % 3600 === 0).toBe(true); } /* runda 71: kroki zegarowe */
       } finally { units.applyUnit('kg'); }
     }), { numRuns: Math.max(200, RUNS * 33) });
+  });
+});
+
+/* INV-UNDO (09.10.2026): kontrprzykład ziarna -1614231306 — „Powtórz ostatni”, A→X w miejscu, ✓ serii X, X→Y z podziałem (Y.splitFrom = blok X,
+ * Y.swappedFrom = A), „↺ cofnij” Y. Od audytu L1 (04.10.2026, docs/14 pkt 10) Y wraca do A W MIEJSCU (blok podziału to X, nie oryginał A — linijka
+ * „zamiast: A”), więc liczba bloków się nie zmienia; dawna wyrocznia niezmiennika oczekiwała scalenia (n − 1) przy każdym splitFrom. */
+describe('niezmienniki — kontrprzykłady (deterministyczne)', () => {
+  test('INV-UNDO: cofnięcie zamiany po A→X w miejscu i X→Y z podziałem — Y wraca do A w miejscu (audyt L1), blok X z odhaczoną serią zostaje', async () => {
+    await fresh(); withDemoTemplates();
+    try {
+      supersetStart(0); swapStart(0); run({ t: 'repeat' }); check('repeat');
+      const act = () => store.getState().active!; const exs = store.getState().exercises.filter(e => !e.archived);
+      const blk = act().exercises[0]; const A = blk.exerciseId; if (blk.sets.length < 2) store.addSet(0);
+      const same = (id: string) => exs.filter(e => e.id !== A && e.id !== id && e.metric === store.exById(A)!.metric);
+      const X = same(A)[0].id; const Y = same(X)[0].id;
+      expect(store.swapBlock(blk.id, X)!.blockId).toBe(blk.id); check('A→X');
+      store.toggleDone(0, 0); check('✓ X');
+      const n = act().exercises.length; const cid = store.swapBlock(blk.id, Y)!.blockId; const C = act().exercises.find(e => e.id === cid)!; check('X→Y');
+      expect([act().exercises.length, C.splitFrom, C.swappedFrom, act().exercises.filter(store.canUndoSwap).map(e => e.id)]).toEqual([n + 1, blk.id, A, [C.id]]); /* „↺ cofnij” na ekranie tylko przy Y */
+      const left = C.sets.length;
+      run({ t: 'undoSwap', e: 0 }); check('cofnij Y');
+      expect(act().exercises.map(e => [e.id, e.exerciseId, e.sets.length, e.sets.filter(s => s.done).length, e.swappedFrom ?? null, e.splitFrom ?? null]))
+        .toEqual(expect.arrayContaining([[blk.id, X, 1, 1, A, null], [C.id, A, left, 0, null, null]]));
+      expect(act().exercises.length).toBe(n + 1);
+    } finally { units.applyUnit('kg'); }
   });
 });
