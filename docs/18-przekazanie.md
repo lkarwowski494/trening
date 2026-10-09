@@ -335,3 +335,7 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
 - 09.10.2026 (ok. 17:10): właściciel — **usunąć przypomnienie o odnowieniu podpisu (T-053) i całą drogę instalacji z komputera**; instalacja
   tylko przez TestFlight (A). Powód: nazwa innej aplikacji w tekstach aplikacji (ryzyko odrzucenia przez Apple, zasada z 09.10). Odrzucone B:
   neutralny opis. `ios-unsigned.yml` zostaje jako sprawdzenie kompilacji (bez instrukcji instalacji).
+- 09.10.2026 (ok. 17:25): właściciel — **do wersji 0.11 (wyjątek od zamrożenia zakresu, „marka jest ważna od początku”)**: (3) krótka animacja
+  przy starcie aplikacji — talerze wsuwają się na gryf i układają w ikonę („jak intro Netflixa”); (5) Podsumowanie miesiąca: tygodnie jako
+  rząd stosów (pełny = plan tygodnia wykonany, obwódka = niepełny). (6) zrzuty App Store w motywie — przy przygotowaniu sklepu (paczka przed
+  App Store). Backlog: serie w treningu jako talerze, większa grafika talerzy w widoku skupionym, rekordy jako rosnący stos.
