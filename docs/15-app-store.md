@@ -134,6 +134,12 @@ Rozmowa 05.10.2026, rano: „Chciałbym móc opublikować to w Apple Store” i 
     (sprzedaż licencji)”; z działalnością — VAT-UE, odwrotne obciążenie (kontrahent: Apple w Irlandii). Zastrzeżenia: interpretacja wiąże
     tylko wnioskodawcę, jest z 2014 r. i dotyczyła hobbystycznej aplikacji; subskrypcja, promocja i status tradera mogą przemawiać za
     działalnością gospodarczą (ciągłą, zorganizowaną) — do oceny księgowego albo własnej interpretacji indywidualnej (KIS, opłata).
+  - **Właściciel pracuje równolegle na umowie o pracę (09.10.2026)** — dodatkowe pytania do księgowego/prawnika (nie sprawdzone w źródłach):
+    1) przychód z aplikacji sumuje się z wynagrodzeniem w zeznaniu rocznym (skala — możliwy wyższy próg); 2) przy firmie (JDG) i pensji co
+    najmniej minimalnej — zwykle tylko składka zdrowotna z firmy (zbieg tytułów), do potwierdzenia; 3) umowa o pracę: zakaz konkurencji
+    i klauzule o prawach do programów (art. 74 ust. 3 prawa autorskiego — program stworzony w ramach obowiązków pracownika należy do
+    pracodawcy); 4) droga „licencja = prawa majątkowe” zakłada utwór człowieka — kod pisany głównie przez agentów AI może mieć słabszą
+    ochronę autorską, co osłabia tę kwalifikację.
   - **Otwarte dla księgowego:** czy przychodem jest cena dla klienta czy wypłata od Apple (po prowizji i VAT); VAT od usługi dla Apple
     (podmiot zagraniczny) — czy potrzebna rejestracja VAT-UE; jak dokumentować wypłaty Apple.
 - **Priorytet produktu wynikający z celu:** zatrzymanie użytkowników (jakość, brak błędów, dane bezpieczne) ważniejsze niż liczba pobrań —
