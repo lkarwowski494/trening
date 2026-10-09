@@ -365,3 +365,9 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
   aktywne przy każdej liczbie dni; przy zbyt małej liczbie dni krótka uwaga pod celem (treść wg źródeł — research 29). Odrzucone: A (cele
   wyszarzone poniżej minimum — blokuje, minima bez źródeł), C (jak dotąd: cel → dni). Parametry celu „Ogólny” wg źródeł (WHO 2020, ACSM)
   przed wdrożeniem. Termin: 0.11 (wyjątek; „Ok” na rekomendację — do potwierdzenia, jeśli właściciel wolał paczkę przed App Store).
+- 09.10.2026 (wieczór): właściciel — **cel „Ogólny”: wszystkie wybrane dni siłowe (1–6) + przełącznik „Dni cardio w planie” (B)**, domyślnie
+  wyłączony; po włączeniu dni powyżej 3 = cardio (dla 1–3 dni przełącznika nie ma). „Nie blokujmy 4–5 sesji siłowych” — przy 4+ dniach podział
+  góra/dół jak przy masie, parametry „ogólne”. Odrzucone: A (bez przełącznika), C (domyślnie cardio przy 4–6). „Ok” przyjęte także dla
+  rekomendacji: **2 serie** (źródła 2–3), **bez rozciągania i równowagi** (jedno źródło / tylko 65+; pytanie o wiek → backlog). Podstawa:
+  szkic research „Ogólny” (WHO 2020, PAG 2018, ACSM 2011/2026) → docs/research/30 przy wdrożeniu. Przy masie 1 dzień: źródła nie potwierdzają
+  „utrzymania” (ACSM 2026: przy równej liczbie serii przyrost podobny) — uwaga mówi o trudności zmieszczenia 10 serii w jednej sesji.
