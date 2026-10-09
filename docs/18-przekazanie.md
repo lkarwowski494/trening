@@ -332,3 +332,6 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
   kodują już serii ani kolejności (odrzucone: kolor = serie względem średniej, kolor po kolei); (2) zamiast sztangi postępu — N stosów
   talerzy obok siebie (N = dni w planie tygodnia), stos wypełniony kolorami = trening wykonany, obwódka = niewykonany, plus procent wykonania
   planu tygodnia; (3) usunięty czterokolorowy pasek nad kartą „Dziś” (nic nie znaczy).
+- 09.10.2026 (ok. 17:10): właściciel — **usunąć przypomnienie o odnowieniu podpisu (T-053) i całą drogę instalacji z komputera**; instalacja
+  tylko przez TestFlight (A). Powód: nazwa innej aplikacji w tekstach aplikacji (ryzyko odrzucenia przez Apple, zasada z 09.10). Odrzucone B:
+  neutralny opis. `ios-unsigned.yml` zostaje jako sprawdzenie kompilacji (bez instrukcji instalacji).
