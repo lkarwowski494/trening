@@ -46,6 +46,9 @@ name: Masa ciała z datą i licencje open source
 - extendedWaitUntil: { visible: "MIT, .*", timeout: 30000 }
 - tapOn: "MIT, .*"
 # run 37900617167 (f2bdca8): „Permission is hereby granted.*” nie pasował — treść licencji zaczyna się od „MIT License\n\n” (zrzut kroku 28: tekst na ekranie)
+# run 37909583790 (5c24b0c): sam wzorzec pasuje (Maestro dopasowuje też tekst z \n zamienionymi na spacje — Filters.textMatches),
+# ale na zrzucie treść licencji zaczyna się przy dolnej krawędzi i wychodzi poza ekran — najpierw przewinięcie do środka ekranu
+- scrollUntilVisible: { element: "MIT License.*Permission is hereby granted.*", direction: DOWN, centerElement: true, timeout: 30000 }
 - extendedWaitUntil: { visible: "MIT License.*Permission is hereby granted.*", timeout: 30000 }
 - takeScreenshot: 71-licencje
 - scrollUntilVisible: { element: "Packages \\(\\d+\\)", direction: DOWN, timeout: 60000 }
