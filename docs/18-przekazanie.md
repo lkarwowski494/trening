@@ -261,3 +261,7 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
   Personal Trainer ok. 90 USD; e-booki w VitalSource — agent nie ma do nich dostępu). Odrzucone: B zakup, C wypożyczenie biblioteczne (czas
   właściciela). Właściciel — **prawa autorskie jako element obowiązkowy przed upublicznieniem aplikacji**: skrócenie długich cytatów w
   `docs/research`, sprawdzenie podobieństwa treści aplikacji do źródeł, tylko własne grafiki, licencje zależności — punkt 8 w docs/15.
+- 09.10.2026 (ok. 06:30): właściciel — **polskie atlasy ćwiczeń (fabrykasily.pl/atlas-cwiczen, atlas.kulturystyka.pl, centrumrespo.pl/atlas): wariant B —
+  pomijamy.** Ocena: szczebel 5 (praktyka trenerów, bez bibliografii, „wszelkie prawa zastrzeżone”; kulturystyka.pl — zdjęcia z exrx.net,
+  tabele regeneracji bez źródeł). Odrzucone: A (źródło pomocnicze szczebla 5 do nazw i kontroli kompletności), C (licencja na zdjęcia/filmy —
+  koszt, zależność). Nie używamy ich treści, zdjęć ani filmów.
