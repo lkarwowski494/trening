@@ -884,8 +884,6 @@
  "Masa": "Muskelmasse",
  "Redukcja": "Fedttab",
  "Bez ograniczeń sprzętu": "Ingen begrænsning af udstyr",
- "Sesje w tygodniu": "Sessioner pr. uge",
- "Sesje w tygodniu: {n}": "Sessioner pr. uge: {n}",
  "Czas sesji": "Sessionens længde",
  "{n} min": "{n} min",
  "Podgląd": "Forhåndsvisning",
@@ -1043,7 +1041,6 @@
  "Poniżej {n} serii tygodniowo: {list}. Pomoże więcej sesji, dłuższy czas albo więcej sprzętu w miejscu.": "Under {n} sæt pr. uge: {list}. Flere sessioner, længere sessioner eller mere udstyr på stedet hjælper.",
  "{goal}, {n}× w tygodniu · {place}": "{goal}, {n}× pr. uge · {place}",
  "Wysiłek: zwykle {a}–{b} powtórzenia w zapasie (RIR); do upadku nie trzeba.": "Anstrengelse: typisk {a}–{b} gentagelser i reserve (RIR); træning til udmattelse er ikke nødvendig.",
- "Sesje w tygodniu (w tym {n} cardio)": "Sessioner pr. uge (inkl. {n} kondition)",
  "{v} (masa ciała {d})": "{v} (kropsvægt {d})",
  "e1RM {v} (masa ciała {d}; seria {s})": "e1RM {v} (kropsvægt {d}; sæt {s})",
  "Masa ciała ({u})": "Kropsvægt ({u})",
@@ -1270,7 +1267,6 @@
  "Szablon w planie: {name}": "Skabelon i planen: {name}",
  "Najwyżej {n} szablonów — każdy dostaje co najmniej jeden dzień.": "Højst {n} skabeloner — hver får mindst én dag.",
  "Dni treningowe w tygodniu": "Træningsdage pr. uge",
- "Dni treningowe w tygodniu: {n}": "Træningsdage pr. uge: {n}",
  "Dni co najmniej tyle, ile wybranych szablonów.": "Mindst lige så mange dage som valgte skabeloner.",
  "Wybierz co najmniej jeden szablon.": "Vælg mindst én skabelon.",
  "Dni: {n}, szablony: {k} — szablony powtarzają się po kolei: {seq}. Co tydzień od początku.": "Dage: {n}, skabeloner: {k} — skabelonerne gentages i rækkefølge: {seq}. Hver uge forfra.",
@@ -1323,5 +1319,8 @@
  "Aplikacja zamknęła się w trakcie edycji ćwiczenia „{name}”. Wrócić do edycji?": "Appen lukkede, mens du redigerede øvelsen “{name}”. Vil du fortsætte redigeringen?",
  "Wróć do edycji": "Fortsæt redigering",
  "Mapa mięśni i serie na partię z kreską {n} serii tygodniowo.": "Muskelkort og sæt pr. muskelgruppe med en linje ved {n} sæt om ugen.",
- "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.": "Fremgang: uge- og månedsoversigt med muskelkort, markering for {n} sæt pr. muskelgruppe pr. uge og markering af en deload-uge."
+ "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.": "Fremgang: uge- og månedsoversigt med muskelkort, markering for {n} sæt pr. muskelgruppe pr. uge og markering af en deload-uge.",
+ "Dni treningowe w tygodniu (w tym {n} cardio)": "Træningsdage pr. uge (inkl. {n} kondition)",
+ "Wybierz dni treningowe: od {a} do {b}.": "Vælg træningsdage: fra {a} til {b}.",
+ "Wybierz dni treningowe: {n}.": "Vælg træningsdage: {n}."
 }

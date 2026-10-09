@@ -884,8 +884,6 @@
  "Masa": "Raumenų masė",
  "Redukcja": "Riebalų deginimas",
  "Bez ograniczeń sprzętu": "Be įrangos apribojimų",
- "Sesje w tygodniu": "Treniruotės per savaitę",
- "Sesje w tygodniu: {n}": "Treniruotės per savaitę: {n}",
  "Czas sesji": "Treniruotės trukmė",
  "{n} min": "{n} min",
  "Podgląd": "Peržiūra",
@@ -1043,7 +1041,6 @@
  "Poniżej {n} serii tygodniowo: {list}. Pomoże więcej sesji, dłuższy czas albo więcej sprzętu w miejscu.": "Mažiau nei {n} serijų per savaitę: {list}. Padės daugiau treniruočių, ilgesnės treniruotės ar daugiau įrangos vietoje.",
  "{goal}, {n}× w tygodniu · {place}": "{goal}, {n}× per savaitę · {place}",
  "Wysiłek: zwykle {a}–{b} powtórzenia w zapasie (RIR); do upadku nie trzeba.": "Pastangos: paprastai {a}–{b} pakartojimai atsargoje (RIR); iki išsekimo nebūtina.",
- "Sesje w tygodniu (w tym {n} cardio)": "Treniruotės per savaitę (įsk. {n} kardio)",
  "{v} (masa ciała {d})": "{v} (kūno svoris {d})",
  "e1RM {v} (masa ciała {d}; seria {s})": "e1RM {v} (kūno svoris {d}; serija {s})",
  "Masa ciała ({u})": "Kūno svoris ({u})",
@@ -1270,7 +1267,6 @@
  "Szablon w planie: {name}": "Šablonas plane: {name}",
  "Najwyżej {n} szablonów — każdy dostaje co najmniej jeden dzień.": "Daugiausia {n} šablonai — kiekvienas gauna bent vieną dieną.",
  "Dni treningowe w tygodniu": "Treniruočių dienos per savaitę",
- "Dni treningowe w tygodniu: {n}": "Treniruočių dienos per savaitę: {n}",
  "Dni co najmniej tyle, ile wybranych szablonów.": "Dienų bent tiek, kiek pasirinktų šablonų.",
  "Wybierz co najmniej jeden szablon.": "Pasirink bent vieną šabloną.",
  "Dni: {n}, szablony: {k} — szablony powtarzają się po kolei: {seq}. Co tydzień od początku.": "Dienos: {n}, šablonai: {k} — šablonai kartojasi iš eilės: {seq}. Kiekvieną savaitę iš naujo.",
@@ -1323,5 +1319,8 @@
  "Aplikacja zamknęła się w trakcie edycji ćwiczenia „{name}”. Wrócić do edycji?": "Programėlė užsidarė, kol redagavote pratimą „{name}“. Grįžti prie redagavimo?",
  "Wróć do edycji": "Grįžti prie redagavimo",
  "Mapa mięśni i serie na partię z kreską {n} serii tygodniowo.": "Raumenų žemėlapis ir serijos raumenų grupei su linija ties {n} serijų per savaitę.",
- "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.": "Progresas: savaitės ir mėnesio suvestinė su raumenų žemėlapiu, {n} serijų raumenų grupei per savaitę žyma ir savaitės pažymėjimas kaip deload."
+ "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.": "Progresas: savaitės ir mėnesio suvestinė su raumenų žemėlapiu, {n} serijų raumenų grupei per savaitę žyma ir savaitės pažymėjimas kaip deload.",
+ "Dni treningowe w tygodniu (w tym {n} cardio)": "Treniruočių dienos per savaitę (įsk. {n} kardio)",
+ "Wybierz dni treningowe: od {a} do {b}.": "Pasirink treniruočių dienas: nuo {a} iki {b}.",
+ "Wybierz dni treningowe: {n}.": "Pasirink treniruočių dienas: {n}."
 }

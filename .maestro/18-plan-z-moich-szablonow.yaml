@@ -10,7 +10,9 @@
 #   "Make the new plan active\?", "Make active" ← 'Ustawić nowy plan jako aktywny?', 'Ustaw jako aktywny' (to samo okno co generator)
 #   "Saved", "Weekly plan"            ← 'Zapisano', 'Plan tygodnia' (potwierdzenie zapisu)
 #   "Not now"                        ← 'Nie teraz' (okno zgody na przypomnienie — X-11: pierwszy plan z każdej drogi, components/PlanReminderSync)
-#   "Monday, Upper A", "Tuesday, Rest" ← app/plan.tsx: wiersz dnia '{dzień}, {szablon albo Wolne}' (1 szablon × 3 dni → pon., śr., pt.)
+#   "Monday, Upper A", "Tuesday, Rest" ← app/plan.tsx: wiersz dnia '{dzień}, {szablon albo Wolne}' (1 szablon × 3 dni → pon., śr., sob. po wyborze dni)
+#   "day-N" (id)                      ← components/DayPicker.tsx: testID przycisku dnia (pon = 0); wybór dni (decyzja 09.10.2026 B):
+#                                       propozycja pon./śr./pt. → pt. odznaczony, sob. zaznaczona → "Saturday, Upper A", piątek wolny
 #   "Tuesday: \+ New template"        ← app/plan.tsx: '{dzień}: ' + '+ Nowy szablon' (przycisk w rozwiniętym wierszu dnia)
 #   "\+ Add exercise", "Search exercises…", "Save template", "Edit template", "Back" ← jak w subflows/szablon-testowy.yaml
 #   "Tuesday, Lower B"                ← wiersz dnia po „Zapisz” nowego szablonu (przypisanie: lib/plan.ts assignNewTemplate)
@@ -27,6 +29,8 @@ name: Plan z moich szablonów
 - tapOn: "Plan from my templates"
 - extendedWaitUntil: { visible: "Training days per week", timeout: 30000 }
 - assertVisible: "Template in the plan: Upper A"
+- tapOn: { id: "day-4" }
+- tapOn: { id: "day-5" }
 - assertVisible: "Preview"
 - takeScreenshot: 80-plan-z-moich-szablonow
 - scrollUntilVisible: { element: "Save plan", direction: DOWN, timeout: 30000, centerElement: true }
@@ -39,6 +43,8 @@ name: Plan z moich szablonów
 - tapOn: "Weekly plan"
 - tapOn: { text: "Not now", optional: true }
 - extendedWaitUntil: { visible: "Monday, Upper A", timeout: 30000 }
+- assertVisible: "Friday, Rest"
+- assertVisible: "Saturday, Upper A"
 - takeScreenshot: 81-plan-aktywny
 # --- „+ Nowy szablon” na wtorek: edycja → ćwiczenie → „Zapisz” → szablon od razu na wtorku ---
 - tapOn: "Tuesday, Rest"

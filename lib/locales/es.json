@@ -884,8 +884,6 @@
  "Masa": "Masa",
  "Redukcja": "Definición",
  "Bez ograniczeń sprzętu": "Sin límites de material",
- "Sesje w tygodniu": "Sesiones por semana",
- "Sesje w tygodniu: {n}": "Sesiones por semana: {n}",
  "Czas sesji": "Duración de la sesión",
  "{n} min": "{n} min",
  "Podgląd": "Vista previa",
@@ -1043,7 +1041,6 @@
  "Poniżej {n} serii tygodniowo: {list}. Pomoże więcej sesji, dłuższy czas albo więcej sprzętu w miejscu.": "Menos de {n} series a la semana: {list}. Ayudan más sesiones, sesiones más largas o más material en el lugar.",
  "{goal}, {n}× w tygodniu · {place}": "{goal}, {n}× por semana · {place}",
  "Wysiłek: zwykle {a}–{b} powtórzenia w zapasie (RIR); do upadku nie trzeba.": "Esfuerzo: normalmente {a}–{b} repeticiones en reserva (RIR); no hace falta llegar al fallo.",
- "Sesje w tygodniu (w tym {n} cardio)": "Sesiones por semana (incl. {n} cardio)",
  "{v} (masa ciała {d})": "{v} (peso corporal {d})",
  "e1RM {v} (masa ciała {d}; seria {s})": "e1RM {v} (peso corporal {d}; serie {s})",
  "Masa ciała ({u})": "Peso corporal ({u})",
@@ -1270,7 +1267,6 @@
  "Szablon w planie: {name}": "Plantilla en el plan: {name}",
  "Najwyżej {n} szablonów — każdy dostaje co najmniej jeden dzień.": "Como máximo {n} plantillas — cada una recibe al menos un día.",
  "Dni treningowe w tygodniu": "Días de entrenamiento por semana",
- "Dni treningowe w tygodniu: {n}": "Días de entrenamiento por semana: {n}",
  "Dni co najmniej tyle, ile wybranych szablonów.": "Al menos tantos días como plantillas elegidas.",
  "Wybierz co najmniej jeden szablon.": "Elige al menos una plantilla.",
  "Dni: {n}, szablony: {k} — szablony powtarzają się po kolei: {seq}. Co tydzień od początku.": "Días: {n}, plantillas: {k} — las plantillas se repiten en orden: {seq}. Cada semana empieza de nuevo.",
@@ -1323,5 +1319,8 @@
  "Aplikacja zamknęła się w trakcie edycji ćwiczenia „{name}”. Wrócić do edycji?": "La app se cerró mientras editabas el ejercicio «{name}». ¿Volver a la edición?",
  "Wróć do edycji": "Volver a la edición",
  "Mapa mięśni i serie na partię z kreską {n} serii tygodniowo.": "Mapa muscular y series por grupo muscular con una línea en {n} series semanales.",
- "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.": "Progreso: resumen de la semana y del mes con mapa muscular, marca de {n} series por grupo muscular a la semana y marcado de una semana de descarga."
+ "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.": "Progreso: resumen de la semana y del mes con mapa muscular, marca de {n} series por grupo muscular a la semana y marcado de una semana de descarga.",
+ "Dni treningowe w tygodniu (w tym {n} cardio)": "Días de entrenamiento por semana (incl. {n} cardio)",
+ "Wybierz dni treningowe: od {a} do {b}.": "Elige días de entrenamiento: de {a} a {b}.",
+ "Wybierz dni treningowe: {n}.": "Elige días de entrenamiento: {n}."
 }

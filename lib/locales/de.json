@@ -884,8 +884,6 @@
  "Masa": "Muskelaufbau",
  "Redukcja": "Fettabbau",
  "Bez ograniczeń sprzętu": "Ohne Geräteeinschränkung",
- "Sesje w tygodniu": "Einheiten pro Woche",
- "Sesje w tygodniu: {n}": "Einheiten pro Woche: {n}",
  "Czas sesji": "Dauer der Einheit",
  "{n} min": "{n} min",
  "Podgląd": "Vorschau",
@@ -1043,7 +1041,6 @@
  "Poniżej {n} serii tygodniowo: {list}. Pomoże więcej sesji, dłuższy czas albo więcej sprzętu w miejscu.": "Unter {n} Sätzen pro Woche: {list}. Mehr Einheiten, längere Einheiten oder mehr Geräte am Ort helfen.",
  "{goal}, {n}× w tygodniu · {place}": "{goal}, {n}× pro Woche · {place}",
  "Wysiłek: zwykle {a}–{b} powtórzenia w zapasie (RIR); do upadku nie trzeba.": "Anstrengung: meist {a}–{b} Wiederholungen in Reserve (RIR); Training bis zum Versagen ist nicht nötig.",
- "Sesje w tygodniu (w tym {n} cardio)": "Einheiten pro Woche (inkl. {n} Cardio)",
  "{v} (masa ciała {d})": "{v} (Körpergewicht {d})",
  "e1RM {v} (masa ciała {d}; seria {s})": "e1RM {v} (Körpergewicht {d}; Satz {s})",
  "Masa ciała ({u})": "Körpergewicht ({u})",
@@ -1270,7 +1267,6 @@
  "Szablon w planie: {name}": "Vorlage im Plan: {name}",
  "Najwyżej {n} szablonów — każdy dostaje co najmniej jeden dzień.": "Höchstens {n} Vorlagen — jede bekommt mindestens einen Tag.",
  "Dni treningowe w tygodniu": "Trainingstage pro Woche",
- "Dni treningowe w tygodniu: {n}": "Trainingstage pro Woche: {n}",
  "Dni co najmniej tyle, ile wybranych szablonów.": "Mindestens so viele Tage wie gewählte Vorlagen.",
  "Wybierz co najmniej jeden szablon.": "Wähle mindestens eine Vorlage.",
  "Dni: {n}, szablony: {k} — szablony powtarzają się po kolei: {seq}. Co tydzień od początku.": "Tage: {n}, Vorlagen: {k} — die Vorlagen wiederholen sich der Reihe nach: {seq}. Jede Woche von vorn.",
@@ -1323,5 +1319,8 @@
  "Aplikacja zamknęła się w trakcie edycji ćwiczenia „{name}”. Wrócić do edycji?": "Die App wurde beim Bearbeiten der Übung „{name}“ geschlossen. Mit der Bearbeitung fortfahren?",
  "Wróć do edycji": "Weiter bearbeiten",
  "Mapa mięśni i serie na partię z kreską {n} serii tygodniowo.": "Muskelkarte und Sätze pro Muskelgruppe mit einer Linie bei {n} Sätzen pro Woche.",
- "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.": "Fortschritt: Wochen- und Monatsübersicht mit Muskelkarte, Markierung für {n} Sätze pro Muskelgruppe und Woche sowie Kennzeichnung einer Deload-Woche."
+ "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.": "Fortschritt: Wochen- und Monatsübersicht mit Muskelkarte, Markierung für {n} Sätze pro Muskelgruppe und Woche sowie Kennzeichnung einer Deload-Woche.",
+ "Dni treningowe w tygodniu (w tym {n} cardio)": "Trainingstage pro Woche (inkl. {n} Cardio)",
+ "Wybierz dni treningowe: od {a} do {b}.": "Wähle Trainingstage: {a} bis {b}.",
+ "Wybierz dni treningowe: {n}.": "Wähle Trainingstage: {n}."
 }

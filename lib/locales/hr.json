@@ -884,8 +884,6 @@
  "Masa": "Masa",
  "Redukcja": "Redukcija",
  "Bez ograniczeń sprzętu": "Bez ograničenja opreme",
- "Sesje w tygodniu": "Treninzi tjedno",
- "Sesje w tygodniu: {n}": "Treninzi tjedno: {n}",
  "Czas sesji": "Trajanje treninga",
  "{n} min": "{n} min",
  "Podgląd": "Pregled",
@@ -1043,7 +1041,6 @@
  "Poniżej {n} serii tygodniowo: {list}. Pomoże więcej sesji, dłuższy czas albo więcej sprzętu w miejscu.": "Ispod {n} serija tjedno: {list}. Pomoći će više treninga, dulji treninzi ili više opreme na mjestu.",
  "{goal}, {n}× w tygodniu · {place}": "{goal}, {n}× tjedno · {place}",
  "Wysiłek: zwykle {a}–{b} powtórzenia w zapasie (RIR); do upadku nie trzeba.": "Napor: obično {a}–{b} ponavljanja u rezervi (RIR); do otkaza nije potrebno.",
- "Sesje w tygodniu (w tym {n} cardio)": "Treninzi tjedno (uklj. {n} kardio)",
  "{v} (masa ciała {d})": "{v} (tjelesna težina {d})",
  "e1RM {v} (masa ciała {d}; seria {s})": "e1RM {v} (tjelesna težina {d}; serija {s})",
  "Masa ciała ({u})": "Tjelesna težina ({u})",
@@ -1270,7 +1267,6 @@
  "Szablon w planie: {name}": "Predložak u planu: {name}",
  "Najwyżej {n} szablonów — każdy dostaje co najmniej jeden dzień.": "Najviše {n} predložaka — svaki dobiva barem jedan dan.",
  "Dni treningowe w tygodniu": "Dani treninga u tjednu",
- "Dni treningowe w tygodniu: {n}": "Dani treninga u tjednu: {n}",
  "Dni co najmniej tyle, ile wybranych szablonów.": "Dana barem onoliko koliko je odabranih predložaka.",
  "Wybierz co najmniej jeden szablon.": "Odaberi barem jedan predložak.",
  "Dni: {n}, szablony: {k} — szablony powtarzają się po kolei: {seq}. Co tydzień od początku.": "Dani: {n}, predlošci: {k} — predlošci se ponavljaju redom: {seq}. Svaki tjedan ispočetka.",
@@ -1323,5 +1319,8 @@
  "Aplikacja zamknęła się w trakcie edycji ćwiczenia „{name}”. Wrócić do edycji?": "Aplikacija se zatvorila dok ste uređivali vježbu „{name}”. Nastaviti uređivanje?",
  "Wróć do edycji": "Nastavi uređivanje",
  "Mapa mięśni i serie na partię z kreską {n} serii tygodniowo.": "Mapa mišića i serije po mišićnoj skupini s crtom na {n} serija tjedno.",
- "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.": "Napredak: sažetak tjedna i mjeseca s mapom mišića, oznaka {n} serija po mišićnoj skupini tjedno i označavanje tjedna rasterećenja."
+ "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.": "Napredak: sažetak tjedna i mjeseca s mapom mišića, oznaka {n} serija po mišićnoj skupini tjedno i označavanje tjedna rasterećenja.",
+ "Dni treningowe w tygodniu (w tym {n} cardio)": "Dani treninga u tjednu (uklj. {n} kardio)",
+ "Wybierz dni treningowe: od {a} do {b}.": "Odaberi dane treninga: od {a} do {b}.",
+ "Wybierz dni treningowe: {n}.": "Odaberi dane treninga: {n}."
 }

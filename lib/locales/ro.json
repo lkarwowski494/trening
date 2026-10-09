@@ -884,8 +884,6 @@
  "Masa": "Masă musculară",
  "Redukcja": "Slăbire",
  "Bez ograniczeń sprzętu": "Fără limite de echipament",
- "Sesje w tygodniu": "Sesiuni pe săptămână",
- "Sesje w tygodniu: {n}": "Sesiuni pe săptămână: {n}",
  "Czas sesji": "Durata sesiunii",
  "{n} min": "{n} min",
  "Podgląd": "Previzualizare",
@@ -1043,7 +1041,6 @@
  "Poniżej {n} serii tygodniowo: {list}. Pomoże więcej sesji, dłuższy czas albo więcej sprzętu w miejscu.": "Sub {n} serii pe săptămână: {list}. Ajută mai multe sesiuni, sesiuni mai lungi sau mai mult echipament în loc.",
  "{goal}, {n}× w tygodniu · {place}": "{goal}, de {n}× pe săptămână · {place}",
  "Wysiłek: zwykle {a}–{b} powtórzenia w zapasie (RIR); do upadku nie trzeba.": "Efort: de obicei {a}–{b} repetări în rezervă (RIR); nu e nevoie până la epuizare.",
- "Sesje w tygodniu (w tym {n} cardio)": "Sesiuni pe săptămână (incl. {n} cardio)",
  "{v} (masa ciała {d})": "{v} (greutatea corpului {d})",
  "e1RM {v} (masa ciała {d}; seria {s})": "e1RM {v} (greutatea corpului {d}; seria {s})",
  "Masa ciała ({u})": "Greutatea corpului ({u})",
@@ -1270,7 +1267,6 @@
  "Szablon w planie: {name}": "Șablon în plan: {name}",
  "Najwyżej {n} szablonów — każdy dostaje co najmniej jeden dzień.": "Cel mult {n} șabloane — fiecare primește cel puțin o zi.",
  "Dni treningowe w tygodniu": "Zile de antrenament pe săptămână",
- "Dni treningowe w tygodniu: {n}": "Zile de antrenament pe săptămână: {n}",
  "Dni co najmniej tyle, ile wybranych szablonów.": "Cel puțin atâtea zile câte șabloane ai ales.",
  "Wybierz co najmniej jeden szablon.": "Alege cel puțin un șablon.",
  "Dni: {n}, szablony: {k} — szablony powtarzają się po kolei: {seq}. Co tydzień od początku.": "Zile: {n}, șabloane: {k} — șabloanele se repetă pe rând: {seq}. Fiecare săptămână de la început.",
@@ -1323,5 +1319,8 @@
  "Aplikacja zamknęła się w trakcie edycji ćwiczenia „{name}”. Wrócić do edycji?": "Aplicația s-a închis în timp ce editați exercițiul „{name}”. Reveniți la editare?",
  "Wróć do edycji": "Înapoi la editare",
  "Mapa mięśni i serie na partię z kreską {n} serii tygodniowo.": "Harta mușchilor și serii pe grupă musculară cu o linie la {n} serii pe săptămână.",
- "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.": "Progres: rezumatul săptămânii și al lunii cu harta mușchilor, marcaj de {n} serii pe grupă musculară pe săptămână și marcarea unei săptămâni de deload."
+ "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.": "Progres: rezumatul săptămânii și al lunii cu harta mușchilor, marcaj de {n} serii pe grupă musculară pe săptămână și marcarea unei săptămâni de deload.",
+ "Dni treningowe w tygodniu (w tym {n} cardio)": "Zile de antrenament pe săptămână (incl. {n} cardio)",
+ "Wybierz dni treningowe: od {a} do {b}.": "Alege zilele de antrenament: de la {a} la {b}.",
+ "Wybierz dni treningowe: {n}.": "Alege zilele de antrenament: {n}."
 }
