@@ -143,6 +143,13 @@ Rozmowa 05.10.2026, rano: „Chciałbym móc opublikować to w Apple Store” i 
     Właściciel (09.10.2026): zakaz konkurencji w umowie jest, ale aplikacja powstaje w wolnym czasie, na własnym sprzęcie, w obszarze
     niezwiązanym z pracą — ryzyko z pkt 3 niskie. Do sprawdzenia: wewnętrzne zasady pracodawcy o zgłaszaniu dodatkowej działalności
     zarobkowej (w dużych firmach bywa obowiązek zgłoszenia niezależnie od branży).
+  - **Opracowanie księgowej (podatkiprogramisty.pl, M. Salawa, „Sprzedaż aplikacji w App Store — jak rozliczyć przychód i VAT”,
+    11.09.2025, akt. 13.07.2026; zastrzeżenie: nie jest poradą podatkową):** „Jeśli prowadzisz działalność nierejestrowaną albo nie masz
+    firmy – przychód rozliczasz jako przychód z praw majątkowych (licencji)”. VAT: wewnątrzwspólnotowe świadczenie usług, faktura dla Apple
+    (Apple Distribution International, Irlandia, albo Apple Services, Luksemburg — wg raportu i przelewu) z „odwrotnym obciążeniem”, „np”,
+    JPK_V7 i VAT-UE — opisane dla firmy; czy osoba bez firmy musi rejestrować VAT-UE — artykuł nie mówi (otwarte). Faktura zbiorcza
+    za okres raportu Apple, kwota „zgodnie z raportem”; waluta (zwykle EUR) — kurs NBP z dnia poprzedzającego uzyskanie przychodu.
+    Nie omawia: prowizji (brutto czy netto), W-8BEN.
   - **Drogi w urzędzie skarbowym (09.10.2026):** 1) infolinia KAS (telefon, e-mail, czat) — bezpłatnie, szybko, bez mocy wiążącej;
     2) baza interpretacji Ministerstwa Finansów (EUREKA) — bezpłatnie, cudze sprawy, bez ochrony; 3) interpretacja indywidualna KIS —
     formularz ORD-IN (kreator ord-in.podatki.gov.pl; e-Urząd Skarbowy/ePUAP, podpis zaufany), **40 zł za każdy stan faktyczny lub zdarzenie
