@@ -327,3 +327,8 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
   (ŚREDNIE/NISKIE), układ B ekranu głównego i pełny zestaw motywu z ikony, „Plan z moich szablonów”, B1. Przed buildem: audyt zmian
   od 0.10.0 + lista kontrolna (CLAUDE.md „Audyty i wydania” pkt 4), verify, E2E. Potem: subskrypcja + wymogi App Store → pełny audyt →
   App Store. Odrzucone A (jedna wersja ze wszystkim). Licencje open source: zostają w „O aplikacji” (wymóg licencji MIT/BSD).
+- 09.10.2026 (ok. 17:00): właściciel po zrzutach motywu — **korekta**: (1) pasek tygodnia i kalendarz: pod dniem z wykonanym treningiem
+  mała kolorowa ikona jak ikona aplikacji (gryf z talerzami), dzień zaplanowany niewykonany — sama obwódka tej ikony; kolory talerzy nie
+  kodują już serii ani kolejności (odrzucone: kolor = serie względem średniej, kolor po kolei); (2) zamiast sztangi postępu — N stosów
+  talerzy obok siebie (N = dni w planie tygodnia), stos wypełniony kolorami = trening wykonany, obwódka = niewykonany, plus procent wykonania
+  planu tygodnia; (3) usunięty czterokolorowy pasek nad kartą „Dziś” (nic nie znaczy).
