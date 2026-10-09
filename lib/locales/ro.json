@@ -1307,5 +1307,12 @@
  "stożek rotatorów": "coafa rotatorilor",
  "zębaty przedni": "dințatul anterior",
  "piszczelowy przedni": "tibialul anterior",
- "zginacze biodra": "flexorii șoldului"
+ "zginacze biodra": "flexorii șoldului",
+ "Rysunek ruchu: {opis}": "Desenul mișcării: {opis}",
+ "Zatrzymaj animację": "Pune animația pe pauză",
+ "Wznów animację": "Reia animația",
+ "Pozycja wyjściowa": "Poziția de pornire",
+ "W trakcie": "În timpul mișcării",
+ "Pozycja końcowa": "Poziția finală",
+ "Rysunek schematyczny — pozycje orientacyjne.": "Desen schematic — pozițiile sunt orientative."
 }

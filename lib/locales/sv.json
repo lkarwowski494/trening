@@ -1307,5 +1307,12 @@
  "stożek rotatorów": "rotatorkuff",
  "zębaty przedni": "främre sågmuskeln",
  "piszczelowy przedni": "främre skenbensmuskeln",
- "zginacze biodra": "höftböjare"
+ "zginacze biodra": "höftböjare",
+ "Rysunek ruchu: {opis}": "Rörelseteckning: {opis}",
+ "Zatrzymaj animację": "Pausa animeringen",
+ "Wznów animację": "Återuppta animeringen",
+ "Pozycja wyjściowa": "Startläge",
+ "W trakcie": "Under rörelsen",
+ "Pozycja końcowa": "Slutläge",
+ "Rysunek schematyczny — pozycje orientacyjne.": "Schematisk teckning — lägena är ungefärliga."
 }

@@ -1307,5 +1307,12 @@
  "stożek rotatorów": "cuffia dei rotatori",
  "zębaty przedni": "dentato anteriore",
  "piszczelowy przedni": "tibiale anteriore",
- "zginacze biodra": "flessori dell’anca"
+ "zginacze biodra": "flessori dell’anca",
+ "Rysunek ruchu: {opis}": "Disegno del movimento: {opis}",
+ "Zatrzymaj animację": "Metti in pausa l’animazione",
+ "Wznów animację": "Riprendi l’animazione",
+ "Pozycja wyjściowa": "Posizione di partenza",
+ "W trakcie": "Durante il movimento",
+ "Pozycja końcowa": "Posizione finale",
+ "Rysunek schematyczny — pozycje orientacyjne.": "Disegno schematico: posizioni indicative."
 }

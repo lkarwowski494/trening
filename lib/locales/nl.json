@@ -1307,5 +1307,12 @@
  "stożek rotatorów": "rotator cuff",
  "zębaty przedni": "voorste zaagspier",
  "piszczelowy przedni": "voorste scheenbeenspier",
- "zginacze biodra": "heupbuigers"
+ "zginacze biodra": "heupbuigers",
+ "Rysunek ruchu: {opis}": "Tekening van de beweging: {opis}",
+ "Zatrzymaj animację": "Animatie pauzeren",
+ "Wznów animację": "Animatie hervatten",
+ "Pozycja wyjściowa": "Beginpositie",
+ "W trakcie": "Tijdens de beweging",
+ "Pozycja końcowa": "Eindpositie",
+ "Rysunek schematyczny — pozycje orientacyjne.": "Schematische tekening — posities zijn bij benadering."
 }

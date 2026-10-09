@@ -1307,5 +1307,12 @@
  "stożek rotatorów": "rotator manşet",
  "zębaty przedni": "serratus anterior",
  "piszczelowy przedni": "tibialis anterior",
- "zginacze biodra": "kalça fleksörleri"
+ "zginacze biodra": "kalça fleksörleri",
+ "Rysunek ruchu: {opis}": "Hareket çizimi: {opis}",
+ "Zatrzymaj animację": "Animasyonu duraklat",
+ "Wznów animację": "Animasyonu sürdür",
+ "Pozycja wyjściowa": "Başlangıç pozisyonu",
+ "W trakcie": "Hareket sırasında",
+ "Pozycja końcowa": "Bitiş pozisyonu",
+ "Rysunek schematyczny — pozycje orientacyjne.": "Şematik çizim — pozisyonlar yaklaşıktır."
 }

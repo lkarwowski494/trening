@@ -1307,5 +1307,12 @@
  "stożek rotatorów": "rotatorna manšeta",
  "zębaty przedni": "sprednja nazobčana mišica",
  "piszczelowy przedni": "sprednja golenska mišica",
- "zginacze biodra": "upogibalke kolka"
+ "zginacze biodra": "upogibalke kolka",
+ "Rysunek ruchu: {opis}": "Risba giba: {opis}",
+ "Zatrzymaj animację": "Začasno ustavi animacijo",
+ "Wznów animację": "Nadaljuj animacijo",
+ "Pozycja wyjściowa": "Začetni položaj",
+ "W trakcie": "Med gibom",
+ "Pozycja końcowa": "Končni položaj",
+ "Rysunek schematyczny — pozycje orientacyjne.": "Shematska risba — položaji so okvirni."
 }

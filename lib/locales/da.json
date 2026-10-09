@@ -1307,5 +1307,12 @@
  "stożek rotatorów": "rotatormanchet",
  "zębaty przedni": "serratus anterior",
  "piszczelowy przedni": "tibialis anterior",
- "zginacze biodra": "hoftebøjere"
+ "zginacze biodra": "hoftebøjere",
+ "Rysunek ruchu: {opis}": "Tegning af bevægelsen: {opis}",
+ "Zatrzymaj animację": "Sæt animationen på pause",
+ "Wznów animację": "Genoptag animationen",
+ "Pozycja wyjściowa": "Startstilling",
+ "W trakcie": "Undervejs",
+ "Pozycja końcowa": "Slutstilling",
+ "Rysunek schematyczny — pozycje orientacyjne.": "Skematisk tegning — stillingerne er omtrentlige."
 }

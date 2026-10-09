@@ -1307,5 +1307,12 @@
  "stożek rotatorów": "rotatorių manžetė",
  "zębaty przedni": "priekinis dantytasis raumuo",
  "piszczelowy przedni": "priekinis blauzdinis raumuo",
- "zginacze biodra": "klubo lenkiamieji"
+ "zginacze biodra": "klubo lenkiamieji",
+ "Rysunek ruchu: {opis}": "Judesio piešinys: {opis}",
+ "Zatrzymaj animację": "Pristabdyti animaciją",
+ "Wznów animację": "Tęsti animaciją",
+ "Pozycja wyjściowa": "Pradinė padėtis",
+ "W trakcie": "Judesio metu",
+ "Pozycja końcowa": "Galutinė padėtis",
+ "Rysunek schematyczny — pozycje orientacyjne.": "Schematinis piešinys — padėtys apytikslės."
 }

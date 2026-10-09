@@ -14,7 +14,8 @@
     "check:matrix": "node scripts/test-matrix.mjs --check",
     "check:licenses": "node scripts/licenses.mjs --check",
     "check:cues": "node scripts/cues/gen.mjs --check",
-    "verify": "npm run typecheck && npm run check:i18n && npm run check:cues && jest && npm run check:matrix && npm run check:licenses && npx expo export --platform ios --output-dir .expo/verify-export && node -e \"require('fs').rmSync('.expo/verify-export',{recursive:true,force:true})\" && npm run verify:native",
+    "check:figures": "node scripts/figures/gen.mjs --check",
+    "verify": "npm run typecheck && npm run check:i18n && npm run check:cues && npm run check:figures && jest && npm run check:matrix && npm run check:licenses && npx expo export --platform ios --output-dir .expo/verify-export && node -e \"require('fs').rmSync('.expo/verify-export',{recursive:true,force:true})\" && npm run verify:native",
     "screens": "node scripts/screens/run.mjs",
     "mutation": "stryker run",
     "perf": "jest -c jest.perf.config.js"

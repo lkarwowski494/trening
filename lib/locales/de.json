@@ -1307,5 +1307,12 @@
  "stożek rotatorów": "Rotatorenmanschette",
  "zębaty przedni": "vorderer Sägemuskel",
  "piszczelowy przedni": "vorderer Schienbeinmuskel",
- "zginacze biodra": "Hüftbeuger"
+ "zginacze biodra": "Hüftbeuger",
+ "Rysunek ruchu: {opis}": "Bewegungszeichnung: {opis}",
+ "Zatrzymaj animację": "Animation anhalten",
+ "Wznów animację": "Animation fortsetzen",
+ "Pozycja wyjściowa": "Startposition",
+ "W trakcie": "Während der Bewegung",
+ "Pozycja końcowa": "Endposition",
+ "Rysunek schematyczny — pozycje orientacyjne.": "Schematische Zeichnung — die Positionen sind ungefähr."
 }

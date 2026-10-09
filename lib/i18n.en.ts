@@ -801,4 +801,11 @@ export const EN: Record<string, string> = {
   'zębaty przedni': 'serratus anterior',
   'piszczelowy przedni': 'tibialis anterior',
   'zginacze biodra': 'hip flexors',
+  'Rysunek ruchu: {opis}': 'Movement drawing: {opis}',
+  'Zatrzymaj animację': 'Pause animation',
+  'Wznów animację': 'Resume animation',
+  'Pozycja wyjściowa': 'Starting position',
+  'W trakcie': 'Midway',
+  'Pozycja końcowa': 'End position',
+  'Rysunek schematyczny — pozycje orientacyjne.': 'Schematic drawing — positions are approximate.',
 };

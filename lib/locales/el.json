@@ -1307,5 +1307,12 @@
  "stożek rotatorów": "στροφικό πετάλιο",
  "zębaty przedni": "πρόσθιος οδοντωτός",
  "piszczelowy przedni": "πρόσθιος κνημιαίος",
- "zginacze biodra": "καμπτήρες ισχίου"
+ "zginacze biodra": "καμπτήρες ισχίου",
+ "Rysunek ruchu: {opis}": "Σχέδιο της κίνησης: {opis}",
+ "Zatrzymaj animację": "Παύση κινούμενης εικόνας",
+ "Wznów animację": "Συνέχιση κινούμενης εικόνας",
+ "Pozycja wyjściowa": "Θέση εκκίνησης",
+ "W trakcie": "Κατά την κίνηση",
+ "Pozycja końcowa": "Τελική θέση",
+ "Rysunek schematyczny — pozycje orientacyjne.": "Σχηματικό σχέδιο — οι θέσεις είναι κατά προσέγγιση."
 }

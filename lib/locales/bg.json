@@ -1307,5 +1307,12 @@
  "stożek rotatorów": "ротаторен маншон",
  "zębaty przedni": "преден зъбчат мускул",
  "piszczelowy przedni": "преден тибиален мускул",
- "zginacze biodra": "сгъвачи на тазобедрената става"
+ "zginacze biodra": "сгъвачи на тазобедрената става",
+ "Rysunek ruchu: {opis}": "Рисунка на движението: {opis}",
+ "Zatrzymaj animację": "Спри анимацията",
+ "Wznów animację": "Продължи анимацията",
+ "Pozycja wyjściowa": "Начална позиция",
+ "W trakcie": "По време на движението",
+ "Pozycja końcowa": "Крайна позиция",
+ "Rysunek schematyczny — pozycje orientacyjne.": "Схематична рисунка — позициите са ориентировъчни."
 }

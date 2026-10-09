@@ -1307,5 +1307,12 @@
  "stożek rotatorów": "rotatorna manšeta",
  "zębaty przedni": "prednji nazubljeni mišić",
  "piszczelowy przedni": "prednji goljenični mišić",
- "zginacze biodra": "pregibači kuka"
+ "zginacze biodra": "pregibači kuka",
+ "Rysunek ruchu: {opis}": "Crtež pokreta: {opis}",
+ "Zatrzymaj animację": "Pauziraj animaciju",
+ "Wznów animację": "Nastavi animaciju",
+ "Pozycja wyjściowa": "Početni položaj",
+ "W trakcie": "Tijekom pokreta",
+ "Pozycja końcowa": "Završni položaj",
+ "Rysunek schematyczny — pozycje orientacyjne.": "Shematski crtež — položaji su okvirni."
 }

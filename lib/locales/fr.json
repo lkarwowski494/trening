@@ -1307,5 +1307,12 @@
  "stożek rotatorów": "coiffe des rotateurs",
  "zębaty przedni": "dentelé antérieur",
  "piszczelowy przedni": "tibial antérieur",
- "zginacze biodra": "fléchisseurs de hanche"
+ "zginacze biodra": "fléchisseurs de hanche",
+ "Rysunek ruchu: {opis}": "Dessin du mouvement : {opis}",
+ "Zatrzymaj animację": "Mettre l’animation en pause",
+ "Wznów animację": "Reprendre l’animation",
+ "Pozycja wyjściowa": "Position de départ",
+ "W trakcie": "Pendant le mouvement",
+ "Pozycja końcowa": "Position finale",
+ "Rysunek schematyczny — pozycje orientacyjne.": "Dessin schématique — positions approximatives."
 }

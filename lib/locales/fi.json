@@ -1307,5 +1307,12 @@
  "stożek rotatorów": "kiertäjäkalvosin",
  "zębaty przedni": "etummainen sahalihas",
  "piszczelowy przedni": "etummainen säärilihas",
- "zginacze biodra": "lonkankoukistajat"
+ "zginacze biodra": "lonkankoukistajat",
+ "Rysunek ruchu: {opis}": "Liikkeen piirros: {opis}",
+ "Zatrzymaj animację": "Keskeytä animaatio",
+ "Wznów animację": "Jatka animaatiota",
+ "Pozycja wyjściowa": "Lähtöasento",
+ "W trakcie": "Liikkeen aikana",
+ "Pozycja końcowa": "Loppuasento",
+ "Rysunek schematyczny — pozycje orientacyjne.": "Kaavamainen piirros — asennot ovat suuntaa-antavia."
 }

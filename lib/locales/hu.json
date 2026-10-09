@@ -1307,5 +1307,12 @@
  "stożek rotatorów": "rotátorköpeny",
  "zębaty przedni": "elülső fűrészizom",
  "piszczelowy przedni": "elülső sípcsontizom",
- "zginacze biodra": "csípőhajlítók"
+ "zginacze biodra": "csípőhajlítók",
+ "Rysunek ruchu: {opis}": "A mozdulat rajza: {opis}",
+ "Zatrzymaj animację": "Animáció szüneteltetése",
+ "Wznów animację": "Animáció folytatása",
+ "Pozycja wyjściowa": "Kiinduló helyzet",
+ "W trakcie": "Mozdulat közben",
+ "Pozycja końcowa": "Véghelyzet",
+ "Rysunek schematyczny — pozycje orientacyjne.": "Vázlatos rajz — a helyzetek tájékoztató jellegűek."
 }

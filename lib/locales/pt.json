@@ -1307,5 +1307,12 @@
  "stożek rotatorów": "coifa dos rotadores",
  "zębaty przedni": "serrátil anterior",
  "piszczelowy przedni": "tibial anterior",
- "zginacze biodra": "flexores da anca"
+ "zginacze biodra": "flexores da anca",
+ "Rysunek ruchu: {opis}": "Desenho do movimento: {opis}",
+ "Zatrzymaj animację": "Pausar a animação",
+ "Wznów animację": "Retomar a animação",
+ "Pozycja wyjściowa": "Posição inicial",
+ "W trakcie": "Durante o movimento",
+ "Pozycja końcowa": "Posição final",
+ "Rysunek schematyczny — pozycje orientacyjne.": "Desenho esquemático — as posições são aproximadas."
 }

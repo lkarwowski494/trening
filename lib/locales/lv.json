@@ -1307,5 +1307,12 @@
  "stożek rotatorów": "rotatoru manšete",
  "zębaty przedni": "priekšējais zobainais muskulis",
  "piszczelowy przedni": "priekšējais stilba muskulis",
- "zginacze biodra": "gūžas saliecēji"
+ "zginacze biodra": "gūžas saliecēji",
+ "Rysunek ruchu: {opis}": "Kustības zīmējums: {opis}",
+ "Zatrzymaj animację": "Apturēt animāciju",
+ "Wznów animację": "Turpināt animāciju",
+ "Pozycja wyjściowa": "Sākuma pozīcija",
+ "W trakcie": "Kustības laikā",
+ "Pozycja końcowa": "Beigu pozīcija",
+ "Rysunek schematyczny — pozycje orientacyjne.": "Shematisks zīmējums — pozīcijas ir aptuvenas."
 }

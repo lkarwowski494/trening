@@ -1307,5 +1307,12 @@
  "stożek rotatorów": "rotátorová manžeta",
  "zębaty przedni": "pilovitý sval přední",
  "piszczelowy przedni": "přední sval holenní",
- "zginacze biodra": "flexory kyčle"
+ "zginacze biodra": "flexory kyčle",
+ "Rysunek ruchu: {opis}": "Nákres pohybu: {opis}",
+ "Zatrzymaj animację": "Pozastavit animaci",
+ "Wznów animację": "Pokračovat v animaci",
+ "Pozycja wyjściowa": "Počáteční poloha",
+ "W trakcie": "V průběhu pohybu",
+ "Pozycja końcowa": "Konečná poloha",
+ "Rysunek schematyczny — pozycje orientacyjne.": "Schematický nákres — polohy jsou orientační."
 }

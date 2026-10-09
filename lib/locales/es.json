@@ -1307,5 +1307,12 @@
  "stożek rotatorów": "manguito rotador",
  "zębaty przedni": "serrato anterior",
  "piszczelowy przedni": "tibial anterior",
- "zginacze biodra": "flexores de cadera"
+ "zginacze biodra": "flexores de cadera",
+ "Rysunek ruchu: {opis}": "Dibujo del movimiento: {opis}",
+ "Zatrzymaj animację": "Pausar la animación",
+ "Wznów animację": "Reanudar la animación",
+ "Pozycja wyjściowa": "Posición inicial",
+ "W trakcie": "Durante el movimiento",
+ "Pozycja końcowa": "Posición final",
+ "Rysunek schematyczny — pozycje orientacyjne.": "Dibujo esquemático: las posiciones son aproximadas."
 }

@@ -4,11 +4,13 @@ import { useTheme, F } from '@/lib/theme';
 import { t } from '@/lib/i18n';
 import { cuesFor, type CueSection } from '@/lib/cues';
 import type { Exercise } from '@/lib/seed';
+import { ExerciseFigure } from '@/components/ExerciseFigure';
 
 /*
  * Sekcja „Technika” w podglądzie ćwiczenia (wskazówki techniki, etap 1 — decyzja właściciela 08.10.2026 ok. 23:50; dane: lib/cues).
  * Zwinięta na starcie (ekran ćwiczenia zostaje krótki); nagłówek to przycisk z accessibilityState.expanded, treść — zwykły tekst
  * czytany przez VoiceOver (punkty bez znaku „•” w etykiecie). Kolory z motywu. Ćwiczenia bez wskazówek (własne, spoza bazowych) — nic.
+ * Nad tekstem figura ruchu (etap 2–3, components/ExerciseFigure.tsx), gdy ćwiczenie ją ma.
  * Stopka: na czym oparte (organizacje ze źródeł) i odesłanie do specjalisty — aplikacja nie udziela porad medycznych (CLAUDE.md).
  */
 const LABEL: Record<CueSection, () => string> = { setup: () => t('Ustawienie'), move: () => t('Ruch'), tips: () => t('Wskazówki'), mistakes: () => t('Częste błędy') };
@@ -23,6 +25,7 @@ export function ExerciseCues({ exercise }: { exercise: Pick<Exercise, 'lib' | 'l
         <Text importantForAccessibility="no" accessibilityElementsHidden style={{ color: th.muted, fontSize: 16, fontFamily: F.regular }}>{open ? '▾' : '▸'}</Text>
       </Pressable>
       {open ? <View style={{ paddingBottom: 12 }}>
+        <ExerciseFigure exercise={exercise} />
         {c.sections.map(s => <View key={s.id} style={{ marginTop: 8 }}>
           <Text accessibilityRole="header" maxFontSizeMultiplier={1.6} style={{ color: th.muted, fontSize: 13, fontFamily: F.semibold, marginBottom: 2 }}>{LABEL[s.id]()}</Text>
           {s.items.map((x, i) => <Text key={i} accessibilityLabel={x} maxFontSizeMultiplier={1.8} style={{ color: th.text, fontSize: 15, fontFamily: F.regular, lineHeight: 21, marginTop: 2 }}>{`• ${x}`}</Text>)}

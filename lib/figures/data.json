@@ -1,0 +1,685 @@
+{
+  "rom": {
+    "note": "Granice testowe kątów stawów (tests/figures.test.tsx): żadna poza nie przekracza średniego zakresu ruchu dorosłych z danych referencyjnych. To nie jest treść pokazywana w aplikacji. Widok z boku: zgięcie dodatnie, wyprost ujemny; widok z przodu: odwiedzenie.",
+    "side": {
+      "hip": {
+        "min": -17,
+        "max": 133,
+        "src": "CDC Normal Joint ROM Study (Soucie i in., Haemophilia 2011;17:500–7), wiek 20–44: wyprost biodra 18,1° (K) / 17,4° (M), zgięcie 133,8° / 130,4° — https://archive.cdc.gov/www_cdc_gov/ncbddd/jointrom/index.html"
+      },
+      "knee": {
+        "min": 0,
+        "max": 141,
+        "src": "CDC Normal Joint ROM Study, wiek 20–44: zgięcie kolana 141,9° (K) / 137,7° (M); wyprost do 0° (bez przeprostu na rysunku)"
+      },
+      "ankle": {
+        "min": -60,
+        "max": 37,
+        "src": "zgięcie podeszwowe: CDC Normal Joint ROM Study, wiek 20–44: 62,1° (K) / 54,6° (M); zgięcie grzbietowe pod obciążeniem: Dill i in., J Athl Train 2014;49(6):723–32, test wykrocznej (WBL) — grupa z ograniczeniem 38,91 ± 3,48°, grupa w normie 50,84 ± 5,16° (https://pmc.ncbi.nlm.nih.gov/articles/PMC4264643)"
+      },
+      "sh": {
+        "min": -53,
+        "max": 171,
+        "src": "zgięcie barku: CDC Normal Joint ROM Study, wiek 20–44: 172,0° (K) / 168,8° (M); wyprost: Anderton, Newton Ede, Holt, Orthop Proc 2012;94-B(SUPP_XXXIX):127 — średnia z podręczników i PubMed 54° (zakres 28–80°)"
+      },
+      "el": {
+        "min": 0,
+        "max": 149,
+        "src": "CDC Normal Joint ROM Study, wiek 20–44: zgięcie łokcia 150,0° (K) / 144,6° (M); wyprost do 0° (bez przeprostu na rysunku)"
+      }
+    },
+    "front": {
+      "abd": {
+        "min": 0,
+        "max": 170,
+        "src": "Anderton, Newton Ede, Holt 2012 — odwiedzenie barku średnio 171° (zakres 117–189°)"
+      },
+      "el": {
+        "min": 0,
+        "max": 149,
+        "src": "jak wyżej (CDC, zgięcie łokcia)"
+      },
+      "hipAbd": {
+        "min": 0,
+        "max": 10,
+        "src": "granica techniczna — tylko rozstaw stóp w widoku z przodu (kąt ilustracyjny, bez twierdzenia)"
+      },
+      "elev": {
+        "min": 0,
+        "max": 10,
+        "src": "granica techniczna — uniesienie barków w jednostkach rysunku (ilustracyjne)"
+      }
+    }
+  },
+  "exercises": {
+    "Back Squat": {
+      "anchor": "toe",
+      "armProj": true,
+      "props": [{"k": "plate", "at": "shoulder", "tb": [-3, -6]}],
+      "frames": [
+        {"n": "start", "p": {"t": 90, "hip": 0, "knee": 0, "sh": -35, "el": -150, "ap": 0.6, "fp": 0.6}, "why": [{"q": "line", "pts": ["shoulder", "hip", "ankle"], "tol": 6, "c": "sq.down"}]},
+        {"n": "end", "p": {"t": 48, "hip": 132, "knee": 126, "sh": -35, "el": -150, "ap": 0.6, "fp": 0.6}, "why": [{"q": "horiz", "a": "hip", "b": "knee", "eq": 0, "tol": 10, "c": "sq.depth"}, {"q": "low", "a": "heel", "y": 0, "tol": 1, "c": "sq.mis.heels"}]}
+      ]
+    },
+    "Front Squat": {
+      "anchor": "toe",
+      "props": [{"k": "plate", "at": "shoulder", "tb": [-2, 6]}],
+      "frames": [
+        {"n": "start", "p": {"t": 90, "hip": 0, "knee": 0, "sh": 90, "el": 148}, "why": [{"q": "line", "pts": ["shoulder", "hip", "ankle"], "tol": 6, "c": "sq.down"}, {"q": "horiz", "a": "shoulder", "b": "elbow", "eq": 0, "tol": 12, "c": "fsq.rack"}]},
+        {"n": "end", "p": {"t": 62, "hip": 118, "knee": 126, "sh": 118, "el": 148}, "why": [{"q": "horiz", "a": "hip", "b": "knee", "eq": 0, "tol": 10, "c": "sq.depth"}, {"q": "horiz", "a": "shoulder", "b": "elbow", "eq": 0, "tol": 12, "c": "fsq.rack"}, {"q": "low", "a": "heel", "y": 0, "tol": 1, "c": "sq.mis.heels"}]}
+      ]
+    },
+    "Goblet Squat": {
+      "anchor": "toe",
+      "props": [{"k": "db", "at": "hand", "d": [0, -2], "r": 6}],
+      "frames": [
+        {"n": "start", "p": {"t": 90, "hip": 0, "knee": 0, "sh": 25, "el": 140}, "why": [{"q": "line", "pts": ["shoulder", "hip", "ankle"], "tol": 6, "c": "gob.move"}]},
+        {"n": "end", "p": {"t": 58, "hip": 122, "knee": 126, "sh": 12, "el": 135}, "why": [{"q": "horiz", "a": "hip", "b": "knee", "eq": 0, "tol": 10, "c": "sq.depth"}]}
+      ]
+    },
+    "Przysiad z pasem (linki)": {
+      "anchor": "toe",
+      "props": [{"k": "cable", "at": "hip", "from": [-7, 2]}],
+      "note": "Linka od bloczka przy podłodze do pasa na biodrach; ręce przed sobą do równowagi (uproszczenie — wskazówki nie mówią o rękach).",
+      "frames": [
+        {"n": "start", "p": {"t": 90, "hip": 0, "knee": 0, "sh": 50, "el": 20}, "why": [{"q": "line", "pts": ["shoulder", "hip", "ankle"], "tol": 6, "c": "sq.down"}]},
+        {"n": "end", "p": {"t": 64, "hip": 116, "knee": 126, "sh": 60, "el": 20}, "why": [{"q": "horiz", "a": "hip", "b": "knee", "eq": 0, "tol": 10, "c": "sq.depth"}, {"q": "low", "a": "heel", "y": 0, "tol": 1, "c": "sq.mis.heels"}]}
+      ]
+    },
+    "Pistol Squat": {
+      "anchor": "toe",
+      "note": "Głębokość „tak nisko, jak kontrolujesz” — pokazana pozycja głęboka jest ilustracyjna.",
+      "frames": [
+        {"n": "start", "p": {"t": 90, "hip": [0, 85], "knee": [0, 0], "sh": 90, "el": 0, "ft": [0, 65]}, "why": [{"q": "joint", "j": "knee2", "eq": 0, "tol": 8, "c": "pistol.setup"}, {"q": "above", "a": "heel2", "c": "pistol.setup", "y": 0}]},
+        {"n": "end", "p": {"t": 46, "hip": [118, 106], "knee": [110, 0], "sh": 110, "el": 0, "ft": [0, 42]}, "why": [{"q": "joint", "j": "knee2", "eq": 0, "tol": 8, "c": "pistol.setup"}, {"q": "above", "a": "heel2", "c": "pistol.setup", "y": 0}, {"q": "low", "a": "heel", "y": 0, "tol": 1, "c": "pistol.move"}]}
+      ]
+    },
+    "Deadlift (sztanga)": {
+      "anchor": "toe",
+      "props": [{"k": "plate", "at": "hand"}],
+      "frames": [
+        {"n": "start", "p": {"t": 40, "hip": 130, "knee": 101, "sh": 47, "el": 0}, "why": [{"q": "alignX", "a": "shoulder", "b": "hand", "tol": 4, "c": "dl.hipsLow"}, {"q": "low", "a": "hand", "y": 13, "tol": 2, "c": "dl.feet"}, {"q": "joint", "j": "el", "eq": 0, "tol": 3, "c": "dl.hipsLow"}]},
+        {"n": "end", "p": {"t": 90, "hip": 0, "knee": 0, "sh": 0, "el": 0}, "why": [{"q": "line", "pts": ["shoulder", "hip", "ankle"], "tol": 6, "c": "dl.lift"}]}
+      ]
+    },
+    "Trap Bar Deadlift": {
+      "anchor": "toe",
+      "props": [{"k": "plate", "at": "hand"}, {"k": "grip", "at": "hand"}],
+      "note": "Rama sztangi widziana z boku jako talerz przy dłoniach; uchwyty mniej więcej nad środkiem stopy (uproszczenie).",
+      "frames": [
+        {"n": "start", "p": {"t": 42, "hip": 127, "knee": 93, "sh": 46, "el": 0}, "why": [{"q": "alignX", "a": "shoulder", "b": "hand", "tol": 5, "c": "dl.hipsLow"}, {"q": "joint", "j": "el", "eq": 0, "tol": 3, "c": "dl.hipsLow"}]},
+        {"n": "end", "p": {"t": 90, "hip": 0, "knee": 0, "sh": 0, "el": 0}, "why": [{"q": "line", "pts": ["shoulder", "hip", "ankle"], "tol": 6, "c": "tb.lift"}]}
+      ]
+    },
+    "Deadlift (hantle)": {
+      "anchor": "toe",
+      "props": [{"k": "db", "at": "hand"}, {"k": "db", "at": "hand2"}],
+      "frames": [
+        {"n": "start", "p": {"t": 50, "hip": 131, "knee": 127, "sh": 33, "el": 0}, "why": [{"q": "low", "a": "hand", "y": 5, "tol": 6, "c": "dbdl.setup"}, {"q": "joint", "j": "el", "eq": 0, "tol": 3, "c": "dbdl.setup"}]},
+        {"n": "end", "p": {"t": 90, "hip": 0, "knee": 0, "sh": 0, "el": 0}, "why": [{"q": "line", "pts": ["shoulder", "hip", "ankle"], "tol": 6, "c": "dbdl.hips"}]}
+      ]
+    },
+    "RDL (sztanga)": {
+      "anchor": "toe",
+      "props": [{"k": "plate", "at": "hand"}],
+      "note": "Głębokość „dopóki czujesz rozciąganie tyłu ud przy prostych plecach” — pochylenie tułowia na rysunku jest ilustracyjne.",
+      "frames": [
+        {"n": "start", "p": {"t": 90, "hip": 0, "knee": 0, "sh": 5, "el": 0}, "why": [{"q": "line", "pts": ["shoulder", "hip", "ankle"], "tol": 6, "c": "rdl.setup"}, {"q": "joint", "j": "el", "eq": 0, "tol": 3, "c": "rdl.setup"}]},
+        {"n": "end", "p": {"t": 25, "hip": 100, "knee": 18, "sh": 67, "el": 0}, "why": [{"q": "joint", "j": "knee", "eq": 15, "tol": 12, "c": "rdl.knees"}, {"q": "alignX", "a": "hand", "b": "ankle", "tol": 9, "c": "dl.close"}, {"q": "joint", "j": "el", "eq": 0, "tol": 3, "c": "rdl.move"}]}
+      ]
+    },
+    "RDL (hantle/linki)": {
+      "like": "RDL (sztanga)",
+      "props": [{"k": "db", "at": "hand"}, {"k": "db", "at": "hand2"}],
+      "frames": [
+        {"n": "start", "p": {"t": 90, "hip": 0, "knee": 0, "sh": 5, "el": 0}, "why": [{"q": "line", "pts": ["shoulder", "hip", "ankle"], "tol": 6, "c": "rdl.dbSetup"}, {"q": "joint", "j": "el", "eq": 0, "tol": 3, "c": "rdl.dbSetup"}]},
+        {"n": "end", "p": {"t": 25, "hip": 100, "knee": 18, "sh": 67, "el": 0}, "why": [{"q": "joint", "j": "knee", "eq": 15, "tol": 12, "c": "rdl.knees"}, {"q": "alignX", "a": "hand", "b": "ankle", "tol": 9, "c": "rdl.dbMove"}, {"q": "joint", "j": "el", "eq": 0, "tol": 3, "c": "rdl.dbMove"}]}
+      ]
+    },
+    "Good Morning": {
+      "anchor": "toe",
+      "armProj": true,
+      "props": [{"k": "plate", "at": "shoulder", "tb": [-3, -6]}],
+      "note": "Kolana lekko ugięte, tułów schodzi najwyżej do poziomu (zdanie gm.depth) — dokładny kąt ilustracyjny.",
+      "frames": [
+        {"n": "start", "p": {"t": 85, "hip": 12, "knee": 12, "sh": -35, "el": -150, "ap": 0.6, "fp": 0.6}, "why": [{"q": "joint", "j": "knee", "eq": 12, "tol": 10, "c": "gm.setup"}]},
+        {"n": "end", "p": {"t": 15, "hip": 96, "knee": 18, "sh": -35, "el": -150, "ap": 0.6, "fp": 0.6}, "why": [{"q": "horiz", "a": "hip", "b": "shoulder", "eq": 10, "tol": 10, "c": "gm.depth"}, {"q": "joint", "j": "knee", "eq": 15, "tol": 10, "c": "gm.setup"}]}
+      ]
+    },
+    "Kettlebell Swing": {
+      "anchor": "toe",
+      "props": [{"k": "kb", "at": "hand", "d": [0, 2]}],
+      "note": "Wysokość kettlebella na górze (ok. barków) ilustracyjna — wskazówki mówią „unosi się przed tobą”.",
+      "frames": [
+        {"n": "start", "p": {"t": 30, "hip": 108, "knee": 45, "sh": 35, "el": 0}, "why": [{"q": "ahead", "a": "knee", "b": "hand", "c": "kb.move"}, {"q": "ahead", "a": "heel", "b": "hip", "c": "kb.move"}]},
+        {"n": "end", "p": {"t": 90, "hip": 0, "knee": 0, "sh": 90, "el": 0}, "why": [{"q": "line", "pts": ["shoulder", "hip", "ankle"], "tol": 6, "c": "kb.move"}]}
+      ]
+    },
+    "Bench Press (sztanga)": {
+      "anchor": "hip",
+      "armProj": true,
+      "props": [{"k": "rect", "x": -44, "y": 20, "w": 54, "h": 4}, {"k": "line", "pts": [[-38, 20], [-38, 0]]}, {"k": "line", "pts": [[4, 20], [4, 0]]}, {"k": "plate", "at": "hand"}],
+      "note": "Łokcie odwiedzone w bok — z boku ramię wygląda na krótsze (rzut, nie kąt stawu). Wskazówki nie podają kąta łokci względem tułowia.",
+      "frames": [
+        {"n": "start", "p": {"t": 180, "sh": 90, "el": 0, "hip": -3, "knee": 95}, "why": [{"q": "joint", "j": "el", "eq": 0, "tol": 4, "c": "bp.move"}, {"q": "horiz", "a": "shoulder", "b": "hand", "eq": 90, "tol": 8, "c": "bp.move"}, {"q": "low", "a": "heel", "y": 0, "tol": 1, "c": "bp.contact"}], "at": [0, 30]},
+        {"n": "end", "p": {"t": 180, "sh": -52, "el": 141, "ap": 0.65, "hip": -3, "knee": 95}, "why": [{"q": "touch", "a": "hand", "b": "hip", "tol": 5, "c": "bp.move", "tb": [22, 8]}, {"q": "low", "a": "heel", "y": 0, "tol": 1, "c": "bp.contact"}], "at": [0, 30]}
+      ]
+    },
+    "Bench Press (hantle)": {
+      "like": "Bench Press (sztanga)",
+      "props": [{"k": "rect", "x": -44, "y": 20, "w": 54, "h": 4}, {"k": "line", "pts": [[-38, 20], [-38, 0]]}, {"k": "line", "pts": [[4, 20], [4, 0]]}, {"k": "db", "at": "hand"}, {"k": "db", "at": "hand2"}],
+      "frames": [
+        {"n": "start", "p": {"t": 180, "sh": 90, "el": 0, "hip": -3, "knee": 95}, "why": [{"q": "joint", "j": "el", "eq": 0, "tol": 4, "c": "dbp.move"}, {"q": "horiz", "a": "shoulder", "b": "hand", "eq": 90, "tol": 8, "c": "dbp.move"}, {"q": "low", "a": "heel", "y": 0, "tol": 1, "c": "bp.contact"}], "at": [0, 30]},
+        {"n": "end", "p": {"t": 180, "sh": -52, "el": 141, "ap": 0.65, "hip": -3, "knee": 95}, "why": [{"q": "touch", "a": "hand", "b": "hip", "tol": 5, "c": "dbp.move", "tb": [22, 8]}, {"q": "low", "a": "heel", "y": 0, "tol": 1, "c": "bp.contact"}], "at": [0, 30]}
+      ]
+    },
+    "Close Grip Bench Press": {
+      "like": "Bench Press (sztanga)",
+      "note": "Łokcie blisko tułowia — ramię prawie w płaszczyźnie rysunku (mniejszy skrót rzutu niż przy zwykłym wyciskaniu).",
+      "frames": [
+        {"n": "start", "p": {"t": 180, "sh": 90, "el": 0, "hip": -3, "knee": 95}, "why": [{"q": "joint", "j": "el", "eq": 0, "tol": 4, "c": "cgbp.move"}, {"q": "horiz", "a": "shoulder", "b": "hand", "eq": 90, "tol": 8, "c": "cgbp.move"}, {"q": "low", "a": "heel", "y": 0, "tol": 1, "c": "bp.contact"}], "at": [0, 30]},
+        {"n": "end", "p": {"t": 180, "sh": -46, "el": 140, "ap": 0.9, "hip": -3, "knee": 95}, "why": [{"q": "touch", "a": "hand", "b": "hip", "tol": 5, "c": "cgbp.move", "tb": [20, 8]}, {"q": "low", "a": "heel", "y": 0, "tol": 1, "c": "bp.contact"}], "at": [0, 30]}
+      ]
+    },
+    "Incline Bench Press (sztanga)": {
+      "anchor": "hip",
+      "armProj": true,
+      "props": [{"k": "rect", "x": -8, "y": 20, "w": 22, "h": 4}, {"k": "line", "pts": [[2, 20], [2, 0]]}, {"k": "line", "pts": [[-30, 0], [-6, 20]]}, {"k": "line", "pts": [[-1.8, 23.9], [-39.5, 50.3]]}, {"k": "plate", "at": "hand"}],
+      "note": "Nachylenie oparcia ilustracyjne (wskazówki nie podają kąta ławki); łokcie w bok — rzut ramienia krótszy.",
+      "frames": [
+        {"n": "start", "p": {"t": 145, "sh": 125, "el": 0, "hip": 33, "knee": 90}, "why": [{"q": "joint", "j": "el", "eq": 0, "tol": 4, "c": "ibp.move"}, {"q": "horiz", "a": "shoulder", "b": "hand", "eq": 90, "tol": 8, "c": "ibp.move"}, {"q": "low", "a": "heel", "y": 0, "tol": 1, "c": "ibp.setup"}], "at": [0, 30]},
+        {"n": "end", "p": {"t": 145, "sh": -28, "el": 148, "ap": 0.65, "hip": 33, "knee": 90}, "why": [{"q": "touch", "a": "hand", "b": "hip", "tol": 6, "c": "ibp.move", "tb": [26, 8]}, {"q": "low", "a": "heel", "y": 0, "tol": 1, "c": "ibp.setup"}], "at": [0, 30]}
+      ]
+    },
+    "Incline Bench Press (hantle)": {
+      "like": "Incline Bench Press (sztanga)",
+      "props": [{"k": "rect", "x": -8, "y": 20, "w": 22, "h": 4}, {"k": "line", "pts": [[2, 20], [2, 0]]}, {"k": "line", "pts": [[-30, 0], [-6, 20]]}, {"k": "line", "pts": [[-1.8, 23.9], [-39.5, 50.3]]}, {"k": "db", "at": "hand"}, {"k": "db", "at": "hand2"}],
+      "frames": [
+        {"n": "start", "p": {"t": 145, "sh": 125, "el": 0, "hip": 33, "knee": 90}, "why": [{"q": "joint", "j": "el", "eq": 0, "tol": 4, "c": "ibp.dbMove"}, {"q": "horiz", "a": "shoulder", "b": "hand", "eq": 90, "tol": 8, "c": "ibp.dbMove"}, {"q": "low", "a": "heel", "y": 0, "tol": 1, "c": "ibp.dbSetup"}], "at": [0, 30]},
+        {"n": "end", "p": {"t": 145, "sh": -28, "el": 148, "ap": 0.65, "hip": 33, "knee": 90}, "why": [{"q": "touch", "a": "hand", "b": "hip", "tol": 6, "c": "ibp.dbMove", "tb": [26, 8]}, {"q": "low", "a": "heel", "y": 0, "tol": 1, "c": "ibp.dbSetup"}], "at": [0, 30]}
+      ]
+    },
+    "Machine Chest Press": {
+      "anchor": "hip",
+      "armProj": true,
+      "props": [{"k": "rect", "x": -8, "y": 20, "w": 20, "h": 4}, {"k": "line", "pts": [[2, 20], [2, 0]]}, {"k": "line", "pts": [[-6.0, 28.0], [-6.0, 66.0]]}, {"k": "grip", "at": "hand", "r": 3}],
+      "note": "Uchwyty maszyny jako punkt przy dłoniach; rama maszyny pominięta (uproszczenie).",
+      "frames": [
+        {"n": "start", "p": {"t": 90, "sh": -52, "el": 138, "ap": 0.7, "hip": 88, "knee": 90}, "why": [{"q": "touch", "a": "hand", "b": "hip", "tol": 6, "c": "mcp.seat", "tb": [21, 10]}], "at": [0, 30]},
+        {"n": "end", "p": {"t": 90, "sh": 80, "el": 5, "hip": 88, "knee": 90}, "why": [{"q": "joint", "j": "el", "eq": 5, "tol": 6, "c": "press.noLock"}, {"q": "horiz", "a": "shoulder", "b": "hand", "eq": 0, "tol": 15, "c": "mcp.move"}], "at": [0, 30]}
+      ]
+    },
+    "Push Up": {
+      "anchor": "toe",
+      "level": "hand",
+      "note": "Dłonie pod barkami na górze; rozstaw dłoni (szerokość barków) niewidoczny z boku.",
+      "frames": [
+        {"n": "start", "p": {"t": 20, "hip": 0, "knee": 0, "ft": -75, "sh": 70, "el": 0}, "why": [{"q": "line", "pts": ["shoulder", "hip", "ankle"], "tol": 5, "c": "push.setup"}, {"q": "joint", "j": "el", "eq": 0, "tol": 4, "c": "push.move"}, {"q": "low", "a": "hand", "y": 0, "tol": 3, "c": "push.setup"}]},
+        {"n": "end", "p": {"t": 1, "hip": 0, "knee": 0, "ft": -94, "sh": -25, "el": 137}, "why": [{"q": "line", "pts": ["shoulder", "hip", "ankle"], "tol": 5, "c": "push.rigid"}, {"q": "low", "a": "shoulder", "y": 0, "tol": 14, "c": "push.move"}]}
+      ]
+    },
+    "Incline Push Up": {
+      "anchor": "toe",
+      "level": "hand",
+      "props": [{"k": "rect", "x": 8, "y": 0, "w": 16, "h": 30}],
+      "note": "Wysokość podwyższenia ilustracyjna (zdanie ipush.height: im wyżej, tym łatwiej).",
+      "frames": [
+        {"n": "start", "p": {"t": 49, "hip": 0, "knee": 0, "ft": -43, "sh": 39, "el": 0}, "why": [{"q": "line", "pts": ["shoulder", "hip", "ankle"], "tol": 5, "c": "ipush.setup"}, {"q": "joint", "j": "el", "eq": 0, "tol": 4, "c": "ipush.move"}, {"q": "low", "a": "hand", "y": 30, "tol": 3, "c": "ipush.setup"}], "at": [-30, 0]},
+        {"n": "end", "p": {"t": 23, "hip": 0, "knee": 0, "ft": -72, "sh": -44, "el": 76}, "why": [{"q": "line", "pts": ["shoulder", "hip", "ankle"], "tol": 5, "c": "push.rigid"}, {"q": "low", "a": "shoulder", "y": 30, "tol": 14, "c": "ipush.move"}], "at": [-30, 0]}
+      ]
+    },
+    "Overhead Press (sztanga)": {
+      "anchor": "toe",
+      "armProj": true,
+      "props": [{"k": "plate", "at": "hand"}],
+      "note": "Chwyt szerzej niż barki — ramię w rzucie z boku krótsze; tor sztangi omija głowę (uproszczenie: linia prosta).",
+      "frames": [
+        {"n": "start", "p": {"t": 90, "hip": 0, "knee": 0, "sh": 29, "el": 148, "ap": 0.75, "fp": 0.75}, "why": [{"q": "touch", "a": "hand", "b": "shoulder", "tol": 5, "c": "ohp.bbSetup", "tb": [-1, 7]}, {"q": "line", "pts": ["shoulder", "hip", "ankle"], "tol": 6, "c": "ohp.tall"}]},
+        {"n": "end", "p": {"t": 95, "hip": -5, "knee": 0, "sh": 171, "el": 0}, "why": [{"q": "joint", "j": "el", "eq": 0, "tol": 4, "c": "ohp.move"}, {"q": "alignX", "a": "hand", "b": "shoulder", "tol": 6, "c": "ohp.tall"}]}
+      ]
+    },
+    "Overhead Press (hantle)": {
+      "anchor": "toe",
+      "armProj": true,
+      "props": [{"k": "db", "at": "hand"}, {"k": "db", "at": "hand2"}],
+      "frames": [
+        {"n": "start", "p": {"t": 90, "hip": 0, "knee": 0, "sh": 32, "el": 148, "ap": 0.75, "fp": 0.75}, "why": [{"q": "touch", "a": "hand", "b": "shoulder", "tol": 5, "c": "ohp.dbSetup", "tb": [3, 6]}, {"q": "alignX", "a": "elbow", "b": "hand", "tol": 3, "c": "ohp.elbowsUnder"}]},
+        {"n": "end", "p": {"t": 95, "hip": -5, "knee": 0, "sh": 171, "el": 0}, "why": [{"q": "joint", "j": "el", "eq": 0, "tol": 4, "c": "ohp.move"}, {"q": "alignX", "a": "hand", "b": "shoulder", "tol": 6, "c": "ohp.tall"}]}
+      ]
+    },
+    "Seated Shoulder Press (hantle)": {
+      "anchor": "hip",
+      "armProj": true,
+      "props": [{"k": "rect", "x": -8, "y": 20, "w": 20, "h": 4}, {"k": "line", "pts": [[2, 20], [2, 0]]}, {"k": "line", "pts": [[-5.8, 27.5], [-8.9, 63.3]]}, {"k": "db", "at": "hand"}, {"k": "db", "at": "hand2"}],
+      "note": "Oparcie lekko odchylone (ilustracyjnie); hantle przy barkach, łokcie pod nadgarstkami.",
+      "frames": [
+        {"n": "start", "p": {"t": 95, "sh": 25, "el": 148, "ap": 0.75, "hip": 83, "knee": 90}, "why": [{"q": "touch", "a": "hand", "b": "hip", "tol": 6, "c": "ohp.seat", "tb": [33, 6]}, {"q": "alignX", "a": "elbow", "b": "hand", "tol": 4, "c": "ohp.elbowsUnder"}, {"q": "low", "a": "heel", "y": 0, "tol": 1, "c": "ohp.seat"}], "at": [0, 30]},
+        {"n": "end", "p": {"t": 95, "sh": 165, "el": 3, "hip": 83, "knee": 90}, "why": [{"q": "joint", "j": "el", "eq": 3, "tol": 4, "c": "ohp.fullExt"}, {"q": "low", "a": "heel", "y": 0, "tol": 1, "c": "ohp.seat"}], "at": [0, 30]}
+      ]
+    },
+    "Push Press": {
+      "anchor": "toe",
+      "armProj": true,
+      "props": [{"k": "plate", "at": "hand"}],
+      "note": "Ugięcie nóg krótkie — głębokość ilustracyjna.",
+      "frames": [
+        {"n": "start", "p": {"t": 90, "hip": 0, "knee": 0, "sh": 29, "el": 148, "ap": 0.75, "fp": 0.75}, "why": [{"q": "touch", "a": "hand", "b": "shoulder", "tol": 5, "c": "pp.setup", "tb": [-1, 7]}]},
+        {"n": "mid", "p": {"t": 90, "hip": 15, "knee": 25, "sh": 29, "el": 148, "ap": 0.75, "fp": 0.75, "ft": 0}, "why": [{"q": "horiz", "a": "hip", "b": "shoulder", "eq": 90, "tol": 5, "c": "pp.dip"}, {"q": "joint", "j": "knee", "eq": 20, "tol": 15, "c": "pp.move"}]},
+        {"n": "end", "p": {"t": 95, "hip": -5, "knee": 0, "sh": 171, "el": 0}, "why": [{"q": "joint", "j": "el", "eq": 0, "tol": 4, "c": "pp.move"}, {"q": "line", "pts": ["shoulder", "hip", "ankle"], "tol": 6, "c": "pp.legs"}]}
+      ]
+    },
+    "Wyciskanie nad głowę (linki)": {
+      "anchor": "toe",
+      "armProj": true,
+      "props": [{"k": "cable", "at": "hand", "from": [-26, 3]}, {"k": "grip", "at": "hand"}],
+      "note": "Bloczki dolne widziane z boku jako jeden punkt za stopami (uproszczenie).",
+      "frames": [
+        {"n": "start", "p": {"t": 90, "hip": 0, "knee": 0, "sh": 32, "el": 148, "ap": 0.75, "fp": 0.75}, "why": [{"q": "alignX", "a": "elbow", "b": "hand", "tol": 3, "c": "cohp.setup"}, {"q": "touch", "a": "hand", "b": "shoulder", "tol": 5, "c": "cohp.setup", "tb": [3, 6]}]},
+        {"n": "end", "p": {"t": 95, "hip": -5, "knee": 0, "sh": 171, "el": 0}, "why": [{"q": "joint", "j": "el", "eq": 0, "tol": 4, "c": "ohp.move"}, {"q": "alignX", "a": "hand", "b": "shoulder", "tol": 6, "c": "ohp.tall"}]}
+      ]
+    },
+    "Bent Over Row (sztanga)": {
+      "anchor": "toe",
+      "props": [{"k": "plate", "at": "hand"}],
+      "note": "Pochylenie tułowia ilustracyjne — wskazówki mówią tylko „pochyl tułów w biodrach, plecy proste”.",
+      "frames": [
+        {"n": "start", "p": {"t": 30, "hip": 95, "knee": 20, "sh": 60, "el": 0}, "why": [{"q": "joint", "j": "el", "eq": 0, "tol": 4, "c": "row.fullStretch"}, {"q": "joint", "j": "knee", "eq": 20, "tol": 15, "c": "row.hinge"}]},
+        {"n": "end", "p": {"t": 30, "hip": 95, "knee": 20, "sh": -40, "el": 109}, "why": [{"q": "touch", "a": "hand", "b": "hip", "tol": 6, "c": "row.bbPull", "tb": [9, 7]}, {"q": "joint", "j": "knee", "eq": 20, "tol": 15, "c": "row.hinge"}]}
+      ]
+    },
+    "Bent Over Row (hantle)": {
+      "like": "Bent Over Row (sztanga)",
+      "props": [{"k": "db", "at": "hand"}, {"k": "db", "at": "hand2"}],
+      "frames": [
+        {"n": "start", "p": {"t": 30, "hip": 95, "knee": 20, "sh": 60, "el": 0}, "why": [{"q": "joint", "j": "el", "eq": 0, "tol": 4, "c": "row.fullStretch"}, {"q": "joint", "j": "knee", "eq": 20, "tol": 15, "c": "row.hinge"}]},
+        {"n": "end", "p": {"t": 30, "hip": 95, "knee": 20, "sh": -40, "el": 109}, "why": [{"q": "touch", "a": "hand", "b": "hip", "tol": 6, "c": "row.dbPull", "tb": [9, 7]}, {"q": "joint", "j": "knee", "eq": 20, "tol": 15, "c": "row.hinge"}]}
+      ]
+    },
+    "Pendlay Row": {
+      "like": "Bent Over Row (sztanga)",
+      "note": "Ta sama figura co wiosłowanie sztangą w opadzie — wskazówki etapu 1 dla obu ćwiczeń są takie same (cechy Pendlaya, np. start z podłogi, nie wynikają z nich)."
+    },
+    "T-Bar Row": {
+      "like": "Bent Over Row (sztanga)",
+      "props": [{"k": "rod", "a": [-62, 2], "b": "hand", "ext": 4}, {"k": "plate", "at": "hand", "r": 10, "d": [-6, 0]}],
+      "note": "Gryf zaczepiony przy podłodze za ćwiczącym (dźwignia); pochylenie tułowia ilustracyjne.",
+      "frames": [
+        {"n": "start", "p": {"t": 30, "hip": 95, "knee": 20, "sh": 60, "el": 0}, "why": [{"q": "joint", "j": "el", "eq": 0, "tol": 4, "c": "row.fullStretch"}, {"q": "joint", "j": "knee", "eq": 20, "tol": 15, "c": "row.hinge"}]},
+        {"n": "end", "p": {"t": 30, "hip": 95, "knee": 20, "sh": -40, "el": 109}, "why": [{"q": "touch", "a": "hand", "b": "hip", "tol": 6, "c": "tbar.pull", "tb": [9, 7]}, {"q": "joint", "j": "knee", "eq": 20, "tol": 15, "c": "row.hinge"}]}
+      ]
+    },
+    "One Arm Row (hantle)": {
+      "anchor": "toe",
+      "props": [{"k": "rect", "x": -40.8, "y": 20, "w": 86.5, "h": 4}, {"k": "line", "pts": [[-36.8, 20], [-36.8, 0]]}, {"k": "line", "pts": [[41.7, 20], [41.7, 0]]}, {"k": "db", "at": "hand"}],
+      "frames": [
+        {"n": "start", "p": {"t": 5, "hip": [93, 87], "knee": [15, 78], "ft": [0, -40], "sh": [85, 119], "el": 0}, "why": [{"q": "horiz", "a": "hip", "b": "shoulder", "eq": 0, "tol": 12, "c": "row1.bench"}, {"q": "joint", "j": "el", "eq": 0, "tol": 4, "c": "row.fullStretch"}, {"q": "low", "a": "knee2", "y": 24, "tol": 5, "c": "row1.bench"}]},
+        {"n": "end", "p": {"t": 5, "hip": [93, 87], "knee": [15, 78], "ft": [0, -40], "sh": [-44, 119], "el": [101, 0]}, "why": [{"q": "behind", "a": "elbow", "tol": 0.5, "c": "row1.top"}, {"q": "touch", "a": "hand", "b": "hip", "tol": 7, "c": "row1.pull", "tb": [6, 4]}, {"q": "horiz", "a": "hip", "b": "shoulder", "eq": 0, "tol": 12, "c": "row1.bench"}]}
+      ]
+    },
+    "Chest Supported Row": {
+      "anchor": "toe",
+      "props": [{"k": "line", "pts": [[-13.3, 50.0], [6.6, 66.7]]}, {"k": "line", "pts": [[-13.3, 50.0], [-13.3, 0]]}, {"k": "db", "at": "hand"}],
+      "note": "Kąt oparcia i ciężar (hantle albo uchwyty maszyny) ilustracyjne; klatka przez cały ruch na podporze.",
+      "frames": [
+        {"n": "start", "p": {"t": 40, "hip": 76, "knee": 25, "sh": 50, "el": 0}, "why": [{"q": "joint", "j": "el", "eq": 0, "tol": 4, "c": "row.fullStretch"}, {"q": "horiz", "a": "shoulder", "b": "hand", "eq": 90, "tol": 8, "c": "csr.pull"}]},
+        {"n": "end", "p": {"t": 40, "hip": 76, "knee": 25, "sh": -50, "el": 133}, "why": [{"q": "behind", "a": "elbow", "tol": 0.5, "c": "row.elbowsPast"}]}
+      ]
+    },
+    "Seated Cable Row": {
+      "anchor": "hip",
+      "props": [{"k": "rect", "x": -16, "y": 4, "w": 26, "h": 4}, {"k": "line", "pts": [[46, 4], [46, 26]]}, {"k": "cable", "at": "hand", "from": [54, 41.7]}, {"k": "grip", "at": "hand", "r": 3}],
+      "note": "Siedzisko i podnóżek uproszczone; linka poziomo od bloczka na wysokości uchwytu.",
+      "frames": [
+        {"n": "start", "p": {"t": 90, "sh": 88, "el": 0, "hip": 95, "knee": 21, "ft": 109}, "why": [{"q": "joint", "j": "el", "eq": 0, "tol": 4, "c": "scr.pull"}, {"q": "joint", "j": "knee", "eq": 20, "tol": 15, "c": "scr.sit"}, {"q": "horiz", "a": "hip", "b": "shoulder", "eq": 90, "tol": 10, "c": "scr.sit"}], "at": [0, 13]},
+        {"n": "end", "p": {"t": 90, "sh": -38, "el": 111, "hip": 95, "knee": 21, "ft": 109}, "why": [{"q": "touch", "a": "hand", "b": "hip", "tol": 6, "c": "scr.pull", "tb": [10, 8]}, {"q": "horiz", "a": "hip", "b": "shoulder", "eq": 90, "tol": 10, "c": "scr.sit"}], "at": [0, 13]}
+      ]
+    },
+    "Wiosłowanie na linkach (siedząc)": {
+      "like": "Seated Cable Row"
+    },
+    "Face Pull": {
+      "anchor": "toe",
+      "armProj": true,
+      "props": [{"k": "cable", "at": "hand", "from": [42, 90]}, {"k": "grip", "at": "hand", "r": 3}],
+      "note": "Łokcie wysoko i na boki — z boku ramię wygląda na krótkie (rzut).",
+      "frames": [
+        {"n": "start", "p": {"t": 90, "hip": 0, "knee": 0, "sh": 94, "el": 0}, "why": [{"q": "joint", "j": "el", "eq": 0, "tol": 4, "c": "fp.move"}, {"q": "horiz", "a": "hip", "b": "shoulder", "eq": 90, "tol": 6, "c": "fp.chest"}]},
+        {"n": "end", "p": {"t": 90, "hip": 0, "knee": 0, "sh": -12, "el": 160, "ap": 0.45}, "why": [{"q": "behind", "a": "elbow", "tol": 0.5, "c": "fp.elbowsBack"}, {"q": "touch", "a": "hand", "b": "head", "tol": 6, "c": "fp.move", "tb": [-2, 9]}, {"q": "horiz", "a": "hip", "b": "shoulder", "eq": 90, "tol": 6, "c": "fp.chest"}]}
+      ]
+    },
+    "Lat Pulldown": {
+      "anchor": "hip",
+      "armProj": true,
+      "props": [{"k": "rect", "x": -10, "y": 20, "w": 22, "h": 4}, {"k": "line", "pts": [[0, 20], [0, 0]]}, {"k": "rect", "x": 21.0, "y": 32.1, "w": 8, "h": 4}, {"k": "cable", "at": "hand", "from": [1.4, 111.0]}, {"k": "rod", "a": "hand", "b": "hand", "ext": 8}],
+      "note": "Chwyt szeroki — ramię w rzucie krótsze; lekkie odchylenie tułowia ilustracyjne.",
+      "frames": [
+        {"n": "start", "p": {"t": 100, "sh": 160, "el": 0, "hip": 78, "knee": 90}, "why": [{"q": "joint", "j": "el", "eq": 0, "tol": 4, "c": "lpd.fullStretch"}], "at": [0, 30]},
+        {"n": "end", "p": {"t": 100, "sh": -108, "el": 180, "ap": 0.55, "hip": 78, "knee": 90}, "why": [{"q": "touch", "a": "hand", "b": "hip", "tol": 6, "c": "lpd.toChest", "tb": [27, 9]}], "at": [0, 30]}
+      ]
+    },
+    "Pull Up": {
+      "anchor": "hand",
+      "floor": false,
+      "armProj": true,
+      "props": [{"k": "bar", "x": 0, "y": 0}],
+      "note": "Chwyt szerzej niż barki — ramię w rzucie krótsze; ugięcie kolan ilustracyjne.",
+      "frames": [
+        {"n": "start", "p": {"t": 99, "hip": 9, "knee": 10, "sh": 171, "el": 0, "ap": 0.85}, "why": [{"q": "joint", "j": "el", "eq": 0, "tol": 4, "c": "pu.grip"}]},
+        {"n": "end", "p": {"t": 89, "hip": 10, "knee": 20, "sh": 10, "el": 154, "ap": 0.85}, "why": [{"q": "above", "a": "head", "c": "pu.pull", "b": "hand", "dy": -4}, {"q": "horiz", "a": "shoulder", "b": "elbow", "eq": 90, "tol": 30, "c": "pu.elbowsDown"}]}
+      ]
+    },
+    "Chin Up": {
+      "anchor": "hand",
+      "floor": false,
+      "props": [{"k": "bar", "x": 0, "y": 0}],
+      "frames": [
+        {"n": "start", "p": {"t": 99, "hip": 9, "knee": 10, "sh": 171, "el": 0}, "why": [{"q": "joint", "j": "el", "eq": 0, "tol": 4, "c": "cu.grip"}]},
+        {"n": "end", "p": {"t": 88, "hip": 10, "knee": 20, "sh": 31, "el": 148, "ap": 1}, "why": [{"q": "above", "a": "head", "c": "cu.pull", "b": "hand", "dy": -4}, {"q": "horiz", "a": "shoulder", "b": "elbow", "eq": 90, "tol": 30, "c": "cu.pull"}]}
+      ]
+    },
+    "Neutral Grip Pull Up": {
+      "anchor": "hand",
+      "floor": false,
+      "props": [{"k": "bar", "x": 0, "y": 0}],
+      "frames": [
+        {"n": "start", "p": {"t": 99, "hip": 9, "knee": 10, "sh": 171, "el": 0}, "why": [{"q": "joint", "j": "el", "eq": 0, "tol": 4, "c": "npu.hang"}]},
+        {"n": "end", "p": {"t": 88, "hip": 10, "knee": 20, "sh": 31, "el": 148, "ap": 1}, "why": [{"q": "above", "a": "head", "c": "pu.pull", "b": "hand", "dy": -4}, {"q": "horiz", "a": "shoulder", "b": "elbow", "eq": 90, "tol": 30, "c": "pu.elbowsDown"}]}
+      ]
+    },
+    "Lunges (hantle)": {
+      "anchor": "toe2",
+      "props": [{"k": "db", "at": "hand"}, {"k": "db", "at": "hand2"}],
+      "note": "Długość kroku i ustawienie przedniego podudzia ilustracyjne; z boku nie widać ustawienia kolana w linii palców (widok z przodu).",
+      "frames": [
+        {"n": "start", "p": {"t": 90, "hip": 0, "knee": 0, "sh": 0, "el": 0}, "why": [{"q": "line", "pts": ["shoulder", "hip", "ankle"], "tol": 6, "c": "lunge.dbSetup"}]},
+        {"n": "end", "p": {"t": 90, "hip": [80, -3], "knee": [110, 102], "ft": [0, -80], "sh": 0, "el": 0}, "why": [{"q": "low", "a": "knee2", "y": 0, "tol": 8, "c": "lunge.fwd"}, {"q": "horiz", "a": "hip", "b": "shoulder", "eq": 90, "tol": 8, "c": "lunge.torso"}, {"q": "low", "a": "heel", "y": 0, "tol": 1, "c": "lunge.fwd"}]}
+      ]
+    },
+    "Walking Lunges": {
+      "like": "Lunges (hantle)",
+      "note": "Jeden krok pętli; kolejny krok drugą nogą wygląda tak samo (lustrzanie). Długość kroku ilustracyjna.",
+      "frames": [
+        {"n": "start", "p": {"t": 90, "hip": 0, "knee": 0, "sh": 0, "el": 0}, "why": [{"q": "line", "pts": ["shoulder", "hip", "ankle"], "tol": 6, "c": "lunge.dbSetup"}]},
+        {"n": "end", "p": {"t": 90, "hip": [80, -3], "knee": [110, 102], "ft": [0, -80], "sh": 0, "el": 0}, "why": [{"q": "low", "a": "knee2", "y": 0, "tol": 8, "c": "lunge.walk"}, {"q": "horiz", "a": "hip", "b": "shoulder", "eq": 90, "tol": 8, "c": "lunge.torso"}, {"q": "low", "a": "heel", "y": 0, "tol": 1, "c": "lunge.walk"}]}
+      ]
+    },
+    "Reverse Lunge": {
+      "anchor": "toe",
+      "lift": true,
+      "note": "Przednia stopa zostaje w miejscu, tylna noga cofa się (pozycja „w trakcie” = krok w tył); długość kroku ilustracyjna.",
+      "frames": [
+        {"n": "start", "p": {"t": 90, "hip": 0, "knee": 0, "sh": 0, "el": 0}, "why": [{"q": "line", "pts": ["shoulder", "hip", "ankle"], "tol": 6, "c": "lunge.stand"}]},
+        {"n": "mid", "p": {"t": 90, "hip": [12, -12], "knee": [12, 75], "ft": [0, -117], "sh": 0, "el": 0}, "why": [{"q": "above", "a": "toe2", "c": "lunge.back", "y": 0}, {"q": "horiz", "a": "hip", "b": "shoulder", "eq": 90, "tol": 8, "c": "lunge.torso"}]},
+        {"n": "end", "p": {"t": 90, "hip": [80, -3], "knee": [110, 102], "ft": [0, -80], "sh": 0, "el": 0}, "why": [{"q": "low", "a": "knee2", "y": 0, "tol": 8, "c": "lunge.back"}, {"q": "horiz", "a": "hip", "b": "shoulder", "eq": 90, "tol": 8, "c": "lunge.torso"}, {"q": "low", "a": "heel", "y": 0, "tol": 1, "c": "lunge.back"}]}
+      ]
+    },
+    "Bulgarian Split Squat (hantle)": {
+      "anchor": "toe",
+      "props": [{"k": "rect", "x": -74, "y": 20, "w": 30, "h": 4}, {"k": "line", "pts": [[-70, 20], [-70, 0]]}, {"k": "line", "pts": [[-48, 20], [-48, 0]]}, {"k": "db", "at": "hand"}, {"k": "db", "at": "hand2"}],
+      "note": "Długość ustawienia nóg i wysokość ławki ilustracyjne.",
+      "frames": [
+        {"n": "start", "p": {"t": 90, "hip": [24, 5], "knee": [10, 99], "ft": [0, 209], "sh": 0, "el": 0}, "why": [{"q": "horiz", "a": "hip", "b": "shoulder", "eq": 90, "tol": 8, "c": "lunge.torso"}, {"q": "low", "a": "ankle2", "y": 24, "tol": 6, "c": "bss.setup"}]},
+        {"n": "end", "p": {"t": 90, "hip": [89, -16], "knee": [96, 140], "ft": [0, 209], "sh": 0, "el": 0}, "why": [{"q": "low", "a": "knee2", "y": 0, "tol": 8, "c": "bss.move"}, {"q": "horiz", "a": "hip", "b": "shoulder", "eq": 90, "tol": 8, "c": "lunge.torso"}, {"q": "low", "a": "ankle2", "y": 24, "tol": 6, "c": "bss.setup"}]}
+      ]
+    },
+    "Step Up": {
+      "anchor": "toe",
+      "props": [{"k": "rect", "x": -2, "y": 0, "w": 34, "h": 26}, {"k": "db", "at": "hand"}, {"k": "db", "at": "hand2"}],
+      "note": "Wysokość skrzyni ilustracyjna; druga noga w pozycji końcowej uniesiona obok (uproszczenie).",
+      "frames": [
+        {"n": "start", "p": {"t": 90, "hip": [90, 12], "knee": [110, 13], "ft": [0, 0], "sh": 0, "el": 0}, "why": [{"q": "low", "a": "heel", "y": 26, "tol": 1, "c": "stepup.move"}, {"q": "horiz", "a": "hip", "b": "shoulder", "eq": 90, "tol": 8, "c": "lunge.torso"}], "at": [12, 26]},
+        {"n": "end", "p": {"t": 90, "hip": [0, 60], "knee": [0, 90], "ft": [0, -20], "sh": 0, "el": 0}, "why": [{"q": "joint", "j": "knee", "eq": 0, "tol": 5, "c": "stepup.move"}, {"q": "horiz", "a": "hip", "b": "shoulder", "eq": 90, "tol": 8, "c": "lunge.torso"}], "at": [12, 26]}
+      ]
+    },
+    "Hip Thrust (sztanga)": {
+      "anchor": "toe",
+      "props": [{"k": "rect", "x": -56, "y": 20, "w": 36, "h": 4}, {"k": "line", "pts": [[-50, 20], [-50, 0]]}, {"k": "line", "pts": [[-26, 20], [-26, 0]]}, {"k": "plate", "at": "hip", "tb": [3, 9]}],
+      "note": "Ułożenie dłoni na sztandze i kąt kolan w górnej pozycji ilustracyjne.",
+      "frames": [
+        {"n": "start", "p": {"t": 150, "hip": 70, "knee": 135, "ft": 0, "sh": 40, "el": 20}, "why": [{"q": "low", "a": "heel", "y": 0, "tol": 1, "c": "ht.setup"}, {"q": "low", "a": "shoulder", "y": 24, "tol": 6, "c": "ht.setup"}], "at": [32, 0]},
+        {"n": "end", "p": {"t": 180, "hip": -4, "knee": 114, "ft": 0, "sh": 12, "el": 0}, "why": [{"q": "line", "pts": ["shoulder", "hip", "knee"], "tol": 8, "c": "ht.move"}, {"q": "low", "a": "heel", "y": 0, "tol": 1, "c": "ht.setup"}], "at": [32, 0]}
+      ]
+    },
+    "Hip Thrust (hantel)": {
+      "like": "Hip Thrust (sztanga)",
+      "props": [{"k": "rect", "x": -56, "y": 20, "w": 36, "h": 4}, {"k": "line", "pts": [[-50, 20], [-50, 0]]}, {"k": "line", "pts": [[-26, 20], [-26, 0]]}, {"k": "db", "at": "hip", "tb": [2, 9], "r": 6}],
+      "frames": [
+        {"n": "start", "p": {"t": 150, "hip": 70, "knee": 135, "ft": 0, "sh": 40, "el": 20}, "why": [{"q": "low", "a": "heel", "y": 0, "tol": 1, "c": "ht.dbSetup"}, {"q": "low", "a": "shoulder", "y": 24, "tol": 6, "c": "ht.dbSetup"}], "at": [32, 0]},
+        {"n": "end", "p": {"t": 180, "hip": -4, "knee": 114, "ft": 0, "sh": 12, "el": 0}, "why": [{"q": "line", "pts": ["shoulder", "hip", "knee"], "tol": 8, "c": "ht.move"}, {"q": "low", "a": "heel", "y": 0, "tol": 1, "c": "ht.dbSetup"}], "at": [32, 0]}
+      ]
+    },
+    "Glute Bridge": {
+      "anchor": "toe",
+      "frames": [
+        {"n": "start", "p": {"t": 180, "hip": 50, "knee": 108, "ft": 0, "sh": -6, "el": 0}, "why": [{"q": "low", "a": "heel", "y": 0, "tol": 1, "c": "gb.setup"}, {"q": "low", "a": "hip", "y": 0, "tol": 8, "c": "gb.setup"}], "at": [36, 0]},
+        {"n": "end", "p": {"t": 203, "hip": 0, "knee": 93, "ft": 0, "sh": -29, "el": 0}, "why": [{"q": "line", "pts": ["shoulder", "hip", "knee"], "tol": 8, "c": "gb.move"}, {"q": "low", "a": "heel", "y": 0, "tol": 1, "c": "gb.heels"}], "at": [36, 0]}
+      ]
+    },
+    "Biceps Curl (hantle)": {
+      "anchor": "toe",
+      "props": [{"k": "db", "at": "hand"}, {"k": "db", "at": "hand2"}],
+      "note": "Wysokość dłoni na górze ilustracyjna (zgięcie łokcia ok. 140°); obrót dłoni niewidoczny na schemacie.",
+      "frames": [
+        {"n": "start", "p": {"t": 90, "hip": 0, "knee": 0, "sh": 0, "el": 0}, "why": [{"q": "joint", "j": "el", "eq": 0, "tol": 4, "c": "curl.dbSetup"}, {"q": "horiz", "a": "shoulder", "b": "elbow", "eq": 90, "tol": 10, "c": "curl.elbows"}]},
+        {"n": "end", "p": {"t": 90, "hip": 0, "knee": 0, "sh": 10, "el": 140}, "why": [{"q": "joint", "j": "el", "eq": 140, "tol": 12, "c": "curl.dbMove"}, {"q": "horiz", "a": "shoulder", "b": "elbow", "eq": 90, "tol": 15, "c": "curl.elbows"}]}
+      ]
+    },
+    "Barbell Curl": {
+      "anchor": "toe",
+      "props": [{"k": "plate", "at": "hand", "r": 10}],
+      "note": "„Przedramiona pionowo” przy łokciach przy bokach — z zakresem zgięcia łokcia przedramię jest tylko mniej więcej pionowe (ok. 20°).",
+      "frames": [
+        {"n": "start", "p": {"t": 90, "hip": 0, "knee": 0, "sh": 0, "el": 0}, "why": [{"q": "joint", "j": "el", "eq": 0, "tol": 4, "c": "curl.bbGrip"}, {"q": "horiz", "a": "shoulder", "b": "elbow", "eq": 90, "tol": 10, "c": "curl.elbows"}]},
+        {"n": "end", "p": {"t": 90, "hip": 0, "knee": 0, "sh": 14, "el": 148}, "why": [{"q": "horiz", "a": "elbow", "b": "hand", "eq": 90, "tol": 20, "c": "curl.bbMove"}, {"q": "horiz", "a": "shoulder", "b": "elbow", "eq": 90, "tol": 15, "c": "curl.elbows"}]}
+      ]
+    },
+    "EZ Bar Curl": {
+      "like": "Barbell Curl",
+      "frames": [
+        {"n": "start", "p": {"t": 90, "hip": 0, "knee": 0, "sh": 0, "el": 0}, "why": [{"q": "joint", "j": "el", "eq": 0, "tol": 4, "c": "curl.ezGrip"}, {"q": "horiz", "a": "shoulder", "b": "elbow", "eq": 90, "tol": 10, "c": "curl.elbows"}]},
+        {"n": "end", "p": {"t": 90, "hip": 0, "knee": 0, "sh": 14, "el": 148}, "why": [{"q": "horiz", "a": "elbow", "b": "hand", "eq": 90, "tol": 20, "c": "curl.bbMove"}, {"q": "horiz", "a": "shoulder", "b": "elbow", "eq": 90, "tol": 15, "c": "curl.elbows"}]}
+      ]
+    },
+    "Hammer Curl": {
+      "anchor": "toe",
+      "props": [{"k": "db", "at": "hand"}, {"k": "db", "at": "hand2"}],
+      "frames": [
+        {"n": "start", "p": {"t": 90, "hip": 0, "knee": 0, "sh": 0, "el": 0}, "why": [{"q": "joint", "j": "el", "eq": 0, "tol": 4, "c": "curl.hammerMove"}, {"q": "horiz", "a": "shoulder", "b": "elbow", "eq": 90, "tol": 10, "c": "curl.elbows"}]},
+        {"n": "end", "p": {"t": 90, "hip": 0, "knee": 0, "sh": 14, "el": 148}, "why": [{"q": "horiz", "a": "elbow", "b": "hand", "eq": 90, "tol": 20, "c": "curl.hammerMove"}, {"q": "horiz", "a": "shoulder", "b": "elbow", "eq": 90, "tol": 15, "c": "curl.elbows"}]}
+      ]
+    },
+    "Cable Curl": {
+      "anchor": "toe",
+      "props": [{"k": "cable", "at": "hand", "from": [26, 4]}, {"k": "grip", "at": "hand", "r": 3}],
+      "frames": [
+        {"n": "start", "p": {"t": 90, "hip": 0, "knee": 0, "sh": 5, "el": 0}, "why": [{"q": "joint", "j": "el", "eq": 0, "tol": 4, "c": "curl.cableSetup"}, {"q": "horiz", "a": "shoulder", "b": "elbow", "eq": 90, "tol": 10, "c": "curl.elbows"}]},
+        {"n": "end", "p": {"t": 90, "hip": 0, "knee": 0, "sh": 12, "el": 140}, "why": [{"q": "joint", "j": "el", "eq": 140, "tol": 12, "c": "curl.cableMove"}, {"q": "horiz", "a": "shoulder", "b": "elbow", "eq": 90, "tol": 15, "c": "curl.elbows"}]}
+      ]
+    },
+    "Triceps Pushdown": {
+      "anchor": "toe",
+      "props": [{"k": "cable", "at": "hand", "from": [22, 104]}, {"k": "grip", "at": "hand", "r": 3}],
+      "note": "Lekkie pochylenie tułowia i ugięcie łokci na górze ilustracyjne.",
+      "frames": [
+        {"n": "start", "p": {"t": 84, "hip": 6, "knee": 0, "sh": 6, "el": 125}, "why": [{"q": "horiz", "a": "shoulder", "b": "elbow", "eq": 90, "tol": 12, "c": "tpd.elbows"}, {"q": "joint", "j": "el", "eq": 125, "tol": 25, "c": "tpd.move"}]},
+        {"n": "end", "p": {"t": 84, "hip": 6, "knee": 0, "sh": 6, "el": 5}, "why": [{"q": "joint", "j": "el", "eq": 5, "tol": 6, "c": "press.noLock"}, {"q": "horiz", "a": "shoulder", "b": "elbow", "eq": 90, "tol": 12, "c": "tpd.elbows"}]}
+      ]
+    },
+    "Overhead Triceps Extension (hantel)": {
+      "anchor": "toe",
+      "props": [{"k": "db", "at": "hand", "r": 6}],
+      "note": "Ramiona nieruchomo nad głową; głębokość opuszczenia za głowę ilustracyjna.",
+      "frames": [
+        {"n": "start", "p": {"t": 90, "hip": 0, "knee": 0, "sh": 165, "el": 0}, "why": [{"q": "joint", "j": "el", "eq": 0, "tol": 4, "c": "ote.setup"}, {"q": "horiz", "a": "shoulder", "b": "elbow", "eq": 90, "tol": 20, "c": "ote.upperArm"}]},
+        {"n": "end", "p": {"t": 90, "hip": 0, "knee": 0, "sh": 165, "el": 130}, "why": [{"q": "joint", "j": "el", "eq": 130, "tol": 20, "c": "ote.move"}, {"q": "horiz", "a": "shoulder", "b": "elbow", "eq": 90, "tol": 20, "c": "ote.upperArm"}]}
+      ]
+    },
+    "Cable Overhead Extension": {
+      "anchor": "toe",
+      "props": [{"k": "cable", "at": "hand", "from": [-34, 6]}, {"k": "grip", "at": "hand", "r": 3}],
+      "note": "Bloczek dolny za plecami (ustawienie ilustracyjne); ćwiczący stoi tyłem do wyciągu.",
+      "frames": [
+        {"n": "start", "p": {"t": 90, "hip": 0, "knee": 0, "sh": 165, "el": 130}, "why": [{"q": "horiz", "a": "shoulder", "b": "elbow", "eq": 90, "tol": 20, "c": "cote.setup"}, {"q": "joint", "j": "el", "eq": 130, "tol": 20, "c": "cote.move"}]},
+        {"n": "end", "p": {"t": 90, "hip": 0, "knee": 0, "sh": 165, "el": 3}, "why": [{"q": "joint", "j": "el", "eq": 3, "tol": 6, "c": "press.noLock"}, {"q": "horiz", "a": "shoulder", "b": "elbow", "eq": 90, "tol": 20, "c": "ote.upperArm"}]}
+      ]
+    },
+    "Skullcrusher (EZ)": {
+      "anchor": "hip",
+      "props": [{"k": "rect", "x": -44, "y": 20, "w": 54, "h": 4}, {"k": "line", "pts": [[-38, 20], [-38, 0]]}, {"k": "line", "pts": [[4, 20], [4, 0]]}, {"k": "plate", "at": "hand", "r": 10}],
+      "frames": [
+        {"n": "start", "p": {"t": 180, "sh": 100, "el": 0, "hip": -3, "knee": 95}, "why": [{"q": "joint", "j": "el", "eq": 0, "tol": 4, "c": "skull.setup"}, {"q": "horiz", "a": "shoulder", "b": "elbow", "eq": 90, "tol": 15, "c": "skull.upperArm"}], "at": [0, 30]},
+        {"n": "end", "p": {"t": 180, "sh": 100, "el": 105, "hip": -3, "knee": 95}, "why": [{"q": "touch", "a": "hand", "b": "head", "tol": 12, "c": "skull.depth", "tb": [0, 10]}, {"q": "horiz", "a": "shoulder", "b": "elbow", "eq": 90, "tol": 15, "c": "skull.upperArm"}], "at": [0, 30]}
+      ]
+    },
+    "Triceps Dips (ławka)": {
+      "anchor": "hand",
+      "props": [{"k": "rect", "x": -34, "y": 22, "w": 34, "h": 4}, {"k": "line", "pts": [[-28, 22], [-28, 0]]}, {"k": "line", "pts": [[-6, 22], [-6, 0]]}],
+      "note": "Nogi wyprostowane w przód, pięty na podłodze (wariant średni z bdip.easier).",
+      "frames": [
+        {"n": "start", "p": {"t": 88, "hip": 71, "knee": 15, "ft": 44, "sh": -29, "el": 0}, "why": [{"q": "joint", "j": "el", "eq": 0, "tol": 4, "c": "bdip.setup"}, {"q": "low", "a": "heel", "y": 0, "tol": 4, "c": "bdip.setup"}], "at": [0, 26]},
+        {"n": "end", "p": {"t": 105, "hip": 55, "knee": 0, "ft": 93, "sh": -52, "el": 90}, "why": [{"q": "joint", "j": "el", "eq": 90, "tol": 12, "c": "bdip.move"}, {"q": "low", "a": "heel", "y": 0, "tol": 4, "c": "bdip.setup"}], "at": [0, 26]}
+      ]
+    },
+    "Lateral Raise (hantle)": {
+      "view": "front",
+      "anchor": "ankle",
+      "props": [{"k": "db", "at": "hand"}, {"k": "db", "at": "hand2"}],
+      "note": "Widok z przodu. Wysokość „mniej więcej do barków”; ugięcie łokci ilustracyjne.",
+      "frames": [
+        {"n": "start", "p": {"hip": 3, "sh": 10, "el": 15}, "why": [{"q": "joint", "j": "el", "eq": 15, "tol": 10, "c": "lat.setup"}], "at": [5, 4]},
+        {"n": "end", "p": {"hip": 3, "sh": 90, "el": 15}, "why": [{"q": "horiz", "a": "shoulder", "b": "hand", "eq": 0, "tol": 12, "c": "lat.height"}, {"q": "above", "a": "elbow", "c": "lat.elbows", "b": "hand", "dy": 0.5}, {"q": "joint", "j": "el", "eq": 15, "tol": 10, "c": "lat.setup"}], "at": [5, 4]}
+      ]
+    },
+    "Cable Lateral Raise": {
+      "view": "front",
+      "anchor": "ankle",
+      "props": [{"k": "cable", "at": "hand", "from": [-24, 3]}, {"k": "grip", "at": "hand", "r": 3}],
+      "note": "Widok z przodu; linka od dolnego bloczka po drugiej stronie ciała. Druga ręka swobodnie (w praktyce trzyma się wyciągu).",
+      "frames": [
+        {"n": "start", "p": {"hip": 3, "sh": [12, 4], "el": [15, 0]}, "why": [{"q": "joint", "j": "el", "eq": 15, "tol": 10, "c": "clat.setup"}], "at": [5, 4]},
+        {"n": "end", "p": {"hip": 3, "sh": [90, 4], "el": [15, 0]}, "why": [{"q": "horiz", "a": "shoulder", "b": "hand", "eq": 0, "tol": 12, "c": "lat.height"}, {"q": "above", "a": "elbow", "c": "lat.elbows", "b": "hand", "dy": 0.5}], "at": [5, 4]}
+      ]
+    },
+    "Front Raise": {
+      "anchor": "toe",
+      "props": [{"k": "db", "at": "hand"}, {"k": "db", "at": "hand2"}],
+      "frames": [
+        {"n": "start", "p": {"t": 90, "hip": 0, "knee": 0, "sh": 5, "el": 5}, "why": [{"q": "joint", "j": "el", "eq": 5, "tol": 10, "c": "front.elbows"}]},
+        {"n": "end", "p": {"t": 90, "hip": 0, "knee": 0, "sh": 90, "el": 5}, "why": [{"q": "horiz", "a": "shoulder", "b": "hand", "eq": 0, "tol": 12, "c": "lat.height"}, {"q": "joint", "j": "el", "eq": 5, "tol": 10, "c": "front.elbows"}]}
+      ]
+    },
+    "Shrugs (sztanga)": {
+      "view": "front",
+      "anchor": "ankle",
+      "props": [{"k": "rod", "a": "hand", "b": "hand2", "ext": 12}],
+      "note": "Widok z przodu; wysokość uniesienia barków ilustracyjna („tak wysoko, jak się da”).",
+      "frames": [
+        {"n": "start", "p": {"hip": 3, "sh": 4, "el": 0, "elev": 0}, "why": [{"q": "joint", "j": "el", "eq": 0, "tol": 3, "c": "shrug.setup"}], "at": [5, 4]},
+        {"n": "end", "p": {"hip": 3, "sh": 4, "el": 0, "elev": 5}, "why": [{"q": "joint", "j": "elev", "eq": 5, "tol": 5, "c": "shrug.move"}, {"q": "joint", "j": "el", "eq": 0, "tol": 3, "c": "shrug.tall"}], "at": [5, 4]}
+      ]
+    },
+    "Shrugs (hantle)": {
+      "like": "Shrugs (sztanga)",
+      "props": [{"k": "db", "at": "hand"}, {"k": "db", "at": "hand2"}],
+      "note": "Widok z przodu; wysokość uniesienia barków ilustracyjna („tak wysoko, jak się da”)."
+    },
+    "Standing Calf Raise": {
+      "anchor": "toe",
+      "props": [{"k": "rect", "x": -8, "y": 0, "w": 28, "h": 10}],
+      "note": "Przednia część stopy na podwyższeniu, pięty poza krawędzią; zakres ruchu w stawie skokowym ilustracyjny.",
+      "frames": [
+        {"n": "start", "p": {"t": 90, "hip": 0, "knee": 0, "sh": 0, "el": 0, "ft": 20}, "why": [{"q": "above", "a": "toe", "c": "calf.move", "b": "heel"}, {"q": "joint", "j": "knee", "eq": 0, "tol": 10, "c": "calf.knees"}], "at": [0, 10]},
+        {"n": "end", "p": {"t": 90, "hip": 0, "knee": 0, "sh": 0, "el": 0, "ft": -35}, "why": [{"q": "above", "a": "heel", "c": "calf.move", "b": "toe"}, {"q": "joint", "j": "knee", "eq": 0, "tol": 10, "c": "calf.knees"}], "at": [0, 10]}
+      ]
+    },
+    "Łydki na stopniu": {
+      "like": "Standing Calf Raise",
+      "note": "Przednia część stopy na stopniu, pięty poza krawędzią; podparcie dłonią pominięte (uproszczenie).",
+      "frames": [
+        {"n": "start", "p": {"t": 90, "hip": 0, "knee": 0, "sh": 0, "el": 0, "ft": 20}, "why": [{"q": "above", "a": "toe", "c": "calf.move", "b": "heel"}, {"q": "joint", "j": "knee", "eq": 0, "tol": 10, "c": "calf.knees"}, {"q": "low", "a": "toe", "y": 10, "tol": 3, "c": "calf.step"}], "at": [0, 10]},
+        {"n": "end", "p": {"t": 90, "hip": 0, "knee": 0, "sh": 0, "el": 0, "ft": -35}, "why": [{"q": "above", "a": "heel", "c": "calf.move", "b": "toe"}, {"q": "joint", "j": "knee", "eq": 0, "tol": 10, "c": "calf.knees"}, {"q": "low", "a": "toe", "y": 10, "tol": 3, "c": "calf.step"}], "at": [0, 10]}
+      ]
+    },
+    "Leg Press": {
+      "anchor": "hip",
+      "props": [{"k": "line", "pts": [[-6, 22], [14, 22]]}, {"k": "line", "pts": [[-3.3, 24.6], [-27.7, 53.7]]}, {"k": "line", "pts": [[4, 22], [4, 0]]}, {"k": "plank", "at": "toe", "ang": 135, "len": 26}],
+      "note": "Kąt oparcia i prowadnicy (45°) ilustracyjny; platforma przesuwa się wzdłuż prowadnicy. Stopy płasko na platformie (lp.heels).",
+      "frames": [
+        {"n": "start", "p": {"t": 130, "hip": 90, "knee": 5, "ft": 135, "sh": 0, "el": 0}, "why": [{"q": "joint", "j": "knee", "eq": 5, "tol": 6, "c": "lp.noLock"}], "at": [0, 30]},
+        {"n": "end", "p": {"t": 130, "hip": 132, "knee": 73, "ft": 135, "sh": 0, "el": 0}, "why": [{"q": "joint", "j": "knee", "eq": 95, "tol": 30, "c": "lp.move"}], "at": [0, 30]}
+      ]
+    },
+    "Calf Press (leg press)": {
+      "anchor": "hip",
+      "props": [{"k": "line", "pts": [[-6, 22], [14, 22]]}, {"k": "line", "pts": [[-3.3, 24.6], [-27.7, 53.7]]}, {"k": "line", "pts": [[4, 22], [4, 0]]}, {"k": "plank", "at": "toe", "ang": 135, "len": 26}],
+      "note": "Nogi proste, ruch tylko w stawach skokowych; platforma przesuwa się wzdłuż prowadnicy. Zakres ruchu stopy ilustracyjny.",
+      "frames": [
+        {"n": "start", "p": {"t": 130, "hip": 90, "knee": 0, "ft": 150, "sh": 0, "el": 0}, "why": [{"q": "joint", "j": "knee", "eq": 0, "tol": 8, "c": "calf.press"}, {"q": "joint", "j": "ankle", "eq": 15, "tol": 10, "c": "calf.pressMove"}], "at": [0, 30]},
+        {"n": "end", "p": {"t": 130, "hip": 90, "knee": 0, "ft": 105, "sh": 0, "el": 0}, "why": [{"q": "joint", "j": "knee", "eq": 0, "tol": 8, "c": "calf.knees"}, {"q": "joint", "j": "ankle", "eq": -30, "tol": 10, "c": "calf.pressMove"}], "at": [0, 30]}
+      ]
+    },
+    "Lying Leg Curl": {
+      "anchor": "hip",
+      "props": [{"k": "rect", "x": -24, "y": 20, "w": 58, "h": 4}, {"k": "line", "pts": [[-16, 20], [-16, 0]]}, {"k": "line", "pts": [[26, 20], [26, 0]]}, {"k": "grip", "at": "ankle", "r": 3.5}],
+      "note": "Wałek na dolnej części łydek; końcowe zgięcie kolan ilustracyjne. Rama maszyny pominięta.",
+      "frames": [
+        {"n": "start", "p": {"t": 0, "hip": 0, "knee": 0, "ft": 230, "sh": 150, "el": 30}, "why": [{"q": "joint", "j": "hip", "eq": 0, "tol": 8, "c": "llc.hips"}, {"q": "joint", "j": "knee", "eq": 0, "tol": 5, "c": "llc.setup"}], "at": [0, 30]},
+        {"n": "end", "p": {"t": 0, "hip": 0, "knee": 110, "ft": 120, "sh": 150, "el": 30}, "why": [{"q": "joint", "j": "hip", "eq": 0, "tol": 8, "c": "llc.hips"}, {"q": "joint", "j": "knee", "eq": 110, "tol": 25, "c": "llc.move"}], "at": [0, 30]}
+      ]
+    },
+    "Plank": {
+      "anchor": "toe",
+      "note": "Pozycja statyczna — jedna klatka, bez animacji.",
+      "frames": [
+        {"n": "start", "p": {"t": 7, "hip": 0, "knee": 0, "ft": -88, "sh": 83, "el": 90}, "why": [{"q": "alignX", "a": "elbow", "b": "shoulder", "tol": 3, "c": "plank.setup"}, {"q": "line", "pts": ["shoulder", "hip", "ankle"], "tol": 5, "c": "plank.move"}]}
+      ]
+    },
+    "Dead Bug": {
+      "anchor": "hip",
+      "note": "Ręka bliższa i dalsza noga (przeciwne strony); dalsza noga szara. Jak nisko opuszczać — ilustracyjnie, bez dotykania podłogi.",
+      "frames": [
+        {"n": "start", "p": {"t": 180, "hip": 90, "knee": 90, "ft": 60, "sh": 90, "el": 0}, "why": [{"q": "joint", "j": "hip", "eq": 90, "tol": 8, "c": "db.setup"}, {"q": "joint", "j": "knee", "eq": 90, "tol": 8, "c": "db.setup"}, {"q": "horiz", "a": "shoulder", "b": "hand", "eq": 90, "tol": 8, "c": "db.setup"}], "at": [0, 6]},
+        {"n": "end", "p": {"t": 180, "hip": [90, 15], "knee": [90, 5], "ft": [60, 100], "sh": [165, 90], "el": 0}, "why": [{"q": "above", "a": "hand", "c": "db.move", "y": 1}, {"q": "above", "a": "heel2", "c": "db.move", "y": 0}, {"q": "joint", "j": "hip", "eq": 90, "tol": 8, "c": "db.move"}], "at": [0, 6]}
+      ]
+    },
+    "Bird Dog": {
+      "anchor": "knee",
+      "note": "Bliższa ręka i dalsza noga (przeciwne strony). Ręce są dłuższe od ud, więc na schemacie tułów jest lekko uniesiony z przodu (uproszczenie proporcji).",
+      "frames": [
+        {"n": "start", "p": {"t": 17, "hip": 72, "knee": 90, "ft": 210, "sh": 73, "el": 0}, "why": [{"q": "alignX", "a": "hand", "b": "shoulder", "tol": 8, "c": "bd.setup"}, {"q": "alignX", "a": "knee", "b": "hip", "tol": 6, "c": "bd.setup"}, {"q": "horiz", "a": "hip", "b": "shoulder", "eq": 0, "tol": 18, "c": "bd.level"}], "at": [0, 3]},
+        {"n": "end", "p": {"t": 17, "hip": [72, -16], "knee": [90, 0], "ft": [210, -119], "sh": [163, 73], "el": 0}, "why": [{"q": "horiz", "a": "shoulder", "b": "hand", "eq": 0, "tol": 12, "c": "bd.move"}, {"q": "ahead", "a": "hand", "b": "shoulder", "c": "bd.move"}, {"q": "horiz", "a": "hip", "b": "ankle2", "eq": 0, "tol": 12, "c": "bd.move"}, {"q": "ahead", "a": "hip", "b": "ankle2", "c": "bd.move"}, {"q": "horiz", "a": "hip", "b": "shoulder", "eq": 0, "tol": 18, "c": "bd.level"}], "at": [0, 3]}
+      ]
+    },
+    "Mountain Climbers": {
+      "anchor": "hand",
+      "note": "Dwie pozycje: nogi zamieniają się miejscami. Tempo ilustracyjne (animacja wolniejsza niż ćwiczenie).",
+      "frames": [
+        {"n": "start", "p": {"t": 20, "hip": [61, 0], "knee": [114, 0], "ft": [-94, -75], "sh": 72, "el": 0}, "why": [{"q": "joint", "j": "knee2", "eq": 0, "tol": 8, "c": "mc.straight"}, {"q": "alignX", "a": "hand", "b": "shoulder", "tol": 6, "c": "mc.setup"}], "at": [0, 1.5]},
+        {"n": "end", "p": {"t": 20, "hip": [0, 61], "knee": [0, 114], "ft": [-75, -94], "sh": 72, "el": 0}, "why": [{"q": "joint", "j": "knee", "eq": 0, "tol": 8, "c": "mc.straight"}, {"q": "alignX", "a": "hand", "b": "shoulder", "tol": 6, "c": "mc.setup"}], "at": [0, 1.5]}
+      ]
+    },
+    "Rowing Machine": {
+      "anchor": "heel",
+      "props": [{"k": "line", "pts": [[-40, 10], [44, 10]]}, {"k": "rect", "x": 36, "y": 4, "w": 4, "h": 16}, {"k": "cable", "at": "hand", "from": [62, 26]}, {"k": "grip", "at": "hand", "r": 3}],
+      "note": "Trzy pozycje: wyjściowa, po pracy nóg, koniec pociągnięcia; powrót w odwrotnej kolejności (erg.recovery). Pochylenie tułowia ilustracyjne.",
+      "frames": [
+        {"n": "start", "p": {"t": 65, "hip": 132, "knee": 93, "ft": 50, "sh": 60, "el": 0}, "why": [{"q": "horiz", "a": "knee", "b": "ankle", "eq": 90, "tol": 15, "c": "erg.setup"}, {"q": "joint", "j": "el", "eq": 0, "tol": 4, "c": "erg.setup"}], "at": [40, 8]},
+        {"n": "mid", "p": {"t": 65, "hip": 116, "knee": 9, "ft": 50, "sh": 88, "el": 0}, "why": [{"q": "joint", "j": "knee", "eq": 3, "tol": 8, "c": "erg.drive"}, {"q": "joint", "j": "el", "eq": 0, "tol": 4, "c": "erg.drive"}], "at": [40, 8]},
+        {"n": "end", "p": {"t": 105, "hip": 72, "knee": 1, "ft": 50, "sh": -42, "el": 130}, "why": [{"q": "joint", "j": "knee", "eq": 3, "tol": 8, "c": "erg.finish"}, {"q": "horiz", "a": "hip", "b": "shoulder", "eq": 75, "tol": 12, "c": "erg.finish"}, {"q": "touch", "a": "hand", "b": "hip", "tol": 6, "c": "erg.finish", "tb": [16, 8]}], "at": [40, 8]}
+      ]
+    }
+  },
+  "open": {
+    "Inverted Row": "Pięty są osią obrotu, a drążek stoi w miejscu — w szkielecie bez grubości tułowia klatka nie dochodzi do drążka bez przesuwania stóp; rysunek wymagałby modelu grubości klatki. Do zrobienia z rozszerzonym modelem.",
+    "Sumo Deadlift": "Różnica względem martwego ciągu klasycznego (szerokie ustawienie stóp, kolana na zewnątrz) jest widoczna tylko z przodu, a ruch bioder i kolan — tylko z boku; jeden widok 2D pokazałby zwykły martwy ciąg. Potrzebny widok z przodu dla kończyn dolnych.",
+    "Hack Squat": "Ruch po prowadnicy maszyny z oparciem pod stałym kątem — wymaga modelu prowadnicy (biodro i barki przesuwają się wzdłuż oparcia); bez niego rysunek byłby zwykłym przysiadem.",
+    "Chest Fly (hantle)": "Ruch w płaszczyźnie poziomej (odwodzenie poziome ramion) — z boku i z przodu ramię tylko się skraca; potrzebny widok z góry albo 3D.",
+    "Cable Fly": "Ruch w płaszczyźnie poziomej (przywodzenie poziome ramion) — z boku i z przodu niewidoczny; potrzebny widok z góry albo 3D.",
+    "Reverse Fly (hantle)": "Odwodzenie poziome ramion w opadzie tułowia — z boku ramię tylko się skraca; potrzebny widok z góry albo 3D.",
+    "Reverse Pec Deck": "Odwodzenie poziome ramion siedząc — ruch w płaszczyźnie poziomej, niewidoczny w widoku z boku ani z przodu.",
+    "Russian Twist": "Ruch to skręt tułowia — szkielet 2D nie ma obrotu wokół osi kręgosłupa.",
+    "Crunch": "Ruch to zgięcie kręgosłupa (unoszenie łopatek przy lędźwiach na podłodze) — tułów w modelu jest sztywnym odcinkiem; rysunek pokazałby zgięcie w biodrach, czyli inne ćwiczenie.",
+    "Side Plank": "Pozycja w płaszczyźnie czołowej (odwiedzenie, zgięcie boczne) — model widoku z boku liczy zgięcie i wyprost, więc kąty byłyby źle nazwane; potrzebny widok z przodu dla całego ciała w podporze.",
+    "Box Jump": "Skok — tor lotu i lądowanie nie dają się uczciwie pokazać 2–3 pozycjami w pętli tam i z powrotem (powrót wyglądałby jak skok w tył)."
+  }
+}

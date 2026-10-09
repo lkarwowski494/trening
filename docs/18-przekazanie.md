@@ -249,3 +249,10 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
   najmniej dwiema niezależnymi organizacjami, co jest oznaczone w dokumencie; brakujące uzupełniamy darmowymi źródłami szczebla 2–3, gdy
   się znajdą. Odrzucone: zakup podręczników (koszt), jedno źródło (reguła właściciela z 08.10). Sekcja „Technika” na ekranie ćwiczenia
   domyślnie zwinięta, z odesłaniem do lekarza lub fizjoterapeuty przy bólu.
+- 09.10.2026 (ok. 03:30): **figury ruchu, etap 2–3** scalone — własne figury SVG dla 71 ćwiczeń (szkielet z kątów stawów, 1–3 pozycje, pętla
+  z pauzą, „Ogranicz ruch” → statyczne pozycje, kolory z motywu, bez sieci; `lib/figures`, docs/research/28 generowany, `check:figures` w verify).
+  Każda poza sprawdzana testem geometrii względem zdania wskazówki etapu 1; kąty bez źródła oznaczone jako uproszczenie ilustracyjne, podpis
+  „Rysunek schematyczny — pozycje orientacyjne.”. Granice zakresu stawów w testach: CDC Normal Joint ROM (Soucie i in. 2011), Dill i in. 2014,
+  Anderton i in. 2012 (granice testowe, nie treść w aplikacji). Odrzucone: ręczny SVG na ćwiczenie (nie da się automatycznie sprawdzić),
+  zdjęcia/wideo (licencje, rozmiar). Otwarte: 11 ćwiczeń bez figury (ruch w płaszczyźnie poziomej, skręt, zgięcie kręgosłupa, skok i in. —
+  wymaga rozszerzenia modelu), scenariusz Maestro dla sekcji „Technika”.

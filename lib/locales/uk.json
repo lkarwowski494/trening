@@ -1307,5 +1307,12 @@
  "stożek rotatorów": "ротаторна манжета",
  "zębaty przedni": "передній зубчастий м’яз",
  "piszczelowy przedni": "передній великогомілковий м’яз",
- "zginacze biodra": "згиначі стегна"
+ "zginacze biodra": "згиначі стегна",
+ "Rysunek ruchu: {opis}": "Малюнок руху: {opis}",
+ "Zatrzymaj animację": "Призупинити анімацію",
+ "Wznów animację": "Продовжити анімацію",
+ "Pozycja wyjściowa": "Вихідне положення",
+ "W trakcie": "Під час руху",
+ "Pozycja końcowa": "Кінцеве положення",
+ "Rysunek schematyczny — pozycje orientacyjne.": "Схематичний малюнок — положення орієнтовні."
 }

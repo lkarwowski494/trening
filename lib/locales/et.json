@@ -1307,5 +1307,12 @@
  "stożek rotatorów": "rotaatormanssett",
  "zębaty przedni": "eesmine saaglihas",
  "piszczelowy przedni": "eesmine sääreluulihas",
- "zginacze biodra": "puusapainutajad"
+ "zginacze biodra": "puusapainutajad",
+ "Rysunek ruchu: {opis}": "Liigutuse joonis: {opis}",
+ "Zatrzymaj animację": "Peata animatsioon",
+ "Wznów animację": "Jätka animatsiooni",
+ "Pozycja wyjściowa": "Lähteasend",
+ "W trakcie": "Liigutuse ajal",
+ "Pozycja końcowa": "Lõppasend",
+ "Rysunek schematyczny — pozycje orientacyjne.": "Skemaatiline joonis — asendid on ligikaudsed."
 }
