@@ -12,19 +12,38 @@ import { pluralIndex } from './plural';
  */
 
 /** Języki aplikacji (decyzja właściciela 05.10.2026: Europa Środkowo-Wschodnia + hiszpański i portugalski; 07.10.2026 wariant B: + niemiecki, francuski,
- * włoski, niderlandzki, szwedzki, duński, norweski (bokmål), fiński, turecki, grecki). Kolejność = lista w ustawieniach. */
-export const LANGS = ['pl', 'en', 'cs', 'sk', 'hu', 'ro', 'bg', 'hr', 'sl', 'sr', 'lt', 'lv', 'et', 'uk', 'es', 'pt', 'de', 'fr', 'it', 'nl', 'sv', 'da', 'nb', 'fi', 'tr', 'el'] as const;
+ * włoski, niderlandzki, szwedzki, duński, norweski (bokmål), fiński, turecki, grecki; 09.10.2026 fala 1 nowych języków: hiszpański Ameryki Łacińskiej
+ * es-419 i portugalski brazylijski pt-BR — docs/18). Kolejność = lista w ustawieniach. */
+export const LANGS = ['pl', 'en', 'cs', 'sk', 'hu', 'ro', 'bg', 'hr', 'sl', 'sr', 'lt', 'lv', 'et', 'uk', 'es', 'es-419', 'pt', 'pt-BR', 'de', 'fr', 'it', 'nl', 'sv', 'da', 'nb', 'fi', 'tr', 'el'] as const;
 export type Lang = typeof LANGS[number];
 export type LangSetting = 'auto' | Lang;
 /** Nazwa języka w nim samym (lista w ustawieniach). */
-export const LANG_NAME: Record<Lang, string> = { pl: 'Polski', en: 'English', cs: 'Čeština', sk: 'Slovenčina', hu: 'Magyar', ro: 'Română', bg: 'Български', hr: 'Hrvatski', sl: 'Slovenščina', sr: 'Српски', lt: 'Lietuvių', lv: 'Latviešu', et: 'Eesti', uk: 'Українська', es: 'Español', pt: 'Português', de: 'Deutsch', fr: 'Français', it: 'Italiano', nl: 'Nederlands', sv: 'Svenska', da: 'Dansk', nb: 'Norsk', fi: 'Suomi', tr: 'Türkçe', el: 'Ελληνικά' };
+export const LANG_NAME: Record<Lang, string> = { pl: 'Polski', en: 'English', cs: 'Čeština', sk: 'Slovenčina', hu: 'Magyar', ro: 'Română', bg: 'Български', hr: 'Hrvatski', sl: 'Slovenščina', sr: 'Српски', lt: 'Lietuvių', lv: 'Latviešu', et: 'Eesti', uk: 'Українська', es: 'Español (España)', 'es-419': 'Español (Latinoamérica)', pt: 'Português (Portugal)', 'pt-BR': 'Português (Brasil)', de: 'Deutsch', fr: 'Français', it: 'Italiano', nl: 'Nederlands', sv: 'Svenska', da: 'Dansk', nb: 'Norsk', fi: 'Suomi', tr: 'Türkçe', el: 'Ελληνικά' };
 /** Nazwa aplikacji pod ikoną i w tekstach (folder w Plikach, Zdrowie, powiadomienia, stopka). Decyzja właściciela 05.10.2026 (potwierdzona 06.10):
  * lokalne słowo tam, gdzie jest podobne do „Trening” (to samo co nazwa zakładki), w pozostałych językach „Training”. Teksty biorą ją parametrem {app}
  * (jedno źródło); test i18n-locales pilnuje locales/<kod>.json (CFBundleDisplayName) i store/app-store-names.json. */
-export const APP_NAME: Record<Lang, string> = { pl: 'Trening', en: 'Training', cs: 'Trénink', sk: 'Tréning', hu: 'Training', ro: 'Training', bg: 'Training', hr: 'Trening', sl: 'Trening', sr: 'Тренинг', lt: 'Treniruotė', lv: 'Treniņš', et: 'Treening', uk: 'Training', es: 'Training', pt: 'Treino', de: 'Training', fr: 'Training', it: 'Training', nl: 'Training', sv: 'Träning', da: 'Træning', nb: 'Trening', fi: 'Treeni', tr: 'Training', el: 'Training' };
+export const APP_NAME: Record<Lang, string> = { pl: 'Trening', en: 'Training', cs: 'Trénink', sk: 'Tréning', hu: 'Training', ro: 'Training', bg: 'Training', hr: 'Trening', sl: 'Trening', sr: 'Тренинг', lt: 'Treniruotė', lv: 'Treniņš', et: 'Treening', uk: 'Training', es: 'Training', 'es-419': 'Training', pt: 'Treino', 'pt-BR': 'Treino', de: 'Training', fr: 'Training', it: 'Training', nl: 'Training', sv: 'Träning', da: 'Træning', nb: 'Trening', fi: 'Treeni', tr: 'Training', el: 'Training' };
 /** Domyślny tag regionu do dat i liczb, gdy telefon ma inny region. */
-const TAG: Record<Lang, string> = { pl: 'pl-PL', en: 'en-US', cs: 'cs-CZ', sk: 'sk-SK', hu: 'hu-HU', ro: 'ro-RO', bg: 'bg-BG', hr: 'hr-HR', sl: 'sl-SI', sr: 'sr-RS', lt: 'lt-LT', lv: 'lv-LV', et: 'et-EE', uk: 'uk-UA', es: 'es-ES', pt: 'pt-PT', de: 'de-DE', fr: 'fr-FR', it: 'it-IT', nl: 'nl-NL', sv: 'sv-SE', da: 'da-DK', nb: 'nb-NO', fi: 'fi-FI', tr: 'tr-TR', el: 'el-GR' };
+const TAG: Record<Lang, string> = { pl: 'pl-PL', en: 'en-US', cs: 'cs-CZ', sk: 'sk-SK', hu: 'hu-HU', ro: 'ro-RO', bg: 'bg-BG', hr: 'hr-HR', sl: 'sl-SI', sr: 'sr-RS', lt: 'lt-LT', lv: 'lv-LV', et: 'et-EE', uk: 'uk-UA', es: 'es-ES', 'es-419': 'es-419', pt: 'pt-PT', 'pt-BR': 'pt-BR', de: 'de-DE', fr: 'fr-FR', it: 'it-IT', nl: 'nl-NL', sv: 'sv-SE', da: 'da-DK', nb: 'nb-NO', fi: 'fi-FI', tr: 'tr-TR', el: 'el-GR' };
 export const isLang = (x: unknown): x is Lang => typeof x === 'string' && (LANGS as readonly string[]).includes(x);
+/** Warianty regionalne (fala 1, 09.10.2026, wariant B): słownik wariantu zawiera tylko teksty różne od języka bazowego (lib/locales/<kod>.json
+ * nakładany na bazowy — lib/locales/index.ts, lib/cues/index.ts); liczba mnoga, wielkie litery i porównania jak w języku bazowym. */
+export const BASE_LANG: Partial<Record<Lang, Lang>> = { 'es-419': 'es', 'pt-BR': 'pt' };
+export const baseLang = (l: Lang): Lang => BASE_LANG[l] ?? l;
+/** Regiony, w których hiszpański dziedziczy po es-419 (CLDR supplementalData.xml, parentLocales: parent="es_419"); dodatkowo sam kod 419. */
+export const ES_419_REGIONS = ['419', 'AR', 'BO', 'BR', 'BZ', 'CL', 'CO', 'CR', 'CU', 'DO', 'EC', 'GT', 'HN', 'JP', 'MX', 'NI', 'PA', 'PE', 'PR', 'PY', 'SV', 'US', 'UY', 'VE'] as const;
+/**
+ * Język aplikacji dla tagu języka telefonu (BCP 47, np. „pt-BR”, „es-419”, „es_MX”, „sr-Latn-RS”). Obsługiwany → ten, inny → angielski.
+ * Portugalski: region BR albo sam „pt” (CLDR likelySubtags: pt → pt_Latn_BR) → pt-BR; każdy inny region (PT oraz dziedziczące po pt_PT: AO, MZ, CV…) → pt.
+ * Hiszpański: region z ES_419_REGIONS → es-419; ES, inne (GQ, PH, EA, IC…) i sam „es” (CLDR: es → es_Latn_ES) → es.
+ */
+export function resolveLang(tag: string | null | undefined, code?: string | null): Lang {
+  const parts = (tag || code || '').split(/[-_]/); const base = (code || parts[0] || '').toLowerCase();
+  const region = (parts.slice(1).find(x => /^([A-Za-z]{2}|\d{3})$/.test(x)) ?? '').toUpperCase();
+  if (base === 'pt') return !region || region === 'BR' ? 'pt-BR' : 'pt';
+  if (base === 'es') return (ES_419_REGIONS as readonly string[]).includes(region) ? 'es-419' : 'es';
+  return isLang(base) ? base : 'en';
+}
 
 let deviceTag = 'pl-PL';
 let current: Lang = 'pl';
@@ -35,7 +54,7 @@ export function detectLang(): Lang {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     const loc = (require('expo-localization') as typeof import('expo-localization')).getLocales()[0];
     deviceTag = loc?.languageTag || deviceTag;
-    return isLang(loc?.languageCode) ? loc!.languageCode as Lang : 'en';
+    return resolveLang(loc?.languageTag, loc?.languageCode);
   } catch { return 'pl'; }
 }
 /** Język z ustawień; tag urządzenia czytany zawsze (także przy wymuszonym języku — np. English na brytyjskim telefonie → daty en-GB). */
@@ -49,7 +68,7 @@ export const appName = () => APP_NAME[current];
 export const LB_REGIONS = ['US', 'LR', 'MM'] as const;
 /** Domyślna jednostka masy z regionu urządzenia (np. en-US → lb). */
 export function deviceUnit(tag: string = deviceTag): 'kg' | 'lb' { const r = (tag.split(/[-_]/).find((x, i) => i > 0 && /^[A-Za-z]{2}$/.test(x)) ?? '').toUpperCase(); return (LB_REGIONS as readonly string[]).includes(r) ? 'lb' : 'kg'; }
-export const locale = () => current === 'pl' ? 'pl-PL' : current === 'sr' ? 'sr-Cyrl-RS' : deviceTag.split(/[-_]/)[0].toLowerCase() === current ? deviceTag : TAG[current];
+export const locale = () => current === 'pl' ? 'pl-PL' : current === 'sr' ? 'sr-Cyrl-RS' : deviceTag.split(/[-_]/)[0].toLowerCase() === baseLang(current) ? deviceTag : TAG[current];
 /** Przecinek dziesiętny w polach liczbowych — ten sam separator co w fmtNum (audyt ac5d764 MEDIUM 1: dotąd tylko po polsku). */
 let commaCache: [string, boolean] | null = null; /* audyt cd60eec LOW: bez toLocaleString przy każdym renderze pola */
 export const decimalComma = () => { const l = locale(); if (commaCache?.[0] === l) return commaCache[1]; let c: boolean; try { c = (1.5).toLocaleString(l).includes(','); } catch { c = current !== 'en'; } commaCache = [l, c]; return c; };

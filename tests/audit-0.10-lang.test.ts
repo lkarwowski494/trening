@@ -24,7 +24,7 @@ export const TERMS: Record<NonPl, { rest: RegExp; pause: RegExp }> = {
   bg: { rest: /почив/i, pause: /пауз/i }, hr: { rest: /odmor/i, pause: /pauz/i }, sl: { rest: /počit/i, pause: /premor|ustav/i },
   sr: { rest: /одмор/i, pause: /пауз/i }, lt: { rest: /poils/i, pause: /pauz|pristabd/i }, lv: { rest: /atpūt/i, pause: /pauz|aptur/i },
   et: { rest: /paus/i, pause: /peat/i }, uk: { rest: /відп/i /* także skrót „відп.” w nagłówku kolumny */, pause: /пауз|призупин/i },
-  es: { rest: /descans/i, pause: /paus/i }, pt: { rest: /descans/i, pause: /paus/i },
+  es: { rest: /descans/i, pause: /paus/i }, pt: { rest: /descans/i, pause: /paus/i }, 'es-419': { rest: /descans/i, pause: /paus/i }, 'pt-BR': { rest: /descans/i, pause: /paus/i },
   de: { rest: /pause/i, pause: /anhalt|angehalten/i }, fr: { rest: /repos/i, pause: /pause/i }, it: { rest: /recuper/i, pause: /paus/i },
   nl: { rest: /rust/i, pause: /pauz/i }, sv: { rest: /vil[ao]/i, pause: /paus/i }, da: { rest: /hvil/i, pause: /pause/i }, nb: { rest: /hvil/i, pause: /pause/i },
   fi: { rest: /palaut/i, pause: /tauk|tauo|keskeyt/i }, tr: { rest: /dinlen/i, pause: /durakla/i }, el: { rest: /δι[άα]λε[ίι]μμ/i, pause: /παύσ|παυσ/i },

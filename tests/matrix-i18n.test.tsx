@@ -11,7 +11,7 @@
  */
 import { EN } from '@/lib/i18n.en';
 import { LOCALES } from '@/lib/locales';
-import { LANGS, APP_NAME, LANG_NAME, applyLang, tp, locale, decimalComma, lang, type Lang } from '@/lib/i18n';
+import { LANGS, APP_NAME, LANG_NAME, applyLang, tp, locale, decimalComma, lang, baseLang, type Lang } from '@/lib/i18n';
 import { PLURAL_FORMS, pluralIndex } from '@/lib/plural';
 import { allLabels } from '@/lib/equipment';
 import { fmtDate, fmtTime } from '@/lib/store';
@@ -53,12 +53,12 @@ const SAME_IN: Partial<Record<Lang, string[]>> = {
   da: ['sek.'], nb: ['sek.', 'Trening' /* APP_NAME.nb */], fi: ['Lista' /* fiń. lista; „Historia” — klucz usunięty 09.10.2026 (TST-08) */],
   en: ['Folder' /* folder (ang.) — 07.10.2026 wieczór, foldery szablonów */],
 };
-const sameOk = (l: Lang, k: string) => SAME_ANY.has(k) || (SAME_IN[l] ?? []).includes(k);
+const sameOk = (l: Lang, k: string) => SAME_ANY.has(k) || (SAME_IN[l] ?? []).includes(k) || (SAME_IN[baseLang(l)] ?? []).includes(k); /* fala 1: wariant (pt-BR, es-419) jak język bazowy */
 
 /* Litery polskie, których dany język nie ma (ąęłńśźż w każdym słowniku sprawdza i18n-locales — tu ć i ó oraz cały komplet w EN). */
 const HAS_C_ACUTE: Lang[] = ['hr']; /* chorwacki: ć; serbski w aplikacji cyrylicą */
 const HAS_O_ACUTE: Lang[] = ['cs', 'sk', 'hu', 'es', 'pt', 'nl' /* niderl. akcent wyróżniający: „vóór”, „óf” (07.10.2026) */];
-const plLeak = (l: Lang): RegExp => l === 'en' ? /[ąćęłńóśźżĄĆĘŁŃÓŚŹŻ]/ : new RegExp(`[${HAS_C_ACUTE.includes(l) ? '' : 'ćĆ'}${HAS_O_ACUTE.includes(l) ? '' : 'óÓ'}]`);
+const plLeak = (l: Lang): RegExp => l === 'en' ? /[ąćęłńóśźżĄĆĘŁŃÓŚŹŻ]/ : new RegExp(`[${HAS_C_ACUTE.includes(baseLang(l)) ? '' : 'ćĆ'}${HAS_O_ACUTE.includes(baseLang(l)) ? '' : 'óÓ'}]`); /* wariant — alfabet języka bazowego */
 
 /* Interpunkcja końcowa: ta sama klasa co w kluczu (. ? ! : …). Kropka skrótu to nie koniec zdania: polskie skróty po stronie klucza
  * i krótkie skróty (≤ 3 wyrazy, ostatni ≤ 6 liter) po stronie tłumaczenia (np. „peso máx.”, „vnt.”). */
@@ -172,7 +172,7 @@ describe('liczba mnoga: lib/plural.ts zgodnie z CLDR (Intl.PluralRules) i tp() w
       for (const n of FR) expect([l, n, pluralIndex(l, n)]).toEqual([l, n, last]);
       if (FR.some(n => cldrIndex(l, pr, n) !== last)) differs.push(l);
     }
-    expect(differs).toEqual(['cs', 'sk', 'ro', 'hr', 'sl', 'sr', 'lt', 'lv', 'fr' /* fr: „one” dla 0 ≤ n < 2 (CLDR) — 0,5 i 1,5 */, 'da' /* da: „one” także dla 0,5 i 1,5 (t ≠ 0, i = 0/1) */]);
+    expect(differs).toEqual(['cs', 'sk', 'ro', 'hr', 'sl', 'sr', 'lt', 'lv', 'pt-BR' /* pt-BR jak fr: „one” dla 0 ≤ i ≤ 1 (CLDR „pt”), fala 1 */, 'fr' /* fr: „one” dla 0 ≤ n < 2 (CLDR) — 0,5 i 1,5 */, 'da' /* da: „one” także dla 0,5 i 1,5 (t ≠ 0, i = 0/1) */]);
     /* wywołania tp() w kodzie: pierwszy argument to licznik (całkowity) — gdy ktoś poda wartość ułamkową, ten test trzeba rozszerzyć */
     const fs = require('fs') as typeof import('fs'); const path = require('path') as typeof import('path');
     const files: string[] = []; const walk = (d: string) => { for (const f of fs.readdirSync(d)) { const p = path.join(d, f); if (fs.statSync(p).isDirectory()) walk(p); else if (/\.tsx?$/.test(f) && !/i18n(\.en)?\.ts$/.test(f)) files.push(p); } };
@@ -189,14 +189,14 @@ describe('daty i liczby: fmtDate / fmtTime / fmtNum / locale() / decimalComma() 
   afterAll(() => { global.__locales = [{ languageCode: 'pl', languageTag: 'pl-PL' }]; applyLang('pl'); });
   /** Ten sam język, inny region (telefon) — locale() bierze region telefonu (poza pl → pl-PL i sr → cyrylica). */
   const ALT: Partial<Record<Lang, string>> = { en: 'en-GB', pt: 'pt-BR', es: 'es-MX', sr: 'sr-Latn-RS', hr: 'hr-BA', uk: 'uk-UA', hu: 'hu-HU', ro: 'ro-MD', pl: 'pl-GB', cs: 'cs-CZ', sk: 'sk-SK', bg: 'bg-BG', sl: 'sl-SI', lt: 'lt-LT', lv: 'lv-LV', et: 'et-EE',
-    de: 'de-AT', fr: 'fr-CA', it: 'it-CH', nl: 'nl-BE', sv: 'sv-FI', da: 'da-DK', nb: 'nb-NO', fi: 'fi-FI', tr: 'tr-TR', el: 'el-CY' /* 07.10.2026 */ };
+    'es-419': 'es-AR', 'pt-BR': 'pt-PT' /* fala 1: ten sam język bazowy, inny region */, de: 'de-AT', fr: 'fr-CA', it: 'it-CH', nl: 'nl-BE', sv: 'sv-FI', da: 'da-DK', nb: 'nb-NO', fi: 'fi-FI', tr: 'tr-TR', el: 'el-CY' /* 07.10.2026 */ };
   const now = new Date(); const D = new Date(now.getFullYear(), 2, 15, 9, 5).getTime(); const D_OLD = new Date(now.getFullYear() - 1, 10, 3, 18, 40).getTime();
   const cases = LANGS.flatMap(l => [[l, 'de-DE'], [l, ALT[l]!]] as [Lang, string][]);
   test.each(cases)('%s przy telefonie %s', (l, device) => {
     global.__locales = [{ languageCode: device.split('-')[0], languageTag: device }]; applyLang(l); expect(lang()).toBe(l);
     const loc = locale();
     /* locale(): pl zawsze pl-PL, sr zawsze cyrylica, ten sam język — region telefonu, inny język — domyślny region języka */
-    if (l === 'pl') expect(loc).toBe('pl-PL'); else if (l === 'sr') expect(loc).toBe('sr-Cyrl-RS'); else if (device.startsWith(l + '-')) expect(loc).toBe(device); else expect(loc.startsWith(l + '-')).toBe(true);
+    if (l === 'pl') expect(loc).toBe('pl-PL'); else if (l === 'sr') expect(loc).toBe('sr-Cyrl-RS'); else if (device.startsWith(baseLang(l) + '-')) expect(loc).toBe(device); else expect(loc.startsWith(baseLang(l) + '-')).toBe(true); /* wariant: region telefonu, gdy pasuje język bazowy */
     expect(Intl.DateTimeFormat.supportedLocalesOf([loc])).toEqual([loc]);
     /* data: miesiąc i dzień tygodnia z CLDR tego regionu (część krajów pisze miesiąc liczbą: cs/sk „ne 15. 3.”, bg „нд, 15.03”, pt „15/03”),
      * nigdy angielskie nazwy poza en; rok tylko dla innego roku */
@@ -220,7 +220,7 @@ describe('daty i liczby: fmtDate / fmtTime / fmtNum / locale() / decimalComma() 
   });
   test('przecinek dziesiętny: wszystkie języki poza angielskim (domyślny region) — jak w polu liczbowym NumInput', () => {
     const comma = LANGS.filter(l => { global.__locales = [{ languageCode: 'de', languageTag: 'de-DE' }]; applyLang(l); return decimalComma(); });
-    expect(comma).toEqual(LANGS.filter(l => l !== 'en'));
+    expect(comma).toEqual(LANGS.filter(l => l !== 'en' && l !== 'es-419' /* es-419 (CLDR): kropka dziesiętna, jak Meksyk; telefon es-AR → przecinek (tests/i18n-variants) */));
   });
 });
 

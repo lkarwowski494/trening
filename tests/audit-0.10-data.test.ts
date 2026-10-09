@@ -11,6 +11,7 @@ import { dayStatus, doneOn } from '@/lib/plan';
 import { weeklyTotals, thisMonday } from '@/lib/stats';
 import { buildBackup, parseBackup, buildCsv, onWorkoutSaved } from '@/lib/backup';
 import { fresh, saved, addWorkout, ex } from './helpers';
+import { LANGS } from '@/lib/i18n';
 
 const NOW = new Date(2026, 9, 8, 18).getTime();
 const at = (m: number, d: number, h = 18) => new Date(2026, m, d, h).getTime();
@@ -199,7 +200,7 @@ describe('Masa ciała z datą (fala 2, decyzja: wdrożyć): e1RM dawnych sesji z
 describe('Uprawnienie Zdrowia (app.json, InfoPlist.strings w 26 językach): zapis treningów siłowych I cardio', () => {
   const fs = require('fs') as typeof import('fs'); const path = require('path') as typeof import('path'); const root = path.join(__dirname, '..');
   test('opis NSHealthUpdateUsageDescription mówi o cardio we wszystkich językach; app.json = locales/pl.json', () => {
-    const files = fs.readdirSync(path.join(root, 'locales')).filter(f => f.endsWith('.json')); expect(files).toHaveLength(26);
+    const files = fs.readdirSync(path.join(root, 'locales')).filter(f => f.endsWith('.json')); expect(files.map(f => f.replace(/\.json$/, '')).sort()).toEqual([...LANGS].sort()); /* fala 1 (09.10.2026): liczba z LANGS, nie wpisana ręcznie */
     for (const f of files) { const d = JSON.parse(fs.readFileSync(path.join(root, 'locales', f), 'utf8')); expect([f, /cardio|kardi|кардио|кардіо|καρδιο|kondi/i.test(d.NSHealthUpdateUsageDescription)]).toEqual([f, true]); }
     const app = JSON.parse(fs.readFileSync(path.join(root, 'app.json'), 'utf8')); const hk = app.expo.plugins.find((p: unknown) => Array.isArray(p) && p[0] === '@kingstinct/react-native-healthkit')[1];
     expect(hk.NSHealthUpdateUsageDescription).toBe(JSON.parse(fs.readFileSync(path.join(root, 'locales/pl.json'), 'utf8')).NSHealthUpdateUsageDescription);

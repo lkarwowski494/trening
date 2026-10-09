@@ -257,7 +257,8 @@ describe('i18n.detectLang', () => {
     global.__locales = []; expect(i18n.detectLang()).toBe('en');
     global.__locales = [{ languageCode: 'en', languageTag: 'en-GB' }]; expect(i18n.detectLang()).toBe('en');
     i18n.applyLang('auto'); expect(i18n.lang()).toBe('en'); expect(i18n.locale()).toBe('en-GB');
-    global.__locales = [{ languageCode: 'pt', languageTag: 'pt-BR' }]; i18n.applyLang('auto'); expect(i18n.lang()).toBe('pt'); expect(i18n.locale()).toBe('pt-BR');
+    global.__locales = [{ languageCode: 'pt', languageTag: 'pt-BR' }]; i18n.applyLang('auto'); expect(i18n.lang()).toBe('pt-BR'); expect(i18n.locale()).toBe('pt-BR'); /* fala 1 (09.10.2026): Brazylia → pt-BR */
+    global.__locales = [{ languageCode: 'pt', languageTag: 'pt-PT' }]; i18n.applyLang('auto'); expect(i18n.lang()).toBe('pt'); expect(i18n.locale()).toBe('pt-PT');
     /* wymuszony język: region telefonu nie pasuje do języka → domyślny region języka */
     i18n.applyLang('cs'); expect(i18n.locale()).toBe('cs-CZ');
   });
