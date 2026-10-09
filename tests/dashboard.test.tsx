@@ -72,7 +72,7 @@ describe('ekran', () => {
     expect(screen.queryByTestId('first-steps')).toBeNull(); expect(screen.getByText('Ten tydzień')).toBeTruthy();
     expect(screen.getByLabelText('Treningi: 1, poprzedni tydzień 1')).toBeTruthy(); /* audyt 0.10 A5: kafelek liczy sesje, dni planu w opisie niżej */ expect(screen.getByLabelText('Serie: 2, poprzedni tydzień 2')).toBeTruthy();
     expect(screen.getByLabelText('Czas: 1 h, poprzedni tydzień 1 h')).toBeTruthy(); /* pełna godzina — bez „0 min” */ expect(screen.getAllByText(/^poprz\.: /).length).toBe(3); expect('poprz.: {v}'.replace('{v}', '2')).toBe('poprz.: 2'); expect(screen.getAllByText('poprz.: 2').length).toBe(1); /* tekst z t() — macierz */
-    expect(screen.getByTestId('week-barbell').props.accessibilityLabel).toBe('Postęp tygodnia: zrobione 1 z 2 treningów z planu'); expect(screen.getByText('1 z 2')).toBeTruthy(); /* układ B (09.10.2026): sztanga zamiast linii „Z planu w tym tygodniu…”; audyt 0.10 A5 — dni planu osobno od sesji */
+    expect(screen.getByTestId('week-stacks').props.accessibilityLabel).toBe('Postęp tygodnia: 50% planu, zrobione 1 z 2 treningów z planu'); expect(screen.getByText('50% planu tygodnia (1 z 2)')).toBeTruthy(); /* korekta 09.10.2026 ok. 17:00: stosy talerzy i procent planu (wcześniej sztanga) zamiast linii „Z planu w tym tygodniu…”; audyt 0.10 A5 — dni planu osobno od sesji */
     /* właściciel 09.10.2026 ok. 16:20: bez sekcji „Ostatni trening” — ostatni trening w arkuszu „Inny trening” (nazwa · data), w Historii i Kalendarzu */
     expect(screen.queryByText('Ostatni trening')).toBeNull(); const last = lastWorkout()!;
     await tap(screen.getByLabelText('Inny trening')); await flushAll(5);

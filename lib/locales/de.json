@@ -1286,14 +1286,6 @@
  "Inny plan": "Anderer Plan",
  "Zachęta do planu tygodnia": "Hinweis zum Wochenplan",
  "tekst na karcie „Dziś” i w Kalendarzu, gdy nie ma planu": "Text auf der Karte „Heute“ und im Kalender, wenn kein Plan besteht",
- "Postęp tygodnia: zrobione {done} z {n} treningów z planu": "Wochenfortschritt: {done} von {n} geplanten Trainings erledigt",
- "Treningi w tym tygodniu: {n}": "Trainings diese Woche: {n}",
- "{done} z {n}": "{done} von {n}",
- "trening|treningi|treningów": "Training|Trainings",
- "więcej serii niż średnio": "mehr Sätze als im Schnitt",
- "serie około średniej": "Sätze etwa im Schnitt",
- "mniej serii niż średnio": "weniger Sätze als im Schnitt",
- "Talerz przy dniu — serie względem średniej w miesiącu:": "Scheibe am Tag — Sätze im Vergleich zum Monatsschnitt:",
  "Planowanie": "Planung",
  "Plan: {name} · {n} {d} · następny: {next}": "Plan: {name} · {n} {d} · nächstes: {next}",
  "Rozwija planowanie.": "Klappt die Planung auf.",
@@ -1323,5 +1315,9 @@
  "badania naukowe": "wissenschaftliche Studien",
  "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka opisana w ankietach jednego zespołu badaczy (jedno źródło), nie wynik badań skuteczności.": "Trainingswochen in Folge ohne Deload: {n}. Trainer machen meist alle {a}–{b} Wochen einen Deload — das ist Praxis aus Umfragen eines einzigen Forschungsteams (eine Quelle), kein Ergebnis zur Wirksamkeit.",
  "RIR wpisuje się w zakresie 0–{max}; więcej niż {max} powtórzeń w zapasie zapisuje się jako „lekko” (RPE {light}), bo poniżej RPE {min} skala opisuje wysiłek słowami, a nie powtórzeniami w zapasie (Helms i in. 2016).": "RIR wird von 0 bis {max} eingegeben; mehr als {max} Wiederholungen in Reserve werden als „leicht“ gespeichert (RPE {light}), weil die Skala unter RPE {min} die Anstrengung mit Worten beschreibt, nicht mit Wiederholungen in Reserve (Helms u. a. 2016).",
- "Najcięższy ciężar w miejscu dla boju głównego ({list}): {w}. Ciężkie serie {a}–{b} powtórzeń (ok. {p}% maksimum) mogą być z nim za lekkie — jeśli {b} powtórzeń wychodzi lekko, rób więcej powtórzeń, bliżej upadku. Siła też wtedy rośnie, ale zwykle mniej niż przy dużym ciężarze.": "Schwerstes Gewicht an diesem Ort für die Hauptübung ({list}): {w}. Schwere Sätze mit {a}–{b} Wiederholungen (ca. {p} % des Maximums) können damit zu leicht sein — wenn sich {b} Wiederholungen leicht anfühlen, mach mehr Wiederholungen, näher am Muskelversagen. Die Kraft steigt trotzdem, meist aber weniger als mit schweren Gewichten."
+ "Najcięższy ciężar w miejscu dla boju głównego ({list}): {w}. Ciężkie serie {a}–{b} powtórzeń (ok. {p}% maksimum) mogą być z nim za lekkie — jeśli {b} powtórzeń wychodzi lekko, rób więcej powtórzeń, bliżej upadku. Siła też wtedy rośnie, ale zwykle mniej niż przy dużym ciężarze.": "Schwerstes Gewicht an diesem Ort für die Hauptübung ({list}): {w}. Schwere Sätze mit {a}–{b} Wiederholungen (ca. {p} % des Maximums) können damit zu leicht sein — wenn sich {b} Wiederholungen leicht anfühlen, mach mehr Wiederholungen, näher am Muskelversagen. Die Kraft steigt trotzdem, meist aber weniger als mit schweren Gewichten.",
+ "{p}% planu tygodnia ({done} z {n})": "{p} % des Wochenplans ({done} von {n})",
+ "Postęp tygodnia: {p}% planu, zrobione {done} z {n} treningów z planu": "Wochenfortschritt: {p} % des Plans, {done} von {n} geplanten Trainings erledigt",
+ "zaplanowane": "geplant",
+ "Tygodnie z wykonanym planem: {done} z {n}": "Wochen mit erfülltem Plan: {done} von {n}"
 }

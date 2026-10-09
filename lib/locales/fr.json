@@ -1286,14 +1286,6 @@
  "Inny plan": "Autre programme",
  "Zachęta do planu tygodnia": "Invitation au plan de la semaine",
  "tekst na karcie „Dziś” i w Kalendarzu, gdy nie ma planu": "texte sur la carte « Aujourd’hui » et dans le Calendrier quand il n’y a pas de plan",
- "Postęp tygodnia: zrobione {done} z {n} treningów z planu": "Progression de la semaine : {done} séances du plan faites sur {n}",
- "Treningi w tym tygodniu: {n}": "Séances cette semaine : {n}",
- "{done} z {n}": "{done} sur {n}",
- "trening|treningi|treningów": "séance|séances",
- "więcej serii niż średnio": "plus de séries que la moyenne",
- "serie około średniej": "séries proches de la moyenne",
- "mniej serii niż średnio": "moins de séries que la moyenne",
- "Talerz przy dniu — serie względem średniej w miesiącu:": "Disque à côté du jour — séries par rapport à la moyenne du mois :",
  "Planowanie": "Planification",
  "Plan: {name} · {n} {d} · następny: {next}": "Plan : {name} · {n} {d} · prochaine : {next}",
  "Rozwija planowanie.": "Déplie la planification.",
@@ -1323,5 +1315,9 @@
  "badania naukowe": "études scientifiques",
  "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka opisana w ankietach jednego zespołu badaczy (jedno źródło), nie wynik badań skuteczności.": "Semaines d’entraînement d’affilée sans décharge : {n}. Les entraîneurs font généralement une décharge toutes les {a}–{b} semaines — c’est une pratique décrite dans les enquêtes d’une seule équipe de recherche (source unique), pas un résultat sur son efficacité.",
  "RIR wpisuje się w zakresie 0–{max}; więcej niż {max} powtórzeń w zapasie zapisuje się jako „lekko” (RPE {light}), bo poniżej RPE {min} skala opisuje wysiłek słowami, a nie powtórzeniami w zapasie (Helms i in. 2016).": "Le RIR se saisit de 0 à {max} ; au-delà de {max} répétitions en réserve, la valeur est enregistrée comme « léger » (RPE {light}), car en dessous de RPE {min} l’échelle décrit l’effort par des mots, et non par des répétitions en réserve (Helms et al. 2016).",
- "Najcięższy ciężar w miejscu dla boju głównego ({list}): {w}. Ciężkie serie {a}–{b} powtórzeń (ok. {p}% maksimum) mogą być z nim za lekkie — jeśli {b} powtórzeń wychodzi lekko, rób więcej powtórzeń, bliżej upadku. Siła też wtedy rośnie, ale zwykle mniej niż przy dużym ciężarze.": "Charge la plus lourde de ce lieu pour l’exercice principal ({list}) : {w}. Les séries lourdes de {a} à {b} répétitions (environ {p} % du maximum) peuvent être trop légères avec cette charge — si {b} répétitions vous semblent faciles, faites davantage de répétitions, plus près de l’échec. La force progresse quand même, mais généralement moins qu’avec des charges lourdes."
+ "Najcięższy ciężar w miejscu dla boju głównego ({list}): {w}. Ciężkie serie {a}–{b} powtórzeń (ok. {p}% maksimum) mogą być z nim za lekkie — jeśli {b} powtórzeń wychodzi lekko, rób więcej powtórzeń, bliżej upadku. Siła też wtedy rośnie, ale zwykle mniej niż przy dużym ciężarze.": "Charge la plus lourde de ce lieu pour l’exercice principal ({list}) : {w}. Les séries lourdes de {a} à {b} répétitions (environ {p} % du maximum) peuvent être trop légères avec cette charge — si {b} répétitions vous semblent faciles, faites davantage de répétitions, plus près de l’échec. La force progresse quand même, mais généralement moins qu’avec des charges lourdes.",
+ "{p}% planu tygodnia ({done} z {n})": "{p} % du plan de la semaine ({done} sur {n})",
+ "Postęp tygodnia: {p}% planu, zrobione {done} z {n} treningów z planu": "Progression de la semaine : {p} % du plan, {done} séances du plan faites sur {n}",
+ "zaplanowane": "prévu",
+ "Tygodnie z wykonanym planem: {done} z {n}": "Semaines avec le plan accompli : {done} sur {n}"
 }

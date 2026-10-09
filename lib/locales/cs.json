@@ -1286,14 +1286,6 @@
  "Inny plan": "Jiný plán",
  "Zachęta do planu tygodnia": "Výzva k týdennímu plánu",
  "tekst na karcie „Dziś” i w Kalendarzu, gdy nie ma planu": "text na kartě „Dnes“ a v Kalendáři, když není plán",
- "Postęp tygodnia: zrobione {done} z {n} treningów z planu": "Postup týdne: hotovo {done} z {n} tréninků z plánu",
- "Treningi w tym tygodniu: {n}": "Tréninky tento týden: {n}",
- "{done} z {n}": "{done} z {n}",
- "trening|treningi|treningów": "trénink|tréninky|tréninků",
- "więcej serii niż średnio": "více sérií než průměrně",
- "serie około średniej": "série kolem průměru",
- "mniej serii niż średnio": "méně sérií než průměrně",
- "Talerz przy dniu — serie względem średniej w miesiącu:": "Kotouč u dne — série vůči průměru měsíce:",
  "Planowanie": "Plánování",
  "Plan: {name} · {n} {d} · następny: {next}": "Plán: {name} · {n} {d} · další: {next}",
  "Rozwija planowanie.": "Rozbalí plánování.",
@@ -1323,5 +1315,9 @@
  "badania naukowe": "vědecké studie",
  "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka opisana w ankietach jednego zespołu badaczy (jedno źródło), nie wynik badań skuteczności.": "Tréninkové týdny v řadě bez deloadu: {n}. Trenéři obvykle zařazují deload každých {a}–{b} týdnů — je to praxe popsaná v dotaznících jednoho výzkumného týmu (jeden zdroj), ne výsledek výzkumu účinnosti.",
  "RIR wpisuje się w zakresie 0–{max}; więcej niż {max} powtórzeń w zapasie zapisuje się jako „lekko” (RPE {light}), bo poniżej RPE {min} skala opisuje wysiłek słowami, a nie powtórzeniami w zapasie (Helms i in. 2016).": "RIR se zadává v rozsahu 0–{max}; víc než {max} opakování v rezervě se uloží jako „lehce“ (RPE {light}), protože pod RPE {min} popisuje škála úsilí slovy, ne opakováními v rezervě (Helms a kol. 2016).",
- "Najcięższy ciężar w miejscu dla boju głównego ({list}): {w}. Ciężkie serie {a}–{b} powtórzeń (ok. {p}% maksimum) mogą być z nim za lekkie — jeśli {b} powtórzeń wychodzi lekko, rób więcej powtórzeń, bliżej upadku. Siła też wtedy rośnie, ale zwykle mniej niż przy dużym ciężarze.": "Nejtěžší zátěž na tomto místě pro hlavní cvik ({list}): {w}. Těžké série po {a}–{b} opakováních (asi {p} % maxima) s ní můžou být příliš lehké — když je {b} opakování lehkých, dělej víc opakování, blíž k selhání. Síla i tak roste, ale obvykle méně než s velkou zátěží."
+ "Najcięższy ciężar w miejscu dla boju głównego ({list}): {w}. Ciężkie serie {a}–{b} powtórzeń (ok. {p}% maksimum) mogą być z nim za lekkie — jeśli {b} powtórzeń wychodzi lekko, rób więcej powtórzeń, bliżej upadku. Siła też wtedy rośnie, ale zwykle mniej niż przy dużym ciężarze.": "Nejtěžší zátěž na tomto místě pro hlavní cvik ({list}): {w}. Těžké série po {a}–{b} opakováních (asi {p} % maxima) s ní můžou být příliš lehké — když je {b} opakování lehkých, dělej víc opakování, blíž k selhání. Síla i tak roste, ale obvykle méně než s velkou zátěží.",
+ "{p}% planu tygodnia ({done} z {n})": "{p} % týdenního plánu ({done} z {n})",
+ "Postęp tygodnia: {p}% planu, zrobione {done} z {n} treningów z planu": "Postup týdne: {p} % plánu, hotovo {done} z {n} tréninků z plánu",
+ "zaplanowane": "naplánováno",
+ "Tygodnie z wykonanym planem: {done} z {n}": "Týdny se splněným plánem: {done} z {n}"
 }

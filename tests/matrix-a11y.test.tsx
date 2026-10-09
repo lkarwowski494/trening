@@ -16,6 +16,7 @@ import { renderApp, flushAll, screen, go, act, fireEvent } from './app';
 import { fresh, seedWithDemo } from './helpers';
 import * as plan from '@/lib/plan';
 import { appRoutes, routeGaps } from './routes';
+import { DAY_MARKS, MARK_STROKE } from '@/lib/motif';
 import { richState, routesFor } from './a11y-routes';
 
 jest.setTimeout(180000);
@@ -181,6 +182,10 @@ describe('kontrast palety (WCAG 2.1) — pary używane w kodzie, których nie sp
      * i tor wyłączonego przełącznika (ctrlLine) do każdego tła, na którym stoją */
     need(th.dangerInk, th.danger, 4.5, 'dangerInk na danger (Usuń pod wierszem)');
     for (const bg of ['bg', 'surface', 'surface2'] as const) need(th.ctrlLine, th[bg], 3, `ctrlLine na ${bg} (granica elementu sterującego)`);
+    /* motyw z ikony (korekta 09.10.2026 ok. 17:00, WCAG 1.4.11): obwódka ikony dnia zaplanowanego / opuszczonego (pasek na karcie — surface, kalendarz — bg,
+     * tydzień deload i wybrany dzień — surface2), gryf ikony i obwódka pustego stosu talerzy (text) */
+    for (const m of DAY_MARKS) if (m !== 'done') for (const bg of ['bg', 'surface', 'surface2'] as const) need(th[MARK_STROKE[m]], th[bg], 3, `obwódka ikony dnia (${m}) na ${bg}`);
+    for (const bg of ['bg', 'surface', 'surface2'] as const) need(th.text, th[bg], 3, `gryf ikony / pusty stos na ${bg}`);
     expect(fails).toEqual([]);
   });
 });

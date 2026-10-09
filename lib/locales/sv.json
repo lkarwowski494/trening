@@ -1286,14 +1286,6 @@
  "Inny plan": "Annan plan",
  "Zachęta do planu tygodnia": "Uppmaning om veckoplan",
  "tekst na karcie „Dziś” i w Kalendarzu, gdy nie ma planu": "text på kortet ”I dag” och i kalendern när det inte finns någon plan",
- "Postęp tygodnia: zrobione {done} z {n} treningów z planu": "Veckans framsteg: {done} av {n} planerade pass gjorda",
- "Treningi w tym tygodniu: {n}": "Pass den här veckan: {n}",
- "{done} z {n}": "{done} av {n}",
- "trening|treningi|treningów": "pass|pass",
- "więcej serii niż średnio": "fler set än genomsnittet",
- "serie około średniej": "set kring genomsnittet",
- "mniej serii niż średnio": "färre set än genomsnittet",
- "Talerz przy dniu — serie względem średniej w miesiącu:": "Skiva vid dagen — set jämfört med månadens genomsnitt:",
  "Planowanie": "Planering",
  "Plan: {name} · {n} {d} · następny: {next}": "Plan: {name} · {n} {d} · nästa: {next}",
  "Rozwija planowanie.": "Fäller ut planeringen.",
@@ -1323,5 +1315,9 @@
  "badania naukowe": "vetenskapliga studier",
  "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka opisana w ankietach jednego zespołu badaczy (jedno źródło), nie wynik badań skuteczności.": "Träningsveckor i rad utan deload: {n}. Tränare gör vanligtvis deload var {a}–{b} vecka — det är praxis som beskrivs i enkäter från en enda forskargrupp (en källa), inte ett forskningsresultat om effekten.",
  "RIR wpisuje się w zakresie 0–{max}; więcej niż {max} powtórzeń w zapasie zapisuje się jako „lekko” (RPE {light}), bo poniżej RPE {min} skala opisuje wysiłek słowami, a nie powtórzeniami w zapasie (Helms i in. 2016).": "RIR anges från 0 till {max}; mer än {max} repetitioner i reserv sparas som ”lätt” (RPE {light}), eftersom skalan under RPE {min} beskriver ansträngningen med ord, inte med repetitioner i reserv (Helms m.fl. 2016).",
- "Najcięższy ciężar w miejscu dla boju głównego ({list}): {w}. Ciężkie serie {a}–{b} powtórzeń (ok. {p}% maksimum) mogą być z nim za lekkie — jeśli {b} powtórzeń wychodzi lekko, rób więcej powtórzeń, bliżej upadku. Siła też wtedy rośnie, ale zwykle mniej niż przy dużym ciężarze.": "Tyngsta vikten på den här platsen för huvudövningen ({list}): {w}. Tunga set på {a}–{b} repetitioner (cirka {p} % av max) kan bli för lätta med den — om {b} repetitioner känns lätt, gör fler repetitioner, närmare failure. Styrkan ökar ändå, men oftast mindre än med tunga vikter."
+ "Najcięższy ciężar w miejscu dla boju głównego ({list}): {w}. Ciężkie serie {a}–{b} powtórzeń (ok. {p}% maksimum) mogą być z nim za lekkie — jeśli {b} powtórzeń wychodzi lekko, rób więcej powtórzeń, bliżej upadku. Siła też wtedy rośnie, ale zwykle mniej niż przy dużym ciężarze.": "Tyngsta vikten på den här platsen för huvudövningen ({list}): {w}. Tunga set på {a}–{b} repetitioner (cirka {p} % av max) kan bli för lätta med den — om {b} repetitioner känns lätt, gör fler repetitioner, närmare failure. Styrkan ökar ändå, men oftast mindre än med tunga vikter.",
+ "{p}% planu tygodnia ({done} z {n})": "{p} % av veckoplanen ({done} av {n})",
+ "Postęp tygodnia: {p}% planu, zrobione {done} z {n} treningów z planu": "Veckans framsteg: {p} % av planen, {done} av {n} planerade pass gjorda",
+ "zaplanowane": "planerat",
+ "Tygodnie z wykonanym planem: {done} z {n}": "Veckor med planen genomförd: {done} av {n}"
 }

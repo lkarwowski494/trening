@@ -1286,14 +1286,6 @@
  "Inny plan": "Anden plan",
  "Zachęta do planu tygodnia": "Opfordring til ugeplan",
  "tekst na karcie „Dziś” i w Kalendarzu, gdy nie ma planu": "tekst på kortet »I dag« og i Kalender, når der ikke er en plan",
- "Postęp tygodnia: zrobione {done} z {n} treningów z planu": "Ugens fremskridt: {done} af {n} planlagte træninger gennemført",
- "Treningi w tym tygodniu: {n}": "Træninger denne uge: {n}",
- "{done} z {n}": "{done} af {n}",
- "trening|treningi|treningów": "træning|træninger",
- "więcej serii niż średnio": "flere sæt end gennemsnittet",
- "serie około średniej": "sæt omkring gennemsnittet",
- "mniej serii niż średnio": "færre sæt end gennemsnittet",
- "Talerz przy dniu — serie względem średniej w miesiącu:": "Skive ved dagen — sæt i forhold til månedens gennemsnit:",
  "Planowanie": "Planlægning",
  "Plan: {name} · {n} {d} · następny: {next}": "Plan: {name} · {n} {d} · næste: {next}",
  "Rozwija planowanie.": "Udvider planlægning.",
@@ -1323,5 +1315,9 @@
  "badania naukowe": "videnskabelige studier",
  "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka opisana w ankietach jednego zespołu badaczy (jedno źródło), nie wynik badań skuteczności.": "Træningsuger i træk uden deload: {n}. Trænere laver normalt deload hver {a}.–{b}. uge — det er praksis beskrevet i spørgeundersøgelser fra ét forskerhold (én kilde), ikke et resultat om effekten.",
  "RIR wpisuje się w zakresie 0–{max}; więcej niż {max} powtórzeń w zapasie zapisuje się jako „lekko” (RPE {light}), bo poniżej RPE {min} skala opisuje wysiłek słowami, a nie powtórzeniami w zapasie (Helms i in. 2016).": "RIR angives fra 0 til {max}; mere end {max} gentagelser i reserve gemmes som “let” (RPE {light}), fordi skalaen under RPE {min} beskriver anstrengelsen med ord, ikke med gentagelser i reserve (Helms m.fl. 2016).",
- "Najcięższy ciężar w miejscu dla boju głównego ({list}): {w}. Ciężkie serie {a}–{b} powtórzeń (ok. {p}% maksimum) mogą być z nim za lekkie — jeśli {b} powtórzeń wychodzi lekko, rób więcej powtórzeń, bliżej upadku. Siła też wtedy rośnie, ale zwykle mniej niż przy dużym ciężarze.": "Tungeste vægt på dette sted til hovedøvelsen ({list}): {w}. Tunge sæt på {a}–{b} gentagelser (ca. {p} % af max) kan være for lette med den — hvis {b} gentagelser føles lette, så tag flere gentagelser, tættere på udmattelse. Styrken øges stadig, men som regel mindre end med tunge vægte."
+ "Najcięższy ciężar w miejscu dla boju głównego ({list}): {w}. Ciężkie serie {a}–{b} powtórzeń (ok. {p}% maksimum) mogą być z nim za lekkie — jeśli {b} powtórzeń wychodzi lekko, rób więcej powtórzeń, bliżej upadku. Siła też wtedy rośnie, ale zwykle mniej niż przy dużym ciężarze.": "Tungeste vægt på dette sted til hovedøvelsen ({list}): {w}. Tunge sæt på {a}–{b} gentagelser (ca. {p} % af max) kan være for lette med den — hvis {b} gentagelser føles lette, så tag flere gentagelser, tættere på udmattelse. Styrken øges stadig, men som regel mindre end med tunge vægte.",
+ "{p}% planu tygodnia ({done} z {n})": "{p} % af ugeplanen ({done} af {n})",
+ "Postęp tygodnia: {p}% planu, zrobione {done} z {n} treningów z planu": "Ugens fremskridt: {p} % af planen, {done} af {n} planlagte træninger gennemført",
+ "zaplanowane": "planlagt",
+ "Tygodnie z wykonanym planem: {done} z {n}": "Uger med planen gennemført: {done} af {n}"
 }

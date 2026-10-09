@@ -1286,14 +1286,6 @@
  "Inny plan": "Ander plan",
  "Zachęta do planu tygodnia": "Tip over het weekplan",
  "tekst na karcie „Dziś” i w Kalendarzu, gdy nie ma planu": "tekst op de kaart ‘Vandaag’ en in de kalender als er geen plan is",
- "Postęp tygodnia: zrobione {done} z {n} treningów z planu": "Weekvoortgang: {done} van {n} geplande trainingen gedaan",
- "Treningi w tym tygodniu: {n}": "Trainingen deze week: {n}",
- "{done} z {n}": "{done} van {n}",
- "trening|treningi|treningów": "training|trainingen",
- "więcej serii niż średnio": "meer sets dan gemiddeld",
- "serie około średniej": "sets rond het gemiddelde",
- "mniej serii niż średnio": "minder sets dan gemiddeld",
- "Talerz przy dniu — serie względem średniej w miesiącu:": "Schijf bij de dag — sets vergeleken met het maandgemiddelde:",
  "Planowanie": "Planning",
  "Plan: {name} · {n} {d} · następny: {next}": "Plan: {name} · {n} {d} · volgende: {next}",
  "Rozwija planowanie.": "Klapt de planning uit.",
@@ -1323,5 +1315,9 @@
  "badania naukowe": "wetenschappelijke studies",
  "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka opisana w ankietach jednego zespołu badaczy (jedno źródło), nie wynik badań skuteczności.": "Trainingsweken op rij zonder deload: {n}. Trainers doen meestal elke {a}–{b} weken een deload — dit is praktijk uit enquêtes van één onderzoeksteam (één bron), geen onderzoeksresultaat over de effectiviteit.",
  "RIR wpisuje się w zakresie 0–{max}; więcej niż {max} powtórzeń w zapasie zapisuje się jako „lekko” (RPE {light}), bo poniżej RPE {min} skala opisuje wysiłek słowami, a nie powtórzeniami w zapasie (Helms i in. 2016).": "RIR vul je in van 0 tot {max}; meer dan {max} herhalingen in reserve wordt opgeslagen als ‘licht’ (RPE {light}), omdat de schaal onder RPE {min} de inspanning met woorden beschrijft, niet met herhalingen in reserve (Helms e.a. 2016).",
- "Najcięższy ciężar w miejscu dla boju głównego ({list}): {w}. Ciężkie serie {a}–{b} powtórzeń (ok. {p}% maksimum) mogą być z nim za lekkie — jeśli {b} powtórzeń wychodzi lekko, rób więcej powtórzeń, bliżej upadku. Siła też wtedy rośnie, ale zwykle mniej niż przy dużym ciężarze.": "Zwaarste gewicht op deze plek voor de hoofdoefening ({list}): {w}. Zware sets van {a}–{b} herhalingen (ongeveer {p}% van je max) kunnen daarmee te licht zijn — voelen {b} herhalingen licht, doe dan meer herhalingen, dichter bij falen. Je kracht groeit dan ook, maar meestal minder dan met zware gewichten."
+ "Najcięższy ciężar w miejscu dla boju głównego ({list}): {w}. Ciężkie serie {a}–{b} powtórzeń (ok. {p}% maksimum) mogą być z nim za lekkie — jeśli {b} powtórzeń wychodzi lekko, rób więcej powtórzeń, bliżej upadku. Siła też wtedy rośnie, ale zwykle mniej niż przy dużym ciężarze.": "Zwaarste gewicht op deze plek voor de hoofdoefening ({list}): {w}. Zware sets van {a}–{b} herhalingen (ongeveer {p}% van je max) kunnen daarmee te licht zijn — voelen {b} herhalingen licht, doe dan meer herhalingen, dichter bij falen. Je kracht groeit dan ook, maar meestal minder dan met zware gewichten.",
+ "{p}% planu tygodnia ({done} z {n})": "{p}% van het weekplan ({done} van {n})",
+ "Postęp tygodnia: {p}% planu, zrobione {done} z {n} treningów z planu": "Weekvoortgang: {p}% van het plan, {done} van {n} geplande trainingen gedaan",
+ "zaplanowane": "gepland",
+ "Tygodnie z wykonanym planem: {done} z {n}": "Weken met het plan voltooid: {done} van {n}"
 }

@@ -1286,14 +1286,6 @@
  "Inny plan": "Други план",
  "Zachęta do planu tygodnia": "Подсетник за недељни план",
  "tekst na karcie „Dziś” i w Kalendarzu, gdy nie ma planu": "текст на картици „Данас” и у Календару када нема плана",
- "Postęp tygodnia: zrobione {done} z {n} treningów z planu": "Напредак недеље: урађено {done} од {n} тренинга из плана",
- "Treningi w tym tygodniu: {n}": "Тренинзи ове недеље: {n}",
- "{done} z {n}": "{done} од {n}",
- "trening|treningi|treningów": "тренинг|тренинга|тренинга",
- "więcej serii niż średnio": "више серија од просека",
- "serie około średniej": "серије око просека",
- "mniej serii niż średnio": "мање серија од просека",
- "Talerz przy dniu — serie względem średniej w miesiącu:": "Тег поред дана — серије у односу на просек месеца:",
  "Planowanie": "Планирање",
  "Plan: {name} · {n} {d} · następny: {next}": "План: {name} · {n} {d} · следећи: {next}",
  "Rozwija planowanie.": "Проширује планирање.",
@@ -1323,5 +1315,9 @@
  "badania naukowe": "научна истраживања",
  "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka opisana w ankietach jednego zespołu badaczy (jedno źródło), nie wynik badań skuteczności.": "Недеље тренинга заредом без растерећења: {n}. Тренери обично раде растерећење сваких {a}–{b} недеља — то је пракса описана у анкетама једног истраживачког тима (један извор), а не резултат истраживања делотворности.",
  "RIR wpisuje się w zakresie 0–{max}; więcej niż {max} powtórzeń w zapasie zapisuje się jako „lekko” (RPE {light}), bo poniżej RPE {min} skala opisuje wysiłek słowami, a nie powtórzeniami w zapasie (Helms i in. 2016).": "RIR се уноси у распону 0–{max}; више од {max} понављања у резерви чува се као „лако” (RPE {light}), јер испод RPE {min} скала описује напор речима, а не понављањима у резерви (Helms и сар. 2016).",
- "Najcięższy ciężar w miejscu dla boju głównego ({list}): {w}. Ciężkie serie {a}–{b} powtórzeń (ok. {p}% maksimum) mogą być z nim za lekkie — jeśli {b} powtórzeń wychodzi lekko, rób więcej powtórzeń, bliżej upadku. Siła też wtedy rośnie, ale zwykle mniej niż przy dużym ciężarze.": "Најтежи терет на овом месту за главну вежбу ({list}): {w}. Тешке серије од {a}–{b} понављања (око {p} % максимума) с њим могу бити прелаке — ако ти је {b} понављања лако, ради више понављања, ближе отказу. Снага и тада расте, али обично мање него с великим теретом."
+ "Najcięższy ciężar w miejscu dla boju głównego ({list}): {w}. Ciężkie serie {a}–{b} powtórzeń (ok. {p}% maksimum) mogą być z nim za lekkie — jeśli {b} powtórzeń wychodzi lekko, rób więcej powtórzeń, bliżej upadku. Siła też wtedy rośnie, ale zwykle mniej niż przy dużym ciężarze.": "Најтежи терет на овом месту за главну вежбу ({list}): {w}. Тешке серије од {a}–{b} понављања (око {p} % максимума) с њим могу бити прелаке — ако ти је {b} понављања лако, ради више понављања, ближе отказу. Снага и тада расте, али обично мање него с великим теретом.",
+ "{p}% planu tygodnia ({done} z {n})": "{p}% недељног плана ({done} од {n})",
+ "Postęp tygodnia: {p}% planu, zrobione {done} z {n} treningów z planu": "Напредак недеље: {p}% плана, урађено {done} од {n} тренинга из плана",
+ "zaplanowane": "планирано",
+ "Tygodnie z wykonanym planem: {done} z {n}": "Недеље са испуњеним планом: {done} од {n}"
 }

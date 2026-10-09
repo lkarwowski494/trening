@@ -1286,14 +1286,6 @@
  "Inny plan": "Otro plan",
  "Zachęta do planu tygodnia": "Sugerencia del plan semanal",
  "tekst na karcie „Dziś” i w Kalendarzu, gdy nie ma planu": "texto en la tarjeta «Hoy» y en el Calendario cuando no hay plan",
- "Postęp tygodnia: zrobione {done} z {n} treningów z planu": "Progreso semanal: {done} de {n} entrenamientos del plan hechos",
- "Treningi w tym tygodniu: {n}": "Entrenamientos esta semana: {n}",
- "{done} z {n}": "{done} de {n}",
- "trening|treningi|treningów": "entrenamiento|entrenamientos",
- "więcej serii niż średnio": "más series que la media",
- "serie około średniej": "series en torno a la media",
- "mniej serii niż średnio": "menos series que la media",
- "Talerz przy dniu — serie względem średniej w miesiącu:": "Disco junto al día: series frente a la media del mes:",
  "Planowanie": "Planificación",
  "Plan: {name} · {n} {d} · następny: {next}": "Plan: {name} · {n} {d} · siguiente: {next}",
  "Rozwija planowanie.": "Despliega la planificación.",
@@ -1323,5 +1315,9 @@
  "badania naukowe": "estudios científicos",
  "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka opisana w ankietach jednego zespołu badaczy (jedno źródło), nie wynik badań skuteczności.": "Semanas de entreno seguidas sin descarga: {n}. Los entrenadores suelen hacer una descarga cada {a}–{b} semanas — es una práctica descrita en encuestas de un solo equipo de investigación (una sola fuente), no un resultado sobre su eficacia.",
  "RIR wpisuje się w zakresie 0–{max}; więcej niż {max} powtórzeń w zapasie zapisuje się jako „lekko” (RPE {light}), bo poniżej RPE {min} skala opisuje wysiłek słowami, a nie powtórzeniami w zapasie (Helms i in. 2016).": "El RIR se introduce de 0 a {max}; más de {max} repeticiones en reserva se guardan como «ligero» (RPE {light}), porque por debajo de RPE {min} la escala describe el esfuerzo con palabras, no con repeticiones en reserva (Helms et al. 2016).",
- "Najcięższy ciężar w miejscu dla boju głównego ({list}): {w}. Ciężkie serie {a}–{b} powtórzeń (ok. {p}% maksimum) mogą być z nim za lekkie — jeśli {b} powtórzeń wychodzi lekko, rób więcej powtórzeń, bliżej upadku. Siła też wtedy rośnie, ale zwykle mniej niż przy dużym ciężarze.": "Peso más pesado en este lugar para el ejercicio principal ({list}): {w}. Las series pesadas de {a}–{b} repeticiones (aprox. el {p} % del máximo) pueden quedarse cortas con él — si {b} repeticiones te resultan ligeras, haz más repeticiones, más cerca del fallo. La fuerza también aumenta, pero normalmente menos que con cargas altas."
+ "Najcięższy ciężar w miejscu dla boju głównego ({list}): {w}. Ciężkie serie {a}–{b} powtórzeń (ok. {p}% maksimum) mogą być z nim za lekkie — jeśli {b} powtórzeń wychodzi lekko, rób więcej powtórzeń, bliżej upadku. Siła też wtedy rośnie, ale zwykle mniej niż przy dużym ciężarze.": "Peso más pesado en este lugar para el ejercicio principal ({list}): {w}. Las series pesadas de {a}–{b} repeticiones (aprox. el {p} % del máximo) pueden quedarse cortas con él — si {b} repeticiones te resultan ligeras, haz más repeticiones, más cerca del fallo. La fuerza también aumenta, pero normalmente menos que con cargas altas.",
+ "{p}% planu tygodnia ({done} z {n})": "{p} % del plan semanal ({done} de {n})",
+ "Postęp tygodnia: {p}% planu, zrobione {done} z {n} treningów z planu": "Progreso semanal: {p} % del plan, {done} de {n} entrenamientos del plan hechos",
+ "zaplanowane": "planificado",
+ "Tygodnie z wykonanym planem: {done} z {n}": "Semanas con el plan cumplido: {done} de {n}"
 }

@@ -1286,14 +1286,6 @@
  "Inny plan": "Diğer plan",
  "Zachęta do planu tygodnia": "Haftalık plan önerisi",
  "tekst na karcie „Dziś” i w Kalendarzu, gdy nie ma planu": "plan yokken “Bugün” kartında ve Takvim’de görünen metin",
- "Postęp tygodnia: zrobione {done} z {n} treningów z planu": "Haftalık ilerleme: plandaki {n} antrenmandan {done} tamamlandı",
- "Treningi w tym tygodniu: {n}": "Bu haftaki antrenmanlar: {n}",
- "{done} z {n}": "{done}/{n}",
- "trening|treningi|treningów": "antrenman|antrenman",
- "więcej serii niż średnio": "ortalamadan fazla set",
- "serie około średniej": "ortalama civarında set",
- "mniej serii niż średnio": "ortalamadan az set",
- "Talerz przy dniu — serie względem średniej w miesiącu:": "Günün yanındaki plaka — ayın ortalamasına göre setler:",
  "Planowanie": "Planlama",
  "Plan: {name} · {n} {d} · następny: {next}": "Plan: {name} · {n} {d} · sonraki: {next}",
  "Rozwija planowanie.": "Planlamayı genişletir.",
@@ -1323,5 +1315,9 @@
  "badania naukowe": "bilimsel çalışmalar",
  "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka opisana w ankietach jednego zespołu badaczy (jedno źródło), nie wynik badań skuteczności.": "Deload olmadan art arda antrenman haftası: {n}. Antrenörler genellikle her {a}–{b} haftada bir deload yapar — bu, tek bir araştırma ekibinin anketlerinde tanımlanan bir uygulamadır (tek kaynak), etkinliğe dair bir araştırma bulgusu değildir.",
  "RIR wpisuje się w zakresie 0–{max}; więcej niż {max} powtórzeń w zapasie zapisuje się jako „lekko” (RPE {light}), bo poniżej RPE {min} skala opisuje wysiłek słowami, a nie powtórzeniami w zapasie (Helms i in. 2016).": "RIR 0–{max} aralığında girilir; {max} değerinden fazla yedek tekrar “hafif” (RPE {light}) olarak kaydedilir, çünkü RPE {min} değerinin altında ölçek eforu yedek tekrarla değil sözcüklerle tanımlar (Helms ve ark. 2016).",
- "Najcięższy ciężar w miejscu dla boju głównego ({list}): {w}. Ciężkie serie {a}–{b} powtórzeń (ok. {p}% maksimum) mogą być z nim za lekkie — jeśli {b} powtórzeń wychodzi lekko, rób więcej powtórzeń, bliżej upadku. Siła też wtedy rośnie, ale zwykle mniej niż przy dużym ciężarze.": "Bu yerdeki ana egzersiz için en ağır ağırlık ({list}): {w}. {a}–{b} tekrarlık ağır setler (maksimumun yaklaşık %{p} kadarı) bu ağırlıkla fazla hafif kalabilir — {b} tekrar hafif geliyorsa daha fazla tekrar yapın, tükenişe daha yakın. Güç yine artar, ancak genellikle ağır yükle olduğundan daha az."
+ "Najcięższy ciężar w miejscu dla boju głównego ({list}): {w}. Ciężkie serie {a}–{b} powtórzeń (ok. {p}% maksimum) mogą być z nim za lekkie — jeśli {b} powtórzeń wychodzi lekko, rób więcej powtórzeń, bliżej upadku. Siła też wtedy rośnie, ale zwykle mniej niż przy dużym ciężarze.": "Bu yerdeki ana egzersiz için en ağır ağırlık ({list}): {w}. {a}–{b} tekrarlık ağır setler (maksimumun yaklaşık %{p} kadarı) bu ağırlıkla fazla hafif kalabilir — {b} tekrar hafif geliyorsa daha fazla tekrar yapın, tükenişe daha yakın. Güç yine artar, ancak genellikle ağır yükle olduğundan daha az.",
+ "{p}% planu tygodnia ({done} z {n})": "Haftalık planın %{p} kadarı ({done}/{n})",
+ "Postęp tygodnia: {p}% planu, zrobione {done} z {n} treningów z planu": "Haftalık ilerleme: planın %{p} kadarı, plandaki {n} antrenmandan {done} tamamlandı",
+ "zaplanowane": "planlandı",
+ "Tygodnie z wykonanym planem: {done} z {n}": "Planı tamamlanan haftalar: {done}/{n}"
 }

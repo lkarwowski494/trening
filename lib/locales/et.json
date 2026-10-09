@@ -1286,14 +1286,6 @@
  "Inny plan": "Muu plaan",
  "Zachęta do planu tygodnia": "Nädalaplaani soovitus",
  "tekst na karcie „Dziś” i w Kalendarzu, gdy nie ma planu": "tekst kaardil „Täna” ja kalendris, kui plaani pole",
- "Postęp tygodnia: zrobione {done} z {n} treningów z planu": "Nädala edenemine: tehtud {done} plaani {n} treeningust",
- "Treningi w tym tygodniu: {n}": "Treeninguid sel nädalal: {n}",
- "{done} z {n}": "{done}/{n}",
- "trening|treningi|treningów": "treening|treeningut",
- "więcej serii niż średnio": "rohkem seeriaid kui keskmiselt",
- "serie około średniej": "seeriaid keskmise ümber",
- "mniej serii niż średnio": "vähem seeriaid kui keskmiselt",
- "Talerz przy dniu — serie względem średniej w miesiącu:": "Ketas päeva kõrval — seeriad võrreldes kuu keskmisega:",
  "Planowanie": "Planeerimine",
  "Plan: {name} · {n} {d} · następny: {next}": "Plaan: {name} · {n} {d} · järgmine: {next}",
  "Rozwija planowanie.": "Avab planeerimise.",
@@ -1323,5 +1315,9 @@
  "badania naukowe": "teadusuuringud",
  "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka opisana w ankietach jednego zespołu badaczy (jedno źródło), nie wynik badań skuteczności.": "Treeningunädalaid järjest ilma kergenduseta: {n}. Treenerid teevad kergendusnädala tavaliselt iga {a}–{b} nädala järel — see on praktika, mida kirjeldavad ühe uurimisrühma küsitlused (üks allikas), mitte tõhususe uurimistulemus.",
  "RIR wpisuje się w zakresie 0–{max}; więcej niż {max} powtórzeń w zapasie zapisuje się jako „lekko” (RPE {light}), bo poniżej RPE {min} skala opisuje wysiłek słowami, a nie powtórzeniami w zapasie (Helms i in. 2016).": "RIR sisestatakse vahemikus 0–{max}; rohkem kui {max} kordust varus salvestatakse kui „kerge“ (RPE {light}), sest alla RPE {min} kirjeldab skaala pingutust sõnadega, mitte kordustega varus (Helms jt 2016).",
- "Najcięższy ciężar w miejscu dla boju głównego ({list}): {w}. Ciężkie serie {a}–{b} powtórzeń (ok. {p}% maksimum) mogą być z nim za lekkie — jeśli {b} powtórzeń wychodzi lekko, rób więcej powtórzeń, bliżej upadku. Siła też wtedy rośnie, ale zwykle mniej niż przy dużym ciężarze.": "Selle koha raskeim raskus põhiharjutuse jaoks ({list}): {w}. Rasked seeriad {a}–{b} kordusega (umbes {p}% maksimumist) võivad sellega liiga kerged olla — kui {b} kordust tundub kerge, tee rohkem kordusi, lähemale lihasväsimusele. Jõud kasvab siiski, kuid tavaliselt vähem kui suure raskusega."
+ "Najcięższy ciężar w miejscu dla boju głównego ({list}): {w}. Ciężkie serie {a}–{b} powtórzeń (ok. {p}% maksimum) mogą być z nim za lekkie — jeśli {b} powtórzeń wychodzi lekko, rób więcej powtórzeń, bliżej upadku. Siła też wtedy rośnie, ale zwykle mniej niż przy dużym ciężarze.": "Selle koha raskeim raskus põhiharjutuse jaoks ({list}): {w}. Rasked seeriad {a}–{b} kordusega (umbes {p}% maksimumist) võivad sellega liiga kerged olla — kui {b} kordust tundub kerge, tee rohkem kordusi, lähemale lihasväsimusele. Jõud kasvab siiski, kuid tavaliselt vähem kui suure raskusega.",
+ "{p}% planu tygodnia ({done} z {n})": "{p}% nädalaplaanist ({done}/{n})",
+ "Postęp tygodnia: {p}% planu, zrobione {done} z {n} treningów z planu": "Nädala edenemine: {p}% plaanist, tehtud {done} plaani {n} treeningust",
+ "zaplanowane": "planeeritud",
+ "Tygodnie z wykonanym planem: {done} z {n}": "Täidetud plaaniga nädalad: {done}/{n}"
 }

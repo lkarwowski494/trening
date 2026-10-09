@@ -4,7 +4,6 @@ import { useTheme, F, TEXT_SCALE_MAX } from '@/lib/theme';
 import { LOAD_ORDER, PLATE_HEIGHT, RECORD_ANIM_MS, plateAt } from '@/lib/motif';
 import { t as tr, lang } from '@/lib/i18n';
 import { Plate, a11yHidden } from '@/components/Motif';
-import { PlateStripe } from '@/components/PlateStripe';
 
 /**
  * Karta rekordu na ekranie zakończonego treningu: talerz za każdy rekord (do 4), ostatni „dokładany” (wsuwa się na gryf). Przy włączonym
@@ -22,7 +21,6 @@ export function RecordPlates({ count, animate }: { count: number; animate: boole
   const text = count === 1 ? tr('Nowy rekord!') : tr('Nowe rekordy: {n}', { n: count });
   return (
     <View testID="record-banner" accessible accessibilityLanguage={lang()} accessibilityLabel={text} style={{ borderRadius: 12, borderWidth: 1, borderColor: th.line, backgroundColor: th.surface, overflow: 'hidden', marginBottom: 14 }}>
-      <PlateStripe />
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 14, padding: 12, flexWrap: 'wrap' }}>
         <View {...a11yHidden} style={{ flexDirection: 'row', alignItems: 'center', gap: 2, height: size }}>
           <View style={{ width: 14, height: 6, borderRadius: 2, backgroundColor: th.text }} />
