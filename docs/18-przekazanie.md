@@ -373,3 +373,8 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
   „utrzymania” (ACSM 2026: przy równej liczbie serii przyrost podobny) — uwaga mówi o trudności zmieszczenia 10 serii w jednej sesji.
 - 09.10.2026 (wieczór): właściciel — **redukcja przy 1–2 dniach: same dni siłowe, cardio poza planem (A)** — akceptacja rozstrzygnięcia agenta
   (research 29, sekcja 3; próg CUT_CARDIO_FROM = 3). Odrzucone: B (1 siłowy + 1 cardio — partie raz w tygodniu, bez źródła), C (cardio po sesji).
+- 09.10.2026 (wieczór): właściciel — **nowe języki po 0.11, przed App Store**: grupa 1 — portugalski brazylijski (pt-BR; obecny pt = pt-PT)
+  i hiszpański Ameryki Łacińskiej (es-419); grupa 2 — japoński, koreański, chiński tradycyjny (krój pisma CJK, łamanie wierszy, testy
+  szerokości); azerski (az). Ukraiński już jest. Do sprawdzenia przed wdrożeniem (otwarte): czy iOS ma azerski jako język systemu i czy App
+  Store Connect pozwala na opis sklepu po azersku; pokrycie znaków w IBM Plex Sans (ə). Chiński uproszczony odłożony (rejestracja ICP w Chinach).
+  Rosyjski — bez decyzji. Interpretacja „1, 2” = grupy z odpowiedzi z 09.10 — do potwierdzenia.
