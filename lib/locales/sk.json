@@ -1296,14 +1296,6 @@
  "Inny plan": "Iný plán",
  "Zachęta do planu tygodnia": "Výzva k týždennému plánu",
  "tekst na karcie „Dziś” i w Kalendarzu, gdy nie ma planu": "text na karte „Dnes“ a v Kalendári, keď nie je plán",
- "Postęp tygodnia: zrobione {done} z {n} treningów z planu": "Postup týždňa: hotovo {done} z {n} tréningov z plánu",
- "Treningi w tym tygodniu: {n}": "Tréningy tento týždeň: {n}",
- "{done} z {n}": "{done} z {n}",
- "trening|treningi|treningów": "tréning|tréningy|tréningov",
- "więcej serii niż średnio": "viac sérií ako priemerne",
- "serie około średniej": "série okolo priemeru",
- "mniej serii niż średnio": "menej sérií ako priemerne",
- "Talerz przy dniu — serie względem średniej w miesiącu:": "Kotúč pri dni — série voči priemeru mesiaca:",
  "Planowanie": "Plánovanie",
  "Plan: {name} · {n} {d} · następny: {next}": "Plán: {name} · {n} {d} · ďalší: {next}",
  "Rozwija planowanie.": "Rozbalí plánovanie.",
@@ -1335,5 +1327,8 @@
  "RIR wpisuje się w zakresie 0–{max}; więcej niż {max} powtórzeń w zapasie zapisuje się jako „lekko” (RPE {light}), bo poniżej RPE {min} skala opisuje wysiłek słowami, a nie powtórzeniami w zapasie (Helms i in. 2016).": "RIR sa zadáva v rozsahu 0–{max}; viac než {max} opakovaní v rezerve sa uloží ako „ľahko“ (RPE {light}), pretože pod RPE {min} opisuje škála úsilie slovami, nie opakovaniami v rezerve (Helms a kol. 2016).",
  "Najcięższy ciężar w miejscu dla boju głównego ({list}): {w}. Ciężkie serie {a}–{b} powtórzeń (ok. {p}% maksimum) mogą być z nim za lekkie — jeśli {b} powtórzeń wychodzi lekko, rób więcej powtórzeń, bliżej upadku. Siła też wtedy rośnie, ale zwykle mniej niż przy dużym ciężarze.": "Najťažšia záťaž na tomto mieste pre hlavný cvik ({list}): {w}. Ťažké série po {a}–{b} opakovaniach (asi {p} % maxima) s ňou môžu byť príliš ľahké — ak je {b} opakovaní ľahkých, rob viac opakovaní, bližšie k zlyhaniu. Sila aj tak rastie, ale zvyčajne menej než s veľkou záťažou.",
  "Superset ustawisz w szablonie przyciskiem „Połącz z następnym w superset” — przerwa liczy się po ostatnim ćwiczeniu grupy.": "Superset nastavíš v šablóne tlačidlom „Spojiť s ďalším do supersetu“ — pauza začína po poslednom cviku skupiny.",
- "Z planu w tym tygodniu: zrobione {done} z {n}.": "Z plánu tento týždeň: hotovo {done} z {n}."
+ "Z planu w tym tygodniu: zrobione {done} z {n}.": "Z plánu tento týždeň: hotovo {done} z {n}.",
+ "{p}% planu tygodnia ({done} z {n})": "{p} % týždenného plánu ({done} z {n})",
+ "Postęp tygodnia: {p}% planu, zrobione {done} z {n} treningów z planu": "Postup týždňa: {p} % plánu, hotovo {done} z {n} tréningov z plánu",
+ "zaplanowane": "naplánované"
 }

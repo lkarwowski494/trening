@@ -1296,14 +1296,6 @@
  "Inny plan": "Drugi plan",
  "Zachęta do planu tygodnia": "Poticaj za tjedni plan",
  "tekst na karcie „Dziś” i w Kalendarzu, gdy nie ma planu": "tekst na kartici „Danas” i u Kalendaru kad nema plana",
- "Postęp tygodnia: zrobione {done} z {n} treningów z planu": "Napredak tjedna: odrađeno {done} od {n} treninga iz plana",
- "Treningi w tym tygodniu: {n}": "Treninzi ovaj tjedan: {n}",
- "{done} z {n}": "{done} od {n}",
- "trening|treningi|treningów": "trening|treninga|treninga",
- "więcej serii niż średnio": "više serija od prosjeka",
- "serie około średniej": "serije oko prosjeka",
- "mniej serii niż średnio": "manje serija od prosjeka",
- "Talerz przy dniu — serie względem średniej w miesiącu:": "Ploča uz dan — serije u odnosu na prosjek mjeseca:",
  "Planowanie": "Planiranje",
  "Plan: {name} · {n} {d} · następny: {next}": "Plan: {name} · {n} {d} · sljedeći: {next}",
  "Rozwija planowanie.": "Proširuje planiranje.",
@@ -1335,5 +1327,8 @@
  "RIR wpisuje się w zakresie 0–{max}; więcej niż {max} powtórzeń w zapasie zapisuje się jako „lekko” (RPE {light}), bo poniżej RPE {min} skala opisuje wysiłek słowami, a nie powtórzeniami w zapasie (Helms i in. 2016).": "RIR se unosi u rasponu 0–{max}; više od {max} ponavljanja u rezervi sprema se kao „lagano” (RPE {light}), jer ispod RPE {min} ljestvica opisuje napor riječima, a ne ponavljanjima u rezervi (Helms i sur. 2016).",
  "Najcięższy ciężar w miejscu dla boju głównego ({list}): {w}. Ciężkie serie {a}–{b} powtórzeń (ok. {p}% maksimum) mogą być z nim za lekkie — jeśli {b} powtórzeń wychodzi lekko, rób więcej powtórzeń, bliżej upadku. Siła też wtedy rośnie, ale zwykle mniej niż przy dużym ciężarze.": "Najteži teret na ovom mjestu za glavnu vježbu ({list}): {w}. Teške serije od {a}–{b} ponavljanja (oko {p} % maksimuma) s njim mogu biti prelagane — ako ti je {b} ponavljanja lagano, radi više ponavljanja, bliže otkazu. Snaga i tada raste, ali obično manje nego s velikim teretom.",
  "Superset ustawisz w szablonie przyciskiem „Połącz z następnym w superset” — przerwa liczy się po ostatnim ćwiczeniu grupy.": "Superset postavljaš u predlošku gumbom „Poveži sa sljedećom u superset” — odmor počinje nakon zadnje vježbe u grupi.",
- "Z planu w tym tygodniu: zrobione {done} z {n}.": "Iz plana ovaj tjedan: odrađeno {done} od {n}."
+ "Z planu w tym tygodniu: zrobione {done} z {n}.": "Iz plana ovaj tjedan: odrađeno {done} od {n}.",
+ "{p}% planu tygodnia ({done} z {n})": "{p} % tjednog plana ({done} od {n})",
+ "Postęp tygodnia: {p}% planu, zrobione {done} z {n} treningów z planu": "Napredak tjedna: {p} % plana, odrađeno {done} od {n} treninga iz plana",
+ "zaplanowane": "planirano"
 }

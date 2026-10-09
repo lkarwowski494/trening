@@ -1296,14 +1296,6 @@
  "Inny plan": "Másik terv",
  "Zachęta do planu tygodnia": "A heti terv ajánlása",
  "tekst na karcie „Dziś” i w Kalendarzu, gdy nie ma planu": "szöveg a „Ma” kártyán és a Naptárban, ha nincs terv",
- "Postęp tygodnia: zrobione {done} z {n} treningów z planu": "Heti haladás: {n} tervezett edzésből {done} kész",
- "Treningi w tym tygodniu: {n}": "Edzések ezen a héten: {n}",
- "{done} z {n}": "{done}/{n}",
- "trening|treningi|treningów": "edzés|edzés",
- "więcej serii niż średnio": "több sorozat az átlagnál",
- "serie około średniej": "sorozatok az átlag körül",
- "mniej serii niż średnio": "kevesebb sorozat az átlagnál",
- "Talerz przy dniu — serie względem średniej w miesiącu:": "Tárcsa a nap mellett — sorozatok a havi átlaghoz képest:",
  "Planowanie": "Tervezés",
  "Plan: {name} · {n} {d} · następny: {next}": "Terv: {name} · {n} {d} · következő: {next}",
  "Rozwija planowanie.": "Kibontja a tervezést.",
@@ -1335,5 +1327,8 @@
  "RIR wpisuje się w zakresie 0–{max}; więcej niż {max} powtórzeń w zapasie zapisuje się jako „lekko” (RPE {light}), bo poniżej RPE {min} skala opisuje wysiłek słowami, a nie powtórzeniami w zapasie (Helms i in. 2016).": "A RIR 0 és {max} között adható meg; több mint {max} tartalék ismétlés „könnyű” értékként kerül mentésre (RPE {light}), mert RPE {min} alatt a skála szavakkal írja le az erőfeszítést, nem tartalék ismétlésekkel (Helms és mtsai 2016).",
  "Najcięższy ciężar w miejscu dla boju głównego ({list}): {w}. Ciężkie serie {a}–{b} powtórzeń (ok. {p}% maksimum) mogą być z nim za lekkie — jeśli {b} powtórzeń wychodzi lekko, rób więcej powtórzeń, bliżej upadku. Siła też wtedy rośnie, ale zwykle mniej niż przy dużym ciężarze.": "A hely legnehezebb súlya a fő gyakorlathoz ({list}): {w}. A {a}–{b} ismétléses nehéz sorozatok (kb. a maximum {p}%-a) ezzel túl könnyűek lehetnek — ha {b} ismétlés könnyű, csinálj több ismétlést, közelebb a kifáradáshoz. Az erő így is nő, de általában kevésbé, mint nagy súllyal.",
  "Superset ustawisz w szablonie przyciskiem „Połącz z następnym w superset” — przerwa liczy się po ostatnim ćwiczeniu grupy.": "A szuperszettet a sablonban állítod be az „Összekapcsolás a következővel szuperszettbe” gombbal — a pihenő a csoport utolsó gyakorlata után indul.",
- "Z planu w tym tygodniu: zrobione {done} z {n}.": "A tervből ezen a héten: kész {done} / {n}."
+ "Z planu w tym tygodniu: zrobione {done} z {n}.": "A tervből ezen a héten: kész {done} / {n}.",
+ "{p}% planu tygodnia ({done} z {n})": "A heti terv {p}%-a ({done}/{n})",
+ "Postęp tygodnia: {p}% planu, zrobione {done} z {n} treningów z planu": "Heti haladás: a terv {p}%-a, {n} tervezett edzésből {done} kész",
+ "zaplanowane": "tervezett"
 }

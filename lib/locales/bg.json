@@ -1296,14 +1296,6 @@
  "Inny plan": "Друг план",
  "Zachęta do planu tygodnia": "Подкана за седмичен план",
  "tekst na karcie „Dziś” i w Kalendarzu, gdy nie ma planu": "текст в картата „Днес“ и в Календара, когато няма план",
- "Postęp tygodnia: zrobione {done} z {n} treningów z planu": "Седмичен напредък: {done} от {n} тренировки по плана",
- "Treningi w tym tygodniu: {n}": "Тренировки тази седмица: {n}",
- "{done} z {n}": "{done} от {n}",
- "trening|treningi|treningów": "тренировка|тренировки",
- "więcej serii niż średnio": "повече серии от средното",
- "serie około średniej": "серии около средното",
- "mniej serii niż średnio": "по-малко серии от средното",
- "Talerz przy dniu — serie względem średniej w miesiącu:": "Диск до деня — серии спрямо средното за месеца:",
  "Planowanie": "Планиране",
  "Plan: {name} · {n} {d} · następny: {next}": "План: {name} · {n} {d} · следваща: {next}",
  "Rozwija planowanie.": "Разгъва планирането.",
@@ -1335,5 +1327,8 @@
  "RIR wpisuje się w zakresie 0–{max}; więcej niż {max} powtórzeń w zapasie zapisuje się jako „lekko” (RPE {light}), bo poniżej RPE {min} skala opisuje wysiłek słowami, a nie powtórzeniami w zapasie (Helms i in. 2016).": "RIR се въвежда в диапазона 0–{max}; повече от {max} повторения в резерв се записват като „леко“ (RPE {light}), защото под RPE {min} скалата описва усилието с думи, а не с повторения в резерв (Helms и сътр. 2016).",
  "Najcięższy ciężar w miejscu dla boju głównego ({list}): {w}. Ciężkie serie {a}–{b} powtórzeń (ok. {p}% maksimum) mogą być z nim za lekkie — jeśli {b} powtórzeń wychodzi lekko, rób więcej powtórzeń, bliżej upadku. Siła też wtedy rośnie, ale zwykle mniej niż przy dużym ciężarze.": "Най-тежката тежест на това място за основното упражнение ({list}): {w}. Тежките серии от {a}–{b} повторения (около {p}% от максимума) може да са твърде леки с нея — ако {b} повторения са ти леки, прави повече повторения, по-близо до отказ. Силата пак расте, но обикновено по-малко, отколкото с голяма тежест.",
  "Superset ustawisz w szablonie przyciskiem „Połącz z następnym w superset” — przerwa liczy się po ostatnim ćwiczeniu grupy.": "Суперсерия задаваш в шаблона с „Свързване със следващото в суперсерия“ — почивката започва след последното упражнение от групата.",
- "Z planu w tym tygodniu: zrobione {done} z {n}.": "От плана тази седмица: направени {done} от {n}."
+ "Z planu w tym tygodniu: zrobione {done} z {n}.": "От плана тази седмица: направени {done} от {n}.",
+ "{p}% planu tygodnia ({done} z {n})": "{p}% от седмичния план ({done} от {n})",
+ "Postęp tygodnia: {p}% planu, zrobione {done} z {n} treningów z planu": "Седмичен напредък: {p}% от плана, {done} от {n} тренировки по плана",
+ "zaplanowane": "планирано"
 }

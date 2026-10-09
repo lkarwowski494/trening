@@ -1296,14 +1296,6 @@
  "Inny plan": "Alt plan",
  "Zachęta do planu tygodnia": "Îndemn pentru planul săptămânal",
  "tekst na karcie „Dziś” i w Kalendarzu, gdy nie ma planu": "text pe cardul „Azi” și în Calendar când nu există un plan",
- "Postęp tygodnia: zrobione {done} z {n} treningów z planu": "Progresul săptămânii: {done} din {n} antrenamente din plan făcute",
- "Treningi w tym tygodniu: {n}": "Antrenamente săptămâna aceasta: {n}",
- "{done} z {n}": "{done} din {n}",
- "trening|treningi|treningów": "antrenament|antrenamente|de antrenamente",
- "więcej serii niż średnio": "mai multe serii decât media",
- "serie około średniej": "serii în jurul mediei",
- "mniej serii niż średnio": "mai puține serii decât media",
- "Talerz przy dniu — serie względem średniej w miesiącu:": "Disc lângă zi — serii față de media lunii:",
  "Planowanie": "Planificare",
  "Plan: {name} · {n} {d} · następny: {next}": "Plan: {name} · {n} {d} · următorul: {next}",
  "Rozwija planowanie.": "Extinde planificarea.",
@@ -1335,5 +1327,8 @@
  "RIR wpisuje się w zakresie 0–{max}; więcej niż {max} powtórzeń w zapasie zapisuje się jako „lekko” (RPE {light}), bo poniżej RPE {min} skala opisuje wysiłek słowami, a nie powtórzeniami w zapasie (Helms i in. 2016).": "RIR se introduce între 0 și {max}; mai mult de {max} repetări în rezervă se salvează ca „ușor” (RPE {light}), deoarece sub RPE {min} scala descrie efortul prin cuvinte, nu prin repetări în rezervă (Helms et al. 2016).",
  "Najcięższy ciężar w miejscu dla boju głównego ({list}): {w}. Ciężkie serie {a}–{b} powtórzeń (ok. {p}% maksimum) mogą być z nim za lekkie — jeśli {b} powtórzeń wychodzi lekko, rób więcej powtórzeń, bliżej upadku. Siła też wtedy rośnie, ale zwykle mniej niż przy dużym ciężarze.": "Cea mai mare greutate din acest loc pentru exercițiul principal ({list}): {w}. Seriile grele de {a}–{b} repetări (circa {p}% din maxim) pot fi prea ușoare cu ea — dacă {b} repetări ți se par ușoare, fă mai multe repetări, mai aproape de epuizare. Forța crește și așa, dar de obicei mai puțin decât cu greutăți mari.",
  "Superset ustawisz w szablonie przyciskiem „Połącz z następnym w superset” — przerwa liczy się po ostatnim ćwiczeniu grupy.": "Supersetul îl setezi în șablon cu „Leagă de următorul într-un superset” — pauza începe după ultimul exercițiu din grup.",
- "Z planu w tym tygodniu: zrobione {done} z {n}.": "Din plan săptămâna aceasta: făcute {done} din {n}."
+ "Z planu w tym tygodniu: zrobione {done} z {n}.": "Din plan săptămâna aceasta: făcute {done} din {n}.",
+ "{p}% planu tygodnia ({done} z {n})": "{p}% din planul săptămânal ({done} din {n})",
+ "Postęp tygodnia: {p}% planu, zrobione {done} z {n} treningów z planu": "Progresul săptămânii: {p}% din plan, {done} din {n} antrenamente din plan făcute",
+ "zaplanowane": "planificat"
 }

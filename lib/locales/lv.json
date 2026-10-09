@@ -1296,14 +1296,6 @@
  "Inny plan": "Cits plāns",
  "Zachęta do planu tygodnia": "Nedēļas plāna aicinājums",
  "tekst na karcie „Dziś” i w Kalendarzu, gdy nie ma planu": "teksts kartītē “Šodien” un kalendārā, ja nav plāna",
- "Postęp tygodnia: zrobione {done} z {n} treningów z planu": "Nedēļas progress: izpildīti {done} no {n} plāna treniņiem",
- "Treningi w tym tygodniu: {n}": "Treniņi šonedēļ: {n}",
- "{done} z {n}": "{done} no {n}",
- "trening|treningi|treningów": "treniņu|treniņš|treniņi",
- "więcej serii niż średnio": "vairāk sēriju nekā vidēji",
- "serie około średniej": "sērijas ap vidējo",
- "mniej serii niż średnio": "mazāk sēriju nekā vidēji",
- "Talerz przy dniu — serie względem średniej w miesiącu:": "Disks pie dienas — sērijas salīdzinājumā ar mēneša vidējo:",
  "Planowanie": "Plānošana",
  "Plan: {name} · {n} {d} · następny: {next}": "Plāns: {name} · {n} {d} · nākamais: {next}",
  "Rozwija planowanie.": "Izvērš plānošanu.",
@@ -1335,5 +1327,8 @@
  "RIR wpisuje się w zakresie 0–{max}; więcej niż {max} powtórzeń w zapasie zapisuje się jako „lekko” (RPE {light}), bo poniżej RPE {min} skala opisuje wysiłek słowami, a nie powtórzeniami w zapasie (Helms i in. 2016).": "RIR ievada robežās 0–{max}; vairāk nekā {max} atkārtojumi rezervē tiek saglabāti kā “viegli” (RPE {light}), jo zem RPE {min} skala apraksta piepūli vārdiem, nevis ar atkārtojumiem rezervē (Helms u. c. 2016).",
  "Najcięższy ciężar w miejscu dla boju głównego ({list}): {w}. Ciężkie serie {a}–{b} powtórzeń (ok. {p}% maksimum) mogą być z nim za lekkie — jeśli {b} powtórzeń wychodzi lekko, rób więcej powtórzeń, bliżej upadku. Siła też wtedy rośnie, ale zwykle mniej niż przy dużym ciężarze.": "Smagākais svars šajā vietā pamatvingrinājumam ({list}): {w}. Smagās sērijas pa {a}–{b} atkārtojumiem (aptuveni {p}% no maksimuma) ar to var būt par vieglu — ja {b} atkārtojumi šķiet viegli, dari vairāk atkārtojumu, tuvāk izsīkumam. Spēks tomēr pieaug, bet parasti mazāk nekā ar lielu svaru.",
  "Superset ustawisz w szablonie przyciskiem „Połącz z następnym w superset” — przerwa liczy się po ostatnim ćwiczeniu grupy.": "Supersetu iestati veidnē ar “Apvienot ar nākamo supersetā” — atpūta sākas pēc grupas pēdējā vingrinājuma.",
- "Z planu w tym tygodniu: zrobione {done} z {n}.": "No plāna šonedēļ: paveikti {done} no {n}."
+ "Z planu w tym tygodniu: zrobione {done} z {n}.": "No plāna šonedēļ: paveikti {done} no {n}.",
+ "{p}% planu tygodnia ({done} z {n})": "{p}% no nedēļas plāna ({done} no {n})",
+ "Postęp tygodnia: {p}% planu, zrobione {done} z {n} treningów z planu": "Nedēļas progress: {p}% no plāna, izpildīti {done} no {n} plāna treniņiem",
+ "zaplanowane": "plānots"
 }

@@ -1296,14 +1296,6 @@
  "Inny plan": "Muu suunnitelma",
  "Zachęta do planu tygodnia": "Viikkosuunnitelman kehotus",
  "tekst na karcie „Dziś” i w Kalendarzu, gdy nie ma planu": "teksti Tänään-kortilla ja kalenterissa, kun suunnitelmaa ei ole",
- "Postęp tygodnia: zrobione {done} z {n} treningów z planu": "Viikon edistyminen: tehty {done}/{n} suunnitelman treeniä",
- "Treningi w tym tygodniu: {n}": "Treenejä tällä viikolla: {n}",
- "{done} z {n}": "{done}/{n}",
- "trening|treningi|treningów": "treeni|treeniä",
- "więcej serii niż średnio": "enemmän sarjoja kuin keskimäärin",
- "serie około średniej": "sarjoja keskiarvon verran",
- "mniej serii niż średnio": "vähemmän sarjoja kuin keskimäärin",
- "Talerz przy dniu — serie względem średniej w miesiącu:": "Levy päivän vieressä — sarjat suhteessa kuukauden keskiarvoon:",
  "Planowanie": "Suunnittelu",
  "Plan: {name} · {n} {d} · następny: {next}": "Suunnitelma: {name} · {n} {d} · seuraava: {next}",
  "Rozwija planowanie.": "Avaa suunnittelun.",
@@ -1335,5 +1327,8 @@
  "RIR wpisuje się w zakresie 0–{max}; więcej niż {max} powtórzeń w zapasie zapisuje się jako „lekko” (RPE {light}), bo poniżej RPE {min} skala opisuje wysiłek słowami, a nie powtórzeniami w zapasie (Helms i in. 2016).": "RIR syötetään väliltä 0–{max}; yli {max} toistoa varastossa tallennetaan muodossa ”kevyt” (RPE {light}), koska alle RPE-arvon {min} asteikko kuvaa kuormittavuutta sanoin eikä varastotoistoina (Helms ym. 2016).",
  "Najcięższy ciężar w miejscu dla boju głównego ({list}): {w}. Ciężkie serie {a}–{b} powtórzeń (ok. {p}% maksimum) mogą być z nim za lekkie — jeśli {b} powtórzeń wychodzi lekko, rób więcej powtórzeń, bliżej upadku. Siła też wtedy rośnie, ale zwykle mniej niż przy dużym ciężarze.": "Paikan raskain paino pääliikkeelle ({list}): {w}. Raskaat sarjat, {a}–{b} toistoa (noin {p} % maksimista), voivat olla sillä liian kevyitä — jos {b} toistoa tuntuu kevyeltä, tee enemmän toistoja, lähemmäs uupumusta. Voima kasvaa silloinkin, mutta yleensä vähemmän kuin suurella painolla.",
  "Superset ustawisz w szablonie przyciskiem „Połącz z następnym w superset” — przerwa liczy się po ostatnim ćwiczeniu grupy.": "Supersarjan asetat pohjassa painikkeella ”Yhdistä seuraavaan supersarjaksi” — palautus alkaa ryhmän viimeisen liikkeen jälkeen.",
- "Z planu w tym tygodniu: zrobione {done} z {n}.": "Suunnitelmasta tällä viikolla: tehty {done}/{n}."
+ "Z planu w tym tygodniu: zrobione {done} z {n}.": "Suunnitelmasta tällä viikolla: tehty {done}/{n}.",
+ "{p}% planu tygodnia ({done} z {n})": "{p} % viikon suunnitelmasta ({done}/{n})",
+ "Postęp tygodnia: {p}% planu, zrobione {done} z {n} treningów z planu": "Viikon edistyminen: {p} % suunnitelmasta, tehty {done}/{n} suunnitelman treeniä",
+ "zaplanowane": "suunniteltu"
 }

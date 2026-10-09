@@ -1296,14 +1296,6 @@
  "Inny plan": "Інший план",
  "Zachęta do planu tygodnia": "Підказка про тижневий план",
  "tekst na karcie „Dziś” i w Kalendarzu, gdy nie ma planu": "текст на картці «Сьогодні» і в Календарі, коли немає плану",
- "Postęp tygodnia: zrobione {done} z {n} treningów z planu": "Поступ тижня: виконано {done} з {n} тренувань за планом",
- "Treningi w tym tygodniu: {n}": "Тренування цього тижня: {n}",
- "{done} z {n}": "{done} з {n}",
- "trening|treningi|treningów": "тренування|тренування|тренувань",
- "więcej serii niż średnio": "більше підходів, ніж у середньому",
- "serie około średniej": "підходи близько середнього",
- "mniej serii niż średnio": "менше підходів, ніж у середньому",
- "Talerz przy dniu — serie względem średniej w miesiącu:": "Диск біля дня — підходи порівняно із середнім за місяць:",
  "Planowanie": "Планування",
  "Plan: {name} · {n} {d} · następny: {next}": "План: {name} · {n} {d} · наступне: {next}",
  "Rozwija planowanie.": "Розгортає планування.",
@@ -1335,5 +1327,8 @@
  "RIR wpisuje się w zakresie 0–{max}; więcej niż {max} powtórzeń w zapasie zapisuje się jako „lekko” (RPE {light}), bo poniżej RPE {min} skala opisuje wysiłek słowami, a nie powtórzeniami w zapasie (Helms i in. 2016).": "RIR вводиться в межах 0–{max}; понад {max} повторень у запасі зберігається як «легко» (RPE {light}), бо нижче RPE {min} шкала описує зусилля словами, а не повтореннями в запасі (Helms та ін. 2016).",
  "Najcięższy ciężar w miejscu dla boju głównego ({list}): {w}. Ciężkie serie {a}–{b} powtórzeń (ok. {p}% maksimum) mogą być z nim za lekkie — jeśli {b} powtórzeń wychodzi lekko, rób więcej powtórzeń, bliżej upadku. Siła też wtedy rośnie, ale zwykle mniej niż przy dużym ciężarze.": "Найважча вага в цьому місці для основної вправи ({list}): {w}. Важкі підходи по {a}–{b} повторень (близько {p}% максимуму) з нею можуть бути надто легкими — якщо {b} повторень даються легко, роби більше повторень, ближче до відмови. Сила все одно зростає, але зазвичай менше, ніж із великою вагою.",
  "Superset ustawisz w szablonie przyciskiem „Połącz z następnym w superset” — przerwa liczy się po ostatnim ćwiczeniu grupy.": "Суперсет налаштовуєш у шаблоні кнопкою «Об’єднати з наступною в суперсет» — відпочинок починається після останньої вправи групи.",
- "Z planu w tym tygodniu: zrobione {done} z {n}.": "З плану цього тижня: виконано {done} з {n}."
+ "Z planu w tym tygodniu: zrobione {done} z {n}.": "З плану цього тижня: виконано {done} з {n}.",
+ "{p}% planu tygodnia ({done} z {n})": "{p}% тижневого плану ({done} з {n})",
+ "Postęp tygodnia: {p}% planu, zrobione {done} z {n} treningów z planu": "Поступ тижня: {p}% плану, виконано {done} з {n} тренувань за планом",
+ "zaplanowane": "заплановано"
 }

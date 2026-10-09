@@ -44,10 +44,6 @@
   "en": "{c}, level {n}"
  },
  {
-  "pl": "{done} z {n}",
-  "en": "{done} of {n}"
- },
- {
   "pl": "{ex} — {n} min, umiarkowane tempo",
   "en": "{ex} — {n} min, moderate pace"
  },
@@ -122,6 +118,10 @@
  {
   "pl": "{p} zastąpi ciężary wpisane dla: {i}.",
   "en": "{p} will replace the weights entered for: {i}."
+ },
+ {
+  "pl": "{p}% planu tygodnia ({done} z {n})",
+  "en": "{p}% of the weekly plan ({done} of {n})"
  },
  {
   "pl": "{u}/hant.",
@@ -2078,10 +2078,6 @@
   "en": "Fewer sets"
  },
  {
-  "pl": "mniej serii niż średnio",
-  "en": "fewer sets than average"
- },
- {
   "pl": "modlitewnik",
   "en": "preacher bench"
  },
@@ -3074,8 +3070,8 @@
   "en": "Workout progress: {d} of {n} sets"
  },
  {
-  "pl": "Postęp tygodnia: zrobione {done} z {n} treningów z planu",
-  "en": "Weekly progress: {done} of {n} planned workouts done"
+  "pl": "Postęp tygodnia: {p}% planu, zrobione {done} z {n} treningów z planu",
+  "en": "Weekly progress: {p}% of the plan, {done} of {n} planned workouts done"
  },
  {
   "pl": "Postępy",
@@ -3637,10 +3633,6 @@
   "en": "Sets per muscle group per week (assisting = {h} set — a simplification, single source): {list}"
  },
  {
-  "pl": "serie około średniej",
-  "en": "sets around average"
- },
- {
   "pl": "Serie per partia — ten tydzień vs poprzedni",
   "en": "Sets per muscle — this week vs last"
  },
@@ -4011,10 +4003,6 @@
   "en": "Weight plate (held)"
  },
  {
-  "pl": "Talerz przy dniu — serie względem średniej w miesiącu:",
-  "en": "Plate next to a day — sets compared with the month’s average:"
- },
- {
   "pl": "Talerze: ciężar i liczba sztuk (wszystkie, dla obu hantli razem).",
   "en": "Plates: weight and number of pieces (all of them, for both dumbbells together)."
  },
@@ -4219,11 +4207,6 @@
   "en": "A workout you didn’t log at the time. Set the date and pick a template — you’ll fill in the sets in the next step (values from your last workout before that date)."
  },
  {
-  "pl": "trening|treningi|treningów",
-  "en": "workout|workouts",
-  "plural": true
- },
- {
   "pl": "Treningi",
   "en": "Workouts"
  },
@@ -4238,10 +4221,6 @@
  {
   "pl": "Treningi sprzed pierwszego pomiaru ({d}) — bez e1RM.",
   "en": "Workouts before the first measurement ({d}) — no e1RM."
- },
- {
-  "pl": "Treningi w tym tygodniu: {n}",
-  "en": "Workouts this week: {n}"
  },
  {
   "pl": "triceps",
@@ -4690,10 +4669,6 @@
  {
   "pl": "Więcej opcji",
   "en": "More options"
- },
- {
-  "pl": "więcej serii niż średnio",
-  "en": "more sets than average"
  },
  {
   "pl": "Wiosłowanie T-bar",
@@ -5174,6 +5149,10 @@
  {
   "pl": "Zapisz zmiany",
   "en": "Save changes"
+ },
+ {
+  "pl": "zaplanowane",
+  "en": "planned"
  },
  {
   "pl": "Zaplanowany też na: {days} — te dni będą wolne.",

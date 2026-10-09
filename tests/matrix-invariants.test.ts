@@ -28,8 +28,8 @@ import { buildBackup, parseBackup } from '@/lib/backup';
 import { implsAt, EQUIPMENT, LOCATION_PRESETS } from '@/lib/equipment';
 import { CABLES } from '@/lib/catalog.generated';
 import { SCHEMA_VERSION, METRICS, blankTimer, uid, hasReps, hasTime, hasDistance, type Exercise, type Template, type TemplateItem, type Workout, type WSet, type SetKind, type Impl } from '@/lib/seed';
-import { weekBar, LOAD_ORDER, WEEK_PLATES_MAX } from '@/lib/motif';
-import { weekTiles } from '@/lib/dashboard';
+import { weekProgress, planPct, dayMark } from '@/lib/motif';
+import { weekTiles, weekStrip } from '@/lib/dashboard';
 import { fresh } from './helpers';
 
 jest.setTimeout(600000);
@@ -572,11 +572,15 @@ function statsCheck(where: string) {
   for (const w of fin) { if (w.startedAt < mon || w.startedAt >= nx) continue; for (const e of w.exercises) { const ex = store.exById(e.exerciseId); if (!ex) continue; const n = workN(e.sets); if (!n) continue;
     ex.muscles.forEach(q => { mus[q] = (mus[q] ?? 0) + n; }); ex.secondaryMuscles.forEach(q => { mus[q] = (mus[q] ?? 0) + n * 0.5; }); } }
   expect({ where, m: stats.weeklySetsByMuscle(mon) }).toEqual({ where, m: mus });
-  /* motyw z ikony (09.10.2026): sztanga tygodnia = te same liczby co kafelki; talerzy min(dni/treningi, 7), załadowane = zrobione, kolory po kolei */
-  const wb = weekBar(); const wt = weekTiles();
-  ok(wb.mode === 'plan' ? wb.total === wt.planned && wb.done === wt.planDone : wb.total === wt.workouts && wb.done === wt.workouts, where, 'weekBar ≠ kafelki tygodnia', { wb, wt });
-  ok(wb.done <= wb.total && wb.plates.length === Math.min(wb.total, WEEK_PLATES_MAX) && wb.plates.filter(p => p.loaded).length === Math.min(wb.done, wb.plates.length), where, 'weekBar: liczba talerzy / załadowanych', wb);
-  ok(wb.plates.every((p, i) => p.color === LOAD_ORDER[i % LOAD_ORDER.length] && p.loaded === (i < wb.done)), where, 'weekBar: kolejność kolorów i ładowania', wb);
+  /* postęp tygodnia (korekta właściciela 09.10.2026 ok. 17:00): stosy = dni w planie tygodnia, pełne = zrobione z planu (te same liczby co kafelki),
+   * procent 0–100, 100 wtedy i tylko wtedy, gdy zrobione wszystkie; bez planu — nic. Znacznik dnia w pasku = stan dnia (jedna funkcja). */
+  const wp = weekProgress(); const wt = weekTiles();
+  ok(wt.planned ? !!wp && wp.total === wt.planned && wp.done === wt.planDone : wp === null, where, 'weekProgress ≠ kafelki tygodnia', { wp, wt });
+  if (wp) {
+    ok(wp.stacks.length === wp.total && wp.stacks.filter(Boolean).length === wp.done && wp.stacks.every((f, i) => f === (i < wp.done)), where, 'weekProgress: stosy pełne od lewej = zrobione', wp);
+    ok(Number.isInteger(wp.pct) && wp.pct >= 0 && wp.pct <= 100 && (wp.pct === 100) === (wp.done === wp.total) && (wp.pct === 0) === (wp.done === 0) && wp.pct === planPct(wp.done, wp.total), where, 'weekProgress: procent', wp);
+  }
+  for (const d of weekStrip()) { const m = dayMark(d.status); ok(m === (d.status === 'rest' ? null : d.status === 'other' ? 'done' : d.status), where, 'dayMark ≠ stan dnia', { d, m }); }
 }
 
 /* ---------- przebieg ---------- */

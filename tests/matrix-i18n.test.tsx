@@ -39,8 +39,8 @@ const SAME_ANY = new Set([
 ]);
 /** W jednym języku: wyraz pokrewny o tym samym zapisie i znaczeniu (słowa sprawdzone w języku docelowym). */
 const SAME_IN: Partial<Record<Lang, string[]>> = {
-  cs: ['guma: {v}' /* guma (07.10.2026) */, '{n} z {all}', '{n} z {m}', '{done} z {n}' /* „z” = z (czes.) */, '{u}/str.' /* strana */, '+ Guma', 'guma', 'Guma', 'gumy', 'Gumy', 'Gumy…' /* guma (UI2-09) */, 'do', 'od', 'krok', 'obj.' /* objem */, 'REKORDY', 'Guma: {b}' /* guma (A11-18: etykieta bez instrukcji) */ /* „pauza” (08.10.2026) usunięte 09.10.2026: pauza treningu = „pozastavit”, A11-01 */],
-  sk: ['guma: {v}' /* guma (07.10.2026) */, '{n} z {all}', '{n} z {m}', '{done} z {n}' /* „z” = z (słow.) */, '{u}/str.', '+ Guma', 'guma', 'Guma', 'gumy', 'Gumy', 'Gumy…', 'do', 'od', 'krok', 'obj.', 'REKORDY', 'nie', 'Nie' /* „nie” = nie (słow.) */, 'Partia' /* svalová partia */, 'sek.', 'Teraz: {v}' /* teraz = teraz (słow.) */, 'Guma: {b}' /* A11-18 */ /* „pauza” usunięte 09.10.2026: pauza treningu = „pozastaviť”, A11-01 */],
+  cs: ['guma: {v}' /* guma (07.10.2026) */, '{n} z {all}', '{n} z {m}', '{u}/str.' /* strana */, '+ Guma', 'guma', 'Guma', 'gumy', 'Gumy', 'Gumy…' /* guma (UI2-09) */, 'do', 'od', 'krok', 'obj.' /* objem */, 'REKORDY', 'Guma: {b}' /* guma (A11-18: etykieta bez instrukcji) */ /* „pauza” (08.10.2026) usunięte 09.10.2026: pauza treningu = „pozastavit”, A11-01 */],
+  sk: ['guma: {v}' /* guma (07.10.2026) */, '{n} z {all}', '{n} z {m}', '{u}/str.', '+ Guma', 'guma', 'Guma', 'gumy', 'Gumy', 'Gumy…', 'do', 'od', 'krok', 'obj.', 'REKORDY', 'nie', 'Nie' /* „nie” = nie (słow.) */, 'Partia' /* svalová partia */, 'sek.', 'Teraz: {v}' /* teraz = teraz (słow.) */, 'Guma: {b}' /* A11-18 */ /* „pauza” usunięte 09.10.2026: pauza treningu = „pozastaviť”, A11-01 */],
   hr: ['guma: {v}' /* guma (07.10.2026) */, 'Masa' /* masa = masa (chorw., cel generatora 08.10.2026) */, '{u}/str.' /* strana */, 'do', 'od', 'Dom', 'normalna', 'sek.', 'Trening' /* APP_NAME.hr */, 'pauza', '⏸ Pauza' /* pauza = pauza (08.10.2026) */, 'Dodaj trening' /* „dodaj” = dodaj (08.10.2026) */, 'Dodane: {list}.' /* dodane = dodane (chorw., ćwiczenia z treningu do szablonu, audyt 0.10 H5) */],
   sl: ['{u}/str.' /* stran */, 'do', 'od', 'Dom', 'sek.', 'Trening' /* APP_NAME.sl */, 'Treningi' /* sl: mn. „trening” — to samo słowo */, 'Dodaj trening' /* „dodaj” = dodaj (08.10.2026) */, 'Dodane: {list}.' /* dodane = dodane (słoweń., audyt 0.10 H5) */],
   ro: ['seria {n}', 'Seria {n}', 'Seria {n} — {ex}', 'serii', 'e1RM {v} (seria {s})' /* rum. seria = seria (forma z rodzajnikiem), serii = serie */],
@@ -335,6 +335,15 @@ describe('długie tłumaczenia w miejscach, gdzie tekst może być ucięty', () 
     const avail = 320 - 2 * 14 - 2 * 12 - 2 * 1; const bad: string[] = [];
     for (const k of ['Nowe szablony i plan', 'Plan z moich szablonów']) for (const x of trIn(l, k).split(/\s+/)) for (const sc of [1, 2]) if (SANS.semibold.width(x, 13 * sc) > avail) bad.push(`${x} (${sc})`);
     expect([l, bad]).toEqual([l, []]);
+  });
+  /* Korekta właściciela 09.10.2026 ok. 17:00: postęp tygodnia „60% planu tygodnia (3 z 5)” obok stosów talerzy (components/WeekStacks: 15 pt półgruby,
+   * wiersz z zawijaniem, TEXT_SCALE_MAX) — na 320 pt (Screen 14) żaden wyraz nie szerszy niż wiersz, także przy 200%; tekst z liczbami {p}, {done}, {n}. */
+  test.each([...LANGS])('%s: postęp tygodnia (procent planu) na ekranie 320 pt — bez łamania wyrazu przy 100% i 200%', l => {
+    const avail = 320 - 2 * 14; const bad: string[] = [];
+    const s = trIn(l, '{p}% planu tygodnia ({done} z {n})').replace('{p}', '100').replace('{done}', '7').replace('{n}', '7');
+    for (const x of s.split(/\s+/)) for (const sc of [1, 2]) if (SANS.semibold.width(x, 15 * sc) > avail) bad.push(`${x} (${sc})`);
+    expect([l, /100/.test(s) && /7/.test(s), bad]).toEqual([l, true, []]);
+    expect([l, ['{p}', '{done}', '{n}'].every(k => trIn(l, 'Postęp tygodnia: {p}% planu, zrobione {done} z {n} treningów z planu').includes(k))]).toEqual([l, true]);
   });
   test('czytnik TTF liczy szerokości jak krój (kontrola: „i” węższe niż „m”, szerokość rośnie liniowo z rozmiarem)', () => {
     const f = SANS.semibold; expect(f.width('i', 10)).toBeLessThan(f.width('m', 10)); expect(f.width('Trening', 20)).toBeCloseTo(2 * f.width('Trening', 10), 6);

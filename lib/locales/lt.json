@@ -1296,14 +1296,6 @@
  "Inny plan": "Kitas planas",
  "Zachęta do planu tygodnia": "Savaitės plano raginimas",
  "tekst na karcie „Dziś” i w Kalendarzu, gdy nie ma planu": "tekstas kortelėje „Šiandien“ ir kalendoriuje, kai plano nėra",
- "Postęp tygodnia: zrobione {done} z {n} treningów z planu": "Savaitės pažanga: atlikta {done} iš {n} plano treniruočių",
- "Treningi w tym tygodniu: {n}": "Treniruotės šią savaitę: {n}",
- "{done} z {n}": "{done} iš {n}",
- "trening|treningi|treningów": "treniruotė|treniruotės|treniruočių",
- "więcej serii niż średnio": "daugiau serijų nei vidutiniškai",
- "serie około średniej": "serijos apie vidurkį",
- "mniej serii niż średnio": "mažiau serijų nei vidutiniškai",
- "Talerz przy dniu — serie względem średniej w miesiącu:": "Diskas prie dienos — serijos, palyginti su mėnesio vidurkiu:",
  "Planowanie": "Planavimas",
  "Plan: {name} · {n} {d} · następny: {next}": "Planas: {name} · {n} {d} · kita: {next}",
  "Rozwija planowanie.": "Išskleidžia planavimą.",
@@ -1335,5 +1327,8 @@
  "RIR wpisuje się w zakresie 0–{max}; więcej niż {max} powtórzeń w zapasie zapisuje się jako „lekko” (RPE {light}), bo poniżej RPE {min} skala opisuje wysiłek słowami, a nie powtórzeniami w zapasie (Helms i in. 2016).": "RIR įvedamas intervale 0–{max}; daugiau nei {max} atsarginių pakartojimų išsaugoma kaip „lengvai“ (RPE {light}), nes žemiau RPE {min} skalė pastangas apibūdina žodžiais, o ne atsarginiais pakartojimais (Helms ir kt. 2016).",
  "Najcięższy ciężar w miejscu dla boju głównego ({list}): {w}. Ciężkie serie {a}–{b} powtórzeń (ok. {p}% maksimum) mogą być z nim za lekkie — jeśli {b} powtórzeń wychodzi lekko, rób więcej powtórzeń, bliżej upadku. Siła też wtedy rośnie, ale zwykle mniej niż przy dużym ciężarze.": "Sunkiausias svoris šioje vietoje pagrindiniam pratimui ({list}): {w}. Sunkios {a}–{b} pakartojimų serijos (apie {p} % maksimumo) su juo gali būti per lengvos — jei {b} pakartojimai lengvi, daryk daugiau pakartojimų, arčiau išsekimo. Jėga vis tiek didėja, bet paprastai mažiau nei su dideliu svoriu.",
  "Superset ustawisz w szablonie przyciskiem „Połącz z następnym w superset” — przerwa liczy się po ostatnim ćwiczeniu grupy.": "Superseriją nustatai šablone mygtuku „Sujungti su kitu į superseriją“ — poilsis prasideda po paskutinio grupės pratimo.",
- "Z planu w tym tygodniu: zrobione {done} z {n}.": "Iš plano šią savaitę: atlikta {done} iš {n}."
+ "Z planu w tym tygodniu: zrobione {done} z {n}.": "Iš plano šią savaitę: atlikta {done} iš {n}.",
+ "{p}% planu tygodnia ({done} z {n})": "{p} % savaitės plano ({done} iš {n})",
+ "Postęp tygodnia: {p}% planu, zrobione {done} z {n} treningów z planu": "Savaitės pažanga: {p} % plano, atlikta {done} iš {n} plano treniruočių",
+ "zaplanowane": "suplanuota"
 }

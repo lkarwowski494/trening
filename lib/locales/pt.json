@@ -1296,14 +1296,6 @@
  "Inny plan": "Outro plano",
  "Zachęta do planu tygodnia": "Sugestão do plano semanal",
  "tekst na karcie „Dziś” i w Kalendarzu, gdy nie ma planu": "texto no cartão «Hoje» e no Calendário quando não há plano",
- "Postęp tygodnia: zrobione {done} z {n} treningów z planu": "Progresso da semana: {done} de {n} treinos do plano feitos",
- "Treningi w tym tygodniu: {n}": "Treinos esta semana: {n}",
- "{done} z {n}": "{done} de {n}",
- "trening|treningi|treningów": "treino|treinos",
- "więcej serii niż średnio": "mais séries do que a média",
- "serie około średniej": "séries perto da média",
- "mniej serii niż średnio": "menos séries do que a média",
- "Talerz przy dniu — serie względem średniej w miesiącu:": "Disco junto ao dia — séries face à média do mês:",
  "Planowanie": "Planeamento",
  "Plan: {name} · {n} {d} · następny: {next}": "Plano: {name} · {n} {d} · seguinte: {next}",
  "Rozwija planowanie.": "Expande o planeamento.",
@@ -1335,5 +1327,8 @@
  "RIR wpisuje się w zakresie 0–{max}; więcej niż {max} powtórzeń w zapasie zapisuje się jako „lekko” (RPE {light}), bo poniżej RPE {min} skala opisuje wysiłek słowami, a nie powtórzeniami w zapasie (Helms i in. 2016).": "O RIR introduz-se de 0 a {max}; mais de {max} repetições em reserva são guardadas como «leve» (RPE {light}), porque abaixo de RPE {min} a escala descreve o esforço por palavras, não por repetições em reserva (Helms et al. 2016).",
  "Najcięższy ciężar w miejscu dla boju głównego ({list}): {w}. Ciężkie serie {a}–{b} powtórzeń (ok. {p}% maksimum) mogą być z nim za lekkie — jeśli {b} powtórzeń wychodzi lekko, rób więcej powtórzeń, bliżej upadku. Siła też wtedy rośnie, ale zwykle mniej niż przy dużym ciężarze.": "Peso mais pesado neste local para o exercício principal ({list}): {w}. As séries pesadas de {a}–{b} repetições (cerca de {p}% do máximo) podem ficar demasiado leves com ele — se {b} repetições parecerem leves, faça mais repetições, mais perto da falha. A força também aumenta, mas normalmente menos do que com cargas elevadas.",
  "Superset ustawisz w szablonie przyciskiem „Połącz z następnym w superset” — przerwa liczy się po ostatnim ćwiczeniu grupy.": "O superset define-se no modelo com «Ligar ao seguinte num superset» — o descanso começa depois do último exercício do grupo.",
- "Z planu w tym tygodniu: zrobione {done} z {n}.": "Do plano esta semana: feitos {done} de {n}."
+ "Z planu w tym tygodniu: zrobione {done} z {n}.": "Do plano esta semana: feitos {done} de {n}.",
+ "{p}% planu tygodnia ({done} z {n})": "{p}% do plano semanal ({done} de {n})",
+ "Postęp tygodnia: {p}% planu, zrobione {done} z {n} treningów z planu": "Progresso da semana: {p}% do plano, {done} de {n} treinos do plano feitos",
+ "zaplanowane": "planeado"
 }

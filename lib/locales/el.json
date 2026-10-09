@@ -1296,14 +1296,6 @@
  "Inny plan": "Άλλο πρόγραμμα",
  "Zachęta do planu tygodnia": "Πρόταση για εβδομαδιαίο πρόγραμμα",
  "tekst na karcie „Dziś” i w Kalendarzu, gdy nie ma planu": "κείμενο στην κάρτα «Σήμερα» και στο Ημερολόγιο, όταν δεν υπάρχει πρόγραμμα",
- "Postęp tygodnia: zrobione {done} z {n} treningów z planu": "Πρόοδος εβδομάδας: {done} από {n} προγραμματισμένες προπονήσεις",
- "Treningi w tym tygodniu: {n}": "Προπονήσεις αυτή την εβδομάδα: {n}",
- "{done} z {n}": "{done} από {n}",
- "trening|treningi|treningów": "προπόνηση|προπονήσεις",
- "więcej serii niż średnio": "περισσότερα σετ από τον μέσο όρο",
- "serie około średniej": "σετ γύρω από τον μέσο όρο",
- "mniej serii niż średnio": "λιγότερα σετ από τον μέσο όρο",
- "Talerz przy dniu — serie względem średniej w miesiącu:": "Δίσκος δίπλα στην ημέρα — σετ σε σχέση με τον μέσο όρο του μήνα:",
  "Planowanie": "Σχεδιασμός",
  "Plan: {name} · {n} {d} · następny: {next}": "Πρόγραμμα: {name} · {n} {d} · επόμενη: {next}",
  "Rozwija planowanie.": "Αναπτύσσει τον σχεδιασμό.",
@@ -1335,5 +1327,8 @@
  "RIR wpisuje się w zakresie 0–{max}; więcej niż {max} powtórzeń w zapasie zapisuje się jako „lekko” (RPE {light}), bo poniżej RPE {min} skala opisuje wysiłek słowami, a nie powtórzeniami w zapasie (Helms i in. 2016).": "Το RIR καταχωρίζεται από 0 έως {max}· περισσότερες από {max} επαναλήψεις σε απόθεμα αποθηκεύονται ως «ελαφρύ» (RPE {light}), επειδή κάτω από RPE {min} η κλίμακα περιγράφει την προσπάθεια με λέξεις, όχι με επαναλήψεις σε απόθεμα (Helms κ.ά. 2016).",
  "Najcięższy ciężar w miejscu dla boju głównego ({list}): {w}. Ciężkie serie {a}–{b} powtórzeń (ok. {p}% maksimum) mogą być z nim za lekkie — jeśli {b} powtórzeń wychodzi lekko, rób więcej powtórzeń, bliżej upadku. Siła też wtedy rośnie, ale zwykle mniej niż przy dużym ciężarze.": "Το βαρύτερο βάρος σε αυτό το μέρος για τη βασική άσκηση ({list}): {w}. Τα βαριά σετ των {a}–{b} επαναλήψεων (περίπου {p}% του μέγιστου) ίσως είναι πολύ ελαφριά με αυτό — αν οι {b} επαναλήψεις σου φαίνονται εύκολες, κάνε περισσότερες επαναλήψεις, πιο κοντά στην αποτυχία. Η δύναμη αυξάνεται και τότε, αλλά συνήθως λιγότερο απ’ ό,τι με μεγάλο βάρος.",
  "Superset ustawisz w szablonie przyciskiem „Połącz z następnym w superset” — przerwa liczy się po ostatnim ćwiczeniu grupy.": "Το superset το ορίζεις στο πρότυπο με το «Ένωση με την επόμενη σε superset» — το διάλειμμα ξεκινά μετά την τελευταία άσκηση της ομάδας.",
- "Z planu w tym tygodniu: zrobione {done} z {n}.": "Από το πρόγραμμα αυτή την εβδομάδα: έγιναν {done} από {n}."
+ "Z planu w tym tygodniu: zrobione {done} z {n}.": "Από το πρόγραμμα αυτή την εβδομάδα: έγιναν {done} από {n}.",
+ "{p}% planu tygodnia ({done} z {n})": "{p}% του εβδομαδιαίου προγράμματος ({done} από {n})",
+ "Postęp tygodnia: {p}% planu, zrobione {done} z {n} treningów z planu": "Πρόοδος εβδομάδας: {p}% του προγράμματος, {done} από {n} προγραμματισμένες προπονήσεις",
+ "zaplanowane": "προγραμματισμένο"
 }

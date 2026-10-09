@@ -81,7 +81,7 @@ describe('A5 — zrobiony inny trening (dopasowanie po szablonie)', () => {
     expect(screen.getByText(`Dziś: ${t[0].name}`)).toBeTruthy(); expect(screen.getByText('Zrobiony inny trening: Legs — dom')).toBeTruthy();
     expect(screen.getByLabelText(`Start zaplanowanego treningu: ${t[0].name}`)).toBeTruthy();
     expect(screen.getByLabelText(`czwartek, 8 października, dziś, zrobiony inny trening: Legs — dom, zaplanowany: ${t[0].name}`)).toBeTruthy();
-    expect(screen.getByTestId('week-barbell').props.accessibilityLabel).toBe('Postęp tygodnia: zrobione 0 z 1 treningów z planu'); /* układ B: sztanga w „Ten tydzień” */
+    expect(screen.getByTestId('week-stacks').props.accessibilityLabel).toBe('Postęp tygodnia: 0% planu, zrobione 0 z 1 treningów z planu'); /* postęp tygodnia (stosy) w „Ten tydzień” — inny trening nie zalicza dnia z planu */
     await go('/history'); await flushAll(10);
     expect(screen.getByLabelText(`8 października 2026, dziś, 1 sesja, zrobiony inny trening, zaplanowany: ${t[0].name}`)).toBeTruthy();
     await openDay('2026-10-08');
