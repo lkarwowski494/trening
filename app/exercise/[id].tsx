@@ -22,7 +22,7 @@ const EQ: Equipment[] = ['hantle', 'sztanga', 'masa ciała', 'maszyna', 'linki',
 export default function ExerciseScreen() {
   const p = useLocalSearchParams<{ id: string; edit?: string; new?: string }>(); const id = typeof p.id === 'string' ? p.id : ''; useTick(); const router = useRouter();
   const isNew = useRef(p.new === '1'); const once = useOnce();
-  const [editing, setEditing] = useState(() => p.edit === '1' && !!beginObjDraft('exercise', id));
+  const [editing, setEditing] = useState(() => p.edit === '1' && !!beginObjDraft('exercise', id, { isNew: p.new === '1' }) /* UX2-12: nowy obiekt w zapisanym szkicu */);
   /* zamknięcie ekranu w jakikolwiek sposób wyrzuca szkic; nowe ćwiczenie, którego nigdy nie zapisano (albo nietknięte „Nowe ćwiczenie”), znika — runda 2 */
   useEffect(() => () => { discardObjDraft('exercise', id); const x = exById(id); if (x && (isNew.current || x.name === t('Nowe ćwiczenie'))) dropUnsavedNew('exercise', id); }, [id]);
   const real = exById(id); const d = editing ? objDraft<Exercise>('exercise', id) : undefined;

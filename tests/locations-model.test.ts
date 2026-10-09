@@ -50,8 +50,8 @@ describe('schemat 14 i migracja', () => {
     await fresh(); const raw = JSON.parse(JSON.stringify(store.getState()));
     raw.settings.locations = [{ id: 'a', name: '  Dom  ', equipment: [{ item: 'db_fixed', opts: ['x'], load: { kind: 'list', items: [{ w: '12,5' }, { w: 'x' }] }, junk: 1 }, { item: 'nope' }, { item: 'db_fixed' }, { item: 'electric', opts: ['dual', 'zz'], load: { kind: 'electric', min: 1.5, max: 65, step: 0.5 } }, { item: 'bench_adj', load: { kind: 'list', items: [] } }] }, null, { id: 'a', name: 'dup' }, { name: '' }];
     raw.settings.mainLocationId = 'missing'; raw.settings.pickerShowAll = 'yes';
-    const m = store.migrate(raw); const [a, b] = m.settings.locations;
-    expect(m.settings.locations).toHaveLength(2); expect(a.name).toBe('Dom'); expect(a.equipment.map(e => e.item)).toEqual(['db_fixed', 'electric', 'bench_adj']);
+    const m = store.migrate(raw); const [a, dup, b] = m.settings.locations;
+    expect(m.settings.locations).toHaveLength(3); expect(dup).toMatchObject({ id: 'a~2', name: 'dup' }); /* DAT2-04: powtórzone id → „~n”, wpis nie ginie */ expect(a.name).toBe('Dom'); expect(a.equipment.map(e => e.item)).toEqual(['db_fixed', 'electric', 'bench_adj']);
     expect(a.equipment[0]).toEqual({ item: 'db_fixed', opts: [], load: { kind: 'list', unit: 'kg', items: [{ w: 12.5, on: true }] } });
     expect(a.equipment[1].opts).toEqual(['dual']); expect(a.equipment[2].load).toBeUndefined(); /* ławka nie ma ciężarów */
     expect(b.name).toBe('Miejsce'); expect(typeof b.id).toBe('string'); expect(m.settings.mainLocationId).toBe('a'); expect(m.settings.pickerShowAll).toBe(false);

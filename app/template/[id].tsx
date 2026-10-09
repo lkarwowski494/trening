@@ -32,7 +32,7 @@ import { wu, wField, wInKeep } from '@/lib/units';
 export default function TemplateScreen() {
   const p = useLocalSearchParams<{ id: string; edit?: string; new?: string; assign?: string }>(); const id = typeof p.id === 'string' ? p.id : ''; useTick(); const router = useRouter();
   const isNew = useRef(p.new === '1'); const assigned = useRef(false);
-  const [editing, setEditing] = useState(() => p.edit === '1' && !!beginObjDraft('template', id));
+  const [editing, setEditing] = useState(() => p.edit === '1' && !!beginObjDraft('template', id, { isNew: p.new === '1' }) /* UX2-12: nowy obiekt w zapisanym szkicu */);
   // Nowy, nietknięty szablon znika po wyjściu — „+ Nowy” i „Wróć” nie zostawiają śmieci (runda 2); zapisane szablony bez ćwiczeń zostają (runda 3).
   useEffect(() => () => { discardObjDraft('template', id); const x = getState().templates.find(y => y.id === id); if (x && !assigned.current && (isNew.current || x.name === t('Nowy szablon'))) dropUnsavedNew('template', id); }, [id]);
   const real = getState().templates.find(x => x.id === id); const d = editing ? objDraft<Template>('template', id) : undefined;

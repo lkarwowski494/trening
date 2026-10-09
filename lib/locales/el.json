@@ -847,7 +847,6 @@
  "Zamknij": "Κλείσιμο",
  "Kalendarz zamiast Historii: plan tygodnia, przesuwanie treningów i propozycje zmian z myślą o regeneracji partii.": "Ημερολόγιο αντί για Ιστορικό: εβδομαδιαίο πρόγραμμα, μετακίνηση προπονήσεων και προτάσεις αλλαγών με βάση την αποκατάσταση των μυϊκών ομάδων.",
  "Pauza treningu — czas pauzy nie liczy się do czasu trwania.": "Παύση προπόνησης — ο χρόνος παύσης δεν μετράει στη διάρκεια.",
- "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik 10 serii na partię w tygodniu i oznaczanie tygodnia deload.": "Πρόοδος: σύνοψη εβδομάδας και μήνα με χάρτη μυών, σήμανση 10 σετ ανά μυϊκή ομάδα την εβδομάδα και σήμανση εβδομάδας αποφόρτισης.",
  "Skala wysiłku RPE albo RIR w Ustawieniach.": "Κλίμακα προσπάθειας RPE ή RIR στις Ρυθμίσεις.",
  "Szablony w folderach i archiwum, „Pomiń dziś” bez zmiany szablonu, usuwanie przesunięciem w lewo.": "Πρότυπα σε φακέλους και αρχείο, «Παράλειψη σήμερα» χωρίς αλλαγή του προτύπου, διαγραφή με σάρωση προς τα αριστερά.",
  "Nowy wygląd: kolory i kroje, grafika talerzy na sztandze.": "Νέα εμφάνιση: χρώματα και γραμματοσειρές, γραφικό των δίσκων στην μπάρα.",
@@ -941,7 +940,6 @@
  "Tydzień oznaczysz też w Postępach przełącznikiem „Tydzień deload”.": "Μπορείς επίσης να σημειώσεις μια εβδομάδα στην Πρόοδος με τον διακόπτη «Εβδομάδα αποφόρτισης».",
  "Postępy i rekordy": "Πρόοδος και ρεκόρ",
  "Więcej → Postępy: podsumowanie tygodnia lub miesiąca z poprzednim okresem obok.": "Περισσότερα → Πρόοδος: σύνοψη εβδομάδας ή μήνα με την προηγούμενη περίοδο δίπλα.",
- "Mapa mięśni i serie na partię z kreską 10 serii tygodniowo.": "Χάρτης μυών και σετ ανά μυϊκή ομάδα με γραμμή στα 10 σετ την εβδομάδα.",
  "Wykresy ćwiczeń i rekordy; rekord w trakcie treningu widać przy serii.": "Γραφήματα ασκήσεων και ρεκόρ· στην προπόνηση το ρεκόρ φαίνεται δίπλα στο σετ.",
  "Więcej → Miejsca i sprzęt: dom, siłownia, hotel — każdy ze swoim sprzętem i ciężarami.": "Περισσότερα → Χώροι και εξοπλισμός: σπίτι, γυμναστήριο, ξενοδοχείο — το καθένα με δικό του εξοπλισμό και βάρη.",
  "Lista ćwiczeń, zamiany i generator pokazują to, co da się zrobić w wybranym miejscu.": "Η λίστα ασκήσεων, οι αντικαταστάσεις και η γεννήτρια δείχνουν τι γίνεται στο επιλεγμένο μέρος.",
@@ -1319,5 +1317,11 @@
  "{p}% planu tygodnia ({done} z {n})": "{p}% του εβδομαδιαίου προγράμματος ({done} από {n})",
  "Postęp tygodnia: {p}% planu, zrobione {done} z {n} treningów z planu": "Πρόοδος εβδομάδας: {p}% του προγράμματος, {done} από {n} προγραμματισμένες προπονήσεις",
  "zaplanowane": "προγραμματισμένο",
- "Tygodnie z wykonanym planem: {done} z {n}": "Εβδομάδες με ολοκληρωμένο πρόγραμμα: {done} από {n}"
+ "Tygodnie z wykonanym planem: {done} z {n}": "Εβδομάδες με ολοκληρωμένο πρόγραμμα: {done} από {n}",
+ "Niezapisane zmiany": "Μη αποθηκευμένες αλλαγές",
+ "Aplikacja zamknęła się w trakcie edycji szablonu „{name}”. Wrócić do edycji?": "Η εφαρμογή έκλεισε ενώ επεξεργαζόσουν το πρότυπο «{name}». Επιστροφή στην επεξεργασία;",
+ "Aplikacja zamknęła się w trakcie edycji ćwiczenia „{name}”. Wrócić do edycji?": "Η εφαρμογή έκλεισε ενώ επεξεργαζόσουν την άσκηση «{name}». Επιστροφή στην επεξεργασία;",
+ "Wróć do edycji": "Επιστροφή στην επεξεργασία",
+ "Mapa mięśni i serie na partię z kreską {n} serii tygodniowo.": "Χάρτης μυών και σετ ανά μυϊκή ομάδα με γραμμή στα {n} σετ την εβδομάδα.",
+ "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.": "Πρόοδος: σύνοψη εβδομάδας και μήνα με χάρτη μυών, σήμανση {n} σετ ανά μυϊκή ομάδα την εβδομάδα και σήμανση εβδομάδας αποφόρτισης."
 }

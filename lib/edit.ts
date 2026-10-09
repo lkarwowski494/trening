@@ -292,14 +292,17 @@ export function activeEnd(start: number, activeMs: number, pauses: readonly (rea
 }
 /** Termin szkicu. Pola nieruszone zostają co do sekundy: sama zmiana czasu trwania nie przesuwa startu, sama zmiana daty/godziny
  * zachowuje dawny czas trwania (także > 24 h z importu). `changed` — termin inny niż przy otwarciu (albo nowy trening). */
-function resolveWhen(d: Draft, now: number): { start: number; end: number; changed: boolean } | { error: string } {
+function resolveWhen(d: Draft, now: number): { start: number; end: number; changed: boolean; tz?: number } | { error: string } {
   const startSame = d.date.trim() === d.oDate && d.time.trim() === d.oTime, minSame = d.min.trim() === d.oMin;
   if (d.sourceId != null && startSame && minSame) return { start: d.origStart, end: d.origEnd, changed: false };
-  let start = d.origStart; if (!startSame) { const r = parseStart(d.date, d.time, now); if (typeof r === 'string') return { error: r }; start = fromWallTs(r, d.w.tzOffsetMin); /* J3: wpis na zegarze strefy startu */ }
+  let start = d.origStart, tz: number | undefined; if (!startSame) { const r = parseStart(d.date, d.time, now); if (typeof r === 'string') return { error: r };
+    /* LOG2-03 (audyt kontrolny 1): telefon w tej samej strefie co przy starcie (zapisane przesunięcie = przesunięcie telefonu w chwili startu) — wpis
+     * w czasie lokalnym, a strefa z nowej daty (lato → zima: 10:00 zostaje 10:00, nie 9:00). Inaczej (podróż) — zegar strefy startu, strefa bez zmian. */
+    const z = d.w.tzOffsetMin; if (typeof z === 'number' && z === tzOffsetAt(d.origStart)) { start = r; tz = tzOffsetAt(r); } else start = fromWallTs(r, z); /* J3: wpis na zegarze strefy startu */ }
   let end = start + (d.origEnd - d.origStart);
   if (!minSame) { const m = parseMin(d.min); if (typeof m === 'string') return { error: m }; end = activeEnd(start, m * 60000, cleanPauses(d.w.pauses, d.origStart, d.origEnd).map(([f, t]) => [f - d.origStart + start, t - d.origStart + start])); }
   if (end > now) return { error: futureError(end) };
-  return { start, end, changed: true };
+  return { start, end, changed: true, ...(tz != null ? { tz } : {}) };
 }
 export type DraftCheck = { error: string } | { w: Workout; dropped: number; noWeight: number; empty: boolean; overlap: Workout | null };
 /**
@@ -312,10 +315,10 @@ export type DraftCheck = { error: string } | { w: Workout; dropped: number; noWe
  */
 export function checkDraft(key: string, now = Date.now()): DraftCheck {
   const d = drafts.get(key); if (!d) return { error: t('Brak sesji.') };
-  const r = resolveWhen(d, now); if ('error' in r) return r; const { start, end, changed } = r;
+  const r = resolveWhen(d, now); if ('error' in r) return r; const { start, end, changed, tz } = r;
   if (changed) { const e = activeOverlapError(start, end); if (e) return { error: e }; }
   const w: Workout = JSON.parse(JSON.stringify(d.w)); const delta = start - d.origStart;
-  w.startedAt = start; w.finishedAt = end; if (d.sourceId == null) w.tzOffsetMin = tzOffsetAt(start); /* J3: trening wstecz — strefa telefonu w chwili startu */ if (w.pauses) { const p = cleanPauses(changed ? w.pauses.map(([f, t]) => [f + delta, t + delta]) : w.pauses, start, end); if (p.length) w.pauses = p; else delete w.pauses; } /* 08.10.2026: pauzy przesuwają się ze startem */
+  w.startedAt = start; w.finishedAt = end; if (d.sourceId == null) w.tzOffsetMin = tzOffsetAt(start); /* J3: trening wstecz — strefa telefonu w chwili startu */ else if (tz != null) w.tzOffsetMin = tz; /* LOG2-03 */ if (w.pauses) { const p = cleanPauses(changed ? w.pauses.map(([f, t]) => [f + delta, t + delta]) : w.pauses, start, end); if (p.length) w.pauses = p; else delete w.pauses; } /* 08.10.2026: pauzy przesuwają się ze startem */
   w.templateName = clampName(w.templateName.replace(/\s+/g, ' ').trim(), NAME_MAX);
   let dropped = 0;
   w.exercises.forEach(e => { const ex = exById(e.exerciseId); const keep = e.sets.filter(s => d.origVals[s.id] === vals(s) || setHasResult(ex, s)); dropped += e.sets.length - keep.length; e.sets = keep; });

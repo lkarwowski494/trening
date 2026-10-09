@@ -847,7 +847,6 @@
  "Zamknij": "Închide",
  "Kalendarz zamiast Historii: plan tygodnia, przesuwanie treningów i propozycje zmian z myślą o regeneracji partii.": "Calendar în loc de Istoric: plan săptămânal, mutarea antrenamentelor și propuneri care țin cont de refacerea grupelor musculare.",
  "Pauza treningu — czas pauzy nie liczy się do czasu trwania.": "Antrenament întrerupt — timpul întreruperii nu intră în durată.",
- "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik 10 serii na partię w tygodniu i oznaczanie tygodnia deload.": "Progres: rezumatul săptămânii și al lunii cu harta mușchilor, marcaj de 10 serii pe grupă musculară pe săptămână și marcarea unei săptămâni de deload.",
  "Skala wysiłku RPE albo RIR w Ustawieniach.": "Scala efortului RPE sau RIR în Configurări.",
  "Szablony w folderach i archiwum, „Pomiń dziś” bez zmiany szablonu, usuwanie przesunięciem w lewo.": "Șabloane în dosare și arhivă, „Sari peste azi” fără a modifica șablonul, ștergere prin glisare spre stânga.",
  "Nowy wygląd: kolory i kroje, grafika talerzy na sztandze.": "Aspect nou: culori și fonturi, grafica discurilor pe bară.",
@@ -941,7 +940,6 @@
  "Tydzień oznaczysz też w Postępach przełącznikiem „Tydzień deload”.": "Poți marca o săptămână și în Progres cu comutatorul „Săptămână de descărcare”.",
  "Postępy i rekordy": "Progres și recorduri",
  "Więcej → Postępy: podsumowanie tygodnia lub miesiąca z poprzednim okresem obok.": "Mai mult → Progres: rezumatul săptămânii sau al lunii cu perioada anterioară alături.",
- "Mapa mięśni i serie na partię z kreską 10 serii tygodniowo.": "Harta mușchilor și serii pe grupă musculară cu o linie la 10 serii pe săptămână.",
  "Wykresy ćwiczeń i rekordy; rekord w trakcie treningu widać przy serii.": "Grafice ale exercițiilor și recorduri; în timpul antrenamentului recordul apare lângă serie.",
  "Więcej → Miejsca i sprzęt: dom, siłownia, hotel — każdy ze swoim sprzętem i ciężarami.": "Mai mult → Locații și echipament: acasă, sală, hotel — fiecare cu echipamentul și greutățile sale.",
  "Lista ćwiczeń, zamiany i generator pokazują to, co da się zrobić w wybranym miejscu.": "Lista de exerciții, înlocuirile și generatorul arată ce se poate face în locul ales.",
@@ -1319,5 +1317,11 @@
  "{p}% planu tygodnia ({done} z {n})": "{p}% din planul săptămânal ({done} din {n})",
  "Postęp tygodnia: {p}% planu, zrobione {done} z {n} treningów z planu": "Progresul săptămânii: {p}% din plan, {done} din {n} antrenamente din plan făcute",
  "zaplanowane": "planificat",
- "Tygodnie z wykonanym planem: {done} z {n}": "Săptămâni cu planul îndeplinit: {done} din {n}"
+ "Tygodnie z wykonanym planem: {done} z {n}": "Săptămâni cu planul îndeplinit: {done} din {n}",
+ "Niezapisane zmiany": "Modificări nesalvate",
+ "Aplikacja zamknęła się w trakcie edycji szablonu „{name}”. Wrócić do edycji?": "Aplicația s-a închis în timp ce editați șablonul „{name}”. Reveniți la editare?",
+ "Aplikacja zamknęła się w trakcie edycji ćwiczenia „{name}”. Wrócić do edycji?": "Aplicația s-a închis în timp ce editați exercițiul „{name}”. Reveniți la editare?",
+ "Wróć do edycji": "Înapoi la editare",
+ "Mapa mięśni i serie na partię z kreską {n} serii tygodniowo.": "Harta mușchilor și serii pe grupă musculară cu o linie la {n} serii pe săptămână.",
+ "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.": "Progres: rezumatul săptămânii și al lunii cu harta mușchilor, marcaj de {n} serii pe grupă musculară pe săptămână și marcarea unei săptămâni de deload."
 }

@@ -847,7 +847,6 @@
  "Zamknij": "Stäng",
  "Kalendarz zamiast Historii: plan tygodnia, przesuwanie treningów i propozycje zmian z myślą o regeneracji partii.": "Kalender i stället för Historik: veckoplan, flytta pass och förslag som tar hänsyn till musklernas återhämtning.",
  "Pauza treningu — czas pauzy nie liczy się do czasu trwania.": "Paus i passet — paustiden räknas inte in i längden.",
- "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik 10 serii na partię w tygodniu i oznaczanie tygodnia deload.": "Framsteg: vecko- och månadssammanfattning med muskelkarta, markering för 10 set per muskelgrupp och vecka samt markering av deloadvecka.",
  "Skala wysiłku RPE albo RIR w Ustawieniach.": "Ansträngningsskala RPE eller RIR i Inställningar.",
  "Szablony w folderach i archiwum, „Pomiń dziś” bez zmiany szablonu, usuwanie przesunięciem w lewo.": "Mallar i mappar och arkiv, ”Hoppa över i dag” utan att ändra mallen, radera genom att svepa åt vänster.",
  "Nowy wygląd: kolory i kroje, grafika talerzy na sztandze.": "Nytt utseende: färger och typsnitt, grafik av viktskivor på stången.",
@@ -941,7 +940,6 @@
  "Tydzień oznaczysz też w Postępach przełącznikiem „Tydzień deload”.": "Du kan också markera en vecka i Framsteg med reglaget ”Deloadvecka”.",
  "Postępy i rekordy": "Framsteg och rekord",
  "Więcej → Postępy: podsumowanie tygodnia lub miesiąca z poprzednim okresem obok.": "Mer → Framsteg: vecko- eller månadssammanfattning med föregående period bredvid.",
- "Mapa mięśni i serie na partię z kreską 10 serii tygodniowo.": "Muskelkarta och set per muskelgrupp med en linje vid 10 set per vecka.",
  "Wykresy ćwiczeń i rekordy; rekord w trakcie treningu widać przy serii.": "Övningsdiagram och rekord; under passet visas ett rekord vid setet.",
  "Więcej → Miejsca i sprzęt: dom, siłownia, hotel — każdy ze swoim sprzętem i ciężarami.": "Mer → Platser och utrustning: hemma, gym, hotell — var och en med egen utrustning och egna vikter.",
  "Lista ćwiczeń, zamiany i generator pokazują to, co da się zrobić w wybranym miejscu.": "Övningslistan, byten och generatorn visar vad som går att göra på den valda platsen.",
@@ -1319,5 +1317,11 @@
  "{p}% planu tygodnia ({done} z {n})": "{p} % av veckoplanen ({done} av {n})",
  "Postęp tygodnia: {p}% planu, zrobione {done} z {n} treningów z planu": "Veckans framsteg: {p} % av planen, {done} av {n} planerade pass gjorda",
  "zaplanowane": "planerat",
- "Tygodnie z wykonanym planem: {done} z {n}": "Veckor med planen genomförd: {done} av {n}"
+ "Tygodnie z wykonanym planem: {done} z {n}": "Veckor med planen genomförd: {done} av {n}",
+ "Niezapisane zmiany": "Osparade ändringar",
+ "Aplikacja zamknęła się w trakcie edycji szablonu „{name}”. Wrócić do edycji?": "Appen stängdes medan du redigerade mallen ”{name}”. Vill du fortsätta redigera?",
+ "Aplikacja zamknęła się w trakcie edycji ćwiczenia „{name}”. Wrócić do edycji?": "Appen stängdes medan du redigerade övningen ”{name}”. Vill du fortsätta redigera?",
+ "Wróć do edycji": "Fortsätt redigera",
+ "Mapa mięśni i serie na partię z kreską {n} serii tygodniowo.": "Muskelkarta och set per muskelgrupp med en linje vid {n} set per vecka.",
+ "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.": "Framsteg: vecko- och månadssammanfattning med muskelkarta, markering för {n} set per muskelgrupp och vecka samt markering av deloadvecka."
 }

@@ -847,7 +847,6 @@
  "Zamknij": "Aizvērt",
  "Kalendarz zamiast Historii: plan tygodnia, przesuwanie treningów i propozycje zmian z myślą o regeneracji partii.": "Kalendārs Vēstures vietā: nedēļas plāns, treniņu pārcelšana un izmaiņu ieteikumi, ņemot vērā muskuļu grupu atjaunošanos.",
  "Pauza treningu — czas pauzy nie liczy się do czasu trwania.": "Treniņa pauze — pauzes laiks netiek ieskaitīts ilgumā.",
- "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik 10 serii na partię w tygodniu i oznaczanie tygodnia deload.": "Progress: nedēļas un mēneša kopsavilkums ar muskuļu karti, atzīme par 10 sērijām uz muskuļu grupu nedēļā un nedēļas atzīmēšana kā deload.",
  "Skala wysiłku RPE albo RIR w Ustawieniach.": "Piepūles skala RPE vai RIR Iestatījumos.",
  "Szablony w folderach i archiwum, „Pomiń dziś” bez zmiany szablonu, usuwanie przesunięciem w lewo.": "Veidnes mapēs un arhīvā, “Šodien izlaist” bez veidnes maiņas, dzēšana, pavelkot pa kreisi.",
  "Nowy wygląd: kolory i kroje, grafika talerzy na sztandze.": "Jauns izskats: krāsas un fonti, svaru disku attēls uz stieņa.",
@@ -941,7 +940,6 @@
  "Tydzień oznaczysz też w Postępach przełącznikiem „Tydzień deload”.": "Nedēļu var atzīmēt arī Progress ar slēdzi “Atslodzes nedēļa”.",
  "Postępy i rekordy": "Progress un rekordi",
  "Więcej → Postępy: podsumowanie tygodnia lub miesiąca z poprzednim okresem obok.": "Vairāk → Progress: nedēļas vai mēneša kopsavilkums ar iepriekšējo periodu blakus.",
- "Mapa mięśni i serie na partię z kreską 10 serii tygodniowo.": "Muskuļu karte un sērijas uz muskuļu grupu ar līniju pie 10 sērijām nedēļā.",
  "Wykresy ćwiczeń i rekordy; rekord w trakcie treningu widać przy serii.": "Vingrinājumu grafiki un rekordi; treniņa laikā rekords redzams pie sērijas.",
  "Więcej → Miejsca i sprzęt: dom, siłownia, hotel — każdy ze swoim sprzętem i ciężarami.": "Vairāk → Vietas un aprīkojums: mājas, sporta zāle, viesnīca — katrai savs aprīkojums un svari.",
  "Lista ćwiczeń, zamiany i generator pokazują to, co da się zrobić w wybranym miejscu.": "Vingrinājumu saraksts, aizstāšana un ģenerators rāda, ko var darīt izvēlētajā vietā.",
@@ -1319,5 +1317,11 @@
  "{p}% planu tygodnia ({done} z {n})": "{p}% no nedēļas plāna ({done} no {n})",
  "Postęp tygodnia: {p}% planu, zrobione {done} z {n} treningów z planu": "Nedēļas progress: {p}% no plāna, izpildīti {done} no {n} plāna treniņiem",
  "zaplanowane": "plānots",
- "Tygodnie z wykonanym planem: {done} z {n}": "Nedēļas ar izpildītu plānu: {done} no {n}"
+ "Tygodnie z wykonanym planem: {done} z {n}": "Nedēļas ar izpildītu plānu: {done} no {n}",
+ "Niezapisane zmiany": "Nesaglabātas izmaiņas",
+ "Aplikacja zamknęła się w trakcie edycji szablonu „{name}”. Wrócić do edycji?": "Lietotne aizvērās, kamēr rediģējāt veidni “{name}”. Atgriezties pie rediģēšanas?",
+ "Aplikacja zamknęła się w trakcie edycji ćwiczenia „{name}”. Wrócić do edycji?": "Lietotne aizvērās, kamēr rediģējāt vingrinājumu “{name}”. Atgriezties pie rediģēšanas?",
+ "Wróć do edycji": "Atgriezties pie rediģēšanas",
+ "Mapa mięśni i serie na partię z kreską {n} serii tygodniowo.": "Muskuļu karte un sērijas uz muskuļu grupu ar līniju pie {n} sērijām nedēļā.",
+ "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.": "Progress: nedēļas un mēneša kopsavilkums ar muskuļu karti, atzīme par {n} sērijām uz muskuļu grupu nedēļā un nedēļas atzīmēšana kā deload."
 }

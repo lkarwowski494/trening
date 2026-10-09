@@ -5,7 +5,7 @@ import { useSyncExternalStore } from 'react';
 import { t, t as tr, tIn, applyLang, detectLang, locale, fold, isLang, lang, upper, collator, deviceUnit } from './i18n';
 import { applyUnit, wu, wOut, wIn, KG_PER_LB, fmtW, fmtNum, snapLegacyLb } from './units';
 import { applyTheme } from './theme';
-import { seedState, uid, base, defaultModules, defaultSettings, metricFor, loadModeFor, loadMult, blankTimer, musclesFor, hasTime, hasReps, hasWeight, hasDistance, METRICS, DEFAULT_REST, GROUPS, LIB, SCHEMA_VERSION, LOCAL_OWNER, MODULES, SET_KINDS, SINGLE_IMPLEMENT, equipFields, libExercise, LIB_EXTRA_REVS, LIB_EXTRA_REV, LIB_MUSCLE_FIXES, LIB_FIELD_FIXES, LIB_RENAMED, LIB_MERGED, LIB_RETIRED, libExtraRevOf, LIB_BASE_NAMES_V1, LOAD_SOURCE_BY_EQUIPMENT, IMPLS, own, type Impl, type SetKind, type Base, type State, type Workout, type WSet, type WExercise, type Exercise, type Template, type TemplateItem, type TemplateAlt, type TRow, type Morning, type Location, type PlanSegment, LIB_KEYS, LIB_DISPLAY_NAME, catalogKey, libKeyFromFields, BODY_MASS_MAX, isNiche, LIB_BASE_NAMES, BODY_MASS_LOG_MAX, type BodyMassEntry, type LoadMode } from './seed';
+import { seedState, uid, base, defaultModules, defaultSettings, metricFor, loadModeFor, loadMult, blankTimer, musclesFor, hasTime, hasReps, hasWeight, hasDistance, METRICS, DEFAULT_REST, GROUPS, LIB, SCHEMA_VERSION, LOCAL_OWNER, MODULES, SET_KINDS, SINGLE_IMPLEMENT, equipFields, libExercise, LIB_EXTRA_REVS, LIB_EXTRA_REV, LIB_MUSCLE_FIXES, LIB_FIELD_FIXES, LIB_RENAMED, LIB_MERGED, LIB_RETIRED, libExtraRevOf, LIB_BASE_NAMES_V1, LOAD_SOURCE_BY_EQUIPMENT, IMPLS, own, type Impl, type SetKind, type Base, type State, type Workout, type WSet, type WExercise, type Exercise, type Template, type TemplateItem, type TemplateAlt, type TRow, type Morning, type Location, type PlanSegment, LIB_KEYS, LIB_DISPLAY_NAME, catalogKey, libKeyFromFields, libKeyCandidates, BODY_MASS_MAX, isNiche, LIB_BASE_NAMES, BODY_MASS_LOG_MAX, type BodyMassEntry, type LoadMode } from './seed';
 import { equipById, loadsFor, implAt, implsAt, blankLoad, availability, fillGym, GYM_FILL, fillOpts, OPT_FILL, fillEquip2, EQUIP_FILL2 } from './equipment';
 import { sanitizeLoadSpec, nextHeavier, hasLoadShown } from './loads';
 import { CATALOG, CATALOG_REV, CABLES } from './catalog.generated';
@@ -133,6 +133,8 @@ export async function init(): Promise<void> {
       await db.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', 'recovery', JSON.stringify(recovery)).catch(() => {});
     }
   }
+  /* UX2-03 = DAT2-06 (audyt kontrolny 1, wariant A): szkice edycji ćwiczenia i szablonu z osobnego klucza — lib/draft.ts przywraca je po starcie */
+  savedDrafts = null; if (S) { try { const dr = await db.getFirstAsync<{ v: string }>('SELECT v FROM kv WHERE k = ?', DRAFTS_KEY); savedDrafts = dr ? dr.v : null; } catch {} }
   if (!recovery) { try { const m = await db.getFirstAsync<{ v: string }>('SELECT v FROM kv WHERE k = ?', 'recovery'); const r = m ? JSON.parse(m.v) : null; if (r && typeof r.key === 'string') recovery = { key: r.key, at: Number(r.at) || 0 }; } catch {} }
   if (!S) { S = seedState(detectLang()); S.settings.unit = deviceUnit(); /* H4 (audyt 0.10 UX-12): świeża instalacja — jednostka z regionu (en-US → lb) */ needsPersist = true; }
   applyPrefs();
@@ -203,8 +205,9 @@ function fixEquipFields(e: any) {
 /** P-003: miejsca treningu z importu — znane pozycje sprzętu i opcje, poprawne opisy ciężarów; miejsce główne zawsze istnieje, gdy są miejsca. */
 function fixLocations(s: any, stamp: (o: any) => void, language: unknown): { locations: Location[]; mainLocationId: string | null; pickerShowAll: boolean } {
   const seen = new Set<string>(); const locations: Location[] = [];
-  for (const l of arr(s.locations)) {
-    stamp(l); if (seen.has(l.id)) continue; seen.add(l.id);
+  const list = arr(s.locations); list.forEach(l => stamp(l)); freshIds(list); /* DAT2-04 (= DAT-08): powtórzone id → „~n” (jak uniqueIds), bez gubienia drugiego miejsca */
+  for (const l of list) {
+    seen.add(l.id);
     const n = typeof l.name === 'string' ? clampName(l.name.replace(/\s+/g, ' ').trim()) : ''; l.name = n || tIn(language, 'Miejsce'); /* audyt (LOW): limit nazwy jak w polu */
     const items = new Set<string>();
     l.equipment = arr(l.equipment).filter((e: any) => { const x = typeof e.item === 'string' ? equipById(e.item) : undefined; if (!x || items.has(e.item)) return false; items.add(e.item);
@@ -286,9 +289,12 @@ export function migrate(raw: any): State {
   });
   /* E2 (audyt 0.10): przemianowane ćwiczenie biblioteki bez klucza — klucz z jednoznacznego zestawu pól katalogu (seed.libKeyFromFields), tylko gdy
    * żadne inne ćwiczenie go nie ma i pasuje dokładnie jedno ćwiczenie; pola są wtedy z bieżącego katalogu (znacznik wersji — idempotentnie). */
+  /* DAT2-02 (audyt kontrolny 1): kandydaci z katalogu buildów 1001/1002 (stamtąd pola takich danych) i z wariantów o tych samych polach
+   * (Bench Press = Board Press) — klucze zajęte przez inne ćwiczenia odpadają; klucz tylko przy jednym kandydacie i jednym ćwiczeniu. Pola katalogu
+   * (wymagania, wzorzec, źródło obciążenia) odświeżane z bieżącego katalogu, jak u ćwiczenia z kluczem (fixEquipFields). */
   { const taken = new Set(raw.exercises.map((e: any) => e.libKey).filter(Boolean)); const cand = new Map<string, any[]>();
-    for (const e of raw.exercises) if (e.lib === true && e.libKey === undefined) { const k = libKeyFromFields(e); if (k && !taken.has(k)) cand.set(k, [...(cand.get(k) ?? []), e]); }
-    for (const [k, list] of cand) if (list.length === 1) { list[0].libKey = k; if (list[0].catalogRev !== 'user') list[0].catalogRev = CATALOG_REV; } }
+    for (const e of raw.exercises) if (e.lib === true && e.libKey === undefined) { const ks = libKeyCandidates(e).filter(k => !taken.has(k)); if (ks.length === 1) cand.set(ks[0], [...(cand.get(ks[0]) ?? []), e]); }
+    for (const [k, list] of cand) if (list.length === 1 && LIB_KEYS.has(k)) { const e = list[0]; e.libKey = k; if (e.catalogRev !== 'user') { delete e.catalogRev; fixEquipFields(e); } } }
   /* Katalog 04.10.2026 (decyzja właściciela: rozbudowa katalogu): dane bez znacznika katalogu dostają nowe ćwiczenia biblioteki RAZ (znacznik
    * State.libExtra — ćwiczenie usunięte później przez użytkownika nie wraca); pomijane, gdy istnieje ćwiczenie o tej samej nazwie (także własne).
    * Audyt 04.10 (HIGH): znacznik zamiast granicy schematu — build 01f2bee miał już schemat 16 bez katalogu. */
@@ -399,8 +405,8 @@ export function migrate(raw: any): State {
     const nm = isObj(raw.weekPlan) && typeof raw.weekPlan.name === 'string' ? cleanPlanName(raw.weekPlan.name) : ''; /* audyt 0.10 B4 (DAT-06): idempotentnie, bez rozcinania emoji */
     if (days.some(Boolean) || nm) raw.weekPlan = { days, ...(nm ? { name: nm } : {}) }; else delete raw.weekPlan;
     /* 08.10.2026 (docs/24): zapisane plany — id tekstem bez powtórzeń, nazwa ≤ 40, 7 dni; pusta lista znika; najwyżej SAVED_PLANS_MAX (ten sam limit w UI — audyt 0.10 B3) */
-    { const seen = new Set<string>(); const sp = (Array.isArray(raw.savedPlans) ? raw.savedPlans : []).filter((p: any) => isObj(p) && typeof p.id === 'string' && p.id && !seen.has(p.id) && (seen.add(p.id), true))
-        .map((p: any) => { const ov = cleanOverrides(p.overrides); return { id: p.id, name: typeof p.name === 'string' ? cleanPlanName(p.name) : '', days: planDays(p.days), ...(Object.keys(ov).length ? { overrides: ov } : {}) }; }); /* audyt 0.10 B1: zmiany dni zapisane z planem */
+    { const sp0 = (Array.isArray(raw.savedPlans) ? raw.savedPlans : []).filter((p: any) => isObj(p) && typeof p.id === 'string' && p.id); freshIds(sp0); /* DAT2-04: powtórzone id → „~n” */
+      const sp = sp0.map((p: any) => { const ov = cleanOverrides(p.overrides); return { id: p.id, name: typeof p.name === 'string' ? cleanPlanName(p.name) : '', days: planDays(p.days), ...(Object.keys(ov).length ? { overrides: ov } : {}) }; }); /* audyt 0.10 B1: zmiany dni zapisane z planem */
       if (sp.length) raw.savedPlans = sp.slice(0, SAVED_PLANS_MAX); else delete raw.savedPlans; }
     const ov = cleanOverrides(raw.planOverrides);
     if (Object.keys(ov).length) raw.planOverrides = ov; else delete raw.planOverrides;
@@ -480,11 +486,13 @@ function retireCatalog(raw: any) {
   }
   if (drop.size) raw.exercises = raw.exercises.filter((e: any) => !drop.has(e.id));
 }
+/** Powtórzone id w liście → nowe id deterministyczne („<id>~2”, „~3”…; pierwszy wpis zachowuje id): dwa wczytania tych samych danych dają ten sam
+ * wynik (porównania eksport → import, restart). Jedna reguła dla wszystkich list z id (także miejsca i zapisane plany — DAT2-04). */
+function freshIds(list: any[]) { const seen = new Set<string>(list.map(o => o?.id).filter((x: unknown) => typeof x === 'string'));
+  const first = new Set<string>(); for (const o of list) { if (typeof o?.id !== 'string') continue; if (!first.has(o.id)) { first.add(o.id); continue; }
+    let n = 2; while (seen.has(`${o.id}~${n}`)) n++; o.id = `${o.id}~${n}`; seen.add(o.id); first.add(o.id); } }
 function uniqueIds(raw: any) {
-  /* nowe id deterministyczne („<id>~2”, „~3”…): dwa wczytania tych samych danych dają ten sam wynik (porównania eksport → import, restart) */
-  const fresh = (list: any[]) => { const seen = new Set<string>(list.map(o => o?.id).filter((x: unknown) => typeof x === 'string'));
-    const first = new Set<string>(); for (const o of list) { if (typeof o?.id !== 'string') continue; if (!first.has(o.id)) { first.add(o.id); continue; }
-      let n = 2; while (seen.has(`${o.id}~${n}`)) n++; o.id = `${o.id}~${n}`; seen.add(o.id); first.add(o.id); } };
+  const fresh = freshIds;
   /* ten sam obiekt w kilku miejscach (dane z pamięci, nie z pliku) — osobne kopie, żeby zmiana id jednej nie zmieniała wszystkich */
   const objs = new Set<object>(); const own = (list: any[]) => list.map(o => { if (!isObj(o)) return o; if (objs.has(o)) return JSON.parse(JSON.stringify(o)); objs.add(o); return o; });
   raw.exercises = own(raw.exercises); raw.bands = own(raw.bands); raw.templates = own(raw.templates); raw.workouts = own(raw.workouts);
@@ -534,7 +542,27 @@ async function persistRun(force = false) {
   }
 }
 /** Wymusza natychmiastowy zapis (wyjście do tła, koniec treningu, import, reset). */
-export async function flush(): Promise<void> { await persistNow(true).catch(() => {}); }
+export async function flush(): Promise<void> { await persistNow(true).catch(() => {}); await writeDrafts(); }
+/* ---------- UX2-03 = DAT2-06 (audyt kontrolny 1, wariant A — zasada właściciela z 20:20): szkice edycji ćwiczenia i szablonu w bazie ----------
+ * Osobny klucz kv (nie część stanu: bez zmiany schematu, poza kopią i „cfg”; starsza wersja go nie czyta). Treść daje lib/draft.ts (rejestracja),
+ * zapis z opóźnieniem jak stan i natychmiast przy wyjściu do tła (flush). Przy starcie surowy tekst czeka na lib/draft.ts (takeSavedDrafts). */
+export const DRAFTS_KEY = 'drafts';
+let savedDrafts: string | null = null; let draftsSrc: (() => string | null) | null = null; let draftsDirty = false; let draftsTimer: ReturnType<typeof setTimeout> | null = null;
+export function registerDraftStore(src: () => string | null) { draftsSrc = src; }
+/** Szkic zmieniony (początek, zmiana, zapis, odrzucenie) — zapis do bazy z opóźnieniem 300 ms. */
+export function draftsChanged() { draftsDirty = true; if (draftsTimer) clearTimeout(draftsTimer); draftsTimer = setTimeout(() => { draftsTimer = null; void writeDrafts(); }, 300); }
+async function writeDrafts() {
+  if (draftsTimer) { clearTimeout(draftsTimer); draftsTimer = null; } if (!db || !S || !draftsDirty || !draftsSrc) return; draftsDirty = false;
+  const j = draftsSrc(); try { if (j == null) await db.runAsync('DELETE FROM kv WHERE k = ?', DRAFTS_KEY); else await db.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', DRAFTS_KEY, j); } catch { draftsDirty = true; }
+}
+/** Surowe szkice odczytane przy starcie (jednorazowo). */
+export function takeSavedDrafts(): string | null { const v = savedDrafts; savedDrafts = null; return v; }
+/** Przywracany szkic przechodzi to samo porządkowanie co dane z bazy i importu (migrate na kopii stanu z obiektem szkicu); null — obiektu już nie ma. */
+export function sanitizeDraftObj(kind: 'exercise' | 'template', obj: unknown): Exercise | Template | null {
+  if (!S || !isObj(obj) || typeof (obj as any).id !== 'string') return null; const id = (obj as any).id as string; const key = kind === 'exercise' ? 'exercises' : 'templates';
+  const raw: any = JSON.parse(JSON.stringify(S)); const i = raw[key].findIndex((x: any) => x.id === id); if (i < 0) return null; raw[key][i] = JSON.parse(JSON.stringify(obj));
+  try { return (migrate(raw)[key] as (Exercise | Template)[]).find(x => x.id === id) ?? null; } catch { return null; }
+}
 export const getPersistError = () => persistError;
 export const getRecovery = () => recovery;
 /** Runda 33: po imporcie backupu albo wyczyszczeniu danych komunikat o nieczytelnych danych znika (kopia w bazie zostaje). */
@@ -570,7 +598,7 @@ const draftObjs = new WeakSet<object>();
 export function markDraft<T extends object>(x: T): T { draftObjs.add(x); return x; }
 export const isDraftObj = (x: unknown): boolean => !!x && typeof x === 'object' && draftObjs.has(x as object);
 export function save(...touched: (Base | null | undefined)[]) {
-  if (touched.length && touched.every(x => x && draftObjs.has(x))) { rev++; emit(); return; }
+  if (touched.length && touched.every(x => x && draftObjs.has(x))) { rev++; draftsChanged(); /* UX2-03: szkic do bazy */ emit(); return; }
   touched = touched.filter(x => !x || !draftObjs.has(x));
   const now = Date.now(); touched.forEach(x => { if (x) x.updatedAt = now; });
   const onlyActive = touched.length > 0 && touched.every(x => x && S && x === S.active);
@@ -1294,7 +1322,7 @@ export function swapBlock(blockId: string, toExId: string, opts: { restSec?: num
   { const loc = locationById(a.locationId); if (opts.impl && loc && implsAt(B, loc).includes(opts.impl)) { blk.impl = opts.impl; blk.implPinned = true; } } /* W3 P5a: przyrząd z zamiennika per miejsce */
   if (typeof opts.restSec === 'number' && opts.restSec >= 0) blk.restSec = Math.min(1800, Math.round(opts.restSec));
   blk.sets = prefillSets(B, left.map(x => x.kind), prevOfActiveBlock(a, blk), a.locationId, blk.impl, it?.targetSec ?? '', '', 0, !!blk.implPinned);
-  save(a); return { goneSetIds: left.map(x => x.id), blockId: blk.id };
+  saveSwapped(a); return { goneSetIds: left.map(x => x.id), blockId: blk.id };
 }
 /**
  * E2 D5 (docs/14 pkt 3.7): „ten sam ruch, inny przyrząd” — to samo ćwiczenie, przyrząd `impl` wybrany ręcznie (implPinned), bez swappedFrom.
@@ -1340,8 +1368,11 @@ export function undoSwap(blockId: string): { goneSetIds: string[] } | null {
     if (own) B.restSec = typeof own.restSec === 'number' && own.restSec >= 0 ? own.restSec : restFor(A);
     B.sets = prefillSets(A, kinds, prevOfActiveBlock(a, B), a.locationId, B.impl, own?.targetSec ?? '', own?.startWeight ?? '', 0, false, rowsFor(own, kinds));
   }
-  save(a); return { goneSetIds: gone };
+  saveSwapped(a); return { goneSetIds: gone };
 }
+/** TST2-03 (audyt kontrolny 1, wariant A): po zamianie albo jej cofnięciu ćwiczenie usunięte w trakcie treningu (archiwum) bez ostatniego odwołania
+ * znika od razu — jak removeExercise i jak migrate przy starcie (stan w pamięci = migrate(stan)). */
+function saveSwapped(a: Workout) { const before = getState().exercises.length; purgeOrphans(); if (getState().exercises.length !== before) save(); else save(a); }
 /* ---------- E2 W3: zamienniki per miejsce w szablonie (docs/14 pkt 4) ---------- */
 /** Pozycja szablonu bloku (tylko z szablonu treningu) i miejsce treningu (tylko istniejące). */
 function altCtx(w: Workout, e: WExercise): { tpl: Template; item: TemplateItem; loc: Location } | null {
@@ -1887,7 +1918,7 @@ export function setPlanHintHidden(on: boolean) { const st = getState(); if (on) 
 /** Tylko dla testów: czy store jest zainicjowany. */
 export const isReadyForTests = () => !!S;
 /** Tylko dla testów: czyści stan modułu (bez dotykania bazy). */
-export function __resetForTests() { newerSchema = null; persistQueue = Promise.resolve(); fullDirty = true; cfgDirty = false; cfgNotInState = false; persistSeq = 0; S = null; db = null; rev = 0; histRev += 1; persistError = null; recovery = null; if (saveTimer) clearTimeout(saveTimer); saveTimer = null; listeners.clear(); }
+export function __resetForTests() { savedDrafts = null; draftsDirty = false; if (draftsTimer) clearTimeout(draftsTimer); draftsTimer = null; newerSchema = null; persistQueue = Promise.resolve(); fullDirty = true; cfgDirty = false; cfgNotInState = false; persistSeq = 0; S = null; db = null; rev = 0; histRev += 1; persistError = null; recovery = null; if (saveTimer) clearTimeout(saveTimer); saveTimer = null; listeners.clear(); }
 /**
  * Widok skupiony (styl „Tuleja”, decyzja właściciela 07.10.2026; docs/21 pkt 3): seria „teraz” = pierwsza nieodhaczona seria w kolejności treningu.
  * Superset — rundami (audyt 0.10, LIVE-02): spośród członków grupy z nieodhaczoną serią ten, który ma NAJMNIEJ odhaczonych serii roboczych (remis —

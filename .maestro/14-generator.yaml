@@ -11,6 +11,7 @@
 #   "\\+ Add place"                   ← '+ Dodaj miejsce' (chip w generatorze przy braku miejsc — audyt 0.10 UX-10)
 #   "Saved", "Weekly plan"           ← 'Zapisano', 'Plan tygodnia' (potwierdzenie zapisu — audyt 0.10 UX-10)
 #   "OK"                             ← 'OK' (trzeci przycisk okna „Zapisano” — zostaje na generatorze; audyt kontrolny 1, UI2-06)
+#   "Not now"                        ← 'Nie teraz' (okno zgody na przypomnienie — X-11: pierwszy plan z każdej drogi, components/PlanReminderSync)
 #   "Guide", "Read: .*", "Weekly plan and Calendar, unread", "Show: Weekly plan and Calendar" ← app/guide.tsx (przewodnik, 08.10.2026)
 #   "Monday, Full Body A"            ← app/plan.tsx: wiersz dnia '{dzień}, {szablon}' (audyt 0.10 UX-15 A: 7 wierszy; „{dzień}: {szablon}” to chip
 #                                      w rozwiniętym wierszu — E2E 89), nazwa szablonu 'FBW A' → 'Full Body A'
@@ -33,9 +34,12 @@ name: Generator szablonów i planu
 - tapOn: "Save templates and plan"
 - extendedWaitUntil: { visible: "Make the new plan active\\?", timeout: 15000 }
 - tapOn: "Make active"
+# X-11 (audyt kontrolny 1): pierwszy plan → okno zgody na przypomnienie (zgoda na powiadomienia nieustalona na symulatorze); kolejność okien zależy od iOS
+- tapOn: { text: "Not now", optional: true }
 - extendedWaitUntil: { visible: "Saved", timeout: 15000 }
 - assertVisible: "OK"
 - tapOn: "Weekly plan"
+- tapOn: { text: "Not now", optional: true }
 - extendedWaitUntil: { visible: "Monday, Full Body A", timeout: 30000 }
 - takeScreenshot: 72-plan-z-generatora
 # --- Przewodnik (08.10.2026): Więcej → Przewodnik → temat → „Show” otwiera Kalendarz ---

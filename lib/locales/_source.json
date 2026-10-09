@@ -304,6 +304,14 @@
   "en": "The app collects no data: everything you enter stays on your phone — no account, ads or analytics."
  },
  {
+  "pl": "Aplikacja zamknęła się w trakcie edycji ćwiczenia „{name}”. Wrócić do edycji?",
+  "en": "The app closed while you were editing the exercise “{name}”. Go back to editing?"
+ },
+ {
+  "pl": "Aplikacja zamknęła się w trakcie edycji szablonu „{name}”. Wrócić do edycji?",
+  "en": "The app closed while you were editing the template “{name}”. Go back to editing?"
+ },
+ {
   "pl": "Apple Health niedostępne",
   "en": "Apple Health unavailable"
  },
@@ -1754,8 +1762,8 @@
   "en": "Muscle map"
  },
  {
-  "pl": "Mapa mięśni i serie na partię z kreską 10 serii tygodniowo.",
-  "en": "Muscle map and sets per muscle group with a 10-sets-per-week line."
+  "pl": "Mapa mięśni i serie na partię z kreską {n} serii tygodniowo.",
+  "en": "Muscle map and sets per muscle group with a {n}-sets-per-week line."
  },
  {
   "pl": "Mapa mięśni: {list}",
@@ -2384,6 +2392,10 @@
  {
   "pl": "nieprzeczytane",
   "en": "unread"
+ },
+ {
+  "pl": "Niezapisane zmiany",
+  "en": "Unsaved changes"
  },
  {
   "pl": "niszowe ukryte: {n} — znajdziesz je wyszukiwaniem",
@@ -3058,8 +3070,8 @@
   "en": "Progress and records"
  },
  {
-  "pl": "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik 10 serii na partię w tygodniu i oznaczanie tygodnia deload.",
-  "en": "Progress: weekly and monthly summary with a muscle map, a 10-sets-per-muscle-group weekly mark and marking a week as deload."
+  "pl": "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.",
+  "en": "Progress: weekly and monthly summary with a muscle map, a {n}-sets-per-muscle-group weekly mark and marking a week as deload."
  },
  {
   "pl": "pośladki",
@@ -4721,6 +4733,10 @@
  {
   "pl": "Wróć",
   "en": "Back"
+ },
+ {
+  "pl": "Wróć do edycji",
+  "en": "Back to editing"
  },
  {
   "pl": "Wróć do treningu",

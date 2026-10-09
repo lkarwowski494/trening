@@ -847,7 +847,6 @@
  "Zamknij": "Zavřít",
  "Kalendarz zamiast Historii: plan tygodnia, przesuwanie treningów i propozycje zmian z myślą o regeneracji partii.": "Kalendář místo Historie: týdenní plán, přesouvání tréninků a návrhy změn s ohledem na regeneraci svalových partií.",
  "Pauza treningu — czas pauzy nie liczy się do czasu trwania.": "Pozastavení tréninku — čas pozastavení se nezapočítává do délky.",
- "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik 10 serii na partię w tygodniu i oznaczanie tygodnia deload.": "Pokrok: souhrn týdne a měsíce s mapou svalů, značka 10 sérií na partii za týden a označení týdne jako deload.",
  "Skala wysiłku RPE albo RIR w Ustawieniach.": "Škála úsilí RPE nebo RIR v Nastavení.",
  "Szablony w folderach i archiwum, „Pomiń dziś” bez zmiany szablonu, usuwanie przesunięciem w lewo.": "Šablony ve složkách a archivu, „Dnes vynechat“ bez změny šablony, mazání přejetím doleva.",
  "Nowy wygląd: kolory i kroje, grafika talerzy na sztandze.": "Nový vzhled: barvy a písma, grafika kotoučů na čince.",
@@ -941,7 +940,6 @@
  "Tydzień oznaczysz też w Postępach przełącznikiem „Tydzień deload”.": "Týden označíš také v Pokrok přepínačem „Deload týden“.",
  "Postępy i rekordy": "Pokrok a rekordy",
  "Więcej → Postępy: podsumowanie tygodnia lub miesiąca z poprzednim okresem obok.": "Další → Pokrok: souhrn týdne nebo měsíce s předchozím obdobím vedle.",
- "Mapa mięśni i serie na partię z kreską 10 serii tygodniowo.": "Mapa svalů a série na partii s čárou u 10 sérií týdně.",
  "Wykresy ćwiczeń i rekordy; rekord w trakcie treningu widać przy serii.": "Grafy cviků a rekordy; během tréninku se rekord ukáže u série.",
  "Więcej → Miejsca i sprzęt: dom, siłownia, hotel — każdy ze swoim sprzętem i ciężarami.": "Další → Místa a vybavení: doma, posilovna, hotel — každé místo s vlastním vybavením a váhami.",
  "Lista ćwiczeń, zamiany i generator pokazują to, co da się zrobić w wybranym miejscu.": "Seznam cviků, záměny i generátor ukazují, co jde na vybraném místě udělat.",
@@ -1319,5 +1317,11 @@
  "{p}% planu tygodnia ({done} z {n})": "{p} % týdenního plánu ({done} z {n})",
  "Postęp tygodnia: {p}% planu, zrobione {done} z {n} treningów z planu": "Postup týdne: {p} % plánu, hotovo {done} z {n} tréninků z plánu",
  "zaplanowane": "naplánováno",
- "Tygodnie z wykonanym planem: {done} z {n}": "Týdny se splněným plánem: {done} z {n}"
+ "Tygodnie z wykonanym planem: {done} z {n}": "Týdny se splněným plánem: {done} z {n}",
+ "Niezapisane zmiany": "Neuložené změny",
+ "Aplikacja zamknęła się w trakcie edycji szablonu „{name}”. Wrócić do edycji?": "Aplikace se zavřela během úprav šablony „{name}“. Vrátit se k úpravám?",
+ "Aplikacja zamknęła się w trakcie edycji ćwiczenia „{name}”. Wrócić do edycji?": "Aplikace se zavřela během úprav cviku „{name}“. Vrátit se k úpravám?",
+ "Wróć do edycji": "Zpět k úpravám",
+ "Mapa mięśni i serie na partię z kreską {n} serii tygodniowo.": "Mapa svalů a série na partii s čárou u {n} sérií týdně.",
+ "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.": "Pokrok: souhrn týdne a měsíce s mapou svalů, značka {n} sérií na partii za týden a označení týdne jako deload."
 }

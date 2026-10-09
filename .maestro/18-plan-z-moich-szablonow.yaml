@@ -9,6 +9,7 @@
 #   "Preview", "Save plan"            ← 'Podgląd', 'Zapisz plan'
 #   "Make the new plan active\?", "Make active" ← 'Ustawić nowy plan jako aktywny?', 'Ustaw jako aktywny' (to samo okno co generator)
 #   "Saved", "Weekly plan"            ← 'Zapisano', 'Plan tygodnia' (potwierdzenie zapisu)
+#   "Not now"                        ← 'Nie teraz' (okno zgody na przypomnienie — X-11: pierwszy plan z każdej drogi, components/PlanReminderSync)
 #   "Monday, Upper A", "Tuesday, Rest" ← app/plan.tsx: wiersz dnia '{dzień}, {szablon albo Wolne}' (1 szablon × 3 dni → pon., śr., pt.)
 #   "Tuesday: \+ New template"        ← app/plan.tsx: '{dzień}: ' + '+ Nowy szablon' (przycisk w rozwiniętym wierszu dnia)
 #   "\+ Add exercise", "Search exercises…", "Save template", "Edit template", "Back" ← jak w subflows/szablon-testowy.yaml
@@ -32,8 +33,11 @@ name: Plan z moich szablonów
 - tapOn: "Save plan"
 - extendedWaitUntil: { visible: "Make the new plan active\\?", timeout: 15000 }
 - tapOn: "Make active"
+# X-11 (audyt kontrolny 1): pierwszy plan → okno zgody na przypomnienie (zgoda na powiadomienia nieustalona na symulatorze); kolejność okien zależy od iOS
+- tapOn: { text: "Not now", optional: true }
 - extendedWaitUntil: { visible: "Saved", timeout: 15000 }
 - tapOn: "Weekly plan"
+- tapOn: { text: "Not now", optional: true }
 - extendedWaitUntil: { visible: "Monday, Upper A", timeout: 30000 }
 - takeScreenshot: 81-plan-aktywny
 # --- „+ Nowy szablon” na wtorek: edycja → ćwiczenie → „Zapisz” → szablon od razu na wtorku ---

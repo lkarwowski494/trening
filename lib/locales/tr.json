@@ -847,7 +847,6 @@
  "Zamknij": "Kapat",
  "Kalendarz zamiast Historii: plan tygodnia, przesuwanie treningów i propozycje zmian z myślą o regeneracji partii.": "Geçmiş yerine Takvim: haftalık plan, antrenmanları taşıma ve kas grubu toparlanmasını dikkate alan değişiklik önerileri.",
  "Pauza treningu — czas pauzy nie liczy się do czasu trwania.": "Antrenman duraklatıldı — duraklatılan süre toplam süreye sayılmaz.",
- "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik 10 serii na partię w tygodniu i oznaczanie tygodnia deload.": "İlerleme: kas haritalı haftalık ve aylık özet, kas grubu başına haftada 10 set işareti ve bir haftayı deload olarak işaretleme.",
  "Skala wysiłku RPE albo RIR w Ustawieniach.": "Ayarlar’da RPE veya RIR efor ölçeği.",
  "Szablony w folderach i archiwum, „Pomiń dziś” bez zmiany szablonu, usuwanie przesunięciem w lewo.": "Klasörlerde ve arşivde şablonlar, şablonu değiştirmeden “Bugün atla”, sola kaydırarak silme.",
  "Nowy wygląd: kolory i kroje, grafika talerzy na sztandze.": "Yeni görünüm: renkler ve yazı tipleri, bar üzerindeki plaka görseli.",
@@ -941,7 +940,6 @@
  "Tydzień oznaczysz też w Postępach przełącznikiem „Tydzień deload”.": "Bir haftayı İlerleme içinde “Deload haftası” anahtarıyla da işaretleyebilirsiniz.",
  "Postępy i rekordy": "İlerleme ve rekorlar",
  "Więcej → Postępy: podsumowanie tygodnia lub miesiąca z poprzednim okresem obok.": "Daha Fazla → İlerleme: haftalık veya aylık özet, yanında önceki dönem.",
- "Mapa mięśni i serie na partię z kreską 10 serii tygodniowo.": "Kas haritası ve kas grubu başına setler; haftada 10 set çizgisiyle.",
  "Wykresy ćwiczeń i rekordy; rekord w trakcie treningu widać przy serii.": "Hareket grafikleri ve rekorlar; antrenman sırasında rekor setin yanında görünür.",
  "Więcej → Miejsca i sprzęt: dom, siłownia, hotel — każdy ze swoim sprzętem i ciężarami.": "Daha Fazla → Yerler ve ekipman: ev, spor salonu, otel — her birinin kendi ekipmanı ve ağırlıkları.",
  "Lista ćwiczeń, zamiany i generator pokazują to, co da się zrobić w wybranym miejscu.": "Hareket listesi, değiştirmeler ve oluşturucu seçili yerde yapılabilecekleri gösterir.",
@@ -1319,5 +1317,11 @@
  "{p}% planu tygodnia ({done} z {n})": "Haftalık planın %{p} kadarı ({done}/{n})",
  "Postęp tygodnia: {p}% planu, zrobione {done} z {n} treningów z planu": "Haftalık ilerleme: planın %{p} kadarı, plandaki {n} antrenmandan {done} tamamlandı",
  "zaplanowane": "planlandı",
- "Tygodnie z wykonanym planem: {done} z {n}": "Planı tamamlanan haftalar: {done}/{n}"
+ "Tygodnie z wykonanym planem: {done} z {n}": "Planı tamamlanan haftalar: {done}/{n}",
+ "Niezapisane zmiany": "Kaydedilmemiş değişiklikler",
+ "Aplikacja zamknęła się w trakcie edycji szablonu „{name}”. Wrócić do edycji?": "“{name}” şablonunu düzenlerken uygulama kapandı. Düzenlemeye dönülsün mü?",
+ "Aplikacja zamknęła się w trakcie edycji ćwiczenia „{name}”. Wrócić do edycji?": "“{name}” egzersizini düzenlerken uygulama kapandı. Düzenlemeye dönülsün mü?",
+ "Wróć do edycji": "Düzenlemeye dön",
+ "Mapa mięśni i serie na partię z kreską {n} serii tygodniowo.": "Kas haritası ve kas grubu başına setler; haftada {n} set çizgisiyle.",
+ "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.": "İlerleme: kas haritalı haftalık ve aylık özet, kas grubu başına haftada {n} set işareti ve bir haftayı deload olarak işaretleme."
 }

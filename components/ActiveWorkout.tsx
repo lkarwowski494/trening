@@ -109,7 +109,8 @@ export default function ActiveWorkout() {
   const kind: timer.StaleKind = w ? staleKind(w) : 'none'; const lng = lang(), snd = getState().settings.sound;
   const [minute, setMinute] = useState(0); useEffect(() => { const i = setInterval(() => setMinute(x => x + 1), 60e3); return () => clearInterval(i); }, []); /* T1: sprawdzenie także przy otwartej aplikacji */
   const pausedAt = w?.pausedAt ?? null; /* audyt 0.10 (LIVE-10, wariant B): treść wspomina pauzę */
-  useEffect(() => { if (w) timer.scheduleStaleReminder(ref, last, kind, pausedAt).catch(() => {}); return () => { if (!getState().active) timer.cancelStaleReminder().catch(() => {}); }; }, [ref, kind, last, lng, snd, pausedAt]); /* T4a/T4b: godzina w treści, język i dźwięk przypomnienia aktualne */ // eslint-disable-line react-hooks/exhaustive-deps
+  const tz = w?.tzOffsetMin; /* LIVE2-04: godziny na zegarze strefy startu */
+  useEffect(() => { if (w) timer.scheduleStaleReminder(ref, last, kind, pausedAt, tz).catch(() => {}); return () => { if (!getState().active) timer.cancelStaleReminder().catch(() => {}); }; }, [ref, kind, last, lng, snd, pausedAt, tz]); /* T4a/T4b: godzina w treści, język i dźwięk przypomnienia aktualne */ // eslint-disable-line react-hooks/exhaustive-deps
   /** Pytanie o porzucony trening. Runda 71: blokada na poziomie modułu (dwa zamontowane ekrany nie otwierają dwóch okien),
    * przyciski działają tylko na tym samym treningu (T3), a „Wróć” z potwierdzenia odrzucenia wraca do pytania. */
   const askStale = (tries = 0) => {
@@ -121,7 +122,7 @@ export default function ActiveWorkout() {
     const cur = getState().active; const since = staleSince(); if (!cur || since == null || staleOpenFor === cur.id || asking.current || finishing.current) return;
     const id = cur.id; staleOpenFor = id; asking.current = true; const done = () => { asking.current = false; staleOpenFor = null; };
     const same = () => getState().active?.id === id; const k = staleKind(cur);
-    Alert.alert(tr('Trening wciąż trwa'), timer.staleBody(k, since, true, cur.pausedAt), [
+    Alert.alert(tr('Trening wciąż trwa'), timer.staleBody(k, since, true, cur.pausedAt, cur.tzOffsetMin), [
       { text: tr('Kontynuuj'), onPress: () => { done(); if (same()) ackStale(); } },
       ...(k === 'work' ? [{ text: tr('Zakończ i zapisz'), onPress: () => { done(); if (same()) finalize(since); } }] : []),
       { text: tr('Odrzuć'), style: 'destructive' as const, onPress: () => { Alert.alert(tr('Odrzucić trening?'), tr('Serie z tej sesji przepadną.'), [{ text: tr('Wróć'), style: 'cancel', onPress: () => { done(); askStale(); } }, { text: tr('Odrzuć trening'), style: 'destructive', onPress: () => { done(); if (!same()) return; cancelWorkout(); timer.stop(); timer.stopSet(); timer.cancelStaleReminder().catch(() => {}); } }]); } }, /* T1: potwierdzenie — okno pojawia się niespodziewanie */
@@ -135,9 +136,10 @@ export default function ActiveWorkout() {
     // istnieje i nie jest już odhaczona; do serii roboczych tylko, gdy nie jest rozgrzewką.
     const rpos = timer.S.on ? findSet(timer.S.setId) : null; const rset = rpos ? w.exercises[rpos.ei]?.sets[rpos.si] : null;
     const runId = rset && !rset.done ? rset.id : null;
-    const running = runId ? 1 : 0; const runningWork = rset && runId && rset.kind !== 'warmup' ? 1 : 0;
+    const running = runId ? 1 : 0;
     const done = w.exercises.reduce((a, e) => a + e.sets.filter(s => s.done).length, 0) + running;
-    const doneWork = w.exercises.reduce((a, e) => a + e.sets.filter(s => s.done && s.kind !== 'warmup').length, 0) + runningWork;
+    /* LIVE2-02 (audyt kontrolny 1): serie robocze jak workingSets (D3 — drop razem z serią przed nim); trwający pomiar liczy się jak odhaczony */
+    const doneWork = w.exercises.reduce((a, e) => a + (exById(e.exerciseId) ? workSetCount(e.sets.map(s => s.id === runId ? { ...s, done: true } : s)) : 0), 0);
     const go = () => finalize();
     // Runda 7: wpisane, nieodhaczone serie liczymy przed wszystkimi oknami — każde o nich ostrzega.
     const typed = (e: WExercise, s: WSet) => !e.skipped /* „Pomiń dziś” — świadomie pominięte */ && !s.done && s.id !== runId && setHasValue(s) && !isPrefill(e, s);

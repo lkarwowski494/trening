@@ -6,6 +6,7 @@ import { tIn, type LangSetting, type Lang } from './i18n';
 import type { Unit } from './units';
 import type { LoadSpec } from './loads';
 import { GYM_FILL, OPT_FILL, EQUIP_FILL2 } from './equipment';
+import { LEGACY_FP } from './catalog-fp-legacy.generated';
 import { CATALOG, CATALOG_REV, CATALOG_LIB_EXTRA, CATALOG_ADDED_REVS, MUSCLE_LOAD, CATALOG_NICHE, CATALOG_RESEARCH, CATALOG_STEP, CATALOG_UNMAPPED, type LoadSource, type Pattern, type MuscleRegion } from './catalog.generated';
 
 export const SCHEMA_VERSION = 18; // 18 (audyt 0.10 A1, decyzja właściciela 08.10.2026 — wariant B): State.planHistory — historia planu tygodnia (odcinki „od dnia”), dzień liczony wg planu, który wtedy obowiązywał; dane sprzed 18: plan obowiązuje od dnia migracji (wcześniejsze dni bez planu); weekPlan zostaje (czytają go starsze wersje); kopia 18 odrzucana przez 17; baza ze schematem wyższym niż obsługiwany nie jest nadpisywana (J1, store.init); 17 (decyzja 05.10.2026, docs/17): TemplateItem.rows — serie szablonu jako wiersze (typ, powtórzenia, ciężar); pole opcjonalne, szablony sprzed 17 bez zmian; kopia 17 odrzucana przez 16; 16 (E2, docs/14 pkt 2): WExercise.swappedFrom / implPinned (trening w toku i historia), splitFrom / altSkip (tylko trening w toku), TemplateItem.alternates (W3); pola opcjonalne — blok bez zamiany i szablon bez zamienników wyglądają jak w 15; kopia 16 jest odrzucana przez wersję 15 (pkt 2.4); 15 (decyzje 03.10.2026): WExercise.impl — przyrząd użyty w bloku (decyzja 8c); ciężarów ani treści szablonów użytkownika migracja nie zmienia (decyzja 03.10, 08:11 — bez dawnej jednorazowej zmiany 48 → 24 kg z P-004; zostaje tylko normalizacja pól i usuwanie pozycji z brakującym/usuniętym ćwiczeniem, jak w main); 14 (P-003 E1): miejsca treningu i sprzęt — Settings.locations/mainLocationId/pickerShowAll, Workout/Template.locationId, wymagania sprzętowe ćwiczeń; 11 (runda 55): przyciąganie starych wartości z funtów tylko dla danych sprzed tej wersji; 12 (runda 72): masa ciała zamrożona w zakończonych treningach; 13 (runda 75, Q-001): masa ciała poza obliczeniami — usunięte udział %, waga w Ustawieniach i w treningu; nowe ustawienia progressHint, autoBackup, weighReminder
@@ -275,9 +276,27 @@ export function libExercise([name, group, equipment, band]: [string, Group, Equi
 type FpFields = Pick<Exercise, 'group' | 'equipment' | 'metric' | 'loadMode' | 'bandAssistable' | 'muscles' | 'secondaryMuscles' | 'requires' | 'recommended' | 'pattern' | 'loadSource' | 'implements'>;
 const fpOf = (e: FpFields) => JSON.stringify([e.group, e.equipment, e.metric, e.loadMode, !!e.bandAssistable, e.muscles ?? [], e.secondaryMuscles ?? [], e.requires ?? null, e.recommended ?? null, e.pattern ?? null, e.loadSource ?? null, e.implements ?? null]);
 let LIB_FP: Map<string, string | null> | null = null;
+/** cyrb53 (domena publiczna) — skrót odcisku do tabeli z poprzednich katalogów (ta sama funkcja w scripts/equipment/legacy-fp.mjs). */
+export function fpHash(s: string): string {
+  let h1 = 0xdeadbeef, h2 = 0x41c6ce57;
+  for (let i = 0; i < s.length; i++) { const ch = s.charCodeAt(i); h1 = Math.imul(h1 ^ ch, 2654435761); h2 = Math.imul(h2 ^ ch, 1597334677); }
+  h1 = Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^ Math.imul(h2 ^ (h2 >>> 13), 3266489909);
+  h2 = Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^ Math.imul(h1 ^ (h1 >>> 13), 3266489909);
+  return (4294967296 * (2097151 & h2) + (h1 >>> 0)).toString(36);
+}
 export function libKeyFromFields(e: FpFields): string | undefined {
   if (!LIB_FP) { const m = new Map<string, string | null>(); for (const r of LIB) { const k = fpOf(libExercise(r)); m.set(k, m.has(k) ? null : r[0]); } LIB_FP = m; }
   return LIB_FP.get(fpOf(e)) ?? undefined;
+}
+let LIB_FP_ALL: Map<string, string[]> | null = null;
+/** DAT2-02 (audyt kontrolny 1): kandydaci na klucz katalogu ćwiczenia biblioteki bez klucza (przemianowanego w 1001/1002) — WSZYSTKIE ćwiczenia
+ * o tym odcisku pól: najpierw z katalogu buildów 1001/1002 (LEGACY_FP — stamtąd pochodzą pola takich danych; dawne nazwy przez LIB_RENAMED,
+ * usunięte z katalogu zostają jako kandydaci, żeby nie zgadywać), a gdy tam odcisku nie ma — z bieżącego. Warianty mają te same pola
+ * (Bench Press = Board Press), więc rozstrzyga migrate: klucze zajęte przez inne ćwiczenia odpadają, klucz tylko przy jednym kandydacie. */
+export function libKeyCandidates(e: FpFields): string[] {
+  if (!LIB_FP_ALL) { const m = new Map<string, string[]>(); for (const r of LIB) { const k = fpOf(libExercise(r)); m.set(k, [...(m.get(k) ?? []), r[0]]); } LIB_FP_ALL = m; }
+  const fp = fpOf(e); const old = own(LEGACY_FP, fpHash(fp));
+  return old ? [...new Set(old.map(n => own(LIB_RENAMED, n) ?? n))] : [...(LIB_FP_ALL.get(fp) ?? [])];
 }
 /** Stan startowy: biblioteka ćwiczeń i gumy, BEZ szablonów (decyzja właściciela 03.10.2026, 08:11: „Nie przenoś do aplikacji żadnych moich szablonów.
  * Sam je ustawię.” — świeża instalacja ma `templates: []`; dawne cztery szablony żyją tylko w danych testowych: tests/fixtures/demo-templates.ts).

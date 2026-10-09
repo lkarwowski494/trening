@@ -847,7 +847,6 @@
  "Zamknij": "Fermer",
  "Kalendarz zamiast Historii: plan tygodnia, przesuwanie treningów i propozycje zmian z myślą o regeneracji partii.": "Calendrier à la place de l’Historique : programme de la semaine, déplacement des séances et suggestions tenant compte de la récupération musculaire.",
  "Pauza treningu — czas pauzy nie liczy się do czasu trwania.": "Pause de séance — le temps de pause ne compte pas dans la durée.",
- "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik 10 serii na partię w tygodniu i oznaczanie tygodnia deload.": "Progrès : bilan de la semaine et du mois avec carte musculaire, repère de 10 séries par groupe musculaire et par semaine, et marquage d’une semaine de décharge.",
  "Skala wysiłku RPE albo RIR w Ustawieniach.": "Échelle d’effort RPE ou RIR dans les Réglages.",
  "Szablony w folderach i archiwum, „Pomiń dziś” bez zmiany szablonu, usuwanie przesunięciem w lewo.": "Modèles dans des dossiers et archives, « Passer aujourd’hui » sans modifier le modèle, suppression par balayage vers la gauche.",
  "Nowy wygląd: kolory i kroje, grafika talerzy na sztandze.": "Nouvel aspect : couleurs et polices, illustration des disques sur la barre.",
@@ -941,7 +940,6 @@
  "Tydzień oznaczysz też w Postępach przełącznikiem „Tydzień deload”.": "Vous pouvez aussi marquer une semaine dans Progrès avec l’interrupteur « Semaine de décharge ».",
  "Postępy i rekordy": "Progrès et records",
  "Więcej → Postępy: podsumowanie tygodnia lub miesiąca z poprzednim okresem obok.": "Plus → Progrès : bilan de la semaine ou du mois avec la période précédente à côté.",
- "Mapa mięśni i serie na partię z kreską 10 serii tygodniowo.": "Carte musculaire et séries par groupe musculaire avec un repère à 10 séries par semaine.",
  "Wykresy ćwiczeń i rekordy; rekord w trakcie treningu widać przy serii.": "Graphiques d’exercices et records ; pendant la séance, un record s’affiche à côté de la série.",
  "Więcej → Miejsca i sprzęt: dom, siłownia, hotel — każdy ze swoim sprzętem i ciężarami.": "Plus → Lieux et matériel : maison, salle, hôtel — chacun avec son équipement et ses charges.",
  "Lista ćwiczeń, zamiany i generator pokazują to, co da się zrobić w wybranym miejscu.": "La liste d’exercices, les remplacements et le générateur montrent ce qui est faisable dans le lieu choisi.",
@@ -1319,5 +1317,11 @@
  "{p}% planu tygodnia ({done} z {n})": "{p} % du plan de la semaine ({done} sur {n})",
  "Postęp tygodnia: {p}% planu, zrobione {done} z {n} treningów z planu": "Progression de la semaine : {p} % du plan, {done} séances du plan faites sur {n}",
  "zaplanowane": "prévu",
- "Tygodnie z wykonanym planem: {done} z {n}": "Semaines avec le plan accompli : {done} sur {n}"
+ "Tygodnie z wykonanym planem: {done} z {n}": "Semaines avec le plan accompli : {done} sur {n}",
+ "Niezapisane zmiany": "Modifications non enregistrées",
+ "Aplikacja zamknęła się w trakcie edycji szablonu „{name}”. Wrócić do edycji?": "L’app s’est fermée pendant que vous modifiiez le modèle « {name} ». Reprendre la modification ?",
+ "Aplikacja zamknęła się w trakcie edycji ćwiczenia „{name}”. Wrócić do edycji?": "L’app s’est fermée pendant que vous modifiiez l’exercice « {name} ». Reprendre la modification ?",
+ "Wróć do edycji": "Reprendre la modification",
+ "Mapa mięśni i serie na partię z kreską {n} serii tygodniowo.": "Carte musculaire et séries par groupe musculaire avec un repère à {n} séries par semaine.",
+ "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.": "Progrès : bilan de la semaine et du mois avec carte musculaire, repère de {n} séries par groupe musculaire et par semaine, et marquage d’une semaine de décharge."
 }

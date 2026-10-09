@@ -94,12 +94,12 @@ export class Runner {
     return null;
   }
   vpTop(sc: LNode): number { const sb = this.screenBox(sc, false); return sb ? sb.y : this.headerTop(); }
-  focused: Node | null = null; selectAll = false; alertSeen = 0; alertOpen: number | null = null; sheetSeen = 0; sheetOpen: number | null = null; log: string[] = [];
+  focused: Node | null = null; selectAll = false; alertSeen = 0; alertOpen: number | null = null; /** X-11: okna systemowe jak na iOS — nowsze nad starszym, po zamknięciu wierzchniego widać poprzednie */ alertStack: number[] = []; sheetSeen = 0; sheetOpen: number | null = null; log: string[] = [];
   /** Stan wyrażeń Maestro: `output` (wspólny dla scenariusza i podscenariuszy) i `maestro.copiedText` (ostatni copyTextFrom); copied — wszystkie skopiowane teksty (testy). */
   output: Record<string, unknown> = {}; maestro: { copiedText?: string } = {}; copied: string[] = [];
   constructor(public name: string) {}
   syncModals() {
-    if (global.__alerts.length > this.alertSeen) { this.alertOpen = global.__alerts.length - 1; this.alertSeen = global.__alerts.length; }
+    if (global.__alerts.length > this.alertSeen) { for (let i = this.alertSeen; i < global.__alerts.length; i++) this.alertStack.push(i); this.alertOpen = global.__alerts.length - 1; this.alertSeen = global.__alerts.length; }
     const sh = (global as any).__sheets as unknown[]; if (sh.length > this.sheetSeen) { this.sheetOpen = sh.length - 1; this.sheetSeen = sh.length; }
   }
   candidates(_noLayout = false): Cand[] {
@@ -124,7 +124,7 @@ export class Runner {
     const H = 20 + tH + mH + 16 + btns.length * 56 - 8 + 16; let y = (SCREEN.h - H) / 2 + 20;
     const out: { c: Cand; y: number }[] = [{ c: { texts: [a.title] }, y: y + tH / 2 }]; y += tH;
     if (a.msg) { out.push({ c: { texts: [a.msg] }, y: y + mH / 2 }); y += mH; } y += 16;
-    for (const b of btns) { out.push({ c: { texts: [b.text], alertBtn: () => { this.alertOpen = null; b.onPress?.(a.prompt ? (this as any).promptVal ?? a.def ?? '' : undefined); } }, y: y + 24 }); y += 56; }
+    for (const b of btns) { out.push({ c: { texts: [b.text], alertBtn: () => { this.alertStack.pop(); this.alertOpen = this.alertStack.length ? this.alertStack[this.alertStack.length - 1] : null; b.onPress?.(a.prompt ? (this as any).promptVal ?? a.def ?? '' : undefined); } }, y: y + 24 }); y += 56; }
     return out;
   }
   /** Kotwica `below`/`above` przy otwartym oknie: Maestro widzi okno i ekran pod nim; warunek spełnia KTÓRYKOLWIEK pasujący element (Filters.below/above). */
@@ -212,8 +212,10 @@ export class Runner {
           if (!clear) { await act(async () => { await store.flush(); }); st = JSON.parse(JSON.stringify(saved())); }
           /* E2E 91: na symulatorze zgoda na powiadomienia jest nieustalona (`permissions: all: allow` jej nie obejmuje) — okno I1 przy pierwszym dniu planu */
           if (clear) (global as any).__notifPerm = { ...SIM_NOTIF_PERM };
-          await renderApp({ locale: 'en', tag: SIM_TAG, saved: st }); await this.tick(100);
-          this.focused = null; this.scrollY = new WeakMap(); this.alertSeen = global.__alerts.length; this.alertOpen = null; this.sheetSeen = (global as any).__sheets.length; this.sheetOpen = null; break;
+          /* UX2-03: ponowny start na tej samej bazie — także klucz szkiców edycji (store.DRAFTS_KEY) */
+          const kv = !clear && global.__kv.has(store.DRAFTS_KEY) ? { [store.DRAFTS_KEY]: global.__kv.get(store.DRAFTS_KEY)! } : undefined;
+          await renderApp({ locale: 'en', tag: SIM_TAG, saved: st, kv }); await this.tick(100);
+          this.focused = null; this.scrollY = new WeakMap(); this.alertSeen = 0 /* UX2-03: renderApp czyści okna — każde obecne powstało przy tym starcie (np. pytanie o szkic) */; this.alertOpen = null; this.alertStack = []; this.sheetSeen = (global as any).__sheets.length; this.sheetOpen = null; break;
         }
         case 'stopApp': await act(async () => { await store.flush(); }); break;
         case 'tapOn': {

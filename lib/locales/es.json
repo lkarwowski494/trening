@@ -847,7 +847,6 @@
  "Zamknij": "Cerrar",
  "Kalendarz zamiast Historii: plan tygodnia, przesuwanie treningów i propozycje zmian z myślą o regeneracji partii.": "Calendario en lugar de Historial: plan semanal, mover entrenos y propuestas de cambios que tienen en cuenta la recuperación muscular.",
  "Pauza treningu — czas pauzy nie liczy się do czasu trwania.": "Pausa del entreno — el tiempo de pausa no cuenta en la duración.",
- "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik 10 serii na partię w tygodniu i oznaczanie tygodnia deload.": "Progreso: resumen de la semana y del mes con mapa muscular, marca de 10 series por grupo muscular a la semana y marcado de una semana de descarga.",
  "Skala wysiłku RPE albo RIR w Ustawieniach.": "Escala de esfuerzo RPE o RIR en Ajustes.",
  "Szablony w folderach i archiwum, „Pomiń dziś” bez zmiany szablonu, usuwanie przesunięciem w lewo.": "Plantillas en carpetas y archivo, «Saltar hoy» sin cambiar la plantilla, eliminar deslizando a la izquierda.",
  "Nowy wygląd: kolory i kroje, grafika talerzy na sztandze.": "Nuevo aspecto: colores y tipografías, gráfico de los discos en la barra.",
@@ -941,7 +940,6 @@
  "Tydzień oznaczysz też w Postępach przełącznikiem „Tydzień deload”.": "También puedes marcar una semana en Progreso con el interruptor «Semana de descarga».",
  "Postępy i rekordy": "Progreso y récords",
  "Więcej → Postępy: podsumowanie tygodnia lub miesiąca z poprzednim okresem obok.": "Más → Progreso: resumen de la semana o del mes con el periodo anterior al lado.",
- "Mapa mięśni i serie na partię z kreską 10 serii tygodniowo.": "Mapa muscular y series por grupo muscular con una línea en 10 series semanales.",
  "Wykresy ćwiczeń i rekordy; rekord w trakcie treningu widać przy serii.": "Gráficos de ejercicios y récords; durante el entreno el récord aparece junto a la serie.",
  "Więcej → Miejsca i sprzęt: dom, siłownia, hotel — każdy ze swoim sprzętem i ciężarami.": "Más → Lugares y material: casa, gimnasio, hotel — cada uno con su material y sus pesos.",
  "Lista ćwiczeń, zamiany i generator pokazują to, co da się zrobić w wybranym miejscu.": "La lista de ejercicios, los cambios y el generador muestran lo que se puede hacer en el lugar elegido.",
@@ -1319,5 +1317,11 @@
  "{p}% planu tygodnia ({done} z {n})": "{p} % del plan semanal ({done} de {n})",
  "Postęp tygodnia: {p}% planu, zrobione {done} z {n} treningów z planu": "Progreso semanal: {p} % del plan, {done} de {n} entrenamientos del plan hechos",
  "zaplanowane": "planificado",
- "Tygodnie z wykonanym planem: {done} z {n}": "Semanas con el plan cumplido: {done} de {n}"
+ "Tygodnie z wykonanym planem: {done} z {n}": "Semanas con el plan cumplido: {done} de {n}",
+ "Niezapisane zmiany": "Cambios sin guardar",
+ "Aplikacja zamknęła się w trakcie edycji szablonu „{name}”. Wrócić do edycji?": "La app se cerró mientras editabas la plantilla «{name}». ¿Volver a la edición?",
+ "Aplikacja zamknęła się w trakcie edycji ćwiczenia „{name}”. Wrócić do edycji?": "La app se cerró mientras editabas el ejercicio «{name}». ¿Volver a la edición?",
+ "Wróć do edycji": "Volver a la edición",
+ "Mapa mięśni i serie na partię z kreską {n} serii tygodniowo.": "Mapa muscular y series por grupo muscular con una línea en {n} series semanales.",
+ "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.": "Progreso: resumen de la semana y del mes con mapa muscular, marca de {n} series por grupo muscular a la semana y marcado de una semana de descarga."
 }

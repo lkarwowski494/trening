@@ -847,7 +847,6 @@
  "Zamknij": "Luk",
  "Kalendarz zamiast Historii: plan tygodnia, przesuwanie treningów i propozycje zmian z myślą o regeneracji partii.": "Kalender i stedet for Historik: ugeplan, flytning af træninger og forslag, der tager hensyn til musklernes restitution.",
  "Pauza treningu — czas pauzy nie liczy się do czasu trwania.": "Pause i træningen — pausetiden tælles ikke med i varigheden.",
- "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik 10 serii na partię w tygodniu i oznaczanie tygodnia deload.": "Fremgang: uge- og månedsoversigt med muskelkort, markering for 10 sæt pr. muskelgruppe pr. uge og markering af en deload-uge.",
  "Skala wysiłku RPE albo RIR w Ustawieniach.": "Anstrengelsesskala RPE eller RIR i Indstillinger.",
  "Szablony w folderach i archiwum, „Pomiń dziś” bez zmiany szablonu, usuwanie przesunięciem w lewo.": "Skabeloner i mapper og arkiv, “Spring over i dag” uden at ændre skabelonen, slet ved at stryge til venstre.",
  "Nowy wygląd: kolory i kroje, grafika talerzy na sztandze.": "Nyt udseende: farver og skrifttyper, grafik af vægtskiver på stangen.",
@@ -941,7 +940,6 @@
  "Tydzień oznaczysz też w Postępach przełącznikiem „Tydzień deload”.": "Du kan også markere en uge i Fremgang med kontakten “Deload-uge”.",
  "Postępy i rekordy": "Fremgang og rekorder",
  "Więcej → Postępy: podsumowanie tygodnia lub miesiąca z poprzednim okresem obok.": "Mere → Fremgang: uge- eller månedsoversigt med den forrige periode ved siden af.",
- "Mapa mięśni i serie na partię z kreską 10 serii tygodniowo.": "Muskelkort og sæt pr. muskelgruppe med en linje ved 10 sæt om ugen.",
  "Wykresy ćwiczeń i rekordy; rekord w trakcie treningu widać przy serii.": "Øvelsesgrafer og rekorder; under træningen vises en rekord ved sættet.",
  "Więcej → Miejsca i sprzęt: dom, siłownia, hotel — każdy ze swoim sprzętem i ciężarami.": "Mere → Steder og udstyr: hjemme, fitnesscenter, hotel — hver med sit eget udstyr og sine egne vægte.",
  "Lista ćwiczeń, zamiany i generator pokazują to, co da się zrobić w wybranym miejscu.": "Øvelseslisten, udskiftninger og generatoren viser, hvad der kan laves på det valgte sted.",
@@ -1319,5 +1317,11 @@
  "{p}% planu tygodnia ({done} z {n})": "{p} % af ugeplanen ({done} af {n})",
  "Postęp tygodnia: {p}% planu, zrobione {done} z {n} treningów z planu": "Ugens fremskridt: {p} % af planen, {done} af {n} planlagte træninger gennemført",
  "zaplanowane": "planlagt",
- "Tygodnie z wykonanym planem: {done} z {n}": "Uger med planen gennemført: {done} af {n}"
+ "Tygodnie z wykonanym planem: {done} z {n}": "Uger med planen gennemført: {done} af {n}",
+ "Niezapisane zmiany": "Ikke-gemte ændringer",
+ "Aplikacja zamknęła się w trakcie edycji szablonu „{name}”. Wrócić do edycji?": "Appen lukkede, mens du redigerede skabelonen “{name}”. Vil du fortsætte redigeringen?",
+ "Aplikacja zamknęła się w trakcie edycji ćwiczenia „{name}”. Wrócić do edycji?": "Appen lukkede, mens du redigerede øvelsen “{name}”. Vil du fortsætte redigeringen?",
+ "Wróć do edycji": "Fortsæt redigering",
+ "Mapa mięśni i serie na partię z kreską {n} serii tygodniowo.": "Muskelkort og sæt pr. muskelgruppe med en linje ved {n} sæt om ugen.",
+ "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.": "Fremgang: uge- og månedsoversigt med muskelkort, markering for {n} sæt pr. muskelgruppe pr. uge og markering af en deload-uge."
 }

@@ -847,7 +847,6 @@
  "Zamknij": "Bezárás",
  "Kalendarz zamiast Historii: plan tygodnia, przesuwanie treningów i propozycje zmian z myślą o regeneracji partii.": "Előzmények helyett Naptár: heti terv, edzések áthelyezése és az izomcsoportok regenerációját figyelembe vevő javaslatok.",
  "Pauza treningu — czas pauzy nie liczy się do czasu trwania.": "Edzésszünet — a szünet ideje nem számít bele az időtartamba.",
- "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik 10 serii na partię w tygodniu i oznaczanie tygodnia deload.": "Fejlődés: heti és havi összesítő izomtérképpel, izomcsoportonként heti 10 sorozat jelölése és egy hét deload hétként jelölése.",
  "Skala wysiłku RPE albo RIR w Ustawieniach.": "RPE vagy RIR terhelési skála a Beállításokban.",
  "Szablony w folderach i archiwum, „Pomiń dziś” bez zmiany szablonu, usuwanie przesunięciem w lewo.": "Sablonok mappákban és archívumban, „Ma kihagyom” a sablon módosítása nélkül, törlés balra húzással.",
  "Nowy wygląd: kolory i kroje, grafika talerzy na sztandze.": "Új megjelenés: színek és betűtípusok, a súlytárcsák ábrája a rúdon.",
@@ -941,7 +940,6 @@
  "Tydzień oznaczysz też w Postępach przełącznikiem „Tydzień deload”.": "Egy hetet a Fejlődés nézetben is megjelölhetsz a „Deload hét” kapcsolóval.",
  "Postępy i rekordy": "Fejlődés és rekordok",
  "Więcej → Postępy: podsumowanie tygodnia lub miesiąca z poprzednim okresem obok.": "Egyebek → Fejlődés: heti vagy havi összesítő, mellette az előző időszak.",
- "Mapa mięśni i serie na partię z kreską 10 serii tygodniowo.": "Izomtérkép és sorozatok izomcsoportonként, vonallal heti 10 sorozatnál.",
  "Wykresy ćwiczeń i rekordy; rekord w trakcie treningu widać przy serii.": "Gyakorlatgrafikonok és rekordok; edzés közben a rekord a sorozat mellett látszik.",
  "Więcej → Miejsca i sprzęt: dom, siłownia, hotel — każdy ze swoim sprzętem i ciężarami.": "Egyebek → Helyszínek és eszközök: otthon, edzőterem, hotel — mindegyik saját eszközökkel és súlyokkal.",
  "Lista ćwiczeń, zamiany i generator pokazują to, co da się zrobić w wybranym miejscu.": "A gyakorlatlista, a cserék és a generátor azt mutatják, ami a kiválasztott helyen elvégezhető.",
@@ -1319,5 +1317,11 @@
  "{p}% planu tygodnia ({done} z {n})": "A heti terv {p}%-a ({done}/{n})",
  "Postęp tygodnia: {p}% planu, zrobione {done} z {n} treningów z planu": "Heti haladás: a terv {p}%-a, {n} tervezett edzésből {done} kész",
  "zaplanowane": "tervezett",
- "Tygodnie z wykonanym planem: {done} z {n}": "Teljesített tervű hetek: {done}/{n}"
+ "Tygodnie z wykonanym planem: {done} z {n}": "Teljesített tervű hetek: {done}/{n}",
+ "Niezapisane zmiany": "Nem mentett módosítások",
+ "Aplikacja zamknęła się w trakcie edycji szablonu „{name}”. Wrócić do edycji?": "Az alkalmazás bezárult, miközben a(z) „{name}” sablont szerkesztette. Folytatja a szerkesztést?",
+ "Aplikacja zamknęła się w trakcie edycji ćwiczenia „{name}”. Wrócić do edycji?": "Az alkalmazás bezárult, miközben a(z) „{name}” gyakorlatot szerkesztette. Folytatja a szerkesztést?",
+ "Wróć do edycji": "Szerkesztés folytatása",
+ "Mapa mięśni i serie na partię z kreską {n} serii tygodniowo.": "Izomtérkép és sorozatok izomcsoportonként, vonallal heti {n} sorozatnál.",
+ "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.": "Fejlődés: heti és havi összesítő izomtérképpel, izomcsoportonként heti {n} sorozat jelölése és egy hét deload hétként jelölése."
 }
