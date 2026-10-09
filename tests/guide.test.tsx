@@ -119,7 +119,7 @@ describe('ekrany', () => {
       const walk = (st: { routes?: { name: string; state?: unknown }[] } | undefined) => st?.routes?.forEach(r => { names.push(r.name); walk(r.state as never); }); walk(rs.navigationRef.getRootState());
       expect([g.id, names.filter((n: string) => n === '(tabs)').length]).toEqual([g.id, 1]);
     }
-  });
+  }, 20000); /* ~2,5 s osobno; 8 ekranów — pod obciążeniem pełnego verify przekraczał domyślne 5 s */
   test('wejścia: Więcej (z postępem), „Pierwsze kroki” (nowa osoba), „Co nowego” (po aktualizacji)', async () => {
     await boot('/more', () => { markGuideSeen('workout'); });
     expect(screen.getByText('Przewodnik')).toBeTruthy(); expect(screen.getByText('Przeczytane: 1 z 10')).toBeTruthy();
