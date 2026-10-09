@@ -26,13 +26,25 @@ const planArb = {
   planOverrides: ovArb,
   planHistory: fc.oneof(fc.constant(undefined), val, fc.array(fc.oneof(val, fc.record({ from: keyArb, days: daysArb }, { requiredKeys: [] })), { maxLength: 5 })),
   deloadSnooze: fc.oneof(keyArb, val, fc.constant(undefined)),
+  /* fala 2 audytu 0.10 (obszar TESTY, M3 / TST-03): pozostałe pola stanu z 07–09.10 — tygodnie deload, przewodnik, „Co nowego”, zachęta do planu,
+   * pomiary masy ciała z datą (śmieci, zły dzień, duplikat dnia, zera, ponad limit) */
+  deloadWeeks: fc.oneof(fc.constant(undefined), val, fc.array(fc.oneof(keyArb, val, fc.constantFrom('2026-10-05', '2026-09-28')), { maxLength: 4 })),
+  guideSeen: fc.oneof(fc.constant(undefined), val, fc.array(fc.oneof(val, fc.constantFrom('plan', 'deload', 'x'.repeat(41))), { maxLength: 4 })),
+  whatsNewSeen: fc.oneof(fc.constant(undefined), val, fc.constantFrom('0.10.0', 'x'.repeat(41))),
+  planHintHidden: fc.oneof(fc.constant(undefined), val, fc.boolean()),
+  bodyMassLog: fc.oneof(fc.constant(undefined), val, fc.array(fc.oneof(val, fc.record({ date: fc.oneof(keyArb, val), kg: fc.oneof(val, fc.constantFrom(80, 80.123, 0, -5, 1e6)) }, { requiredKeys: [] })), { maxLength: 4 })),
 };
+/** Pola treningu z 08–09.10: pauzy (przedziały nachodzące, odwrócone, poza treningiem), trwająca pauza, deload, „czeka na Zdrowie” (J2), strefa startu (J3). */
+const wExtra = { pauses: fc.oneof(fc.constant(undefined), val, fc.array(fc.oneof(val, fc.tuple(val, val), fc.constantFrom([1, 2], [5, 3], [0, 1e13])), { maxLength: 3 })), pausedAt: fc.oneof(fc.constant(undefined), val),
+  deload: fc.oneof(fc.constant(undefined), val, fc.constant(true)), healthPending: fc.oneof(fc.constant(undefined), val, fc.constant(true)), tzOffsetMin: fc.oneof(fc.constant(undefined), val, fc.constantFrom(120, 60, -480, 845, 900, 12.5)) };
+const wArb2 = fc.tuple(wArb, fc.record(wExtra, { requiredKeys: [] })).map(([w, x]) => ({ ...w, ...x }));
 const stateArb = fc.record({
   ...planArb,
   schemaVersion: fc.constantFrom(undefined, 5, 9, 10, 11, '11', 12, 17, 18),
-  exercises: fc.array(exArb, { maxLength: 4 }), templates: fc.array(tplArb, { maxLength: 2 }), workouts: fc.array(wArb, { maxLength: 3 }),
-  active: fc.oneof(fc.constant(null), wArb), mornings: fc.array(morningArb, { maxLength: 3 }), bands: fc.array(bandArb, { maxLength: 2 }),
-  settings: fc.record({ unit: fc.constantFrom('kg', 'lb', 'x'), bodyWeightKg: val, defaultRest: val, language: fc.constantFrom('pl', 'en', 'auto', 'x'), futureSetting: val /* audyt 0.10 J1: nieznane ustawienie zostaje */ }, { requiredKeys: [] }),
+  exercises: fc.array(exArb, { maxLength: 4 }), templates: fc.array(tplArb, { maxLength: 2 }), workouts: fc.array(wArb2, { maxLength: 3 }),
+  active: fc.oneof(fc.constant(null), wArb2), mornings: fc.array(morningArb, { maxLength: 3 }), bands: fc.array(bandArb, { maxLength: 2 }),
+  settings: fc.record({ unit: fc.constantFrom('kg', 'lb', 'x'), bodyWeightKg: val, defaultRest: val, language: fc.constantFrom('pl', 'en', 'auto', 'x'), futureSetting: val /* audyt 0.10 J1: nieznane ustawienie zostaje */,
+    healthSync: fc.oneof(val, fc.boolean()), libShowAll: fc.oneof(val, fc.boolean()), effortScale: fc.constantFrom('rpe', 'rir', 'x', undefined), planReminder: fc.oneof(val, fc.boolean()) /* fala 2: Zdrowie, filtr „Podstawowe”, skala, przypomnienie */ }, { requiredKeys: [] }),
   timer: fc.record({ restEndAt: val, restTotal: val, restSetId: idv, setStartAt: val, setTarget: val, setId: idv }, { requiredKeys: [] }),
 });
 
@@ -43,4 +55,18 @@ test('migrate is idempotent through JSON (export→import is a no-op)', async ()
     const b = strip(store.migrate(JSON.parse(JSON.stringify(a))));
     expect(b).toEqual(a);
   }), { numRuns: 3000 });
+});
+
+test('fala 2 (M3 / TST-03): poprawne wartości nowych pól przechodzą przez migrate bez zmian, złe — usunięte', async () => {
+  const st = await fresh(); const now = Date.now(); const raw = JSON.parse(JSON.stringify(st));
+  Object.assign(raw, { deloadWeeks: ['2026-09-28', '2026-10-05'], guideSeen: ['plan'], whatsNewSeen: '0.10.0', planHintHidden: true, bodyMassLog: [{ date: '2026-10-01', kg: 80.5 }] });
+  raw.workouts = [{ id: 'w1', ownerId: 'local', createdAt: now - 7200e3, updatedAt: now - 3600e3, loggedBy: 'local', sessionMode: 'solo', healthUUID: null, templateId: null, templateName: 'T', startedAt: now - 7200e3, finishedAt: now - 3600e3, note: '',
+    exercises: [{ id: 'b1', exerciseId: raw.exercises[0].id, groupId: null, sets: [{ id: 's1', weight: 50, reps: 5, durationSec: '', distanceM: '', rpe: '', bandId: '', addKg: '', kind: 'normal', warmup: false, note: '', done: true, completedAt: now - 5000e3 }] }],
+    pauses: [[now - 6000e3, now - 5900e3]], deload: true, healthPending: true, tzOffsetMin: 120 }];
+  const m = store.migrate(JSON.parse(JSON.stringify(raw)));
+  expect([m.deloadWeeks, m.guideSeen, m.whatsNewSeen, m.planHintHidden, m.bodyMassLog]).toEqual([['2026-09-28', '2026-10-05'], ['plan'], '0.10.0', true, [{ date: '2026-10-01', kg: 80.5 }]]);
+  const w = m.workouts.find(x => x.id === 'w1')!;
+  expect([w.pauses, w.deload, w.healthPending, w.tzOffsetMin]).toEqual([[[now - 6000e3, now - 5900e3]], true, true, 120]);
+  const bad = store.migrate(JSON.parse(JSON.stringify({ ...raw, deloadWeeks: ['zła'], guideSeen: 5, whatsNewSeen: 'x'.repeat(41), planHintHidden: 'tak', bodyMassLog: [{ date: '2026-02-30', kg: 80 }, { date: '2026-10-01', kg: -1 }] })));
+  expect([bad.deloadWeeks, bad.guideSeen, bad.whatsNewSeen, bad.planHintHidden, bad.bodyMassLog ?? []]).toEqual([undefined, undefined, undefined, undefined, []]);
 });

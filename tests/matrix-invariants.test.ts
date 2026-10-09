@@ -21,6 +21,9 @@ import * as edit from '@/lib/edit';
 import * as locs from '@/lib/locations';
 import * as plan from '@/lib/plan';
 import * as gen from '@/lib/generator';
+import * as draft from '@/lib/draft';
+import * as tplsync from '@/lib/tplsync';
+import * as health from '@/lib/health';
 import { buildBackup, parseBackup } from '@/lib/backup';
 import { implsAt, EQUIPMENT, LOCATION_PRESETS } from '@/lib/equipment';
 import { CABLES } from '@/lib/catalog.generated';
@@ -56,6 +59,10 @@ const KINDS = {
   unit: 2, lang: 1, planHint: 1 /* UX-16 A (audyt 0.10): „Ukryj” zachętę do planu */, reload: 1, roundtrip: 1, migrate: 1, stats: 1, resetAll: 1,
   /* fala 2 audytu 0.10: pomiary masy ciała z datą (dopisanie / zastąpienie dnia / usunięcie) */
   bodyMass: 1,
+  /* fala 2 audytu 0.10 (obszar TESTY, M3 / TST-03): funkcje z 07–09.10 w alfabecie — edycja na żądanie (szkic ćwiczenia/szablonu: Anuluj/Zapisz),
+   * „Zapisz jako szablon”, archiwum szablonu, tydzień deload, pauza i „Pomiń dziś” w treningu, ponowienie zapisu do Zdrowia (J2), plany: nazwa,
+   * usunięcie, zamiana dni, propozycja z panelu dnia, powrót dnia do planu */
+  draft: 3, saveAsTpl: 1, tplArchive: 1, deload: 1, pause: 2, skipEx: 1, health: 1, planRename: 1, planDel: 1, planSwap: 1, planSuggest: 4, planReset: 1, libScope: 1,
 } as const;
 type K = keyof typeof KINDS;
 type Op = { o: number; a: number; b: number; v: number | '' };
@@ -76,7 +83,8 @@ const actArb = arbOf(KINDS);
  * ćwiczeń, jednostka, restart, import) w trakcie treningu w toku. */
 const inSession = arbOf({ addEx: 4, rmEx: 1, addSet: 5, rmSet: 1, rmSetById: 1, type: 14, tick: 22, kind: 3, band: 3, link: 2, unlink: 1, moveBlock: 1,
   swap: 6, swapImpl: 4, undoSwap: 5, acceptAlt: 5, skipAlt: 1, setLoc: 3, timerRest: 1, timerSet: 1, rememberAlt: 4, rememberRest: 2,
-  past: 1, edit: 1, delW: 1, tplRow: 1, tplAddRow: 1, setEquip: 1, setBandLevel: 1, delBand: 1, delEx: 1, equip: 1, unit: 1, reload: 1, roundtrip: 1, delLoc: 1 });
+  past: 1, edit: 1, delW: 1, tplRow: 1, tplAddRow: 1, setEquip: 1, setBandLevel: 1, delBand: 1, delEx: 1, equip: 1, unit: 1, reload: 1, roundtrip: 1, delLoc: 1,
+  pause: 3, skipEx: 2, draft: 1, deload: 1 });
 const start = fc.record({ t: fc.constantFrom<K>('startTpl', 'startTpl', 'startTpl', 'startEmpty', 'repeat'), a: nat, b: nat, c: nat, v: fc.constant<number | ''>('') });
 const end = fc.record({ t: fc.constantFrom<K>('finish', 'finish', 'finish', 'cancel'), a: nat, b: nat, c: nat, v: fc.constant<number | ''>('') });
 /** Sesja: start (szablon / pusty / powtórz ostatni) → 3–25 działań w treningu → zakończenie albo anulowanie. */
@@ -84,10 +92,10 @@ const session = fc.tuple(start, fc.array(inSession, { minLength: 3, maxLength: 2
 const seqArb = fc.array(fc.oneof({ weight: 3, arbitrary: actArb.map(x => [x]) }, { weight: 2, arbitrary: session }), { minLength: 6, maxLength: 30 });
 
 /** Kategorie: jawne edycje szablonów, zmiany historii; w pozostałych działaniach trening w toku ma zostać co do bajtu (ACTIVE_FROZEN). */
-const TPL_EDIT = new Set<K>(['tplNew', 'tplRename', 'tplDup', 'tplDel', 'tplAddItem', 'tplRmItem', 'tplMove', 'tplLink', 'tplUnlink', 'tplAddRow', 'tplRmRow', 'tplKind', 'tplRow', 'tplBand', 'tplLoc', 'rememberAlt', 'rememberRest', 'gen', 'tplNote']);
-const ACTIVE_FROZEN = new Set<K>([...[...TPL_EDIT].filter(k => k !== 'rememberRest'), 'delW', 'past', 'edit', 'unit', 'lang', 'newEx', 'metric', 'bandAssist', 'delEx', 'restoreEx', 'addLoc', 'setMain', 'dupLoc', 'renameLoc', 'setBandColor', 'planHint', 'reload', 'roundtrip', 'migrate', 'stats', 'planDay', 'planDayOv', 'planShift', 'planMove', 'planNew', 'planActivate', 'bodyMass']);
+const TPL_EDIT = new Set<K>(['tplNew', 'tplRename', 'tplDup', 'tplDel', 'tplAddItem', 'tplRmItem', 'tplMove', 'tplLink', 'tplUnlink', 'tplAddRow', 'tplRmRow', 'tplKind', 'tplRow', 'tplBand', 'tplLoc', 'rememberAlt', 'rememberRest', 'gen', 'tplNote', 'draft', 'saveAsTpl', 'tplArchive']);
+const ACTIVE_FROZEN = new Set<K>([...[...TPL_EDIT].filter(k => k !== 'rememberRest'), 'delW', 'past', 'edit', 'unit', 'lang', 'newEx', 'metric', 'bandAssist', 'delEx', 'restoreEx', 'addLoc', 'setMain', 'dupLoc', 'renameLoc', 'setBandColor', 'planHint', 'reload', 'roundtrip', 'migrate', 'stats', 'planDay', 'planDayOv', 'planShift', 'planMove', 'planNew', 'planActivate', 'bodyMass', 'draft', 'saveAsTpl', 'tplArchive', 'deload', 'health', 'planRename', 'planDel', 'planSwap', 'planSuggest', 'planReset', 'libScope']);
 /** Audyt 0.10 A1/A7: działania, po których żaden miniony dzień nie może zmienić statusu (poza dniem, którego działanie dotyczy wprost). */
-const PAST_FROZEN = new Set<K>(['planDay', 'planDayOv', 'planShift', 'planMove', 'planNew', 'planActivate', 'tplDel', 'tplNew', 'tplDup', 'tplRename']);
+const PAST_FROZEN = new Set<K>(['planDay', 'planDayOv', 'planShift', 'planMove', 'planNew', 'planActivate', 'tplDel', 'tplNew', 'tplDup', 'tplRename', 'tplArchive', 'draft', 'saveAsTpl', 'planRename', 'planDel', 'planSwap', 'planSuggest', 'planReset', 'deload', 'health']);
 
 /* ---------- pomocnicze ---------- */
 const J = (x: unknown) => JSON.stringify(x);
@@ -338,11 +346,54 @@ async function step(x: Act, m: Model, where: string) {
         plan.activatePlan(p.id); const back = plan.savedPlans()[plan.savedPlans().length - 1];
         if (prevDays !== J(Array(7).fill(null)) && back) ok(J(back.days) === prevDays && J(back.overrides ?? {}) === fut, where, 'poprzedni plan zapisany razem ze zmianami dni od dziś (B1)', { back, fut }); }
       hit(x.t); break; }
+    /* ===== fala 2 audytu 0.10 (M3): edycja na żądanie, zapis jako szablon, archiwum, deload, pauza, „Pomiń dziś”, Zdrowie, plany ===== */
+    case 'draft': { /* app/exercise/[id].tsx i app/template/[id].tsx: „Edytuj” → szkic → „Anuluj” albo „Zapisz” (decyzja właściciela 08.10.2026) */
+      const isTpl = x.a % 2 === 0; const id = isTpl ? tpl?.id : pick(exs, x.b)?.id; if (!id) break; const kind = isTpl ? 'template' as const : 'exercise' as const;
+      const exBefore = J(S().exercises); const d = draft.beginObjDraft<Template & Exercise>(kind, id)!; ok(!!d && store.isDraftObj(d), where, 'szkic nie powstał');
+      d.name = NAMES[x.b % NAMES.length]; if (isTpl) { if (d.items.length > 1 && x.c % 3 === 0) store.removeItem(d.items, x.b % d.items.length, d); store.setTemplateNote(d, NAMES[x.c % NAMES.length]); } else d.notes = NAMES[x.c % NAMES.length]; store.save(d);
+      ok(J(S().templates) === tplBefore && J(S().exercises) === exBefore, where, 'zmiana w szkicu trafiła do danych przed „Zapisz”');
+      if (x.c % 2) { draft.discardObjDraft(kind, id); ok(J(S().templates) === tplBefore && J(S().exercises) === exBefore && !draft.objDraft(kind, id), where, '„Anuluj” zmieniło dane'); hit('draftCancel'); }
+      else { ok(draft.commitObjDraft(kind, id), where, '„Zapisz” odrzucone'); const real = isTpl ? S().templates.find(t => t.id === id)! : store.exById(id)!;
+        ok(!store.isDraftObj(real) && real.name === store.clampName(real.name.replace(/\s+/g, ' ').trim()) && !!real.name, where, 'nazwa po zapisie szkicu', real.name);
+        if (isTpl) othersSame(id); else ok(J(S().templates) === tplBefore, where, 'zapis szkicu ćwiczenia zmienił szablony'); hit('draftSave'); }
+      break; }
+    case 'saveAsTpl': { const w = pick(st.workouts, x.a); if (!w) break; const n = st.templates.length; const t = tplsync.templateFromWorkout(w); /* app/history/[id].tsx: „Zapisz jako szablon” (H5) */
+      const live = w.exercises.filter(b => { const e = store.exById(b.exerciseId); return e && !e.archived && b.sets.length; });
+      ok(S().templates.length === n + 1 && t.items.length === live.length && t.items.every((it, i) => it.exerciseId === live[i].exerciseId && store.tplRows(it).length === live[i].sets.length), where, 'szablon z treningu = jego ćwiczenia i serie', { t, live: live.map(b => b.exerciseId) });
+      ok(!st.templates.some(z => z.id !== t.id && z.name === t.name), where, 'nazwa szablonu z treningu powtórzona', t.name);
+      othersSame(t.id); hit('saveAsTpl'); break; }
+    case 'tplArchive': if (tpl) { store.setTemplateArchived(tpl, !tpl.archived); othersSame(tpl.id); hit('tplArchive'); } break; /* app/template/[id].tsx: „Do archiwum” / „Przywróć” (A7) */
+    case 'deload': { const ts = Date.now() - (x.a % 60) * 86400e3 + (x.b % 30) * 86400e3; const was = store.isDeloadWeek(ts); store.toggleDeloadWeek(ts); ok(store.isDeloadWeek(ts) === !was, where, 'tydzień deload: przełącznik'); hit('deload'); break; }
+    case 'pause': if (act) { const was = store.isPaused(act); if (was) store.resumeWorkout(); else store.pauseWorkout(); ok(store.isPaused(S().active) === !was, where, 'pauza / wznowienie'); hit(was ? 'resume' : 'pause'); } break;
+    case 'skipEx': if (act && blk) { if (blk.skipped) store.unskipExercise(blk.id); else if (!blk.sets.some(z => z.done)) store.skipExercise(blk.id); hit('skipEx'); } break; /* „Pomiń dziś” w treningu */
+    case 'health': { /* J2: znacznik „czeka na Zdrowie” i ponowienie przy starcie / powrocie z tła; zapis w Zdrowiu zmienia tylko healthUUID i healthPending */
+      const HK = require('@kingstinct/react-native-healthkit').default; const okSave = x.c % 2 === 0; let calls = 0;
+      HK.saveWorkoutSample = async () => { calls++; return okSave ? 'hk-' + calls : false; };
+      st.settings.healthSync = x.b % 4 !== 0; store.saveCfg(); /* Ustawienia: przełącznik „Zapisuj w Apple Health” */ const w = pick(st.workouts.filter(z => !z.healthUUID), x.a); if (w) { w.healthPending = true; store.save(w); }
+      const pend = health.healthPending().map(z => z.id); const bare = (z: Workout) => { const c = JSON.parse(J(z)); delete c.healthUUID; delete c.healthPending; delete c.updatedAt; return J(c); };
+      const snapBare = new Map(S().workouts.map(z => [z.id, bare(z)] as const)); const n = await health.retryHealth();
+      ok(n === (st.settings.healthSync && okSave ? pend.length : 0), where, 'ponowienie: liczba zapisanych', { n, pend });
+      for (const z of S().workouts) { ok(bare(z) === snapBare.get(z.id), where, 'zapis do Zdrowia zmienił trening poza znacznikami', z.id); ok(!(z.healthPending && z.healthUUID), where, 'znacznik „czeka” przy zapisanym w Zdrowiu', z); m.hist.set(z.id, J(z)); }
+      HK.saveWorkoutSample = async () => false; hit('health'); break; }
+    case 'planRename': case 'planDel': { const p = pick(plan.savedPlans(), x.a); if (!p) break; if (x.t === 'planDel') { plan.deletePlan(p.id); ok(!plan.savedPlans().some(q => q.id === p.id), where, 'usunięcie planu'); }
+      else { plan.renamePlan(p.id, NAMES[x.b % NAMES.length], p.name); const q = plan.savedPlans().find(z => z.id === p.id)!; ok(!!q.name || !p.name, where, 'pusta nazwa planu zamiast poprzedniej', { p, q }); }
+      hit(x.t); break; }
+    case 'planSwap': { const a = plan.addDays(today, x.a % 7), b = plan.addDays(today, x.b % 7); const busy = plan.busyDays(); const pa = plan.plannedOn(a, today), pb = plan.plannedOn(b, today);
+      plan.swapDays(a, b, today); if (!busy.has(a) && !busy.has(b)) ok(plan.plannedOn(a, today) === pb && plan.plannedOn(b, today) === pa, where, 'zamiana dni (A4)', { a, b, pa, pb }); else ok(plan.plannedOn(a, today) === pa && plan.plannedOn(b, today) === pb, where, 'zamiana z dniem zajętym', { a, b }); hit('planSwap'); break; }
+    case 'planSuggest': { /* panel dnia: „Przesuń albo pomiń” na dniu z planem (bez planu w oknie — najpierw dzień planu tygodnia, jak na ekranie Plan) */
+      const near = () => Array.from({ length: 10 }, (_, i) => plan.addDays(today, i - 3)).filter(k => plan.plannedOn(k, today));
+      if (!near().length) { const t = pick(st.templates.filter(z => !z.archived), x.b); if (!t) break; plan.setWeekDay(plan.weekdayIdx(plan.addDays(today, x.c % 7)), t.id); }
+      const day = pick(near(), x.a); if (!day) break; const list = plan.suggest(day, today); const sg = pick(list, x.b); pastTouched = day;
+      if (sg) { const busy = plan.busyDays(); plan.applySuggestion(sg); ok(sg.placed.every(pl => pl.to >= today && !busy.has(pl.to)), where, 'propozycja na miniony albo zajęty dzień (A3/A4)', sg); hit('planSuggest'); } break; }
+    case 'planReset': { const day = plan.addDays(today, (x.a % 10) - 3); plan.resetDay(day); pastTouched = day; ok(!plan.isChanged(day, today), where, 'powrót dnia do planu'); hit('planReset'); break; }
+
     /* ===== ustawienia i dane ===== */
     case 'unit': case 'lang': { const before = strip(st); const s = st.settings;
       if (x.t === 'unit') s.unit = s.unit === 'lb' ? 'kg' : 'lb'; else s.language = (['pl', 'en', 'auto'] as const)[x.b % 3];
       store.applyPrefs(); store.save(); const after = strip(S()); before.settings.unit = after.settings.unit; before.settings.language = after.settings.language;
       expect({ where, s: after }).toEqual({ where, s: before }); /* jednostka/język nie zmieniają zapisanych kg ani niczego innego */ hit(x.t); break; }
+    case 'libScope': { const before = strip(st); store.setLibShowAll(x.b % 2 === 0); const after = strip(S()); if (x.b % 2 === 0) before.settings.libShowAll = true; else delete before.settings.libShowAll;
+      expect({ where, s: after }).toEqual({ where, s: before }); /* filtr „Podstawowe” (research biblioteki 09.10.2026) zmienia tylko ustawienie widoku */ hit(x.t); break; }
     case 'planHint': { const before = strip(st); store.setPlanHintHidden(x.b % 2 === 0); const after = strip(S()); if (x.b % 2 === 0) before.planHintHidden = true; else delete before.planHintHidden;
       expect({ where, s: after }).toEqual({ where, s: before }); /* zmienia tylko flagę — nic innego */ hit(x.t); break; }
     case 'reload': await reloadCheck(where); hit('reload'); break;
@@ -377,6 +428,18 @@ function light(m: Model, where: string) {
   /* audyt 0.10 A1: historia planu — rosnąco, bez równych sąsiadów; ostatni odcinek = plan tygodnia */
   { const h = st.planHistory ?? []; ok(h.every((x, i) => i === 0 || (h[i - 1].from < x.from && J(h[i - 1].days) !== J(x.days))), where, 'historia planu nieuporządkowana', h);
     if (h.length) ok(J(h[h.length - 1].days) === J(plan.weekPlanDays()), where, 'ostatni odcinek historii ≠ plan tygodnia', { h, w: st.weekPlan }); else ok(!plan.weekPlanDays().some(Boolean), where, 'plan tygodnia bez historii'); }
+  /* fala 2 audytu 0.10 (M3 / TST-03): plan wskazuje istniejące szablony albo dzień wolny; klucze zmian dni to daty; od dziś zmiany dni tylko na
+   * istniejące szablony; nazwy zapisanych planów bez powtórzeń; tygodnie deload to poniedziałki (rosnąco, bez powtórzeń); pauzy w czasie treningu */
+  { const ids = new Set(st.templates.map(t => t.id)); const today = plan.dayKeyOf(Date.now()); const isDate = (k: string) => /^\d{4}-\d{2}-\d{2}$/.test(k) && plan.addDays(k, 0) === k;
+    ok(plan.weekPlanDays().every(d => d === null || ids.has(d)), where, 'plan tygodnia wskazuje usunięty szablon', st.weekPlan);
+    ok((st.savedPlans ?? []).every(p => p.days.length === 7 && p.days.every(d => d === null || ids.has(d))), where, 'zapisany plan wskazuje usunięty szablon', st.savedPlans);
+    const ov = Object.entries(st.planOverrides ?? {}); ok(ov.every(([k, v]) => isDate(k) && (v === null || typeof v === 'string')), where, 'zmiany dni: klucz nie jest datą', ov);
+    ok(ov.every(([k, v]) => k < today || v === null || ids.has(v)), where, 'zmiana dnia od dziś wskazuje usunięty szablon', ov);
+    const names = (st.savedPlans ?? []).map(p => p.name).filter(Boolean); ok(new Set(names).size === names.length, where, 'nazwy zapisanych planów powtórzone', names);
+    const dw = st.deloadWeeks ?? []; ok(dw.every((k, i) => isDate(k) && plan.weekdayIdx(k) === 0 && (i === 0 || dw[i - 1] < k)), where, 'tydzień deload: nie poniedziałek / nieuporządkowane', dw);
+    for (const w of [...st.workouts, ...(st.active ? [st.active] : [])]) { const p = w.pauses ?? []; const end = w.finishedAt ?? Date.now() + 1;
+      ok(p.every(([f, t], i) => f >= w.startedAt && t > f && t <= end && (i === 0 || p[i - 1][1] < f)), where, 'pauzy poza czasem treningu albo nachodzą', { id: w.id, start: w.startedAt, end: w.finishedAt, p });
+      ok(w.pausedAt === undefined || (w === st.active && w.pausedAt >= w.startedAt), where, 'pauza trwa w zakończonym treningu', w.pausedAt); } }
   /* unikalne id */
   uniq(where, 'ćwiczenia', st.exercises.map(e => e.id)); uniq(where, 'gumy', st.bands.map(b => b.id)); uniq(where, 'szablony', st.templates.map(t => t.id));
   uniq(where, 'miejsca', st.settings.locations.map(l => l.id)); const all = [...st.workouts, ...(st.active ? [st.active] : [])]; uniq(where, 'treningi', all.map(w => w.id));
@@ -490,7 +553,7 @@ const PROLOGUE: Act[] = [
 const LOC_START: Act[][] = [[], [{ t: 'addLoc', a: 0, b: 0, c: 0, v: '' }], [{ t: 'addLoc', a: 0, b: 0, c: 0, v: '' }, { t: 'addLoc', a: 0, b: 1, c: 0, v: '' }], [{ t: 'addLoc', a: 0, b: 1, c: 0, v: '' }, { t: 'addLoc', a: 0, b: 2, c: 0, v: '' }, { t: 'tplLoc', a: 0, b: 1, c: 1, v: '' }]];
 
 async function runSeq(acts: Act[], locStart: number) {
-  await fresh(); edit.__resetDrafts(); store.setTimerState(blankTimer());
+  await fresh(); edit.__resetDrafts(); draft.__resetObjDrafts(); store.setTimerState(blankTimer());
   const m: Model = { tpl: '', hist: new Map() }; snap(m);
   const pro = [...PROLOGUE, ...LOC_START[locStart % LOC_START.length]]; const seq = [...pro, ...acts];
   for (let i = 0; i < seq.length; i++) { const where = `krok ${i - pro.length}: ${J(seq[i])}`; await step(seq[i], m, where); light(m, where); }
@@ -509,7 +572,7 @@ describe('macierz niezmienników — losowe sekwencje działań na prawdziwym AP
     }), { numRuns: RUNS, seed: SEED });
     if (process.env.MATRIX_COVERAGE) console.log(J(ran)); // eslint-disable-line no-console
     /* pokrycie: kluczowe ścieżki naprawdę się wykonały (inaczej niezmienniki byłyby puste) */
-    if (RUNS >= 50 && !process.env.MATRIX_SEED) /* kontrola pokrycia tylko dla stałego ziarna — losowe może nie wylosować rzadkiej akcji */ for (const k of ['startTpl', 'finish', 'tick', 'swap', 'split', 'undoSwap', 'pastCommit', 'editCommit', 'draftSwap', 'delExArchive', 'delExHard', 'reload', 'roundtrip', 'addLoc', 'setLoc', 'tplAddRow', 'tplRmRow', 'tplKind', 'tplDup', 'repeat', 'unit', 'lang', 'rememberAlt', 'rememberRest', 'gen', 'tplNote'])
+    if (RUNS >= 50 && !process.env.MATRIX_SEED) /* kontrola pokrycia tylko dla stałego ziarna — losowe może nie wylosować rzadkiej akcji */ for (const k of ['startTpl', 'finish', 'tick', 'swap', 'split', 'undoSwap', 'pastCommit', 'editCommit', 'draftSwap', 'delExArchive', 'delExHard', 'reload', 'roundtrip', 'addLoc', 'setLoc', 'tplAddRow', 'tplRmRow', 'tplKind', 'tplDup', 'repeat', 'unit', 'lang', 'rememberAlt', 'rememberRest', 'gen', 'tplNote', 'draftCancel', 'draftSave', 'saveAsTpl', 'tplArchive', 'deload', 'pause', 'resume', 'skipEx', 'health', 'planSwap', 'planSuggest', 'planReset'])
       expect([k, (ran[k] ?? 0) > 0]).toEqual([k, true]);
   });
 });

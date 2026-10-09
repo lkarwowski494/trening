@@ -218,7 +218,7 @@ describe('A7 backup i CSV', () => {
 
 describe('A8 tłumaczenia', () => {
   test('wartości domenowe mają EN', () => {
-    const dyn = [...GROUPS, ...MUSCLES, 'hantle', 'sztanga', 'masa ciała', 'maszyna', 'linki', 'inne', ...Object.values(METRIC_LABEL), ...Object.values(LOAD_MODE_LABEL), ...Object.values(MODULE_LABEL), ...Object.values(SET_KIND_LABEL), 'dociążenie', 'ciężar', 'objętość serii', 'powtórzenia', 'czas', 'dystans', 'czerwona', 'czarna', 'fioletowa', 'nowa', 'Jak w telefonie'];
+    const dyn = [...GROUPS, ...MUSCLES, 'hantle', 'sztanga', 'masa ciała', 'maszyna', 'linki', 'inne', ...Object.values(METRIC_LABEL), ...Object.values(LOAD_MODE_LABEL), ...Object.values(MODULE_LABEL), ...Object.values(SET_KIND_LABEL), 'ciężar', 'powtórzenia', 'czas', 'dystans', 'czerwona', 'czarna', 'fioletowa', 'nowa', 'Jak w telefonie'];
     expect(dyn.filter(k => !(k in EN) && k !== 'e1RM')).toEqual([]);
   });
   test('liczebniki PL i EN', () => {
