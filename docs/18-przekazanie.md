@@ -281,3 +281,8 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
   bieżącej sekwencji: audyt kontrolny 1 pełny (pierwsze wydanie po dużych zmianach), wydanie 1 wstrzymują tylko krytyczne i wysokie;
   audyt 2 po wydaniu — wydanie 2 tylko przy blokerach, średnie i niskie do backlogu z wersją, potem koniec sekwencji.
 - 09.10.2026 (ok. 09:30): właściciel — **szacowanie czasu**: estymacje zakładają pracę agenta, nie człowieka (zapis w CLAUDE.md); zaktualizowany tekst instrukcji konta przekazany właścicielowi do wklejenia.
+- 09.10.2026 (ok. 12:30): właściciel — **zamrożenie funkcji do wydania w App Store**: „warto się zatrzymać z funkcjonalnościami i poprzez
+  kolejne audyty dojść do wersji, która będzie mogła być wydana w App Store do subskrypcji”. Od wydania 1 (0.10.0) żadnych nowych funkcji
+  poza subskrypcją (docs/15: ceny, okres próbny, limit 4 treningów, kody ofertowe) i wymogami App Store; pomysły → backlog bez priorytetu.
+  Droga do App Store — wybór wariantu otwarty (A rekomendowany: jedno wydanie kandydujące z subskrypcją + pełny audyt; B: najpierw 0.10.1
+  porządkowe z audytem zmian, potem wydanie z subskrypcją + pełny audyt).
