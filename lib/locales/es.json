@@ -1279,5 +1279,22 @@
  "Hantle z talerzami 2×10 kg": "Mancuernas de discos 2×10 kg",
  "Inteligentna stacja kablowa — pełna (1,5–65 kg/str.)": "Estación de poleas inteligente — completa (1,5–65 kg/lado)",
  "Przenośna stacja elektryczna, jedna linka (5–200 lb)": "Unidad eléctrica portátil de polea, un cable (5–200 lb)",
- "Inteligentna stacja kablowa — kompaktowa (1,5–35 kg/str.)": "Estación de poleas inteligente — compacta (1,5–35 kg/lado)"
+ "Inteligentna stacja kablowa — kompaktowa (1,5–35 kg/str.)": "Estación de poleas inteligente — compacta (1,5–35 kg/lado)",
+ "Nowe szablony i plan": "Nuevas plantillas y plan",
+ "Plan z moich szablonów": "Plan con mis plantillas",
+ "Szablony zostają bez zmian. Plan trafi do „Inne plany” albo od razu jako aktywny.": "Tus plantillas no cambian. El plan va a «Otros planes» o queda activo al momento.",
+ "Plan tygodnia z Twoich szablonów według tych samych reguł co generator — przejrzysz go przed zapisem. Szablony zostają bez zmian.": "Un plan semanal con tus plantillas, con las mismas reglas que el generador — lo revisas antes de guardar. Tus plantillas no cambian.",
+ "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Nowe szablony i plan”.": "No tienes plantillas con ejercicios. Crea una plantilla o elige «Nuevas plantillas y plan».",
+ "Szablon w planie: {name}": "Plantilla en el plan: {name}",
+ "Najwyżej {n} szablonów — każdy dostaje co najmniej jeden dzień.": "Como máximo {n} plantillas — cada una recibe al menos un día.",
+ "Dni treningowe w tygodniu": "Días de entrenamiento por semana",
+ "Dni treningowe w tygodniu: {n}": "Días de entrenamiento por semana: {n}",
+ "Dni co najmniej tyle, ile wybranych szablonów.": "Al menos tantos días como plantillas elegidas.",
+ "Wybierz co najmniej jeden szablon.": "Elige al menos una plantilla.",
+ "Dni: {n}, szablony: {k} — szablony powtarzają się po kolei: {seq}. Co tydzień od początku.": "Días: {n}, plantillas: {k} — las plantillas se repiten en orden: {seq}. Cada semana empieza de nuevo.",
+ "{name}: {n}× w tygodniu": "{name}: {n}× por semana",
+ "Więcej dni niż szablonów: szablony po kolei (A, B, A…), jak w generatorze — konwencja.": "Más días que plantillas: plantillas en orden (A, B, A…), como en el generador — una convención.",
+ "Zapisz plan": "Guardar plan",
+ "Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.": "Menos de {n} series a la semana: {list}. Es el umbral mínimo recomendado para ganar músculo; las series se añaden en las plantillas.",
+ "Moje szablony, {n}× w tygodniu": "Mis plantillas, {n}× por semana"
 }

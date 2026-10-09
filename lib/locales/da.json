@@ -1279,5 +1279,22 @@
  "Hantle z talerzami 2×10 kg": "Håndvægte med skiver 2×10 kg",
  "Inteligentna stacja kablowa — pełna (1,5–65 kg/str.)": "Smart kabelstation — fuld (1,5–65 kg/side)",
  "Przenośna stacja elektryczna, jedna linka (5–200 lb)": "Bærbar elektrisk kabelenhed, ét kabel (5–200 lb)",
- "Inteligentna stacja kablowa — kompaktowa (1,5–35 kg/str.)": "Smart kabelstation — kompakt (1,5–35 kg/side)"
+ "Inteligentna stacja kablowa — kompaktowa (1,5–35 kg/str.)": "Smart kabelstation — kompakt (1,5–35 kg/side)",
+ "Nowe szablony i plan": "Nye skabeloner og plan",
+ "Plan z moich szablonów": "Plan ud fra mine skabeloner",
+ "Szablony zostają bez zmian. Plan trafi do „Inne plany” albo od razu jako aktywny.": "Skabelonerne forbliver uændrede. Planen kommer under “Andre planer” eller bliver aktiv med det samme.",
+ "Plan tygodnia z Twoich szablonów według tych samych reguł co generator — przejrzysz go przed zapisem. Szablony zostają bez zmian.": "En ugeplan ud fra dine skabeloner efter de samme regler som generatoren — du ser den igennem, før den gemmes. Skabelonerne forbliver uændrede.",
+ "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Nowe szablony i plan”.": "Du har ingen skabeloner med øvelser. Opret en skabelon, eller vælg “Nye skabeloner og plan”.",
+ "Szablon w planie: {name}": "Skabelon i planen: {name}",
+ "Najwyżej {n} szablonów — każdy dostaje co najmniej jeden dzień.": "Højst {n} skabeloner — hver får mindst én dag.",
+ "Dni treningowe w tygodniu": "Træningsdage pr. uge",
+ "Dni treningowe w tygodniu: {n}": "Træningsdage pr. uge: {n}",
+ "Dni co najmniej tyle, ile wybranych szablonów.": "Mindst lige så mange dage som valgte skabeloner.",
+ "Wybierz co najmniej jeden szablon.": "Vælg mindst én skabelon.",
+ "Dni: {n}, szablony: {k} — szablony powtarzają się po kolei: {seq}. Co tydzień od początku.": "Dage: {n}, skabeloner: {k} — skabelonerne gentages i rækkefølge: {seq}. Hver uge forfra.",
+ "{name}: {n}× w tygodniu": "{name}: {n}× pr. uge",
+ "Więcej dni niż szablonów: szablony po kolei (A, B, A…), jak w generatorze — konwencja.": "Flere dage end skabeloner: skabelonerne i rækkefølge (A, B, A…) som i generatoren — en konvention.",
+ "Zapisz plan": "Gem plan",
+ "Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.": "Under {n} sæt pr. uge: {list}. Det er den nedre grænse, der anbefales for muskelopbygning; sæt tilføjer du i skabelonerne.",
+ "Moje szablony, {n}× w tygodniu": "Mine skabeloner, {n}× pr. uge"
 }

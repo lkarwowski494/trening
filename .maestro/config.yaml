@@ -5,6 +5,7 @@
 # 12 (07.10.2026 wieczór): usuwanie przesunięciem w lewo i „Pomiń dziś”.
 # 15 (08.10.2026 wieczór): edycja na żądanie — podgląd ćwiczenia, „Edit exercise”, Anuluj/Zapisz.
 # 17 (09.10.2026, audyt 0.10 M3): filtr „Podstawowe” i sekcja „Technika”.
+# 18 (09.10.2026): plan z moich szablonów.
 # 13 (08.10.2026): kalendarz z planem tygodnia (plan, przesunięcie planu, konflikt, „Dziś”). 14 (08.10.2026): generator szablonów i planu. Każdy plik .yaml z katalogu musi być tu wpisany (tests/maestro-selectors.test.ts).
 flows:
   - 01-trening-z-szablonu.yaml
@@ -24,3 +25,4 @@ flows:
   - 15-masa-licencje.yaml
   - 16-edycja-na-zadanie.yaml
   - 17-biblioteka-technika.yaml
+  - 18-plan-z-moich-szablonow.yaml

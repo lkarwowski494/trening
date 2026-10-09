@@ -4,6 +4,7 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Screen, Chip, Muted, Txt, Btn, Item, Field, Input, SectionTitle } from '@/components/ui';
 import { SwipeRow } from '@/components/SwipeRow';
 import { getState, useTick, templateGroups, SAVED_PLANS_MAX } from '@/lib/store';
+import { ownTemplates } from '@/lib/generator';
 import { useTheme, F } from '@/lib/theme';
 import { weekPlanDays, setWeekDay, planName, setPlanName, typePlanName, savedPlans, newPlan, setSavedDay, typeSavedName, renamePlan, activatePlan, deletePlan, plansFull, activationNote, savedChanges, hasPlan, type PlanDays } from '@/lib/plan';
 import { askReminderPermission } from '@/lib/planReminder';
@@ -80,6 +81,7 @@ function ActivePlan({ activate }: { activate: (id: string, name: string) => void
       <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginBottom: 4 }}>
         {!plansFull() ? <Btn title={t('+ Nowy plan')} small accessibilityHint={t('Kopia obecnego planu w „Inne plany” — zmienisz ją przed ustawieniem jako aktywny.')} onPress={() => { const nid = newPlan(); if (nid) router.push(`/plan?id=${nid}`); }} /> : null}
         <Btn nav title={t('Wygeneruj szablony i plan')} small onPress={() => router.push('/generator')} />{/* 08.10.2026: generator (docs/24) */}
+        {ownTemplates().length ? <Btn nav title={t('Plan z moich szablonów')} small onPress={() => router.push('/generator?mode=own')} /> : null}{/* 09.10.2026 (B) */}
       </View>
       {plansFull() ? <Muted style={{ fontSize: 13 }}>{t('W „Inne plany” jest już {n} planów — usuń któryś, by dodać nowy.', { n: SAVED_PLANS_MAX })}</Muted> : null}
       {other.length ? <>

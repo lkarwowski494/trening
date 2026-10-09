@@ -1279,5 +1279,22 @@
  "Hantle z talerzami 2×10 kg": "Nakládací jednoručky 2×10 kg",
  "Inteligentna stacja kablowa — pełna (1,5–65 kg/str.)": "Chytrá kabelová stanice — plná (1,5–65 kg/strana)",
  "Przenośna stacja elektryczna, jedna linka (5–200 lb)": "Přenosná elektrická stanice, jedno lanko (5–200 lb)",
- "Inteligentna stacja kablowa — kompaktowa (1,5–35 kg/str.)": "Chytrá kabelová stanice — kompaktní (1,5–35 kg/strana)"
+ "Inteligentna stacja kablowa — kompaktowa (1,5–35 kg/str.)": "Chytrá kabelová stanice — kompaktní (1,5–35 kg/strana)",
+ "Nowe szablony i plan": "Nové šablony a plán",
+ "Plan z moich szablonów": "Plán z mých šablon",
+ "Szablony zostają bez zmian. Plan trafi do „Inne plany” albo od razu jako aktywny.": "Šablony zůstanou beze změny. Plán půjde do „Další plány“, nebo bude hned aktivní.",
+ "Plan tygodnia z Twoich szablonów według tych samych reguł co generator — przejrzysz go przed zapisem. Szablony zostają bez zmian.": "Týdenní plán z tvých šablon podle stejných pravidel jako generátor — před uložením si ho prohlédneš. Šablony zůstanou beze změny.",
+ "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Nowe szablony i plan”.": "Nemáš šablony s cviky. Vytvoř šablonu, nebo zvol „Nové šablony a plán“.",
+ "Szablon w planie: {name}": "Šablona v plánu: {name}",
+ "Najwyżej {n} szablonów — każdy dostaje co najmniej jeden dzień.": "Nejvýš {n} šablon — každá dostane aspoň jeden den.",
+ "Dni treningowe w tygodniu": "Tréninkové dny v týdnu",
+ "Dni treningowe w tygodniu: {n}": "Tréninkové dny v týdnu: {n}",
+ "Dni co najmniej tyle, ile wybranych szablonów.": "Dnů aspoň tolik, kolik je vybraných šablon.",
+ "Wybierz co najmniej jeden szablon.": "Vyber aspoň jednu šablonu.",
+ "Dni: {n}, szablony: {k} — szablony powtarzają się po kolei: {seq}. Co tydzień od początku.": "Dny: {n}, šablony: {k} — šablony se opakují postupně: {seq}. Každý týden od začátku.",
+ "{name}: {n}× w tygodniu": "{name}: {n}× týdně",
+ "Więcej dni niż szablonów: szablony po kolei (A, B, A…), jak w generatorze — konwencja.": "Víc dnů než šablon: šablony postupně (A, B, A…), jako v generátoru — konvence.",
+ "Zapisz plan": "Uložit plán",
+ "Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.": "Pod {n} sérií týdně: {list}. To je spodní hranice doporučená pro nárůst svalů; série přidáš v šablonách.",
+ "Moje szablony, {n}× w tygodniu": "Moje šablony, {n}× týdně"
 }

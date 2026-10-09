@@ -1,0 +1,35 @@
+# Plan z moich szablonów (decyzja właściciela 09.10.2026, wariant B; docs/18 ok. 14:55).
+# Logika i wszystkie przypadki: tests/plan-own-templates.test.ts, tests/plan-own-templates-ui.test.tsx. Tu: prawdziwe stuknięcia na symulatorze —
+# „Pierwsze kroki” → „Plan z moich szablonów” → podgląd → zapis i aktywacja → Plan tygodnia.
+#
+# Literały (EN z lib/i18n.en.ts):
+#   "Plan from my templates"          ← 'Plan z moich szablonów' (components/Dashboard.tsx „Pierwsze kroki”, app/plan.tsx, wybór trybu w app/generator.tsx)
+#   "Training days per week"          ← 'Dni treningowe w tygodniu' (components/OwnPlan.tsx)
+#   "Template in the plan: Upper A"   ← 'Szablon w planie: {name}' (chip wyboru szablonu, przełącznik)
+#   "Preview", "Save plan"            ← 'Podgląd', 'Zapisz plan'
+#   "Make the new plan active\?", "Make active" ← 'Ustawić nowy plan jako aktywny?', 'Ustaw jako aktywny' (to samo okno co generator)
+#   "Saved", "Weekly plan"            ← 'Zapisano', 'Plan tygodnia' (potwierdzenie zapisu)
+#   "Monday, Upper A"                 ← app/plan.tsx: wiersz dnia '{dzień}, {szablon albo Wolne}' (1 szablon × 3 dni → pon., śr., pt.)
+appId: pl.lukasz.trening
+name: Plan z moich szablonów
+---
+- launchApp:
+    clearState: true
+    permissions: { all: allow }
+- extendedWaitUntil: { visible: "Start from a template", timeout: 60000 }
+- runFlow: subflows/szablon-testowy.yaml
+# --- „Pierwsze kroki”: szablon z ćwiczeniami, bez planu → „Plan z moich szablonów” ---
+- scrollUntilVisible: { element: "Plan from my templates", direction: UP, timeout: 30000, centerElement: true }
+- tapOn: "Plan from my templates"
+- extendedWaitUntil: { visible: "Training days per week", timeout: 30000 }
+- assertVisible: "Template in the plan: Upper A"
+- assertVisible: "Preview"
+- takeScreenshot: 80-plan-z-moich-szablonow
+- scrollUntilVisible: { element: "Save plan", direction: DOWN, timeout: 30000, centerElement: true }
+- tapOn: "Save plan"
+- extendedWaitUntil: { visible: "Make the new plan active\\?", timeout: 15000 }
+- tapOn: "Make active"
+- extendedWaitUntil: { visible: "Saved", timeout: 15000 }
+- tapOn: "Weekly plan"
+- extendedWaitUntil: { visible: "Monday, Upper A", timeout: 30000 }
+- takeScreenshot: 81-plan-aktywny

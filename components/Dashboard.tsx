@@ -59,7 +59,8 @@ export function FirstSteps() {
       {step(f.template, 1, t('Utwórz pierwszy szablon albo wygeneruj szablony i plan.'), !f.template ? row(
         <Btn nav key="new" small title={t('+ Nowy szablon')} onPress={() => { const x = newTemplate(); router.push(`/template/${x.id}?edit=1&new=1`); }} />,
         <Btn nav key="gen" small title={t('Wygeneruj szablony i plan')} onPress={() => router.push('/generator')} />) : undefined)}
-      {step(f.plan, 2, t('Ustaw plan tygodnia — zobaczysz tu dzisiejszy trening i dostaniesz przypomnienie.'), !f.plan ? (f.template ? <Btn nav small title={t('Plan tygodnia')} onPress={() => router.push('/plan')} style={{ alignSelf: 'flex-start' }} /> : <Muted style={{ fontSize: 12 }}>{t('Najpierw utwórz szablon.')}</Muted>) : undefined)}
+      {step(f.plan, 2, t('Ustaw plan tygodnia — zobaczysz tu dzisiejszy trening i dostaniesz przypomnienie.'), !f.plan ? (f.template ? row(<Btn nav key="plan" small title={t('Plan tygodnia')} onPress={() => router.push('/plan')} />,
+        <Btn nav key="own" small title={t('Plan z moich szablonów')} onPress={() => router.push('/generator?mode=own')} />) /* 09.10.2026 (B) */ : <Muted style={{ fontSize: 12 }}>{t('Najpierw utwórz szablon.')}</Muted>) : undefined)}
       {step(places, 3, t('Opcjonalnie: dodaj miejsce i sprzęt — wybór ćwiczeń i podpowiedzi ciężarów dopasują się do niego.'), !places ? <Btn nav small kind="ghost" title={t('Miejsca i sprzęt')} onPress={() => router.push('/more/locations')} style={{ alignSelf: 'flex-start' }} /> : undefined)}
       {step(false, 4, t('Pierwszy trening: „Start” przy szablonie niżej albo „Pusty trening”.'), <Btn nav small kind="ghost" title={t('Jak to działa')} accessibilityLabel={t('Przewodnik: {name}', { name: t('Trening i serie') })} onPress={() => router.push('/guide?topic=workout')} style={{ alignSelf: 'flex-start' }} />)}
     </View>);
