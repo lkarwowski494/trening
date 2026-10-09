@@ -25,7 +25,7 @@ import * as store from '@/lib/store';
 import * as stats from '@/lib/stats';
 import { parseBackup, buildBackup, buildCsv } from '@/lib/backup';
 import { snapLegacyLb, KG_PER_LB } from '@/lib/units';
-import { SCHEMA_VERSION, seedState, LIB_BASE_NAMES, type State } from '@/lib/seed';
+import { SCHEMA_VERSION, seedState, LIB_BASE_NAMES, LIB_MERGED, LIB_RENAMED, type State } from '@/lib/seed';
 import { fresh, saved } from './helpers';
 import { renderApp, flushAll, go, screen } from './app';
 import { stateProblems, strip as strip0, clone, J, canonCatalog, parseCsvRfc } from './matrix-data-shared';
@@ -162,7 +162,7 @@ function expectPreserved(st: State, v: number, label: string) {
   expect(ctx([S.defaultRest, S.sound, S.wakeLock])).toEqual(ctx([120, false, false]));
   expect(ctx([S.showRpe, S.unit, S.language, S.modules.diet])).toEqual(ctx(v >= 10 ? [true, v % 2 ? 'lb' : 'kg', v % 3 === 0 ? 'en' : 'pl', true] : [d.showRpe, 'kg', 'auto', d.modules.diet]));
   expect(ctx([S.progressHint, S.autoBackup, S.weighReminder])).toEqual(ctx(v >= 13 ? [false, false, true] : [d.progressHint, d.autoBackup, d.weighReminder]));
-  expect(ctx([S.locations.map(l => [l.id, l.name, l.equipment.map(e => e.item)]), S.mainLocationId, S.pickerShowAll])).toEqual(ctx(v >= 14 ? [[['L1', 'Dom', ['db_fixed']]], 'L1', true] : [[], null, false]));
+  expect(ctx([S.locations.map(l => [l.id, l.name, l.equipment.map(e => e.item)]), S.mainLocationId, S.pickerShowAll])).toEqual(ctx(v >= 14 ? [[['L1', 'Dom', ['db_fixed', 'wall'] /* EQUIP_FILL2 (09.10.2026): ściana dopisana raz */]], 'L1', true] : [[], null, false]));
   expect(ctx(S.theme)).toEqual(ctx(v >= 16 ? 'dark' : 'light'));
 }
 
@@ -200,11 +200,13 @@ describe('prawdziwe zapisy (fixtures) — bez utraty danych i niezmienniki', () 
     store.__resetForTests(); await store.init(); const st = store.getState(); expect(store.getRecovery()).toBeNull();
     expect(stateProblems(st)).toEqual([]);
     /* każda odhaczona seria historii z tym samym ćwiczeniem i wartościami (kg na siatce 0,01 — w fixtures wszystkie już na niej są) */
-    const want = doneSets(raw).map(r => [r[0], r[1], r[3], r[4]]); const got = st.workouts.flatMap(w => w.exercises.flatMap(e => e.sets.map(x => [w.id, e.exerciseId, x.weight, x.reps])));
+    /* research biblioteki (09.10.2026): ćwiczenie scalone przechodzi na docelowe (id docelowego), przemianowane — nowa nazwa kanoniczna */
+    const moved = (id: string) => { if (st.exercises.some(x => x.id === id)) return id; const e = raw.exercises.find((x: any) => x.id === id); const k = e && LIB_MERGED[e.libKey ?? e.name]; return k ? st.exercises.find(x => x.libKey === k)!.id : id; };
+    const want = doneSets(raw).map(r => [r[0], moved(r[1]), r[3], r[4]]); const got = st.workouts.flatMap(w => w.exercises.flatMap(e => e.sets.map(x => [w.id, e.exerciseId, x.weight, x.reps])));
     expect(got.sort()).toEqual(want.sort());
     /* każde ćwiczenie i szablon (z każdą pozycją) zostaje; nazwy bez zmian (poza spacjami na brzegach) */
-    for (const e of raw.exercises) expect(st.exercises.find(x => x.id === e.id)?.name).toBe(e.name.replace(/\s+/g, ' ').trim());
-    for (const t of raw.templates) { const g = st.templates.find(x => x.id === t.id || (t.id == null && x.name === t.name)); expect(g?.items.map(i => [i.exerciseId, i.sets, i.startWeight])).toEqual(t.items.map((i: any) => [i.exerciseId, i.sets, i.startWeight === undefined ? '' : i.startWeight])); }
+    for (const e of raw.exercises) { const n = e.name.replace(/\s+/g, ' ').trim(); if (LIB_MERGED[n] && moved(e.id) !== e.id) continue; expect(st.exercises.find(x => x.id === e.id)?.name).toBe(LIB_RENAMED[n] ?? n); }
+    for (const t of raw.templates) { const g = st.templates.find(x => x.id === t.id || (t.id == null && x.name === t.name)); expect(g?.items.map(i => [i.exerciseId, i.sets, i.startWeight])).toEqual(t.items.map((i: any) => [moved(i.exerciseId), i.sets, i.startWeight === undefined ? '' : i.startWeight])); }
     const act = live ? live.active : raw.active; expect(st.active?.id).toBe(act.id); expect(st.active!.exercises.flatMap(e => e.sets.map(x => [x.weight, x.reps, x.done]))).toEqual(act.exercises.flatMap((e: any) => e.sets.map((x: any) => [x.weight, x.reps, x.done])));
     expect(st.bands.map(b => [b.id, b.level])).toEqual(raw.bands.map((b: any) => [b.id, b.level]));
     expect(strip(store.migrate(clone(st)))).toEqual(strip(st));

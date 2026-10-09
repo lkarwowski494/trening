@@ -54,6 +54,8 @@ const KINDS = {
   planDay: 3, planDayOv: 2, planShift: 2, planMove: 1, planNew: 1, planActivate: 1,
   /* ustawienia i dane */
   unit: 2, lang: 1, planHint: 1 /* UX-16 A (audyt 0.10): „Ukryj” zachętę do planu */, reload: 1, roundtrip: 1, migrate: 1, stats: 1, resetAll: 1,
+  /* fala 2 audytu 0.10: pomiary masy ciała z datą (dopisanie / zastąpienie dnia / usunięcie) */
+  bodyMass: 1,
 } as const;
 type K = keyof typeof KINDS;
 type Op = { o: number; a: number; b: number; v: number | '' };
@@ -83,7 +85,7 @@ const seqArb = fc.array(fc.oneof({ weight: 3, arbitrary: actArb.map(x => [x]) },
 
 /** Kategorie: jawne edycje szablonów, zmiany historii; w pozostałych działaniach trening w toku ma zostać co do bajtu (ACTIVE_FROZEN). */
 const TPL_EDIT = new Set<K>(['tplNew', 'tplRename', 'tplDup', 'tplDel', 'tplAddItem', 'tplRmItem', 'tplMove', 'tplLink', 'tplUnlink', 'tplAddRow', 'tplRmRow', 'tplKind', 'tplRow', 'tplBand', 'tplLoc', 'rememberAlt', 'rememberRest', 'gen', 'tplNote']);
-const ACTIVE_FROZEN = new Set<K>([...[...TPL_EDIT].filter(k => k !== 'rememberRest'), 'delW', 'past', 'edit', 'unit', 'lang', 'newEx', 'metric', 'bandAssist', 'delEx', 'restoreEx', 'addLoc', 'setMain', 'dupLoc', 'renameLoc', 'setBandColor', 'planHint', 'reload', 'roundtrip', 'migrate', 'stats', 'planDay', 'planDayOv', 'planShift', 'planMove', 'planNew', 'planActivate']);
+const ACTIVE_FROZEN = new Set<K>([...[...TPL_EDIT].filter(k => k !== 'rememberRest'), 'delW', 'past', 'edit', 'unit', 'lang', 'newEx', 'metric', 'bandAssist', 'delEx', 'restoreEx', 'addLoc', 'setMain', 'dupLoc', 'renameLoc', 'setBandColor', 'planHint', 'reload', 'roundtrip', 'migrate', 'stats', 'planDay', 'planDayOv', 'planShift', 'planMove', 'planNew', 'planActivate', 'bodyMass']);
 /** Audyt 0.10 A1/A7: działania, po których żaden miniony dzień nie może zmienić statusu (poza dniem, którego działanie dotyczy wprost). */
 const PAST_FROZEN = new Set<K>(['planDay', 'planDayOv', 'planShift', 'planMove', 'planNew', 'planActivate', 'tplDel', 'tplNew', 'tplDup', 'tplRename']);
 
@@ -102,8 +104,8 @@ const hit = (k: string) => { ran[k] = (ran[k] ?? 0) + 1; };
 function fail(where: string, msg: string, data?: unknown): never { throw new Error(`${where}: ${msg}${data !== undefined ? '\n' + J(data) : ''}`); }
 const ok = (c: unknown, where: string, msg: string, data?: unknown) => { if (!c) fail(where, msg, data); };
 const working = (s: WSet) => s.done && s.kind !== 'warmup';
-/** Serie robocze bloku wg audytu 0.10 D3 (fix-stats): drop set liczy się razem z serią roboczą przed nim (własna implementacja modelu). */
-const myWork = (sets: readonly WSet[]) => sets.filter(working).filter((z, j) => !(z.kind === 'drop' && j > 0)).length;
+/** D3 (audyt 0.10): seria robocza — drop zaraz po serii roboczej to ta sama seria (niezależna wyrocznia dla store.workSetCount). */
+const workN = (sets: WSet[]) => { let n = 0, prev = false; for (const s of sets.filter(working)) { if (!(s.kind === 'drop' && prev)) n++; prev = true; } return n; };
 const repsOf = (s: WSet) => Math.max(0, Math.floor(Number(s.reps) || 0));
 const maxOf = (xs: number[]) => xs.reduce((a, b) => Math.max(a, b), 0);
 
@@ -317,6 +319,10 @@ async function step(x: Act, m: Model, where: string) {
     case 'setOpt': if (loc) { const eq0 = J(loc.equipment); { const it = pick(EQUIPMENT.filter(q => q.options?.length && locs.activeEquip(loc, q.id)), x.b); if (it) locs.setOpt(loc, it.id, it.options![x.c % it.options!.length].id, x.c % 2 === 0); } if (act?.locationId === loc.id && J(loc.equipment) !== eq0) implFresh(where); } break;
     case 'setBandLevel': if (loc) { const eq0 = J(loc.equipment); locs.setBandLevel(loc, 1 + (x.b % 7), x.c % 2 === 0); if (act?.locationId === loc.id && J(loc.equipment) !== eq0) implFresh(where); } break;
     case 'delBand': { const b = pick(st.bands, x.b); if (b) store.deleteBand(b.id); break; }
+    case 'bodyMass': { const l = store.bodyMassLog();
+      if (x.c % 3 === 0 && l.length) store.removeBodyMass(pick(l, x.b)!.date);
+      else { const day = store.localISODate(new Date(Date.now() - (x.a % 40) * 86400e3)); const kg = 40 + (x.b % 80) + (x.c % 4) / 4; ok(store.addBodyMass(kg, day) === null, where, 'pomiar masy ciała odrzucony'); ok(store.bodyMassOn(day) === kg, where, 'pomiar z tego dnia'); }
+      const l2 = store.bodyMassLog(); ok(l2.every((e, i) => i === 0 || l2[i - 1].date < e.date), where, 'pomiary rosnąco, jeden na dzień'); hit('bodyMass'); break; }
     case 'setBandColor': { const b = pick(st.bands, x.b); if (b) locs.setBandColor(b.level, ['czerwona', 'zielona', '', 'x'][x.c % 4] || 'niebieska'); break; }
 
     /* ===== plan tygodnia (audyt 0.10: ekran Plan tygodnia i panel dnia w Kalendarzu) ===== */
@@ -464,11 +470,11 @@ function statsCheck(where: string) {
   const wk = stats.weeklyTotals(8); const end = stats.thisMonday(1);
   const exp = wk.map(b => ({ weekStart: b.weekStart, volume: 0, sets: 0, workouts: 0 }));
   for (const w of fin) { if (w.startedAt < exp[0].weekStart || w.startedAt >= end) continue; let i = exp.length - 1; while (i > 0 && w.startedAt < exp[i].weekStart) i--;
-    exp[i].workouts++; for (const e of w.exercises) { const ex = store.exById(e.exerciseId); if (!ex) continue; exp[i].sets += myWork(e.sets); /* audyt 0.10 D3 (fix-stats): drop set liczy się razem z serią przed nim */ exp[i].volume += e.sets.reduce((q, z) => q + myVol(ex, z, e.impl), 0); } }
+    exp[i].workouts++; for (const e of w.exercises) { const ex = store.exById(e.exerciseId); if (!ex) continue; exp[i].sets += workN(e.sets); exp[i].volume += e.sets.reduce((q, z) => q + myVol(ex, z, e.impl), 0); } }
   wk.forEach((b, i) => { ok(b.workouts === exp[i].workouts && b.sets === exp[i].sets, where, 'weeklyTotals: treningi/serie', { lib: b, mine: exp[i] });
     if (st.settings.unit === 'kg') ok(Math.abs(b.volume - exp[i].volume) <= 1e-6 * Math.max(1, exp[i].volume), where, 'weeklyTotals: objętość', { lib: b, mine: exp[i] }); });
   const mon = stats.thisMonday(); const d = new Date(mon); const nx = new Date(d.getFullYear(), d.getMonth(), d.getDate() + 7).getTime(); const mus: Record<string, number> = {};
-  for (const w of fin) { if (w.startedAt < mon || w.startedAt >= nx) continue; for (const e of w.exercises) { const ex = store.exById(e.exerciseId); if (!ex) continue; const n = myWork(e.sets); if (!n) continue; /* D3 */
+  for (const w of fin) { if (w.startedAt < mon || w.startedAt >= nx) continue; for (const e of w.exercises) { const ex = store.exById(e.exerciseId); if (!ex) continue; const n = workN(e.sets); if (!n) continue;
     ex.muscles.forEach(q => { mus[q] = (mus[q] ?? 0) + n; }); ex.secondaryMuscles.forEach(q => { mus[q] = (mus[q] ?? 0) + n * 0.5; }); } }
   expect({ where, m: stats.weeklySetsByMuscle(mon) }).toEqual({ where, m: mus });
 }

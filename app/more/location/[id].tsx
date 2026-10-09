@@ -8,8 +8,8 @@ import { getState, useTick, locationById, visibleExercises, bandColor } from '@/
 import { setMainLocation, renameLocation, commitLocationName, duplicateLocation, deleteLocation, canDeleteLocation, setEquip, setOpt, activeEquip, setBandLevel } from '@/lib/locations';
 import type { Location } from '@/lib/seed';
 import { EQUIPMENT, EQUIP_GROUPS, EQUIP_GROUP_LABEL, equipLabel, availability, capsOf } from '@/lib/equipment';
-import { t } from '@/lib/i18n';
-import { useTheme, F } from '@/lib/theme';
+import { t, lang } from '@/lib/i18n';
+import { useTheme, F, NUM_SCALE_MAX, TEXT_SCALE_MAX } from '@/lib/theme';
 
 /*
  * P-003 E1: jedno miejsce — nazwa, „Ustaw jako główne”, sprzęt w grupach (przełączniki iOS, jak P-002), opcje pozycji, edytor ciężarów
@@ -34,10 +34,10 @@ export default function LocationEdit() {
       <Muted style={{ fontSize: 13 }}>{t('Dostępne ćwiczenia: {n} z {m}', { n: ok, m: all.length })}</Muted>
       {EQUIP_GROUPS.map(g => { const items = EQUIPMENT.filter(x => x.group === g); const n = items.filter(x => activeEquip(l, x.id)).length; const isOpen = open.includes(g); const name = equipLabel(EQUIP_GROUP_LABEL[g]); return (
         <View key={g}>
-          <Pressable accessibilityRole="button" accessibilityLabel={name} accessibilityValue={{ text: t('zaznaczone: {n} z {m}', { n, m: items.length }) }} accessibilityState={{ expanded: isOpen }} onPress={() => setOpen(o => o.includes(g) ? o.filter(x => x !== g) : [...o, g])}
+          <Pressable accessibilityLanguage={lang()} accessibilityRole="button" accessibilityLabel={name} accessibilityValue={{ text: t('zaznaczone: {n} z {m}', { n, m: items.length }) }} accessibilityState={{ expanded: isOpen }} onPress={() => setOpen(o => o.includes(g) ? o.filter(x => x !== g) : [...o, g])}
             style={({ pressed }) => ({ flexDirection: 'row', alignItems: 'center', minHeight: 48, marginTop: 10, borderBottomWidth: 1, borderBottomColor: th.line, opacity: pressed ? 0.6 : 1 })}>
-            <Text maxFontSizeMultiplier={1.4} style={{ flex: 1, color: th.text, fontSize: 16, fontFamily: F.semibold }}>{name}</Text>
-            <Text maxFontSizeMultiplier={1.4} style={{ color: n ? th.accent : th.muted, fontSize: 14, fontFamily: F.regular, marginRight: 8 }}>{t('{n} z {m}', { n, m: items.length })}</Text>
+            <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ flex: 1, color: th.text, fontSize: 16, fontFamily: F.semibold }}>{name}</Text>
+            <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={1.4} style={{ color: n ? th.accent : th.muted, fontSize: 14, fontFamily: F.regular, marginRight: 8 }}>{t('{n} z {m}', { n, m: items.length })}</Text>
             <Text accessible={false} style={{ color: th.muted, fontSize: 16 }}>{isOpen ? '▾' : '▸'}</Text>
           </Pressable>
           {isOpen ? items.map(x => { const e = activeEquip(l, x.id); return (
@@ -64,7 +64,7 @@ function BandLevels({ l, levels, label }: { l: Location; levels?: number[]; labe
       <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 4 }}>{[1, 2, 3, 4, 5, 6, 7].map(n => <Chip key={n} toggle label={String(n)} on={on.includes(n)} a11yLabel={`${label}: ${t('poziom {n}', { n })}`} onPress={() => setBandLevel(l, n, !on.includes(n))} />)}</View>
       {on.map(n => { const b = bands.find(x => x.level === n); return b ? (
         <View key={n} style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
-          <Muted style={{ width: 70 }}>{t('poziom {n}', { n })}</Muted>
+          <Muted maxFontSizeMultiplier={NUM_SCALE_MAX} style={{ width: 70 }}>{t('poziom {n}', { n })}</Muted>
           <View style={{ flex: 1 }}><BandColorInput band={b} accessibilityLabel={`${t('Kolor gumy')}: ${t('poziom {n}', { n })}`} /* G2 (audyt 0.10): ta sama zasada co ekran Gumy */ /></View>
         </View>) : null; })}
       <Btn nav title={t('Usuń gumy…')} small kind="ghost" style={{ alignSelf: 'flex-start' }} onPress={() => router.push('/more/bands')} />

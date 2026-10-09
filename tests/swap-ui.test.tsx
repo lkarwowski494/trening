@@ -47,12 +47,12 @@ describe('W1 — ekran treningu i arkusz zamiany', () => {
     /* „Inne” (decyzja 04.10.2026): filtry-etykiety partii i miejsca, zdejmowane ✕; zawsze bez bieżącego i bez innej miary */
     await tap(screen.getByLabelText('Zamień ćwiczenie: Bench Press (sztanga)')); await flushAll(20);
     await tap(screen.getByLabelText('Pokaż inne ćwiczenia')); await flushAll(5);
-    expect(screen.getByLabelText('Filtr partii: klatka. Tapnij, by zdjąć.')).toBeTruthy(); expect(screen.getByLabelText('Filtr miejsca: Dom. Tapnij, by zdjąć.')).toBeTruthy();
+    expect(screen.getByLabelText('Filtr partii: klatka')).toBeTruthy(); expect(screen.getByLabelText('Filtr miejsca: Dom')).toBeTruthy();
     expect(screen.queryByText('Goblet Squat')).toBeNull(); expect(screen.getAllByText('Incline Push Up').length).toBeGreaterThan(0);
-    await tap(screen.getByLabelText('Filtr partii: klatka. Tapnij, by zdjąć.')); await flushAll(5);
+    await tap(screen.getByLabelText('Filtr partii: klatka')); await flushAll(5);
     const find = async (q: string) => { await type(screen.getAllByPlaceholderText('Szukaj ćwiczenia…').pop()!, q); await flushAll(5); }; /* pełna baza: lista „Inne” porcjami (SWAP_PAGE) */
     await find('Goblet Squat'); expect(screen.getByText('Goblet Squat')).toBeTruthy(); await find('Leg Press'); expect(screen.queryByText('Leg Press')).toBeNull(); /* niedostępne w Domu */
-    await tap(screen.getByLabelText('Filtr miejsca: Dom. Tapnij, by zdjąć.')); await flushAll(5);
+    await tap(screen.getByLabelText('Filtr miejsca: Dom')); await flushAll(5);
     expect(screen.getByText('Leg Press')).toBeTruthy(); await find('Plank'); expect(screen.queryByText('Plank')).toBeNull(); await find('Bench Press (sztanga)'); expect(screen.queryAllByText('Bench Press (sztanga)').length).toBe(0); /* inna miara; bieżące */
     await find('Goblet Squat'); await tap(screen.getByText('Goblet Squat')); await flushAll(20);
     expect(blk(0).exerciseId).toBe(ex('Goblet Squat').id); expect(blk(0).swappedFrom).toBe(ex('Bench Press (sztanga)').id);
@@ -100,7 +100,7 @@ describe('W1 — ekran treningu i arkusz zamiany', () => {
     await tap(screen.getByLabelText('Zamień ćwiczenie: RDL (hantle/linki)')); await flushAll(20);
     expect(screen.getByText('Ten sam ruch, inny przyrząd')).toBeTruthy();
     await tap(screen.getByLabelText('Inny przyrząd: stacja')); await flushAll(20);
-    expect(blk(0)).toMatchObject({ impl: 'electric', implPinned: true }); expect(screen.getAllByText('kg/str.').length).toBeGreaterThan(0);
+    expect(blk(0)).toMatchObject({ impl: 'electric', implPinned: true }); expect(screen.getAllByText('kg/str.', { includeHiddenElements: true }).length).toBeGreaterThan(0); /* nagłówek kolumny ukryty przed VoiceOver (A11-18) */
     await tap(screen.getByLabelText('Zamień ćwiczenie: RDL (hantle/linki)')); await flushAll(20);
     expect(screen.getByLabelText('Inny przyrząd: hantle')).toBeTruthy(); expect(screen.queryByLabelText('Inny przyrząd: stacja')).toBeNull();
   });

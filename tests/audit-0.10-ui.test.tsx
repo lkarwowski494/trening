@@ -234,14 +234,14 @@ describe('trening w toku: notatka szablonu, licznik serii roboczych, notka medyc
     await act(async () => { const a = S().active!; a.exercises[0].sets[0].done = true; store.save(a); }); await flushAll(5); expect(screen.getByLabelText('Postęp treningu: 0 z 4 serii')).toBeTruthy(); /* rozgrzewka */
     await act(async () => { const a = S().active!; a.exercises[0].sets[1].done = true; a.exercises[0].sets[2].done = true; a.exercises[0].sets[3].done = true; store.save(a); }); await flushAll(5);
     expect(screen.getByLabelText('Postęp treningu: 2 z 4 serii')).toBeTruthy(); /* drop razem z serią przed nim */
-    expect(screen.getByText('Aplikacja nie udziela porad medycznych. Przy bólu, urazie albo chorobie skonsultuj się z lekarzem lub fizjoterapeutą.')).toBeTruthy();
+    expect(screen.getByText('Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.')).toBeTruthy();
     expect(screen.getByText('Przesuń serię albo nazwę ćwiczenia w lewo, by je usunąć.', { exact: false })).toBeTruthy();
   });
   test('L1: notka medyczna także w edycji sesji, generatorze i Ustawieniach; EN', async () => {
     let id = ''; await boot(() => { id = addWorkout(Date.now() - 86400e3, [['Back Squat', [{ weight: 100, reps: 5 }]]]).id; });
-    const note = 'Aplikacja nie udziela porad medycznych. Przy bólu, urazie albo chorobie skonsultuj się z lekarzem lub fizjoterapeutą.';
+    const note = 'Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.';
     for (const u of [`/history/edit/${id}`, '/generator', '/more/settings']) { await go(u); await flushAll(20); expect([u, screen.getAllByText(note).length > 0]).toEqual([u, true]); }
-    await boot(undefined, '/more/settings', 'en'); expect(screen.getByText(/^The app doesn’t give medical advice\./)).toBeTruthy();
+    await boot(undefined, '/more/settings', 'en'); expect(screen.getByText(/^The app does not give medical advice\./)).toBeTruthy();
   });
 });
 
@@ -251,5 +251,26 @@ describe('F7 — przyciski przejścia bez podwójnego ekranu', () => {
     const { store: rs } = require('expo-router/build/global-state/router-store'); const names: string[] = [];
     const walk = (st: { routes?: { name: string; state?: unknown }[] } | undefined) => st?.routes?.forEach(r => { names.push(r.name); walk(r.state as never); }); walk(rs.navigationRef.getRootState());
     expect(names.filter(n => n === 'plan')).toHaveLength(1);
+  });
+});
+
+describe('podgląd ćwiczenia po scaleniu z fix-catalog i fix-cues: pewność partii, mięsień spoza mapy, wskazówki techniki', () => {
+  test('dopisek wg muscleConfidence: „mocne/umiarkowane” — bez dopisku, „jedno źródło” — własny, „uproszczenie” i własne ćwiczenie — ogólny; mięsień spoza mapy — linijka; EN', async () => {
+    const { muscleConfidence, unmappedMuscleOf, musclesSourced } = require('@/lib/seed');
+    const ONE = 'Przypisanie partii mięśniowych — jedno źródło, nie ustalone. Od niego zależą serie na partię, mapa mięśni, generator i propozycje w kalendarzu.';
+    const SIMPLE = 'Przypisanie partii mięśniowych — uproszczenie, nie wynik badań. Od niego zależą serie na partię, mapa mięśni, generator i propozycje w kalendarzu.';
+    await boot(); const all = S().exercises.filter(e => e.lib && !e.archived);
+    const sourced = all.find(e => musclesSourced(e))!, one = all.find(e => !musclesSourced(e) && String(muscleConfidence(e) ?? '').startsWith('jedno źródło'))!;
+    const simple = all.find(e => !musclesSourced(e) && String(muscleConfidence(e) ?? '').startsWith('brak źródła'))!, um = all.find(e => unmappedMuscleOf(e) === 'rotator_cuff')!;
+    expect([!!sourced, !!one, !!simple, !!um]).toEqual([true, true, true, true]);
+    await go(`/exercise/${sourced.id}`); await flushAll(10); expect(screen.queryByText(ONE)).toBeNull(); expect(screen.queryByText(SIMPLE)).toBeNull();
+    await go(`/exercise/${one.id}`); await flushAll(10); expect(screen.getAllByText(ONE).length).toBeGreaterThan(0);
+    await go(`/exercise/${simple.id}`); await flushAll(10); expect(screen.getAllByText(SIMPLE).length).toBeGreaterThan(0);
+    await go(`/exercise/${um.id}`); await flushAll(10); expect(screen.getAllByText('Mięsień docelowy spoza mapy partii: stożek rotatorów — nie liczy się w seriach na partię ani na mapie mięśni.').length).toBeGreaterThan(0);
+    const own = store.newExercise('Moje'); await go(`/exercise/${own.id}`); await flushAll(10); expect(screen.getAllByText(SIMPLE).length).toBeGreaterThan(0);
+    for (const [k, v] of [['serratus_anterior', 'zębaty przedni'], ['tibialis_anterior', 'piszczelowy przedni'], ['hip_flexors', 'zginacze biodra']] as const) {
+      const e = all.find(x => unmappedMuscleOf(x) === k); if (e) { await go(`/exercise/${e.id}`); await flushAll(10); expect(screen.getAllByText(`Mięsień docelowy spoza mapy partii: ${v} — nie liczy się w seriach na partię ani na mapie mięśni.`).length).toBeGreaterThan(0); }
+    }
+    await boot(undefined, undefined, 'en'); const umEn = S().exercises.find(x => unmappedMuscleOf(x) === 'rotator_cuff')!; await go(`/exercise/${umEn.id}`); await flushAll(10); expect(screen.getByText('Target muscle outside the muscle-group map: rotator cuff — not counted in sets per muscle or on the muscle map.')).toBeTruthy();
   });
 });

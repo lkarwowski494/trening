@@ -1,5 +1,5 @@
 {
   "CFBundleDisplayName": "Trening",
   "NSHealthShareUsageDescription": "Trening nie odczytuje danych zdrowotnych — iOS wymaga tego opisu przy uprawnieniu HealthKit.",
-  "NSHealthUpdateUsageDescription": "Trening zapisuje zakończone treningi siłowe do Apple Health."
+  "NSHealthUpdateUsageDescription": "Trening zapisuje zakończone treningi — siłowe i cardio — do Apple Health."
 }

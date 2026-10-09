@@ -11,23 +11,23 @@ afterEach(async () => { jest.restoreAllMocks(); try { store.getState(); await ti
 
 test('A: >=6h auto-finish of running Farmer walk (weight_time) — weight from hint filled like 2-6h path', async () => {
   await fresh();
-  addWorkout(now - 48 * H, [["Farmer's Walk", [{ weight: 40, durationSec: 60 }]]]);
-  store.startEmpty(); store.addExerciseToActive(ex('Bench Press (sztanga)')); store.addExerciseToActive(ex("Farmer's Walk"));
+  addWorkout(now - 48 * H, [['Crucifix' /* ciężar + czas (Farmer's Walk od 09.10.2026: ciężar + dystans) */, [{ weight: 40, durationSec: 60 }]]]);
+  store.startEmpty(); store.addExerciseToActive(ex('Bench Press (sztanga)')); store.addExerciseToActive(ex('Crucifix' /* ciężar + czas (Farmer's Walk od 09.10.2026: ciężar + dystans) */));
   const a = store.getState().active!; a.exercises[0].sets[0].weight = 100; a.exercises[0].sets[0].reps = 5; store.save(a);
   now += 60e3; store.toggleDone(0, 0);
   now += 60e3; const fid = a.exercises[1].sets[0].id; await timer.startSet(fid, 60);
   now += 7 * H;
   const w = store.autoFinishStale(now)!;
   expect(w).toBeTruthy();
-  const fw = w.exercises.find(e => e.exerciseId === ex("Farmer's Walk").id)!;
+  const fw = w.exercises.find(e => e.exerciseId === ex('Crucifix' /* ciężar + czas (Farmer's Walk od 09.10.2026: ciężar + dystans) */).id)!;
   // 2–6 h path (toggleDone) would fill the empty weight from the visible "Poprzednio" hint (40 kg)
   expect(fw.sets[0].weight).toBe(40);
 });
 
 test('B: compare 2-6h path — toggleDone with at fills the weight', async () => {
   await fresh();
-  addWorkout(now - 48 * H, [["Farmer's Walk", [{ weight: 40, durationSec: 60 }]]]);
-  store.startEmpty(); store.addExerciseToActive(ex("Farmer's Walk"));
+  addWorkout(now - 48 * H, [['Crucifix' /* ciężar + czas (Farmer's Walk od 09.10.2026: ciężar + dystans) */, [{ weight: 40, durationSec: 60 }]]]);
+  store.startEmpty(); store.addExerciseToActive(ex('Crucifix' /* ciężar + czas (Farmer's Walk od 09.10.2026: ciężar + dystans) */));
   const a = store.getState().active!;
   store.toggleDone(0, 0, now);
   expect(a.exercises[0].sets[0].weight).toBe(40);

@@ -1,0 +1,43 @@
+# Audyt 0.10, fala 2 (08.10.2026): masa ciała z datą (Ustawienia → Masa ciała → pomiar) oraz Więcej → O aplikacji → Licencje open source (SEC-08).
+#
+# Literały (EN z lib/i18n.en.ts):
+#   "More, tab.*"                     ← zakładka Więcej
+#   "Body weight, not entered.*"      ← Item 'Masa ciała' z opisem 'nie podano — e1RM podciągania i pompek' (app/more/settings.tsx)
+#   "Body weight \(kg\)"              ← pole 'Masa ciała ({u})' (app/more/bodymass.tsx)
+#   "Save measurement" / "Measurements" ← 'Zapisz pomiar' / 'Pomiary'
+#   "80 kg, .*"                       ← wiersz pomiaru (Item: tytuł „80 kg”, opis = data)
+#   "About" / "Open-source licences"  ← 'O aplikacji' / 'Licencje open source' (app/more/about.tsx)
+#   "Packages \(\d+\)"                ← 'Pakiety ({n})' (app/more/licenses.tsx)
+#   "MIT, .*" / "Permission is hereby granted.*" ← pozycja licencji i jej treść (lib/licenses.generated.ts, scripts/licenses.mjs)
+appId: pl.lukasz.trening
+name: Masa ciała z datą i licencje open source
+---
+- launchApp:
+    clearState: true
+    permissions: { all: allow }
+- extendedWaitUntil: { visible: "Start from a template", timeout: 60000 }
+
+- tapOn: "More, tab.*"
+- extendedWaitUntil: { visible: "Settings", timeout: 30000 }
+- tapOn: "Settings"
+- scrollUntilVisible: { element: "Body weight, not entered.*", direction: DOWN, timeout: 60000 }
+- tapOn: "Body weight, not entered.*"
+- extendedWaitUntil: { visible: "Save measurement", timeout: 30000 }
+- tapOn: "Body weight \\(kg\\)"
+- inputText: "80"
+- tapOn: "Save measurement"
+- extendedWaitUntil: { visible: "80 kg, .*", timeout: 30000 }
+- assertVisible: "Measurements"
+- takeScreenshot: 70-masa-ciala-pomiary
+- tapOn: "Back"
+- extendedWaitUntil: { visible: "Body weight, 80 kg · measured .*", timeout: 30000 }
+- tapOn: "Back"
+
+- extendedWaitUntil: { visible: "About", timeout: 30000 }
+- tapOn: "About"
+- extendedWaitUntil: { visible: "Open-source licences.*", timeout: 30000 }
+- tapOn: "Open-source licences.*"
+- extendedWaitUntil: { visible: "Packages \\(\\d+\\)", timeout: 30000 }
+- tapOn: "MIT, .*"
+- extendedWaitUntil: { visible: "Permission is hereby granted.*", timeout: 30000 }
+- takeScreenshot: 71-licencje

@@ -27,7 +27,7 @@ test('A1 band-assisted (no kg) chin-ups: e1RM/volume PR over unassisted reps', a
   jest.setSystemTime(Date.now() + 86400e3);
   await go('/'); await flushAll(10);
   await startTemplate('Upper A');
-  const bandBtns = screen.getAllByLabelText(/^Guma: /).filter(x => x.props.accessibilityHint === `Seria 1 — ${chin}`);
+  const bandBtns = screen.getAllByLabelText(/^Guma: /).filter(x => String(x.props.accessibilityHint).startsWith(`Seria 1 — ${chin}`));
   await tap(bandBtns[0]);
   const a = store.getState().active!; const ce = a.exercises.find(e => e.exerciseId === ex('Chin Up').id)!;
   expect(ce.sets[0].bandId).toBeTruthy();

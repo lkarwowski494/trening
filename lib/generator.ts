@@ -89,16 +89,20 @@ const P = (pattern: string, muscle?: string) => (e: Exercise) => e.pattern === p
 const iso = (muscle: string) => P('isolation', muscle);
 const core = (e: Exercise) => e.muscles[0] === 'core' && !!e.pattern?.startsWith('core');
 const S = (m: (e: Exercise) => boolean, nth: 0 | 1 = 0): Slot => ({ m, nth });
-const squat = P('squat'), hingeBack = P('hinge', 'plecy'), hingeHam = P('hinge', 'dwugłowe'), hingeGlute = P('hinge', 'pośladki'), lunge = P('lunge_single_leg');
+/* research biblioteki (docs/research/24 pkt 2.3 i 5.3, wdrożenie 09.10.2026): martwy ciąg ma główne dwugłowe + pośladki (nie „plecy”) — slot martwego
+ * ciągu = zawias z dwugłowymi na pierwszym miejscu i pośladkami wśród głównych; RDL = zawias z dwugłowymi bez pośladków głównych. Bez tej
+ * poprawki pierwszym bojem FBW B / Dół B zostałby wyprost tułowia (jedyny zawias z „plecy” na początku), a slot RDL wybrałby martwy ciąg. */
+const hingeDL = (e: Exercise) => P('hinge', 'dwugłowe')(e) && e.muscles.includes('pośladki');
+const squat = P('squat'), hingeHam = (e: Exercise) => P('hinge', 'dwugłowe')(e) && !e.muscles.includes('pośladki'), hingeGlute = P('hinge', 'pośladki'), lunge = P('lunge_single_leg');
 const hpush = P('h_push', 'klatka'), hpull = P('h_pull', 'plecy'), vpush = P('v_push', 'barki'), vpull = P('v_pull');
 /** Kolejność = priorytet: przy krótszej sesji odpadają ostatnie (najpierw wielostawowe — R7). Pierwsze ćwiczenie = bój główny (siła, R3). */
 const SESSIONS: Record<Exclude<SessionKey, 'cardio'>, Slot[]> = {
   fbwA: [S(squat), S(hpush), S(hpull), S(vpush), S(vpull), S(iso('klatka')), S(iso('barki')), S(iso('biceps')), S(iso('triceps')), S(iso('łydki')), S(core)],
-  fbwB: [S(hingeBack), S(hpush, 1), S(vpull, 1), S(lunge), S(hpull, 1), S(vpush, 1), S(iso('dwugłowe')), S(iso('barki'), 1), S(iso('triceps'), 1), S(iso('biceps'), 1), S(core, 1)],
+  fbwB: [S(hingeDL), S(hpush, 1), S(vpull, 1), S(lunge), S(hpull, 1), S(vpush, 1), S(iso('dwugłowe')), S(iso('barki'), 1), S(iso('triceps'), 1), S(iso('biceps'), 1), S(core, 1)],
   upA: [S(hpush), S(hpull), S(vpush), S(vpull), S(iso('klatka')), S(iso('barki')), S(iso('triceps')), S(iso('biceps'))],
   upB: [S(hpush, 1), S(vpull, 1), S(hpull, 1), S(vpush, 1), S(iso('klatka'), 1), S(iso('barki'), 1), S(iso('biceps'), 1), S(iso('triceps'), 1)],
   loA: [S(squat), S(hingeHam), S(lunge), S(iso('czworogłowe')), S(iso('dwugłowe')), S(iso('łydki')), S(core)],
-  loB: [S(hingeBack), S(squat, 1), S(hingeGlute), S(lunge, 1), S(iso('dwugłowe'), 1), S(iso('łydki'), 1), S(core, 1)],
+  loB: [S(hingeDL), S(squat, 1), S(hingeGlute), S(lunge, 1), S(iso('dwugłowe'), 1), S(iso('łydki'), 1), S(core, 1)],
 };
 const GYM_SOURCES = new Set(['barbell', 'cable', 'machine_stack', 'plate_loaded_machine', 'smith']);
 /** Obciążenie zewnętrzne (audyt 0.10 MER-01): sztanga (też EZ, trap bar), hantle, kettlebell, maszyny, wyciągi (i stacje), suwnica Smitha. */

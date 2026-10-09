@@ -2,7 +2,7 @@ import React from 'react';
 import { Pressable, Text, Alert, Keyboard } from 'react-native';
 import { Stack } from 'expo-router';
 import { useTheme, F } from '@/lib/theme';
-import { t } from '@/lib/i18n';
+import { t, lang } from '@/lib/i18n';
 
 /*
  * Wspólny wzór edycji na szkicu (docs/12 — edycja sesji; decyzja właściciela 08.10.2026 — ćwiczenie i szablon): w nagłówku „Anuluj” po lewej
@@ -11,7 +11,7 @@ import { t } from '@/lib/i18n';
  */
 export function HeaderButton({ title, onPress, bold, label }: { title: string; onPress: () => void; bold?: boolean; label?: string }) {
   const th = useTheme();
-  return <Pressable accessibilityRole="button" accessibilityLabel={label ?? title} hitSlop={10} onPress={onPress} style={{ minHeight: 44, minWidth: 44, justifyContent: 'center' }}><Text maxFontSizeMultiplier={1.4} style={{ color: th.accent, fontSize: 17, fontFamily: bold ? F.semibold : F.regular }}>{title}</Text></Pressable>;
+  return <Pressable accessibilityLanguage={lang()} accessibilityRole="button" accessibilityLabel={label ?? title} hitSlop={10} onPress={onPress} style={{ minHeight: 44, minWidth: 44, justifyContent: 'center' }}><Text accessibilityLanguage={lang()} maxFontSizeMultiplier={1.4} /* nagłówek nawigacji — jak dotąd w edycji sesji */ style={{ color: th.accent, fontSize: 17, fontFamily: bold ? F.semibold : F.regular }}>{title}</Text></Pressable>;
 }
 /** Nagłówek trybu edycji: tytuł, „Anuluj” i „Zapisz”; gest cofania wyłączony. Etykiety VoiceOver mogą nazwać obiekt („Zapisz ćwiczenie”). */
 export function DraftHeader({ title, onCancel, onSave, cancelLabel, saveLabel }: { title?: string; onCancel: () => void; onSave: () => void; cancelLabel?: string; saveLabel?: string }) {

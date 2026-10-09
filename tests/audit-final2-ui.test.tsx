@@ -10,8 +10,8 @@ afterEach(async () => { try { store.getState(); } catch { return; } await timer.
 
 async function killDuringFarmer(hours: number) {
   const r1 = await renderApp();
-  addWorkout(Date.now() - 48 * 3600e3, [["Farmer's Walk", [{ weight: 40, durationSec: 60 }]]]);
-  store.startEmpty(); store.addExerciseToActive(ex('Bench Press (sztanga)')); store.addExerciseToActive(ex("Farmer's Walk"));
+  addWorkout(Date.now() - 48 * 3600e3, [['Crucifix' /* ciężar + czas (Farmer's Walk od 09.10.2026: ciężar + dystans) */, [{ weight: 40, durationSec: 60 }]]]);
+  store.startEmpty(); store.addExerciseToActive(ex('Bench Press (sztanga)')); store.addExerciseToActive(ex('Crucifix' /* ciężar + czas (Farmer's Walk od 09.10.2026: ciężar + dystans) */));
   const a = store.getState().active!; a.exercises[0].sets[0].weight = 100; a.exercises[0].sets[0].reps = 5; a.exercises[1].sets[0].durationSec = 60; store.save(a);
   await flushAll(400);
   await tap(screen.getByLabelText(/Seria 1 zrobiona — Wyciskanie|Seria 1 zrobiona — Bench/));
@@ -27,8 +27,8 @@ async function killDuringFarmer(hours: number) {
 }
 
 const farmerSet = () => {
-  const w = store.getState().active ?? [...store.getState().workouts].sort((p, q) => q.startedAt - p.startedAt).find(x => x.exercises.some(e => e.exerciseId === ex("Farmer's Walk").id))!;
-  return w.exercises.find(e => e.exerciseId === ex("Farmer's Walk").id)!.sets[0];
+  const w = store.getState().active ?? [...store.getState().workouts].sort((p, q) => q.startedAt - p.startedAt).find(x => x.exercises.some(e => e.exerciseId === ex('Crucifix' /* ciężar + czas (Farmer's Walk od 09.10.2026: ciężar + dystans) */).id))!;
+  return w.exercises.find(e => e.exerciseId === ex('Crucifix' /* ciężar + czas (Farmer's Walk od 09.10.2026: ciężar + dystans) */).id)!.sets[0];
 };
 
 test('U1 3 h kill during Farmer walk (empty weight, hint 40): saved weight', async () => {

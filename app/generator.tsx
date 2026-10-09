@@ -10,7 +10,7 @@ import {
 } from '@/lib/generator';
 import { WEEKLY_SETS_MARK } from '@/lib/stats';
 import { activationNote, plansFull } from '@/lib/plan';
-import { t, locale, exName } from '@/lib/i18n';
+import { t, locale, exName, glue } from '@/lib/i18n';
 import { fmtNum } from '@/lib/units';
 import { SAVED_PLANS_MAX } from '@/lib/store';
 
@@ -90,7 +90,7 @@ export default function GeneratorScreen() {
         <View key={tp.key} testID={`gen-${tp.key}`} style={{ marginBottom: 10 }}>
           <H2 style={{ marginBottom: 4 }}>{tp.name}</H2>
           {tp.items.length ? tp.items.map(it => { const e = exById(it.exerciseId); return (
-            <Muted key={it.exerciseId} style={{ fontSize: 13 }}>{it.targetSec ? t('{ex} — {n} min, umiarkowane tempo', { ex: exName(e), n: Math.round(Number(it.targetSec) / 60) }) : t('{ex} — {s} × {a}–{b}, przerwa {r}', { ex: exName(e), s: it.sets, a: it.repMin ?? '', b: it.repMax ?? '', r: fmtDur(it.restSec) })}</Muted>); })
+            <Muted key={it.exerciseId} style={{ fontSize: 13 }}>{glue(it.targetSec ? t('{ex} — {n} min, umiarkowane tempo', { ex: exName(e), n: Math.round(Number(it.targetSec) / 60) }) : t('{ex} — {s} × {a}–{b}, przerwa {r}', { ex: exName(e), s: it.sets, a: it.repMin ?? '', b: it.repMax ?? '', r: fmtDur(it.restSec) })) /* A11-19: „8–12” bez złamania */}</Muted>); })
             : <Muted style={{ fontSize: 13 }}>{t('Brak ćwiczeń dostępnych w tym miejscu.')}</Muted>}
         </View>))}
       <Muted style={{ fontSize: 13 }}>{t('Serie na partię w tygodniu (pomocnicza = {h} serii — uproszczenie, jedno źródło): {list}', { h: fmtNum(SECONDARY_SHARE, 1), list: MAJOR.map(m => `${t(m)} ${fmtNum(r.weeklySets[m] ?? 0, 1)}`).join(', ') })}</Muted>

@@ -46,7 +46,7 @@ export function nowParts(ex: Exercise, set: WSet): { num: string; unit: string; 
   if (hasWeight(m)) {
     if (isBW(ex)) { const a = Number(set.addKg); if (empty(set.addKg) || !a) num = t('masa ciała'); else { num = (a > 0 ? '+' : '') + fmtNum(wOut(a), dig); unit = wu(); } }
     else if (empty(set.weight)) num = '—'; else { num = fmtNum(wOut(Number(set.weight)), dig); unit = wu(); }
-    if (hasReps(m)) rest.push(reps); if (hasTime(m)) rest.push(time);
+    if (hasReps(m)) rest.push(reps); if (hasDistance(m)) rest.push(empty(set.distanceM) ? '—' : `${set.distanceM} m`); /* ciężar + dystans (09.10.2026): „40 kg × 30 m” */ if (hasTime(m)) rest.push(time);
   } else if (hasDistance(m)) { if (empty(set.distanceM)) num = '—'; else { num = String(set.distanceM); unit = 'm'; } sep = ' · '; if (hasTime(m)) rest.push(time); }
   else if (hasReps(m)) { num = reps; if (hasTime(m)) rest.push(time); }
   else num = hasTime(m) ? time : '—';

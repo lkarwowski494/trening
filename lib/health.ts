@@ -1,7 +1,8 @@
 import { Platform } from 'react-native';
 import type { Workout } from './seed';
 import { t } from './i18n';
-import { getState, save, exById, volume, workingSets, pausedTotal } from './store';
+import { getState, save, exById, volume, workingSets, pausedTotal, flush } from './store';
+import { catalogKey } from './seed';
 
 /*
  * Zapis treningu do Apple Health (0.6, HealthKit write). Biblioteka @kingstinct/react-native-healthkit 8.x
@@ -19,14 +20,16 @@ function lib(): HK | null {
 const WORKOUT_TYPE = 'HKWorkoutTypeIdentifier';
 /** HKWorkoutActivityType (@kingstinct/react-native-healthkit 8.x, native-types.ts). Audyt 0.10 MER-18: trening z samych ćwiczeń cardio nie jest siłowy. */
 export const HK_ACTIVITY = { traditionalStrength: 50, functionalStrength: 20, running: 37, walking: 52, cycling: 13, rowing: 35, elliptical: 16, stairClimbing: 44, jumpRope: 64, mixedCardio: 73 } as const;
-/** Ćwiczenia cardio z biblioteki → rodzaj treningu w Zdrowiu (tylko mapowanie nazw biblioteki; inne cardio — mixedCardio). */
-const CARDIO_KIND: Record<string, number> = { 'Bieg': HK_ACTIVITY.running, 'Incline Walk (bieżnia)': HK_ACTIVITY.walking, 'Treadmill Walking': HK_ACTIVITY.walking, 'Rower': HK_ACTIVITY.cycling, 'Assault Bike': HK_ACTIVITY.cycling,
-  'Recumbent Bike': HK_ACTIVITY.cycling, 'Rowing Machine': HK_ACTIVITY.rowing, 'Orbitrek': HK_ACTIVITY.elliptical, 'Stair Climber': HK_ACTIVITY.stairClimbing, 'Skakanka': HK_ACTIVITY.jumpRope };
+/** Ćwiczenia cardio z biblioteki → rodzaj treningu w Zdrowiu. Audyt 0.10 (fala 2): po kluczu katalogu `libKey` (seed.catalogKey), nie po nazwie —
+ * ćwiczenie biblioteki przemianowane przez użytkownika (np. „Bieg” → „Jogging”) dalej trafia do Zdrowia jako bieg (jak E2: nazwa tylko do wyświetlania).
+ * Ćwiczenia własne i inne cardio — mixedCardio. */
+export const CARDIO_KIND: Readonly<Record<string, number>> = { 'Bieg': HK_ACTIVITY.running, 'Incline Walk (bieżnia)': HK_ACTIVITY.walking, 'Treadmill Walking': HK_ACTIVITY.walking, 'Rower': HK_ACTIVITY.cycling, 'Assault Bike': HK_ACTIVITY.cycling,
+  'Rowing Machine': HK_ACTIVITY.rowing, 'Orbitrek': HK_ACTIVITY.elliptical, 'Stair Climber': HK_ACTIVITY.stairClimbing, 'Skakanka': HK_ACTIVITY.jumpRope };
 /** Rodzaj treningu w Zdrowiu: same ćwiczenia cardio — jedno znane z biblioteki → jego rodzaj, inne → mixedCardio; same ćwiczenia z masą ciała — functionalStrength;
  * pozostałe — traditionalStrength (jak dotąd). */
 export function workoutActivityType(w: Workout): number {
   const exs = w.exercises.map(e => exById(e.exerciseId));
-  if (exs.length && exs.every(e => e?.group === 'cardio' || e?.pattern === 'cardio')) { const names = [...new Set(exs.map(e => (e?.lib ? e.name : '')))]; return names.length === 1 && Object.prototype.hasOwnProperty.call(CARDIO_KIND, names[0]) ? CARDIO_KIND[names[0]] : HK_ACTIVITY.mixedCardio; }
+  if (exs.length && exs.every(e => e?.group === 'cardio' || e?.pattern === 'cardio')) { const keys = [...new Set(exs.map(e => catalogKey(e) ?? ''))]; return keys.length === 1 && Object.prototype.hasOwnProperty.call(CARDIO_KIND, keys[0]) ? CARDIO_KIND[keys[0]] : HK_ACTIVITY.mixedCardio; }
   return exs.length && exs.every(e => e?.equipment === 'masa ciała') ? HK_ACTIVITY.functionalStrength : HK_ACTIVITY.traditionalStrength;
 }
 
@@ -60,9 +63,31 @@ export async function saveWorkout(w: Workout): Promise<'saved' | 'skipped' | 'un
     if (res === false) return 'failed'; // biblioteka zwraca false przy odmowie zapisu — nie oznaczamy jako zapisane
     // Gdy HealthKit nie zwróci UUID, zapisujemy znacznik 'saved' (nie identyfikator) — tylko po to, by nie dublować zapisu.
     /* docs/12 (weryfikacja 2, L3): trening mógł zostać w międzyczasie podmieniony edycją — znacznik trafia też do obiektu, który jest teraz w historii */
-    const uuid = typeof res === 'string' && res ? res : 'saved'; w.healthUUID = uuid; const cur = getState().workouts.find(x => x.id === w.id); if (cur && cur !== w) cur.healthUUID = uuid; save(cur ?? w);
+    const uuid = typeof res === 'string' && res ? res : 'saved'; w.healthUUID = uuid; delete w.healthPending; const cur = getState().workouts.find(x => x.id === w.id); if (cur && cur !== w) { cur.healthUUID = uuid; delete cur.healthPending; } save(cur ?? w);
     return 'saved';
   } catch { return 'failed'; } finally { inFlight.delete(w.id); }
 }
-/** Zapisuje po zakończeniu treningu, jeśli użytkownik włączył synchronizację; błędy nie przerywają zapisu w apce. */
-export async function syncAfterFinish(w: Workout): Promise<void> { if (!getState().settings.healthSync) return; try { await saveWorkout(w); } catch {} }
+/*
+ * Audyt 0.10 J2 (DAT-04, LIVE-16; decyzja: wariant A + B — rekomendacja z docs/25). Nieudany zapis do Zdrowia nie znika po cichu:
+ *  - przy zakończeniu treningu z włączoną synchronizacją trening dostaje znacznik `healthPending` ZANIM zacznie się zapis (zapis stanu wymuszony —
+ *    zabicie aplikacji między „Zakończ” a zapisem do Zdrowia też zostawia znacznik); udany zapis go zdejmuje;
+ *  - przy starcie i każdym powrocie aplikacji na pierwszy plan (`retryHealth`) treningi ze znacznikiem są zapisywane ponownie — bez duplikatów
+ *    (HKMetadataKeySyncIdentifier = id treningu; HealthKit odrzuca drugi zapis);
+ *  - Ustawienia pokazują liczbę treningów czekających na zapis i przycisk „Ponów teraz”, a szczegóły sesji — „Nie zapisano w Apple Health”.
+ * Treningi bez znacznika (trening wstecz, edycja, dane sprzed tej zmiany) nie są dosyłane — jak dotąd (onHistoryEdited).
+ */
+export const healthPending = (): Workout[] => getState().workouts.filter(w => w.healthPending === true && !w.healthUUID && w.finishedAt);
+/** Po zakończeniu treningu, jeśli użytkownik włączył synchronizację: znacznik „czeka na Zdrowie”, potem zapis; błędy nie przerywają zapisu w apce. */
+export async function syncAfterFinish(w: Workout): Promise<void> {
+  if (!getState().settings.healthSync || w.healthUUID) return;
+  try { if (w.healthPending !== true) { w.healthPending = true; const cur = getState().workouts.find(x => x.id === w.id); if (cur && cur !== w) cur.healthPending = true; save(cur ?? w); await flush(); } await saveWorkout(w); } catch {}
+}
+/** J2: ponawia zapis treningów ze znacznikiem (po kolei — HealthKit i tak zapisuje jeden naraz). Zwraca liczbę zapisanych. Bez synchronizacji — nic. */
+let retrying: Promise<number> | null = null;
+export function retryHealth(): Promise<number> {
+  if (!getState().settings.healthSync) return Promise.resolve(0);
+  if (retrying) return retrying; /* start i powrót z tła tuż po sobie — jedno przejście */
+  const run = (async () => { let n = 0; try { for (const w of healthPending()) if ((await saveWorkout(w)) === 'saved') n++; } catch {} return n; })();
+  retrying = run; run.finally(() => { if (retrying === run) retrying = null; }).catch(() => {});
+  return run;
+}

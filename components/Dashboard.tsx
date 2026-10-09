@@ -2,23 +2,23 @@ import React from 'react';
 import { View, Pressable } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Btn, Muted, Txt, SectionTitle, Item } from '@/components/ui';
-import { useTheme, F } from '@/lib/theme';
+import { useTheme, F, NUM_SCALE_MAX } from '@/lib/theme';
 import { fmtDate, fmtDur, getState, useTick, newTemplate } from '@/lib/store';
 import { weekTiles, lastWorkout, firstSteps } from '@/lib/dashboard';
 import { fmtVol } from '@/lib/units';
-import { t, tp } from '@/lib/i18n';
+import { t, tp, lang, glue } from '@/lib/i18n';
 
 /* Dashboard ekranu Trening (decyzja właściciela 08.10.2026, wariant A) — dane: lib/dashboard.ts. */
 function Tile({ label, value, prev }: { label: string; value: string; prev: string }) {
   const th = useTheme();
   return (
-    <View accessible accessibilityLabel={t('{label}: {v}, poprzedni tydzień {p}', { label, v: value, p: prev })} style={{ flex: 1, padding: 10, borderRadius: 10, backgroundColor: th.surface, borderWidth: 1, borderColor: th.line }}>
+    <View accessibilityLanguage={lang()} accessible accessibilityLabel={t('{label}: {v}, poprzedni tydzień {p}', { label, v: value, p: prev })} style={{ flex: 1, padding: 10, borderRadius: 10, backgroundColor: th.surface, borderWidth: 1, borderColor: th.line }}>
       <Txt maxFontSizeMultiplier={1.4} style={{ fontFamily: F.heavy, fontSize: 20 }}>{value}</Txt>
       <Muted style={{ fontSize: 12 }}>{label}</Muted>
       <Muted style={{ fontSize: 11, marginTop: 2 }}>{t('poprz.: {v}', { v: prev })}</Muted>
     </View>);
 }
-const hm = (sec: number) => { const m = Math.round(sec / 60); return m >= 60 ? `${Math.floor(m / 60)} h${m % 60 ? ` ${m % 60} min` : ''}` : `${m} min`; };
+const hm = (sec: number) => { const m = Math.round(sec / 60); return m >= 60 ? `${t('{n} h', { n: Math.floor(m / 60) })}${m % 60 ? ` ${t('{n} min', { n: m % 60 })}` : ''}` : t('{n} min', { n: m }); }; /* A11-17: jednostki przez t() */
 
 /** Kafelki tygodnia i ostatni trening (od pierwszego zakończonego treningu). */
 export function WeekStats() {
@@ -32,7 +32,7 @@ export function WeekStats() {
     </Pressable>
     {w.planned != null ? <Muted style={{ fontSize: 12, marginTop: 4 }}>{t('Z planu w tym tygodniu: zrobione {done} z {n}.', { done: w.planDone ?? 0, n: w.planned })}</Muted> : null}{/* audyt 0.10 A5/X-04: dni z planu zrobione zaplanowanym szablonem (ten sam stan dnia co kalendarz) — sesje i dni planu osobno */}
     <SectionTitle>{t('Ostatni trening')}</SectionTitle>
-    <Item title={last.name || t('Trening')} sub={[fmtDate(last.startedAt), fmtDur(last.durationSec), `${last.sets} ${tp(last.sets, 'seria|serie|serii')}`, fmtVol(last.volume), ...(last.prs ? [`${last.prs} ${tp(last.prs, 'rekord|rekordy|rekordów')}`] : [])].join(' · ')} onPress={() => router.push(`/history/${last.id}`)} />
+    <Item title={last.name || t('Trening')} sub={[fmtDate(last.startedAt), fmtDur(last.durationSec), `${last.sets} ${tp(last.sets, 'seria|serie|serii')}`, fmtVol(last.volume), ...(last.prs ? [`${last.prs} ${tp(last.prs, 'rekord|rekordy|rekordów')}`] : [])].map(glue).join(' · ') /* A11-19 */} onPress={() => router.push(`/history/${last.id}`)} />
   </>;
 }
 
@@ -43,9 +43,9 @@ export function FirstSteps() {
   useTick(); const router = useRouter(); const th = useTheme(); const f = firstSteps(); if (!f) return null;
   const places = getState().settings.locations.length > 0;
   const step = (done: boolean, n: number, text: string, actions?: React.ReactNode) => (
-    <View key={n} accessible={!actions} accessibilityLabel={`${n}. ${text} ${done ? t('zrobione') : t('do zrobienia')}`} style={{ flexDirection: 'row', gap: 10, paddingVertical: 8 }}>
+    <View accessibilityLanguage={lang()} key={n} accessible={!actions} accessibilityLabel={`${n}. ${text} ${done ? t('zrobione') : t('do zrobienia')}`} style={{ flexDirection: 'row', gap: 10, paddingVertical: 8 }}>
       <View style={{ width: 24, height: 24, borderRadius: 12, alignItems: 'center', justifyContent: 'center', backgroundColor: done ? th.accent : 'transparent', borderWidth: done ? 0 : 1.5, borderColor: th.line }}>
-        <Txt style={{ fontSize: 12, fontFamily: F.semibold, color: done ? th.accentInk : th.muted }}>{done ? '✓' : String(n)}</Txt>
+        <Txt maxFontSizeMultiplier={NUM_SCALE_MAX} /* A11-07: znak w kółku 22–24 pt */ style={{ fontSize: 12, fontFamily: F.semibold, color: done ? th.accentInk : th.muted }}>{done ? '✓' : String(n)}</Txt>
       </View>
       <View style={{ flex: 1, gap: 6 }}><Txt style={{ fontSize: 14, color: done ? th.muted : th.text }}>{text}</Txt>{actions}</View>
     </View>);

@@ -177,9 +177,9 @@ describe('LOG-08: opis presetów miejsc z danych presetEquipment (kg i lb)', () 
   test('siłownia i hotel: liczby z presetu w jednostce; dom i masa ciała bez liczb', () => {
     expect(presetHint('gym', 'kg')).toBe('cały sprzęt; sztanga 20 kg + talerze 25…1,25 kg; hantle 2,5–50 kg co 2,5');
     expect(presetHint('gym', 'lb')).toBe('cały sprzęt; sztanga 45 lb + talerze 45…2,5 lb; hantle 5–100 lb co 5');
-    expect(presetHint('hotel', 'kg')).toBe('hantle 2,5–25 kg, ławka regulowana, mata, bieżnia, rower');
-    expect(presetHint('hotel', 'lb')).toBe('hantle 5–50 lb, ławka regulowana, mata, bieżnia, rower');
-    expect(presetHint('home', 'lb')).toBe('pusto — zaznaczysz, co masz'); expect(presetHint('bodyweight', 'kg')).toBe('tylko mata');
+    expect(presetHint('hotel', 'kg')).toBe('hantle 2,5–25 kg, ławka regulowana, mata, ściana, bieżnia, rower');
+    expect(presetHint('hotel', 'lb')).toBe('hantle 5–50 lb, ławka regulowana, mata, ściana, bieżnia, rower');
+    expect(presetHint('home', 'lb')).toBe('pusto — zaznaczysz, co masz'); expect(presetHint('bodyweight', 'kg')).toBe('mata i ściana');
     /* każda pozycja hotelu nazwana w opisie (lista z danych) */ expect(presetHint('hotel').split(', ')).toHaveLength(presetEquipment('hotel').length);
   });
 });

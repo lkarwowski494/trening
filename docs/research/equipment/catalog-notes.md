@@ -128,3 +128,26 @@ Decyzja właściciela: „Dlaczego mamy 270 ćwiczeń, skoro te online mają po 
   - **LOW (naprawiony):** opaski dopisywane tylko przy zaznaczonych wyciągach.
   - **LOW (sprawdzony testem):** start aplikacji zapisuje wynik jednorazowych kroków.
   - Bez zmian w doborze ciężarów (porównanie wszystkich ćwiczeń w kg i lb).
+
+## Research biblioteki (krok „katalog-2026-10-09”, 09.10.2026) — 854 → 709
+
+Decyzja właściciela 09.10.2026 (ok. 00:10, docs/18 — wariant B) po researchu L1–L6 (docs/research/25-biblioteka, każde z 854 ćwiczeń ze źródłami).
+Wdrożenie: `scripts/equipment/apply-library-25.mjs` (jednorazowe przekształcenie catalog.json z rekordów researchu i rozstrzygnięć pytań otwartych,
+lista `DECISION_FIXES` z powodami) → `catalog-step-2026-10-09.json` (krok danych użytkownika) → `scripts/equipment/gen.mjs`. Liczby i zgodność
+każdego rekordu z katalogiem sprawdza `tests/catalog-library25.test.tsx` (wyjątków brak).
+- **Zakres:** ZOSTAJE — lista domyślna; NISZOWE — pole `scope: "niche"` (w katalogu, poza listą domyślną: wyszukiwanie i filtr „Podstawowe ✕ / + Podstawowe”,
+  ten sam wzór co filtr miejsca; użyte i własne zawsze widoczne); SCALIĆ — wpis znika, dane przechodzą na docelowe (`retireCatalog` w lib/store.ts);
+  USUNĄĆ — wpis znika, użyty zostaje jako ćwiczenie własne. Ćwiczenia bazowe: 124 (Rear Delt Raise (hantle) scalone z Reverse Fly (hantle)).
+- **Pole `research`:** część, pewność i źródła przypisania partii — `MUSCLE_SOURCES` (pewność „mocne” / „umiarkowane”) ukrywa dopisek „uproszczenie”.
+- **Pole `unmapped`:** mięsień docelowy spoza mapy regionów (stożek rotatorów, zębaty przedni, piszczelowy przedni, zginacze biodra) — bez partii głównej,
+  z oznaczeniem (L2 Q1/Q2/Q5); `muscleLoad` może być pusty tylko wtedy.
+- **Sprzęt (L5 Q7):** `circus_bell` (strongman, poza presetem siłowni), `dip_machine` (maszyna do dipów; dotąd maszyna do tricepsa), `wall` (ściana:
+  Handstand Push Up, Wall Sit, Wall Calf Stretch, Wall Lat Stretch, Wall Ball). Zapisane miejsca dostają raz (`EQUIP_FILL2`): ścianę każde, maszynę do dipów —
+  oparte na presecie siłowni.
+- **Miara ciężar + dystans (`weight_distance`, L3 Q2, L6 Q-L6-3):** noszenie (farmer's walk, suitcase carry, yoke, rickshaw…) i sanki. Ćwiczenie użytkownika
+  z historią czasu zostaje przy „ciężar + czas” (nic nie znika z widoku; zmiana w edycji ćwiczenia).
+- **Ranking zamiany:** przy remisie punktów ćwiczenia niszowe na końcu (po bibliotece przejrzanej i reszcie podstawowych).
+- **Przywodziciele (docs/24 Q1 B):** pomocnicze w Back Squat i Leg Press (wzrost zmierzony: Kubo 2019, Plotkin 2023, Kinoshita 2026); warianty przysiadu
+  dopiero po decyzji o analogii (Q-L4-5).
+- **Otwarte (bez zmian):** tryb liczenia ćwiczeń jednonóż (Q-L4-4), `muscleLoad` dwugłowych przy przysiadach i hip thruście (docs/24 Q4, Q-L4-3),
+  przywodziciele w wariantach przysiadu (Q-L4-5), lower_back przy wiosłowaniach w opadzie (L5 Q3).

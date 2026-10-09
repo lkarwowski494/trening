@@ -1,7 +1,7 @@
 import { getState, visibleExercises, workoutsWith, finishedWorkouts, memoHist, locationById } from './store';
 import { availability, capsOf, implsAt } from './equipment';
-import { t, exName, locale, fold } from './i18n';
-import { libExtraRevOf, LIB_EXTRA_REVS, catalogKey, type Exercise, type Impl, type Location, type Workout } from './seed';
+import { t, exName, locale, fold, collator } from './i18n';
+import { libExtraRevOf, LIB_EXTRA_REVS, catalogKey, isNiche, type Exercise, type Impl, type Location, type Workout } from './seed';
 
 /*
  * E2 „Zamiana ćwiczenia w trakcie treningu” (docs/14) — ranking propozycji zamiennika. Czysta funkcja nad stanem (bez zapisu):
@@ -71,15 +71,17 @@ export function swapCandidates(exId: string, ctx: SwapCtx): SwapCandidate[] {
    * ćwiczenia), dopiero potem pełna baza (krok 05.10) — inaczej remisy „ten sam sprzęt” i nazwa wypychały znane ćwiczenia rzadkimi wariantami
    * (Bench Press with Chains przed Bench Press (hantle)). W obrębie każdej z tych dwóch części — decyzja D7: ten sam sprzęt, sesje, nazwa. */
   const step = new Map(out.map(c => { const b = getState().exercises.find(e => e.id === c.exId); const k = catalogKey(b); const r = k ? libExtraRevOf(k) : undefined; /* E2 (audyt 0.10): krok katalogu po kluczu */ return [c.exId, r ? LIB_EXTRA_REVS.indexOf(r) : -1]; }));
-  const full = LIB_EXTRA_REVS.indexOf(FULL_BASE_REV); const tier = (id: string) => full >= 0 && step.get(id)! >= full ? 1 : 0;
-  return out.sort((x, y) => y.score - x.score || tier(x.exId) - tier(y.exId) || sameEq.get(y.exId)! - sameEq.get(x.exId)! || y.sessions - x.sessions || step.get(x.exId)! - step.get(y.exId)! || name.get(x.exId)!.localeCompare(name.get(y.exId)!, locale()));
+  const full = LIB_EXTRA_REVS.indexOf(FULL_BASE_REV); const niche = new Set(out.filter(c => { const b = getState().exercises.find(e => e.id === c.exId); return !!b && isNiche(b); }).map(c => c.exId));
+  /* research biblioteki (decyzja 09.10.2026, wariant B): ćwiczenia niszowe na końcu remisu — po bibliotece przejrzanej i reszcie podstawowych */
+  const tier = (id: string) => niche.has(id) ? 2 : full >= 0 && step.get(id)! >= full ? 1 : 0;
+  return out.sort((x, y) => y.score - x.score || tier(x.exId) - tier(y.exId) || sameEq.get(y.exId)! - sameEq.get(x.exId)! || y.sessions - x.sessions || step.get(x.exId)! - step.get(y.exId)! || collator().compare(name.get(x.exId)!, name.get(y.exId)!));
 }
 
 /** Lista „Inne” w arkuszu zamiany: dokładne trafienie nazwy (w języku interfejsu albo kanonicznej) na początku, reszta alfabetycznie
  * (audyt pełnej bazy, LOW 4: przy porcjach SWAP_PAGE dokładne trafienie nie może utknąć za „Pokaż więcej”). `ql` — zapytanie po fold(). */
 export function sortOthers(list: readonly Exercise[], ql: string): Exercise[] {
   const exact = (e: Exercise) => !!ql && (fold(e.name) === ql || fold(exName(e)) === ql);
-  return [...list].sort((x, y) => Number(exact(y)) - Number(exact(x)) || exName(x).localeCompare(exName(y), locale()));
+  return [...list].sort((x, y) => Number(exact(y)) - Number(exact(x)) || collator().compare(exName(x), exName(y)));
 }
 /** Nazwa przyrządu (decyzja 8c) do arkusza i tabeli D7. */
 export function implLabel(i: Impl): string {

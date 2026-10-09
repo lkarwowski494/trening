@@ -68,12 +68,28 @@
   "en": "{label}: {v}, previously {p}"
  },
  {
+  "pl": "{n} h",
+  "en": "{n} h"
+ },
+ {
+  "pl": "{n} km",
+  "en": "{n} km"
+ },
+ {
+  "pl": "{n} m",
+  "en": "{n} m"
+ },
+ {
   "pl": "{n} min",
   "en": "{n} min"
  },
  {
   "pl": "{n} rozgrz.",
   "en": "{n} warm-up"
+ },
+ {
+  "pl": "{n} s",
+  "en": "{n} s"
  },
  {
   "pl": "{n} z {all}",
@@ -116,8 +132,16 @@
   "en": "{u}/side"
  },
  {
+  "pl": "{v} · pomiar z {d}",
+  "en": "{v} · measured {d}"
+ },
+ {
   "pl": "{v} (masa ciała {d})",
   "en": "{v} (body weight {d})"
+ },
+ {
+  "pl": "{v} z {d}. Treningi z tego okresu przeliczą e1RM z wcześniejszego pomiaru (albo bez e1RM, gdy go nie ma).",
+  "en": "{v} from {d}. Workouts from that period will recalculate e1RM from the earlier measurement (or show no e1RM if there is none)."
  },
  {
   "pl": "↑ przy ćwiczeniu, gdy ostatnio wszystkie serie były na górze zakresu powtórzeń",
@@ -256,8 +280,16 @@
   "en": "Cancel template editing"
  },
  {
-  "pl": "Aplikacja nie udziela porad medycznych. Przy bólu, urazie albo chorobie skonsultuj się z lekarzem lub fizjoterapeutą.",
-  "en": "The app doesn’t give medical advice. If you have pain, an injury or an illness, consult a doctor or physiotherapist."
+  "pl": "Aplikacja korzysta z bibliotek open source. Niżej licencje (dotknij, by zobaczyć treść) oraz wszystkie pakiety npm, od których zależy aplikacja — także narzędzia budowania — z licencją i notką o prawach autorskich.",
+  "en": "The app uses open-source libraries. Below are the licences (tap to see the text) and every npm package the app depends on — build tools included — with its licence and copyright notice."
+ },
+ {
+  "pl": "Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.",
+  "en": "The app does not give medical advice. If you have pain, an injury or an illness, consult a doctor or physiotherapist."
+ },
+ {
+  "pl": "Aplikacja nie zbiera danych: wszystko, co wpisujesz, zostaje w telefonie, bez konta, reklam i analityki.",
+  "en": "The app collects no data: everything you enter stays on your phone — no account, ads or analytics."
  },
  {
   "pl": "Apple Health niedostępne",
@@ -448,6 +480,10 @@
   "en": "No similar exercises at this place — choose from the whole library."
  },
  {
+  "pl": "Brak pomiarów.",
+  "en": "No measurements."
+ },
+ {
   "pl": "Brak serii w tym i poprzednim tygodniu.",
   "en": "No sets this week or last week."
  },
@@ -564,6 +600,10 @@
   "en": "weight + time"
  },
  {
+  "pl": "ciężar + dystans",
+  "en": "weight + distance"
+ },
+ {
   "pl": "ciężar + powtórzenia",
   "en": "weight + reps"
  },
@@ -582,6 +622,14 @@
  {
   "pl": "ciężaru {w} nie ma tutaj — wpisz ciężar",
   "en": "{w} isn’t available here — enter a weight"
+ },
+ {
+  "pl": "circus bell",
+  "en": "circus bell"
+ },
+ {
+  "pl": "Circus bell (hantel z grubym uchwytem)",
+  "en": "Circus bell"
  },
  {
   "pl": "co",
@@ -652,8 +700,16 @@
   "en": "Duration: 1 to 1440 minutes."
  },
  {
+  "pl": "Czeka na zapis w Apple Health: {n}. Ponawiam przy uruchomieniu i powrocie do aplikacji.",
+  "en": "Waiting to be saved to Apple Health: {n}. I retry when the app starts and when you return to it."
+ },
+ {
   "pl": "czerwona",
   "en": "red"
+ },
+ {
+  "pl": "Częste błędy",
+  "en": "Common mistakes"
  },
  {
   "pl": "czworogłowe",
@@ -735,6 +791,14 @@
  {
   "pl": "Data (RRRR-MM-DD)",
   "en": "Date (YYYY-MM-DD)"
+ },
+ {
+  "pl": "Data pomiaru (RRRR-MM-DD)",
+  "en": "Measurement date (YYYY-MM-DD)"
+ },
+ {
+  "pl": "Data pomiaru nie może być w przyszłości.",
+  "en": "The measurement date cannot be in the future."
  },
  {
   "pl": "Deload",
@@ -954,8 +1018,8 @@
   "en": "e1RM in bodyweight exercises is calculated only with the body weight entered in Settings, and only where it is known what share of it you lift: pull-ups (all of it — a simplification), push-ups (about {p}% — force-plate studies)."
  },
  {
-  "pl": "e1RM: wzór Epleya na {p}% masy ciała z Ustawień plus dociążenie (uproszczenie).",
-  "en": "e1RM: Epley formula on {p}% of the body weight from Settings plus added weight (a simplification)."
+  "pl": "e1RM: wzór Epleya na {p}% masy ciała z dnia treningu (ostatni pomiar z tego dnia lub wcześniejszy) plus dociążenie (uproszczenie).",
+  "en": "e1RM: Epley formula on {p}% of the body weight from the workout day (the latest measurement from that day or earlier) plus added weight (a simplification)."
  },
  {
   "pl": "Edycja ćwiczenia",
@@ -1022,20 +1086,24 @@
   "en": "Full Body B"
  },
  {
-  "pl": "Filtr miejsca wyłączony: {l}. Tapnij, by pokazać tylko dostępne.",
-  "en": "Place filter off: {l}. Tap to show only available."
+  "pl": "Filtr miejsca wyłączony: {l}",
+  "en": "Place filter off: {l}"
  },
  {
-  "pl": "Filtr miejsca: {l}. Tapnij, by zdjąć.",
-  "en": "Place filter: {l}. Tap to remove."
+  "pl": "Filtr miejsca: {l}",
+  "en": "Place filter: {l}"
  },
  {
-  "pl": "Filtr partii wyłączony: {g}. Tapnij, by włączyć.",
-  "en": "Muscle group filter off: {g}. Tap to turn on."
+  "pl": "Filtr partii wyłączony: {g}",
+  "en": "Muscle group filter off: {g}"
  },
  {
-  "pl": "Filtr partii: {g}. Tapnij, by zdjąć.",
-  "en": "Muscle group filter: {g}. Tap to remove."
+  "pl": "Filtr partii: {g}",
+  "en": "Muscle group filter: {g}"
+ },
+ {
+  "pl": "Filtr: podstawowe ćwiczenia",
+  "en": "Filter: basic exercises"
  },
  {
   "pl": "fioletowa",
@@ -1142,8 +1210,8 @@
   "en": "Band as resistance: pick a band (level 1–7) for each set; records count sets with a band."
  },
  {
-  "pl": "Guma: {b}. Tapnij, by zmienić.",
-  "en": "Band: {b}. Tap to change."
+  "pl": "Guma: {b}",
+  "en": "Band: {b}"
  },
  {
   "pl": "guma: {v}",
@@ -1182,8 +1250,8 @@
   "en": "Dumbbells (fixed or quick-adjust)"
  },
  {
-  "pl": "hantle {a}–{b} {u}, ławka regulowana, mata, bieżnia, rower",
-  "en": "dumbbells {a}–{b} {u}, adjustable bench, mat, treadmill, bike"
+  "pl": "hantle {a}–{b} {u}, ławka regulowana, mata, ściana, bieżnia, rower",
+  "en": "dumbbells {a}–{b} {u}, adjustable bench, mat, wall, treadmill, bike"
  },
  {
   "pl": "Hantle na talerze (uchwyty + talerze)",
@@ -1494,6 +1562,10 @@
   "en": "Landmine"
  },
  {
+  "pl": "Licencje open source",
+  "en": "Open-source licences"
+ },
+ {
   "pl": "Liczba serii z czasu sesji: (minuty − {w} min rozgrzewki) × 60 / ({s} s serii + średnia przerwa {r} s) = {n}; ćwiczeń = serie / {k} (co najmniej {e}) — uproszczenie, nie wynik badań.",
   "en": "Number of sets from session length: (minutes − {w} min warm-up) × 60 / ({s} s per set + average rest {r} s) = {n}; exercises = sets / {k} (at least {e}) — a simplification, not a research finding."
  },
@@ -1642,8 +1714,20 @@
   "en": "body weight"
  },
  {
+  "pl": "Masa ciała",
+  "en": "Body weight"
+ },
+ {
+  "pl": "Masa ciała — pomiary",
+  "en": "Body weight — measurements"
+ },
+ {
   "pl": "Masa ciała ({u})",
   "en": "Body weight ({u})"
+ },
+ {
+  "pl": "Masa ciała musi być większa od zera i nie większa niż {max}.",
+  "en": "Body weight must be greater than zero and no more than {max}."
  },
  {
   "pl": "Masa ciała: „±” to dociążenie (plus) albo asysta, np. maszyny (minus); guma to osobne pole z poziomem. Rekord to suma powtórzeń bez asysty, a objętość liczy się tylko z dociążenia.",
@@ -1672,6 +1756,14 @@
  {
   "pl": "Maszyna do brzucha (spięcia)",
   "en": "Ab crunch machine"
+ },
+ {
+  "pl": "maszyna do dipów",
+  "en": "dip machine"
+ },
+ {
+  "pl": "Maszyna do dipów",
+  "en": "Dip machine"
  },
  {
   "pl": "maszyna do hip thrustu",
@@ -1798,6 +1890,14 @@
   "en": "Mat"
  },
  {
+  "pl": "mata i ściana",
+  "en": "mat and wall"
+ },
+ {
+  "pl": "max",
+  "en": "max"
+ },
+ {
   "pl": "max ±",
   "en": "max ±"
  },
@@ -1870,12 +1970,16 @@
   "en": "Place of this workout"
  },
  {
-  "pl": "Miejsce treningu: {l}. Tapnij, by zmienić.",
-  "en": "Workout place: {l}. Tap to change."
+  "pl": "Miejsce treningu: {l}",
+  "en": "Workout place: {l}"
  },
  {
   "pl": "Miesiąc",
   "en": "Month"
+ },
+ {
+  "pl": "Mięsień docelowy spoza mapy partii: {m} — nie liczy się w seriach na partię ani na mapie mięśni.",
+  "en": "Target muscle outside the muscle-group map: {m} — not counted in sets per muscle or on the muscle map."
  },
  {
   "pl": "min na stronę",
@@ -1948,6 +2052,10 @@
  {
   "pl": "Na koniec „Zakończ trening i zapisz” — sesja trafi do Kalendarza.",
   "en": "At the end tap “Finish and save workout” — the session goes to the Calendar."
+ },
+ {
+  "pl": "Na podstawie: {list}. Własne sformułowania.",
+  "en": "Based on: {list}. Our own wording."
  },
  {
   "pl": "na urządzeniu: {v}",
@@ -2126,6 +2234,10 @@
   "en": "You have no templates yet."
  },
  {
+  "pl": "nie podano — e1RM podciągania i pompek",
+  "en": "not entered — e1RM for pull-ups and push-ups"
+ },
+ {
   "pl": "Nie teraz",
   "en": "Not now"
  },
@@ -2152,6 +2264,10 @@
  {
   "pl": "Nie zamieniaj: {name}",
   "en": "Don’t swap: {name}"
+ },
+ {
+  "pl": "Nie zapisano jeszcze w Apple Health — ponowię przy następnym uruchomieniu aplikacji.",
+  "en": "Not saved to Apple Health yet — I’ll retry the next time the app starts."
  },
  {
   "pl": "Nie zmieniono przerwy",
@@ -2184,6 +2300,10 @@
  {
   "pl": "nieprzeczytane",
   "en": "unread"
+ },
+ {
+  "pl": "niszowe ukryte: {n} — znajdziesz je wyszukiwaniem",
+  "en": "niche hidden: {n} — find them by searching"
  },
  {
   "pl": "nogi",
@@ -2276,6 +2396,10 @@
  {
   "pl": "np. samopoczucie, ból, sprzęt",
   "en": "e.g. how you feel, pain, equipment"
+ },
+ {
+  "pl": "O aplikacji",
+  "en": "About"
  },
  {
   "pl": "o około 1/3–1/2 mniej serii (np. {k} z {n}; ćwiczenia z 1 serią bez zmian)",
@@ -2414,8 +2538,8 @@
   "en": "optional field, does not affect volume"
  },
  {
-  "pl": "Opcjonalnie, tylko w telefonie. Z nią aplikacja liczy e1RM w podciąganiu (cała masa ciała — uproszczenie) i w pompkach (ok. {p}% masy ciała — badania z platformą siłową). Zmiana przelicza e1RM wszystkich treningów; puste pole — bez e1RM w tych ćwiczeniach.",
-  "en": "Optional, stays on this phone. With it the app calculates e1RM for pull-ups (whole body weight — a simplification) and push-ups (about {p}% of body weight — force-plate studies). Changing it recalculates e1RM for all workouts; empty field — no e1RM in these exercises."
+  "pl": "Opcjonalnie, tylko w telefonie. Z nią aplikacja liczy e1RM w podciąganiu (cała masa ciała — uproszczenie) i w pompkach (ok. {p}% masy ciała — badania z platformą siłową). Każdy trening liczy się z ostatnim pomiarem z tego dnia lub wcześniejszym; treningi sprzed pierwszego pomiaru — bez e1RM w tych ćwiczeniach.",
+  "en": "Optional, stays on this phone. With it the app calculates e1RM for pull-ups (the whole body weight — a simplification) and push-ups (about {p}% of body weight — force-plate studies). Each workout uses the latest measurement from that day or earlier; workouts before the first measurement — no e1RM in these exercises."
  },
  {
   "pl": "Opcjonalnie: dodaj miejsce i sprzęt — wybór ćwiczeń i podpowiedzi ciężarów dopasują się do niego.",
@@ -2510,6 +2634,18 @@
   "en": "Mark week as deload"
  },
  {
+  "pl": "Pakiety ({n})",
+  "en": "Packages ({n})"
+ },
+ {
+  "pl": "Pakiety open source: {n}",
+  "en": "Open-source packages: {n}"
+ },
+ {
+  "pl": "pakiety: {n} · treść wg {p}",
+  "en": "packages: {n} · text from {p}"
+ },
+ {
   "pl": "para: {a} ({r}); jeden hantel: {b} ({r1})",
   "en": "pair: {a} ({r}); single dumbbell: {b} ({r1})"
  },
@@ -2602,6 +2738,10 @@
   "en": "Medicine ball"
  },
  {
+  "pl": "piszczelowy przedni",
+  "en": "tibialis anterior"
+ },
+ {
   "pl": "Plan „{name}” jest teraz aktywny.",
   "en": "The plan “{name}” is now active."
  },
@@ -2686,8 +2826,16 @@
   "en": "The hint comes back next week."
  },
  {
+  "pl": "Podstawowe",
+  "en": "Basic"
+ },
+ {
   "pl": "Podsumowanie",
   "en": "Summary"
+ },
+ {
+  "pl": "Pokazane wszystkie ćwiczenia, także niszowe",
+  "en": "Showing all exercises, including niche ones"
  },
  {
   "pl": "Pokazano {n} z {m} — wpisz nazwę, by zawęzić.",
@@ -2734,6 +2882,14 @@
   "en": "Link with next into a superset"
  },
  {
+  "pl": "Pomiar z tym samym dniem zastępuje poprzedni.",
+  "en": "A measurement with the same date replaces the earlier one."
+ },
+ {
+  "pl": "Pomiary",
+  "en": "Measurements"
+ },
+ {
   "pl": "Pominięcie ćwiczenia przerwie pomiar — ten czas się nie zapisze.",
   "en": "Skipping the exercise stops the timing — this time won’t be saved."
  },
@@ -2764,6 +2920,10 @@
  {
   "pl": "Poniżej {n} serii tygodniowo: {list}. Pomoże więcej sesji, dłuższy czas albo więcej sprzętu w miejscu.",
   "en": "Below {n} sets per week: {list}. More sessions, longer sessions or more equipment at the place will help."
+ },
+ {
+  "pl": "Ponów teraz",
+  "en": "Retry now"
  },
  {
   "pl": "Poprawka zapisu: wszystkie serie bloku „{name}” przejdą pod wybrane ćwiczenie (wartości bez zmian).",
@@ -3012,8 +3172,8 @@
   "en": "Substitute rest (s): {name}"
  },
  {
-  "pl": "Przerwa: {s}. Tapnij, by zmienić.",
-  "en": "Rest: {s}. Tap to change."
+  "pl": "Przerwa: {s}",
+  "en": "Rest: {s}"
  },
  {
   "pl": "Przerwy: {a} min po ciężkich seriach boju głównego, {b} min po innych wielostawowych, {c} min po jednostawowych i core — uproszczenie; przeglądy są niejednoznaczne (ACSM 2026: długość przerwy nie zmieniała przyrostu siły).",
@@ -3066,6 +3226,10 @@
  {
   "pl": "Przyda się: {list}.",
   "en": "Would help: {list}."
+ },
+ {
+  "pl": "Przypisanie partii mięśniowych — jedno źródło, nie ustalone. Od niego zależą serie na partię, mapa mięśni, generator i propozycje w kalendarzu.",
+  "en": "Muscle group assignment is based on a single source, not established. It drives sets per muscle, the muscle map, the generator and the calendar suggestions."
  },
  {
   "pl": "Przypisanie partii mięśniowych — uproszczenie, nie wynik badań. Od niego zależą serie na partię, mapa mięśni, generator i propozycje w kalendarzu.",
@@ -3142,6 +3306,10 @@
  {
   "pl": "Redukcja: trening jak na masę (chroni mięśnie) i jedna sesja umiarkowanego cardio.",
   "en": "Fat loss: training as for muscle (protects muscle) and one session of moderate cardio."
+ },
+ {
+  "pl": "Rekord: {list}",
+  "en": "Record: {list}"
  },
  {
   "pl": "rekord|rekordy|rekordów",
@@ -3229,6 +3397,10 @@
   "en": "RPE / RIR per set"
  },
  {
+  "pl": "Ruch",
+  "en": "Movement"
+ },
+ {
   "pl": "Rzadziej niż {n} dni w tygodniu: {list} (dzień tylko z pracą pomocniczą = {h}).",
   "en": "Fewer than {n} days a week: {list} (a day with assisting work only = {h})."
  },
@@ -3301,16 +3473,12 @@
   "en": "Set {n} done — {ex}"
  },
  {
-  "pl": "Seria {n}, typ: {k}. Tapnij, by zmienić typ lub dodać notatkę.",
-  "en": "Set {n}, type: {k}. Tap to change the type or add a note."
+  "pl": "Seria {n}, typ: {k}",
+  "en": "Set {n}, type: {k}"
  },
  {
   "pl": "Seria {n}, typ: {k}. Tapnij, by zmienić typ lub usunąć serię.",
   "en": "Set {n}, type: {k}. Tap to change the type or delete the set."
- },
- {
-  "pl": "Seria {n}, typ: {k}. Tapnij, by zmienić typ.",
-  "en": "Set {n}, type: {k}. Tap to change the type."
  },
  {
   "pl": "seria {s} s",
@@ -3567,6 +3735,10 @@
   "en": "stack at {v}"
  },
  {
+  "pl": "stożek rotatorów",
+  "en": "rotator cuff"
+ },
+ {
   "pl": "Strongman",
   "en": "Strongman"
  },
@@ -3683,6 +3855,10 @@
   "en": "neck"
  },
  {
+  "pl": "ściana",
+  "en": "wall"
+ },
+ {
   "pl": "ślizgacze",
   "en": "sliders"
  },
@@ -3727,8 +3903,20 @@
   "en": "Tap to untick (I don’t have it)"
  },
  {
+  "pl": "Tapnij, by pokazać tylko dostępne.",
+  "en": "Tap to show only available."
+ },
+ {
+  "pl": "Tapnij, by pokazać wszystkie.",
+  "en": "Tap to show all."
+ },
+ {
   "pl": "Tapnij, by spróbować ponownie. Zrób też backup.",
   "en": "Tap to try again. Also make a backup."
+ },
+ {
+  "pl": "Tapnij, by włączyć.",
+  "en": "Tap to turn on."
  },
  {
   "pl": "Tapnij, by wybrać inne ćwiczenie.",
@@ -3737,6 +3925,26 @@
  {
   "pl": "Tapnij, by zaznaczyć",
   "en": "Tap to tick"
+ },
+ {
+  "pl": "Tapnij, by zdjąć.",
+  "en": "Tap to remove."
+ },
+ {
+  "pl": "Tapnij, by zmienić typ lub dodać notatkę.",
+  "en": "Tap to change the type or add a note."
+ },
+ {
+  "pl": "Tapnij, by zmienić typ.",
+  "en": "Tap to change the type."
+ },
+ {
+  "pl": "Tapnij, by zmienić.",
+  "en": "Tap to change."
+ },
+ {
+  "pl": "Tapnij, by zostawić podstawowe.",
+  "en": "Tap to keep only the basic ones."
  },
  {
   "pl": "taśmy TRX",
@@ -3749,6 +3957,10 @@
  {
   "pl": "te same mięśnie",
   "en": "same muscles"
+ },
+ {
+  "pl": "Technika",
+  "en": "Technique"
  },
  {
   "pl": "Tego ćwiczenia nie da się już zamienić.",
@@ -3895,6 +4107,14 @@
   "en": "Workouts and templates with this place will show “(deleted place)”."
  },
  {
+  "pl": "Treningi nadal czekają na zapis w Apple Health. Sprawdź zgodę w aplikacji Zdrowie: profil → Aplikacje → {app}.",
+  "en": "Workouts are still waiting to be saved to Apple Health. Check the permission in the Health app: profile → Apps → {app}."
+ },
+ {
+  "pl": "Treningi sprzed pierwszego pomiaru ({d}) — bez e1RM.",
+  "en": "Workouts before the first measurement ({d}) — no e1RM."
+ },
+ {
   "pl": "triceps",
   "en": "triceps"
  },
@@ -3945,10 +4165,6 @@
  {
   "pl": "Tylko masa ciała",
   "en": "Bodyweight only"
- },
- {
-  "pl": "tylko mata",
-  "en": "mat only"
  },
  {
   "pl": "Tylko rozgrzewka",
@@ -4067,6 +4283,14 @@
   "en": "Settings per side: {n} ({r})"
  },
  {
+  "pl": "Ustawienie",
+  "en": "Setup"
+ },
+ {
+  "pl": "Ustawienie, ruch, wskazówki i częste błędy.",
+  "en": "Setup, movement, tips and common mistakes."
+ },
+ {
   "pl": "Usunąć ćwiczenie?",
   "en": "Delete exercise?"
  },
@@ -4085,6 +4309,10 @@
  {
   "pl": "Usunąć ostatnią serię?",
   "en": "Remove the last set?"
+ },
+ {
+  "pl": "Usunąć pomiar?",
+  "en": "Delete measurement?"
  },
  {
   "pl": "Usunąć serię?",
@@ -4185,6 +4413,10 @@
  {
   "pl": "Usuń plan: {name}",
   "en": "Delete plan: {name}"
+ },
+ {
+  "pl": "Usuń pomiar: {v}, {d}",
+  "en": "Delete measurement: {v}, {d}"
  },
  {
   "pl": "Usuń serię",
@@ -4323,6 +4555,10 @@
   "en": "swapped before"
  },
  {
+  "pl": "Wersja",
+  "en": "Version"
+ },
+ {
   "pl": "Wersja testowa {n} · {date}",
   "en": "Test build {n} · {date}"
  },
@@ -4383,6 +4619,10 @@
   "en": "Enable notifications for {app} in iOS Settings."
  },
  {
+  "pl": "Wolna ściana (stanie na rękach, wall sit)",
+  "en": "Free wall (handstands, wall sit)"
+ },
+ {
   "pl": "wolne",
   "en": "rest"
  },
@@ -4419,6 +4659,10 @@
   "en": "Enter a number of seconds from 0 to {n}."
  },
  {
+  "pl": "Wpisz masę ciała.",
+  "en": "Enter your body weight."
+ },
+ {
   "pl": "wpisz uchwyt i talerze",
   "en": "enter handle and plates"
  },
@@ -4439,6 +4683,10 @@
   "en": "Back to workout"
  },
  {
+  "pl": "Wskazówki",
+  "en": "Tips"
+ },
+ {
   "pl": "Wstaw ciężary modelu",
   "en": "Insert this model’s weights"
  },
@@ -4449,6 +4697,10 @@
  {
   "pl": "wszystkie ćwiczenia z tą samą miarą",
   "en": "all exercises with the same measure"
+ },
+ {
+  "pl": "wszystkie ćwiczenia, także niszowe",
+  "en": "all exercises, including niche ones"
  },
  {
   "pl": "Wszystkie serie odhaczone",
@@ -4569,6 +4821,10 @@
  {
   "pl": "Wysiłek: zwykle {a}–{b} powtórzenia w zapasie (RIR); do upadku nie trzeba.",
   "en": "Effort: usually {a}–{b} reps in reserve (RIR); training to failure is not needed."
+ },
+ {
+  "pl": "wyszukiwanie obejmuje też niszowe",
+  "en": "search also covers niche ones"
  },
  {
   "pl": "Wyślij dane",
@@ -4791,6 +5047,10 @@
   "en": "Save as template"
  },
  {
+  "pl": "Zapisz pomiar",
+  "en": "Save measurement"
+ },
+ {
   "pl": "Zapisz szablon",
   "en": "Save template"
  },
@@ -4865,6 +5125,14 @@
  {
   "pl": "Zegar treningu stoi i pauza nie wlicza się do czasu trwania. Przerwa między seriami liczy dalej; odhaczenie serii wznawia trening.",
   "en": "The workout clock is stopped and the pause does not count towards the duration. The rest timer keeps running; ticking off a set resumes the workout."
+ },
+ {
+  "pl": "zębaty przedni",
+  "en": "serratus anterior"
+ },
+ {
+  "pl": "zginacze biodra",
+  "en": "hip flexors"
  },
  {
   "pl": "Zgody na powiadomienia jeszcze nie ma — „Sprawdź zgodę na powiadomienia” poprosi o nią.",

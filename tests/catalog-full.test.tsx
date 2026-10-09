@@ -21,7 +21,7 @@ describe('pełna baza — listy', () => {
     await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())) }); await flushAll(20);
     await tap(screen.getByLabelText('Zamień ćwiczenie: Bench Press (sztanga)')); await flushAll(20);
     await tap(screen.getByLabelText('Pokaż inne ćwiczenia')); await flushAll(5);
-    await tap(screen.getByLabelText('Filtr partii: klatka. Tapnij, by zdjąć.')); await flushAll(5);
+    await tap(screen.getByLabelText('Filtr partii: klatka')); await flushAll(5);
     const rows = () => screen.getAllByText('⇄').length;
     expect(rows()).toBeLessThanOrEqual(SWAP_PAGE + 3 /* propozycje */ + 1);
     const more = screen.getByLabelText(/^Pokaż więcej ćwiczeń: zostało \d+$/); await tap(more); await flushAll(5);
@@ -45,7 +45,7 @@ describe('pełna baza — audyt kodu 04.10 wieczór', () => {
     await fresh(); store.startEmpty(); store.addExerciseToActive(ex('Bench Press (sztanga)')); await store.flush();
     await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())) }); await flushAll(20);
     await tap(screen.getByLabelText('Zamień ćwiczenie: Bench Press (sztanga)')); await flushAll(20);
-    await tap(screen.getByLabelText('Pokaż inne ćwiczenia')); await flushAll(5); await tap(screen.getByLabelText('Filtr partii: klatka. Tapnij, by zdjąć.')); await flushAll(5);
+    await tap(screen.getByLabelText('Pokaż inne ćwiczenia')); await flushAll(5); await tap(screen.getByLabelText('Filtr partii: klatka')); await flushAll(5);
     const first = screen.getAllByText('⇄').length; await tap(screen.getByLabelText(/^Pokaż więcej ćwiczeń/)); await flushAll(5); expect(screen.getAllByText('⇄').length).toBeGreaterThan(first);
     const wait = async () => { await act(async () => { jest.advanceTimersByTime(800); }); }; /* Item: useOnce(700) — ochrona przed podwójnym tapnięciem */
     await wait(); await tap(screen.getByLabelText('Zwiń inne ćwiczenia')); await flushAll(5); await wait(); await tap(screen.getByLabelText('Pokaż inne ćwiczenia')); await flushAll(5);
@@ -54,10 +54,10 @@ describe('pełna baza — audyt kodu 04.10 wieczór', () => {
 });
 
 /* Decyzja właściciela 05.10.2026 („1.a”): nowy sprzęt (krok b i pełna baza) dopisany jednorazowo do miejsc opartych na presecie siłowni. */
-import { presetEquipment, GYM_FILL, capsOf, availability } from '@/lib/equipment';
+import { presetEquipment, GYM_FILL, EQUIP_FILL2, capsOf, availability } from '@/lib/equipment';
 import { seedState } from '@/lib/seed';
 describe('pełna baza — nowy sprzęt w zapisanych miejscach (decyzja 1.a)', () => {
-  const oldGym = () => presetEquipment('gym').filter(e => !GYM_FILL.items.includes(e.item)).map(e => ({ ...e, opts: e.opts.filter(o => !(GYM_FILL.opts[e.item] ?? []).includes(o)) }));
+  const oldGym = () => presetEquipment('gym').filter(e => !GYM_FILL.items.includes(e.item) && !EQUIP_FILL2.all.includes(e.item) && !EQUIP_FILL2.gym.includes(e.item)).map(e => ({ ...e, opts: e.opts.filter(o => !(GYM_FILL.opts[e.item] ?? []).includes(o)) }));
   const withLocs = (locs: any[]) => { const s: any = JSON.parse(JSON.stringify(seedState('pl'))); delete s.equipFill; s.settings.locations = locs; s.settings.mainLocationId = locs[0].id; return s; };
   const L = (id: string, equipment: any[]) => ({ id, ownerId: 'local', createdAt: 1, updatedAt: 1, name: id, equipment });
   test('siłownia z dawnego presetu (także z kilkoma usuniętymi pozycjami) dostaje nowy sprzęt i opaski przy wyciągach; dom — nie; raz', async () => {

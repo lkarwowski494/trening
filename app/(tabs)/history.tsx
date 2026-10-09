@@ -3,7 +3,7 @@ import { FlatList, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Screen, H1, Item, Muted, Empty, Btn, Chip } from '@/components/ui';
-import { getState, setPlanHintHidden, workoutDurSec, useHistTick, finishedWorkouts, fmtDate, fmtTime, fmtDur, volume, deleteWorkout, workingSets } from '@/lib/store';
+import { wallTs, getState, setPlanHintHidden, workoutDurSec, useHistTick, finishedWorkouts, fmtDate, fmtTime, fmtDur, volume, deleteWorkout, workingSets } from '@/lib/store';
 import { SwipeRow } from '@/components/SwipeRow';
 import { HistoryCalendar } from '@/components/HistoryCalendar';
 import { DayPanel } from '@/components/DayPanel';
@@ -21,7 +21,7 @@ export default function HistoryScreen() {
   /* UX-16 A (audyt 0.10): po przewinięciu kalendarza na inny miesiąc lista pokazuje sesje tego miesiąca („Pokaż wszystkie” wraca do całej historii);
    * bez przewijania — wszystkie sesje (jak dotąd) */
   const [month, setMonth] = useState<{ y: number; m: number } | null>(null);
-  const inMonth = (w: Workout) => { const d = new Date(w.startedAt); return !!month && d.getFullYear() === month.y && d.getMonth() === month.m; };
+  const inMonth = (w: Workout) => { const d = new Date(wallTs(w)) /* J3: dzień w strefie treningu */; return !!month && d.getFullYear() === month.y && d.getMonth() === month.m; };
   const ws = day ? byDay.get(day) ?? [] : month ? all.filter(inMonth) : all;
   /* audyt 0.10 A9: tapnięcie dnia w pasku tygodnia (ekran Trening) otwiera ten dzień — /history?day=RRRR-MM-DD */
   const params = useLocalSearchParams<{ day?: string }>(); useEffect(() => { if (typeof params.day === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(params.day)) setDay(params.day); }, [params.day]);
@@ -46,7 +46,7 @@ export default function HistoryScreen() {
         {day ? <View testID="day-panel-wrap" onLayout={e => { const first = panelY.current == null; panelY.current = e.nativeEvent.layout.y; if (first) toPanel(); }}><DayPanel day={day} /></View> : null}
         {day || month ? <View style={{ flexDirection: 'row', marginBottom: 6 }}><Chip label={t('Pokaż wszystkie')} on={false} onPress={() => { setDay(null); setMonth(null); }} /></View> : null}
         {!day && month && !ws.length && all.length ? <Muted style={{ fontSize: 13, marginBottom: 8 }}>{t('Brak treningów w tym miesiącu.')}</Muted> : null}
-      </>} renderItem={({ item: w }) => <SwipeRow label={t('Usuń sesję: {name}', { name: `${w.templateName || t('Trening')}, ${fmtDate(w.startedAt)} ${fmtTime(w.startedAt)}` })} title={t('Usunąć tę sesję z historii?')} message={[`${w.templateName || t('Trening')}, ${fmtDate(w.startedAt)}`, w.healthUUID ? t('Kopia w Apple Health zostanie — usuniesz ją w aplikacji Zdrowie.') : ''].filter(Boolean).join('\n') /* G3 (audyt 0.10 DAT-09) */} onDelete={() => deleteWorkout(w.id)}>{a11y => <Item a11y={a11y} title={w.templateName || t('Trening')} sub={(() => { const n = workingSets(w) /* X-15, D3 (audyt 0.10): jak kafelki, Postępy i Zdrowie */; const v = volume(w); return [`${fmtDate(w.startedAt)} ${fmtTime(w.startedAt)}`, fmtDur(workoutDurSec(w)) /* bez pauz (08.10.2026) */, `${n} ${tp(n, 'seria|serie|serii')}`, v ? fmtVol(v) : '', w.deload ? t('deload — mniej serii') /* audyt 0.10 (D1+): trening skrócony w tygodniu deload */ : ''].filter(Boolean).join(' · '); })()} onPress={() => router.push(`/history/${w.id}`)} />}</SwipeRow>} ListEmptyComponent={all.length ? null : <Empty>{t('Jeszcze pusto — pierwszy trening czeka.')}</Empty>} />
+      </>} renderItem={({ item: w }) => <SwipeRow label={t('Usuń sesję: {name}', { name: `${w.templateName || t('Trening')}, ${fmtDate(wallTs(w))} ${fmtTime(wallTs(w))}` })} title={t('Usunąć tę sesję z historii?')} message={[`${w.templateName || t('Trening')}, ${fmtDate(wallTs(w))}`, w.healthUUID ? t('Kopia w Apple Health zostanie — usuniesz ją w aplikacji Zdrowie.') : ''].filter(Boolean).join('\n') /* G3 (audyt 0.10 DAT-09) */} onDelete={() => deleteWorkout(w.id)}>{a11y => <Item a11y={a11y} title={w.templateName || t('Trening')} sub={(() => { const n = workingSets(w) /* X-15, D3 (audyt 0.10): jak kafelki, Postępy i Zdrowie */; const v = volume(w); return [`${fmtDate(wallTs(w))} ${fmtTime(wallTs(w))}`, fmtDur(workoutDurSec(w)) /* bez pauz (08.10.2026) */, `${n} ${tp(n, 'seria|serie|serii')}`, v ? fmtVol(v) : '', w.deload ? t('deload — mniej serii') /* audyt 0.10 (D1+): trening skrócony w tygodniu deload */ : ''].filter(Boolean).join(' · '); })()} onPress={() => router.push(`/history/${w.id}`)} />}</SwipeRow>} ListEmptyComponent={all.length ? null : <Empty>{t('Jeszcze pusto — pierwszy trening czeka.')}</Empty>} />
     </Screen></SafeAreaView>
   );
 }

@@ -1,5 +1,6 @@
 import { locale } from './i18n';
 import type { Workout } from './seed';
+import { wallTs } from './store';
 
 /*
  * Kalendarz w Historii (docs/21 pkt 4a, kolejność zatwierdzona przez właściciela 07.10.2026 wieczór): miesiąc, dni z treningiem.
@@ -22,7 +23,7 @@ export function monthGrid(y: number, m: number): Cell[][] {
 /** Zakończone treningi pogrupowane po dniu rozpoczęcia (czas lokalny). */
 export function workoutsByDay(ws: readonly Workout[]): Map<string, Workout[]> {
   const out = new Map<string, Workout[]>();
-  for (const w of ws) { if (!w.finishedAt) continue; const k = dayKey(w.startedAt); const a = out.get(k); if (a) a.push(w); else out.set(k, [w]); }
+  for (const w of ws) { if (!w.finishedAt) continue; const k = dayKey(wallTs(w)); /* J3 */ const a = out.get(k); if (a) a.push(w); else out.set(k, [w]); }
   return out;
 }
 

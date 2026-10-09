@@ -87,7 +87,7 @@ const EX_FULL: Record<string, string> = {
   'Wyciskanie nad głowę (linki)': 'Cable Overhead Press', 'Przysiad z pasem (linki)': 'Belt Squat (cable)',
   'Łydki na stopniu': 'Calf Raise on Step', 'Bieg': 'Running', 'Rower': 'Cycling', 'Skakanka': 'Jump Rope', 'Orbitrek': 'Elliptical',
 };
-const EX_PAREN: Record<string, string> = { 'sztanga': 'Barbell', 'hantle': 'Dumbbell', 'hantel': 'Dumbbell', 'linki': 'Cable', 'ławka': 'Bench', 'bieżnia': 'Treadmill', 'hantle/linki': 'Dumbbell/Cable', 'hantel/linka': 'Dumbbell/Cable', 'dwie linki': 'Two Cables' /* katalog 04.10.2026 */ };
+const EX_PAREN: Record<string, string> = { 'sztanga': 'Barbell', 'hantle': 'Dumbbell', 'hantel': 'Dumbbell', 'linki': 'Cable', 'ławka': 'Bench', 'bieżnia': 'Treadmill', 'hantle/linki': 'Dumbbell/Cable', 'hantel/linka': 'Dumbbell/Cable', 'dwie linki': 'Two Cables' /* katalog 04.10.2026 */, 'talerz': 'Plate' /* research biblioteki 09.10.2026: Lying Neck Extension (talerz) */ };
 /** Nazwa ćwiczenia do wyświetlenia. Ćwiczenia własne i przemianowane pokazujemy tak, jak je nazwał użytkownik. */
 export function exName(e: { name: string; lib?: boolean } | undefined | null): string {
   if (!e) return '?';
@@ -101,6 +101,42 @@ applyLang('auto');
 
 /** Runda 32: porównanie w wyszukiwaniu bez wielkości liter i znaków diakrytycznych („lydki” znajduje „Łydki”, „cestina” — „Čeština”). */
 const FOLD: Record<string, string> = { ł: 'l', đ: 'd', ø: 'o', ß: 'ss' };
+/** PERF-01/05 (audyt 0.10): jeden Intl.Collator na język zamiast localeCompare(…, locale()) w każdym porównaniu (sortowanie 854+ ćwiczeń). */
+let coll: { tag: string; c: Intl.Collator } | null = null;
+export const collator = (): Intl.Collator => { const tag = locale(); if (!coll || coll.tag !== tag) coll = { tag, c: new Intl.Collator(tag) }; return coll.c; };
 export const fold = (s: string) => s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[łđøß]/g, ch => FOLD[ch] ?? ch).replace(/\s+/g, ' ').trim();
+/**
+ * Audyt 0.10 (A11-02): wielkie litery zgodnie z językiem — zamiast `textTransform: 'uppercase'`, które iOS robi bez języka
+ * ([NSString uppercaseString]): po grecku wersaliki bez tonosu (ΓΕΝΙΚΑ, nie ΓΕΝΙΚΆ; dialytika zostaje, „άι” → „ΑΪ”), po turecku i → İ.
+ * Bez zależności od toLocaleUpperCase (Hermes nie gwarantuje reguł języka).
+ */
+/** Języki, w których wersaliki zależą od języka (tu robi je upper(); w pozostałych systemowe textTransform daje ten sam wynik co reguły CLDR — test). */
+export const LOCALE_UPPER: readonly Lang[] = ['el', 'tr'];
+export function upper(s: string, l: Lang = current): string {
+  if (l === 'tr') return s.replace(/i/g, 'İ').toUpperCase();
+  if (l !== 'el') return s.toUpperCase();
+  const d = s.normalize('NFD');
+  let out = '';
+  for (let i = 0; i < d.length; i++) {
+    const ch = d[i];
+    if (ch === '́') {
+      /* tonos na pierwszej samogłosce dwuznaku (άι, έυ…): w wersalikach druga dostaje dialytikę, żeby nie czytać jej jako dwuznaku */
+      const prev = d[i - 1], next = d[i + 1], after = d[i + 2];
+      const letter = (c?: string) => !!c && /\p{L}/u.test(c);
+      if (prev && /[ηΗ]/.test(prev) && !letter(d[i - 2]) && !letter(next)) { out += ch; continue; } /* samodzielne „ή” (= albo) zachowuje akcent: Ή */
+      if (prev && /[αεοηΑΕΟΗ]/.test(prev) && next && /[ιυΙΥ]/.test(next) && after !== '̈') { out += next + '̈'; i++; }
+      continue;
+    }
+    out += ch;
+  }
+  return out.toUpperCase().normalize('NFC');
+}
+
+/**
+ * Audyt 0.10 (A11-19): bez złamań linii między liczbą a sąsiednim wyrazem („1 / rekord”, „seria 1 z / 4”) i po półpauzie zakresu („8– / 12”):
+ * spacja nierozdzielająca (NBSP) i łącznik bez szerokości (U+2060) po „–” między cyframi. Tylko do wyświetlania.
+ */
+export const glue = (s: string) => s.replace(/(\d) (?=\p{L})/gu, '$1\u00a0').replace(/(\p{L}) (?=\d)/gu, '$1\u00a0').replace(/(\d)–(?=\d)/g, '$1–\u2060');
+
 /** Runda 36: tekst w konkretnym języku danych (ustawienie 'auto' → język telefonu), niezależnie od bieżącego języka ekranu. */
 export function tIn(setting: unknown, pl: string): string { const l = isLang(setting) ? setting : detectLang(); return lookup(l, pl); }

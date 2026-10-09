@@ -1,5 +1,5 @@
 {
   "CFBundleDisplayName": "Training",
   "NSHealthShareUsageDescription": "Training leest geen gezondheidsgegevens — iOS vereist deze beschrijving voor de HealthKit-toestemming.",
-  "NSHealthUpdateUsageDescription": "Training bewaart afgeronde krachttrainingen in Apple Health."
+  "NSHealthUpdateUsageDescription": "Training bewaart afgeronde trainingen – kracht en cardio – in Apple Health."
 }

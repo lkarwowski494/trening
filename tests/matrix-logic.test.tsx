@@ -11,7 +11,7 @@ import * as edit from '@/lib/edit';
 import * as backup from '@/lib/backup';
 import * as i18n from '@/lib/i18n';
 import * as units from '@/lib/units';
-import { capLabel, blankLoad, fillOpts, fillGym, equipById, presetEquipment, GYM_FILL, OPT_FILL } from '@/lib/equipment';
+import { capLabel, blankLoad, fillOpts, fillGym, equipById, presetEquipment, GYM_FILL, OPT_FILL, EQUIP_FILL2 } from '@/lib/equipment';
 import { commitLocationName, canDeleteLocation, locationEdited, addLocation } from '@/lib/locations';
 import { loadMult, defaultModules, blankTimer, libExercise, SCHEMA_VERSION, type WSet, type LocEquip } from '@/lib/seed';
 import { parseSwapTarget } from '@/lib/swap';
@@ -214,7 +214,7 @@ describe('equipment.fillOpts', () => {
 });
 
 describe('equipment.fillGym', () => {
-  const oldGym = (unit: 'kg' | 'lb' = 'kg') => ({ equipment: presetEquipment('gym', unit).filter(e => !GYM_FILL.items.includes(e.item)) });
+  const oldGym = (unit: 'kg' | 'lb' = 'kg') => ({ equipment: presetEquipment('gym', unit).filter(e => !GYM_FILL.items.includes(e.item) && !EQUIP_FILL2.all.includes(e.item) && !EQUIP_FILL2.gym.includes(e.item)) /* sprzęt z 09.10.2026 też dopisany później */ });
   test('dawny preset siłowni — dopisuje nowy sprzęt (raz) i opaski do zaznaczonych wyciągów', () => {
     const l = oldGym(); l.equipment.find(e => e.item === 'cable_cross')!.opts = ['rope'];
     expect(fillGym(l)).toBe(true);
@@ -573,7 +573,7 @@ describe('store.prevOfActiveBlock', () => {
 
 describe('store.setHasResult', () => {
   test('wynik w metryce ćwiczenia: powtórzenia, czas, dystans albo czas; bez ćwiczenia — jakakolwiek wartość', async () => {
-    await fresh(); const bp = ex('Bench Press (sztanga)'), pl = ex('Plank'), run = ex('Bieg'), fw = ex("Farmer's Walk"), bur = ex('Burpees');
+    await fresh(); const bp = ex('Bench Press (sztanga)'), pl = ex('Plank'), run = ex('Bieg'), fw = ex('Crucifix') /* ciężar + czas */, bur = ex('Burpees');
     expect(store.setHasResult(bp, mkSet({ weight: 100, reps: 0 }))).toBe(false); expect(store.setHasResult(bp, mkSet({ reps: 1 }))).toBe(true);
     expect(store.setHasResult(bp, mkSet({ reps: '' }))).toBe(false);
     expect(store.setHasResult(pl, mkSet({ durationSec: 0 }))).toBe(false); expect(store.setHasResult(pl, mkSet({ durationSec: 30 }))).toBe(true);
@@ -888,11 +888,11 @@ describe('EKRAN /swap', () => {
     expect(screen.getByText('Brak podobnych ćwiczeń w tym miejscu — rozwiń „Inne”.')).toBeTruthy();
     await tap(screen.getByLabelText('Pokaż inne ćwiczenia')); await flushAll(5);
     expect(screen.getByText('Inne')).toBeTruthy(); expect(screen.getByLabelText('Zwiń inne ćwiczenia')).toBeTruthy();
-    const grp = 'Filtr partii: klatka. Tapnij, by zdjąć.', locL = 'Filtr miejsca: Dom. Tapnij, by zdjąć.';
+    const grp = 'Filtr partii: klatka', locL = 'Filtr miejsca: Dom';
     expect(screen.getByLabelText(grp)).toBeTruthy(); expect(screen.getByLabelText(locL)).toBeTruthy();
     expect(screen.queryByText('Goblet Squat')).toBeNull(); expect(screen.getAllByText('Push Up').length).toBeGreaterThan(0);
-    await tap(screen.getByLabelText(grp)); await flushAll(5); expect(screen.getByLabelText('Filtr partii wyłączony: klatka. Tapnij, by włączyć.')).toBeTruthy();
-    await tap(screen.getByLabelText(locL)); await flushAll(5); expect(screen.getByLabelText('Filtr miejsca wyłączony: Dom. Tapnij, by pokazać tylko dostępne.')).toBeTruthy();
+    await tap(screen.getByLabelText(grp)); await flushAll(5); expect(screen.getByLabelText('Filtr partii wyłączony: klatka')).toBeTruthy();
+    await tap(screen.getByLabelText(locL)); await flushAll(5); expect(screen.getByLabelText('Filtr miejsca wyłączony: Dom')).toBeTruthy();
     /* bez filtrów: cała baza tej miary — porcjami SWAP_PAGE, „Pokaż więcej” dokłada 2 porcje */
     const more = screen.getByLabelText(/^Pokaż więcej ćwiczeń: zostało \d+$/); const left = Number(/(\d+)$/.exec(more.props.accessibilityLabel)![1]);
     expect(left).toBeGreaterThan(100); expect(screen.getByText(`Pokaż więcej (${left})`)).toBeTruthy();
@@ -900,11 +900,11 @@ describe('EKRAN /swap', () => {
     /* niedostępne w Domu (miejsce wyłączone) — z dopiskiem „brak: …” */
     const q = () => screen.getAllByPlaceholderText('Szukaj ćwiczenia…').pop()!;
     await type(q(), 'Leg Press'); await flushAll(5); expect(screen.getAllByText(/brak: suwnica na nogi/).length).toBeGreaterThan(0);
-    await tap(screen.getByLabelText('Filtr miejsca wyłączony: Dom. Tapnij, by pokazać tylko dostępne.')); await flushAll(5);
+    await tap(screen.getByLabelText('Filtr miejsca wyłączony: Dom')); await flushAll(5);
     expect(screen.queryByText(/brak: suwnica na nogi/)).toBeNull();
     /* dokładna nazwa innej miary → nic do pokazania i nic do utworzenia */
     await type(q(), 'Skakanka'); await flushAll(5); expect(screen.getByText('Nic nie pasuje.')).toBeTruthy(); expect(screen.queryByText(/^Utwórz/)).toBeNull();
-    await tap(screen.getByLabelText('Filtr partii wyłączony: klatka. Tapnij, by włączyć.')); await flushAll(5);
+    await tap(screen.getByLabelText('Filtr partii wyłączony: klatka')); await flushAll(5);
     await type(q(), 'Push Up'); await flushAll(5); await tap(screen.getAllByText('Push Up').pop()!); await flushAll(20);
     expect(blk(bi).exerciseId).toBe(ex('Push Up').id);
   });
@@ -935,7 +935,7 @@ describe('EKRAN /swap', () => {
     await renderApp({ saved: st }); await flushAll(20);
     await go(swapUrl('active:' + blk(0).id)); await flushAll(20);
     await tap(screen.getByLabelText('Pokaż inne ćwiczenia')); await flushAll(5);
-    await tap(screen.getByLabelText('Filtr miejsca: Dom. Tapnij, by zdjąć.')); await flushAll(5);
+    await tap(screen.getByLabelText('Filtr miejsca: Dom')); await flushAll(5);
     await type(screen.getAllByPlaceholderText('Szukaj ćwiczenia…').pop()!, 'Pec Deck'); await flushAll(5);
     expect(screen.getByText('usunięte ćwiczenie (w bieżącym treningu)')).toBeTruthy();
   });

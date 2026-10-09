@@ -50,7 +50,7 @@ describe('ekran', () => {
   test('trening: kolumna „RIR”, wpis 2 zapisuje RPE 8; historia i edytor pokazują RIR', async () => {
     await fresh(); scale('rir'); store.startEmpty(); store.addExerciseToActive(ex('Back Squat')); await act(async () => { await store.flush(); });
     await renderApp({ saved: JSON.parse(JSON.stringify(saved())) }); await flushAll(10);
-    expect(screen.getAllByText('RIR').length).toBeGreaterThan(0);
+    expect(screen.getAllByText('RIR', { includeHiddenElements: true } /* nagłówek kolumny ukryty przed VoiceOver — A11-18 */).length).toBeGreaterThan(0);
     await type(screen.getAllByLabelText('RIR')[0], '2'); await flushAll(5);
     expect(S().active!.exercises[0].sets[0].rpe).toBe(8);
     const w = addWorkout(Date.now() - 864e5, [['Back Squat', [{ weight: 100, reps: 5, rpe: 9 }]]]); await act(async () => { await store.flush(); });

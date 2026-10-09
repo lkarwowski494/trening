@@ -1,4 +1,4 @@
-import { finishedWorkouts, isDeloadWeek, mondayKey, getState, save } from '@/lib/store';
+import { finishedWorkouts, isDeloadWeek, mondayKey, getState, save, wallTs } from '@/lib/store';
 export { deloadKeep, deloadSets } from '@/lib/deload-sets';
 
 /*
@@ -16,7 +16,7 @@ export const nextMonday = (ts: number) => mondayKey(keyTs(mondayKey(ts)) + WEEK)
 
 /** Tygodnie treningu z rzędu do bieżącego (gdy w bieżącym jeszcze nic — do poprzedniego). */
 export function trainingStreakWeeks(now: number): number {
-  const weeks = new Set(finishedWorkouts().map(w => mondayKey(w.startedAt)));
+  const weeks = new Set(finishedWorkouts().map(w => mondayKey(wallTs(w))) /* J3: tydzień w strefie startu */);
   let k = mondayKey(now); if (!weeks.has(k) && !isDeloadWeek(now)) k = mondayKey(keyTs(k) - WEEK);
   let n = 0;
   for (let i = 0; i < 520; i++) { const ts = keyTs(k); if (!weeks.has(k) || isDeloadWeek(ts)) break; n++; k = mondayKey(ts - WEEK); }

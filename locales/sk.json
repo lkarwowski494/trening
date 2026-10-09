@@ -1,5 +1,5 @@
 {
   "CFBundleDisplayName": "Tréning",
   "NSHealthShareUsageDescription": "Tréning nečíta zdravotné údaje — iOS vyžaduje tento popis pri povolení HealthKit.",
-  "NSHealthUpdateUsageDescription": "Tréning ukladá dokončené silové tréningy do Apple Health."
+  "NSHealthUpdateUsageDescription": "Tréning ukladá dokončené tréningy — silové aj kardio — do Apple Health."
 }

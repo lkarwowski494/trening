@@ -82,13 +82,13 @@ describe('MEDIUM 2 — etykieta ciężaru bloku na stacji: na stronę', () => {
     await fresh(); places(); store.startFromTemplate(tplAt(RDL, 'garage')); store.addExerciseToActive(ex(BELT)); const a = store.getState().active!;
     expect(a.exercises.map(e => e.impl)).toEqual(['electric', 'electric']); await store.flush();
     await renderApp({ saved: snapshot() }); await flushAll(10);
-    expect(screen.getAllByText('kg/str.')).toHaveLength(2); expect(screen.getAllByLabelText('kg/stronę').length).toBe(3); expect(screen.queryByText('kg/hant.')).toBeNull();
+    expect(screen.getAllByText('kg/str.', { includeHiddenElements: true } /* nagłówek kolumny ukryty przed VoiceOver — A11-18 */)).toHaveLength(2); expect(screen.getAllByLabelText('kg/stronę').length).toBe(3); expect(screen.queryByText('kg/hant.', { includeHiddenElements: true } /* nagłówek kolumny ukryty przed VoiceOver — A11-18 */)).toBeNull();
     /* objętość: przysiad z pasem („łącznie”) 45 kg/str. × 8 = 360 (×1 — bez zmian do decyzji właściciela) */
     expect(store.setVolume(ex(BELT), { ...a.exercises[1].sets[0], weight: 45, reps: 8, done: true })).toBe(360);
   });
   test('w domu RDL na hantlach — „kg/hant.” (bez „kg/str.”)', async () => {
     await fresh(); places(); store.startFromTemplate(tplAt(RDL, 'home')); expect(store.getState().active!.exercises[0].impl).toBe('dumbbell'); await store.flush();
-    await renderApp({ saved: snapshot() }); await flushAll(10); expect(screen.getByText('kg/hant.')).toBeTruthy(); expect(screen.queryByText('kg/str.')).toBeNull();
+    await renderApp({ saved: snapshot() }); await flushAll(10); expect(screen.getByText('kg/hant.', { includeHiddenElements: true } /* nagłówek kolumny ukryty przed VoiceOver — A11-18 */)).toBeTruthy(); expect(screen.queryByText('kg/str.', { includeHiddenElements: true } /* nagłówek kolumny ukryty przed VoiceOver — A11-18 */)).toBeNull();
   });
   test('historia (blok zapisany na stacji — przyrząd z bloku, nie z miejsca dziś) i edytor szablonu z miejscem garaż', async () => {
     await fresh(); places(); tplAt(RDL, 'garage'); const w = addWorkout(day(1), [[RDL, [{ weight: 30, reps: 8 }]]]); w.locationId = 'home'; w.exercises[0].impl = 'electric'; store.save(); await store.flush();

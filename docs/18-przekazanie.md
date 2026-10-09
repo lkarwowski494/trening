@@ -231,7 +231,21 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
   Stiff-Legged Deadlift osobno jako niszowe (Q-L4-2), strongman w katalogu jako niszowe (Q-L4-7), pompki `bandAssistable` false wszędzie (L5 Q2),
   ćwiczenia za karkiem niszowe (L5 Q4), przedramiona w grupie „biceps” do czasu porządkowania sekcji (L1 Q1, L2 Q4), scalanie wariantów
   różniących się tylko chwytem/pozycją (L1 Q3, L2 Q6, L5 Q1) — nigdy jednorącz z oburącz. **Lepsze mimo pracy:** brakujący sprzęt w słowniku
-  (circus bell, poręcze do dipów, ściana — L5 Q7) i metryka ciężar + dystans dla spacerów farmera (schemat 18 jest w tym wydaniu, bez
+  (circus bell, maszyna do dipów — poręcze `dip.bars` już były — i ściana; L5 Q7) i metryka ciężar + dystans dla spacerów farmera (schemat 18 jest w tym wydaniu, bez
   aktualizacji SDK). Otwarte (bez zmian w tym wydaniu): tryb liczenia ciężaru ćwiczeń jednonóż (Q-L4-4 — zmiana zmienia sens dawnych wpisów;
   osobna decyzja z migracją), regiony dla mięśni spoza mapy (zębaty przedni, piszczelowy przedni — L2 Q2/Q5: do czasu dodania regionu bez
   partii głównej, z oznaczeniem). Rejestr decyzji na Dysku — wpis zbiorczy po wdrożeniu.
+- 09.10.2026 (ok. 01:30): **K1 — „Przerwa” i „Pauza” w 25 językach** (audyt 0.10, A11-01) — wariant B zamiast rekomendowanego A (zasada
+  z 20:20: B ogólnie lepszy). Tam, gdzie „pauza” to zwykłe słowo siłowni na odpoczynek między seriami, zostaje ono dla przerwy, a zatrzymanie
+  zegara treningu dostaje czasownik jak w iOS: cs/sk „Pozastavit/Pozastaviť”, ro „Întrerupe”, et „Peata”, de „Anhalten”; da/nb przerwa
+  „hvile”, fi „palautus”, sl „počitek”, tr pauza „duraklatma”. Odrzucone: A — wszędzie nowe słowo dla przerwy (obce na siłowni). Test:
+  w każdym języku teksty o przerwie mają termin przerwy i nie mają terminu pauzy (i odwrotnie). Otwarte: potwierdzenie przez rodzimego
+  użytkownika terminów cs, sk, ro, et, de i „hvile” (da, nb). Przy scaleniu: filtr „Podstawowe” z katalogu dostał podział etykieta/podpowiedź
+  VoiceOver jak pozostałe filtry (A11-18).
+- 09.10.2026 (ok. 02:30): **wskazówki techniki, etap 1** scalone (82 ćwiczenia bazowe, każde zdanie ≥ 2 przeczytane źródła z różnych
+  organizacji — ACE, ExRx, NASM, Stronger by Science, Concept2, badania; docs/research/27, generowany z `lib/cues/data.json`, `check:cues`
+  w verify). 42 ćwiczenia bazowe bez wskazówek (jedno źródło, sprzeczne lub za mało wspólnych wskazówek) — lista otwarta z powodami w
+  docs/research/27. Źródła NSCA/ACSM są płatne: **nie kupujemy** (zasada właściciela: 0 zł poza Apple) — etap 1 stoi na szczeblu 4 z co
+  najmniej dwiema niezależnymi organizacjami, co jest oznaczone w dokumencie; brakujące uzupełniamy darmowymi źródłami szczebla 2–3, gdy
+  się znajdą. Odrzucone: zakup podręczników (koszt), jedno źródło (reguła właściciela z 08.10). Sekcja „Technika” na ekranie ćwiczenia
+  domyślnie zwinięta, z odesłaniem do lekarza lub fizjoterapeuty przy bólu.

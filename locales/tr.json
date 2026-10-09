@@ -1,5 +1,5 @@
 {
   "CFBundleDisplayName": "Training",
   "NSHealthShareUsageDescription": "Training sağlık verilerini okumaz — iOS, HealthKit izni için bu açıklamayı gerektirir.",
-  "NSHealthUpdateUsageDescription": "Training tamamlanan kuvvet antrenmanlarını Apple Sağlık’a kaydeder."
+  "NSHealthUpdateUsageDescription": "Training tamamlanan antrenmanları — kuvvet ve kardiyo — Apple Sağlık’a kaydeder."
 }

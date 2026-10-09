@@ -29,8 +29,8 @@ describe('C1 / MER-01: „Siła” w miejscu bez obciążenia', () => {
     await boot('/generator', () => { addLocation('bodyweight', 'Dom'); });
     await tap(screen.getByText('Siła')); await flushAll(5);
     expect(screen.getByText('Siła bez obciążenia zewnętrznego (sztanga, hantle, kettlebell, maszyny, wyciągi): ciężkich serii (ok. 80% maksimum) tu nie zrobisz, więc plan jest jak na masę w domu — 3 × 12–20 powtórzeń blisko upadku. Siła też wtedy rośnie, ale zwykle mniej niż przy dużym ciężarze.')).toBeTruthy();
-    expect(screen.queryByText(/ciężko, ok\. 80% maksimum i więcej/)).toBeNull(); expect(screen.queryByText(/ — 3 × 4–6, /)).toBeNull();
-    expect(screen.getAllByText(/ — 3 × 12–20, przerwa /).length).toBeGreaterThan(0); expect(screen.getByText('Dead Bug — 3 × 12–20, przerwa 1:30')).toBeTruthy();
+    expect(screen.queryByText(/ciężko, ok\. 80% maksimum i więcej/)).toBeNull(); expect(screen.queryByText(/ — 3 × 4–\u20606, /)).toBeNull();
+    expect(screen.getAllByText(/ — 3 × 12–\u206020, przerwa /).length).toBeGreaterThan(0); expect(screen.getByText('Dead Bug — 3 × 12–\u206020, przerwa 1:30')).toBeTruthy();
     /* pełna siłownia: zwykły opis siły, bój główny 3 × 4–6 */
     await tap(screen.getByText('Bez ograniczeń sprzętu')); await flushAll(5);
     expect(screen.getByText(/^Siła: bój główny na początku, 3 × 4–6 powtórzeń \(ciężko, ok\. 80% maksimum i więcej\)/)).toBeTruthy(); expect(screen.queryByText(/^Siła bez obciążenia/)).toBeNull();
@@ -150,7 +150,7 @@ describe('LOG-08: opisy presetów miejsc w jednostce aplikacji', () => {
     await boot('/more/locations', () => { S().settings.unit = 'lb'; store.applyPrefs(); store.save(); });
     await tap(screen.getByText('+ Dodaj miejsce')); await flushAll(5);
     expect(screen.getByLabelText('Pełna siłownia, cały sprzęt; sztanga 45 lb + talerze 45…2,5 lb; hantle 5–100 lb co 5')).toBeTruthy();
-    expect(screen.getByLabelText('Hotel, hantle 5–50 lb, ławka regulowana, mata, bieżnia, rower')).toBeTruthy();
+    expect(screen.getByLabelText('Hotel, hantle 5–50 lb, ławka regulowana, mata, ściana, bieżnia, rower')).toBeTruthy();
     await tap(screen.getByLabelText(/^Pełna siłownia, /)); await flushAll(10);
     const gym = S().settings.locations[0]; expect(gym.equipment.find(e => e.item === 'barbell')!.load).toMatchObject({ unit: 'lb', base: 45 }); /* opis = to, co preset utworzył */
   });

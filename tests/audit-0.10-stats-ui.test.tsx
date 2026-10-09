@@ -7,7 +7,7 @@ import { applyLang } from '@/lib/i18n';
 import { applyUnit } from '@/lib/units';
 import { BW_SHARE } from '@/lib/stats';
 import { base, uid, type Template } from '@/lib/seed';
-import { fresh, saved, addWorkout, ex } from './helpers';
+import { fresh, saved, addWorkout, ex, setBodyMass } from './helpers';
 import { renderApp, flushAll, screen, go, act, fireEvent, openCard, type as typeText, startEdit, tplDraft } from './app';
 
 jest.setTimeout(30000);
@@ -25,27 +25,31 @@ const tplD = (): Template => ({ ...base(), id: 'td', name: 'D', items: [{ id: 'i
 const sqDrop = (d: number) => addWorkout(at(9, d), [['Back Squat', [{ kind: 'warmup', warmup: true, weight: 60, reps: 5 }, { weight: 100, reps: 5 }, { weight: 100, reps: 5 }, { weight: 100, reps: 5 }, { kind: 'drop', weight: 70, reps: 8 }]]]);
 
 describe('E1: masa ciała w Ustawieniach i e1RM w Postępach', () => {
-  test('Ustawienia: pole „Masa ciała (kg)” z opisem; wpis 80 zapisuje kg, puste pole usuwa; w lb — wpis w funtach, zapis w kg', async () => {
+  test('Ustawienia: „Masa ciała” — nie podano → ekran pomiarów; pomiar 80,5 z dzisiejszą datą; w lb — wpis w funtach, zapis w kg (fala 2: masa ciała z datą)', async () => {
     await boot(undefined, '/more/settings');
+    expect(screen.getByText('nie podano — e1RM podciągania i pompek')).toBeTruthy();
+    await go('/more/bodymass'); await flushAll(5);
     const p = Math.round(BW_SHARE['Push Up'] * 100);
-    expect(screen.getByText('Opcjonalnie, tylko w telefonie. Z nią aplikacja liczy e1RM w podciąganiu (cała masa ciała — uproszczenie) i w pompkach (ok. {p}% masy ciała — badania z platformą siłową). Zmiana przelicza e1RM wszystkich treningów; puste pole — bez e1RM w tych ćwiczeniach.'.replace('{p}', String(p)))).toBeTruthy();
-    const f = screen.getByLabelText('Masa ciała (kg)'); expect(f.props.value).toBe('');
-    await typeText(f, '80,5'); await endEdit(f); await flushAll(5); expect(S().settings.bodyMass).toBe(80.5);
-    await typeText(screen.getByLabelText('Masa ciała (kg)'), ''); await flushAll(5); expect('bodyMass' in S().settings).toBe(false);
+    expect(screen.getByText(`Opcjonalnie, tylko w telefonie. Z nią aplikacja liczy e1RM w podciąganiu (cała masa ciała — uproszczenie) i w pompkach (ok. ${p}% masy ciała — badania z platformą siłową). Każdy trening liczy się z ostatnim pomiarem z tego dnia lub wcześniejszym; treningi sprzed pierwszego pomiaru — bez e1RM w tych ćwiczeniach.`)).toBeTruthy();
+    const f = screen.getByLabelText('Masa ciała (kg)'); expect(f.props.value).toBe(''); expect(screen.getByLabelText('Data pomiaru (RRRR-MM-DD)').props.value).toBe('2026-10-08');
+    await typeText(f, '80,5'); await act(async () => { fireEvent.press(screen.getByText('Zapisz pomiar')); }); await flushAll(5);
+    expect(S().bodyMassLog).toEqual([{ date: '2026-10-08', kg: 80.5 }]);
     await act(async () => { S().settings.unit = 'lb'; store.applyPrefs(); store.save(); }); await flushAll(5);
-    await typeText(screen.getByLabelText('Masa ciała (lb)'), '176'); await flushAll(5); expect(S().settings.bodyMass).toBeCloseTo(176 * 0.45359237, 1);
+    await typeText(screen.getByLabelText('Masa ciała (lb)'), '176'); await typeText(screen.getByLabelText('Data pomiaru (RRRR-MM-DD)'), '2026-10-01');
+    await act(async () => { fireEvent.press(screen.getByText('Zapisz pomiar')); }); await flushAll(5);
+    expect(S().bodyMassLog![0].date).toBe('2026-10-01'); expect(S().bodyMassLog![0].kg).toBeCloseTo(176 * 0.45359237, 1);
   });
   test('Postępy Pull Up: bez masy ciała — brak wiersza e1RM i wskazówka; z masą ciała — „126,67 kg (masa ciała + 46,67)” i opis uproszczenia', async () => {
     await boot(() => { addWorkout(at(9, 1), [['Pull Up', [{ addKg: 20, reps: 8 }]]]); });
     await go(`/more/progress?ex=${ex('Pull Up').id}`); await flushAll(10);
     expect(screen.queryByText('e1RM (Epley)')).toBeNull(); expect(screen.queryByText('e1RM (dociążenie)')).toBeNull();
     expect(screen.getByText('e1RM pojawi się po wpisaniu masy ciała w Ustawieniach.')).toBeTruthy(); expect(screen.getByText('Max dociążenie')).toBeTruthy();
-    await act(async () => { S().settings.bodyMass = 80; store.save(); }); await flushAll(5);
+    await act(async () => { setBodyMass(80); }); await flushAll(5);
     expect(screen.getByText('e1RM (Epley)')).toBeTruthy(); expect(screen.getByText('126,67 kg (masa ciała + 46,67)')).toBeTruthy();
-    expect(screen.getByText('e1RM: wzór Epleya na 100% masy ciała z Ustawień plus dociążenie (uproszczenie).')).toBeTruthy();
+    expect(screen.getByText('e1RM: wzór Epleya na 100% masy ciała z dnia treningu (ostatni pomiar z tego dnia lub wcześniejszy) plus dociążenie (uproszczenie).')).toBeTruthy();
   });
   test('Postępy Chest Dip (bez źródła udziału masy ciała): „Bez e1RM…” także z masą ciała; ćwiczenie z ciężarem — bez notki', async () => {
-    await boot(() => { S().settings.bodyMass = 80; addWorkout(at(9, 1), [['Chest Dip', [{ addKg: 10, reps: 5 }]], ['Back Squat', [{ weight: 100, reps: 5 }]]]); });
+    await boot(() => { setBodyMass(80); addWorkout(at(9, 1), [['Chest Dip', [{ addKg: 10, reps: 5 }]], ['Back Squat', [{ weight: 100, reps: 5 }]]]); });
     await go(`/more/progress?ex=${ex('Chest Dip').id}`); await flushAll(10);
     expect(screen.getByText('Bez e1RM: brak źródeł, jaką część masy ciała podnosisz w tym ćwiczeniu.')).toBeTruthy(); expect(screen.queryByText('e1RM (Epley)')).toBeNull();
     await go(`/more/progress?ex=${ex('Back Squat').id}`); await flushAll(10);
@@ -59,15 +63,18 @@ describe('E1: masa ciała w Ustawieniach i e1RM w Postępach', () => {
   });
   test('EN: Settings field and Progress note', async () => {
     await boot(() => { addWorkout(at(9, 1), [['Pull Up', [{ addKg: 20, reps: 8 }]]]); }, '/more/settings', 'en');
-    expect(screen.getByLabelText('Body weight (kg)')).toBeTruthy();
+    expect(screen.getByText('Body weight')).toBeTruthy(); /* fala 2: pomiary na osobnym ekranie */
     await go(`/more/progress?ex=${ex('Pull Up').id}`); await flushAll(10); expect(screen.getByText('e1RM will appear once you enter your body weight in Settings.')).toBeTruthy();
   });
 });
 
 describe('E4 / MER-10: przypisanie partii — „uproszczenie, nie wynik badań” na ekranie ćwiczenia', () => {
   test('ćwiczenie z biblioteki i własne: dopisek przy partiach (do czasu źródeł dla danego ćwiczenia — seed.MUSCLE_SOURCES)', async () => {
+    /* research biblioteki (09.10.2026): Back Squat ma źródła („mocne”) — bez dopisku; Dead Bug — jedno źródło: dopisek zostaje */
     await boot(); await go(`/exercise/${ex('Back Squat').id}`); await flushAll(10);
-    expect(screen.getByText(/^Przypisanie partii mięśniowych — uproszczenie, nie wynik badań\./)).toBeTruthy();
+    expect(screen.queryByText(/^Przypisanie partii mięśniowych — uproszczenie, nie wynik badań\./)).toBeNull();
+    await go(`/exercise/${ex('Dead Bug').id}`); await flushAll(10); /* scalenie fix-ui: dopisek wg pewności (seed.muscleConfidence) — „jedno źródło” */
+    expect(screen.getByText(/^Przypisanie partii mięśniowych — jedno źródło, nie ustalone\./)).toBeTruthy(); expect(screen.queryByText(/^Przypisanie partii mięśniowych — uproszczenie/)).toBeNull();
     const own = store.newExercise('Moje'); await flushAll(5); await go(`/exercise/${own.id}`); await flushAll(10);
     expect(screen.getByText(/^Przypisanie partii mięśniowych — uproszczenie, nie wynik badań\./)).toBeTruthy();
   });

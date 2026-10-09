@@ -99,7 +99,7 @@ test('C7 akcje niszczące wymagają potwierdzenia', async () => {
   await expectConfirm(() => swipeDelete(`Usuń szablon: ${s.templates[0].name}`), 'Usunąć szablon?'); expect(s.templates.length).toBe(nTpl);
   await go(`/template/${s.templates[0].id}`); await flushAll(10); await startEdit();
   await expectConfirm(() => swipeDelete(/^Usuń ćwiczenie: /), 'Usunąć z szablonu?');
-  await go('/exercises'); await flushAll(10);
+  await go('/exercises'); await flushAll(10); await type(screen.getByPlaceholderText('Szukaj…'), 'Back Squat'); /* N3: lista wirtualizowana */
   await expectConfirm(() => swipeDelete('Usuń z biblioteki: Back Squat'), 'Usunąć ćwiczenie?'); expect(ex('Back Squat').archived).toBeFalsy();
   await go('/more/bands'); await flushAll(10);
   await expectConfirm(() => swipeDelete(/^Usuń gumę: /), 'Usunąć gumę?'); expect(s.bands.length).toBe(3);

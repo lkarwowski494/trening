@@ -122,7 +122,7 @@ describe('F9 (UI-10 / LIVE-14, wariant A): duża liczba na karcie — jednostka 
     expect(j(nowParts(ex('Bench Press (sztanga)'), s({ weight: 80, reps: 8 })))).toBe('80 kg × 8');
     expect(nowParts(ex('Bench Press (sztanga)'), s({ weight: 80, reps: 8 }))).toEqual({ num: '80', unit: 'kg', tail: ' × 8' });
     expect(j(nowParts(ex('Bench Press (sztanga)'), s({})))).toBe('— × —');
-    const wt = ex('Back Squat'); wt.metric = 'weight_time'; expect(j(nowParts(wt, s({ weight: 20, durationSec: 45 })))).toBe('20 kg × 45s'); wt.metric = 'weight_reps';
+    const wt = ex('Back Squat'); wt.metric = 'weight_time'; expect(j(nowParts(wt, s({ weight: 20, durationSec: 45 })))).toBe('20 kg × 45 s' /* A11-17: jednostka przez t() */); wt.metric = 'weight_reps';
     expect(j(nowParts(ex('Chest Dip'), s({ addKg: 10, reps: 8 })))).toBe('+10 kg × 8');
     expect(j(nowParts(ex('Pull Up'), s({ addKg: -15, reps: 5 })))).toBe('-15 kg × 5');
     expect(j(nowParts(ex('Chest Dip'), s({ reps: 8 })))).toBe('masa ciała × 8');
