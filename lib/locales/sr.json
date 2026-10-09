@@ -1236,5 +1236,13 @@
  "Ponów teraz": "Покушај сада",
  "Treningi nadal czekają na zapis w Apple Health. Sprawdź zgodę w aplikacji Zdrowie: profil → Aplikacje → {app}.": "Тренинзи и даље чекају чување у Apple Health. Проверите дозволу у апликацији Здравље: профил → Апликације → {app}.",
  "Data pomiaru nie może być w przyszłości.": "Датум мерења не може бити у будућности.",
- "Masa ciała musi być większa od zera i nie większa niż {max}.": "Телесна тежина мора бити већа од нуле и највише {max}."
+ "Masa ciała musi być większa od zera i nie większa niż {max}.": "Телесна тежина мора бити већа од нуле и највише {max}.",
+ "Technika": "Техника",
+ "Ustawienie, ruch, wskazówki i częste błędy.": "Почетни положај, покрет, савети и честе грешке.",
+ "Ustawienie": "Почетни положај",
+ "Ruch": "Покрет",
+ "Wskazówki": "Савети",
+ "Częste błędy": "Честе грешке",
+ "Na podstawie: {list}. Własne sformułowania.": "Према: {list}. Сопствене формулације.",
+ "Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.": "Апликација не даје медицинске савете. Код бола, повреде или болести посаветуј се са лекаром или физиотерапеутом."
 }

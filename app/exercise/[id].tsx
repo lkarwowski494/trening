@@ -6,6 +6,7 @@ import { getState, useTick, exById, previousFor, save, deleteExercise, setSummar
 import { GROUPS, GROUP_TO_MUSCLE, METRICS, METRIC_LABEL, LOAD_MODE_LABEL, MUSCLES, REGION_LABEL, muscleLoadOf, musclesSourced, hasWeight, type Equipment, type LoadMode } from '@/lib/seed';
 import { BW_SHARE } from '@/lib/stats';
 import { t, exName, lang } from '@/lib/i18n';
+import { ExerciseCues } from '@/components/ExerciseCues';
 
 const EQ: Equipment[] = ['hantle', 'sztanga', 'masa ciała', 'maszyna', 'linki', 'inne'];
 
@@ -21,6 +22,7 @@ export default function ExerciseEdit() {
     <Screen><ScrollView keyboardShouldPersistTaps="handled" automaticallyAdjustKeyboardInsets contentContainerStyle={{ paddingVertical: 10, paddingBottom: 120 }}>
       <Field label={t('Nazwa')}><Input selectTextOnFocus maxLength={80} value={e.name} onChangeText={v => { e.name = v; save(e); }} onEndEditing={() => { const n = e.name.replace(/\s+/g, ' ').trim(); if (!n) { e.name = initialName.current || t('Nowe ćwiczenie'); save(e); } else { if (n !== e.name) { e.name = n; save(e); } initialName.current = n; /* runda 49 */ } }} /></Field>
       {translated ? <Muted style={{ fontSize: 12, marginTop: -6, marginBottom: 10 }}>{t('Wyświetlane jako: {n}', { n: exName(e) })}</Muted> : null}
+      <ExerciseCues exercise={e} />{/* wskazówki techniki, etap 1 (docs/18 08.10.2026 ok. 23:50) */}
       <Field label={t('Partia')}><ScrollView horizontal keyboardShouldPersistTaps="handled" showsHorizontalScrollIndicator={false}>{GROUPS.map(g => <Chip key={g} label={t(g)} on={e.group === g} onPress={() => { const old = e.group; const auto = old ? GROUP_TO_MUSCLE[old] : undefined; const cur = e.muscles ?? []; e.group = g; const mu = GROUP_TO_MUSCLE[g]; /* runda 5: automatyczna partia z poprzedniej grupy jest podmieniana, a nowa znika z pomocniczych */ if (!cur.length || (cur.length === 1 && cur[0] === auto)) { e.muscles = mu ? [mu] : []; if (mu) e.secondaryMuscles = (e.secondaryMuscles ?? []).filter(x => x !== mu); } save(e); }} />)}</ScrollView></Field>
       <Field label={t('Sprzęt')}><ScrollView horizontal keyboardShouldPersistTaps="handled" showsHorizontalScrollIndicator={false}>{EQ.map(g => <Chip key={g} label={t(g)} on={e.equipment === g} onPress={() => setEquipment(e, g)} />)}</ScrollView></Field>
       <Field label={t('Co logujesz w serii')}><ScrollView horizontal keyboardShouldPersistTaps="handled" showsHorizontalScrollIndicator={false}>{METRICS.map(m => <Chip key={m} label={t(METRIC_LABEL[m])} on={(e.metric ?? 'weight_reps') === m} onPress={() => { e.metric = m; save(e); }} />)}</ScrollView></Field>

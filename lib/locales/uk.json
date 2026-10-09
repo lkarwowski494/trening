@@ -1236,5 +1236,13 @@
  "Ponów teraz": "Повторити зараз",
  "Treningi nadal czekają na zapis w Apple Health. Sprawdź zgodę w aplikacji Zdrowie: profil → Aplikacje → {app}.": "Тренування досі чекають на збереження в Apple Health. Перевірте дозвіл у програмі «Здоров’я»: профіль → Програми → {app}.",
  "Data pomiaru nie może być w przyszłości.": "Дата виміру не може бути в майбутньому.",
- "Masa ciała musi być większa od zera i nie większa niż {max}.": "Маса тіла має бути більшою за нуль і не більшою за {max}."
+ "Masa ciała musi być większa od zera i nie większa niż {max}.": "Маса тіла має бути більшою за нуль і не більшою за {max}.",
+ "Technika": "Техніка",
+ "Ustawienie, ruch, wskazówki i częste błędy.": "Вихідне положення, рух, поради й типові помилки.",
+ "Ustawienie": "Вихідне положення",
+ "Ruch": "Рух",
+ "Wskazówki": "Поради",
+ "Częste błędy": "Типові помилки",
+ "Na podstawie: {list}. Własne sformułowania.": "За матеріалами: {list}. Власні формулювання.",
+ "Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.": "Застосунок не надає медичних порад. У разі болю, травми чи хвороби звернися до лікаря або фізіотерапевта."
 }

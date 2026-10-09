@@ -1,0 +1,7545 @@
+{
+ "orgs": {
+  "ACE": {
+   "name": "American Council on Exercise — Exercise Library (acefitness.org)",
+   "level": 4
+  },
+  "NASM": {
+   "name": "National Academy of Sports Medicine — Exercise Library (nasm.org)",
+   "level": 4
+  },
+  "ExRx.net": {
+   "name": "ExRx.net — Exercise Directory (czytane przez Wayback Machine)",
+   "level": 4
+  },
+  "Stronger by Science": {
+   "name": "Stronger by Science — przewodniki techniki (Greg Nuckols)",
+   "level": 4
+  },
+  "Concept2": {
+   "name": "Concept2 — Indoor Rowing Technique (producent ergometru)",
+   "level": 4
+  },
+  "Swinton i in. (Robert Gordon University)": {
+   "name": "Swinton i in. (Robert Gordon University) — badanie w recenzowanym czasopiśmie (PubMed)",
+   "level": 3
+  },
+  "Fry, Smith, Schilling (University of Memphis)": {
+   "name": "Fry, Smith, Schilling (University of Memphis) — badanie w recenzowanym czasopiśmie (PubMed)",
+   "level": 3
+  }
+ },
+ "sources": {
+  "ace-10": {
+   "org": "ACE",
+   "title": "Hammer Curl (#10)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/10/hammer-curl/",
+   "level": 4
+  },
+  "ace-11": {
+   "org": "ACE",
+   "title": "Back Squat (#11)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/11/back-squat/",
+   "level": 4
+  },
+  "ace-115": {
+   "org": "ACE",
+   "title": "Box Jumps (#115)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/115/box-jumps/",
+   "level": 4
+  },
+  "ace-12": {
+   "org": "ACE",
+   "title": "Bent Over Row (#12)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/12/bent-over-row/",
+   "level": 4
+  },
+  "ace-126": {
+   "org": "ACE",
+   "title": "Single Arm Row (#126)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/126/single-arm-row/",
+   "level": 4
+  },
+  "ace-135": {
+   "org": "ACE",
+   "title": "Bodyweight Squat (#135)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/135/bodyweight-squat/",
+   "level": 4
+  },
+  "ace-139": {
+   "org": "ACE",
+   "title": "Walking Lunges With Twists (#139)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/139/walking-lunges-with-twists/",
+   "level": 4
+  },
+  "ace-14": {
+   "org": "ACE",
+   "title": "Bird Dog (#14)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/14/bird-dog/",
+   "level": 4
+  },
+  "ace-147": {
+   "org": "ACE",
+   "title": "Supine Dead Bug (#147)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/147/supine-dead-bug/",
+   "level": 4
+  },
+  "ace-153": {
+   "org": "ACE",
+   "title": "Lying Hamstrings Curl (#153)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/153/lying-hamstrings-curl/",
+   "level": 4
+  },
+  "ace-154": {
+   "org": "ACE",
+   "title": "Seated Leg Press (#154)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/154/seated-leg-press/",
+   "level": 4
+  },
+  "ace-158": {
+   "org": "ACE",
+   "title": "Seated Lat Pulldown (#158)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/158/seated-lat-pulldown/",
+   "level": 4
+  },
+  "ace-160": {
+   "org": "ACE",
+   "title": "Standing Chest Fly (#160)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/160/standing-chest-fly/",
+   "level": 4
+  },
+  "ace-168": {
+   "org": "ACE",
+   "title": "Seated Row (#168)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/168/seated-row/",
+   "level": 4
+  },
+  "ace-185": {
+   "org": "ACE",
+   "title": "Triceps Pushdowns (#185)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/185/triceps-pushdowns/",
+   "level": 4
+  },
+  "ace-186": {
+   "org": "ACE",
+   "title": "Seated Shoulder Press (#186)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/186/seated-shoulder-press/",
+   "level": 4
+  },
+  "ace-188": {
+   "org": "ACE",
+   "title": "Seated Chest Press (#188)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/188/seated-chest-press/",
+   "level": 4
+  },
+  "ace-19": {
+   "org": "ACE",
+   "title": "Chest Press (#19)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/19/chest-press/",
+   "level": 4
+  },
+  "ace-190": {
+   "org": "ACE",
+   "title": "Chin Ups (#190)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/190/chin-ups/",
+   "level": 4
+  },
+  "ace-191": {
+   "org": "ACE",
+   "title": "Pull Ups (#191)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/191/pull-ups/",
+   "level": 4
+  },
+  "ace-21": {
+   "org": "ACE",
+   "title": "Lying Chest Fly (#21)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/21/lying-chest-fly/",
+   "level": 4
+  },
+  "ace-22": {
+   "org": "ACE",
+   "title": "Front Squat (#22)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/22/front-squat/",
+   "level": 4
+  },
+  "ace-24": {
+   "org": "ACE",
+   "title": "Push Press (#24)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/24/push-press/",
+   "level": 4
+  },
+  "ace-25": {
+   "org": "ACE",
+   "title": "Incline Chest Press (#25)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/25/incline-chest-press/",
+   "level": 4
+  },
+  "ace-258": {
+   "org": "ACE",
+   "title": "Mountain Climbers (#258)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/258/mountain-climbers/",
+   "level": 4
+  },
+  "ace-26": {
+   "org": "ACE",
+   "title": "Lateral Raise (#26)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/26/lateral-raise/",
+   "level": 4
+  },
+  "ace-28": {
+   "org": "ACE",
+   "title": "Step Up (#28)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/28/step-up/",
+   "level": 4
+  },
+  "ace-294": {
+   "org": "ACE",
+   "title": "Calf Raise (#294)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/294/calf-raise/",
+   "level": 4
+  },
+  "ace-303": {
+   "org": "ACE",
+   "title": "Side Plank (#303)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/303/side-plank/",
+   "level": 4
+  },
+  "ace-305": {
+   "org": "ACE",
+   "title": "V Twist (#305)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/305/v-twist/",
+   "level": 4
+  },
+  "ace-308": {
+   "org": "ACE",
+   "title": "Pistol Squat (#308)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/308/pistol-squat/",
+   "level": 4
+  },
+  "ace-311": {
+   "org": "ACE",
+   "title": "Close Grip Bench Press (#311)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/311/close-grip-bench-press/",
+   "level": 4
+  },
+  "ace-317": {
+   "org": "ACE",
+   "title": "Romanian Deadlift (#317)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/317/romanian-deadlift/",
+   "level": 4
+  },
+  "ace-318": {
+   "org": "ACE",
+   "title": "Hip Bridge (#318)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/318/hip-bridge/",
+   "level": 4
+  },
+  "ace-319": {
+   "org": "ACE",
+   "title": "Reverse Lunge (#319)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/319/reverse-lunge/",
+   "level": 4
+  },
+  "ace-32": {
+   "org": "ACE",
+   "title": "Front Plank (#32)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/32/front-plank/",
+   "level": 4
+  },
+  "ace-322": {
+   "org": "ACE",
+   "title": "Standing Bicep Curl (#322)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/322/standing-bicep-curl/",
+   "level": 4
+  },
+  "ace-336": {
+   "org": "ACE",
+   "title": "High Row (#336)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/336/high-row/",
+   "level": 4
+  },
+  "ace-34": {
+   "org": "ACE",
+   "title": "Incline Reverse Fly (#34)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/34/incline-reverse-fly/",
+   "level": 4
+  },
+  "ace-353": {
+   "org": "ACE",
+   "title": "Reverse Fly (#353)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/353/reverse-fly/",
+   "level": 4
+  },
+  "ace-36": {
+   "org": "ACE",
+   "title": "Lying Barbell Triceps Extensions (#36)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/36/lying-barbell-triceps-extensions/",
+   "level": 4
+  },
+  "ace-362": {
+   "org": "ACE",
+   "title": "Goblet Squat (#362)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/362/goblet-squat/",
+   "level": 4
+  },
+  "ace-363": {
+   "org": "ACE",
+   "title": "Lunge (#363)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/363/lunge/",
+   "level": 4
+  },
+  "ace-366": {
+   "org": "ACE",
+   "title": "Bulgarian Split Squat (#366)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/366/bulgarian-split-squat/",
+   "level": 4
+  },
+  "ace-367": {
+   "org": "ACE",
+   "title": "Elevated Glute Bridge (#367)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/367/elevated-glute-bridge/",
+   "level": 4
+  },
+  "ace-391": {
+   "org": "ACE",
+   "title": "Swing (#391)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/391/swing/",
+   "level": 4
+  },
+  "ace-41": {
+   "org": "ACE",
+   "title": "Push Up (#41)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/41/push-up/",
+   "level": 4
+  },
+  "ace-43": {
+   "org": "ACE",
+   "title": "Seated Shoulder Press (#43)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/43/seated-shoulder-press/",
+   "level": 4
+  },
+  "ace-44": {
+   "org": "ACE",
+   "title": "Seated Biceps Curl (#44)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/44/seated-biceps-curl/",
+   "level": 4
+  },
+  "ace-48": {
+   "org": "ACE",
+   "title": "Seated Row (#48)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/48/seated-row/",
+   "level": 4
+  },
+  "ace-49": {
+   "org": "ACE",
+   "title": "Glute Bridge (#49)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/49/glute-bridge/",
+   "level": 4
+  },
+  "ace-5": {
+   "org": "ACE",
+   "title": "Chest Press (#5)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/5/chest-press/",
+   "level": 4
+  },
+  "ace-51": {
+   "org": "ACE",
+   "title": "Calf Raises (#51)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/51/calf-raises/",
+   "level": 4
+  },
+  "ace-52": {
+   "org": "ACE",
+   "title": "Crunch (#52)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/52/crunch/",
+   "level": 4
+  },
+  "ace-54": {
+   "org": "ACE",
+   "title": "Front Raise (#54)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/54/front-raise/",
+   "level": 4
+  },
+  "ace-6": {
+   "org": "ACE",
+   "title": "Deadlift (#6)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/6/deadlift/",
+   "level": 4
+  },
+  "ace-65": {
+   "org": "ACE",
+   "title": "Russian Twist (#65)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/65/russian-twist/",
+   "level": 4
+  },
+  "ace-70": {
+   "org": "ACE",
+   "title": "Bicep Curl (#70)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/70/bicep-curl/",
+   "level": 4
+  },
+  "ace-71": {
+   "org": "ACE",
+   "title": "Standing Shoulder Press (#71)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/71/standing-shoulder-press/",
+   "level": 4
+  },
+  "ace-72": {
+   "org": "ACE",
+   "title": "Shrug (#72)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/72/shrug/",
+   "level": 4
+  },
+  "ace-73": {
+   "org": "ACE",
+   "title": "Standing Calf Raises Wall (#73)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/73/standing-calf-raises-wall/",
+   "level": 4
+  },
+  "ace-74": {
+   "org": "ACE",
+   "title": "Triceps Extension (#74)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/74/triceps-extension/",
+   "level": 4
+  },
+  "ace-75": {
+   "org": "ACE",
+   "title": "Standing Shrug (#75)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/75/standing-shrug/",
+   "level": 4
+  },
+  "ace-84": {
+   "org": "ACE",
+   "title": "Trx Reg Back Row (#84)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/84/trx-reg-back-row/",
+   "level": 4
+  },
+  "aceblog-5881": {
+   "org": "ACE",
+   "title": "Reap the Benefits of Rowing With 3 Fast and Efficient Workouts (blog, 2016)",
+   "url": "https://www.acefitness.org/resources/everyone/blog/5881/reap-the-benefits-of-rowing-with-3-fast-and-efficient-workouts/",
+   "level": 4
+  },
+  "acecert-7403": {
+   "org": "ACE",
+   "title": "Understanding the Barbell Hip Thrust (ACE Certified, XI 2019)",
+   "url": "https://www.acefitness.org/continuing-education/certified/november-2019/7403/understanding-the-barbell-hip-thrust/",
+   "level": 4
+  },
+  "c2-technique": {
+   "org": "Concept2",
+   "title": "Indoor Rowing Technique",
+   "url": "https://www.concept2.com/training/rowing-technique",
+   "level": 4
+  },
+  "exrx-BackGeneral/BBBentOverRow": {
+   "org": "ExRx.net",
+   "title": "BBBentOverRow",
+   "url": "https://exrx.net/WeightExercises/BackGeneral/BBBentOverRow",
+   "archive": "https://web.archive.org/web/20230227195843/https://exrx.net/WeightExercises/BackGeneral/BBBentOverRow",
+   "level": 4
+  },
+  "exrx-BackGeneral/BWSupineRow": {
+   "org": "ExRx.net",
+   "title": "BWSupineRow",
+   "url": "https://exrx.net/WeightExercises/BackGeneral/BWSupineRow",
+   "archive": "https://web.archive.org/web/20250510042620/https://exrx.net/WeightExercises/BackGeneral/BWSupineRow",
+   "level": 4
+  },
+  "exrx-BackGeneral/CBSeatedRow": {
+   "org": "ExRx.net",
+   "title": "CBSeatedRow",
+   "url": "https://exrx.net/WeightExercises/BackGeneral/CBSeatedRow",
+   "archive": "https://web.archive.org/web/20220816182625/https://exrx.net/WeightExercises/BackGeneral/CBSeatedRow",
+   "level": 4
+  },
+  "exrx-BackGeneral/DBBentOverRow": {
+   "org": "ExRx.net",
+   "title": "DBBentOverRow",
+   "url": "https://exrx.net/WeightExercises/BackGeneral/DBBentOverRow",
+   "archive": "https://web.archive.org/web/20221218023644/https://exrx.net/WeightExercises/BackGeneral/DBBentOverRow",
+   "level": 4
+  },
+  "exrx-BackGeneral/DBInclineRow": {
+   "org": "ExRx.net",
+   "title": "DBInclineRow",
+   "url": "https://exrx.net/WeightExercises/BackGeneral/DBInclineRow",
+   "archive": "https://web.archive.org/web/20220831072134/https://exrx.net/WeightExercises/BackGeneral/DBInclineRow",
+   "level": 4
+  },
+  "exrx-BackGeneral/DBLyingRow": {
+   "org": "ExRx.net",
+   "title": "DBLyingRow",
+   "url": "https://exrx.net/WeightExercises/BackGeneral/DBLyingRow",
+   "archive": "https://web.archive.org/web/20230531232843/https://exrx.net/WeightExercises/BackGeneral/DBLyingRow",
+   "level": 4
+  },
+  "exrx-BackGeneral/LVTBarRow": {
+   "org": "ExRx.net",
+   "title": "LVTBarRow",
+   "url": "https://exrx.net/WeightExercises/BackGeneral/LVTBarRow",
+   "archive": "https://web.archive.org/web/20250118124947/https://exrx.net/WeightExercises/BackGeneral/LVTBarRow",
+   "level": 4
+  },
+  "exrx-BackGeneral/LVTBarRowLM": {
+   "org": "ExRx.net",
+   "title": "LVTBarRowLM",
+   "url": "https://exrx.net/WeightExercises/BackGeneral/LVTBarRowLM",
+   "archive": "https://web.archive.org/web/20190824065349/https://www.exrx.net/WeightExercises/BackGeneral/LVTBarRowLM",
+   "level": 4
+  },
+  "exrx-Biceps/BBCurl": {
+   "org": "ExRx.net",
+   "title": "BBCurl",
+   "url": "https://exrx.net/WeightExercises/Biceps/BBCurl",
+   "archive": "https://web.archive.org/web/20230314202340/https://exrx.net/WeightExercises/Biceps/BBCurl",
+   "level": 4
+  },
+  "exrx-Biceps/CBCurl": {
+   "org": "ExRx.net",
+   "title": "CBCurl",
+   "url": "https://exrx.net/WeightExercises/Biceps/CBCurl",
+   "archive": "https://web.archive.org/web/20231121070212/https://exrx.net/WeightExercises/Biceps/CBCurl",
+   "level": 4
+  },
+  "exrx-Biceps/DBCurl": {
+   "org": "ExRx.net",
+   "title": "DBCurl",
+   "url": "https://exrx.net/WeightExercises/Biceps/DBCurl",
+   "archive": "https://web.archive.org/web/20240105203817/https://exrx.net/WeightExercises/Biceps/DBCurl",
+   "level": 4
+  },
+  "exrx-Brachioradialis/DBHammerCurl": {
+   "org": "ExRx.net",
+   "title": "DBHammerCurl",
+   "url": "https://exrx.net/WeightExercises/Brachioradialis/DBHammerCurl",
+   "archive": "https://web.archive.org/web/20220412005934/https://exrx.net/WeightExercises/Brachioradialis/DBHammerCurl",
+   "level": 4
+  },
+  "exrx-DeltoidAnterior/BBMilitaryPress": {
+   "org": "ExRx.net",
+   "title": "BBMilitaryPress",
+   "url": "https://exrx.net/WeightExercises/DeltoidAnterior/BBMilitaryPress",
+   "archive": "https://web.archive.org/web/20230227195849/https://exrx.net/WeightExercises/DeltoidAnterior/BBMilitaryPress",
+   "level": 4
+  },
+  "exrx-DeltoidAnterior/CBStandingShoulderPress": {
+   "org": "ExRx.net",
+   "title": "CBStandingShoulderPress",
+   "url": "https://exrx.net/WeightExercises/DeltoidAnterior/CBStandingShoulderPress",
+   "archive": "https://web.archive.org/web/20230306032138/https://exrx.net/WeightExercises/DeltoidAnterior/CBStandingShoulderPress",
+   "level": 4
+  },
+  "exrx-DeltoidAnterior/DBFrontRaise": {
+   "org": "ExRx.net",
+   "title": "DBFrontRaise",
+   "url": "https://exrx.net/WeightExercises/DeltoidAnterior/DBFrontRaise",
+   "archive": "https://web.archive.org/web/20220816182633/https://exrx.net/WeightExercises/DeltoidAnterior/DBFrontRaise",
+   "level": 4
+  },
+  "exrx-DeltoidAnterior/DBShoulderPress": {
+   "org": "ExRx.net",
+   "title": "DBShoulderPress",
+   "url": "https://exrx.net/WeightExercises/DeltoidAnterior/DBShoulderPress",
+   "archive": "https://web.archive.org/web/20221218023659/https://exrx.net/WeightExercises/DeltoidAnterior/DBShoulderPress",
+   "level": 4
+  },
+  "exrx-DeltoidLateral/CBLateralRaise": {
+   "org": "ExRx.net",
+   "title": "CBLateralRaise",
+   "url": "https://exrx.net/WeightExercises/DeltoidLateral/CBLateralRaise",
+   "archive": "https://web.archive.org/web/20230306032138/https://exrx.net/WeightExercises/DeltoidLateral/CBLateralRaise",
+   "level": 4
+  },
+  "exrx-DeltoidLateral/CBOneArmLateralRaise": {
+   "org": "ExRx.net",
+   "title": "CBOneArmLateralRaise",
+   "url": "https://exrx.net/WeightExercises/DeltoidLateral/CBOneArmLateralRaise",
+   "archive": "https://web.archive.org/web/20231121100641/https://exrx.net/WeightExercises/DeltoidLateral/CBOneArmLateralRaise",
+   "level": 4
+  },
+  "exrx-DeltoidLateral/DBLateralRaise": {
+   "org": "ExRx.net",
+   "title": "DBLateralRaise",
+   "url": "https://exrx.net/WeightExercises/DeltoidLateral/DBLateralRaise",
+   "archive": "https://web.archive.org/web/20240105210847/https://exrx.net/WeightExercises/DeltoidLateral/DBLateralRaise",
+   "level": 4
+  },
+  "exrx-DeltoidPosterior/CBStandingRearDeltRowRope": {
+   "org": "ExRx.net",
+   "title": "CBStandingRearDeltRowRope",
+   "url": "https://exrx.net/WeightExercises/DeltoidPosterior/CBStandingRearDeltRowRope",
+   "archive": "https://web.archive.org/web/20230331040950/https://exrx.net/WeightExercises/DeltoidPosterior/CBStandingRearDeltRowRope",
+   "level": 4
+  },
+  "exrx-DeltoidPosterior/DBRearLateralRaise": {
+   "org": "ExRx.net",
+   "title": "DBRearLateralRaise",
+   "url": "https://exrx.net/WeightExercises/DeltoidPosterior/DBRearLateralRaise",
+   "archive": "https://web.archive.org/web/20220525000244/https://exrx.net/WeightExercises/DeltoidPosterior/DBRearLateralRaise",
+   "level": 4
+  },
+  "exrx-DeltoidPosterior/LVRearLateralRaise": {
+   "org": "ExRx.net",
+   "title": "LVRearLateralRaise",
+   "url": "https://exrx.net/WeightExercises/DeltoidPosterior/LVRearLateralRaise",
+   "archive": "https://web.archive.org/web/20231031202541/https://exrx.net/WeightExercises/DeltoidPosterior/LVRearLateralRaise",
+   "level": 4
+  },
+  "exrx-DeltoidPosterior/LVReverseFlyPronated": {
+   "org": "ExRx.net",
+   "title": "LVReverseFlyPronated",
+   "url": "https://exrx.net/WeightExercises/DeltoidPosterior/LVReverseFlyPronated",
+   "archive": "https://web.archive.org/web/20240126173713/https://exrx.net/WeightExercises/DeltoidPosterior/LVReverseFlyPronated",
+   "level": 4
+  },
+  "exrx-ErectorSpinae/BBDeadlift": {
+   "org": "ExRx.net",
+   "title": "BBDeadlift",
+   "url": "https://exrx.net/WeightExercises/ErectorSpinae/BBDeadlift",
+   "archive": "https://web.archive.org/web/20221218023338/https://exrx.net/WeightExercises/ErectorSpinae/BBDeadlift",
+   "level": 4
+  },
+  "exrx-ErectorSpinae/BBSumoDeadlift": {
+   "org": "ExRx.net",
+   "title": "BBSumoDeadlift",
+   "url": "https://exrx.net/WeightExercises/ErectorSpinae/BBSumoDeadlift",
+   "archive": "https://web.archive.org/web/20230530074021/https://exrx.net/WeightExercises/ErectorSpinae/BBSumoDeadlift",
+   "level": 4
+  },
+  "exrx-ErectorSpinae/BWBirdDog": {
+   "org": "ExRx.net",
+   "title": "BWBirdDog",
+   "url": "https://exrx.net/WeightExercises/ErectorSpinae/BWBirdDog",
+   "archive": "https://web.archive.org/web/20230531114932/https://exrx.net/WeightExercises/ErectorSpinae/BWBirdDog",
+   "level": 4
+  },
+  "exrx-ErectorSpinae/TBDeadlift": {
+   "org": "ExRx.net",
+   "title": "TBDeadlift",
+   "url": "https://exrx.net/WeightExercises/ErectorSpinae/TBDeadlift",
+   "archive": "https://web.archive.org/web/20210506155208/https://exrx.net/WeightExercises/ErectorSpinae/TBDeadlift",
+   "level": 4
+  },
+  "exrx-Gastrocnemius/BWStandingCalfRaise": {
+   "org": "ExRx.net",
+   "title": "BWStandingCalfRaise",
+   "url": "https://exrx.net/WeightExercises/Gastrocnemius/BWStandingCalfRaise",
+   "archive": "https://web.archive.org/web/20210501093132/https://exrx.net/WeightExercises/Gastrocnemius/BWStandingCalfRaise",
+   "level": 4
+  },
+  "exrx-Gastrocnemius/DBSingleLegCalfRaise": {
+   "org": "ExRx.net",
+   "title": "DBSingleLegCalfRaise",
+   "url": "https://exrx.net/WeightExercises/Gastrocnemius/DBSingleLegCalfRaise",
+   "archive": "https://web.archive.org/web/20230609053308/https://exrx.net/WeightExercises/Gastrocnemius/DBSingleLegCalfRaise",
+   "level": 4
+  },
+  "exrx-Gastrocnemius/LVStandingCalfRaise": {
+   "org": "ExRx.net",
+   "title": "LVStandingCalfRaise",
+   "url": "https://exrx.net/WeightExercises/Gastrocnemius/LVStandingCalfRaise",
+   "archive": "https://web.archive.org/web/20230407071949/https://exrx.net/WeightExercises/Gastrocnemius/LVStandingCalfRaise",
+   "level": 4
+  },
+  "exrx-Gastrocnemius/SL45CalfPress": {
+   "org": "ExRx.net",
+   "title": "SL45CalfPress",
+   "url": "https://exrx.net/WeightExercises/Gastrocnemius/SL45CalfPress",
+   "archive": "https://web.archive.org/web/20231122093928/https://exrx.net/WeightExercises/Gastrocnemius/SL45CalfPress",
+   "level": 4
+  },
+  "exrx-GluteusMaximus/BBHipThrust": {
+   "org": "ExRx.net",
+   "title": "BBHipThrust",
+   "url": "https://exrx.net/WeightExercises/GluteusMaximus/BBHipThrust",
+   "archive": "https://web.archive.org/web/20210507002610/https://exrx.net/WeightExercises/GluteusMaximus/BBHipThrust",
+   "level": 4
+  },
+  "exrx-Hamstrings/BBGoodMorning": {
+   "org": "ExRx.net",
+   "title": "BBGoodMorning",
+   "url": "https://exrx.net/WeightExercises/Hamstrings/BBGoodMorning",
+   "archive": "https://web.archive.org/web/20230311202405/https://exrx.net/WeightExercises/Hamstrings/BBGoodMorning",
+   "level": 4
+  },
+  "exrx-Hamstrings/DBStraightLegDeadlift": {
+   "org": "ExRx.net",
+   "title": "DBStraightLegDeadlift",
+   "url": "https://exrx.net/WeightExercises/Hamstrings/DBStraightLegDeadlift",
+   "archive": "https://web.archive.org/web/20220203041733/https://exrx.net/WeightExercises/Hamstrings/DBStraightLegDeadlift",
+   "level": 4
+  },
+  "exrx-HipFlexors/STMountainClimber": {
+   "org": "ExRx.net",
+   "title": "STMountainClimber",
+   "url": "https://exrx.net/WeightExercises/HipFlexors/STMountainClimber",
+   "archive": "https://web.archive.org/web/20190922161058/https://www.exrx.net/WeightExercises/HipFlexors/STMountainClimber",
+   "level": 4
+  },
+  "exrx-Kettlebell/KBTwoArmSwing": {
+   "org": "ExRx.net",
+   "title": "KBTwoArmSwing",
+   "url": "https://exrx.net/WeightExercises/Kettlebell/KBTwoArmSwing",
+   "archive": "https://web.archive.org/web/20230406171303/https://exrx.net/WeightExercises/Kettlebell/KBTwoArmSwing",
+   "level": 4
+  },
+  "exrx-LatissimusDorsi/BWPullup": {
+   "org": "ExRx.net",
+   "title": "BWPullup",
+   "url": "https://exrx.net/WeightExercises/LatissimusDorsi/BWPullup",
+   "archive": "https://web.archive.org/web/20230524140351/https://exrx.net/WeightExercises/LatissimusDorsi/BWPullup",
+   "level": 4
+  },
+  "exrx-LatissimusDorsi/BWPullupN": {
+   "org": "ExRx.net",
+   "title": "BWPullupN",
+   "url": "https://exrx.net/WeightExercises/LatissimusDorsi/BWPullupN",
+   "archive": "https://web.archive.org/web/20220412004706/https://exrx.net/WeightExercises/LatissimusDorsi/BWPullupN",
+   "level": 4
+  },
+  "exrx-LatissimusDorsi/BWUnderhandChinup": {
+   "org": "ExRx.net",
+   "title": "BWUnderhandChinup",
+   "url": "https://exrx.net/WeightExercises/LatissimusDorsi/BWUnderhandChinup",
+   "archive": "https://web.archive.org/web/20230523091658/https://exrx.net/WeightExercises/LatissimusDorsi/BWUnderhandChinup",
+   "level": 4
+  },
+  "exrx-LatissimusDorsi/CBFrontPulldown": {
+   "org": "ExRx.net",
+   "title": "CBFrontPulldown",
+   "url": "https://exrx.net/WeightExercises/LatissimusDorsi/CBFrontPulldown",
+   "archive": "https://web.archive.org/web/20221216151339/https://exrx.net/WeightExercises/LatissimusDorsi/CBFrontPulldown",
+   "level": 4
+  },
+  "exrx-OlympicLifts/PushPress": {
+   "org": "ExRx.net",
+   "title": "PushPress",
+   "url": "https://exrx.net/WeightExercises/OlympicLifts/PushPress",
+   "archive": "https://web.archive.org/web/20220802212347/https://exrx.net/WeightExercises/OlympicLifts/PushPress",
+   "level": 4
+  },
+  "exrx-OlympicLifts/RomanianDeadlift": {
+   "org": "ExRx.net",
+   "title": "RomanianDeadlift",
+   "url": "https://exrx.net/WeightExercises/OlympicLifts/RomanianDeadlift",
+   "archive": "https://web.archive.org/web/20230304211839/https://exrx.net/WeightExercises/OlympicLifts/RomanianDeadlift",
+   "level": 4
+  },
+  "exrx-PectoralClavicular/BBInclineBenchPress": {
+   "org": "ExRx.net",
+   "title": "BBInclineBenchPress",
+   "url": "https://exrx.net/WeightExercises/PectoralClavicular/BBInclineBenchPress",
+   "archive": "https://web.archive.org/web/20230302054321/https://exrx.net/WeightExercises/PectoralClavicular/BBInclineBenchPress",
+   "level": 4
+  },
+  "exrx-PectoralClavicular/DBInclineBenchPress": {
+   "org": "ExRx.net",
+   "title": "DBInclineBenchPress",
+   "url": "https://exrx.net/WeightExercises/PectoralClavicular/DBInclineBenchPress",
+   "archive": "https://web.archive.org/web/20220914021856/https://exrx.net/WeightExercises/PectoralClavicular/DBInclineBenchPress",
+   "level": 4
+  },
+  "exrx-PectoralSternal/BBBenchPress": {
+   "org": "ExRx.net",
+   "title": "BBBenchPress",
+   "url": "https://exrx.net/WeightExercises/PectoralSternal/BBBenchPress",
+   "archive": "https://web.archive.org/web/20230320115018/https://exrx.net/WeightExercises/PectoralSternal/BBBenchPress",
+   "level": 4
+  },
+  "exrx-PectoralSternal/BWInclinePushup": {
+   "org": "ExRx.net",
+   "title": "BWInclinePushup",
+   "url": "https://exrx.net/WeightExercises/PectoralSternal/BWInclinePushup",
+   "archive": "https://web.archive.org/web/20230525113310/https://exrx.net/WeightExercises/PectoralSternal/BWInclinePushup",
+   "level": 4
+  },
+  "exrx-PectoralSternal/BWPushup": {
+   "org": "ExRx.net",
+   "title": "BWPushup",
+   "url": "https://exrx.net/WeightExercises/PectoralSternal/BWPushup",
+   "archive": "https://web.archive.org/web/20230523091736/https://exrx.net/WeightExercises/PectoralSternal/BWPushup",
+   "level": 4
+  },
+  "exrx-PectoralSternal/CBStandingFly": {
+   "org": "ExRx.net",
+   "title": "CBStandingFly",
+   "url": "https://exrx.net/WeightExercises/PectoralSternal/CBStandingFly",
+   "archive": "https://web.archive.org/web/20210411175352/https://exrx.net/WeightExercises/PectoralSternal/CBStandingFly",
+   "level": 4
+  },
+  "exrx-PectoralSternal/DBBenchPress": {
+   "org": "ExRx.net",
+   "title": "DBBenchPress",
+   "url": "https://exrx.net/WeightExercises/PectoralSternal/DBBenchPress",
+   "archive": "https://web.archive.org/web/20221218023649/https://exrx.net/WeightExercises/PectoralSternal/DBBenchPress",
+   "level": 4
+  },
+  "exrx-PectoralSternal/DBFly": {
+   "org": "ExRx.net",
+   "title": "DBFly",
+   "url": "https://exrx.net/WeightExercises/PectoralSternal/DBFly",
+   "archive": "https://web.archive.org/web/20220818045122/https://exrx.net/WeightExercises/PectoralSternal/DBFly",
+   "level": 4
+  },
+  "exrx-PectoralSternal/LVChestPress": {
+   "org": "ExRx.net",
+   "title": "LVChestPress",
+   "url": "https://exrx.net/WeightExercises/PectoralSternal/LVChestPress",
+   "archive": "https://web.archive.org/web/20231122040539/https://exrx.net/WeightExercises/PectoralSternal/LVChestPress",
+   "level": 4
+  },
+  "exrx-Quadriceps/BBFrontSquat": {
+   "org": "ExRx.net",
+   "title": "BBFrontSquat",
+   "url": "https://exrx.net/WeightExercises/Quadriceps/BBFrontSquat",
+   "archive": "https://web.archive.org/web/20230304211839/https://exrx.net/WeightExercises/Quadriceps/BBFrontSquat",
+   "level": 4
+  },
+  "exrx-Quadriceps/BBFullSquat": {
+   "org": "ExRx.net",
+   "title": "BBFullSquat",
+   "url": "https://exrx.net/WeightExercises/Quadriceps/BBFullSquat",
+   "archive": "https://web.archive.org/web/20221204065643/https://exrx.net/WeightExercises/Quadriceps/BBFullSquat",
+   "level": 4
+  },
+  "exrx-Quadriceps/BWSingleLegSquat": {
+   "org": "ExRx.net",
+   "title": "BWSingleLegSquat",
+   "url": "https://exrx.net/WeightExercises/Quadriceps/BWSingleLegSquat",
+   "archive": "https://web.archive.org/web/20230314202344/https://exrx.net/WeightExercises/Quadriceps/BWSingleLegSquat",
+   "level": 4
+  },
+  "exrx-Quadriceps/CBSquatBelt": {
+   "org": "ExRx.net",
+   "title": "CBSquatBelt",
+   "url": "https://exrx.net/WeightExercises/Quadriceps/CBSquatBelt",
+   "archive": "https://web.archive.org/web/20191210074910/https://exrx.net/WeightExercises/Quadriceps/CBSquatBelt",
+   "level": 4
+  },
+  "exrx-Quadriceps/DBLunge": {
+   "org": "ExRx.net",
+   "title": "DBLunge",
+   "url": "https://exrx.net/WeightExercises/Quadriceps/DBLunge",
+   "archive": "https://web.archive.org/web/20221218023658/https://exrx.net/WeightExercises/Quadriceps/DBLunge",
+   "level": 4
+  },
+  "exrx-Quadriceps/DBRearLunge": {
+   "org": "ExRx.net",
+   "title": "DBRearLunge",
+   "url": "https://exrx.net/WeightExercises/Quadriceps/DBRearLunge",
+   "archive": "https://web.archive.org/web/20231227040116/https://exrx.net/WeightExercises/Quadriceps/DBRearLunge",
+   "level": 4
+  },
+  "exrx-Quadriceps/DBSingleLegSplitSquat": {
+   "org": "ExRx.net",
+   "title": "DBSingleLegSplitSquat",
+   "url": "https://exrx.net/WeightExercises/Quadriceps/DBSingleLegSplitSquat",
+   "archive": "https://web.archive.org/web/20220920153216/https://exrx.net/WeightExercises/Quadriceps/DBSingleLegSplitSquat",
+   "level": 4
+  },
+  "exrx-Quadriceps/DBStepUp": {
+   "org": "ExRx.net",
+   "title": "DBStepUp",
+   "url": "https://exrx.net/WeightExercises/Quadriceps/DBStepUp",
+   "archive": "https://web.archive.org/web/20220826035241/https://exrx.net/WeightExercises/Quadriceps/DBStepUp",
+   "level": 4
+  },
+  "exrx-Quadriceps/DBWalkingLunge": {
+   "org": "ExRx.net",
+   "title": "DBWalkingLunge",
+   "url": "https://exrx.net/WeightExercises/Quadriceps/DBWalkingLunge",
+   "archive": "https://web.archive.org/web/20221225223024/https://exrx.net/WeightExercises/Quadriceps/DBWalkingLunge",
+   "level": 4
+  },
+  "exrx-Quadriceps/LVSeatedLegPress": {
+   "org": "ExRx.net",
+   "title": "LVSeatedLegPress",
+   "url": "https://exrx.net/WeightExercises/Quadriceps/LVSeatedLegPress",
+   "archive": "https://web.archive.org/web/20230304211727/https://exrx.net/WeightExercises/Quadriceps/LVSeatedLegPress",
+   "level": 4
+  },
+  "exrx-Quadriceps/SL45LegPress": {
+   "org": "ExRx.net",
+   "title": "SL45LegPress",
+   "url": "https://exrx.net/WeightExercises/Quadriceps/SL45LegPress",
+   "archive": "https://web.archive.org/web/20220924004705/https://exrx.net/WeightExercises/Quadriceps/SL45LegPress",
+   "level": 4
+  },
+  "exrx-Quadriceps/SLHackSquat": {
+   "org": "ExRx.net",
+   "title": "SLHackSquat",
+   "url": "https://exrx.net/WeightExercises/Quadriceps/SLHackSquat",
+   "archive": "https://web.archive.org/web/20220924004705/https://exrx.net/WeightExercises/Quadriceps/SLHackSquat",
+   "level": 4
+  },
+  "exrx-RectusAbdominis/BWCrunch": {
+   "org": "ExRx.net",
+   "title": "BWCrunch",
+   "url": "https://exrx.net/WeightExercises/RectusAbdominis/BWCrunch",
+   "archive": "https://web.archive.org/web/20230523091650/https://exrx.net/WeightExercises/RectusAbdominis/BWCrunch",
+   "level": 4
+  },
+  "exrx-TrapeziusUpper/BBShrug": {
+   "org": "ExRx.net",
+   "title": "BBShrug",
+   "url": "https://exrx.net/WeightExercises/TrapeziusUpper/BBShrug",
+   "archive": "https://web.archive.org/web/20230306153926/https://exrx.net/WeightExercises/TrapeziusUpper/BBShrug",
+   "level": 4
+  },
+  "exrx-TrapeziusUpper/DBShrug": {
+   "org": "ExRx.net",
+   "title": "DBShrug",
+   "url": "https://exrx.net/WeightExercises/TrapeziusUpper/DBShrug",
+   "archive": "https://web.archive.org/web/20240105211625/https://exrx.net/WeightExercises/TrapeziusUpper/DBShrug",
+   "level": 4
+  },
+  "exrx-Triceps/BBCloseGripBenchPress": {
+   "org": "ExRx.net",
+   "title": "BBCloseGripBenchPress",
+   "url": "https://exrx.net/WeightExercises/Triceps/BBCloseGripBenchPress",
+   "archive": "https://web.archive.org/web/20240105211522/https://exrx.net/WeightExercises/Triceps/BBCloseGripBenchPress",
+   "level": 4
+  },
+  "exrx-Triceps/BBLyingTriExt": {
+   "org": "ExRx.net",
+   "title": "BBLyingTriExt",
+   "url": "https://exrx.net/WeightExercises/Triceps/BBLyingTriExt",
+   "archive": "https://web.archive.org/web/20220926203416/https://exrx.net/WeightExercises/Triceps/BBLyingTriExt",
+   "level": 4
+  },
+  "exrx-Triceps/BWBenchDip": {
+   "org": "ExRx.net",
+   "title": "BWBenchDip",
+   "url": "https://exrx.net/WeightExercises/Triceps/BWBenchDip",
+   "archive": "https://web.archive.org/web/20220823003741/https://exrx.net/WeightExercises/Triceps/BWBenchDip",
+   "level": 4
+  },
+  "exrx-Triceps/CBPushdown": {
+   "org": "ExRx.net",
+   "title": "CBPushdown",
+   "url": "https://exrx.net/WeightExercises/Triceps/CBPushdown",
+   "archive": "https://web.archive.org/web/20220816182710/https://exrx.net/WeightExercises/Triceps/CBPushdown",
+   "level": 4
+  },
+  "exrx-Triceps/CBStandingTricepsExtensionRope": {
+   "org": "ExRx.net",
+   "title": "CBStandingTricepsExtensionRope",
+   "url": "https://exrx.net/WeightExercises/Triceps/CBStandingTricepsExtensionRope",
+   "archive": "https://web.archive.org/web/20220403090026/https://exrx.net/WeightExercises/Triceps/CBStandingTricepsExtensionRope",
+   "level": 4
+  },
+  "exrx-Triceps/CBTriExt": {
+   "org": "ExRx.net",
+   "title": "CBTriExt",
+   "url": "https://exrx.net/WeightExercises/Triceps/CBTriExt",
+   "archive": "https://web.archive.org/web/20231228115509/https://exrx.net/WeightExercises/Triceps/CBTriExt",
+   "level": 4
+  },
+  "exrx-Triceps/DBTriExt": {
+   "org": "ExRx.net",
+   "title": "DBTriExt",
+   "url": "https://exrx.net/WeightExercises/Triceps/DBTriExt",
+   "archive": "https://web.archive.org/web/20220816182656/https://exrx.net/WeightExercises/Triceps/DBTriExt",
+   "level": 4
+  },
+  "nasm-barbell-bench-press": {
+   "org": "NASM",
+   "title": "Barbell Bench Press",
+   "url": "https://www.nasm.org/resource-center/exercise-library/barbell-bench-press",
+   "level": 4
+  },
+  "nasm-barbell-bicep-curl": {
+   "org": "NASM",
+   "title": "Barbell Bicep Curl",
+   "url": "https://www.nasm.org/resource-center/exercise-library/barbell-bicep-curl",
+   "level": 4
+  },
+  "nasm-barbell-deadlift": {
+   "org": "NASM",
+   "title": "Barbell Deadlift",
+   "url": "https://www.nasm.org/resource-center/exercise-library/barbell-deadlift",
+   "level": 4
+  },
+  "nasm-bench-dips": {
+   "org": "NASM",
+   "title": "Bench Dips",
+   "url": "https://www.nasm.org/resource-center/exercise-library/bench-dips",
+   "level": 4
+  },
+  "nasm-bird-dog": {
+   "org": "NASM",
+   "title": "Bird Dog",
+   "url": "https://www.nasm.org/resource-center/exercise-library/bird-dog",
+   "level": 4
+  },
+  "nasm-box-jumps": {
+   "org": "NASM",
+   "title": "Box Jumps",
+   "url": "https://www.nasm.org/resource-center/exercise-library/box-jumps",
+   "level": 4
+  },
+  "nasm-bulgarian-split-squat": {
+   "org": "NASM",
+   "title": "Bulgarian Split Squat",
+   "url": "https://www.nasm.org/resource-center/exercise-library/bulgarian-split-squat",
+   "level": 4
+  },
+  "nasm-cable-crossover": {
+   "org": "NASM",
+   "title": "Cable Crossover",
+   "url": "https://www.nasm.org/resource-center/exercise-library/cable-crossover",
+   "level": 4
+  },
+  "nasm-chest-press-machine": {
+   "org": "NASM",
+   "title": "Chest Press Machine",
+   "url": "https://www.nasm.org/resource-center/exercise-library/chest-press-machine",
+   "level": 4
+  },
+  "nasm-close-grip-bench-press": {
+   "org": "NASM",
+   "title": "Close Grip Bench Press",
+   "url": "https://www.nasm.org/resource-center/exercise-library/close-grip-bench-press",
+   "level": 4
+  },
+  "nasm-dead-bug": {
+   "org": "NASM",
+   "title": "Dead Bug",
+   "url": "https://www.nasm.org/resource-center/exercise-library/dead-bug",
+   "level": 4
+  },
+  "nasm-dumbbell-front-squat": {
+   "org": "NASM",
+   "title": "Dumbbell Front Squat",
+   "url": "https://www.nasm.org/resource-center/exercise-library/dumbbell-front-squat",
+   "level": 4
+  },
+  "nasm-dumbbell-romanian-deadlift": {
+   "org": "NASM",
+   "title": "Dumbbell Romanian Deadlift",
+   "url": "https://www.nasm.org/resource-center/exercise-library/dumbbell-romanian-deadlift",
+   "level": 4
+  },
+  "nasm-face-pull": {
+   "org": "NASM",
+   "title": "Face Pull",
+   "url": "https://www.nasm.org/resource-center/exercise-library/face-pull",
+   "level": 4
+  },
+  "nasm-floor-bridge": {
+   "org": "NASM",
+   "title": "Floor Bridge",
+   "url": "https://www.nasm.org/resource-center/exercise-library/floor-bridge",
+   "level": 4
+  },
+  "nasm-goblet-squat": {
+   "org": "NASM",
+   "title": "Goblet Squat",
+   "url": "https://www.nasm.org/resource-center/exercise-library/goblet-squat",
+   "level": 4
+  },
+  "nasm-good-mornings": {
+   "org": "NASM",
+   "title": "Good Mornings",
+   "url": "https://www.nasm.org/resource-center/exercise-library/good-mornings",
+   "level": 4
+  },
+  "nasm-incline-barbell-bench-press": {
+   "org": "NASM",
+   "title": "Incline Barbell Bench Press",
+   "url": "https://www.nasm.org/resource-center/exercise-library/incline-barbell-bench-press",
+   "level": 4
+  },
+  "nasm-incline-push-up": {
+   "org": "NASM",
+   "title": "Incline Push Up",
+   "url": "https://www.nasm.org/resource-center/exercise-library/incline-push-up",
+   "level": 4
+  },
+  "nasm-kettlebell-deadlift": {
+   "org": "NASM",
+   "title": "Kettlebell Deadlift",
+   "url": "https://www.nasm.org/resource-center/exercise-library/kettlebell-deadlift",
+   "level": 4
+  },
+  "nasm-leg-press": {
+   "org": "NASM",
+   "title": "Leg Press",
+   "url": "https://www.nasm.org/resource-center/exercise-library/leg-press",
+   "level": 4
+  },
+  "nasm-leg-press-calf-raise": {
+   "org": "NASM",
+   "title": "Leg Press Calf Raise",
+   "url": "https://www.nasm.org/resource-center/exercise-library/leg-press-calf-raise",
+   "level": 4
+  },
+  "nasm-lying-leg-curl": {
+   "org": "NASM",
+   "title": "Lying Leg Curl",
+   "url": "https://www.nasm.org/resource-center/exercise-library/lying-leg-curl",
+   "level": 4
+  },
+  "nasm-plank": {
+   "org": "NASM",
+   "title": "Plank",
+   "url": "https://www.nasm.org/resource-center/exercise-library/plank",
+   "level": 4
+  },
+  "nasm-pull-up": {
+   "org": "NASM",
+   "title": "Pull Up",
+   "url": "https://www.nasm.org/resource-center/exercise-library/pull-up",
+   "level": 4
+  },
+  "nasm-push-up": {
+   "org": "NASM",
+   "title": "Push Up",
+   "url": "https://www.nasm.org/resource-center/exercise-library/push-up",
+   "level": 4
+  },
+  "nasm-romanian-deadlift-barbell": {
+   "org": "NASM",
+   "title": "Romanian Deadlift Barbell",
+   "url": "https://www.nasm.org/resource-center/exercise-library/romanian-deadlift-barbell",
+   "level": 4
+  },
+  "nasm-russian-twist": {
+   "org": "NASM",
+   "title": "Russian Twist",
+   "url": "https://www.nasm.org/resource-center/exercise-library/russian-twist",
+   "level": 4
+  },
+  "nasm-seated-machine-row-close-grip": {
+   "org": "NASM",
+   "title": "Seated Machine Row Close Grip",
+   "url": "https://www.nasm.org/resource-center/exercise-library/seated-machine-row-close-grip",
+   "level": 4
+  },
+  "nasm-side-plank": {
+   "org": "NASM",
+   "title": "Side Plank",
+   "url": "https://www.nasm.org/resource-center/exercise-library/side-plank",
+   "level": 4
+  },
+  "nasm-single-leg-squat": {
+   "org": "NASM",
+   "title": "Single Leg Squat",
+   "url": "https://www.nasm.org/resource-center/exercise-library/single-leg-squat",
+   "level": 4
+  },
+  "nasm-two-arm-dumbbell-chest-press-with-band": {
+   "org": "NASM",
+   "title": "Two Arm Dumbbell Chest Press With Band",
+   "url": "https://www.nasm.org/resource-center/exercise-library/two-arm-dumbbell-chest-press-with-band",
+   "level": 4
+  },
+  "nasm-two-arm-incline-dumbbell-chest-press": {
+   "org": "NASM",
+   "title": "Two Arm Incline Dumbbell Chest Press",
+   "url": "https://www.nasm.org/resource-center/exercise-library/two-arm-incline-dumbbell-chest-press",
+   "level": 4
+  },
+  "pm-14636100": {
+   "org": "Fry, Smith, Schilling (University of Memphis)",
+   "title": "Fry i in. 2003, Effect of knee position on hip and knee torques during the barbell squat, J Strength Cond Res 17(4) — abstrakt",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/14636100/",
+   "level": 3
+  },
+  "pm-21659894": {
+   "org": "Swinton i in. (Robert Gordon University)",
+   "title": "Swinton i in. 2011, A biomechanical analysis of straight and hexagonal barbell deadlifts…, J Strength Cond Res 25(7) — abstrakt",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/21659894/",
+   "level": 3
+  },
+  "sbs-how-to-bench": {
+   "org": "Stronger by Science",
+   "title": "How to Bench Press: The Definitive Guide (Greg Nuckols)",
+   "url": "https://www.strongerbyscience.com/how-to-bench/",
+   "level": 4
+  },
+  "sbs-how-to-deadlift": {
+   "org": "Stronger by Science",
+   "title": "How to Deadlift: The Definitive Guide (Greg Nuckols)",
+   "url": "https://www.strongerbyscience.com/how-to-deadlift/",
+   "level": 4
+  },
+  "sbs-how-to-squat": {
+   "org": "Stronger by Science",
+   "title": "How to Squat: The Definitive Guide (Greg Nuckols)",
+   "url": "https://www.strongerbyscience.com/how-to-squat/",
+   "level": 4
+  }
+ },
+ "exercises": {
+  "Deadlift (sztanga)": {
+   "setup": [
+    {
+     "c": "dl.feet",
+     "s": [
+      [
+       "ace-6",
+       "opis"
+      ],
+      [
+       "nasm-barbell-deadlift",
+       "Step 1: Setup"
+      ],
+      [
+       "exrx-ErectorSpinae/BBDeadlift",
+       "Preparation"
+      ]
+     ]
+    },
+    {
+     "c": "dl.grip",
+     "s": [
+      [
+       "ace-6",
+       "opis"
+      ],
+      [
+       "nasm-barbell-deadlift",
+       "Step 1: Setup; FAQ (grip options)"
+      ],
+      [
+       "exrx-ErectorSpinae/BBDeadlift",
+       "Preparation; Comments"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "dl.lift",
+     "s": [
+      [
+       "ace-6",
+       "opis"
+      ],
+      [
+       "nasm-barbell-deadlift",
+       "Step 3: Execute/Drive"
+      ],
+      [
+       "exrx-ErectorSpinae/BBDeadlift",
+       "Execution"
+      ]
+     ]
+    },
+    {
+     "c": "dl.lower",
+     "s": [
+      [
+       "ace-6",
+       "opis"
+      ],
+      [
+       "nasm-barbell-deadlift",
+       "Step 4: Return/Descent"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "hinge.back",
+     "s": [
+      [
+       "ace-6",
+       "opis (straight/flat back)"
+      ],
+      [
+       "nasm-barbell-deadlift",
+       "Step 3; Step 4 (neutral spine)"
+      ],
+      [
+       "exrx-ErectorSpinae/BBDeadlift",
+       "Comments (back straight)"
+      ]
+     ]
+    },
+    {
+     "c": "dl.close",
+     "s": [
+      [
+       "exrx-ErectorSpinae/BBDeadlift",
+       "Comments (keep bar close to body)"
+      ],
+      [
+       "nasm-barbell-deadlift",
+       "Common Mistakes (bar drifting away)"
+      ],
+      [
+       "sbs-how-to-deadlift",
+       "Bar Path"
+      ]
+     ]
+    },
+    {
+     "c": "dl.hipsLow",
+     "s": [
+      [
+       "nasm-barbell-deadlift",
+       "Step 2 (shoulders over the bar)"
+      ],
+      [
+       "exrx-ErectorSpinae/BBDeadlift",
+       "Comments (shoulder slightly behind bar in powerlifting… arms straight)"
+      ],
+      [
+       "sbs-how-to-deadlift",
+       "Bar Path (bar a bit behind the shoulder)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "mis.roundBack",
+     "s": [
+      [
+       "nasm-barbell-deadlift",
+       "Common Mistakes (excessive spinal flexion)"
+      ],
+      [
+       "ace-6",
+       "opis (keep back flat)"
+      ]
+     ]
+    },
+    {
+     "c": "mis.barAway",
+     "s": [
+      [
+       "nasm-barbell-deadlift",
+       "Common Mistakes"
+      ],
+      [
+       "exrx-ErectorSpinae/BBDeadlift",
+       "Comments"
+      ]
+     ]
+    }
+   ]
+  },
+  "Sumo Deadlift": {
+   "setup": [
+    {
+     "c": "sumo.stance",
+     "s": [
+      [
+       "exrx-ErectorSpinae/BBSumoDeadlift",
+       "Preparation; Comments"
+      ],
+      [
+       "sbs-how-to-deadlift",
+       "Stance Width: Sumo Contrast"
+      ]
+     ]
+    },
+    {
+     "c": "sumo.grip",
+     "s": [
+      [
+       "exrx-ErectorSpinae/BBSumoDeadlift",
+       "Preparation; Comments (shoulder width grip)"
+      ],
+      [
+       "sbs-how-to-deadlift",
+       "Grip: Sumo Contrast (hands below shoulders)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "sumo.lift",
+     "s": [
+      [
+       "exrx-ErectorSpinae/BBSumoDeadlift",
+       "Execution"
+      ],
+      [
+       "sbs-how-to-deadlift",
+       "Locking out"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "sumo.kneesOut",
+     "s": [
+      [
+       "exrx-ErectorSpinae/BBSumoDeadlift",
+       "Comments (push feet out, knees pointed out)"
+      ],
+      [
+       "sbs-how-to-deadlift",
+       "Performing the pull: Sumo Contrast"
+      ]
+     ]
+    },
+    {
+     "c": "hinge.back",
+     "s": [
+      [
+       "exrx-ErectorSpinae/BBSumoDeadlift",
+       "Preparation; Comments (back straight)"
+      ],
+      [
+       "sbs-how-to-deadlift",
+       "Lowering under control (spine extended)"
+      ]
+     ]
+    },
+    {
+     "c": "dl.close",
+     "s": [
+      [
+       "exrx-ErectorSpinae/BBSumoDeadlift",
+       "Comments (keep bar close to body)"
+      ],
+      [
+       "sbs-how-to-deadlift",
+       "Bar Path"
+      ]
+     ]
+    }
+   ],
+   "mistakes": []
+  },
+  "Trap Bar Deadlift": {
+   "setup": [
+    {
+     "c": "tb.inside",
+     "s": [
+      [
+       "exrx-ErectorSpinae/TBDeadlift",
+       "Preparation"
+      ],
+      [
+       "pm-21659894",
+       "abstrakt (hexagonal barbell that allowed the lifter to stand within its frame)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "tb.lift",
+     "s": [
+      [
+       "exrx-ErectorSpinae/TBDeadlift",
+       "Execution"
+      ],
+      [
+       "nasm-barbell-deadlift",
+       "Step 3: Execute/Drive (extend hips and knees simultaneously)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "hinge.back",
+     "s": [
+      [
+       "exrx-ErectorSpinae/TBDeadlift",
+       "Preparation; Comments (low back taut, back straight)"
+      ],
+      [
+       "nasm-barbell-deadlift",
+       "Step 3; Step 4 (neutral spine)"
+      ]
+     ]
+    },
+    {
+     "c": "dl.hipsLow",
+     "s": [
+      [
+       "exrx-ErectorSpinae/TBDeadlift",
+       "Comments (shoulders high, arms straight)"
+      ],
+      [
+       "nasm-barbell-deadlift",
+       "Step 2 (shoulders over the bar)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "mis.roundBack",
+     "s": [
+      [
+       "nasm-barbell-deadlift",
+       "Common Mistakes (excessive spinal flexion)"
+      ],
+      [
+       "exrx-ErectorSpinae/TBDeadlift",
+       "Comments (back straight)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Bent Over Row (sztanga)": {
+   "setup": [
+    {
+     "c": "row.hinge",
+     "s": [
+      [
+       "ace-12",
+       "opis"
+      ],
+      [
+       "exrx-BackGeneral/BBBentOverRow",
+       "Preparation"
+      ]
+     ]
+    },
+    {
+     "c": "row.bbGrip",
+     "s": [
+      [
+       "ace-12",
+       "opis (palms down; wrists, elbows and shoulders in line)"
+      ],
+      [
+       "exrx-BackGeneral/BBBentOverRow",
+       "Preparation; Comments (wide or shoulder-width grip)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "row.bbPull",
+     "s": [
+      [
+       "ace-12",
+       "opis (towards the belly button)"
+      ],
+      [
+       "exrx-BackGeneral/BBBentOverRow",
+       "Execution (to upper waist)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "hinge.back",
+     "s": [
+      [
+       "ace-12",
+       "opis (back straight/flat)"
+      ],
+      [
+       "exrx-BackGeneral/BBBentOverRow",
+       "Comments (low back straight)"
+      ]
+     ]
+    },
+    {
+     "c": "row.fullStretch",
+     "s": [
+      [
+       "ace-12",
+       "opis (until the elbows are completely straight)"
+      ],
+      [
+       "exrx-BackGeneral/BBBentOverRow",
+       "Execution (arms extended, shoulders stretched downward)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "mis.roundBack",
+     "s": [
+      [
+       "exrx-BackGeneral/BBBentOverRow",
+       "Comments (low back rounded due to poor form)"
+      ],
+      [
+       "ace-12",
+       "opis (keep the back flat)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Bent Over Row (hantle)": {
+   "setup": [
+    {
+     "c": "row.hinge",
+     "s": [
+      [
+       "ace-12",
+       "opis (sztanga — ten sam wzorzec)"
+      ],
+      [
+       "exrx-BackGeneral/BBBentOverRow",
+       "Preparation (sztanga — ten sam wzorzec)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "row.dbPull",
+     "s": [
+      [
+       "ace-12",
+       "opis (towards the belly button)"
+      ],
+      [
+       "exrx-BackGeneral/BBBentOverRow",
+       "Execution (to upper waist)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "hinge.back",
+     "s": [
+      [
+       "ace-12",
+       "opis (back straight/flat)"
+      ],
+      [
+       "exrx-BackGeneral/BBBentOverRow",
+       "Comments (low back straight)"
+      ]
+     ]
+    },
+    {
+     "c": "row.fullStretch",
+     "s": [
+      [
+       "ace-12",
+       "opis (until the elbows are completely straight)"
+      ],
+      [
+       "exrx-BackGeneral/BBBentOverRow",
+       "Execution (arms extended, shoulders stretched downward)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "mis.roundBack",
+     "s": [
+      [
+       "exrx-BackGeneral/BBBentOverRow",
+       "Comments (low back rounded due to poor form)"
+      ],
+      [
+       "ace-12",
+       "opis (keep the back flat)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Pendlay Row": {
+   "setup": [
+    {
+     "c": "row.hinge",
+     "s": [
+      [
+       "ace-12",
+       "opis"
+      ],
+      [
+       "exrx-BackGeneral/BBBentOverRow",
+       "Preparation; Comments („Also known as Pendlay Row”)"
+      ]
+     ]
+    },
+    {
+     "c": "row.bbGrip",
+     "s": [
+      [
+       "ace-12",
+       "opis"
+      ],
+      [
+       "exrx-BackGeneral/BBBentOverRow",
+       "Preparation"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "row.bbPull",
+     "s": [
+      [
+       "ace-12",
+       "opis"
+      ],
+      [
+       "exrx-BackGeneral/BBBentOverRow",
+       "Execution"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "hinge.back",
+     "s": [
+      [
+       "ace-12",
+       "opis"
+      ],
+      [
+       "exrx-BackGeneral/BBBentOverRow",
+       "Comments"
+      ]
+     ]
+    },
+    {
+     "c": "row.fullStretch",
+     "s": [
+      [
+       "ace-12",
+       "opis"
+      ],
+      [
+       "exrx-BackGeneral/BBBentOverRow",
+       "Execution"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "mis.roundBack",
+     "s": [
+      [
+       "exrx-BackGeneral/BBBentOverRow",
+       "Comments"
+      ],
+      [
+       "ace-12",
+       "opis"
+      ]
+     ]
+    }
+   ]
+  },
+  "One Arm Row (hantle)": {
+   "setup": [
+    {
+     "c": "row1.bench",
+     "s": [
+      [
+       "ace-126",
+       "Step 1"
+      ],
+      [
+       "exrx-BackGeneral/DBBentOverRow",
+       "Preparation; Comments (torso close to horizontal)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "row1.pull",
+     "s": [
+      [
+       "ace-126",
+       "Step 2; Step 3"
+      ],
+      [
+       "exrx-BackGeneral/DBBentOverRow",
+       "Execution"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "row1.noTwist",
+     "s": [
+      [
+       "ace-126",
+       "Step 2 (avoid rotating your body)"
+      ],
+      [
+       "exrx-BackGeneral/DBBentOverRow",
+       "Comments (do not rotate torso)"
+      ]
+     ]
+    },
+    {
+     "c": "row1.top",
+     "s": [
+      [
+       "ace-126",
+       "Step 2 (pulling your upper arm backwards)"
+      ],
+      [
+       "exrx-BackGeneral/DBBentOverRow",
+       "Execution (upper arm just beyond horizontal)"
+      ]
+     ]
+    },
+    {
+     "c": "row.fullStretch",
+     "s": [
+      [
+       "ace-126",
+       "Step 1 (extend your arm towards the floor)"
+      ],
+      [
+       "exrx-BackGeneral/DBBentOverRow",
+       "Execution (shoulder stretched downward)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": []
+  },
+  "Chest Supported Row": {
+   "setup": [
+    {
+     "c": "csr.chest",
+     "s": [
+      [
+       "exrx-BackGeneral/DBInclineRow",
+       "Preparation (lie chest down)"
+      ],
+      [
+       "ace-168",
+       "Step 1; Step 2 (chest against the chest pad)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "csr.pull",
+     "s": [
+      [
+       "exrx-BackGeneral/DBInclineRow",
+       "Execution"
+      ],
+      [
+       "ace-168",
+       "Step 2; Step 3"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "row.elbowsPast",
+     "s": [
+      [
+       "exrx-BackGeneral/DBInclineRow",
+       "Execution (upper arm just beyond height of back)"
+      ],
+      [
+       "ace-168",
+       "Step 3 (until your elbows pass the sides of your body)"
+      ]
+     ]
+    },
+    {
+     "c": "row.fullStretch",
+     "s": [
+      [
+       "exrx-BackGeneral/DBLyingRow",
+       "Execution (arms extended, shoulders stretched downward)"
+      ],
+      [
+       "ace-168",
+       "Step 3 (stopping when your arms are fully extended)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": []
+  },
+  "T-Bar Row": {
+   "setup": [
+    {
+     "c": "row.hinge",
+     "s": [
+      [
+       "exrx-BackGeneral/LVTBarRow",
+       "Preparation"
+      ],
+      [
+       "ace-12",
+       "opis (wiosłowanie w opadzie — ten sam wzorzec)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "tbar.pull",
+     "s": [
+      [
+       "exrx-BackGeneral/LVTBarRow",
+       "Execution"
+      ],
+      [
+       "ace-12",
+       "opis (wiosłowanie w opadzie — ten sam wzorzec)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "hinge.back",
+     "s": [
+      [
+       "exrx-BackGeneral/LVTBarRow",
+       "Comments (keep low back straight)"
+      ],
+      [
+       "ace-12",
+       "opis"
+      ]
+     ]
+    },
+    {
+     "c": "row.fullStretch",
+     "s": [
+      [
+       "exrx-BackGeneral/LVTBarRowLM",
+       "Execution; Comments (full arm extension)"
+      ],
+      [
+       "ace-12",
+       "opis"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "mis.roundBack",
+     "s": [
+      [
+       "exrx-BackGeneral/LVTBarRow",
+       "Comments"
+      ],
+      [
+       "ace-12",
+       "opis"
+      ]
+     ]
+    }
+   ]
+  },
+  "Seated Cable Row": {
+   "setup": [
+    {
+     "c": "scr.sit",
+     "s": [
+      [
+       "ace-48",
+       "opis"
+      ],
+      [
+       "exrx-BackGeneral/CBSeatedRow",
+       "Preparation"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "scr.pull",
+     "s": [
+      [
+       "ace-48",
+       "opis"
+      ],
+      [
+       "exrx-BackGeneral/CBSeatedRow",
+       "Execution"
+      ],
+      [
+       "nasm-seated-machine-row-close-grip",
+       "Step 3; Step 4"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "scr.chest",
+     "s": [
+      [
+       "ace-48",
+       "opis (lift the chest)"
+      ],
+      [
+       "exrx-BackGeneral/CBSeatedRow",
+       "Execution (shoulders back, chest forward)"
+      ],
+      [
+       "nasm-seated-machine-row-close-grip",
+       "Step 3 (retracting your shoulder blades)"
+      ]
+     ]
+    },
+    {
+     "c": "scr.control",
+     "s": [
+      [
+       "ace-48",
+       "opis (slowly straightening the arms)"
+      ],
+      [
+       "exrx-BackGeneral/CBSeatedRow",
+       "Comments (do not pause or bounce at bottom)"
+      ],
+      [
+       "nasm-seated-machine-row-close-grip",
+       "Step 4 (with control)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "mis.jerk",
+     "s": [
+      [
+       "nasm-seated-machine-row-close-grip",
+       "Common Mistakes (jerky movements, momentum)"
+      ],
+      [
+       "exrx-BackGeneral/CBSeatedRow",
+       "Comments (do not bounce)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Wiosłowanie na linkach (siedząc)": {
+   "setup": [
+    {
+     "c": "scr.sit",
+     "s": [
+      [
+       "ace-48",
+       "opis"
+      ],
+      [
+       "exrx-BackGeneral/CBSeatedRow",
+       "Preparation"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "scr.pull",
+     "s": [
+      [
+       "ace-48",
+       "opis"
+      ],
+      [
+       "exrx-BackGeneral/CBSeatedRow",
+       "Execution"
+      ],
+      [
+       "nasm-seated-machine-row-close-grip",
+       "Step 3; Step 4"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "scr.chest",
+     "s": [
+      [
+       "ace-48",
+       "opis (lift the chest)"
+      ],
+      [
+       "exrx-BackGeneral/CBSeatedRow",
+       "Execution (shoulders back, chest forward)"
+      ],
+      [
+       "nasm-seated-machine-row-close-grip",
+       "Step 3 (retracting your shoulder blades)"
+      ]
+     ]
+    },
+    {
+     "c": "scr.control",
+     "s": [
+      [
+       "ace-48",
+       "opis (slowly straightening the arms)"
+      ],
+      [
+       "exrx-BackGeneral/CBSeatedRow",
+       "Comments (do not pause or bounce at bottom)"
+      ],
+      [
+       "nasm-seated-machine-row-close-grip",
+       "Step 4 (with control)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "mis.jerk",
+     "s": [
+      [
+       "nasm-seated-machine-row-close-grip",
+       "Common Mistakes (jerky movements, momentum)"
+      ],
+      [
+       "exrx-BackGeneral/CBSeatedRow",
+       "Comments (do not bounce)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Inverted Row": {
+   "setup": [
+    {
+     "c": "inv.setup",
+     "s": [
+      [
+       "exrx-BackGeneral/BWSupineRow",
+       "Preparation; Execution (keeping body straight)"
+      ],
+      [
+       "ace-84",
+       "Step 1; Step 2"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "inv.pull",
+     "s": [
+      [
+       "exrx-BackGeneral/BWSupineRow",
+       "Execution"
+      ],
+      [
+       "ace-84",
+       "Step 3; Step 4"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "inv.rigid",
+     "s": [
+      [
+       "exrx-BackGeneral/BWSupineRow",
+       "Execution (keeping body straight)"
+      ],
+      [
+       "ace-84",
+       "Step 2; Step 3 (avoid sagging in the low back or hips)"
+      ]
+     ]
+    },
+    {
+     "c": "scr.chest",
+     "s": [
+      [
+       "exrx-BackGeneral/BWSupineRow",
+       "Execution (shoulders back, chest high)"
+      ],
+      [
+       "ace-84",
+       "Step 1; Step 2 (scapulae retracted)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": []
+  },
+  "Lat Pulldown": {
+   "setup": [
+    {
+     "c": "lpd.thighs",
+     "s": [
+      [
+       "ace-158",
+       "Step 1"
+      ],
+      [
+       "exrx-LatissimusDorsi/CBFrontPulldown",
+       "Preparation"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "lpd.pull",
+     "s": [
+      [
+       "ace-158",
+       "Step 2; Step 3"
+      ],
+      [
+       "exrx-LatissimusDorsi/CBFrontPulldown",
+       "Execution"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "lpd.fullStretch",
+     "s": [
+      [
+       "ace-158",
+       "Step 4 (until your elbows are fully extended)"
+      ],
+      [
+       "exrx-LatissimusDorsi/CBFrontPulldown",
+       "Execution (arms and shoulders fully extended)"
+      ]
+     ]
+    },
+    {
+     "c": "lpd.toChest",
+     "s": [
+      [
+       "ace-158",
+       "Step 3 (until the bar nears the chest or elbows begin to move backwards)"
+      ],
+      [
+       "exrx-LatissimusDorsi/CBFrontPulldown",
+       "Execution (to upper chest)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": []
+  },
+  "Pull Up": {
+   "setup": [
+    {
+     "c": "pu.grip",
+     "s": [
+      [
+       "ace-191",
+       "Step 1"
+      ],
+      [
+       "nasm-pull-up",
+       "Step 1: Setup"
+      ],
+      [
+       "exrx-LatissimusDorsi/BWPullup",
+       "Preparation"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "pu.pull",
+     "s": [
+      [
+       "ace-191",
+       "Step 3"
+      ],
+      [
+       "nasm-pull-up",
+       "Step 3; Step 4"
+      ],
+      [
+       "exrx-LatissimusDorsi/BWPullup",
+       "Execution"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "pu.elbowsDown",
+     "s": [
+      [
+       "ace-191",
+       "Step 2"
+      ],
+      [
+       "nasm-pull-up",
+       "Step 3 (driving your elbows downward)"
+      ]
+     ]
+    },
+    {
+     "c": "pu.shoulders",
+     "s": [
+      [
+       "ace-191",
+       "Step 1 (depress and retract your scapulae)"
+      ],
+      [
+       "nasm-pull-up",
+       "Step 2 (depress your shoulder blades)"
+      ]
+     ]
+    },
+    {
+     "c": "pu.noSwing",
+     "s": [
+      [
+       "ace-191",
+       "Step 2 (avoid swinging)"
+      ],
+      [
+       "nasm-pull-up",
+       "Common Mistakes (momentum or kipping)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "pu.partial",
+     "s": [
+      [
+       "nasm-pull-up",
+       "Common Mistakes (not achieving full range of motion)"
+      ],
+      [
+       "exrx-LatissimusDorsi/BWPullup",
+       "Execution (arms and shoulders fully extended)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Chin Up": {
+   "setup": [
+    {
+     "c": "cu.grip",
+     "s": [
+      [
+       "ace-190",
+       "Step 1"
+      ],
+      [
+       "exrx-LatissimusDorsi/BWUnderhandChinup",
+       "Preparation"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "cu.pull",
+     "s": [
+      [
+       "ace-190",
+       "Step 2; Step 3"
+      ],
+      [
+       "exrx-LatissimusDorsi/BWUnderhandChinup",
+       "Execution"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "pu.shoulders",
+     "s": [
+      [
+       "ace-190",
+       "Step 1 (depress and retract your scapulae)"
+      ],
+      [
+       "nasm-pull-up",
+       "Step 2 (podciąganie nachwytem — ta sama zasada)"
+      ]
+     ]
+    },
+    {
+     "c": "pu.noSwing",
+     "s": [
+      [
+       "ace-190",
+       "Step 2 (avoid swinging)"
+      ],
+      [
+       "nasm-pull-up",
+       "Common Mistakes (podciąganie nachwytem — ta sama zasada)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "pu.partial",
+     "s": [
+      [
+       "ace-190",
+       "Step 3 (until your arms are fully extended)"
+      ],
+      [
+       "exrx-LatissimusDorsi/BWUnderhandChinup",
+       "Execution (arms and shoulders fully extended)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Neutral Grip Pull Up": {
+   "setup": [
+    {
+     "c": "npu.hang",
+     "s": [
+      [
+       "exrx-LatissimusDorsi/BWPullupN",
+       "Preparation (neutral grip)"
+      ],
+      [
+       "ace-191",
+       "Step 1 (full grip)"
+      ],
+      [
+       "nasm-pull-up",
+       "Step 1 (arms fully extended)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "pu.pull",
+     "s": [
+      [
+       "exrx-LatissimusDorsi/BWPullupN",
+       "Execution (neck reaches height of hands)"
+      ],
+      [
+       "ace-191",
+       "Step 3"
+      ],
+      [
+       "nasm-pull-up",
+       "Step 3; Step 4"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "pu.elbowsDown",
+     "s": [
+      [
+       "ace-191",
+       "Step 2"
+      ],
+      [
+       "nasm-pull-up",
+       "Step 3"
+      ]
+     ]
+    },
+    {
+     "c": "pu.shoulders",
+     "s": [
+      [
+       "ace-191",
+       "Step 1"
+      ],
+      [
+       "nasm-pull-up",
+       "Step 2"
+      ]
+     ]
+    },
+    {
+     "c": "pu.noSwing",
+     "s": [
+      [
+       "ace-191",
+       "Step 2"
+      ],
+      [
+       "nasm-pull-up",
+       "Common Mistakes"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "pu.partial",
+     "s": [
+      [
+       "nasm-pull-up",
+       "Common Mistakes"
+      ],
+      [
+       "exrx-LatissimusDorsi/BWPullupN",
+       "Execution (arms and shoulders fully extended)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Biceps Curl (hantle)": {
+   "setup": [
+    {
+     "c": "curl.dbSetup",
+     "s": [
+      [
+       "ace-44",
+       "Step 1"
+      ],
+      [
+       "exrx-Biceps/DBCurl",
+       "Preparation"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "curl.dbMove",
+     "s": [
+      [
+       "ace-44",
+       "Step 2; Step 3; Step 4 (rotate the forearms)"
+      ],
+      [
+       "exrx-Biceps/DBCurl",
+       "Execution"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "curl.elbows",
+     "s": [
+      [
+       "ace-44",
+       "Step 2 (without moving your elbows forward)"
+      ],
+      [
+       "exrx-Biceps/DBCurl",
+       "Execution (with elbows to sides)"
+      ]
+     ]
+    },
+    {
+     "c": "curl.noSwing",
+     "s": [
+      [
+       "ace-44",
+       "Step 2 (without arching your back)"
+      ],
+      [
+       "nasm-barbell-bicep-curl",
+       "Common Mistakes (swinging; sztanga — ta sama zasada)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "curl.mis.elbows",
+     "s": [
+      [
+       "ace-44",
+       "Step 2"
+      ],
+      [
+       "nasm-barbell-bicep-curl",
+       "Common Mistakes (elbows drift away from the body)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Barbell Curl": {
+   "setup": [
+    {
+     "c": "curl.bbGrip",
+     "s": [
+      [
+       "ace-70",
+       "opis"
+      ],
+      [
+       "nasm-barbell-bicep-curl",
+       "Step 1: Setup"
+      ],
+      [
+       "exrx-Biceps/BBCurl",
+       "Preparation"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "curl.bbMove",
+     "s": [
+      [
+       "exrx-Biceps/BBCurl",
+       "Execution"
+      ],
+      [
+       "ace-70",
+       "opis"
+      ],
+      [
+       "nasm-barbell-bicep-curl",
+       "Step 3; Step 4"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "curl.elbows",
+     "s": [
+      [
+       "ace-70",
+       "opis (elbows next to the middle of the body)"
+      ],
+      [
+       "nasm-barbell-bicep-curl",
+       "Step 2; FAQ (elbow positioning)"
+      ],
+      [
+       "exrx-Biceps/BBCurl",
+       "Execution (with elbows to side)"
+      ]
+     ]
+    },
+    {
+     "c": "curl.noSwing",
+     "s": [
+      [
+       "ace-70",
+       "opis (keep chest still)"
+      ],
+      [
+       "nasm-barbell-bicep-curl",
+       "Common Mistakes (swinging)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "curl.mis.elbows",
+     "s": [
+      [
+       "nasm-barbell-bicep-curl",
+       "Common Mistakes"
+      ],
+      [
+       "ace-70",
+       "opis"
+      ]
+     ]
+    }
+   ]
+  },
+  "EZ Bar Curl": {
+   "setup": [
+    {
+     "c": "curl.ezGrip",
+     "s": [
+      [
+       "exrx-Biceps/BBCurl",
+       "Preparation; Comments (cambered bar = EZ Bar Curl)"
+      ],
+      [
+       "ace-70",
+       "opis (sztanga — ten sam ruch)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "curl.bbMove",
+     "s": [
+      [
+       "exrx-Biceps/BBCurl",
+       "Execution"
+      ],
+      [
+       "ace-70",
+       "opis"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "curl.elbows",
+     "s": [
+      [
+       "exrx-Biceps/BBCurl",
+       "Execution"
+      ],
+      [
+       "ace-70",
+       "opis"
+      ],
+      [
+       "nasm-barbell-bicep-curl",
+       "Step 2"
+      ]
+     ]
+    },
+    {
+     "c": "curl.noSwing",
+     "s": [
+      [
+       "ace-70",
+       "opis"
+      ],
+      [
+       "nasm-barbell-bicep-curl",
+       "Common Mistakes"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "curl.mis.elbows",
+     "s": [
+      [
+       "nasm-barbell-bicep-curl",
+       "Common Mistakes"
+      ],
+      [
+       "ace-70",
+       "opis"
+      ]
+     ]
+    }
+   ]
+  },
+  "Hammer Curl": {
+   "setup": [
+    {
+     "c": "curl.hammerSetup",
+     "s": [
+      [
+       "ace-10",
+       "Step 1"
+      ],
+      [
+       "exrx-Brachioradialis/DBHammerCurl",
+       "Preparation"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "curl.hammerMove",
+     "s": [
+      [
+       "ace-10",
+       "Step 2; Step 3"
+      ],
+      [
+       "exrx-Brachioradialis/DBHammerCurl",
+       "Execution"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "curl.elbows",
+     "s": [
+      [
+       "ace-10",
+       "Step 2 (without moving your elbows forward)"
+      ],
+      [
+       "exrx-Brachioradialis/DBHammerCurl",
+       "Execution (with elbows to sides)"
+      ]
+     ]
+    },
+    {
+     "c": "curl.noSwing",
+     "s": [
+      [
+       "ace-10",
+       "Step 2 (keeping your torso erect)"
+      ],
+      [
+       "nasm-barbell-bicep-curl",
+       "Common Mistakes (swinging; sztanga — ta sama zasada)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "curl.mis.elbows",
+     "s": [
+      [
+       "ace-10",
+       "Step 2"
+      ],
+      [
+       "exrx-Brachioradialis/DBHammerCurl",
+       "Execution"
+      ]
+     ]
+    }
+   ]
+  },
+  "Cable Curl": {
+   "setup": [
+    {
+     "c": "curl.cableSetup",
+     "s": [
+      [
+       "exrx-Biceps/CBCurl",
+       "Preparation"
+      ],
+      [
+       "ace-322",
+       "opis (palms facing the ceiling; guma/linka)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "curl.cableMove",
+     "s": [
+      [
+       "exrx-Biceps/CBCurl",
+       "Execution"
+      ],
+      [
+       "ace-322",
+       "opis"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "curl.elbows",
+     "s": [
+      [
+       "exrx-Biceps/CBCurl",
+       "Execution (with elbows to side)"
+      ],
+      [
+       "ace-322",
+       "opis (keep the elbows in close to the sides)"
+      ]
+     ]
+    },
+    {
+     "c": "curl.control",
+     "s": [
+      [
+       "ace-322",
+       "opis (lower slowly)"
+      ],
+      [
+       "nasm-barbell-bicep-curl",
+       "Common Mistakes (incomplete eccentric control)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": []
+  },
+  "RDL (sztanga)": {
+   "setup": [
+    {
+     "c": "rdl.setup",
+     "s": [
+      [
+       "ace-317",
+       "opis"
+      ],
+      [
+       "nasm-romanian-deadlift-barbell",
+       "Step 1; Step 2"
+      ],
+      [
+       "exrx-OlympicLifts/RomanianDeadlift",
+       "Preparation"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "rdl.move",
+     "s": [
+      [
+       "ace-317",
+       "opis"
+      ],
+      [
+       "nasm-romanian-deadlift-barbell",
+       "Step 3; Step 4"
+      ],
+      [
+       "exrx-OlympicLifts/RomanianDeadlift",
+       "Execution"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "hinge.back",
+     "s": [
+      [
+       "ace-317",
+       "opis (straight back)"
+      ],
+      [
+       "nasm-romanian-deadlift-barbell",
+       "Step 3 (neutral spine)"
+      ],
+      [
+       "exrx-OlympicLifts/RomanianDeadlift",
+       "Comments (keep back straight)"
+      ]
+     ]
+    },
+    {
+     "c": "rdl.depth",
+     "s": [
+      [
+       "ace-317",
+       "opis (until feeling some tension along the back of the legs)"
+      ],
+      [
+       "nasm-romanian-deadlift-barbell",
+       "Step 3; FAQ (range of motion)"
+      ],
+      [
+       "exrx-OlympicLifts/RomanianDeadlift",
+       "Execution (once hamstring is stretched)"
+      ]
+     ]
+    },
+    {
+     "c": "dl.close",
+     "s": [
+      [
+       "ace-317",
+       "opis (keeping the bar very close to the body)"
+      ],
+      [
+       "exrx-OlympicLifts/RomanianDeadlift",
+       "Execution (tracing front contour of legs)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "mis.roundBack",
+     "s": [
+      [
+       "nasm-romanian-deadlift-barbell",
+       "Common Mistakes"
+      ],
+      [
+       "exrx-OlympicLifts/RomanianDeadlift",
+       "Comments"
+      ]
+     ]
+    },
+    {
+     "c": "rdl.knees",
+     "s": [
+      [
+       "nasm-romanian-deadlift-barbell",
+       "Common Mistakes (bending the knees too much)"
+      ],
+      [
+       "ace-317",
+       "opis (slight bend in both knees)"
+      ]
+     ]
+    }
+   ]
+  },
+  "RDL (hantle/linki)": {
+   "setup": [
+    {
+     "c": "rdl.dbSetup",
+     "s": [
+      [
+       "nasm-dumbbell-romanian-deadlift",
+       "Step 1"
+      ],
+      [
+       "exrx-Hamstrings/DBStraightLegDeadlift",
+       "Preparation"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "rdl.dbMove",
+     "s": [
+      [
+       "nasm-dumbbell-romanian-deadlift",
+       "Step 3; Step 4"
+      ],
+      [
+       "exrx-Hamstrings/DBStraightLegDeadlift",
+       "Execution"
+      ],
+      [
+       "ace-317",
+       "opis (sztanga — ten sam ruch)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "hinge.back",
+     "s": [
+      [
+       "nasm-dumbbell-romanian-deadlift",
+       "Step 2; Step 3"
+      ],
+      [
+       "exrx-Hamstrings/DBStraightLegDeadlift",
+       "Comments"
+      ],
+      [
+       "ace-317",
+       "opis"
+      ]
+     ]
+    },
+    {
+     "c": "rdl.depth",
+     "s": [
+      [
+       "nasm-dumbbell-romanian-deadlift",
+       "Step 3; FAQ"
+      ],
+      [
+       "ace-317",
+       "opis"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "mis.roundBack",
+     "s": [
+      [
+       "nasm-dumbbell-romanian-deadlift",
+       "Common Mistakes"
+      ],
+      [
+       "ace-317",
+       "opis"
+      ]
+     ]
+    },
+    {
+     "c": "rdl.knees",
+     "s": [
+      [
+       "nasm-dumbbell-romanian-deadlift",
+       "Common Mistakes"
+      ],
+      [
+       "ace-317",
+       "opis"
+      ]
+     ]
+    }
+   ]
+  },
+  "Good Morning": {
+   "setup": [
+    {
+     "c": "gm.setup",
+     "s": [
+      [
+       "nasm-good-mornings",
+       "Step 1; Step 3 (slight knee bend)"
+      ],
+      [
+       "exrx-Hamstrings/BBGoodMorning",
+       "Preparation"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "gm.move",
+     "s": [
+      [
+       "nasm-good-mornings",
+       "Step 3; Step 4"
+      ],
+      [
+       "exrx-Hamstrings/BBGoodMorning",
+       "Execution"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "hinge.back",
+     "s": [
+      [
+       "nasm-good-mornings",
+       "Step 1; Step 3"
+      ],
+      [
+       "exrx-Hamstrings/BBGoodMorning",
+       "Execution; Comments"
+      ]
+     ]
+    },
+    {
+     "c": "gm.depth",
+     "s": [
+      [
+       "exrx-Hamstrings/BBGoodMorning",
+       "Execution (until parallel); Comments (mild stretch)"
+      ],
+      [
+       "nasm-good-mornings",
+       "Step 3; FAQ (forward lean)"
+      ]
+     ]
+    },
+    {
+     "c": "gm.light",
+     "s": [
+      [
+       "exrx-Hamstrings/BBGoodMorning",
+       "Comments (begin with very light weight)"
+      ],
+      [
+       "nasm-good-mornings",
+       "Common Mistakes (excessive weight); FAQ"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "mis.roundBack",
+     "s": [
+      [
+       "nasm-good-mornings",
+       "Common Mistakes"
+      ],
+      [
+       "exrx-Hamstrings/BBGoodMorning",
+       "Execution (keeping back straight)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Shrugs (sztanga)": {
+   "setup": [
+    {
+     "c": "shrug.setup",
+     "s": [
+      [
+       "ace-72",
+       "opis"
+      ],
+      [
+       "exrx-TrapeziusUpper/BBShrug",
+       "Preparation"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "shrug.move",
+     "s": [
+      [
+       "ace-72",
+       "opis"
+      ],
+      [
+       "exrx-TrapeziusUpper/BBShrug",
+       "Execution"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "shrug.high",
+     "s": [
+      [
+       "ace-72",
+       "opis (as high as possible)"
+      ],
+      [
+       "exrx-TrapeziusUpper/BBShrug",
+       "Execution (as high as possible)"
+      ]
+     ]
+    },
+    {
+     "c": "shrug.tall",
+     "s": [
+      [
+       "ace-72",
+       "opis (hips straight, back tall; only raising/lowering the shoulders)"
+      ],
+      [
+       "exrx-TrapeziusUpper/DBShrug",
+       "Comments (standing upright or very slightly bent over)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": []
+  },
+  "Shrugs (hantle)": {
+   "setup": [
+    {
+     "c": "shrug.setup",
+     "s": [
+      [
+       "ace-75",
+       "Step 1"
+      ],
+      [
+       "exrx-TrapeziusUpper/DBShrug",
+       "Preparation"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "shrug.move",
+     "s": [
+      [
+       "ace-75",
+       "Step 2; Step 3"
+      ],
+      [
+       "exrx-TrapeziusUpper/DBShrug",
+       "Execution"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "shrug.high",
+     "s": [
+      [
+       "ace-72",
+       "opis (as high as possible)"
+      ],
+      [
+       "exrx-TrapeziusUpper/DBShrug",
+       "Execution (as high as possible)"
+      ]
+     ]
+    },
+    {
+     "c": "shrug.tall",
+     "s": [
+      [
+       "ace-75",
+       "Step 2 (erect torso)"
+      ],
+      [
+       "exrx-TrapeziusUpper/DBShrug",
+       "Comments (standing upright)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": []
+  },
+  "Face Pull": {
+   "setup": [
+    {
+     "c": "fp.setup",
+     "s": [
+      [
+       "nasm-face-pull",
+       "Step 1; Step 2"
+      ],
+      [
+       "exrx-DeltoidPosterior/CBStandingRearDeltRowRope",
+       "Preparation"
+      ],
+      [
+       "ace-336",
+       "opis (high row, rope at shoulder height)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "fp.move",
+     "s": [
+      [
+       "nasm-face-pull",
+       "Step 3; Step 4"
+      ],
+      [
+       "exrx-DeltoidPosterior/CBStandingRearDeltRowRope",
+       "Execution"
+      ],
+      [
+       "ace-336",
+       "opis"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "fp.elbowsBack",
+     "s": [
+      [
+       "exrx-DeltoidPosterior/CBStandingRearDeltRowRope",
+       "Execution (until elbows travel slightly behind back)"
+      ],
+      [
+       "nasm-face-pull",
+       "Step 3 (driving your elbows backward)"
+      ],
+      [
+       "ace-336",
+       "opis (pull the elbows back)"
+      ]
+     ]
+    },
+    {
+     "c": "fp.chest",
+     "s": [
+      [
+       "ace-336",
+       "opis (lift the chest up)"
+      ],
+      [
+       "exrx-DeltoidPosterior/CBStandingRearDeltRowRope",
+       "Comments (torso not forward beyond vertical)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": []
+  },
+  "Overhead Press (sztanga)": {
+   "setup": [
+    {
+     "c": "ohp.bbSetup",
+     "s": [
+      [
+       "ace-71",
+       "opis"
+      ],
+      [
+       "exrx-DeltoidAnterior/BBMilitaryPress",
+       "Preparation"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "ohp.move",
+     "s": [
+      [
+       "ace-71",
+       "opis"
+      ],
+      [
+       "exrx-DeltoidAnterior/BBMilitaryPress",
+       "Execution"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "ohp.tall",
+     "s": [
+      [
+       "ace-71",
+       "opis (back straight and tall, press directly overhead)"
+      ],
+      [
+       "exrx-DeltoidAnterior/BBMilitaryPress",
+       "Execution; Comments (chest high)"
+      ]
+     ]
+    },
+    {
+     "c": "ohp.feet",
+     "s": [
+      [
+       "ace-43",
+       "opis (press the feet into the floor)"
+      ],
+      [
+       "exrx-DeltoidAnterior/BBMilitaryPress",
+       "Comments (feet shoulder width apart)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": []
+  },
+  "Overhead Press (hantle)": {
+   "setup": [
+    {
+     "c": "ohp.dbSetup",
+     "s": [
+      [
+       "exrx-DeltoidAnterior/DBShoulderPress",
+       "Preparation"
+      ],
+      [
+       "ace-186",
+       "Step 1 (handles at shoulder level, wrists in line with forearms; maszyna — ta sama pozycja)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "ohp.move",
+     "s": [
+      [
+       "exrx-DeltoidAnterior/DBShoulderPress",
+       "Execution"
+      ],
+      [
+       "ace-71",
+       "opis (sztanga — ten sam ruch)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "ohp.tall",
+     "s": [
+      [
+       "ace-71",
+       "opis"
+      ],
+      [
+       "exrx-DeltoidAnterior/DBShoulderPress",
+       "Execution"
+      ]
+     ]
+    },
+    {
+     "c": "ohp.elbowsUnder",
+     "s": [
+      [
+       "exrx-DeltoidAnterior/DBShoulderPress",
+       "Preparation (elbows below wrists)"
+      ],
+      [
+       "ace-186",
+       "Step 1; Step 2 (neutral wrist position)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": []
+  },
+  "Seated Shoulder Press (hantle)": {
+   "setup": [
+    {
+     "c": "ohp.seat",
+     "s": [
+      [
+       "ace-186",
+       "Step 1 (back against the backrest, feet firmly on the floor)"
+      ],
+      [
+       "exrx-DeltoidAnterior/DBShoulderPress",
+       "Preparation"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "ohp.move",
+     "s": [
+      [
+       "exrx-DeltoidAnterior/DBShoulderPress",
+       "Execution"
+      ],
+      [
+       "ace-43",
+       "opis"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "ohp.elbowsUnder",
+     "s": [
+      [
+       "exrx-DeltoidAnterior/DBShoulderPress",
+       "Preparation"
+      ],
+      [
+       "ace-186",
+       "Step 1; Step 2"
+      ]
+     ]
+    },
+    {
+     "c": "ohp.fullExt",
+     "s": [
+      [
+       "ace-186",
+       "Step 3 (fully extended, but not locked)"
+      ],
+      [
+       "exrx-DeltoidAnterior/DBShoulderPress",
+       "Execution (until arms are extended)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": []
+  },
+  "Back Squat": {
+   "setup": [
+    {
+     "c": "sq.bar",
+     "s": [
+      [
+       "ace-11",
+       "opis"
+      ],
+      [
+       "exrx-Quadriceps/BBFullSquat",
+       "Preparation"
+      ]
+     ]
+    },
+    {
+     "c": "sq.stance",
+     "s": [
+      [
+       "ace-11",
+       "opis (a little wider than shoulder-width)"
+      ],
+      [
+       "sbs-how-to-squat",
+       "Stance width; Foot Angle"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "sq.down",
+     "s": [
+      [
+       "ace-11",
+       "opis"
+      ],
+      [
+       "exrx-Quadriceps/BBFullSquat",
+       "Execution"
+      ],
+      [
+       "ace-135",
+       "Step 3; Step 6 (ten sam wzorzec bez obciążenia)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "sq.kneesToes",
+     "s": [
+      [
+       "exrx-Quadriceps/BBFullSquat",
+       "Execution; Comments"
+      ],
+      [
+       "sbs-how-to-squat",
+       "Foot Angle; FAQ (knees caving in)"
+      ],
+      [
+       "ace-135",
+       "Step 4; Step 5 (knees aligned over the second toe)"
+      ]
+     ]
+    },
+    {
+     "c": "sq.kneesPast",
+     "s": [
+      [
+       "sbs-how-to-squat",
+       "FAQ: Is it okay if my knees go past my toes?"
+      ],
+      [
+       "pm-14636100",
+       "abstrakt (Practical applications)"
+      ]
+     ]
+    },
+    {
+     "c": "sq.depth",
+     "s": [
+      [
+       "ace-135",
+       "Step 4"
+      ],
+      [
+       "sbs-how-to-squat",
+       "Depth"
+      ],
+      [
+       "exrx-Quadriceps/BBFullSquat",
+       "Execution (until knees and hips are fully bent)"
+      ]
+     ]
+    },
+    {
+     "c": "sq.back",
+     "s": [
+      [
+       "ace-11",
+       "opis (straight back, chest up)"
+      ],
+      [
+       "exrx-Quadriceps/BBFullSquat",
+       "Comments (back straight)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "sq.mis.kneesIn",
+     "s": [
+      [
+       "sbs-how-to-squat",
+       "FAQ: My knees are caving in"
+      ],
+      [
+       "ace-135",
+       "Step 4"
+      ],
+      [
+       "exrx-Quadriceps/BBFullSquat",
+       "Comments"
+      ]
+     ]
+    },
+    {
+     "c": "sq.mis.heels",
+     "s": [
+      [
+       "ace-135",
+       "Step 4; Step 6 (heels flat)"
+      ],
+      [
+       "exrx-Quadriceps/BBFullSquat",
+       "Comments (feet flat on floor)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Goblet Squat": {
+   "setup": [
+    {
+     "c": "gob.hold",
+     "s": [
+      [
+       "ace-362",
+       "opis"
+      ],
+      [
+       "nasm-goblet-squat",
+       "Step 1: Setup"
+      ]
+     ]
+    },
+    {
+     "c": "gob.stance",
+     "s": [
+      [
+       "ace-362",
+       "opis (shoulder-width)"
+      ],
+      [
+       "nasm-goblet-squat",
+       "Step 1 (hip-width)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "gob.move",
+     "s": [
+      [
+       "ace-362",
+       "opis"
+      ],
+      [
+       "nasm-goblet-squat",
+       "Step 3; Step 4"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "sq.depth",
+     "s": [
+      [
+       "ace-362",
+       "opis (hips below the knees)"
+      ],
+      [
+       "nasm-goblet-squat",
+       "Step 3 (parallel or deeper if mobility allows)"
+      ]
+     ]
+    },
+    {
+     "c": "gob.close",
+     "s": [
+      [
+       "nasm-goblet-squat",
+       "Common Mistakes (drooping the chest, weight drifting away)"
+      ],
+      [
+       "ace-362",
+       "opis (elbows close to the rib cage, back straight)"
+      ]
+     ]
+    },
+    {
+     "c": "sq.kneesToes",
+     "s": [
+      [
+       "nasm-goblet-squat",
+       "Common Mistakes (knees cave inward)"
+      ],
+      [
+       "ace-135",
+       "Step 4 (ten sam wzorzec)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "sq.mis.kneesIn",
+     "s": [
+      [
+       "nasm-goblet-squat",
+       "Common Mistakes"
+      ],
+      [
+       "ace-135",
+       "Step 4"
+      ]
+     ]
+    }
+   ]
+  },
+  "Przysiad z pasem (linki)": {
+   "setup": [
+    {
+     "c": "sq.stance",
+     "s": [
+      [
+       "exrx-Quadriceps/CBSquatBelt",
+       "Preparation (feet shoulder width or wider)"
+      ],
+      [
+       "ace-135",
+       "Step 1"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "sq.down",
+     "s": [
+      [
+       "exrx-Quadriceps/CBSquatBelt",
+       "Execution"
+      ],
+      [
+       "ace-135",
+       "Step 3; Step 6"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "sq.kneesToes",
+     "s": [
+      [
+       "exrx-Quadriceps/CBSquatBelt",
+       "Execution; Comments"
+      ],
+      [
+       "ace-135",
+       "Step 4; Step 5"
+      ]
+     ]
+    },
+    {
+     "c": "sq.depth",
+     "s": [
+      [
+       "exrx-Quadriceps/CBSquatBelt",
+       "Execution (thighs just past parallel)"
+      ],
+      [
+       "ace-135",
+       "Step 4"
+      ]
+     ]
+    },
+    {
+     "c": "sq.back",
+     "s": [
+      [
+       "exrx-Quadriceps/CBSquatBelt",
+       "Comments (back straight, chest high)"
+      ],
+      [
+       "ace-135",
+       "Step 2; Step 3"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "sq.mis.heels",
+     "s": [
+      [
+       "exrx-Quadriceps/CBSquatBelt",
+       "Comments (feet flat)"
+      ],
+      [
+       "ace-135",
+       "Step 4; Step 6"
+      ]
+     ]
+    }
+   ]
+  },
+  "Leg Press": {
+   "setup": [
+    {
+     "c": "lp.setup",
+     "s": [
+      [
+       "ace-154",
+       "Step 1"
+      ],
+      [
+       "nasm-leg-press",
+       "Step 1: Setup"
+      ],
+      [
+       "exrx-Quadriceps/SL45LegPress",
+       "Preparation"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "lp.move",
+     "s": [
+      [
+       "ace-154",
+       "Step 2; Step 4"
+      ],
+      [
+       "nasm-leg-press",
+       "Step 3; Step 4"
+      ],
+      [
+       "exrx-Quadriceps/SL45LegPress",
+       "Execution"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "lp.noLock",
+     "s": [
+      [
+       "ace-154",
+       "Step 3 (do not hyperextend/lock-out)"
+      ],
+      [
+       "nasm-leg-press",
+       "Common Mistakes (locking out knees)"
+      ]
+     ]
+    },
+    {
+     "c": "lp.heels",
+     "s": [
+      [
+       "ace-154",
+       "Step 2; Step 3"
+      ],
+      [
+       "exrx-Quadriceps/SL45LegPress",
+       "Comments (do not allow heels to raise)"
+      ]
+     ]
+    },
+    {
+     "c": "lp.hips",
+     "s": [
+      [
+       "ace-154",
+       "Step 3; Step 4 (butt off the seat, thighs against ribcage)"
+      ],
+      [
+       "exrx-Quadriceps/SL45LegPress",
+       "Comments (without forcing hips to bend at waist)"
+      ]
+     ]
+    },
+    {
+     "c": "sq.kneesToes",
+     "s": [
+      [
+       "exrx-Quadriceps/SL45LegPress",
+       "Comments (knees pointed same direction as feet)"
+      ],
+      [
+       "nasm-leg-press",
+       "Common Mistakes (knees cave inward)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "sq.mis.kneesIn",
+     "s": [
+      [
+       "nasm-leg-press",
+       "Common Mistakes"
+      ],
+      [
+       "exrx-Quadriceps/LVSeatedLegPress",
+       "Comments"
+      ]
+     ]
+    }
+   ]
+  },
+  "Bulgarian Split Squat (hantle)": {
+   "setup": [
+    {
+     "c": "bss.setup",
+     "s": [
+      [
+       "ace-366",
+       "opis"
+      ],
+      [
+       "nasm-bulgarian-split-squat",
+       "Step 1: Setup"
+      ],
+      [
+       "exrx-Quadriceps/DBSingleLegSplitSquat",
+       "Preparation"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "bss.move",
+     "s": [
+      [
+       "ace-366",
+       "opis"
+      ],
+      [
+       "nasm-bulgarian-split-squat",
+       "Step 3; Step 4"
+      ],
+      [
+       "exrx-Quadriceps/DBSingleLegSplitSquat",
+       "Execution"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "lunge.torso",
+     "s": [
+      [
+       "ace-366",
+       "opis (back straight)"
+      ],
+      [
+       "nasm-bulgarian-split-squat",
+       "Step 2; Step 3 (upright posture)"
+      ],
+      [
+       "exrx-Quadriceps/DBSingleLegSplitSquat",
+       "Comments (torso upright)"
+      ]
+     ]
+    },
+    {
+     "c": "lunge.knee",
+     "s": [
+      [
+       "exrx-Quadriceps/DBSingleLegSplitSquat",
+       "Comments"
+      ],
+      [
+       "nasm-bulgarian-split-squat",
+       "Common Mistakes (front knee cave inward)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "lunge.mis.kneeIn",
+     "s": [
+      [
+       "nasm-bulgarian-split-squat",
+       "Common Mistakes"
+      ],
+      [
+       "exrx-Quadriceps/DBSingleLegSplitSquat",
+       "Comments"
+      ]
+     ]
+    }
+   ]
+  },
+  "Lunges (hantle)": {
+   "setup": [
+    {
+     "c": "lunge.dbSetup",
+     "s": [
+      [
+       "ace-363",
+       "opis"
+      ],
+      [
+       "exrx-Quadriceps/DBLunge",
+       "Preparation"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "lunge.fwd",
+     "s": [
+      [
+       "ace-363",
+       "opis"
+      ],
+      [
+       "exrx-Quadriceps/DBLunge",
+       "Execution"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "lunge.torso",
+     "s": [
+      [
+       "ace-363",
+       "opis (back straight)"
+      ],
+      [
+       "exrx-Quadriceps/DBLunge",
+       "Comments (torso upright)"
+      ]
+     ]
+    },
+    {
+     "c": "lunge.knee",
+     "s": [
+      [
+       "exrx-Quadriceps/DBLunge",
+       "Comments (lead knee same direction as foot)"
+      ],
+      [
+       "nasm-bulgarian-split-squat",
+       "Common Mistakes (przysiad wykroczny — ten sam wzorzec)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "lunge.mis.kneeIn",
+     "s": [
+      [
+       "exrx-Quadriceps/DBLunge",
+       "Comments"
+      ],
+      [
+       "nasm-bulgarian-split-squat",
+       "Common Mistakes"
+      ]
+     ]
+    }
+   ]
+  },
+  "Walking Lunges": {
+   "setup": [
+    {
+     "c": "lunge.dbSetup",
+     "s": [
+      [
+       "exrx-Quadriceps/DBWalkingLunge",
+       "Preparation"
+      ],
+      [
+       "ace-363",
+       "opis"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "lunge.walk",
+     "s": [
+      [
+       "exrx-Quadriceps/DBWalkingLunge",
+       "Execution"
+      ],
+      [
+       "ace-139",
+       "Step 2–5"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "lunge.torso",
+     "s": [
+      [
+       "exrx-Quadriceps/DBWalkingLunge",
+       "Comments (torso upright)"
+      ],
+      [
+       "ace-139",
+       "Step 3 (keep the spine extended); wskazówka końcowa (tall, straight spine)"
+      ]
+     ]
+    },
+    {
+     "c": "lunge.knee",
+     "s": [
+      [
+       "exrx-Quadriceps/DBWalkingLunge",
+       "Comments (lead knee same direction as foot)"
+      ],
+      [
+       "nasm-bulgarian-split-squat",
+       "Common Mistakes (ten sam wzorzec)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "lunge.mis.kneeIn",
+     "s": [
+      [
+       "exrx-Quadriceps/DBWalkingLunge",
+       "Comments"
+      ],
+      [
+       "nasm-bulgarian-split-squat",
+       "Common Mistakes"
+      ]
+     ]
+    }
+   ]
+  },
+  "Reverse Lunge": {
+   "setup": [
+    {
+     "c": "lunge.stand",
+     "s": [
+      [
+       "ace-319",
+       "opis (feet about hip-width apart)"
+      ],
+      [
+       "exrx-Quadriceps/DBRearLunge",
+       "Preparation"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "lunge.back",
+     "s": [
+      [
+       "ace-319",
+       "opis"
+      ],
+      [
+       "exrx-Quadriceps/DBRearLunge",
+       "Execution"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "lunge.torso",
+     "s": [
+      [
+       "ace-319",
+       "opis (chest raised)"
+      ],
+      [
+       "exrx-Quadriceps/DBRearLunge",
+       "Comments (torso upright)"
+      ]
+     ]
+    },
+    {
+     "c": "lunge.knee",
+     "s": [
+      [
+       "exrx-Quadriceps/DBRearLunge",
+       "Comments (forward knee same direction as foot)"
+      ],
+      [
+       "nasm-bulgarian-split-squat",
+       "Common Mistakes (ten sam wzorzec)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "lunge.mis.kneeIn",
+     "s": [
+      [
+       "exrx-Quadriceps/DBRearLunge",
+       "Comments"
+      ],
+      [
+       "nasm-bulgarian-split-squat",
+       "Common Mistakes"
+      ]
+     ]
+    }
+   ]
+  },
+  "Step Up": {
+   "setup": [
+    {
+     "c": "stepup.setup",
+     "s": [
+      [
+       "ace-28",
+       "Step 1"
+      ],
+      [
+       "exrx-Quadriceps/DBStepUp",
+       "Preparation"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "stepup.move",
+     "s": [
+      [
+       "ace-28",
+       "Step 2; Step 3"
+      ],
+      [
+       "exrx-Quadriceps/DBStepUp",
+       "Execution"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "lunge.torso",
+     "s": [
+      [
+       "ace-28",
+       "Step 2 (torso upright)"
+      ],
+      [
+       "exrx-Quadriceps/DBStepUp",
+       "Comments (torso upright)"
+      ]
+     ]
+    },
+    {
+     "c": "stepup.knee",
+     "s": [
+      [
+       "ace-28",
+       "Step 2; wskazówka końcowa (knee aligned over your second toe)"
+      ],
+      [
+       "exrx-Quadriceps/DBStepUp",
+       "Comments (lead knee same direction as foot)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": []
+  },
+  "Pistol Squat": {
+   "setup": [
+    {
+     "c": "pistol.setup",
+     "s": [
+      [
+       "exrx-Quadriceps/BWSingleLegSquat",
+       "Preparation"
+      ],
+      [
+       "ace-308",
+       "opis"
+      ],
+      [
+       "nasm-single-leg-squat",
+       "Step 1; Step 2"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "pistol.move",
+     "s": [
+      [
+       "exrx-Quadriceps/BWSingleLegSquat",
+       "Execution"
+      ],
+      [
+       "nasm-single-leg-squat",
+       "Step 3; Step 4; FAQ (depth)"
+      ],
+      [
+       "ace-308",
+       "opis"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "pistol.knee",
+     "s": [
+      [
+       "exrx-Quadriceps/BWSingleLegSquat",
+       "Execution; Comments"
+      ],
+      [
+       "nasm-single-leg-squat",
+       "Common Mistakes (planted knee cave inward)"
+      ]
+     ]
+    },
+    {
+     "c": "pistol.assist",
+     "s": [
+      [
+       "exrx-Quadriceps/BWSingleLegSquat",
+       "Comments: Easier (partial reps, self assistance)"
+      ],
+      [
+       "nasm-single-leg-squat",
+       "Step 1; FAQ (support for beginners)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "sq.mis.kneesIn",
+     "s": [
+      [
+       "nasm-single-leg-squat",
+       "Common Mistakes"
+      ],
+      [
+       "exrx-Quadriceps/BWSingleLegSquat",
+       "Comments"
+      ]
+     ]
+    }
+   ]
+  },
+  "Hip Thrust (sztanga)": {
+   "setup": [
+    {
+     "c": "ht.setup",
+     "s": [
+      [
+       "exrx-GluteusMaximus/BBHipThrust",
+       "Preparation; Comments (padding)"
+      ],
+      [
+       "acecert-7403",
+       "akapit „The BHT is basically a glute or hip bridge…”"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "ht.move",
+     "s": [
+      [
+       "exrx-GluteusMaximus/BBHipThrust",
+       "Execution"
+      ],
+      [
+       "acecert-7403",
+       "akapit wstępny (lowers the tailbone… presses the hips upward)"
+      ],
+      [
+       "ace-318",
+       "opis"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "ht.rigid",
+     "s": [
+      [
+       "exrx-GluteusMaximus/BBHipThrust",
+       "Comments (torso rigid; avoid chest arching and anterior pelvic tilt)"
+      ],
+      [
+       "ace-49",
+       "Step 2; wskazówka końcowa (avoid arching your lower back)"
+      ]
+     ]
+    },
+    {
+     "c": "ht.hold",
+     "s": [
+      [
+       "exrx-GluteusMaximus/BBHipThrust",
+       "Comments (keep bar from rolling back with hands)"
+      ],
+      [
+       "ace-318",
+       "opis (hold on to the bar)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "ht.mis.arch",
+     "s": [
+      [
+       "exrx-GluteusMaximus/BBHipThrust",
+       "Comments"
+      ],
+      [
+       "ace-49",
+       "wskazówka końcowa"
+      ]
+     ]
+    }
+   ]
+  },
+  "Hip Thrust (hantel)": {
+   "setup": [
+    {
+     "c": "ht.dbSetup",
+     "s": [
+      [
+       "ace-367",
+       "opis"
+      ],
+      [
+       "exrx-GluteusMaximus/BBHipThrust",
+       "Preparation (sztanga — ta sama pozycja)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "ht.move",
+     "s": [
+      [
+       "ace-367",
+       "opis"
+      ],
+      [
+       "exrx-GluteusMaximus/BBHipThrust",
+       "Execution (sztanga — ten sam ruch)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "ht.rigid",
+     "s": [
+      [
+       "exrx-GluteusMaximus/BBHipThrust",
+       "Comments"
+      ],
+      [
+       "ace-49",
+       "Step 2; wskazówka końcowa"
+      ]
+     ]
+    },
+    {
+     "c": "ht.hold",
+     "s": [
+      [
+       "ace-367",
+       "opis (rest them on top of the hips)"
+      ],
+      [
+       "exrx-GluteusMaximus/BBHipThrust",
+       "Comments"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "ht.mis.arch",
+     "s": [
+      [
+       "exrx-GluteusMaximus/BBHipThrust",
+       "Comments"
+      ],
+      [
+       "ace-49",
+       "wskazówka końcowa"
+      ]
+     ]
+    }
+   ]
+  },
+  "Glute Bridge": {
+   "setup": [
+    {
+     "c": "gb.setup",
+     "s": [
+      [
+       "ace-49",
+       "Step 1"
+      ],
+      [
+       "nasm-floor-bridge",
+       "Step 1: Setup"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "gb.move",
+     "s": [
+      [
+       "ace-49",
+       "Step 2; Step 3"
+      ],
+      [
+       "nasm-floor-bridge",
+       "Step 3; Step 4"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "gb.noArch",
+     "s": [
+      [
+       "ace-49",
+       "Step 2; wskazówka końcowa"
+      ],
+      [
+       "nasm-floor-bridge",
+       "Common Mistakes (excessive lower back arching)"
+      ]
+     ]
+    },
+    {
+     "c": "gb.heels",
+     "s": [
+      [
+       "ace-49",
+       "Step 2 (press your heels into the floor)"
+      ],
+      [
+       "nasm-floor-bridge",
+       "Step 3; FAQ (driving through your heels)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "ht.mis.arch",
+     "s": [
+      [
+       "ace-49",
+       "wskazówka końcowa"
+      ],
+      [
+       "nasm-floor-bridge",
+       "Common Mistakes; FAQ"
+      ]
+     ]
+    }
+   ]
+  },
+  "Kettlebell Swing": {
+   "setup": [
+    {
+     "c": "kb.setup",
+     "s": [
+      [
+       "exrx-Kettlebell/KBTwoArmSwing",
+       "Preparation"
+      ],
+      [
+       "ace-391",
+       "opis"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "kb.move",
+     "s": [
+      [
+       "exrx-Kettlebell/KBTwoArmSwing",
+       "Execution"
+      ],
+      [
+       "ace-391",
+       "opis"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "kb.hips",
+     "s": [
+      [
+       "ace-391",
+       "opis (Tip: strength from legs and hips, NOT the shoulders)"
+      ],
+      [
+       "exrx-Kettlebell/KBTwoArmSwing",
+       "Comments (hips primarily drive; shoulder movements largely passive)"
+      ]
+     ]
+    },
+    {
+     "c": "hinge.back",
+     "s": [
+      [
+       "ace-391",
+       "opis (keep the back straight)"
+      ],
+      [
+       "exrx-Kettlebell/KBTwoArmSwing",
+       "Comments (back taut)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": []
+  },
+  "Standing Calf Raise": {
+   "setup": [
+    {
+     "c": "calf.edge",
+     "s": [
+      [
+       "exrx-Gastrocnemius/LVStandingCalfRaise",
+       "Preparation"
+      ],
+      [
+       "nasm-leg-press-calf-raise",
+       "Step 1 (forefeet on the platform, heels beyond the edge)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "calf.move",
+     "s": [
+      [
+       "exrx-Gastrocnemius/LVStandingCalfRaise",
+       "Execution"
+      ],
+      [
+       "ace-51",
+       "opis"
+      ],
+      [
+       "nasm-leg-press-calf-raise",
+       "Step 3; FAQ (range of motion)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "calf.knees",
+     "s": [
+      [
+       "exrx-Gastrocnemius/LVStandingCalfRaise",
+       "Comments"
+      ],
+      [
+       "ace-51",
+       "opis (slight bend in knees)"
+      ]
+     ]
+    },
+    {
+     "c": "calf.pause",
+     "s": [
+      [
+       "ace-51",
+       "opis (pause at the top, slowly roll the heels down)"
+      ],
+      [
+       "nasm-leg-press-calf-raise",
+       "Step 4 (with control)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "calf.mis.partial",
+     "s": [
+      [
+       "nasm-leg-press-calf-raise",
+       "Common Mistakes"
+      ],
+      [
+       "exrx-Gastrocnemius/LVStandingCalfRaise",
+       "Execution (as high as possible… until calves are stretched)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Łydki na stopniu": {
+   "setup": [
+    {
+     "c": "calf.step",
+     "s": [
+      [
+       "exrx-Gastrocnemius/BWStandingCalfRaise",
+       "Preparation; Comments"
+      ],
+      [
+       "ace-73",
+       "Step 1; Step 2 (hands on the wall for support)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "calf.move",
+     "s": [
+      [
+       "exrx-Gastrocnemius/DBSingleLegCalfRaise",
+       "Execution"
+      ],
+      [
+       "ace-73",
+       "Step 2; Step 3"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "calf.knees",
+     "s": [
+      [
+       "exrx-Gastrocnemius/BWStandingCalfRaise",
+       "Comments"
+      ],
+      [
+       "ace-73",
+       "Step 2 (keeping your knees extended)"
+      ]
+     ]
+    },
+    {
+     "c": "calf.pause",
+     "s": [
+      [
+       "ace-73",
+       "Step 2; Step 3 (hold briefly, slowly lower)"
+      ],
+      [
+       "exrx-Gastrocnemius/BWStandingCalfRaise",
+       "Execution"
+      ]
+     ]
+    }
+   ],
+   "mistakes": []
+  },
+  "Calf Press (leg press)": {
+   "setup": [
+    {
+     "c": "calf.press",
+     "s": [
+      [
+       "exrx-Gastrocnemius/SL45CalfPress",
+       "Preparation"
+      ],
+      [
+       "nasm-leg-press-calf-raise",
+       "Step 1"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "calf.pressMove",
+     "s": [
+      [
+       "exrx-Gastrocnemius/SL45CalfPress",
+       "Execution"
+      ],
+      [
+       "nasm-leg-press-calf-raise",
+       "Step 3; Step 4"
+      ],
+      [
+       "ace-294",
+       "opis"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "calf.knees",
+     "s": [
+      [
+       "exrx-Gastrocnemius/SL45CalfPress",
+       "Comments"
+      ],
+      [
+       "ace-294",
+       "opis (keeping legs straight)"
+      ]
+     ]
+    },
+    {
+     "c": "calf.pause",
+     "s": [
+      [
+       "nasm-leg-press-calf-raise",
+       "Step 4 (with control)"
+      ],
+      [
+       "ace-294",
+       "opis (slowly return)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "calf.mis.partial",
+     "s": [
+      [
+       "nasm-leg-press-calf-raise",
+       "Common Mistakes"
+      ],
+      [
+       "exrx-Gastrocnemius/SL45CalfPress",
+       "Execution"
+      ]
+     ]
+    }
+   ]
+  },
+  "Push Press": {
+   "setup": [
+    {
+     "c": "pp.setup",
+     "s": [
+      [
+       "ace-24",
+       "opis"
+      ],
+      [
+       "exrx-OlympicLifts/PushPress",
+       "Preparation"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "pp.move",
+     "s": [
+      [
+       "ace-24",
+       "opis"
+      ],
+      [
+       "exrx-OlympicLifts/PushPress",
+       "Execution"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "pp.legs",
+     "s": [
+      [
+       "ace-24",
+       "opis (power from the hips through the shoulders and arms)"
+      ],
+      [
+       "exrx-OlympicLifts/PushPress",
+       "Execution (explosively drive upward with legs)"
+      ]
+     ]
+    },
+    {
+     "c": "pp.dip",
+     "s": [
+      [
+       "exrx-OlympicLifts/PushPress",
+       "Preparation; Execution (torso tight; dip slightly)"
+      ],
+      [
+       "ace-24",
+       "opis (bend at the knees while keeping the back straight)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": []
+  },
+  "Wyciskanie nad głowę (linki)": {
+   "setup": [
+    {
+     "c": "cohp.setup",
+     "s": [
+      [
+       "exrx-DeltoidAnterior/CBStandingShoulderPress",
+       "Preparation"
+      ],
+      [
+       "ace-186",
+       "Step 1 (handles level with the shoulders, wrists in line with the forearms; maszyna — ta sama pozycja)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "ohp.move",
+     "s": [
+      [
+       "exrx-DeltoidAnterior/CBStandingShoulderPress",
+       "Execution"
+      ],
+      [
+       "ace-71",
+       "opis (sztanga — ten sam ruch)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "ohp.elbowsUnder",
+     "s": [
+      [
+       "exrx-DeltoidAnterior/CBStandingShoulderPress",
+       "Comments (wrists above each elbow)"
+      ],
+      [
+       "ace-186",
+       "Step 1; Step 2"
+      ]
+     ]
+    },
+    {
+     "c": "ohp.tall",
+     "s": [
+      [
+       "ace-71",
+       "opis"
+      ],
+      [
+       "exrx-DeltoidAnterior/CBStandingShoulderPress",
+       "Execution"
+      ]
+     ]
+    }
+   ],
+   "mistakes": []
+  },
+  "Lateral Raise (hantle)": {
+   "setup": [
+    {
+     "c": "lat.setup",
+     "s": [
+      [
+       "ace-26",
+       "Step 1; Step 2"
+      ],
+      [
+       "exrx-DeltoidLateral/DBLateralRaise",
+       "Preparation"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "lat.move",
+     "s": [
+      [
+       "ace-26",
+       "Step 3; Step 4"
+      ],
+      [
+       "exrx-DeltoidLateral/DBLateralRaise",
+       "Execution"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "lat.elbows",
+     "s": [
+      [
+       "ace-26",
+       "Step 3 (elbows and upper arms rise slightly ahead of the forearms)"
+      ],
+      [
+       "exrx-DeltoidLateral/DBLateralRaise",
+       "Execution; Comments (elbows above or equal to wrists)"
+      ]
+     ]
+    },
+    {
+     "c": "lat.height",
+     "s": [
+      [
+       "ace-26",
+       "Step 3 (until your arms are level with your shoulders)"
+      ],
+      [
+       "exrx-DeltoidLateral/DBLateralRaise",
+       "Execution (until elbows are shoulder height)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": []
+  },
+  "Cable Lateral Raise": {
+   "setup": [
+    {
+     "c": "clat.setup",
+     "s": [
+      [
+       "exrx-DeltoidLateral/CBOneArmLateralRaise",
+       "Preparation; Execution (elbow slightly bent)"
+      ],
+      [
+       "ace-26",
+       "Step 1; Step 2 (slight bend; bracing)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "lat.move",
+     "s": [
+      [
+       "exrx-DeltoidLateral/CBOneArmLateralRaise",
+       "Execution"
+      ],
+      [
+       "ace-26",
+       "Step 3; Step 4 (hantle — ten sam ruch)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "lat.elbows",
+     "s": [
+      [
+       "exrx-DeltoidLateral/CBOneArmLateralRaise",
+       "Comments (fixed, slightly bent elbow)"
+      ],
+      [
+       "ace-26",
+       "Step 3"
+      ]
+     ]
+    },
+    {
+     "c": "lat.height",
+     "s": [
+      [
+       "exrx-DeltoidLateral/CBLateralRaise",
+       "Execution (until elbows are shoulder height)"
+      ],
+      [
+       "ace-26",
+       "Step 3"
+      ]
+     ]
+    }
+   ],
+   "mistakes": []
+  },
+  "Front Raise": {
+   "setup": [
+    {
+     "c": "front.setup",
+     "s": [
+      [
+       "ace-54",
+       "Step 1"
+      ],
+      [
+       "exrx-DeltoidAnterior/DBFrontRaise",
+       "Preparation"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "front.move",
+     "s": [
+      [
+       "ace-54",
+       "Step 3; Step 4"
+      ],
+      [
+       "exrx-DeltoidAnterior/DBFrontRaise",
+       "Execution; Comments (height just above horizontal)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "front.elbows",
+     "s": [
+      [
+       "ace-54",
+       "Step 1; Step 4 (elbows extended or holding a slight bend)"
+      ],
+      [
+       "exrx-DeltoidAnterior/DBFrontRaise",
+       "Comments (elbows straight or slightly bent throughout)"
+      ]
+     ]
+    },
+    {
+     "c": "lat.height",
+     "s": [
+      [
+       "ace-54",
+       "Step 3 (level with your shoulders)"
+      ],
+      [
+       "exrx-DeltoidAnterior/DBFrontRaise",
+       "Comments (height just above horizontal may be adequate)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": []
+  },
+  "Reverse Fly (hantle)": {
+   "setup": [
+    {
+     "c": "rear.setup",
+     "s": [
+      [
+       "exrx-DeltoidPosterior/DBRearLateralRaise",
+       "Preparation"
+      ],
+      [
+       "ace-34",
+       "Step 1 (chest-supported on an incline bench)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "rear.move",
+     "s": [
+      [
+       "exrx-DeltoidPosterior/DBRearLateralRaise",
+       "Execution"
+      ],
+      [
+       "ace-34",
+       "Step 2; Step 3"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "rear.arms",
+     "s": [
+      [
+       "exrx-DeltoidPosterior/DBRearLateralRaise",
+       "Execution; Comments (upper arms perpendicular to torso)"
+      ],
+      [
+       "ace-34",
+       "Step 2; wskazówka końcowa (dumbbells in line with the ears, not behind the head)"
+      ]
+     ]
+    },
+    {
+     "c": "rear.elbows",
+     "s": [
+      [
+       "exrx-DeltoidPosterior/DBRearLateralRaise",
+       "Execution (fixed elbow position)"
+      ],
+      [
+       "ace-34",
+       "Step 1; Step 2 (elbows slightly flexed)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": []
+  },
+  "Reverse Pec Deck": {
+   "setup": [
+    {
+     "c": "rpd.setup",
+     "s": [
+      [
+       "exrx-DeltoidPosterior/LVReverseFlyPronated",
+       "Preparation"
+      ],
+      [
+       "ace-34",
+       "Step 1 (face the backrest, torso against it; hantle — ta sama pozycja)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "rpd.move",
+     "s": [
+      [
+       "exrx-DeltoidPosterior/LVRearLateralRaise",
+       "Execution"
+      ],
+      [
+       "ace-353",
+       "opis (spread both arms apart; linki — ten sam ruch)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "rpd.elbowsHigh",
+     "s": [
+      [
+       "exrx-DeltoidPosterior/LVReverseFlyPronated",
+       "Execution; Comments"
+      ],
+      [
+       "ace-34",
+       "Step 2 (arms near level with the shoulders)"
+      ]
+     ]
+    },
+    {
+     "c": "rear.elbows",
+     "s": [
+      [
+       "exrx-DeltoidPosterior/LVRearLateralRaise",
+       "Preparation (slightly bend elbows)"
+      ],
+      [
+       "ace-34",
+       "Step 1; Step 2"
+      ]
+     ]
+    }
+   ],
+   "mistakes": []
+  },
+  "Lying Leg Curl": {
+   "setup": [
+    {
+     "c": "llc.setup",
+     "s": [
+      [
+       "ace-153",
+       "Step 1"
+      ],
+      [
+       "nasm-lying-leg-curl",
+       "Step 1 (pad just above your ankles)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "llc.move",
+     "s": [
+      [
+       "ace-153",
+       "Step 2–4"
+      ],
+      [
+       "nasm-lying-leg-curl",
+       "Step 3; Step 4"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "llc.hips",
+     "s": [
+      [
+       "ace-153",
+       "Step 2; wskazówka końcowa (avoid arching, stabilize the low back)"
+      ],
+      [
+       "nasm-lying-leg-curl",
+       "Step 1; Common Mistakes (hips shift)"
+      ]
+     ]
+    },
+    {
+     "c": "llc.control",
+     "s": [
+      [
+       "ace-153",
+       "Step 2; Step 4 (controlled manner)"
+      ],
+      [
+       "nasm-lying-leg-curl",
+       "Common Mistakes (jerky movements)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": []
+  },
+  "Crunch": {
+   "setup": [
+    {
+     "c": "crunch.setup",
+     "s": [
+      [
+       "ace-52",
+       "Step 1; Step 2"
+      ],
+      [
+       "exrx-RectusAbdominis/BWCrunch",
+       "Preparation"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "crunch.move",
+     "s": [
+      [
+       "ace-52",
+       "Step 3; Step 4"
+      ],
+      [
+       "exrx-RectusAbdominis/BWCrunch",
+       "Execution"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "crunch.lowBack",
+     "s": [
+      [
+       "ace-52",
+       "Step 3 (lower back remains in contact with the mat)"
+      ],
+      [
+       "exrx-RectusAbdominis/BWCrunch",
+       "Execution (keep low back on mat)"
+      ]
+     ]
+    },
+    {
+     "c": "crunch.neck",
+     "s": [
+      [
+       "ace-52",
+       "Step 3; wskazówka końcowa (neck stays relaxed)"
+      ],
+      [
+       "exrx-RectusAbdominis/BWCrunch",
+       "Comments (neck in neutral position)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": []
+  },
+  "Hack Squat": {
+   "setup": [
+    {
+     "c": "hack.setup",
+     "s": [
+      [
+       "exrx-Quadriceps/SLHackSquat",
+       "Preparation"
+      ],
+      [
+       "ace-154",
+       "Step 1 (prasa — ta sama zasada oparcia)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "hack.move",
+     "s": [
+      [
+       "exrx-Quadriceps/SLHackSquat",
+       "Execution"
+      ],
+      [
+       "ace-154",
+       "Step 2–4"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "lp.heels",
+     "s": [
+      [
+       "exrx-Quadriceps/SLHackSquat",
+       "Comments (do not allow heels to raise)"
+      ],
+      [
+       "ace-154",
+       "Step 2; Step 3"
+      ]
+     ]
+    },
+    {
+     "c": "lp.hips",
+     "s": [
+      [
+       "exrx-Quadriceps/SLHackSquat",
+       "Comments (pelvis pulls away from back pad)"
+      ],
+      [
+       "ace-154",
+       "Step 3; Step 4"
+      ]
+     ]
+    },
+    {
+     "c": "sq.kneesToes",
+     "s": [
+      [
+       "exrx-Quadriceps/SLHackSquat",
+       "Comments (knees pointed same direction as feet)"
+      ],
+      [
+       "nasm-leg-press",
+       "Common Mistakes (knees cave inward; prasa — ta sama zasada)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": []
+  },
+  "Plank": {
+   "setup": [
+    {
+     "c": "plank.setup",
+     "s": [
+      [
+       "ace-32",
+       "Step 1"
+      ],
+      [
+       "nasm-plank",
+       "Step 1: Setup"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "plank.move",
+     "s": [
+      [
+       "ace-32",
+       "Step 2"
+      ],
+      [
+       "nasm-plank",
+       "Step 2; Step 3"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "plank.noSag",
+     "s": [
+      [
+       "ace-32",
+       "Step 2 (avoid sagging or hiking)"
+      ],
+      [
+       "nasm-plank",
+       "Step 2; Common Mistakes"
+      ]
+     ]
+    },
+    {
+     "c": "plank.brace",
+     "s": [
+      [
+       "ace-32",
+       "Step 1 (contract your core to stiffen your torso)"
+      ],
+      [
+       "nasm-plank",
+       "Step 2 (engage your core)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "plank.mis.sag",
+     "s": [
+      [
+       "nasm-plank",
+       "Common Mistakes"
+      ],
+      [
+       "ace-32",
+       "Step 2"
+      ]
+     ]
+    },
+    {
+     "c": "plank.mis.breath",
+     "s": [
+      [
+       "nasm-plank",
+       "Common Mistakes (holding the breath)"
+      ],
+      [
+       "ace-32",
+       "Step 2 (continue to breathe)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Side Plank": {
+   "setup": [
+    {
+     "c": "splank.setup",
+     "s": [
+      [
+       "ace-303",
+       "opis"
+      ],
+      [
+       "nasm-side-plank",
+       "Step 1; Step 2"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "splank.move",
+     "s": [
+      [
+       "ace-303",
+       "opis"
+      ],
+      [
+       "nasm-side-plank",
+       "Step 2; Step 3; Step 4"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "splank.noSag",
+     "s": [
+      [
+       "nasm-side-plank",
+       "Step 3; Common Mistakes"
+      ],
+      [
+       "ace-303",
+       "opis (body in a straight line)"
+      ]
+     ]
+    },
+    {
+     "c": "plank.brace",
+     "s": [
+      [
+       "ace-303",
+       "opis (squeeze the muscles of the stomach and glutes)"
+      ],
+      [
+       "nasm-side-plank",
+       "Step 2 (engage your core)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "splank.mis.elbow",
+     "s": [
+      [
+       "nasm-side-plank",
+       "Common Mistakes"
+      ],
+      [
+       "ace-303",
+       "opis (elbow directly under the shoulder)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Dead Bug": {
+   "setup": [
+    {
+     "c": "db.setup",
+     "s": [
+      [
+       "ace-147",
+       "Step 2 (knees over hips bent 90°, elbows over shoulders)"
+      ],
+      [
+       "nasm-dead-bug",
+       "Step 1: Setup"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "db.move",
+     "s": [
+      [
+       "ace-147",
+       "Step 3"
+      ],
+      [
+       "nasm-dead-bug",
+       "Step 3; Step 4"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "db.back",
+     "s": [
+      [
+       "nasm-dead-bug",
+       "Step 2; Common Mistakes"
+      ],
+      [
+       "ace-147",
+       "Step 1 (without increasing the arch in your low back)"
+      ]
+     ]
+    },
+    {
+     "c": "db.slow",
+     "s": [
+      [
+       "nasm-dead-bug",
+       "Common Mistakes; FAQ (movement speed)"
+      ],
+      [
+       "ace-147",
+       "Step 3; wskazówka końcowa (continue to breathe)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "plank.mis.breath",
+     "s": [
+      [
+       "nasm-dead-bug",
+       "Common Mistakes"
+      ],
+      [
+       "ace-147",
+       "wskazówka końcowa"
+      ]
+     ]
+    }
+   ]
+  },
+  "Bird Dog": {
+   "setup": [
+    {
+     "c": "bd.setup",
+     "s": [
+      [
+       "ace-14",
+       "Step 1–3"
+      ],
+      [
+       "nasm-bird-dog",
+       "Step 1; Step 2"
+      ],
+      [
+       "exrx-ErectorSpinae/BWBirdDog",
+       "Preparation"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "bd.move",
+     "s": [
+      [
+       "ace-14",
+       "Step 4; Step 5; Step 7"
+      ],
+      [
+       "nasm-bird-dog",
+       "Step 3; Step 4"
+      ],
+      [
+       "exrx-ErectorSpinae/BWBirdDog",
+       "Execution"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "bd.level",
+     "s": [
+      [
+       "ace-14",
+       "Step 4; Step 5"
+      ],
+      [
+       "nasm-bird-dog",
+       "Common Mistakes (spine rotate, hips shift)"
+      ]
+     ]
+    },
+    {
+     "c": "bd.slow",
+     "s": [
+      [
+       "exrx-ErectorSpinae/BWBirdDog",
+       "Comments (deliberately, no jerking)"
+      ],
+      [
+       "nasm-bird-dog",
+       "Common Mistakes (jerky movements)"
+      ]
+     ]
+    },
+    {
+     "c": "bd.range",
+     "s": [
+      [
+       "ace-14",
+       "Step 6"
+      ],
+      [
+       "nasm-bird-dog",
+       "Common Mistakes (extending limbs too far)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": []
+  },
+  "Russian Twist": {
+   "setup": [
+    {
+     "c": "rt.setup",
+     "s": [
+      [
+       "nasm-russian-twist",
+       "Step 1; Step 2"
+      ],
+      [
+       "ace-305",
+       "opis (lean back about 45°, straight back)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "rt.move",
+     "s": [
+      [
+       "nasm-russian-twist",
+       "Step 3; Step 4"
+      ],
+      [
+       "ace-305",
+       "opis (rotate the shoulders from side to side)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "rt.back",
+     "s": [
+      [
+       "nasm-russian-twist",
+       "Common Mistakes (rounding the spine)"
+      ],
+      [
+       "ace-305",
+       "opis (maintaining a straight back)"
+      ]
+     ]
+    },
+    {
+     "c": "rt.control",
+     "s": [
+      [
+       "nasm-russian-twist",
+       "Common Mistakes (momentum, jerky rotations)"
+      ],
+      [
+       "ace-65",
+       "opis (twist through the stomach and shoulders; wersja na piłce)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": []
+  },
+  "Mountain Climbers": {
+   "setup": [
+    {
+     "c": "mc.setup",
+     "s": [
+      [
+       "ace-258",
+       "Step 1"
+      ],
+      [
+       "exrx-HipFlexors/STMountainClimber",
+       "Preparation (wersja z taśmami — ta sama pozycja)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "mc.move",
+     "s": [
+      [
+       "ace-258",
+       "Step 2"
+      ],
+      [
+       "exrx-HipFlexors/STMountainClimber",
+       "Execution"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "mc.straight",
+     "s": [
+      [
+       "exrx-HipFlexors/STMountainClimber",
+       "Comments (straighten hip each stroke)"
+      ],
+      [
+       "ace-258",
+       "Step 2 (fully extending … behind you)"
+      ]
+     ]
+    },
+    {
+     "c": "mc.stable",
+     "s": [
+      [
+       "exrx-HipFlexors/STMountainClimber",
+       "Comments (maintaining approximate height of hips)"
+      ],
+      [
+       "ace-258",
+       "Step 1; Step 2 (abs engaged, brace to stabilize your spine)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": []
+  },
+  "Rowing Machine": {
+   "setup": [
+    {
+     "c": "erg.setup",
+     "s": [
+      [
+       "c2-technique",
+       "The Catch"
+      ],
+      [
+       "aceblog-5881",
+       "The Catch: Starting Position"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "erg.drive",
+     "s": [
+      [
+       "c2-technique",
+       "The Drive"
+      ],
+      [
+       "aceblog-5881",
+       "The Drive: Work"
+      ]
+     ]
+    },
+    {
+     "c": "erg.recovery",
+     "s": [
+      [
+       "c2-technique",
+       "The Recovery"
+      ],
+      [
+       "aceblog-5881",
+       "The Recovery: Rest"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "erg.handle",
+     "s": [
+      [
+       "c2-technique",
+       "The Drive (hands move in a straight line)"
+      ],
+      [
+       "aceblog-5881",
+       "The Drive (arms in a straight line to and from the flywheel)"
+      ]
+     ]
+    },
+    {
+     "c": "erg.finish",
+     "s": [
+      [
+       "c2-technique",
+       "The Finish"
+      ],
+      [
+       "aceblog-5881",
+       "The Finish: Stabilize"
+      ]
+     ]
+    }
+   ],
+   "mistakes": []
+  },
+  "Box Jump": {
+   "setup": [
+    {
+     "c": "bj.setup",
+     "s": [
+      [
+       "ace-115",
+       "Step 1; wskazówka końcowa (height should not exceed your vertical jump)"
+      ],
+      [
+       "nasm-box-jumps",
+       "Step 1: Setup"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "bj.move",
+     "s": [
+      [
+       "ace-115",
+       "Step 2; Step 3"
+      ],
+      [
+       "nasm-box-jumps",
+       "Step 3: Execute/Drive"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "bj.land",
+     "s": [
+      [
+       "ace-115",
+       "Step 4–6"
+      ],
+      [
+       "nasm-box-jumps",
+       "Common Mistakes (landing with straight knees)"
+      ]
+     ]
+    },
+    {
+     "c": "bj.height",
+     "s": [
+      [
+       "ace-115",
+       "Step 1; Step 7; wskazówka końcowa"
+      ],
+      [
+       "nasm-box-jumps",
+       "Common Mistakes; FAQ (box height for beginners)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "bj.mis.stiff",
+     "s": [
+      [
+       "nasm-box-jumps",
+       "Common Mistakes"
+      ],
+      [
+       "ace-115",
+       "Step 5 (avoid locking your knees)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Bench Press (sztanga)": {
+   "setup": [
+    {
+     "c": "bp.contact",
+     "s": [
+      [
+       "ace-5",
+       "opis (press the feet into the ground and the hips into the bench)"
+      ],
+      [
+       "nasm-barbell-bench-press",
+       "Step 1: Setup"
+      ],
+      [
+       "sbs-how-to-bench",
+       "Foot position (butt won’t come off the bench)"
+      ]
+     ]
+    },
+    {
+     "c": "bp.grip",
+     "s": [
+      [
+       "ace-5",
+       "opis (slightly wider than shoulder-width)"
+      ],
+      [
+       "nasm-barbell-bench-press",
+       "Step 2; FAQ (grip width)"
+      ],
+      [
+       "exrx-PectoralSternal/BBBenchPress",
+       "Preparation"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "bp.move",
+     "s": [
+      [
+       "ace-5",
+       "opis"
+      ],
+      [
+       "nasm-barbell-bench-press",
+       "Step 3; Step 4"
+      ],
+      [
+       "exrx-PectoralSternal/BBBenchPress",
+       "Execution"
+      ],
+      [
+       "sbs-how-to-bench",
+       "Descent; Ascent"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "bp.blades",
+     "s": [
+      [
+       "nasm-barbell-bench-press",
+       "Step 2 (retract your shoulder blades)"
+      ],
+      [
+       "sbs-how-to-bench",
+       "Scapular position"
+      ]
+     ]
+    },
+    {
+     "c": "bp.control",
+     "s": [
+      [
+       "sbs-how-to-bench",
+       "Descent (lower the bar under control)"
+      ],
+      [
+       "nasm-barbell-bench-press",
+       "Common Mistakes (lowering the bar too quickly)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "bp.mis.arch",
+     "s": [
+      [
+       "nasm-barbell-bench-press",
+       "Common Mistakes (excessive lower back arching)"
+      ],
+      [
+       "sbs-how-to-bench",
+       "Foot position (butt won’t come off the bench)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Incline Bench Press (sztanga)": {
+   "setup": [
+    {
+     "c": "ibp.setup",
+     "s": [
+      [
+       "nasm-incline-barbell-bench-press",
+       "Step 1: Setup"
+      ],
+      [
+       "exrx-PectoralClavicular/BBInclineBenchPress",
+       "Preparation"
+      ]
+     ]
+    },
+    {
+     "c": "bp.grip",
+     "s": [
+      [
+       "nasm-incline-barbell-bench-press",
+       "Step 2; FAQ (grip width)"
+      ],
+      [
+       "exrx-PectoralClavicular/BBInclineBenchPress",
+       "Preparation (wide oblique overhand grip)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "ibp.move",
+     "s": [
+      [
+       "nasm-incline-barbell-bench-press",
+       "Step 3; Step 4"
+      ],
+      [
+       "exrx-PectoralClavicular/BBInclineBenchPress",
+       "Execution"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "bp.blades",
+     "s": [
+      [
+       "nasm-incline-barbell-bench-press",
+       "Step 2"
+      ],
+      [
+       "ace-25",
+       "Step 2 (hantle — ta sama zasada)"
+      ]
+     ]
+    },
+    {
+     "c": "bp.control",
+     "s": [
+      [
+       "nasm-incline-barbell-bench-press",
+       "Common Mistakes (lowering the bar too quickly)"
+      ],
+      [
+       "ace-25",
+       "Step 3 (slowly lower)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "bp.mis.arch",
+     "s": [
+      [
+       "nasm-incline-barbell-bench-press",
+       "Common Mistakes"
+      ],
+      [
+       "ace-25",
+       "Step 3; Step 4 (avoid any arching in the low back)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Incline Bench Press (hantle)": {
+   "setup": [
+    {
+     "c": "ibp.dbSetup",
+     "s": [
+      [
+       "exrx-PectoralClavicular/DBInclineBenchPress",
+       "Preparation"
+      ],
+      [
+       "ace-25",
+       "Step 1; Step 2"
+      ],
+      [
+       "nasm-two-arm-incline-dumbbell-chest-press",
+       "Step 1; Step 2"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "ibp.dbMove",
+     "s": [
+      [
+       "exrx-PectoralClavicular/DBInclineBenchPress",
+       "Execution"
+      ],
+      [
+       "ace-25",
+       "Step 3; Step 4"
+      ],
+      [
+       "nasm-two-arm-incline-dumbbell-chest-press",
+       "Step 3; Step 4"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "bp.blades",
+     "s": [
+      [
+       "ace-25",
+       "Step 2"
+      ],
+      [
+       "nasm-two-arm-incline-dumbbell-chest-press",
+       "Step 2"
+      ]
+     ]
+    },
+    {
+     "c": "bp.control",
+     "s": [
+      [
+       "ace-25",
+       "Step 3"
+      ],
+      [
+       "nasm-two-arm-incline-dumbbell-chest-press",
+       "Common Mistakes (lowering too quickly or bouncing)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "bp.mis.arch",
+     "s": [
+      [
+       "nasm-two-arm-incline-dumbbell-chest-press",
+       "Common Mistakes"
+      ],
+      [
+       "ace-25",
+       "Step 3; Step 4"
+      ]
+     ]
+    }
+   ]
+  },
+  "Machine Chest Press": {
+   "setup": [
+    {
+     "c": "mcp.seat",
+     "s": [
+      [
+       "ace-188",
+       "Step 1"
+      ],
+      [
+       "nasm-chest-press-machine",
+       "Step 1; FAQ (seat adjustment)"
+      ],
+      [
+       "exrx-PectoralSternal/LVChestPress",
+       "Preparation (chest approximately height of handles)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "mcp.move",
+     "s": [
+      [
+       "ace-188",
+       "Step 2; Step 3"
+      ],
+      [
+       "nasm-chest-press-machine",
+       "Step 3; Step 4"
+      ],
+      [
+       "exrx-PectoralSternal/LVChestPress",
+       "Execution"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "mcp.blades",
+     "s": [
+      [
+       "ace-188",
+       "Step 1; Step 3; wskazówka końcowa"
+      ],
+      [
+       "nasm-chest-press-machine",
+       "Step 2 (shoulders back and down)"
+      ]
+     ]
+    },
+    {
+     "c": "press.noLock",
+     "s": [
+      [
+       "ace-188",
+       "Step 3 (fully extended, but not locked)"
+      ],
+      [
+       "nasm-chest-press-machine",
+       "Common Mistakes (locking out elbows)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": []
+  },
+  "Cable Fly": {
+   "setup": [
+    {
+     "c": "cfly.setup",
+     "s": [
+      [
+       "ace-160",
+       "opis"
+      ],
+      [
+       "nasm-cable-crossover",
+       "Step 1; Step 2"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "cfly.move",
+     "s": [
+      [
+       "ace-160",
+       "opis"
+      ],
+      [
+       "nasm-cable-crossover",
+       "Step 3; Step 4"
+      ],
+      [
+       "exrx-PectoralSternal/CBStandingFly",
+       "Execution"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "fly.control",
+     "s": [
+      [
+       "nasm-cable-crossover",
+       "Step 4 (avoid letting the weight stack pull your arms back too quickly)"
+      ],
+      [
+       "ace-160",
+       "opis (slowly returning the arms)"
+      ]
+     ]
+    },
+    {
+     "c": "fly.elbows",
+     "s": [
+      [
+       "exrx-PectoralSternal/CBStandingFly",
+       "Preparation; Execution (elbows in fixed position)"
+      ],
+      [
+       "ace-160",
+       "opis (with the elbows slightly bent)"
+      ]
+     ]
+    },
+    {
+     "c": "fly.posture",
+     "s": [
+      [
+       "nasm-cable-crossover",
+       "Step 2 (shoulders back and down, chest proud, slight forward lean)"
+      ],
+      [
+       "exrx-PectoralSternal/CBStandingFly",
+       "Preparation; Comments (bend over slightly)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": []
+  },
+  "Push Up": {
+   "setup": [
+    {
+     "c": "push.setup",
+     "s": [
+      [
+       "ace-41",
+       "Step 2"
+      ],
+      [
+       "nasm-push-up",
+       "Step 1; Step 2"
+      ],
+      [
+       "exrx-PectoralSternal/BWPushup",
+       "Preparation"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "push.move",
+     "s": [
+      [
+       "ace-41",
+       "Step 3; Step 4"
+      ],
+      [
+       "nasm-push-up",
+       "Step 3; Step 4"
+      ],
+      [
+       "exrx-PectoralSternal/BWPushup",
+       "Execution"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "push.rigid",
+     "s": [
+      [
+       "ace-41",
+       "Step 3; Step 4 (do not allow your low back to sag or your hips to hike)"
+      ],
+      [
+       "nasm-push-up",
+       "Common Mistakes (hips sag)"
+      ],
+      [
+       "exrx-PectoralSternal/BWPushup",
+       "Comments (body kept straight)"
+      ]
+     ]
+    },
+    {
+     "c": "plank.brace",
+     "s": [
+      [
+       "ace-41",
+       "Step 2 (bracing)"
+      ],
+      [
+       "nasm-push-up",
+       "Step 2 (engage your core)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "push.mis.partial",
+     "s": [
+      [
+       "nasm-push-up",
+       "Common Mistakes (adequate range of motion)"
+      ],
+      [
+       "exrx-PectoralSternal/BWPushup",
+       "Execution (lower to floor; until arms are extended)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Incline Push Up": {
+   "setup": [
+    {
+     "c": "ipush.setup",
+     "s": [
+      [
+       "nasm-incline-push-up",
+       "Step 1; Step 2"
+      ],
+      [
+       "exrx-PectoralSternal/BWInclinePushup",
+       "Preparation"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "ipush.move",
+     "s": [
+      [
+       "nasm-incline-push-up",
+       "Step 3; Step 4"
+      ],
+      [
+       "exrx-PectoralSternal/BWInclinePushup",
+       "Execution"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "push.rigid",
+     "s": [
+      [
+       "nasm-incline-push-up",
+       "Step 2; Common Mistakes"
+      ],
+      [
+       "exrx-PectoralSternal/BWInclinePushup",
+       "Comments (body kept straight)"
+      ]
+     ]
+    },
+    {
+     "c": "ipush.height",
+     "s": [
+      [
+       "exrx-PectoralSternal/BWInclinePushup",
+       "Comments (height affects difficulty; Easier/Harder)"
+      ],
+      [
+       "nasm-incline-push-up",
+       "FAQ (start with a higher bench, gradually lower)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": []
+  },
+  "Skullcrusher (EZ)": {
+   "setup": [
+    {
+     "c": "skull.setup",
+     "s": [
+      [
+       "ace-36",
+       "Step 1"
+      ],
+      [
+       "exrx-Triceps/BBLyingTriExt",
+       "Preparation; Comments (EZ Bar Lying Triceps Extension)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "skull.move",
+     "s": [
+      [
+       "ace-36",
+       "Step 2; Step 3"
+      ],
+      [
+       "exrx-Triceps/BBLyingTriExt",
+       "Execution"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "skull.upperArm",
+     "s": [
+      [
+       "ace-36",
+       "Step 2; wskazówka końcowa (upper arms vertical)"
+      ],
+      [
+       "exrx-Triceps/BBLyingTriExt",
+       "Execution (elbows move back only slightly to clear the head)"
+      ]
+     ]
+    },
+    {
+     "c": "skull.depth",
+     "s": [
+      [
+       "ace-36",
+       "Step 2"
+      ],
+      [
+       "exrx-Triceps/BBLyingTriExt",
+       "Execution (as bar nears head)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": []
+  },
+  "Triceps Dips (ławka)": {
+   "setup": [
+    {
+     "c": "bdip.setup",
+     "s": [
+      [
+       "nasm-bench-dips",
+       "Step 1"
+      ],
+      [
+       "exrx-Triceps/BWBenchDip",
+       "Preparation"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "bdip.move",
+     "s": [
+      [
+       "nasm-bench-dips",
+       "Step 3; Step 4"
+      ],
+      [
+       "exrx-Triceps/BWBenchDip",
+       "Execution"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "bdip.easier",
+     "s": [
+      [
+       "nasm-bench-dips",
+       "Step 1; FAQ (modifications for beginners)"
+      ],
+      [
+       "exrx-Triceps/BWBenchDip",
+       "Comments: Easier/Harder"
+      ]
+     ]
+    },
+    {
+     "c": "bdip.range",
+     "s": [
+      [
+       "nasm-bench-dips",
+       "Common Mistakes (adequate range of motion)"
+      ],
+      [
+       "exrx-Triceps/BWBenchDip",
+       "Comments (full range of motion)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": []
+  },
+  "Close Grip Bench Press": {
+   "setup": [
+    {
+     "c": "cgbp.grip",
+     "s": [
+      [
+       "ace-311",
+       "opis (hands directly in line with the shoulders)"
+      ],
+      [
+       "nasm-close-grip-bench-press",
+       "Step 1; FAQ (grip width)"
+      ],
+      [
+       "exrx-Triceps/BBCloseGripBenchPress",
+       "Preparation; Comments"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "cgbp.move",
+     "s": [
+      [
+       "ace-311",
+       "opis"
+      ],
+      [
+       "exrx-Triceps/BBCloseGripBenchPress",
+       "Execution"
+      ],
+      [
+       "nasm-close-grip-bench-press",
+       "Step 3; Step 4"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "cgbp.elbows",
+     "s": [
+      [
+       "ace-311",
+       "opis (elbows close to the ribs)"
+      ],
+      [
+       "exrx-Triceps/BBCloseGripBenchPress",
+       "Execution (elbows close to body)"
+      ]
+     ]
+    },
+    {
+     "c": "bp.contact",
+     "s": [
+      [
+       "ace-311",
+       "opis (push the feet into the floor, press the hips into the bench)"
+      ],
+      [
+       "nasm-close-grip-bench-press",
+       "Step 1 (back firmly against the bench, feet flat)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": []
+  },
+  "Bench Press (hantle)": {
+   "setup": [
+    {
+     "c": "dbp.setup",
+     "s": [
+      [
+       "exrx-PectoralSternal/DBBenchPress",
+       "Preparation"
+      ],
+      [
+       "ace-19",
+       "Step 1; Step 2"
+      ]
+     ]
+    },
+    {
+     "c": "bp.contact",
+     "s": [
+      [
+       "ace-19",
+       "Step 2 (head, shoulders, butt and feet in contact)"
+      ],
+      [
+       "nasm-two-arm-dumbbell-chest-press-with-band",
+       "Step 1; Step 2 (feet firmly planted, flat on the floor)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "dbp.move",
+     "s": [
+      [
+       "exrx-PectoralSternal/DBBenchPress",
+       "Execution"
+      ],
+      [
+       "ace-19",
+       "Step 3; Step 4"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "bp.blades",
+     "s": [
+      [
+       "ace-19",
+       "Step 2"
+      ],
+      [
+       "nasm-two-arm-dumbbell-chest-press-with-band",
+       "Step 2 (retract your shoulders)"
+      ]
+     ]
+    },
+    {
+     "c": "bp.control",
+     "s": [
+      [
+       "ace-19",
+       "Step 3 (slowly lower… without bouncing)"
+      ],
+      [
+       "nasm-two-arm-dumbbell-chest-press-with-band",
+       "Step 4 (lower with control)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "bp.mis.arch",
+     "s": [
+      [
+       "ace-19",
+       "Step 3; Step 4 (avoid any arching in the low back)"
+      ],
+      [
+       "nasm-barbell-bench-press",
+       "Common Mistakes (sztanga — ta sama zasada)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Chest Fly (hantle)": {
+   "setup": [
+    {
+     "c": "dfly.setup",
+     "s": [
+      [
+       "ace-21",
+       "Step 1; Step 2"
+      ],
+      [
+       "exrx-PectoralSternal/DBFly",
+       "Preparation"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "dfly.move",
+     "s": [
+      [
+       "ace-21",
+       "Step 3; Step 4"
+      ],
+      [
+       "exrx-PectoralSternal/DBFly",
+       "Execution"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "fly.elbows",
+     "s": [
+      [
+       "ace-21",
+       "Step 2–4 (slightly flexed elbows)"
+      ],
+      [
+       "exrx-PectoralSternal/DBFly",
+       "Comments (keep elbows at fixed angle, only slightly bent)"
+      ]
+     ]
+    },
+    {
+     "c": "bp.contact",
+     "s": [
+      [
+       "ace-21",
+       "Step 2; Step 3 (head, shoulder, butt and feet contact)"
+      ],
+      [
+       "nasm-barbell-bench-press",
+       "Step 1 (wyciskanie — ta sama pozycja na ławce)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": []
+  },
+  "Front Squat": {
+   "setup": [
+    {
+     "c": "fsq.rack",
+     "s": [
+      [
+       "exrx-Quadriceps/BBFrontSquat",
+       "Preparation (upper arms parallel to floor)"
+      ],
+      [
+       "nasm-dumbbell-front-squat",
+       "Step 1 (elbows high; hantle — ta sama pozycja)"
+      ],
+      [
+       "ace-22",
+       "Step 2 (front edge of the shoulders)"
+      ]
+     ]
+    },
+    {
+     "c": "sq.stance",
+     "s": [
+      [
+       "ace-22",
+       "Step 1"
+      ],
+      [
+       "nasm-dumbbell-front-squat",
+       "Step 1 (shoulder-width, toes slightly out)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "sq.down",
+     "s": [
+      [
+       "exrx-Quadriceps/BBFrontSquat",
+       "Execution"
+      ],
+      [
+       "ace-22",
+       "Step 3; Step 6"
+      ],
+      [
+       "nasm-dumbbell-front-squat",
+       "Step 2; Step 3"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "fsq.elbows",
+     "s": [
+      [
+       "nasm-dumbbell-front-squat",
+       "Common Mistakes (elbows drop)"
+      ],
+      [
+       "exrx-Quadriceps/BBFrontSquat",
+       "Preparation (upper arms parallel to floor)"
+      ]
+     ]
+    },
+    {
+     "c": "sq.kneesToes",
+     "s": [
+      [
+       "exrx-Quadriceps/BBFrontSquat",
+       "Execution; Comments"
+      ],
+      [
+       "ace-22",
+       "Step 4; Step 5"
+      ],
+      [
+       "nasm-dumbbell-front-squat",
+       "Common Mistakes"
+      ]
+     ]
+    },
+    {
+     "c": "sq.depth",
+     "s": [
+      [
+       "exrx-Quadriceps/BBFrontSquat",
+       "Execution (just past parallel)"
+      ],
+      [
+       "ace-22",
+       "Step 4"
+      ],
+      [
+       "nasm-dumbbell-front-squat",
+       "Step 3; Common Mistakes"
+      ]
+     ]
+    },
+    {
+     "c": "sq.back",
+     "s": [
+      [
+       "exrx-Quadriceps/BBFrontSquat",
+       "Comments (back straight)"
+      ],
+      [
+       "ace-22",
+       "Step 6 (back, chest and head-up position)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "sq.mis.heels",
+     "s": [
+      [
+       "nasm-dumbbell-front-squat",
+       "Common Mistakes (rising onto the toes)"
+      ],
+      [
+       "exrx-Quadriceps/BBFrontSquat",
+       "Comments (feet flat on floor)"
+      ]
+     ]
+    }
+   ]
+  },
+  "Triceps Pushdown": {
+   "setup": [
+    {
+     "c": "tpd.setup",
+     "s": [
+      [
+       "ace-185",
+       "Step 1"
+      ],
+      [
+       "exrx-Triceps/CBPushdown",
+       "Preparation"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "tpd.move",
+     "s": [
+      [
+       "exrx-Triceps/CBPushdown",
+       "Execution"
+      ],
+      [
+       "ace-185",
+       "Step 2; Step 3"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "tpd.elbows",
+     "s": [
+      [
+       "ace-185",
+       "Step 3; wskazówka końcowa (monitor the forward movement of your elbows)"
+      ],
+      [
+       "exrx-Triceps/CBPushdown",
+       "Preparation; Comments (elbows to side, only slight travel at top)"
+      ]
+     ]
+    },
+    {
+     "c": "press.noLock",
+     "s": [
+      [
+       "ace-185",
+       "Step 3 (fully extended, do not “lock out”)"
+      ],
+      [
+       "exrx-Triceps/CBPushdown",
+       "Execution (extend arms down)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": []
+  },
+  "Overhead Triceps Extension (hantel)": {
+   "setup": [
+    {
+     "c": "ote.setup",
+     "s": [
+      [
+       "ace-74",
+       "Step 1; Step 2"
+      ],
+      [
+       "exrx-Triceps/DBTriExt",
+       "Preparation"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "ote.move",
+     "s": [
+      [
+       "ace-74",
+       "Step 2; Step 3"
+      ],
+      [
+       "exrx-Triceps/DBTriExt",
+       "Execution"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "ote.upperArm",
+     "s": [
+      [
+       "ace-74",
+       "Step 3; wskazówka końcowa (upper arms vertical)"
+      ],
+      [
+       "exrx-Triceps/DBTriExt",
+       "Execution (with elbows over head)"
+      ]
+     ]
+    },
+    {
+     "c": "ote.elbowsIn",
+     "s": [
+      [
+       "ace-74",
+       "wskazówka końcowa (elbows shoulder-width apart)"
+      ],
+      [
+       "exrx-Triceps/DBTriExt",
+       "Comments (keep elbows from pointing out too much)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": []
+  },
+  "Cable Overhead Extension": {
+   "setup": [
+    {
+     "c": "cote.setup",
+     "s": [
+      [
+       "exrx-Triceps/CBTriExt",
+       "Preparation"
+      ],
+      [
+       "ace-74",
+       "Step 2 (elbows pointing forward/up; hantel — ta sama pozycja)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "cote.move",
+     "s": [
+      [
+       "exrx-Triceps/CBTriExt",
+       "Execution"
+      ],
+      [
+       "ace-74",
+       "Step 2; Step 3"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "ote.upperArm",
+     "s": [
+      [
+       "exrx-Triceps/CBTriExt",
+       "Execution (elbows remaining overhead)"
+      ],
+      [
+       "ace-74",
+       "Step 3; wskazówka końcowa"
+      ]
+     ]
+    },
+    {
+     "c": "press.noLock",
+     "s": [
+      [
+       "ace-74",
+       "Step 2 (not completely locked)"
+      ],
+      [
+       "exrx-Triceps/CBStandingTricepsExtensionRope",
+       "Execution (until arms are straight)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": []
+  },
+  "Deadlift (hantle)": {
+   "setup": [
+    {
+     "c": "dbdl.setup",
+     "s": [
+      [
+       "nasm-kettlebell-deadlift",
+       "Step 1; Step 2 (kettlebell — ten sam wzorzec)"
+      ],
+      [
+       "ace-6",
+       "opis (sztanga — ten sam wzorzec)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "dl.lift",
+     "s": [
+      [
+       "nasm-kettlebell-deadlift",
+       "Step 3"
+      ],
+      [
+       "ace-6",
+       "opis"
+      ]
+     ]
+    },
+    {
+     "c": "dl.lower",
+     "s": [
+      [
+       "nasm-kettlebell-deadlift",
+       "Step 4"
+      ],
+      [
+       "ace-6",
+       "opis"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "hinge.back",
+     "s": [
+      [
+       "nasm-kettlebell-deadlift",
+       "Step 2; Step 3; Step 4"
+      ],
+      [
+       "ace-6",
+       "opis"
+      ]
+     ]
+    },
+    {
+     "c": "dbdl.hips",
+     "s": [
+      [
+       "nasm-kettlebell-deadlift",
+       "Step 3 (drive your hips forward)"
+      ],
+      [
+       "ace-6",
+       "opis (push the hips forward to move to standing)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": [
+    {
+     "c": "mis.roundBack",
+     "s": [
+      [
+       "nasm-kettlebell-deadlift",
+       "Common Mistakes"
+      ],
+      [
+       "ace-6",
+       "opis"
+      ]
+     ]
+    }
+   ]
+  }
+ },
+ "open": {
+  "Decline Bench Press": "jedno przeczytane źródło opisuje to ćwiczenie (ExRx.net); drugie niezależne do znalezienia (NSCA/ACSM płatne — reguła 0 zł)",
+  "Pec Deck": "jedno przeczytane źródło opisuje to ćwiczenie (ExRx.net); drugie niezależne do znalezienia (NSCA/ACSM płatne — reguła 0 zł)",
+  "Wyciskanie na linkach (stojąc)": "źródła (ExRx.net, ACE — wersja jednorącz) mają wspólną najwyżej jedną wskazówkę — wymagane 2–4 wskazówki z dwoma źródłami każda",
+  "Chest Dip": "jedno przeczytane źródło opisuje to ćwiczenie (ExRx.net); drugie niezależne do znalezienia (NSCA/ACSM płatne — reguła 0 zł); artykuł ACE o dipach dotyczy ryzyka, nie techniki",
+  "Diamond Push Up": "ExRx.net opisuje pompki z wąskim chwytem (dłonie pod barkami), nie „diamentowe”; brak przeczytanego opisu",
+  "Straight Arm Pulldown": "jedno przeczytane źródło opisuje to ćwiczenie (ACE); drugie niezależne do znalezienia (NSCA/ACSM płatne — reguła 0 zł); ExRx.net nie ma tej strony w archiwum, „Cable Pullover” to inne ćwiczenie",
+  "Back Extension": "jedno przeczytane źródło opisuje to ćwiczenie (ExRx.net — 45° hyperextension); drugie niezależne do znalezienia (NSCA/ACSM płatne — reguła 0 zł)",
+  "Arnold Press": "jedno przeczytane źródło opisuje to ćwiczenie (ExRx.net); drugie niezależne do znalezienia (NSCA/ACSM płatne — reguła 0 zł)",
+  "Machine Shoulder Press": "źródła (ACE, ExRx.net) mają wspólną najwyżej jedną wskazówkę — wymagane 2–4 wskazówki z dwoma źródłami każda",
+  "Upright Row (hantle)": "jedno przeczytane źródło opisuje to ćwiczenie (ExRx.net); drugie niezależne do znalezienia (NSCA/ACSM płatne — reguła 0 zł)",
+  "Incline Curl (hantle)": "jedno przeczytane źródło opisuje to ćwiczenie (ExRx.net — ustawienie na ławce skośnej); drugie niezależne do znalezienia (NSCA/ACSM płatne — reguła 0 zł)",
+  "Concentration Curl (hantle)": "jedno przeczytane źródło opisuje to ćwiczenie (ExRx.net); drugie niezależne do znalezienia (NSCA/ACSM płatne — reguła 0 zł)",
+  "Preacher Curl": "jedno przeczytane źródło opisuje to ćwiczenie (ExRx.net — dwie strony tego samego serwisu); drugie niezależne do znalezienia (NSCA/ACSM płatne — reguła 0 zł)",
+  "Spider Curl": "jedno przeczytane źródło opisuje to ćwiczenie (ExRx.net); drugie niezależne do znalezienia (NSCA/ACSM płatne — reguła 0 zł)",
+  "Skullcrusher (hantle)": "źródła (ExRx.net — hantle, ACE — sztanga) mają wspólną najwyżej jedną wskazówkę — wymagane 2–4 wskazówki z dwoma źródłami każda",
+  "Triceps Kickback": "ACE i ExRx.net różnią się ustawieniem ramienia (równolegle do tułowia vs równolegle do podłogi) — za mało części wspólnej",
+  "Box Squat": "jedno przeczytane źródło opisuje to ćwiczenie (ExRx.net — cechy przysiadu na skrzyni); drugie niezależne do znalezienia (NSCA/ACSM płatne — reguła 0 zł)",
+  "Leg Extension": "jedno przeczytane źródło opisuje to ćwiczenie (ExRx.net); drugie niezależne do znalezienia (NSCA/ACSM płatne — reguła 0 zł); strona ACE bez opisu (tylko wideo)",
+  "Leg Curl": "źródła (NASM, ExRx.net) mają wspólną najwyżej jedną wskazówkę — wymagane 2–4 wskazówki z dwoma źródłami każda",
+  "Nordic Curl": "brak przeczytanego opisu techniki (ACE, NASM, ExRx.net nie mają; abstrakty badań nie opisują wykonania)",
+  "Sissy Squat": "jedno przeczytane źródło opisuje to ćwiczenie (ExRx.net); drugie niezależne do znalezienia (NSCA/ACSM płatne — reguła 0 zł)",
+  "Wall Sit": "ACE opisuje przysiad przy ścianie z piłką (inne ćwiczenie), strona ExRx.net niedostępna w archiwum",
+  "Cable Kickback": "jedno przeczytane źródło opisuje to ćwiczenie (ExRx.net — dwie strony tego samego serwisu); drugie niezależne do znalezienia (NSCA/ACSM płatne — reguła 0 zł)",
+  "Hip Abduction": "jedno przeczytane źródło opisuje to ćwiczenie (ExRx.net); drugie niezależne do znalezienia (NSCA/ACSM płatne — reguła 0 zł); strona ACE bez opisu (tylko wideo)",
+  "Hip Adduction": "jedno przeczytane źródło opisuje to ćwiczenie (ExRx.net — maszyna); drugie niezależne do znalezienia (NSCA/ACSM płatne — reguła 0 zł); ACE opisuje wersję stojącą na wyciągu",
+  "Seated Calf Raise": "jedno przeczytane źródło opisuje to ćwiczenie (ExRx.net); drugie niezależne do znalezienia (NSCA/ACSM płatne — reguła 0 zł)",
+  "Ab Wheel": "źródła (ExRx.net, ACE — rollout ze sztangą) mają wspólną najwyżej jedną wskazówkę — wymagane 2–4 wskazówki z dwoma źródłami każda",
+  "Pallof Press": "jedno przeczytane źródło opisuje to ćwiczenie (ACE); drugie niezależne do znalezienia (NSCA/ACSM płatne — reguła 0 zł); ExRx.net nie ma tej strony w archiwum",
+  "Hanging Leg Raise": "jedno przeczytane źródło opisuje to ćwiczenie (ExRx.net); drugie niezależne do znalezienia (NSCA/ACSM płatne — reguła 0 zł)",
+  "Hanging Knee Raise": "jedno przeczytane źródło opisuje to ćwiczenie (ExRx.net); drugie niezależne do znalezienia (NSCA/ACSM płatne — reguła 0 zł)",
+  "Cable Crunch": "jedno przeczytane źródło opisuje to ćwiczenie (ExRx.net); drugie niezależne do znalezienia (NSCA/ACSM płatne — reguła 0 zł)",
+  "Reverse Crunch": "jedno przeczytane źródło opisuje to ćwiczenie (ACE); drugie niezależne do znalezienia (NSCA/ACSM płatne — reguła 0 zł); strona ExRx.net niedostępna w archiwum",
+  "Hollow Hold": "brak przeczytanego opisu (ACE, NASM, ExRx.net nie mają tego ćwiczenia)",
+  "Farmer's Walk": "jedno przeczytane źródło opisuje to ćwiczenie (ACE — dwie strony tej samej organizacji); drugie niezależne do znalezienia (NSCA/ACSM płatne — reguła 0 zł)",
+  "Suitcase Carry": "jedno przeczytane źródło opisuje to ćwiczenie (ACE — dwie strony tej samej organizacji); drugie niezależne do znalezienia (NSCA/ACSM płatne — reguła 0 zł)",
+  "Incline Walk (bieżnia)": "brak dwóch przeczytanych opisów techniki (ACE, NASM, ExRx.net nie mają) — poza zakresem etapu 1",
+  "Bieg": "brak dwóch przeczytanych opisów techniki biegu (ACE, NASM, ExRx.net nie mają) — nie zgadujemy",
+  "Rower": "brak dwóch przeczytanych opisów techniki jazdy (ACE, NASM, ExRx.net nie mają) — nie zgadujemy",
+  "Assault Bike": "brak dwóch przeczytanych opisów (dokumentacji producenta nie czytano)",
+  "Skakanka": "jedno przeczytane źródło opisuje to ćwiczenie (ACE — blog); drugie niezależne do znalezienia (NSCA/ACSM płatne — reguła 0 zł)",
+  "Burpees": "źródła (NASM, ACE — wersja z BOSU) mają wspólną najwyżej jedną wskazówkę — wymagane 2–4 wskazówki z dwoma źródłami każda",
+  "Medicine Ball Slam": "jedno przeczytane źródło opisuje to ćwiczenie (ACE); drugie niezależne do znalezienia (NSCA/ACSM płatne — reguła 0 zł)"
+ }
+}

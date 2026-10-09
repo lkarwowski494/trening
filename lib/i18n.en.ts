@@ -723,4 +723,12 @@ export const EN: Record<string, string> = {
   'Treningi nadal czekają na zapis w Apple Health. Sprawdź zgodę w aplikacji Zdrowie: profil → Aplikacje → {app}.': 'Workouts are still waiting to be saved to Apple Health. Check the permission in the Health app: profile → Apps → {app}.',
   'Data pomiaru nie może być w przyszłości.': 'The measurement date cannot be in the future.',
   'Masa ciała musi być większa od zera i nie większa niż {max}.': 'Body weight must be greater than zero and no more than {max}.',
+  'Technika': 'Technique',
+  'Ustawienie, ruch, wskazówki i częste błędy.': 'Setup, movement, tips and common mistakes.',
+  'Ustawienie': 'Setup',
+  'Ruch': 'Movement',
+  'Wskazówki': 'Tips',
+  'Częste błędy': 'Common mistakes',
+  'Na podstawie: {list}. Własne sformułowania.': 'Based on: {list}. Our own wording.',
+  'Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.': 'The app does not give medical advice. If you have pain, an injury or an illness, consult a doctor or physiotherapist.',
 };

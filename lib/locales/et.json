@@ -1236,5 +1236,13 @@
  "Ponów teraz": "Proovi kohe uuesti",
  "Treningi nadal czekają na zapis w Apple Health. Sprawdź zgodę w aplikacji Zdrowie: profil → Aplikacje → {app}.": "Treeningud ootavad endiselt Apple Healthi salvestamist. Kontrolli luba rakenduses Tervis: profiil → Rakendused → {app}.",
  "Data pomiaru nie może być w przyszłości.": "Mõõtmise kuupäev ei saa olla tulevikus.",
- "Masa ciała musi być większa od zera i nie większa niż {max}.": "Kehakaal peab olema suurem kui 0 ja kuni {max}."
+ "Masa ciała musi być większa od zera i nie większa niż {max}.": "Kehakaal peab olema suurem kui 0 ja kuni {max}.",
+ "Technika": "Tehnika",
+ "Ustawienie, ruch, wskazówki i częste błędy.": "Algasend, liikumine, nõuanded ja sagedased vead.",
+ "Ustawienie": "Algasend",
+ "Ruch": "Liikumine",
+ "Wskazówki": "Nõuanded",
+ "Częste błędy": "Sagedased vead",
+ "Na podstawie: {list}. Własne sformułowania.": "Allikad: {list}. Oma sõnastus.",
+ "Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.": "Rakendus ei anna meditsiinilist nõu. Valu, vigastuse või haiguse korral pöördu arsti või füsioterapeudi poole."
 }

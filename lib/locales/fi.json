@@ -1236,5 +1236,13 @@
  "Ponów teraz": "Yritä nyt uudelleen",
  "Treningi nadal czekają na zapis w Apple Health. Sprawdź zgodę w aplikacji Zdrowie: profil → Aplikacje → {app}.": "Treenit odottavat yhä tallennusta Apple Healthiin. Tarkista lupa Terveys-sovelluksessa: profiili → Apit → {app}.",
  "Data pomiaru nie może być w przyszłości.": "Mittauspäivä ei voi olla tulevaisuudessa.",
- "Masa ciała musi być większa od zera i nie większa niż {max}.": "Kehonpainon on oltava yli nollan ja enintään {max}."
+ "Masa ciała musi być większa od zera i nie większa niż {max}.": "Kehonpainon on oltava yli nollan ja enintään {max}.",
+ "Technika": "Tekniikka",
+ "Ustawienie, ruch, wskazówki i częste błędy.": "Alkuasento, liike, vinkit ja yleiset virheet.",
+ "Ustawienie": "Alkuasento",
+ "Ruch": "Liike",
+ "Wskazówki": "Vinkit",
+ "Częste błędy": "Yleiset virheet",
+ "Na podstawie: {list}. Własne sformułowania.": "Lähteet: {list}. Omin sanoin.",
+ "Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.": "Sovellus ei anna lääketieteellisiä neuvoja. Jos sinulla on kipua, vamma tai sairaus, käänny lääkärin tai fysioterapeutin puoleen."
 }

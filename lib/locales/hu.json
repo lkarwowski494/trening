@@ -1236,5 +1236,13 @@
  "Ponów teraz": "Újrapróbálás most",
  "Treningi nadal czekają na zapis w Apple Health. Sprawdź zgodę w aplikacji Zdrowie: profil → Aplikacje → {app}.": "Edzések még mindig Apple Healthbe mentésre várnak. Ellenőrizze az engedélyt az Egészség appban: profil → Appok → {app}.",
  "Data pomiaru nie może być w przyszłości.": "A mérés dátuma nem lehet a jövőben.",
- "Masa ciała musi być większa od zera i nie większa niż {max}.": "A testsúlynak 0-nál nagyobbnak és legfeljebb {max} értékűnek kell lennie."
+ "Masa ciała musi być większa od zera i nie większa niż {max}.": "A testsúlynak 0-nál nagyobbnak és legfeljebb {max} értékűnek kell lennie.",
+ "Technika": "Kivitelezés",
+ "Ustawienie, ruch, wskazówki i częste błędy.": "Kiinduló helyzet, mozgás, tippek és gyakori hibák.",
+ "Ustawienie": "Kiinduló helyzet",
+ "Ruch": "Mozgás",
+ "Wskazówki": "Tippek",
+ "Częste błędy": "Gyakori hibák",
+ "Na podstawie: {list}. Własne sformułowania.": "Forrás: {list}. Saját megfogalmazás.",
+ "Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.": "Az alkalmazás nem ad orvosi tanácsot. Fájdalom, sérülés vagy betegség esetén fordulj orvoshoz vagy gyógytornászhoz."
 }

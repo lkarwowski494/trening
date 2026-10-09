@@ -1236,5 +1236,13 @@
  "Ponów teraz": "Zkusit znovu",
  "Treningi nadal czekają na zapis w Apple Health. Sprawdź zgodę w aplikacji Zdrowie: profil → Aplikacje → {app}.": "Tréninky stále čekají na uložení do Apple Health. Zkontrolujte oprávnění v aplikaci Zdraví: profil → Aplikace → {app}.",
  "Data pomiaru nie może być w przyszłości.": "Datum měření nemůže být v budoucnosti.",
- "Masa ciała musi być większa od zera i nie większa niż {max}.": "Tělesná hmotnost musí být větší než nula a nejvýš {max}."
+ "Masa ciała musi być większa od zera i nie większa niż {max}.": "Tělesná hmotnost musí být větší než nula a nejvýš {max}.",
+ "Technika": "Technika provedení",
+ "Ustawienie, ruch, wskazówki i częste błędy.": "Výchozí poloha, pohyb, tipy a časté chyby.",
+ "Ustawienie": "Výchozí poloha",
+ "Ruch": "Pohyb",
+ "Wskazówki": "Tipy",
+ "Częste błędy": "Časté chyby",
+ "Na podstawie: {list}. Własne sformułowania.": "Podle: {list}. Vlastní formulace.",
+ "Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.": "Aplikace neposkytuje lékařské rady. Při bolesti, zranění nebo nemoci se poraď s lékařem nebo fyzioterapeutem."
 }

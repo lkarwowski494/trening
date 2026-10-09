@@ -1236,5 +1236,13 @@
  "Ponów teraz": "Reîncearcă acum",
  "Treningi nadal czekają na zapis w Apple Health. Sprawdź zgodę w aplikacji Zdrowie: profil → Aplikacje → {app}.": "Antrenamentele încă așteaptă salvarea în Apple Health. Verificați permisiunea în aplicația Sănătate: profil → Aplicații → {app}.",
  "Data pomiaru nie może być w przyszłości.": "Data măsurătorii nu poate fi în viitor.",
- "Masa ciała musi być większa od zera i nie większa niż {max}.": "Greutatea corpului trebuie să fie mai mare decât zero și cel mult {max}."
+ "Masa ciała musi być większa od zera i nie większa niż {max}.": "Greutatea corpului trebuie să fie mai mare decât zero și cel mult {max}.",
+ "Technika": "Tehnică",
+ "Ustawienie, ruch, wskazówki i częste błędy.": "Poziția de start, mișcarea, sfaturi și greșeli frecvente.",
+ "Ustawienie": "Poziția de start",
+ "Ruch": "Mișcarea",
+ "Wskazówki": "Sfaturi",
+ "Częste błędy": "Greșeli frecvente",
+ "Na podstawie: {list}. Własne sformułowania.": "După: {list}. Formulare proprie.",
+ "Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.": "Aplicația nu oferă sfaturi medicale. În caz de durere, accidentare sau boală, consultă un medic sau un kinetoterapeut."
 }

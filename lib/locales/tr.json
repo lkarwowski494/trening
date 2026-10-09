@@ -1236,5 +1236,13 @@
  "Ponów teraz": "Şimdi yeniden dene",
  "Treningi nadal czekają na zapis w Apple Health. Sprawdź zgodę w aplikacji Zdrowie: profil → Aplikacje → {app}.": "Antrenmanlar hâlâ Apple Sağlık’a kaydedilmeyi bekliyor. İzni Sağlık uygulamasında kontrol edin: profil → Uygulamalar → {app}.",
  "Data pomiaru nie może być w przyszłości.": "Ölçüm tarihi gelecekte olamaz.",
- "Masa ciała musi być większa od zera i nie większa niż {max}.": "Vücut ağırlığı sıfırdan büyük ve en fazla {max} olmalıdır."
+ "Masa ciała musi być większa od zera i nie większa niż {max}.": "Vücut ağırlığı sıfırdan büyük ve en fazla {max} olmalıdır.",
+ "Technika": "Teknik",
+ "Ustawienie, ruch, wskazówki i częste błędy.": "Başlangıç pozisyonu, hareket, ipuçları ve sık yapılan hatalar.",
+ "Ustawienie": "Başlangıç pozisyonu",
+ "Ruch": "Hareket",
+ "Wskazówki": "İpuçları",
+ "Częste błędy": "Sık yapılan hatalar",
+ "Na podstawie: {list}. Własne sformułowania.": "Kaynak: {list}. Kendi ifademizle.",
+ "Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.": "Uygulama tıbbi tavsiye vermez. Ağrı, sakatlık veya hastalık durumunda bir doktora ya da fizyoterapiste danış."
 }

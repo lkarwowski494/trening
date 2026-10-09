@@ -268,6 +268,10 @@
   "en": "The app uses open-source libraries. Below are the licences (tap to see the text) and every npm package the app depends on — build tools included — with its licence and copyright notice."
  },
  {
+  "pl": "Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.",
+  "en": "The app does not give medical advice. If you have pain, an injury or an illness, consult a doctor or physiotherapist."
+ },
+ {
   "pl": "Aplikacja nie zbiera danych: wszystko, co wpisujesz, zostaje w telefonie, bez konta, reklam i analityki.",
   "en": "The app collects no data: everything you enter stays on your phone — no account, ads or analytics."
  },
@@ -690,6 +694,10 @@
  {
   "pl": "czerwona",
   "en": "red"
+ },
+ {
+  "pl": "Częste błędy",
+  "en": "Common mistakes"
  },
  {
   "pl": "czworogłowe",
@@ -1982,6 +1990,10 @@
   "en": "Are you sure?"
  },
  {
+  "pl": "Na podstawie: {list}. Własne sformułowania.",
+  "en": "Based on: {list}. Our own wording."
+ },
+ {
   "pl": "na urządzeniu: {v}",
   "en": "on the device: {v}"
  },
@@ -3253,6 +3265,10 @@
   "en": "RPE / RIR per set"
  },
  {
+  "pl": "Ruch",
+  "en": "Movement"
+ },
+ {
   "pl": "Rzadziej niż {n} dni w tygodniu: {list} (dzień tylko z pracą pomocniczą = {h}).",
   "en": "Fewer than {n} days a week: {list} (a day with assisting work only = {h})."
  },
@@ -3783,6 +3799,10 @@
   "en": "same muscles"
  },
  {
+  "pl": "Technika",
+  "en": "Technique"
+ },
+ {
   "pl": "Tego ćwiczenia nie da się już zamienić.",
   "en": "This exercise can no longer be swapped."
  },
@@ -4073,6 +4093,14 @@
  {
   "pl": "Ustawienia na stronę: {n} ({r})",
   "en": "Settings per side: {n} ({r})"
+ },
+ {
+  "pl": "Ustawienie",
+  "en": "Setup"
+ },
+ {
+  "pl": "Ustawienie, ruch, wskazówki i częste błędy.",
+  "en": "Setup, movement, tips and common mistakes."
  },
  {
   "pl": "Usunąć ćwiczenie?",
@@ -4445,6 +4473,10 @@
  {
   "pl": "Wróć",
   "en": "Back"
+ },
+ {
+  "pl": "Wskazówki",
+  "en": "Tips"
  },
  {
   "pl": "Wstaw ciężary modelu",

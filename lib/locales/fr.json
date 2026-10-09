@@ -1236,5 +1236,13 @@
  "Ponów teraz": "Réessayer maintenant",
  "Treningi nadal czekają na zapis w Apple Health. Sprawdź zgodę w aplikacji Zdrowie: profil → Aplikacje → {app}.": "Des séances attendent toujours d’être enregistrées dans Santé. Vérifiez l’autorisation dans l’app Santé : profil → Apps → {app}.",
  "Data pomiaru nie może być w przyszłości.": "La date de la mesure ne peut pas être dans le futur.",
- "Masa ciała musi być większa od zera i nie większa niż {max}.": "Le poids de corps doit être supérieur à zéro et ne pas dépasser {max}."
+ "Masa ciała musi być większa od zera i nie większa niż {max}.": "Le poids de corps doit être supérieur à zéro et ne pas dépasser {max}.",
+ "Technika": "Technique",
+ "Ustawienie, ruch, wskazówki i częste błędy.": "Position de départ, mouvement, conseils et erreurs fréquentes.",
+ "Ustawienie": "Position de départ",
+ "Ruch": "Mouvement",
+ "Wskazówki": "Conseils",
+ "Częste błędy": "Erreurs fréquentes",
+ "Na podstawie: {list}. Własne sformułowania.": "D’après : {list}. Rédaction originale.",
+ "Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.": "L’app ne donne pas de conseils médicaux. En cas de douleur, de blessure ou de maladie, consulte un médecin ou un kinésithérapeute."
 }

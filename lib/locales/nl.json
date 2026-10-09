@@ -1236,5 +1236,13 @@
  "Ponów teraz": "Nu opnieuw proberen",
  "Treningi nadal czekają na zapis w Apple Health. Sprawdź zgodę w aplikacji Zdrowie: profil → Aplikacje → {app}.": "Er wachten nog trainingen op bewaren in Apple Health. Controleer de toestemming in de Gezondheid-app: profiel → Apps → {app}.",
  "Data pomiaru nie może być w przyszłości.": "De meetdatum kan niet in de toekomst liggen.",
- "Masa ciała musi być większa od zera i nie większa niż {max}.": "Het lichaamsgewicht moet groter dan nul zijn en niet meer dan {max}."
+ "Masa ciała musi być większa od zera i nie większa niż {max}.": "Het lichaamsgewicht moet groter dan nul zijn en niet meer dan {max}.",
+ "Technika": "Techniek",
+ "Ustawienie, ruch, wskazówki i częste błędy.": "Uitgangshouding, beweging, tips en veelgemaakte fouten.",
+ "Ustawienie": "Uitgangshouding",
+ "Ruch": "Beweging",
+ "Wskazówki": "Tips",
+ "Częste błędy": "Veelgemaakte fouten",
+ "Na podstawie: {list}. Własne sformułowania.": "Gebaseerd op: {list}. Eigen formulering.",
+ "Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.": "De app geeft geen medisch advies. Raadpleeg bij pijn, een blessure of ziekte een arts of fysiotherapeut."
 }

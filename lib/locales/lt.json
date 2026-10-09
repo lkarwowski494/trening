@@ -1236,5 +1236,13 @@
  "Ponów teraz": "Bandyti dabar",
  "Treningi nadal czekają na zapis w Apple Health. Sprawdź zgodę w aplikacji Zdrowie: profil → Aplikacje → {app}.": "Treniruotės vis dar laukia įrašymo į Apple Health. Patikrinkite leidimą programoje „Sveikata“: profilis → Programos → {app}.",
  "Data pomiaru nie może być w przyszłości.": "Matavimo data negali būti ateityje.",
- "Masa ciała musi być większa od zera i nie większa niż {max}.": "Kūno svoris turi būti didesnis nei nulis ir ne didesnis nei {max}."
+ "Masa ciała musi być większa od zera i nie większa niż {max}.": "Kūno svoris turi būti didesnis nei nulis ir ne didesnis nei {max}.",
+ "Technika": "Atlikimo technika",
+ "Ustawienie, ruch, wskazówki i częste błędy.": "Pradinė padėtis, judesys, patarimai ir dažnos klaidos.",
+ "Ustawienie": "Pradinė padėtis",
+ "Ruch": "Judesys",
+ "Wskazówki": "Patarimai",
+ "Częste błędy": "Dažnos klaidos",
+ "Na podstawie: {list}. Własne sformułowania.": "Pagal: {list}. Savos formuluotės.",
+ "Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.": "Programėlė neteikia medicininių patarimų. Jei jauti skausmą, patyrei traumą ar sergi, kreipkis į gydytoją arba kineziterapeutą."
 }

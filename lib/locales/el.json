@@ -1236,5 +1236,13 @@
  "Ponów teraz": "Επανάληψη τώρα",
  "Treningi nadal czekają na zapis w Apple Health. Sprawdź zgodę w aplikacji Zdrowie: profil → Aplikacje → {app}.": "Οι προπονήσεις περιμένουν ακόμη αποθήκευση στο Apple Health. Έλεγξε την άδεια στην εφαρμογή Υγεία: προφίλ → Εφαρμογές → {app}.",
  "Data pomiaru nie może być w przyszłości.": "Η ημερομηνία μέτρησης δεν μπορεί να είναι στο μέλλον.",
- "Masa ciała musi być większa od zera i nie większa niż {max}.": "Το σωματικό βάρος πρέπει να είναι πάνω από μηδέν και έως {max}."
+ "Masa ciała musi być większa od zera i nie większa niż {max}.": "Το σωματικό βάρος πρέπει να είναι πάνω από μηδέν και έως {max}.",
+ "Technika": "Τεχνική",
+ "Ustawienie, ruch, wskazówki i częste błędy.": "Αρχική θέση, κίνηση, συμβουλές και συχνά λάθη.",
+ "Ustawienie": "Αρχική θέση",
+ "Ruch": "Κίνηση",
+ "Wskazówki": "Συμβουλές",
+ "Częste błędy": "Συχνά λάθη",
+ "Na podstawie: {list}. Własne sformułowania.": "Με βάση: {list}. Δική μας διατύπωση.",
+ "Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.": "Η εφαρμογή δεν παρέχει ιατρικές συμβουλές. Σε περίπτωση πόνου, τραυματισμού ή ασθένειας, συμβουλέψου γιατρό ή φυσικοθεραπευτή."
 }

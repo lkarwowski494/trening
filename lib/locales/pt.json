@@ -1236,5 +1236,13 @@
  "Ponów teraz": "Tentar agora",
  "Treningi nadal czekają na zapis w Apple Health. Sprawdź zgodę w aplikacji Zdrowie: profil → Aplikacje → {app}.": "Há treinos ainda à espera de serem guardados no Apple Health. Verifique a permissão na app Saúde: perfil → Apps → {app}.",
  "Data pomiaru nie może być w przyszłości.": "A data da medição não pode ser futura.",
- "Masa ciała musi być większa od zera i nie większa niż {max}.": "O peso corporal tem de ser superior a zero e não exceder {max}."
+ "Masa ciała musi być większa od zera i nie większa niż {max}.": "O peso corporal tem de ser superior a zero e não exceder {max}.",
+ "Technika": "Técnica",
+ "Ustawienie, ruch, wskazówki i częste błędy.": "Posição inicial, movimento, dicas e erros comuns.",
+ "Ustawienie": "Posição inicial",
+ "Ruch": "Movimento",
+ "Wskazówki": "Dicas",
+ "Częste błędy": "Erros comuns",
+ "Na podstawie: {list}. Własne sformułowania.": "Com base em: {list}. Redação própria.",
+ "Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.": "A app não dá aconselhamento médico. Em caso de dor, lesão ou doença, consulta um médico ou fisioterapeuta."
 }

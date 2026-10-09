@@ -1236,5 +1236,13 @@
  "Ponów teraz": "Försök igen nu",
  "Treningi nadal czekają na zapis w Apple Health. Sprawdź zgodę w aplikacji Zdrowie: profil → Aplikacje → {app}.": "Pass väntar fortfarande på att sparas i Apple Health. Kontrollera behörigheten i appen Hälsa: profil → Appar → {app}.",
  "Data pomiaru nie może być w przyszłości.": "Mätdatumet kan inte ligga i framtiden.",
- "Masa ciała musi być większa od zera i nie większa niż {max}.": "Kroppsvikten måste vara större än noll och högst {max}."
+ "Masa ciała musi być większa od zera i nie większa niż {max}.": "Kroppsvikten måste vara större än noll och högst {max}.",
+ "Technika": "Teknik",
+ "Ustawienie, ruch, wskazówki i częste błędy.": "Utgångsläge, rörelse, tips och vanliga fel.",
+ "Ustawienie": "Utgångsläge",
+ "Ruch": "Rörelse",
+ "Wskazówki": "Tips",
+ "Częste błędy": "Vanliga fel",
+ "Na podstawie: {list}. Własne sformułowania.": "Baserat på: {list}. Egna formuleringar.",
+ "Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.": "Appen ger inga medicinska råd. Vid smärta, skada eller sjukdom – kontakta läkare eller fysioterapeut."
 }

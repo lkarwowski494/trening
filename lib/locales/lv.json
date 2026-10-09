@@ -1236,5 +1236,13 @@
  "Ponów teraz": "Mēģināt tagad",
  "Treningi nadal czekają na zapis w Apple Health. Sprawdź zgodę w aplikacji Zdrowie: profil → Aplikacje → {app}.": "Treniņi joprojām gaida saglabāšanu Apple Health. Pārbaudiet atļauju lietotnē Veselība: profils → Lietotnes → {app}.",
  "Data pomiaru nie może być w przyszłości.": "Mērījuma datums nevar būt nākotnē.",
- "Masa ciała musi być większa od zera i nie większa niż {max}.": "Ķermeņa svaram jābūt lielākam par nulli un ne lielākam par {max}."
+ "Masa ciała musi być większa od zera i nie większa niż {max}.": "Ķermeņa svaram jābūt lielākam par nulli un ne lielākam par {max}.",
+ "Technika": "Tehnika",
+ "Ustawienie, ruch, wskazówki i częste błędy.": "Sākuma stāvoklis, kustība, padomi un biežākās kļūdas.",
+ "Ustawienie": "Sākuma stāvoklis",
+ "Ruch": "Kustība",
+ "Wskazówki": "Padomi",
+ "Częste błędy": "Biežākās kļūdas",
+ "Na podstawie: {list}. Własne sformułowania.": "Pēc: {list}. Pašu formulējums.",
+ "Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.": "Lietotne nesniedz medicīniskus padomus. Sāpju, traumas vai slimības gadījumā konsultējies ar ārstu vai fizioterapeitu."
 }
