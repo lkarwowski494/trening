@@ -23,12 +23,15 @@ Decyzje właściciela: docs/18 (08.10.2026). Reguły merytoryczne: docs/research
 ## 2. Generator — wejście i założenia
 - Nazwa (audyt 0.10 UX-14): ekran „Generator szablonów i planu” (jak temat przewodnika), przycisk „Wygeneruj szablony i plan”.
 - Wejście: ekran Szablony („Wygeneruj szablony i plan”) i ekran Plan tygodnia (ten sam kreator).
-- Założenia: cel (siła / masa / redukcja = masa + cardio), miejsce (sprzęt z Miejsc), dni treningowe 1–6 dla każdego celu (od 09.10.2026,
+- Kolejność ekranu (decyzja właściciela 09.10.2026 wieczór, B): **najpierw dni treningowe, potem cel** — każdy cel aktywny przy każdej liczbie dni;
+  cel jako chipy z zawijaniem (4 cele nie mieszczą się w kontrolce segmentowej na 320 pt). Przy 1 dniu siłowym uwaga pod celem (ostrzeżenie
+  „oneday” — jedno miejsce, nie w podglądzie; przy celu „Ogólny” tekst dla zdrowia).
+- Założenia: cel (siła / masa / redukcja = masa + cardio / **ogólny** — dla zdrowia, docs/research/30), miejsce (sprzęt z Miejsc), dni treningowe 1–6 dla każdego celu (od 09.10.2026,
   docs/18; wcześniej 2–6, redukcja 3–6) — przy redukcji od 3 dni (`CUT_CARDIO_FROM` = `MIN_DAYS` + `CARDIO_SESSIONS`) w tym 1 cardio, przy 1–2 dniach
-  same dni siłowe i tekst „Cardio poza planem” z zaleceniem WHO (opcja A, docs/research/29 sekcja 3), czas sesji (45 / 60 / 90 min). Wszystkie liczby generatora to stałe w `lib/generator.ts`; teksty ekranu dostają je jako parametry.
+  same dni siłowe i tekst „Cardio poza planem” z zaleceniem WHO (opcja A, docs/research/29 sekcja 3), czas sesji (45 / 60 / 90 min); przy celu „Ogólny” i 4–6 dniach przełącznik „Dni cardio w planie” (domyślnie wyłączony; `GenInput.cardio`). Wszystkie liczby generatora to stałe w `lib/generator.ts`; teksty ekranu dostają je jako parametry.
 - Miejsce (audyt 0.10 UX-10): chip „+ Dodaj miejsce” (Miejsca treningu); bez miejsc — wyjaśnienie, że plan zakłada pełną siłownię; „Bez ograniczeń
   sprzętu” = pełna siłownia (opis pod chipami).
-- Wynik: szablony w folderze „Wygenerowane” (każdy szablon siłowy z notatką: jedna linijka wysiłku — RIR; puste szablony nie są zapisywane — dzień
+- Wynik: szablony w folderze „Wygenerowane” (każdy szablon siłowy z notatką: jedna linijka wysiłku — RIR, przy celu „Ogólny” opis słowny; puste szablony nie są zapisywane — dzień
   wolny), nowy plan tygodnia „{cel}, {n}× w tygodniu · {miejsce}” (bez miejsca — „Pełna siłownia”; za długie miejsce skrócone „…” do 40 znaków)
   zapisany obok innych; pytanie, czy ma od razu obowiązywać; po zapisie potwierdzenie „Zapisano” (co i gdzie) z „Pokaż szablony” i „Plan tygodnia”.
   Nazwy (szablony, folder, plan) w języku z chwili zapisu — potem to dane użytkownika.
@@ -53,6 +56,7 @@ Decyzje właściciela: docs/18 (08.10.2026). Reguły merytoryczne: docs/research
 | Cardio (redukcja) | sesje umiarkowanego cardio w osobne dni, długość = czas sesji (**konwencja**); podgląd: zalecenie WHO „co najmniej 150–300 min umiarkowanego (albo 75–150 min intensywnego) wysiłku tygodniowo, liczy się też umiarkowany ruch w ciągu dnia”; bez „na czczo” i „strefy 2”; w Zdrowiu jako trening cardio (bieg → running, rower → cycling…, inne → mixedCardio), nie siłowy | R8 (potwierdzone; audyt 0.10 MER-08, MER-18); docs/research/22 sekcja 4 |
 | Czas sesji | budżet serii = (minuty − 10 min rozgrzewki) × 60 / (40 s serii + średnia przerwa `AVG_REST`: siła 150 s = średnio bój 180 i dodatkowe 120; masa i redukcja 105 s = średnio 120 i 90; siła bez obciążenia — 105 s); ćwiczeń = budżet / 3, co najmniej 3; szacunek — rzeczywiste przerwy mogą dać ±1–2 min (np. masa 90 min ≈ 91 min) | **uproszczenie bez źródła** — nazwane w podglądzie z liczbą serii i średnią przerwą (audyt 0.10 MER-12, LOG-11) |
 | Progresja | opis: zwiększ ciężar po górnej granicy zakresu przy docelowym RIR | R9 (**konwencja**) |
+| Ogólny (09.10.2026) | wszystkie wybrane dni siłowe: 1–3 — pełne FBW (sesja `fbw`) każdego dnia, nie dzień po dniu, gdy się da; 4–6 — góra/dół jak masa; `GENERAL_SETS` = 2 serie (część wspólna 2–3), 8–12 (w domu 12–20), przerwy 120/90 s; bez boju 4–6 i bez kreski 10 serii; wysiłek słownie („do chwili, gdy kolejne powtórzenie byłoby trudne”); przełącznik „Dni cardio w planie” (4–6 dni, domyślnie wyłączony): dni powyżej `GENERAL_LIFT_MAX` = 3 → sesje umiarkowanego cardio (które dni — `assignDays`, najmniej par); podgląd: minuty cardio w planie i zalecenie WHO; przy 1 dniu „oneday” dla zdrowia (WHO 2020 ≥ 2 dni, wytyczne USA 2018: zacząć od 1 dnia); bez rozciągania i równowagi | docs/research/30 (WHO 2020, PAG 2018, ACSM 2011, ACSM 2026); 2 serie, 12–20, przerwy, pełne FBW = **uproszczenia**, długość cardio = **konwencja** |
 
 ## 3a. Plan z moich szablonów (decyzja właściciela 09.10.2026, wariant B — wyjątek od zamrożenia; docs/18 ok. 14:55)
 - Wejścia: ekran generatora — wybór „Nowe szablony i plan” / „Plan z moich szablonów” (`/generator?mode=own`); edytor planu (przycisk, gdy jest

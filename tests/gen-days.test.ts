@@ -151,7 +151,7 @@ describe('1 dzień w tygodniu', () => {
       expect([where, kinds.filter(k => k === 'oneday').length, kinds.includes('rare')]).toEqual([where, 1, true]); /* każda partia z seriami ma < 2 dni */
       expect([where, w.find(x => x.kind === 'oneday')!.text]).toEqual([where, ONEDAY_PL]);
       expect([where, w.filter(x => /utrzym/i.test(x.text)).length]).toEqual([where, 0]); /* „raczej utrzymanie” — niepotwierdzone (docs/research/29) */
-      expect([where, genCount(i), genPlanName(i)]).toEqual([where, 1, `${{ strength: 'Siła', hypertrophy: 'Masa', cut: 'Redukcja' }[goal]}, 1× w tygodniu · Pełna siłownia`]);
+      expect([where, genCount(i), genPlanName(i)]).toEqual([where, 1, `${({ strength: 'Siła', hypertrophy: 'Masa', cut: 'Redukcja' } as Record<string, string>)[goal]}, 1× w tygodniu · Pełna siłownia`]);
       n++;
     }
     expect(n).toBe(3 * 3 * 7);

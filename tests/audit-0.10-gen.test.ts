@@ -198,10 +198,11 @@ describe('C5 / MER-18: trening cardio w Zdrowiu nie jako siłowy', () => {
 });
 
 describe('C5 / LOG-11 / TST-10: liczby generatora tylko w stałych lib/generator.ts', () => {
-  test('teksty generatora (ekran i lib) bez liczb wpisanych na sztywno — poza nazwami źródeł (WHO 2020, ACSM 2026) i przeliczeniem „× 60”', () => {
+  /* cel „Ogólny” (09.10.2026, docs/research/30): nazwy źródeł ACSM 2011 i wytyczne USA 2018 — też nazwy z rokiem, nie liczby planu */
+  test('teksty generatora (ekran i lib) bez liczb wpisanych na sztywno — poza nazwami źródeł (WHO 2020, ACSM 2026, ACSM 2011, USA 2018) i przeliczeniem „× 60”', () => {
     const fs = require('fs'); const path = require('path');
     const keys = ['app/generator.tsx', 'lib/generator.ts'].flatMap(f => [...String(fs.readFileSync(path.join(__dirname, '..', f), 'utf8')).matchAll(/\bt\(\s*'((?:[^'\\]|\\.)*)'/g)].map(m => m[1]));
     expect(keys.length).toBeGreaterThan(30);
-    expect(keys.map(k => k.replace(/\{\w+\}|WHO 2020|ACSM 2026|× 60/g, '')).filter(k => /\d/.test(k))).toEqual([]);
+    expect(keys.map(k => k.replace(/\{\w+\}|WHO 2020|ACSM 2026|ACSM 2011|USA 2018|× 60/g, '')).filter(k => /\d/.test(k))).toEqual([]);
   });
 });
