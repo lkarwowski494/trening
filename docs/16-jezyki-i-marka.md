@@ -192,6 +192,76 @@ tp() dostaje tylko liczby całkowite); każdy wpis ma trzy różne formy („п�
 „Упражнения”, „Тренировка”; zrzuty web w scratchpad `jezyki-w3-zrzuty` bez uciętych tekstów); (3) opis w App Store po rosyjsku (część po dwukropku
 w nazwie, podtytuł, opis, słowa kluczowe) — do napisania i przejrzenia przy ASO; (4) dostępność w krajach (patrz wyżej) — App Store Connect.
 
+### Fala 4 nowych języków: japoński (ja), koreański (ko), chiński tradycyjny (zh-Hant) (decyzja właściciela 09.10.2026 wieczór, docs/18; wdrożenie 09.10.2026 na gałęzi feat-jezyki-w4b, po wydaniu 0.11)
+
+*Sprawdzenia (09.10.2026, te same strony Apple co przy fali 1):* japoński, koreański i chiński tradycyjny są na liście „System Language” iOS (Japanese,
+Korean, Chinese, Traditional (Taiwan) i (Hong Kong)) i na liście lokalizacji App Store Connect (Japanese, Korean, Chinese (Traditional)). IBM Plex Sans
+i Mono **nie mają** kana, kanji ani hangula (cmap — test `tests/i18n-wave4.test.ts`, „wygląd”). Żaden z trzech języków nie wymagał przebudowy kroju ani
+układu (wariant A niżej) — **żaden nie jest odłożony** (zasada właściciela z 09.10). Chiński uproszczony — poza falą (telefon zh-Hans → angielski).
+
+*Krój — co robi iOS ze znakiem spoza kroju przy jawnym `fontFamily` (źródła przeczytane 09.10.2026):*
+- React Native 0.86 rysuje tekst na iOS przez TextKit: `NSTextStorage` + `NSLayoutManager` (kod w `node_modules/react-native/ReactCommon/react/renderer/
+  textlayoutmanager/platform/ios/…/RCTTextLayoutManager.mm`, `Libraries/Text/Text/RCTTextShadowView.mm`).
+- Apple, `NSMutableAttributedString.fixAttributes(in:)` (developer.apple.com/documentation/foundation/nsmutableattributedstring/fixattributes(in:)):
+  „assigns default fonts to characters with illegal fonts for their scripts and otherwise corrects font attribute assignments” — `NSTextStorage` robi to sama
+  (`fixesAttributesLazily`: „The system’s concrete subclass overrides this property”).
+- Apple, `CTFontCopyDefaultCascadeListForLanguages` (developer.apple.com/documentation/coretext/ctfontcopydefaultcascadelistforlanguages(_:_:)):
+  „When the original font used for text layout and rendering does not support a certain Unicode character from the provided text, the system follows this
+  list to pick a fallback font that includes the character. The font alternatives in the cascade list match the original font’s style, weight, and width.”
+- Wniosek: przy `fontFamily: IBMPlexSans_600SemiBold` znak 日/한 dostaje krój zastępczy systemu (per znak) o tej samej grubości; łacina i cyfry zostają w Plex.
+  Którego kroju CJK użyje iOS (Hiragino Sans / Apple SD Gothic Neo / PingFang) — wybiera lista kaskadowa wg języków preferowanych telefonu; **na
+  symulatorze niesprawdzone** (otwarte niżej).
+
+| Wariant | Co | Rozmiar | Kompromisy |
+|---|---|---|---|
+| **A (wdrożony, rekomendacja)** | IBM Plex bez zmian; pismo CJK krojem zastępczym iOS per znak | 0 MB, 0 zmian w `lib/theme.ts` (tylko stała `FALLBACK_SCRIPTS` do testów) | grubość zachowana (Apple, wyżej); cyfry, timery i łacina dalej w Plex (spójność marki, cyfry Plex Mono w liczbach); ryzyko: kształty znaków Han wg języka telefonu (np. chiński w aplikacji na telefonie po japońsku → możliwe japońskie kształty; przy „Jak w telefonie” język telefonu = język aplikacji, więc problem dotyczy tylko języka wymuszonego), wiersz z dwoma krojami (inne metryki) |
+| B (krój systemowy dla ja/ko/zh-Hant) | `fontFamily` wyłączony dla tych języków | 0 MB | **nie da się z jednego miejsca:** `F.*` użyte w 133 miejscach (`grep "F\.\w"` w app/components/lib), a aplikacja celowo nie ustawia `fontWeight` („grubość wybiera rodzina”, `lib/theme.ts`) — bez `fontFamily` nagłówki i półgrube teksty stałyby się zwykłe, chyba że każde miejsce dostanie `fontWeight` (przebudowa 133 miejsc); `F` jest też w 4 stylach na poziomie modułu (zmiana języka wymagałaby restartu). Odmiana B2 — nazwane kroje systemowe przez getter `F` (Hiragino Sans W3/W6, Apple SD Gothic Neo Regular/SemiBold/Bold): lista Apple „System Fonts” (developer.apple.com/fonts/system-fonts/) oznacza Hiragino Sans W3–W8 i Apple SD Gothic Neo jako „iOS system font”, ale **PingFang TC jako „iOS downloadable”** — dla zh-Hant nie ma pewnego kroju do nazwania |
+| C (IBM Plex Sans JP/KR/TC) | dołączyć kroje Plex CJK (OFL 1.1 — `@expo-google-fonts/ibm-plex-sans-jp` 0.4.2: „MIT AND OFL-1.1”, plik LICENSE_FONT) | JP 400/600/700: 3 × ≈ 2,38 MB = 7,1 MB; KR: 3 × ≈ 2,8 MB = 8,5 MB; TC — brak w `@expo-google-fonts` (npm 404), pliki tylko z repozytorium IBM (niesprawdzone) | +15,6 MB i więcej do aplikacji (dziś 5 plików krojów w aplikacji: 0,93 MB); ta sama przebudowa co B (krój zależny od języka); spójny wygląd z marką i pewne kształty znaków (krój JP ma japońskie, KR koreańskie) |
+
+Rekomendacja i wdrożenie: **A** — bez kosztu i bez przebudowy, zgodne z dokumentacją Apple; C dopiero, jeśli zrzut z symulatora pokaże zły krój lub grubość
+(decyzja właściciela — produktowa: rozmiar aplikacji vs wygląd). B odrzucone jako „z jednego miejsca” — wymaga przebudowy większej niż C.
+
+*Łamanie wierszy bez spacji:* własny kod nie dzieli tekstów po spacjach (`grep split(` — tylko dane, nie teksty UI); `glue()` (NBSP przy liczbach) działa
+tylko przy spacji, więc w CJK nic nie zmienia. Testy szerokości w `tests/matrix-i18n.test.tsx` („żaden wyraz nie szerszy niż wiersz”) dzieliły po spacjach —
+zdanie japońskie/chińskie byłoby jednym „wyrazem”. Teraz `units()`: bez pisma CJK — dokładnie jak dotąd (po spacjach, test kontrolny); ja/zh — złamanie
+między znakami (Unicode UAX #14, sekcja 5.1, klasa ID: „lines can ordinarily break before and after and between pairs of ideographic characters”, także
+hiragana i katakana poza małymi znakami) z zakazami: bez złamania przed znakiem zamykającym/nonstarterem (、。」）・ ー, małe kana, 々 — UAX #14: NS i CJ,
+traktowane ściśle) i po otwierającym (「（); ciąg łaciński (RPE, e1RM, {n}) — całość; koreański — po spacjach (ostrzej niż iOS: UAX #14 domyślnie traktuje
+sylaby hangul jak ID, a React Native ma `lineBreakStrategyIOS` domyślnie „none” — reactnative.dev/docs/text); szerokość znaku CJK bez glifu w Plex = 1 em
+(dotąd 0,6 em). Interpunkcja końcowa: 。？！： = . ? ! : (test `punctMismatch`).
+
+*Rozwiązanie:* pełne słowniki `lib/locales/{ja,ko,zh-Hant}.json` (1345 tekstów UI) i `lib/cues/text/{ja,ko,zh-Hant}.json` (265 zdań wskazówek);
+`locales/{ja,ko,zh-Hant}.json` (nazwa pod ikoną, opisy uprawnień Zdrowia), `app.json`, widżet przerwy (UPDATE_WIDGET; `RestLiveActivity.swift` wybiera
+zh-Hant dla zh-Hant-*/zh-TW/zh-HK/zh-MO, inny chiński → angielski), `store/app-store-names.json` (lokalizacje ja, ko, zh-Hant). Nazwy ćwiczeń z biblioteki —
+po angielsku jak w innych językach (`exName`). Nazwa aplikacji: **Training** (トレーニング, 트레이닝, 訓練 — inne pismo, niepodobne do „Trening”). Nazwy języków
+na liście jak w iOS: 日本語, 한국어, 繁體中文. Tłumaczenie: agent (własne sformułowania, bez nazw innych aplikacji); **bez recenzji native speakera** — otwarte.
+
+| Kod | Rejestr | Terminy (trening / ćwiczenie / seria / powtórzenia / przerwa / pauza / szablon / guma / do upadku / deload / redukcja) | Nazwy iOS w tekstach |
+|---|---|---|---|
+| ja | grzeczny styl です/ます w zdaniach (UI i wskazówki; częste błędy jako „…こと。”), przyciski krótkie (保存, 削除, キャンセル) | トレーニング / 種目 / セット / 回数 (回) / 休憩 / 一時停止 / テンプレート / バンド / 限界まで / ディロード / 減量 | 設定, 「ファイル」 (このiPhone内), ヘルスケア |
+| ko | styl grzecznościowy: -니다 w zdaniach, -세요 w poleceniach, pytania -까요? | 운동 / 종목 / 세트 / 반복 횟수 (회) / 휴식 / 일시정지 / 루틴 / 밴드 / 실패 지점까지 / 디로드 / 감량 | 설정, 파일 앱 (나의 iPhone), 건강 앱 |
+| zh-Hant | Tajwan: „你”, znaki tradycyjne, słownictwo iOS tajwańskie (設定, 檔案, 資料, 儲存) | 訓練 / 動作 / 組 / 次數 (下) / 休息 / 暫停 / 範本 / 彈力帶 / 力竭 / 減量 (減量週) / 減脂 | 設定, 「檔案」 (我的 iPhone), 「健康」 App |
+
+Słownictwo sprzętu: ja バーベル, ダンベル, プレート, ベンチ, ケーブル, ケトルベル, スミスマシン, パワーラック, 懸垂バー; ko 바벨, 덤벨, 원판, 벤치, 케이블, 케틀벨,
+스미스 머신, 파워 랙, 철봉; zh-Hant 槓鈴, 啞鈴, 槓片, 訓練椅, 滑輪, 壺鈴, 史密斯機, 深蹲架, 單槓. Cele generatora: ja 筋力 / 筋肥大 / 減量 / 健康・体力; ko 근력 /
+근비대 / 감량 / 건강·체력; zh-Hant 肌力 / 增肌 / 減脂 / 健康體能 (zh-Hant: „減量” = deload, więc redukcja to „減脂” — test). Liczby: kropka dziesiętna
+(CLDR ja-JP, ko-KR, zh-Hant-TW); jednostki ja 秒/分/時間 i km/m, ko 초/분/시간 i km/m, zh-Hant 秒/分鐘/小時 i 公里/公尺. Cudzysłowy: ja i zh-Hant 「…」, ko ‘…’.
+Liczba mnoga: jedna forma „other” (CLDR plurals.xml; `Intl.PluralRules` dla ja/ko/zh-Hant ma tylko „other”); wyraz liczony jak licznik: ja セット/回/日,
+ko 세트/회/일, zh-Hant 組/下/天/個動作 (aplikacja wstawia liczbę ze spacją: „3 セット”).
+
+*Wybór języka „Jak w telefonie” (`resolveLang`):* ja-* i ko-* z dowolnym regionem; chiński — pismo Hant (zh-Hant-TW, zh-Hant-HK, zh-Hant-MO) albo region
+TW/HK/MO bez zapisu pisma (zh-TW, zh-HK — CLDR likelySubtags: zh_TW → zh_Hant_TW, zh_HK → zh_Hant_HK) → zh-Hant; zh-Hans-*, zh-CN, zh-SG i samo „zh” (CLDR:
+zh → zh_Hans_CN) → angielski. Daty i liczby z regionu telefonu (zh-Hant-HK → daty hongkońskie), przy wymuszonym języku — ja-JP, ko-KR, zh-Hant-TW (także na
+telefonie zh-Hans-CN — `locale()` porównuje pismo, nie tylko „zh”). Ustawienie zapisane jako „ja”/„ko”/„zh-Hant” — bez zmiany schematu danych.
+
+*Otwarte:* (1) teksty czytane przez native speakerów (ja, ko, zh-Hant) przed App Store; (2) zrzut z symulatora iOS w ja, ko, zh-Hant (krój zastępczy:
+który krój, grubość nagłówków i liczb, wysokość wierszy z mieszanym krojem, łamanie wierszy, etykiety zakładek 320 pt) — zrzuty web (Chromium na Linuksie
+z krojem WenQuanYi Zen Hei jako zastępczym, scratchpad `jezyki-w4-zrzuty`) tylko orientacyjne; (3) kształty znaków Han przy wymuszonym języku innym niż
+język telefonu (np. zh-Hant na telefonie ja) — React Native nie przekazuje języka tekstu do TextKit; (4) koreański: iOS przy `lineBreakStrategyIOS`
+„none” łamie między sylabami — opcje: zostawić (rekomendacja do zrzutu) albo „hangul-word” (wymaga właściwości na każdym `Text` — przebudowa, jak B);
+(5) opisy w App Store (część po dwukropku w nazwie, podtytuł, opis, słowa kluczowe) po japońsku, koreańsku i chińsku — do przejrzenia przy ASO;
+(6) chiński uproszczony (zh-Hans) — osobna decyzja produktowa.
+
 ## Nazwa aplikacji (decyzja właściciela 05.10.2026)
 
 *Pod ikoną* (`APP_NAME` w `lib/i18n.ts`, jedno źródło prawdy; `locales/<kod>.json` musi się zgadzać — test `tests/i18n-locales.test.ts`):
