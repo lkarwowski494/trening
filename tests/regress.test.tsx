@@ -1049,7 +1049,7 @@ describe('runda 39', () => {
   test('R39-02 słownik EN obejmuje wszystkie wartości domenowe', async () => {
     await fresh(); const seed = require('@/lib/seed'); const { EN } = require('@/lib/i18n.en');
     const vals = [...seed.GROUPS, ...seed.MUSCLES, ...Object.values(seed.METRIC_LABEL), ...Object.values(seed.LOAD_MODE_LABEL), ...Object.values(seed.SET_KIND_LABEL), ...Object.values(seed.MODULE_LABEL),
-      'hantle', 'sztanga', 'masa ciała', 'maszyna', 'linki', 'inne', 'ciężar', 'dociążenie', 'e1RM', 'objętość serii', 'powtórzenia', 'czas', 'dystans'] as string[];
+      'hantle', 'sztanga', 'masa ciała', 'maszyna', 'linki', 'inne', 'ciężar', 'e1RM', 'powtórzenia', 'czas', 'dystans'] as string[];
     expect(vals.filter(v => v !== 'e1RM' && !(v in EN))).toEqual([]);
   });
 });

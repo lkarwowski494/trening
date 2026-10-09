@@ -242,3 +242,51 @@ describe('powiadomienia: ponowne planowanie, porzucony trening, zgoda', () => {
     S().settings.sound = false; expect((await h.handleNotification()).shouldPlaySound).toBe(false);
   });
 });
+
+describe('granice po drugim przebiegu Strykera (09.10.2026)', () => {
+  const sw = (target: number, startAt = NOW) => { timer.S.on = true; timer.S.startAt = startAt; timer.S.targetSec = target; timer.S.alarmed = false; timer.S.setId = 'x'; };
+  afterEach(() => { timer.S.on = false; timer.S.alarmed = false; });
+  test('stoper bez celu: tick i powrót z tła nigdy nie alarmują (bez wibracji i bez końca Live Activity)', async () => {
+    sw(0); jest.setSystemTime(NOW + 3600e3); timer.tick(); timer.onForeground();
+    expect(timer.S.alarmed).toBe(false); expect(haptic).not.toHaveBeenCalled(); expect(la()).toEqual([]);
+  });
+  test('alarm stopera bez dźwięku — bez wibracji; przerwa zatrzymana (T.on = false) z minionym końcem — tick nic nie robi', async () => {
+    S().settings.sound = false; sw(10); jest.setSystemTime(NOW + 11e3); timer.tick(); expect(timer.S.alarmed).toBe(true); expect(haptic).not.toHaveBeenCalled();
+    S().settings.sound = true; timer.S.on = false; timer.T.on = false; timer.T.endAt = NOW; timer.T.alarmed = false; timer.tick(); expect(timer.T.alarmed).toBe(false); expect(haptic).not.toHaveBeenCalled();
+  });
+  test('przekazanie Live Activity: przerwa kończąca się dokładnie teraz i stoper z celem dokładnie teraz — nie przejmują; stoper bez celu — nie', async () => {
+    sw(30, NOW - 30e3); timer.T.on = true; timer.T.endAt = NOW + 10e3; timer.T.alarmed = false; await timer.start(10); /* przerwa ma Live Activity */
+    timer.T.endAt = NOW; reset(); await timer.stop(); expect(la()).toEqual([['end']]); /* stoper: start + cel = teraz */
+    sw(0); await timer.start(10); reset(); await timer.stop(); expect(la()).toEqual([['end']]);
+    await timer.start(10); await timer.startSet('x', 20); timer.T.on = true; timer.T.endAt = NOW; timer.T.alarmed = false; reset(); await timer.stopSet();
+    expect(la()).toEqual([['end']]); /* przerwa kończy się teraz — nie przejmuje */
+  });
+  test('adjust(0) po końcu przerwy: koniec = teraz (nie wcześniej)', async () => {
+    await timer.start(10); jest.setSystemTime(NOW + 20e3); await timer.adjust(0); expect(timer.T.endAt).toBe(NOW + 20e3);
+  });
+  test('relabel: zmiana samej „ostatniej serii” przy tym samym podpisie — nowe powiadomienie; po alarmie — bez aktualizacji Live Activity; koniec dokładnie teraz — bez powiadomienia', async () => {
+    timer.labels.subtitle = 'A'; await timer.start(60); reset();
+    timer.relabel('A', true); expect(timer.T.last).toBe(true); await Promise.resolve(); await Promise.resolve(); expect(notes().map(n => n.content.body)).toEqual(['Nic więcej do zrobienia — możesz zakończyć trening.']);
+    jest.setSystemTime(NOW + 60e3); timer.tick(); reset(); timer.relabel('B', false); await Promise.resolve(); expect(la()).toEqual([]); expect(notes()).toEqual([]);
+    jest.setSystemTime(NOW); await timer.start(60); jest.setSystemTime(NOW + 60e3); timer.T.alarmed = false; reset(); timer.relabel('C', true); await Promise.resolve(); expect(notes()).toEqual([]);
+  });
+  test('restore bez treningu: sam stoper w stanie też jest czyszczony', async () => {
+    store.setTimerState({ restEndAt: null, setStartAt: NOW, setTarget: 30, setId: 'x' }); await timer.restore(); expect([S().timer.setStartAt, S().timer.setTarget]).toEqual([null, 0]);
+  });
+  test('restore: koniec przerwy dokładnie teraz — alarm (bez powiadomienia); seria przerwy nie istnieje — podpis „przerwa N s”; przerwa i stoper razem — Live Activity przerwy, bez końca', async () => {
+    const a = startWorkout(); const sid = a.exercises[1].sets[0].id;
+    store.setTimerState({ restEndAt: NOW, restTotal: 60, restSetId: null }); reset(); await timer.restore(); expect(timer.T.alarmed).toBe(true); expect(notes()).toEqual([]);
+    await timer.stop(); store.setTimerState({ restEndAt: NOW + 30e3, restTotal: 60, restSetId: 'nie-ma' }); reset(); await timer.restore();
+    expect([timer.T.sub, timer.T.last]).toEqual(['', false]); expect(la()).toEqual([['start', 'Push', 'przerwa 60 s', NOW + 30e3, 60, 'rest|Przerwa']]);
+    await timer.stop(); store.setTimerState({ restEndAt: NOW + 30e3, restTotal: 60, restSetId: null, setStartAt: NOW - 5e3, setTarget: 30, setId: sid }); reset(); await timer.restore();
+    expect(la().map(x => x[0] + ':' + String(x[5] ?? ''))).toEqual(['start:rest|Przerwa']); expect(timer.S.on).toBe(true); expect(notes().map(n => n.identifier).sort()).toEqual(['rest-end', 'set-end']);
+  });
+  test('startSet bez trwającej przerwy nie odwołuje powiadomienia przerwy; refreshScheduled: przerwa kończąca się teraz i stoper dokładnie przy celu — bez powiadomień', async () => {
+    await timer.startSet('x', 30); expect(cancelled()).not.toContain('rest-end');
+    timer.T.on = true; timer.T.alarmed = false; timer.T.endAt = NOW; sw(30, NOW - 30e3); reset(); await timer.refreshScheduled(); expect(notes()).toEqual([]);
+    timer.T.on = false;
+  });
+  test('stopSet: zaokrąglony czas równy celowi, ale minęło trochę więcej — koniec teraz (nie start + cel)', async () => {
+    await timer.startSet('x', 30); jest.setSystemTime(NOW + 30.4e3); expect(await timer.stopSet()).toEqual({ setId: 'x', sec: 30, endAt: NOW + 30.4e3 });
+  });
+});

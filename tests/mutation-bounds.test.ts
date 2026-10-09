@@ -165,6 +165,15 @@ describe('deload', () => {
   });
 });
 
+describe('backup: czas treningu w CSV (audyt TST-02 — mutant round → floor przeżył)', () => {
+  test('30 min 40 s → „31m” (zaokrąglenie, nie obcięcie); 30 min 20 s → „30m”', () => {
+    const { buildCsv } = require('@/lib/backup');
+    const w = addWorkout(at('2026-10-06', 18), [['Back Squat', [{ weight: 100, reps: 5 }]]]); w.finishedAt = w.startedAt + (30 * 60 + 40) * 1000; store.save(w);
+    expect(buildCsv().split('\n')[1].split(',')[2]).toBe('31m');
+    w.finishedAt = w.startedAt + (30 * 60 + 20) * 1000; store.save(w); expect(buildCsv().split('\n')[1].split(',')[2]).toBe('30m');
+  });
+});
+
 describe('store: limit tygodni deload w migrate', () => {
   test('najwyżej DELOAD_WEEKS_MAX (520) — najstarsze odpadają; tylko poniedziałki', () => {
     const mondays = Array.from({ length: store.DELOAD_WEEKS_MAX + 1 }, (_, i) => store.mondayKey(at('2026-10-05', 12) - i * 7 * 86400e3)).sort();
