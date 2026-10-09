@@ -210,8 +210,10 @@ export class Runner {
           if (!clear) { await act(async () => { await store.flush(); }); st = JSON.parse(JSON.stringify(saved())); }
           /* E2E 91: na symulatorze zgoda na powiadomienia jest nieustalona (`permissions: all: allow` jej nie obejmuje) — okno I1 przy pierwszym dniu planu */
           if (clear) (global as any).__notifPerm = { ...SIM_NOTIF_PERM };
-          await renderApp({ locale: 'en', tag: SIM_TAG, saved: st }); await this.tick(100);
-          this.focused = null; this.scrollY = new WeakMap(); this.alertSeen = global.__alerts.length; this.alertOpen = null; this.alertStack = []; this.sheetSeen = (global as any).__sheets.length; this.sheetOpen = null; break;
+          /* UX2-03: ponowny start na tej samej bazie — także klucz szkiców edycji (store.DRAFTS_KEY) */
+          const kv = !clear && global.__kv.has(store.DRAFTS_KEY) ? { [store.DRAFTS_KEY]: global.__kv.get(store.DRAFTS_KEY)! } : undefined;
+          await renderApp({ locale: 'en', tag: SIM_TAG, saved: st, kv }); await this.tick(100);
+          this.focused = null; this.scrollY = new WeakMap(); this.alertSeen = 0 /* UX2-03: renderApp czyści okna — każde obecne powstało przy tym starcie (np. pytanie o szkic) */; this.alertOpen = null; this.alertStack = []; this.sheetSeen = (global as any).__sheets.length; this.sheetOpen = null; break;
         }
         case 'stopApp': await act(async () => { await store.flush(); }); break;
         case 'tapOn': {
