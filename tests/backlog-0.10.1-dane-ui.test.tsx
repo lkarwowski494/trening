@@ -36,3 +36,19 @@ describe('LIVE2-02: okno „Zakończyć trening?” liczy serie robocze jak work
     expect(lastAlert()!.msg).toBe('Zapisane zostaną serie robocze: 1.');
   });
 });
+
+describe('LIVE2-04: pytanie i przypomnienie o porzuconym treningu podają godzinę na zegarze strefy startu (jak zegar sesji, J3)', () => {
+  test('LIVE2-04: trening ze strefą startu +3 h względem telefonu → „Ostatnia seria o …” i „w pauzie od …” na zegarze startu, w oknie i w powiadomieniu', async () => {
+    const H = 3600e3; await fresh(); await renderApp(); const now = Date.now();
+    const tz = -new Date(now).getTimezoneOffset() + 180; let last = 0, paused = 0;
+    await act(async () => { store.startEmpty(); store.addExerciseToActive(ex('Back Squat')); const a = S().active!; a.startedAt = now - 3 * H; a.tzOffsetMin = tz;
+      last = now - 2.5 * H; Object.assign(a.exercises[0].sets[0], { weight: 100, reps: 5, done: true, completedAt: last }); paused = now - 2.4 * H; a.pausedAt = paused; store.save(a); store.refreshViews(); });
+    await flushAll(10);
+    const wall = (ts: number) => store.fmtTime(store.wallTs({ startedAt: ts, tzOffsetMin: tz }));
+    expect(wall(last)).not.toBe(store.fmtTime(last));
+    const al = lastAlert('Trening wciąż trwa')!; expect(al.msg).toContain(`Ostatnia seria o ${wall(last)}.`); expect(al.msg).toContain(`Trening w pauzie od ${wall(paused)}.`);
+    await act(async () => { pressAlert('Trening wciąż trwa', 'Kontynuuj'); }); await flushAll(10); /* przypomnienie 2 h od „Kontynuuj” */
+    const n: any = (global.__notifications as any[]).filter(x => x.identifier === 'stale-reminder').pop();
+    expect(n.content.body).toBe(timer.staleBody('work', last, false, paused, tz)); expect(n.content.body).toContain(wall(last));
+  });
+});

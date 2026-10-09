@@ -1,7 +1,7 @@
 import * as Notifications from 'expo-notifications';
 import * as Haptics from 'expo-haptics';
 import { Platform } from 'react-native';
-import { getState, setTimerState, findSet, fmtTime, STALE_ASK_MS } from './store';
+import { getState, setTimerState, findSet, fmtTime as fmtTimeNow, wallTs, STALE_ASK_MS } from './store';
 import { restLabel } from './live';
 import * as LA from '@/modules/rest-activity';
 import { t } from './i18n';
@@ -190,14 +190,18 @@ export async function cancelStaleReminder() { try { await Notifications.cancelSc
 /** Runda 71 (T3): treść zależy od tego, co już zrobiono — bez serii roboczych nie ma czego „zakończyć i zapisać”. */
 export type StaleKind = 'work' | 'warmup' | 'none';
 /** Audyt 0.10 (LIVE-10, wariant B): trening w pauzie — logika bez zmian, treść dopisuje „Trening w pauzie od …”. */
-export const staleBody = (kind: StaleKind, at: number, prompt = false, pausedAt?: number | null) => staleBodyCore(kind, at, prompt) + (pausedAt != null && Number.isFinite(pausedAt) ? '\n' + t('Trening w pauzie od {t}.', { t: fmtTime(pausedAt) }) : '');
-const staleBodyCore = (kind: StaleKind, at: number, prompt: boolean) => kind === 'work'
+/** LIVE2-04 (audyt kontrolny 1): godziny na zegarze strefy startu treningu (`tz` = `tzOffsetMin`, jak zegar sesji — J3); bez strefy — bieżąca. */
+export const staleBody = (kind: StaleKind, at: number, prompt = false, pausedAt?: number | null, tz?: number) => {
+  const fmtTime = (ts: number) => fmtTimeNow(wallTs({ startedAt: ts, tzOffsetMin: tz }, ts));
+  return staleBodyCore(kind, at, prompt, fmtTime) + (pausedAt != null && Number.isFinite(pausedAt) ? '\n' + t('Trening w pauzie od {t}.', { t: fmtTime(pausedAt) }) : '');
+};
+const staleBodyCore = (kind: StaleKind, at: number, prompt: boolean, fmtTime: (ts: number) => string) => kind === 'work'
   ? (prompt ? t('Ostatnia seria o {t}. Zakończyć trening z tą godziną końca?', { t: fmtTime(at) }) : t('Ostatnia seria o {t}. Otwórz, by zakończyć albo kontynuować.', { t: fmtTime(at) }))
   : kind === 'warmup'
     ? (prompt ? t('Ostatnia rozgrzewka o {t}, bez serii roboczych. Kontynuować czy odrzucić?', { t: fmtTime(at) }) : t('Ostatnia rozgrzewka o {t}, bez serii roboczych. Otwórz, by kontynuować albo odrzucić.', { t: fmtTime(at) }))
     : (prompt ? t('Trening rozpoczęty o {t}, bez odhaczonych serii. Kontynuować czy odrzucić?', { t: fmtTime(at) }) : t('Trening rozpoczęty o {t}, bez odhaczonych serii. Otwórz, by kontynuować albo odrzucić.', { t: fmtTime(at) }));
-export async function scheduleStaleReminder(fromMs: number, lastSetMs = fromMs, kind: StaleKind = 'work', pausedAt?: number | null) {
+export async function scheduleStaleReminder(fromMs: number, lastSetMs = fromMs, kind: StaleKind = 'work', pausedAt?: number | null, tz?: number) {
   await cancelStaleReminder(); const secs = Math.round((fromMs + STALE_ASK_MS - Date.now()) / 1000); if (!(secs >= 1) || secs > 86400) return;
-  try { await Notifications.scheduleNotificationAsync({ identifier: STALE_ID, content: { title: t('Trening wciąż trwa'), body: staleBody(kind, lastSetMs, false, pausedAt), sound: soundOn() }, trigger: { type: Notifications.SchedulableTriggerInputTypes.TIME_INTERVAL, seconds: secs, repeats: false } }); } catch {}
+  try { await Notifications.scheduleNotificationAsync({ identifier: STALE_ID, content: { title: t('Trening wciąż trwa'), body: staleBody(kind, lastSetMs, false, pausedAt, tz), sound: soundOn() }, trigger: { type: Notifications.SchedulableTriggerInputTypes.TIME_INTERVAL, seconds: secs, repeats: false } }); } catch {}
 }
 
