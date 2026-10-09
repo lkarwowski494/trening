@@ -21,25 +21,44 @@ import { loadCapWarning } from './loadcap';
  * - R5 wysiłek zwykle 0–3 RIR (ACSM 2026: blisko upadku albo 2–3; dokładnego RIR nie ustalono);
  * - R6 przerwy „zwykle”: siła 2–3 min, masa 1,5–2 min — uproszczenie (przeglądy niejednoznaczne); R7 baza wielostawowa + jednostawowe;
  * - R8 cardio umiarkowane, osobne sesje; długość = czas sesji (konwencja).
+ * Cel „Ogólny” (decyzja właściciela 09.10.2026 wieczór, docs/18; docs/research/30): wszystkie wybrane dni siłowe (1–3: pełne FBW — każda sesja ze wszystkimi
+ * głównymi partiami, ta sama sesja, nie dzień po dniu; 4–6: góra/dół jak masa),
+ * GENERAL_SETS serie (część wspólna źródeł GENERAL_SETS_RANGE — dolna granica), REPS.gym / REPS.home i REST jak masa (uproszczenie), bez boju
+ * 4–6 i bez kreski 10 serii (próg przerostu, nie zalecenie dla zdrowia); wysiłek opisany słowami (WHO, PAG, ACSM 2011). Przełącznik „Dni cardio
+ * w planie” (GenInput.cardio, tylko 4–6 dni): dni powyżej GENERAL_LIFT_MAX = sesje umiarkowanego cardio (WHO: brak dowodu korzyści z większej ilości
+ * ćwiczeń wzmacniających; ACSM 2011: 2–3 dni). Przy 1 dniu ostrzeżenie „oneday” ma tekst dla zdrowia (WHO 2020 ≥ 2 dni, PAG 2018: zacząć od 1 dnia).
  * Czas sesji → liczba serii: (minuty − rozgrzewka) × 60 / (praca serii + średnia przerwa) — **uproszczenie bez źródła**, nazwane w podglądzie.
  * Ćwiczenia: podstawowa biblioteka (LIB_BASE_NAMES) w jej kolejności, tylko dostępne w wybranym miejscu; wariant B bierze następne z kolei;
  * gdy w podstawowej nie ma nic dla danego wzorca (np. dom bez sprzętu), zapasem jest pierwsze wielostawowe z pełnej biblioteki.
  * Wszystkie liczby generatora są tu (stałe) — teksty ekranu dostają je jako parametry (audyt 0.10 LOG-11, TST-10).
  */
-export type Goal = 'strength' | 'hypertrophy' | 'cut';
+export type Goal = 'strength' | 'hypertrophy' | 'cut' | 'general';
+/** Kolejność celów na ekranie (app/generator.tsx). */
+export const GOALS: readonly Goal[] = ['strength', 'hypertrophy', 'cut', 'general'];
 /** `days` (wybór dni, decyzja właściciela 09.10.2026 wieczór, wariant B): dni tygodnia (pon = 0) wybrane przez użytkownika — gdy ich liczba jest
  * dozwolona dla celu (GEN_SESSIONS), generator używa dokładnie tych dni i ich liczby jako liczby sesji (`sessions` pomijane); inaczej — jak bez `days`. */
-export type GenInput = { goal: Goal; locationId: string | null; sessions: number; minutes: number; days?: number[] };
+export type GenInput = { goal: Goal; locationId: string | null; sessions: number; minutes: number; days?: number[];
+  /** cel „Ogólny”, 4–6 dni: przełącznik „Dni cardio w planie” (domyślnie wyłączony) — dni powyżej GENERAL_LIFT_MAX to sesje cardio; inne cele — pomijane */ cardio?: boolean };
 /** Liczby dni treningowych: 1–6 dla każdego celu (decyzja właściciela 09.10.2026 wieczór, docs/18). */
-export const GEN_SESSIONS: Record<Goal, number[]> = { strength: [1, 2, 3, 4, 5, 6], hypertrophy: [1, 2, 3, 4, 5, 6], cut: [1, 2, 3, 4, 5, 6] };
+export const GEN_SESSIONS: Record<Goal, number[]> = { strength: [1, 2, 3, 4, 5, 6], hypertrophy: [1, 2, 3, 4, 5, 6], cut: [1, 2, 3, 4, 5, 6], general: [1, 2, 3, 4, 5, 6] };
 export const GEN_MINUTES = [45, 60, 90];
 export const WARMUP_MIN = 10;
 export const SET_WORK_SEC = 40;
 /** Średnia przerwa do budżetu serii (s): siła — bój główny 180 i dodatkowe 120; masa — wielostawowe 120 i izolacja 90. */
-export const AVG_REST: Record<Goal, number> = { strength: 150, hypertrophy: 105, cut: 105 };
+export const AVG_REST: Record<Goal, number> = { strength: 150, hypertrophy: 105, cut: 105, general: 105 };
 /** Serie na ćwiczenie — ACSM 2026: „healthy adults are advised to complete at least two sets per exercise” (ACSM_MIN_SETS; siła: 2–3); 3 = uproszczenie. */
 export const SETS_PER_EX = 3;
 export const ACSM_MIN_SETS = 2;
+/** Cel „Ogólny”: serie na ćwiczenie — część wspólna źródeł 2–3 (PAG 2018: „2 or 3 sets may be more effective”; ACSM 2011: 2–4; ACSM 2026: co najmniej 2);
+ * w planie dolna granica (decyzja właściciela 09.10.2026) — uproszczenie, docs/research/30 G6. */
+export const GENERAL_SETS_RANGE: readonly [number, number] = [2, 3];
+export const GENERAL_SETS = GENERAL_SETS_RANGE[0];
+/** Serie na ćwiczenie dla celu. */
+export const setsFor = (goal: Goal) => (goal === 'general' ? GENERAL_SETS : SETS_PER_EX);
+/** Cel „Ogólny”: najwięcej dni siłowych przy włączonym przełączniku cardio — ACSM 2011: każda partia 2–3 dni/tydz.; WHO 2020: brak dowodu korzyści
+ * z większej ilości ćwiczeń wzmacniających (docs/research/30 G2). Dni powyżej — cardio (od GENERAL_CARDIO_FROM dni przełącznik jest widoczny). */
+export const GENERAL_LIFT_MAX = 3;
+export const GENERAL_CARDIO_FROM = GENERAL_LIFT_MAX + 1;
 /** Sesje cardio przy redukcji (reszta sesji — siłowe; R8: osobne dni) — konwencja. */
 export const CARDIO_SESSIONS = 1;
 /** Najmniej ćwiczeń w sesji, gdy budżet serii jest mały — konwencja. */
@@ -63,8 +82,12 @@ export const WHO_VIGOROUS: readonly [number, number] = [75, 150];
 /** Redukcja: sesja cardio w planie od tylu dni — wcześniej wszystkie dni siłowe, żeby cardio nie zabierało dni treningowi siłowemu (R1: MIN_DAYS dni
  * na partię); przy mniejszej liczbie dni cardio poza planem z zaleceniem WHO (opcja A, docs/research/29 sekcja 3 — konwencja z istniejących reguł). */
 export const CUT_CARDIO_FROM = MIN_DAYS + CARDIO_SESSIONS;
-/** Sesje cardio w planie dla celu i liczby dni (0 albo CARDIO_SESSIONS). */
-export const cardioCount = (goal: Goal, n: number) => (goal === 'cut' && n >= CUT_CARDIO_FROM ? CARDIO_SESSIONS : 0);
+/** Sesje cardio w planie dla celu i liczby dni: redukcja — 0 albo CARDIO_SESSIONS; „Ogólny” z przełącznikiem (`cardio`) przy ≥ GENERAL_CARDIO_FROM dniach —
+ * n − GENERAL_LIFT_MAX; inaczej 0. */
+export const cardioCount = (goal: Goal, n: number, cardio = false) => (goal === 'cut' && n >= CUT_CARDIO_FROM ? CARDIO_SESSIONS
+  : goal === 'general' && cardio && n >= GENERAL_CARDIO_FROM ? n - GENERAL_LIFT_MAX : 0);
+/** Czy pokazać przełącznik „Dni cardio w planie”: cel „Ogólny” i co najmniej GENERAL_CARDIO_FROM dni. */
+export const cardioSwitch = (goal: Goal, n: number) => goal === 'general' && n >= GENERAL_CARDIO_FROM;
 /** Sprzęt podpowiadany przy brakującej partii — od najtańszego (drążek, gumy, hantle, kettle); liczy się, gdy po jego dodaniu jest ćwiczenie na tę partię. */
 export const HELP_EQUIP = ['pullup_bar', 'bands', 'db_fixed', 'kettlebell'] as const;
 /** Partie sprawdzane w podglądzie (braki do kreski serii, dni w tygodniu). */
@@ -76,8 +99,11 @@ export type SessionKey = 'fbw' | 'fbwA' | 'fbwB' | 'upA' | 'upB' | 'loA' | 'loB'
 const STRENGTH_DAYS: Record<number, number[]> = { 1: [0], 2: [0, 3], 3: [0, 2, 4], 4: [0, 1, 3, 4], 5: [0, 1, 3, 4, 5], 6: [0, 1, 2, 3, 4, 5] };
 const STRENGTH_KEYS: Record<number, SessionKey[]> = { 1: ['fbw'], 2: ['fbwA', 'fbwB'], 3: ['fbwA', 'fbwB', 'fbwA'], 4: ['upA', 'loA', 'upB', 'loB'], 5: ['upA', 'loA', 'upB', 'loB', 'fbwA'], 6: ['upA', 'loA', 'upB', 'loB', 'upA', 'loA'] };
 const CARDIO_DAY_PREF = [5, 6, 2, 3, 1, 4, 0];
-export function splitFor(goal: Goal, n: number): { keys: SessionKey[]; days: number[] } {
-  const cardio = cardioCount(goal, n); const keys = [...STRENGTH_KEYS[n - cardio]]; const days = [...STRENGTH_DAYS[n - cardio]];
+export function splitFor(goal: Goal, n: number, withCardio = false): { keys: SessionKey[]; days: number[] } {
+  const cardio = cardioCount(goal, n, withCardio); const lift = n - cardio; const days = [...STRENGTH_DAYS[lift]];
+  /* „Ogólny” przy 1–GENERAL_LIFT_MAX dniach siłowych: każda sesja = pełne FBW ze wszystkimi głównymi partiami (docs/research/30 sekcja 2 — WHO 2020:
+   * każda główna partia ≥ MIN_DAYS dni; FBW A/B masy ma zawias tylko w B) — ta sama sesja co dzień, nie dzień po dniu (assignDays/bestDays) */
+  const keys: SessionKey[] = goal === 'general' && lift <= GENERAL_LIFT_MAX ? Array<SessionKey>(lift).fill('fbw') : [...STRENGTH_KEYS[lift]];
   for (let i = 0; i < cardio; i++) { keys.push('cardio'); days.push(CARDIO_DAY_PREF.find(d => !days.includes(d))!); }
   return { keys, days };
 }
@@ -164,7 +190,7 @@ export type GenResult = {
 };
 
 export const sessionName = (k: SessionKey) => ({ fbw: t('FBW'), fbwA: t('FBW A'), fbwB: t('FBW B'), upA: t('Góra A'), upB: t('Góra B'), loA: t('Dół A'), loB: t('Dół B'), cardio: t('Cardio') })[k];
-export const goalLabel = (g: Goal) => ({ strength: t('Siła'), hypertrophy: t('Masa'), cut: t('Redukcja') })[g];
+export const goalLabel = (g: Goal) => ({ strength: t('Siła'), hypertrophy: t('Masa'), cut: t('Redukcja'), general: t('Ogólny') })[g];
 const locById = (id: string | null): Location | null => getState().settings.locations.find(l => l.id === id) ?? null;
 
 /** Ćwiczenia biblioteki dostępne w miejscu (bez miejsca — wszystkie): najpierw podstawowa biblioteka, potem pełna jako zapas (np. przysiad bez sprzętu). */
@@ -218,15 +244,16 @@ export function generate(inp: GenInput): GenResult {
   /* MER-01: siła bez obciążenia zewnętrznego = plan jak masa w domu (te same przerwy, więc i budżet serii) */
   const restGoal: Goal = inp.goal === 'strength' && unloaded ? 'hypertrophy' : inp.goal; const budget = setsBudget(restGoal, inp.minutes);
   const picked = pickDays(inp.days, GEN_SESSIONS[inp.goal]);
-  const { keys, days: defDays } = splitFor(inp.goal, picked ? picked.length : inp.sessions); const order = [...new Set(keys)];
+  const { keys, days: defDays } = splitFor(inp.goal, picked ? picked.length : inp.sessions, inp.cardio); const order = [...new Set(keys)];
+  const sets = setsFor(inp.goal);
   const scheme = (e: Exercise, first: boolean): Omit<GenItem, 'exerciseId'> => {
     const rest = e.pattern === 'isolation' || core(e) ? REST.iso : REST.multi;
-    if (restGoal === 'strength') return first && loaded(e) ? { sets: SETS_PER_EX, repMin: REPS.heavy[0], repMax: REPS.heavy[1], restSec: REST.heavy } : { sets: SETS_PER_EX, repMin: REPS.strength[0], repMax: REPS.strength[1], restSec: rest };
-    const r = home ? REPS.home : REPS.gym; return { sets: SETS_PER_EX, repMin: r[0], repMax: r[1], restSec: rest };
+    if (restGoal === 'strength') return first && loaded(e) ? { sets, repMin: REPS.heavy[0], repMax: REPS.heavy[1], restSec: REST.heavy } : { sets, repMin: REPS.strength[0], repMax: REPS.strength[1], restSec: rest };
+    const r = home ? REPS.home : REPS.gym; return { sets, repMin: r[0], repMax: r[1], restSec: rest }; /* masa, redukcja, „Ogólny” (bez boju 4–6) */
   };
   const build = (k: SessionKey): GenItem[] => {
     if (k === 'cardio') { const c = [...all, ...pl.full].find(e => e.pattern === 'cardio' && e.loadSource === 'none' && (e.metric === 'distance_time' || e.metric === 'time')); return c ? [{ exerciseId: c.id, sets: 1, repMin: null, repMax: null, restSec: 0, targetSec: inp.minutes * 60 }] : []; }
-    const used = new Set<string>(); const out: GenItem[] = []; const max = Math.max(MIN_EXERCISES, Math.floor(budget / SETS_PER_EX));
+    const used = new Set<string>(); const out: GenItem[] = []; const max = Math.max(MIN_EXERCISES, Math.floor(budget / sets));
     for (const sl of SESSIONS[k]) {
       if (out.length >= max) break;
       /* zapas z pełnej biblioteki: tylko pierwszy kandydat i tylko wielostawowe (jednostawowe spoza podstawowej bywają nietypowe — np. z partnerem) */
@@ -251,7 +278,7 @@ export function generate(inp: GenInput): GenResult {
     keys.forEach((k, i) => { days[dayIdx[i]] = order.indexOf(k); });
   }
   const { weeklySets, freq, below10: low, missing, rare, backToBack, liftDays } = weekLoad(days.map(ti => (ti == null ? null : lifted(ti))), exOf);
-  const below10 = inp.goal === 'strength' ? [] : low;
+  const below10 = inp.goal === 'strength' || inp.goal === 'general' ? [] : low; /* kreska 10 serii — próg przerostu (masa, redukcja), nie siły ani zdrowia */
   const cardioMin = templates.filter(x => x.key === 'cardio').reduce((s, x) => s + x.items.reduce((a, it) => a + (it.targetSec ?? 0) / 60, 0) * days.filter(ti => ti === templates.indexOf(x)).length, 0);
   return { templates, days, weeklySets, below10, backToBack, cardioMin, budget, home, avgRest: AVG_REST[restGoal], unloaded, freq, missing, rare, liftDays, helps: helpFor(missing, loc) };
 }
@@ -270,11 +297,13 @@ export function previewWarnings(r: GenResult, inp: GenInput): GenWarning[] {
   const out: GenWarning[] = [];
   if (inp.goal === 'strength' && r.unloaded) out.push({ kind: 'unloaded', text: t('Siła bez obciążenia zewnętrznego (sztanga, hantle, kettlebell, maszyny, wyciągi): ciężkich serii (ok. {p}% maksimum) tu nie zrobisz, więc plan jest jak na masę w domu — {s} × {a}–{b} powtórzeń blisko upadku. Siła też wtedy rośnie, ale zwykle mniej niż przy dużym ciężarze.', { p: HEAVY_PCT, s: SETS_PER_EX, a: REPS.home[0], b: REPS.home[1] }) });
   const cap = loadCapWarning(r, inp); if (cap) out.push(cap); /* MER2-02 / A11-2 (audyt 0.11): najcięższy ciężar w miejscu przy celu „Siła” */
-  return [...out, ...loadWarnings(r, false)];
+  /* „Ogólny” przy 1 dniu: zamiast tekstu o postępach (masa, siła) — zalecenie dla zdrowia (docs/research/30: WHO 2020 c1, PAG 2018 c29, WHO c14) */
+  const oneday = inp.goal === 'general' ? t('{k} dzień siłowy w tygodniu to mniej niż zalecenie WHO 2020 (co najmniej {n} dni). Na początek to dobry krok: wytyczne USA 2018 radzą zacząć od {k} dnia i z czasem dojść do {n} — trochę ruchu jest lepsze niż żaden.', { k: r.liftDays, n: MIN_DAYS }) : undefined;
+  return [...out, ...loadWarnings(r, false, oneday)];
 }
 /** Ostrzeżenia obciążenia tygodnia (wspólne dla generatora i planu z własnych szablonów): braki partii, rzadziej niż MIN_DAYS, poniżej
  * WEEKLY_SETS_MARK, pary dzień po dniu. `own` — plan z własnych szablonów: próg serii opisany jako próg dla masy (bez celu i bez rad o czasie i sprzęcie). */
-function loadWarnings(r: Pick<GenResult, 'missing' | 'helps' | 'rare' | 'freq' | 'below10' | 'backToBack' | 'liftDays'>, own: boolean): GenWarning[] {
+function loadWarnings(r: Pick<GenResult, 'missing' | 'helps' | 'rare' | 'freq' | 'below10' | 'backToBack' | 'liftDays'>, own: boolean, oneday?: string): GenWarning[] {
   const out: GenWarning[] = []; const add = (kind: GenWarning['kind'], text: string) => out.push({ kind, text });
   if (r.missing.length) add('missing', [t('Brak ćwiczeń na: {list}.', { list: list(r.missing) }), r.helps.length ? t('Przyda się: {list}.', { list: r.helps.join(', ') }) : ''].filter(Boolean).join(' '));
   if (r.rare.length) add('rare', t('Rzadziej niż {n} dni w tygodniu: {list} (dzień tylko z pracą pomocniczą = {h}).', { n: MIN_DAYS, list: r.rare.map(m => `${t(m)} (${fmtNum(r.freq[m] ?? 0, 1)})`).join(', '), h: fmtNum(SECONDARY_SHARE, 1) }));
@@ -282,7 +311,7 @@ function loadWarnings(r: Pick<GenResult, 'missing' | 'helps' | 'rare' | 'freq' |
   if (low.length) add('below', own ? t('Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.', { n: WEEKLY_SETS_MARK, list: list(low) })
     : t('Poniżej {n} serii tygodniowo: {list}. Pomoże więcej sesji, dłuższy czas albo więcej sprzętu w miejscu.', { n: WEEKLY_SETS_MARK, list: list(low) }));
   /* docs/research/29: jeden dzień siłowy — bez „raczej utrzymanie” (niepotwierdzone); ACSM 2026, Schoenfeld 2019, Grgic 2018, Ralston 2018, Pelland 2026 */
-  if (r.liftDays === 1) add('oneday', t('Jeden trening w tygodniu też daje postępy, ale zwykle trochę mniejsze niż częstszy trening — głównie dlatego, że w jednej sesji mieści się mniej serii. Przy tej samej liczbie serii w tygodniu różnica w przyroście mięśni znika, a w sile maleje.'));
+  if (r.liftDays === 1) add('oneday', oneday ?? t('Jeden trening w tygodniu też daje postępy, ale zwykle trochę mniejsze niż częstszy trening — głównie dlatego, że w jednej sesji mieści się mniej serii. Przy tej samej liczbie serii w tygodniu różnica w przyroście mięśni znika, a w sile maleje.'));
   if (r.backToBack.length) add('pairs', t('Dzień po dniu te same główne partie: {list}. Zwykle lepiej z dniem przerwy; przy tej samej liczbie serii w tygodniu to też jest w porządku.', { list: r.backToBack.map(([a, b]) => `${wd(a)}–${wd(b)}`).join(', ') }));
   return out;
 }
@@ -298,7 +327,8 @@ export function genPlanName(inp: GenInput): string {
   return out;
 }
 /** Jedna linijka wysiłku (RIR) w notatce każdego szablonu siłowego (UX-10: opis wysiłku nie ginie po zapisie). */
-export const genNote = () => t('Wysiłek: zwykle {a}–{b} powtórzenia w zapasie (RIR); do upadku nie trzeba.', { a: RIR[0], b: RIR[1] });
+export const genNote = (goal?: Goal) => (goal === 'general' ? t('Wysiłek: do chwili, gdy kolejne powtórzenie byłoby trudne; do upadku nie trzeba.')
+  : t('Wysiłek: zwykle {a}–{b} powtórzenia w zapasie (RIR); do upadku nie trzeba.', { a: RIR[0], b: RIR[1] })); /* „Ogólny”: opis słowny jak w źródłach (PAG 2018, WHO 2020) */
 /** Folder szablonów z generatora w bieżącym języku; rozpoznawany w każdym języku aplikacji (nazwa zostaje w języku z chwili zapisu). */
 export const genFolder = () => t('Wygenerowane');
 const genFolders = () => new Set<string>(LANGS.map(l => tIn(l, 'Wygenerowane')));
@@ -338,7 +368,7 @@ export function saveGenerated(r: GenResult, inp: GenInput, activate: boolean, re
   if (replace) { const old = replaceable(); const ids = new Set(old.templateIds); st.templates = st.templates.filter(x => !ids.has(x.id)); old.planIds.forEach(deletePlan); if (old.activePlan) { delete st.weekPlan; activate = true; } }
   const names = new Set(st.templates.map(x => x.name));
   const uniq = (n: string) => { if (!names.has(n)) { names.add(n); return n; } for (let i = 2; ; i++) { const c = `${n} (${i})`; if (!names.has(c)) { names.add(c); return c; } } };
-  const folder = genFolder(); const note = genNote();
+  const folder = genFolder(); const note = genNote(inp.goal);
   const kept = r.templates.map((g, i) => ({ g, i })).filter(x => x.g.items.length); const idOf = new Map<number, string>();
   const tpls: Template[] = kept.map(({ g, i }) => { const tpl: Template = { ...base(st.ownerId), name: uniq(g.name), folder, ...(inp.locationId ? { locationId: inp.locationId } : {}), ...(g.key === 'cardio' ? {} : { note }),
     items: g.items.map((it): TemplateItem => ({ id: uid(), exerciseId: it.exerciseId, sets: it.sets, repMin: it.repMin, repMax: it.repMax, restSec: it.restSec, startWeight: '', targetSec: it.targetSec ?? '', groupId: null })) }; idOf.set(i, tpl.id); return tpl; });

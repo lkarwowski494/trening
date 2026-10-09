@@ -187,8 +187,8 @@ async function step(x: Act, m: Model, where: string) {
     case 'tplNew': { const n = st.templates.length; const t = store.newTemplate(); ok(S().templates.length === n + 1 && t.items.length === 0, where, 'nowy szablon'); hit('tplNew'); break; }
     case 'tplNote': if (tpl) { store.setTemplateNote(tpl, NAMES[x.b % NAMES.length]); ok(tpl.note === undefined || (tpl.note.length <= store.TEMPLATE_NOTE_MAX && tpl.note === tpl.note.trim() && !!tpl.note), where, 'notatka szablonu', tpl.note); othersSame(tpl.id); hit('tplNote'); } break; /* app/template/[id].tsx: pole „Notatka” */
     case 'gen': { /* app/generator.tsx: zapis; zastąpienie usuwa tylko nieużywane wygenerowane szablony i plany zrobione tylko z nich */
-      const goal = (['strength', 'hypertrophy', 'cut'] as const)[x.a % 3]; const ss = gen.GEN_SESSIONS[goal];
-      const inp = { goal, locationId: x.b % 4 === 0 ? null : pick(st.settings.locations, x.b)?.id ?? null, sessions: ss[x.b % ss.length], minutes: gen.GEN_MINUTES[x.c % gen.GEN_MINUTES.length] };
+      const goal = gen.GOALS[x.a % gen.GOALS.length]; const ss = gen.GEN_SESSIONS[goal]; /* także cel „Ogólny” z przełącznikiem cardio (09.10.2026) */
+      const inp = { goal, locationId: x.b % 4 === 0 ? null : pick(st.settings.locations, x.b)?.id ?? null, sessions: ss[x.b % ss.length], minutes: gen.GEN_MINUTES[x.c % gen.GEN_MINUTES.length], cardio: x.c % 2 === 1 };
       const live = new Set(st.templates.map(t => t.id)); const refs = [...st.workouts.map(w => w.templateId), st.active?.templateId, ...(st.weekPlan?.days ?? []), ...Object.values(st.planOverrides ?? {})].filter((id): id is string => !!id && live.has(id));
       const res = gen.saveGenerated(gen.generate(inp), inp, x.c % 2 === 0, x.c % 3 === 0); const ids = new Set(S().templates.map(t => t.id));
       ok(refs.every(id => ids.has(id)), where, 'zastąpienie usunęło szablon w użyciu', refs.filter(id => !ids.has(id)));

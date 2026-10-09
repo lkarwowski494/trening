@@ -20,7 +20,7 @@ const inp = (o: Partial<GenInput> = {}): GenInput => ({ goal: 'hypertrophy', loc
 describe('parametry', () => {
   test('stałe i budżet serii: (minuty − rozgrzewka) × 60 / (praca serii + średnia przerwa)', () => {
     expect([WARMUP_MIN, SET_WORK_SEC, AVG_REST.strength, AVG_REST.hypertrophy, AVG_REST.cut]).toEqual([10, 40, 150, 105, 105]);
-    expect(GEN_MINUTES).toEqual([45, 60, 90]); expect(GEN_SESSIONS).toEqual({ strength: [1, 2, 3, 4, 5, 6], hypertrophy: [1, 2, 3, 4, 5, 6], cut: [1, 2, 3, 4, 5, 6] }); /* decyzja właściciela 09.10.2026: 1–6 dla każdego celu */
+    expect(GEN_MINUTES).toEqual([45, 60, 90]); expect(GEN_SESSIONS).toEqual({ strength: [1, 2, 3, 4, 5, 6], hypertrophy: [1, 2, 3, 4, 5, 6], cut: [1, 2, 3, 4, 5, 6], general: [1, 2, 3, 4, 5, 6] }); /* decyzja właściciela 09.10.2026: 1–6 dla każdego celu (też „Ogólny”) */
     expect(CUT_CARDIO_FROM).toBe(MIN_DAYS + CARDIO_SESSIONS); expect(CUT_CARDIO_FROM).toBe(3);
     expect([setsBudget('hypertrophy', 45), setsBudget('hypertrophy', 60), setsBudget('hypertrophy', 90), setsBudget('strength', 60)]).toEqual([14, 20, 33, 15]);
   });

@@ -18,6 +18,11 @@
 #   "Mon.* Full Body", "One workout a week still brings progress.*" ← 1 dzień (09.10.2026, docs/research/29): sesja 'FBW' → 'Full Body',
 #                                      ostrzeżenie „oneday” (lib/generator.ts loadWarnings)
 #   "Mon.* Full Body A · Wed.* Full Body B · Sat.* Full Body A" ← nagłówek podglądu: skrót dnia (Intl, en-US) + nazwa sesji
+#   "General fitness", "Muscle"      ← 'Ogólny', 'Masa' — chipy celu pod wyborem dni (decyzja 09.10.2026 B: najpierw dni, potem cel; docs/research/30)
+#   "General fitness \\(for health\\): 2 sets.*" ← opis celu 'Ogólny (dla zdrowia i sprawności): {s} serie…'
+#   "Mon.* Full Body · Wed.* Full Body · Sat.* Full Body" ← „Ogólny” przy 1–3 dniach: pełne FBW ('FBW' → 'Full Body') każdego dnia
+#   "sw-Cardio days in the plan" (id) ← SwitchRow 'Dni cardio w planie' (tylko „Ogólny” przy 4–6 dniach, domyślnie wyłączony)
+#   "Cardio in the plan: 60 min per week.*" ← 'Cardio w planie: {n} min tygodniowo…' (minuty cardio obok zalecenia WHO)
 #   "Monday, Full Body A", "Saturday, Full Body A" ← app/plan.tsx: wiersz dnia '{dzień}, {szablon}' (audyt 0.10 UX-15 A: 7 wierszy; „{dzień}: {szablon}” to chip
 #                                      w rozwiniętym wierszu — E2E 89), nazwa szablonu 'FBW A' → 'Full Body A'
 appId: pl.lukasz.trening
@@ -48,6 +53,24 @@ name: Generator szablonów i planu
 - tapOn: { id: "day-0" }
 - tapOn: { id: "day-2" }
 - tapOn: { id: "day-5" }
+- scrollUntilVisible: { element: "Mon.* Full Body A · Wed.* Full Body B · Sat.* Full Body A", direction: DOWN, timeout: 30000 }
+# --- cel „Ogólny” (09.10.2026, docs/research/30): pon/śr/sob — pełne FBW każdego dnia, bez przełącznika; + pt (4 dni) → przełącznik cardio → 3 × FBW + cardio ---
+- scrollUntilVisible: { element: "General fitness", direction: UP, timeout: 30000 }
+- tapOn: "General fitness"
+- assertVisible: "General fitness \\(for health\\): 2 sets per exercise.*"
+- assertNotVisible: { id: "sw-Cardio days in the plan" }
+- scrollUntilVisible: { element: "Mon.* Full Body · Wed.* Full Body · Sat.* Full Body", direction: DOWN, timeout: 30000 }
+- scrollUntilVisible: { element: { id: "day-4" }, direction: UP, timeout: 30000 }
+- tapOn: { id: "day-4" }
+- scrollUntilVisible: { element: { id: "sw-Cardio days in the plan" }, direction: DOWN, timeout: 30000 }
+- tapOn: { id: "sw-Cardio days in the plan" }
+- scrollUntilVisible: { element: "Cardio in the plan: 60 min per week.*", direction: DOWN, timeout: 30000 }
+- takeScreenshot: 70b-generator-ogolny-cardio
+- scrollUntilVisible: { element: { id: "sw-Cardio days in the plan" }, direction: UP, timeout: 30000 }
+- tapOn: { id: "sw-Cardio days in the plan" }
+- scrollUntilVisible: { element: { id: "day-4" }, direction: UP, timeout: 30000 }
+- tapOn: { id: "day-4" }
+- tapOn: "Muscle"
 - scrollUntilVisible: { element: "Mon.* Full Body A · Wed.* Full Body B · Sat.* Full Body A", direction: DOWN, timeout: 30000 }
 - takeScreenshot: 70-generator
 - scrollUntilVisible: { element: "What this is based on", direction: DOWN, timeout: 30000 }
