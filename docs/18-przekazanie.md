@@ -385,3 +385,5 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
 - 09.10.2026 (wieczór): właściciel — **języki wdrażane po kolei: od najsensowniejszych i najłatwiejszych do najtrudniejszych / najmniej
   opłacalnych**. Propozycja kolejności (do potwierdzenia): fala 1 pt-BR, es-419; fala 2 id, ms, vi; fala 3 ru; fala 4 ja, ko, zh-Hant;
   fala 5 kk, uz, az; arabski osobnym wydaniem po 1.0.
+- 09.10.2026 (wieczór): właściciel — **„nie kombinujmy”: 0.11 bez nowych języków. Wszystkie nowe języki oprócz arabskiego — w kolejnej wersji
+  (po 0.11); arabski — w wersji jeszcze następnej.** Kolejność fal wewnątrz wersji jak wyżej.
