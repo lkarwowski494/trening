@@ -303,3 +303,8 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
   3) czterokolorowy pasek-akcent; 4) ikony zakładek w geometrii talerzy; 5) animacja „dokładania talerza” przy rekordzie (z ograniczeniem
   ruchu — obraz statyczny); 6) kalendarz: dni z treningiem jako talerze. Warunki: kolor nigdy jedyną informacją (daltonizm), czerwień
   talerza odróżniona od czerwieni „Usuń”. Dopracowanie istniejących ekranów — w paczce przed App Store (zamrożenie: nie nowa funkcja).
+- 09.10.2026 (ok. 14:45): zgłoszenie „nie da się zrobić planu z własnych szablonów” — właściciel sam usunął jedyny szablon; testy
+  (plan-own-templates, 5/5 na f8f59e7) potwierdzają, że nowe, folderowe i generowane szablony są w edytorze planu i na liście startu.
+  Znalezisko UX (ŚREDNIE): przy braku szablonów edytor planu i panel dnia w Kalendarzu nie mają „+ Nowy szablon”. Wybór wg zasady z 20:20:
+  **B** — „+ Nowy szablon” w edytorze planu i panelu dnia, po „Zapisz” szablon trafia od razu na ten dzień (odrzucone A: bez przypisania,
+  C: sam komunikat). Do paczki przed App Store.
