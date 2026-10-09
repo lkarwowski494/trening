@@ -1229,10 +1229,16 @@ export function repeatLast(opts?: { deload?: boolean }): boolean {
  */
 export function deloadTail(last: Workout, e: WExercise): { kind: SetKind; row?: TRow }[] {
   if (!last.deload) return [];
+  const tpl = last.templateId ? getState().templates.find(x => x.id === last.templateId) : null;
+  /* audyt kontrolny 1, LIVE2-03: łańcuch podziału (zamiana w trakcie — bloki z tą samą pozycją szablonu) to jedna pozycja: serie robocze liczone
+   * w całym łańcuchu, brakujące dochodzą tylko do ostatniego powtarzanego bloku; wartości wiersza szablonu tylko, gdy to ćwiczenie pozycji */
+  const chain = e.tplItemId ? repeatBlocks(last).filter(x => x.tplItemId === e.tplItemId) : [e]; if (!chain.includes(e)) chain.push(e);
+  const it = tpl && e.tplItemId ? tpl.items.find(x => x.id === e.tplItemId && chain.some(b => x.exerciseId === b.exerciseId)) : null; /* pozycja wciąż z ćwiczeniem bloku łańcucha */
+  if (it) { if (chain[chain.length - 1] !== e) return [];
+    const now = chain.reduce((n, b) => n + b.sets.filter(isRoundSet).length, 0); const own = it.exerciseId === e.exerciseId;
+    const rows = tplRows(it).filter(r => r.kind !== 'warmup'); let seen = 0, i = 0; for (; i < rows.length; i++) if (rows[i].kind !== 'drop') { if (seen === now) break; seen++; }
+    return rows.slice(i).map(r => ({ kind: r.kind === 'failure' ? 'normal' : r.kind, ...(own ? { row: r } : {}) })); }
   const now = e.sets.filter(isRoundSet).length;
-  const tpl = last.templateId ? getState().templates.find(x => x.id === last.templateId) : null; const it = tpl && e.tplItemId ? tpl.items.find(x => x.id === e.tplItemId && x.exerciseId === e.exerciseId) : null;
-  if (it) { const rows = tplRows(it).filter(r => r.kind !== 'warmup'); let seen = 0, i = 0; for (; i < rows.length; i++) if (rows[i].kind !== 'drop') { if (seen === now) break; seen++; }
-    return rows.slice(i).map(r => ({ kind: r.kind === 'failure' ? 'normal' : r.kind, row: r })); }
   return Array.from({ length: Math.max(0, (Number(e.deloadFull) || 0) - now) }, () => ({ kind: 'normal' as SetKind }));
 }
 export function addExerciseToActive(ex: Exercise) {
@@ -1242,6 +1248,12 @@ export function addExerciseToActive(ex: Exercise) {
 /* ---------- E2: zamiana ćwiczenia w treningu w toku (docs/14 pkt 3) ---------- */
 /** Pozycja szablonu, z której powstał blok (gdy trening ma szablon, a pozycja wciąż istnieje). */
 const tplItemOf = (w: Workout, e: WExercise) => { const tpl = w.templateId ? getState().templates.find(x => x.id === w.templateId) : null; return tpl && e.tplItemId ? tpl.items.find(x => x.id === e.tplItemId) : undefined; };
+/** Audyt kontrolny 1, LIVE2-03: przy podziale bloku w treningu deload zapamiętana pełna liczba serii (deloadFull — liczba BLOKU) przechodzi na nowy
+ * blok: A zostaje z odhaczonymi (bez znacznika), B — reszta pełnej liczby, gdy jego serie (`left`) są od niej mniejsze. Suma łańcucha = pełna liczba. */
+function splitDeload(A: WExercise, B: WExercise, left: WSet[]) {
+  const full = Number(A.deloadFull) || 0; delete A.deloadFull; if (!full) return;
+  const rest = full - A.sets.filter(isRoundSet).length; if (rest > left.filter(isRoundSet).length) B.deloadFull = rest;
+}
 /**
  * Zamiana ćwiczenia bloku `blockId` na `toExId` „tylko dziś” (W1, tabela docs/14 pkt 3.2). Wartości A NIGDY nie przechodzą do B (docs/10 pkt 4.6):
  *  - blok bez odhaczonych serii — zamiana W MIEJSCU: to samo id bloku, nowe serie (nowe id) tych samych rodzajów i w tej samej liczbie, wartości
@@ -1261,6 +1273,7 @@ export function swapBlock(blockId: string, toExId: string, opts: { restSec?: num
   else {
     blk = { id: uid(), exerciseId: B.id, restSec: A.restSec, repMin: A.repMin, repMax: A.repMax, groupId: A.groupId, sets: [], splitFrom: A.id, ...(A.tplItemId ? { tplItemId: A.tplItemId } : {}) };
     A.sets = A.sets.filter(x => x.done); a.exercises.splice(ei + 1, 0, blk);
+    splitDeload(A, blk, left);
   }
   if (orig !== B.id) blk.swappedFrom = orig; else delete blk.swappedFrom;
   stampImpl(blk, a.locationId);
@@ -1285,6 +1298,7 @@ export function swapImpl(blockId: string, impl: Impl): { goneSetIds: string[]; b
   else {
     blk = { id: uid(), exerciseId: A.exerciseId, restSec: A.restSec, repMin: A.repMin, repMax: A.repMax, groupId: A.groupId, sets: [], splitFrom: A.id, ...(A.tplItemId ? { tplItemId: A.tplItemId } : {}), ...(A.swappedFrom ? { swappedFrom: A.swappedFrom } : {}) };
     A.sets = A.sets.filter(x => x.done); a.exercises.splice(ei + 1, 0, blk);
+    splitDeload(A, blk, left);
   }
   blk.impl = impl; blk.implPinned = true;
   const own = it && it.exerciseId === ex.id && !blk.swappedFrom ? it : undefined;
@@ -1304,6 +1318,7 @@ export function undoSwap(blockId: string): { goneSetIds: string[] } | null {
   if (P && exP) {
     a.exercises.splice(ei, 1); normalizeGroups(a.exercises);
     const from = P.sets.filter(x => x.kind !== 'warmup' && x.kind !== 'drop').length;
+    if (B.deloadFull) P.deloadFull = P.sets.filter(isRoundSet).length + B.deloadFull; /* LIVE2-03: pełna liczba wraca do scalonego bloku */
     P.sets.push(...prefillSets(exP, kinds, prevOfActiveBlock(a, P), a.locationId, P.impl, tplItemOf(a, P)?.targetSec ?? '', '', from));
   } else {
     const A = exById(B.swappedFrom!)!; B.exerciseId = A.id; delete B.swappedFrom; delete B.implPinned; delete B.splitFrom; stampImpl(B, a.locationId);
@@ -1786,8 +1801,11 @@ export function setEquipment(e: Exercise, eq: Exercise['equipment']) { if (e.equ
    * catalogRev 'user' (start aplikacji go nie nadpisze katalogiem) */
   if (e.lib) { e.requires = []; e.recommended = []; delete e.implements; e.catalogRev = 'user'; }
   /* macierz niezmienników 06.10 (L5): bloki tego ćwiczenia w treningu w toku bez odhaczonych serii dostają przyrząd wg nowego sprzętu — jak przy zmianie sprzętu miejsca */
-  const a = getState().active; if (a && a.exercises.some(x => x.exerciseId === e.id)) { restampUntouched(a); save(a); }
-  save(e); }
+  exerciseEdited(e.id); save(e); }
+/** Po zmianie ćwiczenia (sprzęt, źródło obciążenia, wymagania): bloki tego ćwiczenia w treningu w toku bez odhaczonych serii dostają przyrząd
+ * wg ćwiczenia — reguła L5. Wspólne dla setEquipment i „Zapisz” szkicu ćwiczenia (lib/draft.ts; audyt kontrolny 1, UI2-01: przyrząd decyduje
+ * o mnożniku stacji ×2 w objętości i rekordach). */
+export function exerciseEdited(exId: string) { const a = getState().active; if (a && a.exercises.some(x => x.exerciseId === exId)) { restampUntouched(a); save(a); } }
 /** „Przywróć …” (lista ćwiczeń, wybór, zamiana): bez pola archived — tak samo jak po wczytaniu danych (migrate usuwa archived ≠ true; macierz niezmienników 06.10). */
 export function restoreExercise(e: Exercise) { delete e.archived; save(e); }
 /** Czy ćwiczenie występuje w historii lub w treningu w toku. */

@@ -1,4 +1,4 @@
-import { getState, save, markDraft, clampName, NAME_MAX, setTemplateNote, deleteTemplate, exerciseUsed } from './store';
+import { getState, save, markDraft, clampName, NAME_MAX, setTemplateNote, deleteTemplate, exerciseUsed, exerciseEdited } from './store';
 import type { Exercise, Template } from './seed';
 import { t } from './i18n';
 
@@ -40,9 +40,11 @@ export function commitObjDraft(kind: DraftKind, id: string): boolean {
   if (snap(d.obj) === d.orig) { save(d.obj); return true; }
   const src = d.obj as unknown as Record<string, unknown>;
   src.name = cleanName(String(src.name ?? ''), String(dst.name ?? ''), kind === 'exercise' ? t('Nowe ćwiczenie') : t('Nowy szablon'));
+  const EQUIP_KEYS = ['equipment', 'loadSource', 'requires', 'implements', 'loadMode']; const equipBefore = JSON.stringify(EQUIP_KEYS.map(x => dst[x] ?? null));
   for (const key of Object.keys(dst)) if (!KEEP.has(key) && !(key in src)) delete dst[key];
   for (const [key, v] of Object.entries(src)) if (!KEEP.has(key)) dst[key] = v;
   if (kind === 'template') setTemplateNote(dst as unknown as Template, String((dst as unknown as Template).note ?? '')); /* ta sama sanityzacja co dotąd przy końcu edycji */
+  else if (JSON.stringify(EQUIP_KEYS.map(x => dst[x] ?? null)) !== equipBefore) exerciseEdited(id); /* UI2-01: na szkicu setEquipment przeliczał bloki wg NIEZMIENIONEGO ćwiczenia — przeliczenie po przeniesieniu szkicu, tylko po zmianie sprzętu (L5; inne pola nie ruszają treningu w toku) */
   save(dst as unknown as Obj); return true;
 }
 

@@ -15,20 +15,40 @@ const kindOf = (s: WSet): SetKind => (s.kind ?? (s.warmup ? 'warmup' : 'normal')
 const nameOf = (id: string) => { const e = exById(id); return e ? exName(e) : t('Usunięte ćwiczenie'); };
 /** Pozycja szablonu, z której powstał blok (ta sama pozycja i to samo ćwiczenie albo jego zamiennik). */
 const itemOf = (tpl: Template, b: WExercise): TemplateItem | undefined => { if (!b.tplItemId) return undefined; const it = tpl.items.find(x => x.id === b.tplItemId); return it && (it.exerciseId === b.exerciseId || it.exerciseId === b.swappedFrom) ? it : undefined; };
+/**
+ * Audyt kontrolny 1, LIVE2-01: łańcuch podziału — zamiana ćwiczenia albo przyrządu po odhaczeniu części serii dzieli blok na kilka bloków z tą samą
+ * pozycją szablonu (`tplItemId`; po zapisie `splitFrom` znika, „Powtórz ostatni” kopiuje podział). Łańcuch to JEDNA pozycja szablonu: miejsce
+ * w kolejności — pierwszy blok, serie — suma bloków w kolejności treningu. Każda pozycja szablonu dopasowana najwyżej raz, więc szablon nigdy nie
+ * dostaje dwóch pozycji z tym samym id. Zwraca listę w kolejności treningu: łańcuch (pozycja + bloki) albo blok bez pozycji (`it` puste).
+ */
+function chainsOf(tpl: Template, w: Workout): { it?: TemplateItem; blocks: WExercise[] }[] {
+  const out: { it?: TemplateItem; blocks: WExercise[] }[] = []; const byItem = new Map<TemplateItem, WExercise[]>();
+  for (const b of w.exercises) {
+    const it = itemOf(tpl, b); if (!it) { out.push({ blocks: [b] }); continue; }
+    const c = byItem.get(it); if (c) { c.push(b); continue; }
+    const blocks = [b]; byItem.set(it, blocks); out.push({ it, blocks });
+  }
+  return out;
+}
+/** Ćwiczenie dodane w treningu trafia do szablonu tylko, gdy wciąż jest w bibliotece (usunięte w trakcie — zarchiwizowane — nie; jak „Zapisz jako
+ * szablon” i migrate; znalezisko testu niezmienników przy LIVE2-01). */
+const liveEx = (b: WExercise) => { const e = exById(b.exerciseId); return !!e && !e.archived; };
+/** Łańcuch tylko na dziś: „Pomiń dziś” albo zamiana ćwiczenia w którymkolwiek bloku (H5 — bez pytania, pozycja bez zmian). Sama zmiana przyrządu
+ * (ten sam ruch, bez swappedFrom) — porównujemy sumę serii łańcucha. */
+const todayOnly = (blocks: WExercise[]) => blocks.some(b => b.skipped || b.swappedFrom);
 const sameKinds = (a: readonly SetKind[], b: readonly SetKind[]) => a.length === b.length && a.every((k, i) => k === b[i]);
 
 /** Różnice składu treningu `w` (trening w toku przed zapisem — z nieodhaczonymi seriami) względem szablonu; null — skład ten sam albo nie pytamy. */
 export function templateDiff(tpl: Template | undefined, w: Workout): TemplateDiff | null {
   if (!tpl || tpl.archived || w.deload || w.templateId !== tpl.id) return null;
-  const used = new Set<string>(); const d: TemplateDiff = { added: [], removed: [], sets: [], order: false }; const seq: number[] = [];
-  for (const b of w.exercises) {
-    const it = itemOf(tpl, b);
-    if (!it) { if (exById(b.exerciseId) && b.sets.length) d.added.push(nameOf(b.exerciseId)); continue; }
-    used.add(it.id); seq.push(tpl.items.indexOf(it));
-    if (b.skipped || b.swappedFrom) continue; /* „Pomiń dziś” i zamiana — tylko na dziś */
-    if (!sameKinds(b.sets.map(kindOf), tplRows(it).map(r => r.kind))) d.sets.push(nameOf(it.exerciseId));
+  const used = new Set<TemplateItem>(); const d: TemplateDiff = { added: [], removed: [], sets: [], order: false }; const seq: number[] = [];
+  for (const { it, blocks } of chainsOf(tpl, w)) {
+    if (!it) { const b = blocks[0]; if (liveEx(b) && b.sets.length) d.added.push(nameOf(b.exerciseId)); continue; }
+    used.add(it); seq.push(tpl.items.indexOf(it));
+    if (todayOnly(blocks)) continue; /* „Pomiń dziś” i zamiana — tylko na dziś */
+    if (!sameKinds(blocks.flatMap(b => b.sets.map(kindOf)), tplRows(it).map(r => r.kind))) d.sets.push(nameOf(it.exerciseId));
   }
-  for (const it of tpl.items) if (!used.has(it.id) && exById(it.exerciseId)) d.removed.push(nameOf(it.exerciseId));
+  for (const it of tpl.items) if (!used.has(it) && exById(it.exerciseId)) d.removed.push(nameOf(it.exerciseId));
   d.order = seq.some((x, i) => i > 0 && x < seq[i - 1]);
   return d.added.length || d.removed.length || d.sets.length || d.order ? d : null;
 }
@@ -47,17 +67,18 @@ const syncFromRows = (it: TemplateItem) => { const rows = it.rows ?? []; it.sets
 
 /** „Zaktualizuj szablon”: skład szablonu jak w treningu `w` (przed zapisem — z nieodhaczonymi seriami). Pozycje z treningu zachowują swoje ustawienia
  * (przerwa, zakres, zamienniki); wiersze tego samego rodzaju — swoje wartości, nowe wiersze — wartości z treningu. „Pomiń dziś” i zamiana — pozycja bez
- * zmian. Pozycje usunięte w treningu znikają; ćwiczenia dodane w treningu dochodzą w jego kolejności; supersety jak w treningu. */
+ * zmian. Pozycje usunięte w treningu znikają; ćwiczenia dodane w treningu dochodzą w jego kolejności; supersety jak w treningu. Łańcuch podziału
+ * (LIVE2-01) to jedna pozycja: z zamianą — bez zmian, po samej zmianie przyrządu — serie wszystkich bloków łańcucha. */
 export function updateTemplateFromWorkout(tpl: Template, w: Workout): void {
   const groups = new Map<string, string>(); const gid = (g: string | null) => { if (!g) return null; if (!groups.has(g)) groups.set(g, uid()); return groups.get(g)!; };
   const items: TemplateItem[] = [];
-  for (const b of w.exercises) {
-    const it = itemOf(tpl, b);
-    if (!it) { if (exById(b.exerciseId) && b.sets.length) items.push({ ...itemFromBlock(b), groupId: gid(b.groupId) }); continue; }
+  for (const { it, blocks } of chainsOf(tpl, w)) {
+    const b = blocks[0];
+    if (!it) { if (liveEx(b) && b.sets.length) items.push({ ...itemFromBlock(b), groupId: gid(b.groupId) }); continue; }
     const keep: TemplateItem = JSON.parse(JSON.stringify(it)); keep.groupId = gid(b.groupId ?? null);
-    if (!b.skipped && !b.swappedFrom) {
-      const old = tplRows(it); const ex = exById(it.exerciseId);
-      keep.rows = b.sets.map((s, i) => (old[i] && old[i].kind === kindOf(s) ? { ...old[i], id: old[i].id.includes(':') ? uid() : old[i].id } : rowFromSet(ex, s)));
+    if (!todayOnly(blocks)) {
+      const old = tplRows(it); const ex = exById(it.exerciseId); const sets = blocks.flatMap(x => x.sets);
+      keep.rows = sets.map((s, i) => (old[i] && old[i].kind === kindOf(s) ? { ...old[i], id: old[i].id.includes(':') ? uid() : old[i].id } : rowFromSet(ex, s)));
       syncFromRows(keep);
     }
     items.push(keep);
