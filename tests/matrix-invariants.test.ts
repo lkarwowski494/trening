@@ -257,9 +257,15 @@ async function step(x: Act, m: Model, where: string) {
     case 'timerSet': if (act && blk) { const s = pick(blk.sets, x.b)!; if (!s.done) store.setTimerState({ setStartAt: Date.now(), setTarget: x.c % 2 ? 30 : 0, setId: s.id }); } break;
     case 'finish': if (act) { /* jak ekran: bez odhaczonych serii — „Odrzuć trening” (ActiveWorkout: Brak odhaczonych serii) */
       const done = act.exercises.flatMap(e => e.sets.filter(s => s.done).map(s => s.id));
+      /* H5 + LIVE2-01 (audyt kontrolny 1): „Zaktualizować szablon?” → „Zaktualizuj szablon” (ekran: różnice ze stanu sprzed zapisu); łańcuch podziału
+       * (zamiana / przyrząd w trakcie) to jedna pozycja — szablon nigdy z dwiema pozycjami o tym samym id (uniq w light), zmienia się tylko ten szablon */
+      const upd = done.length && x.c % 2 === 0 ? S().templates.find(z => z.id === act.templateId) : undefined; const before = upd ? J(act) : '';
+      const diff = upd ? tplsync.templateDiff(upd, JSON.parse(before)) : null;
       if (done.length) { const w = store.finishWorkout()!; ok(w.id === act.id && !S().active, where, 'zakończenie');
         const kept = w.exercises.flatMap(e => e.sets.map(s => s.id)); ok(J([...kept].sort()) === J([...done].sort()), where, 'historia = dokładnie odhaczone serie', { kept, done });
-        m.hist.set(w.id, J(w)); hit('finish'); }
+        m.hist.set(w.id, J(w)); hit('finish');
+        if (upd && diff) { const n0 = upd.items.length; tplsync.updateTemplateFromWorkout(upd, JSON.parse(before)); othersSame(upd.id); m.tpl = J(S().templates);
+          ok(new Set(upd.items.map(i => i.id)).size === upd.items.length && upd.items.length <= n0 + JSON.parse(before).exercises.length, where, 'LIVE2-01: „Zaktualizuj szablon” — zdublowane id pozycji', upd.items.map(i => i.id)); hit('tplUpdate'); } }
       else store.cancelWorkout();
       store.setTimerState(blankTimer()); } break;
     case 'cancel': if (act) { store.cancelWorkout(); store.setTimerState(blankTimer()); } break;
@@ -572,7 +578,7 @@ describe('macierz niezmienników — losowe sekwencje działań na prawdziwym AP
     }), { numRuns: RUNS, seed: SEED });
     if (process.env.MATRIX_COVERAGE) console.log(J(ran)); // eslint-disable-line no-console
     /* pokrycie: kluczowe ścieżki naprawdę się wykonały (inaczej niezmienniki byłyby puste) */
-    if (RUNS >= 50 && !process.env.MATRIX_SEED) /* kontrola pokrycia tylko dla stałego ziarna — losowe może nie wylosować rzadkiej akcji */ for (const k of ['startTpl', 'finish', 'tick', 'swap', 'split', 'undoSwap', 'pastCommit', 'editCommit', 'draftSwap', 'delExArchive', 'delExHard', 'reload', 'roundtrip', 'addLoc', 'setLoc', 'tplAddRow', 'tplRmRow', 'tplKind', 'tplDup', 'repeat', 'unit', 'lang', 'rememberAlt', 'rememberRest', 'gen', 'tplNote', 'draftCancel', 'draftSave', 'saveAsTpl', 'tplArchive', 'deload', 'pause', 'resume', 'skipEx', 'health', 'planSwap', 'planSuggest', 'planReset'])
+    if (RUNS >= 50 && !process.env.MATRIX_SEED) /* kontrola pokrycia tylko dla stałego ziarna — losowe może nie wylosować rzadkiej akcji */ for (const k of ['startTpl', 'finish', 'tick', 'swap', 'split', 'undoSwap', 'pastCommit', 'editCommit', 'draftSwap', 'delExArchive', 'delExHard', 'reload', 'roundtrip', 'addLoc', 'setLoc', 'tplAddRow', 'tplRmRow', 'tplKind', 'tplDup', 'repeat', 'unit', 'lang', 'rememberAlt', 'rememberRest', 'gen', 'tplNote', 'draftCancel', 'draftSave', 'saveAsTpl', 'tplArchive', 'deload', 'pause', 'resume', 'skipEx', 'health', 'planSwap', 'planSuggest', 'planReset', 'tplUpdate'])
       expect([k, (ran[k] ?? 0) > 0]).toEqual([k, true]);
   });
 });
