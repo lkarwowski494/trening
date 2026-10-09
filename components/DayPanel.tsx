@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Pressable, Alert } from 'react-native';
 import { useRouter } from 'expo-router';
-import { Btn, Chip, Muted, Txt, H2 } from '@/components/ui';
+import { Btn, Chip, Muted, Txt, H2, useOnce } from '@/components/ui';
 import { workoutDay, getState, useTick, isDeloadWeek, toggleDeloadWeek, fmtDayKey, newTemplate } from '@/lib/store';
 import { useTheme, F } from '@/lib/theme';
 import { plannedOn, isChanged, setDayPlan, resetDay, addDays, dayKeyOf, suggest, suggestionOrder, SUGGEST_FIRST, applySuggestion, dayStatus, doneOn, pending, planTplName, hasPlan, assignTarget, RETURN_DAYS, type Suggestion } from '@/lib/plan';
@@ -32,7 +32,7 @@ const PRIMARY_MAX = 3;
 type Act = { key: string; el: React.ReactElement };
 
 export function DayPanel({ day }: { day: string }) {
-  useTick(); const router = useRouter(); const th = useTheme(); const today = dayKeyOf(Date.now()); const past = day < today;
+  useTick(); const router = useRouter(); const once = useOnce(); /* UI2-02: przejścia z blokadą podwójnego tapnięcia */ const th = useTheme(); const today = dayKeyOf(Date.now()); const past = day < today;
   const st = dayStatus(day, today); const id = st.templateId; const tpl = id ? getState().templates.find(x => x.id === id && !x.archived) : undefined;
   const act = getState().active; const activeHere = !!act && workoutDay(act) === day; const changed = isChanged(day, today);
   const waiting = (pending(st) || st.status === 'missed') && !activeHere; /* zaplanowany trening czeka (albo minął) — można go przesunąć / pominąć */
@@ -44,7 +44,7 @@ export function DayPanel({ day }: { day: string }) {
 
   /* ---- stan dnia ---- */
   const lines: React.ReactElement[] = [];
-  const link = (key: string, text: string, wid: string) => <Pressable accessibilityLanguage={lang()} key={key} accessibilityRole="link" accessibilityLabel={text} onPress={() => router.push(`/history/${wid}`)} hitSlop={6} style={({ pressed }) => ({ opacity: pressed ? 0.5 : 1, paddingVertical: 2 })}><Txt style={{ fontSize: 15, color: th.accent, fontFamily: F.semibold }}>{`${text} ›`}</Txt></Pressable>;
+  const link = (key: string, text: string, wid: string) => <Pressable accessibilityLanguage={lang()} key={key} accessibilityRole="link" accessibilityLabel={text} onPress={once(() => router.push(`/history/${wid}`))} hitSlop={6} style={({ pressed }) => ({ opacity: pressed ? 0.5 : 1, paddingVertical: 2 })}><Txt style={{ fontSize: 15, color: th.accent, fontFamily: F.semibold }}>{`${text} ›`}</Txt></Pressable>;
   const ch = changed ? ` · ${t('zmiana planu')}` : '';
   if (st.status === 'done' || st.status === 'other') doneOn(day).forEach(w => lines.push(link(w.id, st.status === 'done' ? t('Zrobione: {name}', { name: w.templateName || t('Trening') }) : t('Zrobiony inny trening: {name}', { name: w.templateName || t('Trening') }), w.id)));
   if (st.status === 'other' || st.status === 'planned' || st.status === 'missed') lines.push(<Txt key="plan" style={{ fontSize: 15 }}>{(past ? t('Opuszczony: {name}', { name: tplName(id) }) : t('Zaplanowany: {name}', { name: tplName(id) })) + ch}</Txt>);
@@ -52,11 +52,11 @@ export function DayPanel({ day }: { day: string }) {
   else if (changed) lines.push(<Muted key="plan" style={{ fontSize: 13 }}>{t('zmiana planu')}</Muted>);
   if (activeHere) lines.push(<Muted key="active" style={{ fontSize: 13 }}>{t('Trening w toku')}</Muted>);
   const empty = !!tpl && !tpl.items.length && pending(st);
-  if (empty) lines.push(<Pressable accessibilityLanguage={lang()} key="empty" accessibilityRole="link" onPress={() => router.push(`/template/${tpl!.id}?edit=1`)}><Muted style={{ fontSize: 13 }}>{t('Szablon jest pusty — dodaj ćwiczenia')}</Muted></Pressable>);
+  if (empty) lines.push(<Pressable accessibilityLanguage={lang()} key="empty" accessibilityRole="link" onPress={once(() => router.push(`/template/${tpl!.id}?edit=1`))}><Muted style={{ fontSize: 13 }}>{t('Szablon jest pusty — dodaj ćwiczenia')}</Muted></Pressable>);
 
   /* ---- akcje: główne (najwyżej 3) i „Więcej opcji” ---- */
   const primary: Act[] = []; const extra: Act[] = [];
-  if (tpl && day === today && pending(st) && !act && tpl.items.length) primary.push({ key: 'start', el: <Btn small kind="primary" title={t('Start')} accessibilityLabel={t('Start zaplanowanego treningu: {name}', { name: tpl.name })} onPress={() => startTemplate(tpl, () => router.navigate('/'))} /> });
+  if (tpl && day === today && pending(st) && !act && tpl.items.length) primary.push({ key: 'start', el: <Btn nav small kind="primary" title={t('Start')} accessibilityLabel={t('Start zaplanowanego treningu: {name}', { name: tpl.name })} onPress={() => startTemplate(tpl, () => router.navigate('/'))} /> });
   /* UI-18 (audyt 0.10, G5): przy treningu w toku Start nie znika bez słowa — ta sama informacja co w podglądzie szablonu */
   else if (tpl && day === today && pending(st) && act && tpl.items.length) primary.push({ key: 'start', el: <Btn small kind="ghost" title={t('Start')} accessibilityLabel={t('Start zaplanowanego treningu: {name}', { name: tpl.name })} accessibilityHint={t('Trening w toku')} onPress={() => Alert.alert(t('Trening w toku'), t('Najpierw zakończ albo anuluj bieżący trening.'))} /> });
   if (movable) primary.push({ key: 'move', el: <Btn small title={t('Przesuń albo pomiń')} accessibilityHint={t('Lista możliwości: przesunięcie planu, przeniesienie tylko tego treningu, zamiana albo wolne — z uwzględnieniem regeneracji partii.')} onPress={() => setMode(mode === 'move' ? 'none' : 'move')} /> });

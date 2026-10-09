@@ -15,7 +15,7 @@ export function Muted({ children, style, numberOfLines, accessibilityRole, acces
 export function Txt({ children, style, accessibilityRole, maxFontSizeMultiplier }: { children: React.ReactNode; style?: StyleProp<TextStyle>; accessibilityRole?: 'header'; maxFontSizeMultiplier?: number }) { const t = useTheme(); return <Text accessibilityLanguage={lang()} accessibilityRole={accessibilityRole} maxFontSizeMultiplier={maxFontSizeMultiplier} style={[{ color: t.text, fontSize: 16, fontFamily: F.regular }, style]}>{children}</Text>; }
 
 export function Btn({ title, onPress, kind = 'default', small, block, style, accessibilityLabel, accessibilityHint, nav }: { title: string; onPress: () => void; kind?: 'default' | 'primary' | 'ghost' | 'danger'; small?: boolean; block?: boolean; style?: StyleProp<ViewStyle>; accessibilityLabel?: string; accessibilityHint?: string; /** F7 (audyt 0.10, UI-08): przycisk przejścia do innego ekranu — podwójne tapnięcie otwiera jeden ekran (jak Item, useOnce) */ nav?: boolean }) {
-  const t = useTheme(); const once = useOnce(700); const press = nav ? once(onPress) : onPress;
+  const t = useTheme(); const once = useOnce(NAV_LOCK_MS); const press = nav ? once(onPress) : onPress;
   const bg = kind === 'primary' ? t.accent : kind === 'ghost' || kind === 'danger' ? 'transparent' : t.surface2;
   const fg = kind === 'primary' ? t.accentInk : kind === 'danger' ? t.danger : t.text;
   const border = kind === 'primary' ? t.accent : kind === 'danger' ? t.danger : kind === 'ghost' ? 'transparent' : t.line;
@@ -31,7 +31,7 @@ export function Btn({ title, onPress, kind = 'default', small, block, style, acc
  * Runda 7: cały wiersz (z odstępami, min. 56 pt) jest polem dotyku, a znaki „+”/„↺” w pickerze są w środku wiersza.
  */
 export function Item({ title, sub, right, icon, onPress, dim, accessibilityLabel, a11y, a11yLang }: { /** A11-09: język, którym VoiceOver czyta wiersz (domyślnie język aplikacji) */ a11yLang?: string; /** usuwanie przesunięciem: akcja VoiceOver „usuń” (components/SwipeRow.tsx) */ a11y?: import('@/components/SwipeRow').DeleteA11y; title: string; sub?: string; right?: React.ReactNode; icon?: string; onPress?: () => void; /** P-003: wiersz wyszarzony (np. ćwiczenie niedostępne w miejscu) */ dim?: boolean; /** E2: opis dla VoiceOver inny niż „tytuł, podtytuł” (np. „Propozycja 1: …”) */ accessibilityLabel?: string }) {
-  const t = useTheme(); const glyph = icon ?? (onPress && !right ? '›' : null); const once = useOnce(700); // runda 18: podwójne tapnięcie nie otwiera ekranu dwa razy
+  const t = useTheme(); const glyph = icon ?? (onPress && !right ? '›' : null); const once = useOnce(NAV_LOCK_MS); // runda 18: podwójne tapnięcie nie otwiera ekranu dwa razy
   return (
     <View style={[s.item, { borderBottomColor: t.line }]}>
       <Pressable accessibilityLanguage={a11yLang ?? lang()} {...a11y} onPress={onPress ? once(onPress) : undefined} disabled={!onPress} accessibilityRole={onPress ? 'button' : undefined} accessibilityLabel={accessibilityLabel ?? (sub ? `${title}, ${sub}` : title)} style={({ pressed }) => [s.itemPress, { opacity: pressed ? 0.6 : 1 }]}>
@@ -49,6 +49,9 @@ export function Item({ title, sub, right, icon, onPress, dim, accessibilityLabel
  * Runda 9: blokada podwójnego tapnięcia dla przycisków, które tworzą coś i przechodzą dalej. Drugie wywołanie
  * w ciągu `ms` jest ignorowane; potem przycisk znów działa (np. po powrocie na ekran).
  */
+/** UI2-02 (audyt kontrolny 1): jedno miejsce czasu blokady przejść — Btn/Chip `nav` i wiersz Item; strażnik: tests/audit-k1-fala2b.test.tsx
+ * (każdy przycisk, chip i Pressable z router.push/navigate/replace ma blokadę). */
+export const NAV_LOCK_MS = 700;
 export function useOnce(ms = 1000) { const last = React.useRef(0); return (fn: () => void) => () => { const now = Date.now(); if (now >= last.current && now - last.current < ms) return; /* zegar cofnięty wstecz nie blokuje przycisku */ last.current = now; fn(); }; }
 /* Audyt 0.10 (A11-09): każdy element tych komponentów ma accessibilityLanguage = język aplikacji — VoiceOver czyta głosem wybranego języka,
  * nie języka systemu (język wybrany w aplikacji nie zmienia języka widzianego przez iOS). Lista języków: app/more/language.tsx (kod wiersza). */
@@ -105,13 +108,13 @@ export function NumInput(props: Omit<TextInputProps, 'value'> & { value: number 
   return <Input center keyboardType={allowNegative ? 'numbers-and-punctuation' : decimal ? 'decimal-pad' : 'number-pad'} value={txt} onChangeText={v => { setTxt(v); if (!start.current) start.current = { shown: value, stored }; const p = parseNum(v); if (p !== null) onNum(p, stored !== undefined && typeof p === 'number' && p === start.current.shown ? start.current.stored : undefined); }} onEndEditing={() => { start.current = null; setTxt(ext); }} selectTextOnFocus {...rest} style={[NUM_FONT, rest.style]} />;
 }
 /** Chip wyboru. `toggle` = przełącznik ustawienia: VoiceOver czyta nazwę pola (z Field) jako etykietę i stan włączenia (runda 6). */
-export function Chip({ label, on, onPress, toggle, a11yLabel, a11yHint, disabled }: { label: string; on: boolean; onPress: () => void; toggle?: boolean; a11yLabel?: string; a11yHint?: string; disabled?: boolean }) {
-  const t = useTheme(); const field = React.useContext(FieldLabel);
+export function Chip({ label, on, onPress, toggle, a11yLabel, a11yHint, disabled, nav }: { label: string; on: boolean; onPress: () => void; toggle?: boolean; a11yLabel?: string; a11yHint?: string; disabled?: boolean; /** UI2-02: chip przejścia do innego ekranu — blokada podwójnego tapnięcia jak Btn `nav` */ nav?: boolean }) {
+  const t = useTheme(); const field = React.useContext(FieldLabel); const once = useOnce(NAV_LOCK_MS); const press = nav ? once(onPress) : onPress;
   // Runda 49: własna etykieta/podpowiedź (np. chip „✕” wyboru) i stan nieaktywny (chip, który nic nie zmienia).
   const swName = a11yLabel ?? field ?? label;
   /* A11-14: wartość (tekst chipa) tylko wtedy, gdy różni się od nazwy — inaczej VoiceOver czyta „Tydzień deload, Tydzień deload” */
   const a11y = toggle ? { accessibilityRole: 'switch' as const, accessibilityHint: a11yHint, accessibilityLabel: swName, ...(swName !== label ? { accessibilityValue: { text: label } } : {}), accessibilityState: { checked: on, disabled: !!disabled } } : { accessibilityRole: 'button' as const, accessibilityLabel: a11yLabel ?? label, accessibilityHint: a11yHint ?? field, accessibilityState: { selected: on, disabled: !!disabled } };
-  return <Pressable accessibilityLanguage={lang()} onPress={disabled ? undefined : onPress} {...a11y} hitSlop={4} style={[s.chip, { backgroundColor: on ? t.accent : t.surface2, borderColor: on ? t.accent : t.line }, disabled && !on && { opacity: 0.5 }]}><Text accessibilityLanguage={lang()} style={{ color: on ? t.accentInk : t.muted, fontFamily: F.semibold, fontSize: 13 }}>{label}</Text></Pressable>;
+  return <Pressable accessibilityLanguage={lang()} onPress={disabled ? undefined : press} {...a11y} hitSlop={4} style={[s.chip, { backgroundColor: on ? t.accent : t.surface2, borderColor: on ? t.accent : t.line }, disabled && !on && { opacity: 0.5 }]}><Text accessibilityLanguage={lang()} style={{ color: on ? t.accentInk : t.muted, fontFamily: F.semibold, fontSize: 13 }}>{label}</Text></Pressable>;
 }
 /**
  * P-002 (02.10.2026): ustawienia jak w Ustawieniach iOS (Apple HIG: przełącznik dla wł./wył., kontrolka segmentowa dla 1 z 2–4).

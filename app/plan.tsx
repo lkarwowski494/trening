@@ -69,7 +69,7 @@ export default function PlanScreen() {
       <Muted style={{ fontSize: 13, marginBottom: 8 }}>{t('Ten plan jeszcze nie obowiązuje. Zmień nazwę i dni, potem „Ustaw jako aktywny”.')}</Muted>
       <Field label={t('Nazwa planu')}><Input value={saved.name} maxLength={40} accessibilityLabel={t('Nazwa planu')} onChangeText={v => typeSavedName(saved.id, v)} onEndEditing={() => { renamePlan(saved.id, savedPlans().find(p => p.id === saved.id)?.name ?? '', initial.current); initial.current = savedPlans().find(p => p.id === saved.id)?.name ?? initial.current; }} /></Field>
       {savedChanges(saved.id) ? <Muted style={{ fontSize: 13, marginBottom: 8 }}>{t('Zmiany pojedynczych dni zapisane z tym planem: {n} — wrócą po aktywacji.', { n: savedChanges(saved.id) })}</Muted> : null}
-      <Btn title={t('Ustaw jako aktywny')} kind="primary" small accessibilityLabel={t('Ustaw jako aktywny: {name}', { name: nameOr(saved.name) })} onPress={() => activate(saved.id, saved.name, () => { if (router.canGoBack()) router.back(); else router.replace('/plan'); })} style={{ alignSelf: 'flex-start', marginBottom: 8 }} />
+      <Btn nav title={t('Ustaw jako aktywny')} kind="primary" small accessibilityLabel={t('Ustaw jako aktywny: {name}', { name: nameOr(saved.name) })} onPress={() => activate(saved.id, saved.name, () => { if (router.canGoBack()) router.back(); else router.replace('/plan'); })} style={{ alignSelf: 'flex-start', marginBottom: 8 }} />
       <SectionTitle>{t('Dni tygodnia')}</SectionTitle>
       <DayRows days={saved.days} onSet={(i, x) => setSavedDay(saved.id, i, x)} target={i => assignTarget.saved(saved.id, i)} />
     </ScrollView></Screen>);
@@ -84,7 +84,7 @@ function ActivePlan({ activate }: { activate: (id: string, name: string) => void
       <Field label={t('Nazwa planu')}><Input value={planName()} placeholder={t('Mój plan')} maxLength={40} accessibilityLabel={t('Nazwa planu')} onChangeText={typePlanName} onEndEditing={() => setPlanName(planName())} /></Field>
       <Muted style={{ fontSize: 13, marginBottom: 8 }}>{t('Plan powtarza się co tydzień. Pojedyncze dni zmienisz w Kalendarzu.')}</Muted>
       <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginBottom: 4 }}>
-        {!plansFull() ? <Btn title={t('+ Nowy plan')} small accessibilityHint={t('Kopia obecnego planu w „Inne plany” — zmienisz ją przed ustawieniem jako aktywny.')} onPress={() => { const nid = newPlan(); if (nid) router.push(`/plan?id=${nid}`); }} /> : null}
+        {!plansFull() ? <Btn nav /* UI2-02: blokada obejmuje też newPlan() — jeden plan */ title={t('+ Nowy plan')} small accessibilityHint={t('Kopia obecnego planu w „Inne plany” — zmienisz ją przed ustawieniem jako aktywny.')} onPress={() => { const nid = newPlan(); if (nid) router.push(`/plan?id=${nid}`); }} /> : null}
         <Btn nav title={t('Wygeneruj szablony i plan')} small onPress={() => router.push('/generator')} />{/* 08.10.2026: generator (docs/24) */}
         {ownTemplates().length ? <Btn nav title={t('Plan z moich szablonów')} small onPress={() => router.push('/generator?mode=own')} /> : null}{/* 09.10.2026 (B) */}
       </View>

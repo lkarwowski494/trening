@@ -90,7 +90,7 @@ export default function Progress() {
           {recRows.map(([l, v]) => <View key={l} style={{ flexDirection: 'row', justifyContent: 'space-between' }}><Muted>{l}</Muted><Txt style={{ fontFamily: F.monoBold, flexShrink: 1, textAlign: 'right', marginLeft: 8 }}>{monoSafe(v, true) /* A11-11 */}</Txt></View>)}
         </View> : null}
         {bwNote ? <Muted style={{ fontSize: 12, marginTop: 6 }}>{bwNote}</Muted> : null}
-        {sh ? <Btn small title={t('Masa ciała — pomiary')} style={{ alignSelf: 'flex-start', marginTop: 6 }} onPress={() => router.push('/more/bodymass')} /> : null}
+        {sh ? <Btn nav small title={t('Masa ciała — pomiary')} style={{ alignSelf: 'flex-start', marginTop: 6 }} onPress={() => router.push('/more/bodymass')} /> : null}
         <H2 style={{ marginTop: 16 }}>{t('Sesje')}</H2>
         {[...sessions].reverse().slice(0, 20).map((s, i) => (
           <View key={i} style={{ paddingVertical: 8, borderBottomWidth: 1, borderBottomColor: th.line }}>

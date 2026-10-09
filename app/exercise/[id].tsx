@@ -83,9 +83,9 @@ function Preview({ e, cuesOpen, onEdit, onOpen, onProgress }: { e: Exercise; /**
       <Muted style={{ fontSize: 13, marginBottom: 12 }}>{bwNote()}</Muted>
       <Muted accessibilityRole="header" style={{ fontSize: 13, marginTop: 6, marginBottom: 4 }}>{t('Ostatnie treningi')}</Muted>
       {hist.length ? hist.map(w => { const sets = w.exercises.filter(x => x.exerciseId === e.id).flatMap(x => x.sets); const line = `${fmtDate(wallTs(w))} · ${sets.map(x => setSummary(e, x)).join(', ')}`;
-        return <Btn key={w.id} kind="ghost" small title={line} accessibilityLabel={t('Sesja {d}: {s}', { d: fmtDate(wallTs(w)), s: sets.map(x => setSummary(e, x)).join(', ') })} style={{ justifyContent: 'flex-start', paddingHorizontal: 0 }} onPress={() => onOpen(w.id)} />; })
+        return <Btn nav /* UI2-02 */ key={w.id} kind="ghost" small title={line} accessibilityLabel={t('Sesja {d}: {s}', { d: fmtDate(wallTs(w)), s: sets.map(x => setSummary(e, x)).join(', ') })} style={{ justifyContent: 'flex-start', paddingHorizontal: 0 }} onPress={() => onOpen(w.id)} />; })
         : <Muted style={{ fontSize: 13, marginBottom: 6 }}>{t('Jeszcze nie było w treningu.')}</Muted>}
-      <View style={{ flexDirection: 'row', gap: 8, marginTop: 8 }}><Btn title={t('Postępy')} onPress={onProgress} /></View>
+      <View style={{ flexDirection: 'row', gap: 8, marginTop: 8 }}><Btn nav title={t('Postępy')} onPress={onProgress} /></View>
     </ScrollView></Screen>
   );
 }

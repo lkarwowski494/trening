@@ -196,3 +196,50 @@ describe('UX2-09: opuszczony dzień — „Przesuń plan od dziś” i „Wolne�
     expect(screen.queryAllByText(/^Uwaga: .* dzień po dniu/)).toHaveLength(0); expect(screen.getByText(FOOT)).toBeTruthy();
   });
 });
+
+/* ---------------- UI2-02: podwójne tapnięcie — przejścia z blokadą ---------------- */
+describe('UI2-02: podwójne tapnięcie nie otwiera dwóch ekranów ani nie tworzy dwóch planów', () => {
+  test('„+ Nowy plan” ×2 → jeden nowy plan i jeden ekran planu', async () => {
+    jest.useFakeTimers({ now: NOW }); await fresh(); const tp = withDemoTemplates(); plan.setWeekDay(0, tp[0].id); await act(async () => { await store.flush(); });
+    await renderApp({ saved: JSON.parse(JSON.stringify(saved())), url: '/plan' }); await flushAll(10); const n0 = plan.savedPlans().length;
+    await dbl(screen.getByText('+ Nowy plan'));
+    expect(plan.savedPlans().length).toBe(n0 + 1); expect(routeNames().filter(n => n === 'plan')).toHaveLength(2); /* aktywny + jeden nowy */
+  });
+  test('podgląd ćwiczenia: wiersz „Ostatnie treningi” ×2 → jeden ekran sesji', async () => {
+    await boot(() => { addWorkout(Date.now() - 86400e3, [['Back Squat', [{ weight: 100, reps: 5 }]]]); }); await go(`/exercise/${ex('Back Squat').id}`); await flushAll(10);
+    await dbl(screen.getByLabelText(/^Sesja .*: 100×5$/)); expect(routeNames().filter(n => n === 'history/[id]')).toHaveLength(1);
+  });
+  test('Postępy: „Masa ciała — pomiary” ×2 → jeden ekran pomiarów', async () => {
+    await boot(() => { addWorkout(Date.now() - 86400e3, [['Pull Up', [{ addKg: 10, reps: 5 }]]]); }); await go(`/more/progress?ex=${ex('Pull Up').id}`); await flushAll(10);
+    await dbl(screen.getByText('Masa ciała — pomiary')); expect(routeNames().filter(n => n === 'more/bodymass')).toHaveLength(1);
+  });
+  test('generator: chip „+ Dodaj miejsce” ×2 → jeden ekran miejsc', async () => {
+    await boot(undefined, '/generator'); await dbl(screen.getByText('+ Dodaj miejsce')); expect(routeNames().filter(n => n === 'more/locations')).toHaveLength(1);
+  });
+  test('strażnik (jedno miejsce): każdy przycisk, chip i Pressable z przejściem (router.push/navigate/replace) w app/ i components/ ma blokadę — `nav`, `once(…)` albo wyjątek z powodem', () => {
+    /* Item (components/ui) blokuje sam (useOnce) — poza listą. Wyjątki: własna blokada w miejscu. */
+    const EXC: Record<string, string> = {
+      'app/picker.tsx#Pressable#router.back': 'nagłówek „Anuluj” — blokada chosen.current (wybór albo zamknięcie tylko raz)',
+      'app/template/[id].tsx#Btn#dupTemplate': '„Duplikuj” — blokada busy.current obejmuje też utworzenie kopii',
+    };
+    const ROOT = path.join(__dirname, '..'); const files: string[] = [];
+    const walk = (d: string) => { for (const f of fs.readdirSync(d)) { const p = path.join(d, f); if (fs.statSync(p).isDirectory()) walk(p); else if (/\.tsx$/.test(f)) files.push(p); } };
+    walk(path.join(ROOT, 'app')); walk(path.join(ROOT, 'components'));
+    const bad: string[] = []; const usedExc = new Set<string>(); let seen = 0;
+    for (const f of files) { const src = fs.readFileSync(f, 'utf8'); const rel = path.relative(ROOT, f); const re = /<(Btn|Chip|Pressable)\b/g; let m: RegExpExecArray | null;
+      while ((m = re.exec(src))) { let i = m.index + m[0].length, depth = 0; for (; i < src.length; i++) { const c = src[i]; if (c === '{') depth++; else if (c === '}') depth--; else if (depth === 0 && c === '>') break; }
+        const tag = src.slice(m.index, i + 1); if (!/router\.(push|navigate|replace)/.test(tag)) continue; seen++;
+        if (/\snav[\s/>]/.test(tag) || /once\(/.test(tag)) continue;
+        const exc = Object.keys(EXC).find(k => { const [p, kind, marker] = k.split('#'); return p === rel && kind === m![1] && tag.includes(marker); });
+        if (exc) { usedExc.add(exc); continue; }
+        bad.push(`${rel}:${src.slice(0, m.index).split('\n').length} <${m[1]}> ${tag.slice(0, 120).replace(/\s+/g, ' ')}`); } }
+    expect(seen).toBeGreaterThan(20); expect(bad).toEqual([]); expect(Object.keys(EXC).filter(k => !usedExc.has(k))).toEqual([]); /* wyjątek bez użycia — do usunięcia */
+  });
+  test('Chip `nav`: blokada jak w Btn — drugie tapnięcie w ciągu chwili nic nie robi, po chwili znów działa', async () => {
+    const React = require('react'); const { render } = require('@testing-library/react-native'); const { Chip } = require('@/components/ui');
+    const fn = jest.fn(); const r = render(React.createElement(Chip, { label: 'X', on: false, nav: true, onPress: fn }));
+    await act(async () => { fireEvent.press(r.getByText('X')); fireEvent.press(r.getByText('X')); }); expect(fn).toHaveBeenCalledTimes(1);
+    await act(async () => { jest.advanceTimersByTime(1000); }); await act(async () => { fireEvent.press(r.getByText('X')); }); expect(fn).toHaveBeenCalledTimes(2);
+    const g = jest.fn(); const r2 = render(React.createElement(Chip, { label: 'Y', on: false, onPress: g })); await act(async () => { fireEvent.press(r2.getByText('Y')); fireEvent.press(r2.getByText('Y')); }); expect(g).toHaveBeenCalledTimes(2); /* bez nav — przełącznik, bez blokady */
+  });
+});
