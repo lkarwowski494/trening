@@ -4,7 +4,7 @@ import { deloadKeep } from '@/lib/deload-sets';
 import { t } from '@/lib/i18n';
 import type { Template, Workout } from '@/lib/seed';
 
-/** Liczby do pytania deload z serii roboczych na ćwiczenie (bez rozgrzewek i drop setów): pełne, po cięciu i czy jest ćwiczenie z 1 serią.
+/** Liczby do pytania deload z serii roboczych na ćwiczenie (store.workCount — D3: bez rozgrzewek, drop set liczy się razem z serią przed nim): pełne, po cięciu i czy jest ćwiczenie z 1 serią.
  * `shortened` — źródło jest już skrócone (Workout.deload): „mniej” = jak ostatnio, „pełne” = po przywróceniu (D1+, decyzja 08.10.2026). */
 const counts = (per: number[]) => ({ full: per.reduce((a, n) => a + n, 0), less: per.reduce((a, n) => a + deloadKeep(n), 0), single: per.some(n => n === 1), shortened: false });
 /** Serie robocze szablonu: pełne i po cięciu deload. Audyt 0.10 (LOG-17): te same pozycje co przy starcie (store.startableItem). */
