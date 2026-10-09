@@ -54,7 +54,8 @@ describe('ekran Trening', () => {
     expect(screen.getByText('W tej wersji')).toBeTruthy();
     for (const x of WHATS_NEW[0].items()) expect(screen.getByText(`• ${x}`)).toBeTruthy();
     expect(screen.queryByTestId('whats-new-dot')).toBeNull(); expect(S().whatsNewSeen).toBe(WHATS_NEW[0].id);
-    const old = WHATS_NEW[1]; const oldItem = `• ${old.items()[0]}`; expect(screen.queryByText(oldItem)).toBeNull();
+    const old = WHATS_NEW[2]; /* 1002 — rozwijany niżej */ const oldItem = `• ${old.items()[0]}`; expect(screen.queryByText(oldItem)).toBeNull();
+    expect(screen.getByText(/^▸ Wersja testowa 1004 · 9 paź 2026$/)).toBeTruthy(); /* 0.10.0 — wydanie 1 (A11B-8) */
     const head = screen.getByText(/^▸ Wersja testowa 1002 · 7 paź 2026$/); expect(head).toBeTruthy(); /* H3 (audyt 0.10): miesiąc słownie */
     expect(screen.getByText(/^▸ Wersja testowa 1001 · 6 paź 2026$/)).toBeTruthy();
     await tap(head); await flushAll(5); expect(screen.getByText(oldItem)).toBeTruthy(); expect(screen.getByText(/^▾ Wersja testowa 1002/)).toBeTruthy();
@@ -65,10 +66,21 @@ describe('ekran Trening', () => {
   test('wszystkie wpisy po polsku mają tytuł i punkty (wpis 1001 rozwinięty)', async () => {
     await boot(withWorkout); await tap(screen.getByTestId('whats-new-i')); await flushAll(5);
     await tap(screen.getByText(/^▸ Wersja testowa 1001/)); await flushAll(5);
-    for (const x of WHATS_NEW[2].items()) expect(screen.getByText(`• ${x}`)).toBeTruthy();
+    for (const x of WHATS_NEW[3].items()) expect(screen.getByText(`• ${x}`)).toBeTruthy();
   });
   test('treść wpisów po polsku na ekranie (wszystkie rozwinięte po kolei)', async () => {
     const texts = [
+      /* 0.11 (A11B-8; dwa ostatnie — zaległości z 0.10: UI2-04, MER2-06) */
+      'Nowy wygląd z ikony: znacznik dnia jak ikona aplikacji, stosy talerzy z procentem planu tygodnia, filiżanka w dzień odpoczynku, podsumowanie miesiąca jako stosy.',
+      'Krótka animacja przy starcie: talerze wsuwają się na gryf.',
+      'Generator: wybór dni tygodnia, od 1 do 6 dni, cel „Ogólny” i „Plan z moich szablonów”.',
+      'Ekran Trening w nowym układzie; „Powtórz ostatni” z nazwą i datą.',
+      'Niezapisane zmiany w edycji szablonu i ćwiczenia przetrwają zamknięcie aplikacji — po starcie wrócisz do edycji albo je odrzucisz.',
+      'Wyszukiwanie ćwiczeń także po dawnej nazwie.',
+      '„Technika”: wskazówki do ćwiczenia otworzysz też z treningu i z szablonu.',
+      'Numer buildu w „O aplikacji”.',
+      'Od 0.10: szablon i ćwiczenie otwierają się w podglądzie — zmiany zaczynasz przyciskiem „Edytuj” i zatwierdzasz „Zapisz”.',
+      'Od 0.10: biblioteka ćwiczeń uporządkowana — podobne warianty scalone, rzadsze widać po wyłączeniu filtra „Podstawowe” (Twoje treningi bez zmian); masa ciała z datą i e1RM w podciąganiu i pompkach, wskazówki techniki z rysunkiem ruchu, „Zapisz jako szablon” w historii.',
       'Nowy ekran Trening: dzisiejszy trening, tydzień w liczbach i ostatni trening; przewodnik po funkcjach w Więcej.',
       'Generator szablonów i planu tygodnia na Twoje polecenie (cel, miejsce, liczba i długość sesji) oraz kilka planów z wyborem aktywnego.',
       'Deload: podpowiedź w Kalendarzu, a w tygodniu deload przy starcie o około 1/3–1/2 mniej serii (np. 2 z 3; ćwiczenia z 1 serią bez zmian); przypomnienie rano w dniu treningu z planu.', /* audyt 0.10 (MER-04) */

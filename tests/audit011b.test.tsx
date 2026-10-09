@@ -151,3 +151,29 @@ describe('A11B-6: uwaga przy 1 dniu (cel „Ogólny”) — wytyczne USA 2018 �
     expect(EN[OLD]).toBeUndefined();
   });
 });
+
+/* ---------- A11B-8: lista wydania — wersja 0.11.0 i wpis „Co nowego” 0.11 ---------- */
+describe('A11B-8: wersja 0.11.0 i „Co nowego” 0.11', () => {
+  const fs = require('fs') as typeof import('fs'); const path = require('path') as typeof import('path');
+  const J = (f: string) => JSON.parse(fs.readFileSync(path.join(__dirname, '..', f), 'utf8'));
+  afterEach(() => { applyLang('pl'); });
+  test('app.json, package.json i package-lock.json (projekt) — 0.11.0', () => {
+    const lock = J('package-lock.json');
+    expect([J('app.json').expo.version, J('package.json').version, lock.version, lock.packages[''].version]).toEqual(['0.11.0', '0.11.0', '0.11.0', '0.11.0']);
+  });
+  test('najnowszy wpis = 0.11 (bez numeru buildu — „W tej wersji”), 0.10.0 z numerem 1004; zakres dni generatora z GEN_SESSIONS; zaległości UI2-04 i MER2-06', () => {
+    const { WHATS_NEW } = require('@/lib/whatsnew'); const { GEN_SESSIONS } = require('@/lib/generator');
+    expect([WHATS_NEW[0].id, WHATS_NEW[0].build, WHATS_NEW[1].id, WHATS_NEW[1].build]).toEqual(['2026-10-09', undefined, '2026-10-08', 1004]);
+    const all = Object.values(GEN_SESSIONS as Record<string, number[]>).flat(); const it: string[] = WHATS_NEW[0].items();
+    expect(it).toContain(`Generator: wybór dni tygodnia, od ${Math.min(...all)} do ${Math.max(...all)} dni, cel „Ogólny” i „Plan z moich szablonów”.`);
+    expect(it.filter(x => /^Od 0\.10: /.test(x))).toHaveLength(2);
+    expect(it.join(' ')).toMatch(/„Edytuj”.*„Zapisz”/); expect(it.join(' ')).toMatch(/„Podstawowe”/); expect(it.join(' ')).toMatch(/„Zapisz jako szablon”/);
+    expect(it.every(x => !/[{}]/.test(x))).toBe(true);
+  });
+  test('25 języków: wszystkie punkty wpisu 0.11 przetłumaczone, bez „{”, nazwy przycisków z lokali („Edytuj”, „Zapisz”, „Podstawowe”, „Plan z moich szablonów”)', () => {
+    const { WHATS_NEW } = require('@/lib/whatsnew'); const pl: string[] = WHATS_NEW[0].items();
+    for (const l of LANGS) { if (l === 'pl') continue; applyLang(l); const it: string[] = WHATS_NEW[0].items(); const joined = it.join(' ');
+      expect([l, it.filter((x, i) => x === pl[i] || /[{}]/.test(x) || !/\.$/.test(x))]).toEqual([l, []]);
+      expect([l, ['Edytuj', 'Zapisz', 'Podstawowe', 'Plan z moich szablonów', 'Zapisz jako szablon'].filter(k => !joined.includes(tIn(l, k)))]).toEqual([l, []]); }
+  });
+});
