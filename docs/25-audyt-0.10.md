@@ -389,4 +389,6 @@ E2E: run 37900617167 (f2bdca8) 14/17 — 3 porażki scenariuszy (nie aplikacji) 
 SEC2-03 (research i długie cytaty → Dysk, przepisanie historii — termin: po wydaniu 1), SEC2-04 (test długości cytatów), SEC2-05 (nazwy w
 komentarzach), SEC2-06 (licencje bibliotek natywnych), SEC2-08 (identyfikatory sesji w docs/audyt-0.10), N2 (GitHub Pages), MER2-10.
 
-**Decyzja właściciela otwarta:** MER2-07 = SEC2-02 (nazwy źródeł w podpisie „Na podstawie: …” pod wskazówkami techniki).
+**Decyzja właściciela 09.10.2026 (ok. 11:40): MER2-07 = SEC2-02 — wariant A:** podpis pod wskazówkami techniki neutralny (np. „Na podstawie
+bibliotek ćwiczeń organizacji szkoleniowych i producenta sprzętu”), pełna lista źródeł w docs/research/27; odrzucone B (nazwy + wyjątek w
+CLAUDE.md) i C (organizacje tak, produkt nie). Wdrożenie: 0.10.1 (zakres wydania 1 zamrożony; ŚREDNIA).
