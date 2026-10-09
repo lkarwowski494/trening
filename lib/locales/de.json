@@ -1022,7 +1022,6 @@
  "Kilka planów: „+ Nowy plan” tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.": "Mehrere Pläne: „+ Neuer Plan“ erstellt eine Kopie zum Ändern, „Als aktiv festlegen“ unter „Andere Pläne“ schaltet sie ein — Tagesänderungen kommen mit dem Plan zurück.",
  "W Kalendarzu: stuknij dzień, potem „Więcej opcji” → „Oznacz tydzień jako deload” — także przyszły tydzień.": "Im Kalender: auf einen Tag tippen, dann „Weitere Optionen“ → „Woche als Deload markieren“ — auch eine künftige Woche.",
  "usunięty szablon": "gelöschte Vorlage",
- "Plan do {date}": "Plan bis {date}",
  "Nowy plan": "Neuer Plan",
  "Obecny plan zostanie w „Inne plany” razem ze zmianami pojedynczych dni od dziś ({n}) — wrócą, gdy znów go ustawisz.": "Der aktuelle Plan bleibt unter „Andere Pläne“ zusammen mit den Änderungen einzelner Tage ab heute ({n}) — sie kehren zurück, wenn du ihn wieder aktivierst.",
  "Obecny plan zostanie w „Inne plany” — wrócisz do niego jednym przyciskiem.": "Der aktuelle Plan bleibt unter „Andere Pläne“ — du kehrst mit einem Tippen zu ihm zurück.",
@@ -1301,5 +1300,6 @@
  "Więcej dni niż szablonów: szablony po kolei (A, B, A…), jak w generatorze — konwencja.": "Mehr Tage als Vorlagen: Vorlagen der Reihe nach (A, B, A…), wie im Generator — eine Konvention.",
  "Zapisz plan": "Plan speichern",
  "Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.": "Unter {n} Sätzen pro Woche: {list}. Das ist die untere Schwelle, die für Muskelaufbau empfohlen wird; Sätze ergänzt du in den Vorlagen.",
- "Moje szablony, {n}× w tygodniu": "Meine Vorlagen, {n}× pro Woche"
+ "Moje szablony, {n}× w tygodniu": "Meine Vorlagen, {n}× pro Woche",
+ "Mój plan ({date})": "Mein Plan ({date})"
 }

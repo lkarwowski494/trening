@@ -1022,7 +1022,6 @@
  "Kilka planów: „+ Nowy plan” tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.": "Flere planer: “+ Ny plan” laver en kopi, du kan ændre, og “Gør aktiv” under “Andre planer” slår den til — dagændringer følger med planen tilbage.",
  "W Kalendarzu: stuknij dzień, potem „Więcej opcji” → „Oznacz tydzień jako deload” — także przyszły tydzień.": "I Kalenderen: tryk på en dag, derefter “Flere valg” → “Markér ugen som deload” — også en kommende uge.",
  "usunięty szablon": "slettet skabelon",
- "Plan do {date}": "Plan til {date}",
  "Nowy plan": "Ny plan",
  "Obecny plan zostanie w „Inne plany” razem ze zmianami pojedynczych dni od dziś ({n}) — wrócą, gdy znów go ustawisz.": "Den nuværende plan bliver under “Andre planer” sammen med ændringer af enkelte dage fra i dag ({n}) — de kommer tilbage, når du gør den aktiv igen.",
  "Obecny plan zostanie w „Inne plany” — wrócisz do niego jednym przyciskiem.": "Den nuværende plan bliver under “Andre planer” — du vender tilbage til den med én knap.",
@@ -1301,5 +1300,6 @@
  "Więcej dni niż szablonów: szablony po kolei (A, B, A…), jak w generatorze — konwencja.": "Flere dage end skabeloner: skabelonerne i rækkefølge (A, B, A…) som i generatoren — en konvention.",
  "Zapisz plan": "Gem plan",
  "Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.": "Under {n} sæt pr. uge: {list}. Det er den nedre grænse, der anbefales for muskelopbygning; sæt tilføjer du i skabelonerne.",
- "Moje szablony, {n}× w tygodniu": "Mine skabeloner, {n}× pr. uge"
+ "Moje szablony, {n}× w tygodniu": "Mine skabeloner, {n}× pr. uge",
+ "Mój plan ({date})": "Min plan ({date})"
 }

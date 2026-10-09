@@ -550,7 +550,6 @@ export const EN: Record<string, string> = {
   'Kilka planów: „+ Nowy plan” tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.': 'Several plans: “+ New plan” creates a copy to change, and “Make active” under “Other plans” switches to it — day changes come back with their plan.',
   'W Kalendarzu: stuknij dzień, potem „Więcej opcji” → „Oznacz tydzień jako deload” — także przyszły tydzień.': 'In the Calendar: tap a day, then “More options” → “Mark week as deload” — a future week too.',
   'usunięty szablon': 'deleted template',
-  'Plan do {date}': 'Plan until {date}',
   'Nowy plan': 'New plan',
   'Obecny plan zostanie w „Inne plany” razem ze zmianami pojedynczych dni od dziś ({n}) — wrócą, gdy znów go ustawisz.': 'The current plan stays under “Other plans” together with its single-day changes from today on ({n}) — they come back when you make it active again.',
   'Obecny plan zostanie w „Inne plany” — wrócisz do niego jednym przyciskiem.': 'The current plan stays under “Other plans” — you can return to it with one button.',
@@ -830,4 +829,5 @@ export const EN: Record<string, string> = {
   'Zapisz plan': 'Save plan',
   'Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.': 'Below {n} sets per week: {list}. This is the lower threshold recommended for building muscle; you can add sets in the templates.',
   'Moje szablony, {n}× w tygodniu': 'My templates, {n}× a week',
+  'Mój plan ({date})': 'My plan ({date})',
 };

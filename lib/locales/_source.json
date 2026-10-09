@@ -2042,6 +2042,10 @@
   "en": "My plan"
  },
  {
+  "pl": "Mój plan ({date})",
+  "en": "My plan ({date})"
+ },
+ {
   "pl": "Na czym to oparte",
   "en": "What this is based on"
  },
@@ -2756,10 +2760,6 @@
  {
   "pl": "Plan „{name}” jest w „Inne plany”.",
   "en": "The plan “{name}” is under “Other plans”."
- },
- {
-  "pl": "Plan do {date}",
-  "en": "Plan until {date}"
  },
  {
   "pl": "Plan powtarza się co tydzień. Pojedyncze dni zmienisz w Kalendarzu.",

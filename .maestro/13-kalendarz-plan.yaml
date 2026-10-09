@@ -6,8 +6,8 @@
 #   "Weekly plan"                   ← 'Plan tygodnia' (przycisk w Kalendarzu i tytuł ekranu)
 #   "Monday, Rest" … "Sunday, Rest" ← app/plan.tsx: wiersz dnia '{dzień tygodnia}, {szablon albo Wolne}' (audyt 0.10 UX-15 A: 7 wierszy zamiast chipów)
 #   "Monday: Upper A" … "Sunday: Upper A" ← app/plan.tsx: '{dzień tygodnia}: {szablon}' (chip w rozwiniętym wierszu)
-#   "+ New plan", "This plan is not active yet.*", "Make active: New plan", "Set", "Plan until .*" ← app/plan.tsx, lib/plan.ts:
-#        '+ Nowy plan', 'Ten plan jeszcze nie obowiązuje…', 'Ustaw jako aktywny: {name}', 'Ustaw', 'Plan do {date}' (audyt 0.10 B2 A: nowy plan edytowany
+#   "+ New plan", "This plan is not active yet.*", "Make active: New plan", "Set", "My plan \\(.*" ← app/plan.tsx, lib/plan.ts:
+#        '+ Nowy plan', 'Ten plan jeszcze nie obowiązuje…', 'Ustaw jako aktywny: {name}', 'Ustaw', 'Mój plan ({date})' (audyt 0.10 B2 A: nowy plan edytowany
 #        przed aktywacją; plan bez nazwy po wyłączeniu dostaje datę)
 #   ".*, planned: Upper A"          ← components/HistoryCalendar.tsx: '{data}[, dziś], zaplanowany: {name}' (dziś i dalej)
 #   "Planned: Upper A", "Rest · plan changed" ← 'Zaplanowany: {name}', 'Wolne' + ' · ' + 'zmiana planu'
@@ -58,7 +58,7 @@ name: Kalendarz z planem tygodnia
 - extendedWaitUntil: { visible: "Set", timeout: 15000 }
 - takeScreenshot: 60a-inne-plany
 - tapOn: "Set"
-- extendedWaitUntil: { visible: "Plan until .*", timeout: 15000 }  # plan bez nazwy po wyłączeniu: „Plan do <data>” (wiersz „tytuł, dni” — regex obejmuje całość, tests/plans-multi-ui)
+- extendedWaitUntil: { visible: "My plan \\(.*", timeout: 15000 }  # plan bez nazwy po wyłączeniu: „Mój plan (<data>)” (UX2-10) (wiersz „tytuł, dni” — regex obejmuje całość, tests/plans-multi-ui)
 - tapOn: "Back"
 # --- Kalendarz: dziś zaplanowany; „Move or skip” → przesunięcie planu o 1 dzień i powrót („More options” → „Restore from plan”) ---
 - extendedWaitUntil: { visible: ".*, planned: Upper A", timeout: 30000 }

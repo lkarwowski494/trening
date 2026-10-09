@@ -2,7 +2,7 @@
  * Ekran Plan tygodnia — kilka planów, jeden aktywny (decyzja właściciela 08.10.2026, docs/24 sekcja 1): nazwa planu, „+ Nowy plan”,
  * „Inne plany” z opisem i podsumowaniem dni, „Ustaw jako aktywny” z potwierdzeniem, usuwanie gestem, EN.
  * Audyt 0.10 (decyzje właściciela 08.10.2026 wieczór): B2 A — „+ Nowy plan” to osobny wpis edytowany przed aktywacją (dawniej „Zapisz kopię jako
- * nowy plan” i odwrócone nazwy po powrocie); plan bez nazwy po wyłączeniu — „Plan do <data>” (dawniej „Poprzedni plan”); B1 — okno aktywacji mówi,
+ * nowy plan” i odwrócone nazwy po powrocie); plan bez nazwy po wyłączeniu — „Mój plan (<data>)” (dawniej „Poprzedni plan”); B1 — okno aktywacji mówi,
  * ile zmian dni przejdzie z obecnym planem (dawniej „zostaną usunięte”); B4 — nazwa zapisywana przy każdej zmianie pola.
  * Logika: tests/plans-multi.test.ts, tests/audit-0.10-plan.test.ts. E2E: .maestro/13.
  */
@@ -46,7 +46,7 @@ test('„+ Nowy plan” → edycja przed aktywacją → „Inne plany” z opise
   await press('Ustawić „Nowy plan” jako aktywny plan?', 'Anuluj'); expect(plan.weekPlanDays()[0]).toBe(t[0].id);
   await tap(screen.getByLabelText('Ustaw jako aktywny: Nowy plan')); await flushAll(5); await press('Ustawić „Nowy plan” jako aktywny plan?', 'Ustaw');
   expect(plan.weekPlanDays()[0]).toBe(t[2].id); expect(plan.planName()).toBe('Nowy plan'); expect(S().planOverrides).toBeUndefined();
-  expect(screen.getByText('Plan do 8.10')).toBeTruthy(); expect(screen.getByLabelText(`poniedziałek, ${t[2].name}`)).toBeTruthy();
+  expect(screen.getByText('Mój plan (8.10)')).toBeTruthy(); expect(screen.getByLabelText(`poniedziałek, ${t[2].name}`)).toBeTruthy();
 });
 test('bez zmian dni od dziś — krótszy komunikat; usuwanie gestem z potwierdzeniem', async () => {
   await boot(ids => { plan.setWeekDay(0, ids[0]); plan.addPlan('Wakacje', [null, ids[1], null, null, null, null, null], false); });
@@ -65,14 +65,14 @@ test('English', async () => {
   expect(screen.getByText('Other plans')).toBeTruthy(); expect(screen.getByText('New plan')).toBeTruthy(); expect(screen.getByText('+ New plan')).toBeTruthy();
   await tap(screen.getByLabelText('Make active: New plan')); await flushAll(5); expect(lastAlert('Make “New plan” the active plan?')).toBeTruthy();
 });
-test('regresja run 37784561635: wiersz zapisanego planu ma etykietę „tytuł, dni” — selektory E2E (.maestro/13) pasują do całej etykiety („Plan until …”, audyt 0.10 B2 A)', async () => {
+test('regresja run 37784561635: wiersz zapisanego planu ma etykietę „tytuł, dni” — selektory E2E (.maestro/13) pasują do całej etykiety („My plan (…)”, audyt 0.10 B2 A)', async () => {
   await boot(ids => { plan.setWeekDay(0, ids[0]); }, 'en');
   await tap(screen.getByText('+ New plan')); await flushAll(10);
   await tap(screen.getByLabelText('Make active: New plan')); await flushAll(5); await press('Make “New plan” the active plan?', 'Set'); await flushAll(10);
-  const label: string = screen.getByLabelText(/^Plan until /).props.accessibilityLabel; expect(label).toMatch(/^Plan until .*, Mon /);
+  const label: string = screen.getByLabelText(/^My plan \(/).props.accessibilityLabel; expect(label).toMatch(/^My plan \(.*, Mon /);
   const fs = require('fs'); const path = require('path');
   const yaml = fs.readFileSync(path.join(__dirname, '../.maestro/13-kalendarz-plan.yaml'), 'utf8') as string;
-  const sels = [...yaml.matchAll(/visible:\s*"([^"]*Plan until[^"]*)"/g)].map(m => m[1]); expect(sels.length).toBeGreaterThan(0);
+  const sels = [...yaml.matchAll(/visible:\s*"([^"]*My plan[^"]*)"/g)].map(m => m[1].replace(/\\\\/g, "\\")) /* YAML w cudzysłowie: \\ → \ */; expect(sels.length).toBeGreaterThan(0);
   for (const s of sels) expect(new RegExp(`^(?:${s})$`).test(label)).toBe(true); /* Maestro: textRegex dopasowuje całą etykietę */
   const rows = [...yaml.matchAll(/tapOn:\s*"((?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday), Rest)"/g)].map(m => m[1]); expect(rows).toHaveLength(7); /* UX-15 A: wiersze dni */
 });

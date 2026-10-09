@@ -1022,7 +1022,6 @@
  "Kilka planów: „+ Nowy plan” tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.": "Vairāki plāni: “+ Jauns plāns” izveido maināmu kopiju, bet “Padarīt aktīvu” sadaļā “Citi plāni” to ieslēdz — dienu izmaiņas atgriežas kopā ar plānu.",
  "W Kalendarzu: stuknij dzień, potem „Więcej opcji” → „Oznacz tydzień jako deload” — także przyszły tydzień.": "Kalendārā: pieskaries dienai, tad “Vairāk iespēju” → “Atzīmēt nedēļu kā atslodzi” — arī nākamu nedēļu.",
  "usunięty szablon": "dzēsta veidne",
- "Plan do {date}": "Plāns līdz {date}",
  "Nowy plan": "Jauns plāns",
  "Obecny plan zostanie w „Inne plany” razem ze zmianami pojedynczych dni od dziś ({n}) — wrócą, gdy znów go ustawisz.": "Pašreizējais plāns paliek sadaļā “Citi plāni” kopā ar atsevišķu dienu izmaiņām no šodienas ({n}) — tās atgriezīsies, kad to atkal padarīsi aktīvu.",
  "Obecny plan zostanie w „Inne plany” — wrócisz do niego jednym przyciskiem.": "Pašreizējais plāns paliks sadaļā “Citi plāni” — pie tā atgriezīsies ar vienu pogu.",
@@ -1301,5 +1300,6 @@
  "Więcej dni niż szablonów: szablony po kolei (A, B, A…), jak w generatorze — konwencja.": "Vairāk dienu nekā veidņu: veidnes pēc kārtas (A, B, A…), kā ģeneratorā — vienošanās.",
  "Zapisz plan": "Saglabāt plānu",
  "Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.": "Mazāk par {n} sērijām nedēļā: {list}. Tas ir apakšējais slieksnis, ko iesaka muskuļu masas palielināšanai; sērijas pievieno veidnēs.",
- "Moje szablony, {n}× w tygodniu": "Manas veidnes, {n}× nedēļā"
+ "Moje szablony, {n}× w tygodniu": "Manas veidnes, {n}× nedēļā",
+ "Mój plan ({date})": "Mans plāns ({date})"
 }

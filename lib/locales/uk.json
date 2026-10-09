@@ -1022,7 +1022,6 @@
  "Kilka planów: „+ Nowy plan” tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.": "Кілька планів: «+ Новий план» створює копію для змін, а «Зробити активним» в «Інші плани» вмикає її — зміни днів повертаються разом із планом.",
  "W Kalendarzu: stuknij dzień, potem „Więcej opcji” → „Oznacz tydzień jako deload” — także przyszły tydzień.": "У Календарі: торкнися дня, потім «Більше опцій» → «Позначити тиждень як розвантаження» — і майбутній тиждень.",
  "usunięty szablon": "видалений шаблон",
- "Plan do {date}": "План до {date}",
  "Nowy plan": "Новий план",
  "Obecny plan zostanie w „Inne plany” razem ze zmianami pojedynczych dni od dziś ({n}) — wrócą, gdy znów go ustawisz.": "Поточний план залишиться в «Інші плани» разом зі змінами окремих днів від сьогодні ({n}) — вони повернуться, коли знову зробиш його активним.",
  "Obecny plan zostanie w „Inne plany” — wrócisz do niego jednym przyciskiem.": "Поточний план залишиться в «Інші плани» — повернешся до нього однією кнопкою.",
@@ -1301,5 +1300,6 @@
  "Więcej dni niż szablonów: szablony po kolei (A, B, A…), jak w generatorze — konwencja.": "Днів більше, ніж шаблонів: шаблони по черзі (A, B, A…), як у генераторі, — домовленість.",
  "Zapisz plan": "Зберегти план",
  "Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.": "Менше {n} підходів на тиждень: {list}. Це нижній поріг, рекомендований для набору м’язової маси; підходи додаси в шаблонах.",
- "Moje szablony, {n}× w tygodniu": "Мої шаблони, {n}× на тиждень"
+ "Moje szablony, {n}× w tygodniu": "Мої шаблони, {n}× на тиждень",
+ "Mój plan ({date})": "Мій план ({date})"
 }

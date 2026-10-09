@@ -86,7 +86,7 @@ export function setWeekDay(i: number, id: string | null) {
 
 /* ---------- kilka planów tygodnia, jeden aktywny (decyzja właściciela 08.10.2026, docs/24 sekcja 1) ----------
  * Audyt 0.10 (decyzje właściciela 08.10.2026 wieczór — wariant lepszy, nie tańszy): B2 A — „Nowy plan” to osobny wpis w „Inne plany”, który
- * edytujesz przed ustawieniem jako aktywny; oryginał zachowuje nazwę, plan bez nazwy dostaje nazwę z datą („Plan do 8.10”); nazwy bez powtórzeń;
+ * edytujesz przed ustawieniem jako aktywny; oryginał zachowuje nazwę, plan bez nazwy dostaje nazwę z datą („Mój plan (8.10)” — UX2-10); nazwy bez powtórzeń;
  * B1 (DAT-02 B) — zmiany pojedynczych dni od dziś wędrują razem z planem: przy wyłączeniu zapisują się w nim, przy ponownej aktywacji wracają. */
 /** Nazwa aktywnego planu ('' — ekran pokazuje „Mój plan”). */
 export const planName = () => getState().weekPlan?.name ?? '';
@@ -106,8 +106,8 @@ const clampTyped = (n: string) => { let v = n.slice(0, PLAN_NAME_MAX); if (/[\uD
 export function setPlanName(n: string) { const c = cleanPlanName(n); putActive(weekPlanDays(), c ? uniqueIn(takenNames(true), c) : ''); commit(); }
 /** Nazwa przy każdej zmianie pola (audyt 0.10 B4 / UI-05 — jak inne nazwy: zapis od razu, porządkowanie przy końcu edycji). */
 export function typePlanName(n: string) { putActive(weekPlanDays(), clampTyped(n)); commit(); }
-/** Nazwa planu bez nazwy, gdy przestaje obowiązywać: „Plan do 8.10” (audyt 0.10 B2 A — ten sam plan nie nazywa się raz „Mój plan”, raz „Poprzedni plan”). */
-const datedName = (today: string) => t('Plan do {date}', { date: parseKey(today).toLocaleDateString(locale(), { day: 'numeric', month: 'numeric' }) });
+/** Nazwa planu bez nazwy, gdy przestaje obowiązywać: „Mój plan (8.10)” — data utworzenia nazwy (UX2-10; wcześniej „Plan do 8.10”, mylące po ponownej aktywacji; audyt 0.10 B2 A — ten sam plan nie nazywa się raz „Mój plan”, raz „Poprzedni plan”). */
+const datedName = (today: string) => t('Mój plan ({date})', /* UX2-10: data zapisu, nie „do”, bo plan może znów obowiązywać */ { date: parseKey(today).toLocaleDateString(locale(), { day: 'numeric', month: 'numeric' }) });
 /** „Nowy plan” (audyt 0.10 B2 A): osobny wpis w „Inne plany” — kopia aktywnego planu (dni) do edycji przed aktywacją; aktywny plan i jego
  * nazwa bez zmian. Zwraca id nowego planu; null — „Inne plany” pełne. */
 export function newPlan(name = ''): string | null {
@@ -135,7 +135,7 @@ export function activationNote(id?: string, today = todayKey()): string {
   return [cur ? (n ? t('Obecny plan zostanie w „Inne plany” razem ze zmianami pojedynczych dni od dziś ({n}) — wrócą, gdy znów go ustawisz.', { n }) : t('Obecny plan zostanie w „Inne plany” — wrócisz do niego jednym przyciskiem.')) : '',
     m ? t('Wrócą zmiany pojedynczych dni zapisane z tym planem: {n}.', { n: m }) : ''].filter(Boolean).join(' ');
 }
-/** Ustawienie zapisanego planu jako aktywnego: poprzedni aktywny (z dniem, nazwą albo zmianami dni od dziś) trafia do zapisanych pod swoją nazwą (bez nazwy — „Plan do <data>”) razem ze
+/** Ustawienie zapisanego planu jako aktywnego: poprzedni aktywny (z dniem, nazwą albo zmianami dni od dziś) trafia do zapisanych pod swoją nazwą (bez nazwy — „Mój plan (<data>)”) razem ze
  * swoimi zmianami dni od dziś (B1); zmiany dni zapisane z nowym planem wracają (te od dziś); przeszłe zmiany zostają (historia); od dziś
  * obowiązuje nowy odcinek historii — minione dni bez zmian (A1). */
 export function activatePlan(id: string) {

@@ -1022,7 +1022,6 @@
  "Kilka planów: „+ Nowy plan” tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.": "Πολλά προγράμματα: το «+ Νέο πρόγραμμα» φτιάχνει αντίγραφο για αλλαγές και το «Ορισμός ως ενεργό» στα «Άλλα προγράμματα» το ενεργοποιεί — οι αλλαγές ημερών επιστρέφουν μαζί με το πρόγραμμα.",
  "W Kalendarzu: stuknij dzień, potem „Więcej opcji” → „Oznacz tydzień jako deload” — także przyszły tydzień.": "Στο Ημερολόγιο: πάτησε μια μέρα, μετά «Περισσότερες επιλογές» → «Σήμανση εβδομάδας ως αποφόρτισης» — και για μελλοντική εβδομάδα.",
  "usunięty szablon": "διαγραμμένο πρότυπο",
- "Plan do {date}": "Πρόγραμμα έως {date}",
  "Nowy plan": "Νέο πρόγραμμα",
  "Obecny plan zostanie w „Inne plany” razem ze zmianami pojedynczych dni od dziś ({n}) — wrócą, gdy znów go ustawisz.": "Το τρέχον πρόγραμμα μένει στα «Άλλα προγράμματα» μαζί με τις αλλαγές μεμονωμένων ημερών από σήμερα ({n}) — επιστρέφουν όταν το ξαναορίσεις ενεργό.",
  "Obecny plan zostanie w „Inne plany” — wrócisz do niego jednym przyciskiem.": "Το τρέχον πρόγραμμα μένει στα «Άλλα προγράμματα» — επιστρέφεις σε αυτό με ένα κουμπί.",
@@ -1301,5 +1300,6 @@
  "Więcej dni niż szablonów: szablony po kolei (A, B, A…), jak w generatorze — konwencja.": "Περισσότερες ημέρες από πρότυπα: τα πρότυπα με τη σειρά (A, B, A…), όπως στη γεννήτρια — σύμβαση.",
  "Zapisz plan": "Αποθήκευση προγράμματος",
  "Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.": "Κάτω από {n} σετ την εβδομάδα: {list}. Είναι το κατώτερο όριο που συνιστάται για αύξηση μυϊκής μάζας· σετ προσθέτεις στα πρότυπα.",
- "Moje szablony, {n}× w tygodniu": "Τα πρότυπά μου, {n}× την εβδομάδα"
+ "Moje szablony, {n}× w tygodniu": "Τα πρότυπά μου, {n}× την εβδομάδα",
+ "Mój plan ({date})": "Το πρόγραμμά μου ({date})"
 }

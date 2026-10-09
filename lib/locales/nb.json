@@ -1022,7 +1022,6 @@
  "Kilka planów: „+ Nowy plan” tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.": "Flere planer: «+ Ny plan» lager en kopi du kan endre, og «Gjør aktiv» under «Andre planer» slår den på — dagendringer kommer tilbake med planen.",
  "W Kalendarzu: stuknij dzień, potem „Więcej opcji” → „Oznacz tydzień jako deload” — także przyszły tydzień.": "I Kalenderen: trykk på en dag, deretter «Flere valg» → «Merk uken som deload» — også en kommende uke.",
  "usunięty szablon": "slettet mal",
- "Plan do {date}": "Plan til {date}",
  "Nowy plan": "Ny plan",
  "Obecny plan zostanie w „Inne plany” razem ze zmianami pojedynczych dni od dziś ({n}) — wrócą, gdy znów go ustawisz.": "Den nåværende planen blir under «Andre planer» sammen med endringer av enkeltdager fra i dag ({n}) — de kommer tilbake når du gjør den aktiv igjen.",
  "Obecny plan zostanie w „Inne plany” — wrócisz do niego jednym przyciskiem.": "Den nåværende planen blir under «Andre planer» — du går tilbake til den med én knapp.",
@@ -1301,5 +1300,6 @@
  "Więcej dni niż szablonów: szablony po kolei (A, B, A…), jak w generatorze — konwencja.": "Flere dager enn maler: malene i rekkefølge (A, B, A…), som i generatoren — en konvensjon.",
  "Zapisz plan": "Lagre plan",
  "Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.": "Under {n} sett per uke: {list}. Dette er den nedre grensen som anbefales for muskelvekst; sett legger du til i malene.",
- "Moje szablony, {n}× w tygodniu": "Mine maler, {n}× per uke"
+ "Moje szablony, {n}× w tygodniu": "Mine maler, {n}× per uke",
+ "Mój plan ({date})": "Min plan ({date})"
 }

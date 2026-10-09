@@ -1022,7 +1022,6 @@
  "Kilka planów: „+ Nowy plan” tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.": "Няколко плана: „+ Нов план“ създава копие за промяна, а „Направи активен“ в „Други планове“ го включва — промените на дни се връщат заедно с плана.",
  "W Kalendarzu: stuknij dzień, potem „Więcej opcji” → „Oznacz tydzień jako deload” — także przyszły tydzień.": "В Календара: докосни ден, после „Още опции“ → „Отбележи седмицата като разтоварване“ — и за бъдеща седмица.",
  "usunięty szablon": "изтрит шаблон",
- "Plan do {date}": "План до {date}",
  "Nowy plan": "Нов план",
  "Obecny plan zostanie w „Inne plany” razem ze zmianami pojedynczych dni od dziś ({n}) — wrócą, gdy znów go ustawisz.": "Текущият план остава в „Други планове“ заедно с промените на отделни дни от днес нататък ({n}) — те ще се върнат, когато отново го направиш активен.",
  "Obecny plan zostanie w „Inne plany” — wrócisz do niego jednym przyciskiem.": "Текущият план остава в „Други планове“ — връщаш се към него с един бутон.",
@@ -1301,5 +1300,6 @@
  "Więcej dni niż szablonów: szablony po kolei (A, B, A…), jak w generatorze — konwencja.": "Повече дни от шаблони: шаблоните поред (A, B, A…), както в генератора — конвенция.",
  "Zapisz plan": "Запази плана",
  "Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.": "Под {n} серии седмично: {list}. Това е долният праг, препоръчван при изграждане на мускулна маса; серии добавяш в шаблоните.",
- "Moje szablony, {n}× w tygodniu": "Моите шаблони, {n}× седмично"
+ "Moje szablony, {n}× w tygodniu": "Моите шаблони, {n}× седмично",
+ "Mój plan ({date})": "Моят план ({date})"
 }

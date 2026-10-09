@@ -1022,7 +1022,6 @@
  "Kilka planów: „+ Nowy plan” tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.": "Více plánů: „+ Nový plán“ vytvoří kopii k úpravě a „Nastavit jako aktivní“ v „Další plány“ ji zapne — změny dnů se vracejí spolu s plánem.",
  "W Kalendarzu: stuknij dzień, potem „Więcej opcji” → „Oznacz tydzień jako deload” — także przyszły tydzień.": "V Kalendáři: klepni na den, pak „Další možnosti“ → „Označit týden jako deload“ — i budoucí týden.",
  "usunięty szablon": "smazaná šablona",
- "Plan do {date}": "Plán do {date}",
  "Nowy plan": "Nový plán",
  "Obecny plan zostanie w „Inne plany” razem ze zmianami pojedynczych dni od dziś ({n}) — wrócą, gdy znów go ustawisz.": "Současný plán zůstane v „Další plány“ i se změnami jednotlivých dnů od dneška ({n}) — vrátí se, až ho znovu nastavíš.",
  "Obecny plan zostanie w „Inne plany” — wrócisz do niego jednym przyciskiem.": "Současný plán zůstane v „Další plány“ — vrátíš se k němu jedním tlačítkem.",
@@ -1301,5 +1300,6 @@
  "Więcej dni niż szablonów: szablony po kolei (A, B, A…), jak w generatorze — konwencja.": "Víc dnů než šablon: šablony postupně (A, B, A…), jako v generátoru — konvence.",
  "Zapisz plan": "Uložit plán",
  "Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.": "Pod {n} sérií týdně: {list}. To je spodní hranice doporučená pro nárůst svalů; série přidáš v šablonách.",
- "Moje szablony, {n}× w tygodniu": "Moje šablony, {n}× týdně"
+ "Moje szablony, {n}× w tygodniu": "Moje šablony, {n}× týdně",
+ "Mój plan ({date})": "Můj plán ({date})"
 }
