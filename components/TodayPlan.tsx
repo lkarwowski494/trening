@@ -39,6 +39,7 @@ export function TodayPlan() {
   const title = !plan && cur.status !== 'done' ? (hintOff ? t('Ten tydzień') : t('Bez planu tygodnia')) : cur.status === 'done' ? t('Dziś zrobione: {name}', { name: names(today) }) : id ? t('Dziś: {name}', { name: name(id) }) : t('Dziś wolne');
   const canStart = !!tpl && pending(cur) && tpl.items.length > 0;
   const next = plan ? upcoming(NEXT_DAYS, today).filter(x => x.date > today && x.templateId).slice(0, NEXT_COUNT) : [];
+  const planBtn = (style?: object) => <Btn nav small kind={canStart ? 'ghost' : 'default'} title={t('Plan tygodnia')} onPress={() => router.push('/plan')} style={style} />;
   const nextLabel = (k: string) => (k === addDays(today, 1) ? t('jutro') : fmtDayKey(k)); /* H3 (audyt 0.10) */
   return (
     <View testID="today-plan" style={{ marginTop: 6, padding: 14, borderRadius: 12, backgroundColor: th.surface, borderWidth: 1, borderColor: th.line, gap: 10 }}>
@@ -50,7 +51,7 @@ export function TodayPlan() {
           {tpl && pending(cur) && !tpl.items.length ? <Pressable accessibilityLanguage={lang()} accessibilityRole="link" onPress={() => router.push(`/template/${tpl.id}?edit=1`)}><Muted style={{ fontSize: 13 }}>{t('Szablon jest pusty — dodaj ćwiczenia')}</Muted></Pressable> : null}
         </View>
         {canStart ? <Btn small kind="primary" title={t('Start')} accessibilityLabel={t('Start zaplanowanego treningu: {name}', { name: tpl!.name })} onPress={() => startTemplate(tpl!)} />
-          : !plan && !hintOff ? <Btn nav small title={t('Plan tygodnia')} onPress={() => router.push('/plan')} /> : null}
+          : planBtn() /* B1 (09.10.2026): „Plan tygodnia” zawsze na karcie — „Ukryj” chowa tylko tekst zachęty */}
       </View>
       <View testID="week-strip" style={{ flexDirection: 'row' }}>
         {days.map(d => {
@@ -58,7 +59,8 @@ export function TodayPlan() {
           const filled = d.status === 'done' || d.status === 'other';
           return (
             <Pressable accessibilityLanguage={lang()} key={d.date} testID={`strip-${d.date}`} accessibilityRole="button" accessibilityLabel={label} accessibilityHint={t('Otwiera ten dzień w Kalendarzu.')} onPress={() => router.push(`/history?day=${d.date}`)} style={({ pressed }) => ({ flex: 1, minHeight: 44 /* A11-15 */, alignItems: 'center', gap: 4, opacity: pressed ? 0.6 : 1 })}>
-              <Muted style={{ fontSize: 11, fontFamily: d.today ? F.semibold : F.regular, color: d.today ? th.text : th.muted }}>{wd(d.date)}</Muted>
+              <View style={{ alignItems: 'center' }}>{(() => { const u = upperText(wd(d.date)); /* B1: skrót dnia wersalikami wg reguł języka (A11-02), pod nim numer dnia miesiąca */ return <Muted maxFontSizeMultiplier={NUM_SCALE_MAX} style={[{ fontSize: 11, fontFamily: d.today ? F.semibold : F.regular, color: d.today ? th.text : th.muted }, u.style]}>{u.text}</Muted>; })()}
+              <Txt maxFontSizeMultiplier={NUM_SCALE_MAX} style={{ fontSize: 13, fontFamily: d.today ? F.heavy : F.semibold, color: d.today ? th.text : th.muted }}>{dateOf(d.date).toLocaleDateString(locale(), { day: 'numeric' })}</Txt></View>
               <View style={{ width: 22, height: 22, borderRadius: 11, alignItems: 'center', justifyContent: 'center', backgroundColor: filled ? th.accent : 'transparent', borderWidth: d.status === 'planned' || (d.today && !filled) ? 2 : 0, borderColor: d.today ? th.text : th.accent }}>
                 {d.status === 'missed' ? <View style={{ width: 6, height: 6, borderRadius: 3, backgroundColor: th.muted }} /> : filled ? <Txt maxFontSizeMultiplier={NUM_SCALE_MAX} /* A11-07: znak w kółku 22–24 pt */ style={{ color: th.accentInk, fontSize: 12, fontFamily: F.semibold }}>✓</Txt> : null}
               </View>
@@ -66,6 +68,7 @@ export function TodayPlan() {
             </Pressable>); })}
       </View>
       {next.length ? <Muted style={{ fontSize: 13 }}>{t('Następne: {list}', { list: next.map(x => `${nextLabel(x.date)} — ${name(x.templateId)}`).join(' · ') })}</Muted> : null}
+      {canStart ? planBtn({ alignSelf: 'flex-start' }) : null}
       {!plan && !hintOff ? <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}><Muted style={{ fontSize: 12, flex: 1 }}>{t('Ustaw plan tygodnia, by widzieć tu dzisiejszy trening i dostawać przypomnienie.')}</Muted><Btn small kind="ghost" title={t('Ukryj')} accessibilityLabel={t('Ukryj zachętę do planu tygodnia')} onPress={() => setPlanHintHidden(true)} /></View> : null /* UX-16 A (audyt 0.10): kto tylko zapisuje treningi, ukrywa zachętę */}
     </View>
   );

@@ -3899,6 +3899,10 @@
   "en": "This session is no longer in your history."
  },
  {
+  "pl": "tekst na karcie „Dziś” i w Kalendarzu, gdy nie ma planu",
+  "en": "text on the “Today” card and in the Calendar when there is no plan"
+ },
+ {
   "pl": "tempo",
   "en": "tempo"
  },
@@ -4765,6 +4769,10 @@
  {
   "pl": "Za dużo zapisanych planów",
   "en": "Too many saved plans"
+ },
+ {
+  "pl": "Zachęta do planu tygodnia",
+  "en": "Weekly plan prompt"
  },
  {
   "pl": "Zacząć z mniejszą liczbą serii: {a} zamiast {b} serii roboczych? Ciężary bez zmian, szablon się nie zmienia.",

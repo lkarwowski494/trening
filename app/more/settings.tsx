@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { ScrollView, Alert, View, Linking } from 'react-native';
 import { Screen, Field, NumInput, Btn, Muted, SwitchRow, Segmented, SectionTitle, Item } from '@/components/ui';
 import { useRouter } from 'expo-router';
-import { getState, useTick, save, saveCfg, resetAll, applyPrefs, useForegroundTick, latestBodyMass, fmtDate, localDateTs } from '@/lib/store';
+import { getState, useTick, save, saveCfg, resetAll, applyPrefs, useForegroundTick, latestBodyMass, fmtDate, localDateTs, setPlanHintHidden } from '@/lib/store';
 import { DEFAULT_REST, type ThemeSetting, type WorkoutView } from '@/lib/seed';
 import * as timer from '@/lib/timer';
 import { PLAN_REMINDER_HOUR, reminderPermission, type ReminderPermission } from '@/lib/planReminder';
@@ -39,6 +39,7 @@ export default function SettingsScreen() {
       </> : null}
       <Item title={t('Miejsca i sprzęt')} /* H2 (audyt 0.10): jedna nazwa (Więcej, Ustawienia, nagłówek, przewodnik) */ sub={s.locations.length ? t('{n}, główne: {m}', { n: s.locations.length, m: mainLoc?.name ?? '—' }) : t('sprzęt w domu, na siłowni, w hotelu…')} onPress={() => router.push('/more/locations')} /* P-003 E1 */ />
       <SwitchRow label={t('Podpowiedź progresji')} detail={t('↑ przy ćwiczeniu, gdy ostatnio wszystkie serie były na górze zakresu powtórzeń')} value={s.progressHint} onChange={v => { s.progressHint = v; saveCfg(); }} />
+      <SwitchRow label={t('Zachęta do planu tygodnia')} detail={t('tekst na karcie „Dziś” i w Kalendarzu, gdy nie ma planu')} value={!getState().planHintHidden} onChange={v => setPlanHintHidden(!v)} />{/* B1 (09.10.2026): powrót po „Ukryj” */}
       {/* audyt 0.10 (E1, wariant B; fala 2 — masa ciała z datą): pomiary na osobnym ekranie (historia, data pomiaru), tu ostatni */}
       <Item title={t('Masa ciała')} sub={(b => b ? t('{v} · pomiar z {d}', { v: fmtW(b.kg), d: fmtDate(localDateTs(b.date)) }) : t('nie podano — e1RM podciągania i pompek'))(latestBodyMass())} onPress={() => router.push('/more/bodymass')} />
 

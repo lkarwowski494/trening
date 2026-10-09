@@ -807,4 +807,6 @@ export const EN: Record<string, string> = {
   'Inteligentna stacja kablowa — pełna (1,5–65 kg/str.)': 'Smart cable machine — full (1.5–65 kg/side)',
   'Przenośna stacja elektryczna, jedna linka (5–200 lb)': 'Portable electric cable unit, single cable (5–200 lb)',
   'Inteligentna stacja kablowa — kompaktowa (1,5–35 kg/str.)': 'Smart cable machine — compact (1.5–35 kg/side)',
+  'Zachęta do planu tygodnia': 'Weekly plan prompt',
+  'tekst na karcie „Dziś” i w Kalendarzu, gdy nie ma planu': 'text on the “Today” card and in the Calendar when there is no plan',
 };
