@@ -242,3 +242,10 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
   w każdym języku teksty o przerwie mają termin przerwy i nie mają terminu pauzy (i odwrotnie). Otwarte: potwierdzenie przez rodzimego
   użytkownika terminów cs, sk, ro, et, de i „hvile” (da, nb). Przy scaleniu: filtr „Podstawowe” z katalogu dostał podział etykieta/podpowiedź
   VoiceOver jak pozostałe filtry (A11-18).
+- 09.10.2026 (ok. 02:30): **wskazówki techniki, etap 1** scalone (82 ćwiczenia bazowe, każde zdanie ≥ 2 przeczytane źródła z różnych
+  organizacji — ACE, ExRx, NASM, Stronger by Science, Concept2, badania; docs/research/27, generowany z `lib/cues/data.json`, `check:cues`
+  w verify). 42 ćwiczenia bazowe bez wskazówek (jedno źródło, sprzeczne lub za mało wspólnych wskazówek) — lista otwarta z powodami w
+  docs/research/27. Źródła NSCA/ACSM są płatne: **nie kupujemy** (zasada właściciela: 0 zł poza Apple) — etap 1 stoi na szczeblu 4 z co
+  najmniej dwiema niezależnymi organizacjami, co jest oznaczone w dokumencie; brakujące uzupełniamy darmowymi źródłami szczebla 2–3, gdy
+  się znajdą. Odrzucone: zakup podręczników (koszt), jedno źródło (reguła właściciela z 08.10). Sekcja „Technika” na ekranie ćwiczenia
+  domyślnie zwinięta, z odesłaniem do lekarza lub fizjoterapeuty przy bólu.
