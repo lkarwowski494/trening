@@ -64,6 +64,18 @@ Rozmowa 05.10.2026, rano: „Chciałbym móc opublikować to w Apple Store” i 
   Kroki właściciela przed płatną wersją: deklaracja tradera w App Store Connect (adres lub skrytka pocztowa, telefon, e-mail — publiczne
   w sklepie UE); umowa na aplikacje płatne (Paid Apps Agreement), dane bankowe i podatkowe; zapis do App Store Small Business Program;
   podatek/VAT — księgowy. Po stronie aplikacji: ekran subskrypcji (StoreKit), przywracanie zakupu, zachowanie po wygaśnięciu (ustalone wyżej) — do zaprojektowania i wdrożenia z pełnym zakresem testów (docs/20).
+- **Model płatności — ZMIANA (właściciel 09.10.2026, 10:14):** zastępuje cenę i okres próbny z 06.10 (29 zł/rok; 3 miesiące, potem 1 miesiąc).
+  Słowa właściciela: „0.99 USD / 0.99 EUR / 0.99 GBP / 4.99 PLN / równowartość jako porównanie do taniej niż espresso za miesiąc w krajach,
+  które wydamy. Dodatkowo roczne subskrypcje za 5.99 USD / 5.99 EUR / 5.99 GBP z góry. 30 dni okresu próbnego”.
+  - Subskrypcja miesięczna: 0,99 USD / 0,99 EUR / 0,99 GBP / 4,99 PLN; w pozostałych krajach równowartość („taniej niż espresso miesięcznie”
+    — zasada ustalania ceny).
+  - Subskrypcja roczna, płatna z góry: 5,99 USD / 5,99 EUR / 5,99 GBP (ok. połowa ceny 12 miesięcy).
+  - Okres próbny 30 dni = oferta wprowadzająca **1 miesiąc** (Apple nie ma „30 dni”, zob. sekcję DSA niżej).
+  - Bez zmian: po wygaśnięciu nowe treningi zablokowane; historia, kopia i eksport zawsze działają; status tradera; kroki właściciela wyżej.
+  - Wdrożenie: po wydaniu 1 (zakres wydania zamrożony, CLAUDE.md „Audyty i wydania” pkt 3), przed App Store.
+  - **Otwarte (do decyzji właściciela, 09.10):** cena roczna w PLN; okres próbny w obu planach czy tylko w rocznym; czy „taniej niż espresso”
+    ma być w opisie sklepu (wtedy potrzebne źródła cen kawy w każdym kraju) czy tylko zasadą ustalania ceny; sposób ustalenia cen w innych
+    krajach. **Do sprawdzenia w App Store Connect** (nie zgadujemy): czy punkty cenowe 0,99 EUR/GBP i 4,99 PLN istnieją w siatce cen Apple.
 - **Cel przychodu (właściciel 06.10.2026):** ~2000 zł miesięcznie; model bez zmian: 30 dni za darmo, potem jednorazowa płatność.
   Rachunek orientacyjny (agent, do sprawdzenia): z ceny w App Store odpada VAT kraju kupującego (PL 23%) i prowizja Apple (15% w Small Business
   Program), czyli na konto ok. 0,69 × cena przy kupującym z Polski. Potrzebne zakupy miesięcznie: cena 29 zł → ok. 100; 49 zł → ok. 59;
