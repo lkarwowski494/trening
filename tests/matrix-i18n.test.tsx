@@ -196,7 +196,7 @@ describe('daty i liczby: fmtDate / fmtTime / fmtNum / locale() / decimalComma() 
   afterAll(() => { global.__locales = [{ languageCode: 'pl', languageTag: 'pl-PL' }]; applyLang('pl'); });
   /** Ten sam język, inny region (telefon) — locale() bierze region telefonu (poza pl → pl-PL i sr → cyrylica). */
   const ALT: Partial<Record<Lang, string>> = { en: 'en-GB', pt: 'pt-BR', es: 'es-MX', sr: 'sr-Latn-RS', hr: 'hr-BA', uk: 'uk-UA', hu: 'hu-HU', ro: 'ro-MD', pl: 'pl-GB', cs: 'cs-CZ', sk: 'sk-SK', bg: 'bg-BG', sl: 'sl-SI', lt: 'lt-LT', lv: 'lv-LV', et: 'et-EE',
-    'es-419': 'es-AR', 'pt-BR': 'pt-PT' /* fala 1: ten sam język bazowy, inny region */, de: 'de-AT', fr: 'fr-CA', it: 'it-CH', nl: 'nl-BE', sv: 'sv-FI', da: 'da-DK', nb: 'nb-NO', fi: 'fi-FI', tr: 'tr-TR', el: 'el-CY' /* 07.10.2026 */, id: 'id-ID', ms: 'ms-SG', vi: 'vi-VN' /* fala 2 (09.10.2026) */, ru: 'ru-KZ' /* fala 3 */ };
+    'es-419': 'es-AR', 'pt-BR': 'pt-PT' /* fala 1: ten sam język bazowy, inny region */, de: 'de-AT', fr: 'fr-CA', it: 'it-CH', nl: 'nl-BE', sv: 'sv-FI', da: 'da-DK', nb: 'nb-NO', fi: 'fi-FI', tr: 'tr-TR', el: 'el-CY' /* 07.10.2026 */, id: 'id-ID', ms: 'ms-SG', vi: 'vi-VN' /* fala 2 (09.10.2026) */, ru: 'ru-KZ' /* fala 3 */, ja: 'ja-JP', ko: 'ko-KR', 'zh-Hant': 'zh-Hant-HK' /* fala 4: Hongkong — ten sam język aplikacji, inny region */ };
   const now = new Date(); const D = new Date(now.getFullYear(), 2, 15, 9, 5).getTime(); const D_OLD = new Date(now.getFullYear() - 1, 10, 3, 18, 40).getTime();
   const cases = LANGS.flatMap(l => [[l, 'de-DE'], [l, ALT[l]!]] as [Lang, string][]);
   test.each(cases)('%s przy telefonie %s', (l, device) => {
@@ -227,7 +227,7 @@ describe('daty i liczby: fmtDate / fmtTime / fmtNum / locale() / decimalComma() 
   });
   test('przecinek dziesiętny: wszystkie języki poza angielskim (domyślny region) — jak w polu liczbowym NumInput', () => {
     const comma = LANGS.filter(l => { global.__locales = [{ languageCode: 'de', languageTag: 'de-DE' }]; applyLang(l); return decimalComma(); });
-    expect(comma).toEqual(LANGS.filter(l => l !== 'en' && l !== 'es-419' /* es-419 (CLDR): kropka dziesiętna, jak Meksyk; telefon es-AR → przecinek (tests/i18n-variants) */ && l !== 'ms' /* ms-MY (CLDR): kropka dziesiętna (fala 2) */));
+    expect(comma).toEqual(LANGS.filter(l => l !== 'en' && l !== 'es-419' /* es-419 (CLDR): kropka dziesiętna, jak Meksyk; telefon es-AR → przecinek (tests/i18n-variants) */ && l !== 'ms' /* ms-MY (CLDR): kropka dziesiętna (fala 2) */ && l !== 'ja' && l !== 'ko' && l !== 'zh-Hant' /* ja-JP, ko-KR, zh-Hant-TW (CLDR): kropka dziesiętna (fala 4) */));
   });
 });
 

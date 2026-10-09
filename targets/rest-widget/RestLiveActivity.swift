@@ -61,7 +61,10 @@ func kindBase(_ kind: String) -> String {
 /// bez niej — w języku systemu z 16 języków aplikacji (06.10.2026, RestLabels.swift generowany z tłumaczeń), inny język → angielski.
 func kindLabel(_ kind: String) -> String {
   if let i = kind.firstIndex(of: "|") { return String(kind[kind.index(after: i)...]) }
-  let code = String((Locale.preferredLanguages.first ?? "en").prefix(2))
+  let pref = Locale.preferredLanguages.first ?? "en"
+  var code = String(pref.prefix(2))
+  // Fala 4 (09.10.2026): chiński tradycyjny — „zh-Hant-TW”, „zh-Hant-HK”, „zh-HK”, „zh-TW”, „zh-MO” → zh-Hant; uproszczony → angielski (jak lib/i18n.ts resolveLang)
+  if code == "zh" { code = (pref.contains("Hant") || pref.hasSuffix("-TW") || pref.hasSuffix("-HK") || pref.hasSuffix("-MO")) ? "zh-Hant" : "en" }
   let l = restLabels[code] ?? restLabels["en"]!
   return kind == "set" ? l.set : l.rest
 }

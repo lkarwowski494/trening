@@ -21,7 +21,7 @@ describe('liczba mnoga (CLDR, liczby całkowite)', () => {
 describe('języki aplikacji', () => {
   afterEach(() => applyLang('pl'));
   test('lista języków (LANGS, 26 od 07.10.2026, 28 od fali 1 — es-419, pt-BR) z nazwami własnymi; ustawienie języka i locale do dat/liczb', () => {
-    expect(LANGS).toEqual(['pl', 'en', 'cs', 'sk', 'hu', 'ro', 'bg', 'hr', 'sl', 'sr', 'lt', 'lv', 'et', 'uk', 'es', 'es-419', 'pt', 'pt-BR', 'de', 'fr', 'it', 'nl', 'sv', 'da', 'nb', 'fi', 'tr', 'el', 'id', 'ms', 'vi', 'ru']);
+    expect(LANGS).toEqual(['pl', 'en', 'cs', 'sk', 'hu', 'ro', 'bg', 'hr', 'sl', 'sr', 'lt', 'lv', 'et', 'uk', 'es', 'es-419', 'pt', 'pt-BR', 'de', 'fr', 'it', 'nl', 'sv', 'da', 'nb', 'fi', 'tr', 'el', 'id', 'ms', 'vi', 'ru', 'ja', 'ko', 'zh-Hant']);
     expect(LANG_NAME.cs).toBe('Čeština'); expect(LANG_NAME.uk).toBe('Українська'); expect(LANG_NAME.de).toBe('Deutsch'); expect(LANG_NAME.el).toBe('Ελληνικά'); expect(LANG_NAME.nb).toBe('Norsk');
     applyLang('cs'); expect(lang()).toBe('cs'); expect(locale()).toMatch(/^cs/);
     applyLang('uk'); expect(locale()).toMatch(/^uk/);

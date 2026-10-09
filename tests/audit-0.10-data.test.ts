@@ -201,7 +201,7 @@ describe('Uprawnienie Zdrowia (app.json, InfoPlist.strings w 26 językach): zapi
   const fs = require('fs') as typeof import('fs'); const path = require('path') as typeof import('path'); const root = path.join(__dirname, '..');
   test('opis NSHealthUpdateUsageDescription mówi o cardio we wszystkich językach; app.json = locales/pl.json', () => {
     const files = fs.readdirSync(path.join(root, 'locales')).filter(f => f.endsWith('.json')); expect(files.map(f => f.replace(/\.json$/, '')).sort()).toEqual([...LANGS].sort()); /* fala 1 (09.10.2026): liczba z LANGS, nie wpisana ręcznie */
-    for (const f of files) { const d = JSON.parse(fs.readFileSync(path.join(root, 'locales', f), 'utf8')); expect([f, /cardio|kardi|кардио|кардіо|καρδιο|kondi/i.test(d.NSHealthUpdateUsageDescription)]).toEqual([f, true]); }
+    for (const f of files) { const d = JSON.parse(fs.readFileSync(path.join(root, 'locales', f), 'utf8')); expect([f, /cardio|kardi|кардио|кардіо|καρδιο|kondi|有酸素|유산소|有氧/i /* fala 4: ja, ko, zh-Hant */.test(d.NSHealthUpdateUsageDescription)]).toEqual([f, true]); }
     const app = JSON.parse(fs.readFileSync(path.join(root, 'app.json'), 'utf8')); const hk = app.expo.plugins.find((p: unknown) => Array.isArray(p) && p[0] === '@kingstinct/react-native-healthkit')[1];
     expect(hk.NSHealthUpdateUsageDescription).toBe(JSON.parse(fs.readFileSync(path.join(root, 'locales/pl.json'), 'utf8')).NSHealthUpdateUsageDescription);
   });

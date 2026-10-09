@@ -51,7 +51,7 @@ describe('resolveLang / detectLang: telefon po rosyjsku (każdy region) i po ukr
     dev('ru', 'ru-RU'); applyLang('uk'); expect([lang(), locale()]).toEqual(['uk', 'uk-UA']);
   });
   test('LANGS: ru na końcu listy (kolejność w ustawieniach), nazwa „Русский”, nazwa aplikacji „Training” (jak uk — „Тренировка” niepodobne do „Trening”)', () => {
-    expect(LANGS[LANGS.length - 1]).toBe('ru');
+    expect(LANGS[LANGS.indexOf('vi') + 1]).toBe('ru'); /* fala 4 (ja, ko, zh-Hant) dopisana za nim */
     expect([LANG_NAME.ru, APP_NAME.ru]).toEqual(['Русский', 'Training']);
   });
 });

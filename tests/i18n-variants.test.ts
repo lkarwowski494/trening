@@ -23,7 +23,7 @@ describe('resolveLang: tag języka telefonu → język aplikacji (CLDR parentLoc
     ['es-419', 'es-419'], ['es-MX', 'es-419'], ['es-AR', 'es-419'], ['es-CO', 'es-419'], ['es-CL', 'es-419'], ['es-PE', 'es-419'], ['es-US', 'es-419'],
     ['es-PR', 'es-419'], ['es_VE', 'es-419'], ['es-Latn-MX', 'es-419'],
     ['es-ES', 'es'], ['es', 'es'] /* CLDR: es → es_Latn_ES */, ['es-GQ', 'es'], ['es-PH', 'es'], ['es-IC', 'es'], ['es-PL', 'es'],
-    ['pl-PL', 'pl'], ['en-US', 'en'], ['sr-Latn-RS', 'sr'], ['nb-NO', 'nb'], ['ja-JP', 'en'], ['zh-Hant-TW', 'en'], ['', 'en'],
+    ['pl-PL', 'pl'], ['en-US', 'en'], ['sr-Latn-RS', 'sr'], ['nb-NO', 'nb'], ['ja-JP', 'ja'], ['zh-Hant-TW', 'zh-Hant'] /* fala 4 (09.10.2026) */, ['zh-Hans-CN', 'en'] /* chiński uproszczony — odłożony */, ['th-TH', 'en'], ['', 'en'],
   ] as const)('%s → %s', (tag, want) => { expect(resolveLang(tag)).toBe(want); });
   test('kod języka z expo-localization ma pierwszeństwo przed tagiem (tag może mieć inny język tylko w testach), region z tagu', () => {
     expect(resolveLang('en-GB', 'pt')).toBe('pt'); expect(resolveLang('pt-BR', 'pt')).toBe('pt-BR'); expect(resolveLang(null, 'es')).toBe('es');

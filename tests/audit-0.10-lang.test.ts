@@ -32,6 +32,8 @@ export const TERMS: Record<NonPl, { rest: RegExp; pause: RegExp }> = {
   id: { rest: /istirahat/i, pause: /jeda/i }, ms: { rest: /rehat/i, pause: /jeda/i }, vi: { rest: /nghỉ/i, pause: /tạm dừng/i },
   /* fala 3 (09.10.2026): przerwa — ru „отдых” (iOS: „Отдых”), pauza — „пауза” */
   ru: { rest: /отдых/i, pause: /пауз|приостанов/i },
+  /* fala 4 (09.10.2026): przerwa — ja „休憩”, ko „휴식”, zh-Hant „休息”; pauza — ja „一時停止”, ko „일시정지”, zh-Hant „暫停” (jak przyciski iOS) */
+  ja: { rest: /休憩/, pause: /一時停止/ }, ko: { rest: /휴식/, pause: /일시정지/ }, 'zh-Hant': { rest: /休息/, pause: /暫停/ },
 };
 const KEYS = Object.keys(EN);
 /** Przerwa między seriami (bez „Import przerwany”, „przerwie pomiar” i „dzień przerwy” — dzień odpoczynku między treningami). */

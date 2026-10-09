@@ -50,7 +50,10 @@
           "id",
           "ms",
           "vi",
-          "ru"
+          "ru",
+          "ja",
+          "ko",
+          "zh-Hant"
         ],
         "CFBundleAllowMixedLocalizations": true,
         "UIFileSharingEnabled": true,
@@ -141,7 +144,10 @@
       "id": "./locales/id.json",
       "ms": "./locales/ms.json",
       "vi": "./locales/vi.json",
-      "ru": "./locales/ru.json"
+      "ru": "./locales/ru.json",
+      "ja": "./locales/ja.json",
+      "ko": "./locales/ko.json",
+      "zh-Hant": "./locales/zh-Hant.json"
     },
     "web": {
       "bundler": "metro",

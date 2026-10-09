@@ -1,0 +1,5 @@
+{
+  "CFBundleDisplayName": "Training",
+  "NSHealthShareUsageDescription": "Training 不會讀取健康資料 — iOS 要求 HealthKit 權限必須附上這段說明。",
+  "NSHealthUpdateUsageDescription": "Training 會將完成的訓練（肌力與有氧）儲存到 Apple Health。"
+}
