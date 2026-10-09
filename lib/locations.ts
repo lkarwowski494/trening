@@ -9,11 +9,13 @@ import { t, lbl } from './i18n';
  * Freeletics: sprzęt nie zapisywał się po geście „wstecz”). Usunięte miejsce zostaje w treningach i szablonach jako id
  * („(usunięte miejsce)”); miejsca głównego nie da się usunąć, dopóki jest inne miejsce, które można wskazać jako główne.
  */
-const uniqueName = (name: string) => { const names = new Set(getState().settings.locations.map(l => l.name)); if (!names.has(name)) return name; for (let i = 2; ; i++) { const n = `${name} ${i}`; if (!names.has(n)) return n; } };
+/** Nazwa bez powtórzeń: rdzeń + dopisek (np. „ (kopia)”) + numer od 2; LOG-16: rdzeń przycinany tak, by całość mieściła się w NAME_MAX. */
+const uniqueName = (stem: string, suffix = '') => { const names = new Set(getState().settings.locations.map(l => l.name));
+  for (let i = 1; ; i++) { const tail = suffix + (i > 1 ? ` ${i}` : ''); const n = clampName(stem, NAME_MAX - tail.length) + tail; if (!names.has(n)) return n; } };
 /** Nowe miejsce z presetu; pierwsze miejsce staje się główne. */
 export function addLocation(preset: LocationPreset, name?: string): Location {
   const st = getState(); const s = st.settings;
-  const label = LOCATION_PRESET_LABEL[preset]; const l: Location = { ...base(st.ownerId), name: uniqueName(clampName(name ?? lbl(label))), equipment: presetEquipment(preset, s.unit) };
+  const label = LOCATION_PRESET_LABEL[preset]; const l: Location = { ...base(st.ownerId), name: uniqueName(name ?? lbl(label)), equipment: presetEquipment(preset, s.unit) };
   s.locations.push(l); if (!s.mainLocationId || !locationById(s.mainLocationId)) s.mainLocationId = l.id;
   save(); return l;
 }
@@ -23,7 +25,7 @@ export function renameLocation(l: Location, name: string) { l.name = name.slice(
 export function commitLocationName(l: Location, fallback: string) { const n = l.name.replace(/\s+/g, ' ').trim(); l.name = clampName(n || fallback || t('Miejsce')); save(l); }
 export function duplicateLocation(id: string): Location | undefined {
   const src = locationById(id); if (!src) return undefined; const st = getState();
-  const c: Location = { ...JSON.parse(JSON.stringify(src)), ...base(st.ownerId) }; const suf = ' ' + t('(kopia)'); c.name = uniqueName(clampName(src.name, NAME_MAX - suf.length) + suf);
+  const c: Location = { ...JSON.parse(JSON.stringify(src)), ...base(st.ownerId) }; c.name = uniqueName(src.name, ' ' + t('(kopia)'));
   st.settings.locations.push(c); save(); return c;
 }
 /** Czy można usunąć: miejsce główne tylko wtedy, gdy jest jedynym (wtedy aplikacja wraca do trybu bez miejsc). */

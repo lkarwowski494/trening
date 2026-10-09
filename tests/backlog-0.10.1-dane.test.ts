@@ -5,7 +5,7 @@
 import * as store from '@/lib/store';
 import * as timer from '@/lib/timer';
 import { fresh } from './helpers';
-import { addLocation } from '@/lib/locations';
+import { addLocation, duplicateLocation } from '@/lib/locations';
 import { parseBackup } from '@/lib/backup';
 
 describe('LIVE2-04: staleBody na zegarze strefy startu', () => {
@@ -35,5 +35,17 @@ describe('DAT2-04 (= DAT-08): import z powtórzonym id miejsca albo zapisanego p
     const st = JSON.parse(JSON.stringify(store.getState())); const L = st.settings.locations; const id0 = L[0].id; L[1].id = id0; L[2].id = `${id0}~2`;
     L.push({ ...L[2], id: id0, name: 'D' });
     const r = store.migrate(st); expect(r.settings.locations.map(l => l.id.replace(id0, 'x'))).toEqual(['x', 'x~3', 'x~2', 'x~4']);
+  });
+});
+
+describe('LOG-16 (= LOG2-04): nazwa miejsca po dopisku „(kopia)” albo numeru nie przekracza NAME_MAX', () => {
+  test('LOG-16: duplikat miejsca z nazwą 80 znaków ≤ 80 i z dopiskiem „(kopia)”; druga kopia z numerem; to samo przy dodaniu miejsca o tej samej nazwie', async () => {
+    await fresh(); const long = 'x'.repeat(store.NAME_MAX);
+    const a = addLocation('gym', long); const c1 = duplicateLocation(a.id)!; const c2 = duplicateLocation(a.id)!;
+    const b = addLocation('gym', long); const b3 = addLocation('gym', long);
+    for (const l of [a, c1, c2, b, b3]) expect(l.name.length).toBeLessThanOrEqual(store.NAME_MAX);
+    expect(c1.name.endsWith(' (kopia)')).toBe(true); expect(c2.name.endsWith(' (kopia) 2')).toBe(true); expect(b.name.endsWith(' 2')).toBe(true); expect(b3.name.endsWith(' 3')).toBe(true);
+    expect(new Set([a, c1, c2, b, b3].map(l => l.name)).size).toBe(5);
+    const s = addLocation('gym', 'Dom'); const s2 = addLocation('gym', 'Dom'); expect([s.name, s2.name]).toEqual(['Dom', 'Dom 2']); expect(duplicateLocation(s.id)!.name).toBe('Dom (kopia)');
   });
 });
