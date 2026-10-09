@@ -10,6 +10,7 @@
 #   "Make active"                    ← 'Ustaw jako aktywny' (przycisk w Alercie)
 #   "\\+ Add place"                   ← '+ Dodaj miejsce' (chip w generatorze przy braku miejsc — audyt 0.10 UX-10)
 #   "Saved", "Weekly plan"           ← 'Zapisano', 'Plan tygodnia' (potwierdzenie zapisu — audyt 0.10 UX-10)
+#   "OK"                             ← 'OK' (trzeci przycisk okna „Zapisano” — zostaje na generatorze; audyt kontrolny 1, UI2-06)
 #   "Guide", "Read: .*", "Weekly plan and Calendar, unread", "Show: Weekly plan and Calendar" ← app/guide.tsx (przewodnik, 08.10.2026)
 #   "Monday, Full Body A"            ← app/plan.tsx: wiersz dnia '{dzień}, {szablon}' (audyt 0.10 UX-15 A: 7 wierszy; „{dzień}: {szablon}” to chip
 #                                      w rozwiniętym wierszu — E2E 89), nazwa szablonu 'FBW A' → 'Full Body A'
@@ -33,6 +34,7 @@ name: Generator szablonów i planu
 - extendedWaitUntil: { visible: "Make the new plan active\\?", timeout: 15000 }
 - tapOn: "Make active"
 - extendedWaitUntil: { visible: "Saved", timeout: 15000 }
+- assertVisible: "OK"
 - tapOn: "Weekly plan"
 - extendedWaitUntil: { visible: "Monday, Full Body A", timeout: 30000 }
 - takeScreenshot: 72-plan-z-generatora

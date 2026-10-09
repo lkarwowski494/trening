@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { ScrollView, View, Alert } from 'react-native';
-import { useRouter } from 'expo-router';
+import { useRouter, useNavigation } from 'expo-router';
 import { Field, Chip, Muted, Txt, Btn, SectionTitle } from '@/components/ui';
 import { getState, useTick, newTemplate, SAVED_PLANS_MAX } from '@/lib/store';
 import { ownTemplates, ownSessionsFor, ownPlan, ownWarnings, ownCounts, saveOwnPlan, OWN_MAX, MAJOR, MIN_DAYS, SECONDARY_SHARE } from '@/lib/generator';
@@ -17,8 +17,18 @@ import { fmtNum } from '@/lib/units';
 const wd = (i: number) => new Date(2024, 0, 1 + i).toLocaleDateString(locale(), { weekday: 'short' }); /* 1.01.2024 = poniedziałek */
 const nameOf = (id: string) => getState().templates.find(x => x.id === id)?.name ?? '';
 
+/** UI2-06 (audyt kontrolny 1): „Plan tygodnia” w oknie „Zapisano” (generator i „Plan z moich szablonów”). Gdy pod generatorem jest ekran aktywnego
+ * planu (/plan bez ?id) — powrót do niego (bez drugiego ekranu planu na stosie); inaczej generator zastępuje ekran planu. */
+export function usePlanReturn() {
+  const router = useRouter(); const nav = useNavigation();
+  return () => {
+    const st = nav.getState(); const prev = st && st.index > 0 ? st.routes[st.index - 1] : undefined;
+    if (prev?.name === 'plan' && !(prev.params as { id?: string } | undefined)?.id) router.back(); else router.replace('/plan');
+  };
+}
+
 export function OwnPlan({ header }: { header?: React.ReactNode }) {
-  const rev = useTick(); const router = useRouter(); const all = ownTemplates();
+  const rev = useTick(); const router = useRouter(); const toPlan = usePlanReturn(); const all = ownTemplates();
   const [sel, setSel] = useState<string[]>(() => (all.length <= OWN_MAX ? all.map(x => x.id) : []));
   const [sessions, setSessions] = useState(3);
   const chosen = sel.filter(id => all.some(x => x.id === id)); const allowed = ownSessionsFor(Math.max(1, chosen.length));
@@ -28,7 +38,7 @@ export function OwnPlan({ header }: { header?: React.ReactNode }) {
   const done = (activate: boolean) => {
     if (!r) return; const res = saveOwnPlan(r, activate);
     Alert.alert(t('Zapisano'), activate ? t('Plan „{name}” jest teraz aktywny.', { name: res.planName }) : t('Plan „{name}” jest w „Inne plany”.', { name: res.planName }), [
-      { text: t('Plan tygodnia'), onPress: () => router.replace('/plan') },
+      { text: t('Plan tygodnia'), onPress: toPlan }, { text: t('OK') }, /* UI2-06: „OK” — zostaje tutaj */
     ]);
   };
   const save = () => {
