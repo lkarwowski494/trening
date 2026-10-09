@@ -377,4 +377,4 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
   i hiszpański Ameryki Łacińskiej (es-419); grupa 2 — japoński, koreański, chiński tradycyjny (krój pisma CJK, łamanie wierszy, testy
   szerokości); azerski (az). Ukraiński już jest. Do sprawdzenia przed wdrożeniem (otwarte): czy iOS ma azerski jako język systemu i czy App
   Store Connect pozwala na opis sklepu po azersku; pokrycie znaków w IBM Plex Sans (ə). Chiński uproszczony odłożony (rejestracja ICP w Chinach).
-  Rosyjski — bez decyzji. Interpretacja „1, 2” = grupy z odpowiedzi z 09.10 — do potwierdzenia.
+  Rosyjski — TAK (właściciel, 09.10 wieczór; sprzedaż w Rosji przez App Store niedostępna od 2022 — zasięg przez kraje, gdzie rosyjski jest używany). Interpretacja „1, 2” = grupy z odpowiedzi z 09.10 — do potwierdzenia.
