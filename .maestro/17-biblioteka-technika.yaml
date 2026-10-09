@@ -31,6 +31,7 @@ name: Filtr „Podstawowe” i sekcja „Technika”
 - extendedWaitUntil: { visible: "Technique", timeout: 30000 }
 - assertNotVisible: "Setup"
 - tapOn: "Technique"
-- extendedWaitUntil: { visible: "Setup", timeout: 15000 }
+# E2E 91: sekcja zaczyna się rysunkiem ruchu (wysoki) — „Setup” jest pod krawędzią ekranu
+- scrollUntilVisible: { element: "Setup", direction: DOWN, timeout: 30000 }
 - scrollUntilVisible: { element: "Based on: .*", direction: DOWN, timeout: 30000 }
 - takeScreenshot: 81-technika

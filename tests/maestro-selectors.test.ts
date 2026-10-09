@@ -149,7 +149,7 @@ describe('regresja E2E 89', () => {
   });
   test('gumy: karta „teraz” pokazuje „band: …” małą literą, Maestro porównuje bez wielkości liter — każde stuknięcie przycisku gumy pod „Set done.*”', () => {
     const taps = steps('10-gumy.yaml').filter(l => /tapOn: .*"Band: /.test(l)); expect(taps.length).toBeGreaterThanOrEqual(6);
-    for (const l of taps) expect(l).toMatch(/below: "Set done\.\*"/);
+    for (const l of taps) expect(l).toMatch(/below: "Set done\.\*"|leftOf: "Set 1 done — [^"]+"/); /* E2E 91: wiersz pod kartą po przewinięciu — względem ✓ wiersza */
     const { EN } = require('@/lib/i18n.en'); const card = EN['Seria zrobiona: {ex}, seria {n}'].replace('{ex}', 'Pull Up').replace('{n}', '1');
     const row = EN['Seria {n} zrobiona — {ex}'].replace('{ex}', 'Pull Up').replace('{n}', '1');
     expect([/^(?:Set done.*)$/i.test(card), /^(?:Set done.*)$/i.test(row)]).toEqual([true, false]); /* kotwica to tylko przycisk karty */
@@ -165,5 +165,45 @@ describe('regresja E2E 89', () => {
   test('zamiana z podziałem: odhaczona seria starego ćwiczenia sprawdzana przewinięciem w górę, nie assertVisible od razu', () => {
     const s = steps('07-zamiana.yaml'); const i = s.findIndex(l => l.includes('"instead of: Overhead Press \\\\(Barbell\\\\).*"'));
     expect(i).toBeGreaterThan(0); expect(s[i + 1].trim()).toBe('- scrollUntilVisible: { element: "Set 1 done — Overhead Press \\\\(Barbell\\\\)", direction: UP, timeout: 30000 }');
+  });
+});
+
+/* Przebieg E2E 91 (09.10.2026, build z 1080a40): 7 z 17 scenariuszy — przyczyny w scenariuszach (elementy poza ekranem, okno zgody, etykieta
+ * grupy dostępności), aplikacja bez zmian. Interpreter (tests/maestro-runner.test.tsx) odtwarza te porażki na krokach w wersji z 224d229;
+ * tu — że poprawki zostały w plikach. */
+describe('regresja E2E 91', () => {
+  const fs = require('fs'); const path = require('path');
+  const y = (f: string) => fs.readFileSync(path.join(__dirname, '..', '.maestro', f), 'utf8') as string;
+  const steps = (f: string) => y(f).split('\n').filter((l: string) => /^\s*- /.test(l)).map((l: string) => l.trim());
+
+  test('11: przed tapnięciem pola powtórzeń klawiatura numeryczna jest schowana (tap w tekst karty) — „Now: 805 kg”', () => {
+    const s = steps('11-widok-skupiony.yaml'); const i = s.indexOf('- tapOn: { id: "r-0-0" }');
+    expect(i).toBeGreaterThan(1); expect(s[i - 1]).toBe('- tapOn: "set.1.of.1"'); expect(s[i - 2]).toBe('- inputText: "80"');
+  });
+  test('15: nagłówek „Packages (n)” sprawdzany po przewinięciu (pod kilkunastoma licencjami)', () => {
+    expect(y('15-masa-licencje.yaml')).toContain('- scrollUntilVisible: { element: "Packages \\\\(\\\\d+\\\\)", direction: DOWN');
+    expect(y('15-masa-licencje.yaml')).not.toContain('extendedWaitUntil: { visible: "Packages');
+  });
+  test('17: „Setup” sprawdzane po przewinięciu (sekcja zaczyna się rysunkiem ruchu)', () => {
+    expect(y('17-biblioteka-technika.yaml')).toContain('- scrollUntilVisible: { element: "Setup", direction: DOWN');
+    expect(y('17-biblioteka-technika.yaml')).not.toContain('extendedWaitUntil: { visible: "Setup"');
+  });
+  test('10: guma Pull Up wskazana względem ✓ wiersza (leftOf), nie karty „Set done” (po przewinięciu nad ekranem)', () => {
+    const s = steps('10-gumy.yaml'); const after = s.slice(s.indexOf('- extendedWaitUntil: { visible: "Set 1 done — Pull Up", timeout: 30000 }'));
+    expect(after).toContain('- tapOn: { text: "Band: none", leftOf: "Set 1 done — Pull Up" }');
+    expect(after.filter((l: string) => /below: "Set done/.test(l))).toEqual([]);
+  });
+  test('07: przed „Always at Home — …” przewinięcie na środek ekranu (tap przy górnej krawędzi trafił w baner iOS → Ustawienia)', () => {
+    const s = steps('07-zamiana.yaml'); const i = s.indexOf('- tapOn: "Always at Home — .*"');
+    expect(i).toBeGreaterThan(0); expect(s[i - 1]).toMatch(/^- scrollUntilVisible: \{ element: "Always at Home — \.\*".*centerElement: true/);
+  });
+  test('13: po pierwszym dniu planu okno zgody na przypomnienie zamykane „Not now” (opcjonalnie)', () => {
+    const { EN } = require('@/lib/i18n.en'); const s = steps('13-kalendarz-plan.yaml'); const i = s.indexOf('- tapOn: "Monday: Upper A"');
+    expect(i).toBeGreaterThan(0); expect(s[i + 1]).toBe(`- tapOn: { text: "${EN['Nie teraz']}", optional: true }`);
+  });
+  test('01: kafelki tygodnia — jedna etykieta przycisku „Postępy” („Workouts: …; Sets: …”), kafelek nie jest osobnym elementem', () => {
+    const { EN } = require('@/lib/i18n.en');
+    expect(EN['{label}: {v}, poprzedni tydzień {p}']).toBe('{label}: {v}, previous week {p}');
+    expect(y('01-trening-z-szablonu.yaml')).toContain('- assertVisible: "Workouts: 1, previous week 0;.*"');
   });
 });

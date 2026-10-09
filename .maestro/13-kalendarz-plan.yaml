@@ -14,6 +14,7 @@
 #   "Move or skip", "Apply: Move plan by 1 day", "Days changed: .*" ← components/DayPanel.tsx: 'Przesuń albo pomiń', 'Zastosuj: {title}',
 #        'Przesuń plan o 1 dzień', 'Zmienione dni: {n}' (audyt 0.10 UX-13 A: jedna lista przesunięć zamiast „Propozycji” i osobnych przycisków)
 #   "More options", "Restore from plan" ← 'Więcej opcji', 'Przywróć z planu'
+#   "Not now"                       ← 'Nie teraz' (okno zgody na przypomnienie, lib/planReminder.ts askReminderPermission)
 #   "Today: Upper A", "Start planned workout: Upper A" ← components/TodayPlan.tsx
 #   "What's new", "In this version", "Close"   ← components/WhatsNew.tsx: 'Co nowego' (etykieta „i”), 'W tej wersji', 'Zamknij' (08.10.2026)
 appId: pl.lukasz.trening
@@ -31,6 +32,9 @@ name: Kalendarz z planem tygodnia
 - extendedWaitUntil: { visible: "Monday, Rest", timeout: 30000 }
 - tapOn: "Monday, Rest"
 - tapOn: "Monday: Upper A"
+# E2E 91 (audyt 0.10 I1): pierwszy dzień w planie → okno „Reminder for planned workouts” (zgoda na powiadomienia jeszcze nieustalona —
+# `permissions: all: allow` nie obejmuje powiadomień na symulatorze); zasłaniało wiersze dni. „Not now” — bez systemowego pytania iOS.
+- tapOn: { text: "Not now", optional: true }
 - tapOn: "Tuesday, Rest"
 - tapOn: "Tuesday: Upper A"
 - tapOn: "Wednesday, Rest"

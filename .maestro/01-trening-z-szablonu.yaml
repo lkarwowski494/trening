@@ -41,7 +41,8 @@ name: Trening z szablonu
 # („Done today: Upper A”; „No weekly plan” tylko, gdy dziś nic nie zrobiono — audyt 0.10, E2E 89) i podpowiedź 'Ustaw plan tygodnia, by widzieć tu…'.
 - tapOn: "Workout, tab.*"
 - extendedWaitUntil: { visible: "This week", timeout: 30000 }
-- assertVisible: "Workouts: 1, previous week 0"
+# E2E 91: kafelki to jeden przycisk „Postępy” (UX-16 A) — VoiceOver czyta jedną etykietę „Workouts: …; Sets: …; Time: …” (kafelek nie jest osobnym elementem)
+- assertVisible: "Workouts: 1, previous week 0;.*"
 - assertVisible: "Done today: Upper A"
 - assertVisible: "Set a weekly plan to see today.s workout here.*"
 - takeScreenshot: 07-dashboard
