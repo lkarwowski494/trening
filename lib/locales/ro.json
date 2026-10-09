@@ -1248,7 +1248,6 @@
  "Zmiany w trakcie treningu": "Modificări în timpul antrenamentului",
  "„⇄ zamień” przy ćwiczeniu zamienia je na inne tylko w tym treningu — szablon zostaje.": "„⇄ înlocuiește” lângă un exercițiu îl schimbă cu altul doar în acest antrenament — șablonul rămâne.",
  "„Pomiń dziś” pomija resztę serii ćwiczenia w tym treningu.": "„Sari peste azi” sare peste restul seriilor exercițiului în acest antrenament.",
- "Superset ustawisz w szablonie przyciskiem „Połącz z następnym w superset” — przerwa liczy się po ostatnim ćwiczeniu grupy.": "Supersetul îl setezi în șablon cu „Leagă de următorul într-un superset” — pauza începe după ultimul exercițiu din grup.",
  "Przesunięcie serii albo nazwy ćwiczenia w lewo usuwa je (z potwierdzeniem).": "Glisarea unei serii sau a numelui unui exercițiu spre stânga o șterge (cu confirmare).",
  "Edycja sesji i trening wstecz": "Editarea sesiunilor și antrenamente trecute",
  "W Kalendarzu stuknij sesję, potem „Edytuj” — zmiany zapisuje „Zapisz”, „Anuluj” je odrzuca.": "În Calendar atinge o sesiune, apoi „Editează” — „Salvează” păstrează modificările, „Anulează” renunță la ele.",
@@ -1279,5 +1278,6 @@
  "Hantle z talerzami 2×10 kg": "Gantere cu discuri 2×10 kg",
  "Inteligentna stacja kablowa — pełna (1,5–65 kg/str.)": "Stație inteligentă cu cablu — completă (1,5–65 kg/parte)",
  "Przenośna stacja elektryczna, jedna linka (5–200 lb)": "Unitate electrică portabilă cu cablu, un singur cablu (5–200 lb)",
- "Inteligentna stacja kablowa — kompaktowa (1,5–35 kg/str.)": "Stație inteligentă cu cablu — compactă (1,5–35 kg/parte)"
+ "Inteligentna stacja kablowa — kompaktowa (1,5–35 kg/str.)": "Stație inteligentă cu cablu — compactă (1,5–35 kg/parte)",
+ "Superset ustawisz w szablonie: „Edytuj”, potem „⇅ SS” przy ćwiczeniu łączy je z następnym (w trakcie treningu ten sam przycisk jest przy ćwiczeniu) — przerwa liczy się po ostatnim ćwiczeniu grupy.": "Supersetul îl setezi în șablon: „Editează”, apoi „⇅ SS” la un exercițiu îl leagă de următorul (în timpul antrenamentului același buton e la exercițiu) — pauza începe după ultimul exercițiu din grup."
 }

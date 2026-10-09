@@ -1248,7 +1248,6 @@
  "Zmiany w trakcie treningu": "Muudatused treeningu ajal",
  "„⇄ zamień” przy ćwiczeniu zamienia je na inne tylko w tym treningu — szablon zostaje.": "„⇄ vaheta“ harjutuse juures asendab selle teisega ainult selles treeningus — mall jääb.",
  "„Pomiń dziś” pomija resztę serii ćwiczenia w tym treningu.": "„Jäta täna vahele“ jätab harjutuse ülejäänud seeriad selles treeningus vahele.",
- "Superset ustawisz w szablonie przyciskiem „Połącz z następnym w superset” — przerwa liczy się po ostatnim ćwiczeniu grupy.": "Superseeria määrad mallis nupuga „Ühenda järgmisega superseeriaks“ — paus algab pärast rühma viimast harjutust.",
  "Przesunięcie serii albo nazwy ćwiczenia w lewo usuwa je (z potwierdzeniem).": "Seeria või harjutuse nime libistamine vasakule kustutab selle (kinnitusega).",
  "Edycja sesji i trening wstecz": "Treeningute muutmine ja varasemad treeningud",
  "W Kalendarzu stuknij sesję, potem „Edytuj” — zmiany zapisuje „Zapisz”, „Anuluj” je odrzuca.": "Kalendris puuduta treeningut, siis „Muuda“ — „Salvesta“ salvestab muudatused, „Tühista“ loobub neist.",
@@ -1279,5 +1278,6 @@
  "Hantle z talerzami 2×10 kg": "Ketastega hantlid 2×10 kg",
  "Inteligentna stacja kablowa — pełna (1,5–65 kg/str.)": "Nutikas trossijaam — täismõõdus (1,5–65 kg/pool)",
  "Przenośna stacja elektryczna, jedna linka (5–200 lb)": "Kaasaskantav elektriline trossiseade, üks tross (5–200 lb)",
- "Inteligentna stacja kablowa — kompaktowa (1,5–35 kg/str.)": "Nutikas trossijaam — kompaktne (1,5–35 kg/pool)"
+ "Inteligentna stacja kablowa — kompaktowa (1,5–35 kg/str.)": "Nutikas trossijaam — kompaktne (1,5–35 kg/pool)",
+ "Superset ustawisz w szablonie: „Edytuj”, potem „⇅ SS” przy ćwiczeniu łączy je z następnym (w trakcie treningu ten sam przycisk jest przy ćwiczeniu) — przerwa liczy się po ostatnim ćwiczeniu grupy.": "Superseeria määrad mallis: „Muuda“, seejärel ühendab „⇅ SS“ harjutuse juures selle järgmisega (treeningu ajal on sama nupp harjutuse juures) — paus algab pärast rühma viimast harjutust."
 }

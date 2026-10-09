@@ -1248,7 +1248,6 @@
  "Zmiany w trakcie treningu": "Changements pendant la séance",
  "„⇄ zamień” przy ćwiczeniu zamienia je na inne tylko w tym treningu — szablon zostaje.": "« ⇄ remplacer » à côté d’un exercice le remplace par un autre seulement dans cette séance — le modèle reste.",
  "„Pomiń dziś” pomija resztę serii ćwiczenia w tym treningu.": "« Passer aujourd’hui » saute les séries restantes de l’exercice dans cette séance.",
- "Superset ustawisz w szablonie przyciskiem „Połącz z następnym w superset” — przerwa liczy się po ostatnim ćwiczeniu grupy.": "Le superset se règle dans le modèle avec « Lier au suivant en superset » — le repos commence après le dernier exercice du groupe.",
  "Przesunięcie serii albo nazwy ćwiczenia w lewo usuwa je (z potwierdzeniem).": "Balayer une série ou le nom d’un exercice vers la gauche le supprime (avec confirmation).",
  "Edycja sesji i trening wstecz": "Modifier des séances et saisir des séances passées",
  "W Kalendarzu stuknij sesję, potem „Edytuj” — zmiany zapisuje „Zapisz”, „Anuluj” je odrzuca.": "Dans le Calendrier, touche une séance puis « Modifier » — « Enregistrer » enregistre les changements, « Annuler » les abandonne.",
@@ -1279,5 +1278,6 @@
  "Hantle z talerzami 2×10 kg": "Haltères à disques 2×10 kg",
  "Inteligentna stacja kablowa — pełna (1,5–65 kg/str.)": "Station à poulie connectée — complète (1,5–65 kg/côté)",
  "Przenośna stacja elektryczna, jedna linka (5–200 lb)": "Unité électrique portable à câble, un seul câble (5–200 lb)",
- "Inteligentna stacja kablowa — kompaktowa (1,5–35 kg/str.)": "Station à poulie connectée — compacte (1,5–35 kg/côté)"
+ "Inteligentna stacja kablowa — kompaktowa (1,5–35 kg/str.)": "Station à poulie connectée — compacte (1,5–35 kg/côté)",
+ "Superset ustawisz w szablonie: „Edytuj”, potem „⇅ SS” przy ćwiczeniu łączy je z następnym (w trakcie treningu ten sam przycisk jest przy ćwiczeniu) — przerwa liczy się po ostatnim ćwiczeniu grupy.": "Pour régler un superset dans le modèle, touchez « Modifier », puis « ⇅ SS » sur un exercice le lie au suivant (pendant la séance, le même bouton se trouve sur l’exercice) — le repos commence après le dernier exercice du groupe."
 }

@@ -1248,7 +1248,6 @@
  "Zmiany w trakcie treningu": "Änderungen während des Trainings",
  "„⇄ zamień” przy ćwiczeniu zamienia je na inne tylko w tym treningu — szablon zostaje.": "„⇄ tauschen“ bei einer Übung ersetzt sie nur in diesem Training — die Vorlage bleibt.",
  "„Pomiń dziś” pomija resztę serii ćwiczenia w tym treningu.": "„Heute überspringen“ überspringt die restlichen Sätze der Übung in diesem Training.",
- "Superset ustawisz w szablonie przyciskiem „Połącz z następnym w superset” — przerwa liczy się po ostatnim ćwiczeniu grupy.": "Einen Supersatz legst du in der Vorlage mit „Mit der nächsten Übung zum Supersatz verbinden“ fest — die Pause beginnt nach der letzten Übung der Gruppe.",
  "Przesunięcie serii albo nazwy ćwiczenia w lewo usuwa je (z potwierdzeniem).": "Wischen eines Satzes oder Übungsnamens nach links löscht ihn (mit Bestätigung).",
  "Edycja sesji i trening wstecz": "Einheiten bearbeiten und nachtragen",
  "W Kalendarzu stuknij sesję, potem „Edytuj” — zmiany zapisuje „Zapisz”, „Anuluj” je odrzuca.": "Tippe im Kalender auf eine Einheit, dann auf „Bearbeiten“ — „Speichern“ übernimmt die Änderungen, „Abbrechen“ verwirft sie.",
@@ -1279,5 +1278,6 @@
  "Hantle z talerzami 2×10 kg": "Kurzhanteln mit Scheiben 2×10 kg",
  "Inteligentna stacja kablowa — pełna (1,5–65 kg/str.)": "Intelligente Kabelstation — groß (1,5–65 kg/S.)",
  "Przenośna stacja elektryczna, jedna linka (5–200 lb)": "Tragbare elektrische Kabeleinheit, ein Seil (5–200 lb)",
- "Inteligentna stacja kablowa — kompaktowa (1,5–35 kg/str.)": "Intelligente Kabelstation — kompakt (1,5–35 kg/S.)"
+ "Inteligentna stacja kablowa — kompaktowa (1,5–35 kg/str.)": "Intelligente Kabelstation — kompakt (1,5–35 kg/S.)",
+ "Superset ustawisz w szablonie: „Edytuj”, potem „⇅ SS” przy ćwiczeniu łączy je z następnym (w trakcie treningu ten sam przycisk jest przy ćwiczeniu) — przerwa liczy się po ostatnim ćwiczeniu grupy.": "Einen Supersatz legst du in der Vorlage fest: „Bearbeiten“, dann verbindet „⇅ SS“ an der Übung sie mit der nächsten (im Training sitzt dieselbe Taste an der Übung) — die Pause beginnt nach der letzten Übung der Gruppe."
 }

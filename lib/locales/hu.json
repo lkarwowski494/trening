@@ -1248,7 +1248,6 @@
  "Zmiany w trakcie treningu": "Változtatások edzés közben",
  "„⇄ zamień” przy ćwiczeniu zamienia je na inne tylko w tym treningu — szablon zostaje.": "A gyakorlat melletti „⇄ csere” csak ebben az edzésben cseréli másikra — a sablon marad.",
  "„Pomiń dziś” pomija resztę serii ćwiczenia w tym treningu.": "A „Ma kihagyom” kihagyja a gyakorlat hátralévő sorozatait ebben az edzésben.",
- "Superset ustawisz w szablonie przyciskiem „Połącz z następnym w superset” — przerwa liczy się po ostatnim ćwiczeniu grupy.": "A szuperszettet a sablonban állítod be az „Összekapcsolás a következővel szuperszettbe” gombbal — a pihenő a csoport utolsó gyakorlata után indul.",
  "Przesunięcie serii albo nazwy ćwiczenia w lewo usuwa je (z potwierdzeniem).": "Egy sorozat vagy gyakorlatnév balra húzása törli (megerősítéssel).",
  "Edycja sesji i trening wstecz": "Edzések szerkesztése és korábbi edzések",
  "W Kalendarzu stuknij sesję, potem „Edytuj” — zmiany zapisuje „Zapisz”, „Anuluj” je odrzuca.": "A Naptárban koppints egy edzésre, majd a „Szerkesztés”-re — a „Mentés” menti a változásokat, a „Mégsem” elveti őket.",
@@ -1279,5 +1278,6 @@
  "Hantle z talerzami 2×10 kg": "Tárcsás kézisúlyzók 2×10 kg",
  "Inteligentna stacja kablowa — pełna (1,5–65 kg/str.)": "Okos kábeles gép — teljes (1,5–65 kg/oldal)",
  "Przenośna stacja elektryczna, jedna linka (5–200 lb)": "Hordozható elektromos kábeles egység, egy kábel (5–200 lb)",
- "Inteligentna stacja kablowa — kompaktowa (1,5–35 kg/str.)": "Okos kábeles gép — kompakt (1,5–35 kg/oldal)"
+ "Inteligentna stacja kablowa — kompaktowa (1,5–35 kg/str.)": "Okos kábeles gép — kompakt (1,5–35 kg/oldal)",
+ "Superset ustawisz w szablonie: „Edytuj”, potem „⇅ SS” przy ćwiczeniu łączy je z następnym (w trakcie treningu ten sam przycisk jest przy ćwiczeniu) — przerwa liczy się po ostatnim ćwiczeniu grupy.": "A szuperszettet a sablonban állítod be: „Szerkesztés”, majd a gyakorlatnál a „⇅ SS” összekapcsolja a következővel (edzés közben ugyanez a gomb a gyakorlatnál van) — a pihenő a csoport utolsó gyakorlata után indul."
 }

@@ -1248,7 +1248,6 @@
  "Zmiany w trakcie treningu": "Αλλαγές κατά την προπόνηση",
  "„⇄ zamień” przy ćwiczeniu zamienia je na inne tylko w tym treningu — szablon zostaje.": "Το «⇄ αλλαγή» δίπλα σε άσκηση την αντικαθιστά με άλλη μόνο σε αυτή την προπόνηση — το πρότυπο μένει.",
  "„Pomiń dziś” pomija resztę serii ćwiczenia w tym treningu.": "Η «Παράλειψη σήμερα» παραλείπει τα υπόλοιπα σετ της άσκησης σε αυτή την προπόνηση.",
- "Superset ustawisz w szablonie przyciskiem „Połącz z następnym w superset” — przerwa liczy się po ostatnim ćwiczeniu grupy.": "Το superset το ορίζεις στο πρότυπο με το «Ένωση με την επόμενη σε superset» — το διάλειμμα ξεκινά μετά την τελευταία άσκηση της ομάδας.",
  "Przesunięcie serii albo nazwy ćwiczenia w lewo usuwa je (z potwierdzeniem).": "Η σάρωση ενός σετ ή του ονόματος άσκησης αριστερά το διαγράφει (με επιβεβαίωση).",
  "Edycja sesji i trening wstecz": "Επεξεργασία συνεδριών και παλιές προπονήσεις",
  "W Kalendarzu stuknij sesję, potem „Edytuj” — zmiany zapisuje „Zapisz”, „Anuluj” je odrzuca.": "Στο Ημερολόγιο πάτησε μια συνεδρία και μετά «Επεξεργασία» — η «Αποθήκευση» κρατά τις αλλαγές, η «Ακύρωση» τις απορρίπτει.",
@@ -1279,5 +1278,6 @@
  "Hantle z talerzami 2×10 kg": "Αλτήρες με δίσκους 2×10 kg",
  "Inteligentna stacja kablowa — pełna (1,5–65 kg/str.)": "Έξυπνος σταθμός τροχαλίας — πλήρης (1,5–65 kg/πλευρά)",
  "Przenośna stacja elektryczna, jedna linka (5–200 lb)": "Φορητή ηλεκτρική μονάδα τροχαλίας, ένα συρματόσχοινο (5–200 lb)",
- "Inteligentna stacja kablowa — kompaktowa (1,5–35 kg/str.)": "Έξυπνος σταθμός τροχαλίας — συμπαγής (1,5–35 kg/πλευρά)"
+ "Inteligentna stacja kablowa — kompaktowa (1,5–35 kg/str.)": "Έξυπνος σταθμός τροχαλίας — συμπαγής (1,5–35 kg/πλευρά)",
+ "Superset ustawisz w szablonie: „Edytuj”, potem „⇅ SS” przy ćwiczeniu łączy je z następnym (w trakcie treningu ten sam przycisk jest przy ćwiczeniu) — przerwa liczy się po ostatnim ćwiczeniu grupy.": "Το superset το ορίζεις στο πρότυπο: «Επεξεργασία», μετά το «⇅ SS» στην άσκηση την ενώνει με την επόμενη (στην προπόνηση το ίδιο κουμπί είναι στην άσκηση) — το διάλειμμα ξεκινά μετά την τελευταία άσκηση της ομάδας."
 }

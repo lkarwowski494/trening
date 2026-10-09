@@ -1248,7 +1248,6 @@
  "Zmiany w trakcie treningu": "Spremembe med treningom",
  "„⇄ zamień” przy ćwiczeniu zamienia je na inne tylko w tym treningu — szablon zostaje.": "»⇄ zamenjaj« pri vaji jo zamenja z drugo samo v tem treningu — predloga ostane.",
  "„Pomiń dziś” pomija resztę serii ćwiczenia w tym treningu.": "»Danes izpusti« izpusti preostale serije vaje v tem treningu.",
- "Superset ustawisz w szablonie przyciskiem „Połącz z następnym w superset” — przerwa liczy się po ostatnim ćwiczeniu grupy.": "Superset nastaviš v predlogi z gumbom »Poveži z naslednjo v superset« — počitek se začne po zadnji vaji skupine.",
  "Przesunięcie serii albo nazwy ćwiczenia w lewo usuwa je (z potwierdzeniem).": "Poteg serije ali imena vaje v levo jo izbriše (s potrditvijo).",
  "Edycja sesji i trening wstecz": "Urejanje treningov in pretekli treningi",
  "W Kalendarzu stuknij sesję, potem „Edytuj” — zmiany zapisuje „Zapisz”, „Anuluj” je odrzuca.": "V Koledarju tapni trening, nato »Uredi« — »Shrani« shrani spremembe, »Prekliči« jih zavrže.",
@@ -1279,5 +1278,6 @@
  "Hantle z talerzami 2×10 kg": "Ročke s ploščami 2×10 kg",
  "Inteligentna stacja kablowa — pełna (1,5–65 kg/str.)": "Pametna postaja s kablom — polna (1,5–65 kg/str.)",
  "Przenośna stacja elektryczna, jedna linka (5–200 lb)": "Prenosna električna enota s kablom, en kabel (5–200 lb)",
- "Inteligentna stacja kablowa — kompaktowa (1,5–35 kg/str.)": "Pametna postaja s kablom — kompaktna (1,5–35 kg/str.)"
+ "Inteligentna stacja kablowa — kompaktowa (1,5–35 kg/str.)": "Pametna postaja s kablom — kompaktna (1,5–35 kg/str.)",
+ "Superset ustawisz w szablonie: „Edytuj”, potem „⇅ SS” przy ćwiczeniu łączy je z następnym (w trakcie treningu ten sam przycisk jest przy ćwiczeniu) — przerwa liczy się po ostatnim ćwiczeniu grupy.": "Superset nastaviš v predlogi: »Uredi«, nato »⇅ SS« pri vaji poveže vajo z naslednjo (med treningom je isti gumb pri vaji) — počitek se začne po zadnji vaji skupine."
 }

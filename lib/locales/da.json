@@ -1248,7 +1248,6 @@
  "Zmiany w trakcie treningu": "Ændringer under træningen",
  "„⇄ zamień” przy ćwiczeniu zamienia je na inne tylko w tym treningu — szablon zostaje.": "“⇄ skift” ved en øvelse erstatter den med en anden kun i denne træning — skabelonen forbliver.",
  "„Pomiń dziś” pomija resztę serii ćwiczenia w tym treningu.": "“Spring over i dag” springer resten af øvelsens sæt over i denne træning.",
- "Superset ustawisz w szablonie przyciskiem „Połącz z następnym w superset” — przerwa liczy się po ostatnim ćwiczeniu grupy.": "Et supersæt indstiller du i skabelonen med “Forbind med næste i et supersæt” — hvilen starter efter gruppens sidste øvelse.",
  "Przesunięcie serii albo nazwy ćwiczenia w lewo usuwa je (z potwierdzeniem).": "Stryg et sæt eller et øvelsesnavn til venstre for at slette det (med bekræftelse).",
  "Edycja sesji i trening wstecz": "Redigering af sessioner og tidligere træninger",
  "W Kalendarzu stuknij sesję, potem „Edytuj” — zmiany zapisuje „Zapisz”, „Anuluj” je odrzuca.": "I Kalender tryk på en session og derefter “Rediger” — “Gem” gemmer ændringerne, “Annuller” kasserer dem.",
@@ -1279,5 +1278,6 @@
  "Hantle z talerzami 2×10 kg": "Håndvægte med skiver 2×10 kg",
  "Inteligentna stacja kablowa — pełna (1,5–65 kg/str.)": "Smart kabelstation — fuld (1,5–65 kg/side)",
  "Przenośna stacja elektryczna, jedna linka (5–200 lb)": "Bærbar elektrisk kabelenhed, ét kabel (5–200 lb)",
- "Inteligentna stacja kablowa — kompaktowa (1,5–35 kg/str.)": "Smart kabelstation — kompakt (1,5–35 kg/side)"
+ "Inteligentna stacja kablowa — kompaktowa (1,5–35 kg/str.)": "Smart kabelstation — kompakt (1,5–35 kg/side)",
+ "Superset ustawisz w szablonie: „Edytuj”, potem „⇅ SS” przy ćwiczeniu łączy je z następnym (w trakcie treningu ten sam przycisk jest przy ćwiczeniu) — przerwa liczy się po ostatnim ćwiczeniu grupy.": "Et supersæt indstiller du i skabelonen: “Rediger”, derefter forbinder “⇅ SS” ved øvelsen den med den næste (under træningen sidder samme knap ved øvelsen) — hvilen starter efter gruppens sidste øvelse."
 }

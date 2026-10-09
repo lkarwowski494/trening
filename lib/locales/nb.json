@@ -1248,7 +1248,6 @@
  "Zmiany w trakcie treningu": "Endringer underveis i økten",
  "„⇄ zamień” przy ćwiczeniu zamienia je na inne tylko w tym treningu — szablon zostaje.": "«⇄ bytt» ved en øvelse erstatter den med en annen bare i denne økten — malen blir værende.",
  "„Pomiń dziś” pomija resztę serii ćwiczenia w tym treningu.": "«Hopp over i dag» hopper over resten av settene i øvelsen i denne økten.",
- "Superset ustawisz w szablonie przyciskiem „Połącz z następnym w superset” — przerwa liczy się po ostatnim ćwiczeniu grupy.": "Et supersett angir du i malen med «Koble med neste i et supersett» — hvilen starter etter gruppens siste øvelse.",
  "Przesunięcie serii albo nazwy ćwiczenia w lewo usuwa je (z potwierdzeniem).": "Sveip et sett eller et øvelsesnavn mot venstre for å slette det (med bekreftelse).",
  "Edycja sesji i trening wstecz": "Redigere økter og tidligere økter",
  "W Kalendarzu stuknij sesję, potem „Edytuj” — zmiany zapisuje „Zapisz”, „Anuluj” je odrzuca.": "I Kalender trykker du på en økt og så «Rediger» — «Lagre» lagrer endringene, «Avbryt» forkaster dem.",
@@ -1279,5 +1278,6 @@
  "Hantle z talerzami 2×10 kg": "Manualer med skiver 2×10 kg",
  "Inteligentna stacja kablowa — pełna (1,5–65 kg/str.)": "Smart kabelstasjon — full (1,5–65 kg/side)",
  "Przenośna stacja elektryczna, jedna linka (5–200 lb)": "Bærbar elektrisk kabelenhet, én kabel (5–200 lb)",
- "Inteligentna stacja kablowa — kompaktowa (1,5–35 kg/str.)": "Smart kabelstasjon — kompakt (1,5–35 kg/side)"
+ "Inteligentna stacja kablowa — kompaktowa (1,5–35 kg/str.)": "Smart kabelstasjon — kompakt (1,5–35 kg/side)",
+ "Superset ustawisz w szablonie: „Edytuj”, potem „⇅ SS” przy ćwiczeniu łączy je z następnym (w trakcie treningu ten sam przycisk jest przy ćwiczeniu) — przerwa liczy się po ostatnim ćwiczeniu grupy.": "Et supersett angir du i malen: «Rediger», deretter kobler «⇅ SS» ved øvelsen den med neste (under økten sitter samme knapp ved øvelsen) — hvilen starter etter gruppens siste øvelse."
 }

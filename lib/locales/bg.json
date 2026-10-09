@@ -1248,7 +1248,6 @@
  "Zmiany w trakcie treningu": "Промени по време на тренировка",
  "„⇄ zamień” przy ćwiczeniu zamienia je na inne tylko w tym treningu — szablon zostaje.": "„⇄ замяна“ до упражнение го заменя с друго само в тази тренировка — шаблонът остава.",
  "„Pomiń dziś” pomija resztę serii ćwiczenia w tym treningu.": "„Пропусни днес“ пропуска останалите серии на упражнението в тази тренировка.",
- "Superset ustawisz w szablonie przyciskiem „Połącz z następnym w superset” — przerwa liczy się po ostatnim ćwiczeniu grupy.": "Суперсерия задаваш в шаблона с „Свързване със следващото в суперсерия“ — почивката започва след последното упражнение от групата.",
  "Przesunięcie serii albo nazwy ćwiczenia w lewo usuwa je (z potwierdzeniem).": "Плъзгане на серия или име на упражнение наляво го изтрива (с потвърждение).",
  "Edycja sesji i trening wstecz": "Редактиране на тренировки и минали тренировки",
  "W Kalendarzu stuknij sesję, potem „Edytuj” — zmiany zapisuje „Zapisz”, „Anuluj” je odrzuca.": "В Календар докосни тренировка, после „Редактиране“ — „Запазване“ запазва промените, „Отказ“ ги отхвърля.",
@@ -1279,5 +1278,6 @@
  "Hantle z talerzami 2×10 kg": "Дъмбели с дискове 2×10 kg",
  "Inteligentna stacja kablowa — pełna (1,5–65 kg/str.)": "Умна кабелна станция — пълна (1,5–65 kg/стр.)",
  "Przenośna stacja elektryczna, jedna linka (5–200 lb)": "Преносима електрическа станция, един кабел (5–200 lb)",
- "Inteligentna stacja kablowa — kompaktowa (1,5–35 kg/str.)": "Умна кабелна станция — компактна (1,5–35 kg/стр.)"
+ "Inteligentna stacja kablowa — kompaktowa (1,5–35 kg/str.)": "Умна кабелна станция — компактна (1,5–35 kg/стр.)",
+ "Superset ustawisz w szablonie: „Edytuj”, potem „⇅ SS” przy ćwiczeniu łączy je z następnym (w trakcie treningu ten sam przycisk jest przy ćwiczeniu) — przerwa liczy się po ostatnim ćwiczeniu grupy.": "Суперсерия задаваш в шаблона: „Редактиране“, после „⇅ SS“ при упражнението го свързва със следващото (по време на тренировка същият бутон е при упражнението) — почивката започва след последното упражнение от групата."
 }

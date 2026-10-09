@@ -1248,7 +1248,6 @@
  "Zmiany w trakcie treningu": "Wijzigingen tijdens de training",
  "„⇄ zamień” przy ćwiczeniu zamienia je na inne tylko w tym treningu — szablon zostaje.": "‘⇄ wissel’ bij een oefening vervangt die alleen in deze training — het sjabloon blijft.",
  "„Pomiń dziś” pomija resztę serii ćwiczenia w tym treningu.": "‘Vandaag overslaan’ slaat de resterende sets van de oefening in deze training over.",
- "Superset ustawisz w szablonie przyciskiem „Połącz z następnym w superset” — przerwa liczy się po ostatnim ćwiczeniu grupy.": "Een superset stel je in het sjabloon in met ‘Koppel aan volgende in superset’ — de rust begint na de laatste oefening van de groep.",
  "Przesunięcie serii albo nazwy ćwiczenia w lewo usuwa je (z potwierdzeniem).": "Een set of oefeningnaam naar links vegen verwijdert die (met bevestiging).",
  "Edycja sesji i trening wstecz": "Sessies bewerken en eerdere trainingen",
  "W Kalendarzu stuknij sesję, potem „Edytuj” — zmiany zapisuje „Zapisz”, „Anuluj” je odrzuca.": "Tik in Kalender op een sessie en dan op ‘Wijzig’ — ‘Bewaar’ slaat de wijzigingen op, ‘Annuleer’ verwerpt ze.",
@@ -1279,5 +1278,6 @@
  "Hantle z talerzami 2×10 kg": "Dumbbells met schijven 2×10 kg",
  "Inteligentna stacja kablowa — pełna (1,5–65 kg/str.)": "Slim kabelstation — volledig (1,5–65 kg/kant)",
  "Przenośna stacja elektryczna, jedna linka (5–200 lb)": "Draagbare elektrische kabelunit, één kabel (5–200 lb)",
- "Inteligentna stacja kablowa — kompaktowa (1,5–35 kg/str.)": "Slim kabelstation — compact (1,5–35 kg/kant)"
+ "Inteligentna stacja kablowa — kompaktowa (1,5–35 kg/str.)": "Slim kabelstation — compact (1,5–35 kg/kant)",
+ "Superset ustawisz w szablonie: „Edytuj”, potem „⇅ SS” przy ćwiczeniu łączy je z następnym (w trakcie treningu ten sam przycisk jest przy ćwiczeniu) — przerwa liczy się po ostatnim ćwiczeniu grupy.": "Een superset stel je in het sjabloon in: ‘Wijzig’, daarna koppelt ‘⇅ SS’ bij een oefening die aan de volgende (tijdens de training staat dezelfde knop bij de oefening) — de rust begint na de laatste oefening van de groep."
 }

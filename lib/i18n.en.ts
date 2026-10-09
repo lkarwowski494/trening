@@ -700,7 +700,6 @@ export const EN: Record<string, string> = {
   'Zmiany w trakcie treningu': 'Changes during a workout',
   '„⇄ zamień” przy ćwiczeniu zamienia je na inne tylko w tym treningu — szablon zostaje.': '“⇄ swap” next to an exercise replaces it with another only in this workout — the template stays.',
   '„Pomiń dziś” pomija resztę serii ćwiczenia w tym treningu.': '“Skip today” skips the rest of an exercise’s sets in this workout.',
-  'Superset ustawisz w szablonie przyciskiem „Połącz z następnym w superset” — przerwa liczy się po ostatnim ćwiczeniu grupy.': 'You set a superset in the template with “Link with next into a superset” — the rest starts after the last exercise of the group.',
   'Przesunięcie serii albo nazwy ćwiczenia w lewo usuwa je (z potwierdzeniem).': 'Swiping a set or an exercise name left deletes it (with confirmation).',
   'Edycja sesji i trening wstecz': 'Editing sessions and past workouts',
   'W Kalendarzu stuknij sesję, potem „Edytuj” — zmiany zapisuje „Zapisz”, „Anuluj” je odrzuca.': 'In the Calendar, tap a session, then “Edit” — “Save” saves the changes, “Cancel” discards them.',
@@ -807,4 +806,5 @@ export const EN: Record<string, string> = {
   'Inteligentna stacja kablowa — pełna (1,5–65 kg/str.)': 'Smart cable machine — full (1.5–65 kg/side)',
   'Przenośna stacja elektryczna, jedna linka (5–200 lb)': 'Portable electric cable unit, single cable (5–200 lb)',
   'Inteligentna stacja kablowa — kompaktowa (1,5–35 kg/str.)': 'Smart cable machine — compact (1.5–35 kg/side)',
+  'Superset ustawisz w szablonie: „Edytuj”, potem „⇅ SS” przy ćwiczeniu łączy je z następnym (w trakcie treningu ten sam przycisk jest przy ćwiczeniu) — przerwa liczy się po ostatnim ćwiczeniu grupy.': 'To set a superset in a template, tap “Edit”, then “⇅ SS” on an exercise links it with the next one (during a workout the same button is on the exercise) — the rest starts after the group’s last exercise.',
 };

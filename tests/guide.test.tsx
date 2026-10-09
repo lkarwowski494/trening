@@ -30,7 +30,7 @@ describe('treść i logika', () => {
   test('cytowane w krokach nazwy przycisków („…”) to teksty z interfejsu — zmiana nazwy przycisku wymaga zmiany przewodnika', () => {
     const quoted = GUIDE.flatMap(g => g.steps()).flatMap(s => [...s.matchAll(/„([^”]+)”/g)].map(m => m[1]));
     expect(quoted.length).toBeGreaterThan(10);
-    const missing = quoted.map(q => (q === 'Zaplanuj deload od …' ? 'Zaplanuj deload od {date}' : q === 'Powtórz ostatni' ? 'Powtórz ostatni ({name})' /* przycisk z nazwą treningu */ : q)).filter(q => !(q in EN));
+    const missing = quoted.map(q => (q === 'Zaplanuj deload od …' ? 'Zaplanuj deload od {date}' : q === 'Powtórz ostatni' ? 'Powtórz ostatni ({name})' /* przycisk z nazwą treningu */ : q)).filter(q => !(q in EN) && q !== '⇅ SS' /* UI2-07: tekst przycisku bez tłumaczenia (symbol) — sprawdzany niżej w kodzie ekranów */);
     expect(missing).toEqual([]);
   });
   test('postęp i odhaczanie: nieznane id pomijane, bez powtórzeń, bez userTouched', () => {
@@ -79,7 +79,7 @@ test('macierz: każdy tekst przewodnika (i punkt „Co nowego”) jest w treści
     /* audyt 0.10 fala 2 (UI): temat „Zmiany w trakcie treningu” i „Edycja sesji i trening wstecz” */
     '„⇄ zamień” przy ćwiczeniu zamienia je na inne tylko w tym treningu — szablon zostaje.',
     '„Pomiń dziś” pomija resztę serii ćwiczenia w tym treningu.',
-    'Superset ustawisz w szablonie przyciskiem „Połącz z następnym w superset” — przerwa liczy się po ostatnim ćwiczeniu grupy.',
+    'Superset ustawisz w szablonie: „Edytuj”, potem „⇅ SS” przy ćwiczeniu łączy je z następnym (w trakcie treningu ten sam przycisk jest przy ćwiczeniu) — przerwa liczy się po ostatnim ćwiczeniu grupy.',
     'Przesunięcie serii albo nazwy ćwiczenia w lewo usuwa je (z potwierdzeniem).',
     'W Kalendarzu stuknij sesję, potem „Edytuj” — zmiany zapisuje „Zapisz”, „Anuluj” je odrzuca.',
     '„+ Dodaj trening wstecz” zapisze trening, którego nie zapisałeś na bieżąco; z dnia w Kalendarzu — „Zapisz trening z tego dnia”.',
@@ -134,5 +134,14 @@ describe('ekrany', () => {
     expect(screen.getByText('Read: 0 of 10')).toBeTruthy(); await tap(screen.getByLabelText('Weekly plan and Calendar, unread')); await flushAll(5);
     expect(screen.getByText('1. In the Calendar, “Weekly plan” assigns templates to days — the plan repeats every week.')).toBeTruthy();
     expect(screen.getByLabelText('Show: Weekly plan and Calendar')).toBeTruthy();
+  });
+});
+
+describe('UI2-07 (audyt kontrolny 1): przewodnik cytuje to, co widać na ekranie', () => {
+  test('superset: „Edytuj” i widoczny tekst przycisku „⇅ SS”, nie etykieta VoiceOver „Połącz z następnym w superset”', () => {
+    const all = GUIDE.flatMap(g => g.steps()).join('\n');
+    expect(all).not.toContain('Połącz z następnym w superset');
+    expect(all).toContain('⇅ SS');
+    const fs2 = require('fs'); for (const f of ['app/template/[id].tsx', 'components/ActiveWorkout.tsx']) expect(fs2.readFileSync(f, 'utf8')).toContain('title="⇅ SS"');
   });
 });

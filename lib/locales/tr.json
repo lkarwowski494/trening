@@ -1248,7 +1248,6 @@
  "Zmiany w trakcie treningu": "Antrenman sırasında değişiklikler",
  "„⇄ zamień” przy ćwiczeniu zamienia je na inne tylko w tym treningu — szablon zostaje.": "Egzersizin yanındaki “⇄ değiştir” onu yalnızca bu antrenmanda başkasıyla değiştirir — şablon kalır.",
  "„Pomiń dziś” pomija resztę serii ćwiczenia w tym treningu.": "“Bugün atla” bu antrenmanda egzersizin kalan setlerini atlar.",
- "Superset ustawisz w szablonie przyciskiem „Połącz z następnym w superset” — przerwa liczy się po ostatnim ćwiczeniu grupy.": "Süperseti şablonda “Sonrakiyle süperset yap” düğmesiyle kurarsın — dinlenme grubun son egzersizinden sonra başlar.",
  "Przesunięcie serii albo nazwy ćwiczenia w lewo usuwa je (z potwierdzeniem).": "Bir seti ya da egzersiz adını sola kaydırmak onu siler (onayla).",
  "Edycja sesji i trening wstecz": "Oturum düzenleme ve geçmiş antrenmanlar",
  "W Kalendarzu stuknij sesję, potem „Edytuj” — zmiany zapisuje „Zapisz”, „Anuluj” je odrzuca.": "Takvim’de bir oturuma dokun, sonra “Düzenle” — “Kaydet” değişiklikleri kaydeder, “Vazgeç” onları atar.",
@@ -1279,5 +1278,6 @@
  "Hantle z talerzami 2×10 kg": "Plakalı dambıllar 2×10 kg",
  "Inteligentna stacja kablowa — pełna (1,5–65 kg/str.)": "Akıllı kablo istasyonu — tam boy (1,5–65 kg/taraf)",
  "Przenośna stacja elektryczna, jedna linka (5–200 lb)": "Taşınabilir elektrikli kablo ünitesi, tek kablo (5–200 lb)",
- "Inteligentna stacja kablowa — kompaktowa (1,5–35 kg/str.)": "Akıllı kablo istasyonu — kompakt (1,5–35 kg/taraf)"
+ "Inteligentna stacja kablowa — kompaktowa (1,5–35 kg/str.)": "Akıllı kablo istasyonu — kompakt (1,5–35 kg/taraf)",
+ "Superset ustawisz w szablonie: „Edytuj”, potem „⇅ SS” przy ćwiczeniu łączy je z następnym (w trakcie treningu ten sam przycisk jest przy ćwiczeniu) — przerwa liczy się po ostatnim ćwiczeniu grupy.": "Şablonda süperset kurmak için “Düzenle”ye dokunun, ardından egzersizdeki “⇅ SS” onu sonrakiyle birleştirir (antrenman sırasında aynı düğme egzersizin yanındadır) — dinlenme grubun son egzersizinden sonra başlar."
 }
