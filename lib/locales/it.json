@@ -863,7 +863,6 @@
  "Zamknij": "Chiudi",
  "Kalendarz zamiast Historii: plan tygodnia, przesuwanie treningów i propozycje zmian z myślą o regeneracji partii.": "Calendario al posto della Cronologia: piano settimanale, spostamento degli allenamenti e proposte di modifica che tengono conto del recupero muscolare.",
  "Pauza treningu — czas pauzy nie liczy się do czasu trwania.": "Pausa dell’allenamento — il tempo di pausa non conta nella durata.",
- "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik 10 serii na partię w tygodniu i oznaczanie tygodnia deload.": "Progressi: riepilogo della settimana e del mese con mappa muscolare, soglia di 10 serie per gruppo muscolare a settimana e segnalazione della settimana di scarico.",
  "Skala wysiłku RPE albo RIR w Ustawieniach.": "Scala dello sforzo RPE o RIR nelle Impostazioni.",
  "Szablony w folderach i archiwum, „Pomiń dziś” bez zmiany szablonu, usuwanie przesunięciem w lewo.": "Schede in cartelle e archivio, «Salta oggi» senza modificare la scheda, eliminazione scorrendo a sinistra.",
  "Nowy wygląd: kolory i kroje, grafika talerzy na sztandze.": "Nuovo aspetto: colori e caratteri, grafica dei dischi sul bilanciere.",
@@ -960,7 +959,6 @@
  "Tydzień oznaczysz też w Postępach przełącznikiem „Tydzień deload”.": "Puoi segnare una settimana anche in Progressi con l’interruttore «Settimana di scarico».",
  "Postępy i rekordy": "Progressi e record",
  "Więcej → Postępy: podsumowanie tygodnia lub miesiąca z poprzednim okresem obok.": "Altro → Progressi: riepilogo della settimana o del mese con il periodo precedente accanto.",
- "Mapa mięśni i serie na partię z kreską 10 serii tygodniowo.": "Mappa muscolare e serie per gruppo muscolare con una linea a 10 serie settimanali.",
  "Wykresy ćwiczeń i rekordy; rekord w trakcie treningu widać przy serii.": "Grafici degli esercizi e record; durante l’allenamento il record compare accanto alla serie.",
  "Więcej → Miejsca i sprzęt: dom, siłownia, hotel — każdy ze swoim sprzętem i ciężarami.": "Altro → Luoghi e attrezzatura: casa, palestra, hotel — ognuno con la propria attrezzatura e i propri pesi.",
  "Lista ćwiczeń, zamiany i generator pokazują to, co da się zrobić w wybranym miejscu.": "Elenco esercizi, sostituzioni e generatore mostrano ciò che si può fare nel luogo scelto.",
@@ -1305,5 +1303,7 @@
  "Niezapisane zmiany": "Modifiche non salvate",
  "Aplikacja zamknęła się w trakcie edycji szablonu „{name}”. Wrócić do edycji?": "L’app si è chiusa mentre modificavi la scheda «{name}». Tornare alla modifica?",
  "Aplikacja zamknęła się w trakcie edycji ćwiczenia „{name}”. Wrócić do edycji?": "L’app si è chiusa mentre modificavi l’esercizio «{name}». Tornare alla modifica?",
- "Wróć do edycji": "Torna alla modifica"
+ "Wróć do edycji": "Torna alla modifica",
+ "Mapa mięśni i serie na partię z kreską {n} serii tygodniowo.": "Mappa muscolare e serie per gruppo muscolare con una linea a {n} serie settimanali.",
+ "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.": "Progressi: riepilogo della settimana e del mese con mappa muscolare, soglia di {n} serie per gruppo muscolare a settimana e segnalazione della settimana di scarico."
 }

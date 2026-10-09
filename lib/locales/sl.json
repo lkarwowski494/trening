@@ -863,7 +863,6 @@
  "Zamknij": "Zapri",
  "Kalendarz zamiast Historii: plan tygodnia, przesuwanie treningów i propozycje zmian z myślą o regeneracji partii.": "Koledar namesto Zgodovine: tedenski načrt, premikanje treningov in predlogi sprememb ob upoštevanju regeneracije mišičnih skupin.",
  "Pauza treningu — czas pauzy nie liczy się do czasu trwania.": "Premor treninga — čas premora se ne šteje v trajanje.",
- "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik 10 serii na partię w tygodniu i oznaczanie tygodnia deload.": "Napredek: povzetek tedna in meseca z zemljevidom mišic, oznaka 10 serij na mišično skupino na teden in označevanje tedna razbremenitve.",
  "Skala wysiłku RPE albo RIR w Ustawieniach.": "Lestvica napora RPE ali RIR v Nastavitvah.",
  "Szablony w folderach i archiwum, „Pomiń dziś” bez zmiany szablonu, usuwanie przesunięciem w lewo.": "Predloge v mapah in arhivu, »Danes izpusti« brez spremembe predloge, brisanje s potegom v levo.",
  "Nowy wygląd: kolory i kroje, grafika talerzy na sztandze.": "Nov videz: barve in pisave, grafika uteži na drogu.",
@@ -960,7 +959,6 @@
  "Tydzień oznaczysz też w Postępach przełącznikiem „Tydzień deload”.": "Teden lahko označiš tudi v Napredek s stikalom »Teden razbremenitve«.",
  "Postępy i rekordy": "Napredek in rekordi",
  "Więcej → Postępy: podsumowanie tygodnia lub miesiąca z poprzednim okresem obok.": "Več → Napredek: povzetek tedna ali meseca s prejšnjim obdobjem ob njem.",
- "Mapa mięśni i serie na partię z kreską 10 serii tygodniowo.": "Zemljevid mišic in serije na mišično skupino s črto pri 10 serijah na teden.",
  "Wykresy ćwiczeń i rekordy; rekord w trakcie treningu widać przy serii.": "Grafi vaj in rekordi; med treningom je rekord prikazan ob seriji.",
  "Więcej → Miejsca i sprzęt: dom, siłownia, hotel — każdy ze swoim sprzętem i ciężarami.": "Več → Lokacije in oprema: doma, fitnes, hotel — vsako s svojo opremo in utežmi.",
  "Lista ćwiczeń, zamiany i generator pokazują to, co da się zrobić w wybranym miejscu.": "Seznam vaj, zamenjave in generator kažejo, kaj se da narediti na izbranem mestu.",
@@ -1305,5 +1303,7 @@
  "Niezapisane zmiany": "Neshranjene spremembe",
  "Aplikacja zamknęła się w trakcie edycji szablonu „{name}”. Wrócić do edycji?": "Aplikacija se je zaprla med urejanjem predloge »{name}«. Se vrnem k urejanju?",
  "Aplikacja zamknęła się w trakcie edycji ćwiczenia „{name}”. Wrócić do edycji?": "Aplikacija se je zaprla med urejanjem vaje »{name}«. Se vrnem k urejanju?",
- "Wróć do edycji": "Nazaj na urejanje"
+ "Wróć do edycji": "Nazaj na urejanje",
+ "Mapa mięśni i serie na partię z kreską {n} serii tygodniowo.": "Zemljevid mišic in serije na mišično skupino s črto pri {n} serijah na teden.",
+ "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.": "Napredek: povzetek tedna in meseca z zemljevidom mišic, oznaka {n} serij na mišično skupino na teden in označevanje tedna razbremenitve."
 }

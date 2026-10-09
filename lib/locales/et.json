@@ -863,7 +863,6 @@
  "Zamknij": "Sulge",
  "Kalendarz zamiast Historii: plan tygodnia, przesuwanie treningów i propozycje zmian z myślą o regeneracji partii.": "Ajaloo asemel kalender: nädalaplaan, trennide liigutamine ja muudatusettepanekud lihasrühmade taastumist arvestades.",
  "Pauza treningu — czas pauzy nie liczy się do czasu trwania.": "Treening peatatud — peatatud aeg kestusesse ei lähe.",
- "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik 10 serii na partię w tygodniu i oznaczanie tygodnia deload.": "Edenemine: nädala ja kuu kokkuvõte lihaskaardiga, 10 seeria märk lihasrühma kohta nädalas ja nädala märkimine kergendusnädalaks.",
  "Skala wysiłku RPE albo RIR w Ustawieniach.": "Pingutuse skaala RPE või RIR seadetes.",
  "Szablony w folderach i archiwum, „Pomiń dziś” bez zmiany szablonu, usuwanie przesunięciem w lewo.": "Mallid kaustades ja arhiivis, „Jäta täna vahele“ malli muutmata, kustutamine vasakule libistades.",
  "Nowy wygląd: kolory i kroje, grafika talerzy na sztandze.": "Uus välimus: värvid ja kirjatüübid, raskusketaste pilt kangil.",
@@ -960,7 +959,6 @@
  "Tydzień oznaczysz też w Postępach przełącznikiem „Tydzień deload”.": "Nädala saad märkida ka Edenemine lülitiga „Kergendusnädal“.",
  "Postępy i rekordy": "Edenemine ja rekordid",
  "Więcej → Postępy: podsumowanie tygodnia lub miesiąca z poprzednim okresem obok.": "Rohkem → Edenemine: nädala või kuu kokkuvõte, kõrval eelmine periood.",
- "Mapa mięśni i serie na partię z kreską 10 serii tygodniowo.": "Lihaskaart ja seeriad lihasrühma kohta joonega 10 seeria juures nädalas.",
  "Wykresy ćwiczeń i rekordy; rekord w trakcie treningu widać przy serii.": "Harjutuste graafikud ja rekordid; trenni ajal on rekord seeria juures.",
  "Więcej → Miejsca i sprzęt: dom, siłownia, hotel — każdy ze swoim sprzętem i ciężarami.": "Rohkem → Kohad ja varustus: kodu, jõusaal, hotell — igaühel oma varustus ja raskused.",
  "Lista ćwiczeń, zamiany i generator pokazują to, co da się zrobić w wybranym miejscu.": "Harjutuste loend, asendused ja generaator näitavad, mida valitud kohas teha saab.",
@@ -1305,5 +1303,7 @@
  "Niezapisane zmiany": "Salvestamata muudatused",
  "Aplikacja zamknęła się w trakcie edycji szablonu „{name}”. Wrócić do edycji?": "Rakendus suleti malli „{name}“ muutmise ajal. Kas jätkata muutmist?",
  "Aplikacja zamknęła się w trakcie edycji ćwiczenia „{name}”. Wrócić do edycji?": "Rakendus suleti harjutuse „{name}“ muutmise ajal. Kas jätkata muutmist?",
- "Wróć do edycji": "Jätka muutmist"
+ "Wróć do edycji": "Jätka muutmist",
+ "Mapa mięśni i serie na partię z kreską {n} serii tygodniowo.": "Lihaskaart ja seeriad lihasrühma kohta joonega {n} seeria juures nädalas.",
+ "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.": "Edenemine: nädala ja kuu kokkuvõte lihaskaardiga, {n} seeria märk lihasrühma kohta nädalas ja nädala märkimine kergendusnädalaks."
 }

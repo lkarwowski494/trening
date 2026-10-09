@@ -863,7 +863,6 @@
  "Zamknij": "Schließen",
  "Kalendarz zamiast Historii: plan tygodnia, przesuwanie treningów i propozycje zmian z myślą o regeneracji partii.": "Kalender statt Verlauf: Wochenplan, Trainings verschieben und Änderungsvorschläge unter Berücksichtigung der Muskelregeneration.",
  "Pauza treningu — czas pauzy nie liczy się do czasu trwania.": "Training angehalten — die angehaltene Zeit zählt nicht zur Dauer.",
- "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik 10 serii na partię w tygodniu i oznaczanie tygodnia deload.": "Fortschritt: Wochen- und Monatsübersicht mit Muskelkarte, Markierung für 10 Sätze pro Muskelgruppe und Woche sowie Kennzeichnung einer Deload-Woche.",
  "Skala wysiłku RPE albo RIR w Ustawieniach.": "Belastungsskala RPE oder RIR in den Einstellungen.",
  "Szablony w folderach i archiwum, „Pomiń dziś” bez zmiany szablonu, usuwanie przesunięciem w lewo.": "Vorlagen in Ordnern und im Archiv, „Heute überspringen“ ohne Änderung der Vorlage, Löschen durch Wischen nach links.",
  "Nowy wygląd: kolory i kroje, grafika talerzy na sztandze.": "Neues Aussehen: Farben und Schriften, Grafik der Hantelscheiben auf der Stange.",
@@ -960,7 +959,6 @@
  "Tydzień oznaczysz też w Postępach przełącznikiem „Tydzień deload”.": "Eine Woche markierst du auch in Fortschritt mit dem Schalter „Deload-Woche“.",
  "Postępy i rekordy": "Fortschritt und Rekorde",
  "Więcej → Postępy: podsumowanie tygodnia lub miesiąca z poprzednim okresem obok.": "Mehr → Fortschritt: Wochen- oder Monatsübersicht mit dem vorherigen Zeitraum daneben.",
- "Mapa mięśni i serie na partię z kreską 10 serii tygodniowo.": "Muskelkarte und Sätze pro Muskelgruppe mit einer Linie bei 10 Sätzen pro Woche.",
  "Wykresy ćwiczeń i rekordy; rekord w trakcie treningu widać przy serii.": "Übungsdiagramme und Rekorde; im Training steht ein Rekord direkt beim Satz.",
  "Więcej → Miejsca i sprzęt: dom, siłownia, hotel — każdy ze swoim sprzętem i ciężarami.": "Mehr → Orte und Ausrüstung: Zuhause, Studio, Hotel — jeweils mit eigener Ausrüstung und eigenen Gewichten.",
  "Lista ćwiczeń, zamiany i generator pokazują to, co da się zrobić w wybranym miejscu.": "Übungsliste, Austausch und Generator zeigen, was am gewählten Ort möglich ist.",
@@ -1305,5 +1303,7 @@
  "Niezapisane zmiany": "Nicht gespeicherte Änderungen",
  "Aplikacja zamknęła się w trakcie edycji szablonu „{name}”. Wrócić do edycji?": "Die App wurde beim Bearbeiten der Vorlage „{name}“ geschlossen. Mit der Bearbeitung fortfahren?",
  "Aplikacja zamknęła się w trakcie edycji ćwiczenia „{name}”. Wrócić do edycji?": "Die App wurde beim Bearbeiten der Übung „{name}“ geschlossen. Mit der Bearbeitung fortfahren?",
- "Wróć do edycji": "Weiter bearbeiten"
+ "Wróć do edycji": "Weiter bearbeiten",
+ "Mapa mięśni i serie na partię z kreską {n} serii tygodniowo.": "Muskelkarte und Sätze pro Muskelgruppe mit einer Linie bei {n} Sätzen pro Woche.",
+ "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.": "Fortschritt: Wochen- und Monatsübersicht mit Muskelkarte, Markierung für {n} Sätze pro Muskelgruppe und Woche sowie Kennzeichnung einer Deload-Woche."
 }

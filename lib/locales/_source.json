@@ -1718,8 +1718,8 @@
   "en": "Muscle map"
  },
  {
-  "pl": "Mapa mięśni i serie na partię z kreską 10 serii tygodniowo.",
-  "en": "Muscle map and sets per muscle group with a 10-sets-per-week line."
+  "pl": "Mapa mięśni i serie na partię z kreską {n} serii tygodniowo.",
+  "en": "Muscle map and sets per muscle group with a {n}-sets-per-week line."
  },
  {
   "pl": "Mapa mięśni: {list}",
@@ -3018,8 +3018,8 @@
   "en": "Progress and records"
  },
  {
-  "pl": "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik 10 serii na partię w tygodniu i oznaczanie tygodnia deload.",
-  "en": "Progress: weekly and monthly summary with a muscle map, a 10-sets-per-muscle-group weekly mark and marking a week as deload."
+  "pl": "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.",
+  "en": "Progress: weekly and monthly summary with a muscle map, a {n}-sets-per-muscle-group weekly mark and marking a week as deload."
  },
  {
   "pl": "pośladki",

@@ -863,7 +863,6 @@
  "Zamknij": "Закрити",
  "Kalendarz zamiast Historii: plan tygodnia, przesuwanie treningów i propozycje zmian z myślą o regeneracji partii.": "Календар замість Історії: тижневий план, перенесення тренувань і пропозиції змін з урахуванням відновлення м’язових груп.",
  "Pauza treningu — czas pauzy nie liczy się do czasu trwania.": "Пауза тренування — час паузи не зараховується до тривалості.",
- "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik 10 serii na partię w tygodniu i oznaczanie tygodnia deload.": "Прогрес: підсумок тижня і місяця з картою м’язів, позначка 10 підходів на м’язову групу за тиждень і позначення тижня розвантаження.",
  "Skala wysiłku RPE albo RIR w Ustawieniach.": "Шкала зусилля RPE або RIR у Параметрах.",
  "Szablony w folderach i archiwum, „Pomiń dziś” bez zmiany szablonu, usuwanie przesunięciem w lewo.": "Шаблони в папках і архіві, «Пропустити сьогодні» без зміни шаблону, видалення свайпом ліворуч.",
  "Nowy wygląd: kolory i kroje, grafika talerzy na sztandze.": "Новий вигляд: кольори та шрифти, зображення дисків на грифі.",
@@ -960,7 +959,6 @@
  "Tydzień oznaczysz też w Postępach przełącznikiem „Tydzień deload”.": "Тиждень можна позначити і в Прогрес перемикачем «Тиждень розвантаження».",
  "Postępy i rekordy": "Прогрес і рекорди",
  "Więcej → Postępy: podsumowanie tygodnia lub miesiąca z poprzednim okresem obok.": "Більше → Прогрес: підсумок тижня чи місяця з попереднім періодом поруч.",
- "Mapa mięśni i serie na partię z kreską 10 serii tygodniowo.": "Карта м’язів і підходи на м’язову групу з лінією на 10 підходах на тиждень.",
  "Wykresy ćwiczeń i rekordy; rekord w trakcie treningu widać przy serii.": "Графіки вправ і рекорди; під час тренування рекорд видно біля підходу.",
  "Więcej → Miejsca i sprzęt: dom, siłownia, hotel — każdy ze swoim sprzętem i ciężarami.": "Більше → Місця й обладнання: дім, спортзал, готель — кожне зі своїм обладнанням і вагами.",
  "Lista ćwiczeń, zamiany i generator pokazują to, co da się zrobić w wybranym miejscu.": "Список вправ, заміни й генератор показують, що можна робити у вибраному місці.",
@@ -1305,5 +1303,7 @@
  "Niezapisane zmiany": "Незбережені зміни",
  "Aplikacja zamknęła się w trakcie edycji szablonu „{name}”. Wrócić do edycji?": "Застосунок закрився, коли ви редагували шаблон «{name}». Повернутися до редагування?",
  "Aplikacja zamknęła się w trakcie edycji ćwiczenia „{name}”. Wrócić do edycji?": "Застосунок закрився, коли ви редагували вправу «{name}». Повернутися до редагування?",
- "Wróć do edycji": "Повернутися до редагування"
+ "Wróć do edycji": "Повернутися до редагування",
+ "Mapa mięśni i serie na partię z kreską {n} serii tygodniowo.": "Карта м’язів і підходи на м’язову групу з лінією на {n} підходах на тиждень.",
+ "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.": "Прогрес: підсумок тижня і місяця з картою м’язів, позначка {n} підходів на м’язову групу за тиждень і позначення тижня розвантаження."
 }

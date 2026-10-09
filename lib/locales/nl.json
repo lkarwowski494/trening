@@ -863,7 +863,6 @@
  "Zamknij": "Sluiten",
  "Kalendarz zamiast Historii: plan tygodnia, przesuwanie treningów i propozycje zmian z myślą o regeneracji partii.": "Kalender in plaats van Historie: weekplan, trainingen verplaatsen en voorstellen die rekening houden met spierherstel.",
  "Pauza treningu — czas pauzy nie liczy się do czasu trwania.": "Trainingspauze — pauzetijd telt niet mee in de duur.",
- "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik 10 serii na partię w tygodniu i oznaczanie tygodnia deload.": "Voortgang: week- en maandoverzicht met spierkaart, markering van 10 sets per spiergroep per week en het markeren van een deloadweek.",
  "Skala wysiłku RPE albo RIR w Ustawieniach.": "Inspanningsschaal RPE of RIR in Instellingen.",
  "Szablony w folderach i archiwum, „Pomiń dziś” bez zmiany szablonu, usuwanie przesunięciem w lewo.": "Sjablonen in mappen en archief, ‘Vandaag overslaan’ zonder het sjabloon te wijzigen, verwijderen door naar links te vegen.",
  "Nowy wygląd: kolory i kroje, grafika talerzy na sztandze.": "Nieuw uiterlijk: kleuren en lettertypen, afbeelding van de schijven op de stang.",
@@ -960,7 +959,6 @@
  "Tydzień oznaczysz też w Postępach przełącznikiem „Tydzień deload”.": "Je markeert een week ook in Voortgang met de schakelaar ‘Deloadweek’.",
  "Postępy i rekordy": "Voortgang en records",
  "Więcej → Postępy: podsumowanie tygodnia lub miesiąca z poprzednim okresem obok.": "Meer → Voortgang: week- of maandoverzicht met de vorige periode ernaast.",
- "Mapa mięśni i serie na partię z kreską 10 serii tygodniowo.": "Spierkaart en sets per spiergroep met een lijn bij 10 sets per week.",
  "Wykresy ćwiczeń i rekordy; rekord w trakcie treningu widać przy serii.": "Oefengrafieken en records; tijdens de training staat een record naast de set.",
  "Więcej → Miejsca i sprzęt: dom, siłownia, hotel — każdy ze swoim sprzętem i ciężarami.": "Meer → Locaties en materiaal: thuis, sportschool, hotel — elk met eigen materiaal en gewichten.",
  "Lista ćwiczeń, zamiany i generator pokazują to, co da się zrobić w wybranym miejscu.": "De oefenlijst, wissels en de generator tonen wat op de gekozen plek kan.",
@@ -1305,5 +1303,7 @@
  "Niezapisane zmiany": "Niet-opgeslagen wijzigingen",
  "Aplikacja zamknęła się w trakcie edycji szablonu „{name}”. Wrócić do edycji?": "De app werd gesloten terwijl je sjabloon ‘{name}’ bewerkte. Verder bewerken?",
  "Aplikacja zamknęła się w trakcie edycji ćwiczenia „{name}”. Wrócić do edycji?": "De app werd gesloten terwijl je oefening ‘{name}’ bewerkte. Verder bewerken?",
- "Wróć do edycji": "Verder bewerken"
+ "Wróć do edycji": "Verder bewerken",
+ "Mapa mięśni i serie na partię z kreską {n} serii tygodniowo.": "Spierkaart en sets per spiergroep met een lijn bij {n} sets per week.",
+ "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.": "Voortgang: week- en maandoverzicht met spierkaart, markering van {n} sets per spiergroep per week en het markeren van een deloadweek."
 }

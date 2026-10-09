@@ -863,7 +863,6 @@
  "Zamknij": "Uždaryti",
  "Kalendarz zamiast Historii: plan tygodnia, przesuwanie treningów i propozycje zmian z myślą o regeneracji partii.": "Kalendorius vietoj Istorijos: savaitės planas, treniruočių perkėlimas ir pakeitimų pasiūlymai atsižvelgiant į raumenų grupių atsigavimą.",
  "Pauza treningu — czas pauzy nie liczy się do czasu trwania.": "Treniruotės pauzė — pauzės laikas neįskaičiuojamas į trukmę.",
- "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik 10 serii na partię w tygodniu i oznaczanie tygodnia deload.": "Progresas: savaitės ir mėnesio suvestinė su raumenų žemėlapiu, 10 serijų raumenų grupei per savaitę žyma ir savaitės pažymėjimas kaip deload.",
  "Skala wysiłku RPE albo RIR w Ustawieniach.": "Pastangų skalė RPE arba RIR Nustatymuose.",
  "Szablony w folderach i archiwum, „Pomiń dziś” bez zmiany szablonu, usuwanie przesunięciem w lewo.": "Šablonai aplankuose ir archyve, „Šiandien praleisti“ nekeičiant šablono, ištrynimas braukiant į kairę.",
  "Nowy wygląd: kolory i kroje, grafika talerzy na sztandze.": "Nauja išvaizda: spalvos ir šriftai, svorių diskų grafika ant grifo.",
@@ -960,7 +959,6 @@
  "Tydzień oznaczysz też w Postępach przełącznikiem „Tydzień deload”.": "Savaitę gali pažymėti ir Progresas jungikliu „Iškrovos savaitė“.",
  "Postępy i rekordy": "Progresas ir rekordai",
  "Więcej → Postępy: podsumowanie tygodnia lub miesiąca z poprzednim okresem obok.": "Daugiau → Progresas: savaitės ar mėnesio suvestinė su ankstesniu laikotarpiu šalia.",
- "Mapa mięśni i serie na partię z kreską 10 serii tygodniowo.": "Raumenų žemėlapis ir serijos raumenų grupei su linija ties 10 serijų per savaitę.",
  "Wykresy ćwiczeń i rekordy; rekord w trakcie treningu widać przy serii.": "Pratimų grafikai ir rekordai; treniruotės metu rekordas matomas prie serijos.",
  "Więcej → Miejsca i sprzęt: dom, siłownia, hotel — każdy ze swoim sprzętem i ciężarami.": "Daugiau → Vietos ir įranga: namai, sporto salė, viešbutis — kiekviena su savo įranga ir svoriais.",
  "Lista ćwiczeń, zamiany i generator pokazują to, co da się zrobić w wybranym miejscu.": "Pratimų sąrašas, pakeitimai ir generatorius rodo, ką galima daryti pasirinktoje vietoje.",
@@ -1305,5 +1303,7 @@
  "Niezapisane zmiany": "Neišsaugoti pakeitimai",
  "Aplikacja zamknęła się w trakcie edycji szablonu „{name}”. Wrócić do edycji?": "Programėlė užsidarė, kol redagavote šabloną „{name}“. Grįžti prie redagavimo?",
  "Aplikacja zamknęła się w trakcie edycji ćwiczenia „{name}”. Wrócić do edycji?": "Programėlė užsidarė, kol redagavote pratimą „{name}“. Grįžti prie redagavimo?",
- "Wróć do edycji": "Grįžti prie redagavimo"
+ "Wróć do edycji": "Grįžti prie redagavimo",
+ "Mapa mięśni i serie na partię z kreską {n} serii tygodniowo.": "Raumenų žemėlapis ir serijos raumenų grupei su linija ties {n} serijų per savaitę.",
+ "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.": "Progresas: savaitės ir mėnesio suvestinė su raumenų žemėlapiu, {n} serijų raumenų grupei per savaitę žyma ir savaitės pažymėjimas kaip deload."
 }

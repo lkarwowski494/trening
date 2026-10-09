@@ -1,6 +1,7 @@
 import { getState, save, finishedWorkouts } from '@/lib/store';
 import { t } from '@/lib/i18n';
 import { deloadLessText } from '@/lib/start';
+import { WEEKLY_SETS_MARK } from '@/lib/stats';
 
 /*
  * „Co nowego” (decyzja właściciela 08.10.2026): przycisk „i” w lewym górnym rogu ekranu Trening rozwija sekcję; po aktualizacji na „i” jest
@@ -17,7 +18,7 @@ export const WHATS_NEW: WhatsNewEntry[] = [
     t('Kalendarz zamiast Historii: plan tygodnia, przesuwanie treningów i propozycje zmian z myślą o regeneracji partii.'),
     t('Na ekranie treningu: dzisiejszy trening z planu, bieżący tydzień i najbliższe treningi z nazwą.'), /* audyt 0.10 A9: dawny tekst obiecywał „podgląd 7 dni” */
     t('Pauza treningu — czas pauzy nie liczy się do czasu trwania.'),
-    t('Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik 10 serii na partię w tygodniu i oznaczanie tygodnia deload.'),
+    t('Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.', { n: WEEKLY_SETS_MARK }), /* LOG2-05 */
     t('Skala wysiłku RPE albo RIR w Ustawieniach.'),
     t('Szablony w folderach i archiwum, „Pomiń dziś” bez zmiany szablonu, usuwanie przesunięciem w lewo.'),
     t('Generator szablonów i planu tygodnia na Twoje polecenie (cel, miejsce, liczba i długość sesji) oraz kilka planów z wyborem aktywnego.'),

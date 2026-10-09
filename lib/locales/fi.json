@@ -863,7 +863,6 @@
  "Zamknij": "Sulje",
  "Kalendarz zamiast Historii: plan tygodnia, przesuwanie treningów i propozycje zmian z myślą o regeneracji partii.": "Kalenteri Historian tilalla: viikkosuunnitelma, treenien siirtäminen ja muutosehdotukset lihasryhmien palautuminen huomioiden.",
  "Pauza treningu — czas pauzy nie liczy się do czasu trwania.": "Treenin tauko — taukoaika ei lasketa kestoon.",
- "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik 10 serii na partię w tygodniu i oznaczanie tygodnia deload.": "Kehitys: viikon ja kuukauden yhteenveto lihaskartalla, 10 sarjan merkintä lihasryhmää kohden viikossa ja viikon merkitseminen kevennysviikoksi.",
  "Skala wysiłku RPE albo RIR w Ustawieniach.": "Kuormitusasteikko RPE tai RIR asetuksissa.",
  "Szablony w folderach i archiwum, „Pomiń dziś” bez zmiany szablonu, usuwanie przesunięciem w lewo.": "Pohjat kansioissa ja arkistossa, ”Ohita tänään” muuttamatta pohjaa, poisto pyyhkäisemällä vasemmalle.",
  "Nowy wygląd: kolory i kroje, grafika talerzy na sztandze.": "Uusi ulkoasu: värit ja kirjasimet, levypainojen kuva tangossa.",
@@ -960,7 +959,6 @@
  "Tydzień oznaczysz też w Postępach przełącznikiem „Tydzień deload”.": "Viikon voi merkitä myös näkymässä Kehitys kytkimellä ”Kevennysviikko”.",
  "Postępy i rekordy": "Kehitys ja ennätykset",
  "Więcej → Postępy: podsumowanie tygodnia lub miesiąca z poprzednim okresem obok.": "Lisää → Kehitys: viikon tai kuukauden yhteenveto, edellinen jakso vieressä.",
- "Mapa mięśni i serie na partię z kreską 10 serii tygodniowo.": "Lihaskartta ja sarjat lihasryhmää kohden, viiva 10 viikkosarjan kohdalla.",
  "Wykresy ćwiczeń i rekordy; rekord w trakcie treningu widać przy serii.": "Liikkeiden kaaviot ja ennätykset; treenin aikana ennätys näkyy sarjan vieressä.",
  "Więcej → Miejsca i sprzęt: dom, siłownia, hotel — każdy ze swoim sprzętem i ciężarami.": "Lisää → Paikat ja välineet: koti, sali, hotelli — kullakin omat välineet ja painot.",
  "Lista ćwiczeń, zamiany i generator pokazują to, co da się zrobić w wybranym miejscu.": "Liikelista, vaihdot ja generaattori näyttävät, mitä valitussa paikassa voi tehdä.",
@@ -1305,5 +1303,7 @@
  "Niezapisane zmiany": "Tallentamattomat muutokset",
  "Aplikacja zamknęła się w trakcie edycji szablonu „{name}”. Wrócić do edycji?": "Sovellus sulkeutui, kun muokkasit pohjaa ”{name}”. Palataanko muokkaukseen?",
  "Aplikacja zamknęła się w trakcie edycji ćwiczenia „{name}”. Wrócić do edycji?": "Sovellus sulkeutui, kun muokkasit liikettä ”{name}”. Palataanko muokkaukseen?",
- "Wróć do edycji": "Palaa muokkaukseen"
+ "Wróć do edycji": "Palaa muokkaukseen",
+ "Mapa mięśni i serie na partię z kreską {n} serii tygodniowo.": "Lihaskartta ja sarjat lihasryhmää kohden, viiva {n} viikkosarjan kohdalla.",
+ "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.": "Kehitys: viikon ja kuukauden yhteenveto lihaskartalla, {n} sarjan merkintä lihasryhmää kohden viikossa ja viikon merkitseminen kevennysviikoksi."
 }

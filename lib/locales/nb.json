@@ -863,7 +863,6 @@
  "Zamknij": "Lukk",
  "Kalendarz zamiast Historii: plan tygodnia, przesuwanie treningów i propozycje zmian z myślą o regeneracji partii.": "Kalender i stedet for Historikk: ukeplan, flytting av økter og forslag som tar hensyn til musklenes restitusjon.",
  "Pauza treningu — czas pauzy nie liczy się do czasu trwania.": "Pause i økten — pausetiden telles ikke med i varigheten.",
- "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik 10 serii na partię w tygodniu i oznaczanie tygodnia deload.": "Fremgang: uke- og månedsoversikt med muskelkart, markering for 10 sett per muskelgruppe per uke og markering av en deload-uke.",
  "Skala wysiłku RPE albo RIR w Ustawieniach.": "Anstrengelsesskala RPE eller RIR i Innstillinger.",
  "Szablony w folderach i archiwum, „Pomiń dziś” bez zmiany szablonu, usuwanie przesunięciem w lewo.": "Maler i mapper og arkiv, «Hopp over i dag» uten å endre malen, slett ved å sveipe mot venstre.",
  "Nowy wygląd: kolory i kroje, grafika talerzy na sztandze.": "Nytt utseende: farger og skrifttyper, grafikk av vektskiver på stangen.",
@@ -960,7 +959,6 @@
  "Tydzień oznaczysz też w Postępach przełącznikiem „Tydzień deload”.": "Du kan også merke en uke i Fremgang med bryteren «Deload-uke».",
  "Postępy i rekordy": "Fremgang og rekorder",
  "Więcej → Postępy: podsumowanie tygodnia lub miesiąca z poprzednim okresem obok.": "Mer → Fremgang: uke- eller månedsoversikt med forrige periode ved siden av.",
- "Mapa mięśni i serie na partię z kreską 10 serii tygodniowo.": "Muskelkart og sett per muskelgruppe med en linje ved 10 sett per uke.",
  "Wykresy ćwiczeń i rekordy; rekord w trakcie treningu widać przy serii.": "Øvelsesgrafer og rekorder; under økten vises en rekord ved settet.",
  "Więcej → Miejsca i sprzęt: dom, siłownia, hotel — każdy ze swoim sprzętem i ciężarami.": "Mer → Steder og utstyr: hjemme, treningssenter, hotell — hver med eget utstyr og egne vekter.",
  "Lista ćwiczeń, zamiany i generator pokazują to, co da się zrobić w wybranym miejscu.": "Øvelseslisten, bytter og generatoren viser hva som kan gjøres på det valgte stedet.",
@@ -1305,5 +1303,7 @@
  "Niezapisane zmiany": "Ulagrede endringer",
  "Aplikacja zamknęła się w trakcie edycji szablonu „{name}”. Wrócić do edycji?": "Appen ble lukket mens du redigerte malen «{name}». Vil du fortsette redigeringen?",
  "Aplikacja zamknęła się w trakcie edycji ćwiczenia „{name}”. Wrócić do edycji?": "Appen ble lukket mens du redigerte øvelsen «{name}». Vil du fortsette redigeringen?",
- "Wróć do edycji": "Fortsett redigeringen"
+ "Wróć do edycji": "Fortsett redigeringen",
+ "Mapa mięśni i serie na partię z kreską {n} serii tygodniowo.": "Muskelkart og sett per muskelgruppe med en linje ved {n} sett per uke.",
+ "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.": "Fremgang: uke- og månedsoversikt med muskelkart, markering for {n} sett per muskelgruppe per uke og markering av en deload-uke."
 }
