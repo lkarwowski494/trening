@@ -59,7 +59,7 @@ describe('Masa ciała z datą: ekran pomiarów, Ustawienia, Postępy', () => {
     const titles = screen.getAllByText(/^\d+(,\d+)? kg$/).map(n => n.props.children); expect(titles).toEqual(['82,5 kg', '80 kg']);
     await typeText(screen.getByLabelText('Masa ciała (kg)'), '81'); await typeText(screen.getByLabelText('Data pomiaru (RRRR-MM-DD)'), '2026-10-09'); await tap(screen.getByText('Zapisz pomiar')); await flushAll(5);
     expect(global.__alerts.at(-1)!.msg).toBe('Data pomiaru nie może być w przyszłości.'); expect(S().bodyMassLog).toHaveLength(2);
-    await tap(screen.getByLabelText(/^Usuń pomiar: 80 kg, /)); expect(global.__alerts.at(-1)).toMatchObject({ title: 'Usunąć pomiar?', msg: `80 kg z ${store.fmtDate(store.localDateTs('2026-09-01'))}. Treningi z tego okresu przeliczą e1RM z wcześniejszego pomiaru (albo bez e1RM, gdy go nie ma).` });
+    await swipeDelete(/^Usuń pomiar: 80 kg, /); /* UI2-03: usuwanie gestem */ expect(global.__alerts.at(-1)).toMatchObject({ title: 'Usunąć pomiar?', msg: `80 kg z ${store.fmtDate(store.localDateTs('2026-09-01'))}. Treningi z tego okresu przeliczą e1RM z wcześniejszego pomiaru (albo bez e1RM, gdy go nie ma).` });
     await act(async () => { pressAlert('Usunąć pomiar?', 'Usuń'); }); await flushAll(5); expect(S().bodyMassLog).toEqual([{ date: '2026-10-08', kg: 82.5 }]);
   });
   test('Ustawienia: ostatni pomiar z datą; Postępy podciągania: notka o dniu treningu i o sesjach sprzed pierwszego pomiaru, przycisk do pomiarów', async () => {
