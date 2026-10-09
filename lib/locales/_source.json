@@ -2959,9 +2959,17 @@
   "en": "Other unticked sets: {n} — they won’t be saved either."
  },
  {
+  "pl": "Pozycja końcowa",
+  "en": "End position"
+ },
+ {
   "pl": "pozycja sprzętu|pozycje sprzętu|pozycji sprzętu",
   "en": "equipment item|equipment items",
   "plural": true
+ },
+ {
+  "pl": "Pozycja wyjściowa",
+  "en": "Starting position"
  },
  {
   "pl": "Progresja: gdy zrobisz górę zakresu powtórzeń, dołóż ciężar — konwencja.",
@@ -3267,6 +3275,14 @@
  {
   "pl": "Ruch",
   "en": "Movement"
+ },
+ {
+  "pl": "Rysunek ruchu: {opis}",
+  "en": "Movement drawing: {opis}"
+ },
+ {
+  "pl": "Rysunek schematyczny — pozycje orientacyjne.",
+  "en": "Schematic drawing — positions are approximate."
  },
  {
   "pl": "Rzadziej niż {n} dni w tygodniu: {list} (dzień tylko z pracą pomocniczą = {h}).",
@@ -4323,6 +4339,10 @@
   "en": "In this version"
  },
  {
+  "pl": "W trakcie",
+  "en": "Midway"
+ },
+ {
   "pl": "W trwającym treningu guma zniknie z nieodhaczonych serii.",
   "en": "In the current workout the band will be removed from sets not yet ticked."
  },
@@ -4627,6 +4647,10 @@
   "en": "Shown as: {n}"
  },
  {
+  "pl": "Wznów animację",
+  "en": "Resume animation"
+ },
+ {
   "pl": "Wznów trening",
   "en": "Resume workout"
  },
@@ -4861,6 +4885,10 @@
  {
   "pl": "Zastosuj: {title}",
   "en": "Apply: {title}"
+ },
+ {
+  "pl": "Zatrzymaj animację",
+  "en": "Pause animation"
  },
  {
   "pl": "Zawsze w: {l}",

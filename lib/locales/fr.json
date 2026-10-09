@@ -1244,5 +1244,12 @@
  "Wskazówki": "Conseils",
  "Częste błędy": "Erreurs fréquentes",
  "Na podstawie: {list}. Własne sformułowania.": "D’après : {list}. Rédaction originale.",
- "Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.": "L’app ne donne pas de conseils médicaux. En cas de douleur, de blessure ou de maladie, consulte un médecin ou un kinésithérapeute."
+ "Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.": "L’app ne donne pas de conseils médicaux. En cas de douleur, de blessure ou de maladie, consulte un médecin ou un kinésithérapeute.",
+ "Rysunek ruchu: {opis}": "Dessin du mouvement : {opis}",
+ "Zatrzymaj animację": "Mettre l’animation en pause",
+ "Wznów animację": "Reprendre l’animation",
+ "Pozycja wyjściowa": "Position de départ",
+ "W trakcie": "Pendant le mouvement",
+ "Pozycja końcowa": "Position finale",
+ "Rysunek schematyczny — pozycje orientacyjne.": "Dessin schématique — positions approximatives."
 }

@@ -1244,5 +1244,12 @@
  "Wskazówki": "Tipy",
  "Częste błędy": "Časté chyby",
  "Na podstawie: {list}. Własne sformułowania.": "Podle: {list}. Vlastní formulace.",
- "Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.": "Aplikace neposkytuje lékařské rady. Při bolesti, zranění nebo nemoci se poraď s lékařem nebo fyzioterapeutem."
+ "Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.": "Aplikace neposkytuje lékařské rady. Při bolesti, zranění nebo nemoci se poraď s lékařem nebo fyzioterapeutem.",
+ "Rysunek ruchu: {opis}": "Nákres pohybu: {opis}",
+ "Zatrzymaj animację": "Pozastavit animaci",
+ "Wznów animację": "Pokračovat v animaci",
+ "Pozycja wyjściowa": "Počáteční poloha",
+ "W trakcie": "V průběhu pohybu",
+ "Pozycja końcowa": "Konečná poloha",
+ "Rysunek schematyczny — pozycje orientacyjne.": "Schematický nákres — polohy jsou orientační."
 }

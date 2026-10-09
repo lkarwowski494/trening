@@ -1244,5 +1244,12 @@
  "Wskazówki": "Nõuanded",
  "Częste błędy": "Sagedased vead",
  "Na podstawie: {list}. Własne sformułowania.": "Allikad: {list}. Oma sõnastus.",
- "Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.": "Rakendus ei anna meditsiinilist nõu. Valu, vigastuse või haiguse korral pöördu arsti või füsioterapeudi poole."
+ "Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.": "Rakendus ei anna meditsiinilist nõu. Valu, vigastuse või haiguse korral pöördu arsti või füsioterapeudi poole.",
+ "Rysunek ruchu: {opis}": "Liigutuse joonis: {opis}",
+ "Zatrzymaj animację": "Peata animatsioon",
+ "Wznów animację": "Jätka animatsiooni",
+ "Pozycja wyjściowa": "Lähteasend",
+ "W trakcie": "Liigutuse ajal",
+ "Pozycja końcowa": "Lõppasend",
+ "Rysunek schematyczny — pozycje orientacyjne.": "Skemaatiline joonis — asendid on ligikaudsed."
 }

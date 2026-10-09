@@ -1244,5 +1244,12 @@
  "Wskazówki": "Vinkit",
  "Częste błędy": "Yleiset virheet",
  "Na podstawie: {list}. Własne sformułowania.": "Lähteet: {list}. Omin sanoin.",
- "Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.": "Sovellus ei anna lääketieteellisiä neuvoja. Jos sinulla on kipua, vamma tai sairaus, käänny lääkärin tai fysioterapeutin puoleen."
+ "Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.": "Sovellus ei anna lääketieteellisiä neuvoja. Jos sinulla on kipua, vamma tai sairaus, käänny lääkärin tai fysioterapeutin puoleen.",
+ "Rysunek ruchu: {opis}": "Liikkeen piirros: {opis}",
+ "Zatrzymaj animację": "Keskeytä animaatio",
+ "Wznów animację": "Jatka animaatiota",
+ "Pozycja wyjściowa": "Lähtöasento",
+ "W trakcie": "Liikkeen aikana",
+ "Pozycja końcowa": "Loppuasento",
+ "Rysunek schematyczny — pozycje orientacyjne.": "Kaavamainen piirros — asennot ovat suuntaa-antavia."
 }

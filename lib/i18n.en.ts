@@ -731,4 +731,11 @@ export const EN: Record<string, string> = {
   'Częste błędy': 'Common mistakes',
   'Na podstawie: {list}. Własne sformułowania.': 'Based on: {list}. Our own wording.',
   'Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.': 'The app does not give medical advice. If you have pain, an injury or an illness, consult a doctor or physiotherapist.',
+  'Rysunek ruchu: {opis}': 'Movement drawing: {opis}',
+  'Zatrzymaj animację': 'Pause animation',
+  'Wznów animację': 'Resume animation',
+  'Pozycja wyjściowa': 'Starting position',
+  'W trakcie': 'Midway',
+  'Pozycja końcowa': 'End position',
+  'Rysunek schematyczny — pozycje orientacyjne.': 'Schematic drawing — positions are approximate.',
 };

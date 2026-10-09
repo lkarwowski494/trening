@@ -1244,5 +1244,12 @@
  "Wskazówki": "Поради",
  "Częste błędy": "Типові помилки",
  "Na podstawie: {list}. Własne sformułowania.": "За матеріалами: {list}. Власні формулювання.",
- "Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.": "Застосунок не надає медичних порад. У разі болю, травми чи хвороби звернися до лікаря або фізіотерапевта."
+ "Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.": "Застосунок не надає медичних порад. У разі болю, травми чи хвороби звернися до лікаря або фізіотерапевта.",
+ "Rysunek ruchu: {opis}": "Малюнок руху: {opis}",
+ "Zatrzymaj animację": "Призупинити анімацію",
+ "Wznów animację": "Продовжити анімацію",
+ "Pozycja wyjściowa": "Вихідне положення",
+ "W trakcie": "Під час руху",
+ "Pozycja końcowa": "Кінцеве положення",
+ "Rysunek schematyczny — pozycje orientacyjne.": "Схематичний малюнок — положення орієнтовні."
 }

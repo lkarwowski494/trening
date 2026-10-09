@@ -1244,5 +1244,12 @@
  "Wskazówki": "İpuçları",
  "Częste błędy": "Sık yapılan hatalar",
  "Na podstawie: {list}. Własne sformułowania.": "Kaynak: {list}. Kendi ifademizle.",
- "Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.": "Uygulama tıbbi tavsiye vermez. Ağrı, sakatlık veya hastalık durumunda bir doktora ya da fizyoterapiste danış."
+ "Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.": "Uygulama tıbbi tavsiye vermez. Ağrı, sakatlık veya hastalık durumunda bir doktora ya da fizyoterapiste danış.",
+ "Rysunek ruchu: {opis}": "Hareket çizimi: {opis}",
+ "Zatrzymaj animację": "Animasyonu duraklat",
+ "Wznów animację": "Animasyonu sürdür",
+ "Pozycja wyjściowa": "Başlangıç pozisyonu",
+ "W trakcie": "Hareket sırasında",
+ "Pozycja końcowa": "Bitiş pozisyonu",
+ "Rysunek schematyczny — pozycje orientacyjne.": "Şematik çizim — pozisyonlar yaklaşıktır."
 }

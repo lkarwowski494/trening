@@ -15,7 +15,7 @@ const browser = await chromium.launch({ executablePath: process.env.PW_EXE || un
 for (const lang of ['pl', 'en', 'lv', 'ro', 'el', 'de']) for (const scheme of ['dark', 'light']) for (const [sz, [w, h]] of Object.entries(sizes)) {
   if (scheme === 'light' && sz !== 'std') continue;
   if (!['pl', 'en'].includes(lang) && (scheme !== 'dark' || sz !== 'se')) continue;
-  const ctx = await browser.newContext({ viewport: { width: w, height: h }, colorScheme: scheme, deviceScaleFactor: 2, locale: lang === 'pl' ? 'pl-PL' : lang === 'en' ? 'en-GB' : lang });
+  const ctx = await browser.newContext({ viewport: { width: w, height: h }, colorScheme: scheme, reducedMotion: scheme === 'light' ? 'reduce' : 'no-preference' /* figury: jasny wariant = „Ogranicz ruch” */, deviceScaleFactor: 2, locale: lang === 'pl' ? 'pl-PL' : lang === 'en' ? 'en-GB' : lang });
   const st = JSON.parse(JSON.stringify(seed)); st.settings.language = lang;
   await ctx.addInitScript(s => { if (!sessionStorage.getItem('seeded')) { localStorage.clear(); localStorage.setItem('kv:state', s); sessionStorage.setItem('seeded', '1'); } }, JSON.stringify(st));
   const page = await ctx.newPage(); const errs = []; page.on('pageerror', e => errs.push(String(e))); page.on('console', m => { if (m.type() === 'error') errs.push(m.text()); });
@@ -34,6 +34,15 @@ for (const lang of ['pl', 'en', 'lv', 'ro', 'el', 'de']) for (const scheme of ['
       const seen = new Set(); return res.filter(x => { const k = x[0] + x[2]; if (seen.has(k)) return false; seen.add(k); return true; }).slice(0, 25);
     });
     await page.screenshot({ path: `${out}/${lang}-${scheme}-${sz}-${name}.png`, fullPage: true });
+    /* figury ruchu (etap 2–3): sekcja „Technika” rozwinięta — animacja (zatrzymana przyciskiem pauzy, żeby zrzut był powtarzalny) */
+    if (name === 'ex') {
+      const tog = page.locator('[data-testid="exercise-cues-toggle"]');
+      if (await tog.count()) {
+        await tog.first().click(); await page.waitForTimeout(500);
+        const pause = page.locator('[data-testid="exercise-figure-pause"]'); if (await pause.count()) { await pause.first().click(); await page.waitForTimeout(200); }
+        await page.screenshot({ path: `${out}/${lang}-${scheme}-${sz}-exFig.png`, fullPage: true });
+      }
+    }
     for (const f of found) issues.push([lang, scheme, sz, name, ...f]);
   }
   for (const e of errs) issues.push([lang, scheme, sz, '*', 'błąd konsoli', '', e.slice(0, 160)]);

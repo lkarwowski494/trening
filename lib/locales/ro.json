@@ -1244,5 +1244,12 @@
  "Wskazówki": "Sfaturi",
  "Częste błędy": "Greșeli frecvente",
  "Na podstawie: {list}. Własne sformułowania.": "După: {list}. Formulare proprie.",
- "Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.": "Aplicația nu oferă sfaturi medicale. În caz de durere, accidentare sau boală, consultă un medic sau un kinetoterapeut."
+ "Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.": "Aplicația nu oferă sfaturi medicale. În caz de durere, accidentare sau boală, consultă un medic sau un kinetoterapeut.",
+ "Rysunek ruchu: {opis}": "Desenul mișcării: {opis}",
+ "Zatrzymaj animację": "Pune animația pe pauză",
+ "Wznów animację": "Reia animația",
+ "Pozycja wyjściowa": "Poziția de pornire",
+ "W trakcie": "În timpul mișcării",
+ "Pozycja końcowa": "Poziția finală",
+ "Rysunek schematyczny — pozycje orientacyjne.": "Desen schematic — pozițiile sunt orientative."
 }

@@ -1244,5 +1244,12 @@
  "Wskazówki": "Padomi",
  "Częste błędy": "Biežākās kļūdas",
  "Na podstawie: {list}. Własne sformułowania.": "Pēc: {list}. Pašu formulējums.",
- "Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.": "Lietotne nesniedz medicīniskus padomus. Sāpju, traumas vai slimības gadījumā konsultējies ar ārstu vai fizioterapeitu."
+ "Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.": "Lietotne nesniedz medicīniskus padomus. Sāpju, traumas vai slimības gadījumā konsultējies ar ārstu vai fizioterapeitu.",
+ "Rysunek ruchu: {opis}": "Kustības zīmējums: {opis}",
+ "Zatrzymaj animację": "Apturēt animāciju",
+ "Wznów animację": "Turpināt animāciju",
+ "Pozycja wyjściowa": "Sākuma pozīcija",
+ "W trakcie": "Kustības laikā",
+ "Pozycja końcowa": "Beigu pozīcija",
+ "Rysunek schematyczny — pozycje orientacyjne.": "Shematisks zīmējums — pozīcijas ir aptuvenas."
 }

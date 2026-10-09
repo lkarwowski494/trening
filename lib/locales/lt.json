@@ -1244,5 +1244,12 @@
  "Wskazówki": "Patarimai",
  "Częste błędy": "Dažnos klaidos",
  "Na podstawie: {list}. Własne sformułowania.": "Pagal: {list}. Savos formuluotės.",
- "Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.": "Programėlė neteikia medicininių patarimų. Jei jauti skausmą, patyrei traumą ar sergi, kreipkis į gydytoją arba kineziterapeutą."
+ "Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.": "Programėlė neteikia medicininių patarimų. Jei jauti skausmą, patyrei traumą ar sergi, kreipkis į gydytoją arba kineziterapeutą.",
+ "Rysunek ruchu: {opis}": "Judesio piešinys: {opis}",
+ "Zatrzymaj animację": "Pristabdyti animaciją",
+ "Wznów animację": "Tęsti animaciją",
+ "Pozycja wyjściowa": "Pradinė padėtis",
+ "W trakcie": "Judesio metu",
+ "Pozycja końcowa": "Galutinė padėtis",
+ "Rysunek schematyczny — pozycje orientacyjne.": "Schematinis piešinys — padėtys apytikslės."
 }

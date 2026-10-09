@@ -1244,5 +1244,12 @@
  "Wskazówki": "Tipps",
  "Częste błędy": "Häufige Fehler",
  "Na podstawie: {list}. Własne sformułowania.": "Grundlage: {list}. Eigene Formulierung.",
- "Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.": "Die App gibt keine medizinischen Ratschläge. Bei Schmerzen, Verletzungen oder Krankheit lass dich ärztlich oder physiotherapeutisch beraten."
+ "Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.": "Die App gibt keine medizinischen Ratschläge. Bei Schmerzen, Verletzungen oder Krankheit lass dich ärztlich oder physiotherapeutisch beraten.",
+ "Rysunek ruchu: {opis}": "Bewegungszeichnung: {opis}",
+ "Zatrzymaj animację": "Animation anhalten",
+ "Wznów animację": "Animation fortsetzen",
+ "Pozycja wyjściowa": "Startposition",
+ "W trakcie": "Während der Bewegung",
+ "Pozycja końcowa": "Endposition",
+ "Rysunek schematyczny — pozycje orientacyjne.": "Schematische Zeichnung — die Positionen sind ungefähr."
 }

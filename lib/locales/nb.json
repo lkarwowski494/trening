@@ -1244,5 +1244,12 @@
  "Wskazówki": "Tips",
  "Częste błędy": "Vanlige feil",
  "Na podstawie: {list}. Własne sformułowania.": "Basert på: {list}. Egne formuleringer.",
- "Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.": "Appen gir ikke medisinske råd. Ved smerter, skade eller sykdom bør du kontakte lege eller fysioterapeut."
+ "Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.": "Appen gir ikke medisinske råd. Ved smerter, skade eller sykdom bør du kontakte lege eller fysioterapeut.",
+ "Rysunek ruchu: {opis}": "Tegning av bevegelsen: {opis}",
+ "Zatrzymaj animację": "Sett animasjonen på pause",
+ "Wznów animację": "Fortsett animasjonen",
+ "Pozycja wyjściowa": "Startstilling",
+ "W trakcie": "Underveis",
+ "Pozycja końcowa": "Sluttstilling",
+ "Rysunek schematyczny — pozycje orientacyjne.": "Skjematisk tegning — stillingene er omtrentlige."
 }

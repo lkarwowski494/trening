@@ -1244,5 +1244,12 @@
  "Wskazówki": "Consejos",
  "Częste błędy": "Errores frecuentes",
  "Na podstawie: {list}. Własne sformułowania.": "Según: {list}. Redacción propia.",
- "Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.": "La app no ofrece consejo médico. Si tienes dolor, una lesión o una enfermedad, consulta a un médico o fisioterapeuta."
+ "Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.": "La app no ofrece consejo médico. Si tienes dolor, una lesión o una enfermedad, consulta a un médico o fisioterapeuta.",
+ "Rysunek ruchu: {opis}": "Dibujo del movimiento: {opis}",
+ "Zatrzymaj animację": "Pausar la animación",
+ "Wznów animację": "Reanudar la animación",
+ "Pozycja wyjściowa": "Posición inicial",
+ "W trakcie": "Durante el movimiento",
+ "Pozycja końcowa": "Posición final",
+ "Rysunek schematyczny — pozycje orientacyjne.": "Dibujo esquemático: las posiciones son aproximadas."
 }

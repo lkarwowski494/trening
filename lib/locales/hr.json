@@ -1244,5 +1244,12 @@
  "Wskazówki": "Savjeti",
  "Częste błędy": "Česte pogreške",
  "Na podstawie: {list}. Własne sformułowania.": "Prema: {list}. Vlastite formulacije.",
- "Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.": "Aplikacija ne daje medicinske savjete. Kod boli, ozljede ili bolesti posavjetuj se s liječnikom ili fizioterapeutom."
+ "Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.": "Aplikacija ne daje medicinske savjete. Kod boli, ozljede ili bolesti posavjetuj se s liječnikom ili fizioterapeutom.",
+ "Rysunek ruchu: {opis}": "Crtež pokreta: {opis}",
+ "Zatrzymaj animację": "Pauziraj animaciju",
+ "Wznów animację": "Nastavi animaciju",
+ "Pozycja wyjściowa": "Početni položaj",
+ "W trakcie": "Tijekom pokreta",
+ "Pozycja końcowa": "Završni položaj",
+ "Rysunek schematyczny — pozycje orientacyjne.": "Shematski crtež — položaji su okvirni."
 }
