@@ -56,8 +56,8 @@
   "en": "{goal}, {n}× per week · {place}"
  },
  {
-  "pl": "{k} dzień siłowy w tygodniu to mniej niż zalecenie WHO 2020 (co najmniej {n} dni). Na początek to dobry krok: wytyczne USA 2018 radzą zacząć od {k} dnia i z czasem dojść do {n} — trochę ruchu jest lepsze niż żaden.",
-  "en": "{k} strength day a week is less than the WHO 2020 recommendation (at least {n} days). It is a good first step: the US guidelines 2018 suggest starting with {k} day and building up to {n} over time — some activity is better than none."
+  "pl": "{k} dzień siłowy w tygodniu to mniej niż zalecenie WHO 2020 (co najmniej {n} dni). Na początek to dobry krok: według wytycznych USA 2018 na początku można ćwiczyć siłowo tylko {k} dzień w tygodniu, a z czasem dojść do {n} — trochę ruchu jest lepsze niż żaden.",
+  "en": "{k} strength day a week is less than the WHO 2020 recommendation (at least {n} days). It is a good first step: according to the US guidelines 2018, strength training can be done just {k} day a week at first and built up to {n} over time — some activity is better than none."
  },
  {
   "pl": "{k}: {v}",
@@ -3705,8 +3705,8 @@
   "en": "Sets: {s} per exercise — ACSM 2026 advises at least {m}; more sets usually give a little more, with diminishing returns. {s} is a simplification."
  },
  {
-  "pl": "Serie: {s} na ćwiczenie — dla zdrowia zwykle {s}–{b} (wytyczne USA 2018, ACSM 2011, ACSM 2026: jedna seria działa, więcej zwykle trochę lepiej); {s} to dolna granica — uproszczenie.",
-  "en": "Sets: {s} per exercise — for health usually {s}–{b} (US guidelines 2018, ACSM 2011, ACSM 2026: one set works, more is usually a little better); {s} is the lower end — a simplification."
+  "pl": "Serie: {s} na ćwiczenie — dla zdrowia zwykle {s}–{b}. ACSM 2026 zaleca co najmniej {m}. Wytyczne USA 2018: jedna seria działa, {s}–{b} mogą działać lepiej; ACSM 2011: jedna seria może wystarczyć, zwłaszcza u początkujących i starszych. {s} to dolna granica — uproszczenie.",
+  "en": "Sets: {s} per exercise — for health usually {s}–{b}. ACSM 2026 recommends at least {m}. US guidelines 2018: one set works, {s}–{b} may work better; ACSM 2011: one set can be enough, especially for beginners and older adults. {s} is the lower end — a simplification."
  },
  {
   "pl": "serii",

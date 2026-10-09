@@ -298,7 +298,7 @@ export function previewWarnings(r: GenResult, inp: GenInput): GenWarning[] {
   if (inp.goal === 'strength' && r.unloaded) out.push({ kind: 'unloaded', text: t('Siła bez obciążenia zewnętrznego (sztanga, hantle, kettlebell, maszyny, wyciągi): ciężkich serii (ok. {p}% maksimum) tu nie zrobisz, więc plan jest jak na masę w domu — {s} × {a}–{b} powtórzeń blisko upadku. Siła też wtedy rośnie, ale zwykle mniej niż przy dużym ciężarze.', { p: HEAVY_PCT, s: SETS_PER_EX, a: REPS.home[0], b: REPS.home[1] }) });
   const cap = loadCapWarning(r, inp); if (cap) out.push(cap); /* MER2-02 / A11-2 (audyt 0.11): najcięższy ciężar w miejscu przy celu „Siła” */
   /* „Ogólny” przy 1 dniu: zamiast tekstu o postępach (masa, siła) — zalecenie dla zdrowia (docs/research/30: WHO 2020 c1, PAG 2018 c29, WHO c14) */
-  const oneday = inp.goal === 'general' ? t('{k} dzień siłowy w tygodniu to mniej niż zalecenie WHO 2020 (co najmniej {n} dni). Na początek to dobry krok: wytyczne USA 2018 radzą zacząć od {k} dnia i z czasem dojść do {n} — trochę ruchu jest lepsze niż żaden.', { k: r.liftDays, n: MIN_DAYS }) : undefined;
+  const oneday = inp.goal === 'general' ? t('{k} dzień siłowy w tygodniu to mniej niż zalecenie WHO 2020 (co najmniej {n} dni). Na początek to dobry krok: według wytycznych USA 2018 na początku można ćwiczyć siłowo tylko {k} dzień w tygodniu, a z czasem dojść do {n} — trochę ruchu jest lepsze niż żaden.', { k: r.liftDays, n: MIN_DAYS }) /* A11B-6: „można” jak źródło (docs/research/30 c29: „can be done just 1 day a week”), nie „radzą” */ : undefined;
   return [...out, ...loadWarnings(r, false, oneday)];
 }
 /** Ostrzeżenia obciążenia tygodnia (wspólne dla generatora i planu z własnych szablonów): braki partii, rzadziej niż MIN_DAYS, poniżej

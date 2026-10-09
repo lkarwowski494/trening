@@ -12,6 +12,9 @@ import * as backup from '@/lib/backup';
 import { fresh, saved, ex, addWorkout, pressAlert } from './helpers';
 import { renderApp, flushAll, screen, act, go, startEdit, saveEdit, tap } from './app';
 import type { Exercise, Template } from '@/lib/seed';
+import { generate, previewWarnings, GENERAL_SETS, GENERAL_SETS_RANGE, ACSM_MIN_SETS, MIN_DAYS } from '@/lib/generator';
+import { LANGS, tIn, applyLang } from '@/lib/i18n';
+import { EN } from '@/lib/i18n.en';
 
 jest.setTimeout(120000);
 const S = () => store.getState();
@@ -94,5 +97,57 @@ describe('A11B-1: import kopii i reset czyszczą szkice edycji', () => {
     await renderApp({ saved: saved(), kv: kv2 }); await flushAll(700);
     expect(global.__alerts.slice(n).filter(a => a.title === 'Niezapisane zmiany')).toHaveLength(0);
     expect(store.exById(e.id)!.notes).toBe('Notatka z KOPII');
+  });
+});
+
+/* ---------- A11B-2 / A11B-6: teksty celu „Ogólny” nie mówią więcej niż źródła (docs/research/30) ---------- */
+const NOW = new Date(2026, 9, 8, 9, 0);
+const showGenerator = async (locale: 'pl' | 'en') => {
+  jest.useFakeTimers({ now: NOW }); await fresh(undefined, locale); await act(async () => { await store.flush(); });
+  await renderApp({ saved: JSON.parse(JSON.stringify(saved())), locale, url: '/generator' }); jest.setSystemTime(NOW.getTime()); await flushAll(10);
+  await tap(screen.getByText(locale === 'pl' ? 'Ogólny' : 'General fitness')); await flushAll(5);
+};
+/** Wszystkie 25 tłumaczeń klucza (bez PL): parametry zachowane, tekst przetłumaczony. */
+const allLangs = (key: string, params: string[]) => {
+  for (const l of LANGS) { if (l === 'pl') continue; const v = tIn(l, key); expect([l, params.filter(p => !v.includes(p)), v === key]).toEqual([l, [], false]); }
+};
+
+describe('A11B-2: punkt „Serie” celu „Ogólny” — „jedna seria działa” to wytyczne USA 2018 (c8) i ACSM 2011 (c4), ACSM 2026 zaleca co najmniej 2 (22/7g)', () => {
+  const KEY = 'Serie: {s} na ćwiczenie — dla zdrowia zwykle {s}–{b}. ACSM 2026 zaleca co najmniej {m}. Wytyczne USA 2018: jedna seria działa, {s}–{b} mogą działać lepiej; ACSM 2011: jedna seria może wystarczyć, zwłaszcza u początkujących i starszych. {s} to dolna granica — uproszczenie.';
+  const OLD = 'Serie: {s} na ćwiczenie — dla zdrowia zwykle {s}–{b} (wytyczne USA 2018, ACSM 2011, ACSM 2026: jedna seria działa, więcej zwykle trochę lepiej); {s} to dolna granica — uproszczenie.';
+  afterEach(() => { applyLang('pl'); }); /* jak tests/gen-general-ui: zegar udawany zostaje do sprzątania ekranu (useRealTimers przed nim zawiesza sprzątanie) */
+  test('PL: tekst na ekranie z liczbami ze stałych (GENERAL_SETS, GENERAL_SETS_RANGE, ACSM_MIN_SETS); dawnego zdania nie ma', async () => {
+    await showGenerator('pl'); const s = GENERAL_SETS, b = GENERAL_SETS_RANGE[1];
+    expect(screen.getByText(`• Serie: ${s} na ćwiczenie — dla zdrowia zwykle ${s}–${b}. ACSM 2026 zaleca co najmniej ${ACSM_MIN_SETS}. Wytyczne USA 2018: jedna seria działa, ${s}–${b} mogą działać lepiej; ACSM 2011: jedna seria może wystarczyć, zwłaszcza u początkujących i starszych. ${s} to dolna granica — uproszczenie.`)).toBeTruthy();
+    expect(screen.queryByText(/ACSM 2026: jedna seria/)).toBeNull();
+  });
+  test('EN: „ACSM 2026 recommends at least 2”; „one set works” przy US guidelines 2018', async () => {
+    await showGenerator('en');
+    expect(screen.getByText('• Sets: 2 per exercise — for health usually 2–3. ACSM 2026 recommends at least 2. US guidelines 2018: one set works, 2–3 may work better; ACSM 2011: one set can be enough, especially for beginners and older adults. 2 is the lower end — a simplification.')).toBeTruthy();
+    expect(screen.queryByText(/ACSM 2026: one set/)).toBeNull();
+  });
+  test('25 języków: nowy klucz ma {s} {b} {m}; w żadnym ACSM 2026 nie stoi przed dwukropkiem (przypisanie „jedna seria”); dawny klucz usunięty', () => {
+    allLangs(KEY, ['{s}', '{b}', '{m}']);
+    for (const l of LANGS) expect([l, /ACSM 2026\s*:/.test(tIn(l, KEY))]).toEqual([l, false]);
+    expect(EN[OLD]).toBeUndefined();
+  });
+});
+
+describe('A11B-6: uwaga przy 1 dniu (cel „Ogólny”) — wytyczne USA 2018 „można” zacząć od 1 dnia (c29: „can be done just 1 day a week”), nie „radzą”', () => {
+  const KEY = '{k} dzień siłowy w tygodniu to mniej niż zalecenie WHO 2020 (co najmniej {n} dni). Na początek to dobry krok: według wytycznych USA 2018 na początku można ćwiczyć siłowo tylko {k} dzień w tygodniu, a z czasem dojść do {n} — trochę ruchu jest lepsze niż żaden.';
+  const OLD = '{k} dzień siłowy w tygodniu to mniej niż zalecenie WHO 2020 (co najmniej {n} dni). Na początek to dobry krok: wytyczne USA 2018 radzą zacząć od {k} dnia i z czasem dojść do {n} — trochę ruchu jest lepsze niż żaden.';
+  afterEach(() => { applyLang('pl'); });
+  test('PL i EN: previewWarnings „oneday” z liczbami ze stałych (MIN_DAYS)', async () => {
+    await fresh(); const inp = { goal: 'general' as const, locationId: null, sessions: 1, minutes: 60 };
+    const w = previewWarnings(generate(inp), inp).find(x => x.kind === 'oneday')!;
+    expect(w.text).toBe(`1 dzień siłowy w tygodniu to mniej niż zalecenie WHO 2020 (co najmniej ${MIN_DAYS} dni). Na początek to dobry krok: według wytycznych USA 2018 na początku można ćwiczyć siłowo tylko 1 dzień w tygodniu, a z czasem dojść do ${MIN_DAYS} — trochę ruchu jest lepsze niż żaden.`);
+    applyLang('en');
+    expect(previewWarnings(generate(inp), inp).find(x => x.kind === 'oneday')!.text).toBe('1 strength day a week is less than the WHO 2020 recommendation (at least 2 days). It is a good first step: according to the US guidelines 2018, strength training can be done just 1 day a week at first and built up to 2 over time — some activity is better than none.');
+  });
+  test('25 języków: {k} i {n} zachowane; bez czasowników „radzić/zalecać” przy wytycznych USA (de „raten”, es „aconsejan” i inne); dawny klucz usunięty', () => {
+    allLangs(KEY, ['{k}', '{n}']);
+    const STRONG = /radzą|suggest|raten|aconsejan|conseillent|consigliano|aconselham|recomandă|радять|съветват|radí|radia|råder|raden aan|savjetuju|svetujejo|саветују|soovitavad|neuvovat|tanácsolják|pataria|iesaka|προτείνουν|önerir/;
+    for (const l of LANGS) expect([l, STRONG.exec(tIn(l, KEY))?.[0] ?? null]).toEqual([l, null]);
+    expect(EN[OLD]).toBeUndefined();
   });
 });
