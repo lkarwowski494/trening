@@ -3,17 +3,17 @@ import { ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { Screen, H1, H2, Muted, Item, Btn, useOnce, SectionTitle } from '@/components/ui';
-import { useTheme } from '@/lib/theme';
 import ActiveWorkout from '@/components/ActiveWorkout';
 import { Alert } from 'react-native';
-import { wallTs, getState, useTick, finishedWorkouts, templateGroups, startEmpty, newTemplate, useForegroundTick, fmtDate, localISODate, getPersistError, getRecovery, clearRecovery, flush, exById, tplWorkSets } from '@/lib/store';
+import { wallTs, getState, useTick, finishedWorkouts, templateGroups, useForegroundTick, fmtDate, getPersistError, getRecovery, clearRecovery, flush, tplWorkSets } from '@/lib/store';
 import { exportRecovery } from '@/lib/backup';
 import { TodayPlan } from '@/components/TodayPlan';
 import { WeekStats, FirstSteps } from '@/components/Dashboard';
 import { firstSteps } from '@/lib/dashboard';
 import { WhatsNewHeader } from '@/components/WhatsNew';
-import { startTemplate, startRepeatLast } from '@/lib/start';
-import { hasPlan, dayStatus, dayKeyOf, pending } from '@/lib/plan';
+import { startTemplate } from '@/lib/start';
+import { StartPanel } from '@/components/StartPanel';
+import { PlanningCard } from '@/components/PlanningCard';
 import { signingState, scheduleReminder, renewTexts, type RenewKind } from '@/lib/signing';
 import { t, tp, locale } from '@/lib/i18n';
 import { fmtW, fmtNum } from '@/lib/units';
@@ -39,32 +39,27 @@ function DataBanners() {
 }
 
 function Home() {
-  const st = getState(); const router = useRouter(); const once = useOnce(); const th = useTheme();
-  const fin = finishedWorkouts(); const last = fin[0];
-  const repeat = !!last && last.exercises.some(e => { const x = exById(e.exerciseId); return x && !x.archived; }); /* runda 42: nie proponujemy pustego treningu */
-  /* UX-16 A (audyt 0.10): dziś czeka inny trening z planu — „Powtórz ostatni” niżej i mniej wyraźny (nie konkuruje z kartą „Dziś”) */
-  const today = dayKeyOf(Date.now()); const ds = hasPlan() ? dayStatus(today, today) : null; const repeatLow = !!ds && pending(ds) && !!ds.templateId && ds.templateId !== last?.templateId;
-  const repeatBtn = last ? <Btn title={t('Powtórz ostatni ({name})', { name: last.templateName || t('bez szablonu') })} kind={repeatLow ? 'ghost' : 'default'} block onPress={once(() => startRepeatLast()) /* audyt 0.10 (D1): w tygodniu deload to samo pytanie co Start */} /> : null;
+  const st = getState(); const router = useRouter(); const once = useOnce();
+  const fin = finishedWorkouts();
+  /* Układ B „najpierw trening” (decyzja właściciela 09.10.2026 ok. 15:20, doprecyzowanie 15:30; docs/18): karta „Dziś” na górze, pod nią duży
+   * przycisk startu i „Inny trening” (arkusz: inny z planu, powtórz ostatni, z szablonu, pusty — dawne przyciski na dole ekranu), bez planu karta
+   * Planowania zaraz pod startem; nowa osoba — „Pierwsze kroki” w miejscu Planowania; „Ten tydzień” (kafelki, przy planie sztanga postępu),
+   * przy planie Planowanie zwinięte do wiersza, „Ostatni trening”, lista szablonów ze Startem (zostaje — szybki start konkretnego szablonu). */
   return (
     <ScrollView contentContainerStyle={{ paddingBottom: 40 }}>
       <WhatsNewHeader>{/* 08.10.2026: „i” — Co nowego (decyzja właściciela) */}<H1>{t('Trening')}</H1><Muted>{new Date().toLocaleDateString(locale(), { weekday: 'long', day: 'numeric', month: 'long' })}</Muted></WhatsNewHeader>
       <DataBanners />
       <SigningBanner />
       <TodayPlan />{/* 08.10.2026: kalendarz z planem (decyzja 1A) */}
-      {/* 08.10.2026 (dashboard, wariant A): kafelki tygodnia i ostatni trening; nowa osoba — „Pierwsze kroki” (zastępują dawną wskazówkę
-          „Pierwszy raz?” z 03.10.2026, której tekst jest krokiem 3) */}
+      <StartPanel />
+      <PlanningCard when="noPlan" />
       <FirstSteps />
-      <WeekStats />
+      <WeekStats beforeLast={<PlanningCard when="plan" />} />
       <H2 style={{ marginTop: 22 }}>{t('Zacznij z szablonu')}</H2>
-      {!st.templates.some(x => !x.archived) && !firstSteps() /* 07.10.2026 wieczór: same zarchiwizowane — jak brak szablonów; UX-12 A: bez powtórzenia „Pierwszych kroków” */ ? <><Muted style={{ fontSize: 13, marginBottom: 8 }}>{t('Nie masz jeszcze szablonów — utwórz pierwszy albo zacznij pusty trening.')}</Muted><Btn title={t('+ Nowy szablon')} block onPress={once(() => { const x = newTemplate(); router.push(`/template/${x.id}?edit=1&new=1`); })} /></> : null /* runda 8: pusty stan; od 03.10.2026 — stan świeżej instalacji */}
+      {!st.templates.some(x => !x.archived) && !firstSteps() /* 07.10.2026 wieczór: same zarchiwizowane — jak brak szablonów; UX-12 A: bez powtórzenia „Pierwszych kroków” */ ? <Muted style={{ fontSize: 13, marginBottom: 8 }}>{t('Nie masz jeszcze szablonów — utwórz pierwszy albo zacznij pusty trening.')}</Muted> : null /* runda 8: pusty stan; układ B: „+ Nowy szablon” w karcie Planowania */}
       {/* 07.10.2026 wieczór: foldery jako nagłówki, bez zarchiwizowanych (store.templateGroups) */}
       {templateGroups().map(g => <React.Fragment key={g.folder ?? ''}>{g.folder ? <SectionTitle>{g.folder}</SectionTitle> : null}{g.items.map(tpl => { const lw = fin.find(x => x.templateId === tpl.id); const sets = tplWorkSets(tpl); return (
         <Item key={tpl.id} title={tpl.name} sub={`${tpl.items.length} ${t('ćw.')} · ${sets} ${tp(sets, 'seria|serie|serii')}${lw ? ' · ' + t('ostatnio') + ' ' + fmtDate(wallTs(lw)) : ''}`} onPress={() => router.push(`/template/${tpl.id}`)} right={tpl.items.length ? <Btn title={t('Start')} kind="primary" small accessibilityLabel={t('Start: {name}', { name: tpl.name })} onPress={once(() => startTemplate(tpl)) /* audyt 0.10 (LIVE-12): podwójne tapnięcie — jedno pytanie / jeden trening */} /> : undefined} />); })}</React.Fragment>)}
-      <View style={{ gap: 8, marginTop: 22 }}>
-        {repeat && !repeatLow ? repeatBtn : null}
-        <Btn title={t('Pusty trening')} kind="ghost" block onPress={once(() => { startEmpty(); })} />
-        {repeat && repeatLow ? repeatBtn : null}
-      </View>
     </ScrollView>
   );
 }

@@ -20,6 +20,7 @@ import { light, dark, type Theme } from '@/lib/theme';
 import { SCHEMA_VERSION } from '@/lib/seed';
 import { prCount } from '@/lib/stats';
 import { TabIcon, type TabIconName } from '@/components/TabIcon';
+import { WeekBarbell } from '@/components/WeekBarbell';
 import { fresh, addWorkout, saved } from './helpers';
 import { renderApp, flushAll, screen, go, act } from './app';
 
@@ -141,30 +142,41 @@ describe('kolory', () => {
 
 /* ---------- 3. ekran: karta „Dziś” ---------- */
 const plateStyle = (i: number) => flat(screen.getByTestId(`week-plate-${i}`, { includeHiddenElements: true }).props.style);
-describe('karta „Dziś”: sztanga tygodnia i pasek-akcent', () => {
+/* plan od poniedziałku 5.10 (historia planu — dni przed ustawieniem nie są zaplanowane); `done` — dni (indeksy pon=0) zrobione planowanym szablonem */
+const planWeek = (days: number[], done: number[]) => () => {
+  jest.setSystemTime(at(10, 5, 6)); const a = mkTpl('A'); days.forEach(i => plan.setWeekDay(i, a.id));
+  done.forEach(i => { const w = addWorkout(at(10, 5 + i, 7), [['Back Squat', sets(3)]], 'A'); w.templateId = a.id; }); store.save(); jest.setSystemTime(NOW);
+};
+describe('„Ten tydzień”: sztanga postępu (tylko przy planie), karta „Dziś”: pasek-akcent i talerze pod dniami', () => {
   test('z planem: „1 z 4”, etykieta VoiceOver, talerze w kolejności kolorów, brakujące jako kontur; pasek-akcent ukryty przed VoiceOver', async () => {
-    jest.useFakeTimers({ now: at(10, 5, 8) });
-    await boot(() => { const a = mkTpl('A'); [0, 2, 4, 5].forEach(i => plan.setWeekDay(i, a.id)); const w = addWorkout(at(10, 5, 7), [['Back Squat', sets(3)]], 'A'); w.templateId = a.id; });
-    jest.setSystemTime(NOW); await go('/history'); await go('/'); await flushAll(10);
+    jest.useFakeTimers({ now: NOW }); await boot(planWeek([0, 2, 4, 5], [0]));
     const bb = screen.getByTestId('week-barbell'); expect(bb.props.accessibilityLabel).toBe('Postęp tygodnia: zrobione 1 z 4 treningów z planu'); expect(bb.props.accessibilityRole).toBe('image');
     expect(screen.getByText('1 z 4')).toBeTruthy();
     LOAD_ORDER.forEach((c, i) => { const st = plateStyle(i); expect([i, st.backgroundColor]).toEqual([i, i === 0 ? PLATE_COLORS[c] : 'transparent']); if (i > 0) expect(st.borderColor).toBe(light.ctrlLine); });
     const stripe = screen.getByTestId('plate-stripe', { includeHiddenElements: true }); expect(stripe.props.accessibilityElementsHidden).toBe(true); expect(stripe.props.importantForAccessibility).toBe('no-hide-descendants');
   });
-  test('bez planu: liczba treningów tygodnia słownie, wszystkie talerze załadowane; po restarcie to samo', async () => {
+  test('pasek tygodnia: pod dniem z treningiem talerz (kolejne kolory), pod zaplanowanym kontur; etykiety dni bez zmian', async () => {
+    jest.useFakeTimers({ now: NOW }); await boot(planWeek([0, 2, 4, 5], [0, 2]));
+    const mark = (k: string) => screen.getByTestId(`strip-mark-${k}`).findAll(x => typeof x.type === 'string').map(x => flat(x.props.style));
+    expect(mark('2026-10-05').some(st => st.backgroundColor === PLATE_COLORS.red)).toBe(true); expect(mark('2026-10-07').some(st => st.backgroundColor === PLATE_COLORS.blue)).toBe(true);
+    expect(mark('2026-10-09').some(st => st.borderColor === light.accent && st.backgroundColor === undefined)).toBe(true); /* zaplanowany — kontur */
+    expect(screen.getByTestId('strip-2026-10-05').props.accessibilityLabel).toMatch(/^poniedziałek, 5 października, zrobione: A/);
+  });
+  test('bez planu: sztangi nie ma (kafelki zostają); po restarcie to samo', async () => {
     jest.useFakeTimers({ now: NOW });
     await boot(() => { addWorkout(at(10, 5), [['Back Squat', sets(3)]]); addWorkout(at(10, 6), [['Back Squat', sets(3)]]); });
-    const bb = screen.getByTestId('week-barbell'); expect(bb.props.accessibilityLabel).toBe('Treningi w tym tygodniu: 2'); expect(screen.getByText('2 treningi')).toBeTruthy();
-    expect([0, 1].map(i => plateStyle(i).backgroundColor)).toEqual([PLATE_COLORS.red, PLATE_COLORS.blue]); expect(screen.queryByTestId('week-plate-2', { includeHiddenElements: true })).toBeNull();
+    expect(screen.queryByTestId('week-barbell')).toBeNull(); expect(screen.getByLabelText('Treningi: 2, poprzedni tydzień 0')).toBeTruthy();
     await renderApp({ saved: JSON.parse(JSON.stringify(saved())) }); await flushAll(10); /* restart */
-    expect(screen.getByTestId('week-barbell').props.accessibilityLabel).toBe('Treningi w tym tygodniu: 2');
+    expect(screen.queryByTestId('week-barbell')).toBeNull();
+    render(<WeekBarbell bar={weekBar()} />); /* komponent sam w sobie (do przeniesienia): bez planu — talerz za trening, liczba słownie */
+    expect(screen.getByTestId('week-barbell').props.accessibilityLabel).toBe('Treningi w tym tygodniu: 2'); expect(screen.getByText('2 treningi')).toBeTruthy();
   });
-  test.each([['pl', 'Treningi w tym tygodniu: 1', '1 trening'], ['en', 'Workouts this week: 1', '1 workout']] as const)('język %s', async (l, label, txt) => {
-    jest.useFakeTimers({ now: NOW }); await boot(() => { addWorkout(at(10, 6), [['Back Squat', sets(3)]]); }, l);
+  test.each([['pl', 'Postęp tygodnia: zrobione 1 z 1 treningów z planu', '1 z 1'], ['en', 'Weekly progress: 1 of 1 planned workouts done', '1 of 1']] as const)('język %s', async (l, label, txt) => {
+    jest.useFakeTimers({ now: NOW }); await boot(planWeek([0], [0]), l);
     expect(screen.getByTestId('week-barbell').props.accessibilityLabel).toBe(label); expect(screen.getByText(txt)).toBeTruthy();
   });
   test('ciemny motyw: niebieski talerz na karcie (2,9:1) dostaje obwódkę w kolorze tekstu', async () => {
-    jest.useFakeTimers({ now: NOW }); await boot(() => { addWorkout(at(10, 5), [['Back Squat', sets(3)]]); addWorkout(at(10, 6), [['Back Squat', sets(3)]]); }, 'en', 'dark');
+    jest.useFakeTimers({ now: NOW }); await boot(planWeek([0, 1, 2], [0, 1]), 'en', 'dark');
     const st = plateStyle(1); expect([st.backgroundColor, st.borderWidth, st.borderColor]).toEqual([PLATE_COLORS.blue, 1.5, dark.text]);
     expect(plateStyle(0).borderWidth).toBe(0); /* czerwony na ciemnej karcie 3,4:1 — bez obwódki */
   });

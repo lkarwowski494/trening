@@ -108,6 +108,10 @@
   "en": "{n}, main: {m}"
  },
  {
+  "pl": "{name} · w planie na: {day}",
+  "en": "{name} · planned for: {day}"
+ },
+ {
   "pl": "{name}, wybrany",
   "en": "{name}, selected"
  },
@@ -716,6 +720,10 @@
   "en": "add exercises in the next step"
  },
  {
+  "pl": "ćwiczenia dodasz w trakcie",
+  "en": "add exercises as you go"
+ },
+ {
   "pl": "Ćwiczenia na czas mają w treningu stoper — po upływie celu seria odhacza się sama. Przerwa ustawiona w pozycji szablonu ma pierwszeństwo; puste pole przerwy w szablonie oznacza przerwę z tego ćwiczenia.",
   "en": "Timed exercises get a stopwatch during the workout — the set ticks itself off when the target is reached. A rest set on a template item takes priority; an empty rest field in the template means this exercise’s rest."
  },
@@ -948,6 +956,10 @@
  {
   "pl": "Dziś",
   "en": "Today"
+ },
+ {
+  "pl": "dziś w planie · {n} ćw.",
+  "en": "planned for today · {n} ex."
  },
  {
   "pl": "Dziś wolne",
@@ -1292,6 +1304,18 @@
  {
   "pl": "Inny trening",
   "en": "Other workout"
+ },
+ {
+  "pl": "Inny z planu",
+  "en": "Another from the plan"
+ },
+ {
+  "pl": "Inny z planu, powtórz ostatni, z szablonu albo pusty.",
+  "en": "Another from the plan, repeat last, from a template or empty."
+ },
+ {
+  "pl": "Inny z planu: {name}",
+  "en": "Another from the plan: {name}"
  },
  {
   "pl": "Inteligentna stacja kablowa — kompaktowa (1,5–35 kg/str.)",
@@ -2118,6 +2142,14 @@
   "en": "Next period"
  },
  {
+  "pl": "następny po: {name} · {n} ćw.",
+  "en": "next after: {name} · {n} ex."
+ },
+ {
+  "pl": "następny: {next}",
+  "en": "next: {next}"
+ },
+ {
   "pl": "Nazwa",
   "en": "Name"
  },
@@ -2728,6 +2760,22 @@
  {
   "pl": "Plan tygodnia i Kalendarz",
   "en": "Weekly plan and Calendar"
+ },
+ {
+  "pl": "Plan z moich szablonów",
+  "en": "Plan from my templates"
+ },
+ {
+  "pl": "Plan: {name}",
+  "en": "Plan: {name}"
+ },
+ {
+  "pl": "Plan: {name} · {n} {d} · następny: {next}",
+  "en": "Plan: {name} · {n} {d} · next: {next}"
+ },
+ {
+  "pl": "Planowanie",
+  "en": "Planning"
  },
  {
   "pl": "plecy",
@@ -3353,6 +3401,10 @@
   "en": "warm-up"
  },
  {
+  "pl": "Rozwija planowanie.",
+  "en": "Expands planning."
+ },
+ {
   "pl": "RPE / RIR przy serii",
   "en": "RPE / RIR per set"
  },
@@ -3651,6 +3703,10 @@
   "en": "Start"
  },
  {
+  "pl": "Start następnego treningu: {name}",
+  "en": "Start next workout: {name}"
+ },
+ {
   "pl": "Start stopera serii",
   "en": "Start set stopwatch"
  },
@@ -3761,6 +3817,11 @@
  {
   "pl": "Szablon zostanie bez zmian.",
   "en": "The template stays unchanged."
+ },
+ {
+  "pl": "szablon|szablony|szablonów",
+  "en": "template|templates",
+  "plural": true
  },
  {
   "pl": "Szablony",
@@ -4432,6 +4493,10 @@
   "en": "In the Calendar: tap a day, then “More options” → “Mark week as deload” — a future week too."
  },
  {
+  "pl": "w planie na: {day} · {n} ćw.",
+  "en": "planned for: {day} · {n} ex."
+ },
+ {
   "pl": "W planie tygodnia: {days} — te dni będą wolne.",
   "en": "In the weekly plan: {days} — these days will be rest days."
  },
@@ -4770,10 +4835,6 @@
  {
   "pl": "z oparciem skośnym",
   "en": "with incline back"
- },
- {
-  "pl": "Z planu w tym tygodniu: zrobione {done} z {n}.",
-  "en": "Planned this week: {done} of {n} done."
  },
  {
   "pl": "z regulacją nachylenia (marsz pod górę)",

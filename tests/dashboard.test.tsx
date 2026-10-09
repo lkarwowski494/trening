@@ -72,7 +72,7 @@ describe('ekran', () => {
     expect(screen.queryByTestId('first-steps')).toBeNull(); expect(screen.getByText('Ten tydzień')).toBeTruthy();
     expect(screen.getByLabelText('Treningi: 1, poprzedni tydzień 1')).toBeTruthy(); /* audyt 0.10 A5: kafelek liczy sesje, dni planu w opisie niżej */ expect(screen.getByLabelText('Serie: 2, poprzedni tydzień 2')).toBeTruthy();
     expect(screen.getByLabelText('Czas: 1 h, poprzedni tydzień 1 h')).toBeTruthy(); /* pełna godzina — bez „0 min” */ expect(screen.getAllByText(/^poprz\.: /).length).toBe(3); expect('poprz.: {v}'.replace('{v}', '2')).toBe('poprz.: 2'); expect(screen.getAllByText('poprz.: 2').length).toBe(1); /* tekst z t() — macierz */
-    expect(screen.getByText('Z planu w tym tygodniu: zrobione 1 z 2.')).toBeTruthy(); expect('Z planu w tym tygodniu: zrobione {done} z {n}.').toContain('{done}'); /* tekst z t() — macierz; audyt 0.10 A5 */
+    expect(screen.getByTestId('week-barbell').props.accessibilityLabel).toBe('Postęp tygodnia: zrobione 1 z 2 treningów z planu'); expect(screen.getByText('1 z 2')).toBeTruthy(); /* układ B (09.10.2026): sztanga zamiast linii „Z planu w tym tygodniu…”; audyt 0.10 A5 — dni planu osobno od sesji */
     expect(screen.getByText('Ostatni trening')).toBeTruthy();
     const last = lastWorkout()!; const item = screen.getByText(new RegExp(` · 2 serie · .* · ${last.prs} (rekord|rekordy|rekordów)$`)); expect(item).toBeTruthy();
     await tap(item); await flushAll(10); expect(screen.getByLabelText('Edytuj sesję')).toBeTruthy();

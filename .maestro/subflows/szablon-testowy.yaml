@@ -7,7 +7,7 @@
 # Nie jest na liście w config.yaml — uruchamiany tylko przez runFlow.
 #
 # Literały (EN z lib/i18n.en.ts, chyba że zaznaczono inaczej):
-#   "\+ New template"             ← '+ Nowy szablon'   (Btn w pustym stanie app/(tabs)/index.tsx; accessibilityLabel = tytuł)
+#   "\+ New template"             ← '+ Nowy szablon'   (Btn w „Pierwszych krokach” albo w karcie Planowania — układ B, 09.10.2026; accessibilityLabel = tytuł)
 #   "\+ Add exercise"             ← '+ Dodaj ćwiczenie' (Btn w app/template/[id].tsx)
 #   "New template"                ← wartość pola Nazwa nowego szablonu: 'Nowy szablon' (lib/store.ts newTemplate) — dopasowanie po wartości pola
 #                                    (E2E 89: tytuł nagłówka edycji nowego szablonu — DraftHeader title 'Nowy szablon' — to ten sam tekst i stoi wyżej;
