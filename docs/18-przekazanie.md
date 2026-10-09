@@ -399,3 +399,5 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
   iPhone’a sprawdza, czy element jest na ekranie bez przewinięcia; reguły pisania scenariuszy pilnowane testem; stała praktyka D — powtórka
   samych nieudanych scenariuszy na zbudowanej aplikacji), **po wydaniu 0.11**. Po zielonym E2E — bez kolejnego audytu (zasada „jeden audyt
   na wydanie”).
+- 09.10.2026 (wieczór): właściciel — **„działaj, zgodnie z propozycją aż do nowego buildu”**: po naprawie błędu podwójnej zamiany, zielonym
+  verify i zielonym E2E — scalenie feature/e2-swap → main, testflight.yml (0.11.0), tag v0.11.0-b<build>, wiersz w tabeli wydań.
