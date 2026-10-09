@@ -31,7 +31,7 @@ export default function ExerciseScreen() {
   if (editing && d) {
     const cancel = () => confirmDiscard(objDirty('exercise', id), isNew.current ? t('Nowe ćwiczenie nie zostanie zapisane.') : t('Ćwiczenie zostanie bez zmian.'), () => {
       discardObjDraft('exercise', id); setEditing(false); if (isNew.current) { dropUnsavedNew('exercise', id); close(); } }, () => objDraft('exercise', id) === d);
-    const commit = () => { commitObjDraft('exercise', id); isNew.current = false; setEditing(false); };
+    const commit = () => { commitObjDraft('exercise', id, { keepNew: isNew.current }); isNew.current = false; setEditing(false); };
     return <><DraftHeader title={isNew.current ? t('Nowe ćwiczenie') : t('Edycja ćwiczenia')} onCancel={cancel} onSave={commit} cancelLabel={t('Anuluj edycję ćwiczenia')} saveLabel={t('Zapisz ćwiczenie')} /><EditForm e={d} /></>;
   }
   return <><Stack.Screen options={{ title: t('Ćwiczenie'), headerBackVisible: true, gestureEnabled: true, headerLeft: undefined, headerRight: undefined }} /><Preview e={real} onEdit={() => { if (beginObjDraft('exercise', id)) setEditing(true); } /* podwójne tapnięcie — ten sam szkic */} onOpen={(wid: string) => router.push(`/history/${wid}`)} onProgress={once(() => router.push(`/more/progress?ex=${real.id}`))} /></>;

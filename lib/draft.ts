@@ -34,10 +34,15 @@ export function cleanName(v: string, prev: string, fallback: string): string { c
 
 /** „Zapisz”: szkic trafia do obiektu w stanie jednym zapisem (obiekt zachowuje tożsamość — inne ekrany trzymają do niego odwołania).
  * Bez zmian — nic się nie zapisuje (znacznik zmiany zostaje). Zwraca false, gdy obiekt w międzyczasie zniknął. */
-export function commitObjDraft(kind: DraftKind, id: string): boolean {
+export function commitObjDraft(kind: DraftKind, id: string, opts: { keepNew?: boolean } = {}): boolean {
   const d = drafts.get(k(kind, id)); if (!d) return false; drafts.delete(k(kind, id));
   const dst = real(kind, id) as unknown as Record<string, unknown> | undefined; if (!dst) { save(d.obj); return false; }
-  if (snap(d.obj) === d.orig) { save(d.obj); return true; }
+  if (snap(d.obj) === d.orig) {
+    save(d.obj);
+    /* UI2-05 (audyt kontrolny 1, wariant A): „Zapisz” na NOWYM obiekcie to jawny wybór — znacznik zapisu (updatedAt > createdAt), żeby dropUnsavedNew go nie usunął */
+    if (opts.keepNew) { const o = dst as unknown as { createdAt: number; updatedAt: number }; save(dst as unknown as Obj); if (o.updatedAt <= o.createdAt) o.updatedAt = o.createdAt + 1; }
+    return true;
+  }
   const src = d.obj as unknown as Record<string, unknown>;
   src.name = cleanName(String(src.name ?? ''), String(dst.name ?? ''), kind === 'exercise' ? t('Nowe ćwiczenie') : t('Nowy szablon'));
   const EQUIP_KEYS = ['equipment', 'loadSource', 'requires', 'implements', 'loadMode']; const equipBefore = JSON.stringify(EQUIP_KEYS.map(x => dst[x] ?? null));

@@ -40,7 +40,7 @@ export default function TemplateScreen() {
   if (editing && d) {
     const cancel = () => confirmDiscard(objDirty('template', id), isNew.current ? t('Nowy szablon nie zostanie zapisany.') : t('Szablon zostanie bez zmian.'), () => {
       discardObjDraft('template', id); setEditing(false); if (isNew.current) { dropUnsavedNew('template', id); close(); } }, () => objDraft('template', id) === d);
-    const commit = () => { commitObjDraft('template', id); isNew.current = false; setEditing(false); };
+    const commit = () => { commitObjDraft('template', id, { keepNew: isNew.current }); isNew.current = false; setEditing(false); };
     return <><DraftHeader title={isNew.current ? t('Nowy szablon') : t('Edycja szablonu')} onCancel={cancel} onSave={commit} cancelLabel={t('Anuluj edycję szablonu')} saveLabel={t('Zapisz szablon')} /><TemplateEditor tpl={d} /></>;
   }
   return <><Stack.Screen options={{ title: t('Szablon'), headerBackVisible: true, gestureEnabled: true, headerLeft: undefined, headerRight: undefined }} /><TemplatePreview tpl={real} onEdit={() => { if (beginObjDraft('template', id)) setEditing(true); } /* podwójne tapnięcie — ten sam szkic (beginObjDraft) */} /></>;
