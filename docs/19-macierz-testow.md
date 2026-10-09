@@ -52,7 +52,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 |---|---|---|
 | {label}: {v}, poprzedni tydzień {p} | components/Dashboard.tsx | tests/dashboard.test.tsx, tests/maestro-selectors.test.ts, tests/motyw.test.tsx |
 | {label}: {v}, poprzednio {p} | components/PeriodSummary.tsx | tests/period-summary.test.tsx |
-| {n} min | app/generator.tsx | tests/app.tsx, tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-gen.test.ts +42 |
+| {n} min | app/generator.tsx | tests/app.tsx, tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-gen.test.ts +43 |
 | {n} z {all} | components/DragList.tsx | (tylko parametry — pokrycie przez test ekranu) |
 | ↑ przy ćwiczeniu, gdy ostatnio wszystkie serie były na górze zakresu powtórzeń | app/more/settings.tsx | tests/matrix-ui.test.tsx |
 | ↺ cofnij | components/ActiveWorkout.tsx | tests/audit-0.10-tst-ui.test.tsx, tests/audit-0.10-tst.test.ts |
@@ -217,7 +217,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Przewodnik | app/(tabs)/more.tsx | tests/edit-on-demand.test.tsx, tests/guide.test.tsx |
 | Przewodnik po funkcjach | components/Dashboard.tsx | tests/guide.test.tsx |
 | Przewodnik: {name} | components/Dashboard.tsx | tests/edit-on-demand.test.tsx |
-| Przypomnienie o treningu z planu | app/more/settings.tsx | tests/audit-0.10-plan-ui.test.tsx, tests/audit-0.10-plan.test.ts, tests/backlog-0.10.1-dane-ui.test.tsx +2 |
+| Przypomnienie o treningu z planu | app/more/settings.tsx | tests/audit-0.10-plan-ui.test.tsx, tests/audit-0.10-plan.test.ts, tests/backlog-0.10.1-dane-ui.test.tsx +3 |
 | Przywróć | components/ActiveWorkout.tsx | tests/audit-0.10-plan-ui.test.tsx, tests/audit-k1-fala2b.test.tsx, tests/backlog-0410.test.tsx +8 |
 | Przywróć „{name}” | app/(tabs)/exercises.tsx | tests/audit-k1-fala2b.test.tsx, tests/backlog-0410.test.tsx, tests/matrix-logic.test.tsx +2 |
 | Przywróć ćwiczenie: {name} | app/swap.tsx | tests/skip-today.test.tsx |
@@ -679,7 +679,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | nic więcej do zrobienia | lib/live.ts | tests/audit-0.10-live-logic.test.ts, tests/audit-0.10-live.test.tsx |
 | Nic więcej do zrobienia — możesz zakończyć trening. | lib/timer.ts | tests/audit-0.10-live.test.tsx, tests/audit-0.10-tst.test.ts, tests/timer-logic.test.ts |
 | Nic więcej do zrobienia (część pominięta) | components/ActiveWorkout.tsx | tests/audit-0.10-live.test.tsx, tests/skip-today.test.tsx |
-| nie | app/exercise/[id].tsx | tests/app.tsx, tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-data.test.ts +131 |
+| nie | app/exercise/[id].tsx | tests/app.tsx, tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-data.test.ts +132 |
 | Nie da się ułożyć z talerzy ({l}) | components/EquipVisual.tsx | tests/audit-0.10-live.test.tsx |
 | Nie da się ułożyć z talerzy ({l}) — najbliżej {v} | components/EquipVisual.tsx | tests/audit-0.10-live.test.tsx |
 | Nie ma takiego ćwiczenia. | app/exercise/[id].tsx | tests/matrix-ui.test.tsx |
@@ -1467,7 +1467,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | planReminder.planReminderKey | lib/planReminder.ts | tests/audit-0.10-live.test.tsx, tests/audit-0.10-plan.test.ts, tests/mutation-bounds.test.ts +1 |
 | planReminder.cancelLegacyReminders | lib/planReminder.ts | tests/rm-signing.test.tsx |
 | planReminder.reminderPermission | lib/planReminder.ts | tests/audit-0.10-plan.test.ts, tests/mutation-bounds.test.ts |
-| planReminder.askReminderPermission | lib/planReminder.ts | tests/audit-0.10-plan.test.ts, tests/mutation-bounds.test.ts |
+| planReminder.askReminderPermission | lib/planReminder.ts | tests/audit-0.10-plan.test.ts, tests/e2e-102-reminder.test.tsx, tests/mutation-bounds.test.ts |
 | planReminder.__resetReminderAsk | lib/planReminder.ts | tests/app.tsx, tests/helpers.ts |
 | plates.plateColor | lib/plates.ts | tests/tuleja.test.tsx |
 | plates.plateInk | lib/plates.ts | tests/tuleja.test.tsx |
