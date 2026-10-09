@@ -10,6 +10,8 @@
 #   "\+ New template"             ← '+ Nowy szablon'   (Btn w pustym stanie app/(tabs)/index.tsx; accessibilityLabel = tytuł)
 #   "\+ Add exercise"             ← '+ Dodaj ćwiczenie' (Btn w app/template/[id].tsx)
 #   "New template"                ← wartość pola Nazwa nowego szablonu: 'Nowy szablon' (lib/store.ts newTemplate) — dopasowanie po wartości pola
+#                                    (E2E 89: tytuł nagłówka edycji nowego szablonu — DraftHeader title 'Nowy szablon' — to ten sam tekst i stoi wyżej;
+#                                    stuknięcie trafiało w tytuł, nazwa zostawała „New template” → selektor { text, below: "Name" } — 'Nazwa', etykieta pola)
 #   "Search exercises…"           ← 'Szukaj ćwiczenia…' (placeholder pola w app/picker.tsx, jak przepływ 04)
 #   "Bench Press \(Dumbbell\), dumbbells" ← Item w app/picker.tsx: accessibilityLabel „{title}, {sub}” (components/ui.tsx);
 #                                    title = exName('Bench Press (hantle)') → 'Bench Press (Dumbbell)' (lib/i18n.ts EX_PAREN), sub = sprzęt 'hantle' → 'dumbbells'
@@ -25,7 +27,7 @@ appId: pl.lukasz.trening
 - tapOn: "\\+ New template"
 - extendedWaitUntil: { visible: "\\+ Add exercise", timeout: 30000 }
 # Pole „Name” ma wartość „New template” (zaznacza się całe przy fokusie)
-- tapOn: "New template"
+- tapOn: { text: "New template", below: "Name" }   # E2E 89: tytuł nagłówka edycji nowego szablonu to też „New template” — pole pod etykietą „Name”
 - eraseText: 30
 - inputText: "Upper A"
 # 05.10.2026: szablon jak trening (wiersze serii) — ekran wyższy; otwarta klawiatura zasłaniała „+ Add exercise” (przebieg 37323737583:

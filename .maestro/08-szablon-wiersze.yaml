@@ -3,7 +3,7 @@
 # zwijane karty (otwarta jedna), drugie ćwiczenie i „Usuń ćwiczenie”, a potem Start — trening ma typy i wartości z wierszy.
 #
 # Literały (EN z lib/i18n.en.ts, chyba że zaznaczono inaczej):
-#   "Start from a template", "\+ New template", "New template", "\+ Add exercise", "Search exercises…",
+#   "Start from a template", "\+ New template", "New template" (below: "Name" — E2E 89), "\+ Add exercise", "Search exercises…",
 #   "Bench Press \(Dumbbell\), dumbbells", "Bent Over Row \(Dumbbell\), dumbbells" ← jak podprzepływ subflows/szablon-testowy.yaml
 #   "Bench Press \(Dumbbell\)"       ← accessibilityLabel nagłówka karty ćwiczenia (Pressable w app/template/[id].tsx; tapnięcie zwija/rozwija)
 #   "\+ set" / "\+ warm-up" / "\+ drop set" ← '+ seria' / '+ rozgrzewka' / '+ drop set' (TplRows)
@@ -37,7 +37,7 @@ name: Szablon jak trening — wiersze serii, karty, start
 - scrollUntilVisible: { element: "\\+ New template", direction: DOWN, timeout: 60000 }
 - tapOn: "\\+ New template"
 - extendedWaitUntil: { visible: "\\+ Add exercise", timeout: 30000 }
-- tapOn: "New template"
+- tapOn: { text: "New template", below: "Name" }   # E2E 89: tytuł nagłówka edycji nowego szablonu to też „New template” — pole pod etykietą „Name”
 - eraseText: 30
 - inputText: "Rows E2E"
 - pressKey: Enter   # zatwierdza nazwę i chowa klawiaturę (jak podprzepływ szablon-testowy.yaml)

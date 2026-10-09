@@ -113,10 +113,13 @@ name: Zamiana ćwiczenia w trakcie treningu (E2 W1)
 - extendedWaitUntil: { visible: "Suggestion 1: Arnold Press.*", timeout: 30000 }
 - tapOn: "Suggestion 1: Arnold Press.*"
 - extendedWaitUntil: { visible: "instead of: Overhead Press \\(Barbell\\).*", timeout: 30000 }
-- assertVisible: "Set 1 done — Overhead Press \\(Barbell\\)"
+# E2E 89 (krok 83): po podziale blok Overhead Press (1 odhaczona seria) kurczy się, a lista zostaje przewinięta jak przy przycisku „Swap” —
+# odhaczona seria najpewniej wypadała nad widoczny obszar (bez zrzutu tego kroku; w drzewie Jest blok jest na miejscu — tests/maestro-flows.test.tsx).
+# Przewinięcie do niej zamiast assertVisible.
+- scrollUntilVisible: { element: "Set 1 done — Overhead Press \\(Barbell\\)", direction: UP, timeout: 30000 }
 - assertNotVisible: "Set 2 done — Overhead Press \\(Barbell\\)"
-- assertVisible: "Set 1 done — Arnold Press"
-- assertVisible: "Set 2 done — Arnold Press"
+- scrollUntilVisible: { element: "Set 1 done — Arnold Press", direction: DOWN, timeout: 30000 }
+- scrollUntilVisible: { element: "Set 2 done — Arnold Press", direction: DOWN, timeout: 30000 }
 - assertNotVisible: "Set 3 done — Arnold Press"
 - takeScreenshot: 34-podzial
 

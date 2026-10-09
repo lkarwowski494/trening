@@ -10,8 +10,10 @@
 #   "Edit exercise"              ← 'Edytuj ćwiczenie' (accessibilityLabel przycisku „Edytuj” w podglądzie, app/exercise/[id].tsx)
 #   "Body part: legs"            ← wiersz podglądu „{etykieta}: {wartość}” ('Partia' → Body part, 'nogi' → legs)
 #   "Save exercise" / "Cancel exercise editing" ← 'Zapisz ćwiczenie' / 'Anuluj edycję ćwiczenia' (nagłówek edycji, components/DraftHeader.tsx)
-#   "weight \+ time"             ← chip 'ciężar + czas' (pole „What you log per set”)
-#   "What you log per set: weight \+ time" ← wiersz podglądu po zapisie
+#   "reps"                       ← chip 'powtórzenia' (pole „What you log per set”, drugi chip — METRICS w lib/seed.ts). E2E 89: wcześniej
+#                                  „weight + time” — piąty chip poziomego paska, poza prawą krawędzią ekranu (393 pt): stuknięcie nic nie zmieniało,
+#                                  „Cancel” bez zmian wracał bez pytania („Discard changes?” niewidoczne). Logika pytania: tests/edit-on-demand.test.tsx.
+#   "What you log per set: reps" ← wiersz podglądu po zapisie
 #   "Discard changes\?" → "Discard changes" ← 'Odrzucić zmiany?' → 'Odrzuć zmiany'
 appId: pl.lukasz.trening
 name: Edycja na żądanie — ekran ćwiczenia
@@ -36,7 +38,7 @@ name: Edycja na żądanie — ekran ćwiczenia
 # --- „Edit exercise” → zmiana → „Cancel” → „Discard changes?” → „Discard changes”: dane bez zmian ---
 - tapOn: "Edit exercise"
 - extendedWaitUntil: { visible: "Save exercise", timeout: 15000 }
-- tapOn: "weight \\+ time"
+- tapOn: "reps"
 - takeScreenshot: 51-edycja-cwiczenia
 - tapOn: "Cancel exercise editing"
 - extendedWaitUntil: { visible: "Discard changes\\?", timeout: 15000 }
@@ -47,10 +49,10 @@ name: Edycja na żądanie — ekran ćwiczenia
 # --- „Edit exercise” → zmiana → „Save exercise”: zapis i podgląd; zostaje po restarcie ---
 - tapOn: "Edit exercise"
 - extendedWaitUntil: { visible: "Save exercise", timeout: 15000 }
-- tapOn: "weight \\+ time"
+- tapOn: "reps"
 - tapOn: "Save exercise"
 - extendedWaitUntil: { visible: "Edit exercise", timeout: 15000 }
-- assertVisible: "What you log per set: weight \\+ time"
+- assertVisible: "What you log per set: reps"
 - stopApp
 - launchApp:
     clearState: false
@@ -62,5 +64,5 @@ name: Edycja na żądanie — ekran ćwiczenia
 - tapOn: { text: "Continue", optional: true }
 - tapOn: "Back Squat, barbell.*"
 - extendedWaitUntil: { visible: "Edit exercise", timeout: 30000 }
-- assertVisible: "What you log per set: weight \\+ time"
+- assertVisible: "What you log per set: reps"
 - takeScreenshot: 52-po-restarcie

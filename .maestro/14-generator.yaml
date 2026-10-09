@@ -11,7 +11,8 @@
 #   "\\+ Add place"                   ← '+ Dodaj miejsce' (chip w generatorze przy braku miejsc — audyt 0.10 UX-10)
 #   "Saved", "Weekly plan"           ← 'Zapisano', 'Plan tygodnia' (potwierdzenie zapisu — audyt 0.10 UX-10)
 #   "Guide", "Read: .*", "Weekly plan and Calendar, unread", "Show: Weekly plan and Calendar" ← app/guide.tsx (przewodnik, 08.10.2026)
-#   "Monday: Full Body A"            ← app/plan.tsx: '{dzień}: {szablon}', nazwa szablonu 'FBW A' → 'Full Body A'
+#   "Monday, Full Body A"            ← app/plan.tsx: wiersz dnia '{dzień}, {szablon}' (audyt 0.10 UX-15 A: 7 wierszy; „{dzień}: {szablon}” to chip
+#                                      w rozwiniętym wierszu — E2E 89), nazwa szablonu 'FBW A' → 'Full Body A'
 appId: pl.lukasz.trening
 name: Generator szablonów i planu
 ---
@@ -33,7 +34,7 @@ name: Generator szablonów i planu
 - tapOn: "Make active"
 - extendedWaitUntil: { visible: "Saved", timeout: 15000 }
 - tapOn: "Weekly plan"
-- extendedWaitUntil: { visible: "Monday: Full Body A", timeout: 30000 }
+- extendedWaitUntil: { visible: "Monday, Full Body A", timeout: 30000 }
 - takeScreenshot: 72-plan-z-generatora
 # --- Przewodnik (08.10.2026): Więcej → Przewodnik → temat → „Show” otwiera Kalendarz ---
 - tapOn: "Back"

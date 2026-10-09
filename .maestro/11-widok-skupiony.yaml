@@ -1,6 +1,7 @@
 # Styl „Tuleja” (07.10.2026): widok skupiony na bieżącej serii, talerze na stronę z talerzy miejsca, przełącznik „Widok treningu”.
 #
 # Literały (EN z lib/i18n.en.ts / lib/equipment.ts):
+#   "Weight unit" / "kg"          ← 'Jednostka ciężaru' / segment kg (app/more/settings.tsx) — symulator en-US startuje w lb (H4), E2E 89
 #   "Full gym,.*"                 ← LOCATION_PRESET_LABEL.gym.en + hint (preset: sztanga 20 kg + talerze 25…1,25)
 #   "Back Squat,.*"               ← nazwa z lib/seed.ts (picker: „{nazwa}, …”)
 #   w-0-0 / r-0-0                 ← testID pól ciężaru i powtórzeń serii (components/ActiveWorkout.tsx)
@@ -24,6 +25,10 @@ name: Widok skupiony i talerze
 - tapOn: "More, tab.*"
 - extendedWaitUntil: { visible: "Settings", timeout: 30000 }
 - tapOn: "Settings"
+# E2E 89: świeża instalacja bierze jednostkę z regionu (H4, audyt 0.10 UX-12) — symulator en-US → lb („Now: 80 lb × 5”, talerze w lb).
+# Scenariusz sprawdza talerze w kg, więc najpierw kg (PRZED dodaniem miejsca — preset bierze talerze w bieżącej jednostce).
+- extendedWaitUntil: { visible: "Weight unit", timeout: 30000 }
+- tapOn: "kg"
 - scrollUntilVisible: { element: "Places and equipment,.*", direction: DOWN, timeout: 60000 }
 - tapOn: "Places and equipment,.*"
 - extendedWaitUntil: { visible: "\\+ Add place", timeout: 30000 }
