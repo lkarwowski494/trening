@@ -184,7 +184,7 @@ describe('Masa ciała z datą (fala 2, decyzja: wdrożyć): e1RM dawnych sesji z
     const many = JSON.parse(JSON.stringify(S())); many.bodyMassLog = Array.from({ length: 4000 }, (_, i) => ({ date: store.localISODate(new Date(2010, 0, 1 + i)), kg: 80 }));
     const mm = store.migrate(many); expect(mm.bodyMassLog!.length).toBe(require('@/lib/seed').BODY_MASS_LOG_MAX); expect(mm.bodyMassLog![mm.bodyMassLog!.length - 1].date).toBe(store.localISODate(new Date(2010, 0, 4000)));
     store.addBodyMass(80, '2026-09-01'); const back = parseBackup(JSON.stringify(buildBackup())); expect(back.bodyMassLog).toEqual([{ date: '2026-09-01', kg: 80 }]);
-    addWorkout(at(9, 2), [['Pull Up', [{ addKg: 0, reps: 5 }]]]); expect(buildCsv().split('\n')[0]).toBe('Date,Workout Name,Duration,Exercise Name,Set Order,Weight,Reps,Distance,Seconds,Notes,Workout Notes,RPE'); /* CSV (Strong) — tylko serie, bez kolumny masy ciała */
+    addWorkout(at(9, 2), [['Pull Up', [{ addKg: 0, reps: 5 }]]]); expect(buildCsv().split('\n')[0]).toBe('Date,Workout Name,Duration,Exercise Name,Set Order,Weight,Reps,Distance,Seconds,Notes,Workout Notes,RPE'); /* CSV (układ popularnych dzienników) — tylko serie, bez kolumny masy ciała */
     await store.flush(); await fresh(saved()); expect(store.bodyMassOn('2026-10-01')).toBe(80);
   });
   test('dawne Settings.bodyMass (bez daty) → pierwszy pomiar z dniem najstarszego treningu (e1RM dawnych sesji bez zmian); bez historii — dziś; pomiary już są — bez zmian', () => {

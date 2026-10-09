@@ -5,7 +5,7 @@ import { useSyncExternalStore } from 'react';
 import { t, t as tr, tIn, applyLang, detectLang, locale, fold, isLang, lang, upper, collator, deviceUnit } from './i18n';
 import { applyUnit, wu, wOut, wIn, KG_PER_LB, fmtW, fmtNum, snapLegacyLb } from './units';
 import { applyTheme } from './theme';
-import { seedState, uid, base, defaultModules, defaultSettings, metricFor, loadModeFor, loadMult, blankTimer, musclesFor, hasTime, hasReps, hasWeight, hasDistance, METRICS, DEFAULT_REST, GROUPS, LIB, SCHEMA_VERSION, LOCAL_OWNER, MODULES, SET_KINDS, SINGLE_IMPLEMENT, equipFields, libExercise, LIB_EXTRA_REVS, LIB_EXTRA_REV, LIB_MUSCLE_FIXES, LIB_FIELD_FIXES, LIB_RENAMED, LIB_MERGED, LIB_RETIRED, libExtraRevOf, LIB_BASE_NAMES_V1, LOAD_SOURCE_BY_EQUIPMENT, IMPLS, own, type Impl, type SetKind, type Base, type State, type Workout, type WSet, type WExercise, type Exercise, type Template, type TemplateItem, type TemplateAlt, type TRow, type Morning, type Location, type PlanSegment, LIB_KEYS, catalogKey, libKeyFromFields, BODY_MASS_MAX, isNiche, LIB_BASE_NAMES, BODY_MASS_LOG_MAX, type BodyMassEntry, type LoadMode } from './seed';
+import { seedState, uid, base, defaultModules, defaultSettings, metricFor, loadModeFor, loadMult, blankTimer, musclesFor, hasTime, hasReps, hasWeight, hasDistance, METRICS, DEFAULT_REST, GROUPS, LIB, SCHEMA_VERSION, LOCAL_OWNER, MODULES, SET_KINDS, SINGLE_IMPLEMENT, equipFields, libExercise, LIB_EXTRA_REVS, LIB_EXTRA_REV, LIB_MUSCLE_FIXES, LIB_FIELD_FIXES, LIB_RENAMED, LIB_MERGED, LIB_RETIRED, libExtraRevOf, LIB_BASE_NAMES_V1, LOAD_SOURCE_BY_EQUIPMENT, IMPLS, own, type Impl, type SetKind, type Base, type State, type Workout, type WSet, type WExercise, type Exercise, type Template, type TemplateItem, type TemplateAlt, type TRow, type Morning, type Location, type PlanSegment, LIB_KEYS, LIB_DISPLAY_NAME, catalogKey, libKeyFromFields, BODY_MASS_MAX, isNiche, LIB_BASE_NAMES, BODY_MASS_LOG_MAX, type BodyMassEntry, type LoadMode } from './seed';
 import { equipById, loadsFor, implAt, implsAt, blankLoad, availability, fillGym, GYM_FILL, fillOpts, OPT_FILL, fillEquip2, EQUIP_FILL2 } from './equipment';
 import { sanitizeLoadSpec, nextHeavier, hasLoadShown } from './loads';
 import { CATALOG, CATALOG_REV, CABLES } from './catalog.generated';
@@ -274,6 +274,8 @@ export function migrate(raw: any): State {
     if (e.lib === true) { const k0 = typeof e.libKey === 'string' && (LIB_KEYS.has(e.libKey) || LIB_RETIRED.has(e.libKey) || own(LIB_RENAMED, e.libKey)) ? e.libKey : LIB_KEYS.has(e.name) || LIB_RETIRED.has(e.name) || own(LIB_RENAMED, e.name) ? e.name : undefined;
       const k = k0 !== undefined ? own(LIB_RENAMED, k0) ?? k0 : undefined; if (k0 !== undefined && k !== k0 && e.name === k0) e.name = k;
       if (k !== undefined) e.libKey = k; else delete e.libKey; } else delete e.libKey;
+    /* SEC2-01: nazwa ze znakiem towarowym, nieprzemianowana (równa kluczowi) → nazwa ogólna; klucz zostaje, idempotentnie */
+    if (e.lib === true && typeof e.libKey === 'string' && e.name === e.libKey) { const d = own(LIB_DISPLAY_NAME, e.libKey); if (d) e.name = d; }
     if (typeof e.tempo !== 'string') e.tempo = ''; if (typeof e.notes !== 'string') e.notes = '';
     e.bandAssistable = !!e.bandAssistable;
     // Runda 41: tylko prawdziwe true archiwizuje; partia i sprzęt spoza słownika → „inne”.
@@ -663,7 +665,7 @@ export function loadOf(ex: Exercise | undefined, s: Pick<WSet, 'weight' | 'addKg
 /** Ciężar do WYŚWIETLENIA (historia, edytor historii, opisy serii, CSV) — patrz loadOf. */
 export const shownLoad = (ex: Exercise | undefined, s: Pick<WSet, 'weight' | 'addKg'>) => loadOf(ex, s).kg;
 /** Obciążenie zewnętrzne serii do OBLICZEŃ: tylko pole właściwe dla obecnego sprzętu — kg (≥ 0) albo ±kg przy masie ciała (dodatnie = dociążenie,
- * ujemne = asysta gumą/maszyną — 0.5, wzór Alpha Progression). Seria zapisana pod innym sprzętem = 0 (patrz loadOf). */
+ * ujemne = asysta gumą/maszyną — 0.5, wzór z popularnej aplikacji treningowej). Seria zapisana pod innym sprzętem = 0 (patrz loadOf). */
 export const setLoad = (ex: Exercise, s: Pick<WSet, 'weight' | 'addKg'>) => { const l = loadOf(ex, s); return l.own ? l.kg : 0; }; // runda 48: ujemny ciężar (np. asysta z szablonu po zmianie sprzętu) nie daje ujemnej objętości
 /** Pole ciężaru w formularzu edytora historii: wartość, którą pokazuje ekran sesji (shownLoad), jako zapisane kg (lub '' gdy brak). */
 export const loadFieldValue = (ex: Exercise | undefined, s: Pick<WSet, 'weight' | 'addKg'>): number | '' => loadOf(ex, s).raw;
@@ -707,7 +709,7 @@ export const volOf = (ex: Exercise, load: number, reps: number, impl?: Impl | nu
  * Zwraca kg odpowiadające dokładnie wyświetlanej liczbie funtów; w kg bez zmian. */
 const dispKg = (kg: number) => wu() === 'lb' ? wOut(kg) * KG_PER_LB : kg;
 /** Etykieta kolumny ciężaru zależna od trybu liczenia — a dla bloku na stacji z oporem elektrycznym/magnetycznym (`impl` 'electric') zawsze
- * NA STRONĘ (decyzja 03.10.2026 „ViShape na stronę”; audyt f132330/025ee6a, MEDIUM 2: wcześniej zmieniała się tylko lista ciężarów, a kolumna
+ * NA STRONĘ (decyzja 03.10.2026 „stacja elektryczna na stronę”; audyt f132330/025ee6a, MEDIUM 2: wcześniej zmieniała się tylko lista ciężarów, a kolumna
  * mówiła „kg” / „kg/hantel”). Dotyczy każdego ćwiczenia na stacji, także „Przysiad z pasem (linki)”, „Cable Fly”, „RDL (hantle/linki)”.
  * `impl` — przyrząd bloku (WExercise.impl; blockImpl dopowiada go z miejsca, gdy blok go nie ma); bez przyrządu — jak przed P-003.
  * Objętość: Q-024 (blockMult) — ×2 na stacji przy ćwiczeniach na dwie linki. */
@@ -1413,7 +1415,7 @@ function lastCompletedAt(a: Workout, except?: WSet): number | null {
   let m: number | null = null; a.exercises.forEach(e => e.sets.forEach(s => { if (s !== except && s.done && s.completedAt && (m == null || s.completedAt > m)) m = s.completedAt; })); return m;
 }
 /**
- * Odhaczenie pustej serii (audyt r1, jak w Strong): puste pola bierze z tego, co widać jako podpowiedź —
+ * Odhaczenie pustej serii (audyt r1, jak w popularnych dziennikach): puste pola bierze z tego, co widać jako podpowiedź —
  * wynik z „Poprzednio” (ta sama seria robocza), a gdy podpowiedzi nie ma — powtórzenia z dolnej granicy zakresu szablonu (runda 4).
  * Dzięki temu „24×0” nie trafia do historii tylko dlatego, że użytkownik odhaczył bez wpisywania.
  */

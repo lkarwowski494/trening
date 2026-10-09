@@ -8,7 +8,7 @@ import { t } from './i18n';
  * Edycja zakończonego treningu i trening wstecz (docs/12-edycja-treningow.md).
  * Edytor pracuje na SZKICU — głębokiej kopii treningu trzymanej tylko w pamięci (poza stanem aplikacji). Wpisywanie w szkicu
  * nie rusza historii ani jej cache (histRev); „Zapisz” podmienia trening jednym zapisem (store.putHistoryWorkout), „Anuluj” szkic wyrzuca.
- * Szkic nie przeżywa zamknięcia aplikacji (świadome uproszczenie — zapis jest jednym ruchem, jak w Strong i Hevy).
+ * Szkic nie przeżywa zamknięcia aplikacji (świadome uproszczenie — zapis jest jednym ruchem, jak w popularnych aplikacjach treningowych).
  */
 export interface Draft {
   key: string;

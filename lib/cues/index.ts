@@ -23,21 +23,26 @@ type CueData = { orgs: Record<string, { name: string; level: 2 | 3 | 4 }>; sourc
 
 /* eslint-disable @typescript-eslint/no-var-requires */
 export const CUE_DATA: CueData = require('./data.json');
-const TEXT: Record<Lang, Record<string, string>> = {
-  pl: require('./text/pl.json'), en: require('./text/en.json'), cs: require('./text/cs.json'), sk: require('./text/sk.json'), hu: require('./text/hu.json'),
-  ro: require('./text/ro.json'), bg: require('./text/bg.json'), hr: require('./text/hr.json'), sl: require('./text/sl.json'), sr: require('./text/sr.json'),
-  lt: require('./text/lt.json'), lv: require('./text/lv.json'), et: require('./text/et.json'), uk: require('./text/uk.json'), es: require('./text/es.json'),
-  pt: require('./text/pt.json'), de: require('./text/de.json'), fr: require('./text/fr.json'), it: require('./text/it.json'), nl: require('./text/nl.json'),
-  sv: require('./text/sv.json'), da: require('./text/da.json'), nb: require('./text/nb.json'), fi: require('./text/fi.json'), tr: require('./text/tr.json'),
-  el: require('./text/el.json'),
+/* SEC2-07 (audyt kontrolny 1, wzór PERF-05 z lib/locales/index.ts): słowniki zdań (26 × JSON, ok. 744 KB) wczytywane przy pierwszym odczycie zdania
+ * w danym języku — `require` w funkcji wykonuje moduł dopiero przy wywołaniu (Metro i Jest); rezerwa en/pl dopiero, gdy zdania brakuje. */
+const LOAD: Record<Lang, () => Record<string, string>> = {
+  pl: () => require('./text/pl.json'), en: () => require('./text/en.json'), cs: () => require('./text/cs.json'), sk: () => require('./text/sk.json'),
+  hu: () => require('./text/hu.json'), ro: () => require('./text/ro.json'), bg: () => require('./text/bg.json'), hr: () => require('./text/hr.json'),
+  sl: () => require('./text/sl.json'), sr: () => require('./text/sr.json'), lt: () => require('./text/lt.json'), lv: () => require('./text/lv.json'),
+  et: () => require('./text/et.json'), uk: () => require('./text/uk.json'), es: () => require('./text/es.json'), pt: () => require('./text/pt.json'),
+  de: () => require('./text/de.json'), fr: () => require('./text/fr.json'), it: () => require('./text/it.json'), nl: () => require('./text/nl.json'),
+  sv: () => require('./text/sv.json'), da: () => require('./text/da.json'), nb: () => require('./text/nb.json'), fi: () => require('./text/fi.json'),
+  tr: () => require('./text/tr.json'), el: () => require('./text/el.json'),
 };
+const TEXT: Partial<Record<Lang, Record<string, string>>> = {};
+const dict = (l: Lang): Record<string, string> => (TEXT[l] ??= LOAD[l]());
 /* eslint-enable @typescript-eslint/no-var-requires */
 
 const own = <T>(o: Record<string, T>, k: string): T | undefined => Object.prototype.hasOwnProperty.call(o, k) ? o[k] : undefined;
 /** Tekst zdania w języku `l`; brak → angielski, brak → polski (jak t()). */
-export function cueText(id: string, l: Lang = lang()): string { return own(TEXT[l], id) ?? own(TEXT.en, id) ?? own(TEXT.pl, id) ?? id; }
+export function cueText(id: string, l: Lang = lang()): string { return own(dict(l), id) ?? own(dict('en'), id) ?? own(dict('pl'), id) ?? id; }
 /** Słownik zdań języka (testy kompletności). */
-export const cueDict = (l: Lang): Readonly<Record<string, string>> => TEXT[l];
+export const cueDict = (l: Lang): Readonly<Record<string, string>> => dict(l);
 
 export type ExerciseCues = { key: string; sections: { id: CueSection; items: string[] }[]; orgs: string[] };
 /** Wskazówki ćwiczenia z biblioteki (po kluczu katalogu — przemianowane też je mają); własne ćwiczenia i ćwiczenia bez wskazówek → null. */

@@ -18,7 +18,7 @@ test('ŚREDNIE (sprzęt #6): EZ i trap bar jako alternatywa w wymaganiach dają 
   expect(alt.length).toBeGreaterThan(0);
   for (const e of alt) for (const c of ['ez_bar', 'trap_bar'] as const) if ((e.requires ?? []).flat().includes(c)) expect([e.name, loadKindsFor(e).includes(c)]).toEqual([e.name, true]);
 });
-test('NISKIE (sprzęt #8): preset Voltra I (jedna linka) odznacza „dwie niezależne linki”; ViShape Pro zostawia opcje', () => {
+test('NISKIE (sprzęt #8): preset przenośnej stacji (jedna linka) odznacza „dwie niezależne linki”; stacja elektryczna (pełna) zostawia opcje', () => {
   const v = LOAD_PRESETS.find(p => p.id === 'voltra1')!, vs = LOAD_PRESETS.find(p => p.id === 'vishape_pro')!;
   const a = { opts: ['dual', 'belt', 'ankle'] as string[], load: undefined as any }; applyLoadPreset(a, v);
   expect(a.opts).toEqual(['belt', 'ankle']); expect(a.load).toEqual({ kind: 'electric', unit: 'lb', min: 5, max: 200, step: 1 });

@@ -89,11 +89,11 @@ describe('METRICS × SET_KINDS × UNITS — pełna ścieżka serii: trening → 
       expect(store.progressionFor(ex, minWorkReps + 1, prev.sets)).toBeNull(); /* seria do upadku poniżej góry zakresu */
     } else expect(store.progressionFor(ex, minWorkReps, prev.sets)).toBeNull();
 
-    /* CSV (układ Strong): rozgrzewka „W”, robocze numerowane; ciężar w jednostce z ustawień; typ serii w Notes */
+    /* CSV (układ popularnych dzienników): rozgrzewka „W”, robocze numerowane; ciężar w jednostce z ustawień; typ serii w Notes */
     const rows = parseCsv(buildCsv()); expect(rows[0]).toEqual(['Date', 'Workout Name', 'Duration', 'Exercise Name', 'Set Order', 'Weight', 'Reps', 'Distance', 'Seconds', 'Notes', 'Workout Notes', 'RPE']);
     const body = rows.slice(1); expect(body).toHaveLength(4);
     body.forEach((row, i) => { const k = KINDS_ORDER[i]; const l = loadDisp(r, u, k);
-      expect([k, row[3], row[4], row[5], row[6], row[7], row[8], row[9]]).toEqual([k, ex.name, k === 'warmup' ? 'W' : k === 'drop' ? 'D' : k === 'failure' ? 'F' : String(i), String(W ? Number(l) || 0 : 0), String(R ? REPS_V[k] : 0), String(D ? DIST_V[k][0] : 0), String(!T ? 0 : D ? DIST_V[k][1] : TIME_V[k]), '']); }); /* LOG-14 (audyt 0.10): Set Order jak w Strongu — W/D/F, numer tylko zwykłych serii; typ nie trafia do Notes */
+      expect([k, row[3], row[4], row[5], row[6], row[7], row[8], row[9]]).toEqual([k, ex.name, k === 'warmup' ? 'W' : k === 'drop' ? 'D' : k === 'failure' ? 'F' : String(i), String(W ? Number(l) || 0 : 0), String(R ? REPS_V[k] : 0), String(D ? DIST_V[k][0] : 0), String(!T ? 0 : D ? DIST_V[k][1] : TIME_V[k]), '']); }); /* LOG-14 (audyt 0.10): Set Order jak w popularnych dziennikach — W/D/F, numer tylko zwykłych serii; typ nie trafia do Notes */
 
     /* JSON backup: eksport → import daje te same treningi; statystyki i CSV bez zmian */
     const before = JSON.parse(JSON.stringify(S().workouts)); const csv0 = buildCsv();

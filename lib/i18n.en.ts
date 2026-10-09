@@ -855,4 +855,11 @@ export const EN: Record<string, string> = {
   'Inny z planu, powtórz ostatni, z szablonu albo pusty.': 'Another from the plan, repeat last, from a template or empty.',
   'szablon|szablony|szablonów': 'template|templates',
   'Powtórz ostatni': 'Repeat last',
+  'taśmy do podwieszania': 'suspension trainer',
+  'Taśmy do podwieszania': 'Suspension trainer',
+  'półkula balansowa / platforma balansowa': 'balance dome / balance board',
+  'Półkula balansowa / platforma balansowa': 'Balance dome / balance board',
+  'ergometr narciarski': 'ski ergometer',
+  'Ergometr narciarski': 'Ski ergometer',
+  'Biblioteki natywne iOS spoza npm ({n})': 'Native iOS libraries outside npm ({n})',
 };

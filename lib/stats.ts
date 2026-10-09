@@ -63,7 +63,7 @@ export function fmtE1(ex: Exercise, v: number, bm: number | undefined): string {
 export const e1rm = (load: number, reps: number) => (load > 0 && reps > 0) ? Math.round((reps === 1 ? load : load * (1 + reps / 30)) * 1e6) / 1e6 : 0;
 
 /** Runda 73 (decyzja 01.10): REKORD ćwiczenia = suma na treningu (objętość / powtórzenia / czas / dystans wg metryki) + e1RM.
- * Masa ciała: suma powtórzeń bez asysty (jak „most session reps” w Hevy); pozostałe maksima zostają na karcie jako informacja, bez odznaki PR. */
+ * Masa ciała: suma powtórzeń bez asysty (jak „najwięcej powtórzeń w sesji” w popularnych dziennikach); pozostałe maksima zostają na karcie jako informacja, bez odznaki PR. */
 export type TotalKind = 'objętość treningu' | 'suma powtórzeń' | 'łączny czas' | 'łączny dystans';
 export function totalKind(ex: Exercise): TotalKind | null {
   const m = ex.metric ?? 'weight_reps';
@@ -273,7 +273,7 @@ export const hasAnyHistory = () => getState().workouts.some(w => w.finishedAt);
  * to samo stanowisko: każdy trening siłowy poprawia hipertrofię względem braku treningu — znacznik nie jest progiem „działa / nie działa”.
  * Uproszczenie: u nas serie pomocnicze liczą się po 0,5 (Pelland 2026, docs/21 B3), w stanowisku — serie na partię bez tego rozróżnienia. */
 export const WEEKLY_SETS_MARK = 10;
-/** Serie robocze per partia w tygodniu zaczynającym się `weekStart` (główna = 1, pomocnicza = 0,5), jak w Hevy/Boostcamp. */
+/** Serie robocze per partia w tygodniu zaczynającym się `weekStart` (główna = 1, pomocnicza = 0,5), jak w popularnych aplikacjach treningowych. */
 export function weeklySetsByMuscle(weekStart: number): Record<string, number> {
   const d = new Date(weekStart); return setsByMuscle(weekStart, new Date(d.getFullYear(), d.getMonth(), d.getDate() + 7).getTime());
 }

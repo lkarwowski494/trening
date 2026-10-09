@@ -67,7 +67,7 @@ describe('H2, H3, M1, M2 — źródło ciężarów i podpowiedź', () => {
     expect(availability(ex('T-Bar Row'), g).ok).toBe(true);
     expect(store.progressionFor(ex('T-Bar Row'), 10, sets(25, [10, 10]), g.id)).toEqual({ kind: 'load', kg: 30 }); /* 25 → 30 = 20% — decyzja 7a: od razu następny ciężar maszyny */
   });
-  test('LOW + decyzja 03.10 „ViShape na stronę”: 65 kg/str. to maksimum stacji — bez „↑” (ani jednorącz, ani przysiad z pasem: bez sumy dwóch linek)', async () => {
+  test('LOW + decyzja 03.10 „stacja elektryczna na stronę”: 65 kg/str. to maksimum stacji — bez „↑” (ani jednorącz, ani przysiad z pasem: bez sumy dwóch linek)', async () => {
     await fresh(); const h = place();
     expect(store.progressionFor(ex('Cable Lateral Raise'), 12, sets(65, [12, 12]), h.id)).toBeNull();
     expect(store.progressionFor(ex('Przysiad z pasem (linki)'), 8, sets(65, [8, 8]), h.id)).toBeNull();

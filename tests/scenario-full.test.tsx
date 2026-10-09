@@ -175,7 +175,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     await type(name, 'Dom testowy  '); await endEdit(name); await flushAll(5); expect(home.name).toBe('Dom testowy');
     await type(screen.getByLabelText('Nazwa'), '   '); await endEdit(screen.getByLabelText('Nazwa')); await flushAll(5); expect(home.name).toBe('Dom testowy'); /* pusta nazwa wraca do poprzedniej */
     expect(screen.getByLabelText('Nazwa').props.value).toBe('Dom testowy');
-    /* hantle stałe: preset Gymtek, odznaczanie, „Usuń odznaczone”, dodawanie, zły ciężar, zakres, zły zakres, preset z potwierdzeniem, jednostka sprzętu */
+    /* hantle stałe: preset hantli stałych, odznaczanie, „Usuń odznaczone”, dodawanie, zły ciężar, zakres, zły zakres, preset z potwierdzeniem, jednostka sprzętu */
     await tap(screen.getByLabelText('Wolne ciężary'));
     const DB = 'Hantle (stała waga albo z szybką regulacją)';
     await toggle(DB, true); home = loc('Dom testowy');
@@ -207,7 +207,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     /* odznaczenie pozycji zachowuje ciężary (audyt M5) */
     await toggle(DB, false); expect(equip('Dom testowy', 'db_fixed')!.off).toBe(true); expect(screen.queryByText('Hantle stałe 2,5–24 kg (15 par)')).toBeNull();
     await toggle(DB, true); expect(equip('Dom testowy', 'db_fixed')!.off).toBeUndefined(); expect(dbl().items).toHaveLength(15);
-    /* hantle na talerze: preset Hop-Sport, uchwyt, „+ talerz”, pola talerza, usunięcie talerza */
+    /* hantle na talerze: preset hantli na talerze, uchwyt, „+ talerz”, pola talerza, usunięcie talerza */
     const DBP = 'Hantle na talerze (uchwyty + talerze)';
     await toggle(DBP, true); expect(summary('Dom testowy', 'db_plate')).toBeTruthy();
     await tap(screen.getByText('Hantle z talerzami 2×10 kg')); await flushAll(5);
@@ -858,7 +858,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     const [cp, csv] = write.mock.calls.at(-1)!; expect(cp).toMatch(/\.csv$/); expect(csv.startsWith('﻿Date,Workout Name,Duration,Exercise Name,Set Order,Weight,Reps,Distance,Seconds,Notes,Workout Notes,RPE\n')).toBe(true);
     const rows = csv.trim().split('\n').slice(1); const nSets = S().workouts.reduce((a, w) => a + w.exercises.reduce((b, e) => b + e.sets.length, 0), 0); expect(rows).toHaveLength(nSets);
     expect(rows.some((r: string) => r.includes('Bench Press (hantle),2,25,'))).toBe(true); expect(rows.some((r: string) => r.includes(',W,10,12,'))).toBe(true);
-    expect(rows.some((r: string) => r.includes('chwyt nachwytem') && r.split(',')[4] === 'F')).toBe(true); /* LOG-14 (audyt 0.10): seria do upadku — „F” w Set Order, jak w Strongu */ expect(rows.some((r: string) => /guma (czerwona|zielona) \d/.test(r))).toBe(true);
+    expect(rows.some((r: string) => r.includes('chwyt nachwytem') && r.split(',')[4] === 'F')).toBe(true); /* LOG-14 (audyt 0.10): seria do upadku — „F” w Set Order, jak w popularnych dziennikach */ expect(rows.some((r: string) => /guma (czerwona|zielona) \d/.test(r))).toBe(true);
     /* zmiana po eksporcie: usunięcie szablonu */
     await go('/templates'); await flushAll(10); await swipeDelete(`Usuń szablon: ${S().templates[0].name}`); pressAlert('Usunąć szablon?', 'Usuń'); await flushAll(10); expect(S().templates).toHaveLength(0);
     await go('/more/backup'); await flushAll(10);

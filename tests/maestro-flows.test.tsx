@@ -16,6 +16,8 @@
  * łapie go układ — tests/maestro-e2e91.test.tsx).
  * E2E 91 (09.10.2026, 7 z 17): odtwarza 5 z 7 w tym samym kroku (01 etykieta grupy, 10 kotwica nad ekranem, 13 okno zgody, 15 i 17 element pod
  * krawędzią) — tests/maestro-e2e91.test.tsx; 07 (systemowy baner iOS nad aplikacją) i 11 (pole przy klawiaturze numerycznej) — tests/maestro-selectors.
+ * TST2-04: copyTextFrom zapamiętuje tekst elementu, evalScript i assertTrue liczą wyrażenie `${…}` (output, maestro.copiedText) — fałsz to błąd kroku;
+ * takeScreenshot bez skutku. Polecenie, którego interpreter nie zna, jest błędem (default w Runner.step).
  * Selektor z kluczem, którego interpreter nie zna, jest błędem (żeby nic nie przechodziło po cichu). MAESTRO_DIR — inny katalog scenariuszy,
  * MAESTRO_DUMP=<fragment kroku> — wypisuje elementy z szacowanymi pozycjami po tym kroku.
  */

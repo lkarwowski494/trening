@@ -25,11 +25,11 @@ describe('katalog ćwiczeń — spójność', () => {
   test('obciążenie partii zgodne z partiami ćwiczenia: główna → region z wagą 1, pomocnicza → region ≥ 0,5', () => {
     const bad: string[] = [];
     for (const e of lib()) {
-      if (RULE_EXCEPTIONS[e.name]) continue; const ml = MUSCLE_LOAD[e.name] as Record<string, number>;
+      if (RULE_EXCEPTIONS[e.libKey!]) continue; const ml = MUSCLE_LOAD[e.libKey!] as Record<string, number>;
       const of = (m: string) => Object.entries(ml).filter(([r]) => (MUSCLE_REGIONS as Record<string, string | null>)[r] === m).map(([, w]) => w);
       for (const m of e.muscles) if (!of(m).some(w => w === 1)) bad.push(`${e.name}: główna ${m}`);
       for (const m of e.secondaryMuscles) if (!of(m).some(w => w >= 0.5)) bad.push(`${e.name}: pomocnicza ${m}`);
-      if (e.group !== 'cardio' && e.pattern !== 'mobility' /* rozciąganie (pełna baza 04.10): bez obciążenia, tylko 0,25 */ && !CATALOG_UNMAPPED[e.name] /* decyzja 09.10.2026 (L2 Q1/Q2/Q5): mięsień docelowy spoza mapy — bez partii głównej, z oznaczeniem */ && !Object.values(ml).includes(1)) bad.push(`${e.name}: brak regionu głównego`);
+      if (e.group !== 'cardio' && e.pattern !== 'mobility' /* rozciąganie (pełna baza 04.10): bez obciążenia, tylko 0,25 */ && !CATALOG_UNMAPPED[e.libKey!] /* decyzja 09.10.2026 (L2 Q1/Q2/Q5): mięsień docelowy spoza mapy — bez partii głównej, z oznaczeniem */ && !Object.values(ml).includes(1)) bad.push(`${e.name}: brak regionu głównego`);
       if (e.pattern === 'mobility' && (e.muscles.length || e.secondaryMuscles.length || Object.values(ml).some(w => w > 0.25))) bad.push(`${e.name}: rozciąganie liczone jako trening partii`);
     }
     expect(bad).toEqual([]);
@@ -39,12 +39,12 @@ describe('katalog ćwiczeń — spójność', () => {
     const OK: Record<string, string[]> = { sztanga: ['barbell', 'ez_bar', 'trap_bar', 'smith', 'plate_loaded_machine'], hantle: ['dumbbell', 'kettlebell'], linki: ['cable'], maszyna: ['machine_stack', 'plate_loaded_machine', 'smith', 'none'], 'masa ciała': ['bodyweight', 'none', 'band'], inne: ['none', 'bodyweight', 'band', 'dumbbell', 'kettlebell', 'barbell'] };
     const bad: string[] = [];
     for (const e of lib()) {
-      const c = CATALOG[e.name];
+      const c = CATALOG[e.libKey!];
       if (!OK[e.equipment].includes(c.loadSource) && !(c.loadSource === 'bodyweight' && !e.metric.includes('weight'))) bad.push(`${e.name}: ${e.equipment} ↔ ${c.loadSource}`);
       if (c.implements !== undefined && !['dumbbell', 'kettlebell'].includes(c.loadSource)) bad.push(`${e.name}: implements`);
       if (c.implements === 2 && e.loadMode !== 'per_dumbbell' && e.loadMode !== 'total') bad.push(`${e.name}: para hantli i tryb ${e.loadMode}`); /* jeden hantel z trybem „na hantel” (One Arm Row) — zamierzone: objętość obu stron */
       const cable = c.loadSource === 'cable' || [...c.requires.flat(), ...c.recommended].some(x => x.startsWith('cable.'));
-      if (cable !== (CABLES[e.name] !== undefined)) bad.push(`${e.name}: liczba linek ${CABLES[e.name]}`);
+      if (cable !== (CABLES[e.libKey!] !== undefined)) bad.push(`${e.name}: liczba linek ${CABLES[e.libKey!]}`);
       if (e.group === 'cardio' && e.metric === 'weight_reps') bad.push(`${e.name}: cardio z ciężarem`);
     }
     expect(bad).toEqual([]);
@@ -58,7 +58,7 @@ describe('katalog ćwiczeń — spójność', () => {
       if (!availability(e, gym).ok && e.group !== 'cardio') missingGym.push(e.name);
       /* konwencja R3 (catalog-notes): ćwiczenie zwykle bez obciążenia (wykroki, łydki na stopniu) — przyrząd tylko zalecany; dostępne bez sprzętu tylko wtedy */
       const LOAD_CAPS = ['db', 'kb', 'barbell', 'ez_bar', 'trap_bar', 'smith', 'landmine', 'med_ball', 'plate', 'sandbag', 'chains'];
-      if (availability(e, bw).ok && !['bodyweight', 'none', 'band'].includes(CATALOG[e.name].loadSource) && !(e.recommended ?? []).some(c => LOAD_CAPS.includes(c) || c.startsWith('cable.'))) bwWrong.push(e.name);
+      if (availability(e, bw).ok && !['bodyweight', 'none', 'band'].includes(CATALOG[e.libKey!].loadSource) && !(e.recommended ?? []).some(c => LOAD_CAPS.includes(c) || c.startsWith('cable.'))) bwWrong.push(e.name);
     }
     expect(bwWrong).toEqual([]);
     expect(missingGym.length).toBeLessThanOrEqual(Math.ceil(lib().length * 0.06)); /* siłownia z presetu nie ma np. stacji elektrycznej, GHD z opcjami */
@@ -66,7 +66,7 @@ describe('katalog ćwiczeń — spójność', () => {
 
   test('stacja elektryczna (dom właściciela): każde ćwiczenie na linkach dostępne na stacji ma ją wśród przyrządów (implsAt)', () => {
     const home = userHome([2.5, 5, 10, 24]); const caps = capsOf(home); const bad: string[] = [];
-    for (const e of lib()) if (CATALOG[e.name].loadSource === 'cable' && availability(e, home, caps).ok && !implsAt(e, home).includes('electric')) bad.push(e.name);
+    for (const e of lib()) if (CATALOG[e.libKey!].loadSource === 'cable' && availability(e, home, caps).ok && !implsAt(e, home).includes('electric')) bad.push(e.name);
     expect(bad).toEqual([]);
   });
 
@@ -80,7 +80,7 @@ describe('katalog ćwiczeń — migracja na telefonie', () => {
     const fx = require('./fixtures/state-090-schema15.json');
     await fresh(); const raw = JSON.parse(JSON.stringify(fx.state)); const first = LIB_EXTRA_NAMES[0];
     raw.exercises.push({ id: 'mine', name: first.toUpperCase(), group: 'inne', equipment: 'inne' });
-    const m = store.migrate(raw); const names = m.exercises.map(e => e.name);
+    const m = store.migrate(raw); const names = m.exercises.map(e => e.libKey ?? e.name); /* SEC2-01: po kluczu katalogu — nazwa wyświetlana bywa ogólna (LIB_DISPLAY_NAME) */
     expect(names.filter(n => fold(n) === fold(first))).toHaveLength(1);
     for (const n of LIB_EXTRA_NAMES.slice(1)) expect([n, names.includes(n)]).toEqual([n, true]);
     expect(m.exercises.length).toBe(fx.state.exercises.length + LIB_EXTRA_NAMES.length - 1); /* research 09.10.2026: nieużywane Rear Delt Raise (hantle) scalone z Reverse Fly (hantle) — wpis znika */
@@ -107,7 +107,7 @@ describe('katalog ćwiczeń — audyt 04.10 (znacznik zamiast numeru schematu)',
   test('dane schematu 16 sprzed katalogu (build 01f2bee) też dostają nowe ćwiczenia — raz; nowa instalacja ma znacznik', async () => {
     const fx = require('./fixtures/state-090-schema15.json');
     await fresh(); const raw = JSON.parse(JSON.stringify(fx.state)); raw.schemaVersion = 16; /* jak po instalacji 01f2bee */
-    const m = store.migrate(raw); expect(LIB_EXTRA_NAMES.every(n => m.exercises.some(e => e.name === n))).toBe(true);
+    const m = store.migrate(raw); expect(LIB_EXTRA_NAMES.every(n => m.exercises.some(e => (e.libKey ?? e.name) === n))).toBe(true);
     expect(store.migrate(JSON.parse(JSON.stringify(m))).exercises.length).toBe(m.exercises.length);
     expect(seedState('pl').libExtra).toBeTruthy(); expect(store.migrate(JSON.parse(JSON.stringify(seedState('pl')))).exercises.length).toBe(LIB.length);
   });
@@ -158,7 +158,7 @@ describe('katalog ćwiczeń — migracja kroku 04.10 b', () => {
     raw.exercises = raw.exercises.filter((e: any) => !b.has(e.name) && e.name !== 'Cossack Squat'); /* Cossack Squat (krok 1) usunięty przez użytkownika */
     const ha = raw.exercises.find((e: any) => e.name === 'Hip Adduction'); ha.muscles = ['pośladki']; ha.secondaryMuscles = [];
     const cp = raw.exercises.find((e: any) => e.name === 'Copenhagen Plank'); cp.muscles = ['core']; cp.secondaryMuscles = ['barki']; /* zmienione przez użytkownika */
-    const m = store.migrate(raw); const names = m.exercises.map(e => e.name);
+    const m = store.migrate(raw); const names = m.exercises.map(e => e.libKey ?? e.name); /* SEC2-01: po kluczu katalogu — nazwa wyświetlana bywa ogólna (LIB_DISPLAY_NAME) */
     for (const n of b) expect([n, names.includes(n)]).toEqual([n, true]); expect(names.includes('Cossack Squat')).toBe(false);
     expect(m).toMatchObject({ libExtra: 'katalog-2026-10-04', libExtraStep: LIB_EXTRA_REV }); /* audyt kroku b (MEDIUM): libExtra jak w 643cba7 */
     expect(m.exercises.find(e => e.name === 'Hip Adduction')!.muscles).toEqual(['przywodziciele']);
@@ -174,7 +174,7 @@ describe('katalog ćwiczeń — migracja kroku 04.10 b', () => {
   });
   test('dane bez znacznika (build 01f2bee / schemat 15): dopisane oba kroki; Hip Adduction z domyślną partią → przywodziciele', async () => {
     const fx = require('./fixtures/state-090-schema15.json'); await fresh(); const raw = JSON.parse(JSON.stringify(fx.state));
-    const m = store.migrate(raw); expect(LIB_EXTRA_NAMES.every(n => m.exercises.some(e => e.name === n))).toBe(true);
+    const m = store.migrate(raw); expect(LIB_EXTRA_NAMES.every(n => m.exercises.some(e => (e.libKey ?? e.name) === n))).toBe(true);
     const ha = m.exercises.find(e => e.name === 'Hip Adduction'); if (ha) expect(ha.muscles).toEqual(['przywodziciele']);
   });
 });
@@ -194,7 +194,7 @@ describe('pełna baza (krok 05.10, „dodawaj resztę”) — migracja', () => {
     const c = new Set(CATALOG_LIB_EXTRA.filter(r => r[8] === 'katalog-2026-10-05').map(r => r[0])); expect(c.size).toBe(440); /* 584 przed researchem biblioteki 09.10.2026 (scalone i usunięte znikają) */
     await fresh(); const raw: any = JSON.parse(JSON.stringify(seedState('pl'))); raw.libExtraStep = 'katalog-2026-10-04b';
     raw.exercises = raw.exercises.filter((e: any) => !c.has(e.name) && e.name !== 'Machine Row');
-    const m = store.migrate(raw); const names = new Set(m.exercises.map(e => e.name));
+    const m = store.migrate(raw); const names = new Set(m.exercises.map(e => e.libKey ?? e.name)); /* SEC2-01: po kluczu katalogu — nazwa wyświetlana bywa ogólna (LIB_DISPLAY_NAME) */
     expect([...c].filter(n => !names.has(n))).toEqual([]); expect(names.has('Machine Row')).toBe(false); expect(m.libExtraStep).toBe(LIB_EXTRA_REV);
     expect(seedState('pl').exercises.length).toBe(LIB.length);
   });

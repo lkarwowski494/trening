@@ -51,7 +51,7 @@ describe('sprzęt', () => {
     expect(EQUIPMENT.filter(x => /elektryczn/.test(x.pl))).toHaveLength(1);
     const e = equipEntry('electric'); expect(e.opts.sort()).toEqual(['ankle', 'belt', 'dual']); expect(e.load).toEqual({ kind: 'electric', unit: 'kg', min: 0, max: 0, step: 0.5 });
     const caps = capsOf(loc('x', [e])); for (const c of ['cable.low', 'cable.dual', 'dip_belt', 'ankle_strap']) expect(caps.has(c)).toBe(true); expect(caps.has('cable.high')).toBe(false);
-    const one = { ...e, opts: ['belt'] }; expect(capsOf(loc('x', [one])).has('cable.dual')).toBe(false); /* „jedna linka” (np. Voltra) */
+    const one = { ...e, opts: ['belt'] }; expect(capsOf(loc('x', [one])).has('cable.dual')).toBe(false); /* „jedna linka” (np. przenośna stacja) */
     const arms = { ...e, opts: [...e.opts, 'arms'] }; expect(capsOf(loc('x', [arms])).has('cable.high')).toBe(true);
   });
   test('pozycje z ciężarami mają rodzaj i domyślny opis ciężarów; pozostałe — nie', () => {
@@ -59,9 +59,9 @@ describe('sprzęt', () => {
     expect(equipEntry('db_fixed').load).toEqual({ kind: 'list', unit: 'kg', items: [] });
     expect(equipEntry('barbell').load).toEqual({ kind: 'plates', unit: 'kg', base: 20, plates: [] });
   });
-  test('presety ciężarów modeli tylko ze źródeł; brak presetu TREXO (kroki regulacji nieznane)', () => {
-    expect(LOAD_PRESETS.map(p => p.id).sort()).toEqual(['gymtek24', 'hopsport2x10', 'vishape_lite', 'vishape_pro', 'voltra1']); /* 06.10.2026: Voltra I — dane kompletne (docs/research/equipment/stations.json) */
-    expect(LOAD_PRESETS.some(p => /trexo/i.test(p.id + p.label))).toBe(false);
+  test('presety ciężarów modeli tylko ze źródeł; brak presetu hantli z regulacją (kroki regulacji nieznane)', () => {
+    expect(LOAD_PRESETS.map(p => p.id).sort()).toEqual(['gymtek24', 'hopsport2x10', 'vishape_lite', 'vishape_pro', 'voltra1']); /* 06.10.2026: przenośna stacja z jedną linką — dane kompletne (docs/research/equipment/stations.json) */
+    expect(LOAD_PRESETS.some(p => /adj/i.test(p.id + p.label))).toBe(false);
     for (const p of LOAD_PRESETS) expect(equipById(p.item)).toBeTruthy();
   });
 });
@@ -86,12 +86,12 @@ describe('presety miejsc i dostępność', () => {
     const h = loc('Hotel', presetEquipment('hotel')); const caps = capsOf(h); for (const c of ['db', 'bench.flat', 'bench.incline', 'cardio.treadmill', 'cardio.bike']) expect(caps.has(c)).toBe(true);
     expect(LOCATION_PRESETS).toEqual(['gym', 'home', 'bodyweight', 'hotel']);
   });
-  test('dom użytkownika (ławka regulowana, drążek, poręcze, 2× TREXO 24 kg, ViShape SmartGym Pro): kluczowe ćwiczenia', () => {
+  test('dom użytkownika (ławka regulowana, drążek, poręcze, 2× hantle z regulacją 24 kg, inteligentna stacja kablowa (pełna)): kluczowe ćwiczenia', () => {
     const h = userHome(); const ok = (n: string) => availability(ex.find(e => e.name === n)!, h).ok;
     expect(ok('Bench Press (hantle)')).toBe(true); expect(ok('Back Squat')).toBe(false); expect(ok('Pull Up')).toBe(true); expect(ok('Chest Dip')).toBe(true);
     expect(ok('Przysiad z pasem (linki)')).toBe(true); /* przez stację elektryczną: wyciąg dolny + pas biodrowy */
     for (const n of ['Incline Bench Press (hantle)', 'RDL (hantle/linki)', 'Bulgarian Split Squat (hantle)', 'Hip Thrust (hantel)', 'Łydki na stopniu', 'Wiosłowanie na linkach (siedząc)', 'Hanging Leg Raise']) expect(ok(n)).toBe(true);
-    for (const n of ['Lat Pulldown', 'Face Pull', 'Triceps Pushdown', 'Leg Press', 'Bench Press (sztanga)', 'Decline Bench Press']) expect(ok(n)).toBe(false); /* ViShape: bez wyciągu górnego */
+    for (const n of ['Lat Pulldown', 'Face Pull', 'Triceps Pushdown', 'Leg Press', 'Bench Press (sztanga)', 'Decline Bench Press']) expect(ok(n)).toBe(false); /* stacja elektryczna: bez wyciągu górnego */
     /* pełna lista do przejrzenia z użytkownikiem (docs/10, „Implementacja E1”) — 70 ze 125 przed katalogiem 04.10.2026, 147 z 248 po katalogu, 149 z 270 po kroku b, teraz 402 z 854 (pełna baza) */
     expect(ex.filter(e => availability(e, h).ok)).toHaveLength(318); /* 09.10.2026: 709 ćwiczeń po researchu biblioteki; miejsce bez ściany (fixture — w danych użytkownika migracja ją dopisuje, EQUIP_FILL2) */
     /* szablon „Legs — dom” w całości dostępny w domu */
@@ -116,11 +116,11 @@ describe('presety miejsc i dostępność', () => {
     expect(loadKindsFor(CATALOG['Pull Up'])).toEqual([]);
   });
   test('dane: seedState ma pola sprzętowe dla wszystkich 709 ćwiczeń, zgodne z katalogiem', () => {
-    for (const e of seedState().exercises) { const c = CATALOG[e.name]; expect(e.requires).toEqual(c.requires); expect(e.loadSource).toBe(c.loadSource); expect(e.pattern).toBe(c.pattern); expect(e.implements).toBe(c.implements); }
+    for (const e of seedState().exercises) { const c = CATALOG[e.libKey!] /* SEC2-01: po kluczu — nazwa wyświetlana bywa ogólna */; expect(e.requires).toEqual(c.requires); expect(e.loadSource).toBe(c.loadSource); expect(e.pattern).toBe(c.pattern); expect(e.implements).toBe(c.implements); }
   });
 });
 
-test('preset Beyond Power Voltra I (06.10.2026): 5–200 lb, krok 1 lb, jednostka sprzętu lb — wartości ze źródła producenta', () => {
+test('preset przenośnej stacji elektrycznej z jedną linką (06.10.2026): 5–200 lb, krok 1 lb, jednostka sprzętu lb — wartości ze źródła producenta', () => {
   const { LOAD_PRESETS } = require('@/lib/equipment'); const { achievable } = require('@/lib/loads');
   const p = LOAD_PRESETS.find((x: { id: string }) => x.id === 'voltra1'); expect(p.item).toBe('electric');
   expect(p.spec()).toEqual({ kind: 'electric', unit: 'lb', min: 5, max: 200, step: 1 }); expect(achievable({ ...p.spec(), unit: 'kg' }).length).toBe(196);

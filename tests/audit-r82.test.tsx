@@ -1,7 +1,7 @@
 /* Runda 82 — poprawki z niezależnego audytu commitów f132330 / 025ee6a (decyzje właściciela 03.10.2026; docs/09, docs/10):
  *  - MEDIUM 1: historia bez miejsca (0.8.5 / web 0.3) wstawia ciężar spoza listy po cichu → wartość ZOSTAJE (bez powrotu do wstrzymywania — HIGH
  *    z weryfikacji 2), ale ekran treningu i edytor historii pokazują dopisek „ciężaru … nie ma tutaj — wpisz ciężar”;
- *  - MEDIUM 2: „ViShape na stronę” zmieniało tylko listy ciężarów → etykieta kolumny ciężaru bloku na stacji „kg/stronę” („kg/str.”), EN „kg/side”;
+ *  - MEDIUM 2: „stacja elektryczna na stronę” zmieniało tylko listy ciężarów → etykieta kolumny ciężaru bloku na stacji „kg/stronę” („kg/str.”), EN „kg/side”;
  *    objętość bez zmian (otwarte pytanie właściciela);
  *  - LOW 3: „Poprzednio” z fallbacku 8c zrobione INNYM, ZNANYM przyrządem w tym samym miejscu omijało bezpiecznik M3 → jak inne, znane miejsce;
  *  - LOW 4: sesja z dwoma blokami tego samego ćwiczenia różnymi przyrządami mieszała wartości → tylko bloki tym samym / nieznanym przyrządem
@@ -23,7 +23,7 @@ const day = (n: number, h = 18) => { const d = new Date(); return new Date(d.get
 const HOME = [2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24];
 const DB = 'Bench Press (hantle)', RDL = 'RDL (hantle/linki)', BELT = 'Przysiad z pasem (linki)';
 const NOTE = (kg: number) => `ciężaru ${kg} kg nie ma tutaj — wpisz ciężar`;
-/** Dom (hantle 2–24 + ViShape Pro) — główne; garaż (tylko ViShape Pro). */
+/** Dom (hantle 2–24 + stacja elektryczna (pełna)) — główne; garaż (tylko stacja elektryczna (pełna)). */
 function places() {
   const s = store.getState().settings; const home = userHome(HOME); const vs = equipEntry('electric'); vs.load = presetSpec('vishape_pro');
   s.locations.push(home, loc('Garaż', [vs], 'garage')); s.mainLocationId = home.id; store.save();
@@ -78,7 +78,7 @@ describe('MEDIUM 2 — etykieta ciężaru bloku na stacji: na stronę', () => {
     for (const n of [BELT, 'Cable Fly', RDL]) { expect(store.loadLabel(ex(n), 'electric')).toBe('kg/side'); expect(store.loadLabelShort(ex(n), 'electric')).toBe('kg/side'); }
     expect(store.loadLabel(ex(RDL), 'dumbbell')).toBe('kg/dumbbell');
   });
-  test('trening w garażu (ViShape): kolumna „kg/str.”, pole „kg/stronę”; objętość bez zmian (×1 przy „łącznie”)', async () => {
+  test('trening w garażu (stacja elektryczna): kolumna „kg/str.”, pole „kg/stronę”; objętość bez zmian (×1 przy „łącznie”)', async () => {
     await fresh(); places(); store.startFromTemplate(tplAt(RDL, 'garage')); store.addExerciseToActive(ex(BELT)); const a = store.getState().active!;
     expect(a.exercises.map(e => e.impl)).toEqual(['electric', 'electric']); await store.flush();
     await renderApp({ saved: snapshot() }); await flushAll(10);

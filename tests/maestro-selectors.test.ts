@@ -208,3 +208,13 @@ describe('regresja E2E 91', () => {
     expect(y('01-trening-z-szablonu.yaml')).toContain('- assertVisible: "Workouts: 1, previous week 0;.*"');
   });
 });
+
+test('TST2-05: figura ruchu ma E2E — w 17 rysunek (etykieta VoiceOver „Movement drawing: …”) i przycisk pauzy/wznowienia animacji (WCAG 2.2.2)', () => {
+  const { EN } = require('@/lib/i18n.en'); const fs = require('fs'); const path = require('path');
+  const s = fs.readFileSync(path.join(__dirname, '..', '.maestro', '17-biblioteka-technika.yaml'), 'utf8').split('\n').filter((l: string) => /^- /.test(l)).map((l: string) => l.trim());
+  const drawing = EN['Rysunek ruchu: {opis}'].replace('{opis}', '.*'); const pause = EN['Zatrzymaj animację']; const resume = EN['Wznów animację'];
+  const tech = s.indexOf('- tapOn: "Technique"'); expect(tech).toBeGreaterThan(0);
+  const after = s.slice(tech + 1);
+  const iD = after.indexOf(`- assertVisible: "${drawing}"`); const iP = after.indexOf(`- tapOn: "${pause}"`); const iR = after.findIndex((l: string) => l.startsWith(`- extendedWaitUntil: { visible: "${resume}"`));
+  expect([iD >= 0, iP > iD, iR > iP]).toEqual([true, true, true]);
+});

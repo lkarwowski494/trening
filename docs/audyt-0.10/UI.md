@@ -17,7 +17,7 @@ Audytowałem commit **d2a1e85**. Worktree startował na złym commicie f435c8c, 
 - **Zrzuty:** pl/dark/light, se/std (home z kartą „teraz”, szablony, edytor szablonu, kalendarz, edycja sesji, miejsce, ustawienia).
 
 **Testy pomocnicze (wszystkie zielone, tylko dla dowodów):**
-`tests/zz-audit-ui-a.test.tsx` … `zz-audit-ui-e.test.tsx` w worktree `/home/user/trening/.claude/worktrees/agent-a1b20f15e80597cce`. Wyniki przytaczam jako POTWIERDZONE.
+`tests/zz-audit-ui-a.test.tsx` … `zz-audit-ui-e.test.tsx` w worktree audytora (poza repo). Wyniki przytaczam jako POTWIERDZONE.
 
 ## Znaleziska
 

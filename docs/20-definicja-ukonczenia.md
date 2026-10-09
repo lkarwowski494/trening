@@ -39,4 +39,6 @@ Brak któregoś rodzaju wymaga zapisanego powodu w docs/09 (wiersz tej zmiany), 
 
 Liczby (pliki, testy, pozycje macierzy, scenariusze E2E) nie są tu przepisywane ręcznie (audyt 0.10 TST-10): macierz — `docs/19-macierz-testow.md`
 (generowany, `node scripts/test-matrix.mjs --write`), wyniki przebiegów i testów mutacyjnych — wiersze docs/09 z datą, E2E — `.maestro/config.yaml`.
-Losowe sekwencje: 100 przebiegów na stałym ziarnie przy każdym `jest`, nocą `MATRIX_SEED=random` (`nightly.yml`).
+Losowe sekwencje: 100 przebiegów na stałym ziarnie przy każdym `jest`, nocą `MATRIX_SEED=random` (`nightly.yml`). Pozostałe testy
+własności (fast-check) — tak samo (TST2-07, 09.10.2026): stałe ziarno przy każdym wypchnięciu, nocą `PROP_SEED=random`; ziarno przebiegu
+w logu Jest (`tests/global-setup.js`), odtworzenie `PROP_SEED=<liczba> npx jest <plik>` (jedno miejsce: `tests/prop-seed.js`).

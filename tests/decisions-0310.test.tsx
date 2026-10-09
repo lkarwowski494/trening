@@ -4,7 +4,7 @@
  *  - P-004 (b): hantle wpisuje się na hantel — dane wpisuje użytkownik; decyzja z 08:11 („Nie przenoś do aplikacji żadnych moich szablonów”):
  *    świeża instalacja bez szablonów, a migracja nie zmienia ciężarów ani treści szablonów (dawne 48 → 24 usunięte; zostaje tylko normalizacja
  *    jak w main — runda 82b), historia bez zmian;
- *  - ViShape na stronę: ciężar stacji elektrycznej zawsze na stronę. */
+ *  - stacja elektryczna na stronę: ciężar stacji elektrycznej zawsze na stronę. */
 import fc from 'fast-check';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
@@ -16,7 +16,7 @@ import { implAt, loadsFor, equipEntry } from '@/lib/equipment';
 import { nextHeavier, achievable } from '@/lib/loads';
 import { buildBackup, parseBackup } from '@/lib/backup';
 import { EN } from '@/lib/i18n.en';
-import { SCHEMA_VERSION, LIB, seedState, type Impl, type Workout } from '@/lib/seed';
+import { SCHEMA_VERSION, LIB, LIB_DISPLAY_NAME, seedState, type Impl, type Workout } from '@/lib/seed';
 import { fresh, ex, addWorkout, set, saved, withDemoTemplates } from './helpers';
 import { userHome, loc, presetSpec } from './locations-fixtures';
 import { renderApp, flushAll, screen, go, expandEquip } from './app';
@@ -28,7 +28,7 @@ const day = (n: number, h = 18) => { const d = new Date(); return new Date(d.get
 const strip = (s: any) => { const c = JSON.parse(JSON.stringify(s)); delete c.metaUpdatedAt; delete c.saveSeq; delete c.userTouched; return c; };
 const HOME = [2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24];
 const RDL = 'RDL (hantle/linki)', TP = 'Triceps Pushdown', DB = 'Bench Press (hantle)';
-/** Dom użytkownika (hantle 2–24, ViShape z ramionami — wysoki wyciąg) — główne; garaż (tylko ViShape); siłownia (preset „Pełna siłownia”). */
+/** Dom użytkownika (hantle 2–24, stacja elektryczna z ramionami — wysoki wyciąg) — główne; garaż (tylko stacja elektryczna); siłownia (preset „Pełna siłownia”). */
 function places() {
   const s = store.getState().settings; const home = userHome(HOME); home.equipment.find(e => e.item === 'electric')!.opts.push('arms');
   const vs = equipEntry('electric'); vs.load = presetSpec('vishape_pro'); const garage = loc('Garaż', [vs], 'garage');
@@ -188,7 +188,7 @@ describe('decyzja 03.10.2026 (08:11) — aplikacja nie przenosi ani nie zmienia 
   };
   const tplShape = (st: { templates: { id: string; name: string; items: { exerciseId: string; startWeight: number | ''; sets: number }[] }[] }) => st.templates.map(t => [t.id, t.name, t.items.map(i => [i.exerciseId, i.sets, i.startWeight])]);
   test('nowa instalacja: ZERO szablonów (PL i EN); biblioteka ćwiczeń i gumy jak dotąd', async () => {
-    let st = await fresh(); expect(st.templates).toEqual([]); expect(st.exercises.map(e => e.name)).toEqual(LIB.map(l => l[0])); expect(st.bands.map(b => [b.color, b.level])).toEqual([['czerwona', 2], ['czarna', 4], ['fioletowa', 6]]);
+    let st = await fresh(); expect(st.templates).toEqual([]); expect(st.exercises.map(e => e.libKey)).toEqual(LIB.map(l => l[0])); /* SEC2-01: klucz = nazwa kanoniczna, nazwa wyświetlana bywa ogólna (LIB_DISPLAY_NAME) */ expect(st.exercises.map(e => e.name)).toEqual(LIB.map(l => LIB_DISPLAY_NAME[l[0]] ?? l[0])); expect(st.bands.map(b => [b.color, b.level])).toEqual([['czerwona', 2], ['czarna', 4], ['fioletowa', 6]]);
     st = await fresh(undefined, 'en'); expect(st.templates).toEqual([]); expect(st.bands.map(b => b.color)).toEqual(['red', 'black', 'purple']);
     expect(seedState('pl').templates).toEqual([]); expect(seedState('en').templates).toEqual([]);
   });
@@ -213,8 +213,8 @@ describe('decyzja 03.10.2026 (08:11) — aplikacja nie przenosi ani nie zmienia 
   });
 });
 
-describe('ViShape na stronę', () => {
-  test('ciężary stacji zawsze na stronę (presety ViShape Pro/Lite: 1,5–65 / 1,5–35 kg na stronę); edytor stacji mówi, że wpisuje się na stronę', async () => {
+describe('stacja elektryczna na stronę', () => {
+  test('ciężary stacji zawsze na stronę (presety stacji pełnej/kompaktowej: 1,5–65 / 1,5–35 kg na stronę); edytor stacji mówi, że wpisuje się na stronę', async () => {
     const pro = achievable(presetSpec('vishape_pro')), lite = achievable(presetSpec('vishape_lite'));
     expect([pro[0], pro[pro.length - 1], lite[lite.length - 1]]).toEqual([1.5, 65, 35]);
     const g = loc('G', [{ ...equipEntry('electric'), opts: ['dual', 'belt', 'ankle', 'arms'], load: presetSpec('vishape_lite') }]);

@@ -4,7 +4,7 @@ Raport źródłowy audytora z 08.10.2026 (commit d2a1e85), bez zmian treści. Zb
 
 ## Zakres i pokrycie
 
-Audyt na **d2a1e85**. Worktree startował z f435c8c, więc najpierw wyeksportowałem d2a1e85 (`git archive`) i czytałem z kopii. Po przełączeniu worktree sprawdziłem, że kopia i worktree są identyczne (`diff -rq` bez różnic), więc wszystkie wnioski dotyczą d2a1e85. Napisałem 6 testów roboczych z fałszywym zegarem i renderowaniem całej aplikacji (`renderApp`). Leżą w worktree, nie są commitowane: `/home/user/trening/.claude/worktrees/agent-a4a9e59b685b14672/tests/zz-audit-live-{a,b,c,d,e,f}.test.tsx`.
+Audyt na **d2a1e85**. Worktree startował z f435c8c, więc najpierw wyeksportowałem d2a1e85 (`git archive`) i czytałem z kopii. Po przełączeniu worktree sprawdziłem, że kopia i worktree są identyczne (`diff -rq` bez różnic), więc wszystkie wnioski dotyczą d2a1e85. Napisałem 6 testów roboczych z fałszywym zegarem i renderowaniem całej aplikacji (`renderApp`). Leżą w worktree, nie są commitowane: `<worktree audytora, poza repo>/tests/zz-audit-live-{a,b,c,d,e,f}.test.tsx`.
 
 **Akcje i stany sprawdzone** (✔ w porządku, numer = znalezisko):
 

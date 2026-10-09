@@ -50,7 +50,9 @@ describe('E2E 91: interpreter odtwarza porażki scenariuszy z 224d229 w tym samy
   });
 
   test('17 — „Setup” pod rysunkiem ruchu, poza ekranem bez przewinięcia', async () => {
-    await failsAt('17-biblioteka-technika.yaml', replace({ scrollUntilVisible: { element: 'Setup', direction: 'DOWN', timeout: 30000 } }, [{ extendedWaitUntil: { visible: 'Setup', timeout: 15000 } }]),
+    /* kroki figury (TST2-05) dopisane po 224d229 przewijają do przycisku pauzy — usunięte, jak w wersji z przebiegu */
+    const fig = (c: Cmd[]) => { const a = c.findIndex(x => same(x, { tapOn: 'Technique' })); const b = c.findIndex(x => same(x, { extendedWaitUntil: { visible: 'Pause animation', timeout: 15000 } })); expect(b).toBeGreaterThan(a); return [...c.slice(0, a + 1), ...c.slice(b + 1)]; };
+    await failsAt('17-biblioteka-technika.yaml', c => replace({ scrollUntilVisible: { element: 'Setup', direction: 'DOWN', timeout: 30000 } }, [{ extendedWaitUntil: { visible: 'Setup', timeout: 15000 } }])(fig(c)),
       'extendedWaitUntil {"visible":"Setup","timeout":15000}', /nie pojawił się/);
   });
 

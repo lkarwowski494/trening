@@ -6,7 +6,7 @@ import { t, lbl } from './i18n';
 
 /*
  * P-003 E1: operacje na miejscach treningu (Ustawienia → Miejsca treningu). Każda zmiana zapisuje się od razu (antywzorzec
- * Freeletics: sprzęt nie zapisywał się po geście „wstecz”). Usunięte miejsce zostaje w treningach i szablonach jako id
+ * z popularnej aplikacji treningowej: sprzęt nie zapisywał się po geście „wstecz”). Usunięte miejsce zostaje w treningach i szablonach jako id
  * („(usunięte miejsce)”); miejsca głównego nie da się usunąć, dopóki jest inne miejsce, które można wskazać jako główne.
  */
 const uniqueName = (name: string) => { const names = new Set(getState().settings.locations.map(l => l.name)); if (!names.has(name)) return name; for (let i = 2; ; i++) { const n = `${name} ${i}`; if (!names.has(n)) return n; } };

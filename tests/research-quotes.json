@@ -1,0 +1,57 @@
+{
+ "_opis": "SEC2-04: limity długości cytatu w docs/research (jedno miejsce) i znane wyjątki — tests/research-quotes.test.ts",
+ "QUOTE_MAX_SENTENCES": 2,
+ "QUOTE_MAX_CHARS": 300,
+ "known": [
+  {
+   "path": "docs/research/22-serie-deload-generator.md",
+   "long": 1,
+   "reason": "przenosi się na Dysk (SEC2-03) — cytaty dłuższe niż 1–2 zdania do skrócenia albo przeniesienia na Dysk razem z plikiem; stan z 09.10.2026"
+  },
+  {
+   "path": "docs/research/24-przypisanie-partii.md",
+   "long": 1,
+   "reason": "przenosi się na Dysk (SEC2-03) — cytaty dłuższe niż 1–2 zdania do skrócenia albo przeniesienia na Dysk razem z plikiem; stan z 09.10.2026"
+  },
+  {
+   "path": "docs/research/25-biblioteka/L1-zrodla.md",
+   "long": 44,
+   "reason": "przenosi się na Dysk (SEC2-03) — cytaty dłuższe niż 1–2 zdania do skrócenia albo przeniesienia na Dysk razem z plikiem; stan z 09.10.2026"
+  },
+  {
+   "path": "docs/research/25-biblioteka/L2-zrodla.md",
+   "long": 1,
+   "reason": "przenosi się na Dysk (SEC2-03) — cytaty dłuższe niż 1–2 zdania do skrócenia albo przeniesienia na Dysk razem z plikiem; stan z 09.10.2026"
+  },
+  {
+   "path": "docs/research/25-biblioteka/L6-zrodla.md",
+   "long": 3,
+   "reason": "przenosi się na Dysk (SEC2-03) — cytaty dłuższe niż 1–2 zdania do skrócenia albo przeniesienia na Dysk razem z plikiem; stan z 09.10.2026"
+  },
+  {
+   "path": "docs/research/26-grafiki-i-wskazowki.md",
+   "long": 1,
+   "reason": "przenosi się na Dysk (SEC2-03) — cytaty dłuższe niż 1–2 zdania do skrócenia albo przeniesienia na Dysk razem z plikiem; stan z 09.10.2026"
+  },
+  {
+   "path": "docs/research/equipment/catalog-notes.md",
+   "long": 1,
+   "reason": "przenosi się na Dysk (SEC2-03) — cytaty dłuższe niż 1–2 zdania do skrócenia albo przeniesienia na Dysk razem z plikiem; stan z 09.10.2026"
+  },
+  {
+   "path": "docs/research/equipment/stations.json",
+   "long": 4,
+   "reason": "przenosi się na Dysk (SEC2-03) — cytaty dłuższe niż 1–2 zdania do skrócenia albo przeniesienia na Dysk razem z plikiem; stan z 09.10.2026"
+  },
+  {
+   "path": "docs/research/kb/baza-wiedzy.html",
+   "long": 226,
+   "reason": "przenosi się na Dysk (SEC2-03) — cytaty dłuższe niż 1–2 zdania do skrócenia albo przeniesienia na Dysk razem z plikiem; stan z 09.10.2026"
+  },
+  {
+   "path": "docs/research/skargi-uzytkownikow-2026-10.md",
+   "long": 3,
+   "reason": "przenosi się na Dysk (SEC2-03) — cytaty dłuższe niż 1–2 zdania do skrócenia albo przeniesienia na Dysk razem z plikiem; stan z 09.10.2026"
+  }
+ ]
+}

@@ -1,0 +1,12 @@
+{
+ "_opis": "SEC2-06 (audyt kontrolny 1, 09.10.2026): biblioteki natywne spoza npm, które React Native kompiluje do binarki iOS (podspec w node_modules/react-native/third-party-podspecs i SocketRocket z scripts/cocoapods/helpers.rb). Wersja — z podspec (scripts/licenses.mjs --check porównuje); licencja (SPDX) i notki o prawach autorskich — przepisane z pliku licencji projektu w tej wersji (adres `url`); treść licencji spoza npm — w scripts/licenses-native/<SPDX>.txt. ios/Podfile.lock nie jest w repo (ios/ powstaje w CI przez expo prebuild --clean), więc lista jest stała i sprawdzana względem podspec. fast_float ma trzy licencje do wyboru (Apache-2.0 OR BSL-1.0 OR MIT) — wybrana MIT. glog: druga notka w COPYING dotyczy funkcji gettimeofday tylko dla Windows (src/utilities.cc v0.3.5, #ifdef OS_WINDOWS) — poza binarką iOS. folly: plik LICENSE bez notki — notka z nagłówków źródeł (np. folly/String.cpp).",
+ "pods": [
+  { "pod": "RCT-Folly", "name": "folly", "version": "2024.11.18.00", "license": "Apache-2.0", "copyright": ["Copyright (c) Meta Platforms, Inc. and affiliates."], "url": "https://github.com/facebook/folly/blob/v2024.11.18.00/LICENSE" },
+  { "pod": "glog", "name": "glog", "version": "0.3.5", "license": "BSD-3-Clause", "copyright": ["Copyright (c) 2008, Google Inc."], "url": "https://github.com/google/glog/blob/v0.3.5/COPYING" },
+  { "pod": "DoubleConversion", "name": "double-conversion", "version": "1.1.6", "license": "BSD-3-Clause", "copyright": ["Copyright 2006-2011, the V8 project authors."], "url": "https://github.com/google/double-conversion/blob/v1.1.6/LICENSE" },
+  { "pod": "fmt", "name": "fmt", "version": "12.1.0", "license": "MIT", "copyright": ["Copyright (c) 2012 - present, Victor Zverovich and {fmt} contributors"], "url": "https://github.com/fmtlib/fmt/blob/12.1.0/LICENSE" },
+  { "pod": "fast_float", "name": "fast_float", "version": "8.0.0", "license": "MIT", "copyright": ["Copyright (c) 2021 The fast_float authors"], "url": "https://github.com/fastfloat/fast_float/blob/v8.0.0/LICENSE-MIT" },
+  { "pod": "boost", "name": "boost", "version": "1.84.0", "license": "BSL-1.0", "copyright": [], "url": "https://github.com/boostorg/boost/blob/boost-1.84.0/LICENSE_1_0.txt" },
+  { "pod": "SocketRocket", "name": "SocketRocket", "version": "0.7.1", "license": "BSD-3-Clause", "copyright": ["Copyright (c) 2016-present, Facebook, Inc."], "url": "https://github.com/facebookincubator/SocketRocket/blob/0.7.1/LICENSE" }
+ ]
+}

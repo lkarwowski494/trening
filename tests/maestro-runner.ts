@@ -95,6 +95,8 @@ export class Runner {
   }
   vpTop(sc: LNode): number { const sb = this.screenBox(sc, false); return sb ? sb.y : this.headerTop(); }
   focused: Node | null = null; selectAll = false; alertSeen = 0; alertOpen: number | null = null; sheetSeen = 0; sheetOpen: number | null = null; log: string[] = [];
+  /** Stan wyrażeń Maestro: `output` (wspólny dla scenariusza i podscenariuszy) i `maestro.copiedText` (ostatni copyTextFrom); copied — wszystkie skopiowane teksty (testy). */
+  output: Record<string, unknown> = {}; maestro: { copiedText?: string } = {}; copied: string[] = [];
   constructor(public name: string) {}
   syncModals() {
     if (global.__alerts.length > this.alertSeen) { this.alertOpen = global.__alerts.length - 1; this.alertSeen = global.__alerts.length; }
@@ -262,8 +264,19 @@ export class Runner {
           if (arg.when) { const w = arg.when; const ok = w.visible != null ? this.find(sel(w.visible)).length > 0 : w.notVisible != null ? this.find(sel(w.notVisible)).length === 0 : true; if (!ok) break; }
           if (arg.file) await this.run(load(join(DIR, arg.file)), arg.file); else await this.run(arg.commands, file); break;
         }
-        case 'copyTextFrom': if (!(await this.waitFor(sel(arg), true))) this.fail(step, 'Brak elementu do skopiowania.'); break;
-        case 'takeScreenshot': case 'evalScript': case 'assertTrue': break; /* MAESTRO_DUMP=<fragment kroku> — wypisuje drzewo po tym kroku */
+        case 'copyTextFrom': {
+          if (!(await this.waitFor(sel(arg), true))) this.fail(step, 'Brak elementu do skopiowania.');
+          const c = this.find(sel(arg))[0]; this.maestro.copiedText = c.texts[0] ?? ''; this.copied.push(this.maestro.copiedText); break;
+        }
+        /* TST2-04: wyrażenia `${…}` liczone naprawdę (wcześniej pomijane — asercja skutku w 06 była martwa); błąd wyrażenia = błąd kroku */
+        case 'evalScript': try { evalJs(String(arg), this); } catch (e) { this.fail(step, `Błąd wyrażenia: ${(e as Error).message}`); } break;
+        case 'assertTrue': {
+          const src = typeof arg === 'object' && arg ? arg.condition : arg; let v: unknown;
+          try { v = evalJs(String(src), this); } catch (e) { this.fail(step, `Błąd wyrażenia: ${(e as Error).message}`); }
+          if (!(v === true || v === 'true')) this.fail(step, `Warunek fałszywy (wynik: ${JSON.stringify(v)}; maestro.copiedText=${JSON.stringify(this.maestro.copiedText)}, output=${JSON.stringify(this.output)}).`);
+          break;
+        }
+        case 'takeScreenshot': break; /* zrzut — bez skutku w Jest; MAESTRO_DUMP=<fragment kroku> wypisuje drzewo po kroku */
         default: this.fail(step, `Nieobsługiwane polecenie ${cmd}.`);
       }
     }
@@ -279,5 +292,13 @@ function sameRow(a: Node, b: Node) {
 }
 function hidden(n: Node) { for (let p: Node | null = n; p; p = p.parent) if (isHost(p) && (p.props['aria-hidden'] === true || p.props.accessibilityElementsHidden === true)) return true; return false; }
 function isDesc(n: Node, anc: Node) { for (let p = n.parent; p; p = p.parent) if (p === anc) return true; return false; }
+/**
+ * Wyrażenie JavaScript Maestro `${…}` (evalScript, assertTrue; w Maestro GraalJS) z obiektami `output` i `maestro`. Tekst bez `${…}` — błąd
+ * (w Maestro to zwykły napis bez obliczenia — asercja bez skutku).
+ */
+export function evalJs(src: string, ctx: { output: Record<string, unknown>; maestro: { copiedText?: string } }): unknown {
+  const m = /^\$\{([\s\S]*)\}$/.exec(String(src).trim()); if (!m) throw new Error(`wyrażenie Maestro bez \${…}: ${src}`);
+  return new Function('output', 'maestro', `"use strict"; return (${m[1]});`)(ctx.output, ctx.maestro); // eslint-disable-line no-new-func
+}
 export function load(path: string): any[] { const docs = yaml.loadAll(readFileSync(path, 'utf8')); return docs[docs.length - 1] as any[]; }
 

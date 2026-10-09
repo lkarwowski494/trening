@@ -25,7 +25,7 @@ import * as store from '@/lib/store';
 import * as stats from '@/lib/stats';
 import { parseBackup, buildBackup, buildCsv } from '@/lib/backup';
 import { snapLegacyLb, KG_PER_LB } from '@/lib/units';
-import { SCHEMA_VERSION, seedState, LIB_BASE_NAMES, LIB_MERGED, LIB_RENAMED, type State } from '@/lib/seed';
+import { SCHEMA_VERSION, seedState, LIB_BASE_NAMES, LIB_MERGED, LIB_RENAMED, LIB_DISPLAY_NAME, type State } from '@/lib/seed';
 import { fresh, saved } from './helpers';
 import { renderApp, flushAll, go, screen } from './app';
 import { stateProblems, strip as strip0, clone, J, canonCatalog, parseCsvRfc } from './matrix-data-shared';
@@ -205,7 +205,7 @@ describe('prawdziwe zapisy (fixtures) — bez utraty danych i niezmienniki', () 
     const want = doneSets(raw).map(r => [r[0], moved(r[1]), r[3], r[4]]); const got = st.workouts.flatMap(w => w.exercises.flatMap(e => e.sets.map(x => [w.id, e.exerciseId, x.weight, x.reps])));
     expect(got.sort()).toEqual(want.sort());
     /* każde ćwiczenie i szablon (z każdą pozycją) zostaje; nazwy bez zmian (poza spacjami na brzegach) */
-    for (const e of raw.exercises) { const n = e.name.replace(/\s+/g, ' ').trim(); if (LIB_MERGED[n] && moved(e.id) !== e.id) continue; expect(st.exercises.find(x => x.id === e.id)?.name).toBe(LIB_RENAMED[n] ?? n); }
+    for (const e of raw.exercises) { const n = e.name.replace(/\s+/g, ' ').trim(); if (LIB_MERGED[n] && moved(e.id) !== e.id) continue; const k = LIB_RENAMED[n] ?? n; const got = st.exercises.find(x => x.id === e.id); expect(got?.name).toBe(got?.lib && got.libKey === k ? LIB_DISPLAY_NAME[k] ?? k : k); } /* SEC2-01: nieprzemianowane ćwiczenie biblioteki ze znakiem towarowym → nazwa ogólna */
     for (const t of raw.templates) { const g = st.templates.find(x => x.id === t.id || (t.id == null && x.name === t.name)); expect(g?.items.map(i => [i.exerciseId, i.sets, i.startWeight])).toEqual(t.items.map((i: any) => [moved(i.exerciseId), i.sets, i.startWeight === undefined ? '' : i.startWeight])); }
     const act = live ? live.active : raw.active; expect(st.active?.id).toBe(act.id); expect(st.active!.exercises.flatMap(e => e.sets.map(x => [x.weight, x.reps, x.done]))).toEqual(act.exercises.flatMap((e: any) => e.sets.map((x: any) => [x.weight, x.reps, x.done])));
     expect(st.bands.map(b => [b.id, b.level])).toEqual(raw.bands.map((b: any) => [b.id, b.level]));

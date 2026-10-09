@@ -24,7 +24,7 @@ const HOME = [2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24];
 const DB = 'Bench Press (hantle)', RDL = 'RDL (hantle/linki)';
 const NOTE = (w: string) => `ciężaru ${w} nie ma tutaj — wpisz ciężar`;
 const DB_ITEM = 'Hantle (stała waga albo z szybką regulacją)';
-/** Dom (hantle z listą `home` + ViShape Pro) — główne; garaż (tylko ViShape Pro). */
+/** Dom (hantle z listą `home` + stacja elektryczna (pełna)) — główne; garaż (tylko stacja elektryczna (pełna)). */
 function places(home: number[] = HOME) {
   const s = store.getState().settings; const vs = equipEntry('electric'); vs.load = presetSpec('vishape_pro');
   s.locations.push(userHome(home), loc('Garaż', [vs], 'garage')); s.mainLocationId = 'home'; store.save();
@@ -86,7 +86,7 @@ describe('LOW 1 — dopisek i wstawianie wartości: to samo mapowanie serii źr�
 });
 
 describe('LOW 2 — zmiana sprzętu miejsca w trakcie treningu: przyrząd bloków bez odhaczonych serii od nowa', () => {
-  test('dom: hantle bez ciężarów + ViShape → RDL na stacji; wpis hantli 2–24 w trakcie → blok hantlami, „↑ spróbuj 22 kg” z listy, „kg/hant.”', async () => {
+  test('dom: hantle bez ciężarów + stacja elektryczna → RDL na stacji; wpis hantli 2–24 w trakcie → blok hantlami, „↑ spróbuj 22 kg” z listy, „kg/hant.”', async () => {
     await fresh(); places([]); hist(day(3), RDL, [{ weight: 20, reps: 8 }]); store.startFromTemplate(tplAt(RDL, 'home'));
     const a = store.getState().active!; const e = a.exercises[0]; expect(e.impl).toBe('electric'); expect(vals(e.sets)).toEqual([[20, 8]]);
     expect(store.loadLabelShort(ex(RDL), store.liveBlockImpl(e, a.locationId))).toBe('kg/str.');
