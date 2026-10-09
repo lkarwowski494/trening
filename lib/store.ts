@@ -5,7 +5,7 @@ import { useSyncExternalStore } from 'react';
 import { t, t as tr, tIn, applyLang, detectLang, locale, fold, isLang, lang, upper, collator, deviceUnit } from './i18n';
 import { applyUnit, wu, wOut, wIn, KG_PER_LB, fmtW, fmtNum, snapLegacyLb } from './units';
 import { applyTheme } from './theme';
-import { seedState, uid, base, defaultModules, defaultSettings, metricFor, loadModeFor, loadMult, blankTimer, musclesFor, hasTime, hasReps, hasWeight, hasDistance, METRICS, DEFAULT_REST, GROUPS, LIB, SCHEMA_VERSION, LOCAL_OWNER, MODULES, SET_KINDS, SINGLE_IMPLEMENT, equipFields, libExercise, LIB_EXTRA_REVS, LIB_EXTRA_REV, LIB_MUSCLE_FIXES, LIB_FIELD_FIXES, LIB_RENAMED, LIB_MERGED, LIB_RETIRED, libExtraRevOf, LIB_BASE_NAMES_V1, LOAD_SOURCE_BY_EQUIPMENT, IMPLS, own, type Impl, type SetKind, type Base, type State, type Workout, type WSet, type WExercise, type Exercise, type Template, type TemplateItem, type TemplateAlt, type TRow, type Morning, type Location, type PlanSegment, LIB_KEYS, catalogKey, libKeyFromFields, BODY_MASS_MAX, isNiche, LIB_BASE_NAMES, BODY_MASS_LOG_MAX, type BodyMassEntry } from './seed';
+import { seedState, uid, base, defaultModules, defaultSettings, metricFor, loadModeFor, loadMult, blankTimer, musclesFor, hasTime, hasReps, hasWeight, hasDistance, METRICS, DEFAULT_REST, GROUPS, LIB, SCHEMA_VERSION, LOCAL_OWNER, MODULES, SET_KINDS, SINGLE_IMPLEMENT, equipFields, libExercise, LIB_EXTRA_REVS, LIB_EXTRA_REV, LIB_MUSCLE_FIXES, LIB_FIELD_FIXES, LIB_RENAMED, LIB_MERGED, LIB_RETIRED, libExtraRevOf, LIB_BASE_NAMES_V1, LOAD_SOURCE_BY_EQUIPMENT, IMPLS, own, type Impl, type SetKind, type Base, type State, type Workout, type WSet, type WExercise, type Exercise, type Template, type TemplateItem, type TemplateAlt, type TRow, type Morning, type Location, type PlanSegment, LIB_KEYS, catalogKey, libKeyFromFields, BODY_MASS_MAX, isNiche, LIB_BASE_NAMES, BODY_MASS_LOG_MAX, type BodyMassEntry, type LoadMode } from './seed';
 import { equipById, loadsFor, implAt, implsAt, blankLoad, availability, fillGym, GYM_FILL, fillOpts, OPT_FILL, fillEquip2, EQUIP_FILL2 } from './equipment';
 import { sanitizeLoadSpec, nextHeavier, hasLoadShown } from './loads';
 import { CATALOG, CATALOG_REV, CABLES } from './catalog.generated';
@@ -299,9 +299,12 @@ export function migrate(raw: any): State {
       for (const rev of LIB_EXTRA_REVS.slice(done + 1)) {
         for (const row of LIB) if (libExtraRevOf(row[0]) === rev && !have.has(fold(row[0]))) { raw.exercises.push(libExercise(row, owner)); have.add(fold(row[0])); }
         for (const f of LIB_MUSCLE_FIXES) if (f.rev === rev) for (const e of raw.exercises) if (e.lib === true && e.libKey === f.name && sameList(e.muscles, f.from[0]) && sameList(e.secondaryMuscles, f.from[1])) { const [a, b] = musclesFor(f.name, e.group); /* E2: po kluczu */ e.muscles = a; e.secondaryMuscles = b; }
-        /* research biblioteki (09.10.2026): poprawki pól — tylko wartość równa dawnej domyślnej; miara tylko ćwiczenia bez serii i pozycji szablonu (nic nie znika z widoku) */
+        /* research biblioteki (09.10.2026): poprawki pól — tylko wartość równa dawnej domyślnej; miara tylko ćwiczenia bez serii i pozycji szablonu (nic nie znika z widoku);
+         * audyt kontrolny 1 (X2-01): tryb ciężaru z innym mnożnikiem objętości (np. total ×1 → unilateral ×2) też tylko bez serii i pozycji szablonu — inaczej
+         * zapisane ciężary zmieniłyby sens (objętość, rekordy sumy dawnych sesji); ten sam mnożnik — tylko etykieta, stosowana zawsze (jak okW w retireCatalog) */
         { const fixes = LIB_FIELD_FIXES.filter(f => f.rev === rev); if (fixes.length) { const inUse = usedIds(raw);
-          for (const f of fixes) for (const e of raw.exercises) if (e.lib === true && e.libKey === f.name && JSON.stringify(e[f.field]) === JSON.stringify(f.from) && (f.field !== 'metric' || !inUse.has(e.id))) e[f.field] = JSON.parse(JSON.stringify(f.to)); } }
+          const keepsMeaning = (f: typeof fixes[number]) => f.field === 'metric' ? false : f.field === 'loadMode' ? loadMult(f.from as LoadMode) === loadMult(f.to as LoadMode) : true;
+          for (const f of fixes) for (const e of raw.exercises) if (e.lib === true && e.libKey === f.name && JSON.stringify(e[f.field]) === JSON.stringify(f.from) && (keepsMeaning(f) || !inUse.has(e.id))) e[f.field] = JSON.parse(JSON.stringify(f.to)); } }
       }
       raw.libExtra = LIB_EXTRA_REVS[0]; raw.libExtraStep = LIB_EXTRA_REV; } }
   raw.templates = arr(raw.templates);
