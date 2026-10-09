@@ -318,3 +318,5 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
   generator) — zwinięta do wiersza przy planie, rozwinięta i wyżej bez planu; Ustawienia tylko w „Więcej”. **Karta „Ten tydzień” (sztanga
   postępu + pasek dni z datami i talerzami) tylko przy aktywnym planie** (wariant 1; odrzucone 2: w karcie planu). Odrzucone A (trzy sekcje).
   „Powtórz ostatni” w arkuszu (jak na makiecie).
+  Doprecyzowanie właściciela (ok. 15:30): karta „Dziś” z paskiem tygodnia i „Następne: …” zostaje na górze, a sekcja „Ten tydzień” z kafelkami
+  zostaje; sztanga postępu trafia do „Ten tydzień” (tylko przy planie); duży przycisk startu i „Inny trening” przy karcie „Dziś”.
