@@ -140,3 +140,44 @@ describe('MER2-02: najcięższy ciężar w miejscu przy celu „Siła”', () =>
     const k = inp('strength', addLocation('hotel').id); expect(loadCapWarning(generate(k), k)!.text).toMatch(/^Heaviest weight at this place for the main lift \(.+\): 25 kg\. Heavy sets of 4–6 reps \(about 80% of max\) may be too light with it — if 6 reps feel light, do more reps, closer to failure\. Strength still increases, but usually less than with heavy loads\.$/);
   });
 });
+
+/*
+ * MER2-04: wskazania źródeł we wskazówkach (przeczytane strony, 09.10.2026): reguła docs/research/27 „gdzie źródła się różnią — przedział”.
+ *  - OHP (sztanga): ACE #71 „about shoulder-width”, ExRx „slightly wider” → „na szerokość barków lub trochę szerzej”; stopy: ACE #71 nic,
+ *    ACE #43 (siedząc) „press the feet into the floor”, ExRx „shoulder width or one foot in front” → bez szerokości.
+ *  - Kettlebell Swing: ACE #391 „shoulder-width”, ExRx „slightly wider” → przedział. RDL: chwyt NASM „slightly wider”, ExRx „shoulder width to wide”.
+ *  - Leg Press: szerokość stóp tylko NASM → zamiast niej kąt w kolanach (~90°: ACE #154 i NASM).
+ *  - Face Pull: ACE #336 to High Row (inne ćwiczenie) — odwołanie oznaczone „analogia” i NIE liczy się do ≥ 2 źródeł (gen.mjs); „łokcie za linią
+ *    pleców” (tylko ExRx) i „klatka uniesiona” (tylko High Row) zastąpione częścią wspólną NASM i ExRx.
+ */
+describe('MER2-04: wskazania źródeł wskazówek', () => {
+  const { execFileSync } = require('child_process') as typeof import('child_process');
+  const { cueText } = require('@/lib/cues') as typeof import('@/lib/cues');
+  const refs = (ex: string) => Object.values(CUE_DATA.exercises[ex]).flat() as unknown as { c: string; s: string[][] }[];
+  const validate = (data: unknown): string[] => JSON.parse(execFileSync('node', ['--input-type=module', '-e',
+    `import { validate } from ${JSON.stringify(path.join(root, 'scripts/cues/gen.mjs'))}; import { readFileSync } from 'node:fs';
+     const pl = JSON.parse(readFileSync(${JSON.stringify(path.join(root, 'lib/cues/text/pl.json'))}, 'utf8')); let d = ''; process.stdin.on('data', c => d += c);
+     process.stdin.on('end', () => process.stdout.write(JSON.stringify(validate(JSON.parse(d), pl))));`], { input: JSON.stringify(data) }).toString());
+  test('rozstaw jako przedział: OHP (sztanga), Kettlebell Swing, RDL — „na szerokość barków lub trochę szerzej”; stopy w OHP i Leg Press bez szerokości', () => {
+    expect(cueText('ohp.bbSetup', 'pl')).toContain('chwyt na szerokość barków lub trochę szerzej');
+    expect(cueText('kb.setup', 'pl')).toContain('stopy na szerokość barków lub trochę szerzej');
+    expect(cueText('rdl.setup', 'pl')).toContain('chwyt na szerokość barków lub trochę szerzej');
+    expect(cueText('ohp.feet', 'pl')).not.toMatch(/szeroko/);
+    expect(cueText('lp.setup', 'pl')).not.toMatch(/szeroko/);
+    expect(cueText('ohp.bbSetup', 'en')).toContain('shoulder-width or a little wider');
+  });
+  test('Face Pull: High Row (ACE #336) oznaczone „analogia”; zdania bez twierdzeń jednego źródła; każde zdanie ma ≥ 2 organizacje bez analogii', () => {
+    const fp = refs('Face Pull');
+    for (const r of fp) for (const ref of r.s) if (ref[0] === 'ace-336') expect([r.c, ref[2]]).toEqual([r.c, 'analogia']);
+    for (const r of fp) expect([r.c, new Set(r.s.filter(x => x[2] !== 'analogia').map(x => CUE_DATA.sources[x[0]].org)).size >= 2]).toEqual([r.c, true]);
+    expect(cueText('fp.elbowsBack', 'pl')).not.toMatch(/za linią pleców/); expect(cueText('fp.chest', 'pl')).not.toMatch(/Klatka uniesiona/);
+  });
+  test('gen.mjs: odwołanie „analogia” nie liczy się do ≥ 2 źródeł; nieznany znacznik — błąd; dokument pokazuje „analogia”', () => {
+    expect(validate(CUE_DATA)).toEqual([]);
+    const d = JSON.parse(JSON.stringify(CUE_DATA)); const r = d.exercises['Face Pull'].tips.find((x: { c: string }) => x.c === 'fp.chest');
+    r.s = [r.s.find((x: string[]) => x[0].startsWith('exrx')), ['ace-336', 'opis', 'analogia']];
+    expect(validate(d).join('\n')).toMatch(/Face Pull\.fp\.chest: 1 organizacja/);
+    r.s[1][2] = 'cokolwiek'; expect(validate(d).join('\n')).toMatch(/znacznik/);
+    expect(fs.readFileSync(path.join(root, 'docs/research/27-wskazowki-zrodla.md'), 'utf8')).toMatch(/High Row \(#336\)\]\([^)]*\) \(analogia — inne ćwiczenie; /);
+  });
+});

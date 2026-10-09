@@ -12,6 +12,7 @@ Decyzja właściciela: docs/18, 08.10.2026 (ok. 23:50) — wariant A etapami; et
 - Bez twierdzeń medycznych („zapobiega kontuzjom” itp.); w aplikacji stopka z odesłaniem do lekarza lub fizjoterapeuty.
 - Tylko część wspólna źródeł; gdzie źródła się różnią (np. głębokość, rozstaw), wskazówka mówi tyle, ile mówią wszystkie, albo podaje przedział.
 - Strony ExRx.net czytane przez Wayback Machine (bezpośrednio HTTP 403) — przy źródle adres migawki.
+- Źródło opisujące inne ćwiczenie (np. High Row przy Face Pull) ma znacznik „analogia” i nie liczy się do minimum źródeł; wariant tego samego ćwiczenia (np. wyciskanie siedząc i stojąc, hantle i sztanga) — z opisem w miejscu odwołania (audyt kontrolny 1 MER2-04, 09.10.2026).
 
 ## Organizacje i szczeble (hierarchia z CLAUDE.md)
 
@@ -471,7 +472,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 
 **Ustawienie**
 
-- Stań prosto ze sztangą przy udach, stopy na szerokość bioder do barków, chwyt na szerokość barków. — ACE: [Romanian Deadlift (#317)](https://www.acefitness.org/resources/everyone/exercise-library/317/romanian-deadlift/) (opis); NASM: [Romanian Deadlift Barbell](https://www.nasm.org/resource-center/exercise-library/romanian-deadlift-barbell) (Step 1; Step 2); ExRx.net: [RomanianDeadlift](https://web.archive.org/web/20230304211839/https://exrx.net/WeightExercises/OlympicLifts/RomanianDeadlift) (Preparation) `rdl.setup`
+- Stań prosto ze sztangą przy udach, stopy na szerokość bioder do barków, chwyt na szerokość barków lub trochę szerzej. — ACE: [Romanian Deadlift (#317)](https://www.acefitness.org/resources/everyone/exercise-library/317/romanian-deadlift/) (opis (barbell resting on the front of the thighs — bez szerokości stóp i chwytu)); NASM: [Romanian Deadlift Barbell](https://www.nasm.org/resource-center/exercise-library/romanian-deadlift-barbell) (Step 1; Step 2 (feet hip-width; grip slightly wider than shoulder-width)); ExRx.net: [RomanianDeadlift](https://web.archive.org/web/20230304211839/https://exrx.net/WeightExercises/OlympicLifts/RomanianDeadlift) (Preparation (shoulder width to wide overhand grip; shoulder width or narrower stance)) `rdl.setup`
 
 **Ruch**
 
@@ -562,22 +563,22 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 
 **Ustawienie**
 
-- Lina na wyciągu co najmniej na wysokości barków; chwyć jej końce i cofnij się, aż linka się napnie. — NASM: [Face Pull](https://www.nasm.org/resource-center/exercise-library/face-pull) (Step 1; Step 2); ExRx.net: [CBStandingRearDeltRowRope](https://web.archive.org/web/20230331040950/https://exrx.net/WeightExercises/DeltoidPosterior/CBStandingRearDeltRowRope) (Preparation); ACE: [High Row (#336)](https://www.acefitness.org/resources/everyone/exercise-library/336/high-row/) (opis (high row, rope at shoulder height)) `fp.setup`
+- Lina na wyciągu co najmniej na wysokości barków; chwyć jej końce i cofnij się, aż linka się napnie. — NASM: [Face Pull](https://www.nasm.org/resource-center/exercise-library/face-pull) (Step 1; Step 2 (cable at approximately eye height; grab the rope, step back to create tension)); ExRx.net: [CBStandingRearDeltRowRope](https://web.archive.org/web/20230331040950/https://exrx.net/WeightExercises/DeltoidPosterior/CBStandingRearDeltRowRope) (Preparation (rope attachment on high pulley; step back so cable is taut)); ACE: [High Row (#336)](https://www.acefitness.org/resources/everyone/exercise-library/336/high-row/) (analogia — inne ćwiczenie; nie liczy się do ≥ 2 źródeł; opis (High Row: rope at about shoulder-height)) `fp.setup`
 
 **Ruch**
 
-- Przyciągnij linę w stronę twarzy, łokcie prowadząc w tył i na boki; wróć powoli do wyprostu rąk. — NASM: [Face Pull](https://www.nasm.org/resource-center/exercise-library/face-pull) (Step 3; Step 4); ExRx.net: [CBStandingRearDeltRowRope](https://web.archive.org/web/20230331040950/https://exrx.net/WeightExercises/DeltoidPosterior/CBStandingRearDeltRowRope) (Execution); ACE: [High Row (#336)](https://www.acefitness.org/resources/everyone/exercise-library/336/high-row/) (opis) `fp.move`
+- Przyciągnij linę w stronę twarzy; wróć do wyprostu rąk. — NASM: [Face Pull](https://www.nasm.org/resource-center/exercise-library/face-pull) (Step 3; Step 4 (pull the rope toward your face; extend your arms to return)); ExRx.net: [CBStandingRearDeltRowRope](https://web.archive.org/web/20230331040950/https://exrx.net/WeightExercises/DeltoidPosterior/CBStandingRearDeltRowRope) (Execution (pull rope to upper chest or neck; return until arms are extended forward)); ACE: [High Row (#336)](https://www.acefitness.org/resources/everyone/exercise-library/336/high-row/) (analogia — inne ćwiczenie; nie liczy się do ≥ 2 źródeł; opis (High Row: pull, then slowly straighten the arms)) `fp.move`
 
 **Wskazówki**
 
-- Ciągnij, aż łokcie znajdą się trochę za linią pleców. — ExRx.net: [CBStandingRearDeltRowRope](https://web.archive.org/web/20230331040950/https://exrx.net/WeightExercises/DeltoidPosterior/CBStandingRearDeltRowRope) (Execution (until elbows travel slightly behind back)); NASM: [Face Pull](https://www.nasm.org/resource-center/exercise-library/face-pull) (Step 3 (driving your elbows backward)); ACE: [High Row (#336)](https://www.acefitness.org/resources/everyone/exercise-library/336/high-row/) (opis (pull the elbows back)) `fp.elbowsBack`
-- Klatka uniesiona, tułów pionowo i nieruchomo. — ACE: [High Row (#336)](https://www.acefitness.org/resources/everyone/exercise-library/336/high-row/) (opis (lift the chest up)); ExRx.net: [CBStandingRearDeltRowRope](https://web.archive.org/web/20230331040950/https://exrx.net/WeightExercises/DeltoidPosterior/CBStandingRearDeltRowRope) (Comments (torso not forward beyond vertical)) `fp.chest`
+- Prowadź ruch łokciami — cofaj je w tył. — NASM: [Face Pull](https://www.nasm.org/resource-center/exercise-library/face-pull) (Step 3 (driving your elbows backward)); ExRx.net: [CBStandingRearDeltRowRope](https://web.archive.org/web/20230331040950/https://exrx.net/WeightExercises/DeltoidPosterior/CBStandingRearDeltRowRope) (Execution (until elbows travel slightly behind back)); ACE: [High Row (#336)](https://www.acefitness.org/resources/everyone/exercise-library/336/high-row/) (analogia — inne ćwiczenie; nie liczy się do ≥ 2 źródeł; opis (High Row: pull the elbows back)) `fp.elbowsBack`
+- Tułów stabilny i wyprostowany. — NASM: [Face Pull](https://www.nasm.org/resource-center/exercise-library/face-pull) (Step 2 (engage your core)); ExRx.net: [CBStandingRearDeltRowRope](https://web.archive.org/web/20230331040950/https://exrx.net/WeightExercises/DeltoidPosterior/CBStandingRearDeltRowRope) (Comments (torso not positioned forward beyond vertical)); ACE: [High Row (#336)](https://www.acefitness.org/resources/everyone/exercise-library/336/high-row/) (analogia — inne ćwiczenie; nie liczy się do ≥ 2 źródeł; opis (High Row: the back tall, lift the chest up)) `fp.chest`
 
 ### Overhead Press (sztanga)
 
 **Ustawienie**
 
-- Zdejmij sztangę ze stojaka na wysokości barków; chwyt nieco szerzej niż barki, sztanga przy przedniej części barków. — ACE: [Standing Shoulder Press (#71)](https://www.acefitness.org/resources/everyone/exercise-library/71/standing-shoulder-press/) (opis); ExRx.net: [BBMilitaryPress](https://web.archive.org/web/20230227195849/https://exrx.net/WeightExercises/DeltoidAnterior/BBMilitaryPress) (Preparation) `ohp.bbSetup`
+- Zdejmij sztangę ze stojaka na wysokości barków; chwyt na szerokość barków lub trochę szerzej, sztanga przy przedniej części barków. — ACE: [Standing Shoulder Press (#71)](https://www.acefitness.org/resources/everyone/exercise-library/71/standing-shoulder-press/) (opis (rack at about shoulder-height; hands about shoulder-width apart; bar across the top of the shoulders)); ExRx.net: [BBMilitaryPress](https://web.archive.org/web/20230227195849/https://exrx.net/WeightExercises/DeltoidAnterior/BBMilitaryPress) (Preparation (grip slightly wider than shoulder width; bar in front of neck)); ACE: [Seated Shoulder Press (#43)](https://www.acefitness.org/resources/everyone/exercise-library/43/seated-shoulder-press/) (opis (siedząc — ten sam bój: hands a little wider than shoulder-width apart)) `ohp.bbSetup`
 
 **Ruch**
 
@@ -586,7 +587,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 **Wskazówki**
 
 - Tułów wysoko i stabilnie; ciężar idzie prosto w górę nad głowę. — ACE: [Standing Shoulder Press (#71)](https://www.acefitness.org/resources/everyone/exercise-library/71/standing-shoulder-press/) (opis (back straight and tall, press directly overhead)); ExRx.net: [BBMilitaryPress](https://web.archive.org/web/20230227195849/https://exrx.net/WeightExercises/DeltoidAnterior/BBMilitaryPress) (Execution; Comments (chest high)) `ohp.tall`
-- Stopy pewnie na podłodze, mniej więcej na szerokość barków. — ACE: [Seated Shoulder Press (#43)](https://www.acefitness.org/resources/everyone/exercise-library/43/seated-shoulder-press/) (opis (press the feet into the floor)); ExRx.net: [BBMilitaryPress](https://web.archive.org/web/20230227195849/https://exrx.net/WeightExercises/DeltoidAnterior/BBMilitaryPress) (Comments (feet shoulder width apart)) `ohp.feet`
+- Stopy pewnie na podłodze. — ACE: [Seated Shoulder Press (#43)](https://www.acefitness.org/resources/everyone/exercise-library/43/seated-shoulder-press/) (opis (siedząc — ten sam bój: press the feet into the floor)); ExRx.net: [BBMilitaryPress](https://web.archive.org/web/20230227195849/https://exrx.net/WeightExercises/DeltoidAnterior/BBMilitaryPress) (Comments (feet shoulder width apart or one foot in front of other)) `ohp.feet`
 
 ### Overhead Press (hantle)
 
@@ -686,7 +687,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 
 **Ustawienie**
 
-- Oprzyj plecy i miednicę o oparcie; stopy na platformie mniej więcej na szerokość bioder. — ACE: [Seated Leg Press (#154)](https://www.acefitness.org/resources/everyone/exercise-library/154/seated-leg-press/) (Step 1); NASM: [Leg Press](https://www.nasm.org/resource-center/exercise-library/leg-press) (Step 1: Setup); ExRx.net: [SL45LegPress](https://web.archive.org/web/20220924004705/https://exrx.net/WeightExercises/Quadriceps/SL45LegPress) (Preparation) `lp.setup`
+- Oprzyj plecy i miednicę o oparcie; stopy płasko na platformie, kolana zgięte mniej więcej pod kątem prostym. — ACE: [Seated Leg Press (#154)](https://www.acefitness.org/resources/everyone/exercise-library/154/seated-leg-press/) (Step 1 (back and sacrum flat against the backrest; feet on the plate, knees at approximately 90 degrees, heels flat)); NASM: [Leg Press](https://www.nasm.org/resource-center/exercise-library/leg-press) (Step 1: Setup (back and head against the backrest; knees bent at approximately 90 degrees)); ExRx.net: [SL45LegPress](https://web.archive.org/web/20220924004705/https://exrx.net/WeightExercises/Quadriceps/SL45LegPress) (Preparation (back on padded support; feet on platform)) `lp.setup`
 
 **Ruch**
 
@@ -874,7 +875,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 
 **Ustawienie**
 
-- Stań za kettlebellem, stopy nieco szerzej niż barki; pochyl się w biodrach z prostymi plecami i chwyć uchwyt oburącz. — ExRx.net: [KBTwoArmSwing](https://web.archive.org/web/20230406171303/https://exrx.net/WeightExercises/Kettlebell/KBTwoArmSwing) (Preparation); ACE: [Swing (#391)](https://www.acefitness.org/resources/everyone/exercise-library/391/swing/) (opis) `kb.setup`
+- Stań za kettlebellem, stopy na szerokość barków lub trochę szerzej; pochyl się w biodrach z prostymi plecami i chwyć uchwyt oburącz. — ExRx.net: [KBTwoArmSwing](https://web.archive.org/web/20230406171303/https://exrx.net/WeightExercises/Kettlebell/KBTwoArmSwing) (Preparation (feet slightly wider apart than shoulder width; bend over at hip, back straight; grasp handle with both hands)); ACE: [Swing (#391)](https://www.acefitness.org/resources/everyone/exercise-library/391/swing/) (opis (feet shoulder-width apart; hold with both hands; back straight, sink back into the hips)) `kb.setup`
 
 **Ruch**
 

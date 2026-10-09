@@ -16,6 +16,9 @@ export const SECTIONS = { setup: 'Ustawienie', move: 'Ruch', tips: 'Wskazówki',
  * „Częste błędy” — 0–4: sekcja znika, gdy żaden błąd nie ma dwóch źródeł (nie dopisujemy błędów z jednego źródła). */
 export const TIPS_MIN = 2, TIPS_MAX = 4, MIN_ORGS = 2;
 /** Rodzaj organizacji (podpis w aplikacji bez nazw — audyt kontrolny 1 MER2-07, decyzja właściciela 09.10.2026 wariant A); = CUE_BASIS_KINDS w lib/cues. */
+/** Znaczniki odwołań (trzeci element [źródło, miejsce, znacznik]) — audyt kontrolny 1 MER2-04: „analogia” = źródło opisuje inne ćwiczenie
+ * (np. High Row przy Face Pull); takie odwołanie zostaje w dokumencie jako kontekst, ale nie liczy się do MIN_ORGS. */
+export const MARKS = { analogia: 'analogia — inne ćwiczenie; nie liczy się do ≥ 2 źródeł' };
 export const KINDS = { org: 'organizacja szkoleniowa (biblioteka ćwiczeń)', site: 'serwis specjalistyczny', maker: 'producent sprzętu', study: 'badanie (czasopismo recenzowane)' };
 
 export function validate(data, pl) {
@@ -42,11 +45,12 @@ export function validate(data, pl) {
         if (!Array.isArray(r.s)) { errs.push(`${ex}.${r.c}: brak źródeł`); continue; }
         const orgs = new Set();
         for (const ref of r.s) {
-          const [sid, at] = Array.isArray(ref) ? ref : [];
+          const [sid, at, mark] = Array.isArray(ref) ? ref : [];
           const s = data.sources?.[sid];
           if (!s) { errs.push(`${ex}.${r.c}: nieznane źródło ${sid}`); continue; }
           if (typeof at !== 'string' || !at.trim()) errs.push(`${ex}.${r.c}: brak miejsca w źródle ${sid}`);
-          orgs.add(s.org); usedSrc.add(sid);
+          if (mark !== undefined && !Object.prototype.hasOwnProperty.call(MARKS, mark)) errs.push(`${ex}.${r.c}: nieznany znacznik „${mark}” przy ${sid} (dozwolone: ${Object.keys(MARKS).join(', ')})`);
+          usedSrc.add(sid); if (mark === undefined) orgs.add(s.org); /* MER2-04: analogia (inne ćwiczenie) nie liczy się do MIN_ORGS */
         }
         if (orgs.size < MIN_ORGS) errs.push(`${ex}.${r.c}: ${orgs.size} organizacja(e) — wymagane ≥ ${MIN_ORGS} niezależne źródła`);
       }
@@ -77,6 +81,7 @@ export function render(data, pl) {
   L.push('- Bez twierdzeń medycznych („zapobiega kontuzjom” itp.); w aplikacji stopka z odesłaniem do lekarza lub fizjoterapeuty.');
   L.push('- Tylko część wspólna źródeł; gdzie źródła się różnią (np. głębokość, rozstaw), wskazówka mówi tyle, ile mówią wszystkie, albo podaje przedział.');
   L.push('- Strony ExRx.net czytane przez Wayback Machine (bezpośrednio HTTP 403) — przy źródle adres migawki.');
+  L.push('- Źródło opisujące inne ćwiczenie (np. High Row przy Face Pull) ma znacznik „analogia” i nie liczy się do minimum źródeł; wariant tego samego ćwiczenia (np. wyciskanie siedząc i stojąc, hantle i sztanga) — z opisem w miejscu odwołania (audyt kontrolny 1 MER2-04, 09.10.2026).');
   L.push('');
   L.push('## Organizacje i szczeble (hierarchia z CLAUDE.md)');
   L.push('');
@@ -110,7 +115,7 @@ export function render(data, pl) {
       if (!list.length) continue;
       L.push(`**${label}**`);
       L.push('');
-      for (const r of list) L.push(`- ${pl[r.c]} — ${r.s.map(([sid, at]) => `${data.sources[sid].org}: [${md(data.sources[sid].title)}](${data.sources[sid].archive ?? data.sources[sid].url}) (${md(at)})`).join('; ')} \`${r.c}\``);
+      for (const r of list) L.push(`- ${pl[r.c]} — ${r.s.map(([sid, at, mark]) => `${data.sources[sid].org}: [${md(data.sources[sid].title)}](${data.sources[sid].archive ?? data.sources[sid].url}) (${mark ? `${md(MARKS[mark] ?? mark)}; ` : ''}${md(at)})`).join('; ')} \`${r.c}\``);
       L.push('');
     }
   }

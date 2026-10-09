@@ -16,8 +16,9 @@ import { lang, type Lang } from '@/lib/i18n';
 
 export const CUE_SECTIONS = ['setup', 'move', 'tips', 'mistakes'] as const;
 export type CueSection = typeof CUE_SECTIONS[number];
-/** Odwołanie do źródła: [id źródła z data.json „sources”, miejsce w źródle (krok, sekcja)]. */
-export type CueRef = { c: string; s: [string, string][] };
+/** Odwołanie do źródła: [id źródła z data.json „sources”, miejsce w źródle (krok, sekcja), opcjonalnie „analogia” — inne ćwiczenie, nie liczy się
+ * do ≥ 2 źródeł (audyt kontrolny 1 MER2-04; sprawdza scripts/cues/gen.mjs)]. */
+export type CueRef = { c: string; s: ([string, string] | [string, string, 'analogia'])[] };
 export type CueSource = { org: string; title: string; url: string; archive?: string; level: 2 | 3 | 4 };
 /** Rodzaj organizacji źródła (podpis w aplikacji — audyt kontrolny 1 MER2-07 = SEC2-02, decyzja właściciela 09.10.2026 wariant A: bez nazw
  * organizacji i marek w tekstach aplikacji, pełna lista w docs/research/27): organizacja szkoleniowa (biblioteka ćwiczeń), serwis specjalistyczny,

@@ -2901,15 +2901,15 @@
      "s": [
       [
        "ace-317",
-       "opis"
+       "opis (barbell resting on the front of the thighs — bez szerokości stóp i chwytu)"
       ],
       [
        "nasm-romanian-deadlift-barbell",
-       "Step 1; Step 2"
+       "Step 1; Step 2 (feet hip-width; grip slightly wider than shoulder-width)"
       ],
       [
        "exrx-OlympicLifts/RomanianDeadlift",
-       "Preparation"
+       "Preparation (shoulder width to wide overhand grip; shoulder width or narrower stance)"
       ]
      ]
     }
@@ -3324,15 +3324,16 @@
      "s": [
       [
        "nasm-face-pull",
-       "Step 1; Step 2"
+       "Step 1; Step 2 (cable at approximately eye height; grab the rope, step back to create tension)"
       ],
       [
        "exrx-DeltoidPosterior/CBStandingRearDeltRowRope",
-       "Preparation"
+       "Preparation (rope attachment on high pulley; step back so cable is taut)"
       ],
       [
        "ace-336",
-       "opis (high row, rope at shoulder height)"
+       "opis (High Row: rope at about shoulder-height)",
+       "analogia"
       ]
      ]
     }
@@ -3343,15 +3344,16 @@
      "s": [
       [
        "nasm-face-pull",
-       "Step 3; Step 4"
+       "Step 3; Step 4 (pull the rope toward your face; extend your arms to return)"
       ],
       [
        "exrx-DeltoidPosterior/CBStandingRearDeltRowRope",
-       "Execution"
+       "Execution (pull rope to upper chest or neck; return until arms are extended forward)"
       ],
       [
        "ace-336",
-       "opis"
+       "opis (High Row: pull, then slowly straighten the arms)",
+       "analogia"
       ]
      ]
     }
@@ -3361,16 +3363,17 @@
      "c": "fp.elbowsBack",
      "s": [
       [
-       "exrx-DeltoidPosterior/CBStandingRearDeltRowRope",
-       "Execution (until elbows travel slightly behind back)"
-      ],
-      [
        "nasm-face-pull",
        "Step 3 (driving your elbows backward)"
       ],
       [
+       "exrx-DeltoidPosterior/CBStandingRearDeltRowRope",
+       "Execution (until elbows travel slightly behind back)"
+      ],
+      [
        "ace-336",
-       "opis (pull the elbows back)"
+       "opis (High Row: pull the elbows back)",
+       "analogia"
       ]
      ]
     },
@@ -3378,12 +3381,17 @@
      "c": "fp.chest",
      "s": [
       [
-       "ace-336",
-       "opis (lift the chest up)"
+       "nasm-face-pull",
+       "Step 2 (engage your core)"
       ],
       [
        "exrx-DeltoidPosterior/CBStandingRearDeltRowRope",
-       "Comments (torso not forward beyond vertical)"
+       "Comments (torso not positioned forward beyond vertical)"
+      ],
+      [
+       "ace-336",
+       "opis (High Row: the back tall, lift the chest up)",
+       "analogia"
       ]
      ]
     }
@@ -3397,11 +3405,15 @@
      "s": [
       [
        "ace-71",
-       "opis"
+       "opis (rack at about shoulder-height; hands about shoulder-width apart; bar across the top of the shoulders)"
       ],
       [
        "exrx-DeltoidAnterior/BBMilitaryPress",
-       "Preparation"
+       "Preparation (grip slightly wider than shoulder width; bar in front of neck)"
+      ],
+      [
+       "ace-43",
+       "opis (siedząc — ten sam bój: hands a little wider than shoulder-width apart)"
       ]
      ]
     }
@@ -3440,11 +3452,11 @@
      "s": [
       [
        "ace-43",
-       "opis (press the feet into the floor)"
+       "opis (siedząc — ten sam bój: press the feet into the floor)"
       ],
       [
        "exrx-DeltoidAnterior/BBMilitaryPress",
-       "Comments (feet shoulder width apart)"
+       "Comments (feet shoulder width apart or one foot in front of other)"
       ]
      ]
     }
@@ -3912,15 +3924,15 @@
      "s": [
       [
        "ace-154",
-       "Step 1"
+       "Step 1 (back and sacrum flat against the backrest; feet on the plate, knees at approximately 90 degrees, heels flat)"
       ],
       [
        "nasm-leg-press",
-       "Step 1: Setup"
+       "Step 1: Setup (back and head against the backrest; knees bent at approximately 90 degrees)"
       ],
       [
        "exrx-Quadriceps/SL45LegPress",
-       "Preparation"
+       "Preparation (back on padded support; feet on platform)"
       ]
      ]
     }
@@ -4706,11 +4718,11 @@
      "s": [
       [
        "exrx-Kettlebell/KBTwoArmSwing",
-       "Preparation"
+       "Preparation (feet slightly wider apart than shoulder width; bend over at hip, back straight; grasp handle with both hands)"
       ],
       [
        "ace-391",
-       "opis"
+       "opis (feet shoulder-width apart; hold with both hands; back straight, sink back into the hips)"
       ]
      ]
     }
