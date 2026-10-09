@@ -120,6 +120,15 @@ Rozmowa 05.10.2026, rano: „Chciałbym móc opublikować to w Apple Store” i 
   odsetek kupujących po okresie próbnym zmierzymy po premierze w App Store Connect). Darmowych użytkowników nie będzie (decyzja 06.10).
   **Otwarte:** cena; podatek dochodowy od sprzedaży w App Store przy koncie osoby prywatnej — pytanie do księgowego
   (nie zgadujemy).
+- **Sprzedaż bez rejestracji firmy (pytanie właściciela 09.10.2026; informacja, nie porada podatkowa — do potwierdzenia u księgowego):**
+  - Apple: konto Individual (osoba fizyczna) wystarcza do umowy Paid Apps i statusu tradera DSA (dane kontaktowe osoby, skrytka dozwolona).
+  - Prawo polskie: działalność nierejestrowana — od 2026 limit kwartalny 225% płacy minimalnej = **10 813,50 zł przychodu należnego na kwartał**
+    (przy płacy minimalnej 4806 zł); warunek: brak firmy w ostatnich 60 miesiącach; po przekroczeniu — działalność gospodarcza od dnia
+    przekroczenia, 7 dni na wpis do CEIDG; PIT-36 wg skali, bez ZUS; bieżąca ewidencja sprzedaży. Źródło: direct.money.pl, „Działalność
+    nierejestrowana 2026: limit 10 813,50 zł, po przekroczeniu 7 dni na CEIDG” (19.08.2026) — omówienie, nie tekst ustawy; tekstu
+    Prawa przedsiębiorców nie czytano (otwarte). Cel 2000 zł/mies. ≈ 6000 zł/kwartał — poniżej limitu.
+  - **Otwarte dla księgowego:** czy przychodem jest cena dla klienta czy wypłata od Apple (po prowizji i VAT); VAT od usługi dla Apple
+    (podmiot zagraniczny) — czy potrzebna rejestracja VAT-UE; jak dokumentować wypłaty Apple.
 - **Priorytet produktu wynikający z celu:** zatrzymanie użytkowników (jakość, brak błędów, dane bezpieczne) ważniejsze niż liczba pobrań —
   zgodne z pełnym zakresem testów (docs/20).
 
