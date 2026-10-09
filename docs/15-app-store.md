@@ -104,6 +104,11 @@ Rozmowa 05.10.2026, rano: „Chciałbym móc opublikować to w Apple Store” i 
     - Własny kod realizuje się tylko przez link albo w aplikacji („redeem custom codes within your app if you've implemented the appropriate
       StoreKit method”) — przemawia za przyciskiem w aplikacji (wariant A).
     - Opcja bez automatycznego odnowienia: „you'll only be able to choose Free offers” — darmowy okres bez zobowiązania (po nim brak opłaty).
+    - **Decyzja właściciela 09.10.2026 (ok. 12:00):** kody dla kolegów — **bez zobowiązań** (bez automatycznego odnowienia), **osobny kod na
+      osobę**, **najdłuższy dostępny okres** (wg dokumentacji 1 rok). Sposób wykonania do potwierdzenia przy wdrożeniu (dokumentacja nie
+      rozstrzyga): A) własny kod na osobę (np. KOLEGA-JAN) z limitem 1 użycia, bez daty ważności — nie wiadomo, czy limit 1 jest dozwolony
+      i czy jedna oferta mieści wiele własnych kodów („up to 10 active offers per subscription SKU”); B) partia kodów jednorazowych
+      (minimum 500 w partii, ważne do 6 miesięcy od utworzenia — niewykorzystane wygasają bez kosztów), po jednym kodzie na osobę.
   - **Do sprawdzenia w App Store Connect** (nie zgadujemy): czy punkty cenowe 0,99 EUR/GBP, 3,99 PLN i 19,99 PLN istnieją w siatce cen Apple.
 - **Cel przychodu (właściciel 06.10.2026):** ~2000 zł miesięcznie; model bez zmian: 30 dni za darmo, potem jednorazowa płatność.
   Rachunek orientacyjny (agent, do sprawdzenia): z ceny w App Store odpada VAT kraju kupującego (PL 23%) i prowizja Apple (15% w Small Business
