@@ -11,7 +11,7 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react-native';
 import { CUE_DATA, cueBasis, cueDict, CUE_BASIS_KINDS } from '@/lib/cues';
 import { ExerciseCues } from '@/components/ExerciseCues';
-import { LANGS, applyLang, t } from '@/lib/i18n';
+import { LANGS, applyLang, t, exName } from '@/lib/i18n';
 import { EN } from '@/lib/i18n.en';
 import { LOCALES } from '@/lib/locales';
 import * as store from '@/lib/store';
@@ -39,6 +39,8 @@ describe('MER2-07: podpis wskazówek bez nazw organizacji i marek', () => {
     render(<ExerciseCues exercise={lib('Rowing Machine')} />);
     fireEvent.press(screen.getByRole('button', { name: 'Technika' }));
     expect(screen.getByText('Na podstawie: biblioteki ćwiczeń organizacji szkoleniowych, materiały producenta sprzętu. Własne sformułowania.')).toBeTruthy();
+    render(<ExerciseCues exercise={lib('Back Squat')} />); fireEvent.press(screen.getByRole('button', { name: 'Technika' }));
+    expect(screen.getByText('Na podstawie: biblioteki ćwiczeń organizacji szkoleniowych, specjalistyczne serwisy treningowe, badania naukowe. Własne sformułowania.')).toBeTruthy();
     applyLang('en'); render(<ExerciseCues exercise={lib('Back Squat')} />);
     fireEvent.press(screen.getByRole('button', { name: 'Technique' }));
     expect(screen.getByText('Based on: exercise libraries of fitness education organisations, specialist training websites, scientific studies. Our own wording.')).toBeTruthy();
@@ -92,3 +94,49 @@ describe('MER2-08: RIR > 5 = „lekko”', () => {
   });
 });
 
+/*
+ * MER2-02 (wariant A, docs/25 backlog 0.10.1): generator „Siła” w miejscu z lekkimi hantlami (hotel 2,5–25 kg) daje bój główny 3 × 4–6 „ciężko,
+ * ok. 80% maksimum” — wykonalne tylko przy małej sile. Ostrzeżenie: najcięższy ciężar w miejscu dla boju głównego robionego hantlami / kettlem
+ * + co robić, gdy 4–6 powtórzeń wychodzi lekko (więcej powtórzeń bliżej upadku; siła rośnie, zwykle mniej — ta sama podstawa co MER-01, docs/research/22 R3).
+ * Bez progu liczbowego (wariant B — próg bez źródła, odrzucony). Logika w lib/loadcap.ts; podpięcie do ekranu generatora — fala 2 (lib/generator.ts
+ * i app/generator.tsx zmienia równolegle inny agent).
+ */
+describe('MER2-02: najcięższy ciężar w miejscu przy celu „Siła”', () => {
+  const { generate, REPS, HEAVY_PCT } = require('@/lib/generator') as typeof import('@/lib/generator');
+  const { heavyLoadCaps, loadCapWarning, CAPPED_IMPLS } = require('@/lib/loadcap') as typeof import('@/lib/loadcap');
+  const { addLocation } = require('@/lib/locations') as typeof import('@/lib/locations');
+  const { applyUnit } = require('@/lib/units') as typeof import('@/lib/units');
+  const inp = (goal: 'strength' | 'hypertrophy' | 'cut', locationId: string | null) => ({ goal, locationId, sessions: 3, minutes: 60 });
+  beforeEach(async () => { await fresh(); });
+  afterEach(() => { applyUnit('kg'); });
+  test('hotel (hantle 2,5–25 kg), Siła: każdy bój główny z hantlami ma limit 25 kg; ostrzeżenie z liczbą, zakresem powtórzeń i nazwami ćwiczeń', () => {
+    expect([...CAPPED_IMPLS]).toEqual(['dumbbell', 'kettlebell']);
+    const l = addLocation('hotel'); const i = inp('strength', l.id); const r = generate(i);
+    const heavy = r.templates.flatMap(tp => tp.items.filter(it => it.repMin === REPS.heavy[0] && it.repMax === REPS.heavy[1]));
+    const caps = heavyLoadCaps(r, i);
+    expect(caps.length).toBe(new Set(heavy.map(h => h.exerciseId)).size); expect(caps.length).toBeGreaterThan(0);
+    for (const c of caps) expect([c.impl, c.maxKg]).toEqual(['dumbbell', 25]);
+    const w = loadCapWarning(r, i)!;
+    expect(w.kind).toBe('loadcap');
+    const names = caps.map(c => exName(store.exById(c.exerciseId)!)).join(', ');
+    expect(w.text).toBe(`Najcięższy ciężar w miejscu dla boju głównego (${names}): 25 kg. Ciężkie serie ${REPS.heavy[0]}–${REPS.heavy[1]} powtórzeń (ok. ${HEAVY_PCT}% maksimum) mogą być z nim za lekkie — jeśli ${REPS.heavy[1]} powtórzeń wychodzi lekko, rób więcej powtórzeń, bliżej upadku. Siła też wtedy rośnie, ale zwykle mniej niż przy dużym ciężarze.`);
+  });
+  test('bez ostrzeżenia: pełna siłownia (sztanga), Masa i Redukcja w hotelu, Siła bez obciążenia (masa ciała — tam jest ostrzeżenie MER-01)', () => {
+    expect(loadCapWarning(generate(inp('strength', null)), inp('strength', null))).toBeNull();
+    expect(heavyLoadCaps(generate(inp('strength', addLocation('gym').id)), inp('strength', null))).toEqual([]);
+    const h = addLocation('hotel').id;
+    for (const g of ['hypertrophy', 'cut'] as const) expect(loadCapWarning(generate(inp(g, h)), inp(g, h))).toBeNull();
+    const bw = addLocation('bodyweight').id; expect(loadCapWarning(generate(inp('strength', bw)), inp('strength', bw))).toBeNull();
+  });
+  test('limit z danych miejsca: odznaczone najcięższe hantle → niższa liczba; jednostka lb — „50 lb”; EN', () => {
+    const l = addLocation('hotel'); const db = l.equipment.find(e => e.item === 'db_fixed')!;
+    if (db.load?.kind === 'list') for (const it of db.load.items) it.on = it.w <= 12.5;
+    const i = inp('strength', l.id); expect(new Set(heavyLoadCaps(generate(i), i).map(c => c.maxKg))).toEqual(new Set([12.5]));
+    expect(loadCapWarning(generate(i), i)!.text).toContain(': 12,5 kg.');
+    applyUnit('lb'); store.getState().settings.unit = 'lb';
+    const lb = addLocation('hotel'); const j = inp('strength', lb.id);
+    expect(loadCapWarning(generate(j), j)!.text).toContain(': 50 lb.');
+    applyUnit('kg'); store.getState().settings.unit = 'kg'; applyLang('en');
+    const k = inp('strength', addLocation('hotel').id); expect(loadCapWarning(generate(k), k)!.text).toMatch(/^Heaviest weight at this place for the main lift \(.+\): 25 kg\. Heavy sets of 4–6 reps \(about 80% of max\) may be too light with it — if 6 reps feel light, do more reps, closer to failure\. Strength still increases, but usually less than with heavy loads\.$/);
+  });
+});

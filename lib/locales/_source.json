@@ -2054,6 +2054,10 @@
   "en": "Overwrite data?"
  },
  {
+  "pl": "Najcięższy ciężar w miejscu dla boju głównego ({list}): {w}. Ciężkie serie {a}–{b} powtórzeń (ok. {p}% maksimum) mogą być z nim za lekkie — jeśli {b} powtórzeń wychodzi lekko, rób więcej powtórzeń, bliżej upadku. Siła też wtedy rośnie, ale zwykle mniej niż przy dużym ciężarze.",
+  "en": "Heaviest weight at this place for the main lift ({list}): {w}. Heavy sets of {a}–{b} reps (about {p}% of max) may be too light with it — if {b} reps feel light, do more reps, closer to failure. Strength still increases, but usually less than with heavy loads."
+ },
+ {
   "pl": "Najdłużej łącznie na treningu",
   "en": "Longest total time in a session"
  },
