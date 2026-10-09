@@ -1330,5 +1330,6 @@
  "Z planu w tym tygodniu: zrobione {done} z {n}.": "Από το πρόγραμμα αυτή την εβδομάδα: έγιναν {done} από {n}.",
  "{p}% planu tygodnia ({done} z {n})": "{p}% του εβδομαδιαίου προγράμματος ({done} από {n})",
  "Postęp tygodnia: {p}% planu, zrobione {done} z {n} treningów z planu": "Πρόοδος εβδομάδας: {p}% του προγράμματος, {done} από {n} προγραμματισμένες προπονήσεις",
- "zaplanowane": "προγραμματισμένο"
+ "zaplanowane": "προγραμματισμένο",
+ "Tygodnie z wykonanym planem: {done} z {n}": "Εβδομάδες με ολοκληρωμένο πρόγραμμα: {done} από {n}"
 }

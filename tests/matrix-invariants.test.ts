@@ -28,7 +28,8 @@ import { buildBackup, parseBackup } from '@/lib/backup';
 import { implsAt, EQUIPMENT, LOCATION_PRESETS } from '@/lib/equipment';
 import { CABLES } from '@/lib/catalog.generated';
 import { SCHEMA_VERSION, METRICS, blankTimer, uid, hasReps, hasTime, hasDistance, type Exercise, type Template, type TemplateItem, type Workout, type WSet, type SetKind, type Impl } from '@/lib/seed';
-import { weekProgress, planPct, dayMark } from '@/lib/motif';
+import { weekProgress, planPct, dayMark, monthWeeks } from '@/lib/motif';
+import { periodRange } from '@/lib/period';
 import { weekTiles, weekStrip } from '@/lib/dashboard';
 import { fresh } from './helpers';
 
@@ -580,6 +581,11 @@ function statsCheck(where: string) {
     ok(wp.stacks.length === wp.total && wp.stacks.filter(Boolean).length === wp.done && wp.stacks.every((f, i) => f === (i < wp.done)), where, 'weekProgress: stosy pełne od lewej = zrobione', wp);
     ok(Number.isInteger(wp.pct) && wp.pct >= 0 && wp.pct <= 100 && (wp.pct === 100) === (wp.done === wp.total) && (wp.pct === 0) === (wp.done === 0) && wp.pct === planPct(wp.done, wp.total), where, 'weekProgress: procent', wp);
   }
+  /* Postępy → miesiąc (decyzja 09.10.2026 ok. 17:25): bieżący tydzień w podsumowaniu miesiąca = postęp tygodnia; liczby „x z n” spójne ze stanami */
+  { const { start, end } = periodRange('month'); const mw = monthWeeks(start, end);
+    ok(mw.full === mw.weeks.filter(w => w.state === 'full').length && mw.planned === mw.weeks.filter(w => w.planned > 0).length && mw.full <= mw.planned
+      && mw.weeks.every(w => w.done <= w.planned && (w.state === 'none') === (w.planned === 0) && (w.state === 'full') === (w.planned > 0 && w.done === w.planned)), where, 'monthWeeks: stany i liczby', mw);
+    const cur = mw.weeks.find(w => w.start === weekStrip()[0].date); if (cur) ok(wp ? cur.planned === wp.total && cur.done === wp.done : cur.planned === 0, where, 'monthWeeks: bieżący tydzień ≠ postęp tygodnia', { cur, wp }); }
   for (const d of weekStrip()) { const m = dayMark(d.status); ok(m === (d.status === 'rest' ? null : d.status === 'other' ? 'done' : d.status), where, 'dayMark ≠ stan dnia', { d, m }); }
 }
 

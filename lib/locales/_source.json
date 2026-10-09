@@ -4267,6 +4267,10 @@
   "en": "Training weeks in a row without a deload: {n}. Coaches usually deload every {a}–{b} weeks — this is practice described in surveys by one research team (single source), not a finding on effectiveness."
  },
  {
+  "pl": "Tygodnie z wykonanym planem: {done} z {n}",
+  "en": "Weeks with the plan done: {done} of {n}"
+ },
+ {
   "pl": "tylko dostępne w: {l}",
   "en": "only available at {l}"
  },

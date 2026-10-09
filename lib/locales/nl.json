@@ -1330,5 +1330,6 @@
  "Z planu w tym tygodniu: zrobione {done} z {n}.": "Uit het plan deze week: {done} van {n} gedaan.",
  "{p}% planu tygodnia ({done} z {n})": "{p}% van het weekplan ({done} van {n})",
  "Postęp tygodnia: {p}% planu, zrobione {done} z {n} treningów z planu": "Weekvoortgang: {p}% van het plan, {done} van {n} geplande trainingen gedaan",
- "zaplanowane": "gepland"
+ "zaplanowane": "gepland",
+ "Tygodnie z wykonanym planem: {done} z {n}": "Weken met het plan voltooid: {done} van {n}"
 }

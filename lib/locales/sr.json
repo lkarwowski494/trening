@@ -1330,5 +1330,6 @@
  "Z planu w tym tygodniu: zrobione {done} z {n}.": "Из плана ове недеље: урађено {done} од {n}.",
  "{p}% planu tygodnia ({done} z {n})": "{p}% недељног плана ({done} од {n})",
  "Postęp tygodnia: {p}% planu, zrobione {done} z {n} treningów z planu": "Напредак недеље: {p}% плана, урађено {done} од {n} тренинга из плана",
- "zaplanowane": "планирано"
+ "zaplanowane": "планирано",
+ "Tygodnie z wykonanym planem: {done} z {n}": "Недеље са испуњеним планом: {done} од {n}"
 }

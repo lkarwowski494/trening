@@ -1330,5 +1330,6 @@
  "Z planu w tym tygodniu: zrobione {done} z {n}.": "A tervből ezen a héten: kész {done} / {n}.",
  "{p}% planu tygodnia ({done} z {n})": "A heti terv {p}%-a ({done}/{n})",
  "Postęp tygodnia: {p}% planu, zrobione {done} z {n} treningów z planu": "Heti haladás: a terv {p}%-a, {n} tervezett edzésből {done} kész",
- "zaplanowane": "tervezett"
+ "zaplanowane": "tervezett",
+ "Tygodnie z wykonanym planem: {done} z {n}": "Teljesített tervű hetek: {done}/{n}"
 }

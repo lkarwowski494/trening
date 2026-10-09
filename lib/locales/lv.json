@@ -1330,5 +1330,6 @@
  "Z planu w tym tygodniu: zrobione {done} z {n}.": "No plāna šonedēļ: paveikti {done} no {n}.",
  "{p}% planu tygodnia ({done} z {n})": "{p}% no nedēļas plāna ({done} no {n})",
  "Postęp tygodnia: {p}% planu, zrobione {done} z {n} treningów z planu": "Nedēļas progress: {p}% no plāna, izpildīti {done} no {n} plāna treniņiem",
- "zaplanowane": "plānots"
+ "zaplanowane": "plānots",
+ "Tygodnie z wykonanym planem: {done} z {n}": "Nedēļas ar izpildītu plānu: {done} no {n}"
 }

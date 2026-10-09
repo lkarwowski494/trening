@@ -1330,5 +1330,6 @@
  "Z planu w tym tygodniu: zrobione {done} z {n}.": "Aus dem Plan diese Woche: {done} von {n} erledigt.",
  "{p}% planu tygodnia ({done} z {n})": "{p} % des Wochenplans ({done} von {n})",
  "Postęp tygodnia: {p}% planu, zrobione {done} z {n} treningów z planu": "Wochenfortschritt: {p} % des Plans, {done} von {n} geplanten Trainings erledigt",
- "zaplanowane": "geplant"
+ "zaplanowane": "geplant",
+ "Tygodnie z wykonanym planem: {done} z {n}": "Wochen mit erfülltem Plan: {done} von {n}"
 }

@@ -1330,5 +1330,6 @@
  "Z planu w tym tygodniu: zrobione {done} z {n}.": "Din plan săptămâna aceasta: făcute {done} din {n}.",
  "{p}% planu tygodnia ({done} z {n})": "{p}% din planul săptămânal ({done} din {n})",
  "Postęp tygodnia: {p}% planu, zrobione {done} z {n} treningów z planu": "Progresul săptămânii: {p}% din plan, {done} din {n} antrenamente din plan făcute",
- "zaplanowane": "planificat"
+ "zaplanowane": "planificat",
+ "Tygodnie z wykonanym planem: {done} z {n}": "Săptămâni cu planul îndeplinit: {done} din {n}"
 }

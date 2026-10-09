@@ -1330,5 +1330,6 @@
  "Z planu w tym tygodniu: zrobione {done} z {n}.": "Dal piano questa settimana: fatti {done} su {n}.",
  "{p}% planu tygodnia ({done} z {n})": "{p}% del piano settimanale ({done} di {n})",
  "Postęp tygodnia: {p}% planu, zrobione {done} z {n} treningów z planu": "Avanzamento settimanale: {p}% del piano, {done} di {n} allenamenti del piano fatti",
- "zaplanowane": "pianificato"
+ "zaplanowane": "pianificato",
+ "Tygodnie z wykonanym planem: {done} z {n}": "Settimane con il piano completato: {done} di {n}"
 }

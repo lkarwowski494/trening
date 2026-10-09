@@ -1330,5 +1330,6 @@
  "Z planu w tym tygodniu: zrobione {done} z {n}.": "Iš plano šią savaitę: atlikta {done} iš {n}.",
  "{p}% planu tygodnia ({done} z {n})": "{p} % savaitės plano ({done} iš {n})",
  "Postęp tygodnia: {p}% planu, zrobione {done} z {n} treningów z planu": "Savaitės pažanga: {p} % plano, atlikta {done} iš {n} plano treniruočių",
- "zaplanowane": "suplanuota"
+ "zaplanowane": "suplanuota",
+ "Tygodnie z wykonanym planem: {done} z {n}": "Savaitės su įvykdytu planu: {done} iš {n}"
 }

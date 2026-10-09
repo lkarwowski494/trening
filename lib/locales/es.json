@@ -1330,5 +1330,6 @@
  "Z planu w tym tygodniu: zrobione {done} z {n}.": "Del plan esta semana: hechos {done} de {n}.",
  "{p}% planu tygodnia ({done} z {n})": "{p} % del plan semanal ({done} de {n})",
  "Postęp tygodnia: {p}% planu, zrobione {done} z {n} treningów z planu": "Progreso semanal: {p} % del plan, {done} de {n} entrenamientos del plan hechos",
- "zaplanowane": "planificado"
+ "zaplanowane": "planificado",
+ "Tygodnie z wykonanym planem: {done} z {n}": "Semanas con el plan cumplido: {done} de {n}"
 }

@@ -1330,5 +1330,6 @@
  "Z planu w tym tygodniu: zrobione {done} z {n}.": "Bu hafta plandan: {n} antrenmanın {done} tanesi yapıldı.",
  "{p}% planu tygodnia ({done} z {n})": "Haftalık planın %{p} kadarı ({done}/{n})",
  "Postęp tygodnia: {p}% planu, zrobione {done} z {n} treningów z planu": "Haftalık ilerleme: planın %{p} kadarı, plandaki {n} antrenmandan {done} tamamlandı",
- "zaplanowane": "planlandı"
+ "zaplanowane": "planlandı",
+ "Tygodnie z wykonanym planem: {done} z {n}": "Planı tamamlanan haftalar: {done}/{n}"
 }

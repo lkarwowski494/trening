@@ -9,6 +9,24 @@ import { Chip, H2, Muted, Txt, monoSafe } from '@/components/ui';
 import { MuscleMap } from '@/components/MuscleMap';
 import { setsByMuscle } from '@/lib/stats';
 import { deloadLessText } from '@/lib/start';
+import { monthWeeks, PLATE_STACK } from '@/lib/motif';
+import { PlateStack, a11yHidden } from '@/components/Motif';
+
+/** Miesiąc: tygodnie jako rząd stosów talerzy (decyzja właściciela 09.10.2026 ok. 17:25) — ten sam stos co postęp tygodnia (PlateStack): pełny = plan
+ * tygodnia wykonany w 100%, obwódka = niepełny, kreska = tydzień bez planu; pod spodem „Tygodnie z wykonanym planem: x z n”. Miesiąc bez planu — nic. */
+function MonthWeeks({ start, end }: { start: number; end: number }) {
+  const th = useTheme(); const r = monthWeeks(start, end); if (!r.planned) return null;
+  const caption = t('Tygodnie z wykonanym planem: {done} z {n}', { done: r.full, n: r.planned });
+  return (
+    <View testID="month-weeks" accessible accessibilityRole="text" accessibilityLanguage={lang()} accessibilityLabel={caption} style={{ marginBottom: 10, gap: 6 }}>
+      <View style={{ flexDirection: 'row', alignItems: 'flex-end', gap: 6, flexWrap: 'wrap' }}>
+        {r.weeks.map((w, i) => w.state === 'none'
+          ? <View key={i} testID={`month-week-${i}`} {...a11yHidden} style={{ width: PLATE_STACK.w, height: 3, borderRadius: 1.5, backgroundColor: th.ctrlLine }} />
+          : <PlateStack key={i} testID={`month-week-${i}`} filled={w.state === 'full'} bg={th.bg} th={th} />)}
+      </View>
+      <Muted style={{ fontSize: 13 }}>{caption}</Muted>
+    </View>);
+}
 
 /*
  * Podsumowanie tygodnia / miesiąca na ekranie Postępy (decyzja właściciela 08.10.2026, lib/period.ts): treningi, serie robocze,
@@ -46,6 +64,7 @@ export function PeriodSummary() {
         <Chip label={t('Tydzień deload')} on={deload} toggle onPress={() => toggleDeloadWeek(s.start)} />
         <Muted style={{ fontSize: 12, flexShrink: 1 }}>{t('Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję {less}, ciężary bez zmian.', { less: deloadLessText() }) /* audyt 0.10 (MER-04) */}</Muted>
       </View> : null}
+      {kind === 'month' ? <MonthWeeks start={s.start} end={s.end} /> : null}
       {prevDeload ? <Muted style={{ fontSize: 12, marginBottom: 6 }}>{t('Poprzedni tydzień jest oznaczony jako deload.')}</Muted> : null}
       <View style={{ padding: 12, borderRadius: 10, backgroundColor: th.surface2, gap: 6 }}>
         {rows.map(([l, v, p]) => (

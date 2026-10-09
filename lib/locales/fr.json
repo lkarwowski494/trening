@@ -1330,5 +1330,6 @@
  "Z planu w tym tygodniu: zrobione {done} z {n}.": "Du programme cette semaine : {done} sur {n} faites.",
  "{p}% planu tygodnia ({done} z {n})": "{p} % du plan de la semaine ({done} sur {n})",
  "Postęp tygodnia: {p}% planu, zrobione {done} z {n} treningów z planu": "Progression de la semaine : {p} % du plan, {done} séances du plan faites sur {n}",
- "zaplanowane": "prévu"
+ "zaplanowane": "prévu",
+ "Tygodnie z wykonanym planem: {done} z {n}": "Semaines avec le plan accompli : {done} sur {n}"
 }

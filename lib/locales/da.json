@@ -1330,5 +1330,6 @@
  "Z planu w tym tygodniu: zrobione {done} z {n}.": "Fra planen i denne uge: {done} af {n} udført.",
  "{p}% planu tygodnia ({done} z {n})": "{p} % af ugeplanen ({done} af {n})",
  "Postęp tygodnia: {p}% planu, zrobione {done} z {n} treningów z planu": "Ugens fremskridt: {p} % af planen, {done} af {n} planlagte træninger gennemført",
- "zaplanowane": "planlagt"
+ "zaplanowane": "planlagt",
+ "Tygodnie z wykonanym planem: {done} z {n}": "Uger med planen gennemført: {done} af {n}"
 }

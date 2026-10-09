@@ -1330,5 +1330,6 @@
  "Z planu w tym tygodniu: zrobione {done} z {n}.": "Z plánu tento týden: hotovo {done} z {n}.",
  "{p}% planu tygodnia ({done} z {n})": "{p} % týdenního plánu ({done} z {n})",
  "Postęp tygodnia: {p}% planu, zrobione {done} z {n} treningów z planu": "Postup týdne: {p} % plánu, hotovo {done} z {n} tréninků z plánu",
- "zaplanowane": "naplánováno"
+ "zaplanowane": "naplánováno",
+ "Tygodnie z wykonanym planem: {done} z {n}": "Týdny se splněným plánem: {done} z {n}"
 }

@@ -865,4 +865,5 @@ export const EN: Record<string, string> = {
   '{p}% planu tygodnia ({done} z {n})': '{p}% of the weekly plan ({done} of {n})',
   'Postęp tygodnia: {p}% planu, zrobione {done} z {n} treningów z planu': 'Weekly progress: {p}% of the plan, {done} of {n} planned workouts done',
   'zaplanowane': 'planned',
+  'Tygodnie z wykonanym planem: {done} z {n}': 'Weeks with the plan done: {done} of {n}',
 };

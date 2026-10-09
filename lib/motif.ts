@@ -1,6 +1,6 @@
 import type { PlateColor } from './plates';
 import { weekTiles } from './dashboard';
-import type { DayStatus } from './plan';
+import { dayStatus, dayKeyOf, addDays, type DayStatus } from './plan';
 
 /*
  * Motyw z ikony w aplikacji (decyzja właściciela 09.10.2026, „zestaw pełny”; docs/18): gryf i talerze w kolorach IWF (lib/plates.ts PLATE_COLORS —
@@ -78,6 +78,29 @@ export function weekProgress(now = Date.now()): WeekProgress | null {
   const w = weekTiles(now); const total = w.planned ?? 0; if (total <= 0) return null;
   const done = Math.max(0, Math.min(w.planDone ?? 0, total));
   return { done, total, pct: planPct(done, total), stacks: Array.from({ length: total }, (_, i) => i < done) };
+}
+
+/** Tydzień w podsumowaniu miesiąca (decyzja właściciela 09.10.2026 ok. 17:25): pełny — plan tygodnia wykonany w 100%, niepełny — mniej
+ * (także bieżący tydzień w trakcie), bez planu — tydzień bez dni z planem (rozstrzygnięcie agenta: kreska, nie liczy się do „x z n”). */
+export const MONTH_WEEK_STATES = ['full', 'partial', 'none'] as const;
+export type MonthWeek = { start: string; planned: number; done: number; state: (typeof MONTH_WEEK_STATES)[number] };
+/**
+ * Tygodnie miesiąca [start, end) dla Postępów → Podsumowanie → Miesiąc. Tydzień (pon–nd) należy do miesiąca, w którym ma czwartek (zasada ISO 8601 —
+ * każdy tydzień w dokładnie jednym miesiącu); tylko tygodnie, które już się zaczęły. Dni z planem i zrobione — ten sam stan dnia co pasek tygodnia,
+ * kalendarz i postęp tygodnia (lib/plan.dayStatus: zrobiony zaplanowanym szablonem, plan obowiązujący wtedy — A1). `full` — tygodnie pełne,
+ * `planned` — tygodnie z planem.
+ */
+export function monthWeeks(start: number, end: number, now = Date.now()): { weeks: MonthWeek[]; full: number; planned: number } {
+  const weeks: MonthWeek[] = []; if (!Number.isFinite(start) || !Number.isFinite(end) || end <= start) return { weeks, full: 0, planned: 0 };
+  const today = dayKeyOf(now); const s = new Date(start); const first = new Date(s.getFullYear(), s.getMonth(), s.getDate() - ((s.getDay() + 6) % 7), 12);
+  for (let mon = dayKeyOf(first.getTime()); ; mon = addDays(mon, 7)) {
+    const thu = addDays(mon, 3); const [y, m, d] = thu.split('-').map(Number); const thuTs = new Date(y, m - 1, d, 12).getTime();
+    if (thuTs >= end) break; if (thuTs < start) continue; if (mon > today) break;
+    let planned = 0, done = 0;
+    for (let i = 0; i < 7; i++) { const st = dayStatus(addDays(mon, i), today); if (st.templateId) { planned++; if (st.status === 'done') done++; } }
+    weeks.push({ start: mon, planned, done, state: planned === 0 ? 'none' : done >= planned ? 'full' : 'partial' });
+  }
+  return { weeks, full: weeks.filter(w => w.state === 'full').length, planned: weeks.filter(w => w.state !== 'none').length };
 }
 
 /** Kontrast WCAG 2.x dwóch kolorów #RRGGBB (1–21). */

@@ -1330,5 +1330,6 @@
  "Z planu w tym tygodniu: zrobione {done} z {n}.": "Plaanist sel nädalal: tehtud {done} / {n}.",
  "{p}% planu tygodnia ({done} z {n})": "{p}% nädalaplaanist ({done}/{n})",
  "Postęp tygodnia: {p}% planu, zrobione {done} z {n} treningów z planu": "Nädala edenemine: {p}% plaanist, tehtud {done} plaani {n} treeningust",
- "zaplanowane": "planeeritud"
+ "zaplanowane": "planeeritud",
+ "Tygodnie z wykonanym planem: {done} z {n}": "Täidetud plaaniga nädalad: {done}/{n}"
 }
