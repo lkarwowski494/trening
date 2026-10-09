@@ -83,8 +83,9 @@ Rozmowa 05.10.2026, rano: „Chciałbym móc opublikować to w Apple Store” i 
     4. Ceny w innych krajach: wariant A wg zasady z 20:20 (właściciel nie wybrał) — cena bazowa 0,99 USD, Apple przelicza pozostałe kraje,
        EUR/GBP/PLN ustawione ręcznie; odrzucone B: każdy kraj ręcznie.
     5. **Po wygaśnięciu subskrypcji lub próby: 4 darmowe treningi na miesiąc kalendarzowy** (zastępuje pełną blokadę nowych treningów
-       z 06.10; odrzucone: 5/mies., pełna blokada). Liczone na telefonie, bez serwera; limit obejmuje też treningi dopisane wstecz
-       (rekomendacja agenta, do potwierdzenia przy projekcie ekranu). Historia, kopia i eksport bez limitu.
+       z 06.10; odrzucone: 5/mies., pełna blokada). Liczone na telefonie, bez serwera; limit liczy tylko treningi na żywo — **dopisywanie
+       wstecz bez limitu** (właściciel 09.10.2026, wariant A: „nikt tak nie zrobi”; odrzucone B: wliczać do limitu, C: bez subskrypcji bez
+       dopisywania wstecz). Historia, kopia i eksport bez limitu.
   - **Zasada cenowa (właściciel 09.10.2026):** „polityka cenowa opiera się na impulsywnych zakupach i odczuciu, co jest takim progiem w danym
     kraju. U nas to 3.99 i 19.99”. Cena w każdym kraju = lokalny próg zakupu impulsowego, nie przeliczenie kursowe. Skutek dla pkt 4:
     automatyczne przeliczenie Apple tylko jako punkt wyjścia — przed publikacją przegląd cen w krajach wydania i ręczna korekta tam, gdzie
