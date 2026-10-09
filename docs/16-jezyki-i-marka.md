@@ -71,6 +71,42 @@ Recenzje zmieniły: el 46, fi 40, tr 38, nl 36, nb 24, sv 20, de 18, fr 13, da 1
 - fr „core” → „gainage” (filtr) vs „sangle abdominale” (partia mięśniowa); it „cadenza” dla tempa; nl cudzysłowy “…” vs ‘…’; nl/tr nazwy maszyn mieszane EN/lokalne.
 - fi „Kumoa” (Anuluj) vs „Peru” (Cofnij); da/nb „roningsmaskine/roingsmaskin” (maszyna) obok „romaskine/romaskin” (ergometr).
 
+### Fala 1 nowych języków: pt-BR i es-419 (decyzja właściciela 09.10.2026 wieczór, docs/18; wdrożenie 09.10.2026 na gałęzi feat-jezyki-w1, po wydaniu 0.11)
+
+*Sprawdzenia przed falami (09.10.2026, strony Apple przeczytane):* lista „System Language” (apple.com/ios/feature-availability) ma
+Portuguese (Brazil) i Spanish (Latin America); lista lokalizacji App Store Connect (developer.apple.com/help/app-store-connect/reference/app-information/app-store-localizations)
+ma Portuguese (Brazil) i **Spanish (Mexico)** — nie ma „Latin America”, więc opis sklepu dla es-419 idzie do lokalizacji es-MX. Kroje IBM Plex Sans/Mono mają wszystkie
+znaki pt/es (cmap). Kazachski (brak lokalizacji App Store Connect), uzbecki i azerski (nie są językami systemu iOS ani lokalizacjami App Store Connect) —
+**odłożone do wydania z arabskim** (zasada właściciela z 09.10: język trudniejszy niż zakładano → odłożony, z powodem).
+
+*Rozwiązanie (wariant B — słownik różnic):* `lib/locales/pt-BR.json` i `es-419.json` (oraz `lib/cues/text/…`) zawierają tylko teksty, które w wariancie
+brzmią inaczej niż w języku bazowym (pt = pt-PT, es = es-ES); słownik wariantu = bazowy + nakładka (`lib/locales/index.ts`, `lib/cues/index.ts`). Odrzucony
+wariant A (pełne osobne słowniki): podwójna praca przy każdym nowym tekście i rozjazd poprawek między pt/pt-BR, es/es-419. Ryzyko B: nowy tekst dodany tylko
+do bazowego słownika dziedziczy wersję europejską — pilnuje go test `tests/i18n-variants.test.ts` (słowa i formy typowe dla odmiany europejskiej zabronione
+w wariancie: pt-BR bez „ecrã”, „ficheiro”, „telemóvel”, „registar”, „Definições”, „ginásio”, „tu”-form („podes”, „tens”, „teu”), „está a + bezokolicznik”,
+enklizy w poleceniach; es-419 bez „vosotros”, „-áis/-éis”, „ordenador”, „móvil”, „Ajustes”, „pulsa”, „añadir” (Apple es-MX: „Agregar”), „entreno”,
+„copia de seguridad” (Apple es-MX: „respaldo”), „esterilla”, „gemelos”, „comba”, „introduce” (LatAm: „ingresa”)).
+
+| Kod | Rejestr | Nazwy aplikacji iOS w tekstach (Apple Support pt-br / es-mx) | Nazwa aplikacji |
+|---|---|---|---|
+| pt-BR | „você”, polecenia w trybie łączącym („Toque”, „Escolha”, „Salve”), proklityka | Ajustes, Arquivos, app Saúde | Treino (jak pt) |
+| es-419 | „tú” (jak Apple es-MX: „Ve a Configuración”) | Configuración, Archivos, app Salud | Training (jak es) |
+
+Słownictwo treningowe pt-BR: academia, anilhas, pegada/pegador, esteira, barra fixa, mesa flexora, cadeira extensora, panturrilhas, quadril, deload, backup.
+es-419: equipo (sprzęt), caminadora, pantorrillas, colchoneta, cuerda para saltar, respaldo. Nazwy ćwiczeń z biblioteki — jak w innych językach: po angielsku.
+
+*Wybór języka „Jak w telefonie” (`resolveLang`, CLDR):* pt + region BR albo sam „pt” (CLDR likelySubtags: pt → pt_Latn_BR) → pt-BR; pt-PT i regiony
+dziedziczące po pt_PT (AO, MZ, CV, CH, LU…) → pt. es + region z listy CLDR parentLocales `es_419` (`ES_419_REGIONS`: 419, MX, AR, CO, CL, PE, US, PR…) →
+es-419; es-ES, sam „es” (CLDR: es → es_Latn_ES) i pozostałe (GQ, PH, IC…) → es. Liczba mnoga: pt-BR jak fr („one” = 0 i 1; CLDR plurals.xml: pt i = 0..1,
+pt_PT osobno i = 1), es-419 jak es. Ustawienie języka zapisane jako „pt-BR”/„es-419” — bez zmiany schematu danych (sanitizer przyjmuje każdy kod z `LANGS`;
+starsza wersja aplikacji po imporcie takiej kopii wraca do „Jak w telefonie”).
+
+*Otwarte:* (1) czy iOS przy języku bez regionu (np. „Español” + region Meksyk) zwraca w `Locale.preferredLanguages` tag z regionem (es-MX) — niepotwierdzone,
+do sprawdzenia na symulatorze (test e2e); (2) iOS-owa lista języków w Ustawieniach → Aplikacja → Język: lokalizacje `pt` (treść pt-PT) i `pt-BR` — czy iOS
+pokaże „pt” jako „Português (Portugal)” — sprawdzić na buildzie; ewentualnie przemianować folder lokalizacji na pt-PT (bez zmiany kodu języka w danych);
+(3) widżet przerwy wybiera etykiety po dwóch pierwszych literach języka telefonu (`RestLiveActivity.swift`) — dla pt-BR/es-419 bierze pt/es (te same słowa
+„Descanso”/„Série”, więc bez skutków); (4) teksty czytane przez native speakera (pt-BR, es-419) przed App Store.
+
 ## Nazwa aplikacji (decyzja właściciela 05.10.2026)
 
 *Pod ikoną* (`APP_NAME` w `lib/i18n.ts`, jedno źródło prawdy; `locales/<kod>.json` musi się zgadzać — test `tests/i18n-locales.test.ts`):
