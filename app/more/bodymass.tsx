@@ -23,9 +23,9 @@ export default function BodyMassScreen() {
   return (
     <Screen><ScrollView keyboardShouldPersistTaps="handled" automaticallyAdjustKeyboardInsets contentContainerStyle={{ paddingVertical: 10, paddingBottom: 60 }}>
       <Muted style={{ fontSize: 13, marginBottom: 12 }}>{t('Opcjonalnie, tylko w telefonie. Z nią aplikacja liczy e1RM w podciąganiu (cała masa ciała — uproszczenie) i w pompkach (ok. {p}% masy ciała — badania z platformą siłową). Każdy trening liczy się z ostatnim pomiarem z tego dnia lub wcześniejszym; treningi sprzed pierwszego pomiaru — bez e1RM w tych ćwiczeniach.', { p: Math.round(BW_SHARE['Push Up'] * 100) })}</Muted>
-      <View style={{ flexDirection: 'row', gap: 10 }}>
-        <View style={{ flex: 1 }}><Field label={t('Masa ciała ({u})', { u: wu() })}><NumInput decimal weightTol value={kg} placeholder="—" onNum={v => setKg(v === '' ? '' : Math.max(0, v))} /></Field></View>
-        <View style={{ flex: 1.3 }}><Field label={t('Data pomiaru (RRRR-MM-DD)')}><Input value={date} onChangeText={setDate} placeholder={localISODate()} autoCorrect={false} keyboardType="numbers-and-punctuation" maxLength={10} /></Field></View>
+      <View /* UX2-11: pola jedno pod drugim — na 320 pt i przy dużym tekście etykiety nie konkurują o szerokość */>
+        <View><Field label={t('Masa ciała ({u})', { u: wu() })}><NumInput decimal weightTol value={kg} placeholder="—" onNum={v => setKg(v === '' ? '' : Math.max(0, v))} /></Field></View>
+        <View><Field label={t('Data pomiaru (RRRR-MM-DD)')}><Input value={date} onChangeText={setDate} placeholder={localISODate()} autoCorrect={false} keyboardType="numbers-and-punctuation" maxLength={10} /></Field></View>
       </View>
       <Btn title={t('Zapisz pomiar')} kind="primary" onPress={add} />
       <Muted style={{ fontSize: 12, marginTop: 6 }}>{t('Pomiar z tym samym dniem zastępuje poprzedni.')}</Muted>
