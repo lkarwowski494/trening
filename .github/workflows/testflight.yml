@@ -39,6 +39,10 @@ jobs:
           for v in ASC_KEY_ID ASC_ISSUER_ID ASC_KEY_P8; do [ -n "${!v}" ] || { echo "::error::Brak sekretu $v (docs/15 — kroki właściciela)"; exit 1; }; done
       - run: npm ci
       - name: Testy (jak przed każdym buildem)
+        # 09.10.2026 (run 37921922549): matrix-dim-langs-routes przekroczył domyślny limit sterty Node na macOS (~2 GB przy 7 GB RAM maszyny;
+        # na Ubuntu w tests.yml limit jest wyższy) — 3 GB na proces × 2 procesy mieści się w pamięci maszyny
+        env:
+          NODE_OPTIONS: --max-old-space-size=3072
         run: npm run typecheck && npm run check:i18n && npm test -- --maxWorkers=2 && npm run check:matrix && npm run verify:native
       - name: Generate native iOS project (expo prebuild)
         run: npx expo prebuild --platform ios --no-install --clean
