@@ -107,6 +107,48 @@ pokaże „pt” jako „Português (Portugal)” — sprawdzić na buildzie; ew
 (3) widżet przerwy wybiera etykiety po dwóch pierwszych literach języka telefonu (`RestLiveActivity.swift`) — dla pt-BR/es-419 bierze pt/es (te same słowa
 „Descanso”/„Série”, więc bez skutków); (4) teksty czytane przez native speakera (pt-BR, es-419) przed App Store.
 
+### Fala 2 nowych języków: indonezyjski (id), malajski (ms), wietnamski (vi) (decyzja właściciela 09.10.2026 wieczór, docs/18; wdrożenie 09.10.2026 na gałęzi feat-jezyki-w2, po wydaniu 0.11)
+
+*Sprawdzenia (09.10.2026, te same strony Apple co przy fali 1):* id, ms i vi są na liście „System Language” iOS i na liście lokalizacji App Store Connect
+(Indonesian, Malay, Vietnamese); IBM Plex Sans 400/600/700 i Plex Mono mają wszystkie znaki (także wietnamskie z dwoma znakami nad literą: ấ ẫ ệ ộ…).
+Żaden z trzech języków nie wymagał zmiany kroju ani układu, więc żaden nie jest odłożony (zasada właściciela z 09.10: trudniejszy niż zakładano → odłożony
+do wydania z arabskim). Uzbecki i kazachski z tej samej decyzji — **odłożone do wydania z arabskim** (powody w sekcji „Fala 1”: uz nie jest językiem
+systemu iOS ani lokalizacją App Store Connect; kk nie ma lokalizacji App Store Connect).
+
+*Rozwiązanie:* pełne słowniki (nie warianty): `lib/locales/{id,ms,vi}.json` (1345 tekstów UI, komplet z `_source.json`) i `lib/cues/text/{id,ms,vi}.json`
+(265 zdań wskazówek techniki); `locales/{id,ms,vi}.json` (nazwa pod ikoną, opisy uprawnień Zdrowia), `app.json`, widżet przerwy (UPDATE_WIDGET),
+`store/app-store-names.json`. Nazwy ćwiczeń z biblioteki — po angielsku jak w innych językach (`exName`). Nazwa aplikacji: **Training** (reguła z 05.10:
+lokalne słowo — id/ms „Latihan”, vi „Luyện tập” — nie jest podobne do „Trening”). Tłumaczenie: agent (własne sformułowania, bez nazw innych aplikacji);
+**bez recenzji native speakera** — otwarte.
+
+| Kod | Rejestr | Terminy (trening / ćwiczenie / seria / powtórzenia / przerwa / pauza / szablon / guma) | Nazwy iOS w tekstach |
+|---|---|---|---|
+| id | „Anda”, polecenia bez „-lah” („Ketuk”, „Pilih”, „Simpan”) | latihan / gerakan / set / repetisi (skrót „rep”) / istirahat / jeda / templat / karet | Pengaturan, File, app Kesehatan |
+| ms | „anda”, „Ketik” | latihan / senaman / set / ulangan / rehat / jeda / templat / getah | Seting, Fail, app Kesihatan |
+| vi | „bạn”, uprzejme „hãy” w poleceniach | buổi tập (zakładka „Tập”) / bài tập / hiệp / lần (lặp) / nghỉ / tạm dừng / mẫu / dây kháng lực | Cài đặt, Tệp, ứng dụng Sức khỏe |
+
+Słownictwo sprzętu: id barbel, dumbel, pelat, bangku, matras, katrol; ms barbel, dumbel, plat, bangku, tikar, takal; vi tạ đòn, tạ đơn, bánh tạ, ghế, thảm,
+ròng rọc, máy chạy bộ; „do upadku” — id/ms „sampai/hingga gagal”, vi „đến kiệt sức”. Terminy siłowni bez tłumaczenia jak w innych językach (drop set,
+superset, deload, kettlebell, leg press…). Test `tests/i18n-wave2.test.ts` pilnuje słownictwa: id i ms nie mieszają się (id bez „Seting/Padam/telefon/
+senaman/getah”, ms bez „Pengaturan/Hapus/ponsel/gerakan/karet”), vi „set” tylko w „drop set”/„superset”.
+
+*Wybór języka „Jak w telefonie” (`resolveLang`):* kod języka telefonu id / ms / vi z dowolnym regionem (ms-MY, ms-SG, ms-BN…); przestarzałe kody
+`in` → id i `zsm` → ms (CLDR languageAlias — zgodnie z `Intl.getCanonicalLocales`, sprawdzone testem). Liczba mnoga: jedna forma („other”, CLDR
+plurals.xml; `Intl.PluralRules` dla id/ms/vi ma tylko „other”). Liczby i daty z Intl: przecinek dziesiętny id-ID i vi-VN, **kropka w ms-MY** (CLDR);
+skrót miesiąca id „Mar” (Maret) to forma CLDR. Godzina ms-MY w formacie 12-godzinnym („6:40 PTG”) — z regionu, jak w telefonie.
+
+*Wietnamski — wysokość wierszy (ograniczenie, sprawdzenie na Linuksie):* zmierzone z plików kroju (tablice glyf/hhea, test w `tests/i18n-wave2.test.ts`):
+małe litery z dwoma znakami nad literą (ấ, ể, ộ) mieszczą się w ascent kroju (1,025 em); **wielkie** (Ấ, Ệ, Ỗ) wystają ponad ascent o 4–11 % em
+(Plex Sans 400: 1,061 em, 700: 1,127 em). iOS liczy wiersz z ascent + descent = 1,3 em i rysuje glif poza ramką wiersza, więc w zwykłym tekście nic nie
+znika; najgorszy styk (Bold, „Ấ” pod literą z ogonkiem w wierszu wyżej) ≤ 0,04 em. Teksty z jawnym `lineHeight` mają ≥ 1,28 em (poza cyframi). Wielkie
+litery z dwoma znakami są w wietnamskim rzadkie (początek zdania). Tego nie da się potwierdzić na Linuksie — **otwarte: zrzut z symulatora iOS w języku vi
+(e2e-ios)**; zrzuty web (Chromium, scratchpad `jezyki-w2-zrzuty`) nie pokazały ucięć. Opcje, gdyby symulator pokazał ucięcie: (A) nic nie zmieniać
+(rekomendacja do czasu zrzutu), (B) `lineHeight` 1,4 em dla vi w tekstach jednowierszowych z `numberOfLines`/`adjustsFontSizeToFit`.
+
+*Otwarte:* (1) teksty czytane przez native speakerów (id, ms, vi) przed App Store; (2) zrzut z symulatora iOS w języku vi (wysokość wierszy, etykiety
+zakładek 320 pt); (3) opisy w App Store (część po dwukropku w nazwie, podtytuł, opis, słowa kluczowe) po indonezyjsku, malajsku i wietnamsku — do napisania
+i przejrzenia przy ASO; (4) pole liczbowe przy ms (kropka dziesiętna) — zachowanie jak en, potwierdzić na telefonie z regionem Malezja.
+
 ## Nazwa aplikacji (decyzja właściciela 05.10.2026)
 
 *Pod ikoną* (`APP_NAME` w `lib/i18n.ts`, jedno źródło prawdy; `locales/<kod>.json` musi się zgadzać — test `tests/i18n-locales.test.ts`):
@@ -119,7 +161,7 @@ słowo lokalne tam, gdzie jest podobne do „Trening” (to samo co tytuł zakł
 | Trénink / Tréning | cs / sk |
 | Treening / Treniņš / Treniruotė | et / lv / lt |
 | Treino | pt |
-| Training | en, es, ro, hu, bg, uk |
+| Training | en, es, ro, hu, bg, uk, id, ms, vi (fala 2, 09.10.2026) |
 
 Przebieg decyzji: odrzucone „Forma” (w App Store jest już „Forma: Workout Tracker Gym Log”), „Simple Workout Tracker”
 (22 znaki — ucięte pod ikoną; jest już „Simple Workout Tracker: Gym”), „Workout” (nazwa aplikacji Apple na Apple Watch),
