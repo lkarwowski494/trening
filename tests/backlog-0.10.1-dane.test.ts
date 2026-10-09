@@ -11,7 +11,8 @@ import * as edit from '@/lib/edit';
 import { addLocation, duplicateLocation } from '@/lib/locations';
 import { parseBackup } from '@/lib/backup';
 import * as draft from '@/lib/draft';
-import { BODY_MASS_LOG_MAX, type Template, type Exercise } from '@/lib/seed';
+import { BODY_MASS_LOG_MAX, base, uid, type Template, type Exercise } from '@/lib/seed';
+import * as plan from '@/lib/plan';
 
 describe('LIVE2-04: staleBody na zegarze strefy startu', () => {
   test('LIVE2-04: z tz godziny przeliczone wallTs; bez tz (dane sprzed J3) — strefa bieżąca jak dotąd', async () => {
@@ -169,6 +170,23 @@ describe('TST2-06: limit BODY_MASS_LOG_MAX przy dopisywaniu pomiaru (nie tylko w
     store.getState().bodyMassLog = Array.from({ length: BODY_MASS_LOG_MAX }, (_, i) => ({ date: day(i), kg: 80 })); store.save();
     expect(store.addBodyMass(81, day(BODY_MASS_LOG_MAX))).toBeNull();
     const log = store.getState().bodyMassLog!; expect(log).toHaveLength(BODY_MASS_LOG_MAX); expect(log[0].date).toBe(day(1)); expect(log.at(-1)).toEqual({ date: day(BODY_MASS_LOG_MAX), kg: 81 });
+  });
+});
+
+describe('LOG2-02: propozycje przesunięcia liczą zmiany i zasięg względem stanu przed propozycją, nie wcześniejszych zmian użytkownika', () => {
+  afterEach(() => { jest.useRealTimers(); });
+  test('LOG2-02: plan śr A, pt B; wcześniej „wolne” 28.10 (urlop) i w piątek → każda propozycja dla środy wraca w oknie, „Pomiń” = 1 zmiana, „na sob.” = 2', async () => {
+    jest.useFakeTimers({ now: new Date(2026, 9, 7, 9, 0).getTime() }); await fresh();
+    const mk = (name: string, n: string): Template => ({ ...base(), name, items: [{ id: uid(), exerciseId: ex(n).id, sets: 3, repMin: 5, repMax: 8, restSec: 120, startWeight: '', targetSec: '', groupId: null }] });
+    const A = mk('A', 'Back Squat'), B = mk('B', 'Pull Up'); store.getState().templates.push(A, B); store.save(); plan.setWeekDay(2, A.id); plan.setWeekDay(4, B.id);
+    const before = plan.suggest('2026-10-07'); expect(before.every(s => s.returns)).toBe(true);
+    plan.setDayPlan('2026-10-28', null); plan.setDayPlan('2026-10-09', null);
+    const after = plan.suggest('2026-10-07');
+    expect(after.map(s => [s.kind, s.to ?? '', s.returns]).filter(x => !x[2])).toEqual([]);
+    expect(after.find(s => s.kind === 'skip')!.changes).toBe(1); expect(after.find(s => s.kind === 'move' && s.to === '2026-10-10')!.changes).toBe(2);
+    expect(after.find(s => s.kind === 'move' && s.to === '2026-10-09')!.changes).toBe(2);
+    expect(after.filter(s => s.kind !== 'skip').map(s => s.dropped)).toEqual(after.filter(s => s.kind !== 'skip').map(() => 0)); /* „wolne” w piątek to wybór użytkownika, nie strata propozycji */
+    expect(after.find(s => s.kind === 'skip')!.dropped).toBe(1);
   });
 });
 

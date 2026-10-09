@@ -339,18 +339,19 @@ export function suggest(from: string, today = todayKey()): Suggestion[] {
   const busy = busyDays(); const start = from < today ? today : from; const base0 = { ...(getState().planOverrides ?? {}) };
   const winFrom = from < today ? from : start; const win = Array.from({ length: RETURN_DAYS + 1 }, (_, i) => addDays(winFrom, i));
   const done = doneInfo(addDays(winFrom, -1), RETURN_DAYS + 3);
-  const baseOnly = (k: string) => baseOn(k, today);
   const simOn = (sim: Sim) => (k: string): string | null => resolve(k in sim.ov ? sim.ov[k] : baseRaw(k, today), k, today);
   const simSet = (sim: Sim, k: string, v: string | null) => { if (v === baseRaw(k, today)) delete sim.ov[k]; else sim.ov[k] = v; };
   const io = (sim: Sim): IO => ({ get: simOn(sim), set: (k, v) => simSet(sim, k, v) });
-  const baseB2B = new Set(backToBack(winFrom, RETURN_DAYS, baseOnly, done).map(p => p.a + p.b));
+  const before = simOn({ ov: base0 }); /* LOG2-02: stan przed propozycją (plan tygodnia + wcześniejsze zmiany dni) */
+  const baseB2B = new Set(backToBack(winFrom, RETURN_DAYS, before, done).map(p => p.a + p.b));
   /* sesje w oknie: dzień z treningiem — 1, plus czekający zaplanowany szablon — 1 (audyt 0.10 A3, A5) */
   const count = (on: (k: string) => string | null) => win.reduce((a, k) => a + (busy.has(k) ? 1 : 0) + (pendingOn(k, on, done) ? 1 : 0), 0);
-  const baseCount = count(baseOnly);
+  const baseCount = count(before);
   const make = (kind: Suggestion['kind'], sim: Sim, to?: string): Suggestion => {
-    const on = simOn(sim); const changed = win.filter(k => on(k) !== baseOnly(k));
-    const lastChange = Object.keys(sim.ov).filter(k => k >= winFrom).sort().pop();
-    const cur = simOn({ ov: base0 }); const placed = Array.from({ length: SHIFT_MAX_DAYS + 7 }, (_, i) => addDays(start, i)).filter(k => on(k) && on(k) !== cur(k)).map(k => ({ id: on(k)!, to: k }));
+    /* LOG2-02 (audyt kontrolny 1): zmiany i ich zasięg względem stanu PRZED propozycją (base0) — wcześniejsze zmiany dni użytkownika (np. urlop
+     * za 3 tygodnie) nie są „zmianą” propozycji */
+    const on = simOn(sim); const cur = before; const changed = win.filter(k => on(k) !== cur(k));
+    const lastChange = [...new Set([...Object.keys(sim.ov), ...Object.keys(base0)])].filter(k => k >= winFrom && sim.ov[k] !== base0[k]).sort().pop(); const placed = Array.from({ length: SHIFT_MAX_DAYS + 7 }, (_, i) => addDays(start, i)).filter(k => on(k) && on(k) !== cur(k)).map(k => ({ id: on(k)!, to: k }));
     return { kind, to, changes: changed.length, newBackToBack: backToBack(winFrom, RETURN_DAYS, on, done).filter(p => !baseB2B.has(p.a + p.b)), dropped: Math.max(0, baseCount - count(on)),
       returns: !lastChange || lastChange <= addDays(winFrom, RETURN_DAYS - 1), placed, ov: sim.ov };
   };
