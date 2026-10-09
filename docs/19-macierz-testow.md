@@ -1567,7 +1567,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | store.isDeloadWeek | lib/store.ts | tests/audit-0.10-plan-ui.test.tsx, tests/deload-week.test.tsx, tests/matrix-invariants.test.ts +1 |
 | store.toggleDeloadWeek | lib/store.ts | tests/audit-0.10-live.test.tsx, tests/audit-0.10-plan-ui.test.tsx, tests/deload-plan.test.ts +6 |
 | store.isPaused | lib/store.ts | tests/matrix-invariants.test.ts, tests/pause.test.tsx |
-| store.cleanPauses | lib/store.ts | tests/pause.test.tsx |
+| store.cleanPauses | lib/store.ts | tests/pause.test.tsx, tests/regress.test.tsx |
 | store.pauseWorkout | lib/store.ts | tests/matrix-invariants.test.ts, tests/pause.test.tsx |
 | store.resumeWorkout | lib/store.ts | tests/matrix-invariants.test.ts, tests/pause.test.tsx |
 | store.cancelWorkout | lib/store.ts | tests/audit-0.10-live-logic.test.ts, tests/audit-0.10-live.test.tsx, tests/audit-0.10-ui.test.tsx +17 |

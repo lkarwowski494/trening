@@ -1597,8 +1597,8 @@ export const workoutDurSec = (w: Workout, now = Date.now()) => Math.max(0, ((w.f
 export function cleanPauses(raw: unknown, start: number, end: number | null): [number, number][] {
   const hi = end ?? Infinity; const out: [number, number][] = [];
   const list = (Array.isArray(raw) ? raw : []).map(p => Array.isArray(p) ? [Number(p[0]), Number(p[1])] : [NaN, NaN]).filter(([f, t]) => Number.isFinite(f) && Number.isFinite(t))
-    .map(([f, t]) => [Math.max(start, f), Math.min(hi, t)] as [number, number]).filter(([f, t]) => t > f).sort((x, y) => x[0] - y[0]);
-  for (const p of list) { const last = out[out.length - 1]; if (last && p[0] <= last[1]) last[1] = Math.max(last[1], p[1]); else out.push([Math.round(p[0]), Math.round(p[1])]); }
+    .map(([f, t]) => [Math.round(Math.max(start, f)), Math.round(Math.min(hi, t))] as [number, number]).filter(([f, t]) => t > f).sort((x, y) => x[0] - y[0]); /* zaokrąglenie przed odrzuceniem pustych — inaczej [1; 1,005] → [1; 1] przy drugiej migracji znikał (migrate-idem, ziarno 994171374) */
+  for (const p of list) { const last = out[out.length - 1]; if (last && p[0] <= last[1]) last[1] = Math.max(last[1], p[1]); else out.push([p[0], p[1]]); }
   return out;
 }
 const setPauses = (w: Workout, p: [number, number][]) => { if (p.length) w.pauses = p; else delete w.pauses; };

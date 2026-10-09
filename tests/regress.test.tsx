@@ -1852,3 +1852,11 @@ describe('runda 73 — rekord = suma na treningu + e1RM (decyzja 01.10)', () => 
     const i = txt.indexOf('Najlepszy trening (objętość)'), j = txt.findIndex((x: string) => /^e1RM \(/.test(x)); expect(i).toBeGreaterThan(-1); expect(j).toBeGreaterThan(i);
   });
 });
+
+describe('verify 09.10.2026 (migrate-idem, ziarno 994171374): pauza krótsza niż 1 ms po zaokrągleniu', () => {
+  test('cleanPauses zaokrągla przed odrzuceniem pustych — wynik stały przy ponownym czyszczeniu (migracja idempotentna)', () => {
+    const once = store.cleanPauses([[true, '1.005']], 0, null); expect(once).toEqual([]);
+    expect(store.cleanPauses(once, 0, null)).toEqual(once);
+    expect(store.cleanPauses([[1.4, 3.6]], 0, null)).toEqual([[1, 4]]); expect(store.cleanPauses([[1, 4]], 0, null)).toEqual([[1, 4]]);
+  });
+});
