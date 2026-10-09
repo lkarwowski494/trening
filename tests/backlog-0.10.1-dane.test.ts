@@ -7,6 +7,7 @@ import * as timer from '@/lib/timer';
 import { fresh, ex, addWorkout } from './helpers';
 import { sessionsFor } from '@/lib/stats';
 import { periodSummary } from '@/lib/period';
+import * as edit from '@/lib/edit';
 import { addLocation, duplicateLocation } from '@/lib/locations';
 import { parseBackup } from '@/lib/backup';
 
@@ -67,5 +68,27 @@ describe('X2-02: Postępy i rekordy okresu pokazują dzień na zegarze strefy st
     expect(ps.workouts).toBe(1); expect(pr).toBeTruthy(); expect(day(pr.at)).toBe('2026-10-05'); expect(pr.at).toBeGreaterThanOrEqual(ps.start);
     /* dane bez strefy (sprzed J3): jak dotąd */
     delete w.tzOffsetMin; store.save(); expect(sessionsFor(ex('Back Squat')).find(x => x.workout.id === w.id)!.shown).toBe(at);
+  });
+});
+
+describe('LOG2-03: edycja daty treningu na dzień z inną porą czasu (lato → zima) nie przesuwa prawdziwej chwili startu', () => {
+  /* Strefa testów: Europe/Warsaw (tests/global-setup.js) — lipiec +120, styczeń +60. W strefie bez zmiany czasu przypadek się nie zdarza (test sprawdza wtedy to samo). */
+  const NOW = new Date(2026, 9, 9, 12, 0).getTime();
+  test('LOG2-03: trening 10.07 10:00 (strefa telefonu z chwili startu) → data 10.01, godzina 10:00 → start 10.01 10:00 czasu lokalnego, strefa z nowej daty', async () => {
+    await fresh(); const at = new Date(2026, 6, 10, 10, 0).getTime();
+    const w = addWorkout(at, [['Back Squat', [{ weight: 100, reps: 5 }]]]); w.tzOffsetMin = store.tzOffsetAt(at); store.save();
+    const d = edit.beginEdit(w.id)!; expect([d.date, d.time]).toEqual(['2026-07-10', '10:00']);
+    edit.draftSetWhen(d.key, { date: '2026-01-10' }); const r = edit.commitDraft(w.id, NOW);
+    expect('w' in r).toBe(true); if (!('w' in r)) return;
+    const jan = new Date(2026, 0, 10, 10, 0).getTime();
+    expect(r.w.startedAt).toBe(jan); expect(r.w.tzOffsetMin).toBe(store.tzOffsetAt(jan)); expect(store.wallTs(r.w)).toBe(jan);
+    expect(edit.timeText(store.wallTs(r.w))).toBe('10:00');
+  });
+  test('LOG2-03: trening z podróży (strefa startu ≠ strefa telefonu) — zmiana daty liczy dalej na zegarze strefy startu, strefa bez zmian', async () => {
+    await fresh(); const at = new Date(2026, 6, 10, 10, 0).getTime(); const tz = store.tzOffsetAt(at) + 300;
+    const w = addWorkout(at, [['Back Squat', [{ weight: 100, reps: 5 }]]]); w.tzOffsetMin = tz; store.save();
+    const d = edit.beginEdit(w.id)!; edit.draftSetWhen(d.key, { date: '2026-01-10' }); const r = edit.commitDraft(w.id, NOW);
+    expect('w' in r).toBe(true); if (!('w' in r)) return;
+    expect(r.w.tzOffsetMin).toBe(tz); expect(edit.timeText(store.wallTs(r.w))).toBe(d.time); expect(edit.dateText(store.wallTs(r.w))).toBe('2026-01-10');
   });
 });
