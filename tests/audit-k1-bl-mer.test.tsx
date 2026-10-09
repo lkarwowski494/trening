@@ -206,6 +206,23 @@ describe('A11N-02: rejestr grzecznościowy fr („vous”) i tr („siz”)', ()
     const fr = LOCALES.fr!;
     expect(Object.entries(fr).filter(([, v]) => FR_TU.test(v) || FR_IMP2.test(v)).map(([k, v]) => `${k.slice(0, 40)}: ${v}`)).toEqual([]);
     expect(fr['Trening z Twojego planu tygodnia. Otwórz aplikację, by zacząć.']).toBe('Séance de votre programme de la semaine. Ouvrez l’app pour commencer.');
+    expect(fr['Wybierz co najmniej jeden szablon.']).toBe('Choisissez au moins un modèle.');
+  });
+  /*
+   * fixfr (09.10.2026): po scaleniu fali 2 UI tr miało ok. 45 zdań w 2. os. lp. („eklersin”, „şablonun yok”, „seç.”), w tym teksty z dzisiejszych
+   * gałęzi (plan z moich szablonów, motyw). Zdania UI tr w formie „siz”; etykiety przycisków („Egzersiz ekle”, „Planı kaydet”) zostają
+   * w formie słownikowej, jak w iOS — bramka łapie rozkaźnik tylko na końcu zdania (przed . ; ! ?) i w podpowiedzi po „—”.
+   */
+  const TR_UI_SEN_VERB = /\p{L}+(?:[ae]r|[ıiuü]r|ece[kğ]|aca[kğ]|[ıiuü]yor|m[ae]l[ıi])s[ıiuü]n(?![\p{L}])/u;
+  const TR_UI_SEN_IMP = /(^|[\s(])(ekle|oluştur|seç|gir|aç|dokun|sil|yap|değiştir|kaydır|büyüt|incele|ayarla|işaretle|dinlen)([.;!?](\s|$)|$)/u;
+  const TR_UI_SEN_POSS = /(^|\s)(sen|seni|sana|senin|şablonun yok|yerin yok|şablonunu|planından|Şablonların|Şablonlarından|Varsayımlarına|işaretin|kaydetmediğin|yaptığında)(?![\p{L}])/u;
+  const trSen = (v: string) => TR_UI_SEN_VERB.test(v) || TR_UI_SEN_POSS.test(v) || (TR_UI_SEN_IMP.test(v) && (/[.;!?]$/.test(v) || / — /.test(v)));
+  test('UI tr: zdania w formie „siz” — bez 2. os. lp. („eklersin”, „şablonun yok”, „… seç.”); etykiety przycisków bez zmian', () => {
+    const tr = LOCALES.tr!;
+    expect(Object.entries(tr).filter(([, v]) => trSen(v)).map(([k, v]) => `${k.slice(0, 40)}: ${v}`)).toEqual([]);
+    expect(tr['Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Nowe szablony i plan”.']).toBe('Egzersiz içeren şablonunuz yok. Bir şablon oluşturun ya da “Yeni şablonlar ve plan”ı seçin.');
+    for (const label of ['Egzersiz ekle', 'Planı kaydet', 'Sonuncuyu tekrarla', 'Haftayı deload olarak işaretle', 'Plandan başka, sonuncuyu tekrarla, şablondan veya boş.']) expect([label, trSen(label)]).toEqual([label, false]);
+    for (const old of ['En az bir şablon seç.', 'setleri şablonlarda eklersin', 'Henüz şablonun yok.', 'Şablon boş — egzersiz ekle', 'Evde mi çalışıyorsun?']) expect([old, trSen(old)]).toEqual([old, true]);
   });
   test('bramka działa: dawne zdania („Serre les omoplates…”, „Barı … kavra”, „tu verras”) są wykrywane', () => {
     expect(FR_IMP2.test('Serre les omoplates vers l’arrière.')).toBe(true); expect(FR_TU.test('— tu verras ici la séance')).toBe(true);
