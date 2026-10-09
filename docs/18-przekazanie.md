@@ -290,3 +290,8 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
   audytem zmian). Doprecyzowanie właściciela (ok. 12:45): „cały backlog istniejących funkcji. Nie dokładamy nowych. Jedyny wyjątek to
   funkcje wymagane do wdrożenia do App Store przed umożliwieniem subskrypcji”. Pozycje z backlogu bez priorytetu (docs/21) — podział
   na poprawki istniejących funkcji (w paczce) i nowe funkcje (poza) do akceptacji właściciela przed startem paczki.
+- 09.10.2026 (ok. 13:55): **WYDANIE 1 — 0.10.0, build 1004** (testflight.yml run 37923937786 na `main` ee637da; kod aplikacji = 476f0a7 po
+  E2E 37917317288 17/17). Poprzednia próba (run 37921922549, numer 1003) padła na brak pamięci Node w testach na macOS — poprawka
+  `NODE_OPTIONS=--max-old-space-size=3072` w testflight.yml; 1003 nie trafił do App Store Connect. Uwaga: wpis z 07.10 o „buildzie 1004”
+  dla „Kolegów” dotyczył planu, którego build nie powstał — numer 1004 to teraz 0.10.0. Kroki właściciela: grupa zewnętrzna „Koledzy”,
+  przegląd beta, GitHub Pages (`main` / `/docs`). Audyt 2 zastąpiony pełnym audytem przed App Store (decyzja 09.10 ~12:40).
