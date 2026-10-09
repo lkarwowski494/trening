@@ -1,0 +1,36 @@
+# Audyt 0.10, fala 2, obszar TESTY (M3 / TST-03, 09.10.2026): E2E dla dwóch funkcji z 09.10 bez scenariusza Maestro — filtr „Podstawowe” na liście
+# Ćwiczeń (research biblioteki, wariant B) i sekcja „Technika” w podglądzie ćwiczenia (wskazówki techniki, etap 1).
+# Logika i ekrany: tests/catalog-library25.test.tsx, tests/audit-0.10-tst-ui.test.tsx, tests/scenario-0.10.test.tsx (restart), tests/cues.test.tsx.
+#
+# Literały (EN z lib/i18n.en.ts):
+#   "Exercises, tab.*"                              ← 'Ćwiczenia' + etykieta zakładki (jak w 16)
+#   "Filter: basic exercises"                        ← 'Filtr: podstawowe ćwiczenia' (accessibilityLabel chipa „Basic ✕”, components/LibScope.tsx)
+#   "Showing all exercises, including niche ones"    ← 'Pokazane wszystkie ćwiczenia, także niszowe' (ten sam chip po zdjęciu filtra)
+#   "Search…" / "Back Squat, barbell.*"             ← jak w 16
+#   "Technique"                                      ← 'Technika' (przycisk sekcji, components/ExerciseCues.tsx)
+#   "Setup" / "Based on: .*"                         ← 'Ustawienie' / 'Na podstawie: {list}. Własne sformułowania.'
+appId: pl.lukasz.trening
+name: Filtr „Podstawowe” i sekcja „Technika”
+---
+- launchApp:
+    clearState: true
+    permissions: { all: allow }
+- extendedWaitUntil: { visible: "Start from a template", timeout: 60000 }
+- tapOn: "Exercises, tab.*"
+- extendedWaitUntil: { visible: "Filter: basic exercises", timeout: 30000 }
+- tapOn: "Filter: basic exercises"
+- extendedWaitUntil: { visible: "Showing all exercises, including niche ones", timeout: 15000 }
+- takeScreenshot: 80-biblioteka-wszystkie
+- tapOn: "Showing all exercises, including niche ones"
+- extendedWaitUntil: { visible: "Filter: basic exercises", timeout: 15000 }
+
+- tapOn: "Search…"
+- inputText: "Back Squat"
+- tapOn: { text: "Continue", optional: true }
+- tapOn: "Back Squat, barbell.*"
+- extendedWaitUntil: { visible: "Technique", timeout: 30000 }
+- assertNotVisible: "Setup"
+- tapOn: "Technique"
+- extendedWaitUntil: { visible: "Setup", timeout: 15000 }
+- scrollUntilVisible: { element: "Based on: .*", direction: DOWN, timeout: 30000 }
+- takeScreenshot: 81-technika

@@ -34,7 +34,7 @@ const SAME_ANY = new Set([
   /* angielskie terminy siłowni użyte w polskim źródle */ 'drop set', '+ drop set', 'Drop set (D)', 'superset', 'Deload' /* termin (tytuł tematu przewodnika, 08.10.2026) */, 'core', 'kettlebell', 'Kettlebell', 'landmine', 'T-bar', 'trap bar', 'kettlebell: {v}' /* 07.10.2026: podpis grafiki na karcie */,
   'GHD', 'GHD (glute-ham developer)', 'circus bell' /* strongman (09.10.2026, L5 Q7) */, 'glute-ham raise', 'reverse hyper', 'ski erg', 'Ski erg', 'Strongman', 'hack squat', 'Hack squat', 'pendulum squat', 'Pendulum squat',
   'butterfly (pec deck)', 'Butterfly (pec deck)', 'tempo', 'biceps', 'triceps',
-  /* zapożyczenia międzynarodowe (to samo słowo w języku docelowym) */ 'cardio', 'Cardio', 'Start', 'OK' /* przycisk okna (fala 2 audytu 0.10) */, 'Tempo' /* etykieta tempa w podglądzie ćwiczenia (fala 2) — jak 'tempo' */, '▶ Start' /* audyt 0.10 (LIVE-06): przycisk karty jak „Start” */, 'start {u}', 'Start: {name}', 'Hotel',
+  /* zapożyczenia międzynarodowe (to samo słowo w języku docelowym) */ 'cardio', 'Cardio', 'Start', 'OK' /* przycisk okna (fala 2 audytu 0.10) */, 'Tempo' /* etykieta tempa w podglądzie ćwiczenia (fala 2) — jak 'tempo' */, '▶ Start' /* audyt 0.10 (LIVE-06): przycisk karty jak „Start” */, 'Start: {name}', 'Hotel',
 ]);
 /** W jednym języku: wyraz pokrewny o tym samym zapisie i znaczeniu (słowa sprawdzone w języku docelowym). */
 const SAME_IN: Partial<Record<Lang, string[]>> = {
@@ -48,7 +48,7 @@ const SAME_IN: Partial<Record<Lang, string[]>> = {
   et: ['{u}/hant.', '{u}/hantel' /* hantel (est.) */],
   es: ['Dieta', 'Lista', 'Masa' /* masa (hiszp., cel generatora 08.10.2026) */], pt: ['Dieta', 'Lista'] /* lista = lista (hiszp., port.) */, hu: ['Lista'] /* lista = lista (węg.) */,
   /* 07.10.2026 (wariant B) — te same słowa w języku docelowym */
-  it: ['Dieta', 'serie' /* wł. serie = serie (l.mn.) */, 'Serie' /* nagłówek kafelka (08.10.2026) */], sv: ['(kopia)' /* kopia (szw.) */, '{u}/hantel', 'e1RM (Epley, per hantel)', 'per hantel (×2)' /* hantel, per (szw.) */, 'Lista', 'sek.'],
+  it: ['Dieta', 'Serie' /* nagłówek kafelka (08.10.2026) */], sv: ['(kopia)' /* kopia (szw.) */, '{u}/hantel', 'e1RM (Epley, per hantel)', 'per hantel (×2)' /* hantel, per (szw.) */, 'Lista', 'sek.'],
   da: ['sek.'], nb: ['sek.', 'Trening' /* APP_NAME.nb */], fi: ['Lista' /* fiń. lista; „Historia” — klucz usunięty 09.10.2026 (TST-08) */],
   en: ['Folder' /* folder (ang.) — 07.10.2026 wieczór, foldery szablonów */],
 };
