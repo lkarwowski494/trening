@@ -1301,5 +1301,7 @@
  "Zapisz plan": "Salvesta plaan",
  "Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.": "Alla {n} seeria nädalas: {list}. See on lihasmassi kasvatamiseks soovitatud alampiir; seeriaid lisad mallides.",
  "Moje szablony, {n}× w tygodniu": "Minu mallid, {n}× nädalas",
- "Mój plan ({date})": "Minu plaan ({date})"
+ "Mój plan ({date})": "Minu plaan ({date})",
+ "Bez treningów: {list}. To zastąpi też aktywny plan „{plan}”, zrobiony tylko z tych szablonów — „Zastąp” je usunie i ustawi nowy plan jako aktywny w jego miejsce, „Zostaw” doda nowe obok.": "Treeninguteta: {list}. See asendab ka aktiivse plaani „{plan}“, mis koosneb ainult neist mallidest — „Asenda“ kustutab need ja teeb uue plaani selle asemel aktiivseks, „Jäta alles“ lisab uued nende kõrvale.",
+ "Inny plan": "Muu plaan"
 }

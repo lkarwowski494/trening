@@ -1301,5 +1301,7 @@
  "Zapisz plan": "Сачувај план",
  "Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.": "Испод {n} серија недељно: {list}. То је доњи праг препоручен за изградњу мишићне масе; серије додајеш у шаблонима.",
  "Moje szablony, {n}× w tygodniu": "Моји шаблони, {n}× недељно",
- "Mój plan ({date})": "Мој план ({date})"
+ "Mój plan ({date})": "Мој план ({date})",
+ "Bez treningów: {list}. To zastąpi też aktywny plan „{plan}”, zrobiony tylko z tych szablonów — „Zastąp” je usunie i ustawi nowy plan jako aktywny w jego miejsce, „Zostaw” doda nowe obok.": "Без тренинга: {list}. Ово замењује и активни план „{plan}”, састављен само од ових шаблона — „Замени” их брише и нови план поставља као активан уместо њега, „Задржи” додаје нове поред њих.",
+ "Inny plan": "Други план"
 }

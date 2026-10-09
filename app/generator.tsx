@@ -2,7 +2,7 @@ import { MedicalNote } from '@/components/MedicalNote';
 import React, { useMemo, useState } from 'react';
 import { ScrollView, View, Alert } from 'react-native';
 import { useRouter, useLocalSearchParams, Stack } from 'expo-router';
-import { OwnPlan } from '@/components/OwnPlan';
+import { OwnPlan, usePlanReturn } from '@/components/OwnPlan';
 import { Screen, Field, Chip, Segmented, Muted, Txt, H2, Btn, SectionTitle } from '@/components/ui';
 import { getState, useTick, exById, fmtDur } from '@/lib/store';
 import {
@@ -10,7 +10,7 @@ import {
   MIN_EXERCISES, CARDIO_SESSIONS, REPS, REST, HEAVY_PCT, RIR, RIR_ACSM, MIN_DAYS, SECONDARY_SHARE, WHO_MODERATE, WHO_VIGOROUS, type Goal, type GenInput,
 } from '@/lib/generator';
 import { WEEKLY_SETS_MARK } from '@/lib/stats';
-import { activationNote, plansFull } from '@/lib/plan';
+import { activationNote, plansFull, planName } from '@/lib/plan';
 import { t, locale, exName, glue } from '@/lib/i18n';
 import { fmtNum } from '@/lib/units';
 import { SAVED_PLANS_MAX } from '@/lib/store';
@@ -37,7 +37,7 @@ export default function GeneratorScreen() {
 }
 
 function NewTemplatesPlan({ header }: { header: React.ReactNode }) {
-  const rev = useTick(); const router = useRouter(); const s = getState().settings;
+  const rev = useTick(); const router = useRouter(); const toPlan = usePlanReturn(); const s = getState().settings;
   const [inp, setInp] = useState<GenInput>(() => ({ goal: 'hypertrophy', locationId: s.mainLocationId && s.locations.some(l => l.id === s.mainLocationId) ? s.mainLocationId : null, sessions: 3, minutes: 60 }));
   const set = (p: Partial<GenInput>) => setInp(x => { const n = { ...x, ...p }; if (!GEN_SESSIONS[n.goal].includes(n.sessions)) n.sessions = GEN_SESSIONS[n.goal][0]; return n; });
   const nLoc = s.locations.length; const r = useMemo(() => generate(inp), [inp, rev]); /* rev: miejsca i sprzęt zmienione po „+ Dodaj miejsce” */ const warn = previewWarnings(r, inp);
@@ -50,7 +50,8 @@ function NewTemplatesPlan({ header }: { header: React.ReactNode }) {
     const res = saveGenerated(r, inp, activate, replace); const names = res.templateIds.map(id => getState().templates.find(x => x.id === id)?.name ?? '').join(', ');
     Alert.alert(t('Zapisano'), [t('Szablony: {list} — w folderze „{folder}” na liście Szablony.', { list: names, folder: res.folder }), activate ? t('Plan „{name}” jest teraz aktywny.', { name: res.planName }) : t('Plan „{name}” jest w „Inne plany”.', { name: res.planName })].join('\n'), [
       { text: t('Pokaż szablony'), onPress: () => { if (router.canDismiss()) router.dismissAll(); router.navigate('/templates'); } },
-      { text: t('Plan tygodnia'), onPress: () => router.replace('/plan') },
+      { text: t('Plan tygodnia'), onPress: toPlan }, /* UI2-06: z Planu tygodnia — powrót do niego, bez drugiego ekranu planu */
+      { text: t('OK') }, /* UI2-06: zostaje na generatorze */
     ]);
   };
   /* B1: ten sam tekst co na ekranie Plan (lib/plan.ts activationNote) — zmiany dni od dziś zapisują się z obecnym planem */
@@ -65,8 +66,11 @@ function NewTemplatesPlan({ header }: { header: React.ReactNode }) {
     if (plansFull()) { Alert.alert(t('Za dużo zapisanych planów'), t('W „Inne plany” jest już {n} planów — usuń któryś, by dodać nowy.', { n: SAVED_PLANS_MAX })); return; } /* audyt 0.10 B3: limit jak w migrate */
     const old = replaceable(); if (!old.templateIds.length) { ask(false); return; }
     const st = getState(); const list = [...st.templates.filter(x => old.templateIds.includes(x.id)).map(x => x.name), ...(st.savedPlans ?? []).filter(p => old.planIds.includes(p.id)).map(p => p.name || t('Poprzedni plan'))].join(', ');
-    Alert.alert(t('Zastąpić poprzednio wygenerowane, nieużywane szablony?'), t('Bez treningów i poza aktywnym planem: {list}. „Zastąp” je usunie, „Zostaw” doda nowe obok.', { list }), [
-      { text: t('Anuluj'), style: 'cancel' }, { text: t('Zostaw'), onPress: () => ask(false) }, { text: t('Zastąp'), style: 'destructive', onPress: () => ask(true) },
+    /* UX2-08: aktywny plan z samych tych szablonów — okno mówi to wprost; „Zastąp” ustawia nowy plan w jego miejsce (bez pytania „Tylko zapisz”) */
+    Alert.alert(t('Zastąpić poprzednio wygenerowane, nieużywane szablony?'), old.activePlan
+      ? t('Bez treningów: {list}. To zastąpi też aktywny plan „{plan}”, zrobiony tylko z tych szablonów — „Zastąp” je usunie i ustawi nowy plan jako aktywny w jego miejsce, „Zostaw” doda nowe obok.', { list, plan: planName() || t('Mój plan') })
+      : t('Bez treningów i poza aktywnym planem: {list}. „Zastąp” je usunie, „Zostaw” doda nowe obok.', { list }), [
+      { text: t('Anuluj'), style: 'cancel' }, { text: t('Zostaw'), onPress: () => ask(false) }, { text: t('Zastąp'), style: 'destructive', onPress: () => (old.activePlan ? done(true, true) : ask(true)) },
     ]);
   };
   const basis = [
