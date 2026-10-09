@@ -287,4 +287,6 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
   Droga do App Store — **decyzja właściciela 09.10.2026 (ok. 12:40)**: po wydaniu 1 jedna paczka — cały backlog znalezisk z audytów
   (ŚREDNIE i NISKIE z docs/25, obie wersje: 0.10.1 i „przed App Store”) + funkcje wymagane do subskrypcji (docs/15) + wymogi App Store;
   dopiero potem pełny głęboki audyt, naprawy blokerów, TestFlight, App Store. Odrzucone: A (backlog tylko liczby/dane), B (osobne 0.10.1 z
-  audytem zmian). Backlog bez priorytetu (docs/21, pomysły na funkcje) — poza paczką (zamrożenie funkcji).
+  audytem zmian). Doprecyzowanie właściciela (ok. 12:45): „cały backlog istniejących funkcji. Nie dokładamy nowych. Jedyny wyjątek to
+  funkcje wymagane do wdrożenia do App Store przed umożliwieniem subskrypcji”. Pozycje z backlogu bez priorytetu (docs/21) — podział
+  na poprawki istniejących funkcji (w paczce) i nowe funkcje (poza) do akceptacji właściciela przed startem paczki.
