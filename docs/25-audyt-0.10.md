@@ -348,3 +348,45 @@ Każda naprawa: najpierw test, który odtwarza błąd (testy robocze audytorów 
 3. **Partia 3 — średnie** (A5–A9, B3–B4, C3–C4, D3–D4, E3–E4, F3–F8, G2–G4, H1, I1, J1–J2, K2, L1, M5, N4).
 4. **Partia 4 — niskie i porządek** (A10, C5, E5, F9, G5, H3–H4, I2, J3, K3, N5).
 Nowa funkcja H5 („Zapisz jako szablon”) i wydanie Health (J2 C, NAT-07) — do kolejności prac właściciela.
+
+## Audyt kontrolny 1 (09.10.2026, commit ffb7163) — wynik i backlog
+
+Zasady: CLAUDE.md „Audyty i wydania” (wariant A, 09.10.2026) — wydanie blokują tylko KRYTYCZNE i WYSOKIE; zakres zamrożony; reszta do backlogu
+z wersją. 10 obszarów (LOG, MER, X, LIVE, DAT, UI, UX, A11, TST, SEC); raporty audytorów poza repo (scratchpad koordynatora).
+
+**Weryfikacja znalezisk pierwszego audytu:** zdecydowana większość NAPRAWIONE; pozostałości CZĘŚCIOWO/NIE mają klasę ŚREDNIA lub NISKA (niżej).
+
+**Blokery (0 krytycznych, 7 wysokich) — wszystkie naprawione z testem odtwarzającym, verify 180/180 (3501 testów) na e82c4d3:**
+
+| ID | Problem | Naprawa |
+|---|---|---|
+| LOG2-01 / LIVE2-01 | zamiana w trakcie ćwiczenia (podział bloku) + „Zaktualizuj szablon” → dwie pozycje o tym samym id | łańcuch podziału = jedna pozycja szablonu (`lib/tplsync.ts`), usuwanie w edytorze po obiekcie |
+| MER2-01 | pompki: „e1RM … (masa ciała + X)” przeczy liczbie | opis „{p}% masy ciała ± X” z `BW_SHARE` |
+| X2-01 (= DAT2-03) | krok katalogu zmieniał tryb ciężaru Pallof Press z historią (podwójna dawna objętość) | inny mnożnik tylko bez użycia |
+| DAT2-01 | krok katalogu gubił 123 poprawki pól (partie, grupy, miary) dla aktualizujących z 1001/1002 | skrypt bierze dawną wartość z kopii katalogu; krok przeliczony; strażnik `bandAssistable` |
+| UX2-06 | „Obciążenie partii” przeczyło partiom w 80+ ćwiczeniach (twierdzenie merytoryczne) | poziomy wyliczane z pól ćwiczenia (jedno źródło) |
+| UI2-01 | „Edytuj → Zapisz” sprzętu nie przeliczał przyrządu w treningu w toku (objętość 200 zamiast 400) | wspólne `exerciseEdited` |
+| (przy naprawie) | „Zaktualizuj szablon” dodawał ćwiczenie usunięte w trakcie treningu (= X2-03) | `liveEx` |
+
+Także SEC2-01 (część): marki producentów w presetach sprzętu → nazwy ogólne (decyzja właściciela 09.10 pkt 3A).
+E2E: run 37900617167 (f2bdca8) 14/17 — 3 porażki scenariuszy (nie aplikacji) poprawione w 5c24b0c.
+
+**Backlog — 0.10.1 (następne wydanie TestFlight):**
+- Liczby i dane (ŚREDNIE): LIVE2-02 (okno „Zakończyć” liczy drop set jako serię roboczą), DAT2-02 (przemianowane ćwiczenie biblioteki traci klucz
+  katalogu — brak techniki/figur), LOG2-02, LOG2-03 (edycja daty przez zmianę czasu przesuwa start o godzinę), X2-02 (Postępy a strefa), X-11
+  (zgoda na powiadomienia w 2 z 4 dróg), UX2-03 = DAT2-06 (szkic edycji ginie po zamknięciu aplikacji przez iOS).
+- Merytoryka: MER2-02 (siła w hotelu z lekkimi hantlami — wariant A: ostrzeżenie o najcięższych hantlach), MER2-04 (wskazania źródeł
+  wskazówek; rozstaw „na szerokość barków lub trochę szerzej”), MER2-05 („jedno źródło” przy deloadzie), MER2-06 (= UI2-04, UX2-04: „Co nowego”),
+  MER2-08, MER2-03 (rejestr ADR na Dysku: ADR-043+, ADR-028/041).
+- UI/UX: UI2-02 (podwójne tapnięcie), UI2-03 (masa ciała — gest), UI2-05…10, UX2-01 (dawne nazwy jako aliasy w wyszukiwaniu), UX2-02,
+  UX2-05, UX2-07 (ostrzeżenia generatora o własnym planie), UX2-08…13.
+- Języki i dostępność: A11N-01 (język VoiceOver w podglądzie ćwiczenia), A11N-02 (fr/tr forma grzecznościowa), A11N-03…05.
+- Testy/CI: TST2-01 (nocne testy — zadziała po scaleniu do main), TST2-03…09; pozostałe NISKIE: LOG2-05, LOG-16, LIVE2-03 (naprawione
+  przy LIVE2-01), LIVE2-04, X2-04, X2-05, DAT2-04 (= DAT-08), DAT2-05 (notatka dla testerów o powrocie do 1002).
+- Wydajność: SEC2-07 (leniwe słowniki wskazówek).
+
+**Backlog — przed App Store (pełny audyt wg zasady pkt 4):** SEC2-01 reszta (TRX, BOSU, Assault Bike, SkiErg — nazwy ćwiczeń katalogu),
+SEC2-03 (research i długie cytaty → Dysk, przepisanie historii — termin: po wydaniu 1), SEC2-04 (test długości cytatów), SEC2-05 (nazwy w
+komentarzach), SEC2-06 (licencje bibliotek natywnych), SEC2-08 (identyfikatory sesji w docs/audyt-0.10), N2 (GitHub Pages), MER2-10.
+
+**Decyzja właściciela otwarta:** MER2-07 = SEC2-02 (nazwy źródeł w podpisie „Na podstawie: …” pod wskazówkami techniki).
