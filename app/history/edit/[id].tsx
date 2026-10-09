@@ -4,7 +4,7 @@ import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
 import { Screen, Muted, Btn, Txt, Field, Input, NumInput, Empty } from '@/components/ui';
 import { WhenFields } from '@/components/WhenFields';
 import { setLabel } from '@/components/ActiveWorkout';
-import { effortLabel, effortField, effortIn, getState, useTick, exById, isBW, loadLabel, loadLabelShort, groupLabels, occurrence, occurrences, deleteWorkout, bandA11y, shortBand, clampName, NAME_MAX, blockImpl, liveBlockImpl, nextBandId, loadFieldValue, writeLoad, usesBand, workCount , REPS_MAX } from '@/lib/store';
+import { effortLabel, effortField, effortIn, getState, useTick, exById, isBW, loadLabel, loadLabelShort, groupLabels, occurrence, occurrences, deleteWorkout, bandA11y, shortBand, clampName, NAME_MAX, blockImpl, liveBlockImpl, nextBandId, loadFieldValue, writeLoad, usesBand, workCount, wallTs, REPS_MAX } from '@/lib/store';
 import { draftOf, beginEdit, discardDraft, isDirty, touchDraft, useDraftTick, checkDraft, commitDraft, draftAddSet, draftRemoveSet, draftRemoveExercise, draftSetWhen, dateText, timeText, prefilledOffList, type Draft } from '@/lib/edit';
 import { onHistoryEdited } from '@/lib/backup';
 import { locationLabel } from '@/lib/locations';
@@ -55,7 +55,7 @@ export default function EditWorkout() {
       return;
     }
     /* audyt M5: nachodzenie na inną sesję z historii — ostrzeżenie z potwierdzeniem (dwa treningi jednego dnia bywają celowe) */
-    const warn = [c.dropped ? t('Serie bez wyniku zostaną pominięte: {n}.', { n: c.dropped }) : '', c.noWeight ? t('Serie bez ciężaru: {n}.', { n: c.noWeight }) : '', c.overlap ? t('Ten termin nachodzi na sesję „{name}” ({d}).', { name: c.overlap.templateName || t('Trening'), d: `${dateText(c.overlap.startedAt)} ${timeText(c.overlap.startedAt)}` }) : ''].filter(Boolean);
+    const warn = [c.dropped ? t('Serie bez wyniku zostaną pominięte: {n}.', { n: c.dropped }) : '', c.noWeight ? t('Serie bez ciężaru: {n}.', { n: c.noWeight }) : '', c.overlap ? t('Ten termin nachodzi na sesję „{name}” ({d}).', { name: c.overlap.templateName || t('Trening'), d: `${dateText(wallTs(c.overlap))} ${timeText(wallTs(c.overlap))}` /* X2-04: zegar strefy startu tamtej sesji, jak lista */ }) : ''].filter(Boolean);
     if (warn.length) { Alert.alert(t('Zapisać zmiany?'), warn.join('\n'), [{ text: t('Wróć'), style: 'cancel' }, { text: t('Zapisz'), onPress: () => { if (draftOf(key) === cur) commit(); } }]); return; }
     commit();
   };

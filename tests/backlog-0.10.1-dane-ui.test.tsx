@@ -5,7 +5,8 @@
 import * as store from '@/lib/store';
 import * as timer from '@/lib/timer';
 import { fresh, ex, saved, pressAlert, addWorkout } from './helpers';
-import { renderApp, tap, flushAll, screen, act } from './app';
+import { renderApp, tap, type, flushAll, screen, act } from './app';
+import * as edit from '@/lib/edit';
 
 jest.setTimeout(120000);
 const S = () => store.getState();
@@ -50,6 +51,18 @@ describe('LIVE2-04: pytanie i przypomnienie o porzuconym treningu podają godzin
     await act(async () => { pressAlert('Trening wciąż trwa', 'Kontynuuj'); }); await flushAll(10); /* przypomnienie 2 h od „Kontynuuj” */
     const n: any = (global.__notifications as any[]).filter(x => x.identifier === 'stale-reminder').pop();
     expect(n.content.body).toBe(timer.staleBody('work', last, false, paused, tz)); expect(n.content.body).toContain(wall(last));
+  });
+});
+
+describe('X2-04: okno nakładania terminów w edycji sesji podaje godzinę tamtej sesji na zegarze jej strefy startu (jak lista Historii)', () => {
+  test('X2-04: sesja „Pompki” zapisana w strefie +3 h → „nachodzi na sesję „Pompki” (… 14:00)”, nie 11:00', async () => {
+    await fresh(); const d0 = new Date(Date.now() - 3 * 86400e3); d0.setHours(8, 0, 0, 0); const t0 = d0.getTime();
+    const w1 = addWorkout(t0, [['Back Squat', [{ weight: 100, reps: 5 }]]], 'Nogi'); const w2 = addWorkout(t0 + 3 * 3600e3, [['Push Up', [{ reps: 20 }]]], 'Pompki');
+    w2.tzOffsetMin = store.tzOffsetAt(w2.startedAt) + 180; store.save();
+    await boot(`/history/edit/${w1.id}`); await flushAll(20);
+    await type(screen.getByLabelText('Godzina startu'), '11:15'); await tap(screen.getByText('Zapisz'));
+    const wall = store.wallTs(w2); expect(edit.timeText(wall)).not.toBe(edit.timeText(w2.startedAt));
+    expect(lastAlert()).toMatchObject({ title: 'Zapisać zmiany?', msg: `Ten termin nachodzi na sesję „Pompki” (${edit.dateText(wall)} ${edit.timeText(wall)}).` });
   });
 });
 
