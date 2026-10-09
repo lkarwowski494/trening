@@ -38,14 +38,23 @@ const liveTemplate = (id: string | null | undefined) => !!id && getState().templ
 export const weekPlanDays = (): PlanDays => planDays(getState().weekPlan?.days);
 export const planHistory = (): PlanSegment[] => getState().planHistory ?? [];
 
+/** Dni planu tygodnia obowiązującego w dniu `k` (surowe id): od ostatniego odcinka historii — aktywny plan; wcześniej — odcinek, który wtedy
+ * obowiązywał; przed pierwszym planem — null (audyt 0.10 A1). */
+function segmentDays(k: string, today: string): PlanDays | null {
+  const h = planHistory();
+  if (!h.length) return k >= today ? weekPlanDays() : null;
+  if (k >= h[h.length - 1].from) return weekPlanDays();
+  for (let i = h.length - 2; i >= 0; i--) if (h[i].from <= k) return h[i].days;
+  return null;
+}
 /** Plan tygodnia w dniu `k` (bez zmian pojedynczych dni), surowe id: od ostatniego odcinka historii — aktywny plan; wcześniej — odcinek, który
  * wtedy obowiązywał; przed pierwszym planem — brak (audyt 0.10 A1). */
-export function baseRaw(k: string, today = todayKey()): string | null {
-  const h = planHistory(); const wd = weekdayIdx(k);
-  if (!h.length) return k >= today ? weekPlanDays()[wd] : null;
-  if (k >= h[h.length - 1].from) return weekPlanDays()[wd];
-  for (let i = h.length - 2; i >= 0; i--) if (h[i].from <= k) return h[i].days[wd] ?? null;
-  return null;
+export function baseRaw(k: string, today = todayKey()): string | null { return segmentDays(k, today)?.[weekdayIdx(k)] ?? null; }
+/** Czy w dniu `k` obowiązywał (obowiązuje) plan tygodnia z co najmniej jednym treningiem — odróżnia dzień odpoczynku w planie od dnia bez planu
+ * (ikona espresso, decyzja właściciela 09.10.2026 wieczór; docs/18). Miniony dzień — odcinek historii z tamtego dnia (surowe id, jak plannedOn);
+ * dziś i dalej — aktywny plan z żywym szablonem (jak hasPlan). Same zmiany pojedynczych dni bez planu tygodnia to nie plan tygodnia. */
+export function planInForce(k: string, today = todayKey()): boolean {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(k)) return false; const d = segmentDays(k, today); return !!d && d.some(x => (k < today ? !!x : liveTemplate(x)));
 }
 /** Miniony dzień — surowe id (późniejsze usunięcie albo archiwizacja szablonu nie przepisuje przeszłości); dziś i dalej — tylko żywy szablon. */
 const resolve = (id: string | null | undefined, k: string, today: string): string | null => (k < today ? id || null : liveTemplate(id) ? id! : null);

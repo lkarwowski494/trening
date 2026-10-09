@@ -1323,5 +1323,6 @@
  "Aplikacja zamknęła się w trakcie edycji ćwiczenia „{name}”. Wrócić do edycji?": "Aplikacija se je zaprla med urejanjem vaje »{name}«. Se vrnem k urejanju?",
  "Wróć do edycji": "Nazaj na urejanje",
  "Mapa mięśni i serie na partię z kreską {n} serii tygodniowo.": "Zemljevid mišic in serije na mišično skupino s črto pri {n} serijah na teden.",
- "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.": "Napredek: povzetek tedna in meseca z zemljevidom mišic, oznaka {n} serij na mišično skupino na teden in označevanje tedna razbremenitve."
+ "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.": "Napredek: povzetek tedna in meseca z zemljevidom mišic, oznaka {n} serij na mišično skupino na teden in označevanje tedna razbremenitve.",
+ "odpoczynek": "dan počitka"
 }

@@ -114,7 +114,8 @@ describe('dashboard', () => {
   test('weekStrip: pamięć do zmiany stanu albo dnia; nowy stan (import) — liczy od nowa; dzień „dziś” tylko jeden', () => {
     plan.setWeekDay(3, A); const a = weekStrip(NOW); expect(weekStrip(NOW)).toBe(a);
     expect(a.filter(d => d.today).map(d => d.date)).toEqual([TODAY]); expect(a.map(d => d.date)[0]).toBe('2026-10-05');
-    expect(a.find(d => d.date === TODAY)).toEqual({ date: TODAY, status: 'planned', templateId: A, today: true });
+    expect(a.find(d => d.date === TODAY)).toEqual({ date: TODAY, status: 'planned', templateId: A, today: true, inPlan: true });
+    expect(a.find(d => d.date === '2026-10-05')!.inPlan).toBe(false); /* plan od dziś — poniedziałek sprzed planu bez odpoczynku */
     store.replaceState(JSON.parse(JSON.stringify(S()))); expect(weekStrip(NOW)).not.toBe(a); /* ten sam licznik, inny stan */
     expect(weekStrip(NOW + 86400e3)).not.toBe(weekStrip(NOW));
   });

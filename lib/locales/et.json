@@ -1323,5 +1323,6 @@
  "Aplikacja zamknęła się w trakcie edycji ćwiczenia „{name}”. Wrócić do edycji?": "Rakendus suleti harjutuse „{name}“ muutmise ajal. Kas jätkata muutmist?",
  "Wróć do edycji": "Jätka muutmist",
  "Mapa mięśni i serie na partię z kreską {n} serii tygodniowo.": "Lihaskaart ja seeriad lihasrühma kohta joonega {n} seeria juures nädalas.",
- "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.": "Edenemine: nädala ja kuu kokkuvõte lihaskaardiga, {n} seeria märk lihasrühma kohta nädalas ja nädala märkimine kergendusnädalaks."
+ "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.": "Edenemine: nädala ja kuu kokkuvõte lihaskaardiga, {n} seeria märk lihasrühma kohta nädalas ja nädala märkimine kergendusnädalaks.",
+ "odpoczynek": "puhkepäev"
 }

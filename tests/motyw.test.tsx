@@ -15,7 +15,7 @@ import * as store from '@/lib/store';
 import * as plan from '@/lib/plan';
 import {
   LOAD_ORDER, PLATE_HEIGHT, plateAt, contrast, GRAPHIC_MIN, needsEdge, RECORD_FRESH_MS, RECORD_ANIM_MS, shouldAnimateRecord, __resetRecordAnim,
-  ICON_PLATES, ICON_COLLAR, ICON_BAR_H, MINI_ICON, miniIcon, PLATE_STACK, plateStack, plateStackHeight, planPct, weekProgress, DAY_MARKS, dayMark, MARK_STROKE, type DayMark,
+  ICON_PLATES, ICON_COLLAR, ICON_BAR_H, MINI_ICON, miniIcon, PLATE_STACK, plateStack, plateStackHeight, planPct, weekProgress, DAY_MARKS, dayMark, MARK_STROKE, type DayMark, REST_CUP, restCup,
 } from '@/lib/motif';
 import type { DayStatus } from '@/lib/plan';
 import { CAL_FACE } from '@/components/HistoryCalendar';
@@ -110,11 +110,41 @@ describe('logika', () => {
     const a = mkTpl('A'); jest.setSystemTime(at(10, 5, 8)); plan.setWeekDay(4, a.id); jest.setSystemTime(NOW); plan.setDayPlan('2026-10-09', null);
     expect(weekProgress()).toBeNull();
   });
-  test('dayMark: zrobione i zrobiony inny trening → pełna ikona, zaplanowany → obwódka, opuszczony → obwódka wyszarzona, wolne → nic', () => {
+  test('dayMark: zrobione i zrobiony inny trening → pełna ikona, zaplanowany → obwódka, opuszczony → obwódka wyszarzona; wolne bez planu → nic, w planie → odpoczynek', () => {
     const ALL: DayStatus[] = ['done', 'other', 'planned', 'missed', 'rest'];
-    expect(ALL.map(dayMark)).toEqual(['done', 'done', 'planned', 'missed', null]);
-    expect([...DAY_MARKS]).toEqual(['done', 'planned', 'missed']);
+    expect(ALL.map(s => dayMark(s))).toEqual(['done', 'done', 'planned', 'missed', null]); /* domyślnie bez planu */
+    expect(ALL.map(s => dayMark(s, false))).toEqual(['done', 'done', 'planned', 'missed', null]);
+    expect(ALL.map(s => dayMark(s, true))).toEqual(['done', 'done', 'planned', 'missed', 'rest']); /* trening w dzień odpoczynku = 'done', nie filiżanka */
+    expect([...DAY_MARKS]).toEqual(['done', 'planned', 'missed', 'rest']);
     expect(Object.keys(MARK_STROKE).sort()).toEqual(DAY_MARKS.filter(m => m !== 'done').sort()); expect(MARK_STROKE.planned).not.toBe(MARK_STROKE.missed);
+    expect(MARK_STROKE.rest).toBe('ctrlLine'); /* stonowany: nie konkuruje z dniami treningowymi (kolor tekstu) */
+  });
+  test('plan.planInForce: odpoczynek tylko przy obowiązującym planie — przed pierwszym planem, bez planu i po wyłączeniu planu nie; przeszłość wg historii planu', async () => {
+    jest.useFakeTimers({ now: NOW }); await fresh();
+    const days = ['2026-10-04', '2026-10-05', '2026-10-08', '2026-10-10', '2026-10-20'];
+    expect(days.map(k => plan.planInForce(k))).toEqual([false, false, false, false, false]); /* bez planu */
+    const a = mkTpl('A'); jest.setSystemTime(at(10, 5, 6)); plan.setWeekDay(0, a.id); jest.setSystemTime(NOW);
+    expect(days.map(k => plan.planInForce(k))).toEqual([false, true, true, true, true]); /* plan od pon. 5.10; niedziela 4.10 sprzed planu — nie */
+    plan.setDayPlan('2026-10-12', null); expect(plan.planInForce('2026-10-12')).toBe(true); /* „wolne” w zmianie dnia — nadal plan */
+    plan.setWeekDay(0, null); /* plan wyłączony od dziś (czw. 8.10): minione dni zostają w planie (historia, A1) */
+    expect(days.map(k => plan.planInForce(k))).toEqual([false, true, false, false, false]);
+    plan.setDayPlan('2026-10-15', a.id); expect(plan.hasPlan()).toBe(true); expect(plan.planInForce('2026-10-14')).toBe(false); /* sama zmiana dnia to nie plan tygodnia */
+    const b = mkTpl('B'); plan.setWeekDay(2, b.id); expect(plan.planInForce('2026-10-09')).toBe(true);
+    store.setTemplateArchived(S().templates.find(x => x.id === b.id)!, true); expect(plan.planInForce('2026-10-09')).toBe(false); /* od dziś tylko żywe szablony (jak hasPlan) */
+    store.setTemplateArchived(S().templates.find(x => x.id === b.id)!, false); expect(plan.planInForce('2026-10-09')).toBe(true);
+    expect(['zła data', '', 'zzzz-99-99', '2026-10-9'].map(k => plan.planInForce(k))).toEqual([false, false, false, false]); /* złe dane */
+  });
+  test('restCup: filiżanka w polu mini-ikony (24 × 18 pt), spodek szerszy od czarki, czarka zwęża się ku dołowi, ucho z prawej, kreska ≥ 1 pt', () => {
+    const { w, h } = MINI_ICON; const c = restCup(); const { cup, saucer, handle, sw } = REST_CUP;
+    for (const b of [c.saucer, c.handle]) { expect(b.x).toBeGreaterThanOrEqual(0); expect(b.y).toBeGreaterThanOrEqual(0); expect(b.x + b.w).toBeLessThanOrEqual(w); expect(b.y + b.h).toBeLessThanOrEqual(h); expect(b.rx).toBeLessThanOrEqual(Math.min(b.w, b.h) / 2); }
+    const nums = (c.body.match(/-?\d+(\.\d+)?/g) ?? []).map(Number); const xs = nums.filter((_, i) => i % 2 === 0); expect(nums.length % 2).toBe(0);
+    expect(c.body).toMatch(/^M[\d. ]+H[\d.]+L[\d. ]+Q[\d. ]+H[\d.]+Q[\d. ]+Z$/); /* ścieżka bez łuków i tekstu */
+    for (let i = 0; i < nums.length; i += 2) { expect(nums[i]).toBeGreaterThanOrEqual(0); expect(nums[i]).toBeLessThanOrEqual(w); expect(nums[i + 1] ?? 0).toBeLessThanOrEqual(h); }
+    expect(Math.min(...xs)).toBe(cup.x); expect(cup.taper).toBeGreaterThan(0); expect(cup.r).toBeLessThan(cup.h / 2);
+    expect(saucer.w).toBeGreaterThan(cup.w); expect(saucer.x).toBeLessThan(cup.x); expect(saucer.y).toBeGreaterThanOrEqual(cup.y + cup.h); /* spodek pod czarką */
+    expect(handle.x).toBeLessThan(cup.x + cup.w); expect(handle.x + handle.w).toBeGreaterThan(cup.x + cup.w); expect(handle.y).toBeGreaterThan(cup.y); /* ucho z prawej, częściowo za czarką */
+    expect(sw).toBeGreaterThanOrEqual(1); expect(saucer.h).toBeGreaterThanOrEqual(1.5); expect(handle.w - 2 * sw).toBeGreaterThanOrEqual(2); /* otwór ucha widoczny */
+    expect(Math.max(saucer.y + saucer.h, cup.y + cup.h)).toBeGreaterThanOrEqual(h * 0.9); expect(cup.y).toBeLessThanOrEqual(h * 0.3); /* wypełnia wysokość pola jak ikona */
   });
   test('kontrast WCAG i obwódka talerza: < 3:1 do tła → obwódka; złe dane → 1:1', () => {
     expect(contrast('#000000', '#ffffff')).toBeCloseTo(21, 5); expect(contrast('#ffffff', '#ffffff')).toBe(1); expect(contrast('fff', '#000')).toBe(1); expect(contrast('#FFFFFF', '000000')).toBeCloseTo(21, 5);
@@ -180,6 +210,8 @@ describe('kolory', () => {
 type Node = ReturnType<typeof screen.getByTestId>;
 /** prostokąty SVG pod węzłem (komponent Rect z react-native-svg: fill/stroke jako napisy) */
 const rects = (n: Node) => n.findAll(x => typeof x.type !== 'string' && typeof x.props.fill === 'string' && 'width' in x.props).map(x => ({ fill: String(x.props.fill), stroke: x.props.stroke as string | undefined }));
+/** kolory filiżanki odpoczynku (spodek, ucho, czarka — Rect i Path z react-native-svg): zbiór fill/stroke bez 'none' */
+const cupColors = (n: Node) => [...new Set(n.findAll(x => typeof x.type !== 'string' && ('d' in x.props || 'width' in x.props) && (typeof x.props.fill === 'string' || typeof x.props.stroke === 'string')).flatMap(x => [x.props.fill, x.props.stroke]).filter((c): c is string => typeof c === 'string' && c !== 'none'))];
 const iconsIn = (n: Node) => n.findAll(x => typeof x.type === 'string' && typeof x.props.testID === 'string' && /^day-icon-/.test(x.props.testID)).map(x => String(x.props.testID));
 const stack = (i: number) => screen.getByTestId(`week-stack-${i}`, { includeHiddenElements: true });
 const hidden = (n: Node) => { for (let x: Node | null = n; x; x = x.parent as Node | null) if (x.props.accessibilityElementsHidden === true && x.props.importantForAccessibility === 'no-hide-descendants') return true; return false; };
@@ -205,14 +237,14 @@ describe('„Ten tydzień”: stosy talerzy z procentem planu (tylko przy planie
     jest.useFakeTimers({ now: NOW }); await boot(planWeek([0, 2], [0]));
     expect(screen.getByTestId('today-plan')).toBeTruthy(); expect(screen.queryByTestId('plate-stripe', { includeHiddenElements: true })).toBeNull();
   });
-  test('pasek tygodnia: zrobione (też inny trening) — pełna ikona, zaplanowany — obwódka w kolorze tekstu, opuszczony — wyszarzona, wolne — nic; etykiety bez zmian; dziś w ramce', async () => {
+  test('pasek tygodnia: zrobione (też inny trening) — pełna ikona, zaplanowany — obwódka w kolorze tekstu, opuszczony — wyszarzona, odpoczynek w planie — filiżanka; etykiety; dziś w ramce', async () => {
     jest.useFakeTimers({ now: NOW });
     await boot(() => {
       jest.setSystemTime(at(10, 5, 6)); const a = mkTpl('A'); const b = mkTpl('B'); [0, 1, 2, 4, 5].forEach(i => plan.setWeekDay(i, a.id));
       const w = addWorkout(at(10, 5, 7), [['Back Squat', sets(3)]], 'A'); w.templateId = a.id; const o = addWorkout(at(10, 6, 7), [['Back Squat', sets(3)]], 'B'); o.templateId = b.id; store.save(); jest.setSystemTime(NOW);
     });
     const mark = (k: string) => screen.getByTestId(`strip-mark-${k}`, { includeHiddenElements: true });
-    const exp: [string, string[]][] = [['2026-10-05', ['day-icon-done']], ['2026-10-06', ['day-icon-done']], ['2026-10-07', ['day-icon-missed']], ['2026-10-08', []], ['2026-10-09', ['day-icon-planned']], ['2026-10-10', ['day-icon-planned']], ['2026-10-11', []]];
+    const exp: [string, string[]][] = [['2026-10-05', ['day-icon-done']], ['2026-10-06', ['day-icon-done']], ['2026-10-07', ['day-icon-missed']], ['2026-10-08', ['day-icon-rest']], ['2026-10-09', ['day-icon-planned']], ['2026-10-10', ['day-icon-planned']], ['2026-10-11', ['day-icon-rest']]];
     for (const [k, ic] of exp) expect([k, iconsIn(mark(k))]).toEqual([k, ic]);
     const done = rects(mark('2026-10-05')); expect(done.map(x => x.fill)).toEqual([light.text, ...PLATE_FILLS, light.text]); /* gryf, talerze w kolorach ikony, zacisk */
     const yellow = done.find(x => x.fill === PLATE_COLORS.yellow)!; expect(yellow.stroke).toBe(light.text); /* żółty na białej karcie < 3:1 — obwódka */
@@ -222,6 +254,10 @@ describe('„Ten tydzień”: stosy talerzy z procentem planu (tylko przy planie
     expect(screen.getByTestId('strip-2026-10-05').props.accessibilityLabel).toMatch(/^poniedziałek, 5 października, zrobione: A/);
     expect(screen.getByTestId('strip-2026-10-06').props.accessibilityLabel).toMatch(/zrobiony inny trening: B, opuszczony: A/);
     expect(screen.getByTestId('strip-2026-10-07').props.accessibilityLabel).toMatch(/opuszczony: A/); expect(screen.getByTestId('strip-2026-10-09').props.accessibilityLabel).toMatch(/zaplanowany: A/);
+    /* odpoczynek (decyzja 09.10.2026 wieczór): filiżanka w kolorze ctrlLine, ukryta przed VoiceOver; stan dnia w etykiecie — „odpoczynek” */
+    const cup = mark('2026-10-08').findAll(x => x.props.testID === 'day-icon-rest')[0]; expect(hidden(cup)).toBe(true);
+    expect(cupColors(mark('2026-10-08'))).toEqual([light.ctrlLine]);
+    expect(screen.getByTestId('strip-2026-10-08').props.accessibilityLabel).toBe('czwartek, 8 października, dziś, odpoczynek'); expect(screen.getByTestId('strip-2026-10-11').props.accessibilityLabel).toBe('niedziela, 11 października, odpoczynek');
     expect(flat(screen.getByTestId('strip-2026-10-08').props.style).borderColor).toBe(light.accent); expect(flat(screen.getByTestId('strip-2026-10-09').props.style).borderColor).toBe('transparent');
   });
   test('bez planu: stosów nie ma (kafelki zostają), ikony pod dniami z treningiem są; po restarcie to samo; komponent bez danych — nic', async () => {
@@ -229,8 +265,10 @@ describe('„Ten tydzień”: stosy talerzy z procentem planu (tylko przy planie
     await boot(() => { addWorkout(at(10, 5), [['Back Squat', sets(3)]]); addWorkout(at(10, 6), [['Back Squat', sets(3)]]); });
     expect(screen.queryByTestId('week-stacks')).toBeNull(); expect(screen.getByLabelText('Treningi: 2, poprzedni tydzień 0')).toBeTruthy();
     expect(iconsIn(screen.getByTestId('strip-mark-2026-10-05', { includeHiddenElements: true }))).toEqual(['day-icon-done']);
+    expect(screen.queryAllByTestId('day-icon-rest', { includeHiddenElements: true })).toEqual([]); /* bez planu nie ma odpoczynku (≠ brak planu) */
+    expect(screen.getByTestId('strip-2026-10-08').props.accessibilityLabel).toBe('czwartek, 8 października, dziś, wolne');
     await renderApp({ saved: JSON.parse(JSON.stringify(saved())) }); await flushAll(10); /* restart */
-    expect(screen.queryByTestId('week-stacks')).toBeNull();
+    expect(screen.queryByTestId('week-stacks')).toBeNull(); expect(screen.queryAllByTestId('day-icon-rest', { includeHiddenElements: true })).toEqual([]);
     expect(render(<WeekStacks progress={null} />).toJSON()).toBeNull();
   });
   test.each([['pl', 'Postęp tygodnia: 100% planu, zrobione 1 z 1 treningów z planu', '100% planu tygodnia (1 z 1)'], ['en', 'Weekly progress: 100% of the plan, 1 of 1 planned workouts done', '100% of the weekly plan (1 of 1)']] as const)('język %s: wszystko z planu zrobione → 100%, stos pełny', async (l, label, txt) => {
@@ -244,6 +282,39 @@ describe('„Ten tydzień”: stosy talerzy z procentem planu (tylko przy planie
     expect(rects(stack(2)).every(x => x.fill === 'none' && x.stroke === dark.text)).toBe(true);
     expect(rects(stack(0)).every(x => x.stroke === undefined)).toBe(true); /* na tle ekranu (bg) w ciemnym motywie każdy kolor ≥ 3:1 — bez obwódek */
     expect(screen.getByText('67% of the weekly plan (2 of 3)')).toBeTruthy();
+  });
+});
+
+describe('odpoczynek: filiżanka espresso w dniu bez treningu w planie (decyzja właściciela 09.10.2026 wieczór)', () => {
+  test('ciemny motyw, EN, plan 3 dni (pon., śr., pt.): wolne dni planu — filiżanka ctrlLine; trening zrobiony w dzień odpoczynku — pełna ikona; etykiety „rest day”', async () => {
+    jest.useFakeTimers({ now: NOW });
+    await boot(() => {
+      jest.setSystemTime(at(10, 5, 6)); const a = mkTpl('A'); [0, 2, 4].forEach(i => plan.setWeekDay(i, a.id));
+      const w = addWorkout(at(10, 5, 7), [['Back Squat', sets(3)]], 'A'); w.templateId = a.id; addWorkout(at(10, 6, 7), [['Back Squat', sets(3)]], 'Extra'); store.save(); jest.setSystemTime(NOW);
+    }, 'en', 'dark');
+    const mark = (k: string) => screen.getByTestId(`strip-mark-${k}`, { includeHiddenElements: true });
+    const exp: [string, string[]][] = [['2026-10-05', ['day-icon-done']], ['2026-10-06', ['day-icon-done']], ['2026-10-07', ['day-icon-missed']], ['2026-10-08', ['day-icon-rest']], ['2026-10-09', ['day-icon-planned']], ['2026-10-10', ['day-icon-rest']], ['2026-10-11', ['day-icon-rest']]];
+    for (const [k, ic] of exp) expect([k, iconsIn(mark(k))]).toEqual([k, ic]);
+    for (const k of ['2026-10-08', '2026-10-10', '2026-10-11']) expect([k, cupColors(mark(k))]).toEqual([k, [dark.ctrlLine]]);
+    expect(screen.getByTestId('strip-2026-10-06').props.accessibilityLabel).toMatch(/done: Extra$/); /* trening poza planem w dzień odpoczynku — „zrobione”, bez filiżanki */
+    expect(screen.getByTestId('strip-2026-10-10').props.accessibilityLabel).toBe('Saturday 10 October, rest day');
+    expect(screen.getByTestId('strip-2026-10-08').props.accessibilityLabel).toMatch(/today, rest day$/);
+    await renderApp({ saved: JSON.parse(JSON.stringify(saved())), locale: 'en' }); await flushAll(10); /* restart — to samo */
+    expect(screen.getAllByTestId('day-icon-rest', { includeHiddenElements: true }).length).toBeGreaterThanOrEqual(3);
+  });
+  test('plan wyłączony (dni planu wyczyszczone): od dziś bez filiżanek; minione dni tygodnia z planem — nadal odpoczynek (historia planu)', async () => {
+    jest.useFakeTimers({ now: NOW });
+    await boot(() => { jest.setSystemTime(at(10, 5, 6)); const a = mkTpl('A'); plan.setWeekDay(0, a.id); const w = addWorkout(at(10, 5, 7), [['Back Squat', sets(3)]], 'A'); w.templateId = a.id; store.save(); jest.setSystemTime(NOW); plan.setWeekDay(0, null); });
+    expect(plan.hasPlan()).toBe(false); /* karta „Dziś” jest (trening w historii), planu już nie ma */
+    const mark = (k: string) => screen.getByTestId(`strip-mark-${k}`, { includeHiddenElements: true });
+    expect(['2026-10-05', '2026-10-06', '2026-10-07', '2026-10-08', '2026-10-09'].map(k => iconsIn(mark(k)))).toEqual([['day-icon-done'], ['day-icon-rest'], ['day-icon-rest'], [], []]);
+  });
+  test('RestCup: spodek, ucho (pierścień, obrys) i czarka w jednym kolorze; pole 24 × 18 pt; ukryta przed VoiceOver', () => {
+    const { RestCup } = require('@/components/Motif'); const r = render(<RestCup color="#767a80" />);
+    const root = r.getByTestId('day-icon-rest', { includeHiddenElements: true }); expect(root.props.accessibilityElementsHidden).toBe(true); expect(root.props.importantForAccessibility).toBe('no-hide-descendants');
+    const svg = root.findAll(x => typeof x.type !== 'string' && x.props.viewBox)[0]; expect([svg.props.width, svg.props.height]).toEqual([MINI_ICON.w, MINI_ICON.h]);
+    expect(cupColors(root)).toEqual(['#767a80']); expect(root.findAll(x => typeof x.type !== 'string' && x.props.d === restCup().body).length).toBeGreaterThan(0);
+    expect(root.findAll(x => typeof x.type !== 'string' && x.props.fill === 'none' && x.props.stroke === '#767a80' && x.props.strokeWidth === REST_CUP.sw).length).toBeGreaterThan(0); /* ucho */
   });
 });
 
@@ -315,7 +386,7 @@ describe('karta rekordu po treningu', () => {
 
 /* ---------- 7. kalendarz: ikona pod dniem ---------- */
 describe('kalendarz: pod dniem ikona — pełna (zrobione) albo obwódka (zaplanowane), bez legendy kolorów', () => {
-  test.each([['light', 'pl'], ['dark', 'en']] as const)('motyw %s, język %s: znaczniki dni, wartość VoiceOver „zrobione / zaplanowane”, etykiety bez zmian, dziś i wybrany w ramce', async (theme, l) => {
+  test.each([['light', 'pl'], ['dark', 'en']] as const)('motyw %s, język %s: znaczniki dni (też odpoczynek), wartość VoiceOver „zrobione / zaplanowane / odpoczynek”, etykiety bez zmian, dziś i wybrany w ramce', async (theme, l) => {
     jest.useFakeTimers({ now: NOW }); const th = theme === 'light' ? light : dark;
     await boot(() => {
       addWorkout(at(10, 1), [['Back Squat', sets(2)]]); addWorkout(at(10, 2), [['Back Squat', sets(6)]]);
@@ -323,9 +394,10 @@ describe('kalendarz: pod dniem ikona — pełna (zrobione) albo obwódka (zaplan
       const w = addWorkout(at(10, 5, 7), [['Back Squat', sets(10)]], 'A'); w.templateId = a.id; store.save(); jest.setSystemTime(NOW);
     }, l, theme, '/history');
     await go('/history'); await flushAll(10);
-    const W = l === 'pl' ? { done: 'zrobione', planned: 'zaplanowane', s: ', 1 sesja', miss: 'opuszczony: A', plan: 'zaplanowany: A' } : { done: 'done', planned: 'planned', s: ', 1 session', miss: 'missed: A', plan: 'planned: A' };
-    const exp: [string, string[], string | undefined][] = [['2026-10-01', ['day-icon-done'], W.done], ['2026-10-02', ['day-icon-done'], W.done], ['2026-10-03', [], undefined], ['2026-10-05', ['day-icon-done'], W.done],
-      ['2026-10-07', ['day-icon-missed'], W.planned], ['2026-10-08', [], undefined], ['2026-10-09', ['day-icon-planned'], W.planned], ['2026-10-16', ['day-icon-planned'], W.planned]];
+    const W = l === 'pl' ? { done: 'zrobione', planned: 'zaplanowane', rest: 'odpoczynek', s: ', 1 sesja', miss: 'opuszczony: A', plan: 'zaplanowany: A' } : { done: 'done', planned: 'planned', rest: 'rest day', s: ', 1 session', miss: 'missed: A', plan: 'planned: A' };
+    const exp: [string, string[], string | undefined][] = [['2026-10-01', ['day-icon-done'], W.done], ['2026-10-02', ['day-icon-done'], W.done], ['2026-10-03', [], undefined], ['2026-10-04', [], undefined], ['2026-10-05', ['day-icon-done'], W.done],
+      ['2026-10-06', ['day-icon-rest'], W.rest], ['2026-10-07', ['day-icon-missed'], W.planned], ['2026-10-08', ['day-icon-rest'], W.rest], ['2026-10-09', ['day-icon-planned'], W.planned], ['2026-10-16', ['day-icon-planned'], W.planned], ['2026-10-31', ['day-icon-rest'], W.rest]];
+    /* przed planem (do 4.10) — nic, choć to dni wolne; od 5.10 dni bez treningu w planie — filiżanka i wartość „odpoczynek” */
     for (const [k, ic, v] of exp) { const day = screen.getByTestId(`cal-${k}`); expect([k, iconsIn(day), day.props.accessibilityValue?.text]).toEqual([k, ic, v]); }
     expect(screen.getByTestId('cal-2026-10-01').props.accessibilityLabel).toMatch(new RegExp(`${W.s}$`));
     expect(screen.getByTestId('cal-2026-10-07').props.accessibilityLabel).toMatch(new RegExp(`${W.miss}$`)); expect(screen.getByTestId('cal-2026-10-09').props.accessibilityLabel).toMatch(new RegExp(`${W.plan}$`));
@@ -333,6 +405,7 @@ describe('kalendarz: pod dniem ikona — pełna (zrobione) albo obwódka (zaplan
     expect(rects(screen.getByTestId('cal-2026-10-05')).map(x => x.fill)).toEqual([th.text, ...PLATE_FILLS, th.text]);
     expect(rects(screen.getByTestId('cal-2026-10-09')).filter(x => x.stroke).every(x => x.stroke === th.text)).toBe(true);
     expect(rects(screen.getByTestId('cal-2026-10-07')).filter(x => x.stroke).every(x => x.stroke === th.ctrlLine)).toBe(true);
+    expect(cupColors(screen.getByTestId('cal-2026-10-08'))).toEqual([th.ctrlLine]); expect(screen.getByTestId('cal-2026-10-08').props.accessibilityLabel).not.toMatch(/odpoczynek|rest day/); /* stan dnia — wartość, etykieta bez zmian */
     expect(screen.queryByTestId('cal-legend')).toBeNull(); expect(screen.queryAllByTestId(/^day-plate-/, { includeHiddenElements: true })).toEqual([]);
     const faceOf = (k: string) => flat(screen.getByTestId(`cal-${k}`).findAll(x => typeof x.type === 'string' && flat(x.props.style).width === CAL_FACE.w)[0].props.style);
     expect([faceOf('2026-10-08').borderColor, faceOf('2026-10-08').borderWidth]).toEqual([th.accent, 2]); /* dziś */

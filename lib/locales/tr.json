@@ -1323,5 +1323,6 @@
  "Aplikacja zamknęła się w trakcie edycji ćwiczenia „{name}”. Wrócić do edycji?": "“{name}” egzersizi düzenlenirken uygulama kapandı. Düzenlemeye dönülsün mü?",
  "Wróć do edycji": "Düzenlemeye dön",
  "Mapa mięśni i serie na partię z kreską {n} serii tygodniowo.": "Kas haritası ve kas grubu başına setler; haftada {n} set çizgisiyle.",
- "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.": "İlerleme: kas haritalı haftalık ve aylık özet, kas grubu başına haftada {n} set işareti ve bir haftayı deload olarak işaretleme."
+ "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.": "İlerleme: kas haritalı haftalık ve aylık özet, kas grubu başına haftada {n} set işareti ve bir haftayı deload olarak işaretleme.",
+ "odpoczynek": "dinlenme günü"
 }
