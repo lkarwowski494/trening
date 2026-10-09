@@ -1,0 +1,550 @@
+{
+ "Axle Deadlift": {
+  "muscles": [
+   "plecy",
+   "dwugłowe"
+  ],
+  "secondaryMuscles": [
+   "pośladki",
+   "czworogłowe"
+  ]
+ },
+ "Backward Medicine Ball Throw": {
+  "muscles": [
+   "pośladki"
+  ],
+  "secondaryMuscles": [
+   "dwugłowe",
+   "barki"
+  ]
+ },
+ "Band Chest Fly": {
+  "secondaryMuscles": [
+   "barki"
+  ]
+ },
+ "Barbell Hack Squat": {
+  "secondaryMuscles": [
+   "pośladki",
+   "przedramiona"
+  ]
+ },
+ "Barbell Incline Shoulder Raise": {
+  "muscles": [
+   "barki"
+  ],
+  "secondaryMuscles": [
+   "klatka"
+  ]
+ },
+ "Barbell Side Split Squat": {
+  "secondaryMuscles": [
+   "przywodziciele"
+  ]
+ },
+ "Barbell Walking Lunge": {
+  "secondaryMuscles": [
+   "przywodziciele"
+  ]
+ },
+ "Bent-Arm Barbell Pullover": {
+  "muscles": [
+   "plecy",
+   "klatka"
+  ],
+  "secondaryMuscles": []
+ },
+ "Board Press": {
+  "group": "triceps",
+  "muscles": [
+   "triceps"
+  ],
+  "secondaryMuscles": [
+   "klatka",
+   "barki"
+  ]
+ },
+ "Bottoms-Up Clean From The Hang Position": {
+  "group": "biceps",
+  "muscles": [
+   "przedramiona"
+  ],
+  "secondaryMuscles": [
+   "pośladki"
+  ]
+ },
+ "Box Skip": {
+  "group": "cardio"
+ },
+ "Box Squat with Bands": {
+  "secondaryMuscles": [
+   "pośladki",
+   "dwugłowe"
+  ]
+ },
+ "Box Squat with Chains": {
+  "secondaryMuscles": [
+   "pośladki",
+   "dwugłowe"
+  ]
+ },
+ "Broad Jump": {
+  "group": "cardio"
+ },
+ "Cable Deadlift": {
+  "muscles": [
+   "czworogłowe",
+   "plecy"
+  ],
+  "secondaryMuscles": [
+   "pośladki",
+   "dwugłowe"
+  ]
+ },
+ "Cable Fly (low to high)": {
+  "secondaryMuscles": [
+   "barki"
+  ]
+ },
+ "Cable Internal Rotation": {
+  "muscles": [
+   "barki"
+  ],
+  "secondaryMuscles": []
+ },
+ "Cat Stretch": {
+  "metric": "time"
+ },
+ "Clean Deadlift": {
+  "muscles": [
+   "czworogłowe",
+   "pośladki"
+  ],
+  "secondaryMuscles": [
+   "dwugłowe",
+   "plecy"
+  ]
+ },
+ "Clean Pull": {
+  "muscles": [
+   "pośladki",
+   "plecy"
+  ],
+  "secondaryMuscles": [
+   "dwugłowe",
+   "czworogłowe"
+  ]
+ },
+ "Clean Shrug": {
+  "secondaryMuscles": [
+   "pośladki",
+   "dwugłowe"
+  ]
+ },
+ "Clock Push-Up": {
+  "bandAssistable": true,
+  "metric": "weight_reps"
+ },
+ "Cross Body Hammer Curl": {
+  "secondaryMuscles": [
+   "przedramiona"
+  ]
+ },
+ "Deadlift with Bands": {
+  "muscles": [
+   "plecy",
+   "dwugłowe"
+  ],
+  "secondaryMuscles": [
+   "pośladki",
+   "czworogłowe"
+  ]
+ },
+ "Deadlift with Chains": {
+  "muscles": [
+   "plecy",
+   "dwugłowe"
+  ],
+  "secondaryMuscles": [
+   "pośladki",
+   "czworogłowe"
+  ]
+ },
+ "Deficit Deadlift": {
+  "muscles": [
+   "plecy",
+   "dwugłowe"
+  ],
+  "secondaryMuscles": [
+   "pośladki",
+   "czworogłowe"
+  ]
+ },
+ "Dip Belt Squat": {
+  "secondaryMuscles": [
+   "pośladki",
+   "przywodziciele"
+  ]
+ },
+ "Double Kettlebell Snatch": {
+  "muscles": [
+   "pośladki",
+   "barki"
+  ],
+  "secondaryMuscles": [
+   "dwugłowe",
+   "plecy"
+  ]
+ },
+ "Dumbbell Clean": {
+  "muscles": [
+   "pośladki",
+   "dwugłowe"
+  ],
+  "secondaryMuscles": [
+   "czworogłowe",
+   "plecy"
+  ]
+ },
+ "Dumbbell Incline Shoulder Raise": {
+  "muscles": [
+   "barki"
+  ],
+  "secondaryMuscles": [
+   "klatka"
+  ]
+ },
+ "Dumbbell Squat": {
+  "secondaryMuscles": [
+   "pośladki",
+   "przywodziciele"
+  ]
+ },
+ "Elevated Back Lunge": {
+  "secondaryMuscles": [
+   "przywodziciele"
+  ]
+ },
+ "External Rotation (hantel)": {
+  "muscles": [
+   "barki"
+  ],
+  "secondaryMuscles": []
+ },
+ "External Rotation (linki)": {
+  "muscles": [
+   "barki"
+  ],
+  "secondaryMuscles": []
+ },
+ "External Rotation with Band": {
+  "muscles": [
+   "barki"
+  ],
+  "secondaryMuscles": []
+ },
+ "Flat Bench Cable Fly": {
+  "secondaryMuscles": [
+   "barki"
+  ]
+ },
+ "Floor Press (hantle)": {
+  "secondaryMuscles": [
+   "triceps"
+  ]
+ },
+ "Floor Press (sztanga)": {
+  "secondaryMuscles": [
+   "triceps"
+  ]
+ },
+ "Glute Bridge (sztanga)": {
+  "secondaryMuscles": [
+   "dwugłowe"
+  ]
+ },
+ "Hammer Curl (linki)": {
+  "secondaryMuscles": [
+   "przedramiona"
+  ]
+ },
+ "Hip Flexion with Band": {
+  "muscles": [
+   "czworogłowe"
+  ],
+  "secondaryMuscles": []
+ },
+ "Incline Cable Fly": {
+  "secondaryMuscles": [
+   "barki"
+  ]
+ },
+ "Incline Chest Fly (hantle)": {
+  "secondaryMuscles": [
+   "barki"
+  ]
+ },
+ "Incline Hammer Curl": {
+  "secondaryMuscles": [
+   "przedramiona"
+  ]
+ },
+ "Incline Push-Up Close-Grip": {
+  "bandAssistable": true
+ },
+ "Internal Rotation with Band": {
+  "muscles": [
+   "barki"
+  ],
+  "secondaryMuscles": []
+ },
+ "Isometric Wipers": {
+  "bandAssistable": true
+ },
+ "Jefferson Squat": {
+  "secondaryMuscles": [
+   "pośladki",
+   "przywodziciele"
+  ]
+ },
+ "Kettlebell Snatch": {
+  "muscles": [
+   "pośladki",
+   "barki"
+  ],
+  "secondaryMuscles": [
+   "dwugłowe",
+   "plecy"
+  ]
+ },
+ "Knee Tuck Jump": {
+  "group": "cardio"
+ },
+ "Kneeling Squat": {
+  "secondaryMuscles": [
+   "dwugłowe"
+  ]
+ },
+ "Lateral Bound": {
+  "group": "cardio"
+ },
+ "Lateral Box Jump": {
+  "group": "cardio"
+ },
+ "Lateral Cone Hops": {
+  "group": "cardio",
+  "muscles": [
+   "łydki"
+  ],
+  "secondaryMuscles": [
+   "czworogłowe"
+  ]
+ },
+ "Leverage Deadlift": {
+  "muscles": [
+   "czworogłowe",
+   "plecy"
+  ],
+  "secondaryMuscles": [
+   "pośladki",
+   "dwugłowe"
+  ]
+ },
+ "Medicine Ball Scoop Throw": {
+  "muscles": [
+   "pośladki"
+  ],
+  "secondaryMuscles": [
+   "czworogłowe",
+   "barki"
+  ]
+ },
+ "Physioball Hip Bridge": {
+  "secondaryMuscles": [
+   "dwugłowe"
+  ]
+ },
+ "Pin Press": {
+  "group": "triceps",
+  "muscles": [
+   "triceps"
+  ],
+  "secondaryMuscles": [
+   "klatka",
+   "barki"
+  ]
+ },
+ "Power Snatch": {
+  "muscles": [
+   "pośladki"
+  ],
+  "secondaryMuscles": [
+   "plecy",
+   "barki"
+  ]
+ },
+ "Power Snatch from Blocks": {
+  "muscles": [
+   "pośladki"
+  ],
+  "secondaryMuscles": [
+   "czworogłowe",
+   "dwugłowe"
+  ]
+ },
+ "Power Stairs": {
+  "group": "nogi"
+ },
+ "Preacher Hammer Dumbbell Curl": {
+  "secondaryMuscles": [
+   "przedramiona"
+  ]
+ },
+ "Push Up to Side Plank": {
+  "bandAssistable": true
+ },
+ "Push-Up Wide": {
+  "bandAssistable": true
+ },
+ "Push-Ups - Close Triceps Position": {
+  "bandAssistable": true
+ },
+ "Reverse Band Box Squat": {
+  "secondaryMuscles": [
+   "pośladki",
+   "dwugłowe"
+  ]
+ },
+ "Reverse Band Deadlift": {
+  "muscles": [
+   "plecy",
+   "dwugłowe"
+  ],
+  "secondaryMuscles": [
+   "pośladki",
+   "czworogłowe"
+  ]
+ },
+ "Reverse Band Power Squat": {
+  "secondaryMuscles": [
+   "pośladki",
+   "dwugłowe"
+  ]
+ },
+ "Reverse Hyperextension": {
+  "muscles": [
+   "pośladki"
+  ],
+  "secondaryMuscles": [
+   "dwugłowe",
+   "plecy"
+  ]
+ },
+ "Single Leg Glute Bridge": {
+  "secondaryMuscles": [
+   "dwugłowe"
+  ]
+ },
+ "Single Leg Hip Thrust": {
+  "secondaryMuscles": [
+   "dwugłowe"
+  ]
+ },
+ "Single-Arm Push-Up": {
+  "bandAssistable": true
+ },
+ "Slider Hamstring Curl": {
+  "secondaryMuscles": [
+   "pośladki"
+  ]
+ },
+ "Smith Incline Shoulder Raise": {
+  "muscles": [
+   "barki"
+  ],
+  "secondaryMuscles": [
+   "klatka"
+  ]
+ },
+ "Smith Machine Bench Press": {
+  "secondaryMuscles": [
+   "triceps"
+  ]
+ },
+ "Smith Machine Hip Thrust": {
+  "secondaryMuscles": [
+   "dwugłowe"
+  ]
+ },
+ "Smith Machine Reverse Calf Raises": {
+  "muscles": [
+   "łydki"
+  ]
+ },
+ "Snatch (hantel)": {
+  "muscles": [
+   "pośladki",
+   "barki"
+  ],
+  "secondaryMuscles": [
+   "dwugłowe",
+   "czworogłowe"
+  ]
+ },
+ "Snatch Balance": {
+  "secondaryMuscles": [
+   "barki",
+   "plecy"
+  ]
+ },
+ "Snatch Shrug": {
+  "secondaryMuscles": [
+   "pośladki",
+   "dwugłowe"
+  ]
+ },
+ "Squat with Bands": {
+  "secondaryMuscles": [
+   "pośladki",
+   "dwugłowe"
+  ]
+ },
+ "Squat with Chains": {
+  "secondaryMuscles": [
+   "pośladki",
+   "dwugłowe"
+  ]
+ },
+ "Stability Ball Hamstring Curl": {
+  "secondaryMuscles": [
+   "pośladki"
+  ]
+ },
+ "Standing Two-Arm Overhead Throw": {
+  "muscles": [
+   "plecy"
+  ],
+  "secondaryMuscles": [
+   "core",
+   "triceps"
+  ]
+ },
+ "Sumo Deadlift (kettlebell)": {
+  "group": "pośladki"
+ },
+ "Supine Chest Throw": {
+  "group": "klatka",
+  "muscles": [
+   "klatka"
+  ],
+  "secondaryMuscles": [
+   "triceps",
+   "barki"
+  ]
+ },
+ "Wrist Roller": {
+  "secondaryMuscles": [
+   "barki"
+  ]
+ }
+}

@@ -303,8 +303,10 @@ export function migrate(raw: any): State {
          * audyt kontrolny 1 (X2-01): tryb ciężaru z innym mnożnikiem objętości (np. total ×1 → unilateral ×2) też tylko bez serii i pozycji szablonu — inaczej
          * zapisane ciężary zmieniłyby sens (objętość, rekordy sumy dawnych sesji); ten sam mnożnik — tylko etykieta, stosowana zawsze (jak okW w retireCatalog) */
         { const fixes = LIB_FIELD_FIXES.filter(f => f.rev === rev); if (fixes.length) { const inUse = usedIds(raw);
-          const keepsMeaning = (f: typeof fixes[number]) => f.field === 'metric' ? false : f.field === 'loadMode' ? loadMult(f.from as LoadMode) === loadMult(f.to as LoadMode) : true;
-          for (const f of fixes) for (const e of raw.exercises) if (e.lib === true && e.libKey === f.name && JSON.stringify(e[f.field]) === JSON.stringify(f.from) && (keepsMeaning(f) || !inUse.has(e.id))) e[f.field] = JSON.parse(JSON.stringify(f.to)); } }
+          /* DAT2-01: asysta gumą (asysta ↔ opór) — tylko gdy ćwiczenie nie ma serii z gumą (dawne serie z gumą zmieniłyby znaczenie i rekordy) */
+          const banded = new Set<string>(); for (const w of [...arr(raw.workouts), ...(isObj(raw.active) ? [raw.active] : [])]) for (const x of arr(w.exercises)) if (arr(x.sets).some((z: any) => typeof z?.bandId === 'string' && z.bandId)) { const id = idOf(x.exerciseId); if (id) banded.add(id); }
+          const allowed = (f: typeof fixes[number], id: string) => f.field === 'metric' ? !inUse.has(id) : f.field === 'loadMode' ? loadMult(f.from as LoadMode) === loadMult(f.to as LoadMode) || !inUse.has(id) : f.field === 'bandAssistable' ? !banded.has(id) : true;
+          for (const f of fixes) for (const e of raw.exercises) if (e.lib === true && e.libKey === f.name && JSON.stringify(e[f.field]) === JSON.stringify(f.from) && allowed(f, e.id)) e[f.field] = JSON.parse(JSON.stringify(f.to)); } }
       }
       raw.libExtra = LIB_EXTRA_REVS[0]; raw.libExtraStep = LIB_EXTRA_REV; } }
   raw.templates = arr(raw.templates);

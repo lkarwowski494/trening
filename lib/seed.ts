@@ -212,7 +212,7 @@ export const LIB_REMOVED: ReadonlySet<string> = new Set(CATALOG_STEP.removed);
 export const LIB_RETIRED: ReadonlySet<string> = new Set([...Object.keys(LIB_MERGED), ...LIB_REMOVED]);
 /** Poprawki pól kopiowanych do ćwiczenia (partia, miara, tryb, asysta gumą, partie mięśni) przy kroku katalogu — tylko gdy zapisana wartość jest
  * dokładnie dawną domyślną (zmian użytkownika nie ruszamy); miara i tryb ciężaru z innym mnożnikiem objętości (X2-01) — tylko gdy ćwiczenie nie ma
- * serii ani pozycji szablonu (nic nie znika z widoku, zapisane ciężary nie zmieniają sensu). */
+ * serii ani pozycji szablonu (nic nie znika z widoku, zapisane ciężary nie zmieniają sensu); asysta gumą (DAT2-01) — tylko bez serii z gumą. */
 export const LIB_FIELD_FIXES: readonly { rev: string; name: string; field: 'group' | 'metric' | 'loadMode' | 'bandAssistable' | 'muscles' | 'secondaryMuscles'; from: unknown; to: unknown }[] =
   CATALOG_STEP.fieldFixes.map(f => ({ rev: CATALOG_STEP.rev, name: f.name, field: f.field as 'group', from: f.from, to: f.to }));
 export const musclesSourced = (e: Pick<Exercise, 'lib' | 'libKey' | 'group' | 'muscles' | 'secondaryMuscles'>): boolean => {
