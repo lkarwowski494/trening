@@ -15,6 +15,8 @@
 #   "Band Pull Apart, .*" / "Pull Up, .*" ← Item pickera „{title}, {sub}” (sub: sprzęt + ' · band', app/picker.tsx)
 #   "Band: X"                        ← 'Guma: {b}' (instrukcja „Tap to change.” w podpowiedzi — audyt 0.10 A11-18) (components/ActiveWorkout.tsx); b = bandA11y '{c}, poziom {n}' → „green, level 1”
 #                                      albo 'brak' → „none”; kolejność: poziomy miejsca rosnąco (store.nextBandId), potem brak
+#                                      E2E 89: karta „teraz” (widok skupiony) pokazuje gumę bieżącej serii tekstem „band: green, level 1”, a Maestro
+#                                      dopasowuje BEZ wielkości liter — stuknięcia przycisku z „below: \"Set done.*\"” (przycisk karty „Set done: …” stoi nad wierszami)
 #   "Set 1 done — X"                 ← 'Seria {n} zrobiona — {ex}'
 #   ".*band: green, level 1.*"       ← wiersz serii zapisanej sesji (app/history/[id].tsx): accessibilityLabel „{nagłówek}: {wartość}, …”,
 #                                      nagłówek 'guma' → „band”, wartość bandA11y
@@ -82,16 +84,16 @@ name: Gumy w miejscu i w treningu
 - tapOn: "Band Pull Apart, .*"
 - extendedWaitUntil: { visible: "Set 1 done — Band Pull Apart", timeout: 30000 }
 # Cykl gumy: brak → 1 → 2 → 4 → brak (6 odznaczone w miejscu) → 1
-- tapOn: "Band: none"
+- tapOn: { text: "Band: none", below: "Set done.*" }
 - extendedWaitUntil: { visible: "Band: green, level 1", timeout: 15000 }
-- tapOn: "Band: green, level 1"
+- tapOn: { text: "Band: green, level 1", below: "Set done.*" }
 - extendedWaitUntil: { visible: "Band: red, level 2", timeout: 15000 }
-- tapOn: "Band: red, level 2"
+- tapOn: { text: "Band: red, level 2", below: "Set done.*" }
 - extendedWaitUntil: { visible: "Band: black, level 4", timeout: 15000 }
-- tapOn: "Band: black, level 4"
+- tapOn: { text: "Band: black, level 4", below: "Set done.*" }
 - extendedWaitUntil: { visible: "Band: none", timeout: 15000 }
 - assertNotVisible: "Band: purple, level 6.*"
-- tapOn: "Band: none"
+- tapOn: { text: "Band: none", below: "Set done.*" }
 - extendedWaitUntil: { visible: "Band: green, level 1", timeout: 15000 }
 - takeScreenshot: 61-guma-band-pull-apart
 - tapOn: "Set 1 done — Band Pull Apart"
@@ -108,10 +110,10 @@ name: Gumy w miejscu i w treningu
 - tapOn: "Pull Up, .*"
 - extendedWaitUntil: { visible: "Set 1 done — Pull Up", timeout: 30000 }
 - scrollUntilVisible: { element: "Band: none", direction: DOWN, timeout: 30000, centerElement: true }
-- tapOn: "Band: none"
+- tapOn: { text: "Band: none", below: "Set done.*" }
 # Band Pull Apart (wyżej) i Pull Up mają teraz poziom 1 — drugi przycisk to Pull Up
-- extendedWaitUntil: { visible: { text: "Band: green, level 1", index: 1 }, timeout: 15000 }
-- tapOn: { text: "Band: green, level 1", index: 1 }
+- extendedWaitUntil: { visible: { text: "Band: green, level 1", below: "Set done.*", index: 1 }, timeout: 15000 }
+- tapOn: { text: "Band: green, level 1", below: "Set done.*", index: 1 }
 - extendedWaitUntil: { visible: "Band: red, level 2", timeout: 15000 }
 - takeScreenshot: 62-guma-pull-up
 - tapOn: "Set 1 done — Pull Up"

@@ -121,3 +121,49 @@ test('regresja run 37771270988: po przycisku okna (Set, Cancel, Make active, Few
   }
   expect(bad).toEqual([]);
 });
+
+/* Przebieg E2E 89 (09.10.2026, dfa7ab8): 12 z 16 scenariuszy padło na selektorach nieaktualnych po fali 2 audytu 0.10. Całe scenariusze przechodzi
+ * tests/maestro-flows.test.tsx (interpreter na drzewie dostępności); tu — przyczyny, których interpreter nie modeluje albo które warto przypiąć wprost. */
+describe('regresja E2E 89', () => {
+  const y = (f: string) => readFileSync(join(dir, f), 'utf8');
+  const steps = (f: string) => y(f).split('\n').filter(l => /^\s*-\s/.test(l));
+  test('nazwa nowego szablonu: tytuł nagłówka edycji to ten sam tekst co wartość pola — stuknięcie w pole „pod etykietą Name”', () => {
+    const { EN } = require('@/lib/i18n.en');
+    expect(readFileSync(join(__dirname, '../app/template/[id].tsx'), 'utf8')).toContain("DraftHeader title={isNew.current ? t('Nowy szablon')");
+    expect(EN['Nowy szablon']).toBe('New template'); expect(EN['Nazwa']).toBe('Name');
+    for (const f of ['subflows/szablon-testowy.yaml', '08-szablon-wiersze.yaml']) {
+      expect(steps(f).filter(l => /tapOn: (\{ text: )?"New template"/.test(l)).map(l => l.replace(/\s+#.*$/, ''))).toEqual(['- tapOn: { text: "New template", below: "Name" }']);
+    }
+  });
+  test('jednostka z regionu (H4): symulator en-US startuje w lb — scenariusze z kg najpierw wybierają „kg” w Ustawieniach (przed dodaniem miejsca)', () => {
+    const { deviceUnit } = require('@/lib/i18n'); expect(deviceUnit('en-US')).toBe('lb');
+    for (const f of ['11-widok-skupiony.yaml', '15-masa-licencje.yaml']) {
+      const s = steps(f); const kg = s.findIndex(l => l.trim() === '- tapOn: "kg"'); const firstKg = s.findIndex(l => /\bkg\b/.test(l) && !/tapOn: "kg"/.test(l));
+      const place = s.findIndex(l => /Places and equipment/.test(l));
+      expect({ f, kg: kg >= 0 && kg < firstKg && (place < 0 || kg < place) }).toEqual({ f, kg: true });
+    }
+  });
+  test('plan tygodnia: wiersz dnia „{dzień}, {szablon}” (UX-15 A), „{dzień}: {szablon}” to chip rozwiniętego wiersza', () => {
+    expect(readFileSync(join(__dirname, '../app/plan.tsx'), 'utf8')).toContain('accessibilityLabel={`${weekdayName(i)}, ${nm}`}');
+    expect(y('14-generator.yaml')).toContain('visible: "Monday, Full Body A"'); expect(y('14-generator.yaml')).not.toMatch(/visible: "Monday: /);
+  });
+  test('gumy: karta „teraz” pokazuje „band: …” małą literą, Maestro porównuje bez wielkości liter — każde stuknięcie przycisku gumy pod „Set done.*”', () => {
+    const taps = steps('10-gumy.yaml').filter(l => /tapOn: .*"Band: /.test(l)); expect(taps.length).toBeGreaterThanOrEqual(6);
+    for (const l of taps) expect(l).toMatch(/below: "Set done\.\*"/);
+    const { EN } = require('@/lib/i18n.en'); const card = EN['Seria zrobiona: {ex}, seria {n}'].replace('{ex}', 'Pull Up').replace('{n}', '1');
+    const row = EN['Seria {n} zrobiona — {ex}'].replace('{ex}', 'Pull Up').replace('{n}', '1');
+    expect([/^(?:Set done.*)$/i.test(card), /^(?:Set done.*)$/i.test(row)]).toEqual([true, false]); /* kotwica to tylko przycisk karty */
+  });
+  test('edycja ćwiczenia: stukany chip metryki mieści się na ekranie (jeden z pierwszych trzech) — piąty „weight + time” był poza krawędzią', () => {
+    const { METRICS, METRIC_LABEL } = require('@/lib/seed'); const { EN } = require('@/lib/i18n.en');
+    const label = (m: string) => EN[(METRIC_LABEL as Record<string, string>)[m]] as string;
+    const first = (METRICS as string[]).slice(0, 3).map(label);
+    const taps = steps('16-edycja-na-zadanie.yaml').map(l => /^- tapOn: "([^"]+)"$/.exec(l.trim())?.[1]).filter((x): x is string => !!x).map(x => x.replace(/\\(.)/g, '$1'));
+    const chips = taps.filter(x => (METRICS as string[]).some(m => label(m) === x)); expect(chips.length).toBe(2);
+    for (const c of chips) expect(first).toContain(c);
+  });
+  test('zamiana z podziałem: odhaczona seria starego ćwiczenia sprawdzana przewinięciem w górę, nie assertVisible od razu', () => {
+    const s = steps('07-zamiana.yaml'); const i = s.findIndex(l => l.includes('"instead of: Overhead Press \\\\(Barbell\\\\).*"'));
+    expect(i).toBeGreaterThan(0); expect(s[i + 1].trim()).toBe('- scrollUntilVisible: { element: "Set 1 done — Overhead Press \\\\(Barbell\\\\)", direction: UP, timeout: 30000 }');
+  });
+});
