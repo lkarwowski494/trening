@@ -260,3 +260,26 @@ describe('A11N-05: terminy we wskazówkach i nagłówek „Ustawienie”', () =>
     for (const id of ['pu.grip', 'pu.pull', 'cu.grip']) expect([id, /barfiks bar/iu.test(tr[id])]).toEqual([id, true]);
   });
 });
+
+/*
+ * MER2-09: drobne niespójności dokumentacji i komentarzy (liczby i stan w dokumentach mają odpowiadać kodowi).
+ */
+describe('MER2-09: dokumenty i komentarze zgodne z kodem', () => {
+  const read = (f: string) => fs.readFileSync(path.join(root, f), 'utf8');
+  test('docs/09: liczba ćwiczeń ze wskazówkami = dane (lib/cues/data.json)', () => {
+    const row = read('docs/09-plan-testow.md').split('\n').find(l => l.startsWith('| Wskazówki techniki, etap 1'))!;
+    expect(row).toContain(`data.json\`: ${Object.keys(CUE_DATA.exercises).length} ćwiczeń bazowych`);
+  });
+  test('lib/seed.ts: komentarz MUSCLE_SOURCES nie mówi „Na razie pusto”, gdy mapa ma wpisy', () => {
+    const { MUSCLE_SOURCES } = require('@/lib/seed') as typeof import('@/lib/seed');
+    expect(Object.keys(MUSCLE_SOURCES).length).toBeGreaterThan(0);
+    const src = read('lib/seed.ts'); const i = src.indexOf('export const MUSCLE_SOURCES');
+    expect(src.slice(i - 700, i)).not.toMatch(/Na razie pusto/);
+  });
+  test('docs/research/masa-ciala-e1rm: masa ciała z datą (bodyMassLog) zamiast „jednej masy z Ustawień”; niejednoznaczność kamizelki w źródle opisana', () => {
+    const doc = read('docs/research/masa-ciala-e1rm-2026-10.md');
+    expect(doc).not.toMatch(/aplikacja ma jedną masę ciała \(z Ustawień\)/);
+    expect(doc).toMatch(/bodyMassLog/);
+    expect(doc).toMatch(/„of body mass \(\+ weight vest\)”/);
+  });
+});

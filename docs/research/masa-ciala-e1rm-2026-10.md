@@ -46,7 +46,9 @@ guma bez kg — obciążenie nieznane, brak e1RM (jak dotąd, T8).
 Niezależne zespoły (Norwegia/Australia, Grecja, Chiny, USA) — część wspólna u osób trenujących rekreacyjnie **ok. 63–66% masy ciała** w pozycji
 startowej; u bardzo wytrenowanych (Suprak) 69%. **0,64 — uproszczenie** w tym przedziale (jedna liczba zamiast zależności od pozycji, budowy
 ciała i fazy ruchu — Suprak: więcej w dolnej pozycji). Dociążenie (kamizelka, talerz) liczone w całości, jak w przykładzie van den Tillaara
-i Balla (1RM = 62,6% masy ciała + dodatkowy ciężar); w ich tabeli udział rośnie z kamizelką tylko do 65,1% — różnica mieści się w uproszczeniu.
+i Balla (1RM = 62,6% masy ciała + dodatkowy ciężar); w ich tabeli udział rośnie z kamizelką tylko do 65,1% — różnica mieści się w uproszczeniu. Źródło jest tu niejednoznaczne (audyt kontrolny 1
+MER2-09, 09.10.2026): kolumna podaje „of body mass (+ weight vest)”, więc nie wiadomo, czy 65,1% to udział samej masy ciała, czy masy z kamizelką;
+liczenie kamizelki w całości jest uproszczeniem, nie wynikiem tego badania.
 
 ## 4. Bez udziału (brak e1RM, także z masą ciała) — pytania otwarte
 
@@ -58,8 +60,9 @@ i Balla (1RM = 62,6% masy ciała + dodatkowy ciężar); w ich tabeli udział ro�
   liczby dla każdego wariantu — brak e1RM.
 - **Muscle-up, podciąganie jednorącz, wiosłowanie australijskie, pistolety, nordic curl, ćwiczenia brzucha** — brak źródeł udziału.
 - **Ćwiczenia własne** z masą ciała — brak klucza katalogu, więc brak udziału i e1RM.
-- **Masa ciała w czasie** — aplikacja ma jedną masę ciała (z Ustawień), więc jej zmiana przelicza e1RM całej historii (napisane w Ustawieniach).
-  Masa ciała zapisana z datą (np. przy treningu) to osobna decyzja produktowa.
+- **Masa ciała w czasie** — od fali 2 audytu 0.10 aplikacja zapisuje masę ciała z datą (`State.bodyMassLog`, ekran Więcej → Masa ciała); każdy
+  trening liczy e1RM z ostatnim pomiarem z tego dnia lub wcześniejszym (sprostowanie 09.10.2026, audyt kontrolny 1 MER2-09 — wcześniej ten punkt
+  opisywał jedną masę z Ustawień).
 - **Trafność Epleya przy ćwiczeniach z masą ciała** — wzór szacuje 1RM z serii do 10 powtórzeń; badania podciągania (Sánchez-Moreno 2017) mierzyły
   1RM bezpośrednio, nie sprawdzały Epleya. Uproszczenie: ta sama reguła co w ćwiczeniach z ciężarem.
 

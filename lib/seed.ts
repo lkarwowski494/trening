@@ -211,7 +211,8 @@ export const MUSCLES_BY_NAME: Record<string, [Muscle[], Muscle[]]> = {
 /** E4 (audyt 0.10, MER-10; decyzja właściciela 08.10.2026: teraz wariant B, źródła — wariant A — osobnym researchem): partie z katalogu są
  * uproszczeniem bez źródeł (docs/research/equipment/catalog-notes.md; przykład sprzeczny z badaniem: Back Squat → dwugłowe, Kubo i in. 2019).
  * Ćwiczenie katalogu dostaje tu wpis (klucz → źródła, docs/research), gdy jego przypisanie ma źródła — wtedy ekran ćwiczenia przestaje pokazywać
- * dopisek „uproszczenie” (tylko gdy partie są nadal takie jak w katalogu). Na razie pusto. */
+ * dopisek „uproszczenie” (tylko gdy partie są nadal takie jak w katalogu). Wpisy z researchu biblioteki (docs/research/25-biblioteka) — ćwiczenia
+ * z oceną „mocne” lub „umiarkowane” i źródłami (audyt kontrolny 1 MER2-09: dawny komentarz o pustej mapie był nieaktualny). */
 export const MUSCLE_SOURCES: Readonly<Record<string, string>> = Object.fromEntries(Object.entries(CATALOG_RESEARCH).filter(([, r]) => /^(mocne|umiarkowane)/.test(r[1]) && r[2].length).map(([k, r]) => [k, `docs/research/25-biblioteka/${r[0]}: ${r[2].join(', ')}`]));
 /** Research 25 (09.10.2026): pewność przypisania partii (mocne / umiarkowane / jedno źródło / brak źródła — uproszczenie; „(analogia)”) — po kluczu katalogu. */
 export const muscleConfidence = (e: Pick<Exercise, 'lib' | 'libKey'>): string | undefined => { const k = catalogKey(e); return k ? own(CATALOG_RESEARCH as Record<string, readonly [string, string, readonly string[]]>, k)?.[1] : undefined; };
