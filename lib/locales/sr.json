@@ -1297,5 +1297,9 @@
  "Zapisz plan": "Сачувај план",
  "Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.": "Испод {n} серија недељно: {list}. То је доњи праг препоручен за изградњу мишићне масе; серије додајеш у шаблонима.",
  "Moje szablony, {n}× w tygodniu": "Моји шаблони, {n}× недељно",
- "Po zapisie szablon trafi na ten dzień.": "После чувања шаблон иде на овај дан."
+ "Po zapisie szablon trafi na ten dzień.": "После чувања шаблон иде на овај дан.",
+ "Dodaj ćwiczenia do szablonu „{name}”.": "Додај вежбе у шаблон „{name}”.",
+ "Dodaj ćwiczenia": "Додај вежбе",
+ "Puste szablony: {n}": "Празни шаблони: {n}",
+ "Lista szablonów.": "Списак шаблона."
 }

@@ -1297,5 +1297,9 @@
  "Zapisz plan": "Зберегти план",
  "Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.": "Менше {n} підходів на тиждень: {list}. Це нижній поріг, рекомендований для набору м’язової маси; підходи додаси в шаблонах.",
  "Moje szablony, {n}× w tygodniu": "Мої шаблони, {n}× на тиждень",
- "Po zapisie szablon trafi na ten dzień.": "Після збереження шаблон стане на цей день."
+ "Po zapisie szablon trafi na ten dzień.": "Після збереження шаблон стане на цей день.",
+ "Dodaj ćwiczenia do szablonu „{name}”.": "Додай вправи до шаблону «{name}».",
+ "Dodaj ćwiczenia": "Додати вправи",
+ "Puste szablony: {n}": "Порожні шаблони: {n}",
+ "Lista szablonów.": "Список шаблонів."
 }

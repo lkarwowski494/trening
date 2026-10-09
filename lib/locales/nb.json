@@ -1297,5 +1297,9 @@
  "Zapisz plan": "Lagre plan",
  "Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.": "Under {n} sett per uke: {list}. Dette er den nedre grensen som anbefales for muskelvekst; sett legger du til i malene.",
  "Moje szablony, {n}× w tygodniu": "Mine maler, {n}× per uke",
- "Po zapisie szablon trafi na ten dzień.": "Når den er lagret, legges malen på denne dagen."
+ "Po zapisie szablon trafi na ten dzień.": "Når den er lagret, legges malen på denne dagen.",
+ "Dodaj ćwiczenia do szablonu „{name}”.": "Legg til øvelser i malen «{name}».",
+ "Dodaj ćwiczenia": "Legg til øvelser",
+ "Puste szablony: {n}": "Tomme maler: {n}",
+ "Lista szablonów.": "Liste over maler."
 }

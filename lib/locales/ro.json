@@ -1297,5 +1297,9 @@
  "Zapisz plan": "Salvează planul",
  "Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.": "Sub {n} serii pe săptămână: {list}. Este pragul minim recomandat pentru creșterea masei musculare; serii adaugi în șabloane.",
  "Moje szablony, {n}× w tygodniu": "Șabloanele mele, de {n}× pe săptămână",
- "Po zapisie szablon trafi na ten dzień.": "După salvare, șablonul ajunge în această zi."
+ "Po zapisie szablon trafi na ten dzień.": "După salvare, șablonul ajunge în această zi.",
+ "Dodaj ćwiczenia do szablonu „{name}”.": "Adaugă exerciții în șablonul „{name}”.",
+ "Dodaj ćwiczenia": "Adaugă exerciții",
+ "Puste szablony: {n}": "Șabloane goale: {n}",
+ "Lista szablonów.": "Lista șabloanelor."
 }

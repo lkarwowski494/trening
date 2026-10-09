@@ -1297,5 +1297,9 @@
  "Zapisz plan": "Tallenna suunnitelma",
  "Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.": "Alle {n} sarjaa viikossa: {list}. Tämä on lihasmassan kasvattamiseen suositeltu alaraja; sarjoja lisäät pohjiin.",
  "Moje szablony, {n}× w tygodniu": "Omat pohjat, {n}× viikossa",
- "Po zapisie szablon trafi na ten dzień.": "Tallennuksen jälkeen pohja tulee tälle päivälle."
+ "Po zapisie szablon trafi na ten dzień.": "Tallennuksen jälkeen pohja tulee tälle päivälle.",
+ "Dodaj ćwiczenia do szablonu „{name}”.": "Lisää liikkeitä pohjaan ”{name}”.",
+ "Dodaj ćwiczenia": "Lisää liikkeitä",
+ "Puste szablony: {n}": "Tyhjiä pohjia: {n}",
+ "Lista szablonów.": "Pohjien luettelo."
 }

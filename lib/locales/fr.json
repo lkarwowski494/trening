@@ -1297,5 +1297,9 @@
  "Zapisz plan": "Enregistrer le programme",
  "Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.": "Moins de {n} séries par semaine : {list}. C’est le seuil minimal recommandé pour la prise de muscle ; tu ajoutes des séries dans les modèles.",
  "Moje szablony, {n}× w tygodniu": "Mes modèles, {n}× par semaine",
- "Po zapisie szablon trafi na ten dzień.": "Une fois enregistré, le modèle sera placé ce jour-là."
+ "Po zapisie szablon trafi na ten dzień.": "Une fois enregistré, le modèle sera placé ce jour-là.",
+ "Dodaj ćwiczenia do szablonu „{name}”.": "Ajoute des exercices au modèle « {name} ».",
+ "Dodaj ćwiczenia": "Ajouter des exercices",
+ "Puste szablony: {n}": "Modèles vides : {n}",
+ "Lista szablonów.": "Liste des modèles."
 }

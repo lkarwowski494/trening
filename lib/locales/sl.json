@@ -1297,5 +1297,9 @@
  "Zapisz plan": "Shrani načrt",
  "Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.": "Pod {n} serij na teden: {list}. To je spodnji prag, priporočen za rast mišične mase; serije dodaš v predlogah.",
  "Moje szablony, {n}× w tygodniu": "Moje predloge, {n}× na teden",
- "Po zapisie szablon trafi na ten dzień.": "Po shranjevanju bo predloga na ta dan."
+ "Po zapisie szablon trafi na ten dzień.": "Po shranjevanju bo predloga na ta dan.",
+ "Dodaj ćwiczenia do szablonu „{name}”.": "Dodaj vaje v predlogo »{name}«.",
+ "Dodaj ćwiczenia": "Dodaj vaje",
+ "Puste szablony: {n}": "Prazne predloge: {n}",
+ "Lista szablonów.": "Seznam predlog."
 }

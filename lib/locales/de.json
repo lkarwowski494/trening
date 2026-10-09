@@ -1297,5 +1297,9 @@
  "Zapisz plan": "Plan speichern",
  "Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.": "Unter {n} Sätzen pro Woche: {list}. Das ist die untere Schwelle, die für Muskelaufbau empfohlen wird; Sätze ergänzt du in den Vorlagen.",
  "Moje szablony, {n}× w tygodniu": "Meine Vorlagen, {n}× pro Woche",
- "Po zapisie szablon trafi na ten dzień.": "Nach dem Speichern liegt die Vorlage auf diesem Tag."
+ "Po zapisie szablon trafi na ten dzień.": "Nach dem Speichern liegt die Vorlage auf diesem Tag.",
+ "Dodaj ćwiczenia do szablonu „{name}”.": "Füge der Vorlage „{name}“ Übungen hinzu.",
+ "Dodaj ćwiczenia": "Übungen hinzufügen",
+ "Puste szablony: {n}": "Leere Vorlagen: {n}",
+ "Lista szablonów.": "Liste der Vorlagen."
 }

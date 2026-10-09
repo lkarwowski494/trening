@@ -1297,5 +1297,9 @@
  "Zapisz plan": "Saglabāt plānu",
  "Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.": "Mazāk par {n} sērijām nedēļā: {list}. Tas ir apakšējais slieksnis, ko iesaka muskuļu masas palielināšanai; sērijas pievieno veidnēs.",
  "Moje szablony, {n}× w tygodniu": "Manas veidnes, {n}× nedēļā",
- "Po zapisie szablon trafi na ten dzień.": "Pēc saglabāšanas veidne būs šajā dienā."
+ "Po zapisie szablon trafi na ten dzień.": "Pēc saglabāšanas veidne būs šajā dienā.",
+ "Dodaj ćwiczenia do szablonu „{name}”.": "Pievieno vingrinājumus veidnei “{name}”.",
+ "Dodaj ćwiczenia": "Pievienot vingrinājumus",
+ "Puste szablony: {n}": "Tukšas veidnes: {n}",
+ "Lista szablonów.": "Veidņu saraksts."
 }

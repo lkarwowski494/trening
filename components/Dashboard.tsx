@@ -4,7 +4,7 @@ import { useRouter } from 'expo-router';
 import { Btn, Muted, Txt, SectionTitle, Item } from '@/components/ui';
 import { useTheme, F, NUM_SCALE_MAX } from '@/lib/theme';
 import { fmtDate, fmtDur, getState, useTick, newTemplate } from '@/lib/store';
-import { weekTiles, lastWorkout, firstSteps } from '@/lib/dashboard';
+import { weekTiles, lastWorkout, firstSteps, emptyTemplates } from '@/lib/dashboard';
 import { fmtVol } from '@/lib/units';
 import { t, tp, lang, glue } from '@/lib/i18n';
 
@@ -36,6 +36,20 @@ export function WeekStats() {
   </>;
 }
 
+/** Krok 2 bez szablonu z ćwiczeniami (decyzja właściciela 09.10.2026): są puste szablony — „Dodaj ćwiczenia do szablonu „…”” z przejściem do edycji
+ * ostatnio zmienianego; kilka pustych — dodatkowo liczba i lista Szablony; brak szablonów — „Najpierw utwórz szablon.” jak dotąd. */
+function EmptyHint() {
+  const router = useRouter(); const empty = emptyTemplates(); const x = empty[0];
+  if (!x) return <Muted style={{ fontSize: 12 }}>{t('Najpierw utwórz szablon.')}</Muted>;
+  return <View style={{ gap: 6 }}>
+    <Muted style={{ fontSize: 12 }}>{t('Dodaj ćwiczenia do szablonu „{name}”.', { name: x.name })}</Muted>
+    <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6 }}>
+      <Btn nav small title={t('Dodaj ćwiczenia')} accessibilityLabel={t('Dodaj ćwiczenia do szablonu „{name}”.', { name: x.name })} onPress={() => router.push(`/template/${x.id}?edit=1`)} />
+      {empty.length > 1 ? <Btn nav small kind="ghost" title={t('Puste szablony: {n}', { n: empty.length })} accessibilityHint={t('Lista szablonów.')} onPress={() => router.navigate('/templates')} /> : null}
+    </View>
+  </View>;
+}
+
 /** Nowa osoba: kroki do pierwszego treningu (znikają po pierwszym zakończonym treningu). Audyt 0.10 UX-12 (wariant A): krok 1 z dwoma równorzędnymi
  * przyciskami (bez odsyłania do przycisku poza ekranem), krok 2 nieaktywny bez szablonu, opcjonalny krok „Miejsca i sprzęt”, krok pierwszego treningu
  * jednym zdaniem z odesłaniem do tematu przewodnika „Trening i serie”; pusty stan pod spodem znika, gdy widać „Pierwsze kroki” (ekran Trening). */
@@ -60,7 +74,7 @@ export function FirstSteps() {
         <Btn nav key="new" small title={t('+ Nowy szablon')} onPress={() => { const x = newTemplate(); router.push(`/template/${x.id}?edit=1&new=1`); }} />,
         <Btn nav key="gen" small title={t('Wygeneruj szablony i plan')} onPress={() => router.push('/generator')} />) : undefined)}
       {step(f.plan, 2, t('Ustaw plan tygodnia — zobaczysz tu dzisiejszy trening i dostaniesz przypomnienie.'), !f.plan ? (f.template ? row(<Btn nav key="plan" small title={t('Plan tygodnia')} onPress={() => router.push('/plan')} />,
-        <Btn nav key="own" small title={t('Plan z moich szablonów')} onPress={() => router.push('/generator?mode=own')} />) /* 09.10.2026 (B) */ : <Muted style={{ fontSize: 12 }}>{t('Najpierw utwórz szablon.')}</Muted>) : undefined)}
+        <Btn nav key="own" small title={t('Plan z moich szablonów')} onPress={() => router.push('/generator?mode=own')} />) /* 09.10.2026 (B) */ : <EmptyHint />) : undefined)}
       {step(places, 3, t('Opcjonalnie: dodaj miejsce i sprzęt — wybór ćwiczeń i podpowiedzi ciężarów dopasują się do niego.'), !places ? <Btn nav small kind="ghost" title={t('Miejsca i sprzęt')} onPress={() => router.push('/more/locations')} style={{ alignSelf: 'flex-start' }} /> : undefined)}
       {step(false, 4, t('Pierwszy trening: „Start” przy szablonie niżej albo „Pusty trening”.'), <Btn nav small kind="ghost" title={t('Jak to działa')} accessibilityLabel={t('Przewodnik: {name}', { name: t('Trening i serie') })} onPress={() => router.push('/guide?topic=workout')} style={{ alignSelf: 'flex-start' }} />)}
     </View>);

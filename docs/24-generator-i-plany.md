@@ -67,6 +67,8 @@ Decyzje właściciela: docs/18 (08.10.2026). Reguły merytoryczne: docs/research
 - „+ Nowy szablon” w edytorze planu (każdy wiersz dnia, aktywny i zapisany plan) i w panelu dnia Kalendarza (B, docs/18 ok. 14:45): edycja nowego
   szablonu, po „Zapisz” szablon trafia na ten dzień tego wariantu planu (`assignNewTemplate`: `week:i`, `saved:id:i`, `day:data` od dziś);
   „Anuluj” nic nie przypisuje, pusty niezapisany szablon znika jak dotąd.
+- „Pierwsze kroki” przy pustych szablonach: „Dodaj ćwiczenia do szablonu „…”” (ostatnio zmieniany) z przejściem do edycji; kilka pustych — dodatkowo
+  „Puste szablony: n” → lista Szablony.
 
 ## 4. Otwarte
 - Audyt 0.10 (08.10.2026): rejestr decyzji na Dysku — ADR-041 ma jeszcze sformułowanie „150–300 min ruchu” (do poprawy na „co najmniej 150–300 min

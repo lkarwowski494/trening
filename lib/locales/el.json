@@ -1297,5 +1297,9 @@
  "Zapisz plan": "Αποθήκευση προγράμματος",
  "Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.": "Κάτω από {n} σετ την εβδομάδα: {list}. Είναι το κατώτερο όριο που συνιστάται για αύξηση μυϊκής μάζας· σετ προσθέτεις στα πρότυπα.",
  "Moje szablony, {n}× w tygodniu": "Τα πρότυπά μου, {n}× την εβδομάδα",
- "Po zapisie szablon trafi na ten dzień.": "Μετά την αποθήκευση, το πρότυπο μπαίνει σε αυτή την ημέρα."
+ "Po zapisie szablon trafi na ten dzień.": "Μετά την αποθήκευση, το πρότυπο μπαίνει σε αυτή την ημέρα.",
+ "Dodaj ćwiczenia do szablonu „{name}”.": "Πρόσθεσε ασκήσεις στο πρότυπο «{name}».",
+ "Dodaj ćwiczenia": "Προσθήκη ασκήσεων",
+ "Puste szablony: {n}": "Κενά πρότυπα: {n}",
+ "Lista szablonów.": "Λίστα προτύπων."
 }

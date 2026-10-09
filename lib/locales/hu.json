@@ -1297,5 +1297,9 @@
  "Zapisz plan": "Terv mentése",
  "Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.": "Heti {n} sorozat alatt: {list}. Ez az izomépítéshez ajánlott alsó határ; sorozatokat a sablonokban adhatsz hozzá.",
  "Moje szablony, {n}× w tygodniu": "Saját sablonok, heti {n}×",
- "Po zapisie szablon trafi na ten dzień.": "Mentés után a sablon erre a napra kerül."
+ "Po zapisie szablon trafi na ten dzień.": "Mentés után a sablon erre a napra kerül.",
+ "Dodaj ćwiczenia do szablonu „{name}”.": "Adj gyakorlatokat a(z) „{name}” sablonhoz.",
+ "Dodaj ćwiczenia": "Gyakorlatok hozzáadása",
+ "Puste szablony: {n}": "Üres sablonok: {n}",
+ "Lista szablonów.": "Sablonok listája."
 }

@@ -1297,5 +1297,9 @@
  "Zapisz plan": "Guardar plan",
  "Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.": "Menos de {n} series a la semana: {list}. Es el umbral mínimo recomendado para ganar músculo; las series se añaden en las plantillas.",
  "Moje szablony, {n}× w tygodniu": "Mis plantillas, {n}× por semana",
- "Po zapisie szablon trafi na ten dzień.": "Al guardarla, la plantilla quedará en este día."
+ "Po zapisie szablon trafi na ten dzień.": "Al guardarla, la plantilla quedará en este día.",
+ "Dodaj ćwiczenia do szablonu „{name}”.": "Añade ejercicios a la plantilla «{name}».",
+ "Dodaj ćwiczenia": "Añadir ejercicios",
+ "Puste szablony: {n}": "Plantillas vacías: {n}",
+ "Lista szablonów.": "Lista de plantillas."
 }

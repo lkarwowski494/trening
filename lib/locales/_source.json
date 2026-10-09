@@ -853,6 +853,14 @@
   "en": "Add weight"
  },
  {
+  "pl": "Dodaj ćwiczenia",
+  "en": "Add exercises"
+ },
+ {
+  "pl": "Dodaj ćwiczenia do szablonu „{name}”.",
+  "en": "Add exercises to the template “{name}”."
+ },
+ {
   "pl": "Dodaj notatkę",
   "en": "Add note"
  },
@@ -1612,6 +1620,10 @@
  {
   "pl": "Lista możliwości: przesunięcie planu, przeniesienie tylko tego treningu, zamiana albo wolne — z uwzględnieniem regeneracji partii.",
   "en": "List of options: move the plan, move only this workout, swap or rest — with muscle-group recovery in mind."
+ },
+ {
+  "pl": "Lista szablonów.",
+  "en": "List of templates."
  },
  {
   "pl": "Lista: ćwiczenia i serie jak w poprzednich wersjach, bez karty.",
@@ -3278,6 +3290,10 @@
  {
   "pl": "Pusta nazwa folderu",
   "en": "Empty folder name"
+ },
+ {
+  "pl": "Puste szablony: {n}",
+  "en": "Empty templates: {n}"
  },
  {
   "pl": "pusto — zaznaczysz, co masz",

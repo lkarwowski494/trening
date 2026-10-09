@@ -1297,5 +1297,9 @@
  "Zapisz plan": "Uložit plán",
  "Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.": "Pod {n} sérií týdně: {list}. To je spodní hranice doporučená pro nárůst svalů; série přidáš v šablonách.",
  "Moje szablony, {n}× w tygodniu": "Moje šablony, {n}× týdně",
- "Po zapisie szablon trafi na ten dzień.": "Po uložení bude šablona v tomto dni."
+ "Po zapisie szablon trafi na ten dzień.": "Po uložení bude šablona v tomto dni.",
+ "Dodaj ćwiczenia do szablonu „{name}”.": "Přidej cviky do šablony „{name}“.",
+ "Dodaj ćwiczenia": "Přidat cviky",
+ "Puste szablony: {n}": "Prázdné šablony: {n}",
+ "Lista szablonów.": "Seznam šablon."
 }

@@ -1297,5 +1297,9 @@
  "Zapisz plan": "Plan opslaan",
  "Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.": "Minder dan {n} sets per week: {list}. Dit is de ondergrens die wordt aanbevolen voor spieropbouw; sets voeg je toe in de sjablonen.",
  "Moje szablony, {n}× w tygodniu": "Mijn sjablonen, {n}× per week",
- "Po zapisie szablon trafi na ten dzień.": "Na opslaan komt het sjabloon op deze dag."
+ "Po zapisie szablon trafi na ten dzień.": "Na opslaan komt het sjabloon op deze dag.",
+ "Dodaj ćwiczenia do szablonu „{name}”.": "Voeg oefeningen toe aan het sjabloon ‘{name}’.",
+ "Dodaj ćwiczenia": "Oefeningen toevoegen",
+ "Puste szablony: {n}": "Lege sjablonen: {n}",
+ "Lista szablonów.": "Lijst met sjablonen."
 }

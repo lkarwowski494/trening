@@ -1297,5 +1297,9 @@
  "Zapisz plan": "Salvesta plaan",
  "Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.": "Alla {n} seeria nädalas: {list}. See on lihasmassi kasvatamiseks soovitatud alampiir; seeriaid lisad mallides.",
  "Moje szablony, {n}× w tygodniu": "Minu mallid, {n}× nädalas",
- "Po zapisie szablon trafi na ten dzień.": "Pärast salvestamist läheb mall sellele päevale."
+ "Po zapisie szablon trafi na ten dzień.": "Pärast salvestamist läheb mall sellele päevale.",
+ "Dodaj ćwiczenia do szablonu „{name}”.": "Lisa mallile „{name}“ harjutusi.",
+ "Dodaj ćwiczenia": "Lisa harjutusi",
+ "Puste szablony: {n}": "Tühjad mallid: {n}",
+ "Lista szablonów.": "Mallide loend."
 }
