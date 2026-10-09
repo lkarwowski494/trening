@@ -808,4 +808,5 @@ export const EN: Record<string, string> = {
   'W trakcie': 'Midway',
   'Pozycja końcowa': 'End position',
   'Rysunek schematyczny — pozycje orientacyjne.': 'Schematic drawing — positions are approximate.',
+  'zakładka, {i} z {n}': 'tab, {i} of {n}',
 };

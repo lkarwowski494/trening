@@ -671,7 +671,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     expect(screen.getByLabelText('Postęp treningu: 15 z 16 serii')).toBeTruthy(); expect(screen.getByText('chwyt nachwytem')).toBeTruthy();
     expect(screen.getByText('📍 Dom testowy ▾')).toBeTruthy();
     /* zakładka Trening z plakietką pozostałej przerwy, także z innej zakładki */
-    await go('/history'); await flushAll(10); expect(screen.getByLabelText(/^Trening, przerwa \+?\d+:\d\d$/)).toBeTruthy(); /* każde przejście ekranu w testach przesuwa zegar — przerwa mogła już minąć (+) */
+    await go('/history'); await flushAll(10); expect(screen.getByLabelText(/^Trening, przerwa \+?\d+:\d\d, zakładka, 1 z 5$/)).toBeTruthy(); /* każde przejście ekranu w testach przesuwa zegar — przerwa mogła już minąć (+) */
     await go('/'); await flushAll(10);
     /* koniec przerwy: „przerwa minęła” */
     await flushAll(120000); expect(screen.queryByText('przerwa minęła') ?? screen.queryByText(/^przerwa z/)).toBeTruthy();

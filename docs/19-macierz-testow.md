@@ -9,7 +9,7 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 |---|---|---|---|
 | EKRAN | 26 | 26 | 0 |
 | UI | 273 | 273 | 0 |
-| TEKST | 747 | 747 | 0 |
+| TEKST | 748 | 748 | 0 |
 | LOGIKA | 584 | 584 | 0 |
 | WYMIAR | 13 | 13 | 0 |
 
@@ -630,7 +630,7 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | Nie ma żadnej serii z wynikiem — nic do zapisania. | app/history/edit/[id].tsx | tests/edit-history.test.tsx, tests/scenario-full.test.tsx |
 | Nie ma żadnej serii z wynikiem. | lib/edit.ts | tests/matrix-ui.test.tsx |
 | Nie masz jeszcze miejsc treningu, więc plan zakłada pełną siłownię (sztanga, hantle, maszyny i wyciągi). Trenujesz w domu albo w hotelu? Stuknij „+ Dodaj miejsce” i zaznacz sprzęt — generator dobierze ćwiczenia. | app/generator.tsx | tests/audit-0.10-gen-ui.test.tsx |
-| Nie masz jeszcze szablonów — utwórz pierwszy albo zacznij pusty trening. | app/(tabs)/index.tsx | tests/audit-0.10-ui.test.tsx, tests/flows.test.tsx, tests/scenario-full.test.tsx +1 |
+| Nie masz jeszcze szablonów — utwórz pierwszy albo zacznij pusty trening. | app/(tabs)/index.tsx | tests/audit-0.10-ui.test.tsx, tests/flows.test.tsx, tests/scenario-full.test.tsx |
 | Nie masz jeszcze szablonów. | app/plan.tsx | tests/plan-calendar-ui.test.tsx |
 | nie podano — e1RM podciągania i pompek | app/more/settings.tsx | tests/audit-0.10-stats-ui.test.tsx, .maestro/15-masa-licencje.yaml |
 | Nie udało się | app/(tabs)/index.tsx | tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-lang-ui.test.tsx, tests/matrix-data-fuzz.test.ts +4 |
@@ -1019,6 +1019,7 @@ to warunek konieczny, nie dowód — przepływy i logikę sprawdzają testy scen
 | Zacznij z szablonu | app/(tabs)/index.tsx | tests/edit-history.test.tsx, tests/guide.test.tsx, tests/matrix-dim-langs1.test.tsx +7 |
 | Zaczynasz od tej wersji — poniżej zmiany dla osób, które korzystały z poprzednich. Na start przyda się przewodnik. | components/WhatsNew.tsx | tests/audit-0.10-ui.test.tsx |
 | Zaimportowano | app/more/backup.tsx | tests/scenario-full.test.tsx |
+| zakładka, {i} z {n} | app/(tabs)/_layout.tsx | tests/matrix-a11y.test.tsx, tests/regress.test.tsx, tests/scenario-full.test.tsx |
 | Zakończ trening | components/ActiveWorkout.tsx | tests/audit-0.10-live.test.tsx, tests/audit-backlog-r75.test.tsx, tests/audit-close2-b.test.tsx +15 |
 | Zakończyć trening? | components/ActiveWorkout.tsx | tests/audit-0.10-live.test.tsx, tests/audit-0.10-ui.test.tsx, tests/audit-backlog-r75.test.tsx +16 |
 | zakres | app/template/[id].tsx | tests/audit-0.10-data.test.ts, tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-gen.test.ts +31 |

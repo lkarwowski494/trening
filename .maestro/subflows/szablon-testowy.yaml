@@ -7,7 +7,6 @@
 # Nie jest na liście w config.yaml — uruchamiany tylko przez runFlow.
 #
 # Literały (EN z lib/i18n.en.ts, chyba że zaznaczono inaczej):
-#   "No templates yet — create…"  ← 'Nie masz jeszcze szablonów — utwórz pierwszy albo zacznij pusty trening.' (app/(tabs)/index.tsx, pusty stan)
 #   "\+ New template"             ← '+ Nowy szablon'   (Btn w pustym stanie app/(tabs)/index.tsx; accessibilityLabel = tytuł)
 #   "\+ Add exercise"             ← '+ Dodaj ćwiczenie' (Btn w app/template/[id].tsx)
 #   "New template"                ← wartość pola Nazwa nowego szablonu: 'Nowy szablon' (lib/store.ts newTemplate) — dopasowanie po wartości pola
@@ -22,7 +21,7 @@
 appId: pl.lukasz.trening
 ---
 - scrollUntilVisible: { element: "\\+ New template", direction: DOWN, timeout: 60000 }
-- assertVisible: "No templates yet — create your first one or start an empty workout."
+# (E2E 88) pusty stan „No templates yet…” nie jest pokazywany przy „First steps” (UX-12 A) — bez asercji tutaj; pusty stan: tests/audit-0.10-ui.test.tsx
 - tapOn: "\\+ New template"
 - extendedWaitUntil: { visible: "\\+ Add exercise", timeout: 30000 }
 # Pole „Name” ma wartość „New template” (zaznacza się całe przy fokusie)
