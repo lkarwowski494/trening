@@ -1801,8 +1801,11 @@ export function setEquipment(e: Exercise, eq: Exercise['equipment']) { if (e.equ
    * catalogRev 'user' (start aplikacji go nie nadpisze katalogiem) */
   if (e.lib) { e.requires = []; e.recommended = []; delete e.implements; e.catalogRev = 'user'; }
   /* macierz niezmienników 06.10 (L5): bloki tego ćwiczenia w treningu w toku bez odhaczonych serii dostają przyrząd wg nowego sprzętu — jak przy zmianie sprzętu miejsca */
-  const a = getState().active; if (a && a.exercises.some(x => x.exerciseId === e.id)) { restampUntouched(a); save(a); }
-  save(e); }
+  exerciseEdited(e.id); save(e); }
+/** Po zmianie ćwiczenia (sprzęt, źródło obciążenia, wymagania): bloki tego ćwiczenia w treningu w toku bez odhaczonych serii dostają przyrząd
+ * wg ćwiczenia — reguła L5. Wspólne dla setEquipment i „Zapisz” szkicu ćwiczenia (lib/draft.ts; audyt kontrolny 1, UI2-01: przyrząd decyduje
+ * o mnożniku stacji ×2 w objętości i rekordach). */
+export function exerciseEdited(exId: string) { const a = getState().active; if (a && a.exercises.some(x => x.exerciseId === exId)) { restampUntouched(a); save(a); } }
 /** „Przywróć …” (lista ćwiczeń, wybór, zamiana): bez pola archived — tak samo jak po wczytaniu danych (migrate usuwa archived ≠ true; macierz niezmienników 06.10). */
 export function restoreExercise(e: Exercise) { delete e.archived; save(e); }
 /** Czy ćwiczenie występuje w historii lub w treningu w toku. */

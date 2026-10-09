@@ -312,7 +312,8 @@ async function step(x: Act, m: Model, where: string) {
     /* ===== ćwiczenia ===== */
     case 'newEx': { const raw = NAMES[x.b % NAMES.length]; store.newExercise(raw.replace(/\s+/g, ' ').trim() || undefined); break; } /* app/(tabs)/exercises.tsx: „Utwórz …” */
     case 'equip': { const e = pick(exs, x.b); if (e) { const eq = (['hantle', 'sztanga', 'masa ciała', 'maszyna', 'linki', 'inne'] as const)[x.c % 6];
-      store.setEquipment(e, eq); implFresh(where, S().active?.exercises.filter(b => b.exerciseId === e.id)); } /* tylko bloki zmienionego ćwiczenia: inne mogą mieć przyrząd sprzed cofnięcia odhaczenia (reguła „przelicz przy zmianie”) */ break; }
+      /* UI2-01 (audyt kontrolny 1): ekran ćwiczenia zmienia sprzęt na szkicu („Edytuj → Zapisz”, lib/draft.ts) — obie ścieżki przeliczają przyrząd (L5) */
+      if (x.a % 2) { const d = draft.beginObjDraft<Exercise>('exercise', e.id); if (d) { store.setEquipment(d, eq); draft.commitObjDraft('exercise', e.id); hit('equipDraft'); } } else store.setEquipment(e, eq); implFresh(where, S().active?.exercises.filter(b => b.exerciseId === e.id)); } /* tylko bloki zmienionego ćwiczenia: inne mogą mieć przyrząd sprzed cofnięcia odhaczenia (reguła „przelicz przy zmianie”) */ break; }
     case 'metric': { const e = pick(exs, x.b); if (e) { e.metric = METRICS[x.c % METRICS.length]; store.save(e); } break; } /* app/exercise/[id].tsx:25 */
     case 'bandAssist': { const e = pick(exs, x.b); if (e) { e.bandAssistable = !e.bandAssistable; store.save(e); } break; }
     case 'delEx': { const e = pick(exs, x.b); if (!e) break; const used = store.exerciseUsed(e.id);
