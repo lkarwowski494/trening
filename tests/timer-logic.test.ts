@@ -95,7 +95,7 @@ describe('tick i powrót z tła', () => {
     await timer.start(30); const sub = jest.fn(); const off = timer.subscribe(sub);
     jest.setSystemTime(NOW + 29.4e3); timer.tick(); expect(timer.T.alarmed).toBe(false); /* zostało 0,6 s → zaokrąglone 1 */
     jest.setSystemTime(NOW + 29.6e3); timer.tick(); expect(timer.T.alarmed).toBe(true); expect(haptic).toHaveBeenCalledTimes(1); expect(la().slice(-1)).toEqual([['end']]); expect(sub).toHaveBeenCalled();
-    timer.tick(); expect(haptic).toHaveBeenCalledTimes(1); off();
+    timer.tick(); expect(haptic).toHaveBeenCalledTimes(1); off(); const n = sub.mock.calls.length; await timer.stop(); expect(sub.mock.calls.length).toBe(n); /* po odpięciu — bez powiadomień */
   });
   test('tick: dźwięk wyłączony — alarm bez wibracji; bez przerwy — nic', async () => {
     S().settings.sound = false; await timer.start(5); jest.setSystemTime(NOW + 6e3); timer.tick(); expect(timer.T.alarmed).toBe(true); expect(haptic).not.toHaveBeenCalled();

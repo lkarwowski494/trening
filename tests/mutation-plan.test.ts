@@ -238,3 +238,24 @@ describe('propozycje (suggest)', () => {
     expect(mv.placed).toEqual([{ id: A, to: '2026-10-10' }]); expect(mv.changes).toBe(2); expect(mv.ov).toEqual({ [TODAY]: null, '2026-10-10': A });
   });
 });
+
+describe('granice po drugim przebiegu Strykera (09.10.2026)', () => {
+  test('activatePlan: dzisiejsza zmiana dnia odchodzi z poprzednim planem także wtedy, gdy nowy plan nie ma zmian na dziś', () => {
+    plan.setWeekDay(3, A); S().planOverrides = { [TODAY]: B }; plan.newPlan('Nowy'); plan.activatePlan(plan.savedPlans()[0].id);
+    expect(S().planOverrides).toBeUndefined();
+  });
+  test('powrót do rutyny: ostatnia zmiana w dniu RETURN_DAYS − 1 od startu — „wraca”; dzień później — nie', () => {
+    for (let i = 0; i < plan.RETURN_DAYS - 1; i++) plan.setDayPlan(plan.addDays(TODAY, i), A); /* dziś … +8 z treningiem, +9 wolny */
+    expect(plan.suggest(TODAY, TODAY).find(x => x.kind === 'shift')!.returns).toBe(true);
+    plan.setDayPlan(plan.addDays(TODAY, plan.RETURN_DAYS - 1), A); /* +9 też z treningiem — łańcuch kończy się na +10 */
+    expect(plan.suggest(TODAY, TODAY).find(x => x.kind === 'shift')!.returns).toBe(false);
+  });
+  test('swapDays: drugi dzień = dziś (pierwszy jutro) — zamiana działa', () => {
+    plan.setWeekDay(3, A); plan.setWeekDay(4, B); plan.swapDays(TOMO, TODAY, TODAY);
+    expect([plan.plannedOn(TODAY, TODAY), plan.plannedOn(TOMO, TODAY)]).toEqual([B, A]);
+  });
+  test('nazwy: dopisek wielocyfrowy „(10)” zdejmowany przed nowym numerem; „(2)” w środku nazwy zostaje', () => {
+    plan.setWeekDay(0, A); plan.setPlanName('Plan (10)'); plan.newPlan('Plan (10)'); expect(plan.savedPlans()[0].name).toBe('Plan (2)');
+    plan.setPlanName('Plan (2) x'); plan.newPlan('Plan (2) x'); expect(plan.savedPlans()[1].name).toBe('Plan (2) x (2)');
+  });
+});
