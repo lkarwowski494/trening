@@ -1,18 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { Screen, H1, Item, Muted } from '@/components/ui';
 import Constants from 'expo-constants';
-import { getProfileExpiry } from '@/lib/signing';
 import { useHistTick } from '@/lib/store';
-import { t, locale, appName } from '@/lib/i18n';
+import { t, appName } from '@/lib/i18n';
 import { guideProgress } from '@/lib/guide';
 
 export default function MoreScreen() {
-  const tick = useHistTick(); const router = useRouter(); const [exp, setExp] = useState<Date | null>(null);
-  useEffect(() => { getProfileExpiry().then(setExp).catch(() => {}); }, [tick]); // runda 31: odświeżane po powrocie z tła
-  const expTxt = exp && exp.getTime() - Date.now() < 30 * 86400e3 ? ' ' + t('Podpis ważny do {d}.', { d: `${exp.toLocaleDateString(locale(), { day: 'numeric', month: 'short' })} ${exp.toLocaleTimeString(locale(), { hour: '2-digit', minute: '2-digit' })}` }) : '';
+  useHistTick(); /* odświeżenie licznika przewodnika */ const router = useRouter();
   return (
     <SafeAreaView style={{ flex: 1 }} edges={['top']}><Screen>
       <View style={{ marginVertical: 10 }}><H1>{t('Więcej')}</H1></View>
@@ -23,7 +20,7 @@ export default function MoreScreen() {
       <Item title={t('Kopia zapasowa (eksport / import)')} /* H2 (audyt 0.10): „Kopia zapasowa” zamiast „Backup” (folder w Plikach zostaje „Backup”) */ onPress={() => router.push('/more/backup')} />
       <Item title={t('Ustawienia')} onPress={() => router.push('/more/settings')} />
       <Item title={t('O aplikacji')} onPress={() => router.push('/more/about')} />{/* audyt 0.10 SEC-08: wersja i licencje open source */}
-      <Muted style={{ marginTop: 20, fontSize: 12 }}>{/* decyzja właściciela 06.10.2026: tylko numer wersji, małym drukiem */}{`${appName()} ${Constants.expoConfig?.version ?? ''}`}{expTxt}</Muted>
+      <Muted style={{ marginTop: 20, fontSize: 12 }}>{/* decyzja właściciela 06.10.2026: tylko numer wersji, małym drukiem */}{`${appName()} ${Constants.expoConfig?.version ?? ''}`}</Muted>
     </Screen></SafeAreaView>
   );
 }

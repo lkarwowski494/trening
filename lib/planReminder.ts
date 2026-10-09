@@ -48,6 +48,15 @@ export function planReminderKey(now = Date.now()) {
   return `${planReminderOn()}|${lang()}|${today}|${dayStatus(today).status}|${activeDay() ?? ''}|${days.join(',')}|${st.templates.map(x => x.id + x.name + (x.items.length ? '' : '∅')).join(',')}`;
 }
 
+/** Identyfikatory powiadomień, których aplikacja już nie planuje: przypomnienie o odnowieniu podpisu (T-053) — usunięte razem z instalacją
+ * z komputera (decyzja właściciela 09.10.2026, docs/18: instalacja tylko przez TestFlight). Instalacja buildu z TestFlight na miejsce
+ * dawnego zachowuje dane i zaplanowane powiadomienia, więc stare przypomnienie przyszłoby z nieaktualną treścią. */
+export const LEGACY_REMINDER_IDS: readonly string[] = ['signing-reminder'];
+/** Odwołuje stare powiadomienia (LEGACY_REMINDER_IDS) — przy każdym starcie; idempotentne, błąd iOS nie przerywa startu. */
+export async function cancelLegacyReminders(): Promise<void> {
+  for (const id of LEGACY_REMINDER_IDS) { try { await Notifications.cancelScheduledNotificationAsync(id); } catch {} }
+}
+
 export type ReminderPermission = 'granted' | 'denied' | 'undetermined';
 /** Stan zgody na powiadomienia (Ustawienia, audyt 0.10 I1): odmowa — iOS już nie zapyta, zgodę zmienia się w Ustawieniach iOS. */
 export async function reminderPermission(): Promise<ReminderPermission> {

@@ -1442,10 +1442,6 @@
   "en": "tomorrow"
  },
  {
-  "pl": "Jutro wygasa podpis aplikacji",
-  "en": "App signature expires tomorrow"
- },
- {
   "pl": "już w treningu",
   "en": "already in workout"
  },
@@ -2892,26 +2888,6 @@
  {
   "pl": "Podgląd",
   "en": "Preview"
- },
- {
-  "pl": "Podpis aplikacji wygasa dziś.",
-  "en": "App signature expires today."
- },
- {
-  "pl": "Podpis aplikacji wygasa za {n} {d}.",
-  "en": "App signature expires in {n} {d}."
- },
- {
-  "pl": "Podpis aplikacji wygasł — odnów w Sideloadly.",
-  "en": "App signature expired — renew it in Sideloadly."
- },
- {
-  "pl": "Podpis aplikacji wygasł — zbuduj ją od nowa w GitHubie.",
-  "en": "App signature expired — rebuild the app on GitHub."
- },
- {
-  "pl": "Podpis ważny do {d}.",
-  "en": "Signature valid until {d}."
  },
  {
   "pl": "Podpowiedź progresji",
@@ -5330,22 +5306,6 @@
  {
   "pl": "Zrobiony inny trening: {name}",
   "en": "Did a different workout: {name}"
- },
- {
-  "pl": "Zrób backup (Więcej → Backup) i odnów w Sideloadly. Dane zostają.",
-  "en": "Make a backup (More → Backup) and renew in Sideloadly. Your data stays."
- },
- {
-  "pl": "Zrób backup (Więcej → Backup) i zbuduj aplikację od nowa w GitHubie: iPhone (EAS) → build. Dane zostają.",
-  "en": "Make a backup (More → Backup) and rebuild the app on GitHub: iPhone (EAS) → build. Your data stays."
- },
- {
-  "pl": "Zrób backup i odnów w Sideloadly (ok. 2 min). Dane zostają w telefonie.",
-  "en": "Make a backup and renew in Sideloadly (about 2 min). Your data stays on the phone."
- },
- {
-  "pl": "Zrób backup, potem w GitHubie: Actions → iPhone (EAS) → build i zainstaluj z linku. Dane zostają w telefonie.",
-  "en": "Make a backup, then on GitHub: Actions → iPhone (EAS) → build, and install from the link. Your data stays on the phone."
  },
  {
   "pl": "Zwiń inne ćwiczenia",

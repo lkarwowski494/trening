@@ -6,7 +6,6 @@ import { Appearance } from 'react-native';
 import { renderHook, act as hookAct } from '@testing-library/react-native';
 import * as store from '@/lib/store';
 import * as timer from '@/lib/timer';
-import * as signing from '@/lib/signing';
 import * as edit from '@/lib/edit';
 import * as backup from '@/lib/backup';
 import * as i18n from '@/lib/i18n';
@@ -353,74 +352,6 @@ describe('seed.libExercise', () => {
     /* nazwa spoza katalogu: partia z grupy, bez wymagań (zawsze dostępne) */
     const own = libExercise(['Coś nowego', 'plecy', 'linki']); expect(own.muscles).toEqual(['plecy']); expect(own.requires).toEqual([]); expect(own.loadSource).toBe('cable');
     expect(libExercise(['Inne coś', 'cardio', 'inne']).muscles).toEqual([]);
-  });
-});
-
-/* ============================== signing ============================== */
-const profileB64 = (created: number, expires: number, extra = '') => Buffer.from(`0\u0082garbage<?xml version="1.0"?><plist version="1.0"><dict><key>CreationDate</key><date>${new Date(created).toISOString().replace(/\.\d+Z$/, 'Z')}</date>${extra}<key>ExpirationDate</key><date>${new Date(expires).toISOString().replace(/\.\d+Z$/, 'Z')}</date></dict></plist>`, 'latin1').toString('base64');
-const useProfile = (b64: string | null) => {
-  signing.__resetSigningCache();
-  (global as { __bundleDir?: string | null }).__bundleDir = b64 ? '/var/containers/Bundle/Application/X/Trening.app/' : null;
-  FS.getInfoAsync.mockImplementation(async (uri: string) => ({ exists: !!b64 && uri.endsWith('embedded.mobileprovision') }));
-  FS.readAsStringAsync.mockImplementation(async (uri: string) => (b64 && uri.endsWith('embedded.mobileprovision') ? b64 : ''));
-};
-describe('signing', () => {
-  afterEach(() => { useProfile(null); FS.getInfoAsync.mockImplementation(async () => ({ exists: false })); FS.readAsStringAsync.mockImplementation(async () => ''); i18n.applyLang('pl'); });
-
-  describe('signing.renewTexts', () => {
-    test('Sideloadly i nowy build — różne teksty, każdy wspomina właściwą drogę (pl i en)', () => {
-      const s = signing.renewTexts('sideloadly'), r = signing.renewTexts('rebuild');
-      for (const v of Object.values(s)) { expect(v).toMatch(/Sideloadly/); expect(v).not.toMatch(/GitHub/); }
-      for (const v of Object.values(r)) { expect(v).toMatch(/GitHub/); expect(v).not.toMatch(/Sideloadly/); }
-      expect(s.expired).toBe('Podpis aplikacji wygasł — odnów w Sideloadly.');
-      expect(r.notify).toBe('Zrób backup (Więcej → Backup) i zbuduj aplikację od nowa w GitHubie: iPhone (EAS) → build. Dane zostają.');
-      i18n.applyLang('en'); const se = signing.renewTexts('sideloadly'), re = signing.renewTexts('rebuild');
-      for (const v of [...Object.values(se), ...Object.values(re)]) expect(v).not.toMatch(/[ąćęłńóśźż]|Zrób|Podpis/);
-      expect(se.expired).toMatch(/Sideloadly/); expect(re.expired).toMatch(/GitHub/);
-    });
-  });
-
-  describe('signing.getProfileInfo', () => {
-    test('brak profilu (sklep, Expo Go) → bez daty, droga główna', async () => {
-      useProfile(null); expect(await signing.getProfileInfo()).toEqual({ expiry: null, kind: 'rebuild' });
-    });
-    test('profil darmowego Apple ID (7 dni) → data i Sideloadly; ad hoc (get-task-allow false) → nowy build', async () => {
-      const c = Date.UTC(2026, 9, 2, 18, 37);
-      useProfile(profileB64(c, c + 7 * DAY)); const i = await signing.getProfileInfo();
-      expect(i.kind).toBe('sideloadly'); expect(i.expiry!.getTime()).toBe(c + 7 * DAY);
-      useProfile(profileB64(c, c + 7 * DAY, '<key>Entitlements</key><dict><key>get-task-allow</key><false/></dict>'));
-      expect((await signing.getProfileInfo()).kind).toBe('rebuild');
-    });
-    test('odczyt zapamiętany na godzinę; po godzinie czytany ponownie', async () => {
-      const c = Date.UTC(2026, 9, 2); useProfile(profileB64(c, c + 7 * DAY)); const now = Date.now();
-      expect((await signing.getProfileInfo()).expiry!.getTime()).toBe(c + 7 * DAY);
-      FS.readAsStringAsync.mockImplementation(async () => profileB64(c, c + 9 * DAY));
-      jest.spyOn(Date, 'now').mockReturnValue(now + 3599e3); expect((await signing.getProfileInfo()).expiry!.getTime()).toBe(c + 7 * DAY);
-      jest.spyOn(Date, 'now').mockReturnValue(now + 3601e3); expect((await signing.getProfileInfo()).expiry!.getTime()).toBe(c + 9 * DAY);
-    });
-    test('uszkodzony profil albo błąd odczytu → bez daty (bez wyjątku)', async () => {
-      useProfile('@@@'); expect((await signing.getProfileInfo()).expiry).toBeNull();
-      useProfile(profileB64(1, 2)); FS.readAsStringAsync.mockImplementation(async () => { throw new Error('io'); });
-      expect(await signing.getProfileInfo()).toEqual({ expiry: null, kind: 'rebuild' });
-    });
-  });
-
-  describe('signing.getProfileExpiry', () => {
-    test('data wygaśnięcia z profilu albo null', async () => {
-      useProfile(null); expect(await signing.getProfileExpiry()).toBeNull();
-      const c = Date.UTC(2026, 9, 2, 18, 37); useProfile(profileB64(c, c + 365 * DAY));
-      expect((await signing.getProfileExpiry())!.toISOString()).toBe(new Date(c + 365 * DAY).toISOString());
-    });
-  });
-
-  describe('signing.signingState', () => {
-    test('dni kalendarzowe do wygaśnięcia i sposób odnowienia; > 30 dni → null; po czasie → −1; bez profilu → null', async () => {
-      useProfile(null); expect(await signing.signingState()).toEqual({ days: null, kind: 'rebuild' });
-      const now = new Date(); const at = (d: number) => new Date(now.getFullYear(), now.getMonth(), now.getDate() + d, 12).getTime();
-      useProfile(profileB64(at(-2), at(5))); expect(await signing.signingState()).toEqual({ days: 5, kind: 'sideloadly' });
-      useProfile(profileB64(at(-300), at(60))); expect(await signing.signingState()).toEqual({ days: null, kind: 'rebuild' });
-      useProfile(profileB64(at(-8), Date.now() - 1000)); expect(await signing.signingState()).toEqual({ days: -1, kind: 'sideloadly' });
-    });
   });
 });
 
