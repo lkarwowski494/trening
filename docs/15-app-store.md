@@ -150,6 +150,12 @@ Rozmowa 05.10.2026, rano: „Chciałbym móc opublikować to w Apple Store” i 
     JPK_V7 i VAT-UE — opisane dla firmy; czy osoba bez firmy musi rejestrować VAT-UE — artykuł nie mówi (otwarte). Faktura zbiorcza
     za okres raportu Apple, kwota „zgodnie z raportem”; waluta (zwykle EUR) — kurs NBP z dnia poprzedzającego uzyskanie przychodu.
     Nie omawia: prowizji (brutto czy netto), W-8BEN.
+  - **Kierunek właściciela (09.10.2026, ok. 13:10): działalność nierejestrowana / bez firmy, rozliczana jako przychód z praw majątkowych
+    (licencja)** — „jak najmniej formalności”; do potwierdzenia u księgowego (VAT-UE, brutto/netto, W-8BEN, kod pisany z AI).
+    Szacunek podatku (agent, nie porada): przychód = wypłata Apple ≈ cena ÷ 1,23 (VAT PL) × 0,85 (prowizja 15% w Small Business Program);
+    PIT wg skali razem z pensją — 12% (32% powyżej progu; skala i próg na 2026 nieprzeczytane w ustawie — otwarte); bez ZUS i zdrowotnej;
+    koszty uzyskania 20%/50% — niepewne (interpretacja z 2021 odmówiła 50%), w szacunku pominięte. Polska: 3,99 zł → wypłata 2,76 zł →
+    podatek 0,33 zł → zostaje 2,43 zł; 19,99 zł/rok → 13,81 zł → 1,66 zł → 12,16 zł. Przy 2000 zł wypłat miesięcznie: 240 zł podatku (12%).
   - **Drogi w urzędzie skarbowym (09.10.2026):** 1) infolinia KAS (telefon, e-mail, czat) — bezpłatnie, szybko, bez mocy wiążącej;
     2) baza interpretacji Ministerstwa Finansów (EUREKA) — bezpłatnie, cudze sprawy, bez ochrony; 3) interpretacja indywidualna KIS —
     formularz ORD-IN (kreator ord-in.podatki.gov.pl; e-Urząd Skarbowy/ePUAP, podpis zaufany), **40 zł za każdy stan faktyczny lub zdarzenie
