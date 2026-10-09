@@ -127,6 +127,13 @@ Rozmowa 05.10.2026, rano: „Chciałbym móc opublikować to w Apple Store” i 
     przekroczenia, 7 dni na wpis do CEIDG; PIT-36 wg skali, bez ZUS; bieżąca ewidencja sprzedaży. Źródło: direct.money.pl, „Działalność
     nierejestrowana 2026: limit 10 813,50 zł, po przekroczeniu 7 dni na CEIDG” (19.08.2026) — omówienie, nie tekst ustawy; tekstu
     Prawa przedsiębiorców nie czytano (otwarte). Cel 2000 zł/mies. ≈ 6000 zł/kwartał — poniżej limitu.
+  - **Druga droga bez firmy — przychód z praw majątkowych (licencja):** interpretacja indywidualna Dyrektora Izby Skarbowej w Bydgoszczy
+    (wniosek z 15.08.2014; e-prawnik.pl/interpretacje-podatkowe/itpb1415-84314ak.html): programista sprzedający płatną wersję aplikacji m.in.
+    przez App Store — stanowisko „przychód z tytułu udzielenia licencji … z praw majątkowych (art. 18 ustawy o PIT)” uznane za **prawidłowe**;
+    PIT w zeznaniu rocznym wg skali, bez zaliczek. ifirma.pl (26.11.2020): bez działalności — „przychód ze sprzedaży praw majątkowych
+    (sprzedaż licencji)”; z działalnością — VAT-UE, odwrotne obciążenie (kontrahent: Apple w Irlandii). Zastrzeżenia: interpretacja wiąże
+    tylko wnioskodawcę, jest z 2014 r. i dotyczyła hobbystycznej aplikacji; subskrypcja, promocja i status tradera mogą przemawiać za
+    działalnością gospodarczą (ciągłą, zorganizowaną) — do oceny księgowego albo własnej interpretacji indywidualnej (KIS, opłata).
   - **Otwarte dla księgowego:** czy przychodem jest cena dla klienta czy wypłata od Apple (po prowizji i VAT); VAT od usługi dla Apple
     (podmiot zagraniczny) — czy potrzebna rejestracja VAT-UE; jak dokumentować wypłaty Apple.
 - **Priorytet produktu wynikający z celu:** zatrzymanie użytkowników (jakość, brak błędów, dane bezpieczne) ważniejsze niż liczba pobrań —
