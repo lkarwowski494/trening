@@ -1296,5 +1296,6 @@
  "Więcej dni niż szablonów: szablony po kolei (A, B, A…), jak w generatorze — konwencja.": "Enemmän päiviä kuin pohjia: pohjat järjestyksessä (A, B, A…) kuten generaattorissa — käytäntö.",
  "Zapisz plan": "Tallenna suunnitelma",
  "Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.": "Alle {n} sarjaa viikossa: {list}. Tämä on lihasmassan kasvattamiseen suositeltu alaraja; sarjoja lisäät pohjiin.",
- "Moje szablony, {n}× w tygodniu": "Omat pohjat, {n}× viikossa"
+ "Moje szablony, {n}× w tygodniu": "Omat pohjat, {n}× viikossa",
+ "Po zapisie szablon trafi na ten dzień.": "Tallennuksen jälkeen pohja tulee tälle päivälle."
 }

@@ -1296,5 +1296,6 @@
  "Więcej dni niż szablonów: szablony po kolei (A, B, A…), jak w generatorze — konwencja.": "Daugiau dienų nei šablonų: šablonai iš eilės (A, B, A…), kaip generatoriuje — susitarimas.",
  "Zapisz plan": "Išsaugoti planą",
  "Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.": "Mažiau nei {n} serijų per savaitę: {list}. Tai apatinė riba, rekomenduojama raumenų masei auginti; serijų pridėsi šablonuose.",
- "Moje szablony, {n}× w tygodniu": "Mano šablonai, {n}× per savaitę"
+ "Moje szablony, {n}× w tygodniu": "Mano šablonai, {n}× per savaitę",
+ "Po zapisie szablon trafi na ten dzień.": "Išsaugojus šablonas bus šią dieną."
 }

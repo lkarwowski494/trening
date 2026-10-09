@@ -1296,5 +1296,6 @@
  "Więcej dni niż szablonów: szablony po kolei (A, B, A…), jak w generatorze — konwencja.": "Más días que plantillas: plantillas en orden (A, B, A…), como en el generador — una convención.",
  "Zapisz plan": "Guardar plan",
  "Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.": "Menos de {n} series a la semana: {list}. Es el umbral mínimo recomendado para ganar músculo; las series se añaden en las plantillas.",
- "Moje szablony, {n}× w tygodniu": "Mis plantillas, {n}× por semana"
+ "Moje szablony, {n}× w tygodniu": "Mis plantillas, {n}× por semana",
+ "Po zapisie szablon trafi na ten dzień.": "Al guardarla, la plantilla quedará en este día."
 }

@@ -2794,6 +2794,10 @@
   "en": "After hiding this message the copy can no longer be sent from the app — send it first if you need it."
  },
  {
+  "pl": "Po zapisie szablon trafi na ten dzień.",
+  "en": "After saving, the template goes on this day."
+ },
+ {
   "pl": "Podgląd",
   "en": "Preview"
  },

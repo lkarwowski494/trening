@@ -1,6 +1,6 @@
-# Plan z moich szablonów (decyzja właściciela 09.10.2026, wariant B; docs/18 ok. 14:55).
+# Plan z moich szablonów i „+ Nowy szablon” w edytorze planu (decyzje właściciela 09.10.2026, wariant B; docs/18 ok. 14:45 i 14:55).
 # Logika i wszystkie przypadki: tests/plan-own-templates.test.ts, tests/plan-own-templates-ui.test.tsx. Tu: prawdziwe stuknięcia na symulatorze —
-# „Pierwsze kroki” → „Plan z moich szablonów” → podgląd → zapis i aktywacja → Plan tygodnia.
+# „Pierwsze kroki” → „Plan z moich szablonów” → podgląd → zapis i aktywacja → Plan tygodnia → „+ Nowy szablon” na wtorek → „Zapisz” → wtorek z nowym szablonem.
 #
 # Literały (EN z lib/i18n.en.ts):
 #   "Plan from my templates"          ← 'Plan z moich szablonów' (components/Dashboard.tsx „Pierwsze kroki”, app/plan.tsx, wybór trybu w app/generator.tsx)
@@ -9,7 +9,10 @@
 #   "Preview", "Save plan"            ← 'Podgląd', 'Zapisz plan'
 #   "Make the new plan active\?", "Make active" ← 'Ustawić nowy plan jako aktywny?', 'Ustaw jako aktywny' (to samo okno co generator)
 #   "Saved", "Weekly plan"            ← 'Zapisano', 'Plan tygodnia' (potwierdzenie zapisu)
-#   "Monday, Upper A"                 ← app/plan.tsx: wiersz dnia '{dzień}, {szablon albo Wolne}' (1 szablon × 3 dni → pon., śr., pt.)
+#   "Monday, Upper A", "Tuesday, Rest" ← app/plan.tsx: wiersz dnia '{dzień}, {szablon albo Wolne}' (1 szablon × 3 dni → pon., śr., pt.)
+#   "Tuesday: \+ New template"        ← app/plan.tsx: '{dzień}: ' + '+ Nowy szablon' (przycisk w rozwiniętym wierszu dnia)
+#   "\+ Add exercise", "Search exercises…", "Save template", "Edit template", "Back" ← jak w subflows/szablon-testowy.yaml
+#   "Tuesday, Lower B"                ← wiersz dnia po „Zapisz” nowego szablonu (przypisanie: lib/plan.ts assignNewTemplate)
 appId: pl.lukasz.trening
 name: Plan z moich szablonów
 ---
@@ -33,3 +36,23 @@ name: Plan z moich szablonów
 - tapOn: "Weekly plan"
 - extendedWaitUntil: { visible: "Monday, Upper A", timeout: 30000 }
 - takeScreenshot: 81-plan-aktywny
+# --- „+ Nowy szablon” na wtorek: edycja → ćwiczenie → „Zapisz” → szablon od razu na wtorku ---
+- tapOn: "Tuesday, Rest"
+- tapOn: "Tuesday: \\+ New template"
+- extendedWaitUntil: { visible: "\\+ Add exercise", timeout: 30000 }
+- tapOn: { text: "New template", below: "Name" }
+- eraseText: 30
+- inputText: "Lower B"
+- pressKey: Enter
+- tapOn: "\\+ Add exercise"
+- extendedWaitUntil: { visible: "Search exercises…", timeout: 30000 }
+- tapOn: "Search exercises…"
+- inputText: "Bent Over Row"
+- tapOn: { text: "Continue", optional: true }
+- tapOn: "Bent Over Row \\(Dumbbell\\), dumbbells"
+- extendedWaitUntil: { visible: "Bent Over Row \\(Dumbbell\\)", timeout: 30000 }
+- tapOn: "Save template"
+- extendedWaitUntil: { visible: "Edit template", timeout: 30000 }
+- tapOn: "Back"
+- extendedWaitUntil: { visible: "Tuesday, Lower B", timeout: 30000 }
+- takeScreenshot: 82-nowy-szablon-na-wtorku

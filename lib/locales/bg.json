@@ -1296,5 +1296,6 @@
  "Więcej dni niż szablonów: szablony po kolei (A, B, A…), jak w generatorze — konwencja.": "Повече дни от шаблони: шаблоните поред (A, B, A…), както в генератора — конвенция.",
  "Zapisz plan": "Запази плана",
  "Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.": "Под {n} серии седмично: {list}. Това е долният праг, препоръчван при изграждане на мускулна маса; серии добавяш в шаблоните.",
- "Moje szablony, {n}× w tygodniu": "Моите шаблони, {n}× седмично"
+ "Moje szablony, {n}× w tygodniu": "Моите шаблони, {n}× седмично",
+ "Po zapisie szablon trafi na ten dzień.": "След запазване шаблонът ще бъде в този ден."
 }

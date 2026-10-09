@@ -1296,5 +1296,6 @@
  "Więcej dni niż szablonów: szablony po kolei (A, B, A…), jak w generatorze — konwencja.": "Več dni kot predlog: predloge po vrsti (A, B, A…), kot v generatorju — dogovor.",
  "Zapisz plan": "Shrani načrt",
  "Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.": "Pod {n} serij na teden: {list}. To je spodnji prag, priporočen za rast mišične mase; serije dodaš v predlogah.",
- "Moje szablony, {n}× w tygodniu": "Moje predloge, {n}× na teden"
+ "Moje szablony, {n}× w tygodniu": "Moje predloge, {n}× na teden",
+ "Po zapisie szablon trafi na ten dzień.": "Po shranjevanju bo predloga na ta dan."
 }

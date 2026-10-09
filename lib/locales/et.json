@@ -1296,5 +1296,6 @@
  "Więcej dni niż szablonów: szablony po kolei (A, B, A…), jak w generatorze — konwencja.": "Päevi rohkem kui malle: mallid järjest (A, B, A…), nagu generaatoris — kokkulepe.",
  "Zapisz plan": "Salvesta plaan",
  "Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.": "Alla {n} seeria nädalas: {list}. See on lihasmassi kasvatamiseks soovitatud alampiir; seeriaid lisad mallides.",
- "Moje szablony, {n}× w tygodniu": "Minu mallid, {n}× nädalas"
+ "Moje szablony, {n}× w tygodniu": "Minu mallid, {n}× nädalas",
+ "Po zapisie szablon trafi na ten dzień.": "Pärast salvestamist läheb mall sellele päevale."
 }

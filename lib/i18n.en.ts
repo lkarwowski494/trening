@@ -824,4 +824,5 @@ export const EN: Record<string, string> = {
   'Zapisz plan': 'Save plan',
   'Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.': 'Below {n} sets per week: {list}. This is the lower threshold recommended for building muscle; you can add sets in the templates.',
   'Moje szablony, {n}× w tygodniu': 'My templates, {n}× a week',
+  'Po zapisie szablon trafi na ten dzień.': 'After saving, the template goes on this day.',
 };

@@ -1296,5 +1296,6 @@
  "Więcej dni niż szablonów: szablony po kolei (A, B, A…), jak w generatorze — konwencja.": "Fler dagar än mallar: mallarna i ordning (A, B, A…), som i generatorn — en konvention.",
  "Zapisz plan": "Spara plan",
  "Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.": "Under {n} set per vecka: {list}. Det är den nedre gräns som rekommenderas för muskeluppbyggnad; set lägger du till i mallarna.",
- "Moje szablony, {n}× w tygodniu": "Mina mallar, {n}× per vecka"
+ "Moje szablony, {n}× w tygodniu": "Mina mallar, {n}× per vecka",
+ "Po zapisie szablon trafi na ten dzień.": "När den sparats läggs mallen på den här dagen."
 }

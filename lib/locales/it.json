@@ -1296,5 +1296,6 @@
  "Więcej dni niż szablonów: szablony po kolei (A, B, A…), jak w generatorze — konwencja.": "Più giorni che schede: schede in ordine (A, B, A…), come nel generatore — una convenzione.",
  "Zapisz plan": "Salva piano",
  "Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.": "Sotto le {n} serie a settimana: {list}. È la soglia minima consigliata per aumentare la massa muscolare; le serie si aggiungono nelle schede.",
- "Moje szablony, {n}× w tygodniu": "Le mie schede, {n}× a settimana"
+ "Moje szablony, {n}× w tygodniu": "Le mie schede, {n}× a settimana",
+ "Po zapisie szablon trafi na ten dzień.": "Dopo il salvataggio, la scheda va in questo giorno."
 }

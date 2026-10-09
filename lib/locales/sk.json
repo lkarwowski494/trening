@@ -1296,5 +1296,6 @@
  "Więcej dni niż szablonów: szablony po kolei (A, B, A…), jak w generatorze — konwencja.": "Viac dní ako šablón: šablóny postupne (A, B, A…), ako v generátore — konvencia.",
  "Zapisz plan": "Uložiť plán",
  "Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.": "Pod {n} sérií týždenne: {list}. To je spodná hranica odporúčaná pre nárast svalov; série pridáš v šablónach.",
- "Moje szablony, {n}× w tygodniu": "Moje šablóny, {n}× týždenne"
+ "Moje szablony, {n}× w tygodniu": "Moje šablóny, {n}× týždenne",
+ "Po zapisie szablon trafi na ten dzień.": "Po uložení bude šablóna v tomto dni."
 }
