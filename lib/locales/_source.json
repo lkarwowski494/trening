@@ -356,6 +356,10 @@
   "en": "Backup from a newer app version"
  },
  {
+  "pl": "badania naukowe",
+  "en": "scientific studies"
+ },
+ {
   "pl": "barki",
   "en": "shoulders"
  },
@@ -418,6 +422,10 @@
  {
   "pl": "Bez treningów: {list}. To zastąpi też aktywny plan „{plan}”, zrobiony tylko z tych szablonów — „Zastąp” je usunie i ustawi nowy plan jako aktywny w jego miejsce, „Zostaw” doda nowe obok.",
   "en": "Not used in any workout: {list}. This also replaces the active plan “{plan}”, made only of these templates — “Replace” deletes them and makes the new plan active in its place, “Keep” adds the new ones alongside."
+ },
+ {
+  "pl": "biblioteki ćwiczeń organizacji szkoleniowych",
+  "en": "exercise libraries of fitness education organisations"
  },
  {
   "pl": "Biblioteki natywne iOS spoza npm ({n})",
@@ -1950,6 +1958,10 @@
   "en": "mat and wall"
  },
  {
+  "pl": "materiały producenta sprzętu",
+  "en": "materials from an equipment manufacturer"
+ },
+ {
   "pl": "max",
   "en": "max"
  },
@@ -2128,6 +2140,10 @@
  {
   "pl": "Nadpisać dane?",
   "en": "Overwrite data?"
+ },
+ {
+  "pl": "Najcięższy ciężar w miejscu dla boju głównego ({list}): {w}. Ciężkie serie {a}–{b} powtórzeń (ok. {p}% maksimum) mogą być z nim za lekkie — jeśli {b} powtórzeń wychodzi lekko, rób więcej powtórzeń, bliżej upadku. Siła też wtedy rośnie, ale zwykle mniej niż przy dużym ciężarze.",
+  "en": "Heaviest weight at this place for the main lift ({list}): {w}. Heavy sets of {a}–{b} reps (about {p}% of max) may be too light with it — if {b} reps feel light, do more reps, closer to failure. Strength still increases, but usually less than with heavy loads."
  },
  {
   "pl": "Najdłużej łącznie na treningu",
@@ -3436,6 +3452,10 @@
   "en": "RIR — reps in reserve: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR; Zourdos et al., JSCR 2016). Saved values convert when you switch scales."
  },
  {
+  "pl": "RIR wpisuje się w zakresie 0–{max}; więcej niż {max} powtórzeń w zapasie zapisuje się jako „lekko” (RPE {light}), bo poniżej RPE {min} skala opisuje wysiłek słowami, a nie powtórzeniami w zapasie (Helms i in. 2016).",
+  "en": "Enter RIR from 0 to {max}; more than {max} reps in reserve is saved as “light” (RPE {light}), because below RPE {min} the scale describes effort in words, not reps in reserve (Helms et al. 2016)."
+ },
+ {
   "pl": "robione {n}×",
   "en": "done {n}×"
  },
@@ -3730,6 +3750,10 @@
   "en": "Focused: the current set in big numbers and plates per side above the exercise list."
  },
  {
+  "pl": "specjalistyczne serwisy treningowe",
+  "en": "specialist training websites"
+ },
+ {
   "pl": "Sprawdź datę i godzinę",
   "en": "Check the date and time"
  },
@@ -3844,6 +3868,10 @@
  {
   "pl": "superset · przerwa po rundzie {t}",
   "en": "superset · rest after round {t}"
+ },
+ {
+  "pl": "Superset ustawisz w szablonie przyciskiem „Połącz z następnym w superset” — przerwa liczy się po ostatnim ćwiczeniu grupy.",
+  "en": "You set a superset in the template with “Link with next into a superset” — the rest starts after the last exercise of the group."
  },
  {
   "pl": "Superset ustawisz w szablonie: „Edytuj”, potem „⇅ SS” przy ćwiczeniu łączy je z następnym (w trakcie treningu ten sam przycisk jest przy ćwiczeniu) — przerwa liczy się po ostatnim ćwiczeniu grupy.",
@@ -4256,8 +4284,8 @@
   "en": "Weeks start on Monday. Volume = weight × reps × exercise multiplier; warm-ups excluded."
  },
  {
-  "pl": "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka, nie wynik badań.",
-  "en": "Training weeks in a row without a deload: {n}. Coaches usually deload every {a}–{b} weeks — this is practice, not a research finding."
+  "pl": "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka opisana w ankietach jednego zespołu badaczy (jedno źródło), nie wynik badań skuteczności.",
+  "en": "Training weeks in a row without a deload: {n}. Coaches usually deload every {a}–{b} weeks — this is practice described in surveys by one research team (single source), not a finding on effectiveness."
  },
  {
   "pl": "tylko dostępne w: {l}",
@@ -4922,6 +4950,10 @@
  {
   "pl": "z oparciem skośnym",
   "en": "with incline back"
+ },
+ {
+  "pl": "Z planu w tym tygodniu: zrobione {done} z {n}.",
+  "en": "Planned this week: {done} of {n} done."
  },
  {
   "pl": "z regulacją nachylenia (marsz pod górę)",

@@ -868,7 +868,6 @@
  "Zacząć z mniejszą liczbą serii: {a} zamiast {b} serii roboczych? Ciężary bez zmian, szablon się nie zmienia.": "Sākt ar mazāk sērijām: {a} {b} darba sēriju vietā? Svari nemainās, veidne nemainās.",
  "Pełny trening": "Pilns treniņš",
  "Mniej serii": "Mazāk sēriju",
- "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka, nie wynik badań.": "Treniņu nedēļas pēc kārtas bez atslodzes: {n}. Treneri parasti veic atslodzi ik pēc {a}–{b} nedēļām — tā ir prakse, nevis pētījumu rezultāts.",
  "Zaplanuj deload od {date}": "Plānot atslodzi no {date}",
  "Zdejmij oznaczenie deload": "Noņemt atslodzes atzīmi",
  "tydzień deload": "atslodzes nedēļa",
@@ -1327,5 +1326,14 @@
  "Półkula balansowa / platforma balansowa": "Balansa puslode / balansa platforma",
  "ergometr narciarski": "slēpošanas ergometrs",
  "Ergometr narciarski": "Slēpošanas ergometrs",
- "Biblioteki natywne iOS spoza npm ({n})": "Vietējās iOS bibliotēkas ārpus npm ({n})"
+ "Biblioteki natywne iOS spoza npm ({n})": "Vietējās iOS bibliotēkas ārpus npm ({n})",
+ "biblioteki ćwiczeń organizacji szkoleniowych": "fitnesa izglītības organizāciju vingrinājumu bibliotēkas",
+ "specjalistyczne serwisy treningowe": "specializētas treniņu vietnes",
+ "materiały producenta sprzętu": "aprīkojuma ražotāja materiāli",
+ "badania naukowe": "zinātniski pētījumi",
+ "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka opisana w ankietach jednego zespołu badaczy (jedno źródło), nie wynik badań skuteczności.": "Treniņu nedēļas pēc kārtas bez atslodzes: {n}. Treneri parasti veic atslodzi ik pēc {a}–{b} nedēļām — tā ir prakse, kas aprakstīta vienas pētnieku grupas aptaujās (viens avots), nevis efektivitātes pētījumu rezultāts.",
+ "RIR wpisuje się w zakresie 0–{max}; więcej niż {max} powtórzeń w zapasie zapisuje się jako „lekko” (RPE {light}), bo poniżej RPE {min} skala opisuje wysiłek słowami, a nie powtórzeniami w zapasie (Helms i in. 2016).": "RIR ievada robežās 0–{max}; vairāk nekā {max} atkārtojumi rezervē tiek saglabāti kā “viegli” (RPE {light}), jo zem RPE {min} skala apraksta piepūli vārdiem, nevis ar atkārtojumiem rezervē (Helms u. c. 2016).",
+ "Najcięższy ciężar w miejscu dla boju głównego ({list}): {w}. Ciężkie serie {a}–{b} powtórzeń (ok. {p}% maksimum) mogą być z nim za lekkie — jeśli {b} powtórzeń wychodzi lekko, rób więcej powtórzeń, bliżej upadku. Siła też wtedy rośnie, ale zwykle mniej niż przy dużym ciężarze.": "Smagākais svars šajā vietā pamatvingrinājumam ({list}): {w}. Smagās sērijas pa {a}–{b} atkārtojumiem (aptuveni {p}% no maksimuma) ar to var būt par vieglu — ja {b} atkārtojumi šķiet viegli, dari vairāk atkārtojumu, tuvāk izsīkumam. Spēks tomēr pieaug, bet parasti mazāk nekā ar lielu svaru.",
+ "Superset ustawisz w szablonie przyciskiem „Połącz z następnym w superset” — przerwa liczy się po ostatnim ćwiczeniu grupy.": "Supersetu iestati veidnē ar “Apvienot ar nākamo supersetā” — atpūta sākas pēc grupas pēdējā vingrinājuma.",
+ "Z planu w tym tygodniu: zrobione {done} z {n}.": "No plāna šonedēļ: paveikti {done} no {n}."
 }

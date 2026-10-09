@@ -31,7 +31,7 @@ describe('A: Kalendarz', () => {
   });
   test('4 tygodnie z rzędu: podpowiedź (praktyka, nie wynik badań) → „Zaplanuj deload od …” → informacja, tło wiersza, VoiceOver; „Zdejmij oznaczenie deload”', async () => {
     await boot(streak4);
-    expect(screen.getByText('Tygodnie treningu z rzędu bez deloadu: 4. Trenerzy zwykle robią deload co 4–6 tygodni — to praktyka, nie wynik badań.')).toBeTruthy();
+    expect(screen.getByText('Tygodnie treningu z rzędu bez deloadu: 4. Trenerzy zwykle robią deload co 4–6 tygodni — to praktyka opisana w ankietach jednego zespołu badaczy (jedno źródło), nie wynik badań skuteczności.' /* audyt kontrolny 1 MER2-05: jedno źródło (docs/research/22 sekcja 2) */)).toBeTruthy();
     await tap(screen.getByText(/^Zaplanuj deload od pon\.,? 12 paź/)); /* H3 (audyt 0.10): miesiąc słownie */ await flushAll(5);
     expect(S().deloadWeeks).toEqual(['2026-10-12']);
     /* audyt 0.10 (MER-04, wariant A): „o około 1/3–1/2 mniej serii (np. 2 z 3)” zamiast „około połowy” (3 serie → 2) */
@@ -84,7 +84,7 @@ describe('B: start w tygodniu deload', () => {
 describe('English', () => {
   test('hint and start question', async () => {
     const t = await boot(streak4, '/history', 'en');
-    expect(screen.getByText('Training weeks in a row without a deload: 4. Coaches usually deload every 4–6 weeks — this is practice, not a research finding.')).toBeTruthy();
+    expect(screen.getByText('Training weeks in a row without a deload: 4. Coaches usually deload every 4–6 weeks — this is practice described in surveys by one research team (single source), not a finding on effectiveness.')).toBeTruthy();
     expect(screen.getByText(/^Plan a deload from /)).toBeTruthy();
     act(() => { store.toggleDeloadWeek(NOW.getTime()); }); await flushAll(5);
     expect(screen.getByText('This week: deload. When you start a workout I will suggest about 1/3–1/2 fewer sets (e.g. 2 of 3; exercises with 1 set unchanged), same weights.')).toBeTruthy(); /* audyt 0.10 (MER-04) */

@@ -868,7 +868,6 @@
  "Zacząć z mniejszą liczbą serii: {a} zamiast {b} serii roboczych? Ciężary bez zmian, szablon się nie zmienia.": "Kas alustada vähemate seeriatega: {a} {b} tööseeria asemel? Raskused samad, mall ei muutu.",
  "Pełny trening": "Täis trenn",
  "Mniej serii": "Vähem seeriaid",
- "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka, nie wynik badań.": "Treeningunädalaid järjest ilma kergenduseta: {n}. Treenerid teevad kergendusnädala tavaliselt iga {a}–{b} nädala järel — see on praktika, mitte uurimistulemus.",
  "Zaplanuj deload od {date}": "Planeeri kergendus alates {date}",
  "Zdejmij oznaczenie deload": "Eemalda kergendusmärge",
  "tydzień deload": "kergendusnädal",
@@ -1327,5 +1326,14 @@
  "Półkula balansowa / platforma balansowa": "Tasakaalupoolkera / tasakaaluplaat",
  "ergometr narciarski": "suusaergomeeter",
  "Ergometr narciarski": "Suusaergomeeter",
- "Biblioteki natywne iOS spoza npm ({n})": "iOS-i omateegid väljaspool npm-i ({n})"
+ "Biblioteki natywne iOS spoza npm ({n})": "iOS-i omateegid väljaspool npm-i ({n})",
+ "biblioteki ćwiczeń organizacji szkoleniowych": "treeningkoolitusorganisatsioonide harjutuste kogud",
+ "specjalistyczne serwisy treningowe": "spetsialiseeritud treeningveebisaidid",
+ "materiały producenta sprzętu": "varustuse tootja materjalid",
+ "badania naukowe": "teadusuuringud",
+ "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka opisana w ankietach jednego zespołu badaczy (jedno źródło), nie wynik badań skuteczności.": "Treeningunädalaid järjest ilma kergenduseta: {n}. Treenerid teevad kergendusnädala tavaliselt iga {a}–{b} nädala järel — see on praktika, mida kirjeldavad ühe uurimisrühma küsitlused (üks allikas), mitte tõhususe uurimistulemus.",
+ "RIR wpisuje się w zakresie 0–{max}; więcej niż {max} powtórzeń w zapasie zapisuje się jako „lekko” (RPE {light}), bo poniżej RPE {min} skala opisuje wysiłek słowami, a nie powtórzeniami w zapasie (Helms i in. 2016).": "RIR sisestatakse vahemikus 0–{max}; rohkem kui {max} kordust varus salvestatakse kui „kerge“ (RPE {light}), sest alla RPE {min} kirjeldab skaala pingutust sõnadega, mitte kordustega varus (Helms jt 2016).",
+ "Najcięższy ciężar w miejscu dla boju głównego ({list}): {w}. Ciężkie serie {a}–{b} powtórzeń (ok. {p}% maksimum) mogą być z nim za lekkie — jeśli {b} powtórzeń wychodzi lekko, rób więcej powtórzeń, bliżej upadku. Siła też wtedy rośnie, ale zwykle mniej niż przy dużym ciężarze.": "Selle koha raskeim raskus põhiharjutuse jaoks ({list}): {w}. Rasked seeriad {a}–{b} kordusega (umbes {p}% maksimumist) võivad sellega liiga kerged olla — kui {b} kordust tundub kerge, tee rohkem kordusi, lähemale lihasväsimusele. Jõud kasvab siiski, kuid tavaliselt vähem kui suure raskusega.",
+ "Superset ustawisz w szablonie przyciskiem „Połącz z następnym w superset” — przerwa liczy się po ostatnim ćwiczeniu grupy.": "Superseeria määrad mallis nupuga „Ühenda järgmisega superseeriaks“ — paus algab pärast rühma viimast harjutust.",
+ "Z planu w tym tygodniu: zrobione {done} z {n}.": "Plaanist sel nädalal: tehtud {done} / {n}."
 }

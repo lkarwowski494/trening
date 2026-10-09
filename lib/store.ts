@@ -957,7 +957,7 @@ export function setSummary(ex: Exercise, s: WSet, load: 'shown' | 'calc' = 'show
   else if (m === 'weight_distance') core = `${fmtW(l, false)}${wu()}×${fmtDist(Number(s.distanceM) || 0)}`; /* research biblioteki 09.10.2026: noszenie, sanki */
   else if (m === 'reps') core = `${s.reps || 0}`;
   else { core = isBW(ex) ? `${s.reps || 0}${l ? '@' + (l > 0 ? '+' : '') + fmtW(l, false) : ''}` : `${fmtW(l, false)}×${s.reps || 0}`; }
-  return core + (b ? ` (${shortBand(b)})` : '') + (s.rpe !== '' && s.rpe != null ? (effortScale() === 'rir' ? ` RIR ${fmtNum(effortOut(Number(s.rpe)), 1)}` : ` @${fmtNum(Number(s.rpe), 1)}`) : '');
+  return core + (b ? ` (${shortBand(b)})` : '') + (s.rpe !== '' && s.rpe != null ? (effortScale() === 'rir' ? ` RIR ${effortText(Number(s.rpe))}` : ` @${effortText(Number(s.rpe))}`) : '');
 }
 /** Wynik serii do porównań „najlepsza seria”: ciężar×1000+pow. / czas / dystans (przy równym dystansie krótszy czas lepszy). */
 export function setScore(ex: Exercise, s: WSet): number {
@@ -977,11 +977,18 @@ const clamp10 = (v: number) => Math.min(10, Math.max(0, Math.round(v * 10) / 10)
 /** MER-14 / LOG-15 (audyt 0.10): skala RPE-RIR ma wartości 1–10 (Helms i in. 2016, PMC4961270: „descriptors of effort for values below 5 (1–2 RPE =
  * ‘little to no effort,’ 3–4 RPE = ‘light effort’)” — RPE 0 nie istnieje), więc zapis RPE w 1–10, a RIR w 0–9. */
 export const RPE_MIN = 1, RPE_MAX = 10;
+/** Audyt kontrolny 1 MER2-08 (rekomendacja MER-14): w skali RIR wpis 0–RIR_MAX; więcej powtórzeń w zapasie = „lekko”, zapis RPE_LIGHT. Helms i in. 2016:
+ * poniżej RPE 5 opisy słowne („3–4 RPE = ‘light effort’”), a nie RIR — RIR 6–9 nie przelicza się już na RPE 4–1. RPE_LIGHT = górna granica „light effort”. */
+export const RIR_MAX = 5, RPE_LIGHT = 4;
+/** RPE poniżej tego progu w skali RIR = „lekko” (RIR_MAX + 1, pokazywane „6+”). */
+const RPE_RIR_MIN = 10 - RIR_MAX;
 const clampRpe = (v: number) => Math.min(RPE_MAX, Math.max(RPE_MIN, Math.round(v * 10) / 10));
 /** Zapisane RPE → wartość pokazywana w bieżącej skali. */
-export const effortOut = (rpe: number) => (effortScale() === 'rir' ? clamp10(10 - rpe) : rpe);
-/** Wpisana wartość w bieżącej skali → RPE do zapisu ('' = puste); RIR > 9 → RPE 1, nie 0 (MER-14). */
-export const effortIn = (v: number | ''): number | '' => (v === '' ? '' : clampRpe(effortScale() === 'rir' ? 10 - v : v));
+export const effortOut = (rpe: number) => (effortScale() === 'rir' ? (rpe < RPE_RIR_MIN ? RIR_MAX + 1 : clamp10(10 - rpe)) : rpe);
+/** Wartość wysiłku jako tekst w bieżącej skali (opis serii, historia): w RIR „lekko” = „6+” (MER2-08). */
+export const effortText = (rpe: number): string => (effortScale() === 'rir' && rpe < RPE_RIR_MIN ? `${RIR_MAX + 1}+` : fmtNum(effortOut(rpe), 1));
+/** Wpisana wartość w bieżącej skali → RPE do zapisu ('' = puste); RIR > RIR_MAX → RPE_LIGHT („lekko”, MER2-08). */
+export const effortIn = (v: number | ''): number | '' => (v === '' ? '' : effortScale() === 'rir' ? (v > RIR_MAX ? RPE_LIGHT : clampRpe(10 - v)) : clampRpe(v));
 /** Wartość pola wysiłku do wyświetlenia w polu edycji. */
 export const effortField = (rpe: number | '' | null | undefined): number | '' => (rpe === '' || rpe == null ? '' : effortOut(Number(rpe)));
 export const setHasValue = (s: WSet) => [s.weight, s.reps, s.durationSec, s.distanceM, s.addKg].some(v => v !== '' && v != null);

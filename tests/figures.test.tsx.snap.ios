@@ -285,7 +285,8 @@ exports[`komponent ExerciseFigure zrzut SVG (statycznie, jasny motyw): Back Squa
           </RNSVGGroup>
         </RNSVGSvgView>
         <Text
-          maxFontSizeMultiplier={1.6}
+          accessibilityLanguage="pl"
+          maxFontSizeMultiplier={2}
           style={
             {
               "color": "#4a4d53",
@@ -558,7 +559,8 @@ exports[`komponent ExerciseFigure zrzut SVG (statycznie, jasny motyw): Back Squa
           </RNSVGGroup>
         </RNSVGSvgView>
         <Text
-          maxFontSizeMultiplier={1.6}
+          accessibilityLanguage="pl"
+          maxFontSizeMultiplier={2}
           style={
             {
               "color": "#4a4d53",
@@ -575,7 +577,8 @@ exports[`komponent ExerciseFigure zrzut SVG (statycznie, jasny motyw): Back Squa
     </View>
   </View>
   <Text
-    maxFontSizeMultiplier={1.6}
+    accessibilityLanguage="pl"
+    maxFontSizeMultiplier={2}
     style={
       {
         "color": "#4a4d53",
@@ -946,7 +949,8 @@ exports[`komponent ExerciseFigure zrzut SVG (statycznie, jasny motyw): Bench Pre
           </RNSVGGroup>
         </RNSVGSvgView>
         <Text
-          maxFontSizeMultiplier={1.6}
+          accessibilityLanguage="pl"
+          maxFontSizeMultiplier={2}
           style={
             {
               "color": "#4a4d53",
@@ -1290,7 +1294,8 @@ exports[`komponent ExerciseFigure zrzut SVG (statycznie, jasny motyw): Bench Pre
           </RNSVGGroup>
         </RNSVGSvgView>
         <Text
-          maxFontSizeMultiplier={1.6}
+          accessibilityLanguage="pl"
+          maxFontSizeMultiplier={2}
           style={
             {
               "color": "#4a4d53",
@@ -1307,7 +1312,8 @@ exports[`komponent ExerciseFigure zrzut SVG (statycznie, jasny motyw): Bench Pre
     </View>
   </View>
   <Text
-    maxFontSizeMultiplier={1.6}
+    accessibilityLanguage="pl"
+    maxFontSizeMultiplier={2}
     style={
       {
         "color": "#4a4d53",
@@ -1610,7 +1616,8 @@ exports[`komponent ExerciseFigure zrzut SVG (statycznie, jasny motyw): Lateral R
           </RNSVGGroup>
         </RNSVGSvgView>
         <Text
-          maxFontSizeMultiplier={1.6}
+          accessibilityLanguage="pl"
+          maxFontSizeMultiplier={2}
           style={
             {
               "color": "#4a4d53",
@@ -1886,7 +1893,8 @@ exports[`komponent ExerciseFigure zrzut SVG (statycznie, jasny motyw): Lateral R
           </RNSVGGroup>
         </RNSVGSvgView>
         <Text
-          maxFontSizeMultiplier={1.6}
+          accessibilityLanguage="pl"
+          maxFontSizeMultiplier={2}
           style={
             {
               "color": "#4a4d53",
@@ -1903,7 +1911,8 @@ exports[`komponent ExerciseFigure zrzut SVG (statycznie, jasny motyw): Lateral R
     </View>
   </View>
   <Text
-    maxFontSizeMultiplier={1.6}
+    accessibilityLanguage="pl"
+    maxFontSizeMultiplier={2}
     style={
       {
         "color": "#4a4d53",
@@ -2168,7 +2177,8 @@ exports[`komponent ExerciseFigure zrzut SVG (statycznie, jasny motyw): Plank 1`]
     </View>
   </View>
   <Text
-    maxFontSizeMultiplier={1.6}
+    accessibilityLanguage="pl"
+    maxFontSizeMultiplier={2}
     style={
       {
         "color": "#4a4d53",
@@ -2423,7 +2433,8 @@ exports[`komponent ExerciseFigure zrzut SVG (statycznie, jasny motyw): Pull Up 1
           </RNSVGGroup>
         </RNSVGSvgView>
         <Text
-          maxFontSizeMultiplier={1.6}
+          accessibilityLanguage="pl"
+          maxFontSizeMultiplier={2}
           style={
             {
               "color": "#4a4d53",
@@ -2651,7 +2662,8 @@ exports[`komponent ExerciseFigure zrzut SVG (statycznie, jasny motyw): Pull Up 1
           </RNSVGGroup>
         </RNSVGSvgView>
         <Text
-          maxFontSizeMultiplier={1.6}
+          accessibilityLanguage="pl"
+          maxFontSizeMultiplier={2}
           style={
             {
               "color": "#4a4d53",
@@ -2668,7 +2680,8 @@ exports[`komponent ExerciseFigure zrzut SVG (statycznie, jasny motyw): Pull Up 1
     </View>
   </View>
   <Text
-    maxFontSizeMultiplier={1.6}
+    accessibilityLanguage="pl"
+    maxFontSizeMultiplier={2}
     style={
       {
         "color": "#4a4d53",

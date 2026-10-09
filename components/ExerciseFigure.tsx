@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { AccessibilityInfo, Pressable, Text, View } from 'react-native';
 import Svg, { Circle, Line, Path } from 'react-native-svg';
-import { useTheme, F, type Theme } from '@/lib/theme';
+import { useTheme, F, TEXT_SCALE_MAX, type Theme } from '@/lib/theme';
 import { t, lang } from '@/lib/i18n';
 import { figureAt, figureFor, figureFrames, figureLabel, frameLabel, svgPath, toSvg } from '@/lib/figures';
 import { ANIM, type Role, type Shape } from '@/lib/figures/geom';
@@ -67,18 +67,18 @@ export function ExerciseFigure({ exercise }: { exercise: Pick<Exercise, 'lib' | 
               {fig.frames.map((fr, i) => (
                 <View key={fr.n} style={{ flex: 1, alignItems: 'center' }}>
                   <FigureSvg testID={`exercise-figure-frame-${fr.n}`} list={frames.shapes[i]} box={frames.box} floor={fig.floor} height={fig.frames.length > 2 ? 110 : 140} th={th} />
-                  {fig.frames.length > 1 ? <Text maxFontSizeMultiplier={1.6} style={{ color: th.muted, fontSize: 12, fontFamily: F.regular, marginTop: 2, textAlign: 'center' }}>{frameLabel(fr.n)}</Text> : null}
+                  {fig.frames.length > 1 ? <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.muted, fontSize: 12, fontFamily: F.regular, marginTop: 2, textAlign: 'center' }}>{frameLabel(fr.n)}</Text> : null}
                 </View>
               ))}
             </View>}
       </View>
       {canPause
-        ? <Pressable testID="exercise-figure-pause" onPress={() => setPaused(p => !p)} accessibilityRole="button" accessibilityLabel={paused ? t('Wznów animację') : t('Zatrzymaj animację')} hitSlop={4}
+        ? <Pressable accessibilityLanguage={lang()} /* A11N-01 */ testID="exercise-figure-pause" onPress={() => setPaused(p => !p)} accessibilityRole="button" accessibilityLabel={paused ? t('Wznów animację') : t('Zatrzymaj animację')} hitSlop={4}
             style={{ minHeight: 44, alignSelf: 'flex-start', justifyContent: 'center' }}>
-            <Text maxFontSizeMultiplier={1.6} style={{ color: th.accent, fontSize: 14, fontFamily: F.semibold }}>{paused ? t('Wznów animację') : t('Zatrzymaj animację')}</Text>
+            <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.accent, fontSize: 14, fontFamily: F.semibold }}>{paused ? t('Wznów animację') : t('Zatrzymaj animację')}</Text>
           </Pressable>
         : null}
-      <Text maxFontSizeMultiplier={1.6} style={{ color: th.muted, fontSize: 12, fontFamily: F.regular, marginTop: canPause ? 0 : 6 }}>{t('Rysunek schematyczny — pozycje orientacyjne.')}</Text>
+      <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.muted, fontSize: 12, fontFamily: F.regular, marginTop: canPause ? 0 : 6 }}>{t('Rysunek schematyczny — pozycje orientacyjne.')}</Text>
     </View>
   );
 }

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { ScrollView, Alert, View, Linking } from 'react-native';
 import { Screen, Field, NumInput, Btn, Muted, SwitchRow, Segmented, SectionTitle, Item } from '@/components/ui';
 import { useRouter } from 'expo-router';
-import { getState, useTick, save, saveCfg, resetAll, applyPrefs, useForegroundTick, latestBodyMass, fmtDate, localDateTs, REST_MAX, setPlanHintHidden } from '@/lib/store';
+import { getState, useTick, save, saveCfg, resetAll, applyPrefs, useForegroundTick, latestBodyMass, fmtDate, localDateTs, REST_MAX, setPlanHintHidden, RIR_MAX, RPE_LIGHT } from '@/lib/store';
 import { DEFAULT_REST, type ThemeSetting, type WorkoutView } from '@/lib/seed';
 import * as timer from '@/lib/timer';
 import { PLAN_REMINDER_HOUR, reminderPermission, type ReminderPermission } from '@/lib/planReminder';
@@ -36,6 +36,7 @@ export default function SettingsScreen() {
       {s.showRpe ? <>
         <Field label={t('Skala wysiłku')}><Segmented label={t('Skala wysiłku')} options={[['rpe', 'RPE'], ['rir', 'RIR']] as ['rpe' | 'rir', string][]} value={s.effortScale ?? 'rpe'} onChange={v => { if (v === 'rir') s.effortScale = v; else delete s.effortScale; saveCfg(); }} /></Field>
         <Muted style={{ fontSize: 13, marginTop: -4, marginBottom: 8 }}>{t('RIR — powtórzenia w zapasie: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR; Zourdos i in., JSCR 2016). Zapisane wartości przeliczają się przy zmianie skali.')}</Muted>
+        <Muted style={{ fontSize: 13, marginTop: -4, marginBottom: 8 }}>{t('RIR wpisuje się w zakresie 0–{max}; więcej niż {max} powtórzeń w zapasie zapisuje się jako „lekko” (RPE {light}), bo poniżej RPE {min} skala opisuje wysiłek słowami, a nie powtórzeniami w zapasie (Helms i in. 2016).', { max: RIR_MAX, light: RPE_LIGHT, min: 10 - RIR_MAX })}</Muted>{/* audyt kontrolny 1 MER2-08 */}
       </> : null}
       <Item title={t('Miejsca i sprzęt')} /* H2 (audyt 0.10): jedna nazwa (Więcej, Ustawienia, nagłówek, przewodnik) */ sub={s.locations.length ? t('{n}, główne: {m}', { n: s.locations.length, m: mainLoc?.name ?? '—' }) : t('sprzęt w domu, na siłowni, w hotelu…')} onPress={() => router.push('/more/locations')} /* P-003 E1 */ />
       <SwitchRow label={t('Podpowiedź progresji')} detail={t('↑ przy ćwiczeniu, gdy ostatnio wszystkie serie były na górze zakresu powtórzeń')} value={s.progressHint} onChange={v => { s.progressHint = v; saveCfg(); }} />

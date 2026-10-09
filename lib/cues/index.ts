@@ -16,10 +16,16 @@ import { lang, type Lang } from '@/lib/i18n';
 
 export const CUE_SECTIONS = ['setup', 'move', 'tips', 'mistakes'] as const;
 export type CueSection = typeof CUE_SECTIONS[number];
-/** Odwołanie do źródła: [id źródła z data.json „sources”, miejsce w źródle (krok, sekcja)]. */
-export type CueRef = { c: string; s: [string, string][] };
+/** Odwołanie do źródła: [id źródła z data.json „sources”, miejsce w źródle (krok, sekcja), opcjonalnie „analogia” — inne ćwiczenie, nie liczy się
+ * do ≥ 2 źródeł (audyt kontrolny 1 MER2-04; sprawdza scripts/cues/gen.mjs)]. */
+export type CueRef = { c: string; s: ([string, string] | [string, string, 'analogia'])[] };
 export type CueSource = { org: string; title: string; url: string; archive?: string; level: 2 | 3 | 4 };
-type CueData = { orgs: Record<string, { name: string; level: 2 | 3 | 4 }>; sources: Record<string, CueSource>; exercises: Record<string, Record<CueSection, CueRef[]>>; open: Record<string, string> };
+/** Rodzaj organizacji źródła (podpis w aplikacji — audyt kontrolny 1 MER2-07 = SEC2-02, decyzja właściciela 09.10.2026 wariant A: bez nazw
+ * organizacji i marek w tekstach aplikacji, pełna lista w docs/research/27): organizacja szkoleniowa (biblioteka ćwiczeń), serwis specjalistyczny,
+ * producent sprzętu, badanie w recenzowanym czasopiśmie. Kolejność = kolejność w podpisie. */
+export const CUE_BASIS_KINDS = ['org', 'site', 'maker', 'study'] as const;
+export type CueBasisKind = typeof CUE_BASIS_KINDS[number];
+type CueData = { orgs: Record<string, { name: string; level: 2 | 3 | 4; kind: CueBasisKind }>; sources: Record<string, CueSource>; exercises: Record<string, Record<CueSection, CueRef[]>>; open: Record<string, string> };
 
 /* eslint-disable @typescript-eslint/no-var-requires */
 export const CUE_DATA: CueData = require('./data.json');
@@ -44,15 +50,20 @@ export function cueText(id: string, l: Lang = lang()): string { return own(dict(
 /** Słownik zdań języka (testy kompletności). */
 export const cueDict = (l: Lang): Readonly<Record<string, string>> => dict(l);
 
-export type ExerciseCues = { key: string; sections: { id: CueSection; items: string[] }[]; orgs: string[] };
+export type ExerciseCues = { key: string; sections: { id: CueSection; items: string[] }[]; basis: CueBasisKind[] };
 /** Wskazówki ćwiczenia z biblioteki (po kluczu katalogu — przemianowane też je mają); własne ćwiczenia i ćwiczenia bez wskazówek → null. */
 export function cuesFor(e: Pick<Exercise, 'lib' | 'libKey'> | null | undefined, l: Lang = lang()): ExerciseCues | null {
   const key = catalogKey(e); if (!key) return null;
   const x = own(CUE_DATA.exercises, key); if (!x) return null;
   const sections = CUE_SECTIONS.map(id => ({ id, items: (x[id] ?? []).map(r => cueText(r.c, l)) })).filter(s => s.items.length);
-  return { key, sections, orgs: cueOrgs(key) };
+  return { key, sections, basis: cueBasis(key) };
 }
-/** Organizacje, na których opierają się wskazówki ćwiczenia (podpis „Na podstawie: …”), w kolejności pierwszego użycia. */
+/** Rodzaje źródeł wskazówek ćwiczenia (podpis „Na podstawie: …” — MER2-07: opis ogólny zamiast nazw), w kolejności CUE_BASIS_KINDS. */
+export function cueBasis(key: string): CueBasisKind[] {
+  const kinds = new Set(cueOrgs(key).map(o => own(CUE_DATA.orgs, o)?.kind));
+  return CUE_BASIS_KINDS.filter(k => kinds.has(k));
+}
+/** Organizacje, na których opierają się wskazówki ćwiczenia (dokument źródeł; w aplikacji tylko rodzaje — cueBasis), w kolejności pierwszego użycia. */
 export function cueOrgs(key: string): string[] {
   const x = own(CUE_DATA.exercises, key); if (!x) return [];
   const out: string[] = [];

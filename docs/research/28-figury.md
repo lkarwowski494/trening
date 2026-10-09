@@ -131,8 +131,8 @@ Widok: z boku; kotwica: przód stopy; przyrządy: db, db.
 Widok: z boku; kotwica: przód stopy; przyrządy: plate.
 
 - **pozycja wyjściowa** — t 90, hip 0, knee 0, sh 5, el 0
-  - bark – biodro – kostka w jednej linii (±6°) ← `rdl.setup`: „Stań prosto ze sztangą przy udach, stopy na szerokość bioder do barków, chwyt na szerokość barków.”
-  - zgięcie łokcia: 0° (±3°) ← `rdl.setup`: „Stań prosto ze sztangą przy udach, stopy na szerokość bioder do barków, chwyt na szerokość barków.”
+  - bark – biodro – kostka w jednej linii (±6°) ← `rdl.setup`: „Stań prosto ze sztangą przy udach, stopy na szerokość bioder do barków, chwyt na szerokość barków lub trochę szerzej.”
+  - zgięcie łokcia: 0° (±3°) ← `rdl.setup`: „Stań prosto ze sztangą przy udach, stopy na szerokość bioder do barków, chwyt na szerokość barków lub trochę szerzej.”
 - **pozycja końcowa** — t 25, hip 100, knee 18, sh 67, el 0
   - zgięcie kolana: 15° (±12°) ← `rdl.knees`: „Kolana tylko lekko ugięte — to nie przysiad.”
   - dłoń w pionie nad/pod: kostka (±9) ← `dl.close`: „Prowadź sztangę blisko nóg przez cały ruch.”
@@ -281,7 +281,7 @@ Widok: z boku; kotwica: przód stopy; druga podpora: dłoń; przyrządy: rect.
 Widok: z boku; kotwica: przód stopy; rzut ręki (kąty ręki = rzut); przyrządy: plate.
 
 - **pozycja wyjściowa** — t 90, hip 0, knee 0, sh 29, el 148, ap 0.75, fp 0.75
-  - dłoń przy: bark + [-1, 7] w układzie tułowia (≤ 5) ← `ohp.bbSetup`: „Zdejmij sztangę ze stojaka na wysokości barków; chwyt nieco szerzej niż barki, sztanga przy przedniej części barków.”
+  - dłoń przy: bark + [-1, 7] w układzie tułowia (≤ 5) ← `ohp.bbSetup`: „Zdejmij sztangę ze stojaka na wysokości barków; chwyt na szerokość barków lub trochę szerzej, sztanga przy przedniej części barków.”
   - bark – biodro – kostka w jednej linii (±6°) ← `ohp.tall`: „Tułów wysoko i stabilnie; ciężar idzie prosto w górę nad głowę.”
 - **pozycja końcowa** — t 95, hip -5, knee 0, sh 171, el 0
   - zgięcie łokcia: 0° (±4°) ← `ohp.move`: „Wypchnij ciężar nad głowę do wyprostu rąk; opuść go z powrotem do barków.”
@@ -443,12 +443,12 @@ Widok: z boku; kotwica: biodro; na wzór: Seated Cable Row; przyrządy: rect, li
 Widok: z boku; kotwica: przód stopy; rzut ręki (kąty ręki = rzut); przyrządy: cable, grip.
 
 - **pozycja wyjściowa** — t 90, hip 0, knee 0, sh 94, el 0
-  - zgięcie łokcia: 0° (±4°) ← `fp.move`: „Przyciągnij linę w stronę twarzy, łokcie prowadząc w tył i na boki; wróć powoli do wyprostu rąk.”
-  - odcinek biodro–bark: 90° do poziomu (±6°) ← `fp.chest`: „Klatka uniesiona, tułów pionowo i nieruchomo.”
+  - zgięcie łokcia: 0° (±4°) ← `fp.move`: „Przyciągnij linę w stronę twarzy; wróć do wyprostu rąk.”
+  - odcinek biodro–bark: 90° do poziomu (±6°) ← `fp.chest`: „Tułów stabilny i wyprostowany.”
 - **pozycja końcowa** — t 90, hip 0, knee 0, sh -12, el 160, ap 0.45
-  - łokieć za linią pleców ← `fp.elbowsBack`: „Ciągnij, aż łokcie znajdą się trochę za linią pleców.”
-  - dłoń przy: głowa + [-2, 9] w układzie tułowia (≤ 6) ← `fp.move`: „Przyciągnij linę w stronę twarzy, łokcie prowadząc w tył i na boki; wróć powoli do wyprostu rąk.”
-  - odcinek biodro–bark: 90° do poziomu (±6°) ← `fp.chest`: „Klatka uniesiona, tułów pionowo i nieruchomo.”
+  - łokieć za linią pleców ← `fp.elbowsBack`: „Prowadź ruch łokciami — cofaj je w tył.”
+  - dłoń przy: głowa + [-2, 9] w układzie tułowia (≤ 6) ← `fp.move`: „Przyciągnij linę w stronę twarzy; wróć do wyprostu rąk.”
+  - odcinek biodro–bark: 90° do poziomu (±6°) ← `fp.chest`: „Tułów stabilny i wyprostowany.”
 - Uproszczenie ilustracyjne: pozostałe kąty. Łokcie wysoko i na boki — z boku ramię wygląda na krótkie (rzut).
 
 ### Lat Pulldown

@@ -53,7 +53,7 @@ function MuscleNote({ e, style }: { e: Exercise; style?: object }) {
 }
 /** Wiersz podglądu: etykieta i wartość, czytane razem przez VoiceOver. */
 function Row({ label, value }: { label: string; value: string }) {
-  return <View accessible accessibilityLabel={`${label}: ${value}`} style={{ marginBottom: 10 }}><Muted style={{ fontSize: 13 }}>{label}</Muted><Txt>{value}</Txt></View>;
+  return <View accessibilityLanguage={lang()} /* audyt kontrolny 1 A11N-01 */ accessible accessibilityLabel={`${label}: ${value}`} style={{ marginBottom: 10 }}><Muted style={{ fontSize: 13 }}>{label}</Muted><Txt>{value}</Txt></View>;
 }
 /** Ostatnie sesje z tym ćwiczeniem (najnowsze pierwsze). */
 const HISTORY_ROWS = 5;

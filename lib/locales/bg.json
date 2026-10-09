@@ -868,7 +868,6 @@
  "Zacząć z mniejszą liczbą serii: {a} zamiast {b} serii roboczych? Ciężary bez zmian, szablon się nie zmienia.": "Да започнем с по-малко серии: {a} вместо {b} работни серии? Същите тежести, шаблонът не се променя.",
  "Pełny trening": "Пълна тренировка",
  "Mniej serii": "По-малко серии",
- "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka, nie wynik badań.": "Тренировъчни седмици подред без разтоварване: {n}. Треньорите обикновено правят разтоварване на всеки {a}–{b} седмици — това е практика, а не резултат от изследвания.",
  "Zaplanuj deload od {date}": "Планирай разтоварване от {date}",
  "Zdejmij oznaczenie deload": "Премахни отметката за разтоварване",
  "tydzień deload": "седмица на разтоварване",
@@ -1327,5 +1326,14 @@
  "Półkula balansowa / platforma balansowa": "Балансираща полусфера / балансираща платформа",
  "ergometr narciarski": "ски ергометър",
  "Ergometr narciarski": "Ски ергометър",
- "Biblioteki natywne iOS spoza npm ({n})": "Нативни библиотеки за iOS извън npm ({n})"
+ "Biblioteki natywne iOS spoza npm ({n})": "Нативни библиотеки за iOS извън npm ({n})",
+ "biblioteki ćwiczeń organizacji szkoleniowych": "библиотеки с упражнения на обучителни организации във фитнеса",
+ "specjalistyczne serwisy treningowe": "специализирани сайтове за тренировки",
+ "materiały producenta sprzętu": "материали на производител на уреди",
+ "badania naukowe": "научни изследвания",
+ "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka opisana w ankietach jednego zespołu badaczy (jedno źródło), nie wynik badań skuteczności.": "Тренировъчни седмици подред без разтоварване: {n}. Треньорите обикновено правят разтоварване на всеки {a}–{b} седмици — това е практика, описана в анкети на един изследователски екип (един източник), а не резултат от изследвания на ефективността.",
+ "RIR wpisuje się w zakresie 0–{max}; więcej niż {max} powtórzeń w zapasie zapisuje się jako „lekko” (RPE {light}), bo poniżej RPE {min} skala opisuje wysiłek słowami, a nie powtórzeniami w zapasie (Helms i in. 2016).": "RIR се въвежда в диапазона 0–{max}; повече от {max} повторения в резерв се записват като „леко“ (RPE {light}), защото под RPE {min} скалата описва усилието с думи, а не с повторения в резерв (Helms и сътр. 2016).",
+ "Najcięższy ciężar w miejscu dla boju głównego ({list}): {w}. Ciężkie serie {a}–{b} powtórzeń (ok. {p}% maksimum) mogą być z nim za lekkie — jeśli {b} powtórzeń wychodzi lekko, rób więcej powtórzeń, bliżej upadku. Siła też wtedy rośnie, ale zwykle mniej niż przy dużym ciężarze.": "Най-тежката тежест на това място за основното упражнение ({list}): {w}. Тежките серии от {a}–{b} повторения (около {p}% от максимума) може да са твърде леки с нея — ако {b} повторения са ти леки, прави повече повторения, по-близо до отказ. Силата пак расте, но обикновено по-малко, отколкото с голяма тежест.",
+ "Superset ustawisz w szablonie przyciskiem „Połącz z następnym w superset” — przerwa liczy się po ostatnim ćwiczeniu grupy.": "Суперсерия задаваш в шаблона с „Свързване със следващото в суперсерия“ — почивката започва след последното упражнение от групата.",
+ "Z planu w tym tygodniu: zrobione {done} z {n}.": "От плана тази седмица: направени {done} от {n}."
 }

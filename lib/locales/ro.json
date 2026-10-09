@@ -868,7 +868,6 @@
  "Zacząć z mniejszą liczbą serii: {a} zamiast {b} serii roboczych? Ciężary bez zmian, szablon się nie zmienia.": "Începi cu mai puține serii: {a} în loc de {b} serii de lucru? Aceleași greutăți, șablonul nu se schimbă.",
  "Pełny trening": "Antrenament complet",
  "Mniej serii": "Mai puține serii",
- "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka, nie wynik badań.": "Săptămâni de antrenament la rând fără descărcare: {n}. Antrenorii fac de obicei o descărcare la fiecare {a}–{b} săptămâni — este o practică, nu un rezultat al cercetării.",
  "Zaplanuj deload od {date}": "Planifică descărcarea de la {date}",
  "Zdejmij oznaczenie deload": "Elimină marcajul de descărcare",
  "tydzień deload": "săptămână de descărcare",
@@ -1327,5 +1326,14 @@
  "Półkula balansowa / platforma balansowa": "Semisferă de echilibru / placă de echilibru",
  "ergometr narciarski": "ergometru de schi",
  "Ergometr narciarski": "Ergometru de schi",
- "Biblioteki natywne iOS spoza npm ({n})": "Biblioteci native iOS din afara npm ({n})"
+ "Biblioteki natywne iOS spoza npm ({n})": "Biblioteci native iOS din afara npm ({n})",
+ "biblioteki ćwiczeń organizacji szkoleniowych": "biblioteci de exerciții ale organizațiilor de formare în fitness",
+ "specjalistyczne serwisy treningowe": "site-uri specializate în antrenament",
+ "materiały producenta sprzętu": "materiale ale unui producător de echipamente",
+ "badania naukowe": "studii științifice",
+ "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka opisana w ankietach jednego zespołu badaczy (jedno źródło), nie wynik badań skuteczności.": "Săptămâni de antrenament la rând fără descărcare: {n}. Antrenorii fac de obicei o descărcare la fiecare {a}–{b} săptămâni — este o practică descrisă în sondajele unei singure echipe de cercetare (o singură sursă), nu un rezultat privind eficiența.",
+ "RIR wpisuje się w zakresie 0–{max}; więcej niż {max} powtórzeń w zapasie zapisuje się jako „lekko” (RPE {light}), bo poniżej RPE {min} skala opisuje wysiłek słowami, a nie powtórzeniami w zapasie (Helms i in. 2016).": "RIR se introduce între 0 și {max}; mai mult de {max} repetări în rezervă se salvează ca „ușor” (RPE {light}), deoarece sub RPE {min} scala descrie efortul prin cuvinte, nu prin repetări în rezervă (Helms et al. 2016).",
+ "Najcięższy ciężar w miejscu dla boju głównego ({list}): {w}. Ciężkie serie {a}–{b} powtórzeń (ok. {p}% maksimum) mogą być z nim za lekkie — jeśli {b} powtórzeń wychodzi lekko, rób więcej powtórzeń, bliżej upadku. Siła też wtedy rośnie, ale zwykle mniej niż przy dużym ciężarze.": "Cea mai mare greutate din acest loc pentru exercițiul principal ({list}): {w}. Seriile grele de {a}–{b} repetări (circa {p}% din maxim) pot fi prea ușoare cu ea — dacă {b} repetări ți se par ușoare, fă mai multe repetări, mai aproape de epuizare. Forța crește și așa, dar de obicei mai puțin decât cu greutăți mari.",
+ "Superset ustawisz w szablonie przyciskiem „Połącz z następnym w superset” — przerwa liczy się po ostatnim ćwiczeniu grupy.": "Supersetul îl setezi în șablon cu „Leagă de următorul într-un superset” — pauza începe după ultimul exercițiu din grup.",
+ "Z planu w tym tygodniu: zrobione {done} z {n}.": "Din plan săptămâna aceasta: făcute {done} din {n}."
 }

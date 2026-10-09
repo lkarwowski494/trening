@@ -868,7 +868,6 @@
  "Zacząć z mniejszą liczbą serii: {a} zamiast {b} serii roboczych? Ciężary bez zmian, szablon się nie zmienia.": "Börja med färre set: {a} i stället för {b} arbetsset? Samma vikter, mallen ändras inte.",
  "Pełny trening": "Fullt pass",
  "Mniej serii": "Färre set",
- "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka, nie wynik badań.": "Träningsveckor i rad utan deload: {n}. Tränare gör vanligtvis deload var {a}–{b} vecka — det är praxis, inte ett forskningsresultat.",
  "Zaplanuj deload od {date}": "Planera deload från {date}",
  "Zdejmij oznaczenie deload": "Ta bort deloadmarkering",
  "tydzień deload": "deloadvecka",
@@ -1327,5 +1326,14 @@
  "Półkula balansowa / platforma balansowa": "Balanshalvklot / balansplatta",
  "ergometr narciarski": "skidergometer",
  "Ergometr narciarski": "Skidergometer",
- "Biblioteki natywne iOS spoza npm ({n})": "Inbyggda iOS-bibliotek utanför npm ({n})"
+ "Biblioteki natywne iOS spoza npm ({n})": "Inbyggda iOS-bibliotek utanför npm ({n})",
+ "biblioteki ćwiczeń organizacji szkoleniowych": "övningsbibliotek från utbildningsorganisationer inom träning",
+ "specjalistyczne serwisy treningowe": "specialiserade träningswebbplatser",
+ "materiały producenta sprzętu": "material från en utrustningstillverkare",
+ "badania naukowe": "vetenskapliga studier",
+ "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka opisana w ankietach jednego zespołu badaczy (jedno źródło), nie wynik badań skuteczności.": "Träningsveckor i rad utan deload: {n}. Tränare gör vanligtvis deload var {a}–{b} vecka — det är praxis som beskrivs i enkäter från en enda forskargrupp (en källa), inte ett forskningsresultat om effekten.",
+ "RIR wpisuje się w zakresie 0–{max}; więcej niż {max} powtórzeń w zapasie zapisuje się jako „lekko” (RPE {light}), bo poniżej RPE {min} skala opisuje wysiłek słowami, a nie powtórzeniami w zapasie (Helms i in. 2016).": "RIR anges från 0 till {max}; mer än {max} repetitioner i reserv sparas som ”lätt” (RPE {light}), eftersom skalan under RPE {min} beskriver ansträngningen med ord, inte med repetitioner i reserv (Helms m.fl. 2016).",
+ "Najcięższy ciężar w miejscu dla boju głównego ({list}): {w}. Ciężkie serie {a}–{b} powtórzeń (ok. {p}% maksimum) mogą być z nim za lekkie — jeśli {b} powtórzeń wychodzi lekko, rób więcej powtórzeń, bliżej upadku. Siła też wtedy rośnie, ale zwykle mniej niż przy dużym ciężarze.": "Tyngsta vikten på den här platsen för huvudövningen ({list}): {w}. Tunga set på {a}–{b} repetitioner (cirka {p} % av max) kan bli för lätta med den — om {b} repetitioner känns lätt, gör fler repetitioner, närmare failure. Styrkan ökar ändå, men oftast mindre än med tunga vikter.",
+ "Superset ustawisz w szablonie przyciskiem „Połącz z następnym w superset” — przerwa liczy się po ostatnim ćwiczeniu grupy.": "Ett superset ställer du in i mallen med ”Koppla med nästa till ett superset” — vilan startar efter gruppens sista övning.",
+ "Z planu w tym tygodniu: zrobione {done} z {n}.": "Från planen den här veckan: {done} av {n} gjorda."
 }

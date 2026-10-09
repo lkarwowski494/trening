@@ -62,7 +62,7 @@ export function Field({ label, children }: { label: string; children: React.Reac
 }
 export function Input(props: TextInputProps & { center?: boolean }) {
   const t = useTheme(); const label = React.useContext(FieldLabel); const hint = React.useContext(FieldHint);
-  return <TextInput accessibilityLanguage={lang()} placeholderTextColor={t.muted} maxFontSizeMultiplier={NUM_SCALE_MAX} accessibilityLabel={label ?? (typeof props.placeholder === 'string' ? props.placeholder : undefined)} accessibilityHint={hint} {...props} style={[s.input, { backgroundColor: t.surface2, borderColor: t.ctrlLine /* A11-06 */, color: t.text, fontFamily: F.regular }, props.center && { textAlign: 'center', paddingHorizontal: 4 }, props.style]} />;
+  return <TextInput accessibilityLanguage={lang()} placeholderTextColor={t.muted} maxFontSizeMultiplier={props.multiline ? TEXT_SCALE_MAX : NUM_SCALE_MAX} /* A11N-04: notatki (wiele wierszy) zawijają się — do 200% */ accessibilityLabel={label ?? (typeof props.placeholder === 'string' ? props.placeholder : undefined)} accessibilityHint={hint} {...props} style={[s.input, { backgroundColor: t.surface2, borderColor: t.ctrlLine /* A11-06 */, color: t.text, fontFamily: F.regular }, props.center && { textAlign: 'center', paddingHorizontal: 4 }, props.style]} />;
 }
 /** Audyt cd60eec MEDIUM: wąskie pola (ciężar 56 pt, RPE 40 pt) — krój mono (0,6 em na znak) ucinał „102,5”; krój tekstu z cyframi tabelarycznymi. */
 export const NUM_FONT = { fontFamily: F.regular, fontVariant: ['tabular-nums' as const] };

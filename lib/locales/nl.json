@@ -868,7 +868,6 @@
  "Zacząć z mniejszą liczbą serii: {a} zamiast {b} serii roboczych? Ciężary bez zmian, szablon się nie zmienia.": "Beginnen met minder sets: {a} in plaats van {b} werksets? Gewichten gelijk, het sjabloon verandert niet.",
  "Pełny trening": "Volledige training",
  "Mniej serii": "Minder sets",
- "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka, nie wynik badań.": "Trainingsweken op rij zonder deload: {n}. Trainers doen meestal elke {a}–{b} weken een deload — dit is praktijk, geen onderzoeksresultaat.",
  "Zaplanuj deload od {date}": "Deload plannen vanaf {date}",
  "Zdejmij oznaczenie deload": "Deloadmarkering verwijderen",
  "tydzień deload": "deloadweek",
@@ -1327,5 +1326,14 @@
  "Półkula balansowa / platforma balansowa": "Halve balansbal / balansbord",
  "ergometr narciarski": "skiergometer",
  "Ergometr narciarski": "Skiergometer",
- "Biblioteki natywne iOS spoza npm ({n})": "Native iOS-bibliotheken buiten npm ({n})"
+ "Biblioteki natywne iOS spoza npm ({n})": "Native iOS-bibliotheken buiten npm ({n})",
+ "biblioteki ćwiczeń organizacji szkoleniowych": "oefenbibliotheken van opleidingsorganisaties voor fitness",
+ "specjalistyczne serwisy treningowe": "gespecialiseerde trainingswebsites",
+ "materiały producenta sprzętu": "materiaal van een fabrikant van apparatuur",
+ "badania naukowe": "wetenschappelijke studies",
+ "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka opisana w ankietach jednego zespołu badaczy (jedno źródło), nie wynik badań skuteczności.": "Trainingsweken op rij zonder deload: {n}. Trainers doen meestal elke {a}–{b} weken een deload — dit is praktijk uit enquêtes van één onderzoeksteam (één bron), geen onderzoeksresultaat over de effectiviteit.",
+ "RIR wpisuje się w zakresie 0–{max}; więcej niż {max} powtórzeń w zapasie zapisuje się jako „lekko” (RPE {light}), bo poniżej RPE {min} skala opisuje wysiłek słowami, a nie powtórzeniami w zapasie (Helms i in. 2016).": "RIR vul je in van 0 tot {max}; meer dan {max} herhalingen in reserve wordt opgeslagen als ‘licht’ (RPE {light}), omdat de schaal onder RPE {min} de inspanning met woorden beschrijft, niet met herhalingen in reserve (Helms e.a. 2016).",
+ "Najcięższy ciężar w miejscu dla boju głównego ({list}): {w}. Ciężkie serie {a}–{b} powtórzeń (ok. {p}% maksimum) mogą być z nim za lekkie — jeśli {b} powtórzeń wychodzi lekko, rób więcej powtórzeń, bliżej upadku. Siła też wtedy rośnie, ale zwykle mniej niż przy dużym ciężarze.": "Zwaarste gewicht op deze plek voor de hoofdoefening ({list}): {w}. Zware sets van {a}–{b} herhalingen (ongeveer {p}% van je max) kunnen daarmee te licht zijn — voelen {b} herhalingen licht, doe dan meer herhalingen, dichter bij falen. Je kracht groeit dan ook, maar meestal minder dan met zware gewichten.",
+ "Superset ustawisz w szablonie przyciskiem „Połącz z następnym w superset” — przerwa liczy się po ostatnim ćwiczeniu grupy.": "Een superset stel je in het sjabloon in met ‘Koppel aan volgende in superset’ — de rust begint na de laatste oefening van de groep.",
+ "Z planu w tym tygodniu: zrobione {done} z {n}.": "Uit het plan deze week: {done} van {n} gedaan."
 }

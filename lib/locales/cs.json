@@ -868,7 +868,6 @@
  "Zacząć z mniejszą liczbą serii: {a} zamiast {b} serii roboczych? Ciężary bez zmian, szablon się nie zmienia.": "Začít s menším počtem sérií: {a} místo {b} pracovních sérií? Váhy beze změny, šablona se nemění.",
  "Pełny trening": "Celý trénink",
  "Mniej serii": "Méně sérií",
- "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka, nie wynik badań.": "Tréninkové týdny v řadě bez deloadu: {n}. Trenéři obvykle zařazují deload každých {a}–{b} týdnů — je to praxe, ne výsledek výzkumu.",
  "Zaplanuj deload od {date}": "Naplánovat deload od {date}",
  "Zdejmij oznaczenie deload": "Zrušit označení deload",
  "tydzień deload": "deload týden",
@@ -1327,5 +1326,14 @@
  "Półkula balansowa / platforma balansowa": "Balanční polokoule / balanční deska",
  "ergometr narciarski": "lyžařský ergometr",
  "Ergometr narciarski": "Lyžařský ergometr",
- "Biblioteki natywne iOS spoza npm ({n})": "Nativní knihovny iOS mimo npm ({n})"
+ "Biblioteki natywne iOS spoza npm ({n})": "Nativní knihovny iOS mimo npm ({n})",
+ "biblioteki ćwiczeń organizacji szkoleniowych": "knihovny cviků vzdělávacích organizací ve fitness",
+ "specjalistyczne serwisy treningowe": "odborné weby o tréninku",
+ "materiały producenta sprzętu": "materiály výrobce vybavení",
+ "badania naukowe": "vědecké studie",
+ "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka opisana w ankietach jednego zespołu badaczy (jedno źródło), nie wynik badań skuteczności.": "Tréninkové týdny v řadě bez deloadu: {n}. Trenéři obvykle zařazují deload každých {a}–{b} týdnů — je to praxe popsaná v dotaznících jednoho výzkumného týmu (jeden zdroj), ne výsledek výzkumu účinnosti.",
+ "RIR wpisuje się w zakresie 0–{max}; więcej niż {max} powtórzeń w zapasie zapisuje się jako „lekko” (RPE {light}), bo poniżej RPE {min} skala opisuje wysiłek słowami, a nie powtórzeniami w zapasie (Helms i in. 2016).": "RIR se zadává v rozsahu 0–{max}; víc než {max} opakování v rezervě se uloží jako „lehce“ (RPE {light}), protože pod RPE {min} popisuje škála úsilí slovy, ne opakováními v rezervě (Helms a kol. 2016).",
+ "Najcięższy ciężar w miejscu dla boju głównego ({list}): {w}. Ciężkie serie {a}–{b} powtórzeń (ok. {p}% maksimum) mogą być z nim za lekkie — jeśli {b} powtórzeń wychodzi lekko, rób więcej powtórzeń, bliżej upadku. Siła też wtedy rośnie, ale zwykle mniej niż przy dużym ciężarze.": "Nejtěžší zátěž na tomto místě pro hlavní cvik ({list}): {w}. Těžké série po {a}–{b} opakováních (asi {p} % maxima) s ní můžou být příliš lehké — když je {b} opakování lehkých, dělej víc opakování, blíž k selhání. Síla i tak roste, ale obvykle méně než s velkou zátěží.",
+ "Superset ustawisz w szablonie przyciskiem „Połącz z następnym w superset” — przerwa liczy się po ostatnim ćwiczeniu grupy.": "Superset nastavíš v šabloně tlačítkem „Spojit s dalším do supersetu“ — pauza začíná po posledním cviku skupiny.",
+ "Z planu w tym tygodniu: zrobione {done} z {n}.": "Z plánu tento týden: hotovo {done} z {n}."
 }
