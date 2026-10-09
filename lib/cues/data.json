@@ -2,31 +2,38 @@
  "orgs": {
   "ACE": {
    "name": "American Council on Exercise — Exercise Library (acefitness.org)",
-   "level": 4
+   "level": 4,
+   "kind": "org"
   },
   "NASM": {
    "name": "National Academy of Sports Medicine — Exercise Library (nasm.org)",
-   "level": 4
+   "level": 4,
+   "kind": "org"
   },
   "ExRx.net": {
    "name": "ExRx.net — Exercise Directory (czytane przez Wayback Machine)",
-   "level": 4
+   "level": 4,
+   "kind": "site"
   },
   "Stronger by Science": {
    "name": "Stronger by Science — przewodniki techniki (Greg Nuckols)",
-   "level": 4
+   "level": 4,
+   "kind": "site"
   },
   "Concept2": {
    "name": "Concept2 — Indoor Rowing Technique (producent ergometru)",
-   "level": 4
+   "level": 4,
+   "kind": "maker"
   },
   "Swinton i in. (Robert Gordon University)": {
    "name": "Swinton i in. (Robert Gordon University) — badanie w recenzowanym czasopiśmie (PubMed)",
-   "level": 3
+   "level": 3,
+   "kind": "study"
   },
   "Fry, Smith, Schilling (University of Memphis)": {
    "name": "Fry, Smith, Schilling (University of Memphis) — badanie w recenzowanym czasopiśmie (PubMed)",
-   "level": 3
+   "level": 3,
+   "kind": "study"
   }
  },
  "sources": {

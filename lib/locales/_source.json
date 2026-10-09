@@ -344,6 +344,10 @@
   "en": "Backup from a newer app version"
  },
  {
+  "pl": "badania naukowe",
+  "en": "scientific studies"
+ },
+ {
   "pl": "barki",
   "en": "shoulders"
  },
@@ -402,6 +406,10 @@
  {
   "pl": "Bez treningów i poza aktywnym planem: {list}. „Zastąp” je usunie, „Zostaw” doda nowe obok.",
   "en": "Not used in any workout or in the active plan: {list}. “Replace” deletes them, “Keep” adds the new ones alongside."
+ },
+ {
+  "pl": "biblioteki ćwiczeń organizacji szkoleniowych",
+  "en": "exercise libraries of fitness education organisations"
  },
  {
   "pl": "biceps",
@@ -1872,6 +1880,10 @@
  {
   "pl": "mata i ściana",
   "en": "mat and wall"
+ },
+ {
+  "pl": "materiały producenta sprzętu",
+  "en": "materials from an equipment manufacturer"
  },
  {
   "pl": "max",
@@ -3585,6 +3597,10 @@
  {
   "pl": "Skupiony: bieżąca seria dużymi cyframi i talerze na stronę nad listą ćwiczeń.",
   "en": "Focused: the current set in big numbers and plates per side above the exercise list."
+ },
+ {
+  "pl": "specjalistyczne serwisy treningowe",
+  "en": "specialist training websites"
  },
  {
   "pl": "Sprawdź datę i godzinę",

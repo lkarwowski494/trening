@@ -807,4 +807,8 @@ export const EN: Record<string, string> = {
   'Inteligentna stacja kablowa — pełna (1,5–65 kg/str.)': 'Smart cable machine — full (1.5–65 kg/side)',
   'Przenośna stacja elektryczna, jedna linka (5–200 lb)': 'Portable electric cable unit, single cable (5–200 lb)',
   'Inteligentna stacja kablowa — kompaktowa (1,5–35 kg/str.)': 'Smart cable machine — compact (1.5–35 kg/side)',
+  'biblioteki ćwiczeń organizacji szkoleniowych': 'exercise libraries of fitness education organisations',
+  'specjalistyczne serwisy treningowe': 'specialist training websites',
+  'materiały producenta sprzętu': 'materials from an equipment manufacturer',
+  'badania naukowe': 'scientific studies',
 };

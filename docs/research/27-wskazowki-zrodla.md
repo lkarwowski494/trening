@@ -15,15 +15,17 @@ Decyzja właściciela: docs/18, 08.10.2026 (ok. 23:50) — wariant A etapami; et
 
 ## Organizacje i szczeble (hierarchia z CLAUDE.md)
 
-| Skrót | Organizacja | Szczebel |
-|---|---|---|
-| ACE | American Council on Exercise — Exercise Library (acefitness.org) | 4 |
-| NASM | National Academy of Sports Medicine — Exercise Library (nasm.org) | 4 |
-| ExRx.net | ExRx.net — Exercise Directory (czytane przez Wayback Machine) | 4 |
-| Stronger by Science | Stronger by Science — przewodniki techniki (Greg Nuckols) | 4 |
-| Concept2 | Concept2 — Indoor Rowing Technique (producent ergometru) | 4 |
-| Swinton i in. (Robert Gordon University) | Swinton i in. (Robert Gordon University) — badanie w recenzowanym czasopiśmie (PubMed) | 3 |
-| Fry, Smith, Schilling (University of Memphis) | Fry, Smith, Schilling (University of Memphis) — badanie w recenzowanym czasopiśmie (PubMed) | 3 |
+W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolumna „Rodzaj”), bez nazw organizacji i marek (audyt kontrolny 1 MER2-07, decyzja właściciela 09.10.2026, wariant A); pełna lista — ten dokument.
+
+| Skrót | Organizacja | Szczebel | Rodzaj (podpis w aplikacji) |
+|---|---|---|---|
+| ACE | American Council on Exercise — Exercise Library (acefitness.org) | 4 | organizacja szkoleniowa (biblioteka ćwiczeń) |
+| NASM | National Academy of Sports Medicine — Exercise Library (nasm.org) | 4 | organizacja szkoleniowa (biblioteka ćwiczeń) |
+| ExRx.net | ExRx.net — Exercise Directory (czytane przez Wayback Machine) | 4 | serwis specjalistyczny |
+| Stronger by Science | Stronger by Science — przewodniki techniki (Greg Nuckols) | 4 | serwis specjalistyczny |
+| Concept2 | Concept2 — Indoor Rowing Technique (producent ergometru) | 4 | producent sprzętu |
+| Swinton i in. (Robert Gordon University) | Swinton i in. (Robert Gordon University) — badanie w recenzowanym czasopiśmie (PubMed) | 3 | badanie (czasopismo recenzowane) |
+| Fry, Smith, Schilling (University of Memphis) | Fry, Smith, Schilling (University of Memphis) — badanie w recenzowanym czasopiśmie (PubMed) | 3 | badanie (czasopismo recenzowane) |
 
 ## Podsumowanie
 

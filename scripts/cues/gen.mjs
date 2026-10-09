@@ -15,11 +15,14 @@ export const SECTIONS = { setup: 'Ustawienie', move: 'Ruch', tips: 'Wskazówki',
 /** Liczba wskazówek w sekcji „Wskazówki” (polecenie: 2–4 najważniejsze) i minimalna liczba niezależnych organizacji na wskazówkę.
  * „Częste błędy” — 0–4: sekcja znika, gdy żaden błąd nie ma dwóch źródeł (nie dopisujemy błędów z jednego źródła). */
 export const TIPS_MIN = 2, TIPS_MAX = 4, MIN_ORGS = 2;
+/** Rodzaj organizacji (podpis w aplikacji bez nazw — audyt kontrolny 1 MER2-07, decyzja właściciela 09.10.2026 wariant A); = CUE_BASIS_KINDS w lib/cues. */
+export const KINDS = { org: 'organizacja szkoleniowa (biblioteka ćwiczeń)', site: 'serwis specjalistyczny', maker: 'producent sprzętu', study: 'badanie (czasopismo recenzowane)' };
 
 export function validate(data, pl) {
   const errs = [];
   const used = new Set(), usedSrc = new Set();
   for (const [id, o] of Object.entries(data.orgs ?? {})) if (!o || typeof o.name !== 'string' || ![2, 3, 4].includes(o.level)) errs.push(`orgs.${id}: nazwa i szczebel 2–4`);
+  for (const [id, o] of Object.entries(data.orgs ?? {})) if (!o || !Object.prototype.hasOwnProperty.call(KINDS, o.kind)) errs.push(`orgs.${id}: rodzaj (${Object.keys(KINDS).join(', ')})`);
   for (const [id, s] of Object.entries(data.sources ?? {})) {
     if (!s || !data.orgs?.[s.org]) errs.push(`sources.${id}: nieznana organizacja ${s && s.org}`);
     if (!s || typeof s.title !== 'string' || !s.title) errs.push(`sources.${id}: tytuł`);
@@ -77,9 +80,11 @@ export function render(data, pl) {
   L.push('');
   L.push('## Organizacje i szczeble (hierarchia z CLAUDE.md)');
   L.push('');
-  L.push('| Skrót | Organizacja | Szczebel |');
-  L.push('|---|---|---|');
-  for (const [id, o] of Object.entries(data.orgs)) L.push(`| ${md(id)} | ${md(o.name)} | ${o.level} |`);
+  L.push('W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolumna „Rodzaj”), bez nazw organizacji i marek (audyt kontrolny 1 MER2-07, decyzja właściciela 09.10.2026, wariant A); pełna lista — ten dokument.');
+  L.push('');
+  L.push('| Skrót | Organizacja | Szczebel | Rodzaj (podpis w aplikacji) |');
+  L.push('|---|---|---|---|');
+  for (const [id, o] of Object.entries(data.orgs)) L.push(`| ${md(id)} | ${md(o.name)} | ${o.level} | ${md(KINDS[o.kind] ?? '?')} |`);
   L.push('');
   L.push(`## Podsumowanie`);
   L.push('');

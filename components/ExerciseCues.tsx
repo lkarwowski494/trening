@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Pressable, Text, View } from 'react-native';
 import { useTheme, F } from '@/lib/theme';
 import { t } from '@/lib/i18n';
-import { cuesFor, type CueSection } from '@/lib/cues';
+import { cuesFor, type CueSection, type CueBasisKind } from '@/lib/cues';
 import type { Exercise } from '@/lib/seed';
 import { ExerciseFigure } from '@/components/ExerciseFigure';
 
@@ -11,8 +11,10 @@ import { ExerciseFigure } from '@/components/ExerciseFigure';
  * Zwinięta na starcie (ekran ćwiczenia zostaje krótki); nagłówek to przycisk z accessibilityState.expanded, treść — zwykły tekst
  * czytany przez VoiceOver (punkty bez znaku „•” w etykiecie). Kolory z motywu. Ćwiczenia bez wskazówek (własne, spoza bazowych) — nic.
  * Nad tekstem figura ruchu (etap 2–3, components/ExerciseFigure.tsx), gdy ćwiczenie ją ma.
- * Stopka: na czym oparte (organizacje ze źródeł) i odesłanie do specjalisty — aplikacja nie udziela porad medycznych (CLAUDE.md).
+ * Stopka: na czym oparte — rodzaje źródeł opisane ogólnie, bez nazw organizacji i marek (audyt kontrolny 1 MER2-07 = SEC2-02, decyzja właściciela
+ * 09.10.2026 wariant A; pełna lista w docs/research/27) — i odesłanie do specjalisty — aplikacja nie udziela porad medycznych (CLAUDE.md).
  */
+const BASIS: Record<CueBasisKind, () => string> = { org: () => t('biblioteki ćwiczeń organizacji szkoleniowych'), site: () => t('specjalistyczne serwisy treningowe'), maker: () => t('materiały producenta sprzętu'), study: () => t('badania naukowe') };
 const LABEL: Record<CueSection, () => string> = { setup: () => t('Ustawienie'), move: () => t('Ruch'), tips: () => t('Wskazówki'), mistakes: () => t('Częste błędy') };
 
 export function ExerciseCues({ exercise }: { exercise: Pick<Exercise, 'lib' | 'libKey'> }) {
@@ -30,7 +32,7 @@ export function ExerciseCues({ exercise }: { exercise: Pick<Exercise, 'lib' | 'l
           <Text accessibilityRole="header" maxFontSizeMultiplier={1.6} style={{ color: th.muted, fontSize: 13, fontFamily: F.semibold, marginBottom: 2 }}>{LABEL[s.id]()}</Text>
           {s.items.map((x, i) => <Text key={i} accessibilityLabel={x} maxFontSizeMultiplier={1.8} style={{ color: th.text, fontSize: 15, fontFamily: F.regular, lineHeight: 21, marginTop: 2 }}>{`• ${x}`}</Text>)}
         </View>)}
-        <Text maxFontSizeMultiplier={1.6} style={{ color: th.muted, fontSize: 12, fontFamily: F.regular, marginTop: 10 }}>{t('Na podstawie: {list}. Własne sformułowania.', { list: c.orgs.join(', ') })}</Text>
+        <Text maxFontSizeMultiplier={1.6} style={{ color: th.muted, fontSize: 12, fontFamily: F.regular, marginTop: 10 }}>{t('Na podstawie: {list}. Własne sformułowania.', { list: c.basis.map(k => BASIS[k]()).join(', ') })}</Text>
         <Text maxFontSizeMultiplier={1.6} style={{ color: th.muted, fontSize: 12, fontFamily: F.regular, marginTop: 4 }}>{t('Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.')}</Text>
       </View> : null}
     </View>
