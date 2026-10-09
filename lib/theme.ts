@@ -9,10 +9,14 @@ export const BRAND = { paper: '#F4F3EF', ink: '#15171A', signal: '#1F5FD1' } as 
 /* Audyt 0.10 (A11-04, A11-06): dangerInk — tekst na tle danger (przycisk „Usuń” pod wierszem; dawniej #FFFFFF: 2,77:1 w ciemnym);
  * ctrlLine — granica elementu sterującego (ramka pola, puste pole ✓, tor wyłączonego przełącznika): ≥ 3:1 do bg, surface i surface2 (WCAG 1.4.11);
  * line zostaje dla linii dekoracyjnych (separatory, karty). Test: tests/matrix-a11y (paleta), tests/audit-0.10-lang-ui. */
-export const light: Record<'bg' | 'surface' | 'surface2' | 'line' | 'ctrlLine' | 'text' | 'muted' | 'accent' | 'accentInk' | 'done' | 'doneLine' | 'danger' | 'dangerInk' | 'band', string> = { bg: BRAND.paper, surface: '#ffffff', surface2: '#e9e7e1', line: '#d6d3cb', ctrlLine: '#767a80', text: BRAND.ink, muted: '#4a4d53', accent: BRAND.signal, accentInk: '#ffffff', done: '#e2ece0', doneLine: '#2e7d4f', danger: '#b3261e', dangerInk: '#ffffff', band: '#136f75' };
+export const light: Record<'bg' | 'surface' | 'surface2' | 'line' | 'ctrlLine' | 'text' | 'muted' | 'accent' | 'accentInk' | 'done' | 'doneLine' | 'danger' | 'dangerInk' | 'band', string> = { bg: BRAND.paper, surface: '#ffffff', surface2: '#e9e7e1', line: '#d6d3cb', ctrlLine: '#767a80', text: BRAND.ink, muted: '#4a4d53', accent: BRAND.signal, accentInk: '#ffffff', done: '#e2ece0', doneLine: '#2e7d4f', danger: '#7f1d1d', dangerInk: '#ffffff', band: '#136f75' };
 /** Ciemna wersja: grafitowe tło, papierowy tekst, ten sam niebieski (jaśniejszy). */
 export const dark: typeof light = { bg: '#121316', surface: '#1b1d21', surface2: '#26282d', line: '#3a3d43', ctrlLine: '#74777e', text: '#eceae4', muted: '#a6a9af', accent: '#6f9bf2', accentInk: '#121316', done: '#1f2e24', doneLine: '#4e9a6a', danger: '#ec7a72', dangerInk: '#121316', band: '#5fc3c9' };
 export type Theme = typeof dark;
+/* Motyw z ikony (decyzja właściciela 09.10.2026): czerwień talerza 25 kg (lib/plates.ts PLATE_COLORS.red #D7263D, IWF) nie może mylić się z „Usuń”.
+ * Jasny danger przesunięty z #b3261e (ΔE2000 9,7 do talerza, kontrast luminancji 1,32:1) na ciemną cegłę #7f1d1d (ΔE2000 17,9; 2,02:1); ciemny
+ * #ec7a72 (łososiowy) — ΔE2000 17,3; 1,79:1. Do tego kształt: talerz zawsze jako zaokrąglony prostokąt przy gryfie z liczbą obok, danger tylko
+ * jako tekst i przycisk ze słowem. Test: tests/motyw.test.tsx. */
 /**
  * Audyt 0.10 (A11-07, WCAG 1.4.4): limity powiększenia tekstu (Dynamic Type) — jedno źródło. Teksty, które się zawijają (opisy, przyciski,
  * wiersze ustawień, nagłówki sekcji): do 200%. Kolumny liczb o stałej szerokości (wiersz serii, nagłówki kolumn, pola): 130%.

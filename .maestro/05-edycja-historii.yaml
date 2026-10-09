@@ -134,7 +134,8 @@ name: Edycja historii i trening wstecz
 - extendedWaitUntil: { visible: "This week: deload.*", timeout: 30000 }
 - takeScreenshot: 22-deload-kalendarz
 - tapOn: "Workout, tab.*"
-- extendedWaitUntil: { visible: "Start: Upper A", timeout: 30000 }
+- extendedWaitUntil: { visible: "Other workout", timeout: 30000 }  # układ B (09.10.2026): duży przycisk startu i „Inny trening” ('Inny trening') pod kartą „Dziś”
+- scrollUntilVisible: { element: "Start: Upper A", direction: DOWN, timeout: 30000, centerElement: true }  # lista szablonów niżej (karta Planowania, „Ten tydzień”)
 - tapOn: "Start: Upper A"
 - extendedWaitUntil: { visible: "Start with fewer sets: 4 instead of 6 working sets.*", timeout: 15000 }
 - takeScreenshot: 23-deload-pytanie

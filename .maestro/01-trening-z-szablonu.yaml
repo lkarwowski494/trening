@@ -37,7 +37,8 @@ name: Trening z szablonu
 - assertVisible: "Upper A.*"
 - takeScreenshot: 06-historia
 # Dashboard ekranu Trening (08.10.2026, components/Dashboard.tsx): po treningu kafelki „This week” ('Ten tydzień'), „Workouts: 1, previous week 0”
-# ('{label}: {v}, poprzedni tydzień {p}') i „Last workout” ('Ostatni trening'); karta „Today” bez planu po dzisiejszym treningu: 'Dziś zrobione: {name}'
+# ('{label}: {v}, poprzedni tydzień {p}'); ostatni trening (od 09.10.2026, układ B, bez sekcji „Ostatni trening”) w arkuszu „Other workout”
+# ('Inny trening'): „Repeat last (Upper A)” ('Powtórz ostatni ({name})', etykieta VoiceOver wiersza), „Cancel” ('Anuluj') zamyka arkusz; karta „Today” bez planu po dzisiejszym treningu: 'Dziś zrobione: {name}'
 # („Done today: Upper A”; „No weekly plan” tylko, gdy dziś nic nie zrobiono — audyt 0.10, E2E 89) i podpowiedź 'Ustaw plan tygodnia, by widzieć tu…'.
 - tapOn: "Workout, tab.*"
 - extendedWaitUntil: { visible: "This week", timeout: 30000 }
@@ -46,4 +47,7 @@ name: Trening z szablonu
 - assertVisible: "Done today: Upper A"
 - assertVisible: "Set a weekly plan to see today.s workout here.*"
 - takeScreenshot: 07-dashboard
-- scrollUntilVisible: { element: "Last workout", direction: DOWN, timeout: 20000 }
+- tapOn: "Other workout"
+- extendedWaitUntil: { visible: "Repeat last \\(Upper A\\)", timeout: 20000 }
+- takeScreenshot: 08-inny-trening
+- tapOn: "Cancel"

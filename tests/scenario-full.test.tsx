@@ -15,7 +15,7 @@ import * as timer from '@/lib/timer';
 import * as FS from 'expo-file-system/legacy';
 import * as DP from 'expo-document-picker';
 import * as Sharing from 'expo-sharing';
-import { renderApp, tap, type, flushAll, screen, go, act, fireEvent, expandEquip, swipeDelete, deleteActions, startEdit, saveEdit, exDraft, tplDraft } from './app';
+import { renderApp, tap, type, flushAll, screen, go, act, fireEvent, expandEquip, swipeDelete, deleteActions, startEdit, saveEdit, exDraft, tplDraft, fromHome } from './app';
 import { ex, pressAlert, saved } from './helpers';
 import type { State } from '@/lib/seed';
 import { loadSummary } from '@/components/LoadEditor';
@@ -697,7 +697,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     expect(write.mock.calls.some(([p]) => /\/Backup\/trening-\d{4}-\d{2}-\d{2}-\d{6}\.json$/.test(p))).toBe(true);
     /* ekran główny: „Powtórz ostatni”, szablon z datą ostatniego treningu, bez podpowiedzi pierwszego razu */
     await go('/'); await flushAll(10);
-    expect(screen.getByText('Powtórz ostatni (Push A)')).toBeTruthy(); expect(screen.queryByText(/^Pierwszy raz\?/)).toBeNull();
+    await tap(screen.getByLabelText('Inny trening')); await flushAll(5); /* układ B: arkusz „Inny trening” */ expect(screen.getByLabelText('Powtórz ostatni (Push A)')).toBeTruthy(); expect(screen.getByText(/^Push A · /)).toBeTruthy(); /* podpis: nazwa · data */ await tap(screen.getByLabelText('Anuluj')); await flushAll(5); expect(screen.queryByText(/^Pierwszy raz\?/)).toBeNull();
     expect(screen.getByLabelText(/^Push A, 5 ćw\. · 14 serii · ostatnio /)).toBeTruthy();
     expect(timer.T.on).toBe(false); expect(timer.S.on).toBe(false);
   });
@@ -794,7 +794,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     expect(S().workouts.map(x => x.id).sort()).toEqual([w0.id, past.id].sort()); expect(S().workouts.some(x => x.id === extra.id)).toBe(false);
     await go('/history'); await flushAll(10); expect(screen.getByText('2 sesje')).toBeTruthy();
     /* „Powtórz ostatni”: to, co faktycznie zrobiono (także Push Up dodane w edycji), potem anulowanie */
-    await go('/'); await flushAll(10); await tap(screen.getByText('Powtórz ostatni (Push A — poprawione)')); await flushAll(10);
+    await go('/'); await flushAll(10); await fromHome('Powtórz ostatni (Push A — poprawione)'); await flushAll(10);
     const r = S().active!; expect(r.templateName).toBe('Push A — poprawione'); expect(r.exercises.map(e => store.exById(e.exerciseId)!.name)).toContain('Push Up');
     expect(r.exercises.every(e => e.sets.every(x => !x.done))).toBe(true);
     await tap(screen.getByText('Odrzuć trening')); pressAlert('Odrzucić trening?', 'Odrzuć trening'); await flushAll(10); expect(S().active).toBeNull(); expect(S().workouts).toHaveLength(2);
@@ -888,7 +888,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
   test('10b restart po imporcie: dane z pliku zostały', async () => {
     await boot('/');
     expect(S().templates.map(x => x.name)).toEqual(['Push A']); expect(S().workouts).toHaveLength(2); expect(screen.getByLabelText('Start: Push A')).toBeTruthy();
-    expect(screen.getByText('Powtórz ostatni (Push A — poprawione)')).toBeTruthy();
+    await tap(screen.getByLabelText('Inny trening')); await flushAll(5); /* układ B: arkusz „Inny trening” */ expect(screen.getByLabelText('Powtórz ostatni (Push A — poprawione)')).toBeTruthy();
   });
 
   test('11 „Wyczyść wszystkie dane”: pytanie, kopia bezpieczeństwa, stan jak po instalacji; kopię da się zaimportować z powrotem', async () => {

@@ -44,6 +44,10 @@
   "en": "{c}, level {n}"
  },
  {
+  "pl": "{done} z {n}",
+  "en": "{done} of {n}"
+ },
+ {
   "pl": "{ex} — {n} min, umiarkowane tempo",
   "en": "{ex} — {n} min, moderate pace"
  },
@@ -102,6 +106,10 @@
  {
   "pl": "{n}, główne: {m}",
   "en": "{n}, main: {m}"
+ },
+ {
+  "pl": "{name} · w planie na: {day}",
+  "en": "{name} · planned for: {day}"
  },
  {
   "pl": "{name}, wybrany",
@@ -720,6 +728,10 @@
   "en": "add exercises in the next step"
  },
  {
+  "pl": "ćwiczenia dodasz w trakcie",
+  "en": "add exercises as you go"
+ },
+ {
   "pl": "Ćwiczenia na czas mają w treningu stoper — po upływie celu seria odhacza się sama. Przerwa ustawiona w pozycji szablonu ma pierwszeństwo; puste pole przerwy w szablonie oznacza przerwę z tego ćwiczenia.",
   "en": "Timed exercises get a stopwatch during the workout — the set ticks itself off when the target is reached. A rest set on a template item takes priority; an empty rest field in the template means this exercise’s rest."
  },
@@ -976,6 +988,10 @@
  {
   "pl": "Dziś",
   "en": "Today"
+ },
+ {
+  "pl": "dziś w planie · {n} ćw.",
+  "en": "planned for today · {n} ex."
  },
  {
   "pl": "Dziś wolne",
@@ -1328,6 +1344,18 @@
  {
   "pl": "Inny trening",
   "en": "Other workout"
+ },
+ {
+  "pl": "Inny z planu",
+  "en": "Another from the plan"
+ },
+ {
+  "pl": "Inny z planu, powtórz ostatni, z szablonu albo pusty.",
+  "en": "Another from the plan, repeat last, from a template or empty."
+ },
+ {
+  "pl": "Inny z planu: {name}",
+  "en": "Another from the plan: {name}"
  },
  {
   "pl": "Inteligentna stacja kablowa — kompaktowa (1,5–35 kg/str.)",
@@ -2034,6 +2062,10 @@
   "en": "Fewer sets"
  },
  {
+  "pl": "mniej serii niż średnio",
+  "en": "fewer sets than average"
+ },
+ {
   "pl": "modlitewnik",
   "en": "preacher bench"
  },
@@ -2164,6 +2196,14 @@
  {
   "pl": "Następny okres",
   "en": "Next period"
+ },
+ {
+  "pl": "następny po: {name} · {n} ćw.",
+  "en": "next after: {name} · {n} ex."
+ },
+ {
+  "pl": "następny: {next}",
+  "en": "next: {next}"
  },
  {
   "pl": "Nazwa",
@@ -2594,10 +2634,6 @@
   "en": "Elliptical"
  },
  {
-  "pl": "Ostatni trening",
-  "en": "Last workout"
- },
- {
   "pl": "Ostatni trening był już skrócony — „Mniej serii” powtórzy go bez dalszego cięcia.",
   "en": "The last workout was already shortened — “Fewer sets” repeats it without cutting again."
  },
@@ -2788,6 +2824,18 @@
  {
   "pl": "Plan z moich szablonów",
   "en": "Plan from my templates"
+ },
+ {
+  "pl": "Plan: {name}",
+  "en": "Plan: {name}"
+ },
+ {
+  "pl": "Plan: {name} · {n} {d} · następny: {next}",
+  "en": "Plan: {name} · {n} {d} · next: {next}"
+ },
+ {
+  "pl": "Planowanie",
+  "en": "Planning"
  },
  {
   "pl": "plecy",
@@ -3006,6 +3054,10 @@
   "en": "Workout progress: {d} of {n} sets"
  },
  {
+  "pl": "Postęp tygodnia: zrobione {done} z {n} treningów z planu",
+  "en": "Weekly progress: {done} of {n} planned workouts done"
+ },
+ {
   "pl": "Postępy",
   "en": "Progress"
  },
@@ -3040,6 +3092,10 @@
  {
   "pl": "Powiadomienia działają",
   "en": "Notifications work"
+ },
+ {
+  "pl": "Powtórz ostatni",
+  "en": "Repeat last"
  },
  {
   "pl": "Powtórz ostatni ({name})",
@@ -3340,11 +3396,6 @@
   "en": "Record: {list}"
  },
  {
-  "pl": "rekord|rekordy|rekordów",
-  "en": "record|records",
-  "plural": true
- },
- {
   "pl": "REKORDY",
   "en": "RECORDS"
  },
@@ -3419,6 +3470,10 @@
  {
   "pl": "rozgrzewkowa",
   "en": "warm-up"
+ },
+ {
+  "pl": "Rozwija planowanie.",
+  "en": "Expands planning."
  },
  {
   "pl": "RPE / RIR przy serii",
@@ -3548,6 +3603,10 @@
  {
   "pl": "Serie na partię w tygodniu (pomocnicza = {h} serii — uproszczenie, jedno źródło): {list}",
   "en": "Sets per muscle group per week (assisting = {h} set — a simplification, single source): {list}"
+ },
+ {
+  "pl": "serie około średniej",
+  "en": "sets around average"
  },
  {
   "pl": "Serie per partia — ten tydzień vs poprzedni",
@@ -3715,6 +3774,10 @@
   "en": "Start"
  },
  {
+  "pl": "Start następnego treningu: {name}",
+  "en": "Start next workout: {name}"
+ },
+ {
   "pl": "Start stopera serii",
   "en": "Start set stopwatch"
  },
@@ -3831,6 +3894,11 @@
   "en": "The template stays unchanged."
  },
  {
+  "pl": "szablon|szablony|szablonów",
+  "en": "template|templates",
+  "plural": true
+ },
+ {
   "pl": "Szablony",
   "en": "Templates"
  },
@@ -3911,6 +3979,10 @@
   "en": "Weight plate (held)"
  },
  {
+  "pl": "Talerz przy dniu — serie względem średniej w miesiącu:",
+  "en": "Plate next to a day — sets compared with the month’s average:"
+ },
+ {
   "pl": "Talerze: ciężar i liczba sztuk (wszystkie, dla obu hantli razem).",
   "en": "Plates: weight and number of pieces (all of them, for both dumbbells together)."
  },
@@ -3985,6 +4057,10 @@
  {
   "pl": "Tej sesji nie ma już w historii.",
   "en": "This session is no longer in your history."
+ },
+ {
+  "pl": "tekst na karcie „Dziś” i w Kalendarzu, gdy nie ma planu",
+  "en": "text on the “Today” card and in the Calendar when there is no plan"
  },
  {
   "pl": "tempo",
@@ -4111,6 +4187,11 @@
   "en": "A workout you didn’t log at the time. Set the date and pick a template — you’ll fill in the sets in the next step (values from your last workout before that date)."
  },
  {
+  "pl": "trening|treningi|treningów",
+  "en": "workout|workouts",
+  "plural": true
+ },
+ {
   "pl": "Treningi",
   "en": "Workouts"
  },
@@ -4125,6 +4206,10 @@
  {
   "pl": "Treningi sprzed pierwszego pomiaru ({d}) — bez e1RM.",
   "en": "Workouts before the first measurement ({d}) — no e1RM."
+ },
+ {
+  "pl": "Treningi w tym tygodniu: {n}",
+  "en": "Workouts this week: {n}"
  },
  {
   "pl": "triceps",
@@ -4483,6 +4568,10 @@
   "en": "In the Calendar: tap a day, then “More options” → “Mark week as deload” — a future week too."
  },
  {
+  "pl": "w planie na: {day} · {n} ćw.",
+  "en": "planned for: {day} · {n} ex."
+ },
+ {
   "pl": "W planie tygodnia: {days} — te dni będą wolne.",
   "en": "In the weekly plan: {days} — these days will be rest days."
  },
@@ -4569,6 +4658,10 @@
  {
   "pl": "Więcej opcji",
   "en": "More options"
+ },
+ {
+  "pl": "więcej serii niż średnio",
+  "en": "more sets than average"
  },
  {
   "pl": "Wiosłowanie T-bar",
@@ -4827,10 +4920,6 @@
   "en": "with incline back"
  },
  {
-  "pl": "Z planu w tym tygodniu: zrobione {done} z {n}.",
-  "en": "Planned this week: {done} of {n} done."
- },
- {
   "pl": "z regulacją nachylenia (marsz pod górę)",
   "en": "with incline (uphill walking)"
  },
@@ -4857,6 +4946,10 @@
  {
   "pl": "Za dużo zapisanych planów",
   "en": "Too many saved plans"
+ },
+ {
+  "pl": "Zachęta do planu tygodnia",
+  "en": "Weekly plan prompt"
  },
  {
   "pl": "Zacząć z mniejszą liczbą serii: {a} zamiast {b} serii roboczych? Ciężary bez zmian, szablon się nie zmienia.",

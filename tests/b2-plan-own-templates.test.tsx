@@ -5,7 +5,7 @@ import * as store from '@/lib/store';
 import * as draft from '@/lib/draft';
 import { generate, saveGenerated } from '@/lib/generator';
 import { fresh, saved, pressAlert } from './helpers';
-import { renderApp, flushAll, screen, go, tap, type, act, saveEdit } from './app';
+import { renderApp, flushAll, screen, go, tap, type, act, saveEdit, fromHome } from './app';
 import { router } from 'expo-router';
 
 jest.setTimeout(60000);
@@ -49,7 +49,7 @@ describe('b2 — własne szablony w planie i na liście startu', () => {
     await home(); await go(`/template/${id}`); await flushAll(10); await act(async () => { router.back(); }); await flushAll(10);
     await go(`/template/${id}`); await flushAll(10); await tap(screen.getByLabelText('Start: Nowy szablon')); await flushAll(10); expect(S().active?.templateId).toBe(id);
     await finish(); await home();
-    await tap(screen.getByText('Powtórz ostatni (Nowy szablon)')); await flushAll(10); expect(S().active?.templateId).toBe(id);
+    await fromHome('Powtórz ostatni (Nowy szablon)'); /* układ B: arkusz „Inny trening” */ await flushAll(10); expect(S().active?.templateId).toBe(id);
     await finish(); expect(S().templates.map(x => x.id)).toEqual([id]); expect(await planChoices()).toEqual(['Wolne', 'Nowy szablon']);
   });
   test('szablon z własną nazwą w folderze — w edytorze planu (pod nazwą folderu) i na liście startu', async () => {
