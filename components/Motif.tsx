@@ -1,8 +1,8 @@
 import React from 'react';
 import { View } from 'react-native';
 import { PLATE_COLORS, type PlateColor } from '@/lib/plates';
-import Svg, { Rect } from 'react-native-svg';
-import { needsEdge, miniIcon, MINI_ICON, MARK_STROKE, plateStack, plateStackHeight, PLATE_STACK, type DayMark } from '@/lib/motif';
+import Svg, { Path, Rect } from 'react-native-svg';
+import { needsEdge, miniIcon, MINI_ICON, MARK_STROKE, restCup, REST_CUP, plateStack, plateStackHeight, PLATE_STACK, type DayMark } from '@/lib/motif';
 import type { Theme } from '@/lib/theme';
 
 /*
@@ -22,7 +22,8 @@ export function Plate({ color, loaded = true, h, w = 10, bg, th, testID }: { col
 /**
  * Znacznik dnia (pasek tygodnia na karcie „Dziś” i kalendarz; korekta właściciela 09.10.2026 ok. 17:00): zrobione — mała ikona aplikacji w kolorach
  * (gryf w kolorze tekstu — w ciemnym motywie jasny), zaplanowane — sama obwódka ikony w kolorze tekstu, opuszczone — obwódka wyszarzona (ctrlLine).
- * Geometria: lib/motif.miniIcon. Dekoracja: stan dnia czyta VoiceOver z etykiety i wartości dnia.
+ * Odpoczynek (dzień bez treningu w aktywnym planie; decyzja właściciela 09.10.2026 wieczór) — filiżanka espresso (RestCup).
+ * Geometria: lib/motif.miniIcon i restCup. Dekoracja: stan dnia czyta VoiceOver z etykiety i wartości dnia.
  */
 export function DayIcon({ mark, bg, th }: { mark: DayMark; bg: string; th: Theme }) {
   const parts = miniIcon(); const { w, h } = MINI_ICON;
@@ -31,11 +32,27 @@ export function DayIcon({ mark, bg, th }: { mark: DayMark; bg: string; th: Theme
       {parts.map((p, i) => { const fill = p.color ? PLATE_COLORS[p.color] : th.text; const edge = !!p.color && needsEdge(fill, bg);
         return <Rect key={i} x={edge ? p.x + 0.4 : p.x} y={edge ? p.y + 0.4 : p.y} width={edge ? p.w - 0.8 : p.w} height={edge ? p.h - 0.8 : p.h} rx={p.rx} fill={fill} stroke={edge ? th.text : undefined} strokeWidth={edge ? 0.8 : undefined} />; })}
     </Svg></View>);
+  if (mark === 'rest') return <RestCup color={th[MARK_STROKE.rest]} />;
   const stroke = th[MARK_STROKE[mark]]; const sw = 1;
   return (
     <View {...a11yHidden} testID={`day-icon-${mark}`}><Svg width={w} height={h} viewBox={`0 0 ${w} ${h}`} accessible={false}>
       {parts.map((p, i) => p.part === 'bar' ? <Rect key={i} x={0} y={h / 2 - sw / 2} width={w} height={sw} fill={stroke} />
         : <Rect key={i} x={p.x + sw / 2} y={p.y + sw / 2} width={p.w - sw} height={p.h - sw} rx={p.rx} fill={bg} stroke={stroke} strokeWidth={sw} />)}
+    </Svg></View>);
+}
+
+/**
+ * Filiżanka espresso na spodku — dzień odpoczynku (rozstrzygnięcie agenta 09.10.2026: pełna płaska sylwetka, jak kształty ikony; odrzucona obwódka —
+ * w tym samym stonowanym kolorze co ikona dnia opuszczonego byłaby drugim szarym konturem; zrzuty: docs/09). Kolor `ctrlLine` (MARK_STROKE.rest):
+ * stonowany, ≥ 3:1 do tła w obu motywach. Spodek i czarka wypełnione, ucho — pierścień. Geometria: lib/motif.REST_CUP.
+ */
+export function RestCup({ color }: { color: string }) {
+  const { w, h } = MINI_ICON; const c = restCup(); const sw = REST_CUP.sw; const { handle: hd, saucer: sc } = c;
+  return (
+    <View {...a11yHidden} testID="day-icon-rest"><Svg width={w} height={h} viewBox={`0 0 ${w} ${h}`} accessible={false}>
+      <Rect x={sc.x} y={sc.y} width={sc.w} height={sc.h} rx={sc.rx} fill={color} />
+      <Rect x={hd.x + sw / 2} y={hd.y + sw / 2} width={hd.w - sw} height={hd.h - sw} rx={hd.rx} fill="none" stroke={color} strokeWidth={sw} />
+      <Path d={c.body} fill={color} />
     </Svg></View>);
 }
 

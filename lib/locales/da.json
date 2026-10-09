@@ -1323,5 +1323,6 @@
  "Aplikacja zamknęła się w trakcie edycji ćwiczenia „{name}”. Wrócić do edycji?": "Appen lukkede, mens du redigerede øvelsen “{name}”. Vil du fortsætte redigeringen?",
  "Wróć do edycji": "Fortsæt redigering",
  "Mapa mięśni i serie na partię z kreską {n} serii tygodniowo.": "Muskelkort og sæt pr. muskelgruppe med en linje ved {n} sæt om ugen.",
- "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.": "Fremgang: uge- og månedsoversigt med muskelkort, markering for {n} sæt pr. muskelgruppe pr. uge og markering af en deload-uge."
+ "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.": "Fremgang: uge- og månedsoversigt med muskelkort, markering for {n} sæt pr. muskelgruppe pr. uge og markering af en deload-uge.",
+ "odpoczynek": "hviledag"
 }

@@ -1323,5 +1323,6 @@
  "Aplikacja zamknęła się w trakcie edycji ćwiczenia „{name}”. Wrócić do edycji?": "Η εφαρμογή έκλεισε ενώ επεξεργαζόσουν την άσκηση «{name}». Επιστροφή στην επεξεργασία;",
  "Wróć do edycji": "Επιστροφή στην επεξεργασία",
  "Mapa mięśni i serie na partię z kreską {n} serii tygodniowo.": "Χάρτης μυών και σετ ανά μυϊκή ομάδα με γραμμή στα {n} σετ την εβδομάδα.",
- "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.": "Πρόοδος: σύνοψη εβδομάδας και μήνα με χάρτη μυών, σήμανση {n} σετ ανά μυϊκή ομάδα την εβδομάδα και σήμανση εβδομάδας αποφόρτισης."
+ "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.": "Πρόοδος: σύνοψη εβδομάδας και μήνα με χάρτη μυών, σήμανση {n} σετ ανά μυϊκή ομάδα την εβδομάδα και σήμανση εβδομάδας αποφόρτισης.",
+ "odpoczynek": "ημέρα ξεκούρασης"
 }

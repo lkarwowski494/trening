@@ -26,14 +26,35 @@ export const ICON_PLATES: readonly { color: PlateColor; w: number; h: number }[]
 /** Zacisk na końcu tulei (ikona: 7 × 22) i gryf (wysokość 8). */
 export const ICON_COLLAR = { w: 7, h: 22 } as const; export const ICON_BAR_H = 8;
 
-/** Stan znacznika dnia (pasek tygodnia na karcie „Dziś” i kalendarz): zrobione — pełna ikona; zaplanowane — obwódka; opuszczone — obwódka wyszarzona. */
-export const DAY_MARKS = ['done', 'planned', 'missed'] as const;
+/** Stan znacznika dnia (pasek tygodnia na karcie „Dziś” i kalendarz): zrobione — pełna ikona; zaplanowane — obwódka; opuszczone — obwódka wyszarzona;
+ * odpoczynek — mała filiżanka espresso (decyzja właściciela 09.10.2026 wieczór, wariant B; docs/18). */
+export const DAY_MARKS = ['done', 'planned', 'missed', 'rest'] as const;
 export type DayMark = (typeof DAY_MARKS)[number];
 /** Ze stanu dnia (lib/plan.dayStatusFrom — jedna funkcja dla paska, kalendarza i liczników): zrobiony inny trening też jest treningiem wykonanym
- * (pełna ikona; że zaplanowany czeka, mówi etykieta VoiceOver i karta „Dziś”), dzień bez planu i bez treningu — bez znacznika. */
-export const dayMark = (s: DayStatus): DayMark | null => s === 'done' || s === 'other' ? 'done' : s === 'planned' ? 'planned' : s === 'missed' ? 'missed' : null;
-/** Kolor obwódki (klucz motywu): zaplanowany — kolor tekstu; opuszczony — ctrlLine (wyszarzony, nadal ≥ 3:1 do tła w obu motywach — test). */
-export const MARK_STROKE: Readonly<Record<Exclude<DayMark, 'done'>, 'text' | 'ctrlLine'>> = { planned: 'text', missed: 'ctrlLine' };
+ * (pełna ikona; że zaplanowany czeka, mówi etykieta VoiceOver i karta „Dziś”). Dzień bez treningu w planie i bez treningu (`inPlan` —
+ * lib/plan.planInForce: w tym dniu obowiązuje plan tygodnia) — odpoczynek; bez planu — bez znacznika (odpoczynek ≠ brak planu). Trening zrobiony
+ * w dzień odpoczynku — 'done' (stan dnia 'done'). */
+export const dayMark = (s: DayStatus, inPlan = false): DayMark | null =>
+  s === 'done' || s === 'other' ? 'done' : s === 'planned' ? 'planned' : s === 'missed' ? 'missed' : s === 'rest' && inPlan ? 'rest' : null;
+/** Kolor obwódki (klucz motywu): zaplanowany — kolor tekstu; opuszczony i odpoczynek — ctrlLine (stonowany, by nie konkurował z dniami treningowymi,
+ * nadal ≥ 3:1 do tła w obu motywach — WCAG 1.4.11, test). Odpoczynek od opuszczonego odróżnia kształt (filiżanka, nie ikona), nie kolor. */
+export const MARK_STROKE: Readonly<Record<Exclude<DayMark, 'done'>, 'text' | 'ctrlLine'>> = { planned: 'text', missed: 'ctrlLine', rest: 'ctrlLine' };
+
+/**
+ * Filiżanka espresso na spodku (dzień odpoczynku): własny rysunek z płaskich kształtów jak ikona aplikacji (zaokrąglone prostokąty, kształt bez
+ * szczegółów), bez pary i bez tekstu; to samo pole co mini-ikona (MINI_ICON 24 × 18 pt). Liczby w pt pola: spodek — szeroki, niski prostokąt na dole;
+ * czarka — u góry szersza, zwęża się ku dołowi (`taper` z każdej strony), dolne rogi zaokrąglone (`r`); ucho — pierścień (obrys) z prawej, w połowie
+ * schowany za czarką. Kreska `sw` ≥ 1 pt (tests/motyw.test.tsx).
+ */
+export const REST_CUP = { saucer: { x: 2.5, y: 15.4, w: 19, h: 2, rx: 1 }, cup: { x: 5, y: 4.6, w: 11.6, h: 10.2, taper: 1.5, r: 2.8 }, handle: { x: 14.2, y: 6.4, w: 6, h: 5.4, rx: 2.7 }, sw: 1.2 } as const;
+export type CupBox = { x: number; y: number; w: number; h: number; rx: number };
+export type CupParts = { saucer: CupBox; handle: CupBox; body: string };
+/** Kształty filiżanki: spodek i ucho jako prostokąty, czarka jako ścieżka SVG (`d`). */
+export function restCup(): CupParts {
+  const { saucer: s, cup: c, handle: h } = REST_CUP; const x0 = c.x, x1 = c.x + c.w, top = c.y, bot = c.y + c.h, l = x0 + c.taper, rr = x1 - c.taper;
+  const body = `M${r2(x0)} ${r2(top)}H${r2(x1)}L${r2(rr)} ${r2(bot - c.r)}Q${r2(rr)} ${r2(bot)} ${r2(rr - c.r)} ${r2(bot)}H${r2(l + c.r)}Q${r2(l)} ${r2(bot)} ${r2(l)} ${r2(bot - c.r)}Z`;
+  return { saucer: { ...s }, handle: { ...h }, body };
+}
 
 /**
  * Mała ikona dnia (ok. 24 × 18 pt). Uproszczenie ikony (nazwane): proporcje wysokości talerzy, kolejność kolorów i kształt gryfu z zaciskiem jak

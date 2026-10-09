@@ -33,7 +33,7 @@ export function TodayPlan() {
   const word = (d: (typeof days)[number]): string => {
     const plannedWord = d.date < today ? t('opuszczony: {name}', { name: name(d.templateId) }) : t('zaplanowany: {name}', { name: name(d.templateId) });
     const m: Record<DayStatus, () => string> = { done: () => t('zrobione: {name}', { name: names(d.date) }), other: () => `${t('zrobiony inny trening: {name}', { name: names(d.date) })}, ${plannedWord}`,
-      planned: () => plannedWord, missed: () => plannedWord, rest: () => t('wolne') };
+      planned: () => plannedWord, missed: () => plannedWord, rest: () => (d.inPlan ? t('odpoczynek') : t('wolne')) /* odpoczynek w planie (ikona espresso) ≠ dzień bez planu */ };
     return m[d.status]();
   };
   const deload = isDeloadWeek(Date.now());
@@ -56,12 +56,12 @@ export function TodayPlan() {
       <View testID="week-strip" style={{ flexDirection: 'row', gap: 2 }}>
         {days.map(d => {
           const label = [dateOf(d.date).toLocaleDateString(locale(), { weekday: 'long', day: 'numeric', month: 'long' }), ...(d.today ? [t('dziś')] : []), word(d), ...(deload ? [t('tydzień deload')] : [])].join(', ');
-          const mark = dayMark(d.status);
+          const mark = dayMark(d.status, d.inPlan);
           return (
             <Pressable accessibilityLanguage={lang()} key={d.date} testID={`strip-${d.date}`} accessibilityRole="button" accessibilityLabel={label} accessibilityHint={t('Otwiera ten dzień w Kalendarzu.')} onPress={() => router.push(`/history?day=${d.date}`)} style={({ pressed }) => ({ flex: 1, minHeight: 44 /* A11-15 */, alignItems: 'center', gap: 4, paddingVertical: 3, borderRadius: 8, borderWidth: 2, borderColor: d.today ? th.accent : 'transparent', opacity: pressed ? 0.6 : 1 })}>
               <View style={{ alignItems: 'center' }}>{(() => { const u = upperText(wd(d.date)); /* B1: skrót dnia wersalikami wg reguł języka (A11-02), pod nim numer dnia miesiąca */ return <Muted maxFontSizeMultiplier={NUM_SCALE_MAX} style={[{ fontSize: 11, fontFamily: d.today ? F.semibold : F.regular, color: d.today ? th.text : th.muted }, u.style]}>{u.text}</Muted>; })()}
               <Txt maxFontSizeMultiplier={NUM_SCALE_MAX} style={{ fontSize: 13, fontFamily: d.today ? F.heavy : F.semibold, color: d.today ? th.text : th.muted }}>{dateOf(d.date).toLocaleDateString(locale(), { day: 'numeric' })}</Txt></View>
-              {/* znacznik dnia — jedyny kod „zrobione / zaplanowane” (lib/motif.dayMark; zrobiony inny trening = pełna ikona, że zaplanowany czeka — etykieta) */}
+              {/* znacznik dnia — jedyny kod „zrobione / zaplanowane / odpoczynek” (lib/motif.dayMark; zrobiony inny trening = pełna ikona, że zaplanowany czeka — etykieta) */}
               <View testID={`strip-mark-${d.date}`} style={{ height: 20, alignItems: 'center', justifyContent: 'center' }}>{mark ? <DayIcon mark={mark} bg={th.surface} th={th} /> : null}</View>
             </Pressable>); })}
       </View>

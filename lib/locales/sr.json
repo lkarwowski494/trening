@@ -1323,5 +1323,6 @@
  "Aplikacja zamknęła się w trakcie edycji ćwiczenia „{name}”. Wrócić do edycji?": "Апликација се затворила док сте уређивали вежбу „{name}”. Наставити уређивање?",
  "Wróć do edycji": "Настави уређивање",
  "Mapa mięśni i serie na partię z kreską {n} serii tygodniowo.": "Мапа мишића и серије по мишићној групи са линијом на {n} серија недељно.",
- "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.": "Напредак: преглед недеље и месеца са мапом мишића, ознака {n} серија по мишићној групи недељно и означавање недеље растерећења."
+ "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.": "Напредак: преглед недеље и месеца са мапом мишића, ознака {n} серија по мишићној групи недељно и означавање недеље растерећења.",
+ "odpoczynek": "дан одмора"
 }

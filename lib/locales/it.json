@@ -1323,5 +1323,6 @@
  "Aplikacja zamknęła się w trakcie edycji ćwiczenia „{name}”. Wrócić do edycji?": "L’app si è chiusa mentre modificavi l’esercizio «{name}». Tornare alla modifica?",
  "Wróć do edycji": "Torna alla modifica",
  "Mapa mięśni i serie na partię z kreską {n} serii tygodniowo.": "Mappa muscolare e serie per gruppo muscolare con una linea a {n} serie settimanali.",
- "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.": "Progressi: riepilogo della settimana e del mese con mappa muscolare, soglia di {n} serie per gruppo muscolare a settimana e segnalazione della settimana di scarico."
+ "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.": "Progressi: riepilogo della settimana e del mese con mappa muscolare, soglia di {n} serie per gruppo muscolare a settimana e segnalazione della settimana di scarico.",
+ "odpoczynek": "giorno di riposo"
 }

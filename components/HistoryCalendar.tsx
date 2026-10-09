@@ -3,14 +3,14 @@ import { View, Text, Pressable } from 'react-native';
 import { useTheme, F, TEXT_SCALE_MAX } from '@/lib/theme';
 import { t as tr, tp, lang } from '@/lib/i18n';
 import { monthGrid, shiftMonth, weekdayLabels, monthTitle, dayTitle, dayKey } from '@/lib/calendar';
-import { dayStatusFrom, planTplName } from '@/lib/plan';
+import { dayStatusFrom, planInForce, planTplName } from '@/lib/plan';
 import { isDeloadWeek } from '@/lib/store';
 import type { Workout } from '@/lib/seed';
 import { dayMark, MINI_ICON, type DayMark } from '@/lib/motif';
 import { DayIcon } from '@/components/Motif';
 
 /** Wartość VoiceOver dnia ze znacznikiem (korekta właściciela 09.10.2026 ok. 17:00): „zrobione” albo „zaplanowane” — etykieta dnia bez zmian (E2E). */
-const markText = (m: DayMark): string => m === 'done' ? tr('zrobione') : tr('zaplanowane');
+const markText = (m: DayMark): string => m === 'done' ? tr('zrobione') : m === 'rest' ? tr('odpoczynek') : tr('zaplanowane');
 /** Komórka dnia: numer nad ikoną dnia (lib/motif.MINI_ICON) — 38 × 44 pt, z hitSlop 4 cel ≥ 44 pt (A11-15). */
 export const CAL_FACE = { w: MINI_ICON.w + 14, h: 44 } as const;
 
@@ -19,6 +19,8 @@ export const CAL_FACE = { w: MINI_ICON.w + 14, h: 44 } as const;
  * pełna = trening zrobiony, sama obwódka = zaplanowany (opuszczony — obwódka wyszarzona), bez planu i treningu — nic; to jedyny kod
  * „zrobione / zaplanowane” (bez kółek planu, kropek i legendy kolorów). Zostają: dziś — ramka w kolorze akcentu, wybrany dzień — ramka
  * w kolorze tekstu i tło, tydzień deload — ramka wiersza.
+ * Decyzja właściciela 09.10.2026 wieczór: dzień bez treningu w obowiązującym planie (odpoczynek) — filiżanka espresso (components/Motif RestCup),
+ * wartość VoiceOver „odpoczynek”; bez planu — nadal nic.
  * Tapnięcie dnia z treningiem filtruje listę do tego dnia (drugie tapnięcie — wszystkie). VoiceOver: dni z treningiem to przyciski
  * „data, N sesji”; 08.10.2026: każdy dzień miesiąca jest przyciskiem (planowanie) — zaplanowany „data, zaplanowany: X”, opuszczony „data, opuszczony: X”.
  * Audyt 0.10: stan dnia z jednej funkcji (dayStatusFrom — A2, A5: zrobiony inny trening = wypełnione z kropką, zaplanowany czeka / nie zrobiony);
@@ -47,7 +49,7 @@ export function HistoryCalendar({ byDay, selected, onSelect, onMonth }: { byDay:
         <View key={wi} testID={dl ? `cal-deload-${w[0].key}` : undefined} style={{ flexDirection: 'row', borderRadius: 18, backgroundColor: dl ? t.surface2 : 'transparent', borderWidth: 1, borderColor: dl ? t.muted : 'transparent' }}>
           {w.map(c => { const ws = c.inMonth ? byDay.get(c.key) ?? [] : []; const n = ws.length; const on = selected === c.key; const isToday = c.key === today;
             const st = c.inMonth ? dayStatusFrom(c.key, ws, today) : null; const status = st?.status ?? 'rest'; const name = planTplName(st?.templateId);
-            const mark = c.inMonth ? dayMark(status) : null; const missed = status === 'missed'; const other = status === 'other'; const planned = status === 'planned';
+            const mark = c.inMonth ? dayMark(status, status === 'rest' && planInForce(c.key, today)) : null; /* odpoczynek tylko w dniu z obowiązującym planem */ const missed = status === 'missed'; const other = status === 'other'; const planned = status === 'planned';
             const face = (
               <View style={{ width: CAL_FACE.w, height: CAL_FACE.h, borderRadius: 10, alignItems: 'center', justifyContent: 'center', gap: 1, borderWidth: on || isToday ? 2 : 0, borderColor: on ? t.text : t.accent, backgroundColor: on ? t.surface2 : 'transparent' }}>
                 <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={1.2} style={{ color: c.inMonth ? (missed ? t.muted : t.text) : t.line, fontSize: 14, lineHeight: 18, fontFamily: n ? F.heavy : F.regular }}>{c.d}</Text>

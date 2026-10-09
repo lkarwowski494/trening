@@ -858,4 +858,5 @@ export const EN: Record<string, string> = {
   'Wróć do edycji': 'Back to editing',
   'Mapa mięśni i serie na partię z kreską {n} serii tygodniowo.': 'Muscle map and sets per muscle group with a {n}-sets-per-week line.',
   'Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.': 'Progress: weekly and monthly summary with a muscle map, a {n}-sets-per-muscle-group weekly mark and marking a week as deload.',
+  'odpoczynek': 'rest day',
 };

@@ -1323,5 +1323,6 @@
  "Aplikacja zamknęła się w trakcie edycji ćwiczenia „{name}”. Wrócić do edycji?": "Az alkalmazás bezárult, miközben a(z) „{name}” gyakorlatot szerkesztette. Folytatja a szerkesztést?",
  "Wróć do edycji": "Szerkesztés folytatása",
  "Mapa mięśni i serie na partię z kreską {n} serii tygodniowo.": "Izomtérkép és sorozatok izomcsoportonként, vonallal heti {n} sorozatnál.",
- "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.": "Fejlődés: heti és havi összesítő izomtérképpel, izomcsoportonként heti {n} sorozat jelölése és egy hét deload hétként jelölése."
+ "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.": "Fejlődés: heti és havi összesítő izomtérképpel, izomcsoportonként heti {n} sorozat jelölése és egy hét deload hétként jelölése.",
+ "odpoczynek": "pihenőnap"
 }

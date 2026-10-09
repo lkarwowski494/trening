@@ -134,7 +134,7 @@ describe('A9, A11-05, D4 — pasek tygodnia, kalendarz, deload', () => {
     expect([light.muted, dark.muted]).toContain(row.props.style.borderColor); expect(row.props.style.borderWidth).toBe(1); /* muted — tekst ≥ 4,5:1, więc ramka ≥ 3:1 */
     expect(screen.getByText('Wiersz w ramce — tydzień deload.')).toBeTruthy();
     await go('/'); await flushAll(10);
-    expect(screen.getByLabelText(`czwartek, 8 października, dziś, wolne, tydzień deload`)).toBeTruthy();
+    expect(screen.getByLabelText(`czwartek, 8 października, dziś, odpoczynek, tydzień deload`)).toBeTruthy(); /* dzień bez treningu w planie — odpoczynek (decyzja 09.10.2026 wieczór) */
   });
   test('D4 (UX-06): „Oznacz tydzień jako deload” w panelu dnia — także przyszły tydzień; karta „Dziś · Tydzień deload”', async () => {
     await boot(ids => { plan.setWeekDay(0, ids[0]); });

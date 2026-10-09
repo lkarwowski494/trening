@@ -1323,5 +1323,6 @@
  "Aplikacja zamknęła się w trakcie edycji ćwiczenia „{name}”. Wrócić do edycji?": "Lietotne aizvērās, kamēr rediģējāt vingrinājumu “{name}”. Atgriezties pie rediģēšanas?",
  "Wróć do edycji": "Atgriezties pie rediģēšanas",
  "Mapa mięśni i serie na partię z kreską {n} serii tygodniowo.": "Muskuļu karte un sērijas uz muskuļu grupu ar līniju pie {n} sērijām nedēļā.",
- "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.": "Progress: nedēļas un mēneša kopsavilkums ar muskuļu karti, atzīme par {n} sērijām uz muskuļu grupu nedēļā un nedēļas atzīmēšana kā deload."
+ "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.": "Progress: nedēļas un mēneša kopsavilkums ar muskuļu karti, atzīme par {n} sērijām uz muskuļu grupu nedēļā un nedēļas atzīmēšana kā deload.",
+ "odpoczynek": "atpūtas diena"
 }

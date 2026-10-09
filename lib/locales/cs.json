@@ -1323,5 +1323,6 @@
  "Aplikacja zamknęła się w trakcie edycji ćwiczenia „{name}”. Wrócić do edycji?": "Aplikace se zavřela během úprav cviku „{name}“. Vrátit se k úpravám?",
  "Wróć do edycji": "Zpět k úpravám",
  "Mapa mięśni i serie na partię z kreską {n} serii tygodniowo.": "Mapa svalů a série na partii s čárou u {n} sérií týdně.",
- "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.": "Pokrok: souhrn týdne a měsíce s mapou svalů, značka {n} sérií na partii za týden a označení týdne jako deload."
+ "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.": "Pokrok: souhrn týdne a měsíce s mapou svalů, značka {n} sérií na partii za týden a označení týdne jako deload.",
+ "odpoczynek": "den odpočinku"
 }

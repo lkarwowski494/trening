@@ -586,7 +586,10 @@ function statsCheck(where: string) {
     ok(mw.full === mw.weeks.filter(w => w.state === 'full').length && mw.planned === mw.weeks.filter(w => w.planned > 0).length && mw.full <= mw.planned
       && mw.weeks.every(w => w.done <= w.planned && (w.state === 'none') === (w.planned === 0) && (w.state === 'full') === (w.planned > 0 && w.done === w.planned)), where, 'monthWeeks: stany i liczby', mw);
     const cur = mw.weeks.find(w => w.start === weekStrip()[0].date); if (cur) ok(wp ? cur.planned === wp.total && cur.done === wp.done : cur.planned === 0, where, 'monthWeeks: bieżący tydzień ≠ postęp tygodnia', { cur, wp }); }
-  for (const d of weekStrip()) { const m = dayMark(d.status); ok(m === (d.status === 'rest' ? null : d.status === 'other' ? 'done' : d.status), where, 'dayMark ≠ stan dnia', { d, m }); }
+  /* odpoczynek (decyzja 09.10.2026 wieczór): filiżanka = dzień 'rest' przy obowiązującym planie tygodnia; bez planu — nic; dziś i dalej plan = hasPlan bez samych zmian dni */
+  for (const d of weekStrip()) { const m = dayMark(d.status, d.inPlan); ok(m === (d.status === 'rest' ? (d.inPlan ? 'rest' : null) : d.status === 'other' ? 'done' : d.status), where, 'dayMark ≠ stan dnia', { d, m });
+    ok(d.inPlan === plan.planInForce(d.date), where, 'pasek: inPlan ≠ planInForce', d);
+    if (d.date >= plan.dayKeyOf(Date.now()) && d.inPlan) ok(plan.hasPlan(), where, 'odpoczynek od dziś bez planu (hasPlan)', d); }
 }
 
 /* ---------- przebieg ---------- */
