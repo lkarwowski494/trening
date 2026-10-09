@@ -11,7 +11,7 @@ import * as edit from '@/lib/edit';
 import { addLocation, duplicateLocation } from '@/lib/locations';
 import { parseBackup } from '@/lib/backup';
 import * as draft from '@/lib/draft';
-import { BODY_MASS_LOG_MAX, base, uid, type Template, type Exercise } from '@/lib/seed';
+import { BODY_MASS_LOG_MAX, base, uid, fpHash, type Template, type Exercise } from '@/lib/seed';
 import * as plan from '@/lib/plan';
 
 describe('LIVE2-04: staleBody na zegarze strefy startu', () => {
@@ -198,6 +198,40 @@ describe('LOG2-05: próg serii w przewodniku i „Co nowego” z WEEKLY_SETS_MAR
     await fresh(); const { GUIDE } = require('@/lib/guide'); const { WHATS_NEW } = require('@/lib/whatsnew'); const { WEEKLY_SETS_MARK } = require('@/lib/stats');
     expect(GUIDE.find((g: { id: string }) => g.id === 'progress').steps()).toContain(`Mapa mięśni i serie na partię z kreską ${WEEKLY_SETS_MARK} serii tygodniowo.`);
     expect(WHATS_NEW.flatMap((e: { items: () => string[] }) => e.items())).toContain(`Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik ${WEEKLY_SETS_MARK} serii na partię w tygodniu i oznaczanie tygodnia deload.`);
+  });
+});
+
+describe('DAT2-02: ćwiczenie biblioteki przemianowane w 1001/1002 odzyskuje klucz katalogu po odcisku pól z katalogu tamtej wersji', () => {
+  /* pola ćwiczeń z katalogu 1002 (f435c8c), dokładnie jak w scripts/equipment/catalog-1002-fields.json */
+  const F1002: Record<string, unknown[]> = {
+    'Bench Press (sztanga)': ['klatka', 'sztanga', 'weight_reps', 'total', false, ['klatka'], ['triceps', 'barki'], [['barbell'], ['bench.flat'], ['rack', 'bench.uprights']], ['rack.safeties'], 'h_push', 'barbell', null],
+    'Deadlift (sztanga)': ['plecy', 'sztanga', 'weight_reps', 'total', false, ['plecy', 'dwugłowe'], ['pośladki', 'czworogłowe'], [['barbell']], [], 'hinge', 'barbell', null],
+    'Pull Up': ['plecy', 'masa ciała', 'weight_reps', 'total', true, ['plecy'], ['biceps'], [['pullup.bar', 'rings']], [], 'v_pull', 'bodyweight', null],
+    'Lat Pulldown': ['plecy', 'linki', 'weight_reps', 'total', false, ['plecy'], ['biceps'], [['lat_pulldown', 'cable.high']], [], 'v_pull', 'cable', null],
+  };
+  const KEYS = ['group', 'equipment', 'metric', 'loadMode', 'bandAssistable', 'muscles', 'secondaryMuscles', 'requires', 'recommended', 'pattern', 'loadSource', 'implements'] as const;
+  test('DAT2-02: dane 1002 z przemianowanymi Bench Press, Deadlift, Pull Up, Lat Pulldown (bez libKey, pola z 1002) → po migracji klucz odzyskany, pola katalogu odświeżone, nazwa użytkownika zostaje', async () => {
+    await fresh(); const raw = JSON.parse(JSON.stringify(store.getState())); raw.schemaVersion = 17; raw.libExtraStep = 'katalog-2026-10-05';
+    let i = 0; const ids: Record<string, string> = {};
+    for (const [name, f] of Object.entries(F1002)) { const e = raw.exercises.find((x: { libKey?: string }) => x.libKey === name); ids[name] = e.id; delete e.libKey; delete e.catalogRev; e.name = `Moje ${++i}`;
+      KEYS.forEach((k, j) => { if (f[j] === null) delete e[k]; else e[k] = JSON.parse(JSON.stringify(f[j])); }); }
+    const m = store.migrate(raw);
+    for (const name of Object.keys(F1002)) { const e = m.exercises.find(x => x.id === ids[name])!; expect([name, e.libKey, e.name.startsWith('Moje')]).toEqual([name, name, true]); }
+    expect(store.migrate(JSON.parse(JSON.stringify(m)))).toEqual(m); /* idempotentne */
+  });
+  test('DAT2-02: wariant o tych samych polach też bez klucza (Bench Press i Board Press przemianowane) — bez zgadywania; tabela odcisków aktualna (legacy-fp.mjs --check)', async () => {
+    await fresh(); const raw = JSON.parse(JSON.stringify(store.getState())); raw.schemaVersion = 17;
+    const ids = ['Bench Press (sztanga)', 'Board Press'].map((n, i) => { const e = raw.exercises.find((x: { libKey?: string }) => x.libKey === n); delete e.libKey; e.name = `X${i}`; return e.id; });
+    const m = store.migrate(raw); expect(ids.map(id => m.exercises.find(x => x.id === id)!.libKey)).toEqual([undefined, undefined]);
+    const { execFileSync } = require('child_process'); const path = require('path');
+    expect(() => execFileSync('node', [path.join(__dirname, '..', 'scripts/equipment/legacy-fp.mjs'), '--check'], { stdio: 'pipe' })).not.toThrow();
+    expect(fpHash('["klatka"]')).toBe(require('child_process').execFileSync('node', ['--input-type=module', '-e', `import { fpHash } from '${path.join(__dirname, '..', 'scripts/equipment/legacy-fp.mjs')}'; process.stdout.write(fpHash('["klatka"]'))`]).toString());
+  });
+  test('DAT2-02: pola zmienione przez użytkownika (inne partie) — bez zgadywania, klucza brak', async () => {
+    await fresh(); const raw = JSON.parse(JSON.stringify(store.getState())); raw.schemaVersion = 17;
+    const e = raw.exercises.find((x: { libKey?: string }) => x.libKey === 'Bench Press (sztanga)'); delete e.libKey; e.name = 'Moja ława';
+    KEYS.forEach((k, j) => { const v = F1002['Bench Press (sztanga)'][j]; if (v === null) delete e[k]; else e[k] = JSON.parse(JSON.stringify(v)); }); e.secondaryMuscles = ['biceps'];
+    expect(store.migrate(raw).exercises.find(x => x.id === e.id)!.libKey).toBeUndefined();
   });
 });
 
