@@ -265,7 +265,7 @@ function SessionProgress({ w }: { w: Workout }) {
  * widoczna tam, gdzie się ją stosuje; zmienia się ją w szablonie („Edytuj”). */
 function TemplateNote({ w }: { w: Workout }) {
   const t = useTheme(); const note = w.templateId ? getState().templates.find(x => x.id === w.templateId)?.note : undefined; if (!note) return null;
-  return <View accessible accessibilityLabel={`${tr('Notatka szablonu')}: ${note}`} style={{ borderLeftWidth: 3, borderLeftColor: t.accent, paddingLeft: 10, marginBottom: 10 }}><Muted style={{ fontSize: 13, color: t.text }}>{note}</Muted></View>;
+  return <View accessibilityLanguage={lang()} accessible accessibilityLabel={`${tr('Notatka szablonu')}: ${note}`} style={{ borderLeftWidth: 3, borderLeftColor: t.accent, paddingLeft: 10, marginBottom: 10 }}><Muted style={{ fontSize: 13, color: t.text }}>{note}</Muted></View>;
 }
 
 /** Gotowość z porannego wpisu w nagłówku sesji (0.2.1): „tracker wie, jak spałeś”. */

@@ -16,6 +16,19 @@ const texts = (): Node[] => screen.UNSAFE_root.findAll((n: Node) => n.type === '
 const str = (n: Node): string => { const out: string[] = []; const w = (x: Node) => { if (x == null) return; if (typeof x === 'string' || typeof x === 'number') { out.push(String(x)); return; } if (Array.isArray(x)) { x.forEach(w); return; } if (x.props) w(x.props.children); }; w(n.props.children); return out.join(''); };
 afterEach(() => { applyLang('pl'); jest.restoreAllMocks(); });
 
+/** Elementy czytane przez VoiceOver (tekst, element accessible, pole, przełącznik) bez accessibilityLanguage = l (A11-09, A11N-01). */
+function langGaps(l: Lang): { n: number; bad: string[] } {
+  const bad: string[] = []; let n = 0;
+  const walk = (x: Node, inText: boolean) => {
+    if (!x || typeof x !== 'object') return; const p = x.props ?? {};
+    if (p.accessibilityElementsHidden || p.importantForAccessibility === 'no-hide-descendants' || p['aria-hidden'] || flat(p.style).display === 'none') return;
+    const reads = typeof x.type === 'string' && p.accessible !== false && ((x.type === 'Text' && !inText) || p.accessible === true || x.type === 'TextInput' || /Switch/.test(x.type));
+    if (reads) { n++; if (p.accessibilityLanguage !== l) bad.push(`${x.type} „${String(p.accessibilityLabel ?? str(x)).slice(0, 40)}”`); }
+    for (const c of x.children ?? []) walk(c, inText || x.type === 'Text');
+  };
+  walk(screen.UNSAFE_root, false);
+  return { n, bad };
+}
 /** Start aplikacji w danym języku (ustawienie w danych, jak wybór na liście języków). */
 async function bootIn(l: Lang, url = '/', prep?: () => void) {
   await fresh(); const st = store.getState(); st.settings.language = l; applyLang(l); withDemoTemplates(l); prep?.();
@@ -70,16 +83,26 @@ describe('K2 (A11-09): VoiceOver czyta głosem języka aplikacji', () => {
   });
   test.each([['el', '/more/settings'], ['tr', '/'], ['uk', '/history'], ['el', '/more/progress'], ['de', '/templates']] as const)('%s %s: każdy element czytany przez VoiceOver (tekst, element accessible, pole, przełącznik) ma accessibilityLanguage = język aplikacji', async (l, url) => {
     await bootIn(l, url);
-    const bad: string[] = []; let n = 0;
-    const walk = (x: Node, inText: boolean) => {
-      if (!x || typeof x !== 'object') return; const p = x.props ?? {};
-      if (p.accessibilityElementsHidden || p.importantForAccessibility === 'no-hide-descendants' || p['aria-hidden']) return;
-      const reads = typeof x.type === 'string' && p.accessible !== false && ((x.type === 'Text' && !inText) || p.accessible === true || x.type === 'TextInput' || /Switch/.test(x.type));
-      if (reads) { n++; if (p.accessibilityLanguage !== l) bad.push(`${x.type} „${String(p.accessibilityLabel ?? str(x)).slice(0, 40)}”`); }
-      for (const c of x.children ?? []) walk(c, inText || x.type === 'Text');
-    };
-    walk(screen.UNSAFE_root, false);
+    const { n, bad } = langGaps(l);
     expect(n).toBeGreaterThan(5); expect(bad).toEqual([]);
+  });
+  /* Audyt kontrolny 1 A11N-01: podgląd ćwiczenia (wiersze informacji, sekcja „Technika”, figura) nie miał accessibilityLanguage — test obejmuje teraz
+   * wszystkie trasy przeglądu dostępności (tests/a11y-routes.ts — te same co matrix-a11y) i podgląd ćwiczenia z rozwiniętą „Techniką” i figurą. */
+  test('de: wszystkie trasy przeglądu dostępności (routesFor z matrix-a11y) + podgląd ćwiczenia z rozwiniętą „Techniką” — każdy element czytany przez VoiceOver ma accessibilityLanguage', async () => {
+    const { richState, routesFor } = require('./a11y-routes');
+    const { cuesFor } = require('@/lib/cues'); const { figureFor } = require('@/lib/figures');
+    const r = await richState('pl'); r.s.settings.language = 'de'; applyLang('de');
+    const cue = (r.s.exercises as { id: string; lib?: boolean; libKey?: string }[]).find(e => cuesFor(e) && figureFor(e))!; expect(cue).toBeTruthy();
+    await renderApp({ saved: r.s }); await flushAll(10);
+    const routes: string[] = [...routesFor(r.w, r.tpl, r.exId, r.locId, r.blockId), `/exercise/${cue.id}`];
+    const bad: string[] = []; let n = 0;
+    for (const url of routes) {
+      await go(url); await flushAll(10);
+      if (url === `/exercise/${cue.id}`) { await tap(screen.getByRole('button', { name: t('Technika') })); await flushAll(5); expect(screen.getByTestId('exercise-figure')).toBeTruthy(); }
+      if (url === '/more/language') continue; /* wiersze listy języków celowo w języku nazwy — osobny test wyżej */
+      const g = langGaps('de'); n += g.n; bad.push(...g.bad.map(b => `${url}: ${b}`));
+    }
+    expect(routes).toHaveLength(27); expect(n).toBeGreaterThan(500); expect([...new Set(bad)]).toEqual([]);
   });
 });
 

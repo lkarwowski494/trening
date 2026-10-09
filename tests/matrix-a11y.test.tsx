@@ -15,8 +15,8 @@ import { EN } from '@/lib/i18n.en';
 import { renderApp, flushAll, screen, go } from './app';
 import { fresh, seedWithDemo } from './helpers';
 import * as plan from '@/lib/plan';
-import * as locations from '@/lib/locations';
 import { appRoutes, routeGaps } from './routes';
+import { richState, routesFor } from './a11y-routes';
 
 jest.setTimeout(180000);
 
@@ -42,26 +42,7 @@ const hex6 = (c: unknown) => typeof c === 'string' && /^#[0-9a-f]{6}$/i.test(c) 
 /** Pogrubienie w rozumieniu WCAG (≥ 700): IBM Plex Sans Bold (nagłówki, duże liczby) i IBM Plex Mono SemiBold traktujemy jak pogrubione; Plex Sans SemiBold (600) — nie (ostrożnie). */
 const isBold = (st: Record<string, unknown>) => st.fontFamily === F.heavy || st.fontFamily === F.display || st.fontFamily === F.monoBold || st.fontWeight === 'bold' || Number(st.fontWeight) >= 700;
 
-/* ---------- stan i trasy ---------- */
-/** Stan z danymi: zakończona sesja (2 serie), trening w toku z tego samego szablonu (1 seria odhaczona). */
-async function richState(l: 'pl' | 'en') {
-  await fresh(seedWithDemo(l), l);
-  const S = store.getState(); const tpl = S.templates[0];
-  /* audyt 0.10 (A11-10, TST-03): miejsce treningu i plan tygodnia — nowe ekrany (szczegóły miejsca, plan, kalendarz z planem) z danymi */
-  const loc = locations.addLocation('gym'); for (let i = 0; i < 7; i += 2) plan.setWeekDay(i, tpl.id);
-  store.startFromTemplate(tpl); store.toggleDone(0, 0); store.toggleDone(0, 1);
-  const w = store.finishWorkout(Date.now())!;
-  store.startFromTemplate(tpl); store.toggleDone(0, 0);
-  return { s: JSON.parse(JSON.stringify(store.getState())), w, tpl, exId: S.exercises[0].id, locId: loc.id, blockId: store.getState().active!.exercises[0].id };
-}
-/** Trasy przeglądu. Audyt 0.10 (A11-10): także ekrany 0.10 — plan, generator, przewodnik, zamiana, wybór ćwiczenia, kolejność, trening wstecz,
- * szczegóły miejsca (dashboard bez treningu w toku: osobny przegląd niżej). Indeks 13 = szczegóły sesji (test kroju mono niżej). */
-const routesFor = (w: { id: string }, tpl: { id: string }, exId: string, locId: string, blockId: string) => [
-  '/', '/templates', '/exercises', '/history', '/more', '/more/settings', '/more/progress', '/more/locations', '/more/backup', '/more/language', '/more/bands',
-  `/template/${tpl.id}`, `/exercise/${exId}`, `/history/${w.id}`, `/history/edit/${w.id}`,
-  '/plan', '/generator', '/guide', `/swap?target=active:${blockId}`, '/picker?target=active', '/reorder?target=active', '/history/add', `/more/location/${locId}`,
-  '/more/bodymass', '/more/about', '/more/licenses', /* audyt 0.10 fala 2: masa ciała z datą, O aplikacji, licencje (SEC-08) */
-];
+/* ---------- stan i trasy: tests/a11y-routes.ts (wspólne z audit-0.10-lang-ui — A11N-01) ---------- */
 const ROUTES_N = 26; /* 23 + masa ciała, O aplikacji, licencje (fala 2) */
 /* Trasa „/” w stanie z treningiem w toku = ekran aktywnego treningu (components/ActiveWorkout.tsx). */
 
