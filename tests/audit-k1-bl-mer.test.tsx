@@ -99,7 +99,7 @@ describe('MER2-08: RIR > 5 = „lekko”', () => {
  * ok. 80% maksimum” — wykonalne tylko przy małej sile. Ostrzeżenie: najcięższy ciężar w miejscu dla boju głównego robionego hantlami / kettlem
  * + co robić, gdy 4–6 powtórzeń wychodzi lekko (więcej powtórzeń bliżej upadku; siła rośnie, zwykle mniej — ta sama podstawa co MER-01, docs/research/22 R3).
  * Bez progu liczbowego (wariant B — próg bez źródła, odrzucony). Logika w lib/loadcap.ts; podpięcie do ekranu generatora — fala 2 (lib/generator.ts
- * i app/generator.tsx zmienia równolegle inny agent).
+ * — podpięte w previewWarnings: A11-2, audyt 0.11).
  */
 describe('MER2-02: najcięższy ciężar w miejscu przy celu „Siła”', () => {
   const { generate, REPS, HEAVY_PCT } = require('@/lib/generator') as typeof import('@/lib/generator');

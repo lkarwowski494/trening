@@ -5,6 +5,7 @@ import { base, uid, LIB_BASE_NAMES, type Exercise, type Location, type Template,
 import { WEEKLY_SETS_MARK } from '@/lib/stats';
 import { t, tIn, lbl, locale, LANGS } from '@/lib/i18n';
 import { fmtNum } from '@/lib/units';
+import { loadCapWarning } from './loadcap';
 
 /*
  * Generator szablonów i planu tygodnia (decyzje właściciela 08.10.2026, wariant A pełny; docs/24). Działa tylko na wyraźne polecenie, wynik do
@@ -216,12 +217,13 @@ export function generate(inp: GenInput): GenResult {
 
 const wd = (i: number) => new Date(2024, 0, 1 + i).toLocaleDateString(locale(), { weekday: 'short' }); /* 1.01.2024 = poniedziałek */
 const list = (ms: string[]) => ms.map(m => t(m)).join(', ');
-export type GenWarning = { kind: 'unloaded' | 'missing' | 'rare' | 'below' | 'pairs'; text: string };
+export type GenWarning = { kind: 'unloaded' | 'missing' | 'rare' | 'below' | 'pairs' | 'loadcap'; text: string };
 /** Ostrzeżenia podglądu (audyt 0.10 MER-01, MER-02, LOG-03): siła bez obciążenia, partie bez ćwiczeń (z podpowiedzią sprzętu), partie rzadziej niż
  * MIN_DAYS dni, braki do kreski serii (masa, redukcja), pary dzień po dniu. Każda partia z `missing` i `rare` jest w którymś z tekstów. */
 export function previewWarnings(r: GenResult, inp: GenInput): GenWarning[] {
   const out: GenWarning[] = [];
   if (inp.goal === 'strength' && r.unloaded) out.push({ kind: 'unloaded', text: t('Siła bez obciążenia zewnętrznego (sztanga, hantle, kettlebell, maszyny, wyciągi): ciężkich serii (ok. {p}% maksimum) tu nie zrobisz, więc plan jest jak na masę w domu — {s} × {a}–{b} powtórzeń blisko upadku. Siła też wtedy rośnie, ale zwykle mniej niż przy dużym ciężarze.', { p: HEAVY_PCT, s: SETS_PER_EX, a: REPS.home[0], b: REPS.home[1] }) });
+  const cap = loadCapWarning(r, inp); if (cap) out.push(cap); /* MER2-02 / A11-2 (audyt 0.11): najcięższy ciężar w miejscu przy celu „Siła” */
   return [...out, ...loadWarnings(r, false)];
 }
 /** Ostrzeżenia obciążenia tygodnia (wspólne dla generatora i planu z własnych szablonów): braki partii, rzadziej niż MIN_DAYS, poniżej
@@ -273,7 +275,7 @@ export function replaceable(): { templateIds: string[]; planIds: string[]; activ
   const calc = (withActive: boolean) => {
     const cand = new Set(st.templates.filter(x => free(x.id) && (withActive || !act.includes(x.id))).map(x => x.id));
     const planIds = (st.savedPlans ?? []).filter(p => p.days.some(Boolean) && p.days.every(d => !d || cand.has(d))).map(p => p.id);
-    const held = new Set((st.savedPlans ?? []).filter(p => !planIds.includes(p.id)).flatMap(p => p.days).filter(Boolean));
+    const held = new Set((st.savedPlans ?? []).filter(p => !planIds.includes(p.id)).flatMap(p => [...p.days, ...Object.values(p.overrides ?? {})]).filter(Boolean)); /* A11-1 (audyt 0.11): także zmiany dni zapisanych planów */
     return { templateIds: [...cand].filter(id => !held.has(id)), planIds, activePlan: withActive };
   };
   const all = actFree ? calc(true) : null; /* szablon aktywnego planu trzymany przez inny zapisany plan — aktywny plan zostaje (bez niego) */
