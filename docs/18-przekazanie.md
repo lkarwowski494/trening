@@ -344,3 +344,5 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
   (testflight.yml, BUILD_BASE + numer przebiegu). Każde wydanie: tag gita `v<wersja>-b<build>`, w „O aplikacji” „<wersja> (<build>)”
   (lib/version.ts, EXPO_PUBLIC_BUILD_NUMBER z CI), wpis „Co nowego” na wersję, wiersz w tabeli wydań (docs/09). Odrzucone: B (wersja
   z datą), C (kolejne liczby). Stopki commitów z adresem sesji — zostają (decyzja właściciela).
+- 09.10.2026 (wieczór): właściciel po zrzutach motywu v2 (ikona dnia, stosy z % planu, miesiąc jako stosy, bez paska) — **akceptacja, wdrażać**
+  do 0.11 (scalone w feature/e2-swap: 7126b7d). Na ekranie 375 pt tekst procentu przechodzi pod stosy — zgłoszone przy zrzutach, właściciel bez uwag.
