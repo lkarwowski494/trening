@@ -53,3 +53,14 @@ Wszystko, czego aplikacja uczy albo co twierdzi (treść, liczby, zalecenia, reg
 Aplikacja nie udziela porad medycznych; tam, gdzie chodzi o zdrowie (ból, kontuzje, choroby), odsyła do specjalisty.
 
 Dokumentacja projektu: Google Drive, folder „Trening App” (m.in. 03 Rejestr decyzji, 04 Backlog).
+
+## Treści cudze i nazwy innych firm (zasada właściciela 09.10.2026)
+
+- Research konkurencji i inne zebrane cudze treści (cytaty ze stron, opisy innych aplikacji, pobrane strony) trzymaj **na Dysku**, w folderze
+  „Trening App” (podfolder „05 Research konkurencji”), nie w repozytorium. W repo tylko własne wnioski z linkiem do dokumentu na Dysku.
+  Agenci sięgają po te materiały na Dysk.
+- W repo cytat ze źródła najwyżej 1–2 zdania z adresem i miejscem (prawo cytatu) — test pilnuje długości cytatów w `docs/research`.
+- Nazwy innych aplikacji i marek: nie w kodzie ani w komentarzach (opis neutralny, np. „popularne aplikacje treningowe”, „format CSV
+  zgodny z popularnymi dziennikami”), nie w tekstach aplikacji, nie w opisie App Store (wytyczne Apple 2.3.7, 5.2.1). Wyjątek: dokumenty
+  na Dysku.
+- W aplikacji tylko własne teksty i grafiki; nie kopiuj cudzych zdań, zdjęć ani filmów.

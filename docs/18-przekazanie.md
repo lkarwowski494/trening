@@ -265,3 +265,7 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
   pomijamy.** Ocena: szczebel 5 (praktyka trenerów, bez bibliografii, „wszelkie prawa zastrzeżone”; kulturystyka.pl — zdjęcia z exrx.net,
   tabele regeneracji bez źródeł). Odrzucone: A (źródło pomocnicze szczebla 5 do nazw i kontroli kompletności), C (licencja na zdjęcia/filmy —
   koszt, zależność). Nie używamy ich treści, zdjęć ani filmów.
+- 09.10.2026 (ok. 06:45): właściciel — **treści i nazwy innych firm:** (1) B — research konkurencji na Dysk, w repo tylko wnioski (zasada
+  w CLAUDE.md „Treści cudze i nazwy innych firm”); prośba o czystą historię gita (D) — agent przedstawił koszty, termin do potwierdzenia;
+  (2) B — nazwy innych aplikacji w komentarzach kodu zastąpione neutralnymi opisami; (3) A — ViShape SmartGym w presetach → nazwa
+  ogólna; (4) zakaz nazw innych aplikacji w metadanych App Store. Szczegóły i kolejność: docs/15 punkt 8.
