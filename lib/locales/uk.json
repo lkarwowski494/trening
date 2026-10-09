@@ -1301,5 +1301,9 @@
  "Więcej dni niż szablonów: szablony po kolei (A, B, A…), jak w generatorze — konwencja.": "Днів більше, ніж шаблонів: шаблони по черзі (A, B, A…), як у генераторі, — домовленість.",
  "Zapisz plan": "Зберегти план",
  "Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.": "Менше {n} підходів на тиждень: {list}. Це нижній поріг, рекомендований для набору м’язової маси; підходи додаси в шаблонах.",
- "Moje szablony, {n}× w tygodniu": "Мої шаблони, {n}× на тиждень"
+ "Moje szablony, {n}× w tygodniu": "Мої шаблони, {n}× на тиждень",
+ "Niezapisane zmiany": "Незбережені зміни",
+ "Aplikacja zamknęła się w trakcie edycji szablonu „{name}”. Wrócić do edycji?": "Застосунок закрився, коли ви редагували шаблон «{name}». Повернутися до редагування?",
+ "Aplikacja zamknęła się w trakcie edycji ćwiczenia „{name}”. Wrócić do edycji?": "Застосунок закрився, коли ви редагували вправу «{name}». Повернутися до редагування?",
+ "Wróć do edycji": "Повернутися до редагування"
 }

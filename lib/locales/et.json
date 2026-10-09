@@ -1301,5 +1301,9 @@
  "Więcej dni niż szablonów: szablony po kolei (A, B, A…), jak w generatorze — konwencja.": "Päevi rohkem kui malle: mallid järjest (A, B, A…), nagu generaatoris — kokkulepe.",
  "Zapisz plan": "Salvesta plaan",
  "Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.": "Alla {n} seeria nädalas: {list}. See on lihasmassi kasvatamiseks soovitatud alampiir; seeriaid lisad mallides.",
- "Moje szablony, {n}× w tygodniu": "Minu mallid, {n}× nädalas"
+ "Moje szablony, {n}× w tygodniu": "Minu mallid, {n}× nädalas",
+ "Niezapisane zmiany": "Salvestamata muudatused",
+ "Aplikacja zamknęła się w trakcie edycji szablonu „{name}”. Wrócić do edycji?": "Rakendus suleti malli „{name}“ muutmise ajal. Kas jätkata muutmist?",
+ "Aplikacja zamknęła się w trakcie edycji ćwiczenia „{name}”. Wrócić do edycji?": "Rakendus suleti harjutuse „{name}“ muutmise ajal. Kas jätkata muutmist?",
+ "Wróć do edycji": "Jätka muutmist"
 }

@@ -1301,5 +1301,9 @@
  "Więcej dni niż szablonów: szablony po kolei (A, B, A…), jak w generatorze — konwencja.": "Plus de jours que de modèles : modèles dans l’ordre (A, B, A…), comme dans le générateur — une convention.",
  "Zapisz plan": "Enregistrer le programme",
  "Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.": "Moins de {n} séries par semaine : {list}. C’est le seuil minimal recommandé pour la prise de muscle ; tu ajoutes des séries dans les modèles.",
- "Moje szablony, {n}× w tygodniu": "Mes modèles, {n}× par semaine"
+ "Moje szablony, {n}× w tygodniu": "Mes modèles, {n}× par semaine",
+ "Niezapisane zmiany": "Modifications non enregistrées",
+ "Aplikacja zamknęła się w trakcie edycji szablonu „{name}”. Wrócić do edycji?": "L’app s’est fermée pendant que vous modifiiez le modèle « {name} ». Reprendre la modification ?",
+ "Aplikacja zamknęła się w trakcie edycji ćwiczenia „{name}”. Wrócić do edycji?": "L’app s’est fermée pendant que vous modifiiez l’exercice « {name} ». Reprendre la modification ?",
+ "Wróć do edycji": "Reprendre la modification"
 }

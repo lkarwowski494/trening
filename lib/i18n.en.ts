@@ -830,4 +830,8 @@ export const EN: Record<string, string> = {
   'Zapisz plan': 'Save plan',
   'Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.': 'Below {n} sets per week: {list}. This is the lower threshold recommended for building muscle; you can add sets in the templates.',
   'Moje szablony, {n}× w tygodniu': 'My templates, {n}× a week',
+  'Niezapisane zmiany': 'Unsaved changes',
+  'Aplikacja zamknęła się w trakcie edycji szablonu „{name}”. Wrócić do edycji?': 'The app closed while you were editing the template “{name}”. Go back to editing?',
+  'Aplikacja zamknęła się w trakcie edycji ćwiczenia „{name}”. Wrócić do edycji?': 'The app closed while you were editing the exercise “{name}”. Go back to editing?',
+  'Wróć do edycji': 'Back to editing',
 };

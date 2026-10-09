@@ -133,6 +133,8 @@ export async function init(): Promise<void> {
       await db.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', 'recovery', JSON.stringify(recovery)).catch(() => {});
     }
   }
+  /* UX2-03 = DAT2-06 (audyt kontrolny 1, wariant A): szkice edycji ćwiczenia i szablonu z osobnego klucza — lib/draft.ts przywraca je po starcie */
+  savedDrafts = null; if (S) { try { const dr = await db.getFirstAsync<{ v: string }>('SELECT v FROM kv WHERE k = ?', DRAFTS_KEY); savedDrafts = dr ? dr.v : null; } catch {} }
   if (!recovery) { try { const m = await db.getFirstAsync<{ v: string }>('SELECT v FROM kv WHERE k = ?', 'recovery'); const r = m ? JSON.parse(m.v) : null; if (r && typeof r.key === 'string') recovery = { key: r.key, at: Number(r.at) || 0 }; } catch {} }
   if (!S) { S = seedState(detectLang()); S.settings.unit = deviceUnit(); /* H4 (audyt 0.10 UX-12): świeża instalacja — jednostka z regionu (en-US → lb) */ needsPersist = true; }
   applyPrefs();
@@ -535,7 +537,27 @@ async function persistRun(force = false) {
   }
 }
 /** Wymusza natychmiastowy zapis (wyjście do tła, koniec treningu, import, reset). */
-export async function flush(): Promise<void> { await persistNow(true).catch(() => {}); }
+export async function flush(): Promise<void> { await persistNow(true).catch(() => {}); await writeDrafts(); }
+/* ---------- UX2-03 = DAT2-06 (audyt kontrolny 1, wariant A — zasada właściciela z 20:20): szkice edycji ćwiczenia i szablonu w bazie ----------
+ * Osobny klucz kv (nie część stanu: bez zmiany schematu, poza kopią i „cfg”; starsza wersja go nie czyta). Treść daje lib/draft.ts (rejestracja),
+ * zapis z opóźnieniem jak stan i natychmiast przy wyjściu do tła (flush). Przy starcie surowy tekst czeka na lib/draft.ts (takeSavedDrafts). */
+export const DRAFTS_KEY = 'drafts';
+let savedDrafts: string | null = null; let draftsSrc: (() => string | null) | null = null; let draftsDirty = false; let draftsTimer: ReturnType<typeof setTimeout> | null = null;
+export function registerDraftStore(src: () => string | null) { draftsSrc = src; }
+/** Szkic zmieniony (początek, zmiana, zapis, odrzucenie) — zapis do bazy z opóźnieniem 300 ms. */
+export function draftsChanged() { draftsDirty = true; if (draftsTimer) clearTimeout(draftsTimer); draftsTimer = setTimeout(() => { draftsTimer = null; void writeDrafts(); }, 300); }
+async function writeDrafts() {
+  if (draftsTimer) { clearTimeout(draftsTimer); draftsTimer = null; } if (!db || !S || !draftsDirty || !draftsSrc) return; draftsDirty = false;
+  const j = draftsSrc(); try { if (j == null) await db.runAsync('DELETE FROM kv WHERE k = ?', DRAFTS_KEY); else await db.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', DRAFTS_KEY, j); } catch { draftsDirty = true; }
+}
+/** Surowe szkice odczytane przy starcie (jednorazowo). */
+export function takeSavedDrafts(): string | null { const v = savedDrafts; savedDrafts = null; return v; }
+/** Przywracany szkic przechodzi to samo porządkowanie co dane z bazy i importu (migrate na kopii stanu z obiektem szkicu); null — obiektu już nie ma. */
+export function sanitizeDraftObj(kind: 'exercise' | 'template', obj: unknown): Exercise | Template | null {
+  if (!S || !isObj(obj) || typeof (obj as any).id !== 'string') return null; const id = (obj as any).id as string; const key = kind === 'exercise' ? 'exercises' : 'templates';
+  const raw: any = JSON.parse(JSON.stringify(S)); const i = raw[key].findIndex((x: any) => x.id === id); if (i < 0) return null; raw[key][i] = JSON.parse(JSON.stringify(obj));
+  try { return (migrate(raw)[key] as (Exercise | Template)[]).find(x => x.id === id) ?? null; } catch { return null; }
+}
 export const getPersistError = () => persistError;
 export const getRecovery = () => recovery;
 /** Runda 33: po imporcie backupu albo wyczyszczeniu danych komunikat o nieczytelnych danych znika (kopia w bazie zostaje). */
@@ -571,7 +593,7 @@ const draftObjs = new WeakSet<object>();
 export function markDraft<T extends object>(x: T): T { draftObjs.add(x); return x; }
 export const isDraftObj = (x: unknown): boolean => !!x && typeof x === 'object' && draftObjs.has(x as object);
 export function save(...touched: (Base | null | undefined)[]) {
-  if (touched.length && touched.every(x => x && draftObjs.has(x))) { rev++; emit(); return; }
+  if (touched.length && touched.every(x => x && draftObjs.has(x))) { rev++; draftsChanged(); /* UX2-03: szkic do bazy */ emit(); return; }
   touched = touched.filter(x => !x || !draftObjs.has(x));
   const now = Date.now(); touched.forEach(x => { if (x) x.updatedAt = now; });
   const onlyActive = touched.length > 0 && touched.every(x => x && S && x === S.active);
@@ -1881,7 +1903,7 @@ export function setPlanHintHidden(on: boolean) { const st = getState(); if (on) 
 /** Tylko dla testów: czy store jest zainicjowany. */
 export const isReadyForTests = () => !!S;
 /** Tylko dla testów: czyści stan modułu (bez dotykania bazy). */
-export function __resetForTests() { newerSchema = null; persistQueue = Promise.resolve(); fullDirty = true; cfgDirty = false; cfgNotInState = false; persistSeq = 0; S = null; db = null; rev = 0; histRev += 1; persistError = null; recovery = null; if (saveTimer) clearTimeout(saveTimer); saveTimer = null; listeners.clear(); }
+export function __resetForTests() { savedDrafts = null; draftsDirty = false; if (draftsTimer) clearTimeout(draftsTimer); draftsTimer = null; newerSchema = null; persistQueue = Promise.resolve(); fullDirty = true; cfgDirty = false; cfgNotInState = false; persistSeq = 0; S = null; db = null; rev = 0; histRev += 1; persistError = null; recovery = null; if (saveTimer) clearTimeout(saveTimer); saveTimer = null; listeners.clear(); }
 /**
  * Widok skupiony (styl „Tuleja”, decyzja właściciela 07.10.2026; docs/21 pkt 3): seria „teraz” = pierwsza nieodhaczona seria w kolejności treningu.
  * Superset — rundami (audyt 0.10, LIVE-02): spośród członków grupy z nieodhaczoną serią ten, który ma NAJMNIEJ odhaczonych serii roboczych (remis —

@@ -1301,5 +1301,9 @@
  "Więcej dni niż szablonów: szablony po kolei (A, B, A…), jak w generatorze — konwencja.": "Flere dage end skabeloner: skabelonerne i rækkefølge (A, B, A…) som i generatoren — en konvention.",
  "Zapisz plan": "Gem plan",
  "Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.": "Under {n} sæt pr. uge: {list}. Det er den nedre grænse, der anbefales for muskelopbygning; sæt tilføjer du i skabelonerne.",
- "Moje szablony, {n}× w tygodniu": "Mine skabeloner, {n}× pr. uge"
+ "Moje szablony, {n}× w tygodniu": "Mine skabeloner, {n}× pr. uge",
+ "Niezapisane zmiany": "Ikke-gemte ændringer",
+ "Aplikacja zamknęła się w trakcie edycji szablonu „{name}”. Wrócić do edycji?": "Appen lukkede, mens du redigerede skabelonen “{name}”. Vil du fortsætte redigeringen?",
+ "Aplikacja zamknęła się w trakcie edycji ćwiczenia „{name}”. Wrócić do edycji?": "Appen lukkede, mens du redigerede øvelsen “{name}”. Vil du fortsætte redigeringen?",
+ "Wróć do edycji": "Fortsæt redigering"
 }

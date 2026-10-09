@@ -8,7 +8,7 @@ import { store as routerStore } from 'expo-router/build/global-state/router-stor
 /** Uruchamia całą aplikację (prawdziwe ekrany expo-router) na świeżym stanie. */
 /** `navTimers` (domyślnie true): odtworzone zachowanie expo-router 4 — przy każdej zmianie nawigacji `jest.runOnlyPendingTimers()` (niżej).
  * false — bez tego: test sam przesuwa zegar i może sprawdzić, że po nawigacji nie zostaje żaden zaległy timer (docs/13 B11, NISKIE). */
-export async function renderApp(opts: { saved?: unknown; locale?: 'pl' | 'en'; url?: string; width?: number; navTimers?: boolean; /** znacznik języka i regionu telefonu (np. „en-US” — symulator E2E); domyślnie en-GB / pl-PL */ tag?: string } = {}) {
+export async function renderApp(opts: { saved?: unknown; locale?: 'pl' | 'en'; url?: string; width?: number; navTimers?: boolean; /** znacznik języka i regionu telefonu (np. „en-US” — symulator E2E); domyślnie en-GB / pl-PL */ tag?: string; /** dodatkowe klucze bazy (np. „drafts” — szkice sprzed zamknięcia aplikacji, UX2-03) */ kv?: Record<string, string> } = {}) {
   /* SDK 53 (React 19, RNTL 13 z równoległym korzeniem, expo-router 5): drugi renderApp w tym samym teście (nowy „start aplikacji”)
    * odświeżał jeszcze zamontowane drzewo z poprzedniego startu — wspólny stan routera — a to czytało już wyzerowany store
    * („store not initialised”). Poprzednie uruchomienie odmontowujemy, zanim zerujemy store, tak jak zamknięcie aplikacji przed ponownym startem.
@@ -17,6 +17,7 @@ export async function renderApp(opts: { saved?: unknown; locale?: 'pl' | 'en'; u
   global.__kv.clear(); global.__dbFail = false; global.__alerts.length = 0; global.__notifications.length = 0; global.__la.length = 0;
   global.__locales = [{ languageCode: opts.locale ?? 'pl', languageTag: opts.tag ?? (opts.locale === 'en' ? 'en-GB' : 'pl-PL') }];
   if (opts.saved !== undefined) global.__kv.set('state', typeof opts.saved === 'string' ? opts.saved : JSON.stringify(opts.saved));
+  for (const [k, v] of Object.entries(opts.kv ?? {})) global.__kv.set(k, v);
   store.__resetForTests(); timer.T.on = false; timer.S.on = false;
   const r = renderRouter('./app', { initialUrl: opts.url ?? '/' });
   /* SDK 53: renderRouter z expo-router 4 przy każdej zmianie stanu nawigacji wołał jest.runOnlyPendingTimers()

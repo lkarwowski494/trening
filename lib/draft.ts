@@ -1,4 +1,4 @@
-import { getState, save, markDraft, clampName, NAME_MAX, setTemplateNote, deleteTemplate, exerciseUsed, exerciseEdited } from './store';
+import { getState, save, markDraft, clampName, NAME_MAX, setTemplateNote, deleteTemplate, exerciseUsed, exerciseEdited, registerDraftStore, draftsChanged, takeSavedDrafts, sanitizeDraftObj, DRAFTS_KEY } from './store';
 import type { Exercise, Template } from './seed';
 import { t } from './i18n';
 
@@ -6,11 +6,15 @@ import { t } from './i18n';
  * Edycja na żądanie (decyzja właściciela 08.10.2026 ok. 21:30, docs/18): ekran ćwiczenia i szablonu otwiera się w podglądzie, a „Edytuj”
  * zaczyna SZKIC — głęboką kopię obiektu poza stanem aplikacji (ten sam wzór co edycja sesji w historii, lib/edit.ts). Funkcje store wołane
  * na szkicu (tplAddRow, setEquipment, moveItem…) kończą się `save(szkic)`, które tylko odświeża ekran (store.markDraft). „Zapisz” przenosi
- * szkic do obiektu w stanie jednym zapisem; „Anuluj” szkic wyrzuca. Szkic nie przeżywa zamknięcia aplikacji (jak w edycji historii).
+ * szkic do obiektu w stanie jednym zapisem; „Anuluj” szkic wyrzuca.
+ * UX2-03 = DAT2-06 (audyt kontrolny 1, wariant A): szkic przeżywa zamknięcie aplikacji przez iOS — każda zmiana idzie do osobnego klucza bazy
+ * (store.DRAFTS_KEY), a po starcie restoreObjDrafts przywraca szkice ze zmianami (ekran startu pyta: wrócić do edycji czy odrzucić).
+ * UX2-12: nowy obiekt („+ Nowy”), który po zabiciu aplikacji nie ma szkicu ze zmianami, znika przy starcie (kryteria dropUnsavedNew).
  */
+export { DRAFTS_KEY };
 export type DraftKind = 'exercise' | 'template';
 type Obj = Exercise | Template;
-interface ObjDraft { kind: DraftKind; id: string; obj: Obj; orig: string }
+interface ObjDraft { kind: DraftKind; id: string; obj: Obj; orig: string; /** utworzony na tym ekranie („+ Nowy”) — UX2-12 */ isNew?: boolean }
 const drafts = new Map<string, ObjDraft>();
 const k = (kind: DraftKind, id: string) => `${kind}:${id}`;
 /** Pola, których szkic nie zmienia (tożsamość, archiwum — przełączane w podglądzie, znaczniki zapisu). */
@@ -19,23 +23,23 @@ const snap = (o: Obj) => JSON.stringify(o, (key, v) => (key === 'updatedAt' ? un
 const real = (kind: DraftKind, id: string): Obj | undefined => kind === 'exercise' ? getState().exercises.find(x => x.id === id) : getState().templates.find(x => x.id === id);
 
 /** „Edytuj”: szkic z bieżącego stanu (istniejący szkic zostaje — powrót z wyboru ćwiczenia czy Kolejności nie gubi zmian). */
-export function beginObjDraft<T extends Obj>(kind: DraftKind, id: string): T | null {
+export function beginObjDraft<T extends Obj>(kind: DraftKind, id: string, opts: { isNew?: boolean } = {}): T | null {
   const cur = drafts.get(k(kind, id)); if (cur) return cur.obj as T;
   const src = real(kind, id); if (!src) return null;
-  const obj = markDraft(JSON.parse(JSON.stringify(src)) as Obj); drafts.set(k(kind, id), { kind, id, obj, orig: snap(obj) }); return obj as T; /* bez save/emit: woła to także render (useState) — ekran i tak się przerysowuje (setEditing) */
+  const obj = markDraft(JSON.parse(JSON.stringify(src)) as Obj); drafts.set(k(kind, id), { kind, id, obj, orig: snap(obj), ...(opts.isNew ? { isNew: true } : {}) }); draftsChanged(); return obj as T; /* bez save/emit: woła to także render (useState) — ekran i tak się przerysowuje (setEditing) */
 }
 export function objDraft<T extends Obj>(kind: DraftKind, id: string): T | undefined { return drafts.get(k(kind, id))?.obj as T | undefined; }
 /** Czy szkic różni się od stanu z chwili „Edytuj”. */
 export function objDirty(kind: DraftKind, id: string): boolean { const d = drafts.get(k(kind, id)); return !!d && snap(d.obj) !== d.orig; }
 /** Wyrzucenie szkicu („Anuluj”, zamknięcie ekranu). */
-export function discardObjDraft(kind: DraftKind, id: string) { const d = drafts.get(k(kind, id)); if (!d) return; drafts.delete(k(kind, id)); save(d.obj); }
+export function discardObjDraft(kind: DraftKind, id: string) { const d = drafts.get(k(kind, id)); if (!d) return; drafts.delete(k(kind, id)); draftsChanged(); save(d.obj); }
 /** Nazwa przy zapisie (G2, audyt 0.10 UI-05): spacje uporządkowane; pusta — wraca poprzednia (a bez niej domyślna). */
 export function cleanName(v: string, prev: string, fallback: string): string { const n = clampName(String(v ?? '').replace(/\s+/g, ' ').trim(), NAME_MAX); return n || prev || fallback; }
 
 /** „Zapisz”: szkic trafia do obiektu w stanie jednym zapisem (obiekt zachowuje tożsamość — inne ekrany trzymają do niego odwołania).
  * Bez zmian — nic się nie zapisuje (znacznik zmiany zostaje). Zwraca false, gdy obiekt w międzyczasie zniknął. */
 export function commitObjDraft(kind: DraftKind, id: string, opts: { keepNew?: boolean } = {}): boolean {
-  const d = drafts.get(k(kind, id)); if (!d) return false; drafts.delete(k(kind, id));
+  const d = drafts.get(k(kind, id)); if (!d) return false; drafts.delete(k(kind, id)); draftsChanged();
   const dst = real(kind, id) as unknown as Record<string, unknown> | undefined; if (!dst) { save(d.obj); return false; }
   if (snap(d.obj) === d.orig) {
     save(d.obj);
@@ -64,4 +68,36 @@ export function dropUnsavedNew(kind: DraftKind, id: string): boolean {
   const e = st.exercises.find(y => y.id === id); if (!e || e.lib || e.updatedAt !== e.createdAt || exerciseUsed(e.id) || st.templates.some(tp => tp.items.some(i => i.exerciseId === e.id))) return false;
   st.exercises = st.exercises.filter(y => y.id !== id); save(); return true;
 }
+/* ---------- UX2-03 = DAT2-06 / UX2-12: szkice w bazie i przywracanie po starcie ---------- */
+registerDraftStore(() => drafts.size ? JSON.stringify({ v: 1, items: [...drafts.values()].map(d => ({ kind: d.kind, id: d.id, obj: d.obj, orig: d.orig, ...(d.isNew ? { isNew: true } : {}) })) }) : null);
+/** Szkic przywrócony po starcie — do pytania „Wrócić do edycji?”. */
+export interface RestoredDraft { kind: DraftKind; id: string; name: string; isNew: boolean }
+const defaultName = (kind: DraftKind) => kind === 'exercise' ? t('Nowe ćwiczenie') : t('Nowy szablon');
+/** Po starcie (app/_layout): szkice zapisane w bazie wracają do pamięci po porządkowaniu jak import (store.sanitizeDraftObj); szkic bez zmian
+ * odpada bez pytania. Nowe obiekty bez szkicu ze zmianami — z zapisu albo puste, nietknięte, z domyślną nazwą (także pozostałości z 0.10.0) —
+ * znikają (dropUnsavedNew). Zwraca szkice ze zmianami (najpierw szablony). */
+export function restoreObjDrafts(): RestoredDraft[] {
+  drafts.clear(); let items: unknown[] = [];
+  try { const raw = takeSavedDrafts(); const p = raw ? JSON.parse(raw) : null; if (p && Array.isArray(p.items)) items = p.items; } catch { items = []; }
+  const fresh = new Set<string>(); const out: RestoredDraft[] = [];
+  for (const it of items) {
+    if (!it || typeof it !== 'object') continue; const x = it as { kind?: unknown; id?: unknown; obj?: unknown; orig?: unknown; isNew?: unknown };
+    if ((x.kind !== 'exercise' && x.kind !== 'template') || typeof x.id !== 'string' || drafts.has(k(x.kind, x.id))) continue;
+    const kind = x.kind; const id = x.id; if (x.isNew === true) fresh.add(k(kind, id));
+    if (!real(kind, id) || !x.obj || typeof x.obj !== 'object' || (x.obj as { id?: unknown }).id !== id) continue;
+    const clean = sanitizeDraftObj(kind, x.obj); if (!clean) continue;
+    const nm = (clean as { name?: unknown }).name; if (typeof nm === 'string') (clean as { name: string }).name = clampName(nm, NAME_MAX); /* jak pole nazwy */
+    const obj = markDraft(clean as Obj); const orig = typeof x.orig === 'string' ? x.orig : '';
+    if (snap(obj) === orig || snap(obj) === snap(real(kind, id)!)) continue; /* bez zmian — nic do przywrócenia */
+    drafts.set(k(kind, id), { kind, id, obj, orig, ...(x.isNew === true ? { isNew: true } : {}) });
+    out.push({ kind, id, name: String((obj as { name?: unknown }).name ?? '') || defaultName(kind), isNew: x.isNew === true });
+  }
+  const st = getState();
+  for (const tp of [...st.templates]) if (!drafts.has(k('template', tp.id)) && (fresh.has(k('template', tp.id)) || tp.name === defaultName('template'))) dropUnsavedNew('template', tp.id);
+  for (const e of [...st.exercises]) if (!drafts.has(k('exercise', e.id)) && (fresh.has(k('exercise', e.id)) || e.name === defaultName('exercise'))) dropUnsavedNew('exercise', e.id);
+  draftsChanged();
+  return out.sort((a, b) => (a.kind === b.kind ? 0 : a.kind === 'template' ? -1 : 1));
+}
+/** „Odrzuć zmiany” w pytaniu po starcie: szkic znika, a nowy (nigdy niezapisany) obiekt — razem z nim. */
+export function dropRestored(r: Pick<RestoredDraft, 'kind' | 'id'>) { const d = drafts.get(k(r.kind, r.id)); discardObjDraft(r.kind, r.id); if (d?.isNew) dropUnsavedNew(r.kind, r.id); }
 export function __resetObjDrafts() { drafts.clear(); }

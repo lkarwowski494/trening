@@ -1301,5 +1301,9 @@
  "Więcej dni niż szablonów: szablony po kolei (A, B, A…), jak w generatorze — konwencja.": "Περισσότερες ημέρες από πρότυπα: τα πρότυπα με τη σειρά (A, B, A…), όπως στη γεννήτρια — σύμβαση.",
  "Zapisz plan": "Αποθήκευση προγράμματος",
  "Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.": "Κάτω από {n} σετ την εβδομάδα: {list}. Είναι το κατώτερο όριο που συνιστάται για αύξηση μυϊκής μάζας· σετ προσθέτεις στα πρότυπα.",
- "Moje szablony, {n}× w tygodniu": "Τα πρότυπά μου, {n}× την εβδομάδα"
+ "Moje szablony, {n}× w tygodniu": "Τα πρότυπά μου, {n}× την εβδομάδα",
+ "Niezapisane zmiany": "Μη αποθηκευμένες αλλαγές",
+ "Aplikacja zamknęła się w trakcie edycji szablonu „{name}”. Wrócić do edycji?": "Η εφαρμογή έκλεισε ενώ επεξεργαζόσουν το πρότυπο «{name}». Επιστροφή στην επεξεργασία;",
+ "Aplikacja zamknęła się w trakcie edycji ćwiczenia „{name}”. Wrócić do edycji?": "Η εφαρμογή έκλεισε ενώ επεξεργαζόσουν την άσκηση «{name}». Επιστροφή στην επεξεργασία;",
+ "Wróć do edycji": "Επιστροφή στην επεξεργασία"
 }

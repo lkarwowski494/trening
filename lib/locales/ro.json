@@ -1301,5 +1301,9 @@
  "Więcej dni niż szablonów: szablony po kolei (A, B, A…), jak w generatorze — konwencja.": "Mai multe zile decât șabloane: șabloanele pe rând (A, B, A…), ca în generator — o convenție.",
  "Zapisz plan": "Salvează planul",
  "Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.": "Sub {n} serii pe săptămână: {list}. Este pragul minim recomandat pentru creșterea masei musculare; serii adaugi în șabloane.",
- "Moje szablony, {n}× w tygodniu": "Șabloanele mele, de {n}× pe săptămână"
+ "Moje szablony, {n}× w tygodniu": "Șabloanele mele, de {n}× pe săptămână",
+ "Niezapisane zmiany": "Modificări nesalvate",
+ "Aplikacja zamknęła się w trakcie edycji szablonu „{name}”. Wrócić do edycji?": "Aplicația s-a închis în timp ce editați șablonul „{name}”. Reveniți la editare?",
+ "Aplikacja zamknęła się w trakcie edycji ćwiczenia „{name}”. Wrócić do edycji?": "Aplicația s-a închis în timp ce editați exercițiul „{name}”. Reveniți la editare?",
+ "Wróć do edycji": "Înapoi la editare"
 }

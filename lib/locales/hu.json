@@ -1301,5 +1301,9 @@
  "Więcej dni niż szablonów: szablony po kolei (A, B, A…), jak w generatorze — konwencja.": "Több nap, mint sablon: a sablonok sorban (A, B, A…), mint a generátorban — megállapodás.",
  "Zapisz plan": "Terv mentése",
  "Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.": "Heti {n} sorozat alatt: {list}. Ez az izomépítéshez ajánlott alsó határ; sorozatokat a sablonokban adhatsz hozzá.",
- "Moje szablony, {n}× w tygodniu": "Saját sablonok, heti {n}×"
+ "Moje szablony, {n}× w tygodniu": "Saját sablonok, heti {n}×",
+ "Niezapisane zmiany": "Nem mentett módosítások",
+ "Aplikacja zamknęła się w trakcie edycji szablonu „{name}”. Wrócić do edycji?": "Az alkalmazás bezárult, miközben a(z) „{name}” sablont szerkesztette. Folytatja a szerkesztést?",
+ "Aplikacja zamknęła się w trakcie edycji ćwiczenia „{name}”. Wrócić do edycji?": "Az alkalmazás bezárult, miközben a(z) „{name}” gyakorlatot szerkesztette. Folytatja a szerkesztést?",
+ "Wróć do edycji": "Szerkesztés folytatása"
 }

@@ -1301,5 +1301,9 @@
  "Więcej dni niż szablonów: szablony po kolei (A, B, A…), jak w generatorze — konwencja.": "Più giorni che schede: schede in ordine (A, B, A…), come nel generatore — una convenzione.",
  "Zapisz plan": "Salva piano",
  "Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.": "Sotto le {n} serie a settimana: {list}. È la soglia minima consigliata per aumentare la massa muscolare; le serie si aggiungono nelle schede.",
- "Moje szablony, {n}× w tygodniu": "Le mie schede, {n}× a settimana"
+ "Moje szablony, {n}× w tygodniu": "Le mie schede, {n}× a settimana",
+ "Niezapisane zmiany": "Modifiche non salvate",
+ "Aplikacja zamknęła się w trakcie edycji szablonu „{name}”. Wrócić do edycji?": "L’app si è chiusa mentre modificavi la scheda «{name}». Tornare alla modifica?",
+ "Aplikacja zamknęła się w trakcie edycji ćwiczenia „{name}”. Wrócić do edycji?": "L’app si è chiusa mentre modificavi l’esercizio «{name}». Tornare alla modifica?",
+ "Wróć do edycji": "Torna alla modifica"
 }

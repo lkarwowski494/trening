@@ -1301,5 +1301,9 @@
  "Więcej dni niż szablonów: szablony po kolei (A, B, A…), jak w generatorze — konwencja.": "Več dni kot predlog: predloge po vrsti (A, B, A…), kot v generatorju — dogovor.",
  "Zapisz plan": "Shrani načrt",
  "Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.": "Pod {n} serij na teden: {list}. To je spodnji prag, priporočen za rast mišične mase; serije dodaš v predlogah.",
- "Moje szablony, {n}× w tygodniu": "Moje predloge, {n}× na teden"
+ "Moje szablony, {n}× w tygodniu": "Moje predloge, {n}× na teden",
+ "Niezapisane zmiany": "Neshranjene spremembe",
+ "Aplikacja zamknęła się w trakcie edycji szablonu „{name}”. Wrócić do edycji?": "Aplikacija se je zaprla med urejanjem predloge »{name}«. Se vrnem k urejanju?",
+ "Aplikacja zamknęła się w trakcie edycji ćwiczenia „{name}”. Wrócić do edycji?": "Aplikacija se je zaprla med urejanjem vaje »{name}«. Se vrnem k urejanju?",
+ "Wróć do edycji": "Nazaj na urejanje"
 }

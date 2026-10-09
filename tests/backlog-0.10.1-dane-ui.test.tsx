@@ -7,6 +7,8 @@ import * as timer from '@/lib/timer';
 import { fresh, ex, saved, pressAlert, addWorkout } from './helpers';
 import { renderApp, tap, type, flushAll, screen, act } from './app';
 import * as edit from '@/lib/edit';
+import * as draft from '@/lib/draft';
+import type { Template, Exercise } from '@/lib/seed';
 
 jest.setTimeout(120000);
 const S = () => store.getState();
@@ -73,5 +75,45 @@ describe('X2-02: Postępy ćwiczenia — data sesji na zegarze strefy startu (ja
     await boot(`/more/progress?ex=${ex('Back Squat').id}`);
     const wall = store.fmtDate(store.wallTs(w)); expect(wall).not.toBe(store.fmtDate(at));
     expect(screen.getAllByText(wall).length).toBeGreaterThan(0); expect(screen.queryAllByText(store.fmtDate(at))).toHaveLength(0);
+  });
+});
+
+describe('UX2-03 = DAT2-06 / UX2-12: po zamknięciu aplikacji przez iOS start pyta o niezapisany szkic', () => {
+  /** Stan i szkic zapisane w bazie w chwili „zabicia” aplikacji (bez „Zapisz”). */
+  const killed = async (prep: () => void) => { await fresh(); prep(); await store.flush(); const kv: Record<string, string> = {}; global.__kv.forEach((v, k) => { if (k !== 'state') kv[k] = v; }); draft.__resetObjDrafts(); return { state: saved(), kv }; };
+  const item = (e: { id: string }) => ({ id: Math.random().toString(36).slice(2), exerciseId: e.id, sets: 3, repMin: null, repMax: null, restSec: null, startWeight: '' as const, targetSec: '' as const, groupId: null });
+  test('UX2-03: szablon „Push” zmieniony w szkicu → „Niezapisane zmiany … „Push+”” → „Wróć do edycji” otwiera edycję ze szkicem → „Zapisz” zapisuje', async () => {
+    let id = ''; const { state, kv } = await killed(() => { const tp = store.newTemplate(); tp.name = 'Push'; tp.items.push(item(ex('Back Squat'))); store.save(tp); id = tp.id;
+      const d = draft.beginObjDraft<Template>('template', id)!; d.name = 'Push+'; d.items.push(item(ex('Pull Up'))); store.save(d); });
+    expect(kv[draft.DRAFTS_KEY]).toBeTruthy();
+    await renderApp({ saved: state, kv }); await flushAll(700);
+    expect(lastAlert()).toMatchObject({ title: 'Niezapisane zmiany', msg: 'Aplikacja zamknęła się w trakcie edycji szablonu „Push+”. Wrócić do edycji?' });
+    expect(S().templates.find(x => x.id === id)!.items).toHaveLength(1);
+    await act(async () => { pressAlert('Niezapisane zmiany', 'Wróć do edycji'); }); await flushAll(20);
+    expect(screen.getByLabelText('Zapisz szablon')).toBeTruthy(); expect(screen.getByDisplayValue('Push+')).toBeTruthy();
+    await tap(screen.getByLabelText('Zapisz szablon')); await flushAll(20);
+    const tp = S().templates.find(x => x.id === id)!; expect(tp.name).toBe('Push+'); expect(tp.items).toHaveLength(2);
+  });
+  test('UX2-03: ćwiczenie — „Odrzuć zmiany” zostawia ćwiczenie bez zmian i kasuje szkic z bazy', async () => {
+    let id = ''; const { state, kv } = await killed(() => { const e = ex('Back Squat'); id = e.id; const d = draft.beginObjDraft<Exercise>('exercise', id)!; d.notes = 'nowa notatka'; store.save(d); });
+    await renderApp({ saved: state, kv }); await flushAll(700);
+    expect(lastAlert()).toMatchObject({ title: 'Niezapisane zmiany', msg: 'Aplikacja zamknęła się w trakcie edycji ćwiczenia „Back Squat”. Wrócić do edycji?' });
+    await act(async () => { pressAlert('Niezapisane zmiany', 'Odrzuć zmiany'); }); await flushAll(500);
+    expect(ex('Back Squat').notes).not.toBe('nowa notatka'); expect(global.__kv.has(draft.DRAFTS_KEY)).toBe(false);
+  });
+  test('UX2-12: „+ Nowy” szablon bez zmian, aplikacja zabita → po starcie brak pytania i brak „Nowy szablon” na liście', async () => {
+    let id = ''; const { state, kv } = await killed(() => { const tp = store.newTemplate(); id = tp.id; draft.beginObjDraft('template', id, { isNew: true }); });
+    await renderApp({ saved: state, kv, url: '/templates' }); await flushAll(700);
+    expect(global.__alerts.filter(a => a.title === 'Niezapisane zmiany')).toHaveLength(0);
+    expect(S().templates.some(x => x.id === id)).toBe(false); expect(screen.queryByText('Nowy szablon')).toBeNull();
+  });
+  test('UX2-12: nowy szablon ze zmianami → „Wróć do edycji” otwiera go jako nowy („Anuluj” usuwa); nie znika przy starcie', async () => {
+    let id = ''; const { state, kv } = await killed(() => { const tp = store.newTemplate(); id = tp.id; const d = draft.beginObjDraft<Template>('template', id, { isNew: true })!; d.name = 'Nogi'; store.save(d); });
+    await renderApp({ saved: state, kv }); await flushAll(700);
+    expect(S().templates.some(x => x.id === id)).toBe(true);
+    await act(async () => { pressAlert('Niezapisane zmiany', 'Wróć do edycji'); }); await flushAll(20);
+    expect(screen.getByDisplayValue('Nogi')).toBeTruthy();
+    await tap(screen.getByLabelText('Anuluj edycję szablonu')); await act(async () => { pressAlert('Odrzucić zmiany?', 'Odrzuć zmiany'); }); await flushAll(20);
+    expect(lastAlert('Odrzucić zmiany?')!.msg).toBe('Nowy szablon nie zostanie zapisany.'); expect(S().templates.some(x => x.id === id)).toBe(false);
   });
 });

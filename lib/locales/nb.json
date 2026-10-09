@@ -1301,5 +1301,9 @@
  "Więcej dni niż szablonów: szablony po kolei (A, B, A…), jak w generatorze — konwencja.": "Flere dager enn maler: malene i rekkefølge (A, B, A…), som i generatoren — en konvensjon.",
  "Zapisz plan": "Lagre plan",
  "Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.": "Under {n} sett per uke: {list}. Dette er den nedre grensen som anbefales for muskelvekst; sett legger du til i malene.",
- "Moje szablony, {n}× w tygodniu": "Mine maler, {n}× per uke"
+ "Moje szablony, {n}× w tygodniu": "Mine maler, {n}× per uke",
+ "Niezapisane zmiany": "Ulagrede endringer",
+ "Aplikacja zamknęła się w trakcie edycji szablonu „{name}”. Wrócić do edycji?": "Appen ble lukket mens du redigerte malen «{name}». Vil du fortsette redigeringen?",
+ "Aplikacja zamknęła się w trakcie edycji ćwiczenia „{name}”. Wrócić do edycji?": "Appen ble lukket mens du redigerte øvelsen «{name}». Vil du fortsette redigeringen?",
+ "Wróć do edycji": "Fortsett redigeringen"
 }

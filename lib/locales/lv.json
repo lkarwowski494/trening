@@ -1301,5 +1301,9 @@
  "Więcej dni niż szablonów: szablony po kolei (A, B, A…), jak w generatorze — konwencja.": "Vairāk dienu nekā veidņu: veidnes pēc kārtas (A, B, A…), kā ģeneratorā — vienošanās.",
  "Zapisz plan": "Saglabāt plānu",
  "Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.": "Mazāk par {n} sērijām nedēļā: {list}. Tas ir apakšējais slieksnis, ko iesaka muskuļu masas palielināšanai; sērijas pievieno veidnēs.",
- "Moje szablony, {n}× w tygodniu": "Manas veidnes, {n}× nedēļā"
+ "Moje szablony, {n}× w tygodniu": "Manas veidnes, {n}× nedēļā",
+ "Niezapisane zmiany": "Nesaglabātas izmaiņas",
+ "Aplikacja zamknęła się w trakcie edycji szablonu „{name}”. Wrócić do edycji?": "Lietotne aizvērās, kamēr rediģējāt veidni “{name}”. Atgriezties pie rediģēšanas?",
+ "Aplikacja zamknęła się w trakcie edycji ćwiczenia „{name}”. Wrócić do edycji?": "Lietotne aizvērās, kamēr rediģējāt vingrinājumu “{name}”. Atgriezties pie rediģēšanas?",
+ "Wróć do edycji": "Atgriezties pie rediģēšanas"
 }

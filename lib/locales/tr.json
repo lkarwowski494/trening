@@ -1301,5 +1301,9 @@
  "Więcej dni niż szablonów: szablony po kolei (A, B, A…), jak w generatorze — konwencja.": "Şablondan çok gün: şablonlar sırayla (A, B, A…), oluşturucudaki gibi — bir alışkanlık.",
  "Zapisz plan": "Planı kaydet",
  "Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.": "Haftada {n} setin altında: {list}. Kas kütlesi kazanmak için önerilen alt eşik bu; setleri şablonlarda eklersin.",
- "Moje szablony, {n}× w tygodniu": "Şablonlarım, haftada {n}×"
+ "Moje szablony, {n}× w tygodniu": "Şablonlarım, haftada {n}×",
+ "Niezapisane zmiany": "Kaydedilmemiş değişiklikler",
+ "Aplikacja zamknęła się w trakcie edycji szablonu „{name}”. Wrócić do edycji?": "“{name}” şablonunu düzenlerken uygulama kapandı. Düzenlemeye dönülsün mü?",
+ "Aplikacja zamknęła się w trakcie edycji ćwiczenia „{name}”. Wrócić do edycji?": "“{name}” egzersizini düzenlerken uygulama kapandı. Düzenlemeye dönülsün mü?",
+ "Wróć do edycji": "Düzenlemeye dön"
 }

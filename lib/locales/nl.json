@@ -1301,5 +1301,9 @@
  "Więcej dni niż szablonów: szablony po kolei (A, B, A…), jak w generatorze — konwencja.": "Meer dagen dan sjablonen: sjablonen op volgorde (A, B, A…), zoals in de generator — een conventie.",
  "Zapisz plan": "Plan opslaan",
  "Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.": "Minder dan {n} sets per week: {list}. Dit is de ondergrens die wordt aanbevolen voor spieropbouw; sets voeg je toe in de sjablonen.",
- "Moje szablony, {n}× w tygodniu": "Mijn sjablonen, {n}× per week"
+ "Moje szablony, {n}× w tygodniu": "Mijn sjablonen, {n}× per week",
+ "Niezapisane zmiany": "Niet-opgeslagen wijzigingen",
+ "Aplikacja zamknęła się w trakcie edycji szablonu „{name}”. Wrócić do edycji?": "De app werd gesloten terwijl je sjabloon ‘{name}’ bewerkte. Verder bewerken?",
+ "Aplikacja zamknęła się w trakcie edycji ćwiczenia „{name}”. Wrócić do edycji?": "De app werd gesloten terwijl je oefening ‘{name}’ bewerkte. Verder bewerken?",
+ "Wróć do edycji": "Verder bewerken"
 }

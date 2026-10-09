@@ -296,6 +296,14 @@
   "en": "The app collects no data: everything you enter stays on your phone — no account, ads or analytics."
  },
  {
+  "pl": "Aplikacja zamknęła się w trakcie edycji ćwiczenia „{name}”. Wrócić do edycji?",
+  "en": "The app closed while you were editing the exercise “{name}”. Go back to editing?"
+ },
+ {
+  "pl": "Aplikacja zamknęła się w trakcie edycji szablonu „{name}”. Wrócić do edycji?",
+  "en": "The app closed while you were editing the template “{name}”. Go back to editing?"
+ },
+ {
   "pl": "Apple Health niedostępne",
   "en": "Apple Health unavailable"
  },
@@ -2320,6 +2328,10 @@
  {
   "pl": "nieprzeczytane",
   "en": "unread"
+ },
+ {
+  "pl": "Niezapisane zmiany",
+  "en": "Unsaved changes"
  },
  {
   "pl": "niszowe ukryte: {n} — znajdziesz je wyszukiwaniem",
@@ -4637,6 +4649,10 @@
  {
   "pl": "Wróć",
   "en": "Back"
+ },
+ {
+  "pl": "Wróć do edycji",
+  "en": "Back to editing"
  },
  {
   "pl": "Wróć do treningu",

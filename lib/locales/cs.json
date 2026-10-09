@@ -1301,5 +1301,9 @@
  "Więcej dni niż szablonów: szablony po kolei (A, B, A…), jak w generatorze — konwencja.": "Víc dnů než šablon: šablony postupně (A, B, A…), jako v generátoru — konvence.",
  "Zapisz plan": "Uložit plán",
  "Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.": "Pod {n} sérií týdně: {list}. To je spodní hranice doporučená pro nárůst svalů; série přidáš v šablonách.",
- "Moje szablony, {n}× w tygodniu": "Moje šablony, {n}× týdně"
+ "Moje szablony, {n}× w tygodniu": "Moje šablony, {n}× týdně",
+ "Niezapisane zmiany": "Neuložené změny",
+ "Aplikacja zamknęła się w trakcie edycji szablonu „{name}”. Wrócić do edycji?": "Aplikace se zavřela během úprav šablony „{name}“. Vrátit se k úpravám?",
+ "Aplikacja zamknęła się w trakcie edycji ćwiczenia „{name}”. Wrócić do edycji?": "Aplikace se zavřela během úprav cviku „{name}“. Vrátit se k úpravám?",
+ "Wróć do edycji": "Zpět k úpravám"
 }

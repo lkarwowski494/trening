@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Stack } from 'expo-router';
+import { Stack, router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import * as SplashScreen from 'expo-splash-screen';
 import { ActivityIndicator, View, Text, Pressable } from 'react-native';
@@ -11,6 +11,7 @@ import { SCHEMA_VERSION, type Workout } from '@/lib/seed';
 import { AppState } from 'react-native';
 import { t, lang } from '@/lib/i18n';
 import * as timer from '@/lib/timer';
+import { restoreObjDrafts, dropRestored, type RestoredDraft } from '@/lib/draft';
 import { useTheme, F, FONT_FILES } from '@/lib/theme';
 import * as Font from 'expo-font';
 
@@ -25,7 +26,7 @@ export default function RootLayout() {
   // Runda 69: trening porzucony ponad 6 h temu zapisuje się sam (koniec = ostatnia odhaczona seria) — przy starcie i powrocie z tła.
   const autoSaved = (w: Workout | null) => { if (!w) return; timer.stop().catch(() => {}); timer.stopSet().catch(() => {}); timer.cancelStaleReminder().catch(() => {}); onWorkoutSaved(w).catch(() => {});
     setTimeout(() => Alert.alert(t('Zapisałem trening'), t('Trening z {d} {s} nie miał aktywności od 6 godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w Kalendarzu.' /* H2 (audyt 0.10): zakładka nazywa się Kalendarz */, { d: fmtDate(wallTs(w)), s: fmtTime(wallTs(w)), e: fmtTime(wallTs(w, w.finishedAt ?? w.startedAt)) })), 500); };
-  const start = () => { setErr(null); Promise.all([init(), loadFonts()]).then(() => { resolveColdStopwatch(); /* Q-002 */ autoSaved(autoFinishStale()); retryHealth().catch(() => {}); /* J2: zapisy do Zdrowia, które się nie udały */ cleanShareLeftovers().catch(() => {}); /* SEC-09 */ return timer.restore().catch(() => {}); }).then(() => setReady(true)).catch(e => setErr(e instanceof Error ? e.message : String(e))); };
+  const start = () => { setErr(null); Promise.all([init(), loadFonts()]).then(() => { resolveColdStopwatch(); /* Q-002 */ autoSaved(autoFinishStale()); retryHealth().catch(() => {}); /* J2: zapisy do Zdrowia, które się nie udały */ cleanShareLeftovers().catch(() => {}); /* SEC-09 */ restored = restoreObjDrafts(); /* UX2-03 = DAT2-06: szkice edycji sprzed zamknięcia aplikacji */ return timer.restore().catch(() => {}); }).then(() => setReady(true)).catch(e => setErr(e instanceof Error ? e.message : String(e))); };
   useEffect(start, []);
   /* T-051 (SDK 56+, audyt aktualizacji): expo-router trzyma ekran powitalny, dopóki nie zamontuje się nawigator — ekran błędu startu
    * (poniżej) nie ma nawigatora, więc zostałby pod logo i aplikacja wyglądałaby na zawieszoną. Przy błędzie chowamy go sami. */
@@ -46,9 +47,20 @@ export default function RootLayout() {
   return <Root />;
 }
 
+/** UX2-03 = DAT2-06 (audyt kontrolny 1, wariant A): szkice przywrócone po starcie — pytanie po kolei: wrócić do edycji czy odrzucić zmiany. */
+let restored: RestoredDraft[] = [];
+function askRestored() {
+  const d = restored.shift(); if (!d) return;
+  Alert.alert(t('Niezapisane zmiany'), d.kind === 'template' ? t('Aplikacja zamknęła się w trakcie edycji szablonu „{name}”. Wrócić do edycji?', { name: d.name }) : t('Aplikacja zamknęła się w trakcie edycji ćwiczenia „{name}”. Wrócić do edycji?', { name: d.name }), [
+    { text: t('Odrzuć zmiany'), style: 'destructive', onPress: () => { dropRestored(d); askRestored(); } },
+    { text: t('Wróć do edycji'), onPress: () => { router.push(`/${d.kind}/${d.id}?edit=1${d.isNew ? '&new=1' : ''}` as never); } }, /* pozostałe szkice zostają (w pamięci i w bazie) — pytanie przy następnym starcie albo „Edytuj” */
+  ]);
+}
+
 /** Osobny komponent, bo useTick() wymaga zainicjowanego stanu; odświeża tytuły po zmianie języka. */
 function Root() {
   const th = useTheme(); usePrefsTick();
+  useEffect(() => { const i = setTimeout(askRestored, 600); return () => clearTimeout(i); }, []); /* po komunikacie „Zapisałem trening” (500 ms) */
   return (
     <>
       <StatusBar style="auto" />
