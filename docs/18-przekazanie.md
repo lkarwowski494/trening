@@ -323,3 +323,7 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
 - 09.10.2026 (ok. 16:20): właściciel — sekcja „Ostatni trening” na środku ekranu głównego niepotrzebna → usunięta z ekranu głównego w układzie B
   (ostatni trening widać w arkuszu „Inny trening” → „Powtórz ostatni” z nazwą i datą oraz w Historii/Kalendarzu). Odrzucone: przeniesienie
   na dół ekranu.
+- 09.10.2026 (ok. 15:40): właściciel — **wariant B: wersja pośrednia 0.11 na TestFlight** przed subskrypcją: poprawki z audytu kontrolnego
+  (ŚREDNIE/NISKIE), układ B ekranu głównego i pełny zestaw motywu z ikony, „Plan z moich szablonów”, B1. Przed buildem: audyt zmian
+  od 0.10.0 + lista kontrolna (CLAUDE.md „Audyty i wydania” pkt 4), verify, E2E. Potem: subskrypcja + wymogi App Store → pełny audyt →
+  App Store. Odrzucone A (jedna wersja ze wszystkim). Licencje open source: zostają w „O aplikacji” (wymóg licencji MIT/BSD).
