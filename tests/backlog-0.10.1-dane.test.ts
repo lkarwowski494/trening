@@ -11,7 +11,7 @@ import * as edit from '@/lib/edit';
 import { addLocation, duplicateLocation } from '@/lib/locations';
 import { parseBackup } from '@/lib/backup';
 import * as draft from '@/lib/draft';
-import type { Template, Exercise } from '@/lib/seed';
+import { BODY_MASS_LOG_MAX, type Template, type Exercise } from '@/lib/seed';
 
 describe('LIVE2-04: staleBody na zegarze strefy startu', () => {
   test('LIVE2-04: z tz godziny przeliczone wallTs; bez tz (dane sprzed J3) — strefa bieżąca jak dotąd', async () => {
@@ -160,6 +160,15 @@ describe('TST2-03: zamiana i cofnięcie zamiany sprzątają ćwiczenie usunięte
     await fresh(); addWorkout(Date.now() - 86400e3, [['Pull Up', [{ reps: 5 }]]]); store.startEmpty(); store.addExerciseToActive(ex('Back Squat'));
     const pu = ex('Pull Up').id; store.swapBlock(store.getState().active!.exercises[0].id, pu); store.deleteExercise(pu); store.swapBlock(store.getState().active!.exercises[0].id, ex('Front Squat').id);
     expect(store.getState().exercises.find(e => e.id === pu)!.archived).toBe(true); /* historia — zostaje w archiwum */
+  });
+});
+
+describe('TST2-06: limit BODY_MASS_LOG_MAX przy dopisywaniu pomiaru (nie tylko w migrate)', () => {
+  test('TST2-06: lista pełna (BODY_MASS_LOG_MAX) + nowy pomiar → nadal BODY_MASS_LOG_MAX wpisów, odpada najstarszy, nowy jest ostatni', async () => {
+    await fresh(); const day = (i: number) => store.localISODate(new Date(2010, 0, 1 + i));
+    store.getState().bodyMassLog = Array.from({ length: BODY_MASS_LOG_MAX }, (_, i) => ({ date: day(i), kg: 80 })); store.save();
+    expect(store.addBodyMass(81, day(BODY_MASS_LOG_MAX))).toBeNull();
+    const log = store.getState().bodyMassLog!; expect(log).toHaveLength(BODY_MASS_LOG_MAX); expect(log[0].date).toBe(day(1)); expect(log.at(-1)).toEqual({ date: day(BODY_MASS_LOG_MAX), kg: 81 });
   });
 });
 
