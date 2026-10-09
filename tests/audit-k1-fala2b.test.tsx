@@ -243,3 +243,67 @@ describe('UI2-02: podwójne tapnięcie nie otwiera dwóch ekranów ani nie tworz
     const g = jest.fn(); const r2 = render(React.createElement(Chip, { label: 'Y', on: false, onPress: g })); await act(async () => { fireEvent.press(r2.getByText('Y')); fireEvent.press(r2.getByText('Y')); }); expect(g).toHaveBeenCalledTimes(2); /* bez nav — przełącznik, bez blokady */
   });
 });
+
+/* ---------------- UI2-10: „Utwórz …” i „Przywróć …” w wyborze ćwiczenia podczas edycji szablonu — w szkicu ---------------- */
+const lastAlert = () => global.__alerts[global.__alerts.length - 1];
+/** Edycja szablonu → wybór ćwiczenia → wpis tekstu. */
+const pickIn = async (id: string, q: string) => {
+  await go(`/template/${id}`); await flushAll(10); await tap(screen.getByLabelText('Edytuj szablon')); await flushAll(5);
+  await go(`/picker?target=template:${id}`); await flushAll(10); await type(screen.getByPlaceholderText('Szukaj ćwiczenia…'), q); await flushAll(5);
+};
+const archivedWithHistory = (name: string) => { const e = store.newExercise(name); addWorkout(Date.now() - 86400e3, [[name, [{ weight: 10, reps: 5 }]]]); store.deleteExercise(e.id); return e; };
+
+describe('UI2-10: skutki wyboru ćwiczenia w edycji szablonu należą do szkicu', () => {
+  test('logika: noteDraftEffect tylko przy trwającym szkicu; odrzucenie cofa utworzone (nieużywane) i przywrócone; zapis — zostają', async () => {
+    await fresh(); const tp = mkTpl(); expect(draft.noteDraftEffect('template', tp.id, 'created', 'x')).toBe(false); /* bez szkicu — nic */
+    const d = draft.beginObjDraft<Template>('template', tp.id)!;
+    const a = store.newExercise('Nowe A'); const b = archivedWithHistory('Stare B'); store.restoreExercise(b);
+    expect(draft.noteDraftEffect('template', tp.id, 'created', a.id)).toBe(true); expect(draft.noteDraftEffect('template', tp.id, 'restored', b.id)).toBe(true);
+    d.items.push({ ...d.items[0], id: 'n1', exerciseId: a.id }, { ...d.items[0], id: 'n2', exerciseId: b.id }); store.save(d);
+    draft.discardObjDraft('template', tp.id);
+    expect(S().exercises.some(e => e.id === a.id)).toBe(false); expect(S().exercises.find(e => e.id === b.id)!.archived).toBe(true); expect(tp.items).toHaveLength(1);
+    /* zapis — zostają */
+    const d2 = draft.beginObjDraft<Template>('template', tp.id)!; const c = store.newExercise('Nowe C'); store.restoreExercise(b); draft.noteDraftEffect('template', tp.id, 'created', c.id); draft.noteDraftEffect('template', tp.id, 'restored', b.id);
+    d2.items.push({ ...d2.items[0], id: 'n3', exerciseId: c.id }, { ...d2.items[0], id: 'n4', exerciseId: b.id }); store.save(d2); draft.commitObjDraft('template', tp.id); draft.discardObjDraft('template', tp.id);
+    expect(S().exercises.some(e => e.id === c.id)).toBe(true); expect(S().exercises.find(e => e.id === b.id)!.archived).toBeUndefined();
+  });
+  test('logika: odrzucenie nie usuwa ćwiczenia, które w międzyczasie trafiło do treningu albo innego szablonu', async () => {
+    await fresh(); const tp = mkTpl(); const other = mkTpl('Inny'); draft.beginObjDraft('template', tp.id);
+    const a = store.newExercise('W treningu'); const b = store.newExercise('W innym szablonie'); draft.noteDraftEffect('template', tp.id, 'created', a.id); draft.noteDraftEffect('template', tp.id, 'created', b.id);
+    store.startEmpty(); store.addExerciseToActive(a); other.items.push({ ...other.items[0], id: 'o2', exerciseId: b.id }); store.save(other);
+    draft.discardObjDraft('template', tp.id);
+    expect(S().exercises.some(e => e.id === a.id)).toBe(true); expect(S().exercises.some(e => e.id === b.id)).toBe(true);
+  });
+  test('ekran: „Utwórz „Mój wykrok”” w edycji → „Anuluj” → „Odrzuć zmiany” — ćwiczenia nie ma w bibliotece; „Zapisz” — jest', async () => {
+    let id = ''; await boot(() => { id = mkTpl().id; }); const n0 = S().exercises.length;
+    await pickIn(id, 'Mój wykrok'); await tap(screen.getByText('Utwórz „Mój wykrok”')); await flushAll(10);
+    expect(S().exercises.length).toBe(n0 + 1); /* ćwiczenie istnieje w trakcie edycji (szkic wskazuje je po id) */
+    await tap(screen.getByLabelText('Anuluj edycję szablonu')); await flushAll(5); expect(lastAlert().title).toBe('Odrzucić zmiany?');
+    await act(async () => { pressAlert('Odrzucić zmiany?', 'Odrzuć zmiany'); }); await flushAll(10);
+    expect(S().exercises.some(e => e.name === 'Mój wykrok')).toBe(false); expect(S().exercises.length).toBe(n0);
+    await pickIn(id, 'Mój wykrok'); await tap(screen.getByText('Utwórz „Mój wykrok”')); await flushAll(10);
+    await tap(screen.getByLabelText('Zapisz szablon')); await flushAll(10);
+    expect(S().exercises.filter(e => e.name === 'Mój wykrok')).toHaveLength(1); expect(S().templates.find(x => x.id === id)!.items).toHaveLength(2);
+    await renderApp({ saved: JSON.parse(JSON.stringify(saved())) }); await flushAll(10); expect(S().exercises.filter(e => e.name === 'Mój wykrok')).toHaveLength(1); /* po restarcie */
+  });
+  test('ekran: „Przywróć „Stare B”” w edycji → „Odrzuć zmiany” — znów usunięte (z historią); „Zapisz” — przywrócone', async () => {
+    let id = ''; let bid = ''; await boot(() => { id = mkTpl().id; bid = archivedWithHistory('Stare B').id; });
+    await pickIn(id, 'Stare B'); await tap(screen.getByText('Przywróć „Stare B”')); await flushAll(10);
+    expect(S().exercises.find(e => e.id === bid)!.archived).toBeUndefined();
+    await tap(screen.getByLabelText('Anuluj edycję szablonu')); await flushAll(5); await act(async () => { pressAlert('Odrzucić zmiany?', 'Odrzuć zmiany'); }); await flushAll(10);
+    expect(S().exercises.find(e => e.id === bid)!.archived).toBe(true); expect(S().workouts[0].exercises[0].exerciseId).toBe(bid); /* historia zostaje */
+    await pickIn(id, 'Stare B'); await tap(screen.getByText('Przywróć „Stare B”')); await flushAll(10); await tap(screen.getByLabelText('Zapisz szablon')); await flushAll(10);
+    expect(S().exercises.find(e => e.id === bid)!.archived).toBeUndefined();
+  });
+  test('dane: aplikacja zamknięta w trakcie edycji → po starcie „Odrzuć zmiany” cofa też utworzone ćwiczenie (skutki zapisane ze szkicem)', async () => {
+    let id = ''; await fresh(); const tp = mkTpl(); id = tp.id;
+    const d = draft.beginObjDraft<Template>('template', id)!; const a = store.newExercise('Po restarcie'); draft.noteDraftEffect('template', id, 'created', a.id);
+    d.items.push({ ...d.items[0], id: 'n1', exerciseId: a.id }); store.save(d); await act(async () => { await store.flush(); });
+    const kv: Record<string, string> = {}; global.__kv.forEach((v: string, k: string) => { if (k !== 'state') kv[k] = v; }); const state = saved(); draft.__resetObjDrafts();
+    expect(kv[draft.DRAFTS_KEY]).toContain(a.id);
+    await renderApp({ saved: state, kv }); await flushAll(700); expect(lastAlert().title).toBe('Niezapisane zmiany');
+    expect(S().exercises.some(e => e.id === a.id)).toBe(true);
+    await act(async () => { pressAlert('Niezapisane zmiany', 'Odrzuć zmiany'); }); await flushAll(10);
+    expect(S().exercises.some(e => e.id === a.id)).toBe(false); expect(S().templates.find(x => x.id === id)!.items).toHaveLength(1);
+  });
+});
