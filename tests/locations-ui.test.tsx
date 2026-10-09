@@ -58,7 +58,7 @@ describe('Ustawienia → Miejsca treningu', () => {
   test('stacja elektryczna: preset ViShape Pro; hantle na talerze: Hop-Sport — podsumowanie pary i jednego hantla', async () => {
     const saved = await savedWithPlaces(); await renderApp({ saved }); await go('/more/location/home'); await flushAll(10); await expandEquip();
     expect(screen.getByText('Ustawienia na stronę: 128 (1,5–65 kg)')).toBeTruthy();
-    await toggle('Hantle na talerze (uchwyty + talerze)', true); await tap(screen.getByText('Hop-Sport 2×10 kg')); await flushAll(5);
+    await toggle('Hantle na talerze (uchwyty + talerze)', true); await tap(screen.getByText('Hantle z talerzami 2×10 kg')); await flushAll(5);
     expect(screen.getByText('para: 8 (1,5–10 kg); jeden hantel: 21 (1,5–18,5 kg)')).toBeTruthy();
   });
   test('ustaw jako główne, duplikuj, usuń: głównego nie da się usunąć, dopóki jest inne', async () => {

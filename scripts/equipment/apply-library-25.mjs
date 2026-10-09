@@ -76,7 +76,10 @@ export function apply(catalog, research) {
   const byName = new Map(catalog.map(e => [e.name, e]));
   const renamed = {}, merged = {}, removed = [], fieldFixes = [], baseChanges = [];
   const isBase = e => e.group === undefined;
-  const old = name => { const e = byName.get(name); return isBase(e) ? BASE_OLD[name] ?? {} : e; };
+  /* audyt kontrolny 1 (DAT2-01): „dawna” wartość z KOPII katalogu sprzed zmian — wcześniej old() zwracał zmieniany obiekt i poprawki pól ćwiczeń
+   * niebazowych z rekordów researchu wypadały z kroku (dawna = nowa); decyzje po rekordzie też biorą wartość sprzed obu zmian */
+  const orig = new Map(catalog.map(e => [e.name, JSON.parse(JSON.stringify(e))]));
+  const old = name => { const e = orig.get(name); return isBase(e) ? BASE_OLD[name] ?? {} : e; };
   const fix = (name, field, from, to) => { const i = fieldFixes.findIndex(f => f.name === name && f.field === field); if (i >= 0) fieldFixes.splice(i, 1); if (JSON.stringify(from) !== JSON.stringify(to)) fieldFixes.push({ name, field, from, to }); }; /* ta sama zmiana z rekordu i decyzji — jedna poprawka (dawna → końcowa) */
   for (const r of research) {
     const e = byName.get(r.name); if (!e) throw new Error('brak w katalogu: ' + r.name);
@@ -94,7 +97,7 @@ export function apply(catalog, research) {
   for (const d of DECISION_FIXES) {
     const e = byName.get(d.name); if (!e) throw new Error('decyzja: brak ' + d.name);
     for (const [k, v] of Object.entries(d.set(e))) {
-      if (USER_FIELDS.includes(k)) { if (isBase(e)) baseChanges.push([d.name, k, v]); else { fix(d.name, k, e[k], v); e[k] = v; } if (isBase(e)) fix(d.name, k, old(d.name)[k], v); }
+      if (USER_FIELDS.includes(k)) { if (isBase(e)) baseChanges.push([d.name, k, v]); else e[k] = v; fix(d.name, k, old(d.name)[k], v); }
       else e[k] = v;
     }
   }

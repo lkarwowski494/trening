@@ -26,10 +26,10 @@ const entries = (l: Lang) => Object.entries(dictOf(l));
 
 /* ======================================================================================================================== */
 /* Tekst identyczny z polskim kluczem — dozwolony tylko z powodem. Lista ma być minimalna: test niżej pilnuje, że każdy wpis jest użyty. */
-/** We wszystkich językach: nazwy własne (marki i modele sprzętu), symbole/wzory oraz angielskie nazwy z siłowni, których polski tekst
+/** We wszystkich językach: symbole/wzory oraz angielskie nazwy z siłowni, których polski tekst
  * źródłowy używa bez tłumaczenia (te same w innych językach — tak jak nazwy ćwiczeń z biblioteki po angielsku, lib/i18n.ts exName). */
 const SAME_ANY = new Set([
-  /* marki i modele (nazwy własne) */ 'Beyond Power Voltra I (5–200 lb)', 'Gymtek 2,5–24 kg', 'Hop-Sport 2×10 kg', 'ViShape SmartGym Lite (1,5–35 kg/str.)', 'ViShape SmartGym Pro (1,5–65 kg/str.)',
+  /* marek i modeli sprzętu już nie ma (SEC2-01, decyzja 09.10.2026 (3) A — nazwy ogólne, tłumaczone) */
   /* symbole i wzory */ '{k}: {v}', 'max ±', 'e1RM', '{n} min' /* jednostka (generator, 08.10.2026) */, '{n} s', '{n} h', '{n} m', '{n} km', 'max' /* jednostki SI i skrót — audyt 0.10 A11-17 (cyrylica i el mają własne) */, 'Rekord: {list}' /* „rekord” w wielu językach (A11-18, etykieta plakietki PR) */,
   /* angielskie terminy siłowni użyte w polskim źródle */ 'drop set', '+ drop set', 'Drop set (D)', 'superset', 'Deload' /* termin (tytuł tematu przewodnika, 08.10.2026) */, 'core', 'kettlebell', 'Kettlebell', 'landmine', 'T-bar', 'trap bar', 'kettlebell: {v}' /* 07.10.2026: podpis grafiki na karcie */,
   'GHD', 'GHD (glute-ham developer)', 'circus bell' /* strongman (09.10.2026, L5 Q7) */, 'glute-ham raise', 'reverse hyper', 'ski erg', 'Ski erg', 'Strongman', 'hack squat', 'Hack squat', 'pendulum squat', 'Pendulum squat',

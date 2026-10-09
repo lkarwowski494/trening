@@ -799,4 +799,12 @@ export const EN: Record<string, string> = {
   'Pozycja końcowa': 'End position',
   'Rysunek schematyczny — pozycje orientacyjne.': 'Schematic drawing — positions are approximate.',
   'zakładka, {i} z {n}': 'tab, {i} of {n}',
+  '{v} ({p}% masy ciała {d})': '{v} ({p}% of body weight {d})',
+  'e1RM {v} ({p}% masy ciała {d}; seria {s})': 'e1RM {v} ({p}% of body weight {d}; set {s})',
+  'Stacja z oporem elektrycznym / magnetycznym (inteligentna stacja kablowa)': 'Electric / magnetic resistance station (smart cable machine)',
+  'Hantle stałe 2,5–24 kg (15 par)': 'Fixed dumbbells 2.5–24 kg (15 pairs)',
+  'Hantle z talerzami 2×10 kg': 'Plate-loaded dumbbells 2×10 kg',
+  'Inteligentna stacja kablowa — pełna (1,5–65 kg/str.)': 'Smart cable machine — full (1.5–65 kg/side)',
+  'Przenośna stacja elektryczna, jedna linka (5–200 lb)': 'Portable electric cable unit, single cable (5–200 lb)',
+  'Inteligentna stacja kablowa — kompaktowa (1,5–35 kg/str.)': 'Smart cable machine — compact (1.5–35 kg/side)',
 };

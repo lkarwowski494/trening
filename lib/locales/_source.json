@@ -136,6 +136,10 @@
   "en": "{v} · measured {d}"
  },
  {
+  "pl": "{v} ({p}% masy ciała {d})",
+  "en": "{v} ({p}% of body weight {d})"
+ },
+ {
   "pl": "{v} (masa ciała {d})",
   "en": "{v} (body weight {d})"
  },
@@ -362,10 +366,6 @@
  {
   "pl": "Beczka (keg)",
   "en": "Keg"
- },
- {
-  "pl": "Beyond Power Voltra I (5–200 lb)",
-  "en": "Beyond Power Voltra I (5–200 lb)"
  },
  {
   "pl": "Bez e1RM: brak źródeł, jaką część masy ciała podnosisz w tym ćwiczeniu.",
@@ -974,6 +974,10 @@
   "en": "e1RM (Epley, per dumbbell)"
  },
  {
+  "pl": "e1RM {v} ({p}% masy ciała {d}; seria {s})",
+  "en": "e1RM {v} ({p}% of body weight {d}; set {s})"
+ },
+ {
   "pl": "e1RM {v} (masa ciała {d}; seria {s})",
   "en": "e1RM {v} (body weight {d}; set {s})"
  },
@@ -1202,10 +1206,6 @@
   "en": "Resistance bands"
  },
  {
-  "pl": "Gymtek 2,5–24 kg",
-  "en": "Gymtek 2.5–24 kg"
- },
- {
   "pl": "hack squat",
   "en": "hack squat"
  },
@@ -1230,12 +1230,16 @@
   "en": "Plate-loaded dumbbells (handles + plates)"
  },
  {
-  "pl": "hantle: {v}",
-  "en": "dumbbells: {v}"
+  "pl": "Hantle stałe 2,5–24 kg (15 par)",
+  "en": "Fixed dumbbells 2.5–24 kg (15 pairs)"
  },
  {
-  "pl": "Hop-Sport 2×10 kg",
-  "en": "Hop-Sport 2×10 kg"
+  "pl": "Hantle z talerzami 2×10 kg",
+  "en": "Plate-loaded dumbbells 2×10 kg"
+ },
+ {
+  "pl": "hantle: {v}",
+  "en": "dumbbells: {v}"
  },
  {
   "pl": "Hotel",
@@ -1284,6 +1288,14 @@
  {
   "pl": "Inny trening",
   "en": "Other workout"
+ },
+ {
+  "pl": "Inteligentna stacja kablowa — kompaktowa (1,5–35 kg/str.)",
+  "en": "Smart cable machine — compact (1.5–35 kg/side)"
+ },
+ {
+  "pl": "Inteligentna stacja kablowa — pełna (1,5–65 kg/str.)",
+  "en": "Smart cable machine — full (1.5–65 kg/side)"
  },
  {
   "pl": "Jak liczyć ciężar w objętości",
@@ -3056,6 +3068,10 @@
   "en": "Move to {day}"
  },
  {
+  "pl": "Przenośna stacja elektryczna, jedna linka (5–200 lb)",
+  "en": "Portable electric cable unit, single cable (5–200 lb)"
+ },
+ {
   "pl": "przerwa",
   "en": "rest"
  },
@@ -3603,8 +3619,8 @@
   "en": "station"
  },
  {
-  "pl": "Stacja z oporem elektrycznym / magnetycznym (np. ViShape, Speediance, Tonal…)",
-  "en": "Electric / magnetic resistance station (e.g. ViShape, Speediance, Tonal…)"
+  "pl": "Stacja z oporem elektrycznym / magnetycznym (inteligentna stacja kablowa)",
+  "en": "Electric / magnetic resistance station (smart cable machine)"
  },
  {
   "pl": "Stacja: drążek + poręcze (power tower)",
@@ -4357,14 +4373,6 @@
  {
   "pl": "Uwaga: zmiana sprzętu, trybu liczenia lub metryki przelicza też dawne treningi (objętość, rekordy, wykresy).",
   "en": "Note: changing equipment, weight counting or metric also recalculates past workouts (volume, records, charts)."
- },
- {
-  "pl": "ViShape SmartGym Lite (1,5–35 kg/str.)",
-  "en": "ViShape SmartGym Lite (1.5–35 kg/side)"
- },
- {
-  "pl": "ViShape SmartGym Pro (1,5–65 kg/str.)",
-  "en": "ViShape SmartGym Pro (1.5–65 kg/side)"
  },
  {
   "pl": "W „Inne plany” jest już {n} planów — usuń któryś, by dodać nowy.",

@@ -182,7 +182,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     expect(equip('Dom testowy', 'db_fixed')!.load).toEqual({ kind: 'list', unit: 'kg', items: [] });
     expect(summary('Dom testowy', 'db_fixed')).toBeTruthy(); /* brak ciężarów */
     expect(screen.getByLabelText('Wolne ciężary').props.accessibilityValue.text).toBe('zaznaczone: 1 z 12');
-    await tap(screen.getByText('Gymtek 2,5–24 kg')); await flushAll(5); /* pusta lista — bez pytania */
+    await tap(screen.getByText('Hantle stałe 2,5–24 kg (15 par)')); await flushAll(5); /* pusta lista — bez pytania */
     const dbl = () => equip('Dom testowy', 'db_fixed')!.load as { kind: 'list'; unit: string; items: { w: number; on: boolean }[] };
     expect(dbl().items).toHaveLength(15); expect(summary('Dom testowy', 'db_fixed').props.children).toMatch(/15.*2,5–24 kg/);
     await tap(screen.getByLabelText('24 kg')); expect(dbl().items.find(x => x.w === 24)!.on).toBe(false); expect(screen.getByLabelText('24 kg').props.accessibilityState.checked).toBe(false);
@@ -197,20 +197,20 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     /* G1 (audyt 0.10, wariant A): zakres dopisuje — wpisane ciężary (preset i 26) zostają, dochodzą parzyste 2…30 */
     const merged = [...new Set([...pre, ...Array.from({ length: 15 }, (_, i) => 2 + 2 * i)])].sort((a, b) => a - b);
     expect(dbl().items.map(x => x.w)).toEqual(merged); expect(pre.every(w => dbl().items.some(x => x.w === w))).toBe(true); expect(screen.queryByText(/^Zakres jest niepoprawny/)).toBeNull();
-    await tap(screen.getByText('Gymtek 2,5–24 kg')); expect(lastAlert().title).toBe('Zastąpić wpisane ciężary?');
+    await tap(screen.getByText('Hantle stałe 2,5–24 kg (15 par)')); expect(lastAlert().title).toBe('Zastąpić wpisane ciężary?');
     pressAlert('Zastąpić wpisane ciężary?', 'Nie'); await flushAll(5); expect(dbl().items).toHaveLength(merged.length); expect(dbl().items[0].w).toBe(2);
-    await tap(screen.getByText('Gymtek 2,5–24 kg')); pressAlert('Zastąpić wpisane ciężary?', 'Zastąp'); await flushAll(5); expect(dbl().items[0].w).toBe(2.5); expect(dbl().items).toHaveLength(15);
+    await tap(screen.getByText('Hantle stałe 2,5–24 kg (15 par)')); pressAlert('Zastąpić wpisane ciężary?', 'Zastąp'); await flushAll(5); expect(dbl().items[0].w).toBe(2.5); expect(dbl().items).toHaveLength(15);
     await tap(screen.getByLabelText('24 kg')); expect(dbl().items.find(x => x.w === 24)!.on).toBe(false); /* 24 kg zostaje odznaczone (nie mam) */
     const unitSeg = () => screen.getAllByLabelText('lb').find(x => x.props.accessibilityHint === `Jednostka sprzętu — ${DB}`)!;
     await tap(unitSeg()); expect(dbl().unit).toBe('lb'); expect(dbl().items[0].w).toBe(5.5);
     await tap(screen.getAllByLabelText('kg').find(x => x.props.accessibilityHint === `Jednostka sprzętu — ${DB}`)!); expect(dbl().unit).toBe("kg"); expect(dbl().items.map(x => x.w)).toEqual([2.5, 3.5, 4.5, 5.5, 6.5, 8, 9, 10, 11.5, 13.5, 16, 18, 20.5, 22.5, 24]); /* kg → lb → kg bez strat */ expect(dbl().items.find(x => x.w === 24)!.on).toBe(false);
     /* odznaczenie pozycji zachowuje ciężary (audyt M5) */
-    await toggle(DB, false); expect(equip('Dom testowy', 'db_fixed')!.off).toBe(true); expect(screen.queryByText('Gymtek 2,5–24 kg')).toBeNull();
+    await toggle(DB, false); expect(equip('Dom testowy', 'db_fixed')!.off).toBe(true); expect(screen.queryByText('Hantle stałe 2,5–24 kg (15 par)')).toBeNull();
     await toggle(DB, true); expect(equip('Dom testowy', 'db_fixed')!.off).toBeUndefined(); expect(dbl().items).toHaveLength(15);
     /* hantle na talerze: preset Hop-Sport, uchwyt, „+ talerz”, pola talerza, usunięcie talerza */
     const DBP = 'Hantle na talerze (uchwyty + talerze)';
     await toggle(DBP, true); expect(summary('Dom testowy', 'db_plate')).toBeTruthy();
-    await tap(screen.getByText('Hop-Sport 2×10 kg')); await flushAll(5);
+    await tap(screen.getByText('Hantle z talerzami 2×10 kg')); await flushAll(5);
     const pl = () => equip('Dom testowy', 'db_plate')!.load as { kind: 'plates'; base: number; plates: { w: number; n: number }[] };
     expect(pl().base).toBe(1.5); expect(pl().plates).toHaveLength(3); expect(summary('Dom testowy', 'db_plate')).toBeTruthy();
     await type(field('Uchwyt (jeden, kg)', DBP), '2'); expect(pl().base).toBe(2);
@@ -236,14 +236,14 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     await toggle(`${CAB}: opaski na kostki`, true); expect(equip('Dom testowy', 'cable_single')!.opts).toEqual(['rope', 'ankle']);
     await type(field('od', CAB), '5'); await type(field('do', CAB), '50'); await type(field('co', CAB), '5'); await tap(screen.getByLabelText(`Wypełnij zakresem — ${CAB}`));
     expect((equip('Dom testowy', 'cable_single')!.load as any).items).toHaveLength(10);
-    const EL = 'Stacja z oporem elektrycznym / magnetycznym (np. ViShape, Speediance, Tonal…)';
+    const EL = 'Stacja z oporem elektrycznym / magnetycznym (inteligentna stacja kablowa)';
     await toggle(EL, true); expect(equip('Dom testowy', 'electric')!.opts).toEqual(['dual', 'belt', 'ankle']);
     expect(summary('Dom testowy', 'electric')).toBeTruthy();
-    await tap(screen.getByText('ViShape SmartGym Pro (1,5–65 kg/str.)')); await flushAll(5);
+    await tap(screen.getByText('Inteligentna stacja kablowa — pełna (1,5–65 kg/str.)')); await flushAll(5);
     expect(equip('Dom testowy', 'electric')!.load).toEqual({ kind: 'electric', unit: 'kg', min: 1.5, max: 65, step: 0.5 });
     expect(summary('Dom testowy', 'electric').props.children).toMatch(/128.*1,5–65 kg/);
     await type(field('max na stronę', EL), '35'); expect((equip('Dom testowy', 'electric')!.load as any).max).toBe(35);
-    await tap(screen.getByText('ViShape SmartGym Pro (1,5–65 kg/str.)')); pressAlert('Zastąpić wpisane ciężary?', 'Zastąp'); await flushAll(5); expect((equip('Dom testowy', 'electric')!.load as any).max).toBe(65);
+    await tap(screen.getByText('Inteligentna stacja kablowa — pełna (1,5–65 kg/str.)')); pressAlert('Zastąpić wpisane ciężary?', 'Zastąp'); await flushAll(5); expect((equip('Dom testowy', 'electric')!.load as any).max).toBe(65);
     await toggle(`${EL}: ramiona regulowane / wysoki wyciąg`, true); expect(equip('Dom testowy', 'electric')!.opts).toContain('arms');
     /* akcesoria: gumy — poziomy jak posiadane gumy, nowy poziom tworzy gumę, kolor; mata */
     await tap(screen.getByLabelText('Akcesoria')); await toggle('Gumy oporowe', true);

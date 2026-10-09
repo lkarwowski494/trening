@@ -192,7 +192,7 @@ describe('/more/locations, /more/location/[id]', () => {
 
 /* ======================================================================= components/LoadEditor (ekran miejsca) */
 describe('LoadEditor (/more/location/[id])', () => {
-  const EL = 'Stacja z oporem elektrycznym / magnetycznym (np. ViShape, Speediance, Tonal…)';
+  const EL = 'Stacja z oporem elektrycznym / magnetycznym (inteligentna stacja kablowa)';
   const BAR = 'Sztanga (gryf olimpijski / prosty) + talerze', KB = 'Kettlebell', DBF = 'Hantle (stała waga albo z szybką regulacją)';
   async function open(entries: string[], tweak: (l: ReturnType<typeof loc>) => void = () => {}) {
     const saved = await prepared(() => { const s = store.getState().settings; const l = loc('Test', entries.map(e => equipEntry(e)), 'lt'); tweak(l); s.locations.push(l); s.mainLocationId = 'lt'; });
@@ -236,10 +236,10 @@ describe('LoadEditor (/more/location/[id])', () => {
 
   test('preset modelu: podpowiedź „Wstaw ciężary modelu”; przy wpisanych ciężarach pytanie „{p} zastąpi…”, „Zastąp” wstawia model', async () => {
     const eq = await open(['db_fixed'], l => { (l.equipment[0].load as any).items = [{ w: 7, on: true }]; });
-    const chip = screen.getByText('Gymtek 2,5–24 kg'); const btn = screen.getByLabelText('Gymtek 2,5–24 kg');
+    const chip = screen.getByText('Hantle stałe 2,5–24 kg (15 par)'); const btn = screen.getByLabelText('Hantle stałe 2,5–24 kg (15 par)');
     expect(btn.props.accessibilityHint).toBe(`Wstaw ciężary modelu — ${DBF}`); expect(chip).toBeTruthy();
     await tap(btn);
-    expect(lastAlert()).toMatchObject({ title: 'Zastąpić wpisane ciężary?', msg: `Gymtek 2,5–24 kg zastąpi ciężary wpisane dla: ${DBF}.` });
+    expect(lastAlert()).toMatchObject({ title: 'Zastąpić wpisane ciężary?', msg: `Hantle stałe 2,5–24 kg (15 par) zastąpi ciężary wpisane dla: ${DBF}.` });
     await act(async () => { pressAlert('Zastąpić wpisane ciężary?', 'Zastąp'); }); await flushAll(5);
     expect((eq()[0].load as any).items).toHaveLength(15);
   });
