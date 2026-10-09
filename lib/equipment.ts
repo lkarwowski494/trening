@@ -118,7 +118,7 @@ export const EQUIPMENT: readonly EquipItem[] = [
   it('lat_pulldown', 'cables', 'Wyciąg górny (ściąganie drążka)', 'Lat pulldown', ['lat_pulldown', 'cable.high'], { load: 'cable', defaultLoad: 'list', secondary: ['cable.high'] }),
   it('cable_row', 'cables', 'Wyciąg dolny (wiosłowanie siedząc)', 'Seated cable row', ['cable.row_seat', 'cable.low'], { load: 'cable', defaultLoad: 'list', secondary: ['cable.low'] }),
   /* 3.4: jedna pozycja dla wszystkich stacji z oporem elektrycznym / magnetycznym */
-  it('electric', 'cables', 'Stacja z oporem elektrycznym / magnetycznym (np. ViShape, Speediance, Tonal…)', 'Electric / magnetic resistance station (e.g. ViShape, Speediance, Tonal…)', ['cable.low', 'cable.handles'], {
+  it('electric', 'cables', 'Stacja z oporem elektrycznym / magnetycznym (inteligentna stacja kablowa)', 'Electric / magnetic resistance station (smart cable machine)', ['cable.low', 'cable.handles'], {
     load: 'cable', defaultLoad: 'electric', options: [
       op('dual', 'dwie niezależne linki', 'two independent cables', ['cable.dual'], true),
       op('belt', 'pas biodrowy', 'hip belt', ['dip_belt'], true),
@@ -200,14 +200,15 @@ export function blankLoad(item: EquipItem, unit: LoadUnit = 'kg'): LoadSpec | un
   if (item.defaultLoad === 'electric') return { kind: 'electric', unit, min: 0, max: 0, step: unit === 'lb' ? 1 : 0.5 };
   return { kind: 'list', unit, items: [] };
 }
-/** Presety modeli w edytorze ciężarów — tylko z danymi ze źródeł (docs/10, sekcje 3.2 i 3.4). TREXO TXO-B4W002: kroki nieznane → brak presetu. */
+/** Presety modeli w edytorze ciężarów — tylko z danymi ze źródeł (docs/10, sekcje 3.2 i 3.4). Etykiety opisowe, bez nazw producentów (zasada właściciela
+ * 09.10.2026, decyzja (3) A; audyt kontrolny 1 SEC2-01) — id presetów bez zmian (są w danych użytkownika). TREXO TXO-B4W002: kroki nieznane → brak presetu. */
 export const LOAD_PRESETS: { id: string; item: string; label: L; spec: () => LoadSpec; optsOff?: string[] }[] = [ /* audyt (LOW): nazwy z przecinkiem / kropką wg języka */
-  { id: 'gymtek24', item: 'db_fixed', label: { pl: 'Gymtek 2,5–24 kg', en: 'Gymtek 2.5–24 kg' }, spec: () => listOf([2.5, 3.5, 4.5, 5.5, 6.5, 8, 9, 10, 11.5, 13.5, 16, 18, 20.5, 22.5, 24]) },
-  { id: 'hopsport2x10', item: 'db_plate', label: { pl: 'Hop-Sport 2×10 kg', en: 'Hop-Sport 2×10 kg' }, spec: () => ({ kind: 'plates', unit: 'kg', base: 1.5, plates: [{ w: 2.5, n: 4 }, { w: 1.25, n: 4 }, { w: 0.5, n: 4 }] }) },
-  { id: 'vishape_pro', item: 'electric', label: { pl: 'ViShape SmartGym Pro (1,5–65 kg/str.)', en: 'ViShape SmartGym Pro (1.5–65 kg/side)' }, spec: () => ({ kind: 'electric', unit: 'kg', min: 1.5, max: 65, step: 0.5 }) },
+  { id: 'gymtek24', item: 'db_fixed', label: { pl: 'Hantle stałe 2,5–24 kg (15 par)', en: 'Fixed dumbbells 2.5–24 kg (15 pairs)' }, spec: () => listOf([2.5, 3.5, 4.5, 5.5, 6.5, 8, 9, 10, 11.5, 13.5, 16, 18, 20.5, 22.5, 24]) },
+  { id: 'hopsport2x10', item: 'db_plate', label: { pl: 'Hantle z talerzami 2×10 kg', en: 'Plate-loaded dumbbells 2×10 kg' }, spec: () => ({ kind: 'plates', unit: 'kg', base: 1.5, plates: [{ w: 2.5, n: 4 }, { w: 1.25, n: 4 }, { w: 0.5, n: 4 }] }) },
+  { id: 'vishape_pro', item: 'electric', label: { pl: 'Inteligentna stacja kablowa — pełna (1,5–65 kg/str.)', en: 'Smart cable machine — full (1.5–65 kg/side)' }, spec: () => ({ kind: 'electric', unit: 'kg', min: 1.5, max: 65, step: 0.5 }) },
   /* 06.10.2026: dane z docs/research/equipment/stations.json (strona producenta i centrum pomocy); jedna linka */
-  { id: 'voltra1', item: 'electric', label: { pl: 'Beyond Power Voltra I (5–200 lb)', en: 'Beyond Power Voltra I (5–200 lb)' }, spec: () => ({ kind: 'electric', unit: 'lb', min: 5, max: 200, step: 1 }), optsOff: ['dual'] },
-  { id: 'vishape_lite', item: 'electric', label: { pl: 'ViShape SmartGym Lite (1,5–35 kg/str.)', en: 'ViShape SmartGym Lite (1.5–35 kg/side)' }, spec: () => ({ kind: 'electric', unit: 'kg', min: 1.5, max: 35, step: 0.5 }) },
+  { id: 'voltra1', item: 'electric', label: { pl: 'Przenośna stacja elektryczna, jedna linka (5–200 lb)', en: 'Portable electric cable unit, single cable (5–200 lb)' }, spec: () => ({ kind: 'electric', unit: 'lb', min: 5, max: 200, step: 1 }), optsOff: ['dual'] },
+  { id: 'vishape_lite', item: 'electric', label: { pl: 'Inteligentna stacja kablowa — kompaktowa (1,5–35 kg/str.)', en: 'Smart cable machine — compact (1.5–35 kg/side)' }, spec: () => ({ kind: 'electric', unit: 'kg', min: 1.5, max: 35, step: 0.5 }) },
 ];
 
 /** Preset modelu: ciężary i — gdy model czegoś nie ma — odznaczone opcje (Voltra I: jedna linka; przegląd 06.10). Pozostałe opcje bez zmian:

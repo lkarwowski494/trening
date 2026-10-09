@@ -15,7 +15,7 @@ function brute(base: number, plates: PlateEntry[], perStep: number): number[] {
 
 describe('przypadki z dokumentu (sekcja 3.2)', () => {
   const hop: LoadSpec = { kind: 'plates', unit: 'kg', base: 1.5, plates: [{ w: 2.5, n: 4 }, { w: 1.25, n: 4 }, { w: 0.5, n: 4 }] };
-  test('Hop-Sport 2×10 kg, para hantli: 1,5; 2,5; 4; 5; 6,5; 7,5; 9; 10', () => {
+  test('Hantle z talerzami 2×10 kg, para hantli: 1,5; 2,5; 4; 5; 6,5; 7,5; 9; 10', () => {
     expect(achievable(hop, { perStep: 4 })).toEqual([1.5, 2.5, 4, 5, 6.5, 7.5, 9, 10]);
   });
   test('Hop-Sport, jeden hantel (ćwiczenia jednorącz): 21 ciężarów do 18,5 kg', () => {

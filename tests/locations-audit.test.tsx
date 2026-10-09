@@ -109,9 +109,9 @@ describe('M4, M5, M7 — edytor ciężarów', () => {
   test('M5: preset modelu nie nadpisuje wpisanej listy bez pytania; pusta lista — od razu', async () => {
     await fresh(); place(); await store.flush(); await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())) }); await go('/more/location/home'); await flushAll(10); await expandEquip();
     const db = () => store.getState().settings.locations[0].equipment.find(e => e.item === 'db_fixed')!.load as any;
-    await tap(screen.getByText('Gymtek 2,5–24 kg')); expect(global.__alerts.slice(-1)[0].title).toBe('Zastąpić wpisane ciężary?'); expect(db().items).toHaveLength(8);
+    await tap(screen.getByText('Hantle stałe 2,5–24 kg (15 par)')); expect(global.__alerts.slice(-1)[0].title).toBe('Zastąpić wpisane ciężary?'); expect(db().items).toHaveLength(8);
     await act(async () => { global.__alerts.slice(-1)[0].buttons!.find(b => b.text === 'Zastąp')!.onPress!(); }); await flushAll(5); expect(db().items).toHaveLength(15);
-    await act(async () => { db().items = []; store.save(); }); await flushAll(5); const n = global.__alerts.length; await tap(screen.getByText('Gymtek 2,5–24 kg')); expect(global.__alerts).toHaveLength(n); expect(db().items).toHaveLength(15);
+    await act(async () => { db().items = []; store.save(); }); await flushAll(5); const n = global.__alerts.length; await tap(screen.getByText('Hantle stałe 2,5–24 kg (15 par)')); expect(global.__alerts).toHaveLength(n); expect(db().items).toHaveLength(15);
   });
   test('M5: odznaczona pozycja nie daje możliwości, ale zachowuje ciężary (także po eksporcie/imporcie)', async () => {
     await fresh(); const h = place(); L.setEquip(h, 'db_fixed', false);
@@ -121,7 +121,7 @@ describe('M4, M5, M7 — edytor ciężarów', () => {
   });
   test('M7: opcje z nazwą pozycji dla VoiceOver, przyciski edytora z nazwą pozycji', async () => {
     await fresh(); place(); await store.flush(); await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())) }); await go('/more/location/home'); await flushAll(10); await expandEquip();
-    expect(screen.getByLabelText('Stacja z oporem elektrycznym / magnetycznym (np. ViShape, Speediance, Tonal…): pas biodrowy')).toBeTruthy();
+    expect(screen.getByLabelText('Stacja z oporem elektrycznym / magnetycznym (inteligentna stacja kablowa): pas biodrowy')).toBeTruthy();
     expect(screen.getByLabelText('Dodaj ciężar — Hantle (stała waga albo z szybką regulacją)')).toBeTruthy();
     expect(screen.getByLabelText('Jednostka sprzętu — Hantle (stała waga albo z szybką regulacją)')).toBeTruthy();
   });
@@ -157,7 +157,7 @@ describe('M8 i uwagi LOW', () => {
     expect(presetEquipment('gym').find(e => e.item === 'barbell')!.load).toMatchObject({ unit: 'kg', base: 20 });
   });
   test('nazwy presetów modeli wg języka (kropka dziesiętna po angielsku)', () => {
-    i18n.applyLang('en'); expect(equipLabel(LOAD_PRESETS[0].label)).toBe('Gymtek 2.5–24 kg'); i18n.applyLang('pl'); expect(equipLabel(LOAD_PRESETS[0].label)).toBe('Gymtek 2,5–24 kg');
+    i18n.applyLang('en'); expect(equipLabel(LOAD_PRESETS[0].label)).toBe('Fixed dumbbells 2.5–24 kg (15 pairs)'); i18n.applyLang('pl'); expect(equipLabel(LOAD_PRESETS[0].label)).toBe('Hantle stałe 2,5–24 kg (15 par)');
   });
   test('nazwa miejsca: najwyżej 80 znaków; wyjście z pustą nazwą przywraca poprzednią', async () => {
     await fresh(); const a = L.addLocation('home'); L.renameLocation(a, 'x'.repeat(100)); expect(a.name).toHaveLength(80); L.renameLocation(a, 'Dom'); await store.flush();
