@@ -1323,5 +1323,7 @@
  "odpoczynek": "ден за почивка",
  "Dni treningowe w tygodniu (w tym {n} cardio)": "Тренировъчни дни седмично (вкл. {n} кардио)",
  "Wybierz dni treningowe: od {a} do {b}.": "Избери тренировъчни дни: от {a} до {b}.",
- "Wybierz dni treningowe: {n}.": "Избери тренировъчни дни: {n}."
+ "Wybierz dni treningowe: {n}.": "Избери тренировъчни дни: {n}.",
+ "dawniej: {n}": "преди: {n}",
+ "Dawne nazwy w bibliotece": "Предишни имена в библиотеката"
 }

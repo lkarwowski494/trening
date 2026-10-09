@@ -1323,5 +1323,7 @@
  "odpoczynek": "poilsio diena",
  "Dni treningowe w tygodniu (w tym {n} cardio)": "Treniruočių dienos per savaitę (įsk. {n} kardio)",
  "Wybierz dni treningowe: od {a} do {b}.": "Pasirink treniruočių dienas: nuo {a} iki {b}.",
- "Wybierz dni treningowe: {n}.": "Pasirink treniruočių dienas: {n}."
+ "Wybierz dni treningowe: {n}.": "Pasirink treniruočių dienas: {n}.",
+ "dawniej: {n}": "anksčiau: {n}",
+ "Dawne nazwy w bibliotece": "Ankstesni pavadinimai bibliotekoje"
 }

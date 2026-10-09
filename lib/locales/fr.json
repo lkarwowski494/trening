@@ -1323,5 +1323,7 @@
  "odpoczynek": "jour de repos",
  "Dni treningowe w tygodniu (w tym {n} cardio)": "Jours d’entraînement par semaine (dont {n} cardio)",
  "Wybierz dni treningowe: od {a} do {b}.": "Choisissez les jours d’entraînement : de {a} à {b}.",
- "Wybierz dni treningowe: {n}.": "Choisissez les jours d’entraînement : {n}."
+ "Wybierz dni treningowe: {n}.": "Choisissez les jours d’entraînement : {n}.",
+ "dawniej: {n}": "anciennement : {n}",
+ "Dawne nazwy w bibliotece": "Anciens noms dans la bibliothèque"
 }

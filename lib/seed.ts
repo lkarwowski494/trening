@@ -2,7 +2,7 @@
 // przygotowanie pod wielu użytkowników (konto, trener–podopieczny) bez migracji "z bólem" później.
 // Backup z wersji webowej v0.3 (bez tych pól) jest nadal importowalny — migrate() w store.ts dopisuje brakujące pola.
 import * as Crypto from 'expo-crypto';
-import { tIn, type LangSetting, type Lang } from './i18n';
+import { tIn, fold, exName, type LangSetting, type Lang } from './i18n';
 import type { Unit } from './units';
 import type { LoadSpec } from './loads';
 import { GYM_FILL, OPT_FILL, EQUIP_FILL2 } from './equipment';
@@ -227,6 +227,20 @@ export const LIB_MERGED: Readonly<Record<string, string>> = CATALOG_STEP.merged;
 export const LIB_REMOVED: ReadonlySet<string> = new Set(CATALOG_STEP.removed);
 /** Klucze wycofane z katalogu (scalone i usunięte) — migrate przenosi ich dane (lib/store.ts retireCatalog). */
 export const LIB_RETIRED: ReadonlySet<string> = new Set([...Object.keys(LIB_MERGED), ...LIB_REMOVED]);
+/** Audyt kontrolny 1 (UX2-01, wariant a): dawne nazwy (klucze) ćwiczenia z biblioteki — wyprowadzone z kroku katalogu (LIB_RENAMED + LIB_MERGED,
+ * łańcuchy do końca), nie osobna lista. Klucz obecny → dawne klucze. Do wyszukiwania (znajdź po dawnej nazwie → obecne ćwiczenie, zamiast „Utwórz …”)
+ * i dopisku na ekranie ćwiczenia. */
+const FORMER: ReadonlyMap<string, readonly string[]> = (() => {
+  const end = (k: string) => { let x = k; for (let i = 0; i < 16; i++) { const y = own(LIB_RENAMED, x) ?? own(LIB_MERGED, x); if (y === undefined) break; x = y; } return x; };
+  const m = new Map<string, string[]>();
+  for (const k of [...Object.keys(LIB_RENAMED), ...Object.keys(LIB_MERGED)]) { const to = end(k); if (!LIB_KEYS.has(to) || LIB_KEYS.has(k)) continue; const a = m.get(to) ?? []; if (!a.includes(k)) a.push(k); m.set(to, a); }
+  return m;
+})();
+export const formerNamesOf = (e: Pick<Exercise, 'lib' | 'libKey'>): readonly string[] => { const k = catalogKey(e); return (k && FORMER.get(k)) || []; };
+/** Dawna nazwa ćwiczenia pasująca do szukanego tekstu (już po fold) — po kluczu albo po nazwie wyświetlanej w języku aplikacji (exName). */
+export const formerMatch = (e: Pick<Exercise, 'lib' | 'libKey'>, q: string): string | undefined => q ? formerNamesOf(e).find(n => fold(n).includes(q) || fold(exName({ name: n, lib: true })).includes(q)) : undefined;
+/** Dokładne trafienie dawnej nazwy — wybór ćwiczenia i lista nie proponują wtedy „Utwórz …”. */
+export const formerExact = (e: Pick<Exercise, 'lib' | 'libKey'>, q: string): boolean => !!q && formerNamesOf(e).some(n => fold(n) === q || fold(exName({ name: n, lib: true })) === q);
 /** Poprawki pól kopiowanych do ćwiczenia (partia, miara, tryb, asysta gumą, partie mięśni) przy kroku katalogu — tylko gdy zapisana wartość jest
  * dokładnie dawną domyślną (zmian użytkownika nie ruszamy); miara i tryb ciężaru z innym mnożnikiem objętości (X2-01) — tylko gdy ćwiczenie nie ma
  * serii ani pozycji szablonu (nic nie znika z widoku, zapisane ciężary nie zmieniają sensu); asysta gumą (DAT2-01) — tylko bez serii z gumą. */

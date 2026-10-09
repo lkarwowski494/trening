@@ -7,7 +7,7 @@ import { Stack } from 'expo-router';
 import { getState, useTick, exById, previousFor, save, setSummary, fmtDate, fmtSec, setEquipment, exerciseInHistory, usesBand, finishedWorkouts, wallTs, REST_MAX } from '@/lib/store';
 import { beginObjDraft, objDraft, objDirty, discardObjDraft, commitObjDraft, dropUnsavedNew } from '@/lib/draft';
 import type { Exercise } from '@/lib/seed';
-import { GROUPS, GROUP_TO_MUSCLE, METRICS, METRIC_LABEL, LOAD_MODE_LABEL, MUSCLES, REGION_LABEL, muscleLoadOf, musclesSourced, muscleConfidence, unmappedMuscleOf, hasWeight, type Equipment, type LoadMode } from '@/lib/seed';
+import { GROUPS, GROUP_TO_MUSCLE, METRICS, METRIC_LABEL, LOAD_MODE_LABEL, MUSCLES, REGION_LABEL, muscleLoadOf, musclesSourced, formerNamesOf, muscleConfidence, unmappedMuscleOf, hasWeight, type Equipment, type LoadMode } from '@/lib/seed';
 import { BW_SHARE } from '@/lib/stats';
 import { t, exName, lang } from '@/lib/i18n';
 import { ExerciseCues } from '@/components/ExerciseCues';
@@ -66,6 +66,7 @@ function Preview({ e, onEdit, onOpen, onProgress }: { e: Exercise; onEdit: () =>
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 10 }}><View style={{ flex: 1 }}><H1>{exName(e)}</H1></View>{/* podgląd: tylko nazwa w języku aplikacji (nazwa katalogowa — w edycji, przy „Wyświetlane jako”) */}<Btn title={t('Edytuj')} small accessibilityLabel={t('Edytuj ćwiczenie')} onPress={onEdit} /></View>
       <Row label={t('Partia')} value={t(e.group)} />
       <Row label={t('Sprzęt')} value={t(e.equipment)} />
+      {formerNamesOf(e).length ? <Row label={t('Dawne nazwy w bibliotece')} value={formerNamesOf(e).map(n => exName({ name: n, lib: true })).join(', ')} /> : null}{/* UX2-01 (audyt kontrolny 1): scalone i przemianowane w kroku katalogu 09.10 */}
       <Row label={t('Co logujesz w serii')} value={t(METRIC_LABEL[m])} />
       {hasWeight(m) && e.equipment !== 'masa ciała' ? <Row label={t('Jak liczyć ciężar w objętości')} value={t(LOAD_MODE_LABEL[e.loadMode ?? 'total'])} /> : null}
       <Row label={t('Przerwa robocza')} value={e.restSec != null ? fmtSec(e.restSec) : t('domyślna {s}', { s: fmtSec(def) })} />

@@ -1323,5 +1323,7 @@
  "odpoczynek": "día de descanso",
  "Dni treningowe w tygodniu (w tym {n} cardio)": "Días de entrenamiento por semana (incl. {n} cardio)",
  "Wybierz dni treningowe: od {a} do {b}.": "Elige días de entrenamiento: de {a} a {b}.",
- "Wybierz dni treningowe: {n}.": "Elige días de entrenamiento: {n}."
+ "Wybierz dni treningowe: {n}.": "Elige días de entrenamiento: {n}.",
+ "dawniej: {n}": "antes: {n}",
+ "Dawne nazwy w bibliotece": "Nombres anteriores en la biblioteca"
 }

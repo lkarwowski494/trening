@@ -1323,5 +1323,7 @@
  "odpoczynek": "Ruhetag",
  "Dni treningowe w tygodniu (w tym {n} cardio)": "Trainingstage pro Woche (inkl. {n} Cardio)",
  "Wybierz dni treningowe: od {a} do {b}.": "Wähle Trainingstage: {a} bis {b}.",
- "Wybierz dni treningowe: {n}.": "Wähle Trainingstage: {n}."
+ "Wybierz dni treningowe: {n}.": "Wähle Trainingstage: {n}.",
+ "dawniej: {n}": "früher: {n}",
+ "Dawne nazwy w bibliotece": "Frühere Namen in der Bibliothek"
 }

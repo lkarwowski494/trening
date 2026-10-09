@@ -1323,5 +1323,7 @@
  "odpoczynek": "giorno di riposo",
  "Dni treningowe w tygodniu (w tym {n} cardio)": "Giorni di allenamento a settimana (incl. {n} cardio)",
  "Wybierz dni treningowe: od {a} do {b}.": "Scegli i giorni di allenamento: da {a} a {b}.",
- "Wybierz dni treningowe: {n}.": "Scegli i giorni di allenamento: {n}."
+ "Wybierz dni treningowe: {n}.": "Scegli i giorni di allenamento: {n}.",
+ "dawniej: {n}": "prima: {n}",
+ "Dawne nazwy w bibliotece": "Nomi precedenti nella libreria"
 }

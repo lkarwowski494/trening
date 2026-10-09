@@ -858,4 +858,6 @@ export const EN: Record<string, string> = {
   'Dni treningowe w tygodniu (w tym {n} cardio)': 'Training days per week (incl. {n} cardio)',
   'Wybierz dni treningowe: od {a} do {b}.': 'Choose training days: {a} to {b}.',
   'Wybierz dni treningowe: {n}.': 'Choose training days: {n}.',
+  'dawniej: {n}': 'formerly: {n}',
+  'Dawne nazwy w bibliotece': 'Former names in the library',
 };

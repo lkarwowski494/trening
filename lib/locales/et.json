@@ -1323,5 +1323,7 @@
  "odpoczynek": "puhkepäev",
  "Dni treningowe w tygodniu (w tym {n} cardio)": "Treeningpäevi nädalas (sh {n} kardio)",
  "Wybierz dni treningowe: od {a} do {b}.": "Vali treeningpäevad: {a} kuni {b}.",
- "Wybierz dni treningowe: {n}.": "Vali treeningpäevad: {n}."
+ "Wybierz dni treningowe: {n}.": "Vali treeningpäevad: {n}.",
+ "dawniej: {n}": "varem: {n}",
+ "Dawne nazwy w bibliotece": "Varasemad nimed teegis"
 }

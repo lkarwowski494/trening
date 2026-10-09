@@ -1323,5 +1323,7 @@
  "odpoczynek": "dinlenme günü",
  "Dni treningowe w tygodniu (w tym {n} cardio)": "Haftalık antrenman günü ({n} kardiyo dahil)",
  "Wybierz dni treningowe: od {a} do {b}.": "Antrenman günlerini seçin: {a} ile {b} arası.",
- "Wybierz dni treningowe: {n}.": "Antrenman günlerini seçin: {n}."
+ "Wybierz dni treningowe: {n}.": "Antrenman günlerini seçin: {n}.",
+ "dawniej: {n}": "önceki adı: {n}",
+ "Dawne nazwy w bibliotece": "Kütüphanedeki önceki adlar"
 }

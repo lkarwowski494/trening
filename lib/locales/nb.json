@@ -1323,5 +1323,7 @@
  "odpoczynek": "hviledag",
  "Dni treningowe w tygodniu (w tym {n} cardio)": "Treningsdager per uke (inkl. {n} kondisjon)",
  "Wybierz dni treningowe: od {a} do {b}.": "Velg treningsdager: fra {a} til {b}.",
- "Wybierz dni treningowe: {n}.": "Velg treningsdager: {n}."
+ "Wybierz dni treningowe: {n}.": "Velg treningsdager: {n}.",
+ "dawniej: {n}": "tidligere: {n}",
+ "Dawne nazwy w bibliotece": "Tidligere navn i biblioteket"
 }

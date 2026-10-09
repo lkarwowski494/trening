@@ -817,6 +817,14 @@
   "en": "The measurement date cannot be in the future."
  },
  {
+  "pl": "Dawne nazwy w bibliotece",
+  "en": "Former names in the library"
+ },
+ {
+  "pl": "dawniej: {n}",
+  "en": "formerly: {n}"
+ },
+ {
   "pl": "Deload",
   "en": "Deload"
  },
