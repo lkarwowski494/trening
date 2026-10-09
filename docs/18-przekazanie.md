@@ -382,3 +382,6 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
   Otwarte przed wdrożeniem: krój IBM Plex Sans — znaki wietnamskie i kazachskie (cyrylica rozszerzona); czy iOS ma uzbecki i kazachski jako
   język systemu i czy App Store Connect pozwala na opis sklepu w tych językach. **Arabski — osobne wydanie** (pismo od prawej: lustrzany układ,
   osobne testy i E2E), po App Store 1.0; zakres i termin — decyzja właściciela później.
+- 09.10.2026 (wieczór): właściciel — **języki wdrażane po kolei: od najsensowniejszych i najłatwiejszych do najtrudniejszych / najmniej
+  opłacalnych**. Propozycja kolejności (do potwierdzenia): fala 1 pt-BR, es-419; fala 2 id, ms, vi; fala 3 ru; fala 4 ja, ko, zh-Hant;
+  fala 5 kk, uz, az; arabski osobnym wydaniem po 1.0.
