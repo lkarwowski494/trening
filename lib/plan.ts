@@ -154,6 +154,19 @@ export function addPlan(name: string, days: PlanDays, activate: boolean): string
   const id = uid(); putSaved([...savedPlans(), { id, name: uniqueIn(takenNames(), cleanPlanName(name) || t('Nowy plan')), days: planDays(days) }]);
   if (activate) activatePlan(id); else commit(); return id;
 }
+/* „+ Nowy szablon” w edytorze planu i w panelu dnia Kalendarza (docs/18 09.10.2026 ok. 14:45, wariant B): szablon powstaje jak „+ Nowy” na liście
+ * Szablony, a po „Zapisz” trafia od razu na dzień, z którego go utworzono — w tym wariancie planu. „Anuluj” nic nie przypisuje (pusty, niezapisany
+ * szablon znika — draft.dropUnsavedNew). Cel zapisany w adresie edycji (`assign`): `week:<0–6>` — aktywny plan, `saved:<id planu>:<0–6>` — plan
+ * z „Inne plany”, `day:<RRRR-MM-DD>` — pojedynczy dzień w Kalendarzu (od dziś). */
+export const assignTarget = { week: (i: number) => `week:${i}`, saved: (id: string, i: number) => `saved:${id}:${i}`, day: (k: string) => `day:${k}` };
+/** Przypisuje zapisany nowy szablon do celu `spec`; false — cel nieważny (plan usunięty, dzień miniony, szablon w archiwum albo nieistniejący). */
+export function assignNewTemplate(spec: string, tplId: string, today = todayKey()): boolean {
+  if (!liveTemplate(tplId)) return false; let m: RegExpMatchArray | null;
+  if ((m = /^week:([0-6])$/.exec(spec))) { setWeekDay(+m[1], tplId); return true; }
+  if ((m = /^saved:(.+):([0-6])$/.exec(spec))) { if (!savedPlans().some(p => p.id === m![1])) return false; setSavedDay(m[1], +m[2], tplId); return true; }
+  if ((m = /^day:(\d{4}-\d{2}-\d{2})$/.exec(spec)) && m[1] >= today) { setDayPlan(m[1], tplId); return true; }
+  return false;
+}
 export function deletePlan(id: string) { if (!savedPlans().some(p => p.id === id)) return; putSaved(savedPlans().filter(p => p.id !== id)); commit(); }
 /** Pojedynczy dzień: inny trening albo wolne (null). */
 export function setDayPlan(k: string, id: string | null) { setDay(k, id && liveTemplate(id) ? id : null); commit(); }

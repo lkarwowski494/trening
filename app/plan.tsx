@@ -3,9 +3,10 @@ import { ScrollView, View, Alert, Pressable } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Screen, Chip, Muted, Txt, Btn, Item, Field, Input, SectionTitle } from '@/components/ui';
 import { SwipeRow } from '@/components/SwipeRow';
-import { getState, useTick, templateGroups, SAVED_PLANS_MAX } from '@/lib/store';
+import { getState, useTick, templateGroups, newTemplate, SAVED_PLANS_MAX } from '@/lib/store';
+import { ownTemplates } from '@/lib/generator';
 import { useTheme, F } from '@/lib/theme';
-import { weekPlanDays, setWeekDay, planName, setPlanName, typePlanName, savedPlans, newPlan, setSavedDay, typeSavedName, renamePlan, activatePlan, deletePlan, plansFull, activationNote, savedChanges, hasPlan, type PlanDays } from '@/lib/plan';
+import { weekPlanDays, setWeekDay, planName, setPlanName, typePlanName, savedPlans, newPlan, setSavedDay, typeSavedName, renamePlan, activatePlan, deletePlan, plansFull, activationNote, savedChanges, hasPlan, assignTarget, type PlanDays } from '@/lib/plan';
 import { askReminderPermission } from '@/lib/planReminder';
 import { t, locale, lang } from '@/lib/i18n';
 
@@ -30,8 +31,10 @@ const nameOr = (n: string) => n || t('Poprzedni plan');
 const OTHER_FIRST = 3;
 
 /** 7 wierszy dni (UX-15 A): wiersz pokazuje dzień i szablon, tapnięcie rozwija wybór (szablony bez folderu, potem foldery). */
-function DayRows({ days, onSet }: { days: PlanDays; onSet: (i: number, id: string | null) => void }) {
-  const th = useTheme(); const [open, setOpen] = useState<number | null>(null); const groups = templateGroups();
+function DayRows({ days, onSet, target }: { days: PlanDays; onSet: (i: number, id: string | null) => void; target: (i: number) => string }) {
+  const th = useTheme(); const router = useRouter(); const [open, setOpen] = useState<number | null>(null); const groups = templateGroups();
+  /* docs/18 09.10.2026 (B): „+ Nowy szablon” — edycja nowego szablonu; po „Zapisz” trafia na ten dzień tego planu (lib/plan assignNewTemplate) */
+  const create = (i: number) => { setOpen(null); const x = newTemplate(); router.push(`/template/${x.id}?edit=1&new=1&assign=${encodeURIComponent(target(i))}`); };
   return <>{days.map((id, i) => { const nm = tplName(id) || t('Wolne'); const isOpen = open === i; return (
     <View key={i} testID={`plan-day-${i}`} style={{ borderBottomWidth: 1, borderBottomColor: th.line }}>
       <Pressable accessibilityLanguage={lang()} accessibilityRole="button" accessibilityLabel={`${weekdayName(i)}, ${nm}`} accessibilityHint={t('Wybierz szablon na ten dzień.')} accessibilityState={{ expanded: isOpen }} onPress={() => setOpen(isOpen ? null : i)}
@@ -46,6 +49,7 @@ function DayRows({ days, onSet }: { days: PlanDays; onSet: (i: number, id: strin
           <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6 }}>{g.items.map(x => <Chip key={x.id} label={x.name} on={x.id === id} a11yLabel={`${weekdayName(i)}: ${x.name}`} onPress={() => { onSet(i, x.id); setOpen(null); }} />)}</View>
         </View>)}
         {!groups.length ? <Muted style={{ fontSize: 13 }}>{t('Nie masz jeszcze szablonów.')}</Muted> : null}
+        <Btn nav small kind="ghost" title={t('+ Nowy szablon')} accessibilityLabel={`${weekdayName(i)}: ${t('+ Nowy szablon')}`} accessibilityHint={t('Po zapisie szablon trafi na ten dzień.')} onPress={() => create(i)} style={{ alignSelf: 'flex-start' }} />
       </View> : null}
     </View>); })}</>;
 }
@@ -65,7 +69,7 @@ export default function PlanScreen() {
       {savedChanges(saved.id) ? <Muted style={{ fontSize: 13, marginBottom: 8 }}>{t('Zmiany pojedynczych dni zapisane z tym planem: {n} — wrócą po aktywacji.', { n: savedChanges(saved.id) })}</Muted> : null}
       <Btn title={t('Ustaw jako aktywny')} kind="primary" small accessibilityLabel={t('Ustaw jako aktywny: {name}', { name: nameOr(saved.name) })} onPress={() => activate(saved.id, saved.name, () => { if (router.canGoBack()) router.back(); else router.replace('/plan'); })} style={{ alignSelf: 'flex-start', marginBottom: 8 }} />
       <SectionTitle>{t('Dni tygodnia')}</SectionTitle>
-      <DayRows days={saved.days} onSet={(i, x) => setSavedDay(saved.id, i, x)} />
+      <DayRows days={saved.days} onSet={(i, x) => setSavedDay(saved.id, i, x)} target={i => assignTarget.saved(saved.id, i)} />
     </ScrollView></Screen>);
   return <ActivePlan activate={activate} />;
 }
@@ -80,6 +84,7 @@ function ActivePlan({ activate }: { activate: (id: string, name: string) => void
       <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginBottom: 4 }}>
         {!plansFull() ? <Btn title={t('+ Nowy plan')} small accessibilityHint={t('Kopia obecnego planu w „Inne plany” — zmienisz ją przed ustawieniem jako aktywny.')} onPress={() => { const nid = newPlan(); if (nid) router.push(`/plan?id=${nid}`); }} /> : null}
         <Btn nav title={t('Wygeneruj szablony i plan')} small onPress={() => router.push('/generator')} />{/* 08.10.2026: generator (docs/24) */}
+        {ownTemplates().length ? <Btn nav title={t('Plan z moich szablonów')} small onPress={() => router.push('/generator?mode=own')} /> : null}{/* 09.10.2026 (B) */}
       </View>
       {plansFull() ? <Muted style={{ fontSize: 13 }}>{t('W „Inne plany” jest już {n} planów — usuń któryś, by dodać nowy.', { n: SAVED_PLANS_MAX })}</Muted> : null}
       {other.length ? <>
@@ -91,7 +96,7 @@ function ActivePlan({ activate }: { activate: (id: string, name: string) => void
         {!all && other.length > OTHER_FIRST ? <Btn small kind="ghost" title={t('Pokaż wszystkie ({n})', { n: other.length })} onPress={() => setAll(true)} style={{ alignSelf: 'flex-start' }} /> : null}
       </> : null}
       <SectionTitle>{t('Dni tygodnia')}</SectionTitle>
-      <DayRows days={days} onSet={setDay} />
+      <DayRows days={days} onSet={setDay} target={assignTarget.week} />
     </ScrollView></Screen>
   );
 }

@@ -63,6 +63,8 @@ const KINDS = {
    * „Zapisz jako szablon”, archiwum szablonu, tydzień deload, pauza i „Pomiń dziś” w treningu, ponowienie zapisu do Zdrowia (J2), plany: nazwa,
    * usunięcie, zamiana dni, propozycja z panelu dnia, powrót dnia do planu */
   draft: 3, saveAsTpl: 1, tplArchive: 1, deload: 1, pause: 2, skipEx: 1, health: 1, planRename: 1, planDel: 1, planSwap: 1, planSuggest: 4, planReset: 1, libScope: 1,
+  /* 09.10.2026 (decyzje właściciela, B): „Plan z moich szablonów” (zapis jako nowy / aktywny) i „+ Nowy szablon” z przypisaniem do dnia po „Zapisz” */
+  ownPlan: 1, tplNewAssign: 1,
 } as const;
 type K = keyof typeof KINDS;
 type Op = { o: number; a: number; b: number; v: number | '' };
@@ -92,10 +94,10 @@ const session = fc.tuple(start, fc.array(inSession, { minLength: 3, maxLength: 2
 const seqArb = fc.array(fc.oneof({ weight: 3, arbitrary: actArb.map(x => [x]) }, { weight: 2, arbitrary: session }), { minLength: 6, maxLength: 30 });
 
 /** Kategorie: jawne edycje szablonów, zmiany historii; w pozostałych działaniach trening w toku ma zostać co do bajtu (ACTIVE_FROZEN). */
-const TPL_EDIT = new Set<K>(['tplNew', 'tplRename', 'tplDup', 'tplDel', 'tplAddItem', 'tplRmItem', 'tplMove', 'tplLink', 'tplUnlink', 'tplAddRow', 'tplRmRow', 'tplKind', 'tplRow', 'tplBand', 'tplLoc', 'rememberAlt', 'rememberRest', 'gen', 'tplNote', 'draft', 'saveAsTpl', 'tplArchive']);
-const ACTIVE_FROZEN = new Set<K>([...[...TPL_EDIT].filter(k => k !== 'rememberRest'), 'delW', 'past', 'edit', 'unit', 'lang', 'newEx', 'metric', 'bandAssist', 'delEx', 'restoreEx', 'addLoc', 'setMain', 'dupLoc', 'renameLoc', 'setBandColor', 'planHint', 'reload', 'roundtrip', 'migrate', 'stats', 'planDay', 'planDayOv', 'planShift', 'planMove', 'planNew', 'planActivate', 'bodyMass', 'draft', 'saveAsTpl', 'tplArchive', 'deload', 'health', 'planRename', 'planDel', 'planSwap', 'planSuggest', 'planReset', 'libScope']);
+const TPL_EDIT = new Set<K>(['tplNew', 'tplRename', 'tplDup', 'tplDel', 'tplAddItem', 'tplRmItem', 'tplMove', 'tplLink', 'tplUnlink', 'tplAddRow', 'tplRmRow', 'tplKind', 'tplRow', 'tplBand', 'tplLoc', 'rememberAlt', 'rememberRest', 'gen', 'tplNote', 'draft', 'saveAsTpl', 'tplArchive', 'tplNewAssign']);
+const ACTIVE_FROZEN = new Set<K>([...[...TPL_EDIT].filter(k => k !== 'rememberRest'), 'delW', 'past', 'edit', 'unit', 'lang', 'newEx', 'metric', 'bandAssist', 'delEx', 'restoreEx', 'addLoc', 'setMain', 'dupLoc', 'renameLoc', 'setBandColor', 'planHint', 'reload', 'roundtrip', 'migrate', 'stats', 'planDay', 'planDayOv', 'planShift', 'planMove', 'planNew', 'planActivate', 'bodyMass', 'draft', 'saveAsTpl', 'tplArchive', 'deload', 'health', 'planRename', 'planDel', 'planSwap', 'planSuggest', 'planReset', 'libScope', 'ownPlan']);
 /** Audyt 0.10 A1/A7: działania, po których żaden miniony dzień nie może zmienić statusu (poza dniem, którego działanie dotyczy wprost). */
-const PAST_FROZEN = new Set<K>(['planDay', 'planDayOv', 'planShift', 'planMove', 'planNew', 'planActivate', 'tplDel', 'tplNew', 'tplDup', 'tplRename', 'tplArchive', 'draft', 'saveAsTpl', 'planRename', 'planDel', 'planSwap', 'planSuggest', 'planReset', 'deload', 'health']);
+const PAST_FROZEN = new Set<K>(['planDay', 'planDayOv', 'planShift', 'planMove', 'planNew', 'planActivate', 'tplDel', 'tplNew', 'tplDup', 'tplRename', 'tplArchive', 'draft', 'saveAsTpl', 'planRename', 'planDel', 'planSwap', 'planSuggest', 'planReset', 'deload', 'health', 'ownPlan', 'tplNewAssign']);
 
 /* ---------- pomocnicze ---------- */
 const J = (x: unknown) => JSON.stringify(x);
@@ -353,6 +355,27 @@ async function step(x: Act, m: Model, where: string) {
         plan.activatePlan(p.id); const back = plan.savedPlans()[plan.savedPlans().length - 1];
         if (prevDays !== J(Array(7).fill(null)) && back) ok(J(back.days) === prevDays && J(back.overrides ?? {}) === fut, where, 'poprzedni plan zapisany razem ze zmianami dni od dziś (B1)', { back, fut }); }
       hit(x.t); break; }
+    /* ===== 09.10.2026 (B): „Plan z moich szablonów” i „+ Nowy szablon” z przypisaniem ===== */
+    case 'ownPlan': { /* components/OwnPlan.tsx: wybór szablonów i dni → podgląd → „Tylko zapisz” / „Ustaw jako aktywny” */
+      const avail = gen.ownTemplates(); if (!avail.length) break; const k = 1 + (x.a % Math.min(avail.length, gen.OWN_MAX));
+      const ids = Array.from({ length: k }, (_, i) => avail[(x.b + i) % avail.length].id); const r = gen.ownPlan({ templateIds: ids, sessions: x.c % 8 })!;
+      const uniq = [...new Set(ids)]; ok(!!r && r.days.filter(Boolean).length === r.sessions && r.sessions >= uniq.length && uniq.every(id => r.days.includes(id)) && r.days.every(d => !d || uniq.includes(d)), where, 'plan z moich szablonów: każdy wybrany użyty, liczba dni', r);
+      const activate = x.c % 2 === 0; const fut = J(Object.fromEntries(Object.entries(S().planOverrides ?? {}).filter(([kk]) => kk >= today && plan.isChanged(kk, today)))); const prevDays = J(plan.weekPlanDays()); const full = plan.plansFull();
+      const res = gen.saveOwnPlan(r, activate);
+      ok(J(S().templates) === tplBefore, where, 'plan z moich szablonów zmienił szablony (zasada 03.10)');
+      if (full) ok(res.planId === '', where, 'pełne „Inne plany” — plan dodany');
+      else if (activate) { ok(J(plan.weekPlanDays()) === J(r.days), where, 'aktywny plan = podgląd'); const back = plan.savedPlans()[plan.savedPlans().length - 1];
+        if (prevDays !== J(Array(7).fill(null)) && back) ok(J(back.days) === prevDays && J(back.overrides ?? {}) === fut, where, 'poprzedni plan zapisany razem ze zmianami dni od dziś (B1)', { back, fut }); }
+      else ok(J(plan.savedPlans().find(p => p.id === res.planId)?.days) === J(r.days) && J(plan.weekPlanDays()) === prevDays, where, 'zapisany plan = podgląd, aktywny bez zmian');
+      hit('ownPlan'); break; }
+    case 'tplNewAssign': { /* app/plan.tsx DayRows i components/DayPanel.tsx: „+ Nowy szablon” → „Zapisz” → na ten dzień */
+      const t = store.newTemplate(); const pl = pick(plan.savedPlans(), x.b); const kind = x.a % 3;
+      const spec = kind === 0 ? plan.assignTarget.week(x.c % 7) : kind === 1 && pl ? plan.assignTarget.saved(pl.id, x.c % 7) : plan.assignTarget.day(plan.addDays(today, (x.c % 15) - 7));
+      const okAssign = plan.assignNewTemplate(spec, t.id, today);
+      if (kind === 0) ok(okAssign && plan.weekPlanDays()[x.c % 7] === t.id, where, 'nowy szablon na dniu aktywnego planu');
+      else if (kind === 1 && pl) ok(okAssign && plan.savedPlans().find(p => p.id === pl.id)!.days[x.c % 7] === t.id, where, 'nowy szablon na dniu zapisanego planu');
+      else { const d = plan.addDays(today, (x.c % 15) - 7); ok(okAssign === d >= today && (d < today || plan.plannedOn(d, today) === t.id), where, 'nowy szablon na dniu Kalendarza (tylko od dziś)'); }
+      hit('tplNewAssign'); break; }
     /* ===== fala 2 audytu 0.10 (M3): edycja na żądanie, zapis jako szablon, archiwum, deload, pauza, „Pomiń dziś”, Zdrowie, plany ===== */
     case 'draft': { /* app/exercise/[id].tsx i app/template/[id].tsx: „Edytuj” → szkic → „Anuluj” albo „Zapisz” (decyzja właściciela 08.10.2026) */
       const isTpl = x.a % 2 === 0; const id = isTpl ? tpl?.id : pick(exs, x.b)?.id; if (!id) break; const kind = isTpl ? 'template' as const : 'exercise' as const;
@@ -579,7 +602,7 @@ describe('macierz niezmienników — losowe sekwencje działań na prawdziwym AP
     }), { numRuns: RUNS, seed: SEED });
     if (process.env.MATRIX_COVERAGE) console.log(J(ran)); // eslint-disable-line no-console
     /* pokrycie: kluczowe ścieżki naprawdę się wykonały (inaczej niezmienniki byłyby puste) */
-    if (RUNS >= 50 && !process.env.MATRIX_SEED) /* kontrola pokrycia tylko dla stałego ziarna — losowe może nie wylosować rzadkiej akcji */ for (const k of ['startTpl', 'finish', 'tick', 'swap', 'split', 'undoSwap', 'pastCommit', 'editCommit', 'draftSwap', 'delExArchive', 'delExHard', 'reload', 'roundtrip', 'addLoc', 'setLoc', 'tplAddRow', 'tplRmRow', 'tplKind', 'tplDup', 'repeat', 'unit', 'lang', 'rememberAlt', 'rememberRest', 'gen', 'tplNote', 'draftCancel', 'draftSave', 'saveAsTpl', 'tplArchive', 'deload', 'pause', 'resume', 'skipEx', 'health', 'planSwap', 'planSuggest', 'planReset', 'tplUpdate'])
+    if (RUNS >= 50 && !process.env.MATRIX_SEED) /* kontrola pokrycia tylko dla stałego ziarna — losowe może nie wylosować rzadkiej akcji */ for (const k of ['startTpl', 'finish', 'tick', 'swap', 'split', 'undoSwap', 'pastCommit', 'editCommit', 'draftSwap', 'delExArchive', 'delExHard', 'reload', 'roundtrip', 'addLoc', 'setLoc', 'tplAddRow', 'tplRmRow', 'tplKind', 'tplDup', 'repeat', 'unit', 'lang', 'rememberAlt', 'rememberRest', 'gen', 'tplNote', 'draftCancel', 'draftSave', 'saveAsTpl', 'tplArchive', 'deload', 'pause', 'resume', 'skipEx', 'health', 'planSwap', 'planSuggest', 'planReset', 'tplUpdate', 'ownPlan', 'tplNewAssign'])
       expect([k, (ran[k] ?? 0) > 0]).toEqual([k, true]);
   });
 });
