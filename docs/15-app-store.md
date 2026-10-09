@@ -71,11 +71,20 @@ Rozmowa 05.10.2026, rano: „Chciałbym móc opublikować to w Apple Store” i 
     — zasada ustalania ceny).
   - Subskrypcja roczna, płatna z góry: 5,99 USD / 5,99 EUR / 5,99 GBP (ok. połowa ceny 12 miesięcy).
   - Okres próbny 30 dni = oferta wprowadzająca **1 miesiąc** (Apple nie ma „30 dni”, zob. sekcję DSA niżej).
-  - Bez zmian: po wygaśnięciu nowe treningi zablokowane; historia, kopia i eksport zawsze działają; status tradera; kroki właściciela wyżej.
+  - Bez zmian: historia, kopia i eksport zawsze działają; status tradera; kroki właściciela wyżej (po wygaśnięciu — limit, pkt 5 niżej).
   - Wdrożenie: po wydaniu 1 (zakres wydania zamrożony, CLAUDE.md „Audyty i wydania” pkt 3), przed App Store.
-  - **Otwarte (do decyzji właściciela, 09.10):** cena roczna w PLN; okres próbny w obu planach czy tylko w rocznym; czy „taniej niż espresso”
-    ma być w opisie sklepu (wtedy potrzebne źródła cen kawy w każdym kraju) czy tylko zasadą ustalania ceny; sposób ustalenia cen w innych
-    krajach. **Do sprawdzenia w App Store Connect** (nie zgadujemy): czy punkty cenowe 0,99 EUR/GBP i 4,99 PLN istnieją w siatce cen Apple.
+  - **Decyzje właściciela 09.10.2026 (ok. 10:30):**
+    1. Cena roczna w PLN: **29,99 zł** (A: ten sam stosunek roczna/miesięczna co w EUR; odrzucone B: 24,99 zł — kursowa równowartość).
+    2. Okres próbny **w obu planach** (A; jedna oferta wprowadzająca na osobę w grupie subskrypcji; odrzucone B: tylko roczny).
+    3. Hasło w sklepie: **„w cenie espresso lub taniej”** (sformułowanie ostateczne przy opisach sklepu) — właściciel: „Nawet we Włoszech nie
+       będzie to kłamstwem”. Warunek (zasada rzetelnych źródeł): przed publikacją opisu potwierdzić źródłami cenę espresso w każdym kraju,
+       w którym hasło się pojawi; gdzie się nie potwierdzi — bez hasła w tym kraju.
+    4. Ceny w innych krajach: wariant A wg zasady z 20:20 (właściciel nie wybrał) — cena bazowa 0,99 USD, Apple przelicza pozostałe kraje,
+       EUR/GBP/PLN ustawione ręcznie; odrzucone B: każdy kraj ręcznie.
+    5. **Po wygaśnięciu subskrypcji lub próby: 4 darmowe treningi na miesiąc kalendarzowy** (zastępuje pełną blokadę nowych treningów
+       z 06.10; odrzucone: 5/mies., pełna blokada). Liczone na telefonie, bez serwera; limit obejmuje też treningi dopisane wstecz
+       (rekomendacja agenta, do potwierdzenia przy projekcie ekranu). Historia, kopia i eksport bez limitu.
+  - **Do sprawdzenia w App Store Connect** (nie zgadujemy): czy punkty cenowe 0,99 EUR/GBP, 4,99 PLN i 29,99 PLN istnieją w siatce cen Apple.
 - **Cel przychodu (właściciel 06.10.2026):** ~2000 zł miesięcznie; model bez zmian: 30 dni za darmo, potem jednorazowa płatność.
   Rachunek orientacyjny (agent, do sprawdzenia): z ceny w App Store odpada VAT kraju kupującego (PL 23%) i prowizja Apple (15% w Small Business
   Program), czyli na konto ok. 0,69 × cena przy kupującym z Polski. Potrzebne zakupy miesięcznie: cena 29 zł → ok. 100; 49 zł → ok. 59;
