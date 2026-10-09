@@ -105,12 +105,12 @@ export async function onWorkoutSaved(w: Workout): Promise<void> { await syncAfte
 export async function onHistoryEdited(): Promise<void> { await autoBackup(); }
 
 /**
- * Eksport CSV w układzie kolumn Strong (0.2.1): Date, Workout Name, Duration, Exercise Name, Set Order,
- * Weight, Reps, Distance, Seconds, Notes, Workout Notes, RPE. Ciężar hantli zostaje per hantel (jak w Strong na iOS).
- * Guma trafia do Notes, bo Strong nie ma na nią pola. LOG-14 (audyt 0.10): format z docs/21 („Format CSV Stronga”) — Set Order: numer zwykłej serii,
- * `D` = drop set, `F` = do upadku (rozgrzewka `W` — jak dotąd; w pliku Stronga niesprawdzone); Duration: `52m`, `1h 5m`, `1h`.
+ * Eksport CSV w układzie kolumn zgodnym z popularnymi dziennikami treningowymi (0.2.1): Date, Workout Name, Duration, Exercise Name, Set Order,
+ * Weight, Reps, Distance, Seconds, Notes, Workout Notes, RPE. Ciężar hantli zostaje per hantel (jak w popularnych dziennikach na iOS).
+ * Guma trafia do Notes, bo ten format nie ma na nią pola. LOG-14 (audyt 0.10): format z docs/21 (format CSV zgodny z popularnymi dziennikami) — Set Order: numer zwykłej serii,
+ * `D` = drop set, `F` = do upadku (rozgrzewka `W` — jak dotąd; w pliku wzorcowym niesprawdzone); Duration: `52m`, `1h 5m`, `1h`.
  */
-/** LOG-14: czas treningu jak w eksporcie Stronga — „52m”, „1h 5m”, „1h”. */
+/** LOG-14: czas treningu jak w eksporcie popularnych dzienników — „52m”, „1h 5m”, „1h”. */
 export const strongDur = (min: number) => { const m = Math.max(0, Math.round(min)), h = Math.floor(m / 60), r = m % 60; return h ? (r ? `${h}h ${r}m` : `${h}h`) : `${r}m`; };
 export function buildCsv(): string {
   // Runda 21: tekst zaczynający się od = + - @ nie staje się formułą w arkuszu (liczby, także ujemne, zostają liczbami).
@@ -124,15 +124,15 @@ export function buildCsv(): string {
       let n = 0; // numer zwykłej serii — rozgrzewka „W”, drop „D”, do upadku „F” nie przesuwają numeracji (LOG-14)
       e.sets.forEach(s => { const b = s.bandId ? bandById(s.bandId) : null; const bandTxt = b ? `${t('guma')} ${bandColor(b)} ${b.level}` : s.bandId ? `${t('guma')} ?` : ''; const mark = SET_KIND_MARK[s.kind ?? (s.warmup ? 'warmup' : 'normal')]; if (!mark) n++;
         const notes = [s.note, bandTxt].filter(Boolean).join('; ');
-        rows.push([dt(wallTs(w)) /* J3: data i godzina w strefie startu */, w.templateName || t('Trening'), dur, exName(ex), mark || String(n), wOut(shownLoad(ex, s)) /* runda 7: w jednostce użytkownika, jak eksport Stronga; T4b/Q-018/83b: store.shownLoad — jak ekran sesji w historii */, s.reps || 0, s.distanceM || 0, s.durationSec || 0, notes, w.note, s.rpe === '' || s.rpe == null ? '' : s.rpe /* runda 18: RIR 0 też */].map(q).join(','));
+        rows.push([dt(wallTs(w)) /* J3: data i godzina w strefie startu */, w.templateName || t('Trening'), dur, exName(ex), mark || String(n), wOut(shownLoad(ex, s)) /* runda 7: w jednostce użytkownika, jak eksport popularnych dzienników; T4b/Q-018/83b: store.shownLoad — jak ekran sesji w historii */, s.reps || 0, s.distanceM || 0, s.durationSec || 0, notes, w.note, s.rpe === '' || s.rpe == null ? '' : s.rpe /* runda 18: RIR 0 też */].map(q).join(','));
       }); });
   }
   return rows.join('\n') + '\n';
 }
-/** Znacznik UTF-8 (BOM) na początku pliku CSV — bez niego Excel w Windows czyta plik jako ANSI i psuje polskie litery. */
+/** Znacznik UTF-8 (BOM) na początku pliku CSV — bez niego arkusz kalkulacyjny w Windows czyta plik jako ANSI i psuje polskie litery. */
 export const CSV_BOM = '\uFEFF';
 export async function exportCsv(): Promise<void> {
-  await shareTemp(`trening-${localISODate()}.csv`, CSV_BOM + buildCsv() /* runda 75 (Q-007): BOM — Excel czyta polskie znaki */, { mimeType: 'text/csv', dialogTitle: t('Eksport CSV') });
+  await shareTemp(`trening-${localISODate()}.csv`, CSV_BOM + buildCsv() /* runda 75 (Q-007): BOM — arkusz kalkulacyjny czyta polskie znaki */, { mimeType: 'text/csv', dialogTitle: t('Eksport CSV') });
 }
 
 /** Przyjmuje kopertę (natywna ≥0.1.1) albo goły stan (web 0.3 / natywna 0.1.0). */

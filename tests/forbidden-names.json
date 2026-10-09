@@ -1,0 +1,219 @@
+{
+ "_opis": "TST2-08 / SEC2-05 (audyt kontrolny 1, 09.10.2026): nazwy innych aplikacji i marek — zakazane w kodzie, komentarzach, testach, tekstach aplikacji i metadanych App Store (CLAUDE.md „Treści cudze i nazwy innych firm”; wytyczne Apple 2.3.7, 5.2.1). Jedno miejsce listy; test: tests/forbidden-names.test.ts. names — wielkość liter ma znaczenie (np. id sprzętu „bosu” w danych użytkownika jest dozwolone, „BOSU” nie); namesAnyCase — bez względu na wielkość liter. Dopasowanie całego słowa z polskimi końcówkami fleksyjnymi (np. „Stronga”). Wyjątek: ścieżka (plik albo katalog) + nazwa + powód. Poza testem: docs/ (dokumenty — research konkurencji przechodzi na Dysk, SEC2-03).",
+ "scope": [
+  "app",
+  "components",
+  "lib",
+  "modules",
+  "plugins",
+  "targets",
+  "scripts",
+  "tests",
+  "store",
+  "locales",
+  ".maestro",
+  ".github",
+  "app.json",
+  "package.json",
+  "eas.json",
+  "babel.config.js",
+  "metro.config.js"
+ ],
+ "names": [
+  "Strong",
+  "Hevy",
+  "Fitbod",
+  "Jefit",
+  "JEFIT",
+  "Liftosaur",
+  "Boostcamp",
+  "Caliber",
+  "Alpha Progression",
+  "StrengthLog",
+  "Strengthlog",
+  "FitNotes",
+  "Gravl",
+  "Setgraph",
+  "Freeletics",
+  "StrongLifts",
+  "Stronglifts",
+  "MyFitnessPal",
+  "Strava",
+  "Peloton",
+  "Fitbit",
+  "Garmin",
+  "Body Battery",
+  "Whoop",
+  "WHOOP",
+  "Oura",
+  "Google Fit",
+  "Excel",
+  "Google Sheets",
+  "Tonal",
+  "Gymtek",
+  "Hop-Sport",
+  "Voltra",
+  "Beyond Power",
+  "TRX",
+  "BOSU",
+  "Bosu",
+  "Echo Bike",
+  "Airdyne",
+  "BikeErg",
+  "RowErg",
+  "Concept2",
+  "Concept 2",
+  "Technogym",
+  "Life Fitness",
+  "Hammer Strength",
+  "Rogue Fitness",
+  "Eleiko",
+  "Bowflex",
+  "Valslide",
+  "TheraBand",
+  "Thera-Band"
+ ],
+ "namesAnyCase": [
+  "ViShape",
+  "SmartGym",
+  "Speediance",
+  "TREXO",
+  "Sideloadly",
+  "SkiErg",
+  "Ski Erg",
+  "Assault Bike",
+  "AssaultBike"
+ ],
+ "exceptions": [
+  {
+   "path": "lib/catalog.generated.ts",
+   "name": "Assault Bike",
+   "reason": "klucz katalogu (nazwa kanoniczna = Exercise.libKey w danych użytkownika; wskazówki, figury i Zdrowie po kluczu) — nazwa wyświetlana ogólna z LIB_DISPLAY_NAME w lib/seed.ts (SEC2-01); plik generowany z docs/research/equipment/catalog.json"
+  },
+  {
+   "path": "lib/catalog.generated.ts",
+   "name": "Bosu",
+   "reason": "klucz katalogu (nazwa kanoniczna = Exercise.libKey w danych użytkownika; wskazówki, figury i Zdrowie po kluczu) — nazwa wyświetlana ogólna z LIB_DISPLAY_NAME w lib/seed.ts (SEC2-01); plik generowany z docs/research/equipment/catalog.json"
+  },
+  {
+   "path": "lib/catalog.generated.ts",
+   "name": "Ski Erg",
+   "reason": "klucz katalogu (nazwa kanoniczna = Exercise.libKey w danych użytkownika; wskazówki, figury i Zdrowie po kluczu) — nazwa wyświetlana ogólna z LIB_DISPLAY_NAME w lib/seed.ts (SEC2-01); plik generowany z docs/research/equipment/catalog.json"
+  },
+  {
+   "path": "lib/seed.ts",
+   "name": "Assault Bike",
+   "reason": "klucz katalogu (nazwa kanoniczna = Exercise.libKey w danych użytkownika; wskazówki, figury i Zdrowie po kluczu) — nazwa wyświetlana ogólna z LIB_DISPLAY_NAME w lib/seed.ts (SEC2-01); tu: wpis LIB i sama mapa nazw"
+  },
+  {
+   "path": "lib/seed.ts",
+   "name": "Bosu",
+   "reason": "klucz katalogu (nazwa kanoniczna = Exercise.libKey w danych użytkownika; wskazówki, figury i Zdrowie po kluczu) — nazwa wyświetlana ogólna z LIB_DISPLAY_NAME w lib/seed.ts (SEC2-01); tu: wpis LIB i sama mapa nazw"
+  },
+  {
+   "path": "lib/seed.ts",
+   "name": "Ski Erg",
+   "reason": "klucz katalogu (nazwa kanoniczna = Exercise.libKey w danych użytkownika; wskazówki, figury i Zdrowie po kluczu) — nazwa wyświetlana ogólna z LIB_DISPLAY_NAME w lib/seed.ts (SEC2-01); tu: wpis LIB i sama mapa nazw"
+  },
+  {
+   "path": "lib/health.ts",
+   "name": "Assault Bike",
+   "reason": "klucz katalogu (nazwa kanoniczna = Exercise.libKey w danych użytkownika; wskazówki, figury i Zdrowie po kluczu) — nazwa wyświetlana ogólna z LIB_DISPLAY_NAME w lib/seed.ts (SEC2-01); tu: CARDIO_KIND (rodzaj aktywności po kluczu, MER-18)"
+  },
+  {
+   "path": "lib/cues/data.json",
+   "name": "Assault Bike",
+   "reason": "klucz katalogu (nazwa kanoniczna = Exercise.libKey w danych użytkownika; wskazówki, figury i Zdrowie po kluczu) — nazwa wyświetlana ogólna z LIB_DISPLAY_NAME w lib/seed.ts (SEC2-01); tu: notatka o brakujących źródłach"
+  },
+  {
+   "path": "lib/cues/data.json",
+   "name": "BOSU",
+   "reason": "notatka badawcza o źródłach wskazówki (wersja ćwiczenia opisana w źródle), niewyświetlana w aplikacji"
+  },
+  {
+   "path": "lib/cues/data.json",
+   "name": "Concept2",
+   "reason": "źródło wskazówek techniki (organizacja w danych źródeł); podpis w aplikacji neutralny — decyzja MER2-07 = SEC2-02 wariant A, wdrożenie 0.10.1"
+  },
+  {
+   "path": "lib/signing.ts",
+   "name": "Sideloadly",
+   "reason": "NOWE (bl-tst, 09.10.2026): przypomnienie o odnowieniu podpisu dla instalacji spoza App Store (T-053) wymienia narzędzie do instalacji z komputera — do decyzji właściciela przed App Store (usunąć tę drogę instalacji albo opis neutralny w 26 językach); app/(tabs)/index.tsx — fala 2"
+  },
+  {
+   "path": "lib/i18n.en.ts",
+   "name": "Sideloadly",
+   "reason": "NOWE (bl-tst, 09.10.2026): przypomnienie o odnowieniu podpisu dla instalacji spoza App Store (T-053) wymienia narzędzie do instalacji z komputera — do decyzji właściciela przed App Store (usunąć tę drogę instalacji albo opis neutralny w 26 językach); app/(tabs)/index.tsx — fala 2"
+  },
+  {
+   "path": "lib/locales",
+   "name": "Sideloadly",
+   "reason": "NOWE (bl-tst, 09.10.2026): przypomnienie o odnowieniu podpisu dla instalacji spoza App Store (T-053) wymienia narzędzie do instalacji z komputera — do decyzji właściciela przed App Store (usunąć tę drogę instalacji albo opis neutralny w 26 językach); app/(tabs)/index.tsx — fala 2"
+  },
+  {
+   "path": "app/(tabs)/index.tsx",
+   "name": "Sideloadly",
+   "reason": "NOWE (bl-tst, 09.10.2026): przypomnienie o odnowieniu podpisu dla instalacji spoza App Store (T-053) wymienia narzędzie do instalacji z komputera — do decyzji właściciela przed App Store (usunąć tę drogę instalacji albo opis neutralny w 26 językach); app/(tabs)/index.tsx — fala 2"
+  },
+  {
+   "path": ".github/workflows/ios-unsigned.yml",
+   "name": "Sideloadly",
+   "reason": "NOWE (bl-tst, 09.10.2026): przypomnienie o odnowieniu podpisu dla instalacji spoza App Store (T-053) wymienia narzędzie do instalacji z komputera — do decyzji właściciela przed App Store (usunąć tę drogę instalacji albo opis neutralny w 26 językach); app/(tabs)/index.tsx — fala 2"
+  },
+  {
+   "path": "tests/audit-r83.test.tsx",
+   "name": "Sideloadly",
+   "reason": "NOWE (bl-tst, 09.10.2026): przypomnienie o odnowieniu podpisu dla instalacji spoza App Store (T-053) wymienia narzędzie do instalacji z komputera — do decyzji właściciela przed App Store (usunąć tę drogę instalacji albo opis neutralny w 26 językach); app/(tabs)/index.tsx — fala 2"
+  },
+  {
+   "path": "tests/audit-r83b.test.tsx",
+   "name": "Sideloadly",
+   "reason": "NOWE (bl-tst, 09.10.2026): przypomnienie o odnowieniu podpisu dla instalacji spoza App Store (T-053) wymienia narzędzie do instalacji z komputera — do decyzji właściciela przed App Store (usunąć tę drogę instalacji albo opis neutralny w 26 językach); app/(tabs)/index.tsx — fala 2"
+  },
+  {
+   "path": "tests/matrix-logic.test.tsx",
+   "name": "Sideloadly",
+   "reason": "NOWE (bl-tst, 09.10.2026): przypomnienie o odnowieniu podpisu dla instalacji spoza App Store (T-053) wymienia narzędzie do instalacji z komputera — do decyzji właściciela przed App Store (usunąć tę drogę instalacji albo opis neutralny w 26 językach); app/(tabs)/index.tsx — fala 2"
+  },
+  {
+   "path": "tests/matrix-ui.test.tsx",
+   "name": "Sideloadly",
+   "reason": "NOWE (bl-tst, 09.10.2026): przypomnienie o odnowieniu podpisu dla instalacji spoza App Store (T-053) wymienia narzędzie do instalacji z komputera — do decyzji właściciela przed App Store (usunąć tę drogę instalacji albo opis neutralny w 26 językach); app/(tabs)/index.tsx — fala 2"
+  },
+  {
+   "path": "lib/locales/cs.json",
+   "name": "Strava",
+   "reason": "czeskie / słowackie słowo „strava” (= dieta, tłumaczenie klucza „Dieta”), nie nazwa aplikacji"
+  },
+  {
+   "path": "lib/locales/sk.json",
+   "name": "Strava",
+   "reason": "czeskie / słowackie słowo „strava” (= dieta, tłumaczenie klucza „Dieta”), nie nazwa aplikacji"
+  },
+  {
+   "path": "scripts/kb",
+   "name": "*",
+   "reason": "generator bazy wiedzy z researchu konkurencji (docs/research/kb) — przenosi się na Dysk razem z danymi (SEC2-03, operacja koordynatora)"
+  },
+  {
+   "path": "tests/fixtures/state-090-schema15.json",
+   "name": "Assault Bike",
+   "reason": "dane z wersji 0.9.0 (schemat 15) do testów migracji — klucz katalogu w zapisanych danych użytkownika"
+  },
+  {
+   "path": "tests/fixtures/web03-backup.json",
+   "name": "Assault Bike",
+   "reason": "kopia zapasowa z 03.10 do testów importu — klucz katalogu w zapisanych danych użytkownika (plik usuwany z historią przed App Store, N1)"
+  },
+  {
+   "path": "tests/fixtures/web03-backup.json",
+   "name": "ViShape",
+   "reason": "kopia zapasowa z 03.10 do testów importu — nazwa szablonu wpisana przez użytkownika (plik usuwany z historią przed App Store, N1)"
+  },
+  {
+   "path": "tests/decisions-0310.test.tsx",
+   "name": "ViShape",
+   "reason": "asercja nazwy szablonu wpisanej przez użytkownika w kopii tests/fixtures/web03-backup.json (test importu tej kopii)"
+  }
+ ]
+}

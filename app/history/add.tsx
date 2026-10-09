@@ -8,7 +8,7 @@ import { beginPast, defaultPastWhen, parseWhen, activeOverlapError } from '@/lib
 import { t, tp } from '@/lib/i18n';
 
 /*
- * Docs/12: trening wstecz (jak „Log a past workout” w Strong/Hevy, „Add as Past Workout” w Fitbod). Najpierw termin
+ * Docs/12: trening wstecz (jak dopisywanie minionego treningu w popularnych aplikacjach treningowych). Najpierw termin
  * (domyślnie wczoraj 18:00, 60 min) i szablon albo pusty trening, potem ten sam edytor co przy edycji sesji z historii.
  */
 export default function AddPastWorkout() {

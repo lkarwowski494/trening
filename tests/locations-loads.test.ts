@@ -18,7 +18,7 @@ describe('przypadki z dokumentu (sekcja 3.2)', () => {
   test('Hantle z talerzami 2×10 kg, para hantli: 1,5; 2,5; 4; 5; 6,5; 7,5; 9; 10', () => {
     expect(achievable(hop, { perStep: 4 })).toEqual([1.5, 2.5, 4, 5, 6.5, 7.5, 9, 10]);
   });
-  test('Hop-Sport, jeden hantel (ćwiczenia jednorącz): 21 ciężarów do 18,5 kg', () => {
+  test('hantle na talerze, jeden hantel (ćwiczenia jednorącz): 21 ciężarów do 18,5 kg', () => {
     const one = achievable(hop, { perStep: 2 }); expect(one).toHaveLength(21); expect(one[0]).toBe(1.5); expect(one[one.length - 1]).toBe(18.5);
   });
   test('sztanga 20 kg + po parze talerzy 25/20/15/10/5/2,5/1,25 = co 2,5 kg od 20 do 177,5', () => {
@@ -29,7 +29,7 @@ describe('przypadki z dokumentu (sekcja 3.2)', () => {
     expect(achievable({ kind: 'plates', unit: 'kg', base: 20, plates: [] })).toEqual([20]);
     expect(achievable({ kind: 'plates', unit: 'kg', base: 20, plates: [{ w: 10, n: 1 }] })).toEqual([20]); /* jeden talerz nie wejdzie na dwie strony */
   });
-  test('ViShape SmartGym Pro: 1,5–65 kg na stronę co 0,5 (128 wartości); dwie linki ×2', () => {
+  test('inteligentna stacja kablowa (pełna): 1,5–65 kg na stronę co 0,5 (128 wartości); dwie linki ×2', () => {
     const v = presetSpec('vishape_pro'); const one = achievable(v); expect(one).toHaveLength(128); expect(one[0]).toBe(1.5); expect(one[127]).toBe(65);
     expect(achievable(v, { mult: [2] })[0]).toBe(3); expect(achievable(v, { mult: [2] }).slice(-1)[0]).toBe(130);
   });
@@ -109,7 +109,7 @@ describe('ciężary ćwiczenia w miejscu (loadsFor)', () => {
     const one = loadsFor(ex('One Arm Row (hantle)'), L); expect(one.kind === 'loads' && one.loads.length).toBe(21);
     const sum = loadsFor(ex('Deadlift (hantle)', 'total'), L); expect(sum.kind === 'loads' && sum.loads).toEqual([3, 5, 8, 10, 13, 15, 18, 20]); /* tryb „łącznie” + para = suma dwóch */
   });
-  test('stacja elektryczna — decyzja 03.10.2026 „ViShape na stronę”: każde ćwiczenie (przysiad z pasem, dwie linki, jednorącz) — ciężary NA STRONĘ', () => {
+  test('stacja elektryczna — decyzja 03.10.2026 „stacja elektryczna na stronę”: każde ćwiczenie (przysiad z pasem, dwie linki, jednorącz) — ciężary NA STRONĘ', () => {
     const h = userHome(); const perSide = achievable(presetSpec('vishape_pro'));
     for (const [n, m] of [['Przysiad z pasem (linki)', 'total'], ['Cable Fly', 'total'], ['Cable Lateral Raise', 'total'], ['RDL (hantle/linki)', 'per_dumbbell']] as const) {
       const r = loadsFor(ex(n, m), loc('vs', h.equipment.filter(e => e.item !== 'db_fixed'))); expect(r).toEqual({ kind: 'loads', loads: perSide, item: 'electric' }); }

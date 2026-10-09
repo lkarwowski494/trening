@@ -14,8 +14,8 @@ import { userHome } from './locations-fixtures';
 const strip = (s: any) => { const c = JSON.parse(JSON.stringify(s)); delete c.metaUpdatedAt; delete c.saveSeq; delete c.userTouched; return c; };
 const at = (d: number) => Date.UTC(2026, 8, d, 10);
 /** Dom użytkownika + siłownia w store; dom główny. */
-function twoPlaces(trexo: number[] = [3, 6, 9, 12, 15, 18, 21, 24]) {
-  const s = store.getState().settings; const home = userHome(trexo); const gym = L.addLocation('gym', 'Siłownia');
+function twoPlaces(adj: number[] = [3, 6, 9, 12, 15, 18, 21, 24]) {
+  const s = store.getState().settings; const home = userHome(adj); const gym = L.addLocation('gym', 'Siłownia');
   s.locations.unshift(home); s.mainLocationId = home.id; store.save(); return { home: store.locationById('home')!, gym };
 }
 

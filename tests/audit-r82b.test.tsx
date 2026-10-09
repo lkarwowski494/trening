@@ -23,7 +23,7 @@ const day = (n: number, h = 18) => { const d = new Date(); return new Date(d.get
 const HOME = [2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24];
 const DB = 'Bench Press (hantle)', RDL = 'RDL (hantle/linki)';
 const NOTE = (w: string) => `ciężaru ${w} nie ma tutaj — wpisz ciężar`;
-/** Dom (hantle 2–24 parzyste + ViShape Pro) — główne; garaż (tylko ViShape Pro: 1,5–65 kg na stronę co 0,5). */
+/** Dom (hantle 2–24 parzyste + stacja elektryczna (pełna)) — główne; garaż (tylko stacja elektryczna (pełna): 1,5–65 kg na stronę co 0,5). */
 function places() {
   const s = store.getState().settings; const home = userHome(HOME); const vs = equipEntry('electric'); vs.load = presetSpec('vishape_pro');
   s.locations.push(home, loc('Garaż', [vs], 'garage')); s.mainLocationId = home.id; store.save();

@@ -55,7 +55,7 @@ describe('Ustawienia → Miejsca treningu', () => {
     await type(screen.getAllByLabelText('dodaj ciężar')[0], '5'); await tap(screen.getByLabelText('Dodaj ciężar — Hantle (stała waga albo z szybką regulacją)'));
     expect(screen.getByText('dostępne: 12 (2–24 kg)')).toBeTruthy();
   });
-  test('stacja elektryczna: preset ViShape Pro; hantle na talerze: Hop-Sport — podsumowanie pary i jednego hantla', async () => {
+  test('stacja elektryczna: preset stacja elektryczna (pełna); hantle na talerze: preset 2×10 kg — podsumowanie pary i jednego hantla', async () => {
     const saved = await savedWithPlaces(); await renderApp({ saved }); await go('/more/location/home'); await flushAll(10); await expandEquip();
     expect(screen.getByText('Ustawienia na stronę: 128 (1,5–65 kg)')).toBeTruthy();
     await toggle('Hantle na talerze (uchwyty + talerze)', true); await tap(screen.getByText('Hantle z talerzami 2×10 kg')); await flushAll(5);

@@ -404,6 +404,10 @@
   "en": "Not used in any workout or in the active plan: {list}. “Replace” deletes them, “Keep” adds the new ones alongside."
  },
  {
+  "pl": "Biblioteki natywne iOS spoza npm ({n})",
+  "en": "Native iOS libraries outside npm ({n})"
+ },
+ {
   "pl": "biceps",
   "en": "biceps"
  },
@@ -418,14 +422,6 @@
  {
   "pl": "bieżnia z nachyleniem",
   "en": "incline treadmill"
- },
- {
-  "pl": "bosu / platforma balansowa",
-  "en": "BOSU / balance board"
- },
- {
-  "pl": "Bosu / platforma balansowa",
-  "en": "BOSU / balance board"
  },
  {
   "pl": "brak",
@@ -1052,6 +1048,14 @@
  {
   "pl": "Eksportuj historię do CSV",
   "en": "Export history to CSV"
+ },
+ {
+  "pl": "ergometr narciarski",
+  "en": "ski ergometer"
+ },
+ {
+  "pl": "Ergometr narciarski",
+  "en": "Ski ergometer"
  },
  {
   "pl": "FBW A",
@@ -3024,6 +3028,14 @@
   "en": "Starting position"
  },
  {
+  "pl": "półkula balansowa / platforma balansowa",
+  "en": "balance dome / balance board"
+ },
+ {
+  "pl": "Półkula balansowa / platforma balansowa",
+  "en": "Balance dome / balance board"
+ },
+ {
   "pl": "Progresja: gdy zrobisz górę zakresu powtórzeń, dołóż ciężar — konwencja.",
   "en": "Progression: when you reach the top of the rep range, add weight — a convention."
  },
@@ -3555,14 +3567,6 @@
   "en": "Effort scale RPE or RIR in Settings."
  },
  {
-  "pl": "ski erg",
-  "en": "ski erg"
- },
- {
-  "pl": "Ski erg",
-  "en": "Ski erg"
- },
- {
   "pl": "skośne brzucha",
   "en": "obliques"
  },
@@ -3875,12 +3879,12 @@
   "en": "Tap to keep only the basic ones."
  },
  {
-  "pl": "taśmy TRX",
+  "pl": "taśmy do podwieszania",
   "en": "suspension trainer"
  },
  {
-  "pl": "Taśmy TRX (podwieszane)",
-  "en": "Suspension trainer (TRX)"
+  "pl": "Taśmy do podwieszania",
+  "en": "Suspension trainer"
  },
  {
   "pl": "te same mięśnie",

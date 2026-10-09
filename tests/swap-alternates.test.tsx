@@ -11,14 +11,14 @@ import type { Template } from '@/lib/seed';
 
 jest.setTimeout(60000);
 afterEach(async () => { try { store.getState(); } catch { return; } await timer.stop(); await timer.stopSet(); });
-const TREXO = [2.5, 5, 7.5, 10, 12.5, 15, 17.5, 20, 22.5, 24];
+const ADJ_DB = [2.5, 5, 7.5, 10, 12.5, 15, 17.5, 20, 22.5, 24];
 const st = () => store.getState();
 const blk = (i: number) => st().active!.exercises[i];
 
 /** Dom (główne) i siłownia; szablon: Bench Press (sztanga) ×2 pozycje (ciężko + lżej) i RDL. */
 async function setup(): Promise<Template> {
   await fresh(undefined, 'pl'); const s = st().settings;
-  s.locations = [userHome(TREXO), loc('Siłownia', presetEquipment('gym'), 'gym')]; s.mainLocationId = 'home';
+  s.locations = [userHome(ADJ_DB), loc('Siłownia', presetEquipment('gym'), 'gym')]; s.mainLocationId = 'home';
   const tpl = store.newTemplate(); tpl.name = 'Push';
   const it = (n: string, id: string, restSec: number | null = 120) => ({ id, exerciseId: ex(n).id, sets: 3, repMin: 6, repMax: 8, restSec, startWeight: '' as const, targetSec: '' as const, groupId: null });
   tpl.items = [it('Bench Press (sztanga)', 'heavy'), it('Bench Press (sztanga)', 'light', 90), it('RDL (hantle/linki)', 'rdl', null)]; store.save(tpl); return tpl;

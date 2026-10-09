@@ -40,7 +40,7 @@ export const CAP_LABEL: Record<string, L> = {
   'pullup.bar': { pl: 'drążek', en: 'pull-up bar' }, 'rack': { pl: 'klatka / stojaki', en: 'rack / stands' },
   'rack.safeties': { pl: 'asekuracja', en: 'safety arms' }, 'rings': { pl: 'kółka gimnastyczne', en: 'gymnastic rings' },
   'shoulder_press_machine': { pl: 'maszyna do wyciskania nad głowę', en: 'shoulder press machine' }, 'smith': { pl: 'suwnica Smitha', en: 'Smith machine' },
-  'suspension': { pl: 'taśmy TRX', en: 'suspension trainer' }, 't_bar': { pl: 'T-bar', en: 'T-bar' }, 'trap_bar': { pl: 'trap bar', en: 'trap bar' },
+  'suspension': { pl: 'taśmy do podwieszania', en: 'suspension trainer' }, 't_bar': { pl: 'T-bar', en: 'T-bar' }, 'trap_bar': { pl: 'trap bar', en: 'trap bar' },
   'bands': { pl: 'gumy', en: 'bands' }, 'cable.rope': { pl: 'lina do wyciągu', en: 'cable rope' }, 'ankle_strap': { pl: 'opaski na kostki', en: 'ankle straps' },
   'cable.handles': { pl: 'uchwyty do linek', en: 'cable handles' },
   /* decyzja właściciela 04.10.2026 (wieczór): brakujący sprzęt i ćwiczenia */
@@ -50,10 +50,10 @@ export const CAP_LABEL: Record<string, L> = {
   'glute_kickback_machine': { pl: 'maszyna do wykopów (pośladki)', en: 'glute kickback machine' }, 'hip_thrust_machine': { pl: 'maszyna do hip thrustu', en: 'hip thrust machine' },
   'belt_squat_machine': { pl: 'maszyna belt squat', en: 'belt squat machine' }, 'pendulum_squat': { pl: 'pendulum squat', en: 'pendulum squat' },
   'reverse_hyper': { pl: 'reverse hyper', en: 'reverse hyper' }, 'sled': { pl: 'sanki', en: 'sled' }, 'battle_ropes': { pl: 'liny bojowe', en: 'battle ropes' },
-  'cardio.stair': { pl: 'stepper schodowy', en: 'stair climber' }, 'cardio.elliptical': { pl: 'orbitrek', en: 'elliptical' }, 'cardio.ski': { pl: 'ski erg', en: 'ski erg' },
+  'cardio.stair': { pl: 'stepper schodowy', en: 'stair climber' }, 'cardio.elliptical': { pl: 'orbitrek', en: 'elliptical' }, 'cardio.ski': { pl: 'ergometr narciarski', en: 'ski ergometer' },
   'stability_ball': { pl: 'piłka gimnastyczna', en: 'stability ball' }, 'sliders': { pl: 'ślizgacze', en: 'sliders' },
   /* pełna baza ćwiczeń (decyzja właściciela 04.10.2026, wieczór: „dodawaj resztę”) */
-  'plate': { pl: 'talerz obciążeniowy', en: 'weight plate' }, 'foam_roller': { pl: 'roller', en: 'foam roller' }, 'bosu': { pl: 'bosu / platforma balansowa', en: 'BOSU / balance board' },
+  'plate': { pl: 'talerz obciążeniowy', en: 'weight plate' }, 'foam_roller': { pl: 'roller', en: 'foam roller' }, 'bosu': { pl: 'półkula balansowa / platforma balansowa', en: 'balance dome / balance board' },
   'sandbag': { pl: 'worek z piaskiem', en: 'sandbag' }, 'chains': { pl: 'łańcuchy', en: 'chains' }, 'climbing_rope': { pl: 'lina do wspinania', en: 'climbing rope' },
   'wrist_roller': { pl: 'roller na nadgarstki', en: 'wrist roller' }, 'neck_harness': { pl: 'uprząż na szyję', en: 'neck harness' }, 'lever_machine': { pl: 'maszyna dźwigniowa', en: 'lever machine' },
   'tire': { pl: 'opona', en: 'tire' }, 'sledgehammer': { pl: 'młot', en: 'sledgehammer' }, 'atlas_stones': { pl: 'kamienie atlas', en: 'atlas stones' }, 'yoke': { pl: 'jarzmo (yoke)', en: 'yoke' },
@@ -110,7 +110,7 @@ export const EQUIPMENT: readonly EquipItem[] = [
   it('dip_bars', 'bars', 'Poręcze do dipów', 'Dip bars', ['dip.bars']),
   it('power_tower', 'bars', 'Stacja: drążek + poręcze (power tower)', 'Power tower (pull-up + dip)', ['pullup.bar', 'dip.bars']),
   it('rings', 'bars', 'Kółka gimnastyczne', 'Gymnastic rings', ['rings']),
-  it('suspension', 'bars', 'Taśmy TRX (podwieszane)', 'Suspension trainer (TRX)', ['suspension']),
+  it('suspension', 'bars', 'Taśmy do podwieszania', 'Suspension trainer', ['suspension']),
   it('climbing_rope', 'bars', 'Lina do wspinania', 'Climbing rope', ['climbing_rope']),
   /* wyciągi */
   it('cable_cross', 'cables', 'Brama (dwa wyciągi z regulacją wysokości)', 'Cable crossover (two adjustable pulleys)', ['cable.high', 'cable.mid', 'cable.low', 'cable.dual', 'cable.handles'], { load: 'cable', defaultLoad: 'list', options: [op('rope', 'lina', 'rope', ['cable.rope'], true), op('ankle', 'opaski na kostki', 'ankle straps', ['ankle_strap'])] }),
@@ -162,7 +162,7 @@ export const EQUIPMENT: readonly EquipItem[] = [
   it('sled', 'accessories', 'Sanki (prowler)', 'Sled (prowler)', ['sled']),
   it('battle_ropes', 'accessories', 'Liny bojowe (battle ropes)', 'Battle ropes', ['battle_ropes']),
   it('foam_roller', 'accessories', 'Roller do automasażu', 'Foam roller', ['foam_roller']),
-  it('bosu', 'accessories', 'Bosu / platforma balansowa', 'BOSU / balance board', ['bosu']),
+  it('bosu', 'accessories', 'Półkula balansowa / platforma balansowa', 'Balance dome / balance board', ['bosu']),
   it('wrist_roller', 'accessories', 'Roller na nadgarstki', 'Wrist roller', ['wrist_roller']),
   it('neck_harness', 'accessories', 'Uprząż na szyję', 'Neck harness', ['neck_harness']),
   it('wall', 'accessories', 'Wolna ściana (stanie na rękach, wall sit)', 'Free wall (handstands, wall sit)', ['wall']), /* L5 Q7 (09.10.2026) */
@@ -172,7 +172,7 @@ export const EQUIPMENT: readonly EquipItem[] = [
   it('rower', 'cardio', 'Wioślarz', 'Rowing machine', ['cardio.rower']),
   it('stair_climber', 'cardio', 'Stepper schodowy (stair climber)', 'Stair climber', ['cardio.stair']),
   it('elliptical', 'cardio', 'Orbitrek', 'Elliptical', ['cardio.elliptical']),
-  it('ski_erg', 'cardio', 'Ski erg', 'Ski erg', ['cardio.ski']),
+  it('ski_erg', 'cardio', 'Ergometr narciarski', 'Ski ergometer', ['cardio.ski']),
   /* strongman — poza presetem „Pełna siłownia” */
   it('tire', 'strongman', 'Opona do przewracania', 'Tire (flips)', ['tire']),
   it('sledgehammer', 'strongman', 'Młot', 'Sledgehammer', ['sledgehammer']),
@@ -201,7 +201,7 @@ export function blankLoad(item: EquipItem, unit: LoadUnit = 'kg'): LoadSpec | un
   return { kind: 'list', unit, items: [] };
 }
 /** Presety modeli w edytorze ciężarów — tylko z danymi ze źródeł (docs/10, sekcje 3.2 i 3.4). Etykiety opisowe, bez nazw producentów (zasada właściciela
- * 09.10.2026, decyzja (3) A; audyt kontrolny 1 SEC2-01) — id presetów bez zmian (są w danych użytkownika). TREXO TXO-B4W002: kroki nieznane → brak presetu. */
+ * 09.10.2026, decyzja (3) A; audyt kontrolny 1 SEC2-01) — id presetów bez zmian (są w danych użytkownika). Hantle z regulacją pokrętłem właściciela: kroki nieznane → brak presetu. */
 export const LOAD_PRESETS: { id: string; item: string; label: L; spec: () => LoadSpec; optsOff?: string[] }[] = [ /* audyt (LOW): nazwy z przecinkiem / kropką wg języka */
   { id: 'gymtek24', item: 'db_fixed', label: { pl: 'Hantle stałe 2,5–24 kg (15 par)', en: 'Fixed dumbbells 2.5–24 kg (15 pairs)' }, spec: () => listOf([2.5, 3.5, 4.5, 5.5, 6.5, 8, 9, 10, 11.5, 13.5, 16, 18, 20.5, 22.5, 24]) },
   { id: 'hopsport2x10', item: 'db_plate', label: { pl: 'Hantle z talerzami 2×10 kg', en: 'Plate-loaded dumbbells 2×10 kg' }, spec: () => ({ kind: 'plates', unit: 'kg', base: 1.5, plates: [{ w: 2.5, n: 4 }, { w: 1.25, n: 4 }, { w: 0.5, n: 4 }] }) },
@@ -211,7 +211,7 @@ export const LOAD_PRESETS: { id: string; item: string; label: L; spec: () => Loa
   { id: 'vishape_lite', item: 'electric', label: { pl: 'Inteligentna stacja kablowa — kompaktowa (1,5–35 kg/str.)', en: 'Smart cable machine — compact (1.5–35 kg/side)' }, spec: () => ({ kind: 'electric', unit: 'kg', min: 1.5, max: 35, step: 0.5 }) },
 ];
 
-/** Preset modelu: ciężary i — gdy model czegoś nie ma — odznaczone opcje (Voltra I: jedna linka; przegląd 06.10). Pozostałe opcje bez zmian:
+/** Preset modelu: ciężary i — gdy model czegoś nie ma — odznaczone opcje (przenośna stacja z jedną linką; przegląd 06.10). Pozostałe opcje bez zmian:
  * wyposażenia dodatkowego (pas, opaski) źródła nie podają. */
 export function applyLoadPreset(entry: { load?: LoadSpec; opts: string[] }, p: typeof LOAD_PRESETS[number]) { entry.load = p.spec(); if (p.optsOff) entry.opts = entry.opts.filter(o => !p.optsOff!.includes(o)); }
 
@@ -339,7 +339,7 @@ function entryCaps(e: LocEquip, x: EquipItem, primary: boolean): Set<string> {
 /**
  * Dostępne ciężary ćwiczenia w miejscu (kg, rosnąco), w tej postaci, w jakiej wpisuje się ciężar serii:
  *  - hantle per hantel: lista jednego hantla albo pary (talerze dzielone na 4 — implements: 2), łącznie: suma pary;
- *  - stacja elektryczna: zawsze NA STRONĘ — tak, jak pokazuje urządzenie (decyzja 03.10.2026 „ViShape na stronę”; także ćwiczenia na dwie
+ *  - stacja elektryczna: zawsze NA STRONĘ — tak, jak pokazuje urządzenie (decyzja 03.10.2026 „stacja elektryczna na stronę”; także ćwiczenia na dwie
  *    linki i przysiad z pasem — wpisuje się liczbę z ekranu urządzenia, nie sumę linek);
  *  - przyrządy dobierane po tym, co ćwiczenie wymaga (audyt M1): najpierw pozycje, które dają wymaganą możliwość wprost (Triceps Pushdown —
  *    brama, nie stos wyciągu do ściągania), potem „przy okazji”; maszyny zawsze tylko spełniające wymaganie (Leg Press ≠ prostowanie nóg);

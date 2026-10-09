@@ -82,7 +82,7 @@ export default function LoadEditor({ loc, entry, item }: { loc: Location; entry:
           </View>}</SwipeRow>))}
         {spec.plates.length < LOAD_LIMITS.plateRows ? <Btn small title={t('+ talerz')} accessibilityLabel={lbl(t('+ talerz'))} onPress={() => { spec.plates.push({ w: 0, n: 2 }); upd(); }} /> : null}
       </> : null}
-      {spec.kind === 'electric' ? <Muted style={{ fontSize: 12 }}>{t('Ciężar serii na stacji wpisuj na stronę — tak, jak pokazuje urządzenie.')}</Muted> : null /* decyzja 03.10.2026: „ViShape na stronę” */}
+      {spec.kind === 'electric' ? <Muted style={{ fontSize: 12 }}>{t('Ciężar serii na stacji wpisuj na stronę — tak, jak pokazuje urządzenie.')}</Muted> : null /* decyzja 03.10.2026: „stacja elektryczna na stronę” */}
       {spec.kind === 'electric' ? <View style={{ flexDirection: 'row', gap: 6 }}>
         <View style={{ flex: 1 }}><Field label={t('min na stronę')}><NumInput decimal value={r3(spec.min)} onNum={v => { spec.min = v === '' ? 0 : Math.max(0, Math.min(1000, v)); upd(); }} /></Field></View>
         <View style={{ flex: 1 }}><Field label={t('max na stronę')}><NumInput decimal value={r3(spec.max)} onNum={v => { spec.max = v === '' ? 0 : Math.max(0, Math.min(1000, v)); upd(); }} /></Field></View>

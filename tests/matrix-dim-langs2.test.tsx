@@ -105,11 +105,11 @@ describe('LANGS × THEMES — główne ekrany w każdym języku i motywie', () =
     expect(d === null || typeof d === 'object').toBe(true);
     if (d) expect([l, keys.filter(k => !Object.prototype.hasOwnProperty.call(d, k) || !String(d[k]).trim())]).toEqual([l, []]);
   });
-  test.each(LANGS.filter((_, i) => MINE(i)))('%s: liczby w opisie serii, ciężarze i CSV — separator dziesiętny języka na ekranie, kropka w CSV; typ serii w CSV jako znacznik Stronga (F, D)', async (l) => {
+  test.each(LANGS.filter((_, i) => MINE(i)))('%s: liczby w opisie serii, ciężarze i CSV — separator dziesiętny języka na ekranie, kropka w CSV; typ serii w CSV jako znacznik popularnych dzienników (F, D)', async (l) => {
     await fresh(); const ex = S().exercises.find(e => e.name === 'Bench Press (sztanga)')!; doWorkout(ex, { name: ex.name, metric: 'weight_reps', bw: false }, 'kg', KINDS_ORDER);
     applyLang(l); const sep = decimalComma() ? ',' : '.';
     const s = S().workouts[0].exercises[0].sets[2]; expect(store.setSummary(ex, s)).toBe(`62${sep}5×6`);
-    const rows = parseCsv(buildCsv()).slice(1); expect(rows[2][5]).toBe('62.5'); expect(rows[2][4]).toBe('F'); expect(rows[3][4]).toBe('D'); expect(rows[2][9]).toBe(''); /* LOG-14: typ serii jako znacznik Stronga w Set Order, niezależnie od języka */ expect(rows[2][3]).toBe(exName(ex)); expect(rows[2][1]).toBe(t('Trening'));
+    const rows = parseCsv(buildCsv()).slice(1); expect(rows[2][5]).toBe('62.5'); expect(rows[2][4]).toBe('F'); expect(rows[3][4]).toBe('D'); expect(rows[2][9]).toBe(''); /* LOG-14: typ serii jako znacznik popularnych dzienników w Set Order, niezależnie od języka */ expect(rows[2][3]).toBe(exName(ex)); expect(rows[2][1]).toBe(t('Trening'));
   });
 
 });

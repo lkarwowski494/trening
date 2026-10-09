@@ -54,7 +54,7 @@ describe('z miejscem (decyzja 7a — bez bramki)', () => {
     await fresh(); const h = place(userHome([]));
     expect(store.progressionFor(ex('Bench Press (hantle)'), 8, sets(24, [8, 8]), h.id)).toEqual({ kind: 'load', kg: 25 });
   });
-  test('masa ciała (dociążenie) — bez zmian; przysiad z pasem na ViShape: 45 → 45,5 (na stronę, krok 0,5)', async () => {
+  test('masa ciała (dociążenie) — bez zmian; przysiad z pasem na stacji elektrycznej: 45 → 45,5 (na stronę, krok 0,5)', async () => {
     await fresh(); const h = place();
     expect(store.progressionFor(ex('Pull Up'), 8, sets(5, [8, 8], true), h.id)).toEqual({ kind: 'load', kg: 7.5 });
     expect(store.progressionFor(ex('Przysiad z pasem (linki)'), 8, sets(45, [8, 8, 8, 8]), h.id)).toEqual({ kind: 'load', kg: 45.5 });

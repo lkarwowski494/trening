@@ -17,11 +17,11 @@ const day = (n: number, h = 18) => { const d = new Date(); return new Date(d.get
 const byId = (id: string) => store.getState().workouts.find(w => w.id === id)!;
 const committed = (r: { w: Workout } | { error: string }) => { if ('error' in r) throw new Error(r.error); return r.w; };
 const BP = 'Bench Press (sztanga)', DB = 'Bench Press (hantle)';
-const TREXO = [2.5, 5, 7.5, 10, 12.5, 15, 17.5, 20, 22.5, 24];
+const ADJ_DB = [2.5, 5, 7.5, 10, 12.5, 15, 17.5, 20, 22.5, 24];
 
 describe('D6 — logika', () => {
   test('przepięcie bloku A → B: serie i wartości bez zmian, impl wg miejsca szkicu, swappedFrom wg H6; Anuluj nic nie zmienia', async () => {
-    await fresh(); const s = store.getState().settings; s.locations = [userHome(TREXO), loc('Siłownia', presetEquipment('gym'), 'gym')]; s.mainLocationId = 'home';
+    await fresh(); const s = store.getState().settings; s.locations = [userHome(ADJ_DB), loc('Siłownia', presetEquipment('gym'), 'gym')]; s.mainLocationId = 'home';
     const w = addWorkout(day(3), [[BP, [{ weight: 60, reps: 8 }, { weight: 60, reps: 7 }]]]); w.locationId = 'home'; w.exercises[0].tplItemId = 'it'; w.exercises[0].groupId = null; store.save();
     const before = JSON.stringify(byId(w.id));
     const d = edit.beginEdit(w.id)!; const b = d.w.exercises[0];
@@ -83,7 +83,7 @@ describe('D6 — logika', () => {
   });
 
   test('P5b: poprawka samego przyrządu w historii — RDL zapisany jako hantle → stacja', async () => {
-    await fresh(); const s = store.getState().settings; s.locations = [userHome(TREXO)]; s.mainLocationId = 'home';
+    await fresh(); const s = store.getState().settings; s.locations = [userHome(ADJ_DB)]; s.mainLocationId = 'home';
     const w = addWorkout(day(2), [['RDL (hantle/linki)', [{ weight: 40, reps: 10 }]]]); w.locationId = 'home'; w.exercises[0].impl = 'dumbbell'; store.save();
     const d = edit.beginEdit(w.id)!; const b = d.w.exercises[0];
     expect(edit.draftImplChoices(d, b)).toEqual(['electric']);
@@ -128,7 +128,7 @@ describe('D6 — audyt różnicy E2 (04.10.2026)', () => {
     expect(edit.canRestoreExercise(d, b)).toBe(true); edit.draftRestoreExercise(d.key, b.id); expect(b.exerciseId).toBe(ex(BP).id);
   });
   test('L2: trening wstecz — wstrzymanie ciężaru spoza listy (M3) wg przyrządu wybranego ręcznie (P5b)', async () => {
-    await fresh(); const s = store.getState().settings; s.locations = [userHome(TREXO), loc('Siłownia', presetEquipment('gym'), 'gym')]; s.mainLocationId = 'home';
+    await fresh(); const s = store.getState().settings; s.locations = [userHome(ADJ_DB), loc('Siłownia', presetEquipment('gym'), 'gym')]; s.mainLocationId = 'home';
     const g = addWorkout(day(5), [['RDL (hantle/linki)', [{ weight: 40, reps: 10 }]]]); g.locationId = 'gym'; g.exercises[0].impl = 'electric'; store.save();
     const d = edit.beginPast(null, day(1), day(1) + 3600e3); edit.draftAddExercise(d.key, ex('RDL (hantle/linki)')); const b = d.w.exercises[0];
     edit.draftSetImpl(d.key, b.id, 'electric'); expect(b.sets[0].weight).toBe(40); /* 40 kg/str. jest na stacji w Domu — nie wstrzymane, choć hantli 40 nie ma */

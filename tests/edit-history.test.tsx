@@ -146,7 +146,7 @@ describe('szkic i zapis (logika)', () => {
     expect(recordsFor(bp).maxLoad).toBe(100); expect([...prMap(byId(w.id)).values()].flat()).toContain('e1RM');
     const wk = weeklyTotals(8); expect(wk.reduce((a, x) => a + x.workouts, 0)).toBe(n0 + 1); expect(wk.reduce((a, x) => a + x.volume, 0)).toBeCloseTo(v0 + store.volume(w));
     const pad = (n: number) => String(n).padStart(2, '0'); const dt = new Date(day(3)); const stamp = `${dt.getFullYear()}-${pad(dt.getMonth() + 1)}-${pad(dt.getDate())} 18:00:00`;
-    expect(buildCsv().split('\n').filter(l => l.startsWith(stamp + ',Dwa,1h,'))).toHaveLength(3); /* LOG-14 (audyt 0.10): czas jak w Strongu — „1h”, nie „60m” */
+    expect(buildCsv().split('\n').filter(l => l.startsWith(stamp + ',Dwa,1h,'))).toHaveLength(3); /* LOG-14 (audyt 0.10): czas jak w popularnych dziennikach — „1h”, nie „60m” */
     expect(store.previousBlockFor(bp.id, 1, 2, 'l', tpl.id)!.sets.map(s => s.weight)).toEqual([65]); // najnowsza sesja szablonu: blok „lżej”
   });
 

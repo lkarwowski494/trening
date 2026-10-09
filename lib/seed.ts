@@ -39,7 +39,7 @@ export const hasReps = (m: MetricType) => m === 'weight_reps' || m === 'reps';
 export const hasWeight = (m: MetricType) => m === 'weight_reps' || m === 'weight_time' || m === 'weight_distance';
 export const hasDistance = (m: MetricType) => m === 'distance_time' || m === 'weight_distance';
 
-/** Partie mięśniowe do liczenia serii tygodniowo (0.4). Ćwiczenie ma partię główną (1 seria) i pomocnicze (0,5 serii), jak w Hevy/Boostcamp. */
+/** Partie mięśniowe do liczenia serii tygodniowo (0.4). Ćwiczenie ma partię główną (1 seria) i pomocnicze (0,5 serii), jak w popularnych aplikacjach treningowych. */
 export const MUSCLES = ['klatka', 'plecy', 'barki', 'biceps', 'triceps', 'czworogłowe', 'dwugłowe', 'pośladki', 'łydki', 'core', 'przedramiona', 'przywodziciele'] as const; /* „przywodziciele” — decyzja właściciela 04.10.2026 (wieczór) */
 export type Muscle = typeof MUSCLES[number];
 
@@ -90,7 +90,7 @@ export interface Template extends Base { name: string; items: TemplateItem[]; /*
 export interface WSet { id: string; weight: number | ''; reps: number | ''; durationSec: number | ''; distanceM: number | ''; rpe: number | ''; bandId: string; addKg: number | ''; kind: SetKind; warmup: boolean; note: string; done: boolean; completedAt: number | null; actualRest: number | null; /** wpisane ręcznie w tym treningu (nie z podpowiedzi) */ edited?: boolean; /** pola uzupełnione z podpowiedzi przy odhaczeniu: {pole: wstawiona wartość} */ hinted?: Record<string, unknown>; /** guma zdjęta ręcznie (cykl do „—”): podpowiedź ani poprzednia seria jej nie przywracają */ noBand?: boolean; /** wartości wstawione przez aplikację przy starcie (poprzedni trening / ciężar startowy) — decyzja 02.10: zmiana w serii przechodzi na nieruszone dalsze serie o tej samej wartości */ pre?: Partial<Record<'weight' | 'reps' | 'distanceM' | 'addKg', number>> }
 /** groupId (0.4): ćwiczenia z tym samym groupId tworzą superset — przerwa startuje dopiero po serii ostatniego ćwiczenia grupy. */
 /** Decyzja 8c (03.10.2026): przyrząd / źródło obciążenia, którym zrobiono blok (rozstrzygnięte w miejscu treningu — lib/equipment.ts implAt).
- * 'electric' = stacja z oporem elektrycznym / magnetycznym (ViShape…), 'cable' = zwykły wyciąg. Brak = trening bez miejsca albo dane sprzed schematu 15. */
+ * 'electric' = stacja z oporem elektrycznym / magnetycznym (inteligentna stacja kablowa), 'cable' = zwykły wyciąg. Brak = trening bez miejsca albo dane sprzed schematu 15. */
 export const IMPLS = ['barbell', 'ez_bar', 'trap_bar', 'dumbbell', 'kettlebell', 'cable', 'electric', 'machine'] as const;
 export type Impl = typeof IMPLS[number];
 export interface WExercise { id: string; exerciseId: string; restSec: number; repMin: number | null; repMax: number | null; groupId: string | null; sets: WSet[]; /** pozycja szablonu, z której powstał blok (runda 10) */ tplItemId?: string; /** decyzja 8c: przyrząd użyty w bloku (tylko gdy trening ma miejsce) */ impl?: Impl; /** E2 (schemat 16): id ćwiczenia, które ten blok zastąpił (oryginał — A→B→C zostaje A); trening w toku i historia */ swappedFrom?: string; /** E2 D5 (schemat 16): przyrząd wybrany ręcznie — restampUntouched go nie nadpisuje */ implPinned?: true; /** E2 (schemat 16), tylko trening w toku: id bloku A, z którego po podziale wydzielono ten blok (rundy supersetu, cofnięcie) */ splitFrom?: string; /** E2 W3 (schemat 16), tylko trening w toku: podpowiedź zamiennika odrzucona „✕” */ altSkip?: true; /** 07.10.2026 wieczór (docs/21 4a), tylko trening w toku: „Pomiń dziś” — reszta bloku pominięta, szablon bez zmian */ skipped?: true; /** audyt 0.10 (D1+, 08.10.2026): trening deload — liczba serii roboczych bloku przed cięciem (tylko gdy cięcie ją zmniejszyło); „Powtórz ostatni” przywraca z niej pełny blok, gdy pozycji szablonu już nie ma */ deloadFull?: number }
@@ -255,9 +255,17 @@ export const BODY_MASS_MAX = 500;
 export const BODY_MASS_LOG_MAX = 3660;
 export const defaultSettings = (): Settings => ({ defaultRest: DEFAULT_REST, sound: true, wakeLock: true, showRpe: false, healthSync: false, progressHint: true, autoBackup: true, weighReminder: false, modules: defaultModules(), language: 'auto', unit: 'kg', locations: [], mainLocationId: null, pickerShowAll: false, theme: 'light', workoutView: 'focus' });
 
+/**
+ * SEC2-01 (audyt kontrolny 1, 09.10.2026): nazwa wyświetlana ćwiczeń katalogu, których nazwa kanoniczna zawiera znak towarowy innej firmy — ogólna,
+ * opisowa (PL; inne języki — angielska z lib/i18n.ts exName, jak cała biblioteka). Klucz (`libKey`, wpis LIB) zostaje: dane użytkownika, wskazówki,
+ * figury, rodzaj aktywności w Zdrowiu i kroki katalogu idą po nim. Dane z wcześniejszych wersji — `migrate` (nazwa równa kluczowi).
+ */
+export const LIB_DISPLAY_NAME: Readonly<Record<string, string>> = {
+  'Assault Bike': 'Rower powietrzny', 'Ski Erg': 'Ergometr narciarski', 'Bosu Ball Cable Crunch With Side Bends': 'Cable Crunch With Side Bends (półkula balansowa)',
+};
 /** Ćwiczenie z biblioteki (wpis LIB) — wspólne dla stanu startowego i migracji dopisującej ćwiczenia katalogu 04.10.2026. */
 export function libExercise([name, group, equipment, band]: [string, Group, Equipment, boolean?], owner: string = LOCAL_OWNER): Exercise {
-  const [mu, mu2] = musclesFor(name, group); return { ...base(owner), name, group, equipment, metric: metricFor(name), loadMode: loadModeFor(equipment, name), restSec: null, restWarmupSec: null, muscles: mu, secondaryMuscles: mu2, bandAssistable: !!band, tempo: '', notes: '', lib: true, libKey: name /* E2: klucz katalogu */, ...equipFields(name, equipment, true) };
+  const [mu, mu2] = musclesFor(name, group); return { ...base(owner), name: own(LIB_DISPLAY_NAME, name) ?? name, group, equipment, metric: metricFor(name), loadMode: loadModeFor(equipment, name), restSec: null, restWarmupSec: null, muscles: mu, secondaryMuscles: mu2, bandAssistable: !!band, tempo: '', notes: '', lib: true, libKey: name /* E2: klucz katalogu */, ...equipFields(name, equipment, true) };
 }
 /** E2 (audyt 0.10, X-03): odzyskanie klucza katalogu ćwiczenia z biblioteki przemianowanego przed wprowadzeniem libKey — po polach skopiowanych
  * z katalogu przy tworzeniu (partia, sprzęt, metryka, tryb, asysta gumą, partie mięśni, wymagania, zalecany sprzęt, wzorzec, źródło obciążenia, liczba
