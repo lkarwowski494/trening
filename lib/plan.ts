@@ -379,5 +379,15 @@ export function suggest(from: string, today = todayKey()): Suggestion[] {
   const sorted = out.sort((a, b) => { const sa = score(a), sb = score(b); for (let i = 0; i < sa.length; i++) if (sa[i] !== sb[i]) return sa[i] - sb[i]; return 0; });
   const seen = new Set<string>(); return sorted.filter(x => { const key = JSON.stringify(Object.entries(x.ov).sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0))); if (seen.has(key)) return false; seen.add(key); return true; });
 }
+/** Najwyżej tyle pozycji listy „Przesuń albo pomiń” od razu; reszta po „Więcej możliwości” (components/DayPanel). */
+export const SUGGEST_FIRST = 4;
+/** Audyt kontrolny 1 (UX2-09): kolejność pokazywania możliwości. Dla dnia minionego tryb (a) z decyzji 2A — „Przesuń plan od dziś” — i „Wolne w tym
+ * dniu” stoją zaraz po najlepszej (polecanej) pozycji, więc mieszczą się w pierwszych SUGGEST_FIRST (dotąd 4× „Przenieś na …” chowało je pod
+ * „Więcej możliwości”); reszta w kolejności rankingu (suggest). Dziś i przyszłość — bez zmian. Nic nie znika ani się nie powtarza. */
+export function suggestionOrder(list: readonly Suggestion[], day: string, today = todayKey()): Suggestion[] {
+  if (day >= today || list.length < 2) return [...list];
+  const best = list[0]; const pin = (['shift', 'skip'] as const).map(k => list.find(x => x.kind === k)).filter((x): x is Suggestion => !!x && x !== best);
+  return [best, ...pin, ...list.filter(x => x !== best && !pin.includes(x))];
+}
 /** Zastosowanie propozycji (na polecenie użytkownika). */
 export function applySuggestion(sg: Suggestion) { putOv({ ...sg.ov }); tidy(); commit(); }

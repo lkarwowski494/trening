@@ -1326,5 +1326,6 @@
  "Wybierz dni treningowe: {n}.": "Válassz edzésnapokat: {n}.",
  "dawniej: {n}": "korábban: {n}",
  "Dawne nazwy w bibliotece": "Korábbi nevek a könyvtárban",
- "Technika: {name}": "Kivitelezés: {name}"
+ "Technika: {name}": "Kivitelezés: {name}",
+ "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami.": "Egyszerűsítés: általában egy pihenőnap az azonos fő izomcsoportokat terhelő edzések között."
 }

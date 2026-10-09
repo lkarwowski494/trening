@@ -861,4 +861,5 @@ export const EN: Record<string, string> = {
   'dawniej: {n}': 'formerly: {n}',
   'Dawne nazwy w bibliotece': 'Former names in the library',
   'Technika: {name}': 'Technique: {name}',
+  'Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami.': 'Simplification: usually a rest day between sessions with the same main muscle groups.',
 };

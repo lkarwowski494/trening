@@ -4,7 +4,7 @@ import { useRouter } from 'expo-router';
 import { Btn, Chip, Muted, Txt, H2 } from '@/components/ui';
 import { workoutDay, getState, useTick, isDeloadWeek, toggleDeloadWeek, fmtDayKey, newTemplate } from '@/lib/store';
 import { useTheme, F } from '@/lib/theme';
-import { plannedOn, isChanged, setDayPlan, resetDay, addDays, dayKeyOf, suggest, applySuggestion, dayStatus, doneOn, pending, planTplName, hasPlan, assignTarget, RETURN_DAYS, type Suggestion } from '@/lib/plan';
+import { plannedOn, isChanged, setDayPlan, resetDay, addDays, dayKeyOf, suggest, suggestionOrder, SUGGEST_FIRST, applySuggestion, dayStatus, doneOn, pending, planTplName, hasPlan, assignTarget, RETURN_DAYS, type Suggestion } from '@/lib/plan';
 import { askReminderPermission } from '@/lib/planReminder';
 import { t, locale, lang } from '@/lib/i18n';
 import { startTemplate } from '@/lib/start';
@@ -26,8 +26,6 @@ const dateOf = (k: string) => new Date(+k.slice(0, 4), +k.slice(5, 7) - 1, +k.sl
 const keyTs = (k: string) => new Date(+k.slice(0, 4), +k.slice(5, 7) - 1, +k.slice(8, 10), 12).getTime();
 export const shortDay = (k: string) => fmtDayKey(k); /* H3 (audyt 0.10): jeden format daty dnia */
 const longDay = (k: string) => dateOf(k).toLocaleDateString(locale(), { weekday: 'long', day: 'numeric', month: 'long' });
-/** Najwyżej tyle pozycji listy „Przesuń albo pomiń” od razu; reszta po „Więcej możliwości”. */
-const LIST_FIRST = 4;
 /** Najwyżej tyle głównych akcji panelu (UX-13 A). */
 const PRIMARY_MAX = 3;
 
@@ -105,7 +103,7 @@ export function suggestionTexts(day: string, sg: Suggestion, today = dayKeyOf(Da
 
 /** „Przesuń albo pomiń” (audyt 0.10 UX-13 A, MER-16): jedna lista możliwości, uszeregowana; pierwsza — „polecane”. */
 function MoveList({ day, onDone }: { day: string; onDone: () => void }) {
-  const [all, setAll] = useState(false); const list = suggest(day); const shown = all ? list : list.slice(0, LIST_FIRST);
+  const [all, setAll] = useState(false); const list = suggestionOrder(suggest(day), day) /* UX2-09: miniony dzień — przesunięcie i wolne od razu */; const shown = all ? list : list.slice(0, SUGGEST_FIRST);
   return (
     <View testID="suggestions" style={{ marginTop: 8, gap: 8 }}>
       <Muted style={{ fontSize: 12 }}>{t('Kolejność: najpierw zmiany, po których plan wraca do rutyny w ciągu {n} dni, potem bez utraty treningów, bez nowych par dzień po dniu z tymi samymi partiami i z najmniejszą liczbą zmienionych dni.', { n: RETURN_DAYS })}</Muted>
@@ -115,8 +113,9 @@ function MoveList({ day, onDone }: { day: string; onDone: () => void }) {
           {details.map((d, j) => <Muted key={j} style={{ fontSize: 12 }}>{d}</Muted>)}
           <Btn small title={t('Zastosuj')} accessibilityLabel={t('Zastosuj: {title}', { title })} onPress={() => { applySuggestion(sg); onDone(); }} style={{ alignSelf: 'flex-start', marginTop: 2 }} />
         </View>); })}
-      {!all && list.length > LIST_FIRST ? <Btn small kind="ghost" title={t('Więcej możliwości ({n})', { n: list.length - LIST_FIRST })} onPress={() => setAll(true)} style={{ alignSelf: 'flex-start' }} /> : null}
-      <Muted style={{ fontSize: 12 }}>{[t('Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM).'), ...(list.every(x => x.returns) ? [t('Każda z tych możliwości wraca do rutyny w ciągu {n} dni.', { n: RETURN_DAYS })] : [])].join(' ')}</Muted>
+      {!all && list.length > SUGGEST_FIRST ? <Btn small kind="ghost" title={t('Więcej możliwości ({n})', { n: list.length - SUGGEST_FIRST })} onPress={() => setAll(true)} style={{ alignSelf: 'flex-start' }} /> : null}
+      {/* UX2-09: przy widocznym ostrzeżeniu „dzień po dniu” bez zdania „dwa dni pod rząd … też są w porządku” (sprzeczność na jednym ekranie) — zostaje objaśnienie uproszczenia */}
+      <Muted style={{ fontSize: 12 }}>{[shown.some(x => x.newBackToBack.length) ? t('Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami.') : t('Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM).'), ...(list.every(x => x.returns) ? [t('Każda z tych możliwości wraca do rutyny w ciągu {n} dni.', { n: RETURN_DAYS })] : [])].join(' ')}</Muted>
     </View>
   );
 }

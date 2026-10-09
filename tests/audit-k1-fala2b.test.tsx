@@ -8,7 +8,8 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as store from '@/lib/store';
 import * as draft from '@/lib/draft';
-import { fresh, ex, saved, addWorkout, pressAlert, set } from './helpers';
+import { fresh, ex, saved, addWorkout, pressAlert, set, withDemoTemplates } from './helpers';
+import * as plan from '@/lib/plan';
 import { renderApp, flushAll, screen, go, tap, type, act, fireEvent, openCard } from './app';
 import { LIB_KEYS, LIB_RENAMED, LIB_MERGED, formerNamesOf, formerMatch, formerExact, seedState, type Template, type State } from '@/lib/seed';
 import { applyLang, t, exName } from '@/lib/i18n';
@@ -142,5 +143,56 @@ describe('UX2-05: wskazówki techniki z treningu na żywo i z szablonu', () => {
   test('po angielsku: etykieta VoiceOver „Technique: …”', async () => {
     await boot(() => { S().settings.workoutView = 'list'; store.startEmpty(); store.addExerciseToActive(ex('Back Squat')); }, undefined, 'en');
     expect(screen.getByLabelText(`Technique: ${exName(ex('Back Squat'))}`)).toBeTruthy();
+  });
+});
+
+/* ---------------- UX2-09: opuszczony dzień — kolejność możliwości i stopka ---------------- */
+const NOW = new Date(2026, 9, 8, 9, 0); /* czwartek 8.10.2026 */
+const atDay = (k: string, h = 18) => new Date(+k.slice(0, 4), +k.slice(5, 7) - 1, +k.slice(8, 10), h).getTime();
+const bootPlan = async (fn: (ids: string[]) => void) => {
+  jest.useFakeTimers({ now: NOW }); await fresh(); const tp = withDemoTemplates();
+  jest.setSystemTime(atDay('2026-09-28', 9)); fn(tp.map(x => x.id)); jest.setSystemTime(NOW.getTime()); /* plan od 28.09 — minione dni tygodnia mają plan */
+  await act(async () => { await store.flush(); }); await renderApp({ saved: JSON.parse(JSON.stringify(saved())), url: '/history' }); jest.setSystemTime(NOW.getTime()); await flushAll(10);
+  return tp;
+};
+const moveTitles = () => screen.getByTestId('suggestions').findAll((n: { props: Record<string, unknown> }) => typeof n.props.accessibilityLabel === 'string' && /^Zastosuj: /.test(n.props.accessibilityLabel as string))
+  .map((n: { props: Record<string, unknown> }) => (n.props.accessibilityLabel as string).slice('Zastosuj: '.length)).filter((v: string, i: number, a: string[]) => a.indexOf(v) === i);
+const FOOT = /dwa dni pod rząd przy tej samej liczbie serii/;
+
+describe('UX2-09: opuszczony dzień — „Przesuń plan od dziś” i „Wolne” od razu widoczne; stopka bez sprzeczności', () => {
+  test('logika suggestionOrder: dzień miniony — najlepsza, potem przesunięcie planu i wolne, reszta wg rankingu; dziś i przyszłość — bez zmian; pusta lista', () => {
+    const mk = (kind: plan.Suggestion['kind'], to?: string) => ({ kind, to, changes: 1, newBackToBack: [], dropped: 0, returns: true, placed: [], ov: {} }) as plan.Suggestion;
+    const L = [mk('move', 'a'), mk('move', 'b'), mk('move', 'c'), mk('move', 'd'), mk('shift'), mk('skip')];
+    const past = plan.suggestionOrder(L, '2026-10-07', '2026-10-08');
+    expect(past.map(x => `${x.kind}${x.to ?? ''}`)).toEqual(['movea', 'shift', 'skip', 'moveb', 'movec', 'moved']);
+    expect(past.slice(0, plan.SUGGEST_FIRST).map(x => x.kind)).toEqual(expect.arrayContaining(['shift', 'skip']));
+    expect(plan.suggestionOrder(L, '2026-10-08', '2026-10-08')).toEqual(L); expect(plan.suggestionOrder(L, '2026-10-09', '2026-10-08')).toEqual(L);
+    const best = [mk('shift'), mk('move', 'a'), mk('skip')]; expect(plan.suggestionOrder(best, '2026-10-07', '2026-10-08').map(x => x.kind)).toEqual(['shift', 'skip', 'move']); /* najlepsza = przesunięcie */
+    expect(plan.suggestionOrder([], '2026-10-07', '2026-10-08')).toEqual([]);
+    expect(new Set(past)).toEqual(new Set(L)); /* nic nie ginie */
+  });
+  test('ekran: wczoraj opuszczony A, dziś B — bez „Więcej możliwości” widać „Przesuń plan od dziś” i „Wolne w tym dniu” obok polecanej', async () => {
+    const tp = await bootPlan(ids => { plan.setWeekDay(2, ids[0]); plan.setWeekDay(3, ids[1]); });
+    await tap(screen.getByTestId('cal-2026-10-07')); await flushAll(5); expect(screen.getByText(`Opuszczony: ${tp[0].name}`)).toBeTruthy();
+    await tap(screen.getByText('Przesuń albo pomiń')); await flushAll(5);
+    const shown = moveTitles(); expect(shown.length).toBeLessThanOrEqual(plan.SUGGEST_FIRST);
+    expect(shown).toEqual(expect.arrayContaining(['Przesuń plan od dziś', 'Wolne w tym dniu']));
+    expect(screen.getByText(/ · polecane$/)).toBeTruthy();
+    await tap(screen.getByLabelText('Zastosuj: Przesuń plan od dziś')); await flushAll(5);
+    expect([plan.plannedOn('2026-10-07'), plan.plannedOn('2026-10-08'), plan.plannedOn('2026-10-09')]).toEqual([null, tp[0].id, tp[1].id]);
+  });
+  test('stopka „dwa dni pod rząd … w porządku” tylko, gdy żadna widoczna możliwość nie ostrzega o dniu po dniu', async () => {
+    await bootPlan(ids => { plan.setWeekDay(2, ids[0]); plan.setWeekDay(3, ids[1]); plan.setWeekDay(4, ids[0]); });
+    await tap(screen.getByTestId('cal-2026-10-07')); await flushAll(5); await tap(screen.getByText('Przesuń albo pomiń')); await flushAll(5);
+    const more = screen.queryByText(/^Więcej możliwości/); if (more) { await tap(more); await flushAll(5); }
+    const warn = screen.queryAllByText(/^Uwaga: .* dzień po dniu/).length;
+    expect(warn).toBeGreaterThan(0); /* stan z raportu: jest ostrzeżenie */
+    expect(screen.queryByText(FOOT)).toBeNull();
+    expect(screen.getByText(/^Uproszczenie: zwykle dzień przerwy/)).toBeTruthy(); /* objaśnienie zostaje */
+  });
+  test('bez ostrzeżeń — pełna stopka jak dotąd', async () => {
+    await bootPlan(ids => { plan.setWeekDay(0, ids[0]); });
+    await tap(screen.getByTestId('cal-2026-10-05')); await flushAll(5); await tap(screen.getByText('Przesuń albo pomiń')); await flushAll(5);
+    expect(screen.queryAllByText(/^Uwaga: .* dzień po dniu/)).toHaveLength(0); expect(screen.getByText(FOOT)).toBeTruthy();
   });
 });
