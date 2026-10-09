@@ -200,7 +200,8 @@ describe('regresja E2E 91', () => {
   });
   test('13: po pierwszym dniu planu okno zgody na przypomnienie zamykane „Not now” (opcjonalnie)', () => {
     const { EN } = require('@/lib/i18n.en'); const s = steps('13-kalendarz-plan.yaml'); const i = s.indexOf('- tapOn: "Monday: Upper A"');
-    expect(i).toBeGreaterThan(0); expect(s[i + 1]).toBe(`- tapOn: { text: "${EN['Nie teraz']}", optional: true }`);
+    expect(i).toBeGreaterThan(0); /* run 37973427584: okno pojawia się chwilę po zmianie planu (PlanReminderSync) — najpierw krótkie czekanie, potem tapnięcie */
+    expect(s.slice(i + 1, i + 3)).toEqual([`- extendedWaitUntil: { visible: "${EN['Nie teraz']}", timeout: 8000, optional: true }`, `- tapOn: { text: "${EN['Nie teraz']}", optional: true }`]);
   });
   test('01: kafelki tygodnia — jedna etykieta przycisku „Postępy” („Workouts: …; Sets: …”), kafelek nie jest osobnym elementem', () => {
     const { EN } = require('@/lib/i18n.en');

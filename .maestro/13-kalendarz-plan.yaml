@@ -34,6 +34,8 @@ name: Kalendarz z planem tygodnia
 - tapOn: "Monday: Upper A"
 # E2E 91 (audyt 0.10 I1): pierwszy dzień w planie → okno „Reminder for planned workouts” (zgoda na powiadomienia jeszcze nieustalona —
 # `permissions: all: allow` nie obejmuje powiadomień na symulatorze); zasłaniało wiersze dni. „Not now” — bez systemowego pytania iOS.
+# run 37973427584 (249e373): od X-11 okno zgody pokazuje PlanReminderSync po zmianie stanu planu — chwilę po wyborze dnia; krótkie czekanie
+- extendedWaitUntil: { visible: "Not now", timeout: 8000, optional: true }
 - tapOn: { text: "Not now", optional: true }
 - tapOn: "Tuesday, Rest"
 - tapOn: "Tuesday: Upper A"
