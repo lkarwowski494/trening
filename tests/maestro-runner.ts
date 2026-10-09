@@ -24,7 +24,10 @@ const SEL_KEYS = new Set(['text', 'id', 'index', 'below', 'above', 'leftOf', 'ri
 type Cand = { node?: Node; texts: string[]; id?: string; alertBtn?: () => void; sheetIdx?: number; header?: true };
 
 /** Maestro (Filters.textMatches): wyrażenie regularne do całego tekstu albo dosłowna równość (np. „Finish workout?” bez \\?). */
-const full = (re: string) => { let r: RegExp; try { r = new RegExp(`^(?:${re})$`, 'ism'); } catch { r = new RegExp(`^${re.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`, 'ism'); } /* toRegexSafe: zły wzorzec — dosłownie */ return { test: (t: string) => [t, t.replace(/\n/g, ' ')].some(v => v === re || r.test(v)) }; }; /* Maestro (Orchestra REGEX_OPTIONS): IGNORE_CASE, DOT_MATCHES_ALL, MULTILINE; tekst także z \n → spacja */
+/* Maestro (Orchestra REGEX_OPTIONS): IGNORE_CASE, DOT_MATCHES_ALL, MULTILINE; tekst także z \n → spacja. Kotliński Regex.matches() wymaga dopasowania
+ * CAŁEGO tekstu niezależnie od MULTILINE — kotwice (?<![\s\S]) i (?![\s\S]) to początek i koniec całego tekstu, bo `^`/`$` z flagą m pasują też
+ * na granicach linii (run 37900617167, 15: „Permission is hereby granted.*” przechodził tu na treści „MIT License\n\nPermission…”, a na symulatorze nie). */
+export const full = (re: string) => { let r: RegExp; try { r = new RegExp(`(?<![\\s\\S])(?:${re})(?![\\s\\S])`, 'ism'); } catch { r = new RegExp(`(?<![\\s\\S])${re.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}(?![\\s\\S])`, 'ism'); } /* toRegexSafe: zły wzorzec — dosłownie */ return { test: (t: string) => [t, t.replace(/\n/g, ' ')].some(v => v === re || r.test(v)) }; };
 const isHost = (n: Node) => typeof n.type === 'string';
 const textOf = (n: Node | string): string => typeof n === 'string' ? n : (n.children ?? []).map(textOf).join('');
 const accessibleAncestor = (n: Node) => { for (let p = n.parent; p; p = p.parent) if (isHost(p) && (p.props.accessible === true || (typeof p.props.accessibilityLabel === 'string' && p.props.accessible !== false))) return true; return false; };
@@ -67,7 +70,9 @@ export class Runner {
     if (!c.node) return null; const b = this.screenBox(c.node as unknown as LNode); if (!b || !b.sc) return null;
     const top = this.vpTop(b.sc), cy = b.y + b.h / 2, cx = b.x + b.w / 2;
     if (cy < top - SCREEN.slack) return `nad widokiem listy (y≈${Math.round(cy)}, lista od ${Math.round(top)})`;
-    if (cy > this.vpBottom() + SCREEN.slack) return `pod widokiem listy (y≈${Math.round(cy)}, lista do ${this.vpBottom()})`;
+    /* pasek zakładek: luz SCREEN.tabSlack zamiast SCREEN.slack — run 37900617167 (13): „Close” szacowany 20 pt w pasku (środek 811, pasek od 791)
+     * na symulatorze trafił w zakładkę „Exercises”; luz 24 pt go przepuszczał */
+    if (cy > this.vpBottom() + (this.tabs() ? SCREEN.tabSlack : SCREEN.slack)) return `pod widokiem listy (y≈${Math.round(cy)}, lista do ${this.vpBottom()})`;
     if (cx > SCREEN.w || cx < 0) return `poza ekranem w poziomie (środek x≈${Math.round(cx)}, ekran ${SCREEN.w}) — Maestro stuka w środek elementu`; /* E2E 89 (16) */
     /* klawiatura: po fokusie lista przewija pole nad klawiaturę (automaticallyAdjustKeyboardInsets — kbScroll); element niżej jest pod klawiaturą
      * (run 37611882320: tap w pole powtórzeń trafił w klawisz „3”). Sąsiednie pole w tym samym wierszu jest nad klawiaturą — 08 („reps to”)
@@ -97,17 +102,38 @@ export class Runner {
   }
   candidates(_noLayout = false): Cand[] {
     this.syncModals(); const out: Cand[] = [];
-    if (this.alertOpen != null) {
-      const a = global.__alerts[this.alertOpen]; out.push({ texts: [a.title] }); if (a.msg) out.push({ texts: [a.msg] });
-      const btns = a.buttons?.length ? a.buttons : [{ text: 'OK' }];
-      for (const b of btns) out.push({ texts: [b.text], alertBtn: () => { this.alertOpen = null; b.onPress?.(a.prompt ? (this as any).promptVal ?? a.def ?? '' : undefined); } });
-      return out; /* okno systemowe zasłania ekran — Maestro widzi tylko okno */
-    }
+    if (this.alertOpen != null) return this.alertCands().map(x => x.c); /* okno systemowe zasłania ekran — stuknięcie trafia tylko w okno */
     if (this.sheetOpen != null) {
       const s = (global as any).__sheets[this.sheetOpen]; if (s.opts.title) out.push({ texts: [s.opts.title] });
       s.opts.options.forEach((o: string, i: number) => out.push({ texts: [o], sheetIdx: i }));
       return out;
     }
+    return this.screenCands();
+  }
+  /**
+   * Okno Alert w układzie iOS 26 (iPhone 17): wyśrodkowane w pionie, tytuł, opis, przyciski jeden pod drugim — przycisk ze stylem 'cancel' na DOLE,
+   * niezależnie od kolejności w tablicy (run 37900617167, 07: „Back” z 'cancel' od fali 2 jest pod „Discard workout”; zrzut: tytuł y≈378,
+   * „Discard workout” ≈460, „Back” ≈517). Uproszczenie: zawsze w pionie (dwa krótkie przyciski iOS bywa stawia obok siebie — w scenariuszach nie występuje).
+   */
+  alertCands(): { c: Cand; y: number }[] {
+    const a = global.__alerts[this.alertOpen!]; const W = 270 - 32; const lines = (s: string, fs: number) => Math.max(1, Math.ceil(s.length * fs * SCREEN.charEm / W));
+    const btns0: any[] = a.buttons?.length ? a.buttons : [{ text: 'OK' }]; const btns = [...btns0.filter(b => b.style !== 'cancel'), ...btns0.filter(b => b.style === 'cancel')];
+    const tH = 22 * lines(String(a.title ?? ''), 17), mH = a.msg ? 4 + 18 * lines(String(a.msg), 13) : 0;
+    const H = 20 + tH + mH + 16 + btns.length * 56 - 8 + 16; let y = (SCREEN.h - H) / 2 + 20;
+    const out: { c: Cand; y: number }[] = [{ c: { texts: [a.title] }, y: y + tH / 2 }]; y += tH;
+    if (a.msg) { out.push({ c: { texts: [a.msg] }, y: y + mH / 2 }); y += mH; } y += 16;
+    for (const b of btns) { out.push({ c: { texts: [b.text], alertBtn: () => { this.alertOpen = null; b.onPress?.(a.prompt ? (this as any).promptVal ?? a.def ?? '' : undefined); } }, y: y + 24 }); y += 56; }
+    return out;
+  }
+  /** Kotwica `below`/`above` przy otwartym oknie: Maestro widzi okno i ekran pod nim; warunek spełnia KTÓRYKOLWIEK pasujący element (Filters.below/above). */
+  alertAnchorY(sel: Sel): number[] {
+    const s = typeof sel === 'string' ? { text: sel } : sel; const m = (c: Cand) => (s.text == null || c.texts.some(t => full(s.text!).test(t))) && (s.id == null || (c.id != null && full(s.id).test(c.id)));
+    const ys = this.alertCands().filter(x => m(x.c)).map(x => x.y);
+    this.relayout(); for (const c of this.screenCands()) if (m(c) && this.onScreen(c)) { const b = c.node ? this.screenBox(c.node as unknown as LNode, false) : null; ys.push(b ? b.y + b.h / 2 : SCREEN.top + 22); }
+    return ys;
+  }
+  screenCands(): Cand[] {
+    const out: Cand[] = [];
     /* pasek nawigacji (w Jest się nie renderuje): tytuł ekranu i przycisk wstecz „Back” — na górze ekranu, więc przed treścią */
     const nav = require('expo-router/build/global-state/router-store').store.navigationRef; const o = nav?.getCurrentOptions?.() ?? {};
     if (typeof o.title === 'string' && o.title && o.headerShown !== false) out.push({ texts: [o.title], header: true });
@@ -133,7 +159,12 @@ export class Runner {
     hit = hit.filter(c => !c.node || !hit.some(d => d !== c && d.node && d.texts.join() === c.texts.join() && isDesc(c.node!, d.node)));
     const order = (c: Cand) => cs.indexOf(c);
     /* okno systemowe: Maestro widzi też ekran pod oknem, a kotwice `below`/`above` służą wtedy odróżnieniu przycisku okna od przycisku w tle
-     * (07: „Discard workout”) — tu widać tylko okno, więc kotwice pomijamy */
+     * (07: „Discard workout”) — porównanie pozycji w pionie z układem okna (alertCands) i ekranu pod nim; arkusz akcji — kotwice pomijane */
+    if (this.alertOpen != null && (s.below || s.above)) {
+      const pos = new Map(this.alertCands().map(x => [x.c.texts.join(), x.y] as const)); const yOf = (c: Cand) => pos.get(c.texts.join()) ?? 0;
+      if (s.below) { const ys = this.alertAnchorY(s.below); hit = hit.filter(c => ys.some(y => yOf(c) > y)); }
+      if (s.above) { const ys = this.alertAnchorY(s.above); hit = hit.filter(c => ys.some(y => yOf(c) < y)); }
+    }
     const modal = this.alertOpen != null || this.sheetOpen != null;
     if (s.below && !modal) { const a = this.find(s.below)[0]; hit = a ? hit.filter(c => order(c) > order(cs.find(x => x.node === a.node && x.texts.join() === a.texts.join()) ?? a)) : []; }
     if (s.above && !modal) { const a = this.find(s.above)[0]; hit = a ? hit.filter(c => order(c) < order(cs.find(x => x.node === a.node && x.texts.join() === a.texts.join()) ?? a)) : []; }

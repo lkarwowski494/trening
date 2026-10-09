@@ -69,3 +69,38 @@ describe('E2E 91: interpreter odtwarza porażki scenariuszy z 224d229 w tym samy
       'tapOn "weight \\\\+ time"', /Nie znaleziono|poza ekranem/);
   });
 });
+
+/*
+ * Przebieg E2E run 37900617167 (commit f2bdca8, 14/17): trzy porażki w scenariuszach (aplikacja bez zmian), odtworzone tu na krokach sprzed poprawki:
+ * 15 — wyrażenie do całego tekstu (treść licencji zaczyna się od „MIT License”; interpreter z flagą m dopasowywał do linii),
+ * 07 — „Back” ze stylem 'cancel' jest na dole okna (interpreter pomijał kotwice przy oknie),
+ * 13 — „Close” rozwiniętej sekcji „What's new” pod paskiem zakładek (luz 24 pt przepuszczał stuknięcie).
+ */
+describe('run 37900617167 (f2bdca8): interpreter odtwarza porażki w tym samym kroku', () => {
+  afterAll(() => { delete (global as any).__notifPerm; });
+
+  test('model: wyrażenie Maestro pasuje do CAŁEGO tekstu, także wielolinijkowego (Kotlin Regex.matches z MULTILINE)', () => {
+    const { full } = require('./maestro-runner');
+    const lic = 'MIT License\n\nPermission is hereby granted, free of charge,\nto any person';
+    expect(full('Permission is hereby granted.*').test(lic)).toBe(false);
+    expect(full('MIT License.*Permission is hereby granted.*').test(lic)).toBe(true);
+    expect(full('MIT License').test(lic)).toBe(false);
+    expect(full('Finish workout?').test('Finish workout?')).toBe(true); /* dosłowna równość */
+  });
+
+  test('15 — „Permission is hereby granted.*” nie pasuje do treści licencji od „MIT License”', async () => {
+    await failsAt('15-masa-licencje.yaml', replace({ extendedWaitUntil: { visible: 'MIT License.*Permission is hereby granted.*', timeout: 30000 } }, [{ extendedWaitUntil: { visible: 'Permission is hereby granted.*', timeout: 30000 } }]),
+      'extendedWaitUntil {"visible":"Permission is hereby granted.*","timeout":30000}', /nie pojawił się/);
+  });
+
+  test('07 — „Back” (styl cancel) na dole okna: przycisk okna nie jest pod „Back”', async () => {
+    await failsAt('07-zamiana.yaml', replace({ tapOn: { text: 'Discard workout', above: 'Back' } }, [{ tapOn: { text: 'Discard workout', below: 'Back', above: 'Discard workout' } }]),
+      'tapOn {"text":"Discard workout","below":"Back","above":"Discard workout"}', /Nie znaleziono/);
+  });
+
+  test('13 — „Close” rozwiniętej sekcji „What\'s new” pod paskiem zakładek bez przewinięcia', async () => {
+    const up = { scrollUntilVisible: { element: 'Start planned workout: Upper A', direction: 'UP', timeout: 30000, centerElement: true } };
+    await failsAt('13-kalendarz-plan.yaml', c => replace({ scrollUntilVisible: { element: 'Close', direction: 'DOWN', timeout: 30000, centerElement: true } }, [])(c).filter(x => !same(x, up)),
+      'tapOn "Close"', /pod widokiem listy/);
+  });
+});
