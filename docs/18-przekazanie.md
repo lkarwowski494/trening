@@ -378,3 +378,7 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
   szerokości); azerski (az). Ukraiński już jest. Do sprawdzenia przed wdrożeniem (otwarte): czy iOS ma azerski jako język systemu i czy App
   Store Connect pozwala na opis sklepu po azersku; pokrycie znaków w IBM Plex Sans (ə). Chiński uproszczony odłożony (rejestracja ICP w Chinach).
   Rosyjski — TAK (właściciel, 09.10 wieczór; sprzedaż w Rosji przez App Store niedostępna od 2022 — zasięg przez kraje, gdzie rosyjski jest używany). Interpretacja „1, 2” = grupy z odpowiedzi z 09.10 — do potwierdzenia.
+- 09.10.2026 (wieczór): właściciel — do paczki języków przed App Store dochodzą też **indonezyjski, malajski, wietnamski, uzbecki, kazachski**.
+  Otwarte przed wdrożeniem: krój IBM Plex Sans — znaki wietnamskie i kazachskie (cyrylica rozszerzona); czy iOS ma uzbecki i kazachski jako
+  język systemu i czy App Store Connect pozwala na opis sklepu w tych językach. **Arabski — osobne wydanie** (pismo od prawej: lustrzany układ,
+  osobne testy i E2E), po App Store 1.0; zakres i termin — decyzja właściciela później.
