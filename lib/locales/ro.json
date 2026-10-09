@@ -1281,5 +1281,13 @@
  "Przenośna stacja elektryczna, jedna linka (5–200 lb)": "Unitate electrică portabilă cu cablu, un singur cablu (5–200 lb)",
  "Inteligentna stacja kablowa — kompaktowa (1,5–35 kg/str.)": "Stație inteligentă cu cablu — compactă (1,5–35 kg/parte)",
  "Zachęta do planu tygodnia": "Îndemn pentru planul săptămânal",
- "tekst na karcie „Dziś” i w Kalendarzu, gdy nie ma planu": "text pe cardul „Azi” și în Calendar când nu există un plan"
+ "tekst na karcie „Dziś” i w Kalendarzu, gdy nie ma planu": "text pe cardul „Azi” și în Calendar când nu există un plan",
+ "Postęp tygodnia: zrobione {done} z {n} treningów z planu": "Progresul săptămânii: {done} din {n} antrenamente din plan făcute",
+ "Treningi w tym tygodniu: {n}": "Antrenamente săptămâna aceasta: {n}",
+ "{done} z {n}": "{done} din {n}",
+ "trening|treningi|treningów": "antrenament|antrenamente|de antrenamente",
+ "więcej serii niż średnio": "mai multe serii decât media",
+ "serie około średniej": "serii în jurul mediei",
+ "mniej serii niż średnio": "mai puține serii decât media",
+ "Talerz przy dniu — serie względem średniej w miesiącu:": "Disc lângă zi — serii față de media lunii:"
 }

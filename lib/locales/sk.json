@@ -1281,5 +1281,13 @@
  "Przenośna stacja elektryczna, jedna linka (5–200 lb)": "Prenosná elektrická stanica, jedno lanko (5–200 lb)",
  "Inteligentna stacja kablowa — kompaktowa (1,5–35 kg/str.)": "Inteligentná káblová stanica — kompaktná (1,5–35 kg/str.)",
  "Zachęta do planu tygodnia": "Výzva k týždennému plánu",
- "tekst na karcie „Dziś” i w Kalendarzu, gdy nie ma planu": "text na karte „Dnes“ a v Kalendári, keď nie je plán"
+ "tekst na karcie „Dziś” i w Kalendarzu, gdy nie ma planu": "text na karte „Dnes“ a v Kalendári, keď nie je plán",
+ "Postęp tygodnia: zrobione {done} z {n} treningów z planu": "Postup týždňa: hotovo {done} z {n} tréningov z plánu",
+ "Treningi w tym tygodniu: {n}": "Tréningy tento týždeň: {n}",
+ "{done} z {n}": "{done} z {n}",
+ "trening|treningi|treningów": "tréning|tréningy|tréningov",
+ "więcej serii niż średnio": "viac sérií ako priemerne",
+ "serie około średniej": "série okolo priemeru",
+ "mniej serii niż średnio": "menej sérií ako priemerne",
+ "Talerz przy dniu — serie względem średniej w miesiącu:": "Kotúč pri dni — série voči priemeru mesiaca:"
 }

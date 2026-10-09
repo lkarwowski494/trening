@@ -1281,5 +1281,13 @@
  "Przenośna stacja elektryczna, jedna linka (5–200 lb)": "Taşınabilir elektrikli kablo ünitesi, tek kablo (5–200 lb)",
  "Inteligentna stacja kablowa — kompaktowa (1,5–35 kg/str.)": "Akıllı kablo istasyonu — kompakt (1,5–35 kg/taraf)",
  "Zachęta do planu tygodnia": "Haftalık plan önerisi",
- "tekst na karcie „Dziś” i w Kalendarzu, gdy nie ma planu": "plan yokken “Bugün” kartında ve Takvim’de görünen metin"
+ "tekst na karcie „Dziś” i w Kalendarzu, gdy nie ma planu": "plan yokken “Bugün” kartında ve Takvim’de görünen metin",
+ "Postęp tygodnia: zrobione {done} z {n} treningów z planu": "Haftalık ilerleme: plandaki {n} antrenmandan {done} tamamlandı",
+ "Treningi w tym tygodniu: {n}": "Bu haftaki antrenmanlar: {n}",
+ "{done} z {n}": "{done}/{n}",
+ "trening|treningi|treningów": "antrenman|antrenman",
+ "więcej serii niż średnio": "ortalamadan fazla set",
+ "serie około średniej": "ortalama civarında set",
+ "mniej serii niż średnio": "ortalamadan az set",
+ "Talerz przy dniu — serie względem średniej w miesiącu:": "Günün yanındaki plaka — ayın ortalamasına göre setler:"
 }

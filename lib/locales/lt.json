@@ -1281,5 +1281,13 @@
  "Przenośna stacja elektryczna, jedna linka (5–200 lb)": "Nešiojamas elektrinis lyno įrenginys, vienas lynas (5–200 lb)",
  "Inteligentna stacja kablowa — kompaktowa (1,5–35 kg/str.)": "Išmanioji lynų stotis — kompaktiška (1,5–35 kg/pus.)",
  "Zachęta do planu tygodnia": "Savaitės plano raginimas",
- "tekst na karcie „Dziś” i w Kalendarzu, gdy nie ma planu": "tekstas kortelėje „Šiandien“ ir kalendoriuje, kai plano nėra"
+ "tekst na karcie „Dziś” i w Kalendarzu, gdy nie ma planu": "tekstas kortelėje „Šiandien“ ir kalendoriuje, kai plano nėra",
+ "Postęp tygodnia: zrobione {done} z {n} treningów z planu": "Savaitės pažanga: atlikta {done} iš {n} plano treniruočių",
+ "Treningi w tym tygodniu: {n}": "Treniruotės šią savaitę: {n}",
+ "{done} z {n}": "{done} iš {n}",
+ "trening|treningi|treningów": "treniruotė|treniruotės|treniruočių",
+ "więcej serii niż średnio": "daugiau serijų nei vidutiniškai",
+ "serie około średniej": "serijos apie vidurkį",
+ "mniej serii niż średnio": "mažiau serijų nei vidutiniškai",
+ "Talerz przy dniu — serie względem średniej w miesiącu:": "Diskas prie dienos — serijos, palyginti su mėnesio vidurkiu:"
 }

@@ -1281,5 +1281,13 @@
  "Przenośna stacja elektryczna, jedna linka (5–200 lb)": "Преносива електрична јединица са сајлом, једна сајла (5–200 lb)",
  "Inteligentna stacja kablowa — kompaktowa (1,5–35 kg/str.)": "Паметна станица са сајлом — компактна (1,5–35 kg/страни)",
  "Zachęta do planu tygodnia": "Подсетник за недељни план",
- "tekst na karcie „Dziś” i w Kalendarzu, gdy nie ma planu": "текст на картици „Данас” и у Календару када нема плана"
+ "tekst na karcie „Dziś” i w Kalendarzu, gdy nie ma planu": "текст на картици „Данас” и у Календару када нема плана",
+ "Postęp tygodnia: zrobione {done} z {n} treningów z planu": "Напредак недеље: урађено {done} од {n} тренинга из плана",
+ "Treningi w tym tygodniu: {n}": "Тренинзи ове недеље: {n}",
+ "{done} z {n}": "{done} од {n}",
+ "trening|treningi|treningów": "тренинг|тренинга|тренинга",
+ "więcej serii niż średnio": "више серија од просека",
+ "serie około średniej": "серије око просека",
+ "mniej serii niż średnio": "мање серија од просека",
+ "Talerz przy dniu — serie względem średniej w miesiącu:": "Тег поред дана — серије у односу на просек месеца:"
 }

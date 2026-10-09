@@ -1281,5 +1281,13 @@
  "Przenośna stacja elektryczna, jedna linka (5–200 lb)": "Draagbare elektrische kabelunit, één kabel (5–200 lb)",
  "Inteligentna stacja kablowa — kompaktowa (1,5–35 kg/str.)": "Slim kabelstation — compact (1,5–35 kg/kant)",
  "Zachęta do planu tygodnia": "Tip over het weekplan",
- "tekst na karcie „Dziś” i w Kalendarzu, gdy nie ma planu": "tekst op de kaart ‘Vandaag’ en in de kalender als er geen plan is"
+ "tekst na karcie „Dziś” i w Kalendarzu, gdy nie ma planu": "tekst op de kaart ‘Vandaag’ en in de kalender als er geen plan is",
+ "Postęp tygodnia: zrobione {done} z {n} treningów z planu": "Weekvoortgang: {done} van {n} geplande trainingen gedaan",
+ "Treningi w tym tygodniu: {n}": "Trainingen deze week: {n}",
+ "{done} z {n}": "{done} van {n}",
+ "trening|treningi|treningów": "training|trainingen",
+ "więcej serii niż średnio": "meer sets dan gemiddeld",
+ "serie około średniej": "sets rond het gemiddelde",
+ "mniej serii niż średnio": "minder sets dan gemiddeld",
+ "Talerz przy dniu — serie względem średniej w miesiącu:": "Schijf bij de dag — sets vergeleken met het maandgemiddelde:"
 }

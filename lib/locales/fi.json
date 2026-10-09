@@ -1281,5 +1281,13 @@
  "Przenośna stacja elektryczna, jedna linka (5–200 lb)": "Kannettava sähköinen kaapelilaite, yksi kaapeli (5–200 lb)",
  "Inteligentna stacja kablowa — kompaktowa (1,5–35 kg/str.)": "Älykäs kaapeliasema — kompakti (1,5–35 kg/puoli)",
  "Zachęta do planu tygodnia": "Viikkosuunnitelman kehotus",
- "tekst na karcie „Dziś” i w Kalendarzu, gdy nie ma planu": "teksti Tänään-kortilla ja kalenterissa, kun suunnitelmaa ei ole"
+ "tekst na karcie „Dziś” i w Kalendarzu, gdy nie ma planu": "teksti Tänään-kortilla ja kalenterissa, kun suunnitelmaa ei ole",
+ "Postęp tygodnia: zrobione {done} z {n} treningów z planu": "Viikon edistyminen: tehty {done}/{n} suunnitelman treeniä",
+ "Treningi w tym tygodniu: {n}": "Treenejä tällä viikolla: {n}",
+ "{done} z {n}": "{done}/{n}",
+ "trening|treningi|treningów": "treeni|treeniä",
+ "więcej serii niż średnio": "enemmän sarjoja kuin keskimäärin",
+ "serie około średniej": "sarjoja keskiarvon verran",
+ "mniej serii niż średnio": "vähemmän sarjoja kuin keskimäärin",
+ "Talerz przy dniu — serie względem średniej w miesiącu:": "Levy päivän vieressä — sarjat suhteessa kuukauden keskiarvoon:"
 }

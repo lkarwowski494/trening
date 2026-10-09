@@ -3,6 +3,7 @@ import { Pressable, Switch, Text, TextInput, View, StyleSheet, useWindowDimensio
 import { useTheme, F, TEXT_SCALE_MAX, NUM_SCALE_MAX } from '@/lib/theme';
 import { decimalComma, lang, upper, LOCALE_UPPER } from '@/lib/i18n';
 import { wu } from '@/lib/units';
+import { EmptyBarArt } from '@/components/EmptyBarArt';
 
 export function Screen({ children, style }: { children: React.ReactNode; style?: StyleProp<ViewStyle> }) {
   const t = useTheme();
@@ -156,7 +157,8 @@ export function upperText(children: React.ReactNode): { text: React.ReactNode; l
   const plain = parts.join(''); return { text: upper(plain), label: plain, style: {} };
 }
 export function SectionTitle({ children }: { children: React.ReactNode }) { const t = useTheme(); const u = upperText(children); return <Text accessibilityLanguage={lang()} accessibilityRole="header" accessibilityLabel={u.label} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={[{ color: t.muted, fontSize: 13, fontFamily: F.semibold, letterSpacing: 0.5, marginTop: 22, marginBottom: 4 }, u.style]}>{u.text}</Text>; }
-export function Empty({ children }: { children: React.ReactNode }) { const t = useTheme(); return <View style={[s.empty, { borderColor: t.line }]}><Text accessibilityLanguage={lang()} style={{ color: t.muted, textAlign: 'center', fontFamily: F.regular }}>{children}</Text></View>; }
+/** Pusty stan: grafika gryfu bez talerzy (motyw z ikony, 09.10.2026; dekoracja ukryta przed VoiceOver) i tekst. */
+export function Empty({ children }: { children: React.ReactNode }) { const t = useTheme(); return <View style={[s.empty, { borderColor: t.line }]}><EmptyBarArt /><Text accessibilityLanguage={lang()} style={{ color: t.muted, textAlign: 'center', fontFamily: F.regular }}>{children}</Text></View>; }
 
 const s = StyleSheet.create({
   switchRow: { flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 10, minHeight: 52, borderBottomWidth: StyleSheet.hairlineWidth },

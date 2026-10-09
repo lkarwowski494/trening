@@ -809,4 +809,12 @@ export const EN: Record<string, string> = {
   'Inteligentna stacja kablowa — kompaktowa (1,5–35 kg/str.)': 'Smart cable machine — compact (1.5–35 kg/side)',
   'Zachęta do planu tygodnia': 'Weekly plan prompt',
   'tekst na karcie „Dziś” i w Kalendarzu, gdy nie ma planu': 'text on the “Today” card and in the Calendar when there is no plan',
+  'Postęp tygodnia: zrobione {done} z {n} treningów z planu': 'Weekly progress: {done} of {n} planned workouts done',
+  'Treningi w tym tygodniu: {n}': 'Workouts this week: {n}',
+  '{done} z {n}': '{done} of {n}',
+  'trening|treningi|treningów': 'workout|workouts',
+  'więcej serii niż średnio': 'more sets than average',
+  'serie około średniej': 'sets around average',
+  'mniej serii niż średnio': 'fewer sets than average',
+  'Talerz przy dniu — serie względem średniej w miesiącu:': 'Plate next to a day — sets compared with the month’s average:',
 };

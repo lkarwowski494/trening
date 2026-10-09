@@ -1281,5 +1281,13 @@
  "Przenośna stacja elektryczna, jedna linka (5–200 lb)": "Unité électrique portable à câble, un seul câble (5–200 lb)",
  "Inteligentna stacja kablowa — kompaktowa (1,5–35 kg/str.)": "Station à poulie connectée — compacte (1,5–35 kg/côté)",
  "Zachęta do planu tygodnia": "Invitation au plan de la semaine",
- "tekst na karcie „Dziś” i w Kalendarzu, gdy nie ma planu": "texte sur la carte « Aujourd’hui » et dans le Calendrier quand il n’y a pas de plan"
+ "tekst na karcie „Dziś” i w Kalendarzu, gdy nie ma planu": "texte sur la carte « Aujourd’hui » et dans le Calendrier quand il n’y a pas de plan",
+ "Postęp tygodnia: zrobione {done} z {n} treningów z planu": "Progression de la semaine : {done} séances du plan faites sur {n}",
+ "Treningi w tym tygodniu: {n}": "Séances cette semaine : {n}",
+ "{done} z {n}": "{done} sur {n}",
+ "trening|treningi|treningów": "séance|séances",
+ "więcej serii niż średnio": "plus de séries que la moyenne",
+ "serie około średniej": "séries proches de la moyenne",
+ "mniej serii niż średnio": "moins de séries que la moyenne",
+ "Talerz przy dniu — serie względem średniej w miesiącu:": "Disque à côté du jour — séries par rapport à la moyenne du mois :"
 }

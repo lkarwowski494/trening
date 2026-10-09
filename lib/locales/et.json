@@ -1281,5 +1281,13 @@
  "Przenośna stacja elektryczna, jedna linka (5–200 lb)": "Kaasaskantav elektriline trossiseade, üks tross (5–200 lb)",
  "Inteligentna stacja kablowa — kompaktowa (1,5–35 kg/str.)": "Nutikas trossijaam — kompaktne (1,5–35 kg/pool)",
  "Zachęta do planu tygodnia": "Nädalaplaani soovitus",
- "tekst na karcie „Dziś” i w Kalendarzu, gdy nie ma planu": "tekst kaardil „Täna” ja kalendris, kui plaani pole"
+ "tekst na karcie „Dziś” i w Kalendarzu, gdy nie ma planu": "tekst kaardil „Täna” ja kalendris, kui plaani pole",
+ "Postęp tygodnia: zrobione {done} z {n} treningów z planu": "Nädala edenemine: tehtud {done} plaani {n} treeningust",
+ "Treningi w tym tygodniu: {n}": "Treeninguid sel nädalal: {n}",
+ "{done} z {n}": "{done}/{n}",
+ "trening|treningi|treningów": "treening|treeningut",
+ "więcej serii niż średnio": "rohkem seeriaid kui keskmiselt",
+ "serie około średniej": "seeriaid keskmise ümber",
+ "mniej serii niż średnio": "vähem seeriaid kui keskmiselt",
+ "Talerz przy dniu — serie względem średniej w miesiącu:": "Ketas päeva kõrval — seeriad võrreldes kuu keskmisega:"
 }

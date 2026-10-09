@@ -1281,5 +1281,13 @@
  "Przenośna stacja elektryczna, jedna linka (5–200 lb)": "Tragbare elektrische Kabeleinheit, ein Seil (5–200 lb)",
  "Inteligentna stacja kablowa — kompaktowa (1,5–35 kg/str.)": "Intelligente Kabelstation — kompakt (1,5–35 kg/S.)",
  "Zachęta do planu tygodnia": "Hinweis zum Wochenplan",
- "tekst na karcie „Dziś” i w Kalendarzu, gdy nie ma planu": "Text auf der Karte „Heute“ und im Kalender, wenn kein Plan besteht"
+ "tekst na karcie „Dziś” i w Kalendarzu, gdy nie ma planu": "Text auf der Karte „Heute“ und im Kalender, wenn kein Plan besteht",
+ "Postęp tygodnia: zrobione {done} z {n} treningów z planu": "Wochenfortschritt: {done} von {n} geplanten Trainings erledigt",
+ "Treningi w tym tygodniu: {n}": "Trainings diese Woche: {n}",
+ "{done} z {n}": "{done} von {n}",
+ "trening|treningi|treningów": "Training|Trainings",
+ "więcej serii niż średnio": "mehr Sätze als im Schnitt",
+ "serie około średniej": "Sätze etwa im Schnitt",
+ "mniej serii niż średnio": "weniger Sätze als im Schnitt",
+ "Talerz przy dniu — serie względem średniej w miesiącu:": "Scheibe am Tag — Sätze im Vergleich zum Monatsschnitt:"
 }

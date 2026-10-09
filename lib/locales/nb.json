@@ -1281,5 +1281,13 @@
  "Przenośna stacja elektryczna, jedna linka (5–200 lb)": "Bærbar elektrisk kabelenhet, én kabel (5–200 lb)",
  "Inteligentna stacja kablowa — kompaktowa (1,5–35 kg/str.)": "Smart kabelstasjon — kompakt (1,5–35 kg/side)",
  "Zachęta do planu tygodnia": "Oppfordring til ukeplan",
- "tekst na karcie „Dziś” i w Kalendarzu, gdy nie ma planu": "tekst på «I dag»-kortet og i kalenderen når det ikke finnes en plan"
+ "tekst na karcie „Dziś” i w Kalendarzu, gdy nie ma planu": "tekst på «I dag»-kortet og i kalenderen når det ikke finnes en plan",
+ "Postęp tygodnia: zrobione {done} z {n} treningów z planu": "Ukens fremgang: {done} av {n} planlagte økter gjort",
+ "Treningi w tym tygodniu: {n}": "Økter denne uken: {n}",
+ "{done} z {n}": "{done} av {n}",
+ "trening|treningi|treningów": "økt|økter",
+ "więcej serii niż średnio": "flere sett enn snittet",
+ "serie około średniej": "sett rundt snittet",
+ "mniej serii niż średnio": "færre sett enn snittet",
+ "Talerz przy dniu — serie względem średniej w miesiącu:": "Skive ved dagen — sett sammenlignet med månedens snitt:"
 }

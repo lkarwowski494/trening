@@ -1281,5 +1281,13 @@
  "Przenośna stacja elektryczna, jedna linka (5–200 lb)": "Φορητή ηλεκτρική μονάδα τροχαλίας, ένα συρματόσχοινο (5–200 lb)",
  "Inteligentna stacja kablowa — kompaktowa (1,5–35 kg/str.)": "Έξυπνος σταθμός τροχαλίας — συμπαγής (1,5–35 kg/πλευρά)",
  "Zachęta do planu tygodnia": "Πρόταση για εβδομαδιαίο πρόγραμμα",
- "tekst na karcie „Dziś” i w Kalendarzu, gdy nie ma planu": "κείμενο στην κάρτα «Σήμερα» και στο Ημερολόγιο, όταν δεν υπάρχει πρόγραμμα"
+ "tekst na karcie „Dziś” i w Kalendarzu, gdy nie ma planu": "κείμενο στην κάρτα «Σήμερα» και στο Ημερολόγιο, όταν δεν υπάρχει πρόγραμμα",
+ "Postęp tygodnia: zrobione {done} z {n} treningów z planu": "Πρόοδος εβδομάδας: {done} από {n} προγραμματισμένες προπονήσεις",
+ "Treningi w tym tygodniu: {n}": "Προπονήσεις αυτή την εβδομάδα: {n}",
+ "{done} z {n}": "{done} από {n}",
+ "trening|treningi|treningów": "προπόνηση|προπονήσεις",
+ "więcej serii niż średnio": "περισσότερα σετ από τον μέσο όρο",
+ "serie około średniej": "σετ γύρω από τον μέσο όρο",
+ "mniej serii niż średnio": "λιγότερα σετ από τον μέσο όρο",
+ "Talerz przy dniu — serie względem średniej w miesiącu:": "Δίσκος δίπλα στην ημέρα — σετ σε σχέση με τον μέσο όρο του μήνα:"
 }

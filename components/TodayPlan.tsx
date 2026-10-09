@@ -6,6 +6,8 @@ import { useTheme, F, NUM_SCALE_MAX } from '@/lib/theme';
 import { getState, finishedWorkouts, useForegroundTick, isDeloadWeek, fmtDayKey, setPlanHintHidden } from '@/lib/store';
 import { hasPlan, dayKeyOf, doneOn, upcoming, pending, planTplName, addDays, type DayStatus } from '@/lib/plan';
 import { weekStrip } from '@/lib/dashboard';
+import { PlateStripe } from '@/components/PlateStripe';
+import { WeekBarbell } from '@/components/WeekBarbell';
 import { startTemplate } from '@/lib/start';
 import { t, locale, lang } from '@/lib/i18n';
 
@@ -42,7 +44,8 @@ export function TodayPlan() {
   const planBtn = (style?: object) => <Btn nav small kind={canStart ? 'ghost' : 'default'} title={t('Plan tygodnia')} onPress={() => router.push('/plan')} style={style} />;
   const nextLabel = (k: string) => (k === addDays(today, 1) ? t('jutro') : fmtDayKey(k)); /* H3 (audyt 0.10) */
   return (
-    <View testID="today-plan" style={{ marginTop: 6, padding: 14, borderRadius: 12, backgroundColor: th.surface, borderWidth: 1, borderColor: th.line, gap: 10 }}>
+    <View testID="today-plan" style={{ marginTop: 6, padding: 14, paddingTop: 18, borderRadius: 12, backgroundColor: th.surface, borderWidth: 1, borderColor: th.line, gap: 10, overflow: 'hidden' }}>
+      <PlateStripe style={{ position: 'absolute', top: 0, left: 0, right: 0 }} />{/* motyw z ikony (09.10.2026): pasek-akcent na górnej krawędzi */}
       <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
         <View style={{ flexShrink: 1 }}>
           {(() => { const u = upperText(deload ? `${t('Dziś')} · ${t('Tydzień deload')}` : t('Dziś')); /* A11-02: wersaliki z regułami języka */ return <Muted accessibilityLabel={u.label} style={[{ fontSize: 12, fontFamily: F.semibold, letterSpacing: 0.5 }, u.style]}>{u.text}</Muted>; })()}
@@ -53,6 +56,7 @@ export function TodayPlan() {
         {canStart ? <Btn small kind="primary" title={t('Start')} accessibilityLabel={t('Start zaplanowanego treningu: {name}', { name: tpl!.name })} onPress={() => startTemplate(tpl!)} />
           : planBtn() /* B1 (09.10.2026): „Plan tygodnia” zawsze na karcie — „Ukryj” chowa tylko tekst zachęty */}
       </View>
+      <WeekBarbell />{/* motyw z ikony (09.10.2026): postęp tygodnia jako ładowana sztanga, obok „x z y” */}
       <View testID="week-strip" style={{ flexDirection: 'row' }}>
         {days.map(d => {
           const label = [dateOf(d.date).toLocaleDateString(locale(), { weekday: 'long', day: 'numeric', month: 'long' }), ...(d.today ? [t('dziś')] : []), word(d), ...(deload ? [t('tydzień deload')] : [])].join(', ');

@@ -1281,5 +1281,13 @@
  "Przenośna stacja elektryczna, jedna linka (5–200 lb)": "Unità elettrica portatile a cavo, un solo cavo (5–200 lb)",
  "Inteligentna stacja kablowa — kompaktowa (1,5–35 kg/str.)": "Stazione cavi smart — compatta (1,5–35 kg/lato)",
  "Zachęta do planu tygodnia": "Invito al piano settimanale",
- "tekst na karcie „Dziś” i w Kalendarzu, gdy nie ma planu": "testo nella scheda «Oggi» e nel Calendario quando non c’è un piano"
+ "tekst na karcie „Dziś” i w Kalendarzu, gdy nie ma planu": "testo nella scheda «Oggi» e nel Calendario quando non c’è un piano",
+ "Postęp tygodnia: zrobione {done} z {n} treningów z planu": "Avanzamento settimanale: {done} di {n} allenamenti del piano fatti",
+ "Treningi w tym tygodniu: {n}": "Allenamenti questa settimana: {n}",
+ "{done} z {n}": "{done} di {n}",
+ "trening|treningi|treningów": "allenamento|allenamenti",
+ "więcej serii niż średnio": "più serie della media",
+ "serie około średniej": "serie nella media",
+ "mniej serii niż średnio": "meno serie della media",
+ "Talerz przy dniu — serie względem średniej w miesiącu:": "Disco accanto al giorno — serie rispetto alla media del mese:"
 }
