@@ -23,7 +23,7 @@ type Props = {
   /** Etykieta akcji dla VoiceOver i przycisku pod wierszem, np. „Usuń serię 2 — Back Squat”. */
   label: string;
   /** Pytanie w potwierdzeniu, np. „Usunąć serię?”, i opcjonalny opis. */
-  title: string; message?: string;
+  title: string; /** PERF-01 (audyt 0.10): także funkcja — opis liczony dopiero przy pytaniu (np. przegląd historii), nie przy każdym renderze wiersza */ message?: string | (() => string);
   onDelete: () => void;
   /** Tło przesuwanej części (domyślnie tło ekranu). */
   bg?: string; style?: StyleProp<ViewStyle>; testID?: string;
@@ -35,7 +35,7 @@ type Props = {
 export function SwipeRow({ label, title, message, onDelete, bg, style, testID, disabled, children }: Props) {
   const t = useTheme(); const x = useRef(new Animated.Value(0)).current; const [open, setOpen] = useState(false); const openRef = useRef(false);
   const snap = (to: number) => { openRef.current = to !== 0; setOpen(to !== 0); Animated.spring(x, { toValue: to, useNativeDriver: true, bounciness: 0 }).start(); };
-  const ask = () => Alert.alert(title, message, [
+  const ask = () => Alert.alert(title, typeof message === 'function' ? message() : message, [
     { text: tr('Nie'), style: 'cancel', onPress: () => snap(0) },
     { text: tr('Usuń'), style: 'destructive', onPress: () => { snap(0); onDelete(); } },
   ]);

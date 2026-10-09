@@ -1,5 +1,5 @@
 import { useSyncExternalStore } from 'react';
-import { pausedTotal, cleanPauses, getState, exById, isBW, restFor, occurrence, occurrences, normalizeGroups, assistLost, emptySet, copyVals, stripUnused, previousBlockBefore, offListAt, offListNote, srcSetAt, prevFromOther, startLocationId, stampImpl, setHasResult, putHistoryWorkout, loadOf, writeLoad, pinnedImpl, localISODate, clampName, NAME_MAX, locationById, tplRows } from './store';
+import { wallTs, fromWallTs, tzOffsetAt, pausedTotal, cleanPauses, getState, exById, isBW, restFor, occurrence, occurrences, normalizeGroups, assistLost, emptySet, copyVals, stripUnused, previousBlockBefore, offListAt, offListNote, srcSetAt, prevFromOther, startLocationId, stampImpl, setHasResult, putHistoryWorkout, loadOf, writeLoad, pinnedImpl, localISODate, clampName, NAME_MAX, locationById, tplRows } from './store';
 import { implsAt, loadKindsFor } from './equipment';
 import { base, uid, hasTime, hasReps, hasWeight, hasDistance, type TRow, type Exercise, type Impl, type Workout, type WExercise, type WSet } from './seed';
 import { t } from './i18n';
@@ -47,7 +47,7 @@ type VKey = typeof VKEYS[number];
 const vals = (s: WSet) => JSON.stringify(VKEYS.map(k => s[k] ?? ''));
 const snap = (d: Draft) => JSON.stringify([d.w, d.date, d.time, d.min]);
 function make(key: string, sourceId: string | null, w: Workout): Draft {
-  const end = w.finishedAt ?? w.startedAt; const date = dateText(w.startedAt), time = timeText(w.startedAt), min = minText(w.startedAt, end - pausedTotal(w, end)); /* 08.10.2026: pole „min” = czas bez pauz */
+  const end = w.finishedAt ?? w.startedAt; const date = dateText(wallTs(w)), time = timeText(wallTs(w)) /* J3: data i godzina w strefie startu treningu */, min = minText(w.startedAt, end - pausedTotal(w, end)); /* 08.10.2026: pole „min” = czas bez pauz */
   const origVals: Record<string, string> = {}; if (sourceId != null) w.exercises.forEach(e => e.sets.forEach(s => { origVals[s.id] = vals(s); }));
   const origEx: Draft['origEx'] = {}; w.exercises.forEach(e => { origEx[e.id] = { exerciseId: e.exerciseId, swappedFrom: e.swappedFrom, impl: e.impl, implPinned: e.implPinned }; });
   const d: Draft = { key, sourceId, w, date, time, min, orig: '', origStart: w.startedAt, origEnd: end, oDate: date, oTime: time, oMin: min, origVals, prefilled: {}, prefillAt: w.startedAt, origEx };
@@ -164,7 +164,7 @@ function refill(d: Draft, before: number, force: boolean, only?: WExercise) {
 /** Start z bieżących pól daty i godziny (bez czasu trwania); pola nieruszone — start z otwarcia szkicu; niedokończone (w trakcie pisania) — null. */
 function currentStart(d: Draft): number | null {
   if (d.date.trim() === d.oDate && d.time.trim() === d.oTime) return d.origStart;
-  const r = parseStart(d.date, d.time); return typeof r === 'number' ? r : null;
+  const r = parseStart(d.date, d.time); return typeof r === 'number' ? fromWallTs(r, d.w.tzOffsetMin) /* J3 */ : null;
 }
 /** Zmiana pól terminu w edytorze. Audyt M2: gdy zmienia się start, nieruszone wartości wstawione przez aplikację liczą się od nowa
  * z sesji sprzed NOWEJ daty (trening przesunięty wcześniej nie zostaje z ciężarami z późniejszych treningów). */
@@ -280,7 +280,7 @@ export function parseWhen(date: string, time: string, min: string, now = Date.no
 /** Audyt M5: trening wstecz / przesunięta sesja nie może nachodzić na trening w toku (trwa od startu do teraz). */
 export function activeOverlapError(start: number, end: number): string | null {
   const a = getState().active; if (!a || end <= a.startedAt) return null; void start;
-  return t('Ten termin nachodzi na trening w toku (start {t}). Wybierz wcześniejszy.', { t: `${dateText(a.startedAt)} ${timeText(a.startedAt)}` });
+  return t('Ten termin nachodzi na trening w toku (start {t}). Wybierz wcześniejszy.', { t: `${dateText(wallTs(a))} ${timeText(wallTs(a))}` });
 }
 /** Koniec treningu, przy którym czas bez pauz = `activeMs` (audyt 0.10, LOG-04): przejście po pauzach (już przesuniętych ze startem) i dodawanie czasu
  * aktywnego; pauzy po nowym końcu odpadną przy przycięciu (cleanPauses), pauza przecięta końcem — też. Wcześniej koniec = start + czas + WSZYSTKIE pauzy,
@@ -295,7 +295,7 @@ export function activeEnd(start: number, activeMs: number, pauses: readonly (rea
 function resolveWhen(d: Draft, now: number): { start: number; end: number; changed: boolean } | { error: string } {
   const startSame = d.date.trim() === d.oDate && d.time.trim() === d.oTime, minSame = d.min.trim() === d.oMin;
   if (d.sourceId != null && startSame && minSame) return { start: d.origStart, end: d.origEnd, changed: false };
-  let start = d.origStart; if (!startSame) { const r = parseStart(d.date, d.time, now); if (typeof r === 'string') return { error: r }; start = r; }
+  let start = d.origStart; if (!startSame) { const r = parseStart(d.date, d.time, now); if (typeof r === 'string') return { error: r }; start = fromWallTs(r, d.w.tzOffsetMin); /* J3: wpis na zegarze strefy startu */ }
   let end = start + (d.origEnd - d.origStart);
   if (!minSame) { const m = parseMin(d.min); if (typeof m === 'string') return { error: m }; end = activeEnd(start, m * 60000, cleanPauses(d.w.pauses, d.origStart, d.origEnd).map(([f, t]) => [f - d.origStart + start, t - d.origStart + start])); }
   if (end > now) return { error: futureError(end) };
@@ -315,7 +315,7 @@ export function checkDraft(key: string, now = Date.now()): DraftCheck {
   const r = resolveWhen(d, now); if ('error' in r) return r; const { start, end, changed } = r;
   if (changed) { const e = activeOverlapError(start, end); if (e) return { error: e }; }
   const w: Workout = JSON.parse(JSON.stringify(d.w)); const delta = start - d.origStart;
-  w.startedAt = start; w.finishedAt = end; if (w.pauses) { const p = cleanPauses(changed ? w.pauses.map(([f, t]) => [f + delta, t + delta]) : w.pauses, start, end); if (p.length) w.pauses = p; else delete w.pauses; } /* 08.10.2026: pauzy przesuwają się ze startem */
+  w.startedAt = start; w.finishedAt = end; if (d.sourceId == null) w.tzOffsetMin = tzOffsetAt(start); /* J3: trening wstecz — strefa telefonu w chwili startu */ if (w.pauses) { const p = cleanPauses(changed ? w.pauses.map(([f, t]) => [f + delta, t + delta]) : w.pauses, start, end); if (p.length) w.pauses = p; else delete w.pauses; } /* 08.10.2026: pauzy przesuwają się ze startem */
   w.templateName = clampName(w.templateName.replace(/\s+/g, ' ').trim(), NAME_MAX);
   let dropped = 0;
   w.exercises.forEach(e => { const ex = exById(e.exerciseId); const keep = e.sets.filter(s => d.origVals[s.id] === vals(s) || setHasResult(ex, s)); dropped += e.sets.length - keep.length; e.sets = keep; });

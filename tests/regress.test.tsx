@@ -4,7 +4,7 @@ import * as stats from '@/lib/stats';
 import * as timer from '@/lib/timer';
 import * as units from '@/lib/units';
 import { buildCsv } from '@/lib/backup';
-import { fresh, ex, addWorkout, pressAlert, seedState, withDemoTemplates, seedWithDemo, legacyBandKg } from './helpers';
+import { setBodyMass, fresh, ex, addWorkout, pressAlert, seedState, withDemoTemplates, seedWithDemo, legacyBandKg } from './helpers';
 import { renderApp, tap, type, flushAll, screen, go, act, openCard, swipeDelete, deleteActions } from './app';
 
 jest.setTimeout(30000);
@@ -421,7 +421,7 @@ describe('runda 6', () => {
     const w = addWorkout(at(2026, 9, 3), [['Chin Up', [{ addKg: 12.5, reps: 5 }]]]);
     /* E1 (audyt 0.10): e1RM ćwiczeń z masą ciała tylko z masą ciała w Ustawieniach (Epley na masie + dociążeniu) — bez niej brak rekordu e1RM */
     expect([...stats.prMap(w).values()][0]).toBeUndefined();
-    store.getState().settings.bodyMass = 80; store.save(); expect([...stats.prMap(w).values()][0]).toEqual(['e1RM']);
+    setBodyMass(80); expect([...stats.prMap(w).values()][0]).toEqual(['e1RM']);
   });
   test('R6-05 przycisk Start na ekranie głównym jest osobnym elementem (nie w wierszu)', async () => {
     await renderApp({ saved: seedWithDemo() }); const start = screen.getByLabelText('Start: Upper A');
@@ -696,7 +696,10 @@ describe('runda 13', () => {
   test('R13-04 zakładki bez treningu nie przerysowują się przy wpisach w treningu (useHistTick)', async () => {
     await fresh(); store.startEmpty(); const h = store.getHistRev(); store.save(store.getState().active); expect(store.getHistRev()).toBe(h);
     const fs = require('fs'), path = require('path');
-    for (const f of ['history', 'exercises', 'templates', 'more']) expect(fs.readFileSync(path.join(__dirname, `../app/(tabs)/${f}.tsx`), 'utf8')).toMatch(/useHistTick\(\)/);
+    /* audyt 0.10 PERF-01/02 (celowa zmiana): Ćwiczenia słuchają tylko zmian listy ćwiczeń (useExercisesTick), Szablony — historii albo szablonów (useCfgTick); żadna nie słucha każdego wpisu (useTick) */
+    const tick: Record<string, RegExp> = { history: /useHistTick\(\)/, exercises: /useExercisesTick\(\)/, templates: /useCfgTick\(\)/, more: /useHistTick\(\)/ };
+    for (const [f, re] of Object.entries(tick)) { const src = fs.readFileSync(path.join(__dirname, `../app/(tabs)/${f}.tsx`), 'utf8'); expect(src).toMatch(re); expect(src).not.toMatch(/useTick\(\)/); }
+    const sig0 = store.getHistRev(); const tpl = store.newTemplate(); const h1 = store.getHistRev(); expect(h1).toBeGreaterThan(sig0); tpl.name = 'X'; store.save(tpl); expect(store.getHistRev()).toBe(h1); /* PERF-02: znak w szablonie nie unieważnia historii */
   });
 });
 
@@ -1609,7 +1612,7 @@ describe('runda 65', () => {
   test('R65-01 ćwiczenie z masą ciała: objętość i e1RM z samego dociążenia (runda 75: masa ciała poza obliczeniami)', async () => {
     const stats = require('@/lib/stats'); await fresh(); const e = ex('Hanging Leg Raise'); const w = addWorkout(at(2026, 9, 1), [['Hanging Leg Raise', [{ addKg: 10, reps: 10 }]]]);
     const v0 = store.volume(w), e0 = stats.recordsFor(e).bestE1rm; expect(v0).toBe(100); expect(e0).toBe(0); /* E1 (audyt 0.10): e1RM z samego dociążenia to nie szacunek Epleya — bez masy ciała i udziału ze źródeł brak e1RM; objętość z dociążenia zostaje */
-    store.getState().settings.bodyMass = 80; store.save(); expect(stats.recordsFor(e).bestE1rm).toBe(0); /* Hanging Leg Raise — brak źródła udziału masy ciała */
+    setBodyMass(80); expect(stats.recordsFor(e).bestE1rm).toBe(0); /* Hanging Leg Raise — brak źródła udziału masy ciała */
   });
   test('R65-02 wyłączona asysta gumą: „+ seria” i odhaczenie nie przenoszą ukrytej gumy ani jej asysty', async () => {
     await fresh(); const st = store.getState(); legacyBandKg(st.bands[0], 20); const pu = ex('Pull Up'); store.startEmpty(); store.addExerciseToActive(pu);

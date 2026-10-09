@@ -54,6 +54,8 @@ const KINDS = {
   planDay: 3, planDayOv: 2, planShift: 2, planMove: 1, planNew: 1, planActivate: 1,
   /* ustawienia i dane */
   unit: 2, lang: 1, reload: 1, roundtrip: 1, migrate: 1, stats: 1, resetAll: 1,
+  /* fala 2 audytu 0.10: pomiary masy ciała z datą (dopisanie / zastąpienie dnia / usunięcie) */
+  bodyMass: 1,
 } as const;
 type K = keyof typeof KINDS;
 type Op = { o: number; a: number; b: number; v: number | '' };
@@ -83,7 +85,7 @@ const seqArb = fc.array(fc.oneof({ weight: 3, arbitrary: actArb.map(x => [x]) },
 
 /** Kategorie: jawne edycje szablonów, zmiany historii; w pozostałych działaniach trening w toku ma zostać co do bajtu (ACTIVE_FROZEN). */
 const TPL_EDIT = new Set<K>(['tplNew', 'tplRename', 'tplDup', 'tplDel', 'tplAddItem', 'tplRmItem', 'tplMove', 'tplLink', 'tplUnlink', 'tplAddRow', 'tplRmRow', 'tplKind', 'tplRow', 'tplBand', 'tplLoc', 'rememberAlt', 'rememberRest', 'gen', 'tplNote']);
-const ACTIVE_FROZEN = new Set<K>([...[...TPL_EDIT].filter(k => k !== 'rememberRest'), 'delW', 'past', 'edit', 'unit', 'lang', 'newEx', 'metric', 'bandAssist', 'delEx', 'restoreEx', 'addLoc', 'setMain', 'dupLoc', 'renameLoc', 'setBandColor', 'reload', 'roundtrip', 'migrate', 'stats', 'planDay', 'planDayOv', 'planShift', 'planMove', 'planNew', 'planActivate']);
+const ACTIVE_FROZEN = new Set<K>([...[...TPL_EDIT].filter(k => k !== 'rememberRest'), 'delW', 'past', 'edit', 'unit', 'lang', 'newEx', 'metric', 'bandAssist', 'delEx', 'restoreEx', 'addLoc', 'setMain', 'dupLoc', 'renameLoc', 'setBandColor', 'reload', 'roundtrip', 'migrate', 'stats', 'planDay', 'planDayOv', 'planShift', 'planMove', 'planNew', 'planActivate', 'bodyMass']);
 /** Audyt 0.10 A1/A7: działania, po których żaden miniony dzień nie może zmienić statusu (poza dniem, którego działanie dotyczy wprost). */
 const PAST_FROZEN = new Set<K>(['planDay', 'planDayOv', 'planShift', 'planMove', 'planNew', 'planActivate', 'tplDel', 'tplNew', 'tplDup', 'tplRename']);
 
@@ -317,6 +319,10 @@ async function step(x: Act, m: Model, where: string) {
     case 'setOpt': if (loc) { const eq0 = J(loc.equipment); { const it = pick(EQUIPMENT.filter(q => q.options?.length && locs.activeEquip(loc, q.id)), x.b); if (it) locs.setOpt(loc, it.id, it.options![x.c % it.options!.length].id, x.c % 2 === 0); } if (act?.locationId === loc.id && J(loc.equipment) !== eq0) implFresh(where); } break;
     case 'setBandLevel': if (loc) { const eq0 = J(loc.equipment); locs.setBandLevel(loc, 1 + (x.b % 7), x.c % 2 === 0); if (act?.locationId === loc.id && J(loc.equipment) !== eq0) implFresh(where); } break;
     case 'delBand': { const b = pick(st.bands, x.b); if (b) store.deleteBand(b.id); break; }
+    case 'bodyMass': { const l = store.bodyMassLog();
+      if (x.c % 3 === 0 && l.length) store.removeBodyMass(pick(l, x.b)!.date);
+      else { const day = store.localISODate(new Date(Date.now() - (x.a % 40) * 86400e3)); const kg = 40 + (x.b % 80) + (x.c % 4) / 4; ok(store.addBodyMass(kg, day) === null, where, 'pomiar masy ciała odrzucony'); ok(store.bodyMassOn(day) === kg, where, 'pomiar z tego dnia'); }
+      const l2 = store.bodyMassLog(); ok(l2.every((e, i) => i === 0 || l2[i - 1].date < e.date), where, 'pomiary rosnąco, jeden na dzień'); hit('bodyMass'); break; }
     case 'setBandColor': { const b = pick(st.bands, x.b); if (b) locs.setBandColor(b.level, ['czerwona', 'zielona', '', 'x'][x.c % 4] || 'niebieska'); break; }
 
     /* ===== plan tygodnia (audyt 0.10: ekran Plan tygodnia i panel dnia w Kalendarzu) ===== */

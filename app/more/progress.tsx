@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { ScrollView, View } from 'react-native';
-import { useLocalSearchParams } from 'expo-router';
-import { Screen, Muted, Txt, Chip, Input, Empty, H2, monoSafe } from '@/components/ui';
-import { isDeloadWeek, useTick, exById, setSummary, fmtDate, fmtSec, fmtDist, isBW, getState } from '@/lib/store';
+import { useLocalSearchParams, useRouter } from 'expo-router';
+import { Screen, Muted, Txt, Chip, Input, Empty, H2, monoSafe, Btn } from '@/components/ui';
+import { isDeloadWeek, useTick, exById, setSummary, fmtDate, fmtSec, fmtDist, isBW, getState, bodyMassLog, localDateTs } from '@/lib/store';
 import { sessionsFor, recordsFor, hasHistory, chartKeysFor, totalKind, fmtTotal, weeklyTotals, hasAnyHistory, weeklySetsByMuscle, weeklyVolumeByMuscle, thisMonday, WEEKLY_SETS_MARK, fmtE1, bwShare, type ChartKey } from '@/lib/stats';
 import { MUSCLES } from '@/lib/seed';
 import { LineChart, BarChart, TIME_STEPS } from '@/components/Chart';
 import { PeriodSummary } from '@/components/PeriodSummary';
 import { useTheme, F } from '@/lib/theme';
 import { hasWeight, hasReps, hasTime, hasDistance } from '@/lib/seed';
-import { t, exName, locale, fold, lang } from '@/lib/i18n';
+import { t, exName, locale, fold, lang, collator } from '@/lib/i18n';
 import { fmtW, fmtVol, volOut, wu, fmtNum } from '@/lib/units';
 
 /*
@@ -17,7 +17,7 @@ import { fmtW, fmtVol, volOut, wu, fmtNum } from '@/lib/units';
  * metryki per sesja (max ciężar / e1RM Epley / objętość / max pow. / czas / dystans), rekordy i lista sesji.
  */
 export default function Progress() {
-  const { ex: exParam } = useLocalSearchParams<{ ex?: string }>(); useTick(); const th = useTheme();
+  const { ex: exParam } = useLocalSearchParams<{ ex?: string }>(); useTick(); const th = useTheme(); const router = useRouter();
   const [exId, setExId] = useState(exParam ?? ''); const [q, setQ] = useState(''); const [key, setKey] = useState<ChartKey | ''>('');
   useEffect(() => { if (exParam) { setExId(exParam); setKey(''); } }, [exParam]); /* runda 54: link przy otwartym ekranie */
   const ex = exId ? exById(exId) : undefined;
@@ -26,7 +26,7 @@ export default function Progress() {
   // Także usunięte (zarchiwizowane) ćwiczenia z historią — okno usuwania obiecuje, że wykresy zostają (runda 4).
   const pool = getState().exercises.filter(e => !e.archived || withHist(e));
   const ql = fold(q.trim()); // runda 6: spacja na końcu nie gubi wyników
-  const all = pool.filter(e => !ql || fold(e.name).includes(ql) || fold(exName(e)).includes(ql)).sort((a, b) => Number(withHist(b)) - Number(withHist(a)) || exName(a).localeCompare(exName(b), locale()));
+  const all = pool.filter(e => !ql || fold(e.name).includes(ql) || fold(exName(e)).includes(ql)).sort((a, b) => Number(withHist(b)) - Number(withHist(a)) || collator().compare(exName(a), exName(b)));
   const opts = all.slice(0, 40);
   const short = (ts: number) => new Date(ts).toLocaleDateString(locale(), { day: 'numeric', month: 'short' });
   // Runda 14: etykiety osi wykresu z rokiem, gdy nie bieżący (wykres ponad rok: „29 wrz 2025 … 29 wrz”).
@@ -68,10 +68,10 @@ export default function Progress() {
   const recRows: [string, string][] = [];
   /* Runda 73: rekord = suma na treningu (pierwszy wiersz) + e1RM; pozostałe wiersze to maksima informacyjne */
   { const tk = totalKind(ex); if (tk && rec.bestTotal > 0) recRows.push([tk === 'objętość treningu' ? t('Najlepszy trening (objętość)') : tk === 'suma powtórzeń' ? t('Najwięcej powtórzeń na treningu') : tk === 'łączny czas' ? t('Najdłużej łącznie na treningu') : t('Najdłuższy dystans na treningu'), fmtTotal(ex, rec.bestTotal)]); }
-  if (rec.bestE1rm) recRows.push([isBW(ex) ? 'e1RM (Epley)' : ex.loadMode === 'per_dumbbell' ? t('e1RM (Epley, per hantel)') : ex.loadMode === 'unilateral' ? t('e1RM (Epley, na stronę)') : 'e1RM (Epley)', fmtE1(ex, rec.bestE1rm)]); /* runda 59; E1 (audyt 0.10): masa ciała — „126,7 kg (masa ciała + 46,7)” */
+  if (rec.bestE1rm) recRows.push([isBW(ex) ? 'e1RM (Epley)' : ex.loadMode === 'per_dumbbell' ? t('e1RM (Epley, per hantel)') : ex.loadMode === 'unilateral' ? t('e1RM (Epley, na stronę)') : 'e1RM (Epley)', fmtE1(ex, rec.bestE1rm, rec.bestE1rmBm)]); /* runda 59; E1 (audyt 0.10): masa ciała — „126,7 kg (masa ciała + 46,7)” */
   /* E1: dlaczego e1RM ćwiczenia z masą ciała jest albo go nie ma (masa ciała z Ustawień, udział masy ciała ze źródeł) */
   const sh = isBW(ex) && hasWeight(m) && hasReps(m) ? bwShare(ex) : undefined;
-  const bwNote = !isBW(ex) || !hasWeight(m) || !hasReps(m) ? '' : !sh ? t('Bez e1RM: brak źródeł, jaką część masy ciała podnosisz w tym ćwiczeniu.') : !getState().settings.bodyMass ? t('e1RM pojawi się po wpisaniu masy ciała w Ustawieniach.') : t('e1RM: wzór Epleya na {p}% masy ciała z Ustawień plus dociążenie (uproszczenie).', { p: Math.round(sh * 100) });
+  const bwNote = !isBW(ex) || !hasWeight(m) || !hasReps(m) ? '' : !sh ? t('Bez e1RM: brak źródeł, jaką część masy ciała podnosisz w tym ćwiczeniu.') : !bodyMassLog().length ? t('e1RM pojawi się po wpisaniu masy ciała w Ustawieniach.') : [t('e1RM: wzór Epleya na {p}% masy ciała z dnia treningu (ostatni pomiar z tego dnia lub wcześniejszy) plus dociążenie (uproszczenie).', { p: Math.round(sh * 100) }), ...(sessions.some(x => x.bodyMass == null) ? [t('Treningi sprzed pierwszego pomiaru ({d}) — bez e1RM.', { d: fmtDate(localDateTs(bodyMassLog()[0].date)) })] : [])].join(' '); /* fala 2: masa ciała z datą */
   if (hasWeight(m) && rec.maxLoad) recRows.push([isBW(ex) ? t('Max dociążenie') : (ex.loadMode === 'per_dumbbell' ? t('Max ciężar (per hantel)') : ex.loadMode === 'unilateral' ? t('Max ciężar (na stronę)') : t('Max ciężar')), kg(rec.maxLoad)]);
   if (rec.bestSetVolume) recRows.push([t('Najlepsza seria (objętość)'), fmtVol(rec.bestSetVolume)]);
   if (hasReps(m) && isBW(ex)) { /* T7: jak próg rekordu — bez asysty osobno, z asystą tylko gdy więcej */ if (rec.maxRepsFree) recRows.push([t('Max powtórzeń bez asysty'), `${rec.maxRepsFree}`]); if (rec.maxReps > rec.maxRepsFree) recRows.push([t('Max powtórzeń z asystą'), `${rec.maxReps}`]); }
@@ -90,6 +90,7 @@ export default function Progress() {
           {recRows.map(([l, v]) => <View key={l} style={{ flexDirection: 'row', justifyContent: 'space-between' }}><Muted>{l}</Muted><Txt style={{ fontFamily: F.monoBold, flexShrink: 1, textAlign: 'right', marginLeft: 8 }}>{monoSafe(v, true) /* A11-11 */}</Txt></View>)}
         </View> : null}
         {bwNote ? <Muted style={{ fontSize: 12, marginTop: 6 }}>{bwNote}</Muted> : null}
+        {sh ? <Btn small title={t('Masa ciała — pomiary')} style={{ alignSelf: 'flex-start', marginTop: 6 }} onPress={() => router.push('/more/bodymass')} /> : null}
         <H2 style={{ marginTop: 16 }}>{t('Sesje')}</H2>
         {[...sessions].reverse().slice(0, 20).map((s, i) => (
           <View key={i} style={{ paddingVertical: 8, borderBottomWidth: 1, borderBottomColor: th.line }}>

@@ -1,4 +1,4 @@
-import { getState, save, finishedWorkouts, localISODate, exById, appendPlanSegment, sameDays, planDays, cleanPlanName, clampName, deleteTemplate, SAVED_PLANS_MAX, PLAN_NAME_MAX } from './store';
+import { memoHist, workoutDay, getState, save, finishedWorkouts, localISODate, exById, appendPlanSegment, sameDays, planDays, cleanPlanName, clampName, deleteTemplate, SAVED_PLANS_MAX, PLAN_NAME_MAX } from './store';
 import { uid, type SavedPlan, type PlanSegment, type Workout } from './seed';
 import { t, locale } from './i18n';
 
@@ -70,7 +70,7 @@ function setDay(k: string, id: string | null, today = todayKey()) {
 const commit = () => { getState().userTouched = true; save(); };
 
 /** Dni zajęte: z zakończonym treningiem albo z treningiem w toku — na nie nic się nie przenosi (audyt 0.10 A3 / LOG-01). */
-export function busyDays(): Set<string> { const s = new Set(finishedWorkouts().map(w => dayKeyOf(w.startedAt))); const a = getState().active; if (a) s.add(dayKeyOf(a.startedAt)); return s; }
+export function busyDays(): Set<string> { const s = new Set(byDay().keys()); const a = getState().active; if (a) s.add(workoutDay(a)); /* J3: dzień w strefie startu */ return s; }
 
 /** Aktywny plan: dni i nazwa; zmiana dni dopisuje odcinek historii od dziś (audyt 0.10 A1). */
 function putActive(days: PlanDays, name: string, today = todayKey()) {
@@ -258,7 +258,11 @@ export function dayStatusFrom(k: string, ws: readonly Workout[], today = todayKe
   return { status: k < today ? 'missed' : 'planned', templateId: id, workoutIds: [] };
 }
 /** Sesje zakończone w dniu `k` (od najwcześniejszej) — nazwy na karcie, pasku i w panelu (audyt 0.10 A5). */
-export const doneOn = (k: string): Workout[] => finishedWorkouts().filter(w => dayKeyOf(w.startedAt) === k).sort((a, b) => a.startedAt - b.startedAt);
+/** PERF-04 (audyt 0.10): mapa dzień → zakończone treningi (od najwcześniejszego), budowana raz na zmianę historii — wcześniej każdy dzień
+ * kalendarza i paska tygodnia przeglądał całą historię (42 dni × 2000 treningów). */
+const byDay = memoHist(() => { const m = new Map<string, Workout[]>(); for (const w of finishedWorkouts()) { const k = workoutDay(w); const a = m.get(k); if (a) a.push(w); else m.set(k, [w]); } for (const a of m.values()) a.sort((x, y) => x.startedAt - y.startedAt); return m; });
+const NONE: readonly Workout[] = [];
+export const doneOn = (k: string): Workout[] => [...(byDay().get(k) ?? NONE)];
 export const dayStatus = (k: string, today = todayKey()): DayState => dayStatusFrom(k, doneOn(k), today);
 /** Zaplanowany trening dnia czeka (planned albo other) — można go zacząć, przenieść albo pominąć. */
 export const pending = (st: Pick<DayState, 'status'>) => st.status === 'planned' || st.status === 'other';
@@ -283,7 +287,7 @@ export function templateMuscles(id: string | null): Set<string> {
 export type DoneInfo = { muscles: Map<string, Set<string>>; tpls: Map<string, Set<string>> };
 export function doneInfo(from: string, n: number): DoneInfo {
   const keys = new Set(Array.from({ length: n }, (_, i) => addDays(from, i))); const muscles = new Map<string, Set<string>>(); const tpls = new Map<string, Set<string>>();
-  const add = (w: Workout) => { const k = dayKeyOf(w.startedAt); if (!keys.has(k)) return; const s = muscles.get(k) ?? new Set<string>(); w.exercises.forEach(e => (exById(e.exerciseId)?.muscles ?? []).forEach(x => s.add(x))); muscles.set(k, s);
+  const add = (w: Workout) => { const k = workoutDay(w); if (!keys.has(k)) return; const s = muscles.get(k) ?? new Set<string>(); w.exercises.forEach(e => (exById(e.exerciseId)?.muscles ?? []).forEach(x => s.add(x))); muscles.set(k, s);
     const ts = tpls.get(k) ?? new Set<string>(); if (w.templateId) ts.add(w.templateId); tpls.set(k, ts); };
   finishedWorkouts().forEach(add); const a = getState().active; if (a) add(a);
   return { muscles, tpls };

@@ -11,7 +11,7 @@ import { uid } from '@/lib/seed';
 import { draftAddExercise, draftOf, draftSwapExercise, swapTargetOk } from '@/lib/edit';
 import { parseSwapTarget } from '@/lib/swap';
 import { GROUPS, GROUP_TO_MUSCLE, hasReps, type Exercise } from '@/lib/seed';
-import { t, exName, locale, fold, lang } from '@/lib/i18n';
+import { t, exName, locale, fold, lang, collator } from '@/lib/i18n';
 
 /** target = 'active' (dodaj do treningu) | 'template:<id>' (dodaj do szablonu) | 'edit:<klucz szkicu>' (edytor historii, docs/12)
  *  | 'swap:active:<id bloku>' (E2: zamiana ćwiczenia bloku treningu w toku — „Cała biblioteka” z arkusza app/swap.tsx)
@@ -42,7 +42,7 @@ export default function PickerScreen() {
   let hidden = 0, nicheHidden = 0;
   /* research biblioteki (decyzja 09.10.2026, wariant B): domyślnie tylko podstawowe + własne + użyte; wyszukiwanie — cała biblioteka */
   const [libAll, setLibAll] = useState(libShowAll()); const used = useMemo(() => exercisesInUse(), []); // eslint-disable-line react-hooks/exhaustive-deps
-  const list = visibleExercises().filter(swapOk).filter(e => (!g || e.group === g || exact(e)) && (!ql || fold(e.name).includes(ql) || fold(exName(e)).includes(ql))).filter(e => { if (libAll || ql || inCoreList(e, used)) return true; nicheHidden++; return false; }).filter(e => { if (showAll || exact(e) || avail(e)!.ok) return true; hidden++; return false; }).sort((a, b) => GROUPS.indexOf(a.group) - GROUPS.indexOf(b.group) || exName(a).localeCompare(exName(b), locale()));
+  const list = visibleExercises().filter(swapOk).filter(e => (!g || e.group === g || exact(e)) && (!ql || fold(e.name).includes(ql) || fold(exName(e)).includes(ql))).filter(e => { if (libAll || ql || inCoreList(e, used)) return true; nicheHidden++; return false; }).filter(e => { if (showAll || exact(e) || avail(e)!.ok) return true; hidden++; return false; }).sort((a, b) => GROUPS.indexOf(a.group) - GROUPS.indexOf(b.group) || collator().compare(exName(a), exName(b)));
   const choose = (ex: Exercise) => {
     if (chosen.current) return; chosen.current = true; // podwójne tapnięcie nie doda ćwiczenia dwa razy ani nie cofnie o dwa ekrany
     if (target === 'active') addExerciseToActive(ex);

@@ -3,7 +3,7 @@
 import * as store from '@/lib/store';
 import * as stats from '@/lib/stats';
 import * as units from '@/lib/units';
-import { fresh, ex, addWorkout, set } from './helpers';
+import { setBodyMass, fresh, ex, addWorkout, set } from './helpers';
 
 const at = (y: number, m: number, d: number, h = 18) => new Date(y, m - 1, d, h).getTime();
 beforeEach(async () => { await fresh(); store.save(); });
@@ -119,7 +119,7 @@ describe('serie wykresu wg metryki', () => {
     expect(keys('Back Squat')).toEqual(['volume', 'bestE1rm', 'maxLoad', 'maxReps']);
     /* audyt 0.10 (E1): ćwiczenie z masą ciała bez masy ciała w Ustawieniach — bez e1RM (było: e1RM z samego dociążenia); z masą ciała — jak dawniej */
     expect(keys('Pull Up')).toEqual(['total', 'maxLoad', 'volume', 'maxReps']);
-    store.getState().settings.bodyMass = 80; expect(keys('Pull Up')).toEqual(['total', 'bestE1rm', 'maxLoad', 'volume', 'maxReps']); delete store.getState().settings.bodyMass;
+    setBodyMass(80); expect(keys('Pull Up')).toEqual(['total', 'bestE1rm', 'maxLoad', 'volume', 'maxReps']); setBodyMass();
     expect(keys('Burpees')).toEqual(['total', 'maxReps']);
     expect(keys('Plank')).toEqual(['total', 'maxDuration']);
     expect(keys('Crucifix')).toEqual(['total', 'maxLoad', 'maxDuration']); expect(keys("Farmer's Walk")).toEqual(['total', 'maxLoad', 'maxDistance']);
@@ -185,7 +185,7 @@ describe('runda 73 — mutanty z drugiego przebiegu', () => {
     const b = store.getState().bands[0].id; addWorkout(at(2026, 9, 1), [['Pull Up', [{ reps: 10, bandId: b, addKg: -20 }]]]);
     expect(stats.recordsFor(ex('Pull Up')).bestE1rm).toBe(0);
     addWorkout(at(2026, 9, 2), [['Pull Up', [{ reps: 6, addKg: 15 }]]]); expect(stats.recordsFor(ex('Pull Up')).bestE1rm).toBe(0);
-    store.getState().settings.bodyMass = 80; store.save(); expect(stats.recordsFor(ex('Pull Up')).bestE1rm).toBeCloseTo(95 * (1 + 6 / 30), 6);
+    setBodyMass(80); expect(stats.recordsFor(ex('Pull Up')).bestE1rm).toBeCloseTo(95 * (1 + 6 / 30), 6);
   });
   test('rozgrzewka nie jest rekordem; ćwiczenie bez metryki liczy e1RM jak ciężar × powtórzenia', () => {
     addWorkout(at(2026, 9, 1), [['Back Squat', [{ weight: 100, reps: 5 }]]]); const rec = stats.recordsFor(ex('Back Squat'));

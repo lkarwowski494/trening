@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Pressable } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Btn, Chip, Muted, Txt, H2 } from '@/components/ui';
-import { getState, useTick, isDeloadWeek, toggleDeloadWeek } from '@/lib/store';
+import { workoutDay, getState, useTick, isDeloadWeek, toggleDeloadWeek } from '@/lib/store';
 import { useTheme, F } from '@/lib/theme';
 import { plannedOn, isChanged, setDayPlan, resetDay, addDays, dayKeyOf, suggest, applySuggestion, dayStatus, doneOn, pending, planTplName, hasPlan, RETURN_DAYS, type Suggestion } from '@/lib/plan';
 import { askReminderPermission } from '@/lib/planReminder';
@@ -36,7 +36,7 @@ type Act = { key: string; el: React.ReactElement };
 export function DayPanel({ day }: { day: string }) {
   useTick(); const router = useRouter(); const th = useTheme(); const today = dayKeyOf(Date.now()); const past = day < today;
   const st = dayStatus(day, today); const id = st.templateId; const tpl = id ? getState().templates.find(x => x.id === id && !x.archived) : undefined;
-  const act = getState().active; const activeHere = !!act && dayKeyOf(act.startedAt) === day; const changed = isChanged(day, today);
+  const act = getState().active; const activeHere = !!act && workoutDay(act) === day; const changed = isChanged(day, today);
   const waiting = (pending(st) || st.status === 'missed') && !activeHere; /* zaplanowany trening czeka (albo minął) — można go przesunąć / pominąć */
   const movable = waiting && !!tpl;
   const [mode, setMode] = useState<'none' | 'move' | 'pick'>('none'); const [more, setMore] = useState(false);

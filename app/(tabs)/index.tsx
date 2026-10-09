@@ -6,7 +6,7 @@ import { Screen, H1, H2, Muted, Item, Btn, useOnce, SectionTitle } from '@/compo
 import { useTheme } from '@/lib/theme';
 import ActiveWorkout from '@/components/ActiveWorkout';
 import { Alert } from 'react-native';
-import { getState, useTick, finishedWorkouts, templateGroups, startEmpty, newTemplate, useForegroundTick, fmtDate, localISODate, getPersistError, getRecovery, clearRecovery, flush, exById, tplWorkSets } from '@/lib/store';
+import { wallTs, getState, useTick, finishedWorkouts, templateGroups, startEmpty, newTemplate, useForegroundTick, fmtDate, localISODate, getPersistError, getRecovery, clearRecovery, flush, exById, tplWorkSets } from '@/lib/store';
 import { exportRecovery } from '@/lib/backup';
 import { TodayPlan } from '@/components/TodayPlan';
 import { WeekStats, FirstSteps } from '@/components/Dashboard';
@@ -53,7 +53,7 @@ function Home() {
       {!st.templates.some(x => !x.archived) /* 07.10.2026 wieczór: same zarchiwizowane — jak brak szablonów */ ? <><Muted style={{ fontSize: 13, marginBottom: 8 }}>{t('Nie masz jeszcze szablonów — utwórz pierwszy albo zacznij pusty trening.')}</Muted><Btn title={t('+ Nowy szablon')} block onPress={once(() => { const x = newTemplate(); router.push(`/template/${x.id}`); })} /></> : null /* runda 8: pusty stan; od 03.10.2026 — stan świeżej instalacji */}
       {/* 07.10.2026 wieczór: foldery jako nagłówki, bez zarchiwizowanych (store.templateGroups) */}
       {templateGroups().map(g => <React.Fragment key={g.folder ?? ''}>{g.folder ? <SectionTitle>{g.folder}</SectionTitle> : null}{g.items.map(tpl => { const lw = fin.find(x => x.templateId === tpl.id); const sets = tplWorkSets(tpl); return (
-        <Item key={tpl.id} title={tpl.name} sub={`${tpl.items.length} ${t('ćw.')} · ${sets} ${tp(sets, 'seria|serie|serii')}${lw ? ' · ' + t('ostatnio') + ' ' + fmtDate(lw.startedAt) : ''}`} onPress={() => router.push(`/template/${tpl.id}`)} right={tpl.items.length ? <Btn title={t('Start')} kind="primary" small accessibilityLabel={t('Start: {name}', { name: tpl.name })} onPress={once(() => startTemplate(tpl)) /* audyt 0.10 (LIVE-12): podwójne tapnięcie — jedno pytanie / jeden trening */} /> : undefined} />); })}</React.Fragment>)}
+        <Item key={tpl.id} title={tpl.name} sub={`${tpl.items.length} ${t('ćw.')} · ${sets} ${tp(sets, 'seria|serie|serii')}${lw ? ' · ' + t('ostatnio') + ' ' + fmtDate(wallTs(lw)) : ''}`} onPress={() => router.push(`/template/${tpl.id}`)} right={tpl.items.length ? <Btn title={t('Start')} kind="primary" small accessibilityLabel={t('Start: {name}', { name: tpl.name })} onPress={once(() => startTemplate(tpl)) /* audyt 0.10 (LIVE-12): podwójne tapnięcie — jedno pytanie / jeden trening */} /> : undefined} />); })}</React.Fragment>)}
       <View style={{ gap: 8, marginTop: 22 }}>
         {last && last.exercises.some(e => { const x = exById(e.exerciseId); return x && !x.archived; }) /* runda 42: nie proponujemy pustego treningu */ ? <Btn title={t('Powtórz ostatni ({name})', { name: last.templateName || t('bez szablonu') })} block onPress={once(() => startRepeatLast()) /* audyt 0.10 (D1): w tygodniu deload to samo pytanie co Start */} /> : null}
         <Btn title={t('Pusty trening')} kind="ghost" block onPress={once(() => { startEmpty(); })} />

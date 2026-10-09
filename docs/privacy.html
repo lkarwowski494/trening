@@ -29,13 +29,13 @@ nie ma konta, reklam, analityki ani śledzenia.</p>
 
 <h2>Jakie dane są przechowywane i gdzie</h2>
 <ul>
-  <li>Treningi, szablony, plan tygodnia, ćwiczenia, miejsca i sprzęt oraz ustawienia (w tym opcjonalna masa ciała, jeśli ją wpiszesz)
+  <li>Treningi, szablony, plan tygodnia, ćwiczenia, miejsca i sprzęt oraz ustawienia oraz opcjonalne pomiary masy ciała z datą pomiaru (jeśli je wpiszesz)
       są zapisywane wyłącznie w pamięci Twojego urządzenia (baza SQLite aplikacji).</li>
   <li>Nikt poza Tobą — także twórca aplikacji — nie ma do nich dostępu. Aplikacja niczego nie wysyła.</li>
 </ul>
 
 <h2>Apple Health (opcjonalnie)</h2>
-<p>Jeśli włączysz zapis do Apple Health w Ustawieniach, aplikacja zapisuje tam zakończone treningi (czas, rodzaj treningu, nazwa, łączna objętość i liczba serii).
+<p>Jeśli włączysz zapis do Apple Health w Ustawieniach, aplikacja zapisuje tam zakończone treningi — siłowe i cardio (czas, rodzaj treningu, nazwa, łączna objętość i liczba serii). Trening, którego nie udało się zapisać, aplikacja zapisuje ponownie przy kolejnym uruchomieniu.
 Aplikacja nie odczytuje żadnych danych z Apple Health. Dane w Apple Health podlegają zasadom Apple; zgodę możesz w każdej chwili
 cofnąć w ustawieniach iOS (Zdrowie → Dostęp do danych i urządzenia).</p>
 
@@ -45,7 +45,9 @@ z powiadomień push i nie wysyła żadnych danych do serwerów.</p>
 
 <h2>Kopia zapasowa i eksport</h2>
 <p>Kopie zapasowe i eksport CSV są plikami zapisywanymi na urządzeniu (aplikacja Pliki). Udostępniasz je tylko Ty — na przykład
-przez arkusz udostępniania iOS. Po udostępnieniu plik podlega zasadom usługi, której użyjesz.</p>
+przez arkusz udostępniania iOS. Po udostępnieniu plik podlega zasadom usługi, której użyjesz. Kopia zapasowa obejmuje wszystkie dane
+aplikacji, także pomiary masy ciała; eksport CSV zawiera tylko serie treningów (bez masy ciała). Plik przygotowany do udostępnienia
+aplikacja usuwa ze swojej pamięci podręcznej po zamknięciu arkusza udostępniania.</p>
 
 <h2>Usunięcie danych</h2>
 <p>Dane usuniesz w aplikacji (Więcej → Ustawienia → Wyczyść wszystkie dane) albo usuwając aplikację z telefonu. Kopie zapasowe
@@ -71,13 +73,13 @@ no account, ads, analytics or tracking.</p>
 
 <h2>What is stored and where</h2>
 <ul>
-  <li>Workouts, templates, the weekly plan, exercises, places and equipment, and settings (including an optional body mass, if you enter it)
+  <li>Workouts, templates, the weekly plan, exercises, places and equipment, settings, and optional body-mass measurements with their dates (if you enter them)
       are stored only on your device (the app's SQLite database).</li>
   <li>No one but you — including the developer — has access to them. The app sends nothing.</li>
 </ul>
 
 <h2>Apple Health (optional)</h2>
-<p>If you turn on saving to Apple Health in Settings, the app writes finished workouts there (duration, workout type, name, total volume and number of sets). The app does not
+<p>If you turn on saving to Apple Health in Settings, the app writes finished workouts there — strength and cardio (duration, workout type, name, total volume and number of sets). A workout that could not be saved is saved again the next time the app starts. The app does not
 read any data from Apple Health. Data in Apple Health is governed by Apple's terms; you can revoke access at any time in iOS settings
 (Health → Data Access &amp; Devices).</p>
 
@@ -87,7 +89,8 @@ does not send any data to servers.</p>
 
 <h2>Backup and export</h2>
 <p>Backups and CSV exports are files saved on your device (Files app). Only you share them — for example via the iOS share sheet. Once
-shared, a file is subject to the terms of the service you use.</p>
+shared, a file is subject to the terms of the service you use. A backup contains all app data, including body-mass measurements; a CSV
+export contains only workout sets (no body mass). A file prepared for sharing is removed from the app's cache once the share sheet closes.</p>
 
 <h2>Deleting data</h2>
 <p>Delete your data in the app (More → Settings → Erase all data) or by deleting the app. Backups saved in Files are deleted in the

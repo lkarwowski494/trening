@@ -243,7 +243,8 @@ describe('ekran: filtr „Podstawowe” (lista Ćwiczeń, wybór ćwiczenia, zam
     await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())), url: '/exercises' }); await flushAll(20);
     const nicheCount = store.getState().exercises.filter(e => !e.archived && isNiche(e) && e.name !== 'Floor Press with Chains').length;
     expect(screen.getByText(t('niszowe ukryte: {n} — znajdziesz je wyszukiwaniem', { n: nicheCount }))).toBeTruthy();
-    expect(screen.queryByText(niche)).toBeNull(); expect(screen.getByText('Moje ćwiczenie')).toBeTruthy(); expect(screen.getByText('Floor Press with Chains')).toBeTruthy();
+    const listed = () => (screen.getByTestId('exercises-list').props.data as { kind: string; e?: { name: string } }[]).filter(r => r.kind === 'ex').map(r => r.e!.name); /* N3: lista wirtualizowana — sprawdzamy dane listy */
+    expect(listed()).not.toContain(niche); expect(listed()).toContain('Moje ćwiczenie'); expect(listed()).toContain('Floor Press with Chains');
     await type(screen.getByPlaceholderText('Szukaj…'), 'svend'); await flushAll(5); expect(screen.getByText(niche)).toBeTruthy(); expect(screen.getByText('wyszukiwanie obejmuje też niszowe')).toBeTruthy();
     await type(screen.getByPlaceholderText('Szukaj…'), ''); expect(screen.getByLabelText('Filtr: podstawowe ćwiczenia').props.accessibilityHint).toBe('Tapnij, by pokazać wszystkie.'); await tap(screen.getByLabelText('Filtr: podstawowe ćwiczenia')); await flushAll(5);
     expect(store.getState().settings.libShowAll).toBe(true); expect(screen.getByText('wszystkie ćwiczenia, także niszowe')).toBeTruthy();

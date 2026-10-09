@@ -12,7 +12,8 @@
     "test": "jest",
     "verify:native": "node scripts/verify-native.mjs",
     "check:matrix": "node scripts/test-matrix.mjs --check",
-    "verify": "npm run typecheck && npm run check:i18n && jest && npm run check:matrix && npx expo export --platform ios --output-dir .expo/verify-export && node -e \"require('fs').rmSync('.expo/verify-export',{recursive:true,force:true})\" && npm run verify:native",
+    "check:licenses": "node scripts/licenses.mjs --check",
+    "verify": "npm run typecheck && npm run check:i18n && jest && npm run check:matrix && npm run check:licenses && npx expo export --platform ios --output-dir .expo/verify-export && node -e \"require('fs').rmSync('.expo/verify-export',{recursive:true,force:true})\" && npm run verify:native",
     "screens": "node scripts/screens/run.mjs",
     "mutation": "stryker run",
     "perf": "jest -c jest.perf.config.js"
@@ -39,7 +40,6 @@
     "expo-splash-screen": "~57.0.9",
     "expo-sqlite": "~57.0.3",
     "expo-status-bar": "~57.0.1",
-    "query-string": "^7.1.3",
     "react": "19.2.3",
     "react-native": "0.86.3",
     "react-native-gesture-handler": "~2.32.0",
@@ -67,6 +67,13 @@
     "typescript": "~6.0.3"
   },
   "private": true,
+  "expo": {
+    "autolinking": {
+      "exclude": [
+        "@bacons/apple-targets"
+      ]
+    }
+  },
   "jest": {
     "preset": "jest-expo/ios",
     "setupFiles": [

@@ -1,6 +1,6 @@
 import { getState, visibleExercises, workoutsWith, finishedWorkouts, memoHist, locationById } from './store';
 import { availability, capsOf, implsAt } from './equipment';
-import { t, exName, locale, fold } from './i18n';
+import { t, exName, locale, fold, collator } from './i18n';
 import { libExtraRevOf, LIB_EXTRA_REVS, catalogKey, isNiche, type Exercise, type Impl, type Location, type Workout } from './seed';
 
 /*
@@ -74,14 +74,14 @@ export function swapCandidates(exId: string, ctx: SwapCtx): SwapCandidate[] {
   const full = LIB_EXTRA_REVS.indexOf(FULL_BASE_REV); const niche = new Set(out.filter(c => { const b = getState().exercises.find(e => e.id === c.exId); return !!b && isNiche(b); }).map(c => c.exId));
   /* research biblioteki (decyzja 09.10.2026, wariant B): ćwiczenia niszowe na końcu remisu — po bibliotece przejrzanej i reszcie podstawowych */
   const tier = (id: string) => niche.has(id) ? 2 : full >= 0 && step.get(id)! >= full ? 1 : 0;
-  return out.sort((x, y) => y.score - x.score || tier(x.exId) - tier(y.exId) || sameEq.get(y.exId)! - sameEq.get(x.exId)! || y.sessions - x.sessions || step.get(x.exId)! - step.get(y.exId)! || name.get(x.exId)!.localeCompare(name.get(y.exId)!, locale()));
+  return out.sort((x, y) => y.score - x.score || tier(x.exId) - tier(y.exId) || sameEq.get(y.exId)! - sameEq.get(x.exId)! || y.sessions - x.sessions || step.get(x.exId)! - step.get(y.exId)! || collator().compare(name.get(x.exId)!, name.get(y.exId)!));
 }
 
 /** Lista „Inne” w arkuszu zamiany: dokładne trafienie nazwy (w języku interfejsu albo kanonicznej) na początku, reszta alfabetycznie
  * (audyt pełnej bazy, LOW 4: przy porcjach SWAP_PAGE dokładne trafienie nie może utknąć za „Pokaż więcej”). `ql` — zapytanie po fold(). */
 export function sortOthers(list: readonly Exercise[], ql: string): Exercise[] {
   const exact = (e: Exercise) => !!ql && (fold(e.name) === ql || fold(exName(e)) === ql);
-  return [...list].sort((x, y) => Number(exact(y)) - Number(exact(x)) || exName(x).localeCompare(exName(y), locale()));
+  return [...list].sort((x, y) => Number(exact(y)) - Number(exact(x)) || collator().compare(exName(x), exName(y)));
 }
 /** Nazwa przyrządu (decyzja 8c) do arkusza i tabeli D7. */
 export function implLabel(i: Impl): string {

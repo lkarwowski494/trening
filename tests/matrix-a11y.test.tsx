@@ -59,8 +59,9 @@ const routesFor = (w: { id: string }, tpl: { id: string }, exId: string, locId: 
   '/', '/templates', '/exercises', '/history', '/more', '/more/settings', '/more/progress', '/more/locations', '/more/backup', '/more/language', '/more/bands',
   `/template/${tpl.id}`, `/exercise/${exId}`, `/history/${w.id}`, `/history/edit/${w.id}`,
   '/plan', '/generator', '/guide', `/swap?target=active:${blockId}`, '/picker?target=active', '/reorder?target=active', '/history/add', `/more/location/${locId}`,
+  '/more/bodymass', '/more/about', '/more/licenses', /* audyt 0.10 fala 2: masa ciała z datą, O aplikacji, licencje (SEC-08) */
 ];
-const ROUTES_N = 23;
+const ROUTES_N = 26; /* 23 + masa ciała, O aplikacji, licencje (fala 2) */
 /* Trasa „/” w stanie z treningiem w toku = ekran aktywnego treningu (components/ActiveWorkout.tsx). */
 
 /**
@@ -154,8 +155,8 @@ describe.each([['pl', 'light'], ['en', 'dark']] as const)('dostępność ekranó
 
   test('przegląd objął wszystkie ekrany i elementy (stan z danymi, właściwy motyw)', () => {
     expect(R.routes).toHaveLength(ROUTES_N);
-    expect(R.pressables).toBeGreaterThan(600); /* lista Ćwiczeń domyślnie bez niszowych (research 09.10.2026: ~300 wierszy) + reszta */
-    expect(R.inputs).toBeGreaterThan(5); expect(R.texts).toBeGreaterThan(1000);
+    expect(R.pressables).toBeGreaterThan(380); /* N3 / PERF-01 (audyt 0.10): lista ćwiczeń wirtualizowana — na ekranie pierwsze ~30 jednakowych wierszy (wcześniej ~860) + reszta ekranów */
+    expect(R.inputs).toBeGreaterThan(5); expect(R.texts).toBeGreaterThan(700); /* N3: lista ćwiczeń wirtualizowana (wcześniej > 1000) */
     expect(R.colorsSeen.has(pal.text.toLowerCase())).toBe(true); expect(R.colorsSeen.has(pal.muted.toLowerCase())).toBe(true);
     expect([other.muted, other.danger, other.band].filter(c => R.colorsSeen.has(c.toLowerCase()))).toEqual([]); /* other.text pomijamy: w ciemnym accentInk = grafit = light.text */
     expect(R.nonHex).toEqual([]); /* każdy kolor tekstu i tła z palety (hex) — inaczej kontrast nie byłby sprawdzony */

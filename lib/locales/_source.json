@@ -116,8 +116,16 @@
   "en": "{u}/side"
  },
  {
+  "pl": "{v} · pomiar z {d}",
+  "en": "{v} · measured {d}"
+ },
+ {
   "pl": "{v} (masa ciała {d})",
   "en": "{v} (body weight {d})"
+ },
+ {
+  "pl": "{v} z {d}. Treningi z tego okresu przeliczą e1RM z wcześniejszego pomiaru (albo bez e1RM, gdy go nie ma).",
+  "en": "{v} from {d}. Workouts from that period will recalculate e1RM from the earlier measurement (or show no e1RM if there is none)."
  },
  {
   "pl": "↑ przy ćwiczeniu, gdy ostatnio wszystkie serie były na górze zakresu powtórzeń",
@@ -254,6 +262,14 @@
  {
   "pl": "Anuluj trening",
   "en": "Cancel workout"
+ },
+ {
+  "pl": "Aplikacja korzysta z bibliotek open source. Niżej licencje (dotknij, by zobaczyć treść) oraz wszystkie pakiety npm, od których zależy aplikacja — także narzędzia budowania — z licencją i notką o prawach autorskich.",
+  "en": "The app uses open-source libraries. Below are the licences (tap to see the text) and every npm package the app depends on — build tools included — with its licence and copyright notice."
+ },
+ {
+  "pl": "Aplikacja nie zbiera danych: wszystko, co wpisujesz, zostaje w telefonie, bez konta, reklam i analityki.",
+  "en": "The app collects no data: everything you enter stays on your phone — no account, ads or analytics."
  },
  {
   "pl": "Apple Health niedostępne",
@@ -450,6 +466,10 @@
  {
   "pl": "Brak podobnych ćwiczeń w tym miejscu — wybierz z całej biblioteki.",
   "en": "No similar exercises at this place — choose from the whole library."
+ },
+ {
+  "pl": "Brak pomiarów.",
+  "en": "No measurements."
  },
  {
   "pl": "Brak serii w tym i poprzednim tygodniu.",
@@ -664,6 +684,10 @@
   "en": "Duration: 1 to 1440 minutes."
  },
  {
+  "pl": "Czeka na zapis w Apple Health: {n}. Ponawiam przy uruchomieniu i powrocie do aplikacji.",
+  "en": "Waiting to be saved to Apple Health: {n}. I retry when the app starts and when you return to it."
+ },
+ {
   "pl": "czerwona",
   "en": "red"
  },
@@ -739,6 +763,14 @@
  {
   "pl": "Data (RRRR-MM-DD)",
   "en": "Date (YYYY-MM-DD)"
+ },
+ {
+  "pl": "Data pomiaru (RRRR-MM-DD)",
+  "en": "Measurement date (YYYY-MM-DD)"
+ },
+ {
+  "pl": "Data pomiaru nie może być w przyszłości.",
+  "en": "The measurement date cannot be in the future."
  },
  {
   "pl": "Deload",
@@ -954,8 +986,8 @@
   "en": "e1RM in bodyweight exercises is calculated only with the body weight entered in Settings, and only where it is known what share of it you lift: pull-ups (all of it — a simplification), push-ups (about {p}% — force-plate studies)."
  },
  {
-  "pl": "e1RM: wzór Epleya na {p}% masy ciała z Ustawień plus dociążenie (uproszczenie).",
-  "en": "e1RM: Epley formula on {p}% of the body weight from Settings plus added weight (a simplification)."
+  "pl": "e1RM: wzór Epleya na {p}% masy ciała z dnia treningu (ostatni pomiar z tego dnia lub wcześniejszy) plus dociążenie (uproszczenie).",
+  "en": "e1RM: Epley formula on {p}% of the body weight from the workout day (the latest measurement from that day or earlier) plus added weight (a simplification)."
  },
  {
   "pl": "Edycja sesji",
@@ -1458,6 +1490,10 @@
   "en": "Landmine"
  },
  {
+  "pl": "Licencje open source",
+  "en": "Open-source licences"
+ },
+ {
   "pl": "Liczba serii z czasu sesji: (minuty − {w} min rozgrzewki) × 60 / ({s} s serii + średnia przerwa {r} s) = {n}; ćwiczeń = serie / {k} (co najmniej {e}) — uproszczenie, nie wynik badań.",
   "en": "Number of sets from session length: (minutes − {w} min warm-up) × 60 / ({s} s per set + average rest {r} s) = {n}; exercises = sets / {k} (at least {e}) — a simplification, not a research finding."
  },
@@ -1606,8 +1642,20 @@
   "en": "body weight"
  },
  {
+  "pl": "Masa ciała",
+  "en": "Body weight"
+ },
+ {
+  "pl": "Masa ciała — pomiary",
+  "en": "Body weight — measurements"
+ },
+ {
   "pl": "Masa ciała ({u})",
   "en": "Body weight ({u})"
+ },
+ {
+  "pl": "Masa ciała musi być większa od zera i nie większa niż {max}.",
+  "en": "Body weight must be greater than zero and no more than {max}."
  },
  {
   "pl": "Masa ciała: „±” to dociążenie (plus) albo asysta, np. maszyny (minus); guma to osobne pole z poziomem. Rekord to suma powtórzeń bez asysty, a objętość liczy się tylko z dociążenia.",
@@ -2106,6 +2154,10 @@
   "en": "You have no templates yet."
  },
  {
+  "pl": "nie podano — e1RM podciągania i pompek",
+  "en": "not entered — e1RM for pull-ups and push-ups"
+ },
+ {
   "pl": "Nie teraz",
   "en": "Not now"
  },
@@ -2132,6 +2184,10 @@
  {
   "pl": "Nie zamieniaj: {name}",
   "en": "Don’t swap: {name}"
+ },
+ {
+  "pl": "Nie zapisano jeszcze w Apple Health — ponowię przy następnym uruchomieniu aplikacji.",
+  "en": "Not saved to Apple Health yet — I’ll retry the next time the app starts."
  },
  {
   "pl": "Nie zostałaby żadna seria z wynikiem. Usunąć tę sesję z historii?",
@@ -2240,6 +2296,10 @@
  {
   "pl": "np. samopoczucie, ból, sprzęt",
   "en": "e.g. how you feel, pain, equipment"
+ },
+ {
+  "pl": "O aplikacji",
+  "en": "About"
  },
  {
   "pl": "o około 1/3–1/2 mniej serii (np. {k} z {n}; ćwiczenia z 1 serią bez zmian)",
@@ -2374,8 +2434,8 @@
   "en": "optional field, does not affect volume"
  },
  {
-  "pl": "Opcjonalnie, tylko w telefonie. Z nią aplikacja liczy e1RM w podciąganiu (cała masa ciała — uproszczenie) i w pompkach (ok. {p}% masy ciała — badania z platformą siłową). Zmiana przelicza e1RM wszystkich treningów; puste pole — bez e1RM w tych ćwiczeniach.",
-  "en": "Optional, stays on this phone. With it the app calculates e1RM for pull-ups (whole body weight — a simplification) and push-ups (about {p}% of body weight — force-plate studies). Changing it recalculates e1RM for all workouts; empty field — no e1RM in these exercises."
+  "pl": "Opcjonalnie, tylko w telefonie. Z nią aplikacja liczy e1RM w podciąganiu (cała masa ciała — uproszczenie) i w pompkach (ok. {p}% masy ciała — badania z platformą siłową). Każdy trening liczy się z ostatnim pomiarem z tego dnia lub wcześniejszym; treningi sprzed pierwszego pomiaru — bez e1RM w tych ćwiczeniach.",
+  "en": "Optional, stays on this phone. With it the app calculates e1RM for pull-ups (the whole body weight — a simplification) and push-ups (about {p}% of body weight — force-plate studies). Each workout uses the latest measurement from that day or earlier; workouts before the first measurement — no e1RM in these exercises."
  },
  {
   "pl": "opona",
@@ -2456,6 +2516,18 @@
  {
   "pl": "Oznacz tydzień jako deload",
   "en": "Mark week as deload"
+ },
+ {
+  "pl": "Pakiety ({n})",
+  "en": "Packages ({n})"
+ },
+ {
+  "pl": "Pakiety open source: {n}",
+  "en": "Open-source packages: {n}"
+ },
+ {
+  "pl": "pakiety: {n} · treść wg {p}",
+  "en": "packages: {n} · text from {p}"
  },
  {
   "pl": "para: {a} ({r}); jeden hantel: {b} ({r1})",
@@ -2690,6 +2762,14 @@
   "en": "Link with next into a superset"
  },
  {
+  "pl": "Pomiar z tym samym dniem zastępuje poprzedni.",
+  "en": "A measurement with the same date replaces the earlier one."
+ },
+ {
+  "pl": "Pomiary",
+  "en": "Measurements"
+ },
+ {
   "pl": "Pominięcie ćwiczenia przerwie pomiar — ten czas się nie zapisze.",
   "en": "Skipping the exercise stops the timing — this time won’t be saved."
  },
@@ -2720,6 +2800,10 @@
  {
   "pl": "Poniżej {n} serii tygodniowo: {list}. Pomoże więcej sesji, dłuższy czas albo więcej sprzętu w miejscu.",
   "en": "Below {n} sets per week: {list}. More sessions, longer sessions or more equipment at the place will help."
+ },
+ {
+  "pl": "Ponów teraz",
+  "en": "Retry now"
  },
  {
   "pl": "Poprawka zapisu: wszystkie serie bloku „{name}” przejdą pod wybrane ćwiczenie (wartości bez zmian).",
@@ -3831,6 +3915,14 @@
   "en": "Workouts and templates with this place will show “(deleted place)”."
  },
  {
+  "pl": "Treningi nadal czekają na zapis w Apple Health. Sprawdź zgodę w aplikacji Zdrowie: profil → Aplikacje → {app}.",
+  "en": "Workouts are still waiting to be saved to Apple Health. Check the permission in the Health app: profile → Apps → {app}."
+ },
+ {
+  "pl": "Treningi sprzed pierwszego pomiaru ({d}) — bez e1RM.",
+  "en": "Workouts before the first measurement ({d}) — no e1RM."
+ },
+ {
   "pl": "triceps",
   "en": "triceps"
  },
@@ -3999,6 +4091,10 @@
   "en": "Remove the last set?"
  },
  {
+  "pl": "Usunąć pomiar?",
+  "en": "Delete measurement?"
+ },
+ {
   "pl": "Usunąć serię?",
   "en": "Delete set?"
  },
@@ -4093,6 +4189,10 @@
  {
   "pl": "Usuń plan: {name}",
   "en": "Delete plan: {name}"
+ },
+ {
+  "pl": "Usuń pomiar: {v}, {d}",
+  "en": "Delete measurement: {v}, {d}"
  },
  {
   "pl": "Usuń serię",
@@ -4227,6 +4327,10 @@
   "en": "swapped before"
  },
  {
+  "pl": "Wersja",
+  "en": "Version"
+ },
+ {
   "pl": "Wersja testowa {n} · {date}",
   "en": "Test build {n} · {date}"
  },
@@ -4321,6 +4425,10 @@
  {
   "pl": "Wpisz ciężar i powtórzenia, odhacz serię ✓ — przerwa odlicza się sama.",
   "en": "Enter weight and reps, tick the set ✓ — the rest timer starts by itself."
+ },
+ {
+  "pl": "Wpisz masę ciała.",
+  "en": "Enter your body weight."
  },
  {
   "pl": "wpisz uchwyt i talerze",
@@ -4669,6 +4777,10 @@
  {
   "pl": "Zapisz",
   "en": "Save"
+ },
+ {
+  "pl": "Zapisz pomiar",
+  "en": "Save measurement"
  },
  {
   "pl": "Zapisz szablony i plan",

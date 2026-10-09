@@ -1,5 +1,5 @@
 {
   "CFBundleDisplayName": "Træning",
   "NSHealthShareUsageDescription": "Træning læser ikke sundhedsdata — iOS kræver denne beskrivelse for HealthKit-tilladelsen.",
-  "NSHealthUpdateUsageDescription": "Træning gemmer afsluttede styrketræninger i Apple Health."
+  "NSHealthUpdateUsageDescription": "Træning gemmer afsluttede træninger — styrke og cardio — i Apple Health."
 }

@@ -96,6 +96,9 @@ applyLang('auto');
 
 /** Runda 32: porównanie w wyszukiwaniu bez wielkości liter i znaków diakrytycznych („lydki” znajduje „Łydki”, „cestina” — „Čeština”). */
 const FOLD: Record<string, string> = { ł: 'l', đ: 'd', ø: 'o', ß: 'ss' };
+/** PERF-01/05 (audyt 0.10): jeden Intl.Collator na język zamiast localeCompare(…, locale()) w każdym porównaniu (sortowanie 854+ ćwiczeń). */
+let coll: { tag: string; c: Intl.Collator } | null = null;
+export const collator = (): Intl.Collator => { const tag = locale(); if (!coll || coll.tag !== tag) coll = { tag, c: new Intl.Collator(tag) }; return coll.c; };
 export const fold = (s: string) => s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[łđøß]/g, ch => FOLD[ch] ?? ch).replace(/\s+/g, ' ').trim();
 /**
  * Audyt 0.10 (A11-02): wielkie litery zgodnie z językiem — zamiast `textTransform: 'uppercase'`, które iOS robi bez języka

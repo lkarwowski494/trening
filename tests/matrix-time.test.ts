@@ -466,3 +466,24 @@ describe('.github/workflows/tests-tz.yml — macierz stref czasowych w CI', () =
   });
 });
 void realNow;
+
+/* Audyt 0.10 J3 (DAT-07, wariant B — fala 2): dzień i tydzień treningu w strefie startu (Workout.tzOffsetMin), niezależnie od strefy procesu (CI: 7 stref). */
+describe('J3: dzień i tydzień treningu ze strefy zapisanej przy starcie', () => {
+  const OFFSETS = [-660, -600, -420, 0, 120, 330, 345, 630, 780, 840];
+  const utcKey = (ts: number) => { const d = new Date(ts); return `${d.getUTCFullYear()}-${pad(d.getUTCMonth() + 1)}-${pad(d.getUTCDate())}`; };
+  const utcMonday = (ts: number) => { const d = new Date(ts); const wd = (d.getUTCDay() + 6) % 7; return utcKey(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate() - wd)); };
+  test('workoutDay i mondayKey(wallTs) = data na zegarze strefy startu (wyrocznia Date.UTC) — co 5 h 17 min przez cały 2026, w każdej strefie startu', () => {
+    const bad: string[] = [];
+    for (let ts = Date.UTC(2026, 0, 1); ts < Date.UTC(2027, 0, 1); ts += 5 * H + 17 * MIN) for (const tz of OFFSETS) {
+      const w = { startedAt: ts, tzOffsetMin: tz }; const exp = utcKey(ts + tz * MIN), expMon = utcMonday(ts + tz * MIN);
+      if (store.workoutDay(w) !== exp || store.mondayKey(store.wallTs(w)) !== expMon) bad.push(`${new Date(ts).toISOString()} tz=${tz}: ${store.workoutDay(w)}/${store.mondayKey(store.wallTs(w))} ≠ ${exp}/${expMon}`);
+    }
+    expect(bad.slice(0, 5)).toEqual([]);
+  });
+  test('bez pola (dane sprzed zmiany): dzień jak dotąd — wg strefy procesu (wyrocznia Intl)', () => {
+    for (let ts = Date.UTC(2026, 2, 20); ts < Date.UTC(2026, 3, 5); ts += 3 * H + 7 * MIN) { const w = wall(ts); expect(store.workoutDay({ startedAt: ts })).toBe(`${w.y}-${pad(w.mo)}-${pad(w.d)}`); }
+  });
+  test('strefa startu = strefa procesu: wallTs = startedAt (nowy trening wygląda dokładnie jak dawniej), poza godziną luki zmiany czasu', () => {
+    for (let ts = Date.UTC(2026, 0, 1); ts < Date.UTC(2027, 0, 1); ts += 11 * H + 3 * MIN) { const tz = offsetMin(ts); expect(store.wallTs({ startedAt: ts, tzOffsetMin: tz })).toBe(ts); }
+  });
+});

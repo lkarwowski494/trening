@@ -1,7 +1,7 @@
 import * as FileSystem from 'expo-file-system/legacy';
 import * as Sharing from 'expo-sharing';
 import * as DocumentPicker from 'expo-document-picker';
-import { bandColor, getState, save, replaceState, clearRecovery, migrate, finishedWorkouts, exById, workoutDurSec, shownLoad, bandById, localISODate, flush, readRecovery, getRecovery, readRawData } from './store';
+import { applyCfg, wallTs, bandColor, getState, save, replaceState, clearRecovery, migrate, finishedWorkouts, exById, workoutDurSec, shownLoad, bandById, localISODate, flush, readRecovery, getRecovery, readRawData } from './store';
 import { t, exName } from './i18n';
 import { wOut } from './units';
 import { ensureAuthorization, syncAfterFinish } from './health';
@@ -15,11 +15,29 @@ export function buildBackup(): BackupEnvelope {
   return { format: 'trening-backup', schemaVersion: SCHEMA_VERSION, exportedAt: new Date().toISOString(), state: getState() };
 }
 
+/*
+ * Audyt 0.10 SEC-09: pliki do udostępnienia (kopia, CSV, dane z nowszej wersji, kopia nieczytelnych danych) powstają w Caches tylko na czas arkusza
+ * udostępniania — po jego zamknięciu (także po błędzie) są usuwane; kopia wybrana do importu (DocumentPicker kopiuje ją do Caches) — po odczycie.
+ * Przy 2000 treningów to ok. 17 MB na plik. Pozostałości po przerwanym działaniu (zabita aplikacja) sprząta cleanShareLeftovers przy starcie.
+ * Kopie w Plikach (Backup/ — automatyczne i bezpieczeństwa) zostają, bo to celowa pula.
+ */
+const SHARE_RE = /^trening-(?:backup-|dane-|odzysk-)?\d{4}-\d{2}-\d{2}\.(?:json|csv)$/;
+async function shareTemp(name: string, body: string, opts: { mimeType: string; dialogTitle: string }): Promise<boolean> {
+  const path = `${FileSystem.cacheDirectory}${name}`;
+  try {
+    await FileSystem.writeAsStringAsync(path, body);
+    if (!(await Sharing.isAvailableAsync())) return false;
+    await Sharing.shareAsync(path, opts); return true;
+  } finally { await FileSystem.deleteAsync(path, { idempotent: true }).catch(() => {}); }
+}
+/** SEC-09: pliki udostępniania, które zostały w Caches (aplikacja zabita z otwartym arkuszem) — usuwane przy starcie. Zwraca liczbę usuniętych. */
+export async function cleanShareLeftovers(): Promise<number> {
+  const dir = FileSystem.cacheDirectory; if (!dir) return 0; let n = 0;
+  try { for (const f of await FileSystem.readDirectoryAsync(dir)) if (SHARE_RE.test(f)) { await FileSystem.deleteAsync(dir + f, { idempotent: true }); n++; } } catch {}
+  return n;
+}
 export async function exportBackup(): Promise<void> {
-  const d = localISODate();
-  const path = `${FileSystem.cacheDirectory}trening-backup-${d}.json`;
-  await FileSystem.writeAsStringAsync(path, JSON.stringify(buildBackup()));
-  if (await Sharing.isAvailableAsync()) await Sharing.shareAsync(path, { mimeType: 'application/json', dialogTitle: t('Backup treningów') });
+  await shareTemp(`trening-backup-${localISODate()}.json`, JSON.stringify(buildBackup()), { mimeType: 'application/json', dialogTitle: t('Backup treningów') });
 }
 
 /** Runda 75 (T-012): automatyczna kopia JSON po każdym zapisanym treningu, w katalogu dokumentów aplikacji — widoczna w Plikach
@@ -106,7 +124,7 @@ export function buildCsv(): string {
       let n = 0; // numer zwykłej serii — rozgrzewka „W”, drop „D”, do upadku „F” nie przesuwają numeracji (LOG-14)
       e.sets.forEach(s => { const b = s.bandId ? bandById(s.bandId) : null; const bandTxt = b ? `${t('guma')} ${bandColor(b)} ${b.level}` : s.bandId ? `${t('guma')} ?` : ''; const mark = SET_KIND_MARK[s.kind ?? (s.warmup ? 'warmup' : 'normal')]; if (!mark) n++;
         const notes = [s.note, bandTxt].filter(Boolean).join('; ');
-        rows.push([dt(w.startedAt), w.templateName || t('Trening'), dur, exName(ex), mark || String(n), wOut(shownLoad(ex, s)) /* runda 7: w jednostce użytkownika, jak eksport Stronga; T4b/Q-018/83b: store.shownLoad — jak ekran sesji w historii */, s.reps || 0, s.distanceM || 0, s.durationSec || 0, notes, w.note, s.rpe === '' || s.rpe == null ? '' : s.rpe /* runda 18: RIR 0 też */].map(q).join(','));
+        rows.push([dt(wallTs(w)) /* J3: data i godzina w strefie startu */, w.templateName || t('Trening'), dur, exName(ex), mark || String(n), wOut(shownLoad(ex, s)) /* runda 7: w jednostce użytkownika, jak eksport Stronga; T4b/Q-018/83b: store.shownLoad — jak ekran sesji w historii */, s.reps || 0, s.distanceM || 0, s.durationSec || 0, notes, w.note, s.rpe === '' || s.rpe == null ? '' : s.rpe /* runda 18: RIR 0 też */].map(q).join(','));
       }); });
   }
   return rows.join('\n') + '\n';
@@ -114,10 +132,7 @@ export function buildCsv(): string {
 /** Znacznik UTF-8 (BOM) na początku pliku CSV — bez niego Excel w Windows czyta plik jako ANSI i psuje polskie litery. */
 export const CSV_BOM = '\uFEFF';
 export async function exportCsv(): Promise<void> {
-  const d = localISODate();
-  const path = `${FileSystem.cacheDirectory}trening-${d}.csv`;
-  await FileSystem.writeAsStringAsync(path, CSV_BOM + buildCsv()); /* runda 75 (Q-007): BOM — Excel czyta polskie znaki */
-  if (await Sharing.isAvailableAsync()) await Sharing.shareAsync(path, { mimeType: 'text/csv', dialogTitle: t('Eksport CSV') });
+  await shareTemp(`trening-${localISODate()}.csv`, CSV_BOM + buildCsv() /* runda 75 (Q-007): BOM — Excel czyta polskie znaki */, { mimeType: 'text/csv', dialogTitle: t('Eksport CSV') });
 }
 
 /** Przyjmuje kopertę (natywna ≥0.1.1) albo goły stan (web 0.3 / natywna 0.1.0). */
@@ -126,6 +141,7 @@ export function parseBackup(txt: string): State {
   // T4b: kopia nieczytelnego zapisu (exportRecovery) — koperta ze stanem i treningiem w toku; po ręcznej poprawce da się ją wczytać.
   if (d && d.format === 'trening-recovery') { const st = typeof d.state === 'string' ? JSON.parse(d.state) : d.state; const lv = typeof d.live === 'string' ? (() => { try { return JSON.parse(d.live); } catch { return null; } })() : d.live;
     if (st && typeof st === 'object' && lv && typeof lv === 'object' && 'active' in lv && (Number.isFinite(lv.seq) && Number.isFinite(st.saveSeq) ? lv.seq >= st.saveSeq : Number(lv.at) >= (Number(st.metaUpdatedAt) || 0)) /* T6: jak przy starcie aplikacji */) { st.active = lv.active; if (lv.timer && typeof lv.timer === 'object') st.timer = lv.timer; }
+    if (st && typeof st === 'object' && d.cfg && typeof d.cfg === 'object') applyCfg(st, d.cfg); /* PERF-03 (A): nowsza konfiguracja — jak przy starcie */
     d.state = st; d.format = 'trening-backup'; }
   const raw = d && d.format === 'trening-backup' && d.state ? d.state : d;
   const ver = Math.max(Number(d?.schemaVersion) || 0, Number(raw?.schemaVersion) || 0); // także goły stan z nowszej wersji
@@ -147,7 +163,8 @@ export async function recheckHealthAfterImport(): Promise<void> {
 export async function importBackup(): Promise<boolean> {
   const res = await DocumentPicker.getDocumentAsync({ type: ['application/json', 'text/plain', '*/*'], copyToCacheDirectory: true });
   if (res.canceled || !res.assets?.[0]) return false;
-  const txt = await FileSystem.readAsStringAsync(res.assets[0].uri);
+  const uri = res.assets[0].uri; let txt: string;
+  try { txt = await FileSystem.readAsStringAsync(uri); } finally { if (FileSystem.cacheDirectory && uri.startsWith(FileSystem.cacheDirectory)) await FileSystem.deleteAsync(uri, { idempotent: true }).catch(() => {}); /* SEC-09: kopia z wyboru pliku */ }
   const next = parseBackup(txt); await safetyBackup('import'); /* Q-019: dopiero gdy plik jest poprawny — przed zastąpieniem danych */
   replaceState(next); await flush(); clearRecovery(); await recheckHealthAfterImport(); await scheduleWeighReminder(); /* runda 75: ustawienie z kopii */
   return true;
@@ -158,20 +175,12 @@ export async function importBackup(): Promise<boolean> {
 export async function exportRawData(): Promise<boolean> {
   try {
     const txt = await readRawData(); if (!txt) return false;
-    const path = `${FileSystem.cacheDirectory}trening-dane-${localISODate()}.json`;
-    await FileSystem.writeAsStringAsync(path, txt);
-    if (!(await Sharing.isAvailableAsync())) return false;
-    await Sharing.shareAsync(path, { mimeType: 'application/json', dialogTitle: t('Dane z nowszej wersji aplikacji') });
-    return true;
+    return await shareTemp(`trening-dane-${localISODate()}.json`, txt, { mimeType: 'application/json', dialogTitle: t('Dane z nowszej wersji aplikacji') });
   } catch { return false; }
 }
 export async function exportRecovery(): Promise<boolean> {
   try { // runda 36: każdy błąd (np. brak miejsca) = false → komunikat „Nie udało się”
     const txt = await readRecovery(); if (!txt) return false;
-    const path = `${FileSystem.cacheDirectory}trening-odzysk-${localISODate()}.json`;
-    await FileSystem.writeAsStringAsync(path, txt);
-    if (!(await Sharing.isAvailableAsync())) return false;
-    await Sharing.shareAsync(path, { mimeType: 'application/json', dialogTitle: t('Kopia nieczytelnych danych') });
-    return true;
+    return await shareTemp(`trening-odzysk-${localISODate()}.json`, txt, { mimeType: 'application/json', dialogTitle: t('Kopia nieczytelnych danych') });
   } catch { return false; }
 }
