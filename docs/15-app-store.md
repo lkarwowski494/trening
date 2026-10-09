@@ -85,6 +85,10 @@ Rozmowa 05.10.2026, rano: „Chciałbym móc opublikować to w Apple Store” i 
     5. **Po wygaśnięciu subskrypcji lub próby: 4 darmowe treningi na miesiąc kalendarzowy** (zastępuje pełną blokadę nowych treningów
        z 06.10; odrzucone: 5/mies., pełna blokada). Liczone na telefonie, bez serwera; limit obejmuje też treningi dopisane wstecz
        (rekomendacja agenta, do potwierdzenia przy projekcie ekranu). Historia, kopia i eksport bez limitu.
+  - **Zasada cenowa (właściciel 09.10.2026):** „polityka cenowa opiera się na impulsywnych zakupach i odczuciu, co jest takim progiem w danym
+    kraju. U nas to 3.99 i 19.99”. Cena w każdym kraju = lokalny próg zakupu impulsowego, nie przeliczenie kursowe. Skutek dla pkt 4:
+    automatyczne przeliczenie Apple tylko jako punkt wyjścia — przed publikacją przegląd cen w krajach wydania i ręczna korekta tam, gdzie
+    wynik nie trafia w lokalny próg.
   - **Do sprawdzenia w App Store Connect** (nie zgadujemy): czy punkty cenowe 0,99 EUR/GBP, 3,99 PLN i 19,99 PLN istnieją w siatce cen Apple.
 - **Cel przychodu (właściciel 06.10.2026):** ~2000 zł miesięcznie; model bez zmian: 30 dni za darmo, potem jednorazowa płatność.
   Rachunek orientacyjny (agent, do sprawdzenia): z ceny w App Store odpada VAT kraju kupującego (PL 23%) i prowizja Apple (15% w Small Business
