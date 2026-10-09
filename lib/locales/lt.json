@@ -1327,5 +1327,10 @@
  "dawniej: {n}": "anksčiau: {n}",
  "Dawne nazwy w bibliotece": "Ankstesni pavadinimai bibliotekoje",
  "Technika: {name}": "Atlikimo technika: {name}",
- "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami.": "Supaprastinimas: paprastai poilsio diena tarp treniruočių su tomis pačiomis pagrindinėmis grupėmis."
+ "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami.": "Supaprastinimas: paprastai poilsio diena tarp treniruočių su tomis pačiomis pagrindinėmis grupėmis.",
+ "FBW": "Visas kūnas",
+ "Jeden trening w tygodniu też daje postępy, ale zwykle trochę mniejsze niż częstszy trening — głównie dlatego, że w jednej sesji mieści się mniej serii. Przy tej samej liczbie serii w tygodniu różnica w przyroście mięśni znika, a w sile maleje.": "Viena treniruotė per savaitę taip pat duoda pažangos, bet paprastai šiek tiek mažiau nei dažnesnės treniruotės — daugiausia todėl, kad į vieną treniruotę telpa mažiau serijų. Esant tam pačiam serijų skaičiui per savaitę, raumenų augimo skirtumas išnyksta, o jėgos — sumažėja.",
+ "Redukcja: trening jak na masę (chroni mięśnie); sesja cardio w planie od {k} dni w tygodniu.": "Riebalų deginimas: treniruotė kaip masei (saugo raumenis); kardio treniruotė plane yra nuo {k} dienų per savaitę.",
+ "Cardio: od {k} dni w tygodniu jedna sesja w osobny dzień; przy mniejszej liczbie dni wszystkie są siłowe, żeby cardio nie zabierało dni treningowi siłowemu (każda główna partia co najmniej {n} dni) — konwencja.": "Kardio: nuo {k} dienų per savaitę viena treniruotė atskirą dieną; esant mažiau dienų, visos skirtos jėgai, kad kardio neatimtų dienų jėgos treniruotėms (kiekviena pagrindinė raumenų grupė bent {n} dienas) — susitarimas.",
+ "Cardio poza planem: sesja cardio jest w planie od {k} dni w tygodniu, przy mniejszej liczbie wszystkie dni są siłowe. Zalecenie WHO: co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.": "Kardio ne plane: kardio treniruotė plane yra nuo {k} dienų per savaitę, esant mažiau dienų visos skirtos jėgai. PSO rekomenduoja bent {a}–{b} min vidutinio intensyvumo veiklos per savaitę (arba {c}–{d} min intensyvios); skaičiuojamas ir vidutinio intensyvumo judėjimas per dieną, pvz., greitas ėjimas, net trumpais tarpais."
 }

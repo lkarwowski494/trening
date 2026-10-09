@@ -1327,5 +1327,10 @@
  "dawniej: {n}": "früher: {n}",
  "Dawne nazwy w bibliotece": "Frühere Namen in der Bibliothek",
  "Technika: {name}": "Technik: {name}",
- "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami.": "Vereinfachung: meist ein Ruhetag zwischen Einheiten mit denselben Hauptmuskelgruppen."
+ "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami.": "Vereinfachung: meist ein Ruhetag zwischen Einheiten mit denselben Hauptmuskelgruppen.",
+ "FBW": "Ganzkörper",
+ "Jeden trening w tygodniu też daje postępy, ale zwykle trochę mniejsze niż częstszy trening — głównie dlatego, że w jednej sesji mieści się mniej serii. Przy tej samej liczbie serii w tygodniu różnica w przyroście mięśni znika, a w sile maleje.": "Ein Training pro Woche bringt auch Fortschritt, meist aber etwas weniger als häufigeres Training — vor allem, weil in eine Einheit weniger Sätze passen. Bei gleicher Satzzahl pro Woche verschwindet der Unterschied beim Muskelaufbau, bei der Kraft wird er kleiner.",
+ "Redukcja: trening jak na masę (chroni mięśnie); sesja cardio w planie od {k} dni w tygodniu.": "Fettabbau: Training wie für Muskelaufbau (schützt die Muskeln); eine Cardio-Einheit ist ab {k} Tagen pro Woche im Plan.",
+ "Cardio: od {k} dni w tygodniu jedna sesja w osobny dzień; przy mniejszej liczbie dni wszystkie są siłowe, żeby cardio nie zabierało dni treningowi siłowemu (każda główna partia co najmniej {n} dni) — konwencja.": "Cardio: ab {k} Tagen pro Woche eine Einheit an einem eigenen Tag; bei weniger Tagen sind alle Krafttage, damit Cardio dem Krafttraining keine Tage wegnimmt (jede große Muskelgruppe an mindestens {n} Tagen) — eine Konvention.",
+ "Cardio poza planem: sesja cardio jest w planie od {k} dni w tygodniu, przy mniejszej liczbie wszystkie dni są siłowe. Zalecenie WHO: co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.": "Cardio außerhalb des Plans: Eine Cardio-Einheit ist ab {k} Tagen pro Woche im Plan, bei weniger Tagen sind alle Krafttage. Die WHO empfiehlt mindestens {a}–{b} min moderate Aktivität pro Woche (oder {c}–{d} min intensive); moderate Bewegung im Alltag zählt mit, z. B. zügiges Gehen, auch in kurzen Abschnitten."
 }

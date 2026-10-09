@@ -1327,5 +1327,10 @@
  "dawniej: {n}": "agrāk: {n}",
  "Dawne nazwy w bibliotece": "Iepriekšējie nosaukumi bibliotēkā",
  "Technika: {name}": "Tehnika: {name}",
- "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami.": "Vienkāršojums: parasti atpūtas diena starp treniņiem ar tām pašām galvenajām grupām."
+ "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami.": "Vienkāršojums: parasti atpūtas diena starp treniņiem ar tām pašām galvenajām grupām.",
+ "FBW": "Viss ķermenis",
+ "Jeden trening w tygodniu też daje postępy, ale zwykle trochę mniejsze niż częstszy trening — głównie dlatego, że w jednej sesji mieści się mniej serii. Przy tej samej liczbie serii w tygodniu różnica w przyroście mięśni znika, a w sile maleje.": "Arī viens treniņš nedēļā dod progresu, taču parasti nedaudz mazāku nekā biežāki treniņi — galvenokārt tāpēc, ka vienā treniņā ietilpst mazāk sēriju. Ar vienādu sēriju skaitu nedēļā atšķirība muskuļu augšanā izzūd, bet spēkā samazinās.",
+ "Redukcja: trening jak na masę (chroni mięśnie); sesja cardio w planie od {k} dni w tygodniu.": "Tauku dedzināšana: treniņš kā masai (sargā muskuļus); kardio treniņš plānā ir no {k} dienām nedēļā.",
+ "Cardio: od {k} dni w tygodniu jedna sesja w osobny dzień; przy mniejszej liczbie dni wszystkie są siłowe, żeby cardio nie zabierało dni treningowi siłowemu (każda główna partia co najmniej {n} dni) — konwencja.": "Kardio: no {k} dienām nedēļā viens treniņš atsevišķā dienā; ja dienu ir mazāk, visas ir spēka dienas, lai kardio neatņemtu dienas spēka treniņam (katra galvenā muskuļu grupa vismaz {n} dienas) — vienošanās.",
+ "Cardio poza planem: sesja cardio jest w planie od {k} dni w tygodniu, przy mniejszej liczbie wszystkie dni są siłowe. Zalecenie WHO: co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.": "Kardio ārpus plāna: kardio treniņš plānā ir no {k} dienām nedēļā, ja dienu ir mazāk, visas ir spēka dienas. PVO iesaka vismaz {a}–{b} min mērenas aktivitātes nedēļā (vai {c}–{d} min intensīvas); skaitās arī mērena kustība dienas laikā, piem., ātra iešana, pat īsos posmos."
 }

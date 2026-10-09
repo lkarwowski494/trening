@@ -1327,5 +1327,10 @@
  "dawniej: {n}": "преди: {n}",
  "Dawne nazwy w bibliotece": "Предишни имена в библиотеката",
  "Technika: {name}": "Техника: {name}",
- "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami.": "Опростяване: обикновено ден почивка между сесии със същите основни групи."
+ "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami.": "Опростяване: обикновено ден почивка между сесии със същите основни групи.",
+ "FBW": "Цяло тяло",
+ "Jeden trening w tygodniu też daje postępy, ale zwykle trochę mniejsze niż częstszy trening — głównie dlatego, że w jednej sesji mieści się mniej serii. Przy tej samej liczbie serii w tygodniu różnica w przyroście mięśni znika, a w sile maleje.": "Една тренировка седмично също носи напредък, но обикновено малко по-малък, отколкото при по-честа тренировка — главно защото в една сесия се побират по-малко серии. При същия брой серии седмично разликата в мускулния растеж изчезва, а в силата намалява.",
+ "Redukcja: trening jak na masę (chroni mięśnie); sesja cardio w planie od {k} dni w tygodniu.": "Отслабване: тренировка като за маса (пази мускулите); кардио сесия в плана — от {k} дни седмично.",
+ "Cardio: od {k} dni w tygodniu jedna sesja w osobny dzień; przy mniejszej liczbie dni wszystkie są siłowe, żeby cardio nie zabierało dni treningowi siłowemu (każda główna partia co najmniej {n} dni) — konwencja.": "Кардио: от {k} дни седмично една сесия в отделен ден; при по-малко дни всички са силови, за да не отнема кардиото дни от силовата тренировка (всяка основна група поне {n} дни) — конвенция.",
+ "Cardio poza planem: sesja cardio jest w planie od {k} dni w tygodniu, przy mniejszej liczbie wszystkie dni są siłowe. Zalecenie WHO: co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.": "Кардио извън плана: кардио сесия има в плана от {k} дни седмично, при по-малко всички дни са силови. СЗО препоръчва поне {a}–{b} мин умерена активност седмично (или {c}–{d} мин интензивна); брои се и умереното движение през деня, напр. бързо ходене, дори кратко."
 }

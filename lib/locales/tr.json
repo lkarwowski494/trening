@@ -1327,5 +1327,10 @@
  "dawniej: {n}": "önceki adı: {n}",
  "Dawne nazwy w bibliotece": "Kütüphanedeki önceki adlar",
  "Technika: {name}": "Teknik: {name}",
- "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami.": "Basitleştirme: aynı ana kas gruplarını çalıştıran seanslar arasında genellikle bir dinlenme günü."
+ "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami.": "Basitleştirme: aynı ana kas gruplarını çalıştıran seanslar arasında genellikle bir dinlenme günü.",
+ "FBW": "Tüm vücut",
+ "Jeden trening w tygodniu też daje postępy, ale zwykle trochę mniejsze niż częstszy trening — głównie dlatego, że w jednej sesji mieści się mniej serii. Przy tej samej liczbie serii w tygodniu różnica w przyroście mięśni znika, a w sile maleje.": "Haftada bir antrenman da ilerleme sağlar, ancak genellikle daha sık antrenmandan biraz daha az — çoğunlukla tek seansa daha az set sığdığı için. Haftalık set sayısı aynı olduğunda kas gelişimindeki fark kaybolur, kuvvetteki fark ise azalır.",
+ "Redukcja: trening jak na masę (chroni mięśnie); sesja cardio w planie od {k} dni w tygodniu.": "Yağ yakımı: kas için olduğu gibi antrenman (kasları korur); kardiyo seansı haftada {k} günden itibaren plana girer.",
+ "Cardio: od {k} dni w tygodniu jedna sesja w osobny dzień; przy mniejszej liczbie dni wszystkie są siłowe, żeby cardio nie zabierało dni treningowi siłowemu (każda główna partia co najmniej {n} dni) — konwencja.": "Kardiyo: haftada {k} günden itibaren ayrı bir günde bir seans; daha az günde hepsi kuvvet günüdür, böylece kardiyo kuvvet antrenmanından gün almaz (her ana kas grubu en az {n} gün) — bir gelenek.",
+ "Cardio poza planem: sesja cardio jest w planie od {k} dni w tygodniu, przy mniejszej liczbie wszystkie dni są siłowe. Zalecenie WHO: co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.": "Plan dışında kardiyo: kardiyo seansı haftada {k} günden itibaren plana girer; daha az günde tüm günler kuvvet günüdür. DSÖ haftada en az {a}–{b} dk orta yoğunlukta etkinlik (ya da {c}–{d} dk yüksek yoğunlukta) önerir; gün içindeki orta yoğunlukta hareket de sayılır, örn. tempolu yürüyüş, kısa sürelerde bile."
 }

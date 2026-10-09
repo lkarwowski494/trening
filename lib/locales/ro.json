@@ -1327,5 +1327,10 @@
  "dawniej: {n}": "anterior: {n}",
  "Dawne nazwy w bibliotece": "Denumiri anterioare în bibliotecă",
  "Technika: {name}": "Tehnică: {name}",
- "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami.": "Simplificare: de obicei o zi de pauză între sesiunile cu aceleași grupe principale."
+ "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami.": "Simplificare: de obicei o zi de pauză între sesiunile cu aceleași grupe principale.",
+ "FBW": "Full body",
+ "Jeden trening w tygodniu też daje postępy, ale zwykle trochę mniejsze niż częstszy trening — głównie dlatego, że w jednej sesji mieści się mniej serii. Przy tej samej liczbie serii w tygodniu różnica w przyroście mięśni znika, a w sile maleje.": "Și un singur antrenament pe săptămână aduce progres, dar de obicei puțin mai mic decât antrenamentele mai dese — mai ales pentru că într-o sesiune încap mai puține serii. La același număr de serii pe săptămână, diferența la creșterea musculară dispare, iar la forță scade.",
+ "Redukcja: trening jak na masę (chroni mięśnie); sesja cardio w planie od {k} dni w tygodniu.": "Slăbire: antrenament ca pentru masă (protejează mușchii); sesiunea de cardio apare în plan de la {k} zile pe săptămână.",
+ "Cardio: od {k} dni w tygodniu jedna sesja w osobny dzień; przy mniejszej liczbie dni wszystkie są siłowe, żeby cardio nie zabierało dni treningowi siłowemu (każda główna partia co najmniej {n} dni) — konwencja.": "Cardio: de la {k} zile pe săptămână, o sesiune într-o zi separată; cu mai puține zile, toate sunt de forță, ca să nu ia cardio zile antrenamentului de forță (fiecare grupă musculară principală cel puțin {n} zile) — o convenție.",
+ "Cardio poza planem: sesja cardio jest w planie od {k} dni w tygodniu, przy mniejszej liczbie wszystkie dni są siłowe. Zalecenie WHO: co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.": "Cardio în afara planului: sesiunea de cardio apare în plan de la {k} zile pe săptămână; cu mai puține, toate zilele sunt de forță. OMS recomandă cel puțin {a}–{b} min de activitate moderată pe săptămână (sau {c}–{d} min de activitate intensă); contează și mișcarea moderată din timpul zilei, de ex. mersul alert, chiar și pe perioade scurte."
 }

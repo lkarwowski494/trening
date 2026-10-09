@@ -23,8 +23,9 @@ Decyzje właściciela: docs/18 (08.10.2026). Reguły merytoryczne: docs/research
 ## 2. Generator — wejście i założenia
 - Nazwa (audyt 0.10 UX-14): ekran „Generator szablonów i planu” (jak temat przewodnika), przycisk „Wygeneruj szablony i plan”.
 - Wejście: ekran Szablony („Wygeneruj szablony i plan”) i ekran Plan tygodnia (ten sam kreator).
-- Założenia: cel (siła / masa / redukcja = masa + cardio), miejsce (sprzęt z Miejsc), sesje w tygodniu 2–6 (przy redukcji 3–6, w tym 1 cardio —
-  siłowych 2–5), czas sesji (45 / 60 / 90 min). Wszystkie liczby generatora to stałe w `lib/generator.ts`; teksty ekranu dostają je jako parametry.
+- Założenia: cel (siła / masa / redukcja = masa + cardio), miejsce (sprzęt z Miejsc), dni treningowe 1–6 dla każdego celu (od 09.10.2026,
+  docs/18; wcześniej 2–6, redukcja 3–6) — przy redukcji od 3 dni (`CUT_CARDIO_FROM` = `MIN_DAYS` + `CARDIO_SESSIONS`) w tym 1 cardio, przy 1–2 dniach
+  same dni siłowe i tekst „Cardio poza planem” z zaleceniem WHO (opcja A, docs/research/29 sekcja 3), czas sesji (45 / 60 / 90 min). Wszystkie liczby generatora to stałe w `lib/generator.ts`; teksty ekranu dostają je jako parametry.
 - Miejsce (audyt 0.10 UX-10): chip „+ Dodaj miejsce” (Miejsca treningu); bez miejsc — wyjaśnienie, że plan zakłada pełną siłownię; „Bez ograniczeń
   sprzętu” = pełna siłownia (opis pod chipami).
 - Wynik: szablony w folderze „Wygenerowane” (każdy szablon siłowy z notatką: jedna linijka wysiłku — RIR; puste szablony nie są zapisywane — dzień
@@ -38,11 +39,12 @@ Decyzje właściciela: docs/18 (08.10.2026). Reguły merytoryczne: docs/research
 ## 3. Reguły (z docs/research/22 sekcja 3; status jak tam)
 | Element | Reguła w generatorze | Podstawa / status |
 |---|---|---|
-| Podział | 2 → FBW A/B; 3 → FBW A/B/A; 4 → góra/dół ×2; 5 → góra/dół ×2 + FBW; 6 → góra/dół ×3 | konkretny podział = **konwencja** |
+| Podział | 1 → FBW (osobna sesja z każdą główną partią przy pełnym budżecie — FBW A nie ma zawiasu; docs/research/29 sekcja 4); 2 → FBW A/B; 3 → FBW A/B/A; 4 → góra/dół ×2; 5 → góra/dół ×2 + FBW; 6 → góra/dół ×3 | konkretny podział = **konwencja** |
 | Dni na partię | każda partia z `MAJOR` ≥ 2 dni/tydz. (`MIN_DAYS`), dla **każdego celu**: dzień z partią główną = 1, tylko pomocniczą = 0,5 (`SECONDARY_SHARE`); podgląd: „Brak ćwiczeń na: …” z podpowiedzią sprzętu z danych (`HELP_EQUIP`: drążek, gumy, hantle, kettlebell — ten, po którego dodaniu jest ćwiczenie na brakującą partię) i „Rzadziej niż 2 dni w tygodniu: … (0,5)” | R1: WHO 2020 (zdrowie, wszystkie główne partie ≥ 2 dni); ACSM 2026 (siła ≥ 2 sesje); liczenie 0,5 — Pelland 2026, **jedno źródło**, uproszczenie (audyt 0.10 MER-02, LOG-03) |
 | Dni | spośród wszystkich układów n dni (kolejność sesji bez zmian) ten z najmniejszą liczbą par dzień po dniu ze wspólną partią główną; dalej mniej dni pod rząd, bez niedzieli, najbliżej układu domyślnego (`bestDays`; 4 sesje → pon/wt/czw/sob, 0 par); cardio — pierwszy wolny z sob/nd/śr/czw/wt/pt/pon | docs/research/23 (uproszczenie; audyt 0.10 LOG-10) |
 | Dobór ćwiczeń | wzorce ruchu: przysiad/wykrok, zawias biodrowy, pchanie i ciąganie poziome/pionowe; jednostawowe dla partii poniżej 10 serii | R7 (potwierdzone); liczba ćwiczeń = konwencja |
 | Sprzęt | tylko ćwiczenia dostępne w wybranym miejscu (lib/equipment `availability`) | dane użytkownika |
+| 1 dzień w tygodniu | ostrzeżenie „oneday” (generator i plan z moich szablonów, gdy dokładnie 1 dzień z treningiem siłowym): „Jeden trening w tygodniu też daje postępy, ale zwykle trochę mniejsze niż częstszy trening — głównie dlatego, że w jednej sesji mieści się mniej serii. Przy tej samej liczbie serii w tygodniu różnica w przyroście mięśni znika, a w sile maleje.” Obok istniejące „Rzadziej niż 2 dni” i „Poniżej 10 serii”. „Raczej utrzymanie” — **niepotwierdzone**, nie ma go w aplikacji | docs/research/29: ACSM 2026, Schoenfeld 2019, Grgic 2018, Ralston 2018, Pelland 2026, Iversen 2021 (uproszczenie, nazwane) |
 | Serie tygodniowo (masa, redukcja) | cel ≥ 10 serii na partię (`WEEKLY_SETS_MARK` z lib/stats), gdy czas pozwala; podgląd pokazuje braki (partia bez serii — tylko w „Brak ćwiczeń”) | R2 (dolny próg potwierdzony; 20 — jedno źródło, nie używane) |
 | Serie na ćwiczenie | 3 (`SETS_PER_EX`) | R10: ACSM 2026 — co najmniej 2; 3 = **uproszczenie** |
 | Siła | bój główny na początku, 3 × 4–6 powt. (≈ ≥ 80% 1RM, `HEAVY_PCT`), przerwa 180 s — **tylko ćwiczenie z obciążeniem zewnętrznym obecnym w miejscu** (`hasExternalLoad`: sztanga, hantle, kettlebell, maszyny, wyciągi, Smith); dodatkowe 3 × 6–10, 120 s; jednostawowe i core 90 s. **Miejsce bez żadnego obciążenia zewnętrznego** (dom, masa ciała): plan jak masa w domu (3 × 12–20, przerwy masy, budżet z przerw masy) i ostrzeżenie zamiast „ok. 80% maksimum” | R3 (ciężar potwierdzony; 2–3 serie — jedno źródło); 6–10 = **konwencja**; audyt 0.10 MER-01 (rekomendacja A) |

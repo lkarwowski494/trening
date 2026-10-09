@@ -8,7 +8,7 @@ import * as store from '@/lib/store';
 import * as plan from '@/lib/plan';
 import {
   generate, genProposal, genCount, genPlanName, saveGenerated, previewWarnings, pickDays, assignDays, ownPlan, ownProposal, ownSessionsFor, ownWarnings,
-  GEN_SESSIONS, type GenInput, type Goal,
+  GEN_SESSIONS, MAJOR, cardioCount, type GenInput, type Goal,
 } from '@/lib/generator';
 import { weekdayNames, weekdayLabels } from '@/lib/calendar';
 import { applyLang } from '@/lib/i18n';
@@ -34,6 +34,7 @@ describe('pickDays i assignDays', () => {
     expect(pickDays([4, 0, 2, 2], [2, 3])).toEqual([0, 2, 4]);
     expect(pickDays([6, 0, 7, -1, 1.5, Number.NaN], [2])).toEqual([0, 6]);
     expect(pickDays([0], [2, 3])).toBeNull(); expect(pickDays([], [2, 3])).toBeNull(); expect(pickDays(undefined, [2, 3])).toBeNull();
+    expect(pickDays([3], GEN_SESSIONS.cut)).toEqual([3]); expect(pickDays([], GEN_SESSIONS.strength)).toBeNull(); /* 1 dzień — dozwolony (09.10.2026), 0 — nie */
     expect(pickDays([0, 1, 2, 3, 4, 5, 6], GEN_SESSIONS.hypertrophy)).toBeNull(); /* 7 dni — poza GEN_SESSIONS */
   });
   test('assignDays: bez par — kolejność bez zmian; para do uniknięcia — usunięta; nie do uniknięcia — pierwsza (obrót 0)', () => {
@@ -54,11 +55,11 @@ describe('generator z wybranymi dniami — wyrocznie', () => {
     for (const goal of ['strength', 'hypertrophy', 'cut'] as Goal[]) for (const sessions of GEN_SESSIONS[goal]) {
       const base = generate(inp({ goal, sessions }));
       expect(generate(inp({ goal, sessions, days: undefined }))).toEqual(base);
-      expect(generate(inp({ goal, sessions, days: [0] }))).toEqual(base); /* 1 dzień — poza zakresem: wybór pominięty */
+      expect(generate(inp({ goal, sessions, days: [] }))).toEqual(base); /* 0 dni — poza zakresem: wybór pominięty */
+      expect(generate(inp({ goal, sessions, days: [0, 1, 2, 3, 4, 5, 6] }))).toEqual(base); /* 7 dni — poza zakresem */
       expect(genProposal(inp({ goal, sessions, days: [1, 2] }))).toEqual(on(base.days));
-      expect(genCount(inp({ goal, sessions, days: [0] }))).toBe(sessions);
+      expect(genCount(inp({ goal, sessions, days: [] }))).toBe(sessions);
     }
-    expect(generate(inp({ goal: 'cut', days: [0, 2] }))).toEqual(generate(inp({ goal: 'cut' }))); /* redukcja: co najmniej 3 */
   });
   test('każdy cel × każdy dozwolony wybór dni: dni planu == wybrane, sesje == liczba dni, pary == niezależnie policzone, najmniej par po wszystkich permutacjach', () => {
     let cases = 0, withPairs = 0, permChecked = 0;
@@ -76,10 +77,10 @@ describe('generator z wybranymi dniami — wyrocznie', () => {
         expect([where, r.backToBack.length]).toEqual([where, min]);
       }
       if (r.backToBack.length) { withPairs++; expect(previewWarnings(r, i).map(w => w.kind)).toContain('pairs'); } else expect(previewWarnings(r, i).map(w => w.kind)).not.toContain('pairs');
-      if (goal === 'cut') expect(r.days.filter(ti => ti != null && r.templates[ti].key === 'cardio')).toHaveLength(1);
+      if (goal === 'cut') expect([where, r.days.filter(ti => ti != null && r.templates[ti].key === 'cardio').length]).toEqual([where, cardioCount('cut', k)]);
       cases++;
     }
-    expect(cases).toBe(119 * 2 + 98); /* 2–6 z 7 dni: 21+35+35+21+7 = 119 (siła, masa); redukcja 3–6: 98 */
+    expect(cases).toBe(126 * 3); /* 1–6 z 7 dni: 7+21+35+35+21+7 = 126 dla każdego celu (09.10.2026: 1–6 dla każdego celu) */
     expect(withPairs).toBeGreaterThan(0); expect(permChecked).toBeGreaterThan(1000);
   });
   test('wybór wymuszający pary (wszystkie ćwiczenia na tę samą partię): ostrzeżenie „pairs” z dniami tygodnia', () => {
@@ -131,5 +132,68 @@ describe('Plan z moich szablonów — wybrane dni', () => {
     expect(ownProposal({ templateIds: ids, sessions: 4, days: [0, 1] })).toEqual(on(base.days));
     expect(ownProposal({ templateIds: [], sessions: 3 })).toEqual([]);
     expect(ownPlan({ templateIds: [], sessions: 3, days: [0, 2] })).toBeNull();
+  });
+});
+
+/*
+ * 1 dzień w tygodniu (decyzja właściciela 09.10.2026, docs/18; research docs/research/29): sesja FBW, ostrzeżenie „oneday” (bez „utrzymania” —
+ * niepotwierdzone w źródłach), redukcja przy 1–2 dniach bez sesji cardio (opcja A). Wyrocznie: dzień planu == wybrany, jedna sesja „fbw”,
+ * dni siłowe == 1, „oneday” dokładnie raz; pokrycie partii niezależnie z ćwiczeń; zapis i restart; EN; plan z moich szablonów.
+ */
+describe('1 dzień w tygodniu', () => {
+  const ONEDAY_PL = 'Jeden trening w tygodniu też daje postępy, ale zwykle trochę mniejsze niż częstszy trening — głównie dlatego, że w jednej sesji mieści się mniej serii. Przy tej samej liczbie serii w tygodniu różnica w przyroście mięśni znika, a w sile maleje.';
+  test('każdy cel × czas × dzień tygodnia: dokładnie ten dzień, sesja FBW, bez cardio, ostrzeżenie „oneday” (i „rare”), bez par', () => {
+    let n = 0;
+    for (const goal of ['strength', 'hypertrophy', 'cut'] as Goal[]) for (const minutes of [45, 60, 90]) for (let d = 0; d < 7; d++) {
+      const i = inp({ goal, minutes, days: [d] }); const r = generate(i); const where = JSON.stringify(i);
+      expect([where, on(r.days), r.templates.map(x => x.key), r.liftDays, r.cardioMin, r.backToBack]).toEqual([where, [d], ['fbw'], 1, 0, []]);
+      const w = previewWarnings(r, i); const kinds = w.map(x => x.kind);
+      expect([where, kinds.filter(k => k === 'oneday').length, kinds.includes('rare')]).toEqual([where, 1, true]); /* każda partia z seriami ma < 2 dni */
+      expect([where, w.find(x => x.kind === 'oneday')!.text]).toEqual([where, ONEDAY_PL]);
+      expect([where, w.filter(x => /utrzym/i.test(x.text)).length]).toEqual([where, 0]); /* „raczej utrzymanie” — niepotwierdzone (docs/research/29) */
+      expect([where, genCount(i), genPlanName(i)]).toEqual([where, 1, `${{ strength: 'Siła', hypertrophy: 'Masa', cut: 'Redukcja' }[goal]}, 1× w tygodniu · Pełna siłownia`]);
+      n++;
+    }
+    expect(n).toBe(3 * 3 * 7);
+  });
+  test('FBW (1 dzień, pełna siłownia): przy 90 min każda główna partia ma ćwiczenie jako partia główna; krócej — braki widoczne w ostrzeżeniach, nie ukryte', () => {
+    const prim = (r: ReturnType<typeof generate>) => new Set<string>(r.templates[0].items.flatMap(it => ex(it.exerciseId).muscles));
+    for (const goal of ['strength', 'hypertrophy'] as Goal[]) { const r = generate(inp({ goal, minutes: 90, days: [2] })); expect([goal, MAJOR.filter(m => !prim(r).has(m))]).toEqual([goal, []]); expect(r.missing).toEqual([]); }
+    const h45 = generate(inp({ minutes: 45, days: [0] })); /* 4 ćwiczenia: przysiad, wyciskanie, wiosłowanie, martwy ciąg */
+    expect(h45.templates[0].items.map(it => ex(it.exerciseId).pattern)).toEqual(['squat', 'h_push', 'h_pull', 'hinge']); expect(h45.missing).toEqual([]);
+    const s45i = inp({ goal: 'strength', minutes: 45, days: [0] }); const s45 = generate(s45i); /* 3 ćwiczenia (budżet siły) — partie bez serii */
+    expect(s45.missing).toEqual(MAJOR.filter(m => !(s45.weeklySets[m] > 0))); expect(s45.missing.length).toBeGreaterThan(0); expect(previewWarnings(s45, s45i).map(w => w.kind)).toContain('missing');
+    expect(h45.below10).toEqual(MAJOR.filter(m => (h45.weeklySets[m] ?? 0) < 10)); expect(h45.below10.length).toBe(MAJOR.length); /* jedna sesja 45 min < 10 serii na każdą partię */
+  });
+  test('redukcja: 1–2 dni — same dni siłowe (bez sesji cardio); od 3 dni — jedna sesja cardio; ostrzeżenie „oneday” tylko przy 1 dniu', () => {
+    const c1 = generate(inp({ goal: 'cut', days: [4] })); const c2 = generate(inp({ goal: 'cut', days: [1, 4] })); const c3 = generate(inp({ goal: 'cut', days: [0, 2, 4] }));
+    expect([c1.templates.map(x => x.key), c2.templates.map(x => x.key), c3.templates.map(x => x.key)]).toEqual([['fbw'], ['fbwA', 'fbwB'], ['fbwA', 'fbwB', 'cardio']]);
+    expect([c1.cardioMin, c2.cardioMin, c3.cardioMin, c2.liftDays, c3.liftDays]).toEqual([0, 0, 60, 2, 2]);
+    /* 2 dni siłowe — partie jak przy masie na 2 dni (część z ≥ 2 dniami, R1); przy 1 dniu siłowym (wariant B: 1 siłowy + 1 cardio) — żadna */
+    expect(c2.rare).toEqual(generate(inp({ days: [1, 4] })).rare); expect(c2.rare.length).toBeLessThan(c1.rare.length); expect(c1.rare.length).toBe(MAJOR.length);
+    expect(previewWarnings(c2, inp({ goal: 'cut', days: [1, 4] })).map(w => w.kind)).not.toContain('oneday');
+    expect(previewWarnings(c3, inp({ goal: 'cut', days: [0, 2, 4] })).map(w => w.kind)).not.toContain('oneday');
+  });
+  test('propozycja dla 1 dnia: poniedziałek (układ domyślny); zapis — plan z jednym dniem i szablonem „FBW”, po restarcie bez zmian', async () => {
+    expect(genProposal(inp({ sessions: 1 }))).toEqual([0]);
+    const i = inp({ days: [3] }); const r = generate(i); const res = saveGenerated(r, i, true);
+    expect(res.templateIds.map(id => S().templates.find(x => x.id === id)!.name)).toEqual(['FBW']); expect(plan.planName()).toBe('Masa, 1× w tygodniu · Pełna siłownia');
+    expect(on(S().weekPlan!.days)).toEqual([3]); expect(S().weekPlan!.days[3]).toBe(res.templateIds[0]);
+    await store.flush(); const snap = JSON.parse(JSON.stringify(saved())); await fresh(snap);
+    expect(on(S().weekPlan!.days)).toEqual([3]); expect(S().templates.find(x => x.id === res.templateIds[0])!.name).toBe('FBW');
+  });
+  test('EN: nazwa sesji, ostrzeżenie i nazwa planu', () => {
+    applyLang('en'); const i = inp({ goal: 'strength', days: [0] }); const r = generate(i);
+    expect(r.templates[0].name).toBe('Full Body'); expect(genPlanName(i)).toBe('Strength, 1× per week · Full gym');
+    expect(previewWarnings(r, i).find(w => w.kind === 'oneday')!.text).toBe('One workout a week still brings progress, but usually a little less than training more often — mainly because fewer sets fit into one session. With the same number of sets per week, the difference in muscle growth disappears and the difference in strength shrinks.');
+  });
+  test('Plan z moich szablonów: 1 szablon — 1 dzień dozwolony, ostrzeżenie „oneday”; 2 dni — bez niego; szablon tylko z cardio nie jest dniem siłowym', () => {
+    const t = withDemoTemplates(); expect(ownSessionsFor(1)).toEqual([1, 2, 3, 4, 5, 6]);
+    const r1 = ownPlan({ templateIds: [t[0].id], sessions: 1, days: [5] })!; expect([on(r1.days), r1.sessions, r1.liftDays]).toEqual([[5], 1, 1]);
+    expect(ownWarnings(r1).find(w => w.kind === 'oneday')!.text).toBe(ONEDAY_PL);
+    const r2 = ownPlan({ templateIds: [t[0].id], sessions: 1, days: [1, 4] })!; expect(r2.liftDays).toBe(2); expect(ownWarnings(r2).map(w => w.kind)).not.toContain('oneday');
+    expect(ownProposal({ templateIds: [t[0].id], sessions: 1 })).toEqual([0]);
+    const cardio = S().exercises.find(e => e.lib && e.pattern === 'cardio')!; const c = store.newTemplate(); c.name = 'Bieg'; c.items = [{ ...t[0].items[0], id: 'c1', exerciseId: cardio.id }]; store.save();
+    const r3 = ownPlan({ templateIds: [t[0].id, c.id], sessions: 2, days: [0, 3] })!; expect(r3.liftDays).toBe(1); expect(ownWarnings(r3).map(w => w.kind)).toContain('oneday');
   });
 });

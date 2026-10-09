@@ -584,12 +584,20 @@
   "en": "Cardio"
  },
  {
+  "pl": "Cardio poza planem: sesja cardio jest w planie od {k} dni w tygodniu, przy mniejszej liczbie wszystkie dni są siłowe. Zalecenie WHO: co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.",
+  "en": "Cardio outside the plan: a cardio session is in the plan from {k} days per week; with fewer, all days are strength days. WHO recommends at least {a}–{b} min of moderate activity per week (or {c}–{d} min of vigorous); moderate movement during the day counts too, e.g. brisk walking, even in short bouts."
+ },
+ {
   "pl": "Cardio w planie: {n} min tygodniowo. Zalecenie WHO: co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.",
   "en": "Cardio in the plan: {n} min per week. WHO recommends at least {a}–{b} min of moderate activity per week (or {c}–{d} min of vigorous); moderate movement during the day counts too, e.g. brisk walking, even in short bouts."
  },
  {
   "pl": "Cardio: jedna sesja umiarkowanego wysiłku w osobny dzień; jej długość = czas sesji — konwencja.",
   "en": "Cardio: one session of moderate effort on a separate day; its length = the session length — a convention."
+ },
+ {
+  "pl": "Cardio: od {k} dni w tygodniu jedna sesja w osobny dzień; przy mniejszej liczbie dni wszystkie są siłowe, żeby cardio nie zabierało dni treningowi siłowemu (każda główna partia co najmniej {n} dni) — konwencja.",
+  "en": "Cardio: from {k} days per week, one session on a separate day; with fewer days all are strength days, so cardio does not take days from strength training (each major muscle group on at least {n} days) — a convention."
  },
  {
   "pl": "Cel",
@@ -1130,6 +1138,10 @@
   "en": "Ski ergometer"
  },
  {
+  "pl": "FBW",
+  "en": "Full Body"
+ },
+ {
   "pl": "FBW A",
   "en": "Full Body A"
  },
@@ -1424,6 +1436,10 @@
  {
   "pl": "Jasny",
   "en": "Light"
+ },
+ {
+  "pl": "Jeden trening w tygodniu też daje postępy, ale zwykle trochę mniejsze niż częstszy trening — głównie dlatego, że w jednej sesji mieści się mniej serii. Przy tej samej liczbie serii w tygodniu różnica w przyroście mięśni znika, a w sile maleje.",
+  "en": "One workout a week still brings progress, but usually a little less than training more often — mainly because fewer sets fit into one session. With the same number of sets per week, the difference in muscle growth disappears and the difference in strength shrinks."
  },
  {
   "pl": "Jedna sesja: {v}. Wykres pojawi się po drugiej.",
@@ -3414,6 +3430,10 @@
  {
   "pl": "Redukcja: trening jak na masę (chroni mięśnie) i jedna sesja umiarkowanego cardio.",
   "en": "Fat loss: training as for muscle (protects muscle) and one session of moderate cardio."
+ },
+ {
+  "pl": "Redukcja: trening jak na masę (chroni mięśnie); sesja cardio w planie od {k} dni w tygodniu.",
+  "en": "Fat loss: training as for muscle (protects muscle); a cardio session is in the plan from {k} days per week."
  },
  {
   "pl": "Rekord: {list}",

@@ -27,7 +27,7 @@ afterEach(() => applyLang('pl'));
 /** Pięć presetów miejsc z audytu (bez miejsca = pełna siłownia) — każda nowa wartość LOCATION_PRESETS wchodzi do macierzy sama. */
 const places = (): Record<string, string | null> => ({ none: null, ...Object.fromEntries(LOCATION_PRESETS.map(p => [p, addLocation(p).id])) });
 
-describe('macierz 210 konfiguracji: cel × sesje × czas × 5 miejsc (MER-01, MER-02, LOG-03, X-10)', () => {
+describe('macierz 270 konfiguracji: cel × sesje (1–6) × czas × 5 miejsc (MER-01, MER-02, LOG-03, X-10)', () => {
   test('bez 4–6 przy sile bez obciążenia; każda partia z 0 serii albo < 2 dni w ostrzeżeniu; bez pustych szablonów; core/izolacja bez 2 min przy sile', () => {
     const locs = places(); let n = 0;
     for (const goal of ['strength', 'hypertrophy', 'cut'] as Goal[]) for (const sessions of GEN_SESSIONS[goal]) for (const minutes of GEN_MINUTES) for (const [ln, lid] of Object.entries(locs)) {
@@ -50,7 +50,7 @@ describe('macierz 210 konfiguracji: cel × sesje × czas × 5 miejsc (MER-01, ME
       if (goal === 'strength' && r.unloaded) expect(w).toContain(t('Siła bez obciążenia zewnętrznego'));
       expect([where, r.unloaded]).toEqual([where, ln === 'home' || ln === 'bodyweight']);
     }
-    expect(n).toBe(210);
+    expect(n).toBe(270); /* 3 cele × 6 liczb dni (1–6 od 09.10.2026) × 3 czasy × 5 miejsc */
   });
 });
 

@@ -1327,5 +1327,10 @@
  "dawniej: {n}": "prije: {n}",
  "Dawne nazwy w bibliotece": "Prijašnji nazivi u knjižnici",
  "Technika: {name}": "Tehnika: {name}",
- "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami.": "Pojednostavljenje: obično dan odmora između treninga s istim glavnim skupinama."
+ "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami.": "Pojednostavljenje: obično dan odmora između treninga s istim glavnim skupinama.",
+ "FBW": "Cijelo tijelo",
+ "Jeden trening w tygodniu też daje postępy, ale zwykle trochę mniejsze niż częstszy trening — głównie dlatego, że w jednej sesji mieści się mniej serii. Przy tej samej liczbie serii w tygodniu różnica w przyroście mięśni znika, a w sile maleje.": "I jedan trening tjedno donosi napredak, ali obično nešto manji nego češći trening — uglavnom zato što u jedan trening stane manje serija. Uz isti broj serija tjedno razlika u rastu mišića nestaje, a u snazi se smanjuje.",
+ "Redukcja: trening jak na masę (chroni mięśnie); sesja cardio w planie od {k} dni w tygodniu.": "Redukcija: trening kao za masu (čuva mišiće); kardio trening u planu je od {k} dana tjedno.",
+ "Cardio: od {k} dni w tygodniu jedna sesja w osobny dzień; przy mniejszej liczbie dni wszystkie są siłowe, żeby cardio nie zabierało dni treningowi siłowemu (każda główna partia co najmniej {n} dni) — konwencja.": "Kardio: od {k} dana tjedno jedan trening u zasebnom danu; uz manje dana svi su dani snage, da kardio ne uzima dane treningu snage (svaka glavna mišićna skupina barem {n} dana) — konvencija.",
+ "Cardio poza planem: sesja cardio jest w planie od {k} dni w tygodniu, przy mniejszej liczbie wszystkie dni są siłowe. Zalecenie WHO: co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.": "Kardio izvan plana: kardio trening u planu je od {k} dana tjedno, uz manje su svi dani snage. SZO preporučuje najmanje {a}–{b} min umjerene aktivnosti tjedno (ili {c}–{d} min intenzivne); računa se i umjereno kretanje tijekom dana, npr. brzo hodanje, čak i kratko."
 }

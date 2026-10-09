@@ -1327,5 +1327,10 @@
  "dawniej: {n}": "prej: {n}",
  "Dawne nazwy w bibliotece": "Prejšnja imena v knjižnici",
  "Technika: {name}": "Tehnika: {name}",
- "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami.": "Poenostavitev: običajno dan počitka med treningi z istimi glavnimi skupinami."
+ "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami.": "Poenostavitev: običajno dan počitka med treningi z istimi glavnimi skupinami.",
+ "FBW": "Celo telo",
+ "Jeden trening w tygodniu też daje postępy, ale zwykle trochę mniejsze niż częstszy trening — głównie dlatego, że w jednej sesji mieści się mniej serii. Przy tej samej liczbie serii w tygodniu różnica w przyroście mięśni znika, a w sile maleje.": "Tudi en trening na teden prinese napredek, a običajno nekoliko manjšega kot pogostejši trening — predvsem zato, ker v en trening gre manj serij. Pri enakem številu serij na teden razlika v rasti mišic izgine, pri moči pa se zmanjša.",
+ "Redukcja: trening jak na masę (chroni mięśnie); sesja cardio w planie od {k} dni w tygodniu.": "Hujšanje: trening kot za maso (ščiti mišice); trening kardia je v načrtu od {k} dni na teden.",
+ "Cardio: od {k} dni w tygodniu jedna sesja w osobny dzień; przy mniejszej liczbie dni wszystkie są siłowe, żeby cardio nie zabierało dni treningowi siłowemu (każda główna partia co najmniej {n} dni) — konwencja.": "Kardio: od {k} dni na teden en trening na ločen dan; pri manj dneh so vsi dnevi za moč, da kardio ne jemlje dni treningu moči (vsaka glavna mišična skupina vsaj {n} dni) — konvencija.",
+ "Cardio poza planem: sesja cardio jest w planie od {k} dni w tygodniu, przy mniejszej liczbie wszystkie dni są siłowe. Zalecenie WHO: co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.": "Kardio zunaj načrta: trening kardia je v načrtu od {k} dni na teden, pri manj so vsi dnevi za moč. SZO priporoča vsaj {a}–{b} min zmerne telesne dejavnosti na teden (ali {c}–{d} min intenzivne); šteje tudi zmerno gibanje čez dan, npr. hitra hoja, tudi v kratkih odsekih."
 }

@@ -1327,5 +1327,10 @@
  "dawniej: {n}": "voorheen: {n}",
  "Dawne nazwy w bibliotece": "Eerdere namen in de bibliotheek",
  "Technika: {name}": "Techniek: {name}",
- "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami.": "Vereenvoudiging: meestal een rustdag tussen sessies met dezelfde hoofdspiergroepen."
+ "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami.": "Vereenvoudiging: meestal een rustdag tussen sessies met dezelfde hoofdspiergroepen.",
+ "FBW": "Full body",
+ "Jeden trening w tygodniu też daje postępy, ale zwykle trochę mniejsze niż częstszy trening — głównie dlatego, że w jednej sesji mieści się mniej serii. Przy tej samej liczbie serii w tygodniu różnica w przyroście mięśni znika, a w sile maleje.": "Eén training per week levert ook vooruitgang op, maar meestal iets minder dan vaker trainen — vooral omdat er in één sessie minder sets passen. Bij hetzelfde aantal sets per week verdwijnt het verschil in spiergroei en wordt het verschil in kracht kleiner.",
+ "Redukcja: trening jak na masę (chroni mięśnie); sesja cardio w planie od {k} dni w tygodniu.": "Vetverlies: training zoals voor spiermassa (beschermt de spieren); een cardiosessie zit in het plan vanaf {k} dagen per week.",
+ "Cardio: od {k} dni w tygodniu jedna sesja w osobny dzień; przy mniejszej liczbie dni wszystkie są siłowe, żeby cardio nie zabierało dni treningowi siłowemu (każda główna partia co najmniej {n} dni) — konwencja.": "Cardio: vanaf {k} dagen per week één sessie op een aparte dag; bij minder dagen zijn het allemaal krachtdagen, zodat cardio geen dagen van krachttraining afneemt (elke grote spiergroep minstens {n} dagen) — een conventie.",
+ "Cardio poza planem: sesja cardio jest w planie od {k} dni w tygodniu, przy mniejszej liczbie wszystkie dni są siłowe. Zalecenie WHO: co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.": "Cardio buiten het plan: een cardiosessie zit in het plan vanaf {k} dagen per week; bij minder zijn alle dagen krachtdagen. De WHO raadt minstens {a}–{b} min matige activiteit per week aan (of {c}–{d} min intensieve); matige beweging overdag telt ook mee, bijv. stevig wandelen, ook in korte stukjes."
 }
