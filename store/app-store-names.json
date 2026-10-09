@@ -1,5 +1,5 @@
 {
-  "_opis": "Nazwy w App Store (pole Name, max 30 znaków) dla lokalizacji App Store Connect. Część przed dwukropkiem = APP_NAME języka aplikacji (lib/i18n.ts); test tests/i18n-locales.test.ts pilnuje zgodności i długości. Decyzja właściciela 05.10.2026, docs/16. Języki z 07.10.2026 (wariant B): de-DE, fr-FR, it, nl-NL, sv, da, no (= nb w aplikacji), fi, tr, el — propozycje agenta, do przeglądu przy ASO. 09.10.2026 (fala 1): es-MX (App Store Connect nie ma lokalizacji es-419; w aplikacji es-419) i pt-BR. 09.10.2026 (fala 2): id, ms, vi (lokalizacje App Store Connect: Indonesian, Malay, Vietnamese).",
+  "_opis": "Nazwy w App Store (pole Name, max 30 znaków) dla lokalizacji App Store Connect. Część przed dwukropkiem = APP_NAME języka aplikacji (lib/i18n.ts); test tests/i18n-locales.test.ts pilnuje zgodności i długości. Decyzja właściciela 05.10.2026, docs/16. Języki z 07.10.2026 (wariant B): de-DE, fr-FR, it, nl-NL, sv, da, no (= nb w aplikacji), fi, tr, el — propozycje agenta, do przeglądu przy ASO. 09.10.2026 (fala 1): es-MX (App Store Connect nie ma lokalizacji es-419; w aplikacji es-419) i pt-BR. 09.10.2026 (fala 2): id, ms, vi (lokalizacje App Store Connect: Indonesian, Malay, Vietnamese). 09.10.2026 (fala 3): ru (lokalizacja App Store Connect: Russian).",
   "names": {
     "pl": "Trening: dziennik siłowni",
     "en-US": "Training: Gym Log & Rest Timer",
@@ -27,6 +27,7 @@
     "el": "Training: ημερολόγιο βαρών",
     "id": "Training: jurnal latihan gym",
     "ms": "Training: log latihan gim",
-    "vi": "Training: nhật ký tập gym"
+    "vi": "Training: nhật ký tập gym",
+    "ru": "Training: дневник тренировок"
   }
 }

@@ -30,6 +30,8 @@ export const TERMS: Record<NonPl, { rest: RegExp; pause: RegExp }> = {
   fi: { rest: /palaut/i, pause: /tauk|tauo|keskeyt/i }, tr: { rest: /dinlen/i, pause: /durakla/i }, el: { rest: /δι[άα]λε[ίι]μμ/i, pause: /παύσ|παυσ/i },
   /* fala 2 (09.10.2026): przerwa — id „istirahat”, ms „rehat”, vi „nghỉ”; pauza — id/ms „jeda” (iOS: „Jeda”), vi „tạm dừng” */
   id: { rest: /istirahat/i, pause: /jeda/i }, ms: { rest: /rehat/i, pause: /jeda/i }, vi: { rest: /nghỉ/i, pause: /tạm dừng/i },
+  /* fala 3 (09.10.2026): przerwa — ru „отдых” (iOS: „Отдых”), pauza — „пауза” */
+  ru: { rest: /отдых/i, pause: /пауз|приостанов/i },
 };
 const KEYS = Object.keys(EN);
 /** Przerwa między seriami (bez „Import przerwany”, „przerwie pomiar” i „dzień przerwy” — dzień odpoczynku między treningami). */
@@ -82,7 +84,7 @@ describe('K2 (A11-02): upper() — wersaliki z regułami języka zamiast textTra
 });
 
 describe('K3 (A11-17): jednostki przez t() — w cyrylicy i po grecku bez łacińskich „s”, „min”, „h”, „m”, „km”, „max”', () => {
-  const LOCAL: Lang[] = ['uk', 'bg', 'sr', 'el'];
+  const LOCAL: Lang[] = ['uk', 'bg', 'sr', 'el', 'ru' /* fala 3 */];
   test.each(LOCAL)('%s: żaden tekst słownika nie ma łacińskiej jednostki po liczbie/parametrze ani łacińskiego „max/min”', l => {
     const bad = Object.entries(dictOf(l)).filter(([, v]) => /(\d|\})\s?(s|min|h|m|km)\b|\b(max|min)\b/.test(v.replace(/\{(min|max)\}/g, ''))).map(([k, v]) => `${k} → ${v}`);
     expect([l, bad]).toEqual([l, []]);

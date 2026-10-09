@@ -47,7 +47,7 @@ describe('resolveLang / detectLang: telefon po indonezyjsku, malajsku, wietnamsk
     for (const [l, tag] of [['id', 'id-ID'], ['ms', 'ms-MY'], ['vi', 'vi-VN']] as const) { applyLang(l); expect([l, locale()]).toEqual([l, tag]); }
   });
   test('LANGS: nowe kody na końcu listy (kolejność w ustawieniach), nazwy w danym języku, nazwa aplikacji „Training” (lokalne słowo niepodobne do „Trening”)', () => {
-    expect(LANGS.slice(-3)).toEqual(['id', 'ms', 'vi']);
+    expect(LANGS.slice(LANGS.indexOf('el') + 1, LANGS.indexOf('el') + 4)).toEqual(['id', 'ms', 'vi']); /* fala 3 (ru) dopisana za nimi */
     expect(W2.map(l => LANG_NAME[l])).toEqual(['Bahasa Indonesia', 'Bahasa Melayu', 'Tiếng Việt']);
     expect(W2.map(l => APP_NAME[l])).toEqual(['Training', 'Training', 'Training']);
   });

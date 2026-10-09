@@ -191,7 +191,7 @@ describe('daty i liczby: fmtDate / fmtTime / fmtNum / locale() / decimalComma() 
   afterAll(() => { global.__locales = [{ languageCode: 'pl', languageTag: 'pl-PL' }]; applyLang('pl'); });
   /** Ten sam język, inny region (telefon) — locale() bierze region telefonu (poza pl → pl-PL i sr → cyrylica). */
   const ALT: Partial<Record<Lang, string>> = { en: 'en-GB', pt: 'pt-BR', es: 'es-MX', sr: 'sr-Latn-RS', hr: 'hr-BA', uk: 'uk-UA', hu: 'hu-HU', ro: 'ro-MD', pl: 'pl-GB', cs: 'cs-CZ', sk: 'sk-SK', bg: 'bg-BG', sl: 'sl-SI', lt: 'lt-LT', lv: 'lv-LV', et: 'et-EE',
-    'es-419': 'es-AR', 'pt-BR': 'pt-PT' /* fala 1: ten sam język bazowy, inny region */, de: 'de-AT', fr: 'fr-CA', it: 'it-CH', nl: 'nl-BE', sv: 'sv-FI', da: 'da-DK', nb: 'nb-NO', fi: 'fi-FI', tr: 'tr-TR', el: 'el-CY' /* 07.10.2026 */, id: 'id-ID', ms: 'ms-SG', vi: 'vi-VN' /* fala 2 (09.10.2026) */ };
+    'es-419': 'es-AR', 'pt-BR': 'pt-PT' /* fala 1: ten sam język bazowy, inny region */, de: 'de-AT', fr: 'fr-CA', it: 'it-CH', nl: 'nl-BE', sv: 'sv-FI', da: 'da-DK', nb: 'nb-NO', fi: 'fi-FI', tr: 'tr-TR', el: 'el-CY' /* 07.10.2026 */, id: 'id-ID', ms: 'ms-SG', vi: 'vi-VN' /* fala 2 (09.10.2026) */, ru: 'ru-KZ' /* fala 3 */ };
   const now = new Date(); const D = new Date(now.getFullYear(), 2, 15, 9, 5).getTime(); const D_OLD = new Date(now.getFullYear() - 1, 10, 3, 18, 40).getTime();
   const cases = LANGS.flatMap(l => [[l, 'de-DE'], [l, ALT[l]!]] as [Lang, string][]);
   test.each(cases)('%s przy telefonie %s', (l, device) => {
@@ -206,7 +206,7 @@ describe('daty i liczby: fmtDate / fmtTime / fmtNum / locale() / decimalComma() 
     const parts = new Intl.DateTimeFormat(loc, opts).formatToParts(new Date(D)); const month = parts.find(p => p.type === 'month')!.value; const wd = parts.find(p => p.type === 'weekday')!.value;
     expect([l, device, s.includes(month), s.includes(wd), s.includes('15')]).toEqual([l, device, true, true, true]);
     if (l !== 'en' && l !== 'tr' /* tur. „Mar” = Mart (marzec) — skrót CLDR */ && l !== 'id' /* indon. „Mar” = Maret (marzec) — skrót CLDR (fala 2) */) expect([l, device, /\b(Mar|Sun)\b/.test(s)]).toEqual([l, device, false]);
-    if (['bg', 'sr', 'uk'].includes(l)) expect([l, s]).toEqual([l, expect.stringMatching(/\p{Script=Cyrillic}/u)]);
+    if (['bg', 'sr', 'uk', 'ru'].includes(l)) expect([l, s]).toEqual([l, expect.stringMatching(/\p{Script=Cyrillic}/u)]);
     expect(s.includes(String(now.getFullYear()))).toBe(false);
     expect(fmtDate(D_OLD).includes(String(now.getFullYear() - 1))).toBe(true);
     /* godzina: 9:05 / 18:40 (12- albo 24-godzinna wg regionu), cyfry arabskie */

@@ -40,6 +40,7 @@ const LOAD: Record<Lang, () => Record<string, string>> = {
   sv: () => require('./text/sv.json'), da: () => require('./text/da.json'), nb: () => require('./text/nb.json'), fi: () => require('./text/fi.json'),
   tr: () => require('./text/tr.json'), el: () => require('./text/el.json'),
   /* 09.10.2026 (fala 2, docs/16) */ id: () => require('./text/id.json'), ms: () => require('./text/ms.json'), vi: () => require('./text/vi.json'),
+  /* 09.10.2026 (fala 3, docs/16) */ ru: () => require('./text/ru.json'),
   /* 09.10.2026 (fala 1, wariant B — jak lib/locales/index.ts): wariant regionalny = zdania bazowe + nakładka z różnicami */
   'es-419': () => ({ ...require('./text/es.json'), ...require('./text/es-419.json') }), 'pt-BR': () => ({ ...require('./text/pt.json'), ...require('./text/pt-BR.json') }),
 };
