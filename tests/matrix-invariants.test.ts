@@ -531,7 +531,14 @@ async function reloadCheck(where: string) {
   expect({ where, why: 'stan po ponownym uruchomieniu ≠ przed', s: strip(S()) }).toEqual({ where, why: 'stan po ponownym uruchomieniu ≠ przed', s: before });
 }
 async function roundtripCheck(where: string) {
-  const before = strip(S(), true); const next = parseBackup(J(buildBackup())); store.replaceState(next); await store.flush();
+  const before = strip(S(), true); const next = parseBackup(J(buildBackup()));
+  /* A11B-1 (audyt zmian 0.11, część 2): szkice sprzed importu (ćwiczenie, szablon, edycja historii) nie przeżywają go — ani w pamięci, ani w bazie */
+  const exId = S().exercises[0]?.id; const tpId = S().templates[0]?.id; const wId = S().workouts[0]?.id;
+  if (exId) { const d = draft.beginObjDraft<Exercise>('exercise', exId); if (d) { d.notes = 'szkic przed importem'; store.save(d); } }
+  if (tpId) { const d = draft.beginObjDraft<Template>('template', tpId); if (d) { d.name = 'Szkic przed importem'; store.save(d); } }
+  if (wId) edit.beginEdit(wId);
+  store.replaceState(next); await store.flush();
+  ok((!exId || !draft.objDraft('exercise', exId)) && (!tpId || !draft.objDraft('template', tpId)) && (!wId || !edit.draftOf(wId)) && !global.__kv.has(draft.DRAFTS_KEY), where, 'import zostawił szkic edycji (A11B-1)');
   expect({ where, why: 'eksport → import nie jest bezstratny', s: strip(S(), true) }).toEqual({ where, why: 'eksport → import nie jest bezstratny', s: before });
 }
 /** Objętość serii liczona niezależnie od lib/store (definicja: docs + store.setVolume): robocza, kg × powt. × mnożnik (hantle/jednostronne ×2,

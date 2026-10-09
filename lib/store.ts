@@ -617,7 +617,12 @@ export function saveCfg() {
   saveTimer = setTimeout(() => { persistNow().catch(() => {}); }, 300);
 }
 export function getState(): State { if (!S) throw new Error('store not initialised'); return S; }
-export function replaceState(next: State) { S = migrate(next); applyPrefs(); save(); }
+/** A11B-1 (audyt zmian 0.11, część 2, wariant A): import i „Wyczyść wszystkie dane” zastępują wszystko — także szkice edycji (ćwiczeń i szablonów
+ * w pamięci i w bazie, lib/draft.ts; edycji historii, lib/edit.ts). Szkic sprzed zastąpienia dotyczy starych danych: po „Edytuj → Zapisz” nadpisałby
+ * dane z kopii. Moduły szkiców rejestrują tu czyszczenie (store ich nie importuje). */
+const stateReplacedHooks = new Set<() => void>();
+export function onStateReplaced(cb: () => void) { stateReplacedHooks.add(cb); }
+export function replaceState(next: State) { S = migrate(next); savedDrafts = null; stateReplacedHooks.forEach(h => h()); applyPrefs(); save(); }
 
 const subscribe = (cb: () => void) => { listeners.add(cb); return () => { listeners.delete(cb); }; };
 export function useStore<T>(selector: (s: State) => T): T {
