@@ -90,6 +90,11 @@ Rozmowa 05.10.2026, rano: „Chciałbym móc opublikować to w Apple Store” i 
     kraju. U nas to 3.99 i 19.99”. Cena w każdym kraju = lokalny próg zakupu impulsowego, nie przeliczenie kursowe. Skutek dla pkt 4:
     automatyczne przeliczenie Apple tylko jako punkt wyjścia — przed publikacją przegląd cen w krajach wydania i ręczna korekta tam, gdzie
     wynik nie trafia w lokalny próg.
+  - **Kody na darmową subskrypcję (właściciel 09.10.2026, wariant A):** kody ofertowe Apple (offer codes; jednorazowe lub własny kod),
+    tworzone w App Store Connect; w aplikacji przycisk „Zrealizuj kod” (ekran subskrypcji i Ustawienia) otwiera systemowe okno StoreKit.
+    Odrzucone: B — tylko realizacja w App Store, bez przycisku; własny system kodów — niedozwolony (wytyczne Apple 3.1.1: zakaz własnych
+    mechanizmów odblokowania, np. kluczy licencyjnych). Kody dają subskrypcję na określony czas, nie na zawsze. Do sprawdzenia w dokumentacji
+    Apple przy wdrożeniu: maksymalny darmowy okres kodu, limit kodów na kwartał.
   - **Do sprawdzenia w App Store Connect** (nie zgadujemy): czy punkty cenowe 0,99 EUR/GBP, 3,99 PLN i 19,99 PLN istnieją w siatce cen Apple.
 - **Cel przychodu (właściciel 06.10.2026):** ~2000 zł miesięcznie; model bez zmian: 30 dni za darmo, potem jednorazowa płatność.
   Rachunek orientacyjny (agent, do sprawdzenia): z ceny w App Store odpada VAT kraju kupującego (PL 23%) i prowizja Apple (15% w Small Business
