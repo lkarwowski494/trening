@@ -884,8 +884,6 @@
  "Masa": "Massa",
  "Redukcja": "Definição",
  "Bez ograniczeń sprzętu": "Sem limites de equipamento",
- "Sesje w tygodniu": "Sessões por semana",
- "Sesje w tygodniu: {n}": "Sessões por semana: {n}",
  "Czas sesji": "Duração da sessão",
  "{n} min": "{n} min",
  "Podgląd": "Pré-visualização",
@@ -1043,7 +1041,6 @@
  "Poniżej {n} serii tygodniowo: {list}. Pomoże więcej sesji, dłuższy czas albo więcej sprzętu w miejscu.": "Abaixo de {n} séries por semana: {list}. Ajudam mais sessões, sessões mais longas ou mais equipamento no local.",
  "{goal}, {n}× w tygodniu · {place}": "{goal}, {n}× por semana · {place}",
  "Wysiłek: zwykle {a}–{b} powtórzenia w zapasie (RIR); do upadku nie trzeba.": "Esforço: normalmente {a}–{b} repetições em reserva (RIR); não é preciso ir até à falha.",
- "Sesje w tygodniu (w tym {n} cardio)": "Sessões por semana (incl. {n} cardio)",
  "{v} (masa ciała {d})": "{v} (peso corporal {d})",
  "e1RM {v} (masa ciała {d}; seria {s})": "e1RM {v} (peso corporal {d}; série {s})",
  "Masa ciała ({u})": "Peso corporal ({u})",
@@ -1270,7 +1267,6 @@
  "Szablon w planie: {name}": "Modelo no plano: {name}",
  "Najwyżej {n} szablonów — każdy dostaje co najmniej jeden dzień.": "No máximo {n} modelos — cada um recebe pelo menos um dia.",
  "Dni treningowe w tygodniu": "Dias de treino por semana",
- "Dni treningowe w tygodniu: {n}": "Dias de treino por semana: {n}",
  "Dni co najmniej tyle, ile wybranych szablonów.": "Pelo menos tantos dias como modelos escolhidos.",
  "Wybierz co najmniej jeden szablon.": "Escolhe pelo menos um modelo.",
  "Dni: {n}, szablony: {k} — szablony powtarzają się po kolei: {seq}. Co tydzień od początku.": "Dias: {n}, modelos: {k} — os modelos repetem-se por ordem: {seq}. Cada semana recomeça.",
@@ -1324,5 +1320,8 @@
  "Wróć do edycji": "Voltar à edição",
  "Mapa mięśni i serie na partię z kreską {n} serii tygodniowo.": "Mapa muscular e séries por grupo muscular com uma linha nas {n} séries semanais.",
  "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.": "Progresso: resumo da semana e do mês com mapa muscular, marca de {n} séries por grupo muscular por semana e marcação de uma semana de deload.",
- "odpoczynek": "dia de descanso"
+ "odpoczynek": "dia de descanso",
+ "Dni treningowe w tygodniu (w tym {n} cardio)": "Dias de treino por semana (incl. {n} cardio)",
+ "Wybierz dni treningowe: od {a} do {b}.": "Escolhe os dias de treino: de {a} a {b}.",
+ "Wybierz dni treningowe: {n}.": "Escolhe os dias de treino: {n}."
 }

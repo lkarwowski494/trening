@@ -884,8 +884,6 @@
  "Masa": "Kas",
  "Redukcja": "Yağ yakımı",
  "Bez ograniczeń sprzętu": "Ekipman sınırı yok",
- "Sesje w tygodniu": "Haftalık seans",
- "Sesje w tygodniu: {n}": "Haftalık seans: {n}",
  "Czas sesji": "Seans süresi",
  "{n} min": "{n} dk",
  "Podgląd": "Önizleme",
@@ -1043,7 +1041,6 @@
  "Poniżej {n} serii tygodniowo: {list}. Pomoże więcej sesji, dłuższy czas albo więcej sprzętu w miejscu.": "Haftada {n} setin altında: {list}. Daha fazla seans, daha uzun seanslar veya yerde daha fazla ekipman yardımcı olur.",
  "{goal}, {n}× w tygodniu · {place}": "{goal}, haftada {n}× · {place}",
  "Wysiłek: zwykle {a}–{b} powtórzenia w zapasie (RIR); do upadku nie trzeba.": "Efor: genellikle yedekte {a}–{b} tekrar (RIR); tükenişe kadar gitmek gerekmez.",
- "Sesje w tygodniu (w tym {n} cardio)": "Haftalık seans ({n} kardiyo dahil)",
  "{v} (masa ciała {d})": "{v} (vücut ağırlığı {d})",
  "e1RM {v} (masa ciała {d}; seria {s})": "e1RM {v} (vücut ağırlığı {d}; set {s})",
  "Masa ciała ({u})": "Vücut ağırlığı ({u})",
@@ -1270,7 +1267,6 @@
  "Szablon w planie: {name}": "Plandaki şablon: {name}",
  "Najwyżej {n} szablonów — każdy dostaje co najmniej jeden dzień.": "En fazla {n} şablon — her biri en az bir gün alır.",
  "Dni treningowe w tygodniu": "Haftalık antrenman günü",
- "Dni treningowe w tygodniu: {n}": "Haftalık antrenman günü: {n}",
  "Dni co najmniej tyle, ile wybranych szablonów.": "Gün sayısı en az seçilen şablon sayısı kadar.",
  "Wybierz co najmniej jeden szablon.": "En az bir şablon seçin.",
  "Dni: {n}, szablony: {k} — szablony powtarzają się po kolei: {seq}. Co tydzień od początku.": "Gün: {n}, şablon: {k} — şablonlar sırayla tekrarlanır: {seq}. Her hafta baştan.",
@@ -1324,5 +1320,8 @@
  "Wróć do edycji": "Düzenlemeye dön",
  "Mapa mięśni i serie na partię z kreską {n} serii tygodniowo.": "Kas haritası ve kas grubu başına setler; haftada {n} set çizgisiyle.",
  "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.": "İlerleme: kas haritalı haftalık ve aylık özet, kas grubu başına haftada {n} set işareti ve bir haftayı deload olarak işaretleme.",
- "odpoczynek": "dinlenme günü"
+ "odpoczynek": "dinlenme günü",
+ "Dni treningowe w tygodniu (w tym {n} cardio)": "Haftalık antrenman günü ({n} kardiyo dahil)",
+ "Wybierz dni treningowe: od {a} do {b}.": "Antrenman günlerini seçin: {a} ile {b} arası.",
+ "Wybierz dni treningowe: {n}.": "Antrenman günlerini seçin: {n}."
 }

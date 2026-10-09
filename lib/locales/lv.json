@@ -884,8 +884,6 @@
  "Masa": "Muskuļu masa",
  "Redukcja": "Tauku dedzināšana",
  "Bez ograniczeń sprzętu": "Bez aprīkojuma ierobežojumiem",
- "Sesje w tygodniu": "Treniņi nedēļā",
- "Sesje w tygodniu: {n}": "Treniņi nedēļā: {n}",
  "Czas sesji": "Treniņa ilgums",
  "{n} min": "{n} min",
  "Podgląd": "Priekšskatījums",
@@ -1043,7 +1041,6 @@
  "Poniżej {n} serii tygodniowo: {list}. Pomoże więcej sesji, dłuższy czas albo więcej sprzętu w miejscu.": "Mazāk par {n} sērijām nedēļā: {list}. Palīdzēs vairāk treniņu, garāki treniņi vai vairāk aprīkojuma vietā.",
  "{goal}, {n}× w tygodniu · {place}": "{goal}, {n}× nedēļā · {place}",
  "Wysiłek: zwykle {a}–{b} powtórzenia w zapasie (RIR); do upadku nie trzeba.": "Piepūle: parasti {a}–{b} atkārtojumi rezervē (RIR); līdz izsīkumam nav jāiet.",
- "Sesje w tygodniu (w tym {n} cardio)": "Treniņi nedēļā (t. sk. {n} kardio)",
  "{v} (masa ciała {d})": "{v} (ķermeņa svars {d})",
  "e1RM {v} (masa ciała {d}; seria {s})": "e1RM {v} (ķermeņa svars {d}; sērija {s})",
  "Masa ciała ({u})": "Ķermeņa svars ({u})",
@@ -1270,7 +1267,6 @@
  "Szablon w planie: {name}": "Veidne plānā: {name}",
  "Najwyżej {n} szablonów — każdy dostaje co najmniej jeden dzień.": "Ne vairāk kā {n} veidnes — katra saņem vismaz vienu dienu.",
  "Dni treningowe w tygodniu": "Treniņu dienas nedēļā",
- "Dni treningowe w tygodniu: {n}": "Treniņu dienas nedēļā: {n}",
  "Dni co najmniej tyle, ile wybranych szablonów.": "Dienu vismaz tik, cik izvēlēto veidņu.",
  "Wybierz co najmniej jeden szablon.": "Izvēlies vismaz vienu veidni.",
  "Dni: {n}, szablony: {k} — szablony powtarzają się po kolei: {seq}. Co tydzień od początku.": "Dienas: {n}, veidnes: {k} — veidnes atkārtojas pēc kārtas: {seq}. Katru nedēļu no sākuma.",
@@ -1324,5 +1320,8 @@
  "Wróć do edycji": "Atgriezties pie rediģēšanas",
  "Mapa mięśni i serie na partię z kreską {n} serii tygodniowo.": "Muskuļu karte un sērijas uz muskuļu grupu ar līniju pie {n} sērijām nedēļā.",
  "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.": "Progress: nedēļas un mēneša kopsavilkums ar muskuļu karti, atzīme par {n} sērijām uz muskuļu grupu nedēļā un nedēļas atzīmēšana kā deload.",
- "odpoczynek": "atpūtas diena"
+ "odpoczynek": "atpūtas diena",
+ "Dni treningowe w tygodniu (w tym {n} cardio)": "Treniņu dienas nedēļā (t. sk. {n} kardio)",
+ "Wybierz dni treningowe: od {a} do {b}.": "Izvēlies treniņu dienas: no {a} līdz {b}.",
+ "Wybierz dni treningowe: {n}.": "Izvēlies treniņu dienas: {n}."
 }

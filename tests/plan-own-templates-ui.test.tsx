@@ -6,7 +6,7 @@
 import * as store from '@/lib/store';
 import * as plan from '@/lib/plan';
 import * as draft from '@/lib/draft';
-import { ownPlan } from '@/lib/generator';
+import { ownPlan, ownProposal } from '@/lib/generator';
 import { applyLang } from '@/lib/i18n';
 import { fresh, saved, withDemoTemplates } from './helpers';
 import { renderApp, flushAll, screen, tap, act, go } from './app';
@@ -25,6 +25,9 @@ const restart = async (url: string) => { await act(async () => { await store.flu
 const lastAlert = (title: string) => [...global.__alerts].reverse().find(x => x.title === title);
 const press = async (title: string, btn: string) => { const a = lastAlert(title)!; expect(a).toBeTruthy(); await act(async () => { a.buttons!.find(b => b.text === btn)!.onPress?.(); }); await flushAll(10); };
 const chip = (name: string) => screen.getByLabelText(`Szablon w planie: ${name}`);
+/** Wybór dni (09.10.2026 B, components/DayPicker): zaznaczone dni i ustawienie dokładnie `ds` (stuknięcia w różnicę). */
+const checkedDays = () => [0, 1, 2, 3, 4, 5, 6].filter(d => screen.getByTestId(`day-${d}`).props.accessibilityState.checked);
+const pickDays = async (ds: number[]) => { const cur = checkedDays(); for (let d = 0; d < 7; d++) if (cur.includes(d) !== ds.includes(d)) await tap(screen.getByTestId(`day-${d}`)); await flushAll(5); };
 
 describe('generator: dwa tryby i „Plan z moich szablonów”', () => {
   test('wybór trybu na ekranie generatora; ?mode=own otwiera od razu drugi tryb; tytuł ekranu', async () => {
@@ -40,11 +43,13 @@ describe('generator: dwa tryby i „Plan z moich szablonów”', () => {
   test('domyślnie wszystkie szablony z ćwiczeniami (pusty i z archiwum — nie); dni od liczby szablonów; podgląd zgodny z logiką; rotacja; ostrzeżenia; źródła', async () => {
     const t = await boot('/generator?mode=own', () => { const e = store.newTemplate(); e.name = 'Pusty'; store.save(e); });
     for (const x of t) expect(chip(x.name).props.accessibilityState.checked).toBe(true); expect(screen.queryByLabelText('Szablon w planie: Pusty')).toBeNull();
-    expect(screen.queryByLabelText('Dni treningowe w tygodniu: 3')).toBeNull(); expect(screen.getByLabelText('Dni treningowe w tygodniu: 4').props.accessibilityState.selected).toBe(true);
+    expect(checkedDays()).toEqual(ownProposal({ templateIds: t.map(x => x.id), sessions: 4 })); /* 4 szablony — propozycja na 4 dni */
+    await pickDays([0, 2, 4]); expect(screen.getByText('Wybierz dni treningowe: od 4 do 6.')).toBeTruthy(); expect(screen.queryByText('Zapisz plan')).toBeNull(); expect(screen.queryByText('Podgląd')).toBeNull();
     expect(screen.getByText('Dni co najmniej tyle, ile wybranych szablonów.')).toBeTruthy();
     /* zostaw Upper A i Legs — siłownia, 3 dni → A, L, A */
     await tap(chip(t[1].name)); await tap(chip(t[3].name)); await flushAll(5);
-    expect(screen.getByLabelText('Dni treningowe w tygodniu: 2')).toBeTruthy(); expect(screen.getByLabelText('Dni treningowe w tygodniu: 3').props.accessibilityState.selected).toBe(true);
+    expect(checkedDays()).toEqual([0, 2, 4]); expect(screen.queryByText(/^Wybierz dni treningowe/)).toBeNull(); /* 2 szablony — 3 dni w zakresie, wybór zostaje */
+    await pickDays(ownProposal({ templateIds: [t[0].id, t[2].id], sessions: 3 }));
     const r = ownPlan({ templateIds: [t[0].id, t[2].id], sessions: 3 })!;
     const wd = (i: number) => new Date(2024, 0, 1 + i).toLocaleDateString('pl-PL', { weekday: 'short' });
     expect(screen.getByText(r.days.map((id, i) => (id ? `${wd(i)} ${S().templates.find(x => x.id === id)!.name}` : null)).filter(Boolean).join(' · '))).toBeTruthy();
@@ -65,7 +70,7 @@ describe('generator: dwa tryby i „Plan z moich szablonów”', () => {
     const names = S().templates.map(x => x.name); for (const n of names) expect(chip(n).props.accessibilityState.checked).toBe(false); /* > 6 — bez domyślnego wyboru */
     for (const n of names) await tap(chip(n)); await flushAll(5);
     expect(names.filter(n => chip(n).props.accessibilityState.checked).length).toBe(6); expect(chip(names[6]).props.accessibilityState.checked).toBe(false);
-    expect(screen.getByLabelText('Dni treningowe w tygodniu: 6').props.accessibilityState.selected).toBe(true); void t;
+    expect(checkedDays()).toHaveLength(6); void t; /* wybór dni: zaznaczonych mniej niż szablonów → propozycja na tyle dni, ile szablonów */
   });
   test('bez szablonów z ćwiczeniami: komunikat i „+ Nowy szablon” (edycja nowego szablonu)', async () => {
     await boot('/generator?mode=own', () => {}, { demo: false });
@@ -75,7 +80,7 @@ describe('generator: dwa tryby i „Plan z moich szablonów”', () => {
   test('zapis: pytanie jak w generatorze (activationNote); „Anuluj” nic nie zapisuje; „Tylko zapisz” → „Inne plany”; „Ustaw jako aktywny” → plan aktywny, „Plan tygodnia”; szablony bez zmian; po restarcie to samo', async () => {
     const t = await boot('/generator?mode=own', ids => { plan.setWeekDay(0, ids[1]); });
     const snap = JSON.stringify(S().templates);
-    await tap(chip(t[1].name)); await tap(chip(t[3].name)); await flushAll(5);
+    await tap(chip(t[1].name)); await tap(chip(t[3].name)); await flushAll(5); await pickDays(ownProposal({ templateIds: [t[0].id, t[2].id], sessions: 3 }));
     await tap(screen.getByText('Zapisz plan')); await flushAll(5);
     expect(lastAlert('Ustawić nowy plan jako aktywny?')!.msg).toBe('Szablony zostają bez zmian. Plan trafi do „Inne plany” albo od razu jako aktywny.\n\nObecny plan zostanie w „Inne plany” — wrócisz do niego jednym przyciskiem.');
     await press('Ustawić nowy plan jako aktywny?', 'Anuluj'); expect(plan.savedPlans()).toEqual([]);
@@ -115,7 +120,7 @@ describe('wejścia: edytor planu i „Pierwsze kroki”', () => {
 describe('scenariusz (polecenie koordynatora 09.10.2026): plan A/B/A/B z „Plan z moich szablonów” i jednorazowe zmiany dni', () => {
   test('ABAB → jednorazowo B→A tylko w jednej dacie (stały plan zostaje ABAB) → „Przywróć z planu” → „Przesuń plan o 1 dzień” → restart → nowy plan z moich szablonów pyta o zmiany dni i ich nie gubi', async () => {
     const t = await boot('/generator?mode=own'); const A = t[0], B = t[2];
-    await tap(chip(t[1].name)); await tap(chip(t[3].name)); await flushAll(5); await tap(screen.getByLabelText('Dni treningowe w tygodniu: 4')); await flushAll(5);
+    await tap(chip(t[1].name)); await tap(chip(t[3].name)); await flushAll(5); await pickDays([0, 1, 3, 5]);
     await tap(screen.getByText('Zapisz plan')); await flushAll(5); await press('Ustawić nowy plan jako aktywny?', 'Ustaw jako aktywny');
     const abab = plan.weekPlanDays(); expect(abab.filter(Boolean)).toEqual([A.id, B.id, A.id, B.id]); /* pon A, wt B, czw A, sob B */
     expect(abab).toEqual([A.id, B.id, null, A.id, null, B.id, null]);

@@ -25,7 +25,9 @@ import { loadCapWarning } from './loadcap';
  * Wszystkie liczby generatora są tu (stałe) — teksty ekranu dostają je jako parametry (audyt 0.10 LOG-11, TST-10).
  */
 export type Goal = 'strength' | 'hypertrophy' | 'cut';
-export type GenInput = { goal: Goal; locationId: string | null; sessions: number; minutes: number };
+/** `days` (wybór dni, decyzja właściciela 09.10.2026 wieczór, wariant B): dni tygodnia (pon = 0) wybrane przez użytkownika — gdy ich liczba jest
+ * dozwolona dla celu (GEN_SESSIONS), generator używa dokładnie tych dni i ich liczby jako liczby sesji (`sessions` pomijane); inaczej — jak bez `days`. */
+export type GenInput = { goal: Goal; locationId: string | null; sessions: number; minutes: number; days?: number[] };
 export const GEN_SESSIONS: Record<Goal, number[]> = { strength: [2, 3, 4, 5, 6], hypertrophy: [2, 3, 4, 5, 6], cut: [3, 4, 5, 6] };
 export const GEN_MINUTES = [45, 60, 90];
 export const WARMUP_MIN = 10;
@@ -77,11 +79,32 @@ const shares = (a: ReadonlySet<string>, b: ReadonlySet<string>) => [...a].some(m
  * n dni w tygodniu (kolejność sesji bez zmian) wybiera ten z najmniejszą liczbą par dzień po dniu ze wspólną partią główną; dalej — mniej dni
  * treningowych pod rząd, bez niedzieli, najmniej zmian względem układu domyślnego; przy pełnym remisie zostaje układ domyślny.
  */
+/** Koszt układu dni (wspólny dla bestDays i assignDays): [pary dzień po dniu ze wspólną partią główną, dni pod rząd, niedziela, zmiany względem `def`]. */
+const dayCost = (prims: readonly ReadonlySet<string>[], ds: readonly number[], def: readonly number[]) => { let same = 0, near = 0; ds.forEach((d, i) => { const j = ds.indexOf((d + 1) % 7); if (j < 0) return; near++; if (shares(prims[i], prims[j])) same++; }); return [same, near, ds.includes(6) ? 1 : 0, ds.filter(d => !def.includes(d)).length]; };
+const less = (a: number[], b: number[]) => { for (let i = 0; i < a.length; i++) if (a[i] !== b[i]) return a[i] < b[i]; return false; };
 export function bestDays(prims: ReadonlySet<string>[], def: number[]): number[] {
-  const cost = (ds: number[]) => { let same = 0, near = 0; ds.forEach((d, i) => { const j = ds.indexOf((d + 1) % 7); if (j < 0) return; near++; if (shares(prims[i], prims[j])) same++; }); return [same, near, ds.includes(6) ? 1 : 0, ds.filter(d => !def.includes(d)).length]; };
-  const less = (a: number[], b: number[]) => { for (let i = 0; i < a.length; i++) if (a[i] !== b[i]) return a[i] < b[i]; return false; };
+  const cost = (ds: number[]) => dayCost(prims, ds, def);
   let best = def; let bc = cost(def);
   for (let mask = 0; mask < 1 << 7; mask++) { const ds = [0, 1, 2, 3, 4, 5, 6].filter(d => (mask >> d) & 1); if (ds.length !== prims.length) continue; const c = cost(ds); if (less(c, bc)) { best = ds; bc = c; } }
+  return best;
+}
+
+/** Dni wybrane przez użytkownika (wybór dni, 09.10.2026 B): bez powtórzeń, tylko 0–6, rosnąco; null — liczba spoza `allowed` (wtedy bez wyboru dni). */
+export function pickDays(days: readonly number[] | undefined, allowed: readonly number[]): number[] | null {
+  if (!days) return null; const ds = [...new Set(days.filter(d => Number.isInteger(d) && d >= 0 && d <= 6))].sort((a, b) => a - b);
+  return allowed.includes(ds.length) ? ds : null;
+}
+/**
+ * Przydział sesji do wybranych dni (wybór dni, 09.10.2026 B): kolejność sesji (indeksy `prims`) na kolejne dni `days` z najmniejszą liczbą par dzień
+ * po dniu ze wspólną partią główną (ten sam koszt co bestDays — pozostałe składniki są stałe przy stałych dniach). Najpierw obroty kolejności splitu
+ * (od bez zmian), potem pozostałe permutacje; przy remisie zostaje pierwsza — kolejność A/B/A… zmienia się tylko wtedy, gdy ubywa par.
+ */
+export function assignDays(prims: readonly ReadonlySet<string>[], days: readonly number[]): number[] {
+  const n = prims.length; const cost = (o: number[]) => dayCost(o.map(i => prims[i]), days, days);
+  const perms: number[][] = []; const rec = (pre: number[]) => { if (pre.length === n) { perms.push(pre); return; } for (let i = 0; i < n; i++) if (!pre.includes(i)) rec([...pre, i]); }; rec([]);
+  const rots = Array.from({ length: n }, (_, r) => Array.from({ length: n }, (_, i) => (i + r) % n)); const key = (o: number[]) => o.join(',');
+  const seen = new Set(rots.map(key)); let best = rots[0] ?? []; let bc = cost(best);
+  for (const o of [...rots, ...perms.filter(p => !seen.has(key(p)))]) { const c = cost(o); if (less(c, bc)) { best = o; bc = c; } }
   return best;
 }
 
@@ -182,7 +205,8 @@ export function generate(inp: GenInput): GenResult {
   const home = !pl.full.some(e => e.loadSource && GYM_SOURCES.has(e.loadSource) && loaded(e)); const unloaded = !spare.some(loaded);
   /* MER-01: siła bez obciążenia zewnętrznego = plan jak masa w domu (te same przerwy, więc i budżet serii) */
   const restGoal: Goal = inp.goal === 'strength' && unloaded ? 'hypertrophy' : inp.goal; const budget = setsBudget(restGoal, inp.minutes);
-  const { keys, days: defDays } = splitFor(inp.goal, inp.sessions); const order = [...new Set(keys)];
+  const picked = pickDays(inp.days, GEN_SESSIONS[inp.goal]);
+  const { keys, days: defDays } = splitFor(inp.goal, picked ? picked.length : inp.sessions); const order = [...new Set(keys)];
   const scheme = (e: Exercise, first: boolean): Omit<GenItem, 'exerciseId'> => {
     const rest = e.pattern === 'isolation' || core(e) ? REST.iso : REST.multi;
     if (restGoal === 'strength') return first && loaded(e) ? { sets: SETS_PER_EX, repMin: REPS.heavy[0], repMax: REPS.heavy[1], restSec: REST.heavy } : { sets: SETS_PER_EX, repMin: REPS.strength[0], repMax: REPS.strength[1], restSec: rest };
@@ -206,14 +230,24 @@ export function generate(inp: GenInput): GenResult {
   const lifted = (ti: number) => templates[ti].items.filter(it => !it.targetSec);
   const primOf = (ti: number | null) => new Set(ti == null ? [] : lifted(ti).flatMap(it => exOf(it.exerciseId).muscles));
   /* LOG-10: dni siłowe z najmniejszą liczbą par dzień po dniu; cardio (redukcja) — pierwszy wolny dzień z CARDIO_DAY_PREF */
-  const sKeys = keys.filter(k => k !== 'cardio'); const sDays = bestDays(sKeys.map(k => primOf(order.indexOf(k))), defDays.slice(0, sKeys.length));
-  const dayIdx = [...sDays]; keys.slice(sKeys.length).forEach(() => dayIdx.push(CARDIO_DAY_PREF.find(d => !dayIdx.includes(d))!));
-  const days: (number | null)[] = Array(7).fill(null); keys.forEach((k, i) => { days[dayIdx[i]] = order.indexOf(k); });
+  const days: (number | null)[] = Array(7).fill(null);
+  if (picked) { /* wybór dni (09.10.2026 B): dokładnie wybrane dni, sesje (z cardio) przydzielone z najmniejszą liczbą par — assignDays */
+    const o = assignDays(keys.map(k => primOf(order.indexOf(k))), picked); picked.forEach((d, i) => { days[d] = order.indexOf(keys[o[i]]); });
+  } else {
+    const sKeys = keys.filter(k => k !== 'cardio'); const sDays = bestDays(sKeys.map(k => primOf(order.indexOf(k))), defDays.slice(0, sKeys.length));
+    const dayIdx = [...sDays]; keys.slice(sKeys.length).forEach(() => dayIdx.push(CARDIO_DAY_PREF.find(d => !dayIdx.includes(d))!));
+    keys.forEach((k, i) => { days[dayIdx[i]] = order.indexOf(k); });
+  }
   const { weeklySets, freq, below10: low, missing, rare, backToBack } = weekLoad(days.map(ti => (ti == null ? null : lifted(ti))), exOf);
   const below10 = inp.goal === 'strength' ? [] : low;
   const cardioMin = templates.filter(x => x.key === 'cardio').reduce((s, x) => s + x.items.reduce((a, it) => a + (it.targetSec ?? 0) / 60, 0) * days.filter(ti => ti === templates.indexOf(x)).length, 0);
   return { templates, days, weeklySets, below10, backToBack, cardioMin, budget, home, avgRest: AVG_REST[restGoal], unloaded, freq, missing, rare, helps: helpFor(missing, loc) };
 }
+
+/** Liczba sesji wejścia: liczba wybranych dni, gdy wybór jest dozwolony (pickDays), inaczej `sessions`. */
+export const genCount = (inp: GenInput) => pickDays(inp.days, GEN_SESSIONS[inp.goal])?.length ?? inp.sessions;
+/** Dni treningowe (pon = 0) z układu generatora bez wyboru dni — wstępnie zaznaczona propozycja na ekranie (wybór dni, 09.10.2026 B). */
+export const genProposal = (inp: GenInput): number[] => generate({ ...inp, days: undefined }).days.flatMap((ti, d) => (ti == null ? [] : [d]));
 
 const wd = (i: number) => new Date(2024, 0, 1 + i).toLocaleDateString(locale(), { weekday: 'short' }); /* 1.01.2024 = poniedziałek */
 const list = (ms: string[]) => ms.map(m => t(m)).join(', ');
@@ -244,7 +278,7 @@ export const PLAN_NAME_MAX = 40;
 /** Nazwa planu z generatora (UX-10): cel, sesje i miejsce (bez miejsca — „Pełna siłownia”); w języku z chwili zapisu (potem to dane użytkownika).
  * Za długa nazwa skraca miejsce z „…” zamiast ucinać całość w środku słowa. */
 export function genPlanName(inp: GenInput): string {
-  const name = (place: string) => t('{goal}, {n}× w tygodniu · {place}', { goal: goalLabel(inp.goal), n: inp.sessions, place });
+  const name = (place: string) => t('{goal}, {n}× w tygodniu · {place}', { goal: goalLabel(inp.goal), n: genCount(inp), place });
   const place = Array.from(locById(inp.locationId)?.name ?? lbl(LOCATION_PRESET_LABEL.gym)); let out = name(place.join(''));
   for (let k = place.length - 1; out.length > PLAN_NAME_MAX && k > 0; k--) out = name(place.slice(0, k).join('').trimEnd() + '…');
   return out;
@@ -309,6 +343,7 @@ export function saveGenerated(r: GenResult, inp: GenInput, activate: boolean, re
  * - dni tygodnia: bestDays — układ domyślny generatora dla n dni, a spośród wszystkich układów ten z najmniejszą liczbą par dzień po dniu ze wspólną
  *   partią główną (docs/research/23, „Reguły dla aplikacji” 1: „Domyślnie co najmniej 1 dzień przerwy (≈ 48 h) między sesjami z tymi samymi głównymi
  *   partiami” — uproszczenie; reguła 2: dwa dni pod rząd — „ostrzeżenie, nie blokada”);
+ *   z wyborem dni (09.10.2026 B) — dokładnie wybrane dni, szablony przydzielone przez assignDays (ten sam koszt par);
  * - ostrzeżenia (weekLoad + loadWarnings): partia < MIN_DAYS dni (R1: WHO 2020 7a „all major muscle groups on 2 or more days a week”; ACSM 2026 7b
  *   „Frequency: ≥2 sessions/wk”), pomocnicza = SECONDARY_SHARE (Pelland 2026 7c, jedno źródło), < WEEKLY_SETS_MARK serii (R2: dolny próg 10 —
  *   ACSM, Schoenfeld 2017, Baz-Valle 2022 — docs/research/22 sekcja 3), brak ćwiczeń na partię, pary dzień po dniu;
@@ -320,7 +355,8 @@ export function saveGenerated(r: GenResult, inp: GenInput, activate: boolean, re
 export const OWN_SESSIONS = GEN_SESSIONS.hypertrophy;
 /** Najwięcej wybranych szablonów: każdy musi dostać co najmniej jeden dzień, więc tyle, ile najwięcej dni. */
 export const OWN_MAX = Math.max(...OWN_SESSIONS);
-export type OwnInput = { templateIds: string[]; sessions: number };
+/** `days` — wybrane dni (pon = 0, wybór dni 09.10.2026 B): gdy ich liczba jest dozwolona (ownSessionsFor), plan ma dokładnie te dni, a `sessions` jest pomijane. */
+export type OwnInput = { templateIds: string[]; sessions: number; days?: number[] };
 export type OwnResult = {
   /** szablon każdej sesji po kolei (rotacja) */ seq: string[]; /** pon…nd: id szablonu albo null */ days: (string | null)[]; sessions: number;
   weeklySets: Record<string, number>; freq: Record<string, number>; below10: string[]; missing: string[]; rare: string[]; backToBack: [number, number][];
@@ -334,16 +370,21 @@ export const ownSessionsFor = (k: number) => OWN_SESSIONS.filter(n => n >= k);
 export function ownPlan(inp: OwnInput): OwnResult | null {
   const ok = new Set(ownTemplates().map(x => x.id)); const ids = [...new Set(inp.templateIds)].filter(id => ok.has(id));
   if (!ids.length || ids.length > OWN_MAX) return null;
-  const allowed = ownSessionsFor(ids.length); const n = allowed.find(x => x >= inp.sessions) ?? allowed[allowed.length - 1];
-  const seq = Array.from({ length: n }, (_, i) => ids[i % ids.length]);
+  const allowed = ownSessionsFor(ids.length); const picked = pickDays(inp.days, allowed);
+  const n = picked ? picked.length : allowed.find(x => x >= inp.sessions) ?? allowed[allowed.length - 1];
+  let seq = Array.from({ length: n }, (_, i) => ids[i % ids.length]);
   const tpl = (id: string) => getState().templates.find(x => x.id === id)!;
   const items = (id: string) => tpl(id).items.filter(it => exById(it.exerciseId)?.pattern !== 'cardio').map(it => ({ exerciseId: it.exerciseId, sets: workCount(tplRows(it).map(r => r.kind)) }));
   const exOf = (id: string) => exById(id);
   const prims = seq.map(id => new Set(items(id).flatMap(it => exOf(it.exerciseId)?.muscles ?? [])));
-  const dayIdx = bestDays(prims, STRENGTH_DAYS[n]);
+  let dayIdx: number[];
+  if (picked) { const o = assignDays(prims, picked); seq = o.map(i => seq[i]); dayIdx = picked; } /* wybór dni: seq w kolejności tygodnia */
+  else dayIdx = bestDays(prims, STRENGTH_DAYS[n]);
   const days: (string | null)[] = Array(7).fill(null); seq.forEach((id, i) => { days[dayIdx[i]] = id; });
   return { seq, days, sessions: n, ...weekLoad(days.map(id => (id ? items(id) : null)), exOf) };
 }
+/** Dni (pon = 0) z rozkładu bez wyboru dni — wstępnie zaznaczona propozycja (wybór dni, 09.10.2026 B); [] — nic do rozłożenia. */
+export const ownProposal = (inp: OwnInput): number[] => (ownPlan({ ...inp, days: undefined })?.days ?? []).flatMap((id, d) => (id ? [d] : []));
 /** Ostrzeżenia podglądu planu z własnych szablonów — te same co w generatorze (bez podpowiedzi sprzętu: plan nie dobiera ćwiczeń). */
 export const ownWarnings = (r: OwnResult): GenWarning[] => loadWarnings({ ...r, helps: [] }, true);
 /** Ile razy w tygodniu każdy wybrany szablon (podgląd rotacji). */

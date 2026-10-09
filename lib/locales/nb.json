@@ -884,8 +884,6 @@
  "Masa": "Muskelmasse",
  "Redukcja": "Fettap",
  "Bez ograniczeń sprzętu": "Ingen begrensning av utstyr",
- "Sesje w tygodniu": "Økter per uke",
- "Sesje w tygodniu: {n}": "Økter per uke: {n}",
  "Czas sesji": "Øktens lengde",
  "{n} min": "{n} min",
  "Podgląd": "Forhåndsvisning",
@@ -1043,7 +1041,6 @@
  "Poniżej {n} serii tygodniowo: {list}. Pomoże więcej sesji, dłuższy czas albo więcej sprzętu w miejscu.": "Under {n} sett per uke: {list}. Flere økter, lengre økter eller mer utstyr på stedet hjelper.",
  "{goal}, {n}× w tygodniu · {place}": "{goal}, {n}× per uke · {place}",
  "Wysiłek: zwykle {a}–{b} powtórzenia w zapasie (RIR); do upadku nie trzeba.": "Anstrengelse: vanligvis {a}–{b} repetisjoner i reserve (RIR); trening til utmattelse er ikke nødvendig.",
- "Sesje w tygodniu (w tym {n} cardio)": "Økter per uke (inkl. {n} kondisjon)",
  "{v} (masa ciała {d})": "{v} (kroppsvekt {d})",
  "e1RM {v} (masa ciała {d}; seria {s})": "e1RM {v} (kroppsvekt {d}; sett {s})",
  "Masa ciała ({u})": "Kroppsvekt ({u})",
@@ -1270,7 +1267,6 @@
  "Szablon w planie: {name}": "Mal i planen: {name}",
  "Najwyżej {n} szablonów — każdy dostaje co najmniej jeden dzień.": "Høyst {n} maler — hver får minst én dag.",
  "Dni treningowe w tygodniu": "Treningsdager per uke",
- "Dni treningowe w tygodniu: {n}": "Treningsdager per uke: {n}",
  "Dni co najmniej tyle, ile wybranych szablonów.": "Minst like mange dager som valgte maler.",
  "Wybierz co najmniej jeden szablon.": "Velg minst én mal.",
  "Dni: {n}, szablony: {k} — szablony powtarzają się po kolei: {seq}. Co tydzień od początku.": "Dager: {n}, maler: {k} — malene gjentas i rekkefølge: {seq}. Hver uke fra begynnelsen.",
@@ -1324,5 +1320,8 @@
  "Wróć do edycji": "Fortsett redigeringen",
  "Mapa mięśni i serie na partię z kreską {n} serii tygodniowo.": "Muskelkart og sett per muskelgruppe med en linje ved {n} sett per uke.",
  "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.": "Fremgang: uke- og månedsoversikt med muskelkart, markering for {n} sett per muskelgruppe per uke og markering av en deload-uke.",
- "odpoczynek": "hviledag"
+ "odpoczynek": "hviledag",
+ "Dni treningowe w tygodniu (w tym {n} cardio)": "Treningsdager per uke (inkl. {n} kondisjon)",
+ "Wybierz dni treningowe: od {a} do {b}.": "Velg treningsdager: fra {a} til {b}.",
+ "Wybierz dni treningowe: {n}.": "Velg treningsdager: {n}."
 }

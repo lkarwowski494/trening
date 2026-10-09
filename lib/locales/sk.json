@@ -884,8 +884,6 @@
  "Masa": "Svaly",
  "Redukcja": "Redukcia",
  "Bez ograniczeń sprzętu": "Bez obmedzenia vybavenia",
- "Sesje w tygodniu": "Tréningy týždenne",
- "Sesje w tygodniu: {n}": "Tréningy týždenne: {n}",
  "Czas sesji": "Dĺžka tréningu",
  "{n} min": "{n} min",
  "Podgląd": "Náhľad",
@@ -1043,7 +1041,6 @@
  "Poniżej {n} serii tygodniowo: {list}. Pomoże więcej sesji, dłuższy czas albo więcej sprzętu w miejscu.": "Pod {n} sérií týždenne: {list}. Pomôže viac tréningov, dlhšie tréningy alebo viac vybavenia na mieste.",
  "{goal}, {n}× w tygodniu · {place}": "{goal}, {n}× týždenne · {place}",
  "Wysiłek: zwykle {a}–{b} powtórzenia w zapasie (RIR); do upadku nie trzeba.": "Úsilie: zvyčajne {a}–{b} opakovania v rezerve (RIR); do zlyhania netreba.",
- "Sesje w tygodniu (w tym {n} cardio)": "Tréningy týždenne (vr. {n} kardia)",
  "{v} (masa ciała {d})": "{v} (telesná hmotnosť {d})",
  "e1RM {v} (masa ciała {d}; seria {s})": "e1RM {v} (telesná hmotnosť {d}; séria {s})",
  "Masa ciała ({u})": "Telesná hmotnosť ({u})",
@@ -1270,7 +1267,6 @@
  "Szablon w planie: {name}": "Šablóna v pláne: {name}",
  "Najwyżej {n} szablonów — każdy dostaje co najmniej jeden dzień.": "Najviac {n} šablón — každá dostane aspoň jeden deň.",
  "Dni treningowe w tygodniu": "Tréningové dni v týždni",
- "Dni treningowe w tygodniu: {n}": "Tréningové dni v týždni: {n}",
  "Dni co najmniej tyle, ile wybranych szablonów.": "Dní aspoň toľko, koľko je vybraných šablón.",
  "Wybierz co najmniej jeden szablon.": "Vyber aspoň jednu šablónu.",
  "Dni: {n}, szablony: {k} — szablony powtarzają się po kolei: {seq}. Co tydzień od początku.": "Dni: {n}, šablóny: {k} — šablóny sa opakujú postupne: {seq}. Každý týždeň od začiatku.",
@@ -1324,5 +1320,8 @@
  "Wróć do edycji": "Späť k úpravám",
  "Mapa mięśni i serie na partię z kreską {n} serii tygodniowo.": "Mapa svalov a série na partiu s čiarou pri {n} sériách týždenne.",
  "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.": "Pokrok: súhrn týždňa a mesiaca s mapou svalov, značka {n} sérií na partiu za týždeň a označenie týždňa ako deload.",
- "odpoczynek": "deň odpočinku"
+ "odpoczynek": "deň odpočinku",
+ "Dni treningowe w tygodniu (w tym {n} cardio)": "Tréningové dni v týždni (vr. {n} kardia)",
+ "Wybierz dni treningowe: od {a} do {b}.": "Vyber tréningové dni: od {a} do {b}.",
+ "Wybierz dni treningowe: {n}.": "Vyber tréningové dni: {n}."
 }

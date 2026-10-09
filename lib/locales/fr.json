@@ -884,8 +884,6 @@
  "Masa": "Masse",
  "Redukcja": "Sèche",
  "Bez ograniczeń sprzętu": "Sans limite d’équipement",
- "Sesje w tygodniu": "Séances par semaine",
- "Sesje w tygodniu: {n}": "Séances par semaine : {n}",
  "Czas sesji": "Durée de séance",
  "{n} min": "{n} min",
  "Podgląd": "Aperçu",
@@ -1043,7 +1041,6 @@
  "Poniżej {n} serii tygodniowo: {list}. Pomoże więcej sesji, dłuższy czas albo więcej sprzętu w miejscu.": "Moins de {n} séries par semaine : {list}. Plus de séances, des séances plus longues ou plus d’équipement à cet endroit aideront.",
  "{goal}, {n}× w tygodniu · {place}": "{goal}, {n}× par semaine · {place}",
  "Wysiłek: zwykle {a}–{b} powtórzenia w zapasie (RIR); do upadku nie trzeba.": "Effort : en général {a}–{b} répétitions en réserve (RIR) ; aller jusqu’à l’échec n’est pas nécessaire.",
- "Sesje w tygodniu (w tym {n} cardio)": "Séances par semaine (dont {n} cardio)",
  "{v} (masa ciała {d})": "{v} (poids de corps {d})",
  "e1RM {v} (masa ciała {d}; seria {s})": "e1RM {v} (poids de corps {d} ; série {s})",
  "Masa ciała ({u})": "Poids de corps ({u})",
@@ -1270,7 +1267,6 @@
  "Szablon w planie: {name}": "Modèle dans le programme : {name}",
  "Najwyżej {n} szablonów — każdy dostaje co najmniej jeden dzień.": "Au plus {n} modèles — chacun reçoit au moins un jour.",
  "Dni treningowe w tygodniu": "Jours d’entraînement par semaine",
- "Dni treningowe w tygodniu: {n}": "Jours d’entraînement par semaine : {n}",
  "Dni co najmniej tyle, ile wybranych szablonów.": "Au moins autant de jours que de modèles choisis.",
  "Wybierz co najmniej jeden szablon.": "Choisissez au moins un modèle.",
  "Dni: {n}, szablony: {k} — szablony powtarzają się po kolei: {seq}. Co tydzień od początku.": "Jours : {n}, modèles : {k} — les modèles se répètent dans l’ordre : {seq}. Chaque semaine recommence au début.",
@@ -1324,5 +1320,8 @@
  "Wróć do edycji": "Reprendre la modification",
  "Mapa mięśni i serie na partię z kreską {n} serii tygodniowo.": "Carte musculaire et séries par groupe musculaire avec un repère à {n} séries par semaine.",
  "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.": "Progrès : bilan de la semaine et du mois avec carte musculaire, repère de {n} séries par groupe musculaire et par semaine, et marquage d’une semaine de décharge.",
- "odpoczynek": "jour de repos"
+ "odpoczynek": "jour de repos",
+ "Dni treningowe w tygodniu (w tym {n} cardio)": "Jours d’entraînement par semaine (dont {n} cardio)",
+ "Wybierz dni treningowe: od {a} do {b}.": "Choisissez les jours d’entraînement : de {a} à {b}.",
+ "Wybierz dni treningowe: {n}.": "Choisissez les jours d’entraînement : {n}."
 }

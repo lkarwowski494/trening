@@ -884,8 +884,6 @@
  "Masa": "Izomtömeg",
  "Redukcja": "Zsírvesztés",
  "Bez ograniczeń sprzętu": "Nincs eszközkorlát",
- "Sesje w tygodniu": "Heti edzések",
- "Sesje w tygodniu: {n}": "Heti edzések: {n}",
  "Czas sesji": "Edzés hossza",
  "{n} min": "{n} perc",
  "Podgląd": "Előnézet",
@@ -1043,7 +1041,6 @@
  "Poniżej {n} serii tygodniowo: {list}. Pomoże więcej sesji, dłuższy czas albo więcej sprzętu w miejscu.": "Heti {n} sorozat alatt: {list}. Több edzés, hosszabb edzések vagy több eszköz a helyen segít.",
  "{goal}, {n}× w tygodniu · {place}": "{goal}, heti {n}× · {place}",
  "Wysiłek: zwykle {a}–{b} powtórzenia w zapasie (RIR); do upadku nie trzeba.": "Erőfeszítés: általában {a}–{b} ismétlés tartalékban (RIR); kifáradásig nem szükséges.",
- "Sesje w tygodniu (w tym {n} cardio)": "Heti edzések (benne {n} kardió)",
  "{v} (masa ciała {d})": "{v} (testsúly {d})",
  "e1RM {v} (masa ciała {d}; seria {s})": "e1RM {v} (testsúly {d}; sorozat: {s})",
  "Masa ciała ({u})": "Testsúly ({u})",
@@ -1270,7 +1267,6 @@
  "Szablon w planie: {name}": "Sablon a tervben: {name}",
  "Najwyżej {n} szablonów — każdy dostaje co najmniej jeden dzień.": "Legfeljebb {n} sablon — mindegyik legalább egy napot kap.",
  "Dni treningowe w tygodniu": "Edzésnapok hetente",
- "Dni treningowe w tygodniu: {n}": "Edzésnapok hetente: {n}",
  "Dni co najmniej tyle, ile wybranych szablonów.": "Legalább annyi nap, ahány sablont kiválasztottál.",
  "Wybierz co najmniej jeden szablon.": "Válassz legalább egy sablont.",
  "Dni: {n}, szablony: {k} — szablony powtarzają się po kolei: {seq}. Co tydzień od początku.": "Napok: {n}, sablonok: {k} — a sablonok sorban ismétlődnek: {seq}. Minden héten elölről.",
@@ -1324,5 +1320,8 @@
  "Wróć do edycji": "Szerkesztés folytatása",
  "Mapa mięśni i serie na partię z kreską {n} serii tygodniowo.": "Izomtérkép és sorozatok izomcsoportonként, vonallal heti {n} sorozatnál.",
  "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.": "Fejlődés: heti és havi összesítő izomtérképpel, izomcsoportonként heti {n} sorozat jelölése és egy hét deload hétként jelölése.",
- "odpoczynek": "pihenőnap"
+ "odpoczynek": "pihenőnap",
+ "Dni treningowe w tygodniu (w tym {n} cardio)": "Edzésnapok hetente (benne {n} kardió)",
+ "Wybierz dni treningowe: od {a} do {b}.": "Válassz edzésnapokat: {a}–{b}.",
+ "Wybierz dni treningowe: {n}.": "Válassz edzésnapokat: {n}."
 }

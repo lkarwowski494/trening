@@ -32,6 +32,8 @@ export const shiftMonth = (y: number, m: number, delta: number) => { const x = n
 
 /** Skróty dni tygodnia od poniedziałku w języku aplikacji (Intl). 2024-01-01 to poniedziałek. */
 export const weekdayLabels = (): string[] => Array.from({ length: 7 }, (_, i) => new Date(2024, 0, 1 + i).toLocaleDateString(locale(), { weekday: 'short' }));
+/** Pełne nazwy dni tygodnia od poniedziałku w języku aplikacji (Intl) — etykiety VoiceOver przycisków dni (components/DayPicker). */
+export const weekdayNames = (): string[] => Array.from({ length: 7 }, (_, i) => new Date(2024, 0, 1 + i).toLocaleDateString(locale(), { weekday: 'long' }));
 /** Tytuł miesiąca, np. „październik 2026”. */
 export const monthTitle = (y: number, m: number) => new Date(y, m, 1).toLocaleDateString(locale(), { month: 'long', year: 'numeric' });
 /** Pełna data dnia dla VoiceOver, np. „7 października 2026”. */

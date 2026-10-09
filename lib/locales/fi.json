@@ -884,8 +884,6 @@
  "Masa": "Lihasmassa",
  "Redukcja": "Rasvanpoltto",
  "Bez ograniczeń sprzętu": "Ei välinerajoituksia",
- "Sesje w tygodniu": "Treenejä viikossa",
- "Sesje w tygodniu: {n}": "Treenejä viikossa: {n}",
  "Czas sesji": "Treenin kesto",
  "{n} min": "{n} min",
  "Podgląd": "Esikatselu",
@@ -1043,7 +1041,6 @@
  "Poniżej {n} serii tygodniowo: {list}. Pomoże więcej sesji, dłuższy czas albo więcej sprzętu w miejscu.": "Alle {n} sarjaa viikossa: {list}. Auttaa, kun treenejä on enemmän, ne ovat pidempiä tai paikassa on enemmän välineitä.",
  "{goal}, {n}× w tygodniu · {place}": "{goal}, {n}× viikossa · {place}",
  "Wysiłek: zwykle {a}–{b} powtórzenia w zapasie (RIR); do upadku nie trzeba.": "Kuormitus: yleensä {a}–{b} toistoa varastossa (RIR); uupumukseen asti ei tarvitse mennä.",
- "Sesje w tygodniu (w tym {n} cardio)": "Treenejä viikossa (sis. {n} kestävyys)",
  "{v} (masa ciała {d})": "{v} (kehonpaino {d})",
  "e1RM {v} (masa ciała {d}; seria {s})": "e1RM {v} (kehonpaino {d}; sarja {s})",
  "Masa ciała ({u})": "Kehonpaino ({u})",
@@ -1270,7 +1267,6 @@
  "Szablon w planie: {name}": "Pohja suunnitelmassa: {name}",
  "Najwyżej {n} szablonów — każdy dostaje co najmniej jeden dzień.": "Enintään {n} pohjaa — jokainen saa vähintään yhden päivän.",
  "Dni treningowe w tygodniu": "Treenipäiviä viikossa",
- "Dni treningowe w tygodniu: {n}": "Treenipäiviä viikossa: {n}",
  "Dni co najmniej tyle, ile wybranych szablonów.": "Päiviä vähintään yhtä monta kuin valittuja pohjia.",
  "Wybierz co najmniej jeden szablon.": "Valitse vähintään yksi pohja.",
  "Dni: {n}, szablony: {k} — szablony powtarzają się po kolei: {seq}. Co tydzień od początku.": "Päiviä: {n}, pohjia: {k} — pohjat toistuvat järjestyksessä: {seq}. Joka viikko alusta.",
@@ -1324,5 +1320,8 @@
  "Wróć do edycji": "Palaa muokkaukseen",
  "Mapa mięśni i serie na partię z kreską {n} serii tygodniowo.": "Lihaskartta ja sarjat lihasryhmää kohden, viiva {n} viikkosarjan kohdalla.",
  "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.": "Kehitys: viikon ja kuukauden yhteenveto lihaskartalla, {n} sarjan merkintä lihasryhmää kohden viikossa ja viikon merkitseminen kevennysviikoksi.",
- "odpoczynek": "lepopäivä"
+ "odpoczynek": "lepopäivä",
+ "Dni treningowe w tygodniu (w tym {n} cardio)": "Treenipäiviä viikossa (sis. {n} kestävyys)",
+ "Wybierz dni treningowe: od {a} do {b}.": "Valitse treenipäivät: {a}–{b}.",
+ "Wybierz dni treningowe: {n}.": "Valitse treenipäivät: {n}."
 }

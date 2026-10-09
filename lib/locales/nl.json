@@ -884,8 +884,6 @@
  "Masa": "Spiermassa",
  "Redukcja": "Vetverlies",
  "Bez ograniczeń sprzętu": "Geen beperking van materiaal",
- "Sesje w tygodniu": "Sessies per week",
- "Sesje w tygodniu: {n}": "Sessies per week: {n}",
  "Czas sesji": "Duur van de sessie",
  "{n} min": "{n} min",
  "Podgląd": "Voorbeeld",
@@ -1043,7 +1041,6 @@
  "Poniżej {n} serii tygodniowo: {list}. Pomoże więcej sesji, dłuższy czas albo więcej sprzętu w miejscu.": "Minder dan {n} sets per week: {list}. Meer sessies, langere sessies of meer materiaal op de plek helpen.",
  "{goal}, {n}× w tygodniu · {place}": "{goal}, {n}× per week · {place}",
  "Wysiłek: zwykle {a}–{b} powtórzenia w zapasie (RIR); do upadku nie trzeba.": "Inspanning: meestal {a}–{b} herhalingen in reserve (RIR); tot falen trainen is niet nodig.",
- "Sesje w tygodniu (w tym {n} cardio)": "Sessies per week (incl. {n} cardio)",
  "{v} (masa ciała {d})": "{v} (lichaamsgewicht {d})",
  "e1RM {v} (masa ciała {d}; seria {s})": "e1RM {v} (lichaamsgewicht {d}; set {s})",
  "Masa ciała ({u})": "Lichaamsgewicht ({u})",
@@ -1270,7 +1267,6 @@
  "Szablon w planie: {name}": "Sjabloon in het plan: {name}",
  "Najwyżej {n} szablonów — każdy dostaje co najmniej jeden dzień.": "Hoogstens {n} sjablonen — elk krijgt minstens één dag.",
  "Dni treningowe w tygodniu": "Trainingsdagen per week",
- "Dni treningowe w tygodniu: {n}": "Trainingsdagen per week: {n}",
  "Dni co najmniej tyle, ile wybranych szablonów.": "Minstens evenveel dagen als gekozen sjablonen.",
  "Wybierz co najmniej jeden szablon.": "Kies minstens één sjabloon.",
  "Dni: {n}, szablony: {k} — szablony powtarzają się po kolei: {seq}. Co tydzień od początku.": "Dagen: {n}, sjablonen: {k} — de sjablonen herhalen zich op volgorde: {seq}. Elke week opnieuw vanaf het begin.",
@@ -1324,5 +1320,8 @@
  "Wróć do edycji": "Verder bewerken",
  "Mapa mięśni i serie na partię z kreską {n} serii tygodniowo.": "Spierkaart en sets per spiergroep met een lijn bij {n} sets per week.",
  "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.": "Voortgang: week- en maandoverzicht met spierkaart, markering van {n} sets per spiergroep per week en het markeren van een deloadweek.",
- "odpoczynek": "rustdag"
+ "odpoczynek": "rustdag",
+ "Dni treningowe w tygodniu (w tym {n} cardio)": "Trainingsdagen per week (incl. {n} cardio)",
+ "Wybierz dni treningowe: od {a} do {b}.": "Kies trainingsdagen: {a} tot {b}.",
+ "Wybierz dni treningowe: {n}.": "Kies trainingsdagen: {n}."
 }

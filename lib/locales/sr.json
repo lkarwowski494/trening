@@ -884,8 +884,6 @@
  "Masa": "Маса",
  "Redukcja": "Редукција",
  "Bez ograniczeń sprzętu": "Без ограничења опреме",
- "Sesje w tygodniu": "Тренинзи недељно",
- "Sesje w tygodniu: {n}": "Тренинзи недељно: {n}",
  "Czas sesji": "Трајање тренинга",
  "{n} min": "{n} мин",
  "Podgląd": "Преглед",
@@ -1043,7 +1041,6 @@
  "Poniżej {n} serii tygodniowo: {list}. Pomoże więcej sesji, dłuższy czas albo więcej sprzętu w miejscu.": "Испод {n} серија недељно: {list}. Помоћи ће више тренинга, дужи тренинзи или више опреме на месту.",
  "{goal}, {n}× w tygodniu · {place}": "{goal}, {n}× недељно · {place}",
  "Wysiłek: zwykle {a}–{b} powtórzenia w zapasie (RIR); do upadku nie trzeba.": "Напор: обично {a}–{b} понављања у резерви (RIR); до отказа није потребно.",
- "Sesje w tygodniu (w tym {n} cardio)": "Тренинзи недељно (укљ. {n} кардио)",
  "{v} (masa ciała {d})": "{v} (телесна тежина {d})",
  "e1RM {v} (masa ciała {d}; seria {s})": "e1RM {v} (телесна тежина {d}; серија {s})",
  "Masa ciała ({u})": "Телесна тежина ({u})",
@@ -1270,7 +1267,6 @@
  "Szablon w planie: {name}": "Шаблон у плану: {name}",
  "Najwyżej {n} szablonów — każdy dostaje co najmniej jeden dzień.": "Највише {n} шаблона — сваки добија бар један дан.",
  "Dni treningowe w tygodniu": "Дани тренинга недељно",
- "Dni treningowe w tygodniu: {n}": "Дани тренинга недељно: {n}",
  "Dni co najmniej tyle, ile wybranych szablonów.": "Дана бар онолико колико је изабраних шаблона.",
  "Wybierz co najmniej jeden szablon.": "Изабери бар један шаблон.",
  "Dni: {n}, szablony: {k} — szablony powtarzają się po kolei: {seq}. Co tydzień od początku.": "Дани: {n}, шаблони: {k} — шаблони се понављају редом: {seq}. Сваке недеље испочетка.",
@@ -1324,5 +1320,8 @@
  "Wróć do edycji": "Настави уређивање",
  "Mapa mięśni i serie na partię z kreską {n} serii tygodniowo.": "Мапа мишића и серије по мишићној групи са линијом на {n} серија недељно.",
  "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.": "Напредак: преглед недеље и месеца са мапом мишића, ознака {n} серија по мишићној групи недељно и означавање недеље растерећења.",
- "odpoczynek": "дан одмора"
+ "odpoczynek": "дан одмора",
+ "Dni treningowe w tygodniu (w tym {n} cardio)": "Дани тренинга недељно (укљ. {n} кардио)",
+ "Wybierz dni treningowe: od {a} do {b}.": "Изабери дане тренинга: од {a} до {b}.",
+ "Wybierz dni treningowe: {n}.": "Изабери дане тренинга: {n}."
 }

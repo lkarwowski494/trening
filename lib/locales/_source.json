@@ -841,8 +841,8 @@
   "en": "Training days per week"
  },
  {
-  "pl": "Dni treningowe w tygodniu: {n}",
-  "en": "Training days per week: {n}"
+  "pl": "Dni treningowe w tygodniu (w tym {n} cardio)",
+  "en": "Training days per week (incl. {n} cardio)"
  },
  {
   "pl": "Dni tygodnia",
@@ -3670,18 +3670,6 @@
   "en": "Sessions"
  },
  {
-  "pl": "Sesje w tygodniu",
-  "en": "Sessions per week"
- },
- {
-  "pl": "Sesje w tygodniu (w tym {n} cardio)",
-  "en": "Sessions per week (incl. {n} cardio)"
- },
- {
-  "pl": "Sesje w tygodniu: {n}",
-  "en": "Sessions per week: {n}"
- },
- {
   "pl": "Siła",
   "en": "Strength"
  },
@@ -4773,6 +4761,14 @@
  {
   "pl": "Wybierz ćwiczenie",
   "en": "Choose exercise"
+ },
+ {
+  "pl": "Wybierz dni treningowe: {n}.",
+  "en": "Choose training days: {n}."
+ },
+ {
+  "pl": "Wybierz dni treningowe: od {a} do {b}.",
+  "en": "Choose training days: {a} to {b}."
  },
  {
   "pl": "Wybierz szablon na ten dzień.",

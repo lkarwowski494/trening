@@ -884,8 +884,6 @@
  "Masa": "Μυϊκή μάζα",
  "Redukcja": "Απώλεια λίπους",
  "Bez ograniczeń sprzętu": "Χωρίς περιορισμό εξοπλισμού",
- "Sesje w tygodniu": "Συνεδρίες την εβδομάδα",
- "Sesje w tygodniu: {n}": "Συνεδρίες την εβδομάδα: {n}",
  "Czas sesji": "Διάρκεια συνεδρίας",
  "{n} min": "{n} λεπ.",
  "Podgląd": "Προεπισκόπηση",
@@ -1043,7 +1041,6 @@
  "Poniżej {n} serii tygodniowo: {list}. Pomoże więcej sesji, dłuższy czas albo więcej sprzętu w miejscu.": "Κάτω από {n} σετ την εβδομάδα: {list}. Βοηθούν περισσότερες συνεδρίες, μεγαλύτερη διάρκεια ή περισσότερος εξοπλισμός στο μέρος.",
  "{goal}, {n}× w tygodniu · {place}": "{goal}, {n}× την εβδομάδα · {place}",
  "Wysiłek: zwykle {a}–{b} powtórzenia w zapasie (RIR); do upadku nie trzeba.": "Προσπάθεια: συνήθως {a}–{b} επαναλήψεις σε απόθεμα (RIR)· δεν χρειάζεται μέχρι αποτυχίας.",
- "Sesje w tygodniu (w tym {n} cardio)": "Συνεδρίες την εβδομάδα (με {n} καρδιο)",
  "{v} (masa ciała {d})": "{v} (σωματικό βάρος {d})",
  "e1RM {v} (masa ciała {d}; seria {s})": "e1RM {v} (σωματικό βάρος {d}· σετ {s})",
  "Masa ciała ({u})": "Σωματικό βάρος ({u})",
@@ -1270,7 +1267,6 @@
  "Szablon w planie: {name}": "Πρότυπο στο πρόγραμμα: {name}",
  "Najwyżej {n} szablonów — każdy dostaje co najmniej jeden dzień.": "Το πολύ {n} πρότυπα — το καθένα παίρνει τουλάχιστον μία ημέρα.",
  "Dni treningowe w tygodniu": "Ημέρες προπόνησης την εβδομάδα",
- "Dni treningowe w tygodniu: {n}": "Ημέρες προπόνησης την εβδομάδα: {n}",
  "Dni co najmniej tyle, ile wybranych szablonów.": "Τουλάχιστον τόσες ημέρες όσα τα επιλεγμένα πρότυπα.",
  "Wybierz co najmniej jeden szablon.": "Επίλεξε τουλάχιστον ένα πρότυπο.",
  "Dni: {n}, szablony: {k} — szablony powtarzają się po kolei: {seq}. Co tydzień od początku.": "Ημέρες: {n}, πρότυπα: {k} — τα πρότυπα επαναλαμβάνονται με τη σειρά: {seq}. Κάθε εβδομάδα από την αρχή.",
@@ -1324,5 +1320,8 @@
  "Wróć do edycji": "Επιστροφή στην επεξεργασία",
  "Mapa mięśni i serie na partię z kreską {n} serii tygodniowo.": "Χάρτης μυών και σετ ανά μυϊκή ομάδα με γραμμή στα {n} σετ την εβδομάδα.",
  "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.": "Πρόοδος: σύνοψη εβδομάδας και μήνα με χάρτη μυών, σήμανση {n} σετ ανά μυϊκή ομάδα την εβδομάδα και σήμανση εβδομάδας αποφόρτισης.",
- "odpoczynek": "ημέρα ξεκούρασης"
+ "odpoczynek": "ημέρα ξεκούρασης",
+ "Dni treningowe w tygodniu (w tym {n} cardio)": "Ημέρες προπόνησης την εβδομάδα (με {n} καρδιο)",
+ "Wybierz dni treningowe: od {a} do {b}.": "Επίλεξε ημέρες προπόνησης: από {a} έως {b}.",
+ "Wybierz dni treningowe: {n}.": "Επίλεξε ημέρες προπόνησης: {n}."
 }

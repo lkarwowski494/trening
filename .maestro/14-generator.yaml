@@ -13,7 +13,10 @@
 #   "OK"                             ← 'OK' (trzeci przycisk okna „Zapisano” — zostaje na generatorze; audyt kontrolny 1, UI2-06)
 #   "Not now"                        ← 'Nie teraz' (okno zgody na przypomnienie — X-11: pierwszy plan z każdej drogi, components/PlanReminderSync)
 #   "Guide", "Read: .*", "Weekly plan and Calendar, unread", "Show: Weekly plan and Calendar" ← app/guide.tsx (przewodnik, 08.10.2026)
-#   "Monday, Full Body A"            ← app/plan.tsx: wiersz dnia '{dzień}, {szablon}' (audyt 0.10 UX-15 A: 7 wierszy; „{dzień}: {szablon}” to chip
+#   "day-N" (id)                     ← components/DayPicker.tsx: testID przycisku dnia (pon = 0); wybór dni (decyzja 09.10.2026 B)
+#   "Choose training days: 2 to 6\." ← 'Wybierz dni treningowe: od {a} do {b}.' (liczba dni poza zakresem — bez podglądu)
+#   "Mon.* Full Body A · Wed.* Full Body B · Sat.* Full Body A" ← nagłówek podglądu: skrót dnia (Intl, en-US) + nazwa sesji
+#   "Monday, Full Body A", "Saturday, Full Body A" ← app/plan.tsx: wiersz dnia '{dzień}, {szablon}' (audyt 0.10 UX-15 A: 7 wierszy; „{dzień}: {szablon}” to chip
 #                                      w rozwiniętym wierszu — E2E 89), nazwa szablonu 'FBW A' → 'Full Body A'
 appId: pl.lukasz.trening
 name: Generator szablonów i planu
@@ -27,6 +30,17 @@ name: Generator szablonów i planu
 - tapOn: "Generate templates and plan"
 - extendedWaitUntil: { visible: "Preview", timeout: 30000 }
 - assertVisible: "\\+ Add place"
+# --- wybór dni (09.10.2026 B): propozycja pon/śr/pt → odznacz pt, zaznacz sob; poza zakresem (1 dzień) — komunikat zamiast podglądu ---
+- tapOn: { id: "day-4" }
+- tapOn: { id: "day-5" }
+- scrollUntilVisible: { element: "Mon.* Full Body A · Wed.* Full Body B · Sat.* Full Body A", direction: DOWN, timeout: 30000 }
+- tapOn: { id: "day-2" }
+- tapOn: { id: "day-5" }
+- assertVisible: "Choose training days: 2 to 6\\."
+- assertNotVisible: "Save templates and plan"
+- tapOn: { id: "day-2" }
+- tapOn: { id: "day-5" }
+- scrollUntilVisible: { element: "Mon.* Full Body A · Wed.* Full Body B · Sat.* Full Body A", direction: DOWN, timeout: 30000 }
 - takeScreenshot: 70-generator
 - scrollUntilVisible: { element: "What this is based on", direction: DOWN, timeout: 30000 }
 - takeScreenshot: 71-generator-zrodla
@@ -41,6 +55,7 @@ name: Generator szablonów i planu
 - tapOn: "Weekly plan"
 - tapOn: { text: "Not now", optional: true }
 - extendedWaitUntil: { visible: "Monday, Full Body A", timeout: 30000 }
+- scrollUntilVisible: { element: "Saturday, Full Body A", direction: DOWN, timeout: 30000 }
 - takeScreenshot: 72-plan-z-generatora
 # --- Przewodnik (08.10.2026): Więcej → Przewodnik → temat → „Show” otwiera Kalendarz ---
 - tapOn: "Back"

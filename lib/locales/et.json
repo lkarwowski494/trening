@@ -884,8 +884,6 @@
  "Masa": "Lihasmass",
  "Redukcja": "Rasvapõletus",
  "Bez ograniczeń sprzętu": "Varustuse piiranguta",
- "Sesje w tygodniu": "Trenne nädalas",
- "Sesje w tygodniu: {n}": "Trenne nädalas: {n}",
  "Czas sesji": "Trenni kestus",
  "{n} min": "{n} min",
  "Podgląd": "Eelvaade",
@@ -1043,7 +1041,6 @@
  "Poniżej {n} serii tygodniowo: {list}. Pomoże więcej sesji, dłuższy czas albo więcej sprzętu w miejscu.": "Alla {n} seeria nädalas: {list}. Aitavad rohkem trenne, pikemad trennid või rohkem varustust kohas.",
  "{goal}, {n}× w tygodniu · {place}": "{goal}, {n}× nädalas · {place}",
  "Wysiłek: zwykle {a}–{b} powtórzenia w zapasie (RIR); do upadku nie trzeba.": "Pingutus: tavaliselt {a}–{b} kordust varus (RIR); täieliku väsimuseni pole vaja.",
- "Sesje w tygodniu (w tym {n} cardio)": "Trenne nädalas (sh {n} kardio)",
  "{v} (masa ciała {d})": "{v} (kehakaal {d})",
  "e1RM {v} (masa ciała {d}; seria {s})": "e1RM {v} (kehakaal {d}; seeria {s})",
  "Masa ciała ({u})": "Kehakaal ({u})",
@@ -1270,7 +1267,6 @@
  "Szablon w planie: {name}": "Mall plaanis: {name}",
  "Najwyżej {n} szablonów — każdy dostaje co najmniej jeden dzień.": "Kõige rohkem {n} malli — iga mall saab vähemalt ühe päeva.",
  "Dni treningowe w tygodniu": "Treeningpäevi nädalas",
- "Dni treningowe w tygodniu: {n}": "Treeningpäevi nädalas: {n}",
  "Dni co najmniej tyle, ile wybranych szablonów.": "Päevi vähemalt nii palju kui valitud malle.",
  "Wybierz co najmniej jeden szablon.": "Vali vähemalt üks mall.",
  "Dni: {n}, szablony: {k} — szablony powtarzają się po kolei: {seq}. Co tydzień od początku.": "Päevi: {n}, malle: {k} — mallid korduvad järjest: {seq}. Iga nädal algusest.",
@@ -1324,5 +1320,8 @@
  "Wróć do edycji": "Jätka muutmist",
  "Mapa mięśni i serie na partię z kreską {n} serii tygodniowo.": "Lihaskaart ja seeriad lihasrühma kohta joonega {n} seeria juures nädalas.",
  "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.": "Edenemine: nädala ja kuu kokkuvõte lihaskaardiga, {n} seeria märk lihasrühma kohta nädalas ja nädala märkimine kergendusnädalaks.",
- "odpoczynek": "puhkepäev"
+ "odpoczynek": "puhkepäev",
+ "Dni treningowe w tygodniu (w tym {n} cardio)": "Treeningpäevi nädalas (sh {n} kardio)",
+ "Wybierz dni treningowe: od {a} do {b}.": "Vali treeningpäevad: {a} kuni {b}.",
+ "Wybierz dni treningowe: {n}.": "Vali treeningpäevad: {n}."
 }

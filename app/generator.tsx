@@ -3,10 +3,11 @@ import React, { useMemo, useState } from 'react';
 import { ScrollView, View, Alert } from 'react-native';
 import { useRouter, useLocalSearchParams, Stack } from 'expo-router';
 import { OwnPlan, usePlanReturn } from '@/components/OwnPlan';
+import { DayPicker, daysOk } from '@/components/DayPicker';
 import { Screen, Field, Chip, Segmented, Muted, Txt, H2, Btn, SectionTitle } from '@/components/ui';
 import { getState, useTick, exById, fmtDur } from '@/lib/store';
 import {
-  generate, saveGenerated, replaceable, previewWarnings, genFolder, GEN_SESSIONS, GEN_MINUTES, MAJOR, WARMUP_MIN, SET_WORK_SEC, SETS_PER_EX, ACSM_MIN_SETS,
+  generate, genProposal, saveGenerated, replaceable, previewWarnings, genFolder, GEN_SESSIONS, GEN_MINUTES, MAJOR, WARMUP_MIN, SET_WORK_SEC, SETS_PER_EX, ACSM_MIN_SETS,
   MIN_EXERCISES, CARDIO_SESSIONS, REPS, REST, HEAVY_PCT, RIR, RIR_ACSM, MIN_DAYS, SECONDARY_SHARE, WHO_MODERATE, WHO_VIGOROUS, type Goal, type GenInput,
 } from '@/lib/generator';
 import { WEEKLY_SETS_MARK } from '@/lib/stats';
@@ -38,8 +39,13 @@ export default function GeneratorScreen() {
 
 function NewTemplatesPlan({ header }: { header: React.ReactNode }) {
   const rev = useTick(); const router = useRouter(); const toPlan = usePlanReturn(); const s = getState().settings;
-  const [inp, setInp] = useState<GenInput>(() => ({ goal: 'hypertrophy', locationId: s.mainLocationId && s.locations.some(l => l.id === s.mainLocationId) ? s.mainLocationId : null, sessions: 3, minutes: 60 }));
-  const set = (p: Partial<GenInput>) => setInp(x => { const n = { ...x, ...p }; if (!GEN_SESSIONS[n.goal].includes(n.sessions)) n.sessions = GEN_SESSIONS[n.goal][0]; return n; });
+  /* wybór dni (09.10.2026 B): na starcie zaznaczona propozycja generatora dla domyślnej liczby sesji (genProposal) */
+  const [inp, setInp] = useState<GenInput>(() => { const i: GenInput = { goal: 'hypertrophy', locationId: s.mainLocationId && s.locations.some(l => l.id === s.mainLocationId) ? s.mainLocationId : null, sessions: 3, minutes: 60 }; return { ...i, days: genProposal(i) }; });
+  /* zmiana celu, przy której liczba zaznaczonych dni wypada poza zakres (redukcja: od 3) — zaznaczenie = propozycja dla najbliższej dozwolonej liczby;
+   * w zakresie — wybór użytkownika zostaje (miejsce i czas go nie zmieniają) */
+  const set = (p: Partial<GenInput>) => setInp(x => { const n = { ...x, ...p }; const al = GEN_SESSIONS[n.goal]; const k = (n.days ?? []).length;
+    if (p.goal && p.goal !== x.goal && !al.includes(k)) { n.sessions = al.find(v => v >= k) ?? al[al.length - 1]; n.days = genProposal(n); } return n; });
+  const lim = GEN_SESSIONS[inp.goal]; const ok = daysOk(inp.days ?? [], lim[0], lim[lim.length - 1]);
   const nLoc = s.locations.length; const r = useMemo(() => generate(inp), [inp, rev]); /* rev: miejsca i sprzęt zmienione po „+ Dodaj miejsce” */ const warn = previewWarnings(r, inp);
   const unloaded = warn.find(w => w.kind === 'unloaded');
   const goalNote = inp.goal === 'strength' ? t('Siła: bój główny na początku, {s} × {a}–{b} powtórzeń (ciężko, ok. {p}% maksimum i więcej), pozostałe ćwiczenia {s} × {c}–{d}.', { s: SETS_PER_EX, a: REPS.heavy[0], b: REPS.heavy[1], p: HEAVY_PCT, c: REPS.strength[0], d: REPS.strength[1] })
@@ -95,13 +101,12 @@ function NewTemplatesPlan({ header }: { header: React.ReactNode }) {
         <Chip label={t('+ Dodaj miejsce')} on={false} onPress={() => router.push('/more/locations')} />
       </View></Field>
       {inp.locationId === null ? <Muted style={{ fontSize: 13, marginTop: -4, marginBottom: 8 }}>{nLoc ? t('„Bez ograniczeń sprzętu” = pełna siłownia (sztanga, hantle, maszyny i wyciągi).') : t('Nie masz jeszcze miejsc treningu, więc plan zakłada pełną siłownię (sztanga, hantle, maszyny i wyciągi). Trenujesz w domu albo w hotelu? Stuknij „+ Dodaj miejsce” i zaznacz sprzęt — generator dobierze ćwiczenia.')}</Muted> : null}
-      <Field label={inp.goal === 'cut' ? t('Sesje w tygodniu (w tym {n} cardio)', { n: CARDIO_SESSIONS }) : t('Sesje w tygodniu')}><View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6 }}>
-        {GEN_SESSIONS[inp.goal].map(n => <Chip key={n} label={String(n)} a11yLabel={t('Sesje w tygodniu: {n}', { n })} on={inp.sessions === n} onPress={() => set({ sessions: n })} />)}
-      </View></Field>
+      <DayPicker label={inp.goal === 'cut' ? t('Dni treningowe w tygodniu (w tym {n} cardio)', { n: CARDIO_SESSIONS }) : t('Dni treningowe w tygodniu')} value={inp.days ?? []} min={lim[0]} max={lim[lim.length - 1]} onChange={days => set({ days })} />
       <Field label={t('Czas sesji')}><View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6 }}>
         {GEN_MINUTES.map(n => <Chip key={n} label={t('{n} min', { n })} on={inp.minutes === n} onPress={() => set({ minutes: n })} />)}
       </View></Field>
 
+      {ok ? <>{/* liczba dni spoza zakresu — bez podglądu i zapisu (komunikat pod wyborem dni, components/DayPicker) */}
       <SectionTitle>{t('Podgląd')}</SectionTitle>
       <Txt accessibilityRole="header" style={{ fontSize: 15, marginBottom: 6 }}>{r.days.map((ti, i) => (ti == null ? null : `${wd(i)} ${r.templates[ti].name}`)).filter(Boolean).join(' · ')}</Txt>
       {r.templates.map(tp => (
@@ -113,12 +118,12 @@ function NewTemplatesPlan({ header }: { header: React.ReactNode }) {
         </View>))}
       <Muted style={{ fontSize: 13 }}>{t('Serie na partię w tygodniu (pomocnicza = {h} serii — uproszczenie, jedno źródło): {list}', { h: fmtNum(SECONDARY_SHARE, 1), list: MAJOR.map(m => `${t(m)} ${fmtNum(r.weeklySets[m] ?? 0, 1)}`).join(', ') })}</Muted>
       {warn.filter(w => w.kind !== 'unloaded').map(w => <Txt key={w.kind} style={{ fontSize: 13, marginTop: 6 }}>{w.text}</Txt>)}
-      {inp.goal === 'cut' ? <Muted style={{ fontSize: 13, marginTop: 6 }}>{t('Cardio w planie: {n} min tygodniowo. Zalecenie WHO: co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.', { n: r.cardioMin, a: WHO_MODERATE[0], b: WHO_MODERATE[1], c: WHO_VIGOROUS[0], d: WHO_VIGOROUS[1] })}</Muted> : null}
+      {inp.goal === 'cut' ? <Muted style={{ fontSize: 13, marginTop: 6 }}>{t('Cardio w planie: {n} min tygodniowo. Zalecenie WHO: co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.', { n: r.cardioMin, a: WHO_MODERATE[0], b: WHO_MODERATE[1], c: WHO_VIGOROUS[0], d: WHO_VIGOROUS[1] })}</Muted> : null}</> : null}
 
       <SectionTitle>{t('Na czym to oparte')}</SectionTitle>
       {basis.map(x => <Muted key={x} style={{ fontSize: 12, marginBottom: 4 }}>{`• ${x}`}</Muted>)}
       <MedicalNote style={{ marginTop: 6 }} /* L1 (audyt 0.10, MER-11 A): plan z cardio — bez porad medycznych, odesłanie do specjalisty */ />
-      {r.templates.some(tp => tp.items.length) ? <Btn title={t('Zapisz szablony i plan')} kind="primary" block onPress={save} style={{ marginTop: 14 }} /> : null}
+      {ok && r.templates.some(tp => tp.items.length) ? <Btn title={t('Zapisz szablony i plan')} kind="primary" block onPress={save} style={{ marginTop: 14 }} /> : null}
     </ScrollView></Screen>
   );
 }

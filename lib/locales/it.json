@@ -884,8 +884,6 @@
  "Masa": "Massa",
  "Redukcja": "Definizione",
  "Bez ograniczeń sprzętu": "Senza limiti di attrezzatura",
- "Sesje w tygodniu": "Sessioni a settimana",
- "Sesje w tygodniu: {n}": "Sessioni a settimana: {n}",
  "Czas sesji": "Durata della sessione",
  "{n} min": "{n} min",
  "Podgląd": "Anteprima",
@@ -1043,7 +1041,6 @@
  "Poniżej {n} serii tygodniowo: {list}. Pomoże więcej sesji, dłuższy czas albo więcej sprzętu w miejscu.": "Sotto le {n} serie a settimana: {list}. Aiutano più sessioni, sessioni più lunghe o più attrezzatura nel luogo.",
  "{goal}, {n}× w tygodniu · {place}": "{goal}, {n}× a settimana · {place}",
  "Wysiłek: zwykle {a}–{b} powtórzenia w zapasie (RIR); do upadku nie trzeba.": "Sforzo: di solito {a}–{b} ripetizioni di riserva (RIR); arrivare al cedimento non è necessario.",
- "Sesje w tygodniu (w tym {n} cardio)": "Sessioni a settimana (incl. {n} cardio)",
  "{v} (masa ciała {d})": "{v} (peso corporeo {d})",
  "e1RM {v} (masa ciała {d}; seria {s})": "e1RM {v} (peso corporeo {d}; serie {s})",
  "Masa ciała ({u})": "Peso corporeo ({u})",
@@ -1270,7 +1267,6 @@
  "Szablon w planie: {name}": "Scheda nel piano: {name}",
  "Najwyżej {n} szablonów — każdy dostaje co najmniej jeden dzień.": "Al massimo {n} schede — ognuna riceve almeno un giorno.",
  "Dni treningowe w tygodniu": "Giorni di allenamento a settimana",
- "Dni treningowe w tygodniu: {n}": "Giorni di allenamento a settimana: {n}",
  "Dni co najmniej tyle, ile wybranych szablonów.": "Almeno tanti giorni quante le schede scelte.",
  "Wybierz co najmniej jeden szablon.": "Scegli almeno una scheda.",
  "Dni: {n}, szablony: {k} — szablony powtarzają się po kolei: {seq}. Co tydzień od początku.": "Giorni: {n}, schede: {k} — le schede si ripetono in ordine: {seq}. Ogni settimana si ricomincia.",
@@ -1324,5 +1320,8 @@
  "Wróć do edycji": "Torna alla modifica",
  "Mapa mięśni i serie na partię z kreską {n} serii tygodniowo.": "Mappa muscolare e serie per gruppo muscolare con una linea a {n} serie settimanali.",
  "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.": "Progressi: riepilogo della settimana e del mese con mappa muscolare, soglia di {n} serie per gruppo muscolare a settimana e segnalazione della settimana di scarico.",
- "odpoczynek": "giorno di riposo"
+ "odpoczynek": "giorno di riposo",
+ "Dni treningowe w tygodniu (w tym {n} cardio)": "Giorni di allenamento a settimana (incl. {n} cardio)",
+ "Wybierz dni treningowe: od {a} do {b}.": "Scegli i giorni di allenamento: da {a} a {b}.",
+ "Wybierz dni treningowe: {n}.": "Scegli i giorni di allenamento: {n}."
 }
