@@ -122,6 +122,17 @@ describe('zależności i konfiguracja natywna', () => {
   });
 });
 
+describe('TST2-09 (audyt kontrolny 1): testflight.yml sprawdza to samo co verify', () => {
+  test('krok testów uruchamia `npm run verify` (jedno źródło listy sprawdzeń) z limitem sterty 3 GB; verify obejmuje wszystkie sprawdzenia', () => {
+    const y = wf('testflight.yml'); const step = y.slice(y.indexOf('- name: Testy'), y.indexOf('- name:', y.indexOf('- name: Testy') + 5));
+    expect(step).toMatch(/NODE_OPTIONS: --max-old-space-size=3072/);
+    expect(step).toMatch(/run: npm run verify\s*$/m);
+    const v = require('../package.json').scripts.verify as string;
+    for (const c of ['npm run typecheck', 'npm run check:i18n', 'npm run check:cues', 'npm run check:figures', 'jest', 'npm run check:matrix', 'npm run check:licenses', 'expo export --platform ios', 'npm run verify:native']) expect({ c, in: v.includes(c) }).toEqual({ c, in: true });
+    expect(wf('tests.yml')).toMatch(/run: npm run verify\s*$/m);
+  });
+});
+
 describe('SEC2-08 (audyt kontrolny 1): dokumenty bez identyfikatorów sesji i lokalnych ścieżek agentów', () => {
   const root = join(__dirname, '..');
   const docs = (d: string): string[] => require('fs').readdirSync(join(root, d), { withFileTypes: true }).flatMap((e: { name: string; isDirectory: () => boolean }) => e.isDirectory() ? docs(join(d, e.name)) : /\.(md|html|txt)$/.test(e.name) ? [join(d, e.name)] : []);
