@@ -213,3 +213,21 @@ describe('A11N-02: rejestr grzecznościowy fr („vous”) i tr („siz”)', ()
     expect(TR_SEN.test('Barı omuz genişliğinden biraz daha geniş tut.')).toBe(true); expect(TR_SEN.test('Halteri omuz genişliğinden biraz daha geniş tutun.')).toBe(false);
   });
 });
+
+/*
+ * A11N-03: fr — przed „; : ! ?” i „»” oraz po „«” spacja nierozdzielająca (docs/16), żeby znak nie trafiał na początek wiersza. Było: UI 184 teksty
+ * ze zwykłą spacją (116 z NBSP), wskazówki 87 z 265. Dozwolone U+00A0 i U+202F (wąska).
+ */
+describe('A11N-03: fr — spacja nierozdzielająca przed ; : ! ? » i po «', () => {
+  const BAD = /[ \t][;:!?»]|«[ \t]/;
+  test('słownik UI fr i wskazówki fr: żadnej zwykłej spacji przed ; : ! ? » ani po «', () => {
+    expect(Object.entries(LOCALES.fr!).filter(([, v]) => BAD.test(v)).map(([k]) => k.slice(0, 50))).toEqual([]);
+    expect(Object.entries(cueDict('fr')).filter(([, v]) => BAD.test(v)).map(([k]) => k)).toEqual([]);
+  });
+  test('ekran: stopka „Technika” i wskazówka po francusku mają NBSP („D’après\\u00a0:”, „…\\u00a0;”)', () => {
+    applyLang('fr'); render(<ExerciseCues exercise={lib('Bird Dog')} />); fireEvent.press(screen.getByRole('button', { name: t('Technika') }));
+    expect(screen.getByText(/^D’après\u00a0: /, { normalizer: (x: string) => x } /* domyślny normalizator zamienia NBSP na spację */)).toBeTruthy();
+    expect(screen.getByText(`• ${cueDict('fr')['bd.setup']}`, { normalizer: (x: string) => x }).props.children).toMatch(/pattes\u00a0: mains/);
+  });
+  test('bramka działa', () => { expect(BAD.test('À quatre pattes : mains')).toBe(true); expect(BAD.test('À quatre pattes\u00a0: mains')).toBe(false); expect(BAD.test('« Afficher\u00a0»')).toBe(true); });
+});
