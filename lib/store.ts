@@ -602,7 +602,7 @@ export const usePrefsTick = () => useStore(s => `${s.settings.language}|${s.sett
 export const getHistRev = () => histRev;
 /** Licznik każdej zmiany stanu (jak useTick) — klucz krótkich cache ekranów (PERF-04). */
 export const getRev = () => rev;
-/** Runda 30: powrót aplikacji na pierwszy plan — ekrany z datą „dziś” (ekran główny, poranny wpis, baner podpisu) liczą się od nowa. */
+/** Runda 30: powrót aplikacji na pierwszy plan — ekrany z datą „dziś” (ekran główny, poranny wpis) liczą się od nowa. */
 let fgRev = 0;
 export function refreshViews() { rev++; fgRev++; emit(); }
 export const useForegroundTick = () => useSyncExternalStore(subscribe, () => fgRev, () => fgRev);
@@ -610,7 +610,7 @@ export const useForegroundTick = () => useSyncExternalStore(subscribe, () => fgR
  * Runda 14: odświeżenie tylko po zmianach poza treningiem w toku (historia, szablony, ćwiczenia, ustawienia).
  * Zakładki bez treningu nie przerysowują się przy każdym wpisie serii (runda 13: 400 wierszy historii na znak).
  */
-// Runda 31/46: także po zmianie dnia (daty, rok, ważność podpisu) — ale nie przy każdym powrocie z tła (lista 1000 sesji to ~0,5 s).
+// Runda 31/46: także po zmianie dnia (daty, rok) — ale nie przy każdym powrocie z tła (lista 1000 sesji to ~0,5 s).
 const histSnap = () => `${histRev}:${localISODate()}`;
 export const useHistTick = () => useSyncExternalStore(subscribe, histSnap, histSnap);
 /** PERF-02: historia ALBO konfiguracja (szablony) — dla ekranów, które pokazują szablony (zakładka Szablony). */

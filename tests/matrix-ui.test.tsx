@@ -5,7 +5,6 @@
 import * as store from '@/lib/store';
 import * as timer from '@/lib/timer';
 import * as edit from '@/lib/edit';
-import * as signing from '@/lib/signing';
 import { AUTO_KEEP } from '@/lib/backup';
 import { SCHEMA_VERSION, muscleLoadOf } from '@/lib/seed';
 import { equipEntry } from '@/lib/equipment';
@@ -335,35 +334,6 @@ describe('/ (ekran główny)', () => {
     FS.writeAsStringAsync.mockRejectedValueOnce(new Error('brak miejsca'));
     await tap(screen.getByText('Poprzednich danych nie dało się odczytać')); await act(async () => { pressAlert('Poprzednich danych nie dało się odczytać', 'Wyślij kopię'); }); await flushAll(20);
     expect(lastAlert()).toMatchObject({ title: 'Nie udało się', msg: 'Spróbuj ponownie.' });
-  });
-});
-
-/* ======================================================================= podpis aplikacji (/ i /more) */
-describe('podpis aplikacji: baner na / , dopisek w /more, przypomnienie', () => {
-  const profileB64 = (created: number, expires: number) => Buffer.from(`0garbage<?xml version="1.0"?><plist version="1.0"><dict><key>CreationDate</key><date>${new Date(created).toISOString().replace(/\.\d+Z$/, 'Z')}</date><key>Entitlements</key><dict><key>get-task-allow</key><true/></dict><key>ExpirationDate</key><date>${new Date(expires).toISOString().replace(/\.\d+Z$/, 'Z')}</date></dict></plist>`, 'latin1').toString('base64');
-  const useProfile = (b64: string | null) => { signing.__resetSigningCache(); (global as any).__bundleDir = b64 ? '/var/Trening.app/' : null;
-    FS.getInfoAsync.mockImplementation(async (uri: string) => ({ exists: !!b64 && uri.endsWith('embedded.mobileprovision') }));
-    FS.readAsStringAsync.mockImplementation(async (uri: string) => (b64 && uri.endsWith('embedded.mobileprovision') ? b64 : '')); };
-  afterEach(() => { useProfile(null); FS.getInfoAsync.mockImplementation(async () => ({ exists: false })); FS.readAsStringAsync.mockImplementation(async () => ''); });
-
-  test('za 2 dni: „Podpis aplikacji wygasa za 2 dni.”, przypomnienie „Jutro wygasa…”, w Więcej „Podpis ważny do …”; tapnięcie → Backup', async () => {
-    const exp = Date.now() + 2 * DAY; useProfile(profileB64(Date.now() - 4 * DAY, exp));
-    await renderApp(); await flushAll(50);
-    expect(signing.calendarDaysLeft(new Date(exp), new Date())).toBe(2);
-    expect(screen.getByText('Podpis aplikacji wygasa za 2 dni.')).toBeTruthy();
-    expect((global.__notifications as any[]).some(n => n.content.title === 'Jutro wygasa podpis aplikacji')).toBe(true);
-    await tap(screen.getByText('Podpis aplikacji wygasa za 2 dni.')); await flushAll(20);
-    expect(screen.getByText(/^Eksport tworzy plik JSON/)).toBeTruthy();
-    await go('/more'); await flushAll(50);
-    expect(screen.getByText(/Podpis ważny do .+\.$/)).toBeTruthy();
-  });
-
-  test('dziś: „Podpis aplikacji wygasa dziś.”; po wygaśnięciu (darmowe Apple ID): „Podpis aplikacji wygasł — odnów w Sideloadly.”', async () => {
-    const end = new Date(); end.setHours(23, 59, 0, 0);
-    if (end.getTime() - Date.now() > 60e3) { useProfile(profileB64(Date.now() - 6 * DAY, end.getTime())); await renderApp(); await flushAll(50);
-      expect(screen.getByText('Podpis aplikacji wygasa dziś.')).toBeTruthy(); }
-    useProfile(profileB64(Date.now() - 8 * DAY, Date.now() - DAY)); await renderApp(); await flushAll(50);
-    expect(screen.getByText('Podpis aplikacji wygasł — odnów w Sideloadly.')).toBeTruthy();
   });
 });
 

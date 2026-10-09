@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { Screen, H1, H2, Muted, Item, Btn, useOnce, SectionTitle } from '@/components/ui';
 import ActiveWorkout from '@/components/ActiveWorkout';
 import { Alert } from 'react-native';
-import { wallTs, getState, useTick, finishedWorkouts, templateGroups, useForegroundTick, fmtDate, getPersistError, getRecovery, clearRecovery, flush, tplWorkSets } from '@/lib/store';
+import { wallTs, getState, useTick, finishedWorkouts, templateGroups, fmtDate, getPersistError, getRecovery, clearRecovery, flush, tplWorkSets } from '@/lib/store';
 import { exportRecovery } from '@/lib/backup';
 import { TodayPlan } from '@/components/TodayPlan';
 import { WeekStats, FirstSteps } from '@/components/Dashboard';
@@ -14,20 +14,8 @@ import { WhatsNewHeader } from '@/components/WhatsNew';
 import { startTemplate } from '@/lib/start';
 import { StartPanel } from '@/components/StartPanel';
 import { PlanningCard } from '@/components/PlanningCard';
-import { signingState, scheduleReminder, renewTexts, type RenewKind } from '@/lib/signing';
 import { t, tp, locale } from '@/lib/i18n';
 import { fmtW, fmtNum } from '@/lib/units';
-
-function SigningBanner() {
-  const [st, setSt] = useState<{ days: number | null; kind: RenewKind }>({ days: null, kind: 'rebuild' }); const router = useRouter();
-  const fg = useForegroundTick(); // runda 30: po powrocie z tła (np. następnego dnia) liczymy od nowa
-  useEffect(() => { signingState().then(setSt).catch(() => {}); scheduleReminder(); }, [fg]);
-  const days = st.days; if (days == null || days > 2) return null;
-  // T-053: tekst zależy od drogi instalacji — ad hoc (rok) → nowy build w GitHubie; darmowe Apple ID (7 dni) → Sideloadly.
-  const rt = renewTexts(st.kind);
-  const txt = days < 0 ? rt.expired : days === 0 ? t('Podpis aplikacji wygasa dziś.') : t('Podpis aplikacji wygasa za {n} {d}.', { n: days, d: tp(days, 'dzień|dni|dni') });
-  return <Item title={txt} sub={rt.sub} onPress={() => router.push('/more/backup')} />;
-}
 
 /** Problemy z zapisem: błąd zapisu na dysk albo nieczytelne dane przy starcie (kopia odłożona, nie nadpisana). */
 function DataBanners() {
@@ -49,7 +37,6 @@ function Home() {
     <ScrollView contentContainerStyle={{ paddingBottom: 40 }}>
       <WhatsNewHeader>{/* 08.10.2026: „i” — Co nowego (decyzja właściciela) */}<H1>{t('Trening')}</H1><Muted>{new Date().toLocaleDateString(locale(), { weekday: 'long', day: 'numeric', month: 'long' })}</Muted></WhatsNewHeader>
       <DataBanners />
-      <SigningBanner />
       <TodayPlan />{/* 08.10.2026: kalendarz z planem (decyzja 1A) */}
       <StartPanel />
       <PlanningCard when="noPlan" />

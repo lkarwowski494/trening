@@ -136,51 +136,6 @@
    "reason": "źródło wskazówek techniki (organizacja w danych źródeł); podpis w aplikacji neutralny — decyzja MER2-07 = SEC2-02 wariant A, wdrożenie 0.10.1"
   },
   {
-   "path": "lib/signing.ts",
-   "name": "Sideloadly",
-   "reason": "NOWE (bl-tst, 09.10.2026): przypomnienie o odnowieniu podpisu dla instalacji spoza App Store (T-053) wymienia narzędzie do instalacji z komputera — do decyzji właściciela przed App Store (usunąć tę drogę instalacji albo opis neutralny w 26 językach); app/(tabs)/index.tsx — fala 2"
-  },
-  {
-   "path": "lib/i18n.en.ts",
-   "name": "Sideloadly",
-   "reason": "NOWE (bl-tst, 09.10.2026): przypomnienie o odnowieniu podpisu dla instalacji spoza App Store (T-053) wymienia narzędzie do instalacji z komputera — do decyzji właściciela przed App Store (usunąć tę drogę instalacji albo opis neutralny w 26 językach); app/(tabs)/index.tsx — fala 2"
-  },
-  {
-   "path": "lib/locales",
-   "name": "Sideloadly",
-   "reason": "NOWE (bl-tst, 09.10.2026): przypomnienie o odnowieniu podpisu dla instalacji spoza App Store (T-053) wymienia narzędzie do instalacji z komputera — do decyzji właściciela przed App Store (usunąć tę drogę instalacji albo opis neutralny w 26 językach); app/(tabs)/index.tsx — fala 2"
-  },
-  {
-   "path": "app/(tabs)/index.tsx",
-   "name": "Sideloadly",
-   "reason": "NOWE (bl-tst, 09.10.2026): przypomnienie o odnowieniu podpisu dla instalacji spoza App Store (T-053) wymienia narzędzie do instalacji z komputera — do decyzji właściciela przed App Store (usunąć tę drogę instalacji albo opis neutralny w 26 językach); app/(tabs)/index.tsx — fala 2"
-  },
-  {
-   "path": ".github/workflows/ios-unsigned.yml",
-   "name": "Sideloadly",
-   "reason": "NOWE (bl-tst, 09.10.2026): przypomnienie o odnowieniu podpisu dla instalacji spoza App Store (T-053) wymienia narzędzie do instalacji z komputera — do decyzji właściciela przed App Store (usunąć tę drogę instalacji albo opis neutralny w 26 językach); app/(tabs)/index.tsx — fala 2"
-  },
-  {
-   "path": "tests/audit-r83.test.tsx",
-   "name": "Sideloadly",
-   "reason": "NOWE (bl-tst, 09.10.2026): przypomnienie o odnowieniu podpisu dla instalacji spoza App Store (T-053) wymienia narzędzie do instalacji z komputera — do decyzji właściciela przed App Store (usunąć tę drogę instalacji albo opis neutralny w 26 językach); app/(tabs)/index.tsx — fala 2"
-  },
-  {
-   "path": "tests/audit-r83b.test.tsx",
-   "name": "Sideloadly",
-   "reason": "NOWE (bl-tst, 09.10.2026): przypomnienie o odnowieniu podpisu dla instalacji spoza App Store (T-053) wymienia narzędzie do instalacji z komputera — do decyzji właściciela przed App Store (usunąć tę drogę instalacji albo opis neutralny w 26 językach); app/(tabs)/index.tsx — fala 2"
-  },
-  {
-   "path": "tests/matrix-logic.test.tsx",
-   "name": "Sideloadly",
-   "reason": "NOWE (bl-tst, 09.10.2026): przypomnienie o odnowieniu podpisu dla instalacji spoza App Store (T-053) wymienia narzędzie do instalacji z komputera — do decyzji właściciela przed App Store (usunąć tę drogę instalacji albo opis neutralny w 26 językach); app/(tabs)/index.tsx — fala 2"
-  },
-  {
-   "path": "tests/matrix-ui.test.tsx",
-   "name": "Sideloadly",
-   "reason": "NOWE (bl-tst, 09.10.2026): przypomnienie o odnowieniu podpisu dla instalacji spoza App Store (T-053) wymienia narzędzie do instalacji z komputera — do decyzji właściciela przed App Store (usunąć tę drogę instalacji albo opis neutralny w 26 językach); app/(tabs)/index.tsx — fala 2"
-  },
-  {
    "path": "lib/locales/cs.json",
    "name": "Strava",
    "reason": "czeskie / słowackie słowo „strava” (= dieta, tłumaczenie klucza „Dieta”), nie nazwa aplikacji"

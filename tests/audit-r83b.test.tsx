@@ -3,12 +3,11 @@
  *    ciała), rekordów (max 42,5 / e1RM 53,8 na zawsze) i podpowiedzi „Poprzednio” („8@+42,5”, a wpisanie nic nie wstawiało). Reguła 83b
  *    (store.loadOf): widok historii (ekran sesji, edytor, opisy serii, CSV) pokazuje obcą wartość, obliczenia i trening w toku — tylko pole
  *    właściwe dla obecnego sprzętu; LOW 2: edytor historii pokazuje to samo co ekran sesji; LOW 1: asysta −20 po zmianie na sztangę = 0;
- *  - MEDIUM 2 (T-053): droga instalacji z get-task-allow (deweloperski = true → Sideloadly, ad hoc = false → nowy build), okres ważności zapasowo;
+ *  - MEDIUM 2 (T-053): usunięte 09.10.2026 razem z przypomnieniem o podpisie (instalacja tylko przez TestFlight);
  *  - LOW 3 (Q-019): kopia bezpieczeństwa niesie nieczytelny zapis (recovery), który import/czyszczenie kasuje z aplikacji;
  *  - LOW 4 (Q-019): writeKopia — błąd sprzątania puli po udanym zapisie nie przerywa, nieudany zapis nie zostawia pliku, ta sama sekunda → -2. */
 import * as store from '@/lib/store';
 import * as timer from '@/lib/timer';
-import * as signing from '@/lib/signing';
 import * as stats from '@/lib/stats';
 import * as backup from '@/lib/backup';
 import * as edit from '@/lib/edit';
@@ -76,23 +75,7 @@ describe('MEDIUM 1 — obca wartość po zmianie sprzętu: widok tak, obliczenia
   });
 });
 
-const DAY = 86400e3;
-const prof = (days: number, ent: string | null) => { const c = Date.UTC(2027, 8, 25, 10, 0); const iso = (t: number) => new Date(t).toISOString().replace(/\.\d+Z$/, 'Z');
-  return `<?xml version="1.0"?><plist version="1.0"><dict><key>CreationDate</key><date>${iso(c)}</date>${ent == null ? '' : `<key>Entitlements</key><dict><key>application-identifier</key><string>T.x</string>${ent}</dict>`}<key>ExpirationDate</key><date>${iso(c + days * DAY)}</date></dict></plist>`; };
-describe('MEDIUM 2 — droga instalacji z get-task-allow', () => {
-  test('7 dni, get-task-allow true (darmowe Apple ID, Sideloadly) → Sideloadly', () => { expect(signing.parseRenewKind(prof(7, '<key>get-task-allow</key><true/>'))).toBe('sideloadly'); });
-  test('5 dni, get-task-allow false (ad hoc odświeżony tuż przed wygaśnięciem certyfikatu) → nowy build', () => { expect(signing.parseRenewKind(prof(5, '<key>get-task-allow</key>\n\t\t<false/>'))).toBe('rebuild'); });
-  test('rok, false (ad hoc z EAS) → nowy build; rok, true (deweloperski płatny) → ponowne podpisanie (Sideloadly)', () => {
-    expect(signing.parseRenewKind(prof(365, '<key>get-task-allow</key><false/>'))).toBe('rebuild');
-    expect(signing.parseRenewKind(prof(365, '<key>get-task-allow</key><true/>'))).toBe('sideloadly');
-  });
-  test('brak klucza → okres ważności (zapasowo): 7 dni Sideloadly, rok nowy build', () => {
-    expect(signing.parseTaskAllow(prof(7, ''))).toBeNull(); expect(signing.parseTaskAllow(prof(7, null))).toBeNull();
-    expect(signing.parseRenewKind(prof(7, ''))).toBe('sideloadly'); expect(signing.parseRenewKind(prof(365, null))).toBe('rebuild');
-    /* klucz spoza Entitlements się nie liczy */
-    expect(signing.parseTaskAllow('<key>get-task-allow</key><true/>')).toBeNull();
-  });
-});
+/* MEDIUM 2 / T-053 (przypomnienie o podpisie wg drogi instalacji) — usunięte: decyzja właściciela 09.10.2026 (docs/18), instalacja tylko przez TestFlight; regresja: tests/rm-signing.test.tsx. */
 
 describe('Q-019 kopia bezpieczeństwa — LOW 3 (nieczytelny zapis) i LOW 4 (writeKopia)', () => {
   const FS = require('expo-file-system/legacy'); const DP = require('expo-document-picker');

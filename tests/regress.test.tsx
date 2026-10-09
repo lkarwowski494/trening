@@ -964,13 +964,7 @@ describe('runda 31', () => {
 });
 
 describe('runda 32', () => {
-  test('R32-01 dni do wygaśnięcia podpisu liczone kalendarzowo (jak przypomnienie „Jutro wygasa”)', async () => {
-    await fresh(); const { calendarDaysLeft } = require('@/lib/signing');
-    expect(calendarDaysLeft(new Date(2026, 9, 7, 11), new Date(2026, 9, 6, 18))).toBe(1);
-    expect(calendarDaysLeft(new Date(2026, 9, 8, 9), new Date(2026, 9, 6, 10))).toBe(2);
-    expect(calendarDaysLeft(new Date(2026, 9, 6, 23), new Date(2026, 9, 6, 10))).toBe(0);
-    expect(calendarDaysLeft(new Date(2026, 9, 6, 9), new Date(2026, 9, 6, 10))).toBe(-1);
-  });
+  /* R32-01 (dni do wygaśnięcia podpisu) — usunięte. Decyzja właściciela 09.10.2026 (docs/18): przypomnienie o odnowieniu podpisu usunięte razem z instalacją z komputera — regresja: tests/rm-signing.test.tsx. */
   test('R32-02 błąd zapisu widoczny w trakcie treningu', async () => {
     await renderApp({ saved: seedWithDemo() }); await tap(screen.getByLabelText('Start: Upper A')); global.__dbFail = true;
     await tap(screen.getAllByLabelText(/^Seria 1 zrobiona/)[0]); await flushAll(1000);
@@ -983,10 +977,7 @@ describe('runda 32', () => {
 });
 
 describe('runda 33', () => {
-  test('R33-01 przypomnienie o podpisie w dniu kalendarzowym przed wygaśnięciem (także przy zmianie czasu)', async () => {
-    await fresh(); const { reminderAt, calendarDaysLeft } = require('@/lib/signing');
-    for (const e of [new Date(2027, 2, 29, 0, 30), new Date(2026, 9, 26, 0, 30), new Date(2026, 9, 7, 11)]) { const w = reminderAt(e); expect(w.getHours()).toBe(18); expect(calendarDaysLeft(e, w)).toBe(1); }
-  });
+  /* R33-01 (przypomnienie o podpisie) — usunięte. Decyzja właściciela 09.10.2026 (docs/18): przypomnienie o odnowieniu podpisu usunięte razem z instalacją z komputera — regresja: tests/rm-signing.test.tsx. */
   test('R33-02 import backupu usuwa komunikat o nieczytelnych danych', async () => {
     await renderApp({ saved: '{nie json' }); await flushAll(10); expect(screen.getByText('Poprzednich danych nie dało się odczytać')).toBeTruthy();
     await act(async () => { store.resetAll(); }); await flushAll(10); expect(screen.queryByText('Poprzednich danych nie dało się odczytać')).toBeNull();

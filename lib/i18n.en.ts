@@ -13,17 +13,10 @@ export const EN: Record<string, string> = {
   'sesja|sesje|sesji': 'session|sessions', 'seria|serie|serii': 'set|sets', 'dzień|dni|dni': 'day|days',
 
   /* ekran główny */
-  'Podpis aplikacji wygasł — odnów w Sideloadly.': 'App signature expired — renew it in Sideloadly.',
-  'Podpis aplikacji wygasa dziś.': 'App signature expires today.',
-  'Podpis aplikacji wygasa za {n} {d}.': 'App signature expires in {n} {d}.',
-  'Zrób backup i odnów w Sideloadly (ok. 2 min). Dane zostają w telefonie.': 'Make a backup and renew in Sideloadly (about 2 min). Your data stays on the phone.',
-  'Podpis aplikacji wygasł — zbuduj ją od nowa w GitHubie.': 'App signature expired — rebuild the app on GitHub.',
-  'Zrób backup, potem w GitHubie: Actions → iPhone (EAS) → build i zainstaluj z linku. Dane zostają w telefonie.': 'Make a backup, then on GitHub: Actions → iPhone (EAS) → build, and install from the link. Your data stays on the phone.',
   'sen': 'sleep',
   'Nie masz jeszcze szablonów — utwórz pierwszy albo zacznij pusty trening.': 'No templates yet — create your first one or start an empty workout.',
   'Zacznij z szablonu': 'Start from a template', 'ćw.': 'ex.', 'ostatnio': 'last', 'Start': 'Start',
   'Powtórz ostatni ({name})': 'Repeat last ({name})', 'bez szablonu': 'no template', 'Pusty trening': 'Empty workout',
-  'Podpis ważny do {d}.': 'Signature valid until {d}.',
 
   /* listy */
   'guma': 'band', 'tempo': 'tempo', '+ Nowe': '+ New', '+ Nowy': '+ New', 'Szukaj…': 'Search…', 'Szukaj ćwiczenia…': 'Search exercises…',
@@ -103,9 +96,6 @@ export const EN: Record<string, string> = {
   /* powiadomienia i Live Activity */
   'przerwa {s} s': 'rest {s} s', 'Przerwa minęła': 'Rest is over', 'Następna seria.': 'Next set.', 'seria {s} s': 'set {s} s',
   'Seria skończona': 'Set finished', 'Minęło {s} s.': '{s} s have passed.',
-  'Jutro wygasa podpis aplikacji': 'App signature expires tomorrow',
-  'Zrób backup (Więcej → Backup) i odnów w Sideloadly. Dane zostają.': 'Make a backup (More → Backup) and renew in Sideloadly. Your data stays.',
-  'Zrób backup (Więcej → Backup) i zbuduj aplikację od nowa w GitHubie: iPhone (EAS) → build. Dane zostają.': 'Make a backup (More → Backup) and rebuild the app on GitHub: iPhone (EAS) → build. Your data stays.',
 
   /* jednostki w etykietach */
   '{u}/hantel': '{u}/dumbbell', '{u}/strona': '{u}/side', '{u}/stronę': '{u}/side',
