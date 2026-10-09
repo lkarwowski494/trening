@@ -109,11 +109,12 @@ name: Gumy w miejscu i w treningu
 - extendedWaitUntil: { visible: "Pull Up, .*", timeout: 30000 }
 - tapOn: "Pull Up, .*"
 - extendedWaitUntil: { visible: "Set 1 done — Pull Up", timeout: 30000 }
-- scrollUntilVisible: { element: "Band: none", direction: DOWN, timeout: 30000, centerElement: true }
-- tapOn: { text: "Band: none", below: "Set done.*" }
-# Band Pull Apart (wyżej) i Pull Up mają teraz poziom 1 — drugi przycisk to Pull Up
-- extendedWaitUntil: { visible: { text: "Band: green, level 1", below: "Set done.*", index: 1 }, timeout: 15000 }
-- tapOn: { text: "Band: green, level 1", below: "Set done.*", index: 1 }
+# E2E 91: po przewinięciu do wiersza Pull Up karta „teraz” (z „Set done”) jest nad ekranem — kotwica `below: "Set done.*"` nie istnieje.
+# Przycisk gumy Pull Up wskazujemy względem ✓ jego wiersza (leftOf; tekst karty „band: …” zajmuje całą szerokość karty, więc nie jest na lewo).
+- scrollUntilVisible: { element: "Set 1 done — Pull Up", direction: DOWN, timeout: 30000, centerElement: true }
+- tapOn: { text: "Band: none", leftOf: "Set 1 done — Pull Up" }
+- extendedWaitUntil: { visible: { text: "Band: green, level 1", leftOf: "Set 1 done — Pull Up" }, timeout: 15000 }
+- tapOn: { text: "Band: green, level 1", leftOf: "Set 1 done — Pull Up" }
 - extendedWaitUntil: { visible: "Band: red, level 2", timeout: 15000 }
 - takeScreenshot: 62-guma-pull-up
 - tapOn: "Set 1 done — Pull Up"

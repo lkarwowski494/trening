@@ -54,6 +54,9 @@ name: Widok skupiony i talerze
 - takeScreenshot: 40-karta-teraz-pusta
 - tapOn: { id: "w-0-0" }
 - inputText: "80"
+# E2E 91 (run z 1080a40): klawiatura numeryczna zasłania wiersz serii (karta „teraz” + licznik postępu nad wierszem) — tap w „r-0-0” przy
+# otwartej klawiaturze nie trafił w pole i „5” dopisało się do ciężaru („Now: 805 kg”). Najpierw chowamy klawiaturę tapnięciem w tekst karty.
+- tapOn: "set.1.of.1"
 - tapOn: { id: "r-0-0" }
 - inputText: "5"
 # Klawiatura numeryczna nie ma akcji „schowaj” (run 37611882320: hideKeyboard nie działa) — tapnięcie w zwykły tekst karty ją chowa

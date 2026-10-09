@@ -41,7 +41,9 @@ name: Masa ciała z datą i licencje open source
 - tapOn: "About"
 - extendedWaitUntil: { visible: "Open-source licences.*", timeout: 30000 }
 - tapOn: "Open-source licences.*"
-- extendedWaitUntil: { visible: "Packages \\(\\d+\\)", timeout: 30000 }
+# E2E 91: nagłówek „Packages (n)” jest pod 13 licencjami — poza ekranem; najpierw licencja MIT (widoczna bez przewijania) i jej treść, potem przewinięcie do nagłówka
+- extendedWaitUntil: { visible: "MIT, .*", timeout: 30000 }
 - tapOn: "MIT, .*"
 - extendedWaitUntil: { visible: "Permission is hereby granted.*", timeout: 30000 }
 - takeScreenshot: 71-licencje
+- scrollUntilVisible: { element: "Packages \\(\\d+\\)", direction: DOWN, timeout: 60000 }

@@ -169,6 +169,10 @@ name: Zamiana ćwiczenia w trakcie treningu (E2 W1)
 - extendedWaitUntil: { visible: "Suggestion 1: .*", timeout: 30000 }
 - tapOn: "Suggestion 1: .*"
 - extendedWaitUntil: { visible: "Always at Home — .*", timeout: 30000 }
+# E2E 91: przycisk był przy górnej krawędzi ekranu (y 109–150) — tap w (78, 129) trafił w systemowy baner iOS 26 nad aplikacją (świeży
+# symulator: powiadomienie „Apple Intelligence & Siri”), który otworzył Ustawienia → Siri; reszta scenariusza poza aplikacją. Przewinięcie
+# z centerElement stawia przycisk na środku ekranu, z dala od pasa banerów (maestro.log przebiegu 91: „Tapping … bounds=[14,109][142,150]”).
+- scrollUntilVisible: { element: "Always at Home — .*", direction: DOWN, timeout: 30000, centerElement: true }
 - tapOn: "Always at Home — .*"
 - assertNotVisible: "Always at Home — .*"
 - takeScreenshot: 36-zawsze-w-domu
@@ -183,5 +187,6 @@ name: Zamiana ćwiczenia w trakcie treningu (E2 W1)
 - scrollUntilVisible: { element: "Start: Upper A", direction: UP, timeout: 60000 }
 - tapOn: "Start: Upper A"
 - extendedWaitUntil: { visible: "Usually at Home — .*\\. Swap\\?", timeout: 30000 }
-- assertVisible: "Swap exercise: Bench Press \\(Dumbbell\\)"   # podpowiedź nie zmienia bloku sama
+# interpreter E2E 91 (tests/maestro-layout.ts): linijka podpowiedzi przesuwa przycisk zamiany pod pasek zakładek (jak przy pierwszym starcie, run 37738868663)
+- scrollUntilVisible: { element: "Swap exercise: Bench Press \\(Dumbbell\\)", direction: DOWN, timeout: 30000, centerElement: true }   # podpowiedź nie zmienia bloku sama
 - takeScreenshot: 37-podpowiedz-zamiennika
