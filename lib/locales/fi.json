@@ -1325,5 +1325,6 @@
  "Wybierz dni treningowe: od {a} do {b}.": "Valitse treenipäivät: {a}–{b}.",
  "Wybierz dni treningowe: {n}.": "Valitse treenipäivät: {n}.",
  "dawniej: {n}": "aiemmin: {n}",
- "Dawne nazwy w bibliotece": "Aiemmat nimet kirjastossa"
+ "Dawne nazwy w bibliotece": "Aiemmat nimet kirjastossa",
+ "Technika: {name}": "Tekniikka: {name}"
 }

@@ -4055,6 +4055,10 @@
   "en": "Technique"
  },
  {
+  "pl": "Technika: {name}",
+  "en": "Technique: {name}"
+ },
+ {
   "pl": "Tego ćwiczenia nie da się już zamienić.",
   "en": "This exercise can no longer be swapped."
  },

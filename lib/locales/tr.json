@@ -1325,5 +1325,6 @@
  "Wybierz dni treningowe: od {a} do {b}.": "Antrenman günlerini seçin: {a} ile {b} arası.",
  "Wybierz dni treningowe: {n}.": "Antrenman günlerini seçin: {n}.",
  "dawniej: {n}": "önceki adı: {n}",
- "Dawne nazwy w bibliotece": "Kütüphanedeki önceki adlar"
+ "Dawne nazwy w bibliotece": "Kütüphanedeki önceki adlar",
+ "Technika: {name}": "Teknik: {name}"
 }

@@ -9,7 +9,7 @@ import * as path from 'path';
 import * as store from '@/lib/store';
 import * as draft from '@/lib/draft';
 import { fresh, ex, saved, addWorkout, pressAlert, set } from './helpers';
-import { renderApp, flushAll, screen, go, tap, type, act } from './app';
+import { renderApp, flushAll, screen, go, tap, type, act, fireEvent, openCard } from './app';
 import { LIB_KEYS, LIB_RENAMED, LIB_MERGED, formerNamesOf, formerMatch, formerExact, seedState, type Template, type State } from '@/lib/seed';
 import { applyLang, t, exName } from '@/lib/i18n';
 import { namesIn } from './forbidden-names';
@@ -96,5 +96,51 @@ describe('UX2-01: wyszukiwanie po dawnej nazwie — ekrany', () => {
     expect(screen.queryByText('Utwórz „Seated Dumbbell Curl”')).toBeNull();
     await tap(screen.getByText('Biceps Curl (hantle)')); await flushAll(10);
     expect(S().active!.exercises.map(b => b.exerciseId)).toEqual([target.id]); expect(S().exercises.filter(e => /Seated Dumbbell Curl/i.test(e.name))).toEqual([]);
+  });
+});
+
+/* ---------------- UX2-05: technika z treningu i szablonu ---------------- */
+const routeNames = (): string[] => { const { store: rs } = require('expo-router/build/global-state/router-store'); const names: string[] = [];
+  const walk = (st: { routes?: { name: string; state?: unknown }[] } | undefined) => st?.routes?.forEach(r => { names.push(r.name); walk(r.state as never); }); walk(rs.navigationRef.getRootState()); return names; };
+const dbl = async (el: Parameters<typeof tap>[0]) => { await act(async () => { fireEvent.press(el); fireEvent.press(el); }); await flushAll(10); };
+const cuesOpen = () => screen.getByTestId('exercise-cues-toggle').props.accessibilityState?.expanded;
+
+describe('UX2-05: wskazówki techniki z treningu na żywo i z szablonu', () => {
+  test('logika: hasCues — ćwiczenie bazowe z wskazówkami tak, własne i bez wskazówek nie; bez wczytywania słowników zdań', () => {
+    jest.isolateModules(() => {
+      const loaded: string[] = []; for (const l of ['pl', 'en', 'de']) { const real = jest.requireActual(`@/lib/cues/text/${l}.json`); jest.doMock(`@/lib/cues/text/${l}.json`, () => { loaded.push(l); return real; }); }
+      const { hasCues } = require('@/lib/cues');
+      expect(hasCues({ lib: true, libKey: 'Back Squat' })).toBe(true); expect(hasCues({ lib: false, libKey: 'Back Squat' })).toBe(false);
+      expect(hasCues({ lib: true, libKey: 'nie ma' })).toBe(false); expect(hasCues(null)).toBe(false); expect(hasCues(undefined)).toBe(false);
+      expect(loaded).toEqual([]);
+      for (const l of ['pl', 'en', 'de']) jest.dontMock(`@/lib/cues/text/${l}.json`);
+    });
+  });
+  test('trening na żywo: „ⓘ Technika” przy ćwiczeniu z wskazówkami otwiera podgląd ćwiczenia z rozwiniętą sekcją „Technika” na górze; podwójne tapnięcie — jeden ekran; własne ćwiczenie — bez przycisku', async () => {
+    await boot(() => { S().settings.workoutView = 'list'; store.startEmpty(); store.addExerciseToActive(ex('Back Squat')); store.addExerciseToActive(store.newExercise('Moje ćwiczenie')); });
+    expect(screen.getByLabelText('Technika: Back Squat')).toBeTruthy(); expect(screen.queryByLabelText('Technika: Moje ćwiczenie')).toBeNull();
+    expect(screen.getByText('ⓘ Technika')).toBeTruthy();
+    await dbl(screen.getByLabelText('Technika: Back Squat'));
+    expect(routeNames().filter(n => n === 'exercise/[id]')).toHaveLength(1);
+    expect(cuesOpen()).toBe(true); expect(screen.getByText('Ustawienie')).toBeTruthy();
+    const json = JSON.stringify(screen.toJSON()); expect(json.indexOf('exercise-cues')).toBeGreaterThan(-1); expect(json.indexOf('exercise-cues')).toBeLessThan(json.indexOf('Partia: nogi')); /* B: sekcja nad danymi konfiguracji */
+    expect(S().active!.exercises.length).toBe(2); /* trening bez zmian */
+  });
+  test('podgląd ćwiczenia z zakładki Ćwiczenia: sekcja „Technika” na górze, zwinięta', async () => {
+    await boot(); await go(`/exercise/${ex('Back Squat').id}`); await flushAll(10);
+    expect(cuesOpen()).toBe(false); expect(screen.queryByText('Ustawienie')).toBeNull();
+    const json = JSON.stringify(screen.toJSON()); expect(json.indexOf('exercise-cues')).toBeLessThan(json.indexOf('Partia: nogi'));
+  });
+  test('podgląd szablonu i edytor szablonu: „ⓘ Technika” przy ćwiczeniu; w edycji otwarcie nie gubi szkicu', async () => {
+    let id = ''; await boot(() => { id = mkTpl().id; }); await go(`/template/${id}`); await flushAll(10);
+    expect(screen.getByLabelText('Technika: Back Squat')).toBeTruthy();
+    await tap(screen.getByLabelText('Edytuj szablon')); await flushAll(5); draft.objDraft<Template>('template', id)!.name = 'Nogi 2';
+    await openCard(0);
+    await tap(screen.getByLabelText('Technika: Back Squat')); await flushAll(10);
+    expect(cuesOpen()).toBe(true); expect(draft.objDraft<Template>('template', id)!.name).toBe('Nogi 2');
+  });
+  test('po angielsku: etykieta VoiceOver „Technique: …”', async () => {
+    await boot(() => { S().settings.workoutView = 'list'; store.startEmpty(); store.addExerciseToActive(ex('Back Squat')); }, undefined, 'en');
+    expect(screen.getByLabelText(`Technique: ${exName(ex('Back Squat'))}`)).toBeTruthy();
   });
 });

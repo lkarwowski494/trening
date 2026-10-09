@@ -1325,5 +1325,6 @@
  "Wybierz dni treningowe: od {a} do {b}.": "Válassz edzésnapokat: {a}–{b}.",
  "Wybierz dni treningowe: {n}.": "Válassz edzésnapokat: {n}.",
  "dawniej: {n}": "korábban: {n}",
- "Dawne nazwy w bibliotece": "Korábbi nevek a könyvtárban"
+ "Dawne nazwy w bibliotece": "Korábbi nevek a könyvtárban",
+ "Technika: {name}": "Kivitelezés: {name}"
 }

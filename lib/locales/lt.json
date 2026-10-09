@@ -1325,5 +1325,6 @@
  "Wybierz dni treningowe: od {a} do {b}.": "Pasirink treniruočių dienas: nuo {a} iki {b}.",
  "Wybierz dni treningowe: {n}.": "Pasirink treniruočių dienas: {n}.",
  "dawniej: {n}": "anksčiau: {n}",
- "Dawne nazwy w bibliotece": "Ankstesni pavadinimai bibliotekoje"
+ "Dawne nazwy w bibliotece": "Ankstesni pavadinimai bibliotekoje",
+ "Technika: {name}": "Atlikimo technika: {name}"
 }

@@ -20,7 +20,7 @@ const EQ: Equipment[] = ['hantle', 'sztanga', 'masa ciała', 'maszyna', 'linki',
  * sesji w historii (components/DraftHeader). „+ Nowe” otwiera od razu edycję (`?edit=1&new=1`); „Anuluj” nowego, niezapisanego ćwiczenia je usuwa.
  */
 export default function ExerciseScreen() {
-  const p = useLocalSearchParams<{ id: string; edit?: string; new?: string }>(); const id = typeof p.id === 'string' ? p.id : ''; useTick(); const router = useRouter();
+  const p = useLocalSearchParams<{ id: string; edit?: string; new?: string; cues?: string }>(); const id = typeof p.id === 'string' ? p.id : ''; useTick(); const router = useRouter();
   const isNew = useRef(p.new === '1'); const once = useOnce();
   const [editing, setEditing] = useState(() => p.edit === '1' && !!beginObjDraft('exercise', id, { isNew: p.new === '1' }) /* UX2-12: nowy obiekt w zapisanym szkicu */);
   /* zamknięcie ekranu w jakikolwiek sposób wyrzuca szkic; nowe ćwiczenie, którego nigdy nie zapisano (albo nietknięte „Nowe ćwiczenie”), znika — runda 2 */
@@ -34,7 +34,7 @@ export default function ExerciseScreen() {
     const commit = () => { commitObjDraft('exercise', id, { keepNew: isNew.current }); isNew.current = false; setEditing(false); };
     return <><DraftHeader title={isNew.current ? t('Nowe ćwiczenie') : t('Edycja ćwiczenia')} onCancel={cancel} onSave={commit} cancelLabel={t('Anuluj edycję ćwiczenia')} saveLabel={t('Zapisz ćwiczenie')} /><EditForm e={d} /></>;
   }
-  return <><Stack.Screen options={{ title: t('Ćwiczenie'), headerBackVisible: true, gestureEnabled: true, headerLeft: undefined, headerRight: undefined }} /><Preview e={real} onEdit={() => { if (beginObjDraft('exercise', id)) setEditing(true); } /* podwójne tapnięcie — ten sam szkic */} onOpen={(wid: string) => router.push(`/history/${wid}`)} onProgress={once(() => router.push(`/more/progress?ex=${real.id}`))} /></>;
+  return <><Stack.Screen options={{ title: t('Ćwiczenie'), headerBackVisible: true, gestureEnabled: true, headerLeft: undefined, headerRight: undefined }} /><Preview e={real} cuesOpen={p.cues === '1'} onEdit={() => { if (beginObjDraft('exercise', id)) setEditing(true); } /* podwójne tapnięcie — ten sam szkic */} onOpen={(wid: string) => router.push(`/history/${wid}`)} onProgress={once(() => router.push(`/more/progress?ex=${real.id}`))} /></>;
 }
 
 /** Opis zasad liczenia (masa ciała, e1RM, stoper, przerwa z szablonu) — ten sam w podglądzie i edycji. */
@@ -57,13 +57,14 @@ function Row({ label, value }: { label: string; value: string }) {
 }
 /** Ostatnie sesje z tym ćwiczeniem (najnowsze pierwsze). */
 const HISTORY_ROWS = 5;
-function Preview({ e, onEdit, onOpen, onProgress }: { e: Exercise; onEdit: () => void; onOpen: (id: string) => void; onProgress: () => void }) {
+function Preview({ e, cuesOpen, onEdit, onOpen, onProgress }: { e: Exercise; /** UX2-05: z „ⓘ Technika” — sekcja rozwinięta */ cuesOpen?: boolean; onEdit: () => void; onOpen: (id: string) => void; onProgress: () => void }) {
   const m = e.metric ?? 'weight_reps'; const def = getState().settings.defaultRest;
   const hist = finishedWorkouts().filter(w => w.exercises.some(x => x.exerciseId === e.id)).slice(0, HISTORY_ROWS);
   const mus = (xs: readonly string[] | undefined) => (xs ?? []).length ? (xs ?? []).map(x => t(x)).join(', ') : '—';
   return (
     <Screen><ScrollView contentContainerStyle={{ paddingVertical: 10, paddingBottom: 120 }}>
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 10 }}><View style={{ flex: 1 }}><H1>{exName(e)}</H1></View>{/* podgląd: tylko nazwa w języku aplikacji (nazwa katalogowa — w edycji, przy „Wyświetlane jako”) */}<Btn title={t('Edytuj')} small accessibilityLabel={t('Edytuj ćwiczenie')} onPress={onEdit} /></View>
+      <ExerciseCues exercise={e} initialOpen={cuesOpen} />{/* wskazówki techniki, etap 1 (docs/18 08.10.2026 ok. 23:50) — UX2-05 (audyt kontrolny 1, wariant B): na górze podglądu, przed danymi konfiguracji */}
       <Row label={t('Partia')} value={t(e.group)} />
       <Row label={t('Sprzęt')} value={t(e.equipment)} />
       {formerNamesOf(e).length ? <Row label={t('Dawne nazwy w bibliotece')} value={formerNamesOf(e).map(n => exName({ name: n, lib: true })).join(', ')} /> : null}{/* UX2-01 (audyt kontrolny 1): scalone i przemianowane w kroku katalogu 09.10 */}
@@ -79,7 +80,6 @@ function Preview({ e, onEdit, onOpen, onProgress }: { e: Exercise; onEdit: () =>
       {!e.bandAssistable && usesBand(e) ? <Muted style={{ fontSize: 12, marginTop: -6, marginBottom: 10 }}>{t('Guma jako opór: przy serii wybierasz gumę (poziom 1–7), rekordy liczą serie z gumą.')}</Muted> : null}
       {e.tempo ? <Row label={t('Tempo')} value={e.tempo} /> : null}
       {e.notes ? <Row label={t('Notatki techniczne')} value={e.notes} /> : null}
-      <ExerciseCues exercise={e} />{/* wskazówki techniki, etap 1 (docs/18 08.10.2026 ok. 23:50) — w podglądzie (edycja na żądanie) */}
       <Muted style={{ fontSize: 13, marginBottom: 12 }}>{bwNote()}</Muted>
       <Muted accessibilityRole="header" style={{ fontSize: 13, marginTop: 6, marginBottom: 4 }}>{t('Ostatnie treningi')}</Muted>
       {hist.length ? hist.map(w => { const sets = w.exercises.filter(x => x.exerciseId === e.id).flatMap(x => x.sets); const line = `${fmtDate(wallTs(w))} · ${sets.map(x => setSummary(e, x)).join(', ')}`;

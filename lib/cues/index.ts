@@ -50,6 +50,9 @@ export function cueText(id: string, l: Lang = lang()): string { return own(dict(
 /** Słownik zdań języka (testy kompletności). */
 export const cueDict = (l: Lang): Readonly<Record<string, string>> => dict(l);
 
+/** UX2-05 (audyt kontrolny 1): czy ćwiczenie ma wskazówki — tylko po kluczu w data.json, bez wczytywania słowników zdań (przycisk „ⓘ Technika”
+ * przy każdym ćwiczeniu treningu i szablonu nie może ładować tekstów — SEC2-07). */
+export function hasCues(e: Pick<Exercise, 'lib' | 'libKey'> | null | undefined): boolean { const key = catalogKey(e); return !!key && !!own(CUE_DATA.exercises, key); }
 export type ExerciseCues = { key: string; sections: { id: CueSection; items: string[] }[]; basis: CueBasisKind[] };
 /** Wskazówki ćwiczenia z biblioteki (po kluczu katalogu — przemianowane też je mają); własne ćwiczenia i ćwiczenia bez wskazówek → null. */
 export function cuesFor(e: Pick<Exercise, 'lib' | 'libKey'> | null | undefined, l: Lang = lang()): ExerciseCues | null {

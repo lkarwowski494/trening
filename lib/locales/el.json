@@ -1325,5 +1325,6 @@
  "Wybierz dni treningowe: od {a} do {b}.": "Επίλεξε ημέρες προπόνησης: από {a} έως {b}.",
  "Wybierz dni treningowe: {n}.": "Επίλεξε ημέρες προπόνησης: {n}.",
  "dawniej: {n}": "παλαιότερα: {n}",
- "Dawne nazwy w bibliotece": "Παλαιότερα ονόματα στη βιβλιοθήκη"
+ "Dawne nazwy w bibliotece": "Παλαιότερα ονόματα στη βιβλιοθήκη",
+ "Technika: {name}": "Τεχνική: {name}"
 }

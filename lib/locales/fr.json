@@ -1325,5 +1325,6 @@
  "Wybierz dni treningowe: od {a} do {b}.": "Choisissez les jours d’entraînement : de {a} à {b}.",
  "Wybierz dni treningowe: {n}.": "Choisissez les jours d’entraînement : {n}.",
  "dawniej: {n}": "anciennement : {n}",
- "Dawne nazwy w bibliotece": "Anciens noms dans la bibliothèque"
+ "Dawne nazwy w bibliotece": "Anciens noms dans la bibliothèque",
+ "Technika: {name}": "Technique : {name}"
 }

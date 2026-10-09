@@ -860,4 +860,5 @@ export const EN: Record<string, string> = {
   'Wybierz dni treningowe: {n}.': 'Choose training days: {n}.',
   'dawniej: {n}': 'formerly: {n}',
   'Dawne nazwy w bibliotece': 'Former names in the library',
+  'Technika: {name}': 'Technique: {name}',
 };

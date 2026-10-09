@@ -1325,5 +1325,6 @@
  "Wybierz dni treningowe: od {a} do {b}.": "Kies trainingsdagen: {a} tot {b}.",
  "Wybierz dni treningowe: {n}.": "Kies trainingsdagen: {n}.",
  "dawniej: {n}": "voorheen: {n}",
- "Dawne nazwy w bibliotece": "Eerdere namen in de bibliotheek"
+ "Dawne nazwy w bibliotece": "Eerdere namen in de bibliotheek",
+ "Technika: {name}": "Techniek: {name}"
 }
