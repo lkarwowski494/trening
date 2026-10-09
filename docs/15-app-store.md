@@ -140,6 +140,9 @@ Rozmowa 05.10.2026, rano: „Chciałbym móc opublikować to w Apple Store” i 
     i klauzule o prawach do programów (art. 74 ust. 3 prawa autorskiego — program stworzony w ramach obowiązków pracownika należy do
     pracodawcy); 4) droga „licencja = prawa majątkowe” zakłada utwór człowieka — kod pisany głównie przez agentów AI może mieć słabszą
     ochronę autorską, co osłabia tę kwalifikację.
+    Właściciel (09.10.2026): zakaz konkurencji w umowie jest, ale aplikacja powstaje w wolnym czasie, na własnym sprzęcie, w obszarze
+    niezwiązanym z pracą — ryzyko z pkt 3 niskie. Do sprawdzenia: wewnętrzne zasady pracodawcy o zgłaszaniu dodatkowej działalności
+    zarobkowej (w dużych firmach bywa obowiązek zgłoszenia niezależnie od branży).
   - **Otwarte dla księgowego:** czy przychodem jest cena dla klienta czy wypłata od Apple (po prowizji i VAT); VAT od usługi dla Apple
     (podmiot zagraniczny) — czy potrzebna rejestracja VAT-UE; jak dokumentować wypłaty Apple.
 - **Priorytet produktu wynikający z celu:** zatrzymanie użytkowników (jakość, brak błędów, dane bezpieczne) ważniejsze niż liczba pobrań —
