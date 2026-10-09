@@ -1277,5 +1277,7 @@
  "W trakcie": "Judesio metu",
  "Pozycja końcowa": "Galutinė padėtis",
  "Rysunek schematyczny — pozycje orientacyjne.": "Schematinis piešinys — padėtys apytikslės.",
- "zakładka, {i} z {n}": "skirtukas, {i} iš {n}"
+ "zakładka, {i} z {n}": "skirtukas, {i} iš {n}",
+ "{v} ({p}% masy ciała {d})": "{v} ({p} % kūno svorio {d})",
+ "e1RM {v} ({p}% masy ciała {d}; seria {s})": "e1RM {v} ({p} % kūno svorio {d}; serija {s})"
 }

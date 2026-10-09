@@ -1277,5 +1277,7 @@
  "W trakcie": "Durante il movimento",
  "Pozycja końcowa": "Posizione finale",
  "Rysunek schematyczny — pozycje orientacyjne.": "Disegno schematico: posizioni indicative.",
- "zakładka, {i} z {n}": "pannello, {i} di {n}"
+ "zakładka, {i} z {n}": "pannello, {i} di {n}",
+ "{v} ({p}% masy ciała {d})": "{v} ({p}% del peso corporeo {d})",
+ "e1RM {v} ({p}% masy ciała {d}; seria {s})": "e1RM {v} ({p}% del peso corporeo {d}; serie {s})"
 }

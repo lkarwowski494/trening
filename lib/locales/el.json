@@ -1277,5 +1277,7 @@
  "W trakcie": "Κατά την κίνηση",
  "Pozycja końcowa": "Τελική θέση",
  "Rysunek schematyczny — pozycje orientacyjne.": "Σχηματικό σχέδιο — οι θέσεις είναι κατά προσέγγιση.",
- "zakładka, {i} z {n}": "καρτέλα, {i} από {n}"
+ "zakładka, {i} z {n}": "καρτέλα, {i} από {n}",
+ "{v} ({p}% masy ciała {d})": "{v} ({p}% του σωματικού βάρους {d})",
+ "e1RM {v} ({p}% masy ciała {d}; seria {s})": "e1RM {v} ({p}% του σωματικού βάρους {d}· σετ {s})"
 }

@@ -1277,5 +1277,7 @@
  "W trakcie": "По време на движението",
  "Pozycja końcowa": "Крайна позиция",
  "Rysunek schematyczny — pozycje orientacyjne.": "Схематична рисунка — позициите са ориентировъчни.",
- "zakładka, {i} z {n}": "раздел, {i} от {n}"
+ "zakładka, {i} z {n}": "раздел, {i} от {n}",
+ "{v} ({p}% masy ciała {d})": "{v} ({p}% от телесното тегло {d})",
+ "e1RM {v} ({p}% masy ciała {d}; seria {s})": "e1RM {v} ({p}% от телесното тегло {d}; серия {s})"
 }

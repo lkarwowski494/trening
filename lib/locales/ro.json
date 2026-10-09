@@ -1277,5 +1277,7 @@
  "W trakcie": "În timpul mișcării",
  "Pozycja końcowa": "Poziția finală",
  "Rysunek schematyczny — pozycje orientacyjne.": "Desen schematic — pozițiile sunt orientative.",
- "zakładka, {i} z {n}": "filă, {i} din {n}"
+ "zakładka, {i} z {n}": "filă, {i} din {n}",
+ "{v} ({p}% masy ciała {d})": "{v} ({p}% din greutatea corpului {d})",
+ "e1RM {v} ({p}% masy ciała {d}; seria {s})": "e1RM {v} ({p}% din greutatea corpului {d}; seria {s})"
 }

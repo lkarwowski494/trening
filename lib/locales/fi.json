@@ -1277,5 +1277,7 @@
  "W trakcie": "Liikkeen aikana",
  "Pozycja końcowa": "Loppuasento",
  "Rysunek schematyczny — pozycje orientacyjne.": "Kaavamainen piirros — asennot ovat suuntaa-antavia.",
- "zakładka, {i} z {n}": "välilehti, {i}/{n}"
+ "zakładka, {i} z {n}": "välilehti, {i}/{n}",
+ "{v} ({p}% masy ciała {d})": "{v} ({p} % kehonpainosta {d})",
+ "e1RM {v} ({p}% masy ciała {d}; seria {s})": "e1RM {v} ({p} % kehonpainosta {d}; sarja {s})"
 }

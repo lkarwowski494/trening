@@ -1277,5 +1277,7 @@
  "W trakcie": "Počas pohybu",
  "Pozycja końcowa": "Konečná poloha",
  "Rysunek schematyczny — pozycje orientacyjne.": "Schematický nákres — polohy sú orientačné.",
- "zakładka, {i} z {n}": "karta, {i} z {n}"
+ "zakładka, {i} z {n}": "karta, {i} z {n}",
+ "{v} ({p}% masy ciała {d})": "{v} ({p} % telesnej hmotnosti {d})",
+ "e1RM {v} ({p}% masy ciała {d}; seria {s})": "e1RM {v} ({p} % telesnej hmotnosti {d}; séria {s})"
 }

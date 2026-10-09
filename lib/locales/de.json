@@ -1277,5 +1277,7 @@
  "W trakcie": "Während der Bewegung",
  "Pozycja końcowa": "Endposition",
  "Rysunek schematyczny — pozycje orientacyjne.": "Schematische Zeichnung — die Positionen sind ungefähr.",
- "zakładka, {i} z {n}": "Tab, {i} von {n}"
+ "zakładka, {i} z {n}": "Tab, {i} von {n}",
+ "{v} ({p}% masy ciała {d})": "{v} ({p} % des Körpergewichts {d})",
+ "e1RM {v} ({p}% masy ciała {d}; seria {s})": "e1RM {v} ({p} % des Körpergewichts {d}; Satz {s})"
 }

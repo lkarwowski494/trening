@@ -1277,5 +1277,7 @@
  "W trakcie": "Hareket sırasında",
  "Pozycja końcowa": "Bitiş pozisyonu",
  "Rysunek schematyczny — pozycje orientacyjne.": "Şematik çizim — pozisyonlar yaklaşıktır.",
- "zakładka, {i} z {n}": "sekme, {i}/{n}"
+ "zakładka, {i} z {n}": "sekme, {i}/{n}",
+ "{v} ({p}% masy ciała {d})": "{v} (vücut ağırlığının %{p} kadarı {d})",
+ "e1RM {v} ({p}% masy ciała {d}; seria {s})": "e1RM {v} (vücut ağırlığının %{p} kadarı {d}; set {s})"
 }

@@ -1277,5 +1277,7 @@
  "W trakcie": "Underveis",
  "Pozycja końcowa": "Sluttstilling",
  "Rysunek schematyczny — pozycje orientacyjne.": "Skjematisk tegning — stillingene er omtrentlige.",
- "zakładka, {i} z {n}": "fane, {i} av {n}"
+ "zakładka, {i} z {n}": "fane, {i} av {n}",
+ "{v} ({p}% masy ciała {d})": "{v} ({p} % av kroppsvekten {d})",
+ "e1RM {v} ({p}% masy ciała {d}; seria {s})": "e1RM {v} ({p} % av kroppsvekten {d}; sett {s})"
 }

@@ -799,4 +799,6 @@ export const EN: Record<string, string> = {
   'Pozycja końcowa': 'End position',
   'Rysunek schematyczny — pozycje orientacyjne.': 'Schematic drawing — positions are approximate.',
   'zakładka, {i} z {n}': 'tab, {i} of {n}',
+  '{v} ({p}% masy ciała {d})': '{v} ({p}% of body weight {d})',
+  'e1RM {v} ({p}% masy ciała {d}; seria {s})': 'e1RM {v} ({p}% of body weight {d}; set {s})',
 };

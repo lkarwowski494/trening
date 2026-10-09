@@ -1277,5 +1277,7 @@
  "W trakcie": "Під час руху",
  "Pozycja końcowa": "Кінцеве положення",
  "Rysunek schematyczny — pozycje orientacyjne.": "Схематичний малюнок — положення орієнтовні.",
- "zakładka, {i} z {n}": "вкладка, {i} з {n}"
+ "zakładka, {i} z {n}": "вкладка, {i} з {n}",
+ "{v} ({p}% masy ciała {d})": "{v} ({p}% маси тіла {d})",
+ "e1RM {v} ({p}% masy ciała {d}; seria {s})": "e1RM {v} ({p}% маси тіла {d}; підхід {s})"
 }

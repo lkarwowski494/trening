@@ -1277,5 +1277,7 @@
  "W trakcie": "Mozdulat közben",
  "Pozycja końcowa": "Véghelyzet",
  "Rysunek schematyczny — pozycje orientacyjne.": "Vázlatos rajz — a helyzetek tájékoztató jellegűek.",
- "zakładka, {i} z {n}": "lap, {i}/{n}"
+ "zakładka, {i} z {n}": "lap, {i}/{n}",
+ "{v} ({p}% masy ciała {d})": "{v} (a testsúly {p}%-a {d})",
+ "e1RM {v} ({p}% masy ciała {d}; seria {s})": "e1RM {v} (a testsúly {p}%-a {d}; sorozat: {s})"
 }

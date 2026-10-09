@@ -1277,5 +1277,7 @@
  "W trakcie": "Kustības laikā",
  "Pozycja końcowa": "Beigu pozīcija",
  "Rysunek schematyczny — pozycje orientacyjne.": "Shematisks zīmējums — pozīcijas ir aptuvenas.",
- "zakładka, {i} z {n}": "cilne, {i} no {n}"
+ "zakładka, {i} z {n}": "cilne, {i} no {n}",
+ "{v} ({p}% masy ciała {d})": "{v} ({p}% no ķermeņa svara {d})",
+ "e1RM {v} ({p}% masy ciała {d}; seria {s})": "e1RM {v} ({p}% no ķermeņa svara {d}; sērija {s})"
 }

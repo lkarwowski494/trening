@@ -54,7 +54,12 @@ const recE1 = (ex: Exercise, s: WSet, bm: number | undefined) => unknownAssist(e
 export function bwE1Diff(ex: Exercise, v: number, bm: number | undefined): number | null { const sh = bwShare(ex); return isBW(ex) && bm && sh ? v - sh * bm : null; }
 const signedW = (kg: number) => `${kg < 0 ? '−' : '+'} ${fmtW(Math.abs(kg), false)}`;
 /** `bm` — masa ciała z dnia, w którym padł ten e1RM (Records.bestE1rmBm). */
-export function fmtE1(ex: Exercise, v: number, bm: number | undefined): string { const d = bwE1Diff(ex, v, bm); return d == null ? fmtW(v) : t('{v} (masa ciała {d})', { v: fmtW(v), d: signedW(d) }); }
+/** Audyt kontrolny 1 (MER2-01): opis różnicy mówi, od czego jest liczona — udział 1 „masa ciała + X”, udział < 1 „64% masy ciała + X” (p z BW_SHARE). */
+const bwPct = (ex: Exercise): number | null => { const sh = bwShare(ex); return sh != null && sh < 1 ? Math.round(sh * 100) : null; };
+export function fmtE1(ex: Exercise, v: number, bm: number | undefined): string {
+  const d = bwE1Diff(ex, v, bm); if (d == null) return fmtW(v); const p = bwPct(ex);
+  return p == null ? t('{v} (masa ciała {d})', { v: fmtW(v), d: signedW(d) }) : t('{v} ({p}% masy ciała {d})', { v: fmtW(v), p, d: signedW(d) });
+}
 export const e1rm = (load: number, reps: number) => (load > 0 && reps > 0) ? Math.round((reps === 1 ? load : load * (1 + reps / 30)) * 1e6) / 1e6 : 0;
 
 /** Runda 73 (decyzja 01.10): REKORD ćwiczenia = suma na treningu (objętość / powtórzenia / czas / dystans wg metryki) + e1RM.
@@ -197,6 +202,12 @@ export function prMap(w: Workout): Map<string, string[]> {
   }
   return out;
 }
+/** Okno rekordu: e1RM ćwiczenia z masą ciała z opisem — T13: „seria +20 kg × 8” (nie „seria 6”, wyglądało jak numer serii); E1: „masa ciała + X”;
+ * audyt kontrolny 1 (MER2-01): udział < 1 — „64% masy ciała + X”. */
+function e1BwText(ex: Exercise, s: WSet, bm: number | undefined): string {
+  const v = recE1(ex, s, bm); const a = { v: fmtW(v), d: signedW(bwE1Diff(ex, v, bm) ?? 0), s: `${fmtW(setLoad(ex, s))} × ${repsOf(s)}` }; const p = bwPct(ex);
+  return p == null ? t('e1RM {v} (masa ciała {d}; seria {s})', a) : t('e1RM {v} ({p}% masy ciała {d}; seria {s})', { ...a, p });
+}
 /** PR-y całego treningu (do podsumowania po zakończeniu). */
 export type WorkoutPR = { exercise: Exercise; set: WSet; kinds: string[]; /** runda 73: gotowe opisy do podsumowania (suma treningu, e1RM z serią) */ details: string[] };
 export function workoutPRs(w: Workout): WorkoutPR[] {
@@ -209,7 +220,7 @@ export function workoutPRs(w: Workout): WorkoutPR[] {
   const total = (ex: Exercise) => w.exercises.filter(e => e.exerciseId === ex.id).reduce((a, e) => a + e.sets.reduce((b, s) => b + setTotal(ex, s, e.impl), 0), 0);
   return out.map(x => ({ ...x, kinds: x.kinds.filter(k => last.get(x.exercise.id + '|' + k) === x) })).filter(x => x.kinds.length)
     .map(x => ({ ...x, details: [...x.kinds].sort((a, b) => (a === 'e1RM' ? 1 : 0) - (b === 'e1RM' ? 1 : 0)) /* T13: najpierw suma (główny rekord), potem e1RM */
-      .map(k => k === 'e1RM' ? (isBW(x.exercise) ? t('e1RM {v} (masa ciała {d}; seria {s})', { v: fmtW(recE1(x.exercise, x.set, bm)), d: signedW(bwE1Diff(x.exercise, recE1(x.exercise, x.set, bm), bm) ?? 0), s: `${fmtW(setLoad(x.exercise, x.set))} × ${repsOf(x.set)}` /* T13: „seria 6” wyglądało jak numer serii; E1: „masa ciała + X” */ }) : t('e1RM {v} (seria {s})', { v: fmtW(recE1(x.exercise, x.set, bm)), s: setSummary(x.exercise, x.set) })) : t('{k}: {v}', { k: t(k), v: fmtTotal(x.exercise, total(x.exercise)) })) }));
+      .map(k => k === 'e1RM' ? (isBW(x.exercise) ? e1BwText(x.exercise, x.set, bm) : t('e1RM {v} (seria {s})', { v: fmtW(recE1(x.exercise, x.set, bm)), s: setSummary(x.exercise, x.set) })) : t('{k}: {v}', { k: t(k), v: fmtTotal(x.exercise, total(x.exercise)) })) }));
 }
 
 /** E3 (audyt 0.10: X-08, LOG-06): liczba rekordów treningu — JEDNA funkcja dla okna po treningu i karty „Ostatni trening” (decyzja T13: liczba

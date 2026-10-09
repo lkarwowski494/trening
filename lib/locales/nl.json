@@ -1277,5 +1277,7 @@
  "W trakcie": "Tijdens de beweging",
  "Pozycja końcowa": "Eindpositie",
  "Rysunek schematyczny — pozycje orientacyjne.": "Schematische tekening — posities zijn bij benadering.",
- "zakładka, {i} z {n}": "tabblad, {i} van {n}"
+ "zakładka, {i} z {n}": "tabblad, {i} van {n}",
+ "{v} ({p}% masy ciała {d})": "{v} ({p}% van het lichaamsgewicht {d})",
+ "e1RM {v} ({p}% masy ciała {d}; seria {s})": "e1RM {v} ({p}% van het lichaamsgewicht {d}; set {s})"
 }

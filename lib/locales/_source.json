@@ -136,6 +136,10 @@
   "en": "{v} · measured {d}"
  },
  {
+  "pl": "{v} ({p}% masy ciała {d})",
+  "en": "{v} ({p}% of body weight {d})"
+ },
+ {
   "pl": "{v} (masa ciała {d})",
   "en": "{v} (body weight {d})"
  },
@@ -972,6 +976,10 @@
  {
   "pl": "e1RM (Epley, per hantel)",
   "en": "e1RM (Epley, per dumbbell)"
+ },
+ {
+  "pl": "e1RM {v} ({p}% masy ciała {d}; seria {s})",
+  "en": "e1RM {v} ({p}% of body weight {d}; set {s})"
  },
  {
   "pl": "e1RM {v} (masa ciała {d}; seria {s})",

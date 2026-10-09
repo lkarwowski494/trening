@@ -1277,5 +1277,7 @@
  "W trakcie": "Durante el movimiento",
  "Pozycja końcowa": "Posición final",
  "Rysunek schematyczny — pozycje orientacyjne.": "Dibujo esquemático: las posiciones son aproximadas.",
- "zakładka, {i} z {n}": "pestaña, {i} de {n}"
+ "zakładka, {i} z {n}": "pestaña, {i} de {n}",
+ "{v} ({p}% masy ciała {d})": "{v} ({p} % del peso corporal {d})",
+ "e1RM {v} ({p}% masy ciała {d}; seria {s})": "e1RM {v} ({p} % del peso corporal {d}; serie {s})"
 }
