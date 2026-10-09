@@ -203,8 +203,9 @@ function fixEquipFields(e: any) {
 /** P-003: miejsca treningu z importu — znane pozycje sprzętu i opcje, poprawne opisy ciężarów; miejsce główne zawsze istnieje, gdy są miejsca. */
 function fixLocations(s: any, stamp: (o: any) => void, language: unknown): { locations: Location[]; mainLocationId: string | null; pickerShowAll: boolean } {
   const seen = new Set<string>(); const locations: Location[] = [];
-  for (const l of arr(s.locations)) {
-    stamp(l); if (seen.has(l.id)) continue; seen.add(l.id);
+  const list = arr(s.locations); list.forEach(l => stamp(l)); freshIds(list); /* DAT2-04 (= DAT-08): powtórzone id → „~n” (jak uniqueIds), bez gubienia drugiego miejsca */
+  for (const l of list) {
+    seen.add(l.id);
     const n = typeof l.name === 'string' ? clampName(l.name.replace(/\s+/g, ' ').trim()) : ''; l.name = n || tIn(language, 'Miejsce'); /* audyt (LOW): limit nazwy jak w polu */
     const items = new Set<string>();
     l.equipment = arr(l.equipment).filter((e: any) => { const x = typeof e.item === 'string' ? equipById(e.item) : undefined; if (!x || items.has(e.item)) return false; items.add(e.item);
@@ -397,8 +398,8 @@ export function migrate(raw: any): State {
     const nm = isObj(raw.weekPlan) && typeof raw.weekPlan.name === 'string' ? cleanPlanName(raw.weekPlan.name) : ''; /* audyt 0.10 B4 (DAT-06): idempotentnie, bez rozcinania emoji */
     if (days.some(Boolean) || nm) raw.weekPlan = { days, ...(nm ? { name: nm } : {}) }; else delete raw.weekPlan;
     /* 08.10.2026 (docs/24): zapisane plany — id tekstem bez powtórzeń, nazwa ≤ 40, 7 dni; pusta lista znika; najwyżej SAVED_PLANS_MAX (ten sam limit w UI — audyt 0.10 B3) */
-    { const seen = new Set<string>(); const sp = (Array.isArray(raw.savedPlans) ? raw.savedPlans : []).filter((p: any) => isObj(p) && typeof p.id === 'string' && p.id && !seen.has(p.id) && (seen.add(p.id), true))
-        .map((p: any) => { const ov = cleanOverrides(p.overrides); return { id: p.id, name: typeof p.name === 'string' ? cleanPlanName(p.name) : '', days: planDays(p.days), ...(Object.keys(ov).length ? { overrides: ov } : {}) }; }); /* audyt 0.10 B1: zmiany dni zapisane z planem */
+    { const sp0 = (Array.isArray(raw.savedPlans) ? raw.savedPlans : []).filter((p: any) => isObj(p) && typeof p.id === 'string' && p.id); freshIds(sp0); /* DAT2-04: powtórzone id → „~n” */
+      const sp = sp0.map((p: any) => { const ov = cleanOverrides(p.overrides); return { id: p.id, name: typeof p.name === 'string' ? cleanPlanName(p.name) : '', days: planDays(p.days), ...(Object.keys(ov).length ? { overrides: ov } : {}) }; }); /* audyt 0.10 B1: zmiany dni zapisane z planem */
       if (sp.length) raw.savedPlans = sp.slice(0, SAVED_PLANS_MAX); else delete raw.savedPlans; }
     const ov = cleanOverrides(raw.planOverrides);
     if (Object.keys(ov).length) raw.planOverrides = ov; else delete raw.planOverrides;
@@ -478,11 +479,13 @@ function retireCatalog(raw: any) {
   }
   if (drop.size) raw.exercises = raw.exercises.filter((e: any) => !drop.has(e.id));
 }
+/** Powtórzone id w liście → nowe id deterministyczne („<id>~2”, „~3”…; pierwszy wpis zachowuje id): dwa wczytania tych samych danych dają ten sam
+ * wynik (porównania eksport → import, restart). Jedna reguła dla wszystkich list z id (także miejsca i zapisane plany — DAT2-04). */
+function freshIds(list: any[]) { const seen = new Set<string>(list.map(o => o?.id).filter((x: unknown) => typeof x === 'string'));
+  const first = new Set<string>(); for (const o of list) { if (typeof o?.id !== 'string') continue; if (!first.has(o.id)) { first.add(o.id); continue; }
+    let n = 2; while (seen.has(`${o.id}~${n}`)) n++; o.id = `${o.id}~${n}`; seen.add(o.id); first.add(o.id); } }
 function uniqueIds(raw: any) {
-  /* nowe id deterministyczne („<id>~2”, „~3”…): dwa wczytania tych samych danych dają ten sam wynik (porównania eksport → import, restart) */
-  const fresh = (list: any[]) => { const seen = new Set<string>(list.map(o => o?.id).filter((x: unknown) => typeof x === 'string'));
-    const first = new Set<string>(); for (const o of list) { if (typeof o?.id !== 'string') continue; if (!first.has(o.id)) { first.add(o.id); continue; }
-      let n = 2; while (seen.has(`${o.id}~${n}`)) n++; o.id = `${o.id}~${n}`; seen.add(o.id); first.add(o.id); } };
+  const fresh = freshIds;
   /* ten sam obiekt w kilku miejscach (dane z pamięci, nie z pliku) — osobne kopie, żeby zmiana id jednej nie zmieniała wszystkich */
   const objs = new Set<object>(); const own = (list: any[]) => list.map(o => { if (!isObj(o)) return o; if (objs.has(o)) return JSON.parse(JSON.stringify(o)); objs.add(o); return o; });
   raw.exercises = own(raw.exercises); raw.bands = own(raw.bands); raw.templates = own(raw.templates); raw.workouts = own(raw.workouts);
