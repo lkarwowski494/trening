@@ -16,6 +16,7 @@ import { PLURAL_FORMS, pluralIndex } from '@/lib/plural';
 import { allLabels } from '@/lib/equipment';
 import { fmtDate, fmtTime } from '@/lib/store';
 import { fmtNum } from '@/lib/units';
+import { FALLBACK_SCRIPTS } from '@/lib/theme';
 
 const NON_PL = LANGS.filter(l => l !== 'pl');
 const dictOf = (l: Lang): Record<string, string> => l === 'en' ? EN : (LOCALES[l] ?? {});
@@ -65,7 +66,9 @@ const plLeak = (l: Lang): RegExp => l === 'en' ? /[ąćęłńóśźżĄĆĘŁŃ�
 /* Interpunkcja końcowa: ta sama klasa co w kluczu (. ? ! : …). Kropka skrótu to nie koniec zdania: polskie skróty po stronie klucza
  * i krótkie skróty (≤ 3 wyrazy, ostatni ≤ 6 liter) po stronie tłumaczenia (np. „peso máx.”, „vnt.”). */
 const PL_ABBR = /(?:^|[\s/(])(pow|rozgrz|sek|obj|poprz|hant|str|ćw|max|maks|godz|min|kg)\.$/i;
-const endCls = (s: string, greek = false) => { const m = s.trimEnd().match(/(\.\.\.|[.?!:…;\u037e])$/); if (!m) return ''; const c = m[1] === '...' ? '…' : m[1]; return c === ';' || c === '\u037e' ? (greek ? '?' : '') : c; }; /* el: „;” = znak zapytania (07.10.2026) */
+/** Fala 4 (09.10.2026): znaki pełnej szerokości CJK — „。” to kropka, „？” „！” „：” jak ? ! : (ta sama klasa). */
+const CJK_END: Record<string, string> = { '。': '.', '？': '?', '！': '!', '：': ':' };
+const endCls = (s: string, greek = false) => { const m = s.trimEnd().match(/(\.\.\.|[.?!:…;\u037e。？！：])$/); if (!m) return ''; const c = m[1] === '...' ? '…' : CJK_END[m[1]] ?? m[1]; return c === ';' || c === '\u037e' ? (greek ? '?' : '') : c; }; /* el: „;” = znak zapytania (07.10.2026) */
 const isAbbrevEnd = (s: string) => /(?:^|[\s/(])\p{L}{1,6}\.$/u.test(s) && s.trim().split(/\s+/).filter(w => /\p{L}/u.test(w)).length <= 3; /* „+ plage de rép.” — znak „+” to nie wyraz */
 function punctMismatch(k: string, v: string, l?: Lang): boolean {
   const a = endCls(k), b = endCls(v, l === 'el'); if (a === b) return false;
@@ -100,6 +103,8 @@ describe('słowniki — jakość tekstów w każdym języku', () => {
   });
   test('kontrola reguły interpunkcji (zdanie ≠ skrót)', () => {
     expect([punctMismatch('Usunąć gumę?', 'Delete band'), punctMismatch('Zapisano.', 'Saved'), punctMismatch('Uwaga:', 'Note'), punctMismatch('Usuń gumy…', 'Delete bands')]).toEqual([true, true, true, true]);
+    expect([punctMismatch('Zapisano.', '保存しました。'), punctMismatch('Usunąć gumę?', '밴드를 삭제할까요?'), punctMismatch('Usunąć gumę?', '刪除彈力帶？'), punctMismatch('Uwaga:', '注意：')]).toEqual([false, false, false, false]); /* fala 4: CJK */
+    expect([punctMismatch('Zapisano.', '保存しました'), punctMismatch('Usunąć gumę?', '刪除彈力帶。')]).toEqual([true, true]);
     expect([punctMismatch('max pow.', 'max reps'), punctMismatch('max ciężar', 'peso máx.'), punctMismatch('Usunąć gumę?', 'Delete band?'), punctMismatch('sztuk', 'vnt.')]).toEqual([false, false, false, false]);
   });
   test('{parametry} — ten sam zestaw w KAŻDYM słowniku (EN z importu modułu, nie z wyrażenia regularnego jak check-i18n)', () => {
@@ -235,8 +240,9 @@ function ttf(file: string) {
   let sub = -1; for (let i = 0; i < b.readUInt16BE(T.cmap + 2); i++) { const p = b.readUInt16BE(T.cmap + 4 + 8 * i), e = b.readUInt16BE(T.cmap + 6 + 8 * i), off = b.readUInt32BE(T.cmap + 8 + 8 * i); if (b.readUInt16BE(T.cmap + off) === 4 && ((p === 3 && e === 1) || p === 0)) { sub = T.cmap + off; break; } }
   const seg = b.readUInt16BE(sub + 6) / 2, ends = sub + 14, starts = ends + 2 * seg + 2, deltas = starts + 2 * seg, ros = deltas + 2 * seg;
   const gid = (cp: number) => { for (let i = 0; i < seg; i++) { if (cp > b.readUInt16BE(ends + 2 * i)) continue; const st = b.readUInt16BE(starts + 2 * i); if (cp < st) return 0; const d = b.readInt16BE(deltas + 2 * i), ro = b.readUInt16BE(ros + 2 * i); if (!ro) return (cp + d) & 0xffff; const g = b.readUInt16BE(ros + 2 * i + ro + 2 * (cp - st)); return g ? (g + d) & 0xffff : 0; } return 0; };
-  /** Znak bez glifu (np. cyrylica w Archivo) — iOS rysuje go krojem systemowym; szacunek 0,6 em. */
-  const width = (s: string, pt: number) => [...s].reduce((a, ch) => { const g = gid(ch.codePointAt(0)!); return a + (g ? adv(g) / upm : 0.6); }, 0) * pt;
+  /** Znak bez glifu (np. cyrylica w Archivo) — iOS rysuje go krojem systemowym; szacunek 0,6 em. Fala 4: znak CJK (kana, kanji, hangul, formy pełnej
+   * szerokości — FALLBACK_SCRIPTS) w kroju zastępczym ma pełną szerokość — 1 em (kroje CJK są kwadratowe). */
+  const width = (s: string, pt: number) => [...s].reduce((a, ch) => { const g = gid(ch.codePointAt(0)!); return a + (g ? adv(g) / upm : FALLBACK_SCRIPTS.test(ch) ? 1 : 0.6); }, 0) * pt;
   return { has: (ch: string) => gid(ch.codePointAt(0)!) > 0, width };
 }
 const FONT_DIR = require('path').join(__dirname, '..', 'node_modules', '@expo-google-fonts') as string;
@@ -244,6 +250,36 @@ const SANS = { regular: ttf(`${FONT_DIR}/ibm-plex-sans/400Regular/IBMPlexSans_40
 const BOLD = ttf(`${FONT_DIR}/ibm-plex-sans/700Bold/IBMPlexSans_700Bold.ttf`); /* nagłówki i duże liczby (decyzja właściciela 07.10.2026 wieczór: zamiast Tektur) */
 const PLEX = ttf(`${FONT_DIR}/ibm-plex-mono/500Medium/IBMPlexMono_500Medium.ttf`);
 const trIn = (l: Lang, k: string) => l === 'pl' ? k : dictOf(l)[k] ?? EN[k] ?? k;
+/**
+ * Fala 4 (09.10.2026): jednostki, między którymi wolno złamać wiersz. Bez pisma CJK — wyrazy rozdzielone spacją (jak dotąd, bez zmian dla innych
+ * języków). Japoński i chiński piszą bez spacji: iOS łamie wiersz między dowolnymi dwoma znakami kana/kanji (Unicode UAX #14: klasa ID), poza
+ * zakazami kinsoku — bez złamania przed znakiem zamykającym (、。」）ー・ itd.) i po otwierającym (「（). Ciąg łaciński/cyfrowy w środku (RPE, 1RM, {n})
+ * zostaje jednym wyrazem. Hangul — po spacjach jak dotąd (koreański rozdziela wyrazy spacją; to ostrzejsze niż łamanie między sylabami).
+ * `sp` — czy przed jednostką jest spacja (do liczenia linii).
+ */
+const CJK_BREAK = /[\u3000-\u303F\u3040-\u30FF\u31F0-\u31FF\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF\uFF00-\uFFEF]/;
+const CLOSE = '、。，．」』）〕】〉》・ー：；！？!?),.:;%’”ゃゅょっャュョッァィゥェォぁぃぅぇぉ々〜～';
+const OPEN = '「『（〔【〈《(“‘';
+function units(s: string): { t: string; sp: boolean }[] {
+  const out: { t: string; sp: boolean }[] = [];
+  for (const w of s.trim().split(/\s+/)) {
+    if (!w) continue;
+    if (!CJK_BREAK.test(w)) { out.push({ t: w, sp: true }); continue; }
+    let first = true; let cur = '';
+    const flush = () => { if (cur) { out.push({ t: cur, sp: first }); first = false; cur = ''; } };
+    const chars = [...w];
+    for (let i = 0; i < chars.length; i++) {
+      const ch = chars[i]; const prev = [...cur].pop() ?? '';
+      const cjk = (c: string) => CJK_BREAK.test(c) && !CLOSE.includes(c) && !OPEN.includes(c);
+      /* złamanie przed `ch`: przed znakiem CJK albo otwierającym, po znaku CJK (granica z łaciną); nigdy przed zamykającym ani po otwierającym */
+      if (cur && !OPEN.includes(prev) && !CLOSE.includes(ch) && (cjk(ch) || OPEN.includes(ch) || CJK_BREAK.test(prev))) flush();
+      cur += ch;
+    }
+    flush();
+  }
+  return out;
+}
+const words = (s: string) => units(s).map(u => u.t);
 /** Litery (\p{L}) użyte w tekstach języka — bez symboli (strzałki, ★, ✓ są celowo z kroju systemowego, także po polsku). */
 const lettersOf = (l: Lang) => [...new Set((l === 'pl' ? SOURCE : Object.values(dictOf(l))).join('').match(/\p{L}/gu) ?? [])];
 
@@ -251,8 +287,13 @@ describe('kroje pisma marki (IBM Plex Sans 400/600/700, IBM Plex Mono) mają zna
   /* @matrix LANGS */
   /* Styl „Tuleja” (decyzja właściciela 07.10.2026, wariant A „mieszany”): jeden zestaw krojów dla każdego języka — wcześniej Archivo bez cyrylicy
    * wymagał zamiany kroju dla bg/sr/uk (06.10.2026). Każda litera tłumaczeń musi być w kroju tekstu (Plex Sans 400/600) i nagłówków (Plex Sans 700; do 07.10.2026 wieczór Tektur). */
-  test.each([...LANGS])('%s: każda litera tłumaczeń jest w IBM Plex Sans 400/600/700 (bez zastępowania krojem systemowym)', l => {
-    expect([l, lettersOf(l).filter(ch => !(SANS.regular.has(ch) && SANS.semibold.has(ch) && BOLD.has(ch))).join('')]).toEqual([l, '']);
+  /* Fala 4 (09.10.2026, docs/16, wariant A): wyjątek tylko dla pisma CJK (FALLBACK_SCRIPTS — kana, kanji, hangul) w ja, ko, zh-Hant; łacina w tych
+   * językach (RPE, kg, nazwy ćwiczeń) dalej musi być w Plex, a w żadnym innym języku nie ma znaków CJK. */
+  const CJK_LANGS: readonly Lang[] = ['ja', 'ko', 'zh-Hant'];
+  test.each([...LANGS])('%s: każda litera tłumaczeń jest w IBM Plex Sans 400/600/700 (bez zastępowania krojem systemowym; ja/ko/zh-Hant — tylko pismo CJK krojem zastępczym)', l => {
+    expect([l, lettersOf(l).filter(ch => !(SANS.regular.has(ch) && SANS.semibold.has(ch) && BOLD.has(ch)) && !(CJK_LANGS.includes(l) && FALLBACK_SCRIPTS.test(ch))).join('')]).toEqual([l, '']);
+    if (!CJK_LANGS.includes(l)) expect([l, lettersOf(l).filter(ch => FALLBACK_SCRIPTS.test(ch)).join('')]).toEqual([l, '']);
+    else expect([l, lettersOf(l).filter(ch => FALLBACK_SCRIPTS.test(ch)).length > 100]).toEqual([l, true]); /* kontrola: słownik naprawdę w piśmie CJK */
   });
   test('jeden zestaw krojów dla wszystkich języków: F wskazuje Plex Sans / Plex Mono, każdy z plikiem; bez Tektur', () => {
     const th = require('@/lib/theme');
@@ -268,7 +309,7 @@ describe('kroje pisma marki (IBM Plex Sans 400/600/700, IBM Plex Mono) mają zna
    * monoSafe (components/ui.tsx) przełącza na krój tekstu; inne litery (łacina, cyrylica) są w Plex Mono. */
   test.each([...LANGS])('%s: litery spoza IBM Plex Mono to tylko te, które monoSafe przełącza na Plex Sans (MONO_MISSING)', l => {
     const { MONO_MISSING } = require('@/components/ui') as typeof import('@/components/ui');
-    expect([l, lettersOf(l).filter(ch => !PLEX.has(ch) && !MONO_MISSING.test(ch)).join('')]).toEqual([l, '']);
+    expect([l, lettersOf(l).filter(ch => !PLEX.has(ch) && !MONO_MISSING.test(ch) && !(CJK_LANGS.includes(l) && FALLBACK_SCRIPTS.test(ch)) /* fala 4: CJK — krój zastępczy w Plex Sans i Mono jednakowo */).join('')]).toEqual([l, '']);
     if (l === 'el') expect(lettersOf(l).filter(ch => /\p{Script=Greek}/u.test(ch)).some(ch => !PLEX.has(ch))).toBe(true); /* fakt z A11-11 przypięty */
   });
   test('IBM Plex Mono (liczby: czas, ciężar) ma cyfry i znaki liczb we wszystkich regionach (przecinek, kropka, minus U+2212, ×, –, :)', () => {
@@ -287,7 +328,7 @@ describe('kroje pisma marki (IBM Plex Sans 400/600/700, IBM Plex Mono) mają zna
 describe('długie tłumaczenia w miejscach, gdzie tekst może być ucięty', () => {
   /* @matrix LANGS */
   const W = 375;
-  const lines = (s: string, w: (x: string) => number, avail: number) => { let n = 1, cur = 0; const sp = w(' '); for (const word of s.split(/\s+/)) { const ww = w(word); if (ww > avail) { n += Math.ceil(ww / avail) - (cur ? 0 : 1); cur = ww % avail; continue; } if (cur && cur + sp + ww > avail) { n++; cur = ww; } else cur += (cur ? sp : 0) + ww; } return n; };
+  const lines = (s: string, w: (x: string) => number, avail: number) => { let n = 1, cur = 0; const sp = w(' '); for (const { t: word, sp: hasSp } of units(s)) { const ww = w(word); const gap = hasSp ? sp : 0; if (ww > avail) { n += Math.ceil(ww / avail) - (cur ? 0 : 1); cur = ww % avail; continue; } if (cur && cur + gap + ww > avail) { n++; cur = ww; } else cur += (cur ? gap : 0) + ww; } return n; };
   const TABS = ['Trening', 'Szablony', 'Ćwiczenia', 'Kalendarz', 'Więcej'];
   /** Zakładka: 1/5 szerokości, padding 5 (BottomTabItem tabVerticalUiKit), etykieta 10 pt (labelBeneath), numberOfLines=1. */
   const TAB_AVAIL = W / 5 - 2 * 5;
@@ -322,13 +363,13 @@ describe('długie tłumaczenia w miejscach, gdzie tekst może być ucięty', () 
       const avail = (320 - 2 * 14 - 2 * 1 - 2 * 2) / keys.length - 2 * 6; /* Screen 14, ramka 1, padding 2, segItem padding 6 (ui.tsx) */
       for (const k of keys) {
         const s = trIn(l, k); const w = (x: string, sc = 1) => SANS.semibold.width(x, 14 * sc);
-        if (!/\s/.test(s.trim())) { if (w(s, SEG_MIN_SCALE) > avail) bad.push(`${s} (1 linia: ${w(s, SEG_MIN_SCALE).toFixed(1)} > ${avail.toFixed(1)})`); continue; }
-        { const long = s.split(/\s+/).filter(x => w(x) > avail); /* zmniejszanie kroju nie chroni przed łamaniem wyrazu w tekście 2-liniowym — wyraz musi się zmieścić w pełnym rozmiarze */ if (long.length) bad.push(`${s} (wyraz ${long.join(', ')})`); }
+        if (units(s).length === 1) { if (w(s, SEG_MIN_SCALE) > avail) bad.push(`${s} (1 linia: ${w(s, SEG_MIN_SCALE).toFixed(1)} > ${avail.toFixed(1)})`); continue; }
+        { const long = words(s).filter(x => w(x) > avail); /* zmniejszanie kroju nie chroni przed łamaniem wyrazu w tekście 2-liniowym — wyraz musi się zmieścić w pełnym rozmiarze */ if (long.length) bad.push(`${s} (wyraz ${long.join(', ')})`); }
         if (lines(s, x => w(x, SEG_MIN_SCALE), avail) > 2) bad.push(`${s} (> 2 linie)`);
       }
       /* powiększony tekst: opcje jedna pod drugą na pełnej szerokości, do 200% — żaden wyraz nie szerszy niż wiersz */
       const full = 320 - 2 * 14 - 2 * 1 - 2 * 2 - 2 * 6;
-      for (const k of keys) for (const x of trIn(l, k).split(/\s+/)) if (SANS.semibold.width(x, 14 * 2) > full) bad.push(`${x} (pionowo, 200%)`);
+      for (const k of keys) for (const x of words(trIn(l, k))) if (SANS.semibold.width(x, 14 * 2) > full) bad.push(`${x} (pionowo, 200%)`);
     }
     expect([l, bad]).toEqual([l, []]);
   });
@@ -336,7 +377,7 @@ describe('długie tłumaczenia w miejscach, gdzie tekst może być ucięty', () 
    * 13 pt półgruby, padding 12, ramka 1); na 320 pt każdy wyraz mieści się w chipie na pełnej szerokości (bez łamania w środku wyrazu), także przy 200%. */
   test.each([...LANGS])('%s: chipy trybu generatora na ekranie 320 pt — żaden wyraz szerszy niż chip', l => {
     const avail = 320 - 2 * 14 - 2 * 12 - 2 * 1; const bad: string[] = [];
-    for (const k of ['Nowe szablony i plan', 'Plan z moich szablonów']) for (const x of trIn(l, k).split(/\s+/)) for (const sc of [1, 2]) if (SANS.semibold.width(x, 13 * sc) > avail) bad.push(`${x} (${sc})`);
+    for (const k of ['Nowe szablony i plan', 'Plan z moich szablonów']) for (const x of words(trIn(l, k))) for (const sc of [1, 2]) if (SANS.semibold.width(x, 13 * sc) > avail) bad.push(`${x} (${sc})`);
     expect([l, bad]).toEqual([l, []]);
   });
   /* Korekta właściciela 09.10.2026 ok. 17:00: postęp tygodnia „60% planu tygodnia (3 z 5)” obok stosów talerzy (components/WeekStacks: 15 pt półgruby,
@@ -344,7 +385,7 @@ describe('długie tłumaczenia w miejscach, gdzie tekst może być ucięty', () 
   test.each([...LANGS])('%s: postęp tygodnia (procent planu) na ekranie 320 pt — bez łamania wyrazu przy 100% i 200%', l => {
     const avail = 320 - 2 * 14; const bad: string[] = [];
     const s = trIn(l, '{p}% planu tygodnia ({done} z {n})').replace('{p}', '100').replace('{done}', '7').replace('{n}', '7');
-    for (const x of s.split(/\s+/)) for (const sc of [1, 2]) if (SANS.semibold.width(x, 15 * sc) > avail) bad.push(`${x} (${sc})`);
+    for (const x of words(s)) for (const sc of [1, 2]) if (SANS.semibold.width(x, 15 * sc) > avail) bad.push(`${x} (${sc})`);
     expect([l, /100/.test(s) && /7/.test(s), bad]).toEqual([l, true, []]);
     expect([l, ['{p}', '{done}', '{n}'].every(k => trIn(l, 'Postęp tygodnia: {p}% planu, zrobione {done} z {n} treningów z planu').includes(k))]).toEqual([l, true]);
   });
@@ -357,8 +398,8 @@ describe('długie tłumaczenia w miejscach, gdzie tekst może być ucięty', () 
       'Redukcja: trening jak na masę (chroni mięśnie); sesja cardio w planie od {k} dni w tygodniu.',
       'Cardio poza planem: sesja cardio jest w planie od {k} dni w tygodniu, przy mniejszej liczbie wszystkie dni są siłowe. Zalecenie WHO: co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.',
       'Cardio: od {k} dni w tygodniu jedna sesja w osobny dzień; przy mniejszej liczbie dni wszystkie są siłowe, żeby cardio nie zabierało dni treningowi siłowemu (każda główna partia co najmniej {n} dni) — konwencja.'];
-    for (const k of KEYS) for (const x of trIn(l, k).split(/\s+/)) for (const sc of [1, 2]) if (SANS.regular.width(x, 13 * sc) > avail) bad.push(`${x} (${sc})`);
-    for (const x of trIn(l, 'FBW').split(/\s+/)) for (const sc of [1, 2]) if (SANS.semibold.width(x, 17 * sc) > avail) bad.push(`${x} (H2 17 pt, ${sc})`);
+    for (const k of KEYS) for (const x of words(trIn(l, k))) for (const sc of [1, 2]) if (SANS.regular.width(x, 13 * sc) > avail) bad.push(`${x} (${sc})`);
+    for (const x of words(trIn(l, 'FBW'))) for (const sc of [1, 2]) if (SANS.semibold.width(x, 17 * sc) > avail) bad.push(`${x} (H2 17 pt, ${sc})`);
     expect([l, bad]).toEqual([l, []]);
   });
   /* Cel „Ogólny” (09.10.2026, docs/research/30): 4 cele w kontrolce segmentowej na 320 pt nie mieszczą się w każdym języku (np. de, sv — długie
@@ -366,12 +407,12 @@ describe('długie tłumaczenia w miejscach, gdzie tekst może być ucięty', () 
    * nazwy celu mieści się w chipie na pełnej szerokości, także przy 200%. Dowód potrzeby: przy 4 opcjach Segmented któraś nazwa się nie mieści. */
   test.each([...LANGS])('%s: cele generatora (4 chipy) na ekranie 320 pt — żaden wyraz szerszy niż chip, także przy 200%%', l => {
     const avail = 320 - 2 * 14 - 2 * 12 - 2 * 1; const bad: string[] = [];
-    for (const k of ['Siła', 'Masa', 'Redukcja', 'Ogólny']) for (const x of trIn(l, k).split(/\s+/)) for (const sc of [1, 2]) if (SANS.semibold.width(x, 13 * sc) > avail) bad.push(`${x} (${sc})`);
+    for (const k of ['Siła', 'Masa', 'Redukcja', 'Ogólny']) for (const x of words(trIn(l, k))) for (const sc of [1, 2]) if (SANS.semibold.width(x, 13 * sc) > avail) bad.push(`${x} (${sc})`);
     expect([l, bad]).toEqual([l, []]);
   });
   test('4 cele w kontrolce segmentowej na 320 pt nie mieszczą się we wszystkich językach (powód chipów)', () => {
     const { SEG_MIN_SCALE } = require('@/components/ui') as typeof import('@/components/ui'); const avail = (320 - 2 * 14 - 2 * 1 - 2 * 2) / 4 - 2 * 6;
-    const over = LANGS.flatMap(l => ['Siła', 'Masa', 'Redukcja', 'Ogólny'].map(k => trIn(l, k)).filter(s => s.split(/\s+/).some(x => SANS.semibold.width(x, 14 * SEG_MIN_SCALE) > avail)));
+    const over = LANGS.flatMap(l => ['Siła', 'Masa', 'Redukcja', 'Ogólny'].map(k => trIn(l, k)).filter(s => words(s).some(x => SANS.semibold.width(x, 14 * SEG_MIN_SCALE) > avail)));
     expect(over.length).toBeGreaterThan(0);
   });
   /* Cel „Ogólny”: opis celu, uwaga przy 1 dniu, przełącznik cardio z opisem, punkty „Na czym to oparte” (13 pt / 12 pt / 16 pt przełącznik, zawijane) —
@@ -388,8 +429,19 @@ describe('długie tłumaczenia w miejscach, gdzie tekst może być ucięty', () 
       'Przerwy: {b} min po wielostawowych, {c} min po jednostawowych i core — uproszczenie; źródła są niejednoznaczne (ACSM 2026: długość przerwy nie zmieniała przyrostu siły).',
       'Cardio: przy {k}–{m} dniach możesz zamienić dni powyżej {j} na sesje umiarkowanego cardio („Dni cardio w planie”, domyślnie wyłączone). WHO 2020 nie znalazło dowodów, że więcej ćwiczeń wzmacniających daje więcej korzyści dla zdrowia, a ruch aerobowy zalecenia radzą rozłożyć na kilka dni (wytyczne USA 2018, ACSM 2011). Długość sesji cardio = czas sesji — konwencja.',
     ];
-    for (const k of KEYS) for (const x of trIn(l, k).split(/\s+/)) for (const sc of [1, 2]) if (SANS.regular.width(x, (k === 'Dni cardio w planie' ? 16 : 13) * sc) > avail - (k === 'Dni cardio w planie' ? 51 + 12 : 0) /* przełącznik iOS 51 pt + odstęp */) bad.push(`${x} (${sc})`);
+    for (const k of KEYS) for (const x of words(trIn(l, k))) for (const sc of [1, 2]) if (SANS.regular.width(x, (k === 'Dni cardio w planie' ? 16 : 13) * sc) > avail - (k === 'Dni cardio w planie' ? 51 + 12 : 0) /* przełącznik iOS 51 pt + odstęp */) bad.push(`${x} (${sc})`);
     expect([l, bad]).toEqual([l, []]);
+  });
+  test('units(): bez pisma CJK — wyrazy po spacjach (bez zmian); ja/zh — złamanie między znakami z zakazami kinsoku; ko — po spacjach; CJK = 1 em', () => {
+    expect(words('Plan z moich szablonów')).toEqual(['Plan', 'z', 'moich', 'szablonów']);
+    expect(words('  Bez  spacji—myślnik ')).toEqual(['Bez', 'spacji—myślnik']);
+    expect(words('休憩を開始。')).toEqual(['休', '憩', 'を', '開', '始。']); /* „。” nie zaczyna wiersza */
+    expect(words('「完了」を押す')).toEqual(['「完', '了」', 'を', '押', 'す']); /* „「” nie kończy wiersza, „」” go nie zaczyna */
+    expect(words('RPEを入力')).toEqual(['RPE', 'を', '入', '力']); /* ciąg łaciński zostaje całością */
+    expect(words('セット・レップ')).toEqual(['セッ', 'ト・', 'レッ', 'プ']); /* małe ッ nie zaczyna wiersza */
+    expect(words('휴식 시간을 시작합니다')).toEqual(['휴식', '시간을', '시작합니다']);
+    expect(units('3 セット').map(u => u.sp)).toEqual([true, true, false]); expect(units('休憩').map(u => u.sp)).toEqual([true, false]);
+    expect(SANS.regular.width('休', 10)).toBeCloseTo(10, 6); expect(SANS.regular.width('한', 10)).toBeCloseTo(10, 6);
   });
   test('czytnik TTF liczy szerokości jak krój (kontrola: „i” węższe niż „m”, szerokość rośnie liniowo z rozmiarem)', () => {
     const f = SANS.semibold; expect(f.width('i', 10)).toBeLessThan(f.width('m', 10)); expect(f.width('Trening', 20)).toBeCloseTo(2 * f.width('Trening', 10), 6);

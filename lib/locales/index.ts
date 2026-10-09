@@ -18,6 +18,8 @@ const LOAD: Partial<Record<Lang, () => Record<string, string>>> = {
   id: () => require('./id.json'), ms: () => require('./ms.json'), vi: () => require('./vi.json'),
   /* 09.10.2026 (fala 3, docs/16): rosyjski — pełny słownik */
   ru: () => require('./ru.json'),
+  /* 09.10.2026 (fala 4, docs/16): japoński, koreański, chiński tradycyjny (Tajwan) — pełne słowniki */
+  ja: () => require('./ja.json'), ko: () => require('./ko.json'), 'zh-Hant': () => require('./zh-Hant.json'),
 };
 export const LOCALES: Partial<Record<Lang, Record<string, string>>> = {};
 for (const [k, load] of Object.entries(LOAD) as [Lang, () => Record<string, string>][]) { let v: Record<string, string> | undefined; Object.defineProperty(LOCALES, k, { enumerable: true, get: () => (v ??= load()) }); }

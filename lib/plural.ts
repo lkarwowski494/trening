@@ -13,6 +13,8 @@ export const PLURAL_FORMS = {
   id: ['other'], ms: ['other'], vi: ['other'],
   /* 09.10.2026 (fala 3): ru — dla liczb całkowitych jak uk: one/few/many (CLDR plurals.xml: <pluralRules locales="be ru uk">; „other” tylko dla ułamków) */
   ru: ['one', 'few', 'many'],
+  /* 09.10.2026 (fala 4): ja, ko, zh-Hant — bez odmiany liczby, jedna forma „other” (CLDR plurals.xml: <pluralRules locales="… ja … ko … zh"> tylko other) */
+  ja: ['other'], ko: ['other'], 'zh-Hant': ['other'],
   de: ['one', 'other'], fr: ['one', 'other'], it: ['one', 'other'], nl: ['one', 'other'], sv: ['one', 'other'], da: ['one', 'other'], nb: ['one', 'other'], fi: ['one', 'other'], tr: ['one', 'other'], el: ['one', 'other'],
 } as const;
 export type PluralLang = keyof typeof PLURAL_FORMS;
@@ -32,7 +34,7 @@ export function pluralIndex(l: PluralLang, n: number): number {
     case 'sl': return dd === 1 ? 0 : dd === 2 ? 1 : dd === 3 || dd === 4 ? 2 : 3;
     case 'ro': return a === 1 ? 0 : a === 0 || (dd >= 1 && dd <= 19) ? 1 : 2;
     case 'fr': case 'pt-BR': return a === 0 || a === 1 ? 0 : 1;
-    case 'id': case 'ms': case 'vi': return 0; /* jedna forma */
+    case 'id': case 'ms': case 'vi': case 'ja': case 'ko': case 'zh-Hant': return 0; /* jedna forma */
     default: return a === 1 ? 0 : 1; /* en, hu, bg, et, es, es-419, pt, de, it, nl, sv, da, nb, fi, tr, el */
   }
 }
