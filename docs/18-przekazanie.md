@@ -312,3 +312,9 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
   wybór własnych szablonów i liczby dni → rozkład na tydzień wg reguł generatora (te same, ze źródłami) → podgląd → zatwierdzenie. Odrzucone:
   A (tylko widoczna droga do ręcznego edytora), C (A teraz, B po App Store). W tej samej paczce: „Pierwsze kroki” przy pustym szablonie —
   komunikat „dodaj ćwiczenia do szablonu …” zamiast „Najpierw utwórz szablon”; „+ Nowy szablon” w edytorze planu i panelu dnia (B, wyżej).
+- 09.10.2026 (ok. 15:20): właściciel — **ekran główny: układ B „najpierw trening”** (makiety: https://claude.ai/artifact/7CetSMVFxjPDbQU4KLDsp8):
+  duży przycisk startu zależny od sytuacji (z planem „Start: <dzisiejszy>”, bez planu następny szablon albo „Pusty trening”); „Inny trening”
+  jako arkusz (inny z planu, powtórz ostatni, z szablonu, pusty); kafelki tygodnia; karta Planowania (nowy szablon, plan z moich szablonów,
+  generator) — zwinięta do wiersza przy planie, rozwinięta i wyżej bez planu; Ustawienia tylko w „Więcej”. **Karta „Ten tydzień” (sztanga
+  postępu + pasek dni z datami i talerzami) tylko przy aktywnym planie** (wariant 1; odrzucone 2: w karcie planu). Odrzucone A (trzy sekcje).
+  „Powtórz ostatni” w arkuszu (jak na makiecie).
