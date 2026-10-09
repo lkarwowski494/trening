@@ -65,6 +65,7 @@ const PLACES: Place[] = [
   { name: 'szablon (lista Szablony)', setup: async () => { await boot(() => { tplWith(); }); await go('/templates'); await flushAll(10); }, label: 'Usuń szablon: T1', title: 'Usunąć szablon?', count: () => S().templates.length },
   { name: 'sesja (lista Historia)', setup: async () => { await boot(() => { addWorkout(Date.now() - 86400e3, [['Back Squat', [{ weight: 100, reps: 5 }]]]); }); await go('/history'); await flushAll(10); }, label: /^Usuń sesję: /, title: 'Usunąć tę sesję z historii?', count: () => S().workouts.length },
   { name: 'ćwiczenie (biblioteka)', setup: async () => { await boot(); await go('/exercises'); await flushAll(10); await type(screen.getByPlaceholderText('Szukaj…'), 'Back Squat'); /* N3: lista wirtualizowana — wiersz z dalszej partii przez szukanie */ }, label: 'Usuń z biblioteki: Back Squat', title: 'Usunąć ćwiczenie?', count: () => S().exercises.filter(e => !e.archived).length },
+  { name: 'pomiar masy ciała (UI2-03)', setup: async () => { await boot(() => { store.addBodyMass(80, '2026-10-01'); store.addBodyMass(81, '2026-10-05'); }); await go('/more/bodymass'); await flushAll(10); }, label: /^Usuń pomiar: /, title: 'Usunąć pomiar?', count: () => store.bodyMassLog().length },
   { name: 'guma', setup: async () => { await boot(); await go('/more/bands'); await flushAll(10); }, label: /^Usuń gumę: /, title: 'Usunąć gumę?', count: () => S().bands.length },
   { name: 'miejsce (inne niż główne)', setup: async () => { await boot(() => { addLocation('home'); addLocation('gym'); }); await go('/more/locations'); await flushAll(10); }, label: /^Usuń miejsce: /, title: 'Usunąć miejsce?', count: () => S().settings.locations.length },
   { name: 'talerz (opis sprzętu)', setup: async () => { let id = ''; await boot(() => { id = addLocation('gym').id; }); await go(`/more/location/${id}`); await flushAll(10); const { expandEquip } = require('./app'); await expandEquip(); }, label: /^Usuń talerz — Sztanga/, title: 'Usunąć talerz?', count: () => S().settings.locations[0].equipment.find(e => e.item === 'barbell')!.load!.kind === 'plates' ? (S().settings.locations[0].equipment.find(e => e.item === 'barbell')!.load as { plates: unknown[] }).plates.length : -1 },
@@ -86,9 +87,9 @@ describe('macierz: każde miejsce usuwania — „Nie” zostawia, „Usuń” u
 describe('bez przycisków „Usuń” (decyzja: przyciski wypadają)', () => {
   test('trening, szablon, szczegóły sesji, ćwiczenie, miejsce: brak „usuń”, „− seria”, „Usuń sesję”, „Usuń ćwiczenie”, „Usuń”, „✕” gumy', async () => {
     let tid = ''; let lid = ''; let wid = '';
-    await boot(() => { tid = tplWith().id; lid = addLocation('gym').id; wid = addWorkout(Date.now() - 86400e3, [['Back Squat', [{ weight: 100, reps: 5 }]]]).id; store.startEmpty(); store.addExerciseToActive(ex('Back Squat')); store.addSet(0); });
+    await boot(() => { tid = tplWith().id; lid = addLocation('gym').id; wid = addWorkout(Date.now() - 86400e3, [['Back Squat', [{ weight: 100, reps: 5 }]]]).id; store.startEmpty(); store.addExerciseToActive(ex('Back Squat')); store.addSet(0); store.addBodyMass(80, '2026-10-01'); /* UI2-03 */ });
     const none = () => { for (const t of ['usuń', '− seria', 'Usuń sesję', 'Usuń ćwiczenie', 'Usuń']) expect([t, screen.queryAllByText(t).length]).toEqual([t, 0]); };
-    none(); for (const u of [`/template/${tid}`, `/history/${wid}`, `/exercise/${ex('Back Squat').id}`, `/more/location/${lid}`, '/more/bands']) { await go(u); await flushAll(10); none(); }
+    none(); for (const u of [`/template/${tid}`, `/history/${wid}`, `/exercise/${ex('Back Squat').id}`, `/more/location/${lid}`, '/more/bands', '/more/bodymass' /* UI2-03 */]) { await go(u); await flushAll(10); none(); }
     expect(screen.queryByText('✕')).toBeNull();
   });
   test('ostatnia seria bloku i miejsce główne (gdy jest inne) — bez gestu', async () => {

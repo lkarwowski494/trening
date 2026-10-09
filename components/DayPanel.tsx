@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { View, Pressable, Alert } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Btn, Chip, Muted, Txt, H2 } from '@/components/ui';
-import { workoutDay, getState, useTick, isDeloadWeek, toggleDeloadWeek, fmtDayKey } from '@/lib/store';
+import { workoutDay, getState, useTick, isDeloadWeek, toggleDeloadWeek, fmtDayKey, newTemplate } from '@/lib/store';
 import { useTheme, F } from '@/lib/theme';
-import { plannedOn, isChanged, setDayPlan, resetDay, addDays, dayKeyOf, suggest, applySuggestion, dayStatus, doneOn, pending, planTplName, hasPlan, RETURN_DAYS, type Suggestion } from '@/lib/plan';
+import { plannedOn, isChanged, setDayPlan, resetDay, addDays, dayKeyOf, suggest, applySuggestion, dayStatus, doneOn, pending, planTplName, hasPlan, assignTarget, RETURN_DAYS, type Suggestion } from '@/lib/plan';
 import { askReminderPermission } from '@/lib/planReminder';
 import { t, locale, lang } from '@/lib/i18n';
 import { startTemplate } from '@/lib/start';
@@ -83,6 +83,8 @@ export function DayPanel({ day }: { day: string }) {
       {mode === 'move' && movable ? <MoveList day={day} onDone={close} /> : null}
       {mode === 'pick' ? <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6, marginTop: 8 }}>
         {live.length ? live.map(x => <Chip key={x.id} label={x.name} on={x.id === id} onPress={() => pickTpl(x.id)} />) : <Muted style={{ fontSize: 13 }}>{t('Nie masz jeszcze szablonów.')}</Muted>}
+        {/* docs/18 09.10.2026 (B): nowy szablon — po „Zapisz” trafia na ten dzień (zmiana pojedynczego dnia) */}
+        <Btn nav small kind="ghost" title={t('+ Nowy szablon')} accessibilityHint={t('Po zapisie szablon trafi na ten dzień.')} onPress={() => { close(); const x = newTemplate(); router.push(`/template/${x.id}?edit=1&new=1&assign=${encodeURIComponent(assignTarget.day(day))}`); }} />
       </View> : null}
     </View>
   );

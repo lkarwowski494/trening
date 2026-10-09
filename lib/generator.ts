@@ -1,4 +1,4 @@
-import { getState, save } from '@/lib/store';
+import { getState, save, exById, workCount, tplRows } from '@/lib/store';
 import { addPlan, deletePlan, planName as activePlanName, savedPlans } from '@/lib/plan';
 import { availability, capsOf, capLabel, equipById, implAt, LOCATION_PRESET_LABEL } from '@/lib/equipment';
 import { base, uid, LIB_BASE_NAMES, type Exercise, type Location, type Template, type TemplateItem, isLibBase } from '@/lib/seed';
@@ -152,6 +152,29 @@ function helpFor(missing: string[], loc: Location | null): string[] {
   return out;
 }
 
+type LoadItem = { exerciseId: string; sets: number };
+type MuscleEx = Pick<Exercise, 'muscles' | 'secondaryMuscles'>;
+/**
+ * Obciążenie tygodnia z dni (pon = 0; null — wolne): serie na partię (pomocnicza = SECONDARY_SHARE), dni na partię (R1: główna 1, tylko pomocnicza
+ * SECONDARY_SHARE), partie MAJOR bez serii, rzadziej niż MIN_DAYS, poniżej WEEKLY_SETS_MARK (R2) i pary dzień po dniu ze wspólną partią główną
+ * (docs/research/23, reguła 1–2: ostrzeżenie, nie blokada). Jedna funkcja dla generatora i planu z własnych szablonów (09.10.2026).
+ */
+export function weekLoad(dayItems: (readonly LoadItem[] | null)[], exOf: (id: string) => MuscleEx | undefined) {
+  const weeklySets: Record<string, number> = {}; const freq: Record<string, number> = {};
+  const prim = (its: readonly LoadItem[] | null) => new Set((its ?? []).flatMap(it => exOf(it.exerciseId)?.muscles ?? []));
+  dayItems.forEach(its => {
+    if (!its) return;
+    its.forEach(it => { const e = exOf(it.exerciseId); if (!e) return; e.muscles.forEach(m => { weeklySets[m] = (weeklySets[m] ?? 0) + it.sets; }); e.secondaryMuscles.forEach(m => { weeklySets[m] = (weeklySets[m] ?? 0) + it.sets * SECONDARY_SHARE; }); });
+    const pri = prim(its); const sec = new Set(its.flatMap(it => exOf(it.exerciseId)?.secondaryMuscles ?? []));
+    new Set([...pri, ...sec]).forEach(m => { freq[m] = (freq[m] ?? 0) + (pri.has(m) ? 1 : SECONDARY_SHARE); });
+  });
+  const below10 = MAJOR.filter(m => (weeklySets[m] ?? 0) < WEEKLY_SETS_MARK);
+  const missing = MAJOR.filter(m => !((weeklySets[m] ?? 0) > 0)); const rare = MAJOR.filter(m => (weeklySets[m] ?? 0) > 0 && (freq[m] ?? 0) < MIN_DAYS);
+  const backToBack: [number, number][] = [];
+  for (let d = 0; d < 7; d++) { const n = (d + 1) % 7; if (shares(prim(dayItems[d] ?? null), prim(dayItems[n] ?? null))) backToBack.push([d, n]); }
+  return { weeklySets, freq, below10, missing, rare, backToBack };
+}
+
 export function generate(inp: GenInput): GenResult {
   const pl = pool(inp.locationId); const all = pl.base; const lifts = all.filter(isLift); const spare = pl.full.filter(isLift);
   const loc = locById(inp.locationId); const loaded = (e: Exercise) => hasExternalLoad(e, loc);
@@ -185,17 +208,8 @@ export function generate(inp: GenInput): GenResult {
   const sKeys = keys.filter(k => k !== 'cardio'); const sDays = bestDays(sKeys.map(k => primOf(order.indexOf(k))), defDays.slice(0, sKeys.length));
   const dayIdx = [...sDays]; keys.slice(sKeys.length).forEach(() => dayIdx.push(CARDIO_DAY_PREF.find(d => !dayIdx.includes(d))!));
   const days: (number | null)[] = Array(7).fill(null); keys.forEach((k, i) => { days[dayIdx[i]] = order.indexOf(k); });
-  const weeklySets: Record<string, number> = {}; const freq: Record<string, number> = {};
-  days.forEach(ti => {
-    if (ti == null) return; const its = lifted(ti);
-    its.forEach(it => { const e = exOf(it.exerciseId); e.muscles.forEach(m => { weeklySets[m] = (weeklySets[m] ?? 0) + it.sets; }); e.secondaryMuscles.forEach(m => { weeklySets[m] = (weeklySets[m] ?? 0) + it.sets * SECONDARY_SHARE; }); });
-    const pri = primOf(ti); const sec = new Set(its.flatMap(it => exOf(it.exerciseId).secondaryMuscles));
-    new Set([...pri, ...sec]).forEach(m => { freq[m] = (freq[m] ?? 0) + (pri.has(m) ? 1 : SECONDARY_SHARE); });
-  });
-  const below10 = inp.goal === 'strength' ? [] : MAJOR.filter(m => (weeklySets[m] ?? 0) < WEEKLY_SETS_MARK);
-  const missing = MAJOR.filter(m => !((weeklySets[m] ?? 0) > 0)); const rare = MAJOR.filter(m => (weeklySets[m] ?? 0) > 0 && (freq[m] ?? 0) < MIN_DAYS);
-  const backToBack: [number, number][] = [];
-  for (let d = 0; d < 7; d++) { const n = (d + 1) % 7; if (shares(primOf(days[d]), primOf(days[n]))) backToBack.push([d, n]); }
+  const { weeklySets, freq, below10: low, missing, rare, backToBack } = weekLoad(days.map(ti => (ti == null ? null : lifted(ti))), exOf);
+  const below10 = inp.goal === 'strength' ? [] : low;
   const cardioMin = templates.filter(x => x.key === 'cardio').reduce((s, x) => s + x.items.reduce((a, it) => a + (it.targetSec ?? 0) / 60, 0) * days.filter(ti => ti === templates.indexOf(x)).length, 0);
   return { templates, days, weeklySets, below10, backToBack, cardioMin, budget, home, avgRest: AVG_REST[restGoal], unloaded, freq, missing, rare, helps: helpFor(missing, loc) };
 }
@@ -206,12 +220,19 @@ export type GenWarning = { kind: 'unloaded' | 'missing' | 'rare' | 'below' | 'pa
 /** Ostrzeżenia podglądu (audyt 0.10 MER-01, MER-02, LOG-03): siła bez obciążenia, partie bez ćwiczeń (z podpowiedzią sprzętu), partie rzadziej niż
  * MIN_DAYS dni, braki do kreski serii (masa, redukcja), pary dzień po dniu. Każda partia z `missing` i `rare` jest w którymś z tekstów. */
 export function previewWarnings(r: GenResult, inp: GenInput): GenWarning[] {
+  const out: GenWarning[] = [];
+  if (inp.goal === 'strength' && r.unloaded) out.push({ kind: 'unloaded', text: t('Siła bez obciążenia zewnętrznego (sztanga, hantle, kettlebell, maszyny, wyciągi): ciężkich serii (ok. {p}% maksimum) tu nie zrobisz, więc plan jest jak na masę w domu — {s} × {a}–{b} powtórzeń blisko upadku. Siła też wtedy rośnie, ale zwykle mniej niż przy dużym ciężarze.', { p: HEAVY_PCT, s: SETS_PER_EX, a: REPS.home[0], b: REPS.home[1] }) });
+  return [...out, ...loadWarnings(r, false)];
+}
+/** Ostrzeżenia obciążenia tygodnia (wspólne dla generatora i planu z własnych szablonów): braki partii, rzadziej niż MIN_DAYS, poniżej
+ * WEEKLY_SETS_MARK, pary dzień po dniu. `own` — plan z własnych szablonów: próg serii opisany jako próg dla masy (bez celu i bez rad o czasie i sprzęcie). */
+function loadWarnings(r: Pick<GenResult, 'missing' | 'helps' | 'rare' | 'freq' | 'below10' | 'backToBack'>, own: boolean): GenWarning[] {
   const out: GenWarning[] = []; const add = (kind: GenWarning['kind'], text: string) => out.push({ kind, text });
-  if (inp.goal === 'strength' && r.unloaded) add('unloaded', t('Siła bez obciążenia zewnętrznego (sztanga, hantle, kettlebell, maszyny, wyciągi): ciężkich serii (ok. {p}% maksimum) tu nie zrobisz, więc plan jest jak na masę w domu — {s} × {a}–{b} powtórzeń blisko upadku. Siła też wtedy rośnie, ale zwykle mniej niż przy dużym ciężarze.', { p: HEAVY_PCT, s: SETS_PER_EX, a: REPS.home[0], b: REPS.home[1] }));
   if (r.missing.length) add('missing', [t('Brak ćwiczeń na: {list}.', { list: list(r.missing) }), r.helps.length ? t('Przyda się: {list}.', { list: r.helps.join(', ') }) : ''].filter(Boolean).join(' '));
   if (r.rare.length) add('rare', t('Rzadziej niż {n} dni w tygodniu: {list} (dzień tylko z pracą pomocniczą = {h}).', { n: MIN_DAYS, list: r.rare.map(m => `${t(m)} (${fmtNum(r.freq[m] ?? 0, 1)})`).join(', '), h: fmtNum(SECONDARY_SHARE, 1) }));
   const low = r.below10.filter(m => !r.missing.includes(m));
-  if (low.length) add('below', t('Poniżej {n} serii tygodniowo: {list}. Pomoże więcej sesji, dłuższy czas albo więcej sprzętu w miejscu.', { n: WEEKLY_SETS_MARK, list: list(low) }));
+  if (low.length) add('below', own ? t('Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.', { n: WEEKLY_SETS_MARK, list: list(low) })
+    : t('Poniżej {n} serii tygodniowo: {list}. Pomoże więcej sesji, dłuższy czas albo więcej sprzętu w miejscu.', { n: WEEKLY_SETS_MARK, list: list(low) }));
   if (r.backToBack.length) add('pairs', t('Dzień po dniu te same główne partie: {list}. Zwykle lepiej z dniem przerwy; przy tej samej liczbie serii w tygodniu to też jest w porządku.', { list: r.backToBack.map(([a, b]) => `${wd(a)}–${wd(b)}`).join(', ') }));
   return out;
 }
@@ -263,4 +284,61 @@ export function saveGenerated(r: GenResult, inp: GenInput, activate: boolean, re
   const planId = addPlan(genPlanName(inp), r.days.map(ti => (ti == null ? null : idOf.get(ti) ?? null)), activate);
   const planName = (activate ? activePlanName() : savedPlans().find(p => p.id === planId)?.name) ?? genPlanName(inp); /* nazwa tak, jak zapisał ją plan (np. unikalna) */
   return { templateIds: tpls.map(x => x.id), planId, planName, folder };
+}
+
+/* ---------- Plan z moich szablonów (decyzja właściciela 09.10.2026, wariant B — wyjątek od zamrożenia, docs/18 ok. 14:55) ----------
+ * Użytkownik wybiera swoje szablony (niezarchiwizowane, z ćwiczeniami) i liczbę dni; aplikacja rozkłada je na tydzień według TYCH SAMYCH reguł co
+ * generator — bez nowych liczb i reguł:
+ * - liczba dni: GEN_SESSIONS (2–6, jak przy masie i sile) — konwencja generatora (docs/24 sekcja 3 „Podział”);
+ * - powtarzanie szablonów, gdy dni jest więcej niż szablonów: po kolei A/B/A… — jak generator przy 3 FBW (A/B/A) i 6 góra/dół (A/B/C/D/A/B),
+ *   kolejność sesji bez zmian, plan powtarza się co tydzień (konwencja, docs/24 „Podział”);
+ * - dni tygodnia: bestDays — układ domyślny generatora dla n dni, a spośród wszystkich układów ten z najmniejszą liczbą par dzień po dniu ze wspólną
+ *   partią główną (docs/research/23, „Reguły dla aplikacji” 1: „Domyślnie co najmniej 1 dzień przerwy (≈ 48 h) między sesjami z tymi samymi głównymi
+ *   partiami” — uproszczenie; reguła 2: dwa dni pod rząd — „ostrzeżenie, nie blokada”);
+ * - ostrzeżenia (weekLoad + loadWarnings): partia < MIN_DAYS dni (R1: WHO 2020 7a „all major muscle groups on 2 or more days a week”; ACSM 2026 7b
+ *   „Frequency: ≥2 sessions/wk”), pomocnicza = SECONDARY_SHARE (Pelland 2026 7c, jedno źródło), < WEEKLY_SETS_MARK serii (R2: dolny próg 10 —
+ *   ACSM, Schoenfeld 2017, Baz-Valle 2022 — docs/research/22 sekcja 3), brak ćwiczeń na partię, pary dzień po dniu;
+ * - serie szablonu: serie robocze jak w treningu (store.workCount — bez rozgrzewek, drop z poprzednią); ćwiczenia cardio (pattern „cardio”) nie liczą
+ *   się do partii — jak sesja cardio generatora.
+ * Szablonów nie zmienia (zasada 03.10.2026): zapis tworzy tylko plan (addPlan), aktywacja przez activatePlan — zmiany pojedynczych dni od dziś idą
+ * z poprzednim planem do „Inne plany”, okno pyta tekstem activationNote (audyt 0.10 B1).
+ */
+export const OWN_SESSIONS = GEN_SESSIONS.hypertrophy;
+/** Najwięcej wybranych szablonów: każdy musi dostać co najmniej jeden dzień, więc tyle, ile najwięcej dni. */
+export const OWN_MAX = Math.max(...OWN_SESSIONS);
+export type OwnInput = { templateIds: string[]; sessions: number };
+export type OwnResult = {
+  /** szablon każdej sesji po kolei (rotacja) */ seq: string[]; /** pon…nd: id szablonu albo null */ days: (string | null)[]; sessions: number;
+  weeklySets: Record<string, number>; freq: Record<string, number>; below10: string[]; missing: string[]; rare: string[]; backToBack: [number, number][];
+};
+/** Szablony do wyboru: niezarchiwizowane, z ćwiczeniami (kolejność jak na liście stanu). */
+export const ownTemplates = (): Template[] => getState().templates.filter(x => !x.archived && x.items.length > 0);
+/** Liczba dni do wyboru przy k szablonach: co najmniej k (każdy szablon użyty). */
+export const ownSessionsFor = (k: number) => OWN_SESSIONS.filter(n => n >= k);
+/** Rozkład wybranych szablonów na tydzień; null — nic do rozłożenia (brak szablonów albo więcej niż OWN_MAX). Liczba dni spoza listy → najbliższa
+ * dozwolona nie mniejsza (co najmniej tyle, ile szablonów). */
+export function ownPlan(inp: OwnInput): OwnResult | null {
+  const ok = new Set(ownTemplates().map(x => x.id)); const ids = [...new Set(inp.templateIds)].filter(id => ok.has(id));
+  if (!ids.length || ids.length > OWN_MAX) return null;
+  const allowed = ownSessionsFor(ids.length); const n = allowed.find(x => x >= inp.sessions) ?? allowed[allowed.length - 1];
+  const seq = Array.from({ length: n }, (_, i) => ids[i % ids.length]);
+  const tpl = (id: string) => getState().templates.find(x => x.id === id)!;
+  const items = (id: string) => tpl(id).items.filter(it => exById(it.exerciseId)?.pattern !== 'cardio').map(it => ({ exerciseId: it.exerciseId, sets: workCount(tplRows(it).map(r => r.kind)) }));
+  const exOf = (id: string) => exById(id);
+  const prims = seq.map(id => new Set(items(id).flatMap(it => exOf(it.exerciseId)?.muscles ?? [])));
+  const dayIdx = bestDays(prims, STRENGTH_DAYS[n]);
+  const days: (string | null)[] = Array(7).fill(null); seq.forEach((id, i) => { days[dayIdx[i]] = id; });
+  return { seq, days, sessions: n, ...weekLoad(days.map(id => (id ? items(id) : null)), exOf) };
+}
+/** Ostrzeżenia podglądu planu z własnych szablonów — te same co w generatorze (bez podpowiedzi sprzętu: plan nie dobiera ćwiczeń). */
+export const ownWarnings = (r: OwnResult): GenWarning[] => loadWarnings({ ...r, helps: [] }, true);
+/** Ile razy w tygodniu każdy wybrany szablon (podgląd rotacji). */
+export const ownCounts = (r: OwnResult): { id: string; n: number }[] => [...new Set(r.seq)].map(id => ({ id, n: r.seq.filter(x => x === id).length }));
+/** Nazwa planu: „Moje szablony, 3× w tygodniu” (w języku z chwili zapisu; potem dane użytkownika; lib/plan skraca do PLAN_NAME_MAX). */
+export const ownPlanName = (r: OwnResult) => t('Moje szablony, {n}× w tygodniu', { n: r.sessions });
+/** Zapis po zatwierdzeniu: tylko plan (szablony bez zmian); `activate` — od razu obowiązuje (activatePlan). '' w planId — „Inne plany” pełne. */
+export function saveOwnPlan(r: OwnResult, activate: boolean): { planId: string; planName: string } {
+  const planId = addPlan(ownPlanName(r), r.days, activate);
+  const planName = (activate ? activePlanName() : savedPlans().find(p => p.id === planId)?.name) ?? ownPlanName(r);
+  return { planId, planName };
 }

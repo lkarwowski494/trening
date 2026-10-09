@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ScrollView, Alert, View } from 'react-native';
 import { Screen, Field, NumInput, Input, Btn, Muted, Item, SectionTitle } from '@/components/ui';
+import { SwipeRow } from '@/components/SwipeRow';
 import { useTick, bodyMassLog, addBodyMass, removeBodyMass, localISODate, fmtDate, localDateTs } from '@/lib/store';
 import { BW_SHARE } from '@/lib/stats';
 import { t } from '@/lib/i18n';
@@ -29,9 +30,11 @@ export default function BodyMassScreen() {
       <Btn title={t('Zapisz pomiar')} kind="primary" onPress={add} />
       <Muted style={{ fontSize: 12, marginTop: 6 }}>{t('Pomiar z tym samym dniem zastępuje poprzedni.')}</Muted>
       <SectionTitle>{t('Pomiary')}</SectionTitle>
-      {log.length ? log.map(x => <Item key={x.date} title={fmtW(x.kg)} sub={fmtDate(localDateTs(x.date))}
-        right={<Btn small kind="ghost" title={t('Usuń')} accessibilityLabel={t('Usuń pomiar: {v}, {d}', { v: fmtW(x.kg), d: fmtDate(localDateTs(x.date)) })}
-          onPress={() => Alert.alert(t('Usunąć pomiar?'), t('{v} z {d}. Treningi z tego okresu przeliczą e1RM z wcześniejszego pomiaru (albo bez e1RM, gdy go nie ma).', { v: fmtW(x.kg), d: fmtDate(localDateTs(x.date)) }), [{ text: t('Anuluj'), style: 'cancel' }, { text: t('Usuń'), style: 'destructive', onPress: () => removeBodyMass(x.date) }])} />} />)
+      {log.length ? log.map(x => { const v = fmtW(x.kg); const d = fmtDate(localDateTs(x.date)); return (
+        <SwipeRow key={x.date} label={t('Usuń pomiar: {v}, {d}', { v, d })} title={t('Usunąć pomiar?')} /* UI2-03: usuwanie gestem jak wszędzie (decyzja 07.10) */
+          message={t('{v} z {d}. Treningi z tego okresu przeliczą e1RM z wcześniejszego pomiaru (albo bez e1RM, gdy go nie ma).', { v, d })} onDelete={() => removeBodyMass(x.date)}>
+          {a11y => <Item a11y={a11y} title={v} sub={d} />}
+        </SwipeRow>); })
         : <Muted style={{ fontSize: 13 }}>{t('Brak pomiarów.')}</Muted>}
     </ScrollView></Screen>
   );

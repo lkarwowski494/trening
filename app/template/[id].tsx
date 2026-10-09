@@ -17,7 +17,8 @@ import { useTheme, F } from '@/lib/theme';
 import { hasTime, hasReps, hasWeight, hasDistance, SET_KIND_LABEL, type Template, type TemplateItem, type TRow, type Exercise, type WSet } from '@/lib/seed';
 import { t, tp, exName, lang } from '@/lib/i18n';
 import { startTemplate } from '@/lib/start';
-import { templateUsageText } from '@/lib/plan';
+import { templateUsageText, assignNewTemplate, hasPlan } from '@/lib/plan';
+import { askReminderPermission } from '@/lib/planReminder';
 import { wu, wField, wInKeep } from '@/lib/units';
 
 /*
@@ -29,18 +30,21 @@ import { wu, wField, wInKeep } from '@/lib/units';
  * o potwierdzenie, a grupy supersetów porządkują się po każdej zmianie.
  */
 export default function TemplateScreen() {
-  const p = useLocalSearchParams<{ id: string; edit?: string; new?: string }>(); const id = typeof p.id === 'string' ? p.id : ''; useTick(); const router = useRouter();
-  const isNew = useRef(p.new === '1');
+  const p = useLocalSearchParams<{ id: string; edit?: string; new?: string; assign?: string }>(); const id = typeof p.id === 'string' ? p.id : ''; useTick(); const router = useRouter();
+  const isNew = useRef(p.new === '1'); const assigned = useRef(false);
   const [editing, setEditing] = useState(() => p.edit === '1' && !!beginObjDraft('template', id));
   // Nowy, nietknięty szablon znika po wyjściu — „+ Nowy” i „Wróć” nie zostawiają śmieci (runda 2); zapisane szablony bez ćwiczeń zostają (runda 3).
-  useEffect(() => () => { discardObjDraft('template', id); const x = getState().templates.find(y => y.id === id); if (x && (isNew.current || x.name === t('Nowy szablon'))) dropUnsavedNew('template', id); }, [id]);
+  useEffect(() => () => { discardObjDraft('template', id); const x = getState().templates.find(y => y.id === id); if (x && !assigned.current && (isNew.current || x.name === t('Nowy szablon'))) dropUnsavedNew('template', id); }, [id]);
   const real = getState().templates.find(x => x.id === id); const d = editing ? objDraft<Template>('template', id) : undefined;
   if (!real) return <Screen><Muted>{t('Nie ma takiego szablonu.')}</Muted></Screen>;
   const close = () => { if (router.canGoBack()) router.back(); else router.replace('/templates'); };
   if (editing && d) {
     const cancel = () => confirmDiscard(objDirty('template', id), isNew.current ? t('Nowy szablon nie zostanie zapisany.') : t('Szablon zostanie bez zmian.'), () => {
       discardObjDraft('template', id); setEditing(false); if (isNew.current) { dropUnsavedNew('template', id); close(); } }, () => objDraft('template', id) === d);
-    const commit = () => { commitObjDraft('template', id); isNew.current = false; setEditing(false); };
+    /* docs/18 09.10.2026 (B): nowy szablon z edytora planu / panelu dnia — po „Zapisz” trafia na ten dzień (`assign`); pierwszy dzień planu — prośba o zgodę (I1) */
+    const commit = () => { commitObjDraft('template', id, { keepNew: isNew.current }) /* UI2-05 */;
+      if (isNew.current && typeof p.assign === 'string' && p.assign) { const had = hasPlan(); assigned.current = assignNewTemplate(p.assign, id); if (!had && hasPlan()) askReminderPermission().catch(() => {}); }
+      isNew.current = false; setEditing(false); };
     return <><DraftHeader title={isNew.current ? t('Nowy szablon') : t('Edycja szablonu')} onCancel={cancel} onSave={commit} cancelLabel={t('Anuluj edycję szablonu')} saveLabel={t('Zapisz szablon')} /><TemplateEditor tpl={d} /></>;
   }
   return <><Stack.Screen options={{ title: t('Szablon'), headerBackVisible: true, gestureEnabled: true, headerLeft: undefined, headerRight: undefined }} /><TemplatePreview tpl={real} onEdit={() => { if (beginObjDraft('template', id)) setEditing(true); } /* podwójne tapnięcie — ten sam szkic (beginObjDraft) */} /></>;
@@ -59,7 +63,7 @@ function TemplatePreview({ tpl, onEdit }: { tpl: Template; onEdit: () => void })
   // Runda 9: start z ekranu otwartego z zakładki Szablony — zamykamy cały stos i przechodzimy na zakładkę główną.
   const goHome = () => { if (router.canDismiss()) router.dismissAll(); router.navigate('/'); };
   const act = getState().active; const labels = groupLabels(tpl.items); const sets = tplWorkSets(tpl);
-  const meta = [tpl.folder ? `${t('Folder')}: ${tpl.folder}` : '', getState().settings.locations.length ? `📍 ${locationLabel(tpl.locationId)}` : '', `${tpl.items.length} ${t('ćw.')} · ${sets} ${tp(sets, 'seria|serie|serii')}`, tpl.archived ? t('w archiwum') : ''].filter(Boolean).join(' · ');
+  const meta = [tpl.folder ? `${t('Folder')}: ${tpl.folder}` : '', getState().settings.locations.length ? `📍 ${tpl.locationId ? locationLabel(tpl.locationId) : `${locationLabel(getState().settings.mainLocationId)} (${t('główne')})`}` /* UX2-02: bez miejsca = miejsce główne (jak chip „główne” w edytorze i start) */ : '', `${tpl.items.length} ${t('ćw.')} · ${sets} ${tp(sets, 'seria|serie|serii')}`, tpl.archived ? t('w archiwum') : ''].filter(Boolean).join(' · ');
   const start = once(() => { const a = getState().active; if (a && a.templateId === tpl.id) { goHome(); return; } if (a) { Alert.alert(t('Trening w toku'), t('Najpierw zakończ albo anuluj bieżący trening.')); return; } startTemplate(tpl, goHome); });
   const archive = () => { const use = tpl.archived ? '' : templateUsageText(tpl.id, true); /* audyt 0.10 A7: szablon w planie — pytanie ze skutkami */ if (!use) { setTemplateArchived(tpl, !tpl.archived); return; } Alert.alert(t('Archiwizować szablon?'), `${tpl.name}\n\n${use}`, [{ text: t('Anuluj'), style: 'cancel' }, { text: t('Archiwizuj'), onPress: () => setTemplateArchived(tpl, true) }]); };
   return (

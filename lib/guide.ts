@@ -25,7 +25,7 @@ export const GUIDE: GuideTopic[] = [
   { id: 'during', route: '/', title: () => t('Zmiany w trakcie treningu'), steps: () => [
     t('„⇄ zamień” przy ćwiczeniu zamienia je na inne tylko w tym treningu — szablon zostaje.'),
     t('„Pomiń dziś” pomija resztę serii ćwiczenia w tym treningu.'),
-    t('Superset ustawisz w szablonie przyciskiem „Połącz z następnym w superset” — przerwa liczy się po ostatnim ćwiczeniu grupy.'),
+    t('Superset ustawisz w szablonie: „Edytuj”, potem „⇅ SS” przy ćwiczeniu łączy je z następnym (w trakcie treningu ten sam przycisk jest przy ćwiczeniu) — przerwa liczy się po ostatnim ćwiczeniu grupy.') /* UI2-07: cytat widocznego tekstu przycisku */,
     t('Przesunięcie serii albo nazwy ćwiczenia w lewo usuwa je (z potwierdzeniem).'),
   ] },
   { id: 'history', route: '/history', title: () => t('Edycja sesji i trening wstecz'), steps: () => [
