@@ -1319,9 +1319,9 @@
  "zaplanowane": "prévu",
  "Tygodnie z wykonanym planem: {done} z {n}": "Semaines avec le plan accompli : {done} sur {n}",
  "Niezapisane zmiany": "Modifications non enregistrées",
- "Aplikacja zamknęła się w trakcie edycji szablonu „{name}”. Wrócić do edycji?": "L’app s’est fermée pendant que vous modifiiez le modèle « {name} ». Reprendre la modification ?",
- "Aplikacja zamknęła się w trakcie edycji ćwiczenia „{name}”. Wrócić do edycji?": "L’app s’est fermée pendant que vous modifiiez l’exercice « {name} ». Reprendre la modification ?",
+ "Aplikacja zamknęła się w trakcie edycji szablonu „{name}”. Wrócić do edycji?": "L’app s’est fermée pendant que vous modifiiez le modèle « {name} ». Reprendre la modification ?",
+ "Aplikacja zamknęła się w trakcie edycji ćwiczenia „{name}”. Wrócić do edycji?": "L’app s’est fermée pendant que vous modifiiez l’exercice « {name} ». Reprendre la modification ?",
  "Wróć do edycji": "Reprendre la modification",
  "Mapa mięśni i serie na partię z kreską {n} serii tygodniowo.": "Carte musculaire et séries par groupe musculaire avec un repère à {n} séries par semaine.",
- "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.": "Progrès : bilan de la semaine et du mois avec carte musculaire, repère de {n} séries par groupe musculaire et par semaine, et marquage d’une semaine de décharge."
+ "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.": "Progrès : bilan de la semaine et du mois avec carte musculaire, repère de {n} séries par groupe musculaire et par semaine, et marquage d’une semaine de décharge."
 }

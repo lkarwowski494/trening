@@ -116,6 +116,36 @@
    "reason": "klucz katalogu (nazwa kanoniczna = Exercise.libKey w danych użytkownika; wskazówki, figury i Zdrowie po kluczu) — nazwa wyświetlana ogólna z LIB_DISPLAY_NAME w lib/seed.ts (SEC2-01); tu: wpis LIB i sama mapa nazw"
   },
   {
+   "path": "lib/catalog-fp-legacy.generated.ts",
+   "name": "Assault Bike",
+   "reason": "klucz katalogu z buildów 1001/1002 (nazwa kanoniczna = Exercise.libKey w zapisanych danych użytkownika) — odciski pól do odzyskania klucza po przemianowaniu (DAT2-02); nazwa wyświetlana ogólna z LIB_DISPLAY_NAME (SEC2-01) — plik generowany z scripts/equipment/catalog-1002-fields.json"
+  },
+  {
+   "path": "lib/catalog-fp-legacy.generated.ts",
+   "name": "Bosu",
+   "reason": "klucz katalogu z buildów 1001/1002 (nazwa kanoniczna = Exercise.libKey w zapisanych danych użytkownika) — odciski pól do odzyskania klucza po przemianowaniu (DAT2-02); nazwa wyświetlana ogólna z LIB_DISPLAY_NAME (SEC2-01) — plik generowany z scripts/equipment/catalog-1002-fields.json"
+  },
+  {
+   "path": "lib/catalog-fp-legacy.generated.ts",
+   "name": "Ski Erg",
+   "reason": "klucz katalogu z buildów 1001/1002 (nazwa kanoniczna = Exercise.libKey w zapisanych danych użytkownika) — odciski pól do odzyskania klucza po przemianowaniu (DAT2-02); nazwa wyświetlana ogólna z LIB_DISPLAY_NAME (SEC2-01) — plik generowany z scripts/equipment/catalog-1002-fields.json"
+  },
+  {
+   "path": "scripts/equipment/catalog-1002-fields.json",
+   "name": "Assault Bike",
+   "reason": "klucz katalogu z buildów 1001/1002 (nazwa kanoniczna = Exercise.libKey w zapisanych danych użytkownika) — odciski pól do odzyskania klucza po przemianowaniu (DAT2-02); nazwa wyświetlana ogólna z LIB_DISPLAY_NAME (SEC2-01) — dane wejściowe generatora legacy-fp.mjs"
+  },
+  {
+   "path": "scripts/equipment/catalog-1002-fields.json",
+   "name": "Bosu",
+   "reason": "klucz katalogu z buildów 1001/1002 (nazwa kanoniczna = Exercise.libKey w zapisanych danych użytkownika) — odciski pól do odzyskania klucza po przemianowaniu (DAT2-02); nazwa wyświetlana ogólna z LIB_DISPLAY_NAME (SEC2-01) — dane wejściowe generatora legacy-fp.mjs"
+  },
+  {
+   "path": "scripts/equipment/catalog-1002-fields.json",
+   "name": "Ski Erg",
+   "reason": "klucz katalogu z buildów 1001/1002 (nazwa kanoniczna = Exercise.libKey w zapisanych danych użytkownika) — odciski pól do odzyskania klucza po przemianowaniu (DAT2-02); nazwa wyświetlana ogólna z LIB_DISPLAY_NAME (SEC2-01) — dane wejściowe generatora legacy-fp.mjs"
+  },
+  {
    "path": "lib/health.ts",
    "name": "Assault Bike",
    "reason": "klucz katalogu (nazwa kanoniczna = Exercise.libKey w danych użytkownika; wskazówki, figury i Zdrowie po kluczu) — nazwa wyświetlana ogólna z LIB_DISPLAY_NAME w lib/seed.ts (SEC2-01); tu: CARDIO_KIND (rodzaj aktywności po kluczu, MER-18)"
