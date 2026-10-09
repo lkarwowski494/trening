@@ -682,13 +682,13 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     const write = FS.writeAsStringAsync as jest.Mock; write.mockClear();
     await tap(screen.getAllByText('Zakończ trening i zapisz')[0]);
     const al = lastAlert(); expect(al.title).toBe('Zakończyć trening?');
-    expect(al.msg).toContain('Zapisane zostaną serie robocze: 16.'); expect(al.msg).toContain('Nieodhaczone serie z wpisanymi wynikami: 1 — nie zostaną zapisane.');
+    expect(al.msg).toContain('Zapisane zostaną serie robocze: 15.'); /* LIVE2-02: drop set liczy się z serią przed nim (= workingSets po zapisie) */ expect(al.msg).toContain('Nieodhaczone serie z wpisanymi wynikami: 1 — nie zostaną zapisane.');
     pressAlert('Zakończyć trening?', 'Wróć'); await flushAll(10); expect(S().active).not.toBeNull();
     await tap(screen.getByText('Zakończ')); pressAlert('Zakończyć trening?', 'Zakończ'); await flushAll(600);
     expect(S().active).toBeNull(); expect(S().workouts).toHaveLength(1); const w = S().workouts[0];
     expect(w.finishedAt).toBeGreaterThan(w.startedAt); expect(w.templateName).toBe('Push A'); expect(w.note).toBe('dobry dzień'); expect(w.locationId).toBe(loc('Dom testowy').id);
     expect(w.exercises.map(e => [store.exById(e.exerciseId)!.name, e.sets.length])).toEqual([['Bench Press (hantle)', 5], ['Cable Curl', 1], ['Cable Curl', 2], ['Pull Up', 3], ['Band Pull Apart', 2], ['Lateral Raise (hantle)', 2], ['Plank', 2]]);
-    expect(w.exercises.every(e => e.sets.every(x => x.done))).toBe(true); /* nieodhaczone serie nie trafiają do historii */
+    expect(w.exercises.every(e => e.sets.every(x => x.done))).toBe(true); expect(store.workingSets(w)).toBe(15); /* LIVE2-02: = liczba z okna „Zakończyć” */ /* nieodhaczone serie nie trafiają do historii */
     expect(global.__alerts.some(x => /rekord/i.test(x.title))).toBe(false); /* pierwszy trening nie jest rekordem */
     /* szczegóły sesji otwarte od razu */
     expect(screen.getByText('dobry dzień')).toBeTruthy(); expect(screen.getByText('Edytuj')).toBeTruthy(); expect(screen.queryByText('Usuń sesję')).toBeNull(); /* 07.10.2026 wieczór: usuwanie przesunięciem na liście Historii */
