@@ -280,3 +280,4 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
   CLAUDE.md „Audyty i wydania”. Odrzucone: B (sam limit czasu — ryzyko puszczenia poważnego błędu), C (bez dużych audytów). Skutek dla
   bieżącej sekwencji: audyt kontrolny 1 pełny (pierwsze wydanie po dużych zmianach), wydanie 1 wstrzymują tylko krytyczne i wysokie;
   audyt 2 po wydaniu — wydanie 2 tylko przy blokerach, średnie i niskie do backlogu z wersją, potem koniec sekwencji.
+- 09.10.2026 (ok. 09:30): właściciel — **szacowanie czasu**: estymacje zakładają pracę agenta, nie człowieka (zapis w CLAUDE.md); zaktualizowany tekst instrukcji konta przekazany właścicielowi do wklejenia.
