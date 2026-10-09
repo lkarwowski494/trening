@@ -371,3 +371,5 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
   rekomendacji: **2 serie** (źródła 2–3), **bez rozciągania i równowagi** (jedno źródło / tylko 65+; pytanie o wiek → backlog). Podstawa:
   szkic research „Ogólny” (WHO 2020, PAG 2018, ACSM 2011/2026) → docs/research/30 przy wdrożeniu. Przy masie 1 dzień: źródła nie potwierdzają
   „utrzymania” (ACSM 2026: przy równej liczbie serii przyrost podobny) — uwaga mówi o trudności zmieszczenia 10 serii w jednej sesji.
+- 09.10.2026 (wieczór): właściciel — **redukcja przy 1–2 dniach: same dni siłowe, cardio poza planem (A)** — akceptacja rozstrzygnięcia agenta
+  (research 29, sekcja 3; próg CUT_CARDIO_FROM = 3). Odrzucone: B (1 siłowy + 1 cardio — partie raz w tygodniu, bez źródła), C (cardio po sesji).
