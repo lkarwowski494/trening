@@ -9,7 +9,7 @@ import * as store from '@/lib/store';
 import * as plan from '@/lib/plan';
 import { generate, genProposal, ownProposal, ownPlan, type GenInput } from '@/lib/generator';
 import { DAY_TOUCH, dayCols, daysOk, daysRangeText } from '@/components/DayPicker';
-import { applyLang } from '@/lib/i18n';
+import { applyLang, lang, tIn, LANGS } from '@/lib/i18n';
 import { fresh, saved, withDemoTemplates } from './helpers';
 import { renderApp, flushAll, screen, tap, act } from './app';
 
@@ -63,9 +63,12 @@ describe('generator: wybór dni', () => {
     expect(screen.getByText(header(generate(inp({ days: [0, 4] }))))).toBeTruthy(); expect(screen.getByText(/^pon\.? FBW [AB] · pt\.? FBW [AB]$/)).toBeTruthy();
     await tap(day(1)); await tap(day(3)); await flushAll(5); expect(checkedDays()).toEqual([0, 1, 3, 4]);
     const r4 = generate(inp({ days: [0, 1, 3, 4] })); expect(screen.getByText(header(r4))).toBeTruthy(); expect(r4.templates.map(x => x.key)).toEqual(['upA', 'loA', 'upB', 'loB']);
-    await pickDays([6]); expect(screen.getByText('Wybierz dni treningowe: od 2 do 6.')).toBeTruthy();
+    await pickDays([6]); expect(screen.queryByTestId('day-picker-range')).toBeNull(); /* 1 dzień — dozwolony (09.10.2026): sesja FBW i ostrzeżenie „oneday” */
+    expect(screen.getByText(header(generate(inp({ days: [6] }))))).toBeTruthy(); expect(screen.getByText(/^niedz?\.? FBW$/)).toBeTruthy(); expect(screen.getByTestId('gen-fbw')).toBeTruthy();
+    expect(screen.getByText(/^Jeden trening w tygodniu też daje postępy, ale zwykle trochę mniejsze/)).toBeTruthy(); expect(screen.getByText(/^Rzadziej niż 2 dni w tygodniu: /)).toBeTruthy();
+    await pickDays([]); expect(screen.getByText('Wybierz dni treningowe: od 1 do 6.')).toBeTruthy();
     expect(screen.queryByText('Podgląd')).toBeNull(); expect(screen.queryByText('Zapisz szablony i plan')).toBeNull();
-    await pickDays([0, 1, 2, 3, 4, 5, 6]); expect(screen.getByText('Wybierz dni treningowe: od 2 do 6.')).toBeTruthy(); expect(screen.queryByText('Zapisz szablony i plan')).toBeNull();
+    await pickDays([0, 1, 2, 3, 4, 5, 6]); expect(screen.getByText('Wybierz dni treningowe: od 1 do 6.')).toBeTruthy(); expect(screen.queryByText('Zapisz szablony i plan')).toBeNull();
     await tap(day(6)); await flushAll(5); expect(screen.queryByTestId('day-picker-range')).toBeNull(); expect(screen.getByText('Podgląd')).toBeTruthy(); expect(screen.getByText('Zapisz szablony i plan')).toBeTruthy();
     expect(screen.getByText(header(generate(inp({ days: [0, 1, 2, 3, 4, 5] }))))).toBeTruthy();
   });
@@ -74,15 +77,16 @@ describe('generator: wybór dni', () => {
     await pickDays([0, 1]); expect(screen.getByText(/^Dzień po dniu te same główne partie: pon\.?–wt\.?\. Zwykle lepiej z dniem przerwy/)).toBeTruthy();
     await pickDays([0, 3]); expect(screen.queryByText(/^Dzień po dniu te same główne partie/)).toBeNull();
   });
-  test('zmiana celu: w zakresie wybór zostaje; redukcja przy 2 dniach — propozycja na 3 (z cardio); czas i miejsce nie zmieniają wyboru', async () => {
+  test('zmiana celu: w zakresie (1–6 dla każdego celu) wybór zostaje; redukcja przy 2 dniach — bez cardio; 0 dni → propozycja; czas i miejsce nie zmieniają wyboru', async () => {
     await boot('/generator');
     await pickDays([1, 3, 5, 6]); await tap(screen.getByText('Siła')); await flushAll(5); expect(checkedDays()).toEqual([1, 3, 5, 6]);
     await tap(screen.getByText('45 min')); await tap(screen.getByText('Bez ograniczeń sprzętu')); await flushAll(5); expect(checkedDays()).toEqual([1, 3, 5, 6]);
     await tap(screen.getByText('Redukcja')); await flushAll(5); expect(checkedDays()).toEqual([1, 3, 5, 6]); expect(screen.getByText('Dni treningowe w tygodniu (w tym 1 cardio)')).toBeTruthy();
-    await pickDays([1, 3]); expect(screen.getByText('Wybierz dni treningowe: od 3 do 6.')).toBeTruthy(); /* redukcja: od 3 — komunikat przy własnym wyborze */
-    await tap(screen.getByText('Masa')); await flushAll(5); expect(checkedDays()).toEqual([1, 3]);
-    await tap(screen.getByText('Redukcja')); await flushAll(5); expect(checkedDays()).toEqual(genProposal(inp({ goal: 'cut', sessions: 3, minutes: 45 })));
     expect(screen.getByTestId('gen-cardio')).toBeTruthy();
+    await pickDays([1, 3]); expect(screen.queryByTestId('day-picker-range')).toBeNull(); expect(screen.getByText('Dni treningowe w tygodniu')).toBeTruthy(); expect(screen.queryByTestId('gen-cardio')).toBeNull(); /* opcja A */
+    await tap(screen.getByText('Masa')); await flushAll(5); expect(checkedDays()).toEqual([1, 3]);
+    await tap(screen.getByText('Redukcja')); await flushAll(5); expect(checkedDays()).toEqual([1, 3]);
+    await pickDays([]); await tap(screen.getByText('Siła')); await flushAll(5); expect(checkedDays()).toEqual(genProposal(inp({ goal: 'strength', sessions: 1, minutes: 45 }))); /* 0 dni — poza zakresem: propozycja dla najbliższej dozwolonej (1) */
   });
   test('scenariusz: wybór dni → zapis „Ustaw jako aktywny” → plan ma dokładnie te dni → restart → te same dni; nazwa z liczbą dni', async () => {
     await boot('/generator');
@@ -95,7 +99,8 @@ describe('generator: wybór dni', () => {
   test('EN: pełne nazwy dni, etykieta, komunikat', async () => {
     await boot('/generator', () => {}, 'en');
     expect(screen.getByText('Training days per week')).toBeTruthy(); expect(day(0).props.accessibilityLabel).toBe('Monday'); expect(day(6).props.accessibilityLabel).toBe('Sunday');
-    await pickDays([2]); expect(screen.getByText('Choose training days: 2 to 6.')).toBeTruthy();
+    await pickDays([]); expect(screen.getByText('Choose training days: 1 to 6.')).toBeTruthy();
+    await pickDays([2]); expect(screen.getByText(/^One workout a week still brings progress/)).toBeTruthy(); expect(screen.getByTestId('gen-fbw')).toBeTruthy();
     await pickDays([0, 2, 4]); await tap(screen.getByText('Fat loss')); await flushAll(5); expect(screen.getByText('Training days per week (incl. 1 cardio)')).toBeTruthy();
   });
 });
@@ -117,5 +122,26 @@ describe('„Plan z moich szablonów”: ten sam wybór dni', () => {
     await boot('/generator?mode=own', () => { const t = withDemoTemplates(); store.dupTemplate(t[0].id); store.dupTemplate(t[2].id); });
     expect(checkedDays()).toHaveLength(6); /* 6 szablonów — propozycja na 6 dni */
     await tap(day(checkedDays()[0])); await flushAll(5); expect(screen.getByText('Wybierz dni treningowe: 6.')).toBeTruthy(); expect(screen.queryByText('Zapisz plan')).toBeNull();
+  });
+});
+
+/* 1 dzień w tygodniu (09.10.2026, docs/research/29): każdy język z LANGS na ekranie 320 pt — redukcja z 1 dniem: nazwa sesji FBW w nagłówku podglądu,
+ * ostrzeżenie „oneday”, opis celu bez sesji cardio, „Cardio poza planem” (z liczbami WHO) i punkt „Na czym to oparte” w tym języku; bez tych tekstów
+ * po polsku (poza pl). Słownik (komplet, parametry, fr/tr) — tests/i18n-locales.test.ts, tests/matrix-i18n.test.tsx. */
+describe('1 dzień — każdy język na 320 pt', () => {
+  const KEYS = ['Jeden trening w tygodniu też daje postępy, ale zwykle trochę mniejsze niż częstszy trening — głównie dlatego, że w jednej sesji mieści się mniej serii. Przy tej samej liczbie serii w tygodniu różnica w przyroście mięśni znika, a w sile maleje.'];
+  test.each([...LANGS])('%s', async l => {
+    jest.useFakeTimers({ now: NOW }); await fresh(undefined, l === 'pl' ? 'pl' : 'en'); S().settings.language = l; store.save(); await act(async () => { await store.flush(); });
+    await renderApp({ saved: JSON.parse(JSON.stringify(saved())), locale: l === 'pl' ? 'pl' : 'en', url: '/generator', width: 320 }); jest.setSystemTime(NOW.getTime()); await flushAll(10);
+    expect(lang()).toBe(l);
+    await tap(screen.getByText(tIn(l, 'Redukcja'))); await flushAll(5); await pickDays([2]);
+    const all = (screen.toJSON() ? JSON.stringify(screen.toJSON()) : '');
+    const goal = tIn(l, 'Redukcja: trening jak na masę (chroni mięśnie); sesja cardio w planie od {k} dni w tygodniu.').replace('{k}', '3');
+    const out = tIn(l, 'Cardio poza planem: sesja cardio jest w planie od {k} dni w tygodniu, przy mniejszej liczbie wszystkie dni są siłowe. Zalecenie WHO: co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.')
+      .replace('{k}', '3').replace('{a}', '150').replace('{b}', '300').replace('{c}', '75').replace('{d}', '150');
+    const basis = `• ${tIn(l, 'Cardio: od {k} dni w tygodniu jedna sesja w osobny dzień; przy mniejszej liczbie dni wszystkie są siłowe, żeby cardio nie zabierało dni treningowi siłowemu (każda główna partia co najmniej {n} dni) — konwencja.').replace('{k}', '3').replace('{n}', '2')}`;
+    for (const x of [tIn(l, KEYS[0]), goal, out, basis]) expect([l, screen.queryAllByText(x).length]).toEqual([l, 1]);
+    expect([l, screen.getByText(new RegExp(` ${tIn(l, 'FBW')}$`)).props.accessibilityRole]).toEqual([l, 'header']); expect(screen.getByTestId('gen-fbw')).toBeTruthy();
+    if (l !== 'pl') expect([l, [KEYS[0], 'Cardio poza planem', 'sesja cardio w planie od'].filter(k => all.includes(k))]).toEqual([l, []]);
   });
 });

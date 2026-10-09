@@ -1323,5 +1323,10 @@
  "odpoczynek": "ημέρα ξεκούρασης",
  "Dni treningowe w tygodniu (w tym {n} cardio)": "Ημέρες προπόνησης την εβδομάδα (με {n} καρδιο)",
  "Wybierz dni treningowe: od {a} do {b}.": "Επίλεξε ημέρες προπόνησης: από {a} έως {b}.",
- "Wybierz dni treningowe: {n}.": "Επίλεξε ημέρες προπόνησης: {n}."
+ "Wybierz dni treningowe: {n}.": "Επίλεξε ημέρες προπόνησης: {n}.",
+ "FBW": "Ολόσωμο",
+ "Jeden trening w tygodniu też daje postępy, ale zwykle trochę mniejsze niż częstszy trening — głównie dlatego, że w jednej sesji mieści się mniej serii. Przy tej samej liczbie serii w tygodniu różnica w przyroście mięśni znika, a w sile maleje.": "Μία προπόνηση την εβδομάδα φέρνει κι αυτή πρόοδο, συνήθως όμως λίγο μικρότερη από τη συχνότερη προπόνηση — κυρίως επειδή σε μία συνεδρία χωρούν λιγότερα σετ. Με τον ίδιο αριθμό σετ την εβδομάδα η διαφορά στη μυϊκή ανάπτυξη εξαφανίζεται, ενώ στη δύναμη μειώνεται.",
+ "Redukcja: trening jak na masę (chroni mięśnie); sesja cardio w planie od {k} dni w tygodniu.": "Απώλεια λίπους: προπόνηση όπως για μάζα (προστατεύει τους μυς)· συνεδρία καρδιο στο πρόγραμμα από {k} ημέρες την εβδομάδα.",
+ "Cardio: od {k} dni w tygodniu jedna sesja w osobny dzień; przy mniejszej liczbie dni wszystkie są siłowe, żeby cardio nie zabierało dni treningowi siłowemu (każda główna partia co najmniej {n} dni) — konwencja.": "Καρδιο: από {k} ημέρες την εβδομάδα μία συνεδρία σε ξεχωριστή ημέρα· με λιγότερες ημέρες όλες είναι ημέρες δύναμης, ώστε το καρδιο να μην παίρνει ημέρες από την προπόνηση δύναμης (κάθε κύρια μυϊκή ομάδα τουλάχιστον {n} ημέρες) — σύμβαση.",
+ "Cardio poza planem: sesja cardio jest w planie od {k} dni w tygodniu, przy mniejszej liczbie wszystkie dni są siłowe. Zalecenie WHO: co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.": "Καρδιο εκτός προγράμματος: συνεδρία καρδιο υπάρχει στο πρόγραμμα από {k} ημέρες την εβδομάδα· με λιγότερες, όλες οι ημέρες είναι ημέρες δύναμης. Ο ΠΟΥ συστήνει τουλάχιστον {a}–{b} λεπ. μέτριας δραστηριότητας την εβδομάδα (ή {c}–{d} λεπ. έντονης)· μετράει και η μέτρια κίνηση μέσα στην ημέρα, π.χ. γρήγορο περπάτημα, ακόμη και σύντομο."
 }

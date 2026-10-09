@@ -1323,5 +1323,10 @@
  "odpoczynek": "hviledag",
  "Dni treningowe w tygodniu (w tym {n} cardio)": "Treningsdager per uke (inkl. {n} kondisjon)",
  "Wybierz dni treningowe: od {a} do {b}.": "Velg treningsdager: fra {a} til {b}.",
- "Wybierz dni treningowe: {n}.": "Velg treningsdager: {n}."
+ "Wybierz dni treningowe: {n}.": "Velg treningsdager: {n}.",
+ "FBW": "Helkropp",
+ "Jeden trening w tygodniu też daje postępy, ale zwykle trochę mniejsze niż częstszy trening — głównie dlatego, że w jednej sesji mieści się mniej serii. Przy tej samej liczbie serii w tygodniu różnica w przyroście mięśni znika, a w sile maleje.": "Én trening i uka gir også fremgang, men som regel litt mindre enn hyppigere trening — mest fordi færre sett får plass i én økt. Med samme antall sett per uke forsvinner forskjellen i muskelvekst, og forskjellen i styrke blir mindre.",
+ "Redukcja: trening jak na masę (chroni mięśnie); sesja cardio w planie od {k} dni w tygodniu.": "Fettap: trening som for muskelmasse (beskytter musklene); en kondisjonsøkt er med i planen fra {k} dager per uke.",
+ "Cardio: od {k} dni w tygodniu jedna sesja w osobny dzień; przy mniejszej liczbie dni wszystkie są siłowe, żeby cardio nie zabierało dni treningowi siłowemu (każda główna partia co najmniej {n} dni) — konwencja.": "Kondisjon: fra {k} dager per uke én økt på en egen dag; med færre dager er alle styrkedager, så kondisjonen ikke tar dager fra styrketreningen (hver store muskelgruppe minst {n} dager) — en konvensjon.",
+ "Cardio poza planem: sesja cardio jest w planie od {k} dni w tygodniu, przy mniejszej liczbie wszystkie dni są siłowe. Zalecenie WHO: co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.": "Kondisjon utenfor planen: en kondisjonsøkt er med i planen fra {k} dager per uke; med færre er alle dager styrkedager. WHO anbefaler minst {a}–{b} min moderat aktivitet per uke (eller {c}–{d} min hard); moderat bevegelse i løpet av dagen teller også, f.eks. rask gange, selv i korte perioder."
 }

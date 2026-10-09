@@ -1323,5 +1323,10 @@
  "odpoczynek": "dia de descanso",
  "Dni treningowe w tygodniu (w tym {n} cardio)": "Dias de treino por semana (incl. {n} cardio)",
  "Wybierz dni treningowe: od {a} do {b}.": "Escolhe os dias de treino: de {a} a {b}.",
- "Wybierz dni treningowe: {n}.": "Escolhe os dias de treino: {n}."
+ "Wybierz dni treningowe: {n}.": "Escolhe os dias de treino: {n}.",
+ "FBW": "Corpo inteiro",
+ "Jeden trening w tygodniu też daje postępy, ale zwykle trochę mniejsze niż częstszy trening — głównie dlatego, że w jednej sesji mieści się mniej serii. Przy tej samej liczbie serii w tygodniu różnica w przyroście mięśni znika, a w sile maleje.": "Um treino por semana também dá progresso, mas normalmente um pouco menor do que treinar mais vezes — sobretudo porque cabem menos séries numa sessão. Com o mesmo número de séries por semana, a diferença no crescimento muscular desaparece e na força diminui.",
+ "Redukcja: trening jak na masę (chroni mięśnie); sesja cardio w planie od {k} dni w tygodniu.": "Definição: treino como para massa (protege os músculos); a sessão de cardio entra no plano a partir de {k} dias por semana.",
+ "Cardio: od {k} dni w tygodniu jedna sesja w osobny dzień; przy mniejszej liczbie dni wszystkie są siłowe, żeby cardio nie zabierało dni treningowi siłowemu (każda główna partia co najmniej {n} dni) — konwencja.": "Cardio: a partir de {k} dias por semana, uma sessão num dia à parte; com menos dias, todos são de força, para o cardio não tirar dias ao treino de força (cada grupo muscular principal pelo menos {n} dias) — uma convenção.",
+ "Cardio poza planem: sesja cardio jest w planie od {k} dni w tygodniu, przy mniejszej liczbie wszystkie dni są siłowe. Zalecenie WHO: co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.": "Cardio fora do plano: a sessão de cardio entra no plano a partir de {k} dias por semana; com menos, todos os dias são de força. A OMS recomenda pelo menos {a}–{b} min de atividade moderada por semana (ou {c}–{d} min de vigorosa); também conta o movimento moderado ao longo do dia, p. ex. caminhada rápida, mesmo em períodos curtos."
 }

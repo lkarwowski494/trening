@@ -9,7 +9,7 @@ import * as store from '@/lib/store';
 import * as plan from '@/lib/plan';
 import { addLocation } from '@/lib/locations';
 import { availability } from '@/lib/equipment';
-import { generate, saveGenerated, setsBudget, splitFor, GEN_MINUTES, GEN_SESSIONS, WARMUP_MIN, SET_WORK_SEC, AVG_REST, type GenInput } from '@/lib/generator';
+import { generate, saveGenerated, setsBudget, splitFor, cardioCount, CUT_CARDIO_FROM, MIN_DAYS, CARDIO_SESSIONS, GEN_MINUTES, GEN_SESSIONS, WARMUP_MIN, SET_WORK_SEC, AVG_REST, type GenInput } from '@/lib/generator';
 import { fresh } from './helpers';
 
 const S = () => store.getState();
@@ -20,7 +20,8 @@ const inp = (o: Partial<GenInput> = {}): GenInput => ({ goal: 'hypertrophy', loc
 describe('parametry', () => {
   test('stałe i budżet serii: (minuty − rozgrzewka) × 60 / (praca serii + średnia przerwa)', () => {
     expect([WARMUP_MIN, SET_WORK_SEC, AVG_REST.strength, AVG_REST.hypertrophy, AVG_REST.cut]).toEqual([10, 40, 150, 105, 105]);
-    expect(GEN_MINUTES).toEqual([45, 60, 90]); expect(GEN_SESSIONS).toEqual({ strength: [2, 3, 4, 5, 6], hypertrophy: [2, 3, 4, 5, 6], cut: [3, 4, 5, 6] });
+    expect(GEN_MINUTES).toEqual([45, 60, 90]); expect(GEN_SESSIONS).toEqual({ strength: [1, 2, 3, 4, 5, 6], hypertrophy: [1, 2, 3, 4, 5, 6], cut: [1, 2, 3, 4, 5, 6] }); /* decyzja właściciela 09.10.2026: 1–6 dla każdego celu */
+    expect(CUT_CARDIO_FROM).toBe(MIN_DAYS + CARDIO_SESSIONS); expect(CUT_CARDIO_FROM).toBe(3);
     expect([setsBudget('hypertrophy', 45), setsBudget('hypertrophy', 60), setsBudget('hypertrophy', 90), setsBudget('strength', 60)]).toEqual([14, 20, 33, 15]);
   });
   test('podział i dni (konwencja z docs/24): 2 FBW, 3 FBW A/B/A, 4 góra/dół, 5 + FBW, 6 góra/dół ×3; redukcja = sesje − 1 siłowych + cardio', () => {
@@ -31,6 +32,11 @@ describe('parametry', () => {
     expect(splitFor('hypertrophy', 6).keys).toEqual(['upA', 'loA', 'upB', 'loB', 'upA', 'loA']);
     expect(splitFor('cut', 4)).toEqual({ keys: ['fbwA', 'fbwB', 'fbwA', 'cardio'], days: [0, 2, 4, 5] });
     expect(splitFor('cut', 3)).toEqual({ keys: ['fbwA', 'fbwB', 'cardio'], days: [0, 3, 5] });
+    /* 1 dzień (docs/research/29 sekcja 4): osobna sesja FBW; redukcja przy 1–2 dniach — bez cardio (opcja A, sekcja 3) */
+    expect(splitFor('hypertrophy', 1)).toEqual({ keys: ['fbw'], days: [0] }); expect(splitFor('strength', 1)).toEqual({ keys: ['fbw'], days: [0] });
+    expect(splitFor('cut', 1)).toEqual({ keys: ['fbw'], days: [0] }); expect(splitFor('cut', 2)).toEqual({ keys: ['fbwA', 'fbwB'], days: [0, 3] });
+    expect([1, 2, 3, 4, 5, 6].map(n => cardioCount('cut', n))).toEqual([0, 0, 1, 1, 1, 1]);
+    for (const g of ['strength', 'hypertrophy'] as const) for (const n of GEN_SESSIONS[g]) expect(cardioCount(g, n)).toBe(0);
   });
 });
 

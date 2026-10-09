@@ -1323,5 +1323,10 @@
  "odpoczynek": "дан одмора",
  "Dni treningowe w tygodniu (w tym {n} cardio)": "Дани тренинга недељно (укљ. {n} кардио)",
  "Wybierz dni treningowe: od {a} do {b}.": "Изабери дане тренинга: од {a} до {b}.",
- "Wybierz dni treningowe: {n}.": "Изабери дане тренинга: {n}."
+ "Wybierz dni treningowe: {n}.": "Изабери дане тренинга: {n}.",
+ "FBW": "Цело тело",
+ "Jeden trening w tygodniu też daje postępy, ale zwykle trochę mniejsze niż częstszy trening — głównie dlatego, że w jednej sesji mieści się mniej serii. Przy tej samej liczbie serii w tygodniu różnica w przyroście mięśni znika, a w sile maleje.": "И један тренинг недељно доноси напредак, али обично нешто мањи него чешћи тренинг — углавном зато што у један тренинг стане мање серија. Уз исти број серија недељно разлика у расту мишића нестаје, а у снази се смањује.",
+ "Redukcja: trening jak na masę (chroni mięśnie); sesja cardio w planie od {k} dni w tygodniu.": "Редукција: тренинг као за масу (чува мишиће); кардио тренинг је у плану од {k} дана недељно.",
+ "Cardio: od {k} dni w tygodniu jedna sesja w osobny dzień; przy mniejszej liczbie dni wszystkie są siłowe, żeby cardio nie zabierało dni treningowi siłowemu (każda główna partia co najmniej {n} dni) — konwencja.": "Кардио: од {k} дана недељно један тренинг у посебном дану; уз мање дана сви су дани снаге, да кардио не узима дане тренингу снаге (свака главна мишићна група бар {n} дана) — конвенција.",
+ "Cardio poza planem: sesja cardio jest w planie od {k} dni w tygodniu, przy mniejszej liczbie wszystkie dni są siłowe. Zalecenie WHO: co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.": "Кардио ван плана: кардио тренинг је у плану од {k} дана недељно, уз мање су сви дани снаге. СЗО препоручује најмање {a}–{b} мин умерене активности недељно (или {c}–{d} мин интензивне); рачуна се и умерено кретање током дана, нпр. брзо ходање, чак и кратко."
 }

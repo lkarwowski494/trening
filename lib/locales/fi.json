@@ -1323,5 +1323,10 @@
  "odpoczynek": "lepopäivä",
  "Dni treningowe w tygodniu (w tym {n} cardio)": "Treenipäiviä viikossa (sis. {n} kestävyys)",
  "Wybierz dni treningowe: od {a} do {b}.": "Valitse treenipäivät: {a}–{b}.",
- "Wybierz dni treningowe: {n}.": "Valitse treenipäivät: {n}."
+ "Wybierz dni treningowe: {n}.": "Valitse treenipäivät: {n}.",
+ "FBW": "Koko keho",
+ "Jeden trening w tygodniu też daje postępy, ale zwykle trochę mniejsze niż częstszy trening — głównie dlatego, że w jednej sesji mieści się mniej serii. Przy tej samej liczbie serii w tygodniu różnica w przyroście mięśni znika, a w sile maleje.": "Yksikin treeni viikossa tuo kehitystä, mutta yleensä hieman vähemmän kuin tiheämpi treenaaminen — lähinnä siksi, että yhteen treeniin mahtuu vähemmän sarjoja. Samalla viikoittaisella sarjamäärällä ero lihaskasvussa häviää ja voimassa pienenee.",
+ "Redukcja: trening jak na masę (chroni mięśnie); sesja cardio w planie od {k} dni w tygodniu.": "Rasvanpoltto: treeni kuten lihasmassalle (suojaa lihaksia); kestävyysliikunnan kerta on suunnitelmassa, kun treenipäiviä on vähintään {k} viikossa.",
+ "Cardio: od {k} dni w tygodniu jedna sesja w osobny dzień; przy mniejszej liczbie dni wszystkie są siłowe, żeby cardio nie zabierało dni treningowi siłowemu (każda główna partia co najmniej {n} dni) — konwencja.": "Kestävyysliikunta: kun treenipäiviä on vähintään {k} viikossa, yksi kerta omana päivänään; vähemmillä päivillä kaikki ovat voimapäiviä, ettei kestävyysliikunta vie päiviä voimaharjoittelulta (jokainen päälihasryhmä vähintään {n} päivänä) — konventio.",
+ "Cardio poza planem: sesja cardio jest w planie od {k} dni w tygodniu, przy mniejszej liczbie wszystkie dni są siłowe. Zalecenie WHO: co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.": "Kestävyysliikunta suunnitelman ulkopuolella: kestävyyskerta on suunnitelmassa, kun treenipäiviä on vähintään {k} viikossa; muuten kaikki päivät ovat voimapäiviä. WHO suosittelee vähintään {a}–{b} min kohtuukuormitteista liikuntaa viikossa (tai {c}–{d} min raskasta); myös kohtuukuormitteinen liike päivän mittaan lasketaan, esim. reipas kävely, lyhyinäkin jaksoina."
 }

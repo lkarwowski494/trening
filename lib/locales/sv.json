@@ -1323,5 +1323,10 @@
  "odpoczynek": "vilodag",
  "Dni treningowe w tygodniu (w tym {n} cardio)": "Träningsdagar per vecka (inkl. {n} kondition)",
  "Wybierz dni treningowe: od {a} do {b}.": "Välj träningsdagar: {a} till {b}.",
- "Wybierz dni treningowe: {n}.": "Välj träningsdagar: {n}."
+ "Wybierz dni treningowe: {n}.": "Välj träningsdagar: {n}.",
+ "FBW": "Helkropp",
+ "Jeden trening w tygodniu też daje postępy, ale zwykle trochę mniejsze niż częstszy trening — głównie dlatego, że w jednej sesji mieści się mniej serii. Przy tej samej liczbie serii w tygodniu różnica w przyroście mięśni znika, a w sile maleje.": "Ett pass i veckan ger också framsteg, men oftast lite mindre än tätare träning — främst för att färre set ryms i ett pass. Med samma antal set per vecka försvinner skillnaden i muskeltillväxt och skillnaden i styrka minskar.",
+ "Redukcja: trening jak na masę (chroni mięśnie); sesja cardio w planie od {k} dni w tygodniu.": "Fettförbränning: träning som för muskelmassa (skyddar musklerna); ett konditionspass finns i planen från {k} dagar per vecka.",
+ "Cardio: od {k} dni w tygodniu jedna sesja w osobny dzień; przy mniejszej liczbie dni wszystkie są siłowe, żeby cardio nie zabierało dni treningowi siłowemu (każda główna partia co najmniej {n} dni) — konwencja.": "Kondition: från {k} dagar per vecka ett pass en egen dag; med färre dagar är alla styrkedagar, så att konditionen inte tar dagar från styrketräningen (varje stor muskelgrupp minst {n} dagar) — en konvention.",
+ "Cardio poza planem: sesja cardio jest w planie od {k} dni w tygodniu, przy mniejszej liczbie wszystkie dni są siłowe. Zalecenie WHO: co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.": "Kondition utanför planen: ett konditionspass finns i planen från {k} dagar per vecka; med färre är alla dagar styrkedagar. WHO rekommenderar minst {a}–{b} min måttlig aktivitet per vecka (eller {c}–{d} min intensiv); även måttlig rörelse under dagen räknas, t.ex. rask promenad, även i korta stunder."
 }

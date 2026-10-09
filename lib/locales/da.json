@@ -1323,5 +1323,10 @@
  "odpoczynek": "hviledag",
  "Dni treningowe w tygodniu (w tym {n} cardio)": "Træningsdage pr. uge (inkl. {n} kondition)",
  "Wybierz dni treningowe: od {a} do {b}.": "Vælg træningsdage: fra {a} til {b}.",
- "Wybierz dni treningowe: {n}.": "Vælg træningsdage: {n}."
+ "Wybierz dni treningowe: {n}.": "Vælg træningsdage: {n}.",
+ "FBW": "Helkrop",
+ "Jeden trening w tygodniu też daje postępy, ale zwykle trochę mniejsze niż częstszy trening — głównie dlatego, że w jednej sesji mieści się mniej serii. Przy tej samej liczbie serii w tygodniu różnica w przyroście mięśni znika, a w sile maleje.": "Én træning om ugen giver også fremgang, men som regel lidt mindre end hyppigere træning — især fordi der er plads til færre sæt i én session. Med samme antal sæt pr. uge forsvinder forskellen i muskelvækst, og forskellen i styrke bliver mindre.",
+ "Redukcja: trening jak na masę (chroni mięśnie); sesja cardio w planie od {k} dni w tygodniu.": "Fedttab: træning som til muskelmasse (beskytter musklerne); en konditionssession er med i planen fra {k} dage om ugen.",
+ "Cardio: od {k} dni w tygodniu jedna sesja w osobny dzień; przy mniejszej liczbie dni wszystkie są siłowe, żeby cardio nie zabierało dni treningowi siłowemu (każda główna partia co najmniej {n} dni) — konwencja.": "Kondition: fra {k} dage om ugen én session på en separat dag; med færre dage er alle styrkedage, så konditionen ikke tager dage fra styrketræningen (hver stor muskelgruppe mindst {n} dage) — en konvention.",
+ "Cardio poza planem: sesja cardio jest w planie od {k} dni w tygodniu, przy mniejszej liczbie wszystkie dni są siłowe. Zalecenie WHO: co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.": "Kondition uden for planen: en konditionssession er med i planen fra {k} dage om ugen; med færre er alle dage styrkedage. WHO anbefaler mindst {a}–{b} min moderat aktivitet om ugen (eller {c}–{d} min hård); moderat bevægelse i løbet af dagen tæller også, fx rask gang, selv i korte perioder."
 }

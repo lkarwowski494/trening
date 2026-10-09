@@ -14,7 +14,9 @@
 #   "Not now"                        ← 'Nie teraz' (okno zgody na przypomnienie — X-11: pierwszy plan z każdej drogi, components/PlanReminderSync)
 #   "Guide", "Read: .*", "Weekly plan and Calendar, unread", "Show: Weekly plan and Calendar" ← app/guide.tsx (przewodnik, 08.10.2026)
 #   "day-N" (id)                     ← components/DayPicker.tsx: testID przycisku dnia (pon = 0); wybór dni (decyzja 09.10.2026 B)
-#   "Choose training days: 2 to 6\." ← 'Wybierz dni treningowe: od {a} do {b}.' (liczba dni poza zakresem — bez podglądu)
+#   "Choose training days: 1 to 6\." ← 'Wybierz dni treningowe: od {a} do {b}.' (liczba dni poza zakresem, tu 0 — bez podglądu)
+#   "Mon.* Full Body", "One workout a week still brings progress.*" ← 1 dzień (09.10.2026, docs/research/29): sesja 'FBW' → 'Full Body',
+#                                      ostrzeżenie „oneday” (lib/generator.ts loadWarnings)
 #   "Mon.* Full Body A · Wed.* Full Body B · Sat.* Full Body A" ← nagłówek podglądu: skrót dnia (Intl, en-US) + nazwa sesji
 #   "Monday, Full Body A", "Saturday, Full Body A" ← app/plan.tsx: wiersz dnia '{dzień}, {szablon}' (audyt 0.10 UX-15 A: 7 wierszy; „{dzień}: {szablon}” to chip
 #                                      w rozwiniętym wierszu — E2E 89), nazwa szablonu 'FBW A' → 'Full Body A'
@@ -30,14 +32,20 @@ name: Generator szablonów i planu
 - tapOn: "Generate templates and plan"
 - extendedWaitUntil: { visible: "Preview", timeout: 30000 }
 - assertVisible: "\\+ Add place"
-# --- wybór dni (09.10.2026 B): propozycja pon/śr/pt → odznacz pt, zaznacz sob; poza zakresem (1 dzień) — komunikat zamiast podglądu ---
+# --- wybór dni (09.10.2026 B): propozycja pon/śr/pt → odznacz pt, zaznacz sob; 1 dzień — sesja FBW z ostrzeżeniem; 0 dni — komunikat zamiast podglądu ---
 - tapOn: { id: "day-4" }
 - tapOn: { id: "day-5" }
 - scrollUntilVisible: { element: "Mon.* Full Body A · Wed.* Full Body B · Sat.* Full Body A", direction: DOWN, timeout: 30000 }
 - tapOn: { id: "day-2" }
 - tapOn: { id: "day-5" }
-- assertVisible: "Choose training days: 2 to 6\\."
+- scrollUntilVisible: { element: "Mon.* Full Body", direction: DOWN, timeout: 30000 }
+- scrollUntilVisible: { element: "One workout a week still brings progress.*", direction: DOWN, timeout: 30000 }
+- takeScreenshot: 70a-generator-1-dzien
+- scrollUntilVisible: { element: { id: "day-0" }, direction: UP, timeout: 30000 }
+- tapOn: { id: "day-0" }
+- assertVisible: "Choose training days: 1 to 6\\."
 - assertNotVisible: "Save templates and plan"
+- tapOn: { id: "day-0" }
 - tapOn: { id: "day-2" }
 - tapOn: { id: "day-5" }
 - scrollUntilVisible: { element: "Mon.* Full Body A · Wed.* Full Body B · Sat.* Full Body A", direction: DOWN, timeout: 30000 }

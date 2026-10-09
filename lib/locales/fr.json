@@ -1323,5 +1323,10 @@
  "odpoczynek": "jour de repos",
  "Dni treningowe w tygodniu (w tym {n} cardio)": "Jours d’entraînement par semaine (dont {n} cardio)",
  "Wybierz dni treningowe: od {a} do {b}.": "Choisissez les jours d’entraînement : de {a} à {b}.",
- "Wybierz dni treningowe: {n}.": "Choisissez les jours d’entraînement : {n}."
+ "Wybierz dni treningowe: {n}.": "Choisissez les jours d’entraînement : {n}.",
+ "FBW": "Full body",
+ "Jeden trening w tygodniu też daje postępy, ale zwykle trochę mniejsze niż częstszy trening — głównie dlatego, że w jednej sesji mieści się mniej serii. Przy tej samej liczbie serii w tygodniu różnica w przyroście mięśni znika, a w sile maleje.": "Un entraînement par semaine apporte aussi des progrès, mais en général un peu moins qu’un entraînement plus fréquent — surtout parce qu’une séance contient moins de séries. À nombre de séries égal par semaine, l’écart de prise de muscle disparaît et celui de force diminue.",
+ "Redukcja: trening jak na masę (chroni mięśnie); sesja cardio w planie od {k} dni w tygodniu.": "Sèche : entraînement comme pour la masse (protège les muscles) ; une séance de cardio figure dans le programme à partir de {k} jours par semaine.",
+ "Cardio: od {k} dni w tygodniu jedna sesja w osobny dzień; przy mniejszej liczbie dni wszystkie są siłowe, żeby cardio nie zabierało dni treningowi siłowemu (każda główna partia co najmniej {n} dni) — konwencja.": "Cardio : à partir de {k} jours par semaine, une séance un jour à part ; avec moins de jours, tous sont consacrés à la force, pour que le cardio ne prenne pas de jours à la musculation (chaque grand groupe musculaire au moins {n} jours) — une convention.",
+ "Cardio poza planem: sesja cardio jest w planie od {k} dni w tygodniu, przy mniejszej liczbie wszystkie dni są siłowe. Zalecenie WHO: co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.": "Cardio hors programme : une séance de cardio figure dans le programme à partir de {k} jours par semaine ; avec moins, tous les jours sont consacrés à la force. L’OMS recommande au moins {a}–{b} min d’activité modérée par semaine (ou {c}–{d} min d’activité soutenue) ; le mouvement modéré dans la journée compte aussi, p. ex. la marche rapide, même par courtes périodes."
 }

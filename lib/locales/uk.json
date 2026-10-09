@@ -1323,5 +1323,10 @@
  "odpoczynek": "день відпочинку",
  "Dni treningowe w tygodniu (w tym {n} cardio)": "Тренувальні дні на тиждень (з них {n} кардіо)",
  "Wybierz dni treningowe: od {a} do {b}.": "Вибери тренувальні дні: від {a} до {b}.",
- "Wybierz dni treningowe: {n}.": "Вибери тренувальні дні: {n}."
+ "Wybierz dni treningowe: {n}.": "Вибери тренувальні дні: {n}.",
+ "FBW": "Усе тіло",
+ "Jeden trening w tygodniu też daje postępy, ale zwykle trochę mniejsze niż częstszy trening — głównie dlatego, że w jednej sesji mieści się mniej serii. Przy tej samej liczbie serii w tygodniu różnica w przyroście mięśni znika, a w sile maleje.": "Одне тренування на тиждень теж дає прогрес, але зазвичай трохи менший, ніж частіші тренування — переважно тому, що в одне тренування вміщується менше підходів. За тієї самої кількості підходів на тиждень різниця в рості м’язів зникає, а в силі зменшується.",
+ "Redukcja: trening jak na masę (chroni mięśnie); sesja cardio w planie od {k} dni w tygodniu.": "Схуднення: тренування як на масу (зберігає м’язи); заняття кардіо є в плані від {k} днів на тиждень.",
+ "Cardio: od {k} dni w tygodniu jedna sesja w osobny dzień; przy mniejszej liczbie dni wszystkie są siłowe, żeby cardio nie zabierało dni treningowi siłowemu (każda główna partia co najmniej {n} dni) — konwencja.": "Кардіо: від {k} днів на тиждень одне заняття в окремий день; за меншої кількості днів усі силові, щоб кардіо не забирало днів у силового тренування (кожна основна група м’язів щонайменше {n} дні) — домовленість.",
+ "Cardio poza planem: sesja cardio jest w planie od {k} dni w tygodniu, przy mniejszej liczbie wszystkie dni są siłowe. Zalecenie WHO: co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.": "Кардіо поза планом: заняття кардіо є в плані від {k} днів на тиждень, за меншої кількості всі дні силові. ВООЗ радить щонайменше {a}–{b} хв помірної активності на тиждень (або {c}–{d} хв інтенсивної); рахується й помірний рух протягом дня, напр. швидка ходьба, навіть короткими відрізками."
 }

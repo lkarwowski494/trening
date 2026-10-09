@@ -59,11 +59,11 @@ w osobne dni (Schumann 2022, Petré 2021); R1 — każda główna partia ≥ 2 d
 
 | Opcja | Opis | Kompromisy | Nowe twierdzenia |
 |---|---|---|---|
-| **A (wdrożona)** | 1–2 dni: tylko trening siłowy; cardio poza planem — tekst z istniejącym zaleceniem WHO (WHO_MODERATE / WHO_VIGOROUS). Od 3 dni bez zmian (n − 1 siłowych + 1 cardio). Próg = MIN_DAYS + CARDIO_SESSIONS (z istniejących stałych). | + przy 2 dniach plan spełnia R1 (każda partia 2 dni), cardio nie zabiera jedynego/drugiego dnia siłowego; + zgodne z R8 (cardio osobno); − cardio nie ma dnia w kalendarzu (tylko tekst). | brak — tylko istniejące (ochrona mięśni, WHO). Próg „od 3 dni” = konwencja wynikająca z R1. |
+| **A (wdrożona)** | 1–2 dni: tylko trening siłowy; cardio poza planem — tekst z istniejącym zaleceniem WHO (WHO_MODERATE / WHO_VIGOROUS). Od 3 dni bez zmian (n − 1 siłowych + 1 cardio). Próg = MIN_DAYS + CARDIO_SESSIONS (z istniejących stałych). | + przy 2 dniach część partii ma 2 dni (jak masa na 2 dni; R1), cardio nie zabiera jedynego/drugiego dnia siłowego; + zgodne z R8 (cardio osobno); − cardio nie ma dnia w kalendarzu (tylko tekst). | brak — tylko istniejące (ochrona mięśni, WHO). Próg „od 3 dni” = konwencja wynikająca z R1. |
 | B | 2 dni = 1 siłowy + 1 cardio; 1 dzień = siłowy | + jak dotąd (n − 1 + 1); − przy 2 dniach każda partia 1×/tydz. — plan generatora łamie własną regułę R1 (ostrzeżenie „rzadziej” przy każdej partii); − redukcja bez potwierdzonej objętości (docs/22 [OTWARTE]) dostaje połowę mniej treningu siłowego. | trzeba by uzasadnić, że cardio ważniejsze niż 2. dzień siłowy — brak przeczytanego źródła. |
 | C | cardio na końcu sesji siłowej | + cardio w planie przy każdej liczbie dni; − sprzeczne z R8 (osobne sesje; Petré 2021 — osłabienie siły nóg w tej samej sesji u wytrenowanych); − dłuższa sesja niż wybrany czas. | wymaga nowej reguły o kolejności i długości — brak źródeł. |
 
-Rekomendacja i wdrożenie: **A** — najmniej nowych niepotwierdzonych twierdzeń, plan 2-dniowy spełnia R1.
+Rekomendacja i wdrożenie: **A** — najmniej nowych niepotwierdzonych twierdzeń; plan 2-dniowy jest bliżej R1 niż w B (przy 1 dniu siłowym każda partia ma < 2 dni).
 
 ## 4. Jedna sesja FBW (1 dzień) — skład
 

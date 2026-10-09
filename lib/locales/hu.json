@@ -1323,5 +1323,10 @@
  "odpoczynek": "pihenőnap",
  "Dni treningowe w tygodniu (w tym {n} cardio)": "Edzésnapok hetente (benne {n} kardió)",
  "Wybierz dni treningowe: od {a} do {b}.": "Válassz edzésnapokat: {a}–{b}.",
- "Wybierz dni treningowe: {n}.": "Válassz edzésnapokat: {n}."
+ "Wybierz dni treningowe: {n}.": "Válassz edzésnapokat: {n}.",
+ "FBW": "Teljes test",
+ "Jeden trening w tygodniu też daje postępy, ale zwykle trochę mniejsze niż częstszy trening — głównie dlatego, że w jednej sesji mieści się mniej serii. Przy tej samej liczbie serii w tygodniu różnica w przyroście mięśni znika, a w sile maleje.": "Heti egy edzés is hoz fejlődést, de általában valamivel kevesebbet, mint a gyakoribb edzés — főleg azért, mert egy edzésbe kevesebb sorozat fér. Azonos heti sorozatszámnál az izomnövekedésben a különbség eltűnik, az erőben csökken.",
+ "Redukcja: trening jak na masę (chroni mięśnie); sesja cardio w planie od {k} dni w tygodniu.": "Zsírvesztés: edzés, mint izomtömegre (védi az izmokat); kardióalkalom heti {k} naptól kerül a tervbe.",
+ "Cardio: od {k} dni w tygodniu jedna sesja w osobny dzień; przy mniejszej liczbie dni wszystkie są siłowe, żeby cardio nie zabierało dni treningowi siłowemu (każda główna partia co najmniej {n} dni) — konwencja.": "Kardió: heti {k} naptól egy alkalom külön napon; kevesebb napnál mind erősítő nap, hogy a kardió ne vegyen el napot az erősítéstől (minden fő izomcsoport legalább {n} napon) — konvenció.",
+ "Cardio poza planem: sesja cardio jest w planie od {k} dni w tygodniu, przy mniejszej liczbie wszystkie dni są siłowe. Zalecenie WHO: co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.": "Kardió a terven kívül: kardióalkalom heti {k} naptól kerül a tervbe, kevesebb napnál mind erősítő nap. A WHO hetente legalább {a}–{b} perc mérsékelt intenzitású mozgást javasol (vagy {c}–{d} perc intenzívet); a nap közbeni mérsékelt mozgás is számít, pl. a gyors séta, akár rövid szakaszokban is."
 }

@@ -1323,5 +1323,10 @@
  "odpoczynek": "puhkepäev",
  "Dni treningowe w tygodniu (w tym {n} cardio)": "Treeningpäevi nädalas (sh {n} kardio)",
  "Wybierz dni treningowe: od {a} do {b}.": "Vali treeningpäevad: {a} kuni {b}.",
- "Wybierz dni treningowe: {n}.": "Vali treeningpäevad: {n}."
+ "Wybierz dni treningowe: {n}.": "Vali treeningpäevad: {n}.",
+ "FBW": "Kogu keha",
+ "Jeden trening w tygodniu też daje postępy, ale zwykle trochę mniejsze niż częstszy trening — głównie dlatego, że w jednej sesji mieści się mniej serii. Przy tej samej liczbie serii w tygodniu różnica w przyroście mięśni znika, a w sile maleje.": "Üks trenn nädalas annab samuti edenemist, kuid tavaliselt veidi vähem kui sagedasem treening — peamiselt seetõttu, et ühte trenni mahub vähem seeriaid. Sama seeriate arvu korral nädalas kaob vahe lihaskasvus ja jõus see väheneb.",
+ "Redukcja: trening jak na masę (chroni mięśnie); sesja cardio w planie od {k} dni w tygodniu.": "Rasvapõletus: treening nagu lihasmassi jaoks (kaitseb lihaseid); kardiotrenn on plaanis alates {k} päevast nädalas.",
+ "Cardio: od {k} dni w tygodniu jedna sesja w osobny dzień; przy mniejszej liczbie dni wszystkie są siłowe, żeby cardio nie zabierało dni treningowi siłowemu (każda główna partia co najmniej {n} dni) — konwencja.": "Kardio: alates {k} päevast nädalas üks trenn eraldi päeval; vähemate päevade korral on kõik jõupäevad, et kardio ei võtaks jõutreeningult päevi (iga peamine lihasrühm vähemalt {n} päeval) — kokkulepe.",
+ "Cardio poza planem: sesja cardio jest w planie od {k} dni w tygodniu, przy mniejszej liczbie wszystkie dni są siłowe. Zalecenie WHO: co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.": "Kardio väljaspool plaani: kardiotrenn on plaanis alates {k} päevast nädalas, vähemate korral on kõik päevad jõupäevad. WHO soovitab vähemalt {a}–{b} min mõõdukat liikumist nädalas (või {c}–{d} min intensiivset); arvesse läheb ka mõõdukas liikumine päeva jooksul, nt kiire kõnd, ka lühikeste lõikudena."
 }

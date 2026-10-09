@@ -36,7 +36,7 @@ describe('wybór szablonów i liczby dni', () => {
     const t = demo(); const empty = store.newTemplate(); store.setTemplateArchived(t[3], true);
     expect(ownTemplates().map(x => x.id)).toEqual([t[0].id, t[1].id, t[2].id]); expect(ownTemplates().some(x => x.id === empty.id)).toBe(false);
     expect(OWN_SESSIONS).toEqual(GEN_SESSIONS.hypertrophy); expect(OWN_MAX).toBe(6);
-    expect(ownSessionsFor(1)).toEqual([2, 3, 4, 5, 6]); expect(ownSessionsFor(4)).toEqual([4, 5, 6]); expect(ownSessionsFor(6)).toEqual([6]); expect(ownSessionsFor(7)).toEqual([]);
+    expect(ownSessionsFor(1)).toEqual([1, 2, 3, 4, 5, 6]); /* 1 dzień od 09.10.2026 (docs/18) */ expect(ownSessionsFor(4)).toEqual([4, 5, 6]); expect(ownSessionsFor(6)).toEqual([6]); expect(ownSessionsFor(7)).toEqual([]);
   });
   test('puste i złe dane: brak wyboru, nieznane id, pusty szablon, szablon w archiwum, więcej niż OWN_MAX → null; powtórzone id liczone raz', () => {
     const t = demo(); const empty = store.newTemplate();
@@ -47,9 +47,10 @@ describe('wybór szablonów i liczby dni', () => {
     expect(ownPlan({ templateIds: many.slice(0, 6), sessions: 6 })!.seq).toEqual(many.slice(0, 6));
     expect(ownPlan({ templateIds: [t[0].id, t[0].id, 'nie-ma'], sessions: 2 })!.seq).toEqual([t[0].id, t[0].id]);
   });
-  test('granice liczby dni: mniej niż szablonów albo spoza listy → najbliższa dozwolona nie mniejsza (2, k, 6)', () => {
+  test('granice liczby dni: mniej niż szablonów albo spoza listy → najbliższa dozwolona nie mniejsza (1, k, 6)', () => {
     const t = demo();
-    expect(ownPlan({ templateIds: [t[0].id], sessions: 1 })!.sessions).toBe(2); expect(ownPlan({ templateIds: [t[0].id], sessions: 0 })!.sessions).toBe(2);
+    expect(ownPlan({ templateIds: [t[0].id], sessions: 1 })!.sessions).toBe(1); expect(ownPlan({ templateIds: [t[0].id], sessions: 0 })!.sessions).toBe(1);
+    expect(ownPlan({ templateIds: [t[0].id, t[1].id], sessions: 1 })!.sessions).toBe(2);
     expect(ownPlan({ templateIds: t.map(x => x.id), sessions: 3 })!.sessions).toBe(4); expect(ownPlan({ templateIds: [t[0].id], sessions: 9 })!.sessions).toBe(6);
     expect(ownPlan({ templateIds: [t[0].id], sessions: Number.NaN })!.sessions).toBe(6);
   });
@@ -68,7 +69,7 @@ describe('rozkład na tydzień — niezmienniki (reguły generatora)', () => {
       expect(r.backToBack.length).toBe(minPairs(r.seq)); /* docs/research/23 reguła 1: z dniem przerwy, gdy się da */
       for (const [a, b] of r.backToBack) expect(shares(prim(r.days[a]), prim(r.days[b]))).toBe(true);
     }
-    expect(cases).toBe(4 * 5 + 6 * 5 + 4 * 4 + 1 * 3);
+    expect(cases).toBe(4 * 6 + 6 * 5 + 4 * 4 + 1 * 3);
   });
   test('układ domyślny generatora przy remisie: 1 szablon × 2 → pon., czw.; × 3 → pon., śr., pt.; góra + nogi × 4 → bez par (pon., wt., czw., sob.)', () => {
     const t = demo();

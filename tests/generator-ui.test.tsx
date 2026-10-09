@@ -47,12 +47,20 @@ test('domyślnie: masa, 3 sesje, 60 min, bez ograniczeń sprzętu; podgląd zgod
   expect(screen.getByText('Siła: bój główny na początku, 3 × 4–6 powtórzeń (ciężko, ok. 80% maksimum i więcej), pozostałe ćwiczenia 3 × 6–10.')).toBeTruthy(); /* LOG-11: liczby ze stałych */
   expect(screen.getAllByText(/ — 3 × 4–\u20606, przerwa 3:00$/).length).toBe(2); /* bój główny w FBW A i B */ expect(screen.queryByText(/^Poniżej 10 serii/)).toBeNull();
 });
-test('redukcja: dni 3–6 (w tym 1 cardio), cardio w podglądzie i licznik minut; 2 dni → propozycja na 3', async () => {
+test('redukcja: 1–2 dni — same siłowe, cardio poza planem (WHO); od 3 dni — w tym 1 cardio, cardio w podglądzie i licznik minut', async () => {
   await boot('/generator'); await pickDays(daysFor(2)); expect(checkedDays()).toEqual([0, 3]);
-  await tap(screen.getByText('Redukcja')); await flushAll(5);
+  await tap(screen.getByText('Redukcja')); await flushAll(5); expect(checkedDays()).toEqual([0, 3]); /* 1–6 dla każdego celu (09.10.2026) — wybór zostaje */
+  /* opcja A (docs/research/29 sekcja 3): bez sesji cardio przy 1–2 dniach */
+  expect(screen.getByText('Redukcja: trening jak na masę (chroni mięśnie); sesja cardio w planie od 3 dni w tygodniu.')).toBeTruthy();
+  expect(screen.getByText('Dni treningowe w tygodniu')).toBeTruthy(); expect(screen.queryByTestId('gen-cardio')).toBeNull(); expect(screen.queryByText(/^Cardio w planie:/)).toBeNull();
+  expect(screen.getByText('Cardio poza planem: sesja cardio jest w planie od 3 dni w tygodniu, przy mniejszej liczbie wszystkie dni są siłowe. Zalecenie WHO: co najmniej 150–300 min umiarkowanego wysiłku tygodniowo (albo 75–150 min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.')).toBeTruthy();
+  expect(screen.getByText('• Cardio: od 3 dni w tygodniu jedna sesja w osobny dzień; przy mniejszej liczbie dni wszystkie są siłowe, żeby cardio nie zabierało dni treningowi siłowemu (każda główna partia co najmniej 2 dni) — konwencja.')).toBeTruthy();
+  expect(screen.getByTestId('gen-fbwA')).toBeTruthy(); expect(screen.getByTestId('gen-fbwB')).toBeTruthy();
+  await pickDays([0]); expect(screen.getByTestId('gen-fbw')).toBeTruthy(); expect(screen.getByText(/^Jeden trening w tygodniu też daje postępy/)).toBeTruthy(); expect(screen.getByText('pon. FBW')).toBeTruthy();
+  await pickDays(daysFor(3, { goal: 'cut' }));
   expect(screen.getByText('Redukcja: trening jak na masę (chroni mięśnie) i jedna sesja umiarkowanego cardio.')).toBeTruthy();
-  expect(screen.getByText('Dni treningowe w tygodniu (w tym 1 cardio)')).toBeTruthy(); /* LOG-11: {n} = CARDIO_SESSIONS */
-  expect(checkedDays()).toEqual(daysFor(3, { goal: 'cut' })); /* wybór dni (09.10.2026 B): liczba spoza zakresu celu — propozycja dla najbliższej dozwolonej */
+  expect(screen.getByText('Dni treningowe w tygodniu (w tym 1 cardio)')).toBeTruthy(); /* LOG-11: {n} = cardioCount (CARDIO_SESSIONS) */
+  expect(screen.queryByText(/^Cardio poza planem/)).toBeNull(); expect(screen.queryByText(/^Jeden trening w tygodniu/)).toBeNull();
   await tap(screen.getByText('45 min')); await flushAll(5);
   expect(screen.getByTestId('gen-cardio')).toBeTruthy(); expect(screen.getByText(/ — 45 min, umiarkowane tempo$/)).toBeTruthy();
   expect(screen.getByText('Cardio w planie: 45 min tygodniowo. Zalecenie WHO: co najmniej 150–300 min umiarkowanego wysiłku tygodniowo (albo 75–150 min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.')).toBeTruthy(); /* MER-08 */

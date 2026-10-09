@@ -1323,5 +1323,10 @@
  "odpoczynek": "den odpočinku",
  "Dni treningowe w tygodniu (w tym {n} cardio)": "Tréninkové dny v týdnu (vč. {n} kardia)",
  "Wybierz dni treningowe: od {a} do {b}.": "Vyber tréninkové dny: od {a} do {b}.",
- "Wybierz dni treningowe: {n}.": "Vyber tréninkové dny: {n}."
+ "Wybierz dni treningowe: {n}.": "Vyber tréninkové dny: {n}.",
+ "FBW": "Celé tělo",
+ "Jeden trening w tygodniu też daje postępy, ale zwykle trochę mniejsze niż częstszy trening — głównie dlatego, że w jednej sesji mieści się mniej serii. Przy tej samej liczbie serii w tygodniu różnica w przyroście mięśni znika, a w sile maleje.": "Jeden trénink týdně také přináší pokrok, ale obvykle o něco menší než častější trénink — hlavně proto, že se do jednoho tréninku vejde méně sérií. Při stejném počtu sérií týdně rozdíl v růstu svalů mizí a v síle se zmenšuje.",
+ "Redukcja: trening jak na masę (chroni mięśnie); sesja cardio w planie od {k} dni w tygodniu.": "Redukce: trénink jako na svaly (chrání svaly); jednotka kardia je v plánu od {k} dnů v týdnu.",
+ "Cardio: od {k} dni w tygodniu jedna sesja w osobny dzień; przy mniejszej liczbie dni wszystkie są siłowe, żeby cardio nie zabierało dni treningowi siłowemu (każda główna partia co najmniej {n} dni) — konwencja.": "Kardio: od {k} dnů v týdnu jedna jednotka v samostatný den; při menším počtu dnů jsou všechny silové, aby kardio nebralo dny silovému tréninku (každá hlavní partie aspoň {n} dny) — konvence.",
+ "Cardio poza planem: sesja cardio jest w planie od {k} dni w tygodniu, przy mniejszej liczbie wszystkie dni są siłowe. Zalecenie WHO: co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.": "Kardio mimo plán: jednotka kardia je v plánu od {k} dnů v týdnu, při menším počtu jsou všechny dny silové. WHO doporučuje alespoň {a}–{b} min středně intenzivní aktivity týdně (nebo {c}–{d} min intenzivní); počítá se i středně intenzivní pohyb během dne, např. rychlá chůze, i krátká."
 }

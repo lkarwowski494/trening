@@ -1323,5 +1323,10 @@
  "odpoczynek": "deň odpočinku",
  "Dni treningowe w tygodniu (w tym {n} cardio)": "Tréningové dni v týždni (vr. {n} kardia)",
  "Wybierz dni treningowe: od {a} do {b}.": "Vyber tréningové dni: od {a} do {b}.",
- "Wybierz dni treningowe: {n}.": "Vyber tréningové dni: {n}."
+ "Wybierz dni treningowe: {n}.": "Vyber tréningové dni: {n}.",
+ "FBW": "Celé telo",
+ "Jeden trening w tygodniu też daje postępy, ale zwykle trochę mniejsze niż częstszy trening — głównie dlatego, że w jednej sesji mieści się mniej serii. Przy tej samej liczbie serii w tygodniu różnica w przyroście mięśni znika, a w sile maleje.": "Aj jeden tréning týždenne prináša pokrok, ale zvyčajne o niečo menší než častejší tréning — hlavne preto, že sa do jedného tréningu zmestí menej sérií. Pri rovnakom počte sérií týždenne rozdiel v raste svalov mizne a v sile sa zmenšuje.",
+ "Redukcja: trening jak na masę (chroni mięśnie); sesja cardio w planie od {k} dni w tygodniu.": "Redukcia: tréning ako na svaly (chráni svaly); jednotka kardia je v pláne od {k} dní v týždni.",
+ "Cardio: od {k} dni w tygodniu jedna sesja w osobny dzień; przy mniejszej liczbie dni wszystkie są siłowe, żeby cardio nie zabierało dni treningowi siłowemu (każda główna partia co najmniej {n} dni) — konwencja.": "Kardio: od {k} dní v týždni jedna jednotka v samostatný deň; pri menšom počte dní sú všetky silové, aby kardio neberalo dni silovému tréningu (každá hlavná partia aspoň {n} dni) — konvencia.",
+ "Cardio poza planem: sesja cardio jest w planie od {k} dni w tygodniu, przy mniejszej liczbie wszystkie dni są siłowe. Zalecenie WHO: co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.": "Kardio mimo plánu: jednotka kardia je v pláne od {k} dní v týždni, pri menšom počte sú všetky dni silové. WHO odporúča aspoň {a}–{b} min stredne intenzívnej aktivity týždenne (alebo {c}–{d} min intenzívnej); počíta sa aj stredne intenzívny pohyb počas dňa, napr. rýchla chôdza, aj krátka."
 }

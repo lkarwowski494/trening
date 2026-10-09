@@ -345,6 +345,19 @@ describe('długie tłumaczenia w miejscach, gdzie tekst może być ucięty', () 
     expect([l, /100/.test(s) && /7/.test(s), bad]).toEqual([l, true, []]);
     expect([l, ['{p}', '{done}', '{n}'].every(k => trIn(l, 'Postęp tygodnia: {p}% planu, zrobione {done} z {n} treningów z planu').includes(k))]).toEqual([l, true]);
   });
+  /* 1 dzień w generatorze (09.10.2026, docs/research/29): ostrzeżenie „oneday”, opis redukcji bez cardio, „Cardio poza planem”, punkt podstaw
+   * (13 pt / 12 pt zwykły, zawijane, TEXT_SCALE_MAX) i nazwa sesji „FBW” (nagłówek podglądu H2) — na 320 pt (Screen 14) żaden wyraz nie szerszy
+   * niż wiersz, także przy 200%. Renderowanie w każdym języku na 320 pt: tests/gen-days-ui.test.tsx. */
+  test.each([...LANGS])('%s: teksty generatora dla 1 dnia na ekranie 320 pt — bez łamania wyrazu przy 100% i 200%', l => {
+    const avail = 320 - 2 * 14; const bad: string[] = [];
+    const KEYS = ['Jeden trening w tygodniu też daje postępy, ale zwykle trochę mniejsze niż częstszy trening — głównie dlatego, że w jednej sesji mieści się mniej serii. Przy tej samej liczbie serii w tygodniu różnica w przyroście mięśni znika, a w sile maleje.',
+      'Redukcja: trening jak na masę (chroni mięśnie); sesja cardio w planie od {k} dni w tygodniu.',
+      'Cardio poza planem: sesja cardio jest w planie od {k} dni w tygodniu, przy mniejszej liczbie wszystkie dni są siłowe. Zalecenie WHO: co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.',
+      'Cardio: od {k} dni w tygodniu jedna sesja w osobny dzień; przy mniejszej liczbie dni wszystkie są siłowe, żeby cardio nie zabierało dni treningowi siłowemu (każda główna partia co najmniej {n} dni) — konwencja.'];
+    for (const k of KEYS) for (const x of trIn(l, k).split(/\s+/)) for (const sc of [1, 2]) if (SANS.regular.width(x, 13 * sc) > avail) bad.push(`${x} (${sc})`);
+    for (const x of trIn(l, 'FBW').split(/\s+/)) for (const sc of [1, 2]) if (SANS.semibold.width(x, 17 * sc) > avail) bad.push(`${x} (H2 17 pt, ${sc})`);
+    expect([l, bad]).toEqual([l, []]);
+  });
   test('czytnik TTF liczy szerokości jak krój (kontrola: „i” węższe niż „m”, szerokość rośnie liniowo z rozmiarem)', () => {
     const f = SANS.semibold; expect(f.width('i', 10)).toBeLessThan(f.width('m', 10)); expect(f.width('Trening', 20)).toBeCloseTo(2 * f.width('Trening', 10), 6);
     expect(f.has('ą') && f.has('ő') && f.has('ș') && f.has('ė') && f.has('ā')).toBe(true); expect(PLEX.width('0000', 10)).toBeCloseTo(4 * PLEX.width('0', 10), 6);
