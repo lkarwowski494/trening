@@ -355,3 +355,9 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
   Stan TestFlight: buildy 1001–1003 wygasły, 1004 (0.10.0) czeka na zatwierdzenie Apple.
 - 09.10.2026 (wieczór): właściciel po klatkach — **akceptacja intro** (talerze wsuwają się na gryf, ok. 1 s, tapnięcie pomija, „Ogranicz ruch” bez
   animacji; ekran startowy = sam gryf). Jednorazowy stary ekran startowy po aktualizacji — informacja w „What to Test”.
+- 09.10.2026 (wieczór): właściciel po zrzutach — **filiżanka: pełna sylwetka (B) i w całym kalendarzu (1)** — akceptacja. **Generator: 1–6 dni
+  treningowych dla każdego celu** (dotąd siła/masa 2–6, redukcja 3–6); poza zakresem — komunikat (A, akceptacja); zmiana celu → propozycja
+  generatora (akceptacja). Przy 1 dniu (zwłaszcza masa) — ostrzeżenie, że to mało skuteczne i w praktyce raczej utrzymanie: **treść
+  merytoryczna do potwierdzenia źródłami** (hierarchia z CLAUDE.md; dotychczasowy research 22: przy masie częstotliwość obojętna przy równej
+  objętości — ACSM 2026, Pelland 2026; ograniczeniem 1 dnia jest objętość tygodniowa). Bez potwierdzenia „utrzymania” w źródłach — tylko
+  istniejące ostrzeżenia („rzadziej niż 2 dni”, „poniżej 10 serii”). Redukcja przy 1–2 dniach — rozstrzygnięcie w raporcie wdrożenia (opcje).
