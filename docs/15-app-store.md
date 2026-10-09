@@ -195,6 +195,15 @@ Rozmowa 05.10.2026, rano: „Chciałbym móc opublikować to w Apple Store” i 
 
 ## Zmiany w aplikacji już zrobione pod publikację
 
+- **Przypomnienie o odnowieniu podpisu i instalacja z komputera usunięte** (decyzja właściciela 09.10.2026 ok. 17:10, docs/18).
+  - Aplikację instalujemy tylko przez TestFlight (a potem App Store); build z TestFlight nie ma profilu w paczce, więc przypomnienie i tak nie działało.
+  - Powód: tekst przypomnienia wymieniał narzędzie innej firmy do instalacji z komputera — ryzyko odrzucenia (wytyczne Apple 2.3.7, 5.2.1)
+    i naruszenie zasady z 09.10 (CLAUDE.md „Treści cudze i nazwy innych firm”).
+  - Zniknęły: baner na ekranie głównym, dopisek „Podpis ważny do …” w Więcej, powiadomienie dzień przed wygaśnięciem, 10 tekstów w 26 językach.
+  - Przypomnienie zaplanowane przez starszy build jest odwoływane przy starcie.
+  - `ios-unsigned.yml` tylko sprawdza kompilację — bez paczki .ipa do pobrania.
+  - Testy: `tests/rm-signing.test.tsx`.
+
 - **Poranny wpis usunięty z aplikacji** (decyzja 05.10.2026: „Nie wszyscy mają czym to mierzyć”, wariant „usunąć z aplikacji”).
   - Zniknęły: ekran `more/morning`, pozycje na ekranie głównym i w Więcej, dopisek „BB · sen” w nagłówku treningu i przypomnienie o wadze.
   - Przypomnienie zaplanowane przez starszą wersję jest odwoływane przy starcie.
