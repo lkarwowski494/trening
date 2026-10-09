@@ -1310,7 +1310,7 @@ export function swapBlock(blockId: string, toExId: string, opts: { restSec?: num
   { const loc = locationById(a.locationId); if (opts.impl && loc && implsAt(B, loc).includes(opts.impl)) { blk.impl = opts.impl; blk.implPinned = true; } } /* W3 P5a: przyrząd z zamiennika per miejsce */
   if (typeof opts.restSec === 'number' && opts.restSec >= 0) blk.restSec = Math.min(1800, Math.round(opts.restSec));
   blk.sets = prefillSets(B, left.map(x => x.kind), prevOfActiveBlock(a, blk), a.locationId, blk.impl, it?.targetSec ?? '', '', 0, !!blk.implPinned);
-  save(a); return { goneSetIds: left.map(x => x.id), blockId: blk.id };
+  saveSwapped(a); return { goneSetIds: left.map(x => x.id), blockId: blk.id };
 }
 /**
  * E2 D5 (docs/14 pkt 3.7): „ten sam ruch, inny przyrząd” — to samo ćwiczenie, przyrząd `impl` wybrany ręcznie (implPinned), bez swappedFrom.
@@ -1356,8 +1356,11 @@ export function undoSwap(blockId: string): { goneSetIds: string[] } | null {
     if (own) B.restSec = typeof own.restSec === 'number' && own.restSec >= 0 ? own.restSec : restFor(A);
     B.sets = prefillSets(A, kinds, prevOfActiveBlock(a, B), a.locationId, B.impl, own?.targetSec ?? '', own?.startWeight ?? '', 0, false, rowsFor(own, kinds));
   }
-  save(a); return { goneSetIds: gone };
+  saveSwapped(a); return { goneSetIds: gone };
 }
+/** TST2-03 (audyt kontrolny 1, wariant A): po zamianie albo jej cofnięciu ćwiczenie usunięte w trakcie treningu (archiwum) bez ostatniego odwołania
+ * znika od razu — jak removeExercise i jak migrate przy starcie (stan w pamięci = migrate(stan)). */
+function saveSwapped(a: Workout) { const before = getState().exercises.length; purgeOrphans(); if (getState().exercises.length !== before) save(); else save(a); }
 /* ---------- E2 W3: zamienniki per miejsce w szablonie (docs/14 pkt 4) ---------- */
 /** Pozycja szablonu bloku (tylko z szablonu treningu) i miejsce treningu (tylko istniejące). */
 function altCtx(w: Workout, e: WExercise): { tpl: Template; item: TemplateItem; loc: Location } | null {

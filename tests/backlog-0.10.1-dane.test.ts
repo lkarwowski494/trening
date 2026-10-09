@@ -141,6 +141,28 @@ describe('UX2-03 = DAT2-06: szkic edycji szablonu i ćwiczenia przeżywa zamkni�
   });
 });
 
+describe('TST2-03: zamiana i cofnięcie zamiany sprzątają ćwiczenie usunięte w trakcie treningu, gdy znika ostatnie odwołanie (stan = migrate(stan))', () => {
+  const strip = (s: unknown) => JSON.parse(JSON.stringify(s)).exercises.map((e: { id: string }) => e.id).sort();
+  test('TST2-03 (ziarno 531137545, skrót): zamiana na Pull Up → usunięcie Pull Up (archiwum, bo w treningu) → zamiana na inne → Pull Up znika jak po migrate', async () => {
+    await fresh(); store.startEmpty(); store.addExerciseToActive(ex('Back Squat')); const b = store.getState().active!.exercises[0];
+    store.swapBlock(b.id, ex('Pull Up').id); const pu = ex('Pull Up').id; store.deleteExercise(pu);
+    expect(store.getState().exercises.find(e => e.id === pu)!.archived).toBe(true);
+    store.swapBlock(store.getState().active!.exercises[0].id, ex('Front Squat').id);
+    expect(store.getState().exercises.some(e => e.id === pu)).toBe(false);
+    expect(strip(store.getState())).toEqual(strip(store.migrate(JSON.parse(JSON.stringify(store.getState())))));
+  });
+  test('TST2-03: cofnięcie zamiany usuwa zarchiwizowany zamiennik bez odwołań; ćwiczenie z historią zostaje', async () => {
+    await fresh(); store.startEmpty(); store.addExerciseToActive(ex('Back Squat')); const b = store.getState().active!.exercises[0];
+    const fs = ex('Front Squat').id; store.swapBlock(b.id, fs); store.deleteExercise(fs); expect(store.getState().exercises.find(e => e.id === fs)!.archived).toBe(true);
+    expect(store.undoSwap(store.getState().active!.exercises[0].id)).not.toBeNull();
+    expect(store.getState().exercises.some(e => e.id === fs)).toBe(false);
+    expect(strip(store.getState())).toEqual(strip(store.migrate(JSON.parse(JSON.stringify(store.getState())))));
+    await fresh(); addWorkout(Date.now() - 86400e3, [['Pull Up', [{ reps: 5 }]]]); store.startEmpty(); store.addExerciseToActive(ex('Back Squat'));
+    const pu = ex('Pull Up').id; store.swapBlock(store.getState().active!.exercises[0].id, pu); store.deleteExercise(pu); store.swapBlock(store.getState().active!.exercises[0].id, ex('Front Squat').id);
+    expect(store.getState().exercises.find(e => e.id === pu)!.archived).toBe(true); /* historia — zostaje w archiwum */
+  });
+});
+
 describe('UX2-12: pusty „Nowy szablon” / „Nowe ćwiczenie” po zabiciu aplikacji w trakcie tworzenia nie zostaje na liście', () => {
   const restart = async () => { const kv = new Map(global.__kv); store.__resetForTests(); draft.__resetObjDrafts(); global.__kv.clear(); kv.forEach((v, k) => global.__kv.set(k, v)); await store.init(); return draft.restoreObjDrafts(); };
   const tick = async () => { await jest.advanceTimersByTimeAsync(400); for (let i = 0; i < 10; i++) await Promise.resolve(); };
