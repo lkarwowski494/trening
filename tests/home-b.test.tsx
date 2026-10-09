@@ -79,7 +79,7 @@ describe('ekran', () => {
   test('„Plan z moich szablonów” → generator w trybie własnych szablonów (?mode=own)', async () => {
     await boot(t => { addWorkout(at(6), [['Back Squat', [{ weight: 100, reps: 5 }]]], t[0].name); });
     await tap(screen.getByLabelText('Plan z moich szablonów')); await flushAll(10);
-    expect(screen.UNSAFE_root.findAll(n => (n.type as unknown) === 'RNSScreenStackHeaderConfig').map(n => n.props.title)).toContain('Generator szablonów i planu');
+    expect(screen.UNSAFE_root.findAll(n => (n.type as unknown) === 'RNSScreenStackHeaderConfig').map(n => n.props.title)).toContain('Plan z moich szablonów'); /* app/generator.tsx ?mode=own (feat-plan-moje) */
   });
   test('z planem: „Start: <dzisiejszy>” z podpisem, arkusz z „Inny z planu”, Planowanie zwinięte do wiersza niżej (rozwija się)', async () => {
     const t = await boot(t => { setPlan(t, { 3: 0, 4: 2 }); plan.setPlanName('Góra / Dół'); addWorkout(at(6), [['Back Squat', [{ weight: 100, reps: 5 }]]], 'Nogi'); });

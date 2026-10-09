@@ -927,11 +927,9 @@
  "Ten tydzień": "Ši savaitė",
  "Serie": "Serijos",
  "Czas": "Laikas",
- "Ostatni trening": "Paskutinė treniruotė",
  "do zrobienia": "liko",
  "Pierwsze kroki": "Pirmieji žingsniai",
  "Ustaw plan tygodnia — zobaczysz tu dzisiejszy trening i dostaniesz przypomnienie.": "Nustatyk savaitės planą — čia matysi šiandienos treniruotę ir gausi priminimą.",
- "rekord|rekordy|rekordów": "rekordas|rekordai|rekordų",
  "Dziś": "Šiandien",
  "Bez planu tygodnia": "Nėra savaitės plano",
  "Ustaw plan tygodnia, by widzieć tu dzisiejszy trening i dostawać przypomnienie.": "Nustatyk savaitės planą, kad čia matytum šiandienos treniruotę ir gautum priminimą.",
@@ -1325,5 +1323,6 @@
  "{name} · w planie na: {day}": "{name} · plane: {day}",
  "Inny z planu: {name}": "Kita iš plano: {name}",
  "Inny z planu, powtórz ostatni, z szablonu albo pusty.": "Kita iš plano, pakartoti paskutinę, iš šablono arba tuščia.",
- "szablon|szablony|szablonów": "šablonas|šablonai|šablonų"
+ "szablon|szablony|szablonów": "šablonas|šablonai|šablonų",
+ "Powtórz ostatni": "Kartoti paskutinę"
 }

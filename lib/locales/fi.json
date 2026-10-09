@@ -927,11 +927,9 @@
  "Ten tydzień": "Tämä viikko",
  "Serie": "Sarjat",
  "Czas": "Aika",
- "Ostatni trening": "Viimeisin treeni",
  "do zrobienia": "tekemättä",
  "Pierwsze kroki": "Ensimmäiset askeleet",
  "Ustaw plan tygodnia — zobaczysz tu dzisiejszy trening i dostaniesz przypomnienie.": "Aseta viikkosuunnitelma — näet tässä päivän treenin ja saat muistutuksen.",
- "rekord|rekordy|rekordów": "ennätys|ennätystä",
  "Dziś": "Tänään",
  "Bez planu tygodnia": "Ei viikkosuunnitelmaa",
  "Ustaw plan tygodnia, by widzieć tu dzisiejszy trening i dostawać przypomnienie.": "Aseta viikkosuunnitelma, niin näet tässä päivän treenin ja saat muistutuksen.",
@@ -1325,5 +1323,6 @@
  "{name} · w planie na: {day}": "{name} · suunnitelmassa: {day}",
  "Inny z planu: {name}": "Muu suunnitelmasta: {name}",
  "Inny z planu, powtórz ostatni, z szablonu albo pusty.": "Muu suunnitelmasta, toista edellinen, pohjasta tai tyhjä.",
- "szablon|szablony|szablonów": "pohja|pohjaa"
+ "szablon|szablony|szablonów": "pohja|pohjaa",
+ "Powtórz ostatni": "Toista viimeisin"
 }

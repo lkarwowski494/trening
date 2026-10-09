@@ -18,6 +18,7 @@ import { t, tp, lang } from '@/lib/i18n';
 export function PlanningCard({ when }: { /** 'plan' — pokaż tylko przy planie (miejsce niżej), 'noPlan' — tylko bez planu (miejsce wyżej) */ when: 'plan' | 'noPlan' }) {
   const th = useTheme(); const router = useRouter(); const once = useOnce(); const sum = planSummary(); const [open, setOpen] = useState(false);
   if (firstSteps() || (when === 'plan') !== !!sum) return null;
+  const days = sum?.days ?? 0;
   const head = upperText(t('Planowanie'));
   const actions = <View style={{ gap: 8 }}>
     <Btn block title={t('+ Nowy szablon')} onPress={once(() => { const x = newTemplate(); router.push(`/template/${x.id}?edit=1&new=1`); })} />
@@ -28,11 +29,11 @@ export function PlanningCard({ when }: { /** 'plan' — pokaż tylko przy planie
   return (
     <View testID="planning-card" style={{ marginTop: 14, padding: 14, borderRadius: 12, backgroundColor: th.surface, borderWidth: 1, borderColor: th.line, gap: 10 }}>
       {sum ? <Pressable accessibilityLanguage={lang()} testID="planning-row" accessibilityRole="button" accessibilityState={{ expanded: open }}
-        accessibilityLabel={t('Plan: {name} · {n} {d} · następny: {next}', { name: sum.name || t('Plan tygodnia'), n: sum.days, d: tp(sum.days, 'dzień|dni|dni'), next: sum.next ? `${fmtDayKey(sum.next.date)} ${planTplName(sum.next.templateId)}` : '—' })}
+        accessibilityLabel={t('Plan: {name} · {n} {d} · następny: {next}', { name: sum.name || t('Plan tygodnia'), n: sum.days, d: tp(days, 'dzień|dni|dni'), next: sum.next ? `${fmtDayKey(sum.next.date)} ${planTplName(sum.next.templateId)}` : '—' })}
         accessibilityHint={t('Rozwija planowanie.')} onPress={() => setOpen(!open)} style={({ pressed }) => ({ flexDirection: 'row', alignItems: 'center', gap: 8, minHeight: 44, opacity: pressed ? 0.6 : 1 })}>
         <View style={{ flex: 1 }}>
           <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, fontFamily: F.semibold, fontSize: 16 }}>{t('Plan: {name}', { name: sum.name || t('Plan tygodnia') })}</Text>
-          <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.muted, fontFamily: F.regular, fontSize: 13 }}>{`${sum.days} ${tp(sum.days, 'dzień|dni|dni')} · ${t('następny: {next}', { next: sum.next ? `${fmtDayKey(sum.next.date)} ${planTplName(sum.next.templateId)}` : '—' })}`}</Text>
+          <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.muted, fontFamily: F.regular, fontSize: 13 }}>{`${sum.days} ${tp(days, 'dzień|dni|dni')} · ${t('następny: {next}', { next: sum.next ? `${fmtDayKey(sum.next.date)} ${planTplName(sum.next.templateId)}` : '—' })}`}</Text>
         </View>
         <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.accent, fontFamily: F.semibold, fontSize: 14 }}>{t('Planowanie')} {open ? '▾' : '›'}</Text>
       </Pressable>

@@ -927,11 +927,9 @@
  "Ten tydzień": "Αυτή την εβδομάδα",
  "Serie": "Σετ",
  "Czas": "Χρόνος",
- "Ostatni trening": "Τελευταία προπόνηση",
  "do zrobienia": "εκκρεμεί",
  "Pierwsze kroki": "Πρώτα βήματα",
  "Ustaw plan tygodnia — zobaczysz tu dzisiejszy trening i dostaniesz przypomnienie.": "Όρισε εβδομαδιαίο πρόγραμμα — θα βλέπεις εδώ τη σημερινή προπόνηση και θα παίρνεις υπενθύμιση.",
- "rekord|rekordy|rekordów": "ρεκόρ|ρεκόρ",
  "Dziś": "Σήμερα",
  "Bez planu tygodnia": "Χωρίς εβδομαδιαίο πρόγραμμα",
  "Ustaw plan tygodnia, by widzieć tu dzisiejszy trening i dostawać przypomnienie.": "Όρισε εβδομαδιαίο πρόγραμμα για να βλέπεις εδώ τη σημερινή προπόνηση και να παίρνεις υπενθύμιση.",
@@ -1325,5 +1323,6 @@
  "{name} · w planie na: {day}": "{name} · στο πρόγραμμα για: {day}",
  "Inny z planu: {name}": "Άλλη από το πρόγραμμα: {name}",
  "Inny z planu, powtórz ostatni, z szablonu albo pusty.": "Άλλη από το πρόγραμμα, επανάληψη τελευταίας, από πρότυπο ή κενή.",
- "szablon|szablony|szablonów": "πρότυπο|πρότυπα"
+ "szablon|szablony|szablonów": "πρότυπο|πρότυπα",
+ "Powtórz ostatni": "Επανάληψη τελευταίας"
 }

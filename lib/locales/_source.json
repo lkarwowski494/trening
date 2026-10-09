@@ -2622,10 +2622,6 @@
   "en": "Elliptical"
  },
  {
-  "pl": "Ostatni trening",
-  "en": "Last workout"
- },
- {
   "pl": "Ostatni trening był już skrócony — „Mniej serii” powtórzy go bez dalszego cięcia.",
   "en": "The last workout was already shortened — “Fewer sets” repeats it without cutting again."
  },
@@ -3090,6 +3086,10 @@
   "en": "Notifications work"
  },
  {
+  "pl": "Powtórz ostatni",
+  "en": "Repeat last"
+ },
+ {
   "pl": "Powtórz ostatni ({name})",
   "en": "Repeat last ({name})"
  },
@@ -3386,11 +3386,6 @@
  {
   "pl": "Rekord: {list}",
   "en": "Record: {list}"
- },
- {
-  "pl": "rekord|rekordy|rekordów",
-  "en": "record|records",
-  "plural": true
  },
  {
   "pl": "REKORDY",

@@ -43,8 +43,8 @@ function Home() {
   const fin = finishedWorkouts();
   /* Układ B „najpierw trening” (decyzja właściciela 09.10.2026 ok. 15:20, doprecyzowanie 15:30; docs/18): karta „Dziś” na górze, pod nią duży
    * przycisk startu i „Inny trening” (arkusz: inny z planu, powtórz ostatni, z szablonu, pusty — dawne przyciski na dole ekranu), bez planu karta
-   * Planowania zaraz pod startem; nowa osoba — „Pierwsze kroki” w miejscu Planowania; „Ten tydzień” (kafelki, przy planie sztanga postępu),
-   * przy planie Planowanie zwinięte do wiersza, „Ostatni trening”, lista szablonów ze Startem (zostaje — szybki start konkretnego szablonu). */
+   * Planowania zaraz pod startem; „Ostatni trening” usunięty (właściciel 09.10.2026 ok. 16:20 — jest w arkuszu przy „Powtórz ostatni”); nowa osoba — „Pierwsze kroki” w miejscu Planowania; „Ten tydzień” (kafelki, przy planie sztanga postępu),
+   * przy planie Planowanie zwinięte do wiersza, lista szablonów ze Startem (zostaje — szybki start konkretnego szablonu). */
   return (
     <ScrollView contentContainerStyle={{ paddingBottom: 40 }}>
       <WhatsNewHeader>{/* 08.10.2026: „i” — Co nowego (decyzja właściciela) */}<H1>{t('Trening')}</H1><Muted>{new Date().toLocaleDateString(locale(), { weekday: 'long', day: 'numeric', month: 'long' })}</Muted></WhatsNewHeader>
@@ -54,7 +54,8 @@ function Home() {
       <StartPanel />
       <PlanningCard when="noPlan" />
       <FirstSteps />
-      <WeekStats beforeLast={<PlanningCard when="plan" />} />
+      <WeekStats />
+      <PlanningCard when="plan" />
       <H2 style={{ marginTop: 22 }}>{t('Zacznij z szablonu')}</H2>
       {!st.templates.some(x => !x.archived) && !firstSteps() /* 07.10.2026 wieczór: same zarchiwizowane — jak brak szablonów; UX-12 A: bez powtórzenia „Pierwszych kroków” */ ? <Muted style={{ fontSize: 13, marginBottom: 8 }}>{t('Nie masz jeszcze szablonów — utwórz pierwszy albo zacznij pusty trening.')}</Muted> : null /* runda 8: pusty stan; układ B: „+ Nowy szablon” w karcie Planowania */}
       {/* 07.10.2026 wieczór: foldery jako nagłówki, bez zarchiwizowanych (store.templateGroups) */}

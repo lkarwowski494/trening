@@ -927,11 +927,9 @@
  "Ten tydzień": "Săptămâna aceasta",
  "Serie": "Serii",
  "Czas": "Timp",
- "Ostatni trening": "Ultimul antrenament",
  "do zrobienia": "de făcut",
  "Pierwsze kroki": "Primii pași",
  "Ustaw plan tygodnia — zobaczysz tu dzisiejszy trening i dostaniesz przypomnienie.": "Setează un plan săptămânal — vei vedea aici antrenamentul de azi și vei primi un memento.",
- "rekord|rekordy|rekordów": "record|recorduri|de recorduri",
  "Dziś": "Azi",
  "Bez planu tygodnia": "Fără plan săptămânal",
  "Ustaw plan tygodnia, by widzieć tu dzisiejszy trening i dostawać przypomnienie.": "Setează un plan săptămânal ca să vezi aici antrenamentul de azi și să primești un memento.",
@@ -1325,5 +1323,6 @@
  "{name} · w planie na: {day}": "{name} · în plan pentru: {day}",
  "Inny z planu: {name}": "Altul din plan: {name}",
  "Inny z planu, powtórz ostatni, z szablonu albo pusty.": "Altul din plan, repetă ultimul, din șablon sau gol.",
- "szablon|szablony|szablonów": "șablon|șabloane|de șabloane"
+ "szablon|szablony|szablonów": "șablon|șabloane|de șabloane",
+ "Powtórz ostatni": "Repetă ultimul"
 }

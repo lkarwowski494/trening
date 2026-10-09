@@ -927,11 +927,9 @@
  "Ten tydzień": "Цей тиждень",
  "Serie": "Підходи",
  "Czas": "Час",
- "Ostatni trening": "Останнє тренування",
  "do zrobienia": "залишилось",
  "Pierwsze kroki": "Перші кроки",
  "Ustaw plan tygodnia — zobaczysz tu dzisiejszy trening i dostaniesz przypomnienie.": "Встанови тижневий план — тут бачитимеш сьогоднішнє тренування й отримуватимеш нагадування.",
- "rekord|rekordy|rekordów": "рекорд|рекорди|рекордів",
  "Dziś": "Сьогодні",
  "Bez planu tygodnia": "Без тижневого плану",
  "Ustaw plan tygodnia, by widzieć tu dzisiejszy trening i dostawać przypomnienie.": "Встанови тижневий план, щоб бачити тут сьогоднішнє тренування й отримувати нагадування.",
@@ -1325,5 +1323,6 @@
  "{name} · w planie na: {day}": "{name} · у плані на: {day}",
  "Inny z planu: {name}": "Інше з плану: {name}",
  "Inny z planu, powtórz ostatni, z szablonu albo pusty.": "Інше з плану, повторити останнє, із шаблону або порожнє.",
- "szablon|szablony|szablonów": "шаблон|шаблони|шаблонів"
+ "szablon|szablony|szablonów": "шаблон|шаблони|шаблонів",
+ "Powtórz ostatni": "Повторити останнє"
 }

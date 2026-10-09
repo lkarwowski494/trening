@@ -68,8 +68,9 @@ export const exDraft = (id: string) => require('@/lib/draft').objDraft('exercise
  * o tym tekście — gdy nie ma go na ekranie (np. duży przycisk „Pusty trening” bez szablonów), najpierw otwiera arkusz. */
 export const fromHome = async (text: string | RegExp) => {
   const { t } = require('@/lib/i18n');
-  let el = screen.queryAllByText(text);
-  if (!el.length) { const other = screen.queryAllByLabelText(t('Inny trening')); if (other.length) { await tap(other[0]); await flushAll(5); } el = screen.queryAllByText(text); }
+  const find = () => { const a = screen.queryAllByText(text); return a.length ? a : screen.queryAllByLabelText(text); }; /* wiersz arkusza: etykieta VoiceOver (np. „Powtórz ostatni (Push A)”) inna niż tytuł */
+  let el = find();
+  if (!el.length) { const other = screen.queryAllByLabelText(t('Inny trening')); if (other.length) { await tap(other[0]); await flushAll(5); } el = find(); }
   if (!el.length) throw new Error('fromHome: brak „' + String(text) + '”');
   await tap(el[0]);
 };

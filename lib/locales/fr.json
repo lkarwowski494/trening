@@ -927,11 +927,9 @@
  "Ten tydzień": "Cette semaine",
  "Serie": "Séries",
  "Czas": "Durée",
- "Ostatni trening": "Dernière séance",
  "do zrobienia": "à faire",
  "Pierwsze kroki": "Premiers pas",
  "Ustaw plan tygodnia — zobaczysz tu dzisiejszy trening i dostaniesz przypomnienie.": "Définis un programme de la semaine — tu verras ici la séance du jour et recevras un rappel.",
- "rekord|rekordy|rekordów": "record|records",
  "Dziś": "Aujourd’hui",
  "Bez planu tygodnia": "Pas de programme de la semaine",
  "Ustaw plan tygodnia, by widzieć tu dzisiejszy trening i dostawać przypomnienie.": "Définis un programme de la semaine pour voir ici la séance du jour et recevoir un rappel.",
@@ -1325,5 +1323,6 @@
  "{name} · w planie na: {day}": "{name} · prévue : {day}",
  "Inny z planu: {name}": "Une autre du plan : {name}",
  "Inny z planu, powtórz ostatni, z szablonu albo pusty.": "Une autre du plan, répéter la dernière, depuis un modèle ou vide.",
- "szablon|szablony|szablonów": "modèle|modèles"
+ "szablon|szablony|szablonów": "modèle|modèles",
+ "Powtórz ostatni": "Répéter la dernière"
 }

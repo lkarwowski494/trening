@@ -927,11 +927,9 @@
  "Ten tydzień": "Deze week",
  "Serie": "Sets",
  "Czas": "Tijd",
- "Ostatni trening": "Laatste training",
  "do zrobienia": "te doen",
  "Pierwsze kroki": "Eerste stappen",
  "Ustaw plan tygodnia — zobaczysz tu dzisiejszy trening i dostaniesz przypomnienie.": "Stel een weekplan in — je ziet hier de training van vandaag en krijgt een herinnering.",
- "rekord|rekordy|rekordów": "record|records",
  "Dziś": "Vandaag",
  "Bez planu tygodnia": "Geen weekplan",
  "Ustaw plan tygodnia, by widzieć tu dzisiejszy trening i dostawać przypomnienie.": "Stel een weekplan in om hier de training van vandaag te zien en een herinnering te krijgen.",
@@ -1325,5 +1323,6 @@
  "{name} · w planie na: {day}": "{name} · gepland op: {day}",
  "Inny z planu: {name}": "Een andere uit het plan: {name}",
  "Inny z planu, powtórz ostatni, z szablonu albo pusty.": "Een andere uit het plan, laatste herhalen, uit sjabloon of leeg.",
- "szablon|szablony|szablonów": "sjabloon|sjablonen"
+ "szablon|szablony|szablonów": "sjabloon|sjablonen",
+ "Powtórz ostatni": "Herhaal laatste"
 }

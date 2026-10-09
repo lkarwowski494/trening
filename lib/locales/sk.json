@@ -927,11 +927,9 @@
  "Ten tydzień": "Tento týždeň",
  "Serie": "Série",
  "Czas": "Čas",
- "Ostatni trening": "Posledný tréning",
  "do zrobienia": "zostáva",
  "Pierwsze kroki": "Prvé kroky",
  "Ustaw plan tygodnia — zobaczysz tu dzisiejszy trening i dostaniesz przypomnienie.": "Nastav týždenný plán — uvidíš tu dnešný tréning a dostaneš pripomienku.",
- "rekord|rekordy|rekordów": "rekord|rekordy|rekordov",
  "Dziś": "Dnes",
  "Bez planu tygodnia": "Bez týždenného plánu",
  "Ustaw plan tygodnia, by widzieć tu dzisiejszy trening i dostawać przypomnienie.": "Nastav týždenný plán, aby si tu videl dnešný tréning a dostával pripomienku.",
@@ -1325,5 +1323,6 @@
  "{name} · w planie na: {day}": "{name} · v pláne na: {day}",
  "Inny z planu: {name}": "Iný z plánu: {name}",
  "Inny z planu, powtórz ostatni, z szablonu albo pusty.": "Iný z plánu, zopakovať posledný, zo šablóny alebo prázdny.",
- "szablon|szablony|szablonów": "šablóna|šablóny|šablón"
+ "szablon|szablony|szablonów": "šablóna|šablóny|šablón",
+ "Powtórz ostatni": "Zopakovať posledný"
 }

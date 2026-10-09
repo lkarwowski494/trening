@@ -1,13 +1,12 @@
 import React from 'react';
 import { View, Pressable } from 'react-native';
 import { useRouter } from 'expo-router';
-import { Btn, Muted, Txt, SectionTitle, Item } from '@/components/ui';
+import { Btn, Muted, Txt, SectionTitle } from '@/components/ui';
 import { useTheme, F, NUM_SCALE_MAX } from '@/lib/theme';
-import { fmtDate, fmtDur, getState, useTick, newTemplate } from '@/lib/store';
+import { getState, useTick, newTemplate } from '@/lib/store';
 import { weekTiles, lastWorkout, firstSteps, emptyTemplates } from '@/lib/dashboard';
-import { fmtVol } from '@/lib/units';
 import { WeekBarbell } from '@/components/WeekBarbell';
-import { t, tp, lang, glue } from '@/lib/i18n';
+import { t, lang } from '@/lib/i18n';
 
 /* Dashboard ekranu Trening (decyzja właściciela 08.10.2026, wariant A) — dane: lib/dashboard.ts. */
 function Tile({ label, value, prev }: { label: string; value: string; prev: string }) {
@@ -21,8 +20,8 @@ function Tile({ label, value, prev }: { label: string; value: string; prev: stri
 }
 const hm = (sec: number) => { const m = Math.round(sec / 60); return m >= 60 ? `${t('{n} h', { n: Math.floor(m / 60) })}${m % 60 ? ` ${t('{n} min', { n: m % 60 })}` : ''}` : t('{n} min', { n: m }); }; /* A11-17: jednostki przez t() */
 
-/** Kafelki tygodnia i ostatni trening (od pierwszego zakończonego treningu). */
-export function WeekStats({ beforeLast }: { /** układ B (09.10.2026): element między „Ten tydzień” a „Ostatni trening” (karta Planowania przy planie) */ beforeLast?: React.ReactNode } = {}) {
+/** Kafelki tygodnia (od pierwszego zakończonego treningu); przy planie sztanga postępu. */
+export function WeekStats() {
   useTick(); const router = useRouter(); const w = weekTiles(); const last = lastWorkout(); if (!last) return null;
   return <>
     <SectionTitle>{t('Ten tydzień')}</SectionTitle>
@@ -32,9 +31,7 @@ export function WeekStats({ beforeLast }: { /** układ B (09.10.2026): element m
       <Tile label={t('Czas')} value={hm(w.durationSec)} prev={hm(w.prev.durationSec)} />
     </Pressable>
     {w.planned ? <View style={{ marginTop: 10 }}><WeekBarbell /></View> : null /* układ B (09.10.2026): przy planie sztanga postępu „x z y” (te same liczby, lib/motif.weekBar) zamiast linii „Z planu w tym tygodniu…” */}{/* audyt 0.10 A5/X-04: dni z planu zrobione zaplanowanym szablonem (ten sam stan dnia co kalendarz) — sesje i dni planu osobno */}
-    {beforeLast}
-    <SectionTitle>{t('Ostatni trening')}</SectionTitle>
-    <Item title={last.name || t('Trening')} sub={[fmtDate(last.startedAt), fmtDur(last.durationSec), `${last.sets} ${tp(last.sets, 'seria|serie|serii')}`, fmtVol(last.volume), ...(last.prs ? [`${last.prs} ${tp(last.prs, 'rekord|rekordy|rekordów')}`] : [])].map(glue).join(' · ') /* A11-19 */} onPress={() => router.push(`/history/${last.id}`)} />
+    {/* „Ostatni trening” usunięty z ekranu głównego (właściciel 09.10.2026 ok. 16:20): informacja zostaje w arkuszu „Inny trening” („Powtórz ostatni”: nazwa · data), w Historii i Kalendarzu */}
   </>;
 }
 

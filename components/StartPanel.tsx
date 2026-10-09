@@ -36,8 +36,8 @@ export function StartPanel() {
   const row = (o: OtherStart) => {
     switch (o.kind) {
       case 'planOther': return <Item key="plan" title={t('Inny z planu')} sub={t('{name} · w planie na: {day}', { name: o.tpl.name, day: dayWord(o.date) })} accessibilityLabel={t('Inny z planu: {name}', { name: o.tpl.name })} onPress={pick(() => startTemplate(o.tpl))} />;
-      case 'repeat': return <Item key="repeat" title={t('Powtórz ostatni ({name})', { name: o.name || t('bez szablonu') })} sub={fmtDate(o.date)} accessibilityLabel={t('Powtórz ostatni ({name})', { name: o.name || t('bez szablonu') })} onPress={pick(() => startRepeatLast())} />;
-      case 'template': return <Item key="tpl" title={t('Z szablonu')} sub={`${o.count} ${tp(o.count, 'szablon|szablony|szablonów')}`} accessibilityLabel={t('Z szablonu')} onPress={pick(() => router.push('/templates'))} />;
+      case 'repeat': return <Item key="repeat" title={t('Powtórz ostatni')} sub={`${o.name || t('bez szablonu')} · ${fmtDate(o.date)}`} /* właściciel 09.10.2026 ok. 16:20: podpis nazwa · data (dawna sekcja „Ostatni trening”) */ accessibilityLabel={t('Powtórz ostatni ({name})', { name: o.name || t('bez szablonu') })} onPress={pick(() => startRepeatLast())} />;
+      case 'template': return <Item key="tpl" title={t('Z szablonu')} sub={(n => `${n} ${tp(n, 'szablon|szablony|szablonów')}`)(o.count)} accessibilityLabel={t('Z szablonu')} onPress={pick(() => router.push('/templates'))} />;
       default: return <Item key="empty" title={t('Pusty trening')} accessibilityLabel={t('Pusty trening')} onPress={pick(() => startEmpty())} />;
     }
   };

@@ -927,11 +927,9 @@
  "Ten tydzień": "Bu hafta",
  "Serie": "Setler",
  "Czas": "Süre",
- "Ostatni trening": "Son antrenman",
  "do zrobienia": "yapılacak",
  "Pierwsze kroki": "İlk adımlar",
  "Ustaw plan tygodnia — zobaczysz tu dzisiejszy trening i dostaniesz przypomnienie.": "Haftalık plan ayarla — bugünkü antrenmanı burada görür ve hatırlatma alırsın.",
- "rekord|rekordy|rekordów": "rekor|rekor",
  "Dziś": "Bugün",
  "Bez planu tygodnia": "Haftalık plan yok",
  "Ustaw plan tygodnia, by widzieć tu dzisiejszy trening i dostawać przypomnienie.": "Bugünkü antrenmanı burada görmek ve hatırlatma almak için haftalık plan ayarla.",
@@ -1325,5 +1323,6 @@
  "{name} · w planie na: {day}": "{name} · planda: {day}",
  "Inny z planu: {name}": "Plandan başka: {name}",
  "Inny z planu, powtórz ostatni, z szablonu albo pusty.": "Plandan başka, sonuncuyu tekrarla, şablondan veya boş.",
- "szablon|szablony|szablonów": "şablon|şablon"
+ "szablon|szablony|szablonów": "şablon|şablon",
+ "Powtórz ostatni": "Sonuncuyu tekrarla"
 }

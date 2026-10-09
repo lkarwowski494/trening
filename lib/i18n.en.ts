@@ -455,11 +455,9 @@ export const EN: Record<string, string> = {
   'Ten tydzień': 'This week',
   'Serie': 'Sets',
   'Czas': 'Time',
-  'Ostatni trening': 'Last workout',
   'do zrobienia': 'to do',
   'Pierwsze kroki': 'First steps',
   'Ustaw plan tygodnia — zobaczysz tu dzisiejszy trening i dostaniesz przypomnienie.': 'Set a weekly plan — you will see today’s workout here and get a reminder.',
-  'rekord|rekordy|rekordów': 'record|records',
   'Dziś': 'Today',
   'Bez planu tygodnia': 'No weekly plan',
   'Ustaw plan tygodnia, by widzieć tu dzisiejszy trening i dostawać przypomnienie.': 'Set a weekly plan to see today’s workout here and get a reminder.',
@@ -854,4 +852,5 @@ export const EN: Record<string, string> = {
   'Inny z planu: {name}': 'Another from the plan: {name}',
   'Inny z planu, powtórz ostatni, z szablonu albo pusty.': 'Another from the plan, repeat last, from a template or empty.',
   'szablon|szablony|szablonów': 'template|templates',
+  'Powtórz ostatni': 'Repeat last',
 };

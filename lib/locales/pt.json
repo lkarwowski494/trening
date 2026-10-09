@@ -927,11 +927,9 @@
  "Ten tydzień": "Esta semana",
  "Serie": "Séries",
  "Czas": "Tempo",
- "Ostatni trening": "Último treino",
  "do zrobienia": "por fazer",
  "Pierwsze kroki": "Primeiros passos",
  "Ustaw plan tygodnia — zobaczysz tu dzisiejszy trening i dostaniesz przypomnienie.": "Define um plano semanal — vais ver aqui o treino de hoje e receber um lembrete.",
- "rekord|rekordy|rekordów": "recorde|recordes",
  "Dziś": "Hoje",
  "Bez planu tygodnia": "Sem plano semanal",
  "Ustaw plan tygodnia, by widzieć tu dzisiejszy trening i dostawać przypomnienie.": "Define um plano semanal para veres aqui o treino de hoje e receberes um lembrete.",
@@ -1325,5 +1323,6 @@
  "{name} · w planie na: {day}": "{name} · no plano para: {day}",
  "Inny z planu: {name}": "Outro do plano: {name}",
  "Inny z planu, powtórz ostatni, z szablonu albo pusty.": "Outro do plano, repetir o último, a partir de modelo ou vazio.",
- "szablon|szablony|szablonów": "modelo|modelos"
+ "szablon|szablony|szablonów": "modelo|modelos",
+ "Powtórz ostatni": "Repetir o último"
 }

@@ -927,11 +927,9 @@
  "Ten tydzień": "See nädal",
  "Serie": "Seeriad",
  "Czas": "Aeg",
- "Ostatni trening": "Viimane trenn",
  "do zrobienia": "teha",
  "Pierwsze kroki": "Esimesed sammud",
  "Ustaw plan tygodnia — zobaczysz tu dzisiejszy trening i dostaniesz przypomnienie.": "Sea nädalaplaan — näed siin tänast trenni ja saad meeldetuletuse.",
- "rekord|rekordy|rekordów": "rekord|rekordit",
  "Dziś": "Täna",
  "Bez planu tygodnia": "Nädalaplaan puudub",
  "Ustaw plan tygodnia, by widzieć tu dzisiejszy trening i dostawać przypomnienie.": "Sea nädalaplaan, et näha siin tänast trenni ja saada meeldetuletus.",
@@ -1325,5 +1323,6 @@
  "{name} · w planie na: {day}": "{name} · plaanis: {day}",
  "Inny z planu: {name}": "Muu plaanist: {name}",
  "Inny z planu, powtórz ostatni, z szablonu albo pusty.": "Muu plaanist, korda viimast, mallist või tühi.",
- "szablon|szablony|szablonów": "mall|malli"
+ "szablon|szablony|szablonów": "mall|malli",
+ "Powtórz ostatni": "Korda viimast"
 }

@@ -927,11 +927,9 @@
  "Ten tydzień": "Ezen a héten",
  "Serie": "Sorozatok",
  "Czas": "Idő",
- "Ostatni trening": "Legutóbbi edzés",
  "do zrobienia": "hátravan",
  "Pierwsze kroki": "Első lépések",
  "Ustaw plan tygodnia — zobaczysz tu dzisiejszy trening i dostaniesz przypomnienie.": "Állíts be heti tervet — itt látod a mai edzést, és emlékeztetőt kapsz.",
- "rekord|rekordy|rekordów": "rekord|rekord",
  "Dziś": "Ma",
  "Bez planu tygodnia": "Nincs heti terv",
  "Ustaw plan tygodnia, by widzieć tu dzisiejszy trening i dostawać przypomnienie.": "Állíts be heti tervet, hogy itt lásd a mai edzést és emlékeztetőt kapj.",
@@ -1325,5 +1323,6 @@
  "{name} · w planie na: {day}": "{name} · tervben: {day}",
  "Inny z planu: {name}": "Másik a tervből: {name}",
  "Inny z planu, powtórz ostatni, z szablonu albo pusty.": "Másik a tervből, utolsó ismétlése, sablonból vagy üres.",
- "szablon|szablony|szablonów": "sablon|sablon"
+ "szablon|szablony|szablonów": "sablon|sablon",
+ "Powtórz ostatni": "Legutóbbi megismétlése"
 }

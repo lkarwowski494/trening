@@ -927,11 +927,9 @@
  "Ten tydzień": "Šī nedēļa",
  "Serie": "Sērijas",
  "Czas": "Laiks",
- "Ostatni trening": "Pēdējais treniņš",
  "do zrobienia": "jāizdara",
  "Pierwsze kroki": "Pirmie soļi",
  "Ustaw plan tygodnia — zobaczysz tu dzisiejszy trening i dostaniesz przypomnienie.": "Iestati nedēļas plānu — šeit redzēsi šodienas treniņu un saņemsi atgādinājumu.",
- "rekord|rekordy|rekordów": "rekordu|rekords|rekordi",
  "Dziś": "Šodien",
  "Bez planu tygodnia": "Nav nedēļas plāna",
  "Ustaw plan tygodnia, by widzieć tu dzisiejszy trening i dostawać przypomnienie.": "Iestati nedēļas plānu, lai šeit redzētu šodienas treniņu un saņemtu atgādinājumu.",
@@ -1325,5 +1323,6 @@
  "{name} · w planie na: {day}": "{name} · plānā: {day}",
  "Inny z planu: {name}": "Cits no plāna: {name}",
  "Inny z planu, powtórz ostatni, z szablonu albo pusty.": "Cits no plāna, atkārtot pēdējo, no veidnes vai tukšs.",
- "szablon|szablony|szablonów": "veidņu|veidne|veidnes"
+ "szablon|szablony|szablonów": "veidņu|veidne|veidnes",
+ "Powtórz ostatni": "Atkārtot pēdējo"
 }

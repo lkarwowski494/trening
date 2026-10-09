@@ -927,11 +927,9 @@
  "Ten tydzień": "Тази седмица",
  "Serie": "Серии",
  "Czas": "Време",
- "Ostatni trening": "Последна тренировка",
  "do zrobienia": "предстои",
  "Pierwsze kroki": "Първи стъпки",
  "Ustaw plan tygodnia — zobaczysz tu dzisiejszy trening i dostaniesz przypomnienie.": "Задай седмичен план — тук ще виждаш днешната тренировка и ще получаваш напомняне.",
- "rekord|rekordy|rekordów": "рекорд|рекорда",
  "Dziś": "Днес",
  "Bez planu tygodnia": "Без седмичен план",
  "Ustaw plan tygodnia, by widzieć tu dzisiejszy trening i dostawać przypomnienie.": "Задай седмичен план, за да виждаш тук днешната тренировка и да получаваш напомняне.",
@@ -1325,5 +1323,6 @@
  "{name} · w planie na: {day}": "{name} · по план за: {day}",
  "Inny z planu: {name}": "Друга от плана: {name}",
  "Inny z planu, powtórz ostatni, z szablonu albo pusty.": "Друга от плана, повтори последната, от шаблон или празна.",
- "szablon|szablony|szablonów": "шаблон|шаблона"
+ "szablon|szablony|szablonów": "шаблон|шаблона",
+ "Powtórz ostatni": "Повтаряне на последната"
 }

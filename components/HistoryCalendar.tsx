@@ -10,6 +10,7 @@ import { DAY_LEVELS, DAY_LEVEL_PLATE, dayLevels, daySets, type DayLevel } from '
 import { DayPlate } from '@/components/Motif';
 
 /** Motyw z ikony (09.10.2026): opis talerza przy dniu — w etykiecie VoiceOver dnia i w legendzie pod kalendarzem (kolor nie jest jedyną informacją). */
+const setsWord = (n: number) => `${n} ${tp(n, 'seria|serie|serii')}`;
 const levelText = (l: DayLevel): string => ({ heavy: () => tr('więcej serii niż średnio'), usual: () => tr('serie około średniej'), light: () => tr('mniej serii niż średnio') })[l]();
 
 /*
@@ -62,7 +63,7 @@ export function HistoryCalendar({ byDay, selected, onSelect, onMonth }: { byDay:
             const label = parts.join(', ');
             return (
               <View key={c.key} style={{ flex: 1, alignItems: 'center', paddingVertical: 2 }}>
-                {c.inMonth ? <Pressable accessibilityLanguage={lang()} testID={`cal-${c.key}`} accessibilityRole="button" accessibilityState={{ selected: on }} accessibilityLabel={label} accessibilityValue={lv ? { text: `${ns} ${tp(ns, 'seria|serie|serii')}, ${levelText(lv)}` } : undefined} /* motyw (09.10.2026): talerz dnia słownie — wartość, etykieta dnia bez zmian */ onPress={() => onSelect(on ? null : c.key)} hitSlop={4} /* A11-15: 36 + 2×4 = 44 pt */>{face}</Pressable>
+                {c.inMonth ? <Pressable accessibilityLanguage={lang()} testID={`cal-${c.key}`} accessibilityRole="button" accessibilityState={{ selected: on }} accessibilityLabel={label} accessibilityValue={lv ? { text: `${setsWord(ns)}, ${levelText(lv)}` } : undefined} /* motyw (09.10.2026): talerz dnia słownie — wartość, etykieta dnia bez zmian */ onPress={() => onSelect(on ? null : c.key)} hitSlop={4} /* A11-15: 36 + 2×4 = 44 pt */>{face}</Pressable>
                   : <View accessibilityElementsHidden importantForAccessibility="no-hide-descendants">{face}</View>}
               </View>); })}
         </View>); })}

@@ -927,11 +927,9 @@
  "Ten tydzień": "Denne uken",
  "Serie": "Sett",
  "Czas": "Tid",
- "Ostatni trening": "Siste økt",
  "do zrobienia": "gjenstår",
  "Pierwsze kroki": "Første steg",
  "Ustaw plan tygodnia — zobaczysz tu dzisiejszy trening i dostaniesz przypomnienie.": "Lag en ukeplan — du ser dagens økt her og får en påminnelse.",
- "rekord|rekordy|rekordów": "rekord|rekorder",
  "Dziś": "I dag",
  "Bez planu tygodnia": "Ingen ukeplan",
  "Ustaw plan tygodnia, by widzieć tu dzisiejszy trening i dostawać przypomnienie.": "Lag en ukeplan for å se dagens økt her og få en påminnelse.",
@@ -1325,5 +1323,6 @@
  "{name} · w planie na: {day}": "{name} · planlagt: {day}",
  "Inny z planu: {name}": "En annen fra planen: {name}",
  "Inny z planu, powtórz ostatni, z szablonu albo pusty.": "En annen fra planen, gjenta siste, fra mal eller tom.",
- "szablon|szablony|szablonów": "mal|maler"
+ "szablon|szablony|szablonów": "mal|maler",
+ "Powtórz ostatni": "Gjenta siste"
 }

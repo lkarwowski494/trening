@@ -9,7 +9,7 @@ import { Plate, a11yHidden } from '@/components/Motif';
 export function WeekBarbell({ bar: given, size = 36 }: { /** domyślnie bieżący tydzień (lib/motif.weekBar) — komponent sam liczy dane, można go wstawić w dowolne miejsce */ bar?: WeekBar; size?: number }) {
   const th = useTheme(); const bar = given ?? weekBar(); const bg = th.surface;
   const label = bar.mode === 'plan' ? tr('Postęp tygodnia: zrobione {done} z {n} treningów z planu', { done: bar.done, n: bar.total }) : tr('Treningi w tym tygodniu: {n}', { n: bar.total });
-  const txt = bar.mode === 'plan' ? tr('{done} z {n}', { done: bar.done, n: bar.total }) : `${bar.total} ${tp(bar.total, 'trening|treningi|treningów')}`;
+  const txt = bar.mode === 'plan' ? tr('{done} z {n}', { done: bar.done, n: bar.total }) : (n => `${n} ${tp(n, 'trening|treningi|treningów')}`)(bar.total);
   return (
     <View testID="week-barbell" accessible accessibilityRole="image" accessibilityLanguage={lang()} accessibilityLabel={label} style={{ flexDirection: 'row', alignItems: 'center', flexWrap: 'wrap', gap: 10 }}>
       <View {...a11yHidden} style={{ flexDirection: 'row', alignItems: 'center', gap: 2, height: size }}>

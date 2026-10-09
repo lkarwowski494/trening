@@ -927,11 +927,9 @@
  "Ten tydzień": "Diese Woche",
  "Serie": "Sätze",
  "Czas": "Zeit",
- "Ostatni trening": "Letztes Training",
  "do zrobienia": "offen",
  "Pierwsze kroki": "Erste Schritte",
  "Ustaw plan tygodnia — zobaczysz tu dzisiejszy trening i dostaniesz przypomnienie.": "Lege einen Wochenplan fest — du siehst hier das heutige Training und bekommst eine Erinnerung.",
- "rekord|rekordy|rekordów": "Rekord|Rekorde",
  "Dziś": "Heute",
  "Bez planu tygodnia": "Kein Wochenplan",
  "Ustaw plan tygodnia, by widzieć tu dzisiejszy trening i dostawać przypomnienie.": "Lege einen Wochenplan fest, um hier das heutige Training zu sehen und Erinnerungen zu bekommen.",
@@ -1325,5 +1323,6 @@
  "{name} · w planie na: {day}": "{name} · im Plan für: {day}",
  "Inny z planu: {name}": "Anderes aus dem Plan: {name}",
  "Inny z planu, powtórz ostatni, z szablonu albo pusty.": "Anderes aus dem Plan, letztes wiederholen, aus Vorlage oder leer.",
- "szablon|szablony|szablonów": "Vorlage|Vorlagen"
+ "szablon|szablony|szablonów": "Vorlage|Vorlagen",
+ "Powtórz ostatni": "Letztes Training wiederholen"
 }
