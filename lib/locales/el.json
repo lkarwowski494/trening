@@ -652,7 +652,6 @@
  "usunięte ćwiczenie z historią": "διαγραμμένη άσκηση με ιστορικό",
  "Usuń": "Διαγραφή",
  "Usuń ćwiczenie: {name}": "Αφαίρεση άσκησης: {name}",
- "Usuń gumy…": "Διαγραφή λάστιχων…",
  "Usuń odznaczone": "Αφαίρεση μη σημειωμένων",
  "Usuń serię {n} — {ex}": "Διαγραφή σετ {n} — {ex}",
  "Usuń sesję": "Διαγραφή συνεδρίας",
@@ -1279,5 +1278,6 @@
  "Inteligentna stacja kablowa — pełna (1,5–65 kg/str.)": "Έξυπνος σταθμός τροχαλίας — πλήρης (1,5–65 kg/πλευρά)",
  "Przenośna stacja elektryczna, jedna linka (5–200 lb)": "Φορητή ηλεκτρική μονάδα τροχαλίας, ένα συρματόσχοινο (5–200 lb)",
  "Inteligentna stacja kablowa — kompaktowa (1,5–35 kg/str.)": "Έξυπνος σταθμός τροχαλίας — συμπαγής (1,5–35 kg/πλευρά)",
- "Superset ustawisz w szablonie: „Edytuj”, potem „⇅ SS” przy ćwiczeniu łączy je z następnym (w trakcie treningu ten sam przycisk jest przy ćwiczeniu) — przerwa liczy się po ostatnim ćwiczeniu grupy.": "Το superset το ορίζεις στο πρότυπο: «Επεξεργασία», μετά το «⇅ SS» στην άσκηση την ενώνει με την επόμενη (στην προπόνηση το ίδιο κουμπί είναι στην άσκηση) — το διάλειμμα ξεκινά μετά την τελευταία άσκηση της ομάδας."
+ "Superset ustawisz w szablonie: „Edytuj”, potem „⇅ SS” przy ćwiczeniu łączy je z następnym (w trakcie treningu ten sam przycisk jest przy ćwiczeniu) — przerwa liczy się po ostatnim ćwiczeniu grupy.": "Το superset το ορίζεις στο πρότυπο: «Επεξεργασία», μετά το «⇅ SS» στην άσκηση την ενώνει με την επόμενη (στην προπόνηση το ίδιο κουμπί είναι στην άσκηση) — το διάλειμμα ξεκινά μετά την τελευταία άσκηση της ομάδας.",
+ "Gumy…": "Λάστιχα…"
 }

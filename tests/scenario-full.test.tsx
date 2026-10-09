@@ -285,8 +285,8 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     /* miejsca głównego nie da się usunąć — na liście nie ma dla niego gestu */
     expect(deleteActions().filter(l => l.startsWith('Usuń miejsce: '))).not.toContain('Usuń miejsce: Dom testowy'); await flushAll(1000); await tap(screen.getByLabelText(/^★ Dom testowy/)); await flushAll(10);
     expect(screen.queryByText('Usuń')).toBeNull(); expect(S().settings.locations).toHaveLength(4);
-    /* „Usuń gumy…” → ekran gum: dodanie, kolor, poziom, usunięcie */
-    await tap(screen.getByLabelText('Akcesoria')); await tap(screen.getByText('Usuń gumy…')); await flushAll(10);
+    /* „Gumy…” (UI2-09) → ekran gum: dodanie, kolor, poziom, usunięcie */
+    await tap(screen.getByLabelText('Akcesoria')); await tap(screen.getByText('Gumy…')); await flushAll(10);
     expect(screen.getAllByLabelText('Kolor gumy').map(x => x.props.value)).toEqual(['zielona', 'czerwona', 'czarna', 'fioletowa']);
     await tap(screen.getByText('+ Guma')); await flushAll(5); expect(S().bands).toHaveLength(5); const nb = S().bands[4]; expect(nb).toMatchObject({ color: 'nowa', level: 3 });
     const colors = () => screen.getAllByLabelText('Kolor gumy');

@@ -632,7 +632,6 @@
  "usunięte ćwiczenie z historią": "dzēsts vingrinājums ar vēsturi",
  "Usuń": "Dzēst",
  "Usuń ćwiczenie: {name}": "Noņemt vingrinājumu: {name}",
- "Usuń gumy…": "Dzēst gumijas…",
  "Usuń odznaczone": "Noņemt neatzīmētos",
  "Usuń serię {n} — {ex}": "Dzēst sēriju {n} — {ex}",
  "Usuń sesję": "Dzēst sesiju",
@@ -1279,5 +1278,6 @@
  "Inteligentna stacja kablowa — pełna (1,5–65 kg/str.)": "Viedā trošu stacija — pilnā (1,5–65 kg/pusē)",
  "Przenośna stacja elektryczna, jedna linka (5–200 lb)": "Pārnēsājama elektriskā trošu ierīce, viena trose (5–200 lb)",
  "Inteligentna stacja kablowa — kompaktowa (1,5–35 kg/str.)": "Viedā trošu stacija — kompaktā (1,5–35 kg/pusē)",
- "Superset ustawisz w szablonie: „Edytuj”, potem „⇅ SS” przy ćwiczeniu łączy je z następnym (w trakcie treningu ten sam przycisk jest przy ćwiczeniu) — przerwa liczy się po ostatnim ćwiczeniu grupy.": "Supersetu iestati veidnē: “Rediģēt”, tad “⇅ SS” pie vingrinājuma to apvieno ar nākamo (treniņa laikā tā pati poga ir pie vingrinājuma) — atpūta sākas pēc grupas pēdējā vingrinājuma."
+ "Superset ustawisz w szablonie: „Edytuj”, potem „⇅ SS” przy ćwiczeniu łączy je z następnym (w trakcie treningu ten sam przycisk jest przy ćwiczeniu) — przerwa liczy się po ostatnim ćwiczeniu grupy.": "Supersetu iestati veidnē: “Rediģēt”, tad “⇅ SS” pie vingrinājuma to apvieno ar nākamo (treniņa laikā tā pati poga ir pie vingrinājuma) — atpūta sākas pēc grupas pēdējā vingrinājuma.",
+ "Gumy…": "Gumijas…"
 }

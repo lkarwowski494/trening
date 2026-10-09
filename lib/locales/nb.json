@@ -652,7 +652,6 @@
  "usunięte ćwiczenie z historią": "slettet øvelse med historikk",
  "Usuń": "Slett",
  "Usuń ćwiczenie: {name}": "Fjern øvelse: {name}",
- "Usuń gumy…": "Slett strikker …",
  "Usuń odznaczone": "Fjern ikke avhukede",
  "Usuń serię {n} — {ex}": "Slett sett {n} — {ex}",
  "Usuń sesję": "Slett økt",
@@ -1279,5 +1278,6 @@
  "Inteligentna stacja kablowa — pełna (1,5–65 kg/str.)": "Smart kabelstasjon — full (1,5–65 kg/side)",
  "Przenośna stacja elektryczna, jedna linka (5–200 lb)": "Bærbar elektrisk kabelenhet, én kabel (5–200 lb)",
  "Inteligentna stacja kablowa — kompaktowa (1,5–35 kg/str.)": "Smart kabelstasjon — kompakt (1,5–35 kg/side)",
- "Superset ustawisz w szablonie: „Edytuj”, potem „⇅ SS” przy ćwiczeniu łączy je z następnym (w trakcie treningu ten sam przycisk jest przy ćwiczeniu) — przerwa liczy się po ostatnim ćwiczeniu grupy.": "Et supersett angir du i malen: «Rediger», deretter kobler «⇅ SS» ved øvelsen den med neste (under økten sitter samme knapp ved øvelsen) — hvilen starter etter gruppens siste øvelse."
+ "Superset ustawisz w szablonie: „Edytuj”, potem „⇅ SS” przy ćwiczeniu łączy je z następnym (w trakcie treningu ten sam przycisk jest przy ćwiczeniu) — przerwa liczy się po ostatnim ćwiczeniu grupy.": "Et supersett angir du i malen: «Rediger», deretter kobler «⇅ SS» ved øvelsen den med neste (under økten sitter samme knapp ved øvelsen) — hvilen starter etter gruppens siste øvelse.",
+ "Gumy…": "Strikker…"
 }

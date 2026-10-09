@@ -632,7 +632,6 @@
  "usunięte ćwiczenie z historią": "exercițiu șters cu istoric",
  "Usuń": "Șterge",
  "Usuń ćwiczenie: {name}": "Elimină exercițiul: {name}",
- "Usuń gumy…": "Ștergeți benzi…",
  "Usuń odznaczone": "Elimină nebifatele",
  "Usuń serię {n} — {ex}": "Șterge seria {n} — {ex}",
  "Usuń sesję": "Șterge sesiunea",
@@ -1279,5 +1278,6 @@
  "Inteligentna stacja kablowa — pełna (1,5–65 kg/str.)": "Stație inteligentă cu cablu — completă (1,5–65 kg/parte)",
  "Przenośna stacja elektryczna, jedna linka (5–200 lb)": "Unitate electrică portabilă cu cablu, un singur cablu (5–200 lb)",
  "Inteligentna stacja kablowa — kompaktowa (1,5–35 kg/str.)": "Stație inteligentă cu cablu — compactă (1,5–35 kg/parte)",
- "Superset ustawisz w szablonie: „Edytuj”, potem „⇅ SS” przy ćwiczeniu łączy je z następnym (w trakcie treningu ten sam przycisk jest przy ćwiczeniu) — przerwa liczy się po ostatnim ćwiczeniu grupy.": "Supersetul îl setezi în șablon: „Editează”, apoi „⇅ SS” la un exercițiu îl leagă de următorul (în timpul antrenamentului același buton e la exercițiu) — pauza începe după ultimul exercițiu din grup."
+ "Superset ustawisz w szablonie: „Edytuj”, potem „⇅ SS” przy ćwiczeniu łączy je z następnym (w trakcie treningu ten sam przycisk jest przy ćwiczeniu) — przerwa liczy się po ostatnim ćwiczeniu grupy.": "Supersetul îl setezi în șablon: „Editează”, apoi „⇅ SS” la un exercițiu îl leagă de următorul (în timpul antrenamentului același buton e la exercițiu) — pauza începe după ultimul exercițiu din grup.",
+ "Gumy…": "Benzi…"
 }

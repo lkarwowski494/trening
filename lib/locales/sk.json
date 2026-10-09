@@ -632,7 +632,6 @@
  "usunięte ćwiczenie z historią": "vymazaný cvik s históriou",
  "Usuń": "Vymazať",
  "Usuń ćwiczenie: {name}": "Odstrániť cvik: {name}",
- "Usuń gumy…": "Vymazať gumy…",
  "Usuń odznaczone": "Odstrániť neoznačené",
  "Usuń serię {n} — {ex}": "Vymazať sériu {n} — {ex}",
  "Usuń sesję": "Vymazať tréning",
@@ -1279,5 +1278,6 @@
  "Inteligentna stacja kablowa — pełna (1,5–65 kg/str.)": "Inteligentná káblová stanica — plná (1,5–65 kg/str.)",
  "Przenośna stacja elektryczna, jedna linka (5–200 lb)": "Prenosná elektrická stanica, jedno lanko (5–200 lb)",
  "Inteligentna stacja kablowa — kompaktowa (1,5–35 kg/str.)": "Inteligentná káblová stanica — kompaktná (1,5–35 kg/str.)",
- "Superset ustawisz w szablonie: „Edytuj”, potem „⇅ SS” przy ćwiczeniu łączy je z następnym (w trakcie treningu ten sam przycisk jest przy ćwiczeniu) — przerwa liczy się po ostatnim ćwiczeniu grupy.": "Superset nastavíš v šablóne: „Upraviť“, potom „⇅ SS“ pri cviku ho spojí s ďalším (počas tréningu je rovnaké tlačidlo pri cviku) — pauza začína po poslednom cviku skupiny."
+ "Superset ustawisz w szablonie: „Edytuj”, potem „⇅ SS” przy ćwiczeniu łączy je z następnym (w trakcie treningu ten sam przycisk jest przy ćwiczeniu) — przerwa liczy się po ostatnim ćwiczeniu grupy.": "Superset nastavíš v šablóne: „Upraviť“, potom „⇅ SS“ pri cviku ho spojí s ďalším (počas tréningu je rovnaké tlačidlo pri cviku) — pauza začína po poslednom cviku skupiny.",
+ "Gumy…": "Gumy…"
 }

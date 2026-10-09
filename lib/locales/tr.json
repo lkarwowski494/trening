@@ -652,7 +652,6 @@
  "usunięte ćwiczenie z historią": "geçmişi olan silinmiş egzersiz",
  "Usuń": "Sil",
  "Usuń ćwiczenie: {name}": "Egzersizi kaldır: {name}",
- "Usuń gumy…": "Bantları sil…",
  "Usuń odznaczone": "İşaretsizleri kaldır",
  "Usuń serię {n} — {ex}": "Seti sil: {n} — {ex}",
  "Usuń sesję": "Oturumu sil",
@@ -1279,5 +1278,6 @@
  "Inteligentna stacja kablowa — pełna (1,5–65 kg/str.)": "Akıllı kablo istasyonu — tam boy (1,5–65 kg/taraf)",
  "Przenośna stacja elektryczna, jedna linka (5–200 lb)": "Taşınabilir elektrikli kablo ünitesi, tek kablo (5–200 lb)",
  "Inteligentna stacja kablowa — kompaktowa (1,5–35 kg/str.)": "Akıllı kablo istasyonu — kompakt (1,5–35 kg/taraf)",
- "Superset ustawisz w szablonie: „Edytuj”, potem „⇅ SS” przy ćwiczeniu łączy je z następnym (w trakcie treningu ten sam przycisk jest przy ćwiczeniu) — przerwa liczy się po ostatnim ćwiczeniu grupy.": "Şablonda süperset kurmak için “Düzenle”ye dokunun, ardından egzersizdeki “⇅ SS” onu sonrakiyle birleştirir (antrenman sırasında aynı düğme egzersizin yanındadır) — dinlenme grubun son egzersizinden sonra başlar."
+ "Superset ustawisz w szablonie: „Edytuj”, potem „⇅ SS” przy ćwiczeniu łączy je z następnym (w trakcie treningu ten sam przycisk jest przy ćwiczeniu) — przerwa liczy się po ostatnim ćwiczeniu grupy.": "Şablonda süperset kurmak için “Düzenle”ye dokunun, ardından egzersizdeki “⇅ SS” onu sonrakiyle birleştirir (antrenman sırasında aynı düğme egzersizin yanındadır) — dinlenme grubun son egzersizinden sonra başlar.",
+ "Gumy…": "Bantlar…"
 }

@@ -632,7 +632,6 @@
  "usunięte ćwiczenie z historią": "kustutatud harjutus koos ajalooga",
  "Usuń": "Kustuta",
  "Usuń ćwiczenie: {name}": "Eemalda harjutus: {name}",
- "Usuń gumy…": "Kustuta kummid…",
  "Usuń odznaczone": "Eemalda märkimata",
  "Usuń serię {n} — {ex}": "Kustuta seeria {n} — {ex}",
  "Usuń sesję": "Kustuta treening",
@@ -1279,5 +1278,6 @@
  "Inteligentna stacja kablowa — pełna (1,5–65 kg/str.)": "Nutikas trossijaam — täismõõdus (1,5–65 kg/pool)",
  "Przenośna stacja elektryczna, jedna linka (5–200 lb)": "Kaasaskantav elektriline trossiseade, üks tross (5–200 lb)",
  "Inteligentna stacja kablowa — kompaktowa (1,5–35 kg/str.)": "Nutikas trossijaam — kompaktne (1,5–35 kg/pool)",
- "Superset ustawisz w szablonie: „Edytuj”, potem „⇅ SS” przy ćwiczeniu łączy je z następnym (w trakcie treningu ten sam przycisk jest przy ćwiczeniu) — przerwa liczy się po ostatnim ćwiczeniu grupy.": "Superseeria määrad mallis: „Muuda“, seejärel ühendab „⇅ SS“ harjutuse juures selle järgmisega (treeningu ajal on sama nupp harjutuse juures) — paus algab pärast rühma viimast harjutust."
+ "Superset ustawisz w szablonie: „Edytuj”, potem „⇅ SS” przy ćwiczeniu łączy je z następnym (w trakcie treningu ten sam przycisk jest przy ćwiczeniu) — przerwa liczy się po ostatnim ćwiczeniu grupy.": "Superseeria määrad mallis: „Muuda“, seejärel ühendab „⇅ SS“ harjutuse juures selle järgmisega (treeningu ajal on sama nupp harjutuse juures) — paus algab pärast rühma viimast harjutust.",
+ "Gumy…": "Kummid…"
 }

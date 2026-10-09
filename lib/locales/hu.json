@@ -632,7 +632,6 @@
  "usunięte ćwiczenie z historią": "törölt gyakorlat előzményekkel",
  "Usuń": "Törlés",
  "Usuń ćwiczenie: {name}": "Gyakorlat eltávolítása: {name}",
- "Usuń gumy…": "Gumiszalagok törlése…",
  "Usuń odznaczone": "Kipipálatlanok törlése",
  "Usuń serię {n} — {ex}": "{n}. sorozat törlése — {ex}",
  "Usuń sesję": "Edzés törlése",
@@ -1279,5 +1278,6 @@
  "Inteligentna stacja kablowa — pełna (1,5–65 kg/str.)": "Okos kábeles gép — teljes (1,5–65 kg/oldal)",
  "Przenośna stacja elektryczna, jedna linka (5–200 lb)": "Hordozható elektromos kábeles egység, egy kábel (5–200 lb)",
  "Inteligentna stacja kablowa — kompaktowa (1,5–35 kg/str.)": "Okos kábeles gép — kompakt (1,5–35 kg/oldal)",
- "Superset ustawisz w szablonie: „Edytuj”, potem „⇅ SS” przy ćwiczeniu łączy je z następnym (w trakcie treningu ten sam przycisk jest przy ćwiczeniu) — przerwa liczy się po ostatnim ćwiczeniu grupy.": "A szuperszettet a sablonban állítod be: „Szerkesztés”, majd a gyakorlatnál a „⇅ SS” összekapcsolja a következővel (edzés közben ugyanez a gomb a gyakorlatnál van) — a pihenő a csoport utolsó gyakorlata után indul."
+ "Superset ustawisz w szablonie: „Edytuj”, potem „⇅ SS” przy ćwiczeniu łączy je z następnym (w trakcie treningu ten sam przycisk jest przy ćwiczeniu) — przerwa liczy się po ostatnim ćwiczeniu grupy.": "A szuperszettet a sablonban állítod be: „Szerkesztés”, majd a gyakorlatnál a „⇅ SS” összekapcsolja a következővel (edzés közben ugyanez a gomb a gyakorlatnál van) — a pihenő a csoport utolsó gyakorlata után indul.",
+ "Gumy…": "Gumiszalagok…"
 }

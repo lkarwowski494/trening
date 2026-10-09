@@ -632,7 +632,6 @@
  "usunięte ćwiczenie z historią": "ejercicio eliminado con historial",
  "Usuń": "Eliminar",
  "Usuń ćwiczenie: {name}": "Quitar ejercicio: {name}",
- "Usuń gumy…": "Eliminar bandas…",
  "Usuń odznaczone": "Quitar no marcadas",
  "Usuń serię {n} — {ex}": "Eliminar serie {n} — {ex}",
  "Usuń sesję": "Eliminar sesión",
@@ -1279,5 +1278,6 @@
  "Inteligentna stacja kablowa — pełna (1,5–65 kg/str.)": "Estación de poleas inteligente — completa (1,5–65 kg/lado)",
  "Przenośna stacja elektryczna, jedna linka (5–200 lb)": "Unidad eléctrica portátil de polea, un cable (5–200 lb)",
  "Inteligentna stacja kablowa — kompaktowa (1,5–35 kg/str.)": "Estación de poleas inteligente — compacta (1,5–35 kg/lado)",
- "Superset ustawisz w szablonie: „Edytuj”, potem „⇅ SS” przy ćwiczeniu łączy je z następnym (w trakcie treningu ten sam przycisk jest przy ćwiczeniu) — przerwa liczy się po ostatnim ćwiczeniu grupy.": "La superserie se configura en la plantilla: «Editar» y luego «⇅ SS» en un ejercicio lo une con el siguiente (durante el entrenamiento el mismo botón está en el ejercicio); el descanso empieza tras el último ejercicio del grupo."
+ "Superset ustawisz w szablonie: „Edytuj”, potem „⇅ SS” przy ćwiczeniu łączy je z następnym (w trakcie treningu ten sam przycisk jest przy ćwiczeniu) — przerwa liczy się po ostatnim ćwiczeniu grupy.": "La superserie se configura en la plantilla: «Editar» y luego «⇅ SS» en un ejercicio lo une con el siguiente (durante el entrenamiento el mismo botón está en el ejercicio); el descanso empieza tras el último ejercicio del grupo.",
+ "Gumy…": "Bandas…"
 }

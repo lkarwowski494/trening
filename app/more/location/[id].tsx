@@ -67,7 +67,7 @@ function BandLevels({ l, levels, label }: { l: Location; levels?: number[]; labe
           <Muted maxFontSizeMultiplier={NUM_SCALE_MAX} style={{ width: 70 }}>{t('poziom {n}', { n })}</Muted>
           <View style={{ flex: 1 }}><BandColorInput band={b} accessibilityLabel={`${t('Kolor gumy')}: ${t('poziom {n}', { n })}`} /* G2 (audyt 0.10): ta sama zasada co ekran Gumy */ /></View>
         </View>) : null; })}
-      <Btn nav title={t('Usuń gumy…')} small kind="ghost" style={{ alignSelf: 'flex-start' }} onPress={() => router.push('/more/bands')} />
+      <Btn nav title={t('Gumy…') /* UI2-09: ekran gum to dodawanie, edycja i usuwanie */} small kind="ghost" style={{ alignSelf: 'flex-start' }} onPress={() => router.push('/more/bands')} />
     </View>
   );
 }

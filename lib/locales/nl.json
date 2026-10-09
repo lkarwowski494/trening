@@ -652,7 +652,6 @@
  "usunięte ćwiczenie z historią": "verwijderde oefening met geschiedenis",
  "Usuń": "Verwijder",
  "Usuń ćwiczenie: {name}": "Verwijder oefening: {name}",
- "Usuń gumy…": "Verwijder banden…",
  "Usuń odznaczone": "Verwijder uitgevinkte",
  "Usuń serię {n} — {ex}": "Verwijder set {n} — {ex}",
  "Usuń sesję": "Verwijder sessie",
@@ -1279,5 +1278,6 @@
  "Inteligentna stacja kablowa — pełna (1,5–65 kg/str.)": "Slim kabelstation — volledig (1,5–65 kg/kant)",
  "Przenośna stacja elektryczna, jedna linka (5–200 lb)": "Draagbare elektrische kabelunit, één kabel (5–200 lb)",
  "Inteligentna stacja kablowa — kompaktowa (1,5–35 kg/str.)": "Slim kabelstation — compact (1,5–35 kg/kant)",
- "Superset ustawisz w szablonie: „Edytuj”, potem „⇅ SS” przy ćwiczeniu łączy je z następnym (w trakcie treningu ten sam przycisk jest przy ćwiczeniu) — przerwa liczy się po ostatnim ćwiczeniu grupy.": "Een superset stel je in het sjabloon in: ‘Wijzig’, daarna koppelt ‘⇅ SS’ bij een oefening die aan de volgende (tijdens de training staat dezelfde knop bij de oefening) — de rust begint na de laatste oefening van de groep."
+ "Superset ustawisz w szablonie: „Edytuj”, potem „⇅ SS” przy ćwiczeniu łączy je z następnym (w trakcie treningu ten sam przycisk jest przy ćwiczeniu) — przerwa liczy się po ostatnim ćwiczeniu grupy.": "Een superset stel je in het sjabloon in: ‘Wijzig’, daarna koppelt ‘⇅ SS’ bij een oefening die aan de volgende (tijdens de training staat dezelfde knop bij de oefening) — de rust begint na de laatste oefening van de groep.",
+ "Gumy…": "Banden…"
 }

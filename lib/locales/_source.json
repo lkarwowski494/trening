@@ -1206,6 +1206,10 @@
   "en": "Resistance bands"
  },
  {
+  "pl": "Gumy…",
+  "en": "Bands…"
+ },
+ {
   "pl": "hack squat",
   "en": "hack squat"
  },
@@ -4301,10 +4305,6 @@
  {
   "pl": "Usuń gumę: {name}",
   "en": "Delete band: {name}"
- },
- {
-  "pl": "Usuń gumy…",
-  "en": "Delete bands…"
  },
  {
   "pl": "Usuń miejsce: {name}",

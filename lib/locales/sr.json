@@ -632,7 +632,6 @@
  "usunięte ćwiczenie z historią": "обрисана вежба са историјом",
  "Usuń": "Обриши",
  "Usuń ćwiczenie: {name}": "Уклони вежбу: {name}",
- "Usuń gumy…": "Обриши гуме…",
  "Usuń odznaczone": "Уклони неозначене",
  "Usuń serię {n} — {ex}": "Обриши серију {n} — {ex}",
  "Usuń sesję": "Обриши сесију",
@@ -1279,5 +1278,6 @@
  "Inteligentna stacja kablowa — pełna (1,5–65 kg/str.)": "Паметна станица са сајлом — пуна (1,5–65 kg/страни)",
  "Przenośna stacja elektryczna, jedna linka (5–200 lb)": "Преносива електрична јединица са сајлом, једна сајла (5–200 lb)",
  "Inteligentna stacja kablowa — kompaktowa (1,5–35 kg/str.)": "Паметна станица са сајлом — компактна (1,5–35 kg/страни)",
- "Superset ustawisz w szablonie: „Edytuj”, potem „⇅ SS” przy ćwiczeniu łączy je z następnym (w trakcie treningu ten sam przycisk jest przy ćwiczeniu) — przerwa liczy się po ostatnim ćwiczeniu grupy.": "Суперсет постављаш у шаблону: „Измени”, затим „⇅ SS” уз вежбу повезује је са следећом (током тренинга исто дугме је уз вежбу) — одмор почиње после последње вежбе групе."
+ "Superset ustawisz w szablonie: „Edytuj”, potem „⇅ SS” przy ćwiczeniu łączy je z następnym (w trakcie treningu ten sam przycisk jest przy ćwiczeniu) — przerwa liczy się po ostatnim ćwiczeniu grupy.": "Суперсет постављаш у шаблону: „Измени”, затим „⇅ SS” уз вежбу повезује је са следећом (током тренинга исто дугме је уз вежбу) — одмор почиње после последње вежбе групе.",
+ "Gumy…": "Гуме…"
 }

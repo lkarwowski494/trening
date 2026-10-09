@@ -652,7 +652,6 @@
  "usunięte ćwiczenie z historią": "exercice supprimé avec historique",
  "Usuń": "Supprimer",
  "Usuń ćwiczenie: {name}": "Retirer l’exercice : {name}",
- "Usuń gumy…": "Supprimer des élastiques…",
  "Usuń odznaczone": "Retirer les décochés",
  "Usuń serię {n} — {ex}": "Supprimer la série {n} — {ex}",
  "Usuń sesję": "Supprimer la séance",
@@ -1279,5 +1278,6 @@
  "Inteligentna stacja kablowa — pełna (1,5–65 kg/str.)": "Station à poulie connectée — complète (1,5–65 kg/côté)",
  "Przenośna stacja elektryczna, jedna linka (5–200 lb)": "Unité électrique portable à câble, un seul câble (5–200 lb)",
  "Inteligentna stacja kablowa — kompaktowa (1,5–35 kg/str.)": "Station à poulie connectée — compacte (1,5–35 kg/côté)",
- "Superset ustawisz w szablonie: „Edytuj”, potem „⇅ SS” przy ćwiczeniu łączy je z następnym (w trakcie treningu ten sam przycisk jest przy ćwiczeniu) — przerwa liczy się po ostatnim ćwiczeniu grupy.": "Pour régler un superset dans le modèle, touchez « Modifier », puis « ⇅ SS » sur un exercice le lie au suivant (pendant la séance, le même bouton se trouve sur l’exercice) — le repos commence après le dernier exercice du groupe."
+ "Superset ustawisz w szablonie: „Edytuj”, potem „⇅ SS” przy ćwiczeniu łączy je z następnym (w trakcie treningu ten sam przycisk jest przy ćwiczeniu) — przerwa liczy się po ostatnim ćwiczeniu grupy.": "Pour régler un superset dans le modèle, touchez « Modifier », puis « ⇅ SS » sur un exercice le lie au suivant (pendant la séance, le même bouton se trouve sur l’exercice) — le repos commence après le dernier exercice du groupe.",
+ "Gumy…": "Élastiques…"
 }
