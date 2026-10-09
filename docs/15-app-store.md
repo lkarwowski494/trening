@@ -109,6 +109,8 @@ Rozmowa 05.10.2026, rano: „Chciałbym móc opublikować to w Apple Store” i 
       rozstrzyga): A) własny kod na osobę (np. KOLEGA-JAN) z limitem 1 użycia, bez daty ważności — nie wiadomo, czy limit 1 jest dozwolony
       i czy jedna oferta mieści wiele własnych kodów („up to 10 active offers per subscription SKU”); B) partia kodów jednorazowych
       (minimum 500 w partii, ważne do 6 miesięcy od utworzenia — niewykorzystane wygasają bez kosztów), po jednym kodzie na osobę.
+      **Wybór właściciela 09.10.2026: A** (własne kody); B tylko jako plan zapasowy, jeśli App Store Connect nie pozwoli na limit 1 użycia
+      albo wiele własnych kodów w jednej ofercie (sprawdzić przy wdrożeniu, wynik tutaj).
   - **Do sprawdzenia w App Store Connect** (nie zgadujemy): czy punkty cenowe 0,99 EUR/GBP, 3,99 PLN i 19,99 PLN istnieją w siatce cen Apple.
 - **Cel przychodu (właściciel 06.10.2026):** ~2000 zł miesięcznie; model bez zmian: 30 dni za darmo, potem jednorazowa płatność.
   Rachunek orientacyjny (agent, do sprawdzenia): z ceny w App Store odpada VAT kraju kupującego (PL 23%) i prowizja Apple (15% w Small Business
