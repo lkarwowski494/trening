@@ -102,8 +102,12 @@ o trudności zmieszczenia serii — szczegóły partii poniżej 10 serii pokazuj
 
 - **Ogólny, opis celu** (2 zdania): {s} serie na ćwiczenie, {a}–{b} powtórzeń (w domu {c}–{d}), do chwili, gdy kolejne powtórzenie byłoby trudne;
   WHO 2020 zaleca ćwiczenia wzmacniające wszystkie główne partie co najmniej {n} dni w tygodniu (c1, c8).
-- **Ogólny, 1 dzień** (`oneday`): {k} dzień siłowy to mniej niż zalecenie WHO 2020 (co najmniej {n} dni); na początek to dobry krok — wytyczne USA 2018
-  radzą zacząć od {k} dnia i z czasem dojść do {n}; trochę ruchu jest lepsze niż żaden (c1, c29, c14).
+- **Ogólny, 1 dzień** (`oneday`): {k} dzień siłowy to mniej niż zalecenie WHO 2020 (co najmniej {n} dni); na początek to dobry krok — według wytycznych USA 2018
+  na początku można ćwiczyć siłowo tylko {k} dzień w tygodniu, a z czasem dojść do {n}; trochę ruchu jest lepsze niż żaden (c1, c29, c14).
+  (09.10.2026, audyt A11B-6: było „radzą zacząć” — c29 mówi „can be done”, więc „można”.)
+- **Ogólny, „Na czym to oparte” — Serie** (09.10.2026, audyt A11B-2: było „wytyczne USA 2018, ACSM 2011, ACSM 2026: jedna seria działa” — przypisywało
+  „jedna seria” także ACSM 2026): {s} na ćwiczenie, dla zdrowia zwykle {s}–{b}; ACSM 2026 zaleca co najmniej {m} (22/7g); wytyczne USA 2018: jedna seria
+  działa, {s}–{b} mogą działać lepiej (c8); ACSM 2011: jedna seria może wystarczyć, zwłaszcza u początkujących i starszych (c4); {s} = dolna granica, uproszczenie.
 - **Każdy cel, partia < {n} dni** — istniejące ostrzeżenie `rare` zostaje w podglądzie (lista partii; R1).
 - Odrzucone szkice: osobna uwaga dla siły (ACSM 2026 ≥ 2 sesje) i masy (10 serii) obok `oneday` — powtarzałyby `oneday`, `rare` i `below`.
 

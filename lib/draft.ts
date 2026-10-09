@@ -1,4 +1,4 @@
-import { getState, save, markDraft, clampName, NAME_MAX, setTemplateNote, deleteTemplate, exerciseUsed, exerciseEdited, registerDraftStore, draftsChanged, takeSavedDrafts, sanitizeDraftObj, DRAFTS_KEY } from './store';
+import { getState, save, markDraft, clampName, NAME_MAX, setTemplateNote, deleteTemplate, exerciseUsed, exerciseEdited, registerDraftStore, draftsChanged, takeSavedDrafts, sanitizeDraftObj, DRAFTS_KEY, onStateReplaced } from './store';
 import type { Exercise, Template } from './seed';
 import { t } from './i18n';
 
@@ -129,3 +129,6 @@ export function restoreObjDrafts(): RestoredDraft[] {
 /** „Odrzuć zmiany” w pytaniu po starcie: szkic znika, a nowy (nigdy niezapisany) obiekt — razem z nim. */
 export function dropRestored(r: Pick<RestoredDraft, 'kind' | 'id'>) { const d = drafts.get(k(r.kind, r.id)); discardObjDraft(r.kind, r.id); if (d?.isNew) dropUnsavedNew(r.kind, r.id); }
 export function __resetObjDrafts() { drafts.clear(); }
+/* A11B-1: import i reset (store.replaceState) — szkice znikają z pamięci i z bazy (pusty zbiór → writeDrafts kasuje klucz; flush po imporcie
+ * i resecie zapisuje to od razu). Bez cofania skutków (undoEffects): dotyczą danych sprzed zastąpienia. */
+onStateReplaced(() => { drafts.clear(); draftsChanged(); });

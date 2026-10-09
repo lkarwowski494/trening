@@ -31,7 +31,7 @@ const shares = (a: Set<string>, b: Set<string>) => [...a].some(m => b.has(m));
 const pairsOf = (prim: (d: number) => Set<string>) => { const out: [number, number][] = []; for (let d = 0; d < 7; d++) if (shares(prim(d), prim((d + 1) % 7))) out.push([d, (d + 1) % 7]); return out; };
 /** Oczekiwana liczba sesji cardio — niezależnie od lib: przełącznik i co najmniej 4 dni → dni powyżej 3. */
 const expCardio = (n: number, cardio: boolean) => (cardio && n >= 4 ? n - 3 : 0);
-const ONEDAY_GENERAL = '1 dzień siłowy w tygodniu to mniej niż zalecenie WHO 2020 (co najmniej 2 dni). Na początek to dobry krok: wytyczne USA 2018 radzą zacząć od 1 dnia i z czasem dojść do 2 — trochę ruchu jest lepsze niż żaden.';
+const ONEDAY_GENERAL = '1 dzień siłowy w tygodniu to mniej niż zalecenie WHO 2020 (co najmniej 2 dni). Na początek to dobry krok: według wytycznych USA 2018 na początku można ćwiczyć siłowo tylko 1 dzień w tygodniu, a z czasem dojść do 2 — trochę ruchu jest lepsze niż żaden.';
 
 /** Wspólna wyrocznia jednego wyniku celu „Ogólny” (liczona niezależnie od lib, poza budżetem serii — wzór sprawdzany osobno). */
 function oracle(i: GenInput, r: GenResult, n: number) {
@@ -152,6 +152,6 @@ describe('cel „Ogólny” — zapis i dane', () => {
     expect(genNote()).toBe('Wysiłek: zwykle 0–3 powtórzenia w zapasie (RIR); do upadku nie trzeba.'); expect(genNote('hypertrophy')).toBe(genNote());
     applyLang('en'); expect(genNote('general')).toBe('Effort: until another repetition would be hard; you do not need to go to failure.');
     expect(genPlanName(inp({ days: [0, 3] }))).toBe('General fitness, 2× per week · Full gym');
-    const i = inp({ days: [1] }); expect(previewWarnings(generate(i), i).find(x => x.kind === 'oneday')!.text).toBe('1 strength day a week is less than the WHO 2020 recommendation (at least 2 days). It is a good first step: the US guidelines 2018 suggest starting with 1 day and building up to 2 over time — some activity is better than none.');
+    const i = inp({ days: [1] }); expect(previewWarnings(generate(i), i).find(x => x.kind === 'oneday')!.text).toBe('1 strength day a week is less than the WHO 2020 recommendation (at least 2 days). It is a good first step: according to the US guidelines 2018, strength training can be done just 1 day a week at first and built up to 2 over time — some activity is better than none.');
   });
 });

@@ -28,6 +28,10 @@
   "en": "“Skip today” skips the rest of an exercise’s sets in this workout."
  },
  {
+  "pl": "„Technika”: wskazówki do ćwiczenia otworzysz też z treningu i z szablonu.",
+  "en": "“Technique”: open the exercise tips from a workout and from a template too."
+ },
+ {
   "pl": "„Wygeneruj szablony i plan” (Szablony albo Plan tygodnia): wybierz cel, miejsce, liczbę i długość sesji.",
   "en": "“Generate templates and plan” (Templates or Weekly plan): choose goal, place, number and length of sessions."
  },
@@ -56,8 +60,8 @@
   "en": "{goal}, {n}× per week · {place}"
  },
  {
-  "pl": "{k} dzień siłowy w tygodniu to mniej niż zalecenie WHO 2020 (co najmniej {n} dni). Na początek to dobry krok: wytyczne USA 2018 radzą zacząć od {k} dnia i z czasem dojść do {n} — trochę ruchu jest lepsze niż żaden.",
-  "en": "{k} strength day a week is less than the WHO 2020 recommendation (at least {n} days). It is a good first step: the US guidelines 2018 suggest starting with {k} day and building up to {n} over time — some activity is better than none."
+  "pl": "{k} dzień siłowy w tygodniu to mniej niż zalecenie WHO 2020 (co najmniej {n} dni). Na początek to dobry krok: według wytycznych USA 2018 na początku można ćwiczyć siłowo tylko {k} dzień w tygodniu, a z czasem dojść do {n} — trochę ruchu jest lepsze niż żaden.",
+  "en": "{k} strength day a week is less than the WHO 2020 recommendation (at least {n} days). It is a good first step: according to the US guidelines 2018, strength training can be done just {k} day a week at first and built up to {n} over time — some activity is better than none."
  },
  {
   "pl": "{k}: {v}",
@@ -1126,6 +1130,10 @@
   "en": "Edit template"
  },
  {
+  "pl": "Ekran Trening w nowym układzie; „Powtórz ostatni” z nazwą i datą.",
+  "en": "The Workout screen has a new layout; “Repeat last” shows the name and date."
+ },
+ {
   "pl": "Ekran włączony podczas treningu",
   "en": "Keep screen on during workout"
  },
@@ -1208,6 +1216,10 @@
  {
   "pl": "Generator szablonów i planu tygodnia na Twoje polecenie (cel, miejsce, liczba i długość sesji) oraz kilka planów z wyborem aktywnego.",
   "en": "Template and weekly plan generator on request (goal, place, number and length of sessions) and several plans with a choice of the active one."
+ },
+ {
+  "pl": "Generator: wybór dni tygodnia, od {a} do {b} dni, cel „Ogólny” i „Plan z moich szablonów”.",
+  "en": "Generator: choose the days of the week, from {a} to {b} days, the “General fitness” goal and “Plan from my templates”."
  },
  {
   "pl": "GHD",
@@ -1656,6 +1668,10 @@
  {
   "pl": "krok",
   "en": "step"
+ },
+ {
+  "pl": "Krótka animacja przy starcie: talerze wsuwają się na gryf.",
+  "en": "A short animation at launch: plates slide onto the bar."
  },
  {
   "pl": "landmine",
@@ -2438,6 +2454,10 @@
   "en": "Unsaved changes"
  },
  {
+  "pl": "Niezapisane zmiany w edycji szablonu i ćwiczenia przetrwają zamknięcie aplikacji — po starcie wrócisz do edycji albo je odrzucisz.",
+  "en": "Unsaved changes while editing a template or exercise survive the app being closed — after launch you can go back to editing or discard them."
+ },
+ {
   "pl": "niszowe ukryte: {n} — znajdziesz je wyszukiwaniem",
   "en": "niche hidden: {n} — find them by searching"
  },
@@ -2522,12 +2542,20 @@
   "en": "A new template with this session’s exercises and sets."
  },
  {
+  "pl": "Nowy wygląd z ikony: znacznik dnia jak ikona aplikacji, stosy talerzy z procentem planu tygodnia, filiżanka w dzień odpoczynku, podsumowanie miesiąca jako stosy.",
+  "en": "New look from the icon: the day marker looks like the app icon, plate stacks show the percentage of the weekly plan, a cup on rest days, the monthly summary as stacks."
+ },
+ {
   "pl": "Nowy wygląd: kolory i kroje, grafika talerzy na sztandze.",
   "en": "New look: colours and typefaces, plate graphics on the bar."
  },
  {
   "pl": "np. samopoczucie, ból, sprzęt",
   "en": "e.g. how you feel, pain, equipment"
+ },
+ {
+  "pl": "Numer buildu w „O aplikacji”.",
+  "en": "Build number in “About”."
  },
  {
   "pl": "O aplikacji",
@@ -2592,6 +2620,14 @@
  {
   "pl": "Od {date}: tydzień deload. Przy starcie treningu zaproponuję {less}, ciężary bez zmian.",
   "en": "From {date}: deload week. When you start a workout I will suggest {less}, same weights."
+ },
+ {
+  "pl": "Od 0.10: biblioteka ćwiczeń uporządkowana — podobne warianty scalone, rzadsze widać po wyłączeniu filtra „Podstawowe” (Twoje treningi bez zmian); masa ciała z datą i e1RM w podciąganiu i pompkach, wskazówki techniki z rysunkiem ruchu, „Zapisz jako szablon” w historii.",
+  "en": "Since 0.10: a tidier exercise library — similar variants merged, rarer ones appear when you turn off the “Basic” filter (your workouts stay the same); body weight with a date and e1RM for pull-ups and push-ups, technique tips with a movement drawing, “Save as template” in history."
+ },
+ {
+  "pl": "Od 0.10: szablon i ćwiczenie otwierają się w podglądzie — zmiany zaczynasz przyciskiem „Edytuj” i zatwierdzasz „Zapisz”.",
+  "en": "Since 0.10: templates and exercises open in a preview — start changes with “Edit” and confirm them with “Save”."
  },
  {
   "pl": "Odhacz bez pomiaru",
@@ -3705,8 +3741,8 @@
   "en": "Sets: {s} per exercise — ACSM 2026 advises at least {m}; more sets usually give a little more, with diminishing returns. {s} is a simplification."
  },
  {
-  "pl": "Serie: {s} na ćwiczenie — dla zdrowia zwykle {s}–{b} (wytyczne USA 2018, ACSM 2011, ACSM 2026: jedna seria działa, więcej zwykle trochę lepiej); {s} to dolna granica — uproszczenie.",
-  "en": "Sets: {s} per exercise — for health usually {s}–{b} (US guidelines 2018, ACSM 2011, ACSM 2026: one set works, more is usually a little better); {s} is the lower end — a simplification."
+  "pl": "Serie: {s} na ćwiczenie — dla zdrowia zwykle {s}–{b}. ACSM 2026 zaleca co najmniej {m}. Wytyczne USA 2018: jedna seria działa, {s}–{b} mogą działać lepiej; ACSM 2011: jedna seria może wystarczyć, zwłaszcza u początkujących i starszych. {s} to dolna granica — uproszczenie.",
+  "en": "Sets: {s} per exercise — for health usually {s}–{b}. ACSM 2026 recommends at least {m}. US guidelines 2018: one set works, {s}–{b} may work better; ACSM 2011: one set can be enough, especially for beginners and older adults. {s} is the lower end — a simplification."
  },
  {
   "pl": "serii",
@@ -4961,6 +4997,10 @@
  {
   "pl": "Wysiłek: zwykle {a}–{b} powtórzenia w zapasie (RIR); do upadku nie trzeba.",
   "en": "Effort: usually {a}–{b} reps in reserve (RIR); training to failure is not needed."
+ },
+ {
+  "pl": "Wyszukiwanie ćwiczeń także po dawnej nazwie.",
+  "en": "Exercise search also finds former names."
  },
  {
   "pl": "wyszukiwanie obejmuje też niszowe",

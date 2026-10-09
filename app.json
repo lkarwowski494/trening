@@ -2,7 +2,7 @@
   "expo": {
     "name": "Trening",
     "slug": "trening",
-    "version": "0.10.0",
+    "version": "0.11.0",
     "scheme": "trening",
     "orientation": "portrait",
     "userInterfaceStyle": "automatic",

@@ -1,5 +1,5 @@
 import { useSyncExternalStore } from 'react';
-import { wallTs, fromWallTs, tzOffsetAt, pausedTotal, cleanPauses, getState, exById, isBW, restFor, occurrence, occurrences, normalizeGroups, assistLost, emptySet, copyVals, stripUnused, previousBlockBefore, offListAt, offListNote, srcSetAt, prevFromOther, startLocationId, stampImpl, setHasResult, putHistoryWorkout, loadOf, writeLoad, pinnedImpl, localISODate, clampName, NAME_MAX, locationById, tplRows } from './store';
+import { wallTs, fromWallTs, tzOffsetAt, pausedTotal, cleanPauses, getState, exById, isBW, restFor, occurrence, occurrences, normalizeGroups, assistLost, emptySet, copyVals, stripUnused, previousBlockBefore, offListAt, offListNote, srcSetAt, prevFromOther, startLocationId, stampImpl, setHasResult, putHistoryWorkout, loadOf, writeLoad, pinnedImpl, localISODate, clampName, NAME_MAX, locationById, tplRows, onStateReplaced } from './store';
 import { implsAt, loadKindsFor } from './equipment';
 import { base, uid, hasTime, hasReps, hasWeight, hasDistance, type TRow, type Exercise, type Impl, type Workout, type WExercise, type WSet } from './seed';
 import { t } from './i18n';
@@ -346,3 +346,5 @@ export function commitDraft(key: string, now = Date.now()): { w: Workout } | { e
 }
 /** Tylko dla testów. */
 export function __resetDrafts() { drafts.clear(); rev++; }
+/* A11B-1: import i reset (store.replaceState) — szkic edycji treningu dotyczy danych sprzed zastąpienia; otwarty ekran edycji bez szkicu pokazuje „Brak sesji.” i „Wróć”. */
+onStateReplaced(() => { if (drafts.size) { drafts.clear(); touchDraft(); } });

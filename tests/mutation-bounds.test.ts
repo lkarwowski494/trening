@@ -134,8 +134,8 @@ describe('dashboard', () => {
 
 describe('whatsnew', () => {
   test('wpisy od najnowszego, każdy z tekstami; kropka tylko u kogoś z treningiem; otwarcie — przeczytane, bez zbędnego zapisu', () => {
-    expect(WHATS_NEW.map(w => w.id)).toEqual(['2026-10-08', '2026-10-07', '2026-10-06']); expect(WHATS_NEW.map(w => w.build)).toEqual([undefined, 1002, 1001]);
-    expect(WHATS_NEW.map(w => w.items().length)).toEqual([9, 3, 2]); expect(WHATS_NEW.every(w => w.items().every(x => typeof x === 'string' && x.length > 10))).toBe(true);
+    expect(WHATS_NEW.map(w => w.id)).toEqual(['2026-10-09', '2026-10-08', '2026-10-07', '2026-10-06']); expect(WHATS_NEW.map(w => w.build)).toEqual([undefined, 1004, 1002, 1001]);
+    expect(WHATS_NEW.map(w => w.items().length)).toEqual([10, 9, 3, 2]); expect(WHATS_NEW.every(w => w.items().every(x => typeof x === 'string' && x.length > 10))).toBe(true);
     expect(whatsNewUnseen()).toBe(false); /* nowa osoba */
     addWorkout(at('2026-10-06'), [['Back Squat', [{ weight: 100, reps: 5 }]]]); expect(whatsNewUnseen()).toBe(true);
     markWhatsNewSeen(); expect(S().whatsNewSeen).toBe(WHATS_NEW[0].id); expect(whatsNewUnseen()).toBe(false);
