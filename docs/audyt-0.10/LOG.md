@@ -180,4 +180,4 @@ Uwaga wstępna: worktree startował na f435c8c. Do czasu przełączenia przez ko
 - **Pozostałe:** signing (dni do wygaśnięcia przy zmianie czasu, `reminderAt`, rodzaj odnowienia); swap (determinizm, wagi = docs/14 pkt 6); musclemap (progi stopni, wszystkie 12 partii ma kształt); equipvis (okno stosu, hantle n/eachKg); w katalogu żaden mięsień nie jest jednocześnie główny i pomocniczy (brak podwójnego liczenia).
 - **Stałe zgodne z dokumentacją:** godzina przypomnienia 8, `RETURN_DAYS` = 10, `WEEKLY_SETS_MARK` = 10, porzucony trening 2 h / 6 h, presety sprzętu z docs/10.
 
-Pliki sond (do ponownego użycia, niecommitowane): `/home/user/trening/.claude/worktrees/agent-a02db1e214024d1be/tests/zz-audit-log-*.test.ts`. Wyniki JSON: `/tmp/claude-0/-home-user-trening/ff1266f8-cce8-5fe6-b038-09db1e9b7165/scratchpad/log-*.json`.
+Pliki sond (do ponownego użycia, niecommitowane): `<worktree audytora, poza repo>/tests/zz-audit-log-*.test.ts`. Wyniki JSON: `<scratchpad sesji audytu, poza repo>/log-*.json`.

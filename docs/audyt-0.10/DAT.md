@@ -156,5 +156,5 @@ Audyt robiłem na **d2a1e85**. Najpierw czytałem kopię tego commitu wyeksporto
 - **Zmiana czasu:** klucze dat liczone arytmetyką kalendarzową; edytor odrzuca nieistniejące godziny.
 - **Akcje niszczące:** wszystkie 14 w UI mają potwierdzenie; import i czyszczenie danych robią kopię bezpieczeństwa.
 
-Pliki robocze: `/home/user/trening/.claude/worktrees/agent-aad148376fc9bcc0f/tests/zz-audit-dat-{roundtrip,fuzz,compat,tz,probes}.test.ts`. Kopia buildu 1004 i zrzuty danych: `/tmp/claude-0/-home-user-trening/ff1266f8-cce8-5fe6-b038-09db1e9b7165/scratchpad/dat/{old,out}`.
+Pliki robocze: `<worktree audytora, poza repo>/tests/zz-audit-dat-{roundtrip,fuzz,compat,tz,probes}.test.ts`. Kopia buildu 1004 i zrzuty danych: `<scratchpad sesji audytu, poza repo>/dat/{old,out}`.
 

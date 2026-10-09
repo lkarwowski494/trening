@@ -121,3 +121,16 @@ describe('zależności i konfiguracja natywna', () => {
     expect(pkg.expo.autolinking.exclude).toEqual(['@bacons/apple-targets']);
   });
 });
+
+describe('SEC2-08 (audyt kontrolny 1): dokumenty bez identyfikatorów sesji i lokalnych ścieżek agentów', () => {
+  const root = join(__dirname, '..');
+  const docs = (d: string): string[] => require('fs').readdirSync(join(root, d), { withFileTypes: true }).flatMap((e: { name: string; isDirectory: () => boolean }) => e.isDirectory() ? docs(join(d, e.name)) : /\.(md|html|txt)$/.test(e.name) ? [join(d, e.name)] : []);
+  test('docs/, README i CLAUDE.md: bez UUID poza adresami URL, bez ścieżek /tmp/claude-… i .claude/worktrees/agent-…', () => {
+    const UUID = /[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i; const bad: string[] = [];
+    for (const f of [...docs('docs'), 'README.md', 'CLAUDE.md']) readFileSync(join(root, f), 'utf8').split('\n').forEach((l, i) => {
+      const noUrls = l.replace(/https?:\/\/\S+/g, '');
+      if (UUID.test(noUrls) || /\/tmp\/claude-\d+\//.test(l) || /\.claude\/worktrees\/agent-[0-9a-f]+/.test(l)) bad.push(`${f}:${i + 1}`);
+    });
+    expect(bad).toEqual([]);
+  });
+});
