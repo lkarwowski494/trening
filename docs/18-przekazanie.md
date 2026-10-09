@@ -320,3 +320,6 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
   „Powtórz ostatni” w arkuszu (jak na makiecie).
   Doprecyzowanie właściciela (ok. 15:30): karta „Dziś” z paskiem tygodnia i „Następne: …” zostaje na górze, a sekcja „Ten tydzień” z kafelkami
   zostaje; sztanga postępu trafia do „Ten tydzień” (tylko przy planie); duży przycisk startu i „Inny trening” przy karcie „Dziś”.
+- 09.10.2026 (ok. 16:20): właściciel — sekcja „Ostatni trening” na środku ekranu głównego niepotrzebna → usunięta z ekranu głównego w układzie B
+  (ostatni trening widać w arkuszu „Inny trening” → „Powtórz ostatni” z nazwą i datą oraz w Historii/Kalendarzu). Odrzucone: przeniesienie
+  na dół ekranu.
