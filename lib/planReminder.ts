@@ -66,8 +66,10 @@ export async function reminderPermission(): Promise<ReminderPermission> {
  * jest włączone). Odmowa wcześniej — bez okna; stan widać przy przełączniku w Ustawieniach. */
 let askedThisRun = false;
 export async function askReminderPermission(): Promise<void> {
-  if (askedThisRun || !planReminderOn() || (await reminderPermission()) !== 'undetermined') return;
-  askedThisRun = true; /* X-11: jedno okno na uruchomienie — kilka dróg (ekran + PlanReminderSync) nie pyta dwa razy, „Nie teraz” nie wraca przy każdej zmianie planu */
+  if (askedThisRun || !planReminderOn()) return;
+  askedThisRun = true; /* X-11: jedno okno na uruchomienie — kilka dróg (ekran + PlanReminderSync) nie pyta dwa razy, „Nie teraz” nie wraca przy każdej zmianie planu.
+   * E2E 102: znacznik PRZED `await` — dwa wywołania naraz przechodziły warunek i dawały dwa okna */
+  if ((await reminderPermission()) !== 'undetermined') return;
   Alert.alert(t('Przypomnienie o treningu z planu'), t('Rano o {h}:00 w dniu zaplanowanego treningu przyjdzie powiadomienie. Potrzebna jest zgoda na powiadomienia — iOS zapyta o nią po „Dalej”.', { h: PLAN_REMINDER_HOUR }), [
     { text: t('Nie teraz'), style: 'cancel' }, { text: t('Dalej'), onPress: () => { Notifications.requestPermissionsAsync().catch(() => {}); } },
   ]);
