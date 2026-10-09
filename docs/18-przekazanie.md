@@ -387,3 +387,5 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
   fala 5 kk, uz, az; arabski osobnym wydaniem po 1.0.
 - 09.10.2026 (wieczór): właściciel — **„nie kombinujmy”: 0.11 bez nowych języków. Wszystkie nowe języki oprócz arabskiego — w kolejnej wersji
   (po 0.11); arabski — w wersji jeszcze następnej.** Kolejność fal wewnątrz wersji jak wyżej.
+- 09.10.2026 (wieczór): właściciel — **język trudniejszy niż zakładano** (np. nie jest językiem systemu iOS, brak opisu w App Store Connect,
+  krój bez znaków wymagający większej pracy) → odłożony do wydania z arabskim (z zapisanym powodem).
