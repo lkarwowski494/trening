@@ -811,4 +811,5 @@ export const EN: Record<string, string> = {
   'materiały producenta sprzętu': 'materials from an equipment manufacturer',
   'badania naukowe': 'scientific studies',
   'Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka opisana w ankietach jednego zespołu badaczy (jedno źródło), nie wynik badań skuteczności.': 'Training weeks in a row without a deload: {n}. Coaches usually deload every {a}–{b} weeks — this is practice described in surveys by one research team (single source), not a finding on effectiveness.',
+  'RIR wpisuje się w zakresie 0–{max}; więcej niż {max} powtórzeń w zapasie zapisuje się jako „lekko” (RPE {light}), bo poniżej RPE {min} skala opisuje wysiłek słowami, a nie powtórzeniami w zapasie (Helms i in. 2016).': 'Enter RIR from 0 to {max}; more than {max} reps in reserve is saved as “light” (RPE {light}), because below RPE {min} the scale describes effort in words, not reps in reserve (Helms et al. 2016).',
 };

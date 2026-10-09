@@ -1283,5 +1283,6 @@
  "specjalistyczne serwisy treningowe": "spezialisierte Trainingswebsites",
  "materiały producenta sprzętu": "Unterlagen eines Geräteherstellers",
  "badania naukowe": "wissenschaftliche Studien",
- "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka opisana w ankietach jednego zespołu badaczy (jedno źródło), nie wynik badań skuteczności.": "Trainingswochen in Folge ohne Deload: {n}. Trainer machen meist alle {a}–{b} Wochen einen Deload — das ist Praxis aus Umfragen eines einzigen Forschungsteams (eine Quelle), kein Ergebnis zur Wirksamkeit."
+ "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka opisana w ankietach jednego zespołu badaczy (jedno źródło), nie wynik badań skuteczności.": "Trainingswochen in Folge ohne Deload: {n}. Trainer machen meist alle {a}–{b} Wochen einen Deload — das ist Praxis aus Umfragen eines einzigen Forschungsteams (eine Quelle), kein Ergebnis zur Wirksamkeit.",
+ "RIR wpisuje się w zakresie 0–{max}; więcej niż {max} powtórzeń w zapasie zapisuje się jako „lekko” (RPE {light}), bo poniżej RPE {min} skala opisuje wysiłek słowami, a nie powtórzeniami w zapasie (Helms i in. 2016).": "RIR wird von 0 bis {max} eingegeben; mehr als {max} Wiederholungen in Reserve werden als „leicht“ gespeichert (RPE {light}), weil die Skala unter RPE {min} die Anstrengung mit Worten beschreibt, nicht mit Wiederholungen in Reserve (Helms u. a. 2016)."
 }

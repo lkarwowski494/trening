@@ -1283,5 +1283,6 @@
  "specjalistyczne serwisy treningowe": "specializirana spletna mesta o vadbi",
  "materiały producenta sprzętu": "gradiva proizvajalca opreme",
  "badania naukowe": "znanstvene raziskave",
- "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka opisana w ankietach jednego zespołu badaczy (jedno źródło), nie wynik badań skuteczności.": "Tedni treninga zapored brez razbremenitve: {n}. Trenerji običajno naredijo razbremenitev vsakih {a}–{b} tednov — to je praksa, opisana v anketah ene raziskovalne skupine (en vir), ne rezultat raziskav učinkovitosti."
+ "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka opisana w ankietach jednego zespołu badaczy (jedno źródło), nie wynik badań skuteczności.": "Tedni treninga zapored brez razbremenitve: {n}. Trenerji običajno naredijo razbremenitev vsakih {a}–{b} tednov — to je praksa, opisana v anketah ene raziskovalne skupine (en vir), ne rezultat raziskav učinkovitosti.",
+ "RIR wpisuje się w zakresie 0–{max}; więcej niż {max} powtórzeń w zapasie zapisuje się jako „lekko” (RPE {light}), bo poniżej RPE {min} skala opisuje wysiłek słowami, a nie powtórzeniami w zapasie (Helms i in. 2016).": "RIR se vnaša v razponu 0–{max}; več kot {max} ponovitev v rezervi se shrani kot »lahko« (RPE {light}), ker pod RPE {min} lestvica napor opisuje z besedami, ne s ponovitvami v rezervi (Helms in sod. 2016)."
 }

@@ -3305,6 +3305,10 @@
   "en": "RIR — reps in reserve: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR; Zourdos et al., JSCR 2016). Saved values convert when you switch scales."
  },
  {
+  "pl": "RIR wpisuje się w zakresie 0–{max}; więcej niż {max} powtórzeń w zapasie zapisuje się jako „lekko” (RPE {light}), bo poniżej RPE {min} skala opisuje wysiłek słowami, a nie powtórzeniami w zapasie (Helms i in. 2016).",
+  "en": "Enter RIR from 0 to {max}; more than {max} reps in reserve is saved as “light” (RPE {light}), because below RPE {min} the scale describes effort in words, not reps in reserve (Helms et al. 2016)."
+ },
+ {
   "pl": "robione {n}×",
   "en": "done {n}×"
  },

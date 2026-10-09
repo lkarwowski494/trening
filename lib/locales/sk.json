@@ -1283,5 +1283,6 @@
  "specjalistyczne serwisy treningowe": "odborné weby o tréningu",
  "materiały producenta sprzętu": "materiály výrobcu vybavenia",
  "badania naukowe": "vedecké štúdie",
- "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka opisana w ankietach jednego zespołu badaczy (jedno źródło), nie wynik badań skuteczności.": "Tréningové týždne za sebou bez deloadu: {n}. Tréneri zvyčajne zaraďujú deload každých {a}–{b} týždňov — je to prax opísaná v dotazníkoch jedného výskumného tímu (jeden zdroj), nie výsledok výskumu účinnosti."
+ "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka opisana w ankietach jednego zespołu badaczy (jedno źródło), nie wynik badań skuteczności.": "Tréningové týždne za sebou bez deloadu: {n}. Tréneri zvyčajne zaraďujú deload každých {a}–{b} týždňov — je to prax opísaná v dotazníkoch jedného výskumného tímu (jeden zdroj), nie výsledok výskumu účinnosti.",
+ "RIR wpisuje się w zakresie 0–{max}; więcej niż {max} powtórzeń w zapasie zapisuje się jako „lekko” (RPE {light}), bo poniżej RPE {min} skala opisuje wysiłek słowami, a nie powtórzeniami w zapasie (Helms i in. 2016).": "RIR sa zadáva v rozsahu 0–{max}; viac než {max} opakovaní v rezerve sa uloží ako „ľahko“ (RPE {light}), pretože pod RPE {min} opisuje škála úsilie slovami, nie opakovaniami v rezerve (Helms a kol. 2016)."
 }

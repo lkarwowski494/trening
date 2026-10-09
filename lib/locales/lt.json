@@ -1283,5 +1283,6 @@
  "specjalistyczne serwisy treningowe": "specializuotos treniruočių svetainės",
  "materiały producenta sprzętu": "įrangos gamintojo medžiaga",
  "badania naukowe": "moksliniai tyrimai",
- "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka opisana w ankietach jednego zespołu badaczy (jedno źródło), nie wynik badań skuteczności.": "Treniruočių savaitės iš eilės be iškrovos: {n}. Treneriai paprastai daro iškrovą kas {a}–{b} savaites — tai praktika, aprašyta vienos tyrėjų grupės apklausose (vienas šaltinis), ne veiksmingumo tyrimų rezultatas."
+ "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka opisana w ankietach jednego zespołu badaczy (jedno źródło), nie wynik badań skuteczności.": "Treniruočių savaitės iš eilės be iškrovos: {n}. Treneriai paprastai daro iškrovą kas {a}–{b} savaites — tai praktika, aprašyta vienos tyrėjų grupės apklausose (vienas šaltinis), ne veiksmingumo tyrimų rezultatas.",
+ "RIR wpisuje się w zakresie 0–{max}; więcej niż {max} powtórzeń w zapasie zapisuje się jako „lekko” (RPE {light}), bo poniżej RPE {min} skala opisuje wysiłek słowami, a nie powtórzeniami w zapasie (Helms i in. 2016).": "RIR įvedamas intervale 0–{max}; daugiau nei {max} atsarginių pakartojimų išsaugoma kaip „lengvai“ (RPE {light}), nes žemiau RPE {min} skalė pastangas apibūdina žodžiais, o ne atsarginiais pakartojimais (Helms ir kt. 2016)."
 }

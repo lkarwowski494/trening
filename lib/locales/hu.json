@@ -1283,5 +1283,6 @@
  "specjalistyczne serwisy treningowe": "edzéssel foglalkozó szakmai weboldalak",
  "materiały producenta sprzętu": "eszközgyártói anyagok",
  "badania naukowe": "tudományos vizsgálatok",
- "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka opisana w ankietach jednego zespołu badaczy (jedno źródło), nie wynik badań skuteczności.": "Egymást követő edzéshetek deload nélkül: {n}. Az edzők általában {a}–{b} hetente tartanak deloadot — ez egyetlen kutatócsoport felméréseiben leírt gyakorlat (egyetlen forrás), nem a hatékonyságra vonatkozó kutatási eredmény."
+ "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka opisana w ankietach jednego zespołu badaczy (jedno źródło), nie wynik badań skuteczności.": "Egymást követő edzéshetek deload nélkül: {n}. Az edzők általában {a}–{b} hetente tartanak deloadot — ez egyetlen kutatócsoport felméréseiben leírt gyakorlat (egyetlen forrás), nem a hatékonyságra vonatkozó kutatási eredmény.",
+ "RIR wpisuje się w zakresie 0–{max}; więcej niż {max} powtórzeń w zapasie zapisuje się jako „lekko” (RPE {light}), bo poniżej RPE {min} skala opisuje wysiłek słowami, a nie powtórzeniami w zapasie (Helms i in. 2016).": "A RIR 0 és {max} között adható meg; több mint {max} tartalék ismétlés „könnyű” értékként kerül mentésre (RPE {light}), mert RPE {min} alatt a skála szavakkal írja le az erőfeszítést, nem tartalék ismétlésekkel (Helms és mtsai 2016)."
 }

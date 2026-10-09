@@ -1283,5 +1283,6 @@
  "specjalistyczne serwisy treningowe": "erikoistuneet harjoittelusivustot",
  "materiały producenta sprzętu": "laitevalmistajan materiaalit",
  "badania naukowe": "tieteelliset tutkimukset",
- "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka opisana w ankietach jednego zespołu badaczy (jedno źródło), nie wynik badań skuteczności.": "Treeniviikkoja putkeen ilman kevennystä: {n}. Valmentajat pitävät yleensä kevennysviikon {a}–{b} viikon välein — tämä on yhden tutkimusryhmän kyselyissä kuvattu käytäntö (yksi lähde), ei tutkimustulos tehosta."
+ "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka opisana w ankietach jednego zespołu badaczy (jedno źródło), nie wynik badań skuteczności.": "Treeniviikkoja putkeen ilman kevennystä: {n}. Valmentajat pitävät yleensä kevennysviikon {a}–{b} viikon välein — tämä on yhden tutkimusryhmän kyselyissä kuvattu käytäntö (yksi lähde), ei tutkimustulos tehosta.",
+ "RIR wpisuje się w zakresie 0–{max}; więcej niż {max} powtórzeń w zapasie zapisuje się jako „lekko” (RPE {light}), bo poniżej RPE {min} skala opisuje wysiłek słowami, a nie powtórzeniami w zapasie (Helms i in. 2016).": "RIR syötetään väliltä 0–{max}; yli {max} toistoa varastossa tallennetaan muodossa ”kevyt” (RPE {light}), koska alle RPE-arvon {min} asteikko kuvaa kuormittavuutta sanoin eikä varastotoistoina (Helms ym. 2016)."
 }

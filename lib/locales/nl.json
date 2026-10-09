@@ -1283,5 +1283,6 @@
  "specjalistyczne serwisy treningowe": "gespecialiseerde trainingswebsites",
  "materiały producenta sprzętu": "materiaal van een fabrikant van apparatuur",
  "badania naukowe": "wetenschappelijke studies",
- "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka opisana w ankietach jednego zespołu badaczy (jedno źródło), nie wynik badań skuteczności.": "Trainingsweken op rij zonder deload: {n}. Trainers doen meestal elke {a}–{b} weken een deload — dit is praktijk uit enquêtes van één onderzoeksteam (één bron), geen onderzoeksresultaat over de effectiviteit."
+ "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka opisana w ankietach jednego zespołu badaczy (jedno źródło), nie wynik badań skuteczności.": "Trainingsweken op rij zonder deload: {n}. Trainers doen meestal elke {a}–{b} weken een deload — dit is praktijk uit enquêtes van één onderzoeksteam (één bron), geen onderzoeksresultaat over de effectiviteit.",
+ "RIR wpisuje się w zakresie 0–{max}; więcej niż {max} powtórzeń w zapasie zapisuje się jako „lekko” (RPE {light}), bo poniżej RPE {min} skala opisuje wysiłek słowami, a nie powtórzeniami w zapasie (Helms i in. 2016).": "RIR vul je in van 0 tot {max}; meer dan {max} herhalingen in reserve wordt opgeslagen als ‘licht’ (RPE {light}), omdat de schaal onder RPE {min} de inspanning met woorden beschrijft, niet met herhalingen in reserve (Helms e.a. 2016)."
 }
