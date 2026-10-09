@@ -143,6 +143,12 @@ Rozmowa 05.10.2026, rano: „Chciałbym móc opublikować to w Apple Store” i 
     Właściciel (09.10.2026): zakaz konkurencji w umowie jest, ale aplikacja powstaje w wolnym czasie, na własnym sprzęcie, w obszarze
     niezwiązanym z pracą — ryzyko z pkt 3 niskie. Do sprawdzenia: wewnętrzne zasady pracodawcy o zgłaszaniu dodatkowej działalności
     zarobkowej (w dużych firmach bywa obowiązek zgłoszenia niezależnie od branży).
+  - **Drogi w urzędzie skarbowym (09.10.2026):** 1) infolinia KAS (telefon, e-mail, czat) — bezpłatnie, szybko, bez mocy wiążącej;
+    2) baza interpretacji Ministerstwa Finansów (EUREKA) — bezpłatnie, cudze sprawy, bez ochrony; 3) interpretacja indywidualna KIS —
+    formularz ORD-IN (kreator ord-in.podatki.gov.pl; e-Urząd Skarbowy/ePUAP, podpis zaufany), **40 zł za każdy stan faktyczny lub zdarzenie
+    przyszłe**, wydanie bez zbędnej zwłoki, najpóźniej w 3 miesiące; chroni wnioskodawcę, który się do niej stosuje. Źródła: podatki.biz
+    „KIS wyjaśnia: Jak złożyć wniosek o interpretację indywidualną” (06.06.2025) — opłata, formularz, infolinia; termin 3 miesięcy
+    (Ordynacja podatkowa) — ze streszczeń wyszukiwarki, nieprzeczytany w ustawie (otwarte).
   - **Otwarte dla księgowego:** czy przychodem jest cena dla klienta czy wypłata od Apple (po prowizji i VAT); VAT od usługi dla Apple
     (podmiot zagraniczny) — czy potrzebna rejestracja VAT-UE; jak dokumentować wypłaty Apple.
 - **Priorytet produktu wynikający z celu:** zatrzymanie użytkowników (jakość, brak błędów, dane bezpieczne) ważniejsze niż liczba pobrań —
