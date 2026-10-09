@@ -30,6 +30,19 @@
 - Gałęzie: praca na gałęzi funkcji od `integration/0.9.0`; scalenie do `main` tylko na polecenie właściciela. Nie łącz aktualizacji SDK ze zmianą
   schematu danych w jednym wydaniu.
 
+## Audyty i wydania (zasada właściciela 09.10.2026, wariant A)
+
+1. **Próg wydania:** wydanie blokują tylko znaleziska KRYTYCZNE i WYSOKIE: utrata lub zepsucie danych (także migracja, import, kopia),
+   awaria albo funkcja nie do użycia, błędne liczby lub twierdzenia merytoryczne, prywatność/bezpieczeństwo/sekrety/prawa autorskie,
+   bariera dostępności, ryzyko odrzucenia przez Apple. ŚREDNIE i NISKIE → backlog z przypisaną wersją, nie wstrzymują wydania.
+2. **Jeden audyt na wydanie, bez pętli:** naprawy znalezisk sprawdza test odtwarzający + verify + E2E, nie kolejny audyt. Nowy błąd
+   wykryty przy naprawie oceniany tym samym progiem.
+3. **Zamrożenie zakresu:** od startu audytu do wydania żadnych nowych funkcji — tylko naprawy blokerów; pomysły do backlogu.
+4. **Głębokość:** wydanie TestFlight — audyt zmian od poprzedniego wydania + stała lista kontrolna (dane, migracje, prywatność);
+   przed upublicznieniem w App Store i co ok. 3 wydania — pełny głęboki audyt całości.
+5. **Bez limitu czasu** — audyt i naprawy „na spokojnie”; jeśli bloker wymaga dużej przebudowy, właściciel decyduje: naprawa teraz
+   albo wydanie bez tej funkcji (wyłączona lub cofnięta).
+
 ## Merytoryczne podstawy (zasada właściciela z 4 października 2026, obowiązuje we wszystkich jego aplikacjach)
 
 Wszystko, czego aplikacja uczy albo co twierdzi (treść, liczby, zalecenia, reguły i mechaniki oparte na wiedzy dziedzinowej), musi mieć merytoryczne podstawy. Ta zasada ma pierwszeństwo przed domyślnym sposobem pracy.

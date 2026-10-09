@@ -276,3 +276,7 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
   w docs wg mapy stary → nowy; (5) sprawdzenie: żaden commit nie zawiera usuniętych plików ani danych osobowych, verify zielone; (6) push
   `--force` gałęzi i tagów, gdy żaden agent nie pracuje; (7) prośba do wsparcia GitHuba o usunięcie starych commitów z pamięci podręcznej.
   Ograniczenie (świadome): kopie i forki zrobione wcześniej przez innych zostają poza naszą kontrolą.
+- 09.10.2026 (ok. 09:00): właściciel — **zasady audytów i wydań: wariant A z poprawką** (bez limitu czasu, „na spokojnie”) — zapis w
+  CLAUDE.md „Audyty i wydania”. Odrzucone: B (sam limit czasu — ryzyko puszczenia poważnego błędu), C (bez dużych audytów). Skutek dla
+  bieżącej sekwencji: audyt kontrolny 1 pełny (pierwsze wydanie po dużych zmianach), wydanie 1 wstrzymują tylko krytyczne i wysokie;
+  audyt 2 po wydaniu — wydanie 2 tylko przy blokerach, średnie i niskie do backlogu z wersją, potem koniec sekwencji.
