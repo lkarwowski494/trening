@@ -1318,6 +1318,10 @@
   "en": "Different sets: {list}."
  },
  {
+  "pl": "Inny plan",
+  "en": "Other plan"
+ },
+ {
   "pl": "Inny przyrząd: {impl}",
   "en": "Other equipment: {impl}"
  },

@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { ScrollView, View, Alert, Pressable } from 'react-native';
-import { useLocalSearchParams, useRouter } from 'expo-router';
+import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
 import { Screen, Chip, Muted, Txt, Btn, Item, Field, Input, SectionTitle } from '@/components/ui';
 import { SwipeRow } from '@/components/SwipeRow';
 import { getState, useTick, templateGroups, newTemplate, SAVED_PLANS_MAX } from '@/lib/store';
@@ -20,6 +20,7 @@ import { t, locale, lang } from '@/lib/i18n';
  * - B1: okno aktywacji mówi, ile zmian dni przejdzie z obecnym planem i ile wróci z nowym (lib/plan activationNote);
  * - B3: najwyżej SAVED_PLANS_MAX planów w „Inne plany” (jak migrate); B4: nazwa zapisywana przy każdej zmianie pola, porządkowana przy końcu edycji;
  * - I1: pierwszy dzień w planie — prośba o zgodę na powiadomienia (przypomnienie rano).
+ * - UI2-08 (audyt kontrolny 1): zapisany plan (/plan?id=…) ma w nagłówku swoją nazwę (bez nazwy — „Inny plan”), nie „Plan tygodnia”.
  */
 const weekdayName = (i: number) => new Date(2024, 0, 1 + i).toLocaleDateString(locale(), { weekday: 'long' }); /* 1.01.2024 = poniedziałek */
 const weekdayShort = (i: number) => new Date(2024, 0, 1 + i).toLocaleDateString(locale(), { weekday: 'short' });
@@ -63,7 +64,8 @@ export default function PlanScreen() {
     ]); };
   if (id && !saved) return <Screen><Muted style={{ marginTop: 12 }}>{t('Nie ma takiego planu.')}</Muted></Screen>;
   if (saved) return ( /* B2 A: zapisany plan edytowany przed aktywacją */
-    <Screen><ScrollView keyboardShouldPersistTaps="handled" contentContainerStyle={{ paddingVertical: 10, paddingBottom: 40 }}>
+    <Screen><Stack.Screen options={{ title: saved.name || t('Inny plan') }} />{/* UI2-08: nie „Plan tygodnia” — to nie aktywny plan */}
+      <ScrollView keyboardShouldPersistTaps="handled" contentContainerStyle={{ paddingVertical: 10, paddingBottom: 40 }}>
       <Muted style={{ fontSize: 13, marginBottom: 8 }}>{t('Ten plan jeszcze nie obowiązuje. Zmień nazwę i dni, potem „Ustaw jako aktywny”.')}</Muted>
       <Field label={t('Nazwa planu')}><Input value={saved.name} maxLength={40} accessibilityLabel={t('Nazwa planu')} onChangeText={v => typeSavedName(saved.id, v)} onEndEditing={() => { renamePlan(saved.id, savedPlans().find(p => p.id === saved.id)?.name ?? '', initial.current); initial.current = savedPlans().find(p => p.id === saved.id)?.name ?? initial.current; }} /></Field>
       {savedChanges(saved.id) ? <Muted style={{ fontSize: 13, marginBottom: 8 }}>{t('Zmiany pojedynczych dni zapisane z tym planem: {n} — wrócą po aktywacji.', { n: savedChanges(saved.id) })}</Muted> : null}

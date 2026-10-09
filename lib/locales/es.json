@@ -1302,5 +1302,6 @@
  "Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.": "Menos de {n} series a la semana: {list}. Es el umbral mínimo recomendado para ganar músculo; las series se añaden en las plantillas.",
  "Moje szablony, {n}× w tygodniu": "Mis plantillas, {n}× por semana",
  "Mój plan ({date})": "Mi plan ({date})",
- "Bez treningów: {list}. To zastąpi też aktywny plan „{plan}”, zrobiony tylko z tych szablonów — „Zastąp” je usunie i ustawi nowy plan jako aktywny w jego miejsce, „Zostaw” doda nowe obok.": "Sin entrenamientos: {list}. Esto también reemplaza el plan activo «{plan}», formado solo por estas plantillas: «Reemplazar» las elimina y activa el nuevo plan en su lugar; «Conservar» añade las nuevas junto a ellas."
+ "Bez treningów: {list}. To zastąpi też aktywny plan „{plan}”, zrobiony tylko z tych szablonów — „Zastąp” je usunie i ustawi nowy plan jako aktywny w jego miejsce, „Zostaw” doda nowe obok.": "Sin entrenamientos: {list}. Esto también reemplaza el plan activo «{plan}», formado solo por estas plantillas: «Reemplazar» las elimina y activa el nuevo plan en su lugar; «Conservar» añade las nuevas junto a ellas.",
+ "Inny plan": "Otro plan"
 }

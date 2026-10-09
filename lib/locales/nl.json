@@ -1302,5 +1302,6 @@
  "Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.": "Minder dan {n} sets per week: {list}. Dit is de ondergrens die wordt aanbevolen voor spieropbouw; sets voeg je toe in de sjablonen.",
  "Moje szablony, {n}× w tygodniu": "Mijn sjablonen, {n}× per week",
  "Mój plan ({date})": "Mijn plan ({date})",
- "Bez treningów: {list}. To zastąpi też aktywny plan „{plan}”, zrobiony tylko z tych szablonów — „Zastąp” je usunie i ustawi nowy plan jako aktywny w jego miejsce, „Zostaw” doda nowe obok.": "Zonder trainingen: {list}. Dit vervangt ook het actieve plan ‘{plan}’, dat alleen uit deze sjablonen bestaat — ‘Vervang’ verwijdert ze en maakt het nieuwe plan in plaats daarvan actief, ‘Behouden’ voegt de nieuwe ernaast toe."
+ "Bez treningów: {list}. To zastąpi też aktywny plan „{plan}”, zrobiony tylko z tych szablonów — „Zastąp” je usunie i ustawi nowy plan jako aktywny w jego miejsce, „Zostaw” doda nowe obok.": "Zonder trainingen: {list}. Dit vervangt ook het actieve plan ‘{plan}’, dat alleen uit deze sjablonen bestaat — ‘Vervang’ verwijdert ze en maakt het nieuwe plan in plaats daarvan actief, ‘Behouden’ voegt de nieuwe ernaast toe.",
+ "Inny plan": "Ander plan"
 }
