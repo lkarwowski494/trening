@@ -256,3 +256,8 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
   Anderton i in. 2012 (granice testowe, nie treść w aplikacji). Odrzucone: ręczny SVG na ćwiczenie (nie da się automatycznie sprawdzić),
   zdjęcia/wideo (licencje, rozmiar). Otwarte: 11 ćwiczeń bez figury (ruch w płaszczyźnie poziomej, skręt, zgięcie kręgosłupa, skok i in. —
   wymaga rozszerzenia modelu), scenariusz Maestro dla sekcji „Technika”.
+- 09.10.2026 (ok. 06:10): właściciel — **źródła płatne (NSCA/ACSM): wariant A** — zostajemy przy darmowych źródłach (≥ 2 niezależne
+  organizacje), bez zakupu podręczników (ceny 09.10: NSCA Exercise Technique Manual e-book 67 USD, Essentials 89 USD, ACSM Resources for the
+  Personal Trainer ok. 90 USD; e-booki w VitalSource — agent nie ma do nich dostępu). Odrzucone: B zakup, C wypożyczenie biblioteczne (czas
+  właściciela). Właściciel — **prawa autorskie jako element obowiązkowy przed upublicznieniem aplikacji**: skrócenie długich cytatów w
+  `docs/research`, sprawdzenie podobieństwa treści aplikacji do źródeł, tylko własne grafiki, licencje zależności — punkt 8 w docs/15.

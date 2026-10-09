@@ -124,6 +124,16 @@ Rozmowa 05.10.2026, rano: „Chciałbym móc opublikować to w Apple Store” i 
 5. **Zrzuty ekranu** (6,9″ i 6,5″) z symulatora — Maestro `takeScreenshot` albo `scripts/screens`. Opis PL/EN.
 6. **Strona polityki prywatności i wsparcia** na GitHub Pages.
 7. **Elementy specyficzne dla właściciela do przejrzenia** przed sklepem: presety ViShape, teksty o „domu właściciela” w podpowiedziach, dane demo.
+8. **Prawa autorskie — OBOWIĄZKOWE przed upublicznieniem aplikacji** (polecenie właściciela 09.10.2026). Bez tego nie wysyłamy do App Store:
+   - **cytaty w repozytorium:** w `docs/research` jest ok. 800 dosłownych fragmentów cudzych stron (najwięcej w `docs/research/kb/` — research
+     konkurencji z 03.10; także pliki źródeł researchu biblioteki), niektóre do ~900 znaków. Skrócić do niezbędnego fragmentu (1–2 zdania +
+     adres i miejsce) — prawo cytatu (art. 29 ustawy o prawie autorskim) obejmuje fragmenty w zakresie uzasadnionym analizą; test pilnujący
+     maksymalnej długości cytatu w `docs/research`. Wariant do potwierdzenia przez właściciela przy realizacji: A skrócić (rekomendacja) /
+     B przenieść research konkurencji na Dysk / C zostawić. Historia gita zostaje bez przepisywania (jak decyzja z 06.10 przy N1);
+   - **treść w aplikacji** (wskazówki techniki `lib/cues`, opisy, nazwy): automatyczne sprawdzenie podobieństwa do pobranych stron źródeł
+     (wspólne ciągi słów) — żadne zdanie nie może być przepisane zbyt blisko oryginału; wynik w docs/09;
+   - **grafiki:** tylko własne (figury SVG z danych, ikony własne) — sprawdzić, że w paczce nie ma cudzych obrazów, zdjęć ani filmów;
+   - **licencje zależności:** ekran licencji open source (SEC-08) aktualny (`check:licenses`).
 
 ## Model płatności — ponowna analiza (05.10.2026)
 
