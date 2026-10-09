@@ -74,7 +74,8 @@ Rozmowa 05.10.2026, rano: „Chciałbym móc opublikować to w Apple Store” i 
   - Bez zmian: historia, kopia i eksport zawsze działają; status tradera; kroki właściciela wyżej (po wygaśnięciu — limit, pkt 5 niżej).
   - Wdrożenie: po wydaniu 1 (zakres wydania zamrożony, CLAUDE.md „Audyty i wydania” pkt 3), przed App Store.
   - **Decyzje właściciela 09.10.2026 (ok. 10:30):**
-    1. Cena roczna w PLN: **29,99 zł** (A: ten sam stosunek roczna/miesięczna co w EUR; odrzucone B: 24,99 zł — kursowa równowartość).
+    1. ~~Cena roczna w PLN: **29,99 zł** (A: ten sam stosunek roczna/miesięczna co w EUR; odrzucone B: 24,99 zł — kursowa równowartość)~~ — **zmienione przez właściciela 09.10.2026 (ok. 10:35): 3,99 zł miesięcznie i 19,99 zł rocznie** („Nie chcę, żeby moi rodacy
+       byli dyskryminowani”). Zastępuje też 4,99 zł/mies. z decyzji o 10:14. Rachunek: roczna = 5 miesięcznych (w USD/EUR/GBP ok. 6).
     2. Okres próbny **w obu planach** (A; jedna oferta wprowadzająca na osobę w grupie subskrypcji; odrzucone B: tylko roczny).
     3. Hasło w sklepie: **„w cenie espresso lub taniej”** (sformułowanie ostateczne przy opisach sklepu) — właściciel: „Nawet we Włoszech nie
        będzie to kłamstwem”. Warunek (zasada rzetelnych źródeł): przed publikacją opisu potwierdzić źródłami cenę espresso w każdym kraju,
@@ -84,7 +85,7 @@ Rozmowa 05.10.2026, rano: „Chciałbym móc opublikować to w Apple Store” i 
     5. **Po wygaśnięciu subskrypcji lub próby: 4 darmowe treningi na miesiąc kalendarzowy** (zastępuje pełną blokadę nowych treningów
        z 06.10; odrzucone: 5/mies., pełna blokada). Liczone na telefonie, bez serwera; limit obejmuje też treningi dopisane wstecz
        (rekomendacja agenta, do potwierdzenia przy projekcie ekranu). Historia, kopia i eksport bez limitu.
-  - **Do sprawdzenia w App Store Connect** (nie zgadujemy): czy punkty cenowe 0,99 EUR/GBP, 4,99 PLN i 29,99 PLN istnieją w siatce cen Apple.
+  - **Do sprawdzenia w App Store Connect** (nie zgadujemy): czy punkty cenowe 0,99 EUR/GBP, 3,99 PLN i 19,99 PLN istnieją w siatce cen Apple.
 - **Cel przychodu (właściciel 06.10.2026):** ~2000 zł miesięcznie; model bez zmian: 30 dni za darmo, potem jednorazowa płatność.
   Rachunek orientacyjny (agent, do sprawdzenia): z ceny w App Store odpada VAT kraju kupującego (PL 23%) i prowizja Apple (15% w Small Business
   Program), czyli na konto ok. 0,69 × cena przy kupującym z Polski. Potrzebne zakupy miesięcznie: cena 29 zł → ok. 100; 49 zł → ok. 59;
