@@ -9,7 +9,8 @@
  * w element pod paskiem zakładek albo pod klawiaturą — błąd); dopasowanie jak
  * w Maestro (Filters.textMatches, bez wielkości liter): wyrażenie regularne do CAŁEJ etykiety (accessibilityLabel), a bez niej do tekstu (Text bez
  * dostępnego przodka), wartości i placeholdera pola; ekrany pod spodem stosu (aria-hidden) niewidoczne; pasek nawigacji (w Jest się nie renderuje)
- * odtworzony z opcji ekranu: tytuł i „Back” na górze; `below`/`above` — kolejność w drzewie (pomijane przy otwartym oknie); czas: zegar Jest
+ * odtworzony z opcji ekranu: tytuł i „Back” na górze; `below`/`above` — kolejność w drzewie (przy otwartym oknie Alert — pozycje w pionie okna w układzie iOS, „cancel” na dole,
+ * i ekranu pod nim; run 37900617167); czas: zegar Jest
  * przesuwany krokami. Okna (Alert, Alert.prompt, ActionSheetIOS) z mocków tests/setup.js. Gest przesunięcia w lewo = akcja dostępności „delete”.
  * Na scenariuszach z dfa7ab8 interpreter odtwarza 11 z 12 porażek przebiegu 89 w tym samym kroku (wyjątek: 16 — chip poza ekranem; od E2E 91
  * łapie go układ — tests/maestro-e2e91.test.tsx).

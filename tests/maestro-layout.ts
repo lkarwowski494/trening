@@ -13,7 +13,7 @@
  * stuknięcie — środek w obszarze listy z luzem slack (poziomo bez luzu: Maestro stuka w środek). Łapie elementy wyraźnie poza ekranem, a nie te
  * tuż przy krawędzi.
  */
-export const SCREEN = { w: 402, h: 874, top: 62, header: 54, tabTop: 791, bottom: 826, kbTop: 539, modal: 16, slack: 24, minVis: 22, peek: 8, charEm: 0.47 } as const;
+export const SCREEN = { w: 402, h: 874, top: 62, header: 54, tabTop: 791, bottom: 826, kbTop: 539, modal: 16, slack: 24, tabSlack: 8, minVis: 22, peek: 8, charEm: 0.47 } as const;
 
 export type LNode = { type: unknown; props: Record<string, any>; parent: LNode | null; children: (LNode | string)[] };
 export type Box = { x: number; y: number; w: number; h: number; scroll: LNode | null; horiz: LNode | null };
