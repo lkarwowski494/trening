@@ -10,7 +10,7 @@ import {
   MIN_EXERCISES, CARDIO_SESSIONS, REPS, REST, HEAVY_PCT, RIR, RIR_ACSM, MIN_DAYS, SECONDARY_SHARE, WHO_MODERATE, WHO_VIGOROUS, type Goal, type GenInput,
 } from '@/lib/generator';
 import { WEEKLY_SETS_MARK } from '@/lib/stats';
-import { activationNote, plansFull } from '@/lib/plan';
+import { activationNote, plansFull, planName } from '@/lib/plan';
 import { t, locale, exName, glue } from '@/lib/i18n';
 import { fmtNum } from '@/lib/units';
 import { SAVED_PLANS_MAX } from '@/lib/store';
@@ -65,8 +65,11 @@ function NewTemplatesPlan({ header }: { header: React.ReactNode }) {
     if (plansFull()) { Alert.alert(t('Za dużo zapisanych planów'), t('W „Inne plany” jest już {n} planów — usuń któryś, by dodać nowy.', { n: SAVED_PLANS_MAX })); return; } /* audyt 0.10 B3: limit jak w migrate */
     const old = replaceable(); if (!old.templateIds.length) { ask(false); return; }
     const st = getState(); const list = [...st.templates.filter(x => old.templateIds.includes(x.id)).map(x => x.name), ...(st.savedPlans ?? []).filter(p => old.planIds.includes(p.id)).map(p => p.name || t('Poprzedni plan'))].join(', ');
-    Alert.alert(t('Zastąpić poprzednio wygenerowane, nieużywane szablony?'), t('Bez treningów i poza aktywnym planem: {list}. „Zastąp” je usunie, „Zostaw” doda nowe obok.', { list }), [
-      { text: t('Anuluj'), style: 'cancel' }, { text: t('Zostaw'), onPress: () => ask(false) }, { text: t('Zastąp'), style: 'destructive', onPress: () => ask(true) },
+    /* UX2-08: aktywny plan z samych tych szablonów — okno mówi to wprost; „Zastąp” ustawia nowy plan w jego miejsce (bez pytania „Tylko zapisz”) */
+    Alert.alert(t('Zastąpić poprzednio wygenerowane, nieużywane szablony?'), old.activePlan
+      ? t('Bez treningów: {list}. To zastąpi też aktywny plan „{plan}”, zrobiony tylko z tych szablonów — „Zastąp” je usunie i ustawi nowy plan jako aktywny w jego miejsce, „Zostaw” doda nowe obok.', { list, plan: planName() || t('Mój plan') })
+      : t('Bez treningów i poza aktywnym planem: {list}. „Zastąp” je usunie, „Zostaw” doda nowe obok.', { list }), [
+      { text: t('Anuluj'), style: 'cancel' }, { text: t('Zostaw'), onPress: () => ask(false) }, { text: t('Zastąp'), style: 'destructive', onPress: () => (old.activePlan ? done(true, true) : ask(true)) },
     ]);
   };
   const basis = [

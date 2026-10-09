@@ -830,4 +830,5 @@ export const EN: Record<string, string> = {
   'Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.': 'Below {n} sets per week: {list}. This is the lower threshold recommended for building muscle; you can add sets in the templates.',
   'Moje szablony, {n}× w tygodniu': 'My templates, {n}× a week',
   'Mój plan ({date})': 'My plan ({date})',
+  'Bez treningów: {list}. To zastąpi też aktywny plan „{plan}”, zrobiony tylko z tych szablonów — „Zastąp” je usunie i ustawi nowy plan jako aktywny w jego miejsce, „Zostaw” doda nowe obok.': 'Not used in any workout: {list}. This also replaces the active plan “{plan}”, made only of these templates — “Replace” deletes them and makes the new plan active in its place, “Keep” adds the new ones alongside.',
 };

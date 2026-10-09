@@ -408,6 +408,10 @@
   "en": "Not used in any workout or in the active plan: {list}. “Replace” deletes them, “Keep” adds the new ones alongside."
  },
  {
+  "pl": "Bez treningów: {list}. To zastąpi też aktywny plan „{plan}”, zrobiony tylko z tych szablonów — „Zastąp” je usunie i ustawi nowy plan jako aktywny w jego miejsce, „Zostaw” doda nowe obok.",
+  "en": "Not used in any workout: {list}. This also replaces the active plan “{plan}”, made only of these templates — “Replace” deletes them and makes the new plan active in its place, “Keep” adds the new ones alongside."
+ },
+ {
   "pl": "biceps",
   "en": "biceps"
  },

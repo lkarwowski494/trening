@@ -1,5 +1,5 @@
 import { getState, save, exById, workCount, tplRows } from '@/lib/store';
-import { addPlan, deletePlan, planName as activePlanName, savedPlans } from '@/lib/plan';
+import { addPlan, deletePlan, planName as activePlanName, savedPlans, dayKeyOf } from '@/lib/plan';
 import { availability, capsOf, capLabel, equipById, implAt, LOCATION_PRESET_LABEL } from '@/lib/equipment';
 import { base, uid, LIB_BASE_NAMES, type Exercise, type Location, type Template, type TemplateItem, isLibBase } from '@/lib/seed';
 import { WEEKLY_SETS_MARK } from '@/lib/stats';
@@ -258,22 +258,34 @@ const genFolders = () => new Set<string>(LANGS.map(l => tIn(l, 'Wygenerowane')))
  * planem, zmianami dni i każdym innym miejscem stanu, które je wskazuje (szukane po id w całym stanie poza szablonami, ćwiczeniami i treningami —
  * także w przyszłych polach planu). Zapisany plan, którego wszystkie dni to takie szablony (plan z poprzedniego generowania), też jest do zastąpienia;
  * szablon trzymany przez inny zapisany plan — nie.
+ * UX2-08 (audyt kontrolny 1): aktywny plan zrobiony wyłącznie z takich szablonów (zwykle: wygeneruj → „Ustaw jako aktywny” → wygeneruj jeszcze raz)
+ * też jest do zastąpienia (`activePlan`), o ile jeszcze nie obowiązywał w żadnym minionym dniu (w historii planu tylko odcinek od dziś) i nie ma
+ * zmian dni od dziś — wtedy minione dni Kalendarza zostają bez zmian. Nowy plan zajmuje wtedy jego miejsce (saveGenerated).
  */
-export function replaceable(): { templateIds: string[]; planIds: string[] } {
-  const st = getState(); const folders = genFolders();
+export function replaceable(): { templateIds: string[]; planIds: string[]; activePlan: boolean } {
+  const st = getState(); const folders = genFolders(); const today = dayKeyOf(Date.now());
   const inW = new Set<string>(st.workouts.map(w => w.templateId ?? '').filter(Boolean)); if (st.active?.templateId) inW.add(st.active.templateId);
-  const { templates: _t, workouts: _w, exercises: _e, active: _a, savedPlans: _s, ...rest } = st; void _t; void _w; void _e; void _a; void _s; const other = JSON.stringify(rest);
-  const cand = new Set(st.templates.filter(x => !!x.folder && folders.has(x.folder) && !inW.has(x.id) && !other.includes(x.id)).map(x => x.id));
-  const planIds = (st.savedPlans ?? []).filter(p => p.days.some(Boolean) && p.days.every(d => !d || cand.has(d))).map(p => p.id);
-  const held = new Set((st.savedPlans ?? []).filter(p => !planIds.includes(p.id)).flatMap(p => p.days).filter(Boolean));
-  return { templateIds: [...cand].filter(id => !held.has(id)), planIds };
+  const { templates: _t, workouts: _w, exercises: _e, active: _a, savedPlans: _s, weekPlan: _p, planHistory: hist, ...rest } = st; void _t; void _w; void _e; void _a; void _s; void _p;
+  const other = JSON.stringify(rest); const past = JSON.stringify((hist ?? []).filter(x => x.from < today)); /* odcinek od dziś = aktywny plan (UX2-08) */
+  const free = (id: string) => { const x = st.templates.find(y => y.id === id); return !!x && !!x.folder && folders.has(x.folder) && !inW.has(id) && !other.includes(id) && !past.includes(id); };
+  const act = (st.weekPlan?.days ?? []).filter((d): d is string => !!d);
+  const actFree = act.length > 0 && act.every(free) && !Object.keys(st.planOverrides ?? {}).some(k => k >= today);
+  const calc = (withActive: boolean) => {
+    const cand = new Set(st.templates.filter(x => free(x.id) && (withActive || !act.includes(x.id))).map(x => x.id));
+    const planIds = (st.savedPlans ?? []).filter(p => p.days.some(Boolean) && p.days.every(d => !d || cand.has(d))).map(p => p.id);
+    const held = new Set((st.savedPlans ?? []).filter(p => !planIds.includes(p.id)).flatMap(p => p.days).filter(Boolean));
+    return { templateIds: [...cand].filter(id => !held.has(id)), planIds, activePlan: withActive };
+  };
+  const all = actFree ? calc(true) : null; /* szablon aktywnego planu trzymany przez inny zapisany plan — aktywny plan zostaje (bez niego) */
+  return all && act.every(id => all.templateIds.includes(id)) ? all : calc(false);
 }
 
 /** Zapis po zatwierdzeniu: szablony w folderze „Wygenerowane” (nazwy bez kolizji, z notatką wysiłku; puste pomijane — dzień wolny), plan obok innych;
- * `activate` — od razu obowiązuje; `replace` — najpierw usuwa poprzednio wygenerowane, nieużywane szablony i plany (replaceable). */
+ * `activate` — od razu obowiązuje; `replace` — najpierw usuwa poprzednio wygenerowane, nieużywane szablony i plany (replaceable); gdy wśród nich jest
+ * aktywny plan (UX2-08), nowy plan zajmuje jego miejsce — jest aktywny, a zastąpiony nie trafia do „Inne plany” (odcinek historii od dziś nadpisany). */
 export function saveGenerated(r: GenResult, inp: GenInput, activate: boolean, replace = false): { templateIds: string[]; planId: string; planName: string; folder: string } {
   const st = getState();
-  if (replace) { const old = replaceable(); const ids = new Set(old.templateIds); st.templates = st.templates.filter(x => !ids.has(x.id)); old.planIds.forEach(deletePlan); }
+  if (replace) { const old = replaceable(); const ids = new Set(old.templateIds); st.templates = st.templates.filter(x => !ids.has(x.id)); old.planIds.forEach(deletePlan); if (old.activePlan) { delete st.weekPlan; activate = true; } }
   const names = new Set(st.templates.map(x => x.name));
   const uniq = (n: string) => { if (!names.has(n)) { names.add(n); return n; } for (let i = 2; ; i++) { const c = `${n} (${i})`; if (!names.has(c)) { names.add(c); return c; } } };
   const folder = genFolder(); const note = genNote();

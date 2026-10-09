@@ -1301,5 +1301,6 @@
  "Zapisz plan": "Αποθήκευση προγράμματος",
  "Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.": "Κάτω από {n} σετ την εβδομάδα: {list}. Είναι το κατώτερο όριο που συνιστάται για αύξηση μυϊκής μάζας· σετ προσθέτεις στα πρότυπα.",
  "Moje szablony, {n}× w tygodniu": "Τα πρότυπά μου, {n}× την εβδομάδα",
- "Mój plan ({date})": "Το πρόγραμμά μου ({date})"
+ "Mój plan ({date})": "Το πρόγραμμά μου ({date})",
+ "Bez treningów: {list}. To zastąpi też aktywny plan „{plan}”, zrobiony tylko z tych szablonów — „Zastąp” je usunie i ustawi nowy plan jako aktywny w jego miejsce, „Zostaw” doda nowe obok.": "Χωρίς προπονήσεις: {list}. Αυτό θα αντικαταστήσει και το ενεργό πρόγραμμα «{plan}», που αποτελείται μόνο από αυτά τα πρότυπα — το «Αντικατάσταση» τα διαγράφει και κάνει το νέο πρόγραμμα ενεργό στη θέση του, το «Διατήρηση» προσθέτει τα νέα δίπλα τους."
 }

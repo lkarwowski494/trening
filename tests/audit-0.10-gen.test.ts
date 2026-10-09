@@ -126,20 +126,22 @@ describe('C3 / UX-10: zapis — nazwa planu z miejscem, notatka wysiłku, zastą
     expect(t2.map(x => [x.name, x.folder])).toEqual([['Full Body A', 'Generated'], ['Full Body B', 'Generated'], ['Cardio', 'Generated']]);
     expect(t2[2].note).toBeUndefined(); /* cardio: RIR nie dotyczy */ expect(plan.savedPlans().find(p => p.id === r2.planId)!.name).toBe('Fat loss, 4× per week · Full gym');
   });
-  test('ponowne generowanie: zastąpienie nieużywanych (szablony + plan zrobiony tylko z nich) — bez „(2)”; użyte w treningu, w aktywnym planie i zmianie dnia zostają', () => {
-    const i = inp(); const first = saveGenerated(generate(i), i, false); expect(replaceable()).toEqual({ templateIds: first.templateIds, planIds: [first.planId] });
+  test('ponowne generowanie: zastąpienie nieużywanych (szablony + plan zrobiony tylko z nich, także aktywny — UX2-08) — bez „(2)”; użyte w treningu, w aktywnym planie z użytym szablonem i zmianie dnia zostają', () => {
+    const i = inp(); const first = saveGenerated(generate(i), i, false); expect(replaceable()).toEqual({ templateIds: first.templateIds, planIds: [first.planId], activePlan: false });
     const second = saveGenerated(generate(i), i, false, true);
     expect(S().templates.map(x => x.name)).toEqual(['FBW A', 'FBW B']); expect(plan.savedPlans().map(p => p.id)).toEqual([second.planId]);
     /* trening z szablonu → szablon i plan zostają; drugi szablon trzyma plan */
     addWorkout(Date.now() - 864e5, [['Back Squat', [{ weight: 100, reps: 5 }]]]).templateId = second.templateIds[0]; store.save();
-    expect(replaceable()).toEqual({ templateIds: [], planIds: [] });
+    expect(replaceable()).toEqual({ templateIds: [], planIds: [], activePlan: false });
     /* aktywny plan i zmiana dnia też trzymają szablon */
-    const third = saveGenerated(generate(i), i, true); expect(replaceable().templateIds).not.toContain(third.templateIds[0]);
+    /* UX2-08 (audyt kontrolny 1): aktywny plan z samych nieużywanych wygenerowanych szablonów, jeszcze bez minionych dni — też do zastąpienia */
+    const third = saveGenerated(generate(i), i, true); expect(replaceable()).toEqual({ templateIds: third.templateIds, planIds: [], activePlan: true });
     plan.activatePlan(second.planId); plan.setDayPlan('2026-10-12', third.templateIds[1]); expect(replaceable().templateIds).toEqual([]);
   });
-  test('ręczny szablon w folderze „Wygenerowane” bez użycia też jest do zastąpienia (folder w dowolnym języku), ale tylko gdy nie w aktywnym planie', () => {
+  test('ręczny szablon w folderze „Wygenerowane” bez użycia też jest do zastąpienia (folder w dowolnym języku); w aktywnym planie — tylko gdy plan składa się wyłącznie z takich (UX2-08)', () => {
     const tpl = store.newTemplate(); tpl.folder = 'Generated'; store.save(); expect(replaceable().templateIds).toEqual([tpl.id]);
-    plan.setWeekDay(2, tpl.id); expect(replaceable().templateIds).toEqual([]);
+    plan.setWeekDay(2, tpl.id); expect(replaceable()).toEqual({ templateIds: [tpl.id], planIds: [], activePlan: true }); /* UX2-08: plan tylko z niego */
+    plan.setWeekDay(3, withDemoTemplates()[0].id); expect(replaceable().templateIds).toEqual([]); /* aktywny plan z innym szablonem — zostaje */
   });
   test('X-10: pusty szablon nie trafia do zapisu ani do planu (dzień wolny)', () => {
     const i = inp(); const r = generate(i); r.templates[1].items = []; const res = saveGenerated(r, i, true);
