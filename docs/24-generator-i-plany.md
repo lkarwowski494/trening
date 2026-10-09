@@ -52,6 +52,24 @@ Decyzje właściciela: docs/18 (08.10.2026). Reguły merytoryczne: docs/research
 | Czas sesji | budżet serii = (minuty − 10 min rozgrzewki) × 60 / (40 s serii + średnia przerwa `AVG_REST`: siła 150 s = średnio bój 180 i dodatkowe 120; masa i redukcja 105 s = średnio 120 i 90; siła bez obciążenia — 105 s); ćwiczeń = budżet / 3, co najmniej 3; szacunek — rzeczywiste przerwy mogą dać ±1–2 min (np. masa 90 min ≈ 91 min) | **uproszczenie bez źródła** — nazwane w podglądzie z liczbą serii i średnią przerwą (audyt 0.10 MER-12, LOG-11) |
 | Progresja | opis: zwiększ ciężar po górnej granicy zakresu przy docelowym RIR | R9 (**konwencja**) |
 
+## 3a. Plan z moich szablonów (decyzja właściciela 09.10.2026, wariant B — wyjątek od zamrożenia; docs/18 ok. 14:55)
+- Wejścia: ekran generatora — wybór „Nowe szablony i plan” / „Plan z moich szablonów” (`/generator?mode=own`); edytor planu (przycisk, gdy jest
+  szablon z ćwiczeniami); „Pierwsze kroki” (krok 2, gdy jest szablon z ćwiczeniami, a nie ma planu).
+- Wejście: szablony użytkownika (niezarchiwizowane, z ćwiczeniami; domyślnie wszystkie, gdy jest ich najwyżej 6) i liczba dni `GEN_SESSIONS`
+  (2–6, jak generator), co najmniej tyle, ile wybranych szablonów (`OWN_MAX` = 6 — każdy szablon dostaje dzień).
+- Rozkład (`lib/generator.ts` `ownPlan`) — te same reguły co generator, bez nowych liczb: szablony po kolei A/B/A… (jak 3 FBW A/B/A i 6 góra/dół —
+  konwencja), dni `bestDays` od układu domyślnego generatora (najmniej par dzień po dniu ze wspólną partią główną — docs/research/23 reguła 1,
+  uproszczenie), ostrzeżenia z `weekLoad` (wspólna funkcja z generatorem): brak ćwiczeń na partię, rzadziej niż `MIN_DAYS` (R1), poniżej
+  `WEEKLY_SETS_MARK` (R2 — opisane jako próg dla masy, bo plan nie ma celu), pary dzień po dniu. Serie: robocze jak w treningu (bez rozgrzewek);
+  ćwiczenia cardio nie liczą się do partii.
+- Zapis po podglądzie: to samo pytanie co generator (`activationNote` — zmiany pojedynczych dni od dziś zostają z poprzednim planem w „Inne plany”
+  i wracają przy jego aktywacji), plan „Moje szablony, n× w tygodniu”; **szablony bez zmian** (zasada 03.10.2026).
+- „+ Nowy szablon” w edytorze planu (każdy wiersz dnia, aktywny i zapisany plan) i w panelu dnia Kalendarza (B, docs/18 ok. 14:45): edycja nowego
+  szablonu, po „Zapisz” szablon trafia na ten dzień tego wariantu planu (`assignNewTemplate`: `week:i`, `saved:id:i`, `day:data` od dziś);
+  „Anuluj” nic nie przypisuje, pusty niezapisany szablon znika jak dotąd.
+- „Pierwsze kroki” przy pustych szablonach: „Dodaj ćwiczenia do szablonu „…”” (ostatnio zmieniany) z przejściem do edycji; kilka pustych — dodatkowo
+  „Puste szablony: n” → lista Szablony.
+
 ## 4. Otwarte
 - Audyt 0.10 (08.10.2026): rejestr decyzji na Dysku — ADR-041 ma jeszcze sformułowanie „150–300 min ruchu” (do poprawy na „co najmniej 150–300 min
   umiarkowanego wysiłku”, MER-08); opis uprawnienia Zdrowia (`app.json`, 26 języków) mówi „treningi siłowe”, a od poprawki MER-18 trening cardio trafia

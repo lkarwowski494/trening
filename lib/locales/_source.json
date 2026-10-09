@@ -116,6 +116,10 @@
   "en": "{name}, selected"
  },
  {
+  "pl": "{name}: {n}× w tygodniu",
+  "en": "{name}: {n}× a week"
+ },
+ {
   "pl": "{p} zastąpi ciężary wpisane dla: {i}.",
   "en": "{p} will replace the weights entered for: {i}."
  },
@@ -813,8 +817,24 @@
   "en": "Diet"
  },
  {
+  "pl": "Dni co najmniej tyle, ile wybranych szablonów.",
+  "en": "At least as many days as selected templates."
+ },
+ {
+  "pl": "Dni treningowe w tygodniu",
+  "en": "Training days per week"
+ },
+ {
+  "pl": "Dni treningowe w tygodniu: {n}",
+  "en": "Training days per week: {n}"
+ },
+ {
   "pl": "Dni tygodnia",
   "en": "Days of the week"
+ },
+ {
+  "pl": "Dni: {n}, szablony: {k} — szablony powtarzają się po kolei: {seq}. Co tydzień od początku.",
+  "en": "Days: {n}, templates: {k} — the templates repeat in order: {seq}. Each week starts over."
  },
  {
   "pl": "do",
@@ -843,6 +863,14 @@
  {
   "pl": "Dodaj ciężar",
   "en": "Add weight"
+ },
+ {
+  "pl": "Dodaj ćwiczenia",
+  "en": "Add exercises"
+ },
+ {
+  "pl": "Dodaj ćwiczenia do szablonu „{name}”.",
+  "en": "Add exercises to the template “{name}”."
  },
  {
   "pl": "Dodaj notatkę",
@@ -1220,6 +1248,10 @@
  {
   "pl": "Gumy oporowe",
   "en": "Resistance bands"
+ },
+ {
+  "pl": "Gumy…",
+  "en": "Bands…"
  },
  {
   "pl": "hack squat",
@@ -1620,6 +1652,10 @@
  {
   "pl": "Lista możliwości: przesunięcie planu, przeniesienie tylko tego treningu, zamiana albo wolne — z uwzględnieniem regeneracji partii.",
   "en": "List of options: move the plan, move only this workout, swap or rest — with muscle-group recovery in mind."
+ },
+ {
+  "pl": "Lista szablonów.",
+  "en": "List of templates."
  },
  {
   "pl": "Lista: ćwiczenia i serie jak w poprzednich wersjach, bez karty.",
@@ -2030,6 +2066,10 @@
   "en": "Preacher bench"
  },
  {
+  "pl": "Moje szablony, {n}× w tygodniu",
+  "en": "My templates, {n}× a week"
+ },
+ {
   "pl": "Mój plan",
   "en": "My plan"
  },
@@ -2124,6 +2164,10 @@
  {
   "pl": "Najwyżej {n} rodzajów.",
   "en": "At most {n} sizes."
+ },
+ {
+  "pl": "Najwyżej {n} szablonów — każdy dostaje co najmniej jeden dzień.",
+  "en": "At most {n} templates — each one gets at least one day."
  },
  {
   "pl": "Następna seria.",
@@ -2244,6 +2288,10 @@
  {
   "pl": "Nie masz jeszcze szablonów.",
   "en": "You have no templates yet."
+ },
+ {
+  "pl": "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Nowe szablony i plan”.",
+  "en": "You have no templates with exercises. Create a template or choose “New templates and plan”."
  },
  {
   "pl": "nie podano — e1RM podciągania i pompek",
@@ -2368,6 +2416,10 @@
  {
   "pl": "Nowe rekordy: {n}",
   "en": "New records: {n}"
+ },
+ {
+  "pl": "Nowe szablony i plan",
+  "en": "New templates and plan"
  },
  {
   "pl": "Nowy ekran Trening: dzisiejszy trening, tydzień w liczbach i ostatni trening; przewodnik po funkcjach w Więcej.",
@@ -2762,6 +2814,10 @@
   "en": "Weekly plan and Calendar"
  },
  {
+  "pl": "Plan tygodnia z Twoich szablonów według tych samych reguł co generator — przejrzysz go przed zapisem. Szablony zostają bez zmian.",
+  "en": "A weekly plan from your templates, using the same rules as the generator — you review it before saving. Your templates stay unchanged."
+ },
+ {
   "pl": "Plan z moich szablonów",
   "en": "Plan from my templates"
  },
@@ -2804,6 +2860,10 @@
  {
   "pl": "Po ukryciu komunikatu kopii nie da się już wysłać z aplikacji — najpierw ją wyślij, jeśli jest potrzebna.",
   "en": "After hiding this message the copy can no longer be sent from the app — send it first if you need it."
+ },
+ {
+  "pl": "Po zapisie szablon trafi na ten dzień.",
+  "en": "After saving, the template goes on this day."
  },
  {
   "pl": "Podgląd",
@@ -2928,6 +2988,10 @@
  {
   "pl": "Poniżej {n} serii tygodniowo: {list}. Pomoże więcej sesji, dłuższy czas albo więcej sprzętu w miejscu.",
   "en": "Below {n} sets per week: {list}. More sessions, longer sessions or more equipment at the place will help."
+ },
+ {
+  "pl": "Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.",
+  "en": "Below {n} sets per week: {list}. This is the lower threshold recommended for building muscle; you can add sets in the templates."
  },
  {
   "pl": "Ponów teraz",
@@ -3286,6 +3350,10 @@
  {
   "pl": "Pusta nazwa folderu",
   "en": "Empty folder name"
+ },
+ {
+  "pl": "Puste szablony: {n}",
+  "en": "Empty templates: {n}"
  },
  {
   "pl": "pusto — zaznaczysz, co masz",
@@ -3771,8 +3839,8 @@
   "en": "superset · rest after round {t}"
  },
  {
-  "pl": "Superset ustawisz w szablonie przyciskiem „Połącz z następnym w superset” — przerwa liczy się po ostatnim ćwiczeniu grupy.",
-  "en": "You set a superset in the template with “Link with next into a superset” — the rest starts after the last exercise of the group."
+  "pl": "Superset ustawisz w szablonie: „Edytuj”, potem „⇅ SS” przy ćwiczeniu łączy je z następnym (w trakcie treningu ten sam przycisk jest przy ćwiczeniu) — przerwa liczy się po ostatnim ćwiczeniu grupy.",
+  "en": "To set a superset in a template, tap “Edit”, then “⇅ SS” on an exercise links it with the next one (during a workout the same button is on the exercise) — the rest starts after the group’s last exercise."
  },
  {
   "pl": "Suplementy",
@@ -3811,6 +3879,10 @@
   "en": "A template opens in preview with “Start”; changes (including the folder) only after “Edit” — “Save” saves them."
  },
  {
+  "pl": "Szablon w planie: {name}",
+  "en": "Template in the plan: {name}"
+ },
+ {
   "pl": "Szablon zmieni się tylko po „Zaktualizuj szablon”.",
   "en": "The template changes only after “Update template”."
  },
@@ -3838,6 +3910,10 @@
  {
   "pl": "Szablony w folderach i archiwum, „Pomiń dziś” bez zmiany szablonu, usuwanie przesunięciem w lewo.",
   "en": "Templates in folders and archive, “Skip today” without changing the template, swipe left to delete."
+ },
+ {
+  "pl": "Szablony zostają bez zmian. Plan trafi do „Inne plany” albo od razu jako aktywny.",
+  "en": "Your templates stay unchanged. The plan goes to “Other plans” or becomes active right away."
  },
  {
   "pl": "Szablony: {list} — w folderze „{folder}” na liście Szablony.",
@@ -4397,10 +4473,6 @@
   "en": "Delete band: {name}"
  },
  {
-  "pl": "Usuń gumy…",
-  "en": "Delete bands…"
- },
- {
   "pl": "Usuń miejsce: {name}",
   "en": "Delete place: {name}"
  },
@@ -4573,6 +4645,10 @@
   "en": "More → Progress: weekly or monthly summary with the previous period alongside."
  },
  {
+  "pl": "Więcej dni niż szablonów: szablony po kolei (A, B, A…), jak w generatorze — konwencja.",
+  "en": "More days than templates: templates in order (A, B, A…), as in the generator — a convention."
+ },
+ {
   "pl": "Więcej możliwości ({n})",
   "en": "Show {n} more"
  },
@@ -4683,6 +4759,10 @@
  {
   "pl": "Wszystkie serie odhaczone",
   "en": "All sets ticked off"
+ },
+ {
+  "pl": "Wybierz co najmniej jeden szablon.",
+  "en": "Select at least one template."
  },
  {
   "pl": "Wybierz ćwiczenie",
@@ -5031,6 +5111,10 @@
  {
   "pl": "Zapisz jako szablon",
   "en": "Save as template"
+ },
+ {
+  "pl": "Zapisz plan",
+  "en": "Save plan"
  },
  {
   "pl": "Zapisz pomiar",

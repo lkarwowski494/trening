@@ -34,6 +34,9 @@ export function lastWorkout() {
   /* audyt 0.10: serie jak wszędzie (D3, store.workingSets), rekordy jak okno po treningu (E3, stats.prCount — liczba rekordów, nie serii) */
   return { id: w.id, name: w.templateName, startedAt: wallTs(w) /* J3: data w strefie startu */, durationSec: Math.round(workoutDurSec(w)), sets: workingSets(w), volume: volume(w), prs: prCount(w) };
 }
+/** „Pierwsze kroki” przy pustych szablonach (decyzja właściciela 09.10.2026): niezarchiwizowane szablony bez ćwiczeń, ostatnio zmieniany pierwszy —
+ * krok 2 prowadzi do jego edycji zamiast „Najpierw utwórz szablon”. */
+export const emptyTemplates = () => getState().templates.filter(x => !x.archived && !x.items.length).sort((a, b) => b.updatedAt - a.updatedAt);
 /** „Pierwsze kroki” — widoczne do pierwszego zakończonego treningu. */
 export function firstSteps() {
   if (finishedWorkouts().length) return null;

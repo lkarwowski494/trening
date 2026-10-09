@@ -1,7 +1,8 @@
 import { MedicalNote } from '@/components/MedicalNote';
 import React, { useMemo, useState } from 'react';
 import { ScrollView, View, Alert } from 'react-native';
-import { useRouter } from 'expo-router';
+import { useRouter, useLocalSearchParams, Stack } from 'expo-router';
+import { OwnPlan } from '@/components/OwnPlan';
 import { Screen, Field, Chip, Segmented, Muted, Txt, H2, Btn, SectionTitle } from '@/components/ui';
 import { getState, useTick, exById, fmtDur } from '@/lib/store';
 import {
@@ -23,7 +24,19 @@ import { SAVED_PLANS_MAX } from '@/lib/store';
 const wd = (i: number) => new Date(2024, 0, 1 + i).toLocaleDateString(locale(), { weekday: 'short' });
 const min = (sec: number) => fmtNum(sec / 60, 1);
 
+/** Ekran generatora: dwa tryby (decyzja właściciela 09.10.2026, B) — „Nowe szablony i plan” (generator) i „Plan z moich szablonów” (components/OwnPlan);
+ * `?mode=own` — od razu drugi tryb (wejścia z edytora planu i „Pierwszych kroków”). */
 export default function GeneratorScreen() {
+  const p = useLocalSearchParams<{ mode?: string }>(); const [mode, setMode] = useState<'gen' | 'own'>(p.mode === 'own' ? 'own' : 'gen');
+  const header = <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6, marginBottom: 10 }}>
+    <Chip label={t('Nowe szablony i plan')} on={mode === 'gen'} onPress={() => setMode('gen')} />
+    <Chip label={t('Plan z moich szablonów')} on={mode === 'own'} onPress={() => setMode('own')} />
+  </View>;
+  if (mode === 'own') return <Screen><Stack.Screen options={{ title: t('Plan z moich szablonów') }} /><OwnPlan header={header} /></Screen>;
+  return <><Stack.Screen options={{ title: t('Generator szablonów i planu') }} /><NewTemplatesPlan header={header} /></>;
+}
+
+function NewTemplatesPlan({ header }: { header: React.ReactNode }) {
   const rev = useTick(); const router = useRouter(); const s = getState().settings;
   const [inp, setInp] = useState<GenInput>(() => ({ goal: 'hypertrophy', locationId: s.mainLocationId && s.locations.some(l => l.id === s.mainLocationId) ? s.mainLocationId : null, sessions: 3, minutes: 60 }));
   const set = (p: Partial<GenInput>) => setInp(x => { const n = { ...x, ...p }; if (!GEN_SESSIONS[n.goal].includes(n.sessions)) n.sessions = GEN_SESSIONS[n.goal][0]; return n; });
@@ -68,6 +81,7 @@ export default function GeneratorScreen() {
   ];
   return (
     <Screen><ScrollView contentContainerStyle={{ paddingVertical: 10, paddingBottom: 60 }}>
+      {header}
       <Muted style={{ fontSize: 13, marginBottom: 8 }}>{t('Propozycja według Twoich założeń — przejrzysz ją przed zapisem. Reguły pochodzą z przeglądów badań; części oznaczone jako konwencja albo uproszczenie nie wynikają z badań.')}</Muted>
       <Field label={t('Cel')}><Segmented label={t('Cel')} options={[['strength', t('Siła')], ['hypertrophy', t('Masa')], ['cut', t('Redukcja')]] as [Goal, string][]} value={inp.goal} onChange={g => set({ goal: g })} /></Field>
       {unloaded ? <Txt style={{ fontSize: 13, marginTop: -4, marginBottom: 8 }}>{unloaded.text}</Txt> : <Muted style={{ fontSize: 13, marginTop: -4, marginBottom: 8 }}>{goalNote}</Muted>}

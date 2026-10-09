@@ -38,8 +38,8 @@ const SAME_ANY = new Set([
 ]);
 /** W jednym języku: wyraz pokrewny o tym samym zapisie i znaczeniu (słowa sprawdzone w języku docelowym). */
 const SAME_IN: Partial<Record<Lang, string[]>> = {
-  cs: ['guma: {v}' /* guma (07.10.2026) */, '{n} z {all}', '{n} z {m}' /* „z” = z (czes.) */, '{u}/str.' /* strana */, '+ Guma', 'guma', 'Guma', 'gumy', 'Gumy' /* guma */, 'do', 'od', 'krok', 'obj.' /* objem */, 'REKORDY', 'Guma: {b}' /* guma (A11-18: etykieta bez instrukcji) */ /* „pauza” (08.10.2026) usunięte 09.10.2026: pauza treningu = „pozastavit”, A11-01 */],
-  sk: ['guma: {v}' /* guma (07.10.2026) */, '{n} z {all}', '{n} z {m}', '{u}/str.', '+ Guma', 'guma', 'Guma', 'gumy', 'Gumy', 'do', 'od', 'krok', 'obj.', 'REKORDY', 'nie', 'Nie' /* „nie” = nie (słow.) */, 'Partia' /* svalová partia */, 'sek.', 'Teraz: {v}' /* teraz = teraz (słow.) */, 'Guma: {b}' /* A11-18 */ /* „pauza” usunięte 09.10.2026: pauza treningu = „pozastaviť”, A11-01 */],
+  cs: ['guma: {v}' /* guma (07.10.2026) */, '{n} z {all}', '{n} z {m}' /* „z” = z (czes.) */, '{u}/str.' /* strana */, '+ Guma', 'guma', 'Guma', 'gumy', 'Gumy', 'Gumy…' /* guma (UI2-09) */, 'do', 'od', 'krok', 'obj.' /* objem */, 'REKORDY', 'Guma: {b}' /* guma (A11-18: etykieta bez instrukcji) */ /* „pauza” (08.10.2026) usunięte 09.10.2026: pauza treningu = „pozastavit”, A11-01 */],
+  sk: ['guma: {v}' /* guma (07.10.2026) */, '{n} z {all}', '{n} z {m}', '{u}/str.', '+ Guma', 'guma', 'Guma', 'gumy', 'Gumy', 'Gumy…', 'do', 'od', 'krok', 'obj.', 'REKORDY', 'nie', 'Nie' /* „nie” = nie (słow.) */, 'Partia' /* svalová partia */, 'sek.', 'Teraz: {v}' /* teraz = teraz (słow.) */, 'Guma: {b}' /* A11-18 */ /* „pauza” usunięte 09.10.2026: pauza treningu = „pozastaviť”, A11-01 */],
   hr: ['guma: {v}' /* guma (07.10.2026) */, 'Masa' /* masa = masa (chorw., cel generatora 08.10.2026) */, '{u}/str.' /* strana */, 'do', 'od', 'Dom', 'normalna', 'sek.', 'Trening' /* APP_NAME.hr */, 'pauza', '⏸ Pauza' /* pauza = pauza (08.10.2026) */, 'Dodaj trening' /* „dodaj” = dodaj (08.10.2026) */, 'Plan do {date}' /* plan do = plan do (chorw.; nazwa planu bez nazwy po wyłączeniu, audyt 0.10 B2) */, 'Dodane: {list}.' /* dodane = dodane (chorw., ćwiczenia z treningu do szablonu, audyt 0.10 H5) */],
   sl: ['{u}/str.' /* stran */, 'do', 'od', 'Dom', 'sek.', 'Trening' /* APP_NAME.sl */, 'Treningi' /* sl: mn. „trening” — to samo słowo */, 'Dodaj trening' /* „dodaj” = dodaj (08.10.2026) */, 'Dodane: {list}.' /* dodane = dodane (słoweń., audyt 0.10 H5) */],
   ro: ['seria {n}', 'Seria {n}', 'Seria {n} — {ex}', 'serii', 'e1RM {v} (seria {s})' /* rum. seria = seria (forma z rodzajnikiem), serii = serie */],
@@ -112,7 +112,7 @@ describe('słowniki — jakość tekstów w każdym języku', () => {
   test.each(NON_PL)('%s: interpunkcja końcowa (. ? ! : …) jak w kluczu — poza kropką skrótu', l => {
     expect(entries(l).filter(([k, v]) => punctMismatch(k, v, l)).map(([k, v]) => `${k} → ${v}`)).toEqual([]);
   });
-  test.each(NON_PL)('%s: zdanie pytające zostaje pytaniem, wielokropek wielokropkiem (także w środku: „Usuń gumy…”)', l => {
+  test.each(NON_PL)('%s: zdanie pytające zostaje pytaniem, wielokropek wielokropkiem (także w środku: „Gumy…”)', l => {
     expect(entries(l).filter(([k, v]) => (k.includes('?') && !/[?;？]/.test(v)) || (/…$/.test(k) && !/(…|\.\.\.)$/.test(v))).map(([k, v]) => `${k} → ${v}`)).toEqual([]);
   });
   test('słownik EN: liczba mnoga ma dokładnie 2 formy (one|other); klucz polski 3 (jeden|kilka|wiele); każda forma niepusta, bez spacji na brzegach', () => {
@@ -326,6 +326,13 @@ describe('długie tłumaczenia w miejscach, gdzie tekst może być ucięty', () 
       const full = 320 - 2 * 14 - 2 * 1 - 2 * 2 - 2 * 6;
       for (const k of keys) for (const x of trIn(l, k).split(/\s+/)) if (SANS.semibold.width(x, 14 * 2) > full) bad.push(`${x} (pionowo, 200%)`);
     }
+    expect([l, bad]).toEqual([l, []]);
+  });
+  /* 09.10.2026 (B): wybór trybu generatora („Nowe szablony i plan” / „Plan z moich szablonów”) — chipy w wierszu z zawijaniem (components/ui Chip:
+   * 13 pt półgruby, padding 12, ramka 1); na 320 pt każdy wyraz mieści się w chipie na pełnej szerokości (bez łamania w środku wyrazu), także przy 200%. */
+  test.each([...LANGS])('%s: chipy trybu generatora na ekranie 320 pt — żaden wyraz szerszy niż chip', l => {
+    const avail = 320 - 2 * 14 - 2 * 12 - 2 * 1; const bad: string[] = [];
+    for (const k of ['Nowe szablony i plan', 'Plan z moich szablonów']) for (const x of trIn(l, k).split(/\s+/)) for (const sc of [1, 2]) if (SANS.semibold.width(x, 13 * sc) > avail) bad.push(`${x} (${sc})`);
     expect([l, bad]).toEqual([l, []]);
   });
   test('czytnik TTF liczy szerokości jak krój (kontrola: „i” węższe niż „m”, szerokość rośnie liniowo z rozmiarem)', () => {

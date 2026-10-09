@@ -61,8 +61,9 @@ const routesFor = (w: { id: string }, tpl: { id: string }, exId: string, locId: 
   `/template/${tpl.id}`, `/exercise/${exId}`, `/history/${w.id}`, `/history/edit/${w.id}`,
   '/plan', '/generator', '/guide', `/swap?target=active:${blockId}`, '/picker?target=active', '/reorder?target=active', '/history/add', `/more/location/${locId}`,
   '/more/bodymass', '/more/about', '/more/licenses', /* audyt 0.10 fala 2: masa ciała z datą, O aplikacji, licencje (SEC-08) */
+  '/generator?mode=own', /* 09.10.2026 (B): „Plan z moich szablonów” — drugi tryb ekranu generatora */
 ];
-const ROUTES_N = 26; /* 23 + masa ciała, O aplikacji, licencje (fala 2) */
+const ROUTES_N = 27; /* 23 + masa ciała, O aplikacji, licencje (fala 2) + plan z moich szablonów (09.10.2026) */
 /* Trasa „/” w stanie z treningiem w toku = ekran aktywnego treningu (components/ActiveWorkout.tsx). */
 
 /**

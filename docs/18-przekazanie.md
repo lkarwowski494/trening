@@ -303,3 +303,20 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
   3) czterokolorowy pasek-akcent; 4) ikony zakładek w geometrii talerzy; 5) animacja „dokładania talerza” przy rekordzie (z ograniczeniem
   ruchu — obraz statyczny); 6) kalendarz: dni z treningiem jako talerze. Warunki: kolor nigdy jedyną informacją (daltonizm), czerwień
   talerza odróżniona od czerwieni „Usuń”. Dopracowanie istniejących ekranów — w paczce przed App Store (zamrożenie: nie nowa funkcja).
+- 09.10.2026 (ok. 14:45): zgłoszenie „nie da się zrobić planu z własnych szablonów” — właściciel sam usunął jedyny szablon; testy
+  (plan-own-templates, 5/5 na f8f59e7) potwierdzają, że nowe, folderowe i generowane szablony są w edytorze planu i na liście startu.
+  Znalezisko UX (ŚREDNIE): przy braku szablonów edytor planu i panel dnia w Kalendarzu nie mają „+ Nowy szablon”. Wybór wg zasady z 20:20:
+  **B** — „+ Nowy szablon” w edytorze planu i panelu dnia, po „Zapisz” szablon trafia od razu na ten dzień (odrzucone A: bez przypisania,
+  C: sam komunikat). Do paczki przed App Store.
+- 09.10.2026 (ok. 14:55): właściciel — **„Plan z moich szablonów” (B)**, wyjątek od zamrożenia („na granicy nowej funkcji, łata lukę”):
+  wybór własnych szablonów i liczby dni → rozkład na tydzień wg reguł generatora (te same, ze źródłami) → podgląd → zatwierdzenie. Odrzucone:
+  A (tylko widoczna droga do ręcznego edytora), C (A teraz, B po App Store). W tej samej paczce: „Pierwsze kroki” przy pustym szablonie —
+  komunikat „dodaj ćwiczenia do szablonu …” zamiast „Najpierw utwórz szablon”; „+ Nowy szablon” w edytorze planu i panelu dnia (B, wyżej).
+- 09.10.2026 (ok. 15:20): właściciel — **ekran główny: układ B „najpierw trening”** (makiety: https://claude.ai/artifact/7CetSMVFxjPDbQU4KLDsp8):
+  duży przycisk startu zależny od sytuacji (z planem „Start: <dzisiejszy>”, bez planu następny szablon albo „Pusty trening”); „Inny trening”
+  jako arkusz (inny z planu, powtórz ostatni, z szablonu, pusty); kafelki tygodnia; karta Planowania (nowy szablon, plan z moich szablonów,
+  generator) — zwinięta do wiersza przy planie, rozwinięta i wyżej bez planu; Ustawienia tylko w „Więcej”. **Karta „Ten tydzień” (sztanga
+  postępu + pasek dni z datami i talerzami) tylko przy aktywnym planie** (wariant 1; odrzucone 2: w karcie planu). Odrzucone A (trzy sekcje).
+  „Powtórz ostatni” w arkuszu (jak na makiecie).
+  Doprecyzowanie właściciela (ok. 15:30): karta „Dziś” z paskiem tygodnia i „Następne: …” zostaje na górze, a sekcja „Ten tydzień” z kafelkami
+  zostaje; sztanga postępu trafia do „Ten tydzień” (tylko przy planie); duży przycisk startu i „Inny trening” przy karcie „Dziś”.

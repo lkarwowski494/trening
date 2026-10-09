@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { ScrollView, Alert, View, Linking } from 'react-native';
 import { Screen, Field, NumInput, Btn, Muted, SwitchRow, Segmented, SectionTitle, Item } from '@/components/ui';
 import { useRouter } from 'expo-router';
-import { getState, useTick, save, saveCfg, resetAll, applyPrefs, useForegroundTick, latestBodyMass, fmtDate, localDateTs, setPlanHintHidden } from '@/lib/store';
+import { getState, useTick, save, saveCfg, resetAll, applyPrefs, useForegroundTick, latestBodyMass, fmtDate, localDateTs, REST_MAX, setPlanHintHidden } from '@/lib/store';
 import { DEFAULT_REST, type ThemeSetting, type WorkoutView } from '@/lib/seed';
 import * as timer from '@/lib/timer';
 import { PLAN_REMINDER_HOUR, reminderPermission, type ReminderPermission } from '@/lib/planReminder';
@@ -29,7 +29,7 @@ export default function SettingsScreen() {
       <SectionTitle>{t('Trening')}</SectionTitle>
       <Field label={t('Widok treningu')}><Segmented label={t('Widok treningu')} options={[['focus', t('Skupiony')], ['list', t('Lista')]] as [WorkoutView, string][]} value={s.workoutView ?? 'focus'} onChange={v => { s.workoutView = v; saveCfg(); }} /></Field>
       <Muted style={{ fontSize: 13, marginTop: -4, marginBottom: 8 }}>{s.workoutView === 'list' ? t('Lista: ćwiczenia i serie jak w poprzednich wersjach, bez karty.') : t('Skupiony: bieżąca seria dużymi cyframi i talerze na stronę nad listą ćwiczeń.')}</Muted>
-      <Field label={t('Domyślna przerwa (sekundy)')}><NumInput value={s.defaultRest} onNum={v => { if (v === '') return; s.defaultRest = Math.min(1800, Math.max(0, Math.round(v))); saveCfg(); }} placeholder={String(DEFAULT_REST)} /></Field>
+      <Field label={t('Domyślna przerwa (sekundy)')}><NumInput value={s.defaultRest} onNum={v => { if (v === '') return; s.defaultRest = Math.min(REST_MAX, Math.max(0, Math.round(v))) /* UI2-09: limit z jednego miejsca */; saveCfg(); }} placeholder={String(DEFAULT_REST)} /></Field>
       <SwitchRow label={t('Dźwięk i wibracja na koniec przerwy')} value={s.sound} onChange={v => { s.sound = v; saveCfg(); timer.refreshScheduled().catch(() => {}); }} />
       <SwitchRow label={t('Ekran włączony podczas treningu')} value={s.wakeLock} onChange={v => { s.wakeLock = v; saveCfg(); }} />
       <SwitchRow label={t('RPE / RIR przy serii')} detail={t('opcjonalne pole, nie wpływa na objętość')} value={s.showRpe} onChange={v => { s.showRpe = v; saveCfg(); }} />
@@ -43,6 +43,7 @@ export default function SettingsScreen() {
       {/* audyt 0.10 (E1, wariant B; fala 2 — masa ciała z datą): pomiary na osobnym ekranie (historia, data pomiaru), tu ostatni */}
       <Item title={t('Masa ciała')} sub={(b => b ? t('{v} · pomiar z {d}', { v: fmtW(b.kg), d: fmtDate(localDateTs(b.date)) }) : t('nie podano — e1RM podciągania i pompek'))(latestBodyMass())} onPress={() => router.push('/more/bodymass')} />
 
+      <MedicalNote style={{ marginTop: 18, marginBottom: 10 }} /* L1 (audyt 0.10, MER-11 A); UI2-09: w sekcji „Trening”, nie nad „Wyczyść wszystkie dane” */ />
       <SectionTitle>{t('Dane i kopie')}</SectionTitle>
       <SwitchRow label={t('Zapisuj zakończone treningi do Apple Health')} value={s.healthSync} onChange={async v => { if (!v) { s.healthSync = false; save(); return; } const ok = await health.ensureAuthorization(); if (ok) { s.healthSync = true; save(); } else Alert.alert(t('Apple Health niedostępne'), t('Brak zgody na zapis treningów. Włącz ją w aplikacji Zdrowie: profil → Aplikacje → {app}.', { app: appName() })); }} />
       {s.healthSync && health.healthPending().length ? <View testID="health-pending-count" style={{ gap: 6, marginTop: -2, marginBottom: 8 }}>{/* audyt 0.10 J2 (DAT-04 B): licznik i ponowienie */}
@@ -62,7 +63,6 @@ export default function SettingsScreen() {
 
       {/* Moduły schowane (decyzja właściciela 05.10.2026: „Na razie schowaj moduły”) — ustawienia modułów zostają w danych */}
       <SectionTitle>{t('Dane w telefonie')}</SectionTitle>
-      <MedicalNote style={{ marginTop: 18, marginBottom: 10 }} /* L1 (audyt 0.10, MER-11 A) */ />
       <Btn title={t('Wyczyść wszystkie dane')} kind="danger" onPress={() => Alert.alert(t('Wyczyścić wszystkie dane?') /* G5 (audyt 0.10 UI-14): konkretne pytanie zamiast „Na pewno?” */, t('Usunie ćwiczenia, szablony i całą historię oraz przywróci ustawienia domyślne (także miejsca, sprzęt i gumy). Przedtem obecne dane zapiszą się jako kopia w Plikach: {app} → Backup (można ją zaimportować).', { app: appName() }) + (getState().active ? ' ' + t('Trening w toku też zostanie usunięty.') : '') /* G3 (audyt 0.10 UI-06) */ + safetyRecoveryNote(), [{ text: t('Nie'), style: 'cancel' }, { text: t('Wyczyść'), style: 'destructive', onPress: () => { safetyBackup('reset').then(() => { timer.resetAll().catch(() => {}); resetAll(); timer.scheduleWeighReminder().catch(() => {}); /* runda 75 (audyt T14): po wyczyszczeniu domyślne ustawienia — bez przypomnienia */ }).catch((e: unknown) => Alert.alert(t('Dane nie zostały wyczyszczone'), e instanceof Error ? e.message : undefined)); /* Q-019: najpierw kopia bezpieczeństwa w Backup/ */ } }])} />
     </ScrollView></Screen>
   );
