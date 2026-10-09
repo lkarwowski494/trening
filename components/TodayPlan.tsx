@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Pressable } from 'react-native';
 import { useRouter } from 'expo-router';
-import { Btn, Muted, Txt, upperText } from '@/components/ui';
+import { Btn, Muted, Txt, upperText, useOnce } from '@/components/ui';
 import { useTheme, F, NUM_SCALE_MAX } from '@/lib/theme';
 import { getState, finishedWorkouts, useForegroundTick, isDeloadWeek, fmtDayKey, setPlanHintHidden } from '@/lib/store';
 import { hasPlan, dayKeyOf, doneOn, upcoming, pending, planTplName, addDays, type DayStatus } from '@/lib/plan';
@@ -25,7 +25,7 @@ const dateOf = (k: string) => new Date(+k.slice(0, 4), +k.slice(5, 7) - 1, +k.sl
 const names = (k: string) => doneOn(k).map(w => w.templateName || t('Trening')).join(', ');
 
 export function TodayPlan() {
-  useForegroundTick(); const th = useTheme(); const router = useRouter();
+  useForegroundTick(); const th = useTheme(); const router = useRouter(); const once = useOnce(); /* UI2-02 */
   const plan = hasPlan(); if (!plan && !finishedWorkouts().length) return null;
   const today = dayKeyOf(Date.now()); const days = weekStrip(); const name = planTplName;
   const cur = days.find(d => d.today)!; const id = cur.templateId; const tpl = id ? getState().templates.find(x => x.id === id && !x.archived) : undefined;
@@ -49,7 +49,7 @@ export function TodayPlan() {
           {(() => { const u = upperText(deload ? `${t('Dziś')} · ${t('Tydzień deload')}` : t('Dziś')); /* A11-02: wersaliki z regułami języka */ return <Muted accessibilityLabel={u.label} style={[{ fontSize: 12, fontFamily: F.semibold, letterSpacing: 0.5 }, u.style]}>{u.text}</Muted>; })()}
           <Txt style={{ fontFamily: F.semibold, fontSize: 18 }}>{title}</Txt>
           {cur.status === 'other' ? <Muted style={{ fontSize: 13 }}>{t('Zrobiony inny trening: {name}', { name: names(today) })}</Muted> : null}
-          {tpl && pending(cur) && !tpl.items.length ? <Pressable accessibilityLanguage={lang()} accessibilityRole="link" onPress={() => router.push(`/template/${tpl.id}?edit=1`)}><Muted style={{ fontSize: 13 }}>{t('Szablon jest pusty — dodaj ćwiczenia')}</Muted></Pressable> : null}
+          {tpl && pending(cur) && !tpl.items.length ? <Pressable accessibilityLanguage={lang()} accessibilityRole="link" onPress={once(() => router.push(`/template/${tpl.id}?edit=1`))}><Muted style={{ fontSize: 13 }}>{t('Szablon jest pusty — dodaj ćwiczenia')}</Muted></Pressable> : null}
         </View>
         {planBtn() /* B1 (09.10.2026): „Plan tygodnia” zawsze na karcie — „Ukryj” chowa tylko tekst zachęty; start — duży przycisk pod kartą (układ B, components/StartPanel) */}
       </View>
@@ -58,7 +58,7 @@ export function TodayPlan() {
           const label = [dateOf(d.date).toLocaleDateString(locale(), { weekday: 'long', day: 'numeric', month: 'long' }), ...(d.today ? [t('dziś')] : []), word(d), ...(deload ? [t('tydzień deload')] : [])].join(', ');
           const mark = dayMark(d.status, d.inPlan);
           return (
-            <Pressable accessibilityLanguage={lang()} key={d.date} testID={`strip-${d.date}`} accessibilityRole="button" accessibilityLabel={label} accessibilityHint={t('Otwiera ten dzień w Kalendarzu.')} onPress={() => router.push(`/history?day=${d.date}`)} style={({ pressed }) => ({ flex: 1, minHeight: 44 /* A11-15 */, alignItems: 'center', gap: 4, paddingVertical: 3, borderRadius: 8, borderWidth: 2, borderColor: d.today ? th.accent : 'transparent', opacity: pressed ? 0.6 : 1 })}>
+            <Pressable accessibilityLanguage={lang()} key={d.date} testID={`strip-${d.date}`} accessibilityRole="button" accessibilityLabel={label} accessibilityHint={t('Otwiera ten dzień w Kalendarzu.')} onPress={once(() => router.push(`/history?day=${d.date}`))} style={({ pressed }) => ({ flex: 1, minHeight: 44 /* A11-15 */, alignItems: 'center', gap: 4, paddingVertical: 3, borderRadius: 8, borderWidth: 2, borderColor: d.today ? th.accent : 'transparent', opacity: pressed ? 0.6 : 1 })}>
               <View style={{ alignItems: 'center' }}>{(() => { const u = upperText(wd(d.date)); /* B1: skrót dnia wersalikami wg reguł języka (A11-02), pod nim numer dnia miesiąca */ return <Muted maxFontSizeMultiplier={NUM_SCALE_MAX} style={[{ fontSize: 11, fontFamily: d.today ? F.semibold : F.regular, color: d.today ? th.text : th.muted }, u.style]}>{u.text}</Muted>; })()}
               <Txt maxFontSizeMultiplier={NUM_SCALE_MAX} style={{ fontSize: 13, fontFamily: d.today ? F.heavy : F.semibold, color: d.today ? th.text : th.muted }}>{dateOf(d.date).toLocaleDateString(locale(), { day: 'numeric' })}</Txt></View>
               {/* znacznik dnia — jedyny kod „zrobione / zaplanowane / odpoczynek” (lib/motif.dayMark; zrobiony inny trening = pełna ikona, że zaplanowany czeka — etykieta) */}

@@ -1323,5 +1323,9 @@
  "odpoczynek": "den odpočinku",
  "Dni treningowe w tygodniu (w tym {n} cardio)": "Tréninkové dny v týdnu (vč. {n} kardia)",
  "Wybierz dni treningowe: od {a} do {b}.": "Vyber tréninkové dny: od {a} do {b}.",
- "Wybierz dni treningowe: {n}.": "Vyber tréninkové dny: {n}."
+ "Wybierz dni treningowe: {n}.": "Vyber tréninkové dny: {n}.",
+ "dawniej: {n}": "dříve: {n}",
+ "Dawne nazwy w bibliotece": "Dřívější názvy v knihovně",
+ "Technika: {name}": "Technika provedení: {name}",
+ "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami.": "Zjednodušení: obvykle den volna mezi tréninky se stejnými hlavními partiemi."
 }

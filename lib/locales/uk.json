@@ -1323,5 +1323,9 @@
  "odpoczynek": "день відпочинку",
  "Dni treningowe w tygodniu (w tym {n} cardio)": "Тренувальні дні на тиждень (з них {n} кардіо)",
  "Wybierz dni treningowe: od {a} do {b}.": "Вибери тренувальні дні: від {a} до {b}.",
- "Wybierz dni treningowe: {n}.": "Вибери тренувальні дні: {n}."
+ "Wybierz dni treningowe: {n}.": "Вибери тренувальні дні: {n}.",
+ "dawniej: {n}": "раніше: {n}",
+ "Dawne nazwy w bibliotece": "Попередні назви в бібліотеці",
+ "Technika: {name}": "Техніка: {name}",
+ "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami.": "Спрощення: зазвичай день відпочинку між сесіями з тими самими основними групами."
 }

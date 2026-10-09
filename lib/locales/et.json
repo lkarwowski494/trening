@@ -1323,5 +1323,9 @@
  "odpoczynek": "puhkepäev",
  "Dni treningowe w tygodniu (w tym {n} cardio)": "Treeningpäevi nädalas (sh {n} kardio)",
  "Wybierz dni treningowe: od {a} do {b}.": "Vali treeningpäevad: {a} kuni {b}.",
- "Wybierz dni treningowe: {n}.": "Vali treeningpäevad: {n}."
+ "Wybierz dni treningowe: {n}.": "Vali treeningpäevad: {n}.",
+ "dawniej: {n}": "varem: {n}",
+ "Dawne nazwy w bibliotece": "Varasemad nimed teegis",
+ "Technika: {name}": "Tehnika: {name}",
+ "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami.": "Lihtsustus: tavaliselt puhkepäev samade peamiste lihasrühmadega treeningute vahel."
 }

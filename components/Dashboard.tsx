@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Pressable } from 'react-native';
 import { useRouter } from 'expo-router';
-import { Btn, Muted, Txt, SectionTitle } from '@/components/ui';
+import { Btn, Muted, Txt, SectionTitle, useOnce } from '@/components/ui';
 import { useTheme, F, NUM_SCALE_MAX } from '@/lib/theme';
 import { getState, useTick, newTemplate } from '@/lib/store';
 import { weekTiles, lastWorkout, firstSteps, emptyTemplates } from '@/lib/dashboard';
@@ -22,10 +22,10 @@ const hm = (sec: number) => { const m = Math.round(sec / 60); return m >= 60 ? `
 
 /** Kafelki tygodnia (od pierwszego zakończonego treningu); przy planie postęp tygodnia (stosy talerzy). */
 export function WeekStats() {
-  useTick(); const router = useRouter(); const w = weekTiles(); const last = lastWorkout(); if (!last) return null;
+  useTick(); const router = useRouter(); const once = useOnce(); /* UI2-02 */ const w = weekTiles(); const last = lastWorkout(); if (!last) return null;
   return <>
     <SectionTitle>{t('Ten tydzień')}</SectionTitle>
-    <Pressable testID="week-tiles" accessibilityRole="button" accessibilityLabel={([[t('Treningi'), String(w.workouts), String(w.prev.workouts)], [t('Serie'), String(w.sets), String(w.prev.sets)], [t('Czas'), hm(w.durationSec), hm(w.prev.durationSec)]] as const).map(([label, value, prev]) => t('{label}: {v}, poprzedni tydzień {p}', { label, v: value, p: prev })).join('; ')} accessibilityHint={t('Otwiera Postępy.')} onPress={() => router.push('/more/progress')} style={({ pressed }: { pressed: boolean }) => ({ flexDirection: 'row', gap: 8, opacity: pressed ? 0.7 : 1 })} /* UX-16 A (audyt 0.10): te same definicje co Postępy */>
+    <Pressable testID="week-tiles" accessibilityRole="button" accessibilityLabel={([[t('Treningi'), String(w.workouts), String(w.prev.workouts)], [t('Serie'), String(w.sets), String(w.prev.sets)], [t('Czas'), hm(w.durationSec), hm(w.prev.durationSec)]] as const).map(([label, value, prev]) => t('{label}: {v}, poprzedni tydzień {p}', { label, v: value, p: prev })).join('; ')} accessibilityHint={t('Otwiera Postępy.')} onPress={once(() => router.push('/more/progress'))} style={({ pressed }: { pressed: boolean }) => ({ flexDirection: 'row', gap: 8, opacity: pressed ? 0.7 : 1 })} /* UX-16 A (audyt 0.10): te same definicje co Postępy */>
       <Tile label={t('Treningi')} value={String(w.workouts)} prev={String(w.prev.workouts)} />
       <Tile label={t('Serie')} value={String(w.sets)} prev={String(w.prev.sets)} />
       <Tile label={t('Czas')} value={hm(w.durationSec)} prev={hm(w.prev.durationSec)} />

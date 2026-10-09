@@ -817,6 +817,14 @@
   "en": "The measurement date cannot be in the future."
  },
  {
+  "pl": "Dawne nazwy w bibliotece",
+  "en": "Former names in the library"
+ },
+ {
+  "pl": "dawniej: {n}",
+  "en": "formerly: {n}"
+ },
+ {
   "pl": "Deload",
   "en": "Deload"
  },
@@ -4047,6 +4055,10 @@
   "en": "Technique"
  },
  {
+  "pl": "Technika: {name}",
+  "en": "Technique: {name}"
+ },
+ {
   "pl": "Tego ćwiczenia nie da się już zamienić.",
   "en": "This exercise can no longer be swapped."
  },
@@ -4313,6 +4325,10 @@
  {
   "pl": "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM).",
   "en": "Simplification: usually a rest day between sessions with the same main muscle groups; two days in a row are also fine with the same weekly number of sets (research reviews, ACSM)."
+ },
+ {
+  "pl": "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami.",
+  "en": "Simplification: usually a rest day between sessions with the same main muscle groups."
  },
  {
   "pl": "uprząż na szyję",

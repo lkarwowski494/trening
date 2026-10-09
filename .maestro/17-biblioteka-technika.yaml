@@ -12,6 +12,12 @@
 #   "Setup" / "Based on: .*"                         ← 'Ustawienie' / 'Na podstawie: {list}. Własne sformułowania.'
 #   "Movement drawing: .*"                           ← 'Rysunek ruchu: {opis}' (etykieta VoiceOver obrazu figury, components/ExerciseFigure.tsx)
 #   "Pause animation" / "Resume animation"          ← 'Zatrzymaj animację' / 'Wznów animację' (przycisk pod figurą, WCAG 2.2.2)
+# Audyt kontrolny 1, fala 2b (09.10.2026):
+#   UX2-01 — dawna nazwa z katalogu znajduje obecne ćwiczenie: "Back Squat, barbell · formerly: Narrow Stance Squats" ← 'dawniej: {n}' (dopisek wiersza
+#            listy Ćwiczeń); bez "Create .*" ← 'Utwórz „{name}”'.
+#   UX2-05 — technika z treningu: "Empty workout", "\+ Add exercise", "Search exercises…" (jak 04), "Technique: Back Squat" ← 'Technika: {name}'
+#            (etykieta VoiceOver przycisku „ⓘ Technika” w karcie ćwiczenia, components/ExerciseCues.tsx TechniqueLink) → podgląd z rozwiniętą sekcją
+#            („Setup” widoczne bez tapnięcia „Technique”).
 appId: pl.lukasz.trening
 name: Filtr „Podstawowe” i sekcja „Technika”
 ---
@@ -46,3 +52,37 @@ name: Filtr „Podstawowe” i sekcja „Technika”
 - scrollUntilVisible: { element: "Setup", direction: DOWN, timeout: 30000 }
 - scrollUntilVisible: { element: "Based on: .*", direction: DOWN, timeout: 30000 }
 - takeScreenshot: 81-technika
+
+# --- UX2-01: dawna nazwa (scalone 09.10) → obecne ćwiczenie, bez „Create …” ---
+- stopApp
+- launchApp:
+    clearState: false
+- extendedWaitUntil: { visible: "Start from a template", timeout: 60000 }
+- tapOn: "Exercises, tab.*"
+- extendedWaitUntil: { visible: "Search…", timeout: 30000 }
+- tapOn: "Search…"
+- inputText: "Narrow Stance Squats"
+- tapOn: { text: "Continue", optional: true }
+- extendedWaitUntil: { visible: "Back Squat, barbell · formerly: Narrow Stance Squats", timeout: 15000 }
+- assertNotVisible: "Create .*"
+- takeScreenshot: 83-dawna-nazwa
+
+# --- UX2-05: „ⓘ Technika” w treningu na żywo → podgląd ćwiczenia z rozwiniętą sekcją ---
+- stopApp
+- launchApp:
+    clearState: false
+- extendedWaitUntil: { visible: "Start from a template", timeout: 60000 }
+- scrollUntilVisible: { element: "Empty workout", direction: DOWN, timeout: 60000 }
+- tapOn: "Empty workout"
+- extendedWaitUntil: { visible: "\\+ Add exercise", timeout: 30000 }
+- tapOn: "\\+ Add exercise"
+- tapOn: "Search exercises…"
+- inputText: "Back Squat"
+- tapOn: { text: "Continue", optional: true }
+- tapOn: "Back Squat, barbell"
+- scrollUntilVisible: { element: "Technique: Back Squat", direction: DOWN, timeout: 30000, centerElement: true }
+- tapOn: "Technique: Back Squat"
+- extendedWaitUntil: { visible: "Pause animation", timeout: 30000 }
+# sekcja rozwinięta bez tapnięcia „Technique” (centerElement — inny krok niż wyżej; tests/maestro-e2e91 podmienia ostatnie „Setup” bez niego)
+- scrollUntilVisible: { element: "Setup", direction: DOWN, timeout: 30000, centerElement: true }
+- takeScreenshot: 84-technika-z-treningu

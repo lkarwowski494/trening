@@ -1323,5 +1323,9 @@
  "odpoczynek": "ημέρα ξεκούρασης",
  "Dni treningowe w tygodniu (w tym {n} cardio)": "Ημέρες προπόνησης την εβδομάδα (με {n} καρδιο)",
  "Wybierz dni treningowe: od {a} do {b}.": "Επίλεξε ημέρες προπόνησης: από {a} έως {b}.",
- "Wybierz dni treningowe: {n}.": "Επίλεξε ημέρες προπόνησης: {n}."
+ "Wybierz dni treningowe: {n}.": "Επίλεξε ημέρες προπόνησης: {n}.",
+ "dawniej: {n}": "παλαιότερα: {n}",
+ "Dawne nazwy w bibliotece": "Παλαιότερα ονόματα στη βιβλιοθήκη",
+ "Technika: {name}": "Τεχνική: {name}",
+ "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami.": "Απλοποίηση: συνήθως μια μέρα ξεκούρασης ανάμεσα σε προπονήσεις με τις ίδιες κύριες ομάδες."
 }

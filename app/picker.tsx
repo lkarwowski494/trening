@@ -9,9 +9,9 @@ import { afterSwap } from '@/components/ActiveWorkout';
 import { availability, capsOf, missingLabel, type Availability } from '@/lib/equipment';
 import { uid } from '@/lib/seed';
 import { draftAddExercise, draftOf, draftSwapExercise, swapTargetOk } from '@/lib/edit';
-import { templateForEdit } from '@/lib/draft';
+import { templateForEdit, noteDraftEffect } from '@/lib/draft';
 import { parseSwapTarget } from '@/lib/swap';
-import { GROUPS, GROUP_TO_MUSCLE, hasReps, type Exercise } from '@/lib/seed';
+import { GROUPS, GROUP_TO_MUSCLE, hasReps, formerMatch, formerExact, type Exercise } from '@/lib/seed';
 import { t, exName, locale, fold, lang, collator } from '@/lib/i18n';
 
 /** target = 'active' (dodaj do treningu) | 'template:<id>' (dodaj do szablonu) | 'edit:<klucz szkicu>' (edytor historii, docs/12)
@@ -25,7 +25,9 @@ export default function PickerScreen() {
   const headerOpts = useMemo(() => ({ headerRight: () => <Pressable accessibilityLanguage={lang()} accessibilityRole="button" hitSlop={10} onPress={() => { if (chosen.current) return; chosen.current = true; /* weryfikacja: podwójne „Anuluj” zamykało też ekran pod spodem */ if (router.canGoBack()) router.back(); else router.replace('/'); }}><Text accessibilityLanguage={lang()} style={{ color: th.accent, fontSize: 17, fontFamily: F.regular }}>{t('Anuluj')}</Text></Pressable> }), [th, router]); // eslint-disable-line react-hooks/exhaustive-deps
   const ql = fold(q.trim());
   // Runda 6: dokładne trafienie nazwy pokazujemy mimo filtra partii — inaczej picker proponował utworzenie duplikatu.
-  const exact = (e: Exercise) => !!ql && (fold(e.name) === ql || fold(exName(e)) === ql);
+  const exact = (e: Exercise) => !!ql && (fold(e.name) === ql || fold(exName(e)) === ql || formerExact(e, ql) /* UX2-01: dawna nazwa z katalogu */);
+  /* UX2-01 (audyt kontrolny 1, wariant a): dawna nazwa scalonego/przemianowanego ćwiczenia (seed.formerMatch) znajduje obecne ćwiczenie — z dopiskiem „dawniej: …” */
+  const byName = (e: Exercise) => fold(e.name).includes(ql) || fold(exName(e)).includes(ql); const former = (e: Exercise) => byName(e) ? undefined : formerMatch(e, ql);
   /* P-003 E1 (decyzja 3a): miejsce treningu w toku albo miejsce domyślne edytowanego szablonu — domyślnie tylko dostępne ćwiczenia,
    * przełącznik „Pokaż wszystkie” zapamiętany; niedostępne wyszarzone z dopiskiem „brak: …”. Bez miejsca — lista jak dotąd.
    * Integracja 0.9.0: edytor historii ('edit:<klucz>') jak trening w toku — filtr po miejscu edytowanego treningu, gdy je ma (i miejsce
@@ -43,7 +45,9 @@ export default function PickerScreen() {
   let hidden = 0, nicheHidden = 0;
   /* research biblioteki (decyzja 09.10.2026, wariant B): domyślnie tylko podstawowe + własne + użyte; wyszukiwanie — cała biblioteka */
   const [libAll, setLibAll] = useState(libShowAll()); const used = useMemo(() => exercisesInUse(), []); // eslint-disable-line react-hooks/exhaustive-deps
-  const list = visibleExercises().filter(swapOk).filter(e => (!g || e.group === g || exact(e)) && (!ql || fold(e.name).includes(ql) || fold(exName(e)).includes(ql))).filter(e => { if (libAll || ql || inCoreList(e, used)) return true; nicheHidden++; return false; }).filter(e => { if (showAll || exact(e) || avail(e)!.ok) return true; hidden++; return false; }).sort((a, b) => GROUPS.indexOf(a.group) - GROUPS.indexOf(b.group) || collator().compare(exName(a), exName(b)));
+  const list = visibleExercises().filter(swapOk).filter(e => (!g || e.group === g || exact(e)) && (!ql || byName(e) || !!former(e))).filter(e => { if (libAll || ql || inCoreList(e, used)) return true; nicheHidden++; return false; }).filter(e => { if (showAll || exact(e) || avail(e)!.ok) return true; hidden++; return false; }).sort((a, b) => GROUPS.indexOf(a.group) - GROUPS.indexOf(b.group) || collator().compare(exName(a), exName(b)));
+  /* UI2-10 (audyt kontrolny 1): „Utwórz …” / „Przywróć …” w edycji szablonu należą do szkicu — „Odrzuć zmiany” cofa je (lib/draft.noteDraftEffect) */
+  const fxNote = (eff: 'created' | 'restored', exId: string) => { if (target.startsWith('template:')) noteDraftEffect('template', target.slice(9), eff, exId); };
   const choose = (ex: Exercise) => {
     if (chosen.current) return; chosen.current = true; // podwójne tapnięcie nie doda ćwiczenia dwa razy ani nie cofnie o dwa ekrany
     if (target === 'active') addExerciseToActive(ex);
@@ -55,12 +59,12 @@ export default function PickerScreen() {
   };
   let last = ''; const rows: React.ReactNode[] = [];
   list.forEach(e => { if (!g && !ql && e.group !== last) { last = e.group; rows.push(<Muted key={'g' + e.group} accessibilityRole="header" style={{ fontSize: 12, fontFamily: F.semibold, paddingTop: 12, paddingBottom: 2 }}>{t(e.group)}</Muted>); }
-    const a = avail(e); const miss = a && !a.ok ? ' · ' + t('brak: {m}', { m: missingLabel(a.missing) }) : '';
-    rows.push(<Item key={e.id} title={exName(e)} sub={`${t(e.equipment)}${usesBand(e) ? ' · ' + t('guma') : ''}${miss}`} onPress={() => choose(e)} icon="+" dim={!!miss} />); });
+    const a = avail(e); const miss = a && !a.ok ? ' · ' + t('brak: {m}', { m: missingLabel(a.missing) }) : ''; const was = ql ? former(e) : undefined;
+    rows.push(<Item key={e.id} title={exName(e)} sub={`${t(e.equipment)}${usesBand(e) ? ' · ' + t('guma') : ''}${was ? ' · ' + t('dawniej: {n}', { n: exName({ name: was, lib: true }) }) : ''}${miss}`} onPress={() => choose(e)} icon="+" dim={!!miss} />); });
   // Usunięte ćwiczenie o pasującej nazwie można przywrócić razem z historią, zamiast tworzyć puste nowe (runda 4).
   const archived = ql ? st.exercises.filter(e => e.archived && swapOk(e) && (fold(e.name).includes(ql) || fold(exName(e)).includes(ql))) : [];
-  archived.forEach(e => rows.push(<Item key={'a' + e.id} title={t('Przywróć „{name}”', { name: exName(e) })} sub={exerciseInHistory(e.id) ? t('usunięte ćwiczenie z historią') : t('usunięte ćwiczenie (w bieżącym treningu)')} onPress={() => { if (chosen.current) return; restoreExercise(e); choose(e); }} icon="↺" />));
-  if (ql && !list.some(e => fold(e.name) === ql || fold(exName(e)) === ql) && !archived.some(e => fold(e.name) === ql || fold(exName(e)) === ql)) rows.push(<Item key="new" title={t('Utwórz „{name}”', { name: q.trim() })} sub={t('nowe ćwiczenie własne')} onPress={() => { if (chosen.current) return; const e = newExercise(q.replace(/\s+/g, ' ').trim()); if (swapEx) { e.metric = swapEx.metric; save(e); } /* E2: „Utwórz …” przy zamianie — z miarą A */ if (g) { e.group = g as Exercise['group']; const mu = GROUP_TO_MUSCLE[e.group]; e.muscles = mu ? [mu] : []; save(e); } /* runda 6: partia jak przy zmianie grupy w edycji */ choose(e); }} icon="+" />);
+  archived.forEach(e => rows.push(<Item key={'a' + e.id} title={t('Przywróć „{name}”', { name: exName(e) })} sub={exerciseInHistory(e.id) ? t('usunięte ćwiczenie z historią') : t('usunięte ćwiczenie (w bieżącym treningu)')} onPress={() => { if (chosen.current) return; restoreExercise(e); fxNote('restored', e.id); choose(e); }} icon="↺" />));
+  if (ql && !list.some(exact) && !archived.some(e => fold(e.name) === ql || fold(exName(e)) === ql)) rows.push(<Item key="new" title={t('Utwórz „{name}”', { name: q.trim() })} sub={t('nowe ćwiczenie własne')} onPress={() => { if (chosen.current) return; const e = newExercise(q.replace(/\s+/g, ' ').trim()); fxNote('created', e.id); if (swapEx) { e.metric = swapEx.metric; save(e); } /* E2: „Utwórz …” przy zamianie — z miarą A */ if (g) { e.group = g as Exercise['group']; const mu = GROUP_TO_MUSCLE[e.group]; e.muscles = mu ? [mu] : []; save(e); } /* runda 6: partia jak przy zmianie grupy w edycji */ choose(e); }} icon="+" />);
   return (
     <Screen style={{ paddingTop: 10 }}>
       {/* Audyt przed telefonem: okno zamykało się tylko gestem w dół (niedostępnym dla VoiceOver) — przycisk w nagłówku */}

@@ -106,7 +106,10 @@ describe('Kalendarz', () => {
     for (const sg of list) { const { title, details } = suggestionTexts('2026-10-08', sg); expect(screen.getByLabelText(`Zastosuj: ${title}`)).toBeTruthy(); details.forEach(d => expect(screen.getAllByText(d).length).toBeGreaterThan(0)); }
     expect(screen.getAllByText(/^Zmienione dni: \d+$/).length).toBe(4); expect(screen.getByText(`Więcej możliwości (${all.length - 4})`)).toBeTruthy();
     expect(screen.getByText(new RegExp(`^${suggestionTexts('2026-10-08', list[0]).title.replace(/[.()]/g, '\\$&')} · polecane$`))).toBeTruthy();
-    expect(screen.getByText(/^Uproszczenie: zwykle dzień przerwy .* \(przeglądy badań, ACSM\)\. Każda z tych możliwości wraca do rutyny w ciągu 10 dni\.$/)).toBeTruthy();
+    /* audyt kontrolny 1 (UX2-09, celowa zmiana): przy widocznym ostrzeżeniu „dzień po dniu” stopka bez zdania „dwa dni pod rząd … też są w porządku” */
+    expect(list.some(x => x.newBackToBack.length)).toBe(true);
+    expect(screen.getByText(/^Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami\. Każda z tych możliwości wraca do rutyny w ciągu 10 dni\.$/)).toBeTruthy();
+    await tap(screen.getByText(`Więcej możliwości (${all.length - 4})`)); await flushAll(5); expect(screen.queryByText(/dwa dni pod rząd/)).toBeNull();
     const first = suggestionTexts('2026-10-08', list[0]).title; const want = list[0].ov;
     await tap(screen.getByLabelText(`Zastosuj: ${first}`)); await flushAll(5);
     for (const [k, v] of Object.entries(want)) expect(plan.plannedOn(k)).toBe(v);

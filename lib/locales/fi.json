@@ -1323,5 +1323,9 @@
  "odpoczynek": "lepopäivä",
  "Dni treningowe w tygodniu (w tym {n} cardio)": "Treenipäiviä viikossa (sis. {n} kestävyys)",
  "Wybierz dni treningowe: od {a} do {b}.": "Valitse treenipäivät: {a}–{b}.",
- "Wybierz dni treningowe: {n}.": "Valitse treenipäivät: {n}."
+ "Wybierz dni treningowe: {n}.": "Valitse treenipäivät: {n}.",
+ "dawniej: {n}": "aiemmin: {n}",
+ "Dawne nazwy w bibliotece": "Aiemmat nimet kirjastossa",
+ "Technika: {name}": "Tekniikka: {name}",
+ "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami.": "Yksinkertaistus: yleensä lepopäivä samojen päälihasryhmien treenien välissä."
 }

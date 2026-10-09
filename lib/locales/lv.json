@@ -1323,5 +1323,9 @@
  "odpoczynek": "atpūtas diena",
  "Dni treningowe w tygodniu (w tym {n} cardio)": "Treniņu dienas nedēļā (t. sk. {n} kardio)",
  "Wybierz dni treningowe: od {a} do {b}.": "Izvēlies treniņu dienas: no {a} līdz {b}.",
- "Wybierz dni treningowe: {n}.": "Izvēlies treniņu dienas: {n}."
+ "Wybierz dni treningowe: {n}.": "Izvēlies treniņu dienas: {n}.",
+ "dawniej: {n}": "agrāk: {n}",
+ "Dawne nazwy w bibliotece": "Iepriekšējie nosaukumi bibliotēkā",
+ "Technika: {name}": "Tehnika: {name}",
+ "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami.": "Vienkāršojums: parasti atpūtas diena starp treniņiem ar tām pašām galvenajām grupām."
 }

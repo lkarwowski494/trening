@@ -4,6 +4,7 @@ import { useRouter } from 'expo-router';
 import { activateKeepAwakeAsync, deactivateKeepAwake } from 'expo-keep-awake';
 import { useTheme, F, NUM_SCALE_MAX } from '@/lib/theme';
 import { Btn, Input, NumInput, Muted, useOnce, monoSafe } from '@/components/ui';
+import { TechniqueLink } from '@/components/ExerciseCues';
 import { effortLabel, effortField, effortIn, isPaused, workoutDurSec, pauseWorkout, resumeWorkout, progressionFor, skipExercise, unskipExercise, writeLoad, setActiveLocation, lastActivity, staleSince, staleRef, staleKind, ackStale, markActivity, useForegroundTick, bandA11y, clampName, loadLabelShort, getState, useTick, exById, prevOfActiveBlock, previousFor, canUndoSwap, undoSwap, pinnedImpl, rememberRest as storeRememberRest, canRememberAlt, rememberAlt, altHint, acceptAlt, skipAlt, occurrence, occurrences, hintFor, isBW, reps, fmtDur, fmtSec, fmtTime, setSummary, toggleDone, restAfter, roundRest, addSet, removeSet, removeSetById, removeExercise, finishWorkout, cancelWorkout, save, loadLabel, groupLabels, linkWithNext, unlink, cycleBand, findSet, shortBand, setHasValue, locationById, offListNote, liveBlockImpl, listLocFor, srcSetAt, usesBand, focusSet, isDeloadWeek, wallTs, workCount, workSetCount, REPS_MAX, REST_MAX } from '@/lib/store';
 import { restLabel, setLabel, nowParts, focusCounter } from '@/lib/live';
 import { availability, missingLabel } from '@/lib/equipment';
@@ -418,6 +419,7 @@ function ExerciseBlock({ w, e, ei, onDone, onStartSet, labels, prs }: { w: Worko
         <Btn title={`⏱ ${fmtDur(e.restSec)}`} small accessibilityHint={`${nm}. ${tr('Tapnij, by zmienić.')}`} /* A11-18 */ accessibilityLabel={tr('Przerwa: {s}', { s: fmtDur(e.restSec) })} onPress={() => { Alert.prompt?.(tr('Przerwa (sekundy)'), tr('Zapamiętać dla tego ćwiczenia?'), [{ text: tr('Anuluj'), style: 'cancel' }, { text: tr('Tylko teraz'), onPress: (v?: string) => { const n = parseRest(v); if (n != null) { e.restSec = n; save(st.active); } else badRest(); } }, { text: tr('Zapamiętaj'), onPress: (v?: string) => { const n = parseRest(v); if (n != null) rememberRest(n); else badRest(); } }], 'plain-text', String(e.restSec), 'number-pad'); }} />
         {ei + 1 < w.exercises.length && (!inSS || w.exercises[ei + 1].groupId !== e.groupId) ? <Btn title="⇅ SS" small kind="ghost" accessibilityLabel={tr('Połącz z następnym w superset')} accessibilityHint={nm} onPress={() => linkWithNext(w.exercises, ei, w)} /> : null}
         {inSS ? <Btn title="✂ SS" small kind="ghost" accessibilityLabel={tr('Wyjmij z supersetu')} accessibilityHint={nm} onPress={() => unlink(w.exercises, ei, w)} /> : null}
+        <TechniqueLink exercise={ex} name={nm} />{/* UX2-05 (audyt kontrolny 1): wskazówki techniki i figura w trakcie treningu */}
         {swappable ? <Btn title={tr('⇄ zamień')} small kind="ghost" accessibilityLabel={tr('Zamień ćwiczenie: {name}', { name: nm })} onPress={openSwap} /> : null}
         {e.sets.some(x => !x.done) ? <Btn title={tr('Pomiń dziś')} small kind="ghost" accessibilityLabel={tr('Pomiń dziś: {name}', { name: nm })} onPress={skipToday} /> : null}
       </View>

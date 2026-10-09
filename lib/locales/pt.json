@@ -1323,5 +1323,9 @@
  "odpoczynek": "dia de descanso",
  "Dni treningowe w tygodniu (w tym {n} cardio)": "Dias de treino por semana (incl. {n} cardio)",
  "Wybierz dni treningowe: od {a} do {b}.": "Escolhe os dias de treino: de {a} a {b}.",
- "Wybierz dni treningowe: {n}.": "Escolhe os dias de treino: {n}."
+ "Wybierz dni treningowe: {n}.": "Escolhe os dias de treino: {n}.",
+ "dawniej: {n}": "antes: {n}",
+ "Dawne nazwy w bibliotece": "Nomes anteriores na biblioteca",
+ "Technika: {name}": "Técnica: {name}",
+ "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami.": "Simplificação: normalmente um dia de descanso entre sessões com os mesmos grupos principais."
 }

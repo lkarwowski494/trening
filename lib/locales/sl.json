@@ -1323,5 +1323,9 @@
  "odpoczynek": "dan počitka",
  "Dni treningowe w tygodniu (w tym {n} cardio)": "Dnevi treninga na teden (vklj. {n} kardio)",
  "Wybierz dni treningowe: od {a} do {b}.": "Izberi dneve treninga: od {a} do {b}.",
- "Wybierz dni treningowe: {n}.": "Izberi dneve treninga: {n}."
+ "Wybierz dni treningowe: {n}.": "Izberi dneve treninga: {n}.",
+ "dawniej: {n}": "prej: {n}",
+ "Dawne nazwy w bibliotece": "Prejšnja imena v knjižnici",
+ "Technika: {name}": "Tehnika: {name}",
+ "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami.": "Poenostavitev: običajno dan počitka med treningi z istimi glavnimi skupinami."
 }

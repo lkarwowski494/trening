@@ -1323,5 +1323,9 @@
  "odpoczynek": "zi de odihnă",
  "Dni treningowe w tygodniu (w tym {n} cardio)": "Zile de antrenament pe săptămână (incl. {n} cardio)",
  "Wybierz dni treningowe: od {a} do {b}.": "Alege zilele de antrenament: de la {a} la {b}.",
- "Wybierz dni treningowe: {n}.": "Alege zilele de antrenament: {n}."
+ "Wybierz dni treningowe: {n}.": "Alege zilele de antrenament: {n}.",
+ "dawniej: {n}": "anterior: {n}",
+ "Dawne nazwy w bibliotece": "Denumiri anterioare în bibliotecă",
+ "Technika: {name}": "Tehnică: {name}",
+ "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami.": "Simplificare: de obicei o zi de pauză între sesiunile cu aceleași grupe principale."
 }

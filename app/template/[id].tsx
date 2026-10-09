@@ -5,6 +5,7 @@ import { SwipeRow, lastSetBlock } from '@/components/SwipeRow';
 import { rowLayout } from '@/components/ActiveWorkout';
 import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
 import { DraftHeader, confirmDiscard } from '@/components/DraftHeader';
+import { TechniqueLink } from '@/components/ExerciseCues';
 import { Screen, Field, Input, NumInput, Btn, Muted, Txt, H1, Empty, FieldLabel, FieldHint, useOnce, Chip } from '@/components/ui';
 import { ScrollView as HScroll } from 'react-native';
 import { locationLabel } from '@/lib/locations';
@@ -76,7 +77,7 @@ function TemplatePreview({ tpl, onEdit }: { tpl: Template; onEdit: () => void })
       {tpl.items.map(it => { const ex = exById(it.exerciseId); const rows = tplRows(it); const kinds = rows.map(r => r.kind); const nm = exName(ex);
         const foot = [it.repMin != null ? `${t('zakres')} ${reps(it.repMin, it.repMax)}` : '', `${t('przerwa')} ${fmtSec(it.restSec ?? restFor(ex))}`].filter(Boolean).join(' · ');
         return <View key={it.id} style={{ borderBottomWidth: 1, borderBottomColor: th.line, paddingVertical: 8 }}>
-          <Txt accessibilityRole="header" style={{ fontFamily: F.semibold, marginBottom: 4 }}>{it.groupId ? <Txt style={{ color: th.band, fontFamily: F.semibold }}>{`SS ${labels[it.groupId]} · `}</Txt> : null}{nm}</Txt>
+          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 4 }}><Txt accessibilityRole="header" style={{ fontFamily: F.semibold, flex: 1 }}>{it.groupId ? <Txt style={{ color: th.band, fontFamily: F.semibold }}>{`SS ${labels[it.groupId]} · `}</Txt> : null}{nm}</Txt><TechniqueLink exercise={ex} name={nm} />{/* UX2-05 */}</View>
           {rows.map((r, k) => { const lbl = kindLabel(kinds, k); const txt = tplRowText(ex, r, it); return <View key={r.id} accessibilityLanguage={lang()} /* A11N-01 */ accessible accessibilityLabel={`${t('Seria {n}', { n: lbl })}${r.kind !== 'normal' ? ` (${t(SET_KIND_LABEL[r.kind])})` : ''}: ${txt}`} style={{ flexDirection: 'row', alignItems: 'center', gap: 10, minHeight: 28 }}><View style={{ width: 32 }}><SetBadge kind={r.kind} label={lbl} /></View><Txt style={{ fontSize: 15 }}>{txt}</Txt></View>; })}
           <Muted style={{ fontSize: 13, marginTop: 2 }}>{foot}</Muted>
           {it.alternates?.length ? <Muted style={{ fontSize: 12, marginTop: 2 }}>{`${t('Zamienniki')}: ${it.alternates.map(a => `📍 ${locationLabel(a.locationId)}: ${exName(exById(a.exerciseId))}${a.impl ? ` — ${implLabel(a.impl)}` : ''}`).join(', ')}`}</Muted> : null}
@@ -130,6 +131,7 @@ function TemplateEditor({ tpl }: { tpl: Template }) {
             <TplRows tpl={tpl} it={it} ii={i} nm={nm} />
             {it.alternates?.length ? <Alternates tpl={tpl} itemId={it.id} /> : null}
             <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', gap: 8, marginTop: 4, marginBottom: 6 }}>
+              <TechniqueLink exercise={ex} name={nm} />{/* UX2-05 (audyt kontrolny 1): technika z edytora — szkic szablonu zostaje (ekran ćwiczenia na wierzchu) */}
               {next && (!it.groupId || next.groupId !== it.groupId) ? <Btn title="⇅ SS" small kind="ghost" accessibilityLabel={t('Połącz z następnym w superset')} accessibilityHint={nm} onPress={() => linkWithNext(tpl.items, i, tpl)} /> : null}
               {it.groupId ? <Btn title="✂ SS" small kind="ghost" accessibilityLabel={t('Wyjmij z supersetu')} accessibilityHint={nm} onPress={() => unlink(tpl.items, i, tpl)} /> : null}
             </View>

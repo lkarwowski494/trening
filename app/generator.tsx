@@ -98,7 +98,7 @@ function NewTemplatesPlan({ header }: { header: React.ReactNode }) {
       <Field label={t('Miejsce')}><View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6 }}>
         {s.locations.map(l => <Chip key={l.id} label={l.name} on={inp.locationId === l.id} onPress={() => set({ locationId: l.id })} />)}
         <Chip label={t('Bez ograniczeń sprzętu')} on={inp.locationId === null} onPress={() => set({ locationId: null })} />
-        <Chip label={t('+ Dodaj miejsce')} on={false} onPress={() => router.push('/more/locations')} />
+        <Chip nav label={t('+ Dodaj miejsce')} on={false} onPress={() => router.push('/more/locations')} />
       </View></Field>
       {inp.locationId === null ? <Muted style={{ fontSize: 13, marginTop: -4, marginBottom: 8 }}>{nLoc ? t('„Bez ograniczeń sprzętu” = pełna siłownia (sztanga, hantle, maszyny i wyciągi).') : t('Nie masz jeszcze miejsc treningu, więc plan zakłada pełną siłownię (sztanga, hantle, maszyny i wyciągi). Trenujesz w domu albo w hotelu? Stuknij „+ Dodaj miejsce” i zaznacz sprzęt — generator dobierze ćwiczenia.')}</Muted> : null}
       <DayPicker label={inp.goal === 'cut' ? t('Dni treningowe w tygodniu (w tym {n} cardio)', { n: CARDIO_SESSIONS }) : t('Dni treningowe w tygodniu')} value={inp.days ?? []} min={lim[0]} max={lim[lim.length - 1]} onChange={days => set({ days })} />

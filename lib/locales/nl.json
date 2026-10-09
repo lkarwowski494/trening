@@ -1323,5 +1323,9 @@
  "odpoczynek": "rustdag",
  "Dni treningowe w tygodniu (w tym {n} cardio)": "Trainingsdagen per week (incl. {n} cardio)",
  "Wybierz dni treningowe: od {a} do {b}.": "Kies trainingsdagen: {a} tot {b}.",
- "Wybierz dni treningowe: {n}.": "Kies trainingsdagen: {n}."
+ "Wybierz dni treningowe: {n}.": "Kies trainingsdagen: {n}.",
+ "dawniej: {n}": "voorheen: {n}",
+ "Dawne nazwy w bibliotece": "Eerdere namen in de bibliotheek",
+ "Technika: {name}": "Techniek: {name}",
+ "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami.": "Vereenvoudiging: meestal een rustdag tussen sessies met dezelfde hoofdspiergroepen."
 }

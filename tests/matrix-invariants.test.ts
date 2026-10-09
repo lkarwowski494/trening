@@ -385,10 +385,13 @@ async function step(x: Act, m: Model, where: string) {
       const exBefore = J(S().exercises); const d = draft.beginObjDraft<Template & Exercise>(kind, id)!; ok(!!d && store.isDraftObj(d), where, 'szkic nie powstał');
       d.name = NAMES[x.b % NAMES.length]; if (isTpl) { if (d.items.length > 1 && x.c % 3 === 0) store.removeItem(d.items, x.b % d.items.length, d); store.setTemplateNote(d, NAMES[x.c % NAMES.length]); } else d.notes = NAMES[x.c % NAMES.length]; store.save(d);
       ok(J(S().templates) === tplBefore && J(S().exercises) === exBefore, where, 'zmiana w szkicu trafiła do danych przed „Zapisz”');
-      if (x.c % 2) { draft.discardObjDraft(kind, id); ok(J(S().templates) === tplBefore && J(S().exercises) === exBefore && !draft.objDraft(kind, id), where, '„Anuluj” zmieniło dane'); hit('draftCancel'); }
+      /* UI2-10 (audyt kontrolny 1): wybór ćwiczenia w edycji szablonu — „Utwórz …” w szkicu (lib/draft.noteDraftEffect); „Anuluj” cofa też ćwiczenie, „Zapisz” je zostawia */
+      let fxEx: Exercise | null = null; if (isTpl && x.b % 3 === 0) { fxEx = store.newExercise(`Nowe ${x.b}`); /* jak „Utwórz” w wyborze ćwiczenia: nazwa już przycięta */ ok(draft.noteDraftEffect('template', id, 'created', fxEx.id), where, 'skutek bez szkicu');
+        d.items.push({ id: `fx${x.b}${x.c}`, exerciseId: fxEx.id, sets: 3, repMin: null, repMax: null, restSec: null, startWeight: '', targetSec: '', groupId: null }); store.save(d); }
+      if (x.c % 2) { draft.discardObjDraft(kind, id); ok(J(S().templates) === tplBefore && J(S().exercises) === exBefore && !draft.objDraft(kind, id), where, '„Anuluj” zmieniło dane'); hit('draftCancel'); if (fxEx) { ok(!S().exercises.some(e => e.id === fxEx!.id), where, '„Anuluj” zostawiło ćwiczenie utworzone w szkicu'); hit('draftFxCancel'); } }
       else { ok(draft.commitObjDraft(kind, id), where, '„Zapisz” odrzucone'); const real = isTpl ? S().templates.find(t => t.id === id)! : store.exById(id)!;
         ok(!store.isDraftObj(real) && real.name === store.clampName(real.name.replace(/\s+/g, ' ').trim()) && !!real.name, where, 'nazwa po zapisie szkicu', real.name);
-        if (isTpl) othersSame(id); else ok(J(S().templates) === tplBefore, where, 'zapis szkicu ćwiczenia zmienił szablony'); hit('draftSave'); }
+        if (isTpl) othersSame(id); else ok(J(S().templates) === tplBefore, where, 'zapis szkicu ćwiczenia zmienił szablony'); hit('draftSave'); if (fxEx) { ok(!!store.exById(fxEx.id) && S().templates.find(t => t.id === id)!.items.some(i => i.exerciseId === fxEx!.id), where, '„Zapisz” zgubiło ćwiczenie utworzone w szkicu'); hit('draftFxSave'); } }
       break; }
     case 'saveAsTpl': { const w = pick(st.workouts, x.a); if (!w) break; const n = st.templates.length; const t = tplsync.templateFromWorkout(w); /* app/history/[id].tsx: „Zapisz jako szablon” (H5) */
       const live = w.exercises.filter(b => { const e = store.exById(b.exerciseId); return e && !e.archived && b.sets.length; });
@@ -622,7 +625,7 @@ describe('macierz niezmienników — losowe sekwencje działań na prawdziwym AP
     }), { numRuns: RUNS, seed: SEED });
     if (process.env.MATRIX_COVERAGE) console.log(J(ran)); // eslint-disable-line no-console
     /* pokrycie: kluczowe ścieżki naprawdę się wykonały (inaczej niezmienniki byłyby puste) */
-    if (RUNS >= 50 && !process.env.MATRIX_SEED) /* kontrola pokrycia tylko dla stałego ziarna — losowe może nie wylosować rzadkiej akcji */ for (const k of ['startTpl', 'finish', 'tick', 'swap', 'split', 'undoSwap', 'pastCommit', 'editCommit', 'draftSwap', 'delExArchive', 'delExHard', 'reload', 'roundtrip', 'addLoc', 'setLoc', 'tplAddRow', 'tplRmRow', 'tplKind', 'tplDup', 'repeat', 'unit', 'lang', 'rememberAlt', 'rememberRest', 'gen', 'tplNote', 'draftCancel', 'draftSave', 'saveAsTpl', 'tplArchive', 'deload', 'pause', 'resume', 'skipEx', 'health', 'planSwap', 'planSuggest', 'planReset', 'tplUpdate', 'ownPlan', 'tplNewAssign'])
+    if (RUNS >= 50 && !process.env.MATRIX_SEED) /* kontrola pokrycia tylko dla stałego ziarna — losowe może nie wylosować rzadkiej akcji */ for (const k of ['startTpl', 'finish', 'tick', 'swap', 'split', 'undoSwap', 'pastCommit', 'editCommit', 'draftSwap', 'delExArchive', 'delExHard', 'reload', 'roundtrip', 'addLoc', 'setLoc', 'tplAddRow', 'tplRmRow', 'tplKind', 'tplDup', 'repeat', 'unit', 'lang', 'rememberAlt', 'rememberRest', 'gen', 'tplNote', 'draftCancel', 'draftSave', 'draftFxCancel', 'draftFxSave', 'saveAsTpl', 'tplArchive', 'deload', 'pause', 'resume', 'skipEx', 'health', 'planSwap', 'planSuggest', 'planReset', 'tplUpdate', 'ownPlan', 'tplNewAssign'])
       expect([k, (ran[k] ?? 0) > 0]).toEqual([k, true]);
   });
 });
