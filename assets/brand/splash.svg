@@ -1,0 +1,1 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 120 120"><!-- Ekran startowy iOS (09.10.2026): sam gryf ikony na przezroczystym tle (tło daje app.json) — pierwsza klatka animacji startowej (components/Intro.tsx, lib/brandIcon.ts ICON_BAR) --><rect x="10" y="56" width="98" height="8" rx="2" fill="#15171A"/></svg>

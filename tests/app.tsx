@@ -17,7 +17,7 @@ export async function renderApp(opts: { saved?: unknown; locale?: 'pl' | 'en'; u
   global.__kv.clear(); global.__dbFail = false; global.__alerts.length = 0; global.__notifications.length = 0; global.__la.length = 0;
   global.__locales = [{ languageCode: opts.locale ?? 'pl', languageTag: opts.tag ?? (opts.locale === 'en' ? 'en-GB' : 'pl-PL') }];
   if (opts.saved !== undefined) global.__kv.set('state', typeof opts.saved === 'string' ? opts.saved : JSON.stringify(opts.saved));
-  store.__resetForTests(); timer.T.on = false; timer.S.on = false;
+  store.__resetForTests(); timer.T.on = false; timer.S.on = false; require('@/lib/intro').__resetIntroForTests(); /* nowy start = zimny start (animacja: components/Intro.tsx) */
   const r = renderRouter('./app', { initialUrl: opts.url ?? '/' });
   /* SDK 53: renderRouter z expo-router 4 przy każdej zmianie stanu nawigacji wołał jest.runOnlyPendingTimers()
    * (subscribeToRootState) — wszystkie 922 testy pisano i sprawdzano przy tym zachowaniu (np. komunikat „Zapisałem trening”

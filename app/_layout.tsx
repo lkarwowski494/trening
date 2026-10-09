@@ -14,6 +14,8 @@ import { t, lang } from '@/lib/i18n';
 import * as timer from '@/lib/timer';
 import { useTheme, F, FONT_FILES } from '@/lib/theme';
 import * as Font from 'expo-font';
+import { Intro } from '@/components/Intro';
+import { takeColdStart } from '@/lib/intro';
 
 /** Kroje marki (docs/16). Błąd lub brak odpowiedzi w 3 s nie blokuje startu — zostaje krój systemowy. */
 const loadFonts = () => { let to: ReturnType<typeof setTimeout> | undefined; return Promise.race([Font.loadAsync(FONT_FILES), new Promise(r => { to = setTimeout(r, 3000); })]).catch(() => {}).finally(() => clearTimeout(to)); };
@@ -23,6 +25,8 @@ export const unstable_settings = { initialRouteName: '(tabs)' };
 
 export default function RootLayout() {
   const th = useTheme(); const [ready, setReady] = useState(false); const [err, setErr] = useState<string | null>(null);
+  /* Animacja przy starcie (decyzja 09.10.2026, components/Intro.tsx): tylko zimny start; dane ładują się równolegle (start() niżej). */
+  const [intro, setIntro] = useState(() => takeColdStart(AppState.currentState));
   // Runda 69: trening porzucony ponad 6 h temu zapisuje się sam (koniec = ostatnia odhaczona seria) — przy starcie i powrocie z tła.
   const autoSaved = (w: Workout | null) => { if (!w) return; timer.stop().catch(() => {}); timer.stopSet().catch(() => {}); timer.cancelStaleReminder().catch(() => {}); onWorkoutSaved(w).catch(() => {});
     setTimeout(() => Alert.alert(t('Zapisałem trening'), t('Trening z {d} {s} nie miał aktywności od 6 godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w Kalendarzu.' /* H2 (audyt 0.10): zakładka nazywa się Kalendarz */, { d: fmtDate(wallTs(w)), s: fmtTime(wallTs(w)), e: fmtTime(wallTs(w, w.finishedAt ?? w.startedAt)) })), 500); };
@@ -35,16 +39,21 @@ export default function RootLayout() {
   useEffect(() => { const sub = AppState.addEventListener('change', st => { if (st !== 'active') flush(); else { const w = autoFinishStale(); /* runda 74 (audyt): stoper zdjęty z zapisu przez cichy zapis (Q-011, seria z celem odhaczona) nie liczy dalej w pamięci */ if (!w && timer.S.on && !getState().timer?.setStartAt) timer.stopSet().catch(() => {}); autoSaved(w); timer.onForeground(); refreshViews(); retryHealth().catch(() => {}); /* J2 */ } }); return () => sub.remove(); }, []);
   /* Audyt 0.10 J1 (DAT-05): dane z nowszej wersji aplikacji — niczego nie nadpisujemy; „zaktualizuj” i wysłanie surowych danych. */
   const newer = err ? getNewerSchema() : null;
-  if (newer != null) return <View testID="newer-data" style={{ flex: 1, backgroundColor: th.bg, alignItems: 'center', justifyContent: 'center', padding: 24, gap: 12 }}>
+  const body = newer != null ? <View testID="newer-data" style={{ flex: 1, backgroundColor: th.bg, alignItems: 'center', justifyContent: 'center', padding: 24, gap: 12 }}>
     <Text accessibilityLanguage={lang()} accessibilityRole="header" style={{ color: th.text, fontSize: 18, textAlign: 'center', fontFamily: F.semibold }}>{t('Dane z nowszej wersji aplikacji — zaktualizuj aplikację')}</Text>
     <Text accessibilityLanguage={lang()} style={{ color: th.muted, textAlign: 'center' }}>{t('Dane w telefonie zapisała nowsza wersja (schemat {a}); ta wersja obsługuje do {b}. Niczego nie zmieniam — zainstaluj najnowszą wersję (TestFlight). Dane możesz też wysłać jako plik.', { a: newer, b: SCHEMA_VERSION })}</Text>
     <Pressable accessibilityLanguage={lang()} accessibilityRole="button" onPress={() => { exportRawData().then(ok => { if (!ok) Alert.alert(t('Nie udało się'), t('Spróbuj ponownie.')); }).catch(() => {}); }} style={{ padding: 12 }}><Text accessibilityLanguage={lang()} style={{ color: th.accent, fontSize: 16, fontFamily: F.semibold }}>{t('Wyślij dane')}</Text></Pressable>
     <Pressable accessibilityLanguage={lang()} accessibilityRole="button" onPress={start} style={{ padding: 12 }}><Text accessibilityLanguage={lang()} style={{ color: th.accent, fontSize: 16, fontFamily: F.semibold }}>{t('Spróbuj ponownie')}</Text></Pressable>
-  </View>;
+  </View>
   // Błąd startu (np. baza niedostępna) — komunikat i ponowienie zamiast wiecznego kółka (runda 2).
-  if (err) return <View style={{ flex: 1, backgroundColor: th.bg, alignItems: 'center', justifyContent: 'center', padding: 24, gap: 12 }}><Text accessibilityLanguage={lang()} style={{ color: th.text, fontSize: 17, textAlign: 'center' }}>{t('Nie udało się otworzyć danych.')}</Text><Text accessibilityLanguage={lang()} style={{ color: th.muted, textAlign: 'center' }}>{err}</Text><Pressable accessibilityLanguage={lang()} accessibilityRole="button" onPress={start} style={{ padding: 12 }}><Text accessibilityLanguage={lang()} style={{ color: th.accent, fontSize: 16, fontFamily: F.semibold }}>{t('Spróbuj ponownie')}</Text></Pressable></View>;
-  if (!ready) return <View style={{ flex: 1, backgroundColor: th.bg, alignItems: 'center', justifyContent: 'center' }}><ActivityIndicator color={th.accent} /></View>;
-  return <Root />;
+  : err ? <View style={{ flex: 1, backgroundColor: th.bg, alignItems: 'center', justifyContent: 'center', padding: 24, gap: 12 }}><Text accessibilityLanguage={lang()} style={{ color: th.text, fontSize: 17, textAlign: 'center' }}>{t('Nie udało się otworzyć danych.')}</Text><Text accessibilityLanguage={lang()} style={{ color: th.muted, textAlign: 'center' }}>{err}</Text><Pressable accessibilityLanguage={lang()} accessibilityRole="button" onPress={start} style={{ padding: 12 }}><Text accessibilityLanguage={lang()} style={{ color: th.accent, fontSize: 16, fontFamily: F.semibold }}>{t('Spróbuj ponownie')}</Text></Pressable></View>
+  : !ready ? <View style={{ flex: 1, backgroundColor: th.bg, alignItems: 'center', justifyContent: 'center' }}><ActivityIndicator color={th.accent} /></View>
+  : <Root />;
+  /* Na czas animacji treść pod nakładką jest ukryta dla VoiceOver (i dla Maestro — scenariusze czekają na tekst, aż animacja się skończy). */
+  return <View style={{ flex: 1 }}>
+    <View style={{ flex: 1 }} accessibilityElementsHidden={intro} importantForAccessibility={intro ? 'no-hide-descendants' : 'auto'}>{body}</View>
+    {intro ? <Intro ready={ready || err != null} onDone={() => setIntro(false)} /> : null}
+  </View>;
 }
 
 /** Osobny komponent, bo useTick() wymaga zainicjowanego stanu; odświeża tytuły po zmianie języka. */
