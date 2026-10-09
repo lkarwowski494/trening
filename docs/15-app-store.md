@@ -158,6 +158,8 @@ Rozmowa 05.10.2026, rano: „Chciałbym móc opublikować to w Apple Store” i 
     podatek 0,33 zł → zostaje 2,43 zł; 19,99 zł/rok → 13,81 zł → 1,66 zł → 12,16 zł. Przy 2000 zł wypłat miesięcznie: 240 zł podatku (12%).
   - **Decyzja właściciela 09.10.2026 (ok. 13:20):** start płatności jak najszybciej, bez czekania na interpretację; formalności (wniosek
     o interpretację, ewentualnie VAT-UE, korekty) nadrabiane równolegle — wariant A; odrzucone B: płatności dopiero po interpretacji.
+  - **Decyzja właściciela 09.10.2026 (ok. 13:25): bez księgowego (A)** — interpretacja indywidualna i samodzielne rozliczenie; odrzucone
+    B (jednorazowa konsultacja), C (stały księgowy). Projekt wniosku: Dysk, folder „Trening App” (dane osobowe poza repozytorium).
   - **Drogi w urzędzie skarbowym (09.10.2026):** 1) infolinia KAS (telefon, e-mail, czat) — bezpłatnie, szybko, bez mocy wiążącej;
     2) baza interpretacji Ministerstwa Finansów (EUREKA) — bezpłatnie, cudze sprawy, bez ochrony; 3) interpretacja indywidualna KIS —
     formularz ORD-IN (kreator ord-in.podatki.gov.pl; e-Urząd Skarbowy/ePUAP, podpis zaufany), **40 zł za każdy stan faktyczny lub zdarzenie
