@@ -11,7 +11,7 @@ import { LOCATION_PRESETS, implAt, availability } from '@/lib/equipment';
 import { WEEKLY_SETS_MARK } from '@/lib/stats';
 import {
   generate, saveGenerated, replaceable, previewWarnings, genPlanName, bestDays, splitFor, hasExternalLoad, GEN_SESSIONS, GEN_MINUTES, MAJOR, MIN_DAYS,
-  RIR_ACSM, WHO_MODERATE, WHO_VIGOROUS, SECONDARY_SHARE, type GenInput, type Goal,
+  RIR_ACSM, REPS, WHO_MODERATE, WHO_VIGOROUS, SECONDARY_SHARE, type GenInput, type Goal,
 } from '@/lib/generator';
 import { fresh, addWorkout } from './helpers';
 
@@ -96,6 +96,9 @@ describe('wyrocznie dla wszystkich celów × sesji × minut × miejsc', () => {
       if (exp.length) expect(previewWarnings(r, inp({ sessions })).map(w => w.kind)).toContain('pairs'); }
     expect(pairs).toBeGreaterThan(2);
   });
+  /* A11-2 (audyt 0.11): ostrzeżenie MER2-02 — cel „Siła” z obciążeniem, a któryś bój główny (REPS.heavy) w miejscu robiony hantlami albo kettlem */
+  const capOk = (r: ReturnType<typeof generate>, i: GenInput) => { const loc = S().settings.locations.find(l => l.id === i.locationId)!;
+    return i.goal === 'strength' && !r.unloaded && r.templates.some(tp => tp.items.some(it => it.repMin === REPS.heavy[0] && it.repMax === REPS.heavy[1] && ['dumbbell', 'kettlebell'].includes(implAt(ex(it.exerciseId), loc) ?? ''))); };
   test('pary dzień po dniu (z niedzielą → poniedziałkiem), serie, dni na partię, kreska 10 serii (< nie <=), minuty cardio, ostrzeżenia — zgodne z niezależnym liczeniem', () => {
     let eq10 = 0, pairs = 0, wrap = 0;
     for (const i of all()) {
@@ -114,7 +117,7 @@ describe('wyrocznie dla wszystkich celów × sesji × minut × miejsc', () => {
       const cardioDays = r.days.filter(ti => ti != null && r.templates[ti].key === 'cardio').length;
       expect([where, r.cardioMin]).toEqual([where, i.goal === 'cut' && cardioDays ? i.minutes * cardioDays : 0]);
       const kinds = previewWarnings(r, i).map(w => w.kind);
-      const ek = [i.goal === 'strength' && r.unloaded ? 'unloaded' : '', r.missing.length ? 'missing' : '', r.rare.length ? 'rare' : '', r.below10.some(m => !r.missing.includes(m)) ? 'below' : '', r.backToBack.length ? 'pairs' : ''].filter(Boolean);
+      const ek = [i.goal === 'strength' && r.unloaded ? 'unloaded' : '', capOk(r, i) ? 'loadcap' : '', r.missing.length ? 'missing' : '', r.rare.length ? 'rare' : '', r.below10.some(m => !r.missing.includes(m)) ? 'below' : '', r.backToBack.length ? 'pairs' : ''].filter(Boolean);
       expect([where, kinds]).toEqual([where, ek]);
       if (i.goal === 'cut') { const c = r.templates.find(t => t.key === 'cardio')!; const e = ex(c.items[0].exerciseId); expect([e.pattern, e.loadSource, ['distance_time', 'time'].includes(e.metric), c.items[0].targetSec]).toEqual(['cardio', 'none', true, i.minutes * 60]); }
     }

@@ -3846,10 +3846,6 @@
   "en": "superset · rest after round {t}"
  },
  {
-  "pl": "Superset ustawisz w szablonie przyciskiem „Połącz z następnym w superset” — przerwa liczy się po ostatnim ćwiczeniu grupy.",
-  "en": "You set a superset in the template with “Link with next into a superset” — the rest starts after the last exercise of the group."
- },
- {
   "pl": "Superset ustawisz w szablonie: „Edytuj”, potem „⇅ SS” przy ćwiczeniu łączy je z następnym (w trakcie treningu ten sam przycisk jest przy ćwiczeniu) — przerwa liczy się po ostatnim ćwiczeniu grupy.",
   "en": "To set a superset in a template, tap “Edit”, then “⇅ SS” on an exercise links it with the next one (during a workout the same button is on the exercise) — the rest starts after the group’s last exercise."
  },
@@ -4926,10 +4922,6 @@
  {
   "pl": "z oparciem skośnym",
   "en": "with incline back"
- },
- {
-  "pl": "Z planu w tym tygodniu: zrobione {done} z {n}.",
-  "en": "Planned this week: {done} of {n} done."
  },
  {
   "pl": "z regulacją nachylenia (marsz pod górę)",
