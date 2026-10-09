@@ -12,7 +12,7 @@ import * as store from '@/lib/store';
 import { light, dark, F, TEXT_SCALE_MAX, type Theme } from '@/lib/theme';
 import { applyLang } from '@/lib/i18n';
 import { EN } from '@/lib/i18n.en';
-import { renderApp, flushAll, screen, go } from './app';
+import { renderApp, flushAll, screen, go, act, fireEvent } from './app';
 import { fresh, seedWithDemo } from './helpers';
 import * as plan from '@/lib/plan';
 import { appRoutes, routeGaps } from './routes';
@@ -53,6 +53,8 @@ const ROUTES_N = 26; /* 23 + masa ciała, O aplikacji, licencje (fala 2) */
  *    test szerokości: tests/ux.test.tsx), a przy wąskim ekranie „Poprzednio” schodzi pod wiersz.
  */
 const ONE_LINE_OK = ['Trening', 'Szablony', 'Ćwiczenia', 'Kalendarz', 'Więcej', 'Poprzednio'];
+/** Audyt kontrolny 1 A11N-04: długie teksty, którym wolno rosnąć mniej niż do 200% — z powodem (pusta lista = brak wyjątków). */
+const LONG_TEXT_OK: RegExp[] = [];
 const ONE_LINE_OK_RE = /^(kg|lb)\/|^Poprzednio: |^Previous: /;
 
 type Sweep = {
@@ -185,18 +187,20 @@ describe('kontrast palety (WCAG 2.1) — pary używane w kodzie, których nie sp
 
 /* ---------- Dynamic Type ---------- */
 describe('Dynamic Type: skala czcionki 2,0 (największe rozmiary dostępności iOS)', () => {
-  let errs: string[] = []; let R: { routes: string[]; inputs: { r: string; m: unknown }[]; monoNoLimit: string[]; btnNoLimit: string[]; btnTexts: number; maxEff: number };
+  let errs: string[] = []; let R: { routes: string[]; inputs: { r: string; m: unknown; multi: boolean }[]; longLow: string[]; techOpen: boolean; monoNoLimit: string[]; btnNoLimit: string[]; btnTexts: number; maxEff: number };
   beforeAll(async () => {
     jest.spyOn(RN.PixelRatio, 'getFontScale').mockReturnValue(2);
     const dims = RN.Dimensions.get; jest.spyOn(RN.Dimensions, 'get').mockImplementation(((k: 'window' | 'screen') => ({ ...dims(k), fontScale: 2 })) as never);
     jest.spyOn(console, 'error').mockImplementation((...a: unknown[]) => { const m = String(a[0]); if (!/not wrapped in act/.test(m)) errs.push(m.slice(0, 200)); });
     const { s, w, tpl, exId, locId, blockId } = await richState('pl');
     await renderApp({ saved: s }); await flushAll(10);
-    R = { routes: routesFor(w, tpl, exId, locId, blockId), inputs: [], monoNoLimit: [], btnNoLimit: [], btnTexts: 0, maxEff: 0 };
+    R = { routes: routesFor(w, tpl, exId, locId, blockId), inputs: [], longLow: [], techOpen: false, monoNoLimit: [], btnNoLimit: [], btnTexts: 0, maxEff: 0 };
     for (const r of R.routes) {
       await go(r); await flushAll(10);
+      const tech = r.startsWith('/exercise/') ? screen.queryByRole('button', { name: 'Technika' }) : null; /* A11N-04: sekcja „Technika” rozwinięta */
+      if (tech) { await act(async () => { fireEvent.press(tech); }); await flushAll(5); R.techOpen = true; }
       const all: Node[] = visibleNodes();
-      for (const i of all.filter(x => x.type === 'TextInput')) R.inputs.push({ r, m: i.props.maxFontSizeMultiplier });
+      for (const i of all.filter(x => x.type === 'TextInput')) R.inputs.push({ r, m: i.props.maxFontSizeMultiplier, multi: !!i.props.multiline });
       for (const tx of all.filter(x => x.type === 'Text')) {
         const st = flat(tx.props.style); const m = tx.props.maxFontSizeMultiplier; const fs = typeof st.fontSize === 'number' ? st.fontSize : 14;
         if ((st.fontFamily === F.mono || st.fontFamily === F.monoBold) && !(m > 0)) R.monoNoLimit.push(`${r}: „${textOf(tx)}”`);
@@ -204,14 +208,24 @@ describe('Dynamic Type: skala czcionki 2,0 (największe rozmiary dostępności i
         const ps = p ? flat(p.props.style) : {}; /* Btn (ui.tsx s.btn): ramka 1, promień 10, min. wysokość 40/44 */
         if (p && kind(p) === 'Pressable' && ps.borderRadius === 10 && ps.borderWidth === 1 && ps.minHeight >= 40 && (R.btnTexts++, !(m >= TEXT_SCALE_MAX))) R.btnNoLimit.push(`${r}: „${textOf(tx)}” (${m})`); /* A11-07: przyciski się zawijają — do 200% */
         R.maxEff = Math.max(R.maxEff, fs * Math.min(2, m > 0 ? m : 2));
+        const txt = textOf(tx); /* A11N-04: zdania (> 25 znaków z literami) rosną do 200%; niższy limit tylko z powodem (LONG_TEXT_OK) */
+        if (txt.length > 25 && /\p{L}{3}/u.test(txt) && typeof m === 'number' && m < TEXT_SCALE_MAX && !LONG_TEXT_OK.some(re => re.test(txt))) R.longLow.push(`${r}: „${txt.slice(0, 50)}” (${m})`);
       }
     }
   });
   afterAll(() => jest.restoreAllMocks());
   test('wszystkie ekrany renderują się przy skali 2,0 bez błędów Reacta', () => { expect(R.routes).toHaveLength(ROUTES_N); expect(errs).toEqual([]); expect(RN.PixelRatio.getFontScale()).toBe(2); });
-  test('każde pole tekstowe na każdym ekranie (nie tylko w treningu — C10) ma limit powiększenia 0 < max ≤ 1,3 (components/ui.tsx Input)', () => {
-    expect(R.inputs.length).toBeGreaterThan(5);
-    expect(R.inputs.filter(i => !(typeof i.m === 'number' && i.m > 0 && i.m <= 1.3))).toEqual([]);
+  test('każde jednowierszowe pole tekstowe na każdym ekranie (nie tylko w treningu — C10) ma limit powiększenia 0 < max ≤ 1,3 (components/ui.tsx Input)', () => {
+    expect(R.inputs.filter(i => !i.multi).length).toBeGreaterThan(5);
+    expect(R.inputs.filter(i => !i.multi && !(typeof i.m === 'number' && i.m > 0 && i.m <= 1.3))).toEqual([]);
+  });
+  /* Audyt kontrolny 1 A11N-04: pola wielowierszowe (notatki ćwiczenia, szablonu, treningu) zawijają tekst — rosną do 200% jak zwykły tekst (WCAG 1.4.4). */
+  test('pola wielowierszowe (notatki) rosną do TEXT_SCALE_MAX (200%)', () => {
+    expect(R.inputs.filter(i => i.multi).length).toBeGreaterThan(1);
+    expect(R.inputs.filter(i => i.multi && i.m !== TEXT_SCALE_MAX)).toEqual([]);
+  });
+  test('A11N-04: zdania (tekst > 25 znaków z literami) — limit powiększenia co najmniej TEXT_SCALE_MAX, także sekcja „Technika” i podpisy figury', () => {
+    expect(R.techOpen).toBe(true); expect(R.longLow).toEqual([]);
   });
   /* ZNALEZISKO (NISKIE): app/history/[id].tsx:17 — komórki tabeli serii (cell: Txt, IBM Plex Mono 14 pt, kolumny flex) nie mają
    * maxFontSizeMultiplier, a nagłówki kolumn obok mają 1,4 (Muted) i wiersze serii w treningu 1,3 (R9-06). Przy skali 2,0 liczba 28 pt

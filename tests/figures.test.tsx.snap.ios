@@ -286,7 +286,7 @@ exports[`komponent ExerciseFigure zrzut SVG (statycznie, jasny motyw): Back Squa
         </RNSVGSvgView>
         <Text
           accessibilityLanguage="pl"
-          maxFontSizeMultiplier={1.6}
+          maxFontSizeMultiplier={2}
           style={
             {
               "color": "#4a4d53",
@@ -560,7 +560,7 @@ exports[`komponent ExerciseFigure zrzut SVG (statycznie, jasny motyw): Back Squa
         </RNSVGSvgView>
         <Text
           accessibilityLanguage="pl"
-          maxFontSizeMultiplier={1.6}
+          maxFontSizeMultiplier={2}
           style={
             {
               "color": "#4a4d53",
@@ -578,7 +578,7 @@ exports[`komponent ExerciseFigure zrzut SVG (statycznie, jasny motyw): Back Squa
   </View>
   <Text
     accessibilityLanguage="pl"
-    maxFontSizeMultiplier={1.6}
+    maxFontSizeMultiplier={2}
     style={
       {
         "color": "#4a4d53",
@@ -950,7 +950,7 @@ exports[`komponent ExerciseFigure zrzut SVG (statycznie, jasny motyw): Bench Pre
         </RNSVGSvgView>
         <Text
           accessibilityLanguage="pl"
-          maxFontSizeMultiplier={1.6}
+          maxFontSizeMultiplier={2}
           style={
             {
               "color": "#4a4d53",
@@ -1295,7 +1295,7 @@ exports[`komponent ExerciseFigure zrzut SVG (statycznie, jasny motyw): Bench Pre
         </RNSVGSvgView>
         <Text
           accessibilityLanguage="pl"
-          maxFontSizeMultiplier={1.6}
+          maxFontSizeMultiplier={2}
           style={
             {
               "color": "#4a4d53",
@@ -1313,7 +1313,7 @@ exports[`komponent ExerciseFigure zrzut SVG (statycznie, jasny motyw): Bench Pre
   </View>
   <Text
     accessibilityLanguage="pl"
-    maxFontSizeMultiplier={1.6}
+    maxFontSizeMultiplier={2}
     style={
       {
         "color": "#4a4d53",
@@ -1617,7 +1617,7 @@ exports[`komponent ExerciseFigure zrzut SVG (statycznie, jasny motyw): Lateral R
         </RNSVGSvgView>
         <Text
           accessibilityLanguage="pl"
-          maxFontSizeMultiplier={1.6}
+          maxFontSizeMultiplier={2}
           style={
             {
               "color": "#4a4d53",
@@ -1894,7 +1894,7 @@ exports[`komponent ExerciseFigure zrzut SVG (statycznie, jasny motyw): Lateral R
         </RNSVGSvgView>
         <Text
           accessibilityLanguage="pl"
-          maxFontSizeMultiplier={1.6}
+          maxFontSizeMultiplier={2}
           style={
             {
               "color": "#4a4d53",
@@ -1912,7 +1912,7 @@ exports[`komponent ExerciseFigure zrzut SVG (statycznie, jasny motyw): Lateral R
   </View>
   <Text
     accessibilityLanguage="pl"
-    maxFontSizeMultiplier={1.6}
+    maxFontSizeMultiplier={2}
     style={
       {
         "color": "#4a4d53",
@@ -2178,7 +2178,7 @@ exports[`komponent ExerciseFigure zrzut SVG (statycznie, jasny motyw): Plank 1`]
   </View>
   <Text
     accessibilityLanguage="pl"
-    maxFontSizeMultiplier={1.6}
+    maxFontSizeMultiplier={2}
     style={
       {
         "color": "#4a4d53",
@@ -2434,7 +2434,7 @@ exports[`komponent ExerciseFigure zrzut SVG (statycznie, jasny motyw): Pull Up 1
         </RNSVGSvgView>
         <Text
           accessibilityLanguage="pl"
-          maxFontSizeMultiplier={1.6}
+          maxFontSizeMultiplier={2}
           style={
             {
               "color": "#4a4d53",
@@ -2663,7 +2663,7 @@ exports[`komponent ExerciseFigure zrzut SVG (statycznie, jasny motyw): Pull Up 1
         </RNSVGSvgView>
         <Text
           accessibilityLanguage="pl"
-          maxFontSizeMultiplier={1.6}
+          maxFontSizeMultiplier={2}
           style={
             {
               "color": "#4a4d53",
@@ -2681,7 +2681,7 @@ exports[`komponent ExerciseFigure zrzut SVG (statycznie, jasny motyw): Pull Up 1
   </View>
   <Text
     accessibilityLanguage="pl"
-    maxFontSizeMultiplier={1.6}
+    maxFontSizeMultiplier={2}
     style={
       {
         "color": "#4a4d53",
