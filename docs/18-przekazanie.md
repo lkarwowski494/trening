@@ -353,3 +353,5 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
   generatora (bestDays); liczba zaznaczonych = liczba sesji; przydział treningów do wybranych dni minimalizuje pary dzień po dniu, istniejące
   ostrzeżenie „pairs”; to samo w „Planie z moich szablonów”. Odrzucone: A (bez zmian, przesuwanie w edytorze), C (przełącznik auto/wybiorę).
   Stan TestFlight: buildy 1001–1003 wygasły, 1004 (0.10.0) czeka na zatwierdzenie Apple.
+- 09.10.2026 (wieczór): właściciel po klatkach — **akceptacja intro** (talerze wsuwają się na gryf, ok. 1 s, tapnięcie pomija, „Ogranicz ruch” bez
+  animacji; ekran startowy = sam gryf). Jednorazowy stary ekran startowy po aktualizacji — informacja w „What to Test”.
