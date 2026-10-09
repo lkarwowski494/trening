@@ -83,5 +83,6 @@ name: Filtr „Podstawowe” i sekcja „Technika”
 - scrollUntilVisible: { element: "Technique: Back Squat", direction: DOWN, timeout: 30000, centerElement: true }
 - tapOn: "Technique: Back Squat"
 - extendedWaitUntil: { visible: "Pause animation", timeout: 30000 }
-- scrollUntilVisible: { element: "Setup", direction: DOWN, timeout: 30000 }
+# sekcja rozwinięta bez tapnięcia „Technique” (centerElement — inny krok niż wyżej; tests/maestro-e2e91 podmienia ostatnie „Setup” bez niego)
+- scrollUntilVisible: { element: "Setup", direction: DOWN, timeout: 30000, centerElement: true }
 - takeScreenshot: 84-technika-z-treningu

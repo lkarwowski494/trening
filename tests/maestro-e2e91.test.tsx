@@ -52,8 +52,10 @@ describe('E2E 91: interpreter odtwarza porażki scenariuszy z 224d229 w tym samy
   test('17 — „Setup” pod rysunkiem ruchu, poza ekranem bez przewinięcia', async () => {
     /* kroki figury (TST2-05) dopisane po 224d229 przewijają do przycisku pauzy — usunięte, jak w wersji z przebiegu */
     const fig = (c: Cmd[]) => { const a = c.findIndex(x => same(x, { tapOn: 'Technique' })); const b = c.findIndex(x => same(x, { extendedWaitUntil: { visible: 'Pause animation', timeout: 15000 } })); expect(b).toBeGreaterThan(a); return [...c.slice(0, a + 1), ...c.slice(b + 1)]; };
-    await failsAt('17-biblioteka-technika.yaml', c => replace({ scrollUntilVisible: { element: 'Setup', direction: 'DOWN', timeout: 30000 } }, [{ extendedWaitUntil: { visible: 'Setup', timeout: 15000 } }])(fig(c)),
-      'extendedWaitUntil {"visible":"Setup","timeout":15000}', /nie pojawił się/);
+    /* audyt kontrolny 1 (UX2-05 B, celowa zmiana): sekcja „Technika” stoi teraz na górze podglądu — „Setup” mieści się pod rysunkiem bez przewijania;
+     * ten sam rodzaj porażki (element pod krawędzią bez przewinięcia) sprawdzamy na stopce sekcji „Based on: …” */
+    await failsAt('17-biblioteka-technika.yaml', c => replace({ scrollUntilVisible: { element: 'Based on: .*', direction: 'DOWN', timeout: 30000 } }, [{ extendedWaitUntil: { visible: 'Based on: .*', timeout: 15000 } }])(replace({ scrollUntilVisible: { element: 'Setup', direction: 'DOWN', timeout: 30000 } }, [])(fig(c))),
+      'extendedWaitUntil {"visible":"Based on: .*","timeout":15000}', /nie pojawił się/);
   });
 
   test('07 (krok po porażce przebiegu 91) — po linijce „Usually at Home…” przycisk zamiany jest pod paskiem zakładek', async () => {
