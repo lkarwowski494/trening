@@ -339,3 +339,8 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
   przy starcie aplikacji — talerze wsuwają się na gryf i układają w ikonę („jak intro Netflixa”); (5) Podsumowanie miesiąca: tygodnie jako
   rząd stosów (pełny = plan tygodnia wykonany, obwódka = niepełny). (6) zrzuty App Store w motywie — przy przygotowaniu sklepu (paczka przed
   App Store). Backlog: serie w treningu jako talerze, większa grafika talerzy w widoku skupionym, rekordy jako rosnący stos.
+- 09.10.2026 (ok. 18:00): właściciel — **numerowanie wersji, wariant A**: do App Store 0.x (0.11.0, 0.12.0… z nowościami; 0.11.1… tylko
+  poprawki), premiera w App Store = 1.0.0, potem 1.x (2.0.0 tylko przy dużej zmianie, np. konta/synchronizacja). Build rośnie zawsze
+  (testflight.yml, BUILD_BASE + numer przebiegu). Każde wydanie: tag gita `v<wersja>-b<build>`, w „O aplikacji” „<wersja> (<build>)”
+  (lib/version.ts, EXPO_PUBLIC_BUILD_NUMBER z CI), wpis „Co nowego” na wersję, wiersz w tabeli wydań (docs/09). Odrzucone: B (wersja
+  z datą), C (kolejne liczby). Stopki commitów z adresem sesji — zostają (decyzja właściciela).

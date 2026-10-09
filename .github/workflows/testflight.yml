@@ -54,6 +54,7 @@ jobs:
           BUILD_BASE: ${{ vars.BUILD_BASE || '1000' }}
         run: |
           echo "BUILD_NUMBER=$((BUILD_BASE + GITHUB_RUN_NUMBER))" >> "$GITHUB_ENV"
+          echo "EXPO_PUBLIC_BUILD_NUMBER=$((BUILD_BASE + GITHUB_RUN_NUMBER))" >> "$GITHUB_ENV"  # widoczny w „O aplikacji” (lib/version.ts)
           /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $((BUILD_BASE + GITHUB_RUN_NUMBER))" ios/Trening/Info.plist
       - name: Install pods
         run: cd ios && pod install
