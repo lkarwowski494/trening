@@ -18,7 +18,7 @@ export async function renderApp(opts: { saved?: unknown; locale?: 'pl' | 'en'; u
   global.__locales = [{ languageCode: opts.locale ?? 'pl', languageTag: opts.tag ?? (opts.locale === 'en' ? 'en-GB' : 'pl-PL') }];
   if (opts.saved !== undefined) global.__kv.set('state', typeof opts.saved === 'string' ? opts.saved : JSON.stringify(opts.saved));
   for (const [k, v] of Object.entries(opts.kv ?? {})) global.__kv.set(k, v);
-  store.__resetForTests(); timer.T.on = false; timer.S.on = false;
+  store.__resetForTests(); require('@/lib/planReminder').__resetReminderAsk(); /* X-11: nowe uruchomienie */ timer.T.on = false; timer.S.on = false;
   const r = renderRouter('./app', { initialUrl: opts.url ?? '/' });
   /* SDK 53: renderRouter z expo-router 4 przy każdej zmianie stanu nawigacji wołał jest.runOnlyPendingTimers()
    * (subscribeToRootState) — wszystkie 922 testy pisano i sprawdzano przy tym zachowaniu (np. komunikat „Zapisałem trening”

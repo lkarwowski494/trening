@@ -12,7 +12,7 @@ export async function fresh(saved?: unknown, locale: 'pl' | 'en' = 'pl') {
   global.__kv.clear(); global.__dbFail = false; global.__alerts.length = 0; global.__notifications.length = 0; global.__la.length = 0;
   global.__locales = [{ languageCode: locale, languageTag: locale === 'pl' ? 'pl-PL' : 'en-GB' }];
   if (saved !== undefined) global.__kv.set('state', typeof saved === 'string' ? saved : JSON.stringify(saved));
-  store.__resetForTests();
+  store.__resetForTests(); require('@/lib/planReminder').__resetReminderAsk();
   await store.init();
   return store.getState();
 }

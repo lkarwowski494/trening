@@ -4,7 +4,8 @@
  */
 import * as store from '@/lib/store';
 import * as timer from '@/lib/timer';
-import { fresh, ex, saved, pressAlert, addWorkout } from './helpers';
+import { fresh, ex, saved, pressAlert, addWorkout, withDemoTemplates } from './helpers';
+import * as plan from '@/lib/plan';
 import { renderApp, tap, type, flushAll, screen, act } from './app';
 import * as edit from '@/lib/edit';
 import * as draft from '@/lib/draft';
@@ -115,5 +116,32 @@ describe('UX2-03 = DAT2-06 / UX2-12: po zamknięciu aplikacji przez iOS start py
     expect(screen.getByDisplayValue('Nogi')).toBeTruthy();
     await tap(screen.getByLabelText('Anuluj edycję szablonu')); await act(async () => { pressAlert('Odrzucić zmiany?', 'Odrzuć zmiany'); }); await flushAll(20);
     expect(lastAlert('Odrzucić zmiany?')!.msg).toBe('Nowy szablon nie zostanie zapisany.'); expect(S().templates.some(x => x.id === id)).toBe(false);
+  });
+});
+
+describe('X-11: prośba o zgodę na powiadomienia przy KAŻDEJ drodze powstania pierwszego planu (centralnie w PlanReminderSync)', () => {
+  const g = global as any; const REM = 'Przypomnienie o treningu z planu';
+  afterEach(() => { delete g.__notifPerm; delete g.__notifPermReq; delete g.__notifPermAsked; });
+  const bootPlan = async (fn: (ids: string[]) => void, url: string) => {
+    jest.useFakeTimers({ now: new Date(2026, 9, 8, 9, 0).getTime() }); await fresh(); const t = withDemoTemplates(); fn(t.map(x => x.id));
+    await act(async () => { await store.flush(); }); await renderApp({ saved: JSON.parse(JSON.stringify(saved())), url }); await flushAll(10);
+    g.__notifPerm = { granted: false, canAskAgain: true, status: 'undetermined' }; g.__notifPermReq = { granted: true }; g.__notifPermAsked = 0; global.__alerts.length = 0;
+  };
+  test('X-11: generator „Ustaw jako aktywny” na świeżej instalacji, zgoda nieustalona → wyjaśnienie i prośba (jedno okno)', async () => {
+    await bootPlan(() => {}, '/generator'); expect(plan.hasPlan()).toBe(false);
+    await tap(screen.getByText('Zapisz szablony i plan')); await flushAll(5);
+    await act(async () => { pressAlert('Ustawić nowy plan jako aktywny?', 'Ustaw jako aktywny'); }); await flushAll(10);
+    expect(plan.hasPlan()).toBe(true); expect(global.__alerts.filter(a => a.title === REM)).toHaveLength(1);
+  });
+  test('X-11: Plan tygodnia → „Ustaw jako aktywny” zapisanego planu przy braku planu → prośba (jedno okno)', async () => {
+    await bootPlan(ids => { plan.addPlan('Mój', [ids[0], null, ids[1], null, null, null, null], false); }, '/plan'); expect(plan.hasPlan()).toBe(false);
+    await tap(screen.getAllByText('Ustaw jako aktywny')[0]); await flushAll(5);
+    const a = [...global.__alerts].reverse().find(x => /jako aktywny plan/.test(x.title))!; await act(async () => { a.buttons!.find(x => x.text === 'Ustaw')!.onPress?.(); }); await flushAll(10);
+    expect(plan.hasPlan()).toBe(true); expect(global.__alerts.filter(x => x.title === REM)).toHaveLength(1);
+  });
+  test('X-11: dzień w Planie tygodnia (droga z prośbą już wcześniej) — nadal dokładnie jedno okno, nie dwa', async () => {
+    await bootPlan(() => {}, '/plan'); const t = S().templates;
+    await tap(screen.getByLabelText('poniedziałek, Wolne')); await flushAll(5); await tap(screen.getByLabelText(`poniedziałek: ${t[0].name}`)); await flushAll(10);
+    expect(global.__alerts.filter(x => x.title === REM)).toHaveLength(1);
   });
 });
