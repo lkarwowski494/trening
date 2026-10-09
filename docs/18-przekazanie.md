@@ -346,3 +346,10 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
   z datą), C (kolejne liczby). Stopki commitów z adresem sesji — zostają (decyzja właściciela).
 - 09.10.2026 (wieczór): właściciel po zrzutach motywu v2 (ikona dnia, stosy z % planu, miesiąc jako stosy, bez paska) — **akceptacja, wdrażać**
   do 0.11 (scalone w feature/e2-swap: 7126b7d). Na ekranie 375 pt tekst procentu przechodzi pod stosy — zgłoszone przy zrzutach, właściciel bez uwag.
+- 09.10.2026 (wieczór): właściciel — **do 0.11 jako wyjątek od zamrożenia zakresu**: (1) **ikona dnia odpoczynku: filiżanka espresso** (wariant B;
+  odrzucone: A — pusto, C — sam gryf bez talerzy, rekomendacja C). Tylko przy aktywnym planie, w dzień bez treningu w planie; bez planu — nic.
+  Własny rysunek, bez tekstu i bez nawiązań do ceny w aplikacji. „Kosmetyka — najwyżej zmienimy przed App Store” (do przeglądu w paczce sklepu).
+  (2) **generator: wybór dni treningowych (wariant B)** — 7 przycisków pon–nd zamiast liczby sesji, wstępnie zaznaczona propozycja
+  generatora (bestDays); liczba zaznaczonych = liczba sesji; przydział treningów do wybranych dni minimalizuje pary dzień po dniu, istniejące
+  ostrzeżenie „pairs”; to samo w „Planie z moich szablonów”. Odrzucone: A (bez zmian, przesuwanie w edytorze), C (przełącznik auto/wybiorę).
+  Stan TestFlight: buildy 1001–1003 wygasły, 1004 (0.10.0) czeka na zatwierdzenie Apple.
