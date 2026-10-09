@@ -875,7 +875,6 @@
  "Zacząć z mniejszą liczbą serii: {a} zamiast {b} serii roboczych? Ciężary bez zmian, szablon się nie zmienia.": "Pradėti su mažiau serijų: {a} vietoj {b} darbinių serijų? Svoriai tie patys, šablonas nesikeičia.",
  "Pełny trening": "Visa treniruotė",
  "Mniej serii": "Mažiau serijų",
- "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka, nie wynik badań.": "Treniruočių savaitės iš eilės be iškrovos: {n}. Treneriai paprastai daro iškrovą kas {a}–{b} savaites — tai praktika, ne tyrimų rezultatas.",
  "Zaplanuj deload od {date}": "Planuoti iškrovą nuo {date}",
  "Zdejmij oznaczenie deload": "Pašalinti iškrovos žymą",
  "tydzień deload": "iškrovos savaitė",
@@ -1283,5 +1282,6 @@
  "biblioteki ćwiczeń organizacji szkoleniowych": "kūno rengybos mokymo organizacijų pratimų bibliotekos",
  "specjalistyczne serwisy treningowe": "specializuotos treniruočių svetainės",
  "materiały producenta sprzętu": "įrangos gamintojo medžiaga",
- "badania naukowe": "moksliniai tyrimai"
+ "badania naukowe": "moksliniai tyrimai",
+ "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka opisana w ankietach jednego zespołu badaczy (jedno źródło), nie wynik badań skuteczności.": "Treniruočių savaitės iš eilės be iškrovos: {n}. Treneriai paprastai daro iškrovą kas {a}–{b} savaites — tai praktika, aprašyta vienos tyrėjų grupės apklausose (vienas šaltinis), ne veiksmingumo tyrimų rezultatas."
 }

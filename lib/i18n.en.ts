@@ -402,7 +402,6 @@ export const EN: Record<string, string> = {
   'Zacząć z mniejszą liczbą serii: {a} zamiast {b} serii roboczych? Ciężary bez zmian, szablon się nie zmienia.': 'Start with fewer sets: {a} instead of {b} working sets? Same weights, the template stays unchanged.',
   'Pełny trening': 'Full workout',
   'Mniej serii': 'Fewer sets',
-  'Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka, nie wynik badań.': 'Training weeks in a row without a deload: {n}. Coaches usually deload every {a}–{b} weeks — this is practice, not a research finding.',
   'Zaplanuj deload od {date}': 'Plan a deload from {date}',
   'Zdejmij oznaczenie deload': 'Remove deload mark',
   'tydzień deload': 'deload week',
@@ -811,4 +810,5 @@ export const EN: Record<string, string> = {
   'specjalistyczne serwisy treningowe': 'specialist training websites',
   'materiały producenta sprzętu': 'materials from an equipment manufacturer',
   'badania naukowe': 'scientific studies',
+  'Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka opisana w ankietach jednego zespołu badaczy (jedno źródło), nie wynik badań skuteczności.': 'Training weeks in a row without a deload: {n}. Coaches usually deload every {a}–{b} weeks — this is practice described in surveys by one research team (single source), not a finding on effectiveness.',
 };

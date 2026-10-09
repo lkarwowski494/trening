@@ -875,7 +875,6 @@
  "Zacząć z mniejszą liczbą serii: {a} zamiast {b} serii roboczych? Ciężary bez zmian, szablon się nie zmienia.": "Börja med färre set: {a} i stället för {b} arbetsset? Samma vikter, mallen ändras inte.",
  "Pełny trening": "Fullt pass",
  "Mniej serii": "Färre set",
- "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka, nie wynik badań.": "Träningsveckor i rad utan deload: {n}. Tränare gör vanligtvis deload var {a}–{b} vecka — det är praxis, inte ett forskningsresultat.",
  "Zaplanuj deload od {date}": "Planera deload från {date}",
  "Zdejmij oznaczenie deload": "Ta bort deloadmarkering",
  "tydzień deload": "deloadvecka",
@@ -1283,5 +1282,6 @@
  "biblioteki ćwiczeń organizacji szkoleniowych": "övningsbibliotek från utbildningsorganisationer inom träning",
  "specjalistyczne serwisy treningowe": "specialiserade träningswebbplatser",
  "materiały producenta sprzętu": "material från en utrustningstillverkare",
- "badania naukowe": "vetenskapliga studier"
+ "badania naukowe": "vetenskapliga studier",
+ "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka opisana w ankietach jednego zespołu badaczy (jedno źródło), nie wynik badań skuteczności.": "Träningsveckor i rad utan deload: {n}. Tränare gör vanligtvis deload var {a}–{b} vecka — det är praxis som beskrivs i enkäter från en enda forskargrupp (en källa), inte ett forskningsresultat om effekten."
 }

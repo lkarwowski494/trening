@@ -875,7 +875,6 @@
  "Zacząć z mniejszą liczbą serii: {a} zamiast {b} serii roboczych? Ciężary bez zmian, szablon się nie zmienia.": "Kevesebb sorozattal kezdjünk: {b} helyett {a} munkasorozat? A súlyok változatlanok, a sablon nem változik.",
  "Pełny trening": "Teljes edzés",
  "Mniej serii": "Kevesebb sorozat",
- "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka, nie wynik badań.": "Egymást követő edzéshetek deload nélkül: {n}. Az edzők általában {a}–{b} hetente tartanak deloadot — ez gyakorlat, nem kutatási eredmény.",
  "Zaplanuj deload od {date}": "Deload tervezése ettől: {date}",
  "Zdejmij oznaczenie deload": "Deload jelölés törlése",
  "tydzień deload": "deload hét",
@@ -1283,5 +1282,6 @@
  "biblioteki ćwiczeń organizacji szkoleniowych": "fitneszoktatási szervezetek gyakorlattárai",
  "specjalistyczne serwisy treningowe": "edzéssel foglalkozó szakmai weboldalak",
  "materiały producenta sprzętu": "eszközgyártói anyagok",
- "badania naukowe": "tudományos vizsgálatok"
+ "badania naukowe": "tudományos vizsgálatok",
+ "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka opisana w ankietach jednego zespołu badaczy (jedno źródło), nie wynik badań skuteczności.": "Egymást követő edzéshetek deload nélkül: {n}. Az edzők általában {a}–{b} hetente tartanak deloadot — ez egyetlen kutatócsoport felméréseiben leírt gyakorlat (egyetlen forrás), nem a hatékonyságra vonatkozó kutatási eredmény."
 }

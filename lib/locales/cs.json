@@ -875,7 +875,6 @@
  "Zacząć z mniejszą liczbą serii: {a} zamiast {b} serii roboczych? Ciężary bez zmian, szablon się nie zmienia.": "Začít s menším počtem sérií: {a} místo {b} pracovních sérií? Váhy beze změny, šablona se nemění.",
  "Pełny trening": "Celý trénink",
  "Mniej serii": "Méně sérií",
- "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka, nie wynik badań.": "Tréninkové týdny v řadě bez deloadu: {n}. Trenéři obvykle zařazují deload každých {a}–{b} týdnů — je to praxe, ne výsledek výzkumu.",
  "Zaplanuj deload od {date}": "Naplánovat deload od {date}",
  "Zdejmij oznaczenie deload": "Zrušit označení deload",
  "tydzień deload": "deload týden",
@@ -1283,5 +1282,6 @@
  "biblioteki ćwiczeń organizacji szkoleniowych": "knihovny cviků vzdělávacích organizací ve fitness",
  "specjalistyczne serwisy treningowe": "odborné weby o tréninku",
  "materiały producenta sprzętu": "materiály výrobce vybavení",
- "badania naukowe": "vědecké studie"
+ "badania naukowe": "vědecké studie",
+ "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka opisana w ankietach jednego zespołu badaczy (jedno źródło), nie wynik badań skuteczności.": "Tréninkové týdny v řadě bez deloadu: {n}. Trenéři obvykle zařazují deload každých {a}–{b} týdnů — je to praxe popsaná v dotaznících jednoho výzkumného týmu (jeden zdroj), ne výsledek výzkumu účinnosti."
 }

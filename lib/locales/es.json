@@ -875,7 +875,6 @@
  "Zacząć z mniejszą liczbą serii: {a} zamiast {b} serii roboczych? Ciężary bez zmian, szablon się nie zmienia.": "¿Empezar con menos series: {a} en lugar de {b} series efectivas? Mismos pesos, la plantilla no cambia.",
  "Pełny trening": "Entreno completo",
  "Mniej serii": "Menos series",
- "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka, nie wynik badań.": "Semanas de entreno seguidas sin descarga: {n}. Los entrenadores suelen hacer una descarga cada {a}–{b} semanas — es práctica, no un resultado de investigación.",
  "Zaplanuj deload od {date}": "Planificar descarga desde el {date}",
  "Zdejmij oznaczenie deload": "Quitar marca de descarga",
  "tydzień deload": "semana de descarga",
@@ -1283,5 +1282,6 @@
  "biblioteki ćwiczeń organizacji szkoleniowych": "bibliotecas de ejercicios de organizaciones de formación en fitness",
  "specjalistyczne serwisy treningowe": "sitios web especializados en entrenamiento",
  "materiały producenta sprzętu": "materiales de un fabricante de equipos",
- "badania naukowe": "estudios científicos"
+ "badania naukowe": "estudios científicos",
+ "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka opisana w ankietach jednego zespołu badaczy (jedno źródło), nie wynik badań skuteczności.": "Semanas de entreno seguidas sin descarga: {n}. Los entrenadores suelen hacer una descarga cada {a}–{b} semanas — es una práctica descrita en encuestas de un solo equipo de investigación (una sola fuente), no un resultado sobre su eficacia."
 }

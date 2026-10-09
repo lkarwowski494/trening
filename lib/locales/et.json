@@ -875,7 +875,6 @@
  "Zacząć z mniejszą liczbą serii: {a} zamiast {b} serii roboczych? Ciężary bez zmian, szablon się nie zmienia.": "Kas alustada vähemate seeriatega: {a} {b} tööseeria asemel? Raskused samad, mall ei muutu.",
  "Pełny trening": "Täis trenn",
  "Mniej serii": "Vähem seeriaid",
- "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka, nie wynik badań.": "Treeningunädalaid järjest ilma kergenduseta: {n}. Treenerid teevad kergendusnädala tavaliselt iga {a}–{b} nädala järel — see on praktika, mitte uurimistulemus.",
  "Zaplanuj deload od {date}": "Planeeri kergendus alates {date}",
  "Zdejmij oznaczenie deload": "Eemalda kergendusmärge",
  "tydzień deload": "kergendusnädal",
@@ -1283,5 +1282,6 @@
  "biblioteki ćwiczeń organizacji szkoleniowych": "treeningkoolitusorganisatsioonide harjutuste kogud",
  "specjalistyczne serwisy treningowe": "spetsialiseeritud treeningveebisaidid",
  "materiały producenta sprzętu": "varustuse tootja materjalid",
- "badania naukowe": "teadusuuringud"
+ "badania naukowe": "teadusuuringud",
+ "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka opisana w ankietach jednego zespołu badaczy (jedno źródło), nie wynik badań skuteczności.": "Treeningunädalaid järjest ilma kergenduseta: {n}. Treenerid teevad kergendusnädala tavaliselt iga {a}–{b} nädala järel — see on praktika, mida kirjeldavad ühe uurimisrühma küsitlused (üks allikas), mitte tõhususe uurimistulemus."
 }

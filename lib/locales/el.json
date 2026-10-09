@@ -875,7 +875,6 @@
  "Zacząć z mniejszą liczbą serii: {a} zamiast {b} serii roboczych? Ciężary bez zmian, szablon się nie zmienia.": "Έναρξη με λιγότερα σετ: {a} αντί για {b} σετ εργασίας; Ίδια βάρη, το πρότυπο δεν αλλάζει.",
  "Pełny trening": "Πλήρης προπόνηση",
  "Mniej serii": "Λιγότερα σετ",
- "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka, nie wynik badań.": "Εβδομάδες προπόνησης στη σειρά χωρίς αποφόρτιση: {n}. Οι προπονητές συνήθως κάνουν αποφόρτιση κάθε {a}–{b} εβδομάδες — είναι πρακτική, όχι εύρημα έρευνας.",
  "Zaplanuj deload od {date}": "Προγραμματισμός αποφόρτισης από {date}",
  "Zdejmij oznaczenie deload": "Αφαίρεση σήμανσης αποφόρτισης",
  "tydzień deload": "εβδομάδα αποφόρτισης",
@@ -1283,5 +1282,6 @@
  "biblioteki ćwiczeń organizacji szkoleniowych": "βιβλιοθήκες ασκήσεων εκπαιδευτικών οργανισμών άσκησης",
  "specjalistyczne serwisy treningowe": "εξειδικευμένοι ιστότοποι προπόνησης",
  "materiały producenta sprzętu": "υλικό κατασκευαστή εξοπλισμού",
- "badania naukowe": "επιστημονικές μελέτες"
+ "badania naukowe": "επιστημονικές μελέτες",
+ "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka opisana w ankietach jednego zespołu badaczy (jedno źródło), nie wynik badań skuteczności.": "Εβδομάδες προπόνησης στη σειρά χωρίς αποφόρτιση: {n}. Οι προπονητές συνήθως κάνουν αποφόρτιση κάθε {a}–{b} εβδομάδες — είναι πρακτική που περιγράφεται σε έρευνες ερωτηματολογίου μίας ερευνητικής ομάδας (μία πηγή), όχι εύρημα για την αποτελεσματικότητα."
 }

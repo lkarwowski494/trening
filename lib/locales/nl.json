@@ -875,7 +875,6 @@
  "Zacząć z mniejszą liczbą serii: {a} zamiast {b} serii roboczych? Ciężary bez zmian, szablon się nie zmienia.": "Beginnen met minder sets: {a} in plaats van {b} werksets? Gewichten gelijk, het sjabloon verandert niet.",
  "Pełny trening": "Volledige training",
  "Mniej serii": "Minder sets",
- "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka, nie wynik badań.": "Trainingsweken op rij zonder deload: {n}. Trainers doen meestal elke {a}–{b} weken een deload — dit is praktijk, geen onderzoeksresultaat.",
  "Zaplanuj deload od {date}": "Deload plannen vanaf {date}",
  "Zdejmij oznaczenie deload": "Deloadmarkering verwijderen",
  "tydzień deload": "deloadweek",
@@ -1283,5 +1282,6 @@
  "biblioteki ćwiczeń organizacji szkoleniowych": "oefenbibliotheken van opleidingsorganisaties voor fitness",
  "specjalistyczne serwisy treningowe": "gespecialiseerde trainingswebsites",
  "materiały producenta sprzętu": "materiaal van een fabrikant van apparatuur",
- "badania naukowe": "wetenschappelijke studies"
+ "badania naukowe": "wetenschappelijke studies",
+ "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka opisana w ankietach jednego zespołu badaczy (jedno źródło), nie wynik badań skuteczności.": "Trainingsweken op rij zonder deload: {n}. Trainers doen meestal elke {a}–{b} weken een deload — dit is praktijk uit enquêtes van één onderzoeksteam (één bron), geen onderzoeksresultaat over de effectiviteit."
 }

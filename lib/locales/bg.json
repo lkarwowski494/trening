@@ -875,7 +875,6 @@
  "Zacząć z mniejszą liczbą serii: {a} zamiast {b} serii roboczych? Ciężary bez zmian, szablon się nie zmienia.": "Да започнем с по-малко серии: {a} вместо {b} работни серии? Същите тежести, шаблонът не се променя.",
  "Pełny trening": "Пълна тренировка",
  "Mniej serii": "По-малко серии",
- "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka, nie wynik badań.": "Тренировъчни седмици подред без разтоварване: {n}. Треньорите обикновено правят разтоварване на всеки {a}–{b} седмици — това е практика, а не резултат от изследвания.",
  "Zaplanuj deload od {date}": "Планирай разтоварване от {date}",
  "Zdejmij oznaczenie deload": "Премахни отметката за разтоварване",
  "tydzień deload": "седмица на разтоварване",
@@ -1283,5 +1282,6 @@
  "biblioteki ćwiczeń organizacji szkoleniowych": "библиотеки с упражнения на обучителни организации във фитнеса",
  "specjalistyczne serwisy treningowe": "специализирани сайтове за тренировки",
  "materiały producenta sprzętu": "материали на производител на уреди",
- "badania naukowe": "научни изследвания"
+ "badania naukowe": "научни изследвания",
+ "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka opisana w ankietach jednego zespołu badaczy (jedno źródło), nie wynik badań skuteczności.": "Тренировъчни седмици подред без разтоварване: {n}. Треньорите обикновено правят разтоварване на всеки {a}–{b} седмици — това е практика, описана в анкети на един изследователски екип (един източник), а не резултат от изследвания на ефективността."
 }

@@ -875,7 +875,6 @@
  "Zacząć z mniejszą liczbą serii: {a} zamiast {b} serii roboczych? Ciężary bez zmian, szablon się nie zmienia.": "Începi cu mai puține serii: {a} în loc de {b} serii de lucru? Aceleași greutăți, șablonul nu se schimbă.",
  "Pełny trening": "Antrenament complet",
  "Mniej serii": "Mai puține serii",
- "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka, nie wynik badań.": "Săptămâni de antrenament la rând fără descărcare: {n}. Antrenorii fac de obicei o descărcare la fiecare {a}–{b} săptămâni — este o practică, nu un rezultat al cercetării.",
  "Zaplanuj deload od {date}": "Planifică descărcarea de la {date}",
  "Zdejmij oznaczenie deload": "Elimină marcajul de descărcare",
  "tydzień deload": "săptămână de descărcare",
@@ -1283,5 +1282,6 @@
  "biblioteki ćwiczeń organizacji szkoleniowych": "biblioteci de exerciții ale organizațiilor de formare în fitness",
  "specjalistyczne serwisy treningowe": "site-uri specializate în antrenament",
  "materiały producenta sprzętu": "materiale ale unui producător de echipamente",
- "badania naukowe": "studii științifice"
+ "badania naukowe": "studii științifice",
+ "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka opisana w ankietach jednego zespołu badaczy (jedno źródło), nie wynik badań skuteczności.": "Săptămâni de antrenament la rând fără descărcare: {n}. Antrenorii fac de obicei o descărcare la fiecare {a}–{b} săptămâni — este o practică descrisă în sondajele unei singure echipe de cercetare (o singură sursă), nu un rezultat privind eficiența."
 }

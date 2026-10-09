@@ -875,7 +875,6 @@
  "Zacząć z mniejszą liczbą serii: {a} zamiast {b} serii roboczych? Ciężary bez zmian, szablon się nie zmienia.": "Mit weniger Sätzen beginnen: {a} statt {b} Arbeitssätzen? Gewichte unverändert, die Vorlage bleibt gleich.",
  "Pełny trening": "Volles Training",
  "Mniej serii": "Weniger Sätze",
- "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka, nie wynik badań.": "Trainingswochen in Folge ohne Deload: {n}. Trainer machen meist alle {a}–{b} Wochen einen Deload — das ist Praxis, kein Forschungsergebnis.",
  "Zaplanuj deload od {date}": "Deload ab {date} planen",
  "Zdejmij oznaczenie deload": "Deload-Markierung entfernen",
  "tydzień deload": "Deload-Woche",
@@ -1283,5 +1282,6 @@
  "biblioteki ćwiczeń organizacji szkoleniowych": "Übungsbibliotheken von Fitness-Ausbildungsorganisationen",
  "specjalistyczne serwisy treningowe": "spezialisierte Trainingswebsites",
  "materiały producenta sprzętu": "Unterlagen eines Geräteherstellers",
- "badania naukowe": "wissenschaftliche Studien"
+ "badania naukowe": "wissenschaftliche Studien",
+ "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka opisana w ankietach jednego zespołu badaczy (jedno źródło), nie wynik badań skuteczności.": "Trainingswochen in Folge ohne Deload: {n}. Trainer machen meist alle {a}–{b} Wochen einen Deload — das ist Praxis aus Umfragen eines einzigen Forschungsteams (eine Quelle), kein Ergebnis zur Wirksamkeit."
 }

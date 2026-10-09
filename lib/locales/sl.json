@@ -875,7 +875,6 @@
  "Zacząć z mniejszą liczbą serii: {a} zamiast {b} serii roboczych? Ciężary bez zmian, szablon się nie zmienia.": "Začnem z manj serijami: {a} namesto {b} delovnih serij? Enake uteži, predloga se ne spremeni.",
  "Pełny trening": "Cel trening",
  "Mniej serii": "Manj serij",
- "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka, nie wynik badań.": "Tedni treninga zapored brez razbremenitve: {n}. Trenerji običajno naredijo razbremenitev vsakih {a}–{b} tednov — to je praksa, ne rezultat raziskav.",
  "Zaplanuj deload od {date}": "Načrtuj razbremenitev od {date}",
  "Zdejmij oznaczenie deload": "Odstrani oznako razbremenitve",
  "tydzień deload": "teden razbremenitve",
@@ -1283,5 +1282,6 @@
  "biblioteki ćwiczeń organizacji szkoleniowych": "knjižnice vaj izobraževalnih organizacij za fitnes",
  "specjalistyczne serwisy treningowe": "specializirana spletna mesta o vadbi",
  "materiały producenta sprzętu": "gradiva proizvajalca opreme",
- "badania naukowe": "znanstvene raziskave"
+ "badania naukowe": "znanstvene raziskave",
+ "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka opisana w ankietach jednego zespołu badaczy (jedno źródło), nie wynik badań skuteczności.": "Tedni treninga zapored brez razbremenitve: {n}. Trenerji običajno naredijo razbremenitev vsakih {a}–{b} tednov — to je praksa, opisana v anketah ene raziskovalne skupine (en vir), ne rezultat raziskav učinkovitosti."
 }
