@@ -93,8 +93,17 @@ Rozmowa 05.10.2026, rano: „Chciałbym móc opublikować to w Apple Store” i 
   - **Kody na darmową subskrypcję (właściciel 09.10.2026, wariant A):** kody ofertowe Apple (offer codes; jednorazowe lub własny kod),
     tworzone w App Store Connect; w aplikacji przycisk „Zrealizuj kod” (ekran subskrypcji i Ustawienia) otwiera systemowe okno StoreKit.
     Odrzucone: B — tylko realizacja w App Store, bez przycisku; własny system kodów — niedozwolony (wytyczne Apple 3.1.1: zakaz własnych
-    mechanizmów odblokowania, np. kluczy licencyjnych). Kody dają subskrypcję na określony czas, nie na zawsze. Do sprawdzenia w dokumentacji
-    Apple przy wdrożeniu: maksymalny darmowy okres kodu, limit kodów na kwartał.
+    mechanizmów odblokowania, np. kluczy licencyjnych). Kody dają subskrypcję na określony czas, nie na zawsze.
+    **Sprawdzone w dokumentacji Apple (09.10.2026):**
+    - Najdłuższy darmowy okres: **1 rok** — „The duration can be 3 days, 1 week, 2 weeks, 1 month, 2 months, 3 months, 6 months, or 1 year”
+      (developer.apple.com/help/app-store-connect/reference/in-app-purchase-and-subscriptions-pricing-and-availability/, typ „Free”; ta sama
+      strona: kody ofertowe mają „a specified duration and type (pay as you go, pay up front, free)”). Strona o kodach nie wylicza długości —
+      potwierdzić w polu „Duration” w App Store Connect.
+    - Limit: „a maximum of 1 million redemptions per app, per quarter”; kody jednorazowe ważne do 6 miesięcy, własny kod (np. KOLEDZY) może
+      być bez daty ważności („No End Date”), opcjonalnie z limitem użyć (developer.apple.com/help/app-store-connect/manage-subscriptions/set-up-subscription-offer-codes).
+    - Własny kod realizuje się tylko przez link albo w aplikacji („redeem custom codes within your app if you've implemented the appropriate
+      StoreKit method”) — przemawia za przyciskiem w aplikacji (wariant A).
+    - Opcja bez automatycznego odnowienia: „you'll only be able to choose Free offers” — darmowy okres bez zobowiązania (po nim brak opłaty).
   - **Do sprawdzenia w App Store Connect** (nie zgadujemy): czy punkty cenowe 0,99 EUR/GBP, 3,99 PLN i 19,99 PLN istnieją w siatce cen Apple.
 - **Cel przychodu (właściciel 06.10.2026):** ~2000 zł miesięcznie; model bez zmian: 30 dni za darmo, potem jednorazowa płatność.
   Rachunek orientacyjny (agent, do sprawdzenia): z ceny w App Store odpada VAT kraju kupującego (PL 23%) i prowizja Apple (15% w Small Business
