@@ -295,3 +295,11 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
   `NODE_OPTIONS=--max-old-space-size=3072` w testflight.yml; 1003 nie trafił do App Store Connect. Uwaga: wpis z 07.10 o „buildzie 1004”
   dla „Kolegów” dotyczył planu, którego build nie powstał — numer 1004 to teraz 0.10.0. Kroki właściciela: grupa zewnętrzna „Koledzy”,
   przegląd beta, GitHub Pages (`main` / `/docs`). Audyt 2 zastąpiony pełnym audytem przed App Store (decyzja 09.10 ~12:40).
+- 09.10.2026 (ok. 14:25): właściciel testuje build 1004 — **błąd B1:** po „Ukryj” (zachęta do planu tygodnia na karcie „Dziś”) nie ma
+  „Pokaż/Odkryj” — przycisk „Plan tygodnia” znika z ekranu głównego na stałe (`components/TodayPlan.tsx`, `planHintHidden`; jedyna droga
+  do planu: zakładka Kalendarz); pasek tygodnia pokazuje tylko skróty dni, bez dat (właściciel: „zniknęły daty”). Do paczki przed App Store.
+- 09.10.2026 (ok. 14:25): właściciel — **wygląd: zestaw pełny (B)** motywu z ikony (gryf + talerze IWF) w aplikacji: 1) postęp tygodnia jako
+  ładowana sztanga — **liczba talerzy = liczba dni treningowych w planie** (bez planu: wg treningów w tygodniu); 2) puste stany z grafiką gryfu;
+  3) czterokolorowy pasek-akcent; 4) ikony zakładek w geometrii talerzy; 5) animacja „dokładania talerza” przy rekordzie (z ograniczeniem
+  ruchu — obraz statyczny); 6) kalendarz: dni z treningiem jako talerze. Warunki: kolor nigdy jedyną informacją (daltonizm), czerwień
+  talerza odróżniona od czerwieni „Usuń”. Dopracowanie istniejących ekranów — w paczce przed App Store (zamrożenie: nie nowa funkcja).
