@@ -4,11 +4,12 @@ import { useRouter } from 'expo-router';
 import { Btn, H2, Muted, Txt } from '@/components/ui';
 import { useTheme, F } from '@/lib/theme';
 import { WHATS_NEW, whatsNewUnseen, markWhatsNewSeen, type WhatsNewEntry } from '@/lib/whatsnew';
+import { finishedWorkouts } from '@/lib/store';
 import { t, locale, lang } from '@/lib/i18n';
 
 /* „Co nowego” (decyzja właściciela 08.10.2026): przycisk „i” w lewym górnym rogu ekranu Trening, kropka po aktualizacji, sekcja rozwijana. */
 const entryTitle = (e: WhatsNewEntry) => {
-  const d = new Date(+e.date.slice(0, 4), +e.date.slice(5, 7) - 1, +e.date.slice(8, 10)).toLocaleDateString(locale(), { day: 'numeric', month: 'numeric', year: 'numeric' });
+  const d = new Date(+e.date.slice(0, 4), +e.date.slice(5, 7) - 1, +e.date.slice(8, 10)).toLocaleDateString(locale(), { day: 'numeric', month: 'short', year: 'numeric' }); /* H3 (audyt 0.10): miesiąc słownie jak w pozostałych datach */
   return e.build ? t('Wersja testowa {n} · {date}', { n: e.build, date: d }) : t('W tej wersji');
 };
 
@@ -34,6 +35,7 @@ export function WhatsNewPanel({ onClose }: { onClose: () => void }) {
   return (
     <View testID="whats-new" style={{ marginBottom: 10, padding: 12, borderRadius: 10, backgroundColor: th.surface2, gap: 8 }}>
       <H2 style={{ marginBottom: 0 }}>{t('Co nowego')}</H2>
+      {!finishedWorkouts().length ? <Muted style={{ fontSize: 13 }}>{t('Zaczynasz od tej wersji — poniżej zmiany dla osób, które korzystały z poprzednich. Na start przyda się przewodnik.')}</Muted> : null /* UX-12 A (audyt 0.10): nowa osoba */}
       <Muted style={{ fontSize: 13 }}>{entryTitle(cur)}</Muted>
       <Entry e={cur} />
       {rest.map(e => { const on = older === e.id; return (
@@ -44,7 +46,7 @@ export function WhatsNewPanel({ onClose }: { onClose: () => void }) {
           {on ? <Entry e={e} /> : null}
         </View>); })}
       <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6 }}>
-        <Btn small title={t('Przewodnik po funkcjach')} onPress={() => { onClose(); router.push('/guide'); }} />{/* 08.10.2026: po aktualizacji — przewodnik */}
+        <Btn nav small title={t('Przewodnik po funkcjach')} onPress={() => { onClose(); router.push('/guide'); }} />{/* 08.10.2026: po aktualizacji — przewodnik */}
         <Btn small kind="ghost" title={t('Zamknij')} onPress={onClose} />
       </View>
     </View>

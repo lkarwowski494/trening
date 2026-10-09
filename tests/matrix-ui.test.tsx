@@ -13,7 +13,7 @@ import { LOAD_LIMITS } from '@/lib/loads';
 import { addLocation } from '@/lib/locations';
 import { t as tr, exName } from '@/lib/i18n';
 import { setBodyMass, fresh, ex, addWorkout, pressAlert, withDemoTemplates } from './helpers';
-import { renderApp, flushAll, screen, go, tap, type, act, fireEvent, expandEquip, openCard, swipeDelete, deleteActions } from './app';
+import { renderApp, flushAll, screen, go, tap, type, act, fireEvent, expandEquip, openCard, swipeDelete, deleteActions, startEdit, exDraft } from './app';
 import { loc } from './locations-fixtures';
 
 /* Zgoda na powiadomienia sterowana z testu (global.__notifDenied) — reszta jak w tests/setup.js. */
@@ -81,8 +81,8 @@ describe('/more/settings', () => {
     await act(async () => { store.getState().settings.defaultRest = 333; store.save(); });
     await go('/more/settings'); await flushAll(10);
     await tap(screen.getByText('Wyczyść wszystkie dane'));
-    expect(lastAlert()).toMatchObject({ title: 'Na pewno?', msg: 'Usunie ćwiczenia, szablony i całą historię oraz przywróci ustawienia domyślne (także miejsca, sprzęt i gumy). Przedtem obecne dane zapiszą się jako kopia w Plikach: Trening → Backup (można ją zaimportować). Kopia obejmie też poprzednie, nieczytelne dane.' });
-    await act(async () => { pressAlert('Na pewno?', 'Wyczyść'); }); await flushAll(50);
+    expect(lastAlert()).toMatchObject({ title: 'Wyczyścić wszystkie dane?', msg: 'Usunie ćwiczenia, szablony i całą historię oraz przywróci ustawienia domyślne (także miejsca, sprzęt i gumy). Przedtem obecne dane zapiszą się jako kopia w Plikach: Trening → Backup (można ją zaimportować). Kopia obejmie też poprzednie, nieczytelne dane.' });
+    await act(async () => { pressAlert('Wyczyścić wszystkie dane?', 'Wyczyść'); }); await flushAll(50);
     expect(store.getState().settings.defaultRest).not.toBe(333); expect(store.getRecovery()).toBeNull();
   });
 });
@@ -262,8 +262,8 @@ describe('/exercise/[id]', () => {
   });
 
   test('pola: „Co logujesz w serii”, „jak robocza”, partie główne i pomocnicze; opis masy ciała', async () => {
-    await renderApp(); const id = ex('Bench Press (sztanga)').id; await go(`/exercise/${id}`); await flushAll(10);
-    const e = () => store.getState().exercises.find(x => x.id === id)!;
+    await renderApp(); const id = ex('Bench Press (sztanga)').id; await go(`/exercise/${id}`); await flushAll(10); await startEdit(); /* edycja na żądanie (decyzja właściciela 08.10.2026): „Edytuj” → szkic → „Zapisz” */
+    const e = () => exDraft(id);
     expect(screen.getByText('Co logujesz w serii')).toBeTruthy();
     await tap(byHint('ciężar + czas', 'Co logujesz w serii')); expect(e().metric).toBe('weight_time');
     await tap(byHint('ciężar + powtórzenia', 'Co logujesz w serii')); expect(e().metric).toBe('weight_reps');
@@ -290,7 +290,7 @@ describe('/exercise/[id]', () => {
 
   test('ćwiczenie z historią i w trwającym treningu: ostrzeżenie o przeliczeniu i dopisek w oknie usuwania; „Usuń” oznacza je w treningu', async () => {
     const saved = await prepared(() => { addWorkout(Date.now() - DAY, [['Back Squat', [{ weight: 100, reps: 5 }]]]); store.startEmpty(); store.addExerciseToActive(ex('Back Squat')); });
-    await renderApp({ saved }); const id = ex('Back Squat').id; await go(`/exercise/${id}`); await flushAll(10);
+    await renderApp({ saved }); const id = ex('Back Squat').id; await go(`/exercise/${id}`); await flushAll(10); await startEdit();
     expect(screen.getByText('Uwaga: zmiana sprzętu, trybu liczenia lub metryki przelicza też dawne treningi (objętość, rekordy, wykresy).')).toBeTruthy();
     expect(screen.queryByText('Usuń ćwiczenie')).toBeNull(); await go('/exercises'); await flushAll(10); await type(screen.getByPlaceholderText('Szukaj…'), 'Back Squat'); /* N3: lista wirtualizowana */ await swipeDelete('Usuń z biblioteki: Back Squat'); /* 07.10.2026 wieczór: z listy, przesunięciem */
     expect(lastAlert()).toMatchObject({ title: 'Usunąć ćwiczenie?', msg: 'Zniknie z list i szablonów; historia, wykresy i eksport zostaną. W trwającym treningu zostanie oznaczone jako usunięte.' });
@@ -300,7 +300,7 @@ describe('/exercise/[id]', () => {
 
   test('język inny niż polski: „Wyświetlane jako: …” (przetłumaczona nazwa z biblioteki)', async () => {
     await renderApp({ locale: 'en' }); const e = ex('Bench Press (sztanga)'); expect(exName(e)).not.toBe(e.name);
-    await go(`/exercise/${e.id}`); await flushAll(10);
+    await go(`/exercise/${e.id}`); await flushAll(10); await startEdit();
     expect(screen.getByText(tr('Wyświetlane jako: {n}', { n: exName(e) }))).toBeTruthy();
     expect(screen.getByText(`Shown as: ${exName(e)}`)).toBeTruthy();
   });
@@ -310,9 +310,10 @@ describe('/exercise/[id]', () => {
 describe('/ (ekran główny)', () => {
   test('wskazówka pierwszego startu: bez szablonów i z szablonami', async () => {
     await renderApp(); await flushAll(10);
-    expect(screen.getByText('Pierwszy raz? Utwórz swój szablon („+ Nowy szablon” niżej) albo zacznij pusty trening. Wpisuj ciężar i powtórzenia, odhaczaj serie ✓ — przerwa odlicza się sama. Na koniec „Zakończ trening i zapisz”.')).toBeTruthy();
+    /* UX-12 A (audyt 0.10): „Pierwsze kroki” z przyciskami przy kroku zamiast dawnej podpowiedzi „Pierwszy raz?” */
+    expect(screen.getByLabelText('1. Utwórz pierwszy szablon albo wygeneruj szablony i plan. do zrobienia')).toBeTruthy(); expect(screen.queryByText(/^Pierwszy raz\?/)).toBeNull();
     await renderApp({ saved: await prepared(() => { withDemoTemplates(); }) }); await flushAll(10);
-    expect(screen.getByText('Pierwszy raz? Wybierz szablon niżej, wpisz ciężar i powtórzenia, odhaczaj serie ✓ — przerwa odlicza się sama. Na koniec „Zakończ trening i zapisz”. Szablony i ćwiczenia zmienisz w zakładkach obok.')).toBeTruthy();
+    expect(screen.getByLabelText(/^1\. .* zrobione$/)).toBeTruthy(); expect(screen.getByText('Pierwszy trening: „Start” przy szablonie niżej albo „Pusty trening”.')).toBeTruthy();
   });
 
   test('błąd zapisu: baner „Tapnij, by spróbować ponownie…”; tapnięcie zapisuje ponownie i baner znika', async () => {
@@ -374,7 +375,7 @@ describe('app/_layout', () => {
       Object.assign(a.exercises[0].sets[0], { weight: 100, reps: 5, done: true, completedAt: last }); });
     await renderApp({ saved }); await flushAll(600);
     expect(store.getState().active).toBeNull();
-    expect(alertOf('Zapisałem trening')!.msg).toBe(`Trening z ${store.fmtDate(start)} ${store.fmtTime(start)} nie miał aktywności od 6 godzin, więc zapisał się sam. Koniec: ${store.fmtTime(last)} (ostatnia seria). Znajdziesz go w Historii.`);
+    expect(alertOf('Zapisałem trening')!.msg).toBe(`Trening z ${store.fmtDate(start)} ${store.fmtTime(start)} nie miał aktywności od 6 godzin, więc zapisał się sam. Koniec: ${store.fmtTime(last)} (ostatnia seria). Znajdziesz go w Kalendarzu.`);
   });
 
   test('tytuł okna wyboru ćwiczenia: „Wybierz ćwiczenie”', async () => {
@@ -396,7 +397,7 @@ describe('ActiveWorkout (/ z treningiem w toku)', () => {
 
   test('opis pod treningiem; brak odhaczonych serii (z wpisaną, nieodhaczoną) → „Nic do zapisania…”, „Odrzuć trening”', async () => {
     await startWith(['Back Squat']);
-    expect(screen.getByText('Trening w toku zapisuje się na bieżąco. Tapnij numer serii, by oznaczyć rozgrzewkę (W), drop set (D), serię do upadku (F) albo dodać notatkę.')).toBeTruthy();
+    expect(screen.getByText('Trening w toku zapisuje się na bieżąco. Tapnij numer serii, by oznaczyć rozgrzewkę (W), drop set (D), serię do upadku (F) albo dodać notatkę.', { exact: false })).toBeTruthy(); /* + opis gestu (UI-07) */
     await type(screen.getAllByLabelText('Powtórzenia')[0], '5'); expect(blk(0).sets[0].edited).toBe(true);
     await tap(finishBtn());
     expect(lastAlert()).toMatchObject({ title: 'Brak odhaczonych serii', msg: 'Nic do zapisania. Odrzucić ten trening?\nNieodhaczone serie z wpisanymi wynikami: 1 — nie zostaną zapisane. Seria zapisuje się po odhaczeniu ✓.' });
@@ -419,7 +420,7 @@ describe('ActiveWorkout (/ z treningiem w toku)', () => {
     await act(async () => { pressAlert('Zakończyć trening?', 'Wróć'); }); expect(store.getState().active).not.toBeNull();
   });
 
-  test('„Anuluj trening” → „Serie z tej sesji przepadną.”; usunięcie odhaczonej serii (przesunięciem, 07.10.2026 wieczór) pyta z dopiskiem „Seria jest już odhaczona.”; ostatniej serii — bez gestu', async () => {
+  test('„Odrzuć trening” → „Serie z tej sesji przepadną.”; usunięcie odhaczonej serii (przesunięciem, 07.10.2026 wieczór) pyta z dopiskiem „Seria jest już odhaczona.”; ostatniej serii — bez gestu', async () => {
     await startWith(['Back Squat'], () => { const e = store.getState().active!.exercises[0]; e.sets = [store.emptySet(), store.emptySet(), store.emptySet()]; e.sets.forEach(s => Object.assign(s, { weight: 100, reps: 5, done: true, completedAt: Date.now() })); });
     expect(screen.queryByText('− seria')).toBeNull();
     await swipeDelete('Usuń serię 3 — Back Squat');
@@ -428,9 +429,9 @@ describe('ActiveWorkout (/ z treningiem w toku)', () => {
     await swipeDelete('Usuń serię 3 — Back Squat'); await act(async () => { pressAlert('Usunąć serię?', 'Usuń'); }); await flushAll(5); expect(blk(0).sets).toHaveLength(2);
     await swipeDelete('Usuń serię 1 — Back Squat'); await act(async () => { pressAlert('Usunąć serię?', 'Usuń'); }); await flushAll(5); expect(blk(0).sets).toHaveLength(1);
     expect(deleteActions().filter(l => l.startsWith('Usuń serię'))).toEqual([]);
-    await tap(screen.getByText('Anuluj trening'));
-    expect(lastAlert()).toMatchObject({ title: 'Anulować trening?', msg: 'Serie z tej sesji przepadną.' });
-    await act(async () => { pressAlert('Anulować trening?', 'Anuluj trening'); }); await flushAll(5); expect(store.getState().active).toBeNull();
+    await tap(screen.getByText('Odrzuć trening'));
+    expect(lastAlert()).toMatchObject({ title: 'Odrzucić trening?', msg: 'Serie z tej sesji przepadną.' });
+    await act(async () => { pressAlert('Odrzucić trening?', 'Odrzuć trening'); }); await flushAll(5); expect(store.getState().active).toBeNull();
   });
 
   test('blok usuniętego ćwiczenia: „Usuń usunięte ćwiczenie z treningu” usuwa blok', async () => {
@@ -597,9 +598,9 @@ describe('/swap', () => {
     await startIn('home', ['Bent Over Row (sztanga)']);
     await tap(screen.getByLabelText('Zamień ćwiczenie: Bent Over Row (sztanga)')); await flushAll(20);
     expect(screen.getByText('Brak podobnych ćwiczeń w tym miejscu — rozwiń „Inne”.')).toBeTruthy();
-    expect(screen.getByText('lista ćwiczeń z filtrami, które możesz zdjąć')).toBeTruthy(); expect(screen.getByText('Inne ▾')).toBeTruthy();
+    expect(screen.getByText('lista ćwiczeń z filtrami, które możesz zdjąć')).toBeTruthy(); expect(screen.getByText('Inne')).toBeTruthy(); expect(screen.getByText('Pokaż inne ćwiczenia')).toBeTruthy(); /* UI-15: nagłówek „Inne”, wiersz ze znakiem ▸/▾ */
     await tap(screen.getByLabelText('Pokaż inne ćwiczenia')); await flushAll(5);
-    expect(screen.getByText('Inne ▴')).toBeTruthy(); expect(screen.getByLabelText('Zwiń inne ćwiczenia')).toBeTruthy();
+    expect(screen.getByText('Inne')).toBeTruthy(); expect(screen.getByText('Zwiń inne ćwiczenia')).toBeTruthy(); expect(screen.getByLabelText('Zwiń inne ćwiczenia')).toBeTruthy();
     await tap(screen.getByLabelText(/^Filtr partii: /)); await tap(screen.getByLabelText(/^Filtr miejsca: /)); await flushAll(5);
     const more = screen.getByText(/^Pokaż więcej \(\d+\)$/); const n = Number(/\((\d+)\)/.exec(more.props.children)![1]);
     expect(screen.getByLabelText(`Pokaż więcej ćwiczeń: zostało ${n}`)).toBeTruthy(); expect(more.props.children).toBe(`Pokaż więcej (${n})`);
@@ -627,13 +628,14 @@ describe('/template/[id], /reorder', () => {
       b.items[0].repMin = 8; b.items[0].repMax = 12; b.items[0].alternates = [{ locationId: g.id, exerciseId: ex('Machine Chest Press').id, restSec: null }];
       store.startFromTemplate(a); });
     await renderApp({ saved }); await go(`/template/${tplB}`); await flushAll(20);
+    await tap(screen.getByText('Trening w toku')); /* podgląd: Start przy treningu w toku z innego szablonu */
+    expect(lastAlert()).toMatchObject({ title: 'Trening w toku', msg: 'Najpierw zakończ albo anuluj bieżący trening.' });
+    await startEdit(); /* edycja na żądanie (decyzja właściciela 08.10.2026): „Edytuj” → szkic → „Zapisz” */
     expect(screen.getByText('Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✂ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.')).toBeTruthy();
     await openCard(0); await flushAll(5);
     /* MER-13 (audyt 0.10): opis jak prawdziwa podpowiedź („↑ spróbuj …”) */
     expect(screen.getByText('Zakres powtórzeń: 8–12 — gdy ostatnio wszystkie serie robocze miały co najmniej 12 powt., przy ćwiczeniu pojawi się podpowiedź „↑ spróbuj …”: większy ciężar albo powtórzenie więcej (poza tygodniem deload).')).toBeTruthy();
     expect(screen.getByText('Zamienniki')).toBeTruthy(); expect(screen.getByText(`📍 Siłownia: ${exName(ex('Machine Chest Press'))}`)).toBeTruthy();
-    await tap(screen.getByText('Trening w toku'));
-    expect(lastAlert()).toMatchObject({ title: 'Trening w toku', msg: 'Najpierw zakończ albo anuluj bieżący trening.' });
     expect(store.getState().active!.templateId).not.toBe(tplB);
   });
 
@@ -671,7 +673,7 @@ describe('/history/add, /history/edit/[id] (lib/edit)', () => {
   test('nowy trening wstecz: notatka (pole „np. samopoczucie, ból, sprzęt”), „Anuluj” → „Ten trening nie zostanie zapisany.”', async () => {
     await renderApp(); await go('/history/add'); await flushAll(10);
     await tap(screen.getByText('Pusty trening')); await flushAll(20);
-    expect(screen.getByText('Tapnij numer serii, by zmienić typ (W, D, F) albo dodać notatkę. Serie bez wyniku nie zostaną zapisane.')).toBeTruthy();
+    expect(screen.getByText('Tapnij numer serii, by zmienić typ (W, D, F) albo dodać notatkę. Serie bez wyniku nie zostaną zapisane.', { exact: false })).toBeTruthy(); /* + opis gestu (UI-07) */
     await type(screen.getByPlaceholderText('np. samopoczucie, ból, sprzęt'), 'zmęczony');
     expect(screen.getByDisplayValue('zmęczony')).toBeTruthy();
     await tap(screen.getByLabelText('Anuluj'));
@@ -691,7 +693,7 @@ describe('/history/add, /history/edit/[id] (lib/edit)', () => {
     await act(async () => { pressAlert('Zapisać zmiany?', 'Zapisz'); }); await flushAll(50);
     expect(store.getState().workouts.find(x => x.id === w1.id)!.note).toBe('dobrze');
     await go(`/history/edit/${w2.id}`); await flushAll(20);
-    await swipeDelete('Usuń serię 1 — Push Up'); await act(async () => { pressAlert('Usunąć serię?', 'Usuń'); }); await flushAll(5); await tap(screen.getByText('Zapisz'));
+    await swipeDelete('Usuń ćwiczenie: Push Up'); await act(async () => { pressAlert('Usunąć z treningu?', 'Usuń'); }); await flushAll(5); await tap(screen.getByText('Zapisz')); /* G4: ostatniej serii nie usuwa się — całe ćwiczenie tak */
     expect(lastAlert()).toMatchObject({ title: 'Pusty trening', msg: 'Nie zostałaby żadna seria z wynikiem. Usunąć tę sesję z historii?' });
     await act(async () => { pressAlert('Pusty trening', 'Usuń sesję'); }); await flushAll(50);
     expect(store.getState().workouts.some(x => x.id === w2.id)).toBe(false);

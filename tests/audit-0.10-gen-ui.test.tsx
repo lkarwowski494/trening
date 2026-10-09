@@ -9,7 +9,7 @@ import { addLocation } from '@/lib/locations';
 import { generate, saveGenerated, type GenInput } from '@/lib/generator';
 import { applyLang } from '@/lib/i18n';
 import { fresh, saved, withDemoTemplates, addWorkout } from './helpers';
-import { renderApp, flushAll, screen, tap, type, act, go } from './app';
+import { renderApp, flushAll, screen, tap, type, act, go, startEdit, saveEdit } from './app';
 
 jest.setTimeout(120000);
 const NOW = new Date(2026, 9, 8, 9, 0); /* czwartek */
@@ -109,10 +109,12 @@ describe('C3 / UX-10: miejsce, ponowne generowanie, potwierdzenie, notatka', () 
     let id = '';
     await boot('/templates', () => { id = saveGenerated(generate(inp()), inp(), false).templateIds[0]; });
     await go(`/template/${id}`); await flushAll(10);
+    expect(screen.getByLabelText('Notatka: Wysiłek: zwykle 0–3 powtórzenia w zapasie (RIR); do upadku nie trzeba.')).toBeTruthy(); /* podgląd: notatka widoczna */
+    await startEdit(); /* edycja na żądanie (decyzja właściciela 08.10.2026): „Edytuj” → szkic → „Zapisz” */
     const f = screen.getByLabelText('Notatka'); expect(f.props.value).toBe('Wysiłek: zwykle 0–3 powtórzenia w zapasie (RIR); do upadku nie trzeba.');
-    await type(f, '  RIR 2,  technika  '); await act(async () => { f.props.onEndEditing?.({ nativeEvent: { text: '' } }); }); await flushAll(5);
+    await type(f, '  RIR 2,  technika  '); await saveEdit();
     expect(S().templates.find(x => x.id === id)!.note).toBe('RIR 2, technika');
-    await type(screen.getByLabelText('Notatka'), '   '); await act(async () => { screen.getByLabelText('Notatka').props.onEndEditing?.({ nativeEvent: { text: '' } }); }); await flushAll(5);
+    await startEdit(); await type(screen.getByLabelText('Notatka'), '   '); await saveEdit();
     expect(S().templates.find(x => x.id === id)!.note).toBeUndefined();
   });
   test('English: nazwy przy tworzeniu w bieżącym języku, chip „+ Add place”, ostrzeżenia po angielsku', async () => {

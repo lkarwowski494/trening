@@ -1,7 +1,7 @@
 /* Warstwa B planu testów (09): przepływy na prawdziwych ekranach. */
 import * as store from '@/lib/store';
 import * as timer from '@/lib/timer';
-import { renderApp, tap, type, flushAll, screen, go, act, openCard, swipeDelete } from './app';
+import { renderApp, tap, type, flushAll, screen, go, act, openCard, swipeDelete, startEdit, saveEdit, tplDraft } from './app';
 import { ex, pressAlert, addWorkout, seedWithDemo } from './helpers';
 
 jest.setTimeout(30000);
@@ -15,9 +15,10 @@ const finishConfirmed = async () => { await tap(screen.getAllByText('Zakończ tr
 test('B1 pierwszy start: podpowiedź, ZERO szablonów (decyzja 03.10.2026) i droga do pierwszego szablonu', async () => {
   await renderApp();
   expect(store.getState().templates).toEqual([]);
-  expect(screen.getByText(/^Pierwszy raz\? Utwórz swój szablon/)).toBeTruthy(); /* nie odsyła do „szablonu niżej”, którego nie ma */
-  expect(screen.queryByText(/Wybierz szablon niżej/)).toBeNull();
-  expect(screen.getByText('Nie masz jeszcze szablonów — utwórz pierwszy albo zacznij pusty trening.')).toBeTruthy();
+  /* UX-12 A (audyt 0.10): „Pierwsze kroki” z przyciskami przy kroku — bez powtórzonej podpowiedzi „Pierwszy raz?” i komunikatu o braku szablonów */
+  expect(screen.getByLabelText('1. Utwórz pierwszy szablon albo wygeneruj szablony i plan. do zrobienia')).toBeTruthy();
+  expect(screen.queryByText(/Wybierz szablon niżej|Pierwszy raz\?/)).toBeNull();
+  expect(screen.queryByText('Nie masz jeszcze szablonów — utwórz pierwszy albo zacznij pusty trening.')).toBeNull();
   for (const n of ['Upper A', 'Upper B', 'Legs — siłownia', 'Legs — dom']) expect(screen.queryByText(n)).toBeNull();
   expect(screen.queryByLabelText(/^Start: /)).toBeNull(); expect(screen.getByText('Pusty trening')).toBeTruthy();
   await tap(screen.getByText('+ Nowy szablon')); await flushAll(10); /* „+ Nowy szablon” → edytor nowego szablonu */
@@ -26,14 +27,13 @@ test('B1 pierwszy start: podpowiedź, ZERO szablonów (decyzja 03.10.2026) i dro
 
 test('B1 (EN) first launch without templates: hint, empty state and „+ New template” in English', async () => {
   await renderApp({ locale: 'en' });
-  expect(screen.getByText(/^First time\? Create your own template/)).toBeTruthy();
-  expect(screen.getByText('No templates yet — create your first one or start an empty workout.')).toBeTruthy(); expect(screen.getByText('+ New template')).toBeTruthy();
+  expect(screen.getByText('Create your first template or generate templates and a plan.')).toBeTruthy(); expect(screen.getByText('+ New template')).toBeTruthy();
   expect(screen.queryByText(/Nie masz jeszcze szablonów|Pierwszy raz/)).toBeNull();
 });
 
 test('B1b szablony ustawione przez użytkownika (dane testowe) — wszystkie na ekranie głównym ze „Start”', async () => {
   await renderApp({ saved: seedWithDemo() });
-  expect(screen.getByText(/^Pierwszy raz\? Wybierz szablon niżej/)).toBeTruthy();
+  expect(screen.getByLabelText(/^1\. .* zrobione$/)).toBeTruthy(); expect(screen.getByText('Pierwszy trening: „Start” przy szablonie niżej albo „Pusty trening”.')).toBeTruthy();
   expect(screen.queryByText('Nie masz jeszcze szablonów — utwórz pierwszy albo zacznij pusty trening.')).toBeNull();
   for (const n of ['Upper A', 'Upper B', 'Legs — siłownia', 'Legs — dom']) { expect(screen.getByText(n)).toBeTruthy(); expect(screen.getByLabelText('Start: ' + n)).toBeTruthy(); }
 });
@@ -119,13 +119,15 @@ test('B9 zakończenie bez serii → odrzucenie, bez pustej sesji', async () => {
 
 test('B10 edytor szablonu: „+ seria / − seria” (05.10.2026: serie jako wiersze, dawne pole „serie”), potwierdzenie usunięcia', async () => {
   await renderApp({ saved: seedWithDemo() }); const tpl = store.getState().templates[0];
-  await go(`/template/${tpl.id}`); await screen.findByText('Duplikuj'); await openCard(0); const n0 = tpl.items[0].sets;
-  await tap(screen.getAllByText('+ seria')[0]); expect(tpl.items[0].sets).toBe(n0 + 1);
+  await go(`/template/${tpl.id}`); await screen.findByText('Duplikuj'); await startEdit(); await openCard(0); /* edycja na żądanie (decyzja właściciela 08.10.2026): „Edytuj” → szkic → „Zapisz” */
+  const d = tplDraft(tpl.id); const n0 = d.items[0].sets;
+  await tap(screen.getAllByText('+ seria')[0]); expect(d.items[0].sets).toBe(n0 + 1);
   /* 07.10.2026 wieczór: „− seria” i przycisk usuwania zastąpione przesunięciem w lewo (z potwierdzeniem) */
-  await swipeDelete(new RegExp(`^Usuń serię ${n0 + 1} — `)); expect(tpl.items[0].sets).toBe(n0 + 1); pressAlert('Usunąć serię?', 'Usuń'); await flushAll(); expect(tpl.items[0].sets).toBe(n0);
-  const n = tpl.items.length;
-  await swipeDelete(/^Usuń ćwiczenie: /); expect(tpl.items.length).toBe(n);
-  pressAlert('Usunąć z szablonu?', 'Usuń'); await flushAll(); expect(tpl.items.length).toBe(n - 1);
+  await swipeDelete(new RegExp(`^Usuń serię ${n0 + 1} — `)); expect(d.items[0].sets).toBe(n0 + 1); pressAlert('Usunąć serię?', 'Usuń'); await flushAll(); expect(d.items[0].sets).toBe(n0);
+  const n = d.items.length;
+  await swipeDelete(/^Usuń ćwiczenie: /); expect(d.items.length).toBe(n);
+  pressAlert('Usunąć z szablonu?', 'Usuń'); await flushAll(); expect(d.items.length).toBe(n - 1); expect(tpl.items.length).toBe(n); /* dane bez zmian do „Zapisz” */
+  await saveEdit(); expect(tpl.items.length).toBe(n - 1);
 });
 
 test('B11 usunięcie ćwiczenia z historią: znika z listy, historia zna nazwę', async () => {
@@ -154,7 +156,7 @@ test('B13 gumy: pusty kolor nie wywraca treningu z gumą', async () => {
 test('B15 reset danych zatrzymuje timery', async () => {
   await renderApp({ saved: seedWithDemo() }); await startTemplate('Upper A'); await tap(screen.getAllByLabelText(/^Seria 1 zrobiona/)[0]); expect(timer.T.on).toBe(true);
   await go('/more/settings'); await screen.findByText('Wyczyść wszystkie dane');
-  await tap(screen.getByText('Wyczyść wszystkie dane')); pressAlert('Na pewno?', 'Wyczyść'); await flushAll(10);
+  await tap(screen.getByText('Wyczyść wszystkie dane')); pressAlert('Wyczyścić wszystkie dane?', 'Wyczyść'); await flushAll(10);
   expect(timer.T.on).toBe(false); expect(store.getState().active).toBeNull();
 });
 

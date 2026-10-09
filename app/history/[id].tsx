@@ -3,6 +3,7 @@ import { ScrollView, View, Alert } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Screen, H1, Muted, Btn, Txt, useOnce, monoSafe } from '@/components/ui';
 import { beginEdit } from '@/lib/edit';
+import { templateFromWorkout } from '@/lib/tplsync';
 import { wallTs, effortLabel, effortOut, workoutDurSec, getState, useTick, exById, isBW, bandById, loadLabel, fmtDate, fmtTime, fmtDur, fmtSec, fmtDist, volume, deleteWorkout, groupLabels, shortBand, bandA11y, loadLabelShort, blockImpl, shownLoad } from '@/lib/store';
 import { hasTime, hasReps, hasWeight, hasDistance, SET_KIND_LABEL } from '@/lib/seed';
 import { setMarkOf } from '@/lib/live';
@@ -22,6 +23,8 @@ export default function HistoryDetail() {
       <Muted style={{ marginBottom: 14 }}>{fmtDate(wallTs(w))} {fmtTime(wallTs(w))} · {fmtDur(workoutDurSec(w))}{volume(w) > 0 ? ` · ${t('objętość')} ${fmtVol(volume(w))}` : ''}{w.deload ? ` · ${t('deload — mniej serii')}` /* audyt 0.10 (D1+) */ : ''}</Muted>
       {w.healthPending && !w.healthUUID ? <Muted style={{ marginBottom: 10, fontSize: 13 }}>{t('Nie zapisano jeszcze w Apple Health — ponowię przy następnym uruchomieniu aplikacji.')}</Muted> : null}{/* audyt 0.10 J2 */}
       {w.note ? <Muted style={{ marginBottom: 10 }}>{w.note}</Muted> : null}
+      {/* H5 (audyt 0.10, wariant B): nowy szablon ze składu sesji — tylko na polecenie użytkownika (decyzja 03.10.2026: aplikacja sama szablonów nie tworzy) */}
+      {w.exercises.some(e => { const x = exById(e.exerciseId); return x && !x.archived; }) ? <Btn title={t('Zapisz jako szablon')} small kind="ghost" accessibilityHint={t('Nowy szablon z ćwiczeniami i seriami tej sesji.')} style={{ alignSelf: 'flex-start', marginBottom: 12 }} onPress={once(() => { const tpl = templateFromWorkout(w); router.push(`/template/${tpl.id}`); })} /> : null}
       {w.exercises.map((e, i) => { const ex = exById(e.exerciseId); const m = ex?.metric ?? 'weight_reps'; const rpe = getState().settings.showRpe; const anyBand = e.sets.some(s => s.bandId);
         // Nagłówki i komórki z tych samych warunków (wcześniej dla usuniętego ćwiczenia kolumny się rozjeżdżały).
         const showW = hasWeight(m);

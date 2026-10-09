@@ -48,12 +48,14 @@ export function rangeValues(min: number, max: number, step: number, limit: numbe
   const a = micro(min), s = micro(step); const out: number[] = []; for (let i = 0; i < n; i++) out.push((a + i * s) / 1e6);
   return out;
 }
-/** Skrót edytora: lista z zakresu (wszystkie włączone); ciężary odznaczone wcześniej zostają odznaczone, spoza zakresu znikają.
- * null = zły zakres albo więcej niż LOAD_LIMITS.listItems wartości (edytor pokazuje komunikat, lista się nie zmienia). */
-export function fillRange(items: WeightEntry[], min: number, max: number, step: number): WeightEntry[] | null {
-  if (min < W_MIN || max > W_MAX || step < W_MIN) return null; const n = rangeCount(min, max, step); if (n == null || n > LOAD_LIMITS.listItems) return null;
-  const off = new Set(items.filter(x => !x.on).map(x => milli(x.w)));
-  return rangeValues(min, max, step).map(w => ({ w, on: !off.has(milli(w)) }));
+/** Skrót edytora „Wypełnij”: zakres DOPISUJE się do listy (G1, audyt 0.10 UI-01, wariant A — nic nie znika): wpisane ciężary zostają z ich
+ * zaznaczeniem, nowe wartości z zakresu są włączone; lista bez powtórzeń, rosnąco. null = zły zakres albo więcej niż `limit` wartości po dopisaniu
+ * (edytor pokazuje komunikat, lista się nie zmienia). `limit` = Infinity — tylko liczba po dopisaniu (do komunikatu). */
+export function fillRange(items: WeightEntry[], min: number, max: number, step: number, limit: number = LOAD_LIMITS.listItems): WeightEntry[] | null {
+  if (min < W_MIN || max > W_MAX || step < W_MIN) return null; const n = rangeCount(min, max, step); if (n == null || n > LOAD_LIMITS.rangeValues) return null;
+  const out = new Map<number, WeightEntry>(); for (const x of items) if (!out.has(milli(x.w))) out.set(milli(x.w), { ...x });
+  for (const w of rangeValues(min, max, step)) if (!out.has(milli(w))) out.set(milli(w), { w, on: true });
+  const r = [...out.values()].sort((a, b) => a.w - b.w); return r.length > limit ? null : r;
 }
 /** Sumy talerzy na stronę (w tysięcznych) albo null, gdy kombinacji jest więcej niż limit. */
 function plateSumSet(plates: PlateEntry[], perStep: 2 | 4): Set<number> | null {

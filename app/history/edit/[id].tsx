@@ -4,13 +4,15 @@ import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
 import { Screen, Muted, Btn, Txt, Field, Input, NumInput, Empty } from '@/components/ui';
 import { WhenFields } from '@/components/WhenFields';
 import { setLabel } from '@/components/ActiveWorkout';
-import { effortLabel, effortField, effortIn, getState, useTick, exById, isBW, loadLabel, loadLabelShort, groupLabels, occurrence, occurrences, deleteWorkout, bandA11y, shortBand, clampName, NAME_MAX, blockImpl, liveBlockImpl, nextBandId, loadFieldValue, writeLoad, usesBand, workCount } from '@/lib/store';
+import { effortLabel, effortField, effortIn, getState, useTick, exById, isBW, loadLabel, loadLabelShort, groupLabels, occurrence, occurrences, deleteWorkout, bandA11y, shortBand, clampName, NAME_MAX, blockImpl, liveBlockImpl, nextBandId, loadFieldValue, writeLoad, usesBand, workCount , REPS_MAX } from '@/lib/store';
 import { draftOf, beginEdit, discardDraft, isDirty, touchDraft, useDraftTick, checkDraft, commitDraft, draftAddSet, draftRemoveSet, draftRemoveExercise, draftSetWhen, dateText, timeText, prefilledOffList, type Draft } from '@/lib/edit';
 import { onHistoryEdited } from '@/lib/backup';
 import { locationLabel } from '@/lib/locations';
 import { hasTime, hasReps, hasWeight, hasDistance, SET_KIND_LABEL, type WExercise, type WSet } from '@/lib/seed';
-import { SwipeRow } from '@/components/SwipeRow';
+import { SwipeRow, lastSetBlock } from '@/components/SwipeRow';
 import { SetBadge } from '@/components/SetBadge';
+import { DraftHeader, HeaderButton, confirmDiscard } from '@/components/DraftHeader';
+import { MedicalNote } from '@/components/MedicalNote';
 import { useTheme, F, NUM_SCALE_MAX } from '@/lib/theme';
 import { t, tp, exName, lang } from '@/lib/i18n';
 import { wu, wField, wInKeep, fmtW } from '@/lib/units';
@@ -30,12 +32,12 @@ export default function EditWorkout() {
   useEffect(() => () => { discardDraft(key); }, [key]);
   const d = draftOf(key);
   const close = () => { leaving.current = true; Keyboard.dismiss(); if (router.canGoBack()) router.back(); else router.replace('/history'); };
-  const header = (title: string, onPress: () => void, bold?: boolean) => () => <Pressable accessibilityLanguage={lang()} accessibilityRole="button" accessibilityLabel={title} hitSlop={10} onPress={onPress} style={{ minHeight: 44, minWidth: 44, justifyContent: 'center' }}><Text accessibilityLanguage={lang()} maxFontSizeMultiplier={1.4} style={{ color: th.accent, fontSize: 17, fontFamily: bold ? F.semibold : F.regular }}>{title}</Text></Pressable>;
-  if (!d) return <Screen><Stack.Screen options={{ headerLeft: header(t('Wróć'), close) }} />{leaving.current ? null : <><Muted style={{ marginTop: 14 }}>{t('Brak sesji.')}</Muted><Btn title={t('Wróć')} block style={{ marginTop: 12 }} onPress={close} /></>}</Screen>;
+  if (!d) return <Screen><Stack.Screen options={{ headerLeft: () => <HeaderButton title={t('Wróć')} onPress={close} /> }} />{leaving.current ? null : <><Muted style={{ marginTop: 14 }}>{t('Brak sesji.')}</Muted><Btn title={t('Wróć')} block style={{ marginTop: 12 }} onPress={close} /></>}</Screen>;
 
+  /* wspólny wzór edycji na szkicu (components/DraftHeader — także ćwiczenie i szablon, decyzja właściciela 08.10.2026) */
   const cancel = () => {
-    const cur = draftOf(key); if (!cur || !isDirty(cur)) { discardDraft(key); close(); return; }
-    Alert.alert(t('Odrzucić zmiany?'), cur.sourceId ? t('Sesja w historii zostanie bez zmian.') : t('Ten trening nie zostanie zapisany.'), [{ text: t('Wróć') }, { text: t('Odrzuć zmiany'), style: 'destructive', onPress: () => { if (draftOf(key) !== cur) return; discardDraft(key); close(); } }]);
+    const cur = draftOf(key); if (!cur) { close(); return; }
+    confirmDiscard(isDirty(cur), cur.sourceId ? t('Sesja w historii zostanie bez zmian.') : t('Ten trening nie zostanie zapisany.'), () => { discardDraft(key); close(); }, () => draftOf(key) === cur);
   };
   const commit = () => {
     const sourceId = draftOf(key)?.sourceId ?? null; const r = commitDraft(key);
@@ -48,13 +50,13 @@ export default function EditWorkout() {
     const c = checkDraft(key);
     if ('error' in c) { Alert.alert(t('Sprawdź datę i godzinę'), c.error); return; }
     if (c.empty) {
-      if (cur.sourceId) { const id = cur.sourceId; Alert.alert(t('Pusty trening'), t('Nie zostałaby żadna seria z wynikiem. Usunąć tę sesję z historii?'), [{ text: t('Wróć') }, { text: t('Usuń sesję'), style: 'destructive', onPress: () => { if (draftOf(key) !== cur) return; discardDraft(key); if (getState().workouts.some(x => x.id === id)) { deleteWorkout(id); onHistoryEdited().catch(() => {}); /* audyt (LOW): kopia jak po każdej zmianie historii */ } leaving.current = true; Keyboard.dismiss(); if (router.canDismiss()) router.dismissAll(); router.navigate('/history'); /* weryfikacja 2 (L5): zawsze lista Historii — także gdy szczegóły otwarto z zakładki Trening */ } }]); }
-      else Alert.alert(t('Pusty trening'), t('Nie ma żadnej serii z wynikiem — nic do zapisania.'), [{ text: t('Wróć') }, { text: t('Odrzuć trening'), style: 'destructive', onPress: () => { if (draftOf(key) !== cur) return; discardDraft(key); close(); } }]);
+      if (cur.sourceId) { const id = cur.sourceId; Alert.alert(t('Pusty trening'), [t('Nie zostałaby żadna seria z wynikiem. Usunąć tę sesję z historii?'), getState().workouts.find(x => x.id === id)?.healthUUID ? t('Kopia w Apple Health zostanie — usuniesz ją w aplikacji Zdrowie.') : ''].filter(Boolean).join('\n'), [{ text: t('Wróć'), style: 'cancel' }, { text: t('Usuń sesję'), style: 'destructive', onPress: () => { if (draftOf(key) !== cur) return; discardDraft(key); if (getState().workouts.some(x => x.id === id)) { deleteWorkout(id); onHistoryEdited().catch(() => {}); /* audyt (LOW): kopia jak po każdej zmianie historii */ } leaving.current = true; Keyboard.dismiss(); if (router.canDismiss()) router.dismissAll(); router.navigate('/history'); /* weryfikacja 2 (L5): zawsze lista Historii — także gdy szczegóły otwarto z zakładki Trening */ } }]); }
+      else Alert.alert(t('Pusty trening'), t('Nie ma żadnej serii z wynikiem — nic do zapisania.'), [{ text: t('Wróć'), style: 'cancel' }, { text: t('Odrzuć trening'), style: 'destructive', onPress: () => { if (draftOf(key) !== cur) return; discardDraft(key); close(); } }]);
       return;
     }
     /* audyt M5: nachodzenie na inną sesję z historii — ostrzeżenie z potwierdzeniem (dwa treningi jednego dnia bywają celowe) */
     const warn = [c.dropped ? t('Serie bez wyniku zostaną pominięte: {n}.', { n: c.dropped }) : '', c.noWeight ? t('Serie bez ciężaru: {n}.', { n: c.noWeight }) : '', c.overlap ? t('Ten termin nachodzi na sesję „{name}” ({d}).', { name: c.overlap.templateName || t('Trening'), d: `${dateText(c.overlap.startedAt)} ${timeText(c.overlap.startedAt)}` }) : ''].filter(Boolean);
-    if (warn.length) { Alert.alert(t('Zapisać zmiany?'), warn.join('\n'), [{ text: t('Wróć') }, { text: t('Zapisz'), onPress: () => { if (draftOf(key) === cur) commit(); } }]); return; }
+    if (warn.length) { Alert.alert(t('Zapisać zmiany?'), warn.join('\n'), [{ text: t('Wróć'), style: 'cancel' }, { text: t('Zapisz'), onPress: () => { if (draftOf(key) === cur) commit(); } }]); return; }
     commit();
   };
 
@@ -62,7 +64,7 @@ export default function EditWorkout() {
   const health = st.settings.healthSync || !!st.workouts.find(x => x.id === d.sourceId)?.healthUUID;
   return (
     <Screen>
-      <Stack.Screen options={{ title: d.sourceId ? t('Edycja sesji') : t('Trening wstecz'), headerBackVisible: false, headerLeft: header(t('Anuluj'), cancel), headerRight: header(t('Zapisz'), saveDraft, true) }} />
+      <DraftHeader title={d.sourceId ? t('Edycja sesji') : t('Trening wstecz')} onCancel={cancel} onSave={saveDraft} />
       <ScrollView keyboardShouldPersistTaps="handled" keyboardDismissMode="interactive" automaticallyAdjustKeyboardInsets contentContainerStyle={{ paddingVertical: 10, paddingBottom: 80 }}>
         {health ? <Muted style={{ fontSize: 13, marginBottom: 10 }}>{t('Zmiany nie trafiają do Apple Health.')}</Muted> : null}
         {w.locationId ? <Text accessibilityLanguage={lang()} accessibilityLabel={`${t('Miejsce')}: ${locationLabel(w.locationId)}`} maxFontSizeMultiplier={1.3} style={{ color: th.muted, fontSize: 14, fontFamily: F.semibold, marginBottom: 10 }}>{`📍 ${locationLabel(w.locationId)}`}</Text> : null /* integracja 0.9.0: miejsce treningu tylko do odczytu (edycja go nie zmienia) */}
@@ -71,10 +73,10 @@ export default function EditWorkout() {
         <View style={{ height: 10 }} />
         {w.exercises.map((e, ei) => <EditBlock key={e.id} d={d} e={e} ei={ei} labels={labels} />)}
         {!w.exercises.length ? <Empty>{t('Brak ćwiczeń — dodaj pierwsze.')}</Empty> : null}
-        <Btn title={t('+ Dodaj ćwiczenie')} block style={{ marginTop: 12 }} onPress={() => router.push(`/picker?target=${encodeURIComponent('edit:' + key)}`)} />
-        <View style={{ marginTop: 16 }}><Muted style={{ marginBottom: 5 }}>{t('Notatka do treningu')}</Muted><Input maxLength={1000} value={w.note} onChangeText={v => { w.note = v; touchDraft(); }} placeholder={t('np. samopoczucie, ból, sprzęt')} accessibilityLabel={t('Notatka do treningu')} multiline /></View>
+        <Btn nav title={t('+ Dodaj ćwiczenie')} block style={{ marginTop: 12 }} onPress={() => router.push(`/picker?target=${encodeURIComponent('edit:' + key)}`)} />
+        <View style={{ marginTop: 16 }}><Muted style={{ marginBottom: 5 }}>{t('Notatka do treningu')}</Muted><Input maxLength={1000} value={w.note} onChangeText={v => { w.note = v; touchDraft(); }} placeholder={t('np. samopoczucie, ból, sprzęt')} accessibilityLabel={t('Notatka do treningu')} multiline /><MedicalNote /></View>
         <Btn title={t('Zapisz zmiany')} kind="primary" block style={{ marginTop: 16, minHeight: 52 }} onPress={saveDraft} />
-        <Muted style={{ textAlign: 'center', fontSize: 13, marginVertical: 10 }}>{t('Tapnij numer serii, by zmienić typ (W, D, F) albo dodać notatkę. Serie bez wyniku nie zostaną zapisane.')}</Muted>
+        <Muted style={{ textAlign: 'center', fontSize: 13, marginVertical: 10 }}>{t('Tapnij numer serii, by zmienić typ (W, D, F) albo dodać notatkę. Serie bez wyniku nie zostaną zapisane.')} {t('Przesuń serię albo nazwę ćwiczenia w lewo, by je usunąć.') /* UI-07 (audyt 0.10) */}</Muted>
       </ScrollView>
     </Screen>
   );
@@ -111,13 +113,13 @@ function EditBlock({ d, e, ei, labels }: { d: Draft; e: WExercise; ei: number; l
       {e.sets.map((set, si) => {
         const lbl = setLabel(e, si); const hint = t('Seria {n} — {ex}', { n: lbl, ex: nm }); const kind = set.kind ?? 'normal';
         return (
-          <SwipeRow key={set.id} label={t('Usuń serię {n} — {ex}', { n: lbl, ex: nm })} title={t('Usunąć serię?')} message={nm} onDelete={() => draftRemoveSet(d.key, ei, set.id)}>{a11y => <View>
+          <SwipeRow key={set.id} disabled={e.sets.length <= 1} blocked={lastSetBlock()} /* G4 (audyt 0.10 UI-07, wariant A): ostatniej serii nie usuwa się nigdzie */ label={t('Usuń serię {n} — {ex}', { n: lbl, ex: nm })} title={t('Usunąć serię?')} message={nm} onDelete={() => draftRemoveSet(d.key, ei, set.id)}>{a11y => <View>
             <View style={s.row}>
               <Pressable accessibilityLanguage={lang()} {...a11y} onPress={() => setMenu(set, si)} hitSlop={8} accessibilityRole="button" accessibilityHint={`${hint}. ${t('Tapnij, by zmienić typ lub dodać notatkę.')}`} /* A11-18 */ accessibilityLabel={t('Seria {n}, typ: {k}', { n: lbl, k: t(SET_KIND_LABEL[kind]) })} style={{ width: 32, minHeight: 44, justifyContent: 'center' }}>
                 <SetBadge kind={kind} label={lbl} note={!!set.note} /* przegląd 06.10: jak w treningu i szablonie */ />
               </Pressable>
               {hasWeight(m) ? <View style={s.cell}><NumInput weightTol decimal allowNegative={bw} value={wField(loadFieldValue(ex, set))} stored={loadFieldValue(ex, set)} onNum={(v, keep) => { writeLoad(ex, set, wInKeep(v, keep)); /* Q-021; audyt 83b (LOW 2): pole pokazuje to samo co ekran sesji (store.loadOf), wpis trafia do pola obecnego sprzętu */ touchDraft(); }} placeholder={bw ? '±0' : wu()} accessibilityLabel={ex ? loadLabel(ex, impl) : t('ciężar')} accessibilityHint={hint} /></View> : null}
-              {hasReps(m) ? <View style={s.cell}><NumInput value={set.reps} onNum={v => { set.reps = v === '' ? '' : Math.min(1000, Math.max(0, Math.floor(v))); touchDraft(); }} placeholder="0" accessibilityLabel={t('Powtórzenia')} accessibilityHint={hint} testID={`reps-${ei}-${si}`} /* E2E (Maestro 05) */ /></View> : null}
+              {hasReps(m) ? <View style={s.cell}><NumInput value={set.reps} onNum={v => { set.reps = v === '' ? '' : Math.min(REPS_MAX, Math.max(0, Math.floor(v))); touchDraft(); }} placeholder="0" accessibilityLabel={t('Powtórzenia')} accessibilityHint={hint} testID={`reps-${ei}-${si}`} /* E2E (Maestro 05) */ /></View> : null}
               {hasDistance(m) ? <View style={s.cell}><NumInput value={set.distanceM} onNum={v => { set.distanceM = v === '' ? '' : Math.max(0, Math.round(v)); touchDraft(); }} placeholder="m" accessibilityLabel={t('dystans')} accessibilityHint={hint} /></View> : null}
               {hasTime(m) ? <View style={s.cell}><NumInput value={set.durationSec} onNum={v => { set.durationSec = v === '' ? '' : Math.min(86400, Math.max(0, Math.round(v))); touchDraft(); }} placeholder="s" accessibilityLabel={t('czas')} accessibilityHint={hint} /></View> : null}
               {showRpe ? <View style={s.cell}><NumInput decimal value={effortField(set.rpe)} onNum={v => { set.rpe = effortIn(v); touchDraft(); }} placeholder="—" accessibilityLabel={effortLabel()} accessibilityHint={hint} /></View> : null}
@@ -128,10 +130,10 @@ function EditBlock({ d, e, ei, labels }: { d: Draft; e: WExercise; ei: number; l
           </View>}</SwipeRow>
         );
       })}
-      {!e.sets.length ? <Muted style={{ fontSize: 13, marginBottom: 6 }}>{t('Bez serii — ćwiczenie nie zostanie zapisane.')}</Muted> : null}
+      {/* G4 (audyt 0.10): blok zawsze ma serię (historia bez pustych bloków — migrate; nowe ćwiczenie z jedną serią; ostatniej nie usuwa się) — dawny dopisek „Bez serii” zbędny */}
       <View style={s.actions}>
         <Btn title={t('+ seria')} small accessibilityHint={nm} onPress={() => draftAddSet(d.key, ei)} /><Btn title={t('+ rozgrzewka')} small kind="ghost" accessibilityHint={nm} onPress={() => draftAddSet(d.key, ei, 'warmup')} /><Btn title={t('+ drop set')} small kind="ghost" accessibilityHint={nm} onPress={() => draftAddSet(d.key, ei, 'drop')} />
-        <Btn title={t('⇄ zamień')} small kind="ghost" accessibilityLabel={t('Zamień ćwiczenie: {name}', { name: nm })} onPress={() => router.push(`/swap?target=edit:${d.key}:${e.id}`)} /* E2 D6 (H1) */ />
+        <Btn nav title={t('⇄ zamień')} small kind="ghost" accessibilityLabel={t('Zamień ćwiczenie: {name}', { name: nm })} onPress={() => router.push(`/swap?target=edit:${d.key}:${e.id}`)} /* E2 D6 (H1) */ />
         <Muted style={{ fontSize: 13, alignSelf: 'center' }}>{(() => { const n = workCount(e.sets.map(x => x.kind)), w = e.sets.filter(x => x.kind === 'warmup').length; return [`${n} ${tp(n, 'seria|serie|serii')}`, w ? t('{n} rozgrz.', { n: w }) : ''].filter(Boolean).join(' · '); })() /* UI-13 / D3 (audyt 0.10): serie robocze jak w edytorze szablonu */}</Muted>
       </View>
     </View>

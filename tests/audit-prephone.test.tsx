@@ -5,7 +5,7 @@ import * as store from '@/lib/store';
 import * as timer from '@/lib/timer';
 import { parseBackup } from '@/lib/backup';
 import { fresh, ex, addWorkout, set } from './helpers';
-import { renderApp, flushAll, screen, go, tap, type } from './app';
+import { renderApp, flushAll, screen, go, tap, type, startEdit } from './app';
 
 jest.setTimeout(30000);
 afterEach(async () => { try { store.getState(); } catch { return; } await timer.stop(); await timer.stopSet(); });
@@ -71,7 +71,7 @@ describe('zmieniona wartość wstępna przechodzi na nieruszone serie (decyzja 0
   });
   test('weryfikacja M3: podwójne „Anuluj” w wyborze ćwiczenia nie zamyka edytora szablonu', async () => {
     await fresh(); const tpl = store.newTemplate(); tpl.name = 'X'; store.save(tpl); await store.flush();
-    await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())) }); await go(`/template/${tpl.id}`); await flushAll(20);
+    await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())) }); await go(`/template/${tpl.id}`); await flushAll(20); await startEdit();
     await go(`/picker?target=template:${tpl.id}`); await flushAll(20);
     const b = screen.getByText('Anuluj'); await tap(b); await tap(b); await flushAll(50);
     expect(screen.getByText('+ Dodaj ćwiczenie')).toBeTruthy(); expect(store.getState().templates.some(x => x.id === tpl.id)).toBe(true);

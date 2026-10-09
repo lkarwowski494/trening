@@ -3,7 +3,7 @@ import * as store from '@/lib/store';
 import * as timer from '@/lib/timer';
 import { fireEvent } from '@testing-library/react-native';
 import { fresh, ex, addWorkout, withDemoTemplates } from './helpers';
-import { renderApp, flushAll, screen, go, tap, type, act, expandEquip, deleteActions } from './app';
+import { renderApp, flushAll, screen, go, tap, type, act, expandEquip, deleteActions, startEdit, saveEdit } from './app';
 import { userHome } from './locations-fixtures';
 import { addLocation } from '@/lib/locations';
 
@@ -28,7 +28,7 @@ describe('bez miejsc — ekrany jak dotąd', () => {
     expect(screen.queryByLabelText(/^Filtr miejsca/)).toBeNull(); expect(screen.queryAllByText(/brak:/)).toHaveLength(0); expect(screen.getByText('Back Squat')).toBeTruthy();
   });
   test('Ustawienia → Miejsca treningu: pusta lista z wyjaśnieniem', async () => {
-    await renderApp(); await go('/more/settings'); await flushAll(10); await tap(screen.getByText('Miejsca treningu')); await flushAll(10);
+    await renderApp(); await go('/more/settings'); await flushAll(10); await tap(screen.getByText('Miejsca i sprzęt')); await flushAll(10);
     expect(screen.getByText(/Brak miejsc — wszystkie ćwiczenia są dostępne/)).toBeTruthy();
   });
 });
@@ -103,8 +103,9 @@ describe('trening i wybór ćwiczenia w miejscu', () => {
     expect(screen.getByText(/↑ spróbuj 12 kg/)).toBeTruthy(); /* decyzja 7a: od razu następny dostępny (10 → 12) */ expect(screen.queryByText(/ten sam ciężar/)).toBeNull(); expect(screen.getByText('Poprzednio: Siłownia')).toBeTruthy();
   });
   test('szablon: miejsce domyślne (chipy) i start treningu w tym miejscu', async () => {
-    const saved = await savedWithPlaces(false, true); await renderApp({ saved }); const tpl = store.getState().templates[0]; await go(`/template/${tpl.id}`); await flushAll(10);
-    expect(screen.getByText('Miejsce domyślne')).toBeTruthy(); await tap(screen.getByText('Siłownia')); expect(store.getState().templates[0].locationId).toBe(store.getState().settings.locations[1].id);
+    const saved = await savedWithPlaces(false, true); await renderApp({ saved }); const tpl = store.getState().templates[0]; await go(`/template/${tpl.id}`); await flushAll(10); await startEdit();
+    expect(screen.getByText('Miejsce domyślne')).toBeTruthy(); await tap(screen.getByText('Siłownia')); await saveEdit(); expect(store.getState().templates[0].locationId).toBe(store.getState().settings.locations[1].id);
+    expect(screen.getByText(/📍 Siłownia/)).toBeTruthy(); /* podgląd: miejsce domyślne */
     await tap(screen.getByText('Start')); await flushAll(10); expect(store.getState().active!.locationId).toBe(store.getState().settings.locations[1].id);
     expect(screen.getByText('📍 Siłownia ▾')).toBeTruthy();
   });

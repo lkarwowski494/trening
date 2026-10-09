@@ -3,7 +3,7 @@ import { View, Pressable } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Btn, Muted, Txt, upperText } from '@/components/ui';
 import { useTheme, F, NUM_SCALE_MAX } from '@/lib/theme';
-import { getState, finishedWorkouts, useForegroundTick, isDeloadWeek } from '@/lib/store';
+import { getState, finishedWorkouts, useForegroundTick, isDeloadWeek, fmtDayKey, setPlanHintHidden } from '@/lib/store';
 import { hasPlan, dayKeyOf, doneOn, upcoming, pending, planTplName, addDays, type DayStatus } from '@/lib/plan';
 import { weekStrip } from '@/lib/dashboard';
 import { startTemplate } from '@/lib/start';
@@ -35,10 +35,11 @@ export function TodayPlan() {
     return m[d.status]();
   };
   const deload = isDeloadWeek(Date.now());
-  const title = !plan && cur.status !== 'done' ? t('Bez planu tygodnia') : cur.status === 'done' ? t('Dziś zrobione: {name}', { name: names(today) }) : id ? t('Dziś: {name}', { name: name(id) }) : t('Dziś wolne');
+  const hintOff = !!getState().planHintHidden;
+  const title = !plan && cur.status !== 'done' ? (hintOff ? t('Ten tydzień') : t('Bez planu tygodnia')) : cur.status === 'done' ? t('Dziś zrobione: {name}', { name: names(today) }) : id ? t('Dziś: {name}', { name: name(id) }) : t('Dziś wolne');
   const canStart = !!tpl && pending(cur) && tpl.items.length > 0;
   const next = plan ? upcoming(NEXT_DAYS, today).filter(x => x.date > today && x.templateId).slice(0, NEXT_COUNT) : [];
-  const nextLabel = (k: string) => (k === addDays(today, 1) ? t('jutro') : dateOf(k).toLocaleDateString(locale(), { weekday: 'short', day: 'numeric', month: 'numeric' }));
+  const nextLabel = (k: string) => (k === addDays(today, 1) ? t('jutro') : fmtDayKey(k)); /* H3 (audyt 0.10) */
   return (
     <View testID="today-plan" style={{ marginTop: 6, padding: 14, borderRadius: 12, backgroundColor: th.surface, borderWidth: 1, borderColor: th.line, gap: 10 }}>
       <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
@@ -46,10 +47,10 @@ export function TodayPlan() {
           {(() => { const u = upperText(deload ? `${t('Dziś')} · ${t('Tydzień deload')}` : t('Dziś')); /* A11-02: wersaliki z regułami języka */ return <Muted accessibilityLabel={u.label} style={[{ fontSize: 12, fontFamily: F.semibold, letterSpacing: 0.5 }, u.style]}>{u.text}</Muted>; })()}
           <Txt style={{ fontFamily: F.semibold, fontSize: 18 }}>{title}</Txt>
           {cur.status === 'other' ? <Muted style={{ fontSize: 13 }}>{t('Zrobiony inny trening: {name}', { name: names(today) })}</Muted> : null}
-          {tpl && pending(cur) && !tpl.items.length ? <Pressable accessibilityLanguage={lang()} accessibilityRole="link" onPress={() => router.push(`/template/${tpl.id}`)}><Muted style={{ fontSize: 13 }}>{t('Szablon jest pusty — dodaj ćwiczenia')}</Muted></Pressable> : null}
+          {tpl && pending(cur) && !tpl.items.length ? <Pressable accessibilityLanguage={lang()} accessibilityRole="link" onPress={() => router.push(`/template/${tpl.id}?edit=1`)}><Muted style={{ fontSize: 13 }}>{t('Szablon jest pusty — dodaj ćwiczenia')}</Muted></Pressable> : null}
         </View>
         {canStart ? <Btn small kind="primary" title={t('Start')} accessibilityLabel={t('Start zaplanowanego treningu: {name}', { name: tpl!.name })} onPress={() => startTemplate(tpl!)} />
-          : !plan ? <Btn small title={t('Plan tygodnia')} onPress={() => router.push('/plan')} /> : null}
+          : !plan && !hintOff ? <Btn nav small title={t('Plan tygodnia')} onPress={() => router.push('/plan')} /> : null}
       </View>
       <View testID="week-strip" style={{ flexDirection: 'row' }}>
         {days.map(d => {
@@ -65,7 +66,7 @@ export function TodayPlan() {
             </Pressable>); })}
       </View>
       {next.length ? <Muted style={{ fontSize: 13 }}>{t('Następne: {list}', { list: next.map(x => `${nextLabel(x.date)} — ${name(x.templateId)}`).join(' · ') })}</Muted> : null}
-      {!plan ? <Muted style={{ fontSize: 12 }}>{t('Ustaw plan tygodnia, by widzieć tu dzisiejszy trening i dostawać przypomnienie.')}</Muted> : null}
+      {!plan && !hintOff ? <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}><Muted style={{ fontSize: 12, flex: 1 }}>{t('Ustaw plan tygodnia, by widzieć tu dzisiejszy trening i dostawać przypomnienie.')}</Muted><Btn small kind="ghost" title={t('Ukryj')} accessibilityLabel={t('Ukryj zachętę do planu tygodnia')} onPress={() => setPlanHintHidden(true)} /></View> : null /* UX-16 A (audyt 0.10): kto tylko zapisuje treningi, ukrywa zachętę */}
     </View>
   );
 }

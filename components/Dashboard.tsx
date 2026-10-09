@@ -1,9 +1,9 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, Pressable } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Btn, Muted, Txt, SectionTitle, Item } from '@/components/ui';
 import { useTheme, F, NUM_SCALE_MAX } from '@/lib/theme';
-import { fmtDate, fmtDur, getState, useTick } from '@/lib/store';
+import { fmtDate, fmtDur, getState, useTick, newTemplate } from '@/lib/store';
 import { weekTiles, lastWorkout, firstSteps } from '@/lib/dashboard';
 import { fmtVol } from '@/lib/units';
 import { t, tp, lang, glue } from '@/lib/i18n';
@@ -25,21 +25,23 @@ export function WeekStats() {
   useTick(); const router = useRouter(); const w = weekTiles(); const last = lastWorkout(); if (!last) return null;
   return <>
     <SectionTitle>{t('Ten tydzień')}</SectionTitle>
-    <View testID="week-tiles" style={{ flexDirection: 'row', gap: 8 }}>
+    <Pressable testID="week-tiles" accessibilityRole="button" accessibilityLabel={([[t('Treningi'), String(w.workouts), String(w.prev.workouts)], [t('Serie'), String(w.sets), String(w.prev.sets)], [t('Czas'), hm(w.durationSec), hm(w.prev.durationSec)]] as const).map(([label, value, prev]) => t('{label}: {v}, poprzedni tydzień {p}', { label, v: value, p: prev })).join('; ')} accessibilityHint={t('Otwiera Postępy.')} onPress={() => router.push('/more/progress')} style={({ pressed }: { pressed: boolean }) => ({ flexDirection: 'row', gap: 8, opacity: pressed ? 0.7 : 1 })} /* UX-16 A (audyt 0.10): te same definicje co Postępy */>
       <Tile label={t('Treningi')} value={String(w.workouts)} prev={String(w.prev.workouts)} />
       <Tile label={t('Serie')} value={String(w.sets)} prev={String(w.prev.sets)} />
       <Tile label={t('Czas')} value={hm(w.durationSec)} prev={hm(w.prev.durationSec)} />
-    </View>
+    </Pressable>
     {w.planned != null ? <Muted style={{ fontSize: 12, marginTop: 4 }}>{t('Z planu w tym tygodniu: zrobione {done} z {n}.', { done: w.planDone ?? 0, n: w.planned })}</Muted> : null}{/* audyt 0.10 A5/X-04: dni z planu zrobione zaplanowanym szablonem (ten sam stan dnia co kalendarz) — sesje i dni planu osobno */}
     <SectionTitle>{t('Ostatni trening')}</SectionTitle>
     <Item title={last.name || t('Trening')} sub={[fmtDate(last.startedAt), fmtDur(last.durationSec), `${last.sets} ${tp(last.sets, 'seria|serie|serii')}`, fmtVol(last.volume), ...(last.prs ? [`${last.prs} ${tp(last.prs, 'rekord|rekordy|rekordów')}`] : [])].map(glue).join(' · ') /* A11-19 */} onPress={() => router.push(`/history/${last.id}`)} />
   </>;
 }
 
-/** Nowa osoba: trzy kroki do pierwszego treningu (znikają po pierwszym zakończonym treningu). */
+/** Nowa osoba: kroki do pierwszego treningu (znikają po pierwszym zakończonym treningu). Audyt 0.10 UX-12 (wariant A): krok 1 z dwoma równorzędnymi
+ * przyciskami (bez odsyłania do przycisku poza ekranem), krok 2 nieaktywny bez szablonu, opcjonalny krok „Miejsca i sprzęt”, krok pierwszego treningu
+ * jednym zdaniem z odesłaniem do tematu przewodnika „Trening i serie”; pusty stan pod spodem znika, gdy widać „Pierwsze kroki” (ekran Trening). */
 export function FirstSteps() {
   useTick(); const router = useRouter(); const th = useTheme(); const f = firstSteps(); if (!f) return null;
-  const live = getState().templates.some(x => !x.archived);
+  const places = getState().settings.locations.length > 0;
   const step = (done: boolean, n: number, text: string, actions?: React.ReactNode) => (
     <View accessibilityLanguage={lang()} key={n} accessible={!actions} accessibilityLabel={`${n}. ${text} ${done ? t('zrobione') : t('do zrobienia')}`} style={{ flexDirection: 'row', gap: 10, paddingVertical: 8 }}>
       <View style={{ width: 24, height: 24, borderRadius: 12, alignItems: 'center', justifyContent: 'center', backgroundColor: done ? th.accent : 'transparent', borderWidth: done ? 0 : 1.5, borderColor: th.line }}>
@@ -47,14 +49,18 @@ export function FirstSteps() {
       </View>
       <View style={{ flex: 1, gap: 6 }}><Txt style={{ fontSize: 14, color: done ? th.muted : th.text }}>{text}</Txt>{actions}</View>
     </View>);
+  const row = (...b: React.ReactNode[]) => <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6 }}>{b}</View>;
   return (
     <View testID="first-steps" style={{ marginTop: 6, padding: 12, borderRadius: 12, backgroundColor: th.surface, borderWidth: 1, borderColor: th.line }}>
       <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
         <Txt accessibilityRole="header" style={{ fontFamily: F.semibold, fontSize: 17 }}>{t('Pierwsze kroki')}</Txt>
-        <Btn small kind="ghost" title={t('Przewodnik')} accessibilityLabel={t('Przewodnik po funkcjach')} onPress={() => router.push('/guide')} />{/* 08.10.2026 */}
+        <Btn nav small kind="ghost" title={t('Przewodnik')} accessibilityLabel={t('Przewodnik po funkcjach')} onPress={() => router.push('/guide')} />{/* 08.10.2026 */}
       </View>
-      {step(f.template, 1, t('Utwórz szablon („+ Nowy szablon” niżej) albo wygeneruj szablony i plan.'), !f.template ? <Btn small title={t('Wygeneruj szablony i plan')} onPress={() => router.push('/generator')} style={{ alignSelf: 'flex-start' }} /> : undefined)}
-      {step(f.plan, 2, t('Ustaw plan tygodnia — zobaczysz tu dzisiejszy trening i dostaniesz przypomnienie.'), !f.plan ? <Btn small title={t('Plan tygodnia')} onPress={() => router.push('/plan')} style={{ alignSelf: 'flex-start' }} /> : undefined)}
-      {step(false, 3, live ? t('Pierwszy raz? Wybierz szablon niżej, wpisz ciężar i powtórzenia, odhaczaj serie ✓ — przerwa odlicza się sama. Na koniec „Zakończ trening i zapisz”. Szablony i ćwiczenia zmienisz w zakładkach obok.') : t('Pierwszy raz? Utwórz swój szablon („+ Nowy szablon” niżej) albo zacznij pusty trening. Wpisuj ciężar i powtórzenia, odhaczaj serie ✓ — przerwa odlicza się sama. Na koniec „Zakończ trening i zapisz”.'))}
+      {step(f.template, 1, t('Utwórz pierwszy szablon albo wygeneruj szablony i plan.'), !f.template ? row(
+        <Btn nav key="new" small title={t('+ Nowy szablon')} onPress={() => { const x = newTemplate(); router.push(`/template/${x.id}?edit=1&new=1`); }} />,
+        <Btn nav key="gen" small title={t('Wygeneruj szablony i plan')} onPress={() => router.push('/generator')} />) : undefined)}
+      {step(f.plan, 2, t('Ustaw plan tygodnia — zobaczysz tu dzisiejszy trening i dostaniesz przypomnienie.'), !f.plan ? (f.template ? <Btn nav small title={t('Plan tygodnia')} onPress={() => router.push('/plan')} style={{ alignSelf: 'flex-start' }} /> : <Muted style={{ fontSize: 12 }}>{t('Najpierw utwórz szablon.')}</Muted>) : undefined)}
+      {step(places, 3, t('Opcjonalnie: dodaj miejsce i sprzęt — wybór ćwiczeń i podpowiedzi ciężarów dopasują się do niego.'), !places ? <Btn nav small kind="ghost" title={t('Miejsca i sprzęt')} onPress={() => router.push('/more/locations')} style={{ alignSelf: 'flex-start' }} /> : undefined)}
+      {step(false, 4, t('Pierwszy trening: „Start” przy szablonie niżej albo „Pusty trening”.'), <Btn nav small kind="ghost" title={t('Jak to działa')} accessibilityLabel={t('Przewodnik: {name}', { name: t('Trening i serie') })} onPress={() => router.push('/guide?topic=workout')} style={{ alignSelf: 'flex-start' }} />)}
     </View>);
 }

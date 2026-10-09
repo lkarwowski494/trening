@@ -53,7 +53,7 @@ const KINDS = {
   /* plan tygodnia (audyt 0.10 A1/A3/B1/M3: akcje planu w alfabecie — minione dni nie zmieniają statusu, plan = ostatni odcinek historii) */
   planDay: 3, planDayOv: 2, planShift: 2, planMove: 1, planNew: 1, planActivate: 1,
   /* ustawienia i dane */
-  unit: 2, lang: 1, reload: 1, roundtrip: 1, migrate: 1, stats: 1, resetAll: 1,
+  unit: 2, lang: 1, planHint: 1 /* UX-16 A (audyt 0.10): „Ukryj” zachętę do planu */, reload: 1, roundtrip: 1, migrate: 1, stats: 1, resetAll: 1,
   /* fala 2 audytu 0.10: pomiary masy ciała z datą (dopisanie / zastąpienie dnia / usunięcie) */
   bodyMass: 1,
 } as const;
@@ -85,7 +85,7 @@ const seqArb = fc.array(fc.oneof({ weight: 3, arbitrary: actArb.map(x => [x]) },
 
 /** Kategorie: jawne edycje szablonów, zmiany historii; w pozostałych działaniach trening w toku ma zostać co do bajtu (ACTIVE_FROZEN). */
 const TPL_EDIT = new Set<K>(['tplNew', 'tplRename', 'tplDup', 'tplDel', 'tplAddItem', 'tplRmItem', 'tplMove', 'tplLink', 'tplUnlink', 'tplAddRow', 'tplRmRow', 'tplKind', 'tplRow', 'tplBand', 'tplLoc', 'rememberAlt', 'rememberRest', 'gen', 'tplNote']);
-const ACTIVE_FROZEN = new Set<K>([...[...TPL_EDIT].filter(k => k !== 'rememberRest'), 'delW', 'past', 'edit', 'unit', 'lang', 'newEx', 'metric', 'bandAssist', 'delEx', 'restoreEx', 'addLoc', 'setMain', 'dupLoc', 'renameLoc', 'setBandColor', 'reload', 'roundtrip', 'migrate', 'stats', 'planDay', 'planDayOv', 'planShift', 'planMove', 'planNew', 'planActivate', 'bodyMass']);
+const ACTIVE_FROZEN = new Set<K>([...[...TPL_EDIT].filter(k => k !== 'rememberRest'), 'delW', 'past', 'edit', 'unit', 'lang', 'newEx', 'metric', 'bandAssist', 'delEx', 'restoreEx', 'addLoc', 'setMain', 'dupLoc', 'renameLoc', 'setBandColor', 'planHint', 'reload', 'roundtrip', 'migrate', 'stats', 'planDay', 'planDayOv', 'planShift', 'planMove', 'planNew', 'planActivate', 'bodyMass']);
 /** Audyt 0.10 A1/A7: działania, po których żaden miniony dzień nie może zmienić statusu (poza dniem, którego działanie dotyczy wprost). */
 const PAST_FROZEN = new Set<K>(['planDay', 'planDayOv', 'planShift', 'planMove', 'planNew', 'planActivate', 'tplDel', 'tplNew', 'tplDup', 'tplRename']);
 
@@ -343,6 +343,8 @@ async function step(x: Act, m: Model, where: string) {
       if (x.t === 'unit') s.unit = s.unit === 'lb' ? 'kg' : 'lb'; else s.language = (['pl', 'en', 'auto'] as const)[x.b % 3];
       store.applyPrefs(); store.save(); const after = strip(S()); before.settings.unit = after.settings.unit; before.settings.language = after.settings.language;
       expect({ where, s: after }).toEqual({ where, s: before }); /* jednostka/język nie zmieniają zapisanych kg ani niczego innego */ hit(x.t); break; }
+    case 'planHint': { const before = strip(st); store.setPlanHintHidden(x.b % 2 === 0); const after = strip(S()); if (x.b % 2 === 0) before.planHintHidden = true; else delete before.planHintHidden;
+      expect({ where, s: after }).toEqual({ where, s: before }); /* zmienia tylko flagę — nic innego */ hit(x.t); break; }
     case 'reload': await reloadCheck(where); hit('reload'); break;
     case 'roundtrip': await roundtripCheck(where); hit('roundtrip'); break;
     case 'migrate': migrateCheck(where); break;

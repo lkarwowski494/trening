@@ -35,7 +35,7 @@ describe('T4b more', () => {
     await renderApp();
     await act(async () => { store.startEmpty(); store.addExerciseToActive(ex('Back Squat')); }); await flushAll(10);
     await go('/more/settings'); await flushAll(10); spy.mockClear();
-    await tap(screen.getByText('Wyczyść wszystkie dane')); await act(async () => { pressAlert('Na pewno?', 'Wyczyść'); }); await flushAll(50);
+    await tap(screen.getByText('Wyczyść wszystkie dane')); await act(async () => { pressAlert('Wyczyścić wszystkie dane?', 'Wyczyść'); }); await flushAll(50);
     expect(spy).toHaveBeenCalled();
     spy.mockRestore();
   });

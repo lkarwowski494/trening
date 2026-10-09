@@ -20,7 +20,10 @@
 #   "Remove rep range"               ← 'Usuń zakres powtórzeń' (przycisk „✕”)
 #   tpl-w-<poz>-<wiersz> / tpl-r-<poz>-<wiersz> ← testID pól ciężaru / powtórzeń wiersza szablonu (app/template/[id].tsx, dodane 06.10.2026 dla tego scenariusza)
 #   (do 07.10.2026: „Remove from template” — przycisk usunięty; dziś przesunięcie nagłówka tpl-item-<poz>)
-#   "Start"                          ← 'Start' (przycisk w edytorze szablonu; start → ekran główny z treningiem)
+#   "Start: Rows E2E"                ← 'Start: {name}' (accessibilityLabel przycisku Start w podglądzie szablonu; start → ekran główny z treningiem)
+#   "Save template" / "Edit template" / "Cancel template editing" ← 'Zapisz szablon' / 'Edytuj szablon' / 'Anuluj edycję szablonu'
+#                                      (edycja na żądanie, 08.10.2026: nagłówek edycji — components/DraftHeader.tsx; „Edytuj” w podglądzie)
+#   "Discard changes\?" → "Discard changes" ← 'Odrzucić zmiany?' → 'Odrzuć zmiany' (components/DraftHeader.tsx confirmDiscard)
 #   "Set W done — X"                 ← 'Seria {n} zrobiona — {ex}' (checkbox serii w treningu)
 appId: pl.lukasz.trening
 name: Szablon jak trening — wiersze serii, karty, start
@@ -167,13 +170,32 @@ name: Szablon jak trening — wiersze serii, karty, start
 - tapOn: "\\+ New folder"
 - extendedWaitUntil: { visible: "Folder name", timeout: 15000 }
 - inputText: "E2E"
-- tapOn: "Save"
+- tapOn: { text: "Save", below: "Folder name" }   # przycisk okna (w nagłówku jest też „Save template”)
 - extendedWaitUntil: { visible: "Folder: E2E", timeout: 15000 }
 - takeScreenshot: 46b-folder-szablonu
 
-# --- Start: trening ma typy i wartości z wierszy szablonu ---
-- scrollUntilVisible: { element: "Start", direction: UP, timeout: 30000 }
-- tapOn: "Start"
+# --- Edycja na żądanie (decyzja właściciela 08.10.2026): „+ New template” otwiera od razu edycję; „Save template” zapisuje i wraca do podglądu ---
+- tapOn: "Save template"
+- extendedWaitUntil: { visible: "Edit template", timeout: 15000 }
+- assertNotVisible: "\\+ Add exercise"
+- takeScreenshot: 46c-podglad-szablonu
+# „Edit template” → zmiana nazwy → „Cancel template editing” → „Discard changes?” → „Discard changes”: nazwa bez zmian
+- tapOn: "Edit template"
+- extendedWaitUntil: { visible: "Save template", timeout: 15000 }
+- tapOn: "Rows E2E"
+- eraseText: 30
+- inputText: "Zmiana"
+- pressKey: Enter
+- tapOn: "Cancel template editing"
+- extendedWaitUntil: { visible: "Discard changes\\?", timeout: 15000 }
+- tapOn: "Discard changes"
+- extendedWaitUntil: { visible: "Edit template", timeout: 15000 }
+- assertVisible: "Rows E2E"
+- assertNotVisible: "Zmiana"
+
+# --- Start z podglądu: trening ma typy i wartości z wierszy szablonu ---
+- scrollUntilVisible: { element: "Start: Rows E2E", direction: UP, timeout: 30000 }
+- tapOn: "Start: Rows E2E"
 - extendedWaitUntil: { visible: "Set W done — Bench Press \\(Dumbbell\\)", timeout: 30000 }
 - assertVisible: "Set W, type: warm-up.*"
 - assertVisible: "Set 1, type: normal.*"

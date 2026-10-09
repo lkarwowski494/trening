@@ -49,13 +49,15 @@ describe('T-017 progressionFor', () => {
 });
 
 describe('T-016 pasek postępu sesji', () => {
-  test('„Postęp treningu: d z n serii” liczy wszystkie serie (z rozgrzewkami) i rośnie po odhaczeniu', async () => {
+  test('„Postęp treningu: d z n serii” liczy serie robocze (bez rozgrzewek — audyt 0.10, workCount) i rośnie po odhaczeniu', async () => {
     await fresh(); store.startEmpty(); store.addExerciseToActive(ex('Back Squat')); store.addSet(0); store.addSet(0);
     const a = store.getState().active!; a.exercises[0].sets[0].kind = 'warmup'; a.exercises[0].sets[0].warmup = true; store.save(a);
     await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())) }); await flushAll(20);
-    expect(screen.getByLabelText('Postęp treningu: 0 z 3 serii')).toBeTruthy();
+    expect(screen.getByLabelText('Postęp treningu: 0 z 2 serii')).toBeTruthy();
     await act(async () => { store.toggleDone(0, 0); }); await flushAll(20);
-    expect(screen.getByLabelText('Postęp treningu: 1 z 3 serii')).toBeTruthy();
+    expect(screen.getByLabelText('Postęp treningu: 0 z 2 serii')).toBeTruthy(); /* rozgrzewka nie liczy się */
+    await act(async () => { store.toggleDone(0, 1); }); await flushAll(20);
+    expect(screen.getByLabelText('Postęp treningu: 1 z 2 serii')).toBeTruthy();
   });
 });
 

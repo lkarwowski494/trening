@@ -14,7 +14,7 @@ import { equipEntry } from '@/lib/equipment';
 import type { Impl } from '@/lib/seed';
 import { fresh, ex, addWorkout } from './helpers';
 import { userHome, loc, presetSpec } from './locations-fixtures';
-import { renderApp, flushAll, screen, go, tap, type, openCard } from './app';
+import { renderApp, flushAll, screen, go, tap, type, openCard, startEdit } from './app';
 
 jest.setTimeout(60000);
 afterEach(async () => { edit.__resetDrafts(); try { store.getState(); } catch { return; } await timer.stop(); await timer.stopSet(); });
@@ -96,7 +96,7 @@ describe('MEDIUM 2 — etykieta ciężaru bloku na stacji: na stronę', () => {
     expect(screen.getByLabelText(/^#: 1, kg\/stronę: 30, /)).toBeTruthy();
     /* edytor szablonu z miejscem garaż — „start kg/str.” */
     const t = store.getState().templates.find(x => x.locationId === 'garage')!;
-    await go('/template/' + t.id); await flushAll(10); await openCard(0); expect(screen.getAllByPlaceholderText('kg/str.').length).toBeGreaterThan(0); /* 05.10.2026: wiersze serii */
+    await go('/template/' + t.id); await flushAll(10); await startEdit(); await openCard(0); expect(screen.getAllByPlaceholderText('kg/str.').length).toBeGreaterThan(0); /* 05.10.2026: wiersze serii */
   });
 });
 

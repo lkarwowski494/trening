@@ -196,7 +196,7 @@ export function draftAddSet(key: string, ei: number, kind?: 'warmup' | 'drop') {
   e.sets.push(s); touchDraft();
 }
 export function draftRemoveSet(key: string, ei: number, setId: string) {
-  const e = drafts.get(key)?.w.exercises[ei]; if (!e) return; const i = e.sets.findIndex(s => s.id === setId); if (i < 0) return; e.sets.splice(i, 1); touchDraft();
+  const e = drafts.get(key)?.w.exercises[ei]; if (!e || e.sets.length <= 1) return; /* G4 (audyt 0.10 UI-07, wariant A): ostatniej serii nie usuwa się — całe ćwiczenie usuwa draftRemoveExercise */ const i = e.sets.findIndex(s => s.id === setId); if (i < 0) return; e.sets.splice(i, 1); touchDraft();
 }
 export function draftRemoveExercise(key: string, blockId: string) {
   const d = drafts.get(key); if (!d) return; const i = d.w.exercises.findIndex(e => e.id === blockId); if (i < 0) return;

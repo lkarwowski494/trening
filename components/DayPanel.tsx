@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { View, Pressable } from 'react-native';
+import { View, Pressable, Alert } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Btn, Chip, Muted, Txt, H2 } from '@/components/ui';
-import { workoutDay, getState, useTick, isDeloadWeek, toggleDeloadWeek } from '@/lib/store';
+import { workoutDay, getState, useTick, isDeloadWeek, toggleDeloadWeek, fmtDayKey } from '@/lib/store';
 import { useTheme, F } from '@/lib/theme';
 import { plannedOn, isChanged, setDayPlan, resetDay, addDays, dayKeyOf, suggest, applySuggestion, dayStatus, doneOn, pending, planTplName, hasPlan, RETURN_DAYS, type Suggestion } from '@/lib/plan';
 import { askReminderPermission } from '@/lib/planReminder';
@@ -24,7 +24,7 @@ import { startTemplate } from '@/lib/start';
 const tplName = planTplName;
 const dateOf = (k: string) => new Date(+k.slice(0, 4), +k.slice(5, 7) - 1, +k.slice(8, 10));
 const keyTs = (k: string) => new Date(+k.slice(0, 4), +k.slice(5, 7) - 1, +k.slice(8, 10), 12).getTime();
-export const shortDay = (k: string) => dateOf(k).toLocaleDateString(locale(), { weekday: 'short', day: 'numeric', month: 'numeric' });
+export const shortDay = (k: string) => fmtDayKey(k); /* H3 (audyt 0.10): jeden format daty dnia */
 const longDay = (k: string) => dateOf(k).toLocaleDateString(locale(), { weekday: 'long', day: 'numeric', month: 'long' });
 /** Najwyżej tyle pozycji listy „Przesuń albo pomiń” od razu; reszta po „Więcej możliwości”. */
 const LIST_FIRST = 4;
@@ -54,14 +54,16 @@ export function DayPanel({ day }: { day: string }) {
   else if (changed) lines.push(<Muted key="plan" style={{ fontSize: 13 }}>{t('zmiana planu')}</Muted>);
   if (activeHere) lines.push(<Muted key="active" style={{ fontSize: 13 }}>{t('Trening w toku')}</Muted>);
   const empty = !!tpl && !tpl.items.length && pending(st);
-  if (empty) lines.push(<Pressable accessibilityLanguage={lang()} key="empty" accessibilityRole="link" onPress={() => router.push(`/template/${tpl!.id}`)}><Muted style={{ fontSize: 13 }}>{t('Szablon jest pusty — dodaj ćwiczenia')}</Muted></Pressable>);
+  if (empty) lines.push(<Pressable accessibilityLanguage={lang()} key="empty" accessibilityRole="link" onPress={() => router.push(`/template/${tpl!.id}?edit=1`)}><Muted style={{ fontSize: 13 }}>{t('Szablon jest pusty — dodaj ćwiczenia')}</Muted></Pressable>);
 
   /* ---- akcje: główne (najwyżej 3) i „Więcej opcji” ---- */
   const primary: Act[] = []; const extra: Act[] = [];
   if (tpl && day === today && pending(st) && !act && tpl.items.length) primary.push({ key: 'start', el: <Btn small kind="primary" title={t('Start')} accessibilityLabel={t('Start zaplanowanego treningu: {name}', { name: tpl.name })} onPress={() => startTemplate(tpl, () => router.navigate('/'))} /> });
+  /* UI-18 (audyt 0.10, G5): przy treningu w toku Start nie znika bez słowa — ta sama informacja co w podglądzie szablonu */
+  else if (tpl && day === today && pending(st) && act && tpl.items.length) primary.push({ key: 'start', el: <Btn small kind="ghost" title={t('Start')} accessibilityLabel={t('Start zaplanowanego treningu: {name}', { name: tpl.name })} accessibilityHint={t('Trening w toku')} onPress={() => Alert.alert(t('Trening w toku'), t('Najpierw zakończ albo anuluj bieżący trening.'))} /> });
   if (movable) primary.push({ key: 'move', el: <Btn small title={t('Przesuń albo pomiń')} accessibilityHint={t('Lista możliwości: przesunięcie planu, przeniesienie tylko tego treningu, zamiana albo wolne — z uwzględnieniem regeneracji partii.')} onPress={() => setMode(mode === 'move' ? 'none' : 'move')} /> });
   if (!past && !activeHere && st.status !== 'done') primary.push({ key: 'pick', el: <Btn small title={id ? t('Inny trening') : t('Dodaj trening')} onPress={() => setMode(mode === 'pick' ? 'none' : 'pick')} /> });
-  if (past && st.status !== 'done') primary.push({ key: 'past', el: <Btn small title={t('Zapisz trening z tego dnia')} accessibilityHint={t('Trening wstecz z datą tego dnia.')} onPress={() => router.push(`/history/add?date=${day}${tpl ? `&tpl=${tpl.id}` : ''}`)} /> });
+  if (past && st.status !== 'done') primary.push({ key: 'past', el: <Btn nav small title={t('Zapisz trening z tego dnia')} accessibilityHint={t('Trening wstecz z datą tego dnia.')} onPress={() => router.push(`/history/add?date=${day}${tpl ? `&tpl=${tpl.id}` : ''}`)} /> });
   const deload = isDeloadWeek(keyTs(day));
   const secondary: Act[] = [
     ...(changed && !activeHere ? [{ key: 'reset', el: <Btn small kind="ghost" title={t('Przywróć z planu')} onPress={() => { resetDay(day); close(); }} /> }] : []),

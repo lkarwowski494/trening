@@ -108,9 +108,9 @@ describe('K2 (A11-08, A11-20): jeden termin dla jednego pojęcia w obrębie jęz
     const plural = Object.keys(EN).filter(k => k.includes('|'));
     expect(plural.filter(k => !/u$/.test(dictOf('lv')[k].split('|')[0]))).toEqual([]);
   });
-  test.each(LANGS.filter(l => l !== 'pl'))('%s: A11-20 — nagłówek „Inne”, przełącznik „Inne ▾/▴” i cytat w komunikacie to ta sama forma', l => {
-    const h = tr(l, 'Inne'); const tog = tr(l, 'Inne ▾').replace(/\s*▾$/, ''); const tog2 = tr(l, 'Inne ▴').replace(/\s*▴$/, '');
-    const msg = tr(l, 'Brak podobnych ćwiczeń w tym miejscu — rozwiń „Inne”.');
-    expect([l, h === tog, h === tog2, msg.includes(h)]).toEqual([l, true, true, true]);
+  test.each(LANGS.filter(l => l !== 'pl'))('%s: A11-20 — nagłówek „Inne” i cytat w komunikacie to ta sama forma (przełącznik: „Pokaż/Zwiń inne ćwiczenia”)', l => {
+    /* scalenie fix-ui (UI-15): wiersz pod nagłówkiem „Inne” to „Pokaż/Zwiń inne ćwiczenia” ze znakiem ▸/▾ — dawnych „Inne ▾/▴” już nie ma */
+    const h = tr(l, 'Inne'); const msg = tr(l, 'Brak podobnych ćwiczeń w tym miejscu — rozwiń „Inne”.');
+    expect([l, msg.includes(h), 'Inne ▾' in dictOf(l), 'Inne ▴' in dictOf(l)]).toEqual([l, true, false, false]);
   });
 });

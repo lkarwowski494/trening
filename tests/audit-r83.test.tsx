@@ -13,7 +13,7 @@ import * as stats from '@/lib/stats';
 import * as backup from '@/lib/backup';
 import { SCHEMA_VERSION } from '@/lib/seed';
 import { fresh, ex, seedWithDemo, pressAlert, addWorkout } from './helpers';
-import { renderApp, flushAll, screen, go, tap, act, fireEvent, openCard, swipeDelete } from './app';
+import { renderApp, flushAll, screen, go, tap, act, fireEvent, openCard, swipeDelete, startEdit, saveEdit, tplDraft } from './app';
 import * as units from '@/lib/units';
 
 jest.setTimeout(60000);
@@ -207,13 +207,13 @@ describe('Q-019 kopia bezpieczeństwa przed importem i „Wyczyść dane”', ()
   test('„Wyczyść wszystkie dane”: najpierw kopia (trening w toku, historia), potem czyszczenie; nieudana kopia → dane zostają', async () => {
     await renderApp(); addWorkout(Date.now() - 86400e3, [['Back Squat', [{ weight: 90, reps: 5 }]]]); await inProgress(); setupFs([...AUTO]);
     await go('/more/settings'); await flushAll(10);
-    await tap(screen.getByText('Wyczyść wszystkie dane')); await act(async () => { pressAlert('Na pewno?', 'Wyczyść'); }); await flushAll(50);
+    await tap(screen.getByText('Wyczyść wszystkie dane')); await act(async () => { pressAlert('Wyczyścić wszystkie dane?', 'Wyczyść'); }); await flushAll(50);
     const w = writes(/\/Backup\/trening-przed-czyszczeniem-\d{4}-\d{2}-\d{2}-\d{6}\.json$/); expect(w).toHaveLength(1);
     const k = JSON.parse(w[0][1]).state; expect(k.workouts).toHaveLength(1); expect(k.active.exercises[0].sets[0].weight).toBe(100);
     expect(store.getState().workouts).toHaveLength(0); expect(store.getState().active).toBeNull(); expect(FS.deleteAsync).not.toHaveBeenCalled();
     await renderApp(); addWorkout(Date.now() - 86400e3, [['Back Squat', [{ weight: 90, reps: 5 }]]]); setupFs([]); FS.writeAsStringAsync.mockImplementation(async () => { throw new Error('dysk pełny'); });
     await go('/more/settings'); await flushAll(10);
-    await tap(screen.getByText('Wyczyść wszystkie dane')); await act(async () => { pressAlert('Na pewno?', 'Wyczyść'); }); await flushAll(50);
+    await tap(screen.getByText('Wyczyść wszystkie dane')); await act(async () => { pressAlert('Wyczyścić wszystkie dane?', 'Wyczyść'); }); await flushAll(50);
     expect(store.getState().workouts).toHaveLength(1); expect(global.__alerts.some(a => a.title === 'Dane nie zostały wyczyszczone')).toBe(true);
   });
 });
@@ -247,8 +247,8 @@ describe('Q-021 lb: ponowny wpis tej samej liczby nie zmienia kg', () => {
   test('edytor szablonu i poranna waga: ta sama zasada (start 61,23 kg = 135 lb, waga 81,43 kg = 179,5 lb)', async () => {
     await renderApp(); const tpl = store.newTemplate();
     tpl.items.push({ id: 'q21', exerciseId: ex('Back Squat').id, sets: 3, repMin: 5, repMax: 5, restSec: 60, startWeight: 61.23, targetSec: '', groupId: null });
-    await act(async () => { store.getState().settings.unit = 'lb'; store.applyPrefs(); store.save(tpl); }); await go('/template/' + tpl.id); await flushAll(10); await openCard(0);
-    await act(async () => { fireEvent.changeText(screen.getAllByDisplayValue('135')[0], '135'); }); await flushAll(5); expect(tpl.items[0].startWeight).toBe(61.23);
+    await act(async () => { store.getState().settings.unit = 'lb'; store.applyPrefs(); store.save(tpl); }); await go('/template/' + tpl.id); await flushAll(10); await startEdit(); await openCard(0);
+    await act(async () => { fireEvent.changeText(screen.getAllByDisplayValue('135')[0], '135'); }); await flushAll(5); expect(tplDraft(tpl.id).items[0].startWeight).toBe(61.23); await saveEdit(); expect(tpl.items[0].startWeight).toBe(61.23);
     /* poranna waga — ekran usunięty 05.10.2026 (decyzja właściciela) */
   });
   test('kg: wpis różniący się o 0,01 to nowa wartość (bez tolerancji)', async () => {

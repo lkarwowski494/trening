@@ -1,3 +1,4 @@
+import { MedicalNote } from '@/components/MedicalNote';
 import React, { useMemo, useState } from 'react';
 import { ScrollView, View, Alert } from 'react-native';
 import { useRouter } from 'expo-router';
@@ -98,6 +99,7 @@ export default function GeneratorScreen() {
 
       <SectionTitle>{t('Na czym to oparte')}</SectionTitle>
       {basis.map(x => <Muted key={x} style={{ fontSize: 12, marginBottom: 4 }}>{`• ${x}`}</Muted>)}
+      <MedicalNote style={{ marginTop: 6 }} /* L1 (audyt 0.10, MER-11 A): plan z cardio — bez porad medycznych, odesłanie do specjalisty */ />
       {r.templates.some(tp => tp.items.length) ? <Btn title={t('Zapisz szablony i plan')} kind="primary" block onPress={save} style={{ marginTop: 14 }} /> : null}
     </ScrollView></Screen>
   );

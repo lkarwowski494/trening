@@ -2,7 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 import { Btn, Muted } from '@/components/ui';
 import { useTheme } from '@/lib/theme';
-import { toggleDeloadWeek, useTick } from '@/lib/store';
+import { toggleDeloadWeek, useTick, fmtDayKey } from '@/lib/store';
 import { deloadHint, snoozeDeloadHint, DELOAD_EVERY } from '@/lib/deload';
 import { t, locale } from '@/lib/i18n';
 import { deloadLessText } from '@/lib/start';
@@ -13,7 +13,7 @@ import { deloadLessText } from '@/lib/start';
  * (audyt 0.10, MER-04 wariant A: „o około 1/3–1/2 mniej serii (np. 2 z 3)” — zgodnie z deloadKeep, nie „około połowy”).
  */
 const keyTs = (k: string) => new Date(+k.slice(0, 4), +k.slice(5, 7) - 1, +k.slice(8, 10), 12).getTime();
-const day = (k: string) => new Date(keyTs(k)).toLocaleDateString(locale(), { weekday: 'short', day: 'numeric', month: 'numeric' });
+const day = (k: string) => fmtDayKey(k); /* H3 (audyt 0.10): jeden format daty dnia */
 
 export function DeloadHint() {
   useTick(); const th = useTheme(); const h = deloadHint(Date.now());

@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { View, Text, Pressable, Animated, PanResponder, Alert, StyleSheet, type StyleProp, type ViewStyle, type AccessibilityActionEvent } from 'react-native';
 import { useTheme, F } from '@/lib/theme';
 import { t as tr, lang } from '@/lib/i18n';
@@ -29,28 +29,48 @@ type Props = {
   bg?: string; style?: StyleProp<ViewStyle>; testID?: string;
   /** Bez gestu i akcji (np. ostatnia seria bloku, której się nie usuwa). */
   disabled?: boolean;
+  /** G4 (audyt 0.10 UI-07): dlaczego wiersza nie da się usunąć — przy próbie przesunięcia (i akcją VoiceOver) okno z wyjaśnieniem zamiast ciszy. */
+  blocked?: { title: string; message?: string };
   children: (a11y: DeleteA11y) => React.ReactNode;
 };
 
-export function SwipeRow({ label, title, message, onDelete, bg, style, testID, disabled, children }: Props) {
+/** G4 (audyt 0.10 UI-07, wariant A): ostatniej serii bloku nie usuwa się w treningu, szablonie ani edycji historii — ta sama informacja wszędzie. */
+export const lastSetBlock = () => ({ title: tr('To ostatnia seria'), message: tr('Ćwiczenie ma co najmniej jedną serię. Żeby usunąć całe ćwiczenie, przesuń w lewo jego nazwę.') });
+
+/** UI-17 (audyt 0.10): odsłonięty może być tylko jeden wiersz — odsłonięcie innego zamyka poprzedni (jak w iOS). */
+let closeOpen: (() => void) | null = null;
+
+export function SwipeRow({ label, title, message, onDelete, bg, style, testID, disabled, blocked, children }: Props) {
   const t = useTheme(); const x = useRef(new Animated.Value(0)).current; const [open, setOpen] = useState(false); const openRef = useRef(false);
-  const snap = (to: number) => { openRef.current = to !== 0; setOpen(to !== 0); Animated.spring(x, { toValue: to, useNativeDriver: true, bounciness: 0 }).start(); };
-  const ask = () => Alert.alert(title, typeof message === 'function' ? message() : message, [
+  /* UI-17: PanResponder tworzony raz — aktualne pytanie, akcja i blokada przez ref (rodzic przekazuje funkcje inline; nowy PanResponder przy każdym
+   * renderze zerował przesunięcie w trakcie gestu, np. przy odświeżeniu ekranu treningu co minutę) */
+  const cur = useRef({ title, message, onDelete, disabled, blocked }); cur.current = { title, message, onDelete, disabled, blocked };
+  const close = () => snap(0);
+  const snap = (to: number) => {
+    openRef.current = to !== 0; setOpen(to !== 0); Animated.spring(x, { toValue: to, useNativeDriver: true, bounciness: 0 }).start();
+    if (to !== 0) { if (closeOpen && closeOpen !== close) closeOpen(); closeOpen = close; } else if (closeOpen === close) closeOpen = null;
+  };
+  const ask = () => Alert.alert(cur.current.title, typeof cur.current.message === 'function' ? cur.current.message() : cur.current.message, [
     { text: tr('Nie'), style: 'cancel', onPress: () => snap(0) },
-    { text: tr('Usuń'), style: 'destructive', onPress: () => { snap(0); onDelete(); } },
+    { text: tr('Usuń'), style: 'destructive', onPress: () => { snap(0); cur.current.onDelete(); } },
   ]);
-  const pan = useMemo(() => PanResponder.create({
+  const explain = () => { const b = cur.current.blocked; if (b) Alert.alert(b.title, b.message, [{ text: tr('OK'), style: 'cancel' }]); };
+  const pan = useRef(PanResponder.create({
     onMoveShouldSetPanResponder: (_e, g) => Math.abs(g.dx) > SWIPE.start && Math.abs(g.dx) > Math.abs(g.dy) * 1.5,
     onPanResponderTerminationRequest: () => false,
-    onPanResponderMove: (_e, g) => { const base = openRef.current ? -SWIPE.button : 0; x.setValue(Math.min(0, Math.max(-SWIPE.button * SWIPE.ask * 1.2, base + g.dx))); },
+    onPanResponderMove: (_e, g) => { if (cur.current.disabled) return; const base = openRef.current ? -SWIPE.button : 0; x.setValue(Math.min(0, Math.max(-SWIPE.button * SWIPE.ask * 1.2, base + g.dx))); },
     onPanResponderRelease: (_e, g) => {
+      if (cur.current.disabled) { if (swipeDecision(g.dx, g.vx) !== 'close') explain(); return; }
       const d = swipeDecision((openRef.current ? -SWIPE.button : 0) + g.dx, g.vx);
       if (d === 'ask') { snap(-SWIPE.button); ask(); } else snap(d === 'open' ? -SWIPE.button : 0);
     },
     onPanResponderTerminate: () => snap(openRef.current ? -SWIPE.button : 0),
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }), [title, message, onDelete]);
-  if (disabled) return <View style={style} testID={testID}>{children({})}</View>;
+  })).current;
+  useEffect(() => () => { if (closeOpen === close) closeOpen = null; }); // eslint-disable-line react-hooks/exhaustive-deps
+  if (disabled) {
+    const a11y: DeleteA11y = blocked ? { accessibilityActions: [{ name: 'blocked', label: blocked.title }], onAccessibilityAction: e => { if (e.nativeEvent.actionName === 'blocked') explain(); } } : {};
+    return <View style={style} testID={testID} {...(blocked ? pan.panHandlers : {})}>{children(a11y)}</View>;
+  }
   const a11y: DeleteA11y = { accessibilityActions: [{ name: 'delete', label }], onAccessibilityAction: e => { if (e.nativeEvent.actionName === 'delete') ask(); } };
   return (
     <View style={[{ overflow: 'hidden' }, style]} testID={testID}>
@@ -61,7 +81,10 @@ export function SwipeRow({ label, title, message, onDelete, bg, style, testID, d
           <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={1.3} style={{ color: t.dangerInk /* A11-04 */, fontFamily: F.semibold, fontSize: 15 }}>{tr('Usuń')}</Text>
         </Pressable>
       </View>
-      <Animated.View {...pan.panHandlers} style={{ transform: [{ translateX: x }], backgroundColor: bg ?? t.bg }}>{children(a11y)}</Animated.View>
+      <Animated.View {...pan.panHandlers} style={{ transform: [{ translateX: x }], backgroundColor: bg ?? t.bg }}>
+        {children(a11y)}
+        {open ? <Pressable testID={testID ? `${testID}-close` : undefined} accessible={false} onPress={() => snap(0)} style={StyleSheet.absoluteFill} /* UI-17: tapnięcie odsłoniętego wiersza zamyka go (jak w iOS), nie wykonuje jego akcji */ /> : null}
+      </Animated.View>
     </View>
   );
 }

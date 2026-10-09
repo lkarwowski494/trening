@@ -212,7 +212,7 @@ describe('K3 (A11-18): podpowiedzi VoiceOver po przeniesieniu instrukcji z etyki
     const grp = screen.UNSAFE_root.findAll((n: Node) => typeof n.type === 'string' && /^Filtr partii: /.test(String(n.props.accessibilityLabel ?? '')))[0];
     expect(grp.props.accessibilityHint).toBe('Tapnij, by zdjąć.'); await tap(grp); await flushAll(5);
     expect(hintOf(/^Filtr partii wyłączony: /)).toContain('Tapnij, by włączyć.');
-    await go(`/template/${tplId}`); await flushAll(10); await openCard(0); await flushAll(5);
+    await go(`/template/${tplId}?edit=1`); /* edycja na żądanie: edytor po „Edytuj” */ await flushAll(10); await openCard(0); await flushAll(5);
     expect(hintOf(/^Seria \d+, typ: /)).toContain('Tapnij, by zmienić typ.');
   });
 });

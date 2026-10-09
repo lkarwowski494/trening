@@ -5,7 +5,7 @@ import * as timer from '@/lib/timer';
 import { dark, light } from '@/lib/theme';
 import { LIB, metricFor, type Equipment } from '@/lib/seed';
 import { rowLayout } from '@/components/ActiveWorkout';
-import { renderApp, tap, flushAll, screen, go, act, type, openCard, swipeDelete } from './app';
+import { renderApp, tap, flushAll, screen, go, act, type, openCard, swipeDelete, startEdit } from './app';
 import { ex, pressAlert, seedWithDemo } from './helpers';
 
 jest.setTimeout(60000);
@@ -97,19 +97,19 @@ test('C7 akcje niszczące wymagają potwierdzenia', async () => {
   /* 07.10.2026 wieczór: usuwanie przesunięciem w lewo — każde z potwierdzeniem */
   await go('/templates'); await flushAll(10);
   await expectConfirm(() => swipeDelete(`Usuń szablon: ${s.templates[0].name}`), 'Usunąć szablon?'); expect(s.templates.length).toBe(nTpl);
-  await go(`/template/${s.templates[0].id}`); await flushAll(10);
+  await go(`/template/${s.templates[0].id}`); await flushAll(10); await startEdit();
   await expectConfirm(() => swipeDelete(/^Usuń ćwiczenie: /), 'Usunąć z szablonu?');
   await go('/exercises'); await flushAll(10); await type(screen.getByPlaceholderText('Szukaj…'), 'Back Squat'); /* N3: lista wirtualizowana */
   await expectConfirm(() => swipeDelete('Usuń z biblioteki: Back Squat'), 'Usunąć ćwiczenie?'); expect(ex('Back Squat').archived).toBeFalsy();
   await go('/more/bands'); await flushAll(10);
   await expectConfirm(() => swipeDelete(/^Usuń gumę: /), 'Usunąć gumę?'); expect(s.bands.length).toBe(3);
   await go('/more/settings'); await flushAll(10);
-  await expectConfirm(() => tap(screen.getByText('Wyczyść wszystkie dane')), 'Na pewno?');
+  await expectConfirm(() => tap(screen.getByText('Wyczyść wszystkie dane')), 'Wyczyścić wszystkie dane?');
   await go('/more/backup'); await flushAll(10);
   await expectConfirm(() => tap(screen.getByText('Importuj backup')), 'Nadpisać dane?');
   await go('/'); await tap(screen.getByLabelText('Start: Upper A'));
-  await expectConfirm(() => tap(screen.getAllByText('Anuluj trening')[0]), 'Anulować trening?'); expect(s.active).not.toBeNull();
-  await act(async () => { pressAlert('Anulować trening?', 'Wróć'); }); /* audyt 0.10 (LIVE-12): otwarte okno „Anulować…” blokuje kolejne (jak „Zakończ”) — okno na iOS zamyka się przyciskiem */
+  await expectConfirm(() => tap(screen.getAllByText('Odrzuć trening')[0]), 'Odrzucić trening?'); expect(s.active).not.toBeNull();
+  await act(async () => { pressAlert('Odrzucić trening?', 'Wróć'); }); /* audyt 0.10 (LIVE-12): otwarte okno „Anulować…” blokuje kolejne (jak „Zakończ”) — okno na iOS zamyka się przyciskiem */
   await expectConfirm(() => swipeDelete(/^Usuń ćwiczenie: /), 'Usunąć z treningu?');
   await expectConfirm(() => swipeDelete(/^Usuń serię 1 — /), 'Usunąć serię?'); /* potwierdzenie także dla nieodhaczonej serii (decyzja 07.10 wieczór) */
   await expectConfirm(() => tap(screen.getAllByText('Zakończ')[0]), /Zakończyć trening\?|Brak odhaczonych serii/); expect(s.active).not.toBeNull();

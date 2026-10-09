@@ -22,7 +22,7 @@ test('scenariusze rozwijają grupy sprzętu po angielskich nazwach z EQUIP_GROUP
   const fs = require('fs'); const path = require('path'); const { EQUIP_GROUP_LABEL } = require('@/lib/equipment');
   const names = Object.values(EQUIP_GROUP_LABEL as Record<string, { en: string }>).map(x => x.en);
   const dir = path.join(__dirname, '..', '.maestro'); const used: string[] = [];
-  for (const f of fs.readdirSync(dir).filter((x: string) => x.endsWith('.yaml'))) for (const m of fs.readFileSync(path.join(dir, f), 'utf8').matchAll(/tapOn: "([^"]+)\.\*"/g)) if (/^[A-Z][a-z]+ (?:weights|and|dip)/.test(m[1])) used.push(m[1]);
+  for (const f of fs.readdirSync(dir).filter((x: string) => x.endsWith('.yaml'))) for (const m of fs.readFileSync(path.join(dir, f), 'utf8').matchAll(/tapOn: "([^"]+)\.\*"/g)) if (/^[A-Z][a-z]+ (?:weights|and|dip)/.test(m[1]) && !/^Places and equipment/.test(m[1]) /* H2: pozycja Ustawień, nie grupa sprzętu */) used.push(m[1]);
   expect(used.length).toBeGreaterThanOrEqual(3); for (const u of used) expect(names).toContain(u);
 });
 
@@ -36,10 +36,10 @@ test('regresja run 37600735711: przycisk karty „teraz” ma etykietę VoiceOve
   for (const s of sel) { const re = new RegExp('^(?:' + s + ')$'); expect({ s, card: re.test(card), row: re.test(row) }).toEqual({ s, card: true, row: false }); }
 });
 
-test('regresja run 37600735711: przycisk „Cancel workout” w oknie wskazany względem przycisku w tle, nie opisu (opis zachodzi na okno w kroju Tuleja)', () => {
+test('regresja run 37600735711: przycisk „Discard workout” w oknie wskazany względem przycisku w tle, nie opisu (opis zachodzi na okno w kroju Tuleja)', () => {
   const fs = require('fs'); const path = require('path');
   const y = fs.readFileSync(path.join(__dirname, '..', '.maestro', '07-zamiana.yaml'), 'utf8');
-  expect(y).toContain('tapOn: { text: "Cancel workout", below: "Back", above: "Cancel workout" }');
+  expect(y).toContain('tapOn: { text: "Discard workout", below: "Back", above: "Discard workout" }');
   expect(y).not.toMatch(/above: "The workout in progress saves/);
 });
 

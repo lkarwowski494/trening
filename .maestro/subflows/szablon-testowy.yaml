@@ -16,7 +16,8 @@
 #                                    title = exName('Bench Press (hantle)') → 'Bench Press (Dumbbell)' (lib/i18n.ts EX_PAREN), sub = sprzęt 'hantle' → 'dumbbells'
 #   "Bent Over Row \(Dumbbell\), dumbbells" ← jak wyżej dla 'Bent Over Row (hantle)'
 #   "Bench Press \(Dumbbell\)"    ← nazwa ćwiczenia w wierszu pozycji edytora szablonu (Txt w app/template/[id].tsx)
-#   "Back"                        ← 'Wróć' (headerBackTitle w app/_layout.tsx)
+#   "Save template" / "Edit template" ← 'Zapisz szablon' (nagłówek edycji, components/DraftHeader.tsx) / 'Edytuj szablon' (podgląd szablonu)
+#   "Back"                        ← 'Wróć' (headerBackTitle w app/_layout.tsx; w podglądzie szablonu — po zapisie)
 #   "Start: Upper A"              ← 'Start: {name}' (accessibilityLabel przycisku Start na ekranie głównym)
 appId: pl.lukasz.trening
 ---
@@ -49,6 +50,9 @@ appId: pl.lukasz.trening
 - tapOn: "Bent Over Row \\(Dumbbell\\), dumbbells"
 - extendedWaitUntil: { visible: "Bent Over Row \\(Dumbbell\\)", timeout: 30000 }
 - takeScreenshot: 00-szablon-testowy
+# --- edycja na żądanie (08.10.2026): „+ New template” otwiera edycję — zapis „Save template”, potem podgląd z „Edit template” ---
+- tapOn: "Save template"
+- extendedWaitUntil: { visible: "Edit template", timeout: 30000 }
 # --- powrót na ekran główny ---
 - tapOn: "Back"
 - extendedWaitUntil: { visible: "Start: Upper A", timeout: 30000 }

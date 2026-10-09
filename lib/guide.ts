@@ -18,8 +18,19 @@ export const GUIDE: GuideTopic[] = [
   ] },
   { id: 'templates', route: '/templates', title: () => t('Szablony'), steps: () => [
     t('W zakładce Szablony „+ Nowy” tworzy szablon: ćwiczenia, serie, zakres powtórzeń i przerwy.'),
-    t('W edytorze szablonu przeniesiesz go do folderu albo archiwum.'),
-    t('Przesunięcie w lewo na liście usuwa szablon (z potwierdzeniem).'),
+    t('Szablon otwiera się w podglądzie ze „Start”; zmiany (także folder) dopiero po „Edytuj” — zapisuje je „Zapisz”.'), /* edycja na żądanie, 08.10.2026 */
+    t('„Archiwizuj” w podglądzie chowa szablon; przesunięcie w lewo na liście usuwa go (z potwierdzeniem).'),
+  ] },
+  /* H1 (audyt 0.10, UX-09): tematy, których brakowało — zmiany w trakcie treningu i historia */
+  { id: 'during', route: '/', title: () => t('Zmiany w trakcie treningu'), steps: () => [
+    t('„⇄ zamień” przy ćwiczeniu zamienia je na inne tylko w tym treningu — szablon zostaje.'),
+    t('„Pomiń dziś” pomija resztę serii ćwiczenia w tym treningu.'),
+    t('Superset ustawisz w szablonie przyciskiem „Połącz z następnym w superset” — przerwa liczy się po ostatnim ćwiczeniu grupy.'),
+    t('Przesunięcie serii albo nazwy ćwiczenia w lewo usuwa je (z potwierdzeniem).'),
+  ] },
+  { id: 'history', route: '/history', title: () => t('Edycja sesji i trening wstecz'), steps: () => [
+    t('W Kalendarzu stuknij sesję, potem „Edytuj” — zmiany zapisuje „Zapisz”, „Anuluj” je odrzuca.'),
+    t('„+ Dodaj trening wstecz” zapisze trening, którego nie zapisałeś na bieżąco; z dnia w Kalendarzu — „Zapisz trening z tego dnia”.'),
   ] },
   { id: 'plan', route: '/history', title: () => t('Plan tygodnia i Kalendarz'), steps: () => [
     t('W Kalendarzu „Plan tygodnia” przypisuje szablony do dni — plan powtarza się co tydzień.'),
@@ -32,7 +43,7 @@ export const GUIDE: GuideTopic[] = [
     t('Przejrzyj podgląd i „Na czym to oparte” — wynik zapisuje się dopiero po zatwierdzeniu.'),
     t('Szablony trafiają do folderu „Wygenerowane”, a plan do „Inne plany” albo od razu jako aktywny.'),
   ] },
-  { id: 'deload', route: '/history', title: () => t('Deload'), steps: () => [
+  { id: 'deload', route: '/more/progress' /* H1 (audyt 0.10): ekran z przełącznikiem „Tydzień deload” — Kalendarz zwykle nie ma elementu deload */, title: () => t('Deload'), steps: () => [
     t('Po kilku tygodniach treningu z rzędu Kalendarz podpowie „Zaplanuj deload od …”.'),
     t('Tydzień oznaczysz też w Postępach przełącznikiem „Tydzień deload”.'),
     t('W Kalendarzu: stuknij dzień, potem „Więcej opcji” → „Oznacz tydzień jako deload” — także przyszły tydzień.'),
@@ -48,7 +59,7 @@ export const GUIDE: GuideTopic[] = [
     t('Lista ćwiczeń, zamiany i generator pokazują to, co da się zrobić w wybranym miejscu.'),
   ] },
   { id: 'backup', route: '/more/backup', title: () => t('Kopia zapasowa'), steps: () => [
-    t('Więcej → Backup: eksport wszystkich danych do pliku i import z pliku.'),
+    t('Więcej → Kopia zapasowa: eksport wszystkich danych do pliku i import z pliku.'),
     t('Automatyczna kopia po każdym treningu trafia do Plików (Ustawienia).'),
   ] },
 ];

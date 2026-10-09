@@ -117,7 +117,7 @@ describe('Q-019 kopia bezpieczeństwa — LOW 3 (nieczytelny zapis) i LOW 4 (wri
     await renderApp({ saved: '{zepsute' }); await flushAll(10);
     await go('/more/settings'); await flushAll(10);
     await tap(screen.getByText('Wyczyść wszystkie dane')); expect(global.__alerts[global.__alerts.length - 1].msg).toMatch(/nieczytelne dane/);
-    await act(async () => { pressAlert('Na pewno?', 'Wyczyść'); }); await flushAll(50);
+    await act(async () => { pressAlert('Wyczyścić wszystkie dane?', 'Wyczyść'); }); await flushAll(50);
     expect(JSON.parse(writes(/trening-przed-czyszczeniem-/)[0][1]).recovery).toBe('{zepsute');
     FS.writeAsStringAsync.mockClear(); await backup.safetyBackup('reset'); expect(JSON.parse(writes(/przed-czyszczeniem/)[0][1])).not.toHaveProperty('recovery');
   });

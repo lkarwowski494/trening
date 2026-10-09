@@ -1,0 +1,60 @@
+import { getState, save, markDraft, clampName, NAME_MAX, setTemplateNote, deleteTemplate, exerciseUsed } from './store';
+import type { Exercise, Template } from './seed';
+import { t } from './i18n';
+
+/*
+ * Edycja na żądanie (decyzja właściciela 08.10.2026 ok. 21:30, docs/18): ekran ćwiczenia i szablonu otwiera się w podglądzie, a „Edytuj”
+ * zaczyna SZKIC — głęboką kopię obiektu poza stanem aplikacji (ten sam wzór co edycja sesji w historii, lib/edit.ts). Funkcje store wołane
+ * na szkicu (tplAddRow, setEquipment, moveItem…) kończą się `save(szkic)`, które tylko odświeża ekran (store.markDraft). „Zapisz” przenosi
+ * szkic do obiektu w stanie jednym zapisem; „Anuluj” szkic wyrzuca. Szkic nie przeżywa zamknięcia aplikacji (jak w edycji historii).
+ */
+export type DraftKind = 'exercise' | 'template';
+type Obj = Exercise | Template;
+interface ObjDraft { kind: DraftKind; id: string; obj: Obj; orig: string }
+const drafts = new Map<string, ObjDraft>();
+const k = (kind: DraftKind, id: string) => `${kind}:${id}`;
+/** Pola, których szkic nie zmienia (tożsamość, archiwum — przełączane w podglądzie, znaczniki zapisu). */
+const KEEP = new Set(['id', 'ownerId', 'createdAt', 'updatedAt', 'archived']);
+const snap = (o: Obj) => JSON.stringify(o, (key, v) => (key === 'updatedAt' ? undefined : v));
+const real = (kind: DraftKind, id: string): Obj | undefined => kind === 'exercise' ? getState().exercises.find(x => x.id === id) : getState().templates.find(x => x.id === id);
+
+/** „Edytuj”: szkic z bieżącego stanu (istniejący szkic zostaje — powrót z wyboru ćwiczenia czy Kolejności nie gubi zmian). */
+export function beginObjDraft<T extends Obj>(kind: DraftKind, id: string): T | null {
+  const cur = drafts.get(k(kind, id)); if (cur) return cur.obj as T;
+  const src = real(kind, id); if (!src) return null;
+  const obj = markDraft(JSON.parse(JSON.stringify(src)) as Obj); drafts.set(k(kind, id), { kind, id, obj, orig: snap(obj) }); return obj as T; /* bez save/emit: woła to także render (useState) — ekran i tak się przerysowuje (setEditing) */
+}
+export function objDraft<T extends Obj>(kind: DraftKind, id: string): T | undefined { return drafts.get(k(kind, id))?.obj as T | undefined; }
+/** Czy szkic różni się od stanu z chwili „Edytuj”. */
+export function objDirty(kind: DraftKind, id: string): boolean { const d = drafts.get(k(kind, id)); return !!d && snap(d.obj) !== d.orig; }
+/** Wyrzucenie szkicu („Anuluj”, zamknięcie ekranu). */
+export function discardObjDraft(kind: DraftKind, id: string) { const d = drafts.get(k(kind, id)); if (!d) return; drafts.delete(k(kind, id)); save(d.obj); }
+/** Nazwa przy zapisie (G2, audyt 0.10 UI-05): spacje uporządkowane; pusta — wraca poprzednia (a bez niej domyślna). */
+export function cleanName(v: string, prev: string, fallback: string): string { const n = clampName(String(v ?? '').replace(/\s+/g, ' ').trim(), NAME_MAX); return n || prev || fallback; }
+
+/** „Zapisz”: szkic trafia do obiektu w stanie jednym zapisem (obiekt zachowuje tożsamość — inne ekrany trzymają do niego odwołania).
+ * Bez zmian — nic się nie zapisuje (znacznik zmiany zostaje). Zwraca false, gdy obiekt w międzyczasie zniknął. */
+export function commitObjDraft(kind: DraftKind, id: string): boolean {
+  const d = drafts.get(k(kind, id)); if (!d) return false; drafts.delete(k(kind, id));
+  const dst = real(kind, id) as unknown as Record<string, unknown> | undefined; if (!dst) { save(d.obj); return false; }
+  if (snap(d.obj) === d.orig) { save(d.obj); return true; }
+  const src = d.obj as unknown as Record<string, unknown>;
+  src.name = cleanName(String(src.name ?? ''), String(dst.name ?? ''), kind === 'exercise' ? t('Nowe ćwiczenie') : t('Nowy szablon'));
+  for (const key of Object.keys(dst)) if (!KEEP.has(key) && !(key in src)) delete dst[key];
+  for (const [key, v] of Object.entries(src)) if (!KEEP.has(key)) dst[key] = v;
+  if (kind === 'template') setTemplateNote(dst as unknown as Template, String((dst as unknown as Template).note ?? '')); /* ta sama sanityzacja co dotąd przy końcu edycji */
+  save(dst as unknown as Obj); return true;
+}
+
+/** Szablon, na którym działają wybór ćwiczenia i Kolejność: szkic, gdy trwa edycja, inaczej szablon ze stanu. */
+export function templateForEdit(id: string): Template | undefined { return objDraft<Template>('template', id) ?? getState().templates.find(x => x.id === id); }
+
+/** „+ Nowe” / „+ Nowy” i „Anuluj” bez zapisu: obiekt utworzony na tym ekranie i nigdy niezapisany znika (nic nie zostaje po rezygnacji).
+ * Ćwiczenie użyte gdziekolwiek (trening, szablon) zostaje. */
+export function dropUnsavedNew(kind: DraftKind, id: string): boolean {
+  const st = getState();
+  if (kind === 'template') { const x = st.templates.find(y => y.id === id); if (!x || x.updatedAt !== x.createdAt || x.items.length) return false; deleteTemplate(x.id); return true; }
+  const e = st.exercises.find(y => y.id === id); if (!e || e.lib || e.updatedAt !== e.createdAt || exerciseUsed(e.id) || st.templates.some(tp => tp.items.some(i => i.exerciseId === e.id))) return false;
+  st.exercises = st.exercises.filter(y => y.id !== id); save(); return true;
+}
+export function __resetObjDrafts() { drafts.clear(); }

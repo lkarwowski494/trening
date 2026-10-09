@@ -20,7 +20,7 @@ export default function MoreScreen() {
       <Item title={t('Postępy')} onPress={() => router.push('/more/progress')} />
       <Item title={t('Miejsca i sprzęt')} onPress={() => router.push('/more/locations')} /* decyzja 05.10.2026: osobna pozycja, nie tylko w Ustawieniach */ />
       {/* decyzja 05.10.2026: gumy w dodawaniu sprzętu (Miejsca i sprzęt → Gumy oporowe); ekran /more/bands zostaje dla usuwania gum */}
-      <Item title={t('Backup (eksport / import)')} onPress={() => router.push('/more/backup')} />
+      <Item title={t('Kopia zapasowa (eksport / import)')} /* H2 (audyt 0.10): „Kopia zapasowa” zamiast „Backup” (folder w Plikach zostaje „Backup”) */ onPress={() => router.push('/more/backup')} />
       <Item title={t('Ustawienia')} onPress={() => router.push('/more/settings')} />
       <Item title={t('O aplikacji')} onPress={() => router.push('/more/about')} />{/* audyt 0.10 SEC-08: wersja i licencje open source */}
       <Muted style={{ marginTop: 20, fontSize: 12 }}>{/* decyzja właściciela 06.10.2026: tylko numer wersji, małym drukiem */}{`${appName()} ${Constants.expoConfig?.version ?? ''}`}{expTxt}</Muted>

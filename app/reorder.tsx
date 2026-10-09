@@ -5,6 +5,7 @@ import { Screen, Btn, Muted, Txt, Empty } from '@/components/ui';
 import { DragList, DragScroll } from '@/components/DragList';
 import { getState, useTick, exById, groupLabels, blockRanges, moveBlockOf, moveInGroup, occurrence, occurrences, workCount, workSetCount, tplRows, type Grouped } from '@/lib/store';
 import { useTheme, F } from '@/lib/theme';
+import { templateForEdit } from '@/lib/draft';
 import { t, tp, exName } from '@/lib/i18n';
 import type { Base, TemplateItem, WSet } from '@/lib/seed';
 
@@ -18,7 +19,7 @@ type Row = Grouped & { id: string; exerciseId: string };
 export default function ReorderScreen() {
   useTick(); const th = useTheme(); const router = useRouter();
   const raw = useLocalSearchParams<{ target?: string | string[] }>().target; const target = typeof raw === 'string' ? raw : '';
-  const st = getState(); const tpl = target.startsWith('template:') ? st.templates.find(x => x.id === target.slice(9)) : undefined;
+  const st = getState(); const tpl = target.startsWith('template:') ? templateForEdit(target.slice(9)) : undefined; /* edycja na żądanie: szkic szablonu (lib/draft.ts) */
   const owner: Base | null | undefined = target === 'active' ? st.active : tpl;
   const list: Row[] | undefined = target === 'active' ? st.active?.exercises : tpl?.items;
   const back = () => { if (router.canGoBack()) router.back(); else router.replace('/'); };

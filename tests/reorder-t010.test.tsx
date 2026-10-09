@@ -4,7 +4,7 @@ import * as store from '@/lib/store';
 import * as timer from '@/lib/timer';
 import { dropIndex } from '@/components/DragList';
 import { fresh, ex } from './helpers';
-import { renderApp, flushAll, screen, go, act, fireEvent, tap } from './app';
+import { renderApp, flushAll, screen, go, act, fireEvent, tap, startEdit, tplDraft } from './app';
 
 jest.setTimeout(30000);
 type It = { id: string; groupId: string | null };
@@ -73,9 +73,9 @@ describe('ekran kolejności', () => {
 
   test('szablon: przeciągnięcie pojedynczego ćwiczenia za superset; superset w całości; kolejność w supersecie', async () => {
     await fresh(); const tpl = mkTpl(); await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())) });
-    await go(`/template/${tpl.id}`); await flushAll(20); await tap(screen.getByText('≡ Kolejność')); await flushAll(50);
+    await go(`/template/${tpl.id}`); await flushAll(20); await startEdit(); await tap(screen.getByText('≡ Kolejność')); await flushAll(50); /* edycja na żądanie (decyzja właściciela 08.10.2026): „Edytuj” → szkic → „Zapisz” */
     expect(screen.getByText('SS A')).toBeTruthy(); layoutRows(60);
-    const items = () => store.getState().templates.find(x => x.id === tpl.id)!.items;
+    const items = () => tplDraft(tpl.id).items; /* Kolejność w edycji działa na szkicu */
     await drag('drag-i:it-BackSquat', 50); expect(items().map(x => x.id)).toEqual(['it-BenchPress', 'it-PullUp', 'it-BackSquat', 'it-Deadlift']);
     expect(items()[0].groupId).toBe(items()[1].groupId); expect(items()[0].groupId).not.toBeNull();
     layoutRows(60); const g = items()[0].groupId!; await drag('drag-g:' + g, 200); expect(items().map(x => x.id)).toEqual(['it-BackSquat', 'it-Deadlift', 'it-BenchPress', 'it-PullUp']);

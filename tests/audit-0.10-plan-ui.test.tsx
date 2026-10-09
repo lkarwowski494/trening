@@ -121,7 +121,7 @@ describe('A6–A8', () => {
 describe('A9, A11-05, D4 — pasek tygodnia, kalendarz, deload', () => {
   test('A9 (UX-08): pod paskiem najbliższe treningi z nazwą; tapnięcie dnia otwiera ten dzień w Kalendarzu', async () => {
     const t = await boot(ids => since(() => { plan.setWeekDay(1, ids[0]); plan.setWeekDay(4, ids[1]); plan.setWeekDay(5, ids[2]); }), '/');
-    expect(screen.getByText(`Następne: jutro — ${t[1].name} · sob., 10.10 — ${t[2].name} · wt., 13.10 — ${t[0].name}`)).toBeTruthy();
+    expect(screen.getByText(`Następne: jutro — ${t[1].name} · sob., 10 paź — ${t[2].name} · wt., 13 paź — ${t[0].name}`)).toBeTruthy();
     await tap(screen.getByTestId('strip-2026-10-06')); await flushAll(10);
     expect(screen.getByTestId('day-panel')).toBeTruthy(); expect(screen.getByText('wtorek, 6 października')).toBeTruthy(); expect(screen.getByText(`Opuszczony: ${t[0].name}`)).toBeTruthy();
   });
@@ -165,7 +165,7 @@ describe('UX-13 A, MER-16 — panel dnia: 3 akcje, „Więcej opcji”, jedna li
     expect(screen.getByText(/^Kolejność: najpierw zmiany, po których plan wraca do rutyny w ciągu 10 dni/)).toBeTruthy();
     await showAll();
     const titles = plan.suggest('2026-10-08').map(x => x.kind); expect(titles).toEqual(expect.arrayContaining(['shift', 'move', 'swap', 'skip']));
-    expect(screen.getByLabelText('Zastosuj: Przesuń plan o 1 dzień')).toBeTruthy(); expect(screen.getByLabelText(new RegExp(`^Zastosuj: Zamień z sob\\.,? 10\\.10.* \\(${t[1].name}\\)$`))).toBeTruthy();
+    expect(screen.getByLabelText('Zastosuj: Przesuń plan o 1 dzień')).toBeTruthy(); expect(screen.getByLabelText(new RegExp(`^Zastosuj: Zamień z sob\\.,? 10 paź.* \\(${t[1].name}\\)$`))).toBeTruthy();
     expect(screen.getByLabelText('Zastosuj: Wolne w tym dniu')).toBeTruthy();
     expect(screen.getByText(/Każda z tych możliwości wraca do rutyny w ciągu 10 dni\.$/)).toBeTruthy();
     await tap(screen.getByLabelText(new RegExp(`^Zastosuj: Zamień z sob`))); await flushAll(5);

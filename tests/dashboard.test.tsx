@@ -56,15 +56,15 @@ describe('ekran', () => {
   test('nowa osoba: „Pierwsze kroki” — 3 kroki do zrobienia, „Wygeneruj szablony i plan”, „Plan tygodnia”; bez kafelków', async () => {
     await boot();
     expect(screen.getByTestId('first-steps')).toBeTruthy(); expect(screen.getByRole('header', { name: 'Pierwsze kroki' })).toBeTruthy();
-    expect(screen.getByLabelText('1. Utwórz szablon („+ Nowy szablon” niżej) albo wygeneruj szablony i plan. do zrobienia')).toBeTruthy();
+    expect(screen.getByLabelText('1. Utwórz pierwszy szablon albo wygeneruj szablony i plan. do zrobienia')).toBeTruthy(); /* UX-12 A (audyt 0.10): przyciski przy kroku */
     expect(screen.getByText('Ustaw plan tygodnia — zobaczysz tu dzisiejszy trening i dostaniesz przypomnienie.')).toBeTruthy();
-    expect(screen.getByText(/^Pierwszy raz\? Utwórz swój szablon/)).toBeTruthy(); expect(screen.queryByTestId('week-tiles')).toBeNull();
+    expect(screen.getByLabelText('4. Pierwszy trening: „Start” przy szablonie niżej albo „Pusty trening”. do zrobienia')).toBeTruthy(); expect(screen.queryByTestId('week-tiles')).toBeNull();
     await tap(screen.getByText('Wygeneruj szablony i plan')); await flushAll(10); expect(screen.getByText('Podgląd')).toBeTruthy();
   });
   test('kroki odhaczone: szablon i plan zrobione (✓, VoiceOver „zrobione”), krok 3 z tekstem dla szablonów', async () => {
     await boot(() => { const t = withDemoTemplates(); plan.setWeekDay(0, t[0].id); });
     expect(screen.getByLabelText(/^1\. .* zrobione$/)).toBeTruthy(); expect(screen.getByLabelText(/^2\. .* zrobione$/)).toBeTruthy();
-    expect(screen.getByLabelText(/^3\. Pierwszy raz\? Wybierz szablon niżej.* do zrobienia$/)).toBeTruthy();
+    expect(screen.getByLabelText(/^4\. Pierwszy trening: .* do zrobienia$/)).toBeTruthy();
     expect(screen.queryByText('Wygeneruj szablony i plan')).toBeNull(); expect(screen.getAllByText('✓').length).toBeGreaterThanOrEqual(2);
   });
   test('po treningach: kafelki z poprzednim tygodniem (VoiceOver), opis z planem, ostatni trening z rekordami → szczegóły', async () => {
