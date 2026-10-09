@@ -149,6 +149,49 @@ litery z dwoma znakami są w wietnamskim rzadkie (początek zdania). Tego nie da
 zakładek 320 pt); (3) opisy w App Store (część po dwukropku w nazwie, podtytuł, opis, słowa kluczowe) po indonezyjsku, malajsku i wietnamsku — do napisania
 i przejrzenia przy ASO; (4) pole liczbowe przy ms (kropka dziesiętna) — zachowanie jak en, potwierdzić na telefonie z regionem Malezja.
 
+### Fala 3 nowych języków: rosyjski (ru) (decyzja właściciela 09.10.2026 wieczór, docs/18; wdrożenie 09.10.2026 na gałęzi feat-jezyki-w3, po wydaniu 0.11)
+
+*Sprawdzenia (09.10.2026, te same strony Apple co przy fali 1):* rosyjski jest na liście „System Language” iOS (Russian) i na liście lokalizacji
+App Store Connect (Russian); IBM Plex Sans 400/600/700 i Plex Mono 500 mają cały alfabet rosyjski z „ё/Ё” oraz «» i № (cmap — test
+`tests/i18n-wave3.test.ts`, „wygląd”). Język nie wymagał zmiany kroju ani układu — **nie jest odłożony** (zasada właściciela z 09.10).
+Uwaga z docs/18 („sprzedaż w Rosji przez App Store niedostępna od 2022”) nie ma w repozytorium przeczytanego źródła — **niepotwierdzone**;
+dostępność w krajach sprawdzić w App Store Connect (Pricing and Availability) przy publikacji. Rosyjski interfejs służy też użytkownikom
+z innych krajów (telefon ru-KZ, ru-BY, ru-UA, ru-KG…).
+
+*Rozwiązanie:* pełny słownik (nie wariant): `lib/locales/ru.json` (1345 tekstów UI, komplet z `_source.json`) i `lib/cues/text/ru.json` (265 zdań
+wskazówek techniki); `locales/ru.json` (nazwa pod ikoną, opisy uprawnień Zdrowia), `app.json`, widżet przerwy (UPDATE_WIDGET: „Training — Отдых”,
+etykiety „Отдых”/„Подход”), `store/app-store-names.json` („Training: дневник тренировок”). Nazwy ćwiczeń z biblioteki — po angielsku jak w innych
+językach (`exName`). Nazwa aplikacji: **Training** (reguła z 05.10: „Тренировка” nie jest podobne do „Trening” — tak samo jak uk „Тренування”).
+Tłumaczenie: agent (własne sformułowania, bez nazw innych aplikacji); **bez recenzji native speakera** — otwarte. `ru` dopisany na końcu `LANGS`
+(lista w Ustawieniach → Język; kolejność jak dotąd = kolejność fal).
+
+| Kod | Rejestr | Terminy (trening / ćwiczenie / seria / powtórzenia / przerwa / pauza / szablon / guma / do upadku / deload) | Nazwy iOS w tekstach |
+|---|---|---|---|
+| ru | interfejs „вы” (jak iOS: „Коснитесь”, „Выберите”, „Сохранить”); wskazówki techniki „ты” (głos trenera — jak uk) | тренировка / упражнение / подход / повторения (skrót „повт.”) / отдых / пауза / шаблон / резинка / до отказа / разгрузка (разгрузочная неделя) | Настройки, Файлы, приложение «Здоровье» |
+
+Słownictwo sprzętu (jak na rosyjskojęzycznych siłowniach): штанга, гантели, гриф (EZ-гриф, трэп-гриф, Т-гриф), блин, гиря, скамья (горизонтальная,
+наклонная, скамья Скотта), блок / кроссовер, тренажёр Смита, жим ногами, римский стул, турник, брусья, силовая рама, фитбол, медбол, коврик;
+cele generatora: Сила / Масса / Похудение / Общая форма; „FBW” → „Full Body” (tak piszą rosyjskojęzyczne plany). Bez tłumaczenia (jak w innych
+językach): дроп-сет, суперсет, кардио, e1RM, RPE/RIR, GHD, landmine, reverse hyper. Jednostki cyrylicą (с, мин, ч, м, км, макс.) — test K3 (`audit-0.10-lang`,
+lista LOCAL + ru); typografia: cudzysłowy «…».
+
+*Rosyjski ≠ ukraiński (test `tests/i18n-wave3.test.ts`):* w tekstach ru nie ma liter і ї є ґ ani apostrofu ’, w uk — ы э ъ ё; listy wyrazów wyłącznie
+ukraińskich (або, вправа, тиждень, вага, тренування, щоб, лише…) i wyłącznie rosyjskich (или, упражнение, неделя, вес, отдых, подход, чтобы…) są
+rozłączne między słownikami (każdy wyraz z listy naprawdę występuje w swoim języku — lista nie jest martwa); teksty z ≥ 3 wyrazami identyczne
+w ru i uk < 2 % (dziś 7 wpisów, np. „пара: {a} ({r}); одна гантель: {b} ({r1})”); żadne zdanie wskazówek ru nie jest identyczne z uk. Seria to
+„подход” (nie kalka „серия”/„сет”).
+
+*Wybór języka „Jak w telefonie” (`resolveLang`):* kod języka telefonu `ru` z dowolnym regionem (ru-RU, ru-KZ, ru-UA, ru-BY, ru-KG, ru-MD) → ru;
+`uk` z dowolnym regionem → uk (język telefonu decyduje, nie region — telefon ukraiński zostaje po ukraińsku, telefon po rosyjsku na Ukrainie jest
+po rosyjsku). Białoruski i kazachski (nie są językami aplikacji) → angielski jak dotąd. Daty i liczby z regionu telefonu (ru-KZ, ru-UA…), przy
+wymuszonym rosyjskim na telefonie w innym języku — ru-RU; przecinek dziesiętny (CLDR). Liczba mnoga: dla liczb całkowitych jak uk —
+one / few / many (CLDR plurals.xml: ru jak uk; „other” tylko dla ułamków, w aplikacji ułamek → ostatnia forma — uproszczenie z `lib/plural.ts`,
+tp() dostaje tylko liczby całkowite); każdy wpis ma trzy różne formy („подход / подхода / подходов”).
+
+*Otwarte:* (1) tekst czytany przez native speakera przed App Store; (2) zrzut z symulatora iOS w języku ru (etykiety zakładek 320 pt —
+„Упражнения”, „Тренировка”; zrzuty web w scratchpad `jezyki-w3-zrzuty` bez uciętych tekstów); (3) opis w App Store po rosyjsku (część po dwukropku
+w nazwie, podtytuł, opis, słowa kluczowe) — do napisania i przejrzenia przy ASO; (4) dostępność w krajach (patrz wyżej) — App Store Connect.
+
 ## Nazwa aplikacji (decyzja właściciela 05.10.2026)
 
 *Pod ikoną* (`APP_NAME` w `lib/i18n.ts`, jedno źródło prawdy; `locales/<kod>.json` musi się zgadzać — test `tests/i18n-locales.test.ts`):
