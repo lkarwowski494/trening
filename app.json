@@ -46,7 +46,10 @@
           "nb",
           "fi",
           "tr",
-          "el"
+          "el",
+          "id",
+          "ms",
+          "vi"
         ],
         "CFBundleAllowMixedLocalizations": true,
         "UIFileSharingEnabled": true,
@@ -133,7 +136,10 @@
       "nb": "./locales/nb.json",
       "fi": "./locales/fi.json",
       "tr": "./locales/tr.json",
-      "el": "./locales/el.json"
+      "el": "./locales/el.json",
+      "id": "./locales/id.json",
+      "ms": "./locales/ms.json",
+      "vi": "./locales/vi.json"
     },
     "web": {
       "bundler": "metro",

@@ -52,12 +52,14 @@ const SAME_IN: Partial<Record<Lang, string[]>> = {
   it: ['Dieta', 'Serie' /* nagłówek kafelka (08.10.2026) */], sv: ['(kopia)' /* kopia (szw.) */, '{u}/hantel', 'e1RM (Epley, per hantel)', 'per hantel (×2)' /* hantel, per (szw.) */, 'Lista', 'sek.'],
   da: ['sek.'], nb: ['sek.', 'Trening' /* APP_NAME.nb */], fi: ['Lista' /* fiń. lista; „Historia” — klucz usunięty 09.10.2026 (TST-08) */],
   en: ['Folder' /* folder (ang.) — 07.10.2026 wieczór, foldery szablonów */],
+  /* fala 2 (09.10.2026): „folder” — to samo słowo w id i ms (iOS id/ms: „Folder”); „Eksport CSV” — ms „eksport” = eksport */
+  id: ['Folder'], ms: ['Folder', 'Eksport CSV'],
 };
 const sameOk = (l: Lang, k: string) => SAME_ANY.has(k) || (SAME_IN[l] ?? []).includes(k) || (SAME_IN[baseLang(l)] ?? []).includes(k); /* fala 1: wariant (pt-BR, es-419) jak język bazowy */
 
 /* Litery polskie, których dany język nie ma (ąęłńśźż w każdym słowniku sprawdza i18n-locales — tu ć i ó oraz cały komplet w EN). */
 const HAS_C_ACUTE: Lang[] = ['hr']; /* chorwacki: ć; serbski w aplikacji cyrylicą */
-const HAS_O_ACUTE: Lang[] = ['cs', 'sk', 'hu', 'es', 'pt', 'nl' /* niderl. akcent wyróżniający: „vóór”, „óf” (07.10.2026) */];
+const HAS_O_ACUTE: Lang[] = ['cs', 'sk', 'hu', 'es', 'pt', 'nl' /* niderl. akcent wyróżniający: „vóór”, „óf” (07.10.2026) */, 'vi' /* wiet. „ó” = o z tonem sắc (fala 2) */];
 const plLeak = (l: Lang): RegExp => l === 'en' ? /[ąćęłńóśźżĄĆĘŁŃÓŚŹŻ]/ : new RegExp(`[${HAS_C_ACUTE.includes(baseLang(l)) ? '' : 'ćĆ'}${HAS_O_ACUTE.includes(baseLang(l)) ? '' : 'óÓ'}]`); /* wariant — alfabet języka bazowego */
 
 /* Interpunkcja końcowa: ta sama klasa co w kluczu (. ? ! : …). Kropka skrótu to nie koniec zdania: polskie skróty po stronie klucza
@@ -189,7 +191,7 @@ describe('daty i liczby: fmtDate / fmtTime / fmtNum / locale() / decimalComma() 
   afterAll(() => { global.__locales = [{ languageCode: 'pl', languageTag: 'pl-PL' }]; applyLang('pl'); });
   /** Ten sam język, inny region (telefon) — locale() bierze region telefonu (poza pl → pl-PL i sr → cyrylica). */
   const ALT: Partial<Record<Lang, string>> = { en: 'en-GB', pt: 'pt-BR', es: 'es-MX', sr: 'sr-Latn-RS', hr: 'hr-BA', uk: 'uk-UA', hu: 'hu-HU', ro: 'ro-MD', pl: 'pl-GB', cs: 'cs-CZ', sk: 'sk-SK', bg: 'bg-BG', sl: 'sl-SI', lt: 'lt-LT', lv: 'lv-LV', et: 'et-EE',
-    'es-419': 'es-AR', 'pt-BR': 'pt-PT' /* fala 1: ten sam język bazowy, inny region */, de: 'de-AT', fr: 'fr-CA', it: 'it-CH', nl: 'nl-BE', sv: 'sv-FI', da: 'da-DK', nb: 'nb-NO', fi: 'fi-FI', tr: 'tr-TR', el: 'el-CY' /* 07.10.2026 */ };
+    'es-419': 'es-AR', 'pt-BR': 'pt-PT' /* fala 1: ten sam język bazowy, inny region */, de: 'de-AT', fr: 'fr-CA', it: 'it-CH', nl: 'nl-BE', sv: 'sv-FI', da: 'da-DK', nb: 'nb-NO', fi: 'fi-FI', tr: 'tr-TR', el: 'el-CY' /* 07.10.2026 */, id: 'id-ID', ms: 'ms-SG', vi: 'vi-VN' /* fala 2 (09.10.2026) */ };
   const now = new Date(); const D = new Date(now.getFullYear(), 2, 15, 9, 5).getTime(); const D_OLD = new Date(now.getFullYear() - 1, 10, 3, 18, 40).getTime();
   const cases = LANGS.flatMap(l => [[l, 'de-DE'], [l, ALT[l]!]] as [Lang, string][]);
   test.each(cases)('%s przy telefonie %s', (l, device) => {
@@ -203,7 +205,7 @@ describe('daty i liczby: fmtDate / fmtTime / fmtNum / locale() / decimalComma() 
     const s = fmtDate(D); const opts = { weekday: 'short', day: 'numeric', month: 'short' } as const;
     const parts = new Intl.DateTimeFormat(loc, opts).formatToParts(new Date(D)); const month = parts.find(p => p.type === 'month')!.value; const wd = parts.find(p => p.type === 'weekday')!.value;
     expect([l, device, s.includes(month), s.includes(wd), s.includes('15')]).toEqual([l, device, true, true, true]);
-    if (l !== 'en' && l !== 'tr' /* tur. „Mar” = Mart (marzec) — skrót CLDR */) expect([l, device, /\b(Mar|Sun)\b/.test(s)]).toEqual([l, device, false]);
+    if (l !== 'en' && l !== 'tr' /* tur. „Mar” = Mart (marzec) — skrót CLDR */ && l !== 'id' /* indon. „Mar” = Maret (marzec) — skrót CLDR (fala 2) */) expect([l, device, /\b(Mar|Sun)\b/.test(s)]).toEqual([l, device, false]);
     if (['bg', 'sr', 'uk'].includes(l)) expect([l, s]).toEqual([l, expect.stringMatching(/\p{Script=Cyrillic}/u)]);
     expect(s.includes(String(now.getFullYear()))).toBe(false);
     expect(fmtDate(D_OLD).includes(String(now.getFullYear() - 1))).toBe(true);
@@ -220,7 +222,7 @@ describe('daty i liczby: fmtDate / fmtTime / fmtNum / locale() / decimalComma() 
   });
   test('przecinek dziesiętny: wszystkie języki poza angielskim (domyślny region) — jak w polu liczbowym NumInput', () => {
     const comma = LANGS.filter(l => { global.__locales = [{ languageCode: 'de', languageTag: 'de-DE' }]; applyLang(l); return decimalComma(); });
-    expect(comma).toEqual(LANGS.filter(l => l !== 'en' && l !== 'es-419' /* es-419 (CLDR): kropka dziesiętna, jak Meksyk; telefon es-AR → przecinek (tests/i18n-variants) */));
+    expect(comma).toEqual(LANGS.filter(l => l !== 'en' && l !== 'es-419' /* es-419 (CLDR): kropka dziesiętna, jak Meksyk; telefon es-AR → przecinek (tests/i18n-variants) */ && l !== 'ms' /* ms-MY (CLDR): kropka dziesiętna (fala 2) */));
   });
 });
 

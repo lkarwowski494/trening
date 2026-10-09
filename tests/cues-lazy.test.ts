@@ -4,7 +4,7 @@
  * wczytuje się przy pierwszym odczycie zdania w tym języku; rezerwa (en, potem pl) — dopiero gdy zdania brakuje.
  * Rodzaje (docs/20): logika (ładowanie leniwe, rezerwa en/pl, cueDict), regresja (te same teksty co przy ładowaniu od razu).
  */
-const LANG_FILES = ['pl', 'en', 'cs', 'sk', 'hu', 'ro', 'bg', 'hr', 'sl', 'sr', 'lt', 'lv', 'et', 'uk', 'es', 'es-419', 'pt', 'pt-BR', 'de', 'fr', 'it', 'nl', 'sv', 'da', 'nb', 'fi', 'tr', 'el'];
+const LANG_FILES = ['pl', 'en', 'cs', 'sk', 'hu', 'ro', 'bg', 'hr', 'sl', 'sr', 'lt', 'lv', 'et', 'uk', 'es', 'es-419', 'pt', 'pt-BR', 'de', 'fr', 'it', 'nl', 'sv', 'da', 'nb', 'fi', 'tr', 'el', 'id', 'ms', 'vi'];
 /** Fala 1 (09.10.2026, wariant B): wariant regionalny = plik bazowy + plik różnic */
 const VARIANT_BASE: Record<string, string> = { 'es-419': 'es', 'pt-BR': 'pt' };
 

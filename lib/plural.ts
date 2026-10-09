@@ -9,6 +9,8 @@ export const PLURAL_FORMS = {
   lt: ['one', 'few', 'other'], lv: ['zero', 'one', 'other'], et: ['one', 'other'], uk: ['one', 'few', 'many'], es: ['one', 'other'], pt: ['one', 'other'],
   /* 09.10.2026 (fala 1): es-419 jak es; pt-BR jak fr — „one” = 0 i 1 (CLDR plurals.xml: locales="fr pt" one: i = 0..1; pt_PT osobno: i = 1) */ 'es-419': ['one', 'other'], 'pt-BR': ['one', 'other'],
   /* 07.10.2026 (wariant B): dla liczb całkowitych dwie formy; fr: „one” = 0 i 1 */
+  /* 09.10.2026 (fala 2): id, ms, vi — bez odmiany liczby, jedna forma „other” (CLDR plurals.xml: <pluralRules locales="… id … ms … vi …"> tylko other) */
+  id: ['other'], ms: ['other'], vi: ['other'],
   de: ['one', 'other'], fr: ['one', 'other'], it: ['one', 'other'], nl: ['one', 'other'], sv: ['one', 'other'], da: ['one', 'other'], nb: ['one', 'other'], fi: ['one', 'other'], tr: ['one', 'other'], el: ['one', 'other'],
 } as const;
 export type PluralLang = keyof typeof PLURAL_FORMS;
@@ -28,6 +30,7 @@ export function pluralIndex(l: PluralLang, n: number): number {
     case 'sl': return dd === 1 ? 0 : dd === 2 ? 1 : dd === 3 || dd === 4 ? 2 : 3;
     case 'ro': return a === 1 ? 0 : a === 0 || (dd >= 1 && dd <= 19) ? 1 : 2;
     case 'fr': case 'pt-BR': return a === 0 || a === 1 ? 0 : 1;
+    case 'id': case 'ms': case 'vi': return 0; /* jedna forma */
     default: return a === 1 ? 0 : 1; /* en, hu, bg, et, es, es-419, pt, de, it, nl, sv, da, nb, fi, tr, el */
   }
 }

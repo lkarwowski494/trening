@@ -29,4 +29,7 @@ let restLabels: [String: (rest: String, set: String)] = [
   "fi": (rest: "Palautus", set: "Sarja"),
   "tr": (rest: "Dinlenme", set: "Set"),
   "el": (rest: "Διάλειμμα", set: "Σετ"),
+  "id": (rest: "Istirahat", set: "Set"),
+  "ms": (rest: "Rehat", set: "Set"),
+  "vi": (rest: "Nghỉ", set: "Hiệp"),
 ]

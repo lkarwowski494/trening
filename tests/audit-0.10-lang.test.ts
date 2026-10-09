@@ -28,6 +28,8 @@ export const TERMS: Record<NonPl, { rest: RegExp; pause: RegExp }> = {
   de: { rest: /pause/i, pause: /anhalt|angehalten/i }, fr: { rest: /repos/i, pause: /pause/i }, it: { rest: /recuper/i, pause: /paus/i },
   nl: { rest: /rust/i, pause: /pauz/i }, sv: { rest: /vil[ao]/i, pause: /paus/i }, da: { rest: /hvil/i, pause: /pause/i }, nb: { rest: /hvil/i, pause: /pause/i },
   fi: { rest: /palaut/i, pause: /tauk|tauo|keskeyt/i }, tr: { rest: /dinlen/i, pause: /durakla/i }, el: { rest: /δι[άα]λε[ίι]μμ/i, pause: /παύσ|παυσ/i },
+  /* fala 2 (09.10.2026): przerwa — id „istirahat”, ms „rehat”, vi „nghỉ”; pauza — id/ms „jeda” (iOS: „Jeda”), vi „tạm dừng” */
+  id: { rest: /istirahat/i, pause: /jeda/i }, ms: { rest: /rehat/i, pause: /jeda/i }, vi: { rest: /nghỉ/i, pause: /tạm dừng/i },
 };
 const KEYS = Object.keys(EN);
 /** Przerwa między seriami (bez „Import przerwany”, „przerwie pomiar” i „dzień przerwy” — dzień odpoczynku między treningami). */
