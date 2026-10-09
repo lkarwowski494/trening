@@ -361,3 +361,7 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
   merytoryczna do potwierdzenia źródłami** (hierarchia z CLAUDE.md; dotychczasowy research 22: przy masie częstotliwość obojętna przy równej
   objętości — ACSM 2026, Pelland 2026; ograniczeniem 1 dnia jest objętość tygodniowa). Bez potwierdzenia „utrzymania” w źródłach — tylko
   istniejące ostrzeżenia („rzadziej niż 2 dni”, „poniżej 10 serii”). Redukcja przy 1–2 dniach — rozstrzygnięcie w raporcie wdrożenia (opcje).
+- 09.10.2026 (wieczór): właściciel — **generator: najpierw dni, potem cel (B) + czwarty cel „Ogólny”** (ogólnorozwojowy). Wszystkie cele
+  aktywne przy każdej liczbie dni; przy zbyt małej liczbie dni krótka uwaga pod celem (treść wg źródeł — research 29). Odrzucone: A (cele
+  wyszarzone poniżej minimum — blokuje, minima bez źródeł), C (jak dotąd: cel → dni). Parametry celu „Ogólny” wg źródeł (WHO 2020, ACSM)
+  przed wdrożeniem. Termin: 0.11 (wyjątek; „Ok” na rekomendację — do potwierdzenia, jeśli właściciel wolał paczkę przed App Store).
