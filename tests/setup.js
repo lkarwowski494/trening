@@ -6,6 +6,8 @@ global.__alerts = [];             // wywołania Alert.alert / Alert.prompt
 global.__notifications = [];      // zaplanowane powiadomienia
 global.__cancelled = [];          // odwołane powiadomienia (identyfikatory)
 global.__la = [];                 // wywołania Live Activity
+/* TST2-07: ziarno fast-check z PROP_SEED (ustalone w global-setup.js; domyślnie stałe — tests/prop-seed.js) */
+require('fast-check').configureGlobal({ seed: require('./prop-seed').resolvePropSeed(process.env.PROP_SEED).seed });
 
 jest.mock('expo-sqlite', () => ({
   /* global.__dbOpenFail: baza nie otwiera się przy starcie (ekran błędu startu; T-051 — ekran powitalny nie może go zasłonić) */

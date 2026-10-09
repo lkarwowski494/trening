@@ -2,7 +2,8 @@
 # Repozytorium publiczne (ADR-031): standardowe maszyny GitHuba (także macOS) bez opłat i bez limitu minut. Artefakty 1 dzień.
 # Co noc na gałęziach z listy NIGHTLY_REFS (zmienna repozytorium, JSON; domyślnie main i gałąź wydania — audyt TST-01: wcześniej tylko
 # gałąź domyślna, więc kod idący do wydania nie był sprawdzany); ręcznie (Run workflow) na wybranej gałęzi. E2E nocą tylko na gałęzi domyślnej:
-#   1. losowe sekwencje działań z nowym ziarnem i 10× więcej przebiegów niż przy każdym commicie (ziarno w logu — do odtworzenia),
+#   1. losowe sekwencje działań z nowym ziarnem i 10× więcej przebiegów niż przy każdym commicie (ziarno w logu — do odtworzenia);
+#      pełny zestaw z losowym ziarnem testów własności fast-check (PROP_SEED=random; przy każdym wypchnięciu — stałe, TST2-07),
 #   2. testy mutacyjne (Stryker): ile celowo wprowadzonych błędów w logice testy wykrywają — raport jako artefakt,
 #   3. E2E na innym symulatorze (mały ekran) przy ciemnym wyglądzie systemu — wywołanie e2e-ios.yml.
 # Strefy czasowe: osobny tests-tz.yml.
@@ -37,8 +38,8 @@ jobs:
       - run: npm ci
       - name: Losowe sekwencje działań — nowe ziarno, 1000 przebiegów
         run: MATRIX_SEED=random MATRIX_RUNS=1000 npx jest tests/matrix-invariants.test.ts --testTimeout=7200000
-      - name: Pełny zestaw testów (bez zmian ziarna)
-        run: npx jest --maxWorkers=2
+      - name: Pełny zestaw testów — losowe ziarno testów własności (PROP_SEED w logu, TST2-07)
+        run: PROP_SEED=random npx jest --maxWorkers=2
   mutacje:
     runs-on: ubuntu-latest
     strategy:
