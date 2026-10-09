@@ -135,9 +135,10 @@ export default function ActiveWorkout() {
     // istnieje i nie jest już odhaczona; do serii roboczych tylko, gdy nie jest rozgrzewką.
     const rpos = timer.S.on ? findSet(timer.S.setId) : null; const rset = rpos ? w.exercises[rpos.ei]?.sets[rpos.si] : null;
     const runId = rset && !rset.done ? rset.id : null;
-    const running = runId ? 1 : 0; const runningWork = rset && runId && rset.kind !== 'warmup' ? 1 : 0;
+    const running = runId ? 1 : 0;
     const done = w.exercises.reduce((a, e) => a + e.sets.filter(s => s.done).length, 0) + running;
-    const doneWork = w.exercises.reduce((a, e) => a + e.sets.filter(s => s.done && s.kind !== 'warmup').length, 0) + runningWork;
+    /* LIVE2-02 (audyt kontrolny 1): serie robocze jak workingSets (D3 — drop razem z serią przed nim); trwający pomiar liczy się jak odhaczony */
+    const doneWork = w.exercises.reduce((a, e) => a + (exById(e.exerciseId) ? workSetCount(e.sets.map(s => s.id === runId ? { ...s, done: true } : s)) : 0), 0);
     const go = () => finalize();
     // Runda 7: wpisane, nieodhaczone serie liczymy przed wszystkimi oknami — każde o nich ostrzega.
     const typed = (e: WExercise, s: WSet) => !e.skipped /* „Pomiń dziś” — świadomie pominięte */ && !s.done && s.id !== runId && setHasValue(s) && !isPrefill(e, s);
