@@ -308,3 +308,7 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
   Znalezisko UX (ŚREDNIE): przy braku szablonów edytor planu i panel dnia w Kalendarzu nie mają „+ Nowy szablon”. Wybór wg zasady z 20:20:
   **B** — „+ Nowy szablon” w edytorze planu i panelu dnia, po „Zapisz” szablon trafia od razu na ten dzień (odrzucone A: bez przypisania,
   C: sam komunikat). Do paczki przed App Store.
+- 09.10.2026 (ok. 14:55): właściciel — **„Plan z moich szablonów” (B)**, wyjątek od zamrożenia („na granicy nowej funkcji, łata lukę”):
+  wybór własnych szablonów i liczby dni → rozkład na tydzień wg reguł generatora (te same, ze źródłami) → podgląd → zatwierdzenie. Odrzucone:
+  A (tylko widoczna droga do ręcznego edytora), C (A teraz, B po App Store). W tej samej paczce: „Pierwsze kroki” przy pustym szablonie —
+  komunikat „dodaj ćwiczenia do szablonu …” zamiast „Najpierw utwórz szablon”; „+ Nowy szablon” w edytorze planu i panelu dnia (B, wyżej).
