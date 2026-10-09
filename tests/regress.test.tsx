@@ -1473,9 +1473,9 @@ describe('runda 57', () => {
     raw.mornings = [{ date: '2026-09-01', sleepH: 7.5, weight: 80.25 }];
     const m = store.migrate(raw); expect(m.workouts[0].exercises[0].sets[0].durationSec).toBe(60); expect([m.mornings[0].sleepH, m.mornings[0].weight]).toEqual([7.5, 80.25]);
   });
-  test('R57-02 pole pokazuje od razu wartość przyciętą do 1 000 000 i zaokrąglone RPE; „0” na początku „0,5” nie znika', async () => {
+  test('R57-02 pole pokazuje od razu wartość przyciętą do limitu (store.REPS_MAX, audyt 0.10) i zaokrąglone RPE; „0” na początku „0,5” nie znika', async () => {
     await renderApp(); store.getState().settings.showRpe = true; await act(async () => { store.startEmpty(); store.addExerciseToActive(ex('Back Squat')); }); await flushAll(10);
-    const r = () => screen.getAllByLabelText('Powtórzenia')[0]; await type(r(), '2000000'); await flushAll(5); expect(r().props.value).toBe('1000000');
+    const r = () => screen.getAllByLabelText('Powtórzenia')[0]; await type(r(), '2000000'); await flushAll(5); expect(r().props.value).toBe(String(store.REPS_MAX));
     const p = () => screen.getAllByLabelText('RPE')[0]; await type(p(), '8,25'); await flushAll(5); expect(p().props.value).toBe('8,3');
   });
 });

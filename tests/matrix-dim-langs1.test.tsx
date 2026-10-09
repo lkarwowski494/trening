@@ -86,7 +86,8 @@ describe('LANGS × THEMES — główne ekrany w każdym języku i motywie', () =
     expect(screen.queryAllByText(t('+ Dodaj ćwiczenie')).length).toBeGreaterThan(0);
     for (const ex of exs) expect([l, ex.name, screen.queryAllByText(exName(ex)).length > 0]).toEqual([l, ex.name, true]);
     await go(`/history/${w.id}`); await flushAll(10); expect([l, 'historia', screen.queryAllByText(t('Edytuj')).length > 0]).toEqual([l, 'historia', true]);
-    await go(`/template/${tpl.id}`); await flushAll(10); expect([l, 'szablon', screen.queryAllByDisplayValue('Tpl A').length > 0]).toEqual([l, 'szablon', true]);
+    await go(`/template/${tpl.id}`); await flushAll(10); expect([l, 'podgląd szablonu', screen.queryAllByText('Tpl A').length > 0]).toEqual([l, 'podgląd szablonu', true]);
+    await go(`/template/${tpl.id}?edit=1`); await flushAll(10); expect([l, 'szablon', screen.queryAllByDisplayValue('Tpl A').length > 0]).toEqual([l, 'szablon', true]); /* edycja na żądanie (08.10.2026): edytor po „Edytuj” */
     for (const ex of exs) { await go(`/exercise/${ex.id}`); await flushAll(10); expect([l, ex.name, screen.queryAllByText(t('Co logujesz w serii')).length > 0]).toEqual([l, ex.name, true]); }
     await go('/more/progress'); await flushAll(10); await go('/history'); await flushAll(10);
     const all = texts();

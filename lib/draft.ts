@@ -22,7 +22,7 @@ const real = (kind: DraftKind, id: string): Obj | undefined => kind === 'exercis
 export function beginObjDraft<T extends Obj>(kind: DraftKind, id: string): T | null {
   const cur = drafts.get(k(kind, id)); if (cur) return cur.obj as T;
   const src = real(kind, id); if (!src) return null;
-  const obj = markDraft(JSON.parse(JSON.stringify(src)) as Obj); drafts.set(k(kind, id), { kind, id, obj, orig: snap(obj) }); save(obj); return obj as T;
+  const obj = markDraft(JSON.parse(JSON.stringify(src)) as Obj); drafts.set(k(kind, id), { kind, id, obj, orig: snap(obj) }); return obj as T; /* bez save/emit: woła to także render (useState) — ekran i tak się przerysowuje (setEditing) */
 }
 export function objDraft<T extends Obj>(kind: DraftKind, id: string): T | undefined { return drafts.get(k(kind, id))?.obj as T | undefined; }
 /** Czy szkic różni się od stanu z chwili „Edytuj”. */

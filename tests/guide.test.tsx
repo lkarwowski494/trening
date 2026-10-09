@@ -76,6 +76,13 @@ test('macierz: każdy tekst przewodnika (i punkt „Co nowego”) jest w treści
     'Więcej → Postępy: podsumowanie tygodnia lub miesiąca z poprzednim okresem obok.',
     'Wpisz ciężar i powtórzenia, odhacz serię ✓ — przerwa odlicza się sama.',
     'Wykresy ćwiczeń i rekordy; rekord w trakcie treningu widać przy serii.',
+    /* audyt 0.10 fala 2 (UI): temat „Zmiany w trakcie treningu” i „Edycja sesji i trening wstecz” */
+    '„⇄ zamień” przy ćwiczeniu zamienia je na inne tylko w tym treningu — szablon zostaje.',
+    '„Pomiń dziś” pomija resztę serii ćwiczenia w tym treningu.',
+    'Superset ustawisz w szablonie przyciskiem „Połącz z następnym w superset” — przerwa liczy się po ostatnim ćwiczeniu grupy.',
+    'Przesunięcie serii albo nazwy ćwiczenia w lewo usuwa je (z potwierdzeniem).',
+    'W Kalendarzu stuknij sesję, potem „Edytuj” — zmiany zapisuje „Zapisz”, „Anuluj” je odrzuca.',
+    '„+ Dodaj trening wstecz” zapisze trening, którego nie zapisałeś na bieżąco; z dnia w Kalendarzu — „Zapisz trening z tego dnia”.',
   ];
   const all = new Set([...GUIDE.flatMap(g => [g.title(), ...g.steps()]), ...WHATS_NEW.flatMap(e => e.items())]);
   expect(texts.filter(x => !all.has(x))).toEqual([]);

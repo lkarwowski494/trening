@@ -63,7 +63,7 @@ export default function SwapScreen() {
         {ex && impls.length ? <><SectionTitle>{t('Ten sam ruch, inny przyrząd')}</SectionTitle>
           {impls.map(i => <Item key={i} title={`${exName(ex)} — ${implLabel(i)}`} sub={e.impl ? t('zamiast: {name}', { name: implLabel(e.impl) }) : undefined} icon="⇄" onPress={() => pickImpl(i)} accessibilityLabel={t('Inny przyrząd: {impl}', { impl: implLabel(i) })} />)}</> : null}
         <SectionTitle>{t('Inne')}</SectionTitle>
-        <Item title={t('Inne')} /* UI-15 (audyt 0.10): jeden znak rozwijania (▸/▾ jak wszędzie) */ sub={t('lista ćwiczeń z filtrami, które możesz zdjąć')} onPress={() => { setOpen(x => !x); setLim(SWAP_PAGE); /* audyt pełnej bazy (LOW 5) */ }} icon={open ? '▾' : '▸'} accessibilityLabel={open ? t('Zwiń inne ćwiczenia') : t('Pokaż inne ćwiczenia')} />
+        <Item title={open ? t('Zwiń inne ćwiczenia') : t('Pokaż inne ćwiczenia')} /* UI-15 (audyt 0.10): jeden znak rozwijania (▸/▾ jak wszędzie); nagłówek „Inne” nad wierszem — bez powtórzenia */ sub={t('lista ćwiczeń z filtrami, które możesz zdjąć')} onPress={() => { setOpen(x => !x); setLim(SWAP_PAGE); /* audyt pełnej bazy (LOW 5) */ }} icon={open ? '▾' : '▸'} accessibilityLabel={open ? t('Zwiń inne ćwiczenia') : t('Pokaż inne ćwiczenia')} />
         {open ? <View>
           <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6, marginVertical: 8 }}>
             {ex ? <Chip label={grpOn ? `${t(ex.group)} ✕` : `+ ${t(ex.group)}`} on={grpOn} onPress={() => { setGrpOn(x => !x); setLim(SWAP_PAGE); }} a11yLabel={grpOn ? t('Filtr partii: {g}. Tapnij, by zdjąć.', { g: t(ex.group) }) : t('Filtr partii wyłączony: {g}. Tapnij, by włączyć.', { g: t(ex.group) })} /> : null}

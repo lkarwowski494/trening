@@ -64,7 +64,7 @@ describe('ekran', () => {
   });
   test('ekran Trening: same zarchiwizowane szablony — jak brak szablonów („+ Nowy szablon”)', async () => {
     await boot(() => { mk('E', 'Siła', true); }, '/');
-    expect(screen.getByText('Nie masz jeszcze szablonów — utwórz pierwszy albo zacznij pusty trening.')).toBeTruthy(); expect(screen.getByText('+ Nowy szablon')).toBeTruthy();
+    expect(screen.getByLabelText('1. Utwórz pierwszy szablon albo wygeneruj szablony i plan. do zrobienia')).toBeTruthy(); expect(screen.getByText('+ Nowy szablon')).toBeTruthy(); /* UX-12 A: „Pierwsze kroki” zamiast komunikatu o braku szablonów */
   });
   test('English', async () => {
     await fresh(undefined, 'en'); mk('A'); mk('E', 'Strength', true); await act(async () => { await store.flush(); });

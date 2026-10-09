@@ -53,7 +53,7 @@ const KINDS = {
   /* plan tygodnia (audyt 0.10 A1/A3/B1/M3: akcje planu w alfabecie — minione dni nie zmieniają statusu, plan = ostatni odcinek historii) */
   planDay: 3, planDayOv: 2, planShift: 2, planMove: 1, planNew: 1, planActivate: 1,
   /* ustawienia i dane */
-  unit: 2, lang: 1, reload: 1, roundtrip: 1, migrate: 1, stats: 1, resetAll: 1,
+  unit: 2, lang: 1, planHint: 1 /* UX-16 A (audyt 0.10): „Ukryj” zachętę do planu */, reload: 1, roundtrip: 1, migrate: 1, stats: 1, resetAll: 1,
 } as const;
 type K = keyof typeof KINDS;
 type Op = { o: number; a: number; b: number; v: number | '' };
@@ -83,7 +83,7 @@ const seqArb = fc.array(fc.oneof({ weight: 3, arbitrary: actArb.map(x => [x]) },
 
 /** Kategorie: jawne edycje szablonów, zmiany historii; w pozostałych działaniach trening w toku ma zostać co do bajtu (ACTIVE_FROZEN). */
 const TPL_EDIT = new Set<K>(['tplNew', 'tplRename', 'tplDup', 'tplDel', 'tplAddItem', 'tplRmItem', 'tplMove', 'tplLink', 'tplUnlink', 'tplAddRow', 'tplRmRow', 'tplKind', 'tplRow', 'tplBand', 'tplLoc', 'rememberAlt', 'rememberRest', 'gen', 'tplNote']);
-const ACTIVE_FROZEN = new Set<K>([...[...TPL_EDIT].filter(k => k !== 'rememberRest'), 'delW', 'past', 'edit', 'unit', 'lang', 'newEx', 'metric', 'bandAssist', 'delEx', 'restoreEx', 'addLoc', 'setMain', 'dupLoc', 'renameLoc', 'setBandColor', 'reload', 'roundtrip', 'migrate', 'stats', 'planDay', 'planDayOv', 'planShift', 'planMove', 'planNew', 'planActivate']);
+const ACTIVE_FROZEN = new Set<K>([...[...TPL_EDIT].filter(k => k !== 'rememberRest'), 'delW', 'past', 'edit', 'unit', 'lang', 'newEx', 'metric', 'bandAssist', 'delEx', 'restoreEx', 'addLoc', 'setMain', 'dupLoc', 'renameLoc', 'setBandColor', 'planHint', 'reload', 'roundtrip', 'migrate', 'stats', 'planDay', 'planDayOv', 'planShift', 'planMove', 'planNew', 'planActivate']);
 /** Audyt 0.10 A1/A7: działania, po których żaden miniony dzień nie może zmienić statusu (poza dniem, którego działanie dotyczy wprost). */
 const PAST_FROZEN = new Set<K>(['planDay', 'planDayOv', 'planShift', 'planMove', 'planNew', 'planActivate', 'tplDel', 'tplNew', 'tplDup', 'tplRename']);
 
@@ -102,6 +102,8 @@ const hit = (k: string) => { ran[k] = (ran[k] ?? 0) + 1; };
 function fail(where: string, msg: string, data?: unknown): never { throw new Error(`${where}: ${msg}${data !== undefined ? '\n' + J(data) : ''}`); }
 const ok = (c: unknown, where: string, msg: string, data?: unknown) => { if (!c) fail(where, msg, data); };
 const working = (s: WSet) => s.done && s.kind !== 'warmup';
+/** Serie robocze bloku wg audytu 0.10 D3 (fix-stats): drop set liczy się razem z serią roboczą przed nim (własna implementacja modelu). */
+const myWork = (sets: readonly WSet[]) => sets.filter(working).filter((z, j) => !(z.kind === 'drop' && j > 0)).length;
 const repsOf = (s: WSet) => Math.max(0, Math.floor(Number(s.reps) || 0));
 const maxOf = (xs: number[]) => xs.reduce((a, b) => Math.max(a, b), 0);
 
@@ -335,6 +337,8 @@ async function step(x: Act, m: Model, where: string) {
       if (x.t === 'unit') s.unit = s.unit === 'lb' ? 'kg' : 'lb'; else s.language = (['pl', 'en', 'auto'] as const)[x.b % 3];
       store.applyPrefs(); store.save(); const after = strip(S()); before.settings.unit = after.settings.unit; before.settings.language = after.settings.language;
       expect({ where, s: after }).toEqual({ where, s: before }); /* jednostka/język nie zmieniają zapisanych kg ani niczego innego */ hit(x.t); break; }
+    case 'planHint': { const before = strip(st); store.setPlanHintHidden(x.b % 2 === 0); const after = strip(S()); if (x.b % 2 === 0) before.planHintHidden = true; else delete before.planHintHidden;
+      expect({ where, s: after }).toEqual({ where, s: before }); /* zmienia tylko flagę — nic innego */ hit(x.t); break; }
     case 'reload': await reloadCheck(where); hit('reload'); break;
     case 'roundtrip': await roundtripCheck(where); hit('roundtrip'); break;
     case 'migrate': migrateCheck(where); break;
@@ -460,11 +464,11 @@ function statsCheck(where: string) {
   const wk = stats.weeklyTotals(8); const end = stats.thisMonday(1);
   const exp = wk.map(b => ({ weekStart: b.weekStart, volume: 0, sets: 0, workouts: 0 }));
   for (const w of fin) { if (w.startedAt < exp[0].weekStart || w.startedAt >= end) continue; let i = exp.length - 1; while (i > 0 && w.startedAt < exp[i].weekStart) i--;
-    exp[i].workouts++; for (const e of w.exercises) { const ex = store.exById(e.exerciseId); if (!ex) continue; exp[i].sets += e.sets.filter(working).length; exp[i].volume += e.sets.reduce((q, z) => q + myVol(ex, z, e.impl), 0); } }
+    exp[i].workouts++; for (const e of w.exercises) { const ex = store.exById(e.exerciseId); if (!ex) continue; exp[i].sets += myWork(e.sets); /* audyt 0.10 D3 (fix-stats): drop set liczy się razem z serią przed nim */ exp[i].volume += e.sets.reduce((q, z) => q + myVol(ex, z, e.impl), 0); } }
   wk.forEach((b, i) => { ok(b.workouts === exp[i].workouts && b.sets === exp[i].sets, where, 'weeklyTotals: treningi/serie', { lib: b, mine: exp[i] });
     if (st.settings.unit === 'kg') ok(Math.abs(b.volume - exp[i].volume) <= 1e-6 * Math.max(1, exp[i].volume), where, 'weeklyTotals: objętość', { lib: b, mine: exp[i] }); });
   const mon = stats.thisMonday(); const d = new Date(mon); const nx = new Date(d.getFullYear(), d.getMonth(), d.getDate() + 7).getTime(); const mus: Record<string, number> = {};
-  for (const w of fin) { if (w.startedAt < mon || w.startedAt >= nx) continue; for (const e of w.exercises) { const ex = store.exById(e.exerciseId); if (!ex) continue; const n = e.sets.filter(working).length; if (!n) continue;
+  for (const w of fin) { if (w.startedAt < mon || w.startedAt >= nx) continue; for (const e of w.exercises) { const ex = store.exById(e.exerciseId); if (!ex) continue; const n = myWork(e.sets); if (!n) continue; /* D3 */
     ex.muscles.forEach(q => { mus[q] = (mus[q] ?? 0) + n; }); ex.secondaryMuscles.forEach(q => { mus[q] = (mus[q] ?? 0) + n * 0.5; }); } }
   expect({ where, m: stats.weeklySetsByMuscle(mon) }).toEqual({ where, m: mus });
 }

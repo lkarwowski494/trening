@@ -67,7 +67,7 @@ describe('Kalendarz', () => {
   test('„Przesuń plan o 1 dzień”: łańcuch do pierwszego wolnego dnia, opis przesunięć w liście', async () => {
     const t = await boot(ids => { plan.setWeekDay(3, ids[0]); plan.setWeekDay(4, ids[1]); });
     await tap(screen.getByTestId('cal-2026-10-08')); await flushAll(5); await openList();
-    expect(screen.getAllByText(new RegExp(`^${t[0].name} → .*9\\.10.*, ${t[1].name} → .*10\\.10`)).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(new RegExp(`^${t[0].name} → .*9 paź.*, ${t[1].name} → .*10 paź`)).length).toBeGreaterThan(0);
     await applyTitle('Przesuń plan o 1 dzień');
     expect([plan.plannedOn('2026-10-08'), plan.plannedOn('2026-10-09'), plan.plannedOn('2026-10-10')]).toEqual([null, t[0].id, t[1].id]);
   });
@@ -75,7 +75,7 @@ describe('Kalendarz', () => {
     const t = await boot(ids => { plan.setWeekDay(3, ids[0]); plan.setWeekDay(4, ids[1]); });
     await tap(screen.getByTestId('cal-2026-10-08')); await flushAll(5); await openList();
     expect(screen.queryByLabelText(/^Zastosuj: Przenieś na pt\./)).toBeNull(); /* piątek zajęty — nie ma „przenieś”, jest „zamień” */
-    expect(screen.getByLabelText(new RegExp(`^Zastosuj: Zamień z pt\\.,? 9\\.10.* \\(${t[1].name}\\)$`))).toBeTruthy();
+    expect(screen.getByLabelText(new RegExp(`^Zastosuj: Zamień z pt\\.,? 9 paź.* \\(${t[1].name}\\)$`))).toBeTruthy();
     await applyTitle(/Przenieś na sob\./);
     expect([plan.plannedOn('2026-10-08'), plan.plannedOn('2026-10-10')]).toEqual([null, t[0].id]);
   });
@@ -93,7 +93,7 @@ describe('Kalendarz', () => {
     await boot(ids => { plan.setWeekDay(3, ids[0]); plan.setWeekDay(5, ids[1]); }); /* czw. Upper A, sob. Upper B */
     await tap(screen.getByTestId('cal-2026-10-08')); await flushAll(5); await openList();
     const sh = suggestionTexts('2026-10-08', plan.suggest('2026-10-08').find(x => x.kind === 'shift')!);
-    expect(sh.details).toContainEqual(expect.stringMatching(/^Uwaga: .*9\.10 i .*10\.10 dzień po dniu — te same główne partie\.$/));
+    expect(sh.details).toContainEqual(expect.stringMatching(/^Uwaga: .*9 paź i .*10 paź dzień po dniu — te same główne partie\.$/));
     for (const d of sh.details) expect(screen.getAllByText(d).length).toBeGreaterThan(0);
   });
   test('lista „Przesuń albo pomiń”: najwyżej 4 od razu, „polecane”, opisy i ostrzeżenia, kolejność i warunkowa stopka (MER-16); „Zastosuj” zmienia plan i zamyka listę', async () => {
@@ -115,12 +115,12 @@ describe('Kalendarz', () => {
   test('opisy pozycji listy: przeniesienie, zamiana, przesunięcie (z treningami na nowych dniach), wolne, utrata sesji, zmiany poza oknem powrotu', async () => {
     const t = await boot(ids => { plan.setWeekDay(3, ids[0]); });
     const base = { changes: 2, newBackToBack: [], dropped: 0, returns: true, placed: [], ov: {} };
-    expect(suggestionTexts('2026-10-08', { ...base, kind: 'move', to: '2026-10-10' }).title).toMatch(/^Przenieś na sob\.,? 10\.10/);
-    expect(suggestionTexts('2026-10-12', { ...base, kind: 'swap', to: '2026-10-15' }).title).toMatch(new RegExp(`^Zamień z czw\\.,? 15\\.10.* \\(${t[0].name}\\)$`));
+    expect(suggestionTexts('2026-10-08', { ...base, kind: 'move', to: '2026-10-10' }).title).toMatch(/^Przenieś na sob\.,? 10 paź/);
+    expect(suggestionTexts('2026-10-12', { ...base, kind: 'swap', to: '2026-10-15' }).title).toMatch(new RegExp(`^Zamień z czw\\.,? 15 paź.* \\(${t[0].name}\\)$`));
     const sh = suggestionTexts('2026-10-08', { ...base, kind: 'shift', placed: [{ id: t[0].id, to: '2026-10-09' }], newBackToBack: [{ a: '2026-10-09', b: '2026-10-10' }] });
-    expect(sh.title).toBe('Przesuń plan o 1 dzień'); expect(sh.details[0]).toMatch(new RegExp(`^${t[0].name} → pt\\.,? 9\\.10`));
+    expect(sh.title).toBe('Przesuń plan o 1 dzień'); expect(sh.details[0]).toMatch(new RegExp(`^${t[0].name} → pt\\.,? 9 paź`));
     expect(suggestionTexts('2026-10-05', { ...base, kind: 'shift' }).title).toBe('Przesuń plan od dziś'); /* miniony dzień (A4) */
-    const warn = 'Uwaga: {a} i {b} dzień po dniu — te same główne partie.'; expect(sh.details[2]).toMatch(new RegExp('^' + warn.split('{a}')[0] + 'pt\\.,? 9\\.10 i sob\\.,? 10\\.10' + warn.split('{b}')[1].replace('.', '\\.') + '$'));
+    const warn = 'Uwaga: {a} i {b} dzień po dniu — te same główne partie.'; expect(sh.details[2]).toMatch(new RegExp('^' + warn.split('{a}')[0] + 'pt\\.,? 9 paź i sob\\.,? 10 paź' + warn.split('{b}')[1].replace('.', '\\.') + '$'));
     const sk = suggestionTexts('2026-10-08', { ...base, kind: 'skip', dropped: 1, returns: false, changes: 1 });
     expect(sk).toEqual({ title: 'Wolne w tym dniu', details: ['Zmienione dni: 1', 'Wypada treningów: 1', 'Zmiany sięgają dalej niż 10 dni.'] });
   });

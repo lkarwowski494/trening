@@ -45,12 +45,12 @@ function Row({ label, value }: { label: string; value: string }) {
 /** Ostatnie sesje z tym ćwiczeniem (najnowsze pierwsze). */
 const HISTORY_ROWS = 5;
 function Preview({ e, onEdit, onOpen, onProgress }: { e: Exercise; onEdit: () => void; onOpen: (id: string) => void; onProgress: () => void }) {
-  const translated = lang() !== 'pl' && exName(e) !== e.name; const m = e.metric ?? 'weight_reps'; const def = getState().settings.defaultRest;
+  const m = e.metric ?? 'weight_reps'; const def = getState().settings.defaultRest;
   const hist = finishedWorkouts().filter(w => w.exercises.some(x => x.exerciseId === e.id)).slice(0, HISTORY_ROWS);
   const mus = (xs: readonly string[] | undefined) => (xs ?? []).length ? (xs ?? []).map(x => t(x)).join(', ') : '—';
   return (
     <Screen><ScrollView contentContainerStyle={{ paddingVertical: 10, paddingBottom: 120 }}>
-      <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 10 }}><View style={{ flex: 1 }}><H1>{exName(e)}</H1>{translated ? <Muted style={{ fontSize: 12 }}>{e.name}</Muted> : null}</View><Btn title={t('Edytuj')} small accessibilityLabel={t('Edytuj ćwiczenie')} onPress={onEdit} /></View>
+      <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 10 }}><View style={{ flex: 1 }}><H1>{exName(e)}</H1></View>{/* podgląd: tylko nazwa w języku aplikacji (nazwa katalogowa — w edycji, przy „Wyświetlane jako”) */}<Btn title={t('Edytuj')} small accessibilityLabel={t('Edytuj ćwiczenie')} onPress={onEdit} /></View>
       <Row label={t('Partia')} value={t(e.group)} />
       <Row label={t('Sprzęt')} value={t(e.equipment)} />
       <Row label={t('Co logujesz w serii')} value={t(METRIC_LABEL[m])} />
@@ -59,7 +59,7 @@ function Preview({ e, onEdit, onOpen, onProgress }: { e: Exercise; onEdit: () =>
       <Row label={t('Przerwa po rozgrzewce')} value={e.restWarmupSec != null ? fmtSec(e.restWarmupSec) : t('jak robocza')} />
       <Row label={t('Partie główne (1 seria)')} value={mus(e.muscles)} />
       <Row label={t('Partie pomocnicze (0,5 serii)')} value={mus(e.secondaryMuscles)} />
-      {!musclesSourced(e) ? <Muted style={{ fontSize: 12, marginTop: -4, marginBottom: 10 }}>{t('Przypisanie partii mięśniowych — uproszczenie, nie wynik badań. Od niego zależą serie na partię, mapa mięśni, generator i propozycje w kalendarzu.')}</Muted> : null /* E4 (audyt 0.10, MER-10) */}
+      {!musclesSourced(e) ? <Muted style={{ fontSize: 12, marginTop: -4, marginBottom: 10 }}>{t('Przypisanie partii mięśniowych — uproszczenie, nie wynik badań. Od niego zależą serie na partię, mapa mięśni, generator i propozycje w kalendarzu.')}</Muted> : null /* E4 (audyt 0.10, MER-10). TODO(scalenie z fix-catalog): dopisek wg seed.muscleConfidence(e) („jedno źródło” albo „uproszczenie” zamiast ogólnego „uproszczenie”) i linijka o mięśniu spoza mapy z seed.unmappedMuscleOf(e) — funkcji nie ma w bazie fix-ui (a5e7ca9), podpina koordynator przy scaleniu */}
       {muscleLoadOf(e).length ? <Field label={t('Obciążenie partii (z katalogu)')}><Muted style={{ fontSize: 13 }} accessibilityLabel={muscleLoadOf(e).map(([r, w]) => `${t(REGION_LABEL[r])}: ${w === 1 ? t('główna') : w === 0.5 ? t('pomocnicza') : t('stabilizacja')}`).join(', ')}>{muscleLoadOf(e).map(([r, w]) => `${t(REGION_LABEL[r])} ${w === 1 ? '●●●' : w === 0.5 ? '●●' : '●'}`).join(' · ')}</Muted><Muted style={{ fontSize: 11, marginTop: 2 }}>{t('●●● główna · ●● pomocnicza · ● stabilizacja')}</Muted></Field> : null}
       <Row label={t('Asysta gumą')} value={e.bandAssistable ? t('tak — przy serii wybierasz gumę') : t('nie')} />
       {!e.bandAssistable && usesBand(e) ? <Muted style={{ fontSize: 12, marginTop: -6, marginBottom: 10 }}>{t('Guma jako opór: przy serii wybierasz gumę (poziom 1–7), rekordy liczą serie z gumą.')}</Muted> : null}
@@ -100,7 +100,7 @@ function EditForm({ e }: { e: Exercise }) {
       <Field label={t('Tempo (opcjonalnie, np. 3-1-1)')}><Input maxLength={20} value={e.tempo} onChangeText={v => { e.tempo = v; save(e); }} /></Field>
       <Field label={t('Notatki techniczne')}><Input maxLength={2000} value={e.notes} onChangeText={v => { e.notes = v; save(e); }} multiline style={{ minHeight: 80 }} /></Field>
       {exerciseInHistory(e.id) ? <Muted style={{ fontSize: 12, marginBottom: 10 }}>{t('Uwaga: zmiana sprzętu, trybu liczenia lub metryki przelicza też dawne treningi (objętość, rekordy, wykresy).')}</Muted> : null}
-      {p ? <Muted style={{ fontSize: 13, marginBottom: 10 }}>{t('Ostatnio {d}:', { d: fmtDate(p.workout.startedAt) })} {p.sets.map(x => setSummary(e, x)).join(', ')}</Muted> : null}
+      {p ? <Muted style={{ fontSize: 13, marginBottom: 10 }}>{t('Ostatnio {d}:', { d: fmtDate(p.workout.startedAt) }) /* TODO(scalenie z fix-data, J3): fmtDate(wallTs(p.workout)) — wallTs nie ma w bazie fix-ui */} {p.sets.map(x => setSummary(e, x)).join(', ')}</Muted> : null}
       {/* E1 (audyt 0.10): e1RM w ćwiczeniach z masą ciała — tylko z masą ciała z Ustawień i udziałem ze źródeł (stats.BW_SHARE) */}
       <Muted style={{ fontSize: 13, marginBottom: 16 }}>{bwNote()}</Muted>
     </ScrollView></Screen>

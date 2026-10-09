@@ -310,9 +310,10 @@ describe('/exercise/[id]', () => {
 describe('/ (ekran główny)', () => {
   test('wskazówka pierwszego startu: bez szablonów i z szablonami', async () => {
     await renderApp(); await flushAll(10);
-    expect(screen.getByText('Pierwszy raz? Utwórz swój szablon („+ Nowy szablon” niżej) albo zacznij pusty trening. Wpisuj ciężar i powtórzenia, odhaczaj serie ✓ — przerwa odlicza się sama. Na koniec „Zakończ trening i zapisz”.')).toBeTruthy();
+    /* UX-12 A (audyt 0.10): „Pierwsze kroki” z przyciskami przy kroku zamiast dawnej podpowiedzi „Pierwszy raz?” */
+    expect(screen.getByLabelText('1. Utwórz pierwszy szablon albo wygeneruj szablony i plan. do zrobienia')).toBeTruthy(); expect(screen.queryByText(/^Pierwszy raz\?/)).toBeNull();
     await renderApp({ saved: await prepared(() => { withDemoTemplates(); }) }); await flushAll(10);
-    expect(screen.getByText('Pierwszy raz? Wybierz szablon niżej, wpisz ciężar i powtórzenia, odhaczaj serie ✓ — przerwa odlicza się sama. Na koniec „Zakończ trening i zapisz”. Szablony i ćwiczenia zmienisz w zakładkach obok.')).toBeTruthy();
+    expect(screen.getByLabelText(/^1\. .* zrobione$/)).toBeTruthy(); expect(screen.getByText('Pierwszy trening: „Start” przy szablonie niżej albo „Pusty trening”.')).toBeTruthy();
   });
 
   test('błąd zapisu: baner „Tapnij, by spróbować ponownie…”; tapnięcie zapisuje ponownie i baner znika', async () => {
@@ -396,7 +397,7 @@ describe('ActiveWorkout (/ z treningiem w toku)', () => {
 
   test('opis pod treningiem; brak odhaczonych serii (z wpisaną, nieodhaczoną) → „Nic do zapisania…”, „Odrzuć trening”', async () => {
     await startWith(['Back Squat']);
-    expect(screen.getByText('Trening w toku zapisuje się na bieżąco. Tapnij numer serii, by oznaczyć rozgrzewkę (W), drop set (D), serię do upadku (F) albo dodać notatkę.')).toBeTruthy();
+    expect(screen.getByText('Trening w toku zapisuje się na bieżąco. Tapnij numer serii, by oznaczyć rozgrzewkę (W), drop set (D), serię do upadku (F) albo dodać notatkę.', { exact: false })).toBeTruthy(); /* + opis gestu (UI-07) */
     await type(screen.getAllByLabelText('Powtórzenia')[0], '5'); expect(blk(0).sets[0].edited).toBe(true);
     await tap(finishBtn());
     expect(lastAlert()).toMatchObject({ title: 'Brak odhaczonych serii', msg: 'Nic do zapisania. Odrzucić ten trening?\nNieodhaczone serie z wpisanymi wynikami: 1 — nie zostaną zapisane. Seria zapisuje się po odhaczeniu ✓.' });
@@ -597,9 +598,9 @@ describe('/swap', () => {
     await startIn('home', ['Bent Over Row (sztanga)']);
     await tap(screen.getByLabelText('Zamień ćwiczenie: Bent Over Row (sztanga)')); await flushAll(20);
     expect(screen.getByText('Brak podobnych ćwiczeń w tym miejscu — rozwiń „Inne”.')).toBeTruthy();
-    expect(screen.getByText('lista ćwiczeń z filtrami, które możesz zdjąć')).toBeTruthy(); expect(screen.getByText('Inne')).toBeTruthy();
+    expect(screen.getByText('lista ćwiczeń z filtrami, które możesz zdjąć')).toBeTruthy(); expect(screen.getByText('Inne')).toBeTruthy(); expect(screen.getByText('Pokaż inne ćwiczenia')).toBeTruthy(); /* UI-15: nagłówek „Inne”, wiersz ze znakiem ▸/▾ */
     await tap(screen.getByLabelText('Pokaż inne ćwiczenia')); await flushAll(5);
-    expect(screen.getByText('Inne')).toBeTruthy(); expect(screen.getByLabelText('Zwiń inne ćwiczenia')).toBeTruthy();
+    expect(screen.getByText('Inne')).toBeTruthy(); expect(screen.getByText('Zwiń inne ćwiczenia')).toBeTruthy(); expect(screen.getByLabelText('Zwiń inne ćwiczenia')).toBeTruthy();
     await tap(screen.getByLabelText(/^Filtr partii: /)); await tap(screen.getByLabelText(/^Filtr miejsca: /)); await flushAll(5);
     const more = screen.getByText(/^Pokaż więcej \(\d+\)$/); const n = Number(/\((\d+)\)/.exec(more.props.children)![1]);
     expect(screen.getByLabelText(`Pokaż więcej ćwiczeń: zostało ${n}`)).toBeTruthy(); expect(more.props.children).toBe(`Pokaż więcej (${n})`);
@@ -672,7 +673,7 @@ describe('/history/add, /history/edit/[id] (lib/edit)', () => {
   test('nowy trening wstecz: notatka (pole „np. samopoczucie, ból, sprzęt”), „Anuluj” → „Ten trening nie zostanie zapisany.”', async () => {
     await renderApp(); await go('/history/add'); await flushAll(10);
     await tap(screen.getByText('Pusty trening')); await flushAll(20);
-    expect(screen.getByText('Tapnij numer serii, by zmienić typ (W, D, F) albo dodać notatkę. Serie bez wyniku nie zostaną zapisane.')).toBeTruthy();
+    expect(screen.getByText('Tapnij numer serii, by zmienić typ (W, D, F) albo dodać notatkę. Serie bez wyniku nie zostaną zapisane.', { exact: false })).toBeTruthy(); /* + opis gestu (UI-07) */
     await type(screen.getByPlaceholderText('np. samopoczucie, ból, sprzęt'), 'zmęczony');
     expect(screen.getByDisplayValue('zmęczony')).toBeTruthy();
     await tap(screen.getByLabelText('Anuluj'));
@@ -692,7 +693,7 @@ describe('/history/add, /history/edit/[id] (lib/edit)', () => {
     await act(async () => { pressAlert('Zapisać zmiany?', 'Zapisz'); }); await flushAll(50);
     expect(store.getState().workouts.find(x => x.id === w1.id)!.note).toBe('dobrze');
     await go(`/history/edit/${w2.id}`); await flushAll(20);
-    await swipeDelete('Usuń serię 1 — Push Up'); await act(async () => { pressAlert('Usunąć serię?', 'Usuń'); }); await flushAll(5); await tap(screen.getByText('Zapisz'));
+    await swipeDelete('Usuń ćwiczenie: Push Up'); await act(async () => { pressAlert('Usunąć z treningu?', 'Usuń'); }); await flushAll(5); await tap(screen.getByText('Zapisz')); /* G4: ostatniej serii nie usuwa się — całe ćwiczenie tak */
     expect(lastAlert()).toMatchObject({ title: 'Pusty trening', msg: 'Nie zostałaby żadna seria z wynikiem. Usunąć tę sesję z historii?' });
     await act(async () => { pressAlert('Pusty trening', 'Usuń sesję'); }); await flushAll(50);
     expect(store.getState().workouts.some(x => x.id === w2.id)).toBe(false);

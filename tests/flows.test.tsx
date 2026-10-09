@@ -15,9 +15,10 @@ const finishConfirmed = async () => { await tap(screen.getAllByText('Zakończ tr
 test('B1 pierwszy start: podpowiedź, ZERO szablonów (decyzja 03.10.2026) i droga do pierwszego szablonu', async () => {
   await renderApp();
   expect(store.getState().templates).toEqual([]);
-  expect(screen.getByText(/^Pierwszy raz\? Utwórz swój szablon/)).toBeTruthy(); /* nie odsyła do „szablonu niżej”, którego nie ma */
-  expect(screen.queryByText(/Wybierz szablon niżej/)).toBeNull();
-  expect(screen.getByText('Nie masz jeszcze szablonów — utwórz pierwszy albo zacznij pusty trening.')).toBeTruthy();
+  /* UX-12 A (audyt 0.10): „Pierwsze kroki” z przyciskami przy kroku — bez powtórzonej podpowiedzi „Pierwszy raz?” i komunikatu o braku szablonów */
+  expect(screen.getByLabelText('1. Utwórz pierwszy szablon albo wygeneruj szablony i plan. do zrobienia')).toBeTruthy();
+  expect(screen.queryByText(/Wybierz szablon niżej|Pierwszy raz\?/)).toBeNull();
+  expect(screen.queryByText('Nie masz jeszcze szablonów — utwórz pierwszy albo zacznij pusty trening.')).toBeNull();
   for (const n of ['Upper A', 'Upper B', 'Legs — siłownia', 'Legs — dom']) expect(screen.queryByText(n)).toBeNull();
   expect(screen.queryByLabelText(/^Start: /)).toBeNull(); expect(screen.getByText('Pusty trening')).toBeTruthy();
   await tap(screen.getByText('+ Nowy szablon')); await flushAll(10); /* „+ Nowy szablon” → edytor nowego szablonu */
@@ -26,14 +27,13 @@ test('B1 pierwszy start: podpowiedź, ZERO szablonów (decyzja 03.10.2026) i dro
 
 test('B1 (EN) first launch without templates: hint, empty state and „+ New template” in English', async () => {
   await renderApp({ locale: 'en' });
-  expect(screen.getByText(/^First time\? Create your own template/)).toBeTruthy();
-  expect(screen.getByText('No templates yet — create your first one or start an empty workout.')).toBeTruthy(); expect(screen.getByText('+ New template')).toBeTruthy();
+  expect(screen.getByText('Create your first template or generate templates and a plan.')).toBeTruthy(); expect(screen.getByText('+ New template')).toBeTruthy();
   expect(screen.queryByText(/Nie masz jeszcze szablonów|Pierwszy raz/)).toBeNull();
 });
 
 test('B1b szablony ustawione przez użytkownika (dane testowe) — wszystkie na ekranie głównym ze „Start”', async () => {
   await renderApp({ saved: seedWithDemo() });
-  expect(screen.getByText(/^Pierwszy raz\? Wybierz szablon niżej/)).toBeTruthy();
+  expect(screen.getByLabelText(/^1\. .* zrobione$/)).toBeTruthy(); expect(screen.getByText('Pierwszy trening: „Start” przy szablonie niżej albo „Pusty trening”.')).toBeTruthy();
   expect(screen.queryByText('Nie masz jeszcze szablonów — utwórz pierwszy albo zacznij pusty trening.')).toBeNull();
   for (const n of ['Upper A', 'Upper B', 'Legs — siłownia', 'Legs — dom']) { expect(screen.getByText(n)).toBeTruthy(); expect(screen.getByLabelText('Start: ' + n)).toBeTruthy(); }
 });

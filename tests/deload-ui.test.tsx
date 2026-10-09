@@ -32,10 +32,10 @@ describe('A: Kalendarz', () => {
   test('4 tygodnie z rzędu: podpowiedź (praktyka, nie wynik badań) → „Zaplanuj deload od …” → informacja, tło wiersza, VoiceOver; „Zdejmij oznaczenie deload”', async () => {
     await boot(streak4);
     expect(screen.getByText('Tygodnie treningu z rzędu bez deloadu: 4. Trenerzy zwykle robią deload co 4–6 tygodni — to praktyka, nie wynik badań.')).toBeTruthy();
-    await tap(screen.getByText(/^Zaplanuj deload od pon\.,? 12\.10/)); await flushAll(5);
+    await tap(screen.getByText(/^Zaplanuj deload od pon\.,? 12 paź/)); /* H3 (audyt 0.10): miesiąc słownie */ await flushAll(5);
     expect(S().deloadWeeks).toEqual(['2026-10-12']);
     /* audyt 0.10 (MER-04, wariant A): „o około 1/3–1/2 mniej serii (np. 2 z 3)” zamiast „około połowy” (3 serie → 2) */
-    expect(screen.getByText(/^Od pon\.,? 12\.10: tydzień deload\. Przy starcie treningu zaproponuję o około 1\/3–1\/2 mniej serii \(np\. 2 z 3; ćwiczenia z 1 serią bez zmian\), ciężary bez zmian\.$/)).toBeTruthy();
+    expect(screen.getByText(/^Od pon\.,? 12 paź: tydzień deload\. Przy starcie treningu zaproponuję o około 1\/3–1\/2 mniej serii \(np\. 2 z 3; ćwiczenia z 1 serią bez zmian\), ciężary bez zmian\.$/)).toBeTruthy();
     const nx = 'Od {date}: tydzień deload. Przy starcie treningu zaproponuję {less}, ciężary bez zmian.'; expect(screen.getByText(new RegExp('^' + nx.split('{date}')[0]))).toBeTruthy(); /* tekst z t() — macierz */
     expect(screen.getByTestId('cal-deload-2026-10-12')).toBeTruthy(); expect(screen.queryByTestId('cal-deload-2026-10-05')).toBeNull();
     expect(screen.getByText('Wiersz w ramce — tydzień deload.')).toBeTruthy(); /* audyt 0.10 A11-05: ramka (kontrast ≥ 3:1), nie tylko tło */

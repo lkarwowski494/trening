@@ -130,7 +130,7 @@ function EditBlock({ d, e, ei, labels }: { d: Draft; e: WExercise; ei: number; l
           </View>}</SwipeRow>
         );
       })}
-      {!e.sets.length ? <Muted style={{ fontSize: 13, marginBottom: 6 }}>{t('Bez serii — ćwiczenie nie zostanie zapisane.')}</Muted> : null}
+      {/* G4 (audyt 0.10): blok zawsze ma serię (historia bez pustych bloków — migrate; nowe ćwiczenie z jedną serią; ostatniej nie usuwa się) — dawny dopisek „Bez serii” zbędny */}
       <View style={s.actions}>
         <Btn title={t('+ seria')} small accessibilityHint={nm} onPress={() => draftAddSet(d.key, ei)} /><Btn title={t('+ rozgrzewka')} small kind="ghost" accessibilityHint={nm} onPress={() => draftAddSet(d.key, ei, 'warmup')} /><Btn title={t('+ drop set')} small kind="ghost" accessibilityHint={nm} onPress={() => draftAddSet(d.key, ei, 'drop')} />
         <Btn nav title={t('⇄ zamień')} small kind="ghost" accessibilityLabel={t('Zamień ćwiczenie: {name}', { name: nm })} onPress={() => router.push(`/swap?target=edit:${d.key}:${e.id}`)} /* E2 D6 (H1) */ />

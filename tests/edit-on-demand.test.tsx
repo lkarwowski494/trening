@@ -149,3 +149,35 @@ describe('ekran szablonu: podgląd „jak trening” → Edytuj → Anuluj / Zap
     const n = S().templates.length; await tap(screen.getByText('Duplikuj')); await flushAll(10); expect(S().templates.length).toBe(n + 1);
   });
 });
+
+describe('teksty edycji na żądanie, pierwszych kroków i edycji sesji (macierz: każdy komunikat pokazany)', () => {
+  const headers = () => screen.UNSAFE_root.findAll((n: { type: unknown }) => n.type === 'RNSScreenStackHeaderConfig').map((n: { props: { title?: string } }) => n.props.title);
+  test('ćwiczenie: „Ostatnie treningi” i „Jeszcze nie było w treningu.”; tytuł „Edycja ćwiczenia”; nowe ćwiczenie ze zmianami — „Nowe ćwiczenie nie zostanie zapisane.”', async () => {
+    await boot(); const e = ex('Back Squat'); await go(`/exercise/${e.id}`); await flushAll(10);
+    expect(screen.getByRole('header', { name: 'Ostatnie treningi' })).toBeTruthy(); expect(screen.getByText('Jeszcze nie było w treningu.')).toBeTruthy();
+    await startEdit(); expect(headers()).toContain('Edycja ćwiczenia');
+    await boot(undefined, '/exercises'); await tap(screen.getByText('+ Nowe')); await flushAll(10); await type(screen.getByLabelText('Nazwa'), 'Moje');
+    await tap(screen.getByLabelText('Anuluj edycję ćwiczenia')); expect(lastAlert()).toMatchObject({ title: 'Odrzucić zmiany?', msg: 'Nowe ćwiczenie nie zostanie zapisane.' });
+  });
+  test('szablon: tytuł „Edycja szablonu”; nowy ze zmianami — „Nowy szablon nie zostanie zapisany.”; pusta nazwa folderu — komunikat; trening z tego szablonu — „Wróć do treningu”', async () => {
+    let id = ''; await boot(() => { id = mkTpl().id; }); await go(`/template/${id}`); await flushAll(10); await startEdit(); expect(headers()).toContain('Edycja szablonu');
+    await tap(screen.getByText('+ Nowy folder')); await act(async () => { pressAlert('Nazwa folderu', 'Zapisz', '   '); }); expect(lastAlert()).toMatchObject({ title: 'Pusta nazwa folderu', msg: 'Folder nie został utworzony.' });
+    expect(tplDraft(id).folder).toBeUndefined();
+    await boot(undefined, '/templates'); await tap(screen.getByText('+ Nowy')); await flushAll(10); await type(screen.getByLabelText('Nazwa'), 'Nogi');
+    await tap(screen.getByLabelText('Anuluj edycję szablonu')); expect(lastAlert()).toMatchObject({ title: 'Odrzucić zmiany?', msg: 'Nowy szablon nie zostanie zapisany.' });
+    await boot(() => { const t = mkTpl(); id = t.id; store.startFromTemplate(t); }); await go(`/template/${id}`); await flushAll(10); expect(screen.getByText('Wróć do treningu')).toBeTruthy();
+  });
+  test('store.markDraft: obiekt-szkic — save() tylko odświeża (bez zapisu do bazy)', async () => {
+    await fresh(); const x = store.markDraft(JSON.parse(JSON.stringify(mkTpl('Szkic')))); expect(store.isDraftObj(x)).toBe(true); x.name = 'Zmiana';
+    await act(async () => { await store.flush(); }); const before = global.__kv.get('state'); store.save(x); await act(async () => { await store.flush(); }); expect(global.__kv.get('state')).toBe(before);
+  });
+  test('pierwsze kroki: kroki 1 i 4 z przewodnikiem „Trening i serie”', async () => {
+    await boot(); expect(screen.getByText('Utwórz pierwszy szablon albo wygeneruj szablony i plan.')).toBeTruthy(); expect(screen.getByText('Pierwszy trening: „Start” przy szablonie niżej albo „Pusty trening”.')).toBeTruthy();
+    await tap(screen.getByLabelText('Przewodnik: Trening i serie')); await flushAll(10); expect(headers()).toContain('Przewodnik');
+  });
+  test('edycja sesji (G4): draftRemoveSet nie usuwa ostatniej serii — blok nigdy nie zostaje bez serii', async () => {
+    await fresh(); const edit = require('@/lib/edit'); const w = addWorkout(Date.now() - 86400e3, [['Back Squat', [{ weight: 100, reps: 5 }, { weight: 100, reps: 5 }]]]); const d = edit.beginEdit(w.id)!;
+    const ids = d.w.exercises[0].sets.map((x: { id: string }) => x.id); edit.draftRemoveSet(d.key, 0, ids[0]); edit.draftRemoveSet(d.key, 0, ids[1]);
+    expect(d.w.exercises[0].sets.map((x: { id: string }) => x.id)).toEqual([ids[1]]); edit.discardDraft(d.key);
+  });
+});

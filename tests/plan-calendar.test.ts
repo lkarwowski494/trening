@@ -81,7 +81,7 @@ describe('pomocnicze', () => {
   test('opis przesunięcia w liście „Przesuń albo pomiń” (audyt 0.10 UX-13 A — zamiast okna po przesunięciu): treningi na nowych dniach i trening, który wypada', () => {
     const { suggestionTexts } = require('@/components/DayPanel');
     week(A, B, C, A, B, C, A); const sh = plan.suggest('2026-10-08').find(x => x.kind === 'shift')!; const d = suggestionTexts('2026-10-08', sh).details as string[];
-    const nameA = S().templates.find(x => x.id === A)!.name.replace(/[()]/g, '\\$&'); expect(d[0]).toMatch(new RegExp(`^${nameA} → pt\\.,? 9\\.10`)); expect(d).toContain('Wypada treningów: 1');
+    const nameA = S().templates.find(x => x.id === A)!.name.replace(/[()]/g, '\\$&'); expect(d[0]).toMatch(new RegExp(`^${nameA} → pt\\.,? 9 paź`)); /* H3 (audyt 0.10): data z miesiącem słownie (store.fmtDayKey) */ expect(d).toContain('Wypada treningów: 1');
   });
 });
 
