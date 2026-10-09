@@ -181,3 +181,35 @@ describe('MER2-04: wskazania źródeł wskazówek', () => {
     expect(fs.readFileSync(path.join(root, 'docs/research/27-wskazowki-zrodla.md'), 'utf8')).toMatch(/High Row \(#336\)\]\([^)]*\) \(analogia — inne ćwiczenie; /);
   });
 });
+
+/*
+ * A11N-02 (wariant A — rekomendacja; docs/16: fr „vous”, tr „siz”): wskazówki techniki fr były w całości na „tu” (130/265 zdań), tr w 2. os. lp.
+ * („çek”, „tut”, „indir”), a ok. 30 tekstów UI fr z fali 1–2 na „tu”. Teraz jeden rejestr w języku: UI i wskazówki.
+ */
+describe('A11N-02: rejestr grzecznościowy fr („vous”) i tr („siz”)', () => {
+  const FR_TU = /(^|[^\p{L}’-])(tu|ton|ta|tes|toi|t’)(?![\p{L}])|-toi(?![\p{L}])/iu;
+  /** Tryb rozkazujący 2. os. lp. na początku zdania lub członu — czasowniki z dawnych tekstów (wieloznaczne jak „Place”, „Pose”, „Crée”, „Ouvre” — pominięte). */
+  const FR_IMP2 = /(^|[.:;—(«]\s*|,\s+|\bpuis\s+|\bet\s+)(Lève|Descends|Saisis|Serre|Tire|Pousse|Garde|Tiens|Monte|Fléchis|Allonge|Assieds|Reviens|Redescends|Remonte|Tends|Bouge|Respire|Utilise|Règle|Prends|Fais|Choisis|Appuie|Mène|Attache|Contracte|Soulève|Termine|Penche|Ramène|Rapproche|Repousse|Enchaîne|Relève|Abaisse|Réduis|Laisse|Touche|Vérifie|Définis|Balaye|Coche|Ajoute|Augmente|Réceptionne|Atterris|Saute|Ouvre l’app)(?![\p{L}])/iu;
+  /** tr: dawne formy 2. os. lp. (rozkaźnik bez -in/-ın, zaimki dzierżawcze 2. os. lp.) — przykłady z raportu i z dawnych zdań. */
+  const TR_SEN = /(^|[\s(])(çek|tut|indir|kavra|kaldır|dön|in|it|koy|kalk|uzan|bük|getir|otur|düzelt|yasla|daya|bas|eğil|başla|sık|seç|yükselt|bekle|yüksel|asıl|çömel|uzat|yap|sıçra|kullan|ayarla|al|aç|gir|dur|değiştir|bağla|yerleştir|döndür|göğsünü|kollarını|kalçanı|sırtını|başının|ellerini|dizlerini|vücudunu|gövdeni|arkandaki|sana)(?=[\s,.;:—)]|$)/u;
+  test('wskazówki fr: żadne zdanie bez formy „tu” (zaimki i rozkaźnik 2. os. lp.); co najmniej 120 zdań w formie „vous”', () => {
+    const fr = cueDict('fr');
+    expect(Object.entries(fr).filter(([, v]) => FR_TU.test(v) || FR_IMP2.test(v)).map(([k, v]) => `${k}: ${v}`)).toEqual([]);
+    expect(Object.values(fr).filter(v => /\b\p{L}+ez\b|\bvous\b|\bvotre\b|\bvos\b/u.test(v)).length).toBeGreaterThanOrEqual(120);
+  });
+  test('wskazówki tr: bez rozkaźnika i zaimków 2. os. lp.; forma „siz” (-in/-ın/-un/-ün, -ınız) w co najmniej 150 zdaniach', () => {
+    const tr = cueDict('tr');
+    expect(Object.entries(tr).filter(([, v]) => TR_SEN.test(v)).map(([k, v]) => `${k}: ${v}`)).toEqual([]);
+    expect(Object.values(tr).filter(v => /\p{L}+(in|ın|un|ün|iniz|ınız|unuz|ünüz)\b|(yin|yın|yun|yün)\b/u.test(v)).length).toBeGreaterThanOrEqual(150);
+  });
+  test('UI fr: żaden tekst słownika w formie „tu” (np. „Séance de ton programme… Ouvre l’app”, „tu verras”, „Touche un programme”)', () => {
+    const fr = LOCALES.fr!;
+    expect(Object.entries(fr).filter(([, v]) => FR_TU.test(v) || FR_IMP2.test(v)).map(([k, v]) => `${k.slice(0, 40)}: ${v}`)).toEqual([]);
+    expect(fr['Trening z Twojego planu tygodnia. Otwórz aplikację, by zacząć.']).toBe('Séance de votre programme de la semaine. Ouvrez l’app pour commencer.');
+  });
+  test('bramka działa: dawne zdania („Serre les omoplates…”, „Barı … kavra”, „tu verras”) są wykrywane', () => {
+    expect(FR_IMP2.test('Serre les omoplates vers l’arrière.')).toBe(true); expect(FR_TU.test('— tu verras ici la séance')).toBe(true);
+    expect(FR_TU.test('Allonge-toi sur le dos.')).toBe(true); expect(FR_TU.test('Vous pouvez aussi démarrer.')).toBe(false);
+    expect(TR_SEN.test('Barı omuz genişliğinden biraz daha geniş tut.')).toBe(true); expect(TR_SEN.test('Halteri omuz genişliğinden biraz daha geniş tutun.')).toBe(false);
+  });
+});
