@@ -389,3 +389,8 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
   (po 0.11); arabski — w wersji jeszcze następnej.** Kolejność fal wewnątrz wersji jak wyżej.
 - 09.10.2026 (wieczór): właściciel — **język trudniejszy niż zakładano** (np. nie jest językiem systemu iOS, brak opisu w App Store Connect,
   krój bez znaków wymagający większej pracy) → odłożony do wydania z arabskim (z zapisanym powodem).
+- 09.10.2026 (wieczór): właściciel — **Android: na pewno dopiero po App Store; najpierw ocena sensu na podstawie wyników z App Store.**
+  Szacunek (09.10): ok. 5–8 dni pracy agenta (build/CI, Health Connect, zamiennik Live Activity, zachowanie systemu, testy, audyt);
+  czekanie: zamknięty test Google Play (wg wiedzy z 09.10: 12 testerów przez 14 dni — do sprawdzenia), przeglądy Google; koszt konta
+  Google Play ok. 25 USD jednorazowo (wyjątek od zasady 0 zł — decyzja właściciela przy starcie prac). Przy wdrażaniu subskrypcji
+  preferowana biblioteka obsługująca iOS i Androida (żeby nie przerabiać później) — bez zmiany zakresu iOS.
