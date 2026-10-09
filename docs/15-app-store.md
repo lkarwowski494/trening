@@ -135,7 +135,7 @@ Rozmowa 05.10.2026, rano: „Chciałbym móc opublikować to w Apple Store” i 
    - **grafiki:** tylko własne (figury SVG z danych, ikony własne) — sprawdzić, że w paczce nie ma cudzych obrazów, zdjęć ani filmów;
    - **licencje zależności:** ekran licencji open source (SEC-08) aktualny (`check:licenses`).
    - **decyzje właściciela 09.10.2026 (ok. 06:45):** (1) research konkurencji (`docs/research/kb/` i cytaty w plikach źródeł) → **na Dysk**
-     (B), w repo tylko wnioski z linkami — zasada w CLAUDE.md; czysta historia gita (D) — do decyzji o terminie (docs/18); (2) nazwy innych
+     (B), w repo tylko wnioski z linkami — zasada w CLAUDE.md; czysta historia gita (D) — TAK, po wydaniu 1 na TestFlight, przed App Store; zakres i kolejność w docs/18 (09.10, ok. 07:00); (2) nazwy innych
      aplikacji w komentarzach kodu → neutralne opisy (B); (3) marka ViShape SmartGym w presetach miejsc → nazwa ogólna sprzętu (A), model
      użytkownik wpisuje sam; (4) w nazwie, podtytule, słowach kluczowych i zrzutach App Store żadnych nazw innych aplikacji ani cudzych
      znaków towarowych (wytyczne Apple 2.3.7 i 5.2.1).

@@ -269,3 +269,10 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
   w CLAUDE.md „Treści cudze i nazwy innych firm”); prośba o czystą historię gita (D) — agent przedstawił koszty, termin do potwierdzenia;
   (2) B — nazwy innych aplikacji w komentarzach kodu zastąpione neutralnymi opisami; (3) A — ViShape SmartGym w presetach → nazwa
   ogólna; (4) zakaz nazw innych aplikacji w metadanych App Store. Szczegóły i kolejność: docs/15 punkt 8.
+- 09.10.2026 (ok. 07:00): właściciel — **czysta historia gita: TAK, termin A** — po wydaniu 1 na TestFlight, przed upublicznieniem w App
+  Store (zmiana decyzji z 06.10 dla N1). Zakres: research konkurencji (`docs/research/kb/`, długie cytaty w plikach źródeł) i dane osobowe
+  z N1 (docs/25). Kolejność: (1) research na Dysk („Trening App / 05 Research konkurencji”), w repo wnioski z linkami; (2) pełna kopia
+  zapasowa repozytorium (bundle) poza GitHubem; (3) git-filter-repo na wszystkich gałęziach i tagach; (4) przepisanie odwołań do commitów
+  w docs wg mapy stary → nowy; (5) sprawdzenie: żaden commit nie zawiera usuniętych plików ani danych osobowych, verify zielone; (6) push
+  `--force` gałęzi i tagów, gdy żaden agent nie pracuje; (7) prośba do wsparcia GitHuba o usunięcie starych commitów z pamięci podręcznej.
+  Ograniczenie (świadome): kopie i forki zrobione wcześniej przez innych zostają poza naszą kontrolą.
