@@ -4,7 +4,9 @@
  */
 import * as store from '@/lib/store';
 import * as timer from '@/lib/timer';
-import { fresh } from './helpers';
+import { fresh, ex, addWorkout } from './helpers';
+import { sessionsFor } from '@/lib/stats';
+import { periodSummary } from '@/lib/period';
 import { addLocation, duplicateLocation } from '@/lib/locations';
 import { parseBackup } from '@/lib/backup';
 
@@ -47,5 +49,23 @@ describe('LOG-16 (= LOG2-04): nazwa miejsca po dopisku „(kopia)” albo numeru
     expect(c1.name.endsWith(' (kopia)')).toBe(true); expect(c2.name.endsWith(' (kopia) 2')).toBe(true); expect(b.name.endsWith(' 2')).toBe(true); expect(b3.name.endsWith(' 3')).toBe(true);
     expect(new Set([a, c1, c2, b, b3].map(l => l.name)).size).toBe(5);
     const s = addLocation('gym', 'Dom'); const s2 = addLocation('gym', 'Dom'); expect([s.name, s2.name]).toEqual(['Dom', 'Dom 2']); expect(duplicateLocation(s.id)!.name).toBe('Dom (kopia)');
+  });
+});
+
+describe('X2-02: Postępy i rekordy okresu pokazują dzień na zegarze strefy startu (wallTs, J3) — jak Historia i Kalendarz', () => {
+  afterEach(() => { jest.useRealTimers(); });
+  test('X2-02: trening nd. 4.10 20:00 zapisany w strefie +10 h (pon. 5.10 06:00) → sesja Postępów i rekord tygodnia 5–11.10 z datą 5.10', async () => {
+    jest.useFakeTimers({ now: new Date(2026, 9, 9, 12, 0).getTime() }); await fresh();
+    const at = new Date(2026, 9, 4, 20, 0).getTime();
+    addWorkout(new Date(2026, 9, 1, 18).getTime(), [['Back Squat', [{ weight: 100, reps: 5 }]]]);
+    const w = addWorkout(at, [['Back Squat', [{ weight: 120, reps: 5 }]]]); w.tzOffsetMin = store.tzOffsetAt(at) + 600; store.save();
+    const day = (ts: number) => store.localISODate(new Date(ts));
+    expect(store.workoutDay(w)).toBe('2026-10-05');
+    const s = sessionsFor(ex('Back Squat')).find(x => x.workout.id === w.id)!;
+    expect(day(s.shown)).toBe('2026-10-05'); expect(s.date).toBe(at); /* porównania „before” dalej po prawdziwej chwili */
+    const ps = periodSummary('week', 0, new Date(2026, 9, 9, 12, 0)); const pr = ps.prs.find(p => p.workoutId === w.id)!;
+    expect(ps.workouts).toBe(1); expect(pr).toBeTruthy(); expect(day(pr.at)).toBe('2026-10-05'); expect(pr.at).toBeGreaterThanOrEqual(ps.start);
+    /* dane bez strefy (sprzed J3): jak dotąd */
+    delete w.tzOffsetMin; store.save(); expect(sessionsFor(ex('Back Squat')).find(x => x.workout.id === w.id)!.shown).toBe(at);
   });
 });

@@ -4,7 +4,7 @@
  */
 import * as store from '@/lib/store';
 import * as timer from '@/lib/timer';
-import { fresh, ex, saved, pressAlert } from './helpers';
+import { fresh, ex, saved, pressAlert, addWorkout } from './helpers';
 import { renderApp, tap, flushAll, screen, act } from './app';
 
 jest.setTimeout(120000);
@@ -50,5 +50,15 @@ describe('LIVE2-04: pytanie i przypomnienie o porzuconym treningu podają godzin
     await act(async () => { pressAlert('Trening wciąż trwa', 'Kontynuuj'); }); await flushAll(10); /* przypomnienie 2 h od „Kontynuuj” */
     const n: any = (global.__notifications as any[]).filter(x => x.identifier === 'stale-reminder').pop();
     expect(n.content.body).toBe(timer.staleBody('work', last, false, paused, tz)); expect(n.content.body).toContain(wall(last));
+  });
+});
+
+describe('X2-02: Postępy ćwiczenia — data sesji na zegarze strefy startu (jak Historia)', () => {
+  test('X2-02: trening nd. 4.10 20:00 w strefie +10 h → lista sesji w Postępach: „pon., 5 paź”, nie „niedz., 4 paź”', async () => {
+    await fresh(); const at = new Date(2026, 9, 4, 20, 0).getTime();
+    const w = addWorkout(at, [['Back Squat', [{ weight: 120, reps: 5 }]]]); w.tzOffsetMin = store.tzOffsetAt(at) + 600; store.save();
+    await boot(`/more/progress?ex=${ex('Back Squat').id}`);
+    const wall = store.fmtDate(store.wallTs(w)); expect(wall).not.toBe(store.fmtDate(at));
+    expect(screen.getAllByText(wall).length).toBeGreaterThan(0); expect(screen.queryAllByText(store.fmtDate(at))).toHaveLength(0);
   });
 });
