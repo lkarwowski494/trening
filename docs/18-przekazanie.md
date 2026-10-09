@@ -284,5 +284,7 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
 - 09.10.2026 (ok. 12:30): właściciel — **zamrożenie funkcji do wydania w App Store**: „warto się zatrzymać z funkcjonalnościami i poprzez
   kolejne audyty dojść do wersji, która będzie mogła być wydana w App Store do subskrypcji”. Od wydania 1 (0.10.0) żadnych nowych funkcji
   poza subskrypcją (docs/15: ceny, okres próbny, limit 4 treningów, kody ofertowe) i wymogami App Store; pomysły → backlog bez priorytetu.
-  Droga do App Store — wybór wariantu otwarty (A rekomendowany: jedno wydanie kandydujące z subskrypcją + pełny audyt; B: najpierw 0.10.1
-  porządkowe z audytem zmian, potem wydanie z subskrypcją + pełny audyt).
+  Droga do App Store — **decyzja właściciela 09.10.2026 (ok. 12:40)**: po wydaniu 1 jedna paczka — cały backlog znalezisk z audytów
+  (ŚREDNIE i NISKIE z docs/25, obie wersje: 0.10.1 i „przed App Store”) + funkcje wymagane do subskrypcji (docs/15) + wymogi App Store;
+  dopiero potem pełny głęboki audyt, naprawy blokerów, TestFlight, App Store. Odrzucone: A (backlog tylko liczby/dane), B (osobne 0.10.1 z
+  audytem zmian). Backlog bez priorytetu (docs/21, pomysły na funkcje) — poza paczką (zamrożenie funkcji).
