@@ -141,8 +141,23 @@ const LIB_BASE: [string, Group, Equipment, boolean?][] = [
 
 /** Katalog 04.10.2026: regiony mięśni do obciążenia partii (dane w catalog.json; przyszła regeneracja partii). */
 export const REGION_LABEL: Record<MuscleRegion, string> = { chest: 'klatka', front_delt: 'barki — przód', side_delt: 'barki — bok', rear_delt: 'barki — tył', lats: 'najszersze grzbietu', upper_back: 'góra pleców', lower_back: 'prostowniki grzbietu', biceps: 'biceps', triceps: 'triceps', forearms: 'przedramiona', abs: 'brzuch', obliques: 'skośne brzucha', glutes: 'pośladki', quads: 'czworogłowe', hamstrings: 'dwugłowe', adductors: 'przywodziciele', abductors: 'odwodziciele', calves: 'łydki', neck: 'szyja' };
-/** Obciążenie partii ćwiczenia z biblioteki (1 główny, 0,5 pomocniczy, 0,25 stabilizacja), od największego; ćwiczenia własne i przemianowane — brak. */
-export const muscleLoadOf = (e: Pick<Exercise, 'lib' | 'libKey'>): [MuscleRegion, number][] => { const k = catalogKey(e); const m = k ? own(MUSCLE_LOAD as Record<string, Partial<Record<MuscleRegion, number>>>, k) : undefined; /* E2: po kluczu katalogu */ return m ? (Object.entries(m) as [MuscleRegion, number][]).sort((a, b) => b[1] - a[1]) : []; };
+/** Partia aplikacji (pola muscles / secondaryMuscles), do której należy region katalogu. Odwodziciele → pośladki (pośladkowy średni i mały to główne
+ * odwodziciele biodra — uproszczenie: mapa partii nie ma osobnych odwodzicieli); szyja — poza mapą partii (null). */
+export const REGION_MUSCLE: Readonly<Record<MuscleRegion, Muscle | null>> = { chest: 'klatka', front_delt: 'barki', side_delt: 'barki', rear_delt: 'barki', lats: 'plecy', upper_back: 'plecy', lower_back: 'plecy', biceps: 'biceps', triceps: 'triceps', forearms: 'przedramiona', abs: 'core', obliques: 'core', glutes: 'pośladki', quads: 'czworogłowe', hamstrings: 'dwugłowe', adductors: 'przywodziciele', abductors: 'pośladki', calves: 'łydki', neck: null };
+/** Obciążenie partii ćwiczenia z biblioteki (1 główny, 0,5 pomocniczy, 0,25 stabilizacja), od największego; ćwiczenia własne i przemianowane — brak.
+ * Audyt kontrolny 1 (UX2-06, wariant A — jedno źródło prawdy): poziomy ●●● / ●● wynikają z pól ćwiczenia (partie główne / pomocnicze po researchu
+ * L1–L6 albo zmianie użytkownika). Region partii spoza pól traci ●●/●●● (zostaje tylko ● stabilizacja z katalogu); ●●● partii pomocniczej → ●●;
+ * partia z pól bez poziomu dostaje go na swoim najmocniejszym regionie z katalogu. Żadnego regionu nie dopisujemy. */
+export const muscleLoadOf = (e: Pick<Exercise, 'lib' | 'libKey'> & Partial<Pick<Exercise, 'muscles' | 'secondaryMuscles'>>): [MuscleRegion, number][] => {
+  const k = catalogKey(e); const m = k ? own(MUSCLE_LOAD as Record<string, Partial<Record<MuscleRegion, number>>>, k) : undefined; /* E2: po kluczu katalogu */ if (!m) return [];
+  const P = new Set<Muscle>(e.muscles ?? []), S = new Set<Muscle>(e.secondaryMuscles ?? []);
+  const rows = (Object.entries(m) as [MuscleRegion, number][]).map(([r, w]): [MuscleRegion, number] | null => {
+    const M = REGION_MUSCLE[r]; if (!M || P.has(M)) return [r, w]; if (S.has(M)) return [r, Math.min(w, 0.5)]; return w >= 0.5 ? null : [r, w];
+  }).filter((x): x is [MuscleRegion, number] => !!x);
+  const lift = (M: Muscle, to: number) => { const rs = rows.filter(([r]) => REGION_MUSCLE[r] === M); if (!rs.length || rs.some(([, w]) => w === to)) return; rs.sort((a, b) => b[1] - a[1])[0][1] = to; };
+  for (const M of P) lift(M, 1); for (const M of S) if (!P.has(M)) lift(M, 0.5);
+  return rows.sort((a, b) => b[1] - a[1]);
+};
 /** Katalog 04.10.2026 (decyzja właściciela: rozbudowa własnego katalogu): nowe ćwiczenia biblioteki — JEDNO źródło: docs/research/equipment/catalog.json
  * (pola group/equipment/metric/loadMode/muscles), generowane do lib/catalog.generated.ts. */
 const EXTRA = new Map(CATALOG_LIB_EXTRA.map(r => [r[0], r]));
