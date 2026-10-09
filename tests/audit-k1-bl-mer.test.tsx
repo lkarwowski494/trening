@@ -231,3 +231,32 @@ describe('A11N-03: fr — spacja nierozdzielająca przed ; : ! ? » i po «', ()
   });
   test('bramka działa', () => { expect(BAD.test('À quatre pattes : mains')).toBe(true); expect(BAD.test('À quatre pattes\u00a0: mains')).toBe(false); expect(BAD.test('« Afficher\u00a0»')).toBe(true); });
 });
+
+/*
+ * A11N-05: spójność terminów we wskazówkach. el: drążek w podciąganiu to „μονόζυγο” (rodzaj nijaki: „το μονόζυγο”), nie „τη μπάρα”; tr: sztanga
+ * „halter” jak w UI (było „bar”). Nagłówek sekcji „Ustawienie” (przygotowanie przed ruchem) brzmiał jak podpis klatki figury „Pozycja wyjściowa”
+ * w fr, tr, lt, hu (i es, it, pt, hr, sk, sl, sr, uk) — dwa różne pojęcia w jednej sekcji.
+ */
+describe('A11N-05: terminy we wskazówkach i nagłówek „Ustawienie”', () => {
+  test('w każdym języku nagłówek „Ustawienie” ≠ podpis klatki „Pozycja wyjściowa” / „Pozycja końcowa”; podpowiedź „Technika” zaczyna się od nagłówka', () => {
+    const bad: string[] = [];
+    for (const l of LANGS) { applyLang(l); const u = t('Ustawienie'); if (u === t('Pozycja wyjściowa') || u === t('Pozycja końcowa')) bad.push(`${l}: ${u}`); if (!t('Ustawienie, ruch, wskazówki i częste błędy.').startsWith(u)) bad.push(`${l} (podpowiedź): ${u}`); }
+    expect(bad).toEqual([]);
+  });
+  test('el: podciąganie (pu.*, cu.*) — drążek „το μονόζυγο” (termin UI „drążek”), bez „τη μπάρα” i „τη μονόζυγο”; w całych wskazówkach el „την μπάρα”', () => {
+    const el = cueDict('el'); const bar = LOCALES.el!['drążek'];
+    expect(bar).toBe('μονόζυγο');
+    for (const id of ['pu.grip', 'pu.pull', 'cu.grip']) expect([id, el[id].includes('το μονόζυγο')]).toEqual([id, true]);
+    expect(Object.entries(el).filter(([, v]) => /τη μπάρα|τη μονόζυγο/.test(v)).map(([k]) => k)).toEqual([]);
+  });
+  test('tr: zdania o sztandze (ćwiczenia ze sztangą) używają terminu UI „halter”; drążek do podciągania — „barfiks barı”', () => {
+    const tr = cueDict('tr'); const ui = LOCALES.tr!['sztanga'];
+    expect(ui).toBe('halter');
+    const bbKeys = Object.keys(CUE_DATA.exercises).filter(k => /\(sztanga\)$|^Back Squat$|^Front Squat$|^Sumo Deadlift$|^Hip Thrust$|^Good Morning$|^Push Press$/.test(k));
+    const ids = new Set(bbKeys.flatMap(k => Object.values(CUE_DATA.exercises[k]).flat().map((r: { c: string }) => r.c)));
+    const withBar = [...ids].filter(id => /\b[Bb]ar(ı|a|ın)?\b/u.test(tr[id]) && !/barfiks|EZ bar/iu.test(tr[id]));
+    expect(withBar).toEqual([]);
+    expect([...ids].filter(id => /[Hh]alter/u.test(tr[id])).length).toBeGreaterThan(15);
+    for (const id of ['pu.grip', 'pu.pull', 'cu.grip']) expect([id, /barfiks bar/iu.test(tr[id])]).toEqual([id, true]);
+  });
+});
