@@ -94,6 +94,24 @@ export class Runner {
     return null;
   }
   vpTop(sc: LNode): number { const sb = this.screenBox(sc, false); return sb ? sb.y : this.headerTop(); }
+  /** E2E 105: przesunięcie palcem w pionie (`swipe: { start: "x%, y%", end: "x%, y%" }`) przewija listę pod punktem startu o różnicę y
+   * (w dół — do góry treści); przycięte do zakresu listy. */
+  swipeScroll(step: string, start: string, end: string) {
+    const pt = (s: string) => { const m = /^\s*(\d+(?:\.\d+)?)%\s*,\s*(\d+(?:\.\d+)?)%\s*$/.exec(s); if (!m) this.fail(step, `swipe: punkt „${s}” — interpreter zna tylko procenty ekranu`); return { x: +m![1] / 100 * SCREEN.w, y: +m![2] / 100 * SCREEN.h }; };
+    const a = pt(start), b = pt(end); this.relayout();
+    let hit: LNode | null = null; let hitTop = 0;
+    for (const [n, box] of this.boxes) {
+      if (n.type !== 'RCTScrollView' || n.props.horizontal) continue; const sb = this.screenBox(n, false); if (!sb) continue;
+      const top = sb.y; if (a.y >= top && a.y <= this.vpBottom() && a.x >= box.x && a.x <= box.x + box.w) { hit = n; hitTop = top; } /* ostatnia trafiona = najgłębsza */
+    }
+    if (!hit) this.fail(step, 'swipe: pod punktem startu nie ma listy przewijanej.');
+    const key = this.scrollKey(hit!); const cur = this.curScroll(hit!, hitTop);
+    this.scrollY.set(key, Math.min(this.maxScroll(hit!, hitTop), Math.max(0, cur - (b.y - a.y))));
+  }
+  /** E2E 105: testy podmieniają wpisywany tekst (zgubione znaki z przebiegu symulatora). */
+  inputFilter: ((text: string, field: Node) => string) | null = null;
+  /** E2E 105: błędy prób bloku `retry`, po których przyszła kolejna próba. */
+  retries: string[] = [];
   focused: Node | null = null; selectAll = false; alertSeen = 0; alertOpen: number | null = null; /** X-11: okna systemowe jak na iOS — nowsze nad starszym, po zamknięciu wierzchniego widać poprzednie */ alertStack: number[] = []; sheetSeen = 0; sheetOpen: number | null = null; log: string[] = [];
   /** Stan wyrażeń Maestro: `output` (wspólny dla scenariusza i podscenariuszy) i `maestro.copiedText` (ostatni copyTextFrom); copied — wszystkie skopiowane teksty (testy). */
   output: Record<string, unknown> = {}; maestro: { copiedText?: string } = {}; copied: string[] = [];
@@ -231,7 +249,8 @@ export class Runner {
           if (this.alertOpen != null && global.__alerts[this.alertOpen].prompt) { (this as any).promptVal = String(arg); break; }
           const f = this.focused; if (!f) this.fail(step, 'Brak pola z fokusem.');
           const cur = this.selectAll ? '' : String(f!.props.value ?? ''); this.selectAll = false;
-          await act(async () => { fireEvent.changeText(f as any, cur + String(arg)); }); await this.tick(); break;
+          const typed = this.inputFilter ? this.inputFilter(String(arg), f!) : String(arg); /* E2E 105: zgubione znaki z przebiegu symulatora (testy) */
+          await act(async () => { fireEvent.changeText(f as any, cur + typed); }); await this.tick(); break;
         }
         case 'eraseText': {
           const f = this.focused; if (!f) this.fail(step, 'Brak pola z fokusem.'); const n = typeof arg === 'number' ? arg : 50;
@@ -253,6 +272,7 @@ export class Runner {
           const why = this.scrollTo(c!, String(arg.direction ?? 'DOWN'), !!arg.centerElement); if (why) this.fail(step, why); break;
         }
         case 'swipe': {
+          if (arg.start != null && arg.end != null) { this.swipeScroll(step, String(arg.start), String(arg.end)); break; }
           const id = arg.from?.id; if (!id || !/LEFT/i.test(arg.direction)) break;
           const c = this.find({ id })[0]; if (!c?.node) this.fail(step, 'Brak wiersza do przesunięcia.');
           let n: Node | null = c!.node!; const hasDel = (x: Node) => Array.isArray(x.props.accessibilityActions) && x.props.accessibilityActions.some((a: any) => a.name === 'delete') && typeof x.props.onAccessibilityAction === 'function';
@@ -260,6 +280,12 @@ export class Runner {
           if (!target) { const sub = (c!.node as any).findAll((x: Node) => hasDel(x)); target = sub[0] ?? null; }
           if (!target) this.fail(step, 'Wiersz bez akcji usuwania.');
           await act(async () => { target!.props.onAccessibilityAction({ nativeEvent: { actionName: 'delete' } }); }); await this.tick(); n = null; break;
+        }
+        case 'retry': {
+          /* Maestro `retry` (E2E 105): blok powtarzany po błędzie kroku, najwyżej maxRetries razy; błąd ostatniej próby zatrzymuje scenariusz */
+          const max = Number(arg.maxRetries ?? 1); if (!Array.isArray(arg.commands)) this.fail(step, 'retry bez listy commands.');
+          for (let i = 0; ; i++) { try { await this.run(arg.commands, file); break; } catch (e) { if (i >= max) throw e; this.retries.push(String((e as Error).message).split('\n')[0]); } }
+          break;
         }
         case 'runFlow': {
           if (typeof arg === 'string') { await this.run(load(join(DIR, arg)), arg); break; }
