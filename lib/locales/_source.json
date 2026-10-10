@@ -28,6 +28,10 @@
   "en": "“Skip today” skips the rest of an exercise’s sets in this workout."
  },
  {
+  "pl": "„Technika”: wskazówki do ćwiczenia otworzysz też z treningu i z szablonu.",
+  "en": "“Technique”: open the exercise tips from a workout and from a template too."
+ },
+ {
   "pl": "„Wygeneruj szablony i plan” (Szablony albo Plan tygodnia): wybierz cel, miejsce, liczbę i długość sesji.",
   "en": "“Generate templates and plan” (Templates or Weekly plan): choose goal, place, number and length of sessions."
  },
@@ -54,6 +58,10 @@
  {
   "pl": "{goal}, {n}× w tygodniu · {place}",
   "en": "{goal}, {n}× per week · {place}"
+ },
+ {
+  "pl": "{k} dzień siłowy w tygodniu to mniej niż zalecenie WHO 2020 (co najmniej {n} dni). Na początek to dobry krok: według wytycznych USA 2018 na początku można ćwiczyć siłowo tylko {k} dzień w tygodniu, a z czasem dojść do {n} — trochę ruchu jest lepsze niż żaden.",
+  "en": "{k} strength day a week is less than the WHO 2020 recommendation (at least {n} days). It is a good first step: according to the US guidelines 2018, strength training can be done just {k} day a week at first and built up to {n} over time — some activity is better than none."
  },
  {
   "pl": "{k}: {v}",
@@ -104,12 +112,24 @@
   "en": "{n}, main: {m}"
  },
  {
+  "pl": "{name} · w planie na: {day}",
+  "en": "{name} · planned for: {day}"
+ },
+ {
   "pl": "{name}, wybrany",
   "en": "{name}, selected"
  },
  {
+  "pl": "{name}: {n}× w tygodniu",
+  "en": "{name}: {n}× a week"
+ },
+ {
   "pl": "{p} zastąpi ciężary wpisane dla: {i}.",
   "en": "{p} will replace the weights entered for: {i}."
+ },
+ {
+  "pl": "{p}% planu tygodnia ({done} z {n})",
+  "en": "{p}% of the weekly plan ({done} of {n})"
  },
  {
   "pl": "{u}/hant.",
@@ -292,6 +312,14 @@
   "en": "The app collects no data: everything you enter stays on your phone — no account, ads or analytics."
  },
  {
+  "pl": "Aplikacja zamknęła się w trakcie edycji ćwiczenia „{name}”. Wrócić do edycji?",
+  "en": "The app closed while you were editing the exercise “{name}”. Go back to editing?"
+ },
+ {
+  "pl": "Aplikacja zamknęła się w trakcie edycji szablonu „{name}”. Wrócić do edycji?",
+  "en": "The app closed while you were editing the template “{name}”. Go back to editing?"
+ },
+ {
   "pl": "Apple Health niedostępne",
   "en": "Apple Health unavailable"
  },
@@ -342,6 +370,10 @@
  {
   "pl": "Backup z nowszej wersji aplikacji",
   "en": "Backup from a newer app version"
+ },
+ {
+  "pl": "badania naukowe",
+  "en": "scientific studies"
  },
  {
   "pl": "barki",
@@ -404,6 +436,18 @@
   "en": "Not used in any workout or in the active plan: {list}. “Replace” deletes them, “Keep” adds the new ones alongside."
  },
  {
+  "pl": "Bez treningów: {list}. To zastąpi też aktywny plan „{plan}”, zrobiony tylko z tych szablonów — „Zastąp” je usunie i ustawi nowy plan jako aktywny w jego miejsce, „Zostaw” doda nowe obok.",
+  "en": "Not used in any workout: {list}. This also replaces the active plan “{plan}”, made only of these templates — “Replace” deletes them and makes the new plan active in its place, “Keep” adds the new ones alongside."
+ },
+ {
+  "pl": "biblioteki ćwiczeń organizacji szkoleniowych",
+  "en": "exercise libraries of fitness education organisations"
+ },
+ {
+  "pl": "Biblioteki natywne iOS spoza npm ({n})",
+  "en": "Native iOS libraries outside npm ({n})"
+ },
+ {
   "pl": "biceps",
   "en": "biceps"
  },
@@ -418,14 +462,6 @@
  {
   "pl": "bieżnia z nachyleniem",
   "en": "incline treadmill"
- },
- {
-  "pl": "bosu / platforma balansowa",
-  "en": "BOSU / balance board"
- },
- {
-  "pl": "Bosu / platforma balansowa",
-  "en": "BOSU / balance board"
  },
  {
   "pl": "brak",
@@ -556,12 +592,24 @@
   "en": "Cardio"
  },
  {
+  "pl": "Cardio poza planem: sesja cardio jest w planie od {k} dni w tygodniu, przy mniejszej liczbie wszystkie dni są siłowe. Zalecenie WHO: co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.",
+  "en": "Cardio outside the plan: a cardio session is in the plan from {k} days per week; with fewer, all days are strength days. WHO recommends at least {a}–{b} min of moderate activity per week (or {c}–{d} min of vigorous); moderate movement during the day counts too, e.g. brisk walking, even in short bouts."
+ },
+ {
   "pl": "Cardio w planie: {n} min tygodniowo. Zalecenie WHO: co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.",
   "en": "Cardio in the plan: {n} min per week. WHO recommends at least {a}–{b} min of moderate activity per week (or {c}–{d} min of vigorous); moderate movement during the day counts too, e.g. brisk walking, even in short bouts."
  },
  {
   "pl": "Cardio: jedna sesja umiarkowanego wysiłku w osobny dzień; jej długość = czas sesji — konwencja.",
   "en": "Cardio: one session of moderate effort on a separate day; its length = the session length — a convention."
+ },
+ {
+  "pl": "Cardio: od {k} dni w tygodniu jedna sesja w osobny dzień; przy mniejszej liczbie dni wszystkie są siłowe, żeby cardio nie zabierało dni treningowi siłowemu (każda główna partia co najmniej {n} dni) — konwencja.",
+  "en": "Cardio: from {k} days per week, one session on a separate day; with fewer days all are strength days, so cardio does not take days from strength training (each major muscle group on at least {n} days) — a convention."
+ },
+ {
+  "pl": "Cardio: przy {k}–{m} dniach możesz zamienić dni powyżej {j} na sesje umiarkowanego cardio („Dni cardio w planie”, domyślnie wyłączone). WHO 2020 nie znalazło dowodów, że więcej ćwiczeń wzmacniających daje więcej korzyści dla zdrowia, a ruch aerobowy zalecenia radzą rozłożyć na kilka dni (wytyczne USA 2018, ACSM 2011). Długość sesji cardio = czas sesji — konwencja.",
+  "en": "Cardio: with {k}–{m} days you can turn the days above {j} into moderate cardio sessions (“Cardio days in the plan”, off by default). WHO 2020 found no evidence that more muscle-strengthening activity brings more health benefits, and the guidelines advise spreading aerobic activity over several days (US guidelines 2018, ACSM 2011). Cardio session length = session time — a convention."
  },
  {
   "pl": "Cel",
@@ -712,6 +760,10 @@
   "en": "add exercises in the next step"
  },
  {
+  "pl": "ćwiczenia dodasz w trakcie",
+  "en": "add exercises as you go"
+ },
+ {
   "pl": "Ćwiczenia na czas mają w treningu stoper — po upływie celu seria odhacza się sama. Przerwa ustawiona w pozycji szablonu ma pierwszeństwo; puste pole przerwy w szablonie oznacza przerwę z tego ćwiczenia.",
   "en": "Timed exercises get a stopwatch during the workout — the set ticks itself off when the target is reached. A rest set on a template item takes priority; an empty rest field in the template means this exercise’s rest."
  },
@@ -785,6 +837,14 @@
   "en": "The measurement date cannot be in the future."
  },
  {
+  "pl": "Dawne nazwy w bibliotece",
+  "en": "Former names in the library"
+ },
+ {
+  "pl": "dawniej: {n}",
+  "en": "formerly: {n}"
+ },
+ {
   "pl": "Deload",
   "en": "Deload"
  },
@@ -801,8 +861,32 @@
   "en": "Diet"
  },
  {
+  "pl": "Dni cardio w planie",
+  "en": "Cardio days in the plan"
+ },
+ {
+  "pl": "Dni co najmniej tyle, ile wybranych szablonów.",
+  "en": "At least as many days as selected templates."
+ },
+ {
+  "pl": "Dni powyżej {k} to sesje umiarkowanego cardio zamiast siłowych.",
+  "en": "Days above {k} are moderate cardio sessions instead of strength."
+ },
+ {
+  "pl": "Dni treningowe w tygodniu",
+  "en": "Training days per week"
+ },
+ {
+  "pl": "Dni treningowe w tygodniu (w tym {n} cardio)",
+  "en": "Training days per week (incl. {n} cardio)"
+ },
+ {
   "pl": "Dni tygodnia",
   "en": "Days of the week"
+ },
+ {
+  "pl": "Dni: {n}, szablony: {k} — szablony powtarzają się po kolei: {seq}. Co tydzień od początku.",
+  "en": "Days: {n}, templates: {k} — the templates repeat in order: {seq}. Each week starts over."
  },
  {
   "pl": "do",
@@ -831,6 +915,14 @@
  {
   "pl": "Dodaj ciężar",
   "en": "Add weight"
+ },
+ {
+  "pl": "Dodaj ćwiczenia",
+  "en": "Add exercises"
+ },
+ {
+  "pl": "Dodaj ćwiczenia do szablonu „{name}”.",
+  "en": "Add exercises to the template “{name}”."
  },
  {
   "pl": "Dodaj notatkę",
@@ -946,6 +1038,10 @@
   "en": "Today"
  },
  {
+  "pl": "dziś w planie · {n} ćw.",
+  "en": "planned for today · {n} ex."
+ },
+ {
   "pl": "Dziś wolne",
   "en": "Rest day today"
  },
@@ -1034,6 +1130,10 @@
   "en": "Edit template"
  },
  {
+  "pl": "Ekran Trening w nowym układzie; „Powtórz ostatni” z nazwą i datą.",
+  "en": "The Workout screen has a new layout; “Repeat last” shows the name and date."
+ },
+ {
   "pl": "Ekran włączony podczas treningu",
   "en": "Keep screen on during workout"
  },
@@ -1052,6 +1152,18 @@
  {
   "pl": "Eksportuj historię do CSV",
   "en": "Export history to CSV"
+ },
+ {
+  "pl": "ergometr narciarski",
+  "en": "ski ergometer"
+ },
+ {
+  "pl": "Ergometr narciarski",
+  "en": "Ski ergometer"
+ },
+ {
+  "pl": "FBW",
+  "en": "Full Body"
  },
  {
   "pl": "FBW A",
@@ -1104,6 +1216,10 @@
  {
   "pl": "Generator szablonów i planu tygodnia na Twoje polecenie (cel, miejsce, liczba i długość sesji) oraz kilka planów z wyborem aktywnego.",
   "en": "Template and weekly plan generator on request (goal, place, number and length of sessions) and several plans with a choice of the active one."
+ },
+ {
+  "pl": "Generator: wybór dni tygodnia, od {a} do {b} dni, cel „Ogólny” i „Plan z moich szablonów”.",
+  "en": "Generator: choose the days of the week, from {a} to {b} days, the “General fitness” goal and “Plan from my templates”."
  },
  {
   "pl": "GHD",
@@ -1206,6 +1322,10 @@
   "en": "Resistance bands"
  },
  {
+  "pl": "Gumy…",
+  "en": "Bands…"
+ },
+ {
   "pl": "hack squat",
   "en": "hack squat"
  },
@@ -1282,12 +1402,28 @@
   "en": "Different sets: {list}."
  },
  {
+  "pl": "Inny plan",
+  "en": "Other plan"
+ },
+ {
   "pl": "Inny przyrząd: {impl}",
   "en": "Other equipment: {impl}"
  },
  {
   "pl": "Inny trening",
   "en": "Other workout"
+ },
+ {
+  "pl": "Inny z planu",
+  "en": "Another from the plan"
+ },
+ {
+  "pl": "Inny z planu, powtórz ostatni, z szablonu albo pusty.",
+  "en": "Another from the plan, repeat last, from a template or empty."
+ },
+ {
+  "pl": "Inny z planu: {name}",
+  "en": "Another from the plan: {name}"
  },
  {
   "pl": "Inteligentna stacja kablowa — kompaktowa (1,5–35 kg/str.)",
@@ -1330,6 +1466,10 @@
   "en": "Light"
  },
  {
+  "pl": "Jeden trening w tygodniu też daje postępy, ale zwykle trochę mniejsze niż częstszy trening — głównie dlatego, że w jednej sesji mieści się mniej serii. Przy tej samej liczbie serii w tygodniu różnica w przyroście mięśni znika, a w sile maleje.",
+  "en": "One workout a week still brings progress, but usually a little less than training more often — mainly because fewer sets fit into one session. With the same number of sets per week, the difference in muscle growth disappears and the difference in strength shrinks."
+ },
+ {
   "pl": "Jedna sesja: {v}. Wykres pojawi się po drugiej.",
   "en": "One session: {v}. The chart appears after the second."
  },
@@ -1360,10 +1500,6 @@
  {
   "pl": "jutro",
   "en": "tomorrow"
- },
- {
-  "pl": "Jutro wygasa podpis aplikacji",
-  "en": "App signature expires tomorrow"
  },
  {
   "pl": "już w treningu",
@@ -1534,6 +1670,10 @@
   "en": "step"
  },
  {
+  "pl": "Krótka animacja przy starcie: talerze wsuwają się na gryf.",
+  "en": "A short animation at launch: plates slide onto the bar."
+ },
+ {
   "pl": "landmine",
   "en": "landmine"
  },
@@ -1592,6 +1732,10 @@
  {
   "pl": "Lista możliwości: przesunięcie planu, przeniesienie tylko tego treningu, zamiana albo wolne — z uwzględnieniem regeneracji partii.",
   "en": "List of options: move the plan, move only this workout, swap or rest — with muscle-group recovery in mind."
+ },
+ {
+  "pl": "Lista szablonów.",
+  "en": "List of templates."
  },
  {
   "pl": "Lista: ćwiczenia i serie jak w poprzednich wersjach, bez karty.",
@@ -1674,8 +1818,8 @@
   "en": "Muscle map"
  },
  {
-  "pl": "Mapa mięśni i serie na partię z kreską 10 serii tygodniowo.",
-  "en": "Muscle map and sets per muscle group with a 10-sets-per-week line."
+  "pl": "Mapa mięśni i serie na partię z kreską {n} serii tygodniowo.",
+  "en": "Muscle map and sets per muscle group with a {n}-sets-per-week line."
  },
  {
   "pl": "Mapa mięśni: {list}",
@@ -1874,6 +2018,10 @@
   "en": "mat and wall"
  },
  {
+  "pl": "materiały producenta sprzętu",
+  "en": "materials from an equipment manufacturer"
+ },
+ {
   "pl": "max",
   "en": "max"
  },
@@ -1998,8 +2146,16 @@
   "en": "Preacher bench"
  },
  {
+  "pl": "Moje szablony, {n}× w tygodniu",
+  "en": "My templates, {n}× a week"
+ },
+ {
   "pl": "Mój plan",
   "en": "My plan"
+ },
+ {
+  "pl": "Mój plan ({date})",
+  "en": "My plan ({date})"
  },
  {
   "pl": "Na czym to oparte",
@@ -2040,6 +2196,10 @@
  {
   "pl": "Nadpisać dane?",
   "en": "Overwrite data?"
+ },
+ {
+  "pl": "Najcięższy ciężar w miejscu dla boju głównego ({list}): {w}. Ciężkie serie {a}–{b} powtórzeń (ok. {p}% maksimum) mogą być z nim za lekkie — jeśli {b} powtórzeń wychodzi lekko, rób więcej powtórzeń, bliżej upadku. Siła też wtedy rośnie, ale zwykle mniej niż przy dużym ciężarze.",
+  "en": "Heaviest weight at this place for the main lift ({list}): {w}. Heavy sets of {a}–{b} reps (about {p}% of max) may be too light with it — if {b} reps feel light, do more reps, closer to failure. Strength still increases, but usually less than with heavy loads."
  },
  {
   "pl": "Najdłużej łącznie na treningu",
@@ -2094,6 +2254,10 @@
   "en": "At most {n} sizes."
  },
  {
+  "pl": "Najwyżej {n} szablonów — każdy dostaje co najmniej jeden dzień.",
+  "en": "At most {n} templates — each one gets at least one day."
+ },
+ {
   "pl": "Następna seria.",
   "en": "Next set."
  },
@@ -2108,6 +2272,14 @@
  {
   "pl": "Następny okres",
   "en": "Next period"
+ },
+ {
+  "pl": "następny po: {name} · {n} ćw.",
+  "en": "next after: {name} · {n} ex."
+ },
+ {
+  "pl": "następny: {next}",
+  "en": "next: {next}"
  },
  {
   "pl": "Nazwa",
@@ -2206,6 +2378,10 @@
   "en": "You have no templates yet."
  },
  {
+  "pl": "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Nowe szablony i plan”.",
+  "en": "You have no templates with exercises. Create a template or choose “New templates and plan”."
+ },
+ {
   "pl": "nie podano — e1RM podciągania i pompek",
   "en": "not entered — e1RM for pull-ups and push-ups"
  },
@@ -2274,6 +2450,14 @@
   "en": "unread"
  },
  {
+  "pl": "Niezapisane zmiany",
+  "en": "Unsaved changes"
+ },
+ {
+  "pl": "Niezapisane zmiany w edycji szablonu i ćwiczenia przetrwają zamknięcie aplikacji — po starcie wrócisz do edycji albo je odrzucisz.",
+  "en": "Unsaved changes while editing a template or exercise survive the app being closed — after launch you can go back to editing or discard them."
+ },
+ {
   "pl": "niszowe ukryte: {n} — znajdziesz je wyszukiwaniem",
   "en": "niche hidden: {n} — find them by searching"
  },
@@ -2330,6 +2514,10 @@
   "en": "New records: {n}"
  },
  {
+  "pl": "Nowe szablony i plan",
+  "en": "New templates and plan"
+ },
+ {
   "pl": "Nowy ekran Trening: dzisiejszy trening, tydzień w liczbach i ostatni trening; przewodnik po funkcjach w Więcej.",
   "en": "New Workout screen: today’s workout, the week in numbers and your last workout; feature guide under More."
  },
@@ -2354,12 +2542,20 @@
   "en": "A new template with this session’s exercises and sets."
  },
  {
+  "pl": "Nowy wygląd z ikony: znacznik dnia jak ikona aplikacji, stosy talerzy z procentem planu tygodnia, filiżanka w dzień odpoczynku, podsumowanie miesiąca jako stosy.",
+  "en": "New look from the icon: the day marker looks like the app icon, plate stacks show the percentage of the weekly plan, a cup on rest days, the monthly summary as stacks."
+ },
+ {
   "pl": "Nowy wygląd: kolory i kroje, grafika talerzy na sztandze.",
   "en": "New look: colours and typefaces, plate graphics on the bar."
  },
  {
   "pl": "np. samopoczucie, ból, sprzęt",
   "en": "e.g. how you feel, pain, equipment"
+ },
+ {
+  "pl": "Numer buildu w „O aplikacji”.",
+  "en": "Build number in “About”."
  },
  {
   "pl": "O aplikacji",
@@ -2426,6 +2622,14 @@
   "en": "From {date}: deload week. When you start a workout I will suggest {less}, same weights."
  },
  {
+  "pl": "Od 0.10: biblioteka ćwiczeń uporządkowana — podobne warianty scalone, rzadsze widać po wyłączeniu filtra „Podstawowe” (Twoje treningi bez zmian); masa ciała z datą i e1RM w podciąganiu i pompkach, wskazówki techniki z rysunkiem ruchu, „Zapisz jako szablon” w historii.",
+  "en": "Since 0.10: a tidier exercise library — similar variants merged, rarer ones appear when you turn off the “Basic” filter (your workouts stay the same); body weight with a date and e1RM for pull-ups and push-ups, technique tips with a movement drawing, “Save as template” in history."
+ },
+ {
+  "pl": "Od 0.10: szablon i ćwiczenie otwierają się w podglądzie — zmiany zaczynasz przyciskiem „Edytuj” i zatwierdzasz „Zapisz”.",
+  "en": "Since 0.10: templates and exercises open in a preview — start changes with “Edit” and confirm them with “Save”."
+ },
+ {
   "pl": "Odhacz bez pomiaru",
   "en": "Tick without timing"
  },
@@ -2452,6 +2656,10 @@
  {
   "pl": "Odhaczone serie: {n} — przepadną.",
   "en": "Ticked sets: {n} — they will be lost."
+ },
+ {
+  "pl": "odpoczynek",
+  "en": "rest day"
  },
  {
   "pl": "Odrzucić trening?",
@@ -2484,6 +2692,14 @@
  {
   "pl": "Ogólne",
   "en": "General"
+ },
+ {
+  "pl": "Ogólny",
+  "en": "General fitness"
+ },
+ {
+  "pl": "Ogólny (dla zdrowia i sprawności): {s} serie na ćwiczenie, {a}–{b} powtórzeń (w domu {c}–{d}), do chwili, gdy kolejne powtórzenie byłoby trudne. WHO 2020 zaleca ćwiczenia wzmacniające wszystkie główne partie co najmniej {n} dni w tygodniu.",
+  "en": "General fitness (for health): {s} sets per exercise, {a}–{b} reps (at home {c}–{d}), until another repetition would be hard. WHO 2020 recommends muscle-strengthening activities for all major muscle groups on at least {n} days a week."
  },
  {
   "pl": "OK",
@@ -2528,10 +2744,6 @@
  {
   "pl": "Orbitrek",
   "en": "Elliptical"
- },
- {
-  "pl": "Ostatni trening",
-  "en": "Last workout"
  },
  {
   "pl": "Ostatni trening był już skrócony — „Mniej serii” powtórzy go bez dalszego cięcia.",
@@ -2706,10 +2918,6 @@
   "en": "The plan “{name}” is under “Other plans”."
  },
  {
-  "pl": "Plan do {date}",
-  "en": "Plan until {date}"
- },
- {
   "pl": "Plan powtarza się co tydzień. Pojedyncze dni zmienisz w Kalendarzu.",
   "en": "The plan repeats every week. Change single days in the Calendar."
  },
@@ -2720,6 +2928,26 @@
  {
   "pl": "Plan tygodnia i Kalendarz",
   "en": "Weekly plan and Calendar"
+ },
+ {
+  "pl": "Plan tygodnia z Twoich szablonów według tych samych reguł co generator — przejrzysz go przed zapisem. Szablony zostają bez zmian.",
+  "en": "A weekly plan from your templates, using the same rules as the generator — you review it before saving. Your templates stay unchanged."
+ },
+ {
+  "pl": "Plan z moich szablonów",
+  "en": "Plan from my templates"
+ },
+ {
+  "pl": "Plan: {name}",
+  "en": "Plan: {name}"
+ },
+ {
+  "pl": "Plan: {name} · {n} {d} · następny: {next}",
+  "en": "Plan: {name} · {n} {d} · next: {next}"
+ },
+ {
+  "pl": "Planowanie",
+  "en": "Planning"
  },
  {
   "pl": "plecy",
@@ -2750,28 +2978,12 @@
   "en": "After hiding this message the copy can no longer be sent from the app — send it first if you need it."
  },
  {
+  "pl": "Po zapisie szablon trafi na ten dzień.",
+  "en": "After saving, the template goes on this day."
+ },
+ {
   "pl": "Podgląd",
   "en": "Preview"
- },
- {
-  "pl": "Podpis aplikacji wygasa dziś.",
-  "en": "App signature expires today."
- },
- {
-  "pl": "Podpis aplikacji wygasa za {n} {d}.",
-  "en": "App signature expires in {n} {d}."
- },
- {
-  "pl": "Podpis aplikacji wygasł — odnów w Sideloadly.",
-  "en": "App signature expired — renew it in Sideloadly."
- },
- {
-  "pl": "Podpis aplikacji wygasł — zbuduj ją od nowa w GitHubie.",
-  "en": "App signature expired — rebuild the app on GitHub."
- },
- {
-  "pl": "Podpis ważny do {d}.",
-  "en": "Signature valid until {d}."
  },
  {
   "pl": "Podpowiedź progresji",
@@ -2874,6 +3086,10 @@
   "en": "Below {n} sets per week: {list}. More sessions, longer sessions or more equipment at the place will help."
  },
  {
+  "pl": "Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.",
+  "en": "Below {n} sets per week: {list}. This is the lower threshold recommended for building muscle; you can add sets in the templates."
+ },
+ {
   "pl": "Ponów teraz",
   "en": "Retry now"
  },
@@ -2930,6 +3146,10 @@
   "en": "Workout progress: {d} of {n} sets"
  },
  {
+  "pl": "Postęp tygodnia: {p}% planu, zrobione {done} z {n} treningów z planu",
+  "en": "Weekly progress: {p}% of the plan, {done} of {n} planned workouts done"
+ },
+ {
   "pl": "Postępy",
   "en": "Progress"
  },
@@ -2938,8 +3158,8 @@
   "en": "Progress and records"
  },
  {
-  "pl": "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik 10 serii na partię w tygodniu i oznaczanie tygodnia deload.",
-  "en": "Progress: weekly and monthly summary with a muscle map, a 10-sets-per-muscle-group weekly mark and marking a week as deload."
+  "pl": "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.",
+  "en": "Progress: weekly and monthly summary with a muscle map, a {n}-sets-per-muscle-group weekly mark and marking a week as deload."
  },
  {
   "pl": "pośladki",
@@ -2966,6 +3186,10 @@
   "en": "Notifications work"
  },
  {
+  "pl": "Powtórz ostatni",
+  "en": "Repeat last"
+ },
+ {
   "pl": "Powtórz ostatni ({name})",
   "en": "Repeat last ({name})"
  },
@@ -2984,6 +3208,10 @@
  {
   "pl": "powtórzenia od",
   "en": "reps from"
+ },
+ {
+  "pl": "Powtórzenia: {a}–{b} (wytyczne USA 2018, ACSM 2011); w domu i bez obciążenia {c}–{d} — uproszczenie: lżejszy ciężar, więcej powtórzeń.",
+  "en": "Reps: {a}–{b} (US guidelines 2018, ACSM 2011); at home and without external load {c}–{d} — a simplification: lighter weight, more reps."
  },
  {
   "pl": "powtórzenie|powtórzenia|powtórzeń",
@@ -3022,6 +3250,14 @@
  {
   "pl": "Pozycja wyjściowa",
   "en": "Starting position"
+ },
+ {
+  "pl": "półkula balansowa / platforma balansowa",
+  "en": "balance dome / balance board"
+ },
+ {
+  "pl": "Półkula balansowa / platforma balansowa",
+  "en": "Balance dome / balance board"
  },
  {
   "pl": "Progresja: gdy zrobisz górę zakresu powtórzeń, dołóż ciężar — konwencja.",
@@ -3136,6 +3372,10 @@
   "en": "Rest: {a} min after heavy sets of the main lift, {b} min after other compound exercises, {c} min after isolation and core exercises — a simplification; reviews are mixed (ACSM 2026: rest length did not change strength gains)."
  },
  {
+  "pl": "Przerwy: {b} min po wielostawowych, {c} min po jednostawowych i core — uproszczenie; źródła są niejednoznaczne (ACSM 2026: długość przerwy nie zmieniała przyrostu siły).",
+  "en": "Rest: {b} min after multi-joint exercises, {c} min after single-joint and core — a simplification; the sources are inconsistent (ACSM 2026: rest length did not change strength gains)."
+ },
+ {
   "pl": "Przesunięcie serii albo nazwy ćwiczenia w lewo usuwa je (z potwierdzeniem).",
   "en": "Swiping a set or an exercise name left deletes it (with confirmation)."
  },
@@ -3228,6 +3468,10 @@
   "en": "Empty folder name"
  },
  {
+  "pl": "Puste szablony: {n}",
+  "en": "Empty templates: {n}"
+ },
+ {
   "pl": "pusto — zaznaczysz, co masz",
   "en": "empty — tick what you have"
  },
@@ -3256,13 +3500,12 @@
   "en": "Fat loss: training as for muscle (protects muscle) and one session of moderate cardio."
  },
  {
-  "pl": "Rekord: {list}",
-  "en": "Record: {list}"
+  "pl": "Redukcja: trening jak na masę (chroni mięśnie); sesja cardio w planie od {k} dni w tygodniu.",
+  "en": "Fat loss: training as for muscle (protects muscle); a cardio session is in the plan from {k} days per week."
  },
  {
-  "pl": "rekord|rekordy|rekordów",
-  "en": "record|records",
-  "plural": true
+  "pl": "Rekord: {list}",
+  "en": "Record: {list}"
  },
  {
   "pl": "REKORDY",
@@ -3291,6 +3534,10 @@
  {
   "pl": "RIR — powtórzenia w zapasie: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR; Zourdos i in., JSCR 2016). Zapisane wartości przeliczają się przy zmianie skali.",
   "en": "RIR — reps in reserve: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR; Zourdos et al., JSCR 2016). Saved values convert when you switch scales."
+ },
+ {
+  "pl": "RIR wpisuje się w zakresie 0–{max}; więcej niż {max} powtórzeń w zapasie zapisuje się jako „lekko” (RPE {light}), bo poniżej RPE {min} skala opisuje wysiłek słowami, a nie powtórzeniami w zapasie (Helms i in. 2016).",
+  "en": "Enter RIR from 0 to {max}; more than {max} reps in reserve is saved as “light” (RPE {light}), because below RPE {min} the scale describes effort in words, not reps in reserve (Helms et al. 2016)."
  },
  {
   "pl": "robione {n}×",
@@ -3339,6 +3586,10 @@
  {
   "pl": "rozgrzewkowa",
   "en": "warm-up"
+ },
+ {
+  "pl": "Rozwija planowanie.",
+  "en": "Expands planning."
  },
  {
   "pl": "RPE / RIR przy serii",
@@ -3490,6 +3741,10 @@
   "en": "Sets: {s} per exercise — ACSM 2026 advises at least {m}; more sets usually give a little more, with diminishing returns. {s} is a simplification."
  },
  {
+  "pl": "Serie: {s} na ćwiczenie — dla zdrowia zwykle {s}–{b}. ACSM 2026 zaleca co najmniej {m}. Wytyczne USA 2018: jedna seria działa, {s}–{b} mogą działać lepiej; ACSM 2011: jedna seria może wystarczyć, zwłaszcza u początkujących i starszych. {s} to dolna granica — uproszczenie.",
+  "en": "Sets: {s} per exercise — for health usually {s}–{b}. ACSM 2026 recommends at least {m}. US guidelines 2018: one set works, {s}–{b} may work better; ACSM 2011: one set can be enough, especially for beginners and older adults. {s} is the lower end — a simplification."
+ },
+ {
   "pl": "serii",
   "en": "sets"
  },
@@ -3513,18 +3768,6 @@
  {
   "pl": "Sesje",
   "en": "Sessions"
- },
- {
-  "pl": "Sesje w tygodniu",
-  "en": "Sessions per week"
- },
- {
-  "pl": "Sesje w tygodniu (w tym {n} cardio)",
-  "en": "Sessions per week (incl. {n} cardio)"
- },
- {
-  "pl": "Sesje w tygodniu: {n}",
-  "en": "Sessions per week: {n}"
  },
  {
   "pl": "Siła",
@@ -3555,14 +3798,6 @@
   "en": "Effort scale RPE or RIR in Settings."
  },
  {
-  "pl": "ski erg",
-  "en": "ski erg"
- },
- {
-  "pl": "Ski erg",
-  "en": "Ski erg"
- },
- {
   "pl": "skośne brzucha",
   "en": "obliques"
  },
@@ -3585,6 +3820,10 @@
  {
   "pl": "Skupiony: bieżąca seria dużymi cyframi i talerze na stronę nad listą ćwiczeń.",
   "en": "Focused: the current set in big numbers and plates per side above the exercise list."
+ },
+ {
+  "pl": "specjalistyczne serwisy treningowe",
+  "en": "specialist training websites"
  },
  {
   "pl": "Sprawdź datę i godzinę",
@@ -3633,6 +3872,10 @@
  {
   "pl": "Start",
   "en": "Start"
+ },
+ {
+  "pl": "Start następnego treningu: {name}",
+  "en": "Start next workout: {name}"
  },
  {
   "pl": "Start stopera serii",
@@ -3699,8 +3942,8 @@
   "en": "superset · rest after round {t}"
  },
  {
-  "pl": "Superset ustawisz w szablonie przyciskiem „Połącz z następnym w superset” — przerwa liczy się po ostatnim ćwiczeniu grupy.",
-  "en": "You set a superset in the template with “Link with next into a superset” — the rest starts after the last exercise of the group."
+  "pl": "Superset ustawisz w szablonie: „Edytuj”, potem „⇅ SS” przy ćwiczeniu łączy je z następnym (w trakcie treningu ten sam przycisk jest przy ćwiczeniu) — przerwa liczy się po ostatnim ćwiczeniu grupy.",
+  "en": "To set a superset in a template, tap “Edit”, then “⇅ SS” on an exercise links it with the next one (during a workout the same button is on the exercise) — the rest starts after the group’s last exercise."
  },
  {
   "pl": "Suplementy",
@@ -3739,12 +3982,21 @@
   "en": "A template opens in preview with “Start”; changes (including the folder) only after “Edit” — “Save” saves them."
  },
  {
+  "pl": "Szablon w planie: {name}",
+  "en": "Template in the plan: {name}"
+ },
+ {
   "pl": "Szablon zmieni się tylko po „Zaktualizuj szablon”.",
   "en": "The template changes only after “Update template”."
  },
  {
   "pl": "Szablon zostanie bez zmian.",
   "en": "The template stays unchanged."
+ },
+ {
+  "pl": "szablon|szablony|szablonów",
+  "en": "template|templates",
+  "plural": true
  },
  {
   "pl": "Szablony",
@@ -3761,6 +4013,10 @@
  {
   "pl": "Szablony w folderach i archiwum, „Pomiń dziś” bez zmiany szablonu, usuwanie przesunięciem w lewo.",
   "en": "Templates in folders and archive, “Skip today” without changing the template, swipe left to delete."
+ },
+ {
+  "pl": "Szablony zostają bez zmian. Plan trafi do „Inne plany” albo od razu jako aktywny.",
+  "en": "Your templates stay unchanged. The plan goes to “Other plans” or becomes active right away."
  },
  {
   "pl": "Szablony: {list} — w folderze „{folder}” na liście Szablony.",
@@ -3875,12 +4131,12 @@
   "en": "Tap to keep only the basic ones."
  },
  {
-  "pl": "taśmy TRX",
+  "pl": "taśmy do podwieszania",
   "en": "suspension trainer"
  },
  {
-  "pl": "Taśmy TRX (podwieszane)",
-  "en": "Suspension trainer (TRX)"
+  "pl": "Taśmy do podwieszania",
+  "en": "Suspension trainer"
  },
  {
   "pl": "te same mięśnie",
@@ -3891,12 +4147,20 @@
   "en": "Technique"
  },
  {
+  "pl": "Technika: {name}",
+  "en": "Technique: {name}"
+ },
+ {
   "pl": "Tego ćwiczenia nie da się już zamienić.",
   "en": "This exercise can no longer be swapped."
  },
  {
   "pl": "Tej sesji nie ma już w historii.",
   "en": "This session is no longer in your history."
+ },
+ {
+  "pl": "tekst na karcie „Dziś” i w Kalendarzu, gdy nie ma planu",
+  "en": "text on the “Today” card and in the Calendar when there is no plan"
  },
  {
   "pl": "tempo",
@@ -4079,8 +4343,12 @@
   "en": "Weeks start on Monday. Volume = weight × reps × exercise multiplier; warm-ups excluded."
  },
  {
-  "pl": "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka, nie wynik badań.",
-  "en": "Training weeks in a row without a deload: {n}. Coaches usually deload every {a}–{b} weeks — this is practice, not a research finding."
+  "pl": "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka opisana w ankietach jednego zespołu badaczy (jedno źródło), nie wynik badań skuteczności.",
+  "en": "Training weeks in a row without a deload: {n}. Coaches usually deload every {a}–{b} weeks — this is practice described in surveys by one research team (single source), not a finding on effectiveness."
+ },
+ {
+  "pl": "Tygodnie z wykonanym planem: {done} z {n}",
+  "en": "Weeks with the plan done: {done} of {n}"
  },
  {
   "pl": "tylko dostępne w: {l}",
@@ -4149,6 +4417,10 @@
  {
   "pl": "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM).",
   "en": "Simplification: usually a rest day between sessions with the same main muscle groups; two days in a row are also fine with the same weekly number of sets (research reviews, ACSM)."
+ },
+ {
+  "pl": "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami.",
+  "en": "Simplification: usually a rest day between sessions with the same main muscle groups."
  },
  {
   "pl": "uprząż na szyję",
@@ -4303,10 +4575,6 @@
   "en": "Delete band: {name}"
  },
  {
-  "pl": "Usuń gumy…",
-  "en": "Delete bands…"
- },
- {
   "pl": "Usuń miejsce: {name}",
   "en": "Delete place: {name}"
  },
@@ -4399,6 +4667,10 @@
   "en": "In the Calendar: tap a day, then “More options” → “Mark week as deload” — a future week too."
  },
  {
+  "pl": "w planie na: {day} · {n} ćw.",
+  "en": "planned for: {day} · {n} ex."
+ },
+ {
   "pl": "W planie tygodnia: {days} — te dni będą wolne.",
   "en": "In the weekly plan: {days} — these days will be rest days."
  },
@@ -4473,6 +4745,10 @@
  {
   "pl": "Więcej → Postępy: podsumowanie tygodnia lub miesiąca z poprzednim okresem obok.",
   "en": "More → Progress: weekly or monthly summary with the previous period alongside."
+ },
+ {
+  "pl": "Więcej dni niż szablonów: szablony po kolei (A, B, A…), jak w generatorze — konwencja.",
+  "en": "More days than templates: templates in order (A, B, A…), as in the generator — a convention."
  },
  {
   "pl": "Więcej możliwości ({n})",
@@ -4559,6 +4835,10 @@
   "en": "Back"
  },
  {
+  "pl": "Wróć do edycji",
+  "en": "Back to editing"
+ },
+ {
   "pl": "Wróć do treningu",
   "en": "Back to workout"
  },
@@ -4583,8 +4863,20 @@
   "en": "All sets ticked off"
  },
  {
+  "pl": "Wybierz co najmniej jeden szablon.",
+  "en": "Select at least one template."
+ },
+ {
   "pl": "Wybierz ćwiczenie",
   "en": "Choose exercise"
+ },
+ {
+  "pl": "Wybierz dni treningowe: {n}.",
+  "en": "Choose training days: {n}."
+ },
+ {
+  "pl": "Wybierz dni treningowe: od {a} do {b}.",
+  "en": "Choose training days: {a} to {b}."
  },
  {
   "pl": "Wybierz szablon na ten dzień.",
@@ -4691,12 +4983,24 @@
   "en": "Fill with range"
  },
  {
+  "pl": "Wysiłek: do chwili, gdy kolejne powtórzenie byłoby trudne — zmęczenie, ale nie wyczerpanie (WHO 2020: co najmniej umiarkowany; wytyczne USA 2018; ACSM 2011). Do upadku nie trzeba.",
+  "en": "Effort: until another repetition would be hard — tired, but not exhausted (WHO 2020: at least moderate; US guidelines 2018; ACSM 2011). You do not need to go to failure."
+ },
+ {
+  "pl": "Wysiłek: do chwili, gdy kolejne powtórzenie byłoby trudne; do upadku nie trzeba.",
+  "en": "Effort: until another repetition would be hard; you do not need to go to failure."
+ },
+ {
   "pl": "Wysiłek: zwykle {a}–{b} powtórzenia w zapasie (ACSM 2026: blisko upadku albo {c}–{d}; dokładnej liczby nie ustalono); do upadku nie trzeba.",
   "en": "Effort: usually {a}–{b} reps in reserve (ACSM 2026: close to failure or {c}–{d}; the exact number has not been established); training to failure is not needed."
  },
  {
   "pl": "Wysiłek: zwykle {a}–{b} powtórzenia w zapasie (RIR); do upadku nie trzeba.",
   "en": "Effort: usually {a}–{b} reps in reserve (RIR); training to failure is not needed."
+ },
+ {
+  "pl": "Wyszukiwanie ćwiczeń także po dawnej nazwie.",
+  "en": "Exercise search also finds former names."
  },
  {
   "pl": "wyszukiwanie obejmuje też niszowe",
@@ -4735,10 +5039,6 @@
   "en": "with incline back"
  },
  {
-  "pl": "Z planu w tym tygodniu: zrobione {done} z {n}.",
-  "en": "Planned this week: {done} of {n} done."
- },
- {
   "pl": "z regulacją nachylenia (marsz pod górę)",
   "en": "with incline (uphill walking)"
  },
@@ -4765,6 +5065,10 @@
  {
   "pl": "Za dużo zapisanych planów",
   "en": "Too many saved plans"
+ },
+ {
+  "pl": "Zachęta do planu tygodnia",
+  "en": "Weekly plan prompt"
  },
  {
   "pl": "Zacząć z mniejszą liczbą serii: {a} zamiast {b} serii roboczych? Ciężary bez zmian, szablon się nie zmienia.",
@@ -4931,6 +5235,10 @@
   "en": "Save as template"
  },
  {
+  "pl": "Zapisz plan",
+  "en": "Save plan"
+ },
+ {
   "pl": "Zapisz pomiar",
   "en": "Save measurement"
  },
@@ -4949,6 +5257,10 @@
  {
   "pl": "Zapisz zmiany",
   "en": "Save changes"
+ },
+ {
+  "pl": "zaplanowane",
+  "en": "planned"
  },
  {
   "pl": "Zaplanowany też na: {days} — te dni będą wolne.",
@@ -5105,22 +5417,6 @@
  {
   "pl": "Zrobiony inny trening: {name}",
   "en": "Did a different workout: {name}"
- },
- {
-  "pl": "Zrób backup (Więcej → Backup) i odnów w Sideloadly. Dane zostają.",
-  "en": "Make a backup (More → Backup) and renew in Sideloadly. Your data stays."
- },
- {
-  "pl": "Zrób backup (Więcej → Backup) i zbuduj aplikację od nowa w GitHubie: iPhone (EAS) → build. Dane zostają.",
-  "en": "Make a backup (More → Backup) and rebuild the app on GitHub: iPhone (EAS) → build. Your data stays."
- },
- {
-  "pl": "Zrób backup i odnów w Sideloadly (ok. 2 min). Dane zostają w telefonie.",
-  "en": "Make a backup and renew in Sideloadly (about 2 min). Your data stays on the phone."
- },
- {
-  "pl": "Zrób backup, potem w GitHubie: Actions → iPhone (EAS) → build i zainstaluj z linku. Dane zostają w telefonie.",
-  "en": "Make a backup, then on GitHub: Actions → iPhone (EAS) → build, and install from the link. Your data stays on the phone."
  },
  {
   "pl": "Zwiń inne ćwiczenia",

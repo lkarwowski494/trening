@@ -15,6 +15,9 @@
 #                                  „Cancel” bez zmian wracał bez pytania („Discard changes?” niewidoczne). Logika pytania: tests/edit-on-demand.test.tsx.
 #   "What you log per set: reps" ← wiersz podglądu po zapisie
 #   "Discard changes\?" → "Discard changes" ← 'Odrzucić zmiany?' → 'Odrzuć zmiany'
+#   "Unsaved changes", "Back to editing" ← 'Niezapisane zmiany', 'Wróć do edycji' (UX2-03 = DAT2-06: pytanie po starcie o szkic sprzed
+#                                  zamknięcia aplikacji, app/_layout.tsx); ".*Back Squat.*" ← treść okna z nazwą ćwiczenia
+#   "weight \+ reps"              ← chip 'ciężar + powtórzenia' (pierwszy chip pola „What you log per set”)
 appId: pl.lukasz.trening
 name: Edycja na żądanie — ekran ćwiczenia
 ---
@@ -66,3 +69,20 @@ name: Edycja na żądanie — ekran ćwiczenia
 - extendedWaitUntil: { visible: "Edit exercise", timeout: 30000 }
 - assertVisible: "What you log per set: reps"
 - takeScreenshot: 52-po-restarcie
+
+# --- UX2-03 = DAT2-06 (audyt kontrolny 1): zmiana w edycji bez „Zapisz”, aplikacja zamknięta → po starcie pytanie i powrót do szkicu ---
+- tapOn: "Edit exercise"
+- extendedWaitUntil: { visible: "Save exercise", timeout: 15000 }
+- tapOn: "weight \\+ reps"
+- assertVisible: "Save exercise"
+- stopApp
+- launchApp:
+    clearState: false
+- extendedWaitUntil: { visible: "Unsaved changes", timeout: 60000 }
+- assertVisible: ".*Back Squat.*"
+- takeScreenshot: 53-szkic-po-restarcie
+- tapOn: "Back to editing"
+- extendedWaitUntil: { visible: "Save exercise", timeout: 30000 }
+- tapOn: "Save exercise"
+- extendedWaitUntil: { visible: "Edit exercise", timeout: 15000 }
+- assertVisible: "What you log per set: weight \\+ reps"

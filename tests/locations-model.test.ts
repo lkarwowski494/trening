@@ -14,8 +14,8 @@ import { userHome } from './locations-fixtures';
 const strip = (s: any) => { const c = JSON.parse(JSON.stringify(s)); delete c.metaUpdatedAt; delete c.saveSeq; delete c.userTouched; return c; };
 const at = (d: number) => Date.UTC(2026, 8, d, 10);
 /** Dom użytkownika + siłownia w store; dom główny. */
-function twoPlaces(trexo: number[] = [3, 6, 9, 12, 15, 18, 21, 24]) {
-  const s = store.getState().settings; const home = userHome(trexo); const gym = L.addLocation('gym', 'Siłownia');
+function twoPlaces(adj: number[] = [3, 6, 9, 12, 15, 18, 21, 24]) {
+  const s = store.getState().settings; const home = userHome(adj); const gym = L.addLocation('gym', 'Siłownia');
   s.locations.unshift(home); s.mainLocationId = home.id; store.save(); return { home: store.locationById('home')!, gym };
 }
 
@@ -50,8 +50,8 @@ describe('schemat 14 i migracja', () => {
     await fresh(); const raw = JSON.parse(JSON.stringify(store.getState()));
     raw.settings.locations = [{ id: 'a', name: '  Dom  ', equipment: [{ item: 'db_fixed', opts: ['x'], load: { kind: 'list', items: [{ w: '12,5' }, { w: 'x' }] }, junk: 1 }, { item: 'nope' }, { item: 'db_fixed' }, { item: 'electric', opts: ['dual', 'zz'], load: { kind: 'electric', min: 1.5, max: 65, step: 0.5 } }, { item: 'bench_adj', load: { kind: 'list', items: [] } }] }, null, { id: 'a', name: 'dup' }, { name: '' }];
     raw.settings.mainLocationId = 'missing'; raw.settings.pickerShowAll = 'yes';
-    const m = store.migrate(raw); const [a, b] = m.settings.locations;
-    expect(m.settings.locations).toHaveLength(2); expect(a.name).toBe('Dom'); expect(a.equipment.map(e => e.item)).toEqual(['db_fixed', 'electric', 'bench_adj']);
+    const m = store.migrate(raw); const [a, dup, b] = m.settings.locations;
+    expect(m.settings.locations).toHaveLength(3); expect(dup).toMatchObject({ id: 'a~2', name: 'dup' }); /* DAT2-04: powtórzone id → „~n”, wpis nie ginie */ expect(a.name).toBe('Dom'); expect(a.equipment.map(e => e.item)).toEqual(['db_fixed', 'electric', 'bench_adj']);
     expect(a.equipment[0]).toEqual({ item: 'db_fixed', opts: [], load: { kind: 'list', unit: 'kg', items: [{ w: 12.5, on: true }] } });
     expect(a.equipment[1].opts).toEqual(['dual']); expect(a.equipment[2].load).toBeUndefined(); /* ławka nie ma ciężarów */
     expect(b.name).toBe('Miejsce'); expect(typeof b.id).toBe('string'); expect(m.settings.mainLocationId).toBe('a'); expect(m.settings.pickerShowAll).toBe(false);

@@ -38,12 +38,14 @@ jobs:
         run: |
           for v in ASC_KEY_ID ASC_ISSUER_ID ASC_KEY_P8; do [ -n "${!v}" ] || { echo "::error::Brak sekretu $v (docs/15 — kroki właściciela)"; exit 1; }; done
       - run: npm ci
-      - name: Testy (jak przed każdym buildem)
+      - name: Testy (jak przed każdym buildem — pełne npm run verify)
         # 09.10.2026 (run 37921922549): matrix-dim-langs-routes przekroczył domyślny limit sterty Node na macOS (~2 GB przy 7 GB RAM maszyny;
-        # na Ubuntu w tests.yml limit jest wyższy) — 3 GB na proces × 2 procesy mieści się w pamięci maszyny
+        # na Ubuntu w tests.yml limit jest wyższy) — 3 GB na proces × 2 procesy mieści się w pamięci maszyny (Jest na 3 rdzeniach: 2 procesy robocze).
+        # TST2-09 (audyt kontrolny 1): ta sama lista sprawdzeń co verify w tests.yml (wskazówki, figury, licencje, eksport iOS) — jedno źródło: package.json.
+        # Przed uruchomieniem tego workflow: zielone E2E (e2e-ios.yml) na tym samym commicie (CLAUDE.md „Audyty i wydania”, pkt 2).
         env:
           NODE_OPTIONS: --max-old-space-size=3072
-        run: npm run typecheck && npm run check:i18n && npm test -- --maxWorkers=2 && npm run check:matrix && npm run verify:native
+        run: npm run verify
       - name: Generate native iOS project (expo prebuild)
         run: npx expo prebuild --platform ios --no-install --clean
       - name: Numer buildu (aplikacja i widżet ten sam CFBundleVersion)
@@ -52,6 +54,7 @@ jobs:
           BUILD_BASE: ${{ vars.BUILD_BASE || '1000' }}
         run: |
           echo "BUILD_NUMBER=$((BUILD_BASE + GITHUB_RUN_NUMBER))" >> "$GITHUB_ENV"
+          echo "EXPO_PUBLIC_BUILD_NUMBER=$((BUILD_BASE + GITHUB_RUN_NUMBER))" >> "$GITHUB_ENV"  # widoczny w „O aplikacji” (lib/version.ts)
           /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $((BUILD_BASE + GITHUB_RUN_NUMBER))" ios/Trening/Info.plist
       - name: Install pods
         run: cd ios && pod install

@@ -35,7 +35,7 @@ export default function HistoryScreen() {
       {/* 08.10.2026 (decyzja 1A): kalendarz z planem tygodnia nad listą sesji — zawsze, także bez historii (planowanie) */}
       <View style={{ flexDirection: 'row', gap: 8, marginBottom: 8, flexWrap: 'wrap' }}>
         <Btn nav title={t('Plan tygodnia')} small onPress={() => router.push('/plan')} />
-        {/* Docs/12: trening wstecz — jak „Log a past workout” w Strong/Hevy */}
+        {/* Docs/12: trening wstecz — jak w popularnych aplikacjach treningowych */}
         <Btn nav title={t('+ Dodaj trening wstecz')} small onPress={() => router.push('/history/add')} />
       </View>
       {/* Runda 69 (wydajność): FlatList renderuje tylko widoczne wiersze — przy 1000+ sesjach ekran otwierał się sekundy. */}

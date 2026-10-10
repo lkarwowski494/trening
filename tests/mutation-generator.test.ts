@@ -11,7 +11,7 @@ import { LOCATION_PRESETS, implAt, availability } from '@/lib/equipment';
 import { WEEKLY_SETS_MARK } from '@/lib/stats';
 import {
   generate, saveGenerated, replaceable, previewWarnings, genPlanName, bestDays, splitFor, hasExternalLoad, GEN_SESSIONS, GEN_MINUTES, MAJOR, MIN_DAYS,
-  RIR_ACSM, WHO_MODERATE, WHO_VIGOROUS, SECONDARY_SHARE, type GenInput, type Goal,
+  RIR_ACSM, REPS, WHO_MODERATE, WHO_VIGOROUS, SECONDARY_SHARE, type GenInput, type Goal,
 } from '@/lib/generator';
 import { fresh, addWorkout } from './helpers';
 
@@ -96,8 +96,11 @@ describe('wyrocznie dla wszystkich celów × sesji × minut × miejsc', () => {
       if (exp.length) expect(previewWarnings(r, inp({ sessions })).map(w => w.kind)).toContain('pairs'); }
     expect(pairs).toBeGreaterThan(2);
   });
+  /* A11-2 (audyt 0.11): ostrzeżenie MER2-02 — cel „Siła” z obciążeniem, a któryś bój główny (REPS.heavy) w miejscu robiony hantlami albo kettlem */
+  const capOk = (r: ReturnType<typeof generate>, i: GenInput) => { const loc = S().settings.locations.find(l => l.id === i.locationId)!;
+    return i.goal === 'strength' && !r.unloaded && r.templates.some(tp => tp.items.some(it => it.repMin === REPS.heavy[0] && it.repMax === REPS.heavy[1] && ['dumbbell', 'kettlebell'].includes(implAt(ex(it.exerciseId), loc) ?? ''))); };
   test('pary dzień po dniu (z niedzielą → poniedziałkiem), serie, dni na partię, kreska 10 serii (< nie <=), minuty cardio, ostrzeżenia — zgodne z niezależnym liczeniem', () => {
-    let eq10 = 0, pairs = 0, wrap = 0;
+    let eq10 = 0, pairs = 0, wrap = 0, oneDay = 0;
     for (const i of all()) {
       const r = generate(i); const where = JSON.stringify(i);
       const prim = (d: number) => { const ti = r.days[d]; return new Set(ti == null ? [] : r.templates[ti].items.filter(it => !it.targetSec).flatMap(it => ex(it.exerciseId).muscles)); };
@@ -113,14 +116,20 @@ describe('wyrocznie dla wszystkich celów × sesji × minut × miejsc', () => {
       expect([where, r.missing, r.rare]).toEqual([where, MAJOR.filter(m => !(ws[m] > 0)), MAJOR.filter(m => ws[m] > 0 && (fq[m] ?? 0) < MIN_DAYS)]);
       const cardioDays = r.days.filter(ti => ti != null && r.templates[ti].key === 'cardio').length;
       expect([where, r.cardioMin]).toEqual([where, i.goal === 'cut' && cardioDays ? i.minutes * cardioDays : 0]);
+      /* dni z treningiem siłowym — niezależnie: dni z sesją, która ma ćwiczenie bez celu czasu (docs/research/29: 1 dzień → „oneday”) */
+      const liftDays = r.days.filter(ti => ti != null && r.templates[ti].items.some(it => !it.targetSec)).length;
+      expect([where, r.liftDays, liftDays]).toEqual([where, liftDays, i.sessions - (i.goal === 'cut' && i.sessions >= MIN_DAYS + 1 ? 1 : 0)]); oneDay += liftDays === 1 ? 1 : 0;
       const kinds = previewWarnings(r, i).map(w => w.kind);
-      const ek = [i.goal === 'strength' && r.unloaded ? 'unloaded' : '', r.missing.length ? 'missing' : '', r.rare.length ? 'rare' : '', r.below10.some(m => !r.missing.includes(m)) ? 'below' : '', r.backToBack.length ? 'pairs' : ''].filter(Boolean);
+      const ek = [i.goal === 'strength' && r.unloaded ? 'unloaded' : '', capOk(r, i) ? 'loadcap' : '', r.missing.length ? 'missing' : '', r.rare.length ? 'rare' : '', r.below10.some(m => !r.missing.includes(m)) ? 'below' : '', liftDays === 1 ? 'oneday' : '', r.backToBack.length ? 'pairs' : ''].filter(Boolean);
       expect([where, kinds]).toEqual([where, ek]);
-      if (i.goal === 'cut') { const c = r.templates.find(t => t.key === 'cardio')!; const e = ex(c.items[0].exerciseId); expect([e.pattern, e.loadSource, ['distance_time', 'time'].includes(e.metric), c.items[0].targetSec]).toEqual(['cardio', 'none', true, i.minutes * 60]); }
+      /* redukcja (opcja A, docs/research/29 sekcja 3): sesja cardio od MIN_DAYS + 1 dni, przy 1–2 dniach bez cardio — same dni siłowe */
+      expect([where, cardioDays]).toEqual([where, i.goal === 'cut' && i.sessions >= MIN_DAYS + 1 ? 1 : 0]);
+      if (cardioDays) { const c = r.templates.find(t => t.key === 'cardio')!; const e = ex(c.items[0].exerciseId); expect([e.pattern, e.loadSource, ['distance_time', 'time'].includes(e.metric), c.items[0].targetSec]).toEqual(['cardio', 'none', true, i.minutes * 60]); }
     }
     /* po researchu partii (09.10.2026) układ dni nie ma par dla żadnej konfiguracji (pary — test wyżej); niedziela nie bywa dniem siłowym
      * (bestDays: koszt niedzieli), więc para niedziela → poniedziałek jest nieosiągalna — zostaje w wyroczni na przyszłość */
     expect([pairs, wrap, eq10]).toEqual([0, 0, 0]);
+    expect(oneDay).toBe(3 * GEN_MINUTES.length * (LOCATION_PRESETS.length + 1)); /* 1 dzień: każdy cel × czas × miejsce */
     /* kreska 10 serii: serie partii to wielokrotność 1,5 (SETS_PER_EX 3 × SECONDARY_SHARE 0,5), a 10 nią nie jest — granica „< vs <=” nieosiągalna
      * z generatora (mutant równoważny, docs/09); wyrocznia below10 wyżej i tak porównuje każdą wartość */
   });

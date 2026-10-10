@@ -80,10 +80,10 @@ describe('E4 / MER-10: przypisanie partii — „uproszczenie, nie wynik badań�
   });
 });
 
-describe('E3 / X-08: karta „Ostatni trening” liczy rekordy jak okno po treningu', () => {
-  test('110 × 5 po 100 × 5: „2 rekordy” (suma treningu i e1RM), było „1 rekord”', async () => {
-    await boot(() => { addWorkout(at(9, 1), [['Back Squat', [{ weight: 100, reps: 5 }, { weight: 100, reps: 5 }]]]); addWorkout(at(9, 3), [['Back Squat', [{ weight: 100, reps: 5 }, { weight: 110, reps: 5 }]]]); });
-    expect(screen.getByText(/ · 2 serie · .* · 2 rekordy$/)).toBeTruthy();
+describe('E3 / X-08: liczba rekordów treningu jak okno po treningu (od 09.10.2026 karta rekordu w szczegółach sesji; sekcji „Ostatni trening” na ekranie głównym już nie ma)', () => {
+  test('110 × 5 po 100 × 5: „Nowe rekordy: 2” (suma treningu i e1RM), było „1 rekord”', async () => {
+    let id = ''; await boot(() => { addWorkout(at(9, 1), [['Back Squat', [{ weight: 100, reps: 5 }, { weight: 100, reps: 5 }]]]); id = addWorkout(at(9, 3), [['Back Squat', [{ weight: 100, reps: 5 }, { weight: 110, reps: 5 }]]]).id; });
+    await go(`/history/${id}`); await flushAll(10); expect(screen.getByTestId('record-banner').props.accessibilityLabel).toBe('Nowe rekordy: 2');
   });
 });
 

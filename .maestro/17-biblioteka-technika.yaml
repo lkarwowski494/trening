@@ -1,5 +1,6 @@
 # Audyt 0.10, fala 2, obszar TESTY (M3 / TST-03, 09.10.2026): E2E dla dwóch funkcji z 09.10 bez scenariusza Maestro — filtr „Podstawowe” na liście
 # Ćwiczeń (research biblioteki, wariant B) i sekcja „Technika” w podglądzie ćwiczenia (wskazówki techniki, etap 1).
+# TST2-05 (audyt kontrolny 1): figura ruchu (etap 2–3) — obraz z opisem ruchu i pauza/wznowienie animacji (logika i ekran: tests/figures.test.tsx).
 # Logika i ekrany: tests/catalog-library25.test.tsx, tests/audit-0.10-tst-ui.test.tsx, tests/scenario-0.10.test.tsx (restart), tests/cues.test.tsx.
 #
 # Literały (EN z lib/i18n.en.ts):
@@ -9,6 +10,14 @@
 #   "Search…" / "Back Squat, barbell.*"             ← jak w 16
 #   "Technique"                                      ← 'Technika' (przycisk sekcji, components/ExerciseCues.tsx)
 #   "Setup" / "Based on: .*"                         ← 'Ustawienie' / 'Na podstawie: {list}. Własne sformułowania.'
+#   "Movement drawing: .*"                           ← 'Rysunek ruchu: {opis}' (etykieta VoiceOver obrazu figury, components/ExerciseFigure.tsx)
+#   "Pause animation" / "Resume animation"          ← 'Zatrzymaj animację' / 'Wznów animację' (przycisk pod figurą, WCAG 2.2.2)
+# Audyt kontrolny 1, fala 2b (09.10.2026):
+#   UX2-01 — dawna nazwa z katalogu znajduje obecne ćwiczenie: "Back Squat, barbell · formerly: Narrow Stance Squats" ← 'dawniej: {n}' (dopisek wiersza
+#            listy Ćwiczeń); bez "Create .*" ← 'Utwórz „{name}”'.
+#   UX2-05 — technika z treningu: "Empty workout", "\+ Add exercise", "Search exercises…" (jak 04), "Technique: Back Squat" ← 'Technika: {name}'
+#            (etykieta VoiceOver przycisku „ⓘ Technika” w karcie ćwiczenia, components/ExerciseCues.tsx TechniqueLink) → podgląd z rozwiniętą sekcją
+#            („Setup” widoczne bez tapnięcia „Technique”).
 appId: pl.lukasz.trening
 name: Filtr „Podstawowe” i sekcja „Technika”
 ---
@@ -31,7 +40,49 @@ name: Filtr „Podstawowe” i sekcja „Technika”
 - extendedWaitUntil: { visible: "Technique", timeout: 30000 }
 - assertNotVisible: "Setup"
 - tapOn: "Technique"
+# TST2-05: figura ruchu nad tekstem sekcji — przycisk pauzy pod rysunkiem (ustawienie „Ogranicz ruch” na symulatorze wyłączone — animacja)
+- scrollUntilVisible: { element: "Pause animation", direction: DOWN, timeout: 30000, centerElement: true }
+- assertVisible: "Movement drawing: .*"
+- tapOn: "Pause animation"
+- extendedWaitUntil: { visible: "Resume animation", timeout: 15000 }
+- takeScreenshot: 82-figura-pauza
+- tapOn: "Resume animation"
+- extendedWaitUntil: { visible: "Pause animation", timeout: 15000 }
 # E2E 91: sekcja zaczyna się rysunkiem ruchu (wysoki) — „Setup” jest pod krawędzią ekranu
 - scrollUntilVisible: { element: "Setup", direction: DOWN, timeout: 30000 }
 - scrollUntilVisible: { element: "Based on: .*", direction: DOWN, timeout: 30000 }
 - takeScreenshot: 81-technika
+
+# --- UX2-01: dawna nazwa (scalone 09.10) → obecne ćwiczenie, bez „Create …” ---
+- stopApp
+- launchApp:
+    clearState: false
+- extendedWaitUntil: { visible: "Start from a template", timeout: 60000 }
+- tapOn: "Exercises, tab.*"
+- extendedWaitUntil: { visible: "Search…", timeout: 30000 }
+- tapOn: "Search…"
+- inputText: "Narrow Stance Squats"
+- tapOn: { text: "Continue", optional: true }
+- extendedWaitUntil: { visible: "Back Squat, barbell · formerly: Narrow Stance Squats", timeout: 15000 }
+- assertNotVisible: "Create .*"
+- takeScreenshot: 83-dawna-nazwa
+
+# --- UX2-05: „ⓘ Technika” w treningu na żywo → podgląd ćwiczenia z rozwiniętą sekcją ---
+- stopApp
+- launchApp:
+    clearState: false
+- extendedWaitUntil: { visible: "Start from a template", timeout: 60000 }
+- scrollUntilVisible: { element: "Empty workout", direction: DOWN, timeout: 60000 }
+- tapOn: "Empty workout"
+- extendedWaitUntil: { visible: "\\+ Add exercise", timeout: 30000 }
+- tapOn: "\\+ Add exercise"
+- tapOn: "Search exercises…"
+- inputText: "Back Squat"
+- tapOn: { text: "Continue", optional: true }
+- tapOn: "Back Squat, barbell"
+- scrollUntilVisible: { element: "Technique: Back Squat", direction: DOWN, timeout: 30000, centerElement: true }
+- tapOn: "Technique: Back Squat"
+- extendedWaitUntil: { visible: "Pause animation", timeout: 30000 }
+# sekcja rozwinięta bez tapnięcia „Technique” (centerElement — inny krok niż wyżej; tests/maestro-e2e91 podmienia ostatnie „Setup” bez niego)
+- scrollUntilVisible: { element: "Setup", direction: DOWN, timeout: 30000, centerElement: true }
+- takeScreenshot: 84-technika-z-treningu

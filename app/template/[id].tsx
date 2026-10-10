@@ -5,6 +5,7 @@ import { SwipeRow, lastSetBlock } from '@/components/SwipeRow';
 import { rowLayout } from '@/components/ActiveWorkout';
 import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
 import { DraftHeader, confirmDiscard } from '@/components/DraftHeader';
+import { TechniqueLink } from '@/components/ExerciseCues';
 import { Screen, Field, Input, NumInput, Btn, Muted, Txt, H1, Empty, FieldLabel, FieldHint, useOnce, Chip } from '@/components/ui';
 import { ScrollView as HScroll } from 'react-native';
 import { locationLabel } from '@/lib/locations';
@@ -17,7 +18,8 @@ import { useTheme, F } from '@/lib/theme';
 import { hasTime, hasReps, hasWeight, hasDistance, SET_KIND_LABEL, type Template, type TemplateItem, type TRow, type Exercise, type WSet } from '@/lib/seed';
 import { t, tp, exName, lang } from '@/lib/i18n';
 import { startTemplate } from '@/lib/start';
-import { templateUsageText } from '@/lib/plan';
+import { templateUsageText, assignNewTemplate, hasPlan } from '@/lib/plan';
+import { askReminderPermission } from '@/lib/planReminder';
 import { wu, wField, wInKeep } from '@/lib/units';
 
 /*
@@ -29,18 +31,21 @@ import { wu, wField, wInKeep } from '@/lib/units';
  * o potwierdzenie, a grupy supersetów porządkują się po każdej zmianie.
  */
 export default function TemplateScreen() {
-  const p = useLocalSearchParams<{ id: string; edit?: string; new?: string }>(); const id = typeof p.id === 'string' ? p.id : ''; useTick(); const router = useRouter();
-  const isNew = useRef(p.new === '1');
-  const [editing, setEditing] = useState(() => p.edit === '1' && !!beginObjDraft('template', id));
+  const p = useLocalSearchParams<{ id: string; edit?: string; new?: string; assign?: string }>(); const id = typeof p.id === 'string' ? p.id : ''; useTick(); const router = useRouter();
+  const isNew = useRef(p.new === '1'); const assigned = useRef(false);
+  const [editing, setEditing] = useState(() => p.edit === '1' && !!beginObjDraft('template', id, { isNew: p.new === '1' }) /* UX2-12: nowy obiekt w zapisanym szkicu */);
   // Nowy, nietknięty szablon znika po wyjściu — „+ Nowy” i „Wróć” nie zostawiają śmieci (runda 2); zapisane szablony bez ćwiczeń zostają (runda 3).
-  useEffect(() => () => { discardObjDraft('template', id); const x = getState().templates.find(y => y.id === id); if (x && (isNew.current || x.name === t('Nowy szablon'))) dropUnsavedNew('template', id); }, [id]);
+  useEffect(() => () => { discardObjDraft('template', id); const x = getState().templates.find(y => y.id === id); if (x && !assigned.current && (isNew.current || x.name === t('Nowy szablon'))) dropUnsavedNew('template', id); }, [id]);
   const real = getState().templates.find(x => x.id === id); const d = editing ? objDraft<Template>('template', id) : undefined;
   if (!real) return <Screen><Muted>{t('Nie ma takiego szablonu.')}</Muted></Screen>;
   const close = () => { if (router.canGoBack()) router.back(); else router.replace('/templates'); };
   if (editing && d) {
     const cancel = () => confirmDiscard(objDirty('template', id), isNew.current ? t('Nowy szablon nie zostanie zapisany.') : t('Szablon zostanie bez zmian.'), () => {
       discardObjDraft('template', id); setEditing(false); if (isNew.current) { dropUnsavedNew('template', id); close(); } }, () => objDraft('template', id) === d);
-    const commit = () => { commitObjDraft('template', id); isNew.current = false; setEditing(false); };
+    /* docs/18 09.10.2026 (B): nowy szablon z edytora planu / panelu dnia — po „Zapisz” trafia na ten dzień (`assign`); pierwszy dzień planu — prośba o zgodę (I1) */
+    const commit = () => { commitObjDraft('template', id, { keepNew: isNew.current }) /* UI2-05 */;
+      if (isNew.current && typeof p.assign === 'string' && p.assign) { const had = hasPlan(); assigned.current = assignNewTemplate(p.assign, id); if (!had && hasPlan()) askReminderPermission().catch(() => {}); }
+      isNew.current = false; setEditing(false); };
     return <><DraftHeader title={isNew.current ? t('Nowy szablon') : t('Edycja szablonu')} onCancel={cancel} onSave={commit} cancelLabel={t('Anuluj edycję szablonu')} saveLabel={t('Zapisz szablon')} /><TemplateEditor tpl={d} /></>;
   }
   return <><Stack.Screen options={{ title: t('Szablon'), headerBackVisible: true, gestureEnabled: true, headerLeft: undefined, headerRight: undefined }} /><TemplatePreview tpl={real} onEdit={() => { if (beginObjDraft('template', id)) setEditing(true); } /* podwójne tapnięcie — ten sam szkic (beginObjDraft) */} /></>;
@@ -59,21 +64,21 @@ function TemplatePreview({ tpl, onEdit }: { tpl: Template; onEdit: () => void })
   // Runda 9: start z ekranu otwartego z zakładki Szablony — zamykamy cały stos i przechodzimy na zakładkę główną.
   const goHome = () => { if (router.canDismiss()) router.dismissAll(); router.navigate('/'); };
   const act = getState().active; const labels = groupLabels(tpl.items); const sets = tplWorkSets(tpl);
-  const meta = [tpl.folder ? `${t('Folder')}: ${tpl.folder}` : '', getState().settings.locations.length ? `📍 ${locationLabel(tpl.locationId)}` : '', `${tpl.items.length} ${t('ćw.')} · ${sets} ${tp(sets, 'seria|serie|serii')}`, tpl.archived ? t('w archiwum') : ''].filter(Boolean).join(' · ');
+  const meta = [tpl.folder ? `${t('Folder')}: ${tpl.folder}` : '', getState().settings.locations.length ? `📍 ${tpl.locationId ? locationLabel(tpl.locationId) : `${locationLabel(getState().settings.mainLocationId)} (${t('główne')})`}` /* UX2-02: bez miejsca = miejsce główne (jak chip „główne” w edytorze i start) */ : '', `${tpl.items.length} ${t('ćw.')} · ${sets} ${tp(sets, 'seria|serie|serii')}`, tpl.archived ? t('w archiwum') : ''].filter(Boolean).join(' · ');
   const start = once(() => { const a = getState().active; if (a && a.templateId === tpl.id) { goHome(); return; } if (a) { Alert.alert(t('Trening w toku'), t('Najpierw zakończ albo anuluj bieżący trening.')); return; } startTemplate(tpl, goHome); });
   const archive = () => { const use = tpl.archived ? '' : templateUsageText(tpl.id, true); /* audyt 0.10 A7: szablon w planie — pytanie ze skutkami */ if (!use) { setTemplateArchived(tpl, !tpl.archived); return; } Alert.alert(t('Archiwizować szablon?'), `${tpl.name}\n\n${use}`, [{ text: t('Anuluj'), style: 'cancel' }, { text: t('Archiwizuj'), onPress: () => setTemplateArchived(tpl, true) }]); };
   return (
     <Screen><ScrollView contentContainerStyle={{ paddingVertical: 10, paddingBottom: 120 }}>
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}><View style={{ flex: 1 }}><H1>{tpl.name}</H1></View><Btn title={t('Edytuj')} small accessibilityLabel={t('Edytuj szablon')} onPress={onEdit} /></View>
       <Muted style={{ marginTop: 2, marginBottom: 10 }}>{meta}</Muted>
-      {tpl.note ? <View accessible accessibilityLabel={`${t('Notatka')}: ${tpl.note}`} style={{ borderLeftWidth: 3, borderLeftColor: th.accent, paddingLeft: 10, marginBottom: 12 }}><Txt style={{ fontSize: 15 }}>{tpl.note}</Txt></View> : null /* audyt 0.10 UX-10: notatka (z generatora — linijka wysiłku) */}
+      {tpl.note ? <View accessibilityLanguage={lang()} accessible accessibilityLabel={`${t('Notatka')}: ${tpl.note}`} style={{ borderLeftWidth: 3, borderLeftColor: th.accent, paddingLeft: 10, marginBottom: 12 }}><Txt style={{ fontSize: 15 }}>{tpl.note}</Txt></View> : null /* audyt 0.10 UX-10: notatka (z generatora — linijka wysiłku) */}
       {tpl.items.length ? <Btn title={act ? (act.templateId === tpl.id ? t('Wróć do treningu') : t('Trening w toku')) : t('Start')} kind={act && act.templateId !== tpl.id ? 'ghost' : 'primary'} block style={{ minHeight: 52, marginBottom: 12 }} accessibilityLabel={act ? undefined : t('Start: {name}', { name: tpl.name })} onPress={start} />
         : <Empty>{t('Szablon jest pusty — „Edytuj”, by dodać ćwiczenia.')}</Empty>}
       {tpl.items.map(it => { const ex = exById(it.exerciseId); const rows = tplRows(it); const kinds = rows.map(r => r.kind); const nm = exName(ex);
         const foot = [it.repMin != null ? `${t('zakres')} ${reps(it.repMin, it.repMax)}` : '', `${t('przerwa')} ${fmtSec(it.restSec ?? restFor(ex))}`].filter(Boolean).join(' · ');
         return <View key={it.id} style={{ borderBottomWidth: 1, borderBottomColor: th.line, paddingVertical: 8 }}>
-          <Txt accessibilityRole="header" style={{ fontFamily: F.semibold, marginBottom: 4 }}>{it.groupId ? <Txt style={{ color: th.band, fontFamily: F.semibold }}>{`SS ${labels[it.groupId]} · `}</Txt> : null}{nm}</Txt>
-          {rows.map((r, k) => { const lbl = kindLabel(kinds, k); const txt = tplRowText(ex, r, it); return <View key={r.id} accessible accessibilityLabel={`${t('Seria {n}', { n: lbl })}${r.kind !== 'normal' ? ` (${t(SET_KIND_LABEL[r.kind])})` : ''}: ${txt}`} style={{ flexDirection: 'row', alignItems: 'center', gap: 10, minHeight: 28 }}><View style={{ width: 32 }}><SetBadge kind={r.kind} label={lbl} /></View><Txt style={{ fontSize: 15 }}>{txt}</Txt></View>; })}
+          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 4 }}><Txt accessibilityRole="header" style={{ fontFamily: F.semibold, flex: 1 }}>{it.groupId ? <Txt style={{ color: th.band, fontFamily: F.semibold }}>{`SS ${labels[it.groupId]} · `}</Txt> : null}{nm}</Txt><TechniqueLink exercise={ex} name={nm} />{/* UX2-05 */}</View>
+          {rows.map((r, k) => { const lbl = kindLabel(kinds, k); const txt = tplRowText(ex, r, it); return <View key={r.id} accessibilityLanguage={lang()} /* A11N-01 */ accessible accessibilityLabel={`${t('Seria {n}', { n: lbl })}${r.kind !== 'normal' ? ` (${t(SET_KIND_LABEL[r.kind])})` : ''}: ${txt}`} style={{ flexDirection: 'row', alignItems: 'center', gap: 10, minHeight: 28 }}><View style={{ width: 32 }}><SetBadge kind={r.kind} label={lbl} /></View><Txt style={{ fontSize: 15 }}>{txt}</Txt></View>; })}
           <Muted style={{ fontSize: 13, marginTop: 2 }}>{foot}</Muted>
           {it.alternates?.length ? <Muted style={{ fontSize: 12, marginTop: 2 }}>{`${t('Zamienniki')}: ${it.alternates.map(a => `📍 ${locationLabel(a.locationId)}: ${exName(exById(a.exerciseId))}${a.impl ? ` — ${implLabel(a.impl)}` : ''}`).join(', ')}`}</Muted> : null}
         </View>; })}
@@ -126,6 +131,7 @@ function TemplateEditor({ tpl }: { tpl: Template }) {
             <TplRows tpl={tpl} it={it} ii={i} nm={nm} />
             {it.alternates?.length ? <Alternates tpl={tpl} itemId={it.id} /> : null}
             <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', gap: 8, marginTop: 4, marginBottom: 6 }}>
+              <TechniqueLink exercise={ex} name={nm} />{/* UX2-05 (audyt kontrolny 1): technika z edytora — szkic szablonu zostaje (ekran ćwiczenia na wierzchu) */}
               {next && (!it.groupId || next.groupId !== it.groupId) ? <Btn title="⇅ SS" small kind="ghost" accessibilityLabel={t('Połącz z następnym w superset')} accessibilityHint={nm} onPress={() => linkWithNext(tpl.items, i, tpl)} /> : null}
               {it.groupId ? <Btn title="✂ SS" small kind="ghost" accessibilityLabel={t('Wyjmij z supersetu')} accessibilityHint={nm} onPress={() => unlink(tpl.items, i, tpl)} /> : null}
             </View>

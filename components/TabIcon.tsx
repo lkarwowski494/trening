@@ -1,6 +1,13 @@
-/* Ikony zakładek (od „Kredy”, docs/16; zostały w stylu „Tuleja”, 07.10.2026) — linie 1,8 pt jak na planszy marki; zamiast emoji, które wyglądały różnie na każdym iOS. */
+/* Ikony zakładek (od „Kredy”, docs/16; linie 1,8 pt jak na planszy marki) — od 09.10.2026 (motyw z ikony, decyzja właściciela: zestaw pełny)
+ * w geometrii talerzy: zaokrąglone prostokąty jak na ikonie aplikacji, bez kół. Jeden kolor (odcień zakładki: aktywna/nieaktywna) — kolory
+ * talerzy zostają dla grafik z liczbą obok. Etykiety VoiceOver bez zmian (app/(tabs)/_layout.tsx, tabA11y).
+ *  - Trening: koniec sztangi z dwoma talerzami (jak ikona aplikacji);
+ *  - Szablony: stos talerzy leżących (lista);
+ *  - Ćwiczenia: hantla — gryf z talerzem po obu stronach;
+ *  - Kalendarz: karta kalendarza z małymi talerzami w miejscu dni (jak dni z treningiem w Kalendarzu);
+ *  - Więcej: trzy talerze malejąco (zamiast trzech kropek). */
 import React from 'react';
-import Svg, { Path, Rect, Circle } from 'react-native-svg';
+import Svg, { Path, Rect } from 'react-native-svg';
 import { Text, type ColorValue } from 'react-native';
 import { F } from '@/lib/theme';
 import { lang } from '@/lib/i18n';
@@ -8,13 +15,14 @@ import { lang } from '@/lib/i18n';
 export type TabIconName = 'workout' | 'templates' | 'exercises' | 'history' | 'more';
 export function TabIcon({ name, color, size = 26 }: { name: TabIconName; color: ColorValue; size?: number }) {
   const p = { fill: 'none', stroke: color, strokeWidth: 1.8, strokeLinecap: 'round' as const, strokeLinejoin: 'round' as const };
+  const solid = { fill: color };
   return (
     <Svg width={size} height={size} viewBox="0 0 24 24" accessible={false}>
-      {name === 'workout' ? <Path {...p} d="M3 9v6M6 7v10M18 7v10M21 9v6M6 12h12" /> : null}
-      {name === 'templates' ? <><Rect {...p} x={5} y={3} width={14} height={18} rx={2} /><Path {...p} d="M9 8h6M9 12h6M9 16h4" /></> : null}
-      {name === 'exercises' ? <><Circle {...p} cx={12} cy={12} r={8} /><Circle {...p} cx={12} cy={12} r={2.5} /></> : null}
-      {name === 'history' ? <><Rect {...p} x={3.5} y={5} width={17} height={15.5} rx={2} /><Path {...p} d="M3.5 10h17M8 3v4M16 3v4M8 14h2M14 14h2" /></> : null /* H2 (audyt 0.10 UX-14): zakładka Kalendarz — ikona kalendarza, nie wykresu */}
-      {name === 'more' ? <><Circle cx={6} cy={12} r={1.6} fill={color} /><Circle cx={12} cy={12} r={1.6} fill={color} /><Circle cx={18} cy={12} r={1.6} fill={color} /></> : null}
+      {name === 'workout' ? <><Path {...p} d="M2 12h3.2M14.6 12h7.4" /><Rect {...p} x={5.2} y={3.5} width={4} height={17} rx={1.4} /><Rect {...p} x={10.4} y={6.5} width={3.4} height={11} rx={1.3} /><Rect {...solid} x={15.6} y={9.6} width={1.8} height={4.8} rx={0.6} /></> : null}
+      {name === 'templates' ? <><Rect {...p} x={3} y={4} width={18} height={4} rx={1.5} /><Rect {...p} x={5} y={10} width={14} height={4} rx={1.5} /><Rect {...p} x={7} y={16} width={10} height={4} rx={1.5} /></> : null}
+      {name === 'exercises' ? <><Path {...p} d="M7.6 12h8.8M1.8 12h1M21.2 12h1" /><Rect {...p} x={3.4} y={6} width={3.6} height={12} rx={1.3} /><Rect {...p} x={17} y={6} width={3.6} height={12} rx={1.3} /></> : null}
+      {name === 'history' ? <><Rect {...p} x={3.5} y={5} width={17} height={15.5} rx={2} /><Path {...p} d="M3.5 10h17M8 3v4M16 3v4" /><Rect {...solid} x={7} y={12.5} width={2.4} height={6} rx={0.8} /><Rect {...solid} x={11} y={13.5} width={2.4} height={5} rx={0.8} /><Rect {...solid} x={15} y={14.8} width={2.4} height={3.7} rx={0.8} /></> : null /* H2 (audyt 0.10 UX-14): zakładka Kalendarz — ikona kalendarza */}
+      {name === 'more' ? <><Rect {...solid} x={4.5} y={5} width={3.6} height={14} rx={1.3} /><Rect {...solid} x={10.2} y={7} width={3.6} height={10} rx={1.3} /><Rect {...solid} x={15.9} y={9} width={3.6} height={6} rx={1.3} /></> : null}
     </Svg>
   );
 }

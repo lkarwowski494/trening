@@ -28,6 +28,9 @@ import { buildBackup, parseBackup } from '@/lib/backup';
 import { implsAt, EQUIPMENT, LOCATION_PRESETS } from '@/lib/equipment';
 import { CABLES } from '@/lib/catalog.generated';
 import { SCHEMA_VERSION, METRICS, blankTimer, uid, hasReps, hasTime, hasDistance, type Exercise, type Template, type TemplateItem, type Workout, type WSet, type SetKind, type Impl } from '@/lib/seed';
+import { weekProgress, planPct, dayMark, monthWeeks } from '@/lib/motif';
+import { periodRange } from '@/lib/period';
+import { weekTiles, weekStrip } from '@/lib/dashboard';
 import { fresh } from './helpers';
 
 jest.setTimeout(600000);
@@ -63,6 +66,8 @@ const KINDS = {
    * „Zapisz jako szablon”, archiwum szablonu, tydzień deload, pauza i „Pomiń dziś” w treningu, ponowienie zapisu do Zdrowia (J2), plany: nazwa,
    * usunięcie, zamiana dni, propozycja z panelu dnia, powrót dnia do planu */
   draft: 3, saveAsTpl: 1, tplArchive: 1, deload: 1, pause: 2, skipEx: 1, health: 1, planRename: 1, planDel: 1, planSwap: 1, planSuggest: 4, planReset: 1, libScope: 1,
+  /* 09.10.2026 (decyzje właściciela, B): „Plan z moich szablonów” (zapis jako nowy / aktywny) i „+ Nowy szablon” z przypisaniem do dnia po „Zapisz” */
+  ownPlan: 1, tplNewAssign: 1,
 } as const;
 type K = keyof typeof KINDS;
 type Op = { o: number; a: number; b: number; v: number | '' };
@@ -92,10 +97,10 @@ const session = fc.tuple(start, fc.array(inSession, { minLength: 3, maxLength: 2
 const seqArb = fc.array(fc.oneof({ weight: 3, arbitrary: actArb.map(x => [x]) }, { weight: 2, arbitrary: session }), { minLength: 6, maxLength: 30 });
 
 /** Kategorie: jawne edycje szablonów, zmiany historii; w pozostałych działaniach trening w toku ma zostać co do bajtu (ACTIVE_FROZEN). */
-const TPL_EDIT = new Set<K>(['tplNew', 'tplRename', 'tplDup', 'tplDel', 'tplAddItem', 'tplRmItem', 'tplMove', 'tplLink', 'tplUnlink', 'tplAddRow', 'tplRmRow', 'tplKind', 'tplRow', 'tplBand', 'tplLoc', 'rememberAlt', 'rememberRest', 'gen', 'tplNote', 'draft', 'saveAsTpl', 'tplArchive']);
-const ACTIVE_FROZEN = new Set<K>([...[...TPL_EDIT].filter(k => k !== 'rememberRest'), 'delW', 'past', 'edit', 'unit', 'lang', 'newEx', 'metric', 'bandAssist', 'delEx', 'restoreEx', 'addLoc', 'setMain', 'dupLoc', 'renameLoc', 'setBandColor', 'planHint', 'reload', 'roundtrip', 'migrate', 'stats', 'planDay', 'planDayOv', 'planShift', 'planMove', 'planNew', 'planActivate', 'bodyMass', 'draft', 'saveAsTpl', 'tplArchive', 'deload', 'health', 'planRename', 'planDel', 'planSwap', 'planSuggest', 'planReset', 'libScope']);
+const TPL_EDIT = new Set<K>(['tplNew', 'tplRename', 'tplDup', 'tplDel', 'tplAddItem', 'tplRmItem', 'tplMove', 'tplLink', 'tplUnlink', 'tplAddRow', 'tplRmRow', 'tplKind', 'tplRow', 'tplBand', 'tplLoc', 'rememberAlt', 'rememberRest', 'gen', 'tplNote', 'draft', 'saveAsTpl', 'tplArchive', 'tplNewAssign']);
+const ACTIVE_FROZEN = new Set<K>([...[...TPL_EDIT].filter(k => k !== 'rememberRest'), 'delW', 'past', 'edit', 'unit', 'lang', 'newEx', 'metric', 'bandAssist', 'delEx', 'restoreEx', 'addLoc', 'setMain', 'dupLoc', 'renameLoc', 'setBandColor', 'planHint', 'reload', 'roundtrip', 'migrate', 'stats', 'planDay', 'planDayOv', 'planShift', 'planMove', 'planNew', 'planActivate', 'bodyMass', 'draft', 'saveAsTpl', 'tplArchive', 'deload', 'health', 'planRename', 'planDel', 'planSwap', 'planSuggest', 'planReset', 'libScope', 'ownPlan']);
 /** Audyt 0.10 A1/A7: działania, po których żaden miniony dzień nie może zmienić statusu (poza dniem, którego działanie dotyczy wprost). */
-const PAST_FROZEN = new Set<K>(['planDay', 'planDayOv', 'planShift', 'planMove', 'planNew', 'planActivate', 'tplDel', 'tplNew', 'tplDup', 'tplRename', 'tplArchive', 'draft', 'saveAsTpl', 'planRename', 'planDel', 'planSwap', 'planSuggest', 'planReset', 'deload', 'health']);
+const PAST_FROZEN = new Set<K>(['planDay', 'planDayOv', 'planShift', 'planMove', 'planNew', 'planActivate', 'tplDel', 'tplNew', 'tplDup', 'tplRename', 'tplArchive', 'draft', 'saveAsTpl', 'planRename', 'planDel', 'planSwap', 'planSuggest', 'planReset', 'deload', 'health', 'ownPlan', 'tplNewAssign']);
 
 /* ---------- pomocnicze ---------- */
 const J = (x: unknown) => JSON.stringify(x);
@@ -182,8 +187,8 @@ async function step(x: Act, m: Model, where: string) {
     case 'tplNew': { const n = st.templates.length; const t = store.newTemplate(); ok(S().templates.length === n + 1 && t.items.length === 0, where, 'nowy szablon'); hit('tplNew'); break; }
     case 'tplNote': if (tpl) { store.setTemplateNote(tpl, NAMES[x.b % NAMES.length]); ok(tpl.note === undefined || (tpl.note.length <= store.TEMPLATE_NOTE_MAX && tpl.note === tpl.note.trim() && !!tpl.note), where, 'notatka szablonu', tpl.note); othersSame(tpl.id); hit('tplNote'); } break; /* app/template/[id].tsx: pole „Notatka” */
     case 'gen': { /* app/generator.tsx: zapis; zastąpienie usuwa tylko nieużywane wygenerowane szablony i plany zrobione tylko z nich */
-      const goal = (['strength', 'hypertrophy', 'cut'] as const)[x.a % 3]; const ss = gen.GEN_SESSIONS[goal];
-      const inp = { goal, locationId: x.b % 4 === 0 ? null : pick(st.settings.locations, x.b)?.id ?? null, sessions: ss[x.b % ss.length], minutes: gen.GEN_MINUTES[x.c % gen.GEN_MINUTES.length] };
+      const goal = gen.GOALS[x.a % gen.GOALS.length]; const ss = gen.GEN_SESSIONS[goal]; /* także cel „Ogólny” z przełącznikiem cardio (09.10.2026) */
+      const inp = { goal, locationId: x.b % 4 === 0 ? null : pick(st.settings.locations, x.b)?.id ?? null, sessions: ss[x.b % ss.length], minutes: gen.GEN_MINUTES[x.c % gen.GEN_MINUTES.length], cardio: x.c % 2 === 1 };
       const live = new Set(st.templates.map(t => t.id)); const refs = [...st.workouts.map(w => w.templateId), st.active?.templateId, ...(st.weekPlan?.days ?? []), ...Object.values(st.planOverrides ?? {})].filter((id): id is string => !!id && live.has(id));
       const res = gen.saveGenerated(gen.generate(inp), inp, x.c % 2 === 0, x.c % 3 === 0); const ids = new Set(S().templates.map(t => t.id));
       ok(refs.every(id => ids.has(id)), where, 'zastąpienie usunęło szablon w użyciu', refs.filter(id => !ids.has(id)));
@@ -353,16 +358,40 @@ async function step(x: Act, m: Model, where: string) {
         plan.activatePlan(p.id); const back = plan.savedPlans()[plan.savedPlans().length - 1];
         if (prevDays !== J(Array(7).fill(null)) && back) ok(J(back.days) === prevDays && J(back.overrides ?? {}) === fut, where, 'poprzedni plan zapisany razem ze zmianami dni od dziś (B1)', { back, fut }); }
       hit(x.t); break; }
+    /* ===== 09.10.2026 (B): „Plan z moich szablonów” i „+ Nowy szablon” z przypisaniem ===== */
+    case 'ownPlan': { /* components/OwnPlan.tsx: wybór szablonów i dni → podgląd → „Tylko zapisz” / „Ustaw jako aktywny” */
+      const avail = gen.ownTemplates(); if (!avail.length) break; const k = 1 + (x.a % Math.min(avail.length, gen.OWN_MAX));
+      const ids = Array.from({ length: k }, (_, i) => avail[(x.b + i) % avail.length].id); const r = gen.ownPlan({ templateIds: ids, sessions: x.c % 8 })!;
+      const uniq = [...new Set(ids)]; ok(!!r && r.days.filter(Boolean).length === r.sessions && r.sessions >= uniq.length && uniq.every(id => r.days.includes(id)) && r.days.every(d => !d || uniq.includes(d)), where, 'plan z moich szablonów: każdy wybrany użyty, liczba dni', r);
+      const activate = x.c % 2 === 0; const fut = J(Object.fromEntries(Object.entries(S().planOverrides ?? {}).filter(([kk]) => kk >= today && plan.isChanged(kk, today)))); const prevDays = J(plan.weekPlanDays()); const full = plan.plansFull();
+      const res = gen.saveOwnPlan(r, activate);
+      ok(J(S().templates) === tplBefore, where, 'plan z moich szablonów zmienił szablony (zasada 03.10)');
+      if (full) ok(res.planId === '', where, 'pełne „Inne plany” — plan dodany');
+      else if (activate) { ok(J(plan.weekPlanDays()) === J(r.days), where, 'aktywny plan = podgląd'); const back = plan.savedPlans()[plan.savedPlans().length - 1];
+        if (prevDays !== J(Array(7).fill(null)) && back) ok(J(back.days) === prevDays && J(back.overrides ?? {}) === fut, where, 'poprzedni plan zapisany razem ze zmianami dni od dziś (B1)', { back, fut }); }
+      else ok(J(plan.savedPlans().find(p => p.id === res.planId)?.days) === J(r.days) && J(plan.weekPlanDays()) === prevDays, where, 'zapisany plan = podgląd, aktywny bez zmian');
+      hit('ownPlan'); break; }
+    case 'tplNewAssign': { /* app/plan.tsx DayRows i components/DayPanel.tsx: „+ Nowy szablon” → „Zapisz” → na ten dzień */
+      const t = store.newTemplate(); const pl = pick(plan.savedPlans(), x.b); const kind = x.a % 3;
+      const spec = kind === 0 ? plan.assignTarget.week(x.c % 7) : kind === 1 && pl ? plan.assignTarget.saved(pl.id, x.c % 7) : plan.assignTarget.day(plan.addDays(today, (x.c % 15) - 7));
+      const okAssign = plan.assignNewTemplate(spec, t.id, today);
+      if (kind === 0) ok(okAssign && plan.weekPlanDays()[x.c % 7] === t.id, where, 'nowy szablon na dniu aktywnego planu');
+      else if (kind === 1 && pl) ok(okAssign && plan.savedPlans().find(p => p.id === pl.id)!.days[x.c % 7] === t.id, where, 'nowy szablon na dniu zapisanego planu');
+      else { const d = plan.addDays(today, (x.c % 15) - 7); ok(okAssign === d >= today && (d < today || plan.plannedOn(d, today) === t.id), where, 'nowy szablon na dniu Kalendarza (tylko od dziś)'); }
+      hit('tplNewAssign'); break; }
     /* ===== fala 2 audytu 0.10 (M3): edycja na żądanie, zapis jako szablon, archiwum, deload, pauza, „Pomiń dziś”, Zdrowie, plany ===== */
     case 'draft': { /* app/exercise/[id].tsx i app/template/[id].tsx: „Edytuj” → szkic → „Anuluj” albo „Zapisz” (decyzja właściciela 08.10.2026) */
       const isTpl = x.a % 2 === 0; const id = isTpl ? tpl?.id : pick(exs, x.b)?.id; if (!id) break; const kind = isTpl ? 'template' as const : 'exercise' as const;
       const exBefore = J(S().exercises); const d = draft.beginObjDraft<Template & Exercise>(kind, id)!; ok(!!d && store.isDraftObj(d), where, 'szkic nie powstał');
       d.name = NAMES[x.b % NAMES.length]; if (isTpl) { if (d.items.length > 1 && x.c % 3 === 0) store.removeItem(d.items, x.b % d.items.length, d); store.setTemplateNote(d, NAMES[x.c % NAMES.length]); } else d.notes = NAMES[x.c % NAMES.length]; store.save(d);
       ok(J(S().templates) === tplBefore && J(S().exercises) === exBefore, where, 'zmiana w szkicu trafiła do danych przed „Zapisz”');
-      if (x.c % 2) { draft.discardObjDraft(kind, id); ok(J(S().templates) === tplBefore && J(S().exercises) === exBefore && !draft.objDraft(kind, id), where, '„Anuluj” zmieniło dane'); hit('draftCancel'); }
+      /* UI2-10 (audyt kontrolny 1): wybór ćwiczenia w edycji szablonu — „Utwórz …” w szkicu (lib/draft.noteDraftEffect); „Anuluj” cofa też ćwiczenie, „Zapisz” je zostawia */
+      let fxEx: Exercise | null = null; if (isTpl && x.b % 3 === 0) { fxEx = store.newExercise(`Nowe ${x.b}`); /* jak „Utwórz” w wyborze ćwiczenia: nazwa już przycięta */ ok(draft.noteDraftEffect('template', id, 'created', fxEx.id), where, 'skutek bez szkicu');
+        d.items.push({ id: `fx${x.b}${x.c}`, exerciseId: fxEx.id, sets: 3, repMin: null, repMax: null, restSec: null, startWeight: '', targetSec: '', groupId: null }); store.save(d); }
+      if (x.c % 2) { draft.discardObjDraft(kind, id); ok(J(S().templates) === tplBefore && J(S().exercises) === exBefore && !draft.objDraft(kind, id), where, '„Anuluj” zmieniło dane'); hit('draftCancel'); if (fxEx) { ok(!S().exercises.some(e => e.id === fxEx!.id), where, '„Anuluj” zostawiło ćwiczenie utworzone w szkicu'); hit('draftFxCancel'); } }
       else { ok(draft.commitObjDraft(kind, id), where, '„Zapisz” odrzucone'); const real = isTpl ? S().templates.find(t => t.id === id)! : store.exById(id)!;
         ok(!store.isDraftObj(real) && real.name === store.clampName(real.name.replace(/\s+/g, ' ').trim()) && !!real.name, where, 'nazwa po zapisie szkicu', real.name);
-        if (isTpl) othersSame(id); else ok(J(S().templates) === tplBefore, where, 'zapis szkicu ćwiczenia zmienił szablony'); hit('draftSave'); }
+        if (isTpl) othersSame(id); else ok(J(S().templates) === tplBefore, where, 'zapis szkicu ćwiczenia zmienił szablony'); hit('draftSave'); if (fxEx) { ok(!!store.exById(fxEx.id) && S().templates.find(t => t.id === id)!.items.some(i => i.exerciseId === fxEx!.id), where, '„Zapisz” zgubiło ćwiczenie utworzone w szkicu'); hit('draftFxSave'); } }
       break; }
     case 'saveAsTpl': { const w = pick(st.workouts, x.a); if (!w) break; const n = st.templates.length; const t = tplsync.templateFromWorkout(w); /* app/history/[id].tsx: „Zapisz jako szablon” (H5) */
       const live = w.exercises.filter(b => { const e = store.exById(b.exerciseId); return e && !e.archived && b.sets.length; });
@@ -502,7 +531,14 @@ async function reloadCheck(where: string) {
   expect({ where, why: 'stan po ponownym uruchomieniu ≠ przed', s: strip(S()) }).toEqual({ where, why: 'stan po ponownym uruchomieniu ≠ przed', s: before });
 }
 async function roundtripCheck(where: string) {
-  const before = strip(S(), true); const next = parseBackup(J(buildBackup())); store.replaceState(next); await store.flush();
+  const before = strip(S(), true); const next = parseBackup(J(buildBackup()));
+  /* A11B-1 (audyt zmian 0.11, część 2): szkice sprzed importu (ćwiczenie, szablon, edycja historii) nie przeżywają go — ani w pamięci, ani w bazie */
+  const exId = S().exercises[0]?.id; const tpId = S().templates[0]?.id; const wId = S().workouts[0]?.id;
+  if (exId) { const d = draft.beginObjDraft<Exercise>('exercise', exId); if (d) { d.notes = 'szkic przed importem'; store.save(d); } }
+  if (tpId) { const d = draft.beginObjDraft<Template>('template', tpId); if (d) { d.name = 'Szkic przed importem'; store.save(d); } }
+  if (wId) edit.beginEdit(wId);
+  store.replaceState(next); await store.flush();
+  ok((!exId || !draft.objDraft('exercise', exId)) && (!tpId || !draft.objDraft('template', tpId)) && (!wId || !edit.draftOf(wId)) && !global.__kv.has(draft.DRAFTS_KEY), where, 'import zostawił szkic edycji (A11B-1)');
   expect({ where, why: 'eksport → import nie jest bezstratny', s: strip(S(), true) }).toEqual({ where, why: 'eksport → import nie jest bezstratny', s: before });
 }
 /** Objętość serii liczona niezależnie od lib/store (definicja: docs + store.setVolume): robocza, kg × powt. × mnożnik (hantle/jednostronne ×2,
@@ -547,6 +583,23 @@ function statsCheck(where: string) {
   for (const w of fin) { if (w.startedAt < mon || w.startedAt >= nx) continue; for (const e of w.exercises) { const ex = store.exById(e.exerciseId); if (!ex) continue; const n = workN(e.sets); if (!n) continue;
     ex.muscles.forEach(q => { mus[q] = (mus[q] ?? 0) + n; }); ex.secondaryMuscles.forEach(q => { mus[q] = (mus[q] ?? 0) + n * 0.5; }); } }
   expect({ where, m: stats.weeklySetsByMuscle(mon) }).toEqual({ where, m: mus });
+  /* postęp tygodnia (korekta właściciela 09.10.2026 ok. 17:00): stosy = dni w planie tygodnia, pełne = zrobione z planu (te same liczby co kafelki),
+   * procent 0–100, 100 wtedy i tylko wtedy, gdy zrobione wszystkie; bez planu — nic. Znacznik dnia w pasku = stan dnia (jedna funkcja). */
+  const wp = weekProgress(); const wt = weekTiles();
+  ok(wt.planned ? !!wp && wp.total === wt.planned && wp.done === wt.planDone : wp === null, where, 'weekProgress ≠ kafelki tygodnia', { wp, wt });
+  if (wp) {
+    ok(wp.stacks.length === wp.total && wp.stacks.filter(Boolean).length === wp.done && wp.stacks.every((f, i) => f === (i < wp.done)), where, 'weekProgress: stosy pełne od lewej = zrobione', wp);
+    ok(Number.isInteger(wp.pct) && wp.pct >= 0 && wp.pct <= 100 && (wp.pct === 100) === (wp.done === wp.total) && (wp.pct === 0) === (wp.done === 0) && wp.pct === planPct(wp.done, wp.total), where, 'weekProgress: procent', wp);
+  }
+  /* Postępy → miesiąc (decyzja 09.10.2026 ok. 17:25): bieżący tydzień w podsumowaniu miesiąca = postęp tygodnia; liczby „x z n” spójne ze stanami */
+  { const { start, end } = periodRange('month'); const mw = monthWeeks(start, end);
+    ok(mw.full === mw.weeks.filter(w => w.state === 'full').length && mw.planned === mw.weeks.filter(w => w.planned > 0).length && mw.full <= mw.planned
+      && mw.weeks.every(w => w.done <= w.planned && (w.state === 'none') === (w.planned === 0) && (w.state === 'full') === (w.planned > 0 && w.done === w.planned)), where, 'monthWeeks: stany i liczby', mw);
+    const cur = mw.weeks.find(w => w.start === weekStrip()[0].date); if (cur) ok(wp ? cur.planned === wp.total && cur.done === wp.done : cur.planned === 0, where, 'monthWeeks: bieżący tydzień ≠ postęp tygodnia', { cur, wp }); }
+  /* odpoczynek (decyzja 09.10.2026 wieczór): filiżanka = dzień 'rest' przy obowiązującym planie tygodnia; bez planu — nic; dziś i dalej plan = hasPlan bez samych zmian dni */
+  for (const d of weekStrip()) { const m = dayMark(d.status, d.inPlan); ok(m === (d.status === 'rest' ? (d.inPlan ? 'rest' : null) : d.status === 'other' ? 'done' : d.status), where, 'dayMark ≠ stan dnia', { d, m });
+    ok(d.inPlan === plan.planInForce(d.date), where, 'pasek: inPlan ≠ planInForce', d);
+    if (d.date >= plan.dayKeyOf(Date.now()) && d.inPlan) ok(plan.hasPlan(), where, 'odpoczynek od dziś bez planu (hasPlan)', d); }
 }
 
 /* ---------- przebieg ---------- */
@@ -579,7 +632,7 @@ describe('macierz niezmienników — losowe sekwencje działań na prawdziwym AP
     }), { numRuns: RUNS, seed: SEED });
     if (process.env.MATRIX_COVERAGE) console.log(J(ran)); // eslint-disable-line no-console
     /* pokrycie: kluczowe ścieżki naprawdę się wykonały (inaczej niezmienniki byłyby puste) */
-    if (RUNS >= 50 && !process.env.MATRIX_SEED) /* kontrola pokrycia tylko dla stałego ziarna — losowe może nie wylosować rzadkiej akcji */ for (const k of ['startTpl', 'finish', 'tick', 'swap', 'split', 'undoSwap', 'pastCommit', 'editCommit', 'draftSwap', 'delExArchive', 'delExHard', 'reload', 'roundtrip', 'addLoc', 'setLoc', 'tplAddRow', 'tplRmRow', 'tplKind', 'tplDup', 'repeat', 'unit', 'lang', 'rememberAlt', 'rememberRest', 'gen', 'tplNote', 'draftCancel', 'draftSave', 'saveAsTpl', 'tplArchive', 'deload', 'pause', 'resume', 'skipEx', 'health', 'planSwap', 'planSuggest', 'planReset', 'tplUpdate'])
+    if (RUNS >= 50 && !process.env.MATRIX_SEED) /* kontrola pokrycia tylko dla stałego ziarna — losowe może nie wylosować rzadkiej akcji */ for (const k of ['startTpl', 'finish', 'tick', 'swap', 'split', 'undoSwap', 'pastCommit', 'editCommit', 'draftSwap', 'delExArchive', 'delExHard', 'reload', 'roundtrip', 'addLoc', 'setLoc', 'tplAddRow', 'tplRmRow', 'tplKind', 'tplDup', 'repeat', 'unit', 'lang', 'rememberAlt', 'rememberRest', 'gen', 'tplNote', 'draftCancel', 'draftSave', 'draftFxCancel', 'draftFxSave', 'saveAsTpl', 'tplArchive', 'deload', 'pause', 'resume', 'skipEx', 'health', 'planSwap', 'planSuggest', 'planReset', 'tplUpdate', 'ownPlan', 'tplNewAssign'])
       expect([k, (ran[k] ?? 0) > 0]).toEqual([k, true]);
   });
 });

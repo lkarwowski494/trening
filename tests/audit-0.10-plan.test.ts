@@ -176,10 +176,10 @@ describe('B — kilka planów', () => {
     plan.setSavedDay(urlop, 0, C); plan.setSavedDay(urlop, 2, null); /* edycja przed aktywacją — aktywny plan bez zmian */
     expect(plan.weekPlanDays()).toEqual([A, null, B, null, null, null, null]); expect(plan.savedPlans()[0].days).toEqual([C, null, null, null, null, null, null]);
     plan.activatePlan(urlop);
-    expect(plan.planName()).toBe('Urlop'); expect(plan.savedPlans().map(p => [p.name, p.days[0]])).toEqual([['Plan do 8.10', A]]);
-    const back = plan.savedPlans()[0].id; plan.activatePlan(back); expect(plan.planName()).toBe('Plan do 8.10');
+    expect(plan.planName()).toBe('Urlop'); expect(plan.savedPlans().map(p => [p.name, p.days[0]])).toEqual([['Mój plan (8.10)', A]]);
+    const back = plan.savedPlans()[0].id; plan.activatePlan(back); expect(plan.planName()).toBe('Mój plan (8.10)');
     plan.activatePlan(plan.savedPlans()[0].id); plan.activatePlan(plan.savedPlans()[0].id);
-    expect(plan.savedPlans().map(p => p.name)).toEqual(['Urlop']); expect(plan.planName()).toBe('Plan do 8.10');
+    expect(plan.savedPlans().map(p => p.name)).toEqual(['Urlop']); expect(plan.planName()).toBe('Mój plan (8.10)');
   });
   test('B1 (DAT-02 B): zmiany pojedynczych dni od dziś wędrują z planem — zapisane przy wyłączeniu, wracają przy ponownej aktywacji; przeszłe zostają', async () => {
     plan.setWeekDay(0, A); plan.setWeekDay(2, B); plan.setPlanName('Rutyna'); const tmp = plan.newPlan('Przejściowy')!;

@@ -5,6 +5,7 @@
  * pokazywany w Więcej → O aplikacji → Licencje open source. MIT/BSD/ISC wymagają dołączenia notki — stąd lista z notkami i treść każdej licencji.
  * Uproszczenie (nazwane): graf z package-lock obejmuje też narzędzia budowania wymagane przez pakiety aplikacji (np. Expo CLI) — lista jest raczej
  * za szeroka niż za wąska. Czcionki IBM Plex: licencja OFL-1.1 (pakiety @expo-google-fonts).
+ * Biblioteki natywne spoza npm (SEC2-06): scripts/licenses-native.json — wersje sprawdzane z podspec React Native.
  * Użycie: node scripts/licenses.mjs (zapis) | --check (verify: błąd, gdy plik nie zgadza się z package-lock / node_modules).
  */
 import { readFileSync, writeFileSync, readdirSync, existsSync } from 'node:fs';
@@ -59,16 +60,31 @@ for (const id of ids) {
   const txt = readFileSync(join(root, (src ?? named.r).dir, src ? licenseFiles(src.dir)[0] : named.f), 'utf8').split(/\r?\n/).filter(l => !(COPY.test(clean(l)) && !PLACEHOLDER.test(clean(l)))).join('\n').replace(/\n{3,}/g, '\n\n').trim();
   texts[id] = { from: (src ?? named.r).n, text: txt };
 }
+/* SEC2-06 (audyt kontrolny 1): biblioteki natywne spoza npm wkompilowane w binarkę iOS — lista scripts/licenses-native.json; wersje sprawdzane
+ * z podspec React Native (zmiana wersji RN bez aktualizacji listy = błąd), treść licencji spoza npm z scripts/licenses-native/<SPDX>.txt (w repo). */
+const RN = join(root, 'node_modules/react-native');
+const NATIVE = JSON.parse(readFileSync(join(root, 'scripts/licenses-native.json'), 'utf8')).pods;
+const helpers = readFileSync(join(RN, 'scripts/cocoapods/helpers.rb'), 'utf8');
+const podVersion = pod => pod === 'RCT-Folly' ? /@@folly_config = \{\s*:version => '([^']+)'/.exec(helpers)?.[1] : pod === 'SocketRocket' ? /@@socket_rocket_config = \{\s*:version => '([^']+)'/.exec(helpers)?.[1]
+  : existsSync(join(RN, 'third-party-podspecs', pod + '.podspec')) ? /spec\.version\s*=\s*['"]([^'"]+)['"]/.exec(readFileSync(join(RN, 'third-party-podspecs', pod + '.podspec'), 'utf8'))?.[1] : undefined;
+const podErrors = [];
+for (const p of NATIVE) if (podVersion(p.pod) !== p.version) podErrors.push(`${p.pod}: lista ${p.version}, podspec ${podVersion(p.pod) ?? 'brak'}`);
+for (const f of readdirSync(join(RN, 'third-party-podspecs')).filter(f => f.endsWith('.podspec') && f !== 'ReactNativeDependencies.podspec')) if (!NATIVE.some(p => p.pod + '.podspec' === f)) podErrors.push(`${f}: brak na liście scripts/licenses-native.json`);
+for (const p of NATIVE) if (!texts[p.license]) { const f = join(root, 'scripts/licenses-native', p.license + '.txt'); if (existsSync(f)) texts[p.license] = { from: p.name, text: readFileSync(f, 'utf8').replace(/\r\n/g, '\n').trim() }; else podErrors.push(`${p.pod}: brak treści licencji ${p.license} (scripts/licenses-native/${p.license}.txt)`); }
+if (podErrors.length) { console.error('licencje natywne:\n  ' + podErrors.join('\n  ')); process.exit(1); }
+const native = NATIVE.map(p => [p.name, p.version, p.license, p.copyright]);
 const missing = ids.filter(id => !texts[id]);
 const list = uniq.map(r => [r.n, r.v, r.l, r.c]);
 const body = `/* Wygenerowane: node scripts/licenses.mjs (audyt 0.10 SEC-08) — nie edytuj ręcznie; verify sprawdza zgodność (--check). */
 /** [nazwa, wersja, licencja (SPDX), notki o prawach autorskich] — pakiety npm, od których zależy aplikacja (package-lock, bez devDependencies). */
 export const LICENSES: readonly (readonly [string, string, string, readonly string[]])[] = ${JSON.stringify(list)};
 /** Treść licencji wg identyfikatora SPDX (z pliku LICENSE pakietu \`from\`). Bez treści w pakietach: ${JSON.stringify(missing)}. */
-export const LICENSE_TEXTS: Readonly<Record<string, { from: string; text: string }>> = ${JSON.stringify(texts)};
+export const LICENSE_TEXTS: Readonly<Record<string, { from: string; text: string }>> = ${JSON.stringify(Object.fromEntries(Object.entries(texts).sort(([a], [b]) => (a < b ? -1 : 1))))};
+/** SEC2-06: biblioteki natywne spoza npm wkompilowane w binarkę iOS (scripts/licenses-native.json; wersje z podspec React Native) — [nazwa, wersja, licencja, notki]. */
+export const NATIVE_LICENSES: readonly (readonly [string, string, string, readonly string[]])[] = ${JSON.stringify(native)};
 `;
 if (process.argv.includes('--check')) {
   const cur = existsSync(OUT) ? readFileSync(OUT, 'utf8') : '';
   if (cur !== body) { console.error('licencje: lib/licenses.generated.ts nie zgadza się z package-lock.json / node_modules — uruchom: node scripts/licenses.mjs'); process.exit(1); }
-  console.log(`licencje: OK (${list.length} pakietów, ${Object.keys(texts).length} treści licencji)`);
+  console.log(`licencje: OK (${list.length} pakietów, ${native.length} bibliotek natywnych, ${Object.keys(texts).length} treści licencji)`);
 } else { writeFileSync(OUT, body); console.log(`licencje: zapisano ${list.length} pakietów, ${Object.keys(texts).length} treści licencji; bez treści: ${missing.join(', ') || '—'}`); }

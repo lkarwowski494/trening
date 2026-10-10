@@ -7,7 +7,7 @@
 # Nie jest na liście w config.yaml — uruchamiany tylko przez runFlow.
 #
 # Literały (EN z lib/i18n.en.ts, chyba że zaznaczono inaczej):
-#   "\+ New template"             ← '+ Nowy szablon'   (Btn w pustym stanie app/(tabs)/index.tsx; accessibilityLabel = tytuł)
+#   "\+ New template"             ← '+ Nowy szablon'   (Btn w „Pierwszych krokach” albo w karcie Planowania — układ B, 09.10.2026; accessibilityLabel = tytuł)
 #   "\+ Add exercise"             ← '+ Dodaj ćwiczenie' (Btn w app/template/[id].tsx)
 #   "New template"                ← wartość pola Nazwa nowego szablonu: 'Nowy szablon' (lib/store.ts newTemplate) — dopasowanie po wartości pola
 #                                    (E2E 89: tytuł nagłówka edycji nowego szablonu — DraftHeader title 'Nowy szablon' — to ten sam tekst i stoi wyżej;
@@ -56,4 +56,6 @@ appId: pl.lukasz.trening
 - extendedWaitUntil: { visible: "Edit template", timeout: 30000 }
 # --- powrót na ekran główny ---
 - tapOn: "Back"
-- extendedWaitUntil: { visible: "Start: Upper A", timeout: 30000 }
+- extendedWaitUntil: { visible: "Other workout", timeout: 30000 }
+# run 37973427584 (249e373): karta „Dziś” wyższa (znaczniki dni, „Zrobione dziś”) — lista szablonów pod ekranem; przewinięcie do wiersza szablonu
+- scrollUntilVisible: { element: "Start: Upper A", direction: DOWN, timeout: 30000, centerElement: true }

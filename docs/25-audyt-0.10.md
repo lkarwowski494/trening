@@ -392,3 +392,25 @@ komentarzach), SEC2-06 (licencje bibliotek natywnych), SEC2-08 (identyfikatory s
 **Decyzja właściciela 09.10.2026 (ok. 11:40): MER2-07 = SEC2-02 — wariant A:** podpis pod wskazówkami techniki neutralny (np. „Na podstawie
 bibliotek ćwiczeń organizacji szkoleniowych i producenta sprzętu”), pełna lista źródeł w docs/research/27; odrzucone B (nazwy + wyjątek w
 CLAUDE.md) i C (organizacje tak, produkt nie). Wdrożenie: 0.10.1 (zakres wydania 1 zamrożony; ŚREDNIA).
+
+## Audyt zmian 0.11, część 2 (09.10.2026, 697fa49..249e373 + lista kontrolna origin/main..HEAD) — wynik i backlog
+
+Raport roboczy agenta poza repo; wnioski tutaj. Blokery naprawione przed wydaniem (fix-a11b, docs/09): **A11B-1** (WYSOKA — osierocony szkic
+edycji przeżywał import kopii i nadpisywał dane; wariant A: import i reset czyszczą szkice), **A11B-2** (podniesione do WYSOKIEJ przez
+koordynatora — błędne przypisanie „ACSM 2026: jedna seria działa” w opisie celu „Ogólny”), **A11B-6** (tekst mówił więcej niż źródło —
+poprawiony razem z A11B-2), **A11B-8** (wersja 0.11.0 i „Co nowego”). Sprawdzone bez uwag: aktualizacja z 0.10.0 (schemat 18, migracja
+idempotentna), generator 1728 kombinacji, intro a okno „Niezapisane zmiany”, prywatność, sekrety, nazwy marek.
+
+**Backlog (ŚREDNIE/NISKIE — nie blokują 0.11):**
+- **A11B-3** (ŚREDNIA): edycja treningu z historii — „Utwórz …”/„Przywróć …” w wyborze ćwiczenia działają poza szkicem, „Anuluj” ich nie cofa
+  (zbędne ćwiczenie w bibliotece, bez utraty danych). Propozycja: mechanizm UI2-10 w lib/edit.ts. → wersja po 0.11.
+- **A11B-4** (ŚREDNIA, ryzyko Apple 5.1.1; od 0.10.0): własne okno przed prośbą o powiadomienia z przyciskiem „Nie teraz”. Propozycja przed
+  App Store: tylko „Dalej” (alternatywy: od razu okno systemu; zostawić na TestFlight). → paczka przed App Store.
+- **A11B-5** (NISKA, dziś nieosiągalne z UI): undoEffects usuwa ćwiczenie utworzone w szkicu, nawet zmienione i zapisane — nie usuwać przy
+  updatedAt > createdAt. → wersja po 0.11.
+- **A11B-7** (NISKA): komunikat zakresu dni w DayPicker oparty na accessibilityLiveRegion (tylko Android) — na iOS announceForAccessibility.
+  → wersja po 0.11.
+- Szkic osierocony po „Wróć do edycji” przy dwóch szkicach — zostaje (opcja 1, rekomendacja; po A11B-1 nie nadpisze danych); do decyzji właściciela.
+- **E2E-105** (otwarte, waga do ustalenia na telefonie): na wolnym symulatorze szybki wpis „80” w polu liczbowym (NumInput) zapisał 0 albo 8 —
+  drugi znak 0,1 s po zawieszeniu wątku głównego. Ręcznie nie odtworzone; do sprawdzenia na telefonie w TestFlight 0.11 (czy pole pokazuje
+  inną wartość niż zapisaną). Jeśli tak — błędne liczby (WYSOKA) i poprawka w 0.11.x. → test na telefonie (właściciel/testerzy) + backlog.

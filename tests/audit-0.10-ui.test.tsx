@@ -162,8 +162,9 @@ describe('H1–H4 — nawigacja, nazwy, formaty, pierwsze kroki', () => {
     (raw as unknown as Record<string, unknown>).planHintHidden = 'tak'; await fresh(raw); expect('planHintHidden' in S()).toBe(false); /* migrate: tylko true */
     await renderApp({ saved: JSON.parse(JSON.stringify(saved())) }); expect(screen.getByTestId('week-tiles').props.accessibilityHint).toBe('Otwiera Postępy.'); await tap(screen.getByTestId('week-tiles')); await flushAll(10); expect(screen.UNSAFE_root.findAll((n: { type: unknown }) => n.type === 'RNSScreenStackHeaderConfig').map((n: { props: { title?: string } }) => n.props.title)).toContain('Postępy');
     await fresh(); const t = mkTpl('Pull'); const w = addWorkout(new Date(2026, 9, 7, 18).getTime(), [['Back Squat', [{ weight: 100, reps: 5 }]]], 'Nogi'); void w; plan.setWeekDay(3, t.id); await act(async () => { await store.flush(); });
-    await renderApp({ saved: JSON.parse(JSON.stringify(saved())) }); const btns = screen.getAllByRole('button').map(b => b.props.accessibilityLabel);
-    expect(btns.indexOf('Powtórz ostatni (Nogi)')).toBeGreaterThan(btns.indexOf('Pusty trening'));
+    await renderApp({ saved: JSON.parse(JSON.stringify(saved())) }); await tap(screen.getByLabelText('Inny trening')); await flushAll(5); /* układ B (09.10.2026): kolejność w arkuszu wg właściciela — powtórz ostatni przed pustym */
+    const btns = screen.getAllByRole('button').map(b => b.props.accessibilityLabel);
+    expect(btns.indexOf('Powtórz ostatni (Nogi)')).toBeGreaterThan(-1); expect(btns.indexOf('Pusty trening')).toBeGreaterThan(btns.indexOf('Powtórz ostatni (Nogi)'));
   });
   test('UX-16 A: lista sesji pod kalendarzem idzie za oglądanym miesiącem; „Pokaż wszystkie” wraca', async () => {
     jest.useFakeTimers({ now: new Date(2026, 9, 8, 9) });

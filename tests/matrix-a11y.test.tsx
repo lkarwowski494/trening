@@ -12,11 +12,12 @@ import * as store from '@/lib/store';
 import { light, dark, F, TEXT_SCALE_MAX, type Theme } from '@/lib/theme';
 import { applyLang } from '@/lib/i18n';
 import { EN } from '@/lib/i18n.en';
-import { renderApp, flushAll, screen, go } from './app';
+import { renderApp, flushAll, screen, go, act, fireEvent } from './app';
 import { fresh, seedWithDemo } from './helpers';
 import * as plan from '@/lib/plan';
-import * as locations from '@/lib/locations';
 import { appRoutes, routeGaps } from './routes';
+import { DAY_MARKS, MARK_STROKE } from '@/lib/motif';
+import { richState, routesFor } from './a11y-routes';
 
 jest.setTimeout(180000);
 
@@ -42,27 +43,8 @@ const hex6 = (c: unknown) => typeof c === 'string' && /^#[0-9a-f]{6}$/i.test(c) 
 /** Pogrubienie w rozumieniu WCAG (≥ 700): IBM Plex Sans Bold (nagłówki, duże liczby) i IBM Plex Mono SemiBold traktujemy jak pogrubione; Plex Sans SemiBold (600) — nie (ostrożnie). */
 const isBold = (st: Record<string, unknown>) => st.fontFamily === F.heavy || st.fontFamily === F.display || st.fontFamily === F.monoBold || st.fontWeight === 'bold' || Number(st.fontWeight) >= 700;
 
-/* ---------- stan i trasy ---------- */
-/** Stan z danymi: zakończona sesja (2 serie), trening w toku z tego samego szablonu (1 seria odhaczona). */
-async function richState(l: 'pl' | 'en') {
-  await fresh(seedWithDemo(l), l);
-  const S = store.getState(); const tpl = S.templates[0];
-  /* audyt 0.10 (A11-10, TST-03): miejsce treningu i plan tygodnia — nowe ekrany (szczegóły miejsca, plan, kalendarz z planem) z danymi */
-  const loc = locations.addLocation('gym'); for (let i = 0; i < 7; i += 2) plan.setWeekDay(i, tpl.id);
-  store.startFromTemplate(tpl); store.toggleDone(0, 0); store.toggleDone(0, 1);
-  const w = store.finishWorkout(Date.now())!;
-  store.startFromTemplate(tpl); store.toggleDone(0, 0);
-  return { s: JSON.parse(JSON.stringify(store.getState())), w, tpl, exId: S.exercises[0].id, locId: loc.id, blockId: store.getState().active!.exercises[0].id };
-}
-/** Trasy przeglądu. Audyt 0.10 (A11-10): także ekrany 0.10 — plan, generator, przewodnik, zamiana, wybór ćwiczenia, kolejność, trening wstecz,
- * szczegóły miejsca (dashboard bez treningu w toku: osobny przegląd niżej). Indeks 13 = szczegóły sesji (test kroju mono niżej). */
-const routesFor = (w: { id: string }, tpl: { id: string }, exId: string, locId: string, blockId: string) => [
-  '/', '/templates', '/exercises', '/history', '/more', '/more/settings', '/more/progress', '/more/locations', '/more/backup', '/more/language', '/more/bands',
-  `/template/${tpl.id}`, `/exercise/${exId}`, `/history/${w.id}`, `/history/edit/${w.id}`,
-  '/plan', '/generator', '/guide', `/swap?target=active:${blockId}`, '/picker?target=active', '/reorder?target=active', '/history/add', `/more/location/${locId}`,
-  '/more/bodymass', '/more/about', '/more/licenses', /* audyt 0.10 fala 2: masa ciała z datą, O aplikacji, licencje (SEC-08) */
-];
-const ROUTES_N = 26; /* 23 + masa ciała, O aplikacji, licencje (fala 2) */
+/* ---------- stan i trasy: tests/a11y-routes.ts (wspólne z audit-0.10-lang-ui — A11N-01) ---------- */
+const ROUTES_N = 27; /* 23 + masa ciała, O aplikacji, licencje (fala 2) + plan z moich szablonów (09.10.2026) */
 /* Trasa „/” w stanie z treningiem w toku = ekran aktywnego treningu (components/ActiveWorkout.tsx). */
 
 /**
@@ -72,6 +54,8 @@ const ROUTES_N = 26; /* 23 + masa ciała, O aplikacji, licencje (fala 2) */
  *    test szerokości: tests/ux.test.tsx), a przy wąskim ekranie „Poprzednio” schodzi pod wiersz.
  */
 const ONE_LINE_OK = ['Trening', 'Szablony', 'Ćwiczenia', 'Kalendarz', 'Więcej', 'Poprzednio'];
+/** Audyt kontrolny 1 A11N-04: długie teksty, którym wolno rosnąć mniej niż do 200% — z powodem (pusta lista = brak wyjątków). */
+const LONG_TEXT_OK: RegExp[] = [];
 const ONE_LINE_OK_RE = /^(kg|lb)\/|^Poprzednio: |^Previous: /;
 
 type Sweep = {
@@ -198,24 +182,30 @@ describe('kontrast palety (WCAG 2.1) — pary używane w kodzie, których nie sp
      * i tor wyłączonego przełącznika (ctrlLine) do każdego tła, na którym stoją */
     need(th.dangerInk, th.danger, 4.5, 'dangerInk na danger (Usuń pod wierszem)');
     for (const bg of ['bg', 'surface', 'surface2'] as const) need(th.ctrlLine, th[bg], 3, `ctrlLine na ${bg} (granica elementu sterującego)`);
+    /* motyw z ikony (korekta 09.10.2026 ok. 17:00, WCAG 1.4.11): obwódka ikony dnia zaplanowanego / opuszczonego (pasek na karcie — surface, kalendarz — bg,
+     * tydzień deload i wybrany dzień — surface2), gryf ikony i obwódka pustego stosu talerzy (text) */
+    for (const m of DAY_MARKS) if (m !== 'done') for (const bg of ['bg', 'surface', 'surface2'] as const) need(th[MARK_STROKE[m]], th[bg], 3, `obwódka ikony dnia (${m}) na ${bg}`);
+    for (const bg of ['bg', 'surface', 'surface2'] as const) need(th.text, th[bg], 3, `gryf ikony / pusty stos na ${bg}`);
     expect(fails).toEqual([]);
   });
 });
 
 /* ---------- Dynamic Type ---------- */
 describe('Dynamic Type: skala czcionki 2,0 (największe rozmiary dostępności iOS)', () => {
-  let errs: string[] = []; let R: { routes: string[]; inputs: { r: string; m: unknown }[]; monoNoLimit: string[]; btnNoLimit: string[]; btnTexts: number; maxEff: number };
+  let errs: string[] = []; let R: { routes: string[]; inputs: { r: string; m: unknown; multi: boolean }[]; longLow: string[]; techOpen: boolean; monoNoLimit: string[]; btnNoLimit: string[]; btnTexts: number; maxEff: number };
   beforeAll(async () => {
     jest.spyOn(RN.PixelRatio, 'getFontScale').mockReturnValue(2);
     const dims = RN.Dimensions.get; jest.spyOn(RN.Dimensions, 'get').mockImplementation(((k: 'window' | 'screen') => ({ ...dims(k), fontScale: 2 })) as never);
     jest.spyOn(console, 'error').mockImplementation((...a: unknown[]) => { const m = String(a[0]); if (!/not wrapped in act/.test(m)) errs.push(m.slice(0, 200)); });
     const { s, w, tpl, exId, locId, blockId } = await richState('pl');
     await renderApp({ saved: s }); await flushAll(10);
-    R = { routes: routesFor(w, tpl, exId, locId, blockId), inputs: [], monoNoLimit: [], btnNoLimit: [], btnTexts: 0, maxEff: 0 };
+    R = { routes: routesFor(w, tpl, exId, locId, blockId), inputs: [], longLow: [], techOpen: false, monoNoLimit: [], btnNoLimit: [], btnTexts: 0, maxEff: 0 };
     for (const r of R.routes) {
       await go(r); await flushAll(10);
+      const tech = r.startsWith('/exercise/') ? screen.queryByRole('button', { name: 'Technika' }) : null; /* A11N-04: sekcja „Technika” rozwinięta */
+      if (tech) { await act(async () => { fireEvent.press(tech); }); await flushAll(5); R.techOpen = true; }
       const all: Node[] = visibleNodes();
-      for (const i of all.filter(x => x.type === 'TextInput')) R.inputs.push({ r, m: i.props.maxFontSizeMultiplier });
+      for (const i of all.filter(x => x.type === 'TextInput')) R.inputs.push({ r, m: i.props.maxFontSizeMultiplier, multi: !!i.props.multiline });
       for (const tx of all.filter(x => x.type === 'Text')) {
         const st = flat(tx.props.style); const m = tx.props.maxFontSizeMultiplier; const fs = typeof st.fontSize === 'number' ? st.fontSize : 14;
         if ((st.fontFamily === F.mono || st.fontFamily === F.monoBold) && !(m > 0)) R.monoNoLimit.push(`${r}: „${textOf(tx)}”`);
@@ -223,14 +213,24 @@ describe('Dynamic Type: skala czcionki 2,0 (największe rozmiary dostępności i
         const ps = p ? flat(p.props.style) : {}; /* Btn (ui.tsx s.btn): ramka 1, promień 10, min. wysokość 40/44 */
         if (p && kind(p) === 'Pressable' && ps.borderRadius === 10 && ps.borderWidth === 1 && ps.minHeight >= 40 && (R.btnTexts++, !(m >= TEXT_SCALE_MAX))) R.btnNoLimit.push(`${r}: „${textOf(tx)}” (${m})`); /* A11-07: przyciski się zawijają — do 200% */
         R.maxEff = Math.max(R.maxEff, fs * Math.min(2, m > 0 ? m : 2));
+        const txt = textOf(tx); /* A11N-04: zdania (> 25 znaków z literami) rosną do 200%; niższy limit tylko z powodem (LONG_TEXT_OK) */
+        if (txt.length > 25 && /\p{L}{3}/u.test(txt) && typeof m === 'number' && m < TEXT_SCALE_MAX && !LONG_TEXT_OK.some(re => re.test(txt))) R.longLow.push(`${r}: „${txt.slice(0, 50)}” (${m})`);
       }
     }
   });
   afterAll(() => jest.restoreAllMocks());
   test('wszystkie ekrany renderują się przy skali 2,0 bez błędów Reacta', () => { expect(R.routes).toHaveLength(ROUTES_N); expect(errs).toEqual([]); expect(RN.PixelRatio.getFontScale()).toBe(2); });
-  test('każde pole tekstowe na każdym ekranie (nie tylko w treningu — C10) ma limit powiększenia 0 < max ≤ 1,3 (components/ui.tsx Input)', () => {
-    expect(R.inputs.length).toBeGreaterThan(5);
-    expect(R.inputs.filter(i => !(typeof i.m === 'number' && i.m > 0 && i.m <= 1.3))).toEqual([]);
+  test('każde jednowierszowe pole tekstowe na każdym ekranie (nie tylko w treningu — C10) ma limit powiększenia 0 < max ≤ 1,3 (components/ui.tsx Input)', () => {
+    expect(R.inputs.filter(i => !i.multi).length).toBeGreaterThan(5);
+    expect(R.inputs.filter(i => !i.multi && !(typeof i.m === 'number' && i.m > 0 && i.m <= 1.3))).toEqual([]);
+  });
+  /* Audyt kontrolny 1 A11N-04: pola wielowierszowe (notatki ćwiczenia, szablonu, treningu) zawijają tekst — rosną do 200% jak zwykły tekst (WCAG 1.4.4). */
+  test('pola wielowierszowe (notatki) rosną do TEXT_SCALE_MAX (200%)', () => {
+    expect(R.inputs.filter(i => i.multi).length).toBeGreaterThan(1);
+    expect(R.inputs.filter(i => i.multi && i.m !== TEXT_SCALE_MAX)).toEqual([]);
+  });
+  test('A11N-04: zdania (tekst > 25 znaków z literami) — limit powiększenia co najmniej TEXT_SCALE_MAX, także sekcja „Technika” i podpisy figury', () => {
+    expect(R.techOpen).toBe(true); expect(R.longLow).toEqual([]);
   });
   /* ZNALEZISKO (NISKIE): app/history/[id].tsx:17 — komórki tabeli serii (cell: Txt, IBM Plex Mono 14 pt, kolumny flex) nie mają
    * maxFontSizeMultiplier, a nagłówki kolumn obok mają 1,4 (Muted) i wiersze serii w treningu 1,3 (R9-06). Przy skali 2,0 liczba 28 pt

@@ -50,8 +50,12 @@ describe('E2E 91: interpreter odtwarza porażki scenariuszy z 224d229 w tym samy
   });
 
   test('17 — „Setup” pod rysunkiem ruchu, poza ekranem bez przewinięcia', async () => {
-    await failsAt('17-biblioteka-technika.yaml', replace({ scrollUntilVisible: { element: 'Setup', direction: 'DOWN', timeout: 30000 } }, [{ extendedWaitUntil: { visible: 'Setup', timeout: 15000 } }]),
-      'extendedWaitUntil {"visible":"Setup","timeout":15000}', /nie pojawił się/);
+    /* kroki figury (TST2-05) dopisane po 224d229 przewijają do przycisku pauzy — usunięte, jak w wersji z przebiegu */
+    const fig = (c: Cmd[]) => { const a = c.findIndex(x => same(x, { tapOn: 'Technique' })); const b = c.findIndex(x => same(x, { extendedWaitUntil: { visible: 'Pause animation', timeout: 15000 } })); expect(b).toBeGreaterThan(a); return [...c.slice(0, a + 1), ...c.slice(b + 1)]; };
+    /* audyt kontrolny 1 (UX2-05 B, celowa zmiana): sekcja „Technika” stoi teraz na górze podglądu — „Setup” mieści się pod rysunkiem bez przewijania;
+     * ten sam rodzaj porażki (element pod krawędzią bez przewinięcia) sprawdzamy na stopce sekcji „Based on: …” */
+    await failsAt('17-biblioteka-technika.yaml', c => replace({ scrollUntilVisible: { element: 'Based on: .*', direction: 'DOWN', timeout: 30000 } }, [{ extendedWaitUntil: { visible: 'Based on: .*', timeout: 15000 } }])(replace({ scrollUntilVisible: { element: 'Setup', direction: 'DOWN', timeout: 30000 } }, [])(fig(c))),
+      'extendedWaitUntil {"visible":"Based on: .*","timeout":15000}', /nie pojawił się/);
   });
 
   test('07 (krok po porażce przebiegu 91) — po linijce „Usually at Home…” przycisk zamiany jest pod paskiem zakładek', async () => {
@@ -101,6 +105,6 @@ describe('run 37900617167 (f2bdca8): interpreter odtwarza porażki w tym samym k
   test('13 — „Close” rozwiniętej sekcji „What\'s new” pod paskiem zakładek bez przewinięcia', async () => {
     const up = { scrollUntilVisible: { element: 'Start planned workout: Upper A', direction: 'UP', timeout: 30000, centerElement: true } };
     await failsAt('13-kalendarz-plan.yaml', c => replace({ scrollUntilVisible: { element: 'Close', direction: 'DOWN', timeout: 30000, centerElement: true } }, [])(c).filter(x => !same(x, up)),
-      'tapOn "Close"', /pod widokiem listy/);
+      'tapOn "Close"', /pod widokiem listy|Nie znaleziono/); /* A11B-8: od wpisu 0.11 (10 punktów) „Close” bez przewinięcia jest całkiem poza ekranem — porażka w tym samym kroku */
   });
 });

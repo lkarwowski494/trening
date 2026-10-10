@@ -33,7 +33,7 @@ function totals(start: number, end: number): PeriodTotals {
 
 export function periodSummary(kind: PeriodKind, offset = 0, now = new Date()): PeriodSummary {
   const { start, end } = periodRange(kind, offset, now); const p = periodRange(kind, offset - 1, now);
-  const prs = inRange(start, end).slice().sort((a, b) => a.startedAt - b.startedAt).flatMap(w => workoutPRs(w).map(pr => ({ workoutId: w.id, at: w.startedAt, pr })));
+  const prs = inRange(start, end).slice().sort((a, b) => a.startedAt - b.startedAt).flatMap(w => workoutPRs(w).map(pr => ({ workoutId: w.id, at: wallTs(w) /* X2-02: data na zegarze strefy startu, jak przydział do okresu */, pr })));
   return { kind, start, end, ...totals(start, end), prev: totals(p.start, p.end), prs };
 }
 

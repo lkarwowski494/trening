@@ -40,6 +40,7 @@ const routesFor = (r: Awaited<ReturnType<typeof richState>>) => [
   '/', '/templates', '/exercises', '/history', '/more', '/more/settings', '/more/progress', '/more/locations', '/more/backup', '/more/language', '/more/bands',
   `/template/${r.tpl.id}`, `/exercise/${r.exId}`, `/history/${r.w.id}`, `/history/edit/${r.w.id}`, '/plan', '/generator', '/guide', `/swap?target=active:${r.blockId}`,
   '/picker?target=active', '/reorder?target=active', '/history/add', `/more/location/${r.locId}`, '/more/bodymass', '/more/about', '/more/licenses',
+  '/generator?mode=own', /* 09.10.2026 (B): „Plan z moich szablonów” */
 ];
 type Node = { type?: unknown; props?: Record<string, unknown>; children?: unknown[] } | string;
 const texts = () => { const out: string[] = []; const walk = (n: unknown) => { if (!n) return; if (typeof n === 'string') { out.push(n); return; } if (Array.isArray(n)) { n.forEach(walk); return; } walk((n as { children?: unknown }).children); }; walk(screen.toJSON()); return out; };

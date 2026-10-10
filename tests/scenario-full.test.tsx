@@ -15,7 +15,7 @@ import * as timer from '@/lib/timer';
 import * as FS from 'expo-file-system/legacy';
 import * as DP from 'expo-document-picker';
 import * as Sharing from 'expo-sharing';
-import { renderApp, tap, type, flushAll, screen, go, act, fireEvent, expandEquip, swipeDelete, deleteActions, startEdit, saveEdit, exDraft, tplDraft } from './app';
+import { renderApp, tap, type, flushAll, screen, go, act, fireEvent, expandEquip, swipeDelete, deleteActions, startEdit, saveEdit, exDraft, tplDraft, fromHome } from './app';
 import { ex, pressAlert, saved } from './helpers';
 import type { State } from '@/lib/seed';
 import { loadSummary } from '@/components/LoadEditor';
@@ -175,7 +175,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     await type(name, 'Dom testowy  '); await endEdit(name); await flushAll(5); expect(home.name).toBe('Dom testowy');
     await type(screen.getByLabelText('Nazwa'), '   '); await endEdit(screen.getByLabelText('Nazwa')); await flushAll(5); expect(home.name).toBe('Dom testowy'); /* pusta nazwa wraca do poprzedniej */
     expect(screen.getByLabelText('Nazwa').props.value).toBe('Dom testowy');
-    /* hantle stałe: preset Gymtek, odznaczanie, „Usuń odznaczone”, dodawanie, zły ciężar, zakres, zły zakres, preset z potwierdzeniem, jednostka sprzętu */
+    /* hantle stałe: preset hantli stałych, odznaczanie, „Usuń odznaczone”, dodawanie, zły ciężar, zakres, zły zakres, preset z potwierdzeniem, jednostka sprzętu */
     await tap(screen.getByLabelText('Wolne ciężary'));
     const DB = 'Hantle (stała waga albo z szybką regulacją)';
     await toggle(DB, true); home = loc('Dom testowy');
@@ -207,7 +207,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     /* odznaczenie pozycji zachowuje ciężary (audyt M5) */
     await toggle(DB, false); expect(equip('Dom testowy', 'db_fixed')!.off).toBe(true); expect(screen.queryByText('Hantle stałe 2,5–24 kg (15 par)')).toBeNull();
     await toggle(DB, true); expect(equip('Dom testowy', 'db_fixed')!.off).toBeUndefined(); expect(dbl().items).toHaveLength(15);
-    /* hantle na talerze: preset Hop-Sport, uchwyt, „+ talerz”, pola talerza, usunięcie talerza */
+    /* hantle na talerze: preset hantli na talerze, uchwyt, „+ talerz”, pola talerza, usunięcie talerza */
     const DBP = 'Hantle na talerze (uchwyty + talerze)';
     await toggle(DBP, true); expect(summary('Dom testowy', 'db_plate')).toBeTruthy();
     await tap(screen.getByText('Hantle z talerzami 2×10 kg')); await flushAll(5);
@@ -285,8 +285,8 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     /* miejsca głównego nie da się usunąć — na liście nie ma dla niego gestu */
     expect(deleteActions().filter(l => l.startsWith('Usuń miejsce: '))).not.toContain('Usuń miejsce: Dom testowy'); await flushAll(1000); await tap(screen.getByLabelText(/^★ Dom testowy/)); await flushAll(10);
     expect(screen.queryByText('Usuń')).toBeNull(); expect(S().settings.locations).toHaveLength(4);
-    /* „Usuń gumy…” → ekran gum: dodanie, kolor, poziom, usunięcie */
-    await tap(screen.getByLabelText('Akcesoria')); await tap(screen.getByText('Usuń gumy…')); await flushAll(10);
+    /* „Gumy…” (UI2-09) → ekran gum: dodanie, kolor, poziom, usunięcie */
+    await tap(screen.getByLabelText('Akcesoria')); await tap(screen.getByText('Gumy…')); await flushAll(10);
     expect(screen.getAllByLabelText('Kolor gumy').map(x => x.props.value)).toEqual(['zielona', 'czerwona', 'czarna', 'fioletowa']);
     await tap(screen.getByText('+ Guma')); await flushAll(5); expect(S().bands).toHaveLength(5); const nb = S().bands[4]; expect(nb).toMatchObject({ color: 'nowa', level: 3 });
     const colors = () => screen.getAllByLabelText('Kolor gumy');
@@ -682,13 +682,13 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     const write = FS.writeAsStringAsync as jest.Mock; write.mockClear();
     await tap(screen.getAllByText('Zakończ trening i zapisz')[0]);
     const al = lastAlert(); expect(al.title).toBe('Zakończyć trening?');
-    expect(al.msg).toContain('Zapisane zostaną serie robocze: 16.'); expect(al.msg).toContain('Nieodhaczone serie z wpisanymi wynikami: 1 — nie zostaną zapisane.');
+    expect(al.msg).toContain('Zapisane zostaną serie robocze: 15.'); /* LIVE2-02: drop set liczy się z serią przed nim (= workingSets po zapisie) */ expect(al.msg).toContain('Nieodhaczone serie z wpisanymi wynikami: 1 — nie zostaną zapisane.');
     pressAlert('Zakończyć trening?', 'Wróć'); await flushAll(10); expect(S().active).not.toBeNull();
     await tap(screen.getByText('Zakończ')); pressAlert('Zakończyć trening?', 'Zakończ'); await flushAll(600);
     expect(S().active).toBeNull(); expect(S().workouts).toHaveLength(1); const w = S().workouts[0];
     expect(w.finishedAt).toBeGreaterThan(w.startedAt); expect(w.templateName).toBe('Push A'); expect(w.note).toBe('dobry dzień'); expect(w.locationId).toBe(loc('Dom testowy').id);
     expect(w.exercises.map(e => [store.exById(e.exerciseId)!.name, e.sets.length])).toEqual([['Bench Press (hantle)', 5], ['Cable Curl', 1], ['Cable Curl', 2], ['Pull Up', 3], ['Band Pull Apart', 2], ['Lateral Raise (hantle)', 2], ['Plank', 2]]);
-    expect(w.exercises.every(e => e.sets.every(x => x.done))).toBe(true); /* nieodhaczone serie nie trafiają do historii */
+    expect(w.exercises.every(e => e.sets.every(x => x.done))).toBe(true); expect(store.workingSets(w)).toBe(15); /* LIVE2-02: = liczba z okna „Zakończyć” */ /* nieodhaczone serie nie trafiają do historii */
     expect(global.__alerts.some(x => /rekord/i.test(x.title))).toBe(false); /* pierwszy trening nie jest rekordem */
     /* szczegóły sesji otwarte od razu */
     expect(screen.getByText('dobry dzień')).toBeTruthy(); expect(screen.getByText('Edytuj')).toBeTruthy(); expect(screen.queryByText('Usuń sesję')).toBeNull(); /* 07.10.2026 wieczór: usuwanie przesunięciem na liście Historii */
@@ -697,7 +697,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     expect(write.mock.calls.some(([p]) => /\/Backup\/trening-\d{4}-\d{2}-\d{2}-\d{6}\.json$/.test(p))).toBe(true);
     /* ekran główny: „Powtórz ostatni”, szablon z datą ostatniego treningu, bez podpowiedzi pierwszego razu */
     await go('/'); await flushAll(10);
-    expect(screen.getByText('Powtórz ostatni (Push A)')).toBeTruthy(); expect(screen.queryByText(/^Pierwszy raz\?/)).toBeNull();
+    await tap(screen.getByLabelText('Inny trening')); await flushAll(5); /* układ B: arkusz „Inny trening” */ expect(screen.getByLabelText('Powtórz ostatni (Push A)')).toBeTruthy(); expect(screen.getByText(/^Push A · /)).toBeTruthy(); /* podpis: nazwa · data */ await tap(screen.getByLabelText('Anuluj')); await flushAll(5); expect(screen.queryByText(/^Pierwszy raz\?/)).toBeNull();
     expect(screen.getByLabelText(/^Push A, 5 ćw\. · 14 serii · ostatnio /)).toBeTruthy();
     expect(timer.T.on).toBe(false); expect(timer.S.on).toBe(false);
   });
@@ -794,7 +794,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     expect(S().workouts.map(x => x.id).sort()).toEqual([w0.id, past.id].sort()); expect(S().workouts.some(x => x.id === extra.id)).toBe(false);
     await go('/history'); await flushAll(10); expect(screen.getByText('2 sesje')).toBeTruthy();
     /* „Powtórz ostatni”: to, co faktycznie zrobiono (także Push Up dodane w edycji), potem anulowanie */
-    await go('/'); await flushAll(10); await tap(screen.getByText('Powtórz ostatni (Push A — poprawione)')); await flushAll(10);
+    await go('/'); await flushAll(10); await fromHome('Powtórz ostatni (Push A — poprawione)'); await flushAll(10);
     const r = S().active!; expect(r.templateName).toBe('Push A — poprawione'); expect(r.exercises.map(e => store.exById(e.exerciseId)!.name)).toContain('Push Up');
     expect(r.exercises.every(e => e.sets.every(x => !x.done))).toBe(true);
     await tap(screen.getByText('Odrzuć trening')); pressAlert('Odrzucić trening?', 'Odrzuć trening'); await flushAll(10); expect(S().active).toBeNull(); expect(S().workouts).toHaveLength(2);
@@ -858,7 +858,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     const [cp, csv] = write.mock.calls.at(-1)!; expect(cp).toMatch(/\.csv$/); expect(csv.startsWith('﻿Date,Workout Name,Duration,Exercise Name,Set Order,Weight,Reps,Distance,Seconds,Notes,Workout Notes,RPE\n')).toBe(true);
     const rows = csv.trim().split('\n').slice(1); const nSets = S().workouts.reduce((a, w) => a + w.exercises.reduce((b, e) => b + e.sets.length, 0), 0); expect(rows).toHaveLength(nSets);
     expect(rows.some((r: string) => r.includes('Bench Press (hantle),2,25,'))).toBe(true); expect(rows.some((r: string) => r.includes(',W,10,12,'))).toBe(true);
-    expect(rows.some((r: string) => r.includes('chwyt nachwytem') && r.split(',')[4] === 'F')).toBe(true); /* LOG-14 (audyt 0.10): seria do upadku — „F” w Set Order, jak w Strongu */ expect(rows.some((r: string) => /guma (czerwona|zielona) \d/.test(r))).toBe(true);
+    expect(rows.some((r: string) => r.includes('chwyt nachwytem') && r.split(',')[4] === 'F')).toBe(true); /* LOG-14 (audyt 0.10): seria do upadku — „F” w Set Order, jak w popularnych dziennikach */ expect(rows.some((r: string) => /guma (czerwona|zielona) \d/.test(r))).toBe(true);
     /* zmiana po eksporcie: usunięcie szablonu */
     await go('/templates'); await flushAll(10); await swipeDelete(`Usuń szablon: ${S().templates[0].name}`); pressAlert('Usunąć szablon?', 'Usuń'); await flushAll(10); expect(S().templates).toHaveLength(0);
     await go('/more/backup'); await flushAll(10);
@@ -888,7 +888,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
   test('10b restart po imporcie: dane z pliku zostały', async () => {
     await boot('/');
     expect(S().templates.map(x => x.name)).toEqual(['Push A']); expect(S().workouts).toHaveLength(2); expect(screen.getByLabelText('Start: Push A')).toBeTruthy();
-    expect(screen.getByText('Powtórz ostatni (Push A — poprawione)')).toBeTruthy();
+    await tap(screen.getByLabelText('Inny trening')); await flushAll(5); /* układ B: arkusz „Inny trening” */ expect(screen.getByLabelText('Powtórz ostatni (Push A — poprawione)')).toBeTruthy();
   });
 
   test('11 „Wyczyść wszystkie dane”: pytanie, kopia bezpieczeństwa, stan jak po instalacji; kopię da się zaimportować z powrotem', async () => {

@@ -1,5 +1,5 @@
 import { getRev, wallTs, finishedWorkouts, getState, isWorking, exById, volume, workoutDurSec, workingSets } from '@/lib/store';
-import { dayStatus, hasPlan, addDays, dayKeyOf, type DayStatus, plannedOn } from '@/lib/plan';
+import { dayStatus, hasPlan, addDays, dayKeyOf, type DayStatus, plannedOn, planInForce } from '@/lib/plan';
 import { periodSummary } from '@/lib/period';
 import { thisMonday, prCount } from '@/lib/stats';
 
@@ -8,7 +8,8 @@ import { thisMonday, prCount } from '@/lib/stats';
  * zaplanowany / opuszczony / wolne), trzy kafelki tygodnia z poprzednim tygodniem obok (te same definicje co podsumowanie w Postępach —
  * lib/period), karta ostatniego treningu. Nowa osoba (bez treningów): „Pierwsze kroki”. Same dane użytkownika, bez ocen.
  */
-export type WeekDay = { date: string; status: DayStatus; templateId: string | null; today: boolean };
+/** `inPlan` — w tym dniu obowiązuje plan tygodnia (lib/plan.planInForce): dzień 'rest' z planem to odpoczynek, bez planu — po prostu wolne. */
+export type WeekDay = { date: string; status: DayStatus; templateId: string | null; today: boolean; inPlan: boolean };
 /** Bieżący tydzień od poniedziałku. */
 /** PERF-04: wynik pamiętany do następnej zmiany stanu (store.getRev) i dnia — karta „Dziś” i kafelki tygodnia liczą go raz. */
 let stripMemo: { key: string; st: object; v: WeekDay[] } | null = null;
@@ -18,7 +19,7 @@ export function weekStrip(now = Date.now()): WeekDay[] {
 }
 function weekStripOf(now: number): WeekDay[] {
   const today = dayKeyOf(now); const mon = dayKeyOf(thisMonday(0, new Date(now)));
-  return Array.from({ length: 7 }, (_, i) => { const k = addDays(mon, i); const s = dayStatus(k, today); return { date: k, status: s.status, templateId: s.templateId, today: k === today }; });
+  return Array.from({ length: 7 }, (_, i) => { const k = addDays(mon, i); const s = dayStatus(k, today); return { date: k, status: s.status, templateId: s.templateId, today: k === today, inPlan: planInForce(k, today) }; });
 }
 /** Treningi, serie robocze i czas w tym tygodniu, poprzedni tydzień obok; `planned` — dni z planem w tym tygodniu (null bez planu), `planDone` —
  * z nich zrobione zaplanowanym szablonem (audyt 0.10 A5: ta sama funkcja stanu dnia co kalendarz i pasek; inny trening nie zalicza dnia z planu). */
@@ -34,6 +35,9 @@ export function lastWorkout() {
   /* audyt 0.10: serie jak wszędzie (D3, store.workingSets), rekordy jak okno po treningu (E3, stats.prCount — liczba rekordów, nie serii) */
   return { id: w.id, name: w.templateName, startedAt: wallTs(w) /* J3: data w strefie startu */, durationSec: Math.round(workoutDurSec(w)), sets: workingSets(w), volume: volume(w), prs: prCount(w) };
 }
+/** „Pierwsze kroki” przy pustych szablonach (decyzja właściciela 09.10.2026): niezarchiwizowane szablony bez ćwiczeń, ostatnio zmieniany pierwszy —
+ * krok 2 prowadzi do jego edycji zamiast „Najpierw utwórz szablon”. */
+export const emptyTemplates = () => getState().templates.filter(x => !x.archived && !x.items.length).sort((a, b) => b.updatedAt - a.updatedAt);
 /** „Pierwsze kroki” — widoczne do pierwszego zakończonego treningu. */
 export function firstSteps() {
   if (finishedWorkouts().length) return null;

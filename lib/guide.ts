@@ -1,6 +1,7 @@
 import { getState, save } from '@/lib/store';
 import { t } from '@/lib/i18n';
 import { deloadLessText } from '@/lib/start';
+import { WEEKLY_SETS_MARK } from '@/lib/stats';
 
 /*
  * Przewodnik po najważniejszych funkcjach (decyzja właściciela 08.10.2026, wariant A): tematy z 2–4 krokami i przyciskiem „Pokaż”, który otwiera
@@ -25,7 +26,7 @@ export const GUIDE: GuideTopic[] = [
   { id: 'during', route: '/', title: () => t('Zmiany w trakcie treningu'), steps: () => [
     t('„⇄ zamień” przy ćwiczeniu zamienia je na inne tylko w tym treningu — szablon zostaje.'),
     t('„Pomiń dziś” pomija resztę serii ćwiczenia w tym treningu.'),
-    t('Superset ustawisz w szablonie przyciskiem „Połącz z następnym w superset” — przerwa liczy się po ostatnim ćwiczeniu grupy.'),
+    t('Superset ustawisz w szablonie: „Edytuj”, potem „⇅ SS” przy ćwiczeniu łączy je z następnym (w trakcie treningu ten sam przycisk jest przy ćwiczeniu) — przerwa liczy się po ostatnim ćwiczeniu grupy.') /* UI2-07: cytat widocznego tekstu przycisku */,
     t('Przesunięcie serii albo nazwy ćwiczenia w lewo usuwa je (z potwierdzeniem).'),
   ] },
   { id: 'history', route: '/history', title: () => t('Edycja sesji i trening wstecz'), steps: () => [
@@ -51,7 +52,7 @@ export const GUIDE: GuideTopic[] = [
   ] },
   { id: 'progress', route: '/more/progress', title: () => t('Postępy i rekordy'), steps: () => [
     t('Więcej → Postępy: podsumowanie tygodnia lub miesiąca z poprzednim okresem obok.'),
-    t('Mapa mięśni i serie na partię z kreską 10 serii tygodniowo.'),
+    t('Mapa mięśni i serie na partię z kreską {n} serii tygodniowo.', { n: WEEKLY_SETS_MARK }), /* LOG2-05: próg w jednym miejscu */
     t('Wykresy ćwiczeń i rekordy; rekord w trakcie treningu widać przy serii.'),
   ] },
   { id: 'places', route: '/more/locations', title: () => t('Miejsca i sprzęt'), steps: () => [

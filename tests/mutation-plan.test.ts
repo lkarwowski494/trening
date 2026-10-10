@@ -112,12 +112,12 @@ describe('dni zapisanego planu i zmiany dni wędrujące z planem', () => {
     const id = plan.savedPlans()[0].id; S().savedPlans![0].overrides = { [TODAY]: D, '2026-10-01': D }; delete S().userTouched;
     plan.activatePlan(id);
     expect(S().planOverrides).toEqual({ [YEST]: C, [TODAY]: D });
-    const back = plan.savedPlans().find(p => p.id !== id)!; expect(back.overrides).toEqual({ [TODAY]: B }); expect(back.name).toBe('Plan do 8.10');
+    const back = plan.savedPlans().find(p => p.id !== id)!; expect(back.overrides).toEqual({ [TODAY]: B }); expect(back.name).toBe('Mój plan (8.10)');
     plan.activatePlan(back.id); expect(S().planOverrides).toEqual({ [YEST]: C, [TODAY]: B });
   });
   test('activatePlan: plan bez nazwy dostaje nazwę z datą bez powtórzeń wśród zapisanych', () => {
-    plan.setWeekDay(0, A); S().savedPlans = [{ id: 'x', name: 'Plan do 8.10', days: [C, null, null, null, null, null, null] }, { id: 'p', name: 'P', days: [B, null, null, null, null, null, null] }];
-    plan.activatePlan('p'); expect(plan.savedPlans().map(p => p.name)).toEqual(['Plan do 8.10', 'Plan do 8.10 (2)']);
+    plan.setWeekDay(0, A); S().savedPlans = [{ id: 'x', name: 'Mój plan (8.10)', days: [C, null, null, null, null, null, null] }, { id: 'p', name: 'P', days: [B, null, null, null, null, null, null] }];
+    plan.activatePlan('p'); expect(plan.savedPlans().map(p => p.name)).toEqual(['Mój plan (8.10)', 'Mój plan (8.10) (2)']);
     plan.activatePlan('nie-ma'); expect(plan.planName()).toBe('P');
   });
   test('deletePlan: tylko wskazany; nieznany — bez zmian i bez znacznika', () => {

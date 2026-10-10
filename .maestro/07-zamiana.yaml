@@ -160,8 +160,10 @@ name: Zamiana ćwiczenia w trakcie treningu (E2 W1)
 #   "Usually at Home — X. Swap\?"    ← 'Zwykle w: {l} — {name}. Zamienić?' (podpowiedź liczona przy renderze)
 #   "Discard workout", "Discard workout\?" ← 'Odrzuć trening' / 'Odrzucić trening?' (audyt 0.10 H2: jedna nazwa akcji, dawniej „Cancel workout”)
 - tapOn: "Back"
-- extendedWaitUntil: { visible: "Start from a template", timeout: 30000 }
+- extendedWaitUntil: { visible: "Other workout", timeout: 30000 }  # układ B (09.10.2026): ekran główny od karty „Dziś” i przycisku startu
+- scrollUntilVisible: { element: "Start from a template", direction: DOWN, timeout: 30000 }  # nagłówek listy szablonów niżej (Planowanie, „Ten tydzień”)
 - runFlow: subflows/szablon-testowy.yaml
+- scrollUntilVisible: { element: "Start: Upper A", direction: DOWN, timeout: 30000, centerElement: true }  # układ B: lista szablonów pod kartą Planowania
 - tapOn: "Start: Upper A"
 - extendedWaitUntil: { visible: "Swap exercise: Bench Press \\(Dumbbell\\)", timeout: 30000 }
 - scrollUntilVisible: { element: "Swap exercise: Bench Press \\(Dumbbell\\)", direction: DOWN, timeout: 30000, centerElement: true }  # run 37738868663: przycisk nad paskiem zakładek
@@ -186,7 +188,7 @@ name: Zamiana ćwiczenia w trakcie treningu (E2 W1)
 # (zrzut kroku 159). Przycisk okna: nad „Back”; przycisk w tle leży pod oknem, więc pod „Back”.
 - tapOn: { text: "Discard workout", above: "Back" }
 - extendedWaitUntil: { notVisible: "Discard workout\\?", timeout: 30000 }
-- scrollUntilVisible: { element: "Start: Upper A", direction: UP, timeout: 60000 }
+- scrollUntilVisible: { element: "Start: Upper A", direction: DOWN, timeout: 60000, centerElement: true }  # układ B (09.10.2026): po odrzuceniu ekran główny od góry, lista szablonów niżej
 - tapOn: "Start: Upper A"
 - extendedWaitUntil: { visible: "Usually at Home — .*\\. Swap\\?", timeout: 30000 }
 # interpreter E2E 91 (tests/maestro-layout.ts): linijka podpowiedzi przesuwa przycisk zamiany pod pasek zakładek (jak przy pierwszym starcie, run 37738868663)

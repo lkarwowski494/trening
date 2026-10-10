@@ -5,7 +5,6 @@ import * as units from '@/lib/units';
 import * as i18n from '@/lib/i18n';
 import { EN } from '@/lib/i18n.en';
 import { buildCsv, parseBackup, buildBackup } from '@/lib/backup';
-import { decodeB64, parseExpiry } from '@/lib/signing';
 import { SCHEMA_VERSION, GROUPS, MUSCLES, METRIC_LABEL, LOAD_MODE_LABEL, MODULE_LABEL, SET_KIND_LABEL, LIB, seedState } from '@/lib/seed';
 import { setBodyMass, fresh, saved, ex, addWorkout, set } from './helpers';
 
@@ -236,14 +235,7 @@ describe('A8 tłumaczenia', () => {
   });
 });
 
-describe('A9 podpis', () => {
-  test('data z profilu zakodowanego base64', () => {
-    const xml = '0\u0082garbage<plist><dict><key>ExpirationDate</key><date>2026-10-07T12:00:00Z</date></dict></plist>';
-    const b64 = Buffer.from(xml, 'latin1').toString('base64');
-    expect(parseExpiry(decodeB64(b64))!.toISOString()).toBe('2026-10-07T12:00:00.000Z');
-    expect(parseExpiry('brak')).toBeNull();
-  });
-});
+/* A9 podpis — usunięte: Decyzja właściciela 09.10.2026 (docs/18): przypomnienie o odnowieniu podpisu usunięte razem z instalacją z komputera — regresja: tests/rm-signing.test.tsx. */
 
 test('A2b localDateTs to lokalna północ', () => { const t = store.localDateTs('2026-09-30'); const d = new Date(t); expect([d.getHours(), d.getDate()]).toEqual([0, 30]); });
 /* audyt 0.10 (E1): e1RM ćwiczeń z masą ciała tylko z masą ciała z Ustawień (Epley na masie + ±kg); poranna waga nadal nic nie zmienia */

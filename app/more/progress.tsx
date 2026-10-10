@@ -63,7 +63,7 @@ export default function Progress() {
   const sessions = sessionsFor(ex); const rec = recordsFor(ex); const keys = chartKeysFor(ex);
   // Runda 12: domyślnie pierwszy wykres, który ma dane (np. „max pow.” dla pompek bez dociążenia i bez masy ciała).
   const active = keys.find(k => k.key === key) ?? keys.find(k => sessions.some(s => s[k.key] !== 0)) ?? keys[0];
-  const points = active ? sessions.filter(s => s[active.key] !== 0 || (active.key === 'maxLoad' && isBW(ex) && s.hasLoad)).map(s => ({ x: s.date, y: s[active.key], get label() { return shortY(s.date); } /* runda 74: data formatowana tylko dla punktów, które ją pokazują (pierwszy, ostatni, najlepszy) */ })) : []; /* runda 61/62: ±0 z wykonanej serii to wynik; sesja bez wykonanej serii — brak punktu */ /* runda 61: masa ciała bez asysty (±0) to wynik — dzień bez gumy */ // asysta (ujemne ±) też jest wynikiem
+  const points = active ? sessions.filter(s => s[active.key] !== 0 || (active.key === 'maxLoad' && isBW(ex) && s.hasLoad)).map(s => ({ x: s.date, y: s[active.key], get label() { return shortY(s.shown); /* X2-02: data na zegarze strefy startu */ } /* runda 74: data formatowana tylko dla punktów, które ją pokazują (pierwszy, ostatni, najlepszy) */ })) : []; /* runda 61/62: ±0 z wykonanej serii to wynik; sesja bez wykonanej serii — brak punktu */ /* runda 61: masa ciała bez asysty (±0) to wynik — dzień bez gumy */ // asysta (ujemne ±) też jest wynikiem
   const m = ex.metric ?? 'weight_reps'; const kg = (v: number) => fmtW(v);
   const recRows: [string, string][] = [];
   /* Runda 73: rekord = suma na treningu (pierwszy wiersz) + e1RM; pozostałe wiersze to maksima informacyjne */
@@ -90,11 +90,11 @@ export default function Progress() {
           {recRows.map(([l, v]) => <View key={l} style={{ flexDirection: 'row', justifyContent: 'space-between' }}><Muted>{l}</Muted><Txt style={{ fontFamily: F.monoBold, flexShrink: 1, textAlign: 'right', marginLeft: 8 }}>{monoSafe(v, true) /* A11-11 */}</Txt></View>)}
         </View> : null}
         {bwNote ? <Muted style={{ fontSize: 12, marginTop: 6 }}>{bwNote}</Muted> : null}
-        {sh ? <Btn small title={t('Masa ciała — pomiary')} style={{ alignSelf: 'flex-start', marginTop: 6 }} onPress={() => router.push('/more/bodymass')} /> : null}
+        {sh ? <Btn nav small title={t('Masa ciała — pomiary')} style={{ alignSelf: 'flex-start', marginTop: 6 }} onPress={() => router.push('/more/bodymass')} /> : null}
         <H2 style={{ marginTop: 16 }}>{t('Sesje')}</H2>
         {[...sessions].reverse().slice(0, 20).map((s, i) => (
           <View key={i} style={{ paddingVertical: 8, borderBottomWidth: 1, borderBottomColor: th.line }}>
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}><Txt style={{ fontFamily: F.semibold }}>{fmtDate(s.date)}</Txt><Muted>{t('najlepsza')} {setSummary(ex, s.bestSet)}{s.volume ? ` · ${t('obj.')} ${fmtVol(s.volume)}` : ''}{s.bestE1rm ? ` · e1RM ${fmtW(s.bestE1rm, false)}` : ''}</Muted></View>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}><Txt style={{ fontFamily: F.semibold }}>{fmtDate(s.shown)}</Txt><Muted>{t('najlepsza')} {setSummary(ex, s.bestSet)}{s.volume ? ` · ${t('obj.')} ${fmtVol(s.volume)}` : ''}{s.bestE1rm ? ` · e1RM ${fmtW(s.bestE1rm, false)}` : ''}</Muted></View>
             <Muted style={{ fontSize: 13 }}>{s.sets.map(x => setSummary(ex, x)).join(' · ')}</Muted>
           </View>))}
       </> : <Empty>{t('Brak zapisanych sesji z tym ćwiczeniem.')}</Empty>}

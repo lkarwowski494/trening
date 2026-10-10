@@ -38,14 +38,23 @@ const liveTemplate = (id: string | null | undefined) => !!id && getState().templ
 export const weekPlanDays = (): PlanDays => planDays(getState().weekPlan?.days);
 export const planHistory = (): PlanSegment[] => getState().planHistory ?? [];
 
+/** Dni planu tygodnia obowiązującego w dniu `k` (surowe id): od ostatniego odcinka historii — aktywny plan; wcześniej — odcinek, który wtedy
+ * obowiązywał; przed pierwszym planem — null (audyt 0.10 A1). */
+function segmentDays(k: string, today: string): PlanDays | null {
+  const h = planHistory();
+  if (!h.length) return k >= today ? weekPlanDays() : null;
+  if (k >= h[h.length - 1].from) return weekPlanDays();
+  for (let i = h.length - 2; i >= 0; i--) if (h[i].from <= k) return h[i].days;
+  return null;
+}
 /** Plan tygodnia w dniu `k` (bez zmian pojedynczych dni), surowe id: od ostatniego odcinka historii — aktywny plan; wcześniej — odcinek, który
  * wtedy obowiązywał; przed pierwszym planem — brak (audyt 0.10 A1). */
-export function baseRaw(k: string, today = todayKey()): string | null {
-  const h = planHistory(); const wd = weekdayIdx(k);
-  if (!h.length) return k >= today ? weekPlanDays()[wd] : null;
-  if (k >= h[h.length - 1].from) return weekPlanDays()[wd];
-  for (let i = h.length - 2; i >= 0; i--) if (h[i].from <= k) return h[i].days[wd] ?? null;
-  return null;
+export function baseRaw(k: string, today = todayKey()): string | null { return segmentDays(k, today)?.[weekdayIdx(k)] ?? null; }
+/** Czy w dniu `k` obowiązywał (obowiązuje) plan tygodnia z co najmniej jednym treningiem — odróżnia dzień odpoczynku w planie od dnia bez planu
+ * (ikona espresso, decyzja właściciela 09.10.2026 wieczór; docs/18). Miniony dzień — odcinek historii z tamtego dnia (surowe id, jak plannedOn);
+ * dziś i dalej — aktywny plan z żywym szablonem (jak hasPlan). Same zmiany pojedynczych dni bez planu tygodnia to nie plan tygodnia. */
+export function planInForce(k: string, today = todayKey()): boolean {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(k)) return false; const d = segmentDays(k, today); return !!d && d.some(x => (k < today ? !!x : liveTemplate(x)));
 }
 /** Miniony dzień — surowe id (późniejsze usunięcie albo archiwizacja szablonu nie przepisuje przeszłości); dziś i dalej — tylko żywy szablon. */
 const resolve = (id: string | null | undefined, k: string, today: string): string | null => (k < today ? id || null : liveTemplate(id) ? id! : null);
@@ -86,7 +95,7 @@ export function setWeekDay(i: number, id: string | null) {
 
 /* ---------- kilka planów tygodnia, jeden aktywny (decyzja właściciela 08.10.2026, docs/24 sekcja 1) ----------
  * Audyt 0.10 (decyzje właściciela 08.10.2026 wieczór — wariant lepszy, nie tańszy): B2 A — „Nowy plan” to osobny wpis w „Inne plany”, który
- * edytujesz przed ustawieniem jako aktywny; oryginał zachowuje nazwę, plan bez nazwy dostaje nazwę z datą („Plan do 8.10”); nazwy bez powtórzeń;
+ * edytujesz przed ustawieniem jako aktywny; oryginał zachowuje nazwę, plan bez nazwy dostaje nazwę z datą („Mój plan (8.10)” — UX2-10); nazwy bez powtórzeń;
  * B1 (DAT-02 B) — zmiany pojedynczych dni od dziś wędrują razem z planem: przy wyłączeniu zapisują się w nim, przy ponownej aktywacji wracają. */
 /** Nazwa aktywnego planu ('' — ekran pokazuje „Mój plan”). */
 export const planName = () => getState().weekPlan?.name ?? '';
@@ -106,8 +115,8 @@ const clampTyped = (n: string) => { let v = n.slice(0, PLAN_NAME_MAX); if (/[\uD
 export function setPlanName(n: string) { const c = cleanPlanName(n); putActive(weekPlanDays(), c ? uniqueIn(takenNames(true), c) : ''); commit(); }
 /** Nazwa przy każdej zmianie pola (audyt 0.10 B4 / UI-05 — jak inne nazwy: zapis od razu, porządkowanie przy końcu edycji). */
 export function typePlanName(n: string) { putActive(weekPlanDays(), clampTyped(n)); commit(); }
-/** Nazwa planu bez nazwy, gdy przestaje obowiązywać: „Plan do 8.10” (audyt 0.10 B2 A — ten sam plan nie nazywa się raz „Mój plan”, raz „Poprzedni plan”). */
-const datedName = (today: string) => t('Plan do {date}', { date: parseKey(today).toLocaleDateString(locale(), { day: 'numeric', month: 'numeric' }) });
+/** Nazwa planu bez nazwy, gdy przestaje obowiązywać: „Mój plan (8.10)” — data utworzenia nazwy (UX2-10; wcześniej „Plan do 8.10”, mylące po ponownej aktywacji; audyt 0.10 B2 A — ten sam plan nie nazywa się raz „Mój plan”, raz „Poprzedni plan”). */
+const datedName = (today: string) => t('Mój plan ({date})', /* UX2-10: data zapisu, nie „do”, bo plan może znów obowiązywać */ { date: parseKey(today).toLocaleDateString(locale(), { day: 'numeric', month: 'numeric' }) });
 /** „Nowy plan” (audyt 0.10 B2 A): osobny wpis w „Inne plany” — kopia aktywnego planu (dni) do edycji przed aktywacją; aktywny plan i jego
  * nazwa bez zmian. Zwraca id nowego planu; null — „Inne plany” pełne. */
 export function newPlan(name = ''): string | null {
@@ -135,7 +144,7 @@ export function activationNote(id?: string, today = todayKey()): string {
   return [cur ? (n ? t('Obecny plan zostanie w „Inne plany” razem ze zmianami pojedynczych dni od dziś ({n}) — wrócą, gdy znów go ustawisz.', { n }) : t('Obecny plan zostanie w „Inne plany” — wrócisz do niego jednym przyciskiem.')) : '',
     m ? t('Wrócą zmiany pojedynczych dni zapisane z tym planem: {n}.', { n: m }) : ''].filter(Boolean).join(' ');
 }
-/** Ustawienie zapisanego planu jako aktywnego: poprzedni aktywny (z dniem, nazwą albo zmianami dni od dziś) trafia do zapisanych pod swoją nazwą (bez nazwy — „Plan do <data>”) razem ze
+/** Ustawienie zapisanego planu jako aktywnego: poprzedni aktywny (z dniem, nazwą albo zmianami dni od dziś) trafia do zapisanych pod swoją nazwą (bez nazwy — „Mój plan (<data>)”) razem ze
  * swoimi zmianami dni od dziś (B1); zmiany dni zapisane z nowym planem wracają (te od dziś); przeszłe zmiany zostają (historia); od dziś
  * obowiązuje nowy odcinek historii — minione dni bez zmian (A1). */
 export function activatePlan(id: string) {
@@ -153,6 +162,19 @@ export function addPlan(name: string, days: PlanDays, activate: boolean): string
   if (plansFull()) return '';
   const id = uid(); putSaved([...savedPlans(), { id, name: uniqueIn(takenNames(), cleanPlanName(name) || t('Nowy plan')), days: planDays(days) }]);
   if (activate) activatePlan(id); else commit(); return id;
+}
+/* „+ Nowy szablon” w edytorze planu i w panelu dnia Kalendarza (docs/18 09.10.2026 ok. 14:45, wariant B): szablon powstaje jak „+ Nowy” na liście
+ * Szablony, a po „Zapisz” trafia od razu na dzień, z którego go utworzono — w tym wariancie planu. „Anuluj” nic nie przypisuje (pusty, niezapisany
+ * szablon znika — draft.dropUnsavedNew). Cel zapisany w adresie edycji (`assign`): `week:<0–6>` — aktywny plan, `saved:<id planu>:<0–6>` — plan
+ * z „Inne plany”, `day:<RRRR-MM-DD>` — pojedynczy dzień w Kalendarzu (od dziś). */
+export const assignTarget = { week: (i: number) => `week:${i}`, saved: (id: string, i: number) => `saved:${id}:${i}`, day: (k: string) => `day:${k}` };
+/** Przypisuje zapisany nowy szablon do celu `spec`; false — cel nieważny (plan usunięty, dzień miniony, szablon w archiwum albo nieistniejący). */
+export function assignNewTemplate(spec: string, tplId: string, today = todayKey()): boolean {
+  if (!liveTemplate(tplId)) return false; let m: RegExpMatchArray | null;
+  if ((m = /^week:([0-6])$/.exec(spec))) { setWeekDay(+m[1], tplId); return true; }
+  if ((m = /^saved:(.+):([0-6])$/.exec(spec))) { if (!savedPlans().some(p => p.id === m![1])) return false; setSavedDay(m[1], +m[2], tplId); return true; }
+  if ((m = /^day:(\d{4}-\d{2}-\d{2})$/.exec(spec)) && m[1] >= today) { setDayPlan(m[1], tplId); return true; }
+  return false;
 }
 export function deletePlan(id: string) { if (!savedPlans().some(p => p.id === id)) return; putSaved(savedPlans().filter(p => p.id !== id)); commit(); }
 /** Pojedynczy dzień: inny trening albo wolne (null). */
@@ -326,18 +348,19 @@ export function suggest(from: string, today = todayKey()): Suggestion[] {
   const busy = busyDays(); const start = from < today ? today : from; const base0 = { ...(getState().planOverrides ?? {}) };
   const winFrom = from < today ? from : start; const win = Array.from({ length: RETURN_DAYS + 1 }, (_, i) => addDays(winFrom, i));
   const done = doneInfo(addDays(winFrom, -1), RETURN_DAYS + 3);
-  const baseOnly = (k: string) => baseOn(k, today);
   const simOn = (sim: Sim) => (k: string): string | null => resolve(k in sim.ov ? sim.ov[k] : baseRaw(k, today), k, today);
   const simSet = (sim: Sim, k: string, v: string | null) => { if (v === baseRaw(k, today)) delete sim.ov[k]; else sim.ov[k] = v; };
   const io = (sim: Sim): IO => ({ get: simOn(sim), set: (k, v) => simSet(sim, k, v) });
-  const baseB2B = new Set(backToBack(winFrom, RETURN_DAYS, baseOnly, done).map(p => p.a + p.b));
+  const before = simOn({ ov: base0 }); /* LOG2-02: stan przed propozycją (plan tygodnia + wcześniejsze zmiany dni) */
+  const baseB2B = new Set(backToBack(winFrom, RETURN_DAYS, before, done).map(p => p.a + p.b));
   /* sesje w oknie: dzień z treningiem — 1, plus czekający zaplanowany szablon — 1 (audyt 0.10 A3, A5) */
   const count = (on: (k: string) => string | null) => win.reduce((a, k) => a + (busy.has(k) ? 1 : 0) + (pendingOn(k, on, done) ? 1 : 0), 0);
-  const baseCount = count(baseOnly);
+  const baseCount = count(before);
   const make = (kind: Suggestion['kind'], sim: Sim, to?: string): Suggestion => {
-    const on = simOn(sim); const changed = win.filter(k => on(k) !== baseOnly(k));
-    const lastChange = Object.keys(sim.ov).filter(k => k >= winFrom).sort().pop();
-    const cur = simOn({ ov: base0 }); const placed = Array.from({ length: SHIFT_MAX_DAYS + 7 }, (_, i) => addDays(start, i)).filter(k => on(k) && on(k) !== cur(k)).map(k => ({ id: on(k)!, to: k }));
+    /* LOG2-02 (audyt kontrolny 1): zmiany i ich zasięg względem stanu PRZED propozycją (base0) — wcześniejsze zmiany dni użytkownika (np. urlop
+     * za 3 tygodnie) nie są „zmianą” propozycji */
+    const on = simOn(sim); const cur = before; const changed = win.filter(k => on(k) !== cur(k));
+    const lastChange = [...new Set([...Object.keys(sim.ov), ...Object.keys(base0)])].filter(k => k >= winFrom && sim.ov[k] !== base0[k]).sort().pop(); const placed = Array.from({ length: SHIFT_MAX_DAYS + 7 }, (_, i) => addDays(start, i)).filter(k => on(k) && on(k) !== cur(k)).map(k => ({ id: on(k)!, to: k }));
     return { kind, to, changes: changed.length, newBackToBack: backToBack(winFrom, RETURN_DAYS, on, done).filter(p => !baseB2B.has(p.a + p.b)), dropped: Math.max(0, baseCount - count(on)),
       returns: !lastChange || lastChange <= addDays(winFrom, RETURN_DAYS - 1), placed, ov: sim.ov };
   };
@@ -355,6 +378,16 @@ export function suggest(from: string, today = todayKey()): Suggestion[] {
   const score = (x: Suggestion) => [x.returns ? 0 : 1, x.dropped, x.kind === 'swap' && from === today ? 1 : 0, x.newBackToBack.length, x.changes];
   const sorted = out.sort((a, b) => { const sa = score(a), sb = score(b); for (let i = 0; i < sa.length; i++) if (sa[i] !== sb[i]) return sa[i] - sb[i]; return 0; });
   const seen = new Set<string>(); return sorted.filter(x => { const key = JSON.stringify(Object.entries(x.ov).sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0))); if (seen.has(key)) return false; seen.add(key); return true; });
+}
+/** Najwyżej tyle pozycji listy „Przesuń albo pomiń” od razu; reszta po „Więcej możliwości” (components/DayPanel). */
+export const SUGGEST_FIRST = 4;
+/** Audyt kontrolny 1 (UX2-09): kolejność pokazywania możliwości. Dla dnia minionego tryb (a) z decyzji 2A — „Przesuń plan od dziś” — i „Wolne w tym
+ * dniu” stoją zaraz po najlepszej (polecanej) pozycji, więc mieszczą się w pierwszych SUGGEST_FIRST (dotąd 4× „Przenieś na …” chowało je pod
+ * „Więcej możliwości”); reszta w kolejności rankingu (suggest). Dziś i przyszłość — bez zmian. Nic nie znika ani się nie powtarza. */
+export function suggestionOrder(list: readonly Suggestion[], day: string, today = todayKey()): Suggestion[] {
+  if (day >= today || list.length < 2) return [...list];
+  const best = list[0]; const pin = (['shift', 'skip'] as const).map(k => list.find(x => x.kind === k)).filter((x): x is Suggestion => !!x && x !== best);
+  return [best, ...pin, ...list.filter(x => x !== best && !pin.includes(x))];
 }
 /** Zastosowanie propozycji (na polecenie użytkownika). */
 export function applySuggestion(sg: Suggestion) { putOv({ ...sg.ov }); tidy(); commit(); }

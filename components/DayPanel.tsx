@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { View, Pressable, Alert } from 'react-native';
 import { useRouter } from 'expo-router';
-import { Btn, Chip, Muted, Txt, H2 } from '@/components/ui';
-import { workoutDay, getState, useTick, isDeloadWeek, toggleDeloadWeek, fmtDayKey } from '@/lib/store';
+import { Btn, Chip, Muted, Txt, H2, useOnce } from '@/components/ui';
+import { workoutDay, getState, useTick, isDeloadWeek, toggleDeloadWeek, fmtDayKey, newTemplate } from '@/lib/store';
 import { useTheme, F } from '@/lib/theme';
-import { plannedOn, isChanged, setDayPlan, resetDay, addDays, dayKeyOf, suggest, applySuggestion, dayStatus, doneOn, pending, planTplName, hasPlan, RETURN_DAYS, type Suggestion } from '@/lib/plan';
+import { plannedOn, isChanged, setDayPlan, resetDay, addDays, dayKeyOf, suggest, suggestionOrder, SUGGEST_FIRST, applySuggestion, dayStatus, doneOn, pending, planTplName, hasPlan, assignTarget, RETURN_DAYS, type Suggestion } from '@/lib/plan';
 import { askReminderPermission } from '@/lib/planReminder';
 import { t, locale, lang } from '@/lib/i18n';
 import { startTemplate } from '@/lib/start';
@@ -26,15 +26,13 @@ const dateOf = (k: string) => new Date(+k.slice(0, 4), +k.slice(5, 7) - 1, +k.sl
 const keyTs = (k: string) => new Date(+k.slice(0, 4), +k.slice(5, 7) - 1, +k.slice(8, 10), 12).getTime();
 export const shortDay = (k: string) => fmtDayKey(k); /* H3 (audyt 0.10): jeden format daty dnia */
 const longDay = (k: string) => dateOf(k).toLocaleDateString(locale(), { weekday: 'long', day: 'numeric', month: 'long' });
-/** Najwyżej tyle pozycji listy „Przesuń albo pomiń” od razu; reszta po „Więcej możliwości”. */
-const LIST_FIRST = 4;
 /** Najwyżej tyle głównych akcji panelu (UX-13 A). */
 const PRIMARY_MAX = 3;
 
 type Act = { key: string; el: React.ReactElement };
 
 export function DayPanel({ day }: { day: string }) {
-  useTick(); const router = useRouter(); const th = useTheme(); const today = dayKeyOf(Date.now()); const past = day < today;
+  useTick(); const router = useRouter(); const once = useOnce(); /* UI2-02: przejścia z blokadą podwójnego tapnięcia */ const th = useTheme(); const today = dayKeyOf(Date.now()); const past = day < today;
   const st = dayStatus(day, today); const id = st.templateId; const tpl = id ? getState().templates.find(x => x.id === id && !x.archived) : undefined;
   const act = getState().active; const activeHere = !!act && workoutDay(act) === day; const changed = isChanged(day, today);
   const waiting = (pending(st) || st.status === 'missed') && !activeHere; /* zaplanowany trening czeka (albo minął) — można go przesunąć / pominąć */
@@ -46,7 +44,7 @@ export function DayPanel({ day }: { day: string }) {
 
   /* ---- stan dnia ---- */
   const lines: React.ReactElement[] = [];
-  const link = (key: string, text: string, wid: string) => <Pressable accessibilityLanguage={lang()} key={key} accessibilityRole="link" accessibilityLabel={text} onPress={() => router.push(`/history/${wid}`)} hitSlop={6} style={({ pressed }) => ({ opacity: pressed ? 0.5 : 1, paddingVertical: 2 })}><Txt style={{ fontSize: 15, color: th.accent, fontFamily: F.semibold }}>{`${text} ›`}</Txt></Pressable>;
+  const link = (key: string, text: string, wid: string) => <Pressable accessibilityLanguage={lang()} key={key} accessibilityRole="link" accessibilityLabel={text} onPress={once(() => router.push(`/history/${wid}`))} hitSlop={6} style={({ pressed }) => ({ opacity: pressed ? 0.5 : 1, paddingVertical: 2 })}><Txt style={{ fontSize: 15, color: th.accent, fontFamily: F.semibold }}>{`${text} ›`}</Txt></Pressable>;
   const ch = changed ? ` · ${t('zmiana planu')}` : '';
   if (st.status === 'done' || st.status === 'other') doneOn(day).forEach(w => lines.push(link(w.id, st.status === 'done' ? t('Zrobione: {name}', { name: w.templateName || t('Trening') }) : t('Zrobiony inny trening: {name}', { name: w.templateName || t('Trening') }), w.id)));
   if (st.status === 'other' || st.status === 'planned' || st.status === 'missed') lines.push(<Txt key="plan" style={{ fontSize: 15 }}>{(past ? t('Opuszczony: {name}', { name: tplName(id) }) : t('Zaplanowany: {name}', { name: tplName(id) })) + ch}</Txt>);
@@ -54,11 +52,11 @@ export function DayPanel({ day }: { day: string }) {
   else if (changed) lines.push(<Muted key="plan" style={{ fontSize: 13 }}>{t('zmiana planu')}</Muted>);
   if (activeHere) lines.push(<Muted key="active" style={{ fontSize: 13 }}>{t('Trening w toku')}</Muted>);
   const empty = !!tpl && !tpl.items.length && pending(st);
-  if (empty) lines.push(<Pressable accessibilityLanguage={lang()} key="empty" accessibilityRole="link" onPress={() => router.push(`/template/${tpl!.id}?edit=1`)}><Muted style={{ fontSize: 13 }}>{t('Szablon jest pusty — dodaj ćwiczenia')}</Muted></Pressable>);
+  if (empty) lines.push(<Pressable accessibilityLanguage={lang()} key="empty" accessibilityRole="link" onPress={once(() => router.push(`/template/${tpl!.id}?edit=1`))}><Muted style={{ fontSize: 13 }}>{t('Szablon jest pusty — dodaj ćwiczenia')}</Muted></Pressable>);
 
   /* ---- akcje: główne (najwyżej 3) i „Więcej opcji” ---- */
   const primary: Act[] = []; const extra: Act[] = [];
-  if (tpl && day === today && pending(st) && !act && tpl.items.length) primary.push({ key: 'start', el: <Btn small kind="primary" title={t('Start')} accessibilityLabel={t('Start zaplanowanego treningu: {name}', { name: tpl.name })} onPress={() => startTemplate(tpl, () => router.navigate('/'))} /> });
+  if (tpl && day === today && pending(st) && !act && tpl.items.length) primary.push({ key: 'start', el: <Btn nav small kind="primary" title={t('Start')} accessibilityLabel={t('Start zaplanowanego treningu: {name}', { name: tpl.name })} onPress={() => startTemplate(tpl, () => router.navigate('/'))} /> });
   /* UI-18 (audyt 0.10, G5): przy treningu w toku Start nie znika bez słowa — ta sama informacja co w podglądzie szablonu */
   else if (tpl && day === today && pending(st) && act && tpl.items.length) primary.push({ key: 'start', el: <Btn small kind="ghost" title={t('Start')} accessibilityLabel={t('Start zaplanowanego treningu: {name}', { name: tpl.name })} accessibilityHint={t('Trening w toku')} onPress={() => Alert.alert(t('Trening w toku'), t('Najpierw zakończ albo anuluj bieżący trening.'))} /> });
   if (movable) primary.push({ key: 'move', el: <Btn small title={t('Przesuń albo pomiń')} accessibilityHint={t('Lista możliwości: przesunięcie planu, przeniesienie tylko tego treningu, zamiana albo wolne — z uwzględnieniem regeneracji partii.')} onPress={() => setMode(mode === 'move' ? 'none' : 'move')} /> });
@@ -83,6 +81,8 @@ export function DayPanel({ day }: { day: string }) {
       {mode === 'move' && movable ? <MoveList day={day} onDone={close} /> : null}
       {mode === 'pick' ? <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6, marginTop: 8 }}>
         {live.length ? live.map(x => <Chip key={x.id} label={x.name} on={x.id === id} onPress={() => pickTpl(x.id)} />) : <Muted style={{ fontSize: 13 }}>{t('Nie masz jeszcze szablonów.')}</Muted>}
+        {/* docs/18 09.10.2026 (B): nowy szablon — po „Zapisz” trafia na ten dzień (zmiana pojedynczego dnia) */}
+        <Btn nav small kind="ghost" title={t('+ Nowy szablon')} accessibilityHint={t('Po zapisie szablon trafi na ten dzień.')} onPress={() => { close(); const x = newTemplate(); router.push(`/template/${x.id}?edit=1&new=1&assign=${encodeURIComponent(assignTarget.day(day))}`); }} />
       </View> : null}
     </View>
   );
@@ -103,7 +103,7 @@ export function suggestionTexts(day: string, sg: Suggestion, today = dayKeyOf(Da
 
 /** „Przesuń albo pomiń” (audyt 0.10 UX-13 A, MER-16): jedna lista możliwości, uszeregowana; pierwsza — „polecane”. */
 function MoveList({ day, onDone }: { day: string; onDone: () => void }) {
-  const [all, setAll] = useState(false); const list = suggest(day); const shown = all ? list : list.slice(0, LIST_FIRST);
+  const [all, setAll] = useState(false); const list = suggestionOrder(suggest(day), day) /* UX2-09: miniony dzień — przesunięcie i wolne od razu */; const shown = all ? list : list.slice(0, SUGGEST_FIRST);
   return (
     <View testID="suggestions" style={{ marginTop: 8, gap: 8 }}>
       <Muted style={{ fontSize: 12 }}>{t('Kolejność: najpierw zmiany, po których plan wraca do rutyny w ciągu {n} dni, potem bez utraty treningów, bez nowych par dzień po dniu z tymi samymi partiami i z najmniejszą liczbą zmienionych dni.', { n: RETURN_DAYS })}</Muted>
@@ -113,8 +113,9 @@ function MoveList({ day, onDone }: { day: string; onDone: () => void }) {
           {details.map((d, j) => <Muted key={j} style={{ fontSize: 12 }}>{d}</Muted>)}
           <Btn small title={t('Zastosuj')} accessibilityLabel={t('Zastosuj: {title}', { title })} onPress={() => { applySuggestion(sg); onDone(); }} style={{ alignSelf: 'flex-start', marginTop: 2 }} />
         </View>); })}
-      {!all && list.length > LIST_FIRST ? <Btn small kind="ghost" title={t('Więcej możliwości ({n})', { n: list.length - LIST_FIRST })} onPress={() => setAll(true)} style={{ alignSelf: 'flex-start' }} /> : null}
-      <Muted style={{ fontSize: 12 }}>{[t('Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM).'), ...(list.every(x => x.returns) ? [t('Każda z tych możliwości wraca do rutyny w ciągu {n} dni.', { n: RETURN_DAYS })] : [])].join(' ')}</Muted>
+      {!all && list.length > SUGGEST_FIRST ? <Btn small kind="ghost" title={t('Więcej możliwości ({n})', { n: list.length - SUGGEST_FIRST })} onPress={() => setAll(true)} style={{ alignSelf: 'flex-start' }} /> : null}
+      {/* UX2-09: przy widocznym ostrzeżeniu „dzień po dniu” bez zdania „dwa dni pod rząd … też są w porządku” (sprzeczność na jednym ekranie) — zostaje objaśnienie uproszczenia */}
+      <Muted style={{ fontSize: 12 }}>{[shown.some(x => x.newBackToBack.length) ? t('Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami.') : t('Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM).'), ...(list.every(x => x.returns) ? [t('Każda z tych możliwości wraca do rutyny w ciągu {n} dni.', { n: RETURN_DAYS })] : [])].join(' ')}</Muted>
     </View>
   );
 }

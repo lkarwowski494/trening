@@ -31,7 +31,7 @@ function refSummarize(e: Exercise, w: Workout, sets: WSet[]) {
   const scored = sets.some(s => performed(m, s)) ? sets.filter(s => performed(m, s)) : sets;
   const bestSet = scored.reduce((a, s) => setScore(e, s) > setScore(e, a) ? s : a, scored[0]);
   return {
-    workout: w, date: at, sets, bestSet, bodyMass: isBW(e) ? store.bodyMassLog()[0]?.kg : undefined, /* fala 2: masa ciała z dnia treningu */ total: sets.reduce((a, s) => a + stats.setTotal(e, s), 0),
+    workout: w, date: at, shown: store.wallTs(w) /* X2-02 */, sets, bestSet, bodyMass: isBW(e) ? store.bodyMassLog()[0]?.kg : undefined, /* fala 2: masa ciała z dnia treningu */ total: sets.reduce((a, s) => a + stats.setTotal(e, s), 0),
     /* runda 74: Q-008 (guma bez kg nie jest „±0”) i Q-005 (drop set nie jest max powtórzeń) — zamierzone zmiany dopisane do wzorca */
     maxLoad: hasWeight(m) ? (loads => loads.length ? Math.max(...loads) : 0)(sets.filter(s => performed(m, s) && !unknownAssist(e, s)).map(s => setLoad(e, s))) : 0,
     hasLoad: hasWeight(m) && sets.some(s => performed(m, s) && !unknownAssist(e, s)),

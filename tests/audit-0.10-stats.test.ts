@@ -11,7 +11,7 @@ import { deloadCounts } from '@/lib/start';
 import { buildCsv, buildBackup, parseBackup, strongDur } from '@/lib/backup';
 import { generate } from '@/lib/generator';
 import { swapCandidates, FULL_BASE_REV } from '@/lib/swap';
-import { muscleLoadOf, catalogKey, isLibBase, libExtraRevOf, libKeyFromFields, musclesSourced, MUSCLE_SOURCES, base, uid, LIB, type Template } from '@/lib/seed';
+import { LIB_DISPLAY_NAME, muscleLoadOf, catalogKey, isLibBase, libExtraRevOf, libKeyFromFields, musclesSourced, MUSCLE_SOURCES, base, uid, LIB, type Template } from '@/lib/seed';
 import { applyUnit } from '@/lib/units';
 import { setBodyMass, fresh, saved, addWorkout, ex, set } from './helpers';
 
@@ -71,7 +71,7 @@ describe('D3 / LOG-07 / X-13 / UI-13: jedna definicja serii roboczych — drop s
 
 describe('E2 / X-03: trwały klucz katalogu (libKey) — zmiana nazwy ćwiczenia z biblioteki nie zmienia obliczeń', () => {
   test('nowe ćwiczenia biblioteki mają libKey = nazwa kanoniczna; własne — bez klucza', () => {
-    for (const e of S().exercises) { expect(e.lib).toBe(true); expect(e.libKey).toBe(e.name); }
+    for (const e of S().exercises) { expect(e.lib).toBe(true); expect(typeof e.libKey).toBe('string'); expect(e.name).toBe(LIB_DISPLAY_NAME[e.libKey!] ?? e.libKey); /* SEC2-01: nazwa = klucz kanoniczny albo nazwa ogólna zamiast znaku towarowego */ }
     const own = store.newExercise('Moje'); expect(own.libKey).toBeUndefined(); expect(catalogKey(own)).toBeUndefined();
   });
   test('Cable Fly na stacji (×2, Q-024): po zmianie nazwy objętość, rekord sumy i podsumowanie okresu bez zmian (było 400 → 200)', () => {
@@ -197,10 +197,10 @@ describe('E1 / MER-03 / LOG-02: e1RM w ćwiczeniach z masą ciała — Epley na 
   });
 });
 
-describe('E5: RIR w skali RPE-RIR, CSV w układzie Stronga', () => {
+describe('E5: RIR w skali RPE-RIR, CSV w układzie popularnych dzienników', () => {
   const scale = (v: 'rpe' | 'rir') => { S().settings.showRpe = true; S().settings.effortScale = v; store.save(); };
   test('MER-14 / LOG-15: RIR 0–9 → RPE 10–1; RIR > 9 nie zapisuje RPE 0 ani ujemnego (Helms 2016: skala 1–10)', () => {
-    scale('rir'); expect([store.effortIn(9), store.effortIn(10), store.effortIn(12), store.effortIn(0), store.effortIn(-3)]).toEqual([1, 1, 1, 10, 10]);
+    scale('rir'); expect([store.effortIn(9), store.effortIn(10), store.effortIn(12), store.effortIn(0), store.effortIn(-3)]).toEqual([4, 4, 4, 10, 10]); /* audyt kontrolny 1 MER2-08: RIR > 5 = „lekko” (RPE 4) */
     scale('rpe'); expect([store.effortIn(0), store.effortIn(0.5), store.effortIn(11), store.effortIn(7.5)]).toEqual([1, 1, 10, 7.5]);
   });
   test('LOG-14: Set Order — D dla drop setu, F dla serii do upadku, numer tylko dla zwykłych; Duration „1h 5m”, „1h”, „52m”', () => {

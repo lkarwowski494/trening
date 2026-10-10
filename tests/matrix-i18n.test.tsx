@@ -29,18 +29,19 @@ const entries = (l: Lang) => Object.entries(dictOf(l));
 /** We wszystkich językach: symbole/wzory oraz angielskie nazwy z siłowni, których polski tekst
  * źródłowy używa bez tłumaczenia (te same w innych językach — tak jak nazwy ćwiczeń z biblioteki po angielsku, lib/i18n.ts exName). */
 const SAME_ANY = new Set([
+  'Plan: {name}' /* układ B (09.10.2026): „plan” to to samo słowo w wielu językach (en, de, nl, sv, da, nb, es, ro, hr, tr) */,
   /* marek i modeli sprzętu już nie ma (SEC2-01, decyzja 09.10.2026 (3) A — nazwy ogólne, tłumaczone) */
   /* symbole i wzory */ '{k}: {v}', 'max ±', 'e1RM', '{n} min' /* jednostka (generator, 08.10.2026) */, '{n} s', '{n} h', '{n} m', '{n} km', 'max' /* jednostki SI i skrót — audyt 0.10 A11-17 (cyrylica i el mają własne) */, 'Rekord: {list}' /* „rekord” w wielu językach (A11-18, etykieta plakietki PR) */,
   /* angielskie terminy siłowni użyte w polskim źródle */ 'drop set', '+ drop set', 'Drop set (D)', 'superset', 'Deload' /* termin (tytuł tematu przewodnika, 08.10.2026) */, 'core', 'kettlebell', 'Kettlebell', 'landmine', 'T-bar', 'trap bar', 'kettlebell: {v}' /* 07.10.2026: podpis grafiki na karcie */,
-  'GHD', 'GHD (glute-ham developer)', 'circus bell' /* strongman (09.10.2026, L5 Q7) */, 'glute-ham raise', 'reverse hyper', 'ski erg', 'Ski erg', 'Strongman', 'hack squat', 'Hack squat', 'pendulum squat', 'Pendulum squat',
+  'GHD', 'GHD (glute-ham developer)', 'circus bell' /* strongman (09.10.2026, L5 Q7) */, 'glute-ham raise', 'reverse hyper', 'Strongman', 'hack squat', 'Hack squat', 'pendulum squat', 'Pendulum squat',
   'butterfly (pec deck)', 'Butterfly (pec deck)', 'tempo', 'biceps', 'triceps',
   /* zapożyczenia międzynarodowe (to samo słowo w języku docelowym) */ 'cardio', 'Cardio', 'Start', 'OK' /* przycisk okna (fala 2 audytu 0.10) */, 'Tempo' /* etykieta tempa w podglądzie ćwiczenia (fala 2) — jak 'tempo' */, '▶ Start' /* audyt 0.10 (LIVE-06): przycisk karty jak „Start” */, 'Start: {name}', 'Hotel',
 ]);
 /** W jednym języku: wyraz pokrewny o tym samym zapisie i znaczeniu (słowa sprawdzone w języku docelowym). */
 const SAME_IN: Partial<Record<Lang, string[]>> = {
-  cs: ['guma: {v}' /* guma (07.10.2026) */, '{n} z {all}', '{n} z {m}' /* „z” = z (czes.) */, '{u}/str.' /* strana */, '+ Guma', 'guma', 'Guma', 'gumy', 'Gumy' /* guma */, 'do', 'od', 'krok', 'obj.' /* objem */, 'REKORDY', 'Guma: {b}' /* guma (A11-18: etykieta bez instrukcji) */ /* „pauza” (08.10.2026) usunięte 09.10.2026: pauza treningu = „pozastavit”, A11-01 */],
-  sk: ['guma: {v}' /* guma (07.10.2026) */, '{n} z {all}', '{n} z {m}', '{u}/str.', '+ Guma', 'guma', 'Guma', 'gumy', 'Gumy', 'do', 'od', 'krok', 'obj.', 'REKORDY', 'nie', 'Nie' /* „nie” = nie (słow.) */, 'Partia' /* svalová partia */, 'sek.', 'Teraz: {v}' /* teraz = teraz (słow.) */, 'Guma: {b}' /* A11-18 */ /* „pauza” usunięte 09.10.2026: pauza treningu = „pozastaviť”, A11-01 */],
-  hr: ['guma: {v}' /* guma (07.10.2026) */, 'Masa' /* masa = masa (chorw., cel generatora 08.10.2026) */, '{u}/str.' /* strana */, 'do', 'od', 'Dom', 'normalna', 'sek.', 'Trening' /* APP_NAME.hr */, 'pauza', '⏸ Pauza' /* pauza = pauza (08.10.2026) */, 'Dodaj trening' /* „dodaj” = dodaj (08.10.2026) */, 'Plan do {date}' /* plan do = plan do (chorw.; nazwa planu bez nazwy po wyłączeniu, audyt 0.10 B2) */, 'Dodane: {list}.' /* dodane = dodane (chorw., ćwiczenia z treningu do szablonu, audyt 0.10 H5) */],
+  cs: ['guma: {v}' /* guma (07.10.2026) */, '{n} z {all}', '{n} z {m}', '{u}/str.' /* strana */, '+ Guma', 'guma', 'Guma', 'gumy', 'Gumy', 'Gumy…' /* guma (UI2-09) */, 'do', 'od', 'krok', 'obj.' /* objem */, 'REKORDY', 'Guma: {b}' /* guma (A11-18: etykieta bez instrukcji) */ /* „pauza” (08.10.2026) usunięte 09.10.2026: pauza treningu = „pozastavit”, A11-01 */],
+  sk: ['guma: {v}' /* guma (07.10.2026) */, '{n} z {all}', '{n} z {m}', '{u}/str.', '+ Guma', 'guma', 'Guma', 'gumy', 'Gumy', 'Gumy…', 'do', 'od', 'krok', 'obj.', 'REKORDY', 'nie', 'Nie' /* „nie” = nie (słow.) */, 'Partia' /* svalová partia */, 'sek.', 'Teraz: {v}' /* teraz = teraz (słow.) */, 'Guma: {b}' /* A11-18 */ /* „pauza” usunięte 09.10.2026: pauza treningu = „pozastaviť”, A11-01 */],
+  hr: ['guma: {v}' /* guma (07.10.2026) */, 'Masa' /* masa = masa (chorw., cel generatora 08.10.2026) */, '{u}/str.' /* strana */, 'do', 'od', 'Dom', 'normalna', 'sek.', 'Trening' /* APP_NAME.hr */, 'pauza', '⏸ Pauza' /* pauza = pauza (08.10.2026) */, 'Dodaj trening' /* „dodaj” = dodaj (08.10.2026) */, 'Dodane: {list}.' /* dodane = dodane (chorw., ćwiczenia z treningu do szablonu, audyt 0.10 H5) */],
   sl: ['{u}/str.' /* stran */, 'do', 'od', 'Dom', 'sek.', 'Trening' /* APP_NAME.sl */, 'Treningi' /* sl: mn. „trening” — to samo słowo */, 'Dodaj trening' /* „dodaj” = dodaj (08.10.2026) */, 'Dodane: {list}.' /* dodane = dodane (słoweń., audyt 0.10 H5) */],
   ro: ['seria {n}', 'Seria {n}', 'Seria {n} — {ex}', 'serii', 'e1RM {v} (seria {s})' /* rum. seria = seria (forma z rodzajnikiem), serii = serie */],
   lt: ['guma: {v}' /* guma (07.10.2026) */, '{u}/hant.' /* hantelis */, '+ Guma', 'guma', 'Guma', 'Guma: {b}' /* guma */, 'sek.'],
@@ -112,7 +113,7 @@ describe('słowniki — jakość tekstów w każdym języku', () => {
   test.each(NON_PL)('%s: interpunkcja końcowa (. ? ! : …) jak w kluczu — poza kropką skrótu', l => {
     expect(entries(l).filter(([k, v]) => punctMismatch(k, v, l)).map(([k, v]) => `${k} → ${v}`)).toEqual([]);
   });
-  test.each(NON_PL)('%s: zdanie pytające zostaje pytaniem, wielokropek wielokropkiem (także w środku: „Usuń gumy…”)', l => {
+  test.each(NON_PL)('%s: zdanie pytające zostaje pytaniem, wielokropek wielokropkiem (także w środku: „Gumy…”)', l => {
     expect(entries(l).filter(([k, v]) => (k.includes('?') && !/[?;？]/.test(v)) || (/…$/.test(k) && !/(…|\.\.\.)$/.test(v))).map(([k, v]) => `${k} → ${v}`)).toEqual([]);
   });
   test('słownik EN: liczba mnoga ma dokładnie 2 formy (one|other); klucz polski 3 (jeden|kilka|wiele); każda forma niepusta, bez spacji na brzegach', () => {
@@ -310,9 +311,10 @@ describe('długie tłumaczenia w miejscach, gdzie tekst może być ucięty', () 
   /* Audyt 0.10 (A11-12): każda kontrolka segmentowa na ekranie 320 pt — opcja jednowyrazowa (1 linia) mieści się po zmniejszeniu do SEG_MIN_SCALE;
    * opcja z kilku wyrazów: żaden wyraz nie jest szerszy niż opcja (bez łamania w środku wyrazu) i najwyżej 2 linie; przy powiększonym tekście
    * opcje są jedna pod drugą (components/ui.tsx Segmented) — wyraz mieści się w wierszu przy 200%. */
-  test.each([...LANGS])('%s: wszystkie Segmented (Wygląd, Widok treningu, Cel w generatorze) na ekranie 320 pt — bez łamania wyrazu i bez „…”', l => {
+  /* cel w generatorze — od 09.10.2026 (czwarty cel „Ogólny”) chipy z zawijaniem, nie Segmented: test „cele generatora” niżej */
+  test.each([...LANGS])('%s: wszystkie Segmented (Wygląd, Widok treningu) na ekranie 320 pt — bez łamania wyrazu i bez „…”', l => {
     const { SEG_MIN_SCALE } = require('@/components/ui') as typeof import('@/components/ui');
-    const SEGS: string[][] = [['Jasny', 'Ciemny', 'Jak w telefonie'], ['Skupiony', 'Lista'], ['Siła', 'Masa', 'Redukcja']];
+    const SEGS: string[][] = [['Jasny', 'Ciemny', 'Jak w telefonie'], ['Skupiony', 'Lista']];
     const bad: string[] = [];
     for (const keys of SEGS) {
       const avail = (320 - 2 * 14 - 2 * 1 - 2 * 2) / keys.length - 2 * 6; /* Screen 14, ramka 1, padding 2, segItem padding 6 (ui.tsx) */
@@ -326,6 +328,65 @@ describe('długie tłumaczenia w miejscach, gdzie tekst może być ucięty', () 
       const full = 320 - 2 * 14 - 2 * 1 - 2 * 2 - 2 * 6;
       for (const k of keys) for (const x of trIn(l, k).split(/\s+/)) if (SANS.semibold.width(x, 14 * 2) > full) bad.push(`${x} (pionowo, 200%)`);
     }
+    expect([l, bad]).toEqual([l, []]);
+  });
+  /* 09.10.2026 (B): wybór trybu generatora („Nowe szablony i plan” / „Plan z moich szablonów”) — chipy w wierszu z zawijaniem (components/ui Chip:
+   * 13 pt półgruby, padding 12, ramka 1); na 320 pt każdy wyraz mieści się w chipie na pełnej szerokości (bez łamania w środku wyrazu), także przy 200%. */
+  test.each([...LANGS])('%s: chipy trybu generatora na ekranie 320 pt — żaden wyraz szerszy niż chip', l => {
+    const avail = 320 - 2 * 14 - 2 * 12 - 2 * 1; const bad: string[] = [];
+    for (const k of ['Nowe szablony i plan', 'Plan z moich szablonów']) for (const x of trIn(l, k).split(/\s+/)) for (const sc of [1, 2]) if (SANS.semibold.width(x, 13 * sc) > avail) bad.push(`${x} (${sc})`);
+    expect([l, bad]).toEqual([l, []]);
+  });
+  /* Korekta właściciela 09.10.2026 ok. 17:00: postęp tygodnia „60% planu tygodnia (3 z 5)” obok stosów talerzy (components/WeekStacks: 15 pt półgruby,
+   * wiersz z zawijaniem, TEXT_SCALE_MAX) — na 320 pt (Screen 14) żaden wyraz nie szerszy niż wiersz, także przy 200%; tekst z liczbami {p}, {done}, {n}. */
+  test.each([...LANGS])('%s: postęp tygodnia (procent planu) na ekranie 320 pt — bez łamania wyrazu przy 100% i 200%', l => {
+    const avail = 320 - 2 * 14; const bad: string[] = [];
+    const s = trIn(l, '{p}% planu tygodnia ({done} z {n})').replace('{p}', '100').replace('{done}', '7').replace('{n}', '7');
+    for (const x of s.split(/\s+/)) for (const sc of [1, 2]) if (SANS.semibold.width(x, 15 * sc) > avail) bad.push(`${x} (${sc})`);
+    expect([l, /100/.test(s) && /7/.test(s), bad]).toEqual([l, true, []]);
+    expect([l, ['{p}', '{done}', '{n}'].every(k => trIn(l, 'Postęp tygodnia: {p}% planu, zrobione {done} z {n} treningów z planu').includes(k))]).toEqual([l, true]);
+  });
+  /* 1 dzień w generatorze (09.10.2026, docs/research/29): ostrzeżenie „oneday”, opis redukcji bez cardio, „Cardio poza planem”, punkt podstaw
+   * (13 pt / 12 pt zwykły, zawijane, TEXT_SCALE_MAX) i nazwa sesji „FBW” (nagłówek podglądu H2) — na 320 pt (Screen 14) żaden wyraz nie szerszy
+   * niż wiersz, także przy 200%. Renderowanie w każdym języku na 320 pt: tests/gen-days-ui.test.tsx. */
+  test.each([...LANGS])('%s: teksty generatora dla 1 dnia na ekranie 320 pt — bez łamania wyrazu przy 100% i 200%', l => {
+    const avail = 320 - 2 * 14; const bad: string[] = [];
+    const KEYS = ['Jeden trening w tygodniu też daje postępy, ale zwykle trochę mniejsze niż częstszy trening — głównie dlatego, że w jednej sesji mieści się mniej serii. Przy tej samej liczbie serii w tygodniu różnica w przyroście mięśni znika, a w sile maleje.',
+      'Redukcja: trening jak na masę (chroni mięśnie); sesja cardio w planie od {k} dni w tygodniu.',
+      'Cardio poza planem: sesja cardio jest w planie od {k} dni w tygodniu, przy mniejszej liczbie wszystkie dni są siłowe. Zalecenie WHO: co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.',
+      'Cardio: od {k} dni w tygodniu jedna sesja w osobny dzień; przy mniejszej liczbie dni wszystkie są siłowe, żeby cardio nie zabierało dni treningowi siłowemu (każda główna partia co najmniej {n} dni) — konwencja.'];
+    for (const k of KEYS) for (const x of trIn(l, k).split(/\s+/)) for (const sc of [1, 2]) if (SANS.regular.width(x, 13 * sc) > avail) bad.push(`${x} (${sc})`);
+    for (const x of trIn(l, 'FBW').split(/\s+/)) for (const sc of [1, 2]) if (SANS.semibold.width(x, 17 * sc) > avail) bad.push(`${x} (H2 17 pt, ${sc})`);
+    expect([l, bad]).toEqual([l, []]);
+  });
+  /* Cel „Ogólny” (09.10.2026, docs/research/30): 4 cele w kontrolce segmentowej na 320 pt nie mieszczą się w każdym języku (np. de, sv — długie
+   * jednowyrazowe nazwy przy 59,5 pt na opcję), więc cel to chipy z zawijaniem (components/ui Chip: 13 pt półgruby, padding 12, ramka 1) — każdy wyraz
+   * nazwy celu mieści się w chipie na pełnej szerokości, także przy 200%. Dowód potrzeby: przy 4 opcjach Segmented któraś nazwa się nie mieści. */
+  test.each([...LANGS])('%s: cele generatora (4 chipy) na ekranie 320 pt — żaden wyraz szerszy niż chip, także przy 200%%', l => {
+    const avail = 320 - 2 * 14 - 2 * 12 - 2 * 1; const bad: string[] = [];
+    for (const k of ['Siła', 'Masa', 'Redukcja', 'Ogólny']) for (const x of trIn(l, k).split(/\s+/)) for (const sc of [1, 2]) if (SANS.semibold.width(x, 13 * sc) > avail) bad.push(`${x} (${sc})`);
+    expect([l, bad]).toEqual([l, []]);
+  });
+  test('4 cele w kontrolce segmentowej na 320 pt nie mieszczą się we wszystkich językach (powód chipów)', () => {
+    const { SEG_MIN_SCALE } = require('@/components/ui') as typeof import('@/components/ui'); const avail = (320 - 2 * 14 - 2 * 1 - 2 * 2) / 4 - 2 * 6;
+    const over = LANGS.flatMap(l => ['Siła', 'Masa', 'Redukcja', 'Ogólny'].map(k => trIn(l, k)).filter(s => s.split(/\s+/).some(x => SANS.semibold.width(x, 14 * SEG_MIN_SCALE) > avail)));
+    expect(over.length).toBeGreaterThan(0);
+  });
+  /* Cel „Ogólny”: opis celu, uwaga przy 1 dniu, przełącznik cardio z opisem, punkty „Na czym to oparte” (13 pt / 12 pt / 16 pt przełącznik, zawijane) —
+   * na 320 pt żaden wyraz nie szerszy niż wiersz, także przy 200%. Renderowanie w każdym języku: tests/gen-general-ui.test.tsx. */
+  test.each([...LANGS])('%s: teksty celu „Ogólny” na ekranie 320 pt — bez łamania wyrazu przy 100% i 200%%', l => {
+    const avail = 320 - 2 * 14; const bad: string[] = [];
+    const KEYS = [
+      'Ogólny (dla zdrowia i sprawności): {s} serie na ćwiczenie, {a}–{b} powtórzeń (w domu {c}–{d}), do chwili, gdy kolejne powtórzenie byłoby trudne. WHO 2020 zaleca ćwiczenia wzmacniające wszystkie główne partie co najmniej {n} dni w tygodniu.',
+      '{k} dzień siłowy w tygodniu to mniej niż zalecenie WHO 2020 (co najmniej {n} dni). Na początek to dobry krok: według wytycznych USA 2018 na początku można ćwiczyć siłowo tylko {k} dzień w tygodniu, a z czasem dojść do {n} — trochę ruchu jest lepsze niż żaden.',
+      'Dni cardio w planie', 'Dni powyżej {k} to sesje umiarkowanego cardio zamiast siłowych.',
+      'Serie: {s} na ćwiczenie — dla zdrowia zwykle {s}–{b}. ACSM 2026 zaleca co najmniej {m}. Wytyczne USA 2018: jedna seria działa, {s}–{b} mogą działać lepiej; ACSM 2011: jedna seria może wystarczyć, zwłaszcza u początkujących i starszych. {s} to dolna granica — uproszczenie.',
+      'Powtórzenia: {a}–{b} (wytyczne USA 2018, ACSM 2011); w domu i bez obciążenia {c}–{d} — uproszczenie: lżejszy ciężar, więcej powtórzeń.',
+      'Wysiłek: do chwili, gdy kolejne powtórzenie byłoby trudne — zmęczenie, ale nie wyczerpanie (WHO 2020: co najmniej umiarkowany; wytyczne USA 2018; ACSM 2011). Do upadku nie trzeba.',
+      'Przerwy: {b} min po wielostawowych, {c} min po jednostawowych i core — uproszczenie; źródła są niejednoznaczne (ACSM 2026: długość przerwy nie zmieniała przyrostu siły).',
+      'Cardio: przy {k}–{m} dniach możesz zamienić dni powyżej {j} na sesje umiarkowanego cardio („Dni cardio w planie”, domyślnie wyłączone). WHO 2020 nie znalazło dowodów, że więcej ćwiczeń wzmacniających daje więcej korzyści dla zdrowia, a ruch aerobowy zalecenia radzą rozłożyć na kilka dni (wytyczne USA 2018, ACSM 2011). Długość sesji cardio = czas sesji — konwencja.',
+    ];
+    for (const k of KEYS) for (const x of trIn(l, k).split(/\s+/)) for (const sc of [1, 2]) if (SANS.regular.width(x, (k === 'Dni cardio w planie' ? 16 : 13) * sc) > avail - (k === 'Dni cardio w planie' ? 51 + 12 : 0) /* przełącznik iOS 51 pt + odstęp */) bad.push(`${x} (${sc})`);
     expect([l, bad]).toEqual([l, []]);
   });
   test('czytnik TTF liczy szerokości jak krój (kontrola: „i” węższe niż „m”, szerokość rośnie liniowo z rozmiarem)', () => {

@@ -63,7 +63,7 @@ export function fmtE1(ex: Exercise, v: number, bm: number | undefined): string {
 export const e1rm = (load: number, reps: number) => (load > 0 && reps > 0) ? Math.round((reps === 1 ? load : load * (1 + reps / 30)) * 1e6) / 1e6 : 0;
 
 /** Runda 73 (decyzja 01.10): REKORD ćwiczenia = suma na treningu (objętość / powtórzenia / czas / dystans wg metryki) + e1RM.
- * Masa ciała: suma powtórzeń bez asysty (jak „most session reps” w Hevy); pozostałe maksima zostają na karcie jako informacja, bez odznaki PR. */
+ * Masa ciała: suma powtórzeń bez asysty (jak „najwięcej powtórzeń w sesji” w popularnych dziennikach); pozostałe maksima zostają na karcie jako informacja, bez odznaki PR. */
 export type TotalKind = 'objętość treningu' | 'suma powtórzeń' | 'łączny czas' | 'łączny dystans';
 export function totalKind(ex: Exercise): TotalKind | null {
   const m = ex.metric ?? 'weight_reps';
@@ -96,7 +96,7 @@ const totalGt = (ex: Exercise, a: number, b: number, units = 0) => { const k = t
   if (k === 'łączny dystans') return a > b + 1e-9 && fmtDist(a) !== fmtDist(b); /* T13: 5004 m to wciąż „5 km” — bez widocznej różnicy nie ma rekordu */
   return a > b + 1e-9; };
 
-export interface Session { /** runda 73: suma na treningu (rekord) */ total: number; /** masa ciała z dnia treningu (ćwiczenia z masą ciała; fala 2 audytu 0.10) */ bodyMass?: number; workout: Workout; date: number; sets: WSet[]; bestSet: WSet; maxLoad: number; /** runda 62: czy w sesji jest wykonana seria (0 ±kg to wynik, a nie brak danych) */ hasLoad: boolean; bestE1rm: number; volume: number; maxReps: number; maxDuration: number; maxDistance: number; /** runda 74: do rekordów narastających */ bestSetVolume: number; maxRepsFree: number }
+export interface Session { /** runda 73: suma na treningu (rekord) */ total: number; /** masa ciała z dnia treningu (ćwiczenia z masą ciała; fala 2 audytu 0.10) */ bodyMass?: number; workout: Workout; /** prawdziwa chwila startu — porównania („before”) i kolejność */ date: number; /** X2-02 (audyt kontrolny 1): chwila startu na zegarze strefy startu (wallTs, J3) — do wyświetlania daty */ shown: number; sets: WSet[]; bestSet: WSet; maxLoad: number; /** runda 62: czy w sesji jest wykonana seria (0 ±kg to wynik, a nie brak danych) */ hasLoad: boolean; bestE1rm: number; volume: number; maxReps: number; maxDuration: number; maxDistance: number; /** runda 74: do rekordów narastających */ bestSetVolume: number; maxRepsFree: number }
 
 /** Klucz: id ćwiczenia + jednostka — objętość w lb liczona z wyświetlanych funtów (runda 73), więc cache zależy od jednostki. */
 const allSessions = memoHistBy((key: string): Session[] => {
@@ -137,7 +137,7 @@ function summarize(ex: Exercise, w: Workout, sets: WSet[], impls: (Impl | undefi
     if (D) maxDistance = Math.max(maxDistance, Number(s.distanceM) || 0);
     if (freeOf(ex, s) && s.kind !== 'drop') maxRepsFree = Math.max(maxRepsFree, reps); /* Q-005 (audyt 74): także bez asysty */
   });
-  return { workout: w, date: at, sets, bestSet: bestP ?? bestA, total, maxLoad: maxLoad === -Infinity ? 0 : maxLoad, hasLoad, bestE1rm, volume, maxReps, maxDuration, maxDistance, bestSetVolume, maxRepsFree, bodyMass: bm };
+  return { workout: w, date: at, shown: wallTs(w), sets, bestSet: bestP ?? bestA, total, maxLoad: maxLoad === -Infinity ? 0 : maxLoad, hasLoad, bestE1rm, volume, maxReps, maxDuration, maxDistance, bestSetVolume, maxRepsFree, bodyMass: bm };
 }
 
 export interface Records { /** runda 73: najlepsza suma na treningu */ bestTotal: number; maxLoad: number; bestE1rm: number; bestSetVolume: number; maxReps: number; /** runda 72: najwięcej powtórzeń bez asysty (ćwiczenia z masą ciała: ±kg ≥ 0) — próg rekordu powtórzeń */ maxRepsFree: number; /** Q-026: czy któraś sesja miała sumę > 0 (próg rekordu sumy) */ totalAny: boolean; /** T6: czy w historii jest seria, z której liczy się e1RM (≤ 10 powt., nie drop) */ e1rmAny: boolean; maxDuration: number; maxDistance: number; any: boolean; /** masa ciała z sesji najlepszego e1RM (opis „masa ciała + X” — fala 2 audytu 0.10) */ bestE1rmBm?: number }
@@ -273,7 +273,7 @@ export const hasAnyHistory = () => getState().workouts.some(w => w.finishedAt);
  * to samo stanowisko: każdy trening siłowy poprawia hipertrofię względem braku treningu — znacznik nie jest progiem „działa / nie działa”.
  * Uproszczenie: u nas serie pomocnicze liczą się po 0,5 (Pelland 2026, docs/21 B3), w stanowisku — serie na partię bez tego rozróżnienia. */
 export const WEEKLY_SETS_MARK = 10;
-/** Serie robocze per partia w tygodniu zaczynającym się `weekStart` (główna = 1, pomocnicza = 0,5), jak w Hevy/Boostcamp. */
+/** Serie robocze per partia w tygodniu zaczynającym się `weekStart` (główna = 1, pomocnicza = 0,5), jak w popularnych aplikacjach treningowych. */
 export function weeklySetsByMuscle(weekStart: number): Record<string, number> {
   const d = new Date(weekStart); return setsByMuscle(weekStart, new Date(d.getFullYear(), d.getMonth(), d.getDate() + 7).getTime());
 }

@@ -16,7 +16,6 @@ import * as stats from '@/lib/stats';
 import * as edit from '@/lib/edit';
 import * as timer from '@/lib/timer';
 import { buildCsv } from '@/lib/backup';
-import { calendarDaysLeft, reminderAt } from '@/lib/signing';
 import { fresh, ex, addWorkout, saved, seedState } from './helpers';
 
 jest.setTimeout(120000);
@@ -428,21 +427,8 @@ describe('historia — kolejność przy równym starcie, deterministyczna po pon
   });
 });
 
-/* ======================= 9. podpis aplikacji: dni kalendarzowe, przypomnienie dzień wcześniej 18:00 ======================= */
-describe('signing — calendarDaysLeft i reminderAt w dniach kalendarzowych', () => {
-  test('calendarDaysLeft = różnica dat lokalnych (0 = dziś, 1 = jutro) także przez zmianę czasu i sylwestra', () => {
-    const bad: string[] = [];
-    for (const now of PROBES.filter((_, i) => i % 7 === 0)) for (const plusH of [1, 5, 23, 24, 25, 47, 49, 24 * 29]) { const e = now + plusH * H;
-      const a = calOf(now), b = calOf(e); const exp = Math.round((Date.UTC(b.y, b.mo - 1, b.d) - Date.UTC(a.y, a.mo - 1, a.d)) / DAY);
-      const got = calendarDaysLeft(new Date(e), new Date(now)); if (got !== exp) bad.push(`${new Date(now).toISOString()} +${plusH}h: ${got} ≠ ${exp}`); }
-    expect(bad).toEqual([]);
-    const n = at(2026, 7, 1, 12); expect(calendarDaysLeft(new Date(n), new Date(n))).toBe(-1); expect(calendarDaysLeft(new Date(n + 31 * DAY), new Date(n))).toBeNull();
-  });
-  test('reminderAt = dzień kalendarzowy przed wygaśnięciem, 18:00 lokalnie (1.01 → 31.12, 1.03.2028 → 29.02, dni DST)', () => {
-    for (const e of [at(2027, 1, 1, 0, 30), at(2028, 3, 1, 9), at(2027, 3, 1, 9), ...EDGES.map(x => x + 12 * H)]) { const p = addDays(calOf(e), -1);
-      expect(reminderAt(new Date(e)).getTime()).toBe(at(p.y, p.mo, p.d, 18, 0)); }
-  });
-});
+/* ======================= 9. (usunięte) podpis aplikacji ======================= */
+/* Decyzja właściciela 09.10.2026 (docs/18): przypomnienie o odnowieniu podpisu usunięte razem z instalacją z komputera — regresja: tests/rm-signing.test.tsx. */
 
 /* ======================= 10. przepływ CI: macierz stref ======================= */
 describe('.github/workflows/tests-tz.yml — macierz stref czasowych w CI', () => {

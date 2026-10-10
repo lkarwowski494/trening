@@ -1,12 +1,12 @@
 import React from 'react';
 import { View, Pressable } from 'react-native';
 import { useRouter } from 'expo-router';
-import { Btn, Muted, Txt, SectionTitle, Item } from '@/components/ui';
+import { Btn, Muted, Txt, SectionTitle, useOnce } from '@/components/ui';
 import { useTheme, F, NUM_SCALE_MAX } from '@/lib/theme';
-import { fmtDate, fmtDur, getState, useTick, newTemplate } from '@/lib/store';
-import { weekTiles, lastWorkout, firstSteps } from '@/lib/dashboard';
-import { fmtVol } from '@/lib/units';
-import { t, tp, lang, glue } from '@/lib/i18n';
+import { getState, useTick, newTemplate } from '@/lib/store';
+import { weekTiles, lastWorkout, firstSteps, emptyTemplates } from '@/lib/dashboard';
+import { WeekStacks } from '@/components/WeekStacks';
+import { t, lang } from '@/lib/i18n';
 
 /* Dashboard ekranu Trening (decyzja właściciela 08.10.2026, wariant A) — dane: lib/dashboard.ts. */
 function Tile({ label, value, prev }: { label: string; value: string; prev: string }) {
@@ -20,20 +20,33 @@ function Tile({ label, value, prev }: { label: string; value: string; prev: stri
 }
 const hm = (sec: number) => { const m = Math.round(sec / 60); return m >= 60 ? `${t('{n} h', { n: Math.floor(m / 60) })}${m % 60 ? ` ${t('{n} min', { n: m % 60 })}` : ''}` : t('{n} min', { n: m }); }; /* A11-17: jednostki przez t() */
 
-/** Kafelki tygodnia i ostatni trening (od pierwszego zakończonego treningu). */
+/** Kafelki tygodnia (od pierwszego zakończonego treningu); przy planie postęp tygodnia (stosy talerzy). */
 export function WeekStats() {
-  useTick(); const router = useRouter(); const w = weekTiles(); const last = lastWorkout(); if (!last) return null;
+  useTick(); const router = useRouter(); const once = useOnce(); /* UI2-02 */ const w = weekTiles(); const last = lastWorkout(); if (!last) return null;
   return <>
     <SectionTitle>{t('Ten tydzień')}</SectionTitle>
-    <Pressable testID="week-tiles" accessibilityRole="button" accessibilityLabel={([[t('Treningi'), String(w.workouts), String(w.prev.workouts)], [t('Serie'), String(w.sets), String(w.prev.sets)], [t('Czas'), hm(w.durationSec), hm(w.prev.durationSec)]] as const).map(([label, value, prev]) => t('{label}: {v}, poprzedni tydzień {p}', { label, v: value, p: prev })).join('; ')} accessibilityHint={t('Otwiera Postępy.')} onPress={() => router.push('/more/progress')} style={({ pressed }: { pressed: boolean }) => ({ flexDirection: 'row', gap: 8, opacity: pressed ? 0.7 : 1 })} /* UX-16 A (audyt 0.10): te same definicje co Postępy */>
+    <Pressable testID="week-tiles" accessibilityRole="button" accessibilityLabel={([[t('Treningi'), String(w.workouts), String(w.prev.workouts)], [t('Serie'), String(w.sets), String(w.prev.sets)], [t('Czas'), hm(w.durationSec), hm(w.prev.durationSec)]] as const).map(([label, value, prev]) => t('{label}: {v}, poprzedni tydzień {p}', { label, v: value, p: prev })).join('; ')} accessibilityHint={t('Otwiera Postępy.')} onPress={once(() => router.push('/more/progress'))} style={({ pressed }: { pressed: boolean }) => ({ flexDirection: 'row', gap: 8, opacity: pressed ? 0.7 : 1 })} /* UX-16 A (audyt 0.10): te same definicje co Postępy */>
       <Tile label={t('Treningi')} value={String(w.workouts)} prev={String(w.prev.workouts)} />
       <Tile label={t('Serie')} value={String(w.sets)} prev={String(w.prev.sets)} />
       <Tile label={t('Czas')} value={hm(w.durationSec)} prev={hm(w.prev.durationSec)} />
     </Pressable>
-    {w.planned != null ? <Muted style={{ fontSize: 12, marginTop: 4 }}>{t('Z planu w tym tygodniu: zrobione {done} z {n}.', { done: w.planDone ?? 0, n: w.planned })}</Muted> : null}{/* audyt 0.10 A5/X-04: dni z planu zrobione zaplanowanym szablonem (ten sam stan dnia co kalendarz) — sesje i dni planu osobno */}
-    <SectionTitle>{t('Ostatni trening')}</SectionTitle>
-    <Item title={last.name || t('Trening')} sub={[fmtDate(last.startedAt), fmtDur(last.durationSec), `${last.sets} ${tp(last.sets, 'seria|serie|serii')}`, fmtVol(last.volume), ...(last.prs ? [`${last.prs} ${tp(last.prs, 'rekord|rekordy|rekordów')}`] : [])].map(glue).join(' · ') /* A11-19 */} onPress={() => router.push(`/history/${last.id}`)} />
+    {w.planned ? <View style={{ marginTop: 10 }}><WeekStacks /></View> : null /* przy planie stosy talerzy i „60% planu tygodnia (3 z 5)” (korekta właściciela 09.10.2026 ok. 17:00; te same liczby, lib/motif.weekProgress) */}{/* audyt 0.10 A5/X-04: dni z planu zrobione zaplanowanym szablonem (ten sam stan dnia co kalendarz) — sesje i dni planu osobno */}
+    {/* „Ostatni trening” usunięty z ekranu głównego (właściciel 09.10.2026 ok. 16:20): informacja zostaje w arkuszu „Inny trening” („Powtórz ostatni”: nazwa · data), w Historii i Kalendarzu */}
   </>;
+}
+
+/** Krok 2 bez szablonu z ćwiczeniami (decyzja właściciela 09.10.2026): są puste szablony — „Dodaj ćwiczenia do szablonu „…”” z przejściem do edycji
+ * ostatnio zmienianego; kilka pustych — dodatkowo liczba i lista Szablony; brak szablonów — „Najpierw utwórz szablon.” jak dotąd. */
+function EmptyHint() {
+  const router = useRouter(); const empty = emptyTemplates(); const x = empty[0];
+  if (!x) return <Muted style={{ fontSize: 12 }}>{t('Najpierw utwórz szablon.')}</Muted>;
+  return <View style={{ gap: 6 }}>
+    <Muted style={{ fontSize: 12 }}>{t('Dodaj ćwiczenia do szablonu „{name}”.', { name: x.name })}</Muted>
+    <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6 }}>
+      <Btn nav small title={t('Dodaj ćwiczenia')} accessibilityLabel={t('Dodaj ćwiczenia do szablonu „{name}”.', { name: x.name })} onPress={() => router.push(`/template/${x.id}?edit=1`)} />
+      {empty.length > 1 ? <Btn nav small kind="ghost" title={t('Puste szablony: {n}', { n: empty.length })} accessibilityHint={t('Lista szablonów.')} onPress={() => router.navigate('/templates')} /> : null}
+    </View>
+  </View>;
 }
 
 /** Nowa osoba: kroki do pierwszego treningu (znikają po pierwszym zakończonym treningu). Audyt 0.10 UX-12 (wariant A): krok 1 z dwoma równorzędnymi
@@ -59,7 +72,8 @@ export function FirstSteps() {
       {step(f.template, 1, t('Utwórz pierwszy szablon albo wygeneruj szablony i plan.'), !f.template ? row(
         <Btn nav key="new" small title={t('+ Nowy szablon')} onPress={() => { const x = newTemplate(); router.push(`/template/${x.id}?edit=1&new=1`); }} />,
         <Btn nav key="gen" small title={t('Wygeneruj szablony i plan')} onPress={() => router.push('/generator')} />) : undefined)}
-      {step(f.plan, 2, t('Ustaw plan tygodnia — zobaczysz tu dzisiejszy trening i dostaniesz przypomnienie.'), !f.plan ? (f.template ? <Btn nav small title={t('Plan tygodnia')} onPress={() => router.push('/plan')} style={{ alignSelf: 'flex-start' }} /> : <Muted style={{ fontSize: 12 }}>{t('Najpierw utwórz szablon.')}</Muted>) : undefined)}
+      {step(f.plan, 2, t('Ustaw plan tygodnia — zobaczysz tu dzisiejszy trening i dostaniesz przypomnienie.'), !f.plan ? (f.template ? row(<Btn nav key="plan" small title={t('Plan tygodnia')} onPress={() => router.push('/plan')} />,
+        <Btn nav key="own" small title={t('Plan z moich szablonów')} onPress={() => router.push('/generator?mode=own')} />) /* 09.10.2026 (B) */ : <EmptyHint />) : undefined)}
       {step(places, 3, t('Opcjonalnie: dodaj miejsce i sprzęt — wybór ćwiczeń i podpowiedzi ciężarów dopasują się do niego.'), !places ? <Btn nav small kind="ghost" title={t('Miejsca i sprzęt')} onPress={() => router.push('/more/locations')} style={{ alignSelf: 'flex-start' }} /> : undefined)}
       {step(false, 4, t('Pierwszy trening: „Start” przy szablonie niżej albo „Pusty trening”.'), <Btn nav small kind="ghost" title={t('Jak to działa')} accessibilityLabel={t('Przewodnik: {name}', { name: t('Trening i serie') })} onPress={() => router.push('/guide?topic=workout')} style={{ alignSelf: 'flex-start' }} />)}
     </View>);

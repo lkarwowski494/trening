@@ -5,7 +5,7 @@ import * as timer from '@/lib/timer';
 import * as units from '@/lib/units';
 import * as stats from '@/lib/stats';
 import { exName, t as tr } from '@/lib/i18n';
-import { renderApp, tap, type, flushAll, screen, go, act } from './app';
+import { renderApp, tap, type, flushAll, screen, go, act, fromHome } from './app';
 import { ex, pressAlert } from './helpers';
 
 jest.setTimeout(120000);
@@ -49,7 +49,7 @@ for (const [loc, unit, w1, w2] of [['pl', 'kg', '100', '80'], ['en', 'lb', '225'
     expect(day1.exercises[0].sets.length).toBe(3);
 
     jest.setSystemTime(Date.now() + 86400e3); await go('/'); await flushAll(10);
-    await tap(screen.getByText(tr('Powtórz ostatni ({name})', { name: tr('bez szablonu') }))); await flushAll(10);
+    await fromHome(tr('Powtórz ostatni ({name})', { name: tr('bez szablonu') })); /* układ B: arkusz „Inny trening” */ await flushAll(10);
     const b = store.getState().active!;
     expect(b.exercises[0].sets.map(s => [units.wField(s.weight), s.reps, s.kind])).toEqual([[Number(w1), 5, 'normal'], [Number(w1), 4, 'normal'], [Number(w2), 8, 'drop']]);
     expect(b.exercises[1].sets[0].durationSec).toBe('');

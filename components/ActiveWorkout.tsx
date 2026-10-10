@@ -4,6 +4,7 @@ import { useRouter } from 'expo-router';
 import { activateKeepAwakeAsync, deactivateKeepAwake } from 'expo-keep-awake';
 import { useTheme, F, NUM_SCALE_MAX } from '@/lib/theme';
 import { Btn, Input, NumInput, Muted, useOnce, monoSafe } from '@/components/ui';
+import { TechniqueLink } from '@/components/ExerciseCues';
 import { effortLabel, effortField, effortIn, isPaused, workoutDurSec, pauseWorkout, resumeWorkout, progressionFor, skipExercise, unskipExercise, writeLoad, setActiveLocation, lastActivity, staleSince, staleRef, staleKind, ackStale, markActivity, useForegroundTick, bandA11y, clampName, loadLabelShort, getState, useTick, exById, prevOfActiveBlock, previousFor, canUndoSwap, undoSwap, pinnedImpl, rememberRest as storeRememberRest, canRememberAlt, rememberAlt, altHint, acceptAlt, skipAlt, occurrence, occurrences, hintFor, isBW, reps, fmtDur, fmtSec, fmtTime, setSummary, toggleDone, restAfter, roundRest, addSet, removeSet, removeSetById, removeExercise, finishWorkout, cancelWorkout, save, loadLabel, groupLabels, linkWithNext, unlink, cycleBand, findSet, shortBand, setHasValue, locationById, offListNote, liveBlockImpl, listLocFor, srcSetAt, usesBand, focusSet, isDeloadWeek, wallTs, workCount, workSetCount, REPS_MAX, REST_MAX } from '@/lib/store';
 import { restLabel, setLabel, nowParts, focusCounter } from '@/lib/live';
 import { availability, missingLabel } from '@/lib/equipment';
@@ -109,7 +110,8 @@ export default function ActiveWorkout() {
   const kind: timer.StaleKind = w ? staleKind(w) : 'none'; const lng = lang(), snd = getState().settings.sound;
   const [minute, setMinute] = useState(0); useEffect(() => { const i = setInterval(() => setMinute(x => x + 1), 60e3); return () => clearInterval(i); }, []); /* T1: sprawdzenie także przy otwartej aplikacji */
   const pausedAt = w?.pausedAt ?? null; /* audyt 0.10 (LIVE-10, wariant B): treść wspomina pauzę */
-  useEffect(() => { if (w) timer.scheduleStaleReminder(ref, last, kind, pausedAt).catch(() => {}); return () => { if (!getState().active) timer.cancelStaleReminder().catch(() => {}); }; }, [ref, kind, last, lng, snd, pausedAt]); /* T4a/T4b: godzina w treści, język i dźwięk przypomnienia aktualne */ // eslint-disable-line react-hooks/exhaustive-deps
+  const tz = w?.tzOffsetMin; /* LIVE2-04: godziny na zegarze strefy startu */
+  useEffect(() => { if (w) timer.scheduleStaleReminder(ref, last, kind, pausedAt, tz).catch(() => {}); return () => { if (!getState().active) timer.cancelStaleReminder().catch(() => {}); }; }, [ref, kind, last, lng, snd, pausedAt, tz]); /* T4a/T4b: godzina w treści, język i dźwięk przypomnienia aktualne */ // eslint-disable-line react-hooks/exhaustive-deps
   /** Pytanie o porzucony trening. Runda 71: blokada na poziomie modułu (dwa zamontowane ekrany nie otwierają dwóch okien),
    * przyciski działają tylko na tym samym treningu (T3), a „Wróć” z potwierdzenia odrzucenia wraca do pytania. */
   const askStale = (tries = 0) => {
@@ -121,7 +123,7 @@ export default function ActiveWorkout() {
     const cur = getState().active; const since = staleSince(); if (!cur || since == null || staleOpenFor === cur.id || asking.current || finishing.current) return;
     const id = cur.id; staleOpenFor = id; asking.current = true; const done = () => { asking.current = false; staleOpenFor = null; };
     const same = () => getState().active?.id === id; const k = staleKind(cur);
-    Alert.alert(tr('Trening wciąż trwa'), timer.staleBody(k, since, true, cur.pausedAt), [
+    Alert.alert(tr('Trening wciąż trwa'), timer.staleBody(k, since, true, cur.pausedAt, cur.tzOffsetMin), [
       { text: tr('Kontynuuj'), onPress: () => { done(); if (same()) ackStale(); } },
       ...(k === 'work' ? [{ text: tr('Zakończ i zapisz'), onPress: () => { done(); if (same()) finalize(since); } }] : []),
       { text: tr('Odrzuć'), style: 'destructive' as const, onPress: () => { Alert.alert(tr('Odrzucić trening?'), tr('Serie z tej sesji przepadną.'), [{ text: tr('Wróć'), style: 'cancel', onPress: () => { done(); askStale(); } }, { text: tr('Odrzuć trening'), style: 'destructive', onPress: () => { done(); if (!same()) return; cancelWorkout(); timer.stop(); timer.stopSet(); timer.cancelStaleReminder().catch(() => {}); } }]); } }, /* T1: potwierdzenie — okno pojawia się niespodziewanie */
@@ -135,9 +137,10 @@ export default function ActiveWorkout() {
     // istnieje i nie jest już odhaczona; do serii roboczych tylko, gdy nie jest rozgrzewką.
     const rpos = timer.S.on ? findSet(timer.S.setId) : null; const rset = rpos ? w.exercises[rpos.ei]?.sets[rpos.si] : null;
     const runId = rset && !rset.done ? rset.id : null;
-    const running = runId ? 1 : 0; const runningWork = rset && runId && rset.kind !== 'warmup' ? 1 : 0;
+    const running = runId ? 1 : 0;
     const done = w.exercises.reduce((a, e) => a + e.sets.filter(s => s.done).length, 0) + running;
-    const doneWork = w.exercises.reduce((a, e) => a + e.sets.filter(s => s.done && s.kind !== 'warmup').length, 0) + runningWork;
+    /* LIVE2-02 (audyt kontrolny 1): serie robocze jak workingSets (D3 — drop razem z serią przed nim); trwający pomiar liczy się jak odhaczony */
+    const doneWork = w.exercises.reduce((a, e) => a + (exById(e.exerciseId) ? workSetCount(e.sets.map(s => s.id === runId ? { ...s, done: true } : s)) : 0), 0);
     const go = () => finalize();
     // Runda 7: wpisane, nieodhaczone serie liczymy przed wszystkimi oknami — każde o nich ostrzega.
     const typed = (e: WExercise, s: WSet) => !e.skipped /* „Pomiń dziś” — świadomie pominięte */ && !s.done && s.id !== runId && setHasValue(s) && !isPrefill(e, s);
@@ -265,7 +268,7 @@ function SessionProgress({ w }: { w: Workout }) {
  * widoczna tam, gdzie się ją stosuje; zmienia się ją w szablonie („Edytuj”). */
 function TemplateNote({ w }: { w: Workout }) {
   const t = useTheme(); const note = w.templateId ? getState().templates.find(x => x.id === w.templateId)?.note : undefined; if (!note) return null;
-  return <View accessible accessibilityLabel={`${tr('Notatka szablonu')}: ${note}`} style={{ borderLeftWidth: 3, borderLeftColor: t.accent, paddingLeft: 10, marginBottom: 10 }}><Muted style={{ fontSize: 13, color: t.text }}>{note}</Muted></View>;
+  return <View accessibilityLanguage={lang()} accessible accessibilityLabel={`${tr('Notatka szablonu')}: ${note}`} style={{ borderLeftWidth: 3, borderLeftColor: t.accent, paddingLeft: 10, marginBottom: 10 }}><Muted style={{ fontSize: 13, color: t.text }}>{note}</Muted></View>;
 }
 
 /** Gotowość z porannego wpisu w nagłówku sesji (0.2.1): „tracker wie, jak spałeś”. */
@@ -416,6 +419,7 @@ function ExerciseBlock({ w, e, ei, onDone, onStartSet, labels, prs }: { w: Worko
         <Btn title={`⏱ ${fmtDur(e.restSec)}`} small accessibilityHint={`${nm}. ${tr('Tapnij, by zmienić.')}`} /* A11-18 */ accessibilityLabel={tr('Przerwa: {s}', { s: fmtDur(e.restSec) })} onPress={() => { Alert.prompt?.(tr('Przerwa (sekundy)'), tr('Zapamiętać dla tego ćwiczenia?'), [{ text: tr('Anuluj'), style: 'cancel' }, { text: tr('Tylko teraz'), onPress: (v?: string) => { const n = parseRest(v); if (n != null) { e.restSec = n; save(st.active); } else badRest(); } }, { text: tr('Zapamiętaj'), onPress: (v?: string) => { const n = parseRest(v); if (n != null) rememberRest(n); else badRest(); } }], 'plain-text', String(e.restSec), 'number-pad'); }} />
         {ei + 1 < w.exercises.length && (!inSS || w.exercises[ei + 1].groupId !== e.groupId) ? <Btn title="⇅ SS" small kind="ghost" accessibilityLabel={tr('Połącz z następnym w superset')} accessibilityHint={nm} onPress={() => linkWithNext(w.exercises, ei, w)} /> : null}
         {inSS ? <Btn title="✂ SS" small kind="ghost" accessibilityLabel={tr('Wyjmij z supersetu')} accessibilityHint={nm} onPress={() => unlink(w.exercises, ei, w)} /> : null}
+        <TechniqueLink exercise={ex} name={nm} />{/* UX2-05 (audyt kontrolny 1): wskazówki techniki i figura w trakcie treningu */}
         {swappable ? <Btn title={tr('⇄ zamień')} small kind="ghost" accessibilityLabel={tr('Zamień ćwiczenie: {name}', { name: nm })} onPress={openSwap} /> : null}
         {e.sets.some(x => !x.done) ? <Btn title={tr('Pomiń dziś')} small kind="ghost" accessibilityLabel={tr('Pomiń dziś: {name}', { name: nm })} onPress={skipToday} /> : null}
       </View>

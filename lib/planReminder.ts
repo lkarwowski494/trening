@@ -48,6 +48,15 @@ export function planReminderKey(now = Date.now()) {
   return `${planReminderOn()}|${lang()}|${today}|${dayStatus(today).status}|${activeDay() ?? ''}|${days.join(',')}|${st.templates.map(x => x.id + x.name + (x.items.length ? '' : '∅')).join(',')}`;
 }
 
+/** Identyfikatory powiadomień, których aplikacja już nie planuje: przypomnienie o odnowieniu podpisu (T-053) — usunięte razem z instalacją
+ * z komputera (decyzja właściciela 09.10.2026, docs/18: instalacja tylko przez TestFlight). Instalacja buildu z TestFlight na miejsce
+ * dawnego zachowuje dane i zaplanowane powiadomienia, więc stare przypomnienie przyszłoby z nieaktualną treścią. */
+export const LEGACY_REMINDER_IDS: readonly string[] = ['signing-reminder'];
+/** Odwołuje stare powiadomienia (LEGACY_REMINDER_IDS) — przy każdym starcie; idempotentne, błąd iOS nie przerywa startu. */
+export async function cancelLegacyReminders(): Promise<void> {
+  for (const id of LEGACY_REMINDER_IDS) { try { await Notifications.cancelScheduledNotificationAsync(id); } catch {} }
+}
+
 export type ReminderPermission = 'granted' | 'denied' | 'undetermined';
 /** Stan zgody na powiadomienia (Ustawienia, audyt 0.10 I1): odmowa — iOS już nie zapyta, zgodę zmienia się w Ustawieniach iOS. */
 export async function reminderPermission(): Promise<ReminderPermission> {
@@ -55,9 +64,15 @@ export async function reminderPermission(): Promise<ReminderPermission> {
 }
 /** Audyt 0.10 I1 (UX-05, X-11): przy pierwszym dniu w planie — wyjaśnienie i prośba o zgodę (tylko gdy iOS jeszcze nie pytał i przypomnienie
  * jest włączone). Odmowa wcześniej — bez okna; stan widać przy przełączniku w Ustawieniach. */
+let askedThisRun = false;
 export async function askReminderPermission(): Promise<void> {
-  if (!planReminderOn() || (await reminderPermission()) !== 'undetermined') return;
+  if (askedThisRun || !planReminderOn()) return;
+  askedThisRun = true; /* X-11: jedno okno na uruchomienie — kilka dróg (ekran + PlanReminderSync) nie pyta dwa razy, „Nie teraz” nie wraca przy każdej zmianie planu.
+   * E2E 102: znacznik PRZED `await` — dwa wywołania naraz przechodziły warunek i dawały dwa okna */
+  if ((await reminderPermission()) !== 'undetermined') return;
   Alert.alert(t('Przypomnienie o treningu z planu'), t('Rano o {h}:00 w dniu zaplanowanego treningu przyjdzie powiadomienie. Potrzebna jest zgoda na powiadomienia — iOS zapyta o nią po „Dalej”.', { h: PLAN_REMINDER_HOUR }), [
     { text: t('Nie teraz'), style: 'cancel' }, { text: t('Dalej'), onPress: () => { Notifications.requestPermissionsAsync().catch(() => {}); } },
   ]);
 }
+/** Tylko dla testów (nowe „uruchomienie”). */
+export function __resetReminderAsk() { askedThisRun = false; }

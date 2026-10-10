@@ -114,7 +114,8 @@ describe('dashboard', () => {
   test('weekStrip: pamięć do zmiany stanu albo dnia; nowy stan (import) — liczy od nowa; dzień „dziś” tylko jeden', () => {
     plan.setWeekDay(3, A); const a = weekStrip(NOW); expect(weekStrip(NOW)).toBe(a);
     expect(a.filter(d => d.today).map(d => d.date)).toEqual([TODAY]); expect(a.map(d => d.date)[0]).toBe('2026-10-05');
-    expect(a.find(d => d.date === TODAY)).toEqual({ date: TODAY, status: 'planned', templateId: A, today: true });
+    expect(a.find(d => d.date === TODAY)).toEqual({ date: TODAY, status: 'planned', templateId: A, today: true, inPlan: true });
+    expect(a.find(d => d.date === '2026-10-05')!.inPlan).toBe(false); /* plan od dziś — poniedziałek sprzed planu bez odpoczynku */
     store.replaceState(JSON.parse(JSON.stringify(S()))); expect(weekStrip(NOW)).not.toBe(a); /* ten sam licznik, inny stan */
     expect(weekStrip(NOW + 86400e3)).not.toBe(weekStrip(NOW));
   });
@@ -133,8 +134,8 @@ describe('dashboard', () => {
 
 describe('whatsnew', () => {
   test('wpisy od najnowszego, każdy z tekstami; kropka tylko u kogoś z treningiem; otwarcie — przeczytane, bez zbędnego zapisu', () => {
-    expect(WHATS_NEW.map(w => w.id)).toEqual(['2026-10-08', '2026-10-07', '2026-10-06']); expect(WHATS_NEW.map(w => w.build)).toEqual([undefined, 1002, 1001]);
-    expect(WHATS_NEW.map(w => w.items().length)).toEqual([9, 3, 2]); expect(WHATS_NEW.every(w => w.items().every(x => typeof x === 'string' && x.length > 10))).toBe(true);
+    expect(WHATS_NEW.map(w => w.id)).toEqual(['2026-10-09', '2026-10-08', '2026-10-07', '2026-10-06']); expect(WHATS_NEW.map(w => w.build)).toEqual([undefined, 1004, 1002, 1001]);
+    expect(WHATS_NEW.map(w => w.items().length)).toEqual([10, 9, 3, 2]); expect(WHATS_NEW.every(w => w.items().every(x => typeof x === 'string' && x.length > 10))).toBe(true);
     expect(whatsNewUnseen()).toBe(false); /* nowa osoba */
     addWorkout(at('2026-10-06'), [['Back Squat', [{ weight: 100, reps: 5 }]]]); expect(whatsNewUnseen()).toBe(true);
     markWhatsNewSeen(); expect(S().whatsNewSeen).toBe(WHATS_NEW[0].id); expect(whatsNewUnseen()).toBe(false);

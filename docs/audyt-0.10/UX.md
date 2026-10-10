@@ -5,8 +5,8 @@ Raport źródłowy audytora z 08.10.2026 (commit d2a1e85), bez zmian treści. Zb
 ## Mapa funkcji i wejść
 
 Kod: d2a1e85. Worktree był najpierw na złym commicie, ale wszystko czytałem i uruchamiałem z d2a1e85 (archiwum, potem worktree przełączony przez koordynatora). Do sprawdzenia napisałem dwa testy robocze:
-- /home/user/trening/.claude/worktrees/agent-a9d47bdf7cb46b17f/tests/zz-audit-ux-a.test.tsx
-- /home/user/trening/.claude/worktrees/agent-a9d47bdf7cb46b17f/tests/zz-audit-ux-b.test.tsx
+- <worktree audytora, poza repo>/tests/zz-audit-ux-a.test.tsx
+- <worktree audytora, poza repo>/tests/zz-audit-ux-b.test.tsx
 
 Oba przechodzą. Nie są w gicie i nie należy ich commitować. Zrzuty tekstów ekranów są w `scratchpad/ux-audit/out/`. Własne zrzuty web (SE 320×568 i std 375×812, stany „nowa osoba” i „z planem”) są w `scratchpad/ux-audit/shots/`, obok zrzutów koordynatora.
 
@@ -326,5 +326,5 @@ Oba przechodzą. Nie są w gicie i nie należy ich commitować. Zrzuty tekstów 
 
 Pliki z dowodami:
 - testy robocze: `tests/zz-audit-ux-a.test.tsx`, `tests/zz-audit-ux-b.test.tsx` (w worktree, poza gitem);
-- wyniki: `/tmp/claude-0/-home-user-trening/ff1266f8-cce8-5fe6-b038-09db1e9b7165/scratchpad/ux-audit/out/`;
-- zrzuty: `/tmp/claude-0/-home-user-trening/ff1266f8-cce8-5fe6-b038-09db1e9b7165/scratchpad/ux-audit/shots/`.
+- wyniki: `<scratchpad sesji audytu, poza repo>/ux-audit/out/`;
+- zrzuty: `<scratchpad sesji audytu, poza repo>/ux-audit/shots/`.

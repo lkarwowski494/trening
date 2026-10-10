@@ -5,7 +5,7 @@ import { useSyncExternalStore } from 'react';
 import { t, t as tr, tIn, applyLang, detectLang, locale, fold, isLang, lang, upper, collator, deviceUnit } from './i18n';
 import { applyUnit, wu, wOut, wIn, KG_PER_LB, fmtW, fmtNum, snapLegacyLb } from './units';
 import { applyTheme } from './theme';
-import { seedState, uid, base, defaultModules, defaultSettings, metricFor, loadModeFor, loadMult, blankTimer, musclesFor, hasTime, hasReps, hasWeight, hasDistance, METRICS, DEFAULT_REST, GROUPS, LIB, SCHEMA_VERSION, LOCAL_OWNER, MODULES, SET_KINDS, SINGLE_IMPLEMENT, equipFields, libExercise, LIB_EXTRA_REVS, LIB_EXTRA_REV, LIB_MUSCLE_FIXES, LIB_FIELD_FIXES, LIB_RENAMED, LIB_MERGED, LIB_RETIRED, libExtraRevOf, LIB_BASE_NAMES_V1, LOAD_SOURCE_BY_EQUIPMENT, IMPLS, own, type Impl, type SetKind, type Base, type State, type Workout, type WSet, type WExercise, type Exercise, type Template, type TemplateItem, type TemplateAlt, type TRow, type Morning, type Location, type PlanSegment, LIB_KEYS, catalogKey, libKeyFromFields, BODY_MASS_MAX, isNiche, LIB_BASE_NAMES, BODY_MASS_LOG_MAX, type BodyMassEntry, type LoadMode } from './seed';
+import { seedState, uid, base, defaultModules, defaultSettings, metricFor, loadModeFor, loadMult, blankTimer, musclesFor, hasTime, hasReps, hasWeight, hasDistance, METRICS, DEFAULT_REST, GROUPS, LIB, SCHEMA_VERSION, LOCAL_OWNER, MODULES, SET_KINDS, SINGLE_IMPLEMENT, equipFields, libExercise, LIB_EXTRA_REVS, LIB_EXTRA_REV, LIB_MUSCLE_FIXES, LIB_FIELD_FIXES, LIB_RENAMED, LIB_MERGED, LIB_RETIRED, libExtraRevOf, LIB_BASE_NAMES_V1, LOAD_SOURCE_BY_EQUIPMENT, IMPLS, own, type Impl, type SetKind, type Base, type State, type Workout, type WSet, type WExercise, type Exercise, type Template, type TemplateItem, type TemplateAlt, type TRow, type Morning, type Location, type PlanSegment, LIB_KEYS, LIB_DISPLAY_NAME, catalogKey, libKeyFromFields, libKeyCandidates, BODY_MASS_MAX, isNiche, LIB_BASE_NAMES, BODY_MASS_LOG_MAX, type BodyMassEntry, type LoadMode } from './seed';
 import { equipById, loadsFor, implAt, implsAt, blankLoad, availability, fillGym, GYM_FILL, fillOpts, OPT_FILL, fillEquip2, EQUIP_FILL2 } from './equipment';
 import { sanitizeLoadSpec, nextHeavier, hasLoadShown } from './loads';
 import { CATALOG, CATALOG_REV, CABLES } from './catalog.generated';
@@ -133,6 +133,8 @@ export async function init(): Promise<void> {
       await db.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', 'recovery', JSON.stringify(recovery)).catch(() => {});
     }
   }
+  /* UX2-03 = DAT2-06 (audyt kontrolny 1, wariant A): szkice edycji ćwiczenia i szablonu z osobnego klucza — lib/draft.ts przywraca je po starcie */
+  savedDrafts = null; if (S) { try { const dr = await db.getFirstAsync<{ v: string }>('SELECT v FROM kv WHERE k = ?', DRAFTS_KEY); savedDrafts = dr ? dr.v : null; } catch {} }
   if (!recovery) { try { const m = await db.getFirstAsync<{ v: string }>('SELECT v FROM kv WHERE k = ?', 'recovery'); const r = m ? JSON.parse(m.v) : null; if (r && typeof r.key === 'string') recovery = { key: r.key, at: Number(r.at) || 0 }; } catch {} }
   if (!S) { S = seedState(detectLang()); S.settings.unit = deviceUnit(); /* H4 (audyt 0.10 UX-12): świeża instalacja — jednostka z regionu (en-US → lb) */ needsPersist = true; }
   applyPrefs();
@@ -203,8 +205,9 @@ function fixEquipFields(e: any) {
 /** P-003: miejsca treningu z importu — znane pozycje sprzętu i opcje, poprawne opisy ciężarów; miejsce główne zawsze istnieje, gdy są miejsca. */
 function fixLocations(s: any, stamp: (o: any) => void, language: unknown): { locations: Location[]; mainLocationId: string | null; pickerShowAll: boolean } {
   const seen = new Set<string>(); const locations: Location[] = [];
-  for (const l of arr(s.locations)) {
-    stamp(l); if (seen.has(l.id)) continue; seen.add(l.id);
+  const list = arr(s.locations); list.forEach(l => stamp(l)); freshIds(list); /* DAT2-04 (= DAT-08): powtórzone id → „~n” (jak uniqueIds), bez gubienia drugiego miejsca */
+  for (const l of list) {
+    seen.add(l.id);
     const n = typeof l.name === 'string' ? clampName(l.name.replace(/\s+/g, ' ').trim()) : ''; l.name = n || tIn(language, 'Miejsce'); /* audyt (LOW): limit nazwy jak w polu */
     const items = new Set<string>();
     l.equipment = arr(l.equipment).filter((e: any) => { const x = typeof e.item === 'string' ? equipById(e.item) : undefined; if (!x || items.has(e.item)) return false; items.add(e.item);
@@ -274,6 +277,8 @@ export function migrate(raw: any): State {
     if (e.lib === true) { const k0 = typeof e.libKey === 'string' && (LIB_KEYS.has(e.libKey) || LIB_RETIRED.has(e.libKey) || own(LIB_RENAMED, e.libKey)) ? e.libKey : LIB_KEYS.has(e.name) || LIB_RETIRED.has(e.name) || own(LIB_RENAMED, e.name) ? e.name : undefined;
       const k = k0 !== undefined ? own(LIB_RENAMED, k0) ?? k0 : undefined; if (k0 !== undefined && k !== k0 && e.name === k0) e.name = k;
       if (k !== undefined) e.libKey = k; else delete e.libKey; } else delete e.libKey;
+    /* SEC2-01: nazwa ze znakiem towarowym, nieprzemianowana (równa kluczowi) → nazwa ogólna; klucz zostaje, idempotentnie */
+    if (e.lib === true && typeof e.libKey === 'string' && e.name === e.libKey) { const d = own(LIB_DISPLAY_NAME, e.libKey); if (d) e.name = d; }
     if (typeof e.tempo !== 'string') e.tempo = ''; if (typeof e.notes !== 'string') e.notes = '';
     e.bandAssistable = !!e.bandAssistable;
     // Runda 41: tylko prawdziwe true archiwizuje; partia i sprzęt spoza słownika → „inne”.
@@ -284,9 +289,12 @@ export function migrate(raw: any): State {
   });
   /* E2 (audyt 0.10): przemianowane ćwiczenie biblioteki bez klucza — klucz z jednoznacznego zestawu pól katalogu (seed.libKeyFromFields), tylko gdy
    * żadne inne ćwiczenie go nie ma i pasuje dokładnie jedno ćwiczenie; pola są wtedy z bieżącego katalogu (znacznik wersji — idempotentnie). */
+  /* DAT2-02 (audyt kontrolny 1): kandydaci z katalogu buildów 1001/1002 (stamtąd pola takich danych) i z wariantów o tych samych polach
+   * (Bench Press = Board Press) — klucze zajęte przez inne ćwiczenia odpadają; klucz tylko przy jednym kandydacie i jednym ćwiczeniu. Pola katalogu
+   * (wymagania, wzorzec, źródło obciążenia) odświeżane z bieżącego katalogu, jak u ćwiczenia z kluczem (fixEquipFields). */
   { const taken = new Set(raw.exercises.map((e: any) => e.libKey).filter(Boolean)); const cand = new Map<string, any[]>();
-    for (const e of raw.exercises) if (e.lib === true && e.libKey === undefined) { const k = libKeyFromFields(e); if (k && !taken.has(k)) cand.set(k, [...(cand.get(k) ?? []), e]); }
-    for (const [k, list] of cand) if (list.length === 1) { list[0].libKey = k; if (list[0].catalogRev !== 'user') list[0].catalogRev = CATALOG_REV; } }
+    for (const e of raw.exercises) if (e.lib === true && e.libKey === undefined) { const ks = libKeyCandidates(e).filter(k => !taken.has(k)); if (ks.length === 1) cand.set(ks[0], [...(cand.get(ks[0]) ?? []), e]); }
+    for (const [k, list] of cand) if (list.length === 1 && LIB_KEYS.has(k)) { const e = list[0]; e.libKey = k; if (e.catalogRev !== 'user') { delete e.catalogRev; fixEquipFields(e); } } }
   /* Katalog 04.10.2026 (decyzja właściciela: rozbudowa katalogu): dane bez znacznika katalogu dostają nowe ćwiczenia biblioteki RAZ (znacznik
    * State.libExtra — ćwiczenie usunięte później przez użytkownika nie wraca); pomijane, gdy istnieje ćwiczenie o tej samej nazwie (także własne).
    * Audyt 04.10 (HIGH): znacznik zamiast granicy schematu — build 01f2bee miał już schemat 16 bez katalogu. */
@@ -397,8 +405,8 @@ export function migrate(raw: any): State {
     const nm = isObj(raw.weekPlan) && typeof raw.weekPlan.name === 'string' ? cleanPlanName(raw.weekPlan.name) : ''; /* audyt 0.10 B4 (DAT-06): idempotentnie, bez rozcinania emoji */
     if (days.some(Boolean) || nm) raw.weekPlan = { days, ...(nm ? { name: nm } : {}) }; else delete raw.weekPlan;
     /* 08.10.2026 (docs/24): zapisane plany — id tekstem bez powtórzeń, nazwa ≤ 40, 7 dni; pusta lista znika; najwyżej SAVED_PLANS_MAX (ten sam limit w UI — audyt 0.10 B3) */
-    { const seen = new Set<string>(); const sp = (Array.isArray(raw.savedPlans) ? raw.savedPlans : []).filter((p: any) => isObj(p) && typeof p.id === 'string' && p.id && !seen.has(p.id) && (seen.add(p.id), true))
-        .map((p: any) => { const ov = cleanOverrides(p.overrides); return { id: p.id, name: typeof p.name === 'string' ? cleanPlanName(p.name) : '', days: planDays(p.days), ...(Object.keys(ov).length ? { overrides: ov } : {}) }; }); /* audyt 0.10 B1: zmiany dni zapisane z planem */
+    { const sp0 = (Array.isArray(raw.savedPlans) ? raw.savedPlans : []).filter((p: any) => isObj(p) && typeof p.id === 'string' && p.id); freshIds(sp0); /* DAT2-04: powtórzone id → „~n” */
+      const sp = sp0.map((p: any) => { const ov = cleanOverrides(p.overrides); return { id: p.id, name: typeof p.name === 'string' ? cleanPlanName(p.name) : '', days: planDays(p.days), ...(Object.keys(ov).length ? { overrides: ov } : {}) }; }); /* audyt 0.10 B1: zmiany dni zapisane z planem */
       if (sp.length) raw.savedPlans = sp.slice(0, SAVED_PLANS_MAX); else delete raw.savedPlans; }
     const ov = cleanOverrides(raw.planOverrides);
     if (Object.keys(ov).length) raw.planOverrides = ov; else delete raw.planOverrides;
@@ -478,11 +486,13 @@ function retireCatalog(raw: any) {
   }
   if (drop.size) raw.exercises = raw.exercises.filter((e: any) => !drop.has(e.id));
 }
+/** Powtórzone id w liście → nowe id deterministyczne („<id>~2”, „~3”…; pierwszy wpis zachowuje id): dwa wczytania tych samych danych dają ten sam
+ * wynik (porównania eksport → import, restart). Jedna reguła dla wszystkich list z id (także miejsca i zapisane plany — DAT2-04). */
+function freshIds(list: any[]) { const seen = new Set<string>(list.map(o => o?.id).filter((x: unknown) => typeof x === 'string'));
+  const first = new Set<string>(); for (const o of list) { if (typeof o?.id !== 'string') continue; if (!first.has(o.id)) { first.add(o.id); continue; }
+    let n = 2; while (seen.has(`${o.id}~${n}`)) n++; o.id = `${o.id}~${n}`; seen.add(o.id); first.add(o.id); } }
 function uniqueIds(raw: any) {
-  /* nowe id deterministyczne („<id>~2”, „~3”…): dwa wczytania tych samych danych dają ten sam wynik (porównania eksport → import, restart) */
-  const fresh = (list: any[]) => { const seen = new Set<string>(list.map(o => o?.id).filter((x: unknown) => typeof x === 'string'));
-    const first = new Set<string>(); for (const o of list) { if (typeof o?.id !== 'string') continue; if (!first.has(o.id)) { first.add(o.id); continue; }
-      let n = 2; while (seen.has(`${o.id}~${n}`)) n++; o.id = `${o.id}~${n}`; seen.add(o.id); first.add(o.id); } };
+  const fresh = freshIds;
   /* ten sam obiekt w kilku miejscach (dane z pamięci, nie z pliku) — osobne kopie, żeby zmiana id jednej nie zmieniała wszystkich */
   const objs = new Set<object>(); const own = (list: any[]) => list.map(o => { if (!isObj(o)) return o; if (objs.has(o)) return JSON.parse(JSON.stringify(o)); objs.add(o); return o; });
   raw.exercises = own(raw.exercises); raw.bands = own(raw.bands); raw.templates = own(raw.templates); raw.workouts = own(raw.workouts);
@@ -532,7 +542,27 @@ async function persistRun(force = false) {
   }
 }
 /** Wymusza natychmiastowy zapis (wyjście do tła, koniec treningu, import, reset). */
-export async function flush(): Promise<void> { await persistNow(true).catch(() => {}); }
+export async function flush(): Promise<void> { await persistNow(true).catch(() => {}); await writeDrafts(); }
+/* ---------- UX2-03 = DAT2-06 (audyt kontrolny 1, wariant A — zasada właściciela z 20:20): szkice edycji ćwiczenia i szablonu w bazie ----------
+ * Osobny klucz kv (nie część stanu: bez zmiany schematu, poza kopią i „cfg”; starsza wersja go nie czyta). Treść daje lib/draft.ts (rejestracja),
+ * zapis z opóźnieniem jak stan i natychmiast przy wyjściu do tła (flush). Przy starcie surowy tekst czeka na lib/draft.ts (takeSavedDrafts). */
+export const DRAFTS_KEY = 'drafts';
+let savedDrafts: string | null = null; let draftsSrc: (() => string | null) | null = null; let draftsDirty = false; let draftsTimer: ReturnType<typeof setTimeout> | null = null;
+export function registerDraftStore(src: () => string | null) { draftsSrc = src; }
+/** Szkic zmieniony (początek, zmiana, zapis, odrzucenie) — zapis do bazy z opóźnieniem 300 ms. */
+export function draftsChanged() { draftsDirty = true; if (draftsTimer) clearTimeout(draftsTimer); draftsTimer = setTimeout(() => { draftsTimer = null; void writeDrafts(); }, 300); }
+async function writeDrafts() {
+  if (draftsTimer) { clearTimeout(draftsTimer); draftsTimer = null; } if (!db || !S || !draftsDirty || !draftsSrc) return; draftsDirty = false;
+  const j = draftsSrc(); try { if (j == null) await db.runAsync('DELETE FROM kv WHERE k = ?', DRAFTS_KEY); else await db.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', DRAFTS_KEY, j); } catch { draftsDirty = true; }
+}
+/** Surowe szkice odczytane przy starcie (jednorazowo). */
+export function takeSavedDrafts(): string | null { const v = savedDrafts; savedDrafts = null; return v; }
+/** Przywracany szkic przechodzi to samo porządkowanie co dane z bazy i importu (migrate na kopii stanu z obiektem szkicu); null — obiektu już nie ma. */
+export function sanitizeDraftObj(kind: 'exercise' | 'template', obj: unknown): Exercise | Template | null {
+  if (!S || !isObj(obj) || typeof (obj as any).id !== 'string') return null; const id = (obj as any).id as string; const key = kind === 'exercise' ? 'exercises' : 'templates';
+  const raw: any = JSON.parse(JSON.stringify(S)); const i = raw[key].findIndex((x: any) => x.id === id); if (i < 0) return null; raw[key][i] = JSON.parse(JSON.stringify(obj));
+  try { return (migrate(raw)[key] as (Exercise | Template)[]).find(x => x.id === id) ?? null; } catch { return null; }
+}
 export const getPersistError = () => persistError;
 export const getRecovery = () => recovery;
 /** Runda 33: po imporcie backupu albo wyczyszczeniu danych komunikat o nieczytelnych danych znika (kopia w bazie zostaje). */
@@ -568,7 +598,7 @@ const draftObjs = new WeakSet<object>();
 export function markDraft<T extends object>(x: T): T { draftObjs.add(x); return x; }
 export const isDraftObj = (x: unknown): boolean => !!x && typeof x === 'object' && draftObjs.has(x as object);
 export function save(...touched: (Base | null | undefined)[]) {
-  if (touched.length && touched.every(x => x && draftObjs.has(x))) { rev++; emit(); return; }
+  if (touched.length && touched.every(x => x && draftObjs.has(x))) { rev++; draftsChanged(); /* UX2-03: szkic do bazy */ emit(); return; }
   touched = touched.filter(x => !x || !draftObjs.has(x));
   const now = Date.now(); touched.forEach(x => { if (x) x.updatedAt = now; });
   const onlyActive = touched.length > 0 && touched.every(x => x && S && x === S.active);
@@ -587,7 +617,12 @@ export function saveCfg() {
   saveTimer = setTimeout(() => { persistNow().catch(() => {}); }, 300);
 }
 export function getState(): State { if (!S) throw new Error('store not initialised'); return S; }
-export function replaceState(next: State) { S = migrate(next); applyPrefs(); save(); }
+/** A11B-1 (audyt zmian 0.11, część 2, wariant A): import i „Wyczyść wszystkie dane” zastępują wszystko — także szkice edycji (ćwiczeń i szablonów
+ * w pamięci i w bazie, lib/draft.ts; edycji historii, lib/edit.ts). Szkic sprzed zastąpienia dotyczy starych danych: po „Edytuj → Zapisz” nadpisałby
+ * dane z kopii. Moduły szkiców rejestrują tu czyszczenie (store ich nie importuje). */
+const stateReplacedHooks = new Set<() => void>();
+export function onStateReplaced(cb: () => void) { stateReplacedHooks.add(cb); }
+export function replaceState(next: State) { S = migrate(next); savedDrafts = null; stateReplacedHooks.forEach(h => h()); applyPrefs(); save(); }
 
 const subscribe = (cb: () => void) => { listeners.add(cb); return () => { listeners.delete(cb); }; };
 export function useStore<T>(selector: (s: State) => T): T {
@@ -600,7 +635,7 @@ export const usePrefsTick = () => useStore(s => `${s.settings.language}|${s.sett
 export const getHistRev = () => histRev;
 /** Licznik każdej zmiany stanu (jak useTick) — klucz krótkich cache ekranów (PERF-04). */
 export const getRev = () => rev;
-/** Runda 30: powrót aplikacji na pierwszy plan — ekrany z datą „dziś” (ekran główny, poranny wpis, baner podpisu) liczą się od nowa. */
+/** Runda 30: powrót aplikacji na pierwszy plan — ekrany z datą „dziś” (ekran główny, poranny wpis) liczą się od nowa. */
 let fgRev = 0;
 export function refreshViews() { rev++; fgRev++; emit(); }
 export const useForegroundTick = () => useSyncExternalStore(subscribe, () => fgRev, () => fgRev);
@@ -608,7 +643,7 @@ export const useForegroundTick = () => useSyncExternalStore(subscribe, () => fgR
  * Runda 14: odświeżenie tylko po zmianach poza treningiem w toku (historia, szablony, ćwiczenia, ustawienia).
  * Zakładki bez treningu nie przerysowują się przy każdym wpisie serii (runda 13: 400 wierszy historii na znak).
  */
-// Runda 31/46: także po zmianie dnia (daty, rok, ważność podpisu) — ale nie przy każdym powrocie z tła (lista 1000 sesji to ~0,5 s).
+// Runda 31/46: także po zmianie dnia (daty, rok) — ale nie przy każdym powrocie z tła (lista 1000 sesji to ~0,5 s).
 const histSnap = () => `${histRev}:${localISODate()}`;
 export const useHistTick = () => useSyncExternalStore(subscribe, histSnap, histSnap);
 /** PERF-02: historia ALBO konfiguracja (szablony) — dla ekranów, które pokazują szablony (zakładka Szablony). */
@@ -663,7 +698,7 @@ export function loadOf(ex: Exercise | undefined, s: Pick<WSet, 'weight' | 'addKg
 /** Ciężar do WYŚWIETLENIA (historia, edytor historii, opisy serii, CSV) — patrz loadOf. */
 export const shownLoad = (ex: Exercise | undefined, s: Pick<WSet, 'weight' | 'addKg'>) => loadOf(ex, s).kg;
 /** Obciążenie zewnętrzne serii do OBLICZEŃ: tylko pole właściwe dla obecnego sprzętu — kg (≥ 0) albo ±kg przy masie ciała (dodatnie = dociążenie,
- * ujemne = asysta gumą/maszyną — 0.5, wzór Alpha Progression). Seria zapisana pod innym sprzętem = 0 (patrz loadOf). */
+ * ujemne = asysta gumą/maszyną — 0.5, wzór z popularnej aplikacji treningowej). Seria zapisana pod innym sprzętem = 0 (patrz loadOf). */
 export const setLoad = (ex: Exercise, s: Pick<WSet, 'weight' | 'addKg'>) => { const l = loadOf(ex, s); return l.own ? l.kg : 0; }; // runda 48: ujemny ciężar (np. asysta z szablonu po zmianie sprzętu) nie daje ujemnej objętości
 /** Pole ciężaru w formularzu edytora historii: wartość, którą pokazuje ekran sesji (shownLoad), jako zapisane kg (lub '' gdy brak). */
 export const loadFieldValue = (ex: Exercise | undefined, s: Pick<WSet, 'weight' | 'addKg'>): number | '' => loadOf(ex, s).raw;
@@ -707,7 +742,7 @@ export const volOf = (ex: Exercise, load: number, reps: number, impl?: Impl | nu
  * Zwraca kg odpowiadające dokładnie wyświetlanej liczbie funtów; w kg bez zmian. */
 const dispKg = (kg: number) => wu() === 'lb' ? wOut(kg) * KG_PER_LB : kg;
 /** Etykieta kolumny ciężaru zależna od trybu liczenia — a dla bloku na stacji z oporem elektrycznym/magnetycznym (`impl` 'electric') zawsze
- * NA STRONĘ (decyzja 03.10.2026 „ViShape na stronę”; audyt f132330/025ee6a, MEDIUM 2: wcześniej zmieniała się tylko lista ciężarów, a kolumna
+ * NA STRONĘ (decyzja 03.10.2026 „stacja elektryczna na stronę”; audyt f132330/025ee6a, MEDIUM 2: wcześniej zmieniała się tylko lista ciężarów, a kolumna
  * mówiła „kg” / „kg/hantel”). Dotyczy każdego ćwiczenia na stacji, także „Przysiad z pasem (linki)”, „Cable Fly”, „RDL (hantle/linki)”.
  * `impl` — przyrząd bloku (WExercise.impl; blockImpl dopowiada go z miejsca, gdy blok go nie ma); bez przyrządu — jak przed P-003.
  * Objętość: Q-024 (blockMult) — ×2 na stacji przy ćwiczeniach na dwie linki. */
@@ -955,7 +990,7 @@ export function setSummary(ex: Exercise, s: WSet, load: 'shown' | 'calc' = 'show
   else if (m === 'weight_distance') core = `${fmtW(l, false)}${wu()}×${fmtDist(Number(s.distanceM) || 0)}`; /* research biblioteki 09.10.2026: noszenie, sanki */
   else if (m === 'reps') core = `${s.reps || 0}`;
   else { core = isBW(ex) ? `${s.reps || 0}${l ? '@' + (l > 0 ? '+' : '') + fmtW(l, false) : ''}` : `${fmtW(l, false)}×${s.reps || 0}`; }
-  return core + (b ? ` (${shortBand(b)})` : '') + (s.rpe !== '' && s.rpe != null ? (effortScale() === 'rir' ? ` RIR ${fmtNum(effortOut(Number(s.rpe)), 1)}` : ` @${fmtNum(Number(s.rpe), 1)}`) : '');
+  return core + (b ? ` (${shortBand(b)})` : '') + (s.rpe !== '' && s.rpe != null ? (effortScale() === 'rir' ? ` RIR ${effortText(Number(s.rpe))}` : ` @${effortText(Number(s.rpe))}`) : '');
 }
 /** Wynik serii do porównań „najlepsza seria”: ciężar×1000+pow. / czas / dystans (przy równym dystansie krótszy czas lepszy). */
 export function setScore(ex: Exercise, s: WSet): number {
@@ -975,11 +1010,18 @@ const clamp10 = (v: number) => Math.min(10, Math.max(0, Math.round(v * 10) / 10)
 /** MER-14 / LOG-15 (audyt 0.10): skala RPE-RIR ma wartości 1–10 (Helms i in. 2016, PMC4961270: „descriptors of effort for values below 5 (1–2 RPE =
  * ‘little to no effort,’ 3–4 RPE = ‘light effort’)” — RPE 0 nie istnieje), więc zapis RPE w 1–10, a RIR w 0–9. */
 export const RPE_MIN = 1, RPE_MAX = 10;
+/** Audyt kontrolny 1 MER2-08 (rekomendacja MER-14): w skali RIR wpis 0–RIR_MAX; więcej powtórzeń w zapasie = „lekko”, zapis RPE_LIGHT. Helms i in. 2016:
+ * poniżej RPE 5 opisy słowne („3–4 RPE = ‘light effort’”), a nie RIR — RIR 6–9 nie przelicza się już na RPE 4–1. RPE_LIGHT = górna granica „light effort”. */
+export const RIR_MAX = 5, RPE_LIGHT = 4;
+/** RPE poniżej tego progu w skali RIR = „lekko” (RIR_MAX + 1, pokazywane „6+”). */
+const RPE_RIR_MIN = 10 - RIR_MAX;
 const clampRpe = (v: number) => Math.min(RPE_MAX, Math.max(RPE_MIN, Math.round(v * 10) / 10));
 /** Zapisane RPE → wartość pokazywana w bieżącej skali. */
-export const effortOut = (rpe: number) => (effortScale() === 'rir' ? clamp10(10 - rpe) : rpe);
-/** Wpisana wartość w bieżącej skali → RPE do zapisu ('' = puste); RIR > 9 → RPE 1, nie 0 (MER-14). */
-export const effortIn = (v: number | ''): number | '' => (v === '' ? '' : clampRpe(effortScale() === 'rir' ? 10 - v : v));
+export const effortOut = (rpe: number) => (effortScale() === 'rir' ? (rpe < RPE_RIR_MIN ? RIR_MAX + 1 : clamp10(10 - rpe)) : rpe);
+/** Wartość wysiłku jako tekst w bieżącej skali (opis serii, historia): w RIR „lekko” = „6+” (MER2-08). */
+export const effortText = (rpe: number): string => (effortScale() === 'rir' && rpe < RPE_RIR_MIN ? `${RIR_MAX + 1}+` : fmtNum(effortOut(rpe), 1));
+/** Wpisana wartość w bieżącej skali → RPE do zapisu ('' = puste); RIR > RIR_MAX → RPE_LIGHT („lekko”, MER2-08). */
+export const effortIn = (v: number | ''): number | '' => (v === '' ? '' : effortScale() === 'rir' ? (v > RIR_MAX ? RPE_LIGHT : clampRpe(10 - v)) : clampRpe(v));
 /** Wartość pola wysiłku do wyświetlenia w polu edycji. */
 export const effortField = (rpe: number | '' | null | undefined): number | '' => (rpe === '' || rpe == null ? '' : effortOut(Number(rpe)));
 export const setHasValue = (s: WSet) => [s.weight, s.reps, s.durationSec, s.distanceM, s.addKg].some(v => v !== '' && v != null);
@@ -1285,7 +1327,7 @@ export function swapBlock(blockId: string, toExId: string, opts: { restSec?: num
   { const loc = locationById(a.locationId); if (opts.impl && loc && implsAt(B, loc).includes(opts.impl)) { blk.impl = opts.impl; blk.implPinned = true; } } /* W3 P5a: przyrząd z zamiennika per miejsce */
   if (typeof opts.restSec === 'number' && opts.restSec >= 0) blk.restSec = Math.min(1800, Math.round(opts.restSec));
   blk.sets = prefillSets(B, left.map(x => x.kind), prevOfActiveBlock(a, blk), a.locationId, blk.impl, it?.targetSec ?? '', '', 0, !!blk.implPinned);
-  save(a); return { goneSetIds: left.map(x => x.id), blockId: blk.id };
+  saveSwapped(a); return { goneSetIds: left.map(x => x.id), blockId: blk.id };
 }
 /**
  * E2 D5 (docs/14 pkt 3.7): „ten sam ruch, inny przyrząd” — to samo ćwiczenie, przyrząd `impl` wybrany ręcznie (implPinned), bez swappedFrom.
@@ -1331,8 +1373,11 @@ export function undoSwap(blockId: string): { goneSetIds: string[] } | null {
     if (own) B.restSec = typeof own.restSec === 'number' && own.restSec >= 0 ? own.restSec : restFor(A);
     B.sets = prefillSets(A, kinds, prevOfActiveBlock(a, B), a.locationId, B.impl, own?.targetSec ?? '', own?.startWeight ?? '', 0, false, rowsFor(own, kinds));
   }
-  save(a); return { goneSetIds: gone };
+  saveSwapped(a); return { goneSetIds: gone };
 }
+/** TST2-03 (audyt kontrolny 1, wariant A): po zamianie albo jej cofnięciu ćwiczenie usunięte w trakcie treningu (archiwum) bez ostatniego odwołania
+ * znika od razu — jak removeExercise i jak migrate przy starcie (stan w pamięci = migrate(stan)). */
+function saveSwapped(a: Workout) { const before = getState().exercises.length; purgeOrphans(); if (getState().exercises.length !== before) save(); else save(a); }
 /* ---------- E2 W3: zamienniki per miejsce w szablonie (docs/14 pkt 4) ---------- */
 /** Pozycja szablonu bloku (tylko z szablonu treningu) i miejsce treningu (tylko istniejące). */
 function altCtx(w: Workout, e: WExercise): { tpl: Template; item: TemplateItem; loc: Location } | null {
@@ -1413,7 +1458,7 @@ function lastCompletedAt(a: Workout, except?: WSet): number | null {
   let m: number | null = null; a.exercises.forEach(e => e.sets.forEach(s => { if (s !== except && s.done && s.completedAt && (m == null || s.completedAt > m)) m = s.completedAt; })); return m;
 }
 /**
- * Odhaczenie pustej serii (audyt r1, jak w Strong): puste pola bierze z tego, co widać jako podpowiedź —
+ * Odhaczenie pustej serii (audyt r1, jak w popularnych dziennikach): puste pola bierze z tego, co widać jako podpowiedź —
  * wynik z „Poprzednio” (ta sama seria robocza), a gdy podpowiedzi nie ma — powtórzenia z dolnej granicy zakresu szablonu (runda 4).
  * Dzięki temu „24×0” nie trafia do historii tylko dlatego, że użytkownik odhaczył bez wpisywania.
  */
@@ -1878,7 +1923,7 @@ export function setPlanHintHidden(on: boolean) { const st = getState(); if (on) 
 /** Tylko dla testów: czy store jest zainicjowany. */
 export const isReadyForTests = () => !!S;
 /** Tylko dla testów: czyści stan modułu (bez dotykania bazy). */
-export function __resetForTests() { newerSchema = null; persistQueue = Promise.resolve(); fullDirty = true; cfgDirty = false; cfgNotInState = false; persistSeq = 0; S = null; db = null; rev = 0; histRev += 1; persistError = null; recovery = null; if (saveTimer) clearTimeout(saveTimer); saveTimer = null; listeners.clear(); }
+export function __resetForTests() { savedDrafts = null; draftsDirty = false; if (draftsTimer) clearTimeout(draftsTimer); draftsTimer = null; newerSchema = null; persistQueue = Promise.resolve(); fullDirty = true; cfgDirty = false; cfgNotInState = false; persistSeq = 0; S = null; db = null; rev = 0; histRev += 1; persistError = null; recovery = null; if (saveTimer) clearTimeout(saveTimer); saveTimer = null; listeners.clear(); }
 /**
  * Widok skupiony (styl „Tuleja”, decyzja właściciela 07.10.2026; docs/21 pkt 3): seria „teraz” = pierwsza nieodhaczona seria w kolejności treningu.
  * Superset — rundami (audyt 0.10, LIVE-02): spośród członków grupy z nieodhaczoną serią ten, który ma NAJMNIEJ odhaczonych serii roboczych (remis —

@@ -288,7 +288,7 @@ describe('CSV — losowe stany (fast-check)', () => {
       expect(rows[0]).toEqual(['Date', 'Workout Name', 'Duration', 'Exercise Name', 'Set Order', 'Weight', 'Reps', 'Distance', 'Seconds', 'Notes', 'Workout Notes', 'RPE']);
       const want: string[][] = []; const guard = (v: string) => /^[=+\-@\t\r]/.test(v) ? "'" + v : v;
       for (const w of [...st.workouts].sort((a, b) => a.startedAt - b.startedAt)) for (const e of w.exercises) { let n = 0; const ex = st.exercises.find(x => x.id === e.exerciseId)!; for (const s of e.sets) {
-        const W = s.kind === 'warmup'; const mark = W ? 'W' : s.kind === 'drop' ? 'D' : s.kind === 'failure' ? 'F' : ''; if (!mark) n++; /* LOG-14 (audyt 0.10): D/F jak Strong, numer tylko zwykłych serii */ const kg = ex.equipment === 'masa ciała' ? Number(s.addKg || 0) : Number(s.weight || 0);
+        const W = s.kind === 'warmup'; const mark = W ? 'W' : s.kind === 'drop' ? 'D' : s.kind === 'failure' ? 'F' : ''; if (!mark) n++; /* LOG-14 (audyt 0.10): D/F jak w popularnych dziennikach, numer tylko zwykłych serii */ const kg = ex.equipment === 'masa ciała' ? Number(s.addKg || 0) : Number(s.weight || 0);
         const shown = unit === 'lb' ? Math.sign(kg) * Math.round(Math.abs(kg) / KG_PER_LB * 10) / 10 : Math.round(kg * 100) / 100;
         const notes = [s.note].filter(Boolean).join('; '); /* LOG-14: typ serii w Set Order, nie w Notes */
         want.push([guard(w.templateName || t('Trening')), '30m', guard(ex.name), mark || String(n), String(shown + 0), String(s.reps || 0), '0', '0', guard(notes), guard(w.note), s.rpe === '' ? '' : String(s.rpe)]); } }

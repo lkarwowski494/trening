@@ -11,7 +11,7 @@ import { F } from '@/lib/theme';
 import { addLocation } from '@/lib/locations';
 import { applyUnit, wIn } from '@/lib/units';
 import { fresh, ex, saved, pressAlert, withDemoTemplates, addWorkout } from './helpers';
-import { renderApp, tap, flushAll, screen, act, fireEvent, swipeDelete, go } from './app';
+import { renderApp, tap, flushAll, screen, act, fireEvent, swipeDelete, go, fromHome } from './app';
 
 jest.setTimeout(120000);
 const S = () => store.getState();
@@ -142,7 +142,7 @@ describe('F7 (LIVE-12 / UI-08): podwójne tapnięcie przy starcie, anulowaniu i 
     await fresh(); const t = withDemoTemplates(); store.toggleDeloadWeek(Date.now()); await boot();
     await dbl(screen.getByLabelText(`Start: ${t[0].name}`)); expect(global.__alerts.filter(x => x.title === 'Tydzień deload')).toHaveLength(1);
     await act(async () => { pressAlert('Tydzień deload', 'Anuluj'); }); await flushAll(1500);
-    await dbl(screen.getByText('Pusty trening')); const id = S().active!.id; expect(S().active!.exercises).toHaveLength(0);
+    await tap(screen.getByLabelText('Inny trening')); await flushAll(5); /* układ B: arkusz „Inny trening” */ await dbl(screen.getByText('Pusty trening')); const id = S().active!.id; expect(S().active!.exercises).toHaveLength(0);
     await act(async () => { store.cancelWorkout(); }); await flushAll(1500); expect(S().active).toBeNull(); void id;
   });
   test('F7 (UI-08): „+ Dodaj ćwiczenie”, „≡ Kolejność” i „⇄ zamień” dwa razy szybko → jeden ekran', async () => {
@@ -234,19 +234,19 @@ describe('D1 (MER-05 / UI-03 / UX-06 / X-16): tydzień deload — „Powtórz os
   const last4 = () => addWorkout(new Date(2026, 9, 1, 18).getTime(), [['Back Squat', [1, 2, 3, 4].map(() => ({ weight: 100, reps: 12 }))]]);
   test('D1 (MER-05): „Powtórz ostatni” w tygodniu deload → „Tydzień deload” z liczbą serii; „Mniej serii” tnie, „Pełny trening” powtarza całość, „Anuluj” nic', async () => {
     jest.useFakeTimers({ now: NOW }); await fresh(); last4(); store.toggleDeloadWeek(NOW); await boot(); jest.setSystemTime(NOW);
-    await tap(screen.getByText(/^Powtórz ostatni/)); await flushAll(5);
+    await fromHome(/^Powtórz ostatni/); await flushAll(5);
     expect(lastAlert('Tydzień deload')!.msg).toBe('Zacząć z mniejszą liczbą serii: 2 zamiast 4 serii roboczych? Ciężary bez zmian, szablon się nie zmienia.');
     await act(async () => { pressAlert('Tydzień deload', 'Anuluj'); }); await flushAll(1500); expect(S().active).toBeNull();
-    await tap(screen.getByText(/^Powtórz ostatni/)); await act(async () => { pressAlert('Tydzień deload', 'Mniej serii'); }); await flushAll(10);
+    await fromHome(/^Powtórz ostatni/); await act(async () => { pressAlert('Tydzień deload', 'Mniej serii'); }); await flushAll(10);
     expect(S().active!.exercises[0].sets).toHaveLength(2); expect(S().active!.exercises[0].sets.map(s => s.weight)).toEqual([100, 100]);
     await act(async () => { store.cancelWorkout(); }); await flushAll(1500);
-    await tap(screen.getByText(/^Powtórz ostatni/)); await act(async () => { pressAlert('Tydzień deload', 'Pełny trening'); }); await flushAll(10);
+    await fromHome(/^Powtórz ostatni/); await act(async () => { pressAlert('Tydzień deload', 'Pełny trening'); }); await flushAll(10);
     expect(S().active!.exercises[0].sets).toHaveLength(4);
   });
   test('D1 (MER-05): w tygodniu deload bez „↑ spróbuj” (poprzednio 3 × 12 przy zakresie 8–12); poza tygodniem deload podpowiedź jest', async () => {
     jest.useFakeTimers({ now: NOW }); await fresh(); const w = last4(); w.exercises[0].repMax = 12; w.exercises[0].repMin = 8; store.save();
     store.toggleDeloadWeek(NOW); await boot(); jest.setSystemTime(NOW);
-    await tap(screen.getByText(/^Powtórz ostatni/)); await act(async () => { pressAlert('Tydzień deload', 'Pełny trening'); }); await flushAll(10);
+    await fromHome(/^Powtórz ostatni/); await act(async () => { pressAlert('Tydzień deload', 'Pełny trening'); }); await flushAll(10);
     expect(S().active!.exercises[0].repMax).toBe(12); expect(screen.queryByText(/↑ spróbuj/)).toBeNull();
     await act(async () => { store.toggleDeloadWeek(NOW); }); await flushAll(10); expect(screen.getByText(/↑ spróbuj/)).toBeTruthy();
   });
@@ -275,29 +275,29 @@ describe('D1+ (decyzja 08.10.2026): „Powtórz ostatni” po skróconym trening
   };
   test('D1+: tydzień deload — pytanie liczy „jak ostatnio” (2) wobec pełnego (4), „Mniej serii” nie tnie drugi raz, „Pełny trening” przywraca 4 serie', async () => {
     jest.useFakeTimers({ now: NOW }); await fresh(); shortened(); store.toggleDeloadWeek(NOW); await boot(); jest.setSystemTime(NOW);
-    await tap(screen.getByText(/^Powtórz ostatni/)); await flushAll(5);
+    await fromHome(/^Powtórz ostatni/); await flushAll(5);
     expect(lastAlert('Tydzień deload')!.msg).toBe('Zacząć z mniejszą liczbą serii: 2 zamiast 4 serii roboczych? Ciężary bez zmian, szablon się nie zmienia. Ostatni trening był już skrócony — „Mniej serii” powtórzy go bez dalszego cięcia.');
     await act(async () => { pressAlert('Tydzień deload', 'Mniej serii'); }); await flushAll(10);
     expect(S().active!.exercises[0].sets).toHaveLength(2); expect(S().active!.deload).toBe(true);
     await act(async () => { store.cancelWorkout(); }); await flushAll(1500);
-    await tap(screen.getByText(/^Powtórz ostatni/)); await act(async () => { pressAlert('Tydzień deload', 'Pełny trening'); }); await flushAll(10);
+    await fromHome(/^Powtórz ostatni/); await act(async () => { pressAlert('Tydzień deload', 'Pełny trening'); }); await flushAll(10);
     expect(S().active!.exercises[0].sets.map(s => s.weight)).toEqual([100, 100, 100, 100]); expect(S().active!.deload).toBeUndefined();
   });
   test('D1+: poza tygodniem deload — okno „Ostatni trening był lżejszy” z pełnym treningiem jako domyślnym; „Jak ostatnio” powtarza skrócony', async () => {
     jest.useFakeTimers({ now: NOW }); await fresh(); shortened(); await boot(); jest.setSystemTime(NOW);
-    await tap(screen.getByText(/^Powtórz ostatni/)); await flushAll(5);
+    await fromHome(/^Powtórz ostatni/); await flushAll(5);
     const al = lastAlert('Ostatni trening był lżejszy')!; expect(al.msg).toBe('Był skrócony w tygodniu deload: 2 zamiast 4 serii roboczych. Powtórzyć pełny trening?');
     expect(al.buttons!.map(b => [b.text, (b as any).isPreferred ?? false])).toEqual([['Anuluj', false], ['Jak ostatnio', false], ['Pełny trening', true]]);
     await act(async () => { pressAlert('Ostatni trening był lżejszy', 'Pełny trening'); }); await flushAll(10); expect(S().active!.exercises[0].sets).toHaveLength(4);
     await act(async () => { store.cancelWorkout(); }); await flushAll(1500);
-    await tap(screen.getByText(/^Powtórz ostatni/)); await act(async () => { pressAlert('Ostatni trening był lżejszy', 'Jak ostatnio'); }); await flushAll(10); expect(S().active!.exercises[0].sets).toHaveLength(2);
+    await fromHome(/^Powtórz ostatni/); await act(async () => { pressAlert('Ostatni trening był lżejszy', 'Jak ostatnio'); }); await flushAll(10); expect(S().active!.exercises[0].sets).toHaveLength(2);
   });
   test('D1+: skrócony bez informacji o pełnym (szablon usunięty, bez deloadFull) — bez pytania i bez drugiego cięcia; znacznik tylko w tygodniu deload', async () => {
     jest.useFakeTimers({ now: NOW }); await fresh(); const w = shortened(); delete w.exercises[0].deloadFull; store.deleteTemplate(w.templateId!); store.toggleDeloadWeek(NOW); await boot(); jest.setSystemTime(NOW);
-    const n0 = global.__alerts.length; await tap(screen.getByText(/^Powtórz ostatni/)); await flushAll(10);
+    const n0 = global.__alerts.length; await fromHome(/^Powtórz ostatni/); await flushAll(10);
     expect(global.__alerts.length).toBe(n0); expect(S().active!.exercises[0].sets).toHaveLength(2); expect(S().active!.deload).toBe(true);
     await act(async () => { store.cancelWorkout(); store.toggleDeloadWeek(NOW); }); await flushAll(1500);
-    await tap(screen.getByText(/^Powtórz ostatni/)); await flushAll(10); expect(global.__alerts.length).toBe(n0); expect(S().active!.exercises[0].sets).toHaveLength(2); expect(S().active!.deload).toBeUndefined();
+    await fromHome(/^Powtórz ostatni/); await flushAll(10); expect(global.__alerts.length).toBe(n0); expect(S().active!.exercises[0].sets).toHaveLength(2); expect(S().active!.deload).toBeUndefined();
   });
   test('D1+: znacznik „deload — mniej serii” na liście sesji i w szczegółach sesji; zwykły trening bez znacznika', async () => {
     jest.useFakeTimers({ now: NOW }); await fresh(); const w = shortened(); addWorkout(new Date(2026, 9, 5, 18).getTime(), [['Back Squat', [{ weight: 100, reps: 5 }]]]); await boot('/history'); jest.setSystemTime(NOW);

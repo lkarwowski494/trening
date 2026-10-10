@@ -35,20 +35,20 @@ describe('kilka planów', () => {
     const id = plan.addPlan('Nowy', [A, null, null, null, null, null, null], false); expect(plan.hasPlan()).toBe(false);
     plan.activatePlan(id); expect(plan.weekPlanDays()[0]).toBe(A); expect(plan.savedPlans()).toEqual([]);
   });
-  test('addPlan z aktywacją (generator): poprzedni aktywny trafia do zapisanych pod swoją nazwą albo — bez nazwy — „Plan do <data>” (audyt 0.10 B2 A; dawniej pusta nazwa → „Poprzedni plan”)', () => {
+  test('addPlan z aktywacją (generator): poprzedni aktywny trafia do zapisanych pod swoją nazwą albo — bez nazwy — „Mój plan (<data>)” (audyt 0.10 B2 A; dawniej pusta nazwa → „Poprzedni plan”)', () => {
     plan.setWeekDay(1, B); plan.addPlan('Wygenerowany', [A, null, A, null, A, null, null], true);
-    expect(plan.planName()).toBe('Wygenerowany'); expect(plan.savedPlans()).toEqual([expect.objectContaining({ name: 'Plan do 8.10', days: [null, B, null, null, null, null, null] })]);
+    expect(plan.planName()).toBe('Wygenerowany'); expect(plan.savedPlans()).toEqual([expect.objectContaining({ name: 'Mój plan (8.10)', days: [null, B, null, null, null, null, null] })]);
   });
   test('zmiana nazwy i usuwanie zapisanego planu; nieznane id — bez zmian', () => {
     const id = plan.addPlan('A', [A, null, null, null, null, null, null], false); plan.renamePlan(id, 'B'); expect(plan.savedPlans()[0].name).toBe('B');
     plan.activatePlan('nie-ma'); plan.deletePlan('nie-ma'); expect(plan.savedPlans().length).toBe(1);
     plan.deletePlan(id); expect(S().savedPlans).toBeUndefined();
   });
-  test('dane: sanityzacja zapisanych planów (7 dni, id tekstem, nazwa ≤ 40, bez powtórzonych id), nazwa aktywnego; zapis i odczyt', async () => {
+  test('dane: sanityzacja zapisanych planów (7 dni, id tekstem, nazwa ≤ 40, powtórzone id → „~n” — DAT2-04), nazwa aktywnego; zapis i odczyt', async () => {
     plan.setWeekDay(0, A); plan.setPlanName('R');
     (S() as any).savedPlans = [{ id: 'p1', name: 'X'.repeat(50), days: [A, 5, null] }, { id: 'p1', name: 'dup', days: [] }, 'zły', { name: 'bez id', days: [] }, { id: 'p2', name: 7, days: 'x' }];
     store.save(); await store.flush(); await fresh(saved());
-    expect(S().savedPlans).toEqual([{ id: 'p1', name: 'X'.repeat(40), days: [A, null, null, null, null, null, null] }, { id: 'p2', name: '', days: [null, null, null, null, null, null, null] }]);
+    expect(S().savedPlans).toEqual([{ id: 'p1', name: 'X'.repeat(40), days: [A, null, null, null, null, null, null] }, { id: 'p1~2', name: 'dup', days: [null, null, null, null, null, null, null] } /* DAT2-04: drugi wpis nie ginie */, { id: 'p2', name: '', days: [null, null, null, null, null, null, null] }]);
     expect(S().weekPlan).toEqual({ days: [A, null, null, null, null, null, null], name: 'R' });
   });
   test('dane sprzed zmiany (bez nazwy, bez zapisanych planów) przechodzą 1:1', async () => {

@@ -106,7 +106,10 @@ describe('Kalendarz', () => {
     for (const sg of list) { const { title, details } = suggestionTexts('2026-10-08', sg); expect(screen.getByLabelText(`Zastosuj: ${title}`)).toBeTruthy(); details.forEach(d => expect(screen.getAllByText(d).length).toBeGreaterThan(0)); }
     expect(screen.getAllByText(/^Zmienione dni: \d+$/).length).toBe(4); expect(screen.getByText(`Więcej możliwości (${all.length - 4})`)).toBeTruthy();
     expect(screen.getByText(new RegExp(`^${suggestionTexts('2026-10-08', list[0]).title.replace(/[.()]/g, '\\$&')} · polecane$`))).toBeTruthy();
-    expect(screen.getByText(/^Uproszczenie: zwykle dzień przerwy .* \(przeglądy badań, ACSM\)\. Każda z tych możliwości wraca do rutyny w ciągu 10 dni\.$/)).toBeTruthy();
+    /* audyt kontrolny 1 (UX2-09, celowa zmiana): przy widocznym ostrzeżeniu „dzień po dniu” stopka bez zdania „dwa dni pod rząd … też są w porządku” */
+    expect(list.some(x => x.newBackToBack.length)).toBe(true);
+    expect(screen.getByText(/^Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami\. Każda z tych możliwości wraca do rutyny w ciągu 10 dni\.$/)).toBeTruthy();
+    await tap(screen.getByText(`Więcej możliwości (${all.length - 4})`)); await flushAll(5); expect(screen.queryByText(/dwa dni pod rząd/)).toBeNull();
     const first = suggestionTexts('2026-10-08', list[0]).title; const want = list[0].ov;
     await tap(screen.getByLabelText(`Zastosuj: ${first}`)); await flushAll(5);
     for (const [k, v] of Object.entries(want)) expect(plan.plannedOn(k)).toBe(v);
@@ -141,7 +144,7 @@ describe('ekran treningu: „Dziś” i podgląd tygodnia', () => {
     await boot(() => {}, '/'); expect(screen.queryByTestId('today-plan')).toBeNull();
     const t = await boot(ids => since(() => { plan.setWeekDay(0, ids[1]); plan.setWeekDay(3, ids[0]); plan.setWeekDay(4, ids[1]); }), '/');
     expect(screen.getByText(`Dziś: ${t[0].name}`)).toBeTruthy();
-    expect(screen.getByLabelText(`poniedziałek, 5 października, opuszczony: ${t[1].name}`)).toBeTruthy(); expect(screen.getByLabelText('wtorek, 6 października, wolne')).toBeTruthy();
+    expect(screen.getByLabelText(`poniedziałek, 5 października, opuszczony: ${t[1].name}`)).toBeTruthy(); expect(screen.getByLabelText('wtorek, 6 października, odpoczynek')).toBeTruthy(); /* dzień bez treningu w planie — odpoczynek (decyzja 09.10.2026 wieczór) */
     expect(screen.getByLabelText(`czwartek, 8 października, dziś, zaplanowany: ${t[0].name}`)).toBeTruthy(); expect(screen.getByLabelText(`piątek, 9 października, zaplanowany: ${t[1].name}`)).toBeTruthy();
     await tap(screen.getByTestId('strip-2026-10-09')); await flushAll(10); expect(screen.getByRole('header', { name: 'Kalendarz' })).toBeTruthy(); expect(screen.getByText('piątek, 9 października')).toBeTruthy(); await go('/'); await flushAll(10);
     await tap(screen.getByLabelText(`Start zaplanowanego treningu: ${t[0].name}`)); await flushAll(10); expect(S().active?.templateId).toBe(t[0].id);

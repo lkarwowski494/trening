@@ -81,7 +81,7 @@ describe('A5 — zrobiony inny trening (dopasowanie po szablonie)', () => {
     expect(screen.getByText(`Dziś: ${t[0].name}`)).toBeTruthy(); expect(screen.getByText('Zrobiony inny trening: Legs — dom')).toBeTruthy();
     expect(screen.getByLabelText(`Start zaplanowanego treningu: ${t[0].name}`)).toBeTruthy();
     expect(screen.getByLabelText(`czwartek, 8 października, dziś, zrobiony inny trening: Legs — dom, zaplanowany: ${t[0].name}`)).toBeTruthy();
-    expect(screen.getByText('Z planu w tym tygodniu: zrobione 0 z 1.')).toBeTruthy();
+    expect(screen.getByTestId('week-stacks').props.accessibilityLabel).toBe('Postęp tygodnia: 0% planu, zrobione 0 z 1 treningów z planu'); /* postęp tygodnia (stosy) w „Ten tydzień” — inny trening nie zalicza dnia z planu */
     await go('/history'); await flushAll(10);
     expect(screen.getByLabelText(`8 października 2026, dziś, 1 sesja, zrobiony inny trening, zaplanowany: ${t[0].name}`)).toBeTruthy();
     await openDay('2026-10-08');
@@ -134,7 +134,7 @@ describe('A9, A11-05, D4 — pasek tygodnia, kalendarz, deload', () => {
     expect([light.muted, dark.muted]).toContain(row.props.style.borderColor); expect(row.props.style.borderWidth).toBe(1); /* muted — tekst ≥ 4,5:1, więc ramka ≥ 3:1 */
     expect(screen.getByText('Wiersz w ramce — tydzień deload.')).toBeTruthy();
     await go('/'); await flushAll(10);
-    expect(screen.getByLabelText(`czwartek, 8 października, dziś, wolne, tydzień deload`)).toBeTruthy();
+    expect(screen.getByLabelText(`czwartek, 8 października, dziś, odpoczynek, tydzień deload`)).toBeTruthy(); /* dzień bez treningu w planie — odpoczynek (decyzja 09.10.2026 wieczór) */
   });
   test('D4 (UX-06): „Oznacz tydzień jako deload” w panelu dnia — także przyszły tydzień; karta „Dziś · Tydzień deload”', async () => {
     await boot(ids => { plan.setWeekDay(0, ids[0]); });

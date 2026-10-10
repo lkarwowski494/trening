@@ -98,10 +98,10 @@ import { equipEntry } from '@/lib/equipment';
 import type { SetKind, WExercise, Workout } from '@/lib/seed';
 
 const H = Date.UTC(2026, 8, 10, 10);
-const TREXO = [2.5, 5, 7.5, 10, 12.5, 15, 17.5, 20, 22.5, 24];
+const ADJ_DB = [2.5, 5, 7.5, 10, 12.5, 15, 17.5, 20, 22.5, 24];
 async function places() {
   await fresh(undefined, 'pl'); const st = getState();
-  st.settings.locations = [userHome(TREXO), loc('Pełna siłownia', presetEquipment('gym'), 'gym')]; st.settings.mainLocationId = 'home'; save();
+  st.settings.locations = [userHome(ADJ_DB), loc('Pełna siłownia', presetEquipment('gym'), 'gym')]; st.settings.mainLocationId = 'home'; save();
 }
 /** Pusty trening z blokami [nazwa, rodzaje serii]. */
 function workout(blocks: [string, SetKind[]][], locationId?: string): Workout {
@@ -232,7 +232,7 @@ describe('W1: zamiana w treningu w toku', () => {
         return out.map(s => [s.weight, s.reps, s.durationSec, s.distanceM, s.addKg, s.bandId]); });
     };
     for (const withPlaces of [false, true]) {
-      await fresh(undefined, 'pl'); if (withPlaces) { getState().settings.locations = [userHome(TREXO), loc('Pełna siłownia', presetEquipment('gym'), 'gym')]; getState().settings.mainLocationId = 'home'; }
+      await fresh(undefined, 'pl'); if (withPlaces) { getState().settings.locations = [userHome(ADJ_DB), loc('Pełna siłownia', presetEquipment('gym'), 'gym')]; getState().settings.mainLocationId = 'home'; }
       const tpls = withDemoTemplates('pl');
       let t0 = H; for (const tp of tpls) for (let r = 0; r < 2; r++) { const w = addWorkout(t0 += 86400e3, tp.items.slice(0, 5).map((it, i) => [getState().exercises.find(x => x.id === it.exerciseId)!.name, [{ weight: 10 + i * 7.5 + r * 2.5, reps: 8 + r, durationSec: 30 + i }, { weight: 32, reps: 6 }]] as [string, any[]])); w.templateId = tp.id; w.exercises.forEach((e, i) => { e.tplItemId = tp.items[i].id; }); if (withPlaces) { w.locationId = r ? 'gym' : 'home'; w.exercises.forEach(e => { const i = store.implAtLoc(store.exById(e.exerciseId), w.locationId); if (i) e.impl = i; }); } }
       save();
@@ -269,7 +269,7 @@ describe('D5: inny przyrząd', () => {
 
   test('D5: przyrząd przypięty — restampUntouched go nie rusza; „📍” zdejmuje przypięcie z bloku bez serii; lista ciężarów, ↑ i M3 wg przypiętego przyrządu (loadsFor z prefer)', () => {
     const home = locationById('home')!; const e = ex(RDL);
-    expect(store.implAtLoc(e, 'home')).toBe('dumbbell'); /* hantle mają ciężary (TREXO), więc domyślnie hantle */
+    expect(store.implAtLoc(e, 'home')).toBe('dumbbell'); /* hantle mają ciężary (z regulacją), więc domyślnie hantle */
     expect(loadsFor(e, home)).toMatchObject({ kind: 'loads', item: 'db_fixed' });
     const st = loadsFor(e, home, 'electric'); expect(st).toMatchObject({ kind: 'loads', item: 'electric' }); expect((st as any).loads).toContain(65);
     expect(loadsFor(e, home, 'barbell')).toEqual(loadsFor(e, home)); /* przyrządu nie ma w miejscu — prefer bez znaczenia */

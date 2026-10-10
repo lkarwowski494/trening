@@ -6,6 +6,8 @@ global.__alerts = [];             // wywołania Alert.alert / Alert.prompt
 global.__notifications = [];      // zaplanowane powiadomienia
 global.__cancelled = [];          // odwołane powiadomienia (identyfikatory)
 global.__la = [];                 // wywołania Live Activity
+/* TST2-07: ziarno fast-check z PROP_SEED (ustalone w global-setup.js; domyślnie stałe — tests/prop-seed.js) */
+require('fast-check').configureGlobal({ seed: require('./prop-seed').resolvePropSeed(process.env.PROP_SEED).seed });
 
 jest.mock('expo-sqlite', () => ({
   /* global.__dbOpenFail: baza nie otwiera się przy starcie (ekran błędu startu; T-051 — ekran powitalny nie może go zasłonić) */
@@ -56,3 +58,6 @@ global.__sheets = [];
 const RN = require('react-native');
 RN.ActionSheetIOS.showActionSheetWithOptions = jest.fn((opts, cb) => { global.__sheets.push({ opts, cb }); });
 global.__pickSheet = (i) => { const s = global.__sheets[global.__sheets.length - 1]; if (!s) throw new Error('no action sheet'); s.cb(i); };
+/* Animacja przy starcie (components/Intro.tsx, decyzja 09.10.2026): w testach całej aplikacji wyłączona — kończy się od razu przy montowaniu,
+ * żeby renderApp() dawał aplikację jak dotąd. W aplikacji jest włączona: tests/intro.test.tsx (jest.unmock) sprawdza prawdziwą nakładkę na starcie. */
+jest.mock('@/components/Intro', () => { const React = require('react'); return { Intro: ({ onDone }) => { React.useEffect(() => { onDone(); }, []); return null; } }; });

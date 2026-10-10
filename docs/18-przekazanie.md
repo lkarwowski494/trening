@@ -295,3 +295,113 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
   `NODE_OPTIONS=--max-old-space-size=3072` w testflight.yml; 1003 nie trafił do App Store Connect. Uwaga: wpis z 07.10 o „buildzie 1004”
   dla „Kolegów” dotyczył planu, którego build nie powstał — numer 1004 to teraz 0.10.0. Kroki właściciela: grupa zewnętrzna „Koledzy”,
   przegląd beta, GitHub Pages (`main` / `/docs`). Audyt 2 zastąpiony pełnym audytem przed App Store (decyzja 09.10 ~12:40).
+- 09.10.2026 (ok. 14:25): właściciel testuje build 1004 — **błąd B1:** po „Ukryj” (zachęta do planu tygodnia na karcie „Dziś”) nie ma
+  „Pokaż/Odkryj” — przycisk „Plan tygodnia” znika z ekranu głównego na stałe (`components/TodayPlan.tsx`, `planHintHidden`; jedyna droga
+  do planu: zakładka Kalendarz); pasek tygodnia pokazuje tylko skróty dni, bez dat (właściciel: „zniknęły daty”). Do paczki przed App Store.
+- 09.10.2026 (ok. 14:25): właściciel — **wygląd: zestaw pełny (B)** motywu z ikony (gryf + talerze IWF) w aplikacji: 1) postęp tygodnia jako
+  ładowana sztanga — **liczba talerzy = liczba dni treningowych w planie** (bez planu: wg treningów w tygodniu); 2) puste stany z grafiką gryfu;
+  3) czterokolorowy pasek-akcent; 4) ikony zakładek w geometrii talerzy; 5) animacja „dokładania talerza” przy rekordzie (z ograniczeniem
+  ruchu — obraz statyczny); 6) kalendarz: dni z treningiem jako talerze. Warunki: kolor nigdy jedyną informacją (daltonizm), czerwień
+  talerza odróżniona od czerwieni „Usuń”. Dopracowanie istniejących ekranów — w paczce przed App Store (zamrożenie: nie nowa funkcja).
+- 09.10.2026 (ok. 14:45): zgłoszenie „nie da się zrobić planu z własnych szablonów” — właściciel sam usunął jedyny szablon; testy
+  (plan-own-templates, 5/5 na f8f59e7) potwierdzają, że nowe, folderowe i generowane szablony są w edytorze planu i na liście startu.
+  Znalezisko UX (ŚREDNIE): przy braku szablonów edytor planu i panel dnia w Kalendarzu nie mają „+ Nowy szablon”. Wybór wg zasady z 20:20:
+  **B** — „+ Nowy szablon” w edytorze planu i panelu dnia, po „Zapisz” szablon trafia od razu na ten dzień (odrzucone A: bez przypisania,
+  C: sam komunikat). Do paczki przed App Store.
+- 09.10.2026 (ok. 14:55): właściciel — **„Plan z moich szablonów” (B)**, wyjątek od zamrożenia („na granicy nowej funkcji, łata lukę”):
+  wybór własnych szablonów i liczby dni → rozkład na tydzień wg reguł generatora (te same, ze źródłami) → podgląd → zatwierdzenie. Odrzucone:
+  A (tylko widoczna droga do ręcznego edytora), C (A teraz, B po App Store). W tej samej paczce: „Pierwsze kroki” przy pustym szablonie —
+  komunikat „dodaj ćwiczenia do szablonu …” zamiast „Najpierw utwórz szablon”; „+ Nowy szablon” w edytorze planu i panelu dnia (B, wyżej).
+- 09.10.2026 (ok. 15:20): właściciel — **ekran główny: układ B „najpierw trening”** (makiety: https://claude.ai/artifact/7CetSMVFxjPDbQU4KLDsp8):
+  duży przycisk startu zależny od sytuacji (z planem „Start: <dzisiejszy>”, bez planu następny szablon albo „Pusty trening”); „Inny trening”
+  jako arkusz (inny z planu, powtórz ostatni, z szablonu, pusty); kafelki tygodnia; karta Planowania (nowy szablon, plan z moich szablonów,
+  generator) — zwinięta do wiersza przy planie, rozwinięta i wyżej bez planu; Ustawienia tylko w „Więcej”. **Karta „Ten tydzień” (sztanga
+  postępu + pasek dni z datami i talerzami) tylko przy aktywnym planie** (wariant 1; odrzucone 2: w karcie planu). Odrzucone A (trzy sekcje).
+  „Powtórz ostatni” w arkuszu (jak na makiecie).
+  Doprecyzowanie właściciela (ok. 15:30): karta „Dziś” z paskiem tygodnia i „Następne: …” zostaje na górze, a sekcja „Ten tydzień” z kafelkami
+  zostaje; sztanga postępu trafia do „Ten tydzień” (tylko przy planie); duży przycisk startu i „Inny trening” przy karcie „Dziś”.
+- 09.10.2026 (ok. 16:20): właściciel — sekcja „Ostatni trening” na środku ekranu głównego niepotrzebna → usunięta z ekranu głównego w układzie B
+  (ostatni trening widać w arkuszu „Inny trening” → „Powtórz ostatni” z nazwą i datą oraz w Historii/Kalendarzu). Odrzucone: przeniesienie
+  na dół ekranu.
+- 09.10.2026 (ok. 15:40): właściciel — **wariant B: wersja pośrednia 0.11 na TestFlight** przed subskrypcją: poprawki z audytu kontrolnego
+  (ŚREDNIE/NISKIE), układ B ekranu głównego i pełny zestaw motywu z ikony, „Plan z moich szablonów”, B1. Przed buildem: audyt zmian
+  od 0.10.0 + lista kontrolna (CLAUDE.md „Audyty i wydania” pkt 4), verify, E2E. Potem: subskrypcja + wymogi App Store → pełny audyt →
+  App Store. Odrzucone A (jedna wersja ze wszystkim). Licencje open source: zostają w „O aplikacji” (wymóg licencji MIT/BSD).
+- 09.10.2026 (ok. 17:00): właściciel po zrzutach motywu — **korekta**: (1) pasek tygodnia i kalendarz: pod dniem z wykonanym treningiem
+  mała kolorowa ikona jak ikona aplikacji (gryf z talerzami), dzień zaplanowany niewykonany — sama obwódka tej ikony; kolory talerzy nie
+  kodują już serii ani kolejności (odrzucone: kolor = serie względem średniej, kolor po kolei); (2) zamiast sztangi postępu — N stosów
+  talerzy obok siebie (N = dni w planie tygodnia), stos wypełniony kolorami = trening wykonany, obwódka = niewykonany, plus procent wykonania
+  planu tygodnia; (3) usunięty czterokolorowy pasek nad kartą „Dziś” (nic nie znaczy).
+- 09.10.2026 (ok. 17:10): właściciel — **usunąć przypomnienie o odnowieniu podpisu (T-053) i całą drogę instalacji z komputera**; instalacja
+  tylko przez TestFlight (A). Powód: nazwa innej aplikacji w tekstach aplikacji (ryzyko odrzucenia przez Apple, zasada z 09.10). Odrzucone B:
+  neutralny opis. `ios-unsigned.yml` zostaje jako sprawdzenie kompilacji (bez instrukcji instalacji).
+- 09.10.2026 (ok. 17:25): właściciel — **do wersji 0.11 (wyjątek od zamrożenia zakresu, „marka jest ważna od początku”)**: (3) krótka animacja
+  przy starcie aplikacji — talerze wsuwają się na gryf i układają w ikonę („jak intro Netflixa”); (5) Podsumowanie miesiąca: tygodnie jako
+  rząd stosów (pełny = plan tygodnia wykonany, obwódka = niepełny). (6) zrzuty App Store w motywie — przy przygotowaniu sklepu (paczka przed
+  App Store). Backlog: serie w treningu jako talerze, większa grafika talerzy w widoku skupionym, rekordy jako rosnący stos.
+- 09.10.2026 (ok. 18:00): właściciel — **numerowanie wersji, wariant A**: do App Store 0.x (0.11.0, 0.12.0… z nowościami; 0.11.1… tylko
+  poprawki), premiera w App Store = 1.0.0, potem 1.x (2.0.0 tylko przy dużej zmianie, np. konta/synchronizacja). Build rośnie zawsze
+  (testflight.yml, BUILD_BASE + numer przebiegu). Każde wydanie: tag gita `v<wersja>-b<build>`, w „O aplikacji” „<wersja> (<build>)”
+  (lib/version.ts, EXPO_PUBLIC_BUILD_NUMBER z CI), wpis „Co nowego” na wersję, wiersz w tabeli wydań (docs/09). Odrzucone: B (wersja
+  z datą), C (kolejne liczby). Stopki commitów z adresem sesji — zostają (decyzja właściciela).
+- 09.10.2026 (wieczór): właściciel po zrzutach motywu v2 (ikona dnia, stosy z % planu, miesiąc jako stosy, bez paska) — **akceptacja, wdrażać**
+  do 0.11 (scalone w feature/e2-swap: 7126b7d). Na ekranie 375 pt tekst procentu przechodzi pod stosy — zgłoszone przy zrzutach, właściciel bez uwag.
+- 09.10.2026 (wieczór): właściciel — **do 0.11 jako wyjątek od zamrożenia zakresu**: (1) **ikona dnia odpoczynku: filiżanka espresso** (wariant B;
+  odrzucone: A — pusto, C — sam gryf bez talerzy, rekomendacja C). Tylko przy aktywnym planie, w dzień bez treningu w planie; bez planu — nic.
+  Własny rysunek, bez tekstu i bez nawiązań do ceny w aplikacji. „Kosmetyka — najwyżej zmienimy przed App Store” (do przeglądu w paczce sklepu).
+  (2) **generator: wybór dni treningowych (wariant B)** — 7 przycisków pon–nd zamiast liczby sesji, wstępnie zaznaczona propozycja
+  generatora (bestDays); liczba zaznaczonych = liczba sesji; przydział treningów do wybranych dni minimalizuje pary dzień po dniu, istniejące
+  ostrzeżenie „pairs”; to samo w „Planie z moich szablonów”. Odrzucone: A (bez zmian, przesuwanie w edytorze), C (przełącznik auto/wybiorę).
+  Stan TestFlight: buildy 1001–1003 wygasły, 1004 (0.10.0) czeka na zatwierdzenie Apple.
+- 09.10.2026 (wieczór): właściciel po klatkach — **akceptacja intro** (talerze wsuwają się na gryf, ok. 1 s, tapnięcie pomija, „Ogranicz ruch” bez
+  animacji; ekran startowy = sam gryf). Jednorazowy stary ekran startowy po aktualizacji — informacja w „What to Test”.
+- 09.10.2026 (wieczór): właściciel po zrzutach — **filiżanka: pełna sylwetka (B) i w całym kalendarzu (1)** — akceptacja. **Generator: 1–6 dni
+  treningowych dla każdego celu** (dotąd siła/masa 2–6, redukcja 3–6); poza zakresem — komunikat (A, akceptacja); zmiana celu → propozycja
+  generatora (akceptacja). Przy 1 dniu (zwłaszcza masa) — ostrzeżenie, że to mało skuteczne i w praktyce raczej utrzymanie: **treść
+  merytoryczna do potwierdzenia źródłami** (hierarchia z CLAUDE.md; dotychczasowy research 22: przy masie częstotliwość obojętna przy równej
+  objętości — ACSM 2026, Pelland 2026; ograniczeniem 1 dnia jest objętość tygodniowa). Bez potwierdzenia „utrzymania” w źródłach — tylko
+  istniejące ostrzeżenia („rzadziej niż 2 dni”, „poniżej 10 serii”). Redukcja przy 1–2 dniach — rozstrzygnięcie w raporcie wdrożenia (opcje).
+- 09.10.2026 (wieczór): właściciel — **generator: najpierw dni, potem cel (B) + czwarty cel „Ogólny”** (ogólnorozwojowy). Wszystkie cele
+  aktywne przy każdej liczbie dni; przy zbyt małej liczbie dni krótka uwaga pod celem (treść wg źródeł — research 29). Odrzucone: A (cele
+  wyszarzone poniżej minimum — blokuje, minima bez źródeł), C (jak dotąd: cel → dni). Parametry celu „Ogólny” wg źródeł (WHO 2020, ACSM)
+  przed wdrożeniem. Termin: 0.11 (wyjątek; „Ok” na rekomendację — do potwierdzenia, jeśli właściciel wolał paczkę przed App Store).
+- 09.10.2026 (wieczór): właściciel — **cel „Ogólny”: wszystkie wybrane dni siłowe (1–6) + przełącznik „Dni cardio w planie” (B)**, domyślnie
+  wyłączony; po włączeniu dni powyżej 3 = cardio (dla 1–3 dni przełącznika nie ma). „Nie blokujmy 4–5 sesji siłowych” — przy 4+ dniach podział
+  góra/dół jak przy masie, parametry „ogólne”. Odrzucone: A (bez przełącznika), C (domyślnie cardio przy 4–6). „Ok” przyjęte także dla
+  rekomendacji: **2 serie** (źródła 2–3), **bez rozciągania i równowagi** (jedno źródło / tylko 65+; pytanie o wiek → backlog). Podstawa:
+  szkic research „Ogólny” (WHO 2020, PAG 2018, ACSM 2011/2026) → docs/research/30 przy wdrożeniu. Przy masie 1 dzień: źródła nie potwierdzają
+  „utrzymania” (ACSM 2026: przy równej liczbie serii przyrost podobny) — uwaga mówi o trudności zmieszczenia 10 serii w jednej sesji.
+- 09.10.2026 (wieczór): właściciel — **redukcja przy 1–2 dniach: same dni siłowe, cardio poza planem (A)** — akceptacja rozstrzygnięcia agenta
+  (research 29, sekcja 3; próg CUT_CARDIO_FROM = 3). Odrzucone: B (1 siłowy + 1 cardio — partie raz w tygodniu, bez źródła), C (cardio po sesji).
+- 09.10.2026 (wieczór): właściciel — **nowe języki po 0.11, przed App Store**: grupa 1 — portugalski brazylijski (pt-BR; obecny pt = pt-PT)
+  i hiszpański Ameryki Łacińskiej (es-419); grupa 2 — japoński, koreański, chiński tradycyjny (krój pisma CJK, łamanie wierszy, testy
+  szerokości); azerski (az). Ukraiński już jest. Do sprawdzenia przed wdrożeniem (otwarte): czy iOS ma azerski jako język systemu i czy App
+  Store Connect pozwala na opis sklepu po azersku; pokrycie znaków w IBM Plex Sans (ə). Chiński uproszczony odłożony (rejestracja ICP w Chinach).
+  Rosyjski — TAK (właściciel, 09.10 wieczór; sprzedaż w Rosji przez App Store niedostępna od 2022 — zasięg przez kraje, gdzie rosyjski jest używany). Interpretacja „1, 2” = grupy z odpowiedzi z 09.10 — do potwierdzenia.
+- 09.10.2026 (wieczór): właściciel — do paczki języków przed App Store dochodzą też **indonezyjski, malajski, wietnamski, uzbecki, kazachski**.
+  Otwarte przed wdrożeniem: krój IBM Plex Sans — znaki wietnamskie i kazachskie (cyrylica rozszerzona); czy iOS ma uzbecki i kazachski jako
+  język systemu i czy App Store Connect pozwala na opis sklepu w tych językach. **Arabski — osobne wydanie** (pismo od prawej: lustrzany układ,
+  osobne testy i E2E), po App Store 1.0; zakres i termin — decyzja właściciela później.
+- 09.10.2026 (wieczór): właściciel — **języki wdrażane po kolei: od najsensowniejszych i najłatwiejszych do najtrudniejszych / najmniej
+  opłacalnych**. Propozycja kolejności (do potwierdzenia): fala 1 pt-BR, es-419; fala 2 id, ms, vi; fala 3 ru; fala 4 ja, ko, zh-Hant;
+  fala 5 kk, uz, az; arabski osobnym wydaniem po 1.0.
+- 09.10.2026 (wieczór): właściciel — **„nie kombinujmy”: 0.11 bez nowych języków. Wszystkie nowe języki oprócz arabskiego — w kolejnej wersji
+  (po 0.11); arabski — w wersji jeszcze następnej.** Kolejność fal wewnątrz wersji jak wyżej.
+- 09.10.2026 (wieczór): właściciel — **język trudniejszy niż zakładano** (np. nie jest językiem systemu iOS, brak opisu w App Store Connect,
+  krój bez znaków wymagający większej pracy) → odłożony do wydania z arabskim (z zapisanym powodem).
+- 09.10.2026 (wieczór): właściciel — **Android: na pewno dopiero po App Store; najpierw ocena sensu na podstawie wyników z App Store.**
+  Szacunek (09.10): ok. 5–8 dni pracy agenta (build/CI, Health Connect, zamiennik Live Activity, zachowanie systemu, testy, audyt);
+  czekanie: zamknięty test Google Play (wg wiedzy z 09.10: 12 testerów przez 14 dni — do sprawdzenia), przeglądy Google; koszt konta
+  Google Play ok. 25 USD jednorazowo (wyjątek od zasady 0 zł — decyzja właściciela przy starcie prac). Przy wdrażaniu subskrypcji
+  preferowana biblioteka obsługująca iOS i Androida (żeby nie przerabiać później) — bez zmiany zakresu iOS.
+- 09.10.2026 (wieczór): właściciel — **„Co nowego” 0.11: akceptacja** (treść z raportu fix-a11b, 10 punktów); szkic osierocony po „Wróć do
+  edycji” — zostaje (opcja 1, rekomendacja). **Sprawdzanie scenariuszy E2E przed symulatorem: A + B wg rekomendacji** (podgląd web w rozmiarze
+  iPhone’a sprawdza, czy element jest na ekranie bez przewinięcia; reguły pisania scenariuszy pilnowane testem; stała praktyka D — powtórka
+  samych nieudanych scenariuszy na zbudowanej aplikacji), **po wydaniu 0.11**. Po zielonym E2E — bez kolejnego audytu (zasada „jeden audyt
+  na wydanie”).
+- 09.10.2026 (wieczór): właściciel — **„działaj, zgodnie z propozycją aż do nowego buildu”**: po naprawie błędu podwójnej zamiany, zielonym
+  verify i zielonym E2E — scalenie feature/e2-swap → main, testflight.yml (0.11.0), tag v0.11.0-b<build>, wiersz w tabeli wydań.
+- 10.10.2026 (rano): właściciel — **wydać 0.11.0 teraz (A)** przy E2E 17/18 dwa razy z rzędu (38023746057, 38027253177): pada tylko pierwszy
+  scenariusz „Plank ze stoperem” zaraz po starcie symulatora — zgubione znaki przy szybkim wpisie automatu („P” zamiast „Plank”), ten sam efekt
+  co E2E-105 (masa ciała). Zgubiony znak widoczny w polu, bez cichego zapisu złej wartości. Odrzucone: B (poprawka scenariusza + kolejne E2E),
+  C (szukanie przyczyny w aplikacji teraz). Do backlogu: scenariusz 05 jak 15 (wolniejszy wpis, retry) i sprawdzenie szybkiego wpisu na telefonie.

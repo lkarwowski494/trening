@@ -94,10 +94,30 @@ export class Runner {
     return null;
   }
   vpTop(sc: LNode): number { const sb = this.screenBox(sc, false); return sb ? sb.y : this.headerTop(); }
-  focused: Node | null = null; selectAll = false; alertSeen = 0; alertOpen: number | null = null; sheetSeen = 0; sheetOpen: number | null = null; log: string[] = [];
+  /** E2E 105: przesunięcie palcem w pionie (`swipe: { start: "x%, y%", end: "x%, y%" }`) przewija listę pod punktem startu o różnicę y
+   * (w dół — do góry treści); przycięte do zakresu listy. */
+  swipeScroll(step: string, start: string, end: string) {
+    const pt = (s: string) => { const m = /^\s*(\d+(?:\.\d+)?)%\s*,\s*(\d+(?:\.\d+)?)%\s*$/.exec(s); if (!m) this.fail(step, `swipe: punkt „${s}” — interpreter zna tylko procenty ekranu`); return { x: +m![1] / 100 * SCREEN.w, y: +m![2] / 100 * SCREEN.h }; };
+    const a = pt(start), b = pt(end); this.relayout();
+    let hit: LNode | null = null; let hitTop = 0;
+    for (const [n, box] of this.boxes) {
+      if (n.type !== 'RCTScrollView' || n.props.horizontal) continue; const sb = this.screenBox(n, false); if (!sb) continue;
+      const top = sb.y; if (a.y >= top && a.y <= this.vpBottom() && a.x >= box.x && a.x <= box.x + box.w) { hit = n; hitTop = top; } /* ostatnia trafiona = najgłębsza */
+    }
+    if (!hit) this.fail(step, 'swipe: pod punktem startu nie ma listy przewijanej.');
+    const key = this.scrollKey(hit!); const cur = this.curScroll(hit!, hitTop);
+    this.scrollY.set(key, Math.min(this.maxScroll(hit!, hitTop), Math.max(0, cur - (b.y - a.y))));
+  }
+  /** E2E 105: testy podmieniają wpisywany tekst (zgubione znaki z przebiegu symulatora). */
+  inputFilter: ((text: string, field: Node) => string) | null = null;
+  /** E2E 105: błędy prób bloku `retry`, po których przyszła kolejna próba. */
+  retries: string[] = [];
+  focused: Node | null = null; selectAll = false; alertSeen = 0; alertOpen: number | null = null; /** X-11: okna systemowe jak na iOS — nowsze nad starszym, po zamknięciu wierzchniego widać poprzednie */ alertStack: number[] = []; sheetSeen = 0; sheetOpen: number | null = null; log: string[] = [];
+  /** Stan wyrażeń Maestro: `output` (wspólny dla scenariusza i podscenariuszy) i `maestro.copiedText` (ostatni copyTextFrom); copied — wszystkie skopiowane teksty (testy). */
+  output: Record<string, unknown> = {}; maestro: { copiedText?: string } = {}; copied: string[] = [];
   constructor(public name: string) {}
   syncModals() {
-    if (global.__alerts.length > this.alertSeen) { this.alertOpen = global.__alerts.length - 1; this.alertSeen = global.__alerts.length; }
+    if (global.__alerts.length > this.alertSeen) { for (let i = this.alertSeen; i < global.__alerts.length; i++) this.alertStack.push(i); this.alertOpen = global.__alerts.length - 1; this.alertSeen = global.__alerts.length; }
     const sh = (global as any).__sheets as unknown[]; if (sh.length > this.sheetSeen) { this.sheetOpen = sh.length - 1; this.sheetSeen = sh.length; }
   }
   candidates(_noLayout = false): Cand[] {
@@ -122,7 +142,7 @@ export class Runner {
     const H = 20 + tH + mH + 16 + btns.length * 56 - 8 + 16; let y = (SCREEN.h - H) / 2 + 20;
     const out: { c: Cand; y: number }[] = [{ c: { texts: [a.title] }, y: y + tH / 2 }]; y += tH;
     if (a.msg) { out.push({ c: { texts: [a.msg] }, y: y + mH / 2 }); y += mH; } y += 16;
-    for (const b of btns) { out.push({ c: { texts: [b.text], alertBtn: () => { this.alertOpen = null; b.onPress?.(a.prompt ? (this as any).promptVal ?? a.def ?? '' : undefined); } }, y: y + 24 }); y += 56; }
+    for (const b of btns) { out.push({ c: { texts: [b.text], alertBtn: () => { this.alertStack.pop(); this.alertOpen = this.alertStack.length ? this.alertStack[this.alertStack.length - 1] : null; b.onPress?.(a.prompt ? (this as any).promptVal ?? a.def ?? '' : undefined); } }, y: y + 24 }); y += 56; }
     return out;
   }
   /** Kotwica `below`/`above` przy otwartym oknie: Maestro widzi okno i ekran pod nim; warunek spełnia KTÓRYKOLWIEK pasujący element (Filters.below/above). */
@@ -210,8 +230,10 @@ export class Runner {
           if (!clear) { await act(async () => { await store.flush(); }); st = JSON.parse(JSON.stringify(saved())); }
           /* E2E 91: na symulatorze zgoda na powiadomienia jest nieustalona (`permissions: all: allow` jej nie obejmuje) — okno I1 przy pierwszym dniu planu */
           if (clear) (global as any).__notifPerm = { ...SIM_NOTIF_PERM };
-          await renderApp({ locale: 'en', tag: SIM_TAG, saved: st }); await this.tick(100);
-          this.focused = null; this.scrollY = new WeakMap(); this.alertSeen = global.__alerts.length; this.alertOpen = null; this.sheetSeen = (global as any).__sheets.length; this.sheetOpen = null; break;
+          /* UX2-03: ponowny start na tej samej bazie — także klucz szkiców edycji (store.DRAFTS_KEY) */
+          const kv = !clear && global.__kv.has(store.DRAFTS_KEY) ? { [store.DRAFTS_KEY]: global.__kv.get(store.DRAFTS_KEY)! } : undefined;
+          await renderApp({ locale: 'en', tag: SIM_TAG, saved: st, kv }); await this.tick(100);
+          this.focused = null; this.scrollY = new WeakMap(); this.alertSeen = 0 /* UX2-03: renderApp czyści okna — każde obecne powstało przy tym starcie (np. pytanie o szkic) */; this.alertOpen = null; this.alertStack = []; this.sheetSeen = (global as any).__sheets.length; this.sheetOpen = null; break;
         }
         case 'stopApp': await act(async () => { await store.flush(); }); break;
         case 'tapOn': {
@@ -227,7 +249,8 @@ export class Runner {
           if (this.alertOpen != null && global.__alerts[this.alertOpen].prompt) { (this as any).promptVal = String(arg); break; }
           const f = this.focused; if (!f) this.fail(step, 'Brak pola z fokusem.');
           const cur = this.selectAll ? '' : String(f!.props.value ?? ''); this.selectAll = false;
-          await act(async () => { fireEvent.changeText(f as any, cur + String(arg)); }); await this.tick(); break;
+          const typed = this.inputFilter ? this.inputFilter(String(arg), f!) : String(arg); /* E2E 105: zgubione znaki z przebiegu symulatora (testy) */
+          await act(async () => { fireEvent.changeText(f as any, cur + typed); }); await this.tick(); break;
         }
         case 'eraseText': {
           const f = this.focused; if (!f) this.fail(step, 'Brak pola z fokusem.'); const n = typeof arg === 'number' ? arg : 50;
@@ -249,6 +272,7 @@ export class Runner {
           const why = this.scrollTo(c!, String(arg.direction ?? 'DOWN'), !!arg.centerElement); if (why) this.fail(step, why); break;
         }
         case 'swipe': {
+          if (arg.start != null && arg.end != null) { this.swipeScroll(step, String(arg.start), String(arg.end)); break; }
           const id = arg.from?.id; if (!id || !/LEFT/i.test(arg.direction)) break;
           const c = this.find({ id })[0]; if (!c?.node) this.fail(step, 'Brak wiersza do przesunięcia.');
           let n: Node | null = c!.node!; const hasDel = (x: Node) => Array.isArray(x.props.accessibilityActions) && x.props.accessibilityActions.some((a: any) => a.name === 'delete') && typeof x.props.onAccessibilityAction === 'function';
@@ -257,13 +281,31 @@ export class Runner {
           if (!target) this.fail(step, 'Wiersz bez akcji usuwania.');
           await act(async () => { target!.props.onAccessibilityAction({ nativeEvent: { actionName: 'delete' } }); }); await this.tick(); n = null; break;
         }
+        case 'retry': {
+          /* Maestro `retry` (E2E 105): blok powtarzany po błędzie kroku, najwyżej maxRetries razy; błąd ostatniej próby zatrzymuje scenariusz */
+          const max = Number(arg.maxRetries ?? 1); if (!Array.isArray(arg.commands)) this.fail(step, 'retry bez listy commands.');
+          for (let i = 0; ; i++) { try { await this.run(arg.commands, file); break; } catch (e) { if (i >= max) throw e; this.retries.push(String((e as Error).message).split('\n')[0]); } }
+          break;
+        }
         case 'runFlow': {
           if (typeof arg === 'string') { await this.run(load(join(DIR, arg)), arg); break; }
           if (arg.when) { const w = arg.when; const ok = w.visible != null ? this.find(sel(w.visible)).length > 0 : w.notVisible != null ? this.find(sel(w.notVisible)).length === 0 : true; if (!ok) break; }
           if (arg.file) await this.run(load(join(DIR, arg.file)), arg.file); else await this.run(arg.commands, file); break;
         }
-        case 'copyTextFrom': if (!(await this.waitFor(sel(arg), true))) this.fail(step, 'Brak elementu do skopiowania.'); break;
-        case 'takeScreenshot': case 'evalScript': case 'assertTrue': break; /* MAESTRO_DUMP=<fragment kroku> — wypisuje drzewo po tym kroku */
+        case 'copyTextFrom': {
+          if (!(await this.waitFor(sel(arg), true))) this.fail(step, 'Brak elementu do skopiowania.');
+          const c = this.find(sel(arg))[0]; this.maestro.copiedText = c.texts[0] ?? ''; this.copied.push(this.maestro.copiedText); break;
+        }
+        /* TST2-04: wyrażenia `${…}` liczone naprawdę (wcześniej pomijane — asercja skutku w 06 była martwa); błąd wyrażenia = błąd kroku */
+        case 'evalScript': try { evalJs(String(arg), this); } catch (e) { this.fail(step, `Błąd wyrażenia: ${(e as Error).message}`); } break;
+        case 'assertTrue': {
+          const src = typeof arg === 'object' && arg ? arg.condition : arg; let v: unknown;
+          try { v = evalJs(String(src), this); } catch (e) { this.fail(step, `Błąd wyrażenia: ${(e as Error).message}`); }
+          if (!(v === true || v === 'true')) this.fail(step, `Warunek fałszywy (wynik: ${JSON.stringify(v)}; maestro.copiedText=${JSON.stringify(this.maestro.copiedText)}, output=${JSON.stringify(this.output)}).`);
+          break;
+        }
+        case 'waitForAnimationToEnd': break; /* run 38009269888: na symulatorze czekanie na koniec animacji (klawiatura) — w Jest bez skutku */
+        case 'takeScreenshot': break; /* zrzut — bez skutku w Jest; MAESTRO_DUMP=<fragment kroku> wypisuje drzewo po kroku */
         default: this.fail(step, `Nieobsługiwane polecenie ${cmd}.`);
       }
     }
@@ -279,5 +321,13 @@ function sameRow(a: Node, b: Node) {
 }
 function hidden(n: Node) { for (let p: Node | null = n; p; p = p.parent) if (isHost(p) && (p.props['aria-hidden'] === true || p.props.accessibilityElementsHidden === true)) return true; return false; }
 function isDesc(n: Node, anc: Node) { for (let p = n.parent; p; p = p.parent) if (p === anc) return true; return false; }
+/**
+ * Wyrażenie JavaScript Maestro `${…}` (evalScript, assertTrue; w Maestro GraalJS) z obiektami `output` i `maestro`. Tekst bez `${…}` — błąd
+ * (w Maestro to zwykły napis bez obliczenia — asercja bez skutku).
+ */
+export function evalJs(src: string, ctx: { output: Record<string, unknown>; maestro: { copiedText?: string } }): unknown {
+  const m = /^\$\{([\s\S]*)\}$/.exec(String(src).trim()); if (!m) throw new Error(`wyrażenie Maestro bez \${…}: ${src}`);
+  return new Function('output', 'maestro', `"use strict"; return (${m[1]});`)(ctx.output, ctx.maestro); // eslint-disable-line no-new-func
+}
 export function load(path: string): any[] { const docs = yaml.loadAll(readFileSync(path, 'utf8')); return docs[docs.length - 1] as any[]; }
 

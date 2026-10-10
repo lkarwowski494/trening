@@ -6,7 +6,7 @@
 import * as store from '@/lib/store';
 import * as plan from '@/lib/plan';
 import { addLocation } from '@/lib/locations';
-import { generate, sessionName, goalLabel } from '@/lib/generator';
+import { generate, genProposal, sessionName, goalLabel, type GenInput } from '@/lib/generator';
 import { applyLang, exName } from '@/lib/i18n';
 import { fresh, saved } from './helpers';
 import { renderApp, flushAll, screen, tap, act } from './app';
@@ -19,6 +19,11 @@ const boot = async (url: string, fn: () => void = () => {}, locale: 'pl' | 'en' 
   await act(async () => { await store.flush(); }); await renderApp({ saved: JSON.parse(JSON.stringify(saved())), locale, url }); jest.setSystemTime(NOW.getTime()); await flushAll(10);
 };
 const lastAlert = (title: string) => [...global.__alerts].reverse().find(x => x.title === title);
+/** Wybór dni (09.10.2026 B): zaznaczone przyciski dni i ustawienie dokładnie `ds` (stuknięcia w różnicę). */
+const checkedDays = () => [0, 1, 2, 3, 4, 5, 6].filter(d => screen.getByTestId(`day-${d}`).props.accessibilityState.checked);
+const pickDays = async (ds: number[]) => { const cur = checkedDays(); for (let d = 0; d < 7; d++) if (cur.includes(d) !== ds.includes(d)) await tap(screen.getByTestId(`day-${d}`)); await flushAll(5); };
+/** Dni propozycji generatora dla n sesji (to, co dawniej dawał chip „Sesje w tygodniu: n”). */
+const daysFor = (n: number, o: Partial<GenInput> = {}) => genProposal({ goal: 'hypertrophy', locationId: null, sessions: n, minutes: 60, ...o });
 const press = async (title: string, btn: string) => { const a = lastAlert(title)!; expect(a).toBeTruthy(); await act(async () => { a.buttons!.find(b => b.text === btn)!.onPress?.(); }); await flushAll(10); };
 
 test('wejście z Szablonów i z Planu tygodnia', async () => {
@@ -42,19 +47,27 @@ test('domyślnie: masa, 3 sesje, 60 min, bez ograniczeń sprzętu; podgląd zgod
   expect(screen.getByText('Siła: bój główny na początku, 3 × 4–6 powtórzeń (ciężko, ok. 80% maksimum i więcej), pozostałe ćwiczenia 3 × 6–10.')).toBeTruthy(); /* LOG-11: liczby ze stałych */
   expect(screen.getAllByText(/ — 3 × 4–\u20606, przerwa 3:00$/).length).toBe(2); /* bój główny w FBW A i B */ expect(screen.queryByText(/^Poniżej 10 serii/)).toBeNull();
 });
-test('redukcja: sesje 3–6 (w tym 1 cardio), cardio w podglądzie i licznik minut; 2 sesje przeskakują na 3', async () => {
-  await boot('/generator'); await tap(screen.getByLabelText('Sesje w tygodniu: 2')); await flushAll(5);
-  await tap(screen.getByText('Redukcja')); await flushAll(5);
+test('redukcja: 1–2 dni — same siłowe, cardio poza planem (WHO); od 3 dni — w tym 1 cardio, cardio w podglądzie i licznik minut', async () => {
+  await boot('/generator'); await pickDays(daysFor(2)); expect(checkedDays()).toEqual([0, 3]);
+  await tap(screen.getByText('Redukcja')); await flushAll(5); expect(checkedDays()).toEqual([0, 3]); /* 1–6 dla każdego celu (09.10.2026) — wybór zostaje */
+  /* opcja A (docs/research/29 sekcja 3): bez sesji cardio przy 1–2 dniach */
+  expect(screen.getByText('Redukcja: trening jak na masę (chroni mięśnie); sesja cardio w planie od 3 dni w tygodniu.')).toBeTruthy();
+  expect(screen.getByText('Dni treningowe w tygodniu')).toBeTruthy(); expect(screen.queryByTestId('gen-cardio')).toBeNull(); expect(screen.queryByText(/^Cardio w planie:/)).toBeNull();
+  expect(screen.getByText('Cardio poza planem: sesja cardio jest w planie od 3 dni w tygodniu, przy mniejszej liczbie wszystkie dni są siłowe. Zalecenie WHO: co najmniej 150–300 min umiarkowanego wysiłku tygodniowo (albo 75–150 min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.')).toBeTruthy();
+  expect(screen.getByText('• Cardio: od 3 dni w tygodniu jedna sesja w osobny dzień; przy mniejszej liczbie dni wszystkie są siłowe, żeby cardio nie zabierało dni treningowi siłowemu (każda główna partia co najmniej 2 dni) — konwencja.')).toBeTruthy();
+  expect(screen.getByTestId('gen-fbwA')).toBeTruthy(); expect(screen.getByTestId('gen-fbwB')).toBeTruthy();
+  await pickDays([0]); expect(screen.getByTestId('gen-fbw')).toBeTruthy(); expect(screen.getByText(/^Jeden trening w tygodniu też daje postępy/)).toBeTruthy(); expect(screen.getByText('pon. FBW')).toBeTruthy();
+  await pickDays(daysFor(3, { goal: 'cut' }));
   expect(screen.getByText('Redukcja: trening jak na masę (chroni mięśnie) i jedna sesja umiarkowanego cardio.')).toBeTruthy();
-  expect(screen.getByText('Sesje w tygodniu (w tym 1 cardio)')).toBeTruthy(); /* LOG-11: {n} = CARDIO_SESSIONS */ expect(screen.queryByLabelText('Sesje w tygodniu: 2')).toBeNull();
-  expect(screen.getByLabelText('Sesje w tygodniu: 3').props.accessibilityState?.selected).toBe(true);
+  expect(screen.getByText('Dni treningowe w tygodniu (w tym 1 cardio)')).toBeTruthy(); /* LOG-11: {n} = cardioCount (CARDIO_SESSIONS) */
+  expect(screen.queryByText(/^Cardio poza planem/)).toBeNull(); expect(screen.queryByText(/^Jeden trening w tygodniu/)).toBeNull();
   await tap(screen.getByText('45 min')); await flushAll(5);
   expect(screen.getByTestId('gen-cardio')).toBeTruthy(); expect(screen.getByText(/ — 45 min, umiarkowane tempo$/)).toBeTruthy();
   expect(screen.getByText('Cardio w planie: 45 min tygodniowo. Zalecenie WHO: co najmniej 150–300 min umiarkowanego wysiłku tygodniowo (albo 75–150 min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.')).toBeTruthy(); /* MER-08 */
 });
 test('5 sesji — ostrzeżenie o parach dzień po dniu; miejsce z listy miejsc; brak ćwiczeń — komunikat', async () => {
   await boot('/generator', () => { addLocation('bodyweight', 'Dom'); });
-  await tap(screen.getByLabelText('Sesje w tygodniu: 5')); await flushAll(5);
+  await pickDays(daysFor(5, { locationId: S().settings.mainLocationId ?? null }));
   const pairs = /^Dzień po dniu te same główne partie: .+\. Zwykle lepiej z dniem przerwy; przy tej samej liczbie serii w tygodniu to też jest w porządku\.$/;
   expect(screen.getAllByText(/ — 3 × 12–\u206020, przerwa /).length).toBeGreaterThan(0); /* miejsce główne „Dom” (masa ciała) wybrane na starcie */
   expect(screen.queryByText(pairs)).toBeNull(); /* audyt 0.10 LOG-10: w domu układ dni bez par (dawniej pokazywał parę, której dało się uniknąć) */
@@ -93,7 +106,7 @@ test('etykiety pól, tytuł ekranu, nazwy sesji i celów; 4 sesje — góra/dó�
   expect(screen.getAllByText('Cel').length).toBeGreaterThan(0); expect(screen.getAllByText('Czas sesji').length).toBeGreaterThan(0);
   const { store: rs } = require('expo-router/build/global-state/router-store'); /* nagłówek natywnego stosu nie renderuje się w Jest — tytuł z opcji ekranu */
   expect(rs.navigationRef.getCurrentOptions()?.title).toBe('Generator szablonów i planu'); /* audyt 0.10 UX-14: jedna nazwa (przewodnik, przycisk) */
-  await tap(screen.getByLabelText('Sesje w tygodniu: 4')); await flushAll(5);
+  await pickDays(daysFor(4));
   for (const n of ['Góra A', 'Dół A', 'Góra B', 'Dół B']) expect(screen.getAllByText(n).length).toBeGreaterThan(0);
   const pairs = 'Dzień po dniu te same główne partie: {list}. Zwykle lepiej z dniem przerwy; przy tej samej liczbie serii w tygodniu to też jest w porządku.';
   /* audyt 0.10 LOG-10: 4 sesje — pon/wt/czw/sob, bez par dzień po dniu (było czw–pt: Góra B → Dół B, wspólne plecy) */
