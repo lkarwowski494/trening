@@ -86,13 +86,13 @@ name: Kalendarz z planem tygodnia
 - swipe: { start: "50%, 30%", end: "50%, 80%", duration: 400 }
 - waitForAnimationToEnd
 - tapOn: { id: "whats-new-i" }  # przycisk po testID (etykieta z kropką „nowe zmiany” byłaby inna)
-- extendedWaitUntil: { visible: "In this version", timeout: 15000 }
+- extendedWaitUntil: { visible: "In this version|Test build [0-9]+ · .*", timeout: 15000 }  # bieżący wpis: niewydany albo z numerem buildu (wydanie 0.11, build 1005)
 - takeScreenshot: 65-co-nowego
 # run 37900617167 (f2bdca8): rozwinięta sekcja (lista zmian dla nowej osoby) spycha „Close” pod pasek zakładek — stuknięcie trafiło w zakładkę
 # „Exercises” (zrzut kroku 85). Przewinięcie z wyśrodkowaniem przed stuknięciem; po zwinięciu sekcji powrót w górę do karty dnia.
 - scrollUntilVisible: { element: "Close", direction: DOWN, timeout: 30000, centerElement: true }
 - tapOn: "Close"
-- assertNotVisible: "In this version"
+- assertNotVisible: "In this version|Test build [0-9]+ · .*"
 - scrollUntilVisible: { element: "Start planned workout: Upper A", direction: UP, timeout: 30000, centerElement: true }
 - tapOn: "Start planned workout: Upper A"
 - extendedWaitUntil: { visible: "Set 1 done.*", timeout: 30000 }

@@ -51,7 +51,7 @@ describe('ekran Trening', () => {
     await tap(screen.getByTestId('whats-new-i')); await flushAll(5);
     expect(screen.getByTestId('whats-new')).toBeTruthy(); expect(screen.getByRole('header', { name: 'Co nowego' })).toBeTruthy();
     expect(screen.getByTestId('whats-new-i').props.accessibilityState).toEqual({ expanded: true });
-    expect(screen.getByText('W tej wersji')).toBeTruthy();
+    expect(screen.getByText(WHATS_NEW[0].build ? new RegExp(`^Wersja testowa ${WHATS_NEW[0].build} · `) : 'W tej wersji')).toBeTruthy(); /* bieżący wpis: niewydany albo wydany (0.11 — build 1005) */
     for (const x of WHATS_NEW[0].items()) expect(screen.getByText(`• ${x}`)).toBeTruthy();
     expect(screen.queryByTestId('whats-new-dot')).toBeNull(); expect(S().whatsNewSeen).toBe(WHATS_NEW[0].id);
     const old = WHATS_NEW[2]; /* 1002 — rozwijany niżej */ const oldItem = `• ${old.items()[0]}`; expect(screen.queryByText(oldItem)).toBeNull();
@@ -110,6 +110,6 @@ describe('ekran Trening', () => {
     await boot(withWorkout, 'en');
     expect(screen.getByLabelText("What's new — new changes")).toBeTruthy();
     await tap(screen.getByTestId('whats-new-i')); await flushAll(5);
-    expect(screen.getByText('In this version')).toBeTruthy(); expect(screen.getByText(/^▸ Test build 1002 · /)).toBeTruthy(); expect(screen.getByText('Close')).toBeTruthy();
+    expect(screen.getByText(/^Test build 1005 · 10 Oct 2026$/)).toBeTruthy(); expect(screen.getByText(/^▸ Test build 1004 · /)).toBeTruthy(); expect(screen.getByText('Close')).toBeTruthy();
   });
 });

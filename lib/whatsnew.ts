@@ -20,7 +20,7 @@ const genDays = () => { const all = Object.values(GEN_SESSIONS).flat(); return {
 export const WHATS_NEW: WhatsNewEntry[] = [
   /* 0.11.0 (A11B-8, lista wydania). Dwa ostatnie punkty: zaległości z 0.10 wg audytu kontrolnego 1 (UI2-04, MER2-06) — wpis 0.10 ma już 9 punktów
    * (limit 10), a osoby aktualizujące z 1002 widzą je dopiero teraz. */
-  { id: '2026-10-09', date: '2026-10-09', items: () => [
+  { id: '2026-10-09', build: 1005, date: '2026-10-10', items: () => [ /* 0.11.0 — wydanie 2, build 1005 z 10.10.2026 (docs/18) */
     t('Nowy wygląd z ikony: znacznik dnia jak ikona aplikacji, stosy talerzy z procentem planu tygodnia, filiżanka w dzień odpoczynku, podsumowanie miesiąca jako stosy.'),
     t('Krótka animacja przy starcie: talerze wsuwają się na gryf.'),
     t('Generator: wybór dni tygodnia, od {a} do {b} dni, cel „Ogólny” i „Plan z moich szablonów”.', genDays()),
