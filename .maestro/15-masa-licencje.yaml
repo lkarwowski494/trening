@@ -30,6 +30,7 @@ name: Masa ciała z datą i licencje open source
 - tapOn: "Body weight, not entered.*"
 - extendedWaitUntil: { visible: "Save measurement", timeout: 30000 }
 - tapOn: { id: "bodymass-kg" }   # run 37938579595: po UX2-11 (pola jedno pod drugim) „below” trafiał obok pola — pole masy po testID
+- waitForAnimationToEnd  # run 38002403800/38009269888: „80” wpisane przed otwarciem klawiatury nie trafiało do pola
 - inputText: "80"
 - tapOn: "Save measurement"
 - extendedWaitUntil: { visible: "80 kg, .*", timeout: 30000 }

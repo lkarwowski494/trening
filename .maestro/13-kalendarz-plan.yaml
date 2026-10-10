@@ -80,7 +80,7 @@ name: Kalendarz z planem tygodnia
 - extendedWaitUntil: { visible: "Today: Upper A", timeout: 30000 }
 - takeScreenshot: 63-dzis
 # --- „i” — Co nowego (nowa instalacja: bez kropki) ---
-- tapOn: "What's new"
+- tapOn: { id: "whats-new-i" }  # run 38009269888: po wpisie 0.11 kropka „nowe zmiany” — etykieta „What's new — new changes”; przycisk po testID
 - extendedWaitUntil: { visible: "In this version", timeout: 15000 }
 - takeScreenshot: 65-co-nowego
 # run 37900617167 (f2bdca8): rozwinięta sekcja (lista zmian dla nowej osoby) spycha „Close” pod pasek zakładek — stuknięcie trafiło w zakładkę

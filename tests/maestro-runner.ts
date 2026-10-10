@@ -278,6 +278,7 @@ export class Runner {
           if (!(v === true || v === 'true')) this.fail(step, `Warunek fałszywy (wynik: ${JSON.stringify(v)}; maestro.copiedText=${JSON.stringify(this.maestro.copiedText)}, output=${JSON.stringify(this.output)}).`);
           break;
         }
+        case 'waitForAnimationToEnd': break; /* run 38009269888: na symulatorze czekanie na koniec animacji (klawiatura) — w Jest bez skutku */
         case 'takeScreenshot': break; /* zrzut — bez skutku w Jest; MAESTRO_DUMP=<fragment kroku> wypisuje drzewo po kroku */
         default: this.fail(step, `Nieobsługiwane polecenie ${cmd}.`);
       }
