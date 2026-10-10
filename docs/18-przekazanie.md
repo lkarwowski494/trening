@@ -405,3 +405,6 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
   scenariusz „Plank ze stoperem” zaraz po starcie symulatora — zgubione znaki przy szybkim wpisie automatu („P” zamiast „Plank”), ten sam efekt
   co E2E-105 (masa ciała). Zgubiony znak widoczny w polu, bez cichego zapisu złej wartości. Odrzucone: B (poprawka scenariusza + kolejne E2E),
   C (szukanie przyczyny w aplikacji teraz). Do backlogu: scenariusz 05 jak 15 (wolniejszy wpis, retry) i sprawdzenie szybkiego wpisu na telefonie.
+- 10.10.2026 (06:47 UTC): **wydanie 2 — 0.11.0, build 1005** wysłany do App Store Connect (testflight.yml run 38030364651, main 0d71775,
+  tag v0.11.0-b1005). Do zrobienia przez właściciela: „What to Test” w App Store Connect, udostępnienie testerom, sprawdzenie na telefonie
+  (szybki wpis masy ciała — E2E-105).
