@@ -401,3 +401,7 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
   na wydanie”).
 - 09.10.2026 (wieczór): właściciel — **„działaj, zgodnie z propozycją aż do nowego buildu”**: po naprawie błędu podwójnej zamiany, zielonym
   verify i zielonym E2E — scalenie feature/e2-swap → main, testflight.yml (0.11.0), tag v0.11.0-b<build>, wiersz w tabeli wydań.
+- 10.10.2026 (rano): właściciel — **wydać 0.11.0 teraz (A)** przy E2E 17/18 dwa razy z rzędu (38023746057, 38027253177): pada tylko pierwszy
+  scenariusz „Plank ze stoperem” zaraz po starcie symulatora — zgubione znaki przy szybkim wpisie automatu („P” zamiast „Plank”), ten sam efekt
+  co E2E-105 (masa ciała). Zgubiony znak widoczny w polu, bez cichego zapisu złej wartości. Odrzucone: B (poprawka scenariusza + kolejne E2E),
+  C (szukanie przyczyny w aplikacji teraz). Do backlogu: scenariusz 05 jak 15 (wolniejszy wpis, retry) i sprawdzenie szybkiego wpisu na telefonie.
