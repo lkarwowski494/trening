@@ -411,3 +411,6 @@ idempotentna), generator 1728 kombinacji, intro a okno „Niezapisane zmiany”,
 - **A11B-7** (NISKA): komunikat zakresu dni w DayPicker oparty na accessibilityLiveRegion (tylko Android) — na iOS announceForAccessibility.
   → wersja po 0.11.
 - Szkic osierocony po „Wróć do edycji” przy dwóch szkicach — zostaje (opcja 1, rekomendacja; po A11B-1 nie nadpisze danych); do decyzji właściciela.
+- **E2E-105** (otwarte, waga do ustalenia na telefonie): na wolnym symulatorze szybki wpis „80” w polu liczbowym (NumInput) zapisał 0 albo 8 —
+  drugi znak 0,1 s po zawieszeniu wątku głównego. Ręcznie nie odtworzone; do sprawdzenia na telefonie w TestFlight 0.11 (czy pole pokazuje
+  inną wartość niż zapisaną). Jeśli tak — błędne liczby (WYSOKA) i poprawka w 0.11.x. → test na telefonie (właściciel/testerzy) + backlog.
