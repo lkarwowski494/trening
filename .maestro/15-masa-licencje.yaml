@@ -29,11 +29,23 @@ name: Masa ciała z datą i licencje open source
 - scrollUntilVisible: { element: "Body weight, not entered.*", direction: DOWN, timeout: 60000 }
 - tapOn: "Body weight, not entered.*"
 - extendedWaitUntil: { visible: "Save measurement", timeout: 30000 }
-- tapOn: { id: "bodymass-kg" }   # run 37938579595: po UX2-11 (pola jedno pod drugim) „below” trafiał obok pola — pole masy po testID
-- waitForAnimationToEnd  # run 38002403800/38009269888: „80” wpisane przed otwarciem klawiatury nie trafiało do pola
-- inputText: "80"
-- tapOn: "Save measurement"
-- extendedWaitUntil: { visible: "80 kg, .*", timeout: 30000 }
+# E2E 105: na wolnym symulatorze ginął znak „80” (38002403800, 38009269888 — zapisane 0, okno „must be greater than zero”; 38014484054 — 8 kg;
+# device-simulator.log: drugi klawisz 0,1 s po pierwszym, po zawieszeniu wątku głównego). Znaki osobno (odstęp ok. 1 s jak przy ręcznym wpisie)
+# i jedna powtórka całego wpisu — pomiar z tym samym dniem zastępuje poprzedni. Pole po testID (run 37938579595, UX2-11). Test: tests/maestro-e2e105.test.tsx
+- retry:
+    maxRetries: 1
+    commands:
+      - runFlow:
+          when: { visible: "Body weight must be .*" }
+          commands:
+            - tapOn: "OK"
+      - tapOn: { id: "bodymass-kg" }
+      - waitForAnimationToEnd
+      - eraseText: 6
+      - inputText: "8"
+      - inputText: "0"
+      - tapOn: "Save measurement"
+      - extendedWaitUntil: { visible: "80 kg, .*", timeout: 15000 }
 - assertVisible: "Measurements"
 - takeScreenshot: 70-masa-ciala-pomiary
 - tapOn: "Back"
