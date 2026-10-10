@@ -39,6 +39,11 @@ const LOAD: Record<Lang, () => Record<string, string>> = {
   de: () => require('./text/de.json'), fr: () => require('./text/fr.json'), it: () => require('./text/it.json'), nl: () => require('./text/nl.json'),
   sv: () => require('./text/sv.json'), da: () => require('./text/da.json'), nb: () => require('./text/nb.json'), fi: () => require('./text/fi.json'),
   tr: () => require('./text/tr.json'), el: () => require('./text/el.json'),
+  /* 09.10.2026 (fala 2, docs/16) */ id: () => require('./text/id.json'), ms: () => require('./text/ms.json'), vi: () => require('./text/vi.json'),
+  /* 09.10.2026 (fala 3, docs/16) */ ru: () => require('./text/ru.json'),
+  /* 09.10.2026 (fala 4, docs/16) */ ja: () => require('./text/ja.json'), ko: () => require('./text/ko.json'), 'zh-Hant': () => require('./text/zh-Hant.json'),
+  /* 09.10.2026 (fala 1, wariant B — jak lib/locales/index.ts): wariant regionalny = zdania bazowe + nakładka z różnicami */
+  'es-419': () => ({ ...require('./text/es.json'), ...require('./text/es-419.json') }), 'pt-BR': () => ({ ...require('./text/pt.json'), ...require('./text/pt-BR.json') }),
 };
 const TEXT: Partial<Record<Lang, Record<string, string>>> = {};
 const dict = (l: Lang): Record<string, string> => (TEXT[l] ??= LOAD[l]());

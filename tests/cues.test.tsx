@@ -73,7 +73,7 @@ describe('języki', () => {
     }
   });
   test('serbski cyrylicą, grecki i ukraiński i bułgarski w swoim alfabecie (jak słowniki UI)', () => {
-    for (const [l, re] of [['sr', /[Ѐ-ӿ]/], ['uk', /[Ѐ-ӿ]/], ['bg', /[Ѐ-ӿ]/], ['el', /[Ͱ-Ͽ]/]] as const) {
+    for (const [l, re] of [['sr', /[Ѐ-ӿ]/], ['uk', /[Ѐ-ӿ]/], ['ru', /[Ѐ-ӿ]/], ['bg', /[Ѐ-ӿ]/], ['el', /[Ͱ-Ͽ]/]] as const) {
       expect([l, ids.filter(k => !re.test(cueDict(l)[k]))]).toEqual([l, []]);
     }
   });

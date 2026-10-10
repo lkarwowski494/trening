@@ -170,10 +170,10 @@ describe('A11B-8: wersja 0.11.0 i „Co nowego” 0.11', () => {
     expect(it.join(' ')).toMatch(/„Edytuj”.*„Zapisz”/); expect(it.join(' ')).toMatch(/„Podstawowe”/); expect(it.join(' ')).toMatch(/„Zapisz jako szablon”/);
     expect(it.every(x => !/[{}]/.test(x))).toBe(true);
   });
-  test('25 języków: wszystkie punkty wpisu 0.11 przetłumaczone, bez „{”, nazwy przycisków z lokali („Edytuj”, „Zapisz”, „Podstawowe”, „Plan z moich szablonów”)', () => {
+  test('wszystkie języki (LANGS): wszystkie punkty wpisu 0.11 przetłumaczone, bez „{”, nazwy przycisków z lokali („Edytuj”, „Zapisz”, „Podstawowe”, „Plan z moich szablonów”)', () => {
     const { WHATS_NEW } = require('@/lib/whatsnew'); const pl: string[] = WHATS_NEW[0].items();
     for (const l of LANGS) { if (l === 'pl') continue; applyLang(l); const it: string[] = WHATS_NEW[0].items(); const joined = it.join(' ');
-      expect([l, it.filter((x, i) => x === pl[i] || /[{}]/.test(x) || !/\.$/.test(x))]).toEqual([l, []]);
+      expect([l, it.filter((x, i) => x === pl[i] || /[{}]/.test(x) || !/[.。]$/.test(x))]).toEqual([l, []]); /* „。” — kropka w ja/zh-Hant (fale 1–4, 10.10.2026) */
       expect([l, ['Edytuj', 'Zapisz', 'Podstawowe', 'Plan z moich szablonów', 'Zapisz jako szablon'].filter(k => !joined.includes(tIn(l, k)))]).toEqual([l, []]); }
   });
 });

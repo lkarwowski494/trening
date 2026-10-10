@@ -408,3 +408,9 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
 - 10.10.2026 (06:47 UTC): **wydanie 2 — 0.11.0, build 1005** wysłany do App Store Connect (testflight.yml run 38030364651, main 0d71775,
   tag v0.11.0-b1005). Do zrobienia przez właściciela: „What to Test” w App Store Connect, udostępnienie testerom, sprawdzenie na telefonie
   (szybki wpis masy ciała — E2E-105).
+- 10.10.2026: tag v0.11.0-b1005 założony przez właściciela w GitHubie (Releases, cel main 0d71775 — sprawdzone `git ls-remote`). Sesja agenta nie
+  może wypychać tagów (serwer pośredniczący: 403); workflow z prawem zapisu do zakładania tagów zablokowało zabezpieczenie sesji — właściciel
+  wybrał A (tag ręcznie przy każdym wydaniu).
+- 10.10.2026: **języki, fale 1–4 (następna wersja po 0.11)** — scalona gałąź feat-jezyki-w4b (pt-BR, es-419, id, ms, vi, ru, ja, ko, zh-Hant;
+  kk, uz, az odłożone do wydania z arabskim). Uzupełnione 12 tekstów dodanych w 0.11 po rozgałęzieniu (wpis „Co nowego” 0.11, komunikaty
+  generatora: serie ACSM, 1 dzień siłowy); nakładki pt-BR i es-419 tylko tam, gdzie różnią się od pt/es. Test wpisu 0.11 przyjmuje „。” (ja, zh-Hant).
