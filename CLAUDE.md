@@ -45,6 +45,10 @@
    przed upublicznieniem w App Store i co ok. 3 wydania — pełny głęboki audyt całości.
 5. **Bez limitu czasu** — audyt i naprawy „na spokojnie”; jeśli bloker wymaga dużej przebudowy, właściciel decyduje: naprawa teraz
    albo wydanie bez tej funkcji (wyłączona lub cofnięta).
+6. **Ocena realności znaleziska (właściciel, 11.10.2026, wariant A):** przy każdym błędzie zapisz kroki w aplikacji, które do niego prowadzą,
+   i oceń: **realny** (normalne używanie) → naprawa wg progu; **brzegowy** (możliwy, rzadki) → naprawa, jeśli tania albo dotyczy danych,
+   inaczej backlog; **teoretyczny** (tylko ręczna zmiana danych/kodu, bez drogi przez UI) → bez naprawy, jedna linijka notatki.
+   Utrata danych, prywatność i bezpieczeństwo — ocena zawsze, nawet gdy rzadkie. Dotyczy audytów, agentów i błędów z E2E.
 
 ## Merytoryczne podstawy (zasada właściciela z 4 października 2026, obowiązuje we wszystkich jego aplikacjach)
 
