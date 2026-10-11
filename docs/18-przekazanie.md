@@ -37,3 +37,7 @@ backlog) → docs/15 (App Store, ceny) → docs/09 (dziennik testów; stare rund
   w planie ma X, ten dzień „zrobiony wcześniej” (w kalendarzu wolny z ✓), liczy się do celu SWOJEGO tygodnia, reszta planu bez zmian; po zakończeniu
   jedna linijka informacji, „Cofnij” w panelu dnia. Sprawdzić sąsiednie reguły: poranne przypomnienie, „Przesuń plan”/propozycje, stosy miesiąca
   i postęp tygodnia, deload. Odrzucone: B (pytanie po treningu — dodatkowe stuknięcie), C (tylko ręcznie). Wdrożenie po scaleniu refactor-store.
+- 11.10.2026: **wyłączenie wszystkich planów (pkt 5) — wariant A z potwierdzeniem**: ikona przy każdym planie na liście (aktywny — wypełniona);
+  pusta → „Ustaw jako aktywny” (z oknem jak dziś), wypełniona → okno „Wyłączyć plan? Kalendarz od dziś będzie pusty” i wyłączenie (plan do
+  „Inne plany” z nazwą i zmianami dni; minione dni w historii; poranne przypomnienia wyłączone). Oba kierunki zawsze z potwierdzeniem
+  (właściciel: „żeby ludzie nie rozwalali sobie misclickiem planu”). Najwyżej jeden aktywny. Odrzucone: B (osobny przycisk „Wyłącz plan”).
