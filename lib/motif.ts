@@ -134,15 +134,3 @@ export function contrast(a: string, b: string): number {
 export const GRAPHIC_MIN = 3;
 /** Talerz dostaje obwódkę w kolorze tekstu, gdy sam kolor ma do tła mniej niż 3:1 (np. żółty na jasnym, niebieski na ciemnej karcie). */
 export const needsEdge = (fill: string, bg: string): boolean => contrast(fill, bg) < GRAPHIC_MIN;
-
-/** Animacja „dokładania talerza” przy rekordzie: tylko świeżo po treningu (do 10 min od końca) i raz na sesję w tym uruchomieniu aplikacji. */
-export const RECORD_FRESH_MS = 10 * 60 * 1000;
-/** Czas wsunięcia talerza (ms). */
-export const RECORD_ANIM_MS = 600;
-const animated = new Set<string>();
-export function shouldAnimateRecord(id: string, finishedAt: number | null | undefined, now = Date.now()): boolean {
-  if (!finishedAt || !Number.isFinite(finishedAt) || now - finishedAt < 0 || now - finishedAt > RECORD_FRESH_MS || animated.has(id)) return false;
-  animated.add(id); return true;
-}
-/** Tylko testy: zapomina, które rekordy były już animowane. */
-export const __resetRecordAnim = () => animated.clear();

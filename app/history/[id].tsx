@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { ScrollView, View, Alert } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Screen, H1, Muted, Btn, Txt, useOnce, monoSafe } from '@/components/ui';
@@ -7,9 +7,8 @@ import { templateFromWorkout } from '@/lib/tplsync';
 import { wallTs, effortLabel, effortText, workoutDurSec, getState, useTick, exById, isBW, bandById, loadLabel, fmtDate, fmtTime, fmtDur, fmtSec, fmtDist, volume, deleteWorkout, groupLabels, shortBand, bandA11y, loadLabelShort, blockImpl, shownLoad } from '@/lib/store';
 import { hasTime, hasReps, hasWeight, hasDistance, SET_KIND_LABEL } from '@/lib/seed';
 import { setMarkOf } from '@/lib/live';
-import { prMap, prCount } from '@/lib/stats';
-import { shouldAnimateRecord } from '@/lib/motif';
-import { RecordPlates } from '@/components/RecordPlates';
+import { prMap, workoutPRs, prCountOf } from '@/lib/stats';
+import { RecordsCard } from '@/components/RecordsCard';
 import { useTheme, F } from '@/lib/theme';
 import { t, exName, lang } from '@/lib/i18n';
 import { fmtW, fmtVol, fmtNum } from '@/lib/units';
@@ -17,8 +16,8 @@ import { fmtW, fmtVol, fmtNum } from '@/lib/units';
 export default function HistoryDetail() {
   const { id } = useLocalSearchParams<{ id: string }>(); useTick(); const router = useRouter(); const th = useTheme(); const once = useOnce(); /* audyt (LOW): podwójne „Edytuj” nie otwiera dwóch edytorów */
   const w = getState().workouts.find(x => x.id === id);
-  /* motyw z ikony (09.10.2026): karta rekordu — talerz „dokładany” tylko świeżo po treningu i raz (lib/motif.shouldAnimateRecord) */
-  const nPR = w ? prCount(w) : 0; /* liczone przy każdym renderze, jak prMap niżej (zapamiętanie po getRev gubiło zmiany stanu przy starcie w wersji web) */ const anim = useRef<boolean | null>(null); if (anim.current === null && w && nPR > 0) anim.current = shouldAnimateRecord(w.id, w.finishedAt); /* decyzja raz, przy pierwszym renderze z rekordem */
+  /* karta rekordów (11.10.2026, pkt 7): liczba i statystyki z jednego workoutPRs (E3: prCountOf); liczone przy każdym renderze, jak prMap niżej */
+  const wprs = w ? workoutPRs(w) : []; const nPR = prCountOf(wprs);
   if (!w) return <Screen><Muted>{t('Brak sesji.')}</Muted></Screen>;
   const labels = groupLabels(w.exercises); const prs = prMap(w); let wn = 0; // numer serii roboczej
   const cell = (v: React.ReactNode, flex = 1) => <Txt maxFontSizeMultiplier={1.3} /* jak wiersze serii w treningu (matrix-a11y, 06.10) */ style={{ flex, fontSize: 14, fontFamily: F.mono }}>{monoSafe(v) /* A11-11 */}</Txt>;
@@ -26,7 +25,7 @@ export default function HistoryDetail() {
     <Screen><ScrollView contentContainerStyle={{ paddingVertical: 10, paddingBottom: 60 }}>
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}><View style={{ flex: 1 }}><H1>{w.templateName || t('Trening')}</H1></View><Btn title={t('Edytuj')} small accessibilityLabel={t('Edytuj sesję')} onPress={once(() => { if (beginEdit(w.id)) router.push(`/history/edit/${encodeURIComponent(w.id)}`); })} /></View>
       <Muted style={{ marginBottom: 14 }}>{fmtDate(wallTs(w))} {fmtTime(wallTs(w))} · {fmtDur(workoutDurSec(w))}{volume(w) > 0 ? ` · ${t('objętość')} ${fmtVol(volume(w))}` : ''}{w.deload ? ` · ${t('deload — mniej serii')}` /* audyt 0.10 (D1+) */ : ''}</Muted>
-      {nPR > 0 ? <RecordPlates count={nPR} animate={!!anim.current} /> : null}
+      {nPR > 0 ? <RecordsCard count={nPR} prs={wprs} /> : null}
       {w.healthPending && !w.healthUUID ? <Muted style={{ marginBottom: 10, fontSize: 13 }}>{t('Nie zapisano jeszcze w Apple Health — ponowię przy następnym uruchomieniu aplikacji.')}</Muted> : null}{/* audyt 0.10 J2 */}
       {w.note ? <Muted style={{ marginBottom: 10 }}>{w.note}</Muted> : null}
       {/* H5 (audyt 0.10, wariant B): nowy szablon ze składu sesji — tylko na polecenie użytkownika (decyzja 03.10.2026: aplikacja sama szablonów nie tworzy) */}

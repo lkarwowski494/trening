@@ -2,7 +2,7 @@
  * Motyw z ikony w aplikacji (decyzja właściciela 09.10.2026, „zestaw pełny”; docs/18) po korekcie właściciela z 09.10.2026 ok. 17:00: pod dniem
  * w pasku tygodnia i w kalendarzu mała ikona aplikacji (pełna = zrobione, obwódka = zaplanowane, wyszarzona = opuszczone, bez planu — nic; kolor
  * nic nie koduje — usunięte reguły „kolor = serie względem średniej” i „kolor po kolei” oraz legenda), postęp tygodnia jako stosy talerzy z procentem
- * planu (zamiast sztangi), bez paska-akcentu; puste stany z gryfem, ikony zakładek, animacja „dokładania talerza” bez zmian. Rodzaje testów (docs/20):
+ * planu (zamiast sztangi), bez paska-akcentu; puste stany z gryfem, ikony zakładek (animację „dokładania talerza” usunięto 11.10.2026 wraz z grafiką karty rekordów). Rodzaje testów (docs/20):
  * logika (lib/motif), ekran, scenariusz z restartem, macierz (kolory × motyw × tło, znaczniki, N = 1–7, języki), wymiary 320 pt, dane, wygląd.
  */
 import * as fs from 'fs';
@@ -14,7 +14,7 @@ import { render, fireEvent } from '@testing-library/react-native';
 import * as store from '@/lib/store';
 import * as plan from '@/lib/plan';
 import {
-  LOAD_ORDER, PLATE_HEIGHT, plateAt, contrast, GRAPHIC_MIN, needsEdge, RECORD_FRESH_MS, RECORD_ANIM_MS, shouldAnimateRecord, __resetRecordAnim,
+  LOAD_ORDER, PLATE_HEIGHT, plateAt, contrast, GRAPHIC_MIN, needsEdge,
   ICON_PLATES, ICON_COLLAR, ICON_BAR_H, MINI_ICON, miniIcon, PLATE_STACK, plateStack, plateStackHeight, planPct, weekProgress, DAY_MARKS, dayMark, MARK_STROKE, type DayMark, REST_CUP, restCup,
 } from '@/lib/motif';
 import type { DayStatus } from '@/lib/plan';
@@ -46,7 +46,7 @@ beforeEach(() => {
   jest.spyOn(Appearance, 'setColorScheme').mockImplementation(((v: string | null | undefined) => { scheme = v === 'dark' ? 'dark' : 'light'; }) as never);
   jest.spyOn(RN, 'useColorScheme').mockImplementation((() => scheme) as never);
 });
-afterEach(() => { jest.restoreAllMocks(); __resetRecordAnim(); scheme = 'light'; });
+afterEach(() => { jest.restoreAllMocks(); scheme = 'light'; });
 
 /* ---------- 1. logika (lib/motif.ts) ---------- */
 const svgRects = () => [...fs.readFileSync(path.join(root, 'assets/brand/icon.svg'), 'utf8').matchAll(/<rect ([^>]*)\/>/g)].map(m => Object.fromEntries([...m[1].matchAll(/(\w+)="([^"]*)"/g)].map(x => [x[1], x[2]])) as Record<string, string>);
@@ -149,13 +149,6 @@ describe('logika', () => {
   test('kontrast WCAG i obwódka talerza: < 3:1 do tła → obwódka; złe dane → 1:1', () => {
     expect(contrast('#000000', '#ffffff')).toBeCloseTo(21, 5); expect(contrast('#ffffff', '#ffffff')).toBe(1); expect(contrast('fff', '#000')).toBe(1); expect(contrast('#FFFFFF', '000000')).toBeCloseTo(21, 5);
     expect(GRAPHIC_MIN).toBe(3); expect(needsEdge(PLATE_COLORS.yellow, light.bg)).toBe(true); expect(needsEdge(PLATE_COLORS.blue, light.bg)).toBe(false); expect(needsEdge(PLATE_COLORS.blue, dark.surface)).toBe(true);
-  });
-  test('animacja rekordu: tylko świeżo po treningu (≤ 10 min) i raz na sesję; stara, przyszła, bez końca — obraz statyczny', () => {
-    const now = 1_000_000_000_000; expect(RECORD_FRESH_MS).toBe(600000); expect(RECORD_ANIM_MS).toBeGreaterThan(0);
-    expect(shouldAnimateRecord('a', now - 1000, now)).toBe(true); expect(shouldAnimateRecord('a', now - 1000, now)).toBe(false);
-    expect(shouldAnimateRecord('b', now - RECORD_FRESH_MS, now)).toBe(true); expect(shouldAnimateRecord('c', now - RECORD_FRESH_MS - 1, now)).toBe(false);
-    expect(shouldAnimateRecord('d', now + 5000, now)).toBe(false); expect(shouldAnimateRecord('e', null, now)).toBe(false); expect(shouldAnimateRecord('f', Number.NaN, now)).toBe(false);
-    __resetRecordAnim(); expect(shouldAnimateRecord('a', now - 1000, now)).toBe(true);
   });
   test('wymiary na ekranie 320 pt: ikona mieści się w kolumnie paska tygodnia i w komórce kalendarza, 7 stosów w jednym wierszu karty', () => {
     const SCREEN = 320, PAD = 14; /* Screen 14 (components/ui), karta „Dziś”: ramka 1, padding 14, odstęp kolumn 2, ramka „dziś” 2 */
@@ -350,39 +343,31 @@ describe('ikony zakładek w geometrii talerzy', () => {
   });
 });
 
-/* ---------- 6. rekord: „dokładanie talerza” ---------- */
+/* ---------- 6. karta rekordów (od 11.10.2026 bez grafiki sztangi i bez animacji; szczegóły: tests/records-card.test.tsx) ---------- */
 describe('karta rekordu po treningu', () => {
-  const rec = () => { addWorkout(at(10, 1), [['Back Squat', [{ weight: 100, reps: 5 }]]]); const w = addWorkout(Date.now() - 3600e3, [['Back Squat', [{ weight: 110, reps: 5 }]]], 'Nogi'); w.finishedAt = Date.now() - 1000; store.save(); return w; };
-  test('świeżo po treningu: „Nowy rekord!” i talerz wsuwa się (Animated.timing, natywny sterownik); drugie otwarcie — statycznie', async () => {
-    jest.useFakeTimers({ now: NOW }); jest.spyOn(AccessibilityInfo, 'isReduceMotionEnabled').mockResolvedValue(false); const timing = jest.spyOn(Animated, 'timing');
+  const rec = () => { addWorkout(at(10, 1), [['Back Squat', [{ weight: 100, reps: 5 }]]]); const w = addWorkout(Date.now() - 3600e3, [['Back Squat', [{ weight: 110, reps: 5 }]], ['Bench Press (hantle)', [{ weight: 40, reps: 5 }]]], 'Nogi'); w.finishedAt = Date.now() - 1000; store.save(); return w; };
+  test('nagłówek z liczbą rekordów, bez talerzy i bez animacji (także świeżo po treningu)', async () => {
+    jest.useFakeTimers({ now: NOW });
     let id = ''; await boot(() => { id = rec().id; });
     await go(`/history/${id}`); await flushAll(10);
     const n = prCount(S().workouts.find(w => w.id === id)!); const txt = n === 1 ? 'Nowy rekord!' : `Nowe rekordy: ${n}`; expect(n).toBeGreaterThan(0);
     const b = screen.getByTestId('record-banner'); expect(b.props.accessibilityLabel).toBe(txt); expect(screen.getByText(txt)).toBeTruthy();
-    const mine = () => timing.mock.calls.filter(c => (c[1] as { duration?: number }).duration === RECORD_ANIM_MS);
-    expect(mine().length).toBe(1); expect(mine()[0][1]).toEqual(expect.objectContaining({ toValue: 1, duration: RECORD_ANIM_MS, useNativeDriver: true }));
-    expect(screen.queryByTestId('plate-stripe', { includeHiddenElements: true })).toBeNull(); /* pasek-akcent usunięty (korekta 09.10.2026 ok. 17:00) */
-    await go('/'); await go(`/history/${id}`); await flushAll(10); expect(mine().length).toBe(1); /* raz na sesję */
+    expect(screen.queryByTestId('record-plate-new', { includeHiddenElements: true })).toBeNull(); expect(screen.queryByTestId('plate-stripe', { includeHiddenElements: true })).toBeNull();
   });
-  test('ograniczenie ruchu: obraz statyczny (bez animacji, talerz od razu na miejscu)', async () => {
-    jest.useFakeTimers({ now: NOW }); jest.spyOn(AccessibilityInfo, 'isReduceMotionEnabled').mockResolvedValue(true); const timing = jest.spyOn(Animated, 'timing');
-    let id = ''; await boot(() => { id = rec().id; }); await go(`/history/${id}`); await flushAll(10);
-    expect(screen.getByTestId('record-banner')).toBeTruthy(); expect(timing.mock.calls.filter(c => (c[1] as { duration?: number }).duration === RECORD_ANIM_MS)).toEqual([]);
-    const op = flat(screen.getByTestId('record-plate-new', { includeHiddenElements: true }).props.style).opacity; expect(Number(op)).toBe(1);
-  });
-  test('stara sesja z rekordem: karta bez animacji; sesja bez rekordu: bez karty; kilka rekordów — liczba w tekście (EN)', async () => {
-    jest.useFakeTimers({ now: NOW }); const timing = jest.spyOn(Animated, 'timing');
+  test('stara sesja z rekordem: karta; sesja bez rekordu: bez karty; kilka rekordów — liczba w tekście (EN)', async () => {
+    jest.useFakeTimers({ now: NOW });
     let old = '', plain = '', multi = '';
     await boot(() => {
       addWorkout(at(9, 1), [['Back Squat', [{ weight: 100, reps: 5 }]], ['Bench Press (hantle)', [{ weight: 100, reps: 5 }]]]);
       old = addWorkout(at(9, 3), [['Back Squat', [{ weight: 105, reps: 5 }]]]).id; plain = addWorkout(at(9, 5), [['Back Squat', [{ weight: 50, reps: 5 }]]]).id;
       multi = addWorkout(at(9, 7), [['Back Squat', [{ weight: 120, reps: 5 }]], ['Bench Press (hantle)', [{ weight: 130, reps: 5 }]]]).id;
     }, 'en');
-    await go(`/history/${old}`); await flushAll(10); expect(screen.getByTestId('record-banner')).toBeTruthy(); expect(timing.mock.calls.filter(c => (c[1] as { duration?: number }).duration === RECORD_ANIM_MS)).toEqual([]);
+    await go(`/history/${old}`); await flushAll(10); expect(screen.getByTestId('record-banner')).toBeTruthy();
     await go(`/history/${plain}`); await flushAll(10); expect(screen.queryByTestId('record-banner')).toBeNull();
     await go(`/history/${multi}`); await flushAll(10); expect(screen.getByTestId('record-banner').props.accessibilityLabel).toMatch(/^New records: \d+$/);
   });
 });
+
 
 /* ---------- 7. kalendarz: ikona pod dniem ---------- */
 describe('kalendarz: pod dniem ikona — pełna (zrobione) albo obwódka (zaplanowane), bez legendy kolorów', () => {
