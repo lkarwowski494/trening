@@ -90,3 +90,8 @@ backlog) → docs/15 (App Store, ceny) → docs/09 (dziennik testów; stare rund
 - 11.10.2026: **docs/22 P5 — A**: masa ciała jako sekcja w zakładce Postępy (wykres + dodanie pomiaru); link z Ustawień znika. Odrzucone: B (oba miejsca).
 - 11.10.2026: **docs/22 P6 — B**: import CSV z innych dzienników w Kopii zapasowej ORAZ jako pomijalny krok w „Pierwszych krokach”
   („Masz historię z innej aplikacji?”) — „Pierwsze kroki” mają wtedy 4 kroki (3 z P4 + import). Odrzucone: A (tylko Kopia zapasowa).
+- 11.10.2026: **docs/22 P7 — A z wyjątkiem (decyzja właściciela)**: dwa wydania — (1) ekran główny i porządki (P2–P4, P6, „Ten tydzień”,
+  „Progresja”) + decyzje 4–7; (2) 4 zakładki + masa ciała w Postępach (P5). Wyjątek od zasad wydania (tylko te wydania): wydanie (1) bez nowego
+  wpisu „Co nowego” (jeden wspólny wpis w (2), tłumaczony raz na 35 języków; „What to Test” PL/EN), zamiast audytu zmian tylko stała lista
+  kontrolna (dane i migracje — podział store.ts, prywatność, sekrety, logi); **pełny audyt wstrzymany** także po wydaniu (2) — do polecenia
+  właściciela. Apple Zdrowie (pkt 9) — osobne wydanie (biblioteka natywna). Odrzucone: B (jedno wydanie), A bez wyjątku, A bez kontroli.
