@@ -60,5 +60,3 @@ export const cleanDoneEarly = (x: unknown): Record<string, string> => (isObj(x)
 /** Nowy odcinek od dnia `from` (zmiana planu dziś): odcinki od tego dnia i późniejsze ustępują nowemu. */
 export const appendPlanSegment = (list: PlanSegment[], from: string,
     days: (string | null)[]): PlanSegment[] => normPlanHistory([...list.filter(x => x.from < from), { from, days: planDays(days) }]);
-/** UX-16 A (audyt 0.10): „Ukryj” zachętę do planu tygodnia (karta „Dziś” i Kalendarz); `false` — pokaż znowu. Stan ekranu — bez userTouched. */
-export function setPlanHintHidden(on: boolean) { const st = getState(); if (on) st.planHintHidden = true; else delete st.planHintHidden; save(); }

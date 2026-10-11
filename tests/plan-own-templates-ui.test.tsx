@@ -77,7 +77,7 @@ describe('generator: dwa tryby i „Plan z moich szablonów”', () => {
     expect(screen.getByText('Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Nowe szablony i plan”.')).toBeTruthy();
     await tap(screen.getByText('+ Nowy szablon')); await flushAll(10); expect(S().templates.length).toBe(1); expect(screen.getByLabelText('Zapisz szablon')).toBeTruthy();
   });
-  test('zapis: pytanie jak w generatorze (activationNote); „Anuluj” nic nie zapisuje; „Tylko zapisz” → „Inne plany”; „Ustaw jako aktywny” → plan aktywny, „Plan tygodnia”; szablony bez zmian; po restarcie to samo', async () => {
+  test('zapis: pytanie jak w generatorze (activationNote); „Anuluj” nic nie zapisuje; „Tylko zapisz” → „Inne plany”; „Ustaw jako aktywny” → plan aktywny, „Planowanie”; szablony bez zmian; po restarcie to samo', async () => {
     const t = await boot('/generator?mode=own', ids => { plan.setWeekDay(0, ids[1]); });
     const snap = JSON.stringify(S().templates);
     await tap(chip(t[1].name)); await tap(chip(t[3].name)); await flushAll(5); await pickDays(ownProposal({ templateIds: [t[0].id, t[2].id], sessions: 3 }));
@@ -91,7 +91,7 @@ describe('generator: dwa tryby i „Plan z moich szablonów”', () => {
     const r = ownPlan({ templateIds: [t[0].id, t[2].id], sessions: 3 })!; expect(plan.weekPlanDays()).toEqual(r.days);
     expect(plan.savedPlans().map(p => p.name).sort()).toEqual(['Moje szablony, 3× w tygodniu', 'Mój plan (8.10)']);
     expect(JSON.stringify(S().templates)).toBe(snap);
-    await press('Zapisano', 'Plan tygodnia'); expect(screen.getByLabelText(new RegExp(`^poniedziałek, ${t[0].name}$`))).toBeTruthy();
+    await press('Zapisano', 'Planowanie'); expect(screen.getByLabelText(new RegExp(`^poniedziałek, ${t[0].name}$`))).toBeTruthy();
     await restart('/plan'); expect(plan.weekPlanDays()).toEqual(r.days); expect(plan.planName()).toBe('Moje szablony, 3× w tygodniu (2)'); expect(JSON.stringify(S().templates)).toBe(snap);
   });
   test('„Inne plany” pełne — komunikat zamiast pytania', async () => {
@@ -127,7 +127,7 @@ describe('scenariusz (polecenie koordynatora 09.10.2026): plan A/B/A/B z „Plan
     /* wtorek 13.10 (następny tydzień): jednorazowo B → A — w tym tygodniu A, A, A, B; stały plan dalej A, B, A, B */
     const wk = (from: number) => [0, 1, 3, 5].map(d => plan.plannedOn(`2026-10-${String(from + d).padStart(2, '0')}`));
     await go('/history'); await flushAll(10); await tap(screen.getByTestId('cal-2026-10-13')); await flushAll(5);
-    expect(screen.getByText(`Zaplanowany: ${B.name}`)).toBeTruthy(); await tap(screen.getByText('Inny trening')); await flushAll(5); await tap(screen.getByText(A.name)); await flushAll(5);
+    expect(screen.getByText(`Zaplanowany: ${B.name}`)).toBeTruthy(); await tap(screen.getByText('Zmień szablon')); await flushAll(5); await tap(screen.getByText(A.name)); await flushAll(5);
     expect(wk(12)).toEqual([A.id, A.id, A.id, B.id]); expect(S().planOverrides).toEqual({ '2026-10-13': A.id }); /* zmiana tylko tej daty */
     expect(plan.weekPlanDays()).toEqual(abab); expect(wk(19)).toEqual([A.id, B.id, A.id, B.id]); /* kolejny tydzień — znów A, B, A, B */
     expect(screen.getByText(`Zaplanowany: ${A.name} · zmiana planu`)).toBeTruthy();

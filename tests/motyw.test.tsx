@@ -256,7 +256,7 @@ describe('„Ten tydzień”: stosy talerzy z procentem planu (tylko przy planie
   test('bez planu: stosów nie ma (kafelki zostają), ikony pod dniami z treningiem są; po restarcie to samo; komponent bez danych — nic', async () => {
     jest.useFakeTimers({ now: NOW });
     await boot(() => { addWorkout(at(10, 5), [['Back Squat', sets(3)]]); addWorkout(at(10, 6), [['Back Squat', sets(3)]]); });
-    expect(screen.queryByTestId('week-stacks')).toBeNull(); expect(screen.getByLabelText('Treningi: 2, poprzedni tydzień 0')).toBeTruthy();
+    expect(screen.queryByTestId('week-stacks')).toBeNull(); expect(screen.getByLabelText('Treningi: 2')).toBeTruthy();
     expect(iconsIn(screen.getByTestId('strip-mark-2026-10-05', { includeHiddenElements: true }))).toEqual(['day-icon-done']);
     expect(screen.queryAllByTestId('day-icon-rest', { includeHiddenElements: true })).toEqual([]); /* bez planu nie ma odpoczynku (≠ brak planu) */
     expect(screen.getByTestId('strip-2026-10-08').props.accessibilityLabel).toBe('czwartek, 8 października, dziś, wolne');

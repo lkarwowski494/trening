@@ -1854,26 +1854,19 @@ describe('verify 09.10.2026 (migrate-idem, ziarno 994171374): pauza krótsza ni�
   });
 });
 
-describe('B1 (build 1004, właściciel 09.10.2026 ok. 14:25): „Ukryj” zachętę do planu bez powrotu, pasek tygodnia bez dat', () => {
+describe('B1 (build 1004; zmienione 11.10.2026): stała zachęta do planu (bez „Ukryj”), pasek tygodnia bez dat', () => {
   const boot = async (locale: 'pl' | 'en' = 'pl') => { await fresh(undefined, locale); addWorkout(at(2026, 10, 6), [['Back Squat', [{ weight: 100, reps: 5 }]]], 'Nogi'); await act(async () => { await store.flush(); }); await renderApp({ saved: JSON.parse(JSON.stringify(saved())), locale }); await flushAll(10); };
   /* tekst w poddrzewie (within z RNTL nie widzi węzłów ekranu expo-router) */
   const textsIn = (id: string): string[] => screen.getByTestId(id).findAll(n => (n.type as unknown) === 'Text').map(n => [n.props.children].flat().join(''));
   const card = () => ({ has: (x: string) => textsIn('today-plan').includes(x) });
-  test('po „Ukryj” przycisk „Ustaw plan” zostaje na karcie „Dziś”, a przełącznik w Ustawieniach przywraca zachętę (karta i Kalendarz)', async () => {
+  test('11.10.2026: zachęta do planu = stały nagłówek „Bez planu tygodnia · Ustaw plan”; bez „Ukryj”, tekstu zachęty i przełącznika w Ustawieniach', async () => {
     jest.useFakeTimers({ now: new Date(2026, 9, 8, 9) });
     await boot();
-    expect(card().has('Ustaw plan')).toBe(true);
-    await tap(screen.getAllByLabelText('Ukryj zachętę do planu tygodnia')[0]); await flushAll(5);
-    expect(store.getState().planHintHidden).toBe(true);
-    expect(card().has('Ustaw plan tygodnia, by widzieć tu dzisiejszy trening i dostawać przypomnienie.')).toBe(false);
-    expect(card().has('Ustaw plan')).toBe(true); /* B1: przycisk nie znika razem z tekstem */
+    expect(card().has('Bez planu tygodnia')).toBe(true); expect(card().has('Ustaw plan')).toBe(true);
+    expect(screen.queryByLabelText('Ukryj zachętę do planu tygodnia')).toBeNull(); expect(card().has('Ustaw plan tygodnia, by widzieć tu dzisiejszy trening i dostawać przypomnienie.')).toBe(false);
     await go('/more/settings'); await flushAll(10);
-    const sw = screen.getByTestId('sw-Zachęta do planu tygodnia'); expect(sw.props.value).toBe(false); expect(sw.props.accessibilityHint).toBe('tekst na karcie „Dziś” i w Kalendarzu, gdy nie ma planu');
-    await act(async () => { fireEvent(sw, 'valueChange', true); }); await flushAll(5);
-    expect('planHintHidden' in store.getState()).toBe(false);
-    await act(async () => { await store.flush(); }); expect('planHintHidden' in saved()).toBe(false); /* zapis przeżywa restart */
-    await go('/history'); await flushAll(10); expect(screen.getByLabelText('Ukryj zachętę do planu tygodnia')).toBeTruthy();
-    await go('/'); await flushAll(10); expect(card().has('Ustaw plan tygodnia, by widzieć tu dzisiejszy trening i dostawać przypomnienie.')).toBe(true);
+    expect(screen.queryByTestId('sw-Zachęta do planu tygodnia')).toBeNull(); expect(screen.queryByText('Zachęta do planu tygodnia')).toBeNull();
+    await go('/history'); await flushAll(10); expect(screen.queryByLabelText('Ukryj zachętę do planu tygodnia')).toBeNull(); expect(screen.queryByText(/^Ustaw plan tygodnia, by widzieć/)).toBeNull();
   });
   test('z planem tygodnia nagłówek karty „Dziś” prowadzi do planu przyciskiem „Planowanie”', async () => {
     jest.useFakeTimers({ now: new Date(2026, 9, 8, 9) });

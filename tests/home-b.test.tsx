@@ -5,7 +5,7 @@
  */
 import * as store from '@/lib/store';
 import * as plan from '@/lib/plan';
-import { mainStart, otherStarts, planSummary, startableTemplates, NEXT_PLAN_DAYS } from '@/lib/home';
+import { mainStart, otherStarts, startableTemplates, NEXT_PLAN_DAYS } from '@/lib/home';
 import type { Template } from '@/lib/seed';
 import { fresh, addWorkout, saved, withDemoTemplates, pressAlert } from './helpers';
 import { renderApp, flushAll, screen, tap, act, fromHome, go } from './app';
@@ -27,7 +27,7 @@ const order = (...ids: string[]) => { const all = screen.UNSAFE_root.findAll(n =
 describe('logika (lib/home.ts)', () => {
   beforeEach(() => { jest.useFakeTimers({ now: NOW }); });
   test('puste dane: „Pusty trening”, arkusz bez dubla; startableTemplates pomija puste i zarchiwizowane', async () => {
-    await fresh(); expect(mainStart()).toEqual({ kind: 'empty' }); expect(otherStarts()).toEqual([]); expect(planSummary()).toBeNull();
+    await fresh(); expect(mainStart()).toEqual({ kind: 'empty' }); expect(otherStarts()).toEqual([]);
     const e = store.newTemplate(); expect(startableTemplates()).toEqual([]); void e;
     const t = withDemoTemplates(); t[1].archived = true; store.save(); expect(startableTemplates().map(x => x.id)).toEqual([t[0].id, t[2].id, t[3].id]);
   });
@@ -58,10 +58,6 @@ describe('logika (lib/home.ts)', () => {
     addWorkout(at(6), [['Back Squat', [{ weight: 100, reps: 5 }]]], 'Nogi');
     const m = mainStart(); expect(m).toEqual({ kind: 'plan', tpl: t[0] });
     expect(otherStarts(m)).toEqual([{ kind: 'planOther', tpl: t[2], date: '2026-10-09' }, { kind: 'repeat', name: 'Nogi', date: at(6) }, { kind: 'template', count: 4 }, { kind: 'empty' }]);
-  });
-  test('wiersz planu: nazwa, dni z treningiem w tygodniu planu, najbliższy po dziś', async () => {
-    await fresh(); const t = withDemoTemplates(); setPlan(t, { 3: 0, 5: 1, 6: 2 }); plan.setPlanName('Góra / Dół');
-    expect(planSummary()).toEqual({ name: 'Góra / Dół', days: 3, next: { date: '2026-10-10', templateId: t[1].id } });
   });
 });
 

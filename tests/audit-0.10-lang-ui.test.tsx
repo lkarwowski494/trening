@@ -155,11 +155,6 @@ describe('K2/K3: kontrast, pola dotyku, przełącznik-chip, wyszarzone wiersze',
     const sw = screen.UNSAFE_root.findAll((n: Node) => typeof n.type !== 'string' && typeof n.props.onValueChange === 'function' && n.props.ios_backgroundColor !== undefined);
     expect(sw.length).toBeGreaterThan(3); expect(sw.filter((x: Node) => !(CTRL.includes(x.props.ios_backgroundColor) && CTRL.includes(x.props.trackColor.false))).length).toBe(0);
   });
-  test('A11-14: przełącznik-chip bez Field (Postępy → „Tydzień deload”) — VoiceOver nie czyta nazwy dwa razy; z Field — nazwa pola i wartość', async () => {
-    await bootIn('pl', '/more/progress', () => { const st = store.getState(); store.startFromTemplate(st.templates[0]); store.toggleDone(0, 0); store.finishWorkout(Date.now()); });
-    const sw = screen.getAllByRole('switch').find(x => x.props.accessibilityLabel === t('Tydzień deload'))!;
-    expect(sw).toBeTruthy(); expect(sw.props.accessibilityValue?.text).toBeUndefined();
-  });
   test('A11-15: pola dotyku ≥ 44 pt (wysokość + hitSlop): opcje Segmented, dni kalendarza, pasek tygodnia, starsze wpisy „Co nowego”', async () => {
     const eff = (n: Node) => { const st = flat(n.props.style); const h = Math.max(st.minHeight ?? 0, st.height ?? 0); const hs = n.props.hitSlop; const v = typeof hs === 'number' ? 2 * hs : hs ? (hs.top ?? 0) + (hs.bottom ?? 0) : 0; return h + v; };
     const small: string[] = [];

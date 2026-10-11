@@ -1,12 +1,11 @@
 /*
  * „Pierwsze kroki” przy pustym szablonie. 09.10.2026: „Dodaj ćwiczenia do szablonu „…”” / „Puste szablony: n”; 11.10.2026 (docs/22 P4 A: każdy krok z jednym
- * przyciskiem) te dwa przyciski zniknęły — krok 1 prowadzi przez „Planowanie”, a lista szablonów jest osiągalna z ekranu planu. Logika emptyTemplates zostaje.
- * Regresja (docs/20 rodzaj 8): dawniej przy pustym szablonie „Najpierw utwórz szablon.” (czerwony na e132ed0). Logika: lib/dashboard emptyTemplates.
+ * przyciskiem) te dwa przyciski zniknęły — krok 1 prowadzi przez „Planowanie”, a lista szablonów jest osiągalna z ekranu planu. Martwa logika emptyTemplates usunięta (11.10.2026, pakiet porządków).
+ * Regresja (docs/20 rodzaj 8): dawniej przy pustym szablonie „Najpierw utwórz szablon.” (czerwony na e132ed0).
  */
 import * as store from '@/lib/store';
 import * as draft from '@/lib/draft';
 import { applyLang } from '@/lib/i18n';
-import { emptyTemplates } from '@/lib/dashboard';
 import { fresh, saved, withDemoTemplates } from './helpers';
 import { renderApp, flushAll, screen, tap, act } from './app';
 import { within } from '@testing-library/react-native';
@@ -20,21 +19,6 @@ const boot = async (url: string, fn: (ids: string[]) => void = () => {}, opts: {
   await act(async () => { await store.flush(); }); await renderApp({ saved: JSON.parse(JSON.stringify(saved())), url }); jest.setSystemTime(NOW.getTime()); await flushAll(10);
   return t;
 };
-/** Logika: świeży stan z czasem NOW (bez ekranu). */
-const freshLogic = async () => { jest.useFakeTimers({ now: NOW }); await fresh(); };
-const demo = () => withDemoTemplates();
-
-describe('„Pierwsze kroki” — puste szablony (emptyTemplates)', () => {
-  beforeEach(freshLogic);
-  test('bez szablonów — pusto; puste niezarchiwizowane, ostatnio zmieniany pierwszy; szablon z ćwiczeniami i w archiwum — nie', () => {
-    expect(emptyTemplates()).toEqual([]);
-    const a = store.newTemplate(); a.name = 'Test A'; store.save(a);
-    jest.setSystemTime(NOW.getTime() + 60000); const b = store.newTemplate(); b.name = 'Test B'; store.save(b);
-    expect(emptyTemplates().map(x => x.name)).toEqual(['Test B', 'Test A']);
-    jest.setSystemTime(NOW.getTime() + 120000); store.save(a); expect(emptyTemplates().map(x => x.name)).toEqual(['Test A', 'Test B']);
-    store.setTemplateArchived(b, true); demo(); expect(emptyTemplates().map(x => x.name)).toEqual(['Test A']);
-  });
-});
 
 describe('regresja (09.10.2026, zmieniona 11.10.2026 przez P4 A): „Pierwsze kroki” przy pustym szablonie — dawniej „Najpierw utwórz szablon.”', () => {
   test('pusty szablon nie zalicza kroku 1; jeden przycisk „Planowanie” (bez dawnego „Dodaj ćwiczenia…” i „Najpierw utwórz szablon.”); po dodaniu ćwiczenia krok 1 jest zrobiony', async () => {

@@ -235,7 +235,7 @@ describe('ekrany', () => {
     addWorkout(day(10), [[BP, [{ weight: 70, reps: 8 }]]]); addWorkout(day(1), [[BP, [{ weight: 90, reps: 5 }]]]);
     await renderApp({ saved: snapshot() }); const write = FileSystem.writeAsStringAsync as jest.Mock;
     const hk = jest.requireMock('@kingstinct/react-native-healthkit').default; const hkSave = jest.spyOn(hk, 'saveWorkoutSample');
-    await go('/history'); await flushAll(20); await tap(screen.getByText('+ Dodaj trening wstecz')); await flushAll(20);
+    await go('/history'); await flushAll(20); await tap(screen.getByText('Dopisz trening wstecz')); await flushAll(20);
     expect(screen.getByLabelText('Data (RRRR-MM-DD)').props.value).toBe(edit.dateText(day(1))); expect(screen.getByLabelText('Godzina startu').props.value).toBe('18:00');
     await type(screen.getByLabelText('Data (RRRR-MM-DD)'), '2026-13-01'); await tap(screen.getByText('Push')); expect(lastAlert().title).toBe('Sprawdź datę i godzinę');
     await type(screen.getByLabelText('Data (RRRR-MM-DD)'), edit.dateText(day(4))); await tap(screen.getByLabelText('Dzień wcześniej')); // = 5 dni temu
@@ -278,7 +278,7 @@ describe('ekrany', () => {
     await tap(screen.getByText('Save')); expect(lastAlert().title).toBe('Empty workout');
     leaks.push(...[lastAlert().title, lastAlert().msg ?? ''].filter(x => pl.test(x))); await alertNow(lastAlert().title, 'Back');
     await tap(screen.getByText('Cancel')); await alertNow('Discard changes?', 'Discard changes');
-    await go('/history'); await flushAll(20); check('history'); await tap(screen.getByText('+ Log a past workout')); await flushAll(20); check('add');
+    await go('/history'); await flushAll(20); check('history'); await tap(screen.getByText('Log a past workout')); await flushAll(20); check('add');
     await type(screen.getByLabelText('Start time'), '25:00'); await tap(screen.getByText('Empty workout')); leaks.push(...[lastAlert().title, lastAlert().msg ?? ''].filter(x => pl.test(x)));
     await type(screen.getByLabelText('Start time'), '18:00'); await flushAll(800); await tap(screen.getByText('Empty workout')); await flushAll(50); check('past');
     expect(screen.getByText('No exercises — add the first one.')).toBeTruthy();
@@ -399,7 +399,7 @@ describe('audyt: ekrany', () => {
     await go('/history'); await flushAll(20); await tap(screen.getAllByText('T')[0]); await flushAll(20); await tap(screen.getByText('Edytuj')); await flushAll(20);
     await swipeDelete(`Usuń ćwiczenie: ${BP}`); await alertNow('Usunąć z treningu?', 'Usuń'); /* G4: ostatniej serii nie usuwa się — całe ćwiczenie */ await tap(screen.getByText('Zapisz')); write.mockClear(); await alertNow('Pusty trening', 'Usuń sesję'); await settle();
     expect(store.getState().workouts.some(x => x.id === w.id)).toBe(false);
-    expect(screen.getByText('+ Dodaj trening wstecz')).toBeTruthy(); expect(screen.getAllByText('Kalendarz').length).toBeGreaterThan(0); expect(screen.queryByText('Brak sesji.')).toBeNull(); expect(screen.queryByText('Edytuj')).toBeNull();
+    expect(screen.getByText('Dopisz trening wstecz')).toBeTruthy(); expect(screen.getAllByText('Kalendarz').length).toBeGreaterThan(0); expect(screen.queryByText('Brak sesji.')).toBeNull(); expect(screen.queryByText('Edytuj')).toBeNull();
     expect(write.mock.calls.some(c => /\/Backup\//.test(c[0]))).toBe(true);
   });
 
@@ -479,6 +479,6 @@ describe('weryfikacja 2', () => {
     await go(`/history/${w.id}`); await flushAll(20); await tap(screen.getByText('Edytuj')); await flushAll(20);
     await swipeDelete(`Usuń ćwiczenie: ${BP}`); await alertNow('Usunąć z treningu?', 'Usuń'); /* G4: ostatniej serii nie usuwa się — całe ćwiczenie */ await tap(screen.getByText('Zapisz')); await alertNow('Pusty trening', 'Usuń sesję'); await settle();
     expect(store.getState().workouts.some(x => x.id === w.id)).toBe(false);
-    expect(screen.getByText('+ Dodaj trening wstecz')).toBeTruthy(); expect(screen.queryByLabelText('Inny trening')).toBeNull(); expect(screen.queryByText('Edytuj')).toBeNull();
+    expect(screen.getByText('Dopisz trening wstecz')).toBeTruthy(); expect(screen.queryByLabelText('Inny trening')).toBeNull(); expect(screen.queryByText('Edytuj')).toBeNull();
   });
 });

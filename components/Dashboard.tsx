@@ -14,13 +14,12 @@ import { MuscleRows, SegLegend } from '@/components/ProgressBars';
 import { t, tp, lang } from '@/lib/i18n';
 
 /* Dashboard ekranu Trening (decyzja właściciela 08.10.2026, wariant A) — dane: lib/dashboard.ts. */
-function Tile({ label, value, prev }: { label: string; value: string; prev: string }) {
+function Tile({ label, value }: { label: string; value: string }) { /* 11.10.2026: bez „poprz.” — porównania są w Progresji */
   const th = useTheme();
   return (
-    <View accessibilityLanguage={lang()} accessible accessibilityLabel={t('{label}: {v}, poprzedni tydzień {p}', { label, v: value, p: prev })} style={{ flexGrow: 1, flexBasis: '45%' /* 2 × 2 — mieści się przy 320 pt i długich tłumaczeniach */, padding: 10, borderRadius: 10, backgroundColor: th.surface, borderWidth: 1, borderColor: th.line }}>
+    <View accessibilityLanguage={lang()} accessible accessibilityLabel={`${label}: ${value}`} style={{ flexGrow: 1, flexBasis: '45%' /* 2 × 2 — mieści się przy 320 pt i długich tłumaczeniach */, padding: 10, borderRadius: 10, backgroundColor: th.surface, borderWidth: 1, borderColor: th.line }}>
       <Txt maxFontSizeMultiplier={1.4} style={{ fontFamily: F.heavy, fontSize: 20 }}>{value}</Txt>
       <Muted style={{ fontSize: 12 }}>{label}</Muted>
-      <Muted style={{ fontSize: 11, marginTop: 2 }}>{t('poprz.: {v}', { v: prev })}</Muted>
     </View>);
 }
 const hm = (sec: number) => { const m = Math.round(sec / 60); return m >= 60 ? `${t('{n} h', { n: Math.floor(m / 60) })}${m % 60 ? ` ${t('{n} min', { n: m % 60 })}` : ''}` : t('{n} min', { n: m }); }; /* A11-17: jednostki przez t() */
@@ -30,12 +29,12 @@ const hm = (sec: number) => { const m = Math.round(sec / 60); return m >= 60 ? `
 export function WeekStats() {
   useTick(); const router = useRouter(); const once = useOnce(); /* UI2-02 */ const w = weekTiles(); const last = lastWorkout(); if (!last) return null;
   const c = compareCached('week'); const plannedSets = c.planned?.sets ?? 0;
-  const tiles = [[t('Treningi'), String(w.workouts), String(w.prev.workouts)], [t('Serie'), String(w.sets), String(w.prev.sets)], [t('Objętość'), fmtVol(w.volume), fmtVol(w.prev.volume)], [t('Czas'), hm(w.durationSec), hm(w.prev.durationSec)]] as const;
+  const tiles = [[t('Treningi'), String(w.workouts)], [t('Serie'), String(w.sets)], [t('Objętość'), fmtVol(w.volume)], [t('Czas'), hm(w.durationSec)]] as const;
   const map: Record<string, number> = {}; c.rows.forEach(r => { map[r.muscle] = r.doneSets + r.plannedSets; });
   return <>
     <SectionTitle>{t('Ten tydzień')}</SectionTitle>
-    <Pressable testID="week-tiles" accessibilityRole="button" accessibilityLabel={tiles.map(([label, value, prev]) => t('{label}: {v}, poprzedni tydzień {p}', { label, v: value, p: prev })).join('; ')} accessibilityHint={t('Otwiera Postępy.')} onPress={once(() => router.push('/more/progress'))} style={({ pressed }: { pressed: boolean }) => ({ flexDirection: 'row', flexWrap: 'wrap', gap: 8, opacity: pressed ? 0.7 : 1 })} /* UX-16 A (audyt 0.10): te same definicje co Postępy */>
-      {tiles.map(([label, value, prev]) => <Tile key={label} label={label} value={value} prev={prev} />)}
+    <Pressable testID="week-tiles" accessibilityRole="button" accessibilityLabel={tiles.map(([label, value]) => `${label}: ${value}`).join('; ')} accessibilityHint={t('Otwiera Postępy.')} onPress={once(() => router.push('/more/progress'))} style={({ pressed }: { pressed: boolean }) => ({ flexDirection: 'row', flexWrap: 'wrap', gap: 8, opacity: pressed ? 0.7 : 1 })} /* UX-16 A (audyt 0.10): te same definicje co Postępy */>
+      {tiles.map(([label, value]) => <Tile key={label} label={label} value={value} />)}
     </Pressable>
     {w.planned ? <View style={{ marginTop: 10 }}><WeekStacks /></View> : null /* przy planie stosy talerzy i „60% planu tygodnia (3 z 5)” (korekta właściciela 09.10.2026 ok. 17:00; te same liczby, lib/motif.weekProgress) */}{/* audyt 0.10 A5/X-04: dni z planu zrobione zaplanowanym szablonem (ten sam stan dnia co kalendarz) — sesje i dni planu osobno */}
     {c.rows.length ? <View testID="week-muscles" style={{ marginTop: 6 }}>
@@ -96,5 +95,9 @@ export function FirstSteps() {
       {step(f.template, 1, t('Utwórz pierwszy szablon albo wygeneruj szablony i plan.'), !f.template ? planning : undefined)}
       {step(f.plan, 2, t('Ustaw plan tygodnia — zobaczysz tu dzisiejszy trening i dostaniesz przypomnienie.'), !f.plan ? planning : undefined)}
       {step(false, 3, t('Pierwszy trening: duży przycisk „Start” u góry albo „Pusty trening”.'), <Btn nav small kind="ghost" title={t('Przewodnik')} accessibilityLabel={t('Przewodnik po funkcjach')} onPress={() => router.push('/guide?topic=workout')} style={{ alignSelf: 'flex-start' }} />)}
+      {/* 11.10.2026: „Miejsca i sprzęt” — jedno zdanie z odnośnikiem (nie osobny krok); z Ustawień wejście zniknęło */}
+      <Pressable accessibilityLanguage={lang()} accessibilityRole="link" accessibilityLabel={t('Ćwiczysz w domu albo na siłowni? Ustaw sprzęt w „Miejsca i sprzęt”.')} onPress={() => router.push('/more/locations')} hitSlop={8} style={{ paddingVertical: 4 }}>
+        <Muted style={{ fontSize: 13 }}>{t('Ćwiczysz w domu albo na siłowni? Ustaw sprzęt w „Miejsca i sprzęt”.')}</Muted>
+      </Pressable>
     </View>);
 }

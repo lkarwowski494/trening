@@ -3,7 +3,7 @@ import { View, Pressable } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Btn, Muted, Txt, upperText, useOnce } from '@/components/ui';
 import { useTheme, F, NUM_SCALE_MAX } from '@/lib/theme';
-import { getState, finishedWorkouts, useForegroundTick, isDeloadWeek, fmtDayKey, setPlanHintHidden } from '@/lib/store';
+import { getState, finishedWorkouts, useForegroundTick, isDeloadWeek, fmtDayKey } from '@/lib/store';
 import { hasPlan, dayKeyOf, doneOn, upcoming, pending, planTplName, planName, addDays, type DayStatus } from '@/lib/plan';
 import { weekStrip } from '@/lib/dashboard';
 import { DayIcon } from '@/components/Motif';
@@ -37,7 +37,6 @@ export function TodayPlan() {
     return m[d.status]();
   };
   const deload = isDeloadWeek(Date.now());
-  const hintOff = !!getState().planHintHidden;
   /* 11.10.2026 (docs/22 krok 3 pkt 1): nagłówek planu nad kalendarzem — nazwa planu (bez planu: „Bez planu tygodnia”) i obok przycisk „Planowanie”
    * (bez planu: „Ustaw plan”) → ekran planu; dawny przycisk „Plan tygodnia” i wiersz „Plan: … Planowanie ›” pod „Ten tydzień” zniknęły. */
   const planTitle = plan ? t('Plan: {name}', { name: planName() || t('Plan tygodnia') }) : t('Bez planu tygodnia');
@@ -70,7 +69,6 @@ export function TodayPlan() {
             </Pressable>); })}
       </View>
       {next.length ? <Muted style={{ fontSize: 13 }}>{t('Następne: {list}', { list: next.map(x => `${nextLabel(x.date)} — ${name(x.templateId)}`).join(' · ') })}</Muted> : null}
-      {!plan && !hintOff ? <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}><Muted style={{ fontSize: 12, flex: 1 }}>{t('Ustaw plan tygodnia, by widzieć tu dzisiejszy trening i dostawać przypomnienie.')}</Muted><Btn small kind="ghost" title={t('Ukryj')} accessibilityLabel={t('Ukryj zachętę do planu tygodnia')} onPress={() => setPlanHintHidden(true)} /></View> : null /* UX-16 A (audyt 0.10): kto tylko zapisuje treningi, ukrywa zachętę */}
     </View>
   );
 }

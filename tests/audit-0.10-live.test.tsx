@@ -307,11 +307,11 @@ describe('D1+ (decyzja 08.10.2026): „Powtórz ostatni” po skróconym trening
 });
 
 describe('D2 (MER-04, wariant A): teksty o deloadzie', () => {
-  test('D2 (MER-04): Kalendarz (oznaczony tydzień) i Postępy — „o około 1/3–1/2 mniej serii (np. 2 z 3; ćwiczenia z 1 serią bez zmian)”', async () => {
+  test('D2 (MER-04): Kalendarz (oznaczony tydzień) i Postępy (tylko oznaczenie) — „o około 1/3–1/2 mniej serii (np. 2 z 3; ćwiczenia z 1 serią bez zmian)”', async () => {
     await fresh(); addWorkout(Date.now() - 3600e3, [['Back Squat', [{ weight: 100, reps: 5 }]]]); store.toggleDeloadWeek(Date.now()); await boot('/history');
     expect(screen.getByText('Ten tydzień: deload. Przy starcie treningu zaproponuję o około 1/3–1/2 mniej serii (np. 2 z 3; ćwiczenia z 1 serią bez zmian), ciężary bez zmian.')).toBeTruthy();
     await go('/more/progress'); await flushAll(10);
-    expect(screen.getByText('Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję o około 1/3–1/2 mniej serii (np. 2 z 3; ćwiczenia z 1 serią bez zmian), ciężary bez zmian.')).toBeTruthy();
+    expect(screen.getByText(/^Ten tydzień jest oznaczony jako deload/)).toBeTruthy(); /* 11.10.2026: Postępy tylko pokazują oznaczenie (bez chipa i opisu liczby serii) */
     expect(screen.queryByText(/około połowy/)).toBeNull();
   });
 });

@@ -47,7 +47,7 @@ describe('treść i logika', () => {
 test('macierz: każdy tekst przewodnika (i punkt „Co nowego”) jest w treści tematów albo wpisów', () => {
   const texts = [
     '„⏸ Pauza” zatrzymuje zegar treningu; czas pauzy nie liczy się do czasu trwania.',
-    '„Wygeneruj szablony i plan” (Szablony albo Plan tygodnia): wybierz cel, miejsce, liczbę i długość sesji.',
+    '„Wygeneruj szablony i plan” (Szablony albo Planowanie): wybierz cel, miejsce, liczbę i długość sesji.',
     'Automatyczna kopia po każdym treningu trafia do Plików (Ustawienia).',
     'Kilka planów: „+ Nowy plan” tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.', /* audyt 0.10 B2 A, B1 */
     'Kopia zapasowa',
@@ -65,7 +65,7 @@ test('macierz: każdy tekst przewodnika (i punkt „Co nowego”) jest w treści
     'W Kalendarzu: stuknij dzień, potem „Więcej opcji” → „Oznacz tydzień jako deload” — także przyszły tydzień.', /* audyt 0.10 D4 */
     'Szablony trafiają do folderu „Wygenerowane”, a plan do „Inne plany” albo od razu jako aktywny.',
     'Trening i serie',
-    'Tydzień oznaczysz też w Postępach przełącznikiem „Tydzień deload”.',
+    'W Postępach oznaczony tydzień widać jako litera D na wykresach — tam się go nie zmienia.',
     'Szablon otwiera się w podglądzie ze „Start”; zmiany (także folder) dopiero po „Edytuj” — zapisuje je „Zapisz”.',
     '„Archiwizuj” w podglądzie chowa szablon; przesunięcie w lewo na liście usuwa go (z potwierdzeniem).',
     'Zmiany w trakcie treningu', 'Edycja sesji i trening wstecz',
@@ -83,7 +83,7 @@ test('macierz: każdy tekst przewodnika (i punkt „Co nowego”) jest w treści
     'Superset ustawisz w szablonie: „Edytuj”, potem „⇅ SS” przy ćwiczeniu łączy je z następnym (w trakcie treningu ten sam przycisk jest przy ćwiczeniu) — przerwa liczy się po ostatnim ćwiczeniu grupy.',
     'Przesunięcie serii albo nazwy ćwiczenia w lewo usuwa je (z potwierdzeniem).',
     'W Kalendarzu stuknij sesję, potem „Edytuj” — zmiany zapisuje „Zapisz”, „Anuluj” je odrzuca.',
-    '„+ Dodaj trening wstecz” zapisze trening, którego nie zapisałeś na bieżąco; z dnia w Kalendarzu — „Zapisz trening z tego dnia”.',
+    '„Dopisz trening wstecz” zapisze trening, którego nie zapisałeś na bieżąco; z dnia w Kalendarzu jest ten sam przycisk.',
   ];
   const all = new Set([...GUIDE.flatMap(g => [g.title(), ...g.steps()]), ...WHATS_NEW.flatMap(e => e.items())]);
   expect(texts.filter(x => !all.has(x))).toEqual([]);
@@ -107,7 +107,7 @@ describe('ekrany', () => {
     const expectOn: Record<string, () => void> = {
       workout: () => expect(screen.getByLabelText('Inny trening')).toBeTruthy(), templates: () => expect(screen.getByText('+ Nowy')).toBeTruthy(),
       plan: () => expect(screen.getByRole('header', { name: 'Kalendarz' })).toBeTruthy(), generator: () => expect(screen.getByText('Podgląd')).toBeTruthy(),
-      deload: () => expect(screen.getByText('Wykresy pojawią się po pierwszym zakończonym treningu.')).toBeTruthy(), /* H1: Postępy z przełącznikiem „Tydzień deload” */
+      deload: () => expect(screen.getByRole('header', { name: 'Kalendarz' })).toBeTruthy(), /* 11.10.2026: Przewodnik „Deload” kieruje do planu (Kalendarz), nie do Postępów */
       during: () => expect(screen.getByLabelText('Inny trening')).toBeTruthy(), history: () => expect(screen.getByRole('header', { name: 'Kalendarz' })).toBeTruthy(), progress: () => expect(screen.getByText('Wykresy pojawią się po pierwszym zakończonym treningu.')).toBeTruthy(), /* ekran Postępów bez treningów */
       places: () => expect(screen.getAllByText(/Miejsc|miejsc/).length).toBeGreaterThan(0), backup: () => expect(screen.getAllByText(/Eksport|eksport/).length).toBeGreaterThan(0),
     };

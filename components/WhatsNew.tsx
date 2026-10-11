@@ -19,7 +19,7 @@ export function WhatsNewButton({ open, onPress }: { open: boolean; onPress: () =
     <Pressable accessibilityLanguage={lang()} testID="whats-new-i" onPress={onPress} hitSlop={8} accessibilityRole="button" accessibilityState={{ expanded: open }}
       accessibilityLabel={dot ? t('Co nowego — są nowe zmiany') : t('Co nowego')}
       style={({ pressed }) => ({ width: 32, height: 32, borderRadius: 16, borderWidth: 1.5, borderColor: open ? th.accent : th.line, alignItems: 'center', justifyContent: 'center', opacity: pressed ? 0.7 : 1 })}>
-      <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={1.2} style={{ color: open ? th.accent : th.text, fontSize: 17, fontFamily: F.semibold }}>i</Text>
+      <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={1.2} style={{ color: open ? th.accent : th.text, fontSize: 17, fontFamily: F.semibold }}>✦</Text>{/* 9A (11.10.2026): iskierki zamiast litery „i” (kropka bez zmian; testID zostaje dla E2E) */}
       {dot ? <View testID="whats-new-dot" style={{ position: 'absolute', top: -2, right: -2, width: 10, height: 10, borderRadius: 5, backgroundColor: th.accent, borderWidth: 1.5, borderColor: th.bg }} /> : null}
     </Pressable>
   );

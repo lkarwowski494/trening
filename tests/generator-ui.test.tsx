@@ -91,7 +91,7 @@ test('zapis: pytanie o aktywację; „Tylko zapisz” — szablony w „Wygenero
   await tap(screen.getByText('Zapisz szablony i plan')); await flushAll(5); await press('Ustawić nowy plan jako aktywny?', 'Tylko zapisz');
   expect(S().templates.map(x => [x.name, x.folder])).toEqual([['FBW A', 'Wygenerowane'], ['FBW B', 'Wygenerowane']]);
   expect(plan.savedPlans().map(p => p.name)).toEqual(['Masa, 3× w tygodniu · Pełna siłownia']); /* UX-10: nazwa z miejscem */
-  await press('Zapisano', 'Plan tygodnia'); expect(screen.getByText('Inne plany')).toBeTruthy(); /* UX-10: potwierdzenie zapisu, potem Plan tygodnia */
+  await press('Zapisano', 'Planowanie'); expect(screen.getByText('Inne plany')).toBeTruthy(); /* UX-10: potwierdzenie zapisu, potem Planowanie */
   await boot('/generator'); await tap(screen.getByText('Zapisz szablony i plan')); await flushAll(5); await press('Ustawić nowy plan jako aktywny?', 'Ustaw jako aktywny');
   expect(plan.planName()).toBe('Masa, 3× w tygodniu · Pełna siłownia'); expect(plan.hasPlan()).toBe(true);
 });

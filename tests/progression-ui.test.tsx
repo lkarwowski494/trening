@@ -55,8 +55,8 @@ describe('„Ten tydzień”: tylko ten tydzień — kafelki, sylwetka, serie na
     await boot(scenario);
     const [tp, sp, wt, ws, wm, pt] = order('today-plan', 'start-panel', 'week-tiles', 'week-stacks', 'week-muscles', 'progress-tile-week');
     expect([tp, sp, wt, ws, wm, pt].every(i => i >= 0)).toBe(true); expect(tp).toBeLessThan(sp); expect(sp).toBeLessThan(wt); expect(wt).toBeLessThan(ws); expect(ws).toBeLessThan(wm); expect(wm).toBeLessThan(pt);
-    const tiles = screen.getByTestId('week-tiles'); expect(tiles.props.accessibilityLabel).toBe(`Treningi: 1, poprzedni tydzień 1; Serie: 2, poprzedni tydzień 2; Objętość: ${fmtVol(1000)}, poprzedni tydzień ${fmtVol(1000)}; Czas: 1 h, poprzedni tydzień 1 h`);
-    expect(screen.getAllByText(/^poprz\.: /)).toHaveLength(4);
+    const tiles = screen.getByTestId('week-tiles'); expect(tiles.props.accessibilityLabel).toBe(`Treningi: 1; Serie: 2; Objętość: ${fmtVol(1000)}; Czas: 1 h`);
+    expect(screen.queryAllByText(/^poprz\.: /)).toHaveLength(0); /* 11.10.2026: kafelki bez „poprz.” */
   });
   test('sylwetka z seriami tygodnia (wykonane + zaplanowane) i słupki partii: dwa kolory, kreska celu, bez poprzedniego tygodnia', async () => {
     await boot(scenario);
@@ -65,7 +65,7 @@ describe('„Ten tydzień”: tylko ten tydzień — kafelki, sylwetka, serie na
     expect(has('pbar-sets-czworogłowe-done')).toBe(true); expect(has('pbar-sets-czworogłowe-planned')).toBe(false); /* przysiad zrobiony, nic zaplanowanego */
     expect(has('pbar-sets-klatka-planned')).toBe(true); expect(has('pbar-sets-klatka-done')).toBe(true); expect(has('pbar-sets-klatka-mark')).toBe(true); /* kreska celu na jednej osi */
     expect(screen.getByTestId('prow-sets-klatka').props.accessibilityLabel).toBe('klatka: 0 + 2 (wykonane + zaplanowane)'); expect(screen.getByTestId('prow-sets-czworogłowe').props.accessibilityLabel).toBe('czworogłowe: 2');
-    expect(find('pprev-sets-klatka')).toHaveLength(0); expect(find('pprev-sets-czworogłowe')).toHaveLength(0); /* tylko ten tydzień: bez słupków poprzedniego */ expect(screen.queryAllByText(/poprz\./).length).toBe(4); /* tylko cztery kafelki */
+    expect(find('pprev-sets-klatka')).toHaveLength(0); expect(find('pprev-sets-czworogłowe')).toHaveLength(0); /* tylko ten tydzień: bez słupków poprzedniego */ expect(screen.queryAllByText(/poprz\./).length).toBe(0); /* 11.10.2026: kafelki „Ten tydzień” bez „poprz.” */
     expect(box.getByText('Kolor względem partii z największą liczbą serii w tym tygodniu (wykonane + zaplanowane). Szare — bez serii.')).toBeTruthy();
     expect(box.getByText('Kreska = 10 serii na partię w tygodniu (źródło i uproszczenia: Postępy). Zaplanowane — z szablonów na pozostałe dni tygodnia; partia pomocnicza liczy 0,5.')).toBeTruthy();
   });

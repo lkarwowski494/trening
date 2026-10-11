@@ -2,13 +2,12 @@ import React, { useState } from 'react';
 import { View, Text, Pressable } from 'react-native';
 import { useTheme, F } from '@/lib/theme';
 import { t, exName, locale, lang } from '@/lib/i18n';
-import { fmtSec, isDeloadWeek, toggleDeloadWeek, useTick } from '@/lib/store';
+import { fmtSec, isDeloadWeek, useTick } from '@/lib/store';
 import { fmtVol } from '@/lib/units';
 import { periodSummary, periodTitle, type PeriodKind } from '@/lib/period';
 import { Chip, H2, Muted, Txt, monoSafe } from '@/components/ui';
 import { MuscleMap } from '@/components/MuscleMap';
 import { setsByMuscle } from '@/lib/stats';
-import { deloadLessText } from '@/lib/start';
 import { monthWeeks, PLATE_STACK } from '@/lib/motif';
 import { PlateStack, a11yHidden } from '@/components/Motif';
 
@@ -60,10 +59,7 @@ export function PeriodSummary() {
         <Text accessibilityLanguage={lang()} accessibilityRole="header" maxFontSizeMultiplier={1.3} style={{ color: th.text, fontSize: 16, fontFamily: F.heavy, flexShrink: 1, textAlign: 'center' }}>{periodTitle(kind, s.start)}</Text>
         {arrow(t('Następny okres'), '›', 1, offset >= 0)}
       </View>
-      {kind === 'week' ? <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 8, flexWrap: 'wrap' }}>
-        <Chip label={t('Tydzień deload')} on={deload} toggle onPress={() => toggleDeloadWeek(s.start)} />
-        <Muted style={{ fontSize: 12, flexShrink: 1 }}>{t('Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję {less}, ciężary bez zmian.', { less: deloadLessText() }) /* audyt 0.10 (MER-04) */}</Muted>
-      </View> : null}
+      {deload ? <Muted style={{ fontSize: 12, marginBottom: 8 }}>{t('Ten tydzień jest oznaczony jako deload (D na wykresach). Oznaczenie zmienisz w Kalendarzu: dzień → „Więcej opcji”.')}</Muted> : null}{/* 11.10.2026: Postępy pokazują oznaczenie, nie zmieniają (chip „Tydzień deload” usunięty) */}
       {kind === 'month' ? <MonthWeeks start={s.start} end={s.end} /> : null}
       {prevDeload ? <Muted style={{ fontSize: 12, marginBottom: 6 }}>{t('Poprzedni tydzień jest oznaczony jako deload.')}</Muted> : null}
       <View style={{ padding: 12, borderRadius: 10, backgroundColor: th.surface2, gap: 6 }}>

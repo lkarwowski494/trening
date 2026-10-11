@@ -31,7 +31,7 @@ export const GUIDE: GuideTopic[] = [
   ] },
   { id: 'history', route: '/history', title: () => t('Edycja sesji i trening wstecz'), steps: () => [
     t('W Kalendarzu stuknij sesję, potem „Edytuj” — zmiany zapisuje „Zapisz”, „Anuluj” je odrzuca.'),
-    t('„+ Dodaj trening wstecz” zapisze trening, którego nie zapisałeś na bieżąco; z dnia w Kalendarzu — „Zapisz trening z tego dnia”.'),
+    t('„Dopisz trening wstecz” zapisze trening, którego nie zapisałeś na bieżąco; z dnia w Kalendarzu jest ten sam przycisk.'),
   ] },
   { id: 'plan', route: '/history', title: () => t('Plan tygodnia i Kalendarz'), steps: () => [
     t('Na ekranie Trening „Planowanie” (bez planu: „Ustaw plan”) otwiera plan tygodnia, który przypisuje szablony do dni — plan powtarza się co tydzień.'),
@@ -40,13 +40,13 @@ export const GUIDE: GuideTopic[] = [
     t('Kilka planów: „+ Nowy plan” tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.'),
   ] },
   { id: 'generator', route: '/generator', title: () => t('Generator szablonów i planu'), steps: () => [
-    t('„Wygeneruj szablony i plan” (Szablony albo Plan tygodnia): wybierz cel, miejsce, liczbę i długość sesji.'),
+    t('„Wygeneruj szablony i plan” (Szablony albo Planowanie): wybierz cel, miejsce, liczbę i długość sesji.'),
     t('Przejrzyj podgląd i „Na czym to oparte” — wynik zapisuje się dopiero po zatwierdzeniu.'),
     t('Szablony trafiają do folderu „Wygenerowane”, a plan do „Inne plany” albo od razu jako aktywny.'),
   ] },
-  { id: 'deload', route: '/more/progress' /* H1 (audyt 0.10): ekran z przełącznikiem „Tydzień deload” — Kalendarz zwykle nie ma elementu deload */, title: () => t('Deload'), steps: () => [
+  { id: 'deload', route: '/history' /* 11.10.2026: deload ustawia się w planie (Kalendarz); Postępy tylko pokazują oznaczenie */, title: () => t('Deload'), steps: () => [
     t('Po kilku tygodniach treningu z rzędu Kalendarz podpowie „Zaplanuj deload od …”.'),
-    t('Tydzień oznaczysz też w Postępach przełącznikiem „Tydzień deload”.'),
+    t('W Postępach oznaczony tydzień widać jako litera D na wykresach — tam się go nie zmienia.'),
     t('W Kalendarzu: stuknij dzień, potem „Więcej opcji” → „Oznacz tydzień jako deload” — także przyszły tydzień.'),
     t('W tygodniu deload „Start” i „Powtórz ostatni” zaproponują „Mniej serii”: {less}; ciężary i szablon bez zmian.', { less: deloadLessText() }), /* audyt 0.10 (D1, MER-04) */
   ] },

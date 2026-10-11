@@ -66,7 +66,7 @@ export type { Grouped } from './state/groups';
 export const { pausedTotal, isPaused, workoutDurSec, cleanPauses, pauseWorkout, resumeWorkout } = pauseMod;
 export const {
   isDeloadWeek, toggleDeloadWeek, PLAN_NAME_MAX, SAVED_PLANS_MAX, PLAN_HISTORY_MAX, DELOAD_WEEKS_MAX, cleanPlanName, planDays, sameDays,
-  normPlanHistory, cleanOverrides, appendPlanSegment, setPlanHintHidden
+  normPlanHistory, cleanOverrides, appendPlanSegment
 } = weekplanMod;
 export const { bodyMassLog, bodyMassOn, bodyMassFor, latestBodyMass, addBodyMass, removeBodyMass } = bodymassMod;
 export const {

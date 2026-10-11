@@ -25,18 +25,18 @@ const plans = () => stack().filter(x => x === 'plan').length;
 
 describe('UI2-06 — „Plan tygodnia” po zapisie nie dubluje ekranu planu', () => {
   test('generator z Planu tygodnia: „Ustaw jako aktywny” → „Plan tygodnia” wraca do tego samego ekranu planu (jeden na stosie)', async () => {
-    await boot('/history'); await tap(screen.getByText('Plan tygodnia')); await flushAll(1100);
+    await boot('/history'); await tap(screen.getByText('Planowanie')); await flushAll(1100);
     await tap(screen.getByText('Wygeneruj szablony i plan')); await flushAll(1100); expect(stack()).toEqual(['(tabs)', 'plan', 'generator']);
     await tap(screen.getByText('Zapisz szablony i plan')); await flushAll(5); await press('Ustawić nowy plan jako aktywny?', 'Ustaw jako aktywny');
     const btns = lastAlert('Zapisano')!.buttons!.map(b => b.text);
-    await press('Zapisano', 'Plan tygodnia'); expect(stack()).toEqual(['(tabs)', 'plan']); expect(plans()).toBe(1); /* przed naprawą: ['(tabs)', 'plan', 'plan'] */
-    expect(btns).toEqual(['Pokaż szablony', 'Plan tygodnia', 'OK']);
+    await press('Zapisano', 'Planowanie'); expect(stack()).toEqual(['(tabs)', 'plan']); expect(plans()).toBe(1); /* przed naprawą: ['(tabs)', 'plan', 'plan'] */
+    expect(btns).toEqual(['Pokaż szablony', 'Planowanie', 'OK']);
     expect(screen.getByDisplayValue('Masa, 3× w tygodniu · Pełna siłownia')).toBeTruthy(); /* ekran planu pokazuje nowy aktywny plan */
   });
   test('generator otwarty bez planu pod spodem (np. z ekranu głównego): „Plan tygodnia” zastępuje generator', async () => {
     await boot('/'); await go('/generator'); await flushAll(10); expect(stack()).toEqual(['(tabs)', 'generator']);
     await tap(screen.getByText('Zapisz szablony i plan')); await flushAll(5); await press('Ustawić nowy plan jako aktywny?', 'Tylko zapisz');
-    await press('Zapisano', 'Plan tygodnia'); expect(stack()).toEqual(['(tabs)', 'plan']); expect(screen.getByText('Inne plany')).toBeTruthy();
+    await press('Zapisano', 'Planowanie'); expect(stack()).toEqual(['(tabs)', 'plan']); expect(screen.getByText('Inne plany')).toBeTruthy();
   });
   test('„OK” zostawia na generatorze (bez zmiany stosu)', async () => {
     await boot('/plan'); await tap(screen.getByText('Wygeneruj szablony i plan')); await flushAll(1100);
@@ -47,18 +47,18 @@ describe('UI2-06 — „Plan tygodnia” po zapisie nie dubluje ekranu planu', (
     const setup = () => { withDemoTemplates(); };
     await boot('/plan', setup); await tap(screen.getByText('Plan z moich szablonów')); await flushAll(1100); expect(stack().slice(-2)).toEqual(['plan', 'generator']);
     await tap(screen.getByText('Zapisz plan')); await flushAll(5); await press('Ustawić nowy plan jako aktywny?', 'Ustaw jako aktywny');
-    expect(lastAlert('Zapisano')!.buttons!.map(b => b.text)).toEqual(['Plan tygodnia', 'OK']);
+    expect(lastAlert('Zapisano')!.buttons!.map(b => b.text)).toEqual(['Planowanie', 'OK']);
     await press('Zapisano', 'OK'); expect(stack().slice(-2)).toEqual(['plan', 'generator']);
     await tap(screen.getByText('Zapisz plan')); await flushAll(5); await press('Ustawić nowy plan jako aktywny?', 'Tylko zapisz');
-    await press('Zapisano', 'Plan tygodnia'); expect(plans()).toBe(1); expect(stack()).toEqual(['(tabs)', 'plan']);
+    await press('Zapisano', 'Planowanie'); expect(plans()).toBe(1); expect(stack()).toEqual(['(tabs)', 'plan']);
     await boot('/', setup); await go('/generator?mode=own'); await flushAll(10);
     await tap(screen.getByText('Zapisz plan')); await flushAll(5); await press('Ustawić nowy plan jako aktywny?', 'Tylko zapisz');
-    await press('Zapisano', 'Plan tygodnia'); expect(stack()).toEqual(['(tabs)', 'plan']); expect(plan.savedPlans()).toHaveLength(1);
+    await press('Zapisano', 'Planowanie'); expect(stack()).toEqual(['(tabs)', 'plan']); expect(plan.savedPlans()).toHaveLength(1);
   });
-  test('English: buttons “Show templates”, “Weekly plan”, “OK”', async () => {
+  test('English: buttons “Show templates”, “Planning”, “OK”', async () => {
     await boot('/plan', () => {}, 'en'); await tap(screen.getByText('Generate templates and plan')); await flushAll(1100);
     await tap(screen.getByText('Save templates and plan')); await flushAll(5); await press('Make the new plan active?', 'Save only');
-    expect(lastAlert('Saved')!.buttons!.map(b => b.text)).toEqual(['Show templates', 'Weekly plan', 'OK']);
-    await press('Saved', 'Weekly plan'); expect(plans()).toBe(1);
+    expect(lastAlert('Saved')!.buttons!.map(b => b.text)).toEqual(['Show templates', 'Planning', 'OK']);
+    await press('Saved', 'Planning'); expect(plans()).toBe(1);
   });
 });

@@ -3,7 +3,7 @@ import { ScrollView, View, Alert } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Screen, H1, Muted, Btn, Txt, useOnce, monoSafe } from '@/components/ui';
 import { beginEdit } from '@/lib/edit';
-import { templateFromWorkout } from '@/lib/tplsync';
+import { templateFromWorkout, pendingTemplateUpdate, applyPendingTemplateUpdate, templateDiffText } from '@/lib/tplsync';
 import { wallTs, effortLabel, effortText, workoutDurSec, getState, useTick, exById, isBW, bandById, loadLabel, fmtDate, fmtTime, fmtDur, fmtSec, fmtDist, volume, deleteWorkout, groupLabels, shortBand, bandA11y, loadLabelShort, blockImpl, shownLoad } from '@/lib/store';
 import { hasTime, hasReps, hasWeight, hasDistance, SET_KIND_LABEL } from '@/lib/seed';
 import { setMarkOf } from '@/lib/live';
@@ -15,6 +15,7 @@ import { t, exName, lang } from '@/lib/i18n';
 import { fmtW, fmtVol, fmtNum } from '@/lib/units';
 
 export default function HistoryDetail() {
+  const [tplSaved, setTplSaved] = React.useState(false); /* po „Zapisz zmiany w szablonie” — potwierdzenie zamiast przycisku */
   const { id } = useLocalSearchParams<{ id: string }>(); useTick(); const router = useRouter(); const th = useTheme(); const once = useOnce(); /* audyt (LOW): podwójne „Edytuj” nie otwiera dwóch edytorów */
   const w = getState().workouts.find(x => x.id === id);
   /* karta rekordów (11.10.2026, pkt 7): liczba i statystyki z jednego workoutPRs (E3: prCountOf); liczone przy każdym renderze, jak prMap niżej */
@@ -30,6 +31,8 @@ export default function HistoryDetail() {
       {earlyNote(w.id) ? <Muted style={{ marginBottom: 10, fontSize: 13 }}>{earlyNote(w.id)}</Muted> : null}{/* docs/18 pkt 4 (11.10.2026): trening policzony do wcześniejszego dnia planu */}
       {w.healthPending && !w.healthUUID ? <Muted style={{ marginBottom: 10, fontSize: 13 }}>{t('Nie zapisano jeszcze w Apple Health — ponowię przy następnym uruchomieniu aplikacji.')}</Muted> : null}{/* audyt 0.10 J2 */}
       {w.note ? <Muted style={{ marginBottom: 10 }}>{w.note}</Muted> : null}
+      {/* 8A (11.10.2026): zamiast okna „Zaktualizować szablon?” po „Zakończ” — przycisk, tylko gdy trening różnił się od szablonu i szablon istnieje */}
+      {(() => { const pu = pendingTemplateUpdate(w.id); if (pu) return <View style={{ marginBottom: 10 }}><Btn title={t('Zapisz zmiany w szablonie')} small accessibilityHint={templateDiffText(pu.diff)} style={{ alignSelf: 'flex-start' }} onPress={once(() => { if (applyPendingTemplateUpdate(w.id)) setTplSaved(true); })} /><Muted style={{ fontSize: 13, marginTop: 4 }}>{templateDiffText(pu.diff)}</Muted></View>; return tplSaved ? <Muted style={{ marginBottom: 10, fontSize: 13 }}>{t('Szablon zaktualizowany.')}</Muted> : null; })()}
       {/* H5 (audyt 0.10, wariant B): nowy szablon ze składu sesji — tylko na polecenie użytkownika (decyzja 03.10.2026: aplikacja sama szablonów nie tworzy) */}
       {w.exercises.some(e => { const x = exById(e.exerciseId); return x && !x.archived; }) ? <Btn title={t('Zapisz jako szablon')} small kind="ghost" accessibilityHint={t('Nowy szablon z ćwiczeniami i seriami tej sesji.')} style={{ alignSelf: 'flex-start', marginBottom: 12 }} onPress={once(() => { const tpl = templateFromWorkout(w); router.push(`/template/${tpl.id}`); })} /> : null}
       {w.exercises.map((e, i) => { const ex = exById(e.exerciseId); const m = ex?.metric ?? 'weight_reps'; const rpe = getState().settings.showRpe; const anyBand = e.sets.some(s => s.bandId);

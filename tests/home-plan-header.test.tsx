@@ -37,10 +37,10 @@ describe('nagłówek planu nad kalendarzem', () => {
   test('plan bez nazwy: „Plan: Plan tygodnia”', async () => {
     await boot(t => { setPlan(t, { 3: 0 }); hist(); }); expect(within(screen.getByTestId('plan-header')).getByText('Plan: Plan tygodnia')).toBeTruthy();
   });
-  test('bez planu (są treningi): „Bez planu tygodnia” i „Ustaw plan” → ekran planu; „Ukryj” chowa tylko zachętę, nagłówek zostaje', async () => {
+  test('bez planu (są treningi): „Bez planu tygodnia” i „Ustaw plan” → ekran planu; nagłówek jest stałą zachętą — bez osobnego tekstu i „Ukryj” (11.10.2026)', async () => {
     await boot(() => { hist(); });
     const h = within(screen.getByTestId('plan-header')); expect(h.getByText('Bez planu tygodnia')).toBeTruthy(); expect(h.getByText('Ustaw plan')).toBeTruthy(); expect(screen.queryByLabelText('Planowanie')).toBeNull();
-    await tap(screen.getAllByLabelText('Ukryj zachętę do planu tygodnia')[0]); await flushAll(5); expect(screen.getByText('Bez planu tygodnia')).toBeTruthy(); expect(screen.getByLabelText('Ustaw plan')).toBeTruthy();
+    expect(screen.queryByText('Ukryj')).toBeNull(); expect(screen.queryByLabelText('Ukryj zachętę do planu tygodnia')).toBeNull(); expect(screen.queryByText(/^Ustaw plan tygodnia, by widzieć/)).toBeNull();
     await tap(screen.getByLabelText('Ustaw plan')); await flushAll(10); expect(stack()).toEqual(['(tabs)', 'plan']);
   });
   test('duplikaty usunięte: brak „Plan tygodnia” na karcie, wiersza „Plan: … Planowanie ›”, karty Planowania, listy „Zacznij z szablonu”; „Następne” tylko raz; akcje planowania tylko na ekranie planu', async () => {

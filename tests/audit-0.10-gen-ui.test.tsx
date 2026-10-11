@@ -89,13 +89,13 @@ describe('C3 / UX-10: miejsce, ponowne generowanie, potwierdzenie, notatka', () 
   test('ponowne generowanie: pytanie o zastąpienie nieużywanych → „Zastąp” bez „(2)”; „Zostaw” — nowe obok; potwierdzenie z linkiem do folderu', async () => {
     await boot('/generator'); await saveBtn(); await press('Ustawić nowy plan jako aktywny?', 'Tylko zapisz');
     expect(lastAlert('Zapisano')!.msg).toBe('Szablony: FBW A, FBW B — w folderze „Wygenerowane” na liście Szablony.\nPlan „Masa, 3× w tygodniu · Pełna siłownia” jest w „Inne plany”.');
-    expect(lastAlert('Zapisano')!.buttons!.map(b => b.text)).toEqual(['Pokaż szablony', 'Plan tygodnia', 'OK']); /* UI2-06: „OK” zostaje na generatorze */
+    expect(lastAlert('Zapisano')!.buttons!.map(b => b.text)).toEqual(['Pokaż szablony', 'Planowanie', 'OK']); /* UI2-06: „OK” zostaje na generatorze */
     await press('Zapisano', 'Pokaż szablony'); expect(screen.getByText('Wygenerowane')).toBeTruthy(); expect(screen.getByText('FBW A')).toBeTruthy();
     await go('/generator'); await flushAll(10); await saveBtn();
     expect(lastAlert('Zastąpić poprzednio wygenerowane, nieużywane szablony?')!.msg).toBe('Bez treningów i poza aktywnym planem: FBW A, FBW B, Masa, 3× w tygodniu · Pełna siłownia. „Zastąp” je usunie, „Zostaw” doda nowe obok.');
     await press('Zastąpić poprzednio wygenerowane, nieużywane szablony?', 'Zastąp'); await press('Ustawić nowy plan jako aktywny?', 'Tylko zapisz');
     expect(S().templates.map(x => x.name)).toEqual(['FBW A', 'FBW B']); expect(plan.savedPlans()).toHaveLength(1);
-    await press('Zapisano', 'Plan tygodnia'); expect(screen.getByText('Inne plany')).toBeTruthy();
+    await press('Zapisano', 'Planowanie'); expect(screen.getByText('Inne plany')).toBeTruthy();
     await go('/generator'); await flushAll(10); await saveBtn(); await press('Zastąpić poprzednio wygenerowane, nieużywane szablony?', 'Zostaw'); await press('Ustawić nowy plan jako aktywny?', 'Tylko zapisz');
     expect(S().templates.map(x => x.name)).toEqual(['FBW A', 'FBW B', 'FBW A (2)', 'FBW B (2)']); expect(lastAlert('Zapisano')!.msg).toMatch(/^Szablony: FBW A \(2\), FBW B \(2\) — /);
   });

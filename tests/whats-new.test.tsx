@@ -44,6 +44,11 @@ describe('ekran Trening', () => {
     const i = screen.getByTestId('whats-new-i'); expect(i.props.accessibilityLabel).toBe('Co nowego'); expect(screen.queryByTestId('whats-new-dot')).toBeNull();
     const tree = JSON.stringify(screen.toJSON()); expect(tree.indexOf('whats-new-i')).toBeLessThan(tree.indexOf('"Trening"')); /* pierwszy w wierszu nagłówka, przed tytułem */
   });
+  test('9A (11.10.2026): ikona „Co nowego” to iskierka ✦, nie litera „i”; testID i etykieta VoiceOver bez zmian', async () => {
+    await boot();
+    const i = screen.getByTestId('whats-new-i'); const glyphs = i.findAll(n => (n.type as unknown) === 'Text').map(n => [n.props.children].flat().join(''));
+    expect(glyphs).toEqual(['✦']); expect(i.props.accessibilityLabel).toBe('Co nowego'); expect(i.props.accessibilityRole).toBe('button');
+  });
   test('kropka po aktualizacji; otwarcie: bieżący wpis, starsze zwinięte; kropka znika; „Zamknij” i ponowne „i” zwijają', async () => {
     await boot(withWorkout);
     expect(screen.getByTestId('whats-new-dot')).toBeTruthy(); expect(screen.getByLabelText('Co nowego — są nowe zmiany')).toBeTruthy();
