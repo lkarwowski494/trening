@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { ScrollView, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
-import { Screen, H1, Item, Btn, Empty, useOnce, SectionTitle, Muted } from '@/components/ui';
+import { Screen, Item, Btn, Empty, useOnce, SectionTitle, Muted } from '@/components/ui';
 import { Pressable } from 'react-native';
 import { getState, useCfgTick, exById, newTemplate, templateGroups, archivedTemplates } from '@/lib/store';
 import { removeTemplate, templateUsageText } from '@/lib/plan';
@@ -15,9 +14,11 @@ export default function TemplatesScreen() {
   const row = (t: Template) => <SwipeRow key={t.id} label={tr('Usuń szablon: {name}', { name: t.name })} title={tr('Usunąć szablon?')} message={[t.name, templateUsageText(t.id)].filter(Boolean).join('\n\n')} onDelete={() => removeTemplate(t.id) /* audyt 0.10 A7: skutki dla planu w pytaniu; plan sprzątany razem z szablonem */}>{a11y => <Item a11y={a11y} title={t.name} sub={t.items.map(i => { const e = exById(i.exerciseId); return e ? exName(e) : ''; }).filter(Boolean).slice(0, 4).join(', ') + (t.items.length > 4 ? '…' : '')} onPress={() => router.push(`/template/${t.id}`)} />}</SwipeRow>;
   /* 07.10.2026 wieczór (docs/21 4a): foldery jako nagłówki, archiwum zwinięte na dole; przenosi i archiwizuje tylko użytkownik (edytor szablonu) */
   return (
-    <SafeAreaView style={{ flex: 1 }} edges={['top']}><Screen>
-      <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginVertical: 10 }}><H1>{tr('Szablony')}</H1><Btn title={tr('+ Nowy')} small onPress={once(() => { const t = newTemplate(); router.push(`/template/${t.id}?edit=1&new=1`); })} /></View>
-      <Btn nav title={tr('Wygeneruj szablony i plan')} small onPress={() => router.push('/generator')} style={{ alignSelf: 'flex-start', marginBottom: 8 }} />{/* 08.10.2026: generator na polecenie (docs/24) */}
+    <Screen>
+      <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', marginVertical: 10, gap: 8, flexWrap: 'wrap' }}>
+        <Btn title={tr('+ Nowy')} small onPress={once(() => { const t = newTemplate(); router.push(`/template/${t.id}?edit=1&new=1`); })} />
+        <Btn nav title={tr('Wygeneruj szablony i plan')} small onPress={() => router.push('/generator')} />{/* 08.10.2026: generator na polecenie (docs/24) */}
+      </View>{/* 11.10.2026 (docs/22, wariant A): ekran pod Więcej — tytuł w nagłówku stosu, bez własnego H1 */}
       <ScrollView>
         {st.templates.length ? <>
           {templateGroups().map(g => <React.Fragment key={g.folder ?? ''}>{g.folder ? <SectionTitle>{g.folder}</SectionTitle> : null}{g.items.map(row)}</React.Fragment>)}
@@ -26,6 +27,6 @@ export default function TemplatesScreen() {
           {showArch ? arch.map(row) : null}
         </> : <Empty>{tr('Brak szablonów — dodaj pierwszy.')}</Empty>}
       </ScrollView>
-    </Screen></SafeAreaView>
+    </Screen>
   );
 }

@@ -80,6 +80,8 @@ function Root() {
         <Stack.Screen name="picker" options={{ presentation: 'modal', title: t('Wybierz ćwiczenie') }} />
         <Stack.Screen name="swap" options={{ presentation: 'modal', title: t('Zamień ćwiczenie') }} />
         <Stack.Screen name="pick-template" options={{ presentation: 'modal', title: t('Wybierz szablon') }} />{/* P2 B (11.10.2026): „Z szablonu” w arkuszu „Inny trening” */}
+        <Stack.Screen name="templates" options={{ title: t('Szablony') }} />{/* 11.10.2026 (docs/22, wariant A): Szablony i Ćwiczenia pod Więcej */}
+        <Stack.Screen name="exercises" options={{ title: t('Ćwiczenia') }} />
         <Stack.Screen name="progression" options={{ title: t('Progresja') }} />{/* docs/22 krok 3 pkt 5; P8 B */}
         <Stack.Screen name="+not-found" options={{ headerShown: false, animation: 'none' }} />
         <Stack.Screen name="_sitemap" options={{ headerShown: false, animation: 'none' }} />
@@ -93,7 +95,6 @@ function Root() {
         <Stack.Screen name="history/add" options={{ title: t('Trening wstecz') }} />
         <Stack.Screen name="history/edit/[id]" options={{ title: t('Edycja sesji'), gestureEnabled: false /* docs/12: szkic nie przepada gestem — Anuluj/Zapisz w nagłówku */ }} />
         <Stack.Screen name="more/bands" options={{ title: t('Gumy') }} />
-        <Stack.Screen name="more/progress" options={{ title: t('Postępy') }} />
         <Stack.Screen name="more/settings" options={{ title: t('Ustawienia') }} />
         <Stack.Screen name="more/bodymass" options={{ title: t('Masa ciała') }} />
         <Stack.Screen name="more/about" options={{ title: t('O aplikacji') }} />{/* SEC-08 */}

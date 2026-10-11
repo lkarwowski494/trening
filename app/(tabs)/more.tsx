@@ -13,8 +13,10 @@ export default function MoreScreen() {
   return (
     <SafeAreaView style={{ flex: 1 }} edges={['top']}><Screen>
       <View style={{ marginVertical: 10 }}><H1>{t('Więcej')}</H1></View>
+      {/* 11.10.2026 (docs/22, wariant A): Szablony i Ćwiczenia zeszły z paska zakładek — na górze Więcej; Postępy mają własną zakładkę */}
+      <Item title={t('Szablony')} onPress={() => router.push('/templates')} />
+      <Item title={t('Ćwiczenia')} onPress={() => router.push('/exercises')} />
       <Item title={t('Przewodnik')} sub={(p => t('Przeczytane: {n} z {m}', { n: p.seen, m: p.total }))(guideProgress())} onPress={() => router.push('/guide')} />{/* 08.10.2026: przewodnik (decyzja właściciela) */}
-      <Item title={t('Postępy')} onPress={() => router.push('/more/progress')} />
       <Item title={t('Miejsca i sprzęt')} onPress={() => router.push('/more/locations')} /* decyzja 05.10.2026: osobna pozycja, nie tylko w Ustawieniach */ />
       {/* decyzja 05.10.2026: gumy w dodawaniu sprzętu (Miejsca i sprzęt → Gumy oporowe); ekran /more/bands zostaje dla usuwania gum */}
       <Item title={t('Kopia zapasowa (eksport / import)')} /* H2 (audyt 0.10): „Kopia zapasowa” zamiast „Backup” (folder w Plikach zostaje „Backup”) */ onPress={() => router.push('/more/backup')} />

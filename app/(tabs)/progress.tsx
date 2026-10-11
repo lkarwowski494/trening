@@ -1,22 +1,38 @@
 import React, { useEffect, useState } from 'react';
 import { ScrollView, View } from 'react-native';
-import { useLocalSearchParams, useRouter } from 'expo-router';
-import { Screen, Muted, Txt, Chip, Input, Empty, H2, monoSafe, Btn } from '@/components/ui';
-import { isDeloadWeek, useTick, exById, setSummary, fmtDate, fmtSec, fmtDist, isBW, getState, bodyMassLog, localDateTs } from '@/lib/store';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { useIsFocused, useLocalSearchParams, useRouter } from 'expo-router';
+import { Screen, H1, Muted, Txt, Chip, Input, Empty, H2, monoSafe, Btn } from '@/components/ui';
+import { isDeloadWeek, useTick, exById, setSummary, fmtDate, fmtSec, fmtDist, isBW, getState, bodyMassLog, latestBodyMass, localDateTs } from '@/lib/store';
 import { sessionsFor, recordsFor, hasHistory, chartKeysFor, totalKind, fmtTotal, weeklyTotals, hasAnyHistory, weeklySetsByMuscle, weeklyVolumeByMuscle, thisMonday, WEEKLY_SETS_MARK, fmtE1, bwShare, type ChartKey } from '@/lib/stats';
 import { MUSCLES } from '@/lib/seed';
 import { LineChart, BarChart, TIME_STEPS } from '@/components/Chart';
 import { PeriodSummary } from '@/components/PeriodSummary';
+import { ProgressTiles } from '@/components/Dashboard';
 import { useTheme, F } from '@/lib/theme';
 import { hasWeight, hasReps, hasTime, hasDistance } from '@/lib/seed';
 import { t, exName, locale, fold, lang, collator } from '@/lib/i18n';
-import { fmtW, fmtVol, volOut, wu, fmtNum } from '@/lib/units';
+import { fmtW, fmtVol, volOut, wu, fmtNum, KG_PER_LB } from '@/lib/units';
 
 /*
  * Postępy (T-030): bez wybranego ćwiczenia — tygodniowa objętość i serie; z ćwiczeniem — wykres wybranej
  * metryki per sesja (max ciężar / e1RM Epley / objętość / max pow. / czas / dystans), rekordy i lista sesji.
+ * 11.10.2026 (docs/22, wariant A; P5 A): osobna zakładka (dawniej Więcej → Postępy); dochodzą „Progresja” (te same kafelki co na ekranie Trening)
+ * i sekcja „Masa ciała” (wykres + wejście do pomiarów — dawniej Ustawienia → Masa ciała). Wejście z ćwiczenia: /progress?ex=<id>.
  */
-export default function Progress() {
+export default function ProgressTab() {
+  /* Zakładka zostaje zamontowana po pierwszym otwarciu, a Postępy słuchają każdej zmiany stanu (useTick) — poza zakładką nie renderujemy treści,
+   * żeby wpisy serii w treningu nie przeliczały wykresów w tle (jak R13-04 dla pozostałych zakładek). Stan widoku (szukanie, wykres) przy wyjściu znika. */
+  const focused = useIsFocused();
+  return (
+    <SafeAreaView style={{ flex: 1 }} edges={['top']}><Screen>
+      <View style={{ marginVertical: 10 }}><H1>{t('Postępy')}</H1></View>
+      {focused ? <Progress /> : null}
+    </Screen></SafeAreaView>
+  );
+}
+
+function Progress() {
   const { ex: exParam } = useLocalSearchParams<{ ex?: string }>(); useTick(); const th = useTheme(); const router = useRouter();
   const [exId, setExId] = useState(exParam ?? ''); const [q, setQ] = useState(''); const [key, setKey] = useState<ChartKey | ''>('');
   useEffect(() => { if (exParam) { setExId(exParam); setKey(''); } }, [exParam]); /* runda 54: link przy otwartym ekranie */
@@ -35,9 +51,10 @@ export default function Progress() {
   if (!ex) {
     const weeks = weeklyTotals(8); const any = hasAnyHistory();
     return (
-      <Screen><ScrollView keyboardShouldPersistTaps="handled" automaticallyAdjustKeyboardInsets contentContainerStyle={{ paddingVertical: 10, paddingBottom: 40 }}>
+      <ScrollView keyboardShouldPersistTaps="handled" automaticallyAdjustKeyboardInsets contentContainerStyle={{ paddingBottom: 40 }}>
         {any ? <>
           <PeriodSummary />
+          <ProgressTiles />{/* 11.10.2026: „Progresja” także tu — to samo wejście co z ekranu Trening (/progression) */}
           <H2>{t('Objętość tygodniowo ({u})', { u: wu() })}</H2>
           <BarChart bars={weeks.map(w => ({ label: short(w.weekStart) + (isDeloadWeek(w.weekStart) ? ' D' : ''), value: volOut(w.volume) }))} fmt={v => v >= 1000 ? `${fmtNum(v / 1000, 1)}k` : `${v}`} />
           <H2 style={{ marginTop: 14 }}>{t('Serie robocze tygodniowo')}</H2>
@@ -51,12 +68,13 @@ export default function Progress() {
           <MuscleCompare cur={weeklyVolumeByMuscle(thisMonday())} prev={weeklyVolumeByMuscle(thisMonday(-1))} fmt={v => { const x = volOut(v); return x >= 10000 ? `${fmtNum(x / 1000, 1)}k` : fmtNum(Math.round(x)); }} />
           <Muted style={{ fontSize: 12, marginTop: 4, marginBottom: 14 }}>{t('Objętość serii roboczych (ciężar × powtórzenia × mnożnik ćwiczenia); partia główna liczy całość, pomocnicza połowę. Ćwiczenia bez ciężaru (masa ciała, gumy) się nie liczą.')}</Muted>
         </> : <Empty>{t('Wykresy pojawią się po pierwszym zakończonym treningu.')}</Empty>}
+        <BodyMassSection />
         <H2 style={{ marginTop: 8 }}>{t('Ćwiczenie')}</H2>
         <Input value={q} onChangeText={setQ} placeholder={t('Szukaj ćwiczenia…')} maxLength={80} autoCorrect={false} />
         <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6, marginTop: 10 }}>{opts.map(e => <Chip key={e.id} label={exName(e) + (e.archived ? ` (${t('usunięte')})` : '')} on={false} onPress={() => { setExId(e.id); setKey(''); }} />)}</View>
         {!opts.length ? <Muted style={{ fontSize: 13, marginTop: 6 }}>{t('Nic nie pasuje.')}</Muted> : null}
         {all.length > opts.length ? <Muted style={{ fontSize: 12, marginTop: 6 }}>{t('Pokazano {n} z {m} — wpisz nazwę, by zawęzić.', { n: opts.length, m: all.length })}</Muted> : null}
-      </ScrollView></Screen>
+      </ScrollView>
     );
   }
 
@@ -71,7 +89,7 @@ export default function Progress() {
   if (rec.bestE1rm) recRows.push([isBW(ex) ? 'e1RM (Epley)' : ex.loadMode === 'per_dumbbell' ? t('e1RM (Epley, per hantel)') : ex.loadMode === 'unilateral' ? t('e1RM (Epley, na stronę)') : 'e1RM (Epley)', fmtE1(ex, rec.bestE1rm, rec.bestE1rmBm)]); /* runda 59; E1 (audyt 0.10): masa ciała — „126,7 kg (masa ciała + 46,7)” */
   /* E1: dlaczego e1RM ćwiczenia z masą ciała jest albo go nie ma (masa ciała z Ustawień, udział masy ciała ze źródeł) */
   const sh = isBW(ex) && hasWeight(m) && hasReps(m) ? bwShare(ex) : undefined;
-  const bwNote = !isBW(ex) || !hasWeight(m) || !hasReps(m) ? '' : !sh ? t('Bez e1RM: brak źródeł, jaką część masy ciała podnosisz w tym ćwiczeniu.') : !bodyMassLog().length ? t('e1RM pojawi się po wpisaniu masy ciała w Ustawieniach.') : [t('e1RM: wzór Epleya na {p}% masy ciała z dnia treningu (ostatni pomiar z tego dnia lub wcześniejszy) plus dociążenie (uproszczenie).', { p: Math.round(sh * 100) }), ...(sessions.some(x => x.bodyMass == null) ? [t('Treningi sprzed pierwszego pomiaru ({d}) — bez e1RM.', { d: fmtDate(localDateTs(bodyMassLog()[0].date)) })] : [])].join(' '); /* fala 2: masa ciała z datą */
+  const bwNote = !isBW(ex) || !hasWeight(m) || !hasReps(m) ? '' : !sh ? t('Bez e1RM: brak źródeł, jaką część masy ciała podnosisz w tym ćwiczeniu.') : !bodyMassLog().length ? t('e1RM pojawi się po wpisaniu masy ciała w Postępach.') : [t('e1RM: wzór Epleya na {p}% masy ciała z dnia treningu (ostatni pomiar z tego dnia lub wcześniejszy) plus dociążenie (uproszczenie).', { p: Math.round(sh * 100) }), ...(sessions.some(x => x.bodyMass == null) ? [t('Treningi sprzed pierwszego pomiaru ({d}) — bez e1RM.', { d: fmtDate(localDateTs(bodyMassLog()[0].date)) })] : [])].join(' '); /* fala 2: masa ciała z datą */
   if (hasWeight(m) && rec.maxLoad) recRows.push([isBW(ex) ? t('Max dociążenie') : (ex.loadMode === 'per_dumbbell' ? t('Max ciężar (per hantel)') : ex.loadMode === 'unilateral' ? t('Max ciężar (na stronę)') : t('Max ciężar')), kg(rec.maxLoad)]);
   if (rec.bestSetVolume) recRows.push([t('Najlepsza seria (objętość)'), fmtVol(rec.bestSetVolume)]);
   if (hasReps(m) && isBW(ex)) { /* T7: jak próg rekordu — bez asysty osobno, z asystą tylko gdy więcej */ if (rec.maxRepsFree) recRows.push([t('Max powtórzeń bez asysty'), `${rec.maxRepsFree}`]); if (rec.maxReps > rec.maxRepsFree) recRows.push([t('Max powtórzeń z asystą'), `${rec.maxReps}`]); }
@@ -80,8 +98,8 @@ export default function Progress() {
   if (hasDistance(m) && rec.maxDistance) recRows.push([t('Najdłuższy dystans'), fmtDist(rec.maxDistance)]);
 
   return (
-    <Screen><ScrollView keyboardShouldPersistTaps="handled" contentContainerStyle={{ paddingVertical: 10, paddingBottom: 40 }}>
-      <Chip label={`${exName(ex)}  ✕`} a11yLabel={exName(ex)} a11yHint={t('Tapnij, by wybrać inne ćwiczenie.')} on onPress={() => setExId('')} />
+    <ScrollView keyboardShouldPersistTaps="handled" contentContainerStyle={{ paddingBottom: 40 }}>
+      <Chip label={`${exName(ex)}  ✕`} a11yLabel={exName(ex)} a11yHint={t('Tapnij, by wybrać inne ćwiczenie.')} on onPress={() => { setExId(''); if (exParam) router.setParams({ ex: '' }); /* inaczej powrót do zakładki otwierałby znów to ćwiczenie */ }} />
       {sessions.length ? <>
         <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6, marginTop: 12 }}>{keys.map(k => <Chip key={k.key} label={k.label} on={active?.key === k.key} onPress={() => setKey(k.key)} />)}</View>
         <View style={{ marginTop: 10 }}>{active ? <LineChart points={points} fmt={active.fmt} scale={active.scale} minStep={active.minStep} intOnly={active.intOnly} steps={active.time ? TIME_STEPS : undefined} /> : null}</View>
@@ -98,8 +116,21 @@ export default function Progress() {
             <Muted style={{ fontSize: 13 }}>{s.sets.map(x => setSummary(ex, x)).join(' · ')}</Muted>
           </View>))}
       </> : <Empty>{t('Brak zapisanych sesji z tym ćwiczeniem.')}</Empty>}
-    </ScrollView></Screen>
+    </ScrollView>
   );
+}
+
+/** „Masa ciała” w Postępach (P5 A, 11.10.2026): ostatni pomiar, wykres pomiarów (od 2 pomiarów) i wejście do ekranu z dodawaniem i listą pomiarów
+ * (/more/bodymass). Bez nowych danych — te same pomiary co dotąd (store.bodyMassLog), tylko inne miejsce wejścia niż Ustawienia. */
+function BodyMassSection() {
+  const router = useRouter(); const log = bodyMassLog(); const b = latestBodyMass(); const lb = wu() === 'lb';
+  const points = log.map(x => ({ x: localDateTs(x.date), y: x.kg, label: new Date(localDateTs(x.date)).toLocaleDateString(locale(), { day: 'numeric', month: 'short', year: 'numeric' }) }));
+  return <>
+    <H2 style={{ marginTop: 14 }}>{t('Masa ciała')}</H2>
+    <Muted style={{ fontSize: 13, marginBottom: 6 }}>{b ? t('{v} · pomiar z {d}', { v: fmtW(b.kg), d: fmtDate(localDateTs(b.date)) }) : t('nie podano — e1RM podciągania i pompek')}</Muted>
+    {log.length >= 2 ? <LineChart points={points} fmt={v => fmtW(v)} scale={lb ? 1 / KG_PER_LB : 1} minStep={lb ? 0.1 : 0.01} /> : null}
+    <Btn nav small title={t('Masa ciała — pomiary')} style={{ alignSelf: 'flex-start', marginTop: 6 }} onPress={() => router.push('/more/bodymass')} />
+  </>;
 }
 
 /** Porównanie partii: ten tydzień (pasek) vs poprzedni (liczba w nawiasie) — serie albo objętość (06.10.2026). `mark` — pionowa kreska
