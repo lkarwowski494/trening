@@ -57,13 +57,22 @@ describe('LOW 1 — dopisek i wstawianie wartości: to samo mapowanie serii źr�
     const p = prevOf(0); expect(store.offListNote(e, p, 'home', si => store.hintFor(p?.sets, e.sets, si, ex(DB)))).toBeNull();
     e.sets[2].weight = 24; expect(noteOf(0)).toBe(32); e.sets[3].weight = 22; expect(noteOf(0)).toBeNull();
   });
-  test('ekran: wpis 24 w serie 1–2 — dopisek widoczny; w serie 3–4 — znika', async () => {
+  test('ekran: wpis 24 od końca (serie 4, 3, 2) — dopisek widoczny, dopóki seria 1 ma 32; wpis w serię 1 — znika', async () => {
+    /* 11.10.2026 (kaskada w dół, pkt 6A): wpis w serii i przechodzi do KOLEJNYCH serii z dawną wartością, więc wpis w serię 1 (a potem 2) od razu
+     * zmienia także serie za nią — dopisek znika po wpisie w serię 1. Mapowanie srcSetAt sprawdzamy więc wpisując od ostatniej serii (bez kaskady). */
     await fresh(); places(); hist(day(3), DB, [{ weight: 32, reps: 8 }, { weight: 32, reps: 8 }]); store.startFromTemplate(tplAt(DB, 'home', 4)); await show();
     expect(screen.getByText(NOTE('32 kg'))).toBeTruthy();
     const f = () => screen.getAllByLabelText('kg/hantel'); expect(f()).toHaveLength(4);
-    await type(f()[0], '24'); await type(f()[1], '24'); await flushAll(5); expect(screen.getByText(NOTE('32 kg'))).toBeTruthy();
+    await type(f()[3], '24'); await flushAll(5); expect(screen.getByText(NOTE('32 kg'))).toBeTruthy();
     await type(f()[2], '24'); await flushAll(5); expect(screen.getByText(NOTE('32 kg'))).toBeTruthy();
-    await type(f()[3], '24'); await flushAll(5); expect(screen.queryByText(/nie ma tutaj/)).toBeNull();
+    await type(f()[1], '24'); await flushAll(5); expect(screen.getByText(NOTE('32 kg'))).toBeTruthy();
+    await type(f()[0], '24'); await flushAll(5); expect(screen.queryByText(/nie ma tutaj/)).toBeNull();
+  });
+  test('ekran + kaskada: wpis 24 w serię 1 przechodzi na serie 2–4 (wszystkie 32) — dopisek znika od razu', async () => {
+    await fresh(); places(); hist(day(3), DB, [{ weight: 32, reps: 8 }, { weight: 32, reps: 8 }]); store.startFromTemplate(tplAt(DB, 'home', 4)); await show();
+    expect(screen.getByText(NOTE('32 kg'))).toBeTruthy();
+    await type(screen.getAllByLabelText('kg/hantel')[0], '24'); await flushAll(5);
+    expect(vals(store.getState().active!.exercises[0].sets)).toEqual([[24, 8], [24, 8], [24, 8], [24, 8]]); expect(screen.queryByText(/nie ma tutaj/)).toBeNull();
   });
   test('edytor historii (trening wstecz z tego szablonu) — ta sama odpowiedź co trening na tych samych polach', async () => {
     await fresh(); places(); hist(day(5), DB, [{ weight: 32, reps: 8 }, { weight: 32, reps: 8 }]); const tpl = tplAt(DB, 'home', 4);

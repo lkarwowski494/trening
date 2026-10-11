@@ -8,7 +8,7 @@ import * as store from '@/lib/store';
 import * as plan from '@/lib/plan';
 import { exName, applyLang } from '@/lib/i18n';
 import { fresh, saved, withDemoTemplates, ex, pressAlert, addWorkout } from './helpers';
-import { renderApp, flushAll, screen, tap, type, go, act } from './app';
+import { renderApp, flushAll, screen, tap, type, go, act, startTpl } from './app';
 import * as timer from '@/lib/timer';
 
 jest.setTimeout(60000);
@@ -26,9 +26,9 @@ describe('trening zrobiony wcześniej — ekrany', () => {
   test('zakończenie treningu → linijka na ekranie sesji → panel dnia i kalendarz → „Cofnij”', async () => {
     const t = await boot(ts => { plan.setWeekDay(0, ts.find(x => x.name === 'Upper A')!.id); plan.setWeekDay(3, ts.find(x => x.name === 'Upper B')!.id); }, '/');
     const up = t.find(x => x.name === 'Upper A')!; const chin = exName(ex('Chin Up'));
-    await tap(screen.getByLabelText('Start: Upper A')); await flushAll(10);
+    await startTpl('Upper A');
     await type(screen.getAllByLabelText('Powtórzenia').find(x => x.props.accessibilityHint === `Seria 1 — ${chin}`)!, '6'); await tap(screen.getByLabelText(`Seria 1 zrobiona — ${chin}`));
-    await tap(screen.getAllByText('Zakończ trening i zapisz')[0]); pressAlert('Zakończyć trening?', 'Zakończ'); await flushAll(500);
+    await tap(screen.getByText('Zakończ')); pressAlert('Zakończyć trening?', 'Zakończ'); await flushAll(500);
     const w = S().workouts[0]; expect(S().doneEarly).toEqual({ '2026-10-12': w.id });
     expect(screen.getByText(/^Policzone jako trening z .*12.* — ten dzień jest wolny\.$/)).toBeTruthy();
     /* panel dnia pon. 12.10 */

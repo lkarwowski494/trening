@@ -80,7 +80,7 @@ export function ProgressTiles() {
  * z jednym przyciskiem — „Planowanie” (szablony i plan są w jednym miejscu: + Nowy szablon, Plan z moich szablonów, Wygeneruj) albo „Przewodnik”.
  * P6 B (import z innego dziennika jako czwarty, pomijalny krok „Masz historię z innej aplikacji?”) — po wdrożeniu importu (dziś go nie ma). */
 export function FirstSteps() {
-  useTick(); const router = useRouter(); const th = useTheme(); const f = firstSteps(); if (!f) return null;
+  useTick(); const router = useRouter(); const once = useOnce(); const th = useTheme(); const f = firstSteps(); if (!f) return null;
   const step = (done: boolean, n: number, text: string, action?: React.ReactNode) => (
     <View accessibilityLanguage={lang()} key={n} accessible={!action} accessibilityLabel={`${n}. ${text} ${done ? t('zrobione') : t('do zrobienia')}`} style={{ flexDirection: 'row', gap: 10, paddingVertical: 8 }}>
       <View style={{ width: 24, height: 24, borderRadius: 12, alignItems: 'center', justifyContent: 'center', backgroundColor: done ? th.accent : 'transparent', borderWidth: done ? 0 : 1.5, borderColor: th.line }}>
@@ -96,7 +96,7 @@ export function FirstSteps() {
       {step(f.plan, 2, t('Ustaw plan tygodnia — zobaczysz tu dzisiejszy trening i dostaniesz przypomnienie.'), !f.plan ? planning : undefined)}
       {step(false, 3, t('Pierwszy trening: duży przycisk „Start” u góry albo „Pusty trening”.'), <Btn nav small kind="ghost" title={t('Przewodnik')} accessibilityLabel={t('Przewodnik po funkcjach')} onPress={() => router.push('/guide?topic=workout')} style={{ alignSelf: 'flex-start' }} />)}
       {/* 11.10.2026: „Miejsca i sprzęt” — jedno zdanie z odnośnikiem (nie osobny krok); z Ustawień wejście zniknęło */}
-      <Pressable accessibilityLanguage={lang()} accessibilityRole="link" accessibilityLabel={t('Ćwiczysz w domu albo na siłowni? Ustaw sprzęt w „Miejsca i sprzęt”.')} onPress={() => router.push('/more/locations')} hitSlop={8} style={{ paddingVertical: 4 }}>
+      <Pressable accessibilityLanguage={lang()} accessibilityRole="link" accessibilityLabel={t('Ćwiczysz w domu albo na siłowni? Ustaw sprzęt w „Miejsca i sprzęt”.')} onPress={once(() => router.push('/more/locations'))} hitSlop={8} style={{ paddingVertical: 4 }}>
         <Muted style={{ fontSize: 13 }}>{t('Ćwiczysz w domu albo na siłowni? Ustaw sprzęt w „Miejsca i sprzęt”.')}</Muted>
       </Pressable>
     </View>);
