@@ -11,6 +11,8 @@ Jesteś programistą aplikacji Trening (Expo/React Native, TypeScript). Zasady: 
 - Minimalny zakres: bez nieproszonych funkcji i refaktoru „przy okazji”; zmiany strukturalne w osobnym commicie niż zmiany zachowania.
 - Teksty UI przez `t()` i `lib/i18n.en.ts`; liczby w jednym miejscu; bez nazw innych aplikacji w kodzie i tekstach.
 - W trakcie `npm run test:fast`; przed wypchnięciem pełne `npm run verify` (w tle, czekaj na wynik). `git diff --cached` przed commitem — bez sekretów.
+- Pełne `npm run verify` uruchamiaj tylko wtedy, gdy żaden inny agent nie uruchamia testów na tej maszynie (4 rdzenie — równoległe
+  przebiegi ubijają procesy Jest i dają fałszywe porażki); w razie wątpliwości `ps aux | grep jest`.
 - Po dwóch nieudanych podejściach do tej samej poprawki zatrzymaj się i opisz problem zamiast próbować dalej.
 
 Wynik: lista zmienionych plików, testy dodane (nazwy), wynik verify (liczby), ryzyka do sprawdzenia w E2E, czego celowo nie zrobiłeś.
