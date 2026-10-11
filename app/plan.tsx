@@ -6,7 +6,7 @@ import { SwipeRow } from '@/components/SwipeRow';
 import { getState, useTick, templateGroups, newTemplate, SAVED_PLANS_MAX } from '@/lib/store';
 import { ownTemplates } from '@/lib/generator';
 import { useTheme, F } from '@/lib/theme';
-import { weekPlanDays, setWeekDay, planName, setPlanName, typePlanName, savedPlans, newPlan, setSavedDay, typeSavedName, renamePlan, activatePlan, deletePlan, plansFull, activationNote, savedChanges, hasPlan, assignTarget, type PlanDays } from '@/lib/plan';
+import { weekPlanDays, setWeekDay, planName, setPlanName, typePlanName, savedPlans, newPlan, setSavedDay, typeSavedName, renamePlan, activatePlan, deactivatePlan, hasActivePlan, deletePlan, plansFull, activationNote, savedChanges, hasPlan, assignTarget, type PlanDays } from '@/lib/plan';
 import { askReminderPermission } from '@/lib/planReminder';
 import { t, locale, lang } from '@/lib/i18n';
 
@@ -30,6 +30,21 @@ export const planSummary = (days: PlanDays) => days.map((id, i) => (tplName(id) 
 const nameOr = (n: string) => n || t('Poprzedni plan');
 /** Ile zapisanych planów widać od razu (reszta po „Pokaż wszystkie”). */
 const OTHER_FIRST = 3;
+
+/** Ikona stanu planu na liście (decyzja właściciela 11.10.2026, docs/18 pkt 5): aktywny — wypełnione koło ze znakiem ✓, pozostałe — puste koło (kształt, nie tylko kolor).
+ * Etykieta VoiceOver nazywa działanie, wartość — stan („aktywny” / „nieaktywny”). */
+function PlanToggle({ name, active, onPress }: { name: string; active: boolean; onPress: () => void }) {
+  const th = useTheme();
+  return (
+    <Pressable accessibilityLanguage={lang()} testID={active ? 'plan-toggle-on' : 'plan-toggle-off'} accessibilityRole="button" hitSlop={4}
+      accessibilityLabel={active ? t('Wyłącz plan: {name}', { name }) : t('Ustaw jako aktywny: {name}', { name })} accessibilityValue={{ text: active ? t('aktywny') : t('nieaktywny') }}
+      accessibilityHint={active ? t('Kalendarz od dziś będzie pusty.') : t('Pyta o potwierdzenie.')} onPress={onPress}
+      style={({ pressed }) => ({ width: 44, height: 44, alignItems: 'center', justifyContent: 'center', opacity: pressed ? 0.6 : 1 })}>
+      <View style={{ width: 26, height: 26, borderRadius: 13, borderWidth: 2, borderColor: active ? th.accent : th.text, backgroundColor: active ? th.accent : 'transparent', alignItems: 'center', justifyContent: 'center' }}>
+        {active ? <Txt style={{ color: th.bg, fontSize: 15, lineHeight: 18, fontFamily: F.heavy }}>✓</Txt> : null}
+      </View>
+    </Pressable>);
+}
 
 /** 7 wierszy dni (UX-15 A): wiersz pokazuje dzień i szablon, tapnięcie rozwija wybór (szablony bez folderu, potem foldery). */
 function DayRows({ days, onSet, target }: { days: PlanDays; onSet: (i: number, id: string | null) => void; target: (i: number) => string }) {
@@ -78,9 +93,14 @@ export default function PlanScreen() {
 
 function ActivePlan({ activate }: { activate: (id: string, name: string) => void }) {
   const router = useRouter(); const days = weekPlanDays(); const other = savedPlans(); const [all, setAll] = useState(false); const shown = all ? other : other.slice(0, OTHER_FIRST);
+  const off = () => {
+    /* docs/18 pkt 5 (11.10.2026): wyłączenie zawsze z potwierdzeniem; „Inne plany” pełne — plan nie miałby gdzie się zapisać */
+    if (plansFull()) { Alert.alert(t('Nie można wyłączyć planu'), t('W „Inne plany” jest już {n} planów — usuń któryś, by wyłączyć obecny.', { n: SAVED_PLANS_MAX })); return; }
+    Alert.alert(t('Wyłączyć plan?'), [t('Kalendarz od dziś będzie pusty.'), activationNote() ? activationNote() : ''].filter(Boolean).join('\n'), [{ text: t('Anuluj'), style: 'cancel' }, { text: t('Wyłącz'), style: 'destructive', onPress: () => { deactivatePlan(); } }]); };
   const setDay = (i: number, x: string | null) => { const had = hasPlan(); setWeekDay(i, x); if (!had && hasPlan()) askReminderPermission().catch(() => {}); };
   return (
     <Screen><ScrollView keyboardShouldPersistTaps="handled" contentContainerStyle={{ paddingVertical: 10, paddingBottom: 40 }}>
+      {hasActivePlan() ? <View testID="active-plan-row" style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}><PlanToggle name={nameOr(planName() || t('Mój plan'))} active onPress={off} /><Txt style={{ flex: 1, fontFamily: F.semibold }}>{t('Aktywny plan')}</Txt></View> : null}
       <Field label={t('Nazwa planu')}><Input value={planName()} placeholder={t('Mój plan')} maxLength={40} accessibilityLabel={t('Nazwa planu')} onChangeText={typePlanName} onEndEditing={() => setPlanName(planName())} /></Field>
       <Muted style={{ fontSize: 13, marginBottom: 8 }}>{t('Plan powtarza się co tydzień. Pojedyncze dni zmienisz w Kalendarzu.')}</Muted>
       <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginBottom: 4 }}>
@@ -93,7 +113,7 @@ function ActivePlan({ activate }: { activate: (id: string, name: string) => void
         <SectionTitle>{t('Inne plany')}</SectionTitle>
         <Muted style={{ fontSize: 13, marginBottom: 6 }}>{t('Obowiązuje jeden plan naraz. Po okresie przejściowym wrócisz do poprzedniego jednym przyciskiem. Tapnij plan, by zmienić jego nazwę i dni.')}</Muted>
         {shown.map(p => { const n = savedChanges(p.id); return <SwipeRow key={p.id} label={t('Usuń plan: {name}', { name: nameOr(p.name) })} title={t('Usunąć ten plan?')} message={nameOr(p.name)} onDelete={() => deletePlan(p.id)}>
-          {a11y => <Item a11y={a11y} title={nameOr(p.name)} sub={planSummary(p.days) + (n ? ` · ${t('zmiany dni: {n}', { n })}` : '')} onPress={() => router.push(`/plan?id=${p.id}`)} right={<Btn small title={t('Ustaw jako aktywny')} accessibilityLabel={t('Ustaw jako aktywny: {name}', { name: nameOr(p.name) })} onPress={() => activate(p.id, p.name)} />} />}
+          {a11y => <Item a11y={a11y} title={nameOr(p.name)} sub={planSummary(p.days) + (n ? ` · ${t('zmiany dni: {n}', { n })}` : '')} onPress={() => router.push(`/plan?id=${p.id}`)} right={<PlanToggle name={nameOr(p.name)} active={false} onPress={() => activate(p.id, p.name)} />} />}
         </SwipeRow>; })}
         {!all && other.length > OTHER_FIRST ? <Btn small kind="ghost" title={t('Pokaż wszystkie ({n})', { n: other.length })} onPress={() => setAll(true)} style={{ alignSelf: 'flex-start' }} /> : null}
       </> : null}

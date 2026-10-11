@@ -20,6 +20,7 @@ import { locationLabel } from '@/lib/locations';
 import * as timer from '@/lib/timer';
 import { prMap } from '@/lib/stats';
 import { onWorkoutSaved } from '@/lib/backup';
+import { markDoneEarly } from '@/lib/plan';
 import { hasTime, hasReps, hasWeight, hasDistance, SET_KIND_LABEL, type WExercise, type WSet, type Workout } from '@/lib/seed';
 import { t as tr, tp, exName, lang, glue } from '@/lib/i18n';
 import { wu, wField, wInKeep, fmtW } from '@/lib/units';
@@ -102,7 +103,7 @@ export default function ActiveWorkout() {
     const diff = snap ? templateDiff(tplNow, snap) : null;
     const askTpl = () => { if (!diff || !tplNow || !snap) return; Alert.alert(tr('Zaktualizować szablon „{name}”?', { name: tplNow.name }), [templateDiffText(diff), tr('Szablon zmieni się tylko po „Zaktualizuj szablon”.')].join('\n'), [{ text: tr('Tylko ten raz'), style: 'cancel' }, { text: tr('Zaktualizuj szablon'), onPress: () => { if (getState().templates.includes(tplNow)) updateTemplateFromWorkout(tplNow, snap); } }]); };
     const saved = finishWorkout(at != null && cur ? Math.max(at, lastActivity(cur)) : at); /* T1: koniec nie wcześniej niż ostatnia zapisana seria */ timer.stop(); timer.stopSet(); timer.cancelStaleReminder().catch(() => {});
-    if (saved) { onWorkoutSaved(saved).catch(() => {}); router.push(`/history/${saved.id}`); /* decyzja właściciela 11.10.2026: bez okienka z rekordami — od razu ekran sesji z kartą rekordów (RecordsCard); pytanie o szablon (H5) zostaje */ if (diff) setTimeout(askTpl, 400); }
+    if (saved) { markDoneEarly(saved); /* docs/18 pkt 4 (11.10.2026): trening zrobiony wcześniej */ onWorkoutSaved(saved).catch(() => {}); router.push(`/history/${saved.id}`); /* decyzja właściciela 11.10.2026: bez okienka z rekordami — od razu ekran sesji z kartą rekordów (RecordsCard); pytanie o szablon (H5) zostaje */ if (diff) setTimeout(askTpl, 400); }
   };
   // Runda 69: porzucony trening — po 2 h bez odhaczonej serii pytanie przy otwarciu (także po powrocie z tła);
   // przypomnienie w powiadomieniu 2 h po ostatniej serii.

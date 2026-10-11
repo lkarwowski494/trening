@@ -79,7 +79,8 @@ function setDay(k: string, id: string | null, today = todayKey()) {
 const commit = () => { getState().userTouched = true; save(); };
 
 /** Dni zajęte: z zakończonym treningiem albo z treningiem w toku — na nie nic się nie przenosi (audyt 0.10 A3 / LOG-01). */
-export function busyDays(): Set<string> { const s = new Set(byDay().keys()); const a = getState().active; if (a) s.add(workoutDay(a)); /* J3: dzień w strefie startu */ return s; }
+export function busyDays(): Set<string> { const s = new Set(byDay().keys()); const a = getState().active; if (a) s.add(workoutDay(a)); /* J3: dzień w strefie startu */
+  for (const k of Object.keys(getState().doneEarly ?? {})) if (earlyWorkout(k)) s.add(k); /* 11.10.2026: dzień „zrobiony wcześniej” jest zajęty jak dzień z treningiem */ return s; }
 
 /** Aktywny plan: dni i nazwa; zmiana dni dopisuje odcinek historii od dziś (audyt 0.10 A1). */
 function putActive(days: PlanDays, name: string, today = todayKey()) {
@@ -156,6 +157,20 @@ export function activatePlan(id: string) {
   putActive(planDays(p.days).map(x => (exists(x) ? x : null)) /* audyt 0.10 A7: usunięty szablon — dzień wolny */, p.name, today);
   putOv({ ...past, ...Object.fromEntries(Object.entries(p.overrides ?? {}).filter(([k]) => k >= today)) });
   tidy(today); commit();
+}
+/** Czy jest aktywny plan, który można wyłączyć: dni, nazwa albo zmiany dni od dziś (jak przy zapisie w activatePlan). */
+export const hasActivePlan = (today = todayKey()) => weekPlanDays().some(Boolean) || !!cleanPlanName(planName()) || futureChanges(today) > 0;
+/** Wyłączenie wszystkich planów (decyzja właściciela 11.10.2026, docs/18 pkt 5, wariant A z potwierdzeniem): bieżący plan trafia do „Inne plany” z nazwą
+ * (bez nazwy — „Mój plan (<data>)”) i zmianami dni od dziś (jak przy activatePlan), aktywny plan jest pusty, od dziś nowy odcinek historii „bez planu” —
+ * minione dni bez zmian (A1); przypomnienia znikają same (brak planu → lib/planReminder). 'none' — nie ma czego wyłączać; 'full' — „Inne plany” pełne
+ * (plan nie miałby gdzie się zapisać — nic się nie zmienia). */
+export function deactivatePlan(today = todayKey()): 'ok' | 'none' | 'full' {
+  if (!hasActivePlan(today)) return 'none'; if (plansFull()) return 'full';
+  const cur = weekPlanDays(); const nm = cleanPlanName(planName());
+  const ov = getState().planOverrides ?? {}; const past = Object.fromEntries(Object.entries(ov).filter(([k]) => k < today));
+  const mine = Object.fromEntries(Object.entries(ov).filter(([k]) => k >= today && isChanged(k, today)));
+  putSaved([...savedPlans(), { id: uid(), name: uniqueIn(savedPlans().map(x => x.name), nm || datedName(today)), days: cur, ...(Object.keys(mine).length ? { overrides: mine } : {}) }]);
+  putActive(planDays([]), '', today); putOv(past); tidy(today); commit(); return 'ok';
 }
 /** Nowy plan z dniami (np. z generatora; nazwa bez powtórzeń); `activate` — od razu obowiązuje. '' — „Inne plany” pełne (ekran sprawdza plansFull). */
 export function addPlan(name: string, days: PlanDays, activate: boolean): string {
@@ -262,8 +277,51 @@ export function removeTemplate(id: string) {
   tidy(today); commit();
 }
 
+/* ---------- trening zrobiony wcześniej (decyzja właściciela 11.10.2026, docs/18 pkt 4, wariant A) ----------
+ * Zakończony trening szablonem X w dniu, w którym plan nie ma X: jeśli NAJBLIŻSZY dzień z treningiem w planie (pierwszy przyszły dzień z jakimkolwiek
+ * treningiem) ma X, ten dzień jest „zrobiony wcześniej” — status 'done' (w kalendarzu wolny z ✓, nie „opuszczony”), liczy się do celu SWOJEGO tygodnia,
+ * reszta planu bez zmian. Stan: `State.doneEarly` (dzień → id treningu); znacznik ważny tylko, gdy trening istnieje, a plan tego dnia nadal ma jego
+ * szablon (zmiana dnia w planie unieważnia znacznik bez kasowania danych). „Cofnij” (undoDoneEarly) przywraca dzień do planu. */
+const finishedById = memoHist(() => new Map(finishedWorkouts().map(w => [w.id, w] as const)));
+/** Trening policzony do dnia `k` jako „zrobiony wcześniej” (ważny znacznik) albo undefined. */
+export function earlyWorkout(k: string, today = todayKey()): Workout | undefined {
+  const wid = getState().doneEarly?.[k]; if (!wid) return undefined;
+  const w = finishedById().get(wid); return w && w.templateId && w.templateId === plannedOn(k, today) ? w : undefined;
+}
+/** Dzień, do którego policzony jest zakończony trening (jeśli „zrobiony wcześniej”), i dzień, w którym go wykonano. */
+export function earlyFor(workoutId: string, today = todayKey()): { day: string; from: string } | null {
+  const de = getState().doneEarly ?? {}; const w = finishedById().get(workoutId); if (!w) return null;
+  const day = Object.keys(de).find(k => de[k] === workoutId && earlyWorkout(k, today)); return day ? { day, from: workoutDay(w) } : null;
+}
+/** Dzień planu, który zakończony trening `w` zalicza jako „zrobiony wcześniej”, albo null: trening z szablonu, którego plan nie ma w dniu treningu,
+ * a najbliższy dzień z treningiem w planie (od następnego dnia, nie wcześniej niż dziś; najwyżej SHIFT_MAX_DAYS dni) ma ten szablon i nie jest zajęty. */
+export function earlyTarget(w: Workout, today = todayKey()): string | null {
+  const x = w.templateId; if (!x || !liveTemplate(x)) return null;
+  const d = workoutDay(w); if (plannedOn(d, today) === x) return null;
+  for (let i = 1; i <= SHIFT_MAX_DAYS; i++) {
+    const k = addDays(d, i); if (k < today) continue; const p = plannedOn(k, today); if (!p) continue;
+    return p === x && !busyDays().has(k) ? k : null;
+  }
+  return null;
+}
+/** Po zakończeniu treningu (ręcznym i automatycznym): zapisuje „zrobiony wcześniej”. Zwraca dzień planu albo null. */
+export function markDoneEarly(w: Workout, today = todayKey()): string | null {
+  const k = earlyTarget(w, today); if (!k) return null;
+  getState().doneEarly = { ...(getState().doneEarly ?? {}), [k]: w.id }; commit(); return k;
+}
+/** „Cofnij” w panelu dnia: dzień wraca do planu (zaplanowany albo opuszczony). */
+export function undoDoneEarly(k: string) {
+  const st = getState(); if (!st.doneEarly || !(k in st.doneEarly)) return;
+  const de = { ...st.doneEarly }; delete de[k]; if (Object.keys(de).length) st.doneEarly = de; else delete st.doneEarly; commit();
+}
+/** Linijka po zakończeniu treningu (np. ekran sesji): „Policzone jako trening z pon., 12.10 — ten dzień jest wolny.”; '' — trening liczy się normalnie. */
+export function earlyNote(workoutId: string, today = todayKey()): string {
+  const e = earlyFor(workoutId, today); return e ? t('Policzone jako trening z {day} — ten dzień jest wolny.', { day: shortDate(e.day) }) : '';
+}
+
 export type DayStatus = 'done' | 'other' | 'planned' | 'missed' | 'rest';
-export type DayState = { status: DayStatus; templateId: string | null; workoutIds: string[] };
+/** `early` — dzień „zrobiony wcześniej” (11.10.2026, docs/18 pkt 4): trening zaplanowanego szablonu zrobiony w poprzednim dniu; `workoutIds` — ten trening. */
+export type DayState = { status: DayStatus; templateId: string | null; workoutIds: string[]; early?: true };
 /**
  * Stan dnia — JEDNA funkcja dla kalendarza (kropki i etykiety), paska tygodnia, karty „Dziś”, panelu dnia, liczników na ekranie Trening
  * i przypomnień (audyt 0.10 A2; A5 — decyzja właściciela 08.10.2026 wieczór: dopasowanie po szablonie, X-04 A):
@@ -276,6 +334,7 @@ export type DayState = { status: DayStatus; templateId: string | null; workoutId
 export function dayStatusFrom(k: string, ws: readonly Workout[], today = todayKey()): DayState {
   const id = plannedOn(k, today); const ids = ws.map(w => w.id);
   if (ws.length) return { status: !id || ws.some(w => w.templateId === id) ? 'done' : 'other', templateId: id, workoutIds: ids };
+  { const e = id ? earlyWorkout(k, today) : undefined; if (e) return { status: 'done', templateId: id, workoutIds: [e.id], early: true }; } /* zrobiony wcześniej: liczy się jak zrobiony zaplanowanym szablonem */
   if (!id) return { status: 'rest', templateId: null, workoutIds: [] };
   return { status: k < today ? 'missed' : 'planned', templateId: id, workoutIds: [] };
 }
@@ -312,6 +371,8 @@ export function doneInfo(from: string, n: number): DoneInfo {
   const add = (w: Workout) => { const k = workoutDay(w); if (!keys.has(k)) return; const s = muscles.get(k) ?? new Set<string>(); w.exercises.forEach(e => (exById(e.exerciseId)?.muscles ?? []).forEach(x => s.add(x))); muscles.set(k, s);
     const ts = tpls.get(k) ?? new Set<string>(); if (w.templateId) ts.add(w.templateId); tpls.set(k, ts); };
   finishedWorkouts().forEach(add); const a = getState().active; if (a) add(a);
+  /* 11.10.2026: dzień „zrobiony wcześniej” — szablon policzony (nie czeka), partie ćwiczono w dniu treningu, nie w tym dniu */
+  for (const k of keys) { const e = earlyWorkout(k); if (e?.templateId) { const ts = tpls.get(k) ?? new Set<string>(); ts.add(e.templateId); tpls.set(k, ts); } }
   return { muscles, tpls };
 }
 /** Zaplanowany szablon dnia, który jeszcze czeka (dzień bez treningu albo zrobiony inny). */

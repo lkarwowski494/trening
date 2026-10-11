@@ -32,13 +32,13 @@ export function TodayPlan() {
   const wd = (k: string) => dateOf(k).toLocaleDateString(locale(), { weekday: 'short' });
   const word = (d: (typeof days)[number]): string => {
     const plannedWord = d.date < today ? t('opuszczony: {name}', { name: name(d.templateId) }) : t('zaplanowany: {name}', { name: name(d.templateId) });
-    const m: Record<DayStatus, () => string> = { done: () => t('zrobione: {name}', { name: names(d.date) }), other: () => `${t('zrobiony inny trening: {name}', { name: names(d.date) })}, ${plannedWord}`,
+    const m: Record<DayStatus, () => string> = { done: () => (d.early ? t('zrobiony wcześniej: {name}', { name: name(d.templateId) }) : t('zrobione: {name}', { name: names(d.date) })), other: () => `${t('zrobiony inny trening: {name}', { name: names(d.date) })}, ${plannedWord}`,
       planned: () => plannedWord, missed: () => plannedWord, rest: () => (d.inPlan ? t('odpoczynek') : t('wolne')) /* odpoczynek w planie (ikona espresso) ≠ dzień bez planu */ };
     return m[d.status]();
   };
   const deload = isDeloadWeek(Date.now());
   const hintOff = !!getState().planHintHidden;
-  const title = !plan && cur.status !== 'done' ? (hintOff ? t('Ten tydzień') : t('Bez planu tygodnia')) : cur.status === 'done' ? t('Dziś zrobione: {name}', { name: names(today) }) : id ? t('Dziś: {name}', { name: name(id) }) : t('Dziś wolne');
+  const title = !plan && cur.status !== 'done' ? (hintOff ? t('Ten tydzień') : t('Bez planu tygodnia')) : cur.early ? t('Zrobiony wcześniej: {name}', { name: name(id) }) : cur.status === 'done' ? t('Dziś zrobione: {name}', { name: names(today) }) : id ? t('Dziś: {name}', { name: name(id) }) : t('Dziś wolne');
   const next = plan ? upcoming(NEXT_DAYS, today).filter(x => x.date > today && x.templateId).slice(0, NEXT_COUNT) : [];
   const planBtn = () => <Btn nav small title={t('Plan tygodnia')} onPress={() => router.push('/plan')} />;
   const nextLabel = (k: string) => (k === addDays(today, 1) ? t('jutro') : fmtDayKey(k)); /* H3 (audyt 0.10) */
