@@ -67,3 +67,5 @@ backlog) → docs/15 (App Store, ceny) → docs/09 (dziennik testów; stare rund
   właściciela po cenach (.com ok. 11 USD/rok, .app ok. 15 USD/rok — porkbun.com, 11.10.2026).
 - 11.10.2026: **nawigacja (docs/22, P1) — wariant A: 4 zakładki Trening · Plan · Postępy · Więcej** (Szablony i Ćwiczenia pod Więcej).
   Kolejność wdrożenia wg docs/22: ekran główny i porządki → decyzje 4–7 → zmiana zakładek osobnym wydaniem. Pozostałe pytania P2–P8 — do przejścia.
+- 11.10.2026: **domena** — zgoda właściciela na zakup (niewielki wydatek poza Apple); rekomendacja agenta: `apps4brew.com` (najbardziej
+  rozpoznawalna końcówka, 11,08 USD/rok w porkbun.com 11.10.2026); `.app` tylko jako opcjonalna ochrona marki. Zakup — właściciel (konto, płatność).
