@@ -102,3 +102,7 @@ backlog) → docs/15 (App Store, ceny) → docs/09 (dziennik testów; stare rund
   Wszystkie pytania P1–P8 z docs/22 rozstrzygnięte.
 - 11.10.2026: **okienko rekordów po „Zakończ” — usunięte (A)**: po zakończeniu treningu od razu ekran podsumowania z nową kartą rekordów
   (bez „OK”). Odrzucone: B (okienko w nowym formacie — dubel informacji).
+- 11.10.2026: **pozostałe problemy audytu nawigacji (docs/22, 2.2) — A, pakietem wg propozycji z docs/22 4.3/4.4**, w wydaniu 1 (osobny agent
+  po scaleniu 4 gałęzi): jedno „⇄ zamień” (pkt 5), deload bez chipa w Postępach (6), „Miejsca i sprzęt” znika z Ustawień (7), Przewodnik raz
+  w „Pierwszych krokach” (8), przełącznik „Zachęta do planu” znika (14), „Inny trening” w panelu dnia → „Zmień szablon”/„Dodaj do planu” (16),
+  „Dopisz trening wstecz” jako jedna nazwa (17). Osobno do decyzji: pkt 11 (okno „Zaktualizować szablon?” i stos po „Zakończ”), pkt 23 (ikona „i”).
