@@ -56,3 +56,7 @@ backlog) → docs/15 (App Store, ceny) → docs/09 (dziennik testów; stare rund
 - 11.10.2026: **trening z zegarka (pkt 9, etap 2) — A**: trening siłowy w Health pokrywający się czasowo z sesją → łączenie automatyczne (tętno,
   aktywne kcal w szczegółach sesji), aplikacja nie zapisuje własnej kopii do Health; gdy zegarek zsynchronizuje się później — przy następnym
   otwarciu usuwa swoją kopię (własny wpis). Odrzucone: B (dwa zapisy, podwójne kcal), C (pytanie po każdym treningu).
+- 11.10.2026: **baza ćwiczeń (pkt 10) — A**: rozbudowa własnych wskazówek techniki (dziś 82) i figur ruchu (dziś 71; 854 ćwiczenia w bibliotece)
+  partiami — pierwsza ~50 z filtra „Podstawowe”, potem najczęściej używane; każda partia: badacz (źródła) → tłumacz (35 języków); dopracowanie
+  animacji (więcej póz, płynniejszy ruch). ExRx tylko jako źródło do czytania (szczebel 4, teza o rekomendacji ACSM niepotwierdzona).
+  Odrzucone: B (płatne API z filmami — koszt, serwer, brak offline), C (otwarte zbiory zdjęć — do ewentualnego uzupełnienia po sprawdzeniu licencji).
