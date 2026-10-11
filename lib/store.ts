@@ -8,12 +8,11 @@
  *   → migrate-records, migrate-catalog, migrate (wczytanie i import danych) → settings, boot (start aplikacji, import, reset).
  * Nowa funkcja publiczna: w module dziedziny (export) i jej nazwa w odpowiedniej liście niżej.
  */
-import { deloadSets } from '@/lib/deload-sets';
 import { t, tIn, applyLang, detectLang, fold, isLang, deviceUnit } from './i18n';
 import { applyUnit, snapLegacyLb } from './units';
 import { applyTheme } from './theme';
-import { seedState, uid, base, defaultModules, defaultSettings, metricFor, loadModeFor, loadMult, blankTimer, musclesFor, hasTime, hasReps, hasWeight, hasDistance, METRICS, DEFAULT_REST, GROUPS, LIB, SCHEMA_VERSION, LOCAL_OWNER, MODULES, SET_KINDS, SINGLE_IMPLEMENT, equipFields, libExercise, LIB_EXTRA_REVS, LIB_EXTRA_REV, LIB_MUSCLE_FIXES, LIB_FIELD_FIXES, LIB_RENAMED, LIB_MERGED, LIB_RETIRED, libExtraRevOf, LIB_BASE_NAMES_V1, IMPLS, own, type Impl, type SetKind, type State, type Workout, type WSet, type WExercise, type Exercise, type Template, type TemplateItem, type TemplateAlt, type TRow, type Location, LIB_KEYS, LIB_DISPLAY_NAME, catalogKey, libKeyCandidates, BODY_MASS_MAX, BODY_MASS_LOG_MAX, type LoadMode } from './seed';
-import { equipById, implsAt, blankLoad, availability, fillGym, GYM_FILL, fillOpts, OPT_FILL, fillEquip2, EQUIP_FILL2 } from './equipment';
+import { seedState, uid, defaultModules, defaultSettings, metricFor, loadModeFor, loadMult, blankTimer, musclesFor, hasTime, hasReps, hasWeight, hasDistance, METRICS, DEFAULT_REST, GROUPS, LIB, SCHEMA_VERSION, LOCAL_OWNER, MODULES, SET_KINDS, SINGLE_IMPLEMENT, equipFields, libExercise, LIB_EXTRA_REVS, LIB_EXTRA_REV, LIB_MUSCLE_FIXES, LIB_FIELD_FIXES, LIB_RENAMED, LIB_MERGED, LIB_RETIRED, libExtraRevOf, LIB_BASE_NAMES_V1, IMPLS, own, type State, type Exercise, type Template, type TemplateAlt, type Location, LIB_KEYS, LIB_DISPLAY_NAME, catalogKey, libKeyCandidates, BODY_MASS_MAX, BODY_MASS_LOG_MAX, type LoadMode } from './seed';
+import { equipById, blankLoad, fillGym, GYM_FILL, fillOpts, OPT_FILL, fillEquip2, EQUIP_FILL2 } from './equipment';
 import { sanitizeLoadSpec } from './loads';
 import { CATALOG, CATALOG_REV } from './catalog.generated';
 import * as utilMod from './state/util';
@@ -32,16 +31,17 @@ import * as weekplanMod from './state/weekplan';
 import * as bodymassMod from './state/bodymass';
 import * as templatesMod from './state/templates';
 import * as exercisesMod from './state/exercises';
+import * as startMod from './state/start';
+import * as liveMod from './state/live';
+import * as swapMod from './state/swap';
+import * as finishMod from './state/finish';
 import { S, setDb, db, setNewerSchema, seqAtLeast, setS, setRecovery, recovery, setSavedDrafts, persistNow, bump, emit } from './state/core';
 import { openDb } from './state/db';
 import { parseNum, kg2, arr, idOf, isObj, intIn, tsOf } from './state/util';
-import { cleanNote, cleanFolder, syncItem, rowsFor } from './state/templates';
-import { PRE_KEYS, blankSet, markPre, usedKeys, isEmpty, VAL_KEYS } from './state/setvals';
-import { setPauses, closePause } from './state/pause';
+import { cleanNote, cleanFolder, syncItem } from './state/templates';
+import { PRE_KEYS } from './state/setvals';
+import { setPauses } from './state/pause';
 import { realDay, DATE_KEY } from './state/time';
-import { isRoundSet } from './state/sets';
-import { prevOfBlock } from './state/history';
-import { purgeOrphans } from './state/exercises';
 
 export const { NAME_MAX, REPS_MAX, REST_MAX, clampName } = utilMod;
 export const {
@@ -88,6 +88,15 @@ export const {
   useExercisesTick, newExercise, setEquipment, exerciseEdited, restoreExercise, exerciseInHistory, exerciseUsed, deleteExercise, visibleExercises,
   exercisesInUse, inCoreList, libShowAll, setLibShowAll
 } = exercisesMod;
+export const { prefillSets, startableItem, repeatBlocks, startFromTemplate, startEmpty, repeatLast, deloadTail, addExerciseToActive } = startMod;
+export const { addSet, removeSetById, removeSet, removeExercise, findSet, restAfter, roundRest, toggleDone, focusSet } = liveMod;
+export const {
+  swapBlock, swapImpl, canUndoSwap, undoSwap, canRememberAlt, rememberAlt, altHint, acceptAlt, skipExercise, unskipExercise, skipAlt, rememberRest
+} = swapMod;
+export const {
+  STALE_ASK_MS, STALE_AUTO_MS, lastActivity, staleRef, staleKind, hasWorkDone, staleSince, ackStale, markActivity, resolveColdStopwatch,
+  autoFinishStale, finishWorkout, cancelWorkout, deleteWorkout, emptySet, setHasResult, putHistoryWorkout
+} = finishMod;
 export type { WExercise } from './seed';
 
 
@@ -528,34 +537,6 @@ export async function readRecovery(): Promise<string | null> { if (!db || !recov
 const stateReplacedHooks = new Set<() => void>();
 export function onStateReplaced(cb: () => void) { stateReplacedHooks.add(cb); }
 export function replaceState(next: State) { setS(migrate(next)); setSavedDrafts(null); stateReplacedHooks.forEach(h => h()); applyPrefs(); save(); }
-/* ---------- workout actions ---------- */
-const newWorkout = (templateId: string | null, templateName: string, locPref?: string | null): Workout => { const st = getState(); const w: Workout = { ...base(st.ownerId), loggedBy: st.ownerId, sessionMode: 'solo', healthUUID: null, templateId, templateName, startedAt: Date.now(), finishedAt: null, note: '', exercises: [] }; w.tzOffsetMin = tzOffsetAt(w.startedAt); /* J3 */ const loc = startLocationId(locPref); if (loc) w.locationId = loc; return w; };
-/**
- * E2 (docs/14 pkt 3.3): wartości nowych serii bloku — JEDNO miejsce dla startu z szablonu, zamiany ćwiczenia i cofnięcia zamiany (bezpiecznik M3 raz).
- * `kinds` — rodzaje nowych serii. Serie robocze (zwykłe, do upadku) dostają serię źródła `prevAll` (bez drop setów) o numerze serii roboczej
- * (srcSetAt — za końcem źródła ostatnia; numeracja od `from`, np. dalej od odhaczonych przy cofnięciu podziału); rozgrzewki i drop sety — puste.
- * Bez źródła: ciężar startowy pozycji szablonu (`startWeight` — tylko start z szablonu i cofnięcie do A; zamiana podaje '', bo to ciężar A).
- * Cel czasu (`targetSec`) — przy metryce z czasem, w seriach poza rozgrzewką.
- */
-export function prefillSets(ex: Exercise, kinds: readonly SetKind[], prevAll: { workout: Workout; sets: WSet[] } | null, locationId: string | null | undefined, impl: Impl | null | undefined, targetSec: number | '', startWeight: number | '' = '', from = 0, pinned = false, rows?: readonly TRow[]): WSet[] {
-  const src = prevAll ? prevAll.sets.filter(x => x.kind !== 'drop') : []; const m = ex.metric ?? 'weight_reps';
-  const away = !!prevAll && prevFromOther(prevAll, ex.id, locationId, impl); let j = from;
-  return kinds.map((kind, k) => {
-    const work = kind !== 'warmup' && kind !== 'drop'; const row = rows?.[k];
-    const p0 = work ? srcSetAt(src, j++) : null; const p = assistLost(ex, p0) ? null : p0; /* runda 72: jak przy odhaczaniu; runda 82c: wspólne mapowanie serii źródła (srcSetAt) */
-    const s = { ...blankSet(), kind, warmup: kind === 'warmup', ...(p ? copyVals(p) : work ? { weight: (isBW(ex) || !hasWeight(m)) ? '' : (startWeight === '' ? '' : Math.max(0, Number(startWeight))), /* runda 48 */ addKg: isBW(ex) && hasWeight(m) ? startWeight : '' } : {}) } as WSet;
-    // Cel czasu z szablonu wygrywa z czasem z poprzedniej sesji — inaczej stoper ucinał serię na starym wyniku (runda 2).
-    // Czas z poprzedniej sesji zostaje tylko podpowiedzią („Poprzednio”) — jako wartość stawałby się celem stopera (runda 4).
-    if (hasTime(m)) s.durationSec = kind !== 'warmup' && Number(targetSec) > 0 ? Number(targetSec) : ''; // runda 30: cel 0 = bez celu (jak w repeatLast)
-    /* schemat 17: bez „ostatnio” — plan z wiersza szablonu (także rozgrzewki i drop sety); cel czasu z wiersza */
-    if (row) { if (!p) { if (hasWeight(m)) { if (isBW(ex)) s.addKg = row.weight; else s.weight = row.weight === '' ? '' : Math.max(0, Number(row.weight)); } if (hasReps(m)) s.reps = row.reps; if (hasDistance(m)) s.distanceM = row.distanceM; if (row.bandId && usesBand(ex) && bandById(row.bandId)) s.bandId = row.bandId; }
-      if (hasTime(m)) s.durationSec = Number(row.durationSec) > 0 ? Number(row.durationSec) : ''; } /* audyt 85364ad L3: czas tylko z wiersza (także rozgrzewki) */
-    /* audyt M3 + weryfikacja 2: tylko źródło „gdzie indziej” (prevFromOther: inne, znane miejsce albo — LOW 3 — znany, inny przyrząd; treningi sprzed
-     * miejsc — jak M8 — nie); wtedy bez ciężaru nie przepisujemy też powtórzeń — seria zostaje pusta, a nie „ciężar pusty + powtórzenia” */
-    if (p && away && offListAt(ex, locationId, s.weight, pinned && impl ? impl : undefined)) { s.weight = ''; if (p.reps === s.reps) s.reps = ''; }
-    return markPre(stripUnused(ex, s));
-  });
-}
 /** Wczytanie/import: wiersze poprawne albo brak (pozycja wraca do `sets` + `startWeight`). */
 function fixRows(it: any) {
   if (!Array.isArray(it.rows)) { delete it.rows; return; }
@@ -564,464 +545,7 @@ function fixRows(it: any) {
     reps: num(r.reps, 0, REPS_MAX), weight: (v => v == null ? '' : kg2(snapL(v) as number))(parseNum(r.weight)), durationSec: num(r.durationSec, 0, 86400), distanceM: num(r.distanceM, 0, 1e6), ...(typeof r.bandId === 'string' && r.bandId ? { bandId: r.bandId } : {}) }));
   syncItem(it);
 }
-/** Pozycja szablonu, która trafi do treningu przy starcie (runda 42: usunięte ćwiczenie, np. z importu, nie wraca do treningu). Audyt 0.10 (LOG-17):
- * ten sam filtr liczy serie w pytaniu deload (lib/start.ts deloadCounts). */
-export const startableItem = (it: TemplateItem) => { const ex = exById(it.exerciseId); return !!ex && !ex.archived; };
-/** Bloki ostatniego treningu, które wstawi „Powtórz ostatni” (ćwiczenie istnieje i nie jest usunięte) — także dla pytania deload (audyt 0.10, D1). */
-export const repeatBlocks = (w: Workout) => w.exercises.filter(e => { const ex = exById(e.exerciseId); return !!ex && !ex.archived; });
-/** `deload` (decyzja 08.10.2026, B): mniej serii roboczych na ćwiczenie (deloadKeep: o około 1/3–1/2), ciężary bez zmian, szablon bez zmian (lib/deload-sets).
- * Audyt 0.10 (LIVE-12): przy treningu w toku nic nie robi i zwraca false — drugi start (podwójne tapnięcie, drugie okno deload) nie nadpisuje treningu. */
-export function startFromTemplate(tpl: Template, opts?: { deload?: boolean }): boolean {
-  const st = getState(); if (st.active) return false; const w = newWorkout(tpl.id, tpl.name, tpl.locationId);
-  tpl.items.forEach((it, ii) => {
-    if (!startableItem(it)) return; const ex = exById(it.exerciseId)!;
-    // Runda 7: drop sety poprzedniej sesji nie są źródłem wartości dla zwykłych serii szablonu (jak przy odhaczaniu, runda 6).
-    const impl = implAtLoc(ex, w.locationId); /* decyzja 8c: „Poprzednio” = ostatni raz tym samym przyrządem */
-    const prevAll = previousBlockFor(it.exerciseId, occurrence(tpl.items, ii), occurrences(tpl.items, it.exerciseId), it.id, tpl.id, impl);
-    const rows = tplRows(it); /* schemat 17: typy i plan z wierszy szablonu */
-    const sets = prefillSets(ex, rows.map(r => r.kind), prevAll, w.locationId, impl, it.targetSec, it.startWeight, 0, false, rows);
-    // Przerwa: ustawiona w pozycji szablonu wygrywa; puste pole w szablonie (null) = przerwa z ćwiczenia albo domyślna.
-    const cut = opts?.deload ? deloadSets(sets) : sets; const nFull = sets.filter(isRoundSet).length; /* audyt 0.10 (D1+): pełna liczba serii roboczych przyciętego bloku */
-    w.exercises.push({ id: uid(), exerciseId: ex.id, restSec: typeof it.restSec === 'number' && it.restSec >= 0 ? it.restSec : restFor(ex), /* null w szablonie = przerwa z ćwiczenia */ repMin: it.repMin, repMax: it.repMax, groupId: it.groupId ?? null, sets: cut, tplItemId: it.id, ...(impl ? { impl } : {}), ...(cut.filter(isRoundSet).length < nFull ? { deloadFull: nFull } : {}) });
-  });
-  normalizeGroups(w.exercises); if (opts?.deload) w.deload = true; /* audyt 0.10 (D1+): znacznik treningu deload */
-  st.active = w; save(); flush(); return true;
-}
-export function startEmpty(): boolean { if (getState().active) return false; /* audyt 0.10 (LIVE-12) */ getState().active = newWorkout(null, ''); save(); flush(); return true; }
-/** „Powtórz ostatni”. `deload` (audyt 0.10, D1 / MER-05) — wynik ma być lżejszy: zwykły trening dostaje to samo cięcie co start z szablonu
- * (deloadSets na blok), a trening już skrócony (Workout.deload) powtarza się jak jest — NIGDY drugiego cięcia (D1+, decyzja 08.10.2026).
- * Bez `deload` — pełny trening: skrócony wraca do pełnego (deloadTail: wiersze szablonu albo zapamiętana liczba serii). */
-export function repeatLast(opts?: { deload?: boolean }): boolean {
-  const last = finishedWorkouts()[0]; if (!last || getState().active) return false; /* audyt 0.10 (LIVE-12): trening w toku zostaje */
-  // Powtarza to, co faktycznie zrobiono (także ćwiczenia dodane/usunięte w trakcie), a nie szablon, z którego wystartowano (runda 2).
-  /* Integracja 0.9.0: ostatni trening bez locationId (sprzed miejsc, z importu), choć miejsca są — to „nieznane miejsce”, nie „inne miejsce”:
-   * nowy trening dostaje miejsce główne, a wartości kopiujemy bez wstrzymywania ciężarów spoza listy (jak treningi sprzed miejsc
-   * w startFromTemplate i przy odhaczaniu; docs/10, docs/12). Świadomie bez zmian — ekran treningu pokazuje wtedy dopisek „ciężaru … nie ma tutaj”
-   * (runda 82, MEDIUM 1). Wstrzymanie tylko dla źródła „gdzie indziej” (prevFromOther: inne, znane miejsce albo znany, inny przyrząd — LOW 3). */
-  const w = newWorkout(last.templateId, last.templateName, last.locationId);
-  // Runda 22: cel czasu z pozycji szablonu, z której powstał blok (stary wynik nie staje się celem — runda 4).
-  const tplOf = last.templateId ? getState().templates.find(x => x.id === last.templateId) : null;
-  const tgt = (e: WExercise): number | '' => { const it = tplOf && e.tplItemId ? tplOf.items.find(x => x.id === e.tplItemId && x.exerciseId === e.exerciseId) : null; return it && Number(it.targetSec) > 0 ? Number(it.targetSec) : ''; };
-  const keepPin = (e: WExercise) => { const ex = exById(e.exerciseId); const loc = locationById(w.locationId); return !!(e.implPinned && e.impl && ex && loc && last.locationId === w.locationId && implsAt(ex, loc).includes(e.impl)); };
-  w.exercises = repeatBlocks(last).map(e => { const nw: WExercise = keepPin(e) ? { ...e, id: uid(), sets: [] } : stampImpl({ ...e, id: uid(), sets: [] }, w.locationId); if (!keepPin(e)) delete nw.implPinned; /* decyzja 8c: przyrząd w miejscu NOWEGO treningu (nie kopiowany z poprzedniego); E2 D5 (pkt 3.7.5): przyrząd wybrany ręcznie zostaje w tym samym miejscu, gdy wciąż tam jest */
-    const away = prevFromOther({ workout: last, sets: e.sets }, e.exerciseId, w.locationId, nw.impl); /* weryfikacja 3 (L2) + LOW 3: jak przy starcie z szablonu — inne, znane miejsce albo znany, inny przyrząd */
-    nw.sets = e.sets.map(s => ({ ...blankSet(), ...(assistLost(exById(e.exerciseId), s) ? {} : copyVals(s)), durationSec: s.kind === 'warmup' ? '' : tgt(e), kind: s.kind === 'failure' ? 'normal' : s.kind ?? (s.warmup ? 'warmup' : 'normal') /* T11: upadek to wynik, nie plan (jak addSet i szablon) */, warmup: s.warmup })).map(s => { const ex = exById(e.exerciseId); /* ciężar spoza listy tutaj z sesji „gdzie indziej” nie jest wstawiany (ani same powtórzenia) */
-      if (away && offListAt(ex, w.locationId, s.weight, pinnedImpl(nw))) { s.weight = ''; s.reps = ''; }
-      return markPre(stripUnused(ex, s)); });
-    /* audyt 0.10 (D1+): skrócony — „jak ostatnio” albo przywrócenie pełnego; zwykły — cięcie z zapamiętaniem pełnej liczby */
-    const nNow = nw.sets.filter(isRoundSet).length; delete nw.deloadFull;
-    if (last.deload) { const tail = deloadTail(last, e); const nFull = nNow + tail.filter(x => x.kind !== 'drop').length;
-      if (opts?.deload) { if (nFull > nNow) nw.deloadFull = nFull; }
-      else { const ex = exById(e.exerciseId); const lastWork = [...nw.sets].reverse().find(isRoundSet); const lastDrop = [...nw.sets].reverse().find(x => x.kind === 'drop');
-        nw.sets.push(...tail.map(({ kind, row }) => markPre(stripUnused(ex, { ...blankSet(), ...copyVals(kind === 'drop' ? lastDrop ?? row : lastWork ?? row), kind, warmup: false })))); } }
-    else if (opts?.deload) { nw.sets = deloadSets(nw.sets); if (nw.sets.filter(isRoundSet).length < nNow) nw.deloadFull = nNow; }
-    return nw; });
-  normalizeGroups(w.exercises); if (opts?.deload) w.deload = true; /* audyt 0.10 (D1+) */
-  getState().active = w; save(); flush(); return true;
-}
-/**
- * Audyt 0.10 (D1+, decyzja 08.10.2026): czego brakuje skróconemu treningowi (Workout.deload) do pełnego — rodzaje serii do dołożenia na końcu bloku:
- * gdy szablon wciąż ma pozycję bloku z tym samym ćwiczeniem — jego wiersze po k-tej serii roboczej (k = serie robocze bloku; drop sety należą do
- * serii, po której są), inaczej brakujące serie robocze do zapamiętanej liczby `deloadFull`. Zwykły trening (albo brak informacji) — nic.
- */
-export function deloadTail(last: Workout, e: WExercise): { kind: SetKind; row?: TRow }[] {
-  if (!last.deload) return [];
-  const tpl = last.templateId ? getState().templates.find(x => x.id === last.templateId) : null;
-  /* audyt kontrolny 1, LIVE2-03: łańcuch podziału (zamiana w trakcie — bloki z tą samą pozycją szablonu) to jedna pozycja: serie robocze liczone
-   * w całym łańcuchu, brakujące dochodzą tylko do ostatniego powtarzanego bloku; wartości wiersza szablonu tylko, gdy to ćwiczenie pozycji */
-  const chain = e.tplItemId ? repeatBlocks(last).filter(x => x.tplItemId === e.tplItemId) : [e]; if (!chain.includes(e)) chain.push(e);
-  const it = tpl && e.tplItemId ? tpl.items.find(x => x.id === e.tplItemId && chain.some(b => x.exerciseId === b.exerciseId)) : null; /* pozycja wciąż z ćwiczeniem bloku łańcucha */
-  if (it) { if (chain[chain.length - 1] !== e) return [];
-    const now = chain.reduce((n, b) => n + b.sets.filter(isRoundSet).length, 0); const own = it.exerciseId === e.exerciseId;
-    const rows = tplRows(it).filter(r => r.kind !== 'warmup'); let seen = 0, i = 0; for (; i < rows.length; i++) if (rows[i].kind !== 'drop') { if (seen === now) break; seen++; }
-    return rows.slice(i).map(r => ({ kind: r.kind === 'failure' ? 'normal' : r.kind, ...(own ? { row: r } : {}) })); }
-  const now = e.sets.filter(isRoundSet).length;
-  return Array.from({ length: Math.max(0, (Number(e.deloadFull) || 0) - now) }, () => ({ kind: 'normal' as SetKind }));
-}
-export function addExerciseToActive(ex: Exercise) {
-  const a = getState().active; if (!a) return;
-  a.exercises.push(stampImpl({ id: uid(), exerciseId: ex.id, restSec: restFor(ex), repMin: null, repMax: null, groupId: null, sets: [blankSet()] }, a.locationId)); save(a);
-}
-/* ---------- E2: zamiana ćwiczenia w treningu w toku (docs/14 pkt 3) ---------- */
-/** Pozycja szablonu, z której powstał blok (gdy trening ma szablon, a pozycja wciąż istnieje). */
-const tplItemOf = (w: Workout, e: WExercise) => { const tpl = w.templateId ? getState().templates.find(x => x.id === w.templateId) : null; return tpl && e.tplItemId ? tpl.items.find(x => x.id === e.tplItemId) : undefined; };
-/** Audyt kontrolny 1, LIVE2-03: przy podziale bloku w treningu deload zapamiętana pełna liczba serii (deloadFull — liczba BLOKU) przechodzi na nowy
- * blok: A zostaje z odhaczonymi (bez znacznika), B — reszta pełnej liczby, gdy jego serie (`left`) są od niej mniejsze. Suma łańcucha = pełna liczba. */
-function splitDeload(A: WExercise, B: WExercise, left: WSet[]) {
-  const full = Number(A.deloadFull) || 0; delete A.deloadFull; if (!full) return;
-  const rest = full - A.sets.filter(isRoundSet).length; if (rest > left.filter(isRoundSet).length) B.deloadFull = rest;
-}
-/**
- * Zamiana ćwiczenia bloku `blockId` na `toExId` „tylko dziś” (W1, tabela docs/14 pkt 3.2). Wartości A NIGDY nie przechodzą do B (docs/10 pkt 4.6):
- *  - blok bez odhaczonych serii — zamiana W MIEJSCU: to samo id bloku, nowe serie (nowe id) tych samych rodzajów i w tej samej liczbie, wartości
- *    z „Poprzednio” B (prefillSets, reguła pkt 3.6); zakres powtórzeń, pozycja szablonu, superset i przerwa bloku (D4 a) bez zmian;
- *  - część serii odhaczona — PODZIAŁ: A zostaje z odhaczonymi seriami, nowy blok B tuż pod A dostaje resztę (splitFrom = A — rundy supersetu, cofnięcie);
- *  - wszystkie odhaczone — nic (przycisk ukryty, D3 a).
- * `swappedFrom` = oryginał (A→B→C zostaje A; powrót do oryginału go usuwa); przyrząd od nowa wg miejsca, bez przypięcia. `restSec` — przerwa
- * zamiennika per miejsce (W3, pkt 4.3), inaczej przerwa bloku. Zwraca id usuniętych serii (ekran zatrzymuje ich stoper) i id bloku B.
- */
-export function swapBlock(blockId: string, toExId: string, opts: { restSec?: number | null; impl?: Impl } = {}): { goneSetIds: string[]; blockId: string } | null {
-  const a = getState().active; const ei = a ? a.exercises.findIndex(x => x.id === blockId) : -1; if (!a || ei < 0) return null;
-  const A = a.exercises[ei]; const B = exById(toExId); if (!B || B.archived || B.id === A.exerciseId) return null;
-  const left = A.sets.filter(x => !x.done); if (!left.length) return null;
-  const orig = A.swappedFrom ?? A.exerciseId; const it = tplItemOf(a, A);
-  let blk: WExercise;
-  if (left.length === A.sets.length) { blk = A; A.exerciseId = B.id; delete A.implPinned; }
-  else {
-    blk = { id: uid(), exerciseId: B.id, restSec: A.restSec, repMin: A.repMin, repMax: A.repMax, groupId: A.groupId, sets: [], splitFrom: A.id, ...(A.tplItemId ? { tplItemId: A.tplItemId } : {}) };
-    A.sets = A.sets.filter(x => x.done); a.exercises.splice(ei + 1, 0, blk);
-    splitDeload(A, blk, left);
-  }
-  if (orig !== B.id) blk.swappedFrom = orig; else delete blk.swappedFrom;
-  stampImpl(blk, a.locationId);
-  { const loc = locationById(a.locationId); if (opts.impl && loc && implsAt(B, loc).includes(opts.impl)) { blk.impl = opts.impl; blk.implPinned = true; } } /* W3 P5a: przyrząd z zamiennika per miejsce */
-  if (typeof opts.restSec === 'number' && opts.restSec >= 0) blk.restSec = Math.min(1800, Math.round(opts.restSec));
-  blk.sets = prefillSets(B, left.map(x => x.kind), prevOfActiveBlock(a, blk), a.locationId, blk.impl, it?.targetSec ?? '', '', 0, !!blk.implPinned);
-  saveSwapped(a); return { goneSetIds: left.map(x => x.id), blockId: blk.id };
-}
-/**
- * E2 D5 (docs/14 pkt 3.7): „ten sam ruch, inny przyrząd” — to samo ćwiczenie, przyrząd `impl` wybrany ręcznie (implPinned), bez swappedFrom.
- * Wartości z „Poprzednio” tym przyrządem (8c) i z listą ciężarów tego przyrządu (M3). Blok z odhaczonymi seriami — podział jak przy zamianie
- * ćwiczenia (P2, odpowiedź właściciela 04.10.2026 w interpretacji z docs/14 pkt 9): odhaczone zostają przy starym przyrządzie, nowy blok dostaje resztę.
- * Przyrząd musi być w miejscu treningu (implsAt) i różny od bieżącego; wszystkie serie odhaczone — nic.
- */
-export function swapImpl(blockId: string, impl: Impl): { goneSetIds: string[]; blockId: string } | null {
-  const a = getState().active; const ei = a ? a.exercises.findIndex(x => x.id === blockId) : -1; if (!a || ei < 0) return null;
-  const A = a.exercises[ei]; const ex = exById(A.exerciseId); const loc = locationById(a.locationId);
-  if (!ex || !loc || impl === A.impl || !implsAt(ex, loc).includes(impl)) return null;
-  const left = A.sets.filter(x => !x.done); if (!left.length) return null; const it = tplItemOf(a, A);
-  let blk: WExercise;
-  if (left.length === A.sets.length) blk = A;
-  else {
-    blk = { id: uid(), exerciseId: A.exerciseId, restSec: A.restSec, repMin: A.repMin, repMax: A.repMax, groupId: A.groupId, sets: [], splitFrom: A.id, ...(A.tplItemId ? { tplItemId: A.tplItemId } : {}), ...(A.swappedFrom ? { swappedFrom: A.swappedFrom } : {}) };
-    A.sets = A.sets.filter(x => x.done); a.exercises.splice(ei + 1, 0, blk);
-    splitDeload(A, blk, left);
-  }
-  blk.impl = impl; blk.implPinned = true;
-  const own = it && it.exerciseId === ex.id && !blk.swappedFrom ? it : undefined;
-  blk.sets = prefillSets(ex, left.map(x => x.kind), prevOfActiveBlock(a, blk), a.locationId, impl, it?.targetSec ?? '', blk === A ? own?.startWeight ?? '' : '', 0 /* numeracja jak „Poprzednio” na ekranie (hintFor — od początku bloku) */, true, blk === A ? rowsFor(own, left.map(x => x.kind)) : undefined);
-  save(a); return { goneSetIds: left.map(x => x.id), blockId: blk.id };
-}
-/** „↺ cofnij zamianę” (pkt 3.4): blok-zamiennik bez odhaczonych serii, a oryginał wciąż istnieje (nieusunięty). */
-export const canUndoSwap = (e: WExercise) => { const A = e.swappedFrom ? exById(e.swappedFrom) : undefined; return !!A && !A.archived && !e.sets.some(x => x.done); };
-/** Cofnięcie zamiany (pkt 3.4). Po podziale (blok A wciąż w treningu) serie B wracają na koniec A jako nowe serie A (numeracja serii roboczych dalej
- * od odhaczonych), B znika. Inaczej — w miejscu: wraca oryginał z wartościami jak przy starcie (przerwa pozycji szablonu, gdy blok z niej powstał). */
-export function undoSwap(blockId: string): { goneSetIds: string[] } | null {
-  const a = getState().active; const ei = a ? a.exercises.findIndex(x => x.id === blockId) : -1; if (!a || ei < 0) return null;
-  const B = a.exercises[ei]; if (!canUndoSwap(B)) return null;
-  const gone = B.sets.map(x => x.id); const kinds = B.sets.map(x => x.kind);
-  /* audyt L1: scalenie z blokiem podziału tylko, gdy to oryginał (A) — po A→B w miejscu i B→C z podziałem C wraca do A, jak obiecuje „zamiast: A” */
-  const P = B.splitFrom ? a.exercises.find(x => x.id === B.splitFrom && x.id !== B.id && x.exerciseId === B.swappedFrom) : undefined; const exP = P ? exById(P.exerciseId) : undefined;
-  if (P && exP) {
-    a.exercises.splice(ei, 1); normalizeGroups(a.exercises);
-    const from = P.sets.filter(x => x.kind !== 'warmup' && x.kind !== 'drop').length;
-    if (B.deloadFull) P.deloadFull = P.sets.filter(isRoundSet).length + B.deloadFull; /* LIVE2-03: pełna liczba wraca do scalonego bloku */
-    P.sets.push(...prefillSets(exP, kinds, prevOfActiveBlock(a, P), a.locationId, P.impl, tplItemOf(a, P)?.targetSec ?? '', '', from));
-  } else {
-    const A = exById(B.swappedFrom!)!; B.exerciseId = A.id; delete B.swappedFrom; delete B.implPinned; delete B.splitFrom; stampImpl(B, a.locationId);
-    const it = tplItemOf(a, B); const own = it && it.exerciseId === A.id ? it : undefined;
-    if (own) B.restSec = typeof own.restSec === 'number' && own.restSec >= 0 ? own.restSec : restFor(A);
-    B.sets = prefillSets(A, kinds, prevOfActiveBlock(a, B), a.locationId, B.impl, own?.targetSec ?? '', own?.startWeight ?? '', 0, false, rowsFor(own, kinds));
-  }
-  saveSwapped(a); return { goneSetIds: gone };
-}
-/** TST2-03 (audyt kontrolny 1, wariant A): po zamianie albo jej cofnięciu ćwiczenie usunięte w trakcie treningu (archiwum) bez ostatniego odwołania
- * znika od razu — jak removeExercise i jak migrate przy starcie (stan w pamięci = migrate(stan)). */
-function saveSwapped(a: Workout) { const before = getState().exercises.length; purgeOrphans(); if (getState().exercises.length !== before) save(); else save(a); }
-/* ---------- E2 W3: zamienniki per miejsce w szablonie (docs/14 pkt 4) ---------- */
-/** Pozycja szablonu bloku (tylko z szablonu treningu) i miejsce treningu (tylko istniejące). */
-function altCtx(w: Workout, e: WExercise): { tpl: Template; item: TemplateItem; loc: Location } | null {
-  const tpl = w.templateId ? getState().templates.find(x => x.id === w.templateId) : undefined; const item = tpl && e.tplItemId ? tpl.items.find(x => x.id === e.tplItemId) : undefined;
-  const loc = locationById(w.locationId); return tpl && item && loc ? { tpl, item, loc } : null;
-}
-/** Wpis, który zapisałby „Zawsze w” dla bloku: zamiennik B pozycji A (swappedFrom = ćwiczenie pozycji) albo A z przyrządem wybranym ręcznie (P5a). */
-function altOfBlock(c: { item: TemplateItem; loc: Location }, e: WExercise): TemplateAlt | null {
-  const pin = e.implPinned && e.impl ? { impl: e.impl } : {};
-  if (e.swappedFrom === c.item.exerciseId && e.exerciseId !== c.item.exerciseId) return { locationId: c.loc.id, exerciseId: e.exerciseId, restSec: null, ...pin };
-  if (!e.swappedFrom && e.exerciseId === c.item.exerciseId && e.implPinned && e.impl) return { locationId: c.loc.id, exerciseId: e.exerciseId, restSec: null, impl: e.impl };
-  return null;
-}
-const sameAlt = (x: TemplateAlt | undefined, y: TemplateAlt) => !!x && x.exerciseId === y.exerciseId && (x.impl ?? null) === (y.impl ?? null);
-/** „Zawsze w: <Miejsce>” (pkt 4.1, P1 a, P5a a): trening ma istniejące miejsce i szablon z pozycją bloku, blok zastępuje ćwiczenie pozycji (albo ma
- * przypięty przyrząd), a takiego wpisu dla tego miejsca jeszcze nie ma. */
-export function canRememberAlt(w: Workout, e: WExercise): boolean {
-  const c = altCtx(w, e); const n = c ? altOfBlock(c, e) : null; if (!c || !n) return false;
-  /* audyt 0.10 TST-01 (nocne losowe sekwencje 08.10): zamiennik usunięty w trakcie treningu (archiwum) nie trafia do szablonu */
-  const x = exById(n.exerciseId); if (!x || x.archived) return false;
-  return !sameAlt(c.item.alternates?.find(z => z.locationId === c.loc.id), n);
-}
-/** Zapis zamiennika w pozycji szablonu bloku — tylko na wyraźne stuknięcie (decyzja 08:11 zachowana); wpis tego miejsca jest zastępowany (z przerwą). */
-export function rememberAlt(blockId: string): boolean {
-  const w = getState().active; const e = w?.exercises.find(x => x.id === blockId); if (!w || !e || !canRememberAlt(w, e)) return false;
-  const c = altCtx(w, e)!; const n = altOfBlock(c, e)!; c.item.alternates = [...(c.item.alternates ?? []).filter(x => x.locationId !== c.loc.id), n];
-  save(c.tpl); return true;
-}
-/** Podpowiedź zamiennika (pkt 4.2) — liczona przy renderze, nigdy nie zmienia bloku sama: blok z pozycji szablonu, jeszcze nie zamieniony, bez
- * odhaczonych serii i bez „✕”; wpis dla miejsca treningu z widocznym ćwiczeniem dostępnym w miejscu (przyrząd — obecny w miejscu i inny niż bloku). */
-export function altHint(w: Workout, e: WExercise): TemplateAlt | undefined {
-  const c = altCtx(w, e); if (!c || e.altSkip || e.swappedFrom || e.exerciseId !== c.item.exerciseId || e.sets.some(x => x.done)) return undefined;
-  const alt = c.item.alternates?.find(x => x.locationId === c.loc.id); const B = alt ? exById(alt.exerciseId) : undefined; if (!alt || !B || B.archived) return undefined;
-  if (alt.exerciseId === e.exerciseId) return alt.impl && alt.impl !== e.impl && implsAt(B, c.loc).includes(alt.impl) ? alt : undefined;
-  return availability(B, c.loc).ok ? alt : undefined;
-}
-/** „Zamień” z podpowiedzi (pkt 4.3): zamiana w miejscu z przerwą wpisu (pusta — przerwa bloku, D4 a) i przyrządem wpisu (P5a). */
-export function acceptAlt(blockId: string): { goneSetIds: string[]; blockId: string } | null {
-  const w = getState().active; const e = w?.exercises.find(x => x.id === blockId); const alt = w && e ? altHint(w, e) : undefined; if (!w || !e || !alt) return null;
-  if (alt.exerciseId !== e.exerciseId) return swapBlock(blockId, alt.exerciseId, { restSec: alt.restSec, impl: alt.impl });
-  const r = swapImpl(blockId, alt.impl!); if (r && alt.restSec != null) { const b = w.exercises.find(x => x.id === r.blockId); if (b) { b.restSec = alt.restSec; save(w); } } return r;
-}
-/** „Pomiń dziś” (docs/21 4a, 07.10.2026 wieczór): reszta bloku pominięta w tym treningu — szablon bez zmian; odhaczone serie zostają.
- * Timery serii bloku zatrzymuje ekran (jak przy usunięciu ćwiczenia — store nie zależy od lib/timer). */
-export function skipExercise(blockId: string) { const w = getState().active; const e = w?.exercises.find(x => x.id === blockId); if (!w || !e) return; e.skipped = true; save(w); }
-export function unskipExercise(blockId: string) { const w = getState().active; const e = w?.exercises.find(x => x.id === blockId); if (!w || !e) return; delete e.skipped; save(w); }
-/** „✕” przy podpowiedzi: tylko ten blok, tylko ten trening (M4). */
-export function skipAlt(blockId: string) { const w = getState().active; const e = w?.exercises.find(x => x.id === blockId); if (!w || !e) return; e.altSkip = true; save(w); }
-/** „Zapamiętaj” przerwę (⏱ w bloku): w bloku, który jest zamiennikiem tego miejsca — do wpisu zamiennika (dopisek właściciela do D4);
- * inaczej jak dotąd: pozycja szablonu, z której powstał blok (runda 10), i ćwiczenie. */
-export function rememberRest(w: Workout, e: WExercise, n: number) {
-  const ex = exById(e.exerciseId); if (!ex) return; e.restSec = n; ex.restSec = n;
-  const c = altCtx(w, e); const mine = c ? altOfBlock(c, e) : null; const alt = c && mine ? c.item.alternates?.find(x => x.locationId === c.loc.id) : undefined;
-  const tpl = w.templateId ? getState().templates.find(x => x.id === w.templateId) : null;
-  if (alt && sameAlt(alt, mine!)) alt.restSec = n;
-  else { const it = tpl && e.tplItemId ? tpl.items.find(x => x.id === e.tplItemId && x.exerciseId === ex.id) : undefined; if (it) it.restSec = n; }
-  save(w, ex, tpl);
-}
-/** „+ rozgrzewka” / „+ drop set” (decyzja 05.10.2026): rozgrzewka pusta, przed seriami roboczymi; drop set na końcu z wartościami ostatniej. */
-export function addSet(ei: number, kind?: 'warmup' | 'drop') {
-  if (kind === 'warmup') { const a = getState().active!; const e = a.exercises[ei]; const i = e.sets.findIndex(s => s.kind !== 'warmup'); e.sets.splice(i < 0 ? e.sets.length : i, 0, { ...blankSet(), kind: 'warmup', warmup: true }); save(a); return; }
-  addSetPlain(ei); if (kind === 'drop') { const a = getState().active!; const e = a.exercises[ei]; const ns = e.sets[e.sets.length - 1]; ns.kind = 'drop'; ns.warmup = false; save(a); }
-}
-function addSetPlain(ei: number) { const a = getState().active!; const e = a.exercises[ei]; const l = e.sets[e.sets.length - 1]; const fromWarmup = l?.kind === 'warmup'; e.sets.push({ ...blankSet(), ...(fromWarmup ? {} : copyVals(l)), ...(l?.done ? { durationSec: '' as const } : {}), ...(l?.noBand && !fromWarmup ? { noBand: true } : {}), kind: l?.kind === 'drop' ? 'drop' : 'normal' /* runda 72: po serii „do upadku” kolejna jest zwykła — upadek to wynik, nie plan */ }); { const ns = e.sets[e.sets.length - 1]; if (l?.pre && !fromWarmup) { const p: NonNullable<WSet['pre']> = {}; for (const k of PRE_KEYS) if (l.pre[k] !== undefined && ns[k] === l.pre[k]) p[k] = l.pre[k]; if (Object.keys(p).length) ns.pre = p; } /* weryfikacja: dodana seria idzie za zmianą jak pozostałe */ if (ns.bandId && !usedKeys(exById(e.exerciseId)).bandId) { if (Number(ns.addKg) < 0) ns.addKg = ''; ns.bandId = ''; } } /* runda 65: wyłączona asysta gumą — guma (i jej asysta) nie przechodzi */ save(a); } // czas zmierzonej serii nie staje się celem następnej (runda 3) // po rozgrzewce pusta seria: podpowie „Poprzednio”
-/** „Usuń serię” z menu serii (przegląd 06.10, jak w szablonie): wybrana seria, nie zawsze ostatnia; ostatnia seria bloku zostaje. */
-export function removeSetById(ei: number, setId: string) { const a = getState().active!; const e = a.exercises[ei]; const i = e?.sets.findIndex(x => x.id === setId) ?? -1; if (i < 0 || e.sets.length <= 1) return; e.sets.splice(i, 1); save(a); }
-export function removeSet(ei: number) { const a = getState().active!; const e = a.exercises[ei]; if (e.sets.length > 1) { e.sets.pop(); save(a); } }
-export function removeExercise(ei: number) { const a = getState().active!; const gone = a.exercises.splice(ei, 1)[0]; normalizeGroups(a.exercises); const before = getState().exercises.length; purgeOrphans(); if (getState().exercises.length !== before) save(); else save(a); void gone; } // runda 42: usunięte ćwiczenie bez historii znika od razu
-/** Pozycja serii w treningu w toku po id (stoper i przerwa trzymają id, nie indeksy). */
-export function findSet(setId: string | null): { ei: number; si: number } | null {
-  const a = S?.active; if (!a || !setId) return null;
-  for (let ei = 0; ei < a.exercises.length; ei++) { const si = a.exercises[ei].sets.findIndex(s => s.id === setId); if (si >= 0) return { ei, si }; }
-  return null;
-}
-
-/** Ostatnie odhaczenie w treningu w toku — liczone z danych, więc przeżywa restart i cofnięcie odhaczenia. */
-function lastCompletedAt(a: Workout, except?: WSet): number | null {
-  let m: number | null = null; a.exercises.forEach(e => e.sets.forEach(s => { if (s !== except && s.done && s.completedAt && (m == null || s.completedAt > m)) m = s.completedAt; })); return m;
-}
-const setFam = (k: WSet['kind']) => k === 'warmup' ? 'w' : k === 'drop' ? 'd' : 'n';
-function carryPrefill(e: WExercise, si: number) {
-  const s = e.sets[si]; if (!s?.pre) return;
-  for (const k of PRE_KEYS) { const old = s.pre[k]; const v = s[k]; if (old === undefined || typeof v !== 'number' || v === old) continue;
-    for (let j = si + 1; j < e.sets.length; j++) { const x = e.sets[j];
-      if (x.done || x.edited || setFam(x.kind) !== setFam(s.kind) || x.pre?.[k] !== old || x[k] !== old || (k === 'addKg' && x.bandId !== s.bandId)) continue;
-      x[k] = v; x.pre![k] = v; }
-    s.pre[k] = v; /* weryfikacja: poprawka literówki (625 → 62,5) po ponownym ✓ też przechodzi dalej */ }
-}
-/**
- * Odhaczenie pustej serii (audyt r1, jak w popularnych dziennikach): puste pola bierze z tego, co widać jako podpowiedź —
- * wynik z „Poprzednio” (ta sama seria robocza), a gdy podpowiedzi nie ma — powtórzenia z dolnej granicy zakresu szablonu (runda 4).
- * Dzięki temu „24×0” nie trafia do historii tylko dlatego, że użytkownik odhaczył bez wpisywania.
- */
-function fillFromHints(e: WExercise, si: number) {
-  const s = e.sets[si]; if (s.kind === 'warmup') return;
-  // Ta sama seria robocza co w podpowiedzi „Poprzednio” (bez „dociągania” do ostatniej — ekran pokazuje wtedy „—”).
-  const pb = prevOfBlock(e); const p = hintFor(pb?.sets, e.sets, si, exById(e.exerciseId));
-  const act = getState().active; const offW = !!(p && prevFromOther(pb, e.exerciseId, act?.locationId, e.impl) && offListAt(exById(e.exerciseId), listLocFor(e, act?.locationId), p.weight, pinnedImpl(e))); /* audyt M3 (weryfikacja 2: tylko znane, inne miejsce; LOW 3: albo znany, inny przyrząd); runda 82b (LOW 5): lista miejsca tylko dla bloku tym przyrządem, którym robi się tu ćwiczenie (listLocFor) */
-  // Guma z podpowiedzi tylko razem z jej asystą — gdy ±kg wpisano ręcznie (np. dociążenie), gumy nie dokładamy (runda 3).
-  const hinted: Record<string, unknown> = {};
-  // Runda 10: tylko pola, których używa bieżąca metryka ćwiczenia (metrykę mogła zmienić edycja ćwiczenia).
-  const ex = exById(e.exerciseId); const m = ex?.metric ?? 'weight_reps'; const uses = usedKeys(ex);
-  /* weryfikacja 2 (siatka bezpieczeństwa): ciężar z podpowiedzi wstrzymany, a pole ciężaru puste — nie wstawiamy nic (ani powtórzeń z podpowiedzi,
-   * ani dolnej granicy zakresu); nigdy „ciężar pusty + powtórzenia z podpowiedzi”. Puste pola zostają dla zwykłej kontroli przy ✓ i „Zakończ”. */
-  if (offW && uses.weight && isEmpty(s.weight)) { s.hinted = undefined; return; }
-  if (p && !assistLost(ex, p)) { const kgEmpty = isEmpty(s.addKg); for (const k of VAL_KEYS) if (uses[k] && isEmpty(s[k]) && !isEmpty(p[k]) && !(k === 'weight' && offW) && !(k === 'addKg' && ((uses.bandId && s.bandId && s.bandId !== p.bandId) /* runda 66: ukryta guma nie blokuje +kg */ || (s.noBand && p.bandId) || (p.bandId && (!uses.bandId || !bandById(p.bandId)))))) { /* runda 47: guma zdjęta ręcznie — bez jej asysty */ /* runda 46: asysta innej gumy nie trafia do tej serii */ (s as any)[k] = p[k]; hinted[k] = p[k]; } if (uses.bandId && !s.bandId && !s.noBand && p.bandId && bandById(p.bandId) && kgEmpty) { s.bandId = p.bandId; hinted.bandId = p.bandId; } /* P-001/T-055: guma z podpowiedzi przychodzi bez kg */ }
-  // Brak podpowiedzi i brak wpisu: dolna granica zakresu z szablonu (runda 4: pierwszy trening zapisywał „24×0”).
-  if (hasReps(m) && isEmpty(s.reps) && e.repMin != null) { s.reps = e.repMin; hinted.reps = e.repMin; }
-  s.hinted = Object.keys(hinted).length ? hinted : undefined;
-}
-/** E2 (docs/14 pkt 3.5): bloki rozdzielone zamianą (łańcuch splitFrom: A z odhaczonymi + zamiennik B) to JEDEN członek grupy — runda liczona
- * sumą ich serii; bez tego B1 po podziale A liczyło rundę 1 i odpalało przerwę w środku rundy 2. Bez podziałów członek = blok (jak dotąd).
- * Wspólne dla przerw (restAfter) i karty „teraz” (focusSet, audyt 0.10 LIVE-02). */
-function ssRoot(list: WExercise[], x: WExercise): string { let c = x; const seen = new Set<string>(); while (c.splitFrom && !seen.has(c.id)) { seen.add(c.id); const p = list.find(y => y.id === c.splitFrom && y.groupId === x.groupId); if (!p) break; c = p; } return c.id; }
-function ssMembers(list: WExercise[], pick: (x: WExercise) => boolean): Map<string, WExercise[]> { const m = new Map<string, WExercise[]>(); for (const x of list) if (pick(x)) { const k = ssRoot(list, x); const l = m.get(k); if (l) l.push(x); else m.set(k, [x]); } return m; }
-/** Przerwa po serii (ei, si) treningu w toku; null = superset bez przerwy. Wspólne dla odhaczenia i ponownego pomiaru (runda 19). */
-export function restAfter(ei: number, si: number): number | null {
-  const a = getState().active; const e = a?.exercises[ei]; const s = e?.sets[si]; if (!a || !e || !s) return null; const ex = exById(e.exerciseId);
-  // Superset (0.4; od rundy 72): bez przerwy, dopóki runda nie jest zamknięta — liczy się liczba serii, nie kolejność na liście.
-  // Runda 72 (T5): runda liczona serią, nie kolejnością na liście — odhaczenie B1 przed A1 nie odpala przerwy w środku rundy.
-  // Runda 72 (T6): drop set to część serii, po której następuje — bez przerwy przed nim, a w supersecie nie liczy się jako osobna runda.
-  if (s.kind !== 'warmup') { const nx = e.sets[si + 1]; if (nx && nx.kind === 'drop' && !nx.done) return null; }
-  if (e.groupId) {
-    /* Audyt 0.10 (LIVE-01): blok „Pomiń dziś” nie jest członkiem rundy — inaczej jego zaległe serie wstrzymywały przerwy drugiego ćwiczenia do końca. */
-    const inGroup = (x: WExercise) => x.groupId === e.groupId && (x === e || !x.skipped);
-    const members = ssMembers(a.exercises, inGroup); const mineK = ssRoot(a.exercises, e); const mine = members.get(mineK)!;
-    const work = (xs: WExercise[]) => xs.flatMap(x => x.sets.filter(isRoundSet)); const r = work(mine).filter(y => y.done).length;
-    const others = [...members].filter(([k]) => k !== mineK).map(([, v]) => v);
-    /* Runda 75 (Q-006): ostatnia seria ostatniego ćwiczenia grupy zamyka rundę, także gdy wcześniejsze ćwiczenie ma pominiętą serię.
-     * Warunek: każde zaległe ćwiczenie ma już choć jedną zrobioną serię — inaczej B1 przed A1 (także przy jednej serii) odpalałoby przerwę. */
-    const closesGroup = !a.exercises.some((x, j) => j > ei && inGroup(x) && !mine.includes(x)) && !work(mine).some(y => !y.done) && others.every(x => work(x).some(y => y.done) || !work(x).some(y => !y.done));
-    if (s.kind === 'warmup' ? a.exercises.some((x, j) => j > ei && inGroup(x) && !mine.includes(x) && x.sets.some(y => !y.done)) || others.some(x => work(x).filter(y => y.done).length > r) /* Q-006: rozgrzewka w trwającej rundzie — bez przerwy */
-      : !closesGroup && others.some(x => work(x).filter(y => y.done).length < r && work(x).some(y => !y.done))) return null; } /* T9: pominięty drop set nie blokuje przerwy po ostatniej rundzie */
-  if (s.kind === 'warmup' && ex?.restWarmupSec != null) return ex.restWarmupSec;
-  if (e.groupId && s.kind !== 'warmup') return roundRest(ei); /* runda 72: koniec rundy poza kolejnością — przerwa rundy (ostatniego ćwiczenia grupy) */
-  return e.restSec ?? restFor(ex);
-}
-/** Przerwa rundy supersetu (ostatniego ćwiczenia grupy) albo własna przerwa ćwiczenia — dla ponownego pomiaru (runda 21).
- * Audyt 0.10 (LIVE-01): ostatni NIEPOMINIĘTY członek grupy („Pomiń dziś”). */
-export function roundRest(ei: number): number | null {
-  const a = getState().active; const e = a?.exercises[ei]; if (!a || !e) return null;
-  const last = e.groupId ? [...a.exercises].reverse().find(x => x.groupId === e.groupId && (x === e || !x.skipped)) ?? e : e;
-  return last.restSec ?? restFor(exById(last.exerciseId));
-}
-/** Odhacza serię; zwraca długość przerwy do odpalenia (lub null: odznaczono albo superset bez przerwy). */
-/** `at` — godzina odhaczenia, gdy znana z danych (stoper z celem kończy się o starcie + cel, nawet gdy aplikacja wstała później — T8). */
-export function toggleDone(ei: number, si: number, at?: number): number | null {
-  const a = getState().active; if (!a) return null; const e = a.exercises[ei]; const s = e?.sets[si];
-  if (!e || !s) return null;
-  s.done = !s.done;
-  if (s.done) {
-    // Pola wpisane ręcznie PRZED uzupełnieniem z podpowiedzi — tylko one przechodzą na następną serię (runda 2: piramidy).
-    const typed = new Set(VAL_KEYS.filter(k => !isEmpty(s[k])));
-    carryPrefill(e, si);
-    fillFromHints(e, si);
-    const now = at != null && Number.isFinite(at) ? Math.min(at, Date.now()) : Date.now(); const prev = lastCompletedAt(a, s);
-    s.completedAt = now; s.actualRest = prev && now > prev && now - prev < 3600e3 ? Math.round((now - prev) / 1000) : null; // runda 30: cofnięty zegar → brak przerwy, nie ujemna
-    if (a.pausedAt != null) resumeWorkout(now, a); /* 08.10.2026: odhaczenie serii w trakcie pauzy kończy pauzę (od godziny serii) */
-    // Autouzupełnianie: tylko puste pola następnej, nieodhaczonej serii tego samego rodzaju (rozgrzewka nie nadpisuje roboczej).
-    const nxt = e.sets[si + 1];
-    // Runda 6: rodziny serii — rozgrzewka, drop set, reszta (zwykła/do upadku). Ciężar dropu nie trafia do serii roboczej i odwrotnie.
-    const sameKind = nxt && setFam(nxt.kind) === setFam(s.kind);
-    // Czas NIE przechodzi na następną serię: w serii czasowej to cel stopera (przejęcie ucinało kolejną serię — runda 2).
-    if (nxt && !nxt.done && sameKind) {
-      for (const k of VAL_KEYS) if (k !== 'durationSec' && !(k === 'addKg' && s.bandId && (usedKeys(exById(e.exerciseId)).bandId || Number(s.addKg) < 0)) /* runda 66: ukryta guma blokuje tylko swoją asystę */ && typed.has(k) && isEmpty(nxt[k])) (nxt as any)[k] = s[k];
-      /* Runda 47: guma przechodzi na następną serię razem z wpisanym ±kg (P-001: guma sama nie wnosi kg), gdy:
-         „Poprzednio” nic nie mówi o tej serii, guma nie została w niej zdjęta ręcznie, a seria nie ma własnego, innego obciążenia. */
-      const nKg = isEmpty(nxt.addKg) || Number(nxt.addKg) === 0;
-      if (s.bandId && usedKeys(exById(e.exerciseId)).bandId /* runda 65 */ && !nxt.noBand && !hintFor(prevOfBlock(e)?.sets, e.sets, si + 1, exById(e.exerciseId)) /* T7: ta sama podpowiedź co na ekranie */ && ((!nxt.bandId && nKg) || nxt.bandId === s.bandId)) {
-        nxt.bandId = s.bandId; if (nKg && !isEmpty(s.addKg)) nxt.addKg = s.addKg;
-      }
-    }
-    save(a);
-    return restAfter(ei, si);
-  }
-  // Cofnięcie odhaczenia zdejmuje wartości wstawione z podpowiedzi — ponowne odhaczenie nie traktuje ich jak wpisanych
-  // ręcznie (runda 4). Runda 5: czyszczone tylko pola, których wartość wciąż równa się wstawionej; pole zmienione ręcznie
-  // (albo guma przełączona) zostaje, a edycja innego pola nie blokuje czyszczenia pozostałych.
-  if (s.hinted && typeof s.hinted === 'object') { const hb = (s.hinted as any).bandId; const band0 = s.bandId; /* runda 52: stan gumy sprzed czyszczenia */ for (const [k, v] of Object.entries(s.hinted)) if ((s as any)[k] === v && !(k === 'addKg' && hb && band0 !== hb)) (s as any)[k] = ''; /* P-001: zdjęcie gumy z podpowiedzi nie rusza ±kg (dawniej runda 53) */ } // runda 48: po zmianie gumy asysta należy już do nowej gumy
-  s.hinted = undefined; s.completedAt = null; s.actualRest = null; save(a); return null;
-}
-/** Runda 69: porzucony trening. Pytanie po 2 h bez odhaczonej serii, ciche zakończenie po 6 h. */
-export const STALE_ASK_MS = 2 * 3600e3, STALE_AUTO_MS = 6 * 3600e3;
-/** Ostatnia aktywność treningu: godzina ostatniej odhaczonej serii (albo start). */
-export function lastActivity(w: Workout): number { let t = w.startedAt; for (const e of w.exercises) for (const s of e.sets) if (s.done && typeof s.completedAt === 'number' && s.completedAt > t) t = s.completedAt; return t; }
-/** Aktywność łącznie z trwającym stoperem serii (runda 69, T1): mierzona seria to nie porzucony trening. */
-export const staleRef = (w: Workout, now = Date.now()) => { const tm = S?.timer; const sw = tm?.setStartAt && tm.setId && w.exercises.some(e => e.sets.some(s => s.id === tm.setId)) ? tm.setStartAt : 0;
-  /* T4a: znaczniki z przyszłości (import, „Kontynuuj” przy zegarze do przodu, potem poprawionym) pomijamy — inaczej blokowałyby pytanie i zapis na zawsze */
-  /* T6: także start — gdy zegar był do przodu przez cały trening, żaden znacznik nie jest wiarygodny: -∞ = zapytaj od razu, ale nie zapisuj sam */
-  const ok = (x: unknown) => typeof x === 'number' && Number.isFinite(x) && x <= now + 10 * 60e3 ? x : -Infinity;
-  let r = ok(w.startedAt); for (const e of w.exercises) for (const s of e.sets) if (s.done) r = Math.max(r, ok(s.completedAt));
-  return Math.max(r, ok(w.staleAck), sw ? ok(sw) : -Infinity); };
-/** Runda 72 (T4a): wariant pytania/przypomnienia — jedno źródło dla obu. */
-export const staleKind = (w: Workout): 'work' | 'warmup' | 'none' => hasWorkDone(w) ? 'work' : w.exercises.some(e => e.sets.some(s => s.done)) ? 'warmup' : 'none';
-export const hasWorkDone = (w: Workout) => w.exercises.some(e => e.sets.some(s => s.done && s.kind !== 'warmup'));
-/** Gdy trening w toku jest „porzucony” (≥ 2 h od ostatniej serii i od ostatniego „Kontynuuj”) — godzina ostatniej serii; inaczej null. */
-export function staleSince(now = Date.now()): number | null { const a = S?.active; if (!a) return null; const last = lastActivity(a); return now - staleRef(a, now) >= STALE_ASK_MS ? last : null; }
-export function ackStale() { const a = S?.active; if (!a) return; a.staleAck = Date.now(); save(a); }
-/** Q-010: ponowny pomiar odhaczonej serii to aktywność — przesuwa znacznik jak „Kontynuuj” (pytanie o porzucony trening liczy od niego). */
-export function markActivity(a: Workout, at: number) { if (Number.isFinite(at) && at > (Number(a.staleAck) || 0)) a.staleAck = Math.min(at, Date.now()); if (a.pausedAt != null && Number.isFinite(at)) resumeWorkout(at, a); /* 08.10.2026: odhaczenie serii kończy pauzę */ }
-/** Runda 75 (Q-002, decyzja 02.10.2026): po zamknięciu aplikacji stoper serii BEZ celu nie wraca. Seria odhacza się z czasem
- * z pola serii (wpisanym albo wstawionym z „Poprzednio”), a gdy pole jest puste — zostaje nieodhaczona do ręcznego wpisu.
- * Ponowny pomiar odhaczonej serii zostawia jej poprzedni czas. Stoper z celem kończy się jak dotąd (start + cel). Wołane raz przy starcie aplikacji. */
-export function resolveColdStopwatch(now = Date.now()) {
-  const tm = S?.timer; if (!tm?.setStartAt || !tm.setId || Number(tm.setTarget) > 0) return;
-  const a = S?.active; const pos = a ? findSet(tm.setId) : null; const st = pos && a ? a.exercises[pos.ei].sets[pos.si] : null;
-  if (pos && st && !st.done && Number(st.durationSec) > 0) toggleDone(pos.ei, pos.si, Math.min(now, tm.setStartAt + Number(st.durationSec) * 1000));
-  setTimerState({ setStartAt: null, setTarget: 0, setId: null });
-}
-/** Ciche zakończenie po 6 h bez aktywności (przy starcie i powrocie z tła). Bez odhaczonych serii roboczych trening czeka na decyzję. */
-export function autoFinishStale(now = Date.now()): Workout | null {
-  const a = S?.active; if (!a) return null;
-  const ref = staleRef(a, now); if (!Number.isFinite(ref) || now - ref < STALE_AUTO_MS) return null; /* T6: bez wiarygodnej godziny nie kończymy po cichu */
-  // T9: seria czasowa z celem, trwająca przy zamknięciu aplikacji, skończyła się o starcie + cel — jak na ekranie przy 2–6 h; nie przepada.
-  const tm = S?.timer; let changed = false;
-  if (tm?.setStartAt && tm.setId && !(Number(tm.setTarget) > 0)) setTimerState({ setStartAt: null, setTarget: 0, setId: null }); /* Q-011: stoper bez celu sprzed ≥ 6 h i tak nie wraca (timer.restore) — nie zostaje w zapisie */
-  if (tm?.setStartAt && Number(tm.setTarget) > 0 && tm.setId) { const pos = findSet(tm.setId); const st = pos ? a.exercises[pos.ei].sets[pos.si] : null;
-    const dur = Math.max(1, Math.min(Number(tm.setTarget), Math.floor((now - tm.setStartAt) / 1000))); /* T11: nie dłużej niż faktycznie minęło */
-    if (st && !st.done && pos) { st.durationSec = dur; toggleDone(pos.ei, pos.si, Math.min(now, tm.setStartAt + Number(tm.setTarget) * 1000)); /* T10: ta sama ścieżka co na ekranie — podpowiedzi i rzeczywista przerwa */ changed = true; }
-    else if (st && st.done) { st.durationSec = dur; markActivity(a, Math.min(now, tm.setStartAt + dur * 1000)); changed = true; } /* T11: ponowny pomiar — jak finishTimedSet na ekranie */
-    setTimerState({ setStartAt: null, setTarget: 0, setId: null }); }
-  if (!hasWorkDone(a)) { if (changed) save(a); return null; }
-  return finishWorkout(lastActivity(a));
-}
-/** Zakończenie treningu; `at` — godzina końca (po czasie: ostatnia seria, nie chwila kliknięcia). */
-export function finishWorkout(at?: number): Workout | null {
-  const st = getState(); const w = st.active; if (!w) return null;
-  w.finishedAt = Math.max(w.startedAt, at != null && Number.isFinite(at) ? Math.min(at, Date.now()) : Date.now()); /* T4a: cofnięty zegar nie daje końca przed startem */ delete w.staleAck;
-  closePause(w, w.finishedAt); /* 08.10.2026: pauza trwająca przy „Zakończ” kończy się z treningiem; pauza po końcu (auto-zapis na ostatniej serii) nie liczy się */
-  w.exercises = w.exercises.map(e => { const o = { ...e, sets: e.sets.filter(s => s.done).map(s => { delete s.pre; return s; }) }; delete o.splitFrom; delete o.altSkip; delete o.skipped; /* E2: tylko trening w toku (jak migrate M3/M4) */ return o; }).filter(e => e.sets.length);
-  normalizeGroups(w.exercises);
-  st.workouts.push(w); st.active = null; st.userTouched = true; purgeOrphans(); save(w); flush();
-  return w;
-}
-export function cancelWorkout() { getState().active = null; purgeOrphans(); save(); flush(); }
-export function deleteWorkout(id: string) { const st = getState(); st.workouts = st.workouts.filter(w => w.id !== id); purgeOrphans(); save(); flush(); }
-
-/* ---------- edycja historii i trening wstecz (docs/12) ---------- */
-/** Pusta seria (do edytora historii). */
-export const emptySet = blankSet;
-/** Seria historii ma wynik w metryce ćwiczenia: powtórzenia (kg × powt., powt.), czas (czas, kg × czas) albo dystans/czas (bieg).
- * Seria bez wyniku (np. plank bez czasu, 100 kg × 0) przy zapisie edycji odpada — jak nieodhaczona seria przy „Zakończ”. */
-export function setHasResult(ex: Exercise | undefined, s: WSet): boolean {
-  if (!ex) return setHasValue(s); const m = ex.metric ?? 'weight_reps';
-  if (hasReps(m)) return Number(s.reps) > 0;
-  if (hasDistance(m)) return Number(s.distanceM) > 0 || Number(s.durationSec) > 0;
-  if (hasTime(m)) return Number(s.durationSec) > 0;
-  return setHasValue(s);
-}
-/**
- * Zapis treningu z edytora historii: podmienia trening o id `replaceId` (edycja) albo dodaje nowy (trening wstecz) — w miejscu
- * zgodnym z datą startu. Jedna zmiana stanu: save() podbija histRev, więc rekordy, „Poprzednio”, wykresy, objętość tygodnia i CSV
- * liczą się od nowa. Trening w toku i timery nie są ruszane. false = edytowanego treningu już nie ma (usunięty w międzyczasie).
- */
-export function putHistoryWorkout(w: Workout, replaceId: string | null): boolean {
-  const st = getState();
-  if (replaceId != null) { const i = st.workouts.findIndex(x => x.id === replaceId); if (i < 0) return false;
-    /* weryfikacja 2 (L3): znacznik Apple Health i data utworzenia z treningu ZAPISANEGO teraz, nie ze szkicu — zapis do Zdrowia mógł skończyć się w trakcie edycji */
-    w.healthUUID = st.workouts[i].healthUUID; w.createdAt = st.workouts[i].createdAt; st.workouts.splice(i, 1); }
-  w.exercises.forEach(e => e.sets.forEach(s => { s.done = true; s.warmup = s.kind === 'warmup'; delete s.pre; delete s.hinted; delete s.edited; if (s.noBand !== true || s.bandId) delete s.noBand; /* jak migrate — kopia wraca 1:1 */ }));
-  w.exercises = w.exercises.filter(e => e.sets.length); w.exercises.forEach(e => { delete e.splitFrom; delete e.altSkip; delete e.skipped; }); /* E2: tylko trening w toku */ normalizeGroups(w.exercises); delete w.staleAck;
-  /* Audyt M4: start w tej samej milisekundzie co inna sesja (albo trening w toku) — rekordy liczą się „przed startem” (<), więc obie
-   * dostałyby PR, a „Poprzednio” zależałoby od kolejności wstawienia. Przesuwamy start, koniec i godziny serii o 1 s, aż start jest unikalny. */
-  { const taken = new Set([...st.workouts, ...(st.active ? [st.active] : [])].map(x => x.startedAt)); let bump = 0; while (taken.has(w.startedAt + bump)) bump += 1000;
-    if (bump) { w.startedAt += bump; if (w.finishedAt != null) w.finishedAt += bump; if (w.pauses) w.pauses = w.pauses.map(([f, t]) => [f + bump, t + bump]); w.exercises.forEach(e => e.sets.forEach(s => { if (typeof s.completedAt === 'number') s.completedAt += bump; })); } }
-  const j = st.workouts.findIndex(x => x.startedAt > w.startedAt); st.workouts.splice(j < 0 ? st.workouts.length : j, 0, w);
-  st.userTouched = true; purgeOrphans(); save(w); flush();
-  return true;
-}
 /** Włączanie/wyłączanie modułu (ADR-011). 'training' jest zawsze włączony. */
 export function setModule(m: keyof State['settings']['modules'], on: boolean) { const s = getState().settings; s.modules[m] = m === 'training' ? true : on; save(); }
 /** Reset: nowe dane startowe w języku, który będzie widoczny po resecie (ustawienie wraca na „auto” = język telefonu). */
 export function resetAll() { const s = seedState(detectLang()); s.settings.unit = deviceUnit(); /* jak świeża instalacja (UX-12) */ replaceState(s); clearRecovery(); flush(); }
-/**
- * Widok skupiony (styl „Tuleja”, decyzja właściciela 07.10.2026; docs/21 pkt 3): seria „teraz” = pierwsza nieodhaczona seria w kolejności treningu.
- * Superset — rundami (audyt 0.10, LIVE-02): spośród członków grupy z nieodhaczoną serią ten, który ma NAJMNIEJ odhaczonych serii roboczych (remis —
- * wcześniejsze ćwiczenie); w nim pierwsza nieodhaczona seria — więc rozgrzewka członka idzie tuż przed jego pierwszą serią roboczą (AW, A1, B1… /
- * A1, BW, B1…), a drop set tuż po serii, do której należy. Członek = blok albo łańcuch bloków rozdzielonych zamianą (ssRoot, jak w restAfter).
- * Bloki usuniętych ćwiczeń (bez wpisu w bibliotece) i „Pomiń dziś” są pomijane. null = wszystko odhaczone (albo pusty trening).
- * `assumeDone` — id serii traktowanej jak odhaczona: stan PO odhaczeniu, wspólny z podpisem przerwy (lib/live.ts restLabel, audyt 0.10 LIVE-04).
- */
-export function focusSet(w: Workout | null | undefined, assumeDone?: string | null): { ei: number; si: number } | null {
-  if (!w) return null; const list = w.exercises; const isDone = (s: WSet) => s.done || (assumeDone != null && s.id === assumeDone);
-  const firstOpen = (i: number) => exById(list[i].exerciseId) && !list[i].skipped ? list[i].sets.findIndex(s => !isDone(s)) : -1; /* „Pomiń dziś” — blok poza kartą */
-  for (let ei = 0; ei < list.length; ei++) {
-    const si = firstOpen(ei); if (si < 0) continue; const g = list[ei].groupId; if (!g) return { ei, si };
-    const members = ssMembers(list, x => x.groupId === g); let best = { ei, si }; let bestKey = Infinity;
-    for (let j = ei; j < list.length; j++) {
-      const x = list[j]; if (x.groupId !== g) continue; const k = firstOpen(j); if (k < 0) continue;
-      const done = members.get(ssRoot(list, x))!.reduce((n, b) => n + b.sets.filter(y => isDone(y) && isRoundSet(y)).length, 0);
-      const key = done - (x.sets[k].kind === 'drop' && k > 0 && isDone(x.sets[k - 1]) ? 1 : 0); /* drop set w rundzie swojej serii */
-      if (key < bestKey) { bestKey = key; best = { ei: j, si: k }; }
-    }
-    return best;
-  }
-  return null;
-}
