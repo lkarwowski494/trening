@@ -31,6 +31,9 @@ const nameOr = (n: string) => n || t('Poprzedni plan');
 /** Ile zapisanych planów widać od razu (reszta po „Pokaż wszystkie”). */
 const OTHER_FIRST = 3;
 
+/** docs/22 krok 3 pkt 1 (11.10.2026): z Planowania da się przejść do listy szablonów (zakładka Szablony — zamknięcie stosu i przejście, jak „Pokaż” w Przewodniku). */
+const openTemplates = (router: ReturnType<typeof useRouter>) => { if (router.canDismiss()) router.dismissAll(); router.navigate('/templates'); };
+
 /** 7 wierszy dni (UX-15 A): wiersz pokazuje dzień i szablon, tapnięcie rozwija wybór (szablony bez folderu, potem foldery). */
 function DayRows({ days, onSet, target }: { days: PlanDays; onSet: (i: number, id: string | null) => void; target: (i: number) => string }) {
   const th = useTheme(); const router = useRouter(); const [open, setOpen] = useState<number | null>(null); const groups = templateGroups();
@@ -50,7 +53,10 @@ function DayRows({ days, onSet, target }: { days: PlanDays; onSet: (i: number, i
           <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6 }}>{g.items.map(x => <Chip key={x.id} label={x.name} on={x.id === id} a11yLabel={`${weekdayName(i)}: ${x.name}`} onPress={() => { onSet(i, x.id); setOpen(null); }} />)}</View>
         </View>)}
         {!groups.length ? <Muted style={{ fontSize: 13 }}>{t('Nie masz jeszcze szablonów.')}</Muted> : null}
-        <Btn nav small kind="ghost" title={t('+ Nowy szablon')} accessibilityLabel={`${weekdayName(i)}: ${t('+ Nowy szablon')}`} accessibilityHint={t('Po zapisie szablon trafi na ten dzień.')} onPress={() => create(i)} style={{ alignSelf: 'flex-start' }} />
+        <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6 }}>
+          <Btn nav small kind="ghost" title={t('+ Nowy szablon')} accessibilityLabel={`${weekdayName(i)}: ${t('+ Nowy szablon')}`} accessibilityHint={t('Po zapisie szablon trafi na ten dzień.')} onPress={() => create(i)} />
+          <Btn nav small kind="ghost" title={t('Szablony ›')} accessibilityLabel={`${weekdayName(i)}: ${t('Szablony')}`} accessibilityHint={t('Otwiera listę szablonów.')} onPress={() => openTemplates(router)} />
+        </View>
       </View> : null}
     </View>); })}</>;
 }
@@ -70,6 +76,7 @@ export default function PlanScreen() {
       <Field label={t('Nazwa planu')}><Input value={saved.name} maxLength={40} accessibilityLabel={t('Nazwa planu')} onChangeText={v => typeSavedName(saved.id, v)} onEndEditing={() => { renamePlan(saved.id, savedPlans().find(p => p.id === saved.id)?.name ?? '', initial.current); initial.current = savedPlans().find(p => p.id === saved.id)?.name ?? initial.current; }} /></Field>
       {savedChanges(saved.id) ? <Muted style={{ fontSize: 13, marginBottom: 8 }}>{t('Zmiany pojedynczych dni zapisane z tym planem: {n} — wrócą po aktywacji.', { n: savedChanges(saved.id) })}</Muted> : null}
       <Btn nav title={t('Ustaw jako aktywny')} kind="primary" small accessibilityLabel={t('Ustaw jako aktywny: {name}', { name: nameOr(saved.name) })} onPress={() => activate(saved.id, saved.name, () => { if (router.canGoBack()) router.back(); else router.replace('/plan'); })} style={{ alignSelf: 'flex-start', marginBottom: 8 }} />
+      <Btn nav small kind="ghost" title={t('Szablony')} accessibilityHint={t('Otwiera listę szablonów.')} onPress={() => openTemplates(router)} style={{ alignSelf: 'flex-start', marginBottom: 8 }} />
       <SectionTitle>{t('Dni tygodnia')}</SectionTitle>
       <DayRows days={saved.days} onSet={(i, x) => setSavedDay(saved.id, i, x)} target={i => assignTarget.saved(saved.id, i)} />
     </ScrollView></Screen>);
@@ -85,6 +92,7 @@ function ActivePlan({ activate }: { activate: (id: string, name: string) => void
       <Muted style={{ fontSize: 13, marginBottom: 8 }}>{t('Plan powtarza się co tydzień. Pojedyncze dni zmienisz w Kalendarzu.')}</Muted>
       <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginBottom: 4 }}>
         {!plansFull() ? <Btn nav /* UI2-02: blokada obejmuje też newPlan() — jeden plan */ title={t('+ Nowy plan')} small accessibilityHint={t('Kopia obecnego planu w „Inne plany” — zmienisz ją przed ustawieniem jako aktywny.')} onPress={() => { const nid = newPlan(); if (nid) router.push(`/plan?id=${nid}`); }} /> : null}
+        <Btn nav title={t('Szablony')} small accessibilityHint={t('Otwiera listę szablonów.')} onPress={() => openTemplates(router)} />{/* 11.10.2026: z Planowania do szablonów (docs/22 problem 3) */}
         <Btn nav title={t('Wygeneruj szablony i plan')} small onPress={() => router.push('/generator')} />{/* 08.10.2026: generator (docs/24) */}
         {ownTemplates().length ? <Btn nav title={t('Plan z moich szablonów')} small onPress={() => router.push('/generator?mode=own')} /> : null}{/* 09.10.2026 (B) */}
       </View>

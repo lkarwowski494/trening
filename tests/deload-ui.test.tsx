@@ -10,7 +10,7 @@ import { deloadKeep } from '@/lib/deload';
 import { deloadCounts } from '@/lib/start';
 import { applyLang } from '@/lib/i18n';
 import { fresh, saved, withDemoTemplates, addWorkout } from './helpers';
-import { renderApp, flushAll, screen, tap, act, go } from './app';
+import { renderApp, flushAll, screen, tap, act, go, startTpl } from './app';
 
 const NOW = new Date(2026, 9, 8, 9, 0); /* czwartek; tydzień od 5.10 */
 const S = () => store.getState();
@@ -54,18 +54,18 @@ describe('B: start w tygodniu deload', () => {
   test('ekran treningu: pytanie z liczbą serii; „Mniej serii” — około połowy, ciężary bez zmian; „Pełny trening”; „Anuluj”', async () => {
     const t = await boot(() => { store.toggleDeloadWeek(NOW.getTime()); }, '/');
     const c = deloadCounts(t[0]); expect(c.less).toBeLessThan(c.full);
-    await tap(screen.getByLabelText(`Start: ${t[0].name}`)); await flushAll(5);
+    await startTpl(t[0].name); await flushAll(5);
     expect(lastAlert('Tydzień deload')!.msg).toBe(`Zacząć z mniejszą liczbą serii: ${c.less} zamiast ${c.full} serii roboczych? Ciężary bez zmian, szablon się nie zmienia.`);
     await press('Tydzień deload', 'Anuluj'); expect(S().active).toBeNull();
-    await tap(screen.getByLabelText(`Start: ${t[0].name}`)); await flushAll(5); await press('Tydzień deload', 'Pełny trening');
+    await startTpl(t[0].name); await flushAll(5); await press('Tydzień deload', 'Pełny trening');
     const full = S().active!.exercises.map(e => e.sets.filter(s => s.kind !== 'warmup').length); const w0 = S().active!.exercises.map(e => e.sets.map(s => s.weight));
     act(() => { S().active = null; store.save(); }); await flushAll(5);
-    await tap(screen.getByLabelText(`Start: ${t[0].name}`)); await flushAll(5); await press('Tydzień deload', 'Mniej serii');
+    await startTpl(t[0].name); await flushAll(5); await press('Tydzień deload', 'Mniej serii');
     expect(S().active!.exercises.map(e => e.sets.filter(s => s.kind !== 'warmup').length)).toEqual(full.map(deloadKeep));
     S().active!.exercises.forEach((e, i) => e.sets.forEach((s, j) => expect(s.weight).toBe(w0[i][j])));
   });
   test('poza tygodniem deload — start od razu, bez pytania', async () => {
-    const t = await boot(() => {}, '/'); await tap(screen.getByLabelText(`Start: ${t[0].name}`)); await flushAll(5);
+    const t = await boot(() => {}, '/'); await startTpl(t[0].name); await flushAll(5);
     expect(lastAlert('Tydzień deload')).toBeUndefined(); expect(S().active?.templateId).toBe(t[0].id);
   });
   test('„Dziś” na ekranie treningu, panel dnia w Kalendarzu i ekran szablonu też pytają', async () => {

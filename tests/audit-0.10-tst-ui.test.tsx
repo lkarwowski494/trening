@@ -32,7 +32,7 @@ describe('ekran treningu', () => {
     await renderApp(); addWorkout(Date.now() - 2 * day, [['Plank', [{ durationSec: 30 }]]]);
     await act(async () => { store.startEmpty(); store.addExerciseToActive(ex('Plank')); const a = S().active!; a.exercises[0].sets = [a.exercises[0].sets[0]]; a.exercises[0].sets[0].durationSec = 45; store.save(a); });
     await flushAll(10); await act(async () => { store.toggleDone(0, 0); }); await flushAll(1000);
-    await tap(screen.getAllByText('Zakończ trening i zapisz')[0]); pressAlert('Zakończyć trening?', 'Zakończ'); await flushAll(600);
+    await tap(screen.getAllByText('Zakończ')[0]); pressAlert('Zakończyć trening?', 'Zakończ'); await flushAll(600);
     const titles = (global.__alerts as { title: string }[]).map(x => x.title).filter(x => /rekord/i.test(x));
     expect(titles).toEqual(['Nowy rekord!']);
   });

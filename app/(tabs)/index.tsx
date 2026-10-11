@@ -1,21 +1,16 @@
 import React from 'react';
 import { ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useRouter } from 'expo-router';
-import { Screen, H1, H2, Muted, Item, Btn, useOnce, SectionTitle } from '@/components/ui';
+import { Screen, H1, Muted, Item } from '@/components/ui';
 import ActiveWorkout from '@/components/ActiveWorkout';
 import { Alert } from 'react-native';
-import { wallTs, getState, useTick, finishedWorkouts, templateGroups, fmtDate, getPersistError, getRecovery, clearRecovery, flush, tplWorkSets } from '@/lib/store';
+import { getState, useTick, getPersistError, getRecovery, clearRecovery, flush } from '@/lib/store';
 import { exportRecovery } from '@/lib/backup';
 import { TodayPlan } from '@/components/TodayPlan';
-import { WeekStats, FirstSteps } from '@/components/Dashboard';
-import { firstSteps } from '@/lib/dashboard';
+import { WeekStats, FirstSteps, ProgressTiles } from '@/components/Dashboard';
 import { WhatsNewHeader } from '@/components/WhatsNew';
-import { startTemplate } from '@/lib/start';
 import { StartPanel } from '@/components/StartPanel';
-import { PlanningCard } from '@/components/PlanningCard';
-import { t, tp, locale } from '@/lib/i18n';
-import { fmtW, fmtNum } from '@/lib/units';
+import { t, locale } from '@/lib/i18n';
 
 /** Problemy z zapisem: błąd zapisu na dysk albo nieczytelne dane przy starcie (kopia odłożona, nie nadpisana). */
 function DataBanners() {
@@ -27,27 +22,19 @@ function DataBanners() {
 }
 
 function Home() {
-  const st = getState(); const router = useRouter(); const once = useOnce();
-  const fin = finishedWorkouts();
-  /* Układ B „najpierw trening” (decyzja właściciela 09.10.2026 ok. 15:20, doprecyzowanie 15:30; docs/18): karta „Dziś” na górze, pod nią duży
-   * przycisk startu i „Inny trening” (arkusz: inny z planu, powtórz ostatni, z szablonu, pusty — dawne przyciski na dole ekranu), bez planu karta
-   * Planowania zaraz pod startem; „Ostatni trening” usunięty (właściciel 09.10.2026 ok. 16:20 — jest w arkuszu przy „Powtórz ostatni”); nowa osoba — „Pierwsze kroki” w miejscu Planowania; „Ten tydzień” (kafelki, przy planie sztanga postępu),
-   * przy planie Planowanie zwinięte do wiersza, lista szablonów ze Startem (zostaje — szybki start konkretnego szablonu). */
+  /* Układ B „najpierw trening” (decyzja właściciela 09.10.2026, docs/18) po zmianach z 11.10.2026 (docs/22 krok 3; P2–P4, P8): nagłówek planu z „Planowaniem”
+   * nad kalendarzem tygodnia (components/TodayPlan) → duży przycisk startu i „Inny trening” (arkusz: inny z planu, powtórz ostatni, z szablonu — pełnoekranowy
+   * wybór ze Startem, pusty) → „Pierwsze kroki” (tylko nowa osoba) → „Ten tydzień” (kafelki, stosy planu, sylwetka i serie na partię: wykonane + zaplanowane)
+   * → „Progresja” (kafelki → szczegóły). Lista „Zacznij z szablonu”, karta Planowania i wiersz „Plan: … Planowanie ›” usunięte jako duplikaty. */
   return (
     <ScrollView contentContainerStyle={{ paddingBottom: 40 }}>
       <WhatsNewHeader>{/* 08.10.2026: „i” — Co nowego (decyzja właściciela) */}<H1>{t('Trening')}</H1><Muted>{new Date().toLocaleDateString(locale(), { weekday: 'long', day: 'numeric', month: 'long' })}</Muted></WhatsNewHeader>
       <DataBanners />
-      <TodayPlan />{/* 08.10.2026: kalendarz z planem (decyzja 1A) */}
+      <TodayPlan />{/* 08.10.2026: kalendarz z planem (decyzja 1A); 11.10.2026: z nagłówkiem planu i „Planowaniem” */}
       <StartPanel />
-      <PlanningCard when="noPlan" />
       <FirstSteps />
       <WeekStats />
-      <PlanningCard when="plan" />
-      <H2 style={{ marginTop: 22 }}>{t('Zacznij z szablonu')}</H2>
-      {!st.templates.some(x => !x.archived) && !firstSteps() /* 07.10.2026 wieczór: same zarchiwizowane — jak brak szablonów; UX-12 A: bez powtórzenia „Pierwszych kroków” */ ? <Muted style={{ fontSize: 13, marginBottom: 8 }}>{t('Nie masz jeszcze szablonów — utwórz pierwszy albo zacznij pusty trening.')}</Muted> : null /* runda 8: pusty stan; układ B: „+ Nowy szablon” w karcie Planowania */}
-      {/* 07.10.2026 wieczór: foldery jako nagłówki, bez zarchiwizowanych (store.templateGroups) */}
-      {templateGroups().map(g => <React.Fragment key={g.folder ?? ''}>{g.folder ? <SectionTitle>{g.folder}</SectionTitle> : null}{g.items.map(tpl => { const lw = fin.find(x => x.templateId === tpl.id); const sets = tplWorkSets(tpl); return (
-        <Item key={tpl.id} title={tpl.name} sub={`${tpl.items.length} ${t('ćw.')} · ${sets} ${tp(sets, 'seria|serie|serii')}${lw ? ' · ' + t('ostatnio') + ' ' + fmtDate(wallTs(lw)) : ''}`} onPress={() => router.push(`/template/${tpl.id}`)} right={tpl.items.length ? <Btn title={t('Start')} kind="primary" small accessibilityLabel={t('Start: {name}', { name: tpl.name })} onPress={once(() => startTemplate(tpl)) /* audyt 0.10 (LIVE-12): podwójne tapnięcie — jedno pytanie / jeden trening */} /> : undefined} />); })}</React.Fragment>)}
+      <ProgressTiles />
     </ScrollView>
   );
 }

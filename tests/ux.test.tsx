@@ -5,7 +5,7 @@ import * as timer from '@/lib/timer';
 import { dark, light } from '@/lib/theme';
 import { LIB, metricFor, type Equipment } from '@/lib/seed';
 import { rowLayout } from '@/components/ActiveWorkout';
-import { renderApp, tap, flushAll, screen, go, act, type, openCard, swipeDelete, startEdit } from './app';
+import { renderApp, tap, flushAll, screen, go, act, type, openCard, swipeDelete, startEdit, startTpl } from './app';
 import { ex, pressAlert, seedWithDemo } from './helpers';
 
 jest.setTimeout(60000);
@@ -23,7 +23,7 @@ const act0 = async (f: () => void) => { await act(async () => { f(); }); await f
  * użytkownika z szablonem (tu: szablony demonstracyjne), a świeża instalacja ma własny, zmierzony wynik (runda 82b, weryfikacja 6ea37a3 LOW 6). */
 test('C1a z szablonem: od uruchomienia do pierwszej odhaczonej serii ≤ 2 tapnięcia (Start, ✓)', async () => {
   await renderApp({ saved: seedWithDemo() }); let taps = 0;
-  await tap(screen.getByLabelText('Start: Upper A')); taps++;
+  await tap(screen.getByLabelText('Start następnego treningu: Upper A')); await flushAll(10); taps++; /* 11.10.2026: pierwszy szablon = duży przycisk startu (lista „Zacznij z szablonu” usunięta) */
   await tap(screen.getAllByLabelText(/^Seria 1 zrobiona/)[0]); taps++;
   expect(store.getState().active!.exercises[0].sets[0].done).toBe(true); expect(taps).toBeLessThanOrEqual(2);
 });
@@ -85,8 +85,8 @@ test('C6 English: żaden ekran nie pokazuje polskich tekstów interfejsu', async
   /* runda 75: także ścieżka w Plikach „On My iPhone → Trening → Backup” (nazwa aplikacji = folder) */
   const check = (where: string) => allTexts().filter(t => pl.test(t.replace(/^Trening \S* ·/, '').replace(/^Trening \S*\s*$/, '') /* 06.10.2026: stopka = nazwa aplikacji i wersja */.replace(/→ Trening →/g, '→'))).forEach(t => leaks.push(`${where}: ${t}`));
   for (const url of ['/', '/templates', '/exercises', '/history', '/more', '/more/settings', '/more/bands', '/more/morning', '/more/progress', '/more/backup', `/template/${tplId}`, `/exercise/${exId}`, '/picker?target=active']) { await go(url); await flushAll(10); check(url); }
-  await go('/'); await tap(screen.getByLabelText('Start: Upper A')); await tap(screen.getAllByLabelText(/^Set 1 done/)[0]); check('workout');
-  await tap(screen.getAllByText('Finish and save workout')[0]); pressAlert('Finish workout?', 'Finish'); await flushAll(500); check('history detail');
+  await go('/'); await startTpl('Upper A'); await tap(screen.getAllByLabelText(/^Set 1 done/)[0]); check('workout');
+  await tap(screen.getAllByText('Finish')[0]); pressAlert('Finish workout?', 'Finish'); await flushAll(500); check('history detail');
   expect(leaks).toEqual([]);
 });
 
@@ -107,7 +107,7 @@ test('C7 akcje niszczące wymagają potwierdzenia', async () => {
   await expectConfirm(() => tap(screen.getByText('Wyczyść wszystkie dane')), 'Wyczyścić wszystkie dane?');
   await go('/more/backup'); await flushAll(10);
   await expectConfirm(() => tap(screen.getByText('Importuj backup')), 'Nadpisać dane?');
-  await go('/'); await tap(screen.getByLabelText('Start: Upper A'));
+  await go('/'); await startTpl('Upper A');
   await expectConfirm(() => tap(screen.getAllByText('Odrzuć trening')[0]), 'Odrzucić trening?'); expect(s.active).not.toBeNull();
   await act(async () => { pressAlert('Odrzucić trening?', 'Wróć'); }); /* audyt 0.10 (LIVE-12): otwarte okno „Anulować…” blokuje kolejne (jak „Zakończ”) — okno na iOS zamyka się przyciskiem */
   await expectConfirm(() => swipeDelete(/^Usuń ćwiczenie: /), 'Usunąć z treningu?');
@@ -127,12 +127,12 @@ test('C9 żaden ekran nie zgłasza ostrzeżeń Reacta (poza act w testach)', asy
   const errs: string[] = []; const spy = jest.spyOn(console, 'error').mockImplementation((...a: unknown[]) => { const m = String(a[0]); if (!/not wrapped in act/.test(m)) errs.push(m.slice(0, 160)); });
   await renderApp({ saved: seedWithDemo() }); const s = store.getState();
   for (const url of ['/', '/templates', '/exercises', '/history', '/more', '/more/settings', '/more/bands', '/more/morning', '/more/progress', '/more/backup', `/template/${s.templates[0].id}`, `/exercise/${s.exercises[0].id}`, '/picker?target=active']) { await go(url); await flushAll(10); }
-  await go('/'); await tap(screen.getByLabelText('Start: Upper A')); await tap(screen.getAllByLabelText(/^Seria 1 zrobiona/)[0]); await flushAll(2000);
+  await go('/'); await startTpl('Upper A'); await tap(screen.getAllByLabelText(/^Seria 1 zrobiona/)[0]); await flushAll(2000);
   spy.mockRestore(); expect(errs).toEqual([]);
 });
 
 test('C10 pola tekstowe ograniczają powiększenie tekstu', async () => {
-  await renderApp({ saved: seedWithDemo() }); await tap(screen.getByLabelText('Start: Upper A'));
+  await renderApp({ saved: seedWithDemo() }); await startTpl('Upper A');
   const inputs = screen.UNSAFE_getAllByType(TextInput);
   expect(inputs.length).toBeGreaterThan(5);
   expect(inputs.filter(i => !(i.props.maxFontSizeMultiplier > 0))).toHaveLength(0);

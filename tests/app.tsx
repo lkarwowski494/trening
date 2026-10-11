@@ -75,3 +75,18 @@ export const fromHome = async (text: string | RegExp) => {
   if (!el.length) throw new Error('fromHome: brak „' + String(text) + '”');
   await tap(el[0]);
 };
+/** 11.10.2026 (docs/22 P2 B): lista „Zacznij z szablonu” z ekranu głównego usunięta — start konkretnego szablonu to „Inny trening” → „Z szablonu” →
+ * „Start: <nazwa>” na pełnoekranowym wyborze (app/pick-template.tsx), który po starcie wraca na ekran treningu. */
+export const startTpl = async (name: string) => {
+  const { t } = require('@/lib/i18n');
+  const label = t('Start: {name}', { name });
+  if (!screen.queryByLabelText(label)) { /* wybór szablonu bywa już otwarty (np. po „Anuluj” w pytaniu deload) */
+    await tap(screen.getByLabelText(t('Inny trening'))); await flushAll(5); await tap(screen.getByLabelText(t('Z szablonu'))); await flushAll(10); }
+  await tap(screen.getByLabelText(label)); await flushAll(10);
+};
+/** 11.10.2026: podgląd szablonu z ekranu głównego — „Inny trening” → „Z szablonu” → wiersz (dawna lista „Zacznij z szablonu” usunięta). */
+export const openTpl = async (name: string) => {
+  const { t } = require('@/lib/i18n');
+  if (!screen.queryByText(name)) { await tap(screen.getByLabelText(t('Inny trening'))); await flushAll(5); await tap(screen.getByLabelText(t('Z szablonu'))); await flushAll(10); }
+  await tap(screen.getByText(name)); await flushAll(10);
+};

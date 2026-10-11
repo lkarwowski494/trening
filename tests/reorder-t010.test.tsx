@@ -101,7 +101,7 @@ describe('ekran kolejności', () => {
     await drag('drag-i:' + store.getState().active!.exercises[0].id, 200);
     const w = store.getState().active!; expect(w.exercises.map(e => store.getState().exercises.find(x => x.id === e.exerciseId)!.name)).toEqual(['Bench Press (sztanga)', 'Pull Up', 'Leg Press', 'Back Squat']);
     expect(w.exercises[3].sets[0]).toMatchObject({ id: s0, done: true }); expect(store.getState().templates.find(x => x.id === tpl.id)!.items[0].id).toBe('it-BackSquat'); // szablon nietknięty
-    await tap(screen.getByText('Gotowe')); await flushAll(50); expect(screen.getByText('Zakończ trening i zapisz')).toBeTruthy();
+    await tap(screen.getByText('Gotowe')); await flushAll(50); expect(screen.getByText('Zakończ')).toBeTruthy();
   });
 
   test('cel znika w trakcie (trening zakończony w innym oknie) → komunikat zamiast pustej listy; jedno ćwiczenie → bez przycisku', async () => {

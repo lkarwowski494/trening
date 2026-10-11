@@ -289,8 +289,12 @@ export function setsByMuscle(start: number, end: number): Record<string, number>
 /** Objętość per partia w tygodniu (uwaga właściciela 06.10.2026: „obciążenie per partia analogicznie”) — objętość serii roboczych
  * (jak „Objętość tygodniowo”), partia główna 1, pomocnicza 0,5 (jak serie per partia). Wartości w kg (wyświetlanie: volOut). */
 export function weeklyVolumeByMuscle(weekStart: number): Record<string, number> {
-  const out: Record<string, number> = {}; const d = new Date(weekStart); const end = new Date(d.getFullYear(), d.getMonth(), d.getDate() + 7).getTime();
-  for (const w of finishedWorkouts()) { const x = wallTs(w); if (x < weekStart || x >= end) continue; /* J3 */
+  const d = new Date(weekStart); return volumeByMuscle(weekStart, new Date(d.getFullYear(), d.getMonth(), d.getDate() + 7).getTime());
+}
+/** Objętość per partia w okresie [start, end) — ta sama reguła co tygodniowa (jedna implementacja; „Progresja”, lib/progress.ts). */
+export function volumeByMuscle(start: number, end: number): Record<string, number> {
+  const out: Record<string, number> = {};
+  for (const w of finishedWorkouts()) { const x = wallTs(w); if (x < start || x >= end) continue; /* J3 */
     w.exercises.forEach(e => { const ex = exById(e.exerciseId); if (!ex) return; const v = e.sets.filter(isWorking).reduce((a, s) => a + setVolume(ex, s, e.impl), 0); if (!v) return;
       (ex.muscles ?? []).forEach(mu => { out[mu] = (out[mu] ?? 0) + v; }); (ex.secondaryMuscles ?? []).forEach(mu => { out[mu] = (out[mu] ?? 0) + v * 0.5; }); }); }
   return out;

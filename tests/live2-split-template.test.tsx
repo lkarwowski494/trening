@@ -80,14 +80,14 @@ describe('LIVE2-01: zamiana w trakcie ćwiczenia (podział bloku) a „Zaktualiz
   test('N5 (ekran): zamiana w trakcie, „Zakończ” — bez okna „Zaktualizować szablon?”', async () => {
     await fresh(); const { a } = splitSwap(false); a.exercises[1].sets.forEach(s => { s.weight = 20; s.reps = 8; }); store.toggleDone(1, 0); store.toggleDone(1, 1);
     await act(async () => { await store.flush(); }); await renderApp({ saved: J(saved()) }); await flushAll(10);
-    await tap(screen.getAllByText('Zakończ trening i zapisz')[0]); await act(async () => { pressAlert('Zakończyć trening?', 'Zakończ'); }); await flushAll(1000);
+    await tap(screen.getAllByText('Zakończ')[0]); await act(async () => { pressAlert('Zakończyć trening?', 'Zakończ'); }); await flushAll(1000);
     expect(S().active).toBeNull(); expect(global.__alerts.some(x => x.title.startsWith('Zaktualizować szablon'))).toBe(false);
   });
   test('N5 kontrola (ekran): bez zamiany, ćwiczenie usunięte w treningu — okno jest, „Zaktualizuj szablon” zostawia jedną pozycję', async () => {
     await fresh(); const t = mkTpl([item('a', 'Bench Press (sztanga)', 3), item('b', 'Back Squat', 2, { startWeight: 80 })]); store.startFromTemplate(t); const a = S().active!;
     a.exercises.forEach(e => e.sets.forEach(s => { s.reps = 8; })); store.toggleDone(0, 0); store.toggleDone(1, 0); a.exercises.splice(1, 1);
     await act(async () => { await store.flush(); }); await renderApp({ saved: J(saved()) }); await flushAll(10);
-    await tap(screen.getAllByText('Zakończ trening i zapisz')[0]); await act(async () => { pressAlert('Zakończyć trening?', 'Zakończ'); }); await flushAll(1000);
+    await tap(screen.getAllByText('Zakończ')[0]); await act(async () => { pressAlert('Zakończyć trening?', 'Zakończ'); }); await flushAll(1000);
     await act(async () => { pressAlert('Zaktualizować szablon „Push”?', 'Zaktualizuj szablon'); }); await flushAll(10);
     const tt = S().templates.find(x => x.name === 'Push')!; expect(ids(tt)).toEqual(['a']);
   });

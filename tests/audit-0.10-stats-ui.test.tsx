@@ -8,7 +8,7 @@ import { applyUnit } from '@/lib/units';
 import { BW_SHARE } from '@/lib/stats';
 import { base, uid, type Template } from '@/lib/seed';
 import { fresh, saved, addWorkout, ex, setBodyMass } from './helpers';
-import { renderApp, flushAll, screen, go, act, fireEvent, openCard, type as typeText, startEdit, tplDraft } from './app';
+import { renderApp, flushAll, screen, go, tap, act, fireEvent, openCard, type as typeText, startEdit, tplDraft } from './app';
 
 jest.setTimeout(30000);
 const NOW = new Date(2026, 9, 8, 18).getTime();
@@ -90,6 +90,7 @@ describe('E3 / X-08: liczba rekordów treningu jak okno po treningu (od 09.10.20
 describe('D3 / UI-13: liczba serii roboczych na ekranach — rozgrzewka poza, drop razem z serią', () => {
   test('Trening (karta szablonu), Kolejność, edytor szablonu: „3 serie” dla rozgrzewki + 3 serii + dropa', async () => {
     await boot(() => { S().templates.push(tplD()); });
+    await tap(screen.getByLabelText('Inny trening')); await flushAll(5); await tap(screen.getByLabelText('Z szablonu')); await flushAll(10); /* 11.10.2026: karta szablonu w wyborze szablonu (lista na ekranie głównym usunięta) */
     expect(screen.getByLabelText(/^D, /).props.accessibilityLabel).toMatch(/3 serie/);
     await go('/reorder?target=template:td'); await flushAll(10); expect(screen.getByText('3 serie')).toBeTruthy(); expect(screen.queryByText(/^[45] serie$/)).toBeNull();
     await go('/template/td'); await flushAll(10); expect(screen.getByText(/· 3 serie$/)).toBeTruthy(); /* podgląd: „1 ćw. · 3 serie” */ await startEdit(); expect(screen.getByText(/^3 serie · 1 rozgrz\./)).toBeTruthy();

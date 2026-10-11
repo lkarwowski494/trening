@@ -11,6 +11,7 @@ import { equipEntry } from '@/lib/equipment';
 import { addLocation } from '@/lib/locations';
 import type { Template, Workout } from '@/lib/seed';
 import { fresh, ex, addWorkout, pressAlert, saved } from './helpers';
+import { within } from '@testing-library/react-native';
 import { renderApp, flushAll, screen, go, tap, type, act, fireEvent, expandEquip, swipeDelete, deleteActions } from './app';
 import { loc } from './locations-fixtures';
 
@@ -124,8 +125,8 @@ describe('G5 — konwencje okien i SwipeRow', () => {
 });
 
 describe('H1–H4 — nawigacja, nazwy, formaty, pierwsze kroki', () => {
-  test('H1: „Jak to działa” (Pierwsze kroki) otwiera temat „Trening i serie” rozwinięty i odhaczony', async () => {
-    await boot(); await tap(screen.getByText('Jak to działa')); await flushAll(10);
+  test('H1: „Przewodnik” (Pierwsze kroki, krok 3) otwiera temat „Trening i serie” rozwinięty i odhaczony', async () => {
+    await boot(); await tap(screen.getByLabelText('Przewodnik po funkcjach')); await flushAll(10);
     expect(screen.getByLabelText('Trening i serie, przeczytane').props.accessibilityState).toEqual({ expanded: true }); expect(S().guideSeen).toEqual(['workout']);
   });
   test('H2: jedna nazwa — „Miejsca i sprzęt” (Więcej, Ustawienia), „Kopia zapasowa”, „Odrzuć trening”; komunikat autozapisu wskazuje Kalendarz', async () => {
@@ -139,13 +140,13 @@ describe('H1–H4 — nawigacja, nazwy, formaty, pierwsze kroki', () => {
     const t = mkTpl(); await act(async () => { await store.flush(); }); await renderApp({ saved: JSON.parse(JSON.stringify(saved())) }); await go(`/template/${t.id}`); await flushAll(10);
     expect(screen.getByText('zakres 6–8 · przerwa 1:30')).toBeTruthy(); expect(screen.getByText('przerwa 2:00')).toBeTruthy();
   });
-  test('H4 (UX-12 A): Pierwsze kroki — dwa przyciski w kroku 1, krok 2 nieaktywny bez szablonu, krok „Miejsca i sprzęt”, pusty stan pod spodem ukryty', async () => {
-    await boot(); const fs = screen.getByTestId('first-steps');
-    expect(screen.getAllByText('+ Nowy szablon').length).toBe(1); expect(screen.getByText('Wygeneruj szablony i plan')).toBeTruthy();
-    expect(screen.getByText('Najpierw utwórz szablon.')).toBeTruthy(); expect(screen.queryByText('Plan tygodnia')).toBeNull();
-    expect(screen.getByText('Opcjonalnie: dodaj miejsce i sprzęt — wybór ćwiczeń i podpowiedzi ciężarów dopasują się do niego.')).toBeTruthy();
-    expect(screen.queryByText('Nie masz jeszcze szablonów — utwórz pierwszy albo zacznij pusty trening.')).toBeNull(); void fs;
-    await tap(screen.getByText('+ Nowy szablon')); await flushAll(10); expect(screen.getByLabelText('Zapisz szablon')).toBeTruthy(); /* od razu edycja (edycja na żądanie) */
+  test('H4 (UX-12 A, zmienione 11.10.2026 przez P4 A): Pierwsze kroki — 3 kroki, każdy z jednym przyciskiem; „Planowanie” prowadzi do Planowania, gdzie jest „+ Nowy szablon”; pusty stan pod spodem ukryty', async () => {
+    await boot(); const fs = within(screen.getByTestId('first-steps'));
+    expect(fs.getAllByText('Planowanie')).toHaveLength(2); expect(fs.getAllByText('Przewodnik')).toHaveLength(1); expect(fs.queryByText('+ Nowy szablon')).toBeNull(); expect(fs.queryByText('Miejsca i sprzęt')).toBeNull();
+    expect(screen.queryByText('Najpierw utwórz szablon.')).toBeNull(); expect(screen.queryByText('Plan tygodnia')).toBeNull();
+    expect(screen.queryByText('Nie masz jeszcze szablonów — utwórz pierwszy albo zacznij pusty trening.')).toBeNull();
+    await tap(fs.getAllByText('Planowanie')[0]); await flushAll(10); expect(screen.getByText('Wygeneruj szablony i plan')).toBeTruthy();
+    await tap(screen.getAllByLabelText(/^poniedziałek, /)[0]); await flushAll(5); await tap(screen.getByLabelText('poniedziałek: + Nowy szablon')); await flushAll(10); expect(screen.getByLabelText('Zapisz szablon')).toBeTruthy(); /* od razu edycja (edycja na żądanie) */
   });
   test('H4: jednostka świeżej instalacji z regionu (en-US → lb, en-GB/pl → kg); „Co nowego” dla nowej osoby z dopiskiem', async () => {
     expect(deviceUnit('en-US')).toBe('lb'); expect(deviceUnit('en_US')).toBe('lb'); expect(deviceUnit('en-GB')).toBe('kg'); expect(deviceUnit('pl-PL')).toBe('kg'); expect(deviceUnit('en')).toBe('kg'); expect(LB_REGIONS).toContain('US');
@@ -156,7 +157,7 @@ describe('H1–H4 — nawigacja, nazwy, formaty, pierwsze kroki', () => {
     jest.useFakeTimers({ now: new Date(2026, 9, 8, 9) });
     await boot(() => { addWorkout(new Date(2026, 9, 6, 18).getTime(), [['Back Squat', [{ weight: 100, reps: 5 }]]], 'Nogi'); });
     expect(screen.getByText('Bez planu tygodnia')).toBeTruthy(); await tap(screen.getAllByLabelText('Ukryj zachętę do planu tygodnia')[0]); await flushAll(5);
-    expect(S().planHintHidden).toBe(true); expect(screen.queryByText('Bez planu tygodnia')).toBeNull(); expect(screen.getAllByText('Ten tydzień').length).toBeGreaterThan(0);
+    expect(S().planHintHidden).toBe(true); expect(screen.queryByText('Ustaw plan tygodnia, by widzieć tu dzisiejszy trening i dostawać przypomnienie.')).toBeNull(); expect(screen.getByText('Bez planu tygodnia')).toBeTruthy() /* 11.10.2026: nagłówek planu zostaje — „Ukryj” chowa tylko zachętę */; expect(screen.getAllByText('Ten tydzień').length).toBeGreaterThan(0);
     await go('/history'); await flushAll(10); expect(screen.queryByLabelText('Ukryj zachętę do planu tygodnia')).toBeNull();
     await act(async () => { await store.flush(); }); const raw = saved(); expect(raw.planHintHidden).toBe(true);
     (raw as unknown as Record<string, unknown>).planHintHidden = 'tak'; await fresh(raw); expect('planHintHidden' in S()).toBe(false); /* migrate: tylko true */

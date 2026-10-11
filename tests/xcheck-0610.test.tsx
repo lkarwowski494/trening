@@ -54,5 +54,5 @@ test('NISKIE: ramka wskazówki pierwszego startu w kolorze z motywu (nie stały 
 test('ŚREDNIE (scenariusz 05b): liczba serii szablonu bez rozgrzewek wszędzie — ekran główny, trening wstecz, karta, Historia', () => {
   const tpl = { items: [{ id: 'i', exerciseId: 'x', sets: 3, rows: [{ id: 'a', kind: 'warmup', reps: '', weight: '', durationSec: '', distanceM: '' }, { id: 'b', kind: 'normal', reps: '', weight: '', durationSec: '', distanceM: '' }, { id: 'c', kind: 'drop', reps: '', weight: '', durationSec: '', distanceM: '' }] }] } as any;
   expect(store.tplWorkSets(tpl)).toBe(1); /* D3 (audyt 0.10, decyzja A): drop set liczy się razem z serią przed nim — rozgrzewka + seria + drop = 1 seria robocza */
-  for (const f of ['app/(tabs)/index.tsx', 'app/history/add.tsx']) { expect(src(f)).toMatch(/tplWorkSets\(tpl\)/); expect(src(f)).not.toMatch(/a \+ i\.sets/); }
+  for (const f of ['app/pick-template.tsx', 'app/history/add.tsx']) /* 11.10.2026: lista szablonów z ekranu głównego przeniesiona do wyboru szablonu */ { expect(src(f)).toMatch(/tplWorkSets\(tpl\)/); expect(src(f)).not.toMatch(/a \+ i\.sets/); }
 });

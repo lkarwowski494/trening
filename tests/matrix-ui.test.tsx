@@ -12,7 +12,7 @@ import { LOAD_LIMITS } from '@/lib/loads';
 import { addLocation } from '@/lib/locations';
 import { t as tr, exName } from '@/lib/i18n';
 import { setBodyMass, fresh, ex, addWorkout, pressAlert, withDemoTemplates } from './helpers';
-import { renderApp, flushAll, screen, go, tap, type, act, fireEvent, expandEquip, openCard, swipeDelete, deleteActions, startEdit, exDraft } from './app';
+import { renderApp, flushAll, screen, go, tap, type, act, fireEvent, expandEquip, openCard, swipeDelete, deleteActions, startEdit, exDraft, startTpl } from './app';
 import { loc } from './locations-fixtures';
 
 /* Zgoda na powiadomienia sterowana z testu (global.__notifDenied) — reszta jak w tests/setup.js. */
@@ -312,7 +312,7 @@ describe('/ (ekran główny)', () => {
     /* UX-12 A (audyt 0.10): „Pierwsze kroki” z przyciskami przy kroku zamiast dawnej podpowiedzi „Pierwszy raz?” */
     expect(screen.getByLabelText('1. Utwórz pierwszy szablon albo wygeneruj szablony i plan. do zrobienia')).toBeTruthy(); expect(screen.queryByText(/^Pierwszy raz\?/)).toBeNull();
     await renderApp({ saved: await prepared(() => { withDemoTemplates(); }) }); await flushAll(10);
-    expect(screen.getByLabelText(/^1\. .* zrobione$/)).toBeTruthy(); expect(screen.getByText('Pierwszy trening: „Start” przy szablonie niżej albo „Pusty trening”.')).toBeTruthy();
+    expect(screen.getByLabelText(/^1\. .* zrobione$/)).toBeTruthy(); expect(screen.getByText('Pierwszy trening: duży przycisk „Start” u góry albo „Pusty trening”.')).toBeTruthy();
   });
 
   test('błąd zapisu: baner „Tapnij, by spróbować ponownie…”; tapnięcie zapisuje ponownie i baner znika', async () => {
@@ -363,7 +363,7 @@ describe('ActiveWorkout (/ z treningiem w toku)', () => {
     const saved = await prepared(() => { store.startEmpty(); names.forEach(n => store.addExerciseToActive(ex(n))); fn(); });
     await renderApp({ saved }); await flushAll(20);
   }
-  const finishBtn = () => screen.getByText('Zakończ trening i zapisz');
+  const finishBtn = () => screen.getByText('Zakończ');
 
   test('opis pod treningiem; brak odhaczonych serii (z wpisaną, nieodhaczoną) → „Nic do zapisania…”, „Odrzuć trening”', async () => {
     await startWith(['Back Squat']);
@@ -443,7 +443,7 @@ describe('ActiveWorkout (/ z treningiem w toku)', () => {
 
   test('zamiana z szablonu w miejscu: „Zawsze w: …” (podpowiedź „Zapisuje zamiennik…”) zapisuje zamiennik; cofnięcie po wpisie pyta „Wpisane wartości zamiennika przepadną.”', async () => {
     const saved = await prepared(() => { addLocation('gym', 'Siłownia'); withDemoTemplates(); });
-    await renderApp({ saved }); await tap(screen.getByLabelText('Start: Upper A')); await flushAll(10);
+    await renderApp({ saved }); await startTpl('Upper A'); await flushAll(10);
     const b0 = blk(0); const tpl = store.getState().templates[0]; const to = ex('Machine Chest Press');
     await act(async () => { store.swapBlock(b0.id, to.id); }); await flushAll(10);
     const btn = screen.getByLabelText(`Zawsze w: Siłownia — ${exName(to)}`); expect(btn.props.accessibilityHint).toBe('Zapisuje zamiennik w szablonie dla tego miejsca.');
@@ -613,7 +613,7 @@ describe('/template/[id], /reorder', () => {
     const saved = await prepared(() => { store.startEmpty(); store.addExerciseToActive(ex('Back Squat')); store.addExerciseToActive(ex('Push Up')); });
     await renderApp({ saved }); await tap(screen.getByLabelText('Zmień kolejność ćwiczeń')); await flushAll(10);
     expect(screen.getByText('Przeciągnij za ≡, żeby zmienić kolejność. Superset przesuwa się w całości; kolejność w nim zmienisz uchwytami przy ćwiczeniach.')).toBeTruthy();
-    await tap(screen.getByText('Gotowe')); await flushAll(10); expect(screen.getByText('Zakończ trening i zapisz')).toBeTruthy();
+    await tap(screen.getByText('Gotowe')); await flushAll(10); expect(screen.getByText('Zakończ')).toBeTruthy();
   });
 });
 

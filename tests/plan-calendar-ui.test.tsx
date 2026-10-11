@@ -153,12 +153,12 @@ describe('ekran treningu: „Dziś” i podgląd tygodnia', () => {
     expect(screen.getByText(`Dziś zrobione: Upper A`)).toBeTruthy(); expect(screen.queryByLabelText(`Start zaplanowanego treningu: ${t3[0].name}`)).toBeNull();
     expect(screen.getByLabelText('czwartek, 8 października, dziś, zrobione: Upper A')).toBeTruthy();
   });
-  test('bez planu, z treningami — karta z tygodniem, „Bez planu tygodnia”, zachęta i „Plan tygodnia”', async () => {
+  test('bez planu, z treningami — karta z tygodniem, nagłówek „Bez planu tygodnia” z „Ustaw plan”, zachęta', async () => {
     await boot(() => { addWorkout(new Date(2026, 9, 6, 18).getTime(), [['Back Squat', [{ weight: 100, reps: 5 }]]]); }, '/');
-    expect(screen.getByText('Dziś')).toBeTruthy(); expect(screen.getByText('Bez planu tygodnia')).toBeTruthy();
+    expect(screen.queryByText('Dziś')).toBeNull(); /* 11.10.2026: bez planu i bez treningu dziś — tylko nagłówek planu i pasek */ expect(screen.getByText('Bez planu tygodnia')).toBeTruthy();
     expect(screen.getByText('Ustaw plan tygodnia, by widzieć tu dzisiejszy trening i dostawać przypomnienie.')).toBeTruthy();
     expect(screen.getByLabelText('poniedziałek, 5 października, wolne')).toBeTruthy(); expect(screen.getByLabelText('wtorek, 6 października, zrobione: T')).toBeTruthy();
-    await tap(screen.getAllByText('Plan tygodnia')[0]); await flushAll(10); expect(screen.getByText('Plan powtarza się co tydzień. Pojedyncze dni zmienisz w Kalendarzu.')).toBeTruthy();
+    await tap(screen.getByLabelText('Ustaw plan')); await flushAll(10); expect(screen.getByText('Plan powtarza się co tydzień. Pojedyncze dni zmienisz w Kalendarzu.')).toBeTruthy();
   });
   test('lista sesji w Kalendarzu pokazuje czas bez pauz', async () => {
     await boot(() => { const w = addWorkout(new Date(2026, 9, 7, 18).getTime(), [['Back Squat', [{ weight: 100, reps: 5 }]]]); w.pauses = [[w.startedAt + 60e3, w.startedAt + 16 * 60e3]]; store.save(); });

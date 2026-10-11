@@ -12,10 +12,10 @@ import { WEEKLY_SETS_MARK } from '@/lib/stats';
 export type GuideTopic = { id: string; title: () => string; steps: () => string[]; route: string };
 export const GUIDE: GuideTopic[] = [
   { id: 'workout', route: '/', title: () => t('Trening i serie'), steps: () => [
-    t('Na ekranie Trening stuknij „Start” przy szablonie albo „Pusty trening”.'),
+    t('Na ekranie Trening stuknij duży przycisk „Start” (następny trening) albo „Inny trening” — tam wybierzesz szablon, powtórzysz ostatni trening albo zaczniesz pusty.'),
     t('Wpisz ciężar i powtórzenia, odhacz serię ✓ — przerwa odlicza się sama.'),
     t('„⏸ Pauza” zatrzymuje zegar treningu; czas pauzy nie liczy się do czasu trwania.'),
-    t('Na koniec „Zakończ trening i zapisz” — sesja trafi do Kalendarza.'),
+    t('Na koniec „Zakończ” (u góry albo w karcie po ostatniej serii) — sesja trafi do Kalendarza.'),
   ] },
   { id: 'templates', route: '/templates', title: () => t('Szablony'), steps: () => [
     t('W zakładce Szablony „+ Nowy” tworzy szablon: ćwiczenia, serie, zakres powtórzeń i przerwy.'),
@@ -34,7 +34,7 @@ export const GUIDE: GuideTopic[] = [
     t('„+ Dodaj trening wstecz” zapisze trening, którego nie zapisałeś na bieżąco; z dnia w Kalendarzu — „Zapisz trening z tego dnia”.'),
   ] },
   { id: 'plan', route: '/history', title: () => t('Plan tygodnia i Kalendarz'), steps: () => [
-    t('W Kalendarzu „Plan tygodnia” przypisuje szablony do dni — plan powtarza się co tydzień.'),
+    t('Na ekranie Trening „Planowanie” (bez planu: „Ustaw plan”) otwiera plan tygodnia, który przypisuje szablony do dni — plan powtarza się co tydzień.'),
     t('Stuknij dzień w Kalendarzu: „Przesuń albo pomiń” pokazuje możliwości — przesunięcie planu o 1 dzień, tylko tego treningu, zamianę albo wolne.'),
     t('Na górze listy jest polecana: wraca do rutyny i nie gubi treningu, potem unika par dzień po dniu z tymi samymi partiami i zmienia najmniej dni.'),
     t('Kilka planów: „+ Nowy plan” tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.'),
@@ -54,6 +54,7 @@ export const GUIDE: GuideTopic[] = [
     t('Więcej → Postępy: podsumowanie tygodnia lub miesiąca z poprzednim okresem obok.'),
     t('Mapa mięśni i serie na partię z kreską {n} serii tygodniowo.', { n: WEEKLY_SETS_MARK }), /* LOG2-05: próg w jednym miejscu */
     t('Wykresy ćwiczeń i rekordy; rekord w trakcie treningu widać przy serii.'),
+    t('Na ekranie Trening „Progresja” porównuje tydzień (wykonane + zaplanowane) z poprzednim oraz miesiąc z miesiącem.'),
   ] },
   { id: 'places', route: '/more/locations', title: () => t('Miejsca i sprzęt'), steps: () => [
     t('Więcej → Miejsca i sprzęt: dom, siłownia, hotel — każdy ze swoim sprzętem i ciężarami.'),
