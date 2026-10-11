@@ -111,3 +111,7 @@ backlog) → docs/15 (App Store, ceny) → docs/09 (dziennik testów; stare rund
   bieżący miesiąc do dziś vs te same dni poprzedniego miesiąca. Rozstrzygnięte przez agenta wg decyzji właściciela (do pakietu porządków):
   „Ten tydzień” bez „poprz.” w kafelkach, tytuł ekranu planu „Planowanie”, przełącznik „Zachęta do planu” znika, „Miejsca i sprzęt” jako zdanie
   z odnośnikiem w „Pierwszych krokach”, martwy kod (home.planSummary, dashboard.emptyTemplates) usunięty.
+- 11.10.2026: **1A** przycisk „Zapisz zmiany w szablonie” tylko zaraz po treningu (stan w pamięci, bez zmiany schematu). **2A** jedno wydanie
+  TestFlight 0.12.0: języki fal 1–4 + nowy ekran (wydanie 1) — bez osobnego wpisu „Co nowego” o nowym ekranie, lista kontrolna zamiast audytu.
+  Do backlogu (bez blokowania wydania): przegląd tłumaczeń przez native speakerów — „Progresja” (el, tr, ko, ja, zh-Hant, vi, de), „Sylwetka”
+  (it, vi, zh-Hant), hu „A {day} napra”, ja „先に完了”, ko „만들기”/„생성”.
