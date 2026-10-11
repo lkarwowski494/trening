@@ -36,10 +36,8 @@ test('M3 summary title says "Nowy rekord!" for two records on one set', async ()
   await act(async () => { store.startEmpty(); store.addExerciseToActive(ex('Back Squat')); const a = store.getState().active!; a.exercises[0].sets[0].weight = 110; a.exercises[0].sets[0].reps = 5; store.save(a); });
   await flushAll(10); await act(async () => { store.toggleDone(0, 0); }); await flushAll(1000);
   await tap(screen.getAllByText('Zakończ trening i zapisz')[0]); pressAlert('Zakończyć trening?', 'Zakończ'); await flushAll(600);
-  const al = (global.__alerts as any[]).filter(x => /rekord/i.test(x.title)).map(x => [x.title, x.msg]);
-  // eslint-disable-next-line no-console
-  log('M3', JSON.stringify(al));
-  expect(al[0][0]).toBe('Nowe rekordy: 2');
+  expect((global.__alerts as any[]).filter(x => /rekord/i.test(x.title))).toEqual([]); /* 11.10.2026: bez okienka */
+  expect((await screen.findByTestId('record-banner')).props.accessibilityLabel).toBe('Nowe rekordy: 2');
 });
 
 test('M4 deleting a band mid-workout turns assisted sets into unassisted records', async () => {

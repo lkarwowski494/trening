@@ -34,7 +34,8 @@ test('A1 band-assisted (no kg) chin-ups: e1RM/volume PR over unassisted reps', a
   await type(repsOf(chin, 1), '12'); await tick(chin, 1);
   global.__alerts.length = 0;
   await finishConfirmed(); await flushAll(500);
-  const al = global.__alerts.find(x => /rekord/i.test(x.title));
+  expect(global.__alerts.find(x => /rekord/i.test(x.title))).toBeUndefined(); /* 11.10.2026: bez okienka rekordów */
+  const al = { msg: screen.queryAllByTestId(/^record-ex-/).map(c => String(c.props.accessibilityLabel)).join(' ') }; /* karta rekordów na ekranie sesji */
   // A set with a band of unknown assistance is not comparable to unassisted reps (same reasoning as the reps PR fix D3)
   expect(al?.msg ?? '').not.toMatch(new RegExp(chin));
 });

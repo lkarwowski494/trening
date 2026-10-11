@@ -37,10 +37,8 @@ test('LIVE-1 blocks + untick/retick: one badge, same set in history and summary'
   await tap(screen.getAllByText('Zakończ trening i zapisz')[0]); pressAlert('Zakończyć trening?', 'Zakończ'); await flushAll(600);
   const w = store.getState().workouts[store.getState().workouts.length - 1];
   expect([...stats.prMap(w).entries()]).toEqual(live);
-  const al = (global.__alerts as any[]).filter(x => /rekord/.test(x.title));
-  // eslint-disable-next-line no-console
-  log('alert', JSON.stringify(al.map(x => [x.title, x.msg])));
-  expect(al.length).toBe(1); expect(al[0].msg).toMatch(/Back Squat: objętość treningu: 1500 kg/);
+  expect((global.__alerts as any[]).filter(x => /rekord/.test(x.title))).toEqual([]); /* 11.10.2026: karta zamiast okienka */
+  expect(screen.getByText(/^↑ Objętość 1[\s\u00a0\u202f]?500 kg/)).toBeTruthy();
   const hist = screen.UNSAFE_root.findAll((n: any) => n.type === 'Text').map((n: any) => [].concat(n.props.children).filter((x: any) => typeof x === 'string').join('')).filter((x: string) => /^PR/.test(x));
   // eslint-disable-next-line no-console
   log('history', JSON.stringify(hist));
@@ -52,9 +50,7 @@ test('LIVE-2 EN summary with e1RM and total', async () => {
   await act(async () => { const a = store.getState().active!; a.exercises[2].sets[0].weight = 110; store.save(a); });
   await tick(0, 0); await tick(0, 1); await tick(1, 0); await tick(2, 0);
   await tap(screen.getAllByText('Finish')[0]); pressAlert('Finish workout?', 'Finish'); await flushAll(600);
-  const al = (global.__alerts as any[]).filter(x => /record/i.test(x.title));
-  // eslint-disable-next-line no-console
-  log('alert EN', JSON.stringify(al.map(x => [x.title, x.msg])));
-  expect(al[0].msg).toMatch(/session volume: 1550 kg/); expect(al[0].msg).toMatch(/e1RM 128\.33 kg \(set 110×5\)/);
+  expect((global.__alerts as any[]).filter(x => /record/i.test(x.title))).toEqual([]); /* 11.10.2026: karta zamiast okienka */
+  expect(screen.getByText(/^↑ Volume 1[,\s\u00a0\u202f]?550 kg/)).toBeTruthy(); expect(screen.getByText(/^↑ e1RM 128\.33 kg/)).toBeTruthy();
   void go;
 });

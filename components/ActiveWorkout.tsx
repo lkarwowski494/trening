@@ -18,7 +18,7 @@ import { implLabel } from '@/lib/swap';
 import { SetBadge } from '@/components/SetBadge';
 import { locationLabel } from '@/lib/locations';
 import * as timer from '@/lib/timer';
-import { prMap, workoutPRs, prCountOf } from '@/lib/stats';
+import { prMap } from '@/lib/stats';
 import { onWorkoutSaved } from '@/lib/backup';
 import { hasTime, hasReps, hasWeight, hasDistance, SET_KIND_LABEL, type WExercise, type WSet, type Workout } from '@/lib/seed';
 import { t as tr, tp, exName, lang, glue } from '@/lib/i18n';
@@ -96,13 +96,13 @@ export default function ActiveWorkout() {
   const finalize = async (at?: number) => {
     if (finishing.current) return; finishing.current = true;
     if (at == null && timer.S.on) await finishTimedSet(); // stoper kończymy dopiero po potwierdzeniu — „Wróć” go nie rusza (runda 4)
-    const prs = workoutPRs(w); const cur = getState().active;
+    const cur = getState().active;
     /* H5 (audyt 0.10, wariant A): skład treningu z szablonu porównany PRZED zapisem (z nieodhaczonymi seriami) — pytanie tylko, gdy się różni */
     const tplNow = cur?.templateId ? getState().templates.find(x => x.id === cur.templateId) : undefined; const snap: Workout | null = cur ? JSON.parse(JSON.stringify(cur)) : null;
     const diff = snap ? templateDiff(tplNow, snap) : null;
     const askTpl = () => { if (!diff || !tplNow || !snap) return; Alert.alert(tr('Zaktualizować szablon „{name}”?', { name: tplNow.name }), [templateDiffText(diff), tr('Szablon zmieni się tylko po „Zaktualizuj szablon”.')].join('\n'), [{ text: tr('Tylko ten raz'), style: 'cancel' }, { text: tr('Zaktualizuj szablon'), onPress: () => { if (getState().templates.includes(tplNow)) updateTemplateFromWorkout(tplNow, snap); } }]); };
     const saved = finishWorkout(at != null && cur ? Math.max(at, lastActivity(cur)) : at); /* T1: koniec nie wcześniej niż ostatnia zapisana seria */ timer.stop(); timer.stopSet(); timer.cancelStaleReminder().catch(() => {});
-    if (saved) { onWorkoutSaved(saved).catch(() => {}); router.push(`/history/${saved.id}`); const nPR = prCountOf(prs); /* T13: liczba rekordów, nie serii; E3 (audyt 0.10): ta sama funkcja co karta „Ostatni trening” */ if (prs.length) setTimeout(() => Alert.alert(nPR === 1 ? tr('Nowy rekord!') : tr('Nowe rekordy: {n}', { n: nPR }), [...prs.slice(0, 6).map(p => `${exName(p.exercise)}: ${p.details.join('; ')}`) /* runda 73: suma treningu i e1RM z wartościami */, prs.length > 6 ? '…' : ''].filter(Boolean).join('\n'), diff ? [{ text: tr('OK'), onPress: askTpl }] : undefined /* H5: pytanie o szablon po zamknięciu okna rekordów */), 400); else if (diff) setTimeout(askTpl, 400); }
+    if (saved) { onWorkoutSaved(saved).catch(() => {}); router.push(`/history/${saved.id}`); /* decyzja właściciela 11.10.2026: bez okienka z rekordami — od razu ekran sesji z kartą rekordów (RecordsCard); pytanie o szablon (H5) zostaje */ if (diff) setTimeout(askTpl, 400); }
   };
   // Runda 69: porzucony trening — po 2 h bez odhaczonej serii pytanie przy otwarciu (także po powrocie z tła);
   // przypomnienie w powiadomieniu 2 h po ostatniej serii.

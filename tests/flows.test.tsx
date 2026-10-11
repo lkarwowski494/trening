@@ -99,14 +99,14 @@ test('B7 superset: po pierwszym ćwiczeniu brak przerwy, po drugim jest', async 
   await tap(screen.getAllByLabelText(/^Seria 1 zrobiona/)[1]); expect(timer.T.on).toBe(true);
 });
 
-test('B8 zakończenie z rekordem: alert i te same PR w historii', async () => {
+test('B8 zakończenie z rekordem: karta (bez okienka) i te same PR w historii', async () => {
   await renderApp({ saved: seedWithDemo() }); /* runda 72: pierwsza sesja ćwiczenia nie jest rekordem — wcześniejsza, lżejsza sesja */
   { const st = store.getState(); const tpl = st.templates.find(x => x.name === 'Upper A')!; const e0 = store.exById(tpl.items[0].exerciseId)!; await act(async () => { addWorkout(Date.now() - 86400e3, [[e0.name, [{ weight: 20, reps: 8 }]]]); }); }
   await startTemplate('Upper A');
   const a = store.getState().active!; a.exercises[0].sets.forEach(s => { s.weight = 24; s.reps = 8; }); store.save(a); await flushAll();
   for (let i = 0; i < 2; i++) await tap(screen.getAllByLabelText(new RegExp(`^Seria ${i + 1} zrobiona`))[0]);
   await finishConfirmed();
-  const alert = global.__alerts.find(x => /rekord/i.test(x.title)); expect(alert).toBeTruthy();
+  expect(global.__alerts.find(x => /rekord/i.test(x.title))).toBeUndefined(); expect(await screen.findByTestId('record-banner')).toBeTruthy(); /* 11.10.2026: karta zamiast okienka */
   expect(await screen.findAllByText(/^PR:/)).toHaveLength(1); // drugi identyczny zestaw nie jest rekordem
 });
 
