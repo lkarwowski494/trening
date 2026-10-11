@@ -123,8 +123,8 @@ Rozmowa 05.10.2026, rano: „Chciałbym móc opublikować to w Apple Store” i 
     | miesięczna | 3,99 zł (bez zmian) | 0,99 (bez zmian) |
     | roczna | 19,99 zł (bez zmian) | **6,99** (było 5,99) |
     | dożywotnio | **59,99 zł** (było 99,99) | **21,99** (było 29,99) |
-    Okres próbny, 4 darmowe treningi/mies., kody, zasada progu impulsowego — bez zmian. EUR/GBP przyjęte jak USD (jak dotąd) — do potwierdzenia
-    przez właściciela. Zastępuje „5× roczna” z 10.10.2026 (dożywotnio ≈ 3× roczna).
+    Okres próbny, 4 darmowe treningi/mies., kody, zasada progu impulsowego — bez zmian. EUR/GBP równe USD — potwierdzone przez właściciela 11.10.2026
+    (także odczyt: 6,99 = roczna, 21,99 = dożywotnio). Zastępuje „5× roczna” z 10.10.2026 (dożywotnio ≈ 3× roczna).
   - **Chmura rodzinna (Family Sharing) — TAK (właściciel 11.10.2026)** dla subskrypcji i dostępu dożywotniego. **[OTWARTE]**: czy włączenie
     jest nieodwracalne (strona pomocy Apple pod znanym adresem zwróciła 404 — sprawdzić przy wdrożeniu w App Store Connect).
   - **Do sprawdzenia w App Store Connect** (nie zgadujemy): czy punkty cenowe 0,99 EUR/GBP, 3,99 PLN i 19,99 PLN istnieją w siatce cen Apple.

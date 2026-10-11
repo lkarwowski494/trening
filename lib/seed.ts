@@ -225,7 +225,7 @@ export const isNiche = (e: Pick<Exercise, 'lib' | 'libKey'>): boolean => { const
 export const LIB_RENAMED: Readonly<Record<string, string>> = CATALOG_STEP.renamed;
 export const LIB_MERGED: Readonly<Record<string, string>> = CATALOG_STEP.merged;
 export const LIB_REMOVED: ReadonlySet<string> = new Set(CATALOG_STEP.removed);
-/** Klucze wycofane z katalogu (scalone i usunięte) — migrate przenosi ich dane (lib/store.ts retireCatalog). */
+/** Klucze wycofane z katalogu (scalone i usunięte) — migrate przenosi ich dane (lib/state/migrate-catalog.ts retireCatalog). */
 export const LIB_RETIRED: ReadonlySet<string> = new Set([...Object.keys(LIB_MERGED), ...LIB_REMOVED]);
 /** Audyt kontrolny 1 (UX2-01, wariant a): dawne nazwy (klucze) ćwiczenia z biblioteki — wyprowadzone z kroku katalogu (LIB_RENAMED + LIB_MERGED,
  * łańcuchy do końca), nie osobna lista. Klucz obecny → dawne klucze. Do wyszukiwania (znajdź po dawnej nazwie → obecne ćwiczenie, zamiast „Utwórz …”)

@@ -79,4 +79,10 @@ backlog) → docs/15 (App Store, ceny) → docs/09 (dziennik testów; stare rund
   odhaczanie, przerwa, sesja treningowa z tętnem/kcal, WatchConnectivity; dane trzyma telefon), etap 2 — ewentualnie samodzielna. Natywny Swift
   (osobny target), test na zegarku właściciela. Odrzucone: B (przed App Store), C (tylko dane z Health).
 - 11.10.2026: **cennik zmieniony** (docs/15): roczna 6,99 USD (PL 19,99 zł bez zmian), dożywotnio 21,99 USD / 59,99 zł; miesięczna bez zmian;
-  Family Sharing — tak. EUR/GBP jak USD — do potwierdzenia.
+  Family Sharing — tak. EUR/GBP jak USD — potwierdzone.
+- 11.10.2026: **docs/22 P2 — B**: „Z szablonu” w arkuszu „Inny trening” otwiera osobny pełnoekranowy wybór szablonu ze „Startem” (jak „Wybierz
+  ćwiczenie”); czytelniejsze przy wielu szablonach (+1 stuknięcie). Odrzucone: A (lista w arkuszu).
+- 11.10.2026: **docs/22 P3 — A**: dolny „Zakończ trening i zapisz” usunięty; zostaje „Zakończ” w nagłówku i w karcie po ostatniej serii
+  (w widoku „Lista” tylko nagłówek — świadomie, mimo przewijania). Koszt: ~20 testów szuka tego tekstu. Odrzucone: B (zostawić w widoku „Lista”).
+- 11.10.2026: **podział lib/store.ts scalony** (gałąź refactor-store): fasada 6 KB + 25 modułów w lib/state/ (bez cykli, to samo API 247 nazw);
+  verify 4701/4702 (1 pominięty) po scaleniu. E2E z pełnym buildem — w toku.
