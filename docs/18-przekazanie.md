@@ -78,3 +78,5 @@ backlog) → docs/15 (App Store, ceny) → docs/09 (dziennik testów; stare rund
 - 11.10.2026: **aplikacja na Apple Watch — A jako priorytet po wejściu do App Store**: etap 1 — dodatek do telefonu (bieżąca seria,
   odhaczanie, przerwa, sesja treningowa z tętnem/kcal, WatchConnectivity; dane trzyma telefon), etap 2 — ewentualnie samodzielna. Natywny Swift
   (osobny target), test na zegarku właściciela. Odrzucone: B (przed App Store), C (tylko dane z Health).
+- 11.10.2026: **cennik zmieniony** (docs/15): roczna 6,99 USD (PL 19,99 zł bez zmian), dożywotnio 21,99 USD / 59,99 zł; miesięczna bez zmian;
+  Family Sharing — tak. EUR/GBP jak USD — do potwierdzenia.

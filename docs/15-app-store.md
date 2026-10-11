@@ -116,6 +116,17 @@ Rozmowa 05.10.2026, rano: „Chciałbym móc opublikować to w Apple Store” i 
     brak kosztu na użytkownika; prośba o jednorazowy zakup w researchu skarg (docs/research, pkt 18). Odrzucone: B 59,99 zł (3 lata planu
     rocznego), C 99,99 zł z promocją 59,99 zł na premierę, D bez dożywotniego. „5× roczna” to kalkulacja, nie dane rynkowe; cenę zmienia się
     w App Store Connect bez nowej wersji. Wdrożenie: paczka przed App Store, razem z subskrypcją (biblioteka iOS+Android).
+  - **ZMIANA CEN (decyzja właściciela 11.10.2026, po porównaniu z konkurentem — docs/research/raporty-rynkowe-2026-10.md):** „zachowamy
+    proporcje z nimi” (konkurent: roczna 14,99 USD, dożywotnio 44,99 USD ≈ 3× roczna; okresów subskrypcji nie podaje). Obowiązuje:
+    | | PL | USD / EUR / GBP |
+    |---|---|---|
+    | miesięczna | 3,99 zł (bez zmian) | 0,99 (bez zmian) |
+    | roczna | 19,99 zł (bez zmian) | **6,99** (było 5,99) |
+    | dożywotnio | **59,99 zł** (było 99,99) | **21,99** (było 29,99) |
+    Okres próbny, 4 darmowe treningi/mies., kody, zasada progu impulsowego — bez zmian. EUR/GBP przyjęte jak USD (jak dotąd) — do potwierdzenia
+    przez właściciela. Zastępuje „5× roczna” z 10.10.2026 (dożywotnio ≈ 3× roczna).
+  - **Chmura rodzinna (Family Sharing) — TAK (właściciel 11.10.2026)** dla subskrypcji i dostępu dożywotniego. **[OTWARTE]**: czy włączenie
+    jest nieodwracalne (strona pomocy Apple pod znanym adresem zwróciła 404 — sprawdzić przy wdrożeniu w App Store Connect).
   - **Do sprawdzenia w App Store Connect** (nie zgadujemy): czy punkty cenowe 0,99 EUR/GBP, 3,99 PLN i 19,99 PLN istnieją w siatce cen Apple.
 - **Cel przychodu (właściciel 06.10.2026):** ~2000 zł miesięcznie; model bez zmian: 30 dni za darmo, potem jednorazowa płatność.
   Rachunek orientacyjny (agent, do sprawdzenia): z ceny w App Store odpada VAT kraju kupującego (PL 23%) i prowizja Apple (15% w Small Business
