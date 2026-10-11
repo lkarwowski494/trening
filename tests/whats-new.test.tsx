@@ -54,7 +54,8 @@ describe('ekran Trening', () => {
     expect(screen.getByText(WHATS_NEW[0].build ? new RegExp(`^Wersja testowa ${WHATS_NEW[0].build} · `) : 'W tej wersji')).toBeTruthy(); /* bieżący wpis: niewydany albo wydany (0.11 — build 1005) */
     for (const x of WHATS_NEW[0].items()) expect(screen.getByText(`• ${x}`)).toBeTruthy();
     expect(screen.queryByTestId('whats-new-dot')).toBeNull(); expect(S().whatsNewSeen).toBe(WHATS_NEW[0].id);
-    const old = WHATS_NEW[2]; /* 1002 — rozwijany niżej */ const oldItem = `• ${old.items()[0]}`; expect(screen.queryByText(oldItem)).toBeNull();
+    const old = WHATS_NEW[3]; /* 1002 — rozwijany niżej (nad nim 0.12, 1005, 1004) */ const oldItem = `• ${old.items()[0]}`; expect(screen.queryByText(oldItem)).toBeNull();
+    expect(screen.getByText(/^▸ Wersja testowa 1005 · 10 paź 2026$/)).toBeTruthy(); /* 0.11.0 — wydanie 2 */
     expect(screen.getByText(/^▸ Wersja testowa 1004 · 9 paź 2026$/)).toBeTruthy(); /* 0.10.0 — wydanie 1 (A11B-8) */
     const head = screen.getByText(/^▸ Wersja testowa 1002 · 7 paź 2026$/); expect(head).toBeTruthy(); /* H3 (audyt 0.10): miesiąc słownie */
     expect(screen.getByText(/^▸ Wersja testowa 1001 · 6 paź 2026$/)).toBeTruthy();
@@ -66,10 +67,13 @@ describe('ekran Trening', () => {
   test('wszystkie wpisy po polsku mają tytuł i punkty (wpis 1001 rozwinięty)', async () => {
     await boot(withWorkout); await tap(screen.getByTestId('whats-new-i')); await flushAll(5);
     await tap(screen.getByText(/^▸ Wersja testowa 1001/)); await flushAll(5);
-    for (const x of WHATS_NEW[3].items()) expect(screen.getByText(`• ${x}`)).toBeTruthy();
+    for (const x of WHATS_NEW[4].items()) expect(screen.getByText(`• ${x}`)).toBeTruthy();
   });
   test('treść wpisów po polsku na ekranie (wszystkie rozwinięte po kolei)', async () => {
     const texts = [
+      /* 0.12 (decyzja właściciela 10.10.2026, wariant A): nazwy języków z LANG_NAME */
+      '9 nowych języków: Português (Brasil), Español (Latinoamérica), Bahasa Indonesia, Bahasa Melayu, Tiếng Việt, Русский, 日本語, 한국어, 繁體中文.',
+      '35 języków; język zmienisz w Ustawieniach.',
       /* 0.11 (A11B-8; dwa ostatnie — zaległości z 0.10: UI2-04, MER2-06) */
       'Nowy wygląd z ikony: znacznik dnia jak ikona aplikacji, stosy talerzy z procentem planu tygodnia, filiżanka w dzień odpoczynku, podsumowanie miesiąca jako stosy.',
       'Krótka animacja przy starcie: talerze wsuwają się na gryf.',
@@ -110,6 +114,6 @@ describe('ekran Trening', () => {
     await boot(withWorkout, 'en');
     expect(screen.getByLabelText("What's new — new changes")).toBeTruthy();
     await tap(screen.getByTestId('whats-new-i')); await flushAll(5);
-    expect(screen.getByText(/^Test build 1005 · 10 Oct 2026$/)).toBeTruthy(); expect(screen.getByText(/^▸ Test build 1004 · /)).toBeTruthy(); expect(screen.getByText('Close')).toBeTruthy();
+    expect(screen.getByText('In this version')).toBeTruthy(); expect(screen.getByText(/^▸ Test build 1005 · 10 Oct 2026$/)).toBeTruthy(); expect(screen.getByText('Close')).toBeTruthy();
   });
 });

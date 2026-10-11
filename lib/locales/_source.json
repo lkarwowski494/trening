@@ -284,6 +284,14 @@
   "en": "16 languages; light, dark or system appearance."
  },
  {
+  "pl": "35 języków; język zmienisz w Ustawieniach.",
+  "en": "35 languages; change the language in Settings."
+ },
+ {
+  "pl": "9 nowych języków: {list}.",
+  "en": "9 new languages: {list}."
+ },
+ {
   "pl": "Akcesoria",
   "en": "Accessories"
  },

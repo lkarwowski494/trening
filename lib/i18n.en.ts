@@ -888,4 +888,6 @@ export const EN: Record<string, string> = {
   'Numer buildu w „O aplikacji”.': 'Build number in “About”.',
   'Od 0.10: szablon i ćwiczenie otwierają się w podglądzie — zmiany zaczynasz przyciskiem „Edytuj” i zatwierdzasz „Zapisz”.': 'Since 0.10: templates and exercises open in a preview — start changes with “Edit” and confirm them with “Save”.',
   'Od 0.10: biblioteka ćwiczeń uporządkowana — podobne warianty scalone, rzadsze widać po wyłączeniu filtra „Podstawowe” (Twoje treningi bez zmian); masa ciała z datą i e1RM w podciąganiu i pompkach, wskazówki techniki z rysunkiem ruchu, „Zapisz jako szablon” w historii.': 'Since 0.10: a tidier exercise library — similar variants merged, rarer ones appear when you turn off the “Basic” filter (your workouts stay the same); body weight with a date and e1RM for pull-ups and push-ups, technique tips with a movement drawing, “Save as template” in history.',
+  '9 nowych języków: {list}.': '9 new languages: {list}.',
+  '35 języków; język zmienisz w Ustawieniach.': '35 languages; change the language in Settings.',
 };

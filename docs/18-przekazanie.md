@@ -414,3 +414,6 @@ Inne otwarte: rekordy per poziom gumy oporowej; zakresy powtórzeń wg celu tren
 - 10.10.2026: **języki, fale 1–4 (następna wersja po 0.11)** — scalona gałąź feat-jezyki-w4b (pt-BR, es-419, id, ms, vi, ru, ja, ko, zh-Hant;
   kk, uz, az odłożone do wydania z arabskim). Uzupełnione 12 tekstów dodanych w 0.11 po rozgałęzieniu (wpis „Co nowego” 0.11, komunikaty
   generatora: serie ACSM, 1 dzień siłowy); nakładki pt-BR i es-419 tylko tam, gdzie różnią się od pt/es. Test wpisu 0.11 przyjmuje „。” (ja, zh-Hant).
+- 10.10.2026: **wersja 0.12.0** (decyzja właściciela: wariant A) — wpis „Co nowego” z jednym punktem o 9 nowych językach (nazwy z LANG_NAME,
+  każdy we własnym brzmieniu) i punktem „35 języków; język zmienisz w Ustawieniach” (drugi punkt, bo wpis ma mieć 2–10 punktów — jak 0.10:
+  „10 nowych języków” + „16 języków”). Odrzucone: B (zapowiedź kk, uz, az i arabskiego bez terminu). Testy: tests/release-0.12.test.tsx.

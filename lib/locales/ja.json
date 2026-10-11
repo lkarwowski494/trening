@@ -1353,5 +1353,7 @@
  "Serie: {s} na ćwiczenie — dla zdrowia zwykle {s}–{b}. ACSM 2026 zaleca co najmniej {m}. Wytyczne USA 2018: jedna seria działa, {s}–{b} mogą działać lepiej; ACSM 2011: jedna seria może wystarczyć, zwłaszcza u początkujących i starszych. {s} to dolna granica — uproszczenie.": "セット：1種目{s}セット — 健康のためには通常{s}–{b}セット。ACSM 2026 は{m}セット以上を推奨。米国ガイドライン 2018：1セットでも効果があり、{s}–{b}セットのほうが効果的な場合も。ACSM 2011：特に初心者と高齢者では1セットで足りることも。{s}は下限 — 簡略化です。",
  "Wyszukiwanie ćwiczeń także po dawnej nazwie.": "種目検索で以前の名前も見つかります。",
  "{k} dzień siłowy w tygodniu to mniej niż zalecenie WHO 2020 (co najmniej {n} dni). Na początek to dobry krok: według wytycznych USA 2018 na początku można ćwiczyć siłowo tylko {k} dzień w tygodniu, a z czasem dojść do {n} — trochę ruchu jest lepsze niż żaden.": "週{k}日の筋力トレーニングは、WHO 2020 の推奨（週{n}日以上）より少なめです。最初の一歩としては十分です。米国ガイドライン 2018 によると、はじめは週{k}日だけでもよく、少しずつ{n}日に増やせます。少しでも体を動かすほうが、何もしないよりよいのです。",
- "„Technika”: wskazówki do ćwiczenia otworzysz też z treningu i z szablonu.": "「テクニック」：種目のヒントはトレーニング中やテンプレートからも開けます。"
+ "„Technika”: wskazówki do ćwiczenia otworzysz też z treningu i z szablonu.": "「テクニック」：種目のヒントはトレーニング中やテンプレートからも開けます。",
+ "9 nowych języków: {list}.": "9つの新しい言語：{list}。",
+ "35 języków; język zmienisz w Ustawieniach.": "35の言語。言語は設定で変更できます。"
 }
