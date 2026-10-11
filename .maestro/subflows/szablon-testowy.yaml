@@ -1,13 +1,13 @@
 # Podprzepływ (runFlow) — szablon testowy „Upper A” tworzony przez UI.
 # Od 03.10.2026 (decyzja właściciela, 08:11: „Nie przenoś do aplikacji żadnych moich szablonów. Sam je ustawię.”) świeża instalacja
 # nie ma szablonów, a przepływy 01, 02, 03 i 05 startują z czystej instalacji (clearState) — każdy najpierw woła ten podprzepływ.
-# Wołać na ekranie głównym zaraz po starcie (widać „Start from a template”). Wynik: szablon „Upper A” z dwoma ćwiczeniami
-# (Bench Press (hantle), Bent Over Row (hantle); domyślnie 3 serie, 8–10 pow., bez ciężaru startowego) i przycisk „Start: Upper A”.
+# Wołać na ekranie głównym zaraz po starcie (widać „Other workout”). Wynik: szablon „Upper A” z dwoma ćwiczeniami
+# (Bench Press (hantle), Bent Over Row (hantle); domyślnie 3 serie, 8–10 pow., bez ciężaru startowego); koniec na ekranie głównym.
 # Dwa ćwiczenia — przepływ 03 potrzebuje przycisku „Reorder exercises” (pokazywany od 2 ćwiczeń w treningu).
 # Nie jest na liście w config.yaml — uruchamiany tylko przez runFlow.
 #
 # Literały (EN z lib/i18n.en.ts, chyba że zaznaczono inaczej):
-#   "\+ New template"             ← '+ Nowy szablon'   (Btn w „Pierwszych krokach” albo w karcie Planowania — układ B, 09.10.2026; accessibilityLabel = tytuł)
+#   "Templates, tab.*" / "\+ New" ← zakładka Szablony (app/(tabs)/templates.tsx) i jej przycisk '+ Nowy' (EN „+ New”; wydanie 1, 11.10.2026)
 #   "\+ Add exercise"             ← '+ Dodaj ćwiczenie' (Btn w app/template/[id].tsx)
 #   "New template"                ← wartość pola Nazwa nowego szablonu: 'Nowy szablon' (lib/store.ts newTemplate) — dopasowanie po wartości pola
 #                                    (E2E 89: tytuł nagłówka edycji nowego szablonu — DraftHeader title 'Nowy szablon' — to ten sam tekst i stoi wyżej;
@@ -22,9 +22,10 @@
 #   "Start: Upper A"              ← 'Start: {name}' (accessibilityLabel przycisku Start na ekranie głównym)
 appId: pl.lukasz.trening
 ---
-- scrollUntilVisible: { element: "\\+ New template", direction: DOWN, timeout: 60000 }
-# (E2E 88) pusty stan „No templates yet…” nie jest pokazywany przy „First steps” (UX-12 A) — bez asercji tutaj; pusty stan: tests/audit-0.10-ui.test.tsx
-- tapOn: "\\+ New template"
+# Wydanie 1 (11.10.2026): ekran główny nie ma już listy szablonów ani „+ New template” — szablon powstaje w zakładce Szablony („+ New”).
+- tapOn: "Templates, tab.*"
+- extendedWaitUntil: { visible: "\\+ New", timeout: 30000 }
+- tapOn: "\\+ New"
 - extendedWaitUntil: { visible: "\\+ Add exercise", timeout: 30000 }
 # Pole „Name” ma wartość „New template” (zaznacza się całe przy fokusie)
 - tapOn: { text: "New template", below: "Name" }   # E2E 89: tytuł nagłówka edycji nowego szablonu to też „New template” — pole pod etykietą „Name”
@@ -54,8 +55,9 @@ appId: pl.lukasz.trening
 # --- edycja na żądanie (08.10.2026): „+ New template” otwiera edycję — zapis „Save template”, potem podgląd z „Edit template” ---
 - tapOn: "Save template"
 - extendedWaitUntil: { visible: "Edit template", timeout: 30000 }
-# --- powrót na ekran główny ---
+# --- powrót na ekran główny (po zapisie „Back” wraca na listę szablonów) ---
 - tapOn: "Back"
+- extendedWaitUntil: { visible: "\\+ New", timeout: 30000 }
+- tapOn: "Workout, tab.*"
 - extendedWaitUntil: { visible: "Other workout", timeout: 30000 }
-# run 37973427584 (249e373): karta „Dziś” wyższa (znaczniki dni, „Zrobione dziś”) — lista szablonów pod ekranem; przewinięcie do wiersza szablonu
-- scrollUntilVisible: { element: "Start: Upper A", direction: DOWN, timeout: 30000, centerElement: true }
+# Start szablonu: subflows/start-szablonu.yaml („Other workout” → „From a template” → „Start: Upper A”).

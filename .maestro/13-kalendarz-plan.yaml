@@ -3,7 +3,7 @@
 #
 # Literały (EN z lib/i18n.en.ts):
 #   "Calendar, tab.*"               ← 'Kalendarz' + etykieta zakładki
-#   "Weekly plan"                   ← 'Plan tygodnia' (przycisk w Kalendarzu i tytuł ekranu)
+#   "Planning"                      ← 'Planowanie' (przycisk w Kalendarzu i tytuł ekranu planu; od 11.10.2026, dawniej „Weekly plan”)
 #   "Monday, Rest" … "Sunday, Rest" ← app/plan.tsx: wiersz dnia '{dzień tygodnia}, {szablon albo Wolne}' (audyt 0.10 UX-15 A: 7 wierszy zamiast chipów)
 #   "Monday: Upper A" … "Sunday: Upper A" ← app/plan.tsx: '{dzień tygodnia}: {szablon}' (chip w rozwiniętym wierszu)
 #   "+ New plan", "This plan is not active yet.*", "Make active: New plan", "Set", "My plan \\(.*" ← app/plan.tsx, lib/plan.ts:
@@ -23,12 +23,12 @@ name: Kalendarz z planem tygodnia
 - launchApp:
     clearState: true
     permissions: { all: allow }
-- extendedWaitUntil: { visible: "Start from a template", timeout: 60000 }
+- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
 - runFlow: subflows/szablon-testowy.yaml
 # --- Plan tygodnia: Upper A każdego dnia (dzień symulatora nieznany — dziś zawsze zaplanowany); wiersz dnia → wybór szablonu ---
 - tapOn: "Calendar, tab.*"
-- extendedWaitUntil: { visible: "Weekly plan", timeout: 30000 }
-- tapOn: "Weekly plan"
+- extendedWaitUntil: { visible: "Planning", timeout: 30000 }
+- tapOn: "Planning"
 - extendedWaitUntil: { visible: "Monday, Rest", timeout: 30000 }
 - tapOn: "Monday, Rest"
 - tapOn: "Monday: Upper A"
@@ -50,6 +50,7 @@ name: Kalendarz z planem tygodnia
 - tapOn: "Saturday: Upper A"
 - scrollUntilVisible: { element: "Sunday, Rest", direction: DOWN, timeout: 30000, centerElement: true }
 - tapOn: "Sunday, Rest"
+- scrollUntilVisible: { element: "Sunday: Upper A", direction: DOWN, timeout: 30000, centerElement: true }  # 11.10.2026: wyższy nagłówek planu — chipy rozwiniętego wiersza pod ekranem
 - tapOn: "Sunday: Upper A"
 - takeScreenshot: 60-plan-tygodnia
 # --- Kilka planów (audyt 0.10 B2 A): „+ New plan” — osobny wpis edytowany przed aktywacją (te same dni — reszta scenariusza bez zmian) ---

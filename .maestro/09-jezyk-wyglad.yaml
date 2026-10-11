@@ -2,7 +2,7 @@
 # wygląd Jasny/Ciemny/Jak w telefonie (aplikacja dalej nawiguje), jednostka kg → lb → kg widoczna przy polu ciężaru w treningu.
 #
 # Literały (EN z lib/i18n.en.ts, chyba że zaznaczono inaczej):
-#   "Start from a template", "More, tab.*", "Workout, tab.*", "Settings", "Back", "Empty workout", "\+ Add exercise",
+#   "Other workout", "More, tab.*", "Workout, tab.*", "Settings", "Back", "Empty workout", "\+ Add exercise",
 #   "Search exercises…", "Bench Press \(Barbell\),.*"  ← jak przepływy 06 i 07
 #   "Language, Phone setting"   ← Item 'Język' + sub 'Jak w telefonie' (app/more/settings.tsx; accessibilityLabel „{title}, {sub}”)
 #   "Polski", "English"         ← LANG_NAME (lib/i18n.ts; Item w app/more/language.tsx)
@@ -20,7 +20,7 @@ name: Język, wygląd i jednostka
 - launchApp:
     clearState: true
     permissions: { all: allow }
-- extendedWaitUntil: { visible: "Start from a template", timeout: 60000 }
+- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
 
 # --- Język: polski ---
 - tapOn: "More, tab.*"
@@ -58,7 +58,7 @@ name: Język, wygląd i jednostka
 - tapOn: "Back"
 - extendedWaitUntil: { visible: "Workout, tab.*", timeout: 30000 }
 - tapOn: "Workout, tab.*"
-- extendedWaitUntil: { visible: "Start from a template", timeout: 30000 }
+- extendedWaitUntil: { visible: "Other workout", timeout: 30000 }
 - takeScreenshot: 53-ekran-glowny-ciemny
 - tapOn: "More, tab.*"
 - extendedWaitUntil: { visible: "Settings", timeout: 30000 }
@@ -70,7 +70,7 @@ name: Język, wygląd i jednostka
 - tapOn: "Back"
 - extendedWaitUntil: { visible: "Workout, tab.*", timeout: 30000 }
 - tapOn: "Workout, tab.*"
-- extendedWaitUntil: { visible: "Start from a template", timeout: 30000 }
+- extendedWaitUntil: { visible: "Other workout", timeout: 30000 }
 - tapOn: "More, tab.*"
 - extendedWaitUntil: { visible: "Settings", timeout: 30000 }
 - tapOn: "Settings"
@@ -85,7 +85,7 @@ name: Język, wygląd i jednostka
 - tapOn: "Back"
 - extendedWaitUntil: { visible: "Workout, tab.*", timeout: 30000 }
 - tapOn: "Workout, tab.*"
-- extendedWaitUntil: { visible: "Start from a template", timeout: 30000 }
+- extendedWaitUntil: { visible: "Other workout", timeout: 30000 }
 - scrollUntilVisible: { element: "Empty workout", direction: DOWN, timeout: 60000 }
 - tapOn: "Empty workout"
 - extendedWaitUntil: { visible: "\\+ Add exercise", timeout: 30000 }

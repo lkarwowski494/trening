@@ -24,7 +24,7 @@ name: Edycja na żądanie — ekran ćwiczenia
 - launchApp:
     clearState: true
     permissions: { all: allow }
-- extendedWaitUntil: { visible: "Start from a template", timeout: 60000 }
+- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
 - tapOn: "Exercises, tab.*"
 - extendedWaitUntil: { visible: "Search…", timeout: 30000 }
 - tapOn: "Search…"
@@ -59,7 +59,7 @@ name: Edycja na żądanie — ekran ćwiczenia
 - stopApp
 - launchApp:
     clearState: false
-- extendedWaitUntil: { visible: "Start from a template", timeout: 60000 }
+- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
 - tapOn: "Exercises, tab.*"
 - extendedWaitUntil: { visible: "Search…", timeout: 30000 }
 - tapOn: "Search…"

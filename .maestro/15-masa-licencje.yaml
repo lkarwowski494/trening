@@ -18,7 +18,7 @@ name: Masa ciała z datą i licencje open source
 - launchApp:
     clearState: true
     permissions: { all: allow }
-- extendedWaitUntil: { visible: "Start from a template", timeout: 60000 }
+- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
 
 - tapOn: "More, tab.*"
 - extendedWaitUntil: { visible: "Settings", timeout: 30000 }

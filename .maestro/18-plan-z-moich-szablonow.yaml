@@ -8,7 +8,8 @@
 #   "Template in the plan: Upper A"   ← 'Szablon w planie: {name}' (chip wyboru szablonu, przełącznik)
 #   "Preview", "Save plan"            ← 'Podgląd', 'Zapisz plan'
 #   "Make the new plan active\?", "Make active" ← 'Ustawić nowy plan jako aktywny?', 'Ustaw jako aktywny' (to samo okno co generator)
-#   "Saved", "Weekly plan"            ← 'Zapisano', 'Plan tygodnia' (potwierdzenie zapisu)
+#   "Planning"                        ← 'Planowanie' (przycisk okna „Saved” i tytuł ekranu planu)
+#   "Saved"                           ← 'Zapisano' (potwierdzenie zapisu)
 #   "Not now"                        ← 'Nie teraz' (okno zgody na przypomnienie — X-11: pierwszy plan z każdej drogi, components/PlanReminderSync)
 #   "Monday, Upper A", "Tuesday, Rest" ← app/plan.tsx: wiersz dnia '{dzień}, {szablon albo Wolne}' (1 szablon × 3 dni → pon., śr., sob. po wyborze dni)
 #   "day-N" (id)                      ← components/DayPicker.tsx: testID przycisku dnia (pon = 0); wybór dni (decyzja 09.10.2026 B):
@@ -22,10 +23,11 @@ name: Plan z moich szablonów
 - launchApp:
     clearState: true
     permissions: { all: allow }
-- extendedWaitUntil: { visible: "Start from a template", timeout: 60000 }
+- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
 - runFlow: subflows/szablon-testowy.yaml
-# --- „Pierwsze kroki”: szablon z ćwiczeniami, bez planu → „Plan z moich szablonów” ---
-- scrollUntilVisible: { element: "Plan from my templates", direction: UP, timeout: 30000, centerElement: true }
+# --- „Pierwsze kroki” (krok 2, bez planu): przycisk „Planning” → ekran planu → „Plan z moich szablonów” (11.10.2026; lista „Start from a template” i przyciski kroków zniknęły) ---
+- tapOn: "Planning"
+- extendedWaitUntil: { visible: "Plan from my templates", timeout: 30000 }
 - tapOn: "Plan from my templates"
 - extendedWaitUntil: { visible: "Training days per week", timeout: 30000 }
 - assertVisible: "Template in the plan: Upper A"
@@ -40,7 +42,7 @@ name: Plan z moich szablonów
 # X-11 (audyt kontrolny 1): pierwszy plan → okno zgody na przypomnienie (zgoda na powiadomienia nieustalona na symulatorze); kolejność okien zależy od iOS
 - tapOn: { text: "Not now", optional: true }
 - extendedWaitUntil: { visible: "Saved", timeout: 15000 }
-- tapOn: "Weekly plan"
+- tapOn: "Planning"  # przycisk okna „Saved” (11.10.2026: dawniej „Weekly plan”)
 - tapOn: { text: "Not now", optional: true }
 - extendedWaitUntil: { visible: "Monday, Upper A", timeout: 30000 }
 - assertVisible: "Friday, Rest"
@@ -66,3 +68,13 @@ name: Plan z moich szablonów
 - tapOn: "Back"
 - extendedWaitUntil: { visible: "Tuesday, Lower B", timeout: 30000 }
 - takeScreenshot: 82-nowy-szablon-na-wtorku
+# --- Wyłączenie planu (11.10.2026, docs/18 pkt 5): ikona przy planie na ekranie planu (etykieta VoiceOver „Turn off plan: <name>”) → okno z potwierdzeniem →
+# plan trafia do „Other plans”, nie ma „Active plan”. Obie strony zawsze z oknem (żeby nikt nie wyłączył planu przypadkiem).
+- scrollUntilVisible: { element: "Turn off plan: .*", direction: UP, timeout: 30000, centerElement: true }
+- tapOn: "Turn off plan: .*"
+- extendedWaitUntil: { visible: "Turn off the plan\\?", timeout: 15000 }
+- takeScreenshot: 83-wylaczenie-planu-pytanie
+- tapOn: { text: "Turn off", below: "Turn off the plan\\?" }
+- extendedWaitUntil: { notVisible: "Active plan", timeout: 15000 }
+- scrollUntilVisible: { element: "Other plans", direction: DOWN, timeout: 30000 }
+- takeScreenshot: 84-plan-wylaczony

@@ -1,0 +1,10 @@
+# Podprzepływ: start szablonu „Upper A” z ekranu głównego (wydanie 1, 11.10.2026: lista „Start from a template” zniknęła).
+# „Other workout” ('Inny trening', arkusz) → „From a template” ('Z szablonu') → ekran wyboru szablonu (app/pick-template.tsx) → „Start: Upper A”.
+# Wołać na ekranie głównym bez treningu w toku, po subflows/szablon-testowy.yaml. Nie jest na liście w config.yaml — tylko runFlow.
+appId: pl.lukasz.trening
+---
+- tapOn: "Other workout"
+- extendedWaitUntil: { visible: "From a template", timeout: 20000 }
+- tapOn: "From a template"
+- extendedWaitUntil: { visible: "Start: Upper A", timeout: 30000 }
+- tapOn: "Start: Upper A"
