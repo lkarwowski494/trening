@@ -100,3 +100,5 @@ backlog) → docs/15 (App Store, ceny) → docs/09 (dziennik testów; stare rund
   Domyślnie (agent): seria w szablonie bez ciężaru/powtórzeń → wartości z „Poprzednio” (ostatnie wykonanie tego wiersza szablonu); bez nich —
   liczy się do serii, nie do objętości, kafelek z „+?”. Odrzucone: A (dwie liczby bez sumy).
   Wszystkie pytania P1–P8 z docs/22 rozstrzygnięte.
+- 11.10.2026: **okienko rekordów po „Zakończ” — usunięte (A)**: po zakończeniu treningu od razu ekran podsumowania z nową kartą rekordów
+  (bez „OK”). Odrzucone: B (okienko w nowym formacie — dubel informacji).
