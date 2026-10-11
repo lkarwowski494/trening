@@ -29,7 +29,7 @@ const KANA = /[぀-ヿ]/, HANGUL = /[가-힯ᄀ-ᇿ㄰-㆏]/, HAN = /[㐀-䶿一
 /** Pismo języka: ja — kana albo kanji, ko — hangul, zh-Hant — znaki chińskie. */
 const SCRIPT: Record<W4L, RegExp> = { ja: /[぀-ヿ㐀-䶿一-鿿]/, ko: HANGUL, 'zh-Hant': HAN };
 /** Teksty bez pisma CJK — tylko symbole, skróty i terminy siłowni pisane łacinką (jak SAME_AS_EN w falach 2–3). */
-const LATIN_OK = new Set(['{k}: {v}', 'e1RM', 'GHD', 'glute-ham raise', 'circus bell', 'reverse hyper', 'OK', '{n} km', '{n} m', '{n}km', '{n}m', '{n}/{all}', '{n}/{m}', 'GHD（glute-ham developer）', 'GHD(glute-ham developer)']);
+const LATIN_OK = new Set(['{k}: {v}', '↑ {label} {value} ({delta})', 'e1RM', 'GHD', 'glute-ham raise', 'circus bell', 'reverse hyper', 'OK', '{n} km', '{n} m', '{n}km', '{n}m', '{n}/{all}', '{n}/{m}', 'GHD（glute-ham developer）', 'GHD(glute-ham developer)']);
 
 describe('resolveLang / detectLang: telefon po japońsku, koreańsku, chińsku (tradycyjny i uproszczony)', () => {
   test.each([
