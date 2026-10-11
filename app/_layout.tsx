@@ -79,6 +79,8 @@ function Root() {
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="picker" options={{ presentation: 'modal', title: t('Wybierz ćwiczenie') }} />
         <Stack.Screen name="swap" options={{ presentation: 'modal', title: t('Zamień ćwiczenie') }} />
+        <Stack.Screen name="pick-template" options={{ presentation: 'modal', title: t('Wybierz szablon') }} />{/* P2 B (11.10.2026): „Z szablonu” w arkuszu „Inny trening” */}
+        <Stack.Screen name="progression" options={{ title: t('Progresja') }} />{/* docs/22 krok 3 pkt 5; P8 B */}
         <Stack.Screen name="+not-found" options={{ headerShown: false, animation: 'none' }} />
         <Stack.Screen name="_sitemap" options={{ headerShown: false, animation: 'none' }} />
         <Stack.Screen name="template/[id]" options={{ title: t('Szablon') }} />

@@ -7,7 +7,7 @@ import { buildCsv } from '@/lib/backup';
 import { setBodyMass, fresh, ex, addWorkout, pressAlert, seedState, withDemoTemplates, seedWithDemo, legacyBandKg, saved } from './helpers';
 import { setWeekDay } from '@/lib/plan';
 import { fireEvent } from '@testing-library/react-native';
-import { renderApp, tap, type, flushAll, screen, go, act, openCard, swipeDelete, deleteActions, startEdit, saveEdit, tplDraft, exDraft } from './app';
+import { renderApp, tap, type, flushAll, screen, go, act, openCard, swipeDelete, deleteActions, startEdit, saveEdit, tplDraft, exDraft, startTpl, openTpl } from './app';
 
 jest.setTimeout(30000);
 const at = (y: number, m: number, d: number, h = 18) => new Date(y, m - 1, d, h).getTime();
@@ -95,11 +95,11 @@ describe('runda 1 — ekrany', () => {
     expect(timer.S.on).toBe(false);
   });
   test('R1-21 po polsku przecinek w polach wstawionych przez apkę', async () => {
-    await renderApp({ saved: seedWithDemo() }); await tap(screen.getByLabelText('Start: Upper B')); await flushAll(10);
+    await renderApp({ saved: seedWithDemo() }); await startTpl('Upper B'); await flushAll(10);
     expect(screen.getAllByDisplayValue('12,5').length).toBeGreaterThan(0);
   });
   test('R1-22 puste pole w oknie przerwy nie zeruje przerwy', async () => {
-    await renderApp({ saved: seedWithDemo() }); await tap(screen.getByLabelText('Start: Upper A')); await flushAll(10);
+    await renderApp({ saved: seedWithDemo() }); await startTpl('Upper A'); await flushAll(10);
     await tap(screen.getAllByLabelText(/^Przerwa: /)[0]); pressAlert('Przerwa (sekundy)', 'Zapamiętaj', '  ');
     expect(ex('Bench Press (hantle)').restSec).toBeNull();
     await tap(screen.getAllByLabelText(/^Przerwa: /)[0]); pressAlert('Przerwa (sekundy)', 'Zapamiętaj', '75');
@@ -110,7 +110,7 @@ describe('runda 1 — ekrany', () => {
     expect(screen.queryByText(/Udział masy ciała/)).toBeNull(); expect(screen.queryByDisplayValue('64')).toBeNull();
   });
   test('R1-24 zakończenie z nagłówka wymaga potwierdzenia i ostrzega o nieodhaczonych wynikach', async () => {
-    await renderApp({ saved: seedWithDemo() }); await tap(screen.getByLabelText('Start: Upper A')); await flushAll(10);
+    await renderApp({ saved: seedWithDemo() }); await startTpl('Upper A'); await flushAll(10);
     await tap(screen.getAllByLabelText(/^Seria 1 zrobiona/)[0]);
     await type(screen.getAllByLabelText('Powtórzenia')[1], '7'); // wpisane ręcznie
     await tap(screen.getAllByText('Zakończ')[0]);
@@ -118,13 +118,13 @@ describe('runda 1 — ekrany', () => {
     expect(store.getState().active).not.toBeNull();
   });
   test('R1-25 plakietka z czasem przerwy na zakładce Trening', async () => {
-    await renderApp({ saved: seedWithDemo() }); await tap(screen.getByLabelText('Start: Upper A')); await flushAll(10);
+    await renderApp({ saved: seedWithDemo() }); await startTpl('Upper A'); await flushAll(10);
     await tap(screen.getAllByLabelText(/^Seria 1 zrobiona/)[0]); await go('/history'); await flushAll(1000);
     expect(screen.getAllByText(/^[0-9]+[′″]$/).length).toBeGreaterThan(0); /* audyt 0.10 A11-17: 2′/45″; 02.10.2026: skrót „2m/45s” — „2:28” było ucinane na iOS */
     expect(screen.getByLabelText(/^Trening, przerwa [0-9]+:[0-9]{2}, zakładka, 1 z 5$/)).toBeTruthy(); // VoiceOver: pełny czas
   });
-  test('R1-26 wiersz szablonu na ekranie głównym otwiera podgląd, nie start', async () => {
-    await renderApp({ saved: seedWithDemo() }); await tap(screen.getByText('Upper A')); await flushAll(10);
+  test('R1-26 wiersz szablonu w wyborze szablonu („Inny trening” → „Z szablonu”) otwiera podgląd, nie start', async () => {
+    await renderApp({ saved: seedWithDemo() }); await openTpl('Upper A');
     expect(store.getState().active).toBeNull(); expect(screen.getByText('Duplikuj')).toBeTruthy();
   });
 });
@@ -183,7 +183,7 @@ describe('runda 2 — logika', () => {
 describe('runda 2 — ekrany', () => {
   afterEach(async () => { try { store.getState(); } catch { return; } await timer.stop(); await timer.stopSet(); });
   test('R2-20 ostrzeżenie przy zakończeniu nie liczy wartości z podpowiedzi', async () => {
-    await renderApp({ saved: seedWithDemo() }); await tap(screen.getByLabelText('Start: Upper A')); await flushAll(10);
+    await renderApp({ saved: seedWithDemo() }); await startTpl('Upper A'); await flushAll(10);
     await tap(screen.getAllByLabelText(/^Seria 1 zrobiona/)[0]); await tap(screen.getAllByText('Zakończ')[0]);
     const a = global.__alerts[global.__alerts.length - 1]; expect(a.msg).not.toMatch(/z wpisanymi wynikami/);
     /* audyt 0.10 (LIVE-05, wariant B): serie wstawione z planu w zaczętym ćwiczeniu są teraz policzone osobną linią (wcześniej przepadały bez słowa) */
@@ -209,7 +209,7 @@ describe('runda 2 — ekrany', () => {
     await act(async () => { f.props.onEndEditing?.(); }); expect(f.props.value).toBe('1800');
   });
   test('R2-25 zmiana języka przeformatowuje separator w polach', async () => {
-    await renderApp({ saved: seedWithDemo() }); await tap(screen.getByLabelText('Start: Upper B')); await flushAll(10);
+    await renderApp({ saved: seedWithDemo() }); await startTpl('Upper B'); await flushAll(10);
     expect(screen.getAllByDisplayValue('12,5').length).toBeGreaterThan(0);
     await act(async () => { store.getState().settings.language = 'en'; store.applyPrefs(); store.save(); }); await flushAll(10);
     expect(screen.queryAllByDisplayValue('12,5')).toHaveLength(0);
@@ -221,7 +221,7 @@ describe('runda 2 — ekrany', () => {
     expect(store.getState().templates.length).toBe(n);
   });
   test('R2-27 plakietka po czasie pokazuje nadwyżkę', async () => {
-    await renderApp({ saved: seedWithDemo() }); await tap(screen.getByLabelText('Start: Upper A')); await flushAll(10);
+    await renderApp({ saved: seedWithDemo() }); await startTpl('Upper A'); await flushAll(10);
     await tap(screen.getAllByLabelText(/^Seria 1 zrobiona/)[0]); await go('/history'); await flushAll(200e3);
     expect(screen.getAllByText(/^\+[0-9]+[′″]$/).length).toBeGreaterThan(0); /* A11-17 */ // 02.10.2026: skrót na plakietce
   });
@@ -247,10 +247,10 @@ describe('runda 3', () => {
     expect([s1.reps, s1.bandId]).toEqual([8, st.bands[0].id]);
   });
   test('R3-04 Start w edytorze szablonu wraca do istniejącego ekranu głównego', async () => {
-    await renderApp({ saved: seedWithDemo() }); await tap(screen.getByText('Upper A')); await flushAll(10);
+    await renderApp({ saved: seedWithDemo() }); await openTpl('Upper A');
     await tap(screen.getByText('Start')); await flushAll(10);
     const { router } = require('expo-router'); expect(router.canGoBack()).toBe(false);
-    expect(screen.getAllByText('Zakończ trening i zapisz')).toHaveLength(1);
+    expect(screen.getAllByText('Zakończ')).toHaveLength(1);
   });
   test('R3-05 skasowana nazwa wraca do poprzedniej; pusty zapisany szablon nie znika', async () => {
     await renderApp(); const tpl = store.newTemplate(); tpl.name = 'Mobilność'; store.save(tpl);
@@ -426,8 +426,8 @@ describe('runda 6', () => {
     expect([...stats.prMap(w).values()][0]).toBeUndefined();
     setBodyMass(80); expect([...stats.prMap(w).values()][0]).toEqual(['e1RM']);
   });
-  test('R6-05 przycisk Start na ekranie głównym jest osobnym elementem (nie w wierszu)', async () => {
-    await renderApp({ saved: seedWithDemo() }); const start = screen.getByLabelText('Start: Upper A');
+  test('R6-05 przycisk Start w wyborze szablonu jest osobnym elementem (nie w wierszu)', async () => {
+    await renderApp({ saved: seedWithDemo() }); await tap(screen.getByLabelText('Inny trening')); await flushAll(5); await tap(screen.getByLabelText('Z szablonu')); await flushAll(10); const start = screen.getByLabelText('Start: Upper A');
     let p: any = start.parent; while (p) { if (typeof p.type === 'string' && p.props?.accessible && p.props.accessibilityLabel !== 'Start: Upper A') throw new Error('Start zagnieżdżony w elemencie dostępności wiersza'); p = p.parent; }
     expect(screen.getAllByRole('button').some(b => /^Upper A,/.test(b.props.accessibilityLabel))).toBe(true);
   });
@@ -442,7 +442,7 @@ describe('runda 6', () => {
     expect(store.getState().templates.length).toBe(n + 1);
   });
   test('R6-08 podwójne „Zakończ” otwiera jedno okno', async () => {
-    await renderApp({ saved: seedWithDemo() }); await tap(screen.getByLabelText('Start: Upper A')); await tap(screen.getAllByLabelText(/^Seria 1 zrobiona/)[0]);
+    await renderApp({ saved: seedWithDemo() }); await startTpl('Upper A'); await tap(screen.getAllByLabelText(/^Seria 1 zrobiona/)[0]);
     const n = global.__alerts.length; const b = screen.getAllByText('Zakończ')[0];
     await act(async () => { const { fireEvent } = require('@testing-library/react-native'); fireEvent.press(b); fireEvent.press(b); });
     expect(global.__alerts.length).toBe(n + 1); pressAlert('Zakończyć trening?', 'Wróć');
@@ -466,7 +466,7 @@ describe('runda 6', () => {
     await type(screen.getByPlaceholderText('Szukaj ćwiczenia…'), 'zzzz'); expect(screen.getByText('Nic nie pasuje.')).toBeTruthy();
   });
   test('R6-12 sama rozgrzewka: osobne okno z możliwością odrzucenia', async () => {
-    await renderApp({ saved: seedWithDemo() }); await tap(screen.getByLabelText('Start: Upper A'));
+    await renderApp({ saved: seedWithDemo() }); await startTpl('Upper A');
     await act(async () => { const s0 = store.getState().active!.exercises[0].sets[0]; s0.kind = 'warmup'; s0.warmup = true; store.save(); }); await flushAll(10);
     await tap(screen.getAllByLabelText(/^Seria W zrobiona|^Seria 1 zrobiona/)[0]); await tap(screen.getAllByText('Zakończ')[0]);
     expect(global.__alerts.at(-1)!.title).toBe('Tylko rozgrzewka'); pressAlert('Tylko rozgrzewka', 'Odrzuć trening'); await flushAll(10);
@@ -536,9 +536,9 @@ describe('runda 8', () => {
   test('R8-04 EN: przycisk przerwy „This time only”', () => {
     expect(require('@/lib/i18n.en').EN?.['Tylko teraz'] ?? require('@/lib/i18n.en').default?.['Tylko teraz']).toBe('This time only');
   });
-  test('R8-05 ekran główny bez szablonów ma przycisk tworzenia', async () => {
+  test('R8-05 ekran główny bez szablonów prowadzi do tworzenia: „Planowanie” → dzień → „+ Nowy szablon”', async () => {
     await renderApp(); await act(async () => { store.getState().templates = []; store.save(); }); await flushAll(10);
-    await tap(screen.getByText('+ Nowy szablon')); expect(store.getState().templates).toHaveLength(1);
+    await tap(screen.getAllByText('Planowanie')[0]); await flushAll(10); await tap(screen.getAllByLabelText(/^poniedziałek, /)[0]); await flushAll(5); await tap(screen.getByLabelText('poniedziałek: + Nowy szablon')); await flushAll(10); expect(store.getState().templates).toHaveLength(1);
   });
 });
 
@@ -572,16 +572,16 @@ describe('runda 9', () => {
     await renderApp({ saved: seedWithDemo() }); const tpl = store.getState().templates[0]; await go('/templates'); await flushAll(10); await tap(screen.getByText(tpl.name)); await flushAll(10);
     const b = screen.getByText('Start'); await act(async () => { const { fireEvent } = require('@testing-library/react-native'); fireEvent.press(b); fireEvent.press(b); }); await flushAll(10);
     expect(global.__alerts.filter((x: any) => x.title === 'Trening w toku')).toHaveLength(0); expect(store.getState().active?.templateId).toBe(tpl.id);
-    expect(screen.getAllByText('Zakończ trening i zapisz')).toHaveLength(1); // edytor otwarty z zakładki Szablony też wraca do treningu
+    expect(screen.getAllByText('Zakończ')).toHaveLength(1); // edytor otwarty z zakładki Szablony też wraca do treningu
   });
   test('R9-06 teksty w wierszu serii mają limit powiększenia', async () => {
-    await renderApp({ saved: seedWithDemo() }); await tap(screen.getByLabelText('Start: Upper A'));
+    await renderApp({ saved: seedWithDemo() }); await startTpl('Upper A');
     const { Text } = require('react-native'); const btn = screen.getAllByLabelText(/^Seria 1 zrobiona/)[0];
     expect(btn.findAllByType(Text).every((x: any) => x.props.maxFontSizeMultiplier > 0)).toBe(true);
   });
   test('R9-07 Start w edytorze otwartym z zakładki Szablony przechodzi do treningu', async () => {
     await renderApp({ saved: seedWithDemo() }); const tpl = store.getState().templates[0]; await go('/templates'); await flushAll(10); await tap(screen.getByText(tpl.name)); await flushAll(10);
-    await tap(screen.getByText('Start')); await flushAll(10); expect(screen.getAllByText('Zakończ trening i zapisz')).toHaveLength(1);
+    await tap(screen.getByText('Start')); await flushAll(10); expect(screen.getAllByText('Zakończ')).toHaveLength(1);
   });
 });
 
@@ -601,13 +601,13 @@ describe('runda 10', () => {
     expect([s0.weight, s0.reps, s0.durationSec]).toEqual(['', '', 40]);
   });
   test('R10-03 podwójne „usuń” ćwiczenia w treningu usuwa jedno', async () => {
-    await renderApp({ saved: seedWithDemo() }); await tap(screen.getByLabelText('Start: Upper A')); const n = store.getState().active!.exercises.length;
+    await renderApp({ saved: seedWithDemo() }); await startTpl('Upper A'); const n = store.getState().active!.exercises.length;
     const lbl = deleteActions().find(l => l.startsWith('Usuń ćwiczenie: '))!; await swipeDelete(lbl); await swipeDelete(lbl); /* 07.10.2026 wieczór: gest zamiast „usuń”; dwa potwierdzenia */
     const al = global.__alerts.filter((a: any) => a.title === 'Usunąć z treningu?'); expect(al.length).toBe(2); await act(async () => { al.forEach((a: any) => a.buttons.find((b: any) => b.text === 'Usuń').onPress()); });
     await flushAll(10); expect(store.getState().active!.exercises.length).toBe(n - 1);
   });
   test('R10-04 podwójne „✕” w szablonie usuwa jedną pozycję', async () => {
-    await renderApp({ saved: seedWithDemo() }); const tpl = store.getState().templates[0]; const n = tpl.items.length; await tap(screen.getByText(tpl.name)); await flushAll(10); await startEdit(); await openCard(0);
+    await renderApp({ saved: seedWithDemo() }); const tpl = store.getState().templates[0]; const n = tpl.items.length; await openTpl(tpl.name); await startEdit(); await openCard(0);
     const lbl = deleteActions().find(l => l.startsWith('Usuń ćwiczenie: '))!; await swipeDelete(lbl); await swipeDelete(lbl); /* 07.10.2026 wieczór: gest zamiast „✕” */
     const al = global.__alerts.filter((a: any) => a.title === 'Usunąć z szablonu?'); expect(al.length).toBe(2); await act(async () => { al.forEach((a: any) => a.buttons.find((b: any) => b.text === 'Usuń').onPress()); });
     await flushAll(10); await saveEdit(); expect(tpl.items.length).toBe(n - 1);
@@ -637,7 +637,7 @@ describe('runda 11', () => {
     store.startFromTemplate(tpl); expect(store.getState().active!.exercises.map(e => e.sets[0].weight)).toEqual(['', 100, 80]);
   });
   test('R11-03 przerwa wpisana w treningu ma limit 30:00', async () => {
-    await renderApp({ saved: seedWithDemo() }); await tap(screen.getByLabelText('Start: Upper A')); await tap(screen.getAllByLabelText(/^Przerwa: /)[0]);
+    await renderApp({ saved: seedWithDemo() }); await startTpl('Upper A'); await tap(screen.getAllByLabelText(/^Przerwa: /)[0]);
     const a: any = global.__alerts.at(-1); a.buttons.find((b: any) => b.text === 'Zapamiętaj').onPress('90000'); await flushAll(10);
     expect(store.getState().active!.exercises[0].restSec).toBe(1800);
   });
@@ -899,7 +899,7 @@ describe('runda 27', () => {
     await renderApp({ url: '/more/settings' }); const { router } = require('expo-router'); expect(router.canGoBack()).toBe(true);
   });
   test('R27-04 nieznany adres wraca na ekran główny (jeden zestaw zakładek, runda 28)', async () => {
-    await renderApp({ url: '/more/nieznane' }); await flushAll(10); expect(screen.queryByText(/Unmatched Route/)).toBeNull(); expect(screen.getAllByText('Zacznij z szablonu')).toHaveLength(1);
+    await renderApp({ url: '/more/nieznane' }); await flushAll(10); expect(screen.queryByText(/Unmatched Route/)).toBeNull(); expect(screen.getAllByLabelText('Pusty trening')).toHaveLength(1);
     const { router } = require('expo-router'); expect(router.canGoBack()).toBe(false);
   });
 });
@@ -966,7 +966,7 @@ describe('runda 31', () => {
 describe('runda 32', () => {
   /* R32-01 (dni do wygaśnięcia podpisu) — usunięte. Decyzja właściciela 09.10.2026 (docs/18): przypomnienie o odnowieniu podpisu usunięte razem z instalacją z komputera — regresja: tests/rm-signing.test.tsx. */
   test('R32-02 błąd zapisu widoczny w trakcie treningu', async () => {
-    await renderApp({ saved: seedWithDemo() }); await tap(screen.getByLabelText('Start: Upper A')); global.__dbFail = true;
+    await renderApp({ saved: seedWithDemo() }); await startTpl('Upper A'); global.__dbFail = true;
     await tap(screen.getAllByLabelText(/^Seria 1 zrobiona/)[0]); await flushAll(1000);
     expect(screen.getAllByText('Nie udało się zapisać danych').length).toBeGreaterThan(0); global.__dbFail = false;
   });
@@ -1205,7 +1205,7 @@ describe('runda 48', () => {
     await act(async () => { store.startEmpty(); store.addExerciseToActive(ex('Bench Press (hantle)')); store.addExerciseToActive(ex('Plank')); }); await flushAll(10);
     const a = store.getState().active!; a.exercises[0].sets[0].weight = 20; a.exercises[0].sets[0].reps = 5;
     await tap(screen.getAllByLabelText(/^Seria 1 zrobiona/)[0]); await tap(screen.getAllByLabelText('Start stopera serii')[0]); await flushAll(3000);
-    await tap(screen.getAllByText('Zakończ trening i zapisz')[0]); await flushAll(10);
+    await tap(screen.getAllByText('Zakończ')[0]); await flushAll(10);
     await act(async () => { pressAlert('Zakończyć trening?', 'Zakończ'); }); await flushAll(1000); expect(store.getState().active).toBeNull();
   });
 });
@@ -1371,7 +1371,7 @@ describe('runda 52', () => {
   });
   test('R52-07 zakończenie ostrzega o odhaczonych seriach bez czasu lub dystansu', async () => {
     await renderApp(); await act(async () => { store.startEmpty(); store.addExerciseToActive(ex('Plank')); }); await flushAll(10);
-    await tap(screen.getAllByLabelText(/^Seria 1 zrobiona/)[0]); await tap(screen.getAllByText('Zakończ trening i zapisz')[0]); await flushAll(5);
+    await tap(screen.getAllByLabelText(/^Seria 1 zrobiona/)[0]); await tap(screen.getAllByText('Zakończ')[0]); await flushAll(5);
     const a = global.__alerts.filter((x: any) => x.title === 'Zakończyć trening?').pop(); expect(a!.msg).toMatch(/bez czasu lub dystansu: 1/);
   });
 });
@@ -1382,7 +1382,7 @@ describe('runda 53', () => {
     const a = store.getState().active!; a.exercises[2].sets[0].weight = 100; a.exercises[2].sets[0].reps = 5;
     await tap(screen.getAllByLabelText(/^Seria 1 zrobiona/)[0]); await tap(screen.getAllByLabelText(/^Seria 1 zrobiona/)[2]);
     await tap(screen.getAllByLabelText('Start stopera serii')[0]); global.__alerts.filter((x: any) => x.title === 'Zmierzyć serię od nowa?').slice(-1).forEach(() => pressAlert('Zmierzyć serię od nowa?', 'Zmierz')); await flushAll(2000);
-    await tap(screen.getAllByText('Zakończ trening i zapisz')[0]); await flushAll(5);
+    await tap(screen.getAllByText('Zakończ')[0]); await flushAll(5);
     expect(global.__alerts.filter((x: any) => x.title === 'Zakończyć trening?').pop()!.msg).not.toMatch(/bez czasu/);
   });
   test('R53-02 kolor gumy przycinany (litera na przycisku); stare dane też', async () => {
@@ -1595,7 +1595,7 @@ describe('runda 62', () => {
 
 describe('runda 63', () => {
   test('R63-01 przycisk numeru serii mówi, którego ćwiczenia dotyczy; szablon: „start kg/hantel”, serie do 50', async () => {
-    await renderApp({ saved: seedWithDemo() }); await tap(screen.getByLabelText('Start: Upper A')); await flushAll(10);
+    await renderApp({ saved: seedWithDemo() }); await startTpl('Upper A'); await flushAll(10);
     expect(screen.getAllByLabelText(/^Seria 1, typ: normalna/)[0].props.accessibilityHint).toMatch(/Seria 1 — /);
     const tpl = store.getState().templates[0]; await go(`/template/${tpl.id}`); await flushAll(10); await startEdit(); await openCard(0);
     expect(screen.getAllByLabelText(/kg\/hantel|±kg|^kg$/).length).toBeGreaterThan(0); /* 05.10.2026: wiersze serii — etykieta ciężaru jak w treningu */
@@ -1859,14 +1859,14 @@ describe('B1 (build 1004, właściciel 09.10.2026 ok. 14:25): „Ukryj” zachę
   /* tekst w poddrzewie (within z RNTL nie widzi węzłów ekranu expo-router) */
   const textsIn = (id: string): string[] => screen.getByTestId(id).findAll(n => (n.type as unknown) === 'Text').map(n => [n.props.children].flat().join(''));
   const card = () => ({ has: (x: string) => textsIn('today-plan').includes(x) });
-  test('po „Ukryj” przycisk „Plan tygodnia” zostaje na karcie „Dziś”, a przełącznik w Ustawieniach przywraca zachętę (karta i Kalendarz)', async () => {
+  test('po „Ukryj” przycisk „Ustaw plan” zostaje na karcie „Dziś”, a przełącznik w Ustawieniach przywraca zachętę (karta i Kalendarz)', async () => {
     jest.useFakeTimers({ now: new Date(2026, 9, 8, 9) });
     await boot();
-    expect(card().has('Plan tygodnia')).toBe(true);
+    expect(card().has('Ustaw plan')).toBe(true);
     await tap(screen.getAllByLabelText('Ukryj zachętę do planu tygodnia')[0]); await flushAll(5);
     expect(store.getState().planHintHidden).toBe(true);
     expect(card().has('Ustaw plan tygodnia, by widzieć tu dzisiejszy trening i dostawać przypomnienie.')).toBe(false);
-    expect(card().has('Plan tygodnia')).toBe(true); /* B1: przycisk nie znika razem z tekstem */
+    expect(card().has('Ustaw plan')).toBe(true); /* B1: przycisk nie znika razem z tekstem */
     await go('/more/settings'); await flushAll(10);
     const sw = screen.getByTestId('sw-Zachęta do planu tygodnia'); expect(sw.props.value).toBe(false); expect(sw.props.accessibilityHint).toBe('tekst na karcie „Dziś” i w Kalendarzu, gdy nie ma planu');
     await act(async () => { fireEvent(sw, 'valueChange', true); }); await flushAll(5);
@@ -1875,11 +1875,11 @@ describe('B1 (build 1004, właściciel 09.10.2026 ok. 14:25): „Ukryj” zachę
     await go('/history'); await flushAll(10); expect(screen.getByLabelText('Ukryj zachętę do planu tygodnia')).toBeTruthy();
     await go('/'); await flushAll(10); expect(card().has('Ustaw plan tygodnia, by widzieć tu dzisiejszy trening i dostawać przypomnienie.')).toBe(true);
   });
-  test('z planem tygodnia karta „Dziś” też prowadzi do planu', async () => {
+  test('z planem tygodnia nagłówek karty „Dziś” prowadzi do planu przyciskiem „Planowanie”', async () => {
     jest.useFakeTimers({ now: new Date(2026, 9, 8, 9) });
     await fresh(); const tp = store.newTemplate(); tp.name = 'Pull'; store.save(tp); setWeekDay(4, tp.id); await act(async () => { await store.flush(); });
     await renderApp({ saved: JSON.parse(JSON.stringify(saved())) }); await flushAll(10);
-    expect(card().has('Plan tygodnia')).toBe(true);
+    expect(card().has('Planowanie')).toBe(true); expect(card().has('Plan tygodnia')).toBe(false);
   });
   test.each(['pl', 'en'] as const)('pasek tygodnia pokazuje numer dnia pod skrótem (%s)', async (locale) => {
     jest.useFakeTimers({ now: new Date(2026, 9, 8, 9) });

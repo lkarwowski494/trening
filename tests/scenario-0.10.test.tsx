@@ -8,7 +8,7 @@ import * as plan from '@/lib/plan';
 import { deloadCounts } from '@/lib/start';
 import { applyLang } from '@/lib/i18n';
 import { fresh, saved, withDemoTemplates, addWorkout } from './helpers';
-import { renderApp, flushAll, screen, tap, act, go } from './app';
+import { renderApp, flushAll, screen, tap, act, go, startTpl } from './app';
 
 jest.setTimeout(120000);
 const NOW = new Date(2026, 9, 8, 9, 0); /* czwartek 8.10.2026 */
@@ -34,7 +34,7 @@ test('plan tygodnia → restart → Kalendarz i ekran Trening: plan obowiązuje,
   expect(S().planHistory?.map(h => h.from)).toEqual(['2026-10-08']); /* historia planu (A1) przeżyła restart — od dziś */
   await go('/'); await flushAll(10);
   expect(plan.dayStatus('2026-10-08').status).toBe('planned');
-  await tap(screen.getByLabelText(`Start: ${t[0].name}`)); await flushAll(10); expect(S().active?.templateId).toBe(t[0].id);
+  await startTpl(t[0].name); await flushAll(10); expect(S().active?.templateId).toBe(t[0].id);
   await restart('/'); expect(S().active?.templateId).toBe(t[0].id); /* trening z planu w toku przeżywa restart */
 });
 
@@ -66,11 +66,11 @@ test('deload: oznaczenie tygodnia w Postępach → restart → start z szablonu 
   const t = await boot('/more/progress', () => { [[8, 14], [8, 21], [8, 28], [9, 6]].forEach(([m, d]) => addWorkout(new Date(2026, m, d, 18).getTime(), [['Back Squat', [{ weight: 100, reps: 5 }]]])); });
   store.toggleDeloadWeek(NOW.getTime()); await flushAll(5); /* „Ten tydzień: deload” (ten sam przycisk co w Kalendarzu — test ekranu: deload-ui) */
   await restart('/'); expect(store.isDeloadWeek(NOW.getTime())).toBe(true);
-  const c = deloadCounts(t[0]); await tap(screen.getByLabelText(`Start: ${t[0].name}`)); await flushAll(5); await press('Tydzień deload', 'Mniej serii');
+  const c = deloadCounts(t[0]); await startTpl(t[0].name); await flushAll(5); await press('Tydzień deload', 'Mniej serii');
   expect(S().active!.exercises.reduce((a, e) => a + e.sets.filter(s => s.kind !== 'warmup').length, 0)).toBe(c.less); expect(S().active!.deload).toBe(true);
   await restart('/'); expect(S().active!.deload).toBe(true);
   act(() => { store.cancelWorkout(); store.toggleDeloadWeek(NOW.getTime()); }); await restart('/'); expect(store.isDeloadWeek(NOW.getTime())).toBe(false);
-  await tap(screen.getByLabelText(`Start: ${t[0].name}`)); await flushAll(5); expect(lastAlert('Tydzień deload')).toBeUndefined(); expect(S().active?.templateId).toBe(t[0].id);
+  await startTpl(t[0].name); await flushAll(5); expect(lastAlert('Tydzień deload')).toBeUndefined(); expect(S().active?.templateId).toBe(t[0].id);
 });
 
 test('filtr „Podstawowe” na liście Ćwiczeń: zdjęcie → restart → zapamiętany, i z powrotem', async () => {

@@ -3,14 +3,14 @@ import * as store from '@/lib/store';
 import * as timer from '@/lib/timer';
 import * as stats from '@/lib/stats';
 import { exName } from '@/lib/i18n';
-import { renderApp, tap, type, flushAll, screen, go, act } from './app';
+import { renderApp, tap, type, flushAll, screen, go, act, startTpl } from './app';
 import { ex, pressAlert, saved, seedWithDemo } from './helpers';
 
 jest.setTimeout(60000);
 afterEach(async () => { await timer.stop(); await timer.stopSet(); });
 
-const startTemplate = async (name: string) => { await tap(screen.getByLabelText(`Start: ${name}`)); await flushAll(10); };
-const finishConfirmed = async (title = 'Zakończyć trening?', btn = 'Zakończ', open = 'Zakończ trening i zapisz') => { await tap(screen.getAllByText(open)[0]); pressAlert(title, btn); await flushAll(500); };
+const startTemplate = async (name: string) => { await startTpl(name); await flushAll(10); };
+const finishConfirmed = async (title = 'Zakończyć trening?', btn = 'Zakończ', open = 'Zakończ') => { await tap(screen.getAllByText(open)[0]); pressAlert(title, btn); await flushAll(500); };
 const repsOf = (exN: string, n: number) => screen.getAllByLabelText('Powtórzenia').find(x => x.props.accessibilityHint === `Seria ${n} — ${exN}`)!;
 const tick = async (exN: string, n: number) => tap(screen.getByLabelText(`Seria ${n} zrobiona — ${exN}`));
 

@@ -27,8 +27,8 @@ describe('języki aplikacji', () => {
     applyLang('uk'); expect(locale()).toMatch(/^uk/);
   });
   test('brak tłumaczenia w danym języku → angielski (nie polski); polski bez zmian', () => {
-    applyLang('cs'); expect(t('__brak__klucza__')).toBe('__brak__klucza__'); expect(t('Zakończ trening i zapisz').length).toBeGreaterThan(0); expect(t('Zakończ trening i zapisz')).not.toBe('Zakończ trening i zapisz');
-    applyLang('pl'); expect(t('Zakończ trening i zapisz')).toBe('Zakończ trening i zapisz');
+    applyLang('cs'); expect(t('__brak__klucza__')).toBe('__brak__klucza__'); expect(t('Zakończ').length).toBeGreaterThan(0); expect(t('Zakończ')).not.toBe('Zakończ');
+    applyLang('pl'); expect(t('Zakończ')).toBe('Zakończ');
   });
   test('nazwy ćwiczeń z biblioteki w językach innych niż polski — po angielsku', () => {
     applyLang('hu'); expect(exName({ name: 'Wiosłowanie na linkach (siedząc)', lib: true })).toBe(applyLangThen('en', () => exName({ name: 'Wiosłowanie na linkach (siedząc)', lib: true })));

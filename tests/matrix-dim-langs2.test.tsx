@@ -47,7 +47,7 @@ describe('LANGS × THEMES — główne ekrany w każdym języku i motywie', () =
    * słowo czeskie, słowackie i litewskie). */
   /** To samo słowo w języku docelowym (fiń. historia) — nie jest przeciekiem polskiego tekstu (07.10.2026; jak SAME_IN w matrix-i18n). */
   const SAME_WORD: Partial<Record<string, string[]>> = {}; /* fi „Historia” — zakładka to teraz Kalendarz (Kalenteri) */
-  const PL_SENTINELS = ['Zacznij z szablonu', 'Ustawienia', 'Pusty trening', 'Postępy', 'Szablony', 'Ćwiczenia', 'Więcej', 'Kalendarz', '+ Dodaj miejsce', '+ Dodaj trening wstecz', 'Dźwięk i wibracja na koniec przerwy', 'Jednostka ciężaru', 'Wygląd'];
+  const PL_SENTINELS = ['Inny trening', 'Ustawienia', 'Pusty trening', 'Postępy', 'Szablony', 'Ćwiczenia', 'Więcej', 'Kalendarz', '+ Dodaj miejsce', '+ Dodaj trening wstecz', 'Dźwięk i wibracja na koniec przerwy', 'Jednostka ciężaru', 'Wygląd'];
   const texts = () => { const out: string[] = []; const walk = (n: any) => { if (!n) return; if (typeof n === 'string') { out.push(n); return; } if (Array.isArray(n)) { n.forEach(walk); return; } walk(n.children); }; walk(screen.toJSON()); return out; };
   const bgs = () => { const out = new Set<string>(); const walk = (n: any) => { if (!n || typeof n === 'string') return; if (Array.isArray(n)) { n.forEach(walk); return; } for (const x of [n.props?.style].flat(9)) if (x && x.backgroundColor) out.add(String(x.backgroundColor)); walk(n.children); }; walk(screen.toJSON()); return out; };
   const palette = (th: ThemeSetting) => (th === 'auto' ? system : th) === 'light' ? light : dark;

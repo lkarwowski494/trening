@@ -27,7 +27,7 @@ export function weekTiles(now = Date.now(), days: WeekDay[] = weekStrip(now) /* 
   const s = periodSummary('week', 0, new Date(now));
   const plan = hasPlan(dayKeyOf(now)) || days.some(d => d.templateId);
   const planned = plan ? days.filter(d => d.templateId).length : null; const planDone = plan ? days.filter(d => d.templateId && d.status === 'done').length : null;
-  return { workouts: s.workouts, sets: s.sets, durationSec: s.durationSec, prev: s.prev, planned, planDone };
+  return { workouts: s.workouts, sets: s.sets, volume: s.volume, durationSec: s.durationSec, prev: s.prev, planned, planDone };
 }
 /** Ostatni zakończony trening: nazwa, start, czas bez pauz, serie robocze, objętość, liczba rekordów. */
 export function lastWorkout() {

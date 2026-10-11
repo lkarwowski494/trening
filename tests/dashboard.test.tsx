@@ -11,6 +11,7 @@ import { workoutPRs, prCount } from '@/lib/stats';
 import { applyLang } from '@/lib/i18n';
 import { fresh, saved, withDemoTemplates, addWorkout } from './helpers';
 import { renderApp, flushAll, screen, tap, act } from './app';
+import { within } from '@testing-library/react-native';
 
 const NOW = new Date(2026, 9, 8, 9, 0); /* czw.; tydzień od 5.10 */
 const S = () => store.getState();
@@ -53,25 +54,33 @@ describe('ekran', () => {
     jest.useFakeTimers({ now: NOW }); await fresh(undefined, locale); fn();
     await act(async () => { await store.flush(); }); await renderApp({ saved: JSON.parse(JSON.stringify(saved())), locale, url: '/' }); jest.setSystemTime(NOW.getTime()); await flushAll(10);
   };
-  test('nowa osoba: „Pierwsze kroki” — 3 kroki do zrobienia, „Wygeneruj szablony i plan”, „Plan tygodnia”; bez kafelków', async () => {
+  test('nowa osoba: „Pierwsze kroki” (P4 A) — 3 kroki do zrobienia, każdy z jednym przyciskiem („Planowanie” ×2, „Przewodnik”); bez kafelków i Progresji', async () => {
     await boot();
     expect(screen.getByTestId('first-steps')).toBeTruthy(); expect(screen.getByRole('header', { name: 'Pierwsze kroki' })).toBeTruthy();
     expect(screen.getByLabelText('1. Utwórz pierwszy szablon albo wygeneruj szablony i plan. do zrobienia')).toBeTruthy(); /* UX-12 A (audyt 0.10): przyciski przy kroku */
     expect(screen.getByText('Ustaw plan tygodnia — zobaczysz tu dzisiejszy trening i dostaniesz przypomnienie.')).toBeTruthy();
-    expect(screen.getByLabelText('4. Pierwszy trening: „Start” przy szablonie niżej albo „Pusty trening”. do zrobienia')).toBeTruthy(); expect(screen.queryByTestId('week-tiles')).toBeNull();
+    expect(screen.getByLabelText('2. Ustaw plan tygodnia — zobaczysz tu dzisiejszy trening i dostaniesz przypomnienie. do zrobienia', { exact: false })).toBeTruthy();
+    expect(screen.getByLabelText('3. Pierwszy trening: duży przycisk „Start” u góry albo „Pusty trening”. do zrobienia')).toBeTruthy(); expect(screen.queryByTestId('week-tiles')).toBeNull(); expect(screen.queryByText('Progresja')).toBeNull();
+    expect(screen.queryByText(/^4\. /)).toBeNull(); /* P6 B (import) — krok 4 dopiero po wdrożeniu importu */
+    const box = within(screen.getByTestId('first-steps')); expect(box.getAllByText('Planowanie')).toHaveLength(2); expect(box.getAllByText('Przewodnik')).toHaveLength(1);
+    for (const gone of ['+ Nowy szablon', 'Wygeneruj szablony i plan', 'Plan tygodnia', 'Plan z moich szablonów', 'Miejsca i sprzęt', 'Jak to działa']) expect(box.queryByText(gone)).toBeNull(); /* dawne 9 przycisków */
+    await tap(box.getAllByText('Planowanie')[0]); await flushAll(10); expect(screen.getByText('Plan powtarza się co tydzień. Pojedyncze dni zmienisz w Kalendarzu.')).toBeTruthy();
     await tap(screen.getByText('Wygeneruj szablony i plan')); await flushAll(10); expect(screen.getByText('Podgląd')).toBeTruthy();
   });
-  test('kroki odhaczone: szablon i plan zrobione (✓, VoiceOver „zrobione”), krok 3 z tekstem dla szablonów', async () => {
+  test('kroki odhaczone: szablon i plan zrobione (✓, VoiceOver „zrobione”, bez przycisku „Planowanie”), krok 3 „Przewodnik” zostaje', async () => {
     await boot(() => { const t = withDemoTemplates(); plan.setWeekDay(0, t[0].id); });
     expect(screen.getByLabelText(/^1\. .* zrobione$/)).toBeTruthy(); expect(screen.getByLabelText(/^2\. .* zrobione$/)).toBeTruthy();
-    expect(screen.getByLabelText(/^4\. Pierwszy trening: .* do zrobienia$/)).toBeTruthy();
+    expect(screen.getByLabelText(/^3\. Pierwszy trening: .* do zrobienia$/)).toBeTruthy();
     expect(screen.queryByText('Wygeneruj szablony i plan')).toBeNull(); expect(screen.getAllByText('✓').length).toBeGreaterThanOrEqual(2);
+    expect(within(screen.getByTestId('first-steps')).queryByText('Planowanie')).toBeNull(); expect(within(screen.getByTestId('first-steps')).getAllByText('Przewodnik')).toHaveLength(1);
+    await tap(screen.getByLabelText('Przewodnik po funkcjach')); await flushAll(10); expect(screen.getByText(/^1\. Na ekranie Trening stuknij duży przycisk „Start”/)).toBeTruthy(); /* temat „Trening i serie” rozwinięty od razu */
   });
   test('po treningach: kafelki z poprzednim tygodniem (VoiceOver), opis z planem, ostatni trening z rekordami → szczegóły', async () => {
     await boot(() => { sq(8, 29, 80); const t = withDemoTemplates(); sq(9, 6, 100).templateId = t[0].id; since0901(() => { plan.setWeekDay(1, t[0].id); plan.setWeekDay(3, t[0].id); }); });
     expect(screen.queryByTestId('first-steps')).toBeNull(); expect(screen.getByText('Ten tydzień')).toBeTruthy();
     expect(screen.getByLabelText('Treningi: 1, poprzedni tydzień 1')).toBeTruthy(); /* audyt 0.10 A5: kafelek liczy sesje, dni planu w opisie niżej */ expect(screen.getByLabelText('Serie: 2, poprzedni tydzień 2')).toBeTruthy();
-    expect(screen.getByLabelText('Czas: 1 h, poprzedni tydzień 1 h')).toBeTruthy(); /* pełna godzina — bez „0 min” */ expect(screen.getAllByText(/^poprz\.: /).length).toBe(3); expect('poprz.: {v}'.replace('{v}', '2')).toBe('poprz.: 2'); expect(screen.getAllByText('poprz.: 2').length).toBe(1); /* tekst z t() — macierz */
+    expect(screen.getByLabelText('Czas: 1 h, poprzedni tydzień 1 h')).toBeTruthy(); /* pełna godzina — bez „0 min” */ expect(screen.getAllByText(/^poprz\.: /).length).toBe(4); /* 11.10.2026: czwarty kafelek — Objętość */
+    expect(screen.getByLabelText(/^Objętość: .*, poprzedni tydzień /)).toBeTruthy(); expect('poprz.: {v}'.replace('{v}', '2')).toBe('poprz.: 2'); expect(screen.getAllByText('poprz.: 2').length).toBe(1); /* tekst z t() — macierz */
     expect(screen.getByTestId('week-stacks').props.accessibilityLabel).toBe('Postęp tygodnia: 50% planu, zrobione 1 z 2 treningów z planu'); expect(screen.getByText('50% planu tygodnia (1 z 2)')).toBeTruthy(); /* korekta 09.10.2026 ok. 17:00: stosy talerzy i procent planu (wcześniej sztanga) zamiast linii „Z planu w tym tygodniu…”; audyt 0.10 A5 — dni planu osobno od sesji */
     /* właściciel 09.10.2026 ok. 16:20: bez sekcji „Ostatni trening” — ostatni trening w arkuszu „Inny trening” (nazwa · data), w Historii i Kalendarzu */
     expect(screen.queryByText('Ostatni trening')).toBeNull(); const last = lastWorkout()!;
@@ -85,7 +94,7 @@ describe('ekran', () => {
   test('English', async () => {
     await boot(() => { sq(9, 6); }, 'en');
     expect(screen.getByText('This week')).toBeTruthy(); expect(screen.getByLabelText('Workouts: 1, previous week 0')).toBeTruthy(); expect(screen.queryByText('Last workout')).toBeNull();
-    expect(screen.getByText('No weekly plan')).toBeTruthy(); expect(screen.getByText('Today')).toBeTruthy();
+    expect(screen.getByText('No weekly plan')).toBeTruthy(); expect(screen.getByLabelText('Set a plan')).toBeTruthy(); expect(screen.queryByText('Today')).toBeNull(); expect(screen.getByLabelText(/^Volume: /)).toBeTruthy();
     await boot(() => {}, 'en'); expect(screen.getByText('First steps')).toBeTruthy(); expect(screen.getByLabelText(/^1\. .* to do$/)).toBeTruthy();
   });
 });

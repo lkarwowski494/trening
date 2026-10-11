@@ -81,7 +81,7 @@ describe('T-012 kopia automatyczna', () => {
     const FS = fsMock([]); await renderApp(); const { pressAlert } = require('./helpers');
     await act(async () => { store.startEmpty(); store.addExerciseToActive(ex('Back Squat')); const a = store.getState().active!; Object.assign(a.exercises[0].sets[0], { weight: 100, reps: 5 }); store.save(a); store.toggleDone(0, 0); }); await flushAll(20);
     (FS.writeAsStringAsync as jest.Mock).mockClear();
-    const { tap } = require('./app'); await tap(screen.getAllByText('Zakończ trening i zapisz')[0]); pressAlert('Zakończyć trening?', 'Zakończ'); await flushAll(600);
+    const { tap } = require('./app'); await tap(screen.getAllByText('Zakończ')[0]); pressAlert('Zakończyć trening?', 'Zakończ'); await flushAll(600);
     expect((FS.writeAsStringAsync as jest.Mock).mock.calls.some((c: any) => /\/Backup\/trening-/.test(c[0]))).toBe(true);
   });
 });

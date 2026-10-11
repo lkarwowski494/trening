@@ -34,7 +34,7 @@ test('LIVE-1 blocks + untick/retick: one badge, same set in history and summary'
   const live = [...stats.prMap(a).entries()];
   // eslint-disable-next-line no-console
   log('live', JSON.stringify(live), a.exercises.map(e => e.sets.map(s => s.id)));
-  await tap(screen.getAllByText('Zakończ trening i zapisz')[0]); pressAlert('Zakończyć trening?', 'Zakończ'); await flushAll(600);
+  await tap(screen.getAllByText('Zakończ')[0]); pressAlert('Zakończyć trening?', 'Zakończ'); await flushAll(600);
   const w = store.getState().workouts[store.getState().workouts.length - 1];
   expect([...stats.prMap(w).entries()]).toEqual(live);
   expect((global.__alerts as any[]).filter(x => /rekord/.test(x.title))).toEqual([]); /* 11.10.2026: karta zamiast okienka */

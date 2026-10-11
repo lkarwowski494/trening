@@ -35,7 +35,7 @@ test('M3 summary title says "Nowy rekord!" for two records on one set', async ()
   await renderApp(); addWorkout(Date.now() - 2 * day, [['Back Squat', [{ weight: 100, reps: 5 }]]]);
   await act(async () => { store.startEmpty(); store.addExerciseToActive(ex('Back Squat')); const a = store.getState().active!; a.exercises[0].sets[0].weight = 110; a.exercises[0].sets[0].reps = 5; store.save(a); });
   await flushAll(10); await act(async () => { store.toggleDone(0, 0); }); await flushAll(1000);
-  await tap(screen.getAllByText('Zakończ trening i zapisz')[0]); pressAlert('Zakończyć trening?', 'Zakończ'); await flushAll(600);
+  await tap(screen.getAllByText('Zakończ')[0]); pressAlert('Zakończyć trening?', 'Zakończ'); await flushAll(600);
   expect((global.__alerts as any[]).filter(x => /rekord/i.test(x.title))).toEqual([]); /* 11.10.2026: bez okienka */
   expect((await screen.findByTestId('record-banner')).props.accessibilityLabel).toBe('Nowe rekordy: 2');
 });

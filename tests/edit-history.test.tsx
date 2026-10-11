@@ -475,10 +475,10 @@ describe('weryfikacja 2', () => {
 
   test('L5: „Usuń sesję” ze szczegółów otwartych z zakładki Trening — ląduje na liście Historii', async () => {
     await fresh(); const w = addWorkout(day(3), [[BP, [{ weight: 80, reps: 5 }]]]); addWorkout(day(5), [['Back Squat', [{ weight: 100, reps: 5 }]]]);
-    await renderApp({ saved: snapshot() }); expect(screen.getByText('Zacznij z szablonu')).toBeTruthy(); // zakładka Trening
+    await renderApp({ saved: snapshot() }); expect(screen.getByLabelText('Inny trening')).toBeTruthy(); // zakładka Trening (11.10.2026: lista „Zacznij z szablonu” usunięta)
     await go(`/history/${w.id}`); await flushAll(20); await tap(screen.getByText('Edytuj')); await flushAll(20);
     await swipeDelete(`Usuń ćwiczenie: ${BP}`); await alertNow('Usunąć z treningu?', 'Usuń'); /* G4: ostatniej serii nie usuwa się — całe ćwiczenie */ await tap(screen.getByText('Zapisz')); await alertNow('Pusty trening', 'Usuń sesję'); await settle();
     expect(store.getState().workouts.some(x => x.id === w.id)).toBe(false);
-    expect(screen.getByText('+ Dodaj trening wstecz')).toBeTruthy(); expect(screen.queryByText('Zacznij z szablonu')).toBeNull(); expect(screen.queryByText('Edytuj')).toBeNull();
+    expect(screen.getByText('+ Dodaj trening wstecz')).toBeTruthy(); expect(screen.queryByLabelText('Inny trening')).toBeNull(); expect(screen.queryByText('Edytuj')).toBeNull();
   });
 });
