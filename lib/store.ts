@@ -42,6 +42,12 @@ let fullDirty = true;
 let persistSeq = 0;
 let persistError: string | null = null;
 let recovery: { key: string; at: number } | null = null;
+/** Podział store (11.10.2026): stan modułu zmieniany tylko tutaj — moduł startu (init, replaceState) woła te funkcje zamiast przypisań. */
+function setS(next: State | null) { S = next; }
+function setDb(next: SQLite.SQLiteDatabase | null) { db = next; }
+/** Numer zapisu nie mniejszy niż `n` (start: numery z „state”, „live” i „cfg”). */
+function seqAtLeast(n: number) { persistSeq = Math.max(persistSeq, n); }
+function setRecovery(r: { key: string; at: number } | null) { recovery = r; }
 
 /** Runda 75 (audyt T14): baza poza katalogiem Dokumenty. Dokumenty są widoczne w Plikach (kopie automatyczne, T-012), a bazy w toku
  * nie wolno dać do usunięcia ani podmiany. Library/SQLite jest prywatne dla aplikacji i wchodzi do kopii telefonu. Bez ścieżki
@@ -92,51 +98,51 @@ async function cleanupLegacy(def: string) {
 
 export async function init(): Promise<void> {
   if (S) return;
-  db = await openDb();
-  await db.execAsync('CREATE TABLE IF NOT EXISTS kv (k TEXT PRIMARY KEY, v TEXT NOT NULL)');
-  const row = await db.getFirstAsync<{ v: string }>('SELECT v FROM kv WHERE k = ?', 'state');
+  setDb(await openDb());
+  await db!.execAsync('CREATE TABLE IF NOT EXISTS kv (k TEXT PRIMARY KEY, v TEXT NOT NULL)');
+  const row = await db!.getFirstAsync<{ v: string }>('SELECT v FROM kv WHERE k = ?', 'state');
   let needsPersist = false;
   /* Audyt 0.10 J1 (DAT-05): baza zapisana przez nowszą wersję (wyższy schemat) — niczego nie migrujemy ani nie zapisujemy; ekran startu
    * mówi „zaktualizuj aplikację” i pozwala wysłać surowe dane (readRawData). */
-  if (row) { let ver = 0; try { ver = Number(JSON.parse(row.v)?.schemaVersion) || 0; } catch {} if (ver > SCHEMA_VERSION) { newerSchema = ver; throw Object.assign(new Error(t('Dane z nowszej wersji aplikacji — zaktualizuj aplikację')), { newerSchema: ver }); } }
+  if (row) { let ver = 0; try { ver = Number(JSON.parse(row.v)?.schemaVersion) || 0; } catch {} if (ver > SCHEMA_VERSION) { setNewerSchema(ver); throw Object.assign(new Error(t('Dane z nowszej wersji aplikacji — zaktualizuj aplikację')), { newerSchema: ver }); } }
   if (row) {
     try {
       const raw = JSON.parse(row.v); const before = raw?.schemaVersion;
       // Runda 69: nowszy trening w toku i timer z klucza „live” (zapisywanego przy każdej zmianie serii).
-      try { const lv = await db.getFirstAsync<{ v: string }>('SELECT v FROM kv WHERE k = ?', 'live'); const l = lv ? JSON.parse(lv.v) : null;
+      try { const lv = await db!.getFirstAsync<{ v: string }>('SELECT v FROM kv WHERE k = ?', 'live'); const l = lv ? JSON.parse(lv.v) : null;
         const fresher = l && typeof l === 'object' && (Number.isFinite(l.seq) && Number.isFinite(raw?.saveSeq) ? l.seq >= raw.saveSeq : Number(l.at) >= (Number(raw?.metaUpdatedAt) || 0));
         if (raw && typeof raw === 'object' && fresher && 'active' in l) { raw.active = l.active; if (l.timer && typeof l.timer === 'object') raw.timer = l.timer; }
-        persistSeq = Math.max(persistSeq, Number(raw?.saveSeq) || 0, Number(l?.seq) || 0); } catch {}
+        seqAtLeast(Math.max(Number(raw?.saveSeq) || 0, Number(l?.seq) || 0)); } catch {}
       // PERF-03 (A): nowsza konfiguracja (szablony, ustawienia, plany) z małego klucza „cfg” — zapisanego bez przepisywania całej historii.
-      try { const cr = await db.getFirstAsync<{ v: string }>('SELECT v FROM kv WHERE k = ?', 'cfg'); const c = cr ? JSON.parse(cr.v) : null;
-        if (applyCfg(raw, c)) persistSeq = Math.max(persistSeq, Number(c.seq) || 0); } catch {}
-      S = migrate(raw); needsPersist = before !== SCHEMA_VERSION;
+      try { const cr = await db!.getFirstAsync<{ v: string }>('SELECT v FROM kv WHERE k = ?', 'cfg'); const c = cr ? JSON.parse(cr.v) : null;
+        if (applyCfg(raw, c)) seqAtLeast(Number(c.seq) || 0); } catch {}
+      setS(migrate(raw)); needsPersist = before !== SCHEMA_VERSION;
     } catch {
       // Nie nadpisujemy jedynej kopii danych: odkładamy ją pod osobny klucz i startujemy od czystego stanu.
       const key = `state_corrupt_${Date.now()}`;
-      await db.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', key, row.v);
+      await db!.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', key, row.v);
       // Runda 69 (T1): trening w toku z klucza „live” trafia do tej samej kopii (osobny klucz) — wysyłany razem z nią.
       // T1b/T4a: stary „live” nie może nałożyć się na nowy, czysty stan przy następnym starcie — numer zapisu podbijamy najpierw,
       // a kopia i usunięcie mają osobne try (nieudana kopia nie zostawia „live” w bazie).
-      let lv: { v: string } | null = null; try { lv = await db.getFirstAsync<{ v: string }>('SELECT v FROM kv WHERE k = ?', 'live'); } catch {}
-      if (lv) { try { persistSeq = Math.max(persistSeq, Number(JSON.parse(lv.v)?.seq) || 0); } catch {}
-        try { await db.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', key + '_live', lv.v); } catch {}
-        try { await db.runAsync('DELETE FROM kv WHERE k = ?', 'live'); } catch {} }
+      let lv: { v: string } | null = null; try { lv = await db!.getFirstAsync<{ v: string }>('SELECT v FROM kv WHERE k = ?', 'live'); } catch {}
+      if (lv) { try { seqAtLeast(Number(JSON.parse(lv.v)?.seq) || 0); } catch {}
+        try { await db!.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', key + '_live', lv.v); } catch {}
+        try { await db!.runAsync('DELETE FROM kv WHERE k = ?', 'live'); } catch {} }
       /* PERF-03 (A): tak samo „cfg” — nie może nałożyć się na czysty stan (numer zapisu wyżej, klucz usunięty, kopia obok nieczytelnego zapisu) */
-      try { const cv = await db.getFirstAsync<{ v: string }>('SELECT v FROM kv WHERE k = ?', 'cfg'); if (cv) { try { persistSeq = Math.max(persistSeq, Number(JSON.parse(cv.v)?.seq) || 0); } catch {}
-        try { await db.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', key + '_cfg', cv.v); } catch {} try { await db.runAsync('DELETE FROM kv WHERE k = ?', 'cfg'); } catch {} } } catch {}
-      recovery = { key, at: Date.now() }; S = null;
+      try { const cv = await db!.getFirstAsync<{ v: string }>('SELECT v FROM kv WHERE k = ?', 'cfg'); if (cv) { try { seqAtLeast(Number(JSON.parse(cv.v)?.seq) || 0); } catch {}
+        try { await db!.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', key + '_cfg', cv.v); } catch {} try { await db!.runAsync('DELETE FROM kv WHERE k = ?', 'cfg'); } catch {} } } catch {}
+      setRecovery({ key, at: Date.now() }); setS(null);
       // Runda 34: znacznik w bazie — komunikat i wysłanie kopii działają także po ponownym uruchomieniu.
       // Runda 35: gdy wcześniejsza kopia wciąż czeka na wysłanie, zostaje ona (zwykle to w niej jest prawdziwa historia).
-      try { const old = await db.getFirstAsync<{ v: string }>('SELECT v FROM kv WHERE k = ?', 'recovery'); const o = old ? JSON.parse(old.v) : null;
-        if (o && typeof o.key === 'string' && await db.getFirstAsync('SELECT k FROM kv WHERE k = ?', o.key)) recovery = { key: o.key, at: Number(o.at) || 0 }; } catch {}
-      await db.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', 'recovery', JSON.stringify(recovery)).catch(() => {});
+      try { const old = await db!.getFirstAsync<{ v: string }>('SELECT v FROM kv WHERE k = ?', 'recovery'); const o = old ? JSON.parse(old.v) : null;
+        if (o && typeof o.key === 'string' && await db!.getFirstAsync('SELECT k FROM kv WHERE k = ?', o.key)) setRecovery({ key: o.key, at: Number(o.at) || 0 }); } catch {}
+      await db!.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', 'recovery', JSON.stringify(recovery)).catch(() => {});
     }
   }
   /* UX2-03 = DAT2-06 (audyt kontrolny 1, wariant A): szkice edycji ćwiczenia i szablonu z osobnego klucza — lib/draft.ts przywraca je po starcie */
-  savedDrafts = null; if (S) { try { const dr = await db.getFirstAsync<{ v: string }>('SELECT v FROM kv WHERE k = ?', DRAFTS_KEY); savedDrafts = dr ? dr.v : null; } catch {} }
-  if (!recovery) { try { const m = await db.getFirstAsync<{ v: string }>('SELECT v FROM kv WHERE k = ?', 'recovery'); const r = m ? JSON.parse(m.v) : null; if (r && typeof r.key === 'string') recovery = { key: r.key, at: Number(r.at) || 0 }; } catch {} }
-  if (!S) { S = seedState(detectLang()); S.settings.unit = deviceUnit(); /* H4 (audyt 0.10 UX-12): świeża instalacja — jednostka z regionu (en-US → lb) */ needsPersist = true; }
+  setSavedDrafts(null); if (S) { try { const dr = await db!.getFirstAsync<{ v: string }>('SELECT v FROM kv WHERE k = ?', DRAFTS_KEY); setSavedDrafts(dr ? dr.v : null); } catch {} }
+  if (!recovery) { try { const m = await db!.getFirstAsync<{ v: string }>('SELECT v FROM kv WHERE k = ?', 'recovery'); const r = m ? JSON.parse(m.v) : null; if (r && typeof r.key === 'string') setRecovery({ key: r.key, at: Number(r.at) || 0 }); } catch {} }
+  if (!S) { setS(seedState(detectLang())); S!.settings.unit = deviceUnit(); /* H4 (audyt 0.10 UX-12): świeża instalacja — jednostka z regionu (en-US → lb) */ needsPersist = true; }
   applyPrefs();
   if (needsPersist) await persistNow().catch(() => {});
   bump(true); emit();
@@ -149,11 +155,6 @@ const isObj = (x: unknown): x is Record<string, any> => !!x && typeof x === 'obj
 const arr = (x: unknown): any[] => Array.isArray(x) ? x.filter(isObj) : [];
 const LIB_NAMES = LIB_BASE_NAMES_V1; /* audyt 04.10 (LOW): reguła danych sprzed schematu 10 tylko dla pierwszych 125 nazw (pierwsza wersja — także później scalone i przemianowane) — własne ćwiczenie „Svend Press” z web 0.3 nie staje się biblioteką */
 
-/**
- * Migracja do bieżącego schematu. Przyjmuje backupy web 0.3, natywnej 0.1.0 i każdą późniejszą wersję;
- * dopisuje brakujące pola, pomija uszkodzone wpisy (null, nie-obiekty) zamiast się wywracać.
- * Idempotentna — można ją wołać na stanie już zmigrowanym.
- */
 /** Pola Settings znane tej wersji — pola domyślne plus opcjonalne (nowe pole opcjonalne dopisz tutaj, inaczej jego zła wartość z importu
  * przejdzie jak nieznane ustawienie); reszta zostaje bez zmian — audyt 0.10 J1. */
 const SETTINGS_KEYS = new Set([...Object.keys(defaultSettings()), 'effortScale', 'planReminder', 'libShowAll']);
@@ -171,6 +172,7 @@ const tsOf = (v: unknown): number | null => { const x = typeof v === 'string' ? 
 const intIn = (v: unknown, min: number, max: number): number | null => { const n = parseNum(v); return n == null || Math.floor(n) < min ? null : Math.min(max, Math.floor(n)); };
 /** Runda 55: wartości zapisane przez starą wersję z funtów przyciągamy tylko w danych sprzed schematu 11 — nowsze kg (np. 45,359237) zostają co do cyfry. */
 let legacyLb = false;
+function setLegacyLb(v: boolean) { legacyLb = v; }
 /** Runda 60: kg w danych na siatce 0,01 — jak wpis w polu (wIn) i wyświetlanie; 100,006 z importu nie daje „rekordu” nad wpisanym 100,01. */
 const kg2 = (v: number) => Math.sign(v) * Math.round(Math.abs(v) * 100) / 100 + 0; // runda 61: połówki od zera jak units.round (asysta lustrzana)
 const snapL = (v: unknown) => legacyLb ? snapLegacyLb(v) : v;
@@ -240,17 +242,8 @@ function fixAlternates(it: any) {
   }
   if (out.length) it.alternates = out; else delete it.alternates;
 }
-export function migrate(raw: any): State {
-  if (!isObj(raw) || !Array.isArray(raw.exercises) || !Array.isArray(raw.templates)) throw new Error('bad state');
-  legacyLb = !((Number(raw.schemaVersion) || 0) >= 11);
-  const owner: string = typeof raw.ownerId === 'string' && raw.ownerId ? raw.ownerId : LOCAL_OWNER;
-  const stamp = (o: any, fallbackTs?: number) => {
-    o.id = idOf(o.id) ?? uid(); // runda 51: id zawsze tekstem
-    if (typeof o.ownerId !== 'string' || !o.ownerId) o.ownerId = owner;
-    const ts = typeof fallbackTs === 'number' && fallbackTs > 0 && tsOf(fallbackTs) != null ? fallbackTs : Date.now();
-    const c = tsOf(o.createdAt); o.createdAt = c != null && c > 0 ? c : ts; // runda 52: zawsze liczba
-    const u = tsOf(o.updatedAt); o.updatedAt = u != null && u > 0 ? u : o.createdAt;
-  };
+/** Krok migracji: ćwiczenia (nazwy, metryka, pola, klucz katalogu, kroki katalogu). Kolejność i treść jak w migrate. */
+function migrateExercises(raw: any, owner: string, stamp: (o: any, fallbackTs?: number) => void) {
   raw.exercises = arr(raw.exercises).filter(e => typeof e.name === 'string');
   raw.exercises.forEach((e: any) => { const n = e.name.replace(/\s+/g, ' ').trim(); e.name = n || tIn(raw.settings?.language, 'Nowe ćwiczenie'); }); // runda 36: w języku z ustawień danych // runda 34/35: spacje na brzegach; pusta nazwa (wyjście bez zatwierdzenia) → domyślna
   /* Audyt przed telefonem (A1, decyzja 02.10 „zabezpiecz”): stare dane bez metryki (web 0.3 znała tylko kg × powt.) — gdy metryka
@@ -317,6 +310,9 @@ export function migrate(raw: any): State {
           for (const f of fixes) for (const e of raw.exercises) if (e.lib === true && e.libKey === f.name && JSON.stringify(e[f.field]) === JSON.stringify(f.from) && allowed(f, e.id)) e[f.field] = JSON.parse(JSON.stringify(f.to)); } }
       }
       raw.libExtra = LIB_EXTRA_REVS[0]; raw.libExtraStep = LIB_EXTRA_REV; } }
+}
+/** Krok migracji: szablony (pola pozycji, wiersze, zamienniki, notatka, nazwa, miejsce, folder, archiwum). */
+function fixTemplates(raw: any, stamp: (o: any, fallbackTs?: number) => void) {
   raw.templates = arr(raw.templates);
   raw.templates.forEach((t: any) => { stamp(t); if (typeof t.name !== 'string') t.name = ''; t.items = arr(t.items); t.items = t.items.filter((it: any) => idOf(it.exerciseId) != null); t.items.forEach((it: any) => { it.id = idOf(it.id) ?? uid(); it.exerciseId = idOf(it.exerciseId); { const v = parseNum(it.targetSec); it.targetSec = v == null || v < 0 ? '' : Math.min(86400, Math.round(v)); } /* runda 51 */ it.groupId = idOf(it.groupId); it.sets = intIn(it.sets, 1, 50) ?? 1; /* runda 15: liczba, nie tekst z importu */ if (it.startWeight === undefined) it.startWeight = ''; for (const k of ['repMin', 'repMax']) it[k] = intIn(it[k], 1, 100); { const v = parseNum(it.restSec); it.restSec = v == null || v < 0 ? null : Math.min(1800, Math.round(v)); } /* runda 49: także tekst, jak przerwa ćwiczenia */ /* runda 17: limit 1800 */ { const v = parseNum(it.startWeight); it.startWeight = v == null ? '' : kg2(snapL(v) as number); } fixAlternates(it); fixRows(it); }); });
   raw.templates.forEach((x: any) => { const n = typeof x.note === 'string' ? cleanNote(x.note) : ''; if (n) x.note = n; else delete x.note; }); /* audyt 0.10 UX-10: notatka szablonu */
@@ -324,37 +320,56 @@ export function migrate(raw: any): State {
   /* Decyzja właściciela 03.10.2026 (08:11): aplikacja nie zmienia ciężarów ani treści szablonów użytkownika — także przy przejściu na schemat 15
    * (wcześniejsza jednorazowa zmiana 48 → 24 kg z P-004 usunięta: 48 zostaje 48). Zostaje tylko dotychczasowa normalizacja, ta sama co w main:
    * pola pozycji wyżej (liczby, zakresy, siatka kg), a niżej usunięcie pozycji, których ćwiczenia nie ma albo jest usunięte (runda 82b — docs/10). */
-  const fixSet = (s: any) => {
-    s.id = idOf(s.id) ?? uid(); s.bandId = idOf(s.bandId) ?? ''; // runda 51
-    // Runda 48: wartości serii to liczba albo '' (import/ręczna edycja: tekst, tablica, obiekt, NaN); tylko asysta ±kg może być ujemna.
-    /* runda 74: brak (undefined/null) też daje '' — przez setNum, bez osobnej pętli */ for (const k of SET_NUM) s[k] = setNum(k, s[k]);
-    // runda 27: stare wpisy z funtów — snapLegacyLb w setNum
-    if (typeof s.bandId !== 'string') s.bandId = ''; if (s.noBand !== true || s.bandId) delete s.noBand; if (s.completedAt != null) s.completedAt = tsOf(s.completedAt); { const v = parseNum(s.actualRest); s.actualRest = v == null || v < 0 ? null : Math.min(3600, Math.round(v)); } /* runda 52: jak przy odhaczeniu (< 1 h) */ if (typeof s.note !== 'string') s.note = '';
-    if (!(SET_KINDS as readonly string[]).includes(s.kind)) s.kind = s.warmup ? 'warmup' : 'normal'; s.warmup = s.kind === 'warmup'; // runda 15: nieznany typ z importu
-    s.done = !!s.done; if (s.completedAt === undefined) s.completedAt = null; if (s.actualRest === undefined) s.actualRest = null;
-    // Runda 5: hinted to mapa {pole: wstawiona wartość}; stary format (lista) albo śmieci → brak podpowiedzi.
-    if (s.hinted != null && (typeof s.hinted !== 'object' || Array.isArray(s.hinted))) s.hinted = undefined;
-    // Runda 49: podpowiedź tylko dla pól wartości (id/kind nie mogą zostać wyczyszczone przy cofnięciu) i w tej samej postaci co wartości.
-    if (s.hinted) { const h: any = {}; for (const k of SET_NUM) if (k in s.hinted) { const v = setNum(k, s.hinted[k]); if (v !== '') h[k] = v; } if (idOf(s.hinted.bandId)) h.bandId = idOf(s.hinted.bandId); s.hinted = Object.keys(h).length ? h : undefined; }
-    if (s.pre != null) { const h: any = {}; if (typeof s.pre === 'object' && !Array.isArray(s.pre)) for (const k of PRE_KEYS) if (k in s.pre) { const v = setNum(k, s.pre[k]); if (v !== '') h[k] = v; } if (Object.keys(h).length) s.pre = h; else delete s.pre; } /* decyzja 02.10 (audyt B2) */
+}
+const fixSet = (s: any) => {
+  s.id = idOf(s.id) ?? uid(); s.bandId = idOf(s.bandId) ?? ''; // runda 51
+  // Runda 48: wartości serii to liczba albo '' (import/ręczna edycja: tekst, tablica, obiekt, NaN); tylko asysta ±kg może być ujemna.
+  /* runda 74: brak (undefined/null) też daje '' — przez setNum, bez osobnej pętli */ for (const k of SET_NUM) s[k] = setNum(k, s[k]);
+  // runda 27: stare wpisy z funtów — snapLegacyLb w setNum
+  if (typeof s.bandId !== 'string') s.bandId = ''; if (s.noBand !== true || s.bandId) delete s.noBand; if (s.completedAt != null) s.completedAt = tsOf(s.completedAt); { const v = parseNum(s.actualRest); s.actualRest = v == null || v < 0 ? null : Math.min(3600, Math.round(v)); } /* runda 52: jak przy odhaczeniu (< 1 h) */ if (typeof s.note !== 'string') s.note = '';
+  if (!(SET_KINDS as readonly string[]).includes(s.kind)) s.kind = s.warmup ? 'warmup' : 'normal'; s.warmup = s.kind === 'warmup'; // runda 15: nieznany typ z importu
+  s.done = !!s.done; if (s.completedAt === undefined) s.completedAt = null; if (s.actualRest === undefined) s.actualRest = null;
+  // Runda 5: hinted to mapa {pole: wstawiona wartość}; stary format (lista) albo śmieci → brak podpowiedzi.
+  if (s.hinted != null && (typeof s.hinted !== 'object' || Array.isArray(s.hinted))) s.hinted = undefined;
+  // Runda 49: podpowiedź tylko dla pól wartości (id/kind nie mogą zostać wyczyszczone przy cofnięciu) i w tej samej postaci co wartości.
+  if (s.hinted) { const h: any = {}; for (const k of SET_NUM) if (k in s.hinted) { const v = setNum(k, s.hinted[k]); if (v !== '') h[k] = v; } if (idOf(s.hinted.bandId)) h.bandId = idOf(s.hinted.bandId); s.hinted = Object.keys(h).length ? h : undefined; }
+  if (s.pre != null) { const h: any = {}; if (typeof s.pre === 'object' && !Array.isArray(s.pre)) for (const k of PRE_KEYS) if (k in s.pre) { const v = setNum(k, s.pre[k]); if (v !== '') h[k] = v; } if (Object.keys(h).length) s.pre = h; else delete s.pre; } /* decyzja 02.10 (audyt B2) */
+};
+const fixWorkout = (raw: any, owner: string, w: any) => {
+  if (typeof w.loggedBy !== 'string' || !w.loggedBy) w.loggedBy = owner; if (typeof w.sessionMode !== 'string' || !w.sessionMode) w.sessionMode = 'solo'; if (typeof w.healthUUID !== 'string' || !w.healthUUID) w.healthUUID = null; /* runda 52 */ delete w.bodyWeightKg; /* schemat 13 (Q-001): bez zamrożonej masy ciała */
+  w.startedAt = tsOf(w.startedAt); w.finishedAt = w === raw.active ? null : (tsOf(w.finishedAt) ?? w.startedAt); if (w !== raw.active || tsOf(w.staleAck) == null) delete w.staleAck; else w.staleAck = tsOf(w.staleAck); /* 08.10.2026: pauza — przedziały uporządkowane w granicach treningu (cleanPauses), pausedAt tylko w treningu w toku i nie przed startem */ { if (w.startedAt != null) setPauses(w, cleanPauses(w.pauses, w.startedAt, w.finishedAt)); else delete w.pauses; delete w.pausedMs; const pa = tsOf(w.pausedAt); if (w === raw.active && pa != null && w.startedAt != null && pa >= w.startedAt) w.pausedAt = pa; else delete w.pausedAt; } /* runda 69 */ /* runda 49/51: trening z historii zawsze zakończony; trening w toku — nie */ /* runda 49: zakończony (choć nieczytelny) trening zostaje w historii */ if (w.finishedAt != null && w.finishedAt < w.startedAt) w.finishedAt = w.startedAt; /* runda 48 */ if (typeof w.templateName !== 'string') w.templateName = ''; if (typeof w.note !== 'string') w.note = ''; w.templateId = idOf(w.templateId); { const l = idOf(w.locationId); if (l) w.locationId = l; else delete w.locationId; } /* P-003: miejsce zostaje także po usunięciu miejsca („(usunięte miejsce)”) */
+  if (w.deload !== true) delete w.deload; /* audyt 0.10 (D1+): znacznik treningu deload — tylko true */
+  if (w.healthPending !== true || w.healthUUID || w === raw.active) delete w.healthPending; /* J2 (fala 2): tylko zakończony, niezapisany w Zdrowiu */
+  { const z = cleanTz(w.tzOffsetMin); if (z === undefined) delete w.tzOffsetMin; else w.tzOffsetMin = z; } /* J3: strefa startu — zła wartość odpada (= strefa bieżąca, jak dotąd) */
+  w.exercises = arr(w.exercises).filter((e: any) => idOf(e.exerciseId) != null); /* runda 50/51 */ if (w !== raw.active) { w.exercises.forEach((e: any) => { e.sets = arr(e.sets).filter((s: any) => !!s.done); e.sets.forEach((s: any) => { delete s.pre; }); }); w.exercises = w.exercises.filter((e: any) => e.sets.length); } /* runda 59: historia = tylko odhaczone serie, jak po „Zakończ” */ w.exercises.forEach((e: any) => { e.exerciseId = idOf(e.exerciseId); e.id = idOf(e.id) ?? uid(); if (e.tplItemId != null) e.tplItemId = idOf(e.tplItemId) ?? undefined; if (!(IMPLS as readonly unknown[]).includes(e.impl)) delete e.impl; /* schemat 15 (decyzja 8c): tylko znany przyrząd */ fixSwapFields(e, w === raw.active); /* schemat 16 (E2) */ { const n = w.deload === true ? parseNum(e.deloadFull) : null; if (n != null && n >= 1) e.deloadFull = Math.min(50, Math.round(n)); else delete e.deloadFull; } /* audyt 0.10 (D1+): pole opcjonalne bez zmiany schematu */ for (const k of ['repMin', 'repMax']) e[k] = intIn(e[k], 1, 100); /* runda 49: jak w szablonie */ e.groupId = idOf(e.groupId); { const v = parseNum(e.restSec); e.restSec = v == null || v < 0 ? DEFAULT_REST : Math.min(1800, Math.round(v)); } e.sets = arr(e.sets); e.sets.forEach(fixSet); }); normalizeGroups(w.exercises);
+};
+/**
+ * Migracja do bieżącego schematu. Przyjmuje backupy web 0.3, natywnej 0.1.0 i każdą późniejszą wersję;
+ * dopisuje brakujące pola, pomija uszkodzone wpisy (null, nie-obiekty) zamiast się wywracać.
+ * Idempotentna — można ją wołać na stanie już zmigrowanym.
+ */
+export function migrate(raw: any): State {
+  if (!isObj(raw) || !Array.isArray(raw.exercises) || !Array.isArray(raw.templates)) throw new Error('bad state');
+  setLegacyLb(!((Number(raw.schemaVersion) || 0) >= 11));
+  const owner: string = typeof raw.ownerId === 'string' && raw.ownerId ? raw.ownerId : LOCAL_OWNER;
+  const stamp = (o: any, fallbackTs?: number) => {
+    o.id = idOf(o.id) ?? uid(); // runda 51: id zawsze tekstem
+    if (typeof o.ownerId !== 'string' || !o.ownerId) o.ownerId = owner;
+    const ts = typeof fallbackTs === 'number' && fallbackTs > 0 && tsOf(fallbackTs) != null ? fallbackTs : Date.now();
+    const c = tsOf(o.createdAt); o.createdAt = c != null && c > 0 ? c : ts; // runda 52: zawsze liczba
+    const u = tsOf(o.updatedAt); o.updatedAt = u != null && u > 0 ? u : o.createdAt;
   };
-  const fixWorkout = (w: any) => {
-    if (typeof w.loggedBy !== 'string' || !w.loggedBy) w.loggedBy = owner; if (typeof w.sessionMode !== 'string' || !w.sessionMode) w.sessionMode = 'solo'; if (typeof w.healthUUID !== 'string' || !w.healthUUID) w.healthUUID = null; /* runda 52 */ delete w.bodyWeightKg; /* schemat 13 (Q-001): bez zamrożonej masy ciała */
-    w.startedAt = tsOf(w.startedAt); w.finishedAt = w === raw.active ? null : (tsOf(w.finishedAt) ?? w.startedAt); if (w !== raw.active || tsOf(w.staleAck) == null) delete w.staleAck; else w.staleAck = tsOf(w.staleAck); /* 08.10.2026: pauza — przedziały uporządkowane w granicach treningu (cleanPauses), pausedAt tylko w treningu w toku i nie przed startem */ { if (w.startedAt != null) setPauses(w, cleanPauses(w.pauses, w.startedAt, w.finishedAt)); else delete w.pauses; delete w.pausedMs; const pa = tsOf(w.pausedAt); if (w === raw.active && pa != null && w.startedAt != null && pa >= w.startedAt) w.pausedAt = pa; else delete w.pausedAt; } /* runda 69 */ /* runda 49/51: trening z historii zawsze zakończony; trening w toku — nie */ /* runda 49: zakończony (choć nieczytelny) trening zostaje w historii */ if (w.finishedAt != null && w.finishedAt < w.startedAt) w.finishedAt = w.startedAt; /* runda 48 */ if (typeof w.templateName !== 'string') w.templateName = ''; if (typeof w.note !== 'string') w.note = ''; w.templateId = idOf(w.templateId); { const l = idOf(w.locationId); if (l) w.locationId = l; else delete w.locationId; } /* P-003: miejsce zostaje także po usunięciu miejsca („(usunięte miejsce)”) */
-    if (w.deload !== true) delete w.deload; /* audyt 0.10 (D1+): znacznik treningu deload — tylko true */
-    if (w.healthPending !== true || w.healthUUID || w === raw.active) delete w.healthPending; /* J2 (fala 2): tylko zakończony, niezapisany w Zdrowiu */
-    { const z = cleanTz(w.tzOffsetMin); if (z === undefined) delete w.tzOffsetMin; else w.tzOffsetMin = z; } /* J3: strefa startu — zła wartość odpada (= strefa bieżąca, jak dotąd) */
-    w.exercises = arr(w.exercises).filter((e: any) => idOf(e.exerciseId) != null); /* runda 50/51 */ if (w !== raw.active) { w.exercises.forEach((e: any) => { e.sets = arr(e.sets).filter((s: any) => !!s.done); e.sets.forEach((s: any) => { delete s.pre; }); }); w.exercises = w.exercises.filter((e: any) => e.sets.length); } /* runda 59: historia = tylko odhaczone serie, jak po „Zakończ” */ w.exercises.forEach((e: any) => { e.exerciseId = idOf(e.exerciseId); e.id = idOf(e.id) ?? uid(); if (e.tplItemId != null) e.tplItemId = idOf(e.tplItemId) ?? undefined; if (!(IMPLS as readonly unknown[]).includes(e.impl)) delete e.impl; /* schemat 15 (decyzja 8c): tylko znany przyrząd */ fixSwapFields(e, w === raw.active); /* schemat 16 (E2) */ { const n = w.deload === true ? parseNum(e.deloadFull) : null; if (n != null && n >= 1) e.deloadFull = Math.min(50, Math.round(n)); else delete e.deloadFull; } /* audyt 0.10 (D1+): pole opcjonalne bez zmiany schematu */ for (const k of ['repMin', 'repMax']) e[k] = intIn(e[k], 1, 100); /* runda 49: jak w szablonie */ e.groupId = idOf(e.groupId); { const v = parseNum(e.restSec); e.restSec = v == null || v < 0 ? DEFAULT_REST : Math.min(1800, Math.round(v)); } e.sets = arr(e.sets); e.sets.forEach(fixSet); }); normalizeGroups(w.exercises);
-  };
+  migrateExercises(raw, owner, stamp);
+  fixTemplates(raw, stamp);
   raw.bands = arr(raw.bands); raw.bands.forEach((b: any) => { stamp(b); delete b.nominalKg; /* T-055: dawna asysta kg gumy (przed P-001) — stara kopia się importuje, pole odpada; starsze wersje aplikacji czytają brak pola jako „bez kg” */ if (typeof b.color !== 'string' || !b.color.trim()) b.color = '?'; b.color = b.color.replace(/\s+/g, ' ').trim(); b.level = intIn(b.level, 1, 7) ?? 1; /* runda 51 */ });
-  raw.workouts = arr(raw.workouts).filter(w => tsOf(w.startedAt) != null); raw.workouts.forEach((w: any) => { w.startedAt = tsOf(w.startedAt); }); raw.workouts.forEach((w: any) => { stamp(w, w.finishedAt || w.startedAt); fixWorkout(w); }); raw.workouts = raw.workouts.filter((w: any) => w.exercises.length); /* runda 60: bez pustych sesji w historii (jak po „Zakończ”, B9) */
+  raw.workouts = arr(raw.workouts).filter(w => tsOf(w.startedAt) != null); raw.workouts.forEach((w: any) => { w.startedAt = tsOf(w.startedAt); }); raw.workouts.forEach((w: any) => { stamp(w, w.finishedAt || w.startedAt); fixWorkout(raw, owner, w); }); raw.workouts = raw.workouts.filter((w: any) => w.exercises.length); /* runda 60: bez pustych sesji w historii (jak po „Zakończ”, B9) */
   // Runda 16: data poranna w formacie RRRR-MM-DD (np. „2026-9-1” z ręcznej edycji → „2026-09-01”); nieczytelne odpadają.
   raw.mornings = arr(raw.mornings).filter(m => typeof m.date === 'string' && /^\d{4}-\d{1,2}-\d{1,2}/.test(m.date)).map((m: any) => { const [y, mo, d] = m.date.slice(0, 10).split(/[-T]/); m.date = `${y}-${mo.padStart(2, '0')}-${d.padStart(2, '0')}`; return m; })
     // Runda 17: tylko istniejące daty (bez „2026-13-45”) i jeden wpis na dzień (zostaje nowszy).
     .filter((m: any) => { const [y, mo, d] = m.date.split('-').map(Number); const x = new Date(y, mo - 1, d); return x.getFullYear() === y && x.getMonth() === mo - 1 && x.getDate() === d; });
   { const byDate = new Map<string, any>(); for (const m of raw.mornings) { const o = byDate.get(m.date); if (!o || (tsOf(m.updatedAt) ?? 0) > (tsOf(o.updatedAt) ?? 0)) byDate.set(m.date, m); } raw.mornings = [...byDate.values()]; }
   raw.mornings.forEach((m: any) => { stamp(m, localDateTs(m.date)); for (const k of ['bb', 'sleepScore', 'sleepH', 'weight']) m[k] = posNum(m[k]); /* runda 50: liczba albo '' (obiekt z importu wywracał ekran) */ if (m.bb !== '') m.bb = Math.min(100, Math.round(m.bb)); if (m.sleepScore !== '') m.sleepScore = Math.min(100, Math.round(m.sleepScore)); if (m.sleepH !== '') m.sleepH = Math.min(24, Math.round(m.sleepH * 100) / 100); if (m.weight !== '') { const w = kg2(snapL(m.weight) as number); m.weight = w > 0 && w <= 1000 ? w : ''; } /* runda 61: najpierw zaokrąglenie, potem zakres */ /* runda 51: 0 = brak wpisu */ });
-  if (isObj(raw.active) && tsOf(raw.active.startedAt) != null) { stamp(raw.active, raw.active.startedAt); fixWorkout(raw.active); } else raw.active = null;
+  if (isObj(raw.active) && tsOf(raw.active.startedAt) != null) { stamp(raw.active, raw.active.startedAt); fixWorkout(raw, owner, raw.active); } else raw.active = null;
   uniqueIds(raw); /* przed porządkowaniem nieużywanych ćwiczeń — inaczej drugie wczytanie zmieniałoby dane (migrate-idem) */
   retireCatalog(raw); /* research biblioteki (09.10.2026): scalone → ćwiczenie docelowe, usunięte → własne albo znikają */
   // Runda 41: jak purgeOrphans — usunięte ćwiczenia bez żadnego treningu znikają także przy starcie i imporcie.
@@ -427,10 +442,6 @@ export function migrate(raw: any): State {
   raw.schemaVersion = Math.max(SCHEMA_VERSION, Number(raw.schemaVersion) || 0); /* audyt 0.10 J1: numer schematu nigdy w dół (dane z nowszej wersji zatrzymuje init i import) */
   return raw as State;
 }
-/** Decyzja właściciela 06.10.2026 (wariant A): powtórzony identyfikator w danych (np. kopia sklejona ręcznie z dwóch plików) dostaje nowy —
- * nic nie ginie (dotąd usunięcie jednego treningu kasowało oba, drugie ćwiczenie/guma było nieosiągalne). Pierwsze wystąpienie zachowuje id,
- * więc odwołania (pozycje szablonów, bloki, gumy serii) wskazują to samo co przedtem. Idempotentne: przy unikalnych id nic nie zmienia.
- * Znalezisko tests/matrix-data-fuzz.test.ts. */
 /** Id ćwiczeń użytych w treningach (historia, trening w toku) i szablonach (pozycje, zamienniki) — na surowych danych (przed sanityzacją też). */
 function usedIds(raw: any): Set<string> {
   const out = new Set<string>(); const add = (v: unknown) => { const id = idOf(v); if (id != null) out.add(id); };
@@ -491,6 +502,10 @@ function retireCatalog(raw: any) {
 function freshIds(list: any[]) { const seen = new Set<string>(list.map(o => o?.id).filter((x: unknown) => typeof x === 'string'));
   const first = new Set<string>(); for (const o of list) { if (typeof o?.id !== 'string') continue; if (!first.has(o.id)) { first.add(o.id); continue; }
     let n = 2; while (seen.has(`${o.id}~${n}`)) n++; o.id = `${o.id}~${n}`; seen.add(o.id); first.add(o.id); } }
+/** Decyzja właściciela 06.10.2026 (wariant A): powtórzony identyfikator w danych (np. kopia sklejona ręcznie z dwóch plików) dostaje nowy —
+ * nic nie ginie (dotąd usunięcie jednego treningu kasowało oba, drugie ćwiczenie/guma było nieosiągalne). Pierwsze wystąpienie zachowuje id,
+ * więc odwołania (pozycje szablonów, bloki, gumy serii) wskazują to samo co przedtem. Idempotentne: przy unikalnych id nic nie zmienia.
+ * Znalezisko tests/matrix-data-fuzz.test.ts. */
 function uniqueIds(raw: any) {
   const fresh = freshIds;
   /* ten sam obiekt w kilku miejscach (dane z pamięci, nie z pliku) — osobne kopie, żeby zmiana id jednej nie zmieniała wszystkich */
@@ -548,6 +563,7 @@ export async function flush(): Promise<void> { await persistNow(true).catch(() =
  * zapis z opóźnieniem jak stan i natychmiast przy wyjściu do tła (flush). Przy starcie surowy tekst czeka na lib/draft.ts (takeSavedDrafts). */
 export const DRAFTS_KEY = 'drafts';
 let savedDrafts: string | null = null; let draftsSrc: (() => string | null) | null = null; let draftsDirty = false; let draftsTimer: ReturnType<typeof setTimeout> | null = null;
+function setSavedDrafts(v: string | null) { savedDrafts = v; }
 export function registerDraftStore(src: () => string | null) { draftsSrc = src; }
 /** Szkic zmieniony (początek, zmiana, zapis, odrzucenie) — zapis do bazy z opóźnieniem 300 ms. */
 export function draftsChanged() { draftsDirty = true; if (draftsTimer) clearTimeout(draftsTimer); draftsTimer = setTimeout(() => { draftsTimer = null; void writeDrafts(); }, 300); }
@@ -567,9 +583,9 @@ export const getPersistError = () => persistError;
 export const getRecovery = () => recovery;
 /** Runda 33: po imporcie backupu albo wyczyszczeniu danych komunikat o nieczytelnych danych znika (kopia w bazie zostaje). */
 export function clearRecovery() { if (!recovery) return; recovery = null; rev++; emit(); db?.runAsync('DELETE FROM kv WHERE k = ?', 'recovery').catch(() => {}); }
-/** Surowy tekst odłożonego, nieczytelnego zapisu — do wysłania sobie i ręcznego odzyskania. */
 /** Audyt 0.10 J1: schemat danych z nowszej wersji, które zatrzymały start (null — brak). */
 let newerSchema: number | null = null;
+function setNewerSchema(v: number | null) { newerSchema = v; }
 export const getNewerSchema = () => newerSchema;
 /** Audyt 0.10 J1: surowy zapis (stan + trening w toku) do wysłania z ekranu „Dane z nowszej wersji” — koperta jak kopia nieczytelnych danych
  * (nowsza wersja wczyta ją importem). */
@@ -580,6 +596,7 @@ export async function readRawData(): Promise<string | null> {
   const js = (x: string) => { try { return JSON.parse(x); } catch { return x; } };
   return JSON.stringify({ format: 'trening-recovery', note: 'state = zapis z nowszej wersji aplikacji, live = trening w toku, cfg = nowsza konfiguracja', state: js(r.v), ...(l ? { live: js(l.v) } : {}), ...(c ? { cfg: js(c.v) } : {}) });
 }
+/** Surowy tekst odłożonego, nieczytelnego zapisu — do wysłania sobie i ręcznego odzyskania. */
 export async function readRecovery(): Promise<string | null> { if (!db || !recovery) return null; const r = await db.getFirstAsync<{ v: string }>('SELECT v FROM kv WHERE k = ?', recovery.key); const l = await db.getFirstAsync<{ v: string }>('SELECT v FROM kv WHERE k = ?', recovery.key + '_live').catch(() => null); if (!r) return null; if (!l) return r.v;
   /* T4b: koperta JSON zamiast dopisku po stanie — plik da się po poprawce wczytać importem (parseBackup); stan jako obiekt, gdy jest poprawnym JSON-em, inaczej jako tekst */
   const js = (x: string) => { try { return JSON.parse(x); } catch { return x; } };
@@ -588,15 +605,15 @@ export async function readRecovery(): Promise<string | null> { if (!db || !recov
 function emit() { listeners.forEach(l => l()); }
 function bump(hist: boolean) { rev++; if (hist) histRev++; }
 
-/**
- * Zapis: natychmiast w pamięci + zdebouncowany zapis do SQLite (300 ms). Przekazane encje dostają updatedAt = teraz.
- * Zmiana samego treningu w toku (save(active)) nie unieważnia cache historii.
- */
 /** Edycja na żądanie (decyzja właściciela 08.10.2026, docs/18): szkice ćwiczenia i szablonu (lib/draft.ts) to kopie poza stanem — `save(szkic)`
  * tylko odświeża ekran (bez zapisu do bazy, bez znacznika zmiany i bez unieważniania cache historii); dane zmienia dopiero „Zapisz”. */
 const draftObjs = new WeakSet<object>();
 export function markDraft<T extends object>(x: T): T { draftObjs.add(x); return x; }
 export const isDraftObj = (x: unknown): boolean => !!x && typeof x === 'object' && draftObjs.has(x as object);
+/**
+ * Zapis: natychmiast w pamięci + zdebouncowany zapis do SQLite (300 ms). Przekazane encje dostają updatedAt = teraz.
+ * Zmiana samego treningu w toku (save(active)) nie unieważnia cache historii.
+ */
 export function save(...touched: (Base | null | undefined)[]) {
   if (touched.length && touched.every(x => x && draftObjs.has(x))) { rev++; draftsChanged(); /* UX2-03: szkic do bazy */ emit(); return; }
   touched = touched.filter(x => !x || !draftObjs.has(x));
@@ -622,7 +639,7 @@ export function getState(): State { if (!S) throw new Error('store not initialis
  * dane z kopii. Moduły szkiców rejestrują tu czyszczenie (store ich nie importuje). */
 const stateReplacedHooks = new Set<() => void>();
 export function onStateReplaced(cb: () => void) { stateReplacedHooks.add(cb); }
-export function replaceState(next: State) { S = migrate(next); savedDrafts = null; stateReplacedHooks.forEach(h => h()); applyPrefs(); save(); }
+export function replaceState(next: State) { setS(migrate(next)); setSavedDrafts(null); stateReplacedHooks.forEach(h => h()); applyPrefs(); save(); }
 
 const subscribe = (cb: () => void) => { listeners.add(cb); return () => { listeners.delete(cb); }; };
 export function useStore<T>(selector: (s: State) => T): T {
@@ -758,9 +775,9 @@ export const fmtDist = (m: number) => m >= 1000 ? t('{n} km', { n: fmtNum(m / 10
 export const reps = (min: number | null, max: number | null) => min == null ? t('max') /* A11-17 */ : (max == null || max < min ? `${min}+` : min === max ? `${min}` : `${min}–${max}`);
 /** Czas „m:ss”, od godziny „h:mm:ss” (wcześniej 95:00 zamiast 1:35:00). */
 export const fmtDur = (sec: number) => { sec = Math.max(0, Math.round(sec)); const h = Math.floor(sec / 3600), m = Math.floor((sec % 3600) / 60), r = sec % 60; return h ? `${h}:${String(m).padStart(2, '0')}:${String(r).padStart(2, '0')}` : `${m}:${String(r).padStart(2, '0')}`; };
-/** Data do list. Runda 14: rok, gdy nie bieżący — sesje sprzed roku nie wyglądają jak tegoroczne. */
 /** H3 (audyt 0.10 UI-13): dzień „RRRR-MM-DD” w tym samym formacie co fmtDate („pon., 12 paź”; rok, gdy inny niż bieżący) — panel dnia, podpowiedź deload, „Dziś”, okna planu. */
 export const fmtDayKey = (k: string) => { const ts = localDateTs(k); return Number.isFinite(ts) ? fmtDate(ts + 12 * 3600e3) : k; };
+/** Data do list. Runda 14: rok, gdy nie bieżący — sesje sprzed roku nie wyglądają jak tegoroczne. */
 export const fmtDate = (ts: number) => { const d = new Date(ts); return d.toLocaleDateString(locale(), { weekday: 'short', day: 'numeric', month: 'short', ...(d.getFullYear() !== new Date().getFullYear() ? { year: 'numeric' as const } : {}) }); };
 export const fmtTime = (ts: number) => new Date(ts).toLocaleTimeString(locale(), { hour: '2-digit', minute: '2-digit' });
 /** Dzisiejsza data w strefie telefonu (RRRR-MM-DD). toISOString() dawało datę UTC — w Polsce po północy „wczoraj”. */
@@ -822,9 +839,9 @@ export function removeBodyMass(date: string) {
   const st = getState(); const log = (st.bodyMassLog ?? []).filter(x => x.date !== date); if (log.length === (st.bodyMassLog ?? []).length) return;
   if (log.length) st.bodyMassLog = log; else delete st.bodyMassLog; save();
 }
-/** Skrót gumy do wąskiej kolumny: pierwsza litera koloru (po tłumaczeniu) + poziom; odporne na pusty kolor. */
 /** Nazwa koloru gumy w języku interfejsu (kolory z zestawu startowego tłumaczone jak nazwy ćwiczeń z biblioteki) — runda 51: ta sama na ekranie Gumy, w treningu, historii i CSV. */
 export const bandColor = (b: { color: string }) => t(b.color || '?');
+/** Skrót gumy do wąskiej kolumny: pierwsza litera koloru (po tłumaczeniu) + poziom; odporne na pusty kolor. */
 export const shortBand = (b?: { color: string; level: number } | null) => b ? (upper(Array.from(bandColor(b))[0] ?? '?') || '?') + b.level : '—'; /* A11-02: wielka litera wg języka (tr „İ”, el bez tonosu) */ // runda 52: emoji całe
 /** Pełna nazwa gumy dla VoiceOver (litera z poziomem nic nie mówi). */
 export const bandA11y = (b?: { color: string; level: number } | null) => b ? t('{c}, poziom {n}', { c: bandColor(b), n: b.level }) : t('brak');
@@ -879,10 +896,6 @@ function prevScan(hist: readonly Workout[], exId: string, ok: WOk, impl?: Impl):
 const prevCache = memoHistBy((key: string): Prev | null => { const [exId, impl] = splitImpl(key); return prevScan(histOf(exId, impl), exId, ALL, impl); });
 /** Serie robocze z ostatniego treningu z tym ćwiczeniem (wszystkie bloki razem). */
 export function previousFor(exId: string): { workout: Workout; sets: WSet[] } | null { return prevCache(exId); }
-/**
- * Runda 8: „Poprzednio” dla k-tego wystąpienia ćwiczenia w treningu/szablonie (to samo ćwiczenie dwa razy, np. ciężko
- * i lżej). Gdy poprzednio było kilka bloków, bierzemy blok o tym samym numerze (albo ostatni); gdy jeden — ten jeden.
- */
 /** Runda 72 (T5): ostatni blok z tej samej pozycji szablonu (id pozycji jest unikalne) — dla ćwiczenia, które w szablonie występuje kilka razy. */
 function byItemScan(hist: readonly Workout[], exId: string, itemId: string, ok: WOk, impl?: Impl): PrevSets | null {
   let dropOnly: PrevSets | null = null; /* T7: blok z samymi drop setami nie zasłania serii roboczych (jak prevScan) */
@@ -897,6 +910,10 @@ function byTplBlockScan(hist: readonly Workout[], exId: string, tplId: string, k
   return null;
 }
 const prevByTplBlock = memoHistBy((key: string): PrevSets | null => { const [k0, impl] = splitImpl(key); const [exId, tplId, ks] = k0.split('|'); return byTplBlockScan(histOf(exId, impl), exId, tplId, Number(ks), ALL, impl); });
+/**
+ * Runda 8: „Poprzednio” dla k-tego wystąpienia ćwiczenia w treningu/szablonie (to samo ćwiczenie dwa razy, np. ciężko
+ * i lżej). Gdy poprzednio było kilka bloków, bierzemy blok o tym samym numerze (albo ostatni); gdy jeden — ten jeden.
+ */
 /** `impl` (decyzja 8c, 03.10.2026): przyrząd bieżącego bloku (WExercise.impl). Gdy są miejsca i przyrząd jest znany — dobór jak niżej, ale tylko
  * z sesji pasujących do przyrządu (ten sam albo nieznany — implWorkouts), gdziekolwiek były, a w wybranej sesji tylko z bloków tym samym albo
  * nieznanym przyrządem (implBlocks — runda 82, LOW 4); gdy takiej sesji nie ma — ostatni trening w ogóle (wtedy bezpiecznik M3 przy wstawianiu:
@@ -1002,7 +1019,6 @@ export function setScore(ex: Exercise, s: WSet): number {
   if (m === 'reps') return repsOf(s);
   return setLoad(ex, s) * 1000 + repsOf(s);
 }
-/** Czy seria ma jakikolwiek wpisany wynik (do autouzupełniania i podsumowań). */
 /* ---------- skala wysiłku (pakiet C, 08.10.2026): w danych zawsze RPE; RIR = 10 − RPE (Zourdos i in., JSCR 2016: „RPE-10 = 0-RIR, RPE-9 = 1-RIR”) ---------- */
 export const effortScale = (): 'rpe' | 'rir' => (S?.settings.effortScale === 'rir' ? 'rir' : 'rpe');
 export const effortLabel = () => (effortScale() === 'rir' ? 'RIR' : 'RPE');
@@ -1024,6 +1040,7 @@ export const effortText = (rpe: number): string => (effortScale() === 'rir' && r
 export const effortIn = (v: number | ''): number | '' => (v === '' ? '' : effortScale() === 'rir' ? (v > RIR_MAX ? RPE_LIGHT : clampRpe(10 - v)) : clampRpe(v));
 /** Wartość pola wysiłku do wyświetlenia w polu edycji. */
 export const effortField = (rpe: number | '' | null | undefined): number | '' => (rpe === '' || rpe == null ? '' : effortOut(Number(rpe)));
+/** Czy seria ma jakikolwiek wpisany wynik (do autouzupełniania i podsumowań). */
 export const setHasValue = (s: WSet) => [s.weight, s.reps, s.durationSec, s.distanceM, s.addKg].some(v => v !== '' && v != null);
 export function volume(w: Workout): number {
   let v = 0;
@@ -1420,11 +1437,11 @@ export function acceptAlt(blockId: string): { goneSetIds: string[]; blockId: str
   if (alt.exerciseId !== e.exerciseId) return swapBlock(blockId, alt.exerciseId, { restSec: alt.restSec, impl: alt.impl });
   const r = swapImpl(blockId, alt.impl!); if (r && alt.restSec != null) { const b = w.exercises.find(x => x.id === r.blockId); if (b) { b.restSec = alt.restSec; save(w); } } return r;
 }
-/** „✕” przy podpowiedzi: tylko ten blok, tylko ten trening (M4). */
 /** „Pomiń dziś” (docs/21 4a, 07.10.2026 wieczór): reszta bloku pominięta w tym treningu — szablon bez zmian; odhaczone serie zostają.
  * Timery serii bloku zatrzymuje ekran (jak przy usunięciu ćwiczenia — store nie zależy od lib/timer). */
 export function skipExercise(blockId: string) { const w = getState().active; const e = w?.exercises.find(x => x.id === blockId); if (!w || !e) return; e.skipped = true; save(w); }
 export function unskipExercise(blockId: string) { const w = getState().active; const e = w?.exercises.find(x => x.id === blockId); if (!w || !e) return; delete e.skipped; save(w); }
+/** „✕” przy podpowiedzi: tylko ten blok, tylko ten trening (M4). */
 export function skipAlt(blockId: string) { const w = getState().active; const e = w?.exercises.find(x => x.id === blockId); if (!w || !e) return; e.altSkip = true; save(w); }
 /** „Zapamiętaj” przerwę (⏱ w bloku): w bloku, który jest zamiennikiem tego miejsca — do wpisu zamiennika (dopisek właściciela do D4);
  * inaczej jak dotąd: pozycja szablonu, z której powstał blok (runda 10), i ćwiczenie. */
@@ -1457,11 +1474,6 @@ export function findSet(setId: string | null): { ei: number; si: number } | null
 function lastCompletedAt(a: Workout, except?: WSet): number | null {
   let m: number | null = null; a.exercises.forEach(e => e.sets.forEach(s => { if (s !== except && s.done && s.completedAt && (m == null || s.completedAt > m)) m = s.completedAt; })); return m;
 }
-/**
- * Odhaczenie pustej serii (audyt r1, jak w popularnych dziennikach): puste pola bierze z tego, co widać jako podpowiedź —
- * wynik z „Poprzednio” (ta sama seria robocza), a gdy podpowiedzi nie ma — powtórzenia z dolnej granicy zakresu szablonu (runda 4).
- * Dzięki temu „24×0” nie trafia do historii tylko dlatego, że użytkownik odhaczył bez wpisywania.
- */
 const VAL_KEYS = ['weight', 'reps', 'durationSec', 'distanceM', 'addKg'] as const;
 /* Decyzja 02.10.2026 (audyt B2, „przenieś na nieruszone”): wartości wstawione przez aplikację na starcie zapamiętane w s.pre.
  * Gdy odhaczona seria ma wartość inną niż jej wstępna, dalsze nieodhaczone serie tej samej rodziny, nietknięte ręcznie
@@ -1477,9 +1489,9 @@ function carryPrefill(e: WExercise, si: number) {
       x[k] = v; x.pre![k] = v; }
     s.pre[k] = v; /* weryfikacja: poprawka literówki (625 → 62,5) po ponownym ✓ też przechodzi dalej */ }
 }
-/** Runda 10: pola wartości używane przez bieżącą metrykę ćwiczenia (metrykę można zmienić po treningach). */
 /** Ćwiczenie z gumą: asysta (bandAssistable) albo opór gumy (wymaganie sprzętu „bands”) — uwaga właściciela 06.10.2026. */
 export const usesBand = (ex: Exercise | undefined | null): boolean => !!ex && (!!ex.bandAssistable || (ex.requires ?? []).some(g => g.includes('bands')) || (ex.recommended ?? []).includes('bands')); /* przegląd 06.10: także guma „zalecana” */
+/** Runda 10: pola wartości używane przez bieżącą metrykę ćwiczenia (metrykę można zmienić po treningach). */
 function usedKeys(ex: Exercise | undefined): Record<typeof VAL_KEYS[number] | 'bandId', boolean> {
   const m = ex?.metric ?? 'weight_reps'; const bw = !!ex && isBW(ex);
   return { weight: hasWeight(m) && !bw, addKg: hasWeight(m) && bw, reps: hasReps(m), durationSec: hasTime(m), distanceM: hasDistance(m), bandId: usesBand(ex) /* runda 11: guma tylko przy gumach; 06.10.2026: także opór gumy */ };
@@ -1499,6 +1511,11 @@ function prevOfBlock(e: WExercise) {
 export function prevOfActiveBlock(w: Workout, e: WExercise): { workout: Workout; sets: WSet[] } | null {
   const ei = w.exercises.indexOf(e); return previousBlockFor(e.exerciseId, occurrence(w.exercises, ei), occurrences(w.exercises, e.exerciseId), e.tplItemId, w.templateId, e.impl, !!e.swappedFrom);
 }
+/**
+ * Odhaczenie pustej serii (audyt r1, jak w popularnych dziennikach): puste pola bierze z tego, co widać jako podpowiedź —
+ * wynik z „Poprzednio” (ta sama seria robocza), a gdy podpowiedzi nie ma — powtórzenia z dolnej granicy zakresu szablonu (runda 4).
+ * Dzięki temu „24×0” nie trafia do historii tylko dlatego, że użytkownik odhaczył bez wpisywania.
+ */
 function fillFromHints(e: WExercise, si: number) {
   const s = e.sets[si]; if (s.kind === 'warmup') return;
   // Ta sama seria robocza co w podpowiedzi „Poprzednio” (bez „dociągania” do ostatniej — ekran pokazuje wtedy „—”).
@@ -1767,12 +1784,12 @@ export function moveInGroup<T extends Grouped & { id: string }>(list: T[], id: s
   if (dest === i) return false; const [x] = list.splice(i, 1); list.splice(dest, 0, x); save(touched); return true;
 }
 
-/** Następna guma w cyklu przycisku gumy: brak → najcieńsza → … → najgrubsza → brak (wg poziomu). Jedno źródło dla treningu i edytora historii. */
 /** Gumy (decyzja właściciela 05.10.2026): posiadane poziomy 1–7 w miejscu — lista jak ciężary hantli; zły zapis → poprawne wartości albo brak. */
 export function cleanLevels(item: unknown, v: unknown): number[] | undefined {
   if (item !== 'bands' || !Array.isArray(v)) return undefined;
   return [...new Set(v.filter((x): x is number => typeof x === 'number' && Number.isInteger(x) && x >= 1 && x <= 7))].sort((p, q) => p - q);
 }
+/** Następna guma w cyklu przycisku gumy: brak → najcieńsza → … → najgrubsza → brak (wg poziomu). Jedno źródło dla treningu i edytora historii. */
 /** Następna guma w cyklu przycisku serii. `locId` — miejsce treningu (audyt 7651f64 MEDIUM: edytor historii podaje miejsce edytowanego treningu). */
 export function nextBandId(cur: string, locId: string | null | undefined = getState().active?.locationId): string {
   const st = getState(); const loc = locId ? locationById(locId) : undefined; const lv = loc?.equipment.find(e => e.item === 'bands' && !e.off)?.levels;
@@ -1858,11 +1875,11 @@ export function setEquipment(e: Exercise, eq: Exercise['equipment']) { if (e.equ
 export function exerciseEdited(exId: string) { const a = getState().active; if (a && a.exercises.some(x => x.exerciseId === exId)) { restampUntouched(a); save(a); } }
 /** „Przywróć …” (lista ćwiczeń, wybór, zamiana): bez pola archived — tak samo jak po wczytaniu danych (migrate usuwa archived ≠ true; macierz niezmienników 06.10). */
 export function restoreExercise(e: Exercise) { delete e.archived; save(e); }
-/** Czy ćwiczenie występuje w historii lub w treningu w toku. */
 /** Runda 40: czy ćwiczenie jest w zakończonych treningach (historia — nie sam trening w toku). */
 export const exerciseInHistory = (id: string) => getState().workouts.some(w => w.exercises.some(x => x.exerciseId === id));
 /** Runda 40: usunięte (zarchiwizowane) ćwiczenia bez historii i spoza treningu w toku znikają na dobre. */
 function purgeOrphans() { const st = getState(); st.exercises = st.exercises.filter(e => !e.archived || exerciseUsed(e.id)); }
+/** Czy ćwiczenie występuje w historii lub w treningu w toku. */
 export const exerciseUsed = (id: string) => { const st = getState(); return [...st.workouts, ...(st.active ? [st.active] : [])].some(w => w.exercises.some(x => x.exerciseId === id)); };
 /**
  * Usunięcie ćwiczenia: znika z listy, wyboru i szablonów. Jeśli ma historię (albo jest w treningu w toku) — jest tylko
