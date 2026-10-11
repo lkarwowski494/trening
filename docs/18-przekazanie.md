@@ -53,3 +53,6 @@ backlog) → docs/15 (App Store, ceny) → docs/09 (dziennik testów; stare rund
   (zakaz przechowywania danych zdrowotnych w iCloud — kopia trafia do Plików/iCloud Drive), bez zmiany schematu (aktualizacja biblioteki
   healthkit 8 → 16 bez migracji). Do zmiany: opis NSHealthShareUsageDescription (dziś „nie odczytuje”), docs/privacy.html, formularz prywatności
   App Store. Odrzucone: B (jedno wydanie), B (import do historii).
+- 11.10.2026: **trening z zegarka (pkt 9, etap 2) — A**: trening siłowy w Health pokrywający się czasowo z sesją → łączenie automatyczne (tętno,
+  aktywne kcal w szczegółach sesji), aplikacja nie zapisuje własnej kopii do Health; gdy zegarek zsynchronizuje się później — przy następnym
+  otwarciu usuwa swoją kopię (własny wpis). Odrzucone: B (dwa zapisy, podwójne kcal), C (pytanie po każdym treningu).
