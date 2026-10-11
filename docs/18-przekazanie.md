@@ -60,3 +60,10 @@ backlog) → docs/15 (App Store, ceny) → docs/09 (dziennik testów; stare rund
   partiami — pierwsza ~50 z filtra „Podstawowe”, potem najczęściej używane; każda partia: badacz (źródła) → tłumacz (35 języków); dopracowanie
   animacji (więcej póz, płynniejszy ruch). ExRx tylko jako źródło do czytania (szczebel 4, teza o rekomendacji ACSM niepotwierdzona).
   Odrzucone: B (płatne API z filmami — koszt, serwer, brak offline), C (otwarte zbiory zdjęć — do ewentualnego uzupełnienia po sprawdzeniu licencji).
+- 11.10.2026: **Apps4Brew (pkt 11) — A**: marka od teraz (strona, polityka prywatności, stopka, materiały); w App Store sprzedawcą imię
+  i nazwisko właściciela do czasu ewentualnej spółki (Apple: konto indywidualne/JDG — nazwisko; nazwa firmy tylko dla osoby prawnej z D-U-N-S,
+  „We do not accept DBAs… trade names”, developer.apple.com/programs/enroll, przeczytane 11.10.2026). Domeny apps4brew.com i .app wolne
+  (RDAP 404, 11.10.2026). [OTWARTE]: znaki towarowe (EUIPO, UPRP), przeniesienie aplikacji na konto firmowe, koszty spółki. Domena — decyzja
+  właściciela po cenach (.com ok. 11 USD/rok, .app ok. 15 USD/rok — porkbun.com, 11.10.2026).
+- 11.10.2026: **nawigacja (docs/22, P1) — wariant A: 4 zakładki Trening · Plan · Postępy · Więcej** (Szablony i Ćwiczenia pod Więcej).
+  Kolejność wdrożenia wg docs/22: ekran główny i porządki → decyzje 4–7 → zmiana zakładek osobnym wydaniem. Pozostałe pytania P2–P8 — do przejścia.
