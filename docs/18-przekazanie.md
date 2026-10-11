@@ -75,3 +75,6 @@ backlog) → docs/15 (App Store, ceny) → docs/09 (dziennik testów; stare rund
 - 11.10.2026: **FitNotes (pkt 13) — A**: raport Gemini mylił się (FitNotes jest na iOS — App Store, 11.10.2026); poprawiona notatka
   docs/research/raporty-rynkowe-2026-10.md, pozycjonowanie na różnicach (bez nazw konkurentów), import CSV z FitNotes dopisany do „Przed App Store”.
   Korekta agenta: darmowy poziom to 4 treningi/miesiąc (docs/15, 09.10) — nie „bez limitu”, jak błędnie podał agent w rozmowie.
+- 11.10.2026: **aplikacja na Apple Watch — A jako priorytet po wejściu do App Store**: etap 1 — dodatek do telefonu (bieżąca seria,
+  odhaczanie, przerwa, sesja treningowa z tętnem/kcal, WatchConnectivity; dane trzyma telefon), etap 2 — ewentualnie samodzielna. Natywny Swift
+  (osobny target), test na zegarku właściciela. Odrzucone: B (przed App Store), C (tylko dane z Health).
