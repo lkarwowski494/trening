@@ -1,7 +1,7 @@
 # Edycja zapisanej sesji (zmiana nazwy w edytorze, „Save” w nagłówku) i trening wstecz z szablonu (docs/12).
 #
 # Literały (EN z lib/i18n.en.ts, chyba że zaznaczono inaczej):
-#   "Start from a template"  ← 'Zacznij z szablonu'                         (app/(tabs)/index.tsx)
+#   "Other workout"          ← 'Inny trening' (znacznik gotowości ekranu głównego od 11.10.2026; app/(tabs)/index.tsx)
 #   "Start: Upper A"         ← 'Start: {name}' + nazwa szablonu z podprzepływu subflows/szablon-testowy.yaml (accessibilityLabel przycisku Start)
 #   "Set 1 done.*"           ← 'Seria {n} zrobiona — {ex}' → 'Set {n} done — {ex}' (jak flow 01)
 #   "Skip"                   ← 'Pomiń'
@@ -18,7 +18,7 @@
 #   "Upper A E2E"            ← tekst wpisywany w tym teście
 #   "Back"                   ← 'Wróć' (headerBackTitle w app/_layout.tsx)
 #   "Calendar, tab.*"         ← 'Kalendarz' (08.10.2026, dawniej 'Historia') + etykieta zakładki „{label}, tab, {i} of {n}” (React Navigation; od SDK 56 jej kopia w expo-router — ten sam format)
-#   "+ Log a past workout"   ← '+ Dodaj trening wstecz' (app/(tabs)/history.tsx)
+#   "Log a past workout"     ← 'Dopisz trening wstecz' (app/(tabs)/history.tsx)
 #   "From a template"        ← 'Z szablonu'       (app/history/add.tsx)
 #   "Upper A, .*"            ← Item: accessibilityLabel „{title}, {sub}” (components/ui.tsx), sub = '{n} ex. · {m} sets' (tu: 2 ex. · 6 sets)
 #   "2 sessions"             ← 'sesja|sesje|sesji' → 'session|sessions' (licznik w nagłówku Historii)
@@ -28,10 +28,10 @@ name: Edycja historii i trening wstecz
 - launchApp:
     clearState: true
     permissions: { all: allow }
-- extendedWaitUntil: { visible: "Start from a template", timeout: 60000 }
+- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
 # Świeża instalacja nie ma szablonów (decyzja 03.10.2026) — szablon „Upper A” tworzy podprzepływ przez UI
 - runFlow: subflows/szablon-testowy.yaml
-- tapOn: "Start: Upper A"
+- runFlow: subflows/start-szablonu.yaml
 - extendedWaitUntil: { visible: "Set 1 done.*", timeout: 30000 }
 - tapOn: { text: "Set 1 done.*", index: 0 }
 - extendedWaitUntil: { visible: "Skip", timeout: 30000 }
@@ -70,7 +70,7 @@ name: Edycja historii i trening wstecz
 - tapOn: "Back"
 - tapOn: "Calendar, tab.*"
 - extendedWaitUntil: { visible: "Upper A E2E,.*", timeout: 30000 }
-- tapOn: "\\+ Log a past workout"
+- tapOn: "Log a past workout"  # 11.10.2026: bez „+” (jedna nazwa z przyciskiem w panelu dnia)
 - extendedWaitUntil: { visible: "From a template", timeout: 30000 }
 - takeScreenshot: 14-trening-wstecz
 - tapOn: "Upper A, .*"
@@ -111,10 +111,7 @@ name: Edycja historii i trening wstecz
 - extendedWaitUntil: { visible: "Summary", timeout: 30000 }
 - assertVisible: "Workouts: [1-9].*, previously .*"
 - takeScreenshot: 20-podsumowanie-tydzien
-# Tydzień deload (pakiet C, 08.10.2026): przełącznik „Deload week” ('Tydzień deload') z opisem „Your own label…”.
-- tapOn: "Deload week"
-- assertVisible: "Your own label.*"
-- takeScreenshot: 20a-tydzien-deload
+# Tydzień deload (11.10.2026): Postępy nie mają już przełącznika „Deload week” — oznaczenie ustawia się w Kalendarzu (dzień → „More options” → „Mark week as deload”, niżej).
 # Mapa mięśni (08.10.2026, components/MuscleMap.tsx): opis VoiceOver „Muscle map: …” ('Mapa mięśni: {list}'), przewinięcie do niej.
 - scrollUntilVisible: { element: "Muscle map: .*", direction: DOWN, timeout: 20000 }
 - takeScreenshot: 20b-mapa-miesni
@@ -131,12 +128,15 @@ name: Edycja historii i trening wstecz
 # ('Zacząć z mniejszą liczbą serii: {a} zamiast {b} serii roboczych? …' — Upper A: 2 ćw. × 3 serie → 2 + 2 = 4 zamiast 6), „Fewer sets” ('Mniej serii').
 - tapOn: "Back"  # run 37761959586: Postępy to ekran stosu bez paska zakładek — najpierw powrót do „Więcej”
 - tapOn: "Calendar, tab.*"
+- tapOn: { text: ".*, [0-9]+ sessions?", index: 0 }  # dzień z sesją → panel dnia
+- tapOn: "More options"
+- tapOn: "Mark week as deload"
+- takeScreenshot: 20a-tydzien-deload
 - extendedWaitUntil: { visible: "This week: deload.*", timeout: 30000 }
 - takeScreenshot: 22-deload-kalendarz
 - tapOn: "Workout, tab.*"
 - extendedWaitUntil: { visible: "Other workout", timeout: 30000 }  # układ B (09.10.2026): duży przycisk startu i „Inny trening” ('Inny trening') pod kartą „Dziś”
-- scrollUntilVisible: { element: "Start: Upper A", direction: DOWN, timeout: 30000, centerElement: true }  # lista szablonów niżej (karta Planowania, „Ten tydzień”)
-- tapOn: "Start: Upper A"
+- runFlow: subflows/start-szablonu.yaml
 - extendedWaitUntil: { visible: "Start with fewer sets: 4 instead of 6 working sets.*", timeout: 15000 }
 - takeScreenshot: 23-deload-pytanie
 - tapOn: "Fewer sets"

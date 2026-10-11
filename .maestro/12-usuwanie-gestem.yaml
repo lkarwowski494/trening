@@ -14,7 +14,7 @@ name: Usuwanie przesunięciem w lewo i „Pomiń dziś”
 - launchApp:
     clearState: true
     permissions: { all: allow }
-- extendedWaitUntil: { visible: "Start from a template", timeout: 60000 }
+- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
 - scrollUntilVisible: { element: "Empty workout", direction: DOWN, timeout: 60000 }
 - tapOn: "Empty workout"
 - extendedWaitUntil: { visible: "\\+ Add exercise", timeout: 30000 }

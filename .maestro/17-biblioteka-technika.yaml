@@ -24,7 +24,7 @@ name: Filtr „Podstawowe” i sekcja „Technika”
 - launchApp:
     clearState: true
     permissions: { all: allow }
-- extendedWaitUntil: { visible: "Start from a template", timeout: 60000 }
+- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
 - tapOn: "Exercises, tab.*"
 - extendedWaitUntil: { visible: "Filter: basic exercises", timeout: 30000 }
 - tapOn: "Filter: basic exercises"
@@ -57,7 +57,7 @@ name: Filtr „Podstawowe” i sekcja „Technika”
 - stopApp
 - launchApp:
     clearState: false
-- extendedWaitUntil: { visible: "Start from a template", timeout: 60000 }
+- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
 - tapOn: "Exercises, tab.*"
 - extendedWaitUntil: { visible: "Search…", timeout: 30000 }
 - tapOn: "Search…"
@@ -71,7 +71,7 @@ name: Filtr „Podstawowe” i sekcja „Technika”
 - stopApp
 - launchApp:
     clearState: false
-- extendedWaitUntil: { visible: "Start from a template", timeout: 60000 }
+- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
 - scrollUntilVisible: { element: "Empty workout", direction: DOWN, timeout: 60000 }
 - tapOn: "Empty workout"
 - extendedWaitUntil: { visible: "\\+ Add exercise", timeout: 30000 }

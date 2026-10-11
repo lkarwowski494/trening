@@ -27,8 +27,8 @@ describe('E2E 91: interpreter odtwarza porażki scenariuszy z 224d229 w tym samy
   afterAll(() => { delete (global as any).__notifPerm; });
 
   test('01 — kafelek „Workouts” nie jest osobnym elementem (etykieta przycisku „Postępy” obejmuje trzy kafelki)', async () => {
-    await failsAt('01-trening-z-szablonu.yaml', replace({ assertVisible: 'Workouts: 1, previous week 0;.*' }, [{ assertVisible: 'Workouts: 1, previous week 0' }]),
-      'assertVisible "Workouts: 1, previous week 0"', /niewidoczny/);
+    await failsAt('01-trening-z-szablonu.yaml', replace({ assertVisible: 'Workouts: 1;.*' }, [{ assertVisible: 'Workouts: 1' }]),
+      'assertVisible "Workouts: 1"', /niewidoczny/); /* 11.10.2026: etykieta bez „previous week” — „Workouts: 1; Sets: …; Volume: …; Time: …” */
   });
 
   test('10 — po przewinięciu do wiersza Pull Up karta „Set done” jest nad ekranem: `below: "Set done.*"` nie ma kotwicy', async () => {
@@ -58,9 +58,13 @@ describe('E2E 91: interpreter odtwarza porażki scenariuszy z 224d229 w tym samy
       'extendedWaitUntil {"visible":"Based on: .*","timeout":15000}', /nie pojawił się/);
   });
 
-  test('07 (krok po porażce przebiegu 91) — po linijce „Usually at Home…” przycisk zamiany jest pod paskiem zakładek', async () => {
-    await failsAt('07-zamiana.yaml', replace({ scrollUntilVisible: { element: 'Swap exercise: Bench Press \\(Dumbbell\\)', direction: 'DOWN', timeout: 30000, centerElement: true } }, [{ assertVisible: 'Swap exercise: Bench Press \\(Dumbbell\\)' }]),
-      'assertVisible "Swap exercise: Bench Press \\\\(Dumbbell\\\\)"', /niewidoczny/);
+  test('07 (krok po porażce przebiegu 91) — po podpowiedzi „Usually at Home…” przycisk zamiany bywa pod paskiem zakładek: scenariusz przewija do niego', async () => {
+    /* 11.10.2026 (wydanie 1): podpowiedź to jeden tekst-przycisk bez „Zamień” — w układzie interpretera przycisk zamiany mieści się już bez przewinięcia,
+     * więc porażki z przebiegu 91 nie da się odtworzyć w tym samym kroku. Przewinięcie z centerElement zostaje w scenariuszu (większa czcionka,
+     * dłuższe tłumaczenia) — test pilnuje, że stoi PO podpowiedzi „Swap to substitute: …” i przed zrzutem 37. */
+    const c = load(join(DIR, '07-zamiana.yaml')); const hint = at(c, { extendedWaitUntil: { visible: 'Swap to substitute: .*', timeout: 30000 } });
+    const scroll = at(c, { scrollUntilVisible: { element: 'Swap exercise: Bench Press \\(Dumbbell\\)', direction: 'DOWN', timeout: 30000, centerElement: true } });
+    expect(scroll).toBeGreaterThan(hint); expect(c.findIndex(x => same(x, { takeScreenshot: '37-podpowiedz-zamiennika' }))).toBeGreaterThan(scroll);
   });
 
   test('model: przewijanie w złą stronę (element pod widokiem, direction: UP) to błąd — Maestro przewija tylko w podanym kierunku', async () => {

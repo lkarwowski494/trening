@@ -5,11 +5,11 @@ name: Trening z szablonu
 - launchApp:
     clearState: true
     permissions: { all: allow }
-- extendedWaitUntil: { visible: "Start from a template", timeout: 60000 }
+- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
 # Świeża instalacja nie ma szablonów (decyzja 03.10.2026) — szablon „Upper A” tworzy podprzepływ przez UI
 - runFlow: subflows/szablon-testowy.yaml
 - takeScreenshot: 01-start
-- tapOn: "Start: Upper A"
+- runFlow: subflows/start-szablonu.yaml
 - extendedWaitUntil: { visible: "Set 1 done.*", timeout: 30000 }
 - takeScreenshot: 02-trening
 # Pauza treningu (08.10.2026, components/ActiveWorkout.tsx SessionClock): „Pause workout” / „Resume workout” ('Pauza treningu' / 'Wznów trening').
@@ -36,16 +36,17 @@ name: Trening z szablonu
 - tapOn: "Calendar.*"  # 08.10.2026: zakładka Historia → Kalendarz
 - assertVisible: "Upper A.*"
 - takeScreenshot: 06-historia
-# Dashboard ekranu Trening (08.10.2026, components/Dashboard.tsx): po treningu kafelki „This week” ('Ten tydzień'), „Workouts: 1, previous week 0”
-# ('{label}: {v}, poprzedni tydzień {p}'); ostatni trening (od 09.10.2026, układ B, bez sekcji „Ostatni trening”) w arkuszu „Other workout”
+# Dashboard ekranu Trening (08.10.2026, components/Dashboard.tsx): po treningu kafelki „This week” ('Ten tydzień'), „Workouts: 1; Sets: …”
+# (od 11.10.2026 bez poprzedniego tygodnia: „Workouts: 1; Sets: …”); ostatni trening (od 09.10.2026, układ B, bez sekcji „Ostatni trening”) w arkuszu „Other workout”
 # ('Inny trening'): „Repeat last (Upper A)” ('Powtórz ostatni ({name})', etykieta VoiceOver wiersza), „Cancel” ('Anuluj') zamyka arkusz; karta „Today” bez planu po dzisiejszym treningu: 'Dziś zrobione: {name}'
 # („Done today: Upper A”; „No weekly plan” tylko, gdy dziś nic nie zrobiono — audyt 0.10, E2E 89) i podpowiedź 'Ustaw plan tygodnia, by widzieć tu…'.
 - tapOn: "Workout, tab.*"
 - extendedWaitUntil: { visible: "This week", timeout: 30000 }
 # E2E 91: kafelki to jeden przycisk „Postępy” (UX-16 A) — VoiceOver czyta jedną etykietę „Workouts: …; Sets: …; Time: …” (kafelek nie jest osobnym elementem)
-- assertVisible: "Workouts: 1, previous week 0;.*"
+- assertVisible: "Workouts: 1;.*"
 - assertVisible: "Done today: Upper A"
-- assertVisible: "Set a weekly plan to see today.s workout here.*"
+- assertVisible: "No weekly plan"  # 11.10.2026: nagłówek planu (podpowiedź „Set a weekly plan…” zniknęła); przycisk obok: „Set a plan”
+- assertVisible: "Set a plan"
 - takeScreenshot: 07-dashboard
 - tapOn: "Other workout"
 - extendedWaitUntil: { visible: "Repeat last \\(Upper A\\)", timeout: 20000 }
