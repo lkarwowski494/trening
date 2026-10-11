@@ -131,8 +131,6 @@
  "cały sprzęt; sztanga {bar} {u} + talerze {max}…{min} {u}; hantle {a}–{b} {u} co {step}": "todo el equipo; barra de {bar} {u} + discos {max}…{min} {u}; mancuernas {a}–{b} {u} cada {step}",
  "ciężaru {w} nie ma tutaj — wpisz ciężar": "{w} no está disponible aquí — ingresa un peso",
  "dodaj ciężar": "agregar lastre",
- "e1RM pojawi się po wpisaniu masy ciała w Ustawieniach.": "El e1RM aparecerá cuando ingreses tu peso corporal en Configuración.",
- "e1RM w ćwiczeniach z masą ciała liczy się tylko z masą ciała wpisaną w Ustawieniach i tylko tam, gdzie wiadomo, jaką jej część podnosisz: podciąganie (cała — uproszczenie), pompki (ok. {p}% — badania z platformą siłową).": "El e1RM en ejercicios con peso corporal solo se calcula con el peso corporal ingresado en Configuración y solo donde se sabe qué parte levantas: dominadas (todo — simplificación), flexiones (aprox. el {p} % — estudios con plataforma de fuerza).",
  "hantle {a}–{b} {u}, ławka regulowana, mata, ściana, bieżnia, rower": "mancuernas {a}–{b} {u}, banco ajustable, colchoneta, pared, caminadora, bicicleta",
  "kółka gimnastyczne": "anillos de gimnasia",
  "lina do wspinania": "cuerda para trepar",
@@ -164,5 +162,7 @@
  "35 języków; język zmienisz w Ustawieniach.": "35 idiomas; el idioma se cambia en Configuración.",
  "Ćwiczysz w domu albo na siłowni? Ustaw sprzęt w „Miejsca i sprzęt”.": "¿Entrenas en casa o en el gimnasio? Configura tu equipo en «Lugares y equipo».",
  "Dodaj do planu": "Agregar al plan",
- "Zaplanowane = szablony z planu na pozostałe dni tygodnia, policzone z wartości w szablonie (brakujące — z „Poprzednio”). To rachunek z Twojego planu, nie prognoza. Partia główna liczy 1 serię, pomocnicza 0,5.": "Planificado = plantillas de tu plan para el resto de los días de la semana, calculadas con los valores de la plantilla (los que faltan, con «Anterior»). Es un cálculo sobre tu plan, no un pronóstico. Un grupo muscular principal cuenta 1 serie, uno secundario 0,5."
+ "Zaplanowane = szablony z planu na pozostałe dni tygodnia, policzone z wartości w szablonie (brakujące — z „Poprzednio”). To rachunek z Twojego planu, nie prognoza. Partia główna liczy 1 serię, pomocnicza 0,5.": "Planificado = plantillas de tu plan para el resto de los días de la semana, calculadas con los valores de la plantilla (los que faltan, con «Anterior»). Es un cálculo sobre tu plan, no un pronóstico. Un grupo muscular principal cuenta 1 serie, uno secundario 0,5.",
+ "e1RM pojawi się po wpisaniu masy ciała w Postępach.": "El e1RM aparecerá cuando ingreses tu peso corporal en Progreso.",
+ "e1RM w ćwiczeniach z masą ciała liczy się tylko z masą ciała wpisaną w Postępach i tylko tam, gdzie wiadomo, jaką jej część podnosisz: podciąganie (cała — uproszczenie), pompki (ok. {p}% — badania z platformą siłową).": "El e1RM en ejercicios con peso corporal solo se calcula con el peso corporal ingresado en Progreso y solo donde se sabe qué parte levantas: dominadas (todo — simplificación), flexiones (aprox. el {p} % — estudios con plataforma de fuerza)."
 }

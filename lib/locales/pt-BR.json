@@ -289,7 +289,6 @@
  "W trwającym treningu guma zniknie z nieodhaczonych serii.": "No treino em andamento, o elástico será removido das séries ainda não marcadas.",
  "W trwającym treningu zostanie oznaczone jako usunięte.": "No treino em andamento, ele ficará marcado como apagado.",
  "W tygodniu deload „Start” i „Powtórz ostatni” zaproponują „Mniej serii”: {less}; ciężary i szablon bez zmian.": "Em uma semana de deload, «Iniciar» e «Repetir o último» oferecem «Menos séries»: {less}; pesos e modelo sem alterações.",
- "W zakładce Szablony „+ Nowy” tworzy szablon: ćwiczenia, serie, zakres powtórzeń i przerwy.": "Na aba Modelos, «+ Novo» cria um modelo: exercícios, séries, intervalo de repetições e descansos.",
  "W zapisanych planach: {names}.": "Em planos salvos: {names}.",
  "W „Inne plany” jest już {n} planów — usuń któryś, by dodać nowy.": "Já há {n} planos em «Outros planos» — apague algum para adicionar um novo.",
  "Wartości zmienisz w wierszu serii poniżej.": "Altere os valores na linha da série abaixo.",
@@ -373,8 +372,6 @@
  "domyślna {s}": "padrão {s}",
  "drążek": "barra fixa",
  "dziś w planie · {n} ćw.": "no plano de hoje · {n} ex.",
- "e1RM pojawi się po wpisaniu masy ciała w Ustawieniach.": "O e1RM aparece depois que você informar o peso corporal nos Ajustes.",
- "e1RM w ćwiczeniach z masą ciała liczy się tylko z masą ciała wpisaną w Ustawieniach i tylko tam, gdzie wiadomo, jaką jej część podnosisz: podciąganie (cała — uproszczenie), pompki (ok. {p}% — badania z platformą siłową).": "O e1RM nos exercícios com peso corporal só é calculado com o peso corporal informado nos Ajustes e só onde se sabe que parte dele você levanta: barras fixas (todo — simplificação), flexões de braço (cerca de {p}% — estudos com plataforma de força).",
  "e1RM: wzór Epleya na {p}% masy ciała z dnia treningu (ostatni pomiar z tego dnia lub wcześniejszy) plus dociążenie (uproszczenie).": "e1RM: fórmula de Epley sobre {p}% do peso corporal do dia do treino (última medição desse dia ou anterior) mais o peso extra (simplificação).",
  "ergometr narciarski": "ergômetro de esqui",
  "guma: {v}": "elástico: {v}",
@@ -474,5 +471,10 @@
  "wykonane + zaplanowane": "feito + planejado",
  "Zapisz zmiany w szablonie": "Salvar alterações no modelo",
  "Zaplanowane = szablony z planu na pozostałe dni tygodnia, policzone z wartości w szablonie (brakujące — z „Poprzednio”). To rachunek z Twojego planu, nie prognoza. Partia główna liczy 1 serię, pomocnicza 0,5.": "Planejado = modelos do seu plano para os demais dias da semana, calculados com os valores do modelo (os que faltam, a partir de «Anterior»). É um cálculo sobre o seu plano, não uma previsão. Um grupo muscular principal conta 1 série, um secundário 0,5.",
- "Zaznaczone partie, w których objętość jest większa niż w okresie porównawczym; im ciemniej, tym większy wzrost. Szare — bez wzrostu.": "Os grupos musculares destacados têm mais volume do que no período de comparação; quanto mais escuro, maior o aumento. Cinza — sem aumento."
+ "Zaznaczone partie, w których objętość jest większa niż w okresie porównawczym; im ciemniej, tym większy wzrost. Szare — bez wzrostu.": "Os grupos musculares destacados têm mais volume do que no período de comparação; quanto mais escuro, maior o aumento. Cinza — sem aumento.",
+ "e1RM pojawi się po wpisaniu masy ciała w Postępach.": "O e1RM aparece depois que você informar o peso corporal em Progresso.",
+ "e1RM w ćwiczeniach z masą ciała liczy się tylko z masą ciała wpisaną w Postępach i tylko tam, gdzie wiadomo, jaką jej część podnosisz: podciąganie (cała — uproszczenie), pompki (ok. {p}% — badania z platformą siłową).": "O e1RM nos exercícios com peso corporal só é calculado com o peso corporal informado em Progresso e só onde se sabe que parte dele você levanta: barras fixas (todo — simplificação), flexões de braço (cerca de {p}% — estudos com plataforma de força).",
+ "Cztery zakładki: Trening, Plan, Postępy i Więcej. Szablony i Ćwiczenia znajdziesz teraz w Więcej.": "Quatro abas: Treino, Plano, Progresso e Mais. Modelos e Exercícios agora estão em Mais.",
+ "Postępy mają własną zakładkę: podsumowanie, „Progresja”, wykresy ćwiczeń i masa ciała.": "Progresso tem a própria aba: resumo, «Progressão», gráficos dos exercícios e peso corporal.",
+ "Ekran Trening: „Planowanie” przy nazwie planu, „Ten tydzień” i „Progresja”; „Z szablonu” w arkuszu „Inny trening” otwiera wybór szablonu ze „Startem”.": "Tela Treino: «Planejamento» ao lado do nome do plano, «Esta semana» e «Progressão»; «A partir de um modelo» na folha «Outro treino» abre a escolha do modelo com «Iniciar»."
 }
