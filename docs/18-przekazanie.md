@@ -28,6 +28,8 @@ backlog) → docs/15 (App Store, ceny) → docs/09 (dziennik testów; stare rund
 ## Otwarte ryzyka
 - E2E-105: zgubione znaki przy szybkim wpisie masy ciała na wolnym symulatorze — do sprawdzenia na telefonie (docs/25).
 - Scenariusz E2E 05 (Plank) — zgubione znaki po zimnym starcie; poprawka jak w 15 (backlog).
+- Interpreter Maestro w Jest (tests/maestro-flows) liczy czas od zegara maszyny: uruchomiony po ok. 22:00 UTC przekracza północ i scenariusz 05 („This week: deload”) pada —
+  to artefakt pory dnia, nie błąd (z `TZ=America/Los_Angeles` albo wcześniej w ciągu dnia przechodzi).
 
 ## Decyzje (od 11.10.2026)
 - 11.10.2026: raporty rynkowe — wnioski w docs/research/raporty-rynkowe-2026-10.md; import CSV i prośba o ocenę → „Przed App Store” (A+A).
@@ -115,3 +117,21 @@ backlog) → docs/15 (App Store, ceny) → docs/09 (dziennik testów; stare rund
   TestFlight 0.12.0: języki fal 1–4 + nowy ekran (wydanie 1) — bez osobnego wpisu „Co nowego” o nowym ekranie, lista kontrolna zamiast audytu.
   Do backlogu (bez blokowania wydania): przegląd tłumaczeń przez native speakerów — „Progresja” (el, tr, ko, ja, zh-Hant, vi, de), „Sylwetka”
   (it, vi, zh-Hant), hu „A {day} napra”, ja „先に完了”, ko „만들기”/„생성”.
+- 11.10.2026: **wydanie 2 — cztery zakładki i masa ciała w Postępach (docs/22 wariant A; P1, P5 A) — zrobione na gałęzi `worktree-agent-a8b35c1e8d37ffe2c`
+  (od `feature/e2-swap`, niewypchnięta; scalenie i E2E na symulatorze — główna sesja).** Zakładki: **Trening · Plan** (dawny Kalendarz) **· Postępy** (nowa,
+  z „Progresją”, podsumowaniem, wykresami, ćwiczeniami i sekcją „Masa ciała”) **· Więcej** (Szablony i Ćwiczenia na górze listy jako ekrany stosu `/templates`,
+  `/exercises`). Z Ustawień znikła „Masa ciała”; `app/more/progress.tsx` → `app/(tabs)/progress.tsx`. Bez zmiany schematu danych. Przepływy w stuknięciach
+  (od zakładki Trening): Postępy 2 → **1**; masa ciała (Więcej → Ustawienia → Masa ciała) 3 → **2** (Postępy → „Masa ciała — pomiary”); Szablony i Ćwiczenia
+  1 → **2** (Więcej → …); Plan 1 → 1; start „Z szablonu” bez zmian (2); Planowanie → Szablony → wraca do planu (stos). Żadna funkcja nie zniknęła
+  (tests/tabs-four.test.tsx sprawdza każdą drogę). Wpis „Co nowego” 2026-10-11 (3 punkty, 35 języków), teksty: „Plan” + 7 zmienionych (35 języków).
+  **Do akceptacji właściciela** (najmniej inwazyjne wybory agenta): (1) „Postępy” z ekranu ćwiczenia przełącza na zakładkę (zamyka stos, „Back” nie wraca do
+  ćwiczenia — jak „Pokaż” w Przewodniku); alt.: osobny ekran stosu dla wykresu ćwiczenia; (2) masa ciała w Postępach = ostatni pomiar + wykres + przycisk
+  do istniejącego ekranu pomiarów (dodawanie i lista tam); alt.: formularz w Postępach; (3) treść Postępów renderuje się tylko przy aktywnej zakładce, więc szukanie
+  i wybrane ćwiczenie znikają po wyjściu z zakładki (nie liczy wykresów w tle przy wpisach serii); (4) teksty z „Kalendarzem” (Przewodnik, komunikaty) zostały —
+  kalendarz jest w zakładce Plan; zmiana ~15 tekstów × 35 języków poza zakresem; (5) ekrany Szablony/Ćwiczenia mają tytuł tylko w nagłówku stosu (liczba
+  ćwiczeń jako sama liczba obok „+ Nowe”); (6) wpis „Co nowego” jest osobnym niewydanym wpisem nad 0.12.0 (też niewydanym) — przy nadawaniu numerów wersji
+  rozdzielić albo scalić; (7) tłumaczenia „Plan” i nowych zdań (en/de/… 35 języków) do przeglądu native speakerów razem z backlogiem; (8) E2E Maestro: nowy
+  `19-zakladki`, zmienione 01, 05, 08, 13–17 i podprzepływ `szablon-testowy` — sprawdzone interpreterem w Jest, wymagają przebiegu na symulatorze
+  (ryzyka: 14 — wejście przez „Planning”, 15 — masa ciała w Postępach, 16/17 — Więcej → „Exercises”).
+  Testy: 111 powiązanych plików (w tym nowy tests/tabs-four.test.tsx, interpreter Maestro dla 19 scenariuszy) — 3187 zielonych, 2 pominięte; `tsc` czysty,
+  `check:i18n`, `check:matrix` (1904 pozycji, bez testu: 0) OK. Pełnego `verify` (expo export, verify:native) nie uruchamiano — główna sesja.
