@@ -3,7 +3,7 @@
  * aplikację (pre — decyzja 02.10.2026, audyt B2) i reguła „asysty gumą nie da się odtworzyć”.
  * Zależy od: ./sets; zewnętrzne: ../seed.
  */
-import { uid, hasTime, hasReps, hasWeight, hasDistance, type WSet, type Exercise } from '../seed';
+import { uid, hasTime, hasReps, hasWeight, hasDistance, type WSet, type Exercise, type SetKind } from '../seed';
 import { bandById, isBW, usesBand } from './sets';
 
 export const blankSet = (): WSet => ({ id: uid(), weight: '', reps: '', durationSec: '', distanceM: '', rpe: '', bandId: '', addKg: '', kind: 'normal',
@@ -43,3 +43,25 @@ export const isEmpty = (v: unknown) => v === '' || v == null;
 export const assistLost = (ex: Exercise | undefined, p: Partial<WSet> | null | undefined) => !!ex && isBW(ex) && !!p?.bandId
     && (!ex.bandAssistable || !bandById(p.bandId));
 export { copyVals, stripUnused };
+
+/** Rodzina serii (runda 6): rozgrzewka, drop set, reszta (zwykła / do upadku). Ciężar dropu nie trafia do serii roboczej i odwrotnie. */
+export const setFam = (k: SetKind | undefined) => k === 'warmup' ? 'w' : k === 'drop' ? 'd' : 'n';
+/**
+ * Kaskada w dół (decyzja właściciela 11.10.2026, pkt 6, wariant A): wartość wpisana w wierszu `i` przechodzi do KOLEJNYCH wierszy tej samej rodziny
+ * (setFam), ale tylko tam, gdzie pole jest puste ALBO ma jeszcze poprzednią wartość wiersza `i` (`old`, sprzed wpisu) — czyli nie było zmienione
+ * ręcznie. Nigdy nie rusza serii odhaczonej ani innej wartości. Bez nowego pola w danych: „ręcznie zmienione” = „różni się od poprzedniej wartości
+ * wiersza i”. Podpowiedzi „Poprzednio” i placeholdery nie są wartościami (pola zostają puste), więc nie liczą się jako ręczne.
+ * Wspólne dla treningu w toku (WSet) i edytora szablonu (TRow). `get`/`put` — dostęp do pola (ciężar: pole właściwe dla sprzętu, loadFieldValue);
+ * `sameBand` — przy ±kg z gumą wiersz z inną gumą nie dostaje cudzej asysty. Zwraca liczbę zmienionych wierszy.
+ */
+export function cascadeDown<R extends { kind: SetKind; done?: boolean; bandId?: string }>(rows: readonly R[], i: number, old: number | '',
+    get: (r: R) => number | '', put: (r: R, v: number | '') => void, sameBand = false): number {
+  const from = rows[i]; if (!from) return 0; const nv = get(from); if (nv === old) return 0; let n = 0;
+  for (let j = i + 1; j < rows.length; j++) {
+    const x = rows[j];
+    if (x.done || setFam(x.kind) !== setFam(from.kind) || (sameBand && (x.bandId ?? '') !== (from.bandId ?? ''))) continue;
+    const cur = get(x); if (cur !== '' && cur !== old) continue;
+    put(x, nv); n++;
+  }
+  return n;
+}

@@ -5,8 +5,8 @@
  */
 import { hasReps, type Workout, type WSet, type WExercise } from '../seed';
 import { S, save, getState } from './core';
-import { exById, bandById, restFor, isRoundSet } from './sets';
-import { blankSet, copyVals, VAL_KEYS, PRE_KEYS, usedKeys, isEmpty, assistLost } from './setvals';
+import { exById, bandById, restFor, isRoundSet, isBW, loadFieldValue, writeLoad } from './sets';
+import { blankSet, copyVals, VAL_KEYS, PRE_KEYS, usedKeys, isEmpty, assistLost, setFam, cascadeDown } from './setvals';
 import { offListAt, prevFromOther, listLocFor, pinnedImpl } from './places';
 import { hintFor, prevOfBlock } from './history';
 import { normalizeGroups } from './groups';
@@ -81,6 +81,24 @@ export function findSet(setId: string | null): { ei: number; si: number } | null
   return null;
 }
 
+/**
+ * Wpis wartości w wierszu serii treningu w toku (oba widoki — „Lista” i skupiony — używają tych samych pól) z kaskadą w dół (decyzja 11.10.2026,
+ * pkt 6A; cascadeDown): wartość przechodzi do kolejnych nieodhaczonych serii tej samej rodziny, które mają pole puste albo jeszcze poprzednią
+ * wartość tej serii. `field` 'load' = pole ciężaru właściwe dla sprzętu (kg albo ±kg; zapis jak writeLoad), v — już przycięta wartość w kg.
+ * Oznacza serię jako wpisaną ręcznie (edited); serie, do których przeszła kaskada, nie dostają znacznika (to nie ich wpis). Zwraca liczbę serii
+ * uzupełnionych kaskadą.
+ */
+export type LiveField = 'load' | 'reps' | 'durationSec' | 'distanceM';
+export function typeSetValue(ei: number, si: number, field: LiveField, v: number | ''): number {
+  const a = getState().active; const e = a?.exercises[ei]; const s = e?.sets[si]; if (!a || !e || !s) return 0;
+  const ex = exById(e.exerciseId); const load = field === 'load';
+  const get = (r: WSet): number | '' => load ? loadFieldValue(ex, r) : r[field];
+  const put = (r: WSet, nv: number | '') => { if (load) writeLoad(ex, r, nv); else (r as any)[field] = nv; };
+  const old = get(s); put(s, v); s.edited = true;
+  /* ±kg z gumą: asysta należy do gumy serii (jak w carryPrefill) — wiersz z inną gumą jej nie dostaje */
+  const n = cascadeDown(e.sets, si, old, get, put, load && !!ex && isBW(ex));
+  save(a); return n;
+}
 /** Ostatnie odhaczenie w treningu w toku — liczone z danych, więc przeżywa restart i cofnięcie odhaczenia. */
 function lastCompletedAt(a: Workout, except?: WSet): number | null {
   let m: number | null = null;
@@ -89,7 +107,6 @@ function lastCompletedAt(a: Workout, except?: WSet): number | null {
   }));
   return m;
 }
-const setFam = (k: WSet['kind']) => k === 'warmup' ? 'w' : k === 'drop' ? 'd' : 'n';
 function carryPrefill(e: WExercise, si: number) {
   const s = e.sets[si]; if (!s?.pre) return;
   for (const k of PRE_KEYS) { const old = s.pre[k]; const v = s[k]; if (old === undefined || typeof v !== 'number' || v === old) continue;

@@ -7,7 +7,8 @@ import { t as tr, collator } from '../i18n';
 import { uid, base, type SetKind, type Template, type TemplateItem, type TRow } from '../seed';
 import { NAME_MAX, clampName } from './util';
 import { flush, save, getState } from './core';
-import { workCount } from './sets';
+import { workCount, exById, isBW } from './sets';
+import { cascadeDown } from './setvals';
 import { startLocationId } from './places';
 import { nextBandId } from './bands';
 
@@ -85,6 +86,22 @@ export function tplSetRow(tpl: Template, itemId: string, rowId: string, patch: P
   Object.assign(r, patch);
   syncItem(it);
   save(tpl);
+}
+/**
+ * Wpis wartości w wierszu serii szablonu z kaskadą w dół (decyzja 11.10.2026, pkt 6A; cascadeDown): jak tplSetRow, a dodatkowo wartość pól z `patch`
+ * przechodzi do kolejnych wierszy tej samej rodziny (rozgrzewka / drop / robocze osobno), które mają to pole puste albo jeszcze poprzednią wartość
+ * wiersza. Ręcznie zmienionych nie rusza. Używa edytor szablonu; tplSetRow zostaje surowym zapisem jednego wiersza (testy, import, generator).
+ */
+export function tplEditRow(tpl: Template, itemId: string, rowId: string, patch: Partial<Omit<TRow, 'id' | 'kind'>>) {
+  const it = tplItem(tpl, itemId); if (!it) return; const rows = rowsOf(it); const i = rows.findIndex(x => x.id === rowId); if (i < 0) return;
+  const r = rows[i]; const ex = exById(it.exerciseId); const olds = new Map<string, number | ''>();
+  for (const k of ['weight', 'reps', 'durationSec', 'distanceM'] as const) if (k in patch) olds.set(k, r[k]);
+  Object.assign(r, patch);
+  for (const [k, old] of olds) {
+    const key = k as 'weight' | 'reps' | 'durationSec' | 'distanceM';
+    cascadeDown(rows, i, old, x => x[key], (x, v) => { x[key] = v; }, key === 'weight' && !!ex && isBW(ex));
+  }
+  syncItem(it); save(tpl);
 }
 export function tplSetKind(tpl: Template, itemId: string, rowId: string, kind: SetKind) {
   const it = tplItem(tpl, itemId); if (!it) return; const r = rowsOf(it).find(x => x.id === rowId); if (!r) return; r.kind = kind; syncItem(it); save(tpl);
