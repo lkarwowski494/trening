@@ -21,12 +21,12 @@ describe('Ustawienia → Język: warianty regionalne', () => {
     expect(screen.getByText('Manter a tela ligada no treino')).toBeTruthy(); /* po brazylijsku (pt-PT: „Manter ecrã ligado no treino”) */
     expect(screen.getByText(LANG_NAME['pt-BR'])).toBeTruthy(); expect(screen.queryByText('Manter ecrã ligado no treino')).toBeNull();
   });
-  test('es-419: ekran ustawień — słownictwo Ameryki Łacińskiej („equipo”, nie „material”)', async () => {
+  test('es-419: ekran ustawień — słownictwo Ameryki Łacińskiej („celular”, nie „teléfono”)', async () => {
     await renderApp(); await go('/more/language'); await flushAll(5);
     await tap(screen.getByText(LANG_NAME['es-419'])); await flushAll(10);
     expect(S().settings.language).toBe('es-419');
     await go('/more/settings'); await flushAll(5);
-    expect(screen.getByText('equipo en casa, en el gimnasio, en un hotel…')).toBeTruthy(); expect(screen.queryByText('material en casa, en el gimnasio, en un hotel…')).toBeNull();
+    expect(screen.getByText('Datos en este celular')).toBeTruthy(); expect(screen.queryByText('Datos en este teléfono')).toBeNull(); /* wydanie 1 (11.10.2026): podpis „sprzęt w domu, na siłowni, w hotelu…” zniknął z Ustawień — słownictwo regionalne sprawdza nagłówek sekcji danych */
   });
 });
 
