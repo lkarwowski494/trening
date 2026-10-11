@@ -101,6 +101,36 @@ describe('polityka prywatności zgodna z kodem', () => {
   });
 });
 
+/* strona www (11.10.2026): docs/index.html i docs/support.html — PL/EN, linki do polityki, bez e-maili i zasobów zewnętrznych, liczby zgodne z kodem */
+describe('strona www aplikacji (GitHub Pages)', () => {
+  const fs = require('fs') as typeof import('fs'); const root = join(__dirname, '..');
+  const { LANGS } = require('../lib/i18n') as typeof import('../lib/i18n');
+  test.each(['index.html', 'support.html'])('%s: istnieje, PL i EN, link do polityki prywatności, bez e-maili i zewnętrznych skryptów/fontów/trackerów', (name) => {
+    expect(fs.existsSync(join(root, 'docs', name))).toBe(true);
+    const html = readFileSync(join(root, 'docs', name), 'utf8');
+    expect(html).toMatch(/<section lang="pl"/); expect(html).toMatch(/<section lang="en"/); expect(html).toContain('href="privacy.html"');
+    expect(html).not.toMatch(/[\w.+-]+@[\w-]+\.[\w.-]+/); expect(html).not.toMatch(/mailto:/);
+    expect(html).not.toMatch(/<script/i); expect(html).not.toMatch(/<link\b[^>]*stylesheet/i); expect(html).not.toMatch(/<(img|iframe)\b/i); expect(html).not.toMatch(/@import|url\(/);
+    expect([...html.matchAll(/(?:src|href)="(https?:[^"]+)"/g)].map(m => m[1]).filter(u => !u.startsWith('https://github.com/lkarwowski494/trening/issues'))).toEqual([]);
+    expect(fs.existsSync(join(root, 'docs/CNAME'))).toBe(false); /* domena apps4brew.com dopiero po zakupie */
+  });
+  test('index.html linkuje do wsparcia; liczba języków na obu stronach = LANGS z kodu; kontakt przez GitHub Issues', () => {
+    const idx = readFileSync(join(root, 'docs/index.html'), 'utf8'); const sup = readFileSync(join(root, 'docs/support.html'), 'utf8');
+    expect(idx).toContain('href="support.html"'); expect(idx).toContain('Apps4Brew');
+    for (const h of [idx, sup]) expect(h).toContain(`${LANGS.length} języków`);
+    expect(idx).toContain(`${LANGS.length} languages`); expect(sup).toContain(`${LANGS.length} languages`);
+    expect(sup).toContain('https://github.com/lkarwowski494/trening/issues'); expect(sup).toContain('DO UZUPEŁNIENIA: adres kontaktowy po zakupie domeny');
+  });
+  test('FAQ wsparcia zgodne z kodem: ścieżki menu i nazwy przycisków istnieją w tekstach aplikacji', () => {
+    const sup = readFileSync(join(root, 'docs/support.html'), 'utf8'); const en = readFileSync(join(root, 'lib/i18n.en.ts'), 'utf8');
+    for (const pl of ['Eksportuj backup (plik JSON)', 'Eksportuj historię do CSV', 'Wyczyść wszystkie dane', 'Kopia zapasowa (eksport / import)', 'Język', 'Jak w telefonie']) {
+      expect(en).toContain(`'${pl}': '`); const val = new RegExp(`'${pl.replace(/[()/]/g, '\\$&')}': '([^']+)'`).exec(en)![1]; expect(sup).toContain(val);
+    }
+    for (const pl of ['Eksportuj backup (plik JSON)', 'Eksportuj historię do CSV', 'Wyczyść wszystkie dane']) expect(sup).toContain(pl);
+    expect(readFileSync(join(root, 'lib/backup.ts'), 'utf8')).toContain("AUTO_DIR = 'Backup/'");
+  });
+});
+
 /* audyt 0.10 SEC-06, SEC-08, NAT-07 (fala 2) */
 describe('zależności i konfiguracja natywna', () => {
   const fs = require('fs') as typeof import('fs'); const root = join(__dirname, '..');
