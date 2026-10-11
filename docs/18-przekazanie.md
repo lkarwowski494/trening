@@ -106,3 +106,8 @@ backlog) → docs/15 (App Store, ceny) → docs/09 (dziennik testów; stare rund
   po scaleniu 4 gałęzi): jedno „⇄ zamień” (pkt 5), deload bez chipa w Postępach (6), „Miejsca i sprzęt” znika z Ustawień (7), Przewodnik raz
   w „Pierwszych krokach” (8), przełącznik „Zachęta do planu” znika (14), „Inny trening” w panelu dnia → „Zmień szablon”/„Dodaj do planu” (16),
   „Dopisz trening wstecz” jako jedna nazwa (17). Osobno do decyzji: pkt 11 (okno „Zaktualizować szablon?” i stos po „Zakończ”), pkt 23 (ikona „i”).
+- 11.10.2026: **8A** okno „Zaktualizować szablon?” po „Zakończ” → przycisk „Zapisz zmiany w szablonie” na ekranie podsumowania (tylko gdy były
+  zmiany), bez wyskakującego okna. **9A** ikona „Co nowego”: iskierki ✦ zamiast „i” (kropka bez zmian). **10A** Progresja miesiąc do miesiąca:
+  bieżący miesiąc do dziś vs te same dni poprzedniego miesiąca. Rozstrzygnięte przez agenta wg decyzji właściciela (do pakietu porządków):
+  „Ten tydzień” bez „poprz.” w kafelkach, tytuł ekranu planu „Planowanie”, przełącznik „Zachęta do planu” znika, „Miejsca i sprzęt” jako zdanie
+  z odnośnikiem w „Pierwszych krokach”, martwy kod (home.planSummary, dashboard.emptyTemplates) usunięty.
