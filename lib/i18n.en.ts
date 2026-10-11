@@ -45,6 +45,22 @@ export const EN: Record<string, string> = {
   'Backup treningów': 'Workout backup', 'Eksport CSV': 'CSV export', 'do upadku': 'to failure',
   'Plik ma schemat {a}, a ta wersja obsługuje do {b}. Zaktualizuj aplikację.': 'The file has schema {a}; this version supports up to {b}. Update the app.',
 
+  /* import historii z CSV (11.10.2026) */
+  'Importuj historię z pliku CSV': 'Import history from a CSV file', 'Import historii z CSV': 'Import history from CSV',
+  'Dopisuje treningi z plików CSV popularnych dzienników treningowych — bez usuwania obecnych danych, z podglądem przed zapisem.': 'Adds workouts from CSV files of popular workout logs — without removing your current data, with a preview before saving.',
+  'Dopisuje treningi z plików CSV popularnych dzienników treningowych. Obecnych danych nie zmienia ani nie usuwa. Przed zapisem zobaczysz podgląd.': 'Adds workouts from CSV files of popular workout logs. It does not change or remove your current data. You will see a preview before anything is saved.',
+  'Wybierz plik CSV': 'Choose a CSV file', 'Podgląd importu': 'Import preview', 'Treningi do dodania: {n}': 'Workouts to add: {n}', 'Zakres dat: {a} – {b}': 'Date range: {a} – {b}',
+  'Pominięte jako duplikaty: {n}': 'Skipped as duplicates: {n}', 'Pominięte wiersze (błędne dane): {n}': 'Skipped rows (invalid data): {n}',
+  'Ćwiczenia dopasowane do Twoich: {n}': 'Exercises matched to yours: {n}', 'Nowe ćwiczenia: {n}': 'New exercises: {n}', 'Jednostka ciężaru w pliku': 'Weight unit in the file',
+  'Plik nie podaje, czy ciężary są w kg, czy w lb. Domyślnie: jednostka z Ustawień.': 'The file does not say whether weights are in kg or lb. Default: the unit from Settings.',
+  'Plik nie podaje godzin treningów — dzień, w którym masz już trening, zostanie pominięty jako duplikat.': 'The file has no workout times — a day on which you already have a workout is skipped as a duplicate.',
+  'Dystans w pliku przyjęto jako metry.': 'Distance in the file is taken as metres.', 'Ćwiczenia z pliku': 'Exercises in the file', 'Serie: {n}': 'Sets: {n}', '→ {name}': '→ {name}',
+  'Zmień dopasowanie': 'Change match', 'Nie ma nowych treningów do dodania — wszystkie są już w historii.': 'There are no new workouts to add — all of them are already in your history.',
+  'Dodano treningi: {n}, nowe ćwiczenia: {m}.': 'Workouts added: {n}, new exercises: {m}.',
+  'To nie wygląda na obsługiwany plik CSV z historią treningów. Dane nie zostały zmienione.': 'This does not look like a supported CSV file with workout history. Your data was not changed.',
+  'Plik nie zawiera żadnych poprawnych treningów. Dane nie zostały zmienione.': 'The file contains no valid workouts. Your data was not changed.',
+  'Plik jest pusty. Dane nie zostały zmienione.': 'The file is empty. Your data was not changed.', 'Plik jest za duży. Dane nie zostały zmienione.': 'The file is too large. Your data was not changed.',
+
   /* gumy */
   'kolor': 'colour', '+ Guma': '+ Band', 'nowa': 'new', 'czerwona': 'red', 'czarna': 'black', 'fioletowa': 'purple',
 

@@ -164,5 +164,6 @@
  "35 języków; język zmienisz w Ustawieniach.": "35 idiomas; el idioma se cambia en Configuración.",
  "Ćwiczysz w domu albo na siłowni? Ustaw sprzęt w „Miejsca i sprzęt”.": "¿Entrenas en casa o en el gimnasio? Configura tu equipo en «Lugares y equipo».",
  "Dodaj do planu": "Agregar al plan",
- "Zaplanowane = szablony z planu na pozostałe dni tygodnia, policzone z wartości w szablonie (brakujące — z „Poprzednio”). To rachunek z Twojego planu, nie prognoza. Partia główna liczy 1 serię, pomocnicza 0,5.": "Planificado = plantillas de tu plan para el resto de los días de la semana, calculadas con los valores de la plantilla (los que faltan, con «Anterior»). Es un cálculo sobre tu plan, no un pronóstico. Un grupo muscular principal cuenta 1 serie, uno secundario 0,5."
+ "Zaplanowane = szablony z planu na pozostałe dni tygodnia, policzone z wartości w szablonie (brakujące — z „Poprzednio”). To rachunek z Twojego planu, nie prognoza. Partia główna liczy 1 serię, pomocnicza 0,5.": "Planificado = plantillas de tu plan para el resto de los días de la semana, calculadas con los valores de la plantilla (los que faltan, con «Anterior»). Es un cálculo sobre tu plan, no un pronóstico. Un grupo muscular principal cuenta 1 serie, uno secundario 0,5.",
+ "Plik nie podaje, czy ciężary są w kg, czy w lb. Domyślnie: jednostka z Ustawień.": "El archivo no indica si los pesos están en kg o en lb. Por defecto: la unidad de Configuración."
 }

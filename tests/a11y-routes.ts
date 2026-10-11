@@ -21,7 +21,7 @@ export async function richState(l: 'pl' | 'en') {
 /** Trasy przeglądu. Audyt 0.10 (A11-10): także ekrany 0.10 — plan, generator, przewodnik, zamiana, wybór ćwiczenia, kolejność, trening wstecz,
  * szczegóły miejsca (dashboard bez treningu w toku: osobny przegląd niżej). Indeks 13 = szczegóły sesji (test kroju mono niżej). */
 export const routesFor = (w: { id: string }, tpl: { id: string }, exId: string, locId: string, blockId: string) => [
-  '/', '/templates', '/exercises', '/history', '/more', '/more/settings', '/more/progress', '/more/locations', '/more/backup', '/more/language', '/more/bands',
+  '/', '/templates', '/exercises', '/history', '/more', '/more/settings', '/more/progress', '/more/locations', '/more/backup', '/more/import', '/more/language', '/more/bands',
   `/template/${tpl.id}`, `/exercise/${exId}`, `/history/${w.id}`, `/history/edit/${w.id}`,
   '/plan', '/generator', '/guide', `/swap?target=active:${blockId}`, '/picker?target=active', '/reorder?target=active', '/history/add', `/more/location/${locId}`,
   '/more/bodymass', '/more/about', '/more/licenses', /* audyt 0.10 fala 2: masa ciała z datą, O aplikacji, licencje (SEC-08) */

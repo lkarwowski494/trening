@@ -474,5 +474,19 @@
  "wykonane + zaplanowane": "feito + planejado",
  "Zapisz zmiany w szablonie": "Salvar alterações no modelo",
  "Zaplanowane = szablony z planu na pozostałe dni tygodnia, policzone z wartości w szablonie (brakujące — z „Poprzednio”). To rachunek z Twojego planu, nie prognoza. Partia główna liczy 1 serię, pomocnicza 0,5.": "Planejado = modelos do seu plano para os demais dias da semana, calculados com os valores do modelo (os que faltam, a partir de «Anterior»). É um cálculo sobre o seu plano, não uma previsão. Um grupo muscular principal conta 1 série, um secundário 0,5.",
- "Zaznaczone partie, w których objętość jest większa niż w okresie porównawczym; im ciemniej, tym większy wzrost. Szare — bez wzrostu.": "Os grupos musculares destacados têm mais volume do que no período de comparação; quanto mais escuro, maior o aumento. Cinza — sem aumento."
+ "Zaznaczone partie, w których objętość jest większa niż w okresie porównawczym; im ciemniej, tym większy wzrost. Szare — bez wzrostu.": "Os grupos musculares destacados têm mais volume do que no período de comparação; quanto mais escuro, maior o aumento. Cinza — sem aumento.",
+ "Ćwiczenia z pliku": "Exercícios do arquivo",
+ "Dopisuje treningi z plików CSV popularnych dzienników treningowych — bez usuwania obecnych danych, z podglądem przed zapisem.": "Adiciona treinos a partir de arquivos CSV de diários de treino populares — sem remover seus dados atuais, com prévia antes de salvar.",
+ "Dopisuje treningi z plików CSV popularnych dzienników treningowych. Obecnych danych nie zmienia ani nie usuwa. Przed zapisem zobaczysz podgląd.": "Adiciona treinos a partir de arquivos CSV de diários de treino populares. Não altera nem remove seus dados atuais. Você verá uma prévia antes de salvar qualquer coisa.",
+ "Dystans w pliku przyjęto jako metry.": "A distância no arquivo é tomada como metros.",
+ "Importuj historię z pliku CSV": "Importar histórico de um arquivo CSV",
+ "Jednostka ciężaru w pliku": "Unidade de peso no arquivo",
+ "Plik jest pusty. Dane nie zostały zmienione.": "O arquivo está vazio. Seus dados não foram alterados.",
+ "Plik jest za duży. Dane nie zostały zmienione.": "O arquivo é demasiado grande. Seus dados não foram alterados.",
+ "Plik nie podaje godzin treningów — dzień, w którym masz już trening, zostanie pominięty jako duplikat.": "O arquivo não indica a hora dos treinos — um dia em que já tem um treino é ignorado como duplicado.",
+ "Plik nie podaje, czy ciężary są w kg, czy w lb. Domyślnie: jednostka z Ustawień.": "O arquivo não indica se os pesos estão em kg ou em lb. Padrão: a unidade dos Ajustes.",
+ "Plik nie zawiera żadnych poprawnych treningów. Dane nie zostały zmienione.": "O arquivo não contém treinos válidos. Seus dados não foram alterados.",
+ "Podgląd importu": "Prévia da importação",
+ "To nie wygląda na obsługiwany plik CSV z historią treningów. Dane nie zostały zmienione.": "Isto não parece um arquivo CSV suportado com histórico de treinos. Seus dados não foram alterados.",
+ "Wybierz plik CSV": "Escolher arquivo CSV"
 }

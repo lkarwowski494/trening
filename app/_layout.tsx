@@ -98,7 +98,8 @@ function Root() {
         <Stack.Screen name="more/bodymass" options={{ title: t('Masa ciała') }} />
         <Stack.Screen name="more/about" options={{ title: t('O aplikacji') }} />{/* SEC-08 */}
         <Stack.Screen name="more/licenses" options={{ title: t('Licencje open source') }} />{/* fala 2 audytu 0.10: masa ciała z datą */}
-        <Stack.Screen name="more/backup" options={{ title: t('Kopia zapasowa') }} />{/* H2 (audyt 0.10): „Kopia zapasowa” */}
+        <Stack.Screen name="more/backup" options={{ title: t('Kopia zapasowa') }} />
+        <Stack.Screen name="more/import" options={{ title: t('Import historii z CSV') }} />{/* H2 (audyt 0.10): „Kopia zapasowa” */}
         <Stack.Screen name="more/language" options={{ title: t('Język') }} />
         <Stack.Screen name="more/locations" options={{ title: t('Miejsca i sprzęt') }} />
         <Stack.Screen name="more/location/[id]" options={{ title: t('Miejsce') }} />
