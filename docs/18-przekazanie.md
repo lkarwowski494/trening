@@ -47,3 +47,9 @@ backlog) → docs/15 (App Store, ceny) → docs/09 (dziennik testów; stare rund
 - 11.10.2026: **podsumowanie rekordów (pkt 7) — wariant A, bez grafiki**: dla każdego ćwiczenia z rekordem nazwa, tylko pobite statystyki ze
   strzałką ↑ i przyrostem względem poprzedniego rekordu (np. „↑ e1RM 112,5 kg (+2,5 kg)”) oraz najlepsza seria dnia; sztanga z talerzami
   (components/RecordPlates.tsx) usunięta z karty. Odrzucone: B (pełny zestaw statystyk).
+- 11.10.2026: **Apple Zdrowie (pkt 9)** — (1) etapami (A): etap 1 — aktywności i kroki z Health tylko do odczytu w kalendarzu i tygodniu (bez liczenia
+  do celów); etap 2 — dopasowanie treningu z zegarka do sesji; etap 3 — aktywności jako cardio i cel kroków po researchu badacza (WHO 2020, MET,
+  kroki — źródła, nie zgadujemy). (2) Dane z Health czytane na bieżąco, NIE zapisywane w danych aplikacji ani w kopii (A): Apple 5.1.3
+  (zakaz przechowywania danych zdrowotnych w iCloud — kopia trafia do Plików/iCloud Drive), bez zmiany schematu (aktualizacja biblioteki
+  healthkit 8 → 16 bez migracji). Do zmiany: opis NSHealthShareUsageDescription (dziś „nie odczytuje”), docs/privacy.html, formularz prywatności
+  App Store. Odrzucone: B (jedno wydanie), B (import do historii).
