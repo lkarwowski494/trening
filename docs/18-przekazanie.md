@@ -87,3 +87,4 @@ backlog) → docs/15 (App Store, ceny) → docs/09 (dziennik testów; stare rund
 - 11.10.2026: **podział lib/store.ts scalony** (gałąź refactor-store): fasada 6 KB + 25 modułów w lib/state/ (bez cykli, to samo API 247 nazw);
   verify 4701/4702 (1 pominięty) po scaleniu. E2E z pełnym buildem — w toku.
 - 11.10.2026: **docs/22 P4 — A**: „Pierwsze kroki” — 3 kroki, każdy z jednym przyciskiem (Planowanie / Przewodnik). Odrzucone: B (4 kroki, 9 przycisków).
+- 11.10.2026: **docs/22 P5 — A**: masa ciała jako sekcja w zakładce Postępy (wykres + dodanie pomiaru); link z Ustawień znika. Odrzucone: B (oba miejsca).
