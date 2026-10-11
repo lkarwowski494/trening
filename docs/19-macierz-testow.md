@@ -369,10 +369,10 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | {k} dzień siłowy w tygodniu to mniej niż zalecenie WHO 2020 (co najmniej {n} dni). Na początek to dobry krok: według wytycznych USA 2018 na początku można ćwiczyć siłowo tylko {k} dzień w tygodniu, a z czasem dojść do {n} — trochę ruchu jest lepsze niż żaden. | lib/generator.ts | tests/audit011b.test.tsx, tests/gen-general-ui.test.tsx, tests/gen-general.test.ts +1 |
 | {k}: {v} | lib/stats.ts | (tylko parametry) |
 | {n} h | components/Dashboard.tsx | (tylko parametry) |
-| {n} km | lib/store.ts | tests/audit-0.10-lang.test.ts, tests/i18n-wave2.test.ts, tests/i18n-wave4.test.ts +4 |
-| {n} m | lib/store.ts | (tylko parametry) |
+| {n} km | lib/state/time.ts | tests/audit-0.10-lang.test.ts, tests/i18n-wave2.test.ts, tests/i18n-wave4.test.ts +4 |
+| {n} m | lib/state/time.ts | (tylko parametry) |
 | {n} rozgrz. | app/history/edit/[id].tsx | tests/audit-0.10-stats-ui.test.tsx, tests/scenario-full.test.tsx |
-| {n} s | lib/store.ts | (tylko parametry) |
+| {n} s | lib/state/time.ts | (tylko parametry) |
 | {n} z {m} | app/more/location/[id].tsx | (tylko parametry) |
 | {n}, główne: {m} | app/more/settings.tsx | tests/scenario-full.test.tsx |
 | {name} · w planie na: {day} | components/StartPanel.tsx | tests/home-b.test.tsx |
@@ -622,7 +622,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Masa: co najmniej {m} serii na partię w tygodniu, {a}–{b} powtórzeń (w domu {c}–{d}), zwykle {r1}–{r2} powtórzenia w zapasie. | app/generator.tsx | tests/generator-ui.test.tsx |
 | maszyna | lib/swap.ts | tests/catalog-library25.test.tsx, tests/invariants.test.ts, tests/locations-audit.test.tsx +4 |
 | materiały producenta sprzętu | components/ExerciseCues.tsx | tests/audit-k1-bl-mer.test.tsx |
-| max | lib/store.ts | tests/audit-0.10-lang.test.ts, tests/audit-k1-bl-mer.test.tsx, tests/i18n-wave2.test.ts +9 |
+| max | lib/state/time.ts | tests/audit-0.10-lang.test.ts, tests/audit-k1-bl-mer.test.tsx, tests/i18n-wave2.test.ts +9 |
 | max ± | lib/stats.ts | tests/i18n-wave2.test.ts, tests/matrix-i18n.test.tsx, tests/regress.test.tsx +1 |
 | max ciężar | lib/stats.ts | tests/matrix-i18n.test.tsx |
 | Max ciężar | app/more/progress.tsx | tests/regress.test.tsx, tests/scenario-full.test.tsx |
@@ -1514,6 +1514,22 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | start.deloadLessText | lib/start.ts | tests/audit-0.10-live-logic.test.ts |
 | start.startTemplate | lib/start.ts | tests/audit-journey-a.test.tsx, tests/flows.test.tsx |
 | start.startRepeatLast | lib/start.ts | tests/audit-0.10-live-logic.test.ts |
+| store.dbDirectory | lib/state/db.ts | tests/audit-backlog-r75.test.tsx |
+| store.copyKv | lib/state/db.ts | tests/audit-backlog-r75.test.tsx |
+| store.localDateTs | lib/state/time.ts | tests/audit-0.10-data-ui.test.tsx, tests/logic.test.ts, tests/matrix-time.test.ts |
+| store.fmtSec | lib/state/time.ts | tests/audit-0.10-lang.test.ts, tests/i18n-wave3.test.ts, tests/i18n-wave4.test.ts +3 |
+| store.fmtDist | lib/state/time.ts | tests/audit-0.10-lang.test.ts, tests/i18n-wave3.test.ts, tests/i18n-wave4.test.ts +1 |
+| store.reps | lib/state/time.ts | tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-data.test.ts, tests/audit-0.10-gen-ui.test.tsx +140 |
+| store.fmtDur | lib/state/time.ts | tests/regress.test.tsx |
+| store.fmtDayKey | lib/state/time.ts | tests/audit-0.10-ui.test.tsx, tests/home-b.test.tsx |
+| store.fmtDate | lib/state/time.ts | tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-ui.test.tsx, tests/backlog-0.10.1-dane-ui.test.tsx +6 |
+| store.fmtTime | lib/state/time.ts | tests/audit-0.10-data.test.ts, tests/backlog-0.10.1-dane-ui.test.tsx, tests/backlog-0.10.1-dane.test.ts +6 |
+| store.cleanTz | lib/state/time.ts | tests/audit-0.10-data.test.ts |
+| store.wallTs | lib/state/time.ts | tests/audit-0.10-data.test.ts, tests/audit-perf-equiv.test.ts, tests/backlog-0.10.1-dane-ui.test.tsx +2 |
+| store.fromWallTs | lib/state/time.ts | tests/audit-0.10-data.test.ts |
+| store.workoutDay | lib/state/time.ts | tests/audit-0.10-data.test.ts, tests/backlog-0.10.1-dane.test.ts, tests/matrix-time.test.ts |
+| store.mondayKey | lib/state/time.ts | tests/audit-0.10-data.test.ts, tests/deload-plan.test.ts, tests/matrix-time.test.ts +1 |
+| store.clampName | lib/state/util.ts | tests/matrix-invariants.test.ts, tests/matrix-logic.test.tsx |
 | stats.bwShare | lib/stats.ts | tests/audit-0.10-stats.test.ts |
 | stats.liftedLoad | lib/stats.ts | tests/audit-0.10-stats.test.ts |
 | stats.bwE1Diff | lib/stats.ts | tests/audit-0.10-stats.test.ts, tests/audit-k1-mer.test.tsx |
@@ -1538,8 +1554,6 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | stats.weeklySetsByMuscle | lib/stats.ts | tests/logic.test.ts, tests/matrix-dim-catalog.test.tsx, tests/matrix-dim-metrics.test.tsx +5 |
 | stats.setsByMuscle | lib/stats.ts | tests/audit-0.10-stats.test.ts, tests/muscle-map.test.tsx |
 | stats.weeklyVolumeByMuscle | lib/stats.ts | tests/matrix-dim-catalog.test.tsx, tests/matrix-dim-metrics.test.tsx, tests/matrix-time.test.ts +1 |
-| store.dbDirectory | lib/store.ts | tests/audit-backlog-r75.test.tsx |
-| store.copyKv | lib/store.ts | tests/audit-backlog-r75.test.tsx |
 | store.init | lib/store.ts | tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-tst-ui.test.tsx, tests/audit-0.10-tst.test.ts +15 |
 | store.applyPrefs | lib/store.ts | tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-plan.test.ts, tests/audit-0.10-stats-ui.test.tsx +16 |
 | store.migrate | lib/store.ts | tests/audit-0.10-data.test.ts, tests/audit-0.10-gen.test.ts, tests/audit-0.10-live-logic.test.ts +42 |
@@ -1583,7 +1597,6 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | store.setLoad | lib/store.ts | tests/audit-perf-equiv.test.ts, tests/audit-r82c.test.tsx, tests/audit-r83.test.tsx +4 |
 | store.loadFieldValue | lib/store.ts | tests/matrix-dim-metrics.test.tsx, tests/matrix-logic.test.tsx |
 | store.writeLoad | lib/store.ts | tests/matrix-dim-metrics.test.tsx, tests/matrix-invariants.test.ts, tests/matrix-logic.test.tsx +1 |
-| store.localDateTs | lib/store.ts | tests/audit-0.10-data-ui.test.tsx, tests/logic.test.ts, tests/matrix-time.test.ts |
 | store.effectiveLoad | lib/store.ts | tests/audit-perf-equiv.test.ts |
 | store.exMult | lib/store.ts | tests/logic.test.ts, tests/regress.test.tsx |
 | store.isWorking | lib/store.ts | tests/audit-perf-equiv.test.ts, tests/matrix-dim-metrics.test.tsx |
@@ -1596,17 +1609,6 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | store.loadLabelShort | lib/store.ts | tests/audit-r82.test.tsx, tests/audit-r82c.test.tsx, tests/regress.test.tsx |
 | store.loadLabel | lib/store.ts | tests/audit-close2-b.test.tsx, tests/audit-journey-c.test.tsx, tests/audit-journey-d.test.tsx +3 |
 | store.restFor | lib/store.ts | tests/regress.test.tsx |
-| store.fmtSec | lib/store.ts | tests/audit-0.10-lang.test.ts, tests/i18n-wave3.test.ts, tests/i18n-wave4.test.ts +3 |
-| store.fmtDist | lib/store.ts | tests/audit-0.10-lang.test.ts, tests/i18n-wave3.test.ts, tests/i18n-wave4.test.ts +1 |
-| store.reps | lib/store.ts | tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-data.test.ts, tests/audit-0.10-gen-ui.test.tsx +140 |
-| store.fmtDur | lib/store.ts | tests/regress.test.tsx |
-| store.fmtDayKey | lib/store.ts | tests/audit-0.10-ui.test.tsx, tests/home-b.test.tsx |
-| store.fmtDate | lib/store.ts | tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-ui.test.tsx, tests/backlog-0.10.1-dane-ui.test.tsx +6 |
-| store.fmtTime | lib/store.ts | tests/audit-0.10-data.test.ts, tests/backlog-0.10.1-dane-ui.test.tsx, tests/backlog-0.10.1-dane.test.ts +6 |
-| store.cleanTz | lib/store.ts | tests/audit-0.10-data.test.ts |
-| store.wallTs | lib/store.ts | tests/audit-0.10-data.test.ts, tests/audit-perf-equiv.test.ts, tests/backlog-0.10.1-dane-ui.test.tsx +2 |
-| store.fromWallTs | lib/store.ts | tests/audit-0.10-data.test.ts |
-| store.workoutDay | lib/store.ts | tests/audit-0.10-data.test.ts, tests/backlog-0.10.1-dane.test.ts, tests/matrix-time.test.ts |
 | store.bodyMassLog | lib/store.ts | tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-data.test.ts, tests/audit-0.10-stats-ui.test.tsx +7 |
 | store.bodyMassOn | lib/store.ts | tests/audit-0.10-data.test.ts, tests/matrix-invariants.test.ts |
 | store.bodyMassFor | lib/store.ts | tests/audit-0.10-data.test.ts |
@@ -1697,7 +1699,6 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | store.resolveColdStopwatch | lib/store.ts | tests/store-stale.test.ts |
 | store.autoFinishStale | lib/store.ts | tests/audit-backlog-q.test.tsx, tests/audit-close-a.test.ts, tests/audit-final2-auto.test.ts +6 |
 | store.finishWorkout | lib/store.ts | tests/a11y-routes.ts, tests/audit-0.10-data.test.ts, tests/audit-0.10-lang-ui.test.tsx +34 |
-| store.mondayKey | lib/store.ts | tests/audit-0.10-data.test.ts, tests/deload-plan.test.ts, tests/matrix-time.test.ts +1 |
 | store.isDeloadWeek | lib/store.ts | tests/audit-0.10-plan-ui.test.tsx, tests/deload-week.test.tsx, tests/matrix-invariants.test.ts +1 |
 | store.toggleDeloadWeek | lib/store.ts | tests/audit-0.10-live.test.tsx, tests/audit-0.10-plan-ui.test.tsx, tests/deload-plan.test.ts +7 |
 | store.isPaused | lib/store.ts | tests/matrix-invariants.test.ts, tests/pause.test.tsx |
@@ -1722,7 +1723,6 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | store.cycleBand | lib/store.ts | tests/invariants.test.ts, tests/matrix-invariants.test.ts, tests/owner-0510c.test.tsx +1 |
 | store.deleteBand | lib/store.ts | tests/invariants.test.ts, tests/matrix-invariants.test.ts |
 | store.setTimerState | lib/store.ts | tests/audit-0.10-tst.test.ts, tests/audit-persist.test.ts, tests/matrix-invariants.test.ts +3 |
-| store.clampName | lib/store.ts | tests/matrix-invariants.test.ts, tests/matrix-logic.test.tsx |
 | store.cleanPlanName | lib/store.ts | tests/audit-0.10-plan.test.ts |
 | store.planDays | lib/store.ts | tests/audit-0.10-plan.test.ts |
 | store.normPlanHistory | lib/store.ts | tests/audit-0.10-plan.test.ts |

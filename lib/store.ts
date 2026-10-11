@@ -1,14 +1,39 @@
+/*
+ * Fasada magazynu stanu aplikacji. Podział lib/store.ts na moduły według dziedzin (decyzja właściciela 11.10.2026): zmiana w jednej
+ * dziedzinie dotyka jednego modułu w lib/state/, a publiczne API zostaje tutaj bez zmian — `import * as store from '@/lib/store'` i importy
+ * nazwane działają jak dawniej. Fasada tylko przepisuje nazwy (właściwości danych, nie gettery — jest.spyOn(store, …) w testach działa).
+ * Mapa modułów (warstwy od dołu; moduł importuje tylko moduły z niższych warstw — bez cykli):
+ *   util, time (czyste funkcje) → db (plik bazy) → core (stan w pamięci, zapis, subskrypcje) → effort, sets, setvals (seria i ćwiczenie)
+ *   → places, history, bands, groups, pause → weekplan, bodymass, templates, exercises → start, live, swap, finish (trening)
+ *   → migrate-records, migrate-catalog, migrate (wczytanie i import danych) → settings, boot (start aplikacji, import, reset).
+ * Nowa funkcja publiczna: w module dziedziny (export) i jej nazwa w odpowiedniej liście niżej.
+ */
 import { deloadSets } from '@/lib/deload-sets';
 import * as SQLite from 'expo-sqlite';
-import * as FileSystem from 'expo-file-system/legacy';
 import { useSyncExternalStore } from 'react';
-import { t, t as tr, tIn, applyLang, detectLang, locale, fold, isLang, lang, upper, collator, deviceUnit } from './i18n';
+import { t, t as tr, tIn, applyLang, detectLang, fold, isLang, lang, upper, collator, deviceUnit } from './i18n';
 import { applyUnit, wu, wOut, wIn, KG_PER_LB, fmtW, fmtNum, snapLegacyLb } from './units';
 import { applyTheme } from './theme';
-import { seedState, uid, base, defaultModules, defaultSettings, metricFor, loadModeFor, loadMult, blankTimer, musclesFor, hasTime, hasReps, hasWeight, hasDistance, METRICS, DEFAULT_REST, GROUPS, LIB, SCHEMA_VERSION, LOCAL_OWNER, MODULES, SET_KINDS, SINGLE_IMPLEMENT, equipFields, libExercise, LIB_EXTRA_REVS, LIB_EXTRA_REV, LIB_MUSCLE_FIXES, LIB_FIELD_FIXES, LIB_RENAMED, LIB_MERGED, LIB_RETIRED, libExtraRevOf, LIB_BASE_NAMES_V1, LOAD_SOURCE_BY_EQUIPMENT, IMPLS, own, type Impl, type SetKind, type Base, type State, type Workout, type WSet, type WExercise, type Exercise, type Template, type TemplateItem, type TemplateAlt, type TRow, type Morning, type Location, type PlanSegment, LIB_KEYS, LIB_DISPLAY_NAME, catalogKey, libKeyFromFields, libKeyCandidates, BODY_MASS_MAX, isNiche, LIB_BASE_NAMES, BODY_MASS_LOG_MAX, type BodyMassEntry, type LoadMode } from './seed';
+import { seedState, uid, base, defaultModules, defaultSettings, metricFor, loadModeFor, loadMult, blankTimer, musclesFor, hasTime, hasReps, hasWeight, hasDistance, METRICS, DEFAULT_REST, GROUPS, LIB, SCHEMA_VERSION, LOCAL_OWNER, MODULES, SET_KINDS, SINGLE_IMPLEMENT, equipFields, libExercise, LIB_EXTRA_REVS, LIB_EXTRA_REV, LIB_MUSCLE_FIXES, LIB_FIELD_FIXES, LIB_RENAMED, LIB_MERGED, LIB_RETIRED, libExtraRevOf, LIB_BASE_NAMES_V1, LOAD_SOURCE_BY_EQUIPMENT, IMPLS, own, type Impl, type SetKind, type Base, type State, type Workout, type WSet, type WExercise, type Exercise, type Template, type TemplateItem, type TemplateAlt, type TRow, type Location, type PlanSegment, LIB_KEYS, LIB_DISPLAY_NAME, catalogKey, libKeyCandidates, BODY_MASS_MAX, isNiche, BODY_MASS_LOG_MAX, type BodyMassEntry, type LoadMode } from './seed';
 import { equipById, loadsFor, implAt, implsAt, blankLoad, availability, fillGym, GYM_FILL, fillOpts, OPT_FILL, fillEquip2, EQUIP_FILL2 } from './equipment';
 import { sanitizeLoadSpec, nextHeavier, hasLoadShown } from './loads';
 import { CATALOG, CATALOG_REV, CABLES } from './catalog.generated';
+import * as utilMod from './state/util';
+import * as timeMod from './state/time';
+import * as dbMod from './state/db';
+import { openDb } from './state/db';
+import { parseNum, kg2, arr, idOf, isObj, intIn, tsOf } from './state/util';
+import { realDay, DATE_KEY } from './state/time';
+
+export const { NAME_MAX, REPS_MAX, REST_MAX, clampName } = utilMod;
+export const {
+  localDateTs, fmtSec, fmtDist, reps, fmtDur, fmtDayKey, fmtDate, fmtTime, localISODate, tzOffsetAt, cleanTz, wallTs, fromWallTs, workoutDay,
+  mondayKey
+} = timeMod;
+export const { dbDirectory, copyKv } = dbMod;
+export type { KvDb } from './state/db';
+export type { WExercise } from './seed';
+
 
 /*
  * Trwałość: cały stan aplikacji trzymany jako dokument JSON w SQLite (tabela kv).
@@ -48,53 +73,6 @@ function setDb(next: SQLite.SQLiteDatabase | null) { db = next; }
 /** Numer zapisu nie mniejszy niż `n` (start: numery z „state”, „live” i „cfg”). */
 function seqAtLeast(n: number) { persistSeq = Math.max(persistSeq, n); }
 function setRecovery(r: { key: string; at: number } | null) { recovery = r; }
-
-/** Runda 75 (audyt T14): baza poza katalogiem Dokumenty. Dokumenty są widoczne w Plikach (kopie automatyczne, T-012), a bazy w toku
- * nie wolno dać do usunięcia ani podmiany. Library/SQLite jest prywatne dla aplikacji i wchodzi do kopii telefonu. Bez ścieżki
- * domyślnej (web, testy) — baza zostaje tam, gdzie chce expo-sqlite. */
-export function dbDirectory(def: string | null | undefined = SQLite.defaultDatabaseDirectory): string | undefined {
-  return def && /\/Documents\/SQLite\/?$/.test(def) ? def.replace(/\/Documents\/SQLite\/?$/, '/Library/SQLite') : undefined;
-}
-/** Minimalny interfejs bazy do przeniesienia wierszy (testowalny bez natywnego SQLite). */
-export type KvDb = { getFirstAsync<T>(q: string, ...p: unknown[]): Promise<T | null>; getAllAsync<T>(q: string, ...p: unknown[]): Promise<T[]>; runAsync(q: string, ...p: unknown[]): Promise<unknown>; withTransactionAsync(f: () => Promise<void>): Promise<void>; closeAsync(): Promise<void> };
-/** Przenosi wiersze kv ze starej bazy (Dokumenty, wersje sprzed rundy 75) do nowej — w jednej transakcji; stara baza kasowana dopiero
- * po udanym zapisie. Przez SQLite, nie przez expo-file-system: ten pozwala pisać tylko do Dokumentów, Caches i Application Support
- * (audyt T14b). Przerwanie w dowolnym momencie nie gubi danych: bez zatwierdzonej transakcji stara baza zostaje i przeniesienie
- * powtarza się przy następnym starcie; po zatwierdzonej — nowa ma już „state” i stara jest tylko sprzątana. Zwraca liczbę wierszy. */
-export async function copyKv(old: KvDb, next: KvDb): Promise<number> {
-  const t = await old.getFirstAsync<{ name: string }>("SELECT name FROM sqlite_master WHERE type = 'table' AND name = 'kv'");
-  const rows = t ? await old.getAllAsync<{ k: string; v: string }>('SELECT k, v FROM kv') : [];
-  if (rows.length) await next.withTransactionAsync(async () => { for (const r of rows) await next.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', r.k, r.v); });
-  return rows.length;
-}
-async function openDb(): Promise<SQLite.SQLiteDatabase> {
-  const def: string | null | undefined = SQLite.defaultDatabaseDirectory; const dir = dbDirectory(def);
-  if (!dir) return SQLite.openDatabaseAsync('trening.db');
-  const KV = 'CREATE TABLE IF NOT EXISTS kv (k TEXT PRIMARY KEY, v TEXT NOT NULL)';
-  let next: SQLite.SQLiteDatabase | null = null; let hasState = false;
-  try { next = await SQLite.openDatabaseAsync('trening.db', undefined, dir); await next.execAsync(KV); hasState = !!(await next.getFirstAsync('SELECT k FROM kv WHERE k = ?', 'state')); }
-  catch (e) { /* nowa baza nieczytelna: stara w Dokumentach tylko wtedy, gdy naprawdę ma dane (jeszcze nieprzeniesione) — inaczej błąd startu
-               z ponowieniem, a nie pusta aplikacja nad prawdziwymi danymi (audyt T14c) */
-    try { await next?.closeAsync(); } catch {}
-    const old = await SQLite.openDatabaseAsync('trening.db'); let ok = false;
-    try { ok = !!(await old.getFirstAsync("SELECT name FROM sqlite_master WHERE type = 'table' AND name = 'kv'")) && !!(await old.getFirstAsync('SELECT k FROM kv WHERE k = ?', 'state')); } catch {}
-    if (ok) return old;
-    await old.closeAsync().catch(() => {}); throw e;
-  }
-  if (hasState) return next;
-  /* pierwszy start w nowym miejscu: przeniesienie ze starej bazy (albo nic — nowa instalacja) */
-  const old = await SQLite.openDatabaseAsync('trening.db');
-  try { await copyKv(old, next); }
-  catch { await next.closeAsync().catch(() => {}); return old; /* przeniesienie się nie udało — dane zostają w starej bazie, ponowienie przy następnym starcie */ }
-  await old.closeAsync().catch(() => {}); /* błąd zamknięcia nie cofa udanego przeniesienia */
-  void cleanupLegacy(def!);
-  return next;
-}
-/** Sprząta starą bazę i pusty katalog Dokumenty/SQLite (widoczny w Plikach). Tylko po przeniesieniu; błędy bez znaczenia. */
-async function cleanupLegacy(def: string) {
-  try { await SQLite.deleteDatabaseAsync('trening.db'); } catch {}
-  try { const uri = 'file://' + def.replace(/\/$/, ''); const left = await FileSystem.readDirectoryAsync(uri); if (left.every(f => /^trening\.db-(journal|wal|shm)$/.test(f))) await FileSystem.deleteAsync(uri, { idempotent: true }); /* tylko resztki dziennika — bez samej bazy */ } catch {}
-}
 
 export async function init(): Promise<void> {
   if (S) return;
@@ -150,9 +128,6 @@ export async function init(): Promise<void> {
 
 /** Przenosi język i jednostkę z ustawień do warstwy wyświetlania. Wołane po starcie, imporcie i zmianie ustawień. */
 export function applyPrefs() { if (!S) return; applyLang(S.settings.language); applyUnit(S.settings.unit); applyTheme(S.settings.theme); }
-
-const isObj = (x: unknown): x is Record<string, any> => !!x && typeof x === 'object' && !Array.isArray(x);
-const arr = (x: unknown): any[] => Array.isArray(x) ? x.filter(isObj) : [];
 const LIB_NAMES = LIB_BASE_NAMES_V1; /* audyt 04.10 (LOW): reguła danych sprzed schematu 10 tylko dla pierwszych 125 nazw (pierwsza wersja — także później scalone i przemianowane) — własne ćwiczenie „Svend Press” z web 0.3 nie staje się biblioteką */
 
 /** Pola Settings znane tej wersji — pola domyślne plus opcjonalne (nowe pole opcjonalne dopisz tutaj, inaczej jego zła wartość z importu
@@ -163,18 +138,9 @@ const MOVED_SETTINGS = new Set(['bodyMass']);
 const PROTO_KEYS = new Set(['__proto__', 'constructor', 'prototype']);
 /** Ustawienia usunięte w schemacie 13 (runda 75, Q-001: masa ciała poza obliczeniami) — w danych sprzed 13 odpadają jak dotąd. */
 const LEGACY_SETTINGS_13 = new Set(['bodyWeightKg']);
-/** Runda 51: liczba z importu — także z tekstu (przecinek dziesiętny); null dla nieskończoności, NaN, obiektów i absurdalnych rzędów wielkości. */
-function parseNum(v: unknown): number | null { const n = typeof v === 'number' ? v : typeof v === 'string' && v.trim() !== '' ? Number(v.trim().replace(/^(-?\d*),(\d+)$/, '$1.$2')) : NaN; return Number.isFinite(n) && Math.abs(n) <= 1e7 ? n : null; }
-/** Runda 51: identyfikator jako tekst (liczbowe id z ręcznie edytowanych backupów), inaczej null. */
-const idOf = (v: unknown): string | null => typeof v === 'string' && v ? v : typeof v === 'number' && Number.isFinite(v) ? String(v) : null;
-/** Runda 51: znacznik czasu w zakresie Date (inaczej „Invalid Date”); tekst daty też. */
-const tsOf = (v: unknown): number | null => { const x = typeof v === 'string' ? v.trim() : v; const n = typeof x === 'number' ? x : typeof x !== 'string' || !x ? NaN : /^-?\d+(\.\d+)?$/.test(x) ? Number(x) /* runda 52: liczba tekstem */ : /^\d{4}-\d{2}-\d{2}$/.test(x) ? localDateTs(x) /* sama data: lokalna północ, nie UTC */ : Date.parse(x); return Number.isFinite(n) && Math.abs(n) <= 8.64e15 ? n : null; };
-const intIn = (v: unknown, min: number, max: number): number | null => { const n = parseNum(v); return n == null || Math.floor(n) < min ? null : Math.min(max, Math.floor(n)); };
 /** Runda 55: wartości zapisane przez starą wersję z funtów przyciągamy tylko w danych sprzed schematu 11 — nowsze kg (np. 45,359237) zostają co do cyfry. */
 let legacyLb = false;
 function setLegacyLb(v: boolean) { legacyLb = v; }
-/** Runda 60: kg w danych na siatce 0,01 — jak wpis w polu (wIn) i wyświetlanie; 100,006 z importu nie daje „rekordu” nad wpisanym 100,01. */
-const kg2 = (v: number) => Math.sign(v) * Math.round(Math.abs(v) * 100) / 100 + 0; // runda 61: połówki od zera jak units.round (asysta lustrzana)
 const snapL = (v: unknown) => legacyLb ? snapLegacyLb(v) : v;
 /** Runda 50: nieujemna liczba z importu (także z tekstu, przecinek dziesiętny) albo ''. */
 const posNum = (v: unknown): number | '' => { const n = parseNum(v); return n == null ? '' : Math.max(0, n); }; // runda 57: bez zaokrąglania (waga, sen, asysta)
@@ -724,8 +690,6 @@ export const loadFieldValue = (ex: Exercise | undefined, s: Pick<WSet, 'weight' 
 export function writeLoad(ex: Exercise | undefined, s: Pick<WSet, 'weight' | 'addKg'>, kg: number | '') {
   if (ex && isBW(ex)) { s.addKg = kg; s.weight = ''; } else { s.weight = kg === '' ? '' : Math.max(0, kg); s.addKg = ''; } /* runda 54: ciężar nieujemny */
 }
-/** Data RRRR-MM-DD jako lokalna północ (Date.parse traktuje ją jako UTC). */
-export function localDateTs(iso: string): number { const m = /^(\d{4})-(\d{2})-(\d{2})/.exec(iso ?? ''); return m ? new Date(+m[1], +m[2] - 1, +m[3]).getTime() : NaN; }
 /** Obciążenie efektywne: dla ćwiczeń z masą ciała tylko ±kg (dociążenie; asysta = 0), dla reszty ciężar.
  * Runda 75 (Q-001, decyzja 02.10.2026): masa ciała nie wchodzi do żadnych obliczeń — rekord to „moja masa ciała” albo „masa ciała + 10 kg”. */
 export function effectiveLoad(ex: Exercise, s: Pick<WSet, 'weight' | 'addKg'>): number { return Math.max(0, setLoad(ex, s)); }
@@ -769,47 +733,6 @@ export const loadLabelShort = (ex: Exercise, impl?: Impl | null) => isBW(ex) ? `
 export const loadLabel = (ex: Exercise, impl?: Impl | null) => isBW(ex) ? `±${wu()}` : perSide(impl) ? t('{u}/stronę', { u: wu() }) : (ex.loadMode === 'per_dumbbell' ? t('{u}/hantel', { u: wu() }) : ex.loadMode === 'unilateral' ? t('{u}/strona', { u: wu() }) : wu());
 /** Domyślna przerwa dla ćwiczenia: zapamiętana w ćwiczeniu albo globalna. */
 export const restFor = (ex: Exercise | undefined, warmup = false): number => { const s = getState().settings; const def = typeof s.defaultRest === 'number' && s.defaultRest >= 0 ? s.defaultRest : 90; if (!ex) return def; if (warmup && ex.restWarmupSec != null) return ex.restWarmupSec; return ex.restSec ?? def; };
-export const fmtSec = (sec: number) => { sec = Math.max(0, Math.round(sec)); if (sec >= 3600) return fmtDur(sec); /* runda 12: godzina i więcej jak czas sesji */ const m = Math.floor(sec / 60), r = sec % 60; return m ? `${m}:${String(r).padStart(2, '0')}` : t('{n} s', { n: r }); /* A11-17: jednostka przez t() (uk „с”, el „δευτ.”, hu „mp”, tr „sn”) */ };
-export const fmtDist = (m: number) => m >= 1000 ? t('{n} km', { n: fmtNum(m / 1000, 2) }) : t('{n} m', { n: Math.round(m) }); /* A11-17 */
-/** Zakres powtórzeń do wyświetlenia: „max”, „8”, „8–10”, a przy braku lub odwróconym „do” — „8+”. */
-export const reps = (min: number | null, max: number | null) => min == null ? t('max') /* A11-17 */ : (max == null || max < min ? `${min}+` : min === max ? `${min}` : `${min}–${max}`);
-/** Czas „m:ss”, od godziny „h:mm:ss” (wcześniej 95:00 zamiast 1:35:00). */
-export const fmtDur = (sec: number) => { sec = Math.max(0, Math.round(sec)); const h = Math.floor(sec / 3600), m = Math.floor((sec % 3600) / 60), r = sec % 60; return h ? `${h}:${String(m).padStart(2, '0')}:${String(r).padStart(2, '0')}` : `${m}:${String(r).padStart(2, '0')}`; };
-/** H3 (audyt 0.10 UI-13): dzień „RRRR-MM-DD” w tym samym formacie co fmtDate („pon., 12 paź”; rok, gdy inny niż bieżący) — panel dnia, podpowiedź deload, „Dziś”, okna planu. */
-export const fmtDayKey = (k: string) => { const ts = localDateTs(k); return Number.isFinite(ts) ? fmtDate(ts + 12 * 3600e3) : k; };
-/** Data do list. Runda 14: rok, gdy nie bieżący — sesje sprzed roku nie wyglądają jak tegoroczne. */
-export const fmtDate = (ts: number) => { const d = new Date(ts); return d.toLocaleDateString(locale(), { weekday: 'short', day: 'numeric', month: 'short', ...(d.getFullYear() !== new Date().getFullYear() ? { year: 'numeric' as const } : {}) }); };
-export const fmtTime = (ts: number) => new Date(ts).toLocaleTimeString(locale(), { hour: '2-digit', minute: '2-digit' });
-/** Dzisiejsza data w strefie telefonu (RRRR-MM-DD). toISOString() dawało datę UTC — w Polsce po północy „wczoraj”. */
-export const localISODate = (d: Date = new Date()) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
-/*
- * Audyt 0.10 J3 (DAT-07, decyzja wg zasady właściciela z 08.10.2026 20:20 — wariant B): dzień i tydzień treningu liczone w strefie czasowej, w której
- * trening się zaczął. Trening z niedzieli 23:30 w Warszawie zostaje niedzielnym także po przylocie do Auckland (wcześniej: poniedziałek, a niedziela
- * „opuszczona”). Workout.tzOffsetMin — minuty na wschód od UTC przy starcie (zapisywane przy starcie treningu i treningu wstecz); brak pola (dane
- * sprzed zmiany) = strefa bieżąca, czyli dokładnie jak dotąd. Zmiana czasu (DST) w tej samej strefie nie zmienia dnia (pole = przesunięcie z chwili startu).
- * wallTs zwraca znacznik, który w BIEŻĄCEJ strefie telefonu ma tę samą datę i godzinę na zegarze, co trening w strefie startu — dzięki temu
- * wszystkie funkcje dnia/tygodnia i formatowania (dayKeyOf, mondayKey, fmtDate, fmtTime) działają bez zmian, dostając wallTs zamiast startedAt.
- */
-const TZ_MAX_MIN = 14 * 60; /* najdalsze strefy: UTC−12 … UTC+14 */
-/** Przesunięcie strefy telefonu w chwili `ts` (minuty na wschód od UTC). */
-export const tzOffsetAt = (ts: number = Date.now()) => -new Date(ts).getTimezoneOffset() || 0;
-/** Poprawne przesunięcie strefy z danych (import) albo undefined. */
-export const cleanTz = (v: unknown): number | undefined => { const n = typeof v === 'number' ? v : typeof v === 'string' && v.trim() !== '' ? Number(v) : NaN; return Number.isFinite(n) && Math.abs(n) <= TZ_MAX_MIN ? Math.round(n) + 0 : undefined; };
-/** Czas na zegarze strefy startu treningu jako znacznik w strefie bieżącej (patrz wyżej); `ts` — inna chwila tego treningu (np. koniec). */
-export function wallTs(w: { startedAt: number; tzOffsetMin?: number }, ts: number = w.startedAt): number {
-  const tz = w.tzOffsetMin; if (typeof tz !== 'number' || !Number.isFinite(ts)) return ts;
-  const u = new Date(ts + tz * 60000); const d = new Date(2000, 0, 1); d.setFullYear(u.getUTCFullYear(), u.getUTCMonth(), u.getUTCDate()); d.setHours(u.getUTCHours(), u.getUTCMinutes(), u.getUTCSeconds(), u.getUTCMilliseconds());
-  return d.getTime();
-}
-/** Odwrotność wallTs: data i godzina wpisane na zegarze strefy `tz` (podane jako znacznik w strefie bieżącej) → prawdziwa chwila. */
-export function fromWallTs(wall: number, tz: number | undefined): number {
-  if (typeof tz !== 'number') return wall; const d = new Date(wall);
-  return Date.UTC(d.getFullYear(), d.getMonth(), d.getDate(), d.getHours(), d.getMinutes(), d.getSeconds(), d.getMilliseconds()) - tz * 60000;
-}
-/** Dzień treningu RRRR-MM-DD w strefie startu (J3). */
-export const workoutDay = (w: { startedAt: number; tzOffsetMin?: number }) => localISODate(new Date(wallTs(w)));
-/** Istniejący dzień kalendarza RRRR-MM-DD (bez „2026-02-30”). */
-const realDay = (k: string) => { const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(k); if (!m) return false; const d = new Date(+m[1], +m[2] - 1, +m[3]); return d.getFullYear() === +m[1] && d.getMonth() === +m[2] - 1 && d.getDate() === +m[3]; };
 /*
  * Masa ciała z datą (fala 2 audytu 0.10, decyzja: wdrożyć; E1 wariant B). e1RM ćwiczenia z masą ciała w dawnej sesji liczy się z masy ciała z TAMTEGO dnia:
  * ostatni pomiar nie późniejszy niż dzień treningu (w strefie startu — J3). Sesja sprzed pierwszego pomiaru — bez masy ciała, więc bez e1RM w tych
@@ -1659,9 +1582,6 @@ export function finishWorkout(at?: number): Workout | null {
   st.workouts.push(w); st.active = null; st.userTouched = true; purgeOrphans(); save(w); flush();
   return w;
 }
-/* ---------- tydzień deload (pakiet C, 08.10.2026): etykieta tygodnia ustawiana przez użytkownika — bez automatycznego oznaczania z danych (brak walidacji,
- * docs/research/22); od decyzji A+B (08.10.2026) podpowiedź „zwykle co 4–6 tyg.” i mniej serii przy starcie — lib/deload.ts ---------- */
-export const mondayKey = (ts: number) => { const d = new Date(ts); return localISODate(new Date(d.getFullYear(), d.getMonth(), d.getDate() - (d.getDay() + 6) % 7)); };
 /** Czy tydzień zawierający `ts` jest oznaczony jako deload. */
 export const isDeloadWeek = (ts: number) => !!S?.deloadWeeks?.includes(mondayKey(ts));
 /** Oznaczenie / zdjęcie oznaczenia tygodnia zawierającego `ts`. */
@@ -1816,16 +1736,6 @@ export function deleteBand(id: string) {
 
 /** Trwały stan timera — zapisywany natychmiast (bez debounce), bo chodzi o przeżycie zabicia aplikacji. */
 export function setTimerState(patch: Partial<State['timer']>) { const st = getState(); st.timer = { ...(st.timer ?? blankTimer()), ...patch }; rev++; emit(); persistNow().catch(() => {}); }
-
-/* ---------- misc ---------- */
-/** Runda 39: wspólny limit długości nazw (pola edycji mają maxLength = NAME_MAX). */
-export const NAME_MAX = 80;
-/** UI-16 (audyt 0.10): jedna górna granica powtórzeń serii — trening, szablon, edycja historii i wczytanie (fixRows). */
-export const REPS_MAX = 1000;
-/** Najdłuższa przerwa ustawiana ręcznie (s) — ćwiczenie, pozycja szablonu, zamiennik, trening. */
-export const REST_MAX = 1800;
-/** Runda 40: przycięcie do n jednostek UTF-16 bez rozcinania emoji (pary zastępczej) i bez spacji na końcu. */
-export const clampName = (s: string, n = NAME_MAX) => { let r = s.slice(0, Math.max(0, n)); if (/[\uD800-\uDBFF]$/.test(r)) r = r.slice(0, -1); return r.trimEnd(); };
 /* ---------- plan tygodnia: liczby i porządkowanie danych w jednym miejscu (audyt 0.10: A1, B3, B4 — migrate i lib/plan.ts) ---------- */
 /** Nazwa planu (pole „Nazwa planu”, zapisane plany). */
 export const PLAN_NAME_MAX = 40;
@@ -1837,7 +1747,6 @@ export const PLAN_HISTORY_MAX = 520;
 export const DELOAD_WEEKS_MAX = 520;
 /** Audyt 0.10 B4 / DAT-06: nazwa planu — spacje złączone, bez spacji na brzegach, ≤ PLAN_NAME_MAX bez rozcinania emoji; idempotentne. */
 export const cleanPlanName = (n: string) => clampName(n.replace(/\s+/g, ' ').trim(), PLAN_NAME_MAX);
-const DATE_KEY = /^\d{4}-\d{2}-\d{2}$/;
 /** 7 dni planu (id tekstem albo null) z dowolnej wartości. */
 export const planDays = (d: unknown): (string | null)[] => Array.from({ length: 7 }, (_, i) => (Array.isArray(d) && typeof d[i] === 'string' && d[i] ? d[i] : null));
 export const sameDays = (a: readonly (string | null)[], b: readonly (string | null)[]) => a.length === b.length && a.every((x, i) => x === b[i]);
@@ -1934,7 +1843,6 @@ export function deleteTemplate(id: string) { const st = getState(); st.templates
 export function setModule(m: keyof State['settings']['modules'], on: boolean) { const s = getState().settings; s.modules[m] = m === 'training' ? true : on; save(); }
 /** Reset: nowe dane startowe w języku, który będzie widoczny po resecie (ustawienie wraca na „auto” = język telefonu). */
 export function resetAll() { const s = seedState(detectLang()); s.settings.unit = deviceUnit(); /* jak świeża instalacja (UX-12) */ replaceState(s); clearRecovery(); flush(); }
-export type { WExercise };
 /** UX-16 A (audyt 0.10): „Ukryj” zachętę do planu tygodnia (karta „Dziś” i Kalendarz); `false` — pokaż znowu. Stan ekranu — bez userTouched. */
 export function setPlanHintHidden(on: boolean) { const st = getState(); if (on) st.planHintHidden = true; else delete st.planHintHidden; save(); }
 /** Tylko dla testów: czy store jest zainicjowany. */
