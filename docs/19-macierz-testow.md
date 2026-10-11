@@ -1524,6 +1524,13 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | store.latestBodyMass | lib/state/bodymass.ts | tests/audit-0.10-data.test.ts |
 | store.addBodyMass | lib/state/bodymass.ts | tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-data.test.ts, tests/backlog-0.10.1-dane.test.ts +3 |
 | store.removeBodyMass | lib/state/bodymass.ts | tests/audit-0.10-data.test.ts, tests/matrix-invariants.test.ts |
+| store.init | lib/state/boot.ts | tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-tst-ui.test.tsx, tests/audit-0.10-tst.test.ts +15 |
+| store.sanitizeDraftObj | lib/state/boot.ts | tests/backlog-0.10.1-dane-lib.test.ts |
+| store.readRawData | lib/state/boot.ts | tests/audit-0.10-plan.test.ts |
+| store.readRecovery | lib/state/boot.ts | tests/audit-io-more.test.tsx, tests/logic.test.ts, tests/regress.test.tsx |
+| store.onStateReplaced | lib/state/boot.ts | tests/audit011b.test.tsx |
+| store.replaceState | lib/state/boot.ts | tests/audit-0.10-data.test.ts, tests/audit-0.10-plan.test.ts, tests/audit-close-d.test.ts +17 |
+| store.resetAll | lib/state/boot.ts | tests/audit-journey-c.test.tsx, tests/audit011b.test.tsx, tests/matrix-data-fuzz.test.ts +3 |
 | store.applyCfg | lib/state/core.ts | tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-tst.test.ts, tests/helpers.ts |
 | store.flush | lib/state/core.ts | tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-data.test.ts, tests/audit-0.10-gen-ui.test.tsx +124 |
 | store.registerDraftStore | lib/state/core.ts | tests/backlog-0.10.1-dane-lib.test.ts |
@@ -1615,6 +1622,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | store.roundRest | lib/state/live.ts | tests/audit-0.10-live-logic.test.ts, tests/audit-r72-d.test.ts, tests/store-rest.test.ts |
 | store.toggleDone | lib/state/live.ts | tests/a11y-routes.ts, tests/audit-0.10-data.test.ts, tests/audit-0.10-lang-ui.test.tsx +63 |
 | store.focusSet | lib/state/live.ts | tests/audit-0.10-live-logic.test.ts, tests/audit-0.10-live.test.tsx, tests/regress.test.tsx +2 |
+| store.migrate | lib/state/migrate.ts | tests/audit-0.10-data.test.ts, tests/audit-0.10-gen.test.ts, tests/audit-0.10-live-logic.test.ts +42 |
 | store.isPaused | lib/state/pause.ts | tests/matrix-invariants.test.ts, tests/pause.test.tsx |
 | store.cleanPauses | lib/state/pause.ts | tests/pause.test.tsx, tests/regress.test.tsx |
 | store.pauseWorkout | lib/state/pause.ts | tests/matrix-invariants.test.ts, tests/pause.test.tsx |
@@ -1662,6 +1670,8 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | store.setHasValue | lib/state/sets.ts | tests/matrix-dim-metrics.test.tsx, tests/matrix-logic.test.tsx |
 | store.volume | lib/state/sets.ts | tests/audit-0.10-stats.test.ts, tests/audit-close-d.test.ts, tests/audit-k1-data.test.ts +21 |
 | store.usesBand | lib/state/sets.ts | tests/band-exercises.test.tsx, tests/matrix-dim-catalog.test.tsx, tests/matrix-invariants.test.ts +1 |
+| store.applyPrefs | lib/state/settings.ts | tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-plan.test.ts, tests/audit-0.10-stats-ui.test.tsx +16 |
+| store.setModule | lib/state/settings.ts | tests/matrix-logic.test.tsx |
 | store.assistLost | lib/state/setvals.ts | tests/swap-logic.test.ts |
 | store.prefillSets | lib/state/start.ts | tests/audit-0.10-tst.test.ts |
 | store.startableItem | lib/state/start.ts | tests/audit-0.10-live-logic.test.ts |
@@ -1744,16 +1754,6 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | stats.weeklySetsByMuscle | lib/stats.ts | tests/logic.test.ts, tests/matrix-dim-catalog.test.tsx, tests/matrix-dim-metrics.test.tsx +5 |
 | stats.setsByMuscle | lib/stats.ts | tests/audit-0.10-stats.test.ts, tests/muscle-map.test.tsx |
 | stats.weeklyVolumeByMuscle | lib/stats.ts | tests/matrix-dim-catalog.test.tsx, tests/matrix-dim-metrics.test.tsx, tests/matrix-time.test.ts +1 |
-| store.init | lib/store.ts | tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-tst-ui.test.tsx, tests/audit-0.10-tst.test.ts +15 |
-| store.applyPrefs | lib/store.ts | tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-plan.test.ts, tests/audit-0.10-stats-ui.test.tsx +16 |
-| store.migrate | lib/store.ts | tests/audit-0.10-data.test.ts, tests/audit-0.10-gen.test.ts, tests/audit-0.10-live-logic.test.ts +42 |
-| store.sanitizeDraftObj | lib/store.ts | tests/backlog-0.10.1-dane-lib.test.ts |
-| store.readRawData | lib/store.ts | tests/audit-0.10-plan.test.ts |
-| store.readRecovery | lib/store.ts | tests/audit-io-more.test.tsx, tests/logic.test.ts, tests/regress.test.tsx |
-| store.onStateReplaced | lib/store.ts | tests/audit011b.test.tsx |
-| store.replaceState | lib/store.ts | tests/audit-0.10-data.test.ts, tests/audit-0.10-plan.test.ts, tests/audit-close-d.test.ts +17 |
-| store.setModule | lib/store.ts | tests/matrix-logic.test.tsx |
-| store.resetAll | lib/store.ts | tests/audit-journey-c.test.tsx, tests/audit011b.test.tsx, tests/matrix-data-fuzz.test.ts +3 |
 | swap.swapCandidates | lib/swap.ts | tests/audit-0.10-stats.test.ts, tests/audit-0.10-tst.test.ts, tests/catalog-full.test.tsx +2 |
 | swap.sortOthers | lib/swap.ts | tests/catalog-full.test.tsx |
 | swap.implLabel | lib/swap.ts | tests/swap-top3.test.ts |
