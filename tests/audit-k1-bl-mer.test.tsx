@@ -284,7 +284,7 @@ describe('A11N-05: terminy we wskazówkach i nagłówek „Ustawienie”', () =>
 describe('MER2-09: dokumenty i komentarze zgodne z kodem', () => {
   const read = (f: string) => fs.readFileSync(path.join(root, f), 'utf8');
   test('docs/09: liczba ćwiczeń ze wskazówkami = dane (lib/cues/data.json)', () => {
-    const row = read('docs/09-plan-testow.md').split('\n').find(l => l.startsWith('| Wskazówki techniki, etap 1'))!;
+    const row = read('docs/09-archiwum-do-0.11.md').split('\n').find(l => l.startsWith('| Wskazówki techniki, etap 1'))!;
     expect(row).toContain(`data.json\`: ${Object.keys(CUE_DATA.exercises).length} ćwiczeń bazowych`);
   });
   test('lib/seed.ts: komentarz MUSCLE_SOURCES nie mówi „Na razie pusto”, gdy mapa ma wpisy', () => {

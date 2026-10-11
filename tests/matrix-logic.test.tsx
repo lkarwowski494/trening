@@ -733,7 +733,7 @@ describe('EKRAN /more/language', () => {
     await tap(screen.getByText(i18n.t('Jak w telefonie'))); await flushAll(10);
     expect(store.getState().settings.language).toBe('auto'); expect(i18n.lang()).toBe('pl');
     await store.flush(); expect(saved().settings.language).toBe('auto');
-  });
+  }, 60_000 + 5_000 * i18n.LANGS.length); /* czas rośnie z liczbą języków (35 przełączeń ≈ 23 s osobno, ~3× wolniej w pełnym verify) — 11.10.2026 */
   test('angielski: opis i „Phone setting”; trwająca przerwa — powiadomienie przeplanowane w nowym języku', async () => {
     await renderApp(); await act(async () => { store.startEmpty(); }); await act(async () => { await timer.start(90, null); });
     await go('/more/language'); await flushAll(10); global.__notifications.length = 0;
