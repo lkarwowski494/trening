@@ -69,3 +69,6 @@ backlog) → docs/15 (App Store, ceny) → docs/09 (dziennik testów; stare rund
   Kolejność wdrożenia wg docs/22: ekran główny i porządki → decyzje 4–7 → zmiana zakładek osobnym wydaniem. Pozostałe pytania P2–P8 — do przejścia.
 - 11.10.2026: **domena** — zgoda właściciela na zakup (niewielki wydatek poza Apple); rekomendacja agenta: `apps4brew.com` (najbardziej
   rozpoznawalna końcówka, 11,08 USD/rok w porkbun.com 11.10.2026); `.app` tylko jako opcjonalna ochrona marki. Zakup — właściciel (konto, płatność).
+- 11.10.2026: **strona internetowa (pkt 12) — A**: jedna prosta strona Apps4Brew na GitHub Pages (docs/): opis i zrzuty, link do App Store,
+  polityka prywatności, „Pomoc” (kontakt + FAQ), PL/EN; domena apps4brew.com podpinana po zakupie (właściciel — w przyszłym tygodniu).
+  [OTWARTE]: adres kontaktu wsparcia (nie e-mail prywatny w publicznym repo — np. skrzynka w domenie po zakupie). Odrzucone: B (inny hosting), C (minimum).
