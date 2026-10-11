@@ -9,11 +9,10 @@
  * Nowa funkcja publiczna: w module dziedziny (export) i jej nazwa w odpowiedniej liście niżej.
  */
 import { deloadSets } from '@/lib/deload-sets';
-import { useSyncExternalStore } from 'react';
-import { t, t as tr, tIn, applyLang, detectLang, fold, isLang, lang, collator, deviceUnit } from './i18n';
-import { applyUnit, fmtW, snapLegacyLb } from './units';
+import { t, tIn, applyLang, detectLang, fold, isLang, deviceUnit } from './i18n';
+import { applyUnit, snapLegacyLb } from './units';
 import { applyTheme } from './theme';
-import { seedState, uid, base, defaultModules, defaultSettings, metricFor, loadModeFor, loadMult, blankTimer, musclesFor, hasTime, hasReps, hasWeight, hasDistance, METRICS, DEFAULT_REST, GROUPS, LIB, SCHEMA_VERSION, LOCAL_OWNER, MODULES, SET_KINDS, SINGLE_IMPLEMENT, equipFields, libExercise, LIB_EXTRA_REVS, LIB_EXTRA_REV, LIB_MUSCLE_FIXES, LIB_FIELD_FIXES, LIB_RENAMED, LIB_MERGED, LIB_RETIRED, libExtraRevOf, LIB_BASE_NAMES_V1, LOAD_SOURCE_BY_EQUIPMENT, IMPLS, own, type Impl, type SetKind, type State, type Workout, type WSet, type WExercise, type Exercise, type Template, type TemplateItem, type TemplateAlt, type TRow, type Location, type PlanSegment, LIB_KEYS, LIB_DISPLAY_NAME, catalogKey, libKeyCandidates, BODY_MASS_MAX, isNiche, BODY_MASS_LOG_MAX, type BodyMassEntry, type LoadMode } from './seed';
+import { seedState, uid, base, defaultModules, defaultSettings, metricFor, loadModeFor, loadMult, blankTimer, musclesFor, hasTime, hasReps, hasWeight, hasDistance, METRICS, DEFAULT_REST, GROUPS, LIB, SCHEMA_VERSION, LOCAL_OWNER, MODULES, SET_KINDS, SINGLE_IMPLEMENT, equipFields, libExercise, LIB_EXTRA_REVS, LIB_EXTRA_REV, LIB_MUSCLE_FIXES, LIB_FIELD_FIXES, LIB_RENAMED, LIB_MERGED, LIB_RETIRED, libExtraRevOf, LIB_BASE_NAMES_V1, IMPLS, own, type Impl, type SetKind, type State, type Workout, type WSet, type WExercise, type Exercise, type Template, type TemplateItem, type TemplateAlt, type TRow, type Location, LIB_KEYS, LIB_DISPLAY_NAME, catalogKey, libKeyCandidates, BODY_MASS_MAX, BODY_MASS_LOG_MAX, type LoadMode } from './seed';
 import { equipById, implsAt, blankLoad, availability, fillGym, GYM_FILL, fillOpts, OPT_FILL, fillEquip2, EQUIP_FILL2 } from './equipment';
 import { sanitizeLoadSpec } from './loads';
 import { CATALOG, CATALOG_REV } from './catalog.generated';
@@ -29,17 +28,20 @@ import * as historyMod from './state/history';
 import * as bandsMod from './state/bands';
 import * as groupsMod from './state/groups';
 import * as pauseMod from './state/pause';
-import {
-  S, setDb, db, setNewerSchema, seqAtLeast, setS, setRecovery, recovery, setSavedDrafts, persistNow, bump, emit, rev, subscribe
-} from './state/core';
+import * as weekplanMod from './state/weekplan';
+import * as bodymassMod from './state/bodymass';
+import * as templatesMod from './state/templates';
+import * as exercisesMod from './state/exercises';
+import { S, setDb, db, setNewerSchema, seqAtLeast, setS, setRecovery, recovery, setSavedDrafts, persistNow, bump, emit } from './state/core';
 import { openDb } from './state/db';
 import { parseNum, kg2, arr, idOf, isObj, intIn, tsOf } from './state/util';
+import { cleanNote, cleanFolder, syncItem, rowsFor } from './state/templates';
 import { PRE_KEYS, blankSet, markPre, usedKeys, isEmpty, VAL_KEYS } from './state/setvals';
 import { setPauses, closePause } from './state/pause';
 import { realDay, DATE_KEY } from './state/time';
 import { isRoundSet } from './state/sets';
-import { restampUntouched } from './state/places';
 import { prevOfBlock } from './state/history';
+import { purgeOrphans } from './state/exercises';
 
 export const { NAME_MAX, REPS_MAX, REST_MAX, clampName } = utilMod;
 export const {
@@ -73,6 +75,19 @@ export const { cleanLevels, nextBandId, cycleBand, deleteBand } = bandsMod;
 export const { normalizeGroups, groupLabels, linkWithNext, unlink, moveItem, removeItem, blockRanges, moveBlockOf, moveInGroup } = groupsMod;
 export type { Grouped } from './state/groups';
 export const { pausedTotal, isPaused, workoutDurSec, cleanPauses, pauseWorkout, resumeWorkout } = pauseMod;
+export const {
+  isDeloadWeek, toggleDeloadWeek, PLAN_NAME_MAX, SAVED_PLANS_MAX, PLAN_HISTORY_MAX, DELOAD_WEEKS_MAX, cleanPlanName, planDays, sameDays,
+  normPlanHistory, cleanOverrides, appendPlanSegment, setPlanHintHidden
+} = weekplanMod;
+export const { bodyMassLog, bodyMassOn, bodyMassFor, latestBodyMass, addBodyMass, removeBodyMass } = bodymassMod;
+export const {
+  tplRows, tplWorkSets, tplAddRow, tplRemoveRow, tplCycleBand, tplSetRow, tplSetKind, newTemplate, dupTemplate, FOLDER_MAX, templateFolders,
+  templateGroups, archivedTemplates, TEMPLATE_NOTE_MAX, setTemplateNote, setTemplateFolder, setTemplateArchived, deleteTemplate
+} = templatesMod;
+export const {
+  useExercisesTick, newExercise, setEquipment, exerciseEdited, restoreExercise, exerciseInHistory, exerciseUsed, deleteExercise, visibleExercises,
+  exercisesInUse, inCoreList, libShowAll, setLibShowAll
+} = exercisesMod;
 export type { WExercise } from './seed';
 
 
@@ -513,40 +528,6 @@ export async function readRecovery(): Promise<string | null> { if (!db || !recov
 const stateReplacedHooks = new Set<() => void>();
 export function onStateReplaced(cb: () => void) { stateReplacedHooks.add(cb); }
 export function replaceState(next: State) { setS(migrate(next)); setSavedDrafts(null); stateReplacedHooks.forEach(h => h()); applyPrefs(); save(); }
-/** N3 / PERF-01: zakładka Ćwiczenia — odświeżenie tylko, gdy zmieni się to, co pokazuje lista (id, nazwa, grupa, sprzęt, tempo, guma, usunięcie);
- * podpis liczony raz na zmianę stanu (rev). Znak w notatce ćwiczenia, szablonie albo serii treningu nie przerysowuje ukrytej listy 854+ wierszy. */
-let exSig: { rev: number; s: State | null; v: string } = { rev: -1, s: null, v: '' };
-const exSnap = () => { if (exSig.rev !== rev || exSig.s !== S) exSig = { rev, s: S, v: lang() + "\u0003" + (S?.exercises ?? []).map(e => `${e.id}\u0001${e.name}\u0001${e.group}\u0001${e.equipment}\u0001${e.tempo ?? ''}\u0001${e.archived ? 1 : 0}${usesBand(e) ? 1 : 0}`).join('\u0002') }; return exSig.v; };
-export const useExercisesTick = () => useSyncExternalStore(subscribe, exSnap, exSnap);
-/*
- * Masa ciała z datą (fala 2 audytu 0.10, decyzja: wdrożyć; E1 wariant B). e1RM ćwiczenia z masą ciała w dawnej sesji liczy się z masy ciała z TAMTEGO dnia:
- * ostatni pomiar nie późniejszy niż dzień treningu (w strefie startu — J3). Sesja sprzed pierwszego pomiaru — bez masy ciała, więc bez e1RM w tych
- * ćwiczeniach (nie zgadujemy wstecz; pomiar można dopisać z wcześniejszą datą). Zmiana pomiaru przelicza rekordy (save → histRev).
- */
-export const bodyMassLog = (): readonly BodyMassEntry[] => S?.bodyMassLog ?? [];
-/** Masa ciała obowiązująca w dniu `day` (RRRR-MM-DD) albo undefined. Lista rosnąco — wyszukiwanie binarne. */
-export function bodyMassOn(day: string): number | undefined {
-  const l = bodyMassLog(); let lo = 0, hi = l.length; while (lo < hi) { const mid = (lo + hi) >> 1; if (l[mid].date <= day) lo = mid + 1; else hi = mid; }
-  return lo ? l[lo - 1].kg : undefined;
-}
-/** Masa ciała do obliczeń treningu `w` (dzień w strefie startu). */
-export const bodyMassFor = (w: { startedAt: number; tzOffsetMin?: number }) => bodyMassOn(workoutDay(w));
-/** Ostatni pomiar (Ustawienia) albo undefined. */
-export const latestBodyMass = (): BodyMassEntry | undefined => { const l = bodyMassLog(); return l[l.length - 1]; };
-/** Zapisuje pomiar (kg na siatce 0,01) z dniem `date` (domyślnie dziś); ten sam dzień — zastępuje. Zwraca błąd tekstem albo null. */
-export function addBodyMass(kg: number, date: string = localISODate()): string | null {
-  const st = getState(); const v = kg2(kg);
-  if (!realDay(date)) return t('Nieprawidłowa data. Wpisz RRRR-MM-DD, np. {d}.', { d: localISODate() });
-  if (date > localISODate()) return t('Data pomiaru nie może być w przyszłości.');
-  if (!(v > 0) || kg > BODY_MASS_MAX) return t('Masa ciała musi być większa od zera i nie większa niż {max}.', { max: fmtW(BODY_MASS_MAX) });
-  const log = (st.bodyMassLog ?? []).filter(x => x.date !== date); log.push({ date, kg: v }); log.sort((a, b) => (a.date < b.date ? -1 : a.date > b.date ? 1 : 0));
-  st.bodyMassLog = log.slice(-BODY_MASS_LOG_MAX); st.userTouched = true; save(); return null;
-}
-/** Usuwa pomiar z dnia `date` (ostatni — lista znika). */
-export function removeBodyMass(date: string) {
-  const st = getState(); const log = (st.bodyMassLog ?? []).filter(x => x.date !== date); if (log.length === (st.bodyMassLog ?? []).length) return;
-  if (log.length) st.bodyMassLog = log; else delete st.bodyMassLog; save();
-}
 /* ---------- workout actions ---------- */
 const newWorkout = (templateId: string | null, templateName: string, locPref?: string | null): Workout => { const st = getState(); const w: Workout = { ...base(st.ownerId), loggedBy: st.ownerId, sessionMode: 'solo', healthUUID: null, templateId, templateName, startedAt: Date.now(), finishedAt: null, note: '', exercises: [] }; w.tzOffsetMin = tzOffsetAt(w.startedAt); /* J3 */ const loc = startLocationId(locPref); if (loc) w.locationId = loc; return w; };
 /**
@@ -574,41 +555,6 @@ export function prefillSets(ex: Exercise, kinds: readonly SetKind[], prevAll: { 
     if (p && away && offListAt(ex, locationId, s.weight, pinned && impl ? impl : undefined)) { s.weight = ''; if (p.reps === s.reps) s.reps = ''; }
     return markPre(stripUnused(ex, s));
   });
-}
-/* ---------- szablon = nieaktywny trening (schemat 17, docs/17) ---------- */
-/** Wiersze serii pozycji: zapisane albo — dla danych sprzed 17 — `sets` zwykłych serii z ciężarem startowym i celem czasu. */
-export function tplRows(it: TemplateItem): TRow[] {
-  if (it.rows?.length) return it.rows;
-  const n = Math.max(1, Math.min(50, Math.floor(Number(it.sets) || 1)));
-  return Array.from({ length: n }, (_, k) => ({ id: `${it.id}:${k}`, kind: 'normal' as SetKind, reps: '' as const, weight: it.startWeight ?? '', durationSec: Number(it.targetSec) > 0 ? Number(it.targetSec) : '' as const, distanceM: '' as const }));
-}
-const isWork = (k: SetKind) => k === 'normal' || k === 'failure';
-/** Serie szablonu bez rozgrzewek — jedna reguła dla ekranu głównego, „Dodaj trening wstecz”, karty szablonu i listy Historii (scenariusz 06.10, krok 05b). */
-export const tplWorkSets = (tpl: { items: TemplateItem[] }) => tpl.items.reduce((a, i) => a + workCount(tplRows(i).map(r => r.kind)), 0); /* D3: jak w treningu */
-/** Wiersze pozycji, gdy rodzaje serii bloku wciąż się z nimi zgadzają (cofnięcie zamiany — „wartości jak przy starcie”, audyt 85364ad M2). */
-const rowsFor = (it: TemplateItem | undefined, kinds: readonly SetKind[]) => { if (!it) return undefined; const r = tplRows(it); return r.length === kinds.length && r.every((x, i) => x.kind === kinds[i]) ? r : undefined; };
-/** Liczba serii, ciężar startowy i cel czasu z wierszy (reszta kodu — zamiana, trening wstecz — czyta te pola). */
-function syncItem(it: TemplateItem) { if (!it.rows?.length) { delete it.rows; return; } it.sets = it.rows.length; const w = it.rows.find(r => isWork(r.kind)); it.startWeight = w ? w.weight : ''; it.targetSec = w && Number(w.durationSec) > 0 ? Number(w.durationSec) : ''; }
-function rowsOf(it: TemplateItem): TRow[] { if (!it.rows?.length) it.rows = tplRows(it).map(r => ({ ...r })); /* audyt 85364ad M1: id wyliczone zostają — pola nie montują się od nowa */ return it.rows; }
-const tplItem = (tpl: Template, itemId: string) => tpl.items.find(x => x.id === itemId);
-/** „+ seria / + rozgrzewka / + drop set” w szablonie — jak w treningu (addSet): rozgrzewka pusta przed roboczymi; seria — wartości ostatniej. */
-export function tplAddRow(tpl: Template, itemId: string, kind?: 'warmup' | 'drop') {
-  const it = tplItem(tpl, itemId); if (!it) return; const rows = rowsOf(it); if (rows.length >= 50) return;
-  if (kind === 'warmup') { const i = rows.findIndex(r => r.kind !== 'warmup'); rows.splice(i < 0 ? rows.length : i, 0, { id: uid(), kind: 'warmup', reps: '', weight: '', durationSec: '', distanceM: '' }); }
-  else { const l = rows[rows.length - 1]; rows.push({ ...(l ?? { reps: '', weight: '', durationSec: '', distanceM: '' }), id: uid(), kind: kind ?? (l?.kind === 'drop' ? 'drop' : 'normal') }); }
-  syncItem(it); save(tpl);
-}
-export function tplRemoveRow(tpl: Template, itemId: string, rowId?: string) {
-  const it = tplItem(tpl, itemId); if (!it) return; const rows = rowsOf(it); if (rows.length <= 1) return;
-  const i = rowId ? rows.findIndex(r => r.id === rowId) : rows.length - 1; if (i < 0) return; /* audyt 85364ad L4: tylko po id (id wyliczone zostają po zapisie — M1) */ rows.splice(i, 1); syncItem(it); save(tpl);
-}
-/** Guma wiersza szablonu — ten sam cykl co w treningu (poziomy z miejsca szablonu). */
-export function tplCycleBand(tpl: Template, itemId: string, rowId: string) { const it = tplItem(tpl, itemId); if (!it) return; const r = rowsOf(it).find(x => x.id === rowId); if (!r) return; const n = nextBandId(r.bandId ?? '', startLocationId(tpl.locationId)); if (n) r.bandId = n; else delete r.bandId; syncItem(it); save(tpl); }
-export function tplSetRow(tpl: Template, itemId: string, rowId: string, patch: Partial<Omit<TRow, 'id' | 'kind'>>) {
-  const it = tplItem(tpl, itemId); if (!it) return; const r = rowsOf(it).find(x => x.id === rowId); if (!r) return; Object.assign(r, patch); syncItem(it); save(tpl);
-}
-export function tplSetKind(tpl: Template, itemId: string, rowId: string, kind: SetKind) {
-  const it = tplItem(tpl, itemId); if (!it) return; const r = rowsOf(it).find(x => x.id === rowId); if (!r) return; r.kind = kind; syncItem(it); save(tpl);
 }
 /** Wczytanie/import: wiersze poprawne albo brak (pozycja wraca do `sets` + `startWeight`). */
 function fixRows(it: any) {
@@ -1016,13 +962,6 @@ export function finishWorkout(at?: number): Workout | null {
   st.workouts.push(w); st.active = null; st.userTouched = true; purgeOrphans(); save(w); flush();
   return w;
 }
-/** Czy tydzień zawierający `ts` jest oznaczony jako deload. */
-export const isDeloadWeek = (ts: number) => !!S?.deloadWeeks?.includes(mondayKey(ts));
-/** Oznaczenie / zdjęcie oznaczenia tygodnia zawierającego `ts`. */
-export function toggleDeloadWeek(ts: number) {
-  const st = getState(); const k = mondayKey(ts); const cur = st.deloadWeeks ?? [];
-  const next = cur.includes(k) ? cur.filter(x => x !== k) : [...cur, k].sort(); if (next.length) st.deloadWeeks = next; else delete st.deloadWeeks; st.userTouched = true; save();
-}
 export function cancelWorkout() { getState().active = null; purgeOrphans(); save(); flush(); }
 export function deleteWorkout(id: string) { const st = getState(); st.workouts = st.workouts.filter(w => w.id !== id); purgeOrphans(); save(); flush(); }
 
@@ -1058,115 +997,10 @@ export function putHistoryWorkout(w: Workout, replaceId: string | null): boolean
   st.userTouched = true; purgeOrphans(); save(w); flush();
   return true;
 }
-/* ---------- plan tygodnia: liczby i porządkowanie danych w jednym miejscu (audyt 0.10: A1, B3, B4 — migrate i lib/plan.ts) ---------- */
-/** Nazwa planu (pole „Nazwa planu”, zapisane plany). */
-export const PLAN_NAME_MAX = 40;
-/** Najwyżej tyle zapisanych planów („Inne plany”) — ten sam limit w migrate i w UI (audyt 0.10 B3 / DAT-03). */
-export const SAVED_PLANS_MAX = 50;
-/** Najwyżej tyle odcinków historii planu (najstarsze odpadają) — co najmniej kilka lat zmian planu raz w tygodniu. */
-export const PLAN_HISTORY_MAX = 520;
-/** Najwyżej tyle oznaczonych tygodni deload (najstarsze odpadają) — 10 lat (liczba w jednym miejscu; audyt 0.10 M2 — wcześniej literał w migrate). */
-export const DELOAD_WEEKS_MAX = 520;
-/** Audyt 0.10 B4 / DAT-06: nazwa planu — spacje złączone, bez spacji na brzegach, ≤ PLAN_NAME_MAX bez rozcinania emoji; idempotentne. */
-export const cleanPlanName = (n: string) => clampName(n.replace(/\s+/g, ' ').trim(), PLAN_NAME_MAX);
-/** 7 dni planu (id tekstem albo null) z dowolnej wartości. */
-export const planDays = (d: unknown): (string | null)[] => Array.from({ length: 7 }, (_, i) => (Array.isArray(d) && typeof d[i] === 'string' && d[i] ? d[i] : null));
-export const sameDays = (a: readonly (string | null)[], b: readonly (string | null)[]) => a.length === b.length && a.every((x, i) => x === b[i]);
-/**
- * Historia planu (schemat 18, audyt 0.10 A1): odcinki z poprawną datą, rosnąco; ten sam dzień — wygrywa późniejszy wpis; kolejny odcinek
- * równy poprzedniemu znika (bez zmiany planu); odcinki „bez planu” na początku znikają (przed pierwszym planem i tak nie ma planu);
- * najwyżej PLAN_HISTORY_MAX najnowszych. Idempotentne.
- */
-export function normPlanHistory(list: unknown): PlanSegment[] {
-  const byFrom = new Map<string, PlanSegment>();
-  for (const x of Array.isArray(list) ? list : []) if (isObj(x) && typeof x.from === 'string' && DATE_KEY.test(x.from)) byFrom.set(x.from, { from: x.from, days: planDays(x.days) });
-  const out: PlanSegment[] = [];
-  for (const sg of [...byFrom.values()].sort((a, b) => (a.from < b.from ? -1 : a.from > b.from ? 1 : 0))) {
-    if (!out.length && !sg.days.some(Boolean)) continue;
-    if (out.length && sameDays(out[out.length - 1].days, sg.days)) continue;
-    out.push(sg);
-  }
-  return out.slice(-PLAN_HISTORY_MAX);
-}
-/** Zmiany pojedynczych dni: klucze-daty, wartości id tekstem albo null (wolne). */
-export const cleanOverrides = (x: unknown): Record<string, string | null> => (isObj(x) ? Object.fromEntries(Object.entries(x).filter(([k, v]) => DATE_KEY.test(k) && (v === null || (typeof v === 'string' && !!v)))) as Record<string, string | null> : {});
-/** Nowy odcinek od dnia `from` (zmiana planu dziś): odcinki od tego dnia i późniejsze ustępują nowemu. */
-export const appendPlanSegment = (list: PlanSegment[], from: string, days: (string | null)[]): PlanSegment[] => normPlanHistory([...list.filter(x => x.from < from), { from, days: planDays(days) }]);
-export function newExercise(name = t('Nowe ćwiczenie')): Exercise { const e: Exercise = { ...base(getState().ownerId), name: clampName(name), group: 'inne', equipment: 'inne', metric: 'weight_reps', loadMode: 'total', restSec: null, restWarmupSec: null, muscles: [], secondaryMuscles: [], bandAssistable: false, tempo: '', notes: '', ...equipFields('', 'inne', false) }; getState().exercises.push(e); save(); return e; }
-/** Zmiana sprzętu ustawia domyślny tryb liczenia (wcześniej zostawał stary — np. ×2 dla masy ciała). */
-export function setEquipment(e: Exercise, eq: Exercise['equipment']) { if (e.equipment === eq) return; /* runda 40: ten sam chip nie resetuje ustawień */ e.equipment = eq; e.loadMode = loadModeFor(eq, catalogKey(e) ?? e.name); e.loadSource = LOAD_SOURCE_BY_EQUIPMENT[eq]; /* P-003: źródło obciążenia za sprzętem */
-  /* weryfikacja 3 (L5): ćwiczenie z biblioteki po zmianie sprzętu nie trzyma wymagań katalogu (np. hantle przy ruchu na linkach) — bez wymagań (zawsze dostępne),
-   * catalogRev 'user' (start aplikacji go nie nadpisze katalogiem) */
-  if (e.lib) { e.requires = []; e.recommended = []; delete e.implements; e.catalogRev = 'user'; }
-  /* macierz niezmienników 06.10 (L5): bloki tego ćwiczenia w treningu w toku bez odhaczonych serii dostają przyrząd wg nowego sprzętu — jak przy zmianie sprzętu miejsca */
-  exerciseEdited(e.id); save(e); }
-/** Po zmianie ćwiczenia (sprzęt, źródło obciążenia, wymagania): bloki tego ćwiczenia w treningu w toku bez odhaczonych serii dostają przyrząd
- * wg ćwiczenia — reguła L5. Wspólne dla setEquipment i „Zapisz” szkicu ćwiczenia (lib/draft.ts; audyt kontrolny 1, UI2-01: przyrząd decyduje
- * o mnożniku stacji ×2 w objętości i rekordach). */
-export function exerciseEdited(exId: string) { const a = getState().active; if (a && a.exercises.some(x => x.exerciseId === exId)) { restampUntouched(a); save(a); } }
-/** „Przywróć …” (lista ćwiczeń, wybór, zamiana): bez pola archived — tak samo jak po wczytaniu danych (migrate usuwa archived ≠ true; macierz niezmienników 06.10). */
-export function restoreExercise(e: Exercise) { delete e.archived; save(e); }
-/** Runda 40: czy ćwiczenie jest w zakończonych treningach (historia — nie sam trening w toku). */
-export const exerciseInHistory = (id: string) => getState().workouts.some(w => w.exercises.some(x => x.exerciseId === id));
-/** Runda 40: usunięte (zarchiwizowane) ćwiczenia bez historii i spoza treningu w toku znikają na dobre. */
-function purgeOrphans() { const st = getState(); st.exercises = st.exercises.filter(e => !e.archived || exerciseUsed(e.id)); }
-/** Czy ćwiczenie występuje w historii lub w treningu w toku. */
-export const exerciseUsed = (id: string) => { const st = getState(); return [...st.workouts, ...(st.active ? [st.active] : [])].some(w => w.exercises.some(x => x.exerciseId === id)); };
-/**
- * Usunięcie ćwiczenia: znika z listy, wyboru i szablonów. Jeśli ma historię (albo jest w treningu w toku) — jest tylko
- * archiwizowane, żeby historia, CSV i objętość dalej je znały („Historia zostanie”). Bez historii — usuwane na stałe.
- */
-export function deleteExercise(id: string) {
-  const st = getState(); const e = exById(id); if (!e) return;
-  st.templates.forEach(tpl => { tpl.items = tpl.items.filter(i => i.exerciseId !== id); normalizeGroups(tpl.items);
-    tpl.items.forEach(i => { if (!i.alternates) return; i.alternates = i.alternates.filter(x => x.exerciseId !== id); if (!i.alternates.length) delete i.alternates; }); }); /* E2 W3: zamiennik z usuniętym ćwiczeniem znika (jak M6) */
-  if (exerciseUsed(id)) e.archived = true; else st.exercises = st.exercises.filter(x => x.id !== id);
-  save(e); flush();
-}
-/** Ćwiczenia widoczne na listach i w wyborze (bez zarchiwizowanych). */
-export const visibleExercises = () => getState().exercises.filter(e => !e.archived);
-/** Research biblioteki (decyzja właściciela 09.10.2026, wariant B): id ćwiczeń już użytych — treningi (historia, w toku, „zamienione z”) i szablony
- * (pozycje i zamienniki; plan tygodnia wskazuje szablony). Takie ćwiczenie jest na liście domyślnej, nawet gdy jest niszowe. */
-export function exercisesInUse(): Set<string> {
-  const st = getState(); const out = new Set<string>();
-  for (const w of [...st.workouts, ...(st.active ? [st.active] : [])]) for (const x of w.exercises) { out.add(x.exerciseId); if (x.swappedFrom) out.add(x.swappedFrom); }
-  for (const tp of st.templates) for (const it of tp.items) { out.add(it.exerciseId); for (const a of it.alternates ?? []) out.add(a.exerciseId); }
-  return out;
-}
-/** Lista domyślna (Ćwiczenia, wybór ćwiczenia, „Inne” w zamianie): ćwiczenia ZOSTAJE, własne i już użyte; niszowe — wyszukiwaniem albo po zdjęciu filtra. */
-export const inCoreList = (e: Exercise, used: ReadonlySet<string>) => !isNiche(e) || used.has(e.id);
-/** Filtr „Podstawowe” zdjęty (zapamiętane, wspólne dla listy Ćwiczeń, wyboru i zamiany — jak filtr miejsca). */
-export const libShowAll = () => getState().settings.libShowAll === true;
-export function setLibShowAll(on: boolean) { const st = getState(); if (on) st.settings.libShowAll = true; else delete st.settings.libShowAll; save(); }
-export function newTemplate(): Template { const tpl: Template = { ...base(getState().ownerId), name: tr('Nowy szablon'), items: [] }; getState().templates.push(tpl); save(); return tpl; }
-export function dupTemplate(id: string): Template { const src = getState().templates.find(x => x.id === id)!; const c: Template = JSON.parse(JSON.stringify(src)); Object.assign(c, base(getState().ownerId)); delete c.archived; /* kopia z archiwum trafia na listę */ const suf = ' ' + tr('(kopia)'); c.name = clampName(src.name, NAME_MAX - suf.length) + suf; /* runda 39: limit nazwy */ const ids = new Map<string, string>(); c.items.forEach(i => { i.id = uid(); if (i.groupId) { if (!ids.has(i.groupId)) ids.set(i.groupId, uid()); i.groupId = ids.get(i.groupId)!; } }); getState().templates.push(c); save(); return c; }
-/* ---------- foldery i archiwum szablonów (docs/21 4a, 07.10.2026 wieczór) — zmienia tylko użytkownik ---------- */
-export const FOLDER_MAX = 40;
-function cleanFolder(v: string) { return v.replace(/\s+/g, ' ').trim().slice(0, FOLDER_MAX).trim(); }
-const byName = (a: string, b: string) => collator().compare(a, b);
-/** Foldery użyte w szablonach (także zarchiwizowanych), alfabetycznie wg języka aplikacji. */
-export function templateFolders(): string[] { return [...new Set(getState().templates.map(t => t.folder).filter((f): f is string => !!f))].sort(byName); }
-/** Lista startu i ekranu Szablony: najpierw bez folderu (kolejność dodania), potem foldery alfabetycznie; bez zarchiwizowanych. */
-export function templateGroups(): { folder: string | null; items: Template[] }[] {
-  const live = getState().templates.filter(t => !t.archived); const out: { folder: string | null; items: Template[] }[] = [];
-  const loose = live.filter(t => !t.folder); if (loose.length) out.push({ folder: null, items: loose });
-  for (const f of [...new Set(live.map(t => t.folder).filter((x): x is string => !!x))].sort(byName)) out.push({ folder: f, items: live.filter(t => t.folder === f) });
-  return out;
-}
-export function archivedTemplates(): Template[] { return getState().templates.filter(t => t.archived); }
-/** Audyt 0.10 UX-10: notatka szablonu (np. linijka wysiłku z generatora) — jedna linia tekstu, ≤ TEMPLATE_NOTE_MAX; pusta = brak. */
-export const TEMPLATE_NOTE_MAX = 200;
-function cleanNote(v: string) { return Array.from(v.replace(/\s+/g, ' ').trim()).slice(0, TEMPLATE_NOTE_MAX).join('').trim(); } /* po znakach — bez przecinania emoji (DAT-06) */
-export function setTemplateNote(tpl: Template, v: string) { const n = cleanNote(v); if (n) tpl.note = n; else delete tpl.note; save(tpl); }
-export function setTemplateFolder(tpl: Template, name: string | null) { const f = name ? cleanFolder(name) : ''; if (f) tpl.folder = f; else delete tpl.folder; save(tpl); }
-export function setTemplateArchived(tpl: Template, on: boolean) { if (on) tpl.archived = true; else delete tpl.archived; save(tpl); }
-export function deleteTemplate(id: string) { const st = getState(); st.templates = st.templates.filter(x => x.id !== id); save(); flush(); }
 /** Włączanie/wyłączanie modułu (ADR-011). 'training' jest zawsze włączony. */
 export function setModule(m: keyof State['settings']['modules'], on: boolean) { const s = getState().settings; s.modules[m] = m === 'training' ? true : on; save(); }
 /** Reset: nowe dane startowe w języku, który będzie widoczny po resecie (ustawienie wraca na „auto” = język telefonu). */
 export function resetAll() { const s = seedState(detectLang()); s.settings.unit = deviceUnit(); /* jak świeża instalacja (UX-12) */ replaceState(s); clearRecovery(); flush(); }
-/** UX-16 A (audyt 0.10): „Ukryj” zachętę do planu tygodnia (karta „Dziś” i Kalendarz); `false` — pokaż znowu. Stan ekranu — bez userTouched. */
-export function setPlanHintHidden(on: boolean) { const st = getState(); if (on) st.planHintHidden = true; else delete st.planHintHidden; save(); }
 /**
  * Widok skupiony (styl „Tuleja”, decyzja właściciela 07.10.2026; docs/21 pkt 3): seria „teraz” = pierwsza nieodhaczona seria w kolejności treningu.
  * Superset — rundami (audyt 0.10, LIVE-02): spośród członków grupy z nieodhaczoną serią ten, który ma NAJMNIEJ odhaczonych serii roboczych (remis —
