@@ -78,7 +78,7 @@ Rozmowa 05.10.2026, rano: „Chciałbym móc opublikować to w Apple Store” i 
        byli dyskryminowani”). Zastępuje też 4,99 zł/mies. z decyzji o 10:14. Rachunek: roczna = 5 miesięcznych (w USD/EUR/GBP ok. 6).
     2. Okres próbny **w obu planach** (A; jedna oferta wprowadzająca na osobę w grupie subskrypcji; odrzucone B: tylko roczny).
     3. Hasło w sklepie: **„w cenie espresso lub taniej”** (sformułowanie ostateczne przy opisach sklepu) — właściciel: „Nawet we Włoszech nie
-       będzie to kłamstwem”. Warunek (zasada rzetelnych źródeł): przed publikacją opisu potwierdzić źródłami cenę espresso w każdym kraju,
+       będzie to kłamstwem”. ~~Warunek (zasada rzetelnych źródeł): przed publikacją opisu potwierdzić źródłami cenę espresso w każdym kraju, — **warunek zniesiony przez właściciela 11.10.2026 (wyjątek), zob. sekcję metadanych niżej, pkt 4**
        w którym hasło się pojawi; gdzie się nie potwierdzi — bez hasła w tym kraju.
     4. Ceny w innych krajach: wariant A wg zasady z 20:20 (właściciel nie wybrał) — cena bazowa 0,99 USD, Apple przelicza pozostałe kraje,
        EUR/GBP/PLN ustawione ręcznie; odrzucone B: każdy kraj ręcznie.
@@ -489,7 +489,7 @@ Training is not medical advice. For pain, injuries or illness, consult a special
 1. **Cena w opisie i tekście promocyjnym** (blok cenowy, „pierwszy miesiąc za darmo”): wstawiać dopiero z działającym zakupem; czy podawać kwoty w opisie (zmieniają się w App Store Connect bez nowej wersji, w innych krajach inne), czy tylko „subskrypcja lub dostęp dożywotni” — Apple (3.1.2) wymaga jasnych warunków odnawiania.
 2. **Waluty w opisie:** EN podaje 0,99/6,99/21,99 w USD/EUR/GBP (opis jest jeden dla wszystkich krajów angielskiego) — czy tak, czy bez kwot.
 3. **Family Sharing:** decyzja TAK (11.10.2026), opis ją wspomina; otwarte w docs/15: czy włączenie jest nieodwracalne — sprawdzić w App Store Connect przed wysyłką.
-4. **Hasło „w cenie espresso lub taniej”** — pominięte; wymaga potwierdzenia cen espresso źródłami w każdym kraju (decyzja 09.10 pkt 3).
+4. **Hasło „w cenie espresso lub taniej”** — pominięte; wymaga potwierdzenia cen espresso źródłami w każdym kraju (decyzja 09.10 pkt 3). **Zmiana (właściciel 11.10.2026, ok. 23:10): wyjątek od warunku źródeł — hasło wolno użyć bez potwierdzania cen espresso w każdym kraju** (hasło marketingowe, nie twierdzenie merytoryczne o treningu; ryzyko: w krajach z bardzo tanią kawą porównanie może być nieścisłe — Apple 2.3.1). Wstawić razem z blokiem cenowym, gdy zakup trafi do wydania.
 5. **„What's New 0.12.0”:** w `lib/whatsnew.ts` nie ma jeszcze wpisu 0.12.0 (najnowszy to 0.11.0). Projekt opiera się na zamianie ćwiczenia (E2, scalone w kodzie); po dopisaniu wpisu (35 języków, przez `t()`) tekst App Store dostosować do niego.
 6. **Zakres funkcji w opisie:** generator planu, zamiana ćwiczenia, Apple Health (tylko zapis), kopia JSON/CSV — potwierdzić, że wszystko trafia do 0.12.0.
 7. **Twierdzenie „bez śledzenia”** — zgodne z `docs/privacy.html` (brak wywołań sieciowych); zweryfikować przed wysyłką, jeśli dojdzie StoreKit.
