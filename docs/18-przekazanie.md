@@ -95,3 +95,8 @@ backlog) → docs/15 (App Store, ceny) → docs/09 (dziennik testów; stare rund
   wpisu „Co nowego” (jeden wspólny wpis w (2), tłumaczony raz na 35 języków; „What to Test” PL/EN), zamiast audytu zmian tylko stała lista
   kontrolna (dane i migracje — podział store.ts, prywatność, sekrety, logi); **pełny audyt wstrzymany** także po wydaniu (2) — do polecenia
   właściciela. Apple Zdrowie (pkt 9) — osobne wydanie (biblioteka natywna). Odrzucone: B (jedno wydanie), A bez wyjątku, A bez kontroli.
+- 11.10.2026: **docs/22 P8 — B (właściciel)**: Progresja tygodnia = wykonane + zaplanowane z szablonów na pozostałe dni (rachunek z planu
+  użytkownika, nie twierdzenie merytoryczne — szczebel 1, bez badacza); na wykresie dwa kolory i podziałka, podpis „wykonane”/„zaplanowane”.
+  Domyślnie (agent): seria w szablonie bez ciężaru/powtórzeń → wartości z „Poprzednio” (ostatnie wykonanie tego wiersza szablonu); bez nich —
+  liczy się do serii, nie do objętości, kafelek z „+?”. Odrzucone: A (dwie liczby bez sumy).
+  Wszystkie pytania P1–P8 z docs/22 rozstrzygnięte.
