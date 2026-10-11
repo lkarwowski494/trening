@@ -78,7 +78,7 @@ Rozmowa 05.10.2026, rano: „Chciałbym móc opublikować to w Apple Store” i 
        byli dyskryminowani”). Zastępuje też 4,99 zł/mies. z decyzji o 10:14. Rachunek: roczna = 5 miesięcznych (w USD/EUR/GBP ok. 6).
     2. Okres próbny **w obu planach** (A; jedna oferta wprowadzająca na osobę w grupie subskrypcji; odrzucone B: tylko roczny).
     3. Hasło w sklepie: **„w cenie espresso lub taniej”** (sformułowanie ostateczne przy opisach sklepu) — właściciel: „Nawet we Włoszech nie
-       będzie to kłamstwem”. ~~Warunek (zasada rzetelnych źródeł): przed publikacją opisu potwierdzić źródłami cenę espresso w każdym kraju, — **warunek zniesiony przez właściciela 11.10.2026 (wyjątek), zob. sekcję metadanych niżej, pkt 4**
+       będzie to kłamstwem”. Warunek (zasada rzetelnych źródeł): przed publikacją opisu potwierdzić źródłami cenę espresso w każdym kraju, — **warunek zniesiony przez właściciela 11.10.2026 (wyjątek), zob. sekcję metadanych niżej, pkt 4**
        w którym hasło się pojawi; gdzie się nie potwierdzi — bez hasła w tym kraju.
     4. Ceny w innych krajach: wariant A wg zasady z 20:20 (właściciel nie wybrał) — cena bazowa 0,99 USD, Apple przelicza pozostałe kraje,
        EUR/GBP/PLN ustawione ręcznie; odrzucone B: każdy kraj ręcznie.
