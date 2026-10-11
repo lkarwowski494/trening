@@ -41,3 +41,6 @@ backlog) → docs/15 (App Store, ceny) → docs/09 (dziennik testów; stare rund
   pusta → „Ustaw jako aktywny” (z oknem jak dziś), wypełniona → okno „Wyłączyć plan? Kalendarz od dziś będzie pusty” i wyłączenie (plan do
   „Inne plany” z nazwą i zmianami dni; minione dni w historii; poranne przypomnienia wyłączone). Oba kierunki zawsze z potwierdzeniem
   (właściciel: „żeby ludzie nie rozwalali sobie misclickiem planu”). Najwyżej jeden aktywny. Odrzucone: B (osobny przycisk „Wyłącz plan”).
+- 11.10.2026: **autouzupełnianie serii (pkt 6) — wariant A (kaskada w dół)**: wartość wpisana w serii N przechodzi do kolejnych serii tego samego
+  rodzaju (robocze/rozgrzewka osobno) tylko tam, gdzie pole jest puste albo ma jeszcze poprzednią wartość z serii N; nigdy nie nadpisuje serii
+  odhaczonej ani wartości wpisanej ręcznie. Edytor szablonu i trening. Odrzucone: B (kopiowanie tylko przy „+ Seria”), C (przycisk „Do wszystkich”).
