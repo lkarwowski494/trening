@@ -93,7 +93,7 @@ widocznej w treningu (pole istnieje, ekran treningu go nie pokazuje), pola RIR (
 - **„Co nowego”** (08.10.2026) — „i” na ekranie Trening, kropka po aktualizacji, starsze wersje zwinięte. **Zrobione 08.10.2026.**
 
 ### Przed App Store (decyzja właściciela 11.10.2026, wariant A — po analizie raportów rynkowych, docs/research/raporty-rynkowe-2026-10.md)
-- **Import historii z CSV popularnych dzienników** (Strong, Hevy) — największa bariera przesiadki to utrata historii. Format Stronga niżej;
+- **Import historii z CSV popularnych dzienników** (Strong, Hevy; FitNotes z Androida — dodane 11.10.2026, pkt 13) — największa bariera przesiadki to utrata historii. Format Stronga niżej;
   **[OTWARTE]**: format Hevy (plik eksportu do przejrzenia jak przy Strongu), jednostka (CSV bez kg/lb), dopasowanie nazw ćwiczeń, duplikaty,
   podgląd przed zapisem. W aplikacji i w sklepie bez nazw innych aplikacji (Apple 2.3.7) — „z popularnych dzienników treningowych”.
 - **Prośba o ocenę w sklepie** — systemowe okno iOS (SKStoreReviewController / expo-store-review), po pozytywnym zdarzeniu (np. nowy rekord

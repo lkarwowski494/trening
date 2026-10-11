@@ -7,8 +7,10 @@ Trzy raporty właściciela (analiza rynku, strategia wejścia, strategia komercj
 (liczba użytkowników, wzrost konwersji przy ocenie 4★, koszt pozyskania użytkownika, liczba usuniętych recenzji) bez przeczytanego źródła
 pierwotnego — **[OTWARTE]**, nie używamy ich w aplikacji ani w opisie sklepu.
 
-**Zgodne z obranym kierunkiem:** nisza „bez konta, bez sieci, bez śledzenia, dane u użytkownika” (aplikacja już tak działa); brak na iOS
-odpowiednika prostego darmowego dziennika z Androida; szybkość wpisu i minimum stuknięć jako główny powód wyboru dziennika.
+**Zgodne z obranym kierunkiem:** nisza „bez konta, bez sieci, bez śledzenia, dane u użytkownika” (aplikacja już tak działa);
+**BŁĄD raportu (sprawdzone 11.10.2026 na stronie App Store):** popularny prosty dziennik z Androida JEST na iOS jako osobna aplikacja
+(bez konta, kopie iCloud, zegarek, import bazy z Androida; za darmo do 12 zapisanych treningów, potem zakup, dożywotnio 44,99 USD) —
+nisza nie jest wolna; hasło „jedyny odpowiednik na iPhonie” nieprawdziwe. szybkość wpisu i minimum stuknięć jako główny powód wyboru dziennika.
 
 **Decyzje właściciela (11.10.2026, wariant A):** import CSV z popularnych dzienników i prośba o ocenę → „Przed App Store” (docs/21).
 Pozostałe pomysły (rekordy per miejsce, zapis lewa/prawa, rotacja A/B w szablonie, aplikacja na zegarek) — do omówienia osobno.
@@ -20,3 +22,7 @@ Pozostałe pomysły (rekordy per miejsce, zapis lewa/prawa, rotacja A/B w szablo
 - pobieranie bazy ćwiczeń narzędziami do kopiowania stron — licencje CC (uznanie autorstwa, część „na tych samych warunkach”);
 - prośba o ocenę tuż przed ścianą płatności — granica manipulacji;
 - limit 5 darmowych treningów miesięcznie — sprzeczny z decyzją „podstawy za darmo na zawsze” (docs/15).
+
+**Pozycjonowanie (decyzja właściciela 11.10.2026, pkt 13 — A):** różnice, na których budujemy opis sklepu (bez nazw konkurentów): darmowe
+4 treningi w każdym miesiącu (nie limit łączny), plan tygodnia, kalendarz i generator, wskazówki techniki ze źródłami, 35 języków, niższa cena
+dostępu dożywotniego. Słabsze strony: brak aplikacji na zegarek, brak importu z innych dzienników (import — „Przed App Store”, docs/21).
