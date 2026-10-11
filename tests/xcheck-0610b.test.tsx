@@ -26,7 +26,7 @@ test('NISKIE (sprzęt #8): preset przenośnej stacji (jedna linka) odznacza „d
   expect(src('components/LoadEditor.tsx')).toMatch(/applyLoadPreset\(entry, p\)/);
 });
 test('ŚREDNIE (sprzęt #4): lista ćwiczeń i wybór oznaczają „guma” także przy gumie oporowej; ekran ćwiczenia tłumaczy opór gumy', () => {
-  for (const f of ['app/picker.tsx', 'app/(tabs)/exercises.tsx']) { expect(src(f)).toMatch(/usesBand\(e\) \? ' · ' \+ t\('guma'\)/); expect(src(f)).not.toMatch(/e\.bandAssistable \? ' · '/); }
+  for (const f of ['app/picker.tsx', 'app/exercises.tsx']) { expect(src(f)).toMatch(/usesBand\(e\) \? ' · ' \+ t\('guma'\)/); expect(src(f)).not.toMatch(/e\.bandAssistable \? ' · '/); }
   expect(src('app/exercise/[id].tsx')).toMatch(/!e\.bandAssistable && usesBand\(e\)/);
 });
 test('ŚREDNIE (parytet #3): w treningu da się usunąć wybraną serię (np. rozgrzewkę), nie ostatnią — od 07.10.2026 wieczór przesunięciem wiersza', async () => {

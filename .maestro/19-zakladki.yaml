@@ -1,0 +1,54 @@
+# Cztery zakładki (decyzja właściciela 11.10.2026, docs/22 wariant A, docs/18 P1): Trening · Plan · Postępy · Więcej; Szablony i Ćwiczenia pod Więcej
+# (ekrany stosu, bez własnych zakładek), Postępy z sekcjami „Progression” i „Body weight”. Logika i ekrany: tests/tabs-four.test.tsx, tests/tabs-a11y.test.tsx.
+#
+# Literały (EN z lib/i18n.en.ts):
+#   "Workout, tab, 1 of 4" … "More, tab, 4 of 4" ← etykieta zakładki „{label}, tab, {i} of {n}” (app/(tabs)/_layout.tsx, tabA11y; TAB_COUNT = 4)
+#   "Templates" / "Exercises"        ← pozycje listy Więcej (app/(tabs)/more.tsx) i tytuły ekranów stosu (app/_layout.tsx)
+#   "\+ New" / "Search…"             ← przycisk ekranu Szablony (app/templates.tsx) / pole ekranu Ćwiczenia (app/exercises.tsx)
+#   "Progression" / "Body weight — measurements" ← sekcja kafelków (components/Dashboard.tsx ProgressTiles — widoczna po pierwszym treningu) i przycisk
+#                                    sekcji „Body weight” (app/(tabs)/progress.tsx)
+#   "Planning"                       ← przycisk w zakładce Plan (app/(tabs)/history.tsx)
+appId: pl.lukasz.trening
+name: Cztery zakładki — Szablony i Ćwiczenia pod Więcej
+---
+- launchApp:
+    clearState: true
+    permissions: { all: allow }
+- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+- assertVisible: "Workout, tab, 1 of 4"
+- assertVisible: "Plan, tab, 2 of 4"
+- assertVisible: "Progress, tab, 3 of 4"
+- assertVisible: "More, tab, 4 of 4"
+- assertNotVisible: "Templates, tab.*"
+- assertNotVisible: "Exercises, tab.*"
+- assertNotVisible: "Calendar, tab.*"
+- takeScreenshot: 90-cztery-zakladki
+
+# --- Postępy: osobna zakładka; masa ciała w jej sekcji (nie w Ustawieniach) ---
+- tapOn: "Progress, tab.*"
+- scrollUntilVisible: { element: "Body weight — measurements", direction: DOWN, timeout: 30000 }
+- takeScreenshot: 91-postepy-masa-ciala
+
+# --- Plan: kalendarz z planem i „Planning” ---
+- tapOn: "Plan, tab.*"
+- extendedWaitUntil: { visible: "Planning", timeout: 30000 }
+
+# --- Więcej: Szablony i Ćwiczenia jako ekrany stosu, powrót do listy Więcej z paskiem zakładek ---
+- tapOn: "More, tab.*"
+- extendedWaitUntil: { visible: "Templates", timeout: 30000 }
+- assertVisible: "Exercises"
+- assertNotVisible: "Progress"  # Postępy mają własną zakładkę — nie ma ich już na liście Więcej
+- tapOn: "Templates"
+- extendedWaitUntil: { visible: "\\+ New", timeout: 30000 }
+- takeScreenshot: 92-wiecej-szablony
+- tapOn: "Back"
+- extendedWaitUntil: { visible: "More, tab.*", timeout: 30000 }
+- tapOn: "Exercises"
+- extendedWaitUntil: { visible: "Search…", timeout: 30000 }
+- tapOn: "Back"
+- extendedWaitUntil: { visible: "More, tab.*", timeout: 30000 }
+
+# --- Masa ciała nie jest już w Ustawieniach ---
+- tapOn: "Settings"
+- extendedWaitUntil: { visible: "Weight unit", timeout: 30000 }
+- assertNotVisible: "Body weight.*"

@@ -199,7 +199,7 @@ async function step(x: Act, m: Model, where: string) {
     case 'tplRename': if (tpl) { const prev = tpl.name; tpl.name = NAMES[x.b % NAMES.length].slice(0, 80); store.save(tpl); const n = tpl.name.replace(/\s+/g, ' ').trim(); tpl.name = n || prev; store.save(tpl); othersSame(tpl.id); } break; /* app/template/[id].tsx: onChangeText + commitName */
     case 'tplDup': if (tpl) { const c = store.dupTemplate(tpl.id); ok(c.id !== tpl.id && c.items.length === tpl.items.length && c.items.every((it, i) => it.id !== tpl.items[i].id && it.exerciseId === tpl.items[i].exerciseId), where, 'kopia szablonu'); othersSame(c.id); hit('tplDup'); } break;
     case 'tplDel': if (tpl) { plan.removeTemplate(tpl.id); ok(!S().templates.some(t => t.id === tpl.id), where, 'usunięcie szablonu'); othersSame(tpl.id);
-      ok(!plan.weekPlanDays().includes(tpl.id) && !plan.savedPlans().some(p => p.days.includes(tpl.id)), where, 'usunięty szablon został w planie (audyt 0.10 A7)'); } break; /* app/(tabs)/templates.tsx: removeTemplate */
+      ok(!plan.weekPlanDays().includes(tpl.id) && !plan.savedPlans().some(p => p.days.includes(tpl.id)), where, 'usunięty szablon został w planie (audyt 0.10 A7)'); } break; /* app/templates.tsx: removeTemplate */
     case 'tplAddItem': if (tpl && exs.length) { const ex = pick(exs, x.b)!; tpl.items.push({ id: uid(), exerciseId: ex.id, sets: 3, repMin: null, repMax: null, restSec: null, startWeight: '', targetSec: '', groupId: null }); store.save(tpl); othersSame(tpl.id); hit('tplAddItem'); } break; /* app/picker.tsx:49 */
     case 'tplRmItem': if (tpl && item) { store.removeItem(tpl.items, tpl.items.indexOf(item), tpl); othersSame(tpl.id); } break;
     case 'tplMove': if (tpl && item) { store.moveBlockOf(tpl.items, item.id, x.c % 6, tpl); othersSame(tpl.id); } break;
@@ -315,7 +315,7 @@ async function step(x: Act, m: Model, where: string) {
     }
 
     /* ===== ćwiczenia ===== */
-    case 'newEx': { const raw = NAMES[x.b % NAMES.length]; store.newExercise(raw.replace(/\s+/g, ' ').trim() || undefined); break; } /* app/(tabs)/exercises.tsx: „Utwórz …” */
+    case 'newEx': { const raw = NAMES[x.b % NAMES.length]; store.newExercise(raw.replace(/\s+/g, ' ').trim() || undefined); break; } /* app/exercises.tsx: „Utwórz …” */
     case 'equip': { const e = pick(exs, x.b); if (e) { const eq = (['hantle', 'sztanga', 'masa ciała', 'maszyna', 'linki', 'inne'] as const)[x.c % 6];
       /* UI2-01 (audyt kontrolny 1): ekran ćwiczenia zmienia sprzęt na szkicu („Edytuj → Zapisz”, lib/draft.ts) — obie ścieżki przeliczają przyrząd (L5) */
       if (x.a % 2) { const d = draft.beginObjDraft<Exercise>('exercise', e.id); if (d) { store.setEquipment(d, eq); draft.commitObjDraft('exercise', e.id); hit('equipDraft'); } } else store.setEquipment(e, eq); implFresh(where, S().active?.exercises.filter(b => b.exerciseId === e.id)); } /* tylko bloki zmienionego ćwiczenia: inne mogą mieć przyrząd sprzed cofnięcia odhaczenia (reguła „przelicz przy zmianie”) */ break; }
@@ -327,7 +327,7 @@ async function step(x: Act, m: Model, where: string) {
       expect({ where, t: canonTpls(S().templates) }).toEqual({ where, t: canonTpls(exp) }); /* jedyna kaskada na szablony: usunięcie ćwiczenia (decyzja: „znika z szablonów”) */
       ok(used ? store.exById(e.id)?.archived === true : !store.exById(e.id), where, 'usunięcie ćwiczenia: archiwum ⇔ użyte');
       m.tpl = J(S().templates); hit(used ? 'delExArchive' : 'delExHard'); break; }
-    case 'restoreEx': { const e = pick(st.exercises.filter(z => z.archived), x.b); if (e) { store.restoreExercise(e); hit('restoreEx'); } break; } /* app/(tabs)/exercises.tsx:24 „Przywróć” */
+    case 'restoreEx': { const e = pick(st.exercises.filter(z => z.archived), x.b); if (e) { store.restoreExercise(e); hit('restoreEx'); } break; } /* app/exercises.tsx:24 „Przywróć” */
 
     /* ===== miejsca, sprzęt, gumy ===== */
     case 'addLoc': { const l = locs.addLocation(LOCATION_PRESETS[x.b % LOCATION_PRESETS.length]); ok(!!store.locationById(S().settings.mainLocationId) && !!store.locationById(l.id), where, 'nowe miejsce / główne'); hit('addLoc'); break; }
@@ -638,15 +638,15 @@ describe('macierz niezmienników — losowe sekwencje działań na prawdziwym AP
 /* ---------- znaleziska (deterministyczne, minimalne) ---------- */
 describe('macierz niezmienników — znaleziska', () => {
   /* Minimalny kontrprzykład z sekwencji: delEx (ćwiczenie z historią → archiwum) → restoreEx. „Przywróć” w UI ustawia `e.archived = false`
-   * (app/(tabs)/exercises.tsx:24, app/picker.tsx:58, app/swap.tsx:76), a migrate usuwa każde archived ≠ true (lib/store.ts:246). Skutek: stan w pamięci
+   * (app/exercises.tsx:24, app/picker.tsx:58, app/swap.tsx:76), a migrate usuwa każde archived ≠ true (lib/store.ts:246). Skutek: stan w pamięci
    * ≠ stan po ponownym uruchomieniu / imporcie (niezmiennik I1 „wczytanie zapisanych danych niczego nie zmienia”). Zachowanie aplikacji to samo
    * (wszędzie `!e.archived` / `=== true`), ale porównanie stanu przed i po restarcie nie jest dosłowne. */
   test('NAPRAWIONE 06.10: „Przywróć” zostawia archived: false, którego migrate nie zachowuje (I1: wczytanie zmienia dane)', async () => {
     await fresh(); store.startEmpty(); const e = S().exercises.find(x => x.name === 'Back Squat')!; store.addExerciseToActive(e);
     store.getState().active!.exercises[0].sets[0].reps = 5; store.toggleDone(0, 0); store.finishWorkout();
     store.deleteExercise(e.id); expect(e.archived).toBe(true);
-    store.restoreExercise(e); /* jak przycisk „Przywróć …” (app/picker.tsx, app/swap.tsx, app/(tabs)/exercises.tsx) */
-    for (const f of ['app/picker.tsx', 'app/swap.tsx', 'app/(tabs)/exercises.tsx']) expect(require('fs').readFileSync(require('path').join(__dirname, '..', f), 'utf8')).not.toMatch(/archived = false/);
+    store.restoreExercise(e); /* jak przycisk „Przywróć …” (app/picker.tsx, app/swap.tsx, app/exercises.tsx) */
+    for (const f of ['app/picker.tsx', 'app/swap.tsx', 'app/exercises.tsx']) expect(require('fs').readFileSync(require('path').join(__dirname, '..', f), 'utf8')).not.toMatch(/archived = false/);
     const before = JSON.parse(J(S())); const m = JSON.parse(J(store.migrate(JSON.parse(J(S())))));
     delete before.metaUpdatedAt; delete m.metaUpdatedAt; delete before.saveSeq; delete m.saveSeq;
     expect(m).toEqual(before);

@@ -4,7 +4,7 @@
 # Logika i ekrany: tests/catalog-library25.test.tsx, tests/audit-0.10-tst-ui.test.tsx, tests/scenario-0.10.test.tsx (restart), tests/cues.test.tsx.
 #
 # Literały (EN z lib/i18n.en.ts):
-#   "Exercises, tab.*"                              ← 'Ćwiczenia' + etykieta zakładki (jak w 16)
+#   "More, tab.*" → "Exercises"                              ← 'Więcej' + 'Ćwiczenia' (Item na liście Więcej; 11.10.2026, wariant A: Ćwiczenia pod Więcej) (jak w 16)
 #   "Filter: basic exercises"                        ← 'Filtr: podstawowe ćwiczenia' (accessibilityLabel chipa „Basic ✕”, components/LibScope.tsx)
 #   "Showing all exercises, including niche ones"    ← 'Pokazane wszystkie ćwiczenia, także niszowe' (ten sam chip po zdjęciu filtra)
 #   "Search…" / "Back Squat, barbell.*"             ← jak w 16
@@ -25,7 +25,8 @@ name: Filtr „Podstawowe” i sekcja „Technika”
     clearState: true
     permissions: { all: allow }
 - extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
-- tapOn: "Exercises, tab.*"
+- tapOn: "More, tab.*"
+- tapOn: "Exercises"  # 11.10.2026: Ćwiczenia to ekran pod Więcej (bez własnej zakładki)
 - extendedWaitUntil: { visible: "Filter: basic exercises", timeout: 30000 }
 - tapOn: "Filter: basic exercises"
 - extendedWaitUntil: { visible: "Showing all exercises, including niche ones", timeout: 15000 }
@@ -58,7 +59,8 @@ name: Filtr „Podstawowe” i sekcja „Technika”
 - launchApp:
     clearState: false
 - extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
-- tapOn: "Exercises, tab.*"
+- tapOn: "More, tab.*"
+- tapOn: "Exercises"  # 11.10.2026: Ćwiczenia to ekran pod Więcej (bez własnej zakładki)
 - extendedWaitUntil: { visible: "Search…", timeout: 30000 }
 - tapOn: "Search…"
 - inputText: "Narrow Stance Squats"

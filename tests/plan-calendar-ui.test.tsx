@@ -48,10 +48,10 @@ describe('plan tygodnia bez szablonów', () => {
 });
 
 describe('Kalendarz', () => {
-  test('bez planu: przycisk „Planowanie” (bez tekstu zachęty — 11.10.2026); tytuł i zakładka „Kalendarz”', async () => {
+  test('bez planu: przycisk „Planowanie” (bez tekstu zachęty — 11.10.2026); tytuł i zakładka „Plan” (dawniej Kalendarz)', async () => {
     await boot(() => {});
     expect(screen.queryByText(/^Ustaw plan tygodnia, by widzieć/)).toBeNull(); expect(screen.queryByText('Ukryj')).toBeNull();
-    expect(screen.getByRole('header', { name: 'Kalendarz' })).toBeTruthy(); expect(screen.getByText('Planowanie')).toBeTruthy(); expect(screen.queryByText('Plan tygodnia')).toBeNull();
+    expect(screen.getByRole('header', { name: 'Plan' })).toBeTruthy(); expect(screen.getByText('Planowanie')).toBeTruthy(); expect(screen.queryByText('Plan tygodnia')).toBeNull();
   });
   test('dni z planem: etykiety VoiceOver „zaplanowany” / „opuszczony” (z „dziś”); panel dnia; miniony dzień bez zamiany z przeszłością (A4)', async () => {
     const t = await boot(ids => since(() => { plan.setWeekDay(0, ids[0]); plan.setWeekDay(3, ids[1]); }));
@@ -146,7 +146,7 @@ describe('ekran treningu: „Dziś” i podgląd tygodnia', () => {
     expect(screen.getByText(`Dziś: ${t[0].name}`)).toBeTruthy();
     expect(screen.getByLabelText(`poniedziałek, 5 października, opuszczony: ${t[1].name}`)).toBeTruthy(); expect(screen.getByLabelText('wtorek, 6 października, odpoczynek')).toBeTruthy(); /* dzień bez treningu w planie — odpoczynek (decyzja 09.10.2026 wieczór) */
     expect(screen.getByLabelText(`czwartek, 8 października, dziś, zaplanowany: ${t[0].name}`)).toBeTruthy(); expect(screen.getByLabelText(`piątek, 9 października, zaplanowany: ${t[1].name}`)).toBeTruthy();
-    await tap(screen.getByTestId('strip-2026-10-09')); await flushAll(10); expect(screen.getByRole('header', { name: 'Kalendarz' })).toBeTruthy(); expect(screen.getByText('piątek, 9 października')).toBeTruthy(); await go('/'); await flushAll(10);
+    await tap(screen.getByTestId('strip-2026-10-09')); await flushAll(10); expect(screen.getByRole('header', { name: 'Plan' })).toBeTruthy(); expect(screen.getByText('piątek, 9 października')).toBeTruthy(); await go('/'); await flushAll(10);
     await tap(screen.getByLabelText(`Start zaplanowanego treningu: ${t[0].name}`)); await flushAll(10); expect(S().active?.templateId).toBe(t[0].id);
     await boot(ids => { plan.setWeekDay(4, ids[1]); }, '/'); expect(screen.getByText('Dziś wolne')).toBeTruthy();
     const t3 = await boot(ids => { plan.setWeekDay(3, ids[0]); addWorkout(new Date(2026, 9, 8, 7).getTime(), [['Back Squat', [{ weight: 100, reps: 5 }]]], 'Upper A').templateId = ids[0]; store.save(); }, '/');
@@ -167,7 +167,7 @@ describe('ekran treningu: „Dziś” i podgląd tygodnia', () => {
   test('English', async () => {
     const t = await boot(ids => { plan.setWeekDay(3, ids[0]); }, '/', 'en');
     expect(screen.getByText(`Today: ${t[0].name}`)).toBeTruthy();
-    await go('/history'); await flushAll(10); expect(screen.getByRole('header', { name: 'Calendar' })).toBeTruthy(); expect(screen.getByText('Planning')).toBeTruthy();
+    await go('/history'); await flushAll(10); expect(screen.getByRole('header', { name: 'Plan' })).toBeTruthy(); expect(screen.getByText('Planning')).toBeTruthy();
     await tap(screen.getByTestId('cal-2026-10-08')); await flushAll(5); expect(screen.getByText('Move or skip')).toBeTruthy(); expect(screen.getByText('Change template')).toBeTruthy(); expect(screen.queryByText('Other workout')).toBeNull();
   });
 });

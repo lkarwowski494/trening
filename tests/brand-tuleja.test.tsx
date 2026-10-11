@@ -29,10 +29,10 @@ test('kroje: każdy krój z F ma plik; start ładuje wszystkie', async () => {
 test('kroje, które się nie wczytają (błąd albo brak odpowiedzi), nie blokują startu — po 3 s krój systemowy', async () => {
   load.mockReturnValue(new Promise(() => {}));
   await renderApp(); await flushAll(100);
-  expect(screen.queryByText('Szablony')).toBeNull(); /* jeszcze kółko */
-  await flushAll(3000); expect(screen.getAllByText('Szablony').length).toBeGreaterThan(0);
+  expect(screen.queryByText('Postępy')).toBeNull(); /* jeszcze kółko */
+  await flushAll(3000); expect(screen.getAllByText('Postępy').length).toBeGreaterThan(0);
   load.mockRejectedValue(new Error('font'));
-  await renderApp(); await flushAll(10); expect(screen.getAllByText('Szablony').length).toBeGreaterThan(0);
+  await renderApp(); await flushAll(10); expect(screen.getAllByText('Postępy').length).toBeGreaterThan(0);
 });
 
 test('zakładki bez emoji (ikony SVG); ikona aplikacji i ekran startowy w kolorach marki', async () => {

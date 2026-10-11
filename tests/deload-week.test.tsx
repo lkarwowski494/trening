@@ -29,7 +29,7 @@ describe('logika i dane', () => {
 });
 
 describe('ekran Postępy', () => {
-  const boot = async (fn: () => void = () => {}, locale: 'pl' | 'en' = 'pl') => { await fresh(undefined, locale); addWorkout(new Date(2026, 9, 6, 18).getTime(), [['Back Squat', [{ weight: 100, reps: 5 }]]]); fn(); await act(async () => { await store.flush(); }); await renderApp({ saved: JSON.parse(JSON.stringify(saved())), locale, url: '/more/progress' }); jest.setSystemTime(NOW.getTime()); await flushAll(10); };
+  const boot = async (fn: () => void = () => {}, locale: 'pl' | 'en' = 'pl') => { await fresh(undefined, locale); addWorkout(new Date(2026, 9, 6, 18).getTime(), [['Back Squat', [{ weight: 100, reps: 5 }]]]); fn(); await act(async () => { await store.flush(); }); await renderApp({ saved: JSON.parse(JSON.stringify(saved())), locale, url: '/progress' }); jest.setSystemTime(NOW.getTime()); await flushAll(10); };
   test('11.10.2026: Postępy tylko pokazują oznaczenie — bez chipa „Tydzień deload”; oznaczony tydzień: tekst i „D” na wykresach z objaśnieniem; zmiana tylko w store/Kalendarzu', async () => {
     await boot();
     expect(screen.queryByText('Tydzień deload')).toBeNull(); expect(screen.queryByRole('switch')).toBeNull(); expect(screen.queryByText(/^Ten tydzień jest oznaczony jako deload/)).toBeNull();

@@ -28,7 +28,7 @@ describe.each(['pl', 'en'] as const)('t13 progress %s', (locale) => {
     await renderApp({ locale });
     const d = data.find(x => x[0] === name)!;
     addWorkout(Date.now() - 3 * day, [[name, d[1]]]); addWorkout(Date.now() - day, [[name, d[2]]]);
-    await go('/more/progress?ex=' + ex(name).id); await flushAll(20);
+    await go('/progress?ex=' + ex(name).id); await flushAll(20);
     const tx = texts();
     // eslint-disable-next-line no-console
     log(locale, name, JSON.stringify(tx));
@@ -53,7 +53,7 @@ test('t13 chart default for assisted-only pull ups (no bodyweight)', async () =>
   await renderApp(); const b = store.getState().bands[0];
   addWorkout(Date.now() - 3 * day, [['Pull Up', [{ reps: 8, bandId: b.id }, { reps: 7, bandId: b.id }]]]);
   addWorkout(Date.now() - day, [['Pull Up', [{ reps: 9, bandId: b.id }]]]);
-  await go('/more/progress?ex=' + ex('Pull Up').id); await flushAll(20);
+  await go('/progress?ex=' + ex('Pull Up').id); await flushAll(20);
   const tx = texts();
   // eslint-disable-next-line no-console
   log('assisted', JSON.stringify(tx));

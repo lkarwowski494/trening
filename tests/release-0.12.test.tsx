@@ -20,8 +20,9 @@ describe('wydanie 0.12.0', () => {
     expect([J('app.json').expo.version, J('package.json').version, lock.version, lock.packages[''].version]).toEqual(['0.12.0', '0.12.0', '0.12.0', '0.12.0']);
   });
   test('najnowszy wpis = 0.12 (niewydany, bez numeru buildu), pod nim 0.11 z buildem 1005; dwa punkty po polsku', () => {
-    expect([WHATS_NEW[0].id, WHATS_NEW[0].build, WHATS_NEW[1].build]).toEqual(['2026-10-10', undefined, 1005]);
-    expect(WHATS_NEW[0].items()).toEqual([
+    const e12 = WHATS_NEW.find(e => e.id === '2026-10-10')!; const i12 = WHATS_NEW.indexOf(e12); /* od 11.10.2026 nad nim wpis o nowym układzie (tests/tabs-four.test.tsx) */
+    expect([e12.id, e12.build, WHATS_NEW[i12 + 1].build]).toEqual(['2026-10-10', undefined, 1005]);
+    expect(e12.items()).toEqual([
       '9 nowych języków: Português (Brasil), Español (Latinoamérica), Bahasa Indonesia, Bahasa Melayu, Tiếng Việt, Русский, 日本語, 한국어, 繁體中文.',
       '35 języków; język zmienisz w Ustawieniach.',
     ]);
@@ -31,8 +32,8 @@ describe('wydanie 0.12.0', () => {
     expect(LANGS.length).toBe(35); /* przy kolejnych językach (kk, uz, az, arabski) wpis 0.12 zostaje bez zmian — popraw tylko ten warunek */
   });
   test('wszystkie języki: oba punkty przetłumaczone, bez „{”, zakończone kropką („。” w ja/zh-Hant), lista z nazwami z LANG_NAME', () => {
-    const pl = WHATS_NEW[0].items(); const names = LANGS_012.map(l => LANG_NAME[l]);
-    for (const l of LANGS) { if (l === 'pl') continue; applyLang(l); const it = WHATS_NEW[0].items();
+    const E = () => WHATS_NEW.find(e => e.id === '2026-10-10')!; const pl = E().items(); const names = LANGS_012.map(l => LANG_NAME[l]);
+    for (const l of LANGS) { if (l === 'pl') continue; applyLang(l); const it = E().items();
       expect([l, it.filter((x, i) => x === pl[i] || /[{}]/.test(x) || !/[.。]$/.test(x))]).toEqual([l, []]);
       expect([l, names.filter(n => !it[0].includes(n))]).toEqual([l, []]);
       expect([l, /35/.test(it[1]), /9/.test(it[0])]).toEqual([l, true, true]); }
@@ -51,15 +52,15 @@ describe('ekran Trening: wpis 0.12 po otwarciu „i”', () => {
     jest.setSystemTime(NOW.getTime()); await flushAll(10);
     await tap(screen.getByTestId('whats-new-i')); await flushAll(5);
   };
-  test('po polsku: „W tej wersji” i oba punkty; 0.11 zwinięte pod „Wersja testowa 1005”', async () => {
+  test('po polsku: wpis 0.12 (zwinięty pod nowszym wpisem o układzie) po rozwinięciu — oba punkty; 0.11 zwinięte pod „Wersja testowa 1005”', async () => {
     await boot('pl');
-    expect(screen.getByText('W tej wersji')).toBeTruthy();
-    for (const x of WHATS_NEW[0].items()) expect(screen.getByText(`• ${x}`)).toBeTruthy();
+    expect(screen.getByText('W tej wersji')).toBeTruthy(); await tap(screen.getByText('▸ W tej wersji')); await flushAll(5);
+    for (const x of WHATS_NEW.find(e => e.id === '2026-10-10')!.items()) expect(screen.getByText(`• ${x}`)).toBeTruthy();
     expect(screen.getByText(/^▸ Wersja testowa 1005 · 10 paź 2026$/)).toBeTruthy();
   });
   test('English: “In this version” and both points', async () => {
     await boot('en');
-    expect(screen.getByText('In this version')).toBeTruthy();
+    expect(screen.getByText('In this version')).toBeTruthy(); await tap(screen.getByText('▸ In this version')); await flushAll(5);
     expect(screen.getByText(/^• 9 new languages: Português \(Brasil\), .*, 繁體中文\.$/)).toBeTruthy();
     expect(screen.getByText('• 35 languages; change the language in Settings.')).toBeTruthy();
   });

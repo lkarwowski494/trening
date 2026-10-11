@@ -24,11 +24,11 @@ const rows = (kinds: ('normal' | 'drop' | 'warmup')[]) => kinds.map((k, i) => ({
 const tplD = (): Template => ({ ...base(), id: 'td', name: 'D', items: [{ id: 'i1', exerciseId: ex('Back Squat').id, sets: 5, repMin: 5, repMax: 8, restSec: 120, startWeight: 100, targetSec: '', groupId: null, rows: rows(['warmup', 'normal', 'normal', 'normal', 'drop']) }] });
 const sqDrop = (d: number) => addWorkout(at(9, d), [['Back Squat', [{ kind: 'warmup', warmup: true, weight: 60, reps: 5 }, { weight: 100, reps: 5 }, { weight: 100, reps: 5 }, { weight: 100, reps: 5 }, { kind: 'drop', weight: 70, reps: 8 }]]]);
 
-describe('E1: masa ciała w Ustawieniach i e1RM w Postępach', () => {
-  test('Ustawienia: „Masa ciała” — nie podano → ekran pomiarów; pomiar 80,5 z dzisiejszą datą; w lb — wpis w funtach, zapis w kg (fala 2: masa ciała z datą)', async () => {
-    await boot(undefined, '/more/settings');
-    expect(screen.getByText('nie podano — e1RM podciągania i pompek')).toBeTruthy();
-    await go('/more/bodymass'); await flushAll(5);
+describe('E1: masa ciała (od 11.10.2026 w Postępach, dawniej w Ustawieniach) i e1RM w Postępach', () => {
+  test('Postępy: „Masa ciała” — nie podano → ekran pomiarów; pomiar 80,5 z dzisiejszą datą; w lb — wpis w funtach, zapis w kg (fala 2: masa ciała z datą)', async () => {
+    await boot(undefined, '/progress');
+    expect(screen.getByText('nie podano — e1RM podciągania i pompek')).toBeTruthy(); expect(screen.getByRole('header', { name: 'Masa ciała' })).toBeTruthy();
+    await tap(screen.getByText('Masa ciała — pomiary')); await flushAll(5);
     const p = Math.round(BW_SHARE['Push Up'] * 100);
     expect(screen.getByText(`Opcjonalnie, tylko w telefonie. Z nią aplikacja liczy e1RM w podciąganiu (cała masa ciała — uproszczenie) i w pompkach (ok. ${p}% masy ciała — badania z platformą siłową). Każdy trening liczy się z ostatnim pomiarem z tego dnia lub wcześniejszym; treningi sprzed pierwszego pomiaru — bez e1RM w tych ćwiczeniach.`)).toBeTruthy();
     const f = screen.getByLabelText('Masa ciała (kg)'); expect(f.props.value).toBe(''); expect(screen.getByLabelText('Data pomiaru (RRRR-MM-DD)').props.value).toBe('2026-10-08');
@@ -41,30 +41,30 @@ describe('E1: masa ciała w Ustawieniach i e1RM w Postępach', () => {
   });
   test('Postępy Pull Up: bez masy ciała — brak wiersza e1RM i wskazówka; z masą ciała — „126,67 kg (masa ciała + 46,67)” i opis uproszczenia', async () => {
     await boot(() => { addWorkout(at(9, 1), [['Pull Up', [{ addKg: 20, reps: 8 }]]]); });
-    await go(`/more/progress?ex=${ex('Pull Up').id}`); await flushAll(10);
+    await go(`/progress?ex=${ex('Pull Up').id}`); await flushAll(10);
     expect(screen.queryByText('e1RM (Epley)')).toBeNull(); expect(screen.queryByText('e1RM (dociążenie)')).toBeNull();
-    expect(screen.getByText('e1RM pojawi się po wpisaniu masy ciała w Ustawieniach.')).toBeTruthy(); expect(screen.getByText('Max dociążenie')).toBeTruthy();
+    expect(screen.getByText('e1RM pojawi się po wpisaniu masy ciała w Postępach.')).toBeTruthy(); expect(screen.getByText('Max dociążenie')).toBeTruthy();
     await act(async () => { setBodyMass(80); }); await flushAll(5);
     expect(screen.getByText('e1RM (Epley)')).toBeTruthy(); expect(screen.getByText('126,67 kg (masa ciała + 46,67)')).toBeTruthy();
     expect(screen.getByText('e1RM: wzór Epleya na 100% masy ciała z dnia treningu (ostatni pomiar z tego dnia lub wcześniejszy) plus dociążenie (uproszczenie).')).toBeTruthy();
   });
   test('Postępy Chest Dip (bez źródła udziału masy ciała): „Bez e1RM…” także z masą ciała; ćwiczenie z ciężarem — bez notki', async () => {
     await boot(() => { setBodyMass(80); addWorkout(at(9, 1), [['Chest Dip', [{ addKg: 10, reps: 5 }]], ['Back Squat', [{ weight: 100, reps: 5 }]]]); });
-    await go(`/more/progress?ex=${ex('Chest Dip').id}`); await flushAll(10);
+    await go(`/progress?ex=${ex('Chest Dip').id}`); await flushAll(10);
     expect(screen.getByText('Bez e1RM: brak źródeł, jaką część masy ciała podnosisz w tym ćwiczeniu.')).toBeTruthy(); expect(screen.queryByText('e1RM (Epley)')).toBeNull();
-    await go(`/more/progress?ex=${ex('Back Squat').id}`); await flushAll(10);
+    await go(`/progress?ex=${ex('Back Squat').id}`); await flushAll(10);
     expect(screen.getByText('e1RM (Epley)')).toBeTruthy(); expect(screen.queryByText(/^Bez e1RM|^e1RM pojawi się|^e1RM: wzór/)).toBeNull();
   });
   test('ekran ćwiczenia: opis masy ciała mówi prawdę o e1RM (masa ciała z Ustawień, udział ze źródeł), bez „masa ciała nie wchodzi do obliczeń”', async () => {
     await boot(); await go(`/exercise/${ex('Pull Up').id}`); await flushAll(10);
     const p = Math.round(BW_SHARE['Push Up'] * 100);
-    expect(screen.getByText(new RegExp(`liczy się tylko z masą ciała wpisaną w Ustawieniach .*pompki \\(ok\\. ${p}% — badania z platformą siłową\\)\\.`))).toBeTruthy();
+    expect(screen.getByText(new RegExp(`liczy się tylko z masą ciała wpisaną w Postępach .*pompki \\(ok\\. ${p}% — badania z platformą siłową\\)\\.`))).toBeTruthy();
     expect(screen.queryByText(/nie wchodzi do obliczeń/)).toBeNull();
   });
-  test('EN: Settings field and Progress note', async () => {
-    await boot(() => { addWorkout(at(9, 1), [['Pull Up', [{ addKg: 20, reps: 8 }]]]); }, '/more/settings', 'en');
-    expect(screen.getByText('Body weight')).toBeTruthy(); /* fala 2: pomiary na osobnym ekranie */
-    await go(`/more/progress?ex=${ex('Pull Up').id}`); await flushAll(10); expect(screen.getByText('e1RM will appear once you enter your body weight in Settings.')).toBeTruthy();
+  test('EN: Progress body weight section and note', async () => {
+    await boot(() => { addWorkout(at(9, 1), [['Pull Up', [{ addKg: 20, reps: 8 }]]]); }, '/progress', 'en');
+    expect(screen.getByText('Body weight')).toBeTruthy(); expect(screen.getByText('not entered — e1RM for pull-ups and push-ups')).toBeTruthy(); /* pomiary na osobnym ekranie */
+    await go(`/progress?ex=${ex('Pull Up').id}`); await flushAll(10); expect(screen.getByText('e1RM will appear once you enter your body weight in Progress.')).toBeTruthy();
   });
 });
 
@@ -103,7 +103,7 @@ describe('D3 / UI-13: liczba serii roboczych na ekranach — rozgrzewka poza, dr
     let id = ''; await boot(() => { id = sqDrop(6).id; }, '/history');
     expect(screen.getAllByText(/ · 3 serie · /).length).toBeGreaterThan(0); expect(screen.queryByText(/ · 4 serie · /)).toBeNull();
     await go(`/history/edit/${id}`); await flushAll(20); expect(screen.getByText('3 serie · 1 rozgrz.')).toBeTruthy();
-    await go('/more/progress'); await flushAll(10); expect(screen.getByText(/Uproszczenie: drop set liczy się razem z serią, po której jest\./)).toBeTruthy();
+    await go('/progress'); await flushAll(10); expect(screen.getByText(/Uproszczenie: drop set liczy się razem z serią, po której jest\./)).toBeTruthy();
   });
 });
 

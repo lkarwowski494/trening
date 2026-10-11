@@ -101,13 +101,14 @@ test('regresja run 37738868663: każde stuknięcie „Swap exercise: …” na e
   expect(bad).toEqual([]);
 });
 
-test('regresja run 37761959586: po wejściu w Postępy (ekran stosu bez paska zakładek) stuknięcie w zakładkę dopiero po „Back”', () => {
+test('regresja run 37761959586: po wejściu w ekran stosu bez paska zakładek (od 11.10.2026: Templates, Exercises pod Więcej; dawniej Postępy) stuknięcie w zakładkę dopiero po „Back”', () => {
   const fs = require('fs'); const path = require('path'); const bad: string[] = [];
   for (const f of files(dir)) {
     let onStack = false; const name = path.basename(f);
     for (const line of fs.readFileSync(f, 'utf8').split('\n')) {
+      if (/^\s*-\s*launchApp/.test(line)) { onStack = false; continue; } /* nowy start aplikacji zaczyna od zakładek */
       const m = line.match(/^\s*-\s*tapOn:\s*"([^"]+)"/); if (!m) continue;
-      if (/^Progress/.test(m[1])) onStack = true; else if (m[1] === 'Back') onStack = false;
+      if (/^(Templates|Exercises)$/.test(m[1])) onStack = true; else if (m[1] === 'Back') onStack = false;
       else if (/, tab\.\*$/.test(m[1]) && onStack) bad.push(`${name}: ${m[1]}`);
     }
   }
