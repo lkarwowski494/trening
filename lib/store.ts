@@ -50,7 +50,7 @@ export const {
   workingSets, setVolume, blockMult, volOf, loadLabelShort, loadLabel, restFor, bandColor, shortBand, bandA11y, setSummary, setScore, setHasValue,
   volume, usesBand
 } = setsMod;
-export const { copyVals, stripUnused, assistLost } = setvalsMod;
+export const { copyVals, stripUnused, assistLost, cascadeDown } = setvalsMod;
 export const {
   locationById, startLocationId, offListAt, prevFromOther, implAtLoc, blockImpl, liveBlockImpl, listLocFor, pinnedImpl, offListNote, srcSetAt,
   stampImpl, setActiveLocation, locationEquipChanged
@@ -70,7 +70,7 @@ export const {
 } = weekplanMod;
 export const { bodyMassLog, bodyMassOn, bodyMassFor, latestBodyMass, addBodyMass, removeBodyMass } = bodymassMod;
 export const {
-  tplRows, tplWorkSets, tplAddRow, tplRemoveRow, tplCycleBand, tplSetRow, tplSetKind, newTemplate, dupTemplate, FOLDER_MAX, templateFolders,
+  tplRows, tplWorkSets, tplAddRow, tplRemoveRow, tplCycleBand, tplSetRow, tplEditRow, tplSetKind, newTemplate, dupTemplate, FOLDER_MAX, templateFolders,
   templateGroups, archivedTemplates, TEMPLATE_NOTE_MAX, setTemplateNote, setTemplateFolder, setTemplateArchived, deleteTemplate
 } = templatesMod;
 export const {
@@ -78,7 +78,7 @@ export const {
   exercisesInUse, inCoreList, libShowAll, setLibShowAll
 } = exercisesMod;
 export const { prefillSets, startableItem, repeatBlocks, startFromTemplate, startEmpty, repeatLast, deloadTail, addExerciseToActive } = startMod;
-export const { addSet, removeSetById, removeSet, removeExercise, findSet, restAfter, roundRest, toggleDone, focusSet } = liveMod;
+export const { addSet, removeSetById, removeSet, removeExercise, findSet, restAfter, roundRest, toggleDone, focusSet, typeSetValue } = liveMod;
 export const {
   swapBlock, swapImpl, canUndoSwap, undoSwap, canRememberAlt, rememberAlt, altHint, acceptAlt, skipExercise, unskipExercise, skipAlt, rememberRest
 } = swapMod;
