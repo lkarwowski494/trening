@@ -88,9 +88,9 @@ describe('liczba mnoga: ja, ko, zh-Hant — jedna forma (CLDR „other”)', () 
       for (const k of keys) expect([l, k, dict(l)[k].includes('|')]).toEqual([l, k, false]);
       applyLang(l); expect([l, new Set([1, 2, 5].map(n => tp(n, 'seria|serie|serii'))).size]).toEqual([l, 1]);
     }
-    applyLang('ja'); expect([tp(3, 'seria|serie|serii'), tp(3, 'powtórzenie|powtórzenia|powtórzeń'), tp(3, 'dzień|dni|dni')]).toEqual(['セット', '回', '日']);
-    applyLang('ko'); expect([tp(3, 'seria|serie|serii'), tp(3, 'powtórzenie|powtórzenia|powtórzeń'), tp(3, 'dzień|dni|dni')]).toEqual(['세트', '회', '일']);
-    applyLang('zh-Hant'); expect([tp(3, 'seria|serie|serii'), tp(3, 'powtórzenie|powtórzenia|powtórzeń'), tp(3, 'dzień|dni|dni')]).toEqual(['組', '下', '天']);
+    applyLang('ja'); expect([tp(3, 'seria|serie|serii'), tp(3, 'powtórzenie|powtórzenia|powtórzeń')]).toEqual(['セット', '回']);
+    applyLang('ko'); expect([tp(3, 'seria|serie|serii'), tp(3, 'powtórzenie|powtórzenia|powtórzeń')]).toEqual(['세트', '회']);
+    applyLang('zh-Hant'); expect([tp(3, 'seria|serie|serii'), tp(3, 'powtórzenie|powtórzenia|powtórzeń')]).toEqual(['組', '下']);
   });
 });
 

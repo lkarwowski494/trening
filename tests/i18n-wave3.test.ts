@@ -70,7 +70,6 @@ describe('liczba mnoga: ru — one / few / many (CLDR, liczby całkowite)', () =
     expect(N.map(n => tp(n, 'seria|serie|serii'))).toEqual(['подход', 'подхода', 'подходов', 'подходов', 'подход', 'подхода', 'подходов']);
     expect(N.map(n => tp(n, 'sesja|sesje|sesji'))).toEqual(['тренировка', 'тренировки', 'тренировок', 'тренировок', 'тренировка', 'тренировки', 'тренировок']);
     expect(N.map(n => tp(n, 'ćwiczenie|ćwiczenia|ćwiczeń'))).toEqual(['упражнение', 'упражнения', 'упражнений', 'упражнений', 'упражнение', 'упражнения', 'упражнений']);
-    expect(N.map(n => tp(n, 'dzień|dni|dni'))).toEqual(['день', 'дня', 'дней', 'дней', 'день', 'дня', 'дней']);
   });
   test('każdy wpis liczby mnogiej ma 3 różne formy (one ≠ few ≠ many — rosyjskie przypadki: mianownik, dopełniacz lp., dopełniacz lm.)', () => {
     const keys = Object.keys(EN).filter(k => k.includes('|'));

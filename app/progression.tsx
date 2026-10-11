@@ -9,7 +9,7 @@ import { WEEKLY_SETS_MARK } from '@/lib/stats';
 import { fmtVol, wu } from '@/lib/units';
 import { MuscleMap } from '@/components/MuscleMap';
 import { MuscleRows, SegBar, SegLegend } from '@/components/ProgressBars';
-import { useTheme, F } from '@/lib/theme';
+import { useTheme, F, TEXT_SCALE_MAX } from '@/lib/theme';
 import { t, tp, locale, lang } from '@/lib/i18n';
 
 /*
@@ -49,7 +49,7 @@ export default function ProgressionScreen() {
   const rowText = (label: string, value: string, p: string, pct: string, sub?: string) => (
     <View accessibilityLanguage={lang()} accessible accessibilityLabel={t('{label}: {v}, poprzednio {p}, {d}', { label, v: value + (sub ? ` (${sub})` : ''), p, d: pct })} style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'baseline', gap: 8 }}>
       <Muted style={{ flexShrink: 1 }}>{label}</Muted>
-      <Txt maxFontSizeMultiplier={1.4} style={{ fontFamily: F.monoBold, flexShrink: 1, textAlign: 'right' }}>{value} <Muted style={{ fontSize: 12 }}>({t('poprz.')}{' '}{p}) {pct}</Muted></Txt>
+      <Txt maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ fontFamily: F.monoBold, flexShrink: 1, textAlign: 'right' }}>{value} <Muted style={{ fontSize: 12 }}>({t('poprz.')}{' '}{p}) {pct}</Muted></Txt>
     </View>);
   return (
     <Screen><ScrollView testID="progression-screen" contentContainerStyle={{ paddingVertical: 10, paddingBottom: 40 }}>
