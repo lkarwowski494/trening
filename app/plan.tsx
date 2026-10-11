@@ -41,7 +41,7 @@ function PlanToggle({ name, active, onPress }: { name: string; active: boolean; 
       accessibilityHint={active ? t('Kalendarz od dziś będzie pusty.') : t('Pyta o potwierdzenie.')} onPress={onPress}
       style={({ pressed }) => ({ width: 44, height: 44, alignItems: 'center', justifyContent: 'center', opacity: pressed ? 0.6 : 1 })}>
       <View style={{ width: 26, height: 26, borderRadius: 13, borderWidth: 2, borderColor: active ? th.accent : th.text, backgroundColor: active ? th.accent : 'transparent', alignItems: 'center', justifyContent: 'center' }}>
-        {active ? <Txt style={{ color: th.bg, fontSize: 15, lineHeight: 18, fontFamily: F.heavy }}>✓</Txt> : null}
+        {active ? <Txt style={{ color: th.bg, fontSize: 15, lineHeight: 20 /* ≥ 1,28 × fontSize — diakrytyki (test i18n-wave2) */, fontFamily: F.heavy }}>✓</Txt> : null}
       </View>
     </Pressable>);
 }
