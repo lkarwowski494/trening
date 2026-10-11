@@ -54,6 +54,9 @@ export function normPlanHistory(list: unknown): PlanSegment[] {
 export const cleanOverrides = (x: unknown): Record<string, string | null> => (isObj(x)
     ? Object.fromEntries(Object.entries(x).filter(([k, v]) => DATE_KEY.test(k)
     && (v === null || (typeof v === 'string' && !!v)))) as Record<string, string | null> : {});
+/** Trening zrobiony wcześniej (11.10.2026): dzień → id treningu; zły klucz albo pusta wartość odpada. */
+export const cleanDoneEarly = (x: unknown): Record<string, string> => (isObj(x)
+    ? Object.fromEntries(Object.entries(x).filter(([k, v]) => DATE_KEY.test(k) && typeof v === 'string' && !!v && v.length <= 80)) as Record<string, string> : {});
 /** Nowy odcinek od dnia `from` (zmiana planu dziś): odcinki od tego dnia i późniejsze ustępują nowemu. */
 export const appendPlanSegment = (list: PlanSegment[], from: string,
     days: (string | null)[]): PlanSegment[] => normPlanHistory([...list.filter(x => x.from < from), { from, days: planDays(days) }]);

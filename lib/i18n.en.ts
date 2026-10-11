@@ -890,4 +890,13 @@ export const EN: Record<string, string> = {
   'Od 0.10: biblioteka ćwiczeń uporządkowana — podobne warianty scalone, rzadsze widać po wyłączeniu filtra „Podstawowe” (Twoje treningi bez zmian); masa ciała z datą i e1RM w podciąganiu i pompkach, wskazówki techniki z rysunkiem ruchu, „Zapisz jako szablon” w historii.': 'Since 0.10: a tidier exercise library — similar variants merged, rarer ones appear when you turn off the “Basic” filter (your workouts stay the same); body weight with a date and e1RM for pull-ups and push-ups, technique tips with a movement drawing, “Save as template” in history.',
   '9 nowych języków: {list}.': '9 new languages: {list}.',
   '35 języków; język zmienisz w Ustawieniach.': '35 languages; change the language in Settings.',
+  /* docs/18 pkt 4–5 (11.10.2026): trening zrobiony wcześniej; wyłączenie wszystkich planów */
+  'Zrobiony wcześniej: {name}': 'Done early: {name}', 'zrobiony wcześniej: {name}': 'done early: {name}',
+  'Trening z tego dnia zrobiony wcześniej — dzień wolny.': 'This day’s workout was done earlier — the day is free.',
+  'Policzone jako trening z {day} — ten dzień jest wolny.': 'Counted as the workout planned for {day} — that day is free.',
+  'Cofnij: {name} znów zaplanowany na ten dzień': 'Undo: {name} is planned for this day again',
+  'Dzień wraca do planu — trening nie liczy się już jako zrobiony.': 'The day goes back to the plan — the workout no longer counts as done.',
+  'Wyłączyć plan?': 'Turn off the plan?', 'Kalendarz od dziś będzie pusty.': 'From today the calendar will be empty.', 'Wyłącz': 'Turn off', 'Wyłącz plan: {name}': 'Turn off plan: {name}',
+  'Aktywny plan': 'Active plan', 'aktywny': 'active', 'nieaktywny': 'inactive', 'Pyta o potwierdzenie.': 'Asks for confirmation.',
+  'Nie można wyłączyć planu': 'Can’t turn off the plan', 'W „Inne plany” jest już {n} planów — usuń któryś, by wyłączyć obecny.': 'There are already {n} plans in “Other plans” — delete one to turn off the current plan.',
 };

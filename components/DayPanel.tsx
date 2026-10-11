@@ -4,7 +4,7 @@ import { useRouter } from 'expo-router';
 import { Btn, Chip, Muted, Txt, H2, useOnce } from '@/components/ui';
 import { workoutDay, getState, useTick, isDeloadWeek, toggleDeloadWeek, fmtDayKey, newTemplate } from '@/lib/store';
 import { useTheme, F } from '@/lib/theme';
-import { plannedOn, isChanged, setDayPlan, resetDay, addDays, dayKeyOf, suggest, suggestionOrder, SUGGEST_FIRST, applySuggestion, dayStatus, doneOn, pending, planTplName, hasPlan, assignTarget, RETURN_DAYS, type Suggestion } from '@/lib/plan';
+import { plannedOn, isChanged, setDayPlan, resetDay, addDays, dayKeyOf, suggest, suggestionOrder, SUGGEST_FIRST, applySuggestion, dayStatus, doneOn, pending, planTplName, hasPlan, assignTarget, RETURN_DAYS, earlyWorkout, undoDoneEarly, type Suggestion } from '@/lib/plan';
 import { askReminderPermission } from '@/lib/planReminder';
 import { t, locale, lang } from '@/lib/i18n';
 import { startTemplate } from '@/lib/start';
@@ -46,7 +46,8 @@ export function DayPanel({ day }: { day: string }) {
   const lines: React.ReactElement[] = [];
   const link = (key: string, text: string, wid: string) => <Pressable accessibilityLanguage={lang()} key={key} accessibilityRole="link" accessibilityLabel={text} onPress={once(() => router.push(`/history/${wid}`))} hitSlop={6} style={({ pressed }) => ({ opacity: pressed ? 0.5 : 1, paddingVertical: 2 })}><Txt style={{ fontSize: 15, color: th.accent, fontFamily: F.semibold }}>{`${text} ›`}</Txt></Pressable>;
   const ch = changed ? ` · ${t('zmiana planu')}` : '';
-  if (st.status === 'done' || st.status === 'other') doneOn(day).forEach(w => lines.push(link(w.id, st.status === 'done' ? t('Zrobione: {name}', { name: w.templateName || t('Trening') }) : t('Zrobiony inny trening: {name}', { name: w.templateName || t('Trening') }), w.id)));
+  if (st.early) { const w = earlyWorkout(day, today); lines.push(w ? link(w.id, t('Zrobiony wcześniej: {name}', { name: tplName(id) }), w.id) : <Txt key="early" style={{ fontSize: 15 }}>{t('Zrobiony wcześniej: {name}', { name: tplName(id) })}</Txt>); lines.push(<Muted key="early-free" style={{ fontSize: 13 }}>{t('Trening z tego dnia zrobiony wcześniej — dzień wolny.')}</Muted>); }
+  else if (st.status === 'done' || st.status === 'other') doneOn(day).forEach(w => lines.push(link(w.id, st.status === 'done' ? t('Zrobione: {name}', { name: w.templateName || t('Trening') }) : t('Zrobiony inny trening: {name}', { name: w.templateName || t('Trening') }), w.id)));
   if (st.status === 'other' || st.status === 'planned' || st.status === 'missed') lines.push(<Txt key="plan" style={{ fontSize: 15 }}>{(past ? t('Opuszczony: {name}', { name: tplName(id) }) : t('Zaplanowany: {name}', { name: tplName(id) })) + ch}</Txt>);
   else if (st.status === 'rest') lines.push(<Txt key="plan" style={{ fontSize: 15 }}>{t('Wolne') + ch}</Txt>);
   else if (changed) lines.push(<Muted key="plan" style={{ fontSize: 13 }}>{t('zmiana planu')}</Muted>);
@@ -62,6 +63,7 @@ export function DayPanel({ day }: { day: string }) {
   if (movable) primary.push({ key: 'move', el: <Btn small title={t('Przesuń albo pomiń')} accessibilityHint={t('Lista możliwości: przesunięcie planu, przeniesienie tylko tego treningu, zamiana albo wolne — z uwzględnieniem regeneracji partii.')} onPress={() => setMode(mode === 'move' ? 'none' : 'move')} /> });
   if (!past && !activeHere && st.status !== 'done') primary.push({ key: 'pick', el: <Btn small title={id ? t('Inny trening') : t('Dodaj trening')} onPress={() => setMode(mode === 'pick' ? 'none' : 'pick')} /> });
   if (past && st.status !== 'done') primary.push({ key: 'past', el: <Btn nav small title={t('Zapisz trening z tego dnia')} accessibilityHint={t('Trening wstecz z datą tego dnia.')} onPress={() => router.push(`/history/add?date=${day}${tpl ? `&tpl=${tpl.id}` : ''}`)} /> });
+  if (st.early) primary.push({ key: 'undo-early', el: <Btn small title={t('Cofnij')} accessibilityLabel={t('Cofnij: {name} znów zaplanowany na ten dzień', { name: tplName(id) })} accessibilityHint={t('Dzień wraca do planu — trening nie liczy się już jako zrobiony.')} onPress={() => { undoDoneEarly(day); close(); }} /> });
   const deload = isDeloadWeek(keyTs(day));
   const secondary: Act[] = [
     ...(changed && !activeHere ? [{ key: 'reset', el: <Btn small kind="ghost" title={t('Przywróć z planu')} onPress={() => { resetDay(day); close(); }} /> }] : []),

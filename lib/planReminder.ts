@@ -45,7 +45,8 @@ export async function syncPlanReminders(now = Date.now()) {
 export function planReminderKey(now = Date.now()) {
   const today = dayKeyOf(now); const st = getState();
   const days = Array.from({ length: PLAN_REMINDER_DAYS }, (_, i) => plannedOn(addDays(today, i)) ?? '-');
-  return `${planReminderOn()}|${lang()}|${today}|${dayStatus(today).status}|${activeDay() ?? ''}|${days.join(',')}|${st.templates.map(x => x.id + x.name + (x.items.length ? '' : '∅')).join(',')}`;
+  const early = days.map((_, i) => (dayStatus(addDays(today, i)).early ? i : '')).join('');
+  return `${planReminderOn()}|${lang()}|${today}|${dayStatus(today).status}|${activeDay() ?? ''}|${days.join(',')}|${st.templates.map(x => x.id + x.name + (x.items.length ? '' : '∅')).join(',')}|${early}`; /* 11.10.2026: dni „zrobione wcześniej” — na końcu, by nie przesuwać pozycji pól */
 }
 
 /** Identyfikatory powiadomień, których aplikacja już nie planuje: przypomnienie o odnowieniu podpisu (T-053) — usunięte razem z instalacją

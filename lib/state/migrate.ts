@@ -12,7 +12,7 @@ import { isObj, arr, parseNum, idOf, tsOf, intIn, kg2, clampName } from './util'
 import { localDateTs, localISODate, workoutDay, realDay, DATE_KEY } from './time';
 import { cleanLevels } from './bands';
 import { normalizeGroups } from './groups';
-import { SAVED_PLANS_MAX, DELOAD_WEEKS_MAX, cleanPlanName, planDays, sameDays, normPlanHistory, cleanOverrides, appendPlanSegment } from './weekplan';
+import { SAVED_PLANS_MAX, DELOAD_WEEKS_MAX, cleanPlanName, planDays, sameDays, normPlanHistory, cleanOverrides, cleanDoneEarly, appendPlanSegment } from './weekplan';
 import { setLegacyLb, snapL, posNum, fixTemplates, fixWorkout, freshIds, uniqueIds } from './migrate-records';
 import { migrateExercises, retireCatalog } from './migrate-catalog';
 
@@ -243,6 +243,10 @@ export function migrate(raw: any): State {
       if (sp.length) raw.savedPlans = sp.slice(0, SAVED_PLANS_MAX); else delete raw.savedPlans; }
     const ov = cleanOverrides(raw.planOverrides);
     if (Object.keys(ov).length) raw.planOverrides = ov; else delete raw.planOverrides;
+    /* 11.10.2026 (docs/18 pkt 4): trening zrobiony wcześniej — tylko dla istniejących zakończonych treningów; idempotentne */
+    { const wids = new Set((Array.isArray(raw.workouts) ? raw.workouts : []).filter((w: any) => isObj(w) && typeof w.id === 'string').map((w: any) => w.id));
+      const de = Object.fromEntries(Object.entries(cleanDoneEarly(raw.doneEarly)).filter(([, v]) => wids.has(v)));
+      if (Object.keys(de).length) raw.doneEarly = de; else delete raw.doneEarly; }
     /* Schemat 18 (audyt 0.10 A1, decyzja właściciela 08.10.2026 — wariant B): historia planu. Dane bez historii (≤ 17): plan tygodnia obowiązuje
      * od dnia migracji — nie wiemy, od kiedy był ustawiony, więc żaden wcześniejszy dzień nie staje się „opuszczony”. Ostatni odcinek = weekPlan:
      * gdy się różnią (plan zmieniony w starszej wersji, która historii nie zna), dochodzi odcinek od dziś. Po zgodzie — bez zmian (idempotentne). */

@@ -9,7 +9,7 @@ import { thisMonday, prCount } from '@/lib/stats';
  * lib/period), karta ostatniego treningu. Nowa osoba (bez treningów): „Pierwsze kroki”. Same dane użytkownika, bez ocen.
  */
 /** `inPlan` — w tym dniu obowiązuje plan tygodnia (lib/plan.planInForce): dzień 'rest' z planem to odpoczynek, bez planu — po prostu wolne. */
-export type WeekDay = { date: string; status: DayStatus; templateId: string | null; today: boolean; inPlan: boolean };
+export type WeekDay = { date: string; status: DayStatus; templateId: string | null; today: boolean; inPlan: boolean; /** dzień „zrobiony wcześniej” (docs/18 pkt 4) */ early?: true };
 /** Bieżący tydzień od poniedziałku. */
 /** PERF-04: wynik pamiętany do następnej zmiany stanu (store.getRev) i dnia — karta „Dziś” i kafelki tygodnia liczą go raz. */
 let stripMemo: { key: string; st: object; v: WeekDay[] } | null = null;
@@ -19,7 +19,7 @@ export function weekStrip(now = Date.now()): WeekDay[] {
 }
 function weekStripOf(now: number): WeekDay[] {
   const today = dayKeyOf(now); const mon = dayKeyOf(thisMonday(0, new Date(now)));
-  return Array.from({ length: 7 }, (_, i) => { const k = addDays(mon, i); const s = dayStatus(k, today); return { date: k, status: s.status, templateId: s.templateId, today: k === today, inPlan: planInForce(k, today) }; });
+  return Array.from({ length: 7 }, (_, i) => { const k = addDays(mon, i); const s = dayStatus(k, today); return { date: k, status: s.status, templateId: s.templateId, today: k === today, inPlan: planInForce(k, today), ...(s.early ? { early: true as const } : {}) }; });
 }
 /** Treningi, serie robocze i czas w tym tygodniu, poprzedni tydzień obok; `planned` — dni z planem w tym tygodniu (null bez planu), `planDone` —
  * z nich zrobione zaplanowanym szablonem (audyt 0.10 A5: ta sama funkcja stanu dnia co kalendarz i pasek; inny trening nie zalicza dnia z planu). */

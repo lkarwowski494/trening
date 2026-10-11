@@ -135,7 +135,7 @@ describe('X-11: prośba o zgodę na powiadomienia przy KAŻDEJ drodze powstania 
   });
   test('X-11: Plan tygodnia → „Ustaw jako aktywny” zapisanego planu przy braku planu → prośba (jedno okno)', async () => {
     await bootPlan(ids => { plan.addPlan('Mój', [ids[0], null, ids[1], null, null, null, null], false); }, '/plan'); expect(plan.hasPlan()).toBe(false);
-    await tap(screen.getAllByText('Ustaw jako aktywny')[0]); await flushAll(5);
+    await tap(screen.getByLabelText('Ustaw jako aktywny: Mój')); await flushAll(5);
     const a = [...global.__alerts].reverse().find(x => /jako aktywny plan/.test(x.title))!; await act(async () => { a.buttons!.find(x => x.text === 'Ustaw')!.onPress?.(); }); await flushAll(10);
     expect(plan.hasPlan()).toBe(true); expect(global.__alerts.filter(x => x.title === REM)).toHaveLength(1);
   });
