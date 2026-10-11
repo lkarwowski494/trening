@@ -44,3 +44,6 @@ backlog) → docs/15 (App Store, ceny) → docs/09 (dziennik testów; stare rund
 - 11.10.2026: **autouzupełnianie serii (pkt 6) — wariant A (kaskada w dół)**: wartość wpisana w serii N przechodzi do kolejnych serii tego samego
   rodzaju (robocze/rozgrzewka osobno) tylko tam, gdzie pole jest puste albo ma jeszcze poprzednią wartość z serii N; nigdy nie nadpisuje serii
   odhaczonej ani wartości wpisanej ręcznie. Edytor szablonu i trening. Odrzucone: B (kopiowanie tylko przy „+ Seria”), C (przycisk „Do wszystkich”).
+- 11.10.2026: **podsumowanie rekordów (pkt 7) — wariant A, bez grafiki**: dla każdego ćwiczenia z rekordem nazwa, tylko pobite statystyki ze
+  strzałką ↑ i przyrostem względem poprzedniego rekordu (np. „↑ e1RM 112,5 kg (+2,5 kg)”) oraz najlepsza seria dnia; sztanga z talerzami
+  (components/RecordPlates.tsx) usunięta z karty. Odrzucone: B (pełny zestaw statystyk).
