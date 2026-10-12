@@ -456,11 +456,11 @@ describe('weryfikacja 2', () => {
     const d = edit.beginEdit(w.id)!; d.w.note = 'x'; d.w.createdAt = 1; byId(w.id).healthUUID = 'hk-1'; store.save(byId(w.id)); // Zdrowie skończyło w trakcie edycji
     committed(edit.commitDraft(d.key)); expect(byId(w.id)).toMatchObject({ healthUUID: 'hk-1', createdAt: w.createdAt, note: 'x' });
     const w2 = addWorkout(day(5), [[BP, [{ weight: 70, reps: 5 }]]]);
-    const hk = jest.requireMock('@kingstinct/react-native-healthkit').default; let done: (v: string) => void = () => {};
-    const spy = jest.spyOn(hk, 'saveWorkoutSample').mockImplementation(() => new Promise<string>(res => { done = res; }));
+    const hk = jest.requireMock('@kingstinct/react-native-healthkit').default; let done: (v: unknown) => void = () => {};
+    const spy = jest.spyOn(hk, 'saveWorkoutSample').mockImplementation(() => new Promise<any>(res => { done = res; }));
     const pending = health.saveWorkout(byId(w2.id)); // zapis do Zdrowia trwa…
     const d2 = edit.beginEdit(w2.id)!; d2.w.exercises[0].sets[0].reps = 6; committed(edit.commitDraft(d2.key)); // …a w tym czasie zapis edycji
-    done('uuid-2'); expect(await pending).toBe('saved'); spy.mockRestore();
+    done((global as any).__hkProxy('uuid-2')); expect(await pending).toBe('saved'); spy.mockRestore();
     expect(byId(w2.id)).toMatchObject({ healthUUID: 'uuid-2' }); expect(sets(w2.id)).toEqual([['70x6']]);
   });
 

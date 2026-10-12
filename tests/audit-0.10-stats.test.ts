@@ -63,9 +63,9 @@ describe('D3 / LOG-07 / X-13 / UI-13: jedna definicja serii roboczych — drop s
     await fresh(st);
     const hw = store.finishedWorkouts()[0];
     expect(store.workingSets(hw)).toBe(3); expect(weekTiles(NOW).sets).toBe(3); expect(lastWorkout()!.sets).toBe(3);
-    const hk = require('@kingstinct/react-native-healthkit').default; const sv = jest.spyOn(hk, 'saveWorkoutSample').mockImplementation(async () => 'uuid-1');
+    const hk = require('@kingstinct/react-native-healthkit').default; const sv = jest.spyOn(hk, 'saveWorkoutSample').mockImplementation(async () => (global as any).__hkProxy('uuid-1'));
     const health = require('@/lib/health'); expect(await health.saveWorkout(hw)).toBe('saved');
-    expect((sv.mock.calls[0] as any[])[3].metadata.Sets).toBe(3); sv.mockRestore();
+    expect((sv.mock.calls[0] as any[])[5].Sets).toBe(3); sv.mockRestore();
   });
 });
 

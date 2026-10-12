@@ -1974,7 +1974,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | LB_REGIONS (3) | lib/i18n.ts | tests/audit-0.10-tst.test.ts |
 | LOCALE_UPPER (2) | lib/i18n.ts | tests/audit-0.10-lang.test.ts |
 | INTRO_MODES (2) | lib/intro.ts | tests/intro.test.tsx |
-| LICENSES (616) | lib/licenses.generated.ts | tests/audit-0.10-data-ui.test.tsx, tests/licenses-native.test.tsx |
+| LICENSES (618) | lib/licenses.generated.ts | tests/audit-0.10-data-ui.test.tsx, tests/licenses-native.test.tsx |
 | NATIVE_LICENSES (7) | lib/licenses.generated.ts | tests/licenses-native.test.tsx |
 | CAPPED_IMPLS (2) | lib/loadcap.ts | tests/audit-k1-bl-mer.test.tsx |
 | LoadUnit: kg \| lb | lib/loads.ts | tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-gen-ui.test.tsx |

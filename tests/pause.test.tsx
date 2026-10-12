@@ -84,12 +84,12 @@ describe('Apple Health (wariant A, decyzja 08.10.2026)', () => {
   });
   test('zapis do Zdrowia przekazuje przesunięty start i prawdziwy koniec', async () => {
     const hk = require('@kingstinct/react-native-healthkit').default; const calls: unknown[][] = []; const orig = hk.saveWorkoutSample;
-    hk.saveWorkoutSample = async (...a: unknown[]) => { calls.push(a); return 'uuid-1'; };
+    hk.saveWorkoutSample = async (...a: unknown[]) => { calls.push(a); return (global as any).__hkProxy('uuid-1'); };
     try {
       const { saveWorkout } = require('@/lib/health');
       const w = addWorkout(T0 - 86400e3, [['Back Squat', [{ weight: 100, reps: 5 }]]]); w.pauses = [[w.startedAt + 10 * MIN, w.startedAt + 30 * MIN]];
       expect(await saveWorkout(w)).toBe('saved');
-      expect((calls[0][2] as Date).getTime()).toBe(w.startedAt + 20 * MIN); expect(((calls[0][3] as { end: Date }).end).getTime()).toBe(w.finishedAt);
+      expect((calls[0][2] as Date).getTime()).toBe(w.startedAt + 20 * MIN); expect((calls[0][3] as Date).getTime()).toBe(w.finishedAt);
     } finally { hk.saveWorkoutSample = orig; }
   });
 });
