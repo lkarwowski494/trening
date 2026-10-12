@@ -175,5 +175,12 @@
  "tętno śr. {avg} /min": "frec. cardíaca media {avg} /min",
  "tętno śr. {avg} /min, maks. {max} /min": "frec. cardíaca media {avg} /min, máx. {max} /min",
  "tętno średnie {avg} na minutę, maksymalne {max}": "frecuencia cardíaca media {avg} por minuto, máxima {max}",
- "tętno średnie {n} na minutę": "frecuencia cardíaca media {n} por minuto"
+ "tętno średnie {n} na minutę": "frecuencia cardíaca media {n} por minuto",
+ "Nie udało się przywrócić zakupów. Sprawdź połączenie z internetem.": "No se pudieron restaurar las compras. Verifica tu conexión a internet.",
+ "Wykorzystano limit darmowych treningów w tym miesiącu ({n}). Kolejne od {date}.": "Ya usaste los entrenamientos gratuitos de este mes ({n}). Más a partir del {date}.",
+ "Treningi bez limitu. Bez reklam. Wszystko zostaje na Twoim telefonie.": "Entrenamientos sin límite. Sin anuncios. Todo se queda en tu celular.",
+ "Zarządzaj subskrypcją": "Administrar suscripción",
+ "Subskrypcja odnawia się automatycznie, dopóki jej nie anulujesz w ustawieniach konta Apple.": "La suscripción se renueva automáticamente hasta que la canceles en la configuración de tu cuenta de Apple.",
+ "Bez zakupu: {n} {s} na żywo w miesiącu; historia, kopia zapasowa i eksport są zawsze dostępne.": "Sin compra: {n} {s} en vivo al mes; el historial, el respaldo y la exportación siempre están disponibles.",
+ "Okres próbny kończy się {date}. Jeśli nie chcesz subskrypcji, anuluj ją w ustawieniach konta Apple.": "Tu prueba gratuita termina el {date}. Si no quieres la suscripción, cancélala en la configuración de tu cuenta de Apple."
 }
