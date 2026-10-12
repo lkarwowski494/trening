@@ -1,5 +1,5 @@
 {
   "CFBundleDisplayName": "Training",
-  "NSHealthShareUsageDescription": "Training ne lit aucune donnée de santé — iOS exige cette description pour l’autorisation HealthKit.",
-  "NSHealthUpdateUsageDescription": "Training enregistre les séances terminées — musculation et cardio — dans l’app Santé."
+  "NSHealthShareUsageDescription": "Training lit dans l’app Santé les pas, les séances (y compris celles de votre montre), la fréquence cardiaque et l’énergie active pour les afficher dans votre plan et à côté de vos séances. Les données restent sur votre iPhone — l’app ne les envoie nulle part et ne les inclut pas dans les sauvegardes.",
+  "NSHealthUpdateUsageDescription": "Training enregistre les séances terminées — musculation et cardio — dans l’app Santé. Lorsque votre montre enregistre la même séance, l’app supprime sa propre copie."
 }

@@ -168,5 +168,12 @@
  "Po kilku tygodniach treningu z rzędu zakładka Plan podpowie „Zaplanuj deload od …”.": "Después de varias semanas de entrenamiento seguidas, la pestaña Plan sugerirá «Planificar descarga desde el …».",
  "Stuknij dzień w zakładce Plan: „Przesuń albo pomiń” pokazuje możliwości — przesunięcie planu o 1 dzień, tylko tego treningu, zamianę albo wolne.": "Toca un día en la pestaña Plan: «Mover o saltar» muestra las opciones — mover el plan 1 día, solo este entrenamiento, intercambiar o descanso.",
  "Ciężar z innego sprzętu — nie liczy się do rekordów, dopóki go tu nie wpiszesz.": "Peso de otro equipo — no cuenta para los récords hasta que lo ingreses aquí.",
- "Cel serii na partię w tygodniu ustawisz w Ustawieniach (Automatycznie albo Ręcznie); paski w „Ten tydzień” i w Postępach mierzą do tego celu, a partia pomocnicza ćwiczenia liczy się za pół serii.": "El objetivo semanal de series por grupo muscular se fija en Configuración (Automático o Manual); las barras de «Esta semana» y de Progreso se miden contra ese objetivo, y el grupo muscular secundario de un ejercicio cuenta como media serie."
+ "Cel serii na partię w tygodniu ustawisz w Ustawieniach (Automatycznie albo Ręcznie); paski w „Ten tydzień” i w Postępach mierzą do tego celu, a partia pomocnicza ćwiczenia liczy się za pół serii.": "El objetivo semanal de series por grupo muscular se fija en Configuración (Automático o Manual); las barras de «Esta semana» y de Progreso se miden contra ese objetivo, y el grupo muscular secundario de un ejercicio cuenta como media serie.",
+ "Kroki, inne aktywności oraz tętno i kcal z zegarka — tylko do wglądu, dane zostają w Zdrowiu.": "Pasos, otras actividades y frecuencia cardíaca y kcal del reloj: solo para consultar, los datos se quedan en Salud.",
+ "tętno maks. {max} /min": "frec. cardíaca máx. {max} /min",
+ "tętno maksymalne {n} na minutę": "frecuencia cardíaca máxima {n} por minuto",
+ "tętno śr. {avg} /min": "frec. cardíaca media {avg} /min",
+ "tętno śr. {avg} /min, maks. {max} /min": "frec. cardíaca media {avg} /min, máx. {max} /min",
+ "tętno średnie {avg} na minutę, maksymalne {max}": "frecuencia cardíaca media {avg} por minuto, máxima {max}",
+ "tętno średnie {n} na minutę": "frecuencia cardíaca media {n} por minuto"
 }

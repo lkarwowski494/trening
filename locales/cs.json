@@ -1,5 +1,5 @@
 {
   "CFBundleDisplayName": "Trénink",
-  "NSHealthShareUsageDescription": "Trénink nečte zdravotní data — iOS tento popis vyžaduje u oprávnění HealthKit.",
-  "NSHealthUpdateUsageDescription": "Trénink ukládá dokončené tréninky — silové i kardio — do Apple Health."
+  "NSHealthShareUsageDescription": "Trénink čte z Apple Health kroky, tréninky (i z hodinek), tep a aktivní energii, aby je ukázal v plánu a u tréninků. Data zůstávají v telefonu — aplikace je nikam neposílá a neukládá do záloh.",
+  "NSHealthUpdateUsageDescription": "Trénink ukládá dokončené tréninky — silové i kardio — do Apple Health. Když stejný trénink uloží hodinky, aplikace svou kopii smaže."
 }

@@ -1,5 +1,5 @@
 {
   "CFBundleDisplayName": "Treeni",
-  "NSHealthShareUsageDescription": "Treeni ei lue terveystietoja — iOS edellyttää tätä kuvausta HealthKit-luvalle.",
-  "NSHealthUpdateUsageDescription": "Treeni tallentaa päättyneet harjoitukset – voima- ja kardioharjoitukset – Apple Healthiin."
+  "NSHealthShareUsageDescription": "Treeni lukee Apple Healthista askeleet, treenit (myös kellosta), sykkeen ja aktiivisen energian näyttääkseen ne suunnitelmassasi ja treenien yhteydessä. Tiedot pysyvät puhelimessasi — sovellus ei lähetä niitä minnekään eikä tallenna niitä varmuuskopioihin.",
+  "NSHealthUpdateUsageDescription": "Treeni tallentaa päättyneet treenit — voima- ja kardiotreenit — Apple Healthiin. Kun kellosi tallentaa saman treenin, sovellus poistaa oman kopionsa."
 }

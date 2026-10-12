@@ -1,5 +1,5 @@
 {
   "CFBundleDisplayName": "Treniņš",
-  "NSHealthShareUsageDescription": "Treniņš nelasa veselības datus — iOS pieprasa šo aprakstu HealthKit atļaujai.",
-  "NSHealthUpdateUsageDescription": "Treniņš saglabā pabeigtos treniņus — spēka un kardio — lietotnē Apple Health."
+  "NSHealthShareUsageDescription": "Treniņš no Apple Health nolasa soļus, treniņus (arī no pulksteņa), pulsu un aktīvo enerģiju, lai parādītu tos plānā un pie sesijām. Dati paliek tālrunī — lietotne tos nekur nesūta un nesaglabā dublējumos.",
+  "NSHealthUpdateUsageDescription": "Treniņš saglabā pabeigtos treniņus — spēka un kardio — lietotnē Apple Health. Kad to pašu treniņu saglabā pulkstenis, lietotne izdzēš savu kopiju."
 }

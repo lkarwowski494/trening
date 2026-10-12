@@ -37,11 +37,11 @@ const SAME_ANY = new Set([
   /* angielskie terminy siłowni użyte w polskim źródle */ 'drop set', '+ drop set', 'Drop set (D)', 'superset', 'Deload' /* termin (tytuł tematu przewodnika, 08.10.2026) */, 'core', 'kettlebell', 'Kettlebell', 'landmine', 'T-bar', 'trap bar', 'kettlebell: {v}' /* 07.10.2026: podpis grafiki na karcie */,
   'GHD', 'GHD (glute-ham developer)', 'circus bell' /* strongman (09.10.2026, L5 Q7) */, 'glute-ham raise', 'reverse hyper', 'Strongman', 'hack squat', 'Hack squat', 'pendulum squat', 'Pendulum squat',
   'butterfly (pec deck)', 'Butterfly (pec deck)', 'tempo', 'biceps', 'triceps',
-  /* zapożyczenia międzynarodowe (to samo słowo w języku docelowym) */ 'cardio', 'Cardio', 'Start', 'OK' /* przycisk okna (fala 2 audytu 0.10) */, 'Tempo' /* etykieta tempa w podglądzie ćwiczenia (fala 2) — jak 'tempo' */, '▶ Start' /* audyt 0.10 (LIVE-06): przycisk karty jak „Start” */, 'Start: {name}', 'Hotel',
+  /* zapożyczenia międzynarodowe (to samo słowo w języku docelowym) */ 'cardio', 'Cardio', 'Start', 'OK' /* przycisk okna (fala 2 audytu 0.10) */, 'Tempo' /* etykieta tempa w podglądzie ćwiczenia (fala 2) — jak 'tempo' */, '▶ Start' /* audyt 0.10 (LIVE-06): przycisk karty jak „Start” */, 'Apple Health', 'Apple Health…' /* nazwa produktu Apple (0.16.0) */, 'Start: {name}', 'Hotel',
 ]);
 /** W jednym języku: wyraz pokrewny o tym samym zapisie i znaczeniu (słowa sprawdzone w języku docelowym). */
 const SAME_IN: Partial<Record<Lang, string[]>> = {
-  cs: ['guma: {v}' /* guma (07.10.2026) */, '{n} z {all}', '{n} z {m}', '{u}/str.' /* strana */, '+ Guma', 'guma', 'Guma', 'gumy', 'Gumy', 'Gumy…' /* guma (UI2-09) */, 'do', 'od', 'krok', 'obj.' /* objem */, 'REKORDY', 'Guma: {b}' /* guma (A11-18: etykieta bez instrukcji) */ /* „pauza” (08.10.2026) usunięte 09.10.2026: pauza treningu = „pozastavit”, A11-01 */],
+  cs: ['minuta|minuty|minut' /* cs: minuta|minuty|minut = to samo słowo (0.16.0) */, 'guma: {v}' /* guma (07.10.2026) */, '{n} z {all}', '{n} z {m}', '{u}/str.' /* strana */, '+ Guma', 'guma', 'Guma', 'gumy', 'Gumy', 'Gumy…' /* guma (UI2-09) */, 'do', 'od', 'krok', 'obj.' /* objem */, 'REKORDY', 'Guma: {b}' /* guma (A11-18: etykieta bez instrukcji) */ /* „pauza” (08.10.2026) usunięte 09.10.2026: pauza treningu = „pozastavit”, A11-01 */],
   sk: ['guma: {v}' /* guma (07.10.2026) */, '{n} z {all}', '{n} z {m}', '{u}/str.', '+ Guma', 'guma', 'Guma', 'gumy', 'Gumy', 'Gumy…', 'do', 'od', 'krok', 'obj.', 'REKORDY', 'nie', 'Nie' /* „nie” = nie (słow.) */, 'Partia' /* svalová partia */, 'sek.', 'Teraz: {v}' /* teraz = teraz (słow.) */, 'Guma: {b}' /* A11-18 */ /* „pauza” usunięte 09.10.2026: pauza treningu = „pozastaviť”, A11-01 */],
   hr: ['guma: {v}' /* guma (07.10.2026) */, 'Masa' /* masa = masa (chorw., cel generatora 08.10.2026) */, '{u}/str.' /* strana */, 'do', 'od', 'Dom', 'normalna', 'sek.', 'Trening' /* APP_NAME.hr */, 'pauza', '⏸ Pauza' /* pauza = pauza (08.10.2026) */, 'Dodane: {list}.' /* dodane = dodane (chorw., ćwiczenia z treningu do szablonu, audyt 0.10 H5) */],
   sl: ['{u}/str.' /* stran */, 'do', 'od', 'Dom', 'sek.', 'Trening' /* APP_NAME.sl */, 'Treningi' /* sl: mn. „trening” — to samo słowo */, 'Dodane: {list}.' /* dodane = dodane (słoweń., audyt 0.10 H5) */],
@@ -187,7 +187,7 @@ describe('liczba mnoga: lib/plural.ts zgodnie z CLDR (Intl.PluralRules) i tp() w
     for (const d of ['app', 'components', 'lib']) walk(path.join(__dirname, '..', d));
     const args = files.flatMap(f => [...fs.readFileSync(f, 'utf8').matchAll(/\btp\(([^,]+),\s*'/g)].map(m => m[1].trim()));
     expect(args.length).toBeGreaterThan(10);
-    expect(args.filter(a => !/(\.length|^Math\.round\(.*\)?|^(n|sets|days|w|ws\.length|points\.length|last\.sets|last\.prs))$/.test(a))).toEqual([]);
+    expect(args.filter(a => !/(\.length|^Math\.round\(.*\)?|^(n|sets|days|w|ws\.length|points\.length|last\.sets|last\.prs|m|otherCount))$/.test(a))).toEqual([]);
   });
 });
 

@@ -1,5 +1,5 @@
 {
   "CFBundleDisplayName": "Träning",
-  "NSHealthShareUsageDescription": "Träning läser inte hälsodata — iOS kräver den här beskrivningen för HealthKit-behörigheten.",
-  "NSHealthUpdateUsageDescription": "Träning sparar avslutade pass – styrka och kondition – i Apple Health."
+  "NSHealthShareUsageDescription": "Träning läser steg, träningspass (även från din klocka), puls och aktiv energi från Apple Health för att visa dem i din plan och vid dina pass. Data stannar på din iPhone — appen skickar den ingenstans och sparar den inte i säkerhetskopior.",
+  "NSHealthUpdateUsageDescription": "Träning sparar avslutade pass — styrka och cardio — i Apple Health. När din klocka registrerar samma pass raderar appen sin egen kopia."
 }

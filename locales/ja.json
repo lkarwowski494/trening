@@ -1,5 +1,5 @@
 {
   "CFBundleDisplayName": "Training",
-  "NSHealthShareUsageDescription": "Training はヘルスケアのデータを読み取りません — HealthKit の許可には iOS がこの説明を必要とします。",
-  "NSHealthUpdateUsageDescription": "Training は終了したトレーニング（筋力トレーニングと有酸素運動）を Apple Health に保存します。"
+  "NSHealthShareUsageDescription": "Training は Apple Health（ヘルスケア）から歩数、トレーニング（ウォッチのものを含む）、心拍数、アクティブエネルギーを読み取り、プランやセッションの横に表示します。データは iPhone 内に残り、アプリが外部へ送信したりバックアップに保存したりすることはありません。",
+  "NSHealthUpdateUsageDescription": "Training は終了したトレーニング（筋力トレーニングと有酸素運動）を Apple Health に保存します。ウォッチが同じトレーニングを記録した場合、アプリは自分のコピーを削除します。"
 }

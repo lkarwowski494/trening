@@ -1,5 +1,5 @@
 {
   "CFBundleDisplayName": "Training",
-  "NSHealthShareUsageDescription": "Training non legge i dati sulla salute: iOS richiede questa descrizione per il permesso di HealthKit.",
-  "NSHealthUpdateUsageDescription": "Training salva gli allenamenti completati — di forza e cardio — nell’app Salute."
+  "NSHealthShareUsageDescription": "Training legge da Apple Health i passi, gli allenamenti (anche quelli dell’orologio), la frequenza cardiaca e l’energia attiva per mostrarli nel tuo piano e accanto alle tue sessioni. I dati restano sull’iPhone: l’app non li invia da nessuna parte e non li include nei backup.",
+  "NSHealthUpdateUsageDescription": "Training salva in Apple Health gli allenamenti completati (forza e cardio). Quando l’orologio registra lo stesso allenamento, l’app elimina la propria copia."
 }

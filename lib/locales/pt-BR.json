@@ -498,5 +498,10 @@
  "Cel serii na partię w tygodniu ustawisz w Ustawieniach (Automatycznie albo Ręcznie); paski w „Ten tydzień” i w Postępach mierzą do tego celu, a partia pomocnicza ćwiczenia liczy się za pół serii.": "A meta semanal de séries por grupo muscular é definida em Ajustes (Automático ou Manual); as barras em “Esta semana” e em Progresso são medidas por essa meta, e o grupo muscular secundário de um exercício conta como meia série.",
  "Poprawki: Postępy pamiętają wybrane ćwiczenie, import bez godzin pokazuje „godzina nieznana”, a teksty pomocy zgadzają się z nazwami zakładek.": "Correções: Progresso lembra do exercício escolhido, uma importação sem horas mostra “hora desconhecida” e os textos de ajuda coincidem com os nomes das abas.",
  "20 nowych ćwiczeń ze wskazówkami w sekcji „Technika”.": "20 novos exercícios com dicas na seção “Técnica”.",
- "Trening dopisywany wstecz: miejsce treningu wybierzesz w edytorze.": "Treino registrado depois: o local do treino é escolhido no editor."
+ "Trening dopisywany wstecz: miejsce treningu wybierzesz w edytorze.": "Treino registrado depois: o local do treino é escolhido no editor.",
+ "Brak danych z Apple Health dla tego dnia. Jeśli dane powinny być, sprawdź dostęp w aplikacji Zdrowie: profil → Aplikacje → {app}.": "Sem dados do Apple Health para este dia. Se devia haver, verifique o acesso no app Saúde: perfil → Apps → {app}.",
+ "Jeśli dane się nie pokażą, sprawdź dostęp w aplikacji Zdrowie: profil → Aplikacje → {app}.": "Se os dados não aparecerem, verifique o acesso no app Saúde: perfil → Apps → {app}.",
+ "Kroki, inne aktywności oraz tętno i kcal z zegarka — tylko do wglądu, dane zostają w Zdrowiu.": "Passos, outras atividades e frequência cardíaca e kcal do relógio — somente para consulta, os dados ficam na Saúde.",
+ "Trening z zegarka w Apple Health zostanie — usuniesz go w aplikacji Zdrowie.": "O treino do relógio fica no Apple Health — apague no app Saúde.",
+ "Zgodę cofniesz w aplikacji Zdrowie: profil → Aplikacje → {app}.": "Você pode revogar a permissão no app Saúde: perfil → Apps → {app}."
 }

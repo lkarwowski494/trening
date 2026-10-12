@@ -1,5 +1,5 @@
 {
   "CFBundleDisplayName": "Training",
-  "NSHealthShareUsageDescription": "Training sağlık verilerini okumaz — iOS, HealthKit izni için bu açıklamayı gerektirir.",
-  "NSHealthUpdateUsageDescription": "Training tamamlanan antrenmanları — kuvvet ve kardiyo — Apple Sağlık’a kaydeder."
+  "NSHealthShareUsageDescription": "Training, planınızda ve oturumların yanında göstermek için Apple Sağlık’tan adımları, antrenmanları (saatinizdekiler dahil), nabzı ve aktif enerjiyi okur. Veriler iPhone’unuzda kalır — uygulama bunları hiçbir yere göndermez ve yedeklere kaydetmez.",
+  "NSHealthUpdateUsageDescription": "Training, tamamlanan antrenmanları — kuvvet ve kardiyo — Apple Sağlık’a kaydeder. Saatiniz aynı antrenmanı kaydettiğinde uygulama kendi kopyasını siler."
 }

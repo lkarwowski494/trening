@@ -1,5 +1,5 @@
 {
   "CFBundleDisplayName": "Training",
-  "NSHealthShareUsageDescription": "Training no lee datos de salud: iOS exige esta descripción para el permiso de HealthKit.",
-  "NSHealthUpdateUsageDescription": "Training guarda los entrenamientos terminados —de fuerza y cardio— en Apple Health."
+  "NSHealthShareUsageDescription": "Training lee de Apple Health los pasos, los entrenamientos (también los del reloj), la frecuencia cardiaca y la energía activa para mostrarlos en tu plan y junto a tus sesiones. Los datos se quedan en tu iPhone: la app no los envía a ningún sitio ni los guarda en copias de seguridad.",
+  "NSHealthUpdateUsageDescription": "Training guarda los entrenamientos terminados (de fuerza y cardio) en Apple Health (app Salud). Cuando tu reloj registra el mismo entrenamiento, la app borra su propia copia."
 }

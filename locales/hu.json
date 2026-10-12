@@ -1,5 +1,5 @@
 {
   "CFBundleDisplayName": "Training",
-  "NSHealthShareUsageDescription": "A Training nem olvas egészségügyi adatokat — az iOS a HealthKit-engedélyhez megköveteli ezt a leírást.",
-  "NSHealthUpdateUsageDescription": "A Training a befejezett edzéseket – erősítő és kardió edzéseket – az Apple Health appba menti."
+  "NSHealthShareUsageDescription": "A Training az Apple Healthből olvassa a lépéseket, az edzéseket (az óráról is), a pulzust és az aktív energiát, hogy megjelenítse őket a tervben és az edzések mellett. Az adatok a telefonon maradnak — az app nem küldi el őket sehová, és nem menti őket biztonsági másolatba.",
+  "NSHealthUpdateUsageDescription": "A Training az Apple Healthbe menti a befejezett edzéseket — erőt és kardiót. Ha ugyanazt az edzést az óra is rögzíti, az app törli a saját másolatát."
 }

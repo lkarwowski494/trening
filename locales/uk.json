@@ -1,5 +1,5 @@
 {
   "CFBundleDisplayName": "Training",
-  "NSHealthShareUsageDescription": "Training не читає дані про здоров’я — iOS вимагає цей опис для дозволу HealthKit.",
-  "NSHealthUpdateUsageDescription": "Training зберігає завершені тренування — силові й кардіо — в Apple Health."
+  "NSHealthShareUsageDescription": "Training читає з Apple Health кроки, тренування (зокрема з годинника), пульс і активну енергію, щоб показувати їх у плані та поруч із тренуваннями. Дані залишаються на iPhone — застосунок нікуди їх не надсилає й не зберігає в резервних копіях.",
+  "NSHealthUpdateUsageDescription": "Training зберігає завершені тренування — силові та кардіо — в Apple Health. Коли те саме тренування записує годинник, застосунок видаляє власну копію."
 }
