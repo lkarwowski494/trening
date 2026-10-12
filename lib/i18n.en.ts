@@ -955,4 +955,21 @@ export const EN: Record<string, string> = {
   /* 0.14.0 */
   'godzina nieznana': 'time unknown',
   'Ciężar z innego sprzętu — nie liczy się do rekordów, dopóki go tu nie wpiszesz.': 'Weight from other equipment — it does not count toward records until you enter it here.',
+  /* 0.16.0 (odczyt z Apple Health, docs/29): Ustawienia, panel dnia, „Ten tydzień”, szczegóły sesji, „Co nowego” */
+  'Pokazuj dane z Apple Health': 'Show data from Apple Health',
+  'Kroki, inne aktywności oraz tętno i kcal z zegarka — tylko do wglądu, dane zostają w Zdrowiu.': 'Steps, other activities, and heart rate and kcal from your watch — view only, the data stays in Health.',
+  'Zgodę cofniesz w aplikacji Zdrowie: profil → Aplikacje → {app}.': 'You can revoke access in the Health app: profile → Apps → {app}.',
+  'Apple Health nie jest dostępne na tym urządzeniu.': 'Apple Health is not available on this device.',
+  'Jeśli dane się nie pokażą, sprawdź dostęp w aplikacji Zdrowie: profil → Aplikacje → {app}.': 'If no data shows up, check access in the Health app: profile → Apps → {app}.',
+  'Apple Health…': 'Apple Health…',
+  'Brak danych z Apple Health dla tego dnia. Jeśli dane powinny być, sprawdź dostęp w aplikacji Zdrowie: profil → Aplikacje → {app}.': 'No data from Apple Health for this day. If there should be some, check access in the Health app: profile → Apps → {app}.',
+  'Trening z zegarka w Apple Health zostanie — usuniesz go w aplikacji Zdrowie.': 'The workout from your watch stays in Apple Health — delete it in the Health app.',
+  'Kroki: {n}': 'Steps: {n}', 'kroki {n}': 'steps {n}', 'Inna aktywność': 'Other activity', 'inna aktywność': 'other activity', 'minuta|minuty|minut': 'minute|minutes',
+  'Apple Health': 'Apple Health', 'Apple Health (zegarek)': 'Apple Health (watch)', 'Z zegarka': 'From your watch',
+  'Kroki dziennie (średnia z {d} dni): {n}': 'Steps per day (average of {d} days): {n}',
+  'inna aktywność|inne aktywności|innych aktywności': 'other activity|other activities', 'w tym tygodniu': 'this week',
+  'tętno śr. {avg} /min, maks. {max} /min': 'avg. heart rate {avg} /min, max {max} /min', 'tętno śr. {avg} /min': 'avg. heart rate {avg} /min', 'tętno maks. {max} /min': 'max heart rate {max} /min',
+  '{n} kcal aktywne': '{n} active kcal',
+  'tętno średnie {avg} na minutę, maksymalne {max}': 'average heart rate {avg} per minute, maximum {max}', 'tętno średnie {n} na minutę': 'average heart rate {n} per minute',
+  'tętno maksymalne {n} na minutę': 'maximum heart rate {n} per minute', '{n} kilokalorii aktywnych': '{n} active kilocalories',
 };

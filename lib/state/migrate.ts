@@ -19,7 +19,7 @@ import { migrateExercises, retireCatalog } from './migrate-catalog';
 
 /** Pola Settings znane tej wersji — pola domyślne plus opcjonalne (nowe pole opcjonalne dopisz tutaj, inaczej jego zła wartość z importu
  * przejdzie jak nieznane ustawienie); reszta zostaje bez zmian — audyt 0.10 J1. */
-const SETTINGS_KEYS = new Set([...Object.keys(defaultSettings()), 'effortScale', 'planReminder', 'libShowAll', 'weeklySetGoals']);
+const SETTINGS_KEYS = new Set([...Object.keys(defaultSettings()), 'effortScale', 'planReminder', 'libShowAll', 'weeklySetGoals', 'healthRead']);
 /** Ustawienia przeniesione poza Settings — nie zostają jako „nieznane” (J1): masa ciała bez daty → State.bodyMassLog (fala 2 audytu 0.10). */
 const MOVED_SETTINGS = new Set(['bodyMass']);
 const PROTO_KEYS = new Set(['__proto__', 'constructor', 'prototype']);
@@ -176,6 +176,7 @@ export function migrate(raw: any): State {
         ...(s.planReminder === false ? { planReminder: false as const } : {}),
         ...((g => g ? { weeklySetGoals: g } : {})(normalizeGoals(s.weeklySetGoals))), /* 12.10.2026: ręczny cel serii na partię — tylko znane części, liczby w granicach */
     healthSync: typeof s.healthSync === 'boolean' ? s.healthSync : d.healthSync,
+    ...(s.healthRead === true ? { healthRead: true as const } : {}), /* 0.16.0 (P2 A): tylko włączenie zapisane; zła wartość = wyłączony */
     /* runda 75 */
     progressHint: typeof s.progressHint === 'boolean' ? s.progressHint : d.progressHint,
         autoBackup: typeof s.autoBackup === 'boolean' ? s.autoBackup : d.autoBackup,

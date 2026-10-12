@@ -39,7 +39,9 @@ jest.mock('expo-document-picker', () => ({ getDocumentAsync: jest.fn(async () =>
 /* Kontrakt @kingstinct/react-native-healthkit 16.x (docs/28): isHealthDataAvailableAsync, requestAuthorization({ toRead, toShare }), authorizationStatusFor (synchroniczne),
  * saveWorkoutSample(rodzaj, próbki, start, koniec, sumy, metadane) → WorkoutProxy { uuid, dispose }; błąd zapisu = odrzucona obietnica (nie `false` jak w 8.x). */
 global.__hkProxy = (uuid) => ({ uuid, dispose: jest.fn() });
-jest.mock('@kingstinct/react-native-healthkit', () => ({ default: { isHealthDataAvailableAsync: async () => false, requestAuthorization: async () => false, authorizationStatusFor: () => 0, saveWorkoutSample: async () => { throw new Error('HealthKit niedostępny'); } } }), { virtual: true });
+jest.mock('@kingstinct/react-native-healthkit', () => ({ default: { isHealthDataAvailableAsync: async () => false, requestAuthorization: async () => false, authorizationStatusFor: () => 0, saveWorkoutSample: async () => { throw new Error('HealthKit niedostępny'); },
+  /* 0.16.0 (odczyt, docs/29): domyślnie puste odpowiedzi; dane do testów — tests/health-world.ts (kontrakt 16.x przeczytany w paczce: queryStatisticsCollectionForQuantity, queryWorkoutSamples, deleteObjects, currentAppSource) */
+  queryStatisticsCollectionForQuantity: async () => [], queryWorkoutSamples: async () => [], deleteObjects: async () => 0, currentAppSource: () => ({ name: 'Trening', bundleIdentifier: 'com.test.trening' }) } }), { virtual: true });
 jest.mock('@/modules/rest-activity', () => ({
   isSupported: () => false,
   start: jest.fn(async (...a) => { global.__la.push(['start', ...a]); return false; }),
