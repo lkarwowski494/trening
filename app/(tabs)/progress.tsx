@@ -29,7 +29,7 @@ export default function ProgressTab() {
   const [exId, setExId] = useState(exParam ?? ''); const [q, setQ] = useState(''); const [key, setKey] = useState<ChartKey | ''>('');
   const scrollY = useRef(0);
   useEffect(() => { if (exParam) { setExId(exParam); setKey(''); scrollY.current = 0; } }, [exParam]); /* runda 54: link przy otwartym ekranie */
-  const view: View_ = { exId, setExId: (id: string) => { scrollY.current = 0; setExId(id); }, q, setQ, key, setKey, scrollY };
+  const view: View_ = { exId, setExId: (id: string) => { scrollY.current = 0; setExId(id); }, q, setQ, chartKey: key, setKey, scrollY }; /* uwaga: `key` jest zarezerwowaną nazwą propsa w React */
   return (
     <SafeAreaView style={{ flex: 1 }} edges={['top']}><Screen>
       <View style={{ marginVertical: 10 }}><H1>{t('Postępy')}</H1></View>
@@ -37,9 +37,9 @@ export default function ProgressTab() {
     </Screen></SafeAreaView>
   );
 }
-type View_ = { exId: string; setExId: (id: string) => void; q: string; setQ: (q: string) => void; key: ChartKey | ''; setKey: (k: ChartKey | '') => void; scrollY: React.MutableRefObject<number> };
+type View_ = { exId: string; setExId: (id: string) => void; q: string; setQ: (q: string) => void; chartKey: ChartKey | ''; setKey: (k: ChartKey | '') => void; scrollY: React.MutableRefObject<number> };
 
-function Progress({ exId, setExId, q, setQ, key, setKey, scrollY }: View_) {
+function Progress({ exId, setExId, q, setQ, chartKey: key, setKey, scrollY }: View_) {
   const { ex: exParam } = useLocalSearchParams<{ ex?: string }>(); useTick(); const th = useTheme(); const router = useRouter();
   /* przewinięcie (audyt 0.13): zapamiętywane w zakładce, przywracane przy ponownym zamontowaniu treści */
   const scroll = { onScroll: (e: { nativeEvent: { contentOffset: { y: number } } }) => { scrollY.current = e.nativeEvent.contentOffset.y; }, scrollEventThrottle: 32, contentOffset: { x: 0, y: scrollY.current } };
