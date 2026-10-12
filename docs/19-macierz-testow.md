@@ -1458,10 +1458,10 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | health.ensureAuthorization | lib/health.ts | tests/health-query.test.ts, tests/healthkit-contract.test.ts, tests/regress.test.tsx |
 | health.ensureReadAuthorization | lib/health.ts | tests/health-query.test.ts |
 | health.healthStart | lib/health.ts | tests/healthkit-contract.test.ts, tests/pause.test.tsx |
-| health.saveWorkout | lib/health.ts | tests/audit-0.10-stats.test.ts, tests/edit-history.test.tsx, tests/health-query.test.ts +4 |
+| health.saveWorkout | lib/health.ts | tests/audit-0.10-stats.test.ts, tests/edit-history.test.tsx, tests/health-query.test.ts +5 |
 | health.healthPending | lib/health.ts | tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-data.test.ts, tests/health-query.test.ts +3 |
 | health.deleteOwnCopy | lib/health.ts | tests/health-query.test.ts |
-| health.reconcileWatchCopies | lib/health.ts | tests/health-query.test.ts |
+| health.reconcileWatchCopies | lib/health.ts | tests/health-query.test.ts, tests/matrix-invariants.test.ts |
 | health.syncAfterFinish | lib/health.ts | tests/audit-0.10-data.test.ts, tests/audit-io-more.test.tsx, tests/health-query.test.ts +1 |
 | health.retryHealth | lib/health.ts | tests/audit-0.10-data.test.ts, tests/health-query.test.ts, tests/matrix-invariants.test.ts |
 | healthQuery.readEnabled | lib/healthQuery.ts | tests/health-query.test.ts |
@@ -1471,7 +1471,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | healthQuery.loadDay | lib/healthQuery.ts | tests/health-query.test.ts |
 | healthQuery.loadWeek | lib/healthQuery.ts | tests/health-query.test.ts |
 | healthQuery.hasWatchMatch | lib/healthQuery.ts | tests/health-query.test.ts |
-| healthQuery.matchesFor | lib/healthQuery.ts | tests/health-query.test.ts |
+| healthQuery.matchesFor | lib/healthQuery.ts | tests/health-query.test.ts, tests/matrix-invariants.test.ts |
 | healthQuery.ownCopySessions | lib/healthQuery.ts | tests/health-query.test.ts |
 | healthQuery.loadWatchStats | lib/healthQuery.ts | tests/health-query.test.ts |
 | healthRead.ownCopyFilter | lib/healthRead.ts | tests/health-read.test.ts |
@@ -1801,7 +1801,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | store.focusSet | lib/state/live.ts | tests/audit-0.10-live-logic.test.ts, tests/audit-0.10-live.test.tsx, tests/regress.test.tsx +2 |
 | store.migrate | lib/state/migrate.ts | tests/audit-0.10-data.test.ts, tests/audit-0.10-gen.test.ts, tests/audit-0.10-live-logic.test.ts +47 |
 | store.isPaused | lib/state/pause.ts | tests/matrix-invariants.test.ts, tests/pause.test.tsx |
-| store.noClock | lib/state/pause.ts | tests/f014-logic.test.ts, tests/regress.test.tsx |
+| store.noClock | lib/state/pause.ts | tests/f014-logic.test.ts, tests/matrix-invariants.test.ts, tests/regress.test.tsx |
 | store.whenText | lib/state/pause.ts | tests/f014-logic.test.ts, tests/regress.test.tsx |
 | store.cleanPauses | lib/state/pause.ts | tests/pause.test.tsx, tests/regress.test.tsx |
 | store.pauseWorkout | lib/state/pause.ts | tests/matrix-invariants.test.ts, tests/pause.test.tsx, tests/regress.test.tsx |
