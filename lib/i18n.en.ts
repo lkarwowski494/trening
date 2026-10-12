@@ -54,7 +54,7 @@ export const EN: Record<string, string> = {
   'Ćwiczenia dopasowane do Twoich: {n}': 'Exercises matched to yours: {n}', 'Nowe ćwiczenia: {n}': 'New exercises: {n}', 'Jednostka ciężaru w pliku': 'Weight unit in the file',
   'Plik nie podaje, czy ciężary są w kg, czy w lb. Domyślnie: jednostka z Ustawień.': 'The file does not say whether weights are in kg or lb. Default: the unit from Settings.',
   'Plik nie podaje godzin treningów — dzień, w którym masz już trening, zostanie pominięty jako duplikat.': 'The file has no workout times — a day on which you already have a workout is skipped as a duplicate.',
-  'Dystans w pliku przyjęto jako metry.': 'Distance in the file is taken as metres.', 'Ćwiczenia z pliku': 'Exercises in the file', 'Serie: {n}': 'Sets: {n}', '→ {name}': '→ {name}',
+  'Dystans w pliku przyjęto jako metry.': 'Distance in the file is taken as metres.', 'Ćwiczenia z pliku': 'Exercises in the file', 'Serie: {n}': 'Sets: {n}',
   'Zmień dopasowanie': 'Change match', 'Nie ma nowych treningów do dodania — wszystkie są już w historii.': 'There are no new workouts to add — all of them are already in your history.',
   'Dodano treningi: {n}, nowe ćwiczenia: {m}.': 'Workouts added: {n}, new exercises: {m}.',
   'To nie wygląda na obsługiwany plik CSV z historią treningów. Dane nie zostały zmienione.': 'This does not look like a supported CSV file with workout history. Your data was not changed.',

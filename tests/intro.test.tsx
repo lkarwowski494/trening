@@ -184,10 +184,11 @@ describe('scenariusz: start aplikacji', () => {
     expect(fs.readFileSync(path.join(root, 'tests/setup.js'), 'utf8')).toMatch(/jest\.mock\('@\/components\/Intro'/); /* wyłączenie tylko w testach */
     await renderApp();
     expect(screen.getByTestId('intro', H_)).toBeTruthy();
-    expect(screen.queryAllByText('Szablony', { includeHiddenElements: false })).toHaveLength(0);
-    expect(screen.getAllByText('Szablony', { includeHiddenElements: true }).length).toBeGreaterThan(0); /* dane gotowe pod spodem (równolegle) */
+    /* 12.10.2026: po zmianie na 4 zakładki (Trening · Plan · Postępy · Więcej) zakładki „Szablony” nie ma — sprawdzamy etykietę istniejącej zakładki „Więcej”. */
+    expect(screen.queryAllByText('Więcej', { includeHiddenElements: false })).toHaveLength(0);
+    expect(screen.getAllByText('Więcej', { includeHiddenElements: true }).length).toBeGreaterThan(0); /* dane gotowe pod spodem (równolegle) */
     for (let t = 0; t < INTRO.totalMs + 100; t += 50) await flushAll(50);
-    expect(screen.queryByTestId('intro', H_)).toBeNull(); expect(screen.queryAllByText('Szablony', { includeHiddenElements: false }).length).toBeGreaterThan(0);
+    expect(screen.queryByTestId('intro', H_)).toBeNull(); expect(screen.queryAllByText('Więcej', { includeHiddenElements: false }).length).toBeGreaterThan(0);
     expect(hide).toHaveBeenCalled();
   });
   test('powrót z tła: bez animacji', async () => {
@@ -195,13 +196,13 @@ describe('scenariusz: start aplikacji', () => {
     try {
       await renderApp(); for (let t = 0; t < INTRO.totalMs + 100; t += 50) await flushAll(50); expect(screen.queryByTestId('intro', H_)).toBeNull();
       await act(async () => { handlers.forEach(h => h('background')); }); await act(async () => { handlers.forEach(h => h('active')); }); await flushAll(10);
-      expect(screen.queryByTestId('intro', H_)).toBeNull(); expect(screen.queryAllByText('Szablony', { includeHiddenElements: false }).length).toBeGreaterThan(0);
+      expect(screen.queryByTestId('intro', H_)).toBeNull(); expect(screen.queryAllByText('Więcej', { includeHiddenElements: false }).length).toBeGreaterThan(0);
     } finally { void spy; }
   });
   test('„Ogranicz ruch” włączone: aplikacja od razu po załadowaniu, bez nakładki', async () => {
     rm.mockImplementation(() => Promise.resolve(true));
     await renderApp(); await flushAll(10);
-    expect(screen.queryByTestId('intro', H_)).toBeNull(); expect(screen.queryAllByText('Szablony', { includeHiddenElements: false }).length).toBeGreaterThan(0);
+    expect(screen.queryByTestId('intro', H_)).toBeNull(); expect(screen.queryAllByText('Więcej', { includeHiddenElements: false }).length).toBeGreaterThan(0);
   });
   test('błąd startu: animacja nie zasłania komunikatu (kończy się jak przy gotowych danych)', async () => {
     try {

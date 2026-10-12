@@ -51,7 +51,7 @@ const SAME_IN: Partial<Record<Lang, string[]>> = {
   et: ['{u}/hant.', '{u}/hantel' /* hantel (est.) */],
   es: ['Dieta', 'Lista', 'Masa' /* masa (hiszp., cel generatora 08.10.2026) */], pt: ['Dieta', 'Lista'] /* lista = lista (hiszp., port.) */, hu: ['Lista'] /* lista = lista (węg.) */,
   /* 07.10.2026 (wariant B) — te same słowa w języku docelowym */
-  it: ['Dieta', 'Serie' /* nagłówek kafelka (08.10.2026) */], sv: ['(kopia)' /* kopia (szw.) */, '{u}/hantel', 'e1RM (Epley, per hantel)', 'per hantel (×2)' /* hantel, per (szw.) */, 'Lista', 'sek.'],
+  it: ['Dieta', 'Serie' /* nagłówek kafelka (08.10.2026) */, 'Serie: {n}' /* it: „serie” = serie (import CSV, 12.10.2026) */], sv: ['(kopia)' /* kopia (szw.) */, '{u}/hantel', 'e1RM (Epley, per hantel)', 'per hantel (×2)' /* hantel, per (szw.) */, 'Lista', 'sek.'],
   da: ['sek.'], nb: ['sek.', 'Trening' /* APP_NAME.nb */], fi: ['Lista' /* fiń. lista; „Historia” — klucz usunięty 09.10.2026 (TST-08) */],
   en: ['Folder' /* folder (ang.) — 07.10.2026 wieczór, foldery szablonów */],
   /* fala 2 (09.10.2026): „folder” — to samo słowo w id i ms (iOS id/ms: „Folder”); „Eksport CSV” — ms „eksport” = eksport */

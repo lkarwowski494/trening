@@ -55,7 +55,7 @@ export default function ImportCsv() {
           {a.names.length ? <SectionTitle>{t('Ćwiczenia z pliku')}</SectionTitle> : null}
           {a.names.map(r => { const ex = targetOf(r.name); const open = editing === r.name;
             return (<View key={r.name}>
-              <Item title={r.name} sub={`${t('Serie: {n}', { n: r.sets })} · ${ex ? t('→ {name}', { name: exName(ex) }) : t('Nowe ćwiczenie')}`} icon={open ? '⌃' : '⌄'} accessibilityLabel={`${r.name}, ${ex ? exName(ex) : t('Nowe ćwiczenie')}, ${t('Zmień dopasowanie')}`}
+              <Item title={r.name} sub={`${t('Serie: {n}', { n: r.sets })} · ${ex ? `→ ${exName(ex)}` : t('Nowe ćwiczenie')}`} icon={open ? '⌃' : '⌄'} accessibilityLabel={`${r.name}, ${ex ? exName(ex) : t('Nowe ćwiczenie')}, ${t('Zmień dopasowanie')}`}
                 onPress={() => { setEditing(open ? null : r.name); setQ(''); }} />
               {open ? <View style={{ gap: 6, paddingVertical: 6 }}>
                 <Item title={t('Nowe ćwiczenie')} icon={!ex ? '✓' : undefined} onPress={() => { setMapping(m => ({ ...m, [r.name]: 'new' })); setEditing(null); }} />

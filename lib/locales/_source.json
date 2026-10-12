@@ -184,10 +184,6 @@
   "en": "{v} from {d}. Workouts from that period will recalculate e1RM from the earlier measurement (or show no e1RM if there is none)."
  },
  {
-  "pl": "→ {name}",
-  "en": "→ {name}"
- },
- {
   "pl": "↑ {label} {value} ({delta})",
   "en": "↑ {label} {value} ({delta})"
  },
