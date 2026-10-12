@@ -1,8 +1,8 @@
 import * as Notifications from 'expo-notifications';
 import * as Haptics from 'expo-haptics';
 import { Platform } from 'react-native';
-import { getState, setTimerState, findSet, fmtTime as fmtTimeNow, wallTs, STALE_ASK_MS } from './store';
-import { restLabel } from './live';
+import { getState, setTimerState, findSet, fmtTime as fmtTimeNow, wallTs, STALE_ASK_MS, lastActivity, staleRef, staleKind } from './store';
+import { restLabel, timedLabel } from './live';
 import * as LA from '@/modules/rest-activity';
 import { t } from './i18n';
 
@@ -113,6 +113,22 @@ export async function restore() {
 export function onForeground() {
   if (S.on && S.targetSec > 0 && !S.alarmed && Date.now() - S.startAt >= S.targetSec * 1000) { S.alarmed = true; laEnd('set'); emit(); }
   if (T.on && T.endAt <= Date.now()) { T.alarmed = true; laEnd('rest'); emit(); }
+}
+/** Q-004: po zmianie języka trwająca przerwa / stoper z celem dostają podpis i etykietę rodzaju w nowym języku (etykieta rodzaju i tytuł są stałymi
+ * atrybutami aktywności, więc Live Activity startuje od nowa z tym samym końcem odliczania) oraz przypomnienie o porzuconym treningu —
+ * niezależnie od tego, czy ekran treningu jest zamontowany. */
+export function relocalize() {
+  const a = (() => { try { return getState().active; } catch { return null; } })(); const now = Date.now();
+  if (T.on && a) { const pos = findSet(T.setId); if (pos) { const lb = restLabel(a, pos.ei, pos.si); T.sub = lb.sub; T.last = lb.last; labels.subtitle = lb.sub; labels.last = lb.last; } }
+  if (S.on && a) { const pos = findSet(S.setId); if (pos) labels.subtitle = timedLabel(a, pos.ei, pos.si); }
+  if (laKind === 'rest' && T.on && !T.alarmed && T.endAt > now) laStart('rest', T.sub || t('przerwa {s} s', { s: Math.round(T.total) }), T.endAt, T.total);
+  else if (laKind === 'set' && S.on && !S.alarmed && S.targetSec > 0 && S.startAt + S.targetSec * 1000 > now) laStart('set', labels.subtitle || t('seria {s} s', { s: S.targetSec }), S.startAt + S.targetSec * 1000, S.targetSec);
+  return refreshStale();
+}
+/** Przypomnienie o porzuconym treningu z bieżących danych (język, dźwięk) — bez udziału ekranu treningu (Q-004). */
+export async function refreshStale() {
+  const a = (() => { try { return getState().active; } catch { return null; } })(); if (!a) return;
+  await scheduleStaleReminder(staleRef(a), lastActivity(a), staleKind(a), a.pausedAt ?? null, a.tzOffsetMin);
 }
 /** Po imporcie / resecie: wszystko stop, bez śladu w stanie. */
 export async function resetAll() { await stopSet(); await stop(); }

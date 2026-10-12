@@ -35,7 +35,7 @@ describe('ekran Postępy', () => {
     expect(screen.queryByText('Tydzień deload')).toBeNull(); expect(screen.queryByRole('switch')).toBeNull(); expect(screen.queryByText(/^Ten tydzień jest oznaczony jako deload/)).toBeNull();
     expect(screen.queryByText(/D — tydzień oznaczony jako deload\./)).toBeNull();
     await act(async () => { store.toggleDeloadWeek(new Date(2026, 9, 6).getTime()); }); await flushAll(5);
-    expect(S().deloadWeeks).toEqual(['2026-10-05']); expect(screen.getByText('Ten tydzień jest oznaczony jako deload (D na wykresach). Oznaczenie zmienisz w Kalendarzu: dzień → „Więcej opcji”.')).toBeTruthy();
+    expect(S().deloadWeeks).toEqual(['2026-10-05']); expect(screen.getByText('Ten tydzień jest oznaczony jako deload (D na wykresach). Oznaczenie zmienisz w zakładce Plan: dzień → „Więcej opcji”.')).toBeTruthy();
     expect(screen.queryByText('Tydzień deload')).toBeNull(); expect(screen.getAllByLabelText(/^Wykres słupkowy: .* D: /).length).toBe(2); /* oba wykresy tygodniowe — etykieta tygodnia z „D” */
     const legend = 'D — tydzień oznaczony jako deload.'; expect(screen.getByText(new RegExp(' ' + legend.replace(/[.]/g, '\\.') + '$'))).toBeTruthy(); /* dopisek po opisie wykresów */
   });

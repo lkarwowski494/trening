@@ -132,7 +132,7 @@ describe('H1–H4 — nawigacja, nazwy, formaty, pierwsze kroki', () => {
   test('H2: jedna nazwa — „Miejsca i sprzęt” (Więcej; z Ustawień zniknęło), „Kopia zapasowa”, „Odrzuć trening”; komunikat autozapisu wskazuje Kalendarz', async () => {
     await boot(undefined, '/more'); expect(screen.getByText('Miejsca i sprzęt')).toBeTruthy(); expect(screen.getByText('Kopia zapasowa (eksport / import)')).toBeTruthy();
     await go('/more/settings'); await flushAll(10); expect(screen.queryByText('Miejsca i sprzęt')).toBeNull(); /* 11.10.2026: tylko w Więcej */ expect(screen.queryByText('Miejsca treningu')).toBeNull();
-    const { EN } = require('@/lib/i18n.en'); expect(EN['Trening z {d} {s} nie miał aktywności od 6 godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w Kalendarzu.']).toMatch(/Calendar\.$/);
+    const { EN } = require('@/lib/i18n.en'); expect(EN['Trening z {d} {s} nie miał aktywności od 6 godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.']).toMatch(/Plan tab\.$/);
     expect('Znajdziesz go w Historii' in EN).toBe(false);
   });
   test('H3: data dnia jednym formatem (fmtDayKey = fmtDate); przerwa w karcie szablonu jak w treningu (m:ss)', async () => {

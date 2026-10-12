@@ -345,7 +345,7 @@ describe('app/_layout', () => {
       Object.assign(a.exercises[0].sets[0], { weight: 100, reps: 5, done: true, completedAt: last }); });
     await renderApp({ saved }); await flushAll(600);
     expect(store.getState().active).toBeNull();
-    expect(alertOf('Zapisałem trening')!.msg).toBe(`Trening z ${store.fmtDate(start)} ${store.fmtTime(start)} nie miał aktywności od 6 godzin, więc zapisał się sam. Koniec: ${store.fmtTime(last)} (ostatnia seria). Znajdziesz go w Kalendarzu.`);
+    expect(alertOf('Zapisałem trening')!.msg).toBe(`Trening z ${store.fmtDate(start)} ${store.fmtTime(start)} nie miał aktywności od 6 godzin, więc zapisał się sam. Koniec: ${store.fmtTime(last)} (ostatnia seria). Znajdziesz go w zakładce Plan.`);
   });
 
   test('tytuł okna wyboru ćwiczenia: „Wybierz ćwiczenie”', async () => {

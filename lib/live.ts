@@ -1,4 +1,4 @@
-import { exById, focusSet, isBW, fmtSec } from './store';
+import { exById, focusSet, isBW, fmtSec, occurrence, occurrences } from './store';
 import { t, exName } from './i18n';
 import { wu, wOut, fmtNum } from './units';
 import { hasWeight, hasReps, hasTime, hasDistance, SET_KIND_MARK, type Exercise, type SetKind, type WExercise, type WSet, type Workout } from './seed';
@@ -32,6 +32,14 @@ export function restLabel(a: Workout, ei: number, si: number): { sub: string; la
   const pos = focusSet(a, s.id); if (!pos) return { sub: t('nic więcej do zrobienia'), last: true };
   const x = a.exercises[pos.ei]; const nm = exName(exById(x.exerciseId)); const same = pos.ei === ei || (!!e.groupId && x.groupId === e.groupId);
   return { sub: same ? `${nm} · ${t('seria {n}', { n: setLabel(x, pos.si) })}` : t('dalej: {name}', { name: nm }), last: false };
+}
+
+/** Podpis stopera serii na Live Activity: „nazwa · seria n” (dwa bloki tego samego ćwiczenia — „nazwa (k)”). Wspólny dla startu pomiaru
+ * (components/ActiveWorkout.tsx) i odświeżenia po zmianie języka (lib/timer.ts, Q-004). */
+export function timedLabel(w: Workout, ei: number, si: number): string {
+  const e = w.exercises[ei]; if (!e) return '';
+  const nm = occurrences(w.exercises, e.exerciseId) > 1 ? `${exName(exById(e.exerciseId))} (${occurrence(w.exercises, ei) + 1})` : exName(exById(e.exerciseId));
+  return `${nm} · ${t('seria {n}', { n: setLabel(e, si) })}`;
 }
 
 /**

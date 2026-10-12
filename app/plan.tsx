@@ -108,7 +108,7 @@ function ActivePlan({ activate }: { activate: (id: string, name: string) => void
     <Screen><ScrollView keyboardShouldPersistTaps="handled" contentContainerStyle={{ paddingVertical: 10, paddingBottom: 40 }}>
       {hasActivePlan() ? <View testID="active-plan-row" style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}><PlanToggle name={nameOr(planName() || t('Mój plan'))} active onPress={off} /><Txt style={{ flex: 1, fontFamily: F.semibold }}>{t('Aktywny plan')}</Txt></View> : null}
       <Field label={t('Nazwa planu')}><Input value={planName()} placeholder={t('Mój plan')} maxLength={40} accessibilityLabel={t('Nazwa planu')} onChangeText={typePlanName} onEndEditing={() => setPlanName(planName())} /></Field>
-      <Muted style={{ fontSize: 13, marginBottom: 8 }}>{t('Plan powtarza się co tydzień. Pojedyncze dni zmienisz w Kalendarzu.')}</Muted>
+      <Muted style={{ fontSize: 13, marginBottom: 8 }}>{t('Plan powtarza się co tydzień. Pojedyncze dni zmienisz w zakładce Plan.')}</Muted>
       <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginBottom: 4 }}>
         {!plansFull() ? <Btn nav /* UI2-02: blokada obejmuje też newPlan() — jeden plan */ title={t('+ Nowy plan')} small accessibilityHint={t('Kopia obecnego planu w „Inne plany” — zmienisz ją przed ustawieniem jako aktywny.')} onPress={() => { const nid = newPlan(); if (nid) router.push(`/plan?id=${nid}`); }} /> : null}
         <Btn nav title={t('Szablony')} small accessibilityHint={t('Otwiera listę szablonów.')} onPress={() => openTemplates(router)} />{/* 11.10.2026: z Planowania do szablonów (docs/22 problem 3) */}

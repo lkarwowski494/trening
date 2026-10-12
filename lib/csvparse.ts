@@ -194,7 +194,7 @@ export function buildImport(file: ParsedFile, st: State, opts: ImportOptions): {
       for (const w of ws) writeLoad(ex, w, w.weight as number | ''); /* audyt 0.13 #1: ciężar do pola właściwego dla sprzętu (masa ciała → addKg ze znakiem); nowe ćwiczenia mają sprzęt „inne” → weight */
       return { id: uid(), exerciseId: ex.id, restSec: ex.restSec ?? rest, repMin: null, repMax: null, groupId: null, sets: ws }; });
     let start = s.startedAt; while (taken.has(start)) start += 1000; taken.add(start); /* start unikalny (jak putHistoryWorkout, audyt M4) */
-    const dur = s.durationSec != null && s.durationSec > 0 ? s.durationSec : Math.max(60, exs.reduce((n, e) => n + e.sets.length, 0) * 90); /* brak czasu w pliku: szacunek tylko dla końca treningu */
+    const dur = s.durationSec != null && s.durationSec > 0 ? s.durationSec : 0; /* brak czasu w pliku: czas trwania 0 (koniec = start, store.noClock) — bez szacunku udającego dane (audyt 0.13) */
     return { ...base(st.ownerId), loggedBy: st.ownerId, sessionMode: 'solo', healthUUID: null, templateId: null, templateName: s.name, startedAt: start, finishedAt: start + dur * 1000, note: s.note, exercises: exs, tzOffsetMin: s.tzOffsetMin };
   });
   return { workouts, exercises: [...created.values()], analysis: a };

@@ -77,7 +77,7 @@ describe('ekran', () => {
   });
   test('„Ustaw plan” → Planowanie; stamtąd „Plan z moich szablonów” → generator w trybie własnych szablonów (?mode=own)', async () => {
     await boot(t => { addWorkout(at(6), [['Back Squat', [{ weight: 100, reps: 5 }]]], t[0].name); });
-    await tap(screen.getByLabelText('Ustaw plan')); await flushAll(10); expect(screen.getByText('Plan powtarza się co tydzień. Pojedyncze dni zmienisz w Kalendarzu.')).toBeTruthy();
+    await tap(screen.getByLabelText('Ustaw plan')); await flushAll(10); expect(screen.getByText('Plan powtarza się co tydzień. Pojedyncze dni zmienisz w zakładce Plan.')).toBeTruthy();
     await tap(screen.getByText('Plan z moich szablonów')); await flushAll(10);
     expect(screen.UNSAFE_root.findAll(n => (n.type as unknown) === 'RNSScreenStackHeaderConfig').map(n => n.props.title)).toContain('Plan z moich szablonów'); /* app/generator.tsx ?mode=own (feat-plan-moje) */
   });
@@ -87,7 +87,7 @@ describe('ekran', () => {
     expect(screen.getByText(`dziś w planie · ${t[0].items.length} ćw.`)).toBeTruthy();
     const [hd, st, sp, ws] = order('plan-header', 'week-strip', 'start-panel', 'week-tiles'); expect(hd).toBeLessThan(st); expect(st).toBeLessThan(sp); expect(sp).toBeLessThan(ws);
     expect(within(screen.getByTestId('plan-header')).getByText('Plan: Góra / Dół')).toBeTruthy(); expect(screen.queryByTestId('planning-row')).toBeNull(); expect(screen.queryByText('Plan tygodnia')).toBeNull();
-    expect(labels()).not.toContain('Plan z moich szablonów'); await tap(screen.getByLabelText('Planowanie')); await flushAll(10); expect(screen.getByText('Plan powtarza się co tydzień. Pojedyncze dni zmienisz w Kalendarzu.')).toBeTruthy(); await go('/'); await flushAll(10);
+    expect(labels()).not.toContain('Plan z moich szablonów'); await tap(screen.getByLabelText('Planowanie')); await flushAll(10); expect(screen.getByText('Plan powtarza się co tydzień. Pojedyncze dni zmienisz w zakładce Plan.')).toBeTruthy(); await go('/'); await flushAll(10);
     await tap(screen.getByLabelText('Inny trening')); await flushAll(5);
     const l = labels(); const idx = [`Inny z planu: ${t[2].name}`, 'Powtórz ostatni (Nogi)', 'Z szablonu', 'Pusty trening'].map(x => l.indexOf(x));
     expect(idx.every(i => i >= 0)).toBe(true); expect([...idx].sort((a, b) => a - b)).toEqual(idx);

@@ -54,15 +54,15 @@ test('macierz: każdy tekst przewodnika (i punkt „Co nowego”) jest w treści
     'Lista ćwiczeń, zamiany i generator pokazują to, co da się zrobić w wybranym miejscu.',
     'Mapa mięśni i serie na partię z kreską 10 serii tygodniowo.',
     'Na ekranie Trening stuknij duży przycisk „Start” (następny trening) albo „Inny trening” — tam wybierzesz szablon, powtórzysz ostatni trening albo zaczniesz pusty.', /* docs/22 P2/P3 (11.10.2026) */
-    'Na koniec „Zakończ” (u góry albo w karcie po ostatniej serii) — sesja trafi do Kalendarza.',
+    'Na koniec „Zakończ” (u góry albo w karcie po ostatniej serii) — sesja trafi do zakładki Plan.',
     'Na ekranie Trening „Progresja” porównuje tydzień (wykonane + zaplanowane) z poprzednim oraz miesiąc z miesiącem.',
     'Nowy ekran Trening: dzisiejszy trening, tydzień w liczbach i ostatni trening; przewodnik po funkcjach w Więcej.',
-    'Po kilku tygodniach treningu z rzędu Kalendarz podpowie „Zaplanuj deload od …”.',
+    'Po kilku tygodniach treningu z rzędu zakładka Plan podpowie „Zaplanuj deload od …”.',
     'Postępy i rekordy',
     'Przejrzyj podgląd i „Na czym to oparte” — wynik zapisuje się dopiero po zatwierdzeniu.',
-    'Stuknij dzień w Kalendarzu: „Przesuń albo pomiń” pokazuje możliwości — przesunięcie planu o 1 dzień, tylko tego treningu, zamianę albo wolne.', /* audyt 0.10 UX-13 A */
+    'Stuknij dzień w zakładce Plan: „Przesuń albo pomiń” pokazuje możliwości — przesunięcie planu o 1 dzień, tylko tego treningu, zamianę albo wolne.', /* audyt 0.10 UX-13 A */
     'Na górze listy jest polecana: wraca do rutyny i nie gubi treningu, potem unika par dzień po dniu z tymi samymi partiami i zmienia najmniej dni.',
-    'W Kalendarzu: stuknij dzień, potem „Więcej opcji” → „Oznacz tydzień jako deload” — także przyszły tydzień.', /* audyt 0.10 D4 */
+    'W zakładce Plan: stuknij dzień, potem „Więcej opcji” → „Oznacz tydzień jako deload” — także przyszły tydzień.', /* audyt 0.10 D4 */
     'Szablony trafiają do folderu „Wygenerowane”, a plan do „Inne plany” albo od razu jako aktywny.',
     'Trening i serie',
     'W Postępach oznaczony tydzień widać jako litera D na wykresach — tam się go nie zmienia.',
@@ -82,8 +82,8 @@ test('macierz: każdy tekst przewodnika (i punkt „Co nowego”) jest w treści
     '„Pomiń dziś” pomija resztę serii ćwiczenia w tym treningu.',
     'Superset ustawisz w szablonie: „Edytuj”, potem „⇅ SS” przy ćwiczeniu łączy je z następnym (w trakcie treningu ten sam przycisk jest przy ćwiczeniu) — przerwa liczy się po ostatnim ćwiczeniu grupy.',
     'Przesunięcie serii albo nazwy ćwiczenia w lewo usuwa je (z potwierdzeniem).',
-    'W Kalendarzu stuknij sesję, potem „Edytuj” — zmiany zapisuje „Zapisz”, „Anuluj” je odrzuca.',
-    '„Dopisz trening wstecz” zapisze trening, którego nie zapisałeś na bieżąco; z dnia w Kalendarzu jest ten sam przycisk.',
+    'W zakładce Plan stuknij sesję, potem „Edytuj” — zmiany zapisuje „Zapisz”, „Anuluj” je odrzuca.',
+    '„Dopisz trening wstecz” zapisze trening, którego nie zapisałeś na bieżąco; z dnia w zakładce Plan jest ten sam przycisk.',
   ];
   const all = new Set([...GUIDE.flatMap(g => [g.title(), ...g.steps()]), ...WHATS_NEW.flatMap(e => e.items())]);
   expect(texts.filter(x => !all.has(x))).toEqual([]);

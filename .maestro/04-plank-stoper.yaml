@@ -11,8 +11,21 @@ name: Plank ze stoperem
 # run 37496797683 (06.10.2026): pierwszy scenariusz po starcie symulatora — ekran treningu nie zdążył się pojawić; czekamy jak w 06/07
 - extendedWaitUntil: { visible: "\\+ Add exercise", timeout: 30000 }
 - tapOn: "\\+ Add exercise"
-- tapOn: "Search exercises…"
-- inputText: "Plank"
+# Q-029 (0.14.0; runy 38023746057, 38027253177): pierwszy scenariusz po zimnym starcie symulatora gubił znaki wpisu („P” zamiast „Plank”) — jak masa ciała
+# w scenariuszu 15 (E2E 105). Znaki osobno (odstęp jak przy ręcznym wpisie), sprawdzenie, że pole ma całe „Plank”, i jedna powtórka całego wpisu.
+# Test: tests/maestro-e2e105.test.tsx (Q-029)
+- retry:
+    maxRetries: 1
+    commands:
+      - tapOn: "Search exercises…"
+      - waitForAnimationToEnd
+      - eraseText: 20
+      - inputText: "P"
+      - inputText: "l"
+      - inputText: "a"
+      - inputText: "n"
+      - inputText: "k"
+      - assertVisible: "Plank"  # wartość pola wyszukiwania (zgubiony znak = inny tekst)
 - tapOn: { text: "Continue", optional: true }
 - tapOn: "Plank, body weight"
 - extendedWaitUntil: { visible: "Start set stopwatch", timeout: 30000 }

@@ -53,7 +53,7 @@ export const {
 export const { copyVals, stripUnused, assistLost, cascadeDown } = setvalsMod;
 export const {
   locationById, startLocationId, offListAt, prevFromOther, implAtLoc, blockImpl, liveBlockImpl, listLocFor, pinnedImpl, offListNote, srcSetAt,
-  stampImpl, setActiveLocation, locationEquipChanged
+  stampImpl, setActiveLocation, locationEquipChanged, restampUntouched
 } = placesMod;
 export const {
   finishedWorkouts, blocksOf, workoutsWith, previousFor, previousBlockFor, previousBlockBefore, hintFor, progressionFor, occurrence, occurrences,
@@ -63,7 +63,7 @@ export type { Progression } from './state/history';
 export const { cleanLevels, nextBandId, cycleBand, deleteBand } = bandsMod;
 export const { normalizeGroups, groupLabels, linkWithNext, unlink, moveItem, removeItem, blockRanges, moveBlockOf, moveInGroup } = groupsMod;
 export type { Grouped } from './state/groups';
-export const { pausedTotal, isPaused, workoutDurSec, cleanPauses, pauseWorkout, resumeWorkout } = pauseMod;
+export const { pausedTotal, isPaused, workoutDurSec, noClock, whenText, cleanPauses, pauseWorkout, resumeWorkout } = pauseMod;
 export const {
   isDeloadWeek, toggleDeloadWeek, PLAN_NAME_MAX, SAVED_PLANS_MAX, PLAN_HISTORY_MAX, DELOAD_WEEKS_MAX, cleanPlanName, planDays, sameDays,
   normPlanHistory, cleanOverrides, appendPlanSegment

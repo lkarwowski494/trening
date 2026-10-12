@@ -3,12 +3,13 @@ import { FlatList, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Screen, H1, Item, Muted, Empty, Btn, Chip } from '@/components/ui';
-import { wallTs, getState, workoutDurSec, useHistTick, finishedWorkouts, fmtDate, fmtTime, fmtDur, volume, deleteWorkout, workingSets } from '@/lib/store';
+import { wallTs, getState, workoutDurSec, noClock, whenText, fmtDate, useHistTick, finishedWorkouts, fmtDur, volume, deleteWorkout, workingSets } from '@/lib/store';
 import { SwipeRow } from '@/components/SwipeRow';
 import { HistoryCalendar } from '@/components/HistoryCalendar';
 import { DayPanel } from '@/components/DayPanel';
 import { DeloadHint } from '@/components/DeloadHint';
 import { workoutsByDay } from '@/lib/calendar';
+import { locationLabel } from '@/lib/locations';
 import { t, tp } from '@/lib/i18n';
 import { fmtVol } from '@/lib/units';
 import type { Workout } from '@/lib/seed';
@@ -44,7 +45,7 @@ export default function HistoryScreen() {
         {day ? <View testID="day-panel-wrap" onLayout={e => { const first = panelY.current == null; panelY.current = e.nativeEvent.layout.y; if (first) toPanel(); }}><DayPanel day={day} /></View> : null}
         {day || month ? <View style={{ flexDirection: 'row', marginBottom: 6 }}><Chip label={t('Pokaż wszystkie')} on={false} onPress={() => { setDay(null); setMonth(null); }} /></View> : null}
         {!day && month && !ws.length && all.length ? <Muted style={{ fontSize: 13, marginBottom: 8 }}>{t('Brak treningów w tym miesiącu.')}</Muted> : null}
-      </>} renderItem={({ item: w }) => <SwipeRow label={t('Usuń sesję: {name}', { name: `${w.templateName || t('Trening')}, ${fmtDate(wallTs(w))} ${fmtTime(wallTs(w))}` })} title={t('Usunąć tę sesję z historii?')} message={[`${w.templateName || t('Trening')}, ${fmtDate(wallTs(w))}`, w.healthUUID ? t('Kopia w Apple Health zostanie — usuniesz ją w aplikacji Zdrowie.') : ''].filter(Boolean).join('\n') /* G3 (audyt 0.10 DAT-09) */} onDelete={() => deleteWorkout(w.id)}>{a11y => <Item a11y={a11y} title={w.templateName || t('Trening')} sub={(() => { const n = workingSets(w) /* X-15, D3 (audyt 0.10): jak kafelki, Postępy i Zdrowie */; const v = volume(w); return [`${fmtDate(wallTs(w))} ${fmtTime(wallTs(w))}`, fmtDur(workoutDurSec(w)) /* bez pauz (08.10.2026) */, `${n} ${tp(n, 'seria|serie|serii')}`, v ? fmtVol(v) : '', w.deload ? t('deload — mniej serii') /* audyt 0.10 (D1+): trening skrócony w tygodniu deload */ : ''].filter(Boolean).join(' · '); })()} onPress={() => router.push(`/history/${w.id}`)} />}</SwipeRow>} ListEmptyComponent={all.length ? null : <Empty>{t('Jeszcze pusto — pierwszy trening czeka.')}</Empty>} />
+      </>} renderItem={({ item: w }) => <SwipeRow label={t('Usuń sesję: {name}', { name: `${w.templateName || t('Trening')}, ${whenText(w)}` })} title={t('Usunąć tę sesję z historii?')} message={[`${w.templateName || t('Trening')}, ${fmtDate(wallTs(w))}`, w.healthUUID ? t('Kopia w Apple Health zostanie — usuniesz ją w aplikacji Zdrowie.') : ''].filter(Boolean).join('\n') /* G3 (audyt 0.10 DAT-09) */} onDelete={() => deleteWorkout(w.id)}>{a11y => <Item a11y={a11y} title={w.templateName || t('Trening')} sub={(() => { const n = workingSets(w) /* X-15, D3 (audyt 0.10): jak kafelki, Postępy i Zdrowie */; const v = volume(w); return [whenText(w), noClock(w) ? t('godzina nieznana') /* audyt 0.13: import bez godzin */ : fmtDur(workoutDurSec(w)) /* bez pauz (08.10.2026) */, `${n} ${tp(n, 'seria|serie|serii')}`, v ? fmtVol(v) : '', w.locationId ? `📍 ${locationLabel(w.locationId)}` /* T-057 */ : '', w.deload ? t('deload — mniej serii') /* audyt 0.10 (D1+): trening skrócony w tygodniu deload */ : ''].filter(Boolean).join(' · '); })()} onPress={() => router.push(`/history/${w.id}`)} />}</SwipeRow>} ListEmptyComponent={all.length ? null : <Empty>{t('Jeszcze pusto — pierwszy trening czeka.')}</Empty>} />
     </Screen></SafeAreaView>
   );
 }

@@ -69,17 +69,25 @@ export function blockRanges(list: Grouped[]): [number, number][] {
   }
   return out;
 }
+/** Q-016: trening w toku, to samo ćwiczenie w kilku blokach spoza szablonu — „Poprzednio” bierze blok o numerze wystąpienia, który blok miał na początku
+ * (WExercise.occ), a nie o bieżącej pozycji. Wołane z `reorder` przed i po przesunięciu: znacznik zostaje tylko wtedy, gdy numer różni się od pozycji. */
+function trackOcc(list: any[], reorder: () => void) {
+  const live = list.some(x => x && Array.isArray(x.sets)); const pos = (l: any[], i: number) => l.slice(0, i).filter(x => x.exerciseId === l[i].exerciseId).length;
+  const orig = live ? new Map(list.map((x, i) => [x, x.occ ?? pos(list, i)] as const)) : null;
+  reorder(); if (!orig) return;
+  list.forEach((x, i) => { const k = orig.get(x); if (k == null || !Array.isArray(x.sets)) return; if (k !== pos(list, i)) x.occ = k; else delete x.occ; });
+}
 /** Przesuwa blok zawierający pozycję `id` na miejsce `to` w kolejności bloków. Zwraca, czy coś się zmieniło. */
 export function moveBlockOf<T extends Grouped & { id: string }>(list: T[], id: string, to: number, touched?: Base | null): boolean {
   const i = list.findIndex(x => x.id === id); if (i < 0) return false;
   const b = blockRanges(list); const from = b.findIndex(([s, e]) => i >= s && i <= e);
   const dest = Math.max(0, Math.min(b.length - 1, Math.round(to))); if (!Number.isFinite(to) || dest === from) return false;
-  const [s, e] = b[from]; const chunk = list.splice(s, e - s + 1); const rest = blockRanges(list);
-  list.splice(dest >= rest.length ? list.length : rest[dest][0], 0, ...chunk); normalizeGroups(list); save(touched); return true;
+  const [s, e] = b[from]; trackOcc(list, () => { const chunk = list.splice(s, e - s + 1); const rest = blockRanges(list);
+    list.splice(dest >= rest.length ? list.length : rest[dest][0], 0, ...chunk); normalizeGroups(list); }); save(touched); return true;
 }
 /** Przesuwa pozycję `id` na miejsce `to` w obrębie jej supersetu. Zwraca, czy coś się zmieniło. */
 export function moveInGroup<T extends Grouped & { id: string }>(list: T[], id: string, to: number, touched?: Base | null): boolean {
   const i = list.findIndex(x => x.id === id); const g = list[i]?.groupId; if (!g || !Number.isFinite(to)) return false;
   const [s, e] = blockRanges(list).find(([a, b]) => i >= a && i <= b)!; const dest = s + Math.max(0, Math.min(e - s, Math.round(to)));
-  if (dest === i) return false; const [x] = list.splice(i, 1); list.splice(dest, 0, x); save(touched); return true;
+  if (dest === i) return false; trackOcc(list, () => { const [x] = list.splice(i, 1); list.splice(dest, 0, x); }); save(touched); return true;
 }

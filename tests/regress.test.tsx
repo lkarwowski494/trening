@@ -7,6 +7,7 @@ import { buildCsv } from '@/lib/backup';
 import { setBodyMass, fresh, ex, addWorkout, pressAlert, seedState, withDemoTemplates, seedWithDemo, legacyBandKg, saved } from './helpers';
 import { setWeekDay } from '@/lib/plan';
 import { fireEvent } from '@testing-library/react-native';
+import { router } from 'expo-router';
 import { renderApp, tap, type, flushAll, screen, go, act, openCard, swipeDelete, deleteActions, startEdit, saveEdit, tplDraft, exDraft, startTpl, openTpl } from './app';
 
 jest.setTimeout(30000);
@@ -704,7 +705,7 @@ describe('runda 13', () => {
      * więc jej treść (useTick) renderuje się tylko, gdy zakładka jest aktywna (useIsFocused) */
     const tick: Record<string, RegExp> = { 'app/(tabs)/history.tsx': /useHistTick\(\)/, 'app/exercises.tsx': /useExercisesTick\(\)/, 'app/templates.tsx': /useCfgTick\(\)/, 'app/(tabs)/more.tsx': /useHistTick\(\)/ };
     for (const [f, re] of Object.entries(tick)) { const src = fs.readFileSync(path.join(__dirname, `../${f}`), 'utf8'); expect(src).toMatch(re); expect(src).not.toMatch(/useTick\(\)/); }
-    const prog = fs.readFileSync(path.join(__dirname, '../app/(tabs)/progress.tsx'), 'utf8'); expect(prog).toMatch(/useIsFocused\(\)/); expect(prog).toMatch(/\{focused \? <Progress \/> : null\}/);
+    const prog = fs.readFileSync(path.join(__dirname, '../app/(tabs)/progress.tsx'), 'utf8'); expect(prog).toMatch(/useIsFocused\(\)/); expect(prog).toMatch(/\{focused \? <Progress \{\.\.\.view\} \/> : null\}/); /* 0.14.0: stan widoku w zakładce, treść nadal tylko przy fokusie */
     const sig0 = store.getHistRev(); const tpl = store.newTemplate(); const h1 = store.getHistRev(); expect(h1).toBeGreaterThan(sig0); tpl.name = 'X'; store.save(tpl); expect(store.getHistRev()).toBe(h1); /* PERF-02: znak w szablonie nie unieważnia historii */
   });
 });
@@ -1909,5 +1910,207 @@ describe('bloker audytu 0.13 #1 (12.10.2026): import CSV zapisuje ciężar ćwic
     const w = store.getState().workouts[0]; const sets = (n: string) => w.exercises.find(b => b.exerciseId === ex(n).id)!.sets;
     expect(sets('Push Up').map(s => [s.addKg, s.weight])).toEqual([[-10, '']]); expect(sets('Pull Up').map(s => [s.addKg, s.weight])).toEqual([[0, ''], [20, '']]);
     expect(sets('Bench Press (sztanga)').map(s => [s.weight, s.addKg])).toEqual([[60, '']]);
+  });
+});
+
+describe('Q-004 (0.14.0): zmiana języka w trakcie przerwy/stopera odświeża Live Activity, podpis i przypomnienie o porzuconym treningu', () => {
+  /* Kroki w aplikacji: trening w toku, odhaczona seria (przerwa 120 s) → Więcej → Język → English (ekran treningu nie jest wtedy zamontowany,
+   * bo start jest na Historii). Realność: brzegowy (zmiana języka w środku treningu), poprawka tania → naprawiona. */
+  const bootRest = async () => {
+    await renderApp({ url: '/history' });
+    await act(async () => { store.startEmpty(); store.addExerciseToActive(ex('Back Squat')); store.addExerciseToActive(ex('Pull Up')); });
+    const a = store.getState().active!; const sid = a.exercises[0].sets[0].id; store.toggleDone(0, 0);
+    const lb = require('@/lib/live').restLabel(a, 0, 0); timer.labels.title = 'Trening'; timer.labels.subtitle = lb.sub; timer.labels.last = lb.last;
+    await act(async () => { await timer.start(120, sid); await timer.scheduleStaleReminder(Date.now() - 3600e3, Date.now() - 3600e3, 'work'); });
+    return lb;
+  };
+  const pickEnglish = async () => { await go('/more/language'); await flushAll(10); await tap(screen.getByLabelText('English')); await flushAll(10); };
+  test('przerwa: Live Activity startuje od nowa po angielsku (etykieta „rest|Rest”, podpis „next: …”), T.sub w nowym języku', async () => {
+    const lb = await bootRest(); expect(lb.sub).toBe('dalej: Pull Up'); global.__la.length = 0;
+    await pickEnglish();
+    const starts = (global.__la as any[][]).filter(x => x[0] === 'start'); expect(starts).toHaveLength(1);
+    expect(starts[0][2]).toBe('next: Pull Up'); expect(starts[0][5]).toBe('rest|Rest'); expect(timer.T.sub).toBe('next: Pull Up');
+    expect(starts[0][3]).toBe(timer.T.endAt); /* koniec przerwy bez zmian */
+  });
+  test('przypomnienie o porzuconym treningu jest przeplanowane w nowym języku także bez zamontowanego ekranu treningu', async () => {
+    await bootRest(); const n0 = (global.__notifications as any[]).length; await pickEnglish();
+    const st = (global.__notifications as any[]).slice(n0).filter(x => x.identifier === 'stale-reminder'); expect(st.length).toBeGreaterThan(0);
+    expect(st[st.length - 1].content.title).toBe('Workout still in progress');
+  });
+  test('stoper z celem: Live Activity serii od nowa po angielsku', async () => {
+    await renderApp({ url: '/history' });
+    await act(async () => { store.startEmpty(); store.addExerciseToActive(ex('Plank')); });
+    const sid = store.getState().active!.exercises[0].sets[0].id; timer.labels.title = 'Trening';
+    await act(async () => { await timer.startSet(sid, 60); }); global.__la.length = 0;
+    await pickEnglish();
+    const starts = (global.__la as any[][]).filter(x => x[0] === 'start'); expect(starts).toHaveLength(1);
+    expect(starts[0][5]).toBe('set|Set'); expect(starts[0][2]).toBe('Plank · set 1'); await timer.stopSet();
+  });
+});
+
+describe('Q-013 (0.14.0): stoper bez celu, zamknięty razem z aplikacją, liczy się jako aktywność (nie ma cichego zapisu po 6 h od ostatniej serii)', () => {
+  /* Kroki: trening, seria Back Squat odhaczona, potem start stopera na Planku bez celu (pole czasu puste), zamknięcie aplikacji; po kilku godzinach
+   * otwarcie — dawniej resolveColdStopwatch zdejmował stoper z zapisu, a trening zapisywał się po cichu 6 h po ostatniej odhaczonej serii.
+   * Realność: brzegowy (zapomniany stoper + długa przerwa), dotyczy zapisu treningu → naprawione. */
+  const H = 3600e3;
+  const prep = async (stoperStartAgoH: number, lastSetAgoH: number) => {
+    await fresh(); const now = Date.now(); store.startEmpty(); store.addExerciseToActive(ex('Back Squat')); store.addExerciseToActive(ex('Plank'));
+    const a = store.getState().active!; a.startedAt = now - 8 * H; const sq = a.exercises[0].sets[0]; sq.weight = 100; sq.reps = 5; store.save(a);
+    store.toggleDone(0, 0, now - lastSetAgoH * H);
+    store.setTimerState({ restEndAt: null, restTotal: 0, restSetId: null, setStartAt: now - stoperStartAgoH * H, setTarget: 0, setId: a.exercises[1].sets[0].id });
+    return { now, a };
+  };
+  test('stoper bez celu sprzed 3 h, ostatnia seria sprzed 6,5 h: po starcie aplikacji trening NIE zapisuje się po cichu (pytanie), seria stopera nieodhaczona', async () => {
+    const { now } = await prep(3, 6.5); store.resolveColdStopwatch(now); expect(store.autoFinishStale(now)).toBeNull();
+    const a = store.getState().active!; expect(a).not.toBeNull(); expect(a.exercises[1].sets[0].done).toBe(false); expect(store.getState().timer.setStartAt).toBeNull();
+    expect(store.staleSince(now)).toBe(now - 6.5 * H); /* zamiast cichego zapisu — pytanie „Trening wciąż trwa” (z godziną ostatniej serii) */
+  });
+  test('bez stopera trening sprzed 6,5 h nadal zapisuje się po cichu; stoper starszy niż 6 h nie wstrzymuje zapisu', async () => {
+    const p = await prep(3, 6.5); store.setTimerState({ restEndAt: null, restTotal: 0, restSetId: null, setStartAt: null, setTarget: 0, setId: null });
+    store.resolveColdStopwatch(p.now); expect(store.autoFinishStale(p.now)).not.toBeNull();
+    const q = await prep(7, 7.5); store.resolveColdStopwatch(q.now); expect(store.autoFinishStale(q.now)).not.toBeNull();
+  });
+  test('stoper bez celu z wpisanym czasem: seria się odhacza (Q-002) i też liczy jako aktywność', async () => {
+    const { now, a } = await prep(3, 6.5); a.exercises[1].sets[0].durationSec = 45; store.resolveColdStopwatch(now);
+    expect(store.getState().active!.exercises[1].sets[0].done).toBe(true); expect(store.autoFinishStale(now)).toBeNull();
+  });
+});
+
+describe('Q-014 (0.14.0): rotacja kopii automatycznych wg czasu zapisu pliku, nie czasu lokalnego z nazwy (zmiana strefy / DST)', () => {
+  /* Kroki: kopie po treningach, potem zmiana strefy (podróż na zachód) albo koniec DST — nowa kopia dostaje w nazwie godzinę wcześniejszą niż poprzednie.
+   * Dawniej rotacja kasowała „najmniejszą nazwę”, czyli potencjalnie właśnie zapisaną kopię. Realność: brzegowy (dotyczy kopii = danych) → naprawione. */
+  const FS = require('expo-file-system/legacy');
+  afterEach(() => { FS.readDirectoryAsync.mockImplementation(async () => []); FS.writeAsStringAsync.mockImplementation(async () => {}); FS.getInfoAsync.mockImplementation(async () => ({ exists: false })); FS.deleteAsync.mockClear(); });
+  const dayMs = 24 * 3600e3;
+  test('najświeższa kopia z „wcześniejszą” nazwą zostaje, kasowana jest najstarsza wg czasu zapisu', async () => {
+    await fresh(); store.getState().settings.autoBackup = true; const now = Date.now(); const D = (n: number) => new Date(now + n * dayMs);
+    const stamp = (d: Date) => { const p = (x: number, w = 2) => String(x).padStart(w, '0'); return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}-${p(d.getHours())}${p(d.getMinutes())}${p(d.getSeconds())}`; };
+    /* 10 starszych kopii zapisanych w „strefie wschodniej”: nazwy z godziną o 12 h późniejszą niż rzeczywista, czas zapisu rosnący */
+    const old = Array.from({ length: 10 }, (_, i) => ({ f: `trening-${stamp(new Date(now - (10 - i) * 3600e3 + 12 * 3600e3))}.json`, t: (now - (10 - i) * 3600e3) / 1000 }));
+    const written: string[] = [];
+    FS.writeAsStringAsync.mockImplementation(async (u: string) => { written.push(String(u).split('/').pop()!); });
+    FS.readDirectoryAsync.mockImplementation(async () => [...old.map(o => o.f), ...written]);
+    FS.getInfoAsync.mockImplementation(async (u: string) => { const f = String(u).split('/').pop()!; if (f === '') return { exists: true }; const o = old.find(x => x.f === f); return o ? { exists: true, modificationTime: o.t } : written.includes(f) ? { exists: true, modificationTime: now / 1000 } : { exists: false }; });
+    FS.deleteAsync.mockClear(); const { autoBackup } = require('@/lib/backup'); const path = await autoBackup();
+    const deleted = (FS.deleteAsync as jest.Mock).mock.calls.map((c: any) => String(c[0]).split('/').pop());
+    expect(written).toHaveLength(1); expect(deleted).toEqual([old[0].f]); /* najstarsza wg czasu zapisu, nie najmniejsza wg nazwy (to byłaby właśnie zapisana) */
+    expect(deleted).not.toContain(String(path).split('/').pop()); void D;
+  });
+  test('bez czasu zapisu (platforma go nie podaje) zostaje kolejność z nazw', async () => {
+    await fresh(); store.getState().settings.autoBackup = true; const names = Array.from({ length: 11 }, (_, i) => `trening-2020-01-${String(10 + i).padStart(2, '0')}-080000.json`);
+    FS.readDirectoryAsync.mockImplementation(async () => names); FS.getInfoAsync.mockImplementation(async (u: string) => ({ exists: String(u).endsWith('/Backup/') })); FS.deleteAsync.mockClear();
+    const { autoBackup } = require('@/lib/backup'); await autoBackup();
+    expect((FS.deleteAsync as jest.Mock).mock.calls.map((c: any) => String(c[0]).split('/').pop())).toEqual([names[0]]);
+  });
+});
+
+describe('Q-016 (0.14.0): dwa bloki tego samego ćwiczenia spoza szablonu — „Poprzednio” idzie za blokiem po zmianie kolejności', () => {
+  /* Kroki: trening bez szablonu, Back Squat dodany dwa razy (ciężko, potem lżej), Ekran treningu → Kolejność ćwiczeń → przeciągnięcie bloku;
+   * dawniej „Poprzednio” wynikało z numeru wystąpienia (pozycji), więc bloki zamieniały się podpowiedziami. Realność: brzegowy (to samo ćwiczenie
+   * dwa razy poza szablonem + zmiana kolejności), poprawka tania i dotyczy podpowiadanych liczb → naprawione. */
+  const prevKg = (e: any) => store.prevOfActiveBlock(store.getState().active!, e)?.sets.map(s => s.weight);
+  const boot = async () => {
+    await fresh(); addWorkout(at(2026, 9, 1), [['Back Squat', [{ weight: 100, reps: 5 }]], ['Back Squat', [{ weight: 60, reps: 10 }]]]);
+    store.startEmpty(); store.addExerciseToActive(ex('Back Squat')); store.addExerciseToActive(ex('Back Squat')); store.addExerciseToActive(ex('Bench Press (sztanga)'));
+    return store.getState().active!;
+  };
+  test('zamiana kolejności bloków: każdy blok zachowuje swoje „Poprzednio”; powrót do pierwotnej kolejności czyści znacznik', async () => {
+    const a = await boot(); const [heavy, light] = a.exercises; expect([prevKg(heavy), prevKg(light)]).toEqual([[100], [60]]);
+    expect(store.moveBlockOf(a.exercises, heavy.id, 1, a)).toBe(true); expect(a.exercises[1]).toBe(heavy);
+    expect([prevKg(heavy), prevKg(light)]).toEqual([[100], [60]]);
+    expect(store.moveBlockOf(a.exercises, heavy.id, 0, a)).toBe(true); expect([prevKg(heavy), prevKg(light)]).toEqual([[100], [60]]);
+    expect((heavy as any).occ).toBeUndefined(); expect((light as any).occ).toBeUndefined();
+  });
+  test('przesunięcie obcego ćwiczenia nie ruszy „Poprzednio”; kolejne zamiany (A, potem B) są spójne', async () => {
+    const a = await boot(); const [heavy, light, bench] = a.exercises;
+    store.moveBlockOf(a.exercises, bench.id, 0, a); expect([prevKg(heavy), prevKg(light)]).toEqual([[100], [60]]); /* kolejność: ława, ciężki, lekki */
+    store.moveBlockOf(a.exercises, light.id, 0, a); expect([prevKg(heavy), prevKg(light)]).toEqual([[100], [60]]);
+    store.moveBlockOf(a.exercises, heavy.id, 0, a); expect([prevKg(heavy), prevKg(light)]).toEqual([[100], [60]]);
+  });
+  test('zakończony trening nie niesie znacznika (tylko trening w toku)', async () => {
+    const a = await boot(); store.moveBlockOf(a.exercises, a.exercises[0].id, 1, a); expect((a.exercises[1] as any).occ).toBe(0);
+    for (const e of a.exercises) { e.sets[0].weight = 50; e.sets[0].reps = 5; } store.save(a); a.exercises.forEach((_, i) => store.toggleDone(i, 0));
+    const w = store.finishWorkout()!; expect(w.exercises.every(e => (e as any).occ === undefined)).toBe(true);
+  });
+});
+
+describe('audyt 0.13 ŚREDNIE (0.14.0): import bez godzin i czasu — historia nie udaje godziny 12:00 ani czasu trwania (serie × 90 s)', () => {
+  /* Kroki: Więcej → Import z CSV → plik formatu bez godzin (sam dzień) → import. Dawniej sesja dostawała start 12:00 i koniec = serie × 90 s, które lista,
+   * szczegóły, sumy czasu i eksport pokazywały jak dane. Teraz: czas trwania 0 (koniec = start), „godzina nieznana” w UI, 0 w sumach czasu, eksport sam dzień.
+   * Realność: realny (każdy import tego formatu). Bez zmiany schematu — brak czasu = koniec równy startowi (aplikacja nie tworzy takich sesji: pole minut ≥ 1). */
+  const HB = 'Date,Exercise,Category,Weight (kg),Weight (lbs),Reps,Distance,Distance Unit,Time,Notes,Kind';
+  const HA = 'Date,Workout Name,Duration,Exercise Name,Set Order,Weight,Reps,Distance,Seconds,Notes,Workout Notes,RPE';
+  const FB = [HB, '2026-03-02,Bench Press,Chest,80,,5,,,,,wr', '2026-03-02,Bench Press,Chest,82.5,,3,,,,,wr', '2026-03-04,Back Squat,Legs,100,,5,,,,,wr'].join('\n') + '\n';
+  const importText = async (txt: string) => { const { parseImport } = require('@/lib/csvparse'); const { commitCsvImport } = require('@/lib/csvimport'); await commitCsvImport(parseImport(txt, at(2026, 10, 12)), { unit: 'kg' }); };
+
+  test('formatB: sesja bez czasu (koniec = start), czas trwania 0, nie wlicza się do sum czasu; formatA z czasem trwania bez zmian', async () => {
+    await fresh(); await importText(FB);
+    const ws = store.getState().workouts; expect(ws).toHaveLength(2);
+    for (const w of ws) { expect(w.finishedAt).toBe(w.startedAt); expect(store.workoutDurSec(w)).toBe(0); expect(store.noClock(w)).toBe(true); }
+    const { totals } = require('@/lib/period'); expect(totals(at(2026, 3, 1, 0), at(2026, 4, 1, 0)).durationSec).toBe(0);
+    await fresh(); const d = '2026-03-02 18:05:00'; await importText([HA, `${d},T,50m,Pull Up,1,0.0,10.0,0,0,,,`].join('\n') + '\n');
+    const w = store.getState().workouts[0]; expect(w.finishedAt! - w.startedAt).toBe(50 * 60e3); expect(store.noClock(w)).toBe(false);
+  });
+  test('formatA z godziną, ale bez czasu trwania: też bez szacunku (koniec = start)', async () => {
+    await fresh(); await importText([HA, '2026-03-02 18:05:00,T,,Pull Up,1,0.0,10.0,0,0,,,'].join('\n') + '\n');
+    const w = store.getState().workouts[0]; expect(w.finishedAt).toBe(w.startedAt);
+  });
+  test('Historia i szczegóły sesji: „godzina nieznana” zamiast 12:00 i czasu; sesja z godziną — jak dotąd', async () => {
+    await fresh(); await importText(FB); addWorkout(at(2026, 3, 6, 18), [['Back Squat', [{ weight: 100, reps: 5 }]]], 'Własny'); await store.flush();
+    await renderApp({ saved: JSON.parse(JSON.stringify(saved())), url: '/history' }); await flushAll(10);
+    const imported = screen.queryAllByText(/godzina nieznana/).map((n: any) => [n.props.children].flat().join('')); expect(imported).toHaveLength(2);
+    for (const x of imported) { expect(x).not.toMatch(/12:00/); expect(x).not.toMatch(/\d+:\d{2}/); }
+    const own = screen.queryAllByText(/18:00/).map((n: any) => [n.props.children].flat().join('')); expect(own).toHaveLength(1); expect(own[0]).toMatch(/18:00 · [\d:]+ ·/);
+    await go(`/history/${store.getState().workouts.find(w => w.templateName === '')!.id}`); await flushAll(10);
+    const det = screen.queryAllByText(/godzina nieznana/).map((n: any) => [n.props.children].flat().join('')); expect(det.length).toBeGreaterThan(0); expect(det.join('')).not.toMatch(/12:00|\d+:\d{2}/);
+  });
+  test('eksport CSV: sesja bez czasu — sama data i puste Duration; ponowny import zachowuje „bez czasu”', async () => {
+    await fresh(); await importText(FB); const csv = buildCsv(); const lines = csv.trim().split('\n').slice(1);
+    for (const l of lines) { const c = l.split(','); expect(c[0]).toMatch(/^\d{4}-\d{2}-\d{2}$/); expect(c[2]).toBe(''); }
+    await fresh(); await importText(csv); const ws = store.getState().workouts; expect(ws).toHaveLength(2); expect(ws.every(w => store.noClock(w))).toBe(true);
+  });
+});
+
+describe('audyt 0.13 NISKIE (0.14.0): Postępy zachowują wybrane ćwiczenie, szukanie i przewinięcie po powrocie z ekranu stosu', () => {
+  /* Kroki: zakładka Postępy → wybór ćwiczenia (albo wpisanie szukanej nazwy) → przewinięcie → „Masa ciała — pomiary” (ekran stosu) → Wróć.
+   * Dawniej treść zakładki była odmontowywana razem ze stanem (useIsFocused), więc po powrocie znikał wybór i przewinięcie. Realność: realny (częsta ścieżka). */
+  const boot = async () => {
+    await fresh(); for (let i = 0; i < 12; i++) addWorkout(at(2026, 9, 1 + i), [['Back Squat', [{ weight: 100 + i, reps: 5 }]]]); await store.flush();
+    await renderApp({ saved: JSON.parse(JSON.stringify(saved())), url: '/progress' }); await flushAll(10);
+  };
+  const away = async () => { await go('/more/bodymass'); await flushAll(10); await act(async () => { router.back(); }); await flushAll(10); };
+  test('wybrane ćwiczenie i przewinięcie listy sesji przeżywają wejście na ekran stosu i powrót; zmiana ćwiczenia zaczyna od góry', async () => {
+    await boot(); await tap(screen.getByText('Back Squat')); await flushAll(10);
+    expect(screen.getByLabelText('Back Squat')).toBeTruthy(); await act(async () => { fireEvent.scroll(screen.getByTestId('progress-scroll'), { nativeEvent: { contentOffset: { x: 0, y: 240 } } }); });
+    await away();
+    expect(screen.getByLabelText('Back Squat')).toBeTruthy(); expect(screen.getByTestId('progress-scroll').props.contentOffset).toEqual({ x: 0, y: 240 });
+    await tap(screen.getByLabelText('Back Squat')); await flushAll(10); /* ✕: wybór wraca do listy */
+    expect(screen.queryByTestId('progress-scroll')).toBeNull();
+  });
+  test('wpisana nazwa w szukajce ćwiczeń przeżywa wejście na ekran stosu i powrót', async () => {
+    await boot(); await type(screen.getByPlaceholderText('Szukaj ćwiczenia…'), 'squat'); await flushAll(10);
+    await away(); expect(screen.getByPlaceholderText('Szukaj ćwiczenia…').props.value).toBe('squat');
+  });
+});
+
+describe('Q-026 (0.14.0): edytor historii oznacza ciężar zapisany pod innym sprzętem', () => {
+  /* Kroki: ćwiczenie z masą ciała (dociążenie +10) → zmiana sprzętu ćwiczenia na sztangę → Plan → stara sesja → Edytuj. Pole „kg” pokazuje 10 (widok), ale seria
+   * nie liczy się do rekordów (Q-026, decyzja 04.10.2026 a) — dawniej edytor tego nie mówił. Realność: brzegowy (zmiana sprzętu ćwiczenia z historią). */
+  const NOTE = 'Ciężar z innego sprzętu — nie liczy się do rekordów, dopóki go tu nie wpiszesz.';
+  const boot = async () => {
+    await fresh(); const st = store.getState();
+    const x = { ...st.exercises.find(y => y.name === 'Back Squat')!, id: 'q26', name: 'Dip Q26', lib: undefined, equipment: 'masa ciała' as const, loadMode: 'total' as const, metric: 'weight_reps' as const, bandAssistable: false };
+    st.exercises.push(x); store.save(x);
+    const w = addWorkout(at(2026, 9, 1), [['Dip Q26', [{ addKg: 10, reps: 8 }, { addKg: '', reps: 8 }]], ['Back Squat', [{ weight: 100, reps: 5 }]]]);
+    store.setEquipment(ex('Dip Q26'), 'sztanga'); await store.flush();
+    await renderApp({ saved: JSON.parse(JSON.stringify(saved())), url: `/history/edit/${encodeURIComponent(w.id)}` }); await flushAll(10);
+    return w;
+  };
+  test('seria z wartością spod innego sprzętu ma dopisek; seria pusta i ćwiczenie z własnym sprzętem — nie', async () => {
+    await boot(); expect(screen.getAllByText(NOTE)).toHaveLength(1);
+  });
+  test('wpisanie ciężaru w polu przenosi go do obecnego sprzętu i dopisek znika', async () => {
+    await boot(); expect(screen.getAllByText(NOTE)).toHaveLength(1); const f = screen.getAllByLabelText(/^kg/)[0]; await type(f, '12'); await flushAll(10);
+    expect(screen.queryByText(NOTE)).toBeNull();
   });
 });
