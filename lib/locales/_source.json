@@ -400,6 +400,10 @@
   "en": "An automatic backup after every workout goes to Files (Settings)."
  },
  {
+  "pl": "Automatycznie ({n})",
+  "en": "Automatic ({n})"
+ },
+ {
   "pl": "Backup treningów",
   "en": "Workout backup"
  },
@@ -416,6 +420,10 @@
   "en": "shoulders"
  },
  {
+  "pl": "barki — bez rozbicia",
+  "en": "shoulders — no split"
+ },
+ {
   "pl": "barki — bok",
   "en": "side delts"
  },
@@ -426,6 +434,10 @@
  {
   "pl": "barki — tył",
   "en": "rear delts"
+ },
+ {
+  "pl": "Barki i plecy są rozbite według katalogu ćwiczeń: przód, bok i tył barków; góra pleców, najszersze i prostowniki. Ćwiczenie bez takiego rozbicia (np. własne) liczy się w wierszu „bez rozbicia”.",
+  "en": "Shoulders and back are split by the exercise catalogue: front, side and rear delts; upper back, lats and lower-back extensors. An exercise without such a split (e.g. your own) counts in the “no split” row."
  },
  {
   "pl": "beczka (keg)",
@@ -666,6 +678,14 @@
  {
   "pl": "cel s",
   "en": "target s"
+ },
+ {
+  "pl": "Cel serii na partię w tygodniu",
+  "en": "Weekly set goal per muscle group"
+ },
+ {
+  "pl": "Cel serii: {part}",
+  "en": "Set goal: {part}"
  },
  {
   "pl": "Ciemny",
@@ -1765,16 +1785,12 @@
   "en": "Ab wheel"
  },
  {
-  "pl": "Kreska = {n} serii na partię w tygodniu (źródło i uproszczenia: Postępy).",
-  "en": "The mark = {n} sets per muscle group per week (source and simplifications: Progress)."
+  "pl": "Kreska = cel serii na partię w tygodniu: {n} automatycznie albo Twoja liczba z Ustawień.",
+  "en": "Line = weekly goal of sets per muscle group: {n} automatically, or your own number from Settings."
  },
  {
-  "pl": "Kreska = {n} serii na partię w tygodniu (źródło i uproszczenia: Postępy). Zaplanowane — z szablonów na pozostałe dni tygodnia; partia pomocnicza liczy 0,5.",
-  "en": "The mark = {n} sets per muscle group per week (source and simplifications: Progress). Planned — from templates for the rest of the week; a secondary muscle group counts 0.5."
- },
- {
-  "pl": "Kreska = {n} serii na partię w tygodniu. Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; każdy trening siłowy daje przyrost w porównaniu z brakiem treningu. Uproszczenie: serie pomocnicze liczymy po 0,5.",
-  "en": "Line = {n} sets per muscle group per week. ACSM 2026 position stand: with at least {n} sets per muscle group per week, muscle growth was greater than with lower volume; any resistance training builds muscle compared with none. Simplification: secondary sets count as 0.5."
+  "pl": "Kreska w „Ten tydzień” i w Postępach. Automatycznie: {n} serii (stanowisko ACSM 2026). Ręcznie: własna liczba od {min} do {max}.",
+  "en": "The line in “This week” and in Progress. Automatic: {n} sets (ACSM 2026 position stand). Manual: your own number from {min} to {max}."
  },
  {
   "pl": "krok",
@@ -3117,6 +3133,10 @@
   "en": "back"
  },
  {
+  "pl": "plecy — bez rozbicia",
+  "en": "back — no split"
+ },
+ {
   "pl": "Plik jest pusty. Dane nie zostały zmienione.",
   "en": "The file is empty. Your data was not changed."
  },
@@ -3199,6 +3219,10 @@
  {
   "pl": "Pokaż",
   "en": "Show"
+ },
+ {
+  "pl": "Pokaż cele partii",
+  "en": "Show muscle group goals"
  },
  {
   "pl": "Pokaż inne ćwiczenia",
@@ -3743,6 +3767,10 @@
   "en": "Reverse hyper machine"
  },
  {
+  "pl": "Ręcznie",
+  "en": "Manual"
+ },
+ {
   "pl": "riksza",
   "en": "rickshaw"
  },
@@ -4087,6 +4115,10 @@
  {
   "pl": "Stacja: drążek + poręcze (power tower)",
   "en": "Power tower (pull-up + dip)"
+ },
+ {
+  "pl": "Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; każdy trening siłowy daje przyrost w porównaniu z brakiem treningu.",
+  "en": "ACSM 2026 position stand: with at least {n} sets per muscle group per week, muscle growth was greater than with lower volume; any resistance training builds muscle compared with none."
  },
  {
   "pl": "start",
@@ -4650,6 +4682,10 @@
   "en": "Farmer's walk handles"
  },
  {
+  "pl": "Ukryj cele partii",
+  "en": "Hide muscle group goals"
+ },
+ {
   "pl": "Ukryj komunikat",
   "en": "Hide message"
  },
@@ -4660,6 +4696,10 @@
  {
   "pl": "Uproszczenie: drop set liczy się razem z serią, po której jest.",
   "en": "Simplification: a drop set counts together with the set before it."
+ },
+ {
+  "pl": "Uproszczenie: partia pomocnicza ćwiczenia liczy się za pół serii (główna 1, pomocnicza 0,5; Pelland i in. 2026 — jedno źródło).",
+  "en": "Simplification: a secondary muscle group of an exercise counts as half a set (main 1, secondary 0.5; Pelland et al. 2026 — a single source)."
  },
  {
   "pl": "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM).",
@@ -5516,6 +5556,10 @@
  {
   "pl": "zaplanowane",
   "en": "planned"
+ },
+ {
+  "pl": "Zaplanowane — z szablonów na pozostałe dni tygodnia.",
+  "en": "Planned — from templates for the rest of the week."
  },
  {
   "pl": "Zaplanowane = szablony z planu na pozostałe dni tygodnia, policzone z wartości w szablonie (brakujące — z „Poprzednio”). To rachunek z Twojego planu, nie prognoza. Partia główna liczy 1 serię, pomocnicza 0,5.",

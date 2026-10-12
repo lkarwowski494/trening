@@ -84,7 +84,6 @@
  "Kopia w Apple Health zostanie — usuniesz ją w aplikacji Zdrowie.": "A cópia no Apple Health continua lá — apague no app Saúde.",
  "Kopia zapasowa": "Backup",
  "Kopia zapasowa (eksport / import)": "Backup (exportar / importar)",
- "Kreska = {n} serii na partię w tygodniu. Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; każdy trening siłowy daje przyrost w porównaniu z brakiem treningu. Uproszczenie: serie pomocnicze liczymy po 0,5.": "Linha = {n} séries por grupo muscular por semana. Posicionamento do ACSM 2026: com pelo menos {n} séries por grupo muscular por semana, o ganho muscular foi maior do que com menos volume; qualquer treino de força aumenta o músculo em comparação com não treinar. Simplificação: séries secundárias contam 0,5.",
  "Liczba serii z czasu sesji: (minuty − {w} min rozgrzewki) × 60 / ({s} s serii + średnia przerwa {r} s) = {n}; ćwiczeń = serie / {k} (co najmniej {e}) — uproszczenie, nie wynik badań.": "Número de séries a partir da duração: (minutos − {w} min de aquecimento) × 60 / ({s} s por série + descanso médio de {r} s) = {n}; exercícios = séries / {k} (pelo menos {e}) — uma simplificação, não um resultado de pesquisa.",
  "Lista możliwości: przesunięcie planu, przeniesienie tylko tego treningu, zamiana albo wolne — z uwzględnieniem regeneracji partii.": "Lista de opções: mover o plano, mover só este treino, trocar ou descansar — levando em conta a recuperação muscular.",
  "Lista ćwiczeń, zamiany i generator pokazują to, co da się zrobić w wybranym miejscu.": "A lista de exercícios, as trocas e o gerador mostram o que dá para fazer no local escolhido.",
@@ -457,7 +456,6 @@
  "dni 1–{n} miesiąca vs poprzedni miesiąc": "dias 1–{n} do mês em relação ao mês anterior",
  "Dopisz trening wstecz": "Registrar treino passado",
  "Kolor względem partii z największą liczbą serii w tym tygodniu (wykonane + zaplanowane). Szare — bez serii.": "Cor relativa ao grupo muscular com mais séries esta semana (feito + planejado). Cinza — sem séries.",
- "Kreska = {n} serii na partię w tygodniu (źródło i uproszczenia: Postępy). Zaplanowane — z szablonów na pozostałe dni tygodnia; partia pomocnicza liczy 0,5.": "Marca = {n} séries por grupo muscular por semana (fonte e simplificações: Progresso). Planejado — dos modelos para os demais dias da semana; um grupo muscular secundário conta 0,5.",
  "Na ekranie Trening „Planowanie” (bez planu: „Ustaw plan”) otwiera plan tygodnia, który przypisuje szablony do dni — plan powtarza się co tydzień.": "Na tela Treino, «Planejamento» (sem plano: «Definir plano») abre o plano semanal, que atribui modelos aos dias — o plano se repete toda semana.",
  "Na ekranie Trening „Progresja” porównuje tydzień (wykonane + zaplanowane) z poprzednim oraz miesiąc z miesiącem.": "Na tela Treino, «Progressão» compara a semana (feito + planejado) com a anterior e um mês com o mês anterior.",
  "Na ekranie Trening stuknij duży przycisk „Start” (następny trening) albo „Inny trening” — tam wybierzesz szablon, powtórzysz ostatni trening albo zaczniesz pusty.": "Na tela Treino, toque no botão grande «Iniciar» (próximo treino) ou «Outro treino» — lá você escolhe um modelo, repete o último treino ou começa um vazio.",
@@ -491,5 +489,7 @@
  "Plik nie zawiera żadnych poprawnych treningów. Dane nie zostały zmienione.": "O arquivo não contém treinos válidos. Seus dados não foram alterados.",
  "Podgląd importu": "Prévia da importação",
  "To nie wygląda na obsługiwany plik CSV z historią treningów. Dane nie zostały zmienione.": "Isto não parece um arquivo CSV suportado com histórico de treinos. Seus dados não foram alterados.",
- "Wybierz plik CSV": "Escolher arquivo CSV"
+ "Wybierz plik CSV": "Escolher arquivo CSV",
+ "Kreska = cel serii na partię w tygodniu: {n} automatycznie albo Twoja liczba z Ustawień.": "Linha = objetivo semanal de séries por grupo muscular: {n} automático ou o seu próprio número nos Ajustes.",
+ "Zaplanowane — z szablonów na pozostałe dni tygodnia.": "Planejadas — a partir dos modelos para os demais dias da semana."
 }

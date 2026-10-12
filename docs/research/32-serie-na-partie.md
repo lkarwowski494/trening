@@ -93,3 +93,22 @@ uproszczenie, wzmocnione kierunkowo przez RCT Mannarino 2021). Czy dodać zdanie
   (np. przednie barki z wyciskań po 0,5), gdy inny (barki boczne) nie dostaje serii. Źródła liczą „per muscle group” bez definicji grup — czy rozbijać partie, to pytanie produktowe.
 
 Decyzję (opcja A/B/C) zapisać w rejestrze decyzji na Dysku („Trening App / 03 Rejestr decyzji”) z odrzuconymi alternatywami.
+
+## Wdrożenie (decyzje właściciela 12.10.2026)
+
+Właściciel wybrał wariant z celem na partię (A rozszerzone): automat = jedna liczba ze źródeł, własna liczba na życzenie, rozbicie barków i pleców w statystykach serii.
+
+- **Cel serii na partię w tygodniu** (Ustawienia → „Cel serii na partię w tygodniu”): przy każdej części „Automatycznie” (`WEEKLY_SETS_MARK` = 10, lib/stats.ts — jedno źródło liczby)
+  albo „Ręcznie” (własna liczba całkowita 1–40, `SETS_GOAL_MIN/MAX` w lib/setParts.ts — granice pola w interfejsie, **nie zalecenie**). Zapis: opcjonalne `Settings.weeklySetGoals`
+  (tylko odstępstwa), bez zmiany `SCHEMA_VERSION`; `migrate` zachowuje znane części i liczby (przycięte do granic), resztę odrzuca; kopia i import przechodzą przez `migrate`.
+  Kreski w „Ten tydzień”, Postępach i Progresji (tydzień) mierzą do celu swojej części; miesiąc bez kresek (jak dotąd). Generator i jego uwagi dalej używają automatu (`WEEKLY_SETS_MARK`) — bez zmian.
+- **Pół serii** (lib/stats.ts `setsByMuscle`/`setsByPart`): partia główna ćwiczenia = 1, pomocnicza = 0,5; poziom 0,25 z `MUSCLE_LOAD` nie wchodzi do serii. Zdanie przy kresce w Postępach, Progresji i „Ten tydzień”
+  nazywa to uproszczeniem i podaje źródło (Pelland i in. 2026 — jedno źródło, tak jak w komentarzu przy `WEEKLY_SETS_MARK`).
+- **Rozbicie tylko w statystykach serii** (lib/setParts.ts): barki → przód / bok / tył (`front_delt`, `side_delt`, `rear_delt`), plecy → góra pleców / najszersze / prostowniki grzbietu
+  (`upper_back`, `lats`, `lower_back`) + wiersze „barki — bez rozbicia” i „plecy — bez rozbicia”. Objętość, mapa mięśni, podsumowanie okresu, generator i regeneracja zostają na partiach zbiorczych.
+  **Reguła przypisania (do akceptacji właściciela):** partia zbiorcza ćwiczenia (główna 1 / pomocnicza 0,5, jak dotąd) przekazuje serie tym swoim regionom z katalogu (`muscleLoadOf`, czyli `MUSCLE_LOAD`
+  z poprawką o pola ćwiczenia), które mają najwyższy poziom obciążenia w tej partii; każdy taki region dostaje pełny udział (wiosłowanie: najszersze 1 i góra pleców 1; wyciskanie nad głową: przód 1, bok nic).
+  Ćwiczenie bez regionów dla danej partii (własne, bez klucza katalogu) → wiersz „bez rozbicia”. Test danych: wszystkie 285 ćwiczeń katalogu z barkami lub plecami są rozbite (0 w „bez rozbicia”).
+  Konsekwencja: suma części barków / pleców może przekroczyć wartość partii zbiorczej (dwa regiony na tym samym poziomie liczą się oba) — zamierzone, jak dwie partie główne jednego ćwiczenia.
+- **Otwarte (bez zmian):** czy dawka–odpowiedź różni się między mięśniami; waga serii pośredniej inna niż 0,5; brak źródła na osobne cele dla regionów (cel domyślny dla każdej części = 10, jak dla partii).
+

@@ -808,8 +808,8 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     for (const t of ['Objętość tygodniowo (kg)', 'Serie robocze tygodniowo', 'Serie per partia — ten tydzień vs poprzedni', 'Objętość per partia (kg) — ten tydzień vs poprzedni']) expect(screen.getByText(t)).toBeTruthy();
     const weeks = stats.weeklyTotals(8); expect(weeks.reduce((a: number, w: any) => a + w.workouts, 0)).toBe(2);
     /* serie per partia: każdy wiersz na ekranie = liczby ze store (ten tydzień i poprzedni) */
-    const cur = stats.weeklySetsByMuscle(stats.thisMonday()), prev = stats.weeklySetsByMuscle(stats.thisMonday(-1));
-    const mus = Object.keys({ ...cur, ...prev }).filter(m => (cur[m] ?? 0) > 0 || (prev[m] ?? 0) > 0); expect(mus).toEqual(expect.arrayContaining(['klatka', 'barki', 'plecy', 'biceps', 'core']));
+    const cur = stats.weeklySetsByPart(stats.thisMonday()), prev = stats.weeklySetsByPart(stats.thisMonday(-1)); /* 12.10.2026: wiersze serii per część (barki i plecy rozbite) */
+    const mus = Object.keys({ ...cur, ...prev }).filter(m => (cur[m] ?? 0) > 0 || (prev[m] ?? 0) > 0); expect(mus).toEqual(expect.arrayContaining(['klatka', 'biceps', 'core']));
     for (const m of mus) expect(screen.getAllByText(`${fmtNum(cur[m] ?? 0, 1)} (poprz. ${fmtNum(prev[m] ?? 0, 1)})`).length).toBeGreaterThan(0);
     expect((cur.klatka ?? 0) + (prev.klatka ?? 0)).toBeGreaterThan(0);
     /* wybór ćwiczenia: najpierw te z historią */

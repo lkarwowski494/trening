@@ -4,7 +4,8 @@ import { useTheme, F } from '@/lib/theme';
 import { t, lang } from '@/lib/i18n';
 import { fmtNum, volOut } from '@/lib/units';
 import { Muted, Txt } from '@/components/ui';
-import type { MuscleRow } from '@/lib/progress';
+import type { MuscleRow, SetRow } from '@/lib/progress';
+import { partLabel } from '@/lib/setParts';
 
 /*
  * Słupki „Progresji” i „Ten tydzień” (docs/22 krok 3 pkt 4–5, 11.10.2026): część wykonana i zaplanowana innym kolorem, rozdzielone cienką kreską
@@ -36,23 +37,28 @@ export function SegLegend({ planned = true }: { planned?: boolean }) {
 export const fmtVolShort = (v: number) => { const x = volOut(v); return x >= 10000 ? `${fmtNum(x / 1000, 1)}k` : fmtNum(Math.round(x)); };
 export const fmtSets = (v: number) => fmtNum(v, 1);
 
-/** Wiersze partii: bieżący okres (wykonane + zaplanowane, słupek dwukolorowy) i poprzedni (cienki słupek); ▲ — objętość wzrosła. `metric` — co jest słupkiem. */
-export function MuscleRows({ rows, metric, mark, showPrev = true }: { rows: MuscleRow[]; metric: 'volume' | 'sets'; mark?: number; /** false — „Ten tydzień”: tylko bieżący tydzień, bez poprzedniego */ showPrev?: boolean }) {
+/** Wiersz słupka: `label` już przetłumaczony; `mark` — kreska celu tego wiersza (serie: cel części — ręczny albo automatyczny). */
+export type BarRow = { key: string; label: string; done: number; planned: number; prev: number; up: boolean; mark?: number };
+/** Objętość per partia zbiorcza (bez rozbicia — rozbicie dotyczy tylko serii). */
+export const volumeBars = (rows: MuscleRow[]): BarRow[] => rows.map(r => ({ key: r.muscle, label: t(r.muscle), done: r.doneVolume, planned: r.plannedVolume, prev: r.prevVolume, up: r.volumeUp }));
+/** Serie per część (z rozbiciem barków i pleców); `goals` — czy rysować kreski celu (miesiąc: bez kresek). */
+export const setBars = (rows: SetRow[], goals: boolean): BarRow[] => rows.map(r => ({ key: r.part, label: t(partLabel(r.part)), done: r.doneSets, planned: r.plannedSets, prev: r.prevSets, up: r.setsUp, ...(goals ? { mark: r.goal } : {}) }));
+
+/** Wiersze partii: bieżący okres (wykonane + zaplanowane, słupek dwukolorowy) i poprzedni (cienki słupek); ▲ — wzrost. `metric` — co jest słupkiem; kreska celu — osobna dla każdego wiersza. */
+export function MuscleRows({ rows, metric, showPrev = true }: { rows: BarRow[]; metric: 'volume' | 'sets'; /** false — „Ten tydzień”: tylko bieżący tydzień, bez poprzedniego */ showPrev?: boolean }) {
   const th = useTheme(); const fmt = metric === 'volume' ? fmtVolShort : fmtSets;
-  const dn = (r: MuscleRow) => (metric === 'volume' ? r.doneVolume : r.doneSets); const pl = (r: MuscleRow) => (metric === 'volume' ? r.plannedVolume : r.plannedSets);
-  const pv = (r: MuscleRow) => (metric === 'volume' ? r.prevVolume : r.prevSets); const up = (r: MuscleRow) => (metric === 'volume' ? r.volumeUp : r.setsUp);
-  const list = rows.filter(r => dn(r) + pl(r) + (showPrev ? pv(r) : 0) > 0); const max = Math.max(1, mark ?? 0, ...list.map(r => Math.max(dn(r) + pl(r), showPrev ? pv(r) : 0)));
+  const list = rows.filter(r => r.done + r.planned + (showPrev ? r.prev : 0) > 0); const max = Math.max(1, ...list.map(r => Math.max(r.mark ?? 0, r.done + r.planned, showPrev ? r.prev : 0)));
   if (!list.length) return <Muted style={{ fontSize: 13 }}>{showPrev ? t('Brak serii w tym i poprzednim okresie.') : t('Brak serii w tym tygodniu.')}</Muted>;
   return <>{list.map(r => {
-    const value = pl(r) > 0 ? `${fmt(dn(r))} + ${fmt(pl(r))}` : fmt(dn(r));
-    const label = `${t(r.muscle)}: ${value}${pl(r) > 0 ? ` (${t('wykonane')} + ${t('zaplanowane')})` : ''}${showPrev ? `, ${t('poprz.')} ${fmt(pv(r))}${up(r) ? ', ' + t('więcej niż poprzednio') : ''}` : ''}${mark && dn(r) + pl(r) >= mark ? ', ' + t('co najmniej {n}', { n: mark }) : ''}`;
+    const value = r.planned > 0 ? `${fmt(r.done)} + ${fmt(r.planned)}` : fmt(r.done);
+    const label = `${r.label}: ${value}${r.planned > 0 ? ` (${t('wykonane')} + ${t('zaplanowane')})` : ''}${showPrev ? `, ${t('poprz.')} ${fmt(r.prev)}${r.up ? ', ' + t('więcej niż poprzednio') : ''}` : ''}${r.mark && r.done + r.planned >= r.mark ? ', ' + t('co najmniej {n}', { n: r.mark }) : ''}`;
     return (
-      <View accessibilityLanguage={lang()} key={r.muscle} testID={`prow-${metric}-${r.muscle}`} accessible accessibilityLabel={label} style={{ marginBottom: 10 }}>
+      <View accessibilityLanguage={lang()} key={r.key} testID={`prow-${metric}-${r.key}`} accessible accessibilityLabel={label} style={{ marginBottom: 10 }}>
         <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'baseline', gap: 8 }}>
-          <Txt style={{ fontSize: 14, flexShrink: 1 }}>{showPrev && up(r) ? '▲ ' : ''}{t(r.muscle)}</Txt>
-          <Muted style={{ fontSize: 13, fontFamily: F.mono, flexShrink: 1, textAlign: 'right' }}>{value}{showPrev ? <Muted style={{ fontSize: 12 }}> ({t('poprz.')} {fmt(pv(r))})</Muted> : null}</Muted>
+          <Txt style={{ fontSize: 14, flexShrink: 1 }}>{showPrev && r.up ? '▲ ' : ''}{r.label}</Txt>
+          <Muted style={{ fontSize: 13, fontFamily: F.mono, flexShrink: 1, textAlign: 'right' }}>{value}{showPrev ? <Muted style={{ fontSize: 12 }}> ({t('poprz.')} {fmt(r.prev)})</Muted> : null}</Muted>
         </View>
-        <View style={{ marginTop: 4 }}><SegBar testID={`pbar-${metric}-${r.muscle}`} done={dn(r)} planned={pl(r)} max={max} mark={mark} /></View>
-        {showPrev ? <View style={{ marginTop: 3, height: 3, borderRadius: 1.5, backgroundColor: th.line }}><View testID={`pprev-${metric}-${r.muscle}`} style={{ width: `${Math.min(100, (100 * pv(r)) / max)}%`, height: 3, borderRadius: 1.5, backgroundColor: th.muted }} /></View> : null}
+        <View style={{ marginTop: 4 }}><SegBar testID={`pbar-${metric}-${r.key}`} done={r.done} planned={r.planned} max={max} mark={r.mark} /></View>
+        {showPrev ? <View style={{ marginTop: 3, height: 3, borderRadius: 1.5, backgroundColor: th.line }}><View testID={`pprev-${metric}-${r.key}`} style={{ width: `${Math.min(100, (100 * r.prev) / max)}%`, height: 3, borderRadius: 1.5, backgroundColor: th.muted }} /></View> : null}
       </View>); })}</>;
 }

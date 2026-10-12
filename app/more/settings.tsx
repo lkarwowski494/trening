@@ -11,6 +11,8 @@ import { safetyBackup, safetyRecoveryNote, AUTO_KEEP } from '@/lib/backup';
 import * as health from '@/lib/health';
 import { t, LANG_NAME, type Lang, appName } from '@/lib/i18n';
 import { type Unit } from '@/lib/units';
+import { WEEKLY_SETS_MARK, manualSetsGoal } from '@/lib/stats';
+import { SET_PARTS, SETS_GOAL_MIN, SETS_GOAL_MAX, clampGoal, partLabel, type SetPart } from '@/lib/setParts';
 
 
 export default function SettingsScreen() {
@@ -19,6 +21,7 @@ export default function SettingsScreen() {
   const [perm, setPerm] = useState<ReminderPermission | null>(null); const fg = useForegroundTick(); const refreshPerm = () => { reminderPermission().then(setPerm).catch(() => {}); };
   useEffect(refreshPerm, [fg]);
   const openIos = () => { Linking.openSettings().catch(() => {}); };
+  const [goalsOpen, setGoalsOpen] = useState(false);
   return (
     <Screen><ScrollView keyboardShouldPersistTaps="handled" automaticallyAdjustKeyboardInsets contentContainerStyle={{ paddingVertical: 10, paddingBottom: 60 }}>
       <SectionTitle>{t('Ogólne')}</SectionTitle>
@@ -40,6 +43,11 @@ export default function SettingsScreen() {
       </> : null}
       <SwitchRow label={t('Podpowiedź progresji')} detail={t('↑ przy ćwiczeniu, gdy ostatnio wszystkie serie były na górze zakresu powtórzeń')} value={s.progressHint} onChange={v => { s.progressHint = v; saveCfg(); }} />
       {/* 11.10.2026 (docs/22, P5 A): „Masa ciała” przeniesiona do zakładki Postępy (sekcja „Masa ciała”) — z Ustawień wejście zniknęło */}
+
+      <SectionTitle>{t('Cel serii na partię w tygodniu')}</SectionTitle>{/* 12.10.2026 (decyzja właściciela, docs/research/32): cel osobno dla każdej partii; automat = jedna liczba ze źródłami */}
+      <Muted style={{ fontSize: 13, marginBottom: 8 }}>{t('Kreska w „Ten tydzień” i w Postępach. Automatycznie: {n} serii (stanowisko ACSM 2026). Ręcznie: własna liczba od {min} do {max}.', { n: WEEKLY_SETS_MARK, min: SETS_GOAL_MIN, max: SETS_GOAL_MAX })}</Muted>
+      <Btn small title={goalsOpen ? t('Ukryj cele partii') : t('Pokaż cele partii')} style={{ alignSelf: 'flex-start', marginBottom: 8 }} onPress={() => setGoalsOpen(o => !o)} />
+      {goalsOpen ? <View testID="set-goals">{SET_PARTS.map(p => <SetGoalRow key={p} part={p} />)}</View> : null}
 
       <MedicalNote style={{ marginTop: 18, marginBottom: 10 }} /* L1 (audyt 0.10, MER-11 A); UI2-09: w sekcji „Trening”, nie nad „Wyczyść wszystkie dane” */ />
       <SectionTitle>{t('Dane i kopie')}</SectionTitle>
@@ -64,4 +72,20 @@ export default function SettingsScreen() {
       <Btn title={t('Wyczyść wszystkie dane')} kind="danger" onPress={() => Alert.alert(t('Wyczyścić wszystkie dane?') /* G5 (audyt 0.10 UI-14): konkretne pytanie zamiast „Na pewno?” */, t('Usunie ćwiczenia, szablony i całą historię oraz przywróci ustawienia domyślne (także miejsca, sprzęt i gumy). Przedtem obecne dane zapiszą się jako kopia w Plikach: {app} → Backup (można ją zaimportować).', { app: appName() }) + (getState().active ? ' ' + t('Trening w toku też zostanie usunięty.') : '') /* G3 (audyt 0.10 UI-06) */ + safetyRecoveryNote(), [{ text: t('Nie'), style: 'cancel' }, { text: t('Wyczyść'), style: 'destructive', onPress: () => { safetyBackup('reset').then(() => { timer.resetAll().catch(() => {}); resetAll(); timer.scheduleWeighReminder().catch(() => {}); /* runda 75 (audyt T14): po wyczyszczeniu domyślne ustawienia — bez przypomnienia */ }).catch((e: unknown) => Alert.alert(t('Dane nie zostały wyczyszczone'), e instanceof Error ? e.message : undefined)); /* Q-019: najpierw kopia bezpieczeństwa w Backup/ */ } }])} />
     </ScrollView></Screen>
   );
+}
+
+/** Cel serii jednej części: „Automatycznie” (WEEKLY_SETS_MARK) albo „Ręcznie” z własną liczbą; w danych zostaje tylko odstępstwo (Settings.weeklySetGoals). */
+function SetGoalRow({ part }: { part: SetPart }) {
+  const s = getState().settings; const manual = manualSetsGoal(part); const label = t(partLabel(part));
+  const put = (n: number | null) => {
+    const g = { ...(s.weeklySetGoals ?? {}) };
+    if (n === null) delete g[part]; else g[part] = clampGoal(n);
+    if (Object.keys(g).length) s.weeklySetGoals = g; else delete s.weeklySetGoals; save();
+  };
+  return (
+    <Field label={label}>
+      <Segmented label={t('Cel serii: {part}', { part: label })} options={[['auto', t('Automatycznie ({n})', { n: WEEKLY_SETS_MARK })], ['manual', t('Ręcznie')]] as ['auto' | 'manual', string][]}
+        value={manual === undefined ? 'auto' : 'manual'} onChange={v => put(v === 'auto' ? null : WEEKLY_SETS_MARK)} />
+      {manual !== undefined ? <NumInput testID={`set-goal-${part}`} accessibilityLabel={t('Cel serii: {part}', { part: label })} value={manual} onNum={v => { if (v === '') return; put(v); }} placeholder={String(WEEKLY_SETS_MARK)} style={{ marginTop: 6 }} /> : null}
+    </Field>);
 }

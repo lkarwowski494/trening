@@ -67,7 +67,7 @@ describe('„Ten tydzień”: tylko ten tydzień — kafelki, sylwetka, serie na
     expect(screen.getByTestId('prow-sets-klatka').props.accessibilityLabel).toBe('klatka: 0 + 2 (wykonane + zaplanowane)'); expect(screen.getByTestId('prow-sets-czworogłowe').props.accessibilityLabel).toBe('czworogłowe: 2');
     expect(find('pprev-sets-klatka')).toHaveLength(0); expect(find('pprev-sets-czworogłowe')).toHaveLength(0); /* tylko ten tydzień: bez słupków poprzedniego */ expect(screen.queryAllByText(/poprz\./).length).toBe(0); /* 11.10.2026: kafelki „Ten tydzień” bez „poprz.” */
     expect(box.getByText('Kolor względem partii z największą liczbą serii w tym tygodniu (wykonane + zaplanowane). Szare — bez serii.')).toBeTruthy();
-    expect(box.getByText('Kreska = 10 serii na partię w tygodniu (źródło i uproszczenia: Postępy). Zaplanowane — z szablonów na pozostałe dni tygodnia; partia pomocnicza liczy 0,5.')).toBeTruthy();
+    expect(box.getByText(['Kreska = cel serii na partię w tygodniu: 10 automatycznie albo Twoja liczba z Ustawień.', 'Zaplanowane — z szablonów na pozostałe dni tygodnia.', 'Uproszczenie: partia pomocnicza ćwiczenia liczy się za pół serii (główna 1, pomocnicza 0,5; Pelland i in. 2026 — jedno źródło).', 'Barki i plecy są rozbite według katalogu ćwiczeń: przód, bok i tył barków; góra pleców, najszersze i prostowniki. Ćwiczenie bez takiego rozbicia (np. własne) liczy się w wierszu „bez rozbicia”.'].join(' '))).toBeTruthy();
   });
   test('legenda „zaplanowane” tylko przy zaplanowanych treningach; bez planu — same wykonane', async () => {
     await boot(scenario); expect(legend('zaplanowane')).toBe(1); expect(legend('wykonane')).toBe(1);

@@ -8,7 +8,7 @@ import { periodTitle } from '@/lib/period';
 import { WEEKLY_SETS_MARK } from '@/lib/stats';
 import { fmtVol, wu } from '@/lib/units';
 import { MuscleMap } from '@/components/MuscleMap';
-import { MuscleRows, SegBar, SegLegend } from '@/components/ProgressBars';
+import { MuscleRows, SegBar, SegLegend, setBars, volumeBars } from '@/components/ProgressBars';
 import { useTheme, F, TEXT_SCALE_MAX } from '@/lib/theme';
 import { t, tp, locale, lang } from '@/lib/i18n';
 
@@ -74,10 +74,10 @@ export default function ProgressionScreen() {
           label={Object.keys(improved).length ? t('Partie z większą objętością niż poprzednio: {list}', { list: c.rows.filter(r => r.volumeUp).map(r => t(r.muscle)).join(', ') }) : t('Żadna partia nie ma większej objętości niż poprzednio.')}
           caption={t('Zaznaczone partie, w których objętość jest większa niż w okresie porównawczym; im ciemniej, tym większy wzrost. Szare — bez wzrostu.')} />
         <H2 style={{ marginTop: 16 }}>{t('Objętość per partia ({u})', { u: wu() })}</H2>
-        <MuscleRows rows={c.rows} metric="volume" />
+        <MuscleRows rows={volumeBars(c.rows)} metric="volume" />
         <H2 style={{ marginTop: 10 }}>{t('Serie per partia')}</H2>
-        <MuscleRows rows={c.rows} metric="sets" mark={kind === 'month' ? undefined : WEEKLY_SETS_MARK} />
-        {kind !== 'month' ? <Muted style={{ fontSize: 12, marginTop: 2 }}>{t('Kreska = {n} serii na partię w tygodniu (źródło i uproszczenia: Postępy).', { n: WEEKLY_SETS_MARK })}</Muted> : null}
+        <MuscleRows rows={setBars(c.setRows, kind !== 'month')} metric="sets" />
+        <Muted style={{ fontSize: 12, marginTop: 2 }}>{kind !== 'month' ? t('Kreska = cel serii na partię w tygodniu: {n} automatycznie albo Twoja liczba z Ustawień.', { n: WEEKLY_SETS_MARK }) + ' ' : ''}{t('Barki i plecy są rozbite według katalogu ćwiczeń: przód, bok i tył barków; góra pleców, najszersze i prostowniki. Ćwiczenie bez takiego rozbicia (np. własne) liczy się w wierszu „bez rozbicia”.')}</Muted>
         <Muted style={{ fontSize: 12, marginTop: 8 }}>{kind === 'week'
           ? t('Zaplanowane = szablony z planu na pozostałe dni tygodnia, policzone z wartości w szablonie (brakujące — z „Poprzednio”). To rachunek z Twojego planu, nie prognoza. Partia główna liczy 1 serię, pomocnicza 0,5.')
           : t('Objętość = ciężar × powtórzenia × mnożnik ćwiczenia (jak w Postępach); rozgrzewka poza. Partia główna liczy całość, pomocnicza połowę.')}</Muted>

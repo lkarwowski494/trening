@@ -27,7 +27,8 @@ import * as health from '@/lib/health';
 import { buildBackup, parseBackup } from '@/lib/backup';
 import { implsAt, EQUIPMENT, LOCATION_PRESETS } from '@/lib/equipment';
 import { CABLES } from '@/lib/catalog.generated';
-import { SCHEMA_VERSION, METRICS, blankTimer, uid, hasReps, hasTime, hasDistance, type Exercise, type Template, type TemplateItem, type Workout, type WSet, type SetKind, type Impl } from '@/lib/seed';
+import { SET_PARTS, SPLIT_REGIONS, SETS_GOAL_MIN, SETS_GOAL_MAX, clampGoal, isSetPart } from '@/lib/setParts';
+import { SCHEMA_VERSION, METRICS, MUSCLES, blankTimer, uid, hasReps, hasTime, hasDistance, type Exercise, type Template, type TemplateItem, type Workout, type WSet, type SetKind, type Impl } from '@/lib/seed';
 import { weekProgress, planPct, dayMark, monthWeeks } from '@/lib/motif';
 import { periodRange } from '@/lib/period';
 import { weekTiles, weekStrip } from '@/lib/dashboard';
@@ -66,6 +67,8 @@ const KINDS = {
    * „Zapisz jako szablon”, archiwum szablonu, tydzień deload, pauza i „Pomiń dziś” w treningu, ponowienie zapisu do Zdrowia (J2), plany: nazwa,
    * usunięcie, zamiana dni, propozycja z panelu dnia, powrót dnia do planu */
   draft: 3, saveAsTpl: 1, tplArchive: 1, deload: 1, pause: 2, skipEx: 1, health: 1, planRename: 1, planDel: 1, planSwap: 1, planSuggest: 4, planReset: 1, libScope: 1,
+  /* 12.10.2026: ręczny cel serii na partię w tygodniu (Ustawienia) */
+  setGoal: 1,
   /* 09.10.2026 (decyzje właściciela, B): „Plan z moich szablonów” (zapis jako nowy / aktywny) i „+ Nowy szablon” z przypisaniem do dnia po „Zapisz” */
   ownPlan: 1, tplNewAssign: 1,
 } as const;
@@ -98,7 +101,7 @@ const seqArb = fc.array(fc.oneof({ weight: 3, arbitrary: actArb.map(x => [x]) },
 
 /** Kategorie: jawne edycje szablonów, zmiany historii; w pozostałych działaniach trening w toku ma zostać co do bajtu (ACTIVE_FROZEN). */
 const TPL_EDIT = new Set<K>(['tplNew', 'tplRename', 'tplDup', 'tplDel', 'tplAddItem', 'tplRmItem', 'tplMove', 'tplLink', 'tplUnlink', 'tplAddRow', 'tplRmRow', 'tplKind', 'tplRow', 'tplBand', 'tplLoc', 'rememberAlt', 'rememberRest', 'gen', 'tplNote', 'draft', 'saveAsTpl', 'tplArchive', 'tplNewAssign']);
-const ACTIVE_FROZEN = new Set<K>([...[...TPL_EDIT].filter(k => k !== 'rememberRest'), 'delW', 'past', 'edit', 'unit', 'lang', 'newEx', 'metric', 'bandAssist', 'delEx', 'restoreEx', 'addLoc', 'setMain', 'dupLoc', 'renameLoc', 'setBandColor', 'reload', 'roundtrip', 'migrate', 'stats', 'planDay', 'planDayOv', 'planShift', 'planMove', 'planNew', 'planActivate', 'bodyMass', 'draft', 'saveAsTpl', 'tplArchive', 'deload', 'health', 'planRename', 'planDel', 'planSwap', 'planSuggest', 'planReset', 'libScope', 'ownPlan']);
+const ACTIVE_FROZEN = new Set<K>([...[...TPL_EDIT].filter(k => k !== 'rememberRest'), 'delW', 'past', 'edit', 'unit', 'lang', 'newEx', 'metric', 'bandAssist', 'delEx', 'restoreEx', 'addLoc', 'setMain', 'dupLoc', 'renameLoc', 'setBandColor', 'reload', 'roundtrip', 'migrate', 'stats', 'planDay', 'planDayOv', 'planShift', 'planMove', 'planNew', 'planActivate', 'bodyMass', 'draft', 'saveAsTpl', 'tplArchive', 'deload', 'health', 'planRename', 'planDel', 'planSwap', 'planSuggest', 'planReset', 'libScope', 'ownPlan', 'setGoal']);
 /** Audyt 0.10 A1/A7: działania, po których żaden miniony dzień nie może zmienić statusu (poza dniem, którego działanie dotyczy wprost). */
 const PAST_FROZEN = new Set<K>(['planDay', 'planDayOv', 'planShift', 'planMove', 'planNew', 'planActivate', 'tplDel', 'tplNew', 'tplDup', 'tplRename', 'tplArchive', 'draft', 'saveAsTpl', 'planRename', 'planDel', 'planSwap', 'planSuggest', 'planReset', 'deload', 'health', 'ownPlan', 'tplNewAssign']);
 
@@ -430,6 +433,12 @@ async function step(x: Act, m: Model, where: string) {
       expect({ where, s: after }).toEqual({ where, s: before }); /* jednostka/język nie zmieniają zapisanych kg ani niczego innego */ hit(x.t); break; }
     case 'libScope': { const before = strip(st); store.setLibShowAll(x.b % 2 === 0); const after = strip(S()); if (x.b % 2 === 0) before.settings.libShowAll = true; else delete before.settings.libShowAll;
       expect({ where, s: after }).toEqual({ where, s: before }); /* filtr „Podstawowe” (research biblioteki 09.10.2026) zmienia tylko ustawienie widoku */ hit(x.t); break; }
+    case 'setGoal': { /* ręczny cel: tylko ustawienie, dane treningowe bez zmian; wpis w granicach, kasowanie usuwa pole; migrate zachowuje */
+      const before = strip(st); const part = SET_PARTS[x.a % SET_PARTS.length]; const g = { ...(st.settings.weeklySetGoals ?? {}) };
+      if (x.b % 3 === 0) delete g[part]; else g[part] = clampGoal((x.b % 60) - 5); if (Object.keys(g).length) st.settings.weeklySetGoals = g; else delete st.settings.weeklySetGoals; store.save();
+      const after = strip(S()); if (before.settings.weeklySetGoals !== undefined || after.settings.weeklySetGoals !== undefined) { delete before.settings.weeklySetGoals; delete after.settings.weeklySetGoals; }
+      expect({ where, s: after }).toEqual({ where, s: before }); const kept = store.migrate(JSON.parse(JSON.stringify(S()))).settings.weeklySetGoals; expect({ where, g: kept }).toEqual({ where, g: S().settings.weeklySetGoals });
+      for (const p of SET_PARTS) { const v = stats.setsGoal(p); ok(Number.isInteger(v) && v >= SETS_GOAL_MIN && v <= SETS_GOAL_MAX, where, 'cel serii w granicach', { p, v }); } hit(x.t); break; }
     case 'reload': await reloadCheck(where); hit('reload'); break;
     case 'roundtrip': await roundtripCheck(where); hit('roundtrip'); break;
     case 'migrate': migrateCheck(where); break;
@@ -581,6 +590,10 @@ function statsCheck(where: string) {
   for (const w of fin) { if (w.startedAt < mon || w.startedAt >= nx) continue; for (const e of w.exercises) { const ex = store.exById(e.exerciseId); if (!ex) continue; const n = workN(e.sets); if (!n) continue;
     ex.muscles.forEach(q => { mus[q] = (mus[q] ?? 0) + n; }); ex.secondaryMuscles.forEach(q => { mus[q] = (mus[q] ?? 0) + n * 0.5; }); } }
   expect({ where, m: stats.weeklySetsByMuscle(mon) }).toEqual({ where, m: mus });
+  /* serie per część (12.10.2026): partie bez rozbicia identyczne jak per partia zbiorcza; barki / plecy rozbite nie gubią serii (suma części ≥ partia) */
+  { const parts = stats.weeklySetsByPart(mon); for (const q of MUSCLES) { const sum = SET_PARTS.filter(p => p === q || (SPLIT_REGIONS as Record<string, readonly string[]>)[q]?.includes(p)).reduce((a, p) => a + (parts[p] ?? 0), 0);
+    if (q === 'barki' || q === 'plecy') ok(sum >= (mus[q] ?? 0) - 1e-9, where, `części ${q}: suma < partia`, { sum, m: mus[q] }); else ok(Math.abs(sum - (mus[q] ?? 0)) < 1e-9, where, `części ${q} ≠ partia`, { sum, m: mus[q] }); }
+    ok(Object.keys(parts).every(isSetPart), where, 'nieznana część w setsByPart', Object.keys(parts)); }
   /* postęp tygodnia (korekta właściciela 09.10.2026 ok. 17:00): stosy = dni w planie tygodnia, pełne = zrobione z planu (te same liczby co kafelki),
    * procent 0–100, 100 wtedy i tylko wtedy, gdy zrobione wszystkie; bez planu — nic. Znacznik dnia w pasku = stan dnia (jedna funkcja). */
   const wp = weekProgress(); const wt = weekTiles();
@@ -630,7 +643,7 @@ describe('macierz niezmienników — losowe sekwencje działań na prawdziwym AP
     }), { numRuns: RUNS, seed: SEED });
     if (process.env.MATRIX_COVERAGE) console.log(J(ran)); // eslint-disable-line no-console
     /* pokrycie: kluczowe ścieżki naprawdę się wykonały (inaczej niezmienniki byłyby puste) */
-    if (RUNS >= 50 && !process.env.MATRIX_SEED) /* kontrola pokrycia tylko dla stałego ziarna — losowe może nie wylosować rzadkiej akcji */ for (const k of ['startTpl', 'finish', 'tick', 'swap', 'split', 'undoSwap', 'pastCommit', 'editCommit', 'draftSwap', 'delExArchive', 'delExHard', 'reload', 'roundtrip', 'addLoc', 'setLoc', 'tplAddRow', 'tplRmRow', 'tplKind', 'tplDup', 'repeat', 'unit', 'lang', 'rememberAlt', 'rememberRest', 'gen', 'tplNote', 'draftCancel', 'draftSave', 'draftFxCancel', 'draftFxSave', 'saveAsTpl', 'tplArchive', 'deload', 'pause', 'resume', 'skipEx', 'health', 'planSwap', 'planSuggest', 'planReset', 'tplUpdate', 'ownPlan', 'tplNewAssign'])
+    if (RUNS >= 50 && !process.env.MATRIX_SEED) /* kontrola pokrycia tylko dla stałego ziarna — losowe może nie wylosować rzadkiej akcji */ for (const k of ['startTpl', 'finish', 'tick', 'swap', 'split', 'undoSwap', 'pastCommit', 'editCommit', 'draftSwap', 'delExArchive', 'delExHard', 'reload', 'roundtrip', 'addLoc', 'setLoc', 'tplAddRow', 'tplRmRow', 'tplKind', 'tplDup', 'repeat', 'unit', 'lang', 'rememberAlt', 'rememberRest', 'gen', 'tplNote', 'draftCancel', 'draftSave', 'draftFxCancel', 'draftFxSave', 'saveAsTpl', 'tplArchive', 'deload', 'pause', 'resume', 'skipEx', 'health', 'planSwap', 'planSuggest', 'planReset', 'tplUpdate', 'ownPlan', 'tplNewAssign', 'setGoal'])
       expect([k, (ran[k] ?? 0) > 0]).toEqual([k, true]);
   });
 });
