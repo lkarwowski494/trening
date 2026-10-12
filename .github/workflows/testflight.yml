@@ -13,6 +13,8 @@
 name: TestFlight (testy wewnętrzne)
 on:
   workflow_dispatch:
+    push:
+    branches: [main]
 permissions:
   contents: read
 concurrency:
@@ -135,3 +137,18 @@ jobs:
           path: |
             ios/xcodebuild.log
             export.log
+  tag:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v5
+      - name: Tag wydania
+        env:
+          BUILD_BASE: ${{ vars.BUILD_BASE || '1000' }}
+        run: |
+          V=$(node -p "require('./app.json').expo.version")
+          T="v$V-b$((BUILD_BASE + GITHUB_RUN_NUMBER))"
+          git tag "$T" && git push origin "$T"
+          echo "## Tag $T" >> "$GITHUB_STEP_SUMMARY"
