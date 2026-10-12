@@ -173,7 +173,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | np. samopoczucie, ból, sprzęt | app/history/edit/[id].tsx | tests/matrix-ui.test.tsx |
 | O aplikacji | app/(tabs)/more.tsx | tests/audit-0.10-data-ui.test.tsx, tests/whats-new.test.tsx |
 | Obciążenie partii (z katalogu) | app/exercise/[id].tsx | tests/catalog-v2.test.ts |
-| od | components/LoadEditor.tsx | tests/a11y-routes.ts, tests/app.tsx, tests/audit-0.10-data-ui.test.tsx +158 |
+| od | components/LoadEditor.tsx | tests/a11y-routes.ts, tests/app.tsx, tests/audit-0.10-data-ui.test.tsx +159 |
 | Odhacz bez pomiaru | components/ActiveWorkout.tsx | tests/audit-0.10-live.test.tsx, tests/matrix-tuleja.test.tsx |
 | Odhacz bez pomiaru: {ex}, seria {n} | components/ActiveWorkout.tsx | tests/audit-0.10-live.test.tsx |
 | Odrzuć | components/ActiveWorkout.tsx | tests/audit-0.10-live.test.tsx, tests/audit-0.10-ui.test.tsx, tests/audit-close2-a.test.tsx +11 |
@@ -1429,10 +1429,10 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | guide.guideSeen | lib/guide.ts | tests/audit-0.10-ui.test.tsx, tests/guide.test.tsx, tests/migrate-idem.test.ts |
 | guide.guideProgress | lib/guide.ts | tests/guide.test.tsx |
 | guide.markGuideSeen | lib/guide.ts | tests/guide.test.tsx |
-| health.workoutActivityType | lib/health.ts | tests/audit-0.10-data.test.ts, tests/audit-0.10-gen.test.ts |
-| health.ensureAuthorization | lib/health.ts | tests/regress.test.tsx |
-| health.healthStart | lib/health.ts | tests/pause.test.tsx |
-| health.saveWorkout | lib/health.ts | tests/audit-0.10-stats.test.ts, tests/edit-history.test.tsx, tests/pause.test.tsx +2 |
+| health.workoutActivityType | lib/health.ts | tests/audit-0.10-data.test.ts, tests/audit-0.10-gen.test.ts, tests/healthkit-contract.test.ts |
+| health.ensureAuthorization | lib/health.ts | tests/healthkit-contract.test.ts, tests/regress.test.tsx |
+| health.healthStart | lib/health.ts | tests/healthkit-contract.test.ts, tests/pause.test.tsx |
+| health.saveWorkout | lib/health.ts | tests/audit-0.10-stats.test.ts, tests/edit-history.test.tsx, tests/healthkit-contract.test.ts +3 |
 | health.healthPending | lib/health.ts | tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-data.test.ts, tests/matrix-invariants.test.ts +1 |
 | health.syncAfterFinish | lib/health.ts | tests/audit-0.10-data.test.ts, tests/audit-io-more.test.tsx, tests/swap-history.test.tsx |
 | health.retryHealth | lib/health.ts | tests/audit-0.10-data.test.ts, tests/matrix-invariants.test.ts |
@@ -1659,7 +1659,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | store.isDraftObj | lib/state/core.ts | tests/edit-on-demand.test.tsx, tests/matrix-invariants.test.ts |
 | store.save | lib/state/core.ts | tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-data.test.ts, tests/audit-0.10-gen-ui.test.tsx +152 |
 | store.saveCfg | lib/state/core.ts | tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-data.test.ts, tests/matrix-invariants.test.ts +2 |
-| store.getState | lib/state/core.ts | tests/a11y-routes.ts, tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-data.test.ts +187 |
+| store.getState | lib/state/core.ts | tests/a11y-routes.ts, tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-data.test.ts +188 |
 | store.useStore | lib/state/core.ts | tests/matrix-logic.test.tsx |
 | store.useTick | lib/state/core.ts | tests/audit-0.10-tst.test.ts |
 | store.usePrefsTick | lib/state/core.ts | tests/matrix-logic.test.tsx |
@@ -1833,7 +1833,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | store.localDateTs | lib/state/time.ts | tests/audit-0.10-data-ui.test.tsx, tests/logic.test.ts, tests/matrix-time.test.ts |
 | store.fmtSec | lib/state/time.ts | tests/audit-0.10-lang.test.ts, tests/i18n-wave3.test.ts, tests/i18n-wave4.test.ts +3 |
 | store.fmtDist | lib/state/time.ts | tests/audit-0.10-lang.test.ts, tests/i18n-wave3.test.ts, tests/i18n-wave4.test.ts +1 |
-| store.reps | lib/state/time.ts | tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-data.test.ts, tests/audit-0.10-gen-ui.test.tsx +154 |
+| store.reps | lib/state/time.ts | tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-data.test.ts, tests/audit-0.10-gen-ui.test.tsx +155 |
 | store.fmtDur | lib/state/time.ts | tests/regress.test.tsx |
 | store.fmtDayKey | lib/state/time.ts | tests/audit-0.10-ui.test.tsx, tests/csv-import-ui.test.tsx |
 | store.fmtDate | lib/state/time.ts | tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-ui.test.tsx, tests/backlog-0.10.1-dane-ui.test.tsx +8 |
