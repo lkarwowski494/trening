@@ -99,6 +99,7 @@ export function finishWorkout(at?: number): Workout | null {
     delete o.splitFrom;
     delete o.altSkip;
     delete o.skipped; /* E2: tylko trening w toku (jak migrate M3/M4) */
+    delete o.occ; /* Q-016 */
     return o;
   }).filter(e => e.sets.length);
   normalizeGroups(w.exercises);
@@ -144,6 +145,7 @@ export function putHistoryWorkout(w: Workout, replaceId: string | null): boolean
     delete e.splitFrom;
     delete e.altSkip;
     delete e.skipped;
+    delete e.occ; /* Q-016 */
   }); /* E2: tylko trening w toku */
   normalizeGroups(w.exercises);
   delete w.staleAck;

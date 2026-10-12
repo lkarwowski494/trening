@@ -224,6 +224,6 @@ export function prevOfBlock(e: WExercise) {
  * szablonu, przyrząd bloku (decyzja 8c), a dla zamiennika (swappedFrom) — reguła E2 pkt 3.6. */
 export function prevOfActiveBlock(w: Workout, e: WExercise): { workout: Workout; sets: WSet[] } | null {
   const ei = w.exercises.indexOf(e);
-  return previousBlockFor(e.exerciseId, occurrence(w.exercises, ei), occurrences(w.exercises, e.exerciseId), e.tplItemId, w.templateId, e.impl,
+  return previousBlockFor(e.exerciseId, e.occ ?? occurrence(w.exercises, ei), occurrences(w.exercises, e.exerciseId), e.tplItemId, w.templateId, e.impl,
       !!e.swappedFrom);
 }

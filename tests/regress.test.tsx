@@ -2002,3 +2002,33 @@ describe('Q-014 (0.14.0): rotacja kopii automatycznych wg czasu zapisu pliku, ni
     expect((FS.deleteAsync as jest.Mock).mock.calls.map((c: any) => String(c[0]).split('/').pop())).toEqual([names[0]]);
   });
 });
+
+describe('Q-016 (0.14.0): dwa bloki tego samego ćwiczenia spoza szablonu — „Poprzednio” idzie za blokiem po zmianie kolejności', () => {
+  /* Kroki: trening bez szablonu, Back Squat dodany dwa razy (ciężko, potem lżej), Ekran treningu → Kolejność ćwiczeń → przeciągnięcie bloku;
+   * dawniej „Poprzednio” wynikało z numeru wystąpienia (pozycji), więc bloki zamieniały się podpowiedziami. Realność: brzegowy (to samo ćwiczenie
+   * dwa razy poza szablonem + zmiana kolejności), poprawka tania i dotyczy podpowiadanych liczb → naprawione. */
+  const prevKg = (e: any) => store.prevOfActiveBlock(store.getState().active!, e)?.sets.map(s => s.weight);
+  const boot = async () => {
+    await fresh(); addWorkout(at(2026, 9, 1), [['Back Squat', [{ weight: 100, reps: 5 }]], ['Back Squat', [{ weight: 60, reps: 10 }]]]);
+    store.startEmpty(); store.addExerciseToActive(ex('Back Squat')); store.addExerciseToActive(ex('Back Squat')); store.addExerciseToActive(ex('Bench Press (sztanga)'));
+    return store.getState().active!;
+  };
+  test('zamiana kolejności bloków: każdy blok zachowuje swoje „Poprzednio”; powrót do pierwotnej kolejności czyści znacznik', async () => {
+    const a = await boot(); const [heavy, light] = a.exercises; expect([prevKg(heavy), prevKg(light)]).toEqual([[100], [60]]);
+    expect(store.moveBlockOf(a.exercises, heavy.id, 1, a)).toBe(true); expect(a.exercises[1]).toBe(heavy);
+    expect([prevKg(heavy), prevKg(light)]).toEqual([[100], [60]]);
+    expect(store.moveBlockOf(a.exercises, heavy.id, 0, a)).toBe(true); expect([prevKg(heavy), prevKg(light)]).toEqual([[100], [60]]);
+    expect((heavy as any).occ).toBeUndefined(); expect((light as any).occ).toBeUndefined();
+  });
+  test('przesunięcie obcego ćwiczenia nie ruszy „Poprzednio”; kolejne zamiany (A, potem B) są spójne', async () => {
+    const a = await boot(); const [heavy, light, bench] = a.exercises;
+    store.moveBlockOf(a.exercises, bench.id, 0, a); expect([prevKg(heavy), prevKg(light)]).toEqual([[100], [60]]); /* kolejność: ława, ciężki, lekki */
+    store.moveBlockOf(a.exercises, light.id, 0, a); expect([prevKg(heavy), prevKg(light)]).toEqual([[100], [60]]);
+    store.moveBlockOf(a.exercises, heavy.id, 0, a); expect([prevKg(heavy), prevKg(light)]).toEqual([[100], [60]]);
+  });
+  test('zakończony trening nie niesie znacznika (tylko trening w toku)', async () => {
+    const a = await boot(); store.moveBlockOf(a.exercises, a.exercises[0].id, 1, a); expect((a.exercises[1] as any).occ).toBe(0);
+    for (const e of a.exercises) { e.sets[0].weight = 50; e.sets[0].reps = 5; } store.save(a); a.exercises.forEach((_, i) => store.toggleDone(i, 0));
+    const w = store.finishWorkout()!; expect(w.exercises.every(e => (e as any).occ === undefined)).toBe(true);
+  });
+});
