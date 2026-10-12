@@ -1,6 +1,6 @@
 {
   "name": "trening",
-  "version": "0.11.0",
+  "version": "0.12.0",
   "main": "expo-router/entry",
   "scripts": {
     "start": "expo start",
@@ -18,7 +18,8 @@
     "verify": "npm run typecheck && npm run check:i18n && npm run check:cues && npm run check:figures && jest && npm run check:matrix && npm run check:licenses && npx expo export --platform ios --output-dir .expo/verify-export && node -e \"require('fs').rmSync('.expo/verify-export',{recursive:true,force:true})\" && npm run verify:native",
     "screens": "node scripts/screens/run.mjs",
     "mutation": "stryker run",
-    "perf": "jest -c jest.perf.config.js"
+    "perf": "jest -c jest.perf.config.js",
+    "test:fast": "node scripts/test-fast.mjs"
   },
   "dependencies": {
     "@bacons/apple-targets": "^5.0.0",

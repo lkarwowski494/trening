@@ -6,7 +6,8 @@
  */
 import * as store from '@/lib/store';
 import { fresh, ex, saved, pressAlert } from './helpers';
-import { renderApp, flushAll, screen, go, tap, act, startEdit, saveEdit } from './app';
+import { within } from '@testing-library/react-native';
+import { renderApp, flushAll, screen, go, tap, act, startEdit, saveEdit, startTpl } from './app';
 
 jest.setTimeout(60000);
 const S = () => store.getState();
@@ -48,8 +49,9 @@ describe('ekran', () => {
     const arch = screen.getByLabelText('Archiwum (1)'); expect(arch.props.accessibilityState.expanded).toBe(false);
     await tap(arch); expect(screen.getByText('E')).toBeTruthy(); expect(screen.getByLabelText('Archiwum (1)').props.accessibilityState.expanded).toBe(true);
   });
-  test('ekran Trening: zarchiwizowane szablony nie są do startu; foldery jako nagłówki', async () => {
+  test('wybór szablonu („Inny trening” → „Z szablonu”): zarchiwizowane szablony nie są do startu; foldery jako nagłówki', async () => {
     await boot(() => { mk('A'); mk('B', 'Siła'); mk('E', 'Siła', true); }, '/');
+    await tap(screen.getByLabelText('Inny trening')); await flushAll(5); expect(screen.getByText('2 szablony')).toBeTruthy(); await tap(screen.getByLabelText('Z szablonu')); await flushAll(10); /* 11.10.2026: lista „Zacznij z szablonu” zastąpiona wyborem (P2 B) */
     expect(screen.getByLabelText('Start: A')).toBeTruthy(); expect(screen.getByLabelText('Start: B')).toBeTruthy(); expect(screen.queryByLabelText('Start: E')).toBeNull();
     expect(screen.getAllByText('Siła').some(x => x.props.accessibilityRole === 'header')).toBe(true);
   });
@@ -62,9 +64,9 @@ describe('ekran', () => {
     await tap(screen.getByText('Archiwizuj')); /* archiwum — akcja na całym szablonie w podglądzie */ expect(S().templates.find(t => t.id === id)!.archived).toBe(true);
     await tap(screen.getByText('Przywróć z archiwum')); expect('archived' in S().templates.find(t => t.id === id)!).toBe(false);
   });
-  test('ekran Trening: same zarchiwizowane szablony — jak brak szablonów („+ Nowy szablon”)', async () => {
+  test('ekran Trening: same zarchiwizowane szablony — jak brak szablonów („Pierwsze kroki” z „Planowaniem”)', async () => {
     await boot(() => { mk('E', 'Siła', true); }, '/');
-    expect(screen.getByLabelText('1. Utwórz pierwszy szablon albo wygeneruj szablony i plan. do zrobienia')).toBeTruthy(); expect(screen.getByText('+ Nowy szablon')).toBeTruthy(); /* UX-12 A: „Pierwsze kroki” zamiast komunikatu o braku szablonów */
+    expect(screen.getByLabelText('1. Utwórz pierwszy szablon albo wygeneruj szablony i plan. do zrobienia')).toBeTruthy(); expect(within(screen.getByTestId('first-steps')).getAllByText('Planowanie')).toHaveLength(2); /* UX-12 A, P4 A: „Pierwsze kroki” zamiast komunikatu o braku szablonów */
   });
   test('English', async () => {
     await fresh(undefined, 'en'); mk('A'); mk('E', 'Strength', true); await act(async () => { await store.flush(); });
@@ -75,7 +77,7 @@ describe('ekran', () => {
   test('niezmiennik: aplikacja sama nie zmienia folderów ani archiwum (start, zakończenie treningu, restart)', async () => {
     let id = ''; await boot(() => { id = mk('A', 'Siła').id; mk('E', 'Siła', true); }, '/');
     const snap = () => S().templates.map(t => [t.id, t.folder, t.archived]);
-    const before = JSON.stringify(snap()); await tap(screen.getByLabelText('Start: A')); await flushAll(10);
+    const before = JSON.stringify(snap()); await startTpl('A'); await flushAll(10);
     await act(async () => { const w = S().active!; Object.assign(w.exercises[0].sets[0], { weight: 100, reps: 5, done: true }); store.finishWorkout(); }); await flushAll(10);
     expect(JSON.stringify(snap())).toBe(before); void id;
   });

@@ -5,7 +5,7 @@ name: Plank ze stoperem
 - launchApp:
     clearState: true
     permissions: { all: allow }
-- extendedWaitUntil: { visible: "Start from a template", timeout: 60000 }
+- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
 - scrollUntilVisible: { element: "Empty workout", direction: DOWN, timeout: 60000 }
 - tapOn: "Empty workout"
 # run 37496797683 (06.10.2026): pierwszy scenariusz po starcie symulatora — ekran treningu nie zdążył się pojawić; czekamy jak w 06/07

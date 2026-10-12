@@ -105,3 +105,23 @@ export function templateDiffText(d: TemplateDiff): string {
   return [d.added.length ? t('Dodane: {list}.', { list: d.added.join(', ') }) : '', d.removed.length ? t('Usunięte: {list}.', { list: d.removed.join(', ') }) : '',
     d.sets.length ? t('Inne serie: {list}.', { list: d.sets.join(', ') }) : '', d.order ? t('Inna kolejność ćwiczeń.') : ''].filter(Boolean).join('\n');
 }
+
+/*
+ * Decyzja właściciela 11.10.2026 (8A): zamiast okna „Zaktualizować szablon?” po „Zakończ” — przycisk „Zapisz zmiany w szablonie” na ekranie sesji.
+ * Różnica liczona jak dotąd PRZED zapisem (z nieodhaczonymi seriami), więc ekran sesji dostaje zapamiętany skład w pamięci (nie w danych —
+ * po ponownym uruchomieniu aplikacji przycisku nie ma; szablon można wtedy zmienić w edytorze albo „Zapisz jako szablon”).
+ */
+const pendingUpdates = new Map<string, { tplId: string; snap: Workout }>();
+/** Zapamiętuje skład treningu z szablonu po „Zakończ” (wywołuje tylko wtedy, gdy templateDiff nie jest null). */
+export function rememberTemplateUpdate(workoutId: string, tplId: string, snap: Workout): void { pendingUpdates.set(workoutId, { tplId, snap }); }
+/** Do przycisku „Zapisz zmiany w szablonie”: szablon i różnice, gdy trening różnił się od szablonu i szablon nadal istnieje (null — nie pokazuj). */
+export function pendingTemplateUpdate(workoutId: string): { tpl: Template; diff: TemplateDiff } | null {
+  const p = pendingUpdates.get(workoutId); if (!p) return null;
+  const tpl = getState().templates.find(x => x.id === p.tplId); const diff = templateDiff(tpl, p.snap);
+  return tpl && diff ? { tpl, diff } : null;
+}
+/** „Zapisz zmiany w szablonie”: zapisuje skład z zapamiętanego treningu; false, gdy nie ma czego zapisać (szablon usunięty / już zgodny). */
+export function applyPendingTemplateUpdate(workoutId: string): boolean {
+  const p = pendingUpdates.get(workoutId); const r = pendingTemplateUpdate(workoutId); if (!p || !r) return false;
+  updateTemplateFromWorkout(r.tpl, p.snap); pendingUpdates.delete(workoutId); return true;
+}

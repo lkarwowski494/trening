@@ -49,6 +49,6 @@ test('B2 (Q-002, runda 75): stoper bez celu nie wraca po zamknięciu aplikacji �
   expect(timer.S.on).toBe(false); expect(store.getState().timer.setStartAt).toBeNull();
   expect(store.getState().active!.exercises[1].sets[0].done).toBe(false);
   pressAlert('Trening wciąż trwa', 'Kontynuuj'); await flushAll(10);
-  await tap(screen.getAllByText('Zakończ trening i zapisz')[0]); pressAlert('Zakończyć trening?', 'Zakończ'); await flushAll(600);
+  await tap(screen.getAllByText('Zakończ')[0]); pressAlert('Zakończyć trening?', 'Zakończ'); await flushAll(600);
   const w = store.getState().workouts[0]; expect(w.exercises.find(e => e.exerciseId === ex('Plank').id)).toBeUndefined();
 });

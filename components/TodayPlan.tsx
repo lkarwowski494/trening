@@ -3,8 +3,8 @@ import { View, Pressable } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Btn, Muted, Txt, upperText, useOnce } from '@/components/ui';
 import { useTheme, F, NUM_SCALE_MAX } from '@/lib/theme';
-import { getState, finishedWorkouts, useForegroundTick, isDeloadWeek, fmtDayKey, setPlanHintHidden } from '@/lib/store';
-import { hasPlan, dayKeyOf, doneOn, upcoming, pending, planTplName, addDays, type DayStatus } from '@/lib/plan';
+import { getState, finishedWorkouts, useForegroundTick, isDeloadWeek, fmtDayKey } from '@/lib/store';
+import { hasPlan, dayKeyOf, doneOn, upcoming, pending, planTplName, planName, addDays, type DayStatus } from '@/lib/plan';
 import { weekStrip } from '@/lib/dashboard';
 import { DayIcon } from '@/components/Motif';
 import { dayMark } from '@/lib/motif';
@@ -32,27 +32,30 @@ export function TodayPlan() {
   const wd = (k: string) => dateOf(k).toLocaleDateString(locale(), { weekday: 'short' });
   const word = (d: (typeof days)[number]): string => {
     const plannedWord = d.date < today ? t('opuszczony: {name}', { name: name(d.templateId) }) : t('zaplanowany: {name}', { name: name(d.templateId) });
-    const m: Record<DayStatus, () => string> = { done: () => t('zrobione: {name}', { name: names(d.date) }), other: () => `${t('zrobiony inny trening: {name}', { name: names(d.date) })}, ${plannedWord}`,
+    const m: Record<DayStatus, () => string> = { done: () => (d.early ? t('zrobiony wcześniej: {name}', { name: name(d.templateId) }) : t('zrobione: {name}', { name: names(d.date) })), other: () => `${t('zrobiony inny trening: {name}', { name: names(d.date) })}, ${plannedWord}`,
       planned: () => plannedWord, missed: () => plannedWord, rest: () => (d.inPlan ? t('odpoczynek') : t('wolne')) /* odpoczynek w planie (ikona espresso) ≠ dzień bez planu */ };
     return m[d.status]();
   };
   const deload = isDeloadWeek(Date.now());
-  const hintOff = !!getState().planHintHidden;
-  const title = !plan && cur.status !== 'done' ? (hintOff ? t('Ten tydzień') : t('Bez planu tygodnia')) : cur.status === 'done' ? t('Dziś zrobione: {name}', { name: names(today) }) : id ? t('Dziś: {name}', { name: name(id) }) : t('Dziś wolne');
+  /* 11.10.2026 (docs/22 krok 3 pkt 1): nagłówek planu nad kalendarzem — nazwa planu (bez planu: „Bez planu tygodnia”) i obok przycisk „Planowanie”
+   * (bez planu: „Ustaw plan”) → ekran planu; dawny przycisk „Plan tygodnia” i wiersz „Plan: … Planowanie ›” pod „Ten tydzień” zniknęły. */
+  const planTitle = plan ? t('Plan: {name}', { name: planName() || t('Plan tygodnia') }) : t('Bez planu tygodnia');
+  const showDay = plan || cur.status === 'done'; /* blok „Dziś” — bez planu tylko gdy zrobiono trening */
+  const title = cur.early ? t('Zrobiony wcześniej: {name}', { name: name(id) }) : cur.status === 'done' ? t('Dziś zrobione: {name}', { name: names(today) }) : id ? t('Dziś: {name}', { name: name(id) }) : t('Dziś wolne');
   const next = plan ? upcoming(NEXT_DAYS, today).filter(x => x.date > today && x.templateId).slice(0, NEXT_COUNT) : [];
-  const planBtn = () => <Btn nav small title={t('Plan tygodnia')} onPress={() => router.push('/plan')} />;
   const nextLabel = (k: string) => (k === addDays(today, 1) ? t('jutro') : fmtDayKey(k)); /* H3 (audyt 0.10) */
   return (
     <View testID="today-plan" style={{ marginTop: 6, padding: 14, borderRadius: 12, backgroundColor: th.surface, borderWidth: 1, borderColor: th.line, gap: 10 }}>{/* pasek-akcent usunięty (korekta właściciela 09.10.2026 ok. 17:00: „nic nie znaczy”) */}
-      <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
-        <View style={{ flexShrink: 1 }}>
-          {(() => { const u = upperText(deload ? `${t('Dziś')} · ${t('Tydzień deload')}` : t('Dziś')); /* A11-02: wersaliki z regułami języka */ return <Muted accessibilityLabel={u.label} style={[{ fontSize: 12, fontFamily: F.semibold, letterSpacing: 0.5 }, u.style]}>{u.text}</Muted>; })()}
-          <Txt style={{ fontFamily: F.semibold, fontSize: 18 }}>{title}</Txt>
-          {cur.status === 'other' ? <Muted style={{ fontSize: 13 }}>{t('Zrobiony inny trening: {name}', { name: names(today) })}</Muted> : null}
-          {tpl && pending(cur) && !tpl.items.length ? <Pressable accessibilityLanguage={lang()} accessibilityRole="link" onPress={once(() => router.push(`/template/${tpl.id}?edit=1`))}><Muted style={{ fontSize: 13 }}>{t('Szablon jest pusty — dodaj ćwiczenia')}</Muted></Pressable> : null}
-        </View>
-        {planBtn() /* B1 (09.10.2026): „Plan tygodnia” zawsze na karcie — „Ukryj” chowa tylko tekst zachęty; start — duży przycisk pod kartą (układ B, components/StartPanel) */}
+      <View testID="plan-header" style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
+        <Txt accessibilityRole="header" style={{ fontFamily: F.semibold, fontSize: 16, flexShrink: 1 }}>{planTitle}</Txt>
+        <Btn nav small title={plan ? t('Planowanie') : t('Ustaw plan')} accessibilityHint={t('Otwiera plan tygodnia, szablony i generator.')} onPress={() => router.push('/plan')} />
       </View>
+      {showDay ? <View>
+        {(() => { const u = upperText(deload ? `${t('Dziś')} · ${t('Tydzień deload')}` : t('Dziś')); /* A11-02: wersaliki z regułami języka */ return <Muted accessibilityLabel={u.label} style={[{ fontSize: 12, fontFamily: F.semibold, letterSpacing: 0.5 }, u.style]}>{u.text}</Muted>; })()}
+        <Txt style={{ fontFamily: F.semibold, fontSize: 18 }}>{title}</Txt>
+        {cur.status === 'other' ? <Muted style={{ fontSize: 13 }}>{t('Zrobiony inny trening: {name}', { name: names(today) })}</Muted> : null}
+        {tpl && pending(cur) && !tpl.items.length ? <Pressable accessibilityLanguage={lang()} accessibilityRole="link" onPress={once(() => router.push(`/template/${tpl.id}?edit=1`))}><Muted style={{ fontSize: 13 }}>{t('Szablon jest pusty — dodaj ćwiczenia')}</Muted></Pressable> : null}
+      </View> : deload ? <Muted style={{ fontSize: 12, fontFamily: F.semibold }}>{t('Tydzień deload')}</Muted> : null}
       <View testID="week-strip" style={{ flexDirection: 'row', gap: 2 }}>
         {days.map(d => {
           const label = [dateOf(d.date).toLocaleDateString(locale(), { weekday: 'long', day: 'numeric', month: 'long' }), ...(d.today ? [t('dziś')] : []), word(d), ...(deload ? [t('tydzień deload')] : [])].join(', ');
@@ -66,7 +69,6 @@ export function TodayPlan() {
             </Pressable>); })}
       </View>
       {next.length ? <Muted style={{ fontSize: 13 }}>{t('Następne: {list}', { list: next.map(x => `${nextLabel(x.date)} — ${name(x.templateId)}`).join(' · ') })}</Muted> : null}
-      {!plan && !hintOff ? <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}><Muted style={{ fontSize: 12, flex: 1 }}>{t('Ustaw plan tygodnia, by widzieć tu dzisiejszy trening i dostawać przypomnienie.')}</Muted><Btn small kind="ghost" title={t('Ukryj')} accessibilityLabel={t('Ukryj zachętę do planu tygodnia')} onPress={() => setPlanHintHidden(true)} /></View> : null /* UX-16 A (audyt 0.10): kto tylko zapisuje treningi, ukrywa zachętę */}
     </View>
   );
 }

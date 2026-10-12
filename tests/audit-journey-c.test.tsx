@@ -6,7 +6,7 @@ import * as stats from '@/lib/stats';
 import * as units from '@/lib/units';
 import * as backup from '@/lib/backup';
 import { exName, t as tr } from '@/lib/i18n';
-import { renderApp, tap, type, flushAll, screen, go, act } from './app';
+import { renderApp, tap, type, flushAll, screen, go, act, startTpl } from './app';
 import { ex, pressAlert, saved, seedWithDemo } from './helpers';
 import * as FS from 'expo-file-system/legacy';
 import * as DP from 'expo-document-picker';
@@ -19,8 +19,7 @@ const L = () => ({
   hint: (n: string | number, e: string) => tr('Seria {n} — {ex}', { n, ex: e }),
 });
 const field = (label: string, hint: string) => { const f = screen.getAllByLabelText(label).find(x => x.props.accessibilityHint === hint); if (!f) throw new Error('no field ' + label + ' ' + hint); return f; };
-const startTpl = async (name: string) => { await tap(screen.getByLabelText(tr('Start: {name}', { name }))); await flushAll(10); };
-const finish = async () => { await tap(screen.getAllByText(tr('Zakończ trening i zapisz'))[0]); pressAlert(tr('Zakończyć trening?'), tr('Zakończ')); await flushAll(600); };
+const finish = async () => { await tap(screen.getAllByText(tr('Zakończ'))[0]); pressAlert(tr('Zakończyć trening?'), tr('Zakończ')); await flushAll(600); };
 
 for (const [loc, unit] of [['pl', 'kg'], ['en', 'lb']] as const) {
   test(`C journey ${loc}/${unit}`, async () => {

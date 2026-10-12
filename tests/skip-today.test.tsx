@@ -57,7 +57,7 @@ describe('ekran', () => {
   test('„Zakończ”: wpisane, nieodhaczone serie pominiętego bloku nie straszą ostrzeżeniem', async () => {
     await boot(); const w = S().active!; await act(async () => { Object.assign(w.exercises[1].sets[0], { durationSec: 60, done: true }); Object.assign(w.exercises[0].sets[0], { weight: 100, reps: 5 }); w.exercises[0].sets[0].edited = true; store.save(w); }); await flushAll(5);
     await tap(screen.getByLabelText('Pomiń dziś: Back Squat')); await flushAll(5);
-    await tap(screen.getAllByText('Zakończ trening i zapisz')[0]); const a = global.__alerts.at(-1)!; expect(a.title).toBe('Zakończyć trening?'); expect(a.msg).not.toMatch(/Nieodhaczone/);
+    await tap(screen.getAllByText('Zakończ')[0]); const a = global.__alerts.at(-1)!; expect(a.title).toBe('Zakończyć trening?'); expect(a.msg).not.toMatch(/Nieodhaczone/);
     await act(async () => { pressAlert('Zakończyć trening?', 'Zakończ'); }); await flushAll(600);
     expect(S().workouts.at(-1)!.exercises.map(e => store.exById(e.exerciseId)!.name)).toEqual(['Plank']); expect(JSON.stringify(S().templates[0].items.map(i => i.exerciseId))).toBe(JSON.stringify([ex('Back Squat').id, ex('Plank').id]));
   });

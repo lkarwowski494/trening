@@ -8,7 +8,7 @@ Dane wyłącznie lokalnie w telefonie (SQLite); aplikacja nie łączy się z sie
 
 Stan prac, decyzje właściciela i dokumentacja: `docs/` (po polsku) — przekazanie i decyzje `docs/18`, plan testów `docs/09`,
 definicja ukończenia `docs/20`, roadmapa `docs/21`, ostatni audyt `docs/25`. Zasady pracy: `CLAUDE.md`.
-Model danych: stan z `schemaVersion` (`lib/seed.ts`), migracje w `migrate()` (`lib/store.ts`); backup to koperta
+Model danych: stan z `schemaVersion` (`lib/seed.ts`), migracje w `migrate()` (`lib/state/migrate.ts`, za fasadą `lib/store.ts`); backup to koperta
 `{ format: 'trening-backup', schemaVersion, exportedAt, state }`.
 
 ## Struktura

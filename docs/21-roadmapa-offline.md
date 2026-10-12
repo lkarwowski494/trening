@@ -92,12 +92,19 @@ widocznej w treningu (pole istnieje, ekran treningu go nie pokazuje), pola RIR (
 - **Generator szablonów i planu** (wariant A) i **kilka planów z aktywnym** (08.10.2026, docs/24). **Zrobione 08.10.2026.**
 - **„Co nowego”** (08.10.2026) — „i” na ekranie Trening, kropka po aktualizacji, starsze wersje zwinięte. **Zrobione 08.10.2026.**
 
+### Przed App Store (decyzja właściciela 11.10.2026, wariant A — po analizie raportów rynkowych, docs/research/raporty-rynkowe-2026-10.md)
+- **Import historii z CSV popularnych dzienników** (Strong, Hevy; FitNotes z Androida — dodane 11.10.2026, pkt 13) — największa bariera przesiadki to utrata historii. Format Stronga niżej;
+  **[OTWARTE]**: format Hevy (plik eksportu do przejrzenia jak przy Strongu), jednostka (CSV bez kg/lb), dopasowanie nazw ćwiczeń, duplikaty,
+  podgląd przed zapisem. W aplikacji i w sklepie bez nazw innych aplikacji (Apple 2.3.7) — „z popularnych dzienników treningowych”.
+- **Prośba o ocenę w sklepie** — systemowe okno iOS (SKStoreReviewController / expo-store-review), po pozytywnym zdarzeniu (np. nowy rekord
+  albo kilka ukończonych treningów), nigdy w zamian za nagrodę (Apple 5.6.1/3.2.2). **[OTWARTE]**: dokładny moment i odstęp między prośbami.
+
 ### Backlog bez priorytetu (decyzja właściciela 08.10.2026)
 Wrócimy za jakiś czas; w rozmowie wymieniane tylko zbiorczo, dopóki właściciel nie poprosi o listę (CLAUDE.md).
 - Wydanie natywne — sekcja 4n niżej (przyciski przerwy na ekranie blokady, widżet, kontrolka w Centrum sterowania).
 - Wydanie Health — biblioteka `@kingstinct/react-native-healthkit` 8 → 16: odczyt aktywnych kcal, ocena wysiłku (`workoutEffortScore`; RPE → ocena **[OTWARTE]**),
   prawdziwe zdarzenia pauzy z `Workout.pauses`, masa ciała i pomiary ciała.
-- Import CSV ze Strong i Hevy — format Stronga niżej; otwarte: jednostka (CSV bez kg/lb), dopasowanie ćwiczeń.
+- Import CSV ze Strong i Hevy — **przeniesione do „Przed App Store” (11.10.2026)**, sekcja niżej.
 - Nagranie siebie podczas ćwiczenia i ocena AI poprawności ruchu (dodane 08.10.2026). Przed pracą **[OTWARTE]**: źródła dla kryteriów techniki
   i dokładności oceny z obrazu (w 4c „liczenie powtórzeń kamerą” odłożone z braku udokumentowanej dokładności); granica porad zdrowotnych
   (ból, kontuzje → specjalista); prywatność nagrań (tylko na telefonie?); koszt modelu (0 zł poza Apple).

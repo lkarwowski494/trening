@@ -55,7 +55,7 @@ export function HistoryCalendar({ byDay, selected, onSelect, onMonth }: { byDay:
                 <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={1.2} style={{ color: c.inMonth ? (missed ? t.muted : t.text) : t.line, fontSize: 14, lineHeight: 18, fontFamily: n ? F.heavy : F.regular }}>{c.d}</Text>
                 <View style={{ height: MINI_ICON.h }}>{mark ? <DayIcon mark={mark} bg={on ? t.surface2 : dl ? t.surface2 : t.bg} th={t} /> : null}</View>
               </View>);
-            const parts = [dayTitle(c), ...(isToday ? [tr('dziś')] : []), ...(n ? [`${n} ${tp(n, 'sesja|sesje|sesji')}`] : []), ...(other ? [tr('zrobiony inny trening')] : []),
+            const parts = [dayTitle(c), ...(isToday ? [tr('dziś')] : []), ...(n ? [`${n} ${tp(n, 'sesja|sesje|sesji')}`] : []), ...(other ? [tr('zrobiony inny trening')] : []), ...(st?.early ? [tr('zrobiony wcześniej: {name}', { name })] : []),
               ...(other || planned || missed ? [c.key < today ? tr('opuszczony: {name}', { name }) : tr('zaplanowany: {name}', { name })] : []), ...(dl ? [tr('tydzień deload')] : [])];
             const label = parts.join(', ');
             return (

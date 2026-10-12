@@ -11,7 +11,7 @@ import { F } from '@/lib/theme';
 import { addLocation } from '@/lib/locations';
 import { applyUnit, wIn } from '@/lib/units';
 import { fresh, ex, saved, pressAlert, withDemoTemplates, addWorkout } from './helpers';
-import { renderApp, tap, flushAll, screen, act, fireEvent, swipeDelete, go, fromHome } from './app';
+import { renderApp, tap, flushAll, screen, act, fireEvent, swipeDelete, go, fromHome, startTpl } from './app';
 
 jest.setTimeout(120000);
 const S = () => store.getState();
@@ -42,7 +42,7 @@ describe('F3 (LIVE-05, wariant B): „Zakończ” ostrzega o nieodhaczonych seri
       { id: 'c', exerciseId: ex('Leg Press').id, sets: 2, repMin: 8, repMax: 10, restSec: null, startWeight: 100, targetSec: '', groupId: null }); store.save(t);
     store.startFromTemplate(t); store.toggleDone(0, 0); store.toggleDone(0, 1); store.toggleDone(2, 0); store.skipExercise(S().active!.exercises[2].id);
     await boot();
-    await tap(screen.getAllByText('Zakończ trening i zapisz')[0]); const al = lastAlert()!;
+    await tap(screen.getAllByText('Zakończ')[0]); const al = lastAlert()!;
     expect(al.title).toBe('Zakończyć trening?'); expect(al.msg).toBe('Zapisane zostaną serie robocze: 3.\nNieodhaczone serie: 1 — nie zostaną zapisane.');
     await act(async () => { pressAlert('Zakończyć trening?', 'Zakończ'); }); await flushAll(600);
     expect(S().workouts.at(-1)!.exercises.map(e => e.sets.length)).toEqual([2, 1]);
@@ -51,7 +51,7 @@ describe('F3 (LIVE-05, wariant B): „Zakończ” ostrzega o nieodhaczonych seri
     await fresh(); store.startEmpty(); store.addExerciseToActive(ex('Bench Press (sztanga)')); store.addSet(0); store.addSet(0); store.addExerciseToActive(ex('Back Squat'));
     const a = S().active!; a.exercises[0].sets.forEach(s => { s.weight = 60; s.reps = 8; }); store.toggleDone(0, 0); Object.assign(a.exercises[0].sets[1], { weight: 65, edited: true }); Object.assign(a.exercises[1].sets[0], { weight: 100, reps: 5, edited: true });
     await boot();
-    await tap(screen.getAllByText('Zakończ trening i zapisz')[0]);
+    await tap(screen.getAllByText('Zakończ')[0]);
     expect(lastAlert()!.msg).toBe('Zapisane zostaną serie robocze: 1.\nNieodhaczone serie z wpisanymi wynikami: 2 — nie zostaną zapisane. Seria zapisuje się po odhaczeniu ✓.\nPozostałe nieodhaczone serie: 1 — też nie zostaną zapisane.');
   });
 });
@@ -140,7 +140,7 @@ describe('F7 (LIVE-12 / UI-08): podwójne tapnięcie przy starcie, anulowaniu i 
   });
   test('F7 (LIVE-12): podwójne „Start” w tygodniu deload → jedno pytanie; podwójne „Pusty trening” / „Powtórz ostatni” → jeden trening', async () => {
     await fresh(); const t = withDemoTemplates(); store.toggleDeloadWeek(Date.now()); await boot();
-    await dbl(screen.getByLabelText(`Start: ${t[0].name}`)); expect(global.__alerts.filter(x => x.title === 'Tydzień deload')).toHaveLength(1);
+    void t; await dbl(screen.getByTestId('start-main')); /* 11.10.2026: pierwszy szablon = duży przycisk startu; podwójne „Start” w wyborze szablonu: tests/pick-template.test.tsx */ expect(global.__alerts.filter(x => x.title === 'Tydzień deload')).toHaveLength(1);
     await act(async () => { pressAlert('Tydzień deload', 'Anuluj'); }); await flushAll(1500);
     await tap(screen.getByLabelText('Inny trening')); await flushAll(5); /* układ B: arkusz „Inny trening” */ await dbl(screen.getByText('Pusty trening')); const id = S().active!.id; expect(S().active!.exercises).toHaveLength(0);
     await act(async () => { store.cancelWorkout(); }); await flushAll(1500); expect(S().active).toBeNull(); void id;
@@ -255,10 +255,10 @@ describe('D1 (MER-05 / UI-03 / UX-06 / X-16): tydzień deload — „Powtórz os
     const t = store.newTemplate(); t.name = 'Mix'; t.items = [{ id: 'a', exerciseId: ex('Back Squat').id, sets: 3, repMin: 8, repMax: 12, restSec: null, startWeight: '', targetSec: '', groupId: null }, { id: 'b', exerciseId: ex('Plank').id, sets: 1, repMin: null, repMax: null, restSec: null, startWeight: '', targetSec: '', groupId: null }];
     const one = store.newTemplate(); one.name = 'Jedna'; one.items = [{ id: 'c', exerciseId: ex('Back Squat').id, sets: 1, repMin: 8, repMax: 12, restSec: null, startWeight: '', targetSec: '', groupId: null }];
     store.save(); await boot(); jest.setSystemTime(NOW);
-    await tap(screen.getByLabelText('Start: Mix')); await flushAll(5);
+    await startTpl('Mix'); await flushAll(5);
     expect(lastAlert('Tydzień deload')!.msg).toBe('Zacząć z mniejszą liczbą serii: 3 zamiast 4 serii roboczych? Ciężary bez zmian, szablon się nie zmienia. Ćwiczenia z 1 serią bez zmian.');
     await act(async () => { pressAlert('Tydzień deload', 'Anuluj'); }); await flushAll(1500);
-    await tap(screen.getByLabelText('Start: Jedna')); await flushAll(5);
+    await tap(screen.getByLabelText('Start: Jedna')); await flushAll(5); /* po „Anuluj” wybór szablonu zostaje otwarty */
     const al = lastAlert('Tydzień deload')!; expect(al.msg).toBe('Każde ćwiczenie ma tu 1 serię — liczba serii zostaje bez zmian (ćwiczenia z 1 serią nie są skracane). Ciężary bez zmian.');
     expect(al.buttons!.map(b => b.text)).toEqual(['Anuluj', 'Start']);
     await act(async () => { pressAlert('Tydzień deload', 'Start'); }); await flushAll(10); expect(S().active!.templateId).toBe(one.id); expect(S().active!.exercises[0].sets).toHaveLength(1);
@@ -307,11 +307,11 @@ describe('D1+ (decyzja 08.10.2026): „Powtórz ostatni” po skróconym trening
 });
 
 describe('D2 (MER-04, wariant A): teksty o deloadzie', () => {
-  test('D2 (MER-04): Kalendarz (oznaczony tydzień) i Postępy — „o około 1/3–1/2 mniej serii (np. 2 z 3; ćwiczenia z 1 serią bez zmian)”', async () => {
+  test('D2 (MER-04): Kalendarz (oznaczony tydzień) i Postępy (tylko oznaczenie) — „o około 1/3–1/2 mniej serii (np. 2 z 3; ćwiczenia z 1 serią bez zmian)”', async () => {
     await fresh(); addWorkout(Date.now() - 3600e3, [['Back Squat', [{ weight: 100, reps: 5 }]]]); store.toggleDeloadWeek(Date.now()); await boot('/history');
     expect(screen.getByText('Ten tydzień: deload. Przy starcie treningu zaproponuję o około 1/3–1/2 mniej serii (np. 2 z 3; ćwiczenia z 1 serią bez zmian), ciężary bez zmian.')).toBeTruthy();
     await go('/more/progress'); await flushAll(10);
-    expect(screen.getByText('Twoje oznaczenie, np. lżejszy tydzień. Przy starcie treningu zaproponuję o około 1/3–1/2 mniej serii (np. 2 z 3; ćwiczenia z 1 serią bez zmian), ciężary bez zmian.')).toBeTruthy();
+    expect(screen.getByText(/^Ten tydzień jest oznaczony jako deload/)).toBeTruthy(); /* 11.10.2026: Postępy tylko pokazują oznaczenie (bez chipa i opisu liczby serii) */
     expect(screen.queryByText(/około połowy/)).toBeNull();
   });
 });

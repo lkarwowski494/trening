@@ -15,7 +15,8 @@ import * as timer from '@/lib/timer';
 import * as FS from 'expo-file-system/legacy';
 import * as DP from 'expo-document-picker';
 import * as Sharing from 'expo-sharing';
-import { renderApp, tap, type, flushAll, screen, go, act, fireEvent, expandEquip, swipeDelete, deleteActions, startEdit, saveEdit, exDraft, tplDraft, fromHome } from './app';
+import { within } from '@testing-library/react-native';
+import { renderApp, tap, type, flushAll, screen, go, act, fireEvent, expandEquip, swipeDelete, deleteActions, startEdit, saveEdit, exDraft, tplDraft, fromHome, startTpl } from './app';
 import { ex, pressAlert, saved } from './helpers';
 import type { State } from '@/lib/seed';
 import { loadSummary } from '@/components/LoadEditor';
@@ -57,17 +58,17 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     expect(st.exercises.length).toBeGreaterThan(500);
     expect(screen.getByLabelText('1. Utwórz pierwszy szablon albo wygeneruj szablony i plan. do zrobienia')).toBeTruthy(); /* UX-12 A (audyt 0.10): „Pierwsze kroki” */
     expect(screen.queryByText('Nie masz jeszcze szablonów — utwórz pierwszy albo zacznij pusty trening.')).toBeNull(); /* bez powtórzenia przy „Pierwszych krokach” */
-    expect(screen.getByText('+ Nowy szablon')).toBeTruthy(); expect(screen.getByText('Pusty trening')).toBeTruthy();
+    expect(within(screen.getByTestId('first-steps')).getAllByText('Planowanie')).toHaveLength(2); expect(screen.queryByText('+ Nowy szablon')).toBeNull(); /* 11.10.2026 (P4 A): Pierwsze kroki — przyciski Planowanie */ expect(screen.getByText('Pusty trening')).toBeTruthy();
     expect(screen.queryByText(/^Powtórz ostatni/)).toBeNull(); expect(screen.queryByLabelText(/^Start: /)).toBeNull();
     for (const tab of ['Trening', 'Szablony', 'Ćwiczenia', 'Kalendarz', 'Więcej']) expect(screen.getAllByText(tab).length).toBeGreaterThan(0);
     /* pusty trening bez serii → „Brak odhaczonych serii” → odrzucenie; nic nie zostaje w historii */
     await tap(screen.getByText('Pusty trening')); await flushAll(10);
-    expect(S().active).not.toBeNull(); expect(S().active!.templateId).toBeNull(); expect(screen.getAllByText('Zakończ trening i zapisz').length).toBe(1);
+    expect(S().active).not.toBeNull(); expect(S().active!.templateId).toBeNull(); expect(screen.getAllByText('Zakończ').length).toBe(1);
     expect(screen.queryByText(/^📍/)).toBeNull(); /* bez miejsc — bez wyboru miejsca */
-    await tap(screen.getByText('Zakończ trening i zapisz'));
+    await tap(screen.getByText('Zakończ'));
     expect(lastAlert().title).toBe('Brak odhaczonych serii');
     pressAlert('Brak odhaczonych serii', 'Wróć'); expect(S().active).not.toBeNull();
-    await tap(screen.getByText('Zakończ trening i zapisz')); pressAlert('Brak odhaczonych serii', 'Odrzuć trening'); await flushAll(10);
+    await tap(screen.getByText('Zakończ')); pressAlert('Brak odhaczonych serii', 'Odrzuć trening'); await flushAll(10);
     expect(S().active).toBeNull(); expect(S().workouts).toHaveLength(0);
     /* drugi pusty trening — „Odrzuć trening” z potwierdzeniem */
     await tap(screen.getByText('Pusty trening')); await flushAll(10);
@@ -96,7 +97,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     expect(screen.queryByText('Wygląd')).toBeNull();
     /* EN: nazwy z biblioteki po angielsku, interfejs po angielsku */
     await go('/exercises'); await flushAll(10); expect(screen.getAllByText('Exercises').length).toBeGreaterThan(0);
-    await go('/'); await flushAll(10); expect(screen.getByText('+ New template')).toBeTruthy(); expect(screen.getByText('Empty workout')).toBeTruthy();
+    await go('/'); await flushAll(10); expect(screen.getAllByText('Planning')).toHaveLength(2); expect(screen.getByText('Empty workout')).toBeTruthy();
     /* z powrotem na polski */
     await go('/more/settings'); await flushAll(10);
     await tap(screen.getByText('Language')); await flushAll(10); expect(screen.getByLabelText('English, selected')).toBeTruthy();
@@ -131,7 +132,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     /* zgoda na powiadomienia */
     await tap(screen.getByText('Sprawdź zgodę na powiadomienia')); await flushAll(10); expect(lastAlert().title).toBe('Powiadomienia działają');
     /* miejsca: jeszcze brak */
-    expect(screen.getByLabelText('Miejsca i sprzęt, sprzęt w domu, na siłowni, w hotelu…')).toBeTruthy();
+    expect(screen.queryByText('Miejsca i sprzęt')).toBeNull(); /* 11.10.2026: z Ustawień wejście zniknęło (zostaje w Więcej) */
     expect(S().settings).toMatchObject({ language: 'pl', theme: 'light', unit: 'kg', defaultRest: 120, showRpe: true, sound: true, wakeLock: true, progressHint: true, autoBackup: true, healthSync: false });
   });
 
@@ -295,8 +296,8 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     const lvl = screen.getAllByLabelText('Poziom (1–7)').find(x => x.props.accessibilityHint === 'niebieska')!; await type(lvl, '9'); expect(nb.level).toBe(7);
     await swipeDelete('Usuń gumę: niebieska'); expect(lastAlert().title).toBe('Usunąć gumę?');
     pressAlert('Usunąć gumę?', 'Usuń'); await flushAll(5); expect(S().bands.map(b => b.color)).toEqual(['czerwona', 'czarna', 'fioletowa', 'zielona']);
-    /* Ustawienia pokazują liczbę miejsc i główne */
-    await go('/more/settings'); await flushAll(10); expect(screen.getByLabelText('Miejsca i sprzęt, 4, główne: Dom testowy')).toBeTruthy();
+    /* 11.10.2026: Ustawienia nie pokazują już miejsc (wejście w Więcej) */
+    await go('/more/settings'); await flushAll(10); expect(screen.queryByText('Miejsca i sprzęt')).toBeNull();
   });
 
   test('04 biblioteka ćwiczeń: lista z partiami, szukanie, otwarcie, partie główne/pomocnicze, przerwy, tempo, notatki, nowe ćwiczenia, usuwanie bez historii', async () => {
@@ -503,22 +504,23 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     /* lista szablonów i ekran główny */
     await go('/templates'); await flushAll(10); expect(screen.getByLabelText('Push A, Bench Press (hantle), Cable Curl, Pull Up, Band Pull Apart…')).toBeTruthy();
     await go('/'); await flushAll(10);
+    expect(screen.getByLabelText(/^1\. .* zrobione$/)).toBeTruthy(); expect(screen.getByText('Pierwszy trening: duży przycisk „Start” u góry albo „Pusty trening”.')).toBeTruthy();
+    await tap(screen.getByLabelText('Inny trening')); await flushAll(5); await tap(screen.getByLabelText('Z szablonu')); await flushAll(10); /* 11.10.2026: lista szablonów w wyborze szablonu (P2 B) */
     expect(screen.getByLabelText('Push A, 5 ćw. · 14 serii')).toBeTruthy(); expect(screen.getByLabelText('Start: Push A')).toBeTruthy();
-    expect(screen.getByLabelText(/^1\. .* zrobione$/)).toBeTruthy(); expect(screen.getByText('Pierwszy trening: „Start” przy szablonie niżej albo „Pusty trening”.')).toBeTruthy();
   });
 
 
   /* Znalezisko scenariusza 06.10 (naprawione tego samego dnia): ekran główny i „Trening wstecz” liczyły serie szablonu razem z rozgrzewkami,
    * karta szablonu („4 serie · 1 rozgrz.”) i lista Historii — bez. Teraz wszędzie store.tplWorkSets. Push A: 15 serii roboczych + 1 rozgrzewka → „15 serii”; od audytu 0.10 (D3) drop set liczy się razem z serią przed nim → „14 serii”. */
   test('05b liczba serii szablonu na ekranie głównym = serie robocze (bez rozgrzewek), jak w edytorze szablonu', async () => {
-    await boot('/');
+    await boot('/'); await tap(screen.getByLabelText('Inny trening')); await flushAll(5); await tap(screen.getByLabelText('Z szablonu')); await flushAll(10); /* P2 B: lista w wyborze szablonu */
     const tpl = S().templates[0]; const work = tpl.items.reduce((a, i) => a + store.workCount(store.tplRows(i).map(r => r.kind)), 0); expect(work).toBe(14); /* D3 (audyt 0.10): 15 wierszy roboczych, z nich 1 drop set — liczy się razem z serią przed nim */
     expect(screen.getByLabelText(`Push A, 5 ćw. · ${work} serii`)).toBeTruthy();
   });
   test('06 trening z szablonu: miejsce, wartości z szablonu, wpisy, ✓ i przerwa, superset, guma, rozgrzewka/drop, notatka serii, typ serii, zamiana i cofnięcie, zamiennik per miejsce, przyrząd, dodanie/usunięcie ćwiczenia, przerwa ⏱, kolejność, stoper', async () => {
     await boot('/');
     const B = 'Bench Press (hantle)', C = 'Cable Curl', P = 'Pull Up', BP = 'Band Pull Apart', PL = 'Plank';
-    await tap(screen.getByLabelText('Start: Push A')); await flushAll(10);
+    await startTpl('Push A');
     const a = S().active!; const tpl = S().templates[0];
     expect(a.templateId).toBe(tpl.id); expect(a.templateName).toBe('Push A'); expect(a.locationId).toBe(loc('Dom testowy').id);
     const names = () => S().active!.exercises.map(e => store.exById(e.exerciseId)!.name);
@@ -538,7 +540,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     const chipLoc = () => screen.getByLabelText(/^Miejsce treningu: .*$/);
     await tap(chipLoc()); expect((global as any).__sheets.at(-1).opts.options).toEqual(['Pełna siłownia', 'Dom testowy', 'Tylko masa ciała', 'Hotel', 'Anuluj']);
     await sheet(2); expect(S().active!.locationId).toBe(loc('Tylko masa ciała').id); expect(screen.getByText('📍 Tylko masa ciała ▾')).toBeTruthy();
-    expect(screen.getAllByLabelText(/^Brak sprzętu w: Tylko masa ciała\. Brakuje: /).length).toBe(4); /* wszystko poza Plankiem */ expect(screen.getByLabelText(`Zamień ćwiczenie (brak sprzętu): ${B}`)).toBeTruthy();
+    expect(screen.getAllByLabelText(/^Brak sprzętu w: Tylko masa ciała\. Brakuje: /).length).toBe(4); /* wszystko poza Plankiem */ expect(screen.queryByLabelText(`Zamień ćwiczenie (brak sprzętu): ${B}`)).toBeNull(); /* jedno „⇄ zamień” w stopce; plakietka = tekst otwierający arkusz */ expect(screen.getByLabelText(`Zamień ćwiczenie: ${B}`)).toBeTruthy();
     await tap(chipLoc()); await sheet(4); expect(S().active!.locationId).toBe(loc('Tylko masa ciała').id); /* Anuluj */
     await tap(chipLoc()); await sheet(1); expect(S().active!.locationId).toBe(loc('Dom testowy').id); expect(screen.queryByLabelText(/^Brak sprzętu w:/)).toBeNull();
     expect(tpl.locationId).toBe(loc('Dom testowy').id); /* szablon bez zmian */
@@ -680,7 +682,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
   test('06c zakończenie treningu: potwierdzenie z ostrzeżeniami, zapis, szczegóły sesji, kopia automatyczna', async () => {
     await boot('/');
     const write = FS.writeAsStringAsync as jest.Mock; write.mockClear();
-    await tap(screen.getAllByText('Zakończ trening i zapisz')[0]);
+    await tap(screen.getAllByText('Zakończ')[0]);
     const al = lastAlert(); expect(al.title).toBe('Zakończyć trening?');
     expect(al.msg).toContain('Zapisane zostaną serie robocze: 15.'); /* LIVE2-02: drop set liczy się z serią przed nim (= workingSets po zapisie) */ expect(al.msg).toContain('Nieodhaczone serie z wpisanymi wynikami: 1 — nie zostaną zapisane.');
     pressAlert('Zakończyć trening?', 'Wróć'); await flushAll(10); expect(S().active).not.toBeNull();
@@ -697,8 +699,8 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     expect(write.mock.calls.some(([p]) => /\/Backup\/trening-\d{4}-\d{2}-\d{2}-\d{6}\.json$/.test(p))).toBe(true);
     /* ekran główny: „Powtórz ostatni”, szablon z datą ostatniego treningu, bez podpowiedzi pierwszego razu */
     await go('/'); await flushAll(10);
-    await tap(screen.getByLabelText('Inny trening')); await flushAll(5); /* układ B: arkusz „Inny trening” */ expect(screen.getByLabelText('Powtórz ostatni (Push A)')).toBeTruthy(); expect(screen.getByText(/^Push A · /)).toBeTruthy(); /* podpis: nazwa · data */ await tap(screen.getByLabelText('Anuluj')); await flushAll(5); expect(screen.queryByText(/^Pierwszy raz\?/)).toBeNull();
-    expect(screen.getByLabelText(/^Push A, 5 ćw\. · 14 serii · ostatnio /)).toBeTruthy();
+    await tap(screen.getByLabelText('Inny trening')); await flushAll(5); /* układ B: arkusz „Inny trening” */ expect(screen.getByLabelText('Powtórz ostatni (Push A)')).toBeTruthy(); expect(screen.getByText(/^Push A · /)).toBeTruthy(); /* podpis: nazwa · data */ expect(screen.queryByText(/^Pierwszy raz\?/)).toBeNull();
+    await tap(screen.getByLabelText('Z szablonu')); await flushAll(10); /* P2 B: wiersz szablonu z datą ostatniego treningu — w wyborze szablonu */ expect(screen.getByLabelText(/^Push A, 5 ćw\. · 14 serii · ostatnio /)).toBeTruthy(); await tap(screen.getAllByText('Anuluj').pop()!); await flushAll(10);
     expect(timer.T.on).toBe(false); expect(timer.S.on).toBe(false);
   });
 
@@ -762,7 +764,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     await back();
 
     /* trening wstecz: zła data → komunikat; pusty → „Pusty trening” i odrzucenie; z szablonu → zapis */
-    await tap(screen.getByText('+ Dodaj trening wstecz')); await flushAll(10);
+    await tap(screen.getByText('Dopisz trening wstecz')); await flushAll(10);
     expect(screen.getByLabelText('Push A, 5 ćw. · 14 serii')).toBeTruthy(); expect(screen.getByLabelText('Godzina startu').props.value).toBe('18:00'); expect(screen.getByLabelText('Czas trwania (min)').props.value).toBe('60');
     const date0 = screen.getByLabelText('Data (RRRR-MM-DD)').props.value;
     await type(screen.getByLabelText('Data (RRRR-MM-DD)'), '2026-13-45'); await tap(screen.getByLabelText('Push A, 5 ćw. · 14 serii'));
@@ -772,7 +774,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     expect(screen.getByText('Brak ćwiczeń — dodaj pierwsze.')).toBeTruthy();
     await tap(screen.getByText('Zapisz zmiany')); expect(lastAlert()).toMatchObject({ title: 'Pusty trening', msg: 'Nie ma żadnej serii z wynikiem — nic do zapisania.' });
     pressAlert('Pusty trening', 'Odrzuć trening'); await flushAll(10); expect(S().workouts).toHaveLength(1);
-    await tap(screen.getByText('+ Dodaj trening wstecz')); await flushAll(10);
+    await tap(screen.getByText('Dopisz trening wstecz')); await flushAll(10);
     for (let i = 0; i < 3; i++) await tap(screen.getByLabelText('Dzień wcześniej')); /* 4 dni temu */
     await tap(screen.getByLabelText('Push A, 5 ćw. · 14 serii')); await flushAll(10);
     expect(screen.getByLabelText('Nazwa').props.value).toBe('Push A');
@@ -887,7 +889,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
 
   test('10b restart po imporcie: dane z pliku zostały', async () => {
     await boot('/');
-    expect(S().templates.map(x => x.name)).toEqual(['Push A']); expect(S().workouts).toHaveLength(2); expect(screen.getByLabelText('Start: Push A')).toBeTruthy();
+    expect(S().templates.map(x => x.name)).toEqual(['Push A']); expect(S().workouts).toHaveLength(2); expect(screen.getByText('Start: Push A')).toBeTruthy(); /* duży przycisk startu (jedyny szablon) */
     await tap(screen.getByLabelText('Inny trening')); await flushAll(5); /* układ B: arkusz „Inny trening” */ expect(screen.getByLabelText('Powtórz ostatni (Push A — poprawione)')).toBeTruthy();
   });
 
@@ -902,7 +904,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     expect(S().workouts).toEqual([]); expect(S().templates).toEqual([]); expect(S().settings.locations).toEqual([]); expect(S().settings.mainLocationId).toBeNull();
     expect(S().settings).toMatchObject({ language: 'auto', unit: 'kg', defaultRest: 90, showRpe: false, theme: 'light' });
     expect(S().bands.map(b => b.level)).toEqual([2, 4, 6]); expect(S().exercises.some(e => e.name === 'Wiosło z ręcznikiem')).toBe(false);
-    await go('/'); await flushAll(10); expect(screen.getByLabelText('1. Utwórz pierwszy szablon albo wygeneruj szablony i plan. do zrobienia')).toBeTruthy(); expect(screen.getByText('+ Nowy szablon')).toBeTruthy();
+    await go('/'); await flushAll(10); expect(screen.getByLabelText('1. Utwórz pierwszy szablon albo wygeneruj szablony i plan. do zrobienia')).toBeTruthy(); expect(screen.getAllByText('Planowanie')).toHaveLength(2);
     /* restart po wyczyszczeniu — nadal pusto */
     await act(async () => { await store.flush(); }); carry = saved(); await boot('/');
     expect(S().workouts).toEqual([]); expect(S().templates).toEqual([]); expect(screen.getByLabelText('1. Utwórz pierwszy szablon albo wygeneruj szablony i plan. do zrobienia')).toBeTruthy(); /* jak po instalacji: „Pierwsze kroki” */

@@ -1,7 +1,7 @@
 # Miejsca treningu (P-003): dodanie miejsca z presetu, włączenie drążka, filtr wyboru ćwiczeń w pustym treningu.
 #
 # Literały (EN z lib/i18n.en.ts / lib/equipment.ts, chyba że zaznaczono inaczej):
-#   "Start from a template"          ← 'Zacznij z szablonu'                 (app/(tabs)/index.tsx)
+#   "Other workout"                  ← 'Inny trening' (znacznik gotowości ekranu głównego od 11.10.2026)
 #   "More, tab.*" / "Workout, tab.*" ← 'Więcej' / 'Trening' + etykieta zakładki „{label}, tab, {i} of {n}” (React Navigation; od SDK 56 jej kopia w expo-router — ten sam format)
 #   "Settings"                       ← 'Ustawienia'                         (Item w app/(tabs)/more.tsx)
 #   "Places and equipment,.*"             ← 'Miejsca i sprzęt' (audyt 0.10 H2, dawniej 'Miejsca treningu') + sub 'sprzęt w domu, na siłowni, w hotelu…'
@@ -30,14 +30,13 @@ name: Miejsca treningu i filtr ćwiczeń
 - launchApp:
     clearState: true
     permissions: { all: allow }
-- extendedWaitUntil: { visible: "Start from a template", timeout: 60000 }
+- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
 
 # --- Więcej → Ustawienia → Miejsca treningu ---
 - tapOn: "More, tab.*"
-- extendedWaitUntil: { visible: "Settings", timeout: 30000 }
-- tapOn: "Settings"
-- scrollUntilVisible: { element: "Places and equipment,.*", direction: DOWN, timeout: 60000 }
-- tapOn: "Places and equipment,.*"
+# 11.10.2026: „Places and equipment” to pozycja ekranu Więcej (z Ustawień zniknęła)
+- extendedWaitUntil: { visible: "Places and equipment", timeout: 30000 }
+- tapOn: "Places and equipment"
 - extendedWaitUntil: { visible: "\\+ Add place", timeout: 30000 }
 - takeScreenshot: 20-miejsca-pusto
 - tapOn: "\\+ Add place"
@@ -67,11 +66,10 @@ name: Miejsca treningu i filtr ćwiczeń
 - extendedWaitUntil: { visible: "\\+ Add place", timeout: 30000 }
 - assertVisible: ".*Bodyweight only, main.*"
 - tapOn: "Back"
-- extendedWaitUntil: { visible: "Places and equipment,.*Bodyweight only", timeout: 30000 }
-- tapOn: "Back"
+- extendedWaitUntil: { visible: "Places and equipment", timeout: 30000 }  # lista miejsc → ekran Więcej (od 11.10.2026 wiersz bez podsumowania miejsc)
 - extendedWaitUntil: { visible: "Workout, tab.*", timeout: 30000 }
 - tapOn: "Workout, tab.*"
-- extendedWaitUntil: { visible: "Start from a template", timeout: 30000 }
+- extendedWaitUntil: { visible: "Other workout", timeout: 30000 }
 - scrollUntilVisible: { element: "Empty workout", direction: DOWN, timeout: 60000 }
 - tapOn: "Empty workout"
 - extendedWaitUntil: { visible: "+ Add exercise", timeout: 30000 }

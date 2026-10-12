@@ -77,18 +77,18 @@ describe('LIVE2-01: zamiana w trakcie ćwiczenia (podział bloku) a „Zaktualiz
     store.toggleDone(1, 0); store.deleteExercise(ex('Plank').id); expect(ex('Plank').archived).toBe(true);
     expect(templateDiff(t, J(a))).toBeNull(); updateTemplateFromWorkout(t, J(a)); expect(t.items.map(i => store.exById(i.exerciseId)!.name)).toEqual(['Bench Press (sztanga)']);
   });
-  test('N5 (ekran): zamiana w trakcie, „Zakończ” — bez okna „Zaktualizować szablon?”', async () => {
+  test('N5 (ekran): zamiana w trakcie, „Zakończ” — bez okna i bez przycisku „Zapisz zmiany w szablonie”', async () => {
     await fresh(); const { a } = splitSwap(false); a.exercises[1].sets.forEach(s => { s.weight = 20; s.reps = 8; }); store.toggleDone(1, 0); store.toggleDone(1, 1);
     await act(async () => { await store.flush(); }); await renderApp({ saved: J(saved()) }); await flushAll(10);
-    await tap(screen.getAllByText('Zakończ trening i zapisz')[0]); await act(async () => { pressAlert('Zakończyć trening?', 'Zakończ'); }); await flushAll(1000);
-    expect(S().active).toBeNull(); expect(global.__alerts.some(x => x.title.startsWith('Zaktualizować szablon'))).toBe(false);
+    await tap(screen.getAllByText('Zakończ')[0]); await act(async () => { pressAlert('Zakończyć trening?', 'Zakończ'); }); await flushAll(1000);
+    expect(S().active).toBeNull(); expect(global.__alerts.some(x => x.title.startsWith('Zaktualizować szablon'))).toBe(false); expect(screen.queryByText('Zapisz zmiany w szablonie')).toBeNull(); /* 8A: bez zmian składu — bez przycisku */
   });
-  test('N5 kontrola (ekran): bez zamiany, ćwiczenie usunięte w treningu — okno jest, „Zaktualizuj szablon” zostawia jedną pozycję', async () => {
+  test('N5 kontrola (ekran): bez zamiany, ćwiczenie usunięte w treningu — na ekranie sesji jest przycisk „Zapisz zmiany w szablonie” (bez okna), zostawia jedną pozycję', async () => {
     await fresh(); const t = mkTpl([item('a', 'Bench Press (sztanga)', 3), item('b', 'Back Squat', 2, { startWeight: 80 })]); store.startFromTemplate(t); const a = S().active!;
     a.exercises.forEach(e => e.sets.forEach(s => { s.reps = 8; })); store.toggleDone(0, 0); store.toggleDone(1, 0); a.exercises.splice(1, 1);
     await act(async () => { await store.flush(); }); await renderApp({ saved: J(saved()) }); await flushAll(10);
-    await tap(screen.getAllByText('Zakończ trening i zapisz')[0]); await act(async () => { pressAlert('Zakończyć trening?', 'Zakończ'); }); await flushAll(1000);
-    await act(async () => { pressAlert('Zaktualizować szablon „Push”?', 'Zaktualizuj szablon'); }); await flushAll(10);
+    await tap(screen.getAllByText('Zakończ')[0]); await act(async () => { pressAlert('Zakończyć trening?', 'Zakończ'); }); await flushAll(1000);
+    expect(global.__alerts.some(x => x.title.startsWith('Zaktualizować szablon'))).toBe(false); await tap(screen.getByText('Zapisz zmiany w szablonie')); await flushAll(10); expect(screen.getByText('Szablon zaktualizowany.')).toBeTruthy(); expect(screen.queryByText('Zapisz zmiany w szablonie')).toBeNull();
     const tt = S().templates.find(x => x.name === 'Push')!; expect(ids(tt)).toEqual(['a']);
   });
 });

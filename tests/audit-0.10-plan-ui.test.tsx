@@ -11,7 +11,8 @@ import { applyLang } from '@/lib/i18n';
 import { SCHEMA_VERSION } from '@/lib/seed';
 import { fresh, saved, withDemoTemplates, addWorkout, pressAlert } from './helpers';
 import { renderApp, flushAll, screen, tap, act, go, swipeDelete } from './app';
-import { fireEvent } from '@testing-library/react-native';
+import { fireEvent, within } from '@testing-library/react-native';
+const dayPanel = () => within(screen.getByTestId('day-panel-wrap')); /* przycisk „Dopisz trening wstecz” jest też w nagłówku Kalendarza — panel dnia osobno */
 import { FlatList, Linking } from 'react-native';
 
 const NOW = new Date(2026, 9, 8, 9, 0); /* czwartek 8.10.2026 */
@@ -50,7 +51,7 @@ describe('A2 — panel dnia: jeden stan dnia (dayStatus)', () => {
   test('A2 (X-01): trening w toku dziś — panel bez przesuwania, „Trening w toku”', async () => {
     await boot(ids => { plan.setWeekDay(3, ids[0]); store.startFromTemplate(S().templates.find(x => x.id === ids[1])!); });
     await openDay('2026-10-08');
-    expect(screen.getByText('Trening w toku')).toBeTruthy(); expect(screen.queryByText('Przesuń albo pomiń')).toBeNull(); expect(screen.queryByText('Inny trening')).toBeNull();
+    expect(screen.getByText('Trening w toku')).toBeTruthy(); expect(screen.queryByText('Przesuń albo pomiń')).toBeNull(); expect(screen.queryByText('Zmień szablon')).toBeNull();
   });
 });
 
@@ -58,19 +59,19 @@ describe('A4 — miniony dzień', () => {
   test('A4 (UX-03/X-09): opuszczony dzień — „Przesuń albo pomiń”: „Przesuń plan od dziś” (łańcuch), przeniesienie od dziś, „Wolne w tym dniu”; bez zamiany z przeszłością', async () => {
     const t = await boot(ids => since(() => { plan.setWeekDay(0, ids[0]); plan.setWeekDay(3, ids[1]); }));
     await openDay('2026-10-05');
-    expect(screen.getByText(`Opuszczony: ${t[0].name}`)).toBeTruthy(); expect(screen.getByText('Zapisz trening z tego dnia')).toBeTruthy();
+    expect(screen.getByText(`Opuszczony: ${t[0].name}`)).toBeTruthy(); expect(dayPanel().getByText('Dopisz trening wstecz')).toBeTruthy();
     await tap(screen.getByText('Przesuń albo pomiń')); await flushAll(5); await showAll();
     expect(screen.getByText(/ · polecane$/)).toBeTruthy(); expect(screen.getByText(/^Przesuń plan od dziś/)).toBeTruthy(); expect(screen.queryByText(/^Zamień z /)).toBeNull();
     await tap(screen.getByLabelText('Zastosuj: Przesuń plan od dziś')); await flushAll(5);
     expect([plan.plannedOn('2026-10-05'), plan.plannedOn('2026-10-08'), plan.plannedOn('2026-10-09')]).toEqual([null, t[0].id, t[1].id]); /* wczoraj nie dałem rady: A dziś, B jutro */
     expect(screen.queryByTestId('suggestions')).toBeNull();
   });
-  test('A4: „Wolne w tym dniu” dla minionego dnia; „Zapisz trening z tego dnia” — trening wstecz z tą datą i szablonem z planu na górze', async () => {
+  test('A4: „Wolne w tym dniu” dla minionego dnia; „Dopisz trening wstecz” — trening wstecz z tą datą i szablonem z planu na górze', async () => {
     const t = await boot(ids => since(() => plan.setWeekDay(0, ids[1])));
     await openDay('2026-10-05'); await tap(screen.getByText('Przesuń albo pomiń')); await flushAll(5); await showAll();
     await tap(screen.getByLabelText('Zastosuj: Wolne w tym dniu')); await flushAll(5); expect(plan.dayStatus('2026-10-05').status).toBe('rest');
     await tap(screen.getByText('Więcej opcji')); await flushAll(5); await tap(screen.getByText('Przywróć z planu')); await flushAll(5);
-    await tap(screen.getByText('Zapisz trening z tego dnia')); await flushAll(10);
+    await tap(dayPanel().getByText('Dopisz trening wstecz')); await flushAll(10);
     expect(screen.getByDisplayValue('2026-10-05')).toBeTruthy(); expect(screen.getAllByText(t[1].name)[0]).toBeTruthy();
   });
 });
@@ -155,7 +156,7 @@ describe('UX-13 A, MER-16 — panel dnia: 3 akcje, „Więcej opcji”, jedna li
   test('UX-13 A: najwyżej 3 główne akcje + „Więcej opcji”; bez osobnych „Propozycji” powielających przesunięcia', async () => {
     const t = await boot(ids => { plan.setWeekDay(3, ids[0]); plan.setWeekDay(5, ids[1]); plan.setDayPlan('2026-10-08', ids[2]); });
     await openDay('2026-10-08');
-    expect(panelButtons()).toEqual([`Start zaplanowanego treningu: ${t[2].name}`, 'Przesuń albo pomiń', 'Inny trening', 'Więcej opcji']);
+    expect(panelButtons()).toEqual([`Start zaplanowanego treningu: ${t[2].name}`, 'Przesuń albo pomiń', 'Zmień szablon', 'Więcej opcji']);
     expect(screen.queryByText('Propozycje')).toBeNull(); expect(screen.queryByText('Przesuń plan o 1 dzień')).toBeNull();
     await tap(screen.getByText('Więcej opcji')); await flushAll(5); expect(screen.getByText('Przywróć z planu')).toBeTruthy(); expect(screen.getByText('Oznacz tydzień jako deload')).toBeTruthy();
   });
@@ -283,10 +284,10 @@ describe('English', () => {
 
 describe('macierz — podpowiedzi VoiceOver i teksty pomocnicze ekranów planu (audyt 0.10)', () => {
   const hint = (label: string) => screen.getByLabelText(label).props.accessibilityHint;
-  test('panel dnia: „Zapisz trening z tego dnia” (podpowiedź), „Więcej opcji” ↔ „Mniej opcji”, lista możliwości z kolejnością i uproszczeniem', async () => {
+  test('panel dnia: „Dopisz trening wstecz” (podpowiedź), „Więcej opcji” ↔ „Mniej opcji”, lista możliwości z kolejnością i uproszczeniem', async () => {
     await boot(ids => { since(() => plan.setWeekDay(0, ids[0])); });
     await openDay('2026-10-05');
-    expect(hint('Zapisz trening z tego dnia')).toBe('Trening wstecz z datą tego dnia.'); expect(hint('Więcej opcji')).toBe('Pozostałe akcje dla tego dnia.');
+    expect(dayPanel().getByLabelText('Dopisz trening wstecz').props.accessibilityHint).toBe('Trening wstecz z datą tego dnia.'); expect(screen.getAllByText('Dopisz trening wstecz')).toHaveLength(2); /* jedna nazwa: panel dnia i nagłówek Kalendarza */ expect(hint('Więcej opcji')).toBe('Pozostałe akcje dla tego dnia.');
     expect(screen.queryByTestId('day-more')).toBeNull(); await tap(screen.getByLabelText('Więcej opcji')); await flushAll(5);
     expect(screen.getByTestId('day-more')).toBeTruthy(); expect(screen.getByText('Mniej opcji')).toBeTruthy();
     await tap(screen.getByLabelText('Więcej opcji')); await flushAll(5); expect(screen.queryByTestId('day-more')).toBeNull(); expect(screen.getByText('Więcej opcji')).toBeTruthy();

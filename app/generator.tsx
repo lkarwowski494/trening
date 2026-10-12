@@ -65,7 +65,7 @@ function NewTemplatesPlan({ header }: { header: React.ReactNode }) {
     const res = saveGenerated(r, inp, activate, replace); const names = res.templateIds.map(id => getState().templates.find(x => x.id === id)?.name ?? '').join(', ');
     Alert.alert(t('Zapisano'), [t('Szablony: {list} — w folderze „{folder}” na liście Szablony.', { list: names, folder: res.folder }), activate ? t('Plan „{name}” jest teraz aktywny.', { name: res.planName }) : t('Plan „{name}” jest w „Inne plany”.', { name: res.planName })].join('\n'), [
       { text: t('Pokaż szablony'), onPress: () => { if (router.canDismiss()) router.dismissAll(); router.navigate('/templates'); } },
-      { text: t('Plan tygodnia'), onPress: toPlan }, /* UI2-06: z Planu tygodnia — powrót do niego, bez drugiego ekranu planu */
+      { text: t('Planowanie'), onPress: toPlan }, /* UI2-06: z Planu tygodnia — powrót do niego, bez drugiego ekranu planu */
       { text: t('OK') }, /* UI2-06: zostaje na generatorze */
     ]);
   };

@@ -86,11 +86,11 @@ describe('„+ Nowy szablon” w edytorze planu i panelu dnia (B) — po „Zapi
   });
   test('panel dnia w Kalendarzu: „+ Nowy szablon” → zmiana tylko tej daty (plan tygodnia bez zmian); „Anuluj” — nic', async () => {
     const t = await boot('/history', ids => { plan.setWeekDay(4, ids[0]); });
-    await tap(screen.getByTestId('cal-2026-10-09')); await flushAll(5); await tap(screen.getByText('Inny trening')); await flushAll(5);
+    await tap(screen.getByTestId('cal-2026-10-09')); await flushAll(5); await tap(screen.getByText('Zmień szablon')); await flushAll(5);
     expect(screen.getByLabelText('+ Nowy szablon').props.accessibilityHint).toBe('Po zapisie szablon trafi na ten dzień.');
     await tap(screen.getByText('+ Nowy szablon')); await flushAll(10); await tap(screen.getByLabelText('Anuluj edycję szablonu')); await flushAll(10);
     expect(S().planOverrides).toBeUndefined(); expect(S().templates.length).toBe(4);
-    await tap(screen.getByText('Inny trening')); await flushAll(5); /* po „Anuluj” wracamy do tego samego panelu dnia */
+    await tap(screen.getByText('Zmień szablon')); await flushAll(5); /* po „Anuluj” wracamy do tego samego panelu dnia */
     await tap(screen.getByText('+ Nowy szablon')); await flushAll(10); await type(screen.getByLabelText('Nazwa'), 'Jednorazowy'); await addPlank(); await saveEdit(); await flushAll(10);
     const id = S().templates.find(x => x.name === 'Jednorazowy')!.id;
     expect(plan.plannedOn('2026-10-09')).toBe(id); expect(plan.plannedOn('2026-10-16')).toBe(t[0].id); expect(plan.weekPlanDays()[4]).toBe(t[0].id);

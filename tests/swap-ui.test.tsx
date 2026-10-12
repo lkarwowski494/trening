@@ -22,10 +22,16 @@ async function savedWith(blocks: string[], o: { places?: boolean; locale?: 'pl' 
 const blk = (i: number) => store.getState().active!.exercises[i];
 
 describe('W1 — ekran treningu i arkusz zamiany', () => {
+  test('plakietka „brak sprzętu w: Dom” jest tekstem, który po stuknięciu otwiera arkusz zamiany (nie osobny przycisk)', async () => {
+    await renderApp({ saved: await savedWith(['Bench Press (sztanga)', 'Push Up']) }); await flushAll(20);
+    expect(screen.queryByText('Anuluj')).toBeNull(); expect(screen.getByLabelText(/^Brak sprzętu w: Dom\. Brakuje: /).props.accessibilityHint).toBe('Otwiera zamianę ćwiczenia'); expect(screen.getByLabelText(/^Brak sprzętu w: Dom\. Brakuje: /).props.accessibilityRole).toBe('button');
+    await tap(screen.getByLabelText(/^Brak sprzętu w: Dom\. Brakuje: /)); await flushAll(20);
+    expect(screen.getByText('Anuluj')).toBeTruthy(); expect(blk(0).exerciseId).toBe(store.getState().active!.exercises[0].exerciseId);
+  });
   test('przycisk ukryty po odhaczeniu wszystkich serii (D3) i w bloku usuniętego ćwiczenia; „⇄” przy plakietce braku sprzętu', async () => {
     await renderApp({ saved: await savedWith(['Bench Press (sztanga)', 'Push Up']) }); await flushAll(20);
     expect(screen.getByLabelText('Zamień ćwiczenie: Bench Press (sztanga)')).toBeTruthy();
-    expect(screen.getByText(/brak sprzętu w: Dom/)).toBeTruthy(); expect(screen.getByLabelText('Zamień ćwiczenie (brak sprzętu): Bench Press (sztanga)')).toBeTruthy();
+    expect(screen.getByText(/brak sprzętu w: Dom/)).toBeTruthy(); expect(screen.getByLabelText(/^Brak sprzętu w: Dom\. Brakuje: /)).toBeTruthy(); expect(screen.queryByLabelText('Zamień ćwiczenie (brak sprzętu): Bench Press (sztanga)')).toBeNull(); /* jedno „⇄ zamień” w stopce */
     for (let si = 0; si < 3; si++) await act(async () => { blk(1).sets[si].reps = 10; store.toggleDone(1, si); }); await flushAll(5);
     expect(screen.queryByLabelText('Zamień ćwiczenie: Push Up')).toBeNull();
     await act(async () => { blk(0).exerciseId = 'gone'; store.save(store.getState().active); }); await flushAll(5);

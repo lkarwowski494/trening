@@ -1,5 +1,5 @@
 import { getState, finishedWorkouts, templateGroups, exById } from '@/lib/store';
-import { hasPlan, dayKeyOf, dayStatus, pending, upcoming, planName, weekPlanDays } from '@/lib/plan';
+import { hasPlan, dayKeyOf, dayStatus, pending, upcoming } from '@/lib/plan';
 import type { Template } from '@/lib/seed';
 
 /*
@@ -73,12 +73,4 @@ export function otherStarts(main: MainStart = mainStart(), now = Date.now()): Ot
   if (list.length) out.push({ kind: 'template', count: list.length });
   if (main.kind !== 'empty') out.push({ kind: 'empty' });
   return out;
-}
-
-/** Karta Planowania zwinięta do wiersza przy planie: nazwa, liczba dni z treningiem w tygodniu planu, najbliższy trening (po dziś). */
-export function planSummary(now = Date.now()): { name: string; days: number; next: { date: string; templateId: string } | null } | null {
-  const today = dayKeyOf(now); if (!hasPlan(today)) return null;
-  const days = weekPlanDays().filter(Boolean).length;
-  const nx = upcoming(NEXT_PLAN_DAYS, today).find(x => x.date > today && x.templateId);
-  return { name: planName(), days, next: nx ? { date: nx.date, templateId: nx.templateId! } : null };
 }

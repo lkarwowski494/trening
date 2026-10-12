@@ -11,7 +11,7 @@ import { ex, pressAlert } from './helpers';
 jest.setTimeout(120000);
 afterEach(async () => { await timer.stop(); await timer.stopSet(); units.applyUnit('kg'); });
 const field = (label: string, hint: string) => { const f = screen.getAllByLabelText(label).find(x => x.props.accessibilityHint === hint); if (!f) throw new Error('no field ' + label + ' ' + hint); return f; };
-const finish = async () => { await tap(screen.getAllByText(tr('Zakończ trening i zapisz'))[0]); pressAlert(tr('Zakończyć trening?'), tr('Zakończ')); await flushAll(600); };
+const finish = async () => { await tap(screen.getAllByText(tr('Zakończ'))[0]); pressAlert(tr('Zakończyć trening?'), tr('Zakończ')); await flushAll(600); };
 const kindBtn = (n: string | number, nm: string) => screen.getAllByLabelText(new RegExp('^' + tr('Seria {n}, typ: {k}', { n, k: 'X' }).split(',')[0] + ',')).find(x => String(x.props.accessibilityHint).startsWith(tr('Seria {n} — {ex}', { n, ex: nm })))! /* A11-18 */;
 
 for (const [loc, unit, w1, w2] of [['pl', 'kg', '100', '80'], ['en', 'lb', '225', '185']] as const) {

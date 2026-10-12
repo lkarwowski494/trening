@@ -8,14 +8,14 @@ import { store as routerStore } from 'expo-router/build/global-state/router-stor
 /** Uruchamia całą aplikację (prawdziwe ekrany expo-router) na świeżym stanie. */
 /** `navTimers` (domyślnie true): odtworzone zachowanie expo-router 4 — przy każdej zmianie nawigacji `jest.runOnlyPendingTimers()` (niżej).
  * false — bez tego: test sam przesuwa zegar i może sprawdzić, że po nawigacji nie zostaje żaden zaległy timer (docs/13 B11, NISKIE). */
-export async function renderApp(opts: { saved?: unknown; locale?: 'pl' | 'en'; url?: string; width?: number; navTimers?: boolean; /** znacznik języka i regionu telefonu (np. „en-US” — symulator E2E); domyślnie en-GB / pl-PL */ tag?: string; /** dodatkowe klucze bazy (np. „drafts” — szkice sprzed zamknięcia aplikacji, UX2-03) */ kv?: Record<string, string> } = {}) {
+export async function renderApp(opts: { saved?: unknown; locale?: 'pl' | 'en'; url?: string; width?: number; navTimers?: boolean; /** znacznik języka i regionu telefonu (np. „en-US” — symulator E2E); domyślnie en-GB / pl-PL */ tag?: string; /** kod języka telefonu (expo-localization languageCode, np. „vi” — fala 2 języków); domyślnie z `locale` */ code?: string; /** dodatkowe klucze bazy (np. „drafts” — szkice sprzed zamknięcia aplikacji, UX2-03) */ kv?: Record<string, string> } = {}) {
   /* SDK 53 (React 19, RNTL 13 z równoległym korzeniem, expo-router 5): drugi renderApp w tym samym teście (nowy „start aplikacji”)
    * odświeżał jeszcze zamontowane drzewo z poprzedniego startu — wspólny stan routera — a to czytało już wyzerowany store
    * („store not initialised”). Poprzednie uruchomienie odmontowujemy, zanim zerujemy store, tak jak zamknięcie aplikacji przed ponownym startem.
    * `screen` i tak wskazywał tylko ostatni render, więc asercje dotyczą wyłącznie nowego drzewa (jak przed aktualizacją). */
   await cleanupAsync();
   global.__kv.clear(); global.__dbFail = false; global.__alerts.length = 0; global.__notifications.length = 0; global.__la.length = 0;
-  global.__locales = [{ languageCode: opts.locale ?? 'pl', languageTag: opts.tag ?? (opts.locale === 'en' ? 'en-GB' : 'pl-PL') }];
+  global.__locales = [{ languageCode: opts.code ?? opts.locale ?? 'pl', languageTag: opts.tag ?? (opts.locale === 'en' ? 'en-GB' : 'pl-PL') }];
   if (opts.saved !== undefined) global.__kv.set('state', typeof opts.saved === 'string' ? opts.saved : JSON.stringify(opts.saved));
   for (const [k, v] of Object.entries(opts.kv ?? {})) global.__kv.set(k, v);
   store.__resetForTests(); require('@/lib/planReminder').__resetReminderAsk(); /* X-11: nowe uruchomienie */ timer.T.on = false; timer.S.on = false; require('@/lib/intro').__resetIntroForTests(); /* nowy start = zimny start (animacja: components/Intro.tsx) */
@@ -74,4 +74,19 @@ export const fromHome = async (text: string | RegExp) => {
   if (!el.length) { const other = screen.queryAllByLabelText(t('Inny trening')); if (other.length) { await tap(other[0]); await flushAll(5); } el = find(); }
   if (!el.length) throw new Error('fromHome: brak „' + String(text) + '”');
   await tap(el[0]);
+};
+/** 11.10.2026 (docs/22 P2 B): lista „Zacznij z szablonu” z ekranu głównego usunięta — start konkretnego szablonu to „Inny trening” → „Z szablonu” →
+ * „Start: <nazwa>” na pełnoekranowym wyborze (app/pick-template.tsx), który po starcie wraca na ekran treningu. */
+export const startTpl = async (name: string) => {
+  const { t } = require('@/lib/i18n');
+  const label = t('Start: {name}', { name });
+  if (!screen.queryByLabelText(label)) { /* wybór szablonu bywa już otwarty (np. po „Anuluj” w pytaniu deload) */
+    await tap(screen.getByLabelText(t('Inny trening'))); await flushAll(5); await tap(screen.getByLabelText(t('Z szablonu'))); await flushAll(10); }
+  await tap(screen.getByLabelText(label)); await flushAll(10);
+};
+/** 11.10.2026: podgląd szablonu z ekranu głównego — „Inny trening” → „Z szablonu” → wiersz (dawna lista „Zacznij z szablonu” usunięta). */
+export const openTpl = async (name: string) => {
+  const { t } = require('@/lib/i18n');
+  if (!screen.queryByText(name)) { await tap(screen.getByLabelText(t('Inny trening'))); await flushAll(5); await tap(screen.getByLabelText(t('Z szablonu'))); await flushAll(10); }
+  await tap(screen.getByText(name)); await flushAll(10);
 };

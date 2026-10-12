@@ -37,7 +37,7 @@ export function StartPanel() {
     switch (o.kind) {
       case 'planOther': return <Item key="plan" title={t('Inny z planu')} sub={t('{name} · w planie na: {day}', { name: o.tpl.name, day: dayWord(o.date) })} accessibilityLabel={t('Inny z planu: {name}', { name: o.tpl.name })} onPress={pick(() => startTemplate(o.tpl))} />;
       case 'repeat': return <Item key="repeat" title={t('Powtórz ostatni')} sub={`${o.name || t('bez szablonu')} · ${fmtDate(o.date)}`} /* właściciel 09.10.2026 ok. 16:20: podpis nazwa · data (dawna sekcja „Ostatni trening”) */ accessibilityLabel={t('Powtórz ostatni ({name})', { name: o.name || t('bez szablonu') })} onPress={pick(() => startRepeatLast())} />;
-      case 'template': return <Item key="tpl" title={t('Z szablonu')} sub={(n => `${n} ${tp(n, 'szablon|szablony|szablonów')}`)(o.count)} accessibilityLabel={t('Z szablonu')} onPress={pick(() => router.push('/templates'))} />;
+      case 'template': return <Item key="tpl" title={t('Z szablonu')} /* P2 B (11.10.2026): pełnoekranowy wybór szablonu ze „Startem” (app/pick-template.tsx), nie zakładka Szablony */ sub={(n => `${n} ${tp(n, 'szablon|szablony|szablonów')}`)(o.count)} accessibilityLabel={t('Z szablonu')} onPress={pick(() => router.push('/pick-template'))} />;
       default: return <Item key="empty" title={t('Pusty trening')} accessibilityLabel={t('Pusty trening')} onPress={pick(() => startEmpty())} />;
     }
   };

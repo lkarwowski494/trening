@@ -26,4 +26,5 @@ export const routesFor = (w: { id: string }, tpl: { id: string }, exId: string, 
   '/plan', '/generator', '/guide', `/swap?target=active:${blockId}`, '/picker?target=active', '/reorder?target=active', '/history/add', `/more/location/${locId}`,
   '/more/bodymass', '/more/about', '/more/licenses', /* audyt 0.10 fala 2: masa ciała z datą, O aplikacji, licencje (SEC-08) */
   '/generator?mode=own', /* 09.10.2026 (B): „Plan z moich szablonów” — drugi tryb ekranu generatora */
+  '/pick-template', '/progression', /* 11.10.2026: wybór szablonu do startu (P2 B) i Progresja (P8 B) */
 ];

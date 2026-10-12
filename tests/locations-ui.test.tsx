@@ -27,8 +27,8 @@ describe('bez miejsc — ekrany jak dotąd', () => {
     await tap(screen.getAllByText('nogi')[0]); await flushAll(5); /* pełna baza (04.10): lista wirtualizowana — grupa zamiast przewijania */
     expect(screen.queryByLabelText(/^Filtr miejsca/)).toBeNull(); expect(screen.queryAllByText(/brak:/)).toHaveLength(0); expect(screen.getByText('Back Squat')).toBeTruthy();
   });
-  test('Ustawienia → Miejsca treningu: pusta lista z wyjaśnieniem', async () => {
-    await renderApp(); await go('/more/settings'); await flushAll(10); await tap(screen.getByText('Miejsca i sprzęt')); await flushAll(10);
+  test('Więcej → Miejsca i sprzęt: pusta lista z wyjaśnieniem', async () => {
+    await renderApp(); await go('/more'); await flushAll(10); await tap(screen.getByText('Miejsca i sprzęt')); await flushAll(10);
     expect(screen.getByText(/Brak miejsc — wszystkie ćwiczenia są dostępne/)).toBeTruthy();
   });
 });

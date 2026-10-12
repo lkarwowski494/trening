@@ -14,9 +14,9 @@ const boot = async (url: string, fn: () => void = () => {}, locale: 'pl' | 'en' 
 const title = () => { const t = screen.UNSAFE_root.findAll((n: { type: unknown }) => n.type === 'RNSScreenStackHeaderConfig').map((n: { props: { title?: string } }) => n.props.title); return t[t.length - 1]; };
 
 describe('UI2-08 — tytuł zapisanego planu', () => {
-  test('„+ Nowy plan” → nagłówek z nazwą planu, nie „Plan tygodnia”; idzie za wpisaną nazwą; aktywny plan — „Plan tygodnia”', async () => {
+  test('„+ Nowy plan” → nagłówek z nazwą planu, nie „Plan tygodnia”; idzie za wpisaną nazwą; aktywny plan — „Planowanie”', async () => {
     await boot('/plan', () => { const t = withDemoTemplates(); plan.setWeekDay(0, t[0].id); plan.setPlanName('Siłownia'); });
-    expect(title()).toBe('Plan tygodnia');
+    expect(title()).toBe('Planowanie'); /* 11.10.2026: tytuł ekranu planu */
     await tap(screen.getByText('+ Nowy plan')); await flushAll(1100);
     const p = plan.savedPlans()[0]; expect(p.name).toBeTruthy(); expect(title()).toBe(p.name);
     await type(screen.getByLabelText('Nazwa planu'), 'Wakacje'); await flushAll(5); expect(title()).toBe('Wakacje');

@@ -48,10 +48,10 @@ describe('plan tygodnia bez szablonów', () => {
 });
 
 describe('Kalendarz', () => {
-  test('bez planu: podpowiedź i przycisk „Plan tygodnia”; tytuł i zakładka „Kalendarz”', async () => {
+  test('bez planu: przycisk „Planowanie” (bez tekstu zachęty — 11.10.2026); tytuł i zakładka „Kalendarz”', async () => {
     await boot(() => {});
-    expect(screen.getByText('Ustaw plan tygodnia, by widzieć zaplanowane treningi i przesuwać je w kalendarzu.')).toBeTruthy();
-    expect(screen.getByRole('header', { name: 'Kalendarz' })).toBeTruthy(); expect(screen.getByText('Plan tygodnia')).toBeTruthy();
+    expect(screen.queryByText(/^Ustaw plan tygodnia, by widzieć/)).toBeNull(); expect(screen.queryByText('Ukryj')).toBeNull();
+    expect(screen.getByRole('header', { name: 'Kalendarz' })).toBeTruthy(); expect(screen.getByText('Planowanie')).toBeTruthy(); expect(screen.queryByText('Plan tygodnia')).toBeNull();
   });
   test('dni z planem: etykiety VoiceOver „zaplanowany” / „opuszczony” (z „dziś”); panel dnia; miniony dzień bez zamiany z przeszłością (A4)', async () => {
     const t = await boot(ids => since(() => { plan.setWeekDay(0, ids[0]); plan.setWeekDay(3, ids[1]); }));
@@ -82,11 +82,11 @@ describe('Kalendarz', () => {
   test('inny trening / wolne w tym dniu / przywróć z planu (Więcej opcji) / dodaj trening na wolny dzień', async () => {
     const t = await boot(ids => { plan.setWeekDay(3, ids[0]); });
     await tap(screen.getByTestId('cal-2026-10-08')); await flushAll(5);
-    await tap(screen.getByText('Inny trening')); await flushAll(5); await tap(screen.getByText(t[2].name)); await flushAll(5);
+    await tap(screen.getByText('Zmień szablon')); await flushAll(5); expect(screen.queryByText('Inny trening')).toBeNull(); await tap(screen.getByText(t[2].name)); await flushAll(5);
     expect(plan.plannedOn('2026-10-08')).toBe(t[2].id); expect(screen.getByText(`Zaplanowany: ${t[2].name} · zmiana planu`)).toBeTruthy();
     await tap(screen.getByText('Więcej opcji')); await flushAll(5); await tap(screen.getByText('Przywróć z planu')); await flushAll(5); expect(plan.plannedOn('2026-10-08')).toBe(t[0].id);
     await openList(); await applyTitle('Wolne w tym dniu'); expect(plan.plannedOn('2026-10-08')).toBeNull(); expect(screen.getByText('Wolne · zmiana planu')).toBeTruthy();
-    await tap(screen.getByTestId('cal-2026-10-10')); await flushAll(5); await tap(screen.getByText('Dodaj trening')); await flushAll(5); await tap(screen.getByText(t[1].name)); await flushAll(5);
+    await tap(screen.getByTestId('cal-2026-10-10')); await flushAll(5); await tap(screen.getByText('Dodaj do planu')); await flushAll(5); await tap(screen.getByText(t[1].name)); await flushAll(5);
     expect(plan.plannedOn('2026-10-10')).toBe(t[1].id);
   });
   test('przesunięcie planu tworzące parę dzień po dniu z tymi samymi partiami — ostrzeżenie w opisie (docs/research/23)', async () => {
@@ -153,12 +153,12 @@ describe('ekran treningu: „Dziś” i podgląd tygodnia', () => {
     expect(screen.getByText(`Dziś zrobione: Upper A`)).toBeTruthy(); expect(screen.queryByLabelText(`Start zaplanowanego treningu: ${t3[0].name}`)).toBeNull();
     expect(screen.getByLabelText('czwartek, 8 października, dziś, zrobione: Upper A')).toBeTruthy();
   });
-  test('bez planu, z treningami — karta z tygodniem, „Bez planu tygodnia”, zachęta i „Plan tygodnia”', async () => {
+  test('bez planu, z treningami — karta z tygodniem, nagłówek „Bez planu tygodnia” z „Ustaw plan” (stała zachęta, bez osobnego tekstu)', async () => {
     await boot(() => { addWorkout(new Date(2026, 9, 6, 18).getTime(), [['Back Squat', [{ weight: 100, reps: 5 }]]]); }, '/');
-    expect(screen.getByText('Dziś')).toBeTruthy(); expect(screen.getByText('Bez planu tygodnia')).toBeTruthy();
-    expect(screen.getByText('Ustaw plan tygodnia, by widzieć tu dzisiejszy trening i dostawać przypomnienie.')).toBeTruthy();
+    expect(screen.queryByText('Dziś')).toBeNull(); /* 11.10.2026: bez planu i bez treningu dziś — tylko nagłówek planu i pasek */ expect(screen.getByText('Bez planu tygodnia')).toBeTruthy();
+    expect(screen.queryByText(/^Ustaw plan tygodnia, by widzieć/)).toBeNull();
     expect(screen.getByLabelText('poniedziałek, 5 października, wolne')).toBeTruthy(); expect(screen.getByLabelText('wtorek, 6 października, zrobione: T')).toBeTruthy();
-    await tap(screen.getAllByText('Plan tygodnia')[0]); await flushAll(10); expect(screen.getByText('Plan powtarza się co tydzień. Pojedyncze dni zmienisz w Kalendarzu.')).toBeTruthy();
+    await tap(screen.getByLabelText('Ustaw plan')); await flushAll(10); expect(screen.getByText('Plan powtarza się co tydzień. Pojedyncze dni zmienisz w Kalendarzu.')).toBeTruthy();
   });
   test('lista sesji w Kalendarzu pokazuje czas bez pauz', async () => {
     await boot(() => { const w = addWorkout(new Date(2026, 9, 7, 18).getTime(), [['Back Squat', [{ weight: 100, reps: 5 }]]]); w.pauses = [[w.startedAt + 60e3, w.startedAt + 16 * 60e3]]; store.save(); });
@@ -167,7 +167,7 @@ describe('ekran treningu: „Dziś” i podgląd tygodnia', () => {
   test('English', async () => {
     const t = await boot(ids => { plan.setWeekDay(3, ids[0]); }, '/', 'en');
     expect(screen.getByText(`Today: ${t[0].name}`)).toBeTruthy();
-    await go('/history'); await flushAll(10); expect(screen.getByRole('header', { name: 'Calendar' })).toBeTruthy(); expect(screen.getByText('Weekly plan')).toBeTruthy();
-    await tap(screen.getByTestId('cal-2026-10-08')); await flushAll(5); expect(screen.getByText('Move or skip')).toBeTruthy(); expect(screen.getByText('Other workout')).toBeTruthy();
+    await go('/history'); await flushAll(10); expect(screen.getByRole('header', { name: 'Calendar' })).toBeTruthy(); expect(screen.getByText('Planning')).toBeTruthy();
+    await tap(screen.getByTestId('cal-2026-10-08')); await flushAll(5); expect(screen.getByText('Move or skip')).toBeTruthy(); expect(screen.getByText('Change template')).toBeTruthy(); expect(screen.queryByText('Other workout')).toBeNull();
   });
 });

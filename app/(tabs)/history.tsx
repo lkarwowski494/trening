@@ -3,12 +3,11 @@ import { FlatList, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Screen, H1, Item, Muted, Empty, Btn, Chip } from '@/components/ui';
-import { wallTs, getState, setPlanHintHidden, workoutDurSec, useHistTick, finishedWorkouts, fmtDate, fmtTime, fmtDur, volume, deleteWorkout, workingSets } from '@/lib/store';
+import { wallTs, getState, workoutDurSec, useHistTick, finishedWorkouts, fmtDate, fmtTime, fmtDur, volume, deleteWorkout, workingSets } from '@/lib/store';
 import { SwipeRow } from '@/components/SwipeRow';
 import { HistoryCalendar } from '@/components/HistoryCalendar';
 import { DayPanel } from '@/components/DayPanel';
 import { DeloadHint } from '@/components/DeloadHint';
-import { hasPlan } from '@/lib/plan';
 import { workoutsByDay } from '@/lib/calendar';
 import { t, tp } from '@/lib/i18n';
 import { fmtVol } from '@/lib/units';
@@ -34,15 +33,14 @@ export default function HistoryScreen() {
       <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginVertical: 10 }}><H1>{t('Kalendarz')}</H1><Muted>{all.length} {tp(all.length, 'sesja|sesje|sesji')}</Muted></View>
       {/* 08.10.2026 (decyzja 1A): kalendarz z planem tygodnia nad listą sesji — zawsze, także bez historii (planowanie) */}
       <View style={{ flexDirection: 'row', gap: 8, marginBottom: 8, flexWrap: 'wrap' }}>
-        <Btn nav title={t('Plan tygodnia')} small onPress={() => router.push('/plan')} />
+        <Btn nav title={t('Planowanie')} small onPress={() => router.push('/plan')} />
         {/* Docs/12: trening wstecz — jak w popularnych aplikacjach treningowych */}
-        <Btn nav title={t('+ Dodaj trening wstecz')} small onPress={() => router.push('/history/add')} />
+        <Btn nav title={t('Dopisz trening wstecz')} small onPress={() => router.push('/history/add')} />
       </View>
       {/* Runda 69 (wydajność): FlatList renderuje tylko widoczne wiersze — przy 1000+ sesjach ekran otwierał się sekundy. */}
       <FlatList ref={list} data={ws} keyExtractor={w => w.id} initialNumToRender={15} windowSize={7} ListHeaderComponent={<>
         <DeloadHint />{/* 08.10.2026: deload A */}
         <HistoryCalendar byDay={byDay} selected={day} onSelect={setDay} onMonth={(y, m) => { setDay(null); setMonth({ y, m }); }} />
-        {!hasPlan() && !getState().planHintHidden ? <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 8 }}><Muted style={{ fontSize: 13, flex: 1 }}>{t('Ustaw plan tygodnia, by widzieć zaplanowane treningi i przesuwać je w kalendarzu.')}</Muted><Btn small kind="ghost" title={t('Ukryj')} accessibilityLabel={t('Ukryj zachętę do planu tygodnia')} onPress={() => setPlanHintHidden(true)} /></View> : null /* UX-16 A (audyt 0.10) */}
         {day ? <View testID="day-panel-wrap" onLayout={e => { const first = panelY.current == null; panelY.current = e.nativeEvent.layout.y; if (first) toPanel(); }}><DayPanel day={day} /></View> : null}
         {day || month ? <View style={{ flexDirection: 'row', marginBottom: 6 }}><Chip label={t('Pokaż wszystkie')} on={false} onPress={() => { setDay(null); setMonth(null); }} /></View> : null}
         {!day && month && !ws.length && all.length ? <Muted style={{ fontSize: 13, marginBottom: 8 }}>{t('Brak treningów w tym miesiącu.')}</Muted> : null}

@@ -1,6 +1,6 @@
 import { t, tp } from './i18n';
 import { fmtW, fmtVol, fmtNum, wu, KG_PER_LB, volOut } from './units';
-import { bodyMassFor, bodyMassLog, wallTs, getState, exById, volume, finishedWorkouts, setSummary, isBW, setLoad, loadOf, effectiveLoad, setVolume, blockMult, setScore, isWorking, workSetCount, repsOf, memoHist, memoHistBy, workoutsWith, volOf, fmtSec, fmtDist } from './store';
+import { bodyMassFor, bodyMassLog, wallTs, getState, exById, volume, finishedWorkouts, setSummary, shownLoad, isBW, setLoad, loadOf, effectiveLoad, setVolume, blockMult, setScore, isWorking, workSetCount, repsOf, memoHist, memoHistBy, workoutsWith, volOf, fmtSec, fmtDist } from './store';
 import { hasReps, hasWeight, hasTime, hasDistance, catalogKey, own, type Exercise, type Impl, type MetricType, type WSet, type Workout } from './seed';
 
 /*
@@ -209,7 +209,21 @@ function e1BwText(ex: Exercise, s: WSet, bm: number | undefined): string {
   return p == null ? t('e1RM {v} (masa ciała {d}; seria {s})', a) : t('e1RM {v} ({p}% masy ciała {d}; seria {s})', { ...a, p });
 }
 /** PR-y całego treningu (do podsumowania po zakończeniu). */
-export type WorkoutPR = { exercise: Exercise; set: WSet; kinds: string[]; /** runda 73: gotowe opisy do podsumowania (suma treningu, e1RM z serią) */ details: string[] };
+export type WorkoutPR = { exercise: Exercise; set: WSet; kinds: string[]; /** runda 73: gotowe opisy do podsumowania (suma treningu, e1RM z serią) */ details: string[];
+  /** Karta rekordów (decyzja właściciela 11.10.2026, pkt 7): pobite statystyki — nazwa, wartość i przyrost względem poprzedniego rekordu (ten sam `recordsFor`, z którego liczy prMap); kolejność jak w `details` */ stats: RecordStat[]; /** najlepsza seria ćwiczenia w tym treningu, np. „100 kg × 5” */ bestSet: string };
+/** Jedna pobita statystyka: `label` (np. „Objętość”, „e1RM”), `value` (np. „4 200 kg”), `delta` (np. „+300 kg”; null = brak przyrostu do pokazania). */
+export type RecordStat = { kind: string; label: string; value: string; delta: string | null; /** brak poprzedniego rekordu — „pierwszy wynik”, bez przyrostu */ first: boolean };
+/** Nazwa statystyki rekordu na karcie (rodzaje sum jak totalKind + e1RM). */
+export const recordLabel = (k: string): string => k === 'e1RM' ? t('e1RM') : k === 'objętość treningu' ? t('Objętość') : k === 'suma powtórzeń' ? t('Suma powtórzeń') : k === 'łączny czas' ? t('Łączny czas') : k === 'łączny dystans' ? t('Łączny dystans') : t(k);
+/** Przyrost „+300 kg”; brak poprzedniego rekordu (prev ≤ 0) albo zerowa różnica — null (karta pokazuje „pierwszy wynik”). */
+export const recordDelta = (diff: number, prev: number, fmt: (v: number) => string): string | null => prev > 0 && diff > 0 ? `+${fmt(diff)}` : null;
+/** Najlepsza seria ćwiczenia w treningu (setScore, serie robocze) — „100 kg × 5”; reszta metryk jak setSummary. */
+function bestSetText(ex: Exercise, w: Workout): string {
+  let best: WSet | null = null, bs = -Infinity;
+  for (const e of w.exercises) if (e.exerciseId === ex.id) for (const s of e.sets) if (isWorking(s)) { const sc = setScore(ex, s); if (sc > bs) { bs = sc; best = s; } }
+  if (!best) return '';
+  return (ex.metric ?? 'weight_reps') === 'weight_reps' && !isBW(ex) ? `${fmtW(shownLoad(ex, best))} × ${repsOf(best)}` : setSummary(ex, best);
+}
 export function workoutPRs(w: Workout): WorkoutPR[] {
   const map = prMap(w); const bm = bodyMassFor(w); const out: { exercise: Exercise; set: WSet; kinds: string[] }[] = [];
   w.exercises.forEach(e => { const ex = exById(e.exerciseId); if (!ex) return; e.sets.forEach(s => { const k = map.get(s.id); if (k) out.push({ exercise: ex, set: s, kinds: k }); }); });
@@ -218,9 +232,25 @@ export function workoutPRs(w: Workout): WorkoutPR[] {
   const order = (x: { set: WSet }) => x.set.completedAt ?? 0; const last = new Map<string, typeof out[number]>();
   for (const x of [...out].sort((a, b) => order(a) - order(b))) for (const k of x.kinds) last.set(x.exercise.id + '|' + k, x);
   const total = (ex: Exercise) => w.exercises.filter(e => e.exerciseId === ex.id).reduce((a, e) => a + e.sets.reduce((b, s) => b + setTotal(ex, s, e.impl), 0), 0);
+  const prev = new Map<string, Records>(); const before = (ex: Exercise) => { let r = prev.get(ex.id); if (!r) { r = recordsFor(ex, w.startedAt); prev.set(ex.id, r); } return r; }; /* te same „poprzednie rekordy”, z których startuje prMap */
+  const statOf = (x: { exercise: Exercise; set: WSet }, k: string): RecordStat => {
+    const rec = before(x.exercise);
+    if (k === 'e1RM') { const v = recE1(x.exercise, x.set, bm); return { kind: k, label: recordLabel(k), value: isBW(x.exercise) ? fmtE1(x.exercise, v, bm) : fmtW(v), delta: rec.e1rmAny ? recordDelta(v - rec.bestE1rm, rec.bestE1rm, fmtW) : null, first: !rec.e1rmAny || rec.bestE1rm <= 0 }; }
+    const v = total(x.exercise); return { kind: k, label: recordLabel(k), value: fmtTotal(x.exercise, v), delta: rec.totalAny ? recordDelta(v - rec.bestTotal, rec.bestTotal, d => fmtTotal(x.exercise, d)) : null, first: !rec.totalAny || rec.bestTotal <= 0 };
+  };
   return out.map(x => ({ ...x, kinds: x.kinds.filter(k => last.get(x.exercise.id + '|' + k) === x) })).filter(x => x.kinds.length)
     .map(x => ({ ...x, details: [...x.kinds].sort((a, b) => (a === 'e1RM' ? 1 : 0) - (b === 'e1RM' ? 1 : 0)) /* T13: najpierw suma (główny rekord), potem e1RM */
-      .map(k => k === 'e1RM' ? (isBW(x.exercise) ? e1BwText(x.exercise, x.set, bm) : t('e1RM {v} (seria {s})', { v: fmtW(recE1(x.exercise, x.set, bm)), s: setSummary(x.exercise, x.set) })) : t('{k}: {v}', { k: t(k), v: fmtTotal(x.exercise, total(x.exercise)) })) }));
+      .map(k => k === 'e1RM' ? (isBW(x.exercise) ? e1BwText(x.exercise, x.set, bm) : t('e1RM {v} (seria {s})', { v: fmtW(recE1(x.exercise, x.set, bm)), s: setSummary(x.exercise, x.set) })) : t('{k}: {v}', { k: t(k), v: fmtTotal(x.exercise, total(x.exercise)) })),
+      stats: [...x.kinds].sort((a, b) => (a === 'e1RM' ? 1 : 0) - (b === 'e1RM' ? 1 : 0)).map(k => statOf(x, k)), bestSet: bestSetText(x.exercise, w) }));
+}
+
+/** Karta rekordów: jeden wpis na ćwiczenie (workoutPRs ma wpis na serię, więc suma i e1RM jednego ćwiczenia mogą być osobno). Kolejność: pierwsze wystąpienie. */
+export type RecordCard = { exercise: Exercise; stats: RecordStat[]; bestSet: string };
+export function recordCards(prs: readonly WorkoutPR[]): RecordCard[] {
+  const out: RecordCard[] = [];
+  for (const p of prs) { let c = out.find(x => x.exercise.id === p.exercise.id); if (!c) { c = { exercise: p.exercise, stats: [], bestSet: p.bestSet }; out.push(c); } c.stats.push(...p.stats); }
+  for (const c of out) c.stats.sort((a, b) => (a.kind === 'e1RM' ? 1 : 0) - (b.kind === 'e1RM' ? 1 : 0));
+  return out;
 }
 
 /** E3 (audyt 0.10: X-08, LOG-06): liczba rekordów treningu — JEDNA funkcja dla okna po treningu i karty „Ostatni trening” (decyzja T13: liczba
@@ -289,8 +319,12 @@ export function setsByMuscle(start: number, end: number): Record<string, number>
 /** Objętość per partia w tygodniu (uwaga właściciela 06.10.2026: „obciążenie per partia analogicznie”) — objętość serii roboczych
  * (jak „Objętość tygodniowo”), partia główna 1, pomocnicza 0,5 (jak serie per partia). Wartości w kg (wyświetlanie: volOut). */
 export function weeklyVolumeByMuscle(weekStart: number): Record<string, number> {
-  const out: Record<string, number> = {}; const d = new Date(weekStart); const end = new Date(d.getFullYear(), d.getMonth(), d.getDate() + 7).getTime();
-  for (const w of finishedWorkouts()) { const x = wallTs(w); if (x < weekStart || x >= end) continue; /* J3 */
+  const d = new Date(weekStart); return volumeByMuscle(weekStart, new Date(d.getFullYear(), d.getMonth(), d.getDate() + 7).getTime());
+}
+/** Objętość per partia w okresie [start, end) — ta sama reguła co tygodniowa (jedna implementacja; „Progresja”, lib/progress.ts). */
+export function volumeByMuscle(start: number, end: number): Record<string, number> {
+  const out: Record<string, number> = {};
+  for (const w of finishedWorkouts()) { const x = wallTs(w); if (x < start || x >= end) continue; /* J3 */
     w.exercises.forEach(e => { const ex = exById(e.exerciseId); if (!ex) return; const v = e.sets.filter(isWorking).reduce((a, s) => a + setVolume(ex, s, e.impl), 0); if (!v) return;
       (ex.muscles ?? []).forEach(mu => { out[mu] = (out[mu] ?? 0) + v; }); (ex.secondaryMuscles ?? []).forEach(mu => { out[mu] = (out[mu] ?? 0) + v * 0.5; }); }); }
   return out;

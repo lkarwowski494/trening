@@ -5,10 +5,11 @@
  */
 import * as store from '@/lib/store';
 import * as plan from '@/lib/plan';
-import { mainStart, otherStarts, planSummary, startableTemplates, NEXT_PLAN_DAYS } from '@/lib/home';
+import { mainStart, otherStarts, startableTemplates, NEXT_PLAN_DAYS } from '@/lib/home';
 import type { Template } from '@/lib/seed';
 import { fresh, addWorkout, saved, withDemoTemplates, pressAlert } from './helpers';
 import { renderApp, flushAll, screen, tap, act, fromHome, go } from './app';
+import { within } from '@testing-library/react-native';
 
 jest.setTimeout(60000);
 const NOW = new Date(2026, 9, 8, 9); /* czwartek; tydzień pon 5 … nd 11 października 2026 */
@@ -26,7 +27,7 @@ const order = (...ids: string[]) => { const all = screen.UNSAFE_root.findAll(n =
 describe('logika (lib/home.ts)', () => {
   beforeEach(() => { jest.useFakeTimers({ now: NOW }); });
   test('puste dane: „Pusty trening”, arkusz bez dubla; startableTemplates pomija puste i zarchiwizowane', async () => {
-    await fresh(); expect(mainStart()).toEqual({ kind: 'empty' }); expect(otherStarts()).toEqual([]); expect(planSummary()).toBeNull();
+    await fresh(); expect(mainStart()).toEqual({ kind: 'empty' }); expect(otherStarts()).toEqual([]);
     const e = store.newTemplate(); expect(startableTemplates()).toEqual([]); void e;
     const t = withDemoTemplates(); t[1].archived = true; store.save(); expect(startableTemplates().map(x => x.id)).toEqual([t[0].id, t[2].id, t[3].id]);
   });
@@ -58,48 +59,47 @@ describe('logika (lib/home.ts)', () => {
     const m = mainStart(); expect(m).toEqual({ kind: 'plan', tpl: t[0] });
     expect(otherStarts(m)).toEqual([{ kind: 'planOther', tpl: t[2], date: '2026-10-09' }, { kind: 'repeat', name: 'Nogi', date: at(6) }, { kind: 'template', count: 4 }, { kind: 'empty' }]);
   });
-  test('wiersz planu: nazwa, dni z treningiem w tygodniu planu, najbliższy po dziś', async () => {
-    await fresh(); const t = withDemoTemplates(); setPlan(t, { 3: 0, 5: 1, 6: 2 }); plan.setPlanName('Góra / Dół');
-    expect(planSummary()).toEqual({ name: 'Góra / Dół', days: 3, next: { date: '2026-10-10', templateId: t[1].id } });
-  });
 });
 
 describe('ekran', () => {
-  test('bez planu: duży przycisk = następny szablon (osobna etykieta od listy), podpis „następny po”, start; karta Planowania rozwinięta pod startem', async () => {
+  test('bez planu: duży przycisk = następny szablon, podpis „następny po”, start; nagłówek „Bez planu tygodnia” z „Ustaw plan” nad kalendarzem (bez karty Planowania i listy szablonów)', async () => {
     const t = await boot(t => { addWorkout(at(6), [['Back Squat', [{ weight: 100, reps: 5 }]]], t[0].name).templateId = t[0].id; store.save(); });
     const b = screen.getByTestId('start-main'); expect(b.props.accessibilityLabel).toBe(`Start następnego treningu: ${t[1].name}`);
     expect(screen.getByText(`Start: ${t[1].name}`)).toBeTruthy(); expect(screen.getByText(`następny po: ${t[0].name} · ${t[1].items.length} ćw.`)).toBeTruthy();
-    expect(screen.getAllByLabelText(`Start: ${t[1].name}`)).toHaveLength(1); /* lista szablonów zostaje — bez dubla etykiety */
-    const [tp, sp, pc, ws] = order('today-plan', 'start-panel', 'planning-card', 'week-tiles'); expect(tp).toBeLessThan(sp); expect(sp).toBeLessThan(pc); expect(pc).toBeLessThan(ws);
-    for (const l of ['+ Nowy szablon', 'Plan z moich szablonów', 'Wygeneruj szablony i plan']) expect(labels()).toContain(l);
-    expect(screen.getByText('Planowanie')).toBeTruthy(); /* nagłówek karty (wersaliki wg języka — textTransform) */ expect(screen.getByLabelText('Inny trening').props.accessibilityHint).toBe('Inny z planu, powtórz ostatni, z szablonu albo pusty.');
+    expect(screen.queryAllByLabelText(`Start: ${t[1].name}`)).toHaveLength(0); /* 11.10.2026 (docs/22): lista „Zacznij z szablonu” usunięta — start szablonu przez „Inny trening” */
+    expect(screen.queryByText('Zacznij z szablonu')).toBeNull(); expect(screen.queryByTestId('planning-card')).toBeNull();
+    const [tp, sp, ws] = order('today-plan', 'start-panel', 'week-tiles'); expect(tp).toBeLessThan(sp); expect(sp).toBeLessThan(ws);
+    for (const l of ['+ Nowy szablon', 'Plan z moich szablonów', 'Wygeneruj szablony i plan']) expect(labels()).not.toContain(l); /* akcje planowania tylko na ekranie Planowania */
+    expect(within(screen.getByTestId('plan-header')).getByText('Bez planu tygodnia')).toBeTruthy(); expect(screen.getByLabelText('Ustaw plan')).toBeTruthy(); expect(screen.queryByLabelText('Planowanie')).toBeNull();
+    expect(screen.getByLabelText('Inny trening').props.accessibilityHint).toBe('Inny z planu, powtórz ostatni, z szablonu albo pusty.');
     expect(screen.queryByText('Ustawienia')).toBeNull(); /* Ustawienia tylko w „Więcej” */
     await tap(b); await flushAll(10); expect(S().active?.templateId).toBe(t[1].id);
   });
-  test('„Plan z moich szablonów” → generator w trybie własnych szablonów (?mode=own)', async () => {
+  test('„Ustaw plan” → Planowanie; stamtąd „Plan z moich szablonów” → generator w trybie własnych szablonów (?mode=own)', async () => {
     await boot(t => { addWorkout(at(6), [['Back Squat', [{ weight: 100, reps: 5 }]]], t[0].name); });
-    await tap(screen.getByLabelText('Plan z moich szablonów')); await flushAll(10);
+    await tap(screen.getByLabelText('Ustaw plan')); await flushAll(10); expect(screen.getByText('Plan powtarza się co tydzień. Pojedyncze dni zmienisz w Kalendarzu.')).toBeTruthy();
+    await tap(screen.getByText('Plan z moich szablonów')); await flushAll(10);
     expect(screen.UNSAFE_root.findAll(n => (n.type as unknown) === 'RNSScreenStackHeaderConfig').map(n => n.props.title)).toContain('Plan z moich szablonów'); /* app/generator.tsx ?mode=own (feat-plan-moje) */
   });
-  test('z planem: „Start: <dzisiejszy>” z podpisem, arkusz z „Inny z planu”, Planowanie zwinięte do wiersza niżej (rozwija się)', async () => {
+  test('z planem: „Start: <dzisiejszy>” z podpisem, arkusz z „Inny z planu”; nagłówek „Plan: nazwa” z „Planowaniem” nad kalendarzem (bez wiersza pod „Ten tydzień”)', async () => {
     const t = await boot(t => { setPlan(t, { 3: 0, 4: 2 }); plan.setPlanName('Góra / Dół'); addWorkout(at(6), [['Back Squat', [{ weight: 100, reps: 5 }]]], 'Nogi'); });
     const b = screen.getByTestId('start-main'); expect(b.props.accessibilityLabel).toBe(`Start zaplanowanego treningu: ${t[0].name}`);
     expect(screen.getByText(`dziś w planie · ${t[0].items.length} ćw.`)).toBeTruthy();
-    const [sp, ws, pc] = order('start-panel', 'week-tiles', 'planning-card'); expect(sp).toBeLessThan(ws); expect(ws).toBeLessThan(pc);
-    const row = screen.getByTestId('planning-row'); expect(row.props.accessibilityHint).toBe('Rozwija planowanie.'); expect(row.props.accessibilityLabel).toBe(`Plan: Góra / Dół · 2 dni · następny: ${store.fmtDayKey('2026-10-09')} ${t[2].name}`);
-    expect(labels()).not.toContain('Plan z moich szablonów'); await tap(row); await flushAll(5); expect(labels()).toContain('Plan z moich szablonów'); expect(screen.getByTestId('planning-row').props.accessibilityState).toEqual({ expanded: true });
+    const [hd, st, sp, ws] = order('plan-header', 'week-strip', 'start-panel', 'week-tiles'); expect(hd).toBeLessThan(st); expect(st).toBeLessThan(sp); expect(sp).toBeLessThan(ws);
+    expect(within(screen.getByTestId('plan-header')).getByText('Plan: Góra / Dół')).toBeTruthy(); expect(screen.queryByTestId('planning-row')).toBeNull(); expect(screen.queryByText('Plan tygodnia')).toBeNull();
+    expect(labels()).not.toContain('Plan z moich szablonów'); await tap(screen.getByLabelText('Planowanie')); await flushAll(10); expect(screen.getByText('Plan powtarza się co tydzień. Pojedyncze dni zmienisz w Kalendarzu.')).toBeTruthy(); await go('/'); await flushAll(10);
     await tap(screen.getByLabelText('Inny trening')); await flushAll(5);
     const l = labels(); const idx = [`Inny z planu: ${t[2].name}`, 'Powtórz ostatni (Nogi)', 'Z szablonu', 'Pusty trening'].map(x => l.indexOf(x));
     expect(idx.every(i => i >= 0)).toBe(true); expect([...idx].sort((a, b) => a - b)).toEqual(idx);
     expect(screen.getByText(`${t[2].name} · w planie na: jutro`)).toBeTruthy(); expect(screen.getByText('4 szablony')).toBeTruthy();
     await tap(screen.getByLabelText(`Inny z planu: ${t[2].name}`)); await flushAll(10); expect(S().active?.templateId).toBe(t[2].id);
   });
-  test('arkusz: „Z szablonu” → Szablony, „Anuluj” zamyka, „Pusty trening” startuje pusty', async () => {
+  test('arkusz: „Z szablonu” → pełnoekranowy wybór szablonu (P2 B), „Anuluj” zamyka, „Pusty trening” startuje pusty', async () => {
     await boot(t => { addWorkout(at(6), [['Back Squat', [{ weight: 100, reps: 5 }]]], t[0].name); });
     await tap(screen.getByLabelText('Inny trening')); await flushAll(5); expect(screen.getByTestId('other-sheet')).toBeTruthy();
     await tap(screen.getByLabelText('Anuluj')); await flushAll(5); expect(screen.queryByTestId('other-sheet')).toBeNull();
     await tap(screen.getByLabelText('Inny trening')); await flushAll(5); await tap(screen.getByLabelText('Z szablonu')); await flushAll(10);
-    expect(screen.queryByTestId('other-sheet')).toBeNull(); expect(S().active).toBeNull();
+    expect(screen.queryByTestId('other-sheet')).toBeNull(); expect(S().active).toBeNull(); expect(screen.getByLabelText(`Start: ${S().templates.find(x => !x.archived)!.name}`)).toBeTruthy();
     await go('/'); await flushAll(10); await fromHome('Pusty trening'); await flushAll(10); expect(S().active?.exercises).toEqual([]);
   });
   test('bez szablonów (po pierwszym treningu): duży „Pusty trening”, w arkuszu tylko powtórz ostatni', async () => {
@@ -120,7 +120,7 @@ describe('ekran', () => {
   test('EN: etykiety i podpisy po angielsku', async () => {
     const t = await boot(t => { setPlan(t, { 3: 0 }); addWorkout(at(6), [['Back Squat', [{ weight: 100, reps: 5 }]]], 'Legs'); }, 'en');
     expect(screen.getByTestId('start-main').props.accessibilityLabel).toMatch(new RegExp(`^.+: ${t[0].name}$`)); expect(screen.getByText(`planned for today · ${t[0].items.length} ex.`)).toBeTruthy();
-    expect(screen.getByLabelText('Other workout')).toBeTruthy(); expect(screen.getByTestId('planning-row').props.accessibilityLabel).toMatch(/^Plan: .* · 1 day · next: /);
+    expect(screen.getByLabelText('Other workout')).toBeTruthy(); expect(within(screen.getByTestId('plan-header')).getByText(/^Plan: /)).toBeTruthy(); expect(screen.getByLabelText('Planning')).toBeTruthy();
   });
   test('restart: duży przycisk liczony z zapisanych danych (ten sam), arkusz zamknięty', async () => {
     const t = await boot(t => { addWorkout(at(6), [['Back Squat', [{ weight: 100, reps: 5 }]]], t[2].name).templateId = t[2].id; store.save(); });

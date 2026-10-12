@@ -126,9 +126,9 @@ describe('(2) trening wstecz przy istniejących miejscach', () => {
     const w = committed(edit.commitDraft(d.key)); expect(w.locationId).toBe('home'); expect(prevW(ex(DB).id, 'dumbbell')).toEqual([18, 18]);
   });
 
-  test('ekran: + Dodaj trening wstecz z szablonem z miejscem — „📍 Dom”, wartości sprzed daty (8c), zapis z miejscem (UI)', async () => {
+  test('ekran: Dopisz trening wstecz z szablonem z miejscem — „📍 Dom”, wartości sprzed daty (8c), zapis z miejscem (UI)', async () => {
     await fresh(); const { home } = placesAndHistory(); homeTpl(home); await renderApp({ saved: snapshot() });
-    await go('/history'); await flushAll(20); await tap(screen.getByText('+ Dodaj trening wstecz')); await flushAll(20);
+    await go('/history'); await flushAll(20); await tap(screen.getByText('Dopisz trening wstecz')); await flushAll(20);
     await type(screen.getByLabelText('Data (RRRR-MM-DD)'), edit.dateText(day(8))); await flushAll(800); await tap(screen.getByText('Dom')); await flushAll(50);
     expect(screen.getByText('📍 Dom')).toBeTruthy(); expect(screen.getAllByLabelText(/^kg/)[0].props.value).toBe('20');
     await tap(screen.getByText('Zapisz')); await flushAll(50);

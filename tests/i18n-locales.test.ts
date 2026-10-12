@@ -67,7 +67,7 @@ test('nazwa aplikacji w tekstach = APP_NAME danego języka (bez starej nazwy „
 
 test('nazwy w App Store (store/app-store-names.json): max 30 znaków, przed dwukropkiem APP_NAME języka', () => {
   const { names } = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'store', 'app-store-names.json'), 'utf8')) as { names: Record<string, string> };
-  const lang = (loc: string) => { const b = loc.split('-')[0]; return (b === 'no' ? 'nb' /* App Store: „no”, iOS/aplikacja: „nb” (bokmål) */ : b) as (typeof LANGS)[number]; };
+  const lang = (loc: string) => { if (loc === 'zh-Hant') return 'zh-Hant' /* fala 4: lokalizacja App Store Connect „Chinese (Traditional)” = język aplikacji zh-Hant */; const b = loc.split('-')[0]; return (b === 'no' ? 'nb' /* App Store: „no”, iOS/aplikacja: „nb” (bokmål) */ : b) as (typeof LANGS)[number]; };
   for (const [loc, name] of Object.entries(names)) {
     expect([loc, LANGS.includes(lang(loc)), [...name].length <= 30, name.startsWith(`${APP_NAME[lang(loc)]}: `)]).toEqual([loc, true, true, true]);
   }

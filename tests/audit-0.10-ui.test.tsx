@@ -11,6 +11,7 @@ import { equipEntry } from '@/lib/equipment';
 import { addLocation } from '@/lib/locations';
 import type { Template, Workout } from '@/lib/seed';
 import { fresh, ex, addWorkout, pressAlert, saved } from './helpers';
+import { within } from '@testing-library/react-native';
 import { renderApp, flushAll, screen, go, tap, type, act, fireEvent, expandEquip, swipeDelete, deleteActions } from './app';
 import { loc } from './locations-fixtures';
 
@@ -124,13 +125,13 @@ describe('G5 — konwencje okien i SwipeRow', () => {
 });
 
 describe('H1–H4 — nawigacja, nazwy, formaty, pierwsze kroki', () => {
-  test('H1: „Jak to działa” (Pierwsze kroki) otwiera temat „Trening i serie” rozwinięty i odhaczony', async () => {
-    await boot(); await tap(screen.getByText('Jak to działa')); await flushAll(10);
+  test('H1: „Przewodnik” (Pierwsze kroki, krok 3) otwiera temat „Trening i serie” rozwinięty i odhaczony', async () => {
+    await boot(); await tap(screen.getByLabelText('Przewodnik po funkcjach')); await flushAll(10);
     expect(screen.getByLabelText('Trening i serie, przeczytane').props.accessibilityState).toEqual({ expanded: true }); expect(S().guideSeen).toEqual(['workout']);
   });
-  test('H2: jedna nazwa — „Miejsca i sprzęt” (Więcej, Ustawienia), „Kopia zapasowa”, „Odrzuć trening”; komunikat autozapisu wskazuje Kalendarz', async () => {
+  test('H2: jedna nazwa — „Miejsca i sprzęt” (Więcej; z Ustawień zniknęło), „Kopia zapasowa”, „Odrzuć trening”; komunikat autozapisu wskazuje Kalendarz', async () => {
     await boot(undefined, '/more'); expect(screen.getByText('Miejsca i sprzęt')).toBeTruthy(); expect(screen.getByText('Kopia zapasowa (eksport / import)')).toBeTruthy();
-    await go('/more/settings'); await flushAll(10); expect(screen.getByText('Miejsca i sprzęt')).toBeTruthy(); expect(screen.queryByText('Miejsca treningu')).toBeNull();
+    await go('/more/settings'); await flushAll(10); expect(screen.queryByText('Miejsca i sprzęt')).toBeNull(); /* 11.10.2026: tylko w Więcej */ expect(screen.queryByText('Miejsca treningu')).toBeNull();
     const { EN } = require('@/lib/i18n.en'); expect(EN['Trening z {d} {s} nie miał aktywności od 6 godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w Kalendarzu.']).toMatch(/Calendar\.$/);
     expect('Znajdziesz go w Historii' in EN).toBe(false);
   });
@@ -139,26 +140,26 @@ describe('H1–H4 — nawigacja, nazwy, formaty, pierwsze kroki', () => {
     const t = mkTpl(); await act(async () => { await store.flush(); }); await renderApp({ saved: JSON.parse(JSON.stringify(saved())) }); await go(`/template/${t.id}`); await flushAll(10);
     expect(screen.getByText('zakres 6–8 · przerwa 1:30')).toBeTruthy(); expect(screen.getByText('przerwa 2:00')).toBeTruthy();
   });
-  test('H4 (UX-12 A): Pierwsze kroki — dwa przyciski w kroku 1, krok 2 nieaktywny bez szablonu, krok „Miejsca i sprzęt”, pusty stan pod spodem ukryty', async () => {
-    await boot(); const fs = screen.getByTestId('first-steps');
-    expect(screen.getAllByText('+ Nowy szablon').length).toBe(1); expect(screen.getByText('Wygeneruj szablony i plan')).toBeTruthy();
-    expect(screen.getByText('Najpierw utwórz szablon.')).toBeTruthy(); expect(screen.queryByText('Plan tygodnia')).toBeNull();
-    expect(screen.getByText('Opcjonalnie: dodaj miejsce i sprzęt — wybór ćwiczeń i podpowiedzi ciężarów dopasują się do niego.')).toBeTruthy();
-    expect(screen.queryByText('Nie masz jeszcze szablonów — utwórz pierwszy albo zacznij pusty trening.')).toBeNull(); void fs;
-    await tap(screen.getByText('+ Nowy szablon')); await flushAll(10); expect(screen.getByLabelText('Zapisz szablon')).toBeTruthy(); /* od razu edycja (edycja na żądanie) */
+  test('H4 (UX-12 A, zmienione 11.10.2026 przez P4 A): Pierwsze kroki — 3 kroki, każdy z jednym przyciskiem; „Planowanie” prowadzi do Planowania, gdzie jest „+ Nowy szablon”; pusty stan pod spodem ukryty', async () => {
+    await boot(); const fs = within(screen.getByTestId('first-steps'));
+    expect(fs.getAllByText('Planowanie')).toHaveLength(2); expect(fs.getAllByText('Przewodnik')).toHaveLength(1); expect(fs.queryByText('+ Nowy szablon')).toBeNull(); expect(fs.queryByText('Miejsca i sprzęt')).toBeNull();
+    expect(screen.queryByText('Najpierw utwórz szablon.')).toBeNull(); expect(screen.queryByText('Plan tygodnia')).toBeNull();
+    expect(screen.queryByText('Nie masz jeszcze szablonów — utwórz pierwszy albo zacznij pusty trening.')).toBeNull();
+    await tap(fs.getAllByText('Planowanie')[0]); await flushAll(10); expect(screen.getByText('Wygeneruj szablony i plan')).toBeTruthy();
+    await tap(screen.getAllByLabelText(/^poniedziałek, /)[0]); await flushAll(5); await tap(screen.getByLabelText('poniedziałek: + Nowy szablon')); await flushAll(10); expect(screen.getByLabelText('Zapisz szablon')).toBeTruthy(); /* od razu edycja (edycja na żądanie) */
   });
   test('H4: jednostka świeżej instalacji z regionu (en-US → lb, en-GB/pl → kg); „Co nowego” dla nowej osoby z dopiskiem', async () => {
     expect(deviceUnit('en-US')).toBe('lb'); expect(deviceUnit('en_US')).toBe('lb'); expect(deviceUnit('en-GB')).toBe('kg'); expect(deviceUnit('pl-PL')).toBe('kg'); expect(deviceUnit('en')).toBe('kg'); expect(LB_REGIONS).toContain('US');
     global.__kv.clear(); global.__locales = [{ languageCode: 'en', languageTag: 'en-US' }]; store.__resetForTests(); await store.init(); expect(S().settings.unit).toBe('lb');
     await boot(); await tap(screen.getByTestId('whats-new-i')); await flushAll(5); expect(screen.getByText('Zaczynasz od tej wersji — poniżej zmiany dla osób, które korzystały z poprzednich. Na start przyda się przewodnik.')).toBeTruthy();
   });
-  test('UX-16 A: „Ukryj” zachętę do planu (karta i Kalendarz), zapis i migrate; kafelki prowadzą do Postępów; „Powtórz ostatni” niżej przy innym treningu z planu', async () => {
+  test('UX-16 A (zmienione 11.10.2026): bez „Ukryj” i tekstu zachęty (nagłówek „Bez planu tygodnia · Ustaw plan” jest stały); dane planHintHidden zostają (zapis, migrate); kafelki prowadzą do Postępów; „Powtórz ostatni” niżej przy innym treningu z planu', async () => {
     jest.useFakeTimers({ now: new Date(2026, 9, 8, 9) });
     await boot(() => { addWorkout(new Date(2026, 9, 6, 18).getTime(), [['Back Squat', [{ weight: 100, reps: 5 }]]], 'Nogi'); });
-    expect(screen.getByText('Bez planu tygodnia')).toBeTruthy(); await tap(screen.getAllByLabelText('Ukryj zachętę do planu tygodnia')[0]); await flushAll(5);
-    expect(S().planHintHidden).toBe(true); expect(screen.queryByText('Bez planu tygodnia')).toBeNull(); expect(screen.getAllByText('Ten tydzień').length).toBeGreaterThan(0);
+    expect(screen.getByText('Bez planu tygodnia')).toBeTruthy(); expect(screen.queryByLabelText('Ukryj zachętę do planu tygodnia')).toBeNull(); expect(screen.queryByText('Ustaw plan tygodnia, by widzieć tu dzisiejszy trening i dostawać przypomnienie.')).toBeNull();
+    expect(screen.getAllByText('Ten tydzień').length).toBeGreaterThan(0);
     await go('/history'); await flushAll(10); expect(screen.queryByLabelText('Ukryj zachętę do planu tygodnia')).toBeNull();
-    await act(async () => { await store.flush(); }); const raw = saved(); expect(raw.planHintHidden).toBe(true);
+    (S() as unknown as Record<string, unknown>).planHintHidden = true; store.save(); await act(async () => { await store.flush(); }); const raw = saved(); expect(raw.planHintHidden).toBe(true); /* pole zostaje w danych (zgodność), bez UI */
     (raw as unknown as Record<string, unknown>).planHintHidden = 'tak'; await fresh(raw); expect('planHintHidden' in S()).toBe(false); /* migrate: tylko true */
     await renderApp({ saved: JSON.parse(JSON.stringify(saved())) }); expect(screen.getByTestId('week-tiles').props.accessibilityHint).toBe('Otwiera Postępy.'); await tap(screen.getByTestId('week-tiles')); await flushAll(10); expect(screen.UNSAFE_root.findAll((n: { type: unknown }) => n.type === 'RNSScreenStackHeaderConfig').map((n: { props: { title?: string } }) => n.props.title)).toContain('Postępy');
     await fresh(); const t = mkTpl('Pull'); const w = addWorkout(new Date(2026, 9, 7, 18).getTime(), [['Back Squat', [{ weight: 100, reps: 5 }]]], 'Nogi'); void w; plan.setWeekDay(3, t.id); await act(async () => { await store.flush(); });
@@ -210,19 +211,25 @@ describe('H5 — „Zapisz jako szablon” i „Zaktualizować szablon?” (tylk
     await go(`/history/${id}`); await flushAll(10); const b = screen.getByText('Zapisz jako szablon'); expect(screen.getByLabelText('Zapisz jako szablon').props.accessibilityHint).toBe('Nowy szablon z ćwiczeniami i seriami tej sesji.');
     await tap(b); await flushAll(10); expect(S().templates.map(x => x.name)).toContain('Moje nogi'); expect(screen.getByLabelText('Start: Moje nogi')).toBeTruthy();
   });
-  test('ekran: po treningu z dodanym ćwiczeniem — „Zaktualizować szablon?”: „Tylko ten raz” zostawia szablon, „Zaktualizuj szablon” go zmienia', async () => {
-    for (const choice of ['Tylko ten raz', 'Zaktualizuj szablon']) {
+  test('ekran: po treningu z dodanym ćwiczeniem — bez okna; na ekranie sesji „Zapisz zmiany w szablonie” (8A, 11.10.2026): bez stuknięcia szablon bez zmian, ze stuknięciem zmieniony i przycisk znika', async () => {
+    for (const choice of ['pomiń', 'zapisz']) {
       let tid = ''; await boot(() => { tid = mkTpl().id; store.startFromTemplate(S().templates.find(x => x.id === tid)!); store.addExerciseToActive(ex('Plank')); const a = S().active!; a.exercises[0].sets[1].done = true; store.save(a); });
       await tap(screen.getAllByText('Zakończ')[0]); await act(async () => { pressAlert('Zakończyć trening?', 'Zakończ'); }); await flushAll(600);
-      const al = alertOf('Zaktualizować szablon „Push”?')!; expect(al.msg).toBe('Dodane: Plank.\nSzablon zmieni się tylko po „Zaktualizuj szablon”.');
-      expect(al.buttons!.map(b => [b.text, b.style])).toEqual([['Tylko ten raz', 'cancel'], ['Zaktualizuj szablon', undefined]]);
-      await act(async () => { pressAlert('Zaktualizować szablon „Push”?', choice); }); await flushAll(5);
-      expect(S().templates.find(x => x.id === tid)!.items.length).toBe(choice === 'Tylko ten raz' ? 2 : 3);
+      expect(alertOf('Zaktualizować szablon „Push”?')).toBeUndefined(); /* okna już nie ma */
+      expect(screen.getByLabelText('Zapisz zmiany w szablonie').props.accessibilityHint).toBe('Dodane: Plank.'); expect(S().templates.find(x => x.id === tid)!.items.length).toBe(2);
+      if (choice === 'zapisz') { await tap(screen.getByText('Zapisz zmiany w szablonie')); await flushAll(5); expect(screen.queryByText('Zapisz zmiany w szablonie')).toBeNull(); expect(screen.getByText('Szablon zaktualizowany.')).toBeTruthy(); }
+      expect(S().templates.find(x => x.id === tid)!.items.length).toBe(choice === 'pomiń' ? 2 : 3);
     }
+  });
+  test('ekran: szablon usunięty po treningu — przycisku „Zapisz zmiany w szablonie” nie ma', async () => {
+    let tid = ''; await boot(() => { tid = mkTpl().id; store.startFromTemplate(S().templates.find(x => x.id === tid)!); store.addExerciseToActive(ex('Plank')); const a = S().active!; a.exercises[0].sets[1].done = true; store.save(a); });
+    await tap(screen.getAllByText('Zakończ')[0]); await act(async () => { pressAlert('Zakończyć trening?', 'Zakończ'); }); await flushAll(600);
+    expect(screen.getByText('Zapisz zmiany w szablonie')).toBeTruthy(); await act(async () => { store.deleteTemplate(tid); }); await flushAll(5);
+    expect(screen.queryByText('Zapisz zmiany w szablonie')).toBeNull();
   });
   test('ekran: skład bez zmian — bez pytania', async () => {
     let tid = ''; await boot(() => { tid = mkTpl().id; store.startFromTemplate(S().templates.find(x => x.id === tid)!); const a = S().active!; a.exercises[0].sets[1].done = true; store.save(a); });
-    await tap(screen.getAllByText('Zakończ')[0]); await act(async () => { pressAlert('Zakończyć trening?', 'Zakończ'); }); await flushAll(600); expect(alertOf('Zaktualizować szablon „Push”?')).toBeUndefined();
+    await tap(screen.getAllByText('Zakończ')[0]); await act(async () => { pressAlert('Zakończyć trening?', 'Zakończ'); }); await flushAll(600); expect(alertOf('Zaktualizować szablon „Push”?')).toBeUndefined(); expect(screen.queryByText('Zapisz zmiany w szablonie')).toBeNull();
   });
 });
 
@@ -247,8 +254,8 @@ describe('trening w toku: notatka szablonu, licznik serii roboczych, notka medyc
 });
 
 describe('F7 — przyciski przejścia bez podwójnego ekranu', () => {
-  test('podwójne „Plan tygodnia” w Kalendarzu otwiera jeden ekran planu', async () => {
-    await boot(undefined, '/history'); const b = screen.getByText('Plan tygodnia'); await act(async () => { fireEvent.press(b); fireEvent.press(b); }); await flushAll(10); /* oba w jednym act — jak dwa tapnięcia w ~100 ms (testowy słuchacz nawigacji przesuwa zegar po każdym przejściu) */
+  test('podwójne „Planowanie” w Kalendarzu otwiera jeden ekran planu', async () => {
+    await boot(undefined, '/history'); const b = screen.getByText('Planowanie'); await act(async () => { fireEvent.press(b); fireEvent.press(b); }); await flushAll(10); /* oba w jednym act — jak dwa tapnięcia w ~100 ms (testowy słuchacz nawigacji przesuwa zegar po każdym przejściu) */
     const { store: rs } = require('expo-router/build/global-state/router-store'); const names: string[] = [];
     const walk = (st: { routes?: { name: string; state?: unknown }[] } | undefined) => st?.routes?.forEach(r => { names.push(r.name); walk(r.state as never); }); walk(rs.navigationRef.getRootState());
     expect(names.filter(n => n === 'plan')).toHaveLength(1);

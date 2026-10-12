@@ -244,7 +244,7 @@ describe('equipment.fillGym', () => {
 describe('i18n.isLang', () => {
   test('tylko obsługiwane kody języków', () => {
     for (const l of i18n.LANGS) expect(i18n.isLang(l)).toBe(true);
-    for (const x of ['auto', 'ja' /* japoński — nieobsługiwany (de od 07.10.2026 jest) */, 'no' /* norweski w aplikacji to „nb” */, 'PL', '', 'pl-PL', null, undefined, 1, {}, ['pl']]) expect(i18n.isLang(x)).toBe(false);
+    for (const x of ['auto', 'th' /* tajski — nieobsługiwany (de od 07.10.2026 jest, ja od fali 4 09.10.2026) */, 'zh' /* chiński: w aplikacji tylko „zh-Hant” */, 'no' /* norweski w aplikacji to „nb” */, 'PL', '', 'pl-PL', null, undefined, 1, {}, ['pl']]) expect(i18n.isLang(x)).toBe(false);
   });
 });
 
@@ -252,12 +252,13 @@ describe('i18n.detectLang', () => {
   afterEach(() => { global.__locales = [{ languageCode: 'pl', languageTag: 'pl-PL' }]; i18n.applyLang('pl'); });
   test('język telefonu obsługiwany → ten; nieobsługiwany i brak → angielski; region telefonu w dacie', () => {
     global.__locales = [{ languageCode: 'cs', languageTag: 'cs-CZ' }]; expect(i18n.detectLang()).toBe('cs');
-    global.__locales = [{ languageCode: 'ja', languageTag: 'ja-JP' }]; expect(i18n.detectLang()).toBe('en');
+    global.__locales = [{ languageCode: 'th', languageTag: 'th-TH' }]; expect(i18n.detectLang()).toBe('en'); /* fala 4: ja-JP → ja (tests/i18n-wave4) */
     global.__locales = [{ languageCode: 'de', languageTag: 'de-DE' }]; expect(i18n.detectLang()).toBe('de'); /* 07.10.2026 */
     global.__locales = []; expect(i18n.detectLang()).toBe('en');
     global.__locales = [{ languageCode: 'en', languageTag: 'en-GB' }]; expect(i18n.detectLang()).toBe('en');
     i18n.applyLang('auto'); expect(i18n.lang()).toBe('en'); expect(i18n.locale()).toBe('en-GB');
-    global.__locales = [{ languageCode: 'pt', languageTag: 'pt-BR' }]; i18n.applyLang('auto'); expect(i18n.lang()).toBe('pt'); expect(i18n.locale()).toBe('pt-BR');
+    global.__locales = [{ languageCode: 'pt', languageTag: 'pt-BR' }]; i18n.applyLang('auto'); expect(i18n.lang()).toBe('pt-BR'); expect(i18n.locale()).toBe('pt-BR'); /* fala 1 (09.10.2026): Brazylia → pt-BR */
+    global.__locales = [{ languageCode: 'pt', languageTag: 'pt-PT' }]; i18n.applyLang('auto'); expect(i18n.lang()).toBe('pt'); expect(i18n.locale()).toBe('pt-PT');
     /* wymuszony język: region telefonu nie pasuje do języka → domyślny region języka */
     i18n.applyLang('cs'); expect(i18n.locale()).toBe('cs-CZ');
   });
@@ -732,7 +733,7 @@ describe('EKRAN /more/language', () => {
     await tap(screen.getByText(i18n.t('Jak w telefonie'))); await flushAll(10);
     expect(store.getState().settings.language).toBe('auto'); expect(i18n.lang()).toBe('pl');
     await store.flush(); expect(saved().settings.language).toBe('auto');
-  });
+  }, 60_000 + 5_000 * i18n.LANGS.length); /* czas rośnie z liczbą języków (35 przełączeń ≈ 23 s osobno, ~3× wolniej w pełnym verify) — 11.10.2026 */
   test('angielski: opis i „Phone setting”; trwająca przerwa — powiadomienie przeplanowane w nowym języku', async () => {
     await renderApp(); await act(async () => { store.startEmpty(); }); await act(async () => { await timer.start(90, null); });
     await go('/more/language'); await flushAll(10); global.__notifications.length = 0;

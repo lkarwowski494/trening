@@ -1,5 +1,5 @@
 import { getState, save, finishedWorkouts } from '@/lib/store';
-import { t } from '@/lib/i18n';
+import { t, LANG_NAME } from '@/lib/i18n';
 import { deloadLessText } from '@/lib/start';
 import { WEEKLY_SETS_MARK } from '@/lib/stats';
 import { GEN_SESSIONS } from '@/lib/generator';
@@ -17,10 +17,19 @@ export type WhatsNewEntry = { id: string; build?: number; date: string; items: (
 /** Zakres liczby dni w generatorze (wszystkie cele) — z GEN_SESSIONS, nie wpisany w tekst. */
 const genDays = () => { const all = Object.values(GEN_SESSIONS).flat(); return { a: Math.min(...all), b: Math.max(...all) }; };
 
+/** Języki dodane w 0.12.0 (fale 1–4, docs/18); kk, uz, az i arabski — późniejsze wydanie. */
+export const LANGS_012 = ['pt-BR', 'es-419', 'id', 'ms', 'vi', 'ru', 'ja', 'ko', 'zh-Hant'] as const;
+
 export const WHATS_NEW: WhatsNewEntry[] = [
+  /* 0.12.0 (decyzja właściciela 10.10.2026, wariant A): języki fal 1–4; nazwy z LANG_NAME (każdy język we własnym brzmieniu, jedno źródło).
+   * Liczby 9 i 35 to stan tego wydania (wpis historyczny) — nie z LANGS, żeby nie zmieniły się po kolejnych językach. */
+  { id: '2026-10-10', date: '2026-10-10', items: () => [
+    t('9 nowych języków: {list}.', { list: LANGS_012.map(l => LANG_NAME[l]).join(', ') }),
+    t('35 języków; język zmienisz w Ustawieniach.'),
+  ] },
   /* 0.11.0 (A11B-8, lista wydania). Dwa ostatnie punkty: zaległości z 0.10 wg audytu kontrolnego 1 (UI2-04, MER2-06) — wpis 0.10 ma już 9 punktów
    * (limit 10), a osoby aktualizujące z 1002 widzą je dopiero teraz. */
-  { id: '2026-10-09', date: '2026-10-09', items: () => [
+  { id: '2026-10-09', build: 1005, date: '2026-10-10', items: () => [ /* 0.11.0 — wydanie 2, build 1005 z 10.10.2026 (docs/18) */
     t('Nowy wygląd z ikony: znacznik dnia jak ikona aplikacji, stosy talerzy z procentem planu tygodnia, filiżanka w dzień odpoczynku, podsumowanie miesiąca jako stosy.'),
     t('Krótka animacja przy starcie: talerze wsuwają się na gryf.'),
     t('Generator: wybór dni tygodnia, od {a} do {b} dni, cel „Ogólny” i „Plan z moich szablonów”.', genDays()),

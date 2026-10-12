@@ -22,7 +22,7 @@ export function periodRange(kind: PeriodKind, offset = 0, now = new Date()): { s
 
 const inRange = (start: number, end: number) => finishedWorkouts().filter(w => { const x = wallTs(w); return x >= start && x < end; }) /* J3: dzień w strefie startu */;
 
-function totals(start: number, end: number): PeriodTotals {
+export function totals(start: number, end: number): PeriodTotals {
   const ws = inRange(start, end); let sets = 0, vol = 0, dur = 0;
   for (const w of ws) {
     vol += volume(w); dur += Math.round(workoutDurSec(w)); /* bez pauz (decyzja 08.10.2026) */

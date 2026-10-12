@@ -8,7 +8,7 @@ import type { Theme } from '@/lib/theme';
 /*
  * Motyw z ikony (decyzja właściciela 09.10.2026, zestaw pełny; liczby i reguły — lib/motif.ts, kolory — lib/plates.ts PLATE_COLORS).
  * Wspólne części rysunków. Każdy element motywu to osobny komponent, który można przenieść w inne miejsce bez zmian (układ ekranu głównego
- * może się zmienić — ostrzeżenie koordynatora 09.10.2026): WeekStacks, EmptyBarArt, RecordPlates (components/*.tsx), DayIcon i PlateStack (tu).
+ * może się zmienić — ostrzeżenie koordynatora 09.10.2026): WeekStacks, EmptyBarArt, RecordsCard (components/*.tsx, bez grafiki od 11.10.2026), DayIcon i PlateStack (tu).
  * Grafiki dekoracyjne są ukryte przed VoiceOver; tam, gdzie grafika niesie informację, ta sama informacja jest tekstem obok i w etykiecie.
  */
 export const a11yHidden = { accessibilityElementsHidden: true, importantForAccessibility: 'no-hide-descendants' as const };

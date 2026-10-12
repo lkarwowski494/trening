@@ -65,6 +65,17 @@ describe('t13 logic', () => {
   });
 });
 
+describe('stats.recordLabel — nazwy statystyk na karcie rekordów (11.10.2026, luka macierzy)', () => {
+  test('PL: każdy rodzaj sumy i e1RM ma własną nazwę; nieznany rodzaj przechodzi przez t()', () => {
+    expect(['e1RM', 'objętość treningu', 'suma powtórzeń', 'łączny czas', 'łączny dystans'].map(stats.recordLabel)).toEqual(['e1RM', 'Objętość', 'Suma powtórzeń', 'Łączny czas', 'Łączny dystans']);
+    expect(stats.recordLabel('coś innego')).toBe('coś innego');
+  });
+  test('EN: „Łączny czas” → Total time, „Łączny dystans” → Total distance', async () => {
+    const { applyLang } = require('@/lib/i18n'); applyLang('en');
+    try { expect(['łączny czas', 'łączny dystans', 'suma powtórzeń', 'objętość treningu'].map(stats.recordLabel)).toEqual(['Total time', 'Total distance', 'Total reps', 'Volume']); } finally { applyLang('pl'); }
+  });
+});
+
 function addWorkoutNoSave(atTs: number, blocks: [string, any[]][]) {
   const mk = (p: any, i: number) => ({ id: Math.random().toString(36).slice(2), weight: '', reps: '', durationSec: '', distanceM: '', rpe: '', bandId: '', addKg: '', kind: 'normal', warmup: false, note: '', done: true, completedAt: atTs + i * 1000, actualRest: null, ...p });
   return { id: Math.random().toString(36).slice(2), ownerId: 'local', createdAt: atTs, updatedAt: atTs, loggedBy: 'local', sessionMode: 'solo', healthUUID: null, templateId: null, templateName: 'T', startedAt: atTs, finishedAt: atTs + 3600e3, note: '', exercises: blocks.map(([n, sets], bi) => ({ id: Math.random().toString(36).slice(2), exerciseId: ex(n).id, restSec: 90, repMin: null, repMax: null, groupId: null, sets: sets.map((s, i) => mk(s, bi * 10 + i)) })) } as any;

@@ -117,13 +117,31 @@ for (const [k, where] of [...txt].sort((a, b) => a[0].localeCompare(b[0], 'pl'))
   add('TEKST', k, where, [...evidence(c => inCode(c, s)), ...evidence(c => c.text.includes(s), maestro)]);
 }
 
+/* Podział lib/store.ts (decyzja właściciela 11.10.2026): lib/state/*.ts to moduły za fasadą lib/store.ts. Pozycje liczą się jak przed podziałem —
+ * identyfikator „store.<nazwa>” i tylko nazwy publiczne fasady (eksporty między modułami lib/state to wewnętrzne kawałki dawnego store.ts,
+ * nie nowe funkcje lib/); źródło („Źródło”) wskazuje plik w lib/state. */
+const STATE_DIR = /^lib\/state\//;
+const facade = (() => {
+  const out = new Set(); const p = join(root, 'lib/store.ts'); if (!existsSync(p)) return out;
+  const sf = ts.createSourceFile(p, read(p), ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
+  for (const st of sf.statements) {
+    if (ts.isExportDeclaration(st) && st.exportClause && ts.isNamedExports(st.exportClause)) for (const e of st.exportClause.elements) out.add(e.name.text);
+    if (!st.modifiers?.some(m => m.kind === ts.SyntaxKind.ExportKeyword)) continue;
+    if (ts.isVariableStatement(st)) for (const d of st.declarationList.declarations) { if (ts.isObjectBindingPattern(d.name)) for (const e of d.name.elements) out.add(e.name.text); else if (ts.isIdentifier(d.name)) out.add(d.name.text); }
+    else if (st.name) out.add(st.name.text);
+  }
+  return out;
+})();
+const counted = (r, n) => !STATE_DIR.test(r) || facade.has(n);
+const modId = r => STATE_DIR.test(r) ? 'store' : r.replace(/^lib\//, '').replace(/\.ts$/, '');
+
 /* ---------- LOGIKA ---------- */
 for (const f of walk(join(root, 'lib'), /\.ts$/)) {
   const r = rel(f); if (/i18n\.en\.ts$|locales\//.test(r)) continue;
   const src = read(f);
   for (const m of src.matchAll(/^export\s+(?:async\s+)?(?:function\s+(\w+)|const\s+(\w+)\s*(?::[^=]+)?=\s*(?:\([^)]*\)|\w+)\s*(?::[^=]+)?=>)/gm)) {
-    const n = m[1] ?? m[2];
-    add('LOGIKA', `${r.replace(/^lib\//, '').replace(/\.ts$/, '')}.${n}`, r, evidence(c => c.ids.has(n) || c.lits.includes(n) /* jest.spyOn(store, 'n') */));
+    const n = m[1] ?? m[2]; if (!counted(r, n)) continue;
+    add('LOGIKA', `${modId(r)}.${n}`, r, evidence(c => c.ids.has(n) || c.lits.includes(n) /* jest.spyOn(store, 'n') */));
   }
 }
 
@@ -136,7 +154,7 @@ for (const f of walk(join(root, 'lib'), /\.ts$/)) {
   for (const st of sf.statements) {
     if (!st.modifiers?.some(m => m.kind === ts.SyntaxKind.ExportKeyword)) continue;
     if (ts.isVariableStatement(st)) for (const d of st.declarationList.declarations) {
-      if (!ts.isIdentifier(d.name) || !/^[A-Z][A-Z0-9_]*$/.test(d.name.text) || !d.initializer) continue;
+      if (!ts.isIdentifier(d.name) || !/^[A-Z][A-Z0-9_]*$/.test(d.name.text) || !d.initializer || !counted(r, d.name.text)) continue;
       let e = d.initializer; while (ts.isAsExpression(e) || ts.isParenthesizedExpression(e) || (ts.isSatisfiesExpression && ts.isSatisfiesExpression(e))) e = e.expression;
       if (!ts.isArrayLiteralExpression(e)) continue;
       if (d.type && ts.isTupleTypeNode(ts.isTypeOperatorNode(d.type) ? d.type.type : d.type)) continue; /* przedział [od, do] (np. RIR, WHO) — liczba, nie lista wartości */
@@ -146,7 +164,7 @@ for (const f of walk(join(root, 'lib'), /\.ts$/)) {
       const miss = vals.length === e.elements.length && vals.length ? vals.filter(v => !seen.has(v)) : null;
       add('WYMIAR', `${n} (${e.elements.length})`, r, iterated.length ? iterated : miss && !miss.length ? [...new Set(seen.values())] : [], miss?.length ? miss.join(', ') : '');
     }
-    if (ts.isTypeAliasDeclaration(st) && ts.isUnionTypeNode(st.type)) {
+    if (ts.isTypeAliasDeclaration(st) && ts.isUnionTypeNode(st.type) && counted(r, st.name.text)) {
       const vals = st.type.types.filter(x => ts.isLiteralTypeNode(x) && ts.isStringLiteral(x.literal)).map(x => x.literal.text); if (vals.length < 2) continue;
       const seen = litsSeen(vals); const miss = vals.filter(v => !seen.has(v));
       add('WYMIAR', `${st.name.text}: ${vals.join(' | ')}`, r, miss.length ? [] : [...new Set(seen.values())], miss.join(', '));

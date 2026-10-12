@@ -10,7 +10,7 @@ import { Appearance } from 'react-native';
 import * as store from '@/lib/store';
 import * as plan from '@/lib/plan';
 import * as locations from '@/lib/locations';
-import { LANGS, lang, type Lang } from '@/lib/i18n';
+import { LANGS, lang, locale, type Lang } from '@/lib/i18n';
 import { EN } from '@/lib/i18n.en';
 import { LOCALES } from '@/lib/locales';
 import { light, dark } from '@/lib/theme';
@@ -41,6 +41,7 @@ const routesFor = (r: Awaited<ReturnType<typeof richState>>) => [
   `/template/${r.tpl.id}`, `/exercise/${r.exId}`, `/history/${r.w.id}`, `/history/edit/${r.w.id}`, '/plan', '/generator', '/guide', `/swap?target=active:${r.blockId}`,
   '/picker?target=active', '/reorder?target=active', '/history/add', `/more/location/${r.locId}`, '/more/bodymass', '/more/about', '/more/licenses',
   '/generator?mode=own', /* 09.10.2026 (B): „Plan z moich szablonów” */
+  '/pick-template', '/progression', /* 11.10.2026: wybór szablonu do startu (P2 B), Progresja (P8 B) */
 ];
 type Node = { type?: unknown; props?: Record<string, unknown>; children?: unknown[] } | string;
 const texts = () => { const out: string[] = []; const walk = (n: unknown) => { if (!n) return; if (typeof n === 'string') { out.push(n); return; } if (Array.isArray(n)) { n.forEach(walk); return; } walk((n as { children?: unknown }).children); }; walk(screen.toJSON()); return out; };
@@ -58,7 +59,10 @@ describe.each(LANGS.filter(l => l !== 'pl').map((l, i) => [l, i % 2 ? 'dark' : '
   test('bez polskich tekstów interfejsu i polskich liter; kolory z palety motywu', async () => {
     const r = await richState(l); r.s.settings.language = l; r.s.settings.theme = th; scheme = th;
     await renderApp({ saved: r.s }); await flushAll(10); expect(lang()).toBe(l);
-    const d = dictOf(l); const tr = new Set(Object.values(d)); let hits = 0; const leaks: string[] = []; const plLetters: string[] = []; const bg = new Set<string>(); const shown: string[] = [];
+    const d = dictOf(l); const tr = new Set(Object.values(d)); let hits = 0;
+    /* nazwy dni i miesięcy z Intl (CLDR) języka, które przypadkiem są polskim kluczem — id „Sen” = Senin (poniedziałek), nie „Sen” = sen (fala 2) */
+    const cal = new Set<string>(); for (let i = 0; i < 12; i++) { const dt = new Date(2026, i, 5 + (i % 7)); for (const o of [{ weekday: 'short' }, { month: 'short' }] as const) cal.add(new Intl.DateTimeFormat(locale(), o).format(dt)); }
+    for (const k of cal) tr.add(k); const leaks: string[] = []; const plLetters: string[] = []; const bg = new Set<string>(); const shown: string[] = [];
     for (const route of routesFor(r)) {
       await go(route); await flushAll(10); const all = texts(); shown.push(`${route}:${all.length}`);
       for (const x of all) { const k = x.trim(); if (tr.has(k)) hits++; if (PL_KEYS.includes(k) && d[k] !== undefined && d[k] !== k && !tr.has(k) /* to samo słowo jako tłumaczenie innego tekstu (cs „pauza”, nl „do”) */) leaks.push(`${route}: „${k}”`); if (/[łśźżŁŚŹŻ]/.test(x)) plLetters.push(`${route}: „${x.slice(0, 40)}”`); }

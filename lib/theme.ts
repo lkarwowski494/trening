@@ -38,6 +38,18 @@ export const F = {
   regular: 'IBMPlexSans_400Regular', semibold: 'IBMPlexSans_600SemiBold', heavy: 'IBMPlexSans_700Bold', display: 'IBMPlexSans_700Bold',
   mono: 'IBMPlexMono_500Medium', monoBold: 'IBMPlexMono_600SemiBold',
 } as const;
+/**
+ * Fala 4 (09.10.2026, docs/16 „Fala 4”, wariant A): japoński, koreański i chiński tradycyjny zostają przy IBM Plex — Plex nie ma kana, kanji
+ * ani hangula, więc te znaki iOS rysuje krojem zastępczym z systemowej listy kaskadowej (Core Text; React Native rysuje tekst przez NSTextStorage,
+ * która przypisuje znakom bez glifu krój zastępczy). Apple, CTFontCopyDefaultCascadeListForLanguages: „When the original font used for text layout
+ * and rendering does not support a certain Unicode character from the provided text, the system follows this list to pick a fallback font that
+ * includes the character. The font alternatives in the cascade list match the original font’s style, weight, and width.” — więc grubość (400/600/700)
+ * zostaje, a łacina i cyfry (liczby, timery) dalej w Plex. To jedyne pisma, które celowo idą krojem zastępczym (test: tests/matrix-i18n,
+ * tests/i18n-wave4); w każdym innym języku każda litera musi być w Plex.
+ */
+/* Zakresy wprost (bez \p{scx=…} — pewne w Hermesie): interpunkcja CJK, hiragana, katakana, Jamo, hangul, CJK Ext A, ideogramy, ideogramy zgodności,
+ * formy pełnej szerokości (？！（）：). */
+export const FALLBACK_SCRIPTS = /[\u1100-\u11FF\u3000-\u303F\u3040-\u30FF\u3130-\u318F\u31F0-\u31FF\u3400-\u4DBF\u4E00-\u9FFF\uAC00-\uD7AF\uF900-\uFAFF\uFF00-\uFFEF]/;
 /* eslint-disable @typescript-eslint/no-var-requires */
 export const FONT_FILES = {
   [F.regular]: require('@expo-google-fonts/ibm-plex-sans/400Regular/IBMPlexSans_400Regular.ttf'),

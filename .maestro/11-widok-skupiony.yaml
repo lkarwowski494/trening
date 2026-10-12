@@ -19,7 +19,7 @@ name: Widok skupiony i talerze
 - launchApp:
     clearState: true
     permissions: { all: allow }
-- extendedWaitUntil: { visible: "Start from a template", timeout: 60000 }
+- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
 
 # --- miejsce „Full gym” (sztanga + talerze) ---
 - tapOn: "More, tab.*"
@@ -29,14 +29,14 @@ name: Widok skupiony i talerze
 # Scenariusz sprawdza talerze w kg, więc najpierw kg (PRZED dodaniem miejsca — preset bierze talerze w bieżącej jednostce).
 - extendedWaitUntil: { visible: "Weight unit", timeout: 30000 }
 - tapOn: "kg"
-- scrollUntilVisible: { element: "Places and equipment,.*", direction: DOWN, timeout: 60000 }
-- tapOn: "Places and equipment,.*"
+- tapOn: "Back"
+- extendedWaitUntil: { visible: "Places and equipment", timeout: 30000 }  # 11.10.2026: pozycja ekranu Więcej, nie Ustawień
+- tapOn: "Places and equipment"
 - extendedWaitUntil: { visible: "\\+ Add place", timeout: 30000 }
 - tapOn: "\\+ Add place"
 - extendedWaitUntil: { visible: "Full gym,.*", timeout: 30000 }
 - tapOn: "Full gym,.*"
 - extendedWaitUntil: { visible: "Available exercises: .*", timeout: 30000 }
-- tapOn: "Back"
 - tapOn: "Back"
 - tapOn: "Back"
 

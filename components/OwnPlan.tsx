@@ -43,7 +43,7 @@ export function OwnPlan({ header }: { header?: React.ReactNode }) {
   const done = (activate: boolean) => {
     if (!r) return; const res = saveOwnPlan(r, activate);
     Alert.alert(t('Zapisano'), activate ? t('Plan „{name}” jest teraz aktywny.', { name: res.planName }) : t('Plan „{name}” jest w „Inne plany”.', { name: res.planName }), [
-      { text: t('Plan tygodnia'), onPress: toPlan }, { text: t('OK') }, /* UI2-06: „OK” — zostaje tutaj */
+      { text: t('Planowanie'), onPress: toPlan }, { text: t('OK') }, /* UI2-06: „OK” — zostaje tutaj */
     ]);
   };
   const save = () => {

@@ -1,0 +1,5 @@
+{
+  "CFBundleDisplayName": "Treino",
+  "NSHealthShareUsageDescription": "O Treino não lê dados de saúde — o iOS exige esta descrição para a permissão do HealthKit.",
+  "NSHealthUpdateUsageDescription": "O Treino salva os treinos concluídos — de força e cardio — no app Saúde."
+}

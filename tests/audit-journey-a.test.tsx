@@ -3,14 +3,14 @@ import * as store from '@/lib/store';
 import * as timer from '@/lib/timer';
 import * as stats from '@/lib/stats';
 import { exName } from '@/lib/i18n';
-import { renderApp, tap, type, flushAll, screen, go, act } from './app';
+import { renderApp, tap, type, flushAll, screen, go, act, startTpl } from './app';
 import { ex, pressAlert, saved, seedWithDemo } from './helpers';
 
 jest.setTimeout(60000);
 afterEach(async () => { await timer.stop(); await timer.stopSet(); });
 
-const startTemplate = async (name: string) => { await tap(screen.getByLabelText(`Start: ${name}`)); await flushAll(10); };
-const finishConfirmed = async (title = 'Zakończyć trening?', btn = 'Zakończ', open = 'Zakończ trening i zapisz') => { await tap(screen.getAllByText(open)[0]); pressAlert(title, btn); await flushAll(500); };
+const startTemplate = async (name: string) => { await startTpl(name); await flushAll(10); };
+const finishConfirmed = async (title = 'Zakończyć trening?', btn = 'Zakończ', open = 'Zakończ') => { await tap(screen.getAllByText(open)[0]); pressAlert(title, btn); await flushAll(500); };
 const repsOf = (exN: string, n: number) => screen.getAllByLabelText('Powtórzenia').find(x => x.props.accessibilityHint === `Seria ${n} — ${exN}`)!;
 const tick = async (exN: string, n: number) => tap(screen.getByLabelText(`Seria ${n} zrobiona — ${exN}`));
 
@@ -34,7 +34,8 @@ test('A1 band-assisted (no kg) chin-ups: e1RM/volume PR over unassisted reps', a
   await type(repsOf(chin, 1), '12'); await tick(chin, 1);
   global.__alerts.length = 0;
   await finishConfirmed(); await flushAll(500);
-  const al = global.__alerts.find(x => /rekord/i.test(x.title));
+  expect(global.__alerts.find(x => /rekord/i.test(x.title))).toBeUndefined(); /* 11.10.2026: bez okienka rekordów */
+  const al = { msg: screen.queryAllByTestId(/^record-ex-/).map(c => String(c.props.accessibilityLabel)).join(' ') }; /* karta rekordów na ekranie sesji */
   // A set with a band of unknown assistance is not comparable to unassisted reps (same reasoning as the reps PR fix D3)
   expect(al?.msg ?? '').not.toMatch(new RegExp(chin));
 });

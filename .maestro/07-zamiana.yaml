@@ -1,7 +1,7 @@
 # E2 (docs/14 pkt 7, Maestro 07): zamiana ćwiczenia w trakcie treningu — W1 „tylko dziś”: zamiana w miejscu, cofnięcie, podział po odhaczonej serii.
 #
 # Literały (EN z lib/i18n.en.ts / lib/equipment.ts, chyba że zaznaczono inaczej):
-#   "Start from a template", "More, tab.*", "Settings", "Places and equipment,.*", "\+ Add place", "Back", "Workout, tab.*",
+#   "Other workout", "More, tab.*", "Places and equipment", "\+ Add place", "Back", "Workout, tab.*",
 #   "Empty workout", "\+ Add exercise", "Search exercises…", "Cancel", "Place filter: X.*" (chip filtra miejsca)  ← jak przepływ 06
 #   "Home,.*"                        ← LOCATION_PRESET_LABEL.home.en 'Home' + hint 'empty — tick what you have' (lib/equipment.ts)
 #   sw-Adjustable bench              ← testID przełącznika SwitchRow: 'sw-' + EQUIPMENT bench_adj.en (lib/equipment.ts)
@@ -23,14 +23,13 @@ name: Zamiana ćwiczenia w trakcie treningu (E2 W1)
 - launchApp:
     clearState: true
     permissions: { all: allow }
-- extendedWaitUntil: { visible: "Start from a template", timeout: 60000 }
+- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
 
 # --- Miejsce „Home”: ławka regulowana i hantle ---
 - tapOn: "More, tab.*"
-- extendedWaitUntil: { visible: "Settings", timeout: 30000 }
-- tapOn: "Settings"
-- scrollUntilVisible: { element: "Places and equipment,.*", direction: DOWN, timeout: 60000 }
-- tapOn: "Places and equipment,.*"
+# 11.10.2026: „Places and equipment” to pozycja ekranu Więcej (z Ustawień zniknęła)
+- extendedWaitUntil: { visible: "Places and equipment", timeout: 30000 }
+- tapOn: "Places and equipment"
 - extendedWaitUntil: { visible: "\\+ Add place", timeout: 30000 }
 - tapOn: "\\+ Add place"
 - extendedWaitUntil: { visible: "Home,.*", timeout: 30000 }
@@ -49,13 +48,12 @@ name: Zamiana ćwiczenia w trakcie treningu (E2 W1)
 - tapOn: "Back"
 - extendedWaitUntil: { visible: "\\+ Add place", timeout: 30000 }
 - tapOn: "Back"
-- extendedWaitUntil: { visible: "Places and equipment,.*", timeout: 30000 }
-- tapOn: "Back"
+- extendedWaitUntil: { visible: "Places and equipment", timeout: 30000 }  # lista miejsc → ekran Więcej
 - extendedWaitUntil: { visible: "Workout, tab.*", timeout: 30000 }
 - tapOn: "Workout, tab.*"
 
 # --- Pusty trening + Bench Press (Barbell) — niedostępny w Domu ---
-- extendedWaitUntil: { visible: "Start from a template", timeout: 30000 }
+- extendedWaitUntil: { visible: "Other workout", timeout: 30000 }
 - scrollUntilVisible: { element: "Empty workout", direction: DOWN, timeout: 60000 }
 - tapOn: "Empty workout"
 - extendedWaitUntil: { visible: "\\+ Add exercise", timeout: 30000 }
@@ -157,14 +155,12 @@ name: Zamiana ćwiczenia w trakcie treningu (E2 W1)
 
 # --- W3: „Always at Home” w treningu z szablonu i podpowiedź przy ponownym starcie (docs/14 pkt 7, krok 9 — rekomendacja) ---
 #   "Always at Home — X"             ← 'Zawsze w: {l} — {name}' (accessibilityLabel przycisku „Zawsze w: Dom” w linijce „zamiast”)
-#   "Usually at Home — X. Swap\?"    ← 'Zwykle w: {l} — {name}. Zamienić?' (podpowiedź liczona przy renderze)
+#   "Swap to substitute: X"          ← 'Zamień na zamiennik: {name}' (etykieta tekstu-przycisku „Usually at Home — X. Swap?'; 'Zwykle w: {l} — {name}. Zamienić?')
 #   "Discard workout", "Discard workout\?" ← 'Odrzuć trening' / 'Odrzucić trening?' (audyt 0.10 H2: jedna nazwa akcji, dawniej „Cancel workout”)
 - tapOn: "Back"
 - extendedWaitUntil: { visible: "Other workout", timeout: 30000 }  # układ B (09.10.2026): ekran główny od karty „Dziś” i przycisku startu
-- scrollUntilVisible: { element: "Start from a template", direction: DOWN, timeout: 30000 }  # nagłówek listy szablonów niżej (Planowanie, „Ten tydzień”)
 - runFlow: subflows/szablon-testowy.yaml
-- scrollUntilVisible: { element: "Start: Upper A", direction: DOWN, timeout: 30000, centerElement: true }  # układ B: lista szablonów pod kartą Planowania
-- tapOn: "Start: Upper A"
+- runFlow: subflows/start-szablonu.yaml
 - extendedWaitUntil: { visible: "Swap exercise: Bench Press \\(Dumbbell\\)", timeout: 30000 }
 - scrollUntilVisible: { element: "Swap exercise: Bench Press \\(Dumbbell\\)", direction: DOWN, timeout: 30000, centerElement: true }  # run 37738868663: przycisk nad paskiem zakładek
 - tapOn: "Swap exercise: Bench Press \\(Dumbbell\\)"
@@ -188,9 +184,13 @@ name: Zamiana ćwiczenia w trakcie treningu (E2 W1)
 # (zrzut kroku 159). Przycisk okna: nad „Back”; przycisk w tle leży pod oknem, więc pod „Back”.
 - tapOn: { text: "Discard workout", above: "Back" }
 - extendedWaitUntil: { notVisible: "Discard workout\\?", timeout: 30000 }
-- scrollUntilVisible: { element: "Start: Upper A", direction: DOWN, timeout: 60000, centerElement: true }  # układ B (09.10.2026): po odrzuceniu ekran główny od góry, lista szablonów niżej
-- tapOn: "Start: Upper A"
-- extendedWaitUntil: { visible: "Usually at Home — .*\\. Swap\\?", timeout: 30000 }
+- runFlow: subflows/start-szablonu.yaml
+# 11.10.2026: podpowiedź „Usually at Home — X. Swap?” to tekst-przycisk (bez „Zamień”); etykieta VoiceOver „Swap to substitute: X” — stuknięcie otwiera arkusz zamiany
+- extendedWaitUntil: { visible: "Swap to substitute: .*", timeout: 30000 }
 # interpreter E2E 91 (tests/maestro-layout.ts): linijka podpowiedzi przesuwa przycisk zamiany pod pasek zakładek (jak przy pierwszym starcie, run 37738868663)
 - scrollUntilVisible: { element: "Swap exercise: Bench Press \\(Dumbbell\\)", direction: DOWN, timeout: 30000, centerElement: true }   # podpowiedź nie zmienia bloku sama
 - takeScreenshot: 37-podpowiedz-zamiennika
+- tapOn: "Swap to substitute: .*"
+- extendedWaitUntil: { visible: "Suggestion 1: .*", timeout: 30000 }
+- tapOn: "Cancel"
+- extendedWaitUntil: { notVisible: "Suggestion 1: .*", timeout: 30000 }

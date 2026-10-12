@@ -205,8 +205,9 @@ describe('regresja E2E 91', () => {
   });
   test('01: kafelki tygodnia — jedna etykieta przycisku „Postępy” („Workouts: …; Sets: …”), kafelek nie jest osobnym elementem', () => {
     const { EN } = require('@/lib/i18n.en');
-    expect(EN['{label}: {v}, poprzedni tydzień {p}']).toBe('{label}: {v}, previous week {p}');
-    expect(y('01-trening-z-szablonu.yaml')).toContain('- assertVisible: "Workouts: 1, previous week 0;.*"');
+    /* 11.10.2026: „Ten tydzień” bez porównania z poprzednim — etykieta „{label}: {v}” czterech kafelków, połączona średnikami */
+    expect(EN['{label}: {v}, poprzedni tydzień {p}']).toBeUndefined(); expect(EN['Treningi']).toBe('Workouts'); expect(EN['Serie']).toBe('Sets');
+    expect(y('01-trening-z-szablonu.yaml')).toContain('- assertVisible: "Workouts: 1;.*"');
   });
 });
 
