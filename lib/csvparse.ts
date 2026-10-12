@@ -9,6 +9,7 @@ import { base, equipFields, loadModeFor, uid, type Exercise, type Group, type Me
 import { snapLb } from './units';
 import { exName } from './i18n';
 import { clampName, NAME_MAX, REPS_MAX } from './state/util';
+import { writeLoad } from './state/sets';
 import { fromWallTs, localISODate, tzOffsetAt, wallTs, workoutDay } from './state/time';
 
 /** Limity importu — jedno miejsce (CLAUDE.md: liczby w jednym miejscu). 10 lat historii ≈ 1500 treningów ≈ 40 tys. wierszy. */
@@ -190,6 +191,7 @@ export function buildImport(file: ParsedFile, st: State, opts: ImportOptions): {
     const exs: WExercise[] = s.exercises.map(e => { const ex = resolve(e.name);
       const ws: WSet[] = e.sets.map(p => ({ id: uid(), weight: toKg(p.weight, opts.unit, file.weightUnit === 'kg'), reps: p.reps > 0 || p.durationSec === 0 ? p.reps : '', durationSec: p.durationSec > 0 ? p.durationSec : '', distanceM: p.distanceM > 0 ? p.distanceM : '',
         rpe: p.rpe ?? '', bandId: '', addKg: '', kind: p.kind, warmup: p.kind === 'warmup', note: p.note, done: true, completedAt: null, actualRest: null }));
+      for (const w of ws) writeLoad(ex, w, w.weight as number | ''); /* audyt 0.13 #1: ciężar do pola właściwego dla sprzętu (masa ciała → addKg ze znakiem); nowe ćwiczenia mają sprzęt „inne” → weight */
       return { id: uid(), exerciseId: ex.id, restSec: ex.restSec ?? rest, repMin: null, repMax: null, groupId: null, sets: ws }; });
     let start = s.startedAt; while (taken.has(start)) start += 1000; taken.add(start); /* start unikalny (jak putHistoryWorkout, audyt M4) */
     const dur = s.durationSec != null && s.durationSec > 0 ? s.durationSec : Math.max(60, exs.reduce((n, e) => n + e.sets.length, 0) * 90); /* brak czasu w pliku: szacunek tylko dla końca treningu */

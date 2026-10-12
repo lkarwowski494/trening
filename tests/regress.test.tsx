@@ -1884,3 +1884,30 @@ describe('B1 (build 1004; zmienione 11.10.2026): stała zachęta do planu (bez �
     expect(screen.getByTestId('strip-2026-10-08').props.accessibilityLabel).toMatch(locale === 'pl' ? /^czwartek, 8 października/ : /^Thursday,? 8 October/);
   });
 });
+
+describe('bloker audytu 0.13 #1 (12.10.2026): import CSV zapisuje ciężar ćwiczeń z masą ciała w addKg, nie w weight', () => {
+  const HA = 'Date,Workout Name,Duration,Exercise Name,Set Order,Weight,Reps,Distance,Seconds,Notes,Workout Notes,RPE';
+  const recs = (name: string) => { const r = stats.recordsFor(ex(name)); return { maxLoad: r.maxLoad, bestE1rm: r.bestE1rm, maxRepsFree: r.maxRepsFree, bestTotal: r.bestTotal }; };
+  const importText = async (txt: string) => {
+    const { parseImport } = require('@/lib/csvparse'); const { commitCsvImport } = require('@/lib/csvimport');
+    await commitCsvImport(parseImport(txt, at(2026, 10, 12)), { unit: 'kg' });
+  };
+  test('(a) formatA: Pull Up 0×10 i +20×5, Push Up 0×20 — rekordy jak dla treningu wpisanego ręcznie', async () => {
+    await fresh(); const d = '2026-03-02 18:05:00';
+    await importText([HA, `${d},T,50m,Pull Up,1,0.0,10.0,0,0,,,`, `${d},T,50m,Pull Up,2,20.0,5.0,0,0,,,`, `${d},T,50m,Push Up,1,0.0,20.0,0,0,,,`].join('\n') + '\n');
+    const imp = { pu: recs('Pull Up'), pp: recs('Push Up') };
+    const w = store.getState().workouts[0]; for (const b of w.exercises) for (const s of b.sets) expect([s.weight, typeof s.addKg]).toEqual(['', 'number']);
+    await fresh(); addWorkout(at(2026, 3, 2), [['Pull Up', [{ addKg: 0, reps: 10 }, { addKg: 20, reps: 5 }]], ['Push Up', [{ addKg: 0, reps: 20 }]]]);
+    expect(imp).toEqual({ pu: recs('Pull Up'), pp: recs('Push Up') });
+    expect(imp.pu.maxRepsFree).toBeGreaterThan(0); expect(imp.pu.maxLoad).toBe(20); expect(imp.pu.bestTotal).toBeGreaterThan(0); expect(imp.pp.maxRepsFree).toBe(20);
+  });
+  test('(b)+(c) eksport CSV → import do świeżego stanu: rekordy identyczne, asysta (ujemny) zachowuje znak', async () => {
+    await fresh(); addWorkout(at(2026, 3, 2), [['Pull Up', [{ addKg: 0, reps: 10 }, { addKg: 20, reps: 5 }]], ['Push Up', [{ addKg: -10, reps: 12 }]], ['Bench Press (sztanga)', [{ weight: 60, reps: 8 }]]]);
+    const before = { pu: recs('Pull Up'), pp: recs('Push Up'), bp: recs('Bench Press (sztanga)') }; const csv = buildCsv();
+    await fresh(); await importText(csv);
+    expect({ pu: recs('Pull Up'), pp: recs('Push Up'), bp: recs('Bench Press (sztanga)') }).toEqual(before);
+    const w = store.getState().workouts[0]; const sets = (n: string) => w.exercises.find(b => b.exerciseId === ex(n).id)!.sets;
+    expect(sets('Push Up').map(s => [s.addKg, s.weight])).toEqual([[-10, '']]); expect(sets('Pull Up').map(s => [s.addKg, s.weight])).toEqual([[0, ''], [20, '']]);
+    expect(sets('Bench Press (sztanga)').map(s => [s.weight, s.addKg])).toEqual([[60, '']]);
+  });
+});

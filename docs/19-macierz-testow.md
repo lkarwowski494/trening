@@ -1259,13 +1259,13 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | calendar.monthTitle | lib/calendar.ts | tests/history-calendar.test.tsx |
 | calendar.dayTitle | lib/calendar.ts | tests/history-calendar.test.tsx |
 | csvimport.pickCsv | lib/csvimport.ts | tests/csv-import-logic.test.ts |
-| csvimport.commitCsvImport | lib/csvimport.ts | tests/csv-import-logic.test.ts |
+| csvimport.commitCsvImport | lib/csvimport.ts | tests/csv-import-logic.test.ts, tests/regress.test.tsx |
 | csvparse.isImportError | lib/csvparse.ts | tests/csv-import-logic.test.ts |
 | csvparse.parseCsv | lib/csvparse.ts | tests/csv-import-logic.test.ts, tests/matrix-dim-catalog.test.tsx, tests/matrix-dim-langs1.test.tsx +5 |
 | csvparse.detectFormat | lib/csvparse.ts | tests/csv-import-logic.test.ts |
 | csvparse.parseDurationA | lib/csvparse.ts | tests/csv-import-logic.test.ts |
 | csvparse.parseTimeB | lib/csvparse.ts | tests/csv-import-logic.test.ts |
-| csvparse.parseImport | lib/csvparse.ts | tests/csv-import-logic.test.ts |
+| csvparse.parseImport | lib/csvparse.ts | tests/csv-import-logic.test.ts, tests/regress.test.tsx |
 | csvparse.normName | lib/csvparse.ts | tests/csv-import-logic.test.ts |
 | csvparse.indexExercises | lib/csvparse.ts | tests/csv-import-logic.test.ts |
 | csvparse.matchExercise | lib/csvparse.ts | tests/csv-import-logic.test.ts |
