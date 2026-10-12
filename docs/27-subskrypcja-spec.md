@@ -183,7 +183,7 @@ trafia do `lib/licenses.generated.ts` (ekran licencji).
   bez zwróconych) przy starcie i powrocie z tła + nasłuch `Transaction.updates` od startu.
 - Bez serwera nie dostaniemy powiadomień serwerowych Apple (np. o zwrocie) — aplikacja dowie się przy najbliższym odświeżeniu lokalnym.
   Akceptowalne (cena kilku zł, brak kosztu na użytkownika). Obejście przez manipulację urządzeniem — teoretyczne, bez naprawy.
-- Prywatność: aplikacja nie wysyła nic sama; StoreKit kontaktuje się z Apple. Do aktualizacji: `docs/privacy.html` (zakupy obsługuje Apple,
+- Prywatność: aplikacja nie wysyła nic sama; StoreKit kontaktuje się z Apple. Do aktualizacji: `site/privacy.html` (zakupy obsługuje Apple,
   aplikacja przechowuje lokalnie tylko stan uprawnienia), formularz prywatności App Store — **[DO WYJAŚNIENIA]**, czy zakupy obsługiwane
   wyłącznie przez Apple zmieniają deklarację „dane niezbierane” (nie czytano wytycznych formularza).
 
@@ -274,7 +274,7 @@ ryzyko złych ocen na starcie.
   prominent pricing element in the layout”; przy próbie „clearly indicate how long the free trial lasts and the price billed once the free trial
   is over.”; linki: „your app and App Store metadata must include links to your Terms of Use and Privacy Policy.”
 - Skutek dla szkicu B: cena po próbie (np. „3,99 zł co miesiąc”) większa niż „za darmo”; nazwa planu i okres przy każdej pozycji; linki
-  „Warunki korzystania” i „Prywatność” na ekranie i w opisie sklepu. Polityka prywatności istnieje (`docs/privacy.html`); **warunków korzystania
+  „Warunki korzystania” i „Prywatność” na ekranie i w opisie sklepu. Polityka prywatności istnieje (`site/privacy.html`); **warunków korzystania
   nie mamy** — pytanie P9.
 - 5.1.1: aplikacja bez konta i bez danych osobowych — zakupy przypisane do konta Apple, nic nie zbieramy (spełnione bez zmian).
 

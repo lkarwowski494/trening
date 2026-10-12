@@ -32,6 +32,6 @@ describe('TST2-08: nazwy innych aplikacji i marek poza kodem, komentarzami, test
   });
   test('docs/ poza zakresem (dokumenty; research → Dysk, SEC2-03), kod i teksty aplikacji w zakresie', () => {
     expect(inScope('docs/research/x.md')).toBe(false); expect(inScope('docs/18-przekazanie.md')).toBe(false);
-    for (const p of ['app/x.tsx', 'components/x.tsx', 'lib/x.ts', 'lib/locales/de.json', 'locales/de.json', 'store/x.json', 'tests/x.ts', 'scripts/x.mjs', 'modules/x.swift', 'targets/x.swift', 'plugins/x.js']) expect({ p, in: inScope(p) }).toEqual({ p, in: true });
+    for (const p of ['app/x.tsx', 'components/x.tsx', 'lib/x.ts', 'lib/locales/de.json', 'locales/de.json', 'store/x.json', 'site/x.html', 'tests/x.ts', 'scripts/x.mjs', 'modules/x.swift', 'targets/x.swift', 'plugins/x.js']) expect({ p, in: inScope(p) }).toEqual({ p, in: true });
   });
 });
