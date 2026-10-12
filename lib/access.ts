@@ -3,7 +3,7 @@
  * na start, z możliwością przejścia na darmowe zmianą JEDNEJ wartości: PAYWALL.ENABLED).
  *
  * Moduł jest CZYSTY: bez StoreKit, bez magazynu, bez Date.now() i bez strefy telefonu w środku — czas i przesunięcie strefy przychodzą
- * jako argumenty. Nic w aplikacji go dziś nie woła (wydanie przygotowawcze; strażnik w lib/start.ts, ekrany i adapter sklepu — wydanie 0.17).
+ * jako argumenty. Podłączony w 0.17.0: lib/entitlement.ts (stan, zapamiętany wynik, strażnik startu w lib/start.ts), adapter sklepu lib/store-adapter.ts, ekran zakupu app/paywall.tsx.
  * Przy PAYWALL.ENABLED = false każda funkcja zwraca pełny dostęp (zachowanie aplikacji bez zmian).
  */
 
@@ -13,11 +13,11 @@ export interface PaywallConfig {
   ENABLED: boolean;
   /** Darmowe treningi na żywo w miesiącu kalendarzowym w stanie `free` (docs/15, 09.10.2026 pkt 5). */
   FREE_LIVE_PER_MONTH: number;
-  /** [DO DECYZJI — P3, docs/27 rozdz. 2 i 8] Czy treningi rozpoczęte w stanie `full` liczą się do limitu miesiąca, w którym dostęp wygasł.
-   * false = wariant B, REKOMENDOWANY (liczone tylko starty od chwili wygaśnięcia); true = wariant A (limit „4 w miesiącu” bez wyjątków). */
+  /** Decyzja właściciela 12.10.2026, P3 B (docs/27): czy treningi rozpoczęte w stanie `full` liczą się do limitu miesiąca, w którym dostęp wygasł.
+   * false = wariant B, WYBRANY (liczone tylko starty od chwili wygaśnięcia); true = wariant A (limit „4 w miesiącu” bez wyjątków). */
   COUNT_FULL_STARTS_IN_EXPIRY_MONTH: boolean;
-  /** [DO DECYZJI — P6, docs/27 3.6] Dni karencji offline: bez odpowiedzi sklepu (`unknown`) zapamiętany `full` z datą wygaśnięcia trwa jeszcze tyle
-   * dni po tej dacie, potem `free`. 7 = wariant A, REKOMENDOWANY (liczba produktowa, nie merytoryczna); 0 = wariant B (od razu `free`). */
+  /** Decyzja właściciela 12.10.2026, P6 A (docs/27 3.6): dni karencji offline: bez odpowiedzi sklepu (`unknown`) zapamiętany `full` z datą wygaśnięcia trwa jeszcze tyle
+   * dni po tej dacie, potem `free`. 7 = wariant A, WYBRANY (liczba produktowa, nie merytoryczna); 0 = wariant B (od razu `free`). */
   OFFLINE_GRACE_DAYS: number;
 }
 export const PAYWALL: PaywallConfig = {
@@ -50,6 +50,8 @@ export interface Entitlement {
   expiresAt?: number | null;
   /** Koniec okresu karencji płatności (Billing Grace Period): dostęp trwa do późniejszego z expiresAt i graceUntil. */
   graceUntil?: number | null;
+  /** Okres próbny (oferta wprowadzająca „za darmo”) — potrzebne tylko do przypomnienia przed jego końcem (lib/trialReminder.ts); nie wpływa na dostęp. */
+  trial?: true;
   /** Zwrot / cofnięcie (też wyjście z rodziny): od tej chwili uprawnienie nie działa. */
   revokedAt?: number | null;
 }

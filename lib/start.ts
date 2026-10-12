@@ -1,7 +1,9 @@
 import { Alert } from 'react-native';
-import { startFromTemplate, repeatLast, finishedWorkouts, isDeloadWeek, tplRows, workCount, startableItem, repeatBlocks, deloadTail } from '@/lib/store';
+import { startFromTemplate, startEmpty, repeatLast, finishedWorkouts, isDeloadWeek, tplRows, workCount, startableItem, repeatBlocks, deloadTail } from '@/lib/store';
 import { deloadKeep } from '@/lib/deload-sets';
 import { t } from '@/lib/i18n';
+import { guardLiveStart } from '@/lib/entitlement';
+import type { GuardedStart } from '@/lib/access';
 import type { Template, Workout } from '@/lib/seed';
 
 /** Liczby do pytania deload z serii roboczych na ćwiczenie (store.workCount — D3: bez rozgrzewek, drop set liczy się razem z serią przed nim): pełne, po cięciu i czy jest ćwiczenie z 1 serią.
@@ -57,11 +59,18 @@ function askShortened(c: ReturnType<typeof counts>, go: (deload: boolean) => voi
  * Start z szablonu z każdego miejsca w aplikacji (ekran treningu, „Dziś”, panel dnia, szablon). W tygodniu deload (decyzja właściciela 08.10.2026, B)
  * pytanie: mniej serii (o około 1/3–1/2, ciężary bez zmian, szablon bez zmian) czy pełny trening. `after` — np. przejście na ekran treningu.
  */
-export function startTemplate(tpl: Template, after?: () => void) {
+export function startTemplate(tpl: Template, after?: () => void, via: GuardedStart = 'template') {
+  if (!guardLiveStart(via)) return; /* subskrypcja (docs/27, 0.17): ponad limit darmowych treningów — ekran zakupu zamiast startu; przy PAYWALL.ENABLED = false bez skutku */
   askDeload(deloadCounts(tpl), deload => { startFromTemplate(tpl, deload ? { deload: true } : undefined); after?.(); });
 }
 /** „Powtórz ostatni” (audyt 0.10, D1 / MER-05 / UI-03 / UX-06 / X-16): w tygodniu deload to samo pytanie co Start, cięcie deloadKeep na blok. */
 export function startRepeatLast(after?: () => void) {
   const last = finishedWorkouts()[0]; if (!last) return;
+  if (!guardLiveStart('repeatLast')) return;
   askDeload(repeatCounts(last), deload => { repeatLast(deload ? { deload: true } : undefined); after?.(); });
+}
+/** „Pusty trening” — start bez szablonu przez ten sam strażnik co pozostałe drogi (docs/27: jedno miejsce w kodzie). `after` wołane tylko po starcie. */
+export function startEmptyWorkout(after?: () => void): boolean {
+  if (!guardLiveStart('empty')) return false;
+  const ok = startEmpty(); if (ok) after?.(); return ok;
 }

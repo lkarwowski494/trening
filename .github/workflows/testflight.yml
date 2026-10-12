@@ -46,6 +46,9 @@ jobs:
         env:
           NODE_OPTIONS: --max-old-space-size=3072
         run: npm run verify
+      - name: Straż 0.17.0 — build dla telefonu ma prawdziwy sklep (bez sztucznego, który jest tylko w E2E)
+        run: |
+          if [ -n "${EXPO_PUBLIC_STORE_FAKE:-}" ]; then echo "::error::EXPO_PUBLIC_STORE_FAKE ustawione w buildzie TestFlight"; exit 1; fi
       - name: Generate native iOS project (expo prebuild)
         run: npx expo prebuild --platform ios --no-install --clean
       - name: Numer buildu (aplikacja i widżet ten sam CFBundleVersion)

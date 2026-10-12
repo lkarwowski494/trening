@@ -58,7 +58,7 @@ export function DayPanel({ day }: { day: string }) {
 
   /* ---- akcje: główne (najwyżej 3) i „Więcej opcji” ---- */
   const primary: Act[] = []; const extra: Act[] = [];
-  if (tpl && day === today && pending(st) && !act && tpl.items.length) primary.push({ key: 'start', el: <Btn nav small kind="primary" title={t('Start')} accessibilityLabel={t('Start zaplanowanego treningu: {name}', { name: tpl.name })} onPress={() => startTemplate(tpl, () => router.navigate('/'))} /> });
+  if (tpl && day === today && pending(st) && !act && tpl.items.length) primary.push({ key: 'start', el: <Btn nav small kind="primary" title={t('Start')} accessibilityLabel={t('Start zaplanowanego treningu: {name}', { name: tpl.name })} onPress={() => startTemplate(tpl, () => router.navigate('/'), 'calendar')} /> });
   /* UI-18 (audyt 0.10, G5): przy treningu w toku Start nie znika bez słowa — ta sama informacja co w podglądzie szablonu */
   else if (tpl && day === today && pending(st) && act && tpl.items.length) primary.push({ key: 'start', el: <Btn small kind="ghost" title={t('Start')} accessibilityLabel={t('Start zaplanowanego treningu: {name}', { name: tpl.name })} accessibilityHint={t('Trening w toku')} onPress={() => Alert.alert(t('Trening w toku'), t('Najpierw zakończ albo anuluj bieżący trening.'))} /> });
   if (movable) primary.push({ key: 'move', el: <Btn small title={t('Przesuń albo pomiń')} accessibilityHint={t('Lista możliwości: przesunięcie planu, przeniesienie tylko tego treningu, zamiana albo wolne — z uwzględnieniem regeneracji partii.')} onPress={() => setMode(mode === 'move' ? 'none' : 'move')} /> });

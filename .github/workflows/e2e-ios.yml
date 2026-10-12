@@ -60,6 +60,9 @@ jobs:
         run: cd ios && pod install
       - name: Build (Release, symulator, bez podpisu)
         if: inputs.aplikacja_z_przebiegu == ''
+        env:
+          # 0.17.0 (docs/27 7.2): sztuczny sklep + włączony przełącznik subskrypcji, limit 1 trening — TYLKO ten build E2E; testflight.yml ma straż (tests/store-adapter.test.ts)
+          EXPO_PUBLIC_STORE_FAKE: '1'
         run: |
           set -o pipefail
           cd ios

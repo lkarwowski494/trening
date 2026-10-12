@@ -70,3 +70,10 @@ export function reviewDecision(i: ReviewInput): 'ask' | ReviewBlockReason {
 
 /** Czy poprosić o ocenę teraz (wołać tylko po zakończeniu treningu, nigdy z przycisku — docs/26 rozdz. 2). */
 export const shouldAskForReview = (i: ReviewInput): boolean => reviewDecision(i) === 'ask';
+
+/** Normalizacja pola Settings.reviewAsked przy wczytaniu/imporcie (migrate): poprawna para {at, version}; zła wartość albo data z przyszłości → undefined (brak pola). */
+export function normalizeReviewAsked(raw: unknown, now: number = Date.now()): ReviewAsked | undefined {
+  const r = raw as { at?: unknown; version?: unknown } | null | undefined;
+  if (!r || typeof r !== 'object' || !finite(r.at) || r.at < 0 || r.at > now || typeof r.version !== 'string' || !r.version) return undefined;
+  return { at: r.at, version: r.version };
+}

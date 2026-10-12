@@ -3,8 +3,8 @@ import { Modal, Pressable, Text, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Btn, Item, useOnce } from '@/components/ui';
 import { useTheme, F, TEXT_SCALE_MAX } from '@/lib/theme';
-import { startEmpty, fmtDate, fmtDayKey } from '@/lib/store';
-import { startTemplate, startRepeatLast } from '@/lib/start';
+import { fmtDate, fmtDayKey } from '@/lib/store';
+import { startTemplate, startRepeatLast, startEmptyWorkout } from '@/lib/start';
 import { mainStart, otherStarts, type MainStart, type OtherStart } from '@/lib/home';
 import { dayKeyOf, addDays } from '@/lib/plan';
 import { t, tp, lang } from '@/lib/i18n';
@@ -30,7 +30,7 @@ function mainText(m: MainStart): { title: string; sub?: string; label: string } 
 export function StartPanel() {
   const th = useTheme(); const router = useRouter(); const once = useOnce(); const [open, setOpen] = useState(false);
   const m = mainStart(); const x = mainText(m);
-  const go = () => { if (m.kind === 'plan' || m.kind === 'planNext' || m.kind === 'next') startTemplate(m.tpl); else if (m.kind === 'empty') startEmpty(); else router.push('/'); };
+  const go = () => { if (m.kind === 'plan' || m.kind === 'planNext' || m.kind === 'next') startTemplate(m.tpl); else if (m.kind === 'empty') startEmptyWorkout(); else router.push('/'); };
   const others = open ? otherStarts(m) : [];
   const pick = (f: () => void) => once(() => { setOpen(false); f(); });
   const row = (o: OtherStart) => {
@@ -38,7 +38,7 @@ export function StartPanel() {
       case 'planOther': return <Item key="plan" title={t('Inny z planu')} sub={t('{name} · w planie na: {day}', { name: o.tpl.name, day: dayWord(o.date) })} accessibilityLabel={t('Inny z planu: {name}', { name: o.tpl.name })} onPress={pick(() => startTemplate(o.tpl))} />;
       case 'repeat': return <Item key="repeat" title={t('Powtórz ostatni')} sub={`${o.name || t('bez szablonu')} · ${fmtDate(o.date)}`} /* właściciel 09.10.2026 ok. 16:20: podpis nazwa · data (dawna sekcja „Ostatni trening”) */ accessibilityLabel={t('Powtórz ostatni ({name})', { name: o.name || t('bez szablonu') })} onPress={pick(() => startRepeatLast())} />;
       case 'template': return <Item key="tpl" title={t('Z szablonu')} /* P2 B (11.10.2026): pełnoekranowy wybór szablonu ze „Startem” (app/pick-template.tsx), nie zakładka Szablony */ sub={(n => `${n} ${tp(n, 'szablon|szablony|szablonów')}`)(o.count)} accessibilityLabel={t('Z szablonu')} onPress={pick(() => router.push('/pick-template'))} />;
-      default: return <Item key="empty" title={t('Pusty trening')} accessibilityLabel={t('Pusty trening')} onPress={pick(() => startEmpty())} />;
+      default: return <Item key="empty" title={t('Pusty trening')} accessibilityLabel={t('Pusty trening')} onPress={pick(() => startEmptyWorkout())} />;
     }
   };
   return (

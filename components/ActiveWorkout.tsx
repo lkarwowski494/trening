@@ -20,6 +20,7 @@ import { locationLabel } from '@/lib/locations';
 import * as timer from '@/lib/timer';
 import { prMap } from '@/lib/stats';
 import { onWorkoutSaved } from '@/lib/backup';
+import { markJustFinished } from '@/lib/review-run';
 import { markDoneEarly } from '@/lib/plan';
 import { hasTime, hasReps, hasWeight, hasDistance, SET_KIND_LABEL, type WExercise, type WSet, type Workout } from '@/lib/seed';
 import { t as tr, tp, exName, lang, glue } from '@/lib/i18n';
@@ -102,7 +103,7 @@ export default function ActiveWorkout() {
     const tplNow = cur?.templateId ? getState().templates.find(x => x.id === cur.templateId) : undefined; const snap: Workout | null = cur ? JSON.parse(JSON.stringify(cur)) : null;
     const diff = snap ? templateDiff(tplNow, snap) : null;
     const saved = finishWorkout(at != null && cur ? Math.max(at, lastActivity(cur)) : at); /* T1: koniec nie wcześniej niż ostatnia zapisana seria */ timer.stop(); timer.stopSet(); timer.cancelStaleReminder().catch(() => {});
-    if (saved) { markDoneEarly(saved); /* docs/18 pkt 4 (11.10.2026): trening zrobiony wcześniej */ onWorkoutSaved(saved).catch(() => {}); if (diff && tplNow && snap) rememberTemplateUpdate(saved.id, tplNow.id, snap); router.push(`/history/${saved.id}`); /* decyzja właściciela 11.10.2026: bez okienka z rekordami — od razu ekran sesji z kartą rekordów (RecordsCard); zmiany w szablonie (H5, 8A 11.10.2026) — przycisk na ekranie sesji, bez okna */ }
+    if (saved) { markJustFinished(saved.id); /* 0.17.0: ekran sesji może poprosić o ocenę / pokazać zakup po pierwszym treningu */ markDoneEarly(saved); /* docs/18 pkt 4 (11.10.2026): trening zrobiony wcześniej */ onWorkoutSaved(saved).catch(() => {}); if (diff && tplNow && snap) rememberTemplateUpdate(saved.id, tplNow.id, snap); router.push(`/history/${saved.id}`); /* decyzja właściciela 11.10.2026: bez okienka z rekordami — od razu ekran sesji z kartą rekordów (RecordsCard); zmiany w szablonie (H5, 8A 11.10.2026) — przycisk na ekranie sesji, bez okna */ }
   };
   // Runda 69: porzucony trening — po 2 h bez odhaczonej serii pytanie przy otwarciu (także po powrocie z tła);
   // przypomnienie w powiadomieniu 2 h po ostatniej serii.

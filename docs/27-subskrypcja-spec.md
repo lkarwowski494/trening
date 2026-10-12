@@ -1,12 +1,32 @@
 # 27. Subskrypcja i zakup w aplikacji — specyfikacja (11.10.2026)
 
-Stan: **projekt do decyzji właściciela, bez kodu.** Autor: agent (rola analityk produktu). Realizuje decyzje z `docs/15-app-store.md`
+Stan: **decyzje właściciela z 12.10.2026 zapisane niżej; wdrożenie w wydaniu 0.17.0 za przełącznikiem `PAYWALL.ENABLED` (domyślnie wyłączony).** Pierwotnie: projekt do decyzji właściciela, bez kodu. Autor: agent (rola analityk produktu). Realizuje decyzje z `docs/15-app-store.md`
 (sekcja „Decyzje właściciela”) i pkt 5 kolejności z `docs/21-roadmapa-offline.md` („Przed wersją płatną: subskrypcja i blokada po wygaśnięciu”).
 Niczego z tych decyzji nie zmienia; gdzie decyzji brak — opcje w rozdz. 7 („Pytania do właściciela”).
 
 **Cel:** po okresie próbnym aplikacja pobiera opłatę (subskrypcja miesięczna, roczna albo dostęp dożywotni) wyłącznie przez Apple, bez
 serwera i bez konta; bez zakupu zostają 4 treningi na żywo w miesiącu kalendarzowym, a dane użytkownika (historia, kopia, eksport) są
 dostępne zawsze.
+
+## Decyzje właściciela (12.10.2026)
+
+Właściciel przyjął rekomendacje agenta („zgodnie z rekomendacją”). Wdrożone w 0.17.0 (kod: `lib/products.ts`, `lib/access.ts`, `lib/entitlement.ts`; testy: docs/09):
+
+| Pytanie | Decyzja | Skutek w aplikacji |
+|---|---|---|
+| P1 | A — okres próbny jako oferta wprowadzająca Apple (miesiąc w obu planach) | tekst „1 miesiąc za darmo, potem {cena}/{okres}” tylko dla osób uprawnionych (`isEligibleForIntroOffer`) |
+| P2 | B — ekran zakupu raz po pierwszym ukończonym treningu na żywo, potem tylko Ustawienia i start ponad limit | `PAYWALL_MOMENTS.AFTER_FIRST_WORKOUT`, `maybeShowPaywallAfterFirstWorkout` (znacznik w kv `paywallSeen`, poza kopią); nie dla osób z pełnym dostępem ani bez odpowiedzi sklepu |
+| P3 | B — do limitu po wygaśnięciu liczą się tylko treningi rozpoczęte po wygaśnięciu | `PAYWALL.COUNT_FULL_STARTS_IN_EXPIRY_MONTH = false` |
+| P4 | B — bez okna przed 4. darmowym treningiem, tylko licznik | brak okna; licznik w Ustawieniach → „Subskrypcja” (linia na ekranie głównym — poza zakresem 0.17, do osobnej decyzji o układzie) |
+| P5 | A — lokalne powiadomienie 2 dni przed końcem próby | `PAYWALL_MOMENTS.TRIAL_END_REMINDER_DAYS = 2`, `lib/trialReminder.ts`; zgoda na powiadomienia jak przy przerwach |
+| P6 | A — 7 dni dostępu offline po dacie wygaśnięcia | `PAYWALL.OFFLINE_GRACE_DAYS = 7` |
+| P7 | A — Billing Grace Period 16 dni | włączenie tylko w App Store Connect; w aplikacji stan karencji = pełny dostęp (adapter czyta `renewalInfo.gracePeriodExpirationDate` — docs/30 „Ustalenia przy wdrożeniu” pkt 4) |
+| P8 | A — testerzy dostają kody ofertowe | tylko App Store Connect, nic w kodzie |
+| P9 | A — standardowa licencja Apple | `TERMS_URL` = https://www.apple.com/legal/internet-services/itunes/dev/stdeula/ (przeczytane 12.10.2026: „Your license to each App is subject to your prior acceptance of either this Licensed Application End User License Agreement (“Standard EULA”), or a custom end user license agreement”; App Store Connect: „If you don’t provide a custom EULA, the standard EULA is applied to your app” — developer.apple.com/help/app-store-connect/manage-app-information/provide-a-custom-license-agreement). W App Store Connect nie dodajemy własnej umowy |
+| P10 | A — `expo-iap` 5.8.1 (przypięta dokładnie), bez usługi weryfikacji | docs/30 |
+| P11 | A — znacznik `Workout.live` | wydanie 0.16.0 |
+
+Wyjście na model darmowy: jedna wartość `PAYWALL.ENABLED` (lib/access.ts). Uwaga: P7 A (karencja) i P9 A zamykają dawne punkty [DO DECYZJI]/[DO WYJAŚNIENIA] w rozdz. 3.10 i 5.4.
 
 ## 1. Decyzje wejściowe (z docs/15, nie zmieniane tutaj)
 
@@ -48,8 +68,8 @@ zakupy”, „Zrealizuj kod”, „Zarządzaj subskrypcją”. Blokowany jest **
 - Liczy się trening na żywo, którego **start** wypada w bieżącym miesiącu kalendarzowym (dzień liczony jak wszędzie — `store.wallTs`
   z `tzOffsetMin`, J3), **zakończony albo trwający**. Anulowany („Anuluj trening”) nie liczy się — nie ma go w historii.
 - Nie liczy się: trening wstecz, edycja treningu z historii, treningi sprzed włączenia płatności (patrz rozdz. 4 — znacznik).
-- Czy treningi rozpoczęte w stanie `full` liczą się do limitu miesiąca, w którym subskrypcja wygasła — **[DO DECYZJI — pytanie P3]**
-  (rekomendacja: nie; liczone tylko starty od chwili wygaśnięcia).
+- Czy treningi rozpoczęte w stanie `full` liczą się do limitu miesiąca, w którym subskrypcja wygasła — **decyzja 12.10.2026, P3 B**
+  (liczone tylko starty od chwili wygaśnięcia).
 - Zmiana miesiąca: licznik od nowa o północy 1. dnia (czas telefonu). Trening rozpoczęty 31. o 23:30 liczy się do miesiąca startu.
 - Licznik z historii (bez osobnego licznika): usunięcie treningu z historii zwalnia miejsce. Ocena realności (CLAUDE.md pkt 6): **brzegowy**
   (kosztem własnych danych) → bez naprawy, notatka. Zmiana daty w Ustawieniach iOS — **teoretyczny/brzegowy**, bez naprawy.
@@ -100,7 +120,7 @@ zakupy”, „Zrealizuj kod”, „Zarządzaj subskrypcją”. Blokowany jest **
   the device will need internet access but it does cache data locally and new transactions are pushed to the device when online” —
   https://developer.apple.com/forums/thread/706450 (forum, nie dokumentacja — **szczebel niższy, do potwierdzenia testem w trybie samolotowym**).
 - Zasada bezpieczna dla użytkownika: aplikacja zapamiętuje ostatni znany stan i datę wygaśnięcia; offline po dacie wygaśnięcia subskrypcji,
-  której odnowienia telefon nie mógł pobrać — **[DO DECYZJI — pytanie P6]** (karencja offline vs natychmiast `free`).
+  której odnowienia telefon nie mógł pobrać — **P6 A (12.10.2026)** (karencja offline vs natychmiast `free`).
 - Zakup, kod i przywracanie offline — komunikat „Potrzebne połączenie z internetem”, bez zmiany stanu.
 
 ### 3.7 Przywracanie zakupów

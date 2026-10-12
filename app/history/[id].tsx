@@ -9,6 +9,7 @@ import { hasTime, hasReps, hasWeight, hasDistance, SET_KIND_LABEL } from '@/lib/
 import { setMarkOf } from '@/lib/live';
 import { earlyNote } from '@/lib/plan';
 import { prMap, workoutPRs, prCountOf } from '@/lib/stats';
+import { onSummaryShown } from '@/lib/review-run';
 import { RecordsCard } from '@/components/RecordsCard';
 import { SessionHealth } from '@/components/HealthLines';
 import { useTheme, F } from '@/lib/theme';
@@ -20,6 +21,7 @@ export default function HistoryDetail() {
   const [tplSaved, setTplSaved] = React.useState(false); /* po „Zapisz zmiany w szablonie” — potwierdzenie zamiast przycisku */
   const { id } = useLocalSearchParams<{ id: string }>(); useTick(); const router = useRouter(); const th = useTheme(); const once = useOnce(); /* audyt (LOW): podwójne „Edytuj” nie otwiera dwóch edytorów */
   const w = getState().workouts.find(x => x.id === id);
+  React.useEffect(() => { const cur = getState().workouts.find(x => x.id === id); return cur ? onSummaryShown(cur) : undefined; }, [id]); /* 0.17.0: tylko świeżo zakończony trening (markJustFinished) */
   /* karta rekordów (11.10.2026, pkt 7): liczba i statystyki z jednego workoutPRs (E3: prCountOf); liczone przy każdym renderze, jak prMap niżej */
   const wprs = w ? workoutPRs(w) : []; const nPR = prCountOf(wprs);
   if (!w) return <Screen><Muted>{t('Brak sesji.')}</Muted></Screen>;

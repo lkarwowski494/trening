@@ -1,4 +1,6 @@
 import { MedicalNote } from '@/components/MedicalNote';
+import { SubscriptionCard } from '@/components/SubscriptionCard';
+import { paywallOn } from '@/lib/entitlement';
 import React, { useEffect, useState } from 'react';
 import { ScrollView, Alert, View, Linking } from 'react-native';
 import { Screen, Field, NumInput, Btn, Muted, SwitchRow, Segmented, SectionTitle, Item } from '@/components/ui';
@@ -24,6 +26,7 @@ export default function SettingsScreen() {
   const [goalsOpen, setGoalsOpen] = useState(false);
   return (
     <Screen><ScrollView keyboardShouldPersistTaps="handled" automaticallyAdjustKeyboardInsets contentContainerStyle={{ paddingVertical: 10, paddingBottom: 60 }}>
+      {paywallOn() ? <SubscriptionCard /> /* 0.17.0 (docs/27): karta tylko przy PAYWALL.ENABLED */ : null}
       <SectionTitle>{t('Ogólne')}</SectionTitle>
       <Item title={t('Język')} sub={s.language && s.language !== 'auto' ? LANG_NAME[s.language as Lang] : t('Jak w telefonie')} onPress={() => router.push('/more/language')} /* 05.10.2026: 16 języków — osobna lista */ />
       <Field label={t('Wygląd')}><Segmented label={t('Wygląd')} options={[['light', t('Jasny')], ['dark', t('Ciemny')], ['auto', t('Jak w telefonie')]] as [ThemeSetting, string][]} value={s.theme ?? 'light'} onChange={v => { s.theme = v; applyPrefs(); saveCfg(); }} /></Field>

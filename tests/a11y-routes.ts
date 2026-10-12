@@ -24,7 +24,7 @@ export const routesFor = (w: { id: string }, tpl: { id: string }, exId: string, 
   '/', '/templates', '/exercises', '/history', '/more', '/more/settings', '/progress', '/more/locations', '/more/backup', '/more/language', '/more/bands',
   `/template/${tpl.id}`, `/exercise/${exId}`, `/history/${w.id}`, `/history/edit/${w.id}`,
   '/plan', '/generator', '/guide', `/swap?target=active:${blockId}`, '/picker?target=active', '/reorder?target=active', '/history/add', `/more/location/${locId}`,
-  '/more/bodymass', '/more/about', '/more/licenses', '/more/import', /* 11.10.2026: import CSV — na końcu, żeby indeksy tras się nie przesunęły */ /* audyt 0.10 fala 2: masa ciała z datą, O aplikacji, licencje (SEC-08) */
+  '/more/bodymass', '/more/about', '/more/licenses', '/more/import', '/paywall?reason=limit', /* 11.10.2026: import CSV; 0.17.0: ekran zakupu — na końcu, żeby indeksy tras się nie przesunęły */ /* audyt 0.10 fala 2: masa ciała z datą, O aplikacji, licencje (SEC-08) */
   '/generator?mode=own', /* 09.10.2026 (B): „Plan z moich szablonów” — drugi tryb ekranu generatora */
   '/pick-template', '/progression', /* 11.10.2026: wybór szablonu do startu (P2 B) i Progresja (P8 B) */
 ];

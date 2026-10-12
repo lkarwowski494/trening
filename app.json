@@ -89,6 +89,7 @@
         }
       ],
       "@bacons/apple-targets",
+      "expo-iap",
       "expo-localization",
       "expo-sharing",
       "expo-status-bar",

@@ -1,0 +1,125 @@
+{
+  "identifier" : "0E1C5B7A",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+    {
+      "displayPrice" : "21.99",
+      "familyShareable" : true,
+      "internalID" : "6B2D9F01",
+      "localizations" : [
+        {
+          "description" : "Treningi bez limitu, jednorazowo",
+          "displayName" : "Pełna wersja — na zawsze",
+          "locale" : "pl"
+        },
+        {
+          "description" : "Unlimited workouts, one-time purchase",
+          "displayName" : "Full version — forever",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "pl.lukasz.trening.full.lifetime",
+      "referenceName" : "Pełna wersja — dożywotni",
+      "type" : "NonConsumable"
+    }
+  ],
+  "settings" : {
+    "_failTransactionsEnabled" : false,
+    "_storeKitErrors" : [
+
+    ]
+  },
+  "subscriptionGroups" : [
+    {
+      "id" : "21D0A4F2",
+      "localizations" : [
+
+      ],
+      "name" : "Pełna wersja",
+      "subscriptions" : [
+        {
+          "adHocOffers" : [
+
+          ],
+          "codeOffers" : [
+
+          ],
+          "displayPrice" : "0.99",
+          "familyShareable" : true,
+          "groupNumber" : 1,
+          "internalID" : "3C71A8E5",
+          "introductoryOffer" : {
+            "internalID" : "9A40D2B7",
+            "numberOfPeriods" : 1,
+            "paymentMode" : "free",
+            "subscriptionPeriod" : "P1M"
+          },
+          "localizations" : [
+            {
+              "description" : "Treningi bez limitu, odnawiane co miesiąc",
+              "displayName" : "Pełna wersja — miesięcznie",
+              "locale" : "pl"
+            },
+            {
+              "description" : "Unlimited workouts, renews monthly",
+              "displayName" : "Full version — monthly",
+              "locale" : "en_US"
+            }
+          ],
+          "productID" : "pl.lukasz.trening.full.monthly",
+          "recurringSubscriptionPeriod" : "P1M",
+          "referenceName" : "Pełna wersja — miesięczna",
+          "subscriptionGroupID" : "21D0A4F2",
+          "type" : "RecurringSubscription",
+          "winbackOffers" : [
+
+          ]
+        },
+        {
+          "adHocOffers" : [
+
+          ],
+          "codeOffers" : [
+
+          ],
+          "displayPrice" : "6.99",
+          "familyShareable" : true,
+          "groupNumber" : 2,
+          "internalID" : "58E0C3D9",
+          "introductoryOffer" : {
+            "internalID" : "B71F6A20",
+            "numberOfPeriods" : 1,
+            "paymentMode" : "free",
+            "subscriptionPeriod" : "P1M"
+          },
+          "localizations" : [
+            {
+              "description" : "Treningi bez limitu, odnawiane co rok",
+              "displayName" : "Pełna wersja — rocznie",
+              "locale" : "pl"
+            },
+            {
+              "description" : "Unlimited workouts, renews yearly",
+              "displayName" : "Full version — yearly",
+              "locale" : "en_US"
+            }
+          ],
+          "productID" : "pl.lukasz.trening.full.yearly",
+          "recurringSubscriptionPeriod" : "P1Y",
+          "referenceName" : "Pełna wersja — roczna",
+          "subscriptionGroupID" : "21D0A4F2",
+          "type" : "RecurringSubscription",
+          "winbackOffers" : [
+
+          ]
+        }
+      ]
+    }
+  ],
+  "version" : {
+    "major" : 4,
+    "minor" : 0
+  }
+}

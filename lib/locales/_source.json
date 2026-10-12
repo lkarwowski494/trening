@@ -152,6 +152,14 @@
   "en": "{p}% of the weekly plan ({done} of {n})"
  },
  {
+  "pl": "{price} jednorazowo",
+  "en": "{price} one-time"
+ },
+ {
+  "pl": "{price}/{period}",
+  "en": "{price}/{period}"
+ },
+ {
   "pl": "{title} ({sub}): objętość {v}, {p}; serie {s}, {d}",
   "en": "{title} ({sub}): volume {v}, {p}; sets {s}, {d}"
  },
@@ -302,6 +310,10 @@
  {
   "pl": "★ Miejsce główne — domyślne dla nowych treningów i szablonów bez własnego miejsca.",
   "en": "★ Main place — default for new workouts and for templates without their own place."
+ },
+ {
+  "pl": "1 miesiąc za darmo, potem {price}/{period}",
+  "en": "1 month free, then {price}/{period}"
  },
  {
   "pl": "10 nowych języków: niemiecki, francuski, włoski, niderlandzki, szwedzki, duński, norweski, fiński, turecki i grecki.",
@@ -506,6 +518,10 @@
  {
   "pl": "Bez treningów: {list}. To zastąpi też aktywny plan „{plan}”, zrobiony tylko z tych szablonów — „Zastąp” je usunie i ustawi nowy plan jako aktywny w jego miejsce, „Zostaw” doda nowe obok.",
   "en": "Not used in any workout: {list}. This also replaces the active plan “{plan}”, made only of these templates — “Replace” deletes them and makes the new plan active in its place, “Keep” adds the new ones alongside."
+ },
+ {
+  "pl": "Bez zakupu: {n} {s} na żywo w miesiącu; historia, kopia zapasowa i eksport są zawsze dostępne.",
+  "en": "Without a purchase: {n} live {s} per month; history, backup and export are always available."
  },
  {
   "pl": "biblioteki ćwiczeń organizacji szkoleniowych",
@@ -716,6 +732,10 @@
   "en": "Set goal: {part}"
  },
  {
+  "pl": "Ceny są niedostępne bez połączenia z internetem.",
+  "en": "Prices are unavailable without an internet connection."
+ },
+ {
   "pl": "Ciemny",
   "en": "Dark"
  },
@@ -840,6 +860,10 @@
   "en": "Waiting to be saved to Apple Health: {n}. I retry when the app starts and when you return to it."
  },
  {
+  "pl": "Czeka na zgodę organizatora rodziny.",
+  "en": "Waiting for approval from the family organizer."
+ },
+ {
   "pl": "czerwona",
   "en": "red"
  },
@@ -943,6 +967,10 @@
  {
   "pl": "Dane z nowszej wersji aplikacji — zaktualizuj aplikację",
   "en": "Data from a newer app version — update the app"
+ },
+ {
+  "pl": "Darmowe treningi w tym miesiącu: {n} z {limit}",
+  "en": "Free workouts this month: {n} of {limit}"
  },
  {
   "pl": "Data (RRRR-MM-DD)",
@@ -1079,6 +1107,18 @@
  {
   "pl": "Dopisz trening wstecz",
   "en": "Log a past workout"
+ },
+ {
+  "pl": "Dostęp do {date}",
+  "en": "Access until {date}"
+ },
+ {
+  "pl": "Dostęp z Chmury rodzinnej",
+  "en": "Access through Family Sharing"
+ },
+ {
+  "pl": "Dostęp z kodu do {date}",
+  "en": "Access from a code until {date}"
  },
  {
   "pl": "Dostępne ćwiczenia: {n} z {m}",
@@ -1870,6 +1910,10 @@
   "en": "A short animation at launch: plates slide onto the bar."
  },
  {
+  "pl": "Kup na zawsze",
+  "en": "Buy forever"
+ },
+ {
   "pl": "landmine",
   "en": "landmine"
  },
@@ -1932,6 +1976,10 @@
  {
   "pl": "Lista: ćwiczenia i serie jak w poprzednich wersjach, bez karty.",
   "en": "List: exercises and sets as in earlier versions, without the card."
+ },
+ {
+  "pl": "Ładowanie cen…",
+  "en": "Loading prices…"
  },
  {
   "pl": "łańcuchy",
@@ -2060,6 +2108,14 @@
  {
   "pl": "Masa: co najmniej {m} serii na partię w tygodniu, {a}–{b} powtórzeń (w domu {c}–{d}), zwykle {r1}–{r2} powtórzenia w zapasie.",
   "en": "Muscle: at least {m} sets per muscle group per week, {a}–{b} reps (at home {c}–{d}), usually {r1}–{r2} reps in reserve."
+ },
+ {
+  "pl": "Masz dostęp na zawsze",
+  "en": "You have access forever"
+ },
+ {
+  "pl": "Masz pełną wersję",
+  "en": "You have the full version"
  },
  {
   "pl": "maszyna",
@@ -2302,12 +2358,20 @@
   "en": "Workout place: {l}"
  },
  {
+  "pl": "miesiąc",
+  "en": "month"
+ },
+ {
   "pl": "Miesiąc",
   "en": "Month"
  },
  {
   "pl": "Miesiąc do miesiąca",
   "en": "Month over month"
+ },
+ {
+  "pl": "Miesięcznie",
+  "en": "Monthly"
  },
  {
   "pl": "Mięsień docelowy spoza mapy partii: {m} — nie liczy się w seriach na partię ani na mapie mięśni.",
@@ -2409,6 +2473,10 @@
  {
   "pl": "na urządzeniu: {v}",
   "en": "on the device: {v}"
+ },
+ {
+  "pl": "Na zawsze",
+  "en": "Forever"
  },
  {
   "pl": "Nadpisać dane?",
@@ -2615,6 +2683,10 @@
   "en": "Could not open your data."
  },
  {
+  "pl": "Nie udało się przywrócić zakupów. Sprawdź połączenie z internetem.",
+  "en": "Couldn't restore purchases. Check your internet connection."
+ },
+ {
   "pl": "Nie udało się zapisać",
   "en": "Couldn’t save"
  },
@@ -2637,6 +2709,10 @@
  {
   "pl": "Nie zmieniono przerwy",
   "en": "Rest not changed"
+ },
+ {
+  "pl": "Nie znaleziono zakupów dla tego konta Apple.",
+  "en": "No purchases found for this Apple account."
  },
  {
   "pl": "Nie zostałaby żadna seria z wynikiem. Usunąć tę sesję z historii?",
@@ -2939,6 +3015,18 @@
   "en": "OK"
  },
  {
+  "pl": "Okres próbny do {date}",
+  "en": "Free trial until {date}"
+ },
+ {
+  "pl": "Okres próbny dobiega końca",
+  "en": "Your free trial is ending"
+ },
+ {
+  "pl": "Okres próbny kończy się {date}. Jeśli nie chcesz subskrypcji, anuluj ją w ustawieniach konta Apple.",
+  "en": "Your free trial ends on {date}. If you don't want the subscription, cancel it in your Apple account settings."
+ },
+ {
   "pl": "opaski na kostki",
   "en": "ankle straps"
  },
@@ -3027,6 +3115,10 @@
   "en": "Opens Progress."
  },
  {
+  "pl": "Otwiera stronę w przeglądarce.",
+  "en": "Opens the page in your browser."
+ },
+ {
   "pl": "Otwiera szczegóły Progresji.",
   "en": "Opens the Progression details."
  },
@@ -3113,6 +3205,10 @@
  {
   "pl": "Pełna siłownia",
   "en": "Full gym"
+ },
+ {
+  "pl": "Pełna wersja",
+  "en": "Full version"
  },
  {
   "pl": "Pełny trening",
@@ -3487,6 +3583,10 @@
   "en": "glutes"
  },
  {
+  "pl": "Potrzebne połączenie z internetem.",
+  "en": "An internet connection is needed."
+ },
+ {
   "pl": "pow.",
   "en": "reps"
  },
@@ -3603,6 +3703,10 @@
  {
   "pl": "prostowniki grzbietu",
   "en": "lower back"
+ },
+ {
+  "pl": "Prywatność",
+  "en": "Privacy"
  },
  {
   "pl": "Przeciągnij za ≡, żeby zmienić kolejność. Superset przesuwa się w całości; kolejność w nim zmienisz uchwytami przy ćwiczeniach.",
@@ -3765,6 +3869,10 @@
   "en": "adductors"
  },
  {
+  "pl": "Przywrócono zakupy.",
+  "en": "Purchases restored."
+ },
+ {
   "pl": "Przywróć",
   "en": "Restore"
  },
@@ -3783,6 +3891,10 @@
  {
   "pl": "Przywróć z planu",
   "en": "Restore from plan"
+ },
+ {
+  "pl": "Przywróć zakupy",
+  "en": "Restore purchases"
  },
  {
   "pl": "Pusta nazwa folderu",
@@ -3867,6 +3979,14 @@
  {
   "pl": "robione {n}×",
   "en": "done {n}×"
+ },
+ {
+  "pl": "Rocznie",
+  "en": "Yearly"
+ },
+ {
+  "pl": "rok",
+  "en": "year"
  },
  {
   "pl": "roller",
@@ -4257,6 +4377,18 @@
  {
   "pl": "Stuknij dzień w zakładce Plan: „Przesuń albo pomiń” pokazuje możliwości — przesunięcie planu o 1 dzień, tylko tego treningu, zamianę albo wolne.",
   "en": "Tap a day in the Plan tab: “Move or skip” shows the options — move the plan by 1 day, move only this workout, swap or rest."
+ },
+ {
+  "pl": "Subskrybuj",
+  "en": "Subscribe"
+ },
+ {
+  "pl": "Subskrypcja",
+  "en": "Subscription"
+ },
+ {
+  "pl": "Subskrypcja odnawia się automatycznie, dopóki jej nie anulujesz w ustawieniach konta Apple.",
+  "en": "The subscription renews automatically until you cancel it in your Apple account settings."
  },
  {
   "pl": "suma pow.",
@@ -4692,8 +4824,17 @@
   "en": "A workout you didn’t log at the time. Set the date and pick a template — you’ll fill in the sets in the next step (values from your last workout before that date)."
  },
  {
+  "pl": "trening|treningi|treningów",
+  "en": "workout|workouts",
+  "plural": true
+ },
+ {
   "pl": "Treningi",
   "en": "Workouts"
+ },
+ {
+  "pl": "Treningi bez limitu. Bez reklam. Wszystko zostaje na Twoim telefonie.",
+  "en": "Unlimited workouts. No ads. Everything stays on your phone."
  },
  {
   "pl": "Treningi do dodania: {n}",
@@ -4726,6 +4867,10 @@
  {
   "pl": "Trwający trening w tym miejscu trwa dalej; miejsce pokaże się jako „(usunięte miejsce)”.",
   "en": "The workout in progress at this place continues; the place will show as “(deleted place)”."
+ },
+ {
+  "pl": "Twoja subskrypcja nadal się odnawia — anuluj ją, żeby nie płacić podwójnie.",
+  "en": "Your subscription still renews — cancel it so you don't pay twice."
  },
  {
   "pl": "Tydzień",
@@ -5104,6 +5249,10 @@
   "en": "Change the values in the set row below."
  },
  {
+  "pl": "Warunki korzystania",
+  "en": "Terms of Use"
+ },
+ {
   "pl": "wcześniej zamieniane",
   "en": "swapped before"
  },
@@ -5376,6 +5525,10 @@
   "en": "done + planned"
  },
  {
+  "pl": "Wykorzystano limit darmowych treningów w tym miesiącu ({n}). Kolejne od {date}.",
+  "en": "You've used this month's free workouts ({n}). More from {date}."
+ },
+ {
   "pl": "Wykres słupkowy: {v}",
   "en": "Bar chart: {v}"
  },
@@ -5508,6 +5661,10 @@
   "en": "Start with fewer sets: {a} instead of {b} working sets? Same weights, the template stays unchanged."
  },
  {
+  "pl": "Zacznij miesiąc za darmo",
+  "en": "Start your free month"
+ },
+ {
   "pl": "Zaczynasz od tej wersji — poniżej zmiany dla osób, które korzystały z poprzednich. Na start przyda się przewodnik.",
   "en": "You’re starting with this version — below are changes for people who used earlier ones. The guide is a better place to start."
  },
@@ -5562,6 +5719,10 @@
  {
   "pl": "Zakresy powtórzeń (masa {a}–{b}, w domu i bez obciążenia {c}–{d}; przy sile dodatkowe {e}–{f}) to uproszczenie: mięśnie rosną przy szerokim zakresie ciężarów, gdy serie są blisko upadku (ACSM, przeglądy badań).",
   "en": "Rep ranges (muscle {a}–{b}, at home and without external load {c}–{d}; for strength other exercises {e}–{f}) are a simplification: muscles grow across a wide range of loads when sets are close to failure (ACSM, research reviews)."
+ },
+ {
+  "pl": "Zakupy są przypisane do konta Apple. Treningi przywrócisz z kopii zapasowej.",
+  "en": "Purchases are tied to your Apple account. You restore workouts from a backup."
  },
  {
   "pl": "Zalecenia",
@@ -5700,6 +5861,10 @@
   "en": "Plan a deload from {date}"
  },
  {
+  "pl": "Zarządzaj subskrypcją",
+  "en": "Manage subscription"
+ },
+ {
   "pl": "Zastąp",
   "en": "Replace"
  },
@@ -5830,6 +5995,10 @@
  {
   "pl": "Zostaw",
   "en": "Keep"
+ },
+ {
+  "pl": "Zrealizuj kod",
+  "en": "Redeem code"
  },
  {
   "pl": "zrobione",
