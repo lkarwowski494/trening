@@ -1492,7 +1492,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | locations.setBandLevel | lib/locations.ts | tests/band-exercises.test.tsx, tests/matrix-invariants.test.ts, tests/owner-0510c.test.tsx +1 |
 | locations.setBandColor | lib/locations.ts | tests/matrix-invariants.test.ts, tests/owner-0510c.test.tsx |
 | locations.setLoad | lib/locations.ts | tests/audit-perf-equiv.test.ts, tests/audit-r82c.test.tsx, tests/audit-r83.test.tsx +4 |
-| locations.locationLabel | lib/locations.ts | tests/locations-model.test.ts |
+| locations.locationLabel | lib/locations.ts | tests/locations-model.test.ts, tests/scenario-full.test.tsx |
 | motif.plateAt | lib/motif.ts | tests/motyw.test.tsx |
 | motif.dayMark | lib/motif.ts | tests/matrix-invariants.test.ts, tests/motyw.test.tsx |
 | motif.restCup | lib/motif.ts | tests/motyw.test.tsx |
