@@ -24,8 +24,8 @@
   "en": "“to” is lower than “from” — the range will show as {n}+"
  },
  {
-  "pl": "„Dopisz trening wstecz” zapisze trening, którego nie zapisałeś na bieżąco; z dnia w Kalendarzu jest ten sam przycisk.",
-  "en": "“Log a past workout” records a workout you didn’t log at the time; from a day in the Calendar it is the same button."
+  "pl": "„Dopisz trening wstecz” zapisze trening, którego nie zapisałeś na bieżąco; z dnia w zakładce Plan jest ten sam przycisk.",
+  "en": "“Log a past workout” records a workout you didn’t log at the time; from a day in the Plan tab it is the same button."
  },
  {
   "pl": "„Pomiń dziś” pomija resztę serii ćwiczenia w tym treningu.",
@@ -572,8 +572,8 @@
   "en": "No templates — add the first one."
  },
  {
-  "pl": "Brak szablonów z ćwiczeniami — utworzysz je w zakładce Szablony. Możesz też zacząć od pustego treningu.",
-  "en": "No templates with exercises — create them in the Templates tab. You can also start from an empty workout."
+  "pl": "Brak szablonów z ćwiczeniami — utworzysz je w Więcej → Szablony. Możesz też zacząć od pustego treningu.",
+  "en": "No templates with exercises — create them in More → Templates. You can also start from an empty workout."
  },
  {
   "pl": "Brak treningów w tym i poprzednim okresie.",
@@ -694,6 +694,10 @@
  {
   "pl": "Ciężar serii na stacji wpisuj na stronę — tak, jak pokazuje urządzenie.",
   "en": "Enter station set weights per side — as the device shows them."
+ },
+ {
+  "pl": "Ciężar z innego sprzętu — nie liczy się do rekordów, dopóki go tu nie wpiszesz.",
+  "en": "Weight from other equipment — it does not count toward records until you enter it here."
  },
  {
   "pl": "Ciężarów w tym zakresie: {c} — najwyżej {n}. Zwiększ krok.",
@@ -1331,6 +1335,10 @@
  {
   "pl": "Godzina {t} nie istnieje tego dnia (zmiana czasu). Wpisz inną.",
   "en": "The time {t} doesn’t exist on that day (clock change). Enter a different one."
+ },
+ {
+  "pl": "godzina nieznana",
+  "en": "time unknown"
  },
  {
   "pl": "Godzina startu",
@@ -2309,8 +2317,8 @@
   "en": "Each side: {p}"
  },
  {
-  "pl": "Na koniec „Zakończ” (u góry albo w karcie po ostatniej serii) — sesja trafi do Kalendarza.",
-  "en": "At the end tap “Finish” (at the top or in the card after the last set) — the session goes to the Calendar."
+  "pl": "Na koniec „Zakończ” (u góry albo w karcie po ostatniej serii) — sesja trafi do zakładki Plan.",
+  "en": "At the end tap “Finish” (at the top or in the card after the last set) — the session goes to the Plan tab."
  },
  {
   "pl": "Na podstawie: {list}. Własne sformułowania.",
@@ -2941,8 +2949,8 @@
   "en": "Opens the Progression details."
  },
  {
-  "pl": "Otwiera ten dzień w Kalendarzu.",
-  "en": "Opens this day in the Calendar."
+  "pl": "Otwiera ten dzień w zakładce Plan.",
+  "en": "Opens this day in the Plan tab."
  },
  {
   "pl": "Otwiera zamianę ćwiczenia",
@@ -3085,8 +3093,8 @@
   "en": "The plan “{name}” is under “Other plans”."
  },
  {
-  "pl": "Plan powtarza się co tydzień. Pojedyncze dni zmienisz w Kalendarzu.",
-  "en": "The plan repeats every week. Change single days in the Calendar."
+  "pl": "Plan powtarza się co tydzień. Pojedyncze dni zmienisz w zakładce Plan.",
+  "en": "The plan repeats every week. Change single days in the Plan tab."
  },
  {
   "pl": "Plan tygodnia",
@@ -3149,8 +3157,8 @@
   "en": "With the range added there would be {c} weights — at most {n}. Increase the step or delete the unticked ones."
  },
  {
-  "pl": "Po kilku tygodniach treningu z rzędu Kalendarz podpowie „Zaplanuj deload od …”.",
-  "en": "After several training weeks in a row the Calendar will suggest “Plan a deload from …”."
+  "pl": "Po kilku tygodniach treningu z rzędu zakładka Plan podpowie „Zaplanuj deload od …”.",
+  "en": "After several training weeks in a row the Plan tab will suggest “Plan a deload from …”."
  },
  {
   "pl": "Po przywróceniu z archiwum szablon wróci do planu.",
@@ -4145,8 +4153,8 @@
   "en": "Strongman"
  },
  {
-  "pl": "Stuknij dzień w Kalendarzu: „Przesuń albo pomiń” pokazuje możliwości — przesunięcie planu o 1 dzień, tylko tego treningu, zamianę albo wolne.",
-  "en": "Tap a day in the Calendar: “Move or skip” shows the options — move the plan by 1 day, move only this workout, swap or rest."
+  "pl": "Stuknij dzień w zakładce Plan: „Przesuń albo pomiń” pokazuje możliwości — przesunięcie planu o 1 dzień, tylko tego treningu, zamianę albo wolne.",
+  "en": "Tap a day in the Plan tab: “Move or skip” shows the options — move the plan by 1 day, move only this workout, swap or rest."
  },
  {
   "pl": "suma pow.",
@@ -4446,8 +4454,8 @@
   "en": "This week"
  },
  {
-  "pl": "Ten tydzień jest oznaczony jako deload (D na wykresach). Oznaczenie zmienisz w Kalendarzu: dzień → „Więcej opcji”.",
-  "en": "This week is marked as deload (D on the charts). Change the mark in the Calendar: day → “More options”."
+  "pl": "Ten tydzień jest oznaczony jako deload (D na wykresach). Oznaczenie zmienisz w zakładce Plan: dzień → „Więcej opcji”.",
+  "en": "This week is marked as deload (D on the charts). Change the mark in the Plan tab: day → “More options”."
  },
  {
   "pl": "Ten tydzień jest oznaczony jako deload.",
@@ -4534,8 +4542,8 @@
   "en": "A past workout dated this day."
  },
  {
-  "pl": "Trening z {d} {s} nie miał aktywności od 6 godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w Kalendarzu.",
-  "en": "The workout from {d} {s} had no activity for 6 hours, so it was saved automatically. End: {e} (last set). You will find it in the Calendar."
+  "pl": "Trening z {d} {s} nie miał aktywności od 6 godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.",
+  "en": "The workout from {d} {s} had no activity for 6 hours, so it was saved automatically. End: {e} (last set). You will find it in the Plan tab."
  },
  {
   "pl": "Trening z tego dnia zrobiony wcześniej — dzień wolny.",
@@ -4902,14 +4910,6 @@
   "en": "Sets with this band will show “?” in history."
  },
  {
-  "pl": "W Kalendarzu stuknij sesję, potem „Edytuj” — zmiany zapisuje „Zapisz”, „Anuluj” je odrzuca.",
-  "en": "In the Calendar, tap a session, then “Edit” — “Save” saves the changes, “Cancel” discards them."
- },
- {
-  "pl": "W Kalendarzu: stuknij dzień, potem „Więcej opcji” → „Oznacz tydzień jako deload” — także przyszły tydzień.",
-  "en": "In the Calendar: tap a day, then “More options” → “Mark week as deload” — a future week too."
- },
- {
   "pl": "w planie na: {day} · {n} ćw.",
   "en": "planned for: {day} · {n} ex."
  },
@@ -4940,6 +4940,14 @@
  {
   "pl": "W tygodniu deload „Start” i „Powtórz ostatni” zaproponują „Mniej serii”: {less}; ciężary i szablon bez zmian.",
   "en": "In a deload week “Start” and “Repeat last” offer “Fewer sets”: {less}; weights and template unchanged."
+ },
+ {
+  "pl": "W zakładce Plan stuknij sesję, potem „Edytuj” — zmiany zapisuje „Zapisz”, „Anuluj” je odrzuca.",
+  "en": "In the Plan tab, tap a session, then “Edit” — “Save” saves the changes, “Cancel” discards them."
+ },
+ {
+  "pl": "W zakładce Plan: stuknij dzień, potem „Więcej opcji” → „Oznacz tydzień jako deload” — także przyszły tydzień.",
+  "en": "In the Plan tab: tap a day, then “More options” → “Mark week as deload” — a future week too."
  },
  {
   "pl": "W zapisanych planach: {names}.",

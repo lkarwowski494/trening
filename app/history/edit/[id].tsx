@@ -4,8 +4,8 @@ import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
 import { Screen, Muted, Btn, Txt, Field, Input, NumInput, Empty } from '@/components/ui';
 import { WhenFields } from '@/components/WhenFields';
 import { setLabel } from '@/components/ActiveWorkout';
-import { effortLabel, effortField, effortIn, getState, useTick, exById, isBW, loadLabel, loadLabelShort, groupLabels, occurrence, occurrences, deleteWorkout, bandA11y, shortBand, clampName, NAME_MAX, blockImpl, liveBlockImpl, nextBandId, loadFieldValue, writeLoad, usesBand, workCount, wallTs, REPS_MAX } from '@/lib/store';
-import { draftOf, beginEdit, discardDraft, isDirty, touchDraft, useDraftTick, checkDraft, commitDraft, draftAddSet, draftRemoveSet, draftRemoveExercise, draftSetWhen, dateText, timeText, prefilledOffList, type Draft } from '@/lib/edit';
+import { effortLabel, effortField, effortIn, getState, useTick, exById, isBW, loadLabel, loadLabelShort, groupLabels, occurrence, occurrences, deleteWorkout, bandA11y, shortBand, clampName, NAME_MAX, blockImpl, liveBlockImpl, nextBandId, loadFieldValue, loadOf, writeLoad, usesBand, workCount, wallTs, REPS_MAX } from '@/lib/store';
+import { draftOf, beginEdit, discardDraft, isDirty, touchDraft, useDraftTick, checkDraft, commitDraft, draftAddSet, draftRemoveSet, draftRemoveExercise, draftSetWhen, draftSetLocation, dateText, timeText, prefilledOffList, type Draft } from '@/lib/edit';
 import { onHistoryEdited } from '@/lib/backup';
 import { locationLabel } from '@/lib/locations';
 import { hasTime, hasReps, hasWeight, hasDistance, SET_KIND_LABEL, type WExercise, type WSet } from '@/lib/seed';
@@ -67,7 +67,7 @@ export default function EditWorkout() {
       <DraftHeader title={d.sourceId ? t('Edycja sesji') : t('Trening wstecz')} onCancel={cancel} onSave={saveDraft} />
       <ScrollView keyboardShouldPersistTaps="handled" keyboardDismissMode="interactive" automaticallyAdjustKeyboardInsets contentContainerStyle={{ paddingVertical: 10, paddingBottom: 80 }}>
         {health ? <Muted style={{ fontSize: 13, marginBottom: 10 }}>{t('Zmiany nie trafiają do Apple Health.')}</Muted> : null}
-        {w.locationId ? <Text accessibilityLanguage={lang()} accessibilityLabel={`${t('Miejsce')}: ${locationLabel(w.locationId)}`} maxFontSizeMultiplier={1.3} style={{ color: th.muted, fontSize: 14, fontFamily: F.semibold, marginBottom: 10 }}>{`📍 ${locationLabel(w.locationId)}`}</Text> : null /* integracja 0.9.0: miejsce treningu tylko do odczytu (edycja go nie zmienia) */}
+        <LocationChip d={d} />{/* T-057 (0.14.0): wybór / zmiana miejsca treningu (wcześniej tylko do odczytu) */}
         <Field label={t('Nazwa')}><Input value={w.templateName} placeholder={t('Trening')} maxLength={NAME_MAX} onChangeText={v => { w.templateName = v; touchDraft(); }} /></Field>
         <WhenFields date={d.date} time={d.time} min={d.min} onChange={p => draftSetWhen(key, p)} />
         <View style={{ height: 10 }} />
@@ -80,6 +80,19 @@ export default function EditWorkout() {
       </ScrollView>
     </Screen>
   );
+}
+
+/** T-057: „📍 Dom ▾” — wybór miejsca treningu (jak chip w treningu w toku): miejsca użytkownika i, gdy trening ma miejsce, „bez miejsca”. Bez zdefiniowanych
+ * miejsc — tylko podpis (jeśli trening ma miejsce, także usunięte). Zmiana: lib/edit.ts draftSetLocation. */
+function LocationChip({ d }: { d: Draft }) {
+  const th = useTheme(); const locs = getState().settings.locations; const cur = d.w.locationId;
+  if (!locs.length && !cur) return null;
+  const name = cur ? locationLabel(cur) : t('bez miejsca');
+  if (!locs.length) return <Text accessibilityLanguage={lang()} accessibilityLabel={`${t('Miejsce')}: ${name}`} maxFontSizeMultiplier={1.3} style={{ color: th.muted, fontSize: 14, fontFamily: F.semibold, marginBottom: 10 }}>{`📍 ${name}`}</Text>;
+  const pick = () => { const none = cur ? [t('bez miejsca')] : []; ActionSheetIOS.showActionSheetWithOptions({ options: [...locs.map(l => l.name), ...none, t('Anuluj')], cancelButtonIndex: locs.length + none.length, title: t('Miejsce tego treningu') }, i => {
+    if (i < locs.length) draftSetLocation(d.key, locs[i].id); else if (none.length && i === locs.length) draftSetLocation(d.key, null); }); };
+  return <Pressable accessibilityLanguage={lang()} onPress={pick} accessibilityRole="button" accessibilityLabel={t('Miejsce treningu: {l}', { l: name })} accessibilityHint={t('Tapnij, by zmienić.')} hitSlop={6} style={{ alignSelf: 'flex-start', paddingVertical: 4, marginBottom: 6 }}>
+    <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={1.3} style={{ color: th.accent, fontSize: 14, fontFamily: F.semibold }}>{`📍 ${name} ▾`}</Text></Pressable>;
 }
 
 function EditBlock({ d, e, ei, labels }: { d: Draft; e: WExercise; ei: number; labels: Record<string, string> }) {
@@ -126,6 +139,7 @@ function EditBlock({ d, e, ei, labels }: { d: Draft; e: WExercise; ei: number; l
               {band ? <Pressable accessibilityLanguage={lang()} accessibilityRole="button" accessibilityHint={`${hint}. ${t('Tapnij, by zmienić.')}`} /* A11-18 */ accessibilityLabel={t('Guma: {b}', { b: set.bandId ? bandA11y(st.bands.find(b => b.id === set.bandId)) : t('brak') })} onPress={() => cycleBand(set)} style={[s.box, { width: 52, backgroundColor: th.surface2, borderColor: th.line }]}><Text accessibilityLanguage={lang()} maxFontSizeMultiplier={1.3} style={{ color: set.bandId ? th.band : th.muted, fontSize: 13, fontFamily: F.semibold }}>{set.bandId ? shortBand(st.bands.find(b => b.id === set.bandId)) : '—'}</Text></Pressable> : null}
               <View style={{ width: 44 }} />
             </View>
+            {ex && hasWeight(m) && (() => { const l = loadOf(ex, set); return !l.own && l.raw !== ''; })() ? <Muted style={{ fontSize: 12, marginLeft: 38, marginTop: -4, marginBottom: 6 }}>{t('Ciężar z innego sprzętu — nie liczy się do rekordów, dopóki go tu nie wpiszesz.') /* Q-026 (0.14.0) */}</Muted> : null}
             {set.note ? <Muted style={{ fontSize: 12, marginLeft: 38, marginTop: -4, marginBottom: 6 }}>{set.note}</Muted> : null}
           </View>}</SwipeRow>
         );

@@ -1,5 +1,5 @@
 import { useSyncExternalStore } from 'react';
-import { wallTs, fromWallTs, tzOffsetAt, pausedTotal, cleanPauses, getState, exById, isBW, restFor, occurrence, occurrences, normalizeGroups, assistLost, emptySet, copyVals, stripUnused, previousBlockBefore, offListAt, offListNote, srcSetAt, prevFromOther, startLocationId, stampImpl, setHasResult, putHistoryWorkout, loadOf, writeLoad, pinnedImpl, localISODate, clampName, NAME_MAX, locationById, tplRows, onStateReplaced } from './store';
+import { wallTs, fromWallTs, tzOffsetAt, pausedTotal, cleanPauses, getState, exById, isBW, restFor, occurrence, occurrences, normalizeGroups, assistLost, emptySet, copyVals, stripUnused, previousBlockBefore, offListAt, offListNote, srcSetAt, prevFromOther, startLocationId, stampImpl, setHasResult, putHistoryWorkout, restampUntouched, loadOf, writeLoad, pinnedImpl, localISODate, clampName, NAME_MAX, locationById, tplRows, onStateReplaced } from './store';
 import { implsAt, loadKindsFor } from './equipment';
 import { base, uid, hasTime, hasReps, hasWeight, hasDistance, type TRow, type Exercise, type Impl, type Workout, type WExercise, type WSet } from './seed';
 import { t } from './i18n';
@@ -172,6 +172,16 @@ export function draftSetWhen(key: string, p: Partial<{ date: string; time: strin
   const d = drafts.get(key); if (!d) return; Object.assign(d, p);
   const s = currentStart(d); if (s != null && s !== d.prefillAt) refill(d, s, false); /* niedokończona data: wartości zostają do czasu poprawnej */
   touchDraft();
+}
+
+/** T-057 (0.14.0): wybór / zmiana miejsca treningu w edytorze (null = bez miejsca). Zapisana sesja: zmienia się tylko miejsce — przyrządy bloków to zapis
+ * tego, czym ćwiczono, i zostają. Nowy trening wstecz (nic jeszcze nie zapisano): przyrządy bloków liczone od nowa wg miejsca (jak zmiana miejsca w treningu
+ * w toku, lib/state/places.ts), a wartości wstawione przez aplikację przeliczają się dla nowego przyrządu. Nieznane miejsce — bez zmian. */
+export function draftSetLocation(key: string, id: string | null) {
+  const d = drafts.get(key); if (!d) return; if (id != null && !locationById(id)) return; if ((d.w.locationId ?? null) === id) return;
+  if (id) d.w.locationId = id; else delete d.w.locationId;
+  if (d.sourceId == null) restampUntouched(d.w, true);
+  refill(d, d.prefillAt, false); touchDraft();
 }
 
 /* ---------- zmiany szkicu ---------- */

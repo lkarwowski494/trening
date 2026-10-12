@@ -33,7 +33,7 @@ const applyTitle = async (title: string | RegExp) => { await tap(screen.getByLab
 describe('plan tygodnia (/plan)', () => {
   test('wybór szablonu na dzień i „Wolne” (wiersz dnia → wybór, UX-15 A); opis; zapis', async () => {
     const t = await boot(() => {}, '/plan');
-    expect(screen.getByText('Plan powtarza się co tydzień. Pojedyncze dni zmienisz w Kalendarzu.')).toBeTruthy();
+    expect(screen.getByText('Plan powtarza się co tydzień. Pojedyncze dni zmienisz w zakładce Plan.')).toBeTruthy();
     await tap(screen.getByLabelText('poniedziałek, Wolne')); await flushAll(5); await tap(screen.getByLabelText(`poniedziałek: ${t[0].name}`)); await flushAll(5);
     expect(plan.weekPlanDays()[0]).toBe(t[0].id);
     await tap(screen.getByLabelText(`poniedziałek, ${t[0].name}`)); await flushAll(5); await tap(screen.getByLabelText('poniedziałek: Wolne')); await flushAll(5); expect(S().weekPlan).toBeUndefined();
@@ -158,7 +158,7 @@ describe('ekran treningu: „Dziś” i podgląd tygodnia', () => {
     expect(screen.queryByText('Dziś')).toBeNull(); /* 11.10.2026: bez planu i bez treningu dziś — tylko nagłówek planu i pasek */ expect(screen.getByText('Bez planu tygodnia')).toBeTruthy();
     expect(screen.queryByText(/^Ustaw plan tygodnia, by widzieć/)).toBeNull();
     expect(screen.getByLabelText('poniedziałek, 5 października, wolne')).toBeTruthy(); expect(screen.getByLabelText('wtorek, 6 października, zrobione: T')).toBeTruthy();
-    await tap(screen.getByLabelText('Ustaw plan')); await flushAll(10); expect(screen.getByText('Plan powtarza się co tydzień. Pojedyncze dni zmienisz w Kalendarzu.')).toBeTruthy();
+    await tap(screen.getByLabelText('Ustaw plan')); await flushAll(10); expect(screen.getByText('Plan powtarza się co tydzień. Pojedyncze dni zmienisz w zakładce Plan.')).toBeTruthy();
   });
   test('lista sesji w Kalendarzu pokazuje czas bez pauz', async () => {
     await boot(() => { const w = addWorkout(new Date(2026, 9, 7, 18).getTime(), [['Back Squat', [{ weight: 100, reps: 5 }]]]); w.pauses = [[w.startedAt + 60e3, w.startedAt + 16 * 60e3]]; store.save(); });

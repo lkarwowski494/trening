@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useIsFocused, useLocalSearchParams, useRouter } from 'expo-router';
@@ -22,20 +22,27 @@ import { fmtW, fmtVol, volOut, wu, fmtNum, KG_PER_LB } from '@/lib/units';
  */
 export default function ProgressTab() {
   /* Zakładka zostaje zamontowana po pierwszym otwarciu, a Postępy słuchają każdej zmiany stanu (useTick) — poza zakładką nie renderujemy treści,
-   * żeby wpisy serii w treningu nie przeliczały wykresów w tle (jak R13-04 dla pozostałych zakładek). Stan widoku (szukanie, wykres) przy wyjściu znika. */
-  const focused = useIsFocused();
+   * żeby wpisy serii w treningu nie przeliczały wykresów w tle (jak R13-04 dla pozostałych zakładek). Stan widoku (wybrane ćwiczenie, szukanie, wykres,
+   * przewinięcie) trzyma sama zakładka, a nie odmontowywana treść — po powrocie z ekranu stosu (np. „Masa ciała — pomiary”) wszystko jest jak było
+   * (audyt 0.13, 0.14.0). */
+  const focused = useIsFocused(); const { ex: exParam } = useLocalSearchParams<{ ex?: string }>();
+  const [exId, setExId] = useState(exParam ?? ''); const [q, setQ] = useState(''); const [key, setKey] = useState<ChartKey | ''>('');
+  const scrollY = useRef(0);
+  useEffect(() => { if (exParam) { setExId(exParam); setKey(''); scrollY.current = 0; } }, [exParam]); /* runda 54: link przy otwartym ekranie */
+  const view: View_ = { exId, setExId: (id: string) => { scrollY.current = 0; setExId(id); }, q, setQ, key, setKey, scrollY };
   return (
     <SafeAreaView style={{ flex: 1 }} edges={['top']}><Screen>
       <View style={{ marginVertical: 10 }}><H1>{t('Postępy')}</H1></View>
-      {focused ? <Progress /> : null}
+      {focused ? <Progress {...view} /> : null}
     </Screen></SafeAreaView>
   );
 }
+type View_ = { exId: string; setExId: (id: string) => void; q: string; setQ: (q: string) => void; key: ChartKey | ''; setKey: (k: ChartKey | '') => void; scrollY: React.MutableRefObject<number> };
 
-function Progress() {
+function Progress({ exId, setExId, q, setQ, key, setKey, scrollY }: View_) {
   const { ex: exParam } = useLocalSearchParams<{ ex?: string }>(); useTick(); const th = useTheme(); const router = useRouter();
-  const [exId, setExId] = useState(exParam ?? ''); const [q, setQ] = useState(''); const [key, setKey] = useState<ChartKey | ''>('');
-  useEffect(() => { if (exParam) { setExId(exParam); setKey(''); } }, [exParam]); /* runda 54: link przy otwartym ekranie */
+  /* przewinięcie (audyt 0.13): zapamiętywane w zakładce, przywracane przy ponownym zamontowaniu treści */
+  const scroll = { onScroll: (e: { nativeEvent: { contentOffset: { y: number } } }) => { scrollY.current = e.nativeEvent.contentOffset.y; }, scrollEventThrottle: 32, contentOffset: { x: 0, y: scrollY.current } };
   const ex = exId ? exById(exId) : undefined;
   // Ćwiczenia z historią najpierw (runda 2: wcześniej 30 pierwszych alfabetycznie, bez informacji o reszcie).
   const withHist = (e: { id: string }) => hasHistory(e.id); /* runda 74: bez liczenia sesji każdego ćwiczenia */
@@ -51,7 +58,7 @@ function Progress() {
   if (!ex) {
     const weeks = weeklyTotals(8); const any = hasAnyHistory();
     return (
-      <ScrollView keyboardShouldPersistTaps="handled" automaticallyAdjustKeyboardInsets contentContainerStyle={{ paddingBottom: 40 }}>
+      <ScrollView testID="progress-scroll-list" {...scroll} keyboardShouldPersistTaps="handled" automaticallyAdjustKeyboardInsets contentContainerStyle={{ paddingBottom: 40 }}>
         {any ? <>
           <PeriodSummary />
           <ProgressTiles />{/* 11.10.2026: „Progresja” także tu — to samo wejście co z ekranu Trening (/progression) */}
@@ -98,7 +105,7 @@ function Progress() {
   if (hasDistance(m) && rec.maxDistance) recRows.push([t('Najdłuższy dystans'), fmtDist(rec.maxDistance)]);
 
   return (
-    <ScrollView keyboardShouldPersistTaps="handled" contentContainerStyle={{ paddingBottom: 40 }}>
+    <ScrollView testID="progress-scroll" {...scroll} keyboardShouldPersistTaps="handled" contentContainerStyle={{ paddingBottom: 40 }}>
       <Chip label={`${exName(ex)}  ✕`} a11yLabel={exName(ex)} a11yHint={t('Tapnij, by wybrać inne ćwiczenie.')} on onPress={() => { setExId(''); if (exParam) router.setParams({ ex: '' }); /* inaczej powrót do zakładki otwierałby znów to ćwiczenie */ }} />
       {sessions.length ? <>
         <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6, marginTop: 12 }}>{keys.map(k => <Chip key={k.key} label={k.label} on={active?.key === k.key} onPress={() => setKey(k.key)} />)}</View>

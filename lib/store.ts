@@ -53,7 +53,7 @@ export const {
 export const { copyVals, stripUnused, assistLost, cascadeDown } = setvalsMod;
 export const {
   locationById, startLocationId, offListAt, prevFromOther, implAtLoc, blockImpl, liveBlockImpl, listLocFor, pinnedImpl, offListNote, srcSetAt,
-  stampImpl, setActiveLocation, locationEquipChanged
+  stampImpl, setActiveLocation, locationEquipChanged, restampUntouched
 } = placesMod;
 export const {
   finishedWorkouts, blocksOf, workoutsWith, previousFor, previousBlockFor, previousBlockBefore, hintFor, progressionFor, occurrence, occurrences,
