@@ -199,6 +199,10 @@ describe('regresja E2E 91', () => {
     const s = steps('07-zamiana.yaml'); const i = s.indexOf('- tapOn: "Always at Home — .*"');
     expect(i).toBeGreaterThan(0); expect(s[i - 1]).toMatch(/^- scrollUntilVisible: \{ element: "Always at Home — \.\*".*centerElement: true/);
   });
+  test('07 (run 38241528019): przed stuknięciem podpowiedzi „Swap to substitute” przesunięcie listy w dół (podpowiedź pod paskiem stanu → tap w pasek)', () => {
+    const s = steps('07-zamiana.yaml'); const i = s.lastIndexOf('- tapOn: "Swap to substitute: .*"');
+    expect(i).toBeGreaterThan(2); expect(s[i - 1]).toBe('- waitForAnimationToEnd'); expect(s[i - 2]).toMatch(/^- swipe: \{ start: "50%, 30%", end: "50%, 80%"/);
+  });
   test('13: po pierwszym dniu planu okno zgody na przypomnienie zamykane „Not now” (opcjonalnie)', () => {
     const { EN } = require('@/lib/i18n.en'); const s = steps('13-kalendarz-plan.yaml'); const i = s.indexOf('- tapOn: "Monday: Upper A"');
     expect(i).toBeGreaterThan(0); /* run 37973427584: okno pojawia się chwilę po zmianie planu (PlanReminderSync) — najpierw krótkie czekanie, potem tapnięcie */
