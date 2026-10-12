@@ -94,7 +94,7 @@ Ryzyka:
 - Idempotencja zapisu i obejście pauz (decyzja 08.10): sprawdzić, czy `HKMetadataKeySyncVersion` jako liczba w `AnyMap` trafia poprawnie.
 - Mocki testów: globalny mock w `tests/setup.js` i ok. 10 plików używa sygnatur 8.x — przepisać na kontrakt v16.
 - Zależność od jednego małego utrzymującego (Kingstinct), jedno źródło — ryzyko porzucenia; rezerwa: własny moduł Expo w Swift (kosztowny).
-- Prywatność/Apple: etap 1 zmienia deklarację (odczyt) — opis uprawnień, `docs/privacy.html`, formularz prywatności App Store (Apple 5.1.3; decyzja 11.10 to uwzględnia).
+- Prywatność/Apple: etap 1 zmienia deklarację (odczyt) — opis uprawnień, `site/privacy.html`, formularz prywatności App Store (Apple 5.1.3; decyzja 11.10 to uwzględnia).
 
 Testowanie bez danych Health na symulatorze:
 - Symulator ma aplikację Zdrowie z ręcznym dodawaniem danych (Przeglądaj → Kroki → Dodaj dane); automatyzacja tego w Maestro/CI — do sprawdzenia, nie zakładam.

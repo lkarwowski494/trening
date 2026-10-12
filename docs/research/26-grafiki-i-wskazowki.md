@@ -77,7 +77,7 @@ Pokrycie liczono skryptami `scripts/match2.py` (wzorce dla 125 bazowych) i `scri
 
 ## 5. Wymóg offline
 
-- Polityka prywatności (`docs/privacy.html`): „Aplikacja nie łączy się z internetem”.
+- Polityka prywatności (`site/privacy.html`): „Aplikacja nie łączy się z internetem”.
 - Każda opcja z pobieraniem w trakcie działania (wger API, ExerciseDB, MuscleWiki, linki do wideo otwierane w aplikacji) łamie tę obietnicę. Wymagałaby zmiany polityki i odpowiedzi w App Store Privacy, a MuscleWiki wręcz zabrania przechowywania.
 - Wszystkie grafiki muszą być w paczce aplikacji.
 - **Szacunek rozmiaru** (dodatek do paczki):

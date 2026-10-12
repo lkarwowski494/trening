@@ -59,7 +59,7 @@ logika `lib/csvparse.ts`/`lib/csvimport.ts`, testy `csv-import-logic`/`csv-impor
   do celów); etap 2 — dopasowanie treningu z zegarka do sesji; etap 3 — aktywności jako cardio i cel kroków po researchu badacza (WHO 2020, MET,
   kroki — źródła, nie zgadujemy). (2) Dane z Health czytane na bieżąco, NIE zapisywane w danych aplikacji ani w kopii (A): Apple 5.1.3
   (zakaz przechowywania danych zdrowotnych w iCloud — kopia trafia do Plików/iCloud Drive), bez zmiany schematu (aktualizacja biblioteki
-  healthkit 8 → 16 bez migracji). Do zmiany: opis NSHealthShareUsageDescription (dziś „nie odczytuje”), docs/privacy.html, formularz prywatności
+  healthkit 8 → 16 bez migracji). Do zmiany: opis NSHealthShareUsageDescription (dziś „nie odczytuje”), site/privacy.html, formularz prywatności
   App Store. Odrzucone: B (jedno wydanie), B (import do historii).
 - 11.10.2026: **trening z zegarka (pkt 9, etap 2) — A**: trening siłowy w Health pokrywający się czasowo z sesją → łączenie automatyczne (tętno,
   aktywne kcal w szczegółach sesji), aplikacja nie zapisuje własnej kopii do Health; gdy zegarek zsynchronizuje się później — przy następnym

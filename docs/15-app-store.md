@@ -8,12 +8,15 @@ Rozmowa 05.10.2026, rano: „Chciałbym móc opublikować to w Apple Store” i 
 - **Wysyłka (gdy przyjdzie czas):** GitHub Actions i klucz App Store Connect API (.p8).
   - Build na darmowym macOS, jak `iphone-local.yml`. Wysyłka przez `xcrun altool`.
   - Klucz tylko jako sekret GitHub, nigdy w repo (CLAUDE.md, ADR-031). Bez `eas submit`: limitów darmowego planu dla Submit nie sprawdzono.
-- **Polityka prywatności:** GitHub Pages z tego repozytorium (`docs/`) — strona `docs/privacy.html` (PL/EN, 08.10.2026, audyt N2; treść zgodna
-  z kodem: brak wywołań sieciowych, HealthKit tylko zapis, powiadomienia lokalne). Krok właściciela po scaleniu do `main`: Settings → Pages →
-  Deploy from a branch → `main` / `/docs`; adres: https://lkarwowski494.github.io/trening/privacy.html (do App Store Connect → App Privacy).
-  `docs/.nojekyll` — bez przetwarzania Jekyllem (dokumenty .md podawane bez zmian).
+- **Polityka prywatności:** GitHub Pages z tego repozytorium, z osobnego katalogu `site/` przez GitHub Actions (`.github/workflows/pages.yml`;
+  decyzja właściciela 12.10.2026, audyt przed App Store F2, wariant A) — strona `site/privacy.html` (PL/EN, 08.10.2026, audyt N2; treść zgodna
+  z kodem: brak wywołań sieciowych, HealthKit tylko zapis, powiadomienia lokalne). Publikowany jest tylko `site/` (trzy strony); reszta `docs/`
+  (dziennik decyzji, raporty, research) nie jest publikowana. **Krok właściciela po scaleniu do `main`:** Settings → Pages → Source: GitHub Actions
+  (zamiast „Deploy from a branch → main / docs”); pierwsze wdrożenie uruchamia się samo przy zmianie `site/**` na `main` albo ręcznie
+  (Actions → Pages → Run workflow). Adres: https://lkarwowski494.github.io/trening/privacy.html (do App Store Connect → App Privacy).
+  Bez `.nojekyll` — artefakt z Actions jest podawany bez Jekylla.
   - Treść: brak zbierania danych, wszystko lokalnie na telefonie, HealthKit tylko zapis zakończonych treningów.
-- **Strona www i wsparcie (11.10.2026, marka Apps4Brew, PL/EN):** `docs/index.html`, `docs/support.html`; adres wsparcia (App Store Connect → Support URL): https://lkarwowski494.github.io/trening/support.html. Domena apps4brew.com po zakupie (bez CNAME); kontakt: GitHub Issues — adres e-mail do uzupełnienia po zakupie domeny.
+- **Strona www i wsparcie (11.10.2026, marka Apps4Brew, PL/EN):** `site/index.html`, `site/support.html`; adres wsparcia (App Store Connect → Support URL): https://lkarwowski494.github.io/trening/support.html. Domena apps4brew.com po zakupie (bez CNAME); kontakt: GitHub Issues — adres e-mail do uzupełnienia po zakupie domeny.
 - **Cena:** „Darmowa na start” (05.10.2026) — bez reklam i zakupów; w App Store Connect deklaracja „nie jestem traderem” (DSA), bez publicznego adresu.
 - ~~**Płatności później, wcześniejsi użytkownicy za darmo**~~ (odwołane 06.10.2026: płatna subskrypcja od pierwszej wersji, bez darmowych użytkowników; było — właściciel 05.10.2026: „Później najwyżej wprowadzimy płatności, ale tym, co już mają, to zostawimy darmową”).
   Kierunek (do decyzji, gdy przyjdzie czas): aplikacja dalej darmowa do pobrania, wersja Pro jako zakup w aplikacji;
@@ -247,11 +250,12 @@ Rozmowa 05.10.2026, rano: „Chciałbym móc opublikować to w Apple Store” i 
 6. **Strona polityki prywatności i wsparcia** na GitHub Pages.
 7. **Elementy specyficzne dla właściciela do przejrzenia** przed sklepem: presety ViShape, teksty o „domu właściciela” w podpowiedziach, dane demo.
 8. **Prawa autorskie — OBOWIĄZKOWE przed upublicznieniem aplikacji** (polecenie właściciela 09.10.2026). Bez tego nie wysyłamy do App Store:
-   - **cytaty w repozytorium:** w `docs/research` jest ok. 800 dosłownych fragmentów cudzych stron (najwięcej w `docs/research/kb/` — research
-     konkurencji z 03.10; także pliki źródeł researchu biblioteki), niektóre do ~900 znaków. Skrócić do niezbędnego fragmentu (1–2 zdania +
+   - **cytaty w repozytorium:** w `docs/research` było ok. 800 dosłownych fragmentów cudzych stron (najwięcej w `docs/research/kb/` — research
+     konkurencji z 03.10, przeniesiony na Dysk 12.10.2026; zostały pliki źródeł researchu biblioteki), niektóre do ~900 znaków. Skrócić do niezbędnego fragmentu (1–2 zdania +
      adres i miejsce) — prawo cytatu (art. 29 ustawy o prawie autorskim) obejmuje fragmenty w zakresie uzasadnionym analizą; test pilnujący
      maksymalnej długości cytatu w `docs/research`. Wariant do potwierdzenia przez właściciela przy realizacji: A skrócić (rekomendacja) /
-     B przenieść research konkurencji na Dysk / C zostawić. Historia gita zostaje bez przepisywania (jak decyzja z 06.10 przy N1);
+     B przenieść research konkurencji na Dysk / C zostawić. [Aktualizacja 12.10.2026: ten wariant zastąpiła decyzja z 09.10 (ok. 06:45 i 07:00) — research konkurencji na Dysk i przepisanie historii gita
+     po wydaniu 1 na TestFlight, przed App Store (docs/18); zdanie „historia zostaje bez przepisywania” nie obowiązuje.];
    - **treść w aplikacji** (wskazówki techniki `lib/cues`, opisy, nazwy): automatyczne sprawdzenie podobieństwa do pobranych stron źródeł
      (wspólne ciągi słów) — żadne zdanie nie może być przepisane zbyt blisko oryginału; wynik w docs/09;
    - **grafiki:** tylko własne (figury SVG z danych, ikony własne) — sprawdzić, że w paczce nie ma cudzych obrazów, zdjęć ani filmów;
@@ -267,7 +271,7 @@ Rozmowa 05.10.2026, rano: „Chciałbym móc opublikować to w Apple Store” i 
 > **Zastąpione 06.10.2026** (decyzje właściciela): subskrypcja roczna 29 zł odnawiana automatycznie, miesiąc za darmo, bez darmowych
 > użytkowników — sekcja „Decyzje właściciela” wyżej. Analiza niżej zostaje jako historia (wzmianki o „wcześniejszych użytkownikach” nieaktualne).
 
-Po researchu skarg (docs/research/skargi-uzytkownikow-2026-10.md: płatności to skarga nr 1, najostrzej oceniane odbieranie darmowych
+Po researchu skarg (wnioski: docs/research/skargi-wnioski-2026-10.md; pełny raport na Dysku: płatności to skarga nr 1, najostrzej oceniane odbieranie darmowych
 funkcji i ściana płatności po rejestracji; częsta prośba o jednorazowy zakup) właściciel: „Tak, rozważmy alternatywy”.
 Wcześniejsza decyzja (subskrypcja, miesiąc próby, potem blokada treningów; eksport danych zawsze) — do potwierdzenia albo zmiany.
 
@@ -493,6 +497,6 @@ Training is not medical advice. For pain, injuries or illness, consult a special
 4. **Hasło „w cenie espresso lub taniej”** — pominięte; wymaga potwierdzenia cen espresso źródłami w każdym kraju (decyzja 09.10 pkt 3). **Zmiana (właściciel 11.10.2026, ok. 23:10): wyjątek od warunku źródeł — hasło wolno użyć bez potwierdzania cen espresso w każdym kraju** (hasło marketingowe, nie twierdzenie merytoryczne o treningu; ryzyko: w krajach z bardzo tanią kawą porównanie może być nieścisłe — Apple 2.3.1). Wstawić razem z blokiem cenowym, gdy zakup trafi do wydania.
 5. **„What's New 0.12.0”:** w `lib/whatsnew.ts` nie ma jeszcze wpisu 0.12.0 (najnowszy to 0.11.0). Projekt opiera się na zamianie ćwiczenia (E2, scalone w kodzie); po dopisaniu wpisu (35 języków, przez `t()`) tekst App Store dostosować do niego.
 6. **Zakres funkcji w opisie:** generator planu, zamiana ćwiczenia, Apple Health (tylko zapis), kopia JSON/CSV — potwierdzić, że wszystko trafia do 0.12.0.
-7. **Twierdzenie „bez śledzenia”** — zgodne z `docs/privacy.html` (brak wywołań sieciowych); zweryfikować przed wysyłką, jeśli dojdzie StoreKit.
+7. **Twierdzenie „bez śledzenia”** — zgodne z `site/privacy.html` (brak wywołań sieciowych); zweryfikować przed wysyłką, jeśli dojdzie StoreKit.
 8. **Słowo „offline” w podtytule EN A i „bands” w słowach kluczowych** — czy zostają jako wyróżniki.
 9. Poza tym zadaniem: zrzuty ekranu, kategoria, rating wiekowy, adres URL wsparcia.

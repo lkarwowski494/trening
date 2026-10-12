@@ -38,7 +38,7 @@ describe('workflowy na publicznym repozytorium', () => {
   test('decyzja właściciela 08.10.2026 (audyt M4): workflowy EAS usunięte — żaden workflow nie używa Expo ani sekretów spoza klucza App Store Connect', () => {
     const fs = require('fs') as typeof import('fs'); const dir = join(__dirname, '../.github/workflows');
     const files = fs.readdirSync(dir).filter(f => f.endsWith('.yml')).sort();
-    expect(files).toEqual(['e2e-ios.yml', 'ios-unsigned.yml', 'nightly.yml', 'testflight.yml', 'tests-tz.yml', 'tests.yml']);
+    expect(files).toEqual(['e2e-ios.yml', 'ios-unsigned.yml', 'nightly.yml', 'pages.yml', 'testflight.yml', 'tests-tz.yml', 'tests.yml']);
     expect(fs.existsSync(join(__dirname, '../scripts/eas'))).toBe(false);
     const allowed = ['secrets.GITHUB_TOKEN', 'secrets.ASC_KEY_ID', 'secrets.ASC_ISSUER_ID', 'secrets.ASC_KEY_P8'];
     for (const f of files) {
@@ -77,13 +77,13 @@ describe('workflowy na publicznym repozytorium', () => {
   });
 });
 
-/* audyt 08.10.2026 (N2): polityka prywatności (docs/privacy.html, GitHub Pages) zgodna z kodem — zmiana działania aplikacji wymaga zmiany strony */
+/* audyt 08.10.2026 (N2): polityka prywatności (site/privacy.html, GitHub Pages) zgodna z kodem — zmiana działania aplikacji wymaga zmiany strony */
 describe('polityka prywatności zgodna z kodem', () => {
   const fs = require('fs') as typeof import('fs'); const root = join(__dirname, '..');
   const files = (d: string): string[] => fs.readdirSync(join(root, d), { withFileTypes: true }).flatMap(e => e.isDirectory() ? files(join(d, e.name)) : /\.(ts|tsx)$/.test(e.name) ? [join(d, e.name)] : []);
   test('strona PL/EN istnieje, Pages bez Jekylla; aplikacja nie wykonuje żadnych wywołań sieciowych; HealthKit tylko zapis', () => {
-    const html = readFileSync(join(root, 'docs/privacy.html'), 'utf8');
-    expect(html).toMatch(/<section lang="pl">/); expect(html).toMatch(/<section lang="en">/); expect(fs.existsSync(join(root, 'docs/.nojekyll'))).toBe(true);
+    const html = readFileSync(join(root, 'site/privacy.html'), 'utf8');
+    expect(html).toMatch(/<section lang="pl">/); expect(html).toMatch(/<section lang="en">/); expect(fs.existsSync(join(root, 'docs/.nojekyll'))).toBe(false); /* Pages z Actions (12.10.2026): artefakt z site/, Jekyll nie działa */
     expect(html).toContain('nie łączy się z internetem'); expect(html).toContain('does not connect to the internet');
     const net = ['lib', 'app', 'components'].flatMap(files).filter(f => /\bfetch\(|XMLHttpRequest|WebSocket|axios|EventSource/.test(readFileSync(join(root, f), 'utf8')));
     expect(net).toEqual([]);
@@ -91,7 +91,7 @@ describe('polityka prywatności zgodna z kodem', () => {
   });
   /* fala 2 audytu 0.10: masa ciała z datą (State.bodyMassLog), Zdrowie — siłowe i cardio z ponowieniem, CSV bez masy ciała, pliki udostępniania usuwane */
   test('strona mówi to, co robi kod: pomiary masy ciała z datą (kopia tak, CSV nie), Zdrowie — siłowe i cardio z ponowieniem, sprzątanie plików udostępniania', () => {
-    const html = readFileSync(join(root, 'docs/privacy.html'), 'utf8'); const seed = readFileSync(join(root, 'lib/seed.ts'), 'utf8'); const backup = readFileSync(join(root, 'lib/backup.ts'), 'utf8'); const health = readFileSync(join(root, 'lib/health.ts'), 'utf8');
+    const html = readFileSync(join(root, 'site/privacy.html'), 'utf8'); const seed = readFileSync(join(root, 'lib/seed.ts'), 'utf8'); const backup = readFileSync(join(root, 'lib/backup.ts'), 'utf8'); const health = readFileSync(join(root, 'lib/health.ts'), 'utf8');
     expect(seed).toMatch(/bodyMassLog\?: BodyMassEntry\[\]/); expect(html).toContain('pomiary masy ciała z datą pomiaru'); expect(html).toContain('body-mass measurements with their dates');
     expect(html).toContain('Kopia zapasowa obejmuje wszystkie dane'); expect(html).toContain('eksport CSV zawiera tylko serie treningów (bez masy ciała)'); expect(html).toContain('a CSV\nexport contains only workout sets (no body mass)');
     expect(backup).toMatch(/state: getState\(\)/); /* kopia = cały stan (z pomiarami) */ expect(backup).toContain("'Date,Workout Name,Duration,Exercise Name,Set Order,Weight,Reps,Distance,Seconds,Notes,Workout Notes,RPE'"); /* CSV bez kolumny masy ciała */
@@ -101,28 +101,62 @@ describe('polityka prywatności zgodna z kodem', () => {
   });
 });
 
-/* strona www (11.10.2026): docs/index.html i docs/support.html — PL/EN, linki do polityki, bez e-maili i zasobów zewnętrznych, liczby zgodne z kodem */
+/* F2 (audyt przed App Store, 12.10.2026, wariant A): strona publikowana z osobnego katalogu site/ przez Pages z GitHub Actions — nie z docs/ */
+describe('publikacja strony: site/ + pages.yml', () => {
+  const fs = require('fs') as typeof import('fs'); const root = join(__dirname, '..');
+  const SITE = ['index.html', 'privacy.html', 'support.html'];
+  test('site/ zawiera dokładnie trzy strony (bez .md, JSON, CSV, obrazów); docs/ nie ma stron HTML ani .nojekyll', () => {
+    expect(fs.readdirSync(join(root, 'site')).sort()).toEqual([...SITE].sort());
+    expect(fs.readdirSync(join(root, 'docs')).filter(f => /\.html$|^\.nojekyll$/.test(f))).toEqual([]);
+  });
+  test('pages.yml: wypchnięcie na main tylko ze zmianą site/** (i samego workflow), ręcznie; uprawnienia minimalne; bez sekretów', () => {
+    const y = wf('pages.yml');
+    expect(y).toMatch(/on:\n\s+push:\n\s+branches: \[main\]\n\s+paths:\n\s+- 'site\/\*\*'\n\s+- '\.github\/workflows\/pages\.yml'\n\s+workflow_dispatch:/);
+    expect(y).not.toMatch(/pull_request|schedule:|^\s+push:\n\s+branches: \[(?!main\])/m);
+    expect(y).toMatch(/permissions:\n\s+contents: read\n\s+pages: write\n\s+id-token: write\n/);
+    expect(y).not.toMatch(/contents: write|secrets\.|packages: write|actions: write/);
+    expect([...y.matchAll(/^\s+(\w[\w-]*): (read|write)$/gm)].map(m => m[1]).sort()).toEqual(['contents', 'id-token', 'pages']);
+  });
+  test('pages.yml: artefakt tylko z site/, wdrożenie przez deploy-pages w środowisku github-pages, akcje z oficjalnej organizacji actions/ z numerem wersji', () => {
+    const y = wf('pages.yml');
+    expect(y).toMatch(/uses: actions\/upload-pages-artifact@v\d+\n\s+with:\n\s+path: site\n/);
+    expect(y).toMatch(/uses: actions\/deploy-pages@v\d+/); expect(y).toMatch(/environment:\n\s+name: github-pages/);
+    expect(y).toMatch(/concurrency:\n\s+group: pages\n\s+cancel-in-progress: false/);
+    const uses = [...y.matchAll(/uses: (\S+)/g)].map(m => m[1]);
+    expect(uses.length).toBeGreaterThanOrEqual(3);
+    for (const u of uses) expect(u).toMatch(/^actions\/[\w-]+@v\d+$/);
+    expect(y).not.toMatch(/run: .*(curl|wget|npm|npx)/);
+  });
+  test('docs/15 opisuje źródło „GitHub Actions” i adresy stron; nie każe już włączać „Deploy from a branch /docs”', () => {
+    const d = readFileSync(join(root, 'docs/15-app-store.md'), 'utf8');
+    expect(d).toContain('Settings → Pages → Source: GitHub Actions');
+    for (const p of ['privacy.html', 'support.html']) expect(d).toContain(`https://lkarwowski494.github.io/trening/${p}`);
+    expect(d).not.toMatch(/Deploy from a branch\*?\*? → `main` \/ `\/docs`/);
+  });
+});
+
+/* strona www (11.10.2026): site/index.html i site/support.html — PL/EN, linki do polityki, bez e-maili i zasobów zewnętrznych, liczby zgodne z kodem */
 describe('strona www aplikacji (GitHub Pages)', () => {
   const fs = require('fs') as typeof import('fs'); const root = join(__dirname, '..');
   const { LANGS } = require('../lib/i18n') as typeof import('../lib/i18n');
   test.each(['index.html', 'support.html'])('%s: istnieje, PL i EN, link do polityki prywatności, bez e-maili i zewnętrznych skryptów/fontów/trackerów', (name) => {
-    expect(fs.existsSync(join(root, 'docs', name))).toBe(true);
-    const html = readFileSync(join(root, 'docs', name), 'utf8');
+    expect(fs.existsSync(join(root, 'site', name))).toBe(true); expect(fs.existsSync(join(root, 'docs', name))).toBe(false);
+    const html = readFileSync(join(root, 'site', name), 'utf8');
     expect(html).toMatch(/<section lang="pl"/); expect(html).toMatch(/<section lang="en"/); expect(html).toContain('href="privacy.html"');
     expect(html).not.toMatch(/[\w.+-]+@[\w-]+\.[\w.-]+/); expect(html).not.toMatch(/mailto:/);
     expect(html).not.toMatch(/<script/i); expect(html).not.toMatch(/<link\b[^>]*stylesheet/i); expect(html).not.toMatch(/<(img|iframe)\b/i); expect(html).not.toMatch(/@import|url\(/);
     expect([...html.matchAll(/(?:src|href)="(https?:[^"]+)"/g)].map(m => m[1]).filter(u => !u.startsWith('https://github.com/lkarwowski494/trening/issues'))).toEqual([]);
-    expect(fs.existsSync(join(root, 'docs/CNAME'))).toBe(false); /* domena apps4brew.com dopiero po zakupie */
+    expect(fs.existsSync(join(root, 'site/CNAME'))).toBe(false); expect(fs.existsSync(join(root, 'docs/CNAME'))).toBe(false); /* domena apps4brew.com dopiero po zakupie */
   });
   test('index.html linkuje do wsparcia; liczba języków na obu stronach = LANGS z kodu; kontakt przez GitHub Issues', () => {
-    const idx = readFileSync(join(root, 'docs/index.html'), 'utf8'); const sup = readFileSync(join(root, 'docs/support.html'), 'utf8');
+    const idx = readFileSync(join(root, 'site/index.html'), 'utf8'); const sup = readFileSync(join(root, 'site/support.html'), 'utf8');
     expect(idx).toContain('href="support.html"'); expect(idx).toContain('Apps4Brew');
     for (const h of [idx, sup]) expect(h).toContain(`${LANGS.length} języków`);
     expect(idx).toContain(`${LANGS.length} languages`); expect(sup).toContain(`${LANGS.length} languages`);
     expect(sup).toContain('https://github.com/lkarwowski494/trening/issues'); expect(sup).toContain('DO UZUPEŁNIENIA: adres kontaktowy po zakupie domeny');
   });
   test('FAQ wsparcia zgodne z kodem: ścieżki menu i nazwy przycisków istnieją w tekstach aplikacji', () => {
-    const sup = readFileSync(join(root, 'docs/support.html'), 'utf8'); const en = readFileSync(join(root, 'lib/i18n.en.ts'), 'utf8');
+    const sup = readFileSync(join(root, 'site/support.html'), 'utf8'); const en = readFileSync(join(root, 'lib/i18n.en.ts'), 'utf8');
     for (const pl of ['Eksportuj backup (plik JSON)', 'Eksportuj historię do CSV', 'Wyczyść wszystkie dane', 'Kopia zapasowa (eksport / import)', 'Język', 'Jak w telefonie']) {
       expect(en).toContain(`'${pl}': '`); const val = new RegExp(`'${pl.replace(/[()/]/g, '\\$&')}': '([^']+)'`).exec(en)![1]; expect(sup).toContain(val);
     }
