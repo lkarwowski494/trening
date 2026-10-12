@@ -115,9 +115,10 @@ export function setActiveLocation(id: string) {
 /** Reguła L5 (runda 82): przyrząd od nowa tylko dla bloków BEZ odhaczonych serii; blok z odhaczonymi seriami zachowuje przyrząd, którym je zrobiono. */
 /** E2 D5: blok z przyrządem wybranym ręcznie (implPinned) zostaje przy nim, dopóki ten przyrząd jest w miejscu; gdy zniknął — przypięcie
  * zdjęte i przyrząd od nowa. */
-export function restampUntouched(a: Workout): boolean {
+export function restampUntouched(a: Workout, all = false): boolean {
   const loc = locationById(a.locationId);
-  let changed = false; a.exercises.forEach(e => { if (e.sets.some(x => x.done)) return;
+  /* all (T-057, nowy trening wstecz w edytorze): wszystkie serie szkicu są „zrobione”, ale nic jeszcze nie zapisano — przyrządy wszystkich bloków od nowa */
+  let changed = false; a.exercises.forEach(e => { if (!all && e.sets.some(x => x.done)) return;
     if (e.implPinned) { const ex = exById(e.exerciseId); if (e.impl && ex && loc && implsAt(ex, loc).includes(e.impl)) return; delete e.implPinned; }
     const before = e.impl; stampImpl(e, a.locationId); if (e.impl !== before) changed = true; }); return changed;
 }

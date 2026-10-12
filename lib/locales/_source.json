@@ -24,8 +24,8 @@
   "en": "“to” is lower than “from” — the range will show as {n}+"
  },
  {
-  "pl": "„Dopisz trening wstecz” zapisze trening, którego nie zapisałeś na bieżąco; z dnia w Kalendarzu jest ten sam przycisk.",
-  "en": "“Log a past workout” records a workout you didn’t log at the time; from a day in the Calendar it is the same button."
+  "pl": "„Dopisz trening wstecz” zapisze trening, którego nie zapisałeś na bieżąco; z dnia w zakładce Plan jest ten sam przycisk.",
+  "en": "“Log a past workout” records a workout you didn’t log at the time; from a day in the Plan tab it is the same button."
  },
  {
   "pl": "„Pomiń dziś” pomija resztę serii ćwiczenia w tym treningu.",
@@ -304,6 +304,10 @@
   "en": "16 languages; light, dark or system appearance."
  },
  {
+  "pl": "20 nowych ćwiczeń ze wskazówkami w sekcji „Technika”.",
+  "en": "20 new exercises with tips in the “Technique” section."
+ },
+ {
   "pl": "35 języków; język zmienisz w Ustawieniach.",
   "en": "35 languages; change the language in Settings."
  },
@@ -398,6 +402,10 @@
  {
   "pl": "Automatyczna kopia po każdym treningu trafia do Plików (Ustawienia).",
   "en": "An automatic backup after every workout goes to Files (Settings)."
+ },
+ {
+  "pl": "Automatycznie ({n})",
+  "en": "Automatic ({n})"
  },
  {
   "pl": "Backup treningów",
@@ -572,8 +580,8 @@
   "en": "No templates — add the first one."
  },
  {
-  "pl": "Brak szablonów z ćwiczeniami — utworzysz je w zakładce Szablony. Możesz też zacząć od pustego treningu.",
-  "en": "No templates with exercises — create them in the Templates tab. You can also start from an empty workout."
+  "pl": "Brak szablonów z ćwiczeniami — utworzysz je w Więcej → Szablony. Możesz też zacząć od pustego treningu.",
+  "en": "No templates with exercises — create them in More → Templates. You can also start from an empty workout."
  },
  {
   "pl": "Brak treningów w tym i poprzednim okresie.",
@@ -668,6 +676,18 @@
   "en": "target s"
  },
  {
+  "pl": "Cel serii na partię w tygodniu",
+  "en": "Weekly set goal per muscle group"
+ },
+ {
+  "pl": "Cel serii na partię w tygodniu ustawisz w Ustawieniach (Automatycznie albo Ręcznie); paski w „Ten tydzień” i w Postępach mierzą do tego celu, a partia pomocnicza ćwiczenia liczy się za pół serii.",
+  "en": "Set the weekly set goal per muscle group in Settings (Automatic or Manual); the bars in “This week” and in Progress measure against this goal, and an exercise’s secondary muscle group counts as half a set."
+ },
+ {
+  "pl": "Cel serii: {part}",
+  "en": "Set goal: {part}"
+ },
+ {
   "pl": "Ciemny",
   "en": "Dark"
  },
@@ -694,6 +714,10 @@
  {
   "pl": "Ciężar serii na stacji wpisuj na stronę — tak, jak pokazuje urządzenie.",
   "en": "Enter station set weights per side — as the device shows them."
+ },
+ {
+  "pl": "Ciężar z innego sprzętu — nie liczy się do rekordów, dopóki go tu nie wpiszesz.",
+  "en": "Weight from other equipment — it does not count toward records until you enter it here."
  },
  {
   "pl": "Ciężarów w tym zakresie: {c} — najwyżej {n}. Zwiększ krok.",
@@ -1333,6 +1357,10 @@
   "en": "The time {t} doesn’t exist on that day (clock change). Enter a different one."
  },
  {
+  "pl": "godzina nieznana",
+  "en": "time unknown"
+ },
+ {
   "pl": "Godzina startu",
   "en": "Start time"
  },
@@ -1765,16 +1793,12 @@
   "en": "Ab wheel"
  },
  {
-  "pl": "Kreska = {n} serii na partię w tygodniu (źródło i uproszczenia: Postępy).",
-  "en": "The mark = {n} sets per muscle group per week (source and simplifications: Progress)."
+  "pl": "Kreska = cel serii na partię w tygodniu: {n} automatycznie albo Twoja liczba z Ustawień.",
+  "en": "Line = weekly goal of sets per muscle group: {n} automatically, or your own number from Settings."
  },
  {
-  "pl": "Kreska = {n} serii na partię w tygodniu (źródło i uproszczenia: Postępy). Zaplanowane — z szablonów na pozostałe dni tygodnia; partia pomocnicza liczy 0,5.",
-  "en": "The mark = {n} sets per muscle group per week (source and simplifications: Progress). Planned — from templates for the rest of the week; a secondary muscle group counts 0.5."
- },
- {
-  "pl": "Kreska = {n} serii na partię w tygodniu. Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; każdy trening siłowy daje przyrost w porównaniu z brakiem treningu. Uproszczenie: serie pomocnicze liczymy po 0,5.",
-  "en": "Line = {n} sets per muscle group per week. ACSM 2026 position stand: with at least {n} sets per muscle group per week, muscle growth was greater than with lower volume; any resistance training builds muscle compared with none. Simplification: secondary sets count as 0.5."
+  "pl": "Kreska w „Ten tydzień” i w Postępach. Automatycznie: {n} serii (stanowisko ACSM 2026). Ręcznie: własna liczba od {min} do {max}.",
+  "en": "The line in “This week” and in Progress. Automatic: {n} sets (ACSM 2026 position stand). Manual: your own number from {min} to {max}."
  },
  {
   "pl": "krok",
@@ -2309,8 +2333,8 @@
   "en": "Each side: {p}"
  },
  {
-  "pl": "Na koniec „Zakończ” (u góry albo w karcie po ostatniej serii) — sesja trafi do Kalendarza.",
-  "en": "At the end tap “Finish” (at the top or in the card after the last set) — the session goes to the Calendar."
+  "pl": "Na koniec „Zakończ” (u góry albo w karcie po ostatniej serii) — sesja trafi do zakładki Plan.",
+  "en": "At the end tap “Finish” (at the top or in the card after the last set) — the session goes to the Plan tab."
  },
  {
   "pl": "Na podstawie: {list}. Własne sformułowania.",
@@ -2941,8 +2965,8 @@
   "en": "Opens the Progression details."
  },
  {
-  "pl": "Otwiera ten dzień w Kalendarzu.",
-  "en": "Opens this day in the Calendar."
+  "pl": "Otwiera ten dzień w zakładce Plan.",
+  "en": "Opens this day in the Plan tab."
  },
  {
   "pl": "Otwiera zamianę ćwiczenia",
@@ -3085,8 +3109,8 @@
   "en": "The plan “{name}” is under “Other plans”."
  },
  {
-  "pl": "Plan powtarza się co tydzień. Pojedyncze dni zmienisz w Kalendarzu.",
-  "en": "The plan repeats every week. Change single days in the Calendar."
+  "pl": "Plan powtarza się co tydzień. Pojedyncze dni zmienisz w zakładce Plan.",
+  "en": "The plan repeats every week. Change single days in the Plan tab."
  },
  {
   "pl": "Plan tygodnia",
@@ -3149,8 +3173,8 @@
   "en": "With the range added there would be {c} weights — at most {n}. Increase the step or delete the unticked ones."
  },
  {
-  "pl": "Po kilku tygodniach treningu z rzędu Kalendarz podpowie „Zaplanuj deload od …”.",
-  "en": "After several training weeks in a row the Calendar will suggest “Plan a deload from …”."
+  "pl": "Po kilku tygodniach treningu z rzędu zakładka Plan podpowie „Zaplanuj deload od …”.",
+  "en": "After several training weeks in a row the Plan tab will suggest “Plan a deload from …”."
  },
  {
   "pl": "Po przywróceniu z archiwum szablon wróci do planu.",
@@ -3199,6 +3223,10 @@
  {
   "pl": "Pokaż",
   "en": "Show"
+ },
+ {
+  "pl": "Pokaż cele partii",
+  "en": "Show muscle group goals"
  },
  {
   "pl": "Pokaż inne ćwiczenia",
@@ -3295,6 +3323,10 @@
  {
   "pl": "Poprawka zapisu: wszystkie serie bloku „{name}” przejdą pod wybrane ćwiczenie (wartości bez zmian).",
   "en": "Log correction: all sets of “{name}” move to the chosen exercise (values unchanged)."
+ },
+ {
+  "pl": "Poprawki: Postępy pamiętają wybrane ćwiczenie, import bez godzin pokazuje „godzina nieznana”, a teksty pomocy zgadzają się z nazwami zakładek.",
+  "en": "Fixes: Progress remembers the selected exercise, an import without times shows “time unknown”, and help texts now match the tab names."
  },
  {
   "pl": "poprz.",
@@ -3743,6 +3775,10 @@
   "en": "Reverse hyper machine"
  },
  {
+  "pl": "Ręcznie",
+  "en": "Manual"
+ },
+ {
   "pl": "riksza",
   "en": "rickshaw"
  },
@@ -4089,6 +4125,10 @@
   "en": "Power tower (pull-up + dip)"
  },
  {
+  "pl": "Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; każdy trening siłowy daje przyrost w porównaniu z brakiem treningu.",
+  "en": "ACSM 2026 position stand: with at least {n} sets per muscle group per week, muscle growth was greater than with lower volume; any resistance training builds muscle compared with none."
+ },
+ {
   "pl": "start",
   "en": "started"
  },
@@ -4145,8 +4185,8 @@
   "en": "Strongman"
  },
  {
-  "pl": "Stuknij dzień w Kalendarzu: „Przesuń albo pomiń” pokazuje możliwości — przesunięcie planu o 1 dzień, tylko tego treningu, zamianę albo wolne.",
-  "en": "Tap a day in the Calendar: “Move or skip” shows the options — move the plan by 1 day, move only this workout, swap or rest."
+  "pl": "Stuknij dzień w zakładce Plan: „Przesuń albo pomiń” pokazuje możliwości — przesunięcie planu o 1 dzień, tylko tego treningu, zamianę albo wolne.",
+  "en": "Tap a day in the Plan tab: “Move or skip” shows the options — move the plan by 1 day, move only this workout, swap or rest."
  },
  {
   "pl": "suma pow.",
@@ -4446,8 +4486,8 @@
   "en": "This week"
  },
  {
-  "pl": "Ten tydzień jest oznaczony jako deload (D na wykresach). Oznaczenie zmienisz w Kalendarzu: dzień → „Więcej opcji”.",
-  "en": "This week is marked as deload (D on the charts). Change the mark in the Calendar: day → “More options”."
+  "pl": "Ten tydzień jest oznaczony jako deload (D na wykresach). Oznaczenie zmienisz w zakładce Plan: dzień → „Więcej opcji”.",
+  "en": "This week is marked as deload (D on the charts). Change the mark in the Plan tab: day → “More options”."
  },
  {
   "pl": "Ten tydzień jest oznaczony jako deload.",
@@ -4494,6 +4534,10 @@
   "en": "Workout"
  },
  {
+  "pl": "Trening dopisywany wstecz: miejsce treningu wybierzesz w edytorze.",
+  "en": "Workouts logged after the fact: you can choose the workout place in the editor."
+ },
+ {
   "pl": "Trening i serie",
   "en": "Workouts and sets"
  },
@@ -4534,8 +4578,8 @@
   "en": "A past workout dated this day."
  },
  {
-  "pl": "Trening z {d} {s} nie miał aktywności od 6 godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w Kalendarzu.",
-  "en": "The workout from {d} {s} had no activity for 6 hours, so it was saved automatically. End: {e} (last set). You will find it in the Calendar."
+  "pl": "Trening z {d} {s} nie miał aktywności od 6 godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.",
+  "en": "The workout from {d} {s} had no activity for 6 hours, so it was saved automatically. End: {e} (last set). You will find it in the Plan tab."
  },
  {
   "pl": "Trening z tego dnia zrobiony wcześniej — dzień wolny.",
@@ -4650,6 +4694,10 @@
   "en": "Farmer's walk handles"
  },
  {
+  "pl": "Ukryj cele partii",
+  "en": "Hide muscle group goals"
+ },
+ {
   "pl": "Ukryj komunikat",
   "en": "Hide message"
  },
@@ -4660,6 +4708,10 @@
  {
   "pl": "Uproszczenie: drop set liczy się razem z serią, po której jest.",
   "en": "Simplification: a drop set counts together with the set before it."
+ },
+ {
+  "pl": "Uproszczenie: partia pomocnicza ćwiczenia liczy się za pół serii (główna 1, pomocnicza 0,5; Pelland i in. 2026 — jedno źródło).",
+  "en": "Simplification: a secondary muscle group of an exercise counts as half a set (main 1, secondary 0.5; Pelland et al. 2026 — a single source)."
  },
  {
   "pl": "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM).",
@@ -4902,14 +4954,6 @@
   "en": "Sets with this band will show “?” in history."
  },
  {
-  "pl": "W Kalendarzu stuknij sesję, potem „Edytuj” — zmiany zapisuje „Zapisz”, „Anuluj” je odrzuca.",
-  "en": "In the Calendar, tap a session, then “Edit” — “Save” saves the changes, “Cancel” discards them."
- },
- {
-  "pl": "W Kalendarzu: stuknij dzień, potem „Więcej opcji” → „Oznacz tydzień jako deload” — także przyszły tydzień.",
-  "en": "In the Calendar: tap a day, then “More options” → “Mark week as deload” — a future week too."
- },
- {
   "pl": "w planie na: {day} · {n} ćw.",
   "en": "planned for: {day} · {n} ex."
  },
@@ -4940,6 +4984,14 @@
  {
   "pl": "W tygodniu deload „Start” i „Powtórz ostatni” zaproponują „Mniej serii”: {less}; ciężary i szablon bez zmian.",
   "en": "In a deload week “Start” and “Repeat last” offer “Fewer sets”: {less}; weights and template unchanged."
+ },
+ {
+  "pl": "W zakładce Plan stuknij sesję, potem „Edytuj” — zmiany zapisuje „Zapisz”, „Anuluj” je odrzuca.",
+  "en": "In the Plan tab, tap a session, then “Edit” — “Save” saves the changes, “Cancel” discards them."
+ },
+ {
+  "pl": "W zakładce Plan: stuknij dzień, potem „Więcej opcji” → „Oznacz tydzień jako deload” — także przyszły tydzień.",
+  "en": "In the Plan tab: tap a day, then “More options” → “Mark week as deload” — a future week too."
  },
  {
   "pl": "W zapisanych planach: {names}.",
@@ -5516,6 +5568,10 @@
  {
   "pl": "zaplanowane",
   "en": "planned"
+ },
+ {
+  "pl": "Zaplanowane — z szablonów na pozostałe dni tygodnia.",
+  "en": "Planned — from templates for the rest of the week."
  },
  {
   "pl": "Zaplanowane = szablony z planu na pozostałe dni tygodnia, policzone z wartości w szablonie (brakujące — z „Poprzednio”). To rachunek z Twojego planu, nie prognoza. Partia główna liczy 1 serię, pomocnicza 0,5.",

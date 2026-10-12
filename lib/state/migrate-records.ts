@@ -42,6 +42,7 @@ function fixSwapFields(e: any, live: boolean) {
   if (e.implPinned !== true || e.impl === undefined) delete e.implPinned; /* M2 */
   { const v = live ? idOf(e.splitFrom) : null; if (v) e.splitFrom = v; else delete e.splitFrom; } /* M3 */
   if (!live || e.altSkip !== true) delete e.altSkip; /* M4 */
+  if (!live || !(Number.isInteger(e.occ) && e.occ >= 0)) delete e.occ; /* Q-016: znacznik kolejności bloku — tylko trening w toku */
   if (!live || e.skipped !== true) delete e.skipped; /* 07.10.2026 wieczór: „Pomiń dziś” — jak altSkip, tylko trening w toku */
 }
 /** Schemat 16 (E2 W3, docs/14 pkt 2.2, M5; M6 — po filtrze ćwiczeń, M7 — usunięte miejsce zostaje): zamienniki pozycji szablonu z importu —

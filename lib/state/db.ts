@@ -47,7 +47,20 @@ export async function openDb(): Promise<SQLite.SQLiteDatabase> {
     if (ok) return old;
     await old.closeAsync().catch(() => {}); throw e;
   }
-  if (hasState) return next;
+  if (hasState) {
+    /* Q-015: aplikacja ubita po zatwierdzeniu przeniesienia, a przed sprzątaniem, zostawiła starą kopię — kasujemy ją przy najbliższym starcie, ALE tylko gdy nie jest
+     * nowsza od nowej bazy (audyt 0.14.0: start ze starej, bo nowa chwilowo się nie otwierała, mógł zapisać w niej trening). Nowsza stara → jej wiersze trafiają
+     * do nowej (jak przy pierwszym przeniesieniu), dopiero potem sprzątanie; kopia się nie udała → start ze starej, nic nie kasujemy; stara nieczytelna → zostaje. */
+    const legacy = await legacyVsNew(def!, next);
+    if (legacy === 'newer') {
+      const old = await SQLite.openDatabaseAsync('trening.db');
+      try { await copyKv(old, next); }
+      catch { await next.closeAsync().catch(() => {}); return old; }
+      await old.closeAsync().catch(() => {}); void cleanupLegacy(def!); return next;
+    }
+    if (legacy !== 'keep') void cleanupLegacy(def!);
+    return next;
+  }
   /* pierwszy start w nowym miejscu: przeniesienie ze starej bazy (albo nic — nowa instalacja) */
   const old = await SQLite.openDatabaseAsync('trening.db');
   try { await copyKv(old, next); }
@@ -58,6 +71,32 @@ export async function openDb(): Promise<SQLite.SQLiteDatabase> {
   await old.closeAsync().catch(() => {}); /* błąd zamknięcia nie cofa udanego przeniesienia */
   void cleanupLegacy(def!);
   return next;
+}
+/** Znacznik świeżości bazy: największy z metaUpdatedAt („state”), at („live”, „cfg”). NaN — nieczytelny „state”; 0 — brak danych. */
+async function freshness(db: KvDb): Promise<number> {
+  let m = 0;
+  for (const [k, f] of [['state', 'metaUpdatedAt'], ['live', 'at'], ['cfg', 'at']] as const) {
+    const r = await db.getFirstAsync<{ v: string }>('SELECT v FROM kv WHERE k = ?', k);
+    if (!r) continue;
+    try { m = Math.max(m, Number(JSON.parse(r.v)?.[f]) || 0); } catch { if (k === 'state') return NaN; }
+  }
+  return m;
+}
+/** Q-015: jak ma się stara baza w Dokumentach do nowej — 'none' (jej nie ma), 'older' (identyczna lub starsza), 'newer' (nowsza), 'keep' (nie da się porównać). */
+async function legacyVsNew(def: string, next: KvDb): Promise<'none' | 'older' | 'newer' | 'keep'> {
+
+  try {
+    const info = await FileSystem.getInfoAsync('file://' + def.replace(/\/$/, '') + '/trening.db');
+    if (!info.exists) return 'none';
+  } catch {}
+  let old: SQLite.SQLiteDatabase | null = null;
+  try {
+    old = await SQLite.openDatabaseAsync('trening.db');
+    if (!(await old.getFirstAsync("SELECT name FROM sqlite_master WHERE type = 'table' AND name = 'kv'"))) return 'older';
+    const o = await freshness(old); if (Number.isNaN(o)) return 'keep';
+    const n = await freshness(next); return o > n ? 'newer' : 'older';
+  } catch { return 'keep'; }
+  finally { await old?.closeAsync().catch(() => {}); }
 }
 /** Sprząta starą bazę i pusty katalog Dokumenty/SQLite (widoczny w Plikach). Tylko po przeniesieniu; błędy bez znaczenia. */
 async function cleanupLegacy(def: string) {

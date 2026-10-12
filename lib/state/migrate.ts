@@ -11,6 +11,7 @@ import { sanitizeLoadSpec } from '../loads';
 import { isObj, arr, parseNum, idOf, tsOf, intIn, kg2, clampName } from './util';
 import { localDateTs, localISODate, workoutDay, realDay, DATE_KEY } from './time';
 import { cleanLevels } from './bands';
+import { normalizeGoals } from '../setParts';
 import { normalizeGroups } from './groups';
 import { SAVED_PLANS_MAX, DELOAD_WEEKS_MAX, cleanPlanName, planDays, sameDays, normPlanHistory, cleanOverrides, cleanDoneEarly, appendPlanSegment } from './weekplan';
 import { setLegacyLb, snapL, posNum, fixTemplates, fixWorkout, freshIds, uniqueIds } from './migrate-records';
@@ -18,7 +19,7 @@ import { migrateExercises, retireCatalog } from './migrate-catalog';
 
 /** Pola Settings znane tej wersji — pola domyślne plus opcjonalne (nowe pole opcjonalne dopisz tutaj, inaczej jego zła wartość z importu
  * przejdzie jak nieznane ustawienie); reszta zostaje bez zmian — audyt 0.10 J1. */
-const SETTINGS_KEYS = new Set([...Object.keys(defaultSettings()), 'effortScale', 'planReminder', 'libShowAll']);
+const SETTINGS_KEYS = new Set([...Object.keys(defaultSettings()), 'effortScale', 'planReminder', 'libShowAll', 'weeklySetGoals']);
 /** Ustawienia przeniesione poza Settings — nie zostają jako „nieznane” (J1): masa ciała bez daty → State.bodyMassLog (fala 2 audytu 0.10). */
 const MOVED_SETTINGS = new Set(['bodyMass']);
 const PROTO_KEYS = new Set(['__proto__', 'constructor', 'prototype']);
@@ -173,6 +174,7 @@ export function migrate(raw: any): State {
     ...(s.effortScale === 'rir' ? { effortScale: 'rir' as const } : {}),
         ...(s.libShowAll === true ? { libShowAll: true as const } : {}), /* research biblioteki (09.10.2026): tylko zdjęty filtr zapisany */
         ...(s.planReminder === false ? { planReminder: false as const } : {}),
+        ...((g => g ? { weeklySetGoals: g } : {})(normalizeGoals(s.weeklySetGoals))), /* 12.10.2026: ręczny cel serii na partię — tylko znane części, liczby w granicach */
     healthSync: typeof s.healthSync === 'boolean' ? s.healthSync : d.healthSync,
     /* runda 75 */
     progressHint: typeof s.progressHint === 'boolean' ? s.progressHint : d.progressHint,

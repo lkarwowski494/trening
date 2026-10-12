@@ -34,7 +34,7 @@ export default function AddPastWorkout() {
       <WhenFields date={when.date} time={when.time} min={when.min} onChange={p => setWhen(x => ({ ...x, ...p }))} />
       <H2 style={{ marginTop: 16 }}>{t('Z szablonu')}</H2>
       {tpls.map(row)}
-      {!tpls.length ? <Muted style={{ fontSize: 13 }}>{t('Brak szablonów z ćwiczeniami — utworzysz je w zakładce Szablony. Możesz też zacząć od pustego treningu.')}</Muted> : null}
+      {!tpls.length ? <Muted style={{ fontSize: 13 }}>{t('Brak szablonów z ćwiczeniami — utworzysz je w Więcej → Szablony. Możesz też zacząć od pustego treningu.')}</Muted> : null}
       <Item title={t('Pusty trening')} sub={t('ćwiczenia dodasz w następnym kroku')} onPress={() => start(null)} />
       {arch.length ? <><SectionTitle>{t('Archiwum')}</SectionTitle>{arch.map(row)}</> : null}
     </ScrollView></Screen>

@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useIsFocused, useLocalSearchParams, useRouter } from 'expo-router';
 import { Screen, H1, Muted, Txt, Chip, Input, Empty, H2, monoSafe, Btn } from '@/components/ui';
 import { isDeloadWeek, useTick, exById, setSummary, fmtDate, fmtSec, fmtDist, isBW, getState, bodyMassLog, latestBodyMass, localDateTs } from '@/lib/store';
-import { sessionsFor, recordsFor, hasHistory, chartKeysFor, totalKind, fmtTotal, weeklyTotals, hasAnyHistory, weeklySetsByMuscle, weeklyVolumeByMuscle, thisMonday, WEEKLY_SETS_MARK, fmtE1, bwShare, type ChartKey } from '@/lib/stats';
+import { sessionsFor, recordsFor, hasHistory, chartKeysFor, totalKind, fmtTotal, weeklyTotals, hasAnyHistory, weeklySetsByMuscle, weeklyVolumeByMuscle, thisMonday, WEEKLY_SETS_MARK, setsGoal, fmtE1, bwShare, type ChartKey } from '@/lib/stats';
 import { MUSCLES } from '@/lib/seed';
+import { SET_PARTS } from '@/lib/setParts';
 import { LineChart, BarChart, TIME_STEPS } from '@/components/Chart';
 import { PeriodSummary } from '@/components/PeriodSummary';
 import { ProgressTiles } from '@/components/Dashboard';
@@ -22,20 +23,27 @@ import { fmtW, fmtVol, volOut, wu, fmtNum, KG_PER_LB } from '@/lib/units';
  */
 export default function ProgressTab() {
   /* Zakładka zostaje zamontowana po pierwszym otwarciu, a Postępy słuchają każdej zmiany stanu (useTick) — poza zakładką nie renderujemy treści,
-   * żeby wpisy serii w treningu nie przeliczały wykresów w tle (jak R13-04 dla pozostałych zakładek). Stan widoku (szukanie, wykres) przy wyjściu znika. */
-  const focused = useIsFocused();
+   * żeby wpisy serii w treningu nie przeliczały wykresów w tle (jak R13-04 dla pozostałych zakładek). Stan widoku (wybrane ćwiczenie, szukanie, wykres,
+   * przewinięcie) trzyma sama zakładka, a nie odmontowywana treść — po powrocie z ekranu stosu (np. „Masa ciała — pomiary”) wszystko jest jak było
+   * (audyt 0.13, 0.14.0). */
+  const focused = useIsFocused(); const { ex: exParam } = useLocalSearchParams<{ ex?: string }>();
+  const [exId, setExId] = useState(exParam ?? ''); const [q, setQ] = useState(''); const [key, setKey] = useState<ChartKey | ''>('');
+  const scrollY = useRef(0);
+  useEffect(() => { if (exParam) { setExId(exParam); setKey(''); scrollY.current = 0; } }, [exParam]); /* runda 54: link przy otwartym ekranie */
+  const view: View_ = { exId, setExId: (id: string) => { scrollY.current = 0; setExId(id); }, q, setQ, chartKey: key, setKey, scrollY }; /* uwaga: `key` jest zarezerwowaną nazwą propsa w React */
   return (
     <SafeAreaView style={{ flex: 1 }} edges={['top']}><Screen>
       <View style={{ marginVertical: 10 }}><H1>{t('Postępy')}</H1></View>
-      {focused ? <Progress /> : null}
+      {focused ? <Progress {...view} /> : null}
     </Screen></SafeAreaView>
   );
 }
+type View_ = { exId: string; setExId: (id: string) => void; q: string; setQ: (q: string) => void; chartKey: ChartKey | ''; setKey: (k: ChartKey | '') => void; scrollY: React.MutableRefObject<number> };
 
-function Progress() {
+function Progress({ exId, setExId, q, setQ, chartKey: key, setKey, scrollY }: View_) {
   const { ex: exParam } = useLocalSearchParams<{ ex?: string }>(); useTick(); const th = useTheme(); const router = useRouter();
-  const [exId, setExId] = useState(exParam ?? ''); const [q, setQ] = useState(''); const [key, setKey] = useState<ChartKey | ''>('');
-  useEffect(() => { if (exParam) { setExId(exParam); setKey(''); } }, [exParam]); /* runda 54: link przy otwartym ekranie */
+  /* przewinięcie (audyt 0.13): zapamiętywane w zakładce, przywracane przy ponownym zamontowaniu treści */
+  const scroll = { onScroll: (e: { nativeEvent: { contentOffset: { y: number } } }) => { scrollY.current = e.nativeEvent.contentOffset.y; }, scrollEventThrottle: 32, contentOffset: { x: 0, y: scrollY.current } };
   const ex = exId ? exById(exId) : undefined;
   // Ćwiczenia z historią najpierw (runda 2: wcześniej 30 pierwszych alfabetycznie, bez informacji o reszcie).
   const withHist = (e: { id: string }) => hasHistory(e.id); /* runda 74: bez liczenia sesji każdego ćwiczenia */
@@ -51,7 +59,7 @@ function Progress() {
   if (!ex) {
     const weeks = weeklyTotals(8); const any = hasAnyHistory();
     return (
-      <ScrollView keyboardShouldPersistTaps="handled" automaticallyAdjustKeyboardInsets contentContainerStyle={{ paddingBottom: 40 }}>
+      <ScrollView testID="progress-scroll-list" {...scroll} keyboardShouldPersistTaps="handled" automaticallyAdjustKeyboardInsets contentContainerStyle={{ paddingBottom: 40 }}>
         {any ? <>
           <PeriodSummary />
           <ProgressTiles />{/* 11.10.2026: „Progresja” także tu — to samo wejście co z ekranu Trening (/progression) */}
@@ -61,8 +69,8 @@ function Progress() {
           <BarChart bars={weeks.map(w => ({ label: short(w.weekStart) + (isDeloadWeek(w.weekStart) ? ' D' : ''), value: w.sets }))} fmt={v => `${v}`} height={110} />
           <Muted style={{ fontSize: 12, marginTop: 4, marginBottom: 14 }}>{t('Tygodnie od poniedziałku. Objętość = ciężar × powtórzenia × mnożnik ćwiczenia; rozgrzewka poza.')}{weeks.some(w => isDeloadWeek(w.weekStart)) ? ' ' + t('D — tydzień oznaczony jako deload.') : ''}</Muted>
           <H2>{t('Serie per partia — ten tydzień vs poprzedni')}</H2>
-          <MuscleCompare cur={weeklySetsByMuscle(thisMonday())} prev={weeklySetsByMuscle(thisMonday(-1))} fmt={v => fmtNum(v, 1)} mark={WEEKLY_SETS_MARK} />
-          <Muted style={{ fontSize: 12, marginTop: 4 }}>{t('Kreska = {n} serii na partię w tygodniu. Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; każdy trening siłowy daje przyrost w porównaniu z brakiem treningu. Uproszczenie: serie pomocnicze liczymy po 0,5.', { n: WEEKLY_SETS_MARK })} {t('Uproszczenie: drop set liczy się razem z serią, po której jest.') /* D3 (audyt 0.10): brak źródła, jak liczyć drop sety w objętości tygodniowej — docs/research/22 */}</Muted>
+          <MuscleCompare parts={SET_PARTS} cur={weeklySetsByMuscle(thisMonday())} prev={weeklySetsByMuscle(thisMonday(-1))} fmt={v => fmtNum(v, 1)} markOf={setsGoal} />
+          <Muted style={{ fontSize: 12, marginTop: 4 }}>{t('Kreska = cel serii na partię w tygodniu: {n} automatycznie albo Twoja liczba z Ustawień.', { n: WEEKLY_SETS_MARK })} {t('Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; każdy trening siłowy daje przyrost w porównaniu z brakiem treningu.', { n: WEEKLY_SETS_MARK })} {t('Uproszczenie: partia pomocnicza ćwiczenia liczy się za pół serii (główna 1, pomocnicza 0,5; Pelland i in. 2026 — jedno źródło).')} {t('Uproszczenie: drop set liczy się razem z serią, po której jest.') /* D3 (audyt 0.10): brak źródła, jak liczyć drop sety w objętości tygodniowej — docs/research/22 */}</Muted>
           <Muted style={{ fontSize: 12, marginTop: 4, marginBottom: 14 }}>{t('Partia główna liczy 1 serię, pomocnicza 0,5 (np. wyciskanie: klatka 1, triceps i barki po 0,5). Partie ustawisz w edycji ćwiczenia.')}</Muted>
           <H2>{t('Objętość per partia ({u}) — ten tydzień vs poprzedni', { u: wu() })}</H2>
           <MuscleCompare cur={weeklyVolumeByMuscle(thisMonday())} prev={weeklyVolumeByMuscle(thisMonday(-1))} fmt={v => { const x = volOut(v); return x >= 10000 ? `${fmtNum(x / 1000, 1)}k` : fmtNum(Math.round(x)); }} />
@@ -98,7 +106,7 @@ function Progress() {
   if (hasDistance(m) && rec.maxDistance) recRows.push([t('Najdłuższy dystans'), fmtDist(rec.maxDistance)]);
 
   return (
-    <ScrollView keyboardShouldPersistTaps="handled" contentContainerStyle={{ paddingBottom: 40 }}>
+    <ScrollView testID="progress-scroll" {...scroll} keyboardShouldPersistTaps="handled" contentContainerStyle={{ paddingBottom: 40 }}>
       <Chip label={`${exName(ex)}  ✕`} a11yLabel={exName(ex)} a11yHint={t('Tapnij, by wybrać inne ćwiczenie.')} on onPress={() => { setExId(''); if (exParam) router.setParams({ ex: '' }); /* inaczej powrót do zakładki otwierałby znów to ćwiczenie */ }} />
       {sessions.length ? <>
         <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6, marginTop: 12 }}>{keys.map(k => <Chip key={k.key} label={k.label} on={active?.key === k.key} onPress={() => setKey(k.key)} />)}</View>
@@ -135,12 +143,12 @@ function BodyMassSection() {
 
 /** Porównanie partii: ten tydzień (pasek) vs poprzedni (liczba w nawiasie) — serie albo objętość (06.10.2026). `mark` — pionowa kreska
  * (pakiet C: WEEKLY_SETS_MARK przy seriach, ACSM 2026); skala paska obejmuje kreskę, żeby była widoczna także przy mniejszej objętości. */
-function MuscleCompare({ cur, prev, fmt, mark }: { cur: Record<string, number>; prev: Record<string, number>; fmt: (v: number) => string; mark?: number }) {
-  const th = useTheme(); const rows = MUSCLES.filter(mu => (cur[mu] ?? 0) > 0 || (prev[mu] ?? 0) > 0); const max = Math.max(1, mark ?? 0, ...rows.map(mu => Math.max(cur[mu] ?? 0, prev[mu] ?? 0)));
+function MuscleCompare({ cur, prev, fmt, markOf, parts = MUSCLES }: { cur: Record<string, number>; prev: Record<string, number>; fmt: (v: number) => string; /** kreska celu wiersza (serie: cel części) */ markOf?: (part: string) => number; parts?: readonly string[] }) {
+  const th = useTheme(); const rows = parts.filter(mu => (cur[mu] ?? 0) > 0 || (prev[mu] ?? 0) > 0); const max = Math.max(1, ...rows.map(mu => Math.max(markOf?.(mu) ?? 0, cur[mu] ?? 0, prev[mu] ?? 0)));
   if (!rows.length) return <Muted style={{ fontSize: 13 }}>{t('Brak serii w tym i poprzednim tygodniu.')}</Muted>;
-  return <>{rows.map(mu => { const c = cur[mu] ?? 0, p = prev[mu] ?? 0; return (
-    <View accessibilityLanguage={lang()} key={mu} style={{ marginBottom: 8 }} accessible accessibilityLabel={`${t(mu)}: ${fmt(c)} (${t('poprz.')} ${fmt(p)})${mark && c >= mark ? ', ' + t('co najmniej {n}', { n: mark }) : ''}`}>
-      <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}><Txt style={{ fontSize: 14 }}>{t(mu)}</Txt><Muted style={{ fontSize: 13, fontFamily: F.mono }}>{fmt(c)} <Muted style={{ fontSize: 12 }}>({t('poprz.')} {fmt(p)})</Muted></Muted></View>
+  return <>{rows.map(mu => { const c = cur[mu] ?? 0, p = prev[mu] ?? 0; const mark = markOf?.(mu); const label = t(mu); return (
+    <View accessibilityLanguage={lang()} key={mu} style={{ marginBottom: 8 }} accessible accessibilityLabel={`${label}: ${fmt(c)} (${t('poprz.')} ${fmt(p)})${mark && c >= mark ? ', ' + t('co najmniej {n}', { n: mark }) : ''}`}>
+      <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}><Txt style={{ fontSize: 14 }}>{label}</Txt><Muted style={{ fontSize: 13, fontFamily: F.mono }}>{fmt(c)} <Muted style={{ fontSize: 12 }}>({t('poprz.')} {fmt(p)})</Muted></Muted></View>
       <View style={{ height: 6, backgroundColor: th.line, borderRadius: 3, marginTop: 4 }}>
         <View style={{ width: `${Math.round(100 * c / max)}%`, height: 6, backgroundColor: th.accent, borderRadius: 3 }} />
         {mark ? <View testID={`mark-${mu}`} style={{ position: 'absolute', left: `${Math.round(100 * mark / max)}%`, top: -3, width: 2, height: 12, marginLeft: -1, backgroundColor: th.text }} /> : null}

@@ -432,7 +432,7 @@ describe('audyt: ekrany', () => {
 
   test('trening wstecz bez szablonów z ćwiczeniami: podpowiedź, gdzie je utworzyć', async () => {
     await fresh(); store.getState().templates = []; store.save(); await renderApp({ saved: snapshot() }); await go('/history/add'); await flushAll(20);
-    expect(screen.getByText('Brak szablonów z ćwiczeniami — utworzysz je w zakładce Szablony. Możesz też zacząć od pustego treningu.')).toBeTruthy();
+    expect(screen.getByText('Brak szablonów z ćwiczeniami — utworzysz je w Więcej → Szablony. Możesz też zacząć od pustego treningu.')).toBeTruthy();
   });
 });
 

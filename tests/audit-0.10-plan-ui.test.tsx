@@ -296,9 +296,9 @@ describe('macierz — podpowiedzi VoiceOver i teksty pomocnicze ekranów planu (
     const simpl = 'Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM).';
     expect(screen.getByText(new RegExp('^' + simpl.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')))).toBeTruthy();
   });
-  test('pasek tygodnia na ekranie Trening: dzień to przycisk z podpowiedzią „Otwiera ten dzień w Kalendarzu.”', async () => {
+  test('pasek tygodnia na ekranie Trening: dzień to przycisk z podpowiedzią „Otwiera ten dzień w zakładce Plan.”', async () => {
     await boot(ids => { plan.setWeekDay(3, ids[0]); }, '/');
-    expect(screen.getByTestId('strip-2026-10-08').props.accessibilityHint).toBe('Otwiera ten dzień w Kalendarzu.');
+    expect(screen.getByTestId('strip-2026-10-08').props.accessibilityHint).toBe('Otwiera ten dzień w zakładce Plan.');
   });
   test('podpowiedź deload: „Nie teraz” z podpowiedzią „Podpowiedź wróci w przyszłym tygodniu.”', async () => {
     await boot(() => { ['2026-09-14', '2026-09-21', '2026-09-28', '2026-10-06'].forEach(k => addWorkout(at(k), [['Back Squat', [{ weight: 100, reps: 5 }]]])); });

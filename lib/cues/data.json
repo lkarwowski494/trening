@@ -34,6 +34,161 @@
    "name": "Fry, Smith, Schilling (University of Memphis) — badanie w recenzowanym czasopiśmie (PubMed)",
    "level": 3,
    "kind": "study"
+  },
+  "Eleiko": {
+   "name": "Eleiko — Online Education, Exercise Video Library (eleiko.inspire360.com)",
+   "level": 4,
+   "kind": "maker"
+  },
+  "NSCA": {
+   "name": "National Strength and Conditioning Association — NSCA Coach (artykuł edukacyjny, nie stanowisko NSCA)",
+   "level": 4,
+   "kind": "org"
+  },
+  "HSS": {
+   "name": "Hospital for Special Surgery — Move Better Feel Better (materiał edukacyjny szpitala specjalistycznego; rodzaj w aplikacji: serwis specjalistyczny)",
+   "level": 4,
+   "kind": "site"
+  },
+  "Life Fitness": {
+   "name": "Life Fitness — Education Hub (blog producenta sprzętu, 2024)",
+   "level": 4,
+   "kind": "maker"
+  },
+  "NordicTrack": {
+   "name": "NordicTrack — blog producenta bieżni (2025)",
+   "level": 4,
+   "kind": "maker"
+  },
+  "Mullane, Turner, Bishop (Middlesex University)": {
+   "name": "Mullane, Turner, Bishop (Middlesex University) — artykuł techniczny, Strength Cond J (recenzowany; rękopis z repozytorium uczelni)",
+   "level": 3,
+   "kind": "study"
+  },
+  "van der Horst i in. (UMC Utrecht)": {
+   "name": "van der Horst i in. (UMC Utrecht) — RCT, Am J Sports Med 2015",
+   "level": 3,
+   "kind": "study"
+  },
+  "Chen, Wu, Guo (Beijing Sport University i in.)": {
+   "name": "Chen, Wu, Guo (Beijing Sport University i in.) — RCT, Sci Rep 2023",
+   "level": 3,
+   "kind": "study"
+  },
+  "Ripley i in. (University of Salford)": {
+   "name": "Ripley i in. (University of Salford) — badanie, Muscles 2024",
+   "level": 3,
+   "kind": "study"
+  },
+  "Lea, O’Driscoll, Wiles (Canterbury Christ Church University)": {
+   "name": "Lea, O’Driscoll, Wiles (Canterbury Christ Church University) — badanie pilotażowe, Eur J Appl Physiol 2023",
+   "level": 3,
+   "kind": "study"
+  },
+  "Ng i in. (Chinese University of Hong Kong)": {
+   "name": "Ng i in. (Chinese University of Hong Kong) — protokół RCT, Trials 2026",
+   "level": 3,
+   "kind": "study"
+  },
+  "Baffour-Awuah i in. (University of New England)": {
+   "name": "Baffour-Awuah i in. (University of New England) — przegląd z zaleceniami, Clin Hypertens 2023 (współautor Wiles — nie niezależny od Lea i in.)",
+   "level": 3,
+   "kind": "study"
+  },
+  "Krobot Cutura i in. (University of Zagreb)": {
+   "name": "Krobot Cutura i in. (University of Zagreb, Faculty of Kinesiology) — badanie, IJERPH 2024",
+   "level": 3,
+   "kind": "study"
+  },
+  "Lyons i in. (University of Central Florida)": {
+   "name": "Lyons i in. (University of Central Florida) — badanie, Int J Sports Phys Ther 2025",
+   "level": 3,
+   "kind": "study"
+  },
+  "Andersen i in. (Western Norway University of Applied Sciences)": {
+   "name": "Andersen i in. (Western Norway University of Applied Sciences) — badanie EMG, J Sports Sci Med 2021",
+   "level": 3,
+   "kind": "study"
+  },
+  "Nunes i in. (Londrina State University)": {
+   "name": "Nunes i in. (Londrina State University) — badanie, IJERPH 2020",
+   "level": 3,
+   "kind": "study"
+  },
+  "Havers i in. (IST University of Applied Sciences)": {
+   "name": "Havers i in. (IST University of Applied Sciences, Düsseldorf) — badanie, Eur J Sport Sci 2025",
+   "level": 3,
+   "kind": "study"
+  },
+  "Intziegianni i in. (UCLan Cyprus)": {
+   "name": "Intziegianni i in. (UCLan Cyprus) — badanie EMG, Muscles 2026",
+   "level": 3,
+   "kind": "study"
+  },
+  "Marcolin i in. (University of Padova)": {
+   "name": "Marcolin i in. (University of Padova) — badanie EMG, J Athl Train 2015",
+   "level": 3,
+   "kind": "study"
+  },
+  "Polevoy i in. (Moscow Aviation Institute i in.)": {
+   "name": "Polevoy i in. (Moscow Aviation Institute i in.) — badanie, IJERPH 2022",
+   "level": 3,
+   "kind": "study"
+  },
+  "Tsartsapakis i in. (Aristotle University of Thessaloniki)": {
+   "name": "Tsartsapakis i in. (Aristotle University of Thessaloniki) — protokół treningowy, Methods Protoc 2025",
+   "level": 3,
+   "kind": "study"
+  },
+  "Plotkin i in. (CUNY Lehman College)": {
+   "name": "Plotkin i in. (CUNY Lehman College; zespół Schoenfelda) — badanie, PeerJ 2022",
+   "level": 3,
+   "kind": "study"
+  },
+  "Ghigiarelli i in. (Hofstra University)": {
+   "name": "Ghigiarelli i in. (Hofstra University) — badanie, Sensors 2026",
+   "level": 3,
+   "kind": "study"
+  },
+  "Kinoshita i in. (Ritsumeikan University)": {
+   "name": "Kinoshita i in. (Ritsumeikan University) — RCT, Front Physiol 2023",
+   "level": 3,
+   "kind": "study"
+  },
+  "Hasani i in. (Monash University)": {
+   "name": "Hasani i in. (Monash University) — badanie pilotażowe, BMC Sports Sci Med Rehabil 2021 (rehabilitacja — użyty tylko opis wykonania)",
+   "level": 3,
+   "kind": "study"
+  },
+  "Bini, Hume, Croft (Auckland University of Technology)": {
+   "name": "Bini, Hume, Croft (Auckland University of Technology) — przegląd, Sports Med 2011",
+   "level": 2,
+   "kind": "study"
+  },
+  "Moore (Cardiff Metropolitan University)": {
+   "name": "Moore (Cardiff Metropolitan University) — przegląd, Sports Med 2016",
+   "level": 2,
+   "kind": "study"
+  },
+  "Folland i in. (Loughborough University)": {
+   "name": "Folland i in. (Loughborough University) — badanie, Med Sci Sports Exerc 2017",
+   "level": 3,
+   "kind": "study"
+  },
+  "Berling i in. (University of Wisconsin–La Crosse)": {
+   "name": "Berling i in. (University of Wisconsin–La Crosse) — badanie, J Cardiopulm Rehabil 2006 (abstrakt)",
+   "level": 3,
+   "kind": "study"
+  },
+  "de Oliveira i in. (Federal University of Paraná)": {
+   "name": "de Oliveira i in. (Federal University of Paraná) — badanie, Sci Rep 2020",
+   "level": 3,
+   "kind": "study"
+  },
+  "Hofmann i in. (Cybex Research Institute)": {
+   "name": "Hofmann i in. (Cybex Research Institute) — badanie, Int J Exerc Sci 2014 (abstrakt; instytut producenta sprzętu)",
+   "level": 3,
+   "kind": "study"
   }
  },
  "sources": {
@@ -65,6 +220,12 @@
    "org": "ACE",
    "title": "Single Arm Row (#126)",
    "url": "https://www.acefitness.org/resources/everyone/exercise-library/126/single-arm-row/",
+   "level": 4
+  },
+  "ace-131": {
+   "org": "ACE",
+   "title": "Prone (Lying) Hamstrings Curl (#131)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/131/prone-lying-hamstrings-curl/",
    "level": 4
   },
   "ace-135": {
@@ -115,10 +276,22 @@
    "url": "https://www.acefitness.org/resources/everyone/exercise-library/160/standing-chest-fly/",
    "level": 4
   },
+  "ace-165": {
+   "org": "ACE",
+   "title": "Seated Cable Press (#165)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/165/seated-cable-press/",
+   "level": 4
+  },
   "ace-168": {
    "org": "ACE",
    "title": "Seated Row (#168)",
    "url": "https://www.acefitness.org/resources/everyone/exercise-library/168/seated-row/",
+   "level": 4
+  },
+  "ace-182": {
+   "org": "ACE",
+   "title": "Overhead Slams (#182)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/182/overhead-slams/",
    "level": 4
   },
   "ace-185": {
@@ -217,6 +390,12 @@
    "url": "https://www.acefitness.org/resources/everyone/exercise-library/305/v-twist/",
    "level": 4
   },
+  "ace-306": {
+   "org": "ACE",
+   "title": "Burpee (#306, wersja z BOSU)",
+   "url": "https://www.acefitness.org/education-and-resources/lifestyle/exercise-library/306/burpee/",
+   "level": 4
+  },
   "ace-308": {
    "org": "ACE",
    "title": "Pistol Squat (#308)",
@@ -259,10 +438,28 @@
    "url": "https://www.acefitness.org/resources/everyone/exercise-library/322/standing-bicep-curl/",
    "level": 4
   },
+  "ace-332": {
+   "org": "ACE",
+   "title": "Standing Anti-Rotation Press (#332)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/332/standing-anti-rotation-press/",
+   "level": 4
+  },
+  "ace-334": {
+   "org": "ACE",
+   "title": "Straight Arm Pressdown (#334)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/334/straight-arm-pressdown/",
+   "level": 4
+  },
   "ace-336": {
    "org": "ACE",
    "title": "High Row (#336)",
    "url": "https://www.acefitness.org/resources/everyone/exercise-library/336/high-row/",
+   "level": 4
+  },
+  "ace-338": {
+   "org": "ACE",
+   "title": "Single-arm Chest Press (#338)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/338/single-arm-chest-press/",
    "level": 4
   },
   "ace-34": {
@@ -275,6 +472,18 @@
    "org": "ACE",
    "title": "Reverse Fly (#353)",
    "url": "https://www.acefitness.org/resources/everyone/exercise-library/353/reverse-fly/",
+   "level": 4
+  },
+  "ace-358": {
+   "org": "ACE",
+   "title": "Suitcase Carry (#358)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/358/suitcase-carry/",
+   "level": 4
+  },
+  "ace-359": {
+   "org": "ACE",
+   "title": "Farmer’s Carry (#359)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/359/farmer-s-carry/",
    "level": 4
   },
   "ace-36": {
@@ -415,6 +624,12 @@
    "url": "https://www.acefitness.org/resources/everyone/exercise-library/75/standing-shrug/",
    "level": 4
   },
+  "ace-76": {
+   "org": "ACE",
+   "title": "Reverse Crunch (#76)",
+   "url": "https://www.acefitness.org/resources/everyone/exercise-library/76/reverse-crunch/",
+   "level": 4
+  },
   "ace-84": {
    "org": "ACE",
    "title": "Trx Reg Back Row (#84)",
@@ -433,10 +648,58 @@
    "url": "https://www.acefitness.org/continuing-education/certified/november-2019/7403/understanding-the-barbell-hip-thrust/",
    "level": 4
   },
+  "berling-2006": {
+   "org": "Berling i in. (University of Wisconsin–La Crosse)",
+   "title": "…handrail support on oxygen uptake during steady-state treadmill exercise, J Cardiopulm Rehabil 2006 (abstrakt, Europe PMC)",
+   "url": "https://europepmc.org/article/MED/17135860",
+   "level": 3
+  },
+  "bini-2011": {
+   "org": "Bini, Hume, Croft (Auckland University of Technology)",
+   "title": "Effects of bicycle saddle height on knee injury risk and cycling performance, Sports Med 2011 (abstrakt, Europe PMC)",
+   "url": "https://europepmc.org/article/MED/21615188",
+   "level": 2
+  },
+  "c2-bikeerg-setup": {
+   "org": "Concept2",
+   "title": "Setting Up the BikeErg",
+   "url": "https://www.concept2.nl/en/node/8909",
+   "level": 4
+  },
   "c2-technique": {
    "org": "Concept2",
    "title": "Indoor Rowing Technique",
    "url": "https://www.concept2.com/training/rowing-technique",
+   "level": 4
+  },
+  "eleiko-65944cf0": {
+   "org": "Eleiko",
+   "title": "Horizontal Cable Press – Dual Cable, Standing",
+   "url": "https://eleiko.inspire360.com/resource/65944cf0a15f04fdb30a8c1b",
+   "level": 4
+  },
+  "eleiko-659463af": {
+   "org": "Eleiko",
+   "title": "Overhead Press – Seated, 2 DB",
+   "url": "https://eleiko.inspire360.com/resource/659463af0ba5d8897900b853",
+   "level": 4
+  },
+  "eleiko-659842f4": {
+   "org": "Eleiko",
+   "title": "Dual Cable Straight Arm Pulldown – Straight Bar",
+   "url": "https://eleiko.inspire360.com/resource/659842f49607aaa1f400b866",
+   "level": 4
+  },
+  "eleiko-6598447e": {
+   "org": "Eleiko",
+   "title": "Dual Cable Straight Arm Pulldown – Handles",
+   "url": "https://eleiko.inspire360.com/resource/6598447ec5f892e7790ccbb8",
+   "level": 4
+  },
+  "eleiko-659d665d": {
+   "org": "Eleiko",
+   "title": "Pallof Cable Press – Low Split Stance",
+   "url": "https://eleiko.inspire360.com/resource/659d665daa93b5993f0c90c7",
    "level": 4
   },
   "exrx-BackGeneral/BBBentOverRow": {
@@ -950,6 +1213,30 @@
    "archive": "https://web.archive.org/web/20220816182656/https://exrx.net/WeightExercises/Triceps/DBTriExt",
    "level": 4
   },
+  "hofmann-2014": {
+   "org": "Hofmann i in. (Cybex Research Institute)",
+   "title": "…handrail-use instructions… inclined treadmill walking, Int J Exerc Sci 7(4):339–345 (abstrakt)",
+   "url": "https://digitalcommons.wku.edu/ijes/vol7/iss4/10",
+   "level": 3
+  },
+  "hss-bike": {
+   "org": "HSS",
+   "title": "A. Karp, How to Set Up an Exercise (or Spin) Bike Properly (21.12.2020)",
+   "url": "https://www.hss.edu/health-library/move-better/set-up-exercise-bike",
+   "level": 4
+  },
+  "lifefitness-rails": {
+   "org": "Life Fitness",
+   "title": "Is Treadmill Calorie Burn Affected by Holding the Handrails? (29.07.2024)",
+   "url": "https://lifefitness.com/en-us/customer-support/education-hub/blog/treadmill-calorie-burn-affected-holding-handrails",
+   "level": 4
+  },
+  "mullane-2021": {
+   "org": "Mullane, Turner, Bishop (Middlesex University)",
+   "title": "Exercise Technique: The Pallof Press, Strength Cond J 43(2):121–128 (rękopis)",
+   "url": "https://repository.mdx.ac.uk/item/89098",
+   "level": 3
+  },
   "nasm-barbell-bench-press": {
    "org": "NASM",
    "title": "Barbell Bench Press",
@@ -974,6 +1261,12 @@
    "url": "https://www.nasm.org/resource-center/exercise-library/bench-dips",
    "level": 4
   },
+  "nasm-best-abs": {
+   "org": "NASM",
+   "title": "Best Abs Exercises (blog, H. Cherry, akt. 23.07.2026)",
+   "url": "https://www.nasm.org/resource-center/blog/training/best-abs-exercises",
+   "level": 4
+  },
   "nasm-bird-dog": {
    "org": "NASM",
    "title": "Bird Dog",
@@ -996,6 +1289,12 @@
    "org": "NASM",
    "title": "Cable Crossover",
    "url": "https://www.nasm.org/resource-center/exercise-library/cable-crossover",
+   "level": 4
+  },
+  "nasm-calf-blog": {
+   "org": "NASM",
+   "title": "Calf Training: How to Program This Stubborn Muscle Group (blog, H. Cherry, akt. 25.07.2026)",
+   "url": "https://www.nasm.org/resource-center/blog/training/calf-training-how-to-program-this-stubborn-muscle-group-for-clients",
    "level": 4
   },
   "nasm-chest-press-machine": {
@@ -1112,10 +1411,22 @@
    "url": "https://www.nasm.org/resource-center/exercise-library/romanian-deadlift-barbell",
    "level": 4
   },
+  "nasm-running-gait": {
+   "org": "NASM",
+   "title": "Running Gait Basics (blog, B. Sutton, akt. 29.06.2026)",
+   "url": "https://www.nasm.org/resource-center/blog/training/running-gait-basics-what-personal-trainers-should-screen-for",
+   "level": 4
+  },
   "nasm-russian-twist": {
    "org": "NASM",
    "title": "Russian Twist",
    "url": "https://www.nasm.org/resource-center/exercise-library/russian-twist",
+   "level": 4
+  },
+  "nasm-seated-leg-curl": {
+   "org": "NASM",
+   "title": "Seated Leg Curl",
+   "url": "https://www.nasm.org/resource-center/exercise-library/seated-leg-curl",
    "level": 4
   },
   "nasm-seated-machine-row-close-grip": {
@@ -1130,10 +1441,22 @@
    "url": "https://www.nasm.org/resource-center/exercise-library/side-plank",
    "level": 4
   },
+  "nasm-single-leg-seated-leg-curl": {
+   "org": "NASM",
+   "title": "Single-Leg Seated Leg Curl",
+   "url": "https://www.nasm.org/resource-center/exercise-library/single-leg-seated-leg-curl",
+   "level": 4
+  },
   "nasm-single-leg-squat": {
    "org": "NASM",
    "title": "Single Leg Squat",
    "url": "https://www.nasm.org/resource-center/exercise-library/single-leg-squat",
+   "level": 4
+  },
+  "nasm-squat-thrust-burpees": {
+   "org": "NASM",
+   "title": "Squat Thrust Burpees",
+   "url": "https://www.nasm.org/resource-center/exercise-library/squat-thrust-burpees",
    "level": 4
   },
   "nasm-two-arm-dumbbell-chest-press-with-band": {
@@ -1148,6 +1471,18 @@
    "url": "https://www.nasm.org/resource-center/exercise-library/two-arm-incline-dumbbell-chest-press",
    "level": 4
   },
+  "nordictrack-incline": {
+   "org": "NordicTrack",
+   "title": "Incline treadmill benefits… (15.07.2025)",
+   "url": "https://www.nordictrack.com/learn/incline-treadmill-benefits-why-it-works-better-than-flat-walking",
+   "level": 4
+  },
+  "nsca-coach-7-3": {
+   "org": "NSCA",
+   "title": "Taylor, Reed: Increase Hip and Trunk Stability with Loaded Carries…, NSCA Coach 7.3",
+   "url": "https://www.nsca.com/contentassets/927868f8d4bb45f2ac4429631d558d83/coach-7.3.6-increase-hip-and-trunk-stability-with-loaded-carries-for-injury-prevention-rehabilitation-and-performance.pdf",
+   "level": 4
+  },
   "pm-14636100": {
    "org": "Fry, Smith, Schilling (University of Memphis)",
    "title": "Fry i in. 2003, Effect of knee position on hip and knee torques during the barbell squat, J Strength Cond Res 17(4) — abstrakt",
@@ -1158,6 +1493,132 @@
    "org": "Swinton i in. (Robert Gordon University)",
    "title": "Swinton i in. 2011, A biomechanical analysis of straight and hexagonal barbell deadlifts…, J Strength Cond Res 25(7) — abstrakt",
    "url": "https://pubmed.ncbi.nlm.nih.gov/21659894/",
+   "level": 3
+  },
+  "pmc-10015931": {
+   "org": "Baffour-Awuah i in. (University of New England)",
+   "title": "An evidence-based guide to… isometric resistance training in hypertension, Clin Hypertens 2023",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10015931/",
+   "level": 3
+  },
+  "pmc-10624851": {
+   "org": "Chen, Wu, Guo (Beijing Sport University i in.)",
+   "title": "Nordic hamstring exercises in functional knee rehabilitation after ACL reconstruction, Sci Rep 2023",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10624851/",
+   "level": 3
+  },
+  "pmc-10753835": {
+   "org": "Kinoshita i in. (Ritsumeikan University)",
+   "title": "Triceps surae muscle hypertrophy is greater after standing versus seated calf-raise training, Front Physiol 2023",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10753835/",
+   "level": 3
+  },
+  "pmc-10786991": {
+   "org": "Lea, O’Driscoll, Wiles (Canterbury Christ Church University)",
+   "title": "Home-based isometric wall squat intervention…, Eur J Appl Physiol 2023",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10786991/",
+   "level": 3
+  },
+  "pmc-11050476": {
+   "org": "Krobot Cutura i in. (University of Zagreb)",
+   "title": "Evaluating Intraocular Pressure Alterations during Large Muscle Group Isometric Exercises…, IJERPH 2024 (sekcja 2.2.2)",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11050476/",
+   "level": 3
+  },
+  "pmc-11964695": {
+   "org": "Lyons i in. (University of Central Florida)",
+   "title": "…Following 45-Degree Roman Chair Exercise, Int J Sports Phys Ther 2025",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11964695/",
+   "level": 3
+  },
+  "pmc-12225522": {
+   "org": "Ripley i in. (University of Salford)",
+   "title": "Kinematic, neuromuscular and bicep femoris in vivo mechanics during the NHE…, Muscles 2024",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12225522/",
+   "level": 3
+  },
+  "pmc-12286126": {
+   "org": "Tsartsapakis i in. (Aristotle University of Thessaloniki)",
+   "title": "Development and Implementation of a Core Training Protocol…, Methods Protoc 2025 (sekcja 3.2)",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12286126/",
+   "level": 3
+  },
+  "pmc-12621570": {
+   "org": "Havers i in. (IST University of Applied Sciences)",
+   "title": "Partial Range, Full Gains?…, Eur J Sport Sci 2025",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12621570/",
+   "level": 3
+  },
+  "pmc-13029269": {
+   "org": "Intziegianni i in. (UCLan Cyprus)",
+   "title": "EMG… Standard, Diamond, and Wide Hand Position Push-Ups, Muscles 2026",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13029269/",
+   "level": 3
+  },
+  "pmc-13449400": {
+   "org": "Ng i in. (Chinese University of Hong Kong)",
+   "title": "Isometric resistance exercise… study protocol for a RCT, Trials 2026",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13449400/",
+   "level": 3
+  },
+  "pmc-13517625": {
+   "org": "Ghigiarelli i in. (Hofstra University)",
+   "title": "Concurrent Validity… (MR EMG)… During the Leg Extension Exercise, Sensors 2026",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13517625/",
+   "level": 3
+  },
+  "pmc-4732391": {
+   "org": "Marcolin i in. (University of Padova)",
+   "title": "Selective Activation of Shoulder, Trunk, and Arm Muscles… Push-Up Variants, J Athl Train 2015",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4732391/",
+   "level": 3
+  },
+  "pmc-4887549": {
+   "org": "Moore (Cardiff Metropolitan University)",
+   "title": "Is There an Economical Running Technique?…, Sports Med 2016",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4887549/",
+   "level": 2
+  },
+  "pmc-5473370": {
+   "org": "Folland i in. (Loughborough University)",
+   "title": "Running Technique is an Important Component of Running Economy and Performance, MSSE 2017",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5473370/",
+   "level": 3
+  },
+  "pmc-7343795": {
+   "org": "de Oliveira i in. (Federal University of Paraná)",
+   "title": "…handrail support… during maximal exercise testing, Sci Rep 2020",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7343795/",
+   "level": 3
+  },
+  "pmc-7460162": {
+   "org": "Nunes i in. (Londrina State University)",
+   "title": "…Cable vs. Barbell Preacher Curl Training…, IJERPH 2020",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7460162/",
+   "level": 3
+  },
+  "pmc-8057707": {
+   "org": "Andersen i in. (Western Norway University of Applied Sciences)",
+   "title": "Comparison of Muscle Activity in Three Single-Joint, Hip Extension Exercises…, J Sports Sci Med 2021",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8057707/",
+   "level": 3
+  },
+  "pmc-8152048": {
+   "org": "Hasani i in. (Monash University)",
+   "title": "LOAD-intensity and time-under-tension… feasibility, BMC Sports Sci Med Rehabil 2021",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8152048/",
+   "level": 3
+  },
+  "pmc-9517252": {
+   "org": "Polevoy i in. (Moscow Aviation Institute i in.)",
+   "title": "The Influence of Burpee on Endurance and Short-Term Memory of Adolescents, IJERPH 2022",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9517252/",
+   "level": 3
+  },
+  "pmc-9528903": {
+   "org": "Plotkin i in. (CUNY Lehman College)",
+   "title": "Progressive overload without progressing load?…, PeerJ 2022",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9528903/",
    "level": 3
   },
   "sbs-how-to-bench": {
@@ -1177,6 +1638,12 @@
    "title": "How to Squat: The Definitive Guide (Greg Nuckols)",
    "url": "https://www.strongerbyscience.com/how-to-squat/",
    "level": 4
+  },
+  "vdhorst-2015": {
+   "org": "van der Horst i in. (UMC Utrecht)",
+   "title": "The Preventive Effect of the Nordic Hamstring Exercise… RCT, Am J Sports Med 2015",
+   "url": "https://instituteofmotion.com/wp-content/uploads/2018/03/Nordic-hamstring-2015.pdf",
+   "level": 3
   }
  },
  "exercises": {
@@ -7515,50 +7982,1039 @@
      ]
     }
    ]
+  },
+  "Straight Arm Pulldown": {
+   "setup": [
+    {
+     "c": "sapd.setup",
+     "s": [
+      [
+       "ace-334",
+       "opis (wyciąg w najwyższym położeniu, drążek; parafraza)"
+      ],
+      [
+       "eleiko-659842f4",
+       "Setup (bloczek na wysokości głowy, ręce proste; parafraza)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "sapd.move",
+     "s": [
+      [
+       "ace-334",
+       "opis (proste ręce, dłonie do przodu pasa, powolny powrót; parafraza)"
+      ],
+      [
+       "eleiko-659842f4",
+       "Procedure (drążek w stronę ud prostymi rękami, powrót pod kontrolą; parafraza)"
+      ],
+      [
+       "eleiko-6598447e",
+       "(wariant: uchwyty) Procedure"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "sapd.arms",
+     "s": [
+      [
+       "ace-334",
+       "opis (ręce proste przez cały ruch; parafraza)"
+      ],
+      [
+       "eleiko-659842f4",
+       "Procedure (ręce proste; parafraza)"
+      ],
+      [
+       "eleiko-6598447e",
+       "(wariant: uchwyty) Procedure"
+      ]
+     ]
+    }
+   ],
+   "mistakes": []
+  },
+  "Wyciskanie na linkach (stojąc)": {
+   "setup": [
+    {
+     "c": "cpress.setup",
+     "s": [
+      [
+       "eleiko-65944cf0",
+       "Setup (bloczki na wysokości klatki, tyłem do maszyny, uchwyty przed barkami; parafraza)"
+      ],
+      [
+       "ace-338",
+       "(wariant: jednorącz) Setup: bloczek na wysokości barków"
+      ],
+      [
+       "ace-165",
+       "(wariant: siedząc) Step 1 (uchwyty na wysokości barków lub środka klatki)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "mcp.move",
+     "s": [
+      [
+       "eleiko-65944cf0",
+       "Movement (wypchnięcie do pełnego wyprostu i powrót)"
+      ],
+      [
+       "ace-165",
+       "(wariant: siedząc) Step 2–3 (wyprost bez blokowania, powolny powrót do klatki)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "cpress.base",
+     "s": [
+      [
+       "eleiko-65944cf0",
+       "Coaching points (tułów stabilny, bez nadmiernego skrętu)"
+      ],
+      [
+       "ace-338",
+       "(wariant: jednorącz) krok 5 (stopy w podłogę, napięty brzuch)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": []
+  },
+  "Machine Shoulder Press": {
+   "setup": [
+    {
+     "c": "msp.seat",
+     "s": [
+      [
+       "ace-186",
+       "Setup (siedzisko tak, by uchwyty były na wysokości barków lub tuż nad nimi; parafraza)"
+      ],
+      [
+       "eleiko-659463af",
+       "(wariant: hantle siedząc) Setup: ciężary przed barkami"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "ohp.move",
+     "s": [
+      [
+       "ace-186",
+       "Movement (wyciśnięcie nad głowę, powolne opuszczenie)"
+      ],
+      [
+       "eleiko-659463af",
+       "(wariant: hantle) Movement"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "ohp.feet",
+     "s": [
+      [
+       "ace-186",
+       "Setup (stopy na podłodze lub podnóżkach)"
+      ],
+      [
+       "eleiko-659463af",
+       "Coaching points (stopy wciskane w podłogę przez całą serię)"
+      ]
+     ]
+    },
+    {
+     "c": "ohp.fullExt",
+     "s": [
+      [
+       "ace-186",
+       "Movement (łokcie prawie proste, nie zablokowane)"
+      ],
+      [
+       "eleiko-659463af",
+       "Movement (pełny wyprost rąk)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": []
+  },
+  "Leg Curl": {
+   "setup": [],
+   "move": [
+    {
+     "c": "lcurl.move",
+     "s": [
+      [
+       "nasm-seated-leg-curl",
+       "Execution; Return (pięty do pośladków, powrót pod kontrolą; parafraza)"
+      ],
+      [
+       "ace-131",
+       "(wariant: leżąc, z linką) „slowly return your leg back to your starting position”"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "lcurl.still",
+     "s": [
+      [
+       "nasm-seated-leg-curl",
+       "Common Mistakes (przesuwanie lub skręcanie bioder)"
+      ],
+      [
+       "nasm-single-leg-seated-leg-curl",
+       "Common Mistakes (kolano w miejscu)"
+      ],
+      [
+       "ace-131",
+       "(wariant: leżąc, z linką) „without moving your thigh (the top of your thigh remains on the mat)”"
+      ]
+     ]
+    },
+    {
+     "c": "llc.control",
+     "s": [
+      [
+       "nasm-seated-leg-curl",
+       "Common Mistakes (szarpany, niekontrolowany ruch)"
+      ],
+      [
+       "ace-131",
+       "(wariant) krok 4 (powolny powrót)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": []
+  },
+  "Nordic Curl": {
+   "setup": [
+    {
+     "c": "nordic.setup",
+     "s": [
+      [
+       "vdhorst-2015",
+       "s. 2, Intervention („applying pressure to the player’s heels/lower legs”)"
+      ],
+      [
+       "pmc-10624851",
+       "Methodology, pkt 2 (kostki przytrzymane)"
+      ],
+      [
+       "pmc-12225522",
+       "Materials and Methods (klęk na wyściełanej ławce)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "nordic.move",
+     "s": [
+      [
+       "vdhorst-2015",
+       "s. 2 („as slowly as possible to maximize loading in the eccentric phase”)"
+      ],
+      [
+       "pmc-12225522",
+       "Materials and Methods („as slowly as possible to a prone position”)"
+      ],
+      [
+       "pmc-10624851",
+       "Methodology (powolne pochylanie z oporem tyłu ud)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "nordic.hips",
+     "s": [
+      [
+       "vdhorst-2015",
+       "s. 2 (tułów od kolan w górę sztywny i prosty)"
+      ],
+      [
+       "pmc-12225522",
+       "Materials and Methods (biodra wyprostowane; zgięcie bioder = powtórzenie nieudane)"
+      ]
+     ]
+    },
+    {
+     "c": "nordic.catch",
+     "s": [
+      [
+       "vdhorst-2015",
+       "s. 2 (ręce hamują upadek i odpychają z powrotem)"
+      ],
+      [
+       "pmc-12225522",
+       "Materials and Methods (po utracie kontroli ręce kontrolują opad jak w pompce)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": []
+  },
+  "Wall Sit": {
+   "setup": [
+    {
+     "c": "wall.setup",
+     "s": [
+      [
+       "pmc-10786991",
+       "Methods, HR-EX: Baseline testing; RPE-EX („lower their back down a sturdy wall”, stopy do wysokości przysiadu)"
+      ],
+      [
+       "pmc-13449400",
+       "Intervention arm (stopy na szerokość barków, plecy i głowa neutralnie / przy ścianie)"
+      ]
+     ]
+    }
+   ],
+   "move": [],
+   "tips": [
+    {
+     "c": "wall.back",
+     "s": [
+      [
+       "pmc-10786991",
+       "Methods („a vertical lower limb and an erect trunk”)"
+      ],
+      [
+       "pmc-13449400",
+       "Intervention arm (plecy i głowa neutralnie / przy ścianie)"
+      ]
+     ]
+    },
+    {
+     "c": "wall.depth",
+     "s": [
+      [
+       "pmc-13449400",
+       "Intervention arm (indywidualna progresja głębokości)"
+      ],
+      [
+       "pmc-10015931",
+       "Clinical implications, Tabela 4 (intensywność reguluje kąt w kolanach)"
+      ]
+     ]
+    },
+    {
+     "c": "wall.breath",
+     "s": [
+      [
+       "pmc-10786991",
+       "Methods (zwykły oddech; miejsce wg docs/research/33 — do potwierdzenia; zespół Wilesa, wspólny autor z pmc-10015931: liczy się jako jedno źródło)"
+      ],
+      [
+       "pmc-11050476",
+       "sekcja 2.2.2 „Subjects followed a normal breathing pattern”"
+      ]
+     ]
+    }
+   ],
+   "mistakes": []
+  },
+  "Back Extension": {
+   "setup": [],
+   "move": [
+    {
+     "c": "bext.move",
+     "s": [
+      [
+       "pmc-8057707",
+       "Experimental session („until the hip angle was approximately 90 degrees”)"
+      ],
+      [
+       "pmc-11964695",
+       "Methods: Session 1 („until a neutral spine angle was achieved”)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "hinge.back",
+     "s": [
+      [
+       "pmc-11964695",
+       "Methods („a neutral spine position throughout the exercise”)"
+      ],
+      [
+       "pmc-8057707",
+       "Experimental session („The back had to be straight with a natural sway throughout the whole movement.”)"
+      ]
+     ]
+    },
+    {
+     "c": "bext.noArch",
+     "s": [
+      [
+       "pmc-11964695",
+       "Methods (unikanie nadmiernego wyginania; koniec w pozycji neutralnej)"
+      ],
+      [
+       "pmc-8057707",
+       "Experimental session (plecy proste, powrót do pozycji wyprostowanej)"
+      ]
+     ]
+    },
+    {
+     "c": "llc.control",
+     "s": [
+      [
+       "pmc-8057707",
+       "Experimental session („self-selected but controlled tempo”)"
+      ],
+      [
+       "pmc-11964695",
+       "Methods (tempo z metronomu, 4 s na cykl)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": []
+  },
+  "Preacher Curl": {
+   "setup": [
+    {
+     "c": "preacher.setup",
+     "s": [
+      [
+       "pmc-12621570",
+       "sekcja 2.5 (ławka 65° odwzorowująca modlitewnik: ramię na ławce, pacha przy krawędzi; parafraza; słabsze — ustawienie testowe)"
+      ],
+      [
+       "pmc-7460162",
+       "2.3 („The elbow was supported on a padded shelf with the shoulder flexed at an angle of 60°, similar to the preacher bench.”; słabsze — ustawienie testowe)"
+      ]
+     ]
+    }
+   ],
+   "move": [],
+   "tips": [
+    {
+     "c": "preacher.range",
+     "s": [
+      [
+       "pmc-7460162",
+       "2.5 („in the maximum range of motion”)"
+      ],
+      [
+       "pmc-12621570",
+       "2.3 (pełny zakres)"
+      ]
+     ]
+    },
+    {
+     "c": "curl.control",
+     "s": [
+      [
+       "pmc-7460162",
+       "2.5 (tempo: koncentryczna krótsza, ekscentryczna dłuższa)"
+      ],
+      [
+       "pmc-12621570",
+       "2.3 (ekscentryczna dłuższa niż koncentryczna)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": []
+  },
+  "Diamond Push Up": {
+   "setup": [
+    {
+     "c": "diamond.setup",
+     "s": [
+      [
+       "pmc-13029269",
+       "2.3 („place their hands under their chest in the midline of their sternum”)"
+      ],
+      [
+       "pmc-4732391",
+       "Testing Procedures (kciuk i palec wskazujący jednej dłoni stykają się z drugą)"
+      ]
+     ]
+    }
+   ],
+   "move": [],
+   "tips": [
+    {
+     "c": "push.rigid",
+     "s": [
+      [
+       "pmc-13029269",
+       "2.3 (prosta linia ciała, napięty brzuch)"
+      ],
+      [
+       "pmc-4732391",
+       "Testing Procedures („A rigid posture with trunk and legs aligned was required for all the variants.”)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": []
+  },
+  "Pallof Press": {
+   "setup": [
+    {
+     "c": "pallof.setup",
+     "s": [
+      [
+       "ace-332",
+       "opis („The cable pulley should be at approximately chest height.”)"
+      ],
+      [
+       "mullane-2021",
+       "s. 4 („Ensure that the band or cable machine is fixed to approximately the mid-torso level.”)"
+      ],
+      [
+       "eleiko-659d665d",
+       "Setup (bokiem do wyciągu, uchwyt oburącz przy środku tułowia)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "pallof.move",
+     "s": [
+      [
+       "ace-332",
+       "opis (wypchnięcie, przytrzymanie, powolny powrót)"
+      ],
+      [
+       "mullane-2021",
+       "s. 4 („slowly extend and press the hands away from the torso, ensuring not to lock out the elbows”)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "pallof.noTwist",
+     "s": [
+      [
+       "nasm-best-abs",
+       "Pallof Press („The goal is to prevent movement, not create it.”)"
+      ],
+      [
+       "eleiko-659d665d",
+       "Coaching Points („Stay tall through your hips without allowing any movement in your torso.”)"
+      ],
+      [
+       "mullane-2021",
+       "s. 4 (ćwiczenie antyrotacyjne)"
+      ]
+     ]
+    },
+    {
+     "c": "plank.brace",
+     "s": [
+      [
+       "mullane-2021",
+       "s. 4 (tułów napięty, kręgosłup neutralnie)"
+      ],
+      [
+       "eleiko-659d665d",
+       "Coaching Points (stopy w podłogę, by ustabilizować tułów)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": []
+  },
+  "Reverse Crunch": {
+   "setup": [],
+   "move": [
+    {
+     "c": "rcrunch.move",
+     "s": [
+      [
+       "ace-76",
+       "krok 2–3 („Continue rolling out until your spine and pelvis (hips) contact the mat”)"
+      ],
+      [
+       "nasm-best-abs",
+       "Reverse Crunch (kontrola fazy opuszczania)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "rcrunch.hips",
+     "s": [
+      [
+       "ace-76",
+       "wskazówka końcowa (unoszenie miednicy; bez zmiany kąta kolan)"
+      ],
+      [
+       "nasm-best-abs",
+       "Reverse Crunch („Focus on lifting the hips rather than simply swinging the legs.”)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": []
+  },
+  "Farmer's Walk": {
+   "setup": [
+    {
+     "c": "carry.two",
+     "s": [
+      [
+       "ace-359",
+       "opis („allow the arms to rest along the sides of the body so the dumbbells are next to each hip”)"
+      ],
+      [
+       "nsca-coach-7-3",
+       "s. 52, Exercise Set-Up (równy ciężar w każdej ręce)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "carry.walk",
+     "s": [
+      [
+       "ace-359",
+       "opis (marsz na ustalony dystans)"
+      ],
+      [
+       "nsca-coach-7-3",
+       "s. 52 („walk slow and controlled”)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "lunge.torso",
+     "s": [
+      [
+       "ace-359",
+       "opis (plecy proste)"
+      ],
+      [
+       "nsca-coach-7-3",
+       "s. 52 („maintain an upright torso”)"
+      ],
+      [
+       "nasm-best-abs",
+       "(wariant: ciężary nierówne) „Maintain a tall posture and level shoulders throughout the carry.”"
+      ]
+     ]
+    }
+   ],
+   "mistakes": []
+  },
+  "Suitcase Carry": {
+   "setup": [
+    {
+     "c": "carry.one",
+     "s": [
+      [
+       "ace-358",
+       "opis (ciężar w jednej ręce przy biodrze; parafraza)"
+      ],
+      [
+       "nsca-coach-7-3",
+       "s. 52 (suitcase carry: ciężar po jednej stronie)"
+      ]
+     ]
+    }
+   ],
+   "move": [
+    {
+     "c": "carry.walk",
+     "s": [
+      [
+       "ace-358",
+       "opis (marsz na ustalony dystans)"
+      ],
+      [
+       "nsca-coach-7-3",
+       "s. 52"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "carry.noLean",
+     "s": [
+      [
+       "nasm-best-abs",
+       "„Clients should walk tall and avoid leaning toward or away from the weight.”"
+      ],
+      [
+       "nsca-coach-7-3",
+       "s. 52 (bez bocznego zginania kręgosłupa)"
+      ],
+      [
+       "ace-358",
+       "opis (kręgosłup wyprostowany)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": []
+  },
+  "Burpees": {
+   "setup": [],
+   "move": [
+    {
+     "c": "burpee.down",
+     "s": [
+      [
+       "nasm-squat-thrust-burpees",
+       "Execute/Drive („Jump or step your feet backward into a push-up position”)"
+      ],
+      [
+       "pmc-9517252",
+       "2.3 Execution Technique („Jump back to a push-up position.”)"
+      ],
+      [
+       "ace-306",
+       "(wariant z BOSU) wyskok nogami w tył do podporu"
+      ]
+     ]
+    },
+    {
+     "c": "burpee.up",
+     "s": [
+      [
+       "nasm-squat-thrust-burpees",
+       "powrót stopami do dłoni, wyskok"
+      ],
+      [
+       "pmc-9517252",
+       "2.3 („Jump to full hip and knee extension.”)"
+      ]
+     ]
+    }
+   ],
+   "tips": [],
+   "mistakes": []
+  },
+  "Medicine Ball Slam": {
+   "setup": [],
+   "move": [
+    {
+     "c": "slam.move",
+     "s": [
+      [
+       "ace-182",
+       "krok 3–4 (piłka nad głowę, potem rzut z całej siły w podłogę; parafraza)"
+      ],
+      [
+       "pmc-12286126",
+       "sekcja 3.2 (Controlled Upward Phase → Explosive Downward Phase; parafraza)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "hinge.back",
+     "s": [
+      [
+       "ace-182",
+       "krok 2 („Maintain a flat back by bending forward at the hips.”)"
+      ],
+      [
+       "pmc-12286126",
+       "3.2, Neutral Spine Alignment („Ensure the lumbar and thoracic spine remain neutral throughout the movement…”)"
+      ]
+     ]
+    },
+    {
+     "c": "plank.brace",
+     "s": [
+      [
+       "ace-182",
+       "krok 2–4 (napięty brzuch przez cały ruch; parafraza)"
+      ],
+      [
+       "pmc-12286126",
+       "3.2 („Engage the TrA and deep-core stabilizers prior to initiating the slam.”)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": []
+  },
+  "Leg Extension": {
+   "setup": [],
+   "move": [
+    {
+     "c": "lext.range",
+     "s": [
+      [
+       "pmc-9528903",
+       "Methods, Muscle strength-endurance (pełny zakres od zgięcia pod kątem prostym do pełnego wyprostu; parafraza)"
+      ],
+      [
+       "pmc-13517625",
+       "2.3 („All repetitions were performed through a full range of motion permitted by the leg extension machine”)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "llc.control",
+     "s": [
+      [
+       "pmc-9528903",
+       "Methods (stałe tempo z metronomem)"
+      ],
+      [
+       "pmc-13517625",
+       "2.5 (kontrolowane powtórzenia, metronom)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": []
+  },
+  "Seated Calf Raise": {
+   "setup": [],
+   "move": [
+    {
+     "c": "calf.move",
+     "s": [
+      [
+       "pmc-10753835",
+       "Introduction, ryc. 1 (zakres od zgięcia grzbietowego do podeszwowego, kolana zgięte; parafraza)"
+      ],
+      [
+       "pmc-8152048",
+       "Tabela 1 (zakres zgięcia grzbietowego i podeszwowego; parafraza)"
+      ]
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "c": "llc.control",
+     "s": [
+      [
+       "pmc-10753835",
+       "Training program (2 s w górę, 2 s w dół, metronom)"
+      ],
+      [
+       "pmc-8152048",
+       "tempo z metronomu"
+      ],
+      [
+       "pmc-9528903",
+       "Methods („controlled fashion… eccentric action of approximately 2 s”)"
+      ],
+      [
+       "nasm-calf-blog",
+       "„a controlled 2-to-3-second lowering”"
+      ]
+     ]
+    }
+   ],
+   "mistakes": []
+  },
+  "Incline Walk (bieżnia)": {
+   "setup": [],
+   "move": [],
+   "tips": [
+    {
+     "c": "walk.rails",
+     "s": [
+      [
+       "berling-2006",
+       "abstrakt (mocne trzymanie poręczy obniżało tętno i pobór tlenu; parafraza)"
+      ],
+      [
+       "hofmann-2014",
+       "abstrakt („holding the handrails and leaning backward significantly reduces metabolic cost”)"
+      ],
+      [
+       "nordictrack-incline",
+       "„It's okay to use the side rails for balance…”"
+      ],
+      [
+       "lifefitness-rails",
+       "„…ensure that you keep an upright posture and don’t lean back!”"
+      ],
+      [
+       "pmc-7343795",
+       "wyniki (z podparciem test trwał dłużej, tętno w środkowych etapach niższe; parafraza)"
+      ]
+     ]
+    },
+    {
+     "c": "walk.upright",
+     "s": [
+      [
+       "lifefitness-rails",
+       "„stand up straight” / wyprostowana postawa"
+      ],
+      [
+       "nordictrack-incline",
+       "„…try to keep your core tight and your spine neutral.”"
+      ]
+     ]
+    }
+   ],
+   "mistakes": []
+  },
+  "Bieg": {
+   "setup": [],
+   "move": [],
+   "tips": [
+    {
+     "c": "run.stride",
+     "s": [
+      [
+       "pmc-4887549",
+       "Spatiotemporal Factors (zakres od preferowanej długości kroku minus 3 % do preferowanej)"
+      ],
+      [
+       "pmc-5473370",
+       "wyniki (krótszy krok i wyższa kadencja wiązały się z lepszą ekonomią; parafraza)"
+      ]
+     ]
+    },
+    {
+     "c": "run.bounce",
+     "s": [
+      [
+       "pmc-4887549",
+       "Spatiotemporal Factors („reducing the magnitude of vertical displacement should be encouraged”)"
+      ],
+      [
+       "pmc-5473370",
+       "wyniki (mniejsze pionowe przemieszczenie miednicy — najsilniejszy kinematyczny korelat ekonomii; parafraza)"
+      ]
+     ]
+    },
+    {
+     "c": "run.under",
+     "s": [
+      [
+       "nasm-running-gait",
+       "overstriding („unnecessary braking forces with each step”)"
+      ],
+      [
+       "pmc-4887549",
+       "mniejsza odległość stopy od środka masy przy kontakcie zmniejszała siły hamujące; parafraza"
+      ],
+      [
+       "pmc-5473370",
+       "Discussion („the importance of minimizing braking”)"
+      ]
+     ]
+    }
+   ],
+   "mistakes": []
+  },
+  "Rower": {
+   "setup": [
+    {
+     "c": "bike.seat",
+     "s": [
+      [
+       "c2-bikeerg-setup",
+       "„With the ball of your foot on the pedal, your leg should maintain a slight bend at maximum extension.”"
+      ],
+      [
+       "hss-bike",
+       "Seat height („It shouldn't be locked out, just bending noticeably.”)"
+      ],
+      [
+       "bini-2011",
+       "abstrakt (kąt zgięcia kolana przy wyprostowanej nodze; parafraza)"
+      ]
+     ]
+    },
+    {
+     "c": "bike.foot",
+     "s": [
+      [
+       "c2-bikeerg-setup",
+       "przednia część stopy na pedale"
+      ],
+      [
+       "hss-bike",
+       "Foot position (śródstopie nad pedałem; parafraza)"
+      ]
+     ]
+    }
+   ],
+   "move": [],
+   "tips": [],
+   "mistakes": []
   }
  },
  "open": {
-  "Decline Bench Press": "jedno przeczytane źródło opisuje to ćwiczenie (ExRx.net); drugie niezależne do znalezienia (NSCA/ACSM płatne — reguła 0 zł)",
-  "Pec Deck": "jedno przeczytane źródło opisuje to ćwiczenie (ExRx.net); drugie niezależne do znalezienia (NSCA/ACSM płatne — reguła 0 zł)",
-  "Wyciskanie na linkach (stojąc)": "źródła (ExRx.net, ACE — wersja jednorącz) mają wspólną najwyżej jedną wskazówkę — wymagane 2–4 wskazówki z dwoma źródłami każda",
-  "Chest Dip": "jedno przeczytane źródło opisuje to ćwiczenie (ExRx.net); drugie niezależne do znalezienia (NSCA/ACSM płatne — reguła 0 zł); artykuł ACE o dipach dotyczy ryzyka, nie techniki",
-  "Diamond Push Up": "ExRx.net opisuje pompki z wąskim chwytem (dłonie pod barkami), nie „diamentowe”; brak przeczytanego opisu",
-  "Straight Arm Pulldown": "jedno przeczytane źródło opisuje to ćwiczenie (ACE); drugie niezależne do znalezienia (NSCA/ACSM płatne — reguła 0 zł); ExRx.net nie ma tej strony w archiwum, „Cable Pullover” to inne ćwiczenie",
-  "Back Extension": "jedno przeczytane źródło opisuje to ćwiczenie (ExRx.net — 45° hyperextension); drugie niezależne do znalezienia (NSCA/ACSM płatne — reguła 0 zł)",
-  "Arnold Press": "jedno przeczytane źródło opisuje to ćwiczenie (ExRx.net); drugie niezależne do znalezienia (NSCA/ACSM płatne — reguła 0 zł)",
-  "Machine Shoulder Press": "źródła (ACE, ExRx.net) mają wspólną najwyżej jedną wskazówkę — wymagane 2–4 wskazówki z dwoma źródłami każda",
-  "Upright Row (hantle)": "jedno przeczytane źródło opisuje to ćwiczenie (ExRx.net); drugie niezależne do znalezienia (NSCA/ACSM płatne — reguła 0 zł)",
-  "Incline Curl (hantle)": "jedno przeczytane źródło opisuje to ćwiczenie (ExRx.net — ustawienie na ławce skośnej); drugie niezależne do znalezienia (NSCA/ACSM płatne — reguła 0 zł)",
-  "Concentration Curl (hantle)": "jedno przeczytane źródło opisuje to ćwiczenie (ExRx.net); drugie niezależne do znalezienia (NSCA/ACSM płatne — reguła 0 zł)",
-  "Preacher Curl": "jedno przeczytane źródło opisuje to ćwiczenie (ExRx.net — dwie strony tego samego serwisu); drugie niezależne do znalezienia (NSCA/ACSM płatne — reguła 0 zł)",
-  "Spider Curl": "jedno przeczytane źródło opisuje to ćwiczenie (ExRx.net); drugie niezależne do znalezienia (NSCA/ACSM płatne — reguła 0 zł)",
-  "Skullcrusher (hantle)": "źródła (ExRx.net — hantle, ACE — sztanga) mają wspólną najwyżej jedną wskazówkę — wymagane 2–4 wskazówki z dwoma źródłami każda",
-  "Triceps Kickback": "ACE i ExRx.net różnią się ustawieniem ramienia (równolegle do tułowia vs równolegle do podłogi) — za mało części wspólnej",
-  "Box Squat": "jedno przeczytane źródło opisuje to ćwiczenie (ExRx.net — cechy przysiadu na skrzyni); drugie niezależne do znalezienia (NSCA/ACSM płatne — reguła 0 zł)",
-  "Leg Extension": "jedno przeczytane źródło opisuje to ćwiczenie (ExRx.net); drugie niezależne do znalezienia (NSCA/ACSM płatne — reguła 0 zł); strona ACE bez opisu (tylko wideo)",
-  "Leg Curl": "źródła (NASM, ExRx.net) mają wspólną najwyżej jedną wskazówkę — wymagane 2–4 wskazówki z dwoma źródłami każda",
-  "Nordic Curl": "brak przeczytanego opisu techniki (ACE, NASM, ExRx.net nie mają; abstrakty badań nie opisują wykonania)",
-  "Sissy Squat": "jedno przeczytane źródło opisuje to ćwiczenie (ExRx.net); drugie niezależne do znalezienia (NSCA/ACSM płatne — reguła 0 zł)",
-  "Wall Sit": "ACE opisuje przysiad przy ścianie z piłką (inne ćwiczenie), strona ExRx.net niedostępna w archiwum",
-  "Cable Kickback": "jedno przeczytane źródło opisuje to ćwiczenie (ExRx.net — dwie strony tego samego serwisu); drugie niezależne do znalezienia (NSCA/ACSM płatne — reguła 0 zł)",
-  "Hip Abduction": "jedno przeczytane źródło opisuje to ćwiczenie (ExRx.net); drugie niezależne do znalezienia (NSCA/ACSM płatne — reguła 0 zł); strona ACE bez opisu (tylko wideo)",
-  "Hip Adduction": "jedno przeczytane źródło opisuje to ćwiczenie (ExRx.net — maszyna); drugie niezależne do znalezienia (NSCA/ACSM płatne — reguła 0 zł); ACE opisuje wersję stojącą na wyciągu",
-  "Seated Calf Raise": "jedno przeczytane źródło opisuje to ćwiczenie (ExRx.net); drugie niezależne do znalezienia (NSCA/ACSM płatne — reguła 0 zł)",
-  "Ab Wheel": "źródła (ExRx.net, ACE — rollout ze sztangą) mają wspólną najwyżej jedną wskazówkę — wymagane 2–4 wskazówki z dwoma źródłami każda",
-  "Pallof Press": "jedno przeczytane źródło opisuje to ćwiczenie (ACE); drugie niezależne do znalezienia (NSCA/ACSM płatne — reguła 0 zł); ExRx.net nie ma tej strony w archiwum",
-  "Hanging Leg Raise": "jedno przeczytane źródło opisuje to ćwiczenie (ExRx.net); drugie niezależne do znalezienia (NSCA/ACSM płatne — reguła 0 zł)",
-  "Hanging Knee Raise": "jedno przeczytane źródło opisuje to ćwiczenie (ExRx.net); drugie niezależne do znalezienia (NSCA/ACSM płatne — reguła 0 zł)",
-  "Cable Crunch": "jedno przeczytane źródło opisuje to ćwiczenie (ExRx.net); drugie niezależne do znalezienia (NSCA/ACSM płatne — reguła 0 zł)",
-  "Reverse Crunch": "jedno przeczytane źródło opisuje to ćwiczenie (ACE); drugie niezależne do znalezienia (NSCA/ACSM płatne — reguła 0 zł); strona ExRx.net niedostępna w archiwum",
-  "Hollow Hold": "brak przeczytanego opisu (ACE, NASM, ExRx.net nie mają tego ćwiczenia)",
-  "Farmer's Walk": "jedno przeczytane źródło opisuje to ćwiczenie (ACE — dwie strony tej samej organizacji); drugie niezależne do znalezienia (NSCA/ACSM płatne — reguła 0 zł)",
-  "Suitcase Carry": "jedno przeczytane źródło opisuje to ćwiczenie (ACE — dwie strony tej samej organizacji); drugie niezależne do znalezienia (NSCA/ACSM płatne — reguła 0 zł)",
-  "Incline Walk (bieżnia)": "brak dwóch przeczytanych opisów techniki (ACE, NASM, ExRx.net nie mają) — poza zakresem etapu 1",
-  "Bieg": "brak dwóch przeczytanych opisów techniki biegu (ACE, NASM, ExRx.net nie mają) — nie zgadujemy",
-  "Rower": "brak dwóch przeczytanych opisów techniki jazdy (ACE, NASM, ExRx.net nie mają) — nie zgadujemy",
-  "Assault Bike": "brak dwóch przeczytanych opisów (dokumentacji producenta nie czytano)",
-  "Skakanka": "jedno przeczytane źródło opisuje to ćwiczenie (ACE — blog); drugie niezależne do znalezienia (NSCA/ACSM płatne — reguła 0 zł)",
-  "Burpees": "źródła (NASM, ACE — wersja z BOSU) mają wspólną najwyżej jedną wskazówkę — wymagane 2–4 wskazówki z dwoma źródłami każda",
-  "Medicine Ball Slam": "jedno przeczytane źródło opisuje to ćwiczenie (ACE); drugie niezależne do znalezienia (NSCA/ACSM płatne — reguła 0 zł)"
- }
+  "Decline Bench Press": "wskazówki czekają na rozstrzygnięcie pytania o metodę: czy ławka płaska to wariant ławki skośnej w dół (docs/research/31, pyt. 1); jedyne źródło opisujące ławkę skośną w dół to Eleiko",
+  "Pec Deck": "dwa źródła istnieją tylko w materiałach uczelnianych centrów sportu (HKU, Western), których szczebel (4 czy 5) jest otwarty (docs/research/33, pyt. 1)",
+  "Chest Dip": "wspólna tylko jedna wskazówka (ruch) w źródłach McKenzie 2022 i HKU; głębokość i pozycja tułowia po jednym źródle (docs/research/33)",
+  "Arnold Press": "brak opisu w ACE, NASM, Eleiko, HKU, Western ani w badaniach; zostają serwisy konsumenckie (odrzucone); ExRx niedostępny (docs/research/33)",
+  "Upright Row (hantle)": "komplet zależy od uznania szczebla WebMD Ignite i przedruku NSCA ETM (docs/research/33, pyt. 2–3)",
+  "Incline Curl (hantle)": "opis niejednoznaczny (Oliveira 2009) albo sam abstrakt (Kassiano 2025); brak dwóch przeczytanych opisów (docs/research/33)",
+  "Concentration Curl (hantle)": "jedyne źródło: ACE (ProSource 2014 i badanie ACE — ta sama organizacja); brak drugiego niezależnego (docs/research/33)",
+  "Spider Curl": "brak źródeł szczebla do 4 (docs/research/33)",
+  "Skullcrusher (hantle)": "brak opisu wersji z hantlami (ACE 36 opisuje sztangę) (docs/research/33)",
+  "Triceps Kickback": "jedyne źródło: ACE 55; opis z biblioteki Human Kinetics dotyczy innego ćwiczenia (docs/research/33)",
+  "Box Squat": "wspólna tylko jedna wskazówka (siad na skrzyni bez odbicia); szeroki rozstaw i pionowe piszczele — jedno źródło (docs/research/33)",
+  "Sissy Squat": "brak źródeł (docs/research/33)",
+  "Cable Kickback": "dwa źródła tylko w materiałach uczelnianych centrów sportu (HKU, Western) lub badanie maszyny; szczebel otwarty (docs/research/33, pyt. 1)",
+  "Hip Abduction": "wspólna tylko jedna wskazówka (odwiedzenie i powrót); ACE 155 bez opisu; reszta to abstrakty bez opisu (docs/research/33)",
+  "Hip Adduction": "oba źródła (ACE, HKU) opisują przywodzenie na wyciągu stojąc, nie maszynę; komplet zależy też od szczebla HKU (docs/research/33, pyt. 1)",
+  "Ab Wheel": "tylko jedna wskazówka bez materiałów uczelnianych (Sussexsport); szczebel otwarty (docs/research/33, pyt. 1)",
+  "Hanging Leg Raise": "NASM opisuje tylko progresję; źródła uczelniane niespójne (tekst i zdjęcie) (docs/research/33)",
+  "Hanging Knee Raise": "komplet zależy od uznania materiałów uczelnianych (HKU, Western) i od wariantu z podporem przedramion (docs/research/33, pyt. 1)",
+  "Cable Crunch": "komplet zależy od uznania Western (szczebel otwarty) i od wariantu stojącego zamiast klęcząc (docs/research/33, pyt. 1)",
+  "Hollow Hold": "jedno źródło (Root 2019); Aube 2026 tylko nazwa (docs/research/33)",
+  "Assault Bike": "czy rower stacjonarny to wariant roweru powietrznego z ruchomymi rączkami (jak kąt ławki) — pytanie otwarte; dokumentacji producenta nie udało się odczytać (docs/research/33, pyt. 4)",
+  "Skakanka": "drugie źródło to organizacja spoza fitnessu (DAN), której szczebel jest otwarty (docs/research/33, pyt. 2)"
+ },
+ "partial": [
+  "Back Extension",
+  "Bieg",
+  "Burpees",
+  "Diamond Push Up",
+  "Farmer's Walk",
+  "Incline Walk (bieżnia)",
+  "Leg Curl",
+  "Leg Extension",
+  "Medicine Ball Slam",
+  "Preacher Curl",
+  "Reverse Crunch",
+  "Rower",
+  "Seated Calf Raise",
+  "Straight Arm Pulldown",
+  "Suitcase Carry",
+  "Wall Sit",
+  "Wyciskanie na linkach (stojąc)"
+ ],
+ "partialNote": "Ćwiczenia, w których research (docs/research/31, 33) potwierdził mniej niż komplet sekcji (ustawienie, ruch, ≥ 2 wskazówki): łącznie ≥ 2 wskazówki z dwoma niezależnymi źródłami; brakujące sekcje nie są dopisywane z jednego źródła. Lista dotyczy tylko ćwiczeń dodanych w 0.14.0."
 }

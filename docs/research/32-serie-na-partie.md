@@ -93,3 +93,23 @@ uproszczenie, wzmocnione kierunkowo przez RCT Mannarino 2021). Czy dodać zdanie
   (np. przednie barki z wyciskań po 0,5), gdy inny (barki boczne) nie dostaje serii. Źródła liczą „per muscle group” bez definicji grup — czy rozbijać partie, to pytanie produktowe.
 
 Decyzję (opcja A/B/C) zapisać w rejestrze decyzji na Dysku („Trening App / 03 Rejestr decyzji”) z odrzuconymi alternatywami.
+
+## Wdrożenie (decyzje właściciela 12.10.2026)
+
+Właściciel wybrał wariant z celem na partię (A rozszerzone): automat = jedna liczba ze źródeł, własna liczba na życzenie. (Rozbicie barków i pleców w statystykach serii, wybrane najpierw, zostało wycofane tego samego dnia — niżej.)
+
+- **Cel serii na partię w tygodniu** (Ustawienia → „Cel serii na partię w tygodniu”): przy każdej partii „Automatycznie” (`WEEKLY_SETS_MARK` = 10, lib/stats.ts — jedno źródło liczby)
+  albo „Ręcznie” (własna liczba całkowita 1–40, `SETS_GOAL_MIN/MAX` w lib/setParts.ts — granice pola w interfejsie, **nie zalecenie**). Zapis: opcjonalne `Settings.weeklySetGoals`
+  (tylko odstępstwa), bez zmiany `SCHEMA_VERSION`; `migrate` zachowuje klucze partii całych i liczby (przycięte do granic), resztę odrzuca; kopia i import przechodzą przez `migrate`.
+  Kreski w „Ten tydzień”, Postępach i Progresji (tydzień) mierzą do celu swojej partii; miesiąc bez kresek (jak dotąd). Generator i jego uwagi dalej używają automatu (`WEEKLY_SETS_MARK`) — bez zmian.
+- **Pół serii** (lib/stats.ts `setsByMuscle`): partia główna ćwiczenia = 1, pomocnicza = 0,5; poziom 0,25 z `MUSCLE_LOAD` nie wchodzi do serii. Zdanie przy kresce w Postępach, Progresji i „Ten tydzień”
+  nazywa to uproszczeniem i podaje źródło (Pelland i in. 2026 — jedno źródło, tak jak w komentarzu przy `WEEKLY_SETS_MARK`).
+- **Rozbicie barków i pleców — WYCOFANE (decyzja właściciela 12.10.2026, wariant A, zastępuje wcześniejszy wybór 2B).** Powód: bloker WYSOKI audytu 0.14 —
+  automatyczna kreska 10 dla każdej części (przód / bok / tył barków; góra pleców / najszersze / prostowniki) nie ma źródła; źródła (ACSM 2026, Pelland i in. 2026) mówią o 10 seriach na partię.
+  Zostaje: cel serii na partię (automatycznie `WEEKLY_SETS_MARK` / ręcznie 1–40) dla CAŁYCH partii (barki i plecy jako całość), kreski w „Ten tydzień”, Postępach i Progresji mierzone do celu partii,
+  zdanie o pół serii z dopiskiem o źródle. Usunięte: przypisanie serii do regionów z `MUSCLE_LOAD` (`partCredits`), wiersze „barki / plecy — bez rozbicia”, objaśnienia rozbicia i ich teksty w 35 słownikach,
+  `setsByPart` / `byParts`. `lib/setParts.ts` zawiera już tylko listę partii (`SET_PARTS` = `MUSCLES`) i granice celu. Rozbicie nie trafiło do żadnego wydania (`main` = 0.12.0 i `wydanie-0.13` nie mają
+  `weeklySetGoals`; pole dopiero w 0.14), więc nie ma danych użytkowników z kluczami części; `normalizeGoals` i tak odrzuca każdy klucz poza partiami całymi (dane testerów wersji roboczej).
+  Mapa mięśni, objętość, generator i regeneracja bez zmian (już na partiach).
+- **Otwarte (bez zmian):** czy dawka–odpowiedź różni się między mięśniami; waga serii pośredniej inna niż 0,5; brak źródła na osobne cele dla regionów ciała (barki, plecy) — dlatego cel dotyczy tylko partii całych.
+

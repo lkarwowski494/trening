@@ -59,7 +59,7 @@ export function PeriodSummary() {
         <Text accessibilityLanguage={lang()} accessibilityRole="header" maxFontSizeMultiplier={1.3} style={{ color: th.text, fontSize: 16, fontFamily: F.heavy, flexShrink: 1, textAlign: 'center' }}>{periodTitle(kind, s.start)}</Text>
         {arrow(t('Następny okres'), '›', 1, offset >= 0)}
       </View>
-      {deload ? <Muted style={{ fontSize: 12, marginBottom: 8 }}>{t('Ten tydzień jest oznaczony jako deload (D na wykresach). Oznaczenie zmienisz w Kalendarzu: dzień → „Więcej opcji”.')}</Muted> : null}{/* 11.10.2026: Postępy pokazują oznaczenie, nie zmieniają (chip „Tydzień deload” usunięty) */}
+      {deload ? <Muted style={{ fontSize: 12, marginBottom: 8 }}>{t('Ten tydzień jest oznaczony jako deload (D na wykresach). Oznaczenie zmienisz w zakładce Plan: dzień → „Więcej opcji”.')}</Muted> : null}{/* 11.10.2026: Postępy pokazują oznaczenie, nie zmieniają (chip „Tydzień deload” usunięty) */}
       {kind === 'month' ? <MonthWeeks start={s.start} end={s.end} /> : null}
       {prevDeload ? <Muted style={{ fontSize: 12, marginBottom: 6 }}>{t('Poprzedni tydzień jest oznaczony jako deload.')}</Muted> : null}
       <View style={{ padding: 12, borderRadius: 10, backgroundColor: th.surface2, gap: 6 }}>

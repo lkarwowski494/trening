@@ -6,7 +6,7 @@ import { useTheme, F, NUM_SCALE_MAX } from '@/lib/theme';
 import { Btn, Input, NumInput, Muted, useOnce, monoSafe } from '@/components/ui';
 import { TechniqueLink } from '@/components/ExerciseCues';
 import { effortLabel, effortField, effortIn, isPaused, workoutDurSec, pauseWorkout, resumeWorkout, progressionFor, skipExercise, unskipExercise, typeSetValue, setActiveLocation, lastActivity, staleSince, staleRef, staleKind, ackStale, markActivity, useForegroundTick, bandA11y, clampName, loadLabelShort, getState, useTick, exById, prevOfActiveBlock, previousFor, canUndoSwap, undoSwap, pinnedImpl, rememberRest as storeRememberRest, canRememberAlt, rememberAlt, altHint, skipAlt, occurrence, occurrences, hintFor, isBW, reps, fmtDur, fmtSec, fmtTime, setSummary, toggleDone, restAfter, roundRest, addSet, removeSet, removeSetById, removeExercise, finishWorkout, cancelWorkout, save, loadLabel, groupLabels, linkWithNext, unlink, cycleBand, findSet, shortBand, setHasValue, locationById, offListNote, liveBlockImpl, listLocFor, srcSetAt, usesBand, focusSet, isDeloadWeek, wallTs, workCount, workSetCount, REPS_MAX, REST_MAX } from '@/lib/store';
-import { restLabel, setLabel, nowParts, focusCounter } from '@/lib/live';
+import { restLabel, setLabel, nowParts, focusCounter, timedLabel } from '@/lib/live';
 import { availability, missingLabel } from '@/lib/equipment';
 import { EquipVisual } from '@/components/EquipVisual';
 import { SwipeRow, lastSetBlock } from '@/components/SwipeRow';
@@ -431,8 +431,8 @@ function ExerciseBlock({ w, e, ei, onDone, onStartSet, labels, prs }: { w: Worko
 function startTimed(w: Workout, e: WExercise, set: WSet, si: number, onStartSet: (setId: string, target: number, subtitle: string, remeasure?: boolean) => void) {
   const tpl = w.templateId ? getState().templates.find(x => x.id === w.templateId) : null; const it = tpl && e.tplItemId ? tpl.items.find(x => x.id === e.tplItemId) : null;
   const tplTarget = Number(it?.targetSec) || 0; /* runda 18: ponowny pomiar liczy od nowa — cel z szablonu albo bez limitu, nie stary wynik */
-  const ei = w.exercises.indexOf(e); const nm = occurrences(w.exercises, e.exerciseId) > 1 ? `${exName(exById(e.exerciseId))} (${occurrence(w.exercises, ei) + 1})` : exName(exById(e.exerciseId));
-  const go = () => onStartSet(set.id, set.done ? tplTarget : Number(set.durationSec) || tplTarget /* runda 22: pusty czas → cel z szablonu */, `${nm} · ${tr('seria {n}', { n: setLabel(e, si) })}`, set.done);
+  const ei = w.exercises.indexOf(e);
+  const go = () => onStartSet(set.id, set.done ? tplTarget : Number(set.durationSec) || tplTarget /* runda 22: pusty czas → cel z szablonu */, timedLabel(w, ei, si), set.done);
   if (set.done) Alert.alert(tr('Zmierzyć serię od nowa?'), tr('Zapisany czas zostanie nadpisany.'), [{ text: tr('Nie'), style: 'cancel' }, { text: tr('Zmierz'), onPress: go }]); else go();
 }
 /**

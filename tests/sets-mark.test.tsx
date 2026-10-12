@@ -29,7 +29,7 @@ describe('ekran Postępy', () => {
     await boot(() => { bench(12); });
     expect(screen.getByLabelText(/^klatka: 12 \(poprz\. 0\), co najmniej 10$/)).toBeTruthy();
     expect(screen.getByLabelText(/^triceps: 6 \(poprz\. 0\)$/)).toBeTruthy(); /* pomocnicza 0,5 × 12 — poniżej kreski, bez dopisku */
-    expect(screen.getByText('Kreska = 10 serii na partię w tygodniu. Stanowisko ACSM 2026: przy co najmniej 10 seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; każdy trening siłowy daje przyrost w porównaniu z brakiem treningu. Uproszczenie: serie pomocnicze liczymy po 0,5.' + ' ' + 'Uproszczenie: drop set liczy się razem z serią, po której jest.')).toBeTruthy(); /* D3 (audyt 0.10): dopisane uproszczenie drop setu */
+    expect(screen.getByText('Kreska = cel serii na partię w tygodniu: 10 automatycznie albo Twoja liczba z Ustawień.' + ' ' + 'Stanowisko ACSM 2026: przy co najmniej 10 seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; każdy trening siłowy daje przyrost w porównaniu z brakiem treningu.' + ' ' + 'Uproszczenie: partia pomocnicza ćwiczenia liczy się za pół serii (główna 1, pomocnicza 0,5; Pelland i in. 2026 — jedno źródło).' + ' ' + 'Uproszczenie: drop set liczy się razem z serią, po której jest.')).toBeTruthy(); /* D3 (audyt 0.10): dopisane uproszczenie drop setu */
     await boot(() => { bench(20); }); expect(screen.getByTestId('mark-klatka').props.style.left).toBe('50%');
   });
   test('mała objętość: skala obejmuje kreskę (widoczna na końcu paska); kreski tylko przy seriach, nie przy objętości', async () => {
@@ -41,6 +41,6 @@ describe('ekran Postępy', () => {
   test('English', async () => {
     await boot(() => { bench(12); }, 'en');
     expect(screen.getByLabelText(/^chest: 12 \(prev\. 0\), at least 10$/)).toBeTruthy();
-    expect(screen.getByText(/^Line = 10 sets per muscle group per week\. ACSM 2026 position stand/)).toBeTruthy();
+    expect(screen.getByText(/^Line = weekly goal of sets per muscle group: 10 automatically, or your own number from Settings\. ACSM 2026 position stand/)).toBeTruthy();
   });
 });

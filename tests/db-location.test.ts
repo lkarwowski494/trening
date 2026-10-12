@@ -65,3 +65,57 @@ test('audyt T14c: nowa baza nieczytelna, ale stara w Dokumentach ma dane (nieprz
   let st: any = null; await jest.isolateModulesAsync(async () => { jest.doMock('expo-sqlite', () => f.mod); const s = require('@/lib/store'); await s.init(); st = s.getState(); });
   expect(st.templates[0].name).toBe('MOJ PLAN');
 });
+
+/* Q-015 (0.14.0): zabicie aplikacji między zatwierdzeniem przeniesienia a sprzątaniem zostawia starą kopię w Dokumentach (widoczną w Plikach).
+ * Kroki: pierwszy start po aktualizacji → aplikacja ubita w ułamku sekundy po przeniesieniu → kolejny start. Dawniej stara kopia zostawała na stałe
+ * i przy nieczytelnej nowej bazie stanowiłaby cichy powrót do starych danych. Realność: brzegowy (wąskie okno), ale dotyczy danych → naprawione. */
+test('Q-015: nowa baza ma już „state”, a stara kopia w Dokumentach została po ubitym sprzątaniu → następny start ją kasuje i używa nowej', async () => {
+  const stale = JSON.parse(savedState()); stale.templates[0].name = 'STARA KOPIA';
+  const dbs = new Map<string, KV>([['/c/Documents/SQLite', new Map([['state', JSON.stringify(stale)]])], ['/c/Library/SQLite', new Map([['state', savedState()]])]]);
+  const r = await start(dbs);
+  expect(r.st.templates[0].name).toBe('MOJ PLAN'); expect(r.deleted).toContain('/c/Documents/SQLite'); expect(dbs.has('/c/Documents/SQLite')).toBe(false);
+  expect(r.opened).toEqual(['/c/Library/SQLite']); /* nowa baza nietknięta, stara nawet nie otwierana */
+  expect(dbs.get('/c/Library/SQLite')!.get('state')).toContain('MOJ PLAN');
+});
+test('Q-015: po sprzątnięciu nieczytelna nowa baza nie cofa do starych danych (błąd startu, nie stara kopia)', async () => {
+  const dbs = new Map<string, KV>([['/c/Library/SQLite', new Map([['state', savedState()]])]]);
+  const f = fakeSqlite(dbs); const orig = f.mod.openDatabaseAsync;
+  f.mod.openDatabaseAsync = async (n: string, o?: unknown, dir?: string) => { if (dir) throw new Error('disk I/O error'); return orig(n, o, dir); };
+  let err: unknown = null; await jest.isolateModulesAsync(async () => { jest.doMock('expo-sqlite', () => f.mod); const s = require('@/lib/store'); try { await s.init(); } catch (e) { err = e; } });
+  expect(String(err)).toMatch(/disk I\/O/);
+});
+
+/* Q-015 (audyt 0.14.0): kasowanie starej bazy nie może zgubić nowszych danych. Kroki: (1) aplikacja ubita po przeniesieniu, przed sprzątaniem — kopia w Dokumentach
+ * zostaje; (2) nowa baza chwilowo się nie otwiera → start ze starej, trening zapisany w starej; (3) nowa znów się otwiera. Dawniej cleanupLegacy kasował starą
+ * z tym treningiem. Teraz: stara nowsza od nowej → jej wiersze trafiają do nowej (potem sprzątanie); kopia nieudana → stara zostaje. Realność: brzegowy, dane → naprawione. */
+/* plik ze starą bazą „istnieje” wg atrapy katalogów (setup.js zwraca exists: false) */
+const fsExists = (v: () => boolean) => require('expo-file-system/legacy').getInfoAsync.mockImplementation(async () => ({ exists: v() }));
+const withAt = (name: string, at: number) => { const st = JSON.parse(savedState()); st.templates[0].name = name; st.metaUpdatedAt = at; return JSON.stringify(st); };
+test('Q-015: trzy kroki — trening zapisany w starej bazie (nowa chwilowo nieczytelna) przetrwa następny start', async () => {
+  const dbs = new Map<string, KV>([['/c/Documents/SQLite', new Map([['state', withAt('PRZED', 1000)]])], ['/c/Library/SQLite', new Map([['state', withAt('PRZED', 1000)]])]]);
+  const f = fakeSqlite(dbs); const orig = f.mod.openDatabaseAsync; let failNew = true;
+  f.mod.openDatabaseAsync = async (n: string, o?: unknown, dir?: string) => { if (dir && failNew) throw new Error('disk I/O error'); return orig(n, o, dir); };
+  await jest.isolateModulesAsync(async () => { jest.doMock('expo-sqlite', () => f.mod); const s = require('@/lib/store'); await s.init();
+    expect(s.getState().templates[0].name).toBe('PRZED'); s.getState().templates[0].name = 'PO TRENINGU'; s.save(s.getState().templates[0]); await s.flush(); });
+  expect(dbs.has('/c/Documents/SQLite')).toBe(true); failNew = false;
+  let st: any; await jest.isolateModulesAsync(async () => { jest.doMock('expo-sqlite', () => f.mod);
+    const s = require('@/lib/store'); fsExists(() => dbs.has('/c/Documents/SQLite')); await s.init(); st = s.getState(); });
+  await new Promise(r => setTimeout(r, 0));
+  expect(st.templates[0].name).toBe('PO TRENINGU'); expect(dbs.get('/c/Library/SQLite')!.get('state')).toContain('PO TRENINGU');
+});
+test('Q-015: stara nowsza, a kopia do nowej się nie udaje → stara nieskasowana, start z niej', async () => {
+  const dbs = new Map<string, KV>([['/c/Documents/SQLite', new Map([['state', withAt('NOWSZA', 2000)]])], ['/c/Library/SQLite', new Map([['state', withAt('STARSZA', 1000)]])]]);
+  const f = fakeSqlite(dbs, { failRun: true }); let st: any;
+  await jest.isolateModulesAsync(async () => { jest.doMock('expo-sqlite', () => f.mod);
+    const s = require('@/lib/store'); fsExists(() => true); await s.init(); st = s.getState(); });
+  await new Promise(r => setTimeout(r, 0));
+  expect(st.templates[0].name).toBe('NOWSZA'); expect(dbs.has('/c/Documents/SQLite')).toBe(true); expect(f.deleted).toEqual([]);
+});
+test('Q-015: stara starsza od nowej → nowa zostaje, stara skasowana (nic nie kopiujemy)', async () => {
+  const dbs = new Map<string, KV>([['/c/Documents/SQLite', new Map([['state', withAt('STARSZA', 1000)]])], ['/c/Library/SQLite', new Map([['state', withAt('NOWSZA', 2000)]])]]);
+  const f = fakeSqlite(dbs); let st: any;
+  await jest.isolateModulesAsync(async () => { jest.doMock('expo-sqlite', () => f.mod);
+    const s = require('@/lib/store'); fsExists(() => true); await s.init(); st = s.getState(); });
+  await new Promise(r => setTimeout(r, 0));
+  expect(st.templates[0].name).toBe('NOWSZA'); expect(dbs.has('/c/Documents/SQLite')).toBe(false);
+});

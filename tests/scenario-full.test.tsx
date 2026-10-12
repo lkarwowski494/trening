@@ -710,14 +710,15 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     expect(screen.getByText('1 sesja')).toBeTruthy();
     const vol = store.volume(w0); expect(vol).toBeGreaterThan(0);
     expect(store.workingSets(w0)).toBe(w0.exercises.reduce((a, e) => a + store.workCount(e.sets.map(x => x.kind)), 0)); /* X-15 / D3 (audyt 0.10) */
-    expect(screen.getByLabelText(new RegExp(`^Push A, .* · ${store.workingSets(w0)} serii · ${require('@/lib/units').fmtVol(vol).replace(/[.()]/g, '\\$&')}$`))).toBeTruthy();
+    const where = w0.locationId ? ` · 📍 ${require('@/lib/locations').locationLabel(w0.locationId)}` : ''; /* T-057 (0.14.0): miejsce w liście i szczegółach */
+    expect(screen.getByLabelText(new RegExp(`^Push A, .* · ${store.workingSets(w0)} serii · ${require('@/lib/units').fmtVol(vol).replace(/[.()]/g, '\\$&')}${where}$`))).toBeTruthy();
     await tap(screen.getByText('Push A')); await flushAll(10);
-    expect(screen.getByText(new RegExp(`· objętość ${require('@/lib/units').fmtVol(vol)}$`))).toBeTruthy();
+    expect(screen.getByText(new RegExp(`· objętość ${require('@/lib/units').fmtVol(vol)}${where}$`))).toBeTruthy();
     for (const hd of ['kg/hant.', 'pow.', 'RPE', 'guma', 'przerwa', 'czas']) expect(screen.getAllByText(hd, { includeHiddenElements: true }).length).toBeGreaterThan(0); /* nagłówki ukryte przed VoiceOver (wiersz czytany w całości) */
     expect(screen.getAllByText(/^(SS A · )?Cable Curl$/)).toHaveLength(2);
     /* edycja: zmiana i „Anuluj” z pytaniem — historia bez zmian */
     await tap(screen.getByLabelText('Edytuj sesję')); await flushAll(10);
-    expect(screen.getByText('📍 Dom testowy')).toBeTruthy(); expect(screen.getByLabelText('Nazwa').props.value).toBe('Push A');
+    expect(screen.getByText('📍 Dom testowy ▾')).toBeTruthy(); /* T-057: miejsce do wyboru */ expect(screen.getByLabelText('Nazwa').props.value).toBe('Push A');
     await type(screen.getByLabelText('Nazwa'), 'zmiana'); await tap(screen.getByLabelText('Anuluj'));
     expect(lastAlert()).toMatchObject({ title: 'Odrzucić zmiany?', msg: 'Sesja w historii zostanie bez zmian.' });
     pressAlert('Odrzucić zmiany?', 'Wróć'); await flushAll(5); expect(screen.getByLabelText('Nazwa').props.value).toBe('zmiana');

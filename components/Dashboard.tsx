@@ -10,7 +10,7 @@ import { WEEKLY_SETS_MARK } from '@/lib/stats';
 import { fmtVol } from '@/lib/units';
 import { WeekStacks } from '@/components/WeekStacks';
 import { MuscleMap } from '@/components/MuscleMap';
-import { MuscleRows, SegLegend } from '@/components/ProgressBars';
+import { MuscleRows, SegLegend, setBars } from '@/components/ProgressBars';
 import { t, tp, lang } from '@/lib/i18n';
 
 /* Dashboard ekranu Trening (decyzja właściciela 08.10.2026, wariant A) — dane: lib/dashboard.ts. */
@@ -40,9 +40,9 @@ export function WeekStats() {
     {c.rows.length ? <View testID="week-muscles" style={{ marginTop: 6 }}>
       <MuscleMap sets={map} title={t('Sylwetka: serie w tym tygodniu')} height={170} legend={false} caption={t('Kolor względem partii z największą liczbą serii w tym tygodniu (wykonane + zaplanowane). Szare — bez serii.')} label={t('Sylwetka, serie w tym tygodniu: {list}', { list: c.rows.map(r => `${t(r.muscle)} ${r.doneSets + r.plannedSets}`).join(', ') })} />
       <Muted style={{ fontSize: 12, fontFamily: F.semibold, marginTop: 10, marginBottom: 6 }}>{t('Serie na partię — wykonane i zaplanowane')}</Muted>
-      <MuscleRows rows={c.rows} metric="sets" mark={WEEKLY_SETS_MARK} showPrev={false} />
+      <MuscleRows rows={setBars(c.setRows, true)} metric="sets" showPrev={false} />
       <SegLegend planned={plannedSets > 0} />
-      <Muted style={{ fontSize: 12, marginTop: 6 }}>{t('Kreska = {n} serii na partię w tygodniu (źródło i uproszczenia: Postępy). Zaplanowane — z szablonów na pozostałe dni tygodnia; partia pomocnicza liczy 0,5.', { n: WEEKLY_SETS_MARK })}</Muted>
+      <Muted style={{ fontSize: 12, marginTop: 6 }}>{t('Kreska = cel serii na partię w tygodniu: {n} automatycznie albo Twoja liczba z Ustawień.', { n: WEEKLY_SETS_MARK })} {t('Zaplanowane — z szablonów na pozostałe dni tygodnia.')} {t('Uproszczenie: partia pomocnicza ćwiczenia liczy się za pół serii (główna 1, pomocnicza 0,5; Pelland i in. 2026 — jedno źródło).')}</Muted>
     </View> : null}
     {/* „Ostatni trening” usunięty z ekranu głównego (właściciel 09.10.2026 ok. 16:20): informacja zostaje w arkuszu „Inny trening” („Powtórz ostatni”: nazwa · data), w Historii i Kalendarzu */}
   </>;

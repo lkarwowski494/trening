@@ -4,6 +4,7 @@
  */
 import { type Workout } from '../seed';
 import { S, save } from './core';
+import { fmtDate, fmtTime, wallTs } from './time';
 
 /* ---------- pauza treningu (decyzja właściciela 08.10.2026: czas pauzy odejmuje się od czasu trwania) ---------- */
 /** Suma pauz w ms, łącznie z trwającą (do `now`). */
@@ -12,6 +13,12 @@ export const pausedTotal = (w: Workout, now = Date.now()) => (w.pauses ?? []).re
 export const isPaused = (w: Workout | null | undefined) => w?.pausedAt != null;
 /** Czas trwania bez pauz (s): zakończony — koniec − start − pauzy; w toku — do `now`. */
 export const workoutDurSec = (w: Workout, now = Date.now()) => Math.max(0, ((w.finishedAt ?? now) - w.startedAt - pausedTotal(w, w.finishedAt ?? now)) / 1000);
+/** Audyt 0.13 (0.14.0): sesja bez godziny i czasu trwania (import formatu bez godzin) — koniec równy startowi. Aplikacja sama takich sesji nie tworzy
+ * (pole „min” w edytorze ma najmniej 1), więc to jednoznaczny znak „godzina i czas nieznane” bez zmiany schematu. Naprawa audytu 0.14.0: dodatkowo start dokładnie o 12:00:00 na zegarze strefy startu
+ * (godzina, którą import samej daty ustawia — csvparse) — plik z godziną, ale bez czasu trwania (koniec = start), albo sesja z cofniętym zegarem zachowują godzinę w Historii i w eksporcie. */
+export const noClock = (w: Workout) => { if (w.finishedAt == null || w.finishedAt !== w.startedAt) return false; const d = new Date(wallTs(w)); return d.getHours() === 12 && d.getMinutes() === 0 && d.getSeconds() === 0 && d.getMilliseconds() === 0; };
+/** Data i godzina sesji do list; bez godziny (noClock) — sama data, resztę dopisuje ekran („godzina nieznana”). */
+export const whenText = (w: Workout) => noClock(w) ? fmtDate(wallTs(w)) : `${fmtDate(wallTs(w))} ${fmtTime(wallTs(w))}`;
 /** Pauzy uporządkowane: liczby skończone, od < do, w granicach [start, koniec], scalone, gdy nachodzą (sanityzacja, edycja, koniec treningu). */
 export function cleanPauses(raw: unknown, start: number, end: number | null): [number, number][] {
   const hi = end ?? Infinity; const out: [number, number][] = [];

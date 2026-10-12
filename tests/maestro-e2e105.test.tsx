@@ -63,3 +63,18 @@ describe('E2E 105: scenariusze 13 i 15 na symulatorze', () => {
     await expect(r.run(old, f)).rejects.toThrow(/extendedWaitUntil \{"visible":"80 kg, \.\*"/);
   });
 });
+
+/* Q-029 (0.14.0): scenariusz 04 „Plank ze stoperem” — pierwszy po zimnym starcie symulatora gubił znaki wpisu w wyszukiwarce („P” zamiast „Plank”;
+ * runy 38023746057, 38027253177). Poprawka jak w 15: znaki osobno, sprawdzenie wartości pola i jedna powtórka całego wpisu. */
+describe('Q-029: scenariusz 04 przy zgubionych znakach wpisu', () => {
+  const f = '04-plank-stoper.yaml';
+  /* pierwsza próba: tylko pierwszy znak trafia do pola wyszukiwania (kolejne cztery giną) */
+  const dropFirstTry = () => { let n = 0; return (t: string, field: any) => { if (field.props.placeholder !== 'Search exercises…') return t; n++; return n >= 2 && n <= 5 ? '' : t; }; };
+  test('zgubione znaki: scenariusz powtarza wpis, wybiera Plank i uruchamia stoper', async () => {
+    const r = new Runner(f); r.inputFilter = dropFirstTry(); await r.run(load(join(DIR, f)), f);
+    expect(r.retries.length).toBe(1); expect(r.retries[0]).toMatch(/Plank/);
+  });
+  test('bez zgubionych znaków scenariusz przechodzi bez powtórki', async () => {
+    const r = new Runner(f); await r.run(load(join(DIR, f)), f); expect(r.retries.length).toBe(0);
+  });
+});
