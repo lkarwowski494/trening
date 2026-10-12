@@ -1,5 +1,5 @@
 /* Trasy aplikacji generowane z plików app/ (jak EKRAN w scripts/test-matrix.mjs) — wspólne dla przeglądu dostępności (matrix-a11y) i macierzy
- * języków na wszystkich ekranach (matrix-dim-langs-routes). Audyt 0.10 M3 (A11-10 / TST-03): nowa trasa bez przeglądu nie przejdzie. */
+ * języków na wszystkich ekranach (matrix-dim-langs-routes1–6). Audyt 0.10 M3 (A11-10 / TST-03): nowa trasa bez przeglądu nie przejdzie. */
 import { readdirSync, statSync } from 'fs';
 import { join, relative, sep } from 'path';
 

@@ -1,6 +1,6 @@
 /*
  * „Plan z moich szablonów” (decyzja właściciela 09.10.2026, B) — ekrany i scenariusze (docs/20: ekran, scenariusz z restartem, regresja, dane, EN). Logika: tests/plan-own-templates.test.ts;
- * 26 języków i motywy: tests/matrix-dim-langs-routes.test.tsx (trasa /generator?mode=own), dostępność: tests/matrix-a11y.test.tsx, 320 pt:
+ * 26 języków i motywy: tests/matrix-dim-langs-routes1–6 (trasa /generator?mode=own), dostępność: tests/matrix-a11y.test.tsx, 320 pt:
  * tests/matrix-i18n.test.tsx; E2E: .maestro/18-plan-z-moich-szablonow.yaml.
  */
 import * as store from '@/lib/store';

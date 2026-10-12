@@ -40,7 +40,7 @@ const boot = async (prep: () => void = () => {}, locale: 'pl' | 'en' = 'pl', the
 };
 const mkTpl = (name: string) => { const t = store.newTemplate(); t.name = name; store.save(t); return t; };
 const sets = (n: number, weight = 80) => Array.from({ length: n }, () => ({ weight, reps: 5 }));
-/* Motyw: w Jest Appearance.setColorScheme nie zmienia useColorScheme — odtwarzamy telefon (jak tests/matrix-dim-langs-routes) */
+/* Motyw: w Jest Appearance.setColorScheme nie zmienia useColorScheme — odtwarzamy telefon (jak tests/matrix-langs-routes-shared) */
 let scheme: 'light' | 'dark' = 'light';
 beforeEach(() => {
   jest.spyOn(Appearance, 'setColorScheme').mockImplementation(((v: string | null | undefined) => { scheme = v === 'dark' ? 'dark' : 'light'; }) as never);
