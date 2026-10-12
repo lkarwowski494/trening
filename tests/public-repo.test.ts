@@ -10,9 +10,14 @@ describe('workflowy na publicznym repozytorium', () => {
     for (const n of ['ios-unsigned.yml', 'testflight.yml']) {
       const y = wf(n);
       expect(y).toMatch(/permissions:\n\s+contents: read/);
-      expect(y).not.toMatch(/contents: write|pull_request_target|^\s+push:/m);
+      expect(y).not.toMatch(/pull_request/);
       expect(y).toMatch(/on:\n\s+workflow_dispatch:/);
     }
+    expect(wf('ios-unsigned.yml')).not.toMatch(/contents: write|^\s+push:/m);
+    const tf = wf('testflight.yml'); expect(tf).toMatch(/push:\n\s+branches: \[main\]\n/); expect(tf.match(/contents: write/g)).toHaveLength(1);
+    const tagJob = tf.slice(tf.indexOf('\n  tag:\n')); expect(tagJob.length).toBeGreaterThan(10); expect(tagJob).toMatch(/needs: build/);
+    expect(tagJob).toMatch(/permissions:\n\s+contents: write/); expect(tagJob).not.toMatch(/secrets\./);
+    expect(tf.slice(0, tf.indexOf('\n  tag:\n'))).not.toMatch(/contents: write/);
     /* decyzja właściciela 06.10.2026 (wariant A): testy przy każdym wypchnięciu; E2E samo tylko na main i integration/**; nigdy pull_request (forki) */
     const e = wf('e2e-ios.yml'); expect(e).toMatch(/permissions:\n\s+contents: read/); expect(e).not.toMatch(/contents: write|pull_request/);
     expect(e).toMatch(/push:\n\s+branches: \[main, 'integration\/\*\*'\]/); expect(e).toMatch(/workflow_dispatch:/); expect(e).not.toMatch(/secrets\.(?!GITHUB_TOKEN)/);
