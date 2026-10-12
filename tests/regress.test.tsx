@@ -1974,3 +1974,31 @@ describe('Q-013 (0.14.0): stoper bez celu, zamknięty razem z aplikacją, liczy 
     expect(store.getState().active!.exercises[1].sets[0].done).toBe(true); expect(store.autoFinishStale(now)).toBeNull();
   });
 });
+
+describe('Q-014 (0.14.0): rotacja kopii automatycznych wg czasu zapisu pliku, nie czasu lokalnego z nazwy (zmiana strefy / DST)', () => {
+  /* Kroki: kopie po treningach, potem zmiana strefy (podróż na zachód) albo koniec DST — nowa kopia dostaje w nazwie godzinę wcześniejszą niż poprzednie.
+   * Dawniej rotacja kasowała „najmniejszą nazwę”, czyli potencjalnie właśnie zapisaną kopię. Realność: brzegowy (dotyczy kopii = danych) → naprawione. */
+  const FS = require('expo-file-system/legacy');
+  afterEach(() => { FS.readDirectoryAsync.mockImplementation(async () => []); FS.writeAsStringAsync.mockImplementation(async () => {}); FS.getInfoAsync.mockImplementation(async () => ({ exists: false })); FS.deleteAsync.mockClear(); });
+  const dayMs = 24 * 3600e3;
+  test('najświeższa kopia z „wcześniejszą” nazwą zostaje, kasowana jest najstarsza wg czasu zapisu', async () => {
+    await fresh(); store.getState().settings.autoBackup = true; const now = Date.now(); const D = (n: number) => new Date(now + n * dayMs);
+    const stamp = (d: Date) => { const p = (x: number, w = 2) => String(x).padStart(w, '0'); return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}-${p(d.getHours())}${p(d.getMinutes())}${p(d.getSeconds())}`; };
+    /* 10 starszych kopii zapisanych w „strefie wschodniej”: nazwy z godziną o 12 h późniejszą niż rzeczywista, czas zapisu rosnący */
+    const old = Array.from({ length: 10 }, (_, i) => ({ f: `trening-${stamp(new Date(now - (10 - i) * 3600e3 + 12 * 3600e3))}.json`, t: (now - (10 - i) * 3600e3) / 1000 }));
+    const written: string[] = [];
+    FS.writeAsStringAsync.mockImplementation(async (u: string) => { written.push(String(u).split('/').pop()!); });
+    FS.readDirectoryAsync.mockImplementation(async () => [...old.map(o => o.f), ...written]);
+    FS.getInfoAsync.mockImplementation(async (u: string) => { const f = String(u).split('/').pop()!; if (f === '') return { exists: true }; const o = old.find(x => x.f === f); return o ? { exists: true, modificationTime: o.t } : written.includes(f) ? { exists: true, modificationTime: now / 1000 } : { exists: false }; });
+    FS.deleteAsync.mockClear(); const { autoBackup } = require('@/lib/backup'); const path = await autoBackup();
+    const deleted = (FS.deleteAsync as jest.Mock).mock.calls.map((c: any) => String(c[0]).split('/').pop());
+    expect(written).toHaveLength(1); expect(deleted).toEqual([old[0].f]); /* najstarsza wg czasu zapisu, nie najmniejsza wg nazwy (to byłaby właśnie zapisana) */
+    expect(deleted).not.toContain(String(path).split('/').pop()); void D;
+  });
+  test('bez czasu zapisu (platforma go nie podaje) zostaje kolejność z nazw', async () => {
+    await fresh(); store.getState().settings.autoBackup = true; const names = Array.from({ length: 11 }, (_, i) => `trening-2020-01-${String(10 + i).padStart(2, '0')}-080000.json`);
+    FS.readDirectoryAsync.mockImplementation(async () => names); FS.getInfoAsync.mockImplementation(async (u: string) => ({ exists: String(u).endsWith('/Backup/') })); FS.deleteAsync.mockClear();
+    const { autoBackup } = require('@/lib/backup'); await autoBackup();
+    expect((FS.deleteAsync as jest.Mock).mock.calls.map((c: any) => String(c[0]).split('/').pop())).toEqual([names[0]]);
+  });
+});

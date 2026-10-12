@@ -67,8 +67,13 @@ async function writeKopia(prefix: string, re: RegExp, extra?: Record<string, unk
   try { await FileSystem.writeAsStringAsync(dir + name, JSON.stringify({ ...buildBackup(), ...extra })); }
   catch (e) { await FileSystem.deleteAsync(dir + name, { idempotent: true }).catch(() => {}); throw e; }
   try {
-    const old = (await FileSystem.readDirectoryAsync(dir)).map(f => [f, re.exec(f)] as const).filter((x): x is readonly [string, RegExpExecArray] => !!x[1])
-      .map(([f, m]) => [f, poolKey(m)] as const).sort((a, b) => (a[1] < b[1] ? 1 : a[1] > b[1] ? -1 : 0)).slice(AUTO_KEEP);
+    const pool = (await FileSystem.readDirectoryAsync(dir)).map(f => [f, re.exec(f)] as const).filter((x): x is readonly [string, RegExpExecArray] => !!x[1]);
+    /* Q-014: nazwa niesie czas lokalny, który po zmianie strefy/DST nie rośnie z czasem — o tym, która kopia jest najstarsza, rozstrzyga czas zapisu pliku
+     * (modificationTime); gdy go brakuje choć jednej kopii, zostaje kolejność z nazw. */
+    const mt = await Promise.all(pool.map(async ([f]) => { try { const i = await FileSystem.getInfoAsync(dir + f); return i.exists && typeof (i as { modificationTime?: number }).modificationTime === 'number' ? (i as { modificationTime: number }).modificationTime : null; } catch { return null; } }));
+    const byTime = mt.every(x => x != null);
+    const old = pool.map(([f, m], i) => [f, byTime ? `${String(Math.round(mt[i]! * 1000)).padStart(16, '0')}-${poolKey(m)}` : poolKey(m)] as const)
+      .sort((a, b) => (a[1] < b[1] ? 1 : a[1] > b[1] ? -1 : 0)).slice(AUTO_KEEP);
     for (const [f] of old) await FileSystem.deleteAsync(dir + f, { idempotent: true });
   } catch {} /* kopia już jest — nieposprzątana pula to mniejsze zło niż przerwany import */
   return dir + name;
