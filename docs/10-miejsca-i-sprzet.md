@@ -1,7 +1,7 @@
 # Miejsca treningu i sprzęt (P-003) — research i projekt wdrożenia
 
 Wersja robocza 02.10.2026, aktualizacja 03.10.2026 (decyzje właściciela z 07:35). Status: **E1 wdrożone na gałęzi `feature/locations`, zintegrowane w `integration/0.9.0`** (bez buildu) — szczegóły, przyjęte decyzje i odstępstwa w sekcji „Implementacja E1” na końcu; decyzje właściciela z 03.10 (7a, 8c, P-004 b, ViShape na stronę) — sekcja „Decyzje właściciela 03.10.2026”; decyzja z 08:11 (bez szablonów właściciela w aplikacji) i poprawki audytu commitów f132330/025ee6a — sekcja „Runda 82”; poprawki weryfikacji commitu 6ea37a3 — sekcja „Runda 82b”. Zgłoszenie: P-003 (02.10, test na iPhonie), wraca T-044 / D-011 (odłożone 01.10).
-Dane źródłowe: `docs/research/equipment/catalog.json` (katalog 125 ćwiczeń; jego kopia jako arkusz „Katalog ćwiczeń — wymagania sprzętu” jest na Dysku Google w folderze „Trening App”), `docs/research/kb/*.json` (baza wiedzy funkcji 10 aplikacji). Pełne raporty z researchu: sekcja „Źródła” na końcu.
+Dane źródłowe: `docs/research/equipment/catalog.json` (katalog 125 ćwiczeń; jego kopia jako arkusz „Katalog ćwiczeń — wymagania sprzętu” jest na Dysku Google w folderze „Trening App”), baza wiedzy funkcji 10 aplikacji (na Dysku: „Trening App / 05 Research konkurencji / kb (z repo, 12.10.2026)”, https://drive.google.com/drive/folders/1zIgAQ3vsPQh6ltGY52Gr8b_NfAAVatDJ). Pełne raporty z researchu: sekcja „Źródła” na końcu.
 
 ## 1. Co chcemy osiągnąć (słowami użytkownika)
 
