@@ -30,7 +30,7 @@ export default function SettingsScreen() {
       <Field label={t('Widok treningu')}><Segmented label={t('Widok treningu')} options={[['focus', t('Skupiony')], ['list', t('Lista')]] as [WorkoutView, string][]} value={s.workoutView ?? 'focus'} onChange={v => { s.workoutView = v; saveCfg(); }} /></Field>
       <Muted style={{ fontSize: 13, marginTop: -4, marginBottom: 8 }}>{s.workoutView === 'list' ? t('Lista: ćwiczenia i serie jak w poprzednich wersjach, bez karty.') : t('Skupiony: bieżąca seria dużymi cyframi i talerze na stronę nad listą ćwiczeń.')}</Muted>
       <Field label={t('Domyślna przerwa (sekundy)')}><NumInput value={s.defaultRest} onNum={v => { if (v === '') return; s.defaultRest = Math.min(REST_MAX, Math.max(0, Math.round(v))) /* UI2-09: limit z jednego miejsca */; saveCfg(); }} placeholder={String(DEFAULT_REST)} /></Field>
-      <SwitchRow label={t('Dźwięk i wibracja na koniec przerwy')} value={s.sound} onChange={v => { s.sound = v; saveCfg(); timer.refreshScheduled().catch(() => {}); }} />
+      <SwitchRow label={t('Dźwięk i wibracja na koniec przerwy')} value={s.sound} onChange={v => { s.sound = v; saveCfg(); timer.refreshScheduled().catch(() => {}); timer.refreshStale().catch(() => {}); }} />
       <SwitchRow label={t('Ekran włączony podczas treningu')} value={s.wakeLock} onChange={v => { s.wakeLock = v; saveCfg(); }} />
       <SwitchRow label={t('RPE / RIR przy serii')} detail={t('opcjonalne pole, nie wpływa na objętość')} value={s.showRpe} onChange={v => { s.showRpe = v; saveCfg(); }} />
       {s.showRpe ? <>

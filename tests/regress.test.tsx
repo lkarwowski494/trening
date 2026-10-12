@@ -1911,3 +1911,66 @@ describe('bloker audytu 0.13 #1 (12.10.2026): import CSV zapisuje ciężar ćwic
     expect(sets('Bench Press (sztanga)').map(s => [s.weight, s.addKg])).toEqual([[60, '']]);
   });
 });
+
+describe('Q-004 (0.14.0): zmiana języka w trakcie przerwy/stopera odświeża Live Activity, podpis i przypomnienie o porzuconym treningu', () => {
+  /* Kroki w aplikacji: trening w toku, odhaczona seria (przerwa 120 s) → Więcej → Język → English (ekran treningu nie jest wtedy zamontowany,
+   * bo start jest na Historii). Realność: brzegowy (zmiana języka w środku treningu), poprawka tania → naprawiona. */
+  const bootRest = async () => {
+    await renderApp({ url: '/history' });
+    await act(async () => { store.startEmpty(); store.addExerciseToActive(ex('Back Squat')); store.addExerciseToActive(ex('Pull Up')); });
+    const a = store.getState().active!; const sid = a.exercises[0].sets[0].id; store.toggleDone(0, 0);
+    const lb = require('@/lib/live').restLabel(a, 0, 0); timer.labels.title = 'Trening'; timer.labels.subtitle = lb.sub; timer.labels.last = lb.last;
+    await act(async () => { await timer.start(120, sid); await timer.scheduleStaleReminder(Date.now() - 3600e3, Date.now() - 3600e3, 'work'); });
+    return lb;
+  };
+  const pickEnglish = async () => { await go('/more/language'); await flushAll(10); await tap(screen.getByLabelText('English')); await flushAll(10); };
+  test('przerwa: Live Activity startuje od nowa po angielsku (etykieta „rest|Rest”, podpis „next: …”), T.sub w nowym języku', async () => {
+    const lb = await bootRest(); expect(lb.sub).toBe('dalej: Pull Up'); global.__la.length = 0;
+    await pickEnglish();
+    const starts = (global.__la as any[][]).filter(x => x[0] === 'start'); expect(starts).toHaveLength(1);
+    expect(starts[0][2]).toBe('next: Pull Up'); expect(starts[0][5]).toBe('rest|Rest'); expect(timer.T.sub).toBe('next: Pull Up');
+    expect(starts[0][3]).toBe(timer.T.endAt); /* koniec przerwy bez zmian */
+  });
+  test('przypomnienie o porzuconym treningu jest przeplanowane w nowym języku także bez zamontowanego ekranu treningu', async () => {
+    await bootRest(); const n0 = (global.__notifications as any[]).length; await pickEnglish();
+    const st = (global.__notifications as any[]).slice(n0).filter(x => x.identifier === 'stale-reminder'); expect(st.length).toBeGreaterThan(0);
+    expect(st[st.length - 1].content.title).toBe('Workout still in progress');
+  });
+  test('stoper z celem: Live Activity serii od nowa po angielsku', async () => {
+    await renderApp({ url: '/history' });
+    await act(async () => { store.startEmpty(); store.addExerciseToActive(ex('Plank')); });
+    const sid = store.getState().active!.exercises[0].sets[0].id; timer.labels.title = 'Trening';
+    await act(async () => { await timer.startSet(sid, 60); }); global.__la.length = 0;
+    await pickEnglish();
+    const starts = (global.__la as any[][]).filter(x => x[0] === 'start'); expect(starts).toHaveLength(1);
+    expect(starts[0][5]).toBe('set|Set'); expect(starts[0][2]).toBe('Plank · set 1'); await timer.stopSet();
+  });
+});
+
+describe('Q-013 (0.14.0): stoper bez celu, zamknięty razem z aplikacją, liczy się jako aktywność (nie ma cichego zapisu po 6 h od ostatniej serii)', () => {
+  /* Kroki: trening, seria Back Squat odhaczona, potem start stopera na Planku bez celu (pole czasu puste), zamknięcie aplikacji; po kilku godzinach
+   * otwarcie — dawniej resolveColdStopwatch zdejmował stoper z zapisu, a trening zapisywał się po cichu 6 h po ostatniej odhaczonej serii.
+   * Realność: brzegowy (zapomniany stoper + długa przerwa), dotyczy zapisu treningu → naprawione. */
+  const H = 3600e3;
+  const prep = async (stoperStartAgoH: number, lastSetAgoH: number) => {
+    await fresh(); const now = Date.now(); store.startEmpty(); store.addExerciseToActive(ex('Back Squat')); store.addExerciseToActive(ex('Plank'));
+    const a = store.getState().active!; a.startedAt = now - 8 * H; const sq = a.exercises[0].sets[0]; sq.weight = 100; sq.reps = 5; store.save(a);
+    store.toggleDone(0, 0, now - lastSetAgoH * H);
+    store.setTimerState({ restEndAt: null, restTotal: 0, restSetId: null, setStartAt: now - stoperStartAgoH * H, setTarget: 0, setId: a.exercises[1].sets[0].id });
+    return { now, a };
+  };
+  test('stoper bez celu sprzed 3 h, ostatnia seria sprzed 6,5 h: po starcie aplikacji trening NIE zapisuje się po cichu (pytanie), seria stopera nieodhaczona', async () => {
+    const { now } = await prep(3, 6.5); store.resolveColdStopwatch(now); expect(store.autoFinishStale(now)).toBeNull();
+    const a = store.getState().active!; expect(a).not.toBeNull(); expect(a.exercises[1].sets[0].done).toBe(false); expect(store.getState().timer.setStartAt).toBeNull();
+    expect(store.staleSince(now)).toBe(now - 6.5 * H); /* zamiast cichego zapisu — pytanie „Trening wciąż trwa” (z godziną ostatniej serii) */
+  });
+  test('bez stopera trening sprzed 6,5 h nadal zapisuje się po cichu; stoper starszy niż 6 h nie wstrzymuje zapisu', async () => {
+    const p = await prep(3, 6.5); store.setTimerState({ restEndAt: null, restTotal: 0, restSetId: null, setStartAt: null, setTarget: 0, setId: null });
+    store.resolveColdStopwatch(p.now); expect(store.autoFinishStale(p.now)).not.toBeNull();
+    const q = await prep(7, 7.5); store.resolveColdStopwatch(q.now); expect(store.autoFinishStale(q.now)).not.toBeNull();
+  });
+  test('stoper bez celu z wpisanym czasem: seria się odhacza (Q-002) i też liczy jako aktywność', async () => {
+    const { now, a } = await prep(3, 6.5); a.exercises[1].sets[0].durationSec = 45; store.resolveColdStopwatch(now);
+    expect(store.getState().active!.exercises[1].sets[0].done).toBe(true); expect(store.autoFinishStale(now)).toBeNull();
+  });
+});

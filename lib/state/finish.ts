@@ -53,6 +53,8 @@ export function resolveColdStopwatch(now = Date.now()) {
   const tm = S?.timer; if (!tm?.setStartAt || !tm.setId || Number(tm.setTarget) > 0) return;
   const a = S?.active; const pos = a ? findSet(tm.setId) : null; const st = pos && a ? a.exercises[pos.ei].sets[pos.si] : null;
   if (pos && st && !st.done && Number(st.durationSec) > 0) toggleDone(pos.ei, pos.si, Math.min(now, tm.setStartAt + Number(st.durationSec) * 1000));
+  /* Q-013: zdjęty ze stanu stoper był aktywnością — start liczy się jak „Kontynuuj” (staleAck), inaczej trening sprzed ≥ 6 h zapisałby się po cichu */
+  else if (a && pos && Number.isFinite(tm.setStartAt) && tm.setStartAt <= now + 10 * 60e3) { markActivity(a, Math.min(tm.setStartAt, now)); save(a); }
   setTimerState({ setStartAt: null, setTarget: 0, setId: null });
 }
 /** Ciche zakończenie po 6 h bez aktywności (przy starcie i powrocie z tła). Bez odhaczonych serii roboczych trening czeka na decyzję. */
