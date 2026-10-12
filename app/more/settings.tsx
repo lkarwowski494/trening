@@ -12,7 +12,7 @@ import * as health from '@/lib/health';
 import { t, LANG_NAME, type Lang, appName } from '@/lib/i18n';
 import { type Unit } from '@/lib/units';
 import { WEEKLY_SETS_MARK, manualSetsGoal } from '@/lib/stats';
-import { SET_PARTS, SETS_GOAL_MIN, SETS_GOAL_MAX, clampGoal, partLabel, type SetPart } from '@/lib/setParts';
+import { SET_PARTS, SETS_GOAL_MIN, SETS_GOAL_MAX, clampGoal, type SetPart } from '@/lib/setParts';
 
 
 export default function SettingsScreen() {
@@ -76,7 +76,7 @@ export default function SettingsScreen() {
 
 /** Cel serii jednej części: „Automatycznie” (WEEKLY_SETS_MARK) albo „Ręcznie” z własną liczbą; w danych zostaje tylko odstępstwo (Settings.weeklySetGoals). */
 function SetGoalRow({ part }: { part: SetPart }) {
-  const s = getState().settings; const manual = manualSetsGoal(part); const label = t(partLabel(part));
+  const s = getState().settings; const manual = manualSetsGoal(part); const label = t(part);
   const put = (n: number | null) => {
     const g = { ...(s.weeklySetGoals ?? {}) };
     if (n === null) delete g[part]; else g[part] = clampGoal(n);

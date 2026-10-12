@@ -36,7 +36,7 @@ describe('ekran Postępy', () => {
     await boot(() => { bench(2); });
     expect(screen.getByTestId('mark-klatka').props.style.left).toBe('100%');
     const marks = screen.UNSAFE_root.findAll((n: any) => typeof n.props?.testID === 'string' && n.props.testID.startsWith('mark-') && typeof n.type === 'string');
-    expect(marks.map((n: any) => n.props.testID).sort()).toEqual(['mark-front_delt', 'mark-klatka', 'mark-triceps'] /* barki rozbite na przód / bok / tył (12.10.2026): wyciskanie → przedni akton */);
+    expect(marks.map((n: any) => n.props.testID).sort()).toEqual(['mark-barki', 'mark-klatka', 'mark-triceps']);
   });
   test('English', async () => {
     await boot(() => { bench(12); }, 'en');

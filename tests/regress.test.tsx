@@ -1976,6 +1976,19 @@ describe('Q-013 (0.14.0): stoper bez celu, zamknięty razem z aplikacją, liczy 
   });
 });
 
+describe('Q-013 (audyt 0.14.0, NISKIE): zimny start ze stoperem bez celu nie kasuje pauzy treningu', () => {
+  /* Kroki: trening, start stopera na ćwiczeniu na czas bez celu, „Pauza”, zamknięcie aplikacji; po otwarciu resolveColdStopwatch liczył start stopera jak odhaczenie serii
+   * (markActivity) i wznawiał pauzę — trening wracał „w biegu”, a czas pauzy znikał. Realność: brzegowy (pauza + żywy stoper + zamknięcie aplikacji). */
+  test('pauza po starcie stopera przetrwa zimny start; znacznik aktywności (staleAck) i tak się przesuwa', async () => {
+    await fresh(); const now = Date.now(); store.startEmpty(); store.addExerciseToActive(ex('Plank'));
+    const a = store.getState().active!; a.startedAt = now - 3 * 3600e3; store.save(a);
+    store.setTimerState({ restEndAt: null, restTotal: 0, restSetId: null, setStartAt: now - 2 * 3600e3, setTarget: 0, setId: a.exercises[0].sets[0].id });
+    store.pauseWorkout(now - 3600e3); const p = store.getState().active!.pausedAt; expect(p).toBe(now - 3600e3);
+    store.resolveColdStopwatch(now);
+    const b = store.getState().active!; expect(b.pausedAt).toBe(p); expect(b.pauses ?? []).toEqual([]); expect(b.staleAck).toBe(now - 2 * 3600e3);
+  });
+});
+
 describe('Q-014 (0.14.0): rotacja kopii automatycznych wg czasu zapisu pliku, nie czasu lokalnego z nazwy (zmiana strefy / DST)', () => {
   /* Kroki: kopie po treningach, potem zmiana strefy (podróż na zachód) albo koniec DST — nowa kopia dostaje w nazwie godzinę wcześniejszą niż poprzednie.
    * Dawniej rotacja kasowała „najmniejszą nazwę”, czyli potencjalnie właśnie zapisaną kopię. Realność: brzegowy (dotyczy kopii = danych) → naprawione. */
@@ -2054,6 +2067,22 @@ describe('audyt 0.13 ŚREDNIE (0.14.0): import bez godzin i czasu — historia n
   test('formatA z godziną, ale bez czasu trwania: też bez szacunku (koniec = start)', async () => {
     await fresh(); await importText([HA, '2026-03-02 18:05:00,T,,Pull Up,1,0.0,10.0,0,0,,,'].join('\n') + '\n');
     const w = store.getState().workouts[0]; expect(w.finishedAt).toBe(w.startedAt);
+  });
+  /* Audyt 0.14.0 ŚREDNIE: plik z godziną, ale bez Duration, miał koniec = start, więc noClock ukrywał godzinę, a eksport ją gubił (powrót do 12:00).
+   * Naprawa: noClock tylko dla startu dokładnie o 12:00:00 (godzina, którą import samej daty sam ustawia) — bez zmiany schematu i bez sztucznej długości.
+   * Realność: realny (import pliku formatu z godziną, w którym Duration jest puste albo „0m”). */
+  test('formatA z godziną, bez Duration: godzina zostaje w Historii i w eksporcie; ponowny import zachowuje godzinę (także z „0m”)', async () => {
+    await fresh(); await importText([HA, '2026-03-02 18:05:00,T,,Pull Up,1,0.0,10.0,0,0,,,', '2026-03-03 07:30:00,T,0m,Pull Up,1,0.0,10.0,0,0,,,'].join('\n') + '\n');
+    const ws = store.getState().workouts; expect(ws).toHaveLength(2); expect(ws.every(w => !store.noClock(w))).toBe(true);
+    for (const w of ws) expect(store.whenText(w)).toBe(`${store.fmtDate(store.wallTs(w))} ${store.fmtTime(store.wallTs(w))}`);
+    const csv = buildCsv(); const dates = csv.trim().split('\n').slice(1).map(l => l.split(',')[0]).sort(); expect(dates).toEqual(['2026-03-02 18:05:00', '2026-03-03 07:30:00']);
+    await fresh(); await importText(csv); const w2 = store.getState().workouts;
+    expect(w2).toHaveLength(2); expect(w2.every(w => !store.noClock(w))).toBe(true); expect(w2.map(w => store.fmtTime(store.wallTs(w))).sort()).toEqual(['07:30', '18:05']);
+  });
+  test('sesja z końcem = start o godzinie innej niż 12:00 (cofnięty zegar) zachowuje godzinę; o 12:00:00 — nadal „godzina nieznana” (import samej daty)', async () => {
+    await fresh(); addWorkout(at(2026, 3, 6, 18), [['Back Squat', [{ weight: 100, reps: 5 }]]], 'A'); addWorkout(at(2026, 3, 7, 12), [['Back Squat', [{ weight: 100, reps: 5 }]]], 'B');
+    for (const w of store.getState().workouts) w.finishedAt = w.startedAt;
+    const ws = store.getState().workouts; expect(store.noClock(ws.find(w => w.templateName === 'A')!)).toBe(false); expect(store.noClock(ws.find(w => w.templateName === 'B')!)).toBe(true);
   });
   test('Historia i szczegóły sesji: „godzina nieznana” zamiast 12:00 i czasu; sesja z godziną — jak dotąd', async () => {
     await fresh(); await importText(FB); addWorkout(at(2026, 3, 6, 18), [['Back Squat', [{ weight: 100, reps: 5 }]]], 'Własny'); await store.flush();

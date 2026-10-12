@@ -921,13 +921,11 @@ export const EN: Record<string, string> = {
   'Sylwetka: serie w tym tygodniu': 'Body map: sets this week',
   'Kolor względem partii z największą liczbą serii w tym tygodniu (wykonane + zaplanowane). Szare — bez serii.': 'Colour relative to the muscle group with the most sets this week (done + planned). Grey — no sets.',
   'Sylwetka, serie w tym tygodniu: {list}': 'Body map, sets this week: {list}',
-  /* cel serii na partię w tygodniu i rozbicie barków i pleców (decyzje właściciela 12.10.2026, docs/research/32) */
+  /* cel serii na partię w tygodniu (decyzje właściciela 12.10.2026, docs/research/32) */
   'Kreska = cel serii na partię w tygodniu: {n} automatycznie albo Twoja liczba z Ustawień.': 'Line = weekly goal of sets per muscle group: {n} automatically, or your own number from Settings.',
   'Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; każdy trening siłowy daje przyrost w porównaniu z brakiem treningu.': 'ACSM 2026 position stand: with at least {n} sets per muscle group per week, muscle growth was greater than with lower volume; any resistance training builds muscle compared with none.',
   'Uproszczenie: partia pomocnicza ćwiczenia liczy się za pół serii (główna 1, pomocnicza 0,5; Pelland i in. 2026 — jedno źródło).': 'Simplification: a secondary muscle group of an exercise counts as half a set (main 1, secondary 0.5; Pelland et al. 2026 — a single source).',
   'Zaplanowane — z szablonów na pozostałe dni tygodnia.': 'Planned — from templates for the rest of the week.',
-  'Barki i plecy są rozbite według katalogu ćwiczeń: przód, bok i tył barków; góra pleców, najszersze i prostowniki. Ćwiczenie bez takiego rozbicia (np. własne) liczy się w wierszu „bez rozbicia”.': 'Shoulders and back are split by the exercise catalogue: front, side and rear delts; upper back, lats and lower-back extensors. An exercise without such a split (e.g. your own) counts in the “no split” row.',
-  'barki — bez rozbicia': 'shoulders — no split', 'plecy — bez rozbicia': 'back — no split',
   'Cel serii na partię w tygodniu': 'Weekly set goal per muscle group',
   'Kreska w „Ten tydzień” i w Postępach. Automatycznie: {n} serii (stanowisko ACSM 2026). Ręcznie: własna liczba od {min} do {max}.': 'The line in “This week” and in Progress. Automatic: {n} sets (ACSM 2026 position stand). Manual: your own number from {min} to {max}.',
   'Pokaż cele partii': 'Show muscle group goals', 'Ukryj cele partii': 'Hide muscle group goals',

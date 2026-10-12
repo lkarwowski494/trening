@@ -1,7 +1,6 @@
 import { getState, getRev, exById, tplRows, workCount, setVolume, startableItem, previousBlockFor, occurrence, occurrences, startLocationId, implAtLoc, srcSetAt, isBW, isDeloadWeek } from '@/lib/store';
 import { dayKeyOf, addDays, dayStatus, pending } from '@/lib/plan';
-import { thisMonday, setsByMuscle, setsByPart, volumeByMuscle, setsGoal } from '@/lib/stats';
-import { SET_PARTS, partCredits, type SetPart } from '@/lib/setParts';
+import { thisMonday, setsByMuscle, volumeByMuscle, setsGoal } from '@/lib/stats';
 import { periodRange, totals } from '@/lib/period';
 import { MUSCLES, hasReps, hasWeight, type Muscle, type Template, type WSet } from '@/lib/seed';
 
@@ -19,10 +18,9 @@ import { MUSCLES, hasReps, hasWeight, type Muscle, type Template, type WSet } fr
 export type CmpKind = 'week' | 'prevWeek' | 'month';
 type Rec = Record<string, number>;
 /** Serie i objętość razem z podziałem na partie (partia główna 1, pomocnicza 0,5 — jak „Serie per partia”). */
-/** `byParts` — serie per część z rozbiciem barków i pleców (lib/setParts; tylko paski serii i cel); `bySets` — per partia zbiorcza (mapa mięśni, kolejność wierszy objętości). */
-export type Part = { workouts: number; sets: number; volume: number; bySets: Rec; byParts: Rec; byVolume: Rec };
+export type Part = { workouts: number; sets: number; volume: number; bySets: Rec; byVolume: Rec };
 export type Planned = Part & { /** serie robocze, których objętości nie da się policzyć (brak wartości w szablonie i „Poprzednio”) */ unknownSets: number };
-const emptyPart = (): Part => ({ workouts: 0, sets: 0, volume: 0, bySets: {}, byParts: {}, byVolume: {} });
+const emptyPart = (): Part => ({ workouts: 0, sets: 0, volume: 0, bySets: {}, byVolume: {} });
 const add = (a: Rec, k: string, v: number) => { a[k] = (a[k] ?? 0) + v; };
 
 /** Oszacowanie jednego szablonu: serie i objętość z wierszy (wartość wiersza, a przy braku — „Poprzednio”). */
@@ -45,7 +43,6 @@ export function estimateTemplate(tpl: Template): Planned {
     out.sets += n; out.volume += vol; out.unknownSets += unknown;
     (ex.muscles ?? []).forEach(mu => { add(out.bySets, mu, n); add(out.byVolume, mu, vol); });
     (ex.secondaryMuscles ?? []).forEach(mu => { add(out.bySets, mu, n * 0.5); add(out.byVolume, mu, vol * 0.5); });
-    partCredits(ex).forEach(([p, share]) => add(out.byParts, p, n * share));
   });
   return out;
 }
@@ -58,22 +55,22 @@ export function plannedRest(now = Date.now()): Planned {
     const tpl = getState().templates.find(x => x.id === ds.templateId && !x.archived); if (!tpl) continue;
     const e = estimateTemplate(tpl); if (!e.sets) continue;
     out.workouts++; out.sets += e.sets; out.volume += e.volume; out.unknownSets += e.unknownSets;
-    for (const [mu, v] of Object.entries(e.bySets)) add(out.bySets, mu, v); for (const [p, v] of Object.entries(e.byParts)) add(out.byParts, p, v); for (const [mu, v] of Object.entries(e.byVolume)) add(out.byVolume, mu, v);
+    for (const [mu, v] of Object.entries(e.bySets)) add(out.bySets, mu, v); for (const [mu, v] of Object.entries(e.byVolume)) add(out.byVolume, mu, v);
   }
   return out;
 }
 
-const doneIn = (start: number, end: number): Part => { const tt = totals(start, end); return { workouts: tt.workouts, sets: tt.sets, volume: tt.volume, bySets: setsByMuscle(start, end), byParts: setsByPart(start, end), byVolume: volumeByMuscle(start, end) }; };
+const doneIn = (start: number, end: number): Part => { const tt = totals(start, end); return { workouts: tt.workouts, sets: tt.sets, volume: tt.volume, bySets: setsByMuscle(start, end), byVolume: volumeByMuscle(start, end) }; };
 
 export type MuscleRow = { muscle: Muscle; doneSets: number; plannedSets: number; prevSets: number; doneVolume: number; plannedVolume: number; prevVolume: number; setsUp: boolean; volumeUp: boolean };
-/** Wiersz paska serii per część (z rozbiciem barków i pleców) wraz z celem tygodniowym tej części (ręcznym albo automatycznym). */
-export type SetRow = { part: SetPart; doneSets: number; plannedSets: number; prevSets: number; setsUp: boolean; goal: number };
+/** Wiersz paska serii per partia wraz z celem tygodniowym tej partii (ręcznym albo automatycznym). */
+export type SetRow = { part: Muscle; doneSets: number; plannedSets: number; prevSets: number; setsUp: boolean; goal: number };
 export type Comparison = {
   kind: CmpKind; /** zakres porównywanego okresu [start, end) */ cur: { start: number; end: number }; prev: { start: number; end: number };
   done: Part; planned: Planned | null; before: Part;
   /** wykonane + zaplanowane (dolne ograniczenie objętości, gdy `unknown`) */ total: { workouts: number; sets: number; volume: number };
   unknown: boolean; volumePct: number | null; setsPct: number | null; volumeDelta: number; setsDelta: number;
-  rows: MuscleRow[]; /** serie per część — paski serii (kolejność: najwięcej serii, remis wg SET_PARTS) */ setRows: SetRow[]; improved: Muscle[]; deloadCur: boolean; deloadPrev: boolean;
+  rows: MuscleRow[]; /** serie per partia z celem — paski serii (kolejność: najwięcej serii, remis wg MUSCLES) */ setRows: SetRow[]; improved: Muscle[]; deloadCur: boolean; deloadPrev: boolean;
 };
 const pct = (cur: number, prev: number): number | null => (prev > 0 ? Math.round(((cur - prev) / prev) * 100) : null);
 /** Epsilon: różnica objętości poniżej 1e-6 to ten sam wynik (błąd zmiennoprzecinkowy), nie wzrost. */
@@ -98,9 +95,9 @@ export function compare(kind: CmpKind, now = Date.now()): Comparison {
     return { ...r, setsUp: r.doneSets + r.plannedSets > r.prevSets + UP_EPS, volumeUp: r.doneVolume + r.plannedVolume > r.prevVolume + UP_EPS };
   }).filter(r => r.doneSets + r.plannedSets + r.prevSets + r.doneVolume + r.plannedVolume + r.prevVolume > 0)
     .sort((x, y) => (y.doneVolume + y.plannedVolume) - (x.doneVolume + x.plannedVolume) || (y.doneSets + y.plannedSets) - (x.doneSets + x.plannedSets)); /* najpierw objętość */
-  const setRows: SetRow[] = SET_PARTS.map(p => { const r = { part: p, doneSets: done.byParts[p] ?? 0, plannedSets: planned?.byParts[p] ?? 0, prevSets: before.byParts[p] ?? 0 };
+  const setRows: SetRow[] = MUSCLES.map(p => { const r = { part: p, doneSets: done.bySets[p] ?? 0, plannedSets: planned?.bySets[p] ?? 0, prevSets: before.bySets[p] ?? 0 };
     return { ...r, setsUp: r.doneSets + r.plannedSets > r.prevSets + UP_EPS, goal: setsGoal(p) }; })
-    .filter(r => r.doneSets + r.plannedSets + r.prevSets > 0).sort((x, y) => (y.doneSets + y.plannedSets) - (x.doneSets + x.plannedSets)); /* sort stabilny: remis zostaje w kolejności SET_PARTS */
+    .filter(r => r.doneSets + r.plannedSets + r.prevSets > 0).sort((x, y) => (y.doneSets + y.plannedSets) - (x.doneSets + x.plannedSets)); /* sort stabilny: remis zostaje w kolejności MUSCLES */
   return { kind, cur, prev, done, planned, before, total, unknown: (planned?.unknownSets ?? 0) > 0, volumePct: pct(total.volume, before.volume), setsPct: pct(total.sets, before.sets),
     volumeDelta: total.volume - before.volume, setsDelta: total.sets - before.sets, rows, setRows, improved: rows.filter(r => r.volumeUp).map(r => r.muscle),
     deloadCur: kind !== 'month' && isDeloadWeek(cur.start), deloadPrev: kind !== 'month' && isDeloadWeek(prev.start) };
