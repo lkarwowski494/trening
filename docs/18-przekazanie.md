@@ -5,8 +5,9 @@ nowe decyzje dopisywać tutaj (sekcja „Decyzje”), z datą. Kolejność czyta
 backlog) → docs/15 (App Store, ceny) → docs/09 (dziennik testów; stare rundy w docs/09-archiwum-do-0.11.md).
 
 ## Gałęzie i wydania
-- `main` = **0.11.0**, build **1005** (TestFlight, 10.10.2026), commit 0d71775, tag `v0.11.0-b1005` (tag zakłada właściciel w GitHubie —
-  sesja agenta nie może wypychać tagów, decyzja 10.10 wariant A). Wcześniej 0.10.0 / build 1004 (09.10).
+- `main` = **0.12.0**, build **1008** (TestFlight, 12.10.2026; PR #1–#3), tag `v0.12.0-b1008` (zakłada właściciel). Build 1006 i 1007 nie powstały:
+  przebiegi padły na testach przed wysłaniem (poniedziałkowy scenariusz E2E 05; brak pamięci w teście języków × trasy) — tag `v0.12.0-b1006` zostaje (decyzja 12.10, B).
+  Wcześniej 0.11.0 / build 1005 (10.10), 0.10.0 / build 1004 (09.10).
 - `feature/e2-swap` = **0.12.0** (72be439): języki fal 1–4 (razem 35), nowy ekran Trening, Progresja, „zrobiony wcześniej”, podsumowanie rekordów,
   podział store.ts. Verify 237/237 plików, E2E pełny build zielony (run 38174381455, 11.10.2026). **PR #1 do `main`** — scala właściciel (12.10.2026:
   sesja agenta nie może wypchnąć do `main` ani sama rozszerzyć uprawnień — blokada bezpieczeństwa), potem `testflight.yml` na `main` i tag `v0.12.0`.
@@ -157,3 +158,9 @@ logika `lib/csvparse.ts`/`lib/csvimport.ts`, testy `csv-import-logic`/`csv-impor
   w trybie „tylko adresy” ok. 6 trafnych stron ACE/NASM na 50, źródło innego serwisu podpisane jako ExRx (weighttraining.guide), analogie jako źródła.
   Wniosek: Gemini do researchu rynku, opinii i przeglądu tłumaczeń; cytaty i źródła merytoryczne — zawsze badacz (WebFetch + weryfikacja).
   Zadania pasujące do Gemini agent zgłasza właścicielowi z gotowym promptem (CLAUDE.md).
+- 12.10.2026: 0.12.0 — A: osobny build dziś (poprawka scenariusza 05, PR, Merge + Run workflow + tag ręcznie, build 1007; tag v0.12.0-b1006 do usunięcia); automatyzacja (TestFlight + tag po scaleniu do main) — A, wklejana przez właściciela w PR 0.13.0 (agent nie może zmieniać procesu wydań — blokada „Production Deploy”).
+- 12.10.2026: komunikacja — A: agent pisze tylko, gdy potrzebna decyzja/kliknięcie właściciela, przy niepowodzeniu ze skutkami albo na końcu etapu; bez bieżących komunikatów o postępie.
+- 12.10.2026: tag v0.12.0-b1006 zostaje (B) — build 1006 nie powstał (TestFlight 38207286308 padł na teście przed wysłaniem do Apple); właściwy build 0.12.0 = 1007.
+- 12.10.2026: cel serii na partię/tydzień — funkcja A (Ustawienia: per partia Automatycznie/Ręcznie; paski mierzą do celu), wydanie 0.14.0; research „serie wg wielkości partii” — badacz, bez Gemini (docs/research/32).
+- 12.10.2026: research serii wg partii (docs/research/32): automatycznie 10 dla każdej partii (hierarchia: ACSM 2026, Schoenfeld 2017). Produkt 0.14.0: (1) A — zdanie przy kresce 10 serii w Postępach, że ćwiczenia pomocnicze liczą się za pół serii; (2) B — w statystykach barki na przód/bok/tył, plecy na górę/najszersze.
+- 12.10.2026: audyt zmian 0.13.0 — 1 WYSOKIE (import CSV: ćwiczenia z masą ciała w `weight` zamiast `addKg` → błędne rekordy/e1RM; naprawa przed wydaniem). Backlog 0.14.0: ŚREDNIE — formatB bez godziny pokazuje szacowany czas (12:00, serie×90 s) jak dane; NISKIE — teksty „Kalendarz”/„zakładka Szablony” po zmianie zakładek; Postępy gubią wybrane ćwiczenie po powrocie. Uwagi: dystans formatA jako metry [OTWARTE] — sprawdzić na prawdziwym pliku; kontakt na support.html przed App Store.
