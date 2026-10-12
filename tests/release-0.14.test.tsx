@@ -17,7 +17,7 @@ describe('wydanie 0.14.0', () => {
   test('wpis 0.14 (id 2026-10-12, historyczny; bieżący 0.15: release-0.15.test.tsx): jeśli ma build, to nowszy niż 1008; pod nim 0.13 (2026-10-11)', () => {
     const cur = E(); const prev = WHATS_NEW[WHATS_NEW.indexOf(cur) + 1];
     expect([cur.id, cur.date, prev.id]).toEqual(['2026-10-12', '2026-10-12', '2026-10-11']);
-    expect(cur.build === undefined || cur.build > 1008).toBe(true);
+    expect(cur.build).toBe(1010); /* build 0.14.0 = 1010 (TestFlight run 38311331235, 12.10.2026) */
   });
   test('wpis 0.14 po polsku: cel serii, poprawki, nowe ćwiczenia, miejsce treningu; 2–10 punktów, każdy kończy się kropką', () => {
     const it = E().items();

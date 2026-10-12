@@ -18,12 +18,12 @@ describe('wydanie 0.15.0', () => {
     const lock = J('package-lock.json');
     expect([J('app.json').expo.version, J('package.json').version, lock.version, lock.packages[''].version]).toEqual(['0.15.0', '0.15.0', '0.15.0', '0.15.0']);
   });
-  test('najnowszy wpis = 0.15 (id 2026-10-13, data 2026-10-12); jeśli ma build, to nowszy niż 1009; pod nim 0.14 (2026-10-12)', () => {
+  test('najnowszy wpis = 0.15 (id 2026-10-13, data 2026-10-12); jeśli ma build, to nowszy niż 1010; pod nim 0.14 (2026-10-12, build 1010)', () => {
     expect(WHATS_NEW[0]).toBe(E());
     const cur = E(); const prev = WHATS_NEW[WHATS_NEW.indexOf(cur) + 1];
     expect([cur.id, cur.date, prev.id]).toEqual(['2026-10-13', '2026-10-12', '2026-10-12']);
-    expect(cur.build === undefined || cur.build > 1009).toBe(true);
-    expect(prev.build === undefined || prev.build > 1008).toBe(true);
+    expect(cur.build === undefined || cur.build > 1010).toBe(true);
+    expect(prev.build).toBe(1010);
   });
   test('wpis 0.15 po polsku: Apple Health i wskazówki techniki; 2–10 punktów, każdy kończy się kropką', () => {
     expect(E().items()).toEqual([A, B]);
