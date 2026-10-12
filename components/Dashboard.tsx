@@ -42,7 +42,7 @@ export function WeekStats() {
       <Muted style={{ fontSize: 12, fontFamily: F.semibold, marginTop: 10, marginBottom: 6 }}>{t('Serie na partię — wykonane i zaplanowane')}</Muted>
       <MuscleRows rows={setBars(c.setRows, true)} metric="sets" showPrev={false} />
       <SegLegend planned={plannedSets > 0} />
-      <Muted style={{ fontSize: 12, marginTop: 6 }}>{t('Kreska = cel serii na partię w tygodniu: {n} automatycznie albo Twoja liczba z Ustawień.', { n: WEEKLY_SETS_MARK })} {t('Zaplanowane — z szablonów na pozostałe dni tygodnia.')} {t('Uproszczenie: partia pomocnicza ćwiczenia liczy się za pół serii (główna 1, pomocnicza 0,5; Pelland i in. 2026 — jedno źródło).')} {t('Barki i plecy są rozbite według katalogu ćwiczeń: przód, bok i tył barków; góra pleców, najszersze i prostowniki. Ćwiczenie bez takiego rozbicia (np. własne) liczy się w wierszu „bez rozbicia”.')}</Muted>
+      <Muted style={{ fontSize: 12, marginTop: 6 }}>{t('Kreska = cel serii na partię w tygodniu: {n} automatycznie albo Twoja liczba z Ustawień.', { n: WEEKLY_SETS_MARK })} {t('Zaplanowane — z szablonów na pozostałe dni tygodnia.')} {t('Uproszczenie: partia pomocnicza ćwiczenia liczy się za pół serii (główna 1, pomocnicza 0,5; Pelland i in. 2026 — jedno źródło).')}</Muted>
     </View> : null}
     {/* „Ostatni trening” usunięty z ekranu głównego (właściciel 09.10.2026 ok. 16:20): informacja zostaje w arkuszu „Inny trening” („Powtórz ostatni”: nazwa · data), w Historii i Kalendarzu */}
   </>;

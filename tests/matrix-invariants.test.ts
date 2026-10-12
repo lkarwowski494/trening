@@ -27,8 +27,8 @@ import * as health from '@/lib/health';
 import { buildBackup, parseBackup } from '@/lib/backup';
 import { implsAt, EQUIPMENT, LOCATION_PRESETS } from '@/lib/equipment';
 import { CABLES } from '@/lib/catalog.generated';
-import { SET_PARTS, SPLIT_REGIONS, SETS_GOAL_MIN, SETS_GOAL_MAX, clampGoal, isSetPart } from '@/lib/setParts';
-import { SCHEMA_VERSION, METRICS, MUSCLES, blankTimer, uid, hasReps, hasTime, hasDistance, type Exercise, type Template, type TemplateItem, type Workout, type WSet, type SetKind, type Impl } from '@/lib/seed';
+import { SET_PARTS, SETS_GOAL_MIN, SETS_GOAL_MAX, clampGoal, isSetPart } from '@/lib/setParts';
+import { SCHEMA_VERSION, METRICS, blankTimer, uid, hasReps, hasTime, hasDistance, type Exercise, type Template, type TemplateItem, type Workout, type WSet, type SetKind, type Impl } from '@/lib/seed';
 import { weekProgress, planPct, dayMark, monthWeeks } from '@/lib/motif';
 import { periodRange } from '@/lib/period';
 import { weekTiles, weekStrip } from '@/lib/dashboard';
@@ -590,10 +590,8 @@ function statsCheck(where: string) {
   for (const w of fin) { if (w.startedAt < mon || w.startedAt >= nx) continue; for (const e of w.exercises) { const ex = store.exById(e.exerciseId); if (!ex) continue; const n = workN(e.sets); if (!n) continue;
     ex.muscles.forEach(q => { mus[q] = (mus[q] ?? 0) + n; }); ex.secondaryMuscles.forEach(q => { mus[q] = (mus[q] ?? 0) + n * 0.5; }); } }
   expect({ where, m: stats.weeklySetsByMuscle(mon) }).toEqual({ where, m: mus });
-  /* serie per część (12.10.2026): partie bez rozbicia identyczne jak per partia zbiorcza; barki / plecy rozbite nie gubią serii (suma części ≥ partia) */
-  { const parts = stats.weeklySetsByPart(mon); for (const q of MUSCLES) { const sum = SET_PARTS.filter(p => p === q || (SPLIT_REGIONS as Record<string, readonly string[]>)[q]?.includes(p)).reduce((a, p) => a + (parts[p] ?? 0), 0);
-    if (q === 'barki' || q === 'plecy') ok(sum >= (mus[q] ?? 0) - 1e-9, where, `części ${q}: suma < partia`, { sum, m: mus[q] }); else ok(Math.abs(sum - (mus[q] ?? 0)) < 1e-9, where, `części ${q} ≠ partia`, { sum, m: mus[q] }); }
-    ok(Object.keys(parts).every(isSetPart), where, 'nieznana część w setsByPart', Object.keys(parts)); }
+  /* serie tygodniowe to partie całe (12.10.2026: rozbicie barków i pleców wycofane): każdy klucz to znana partia, cel każdej w granicach */
+  ok(Object.keys(stats.weeklySetsByMuscle(mon)).every(isSetPart), where, 'nieznana partia w serie tygodniowe', Object.keys(stats.weeklySetsByMuscle(mon)));
   /* postęp tygodnia (korekta właściciela 09.10.2026 ok. 17:00): stosy = dni w planie tygodnia, pełne = zrobione z planu (te same liczby co kafelki),
    * procent 0–100, 100 wtedy i tylko wtedy, gdy zrobione wszystkie; bez planu — nic. Znacznik dnia w pasku = stan dnia (jedna funkcja). */
   const wp = weekProgress(); const wt = weekTiles();

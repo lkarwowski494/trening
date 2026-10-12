@@ -5,7 +5,6 @@ import { t, lang } from '@/lib/i18n';
 import { fmtNum, volOut } from '@/lib/units';
 import { Muted, Txt } from '@/components/ui';
 import type { MuscleRow, SetRow } from '@/lib/progress';
-import { partLabel } from '@/lib/setParts';
 
 /*
  * Słupki „Progresji” i „Ten tydzień” (docs/22 krok 3 pkt 4–5, 11.10.2026): część wykonana i zaplanowana innym kolorem, rozdzielone cienką kreską
@@ -39,10 +38,10 @@ export const fmtSets = (v: number) => fmtNum(v, 1);
 
 /** Wiersz słupka: `label` już przetłumaczony; `mark` — kreska celu tego wiersza (serie: cel części — ręczny albo automatyczny). */
 export type BarRow = { key: string; label: string; done: number; planned: number; prev: number; up: boolean; mark?: number };
-/** Objętość per partia zbiorcza (bez rozbicia — rozbicie dotyczy tylko serii). */
+/** Objętość per partia. */
 export const volumeBars = (rows: MuscleRow[]): BarRow[] => rows.map(r => ({ key: r.muscle, label: t(r.muscle), done: r.doneVolume, planned: r.plannedVolume, prev: r.prevVolume, up: r.volumeUp }));
-/** Serie per część (z rozbiciem barków i pleców); `goals` — czy rysować kreski celu (miesiąc: bez kresek). */
-export const setBars = (rows: SetRow[], goals: boolean): BarRow[] => rows.map(r => ({ key: r.part, label: t(partLabel(r.part)), done: r.doneSets, planned: r.plannedSets, prev: r.prevSets, up: r.setsUp, ...(goals ? { mark: r.goal } : {}) }));
+/** Serie per partia; `goals` — czy rysować kreski celu (miesiąc: bez kresek). */
+export const setBars = (rows: SetRow[], goals: boolean): BarRow[] => rows.map(r => ({ key: r.part, label: t(r.part), done: r.doneSets, planned: r.plannedSets, prev: r.prevSets, up: r.setsUp, ...(goals ? { mark: r.goal } : {}) }));
 
 /** Wiersze partii: bieżący okres (wykonane + zaplanowane, słupek dwukolorowy) i poprzedni (cienki słupek); ▲ — wzrost. `metric` — co jest słupkiem; kreska celu — osobna dla każdego wiersza. */
 export function MuscleRows({ rows, metric, showPrev = true }: { rows: BarRow[]; metric: 'volume' | 'sets'; /** false — „Ten tydzień”: tylko bieżący tydzień, bez poprzedniego */ showPrev?: boolean }) {

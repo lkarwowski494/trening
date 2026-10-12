@@ -1,7 +1,7 @@
 import { t, tp } from './i18n';
 import { fmtW, fmtVol, fmtNum, wu, KG_PER_LB, volOut } from './units';
 import { bodyMassFor, bodyMassLog, wallTs, getState, exById, volume, finishedWorkouts, setSummary, shownLoad, isBW, setLoad, loadOf, effectiveLoad, setVolume, blockMult, setScore, isWorking, workSetCount, repsOf, memoHist, memoHistBy, workoutsWith, volOf, fmtSec, fmtDist } from './store';
-import { partCredits, isSetPart, SETS_GOAL_MIN, SETS_GOAL_MAX, type SetPart } from './setParts';
+import { isSetPart, SETS_GOAL_MIN, SETS_GOAL_MAX, type SetPart } from './setParts';
 import { hasReps, hasWeight, hasTime, hasDistance, catalogKey, own, type Exercise, type Impl, type MetricType, type WSet, type Workout } from './seed';
 
 /*
@@ -304,7 +304,7 @@ export const hasAnyHistory = () => getState().workouts.some(w => w.finishedAt);
  * to samo stanowisko: każdy trening siłowy poprawia hipertrofię względem braku treningu — znacznik nie jest progiem „działa / nie działa”.
  * Uproszczenie: u nas serie pomocnicze liczą się po 0,5 (Pelland 2026, docs/21 B3), w stanowisku — serie na partię bez tego rozróżnienia. */
 export const WEEKLY_SETS_MARK = 10;
-/* 12.10.2026: to jest cel AUTOMATYCZNY każdej części; użytkownik może ustawić własny cel per część (Settings.weeklySetGoals → setsGoal, granice interfejsu: lib/setParts). Generator zostaje przy tej liczbie. */
+/* 12.10.2026: to jest cel AUTOMATYCZNY każdej partii; użytkownik może ustawić własny cel per partia (Settings.weeklySetGoals → setsGoal, granice interfejsu: lib/setParts). Generator zostaje przy tej liczbie. */
 /** Serie robocze per partia w tygodniu zaczynającym się `weekStart` (główna = 1, pomocnicza = 0,5), jak w popularnych aplikacjach treningowych. */
 export function weeklySetsByMuscle(weekStart: number): Record<string, number> {
   const d = new Date(weekStart); return setsByMuscle(weekStart, new Date(d.getFullYear(), d.getMonth(), d.getDate() + 7).getTime());
@@ -318,25 +318,12 @@ export function setsByMuscle(start: number, end: number): Record<string, number>
   return out;
 }
 
-/** Serie robocze per CZĘŚĆ (partie z rozbiciem barków i pleców — lib/setParts) w okresie [start, end): ta sama reguła co setsByMuscle
- * (główna 1, pomocnicza 0,5; drop razem z serią), tylko partie „barki” i „plecy” dzielą się na regiony katalogu. Tylko statystyki serii i cel (12.10.2026). */
-export function setsByPart(start: number, end: number): Record<string, number> {
-  const out: Record<string, number> = {};
-  for (const w of finishedWorkouts()) { const x = wallTs(w); if (x < start || x >= end) continue; /* J3 */
-    w.exercises.forEach(e => { const ex = exById(e.exerciseId); if (!ex) return; const n = workSetCount(e.sets); if (!n) return; /* D3 */
-      partCredits(ex).forEach(([p, share]) => { out[p] = (out[p] ?? 0) + n * share; }); }); }
-  return out;
-}
-/** Serie robocze per część w tygodniu zaczynającym się `weekStart`. */
-export function weeklySetsByPart(weekStart: number): Record<string, number> {
-  const d = new Date(weekStart); return setsByPart(weekStart, new Date(d.getFullYear(), d.getMonth(), d.getDate() + 7).getTime());
-}
-/** Ręczny cel serii tej części (Ustawienia) albo undefined, gdy automat. Zła wartość w danych (migracja jej nie przepuszcza) = automat. */
+/** Ręczny cel serii tej partii (Ustawienia) albo undefined, gdy automat. Zła wartość w danych (migracja jej nie przepuszcza) = automat. */
 export function manualSetsGoal(part: string): number | undefined {
   const g = getState().settings.weeklySetGoals; const v = g && isSetPart(part) && Object.prototype.hasOwnProperty.call(g, part) ? g[part] : undefined;
   return typeof v === 'number' && Number.isFinite(v) && v >= SETS_GOAL_MIN && v <= SETS_GOAL_MAX ? v : undefined;
 }
-/** Cel serii na część w tygodniu: ręczny albo automatyczny (WEEKLY_SETS_MARK — jedno źródło liczby ze źródłami). Kreska pasków mierzy do tej liczby. */
+/** Cel serii na partię w tygodniu: ręczny albo automatyczny (WEEKLY_SETS_MARK — jedno źródło liczby ze źródłami). Kreska pasków mierzy do tej liczby. */
 export const setsGoal = (part: SetPart | string): number => manualSetsGoal(part) ?? WEEKLY_SETS_MARK;
 
 /** Objętość per partia w tygodniu (uwaga właściciela 06.10.2026: „obciążenie per partia analogicznie”) — objętość serii roboczych

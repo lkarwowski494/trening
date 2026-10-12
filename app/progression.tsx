@@ -77,7 +77,7 @@ export default function ProgressionScreen() {
         <MuscleRows rows={volumeBars(c.rows)} metric="volume" />
         <H2 style={{ marginTop: 10 }}>{t('Serie per partia')}</H2>
         <MuscleRows rows={setBars(c.setRows, kind !== 'month')} metric="sets" />
-        <Muted style={{ fontSize: 12, marginTop: 2 }}>{kind !== 'month' ? t('Kreska = cel serii na partię w tygodniu: {n} automatycznie albo Twoja liczba z Ustawień.', { n: WEEKLY_SETS_MARK }) + ' ' : ''}{t('Barki i plecy są rozbite według katalogu ćwiczeń: przód, bok i tył barków; góra pleców, najszersze i prostowniki. Ćwiczenie bez takiego rozbicia (np. własne) liczy się w wierszu „bez rozbicia”.')}</Muted>
+        {kind !== 'month' ? <Muted style={{ fontSize: 12, marginTop: 2 }}>{t('Kreska = cel serii na partię w tygodniu: {n} automatycznie albo Twoja liczba z Ustawień.', { n: WEEKLY_SETS_MARK })}</Muted> : null}
         <Muted style={{ fontSize: 12, marginTop: 8 }}>{kind === 'week'
           ? t('Zaplanowane = szablony z planu na pozostałe dni tygodnia, policzone z wartości w szablonie (brakujące — z „Poprzednio”). To rachunek z Twojego planu, nie prognoza. Partia główna liczy 1 serię, pomocnicza 0,5.')
           : t('Objętość = ciężar × powtórzenia × mnożnik ćwiczenia (jak w Postępach); rozgrzewka poza. Partia główna liczy całość, pomocnicza połowę.')}</Muted>

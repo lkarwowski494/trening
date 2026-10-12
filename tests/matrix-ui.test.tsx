@@ -498,7 +498,7 @@ describe('/progress (+ Chart)', () => {
     const saved = await prepared(() => { addWorkout(at(40), [['Back Squat', [{ weight: 100, reps: 5 }]]]); });
     await renderApp({ saved }); await go('/progress'); await flushAll(10);
     expect(screen.getByText('Tygodnie od poniedziałku. Objętość = ciężar × powtórzenia × mnożnik ćwiczenia; rozgrzewka poza.')).toBeTruthy();
-    expect(screen.getByText(/^Partia główna liczy 1 serię, pomocnicza 0,5 \(np\. wyciskanie: klatka 1, triceps i barki po 0,5\)\. Partie ustawisz w edycji ćwiczenia\. Barki i plecy są rozbite/)).toBeTruthy();
+    expect(screen.getByText('Partia główna liczy 1 serię, pomocnicza 0,5 (np. wyciskanie: klatka 1, triceps i barki po 0,5). Partie ustawisz w edycji ćwiczenia.')).toBeTruthy();
     expect(screen.getByText('Objętość serii roboczych (ciężar × powtórzenia × mnożnik ćwiczenia); partia główna liczy całość, pomocnicza połowę. Ćwiczenia bez ciężaru (masa ciała, gumy) się nie liczą.')).toBeTruthy();
     expect(screen.getAllByText('Brak serii w tym i poprzednim tygodniu.')).toHaveLength(2);
     const n = store.getState().exercises.filter(e => !e.archived).length;
