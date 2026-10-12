@@ -192,8 +192,19 @@ describe('regresja E2E 91', () => {
   });
   test('10: guma Pull Up wskazana względem ✓ wiersza (leftOf), nie karty „Set done” (po przewinięciu nad ekranem)', () => {
     const s = steps('10-gumy.yaml'); const after = s.slice(s.indexOf('- extendedWaitUntil: { visible: "Set 1 done — Pull Up", timeout: 30000 }'));
-    expect(after).toContain('- tapOn: { text: "Band: none", leftOf: "Set 1 done — Pull Up" }');
+    expect(after).toContain('- tapOn: { text: "Band: none", below: "Pull Up", leftOf: "Set 1 done — Pull Up" }');
     expect(after.filter((l: string) => /below: "Set done/.test(l))).toEqual([]);
+  });
+  test('10 (run 38264871642): guma Pull Up kotwiczona także nagłówkiem „Pull Up” — `leftOf` samo trafiało w gumę wiersza Band Pull Apart (zrzut: Pull Up nadal G1)', () => {
+    const s = steps('10-gumy.yaml'); const after = s.slice(s.indexOf('- extendedWaitUntil: { visible: "Set 1 done — Pull Up", timeout: 30000 }'));
+    const upTo = after.slice(0, after.indexOf('- takeScreenshot: 62-guma-pull-up')).filter((l: string) => /"Band: /.test(l));
+    expect(upTo.length).toBe(4);
+    for (const l of upTo) expect(l).toContain('below: "Pull Up"');
+  });
+  test('14 (run 38264871642): przejście Więcej → Przewodnik czeka 30 s (nawigacja jak w innych scenariuszach), nie 15 s', () => {
+    const s = steps('14-generator.yaml');
+    expect(s.filter((l: string) => /visible: "Read: \.\*"|visible: "Show: Weekly plan and Calendar"/.test(l)).every((l: string) => /timeout: 30000/.test(l))).toBe(true);
+    expect(s.some((l: string) => /visible: "Read: \.\*", timeout: 30000/.test(l))).toBe(true);
   });
   test('07: przed „Always at Home — …” przewinięcie na środek ekranu (tap przy górnej krawędzi trafił w baner iOS → Ustawienia)', () => {
     const s = steps('07-zamiana.yaml'); const i = s.indexOf('- tapOn: "Always at Home — .*"');
