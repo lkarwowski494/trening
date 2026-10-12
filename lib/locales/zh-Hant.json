@@ -1406,6 +1406,7 @@
  "Dopisuje treningi z plików CSV popularnych dzienników treningowych. Obecnych danych nie zmienia ani nie usuwa. Przed zapisem zobaczysz podgląd.": "從常見訓練日誌的 CSV 檔新增訓練。不會變更或移除你目前的資料。儲存前你會先看到預覽。",
  "Dystans w pliku przyjęto jako metry.": "檔案中的距離會視為公尺。",
  "Import historii z CSV": "從 CSV 匯入紀錄",
+ "Import historii treningów z plików CSV popularnych dzienników (Więcej → Kopia zapasowa → „Importuj historię z pliku CSV”), z podglądem przed zapisem.": "可從熱門訓練日誌的 CSV 檔匯入訓練紀錄（更多 → 備份 →「從 CSV 檔匯入紀錄」），儲存前可先預覽。",
  "Importuj historię z pliku CSV": "從 CSV 檔匯入紀錄",
  "Jednostka ciężaru w pliku": "檔案中的重量單位",
  "Nie ma nowych treningów do dodania — wszystkie są już w historii.": "沒有可新增的新訓練，全部都已在你的紀錄中。",

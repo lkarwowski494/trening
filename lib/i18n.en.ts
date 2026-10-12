@@ -46,6 +46,7 @@ export const EN: Record<string, string> = {
   'Plik ma schemat {a}, a ta wersja obsługuje do {b}. Zaktualizuj aplikację.': 'The file has schema {a}; this version supports up to {b}. Update the app.',
 
   /* import historii z CSV (11.10.2026) */
+  'Import historii treningów z plików CSV popularnych dzienników (Więcej → Kopia zapasowa → „Importuj historię z pliku CSV”), z podglądem przed zapisem.': 'Import your workout history from CSV files of popular training logs (More → Backup → “Import history from a CSV file”), with a preview before saving.',
   'Importuj historię z pliku CSV': 'Import history from a CSV file', 'Import historii z CSV': 'Import history from CSV',
   'Dopisuje treningi z plików CSV popularnych dzienników treningowych — bez usuwania obecnych danych, z podglądem przed zapisem.': 'Adds workouts from CSV files of popular workout logs — without removing your current data, with a preview before saving.',
   'Dopisuje treningi z plików CSV popularnych dzienników treningowych. Obecnych danych nie zmienia ani nie usuwa. Przed zapisem zobaczysz podgląd.': 'Adds workouts from CSV files of popular workout logs. It does not change or remove your current data. You will see a preview before anything is saved.',

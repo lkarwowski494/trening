@@ -1406,6 +1406,7 @@
  "Dopisuje treningi z plików CSV popularnych dzienników treningowych. Obecnych danych nie zmienia ani nie usuwa. Przed zapisem zobaczysz podgląd.": "Doda treninge iz datotek CSV priljubljenih dnevnikov treningov. Vaših trenutnih podatkov ne spremeni in ne izbriše. Pred shranjevanjem boste videli predogled.",
  "Dystans w pliku przyjęto jako metry.": "Razdalja v datoteki se šteje kot metri.",
  "Import historii z CSV": "Uvoz zgodovine iz CSV",
+ "Import historii treningów z plików CSV popularnych dzienników (Więcej → Kopia zapasowa → „Importuj historię z pliku CSV”), z podglądem przed zapisem.": "Uvoz zgodovine treningov iz datotek CSV priljubljenih dnevnikov (Več → Varnostna kopija → „Uvozi zgodovino iz datoteke CSV“), s predogledom pred shranjevanjem.",
  "Importuj historię z pliku CSV": "Uvozi zgodovino iz datoteke CSV",
  "Jednostka ciężaru w pliku": "Enota teže v datoteki",
  "Nie ma nowych treningów do dodania — wszystkie są już w historii.": "Ni novih treningov za dodajanje — vsi so že v vaši zgodovini.",

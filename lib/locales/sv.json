@@ -1406,6 +1406,7 @@
  "Dopisuje treningi z plików CSV popularnych dzienników treningowych. Obecnych danych nie zmienia ani nie usuwa. Przed zapisem zobaczysz podgląd.": "Lägger till pass från CSV-filer från populära träningsloggar. Dina nuvarande data ändras eller tas inte bort. Du ser en förhandsvisning innan något sparas.",
  "Dystans w pliku przyjęto jako metry.": "Avståndet i filen tolkas som meter.",
  "Import historii z CSV": "Importera historik från CSV",
+ "Import historii treningów z plików CSV popularnych dzienników (Więcej → Kopia zapasowa → „Importuj historię z pliku CSV”), z podglądem przed zapisem.": "Import av träningshistorik från CSV-filer från populära träningsdagböcker (Mer → Säkerhetskopia → ”Importera historik från en CSV-fil”), med förhandsvisning före sparande.",
  "Importuj historię z pliku CSV": "Importera historik från en CSV-fil",
  "Jednostka ciężaru w pliku": "Viktenhet i filen",
  "Nie ma nowych treningów do dodania — wszystkie są już w historii.": "Det finns inga nya pass att lägga till — alla finns redan i din historik.",

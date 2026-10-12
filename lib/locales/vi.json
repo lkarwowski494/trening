@@ -1406,6 +1406,7 @@
  "Dopisuje treningi z plików CSV popularnych dzienników treningowych. Obecnych danych nie zmienia ani nie usuwa. Przed zapisem zobaczysz podgląd.": "Thêm buổi tập từ tệp CSV của các nhật ký tập luyện phổ biến. Không thay đổi hay xóa dữ liệu hiện có của bạn. Bạn sẽ thấy bản xem trước trước khi lưu bất cứ thứ gì.",
  "Dystans w pliku przyjęto jako metry.": "Quãng đường trong tệp được hiểu là mét.",
  "Import historii z CSV": "Nhập lịch sử từ CSV",
+ "Import historii treningów z plików CSV popularnych dzienników (Więcej → Kopia zapasowa → „Importuj historię z pliku CSV”), z podglądem przed zapisem.": "Nhập lịch sử tập luyện từ tệp CSV của các nhật ký tập phổ biến (Thêm → Sao lưu → “Nhập lịch sử từ tệp CSV”), có xem trước khi lưu.",
  "Importuj historię z pliku CSV": "Nhập lịch sử từ tệp CSV",
  "Jednostka ciężaru w pliku": "Đơn vị khối lượng trong tệp",
  "Nie ma nowych treningów do dodania — wszystkie są już w historii.": "Không có buổi tập mới để thêm — tất cả đã có trong lịch sử của bạn.",

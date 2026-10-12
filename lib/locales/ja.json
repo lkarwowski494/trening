@@ -1406,6 +1406,7 @@
  "Dopisuje treningi z plików CSV popularnych dzienników treningowych. Obecnych danych nie zmienia ani nie usuwa. Przed zapisem zobaczysz podgląd.": "人気のトレーニング記録アプリのCSVファイルからトレーニングを追加します。現在のデータは変更も削除もされません。保存する前にプレビューが表示されます。",
  "Dystans w pliku przyjęto jako metry.": "ファイル内の距離はメートルとして扱います。",
  "Import historii z CSV": "CSVから履歴を読み込む",
+ "Import historii treningów z plików CSV popularnych dzienników (Więcej → Kopia zapasowa → „Importuj historię z pliku CSV”), z podglądem przed zapisem.": "人気のトレーニング記録アプリのCSVファイルから履歴を読み込めます。その他 → バックアップ →「CSVファイルから履歴を読み込む」から開き、保存前にプレビューで確認できます。",
  "Importuj historię z pliku CSV": "CSVファイルから履歴を読み込む",
  "Jednostka ciężaru w pliku": "ファイルの重量の単位",
  "Nie ma nowych treningów do dodania — wszystkie są już w historii.": "追加できる新しいトレーニングはありません。すべて履歴にあります。",

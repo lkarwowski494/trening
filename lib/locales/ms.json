@@ -1406,6 +1406,7 @@
  "Dopisuje treningi z plików CSV popularnych dzienników treningowych. Obecnych danych nie zmienia ani nie usuwa. Przed zapisem zobaczysz podgląd.": "Menambah sesi latihan daripada fail CSV buku log latihan popular. Data semasa anda tidak diubah atau dibuang. Anda akan melihat pratonton sebelum apa-apa disimpan.",
  "Dystans w pliku przyjęto jako metry.": "Jarak dalam fail dianggap sebagai meter.",
  "Import historii z CSV": "Import sejarah daripada CSV",
+ "Import historii treningów z plików CSV popularnych dzienników (Więcej → Kopia zapasowa → „Importuj historię z pliku CSV”), z podglądem przed zapisem.": "Import sejarah latihan daripada fail CSV jurnal latihan popular (Lagi → Sandaran → “Import sejarah daripada fail CSV”), dengan pratonton sebelum disimpan.",
  "Importuj historię z pliku CSV": "Import sejarah daripada fail CSV",
  "Jednostka ciężaru w pliku": "Unit berat dalam fail",
  "Nie ma nowych treningów do dodania — wszystkie są już w historii.": "Tiada sesi latihan baharu untuk ditambah — semuanya sudah ada dalam sejarah anda.",

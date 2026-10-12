@@ -481,6 +481,7 @@
  "Dopisuje treningi z plików CSV popularnych dzienników treningowych — bez usuwania obecnych danych, z podglądem przed zapisem.": "Adiciona treinos a partir de arquivos CSV de diários de treino populares — sem remover seus dados atuais, com prévia antes de salvar.",
  "Dopisuje treningi z plików CSV popularnych dzienników treningowych. Obecnych danych nie zmienia ani nie usuwa. Przed zapisem zobaczysz podgląd.": "Adiciona treinos a partir de arquivos CSV de diários de treino populares. Não altera nem remove seus dados atuais. Você verá uma prévia antes de salvar qualquer coisa.",
  "Dystans w pliku przyjęto jako metry.": "A distância no arquivo é tomada como metros.",
+ "Import historii treningów z plików CSV popularnych dzienników (Więcej → Kopia zapasowa → „Importuj historię z pliku CSV”), z podglądem przed zapisem.": "Importação do histórico de treinos a partir de arquivos CSV de diários populares (Mais → Backup → “Importar histórico de um arquivo CSV”), com pré-visualização antes de salvar.",
  "Importuj historię z pliku CSV": "Importar histórico de um arquivo CSV",
  "Jednostka ciężaru w pliku": "Unidade de peso no arquivo",
  "Plik jest pusty. Dane nie zostały zmienione.": "O arquivo está vazio. Seus dados não foram alterados.",
