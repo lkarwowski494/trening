@@ -1438,5 +1438,7 @@
  "Cel serii na partię w tygodniu ustawisz w Ustawieniach (Automatycznie albo Ręcznie); paski w „Ten tydzień” i w Postępach mierzą do tego celu, a partia pomocnicza ćwiczenia liczy się za pół serii.": "Mục tiêu số hiệp mỗi tuần cho từng nhóm cơ được đặt trong Cài đặt (Tự động hoặc Thủ công); các thanh trong “Tuần này” và Tiến độ được đo theo mục tiêu này, và nhóm cơ phụ của một bài tập được tính là nửa hiệp.",
  "Poprawki: Postępy pamiętają wybrane ćwiczenie, import bez godzin pokazuje „godzina nieznana”, a teksty pomocy zgadzają się z nazwami zakładek.": "Sửa lỗi: Tiến độ nhớ bài tập đã chọn, nhập dữ liệu không có giờ sẽ hiển thị “chưa rõ giờ”, và các văn bản trợ giúp khớp với tên các tab.",
  "20 nowych ćwiczeń ze wskazówkami w sekcji „Technika”.": "20 bài tập mới kèm mẹo trong phần “Kỹ thuật”.",
- "Trening dopisywany wstecz: miejsce treningu wybierzesz w edytorze.": "Buổi tập ghi bổ sung sau: bạn chọn nơi tập trong trình chỉnh sửa."
+ "Trening dopisywany wstecz: miejsce treningu wybierzesz w edytorze.": "Buổi tập ghi bổ sung sau: bạn chọn nơi tập trong trình chỉnh sửa.",
+ "Aktualizacja współpracy z Apple Health — zapis treningów działa jak dotąd.": "Đã cập nhật liên kết với Apple Health — việc lưu buổi tập vẫn hoạt động như trước.",
+ "Poprawione sformułowania części wskazówek techniki.": "Đã cải thiện cách diễn đạt của một số mẹo kỹ thuật."
 }

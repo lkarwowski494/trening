@@ -1438,5 +1438,7 @@
  "Cel serii na partię w tygodniu ustawisz w Ustawieniach (Automatycznie albo Ręcznie); paski w „Ten tydzień” i w Postępach mierzą do tego celu, a partia pomocnicza ćwiczenia liczy się za pół serii.": "El objetivo semanal de series por grupo muscular se fija en Ajustes (Automático o Manual); las barras de «Esta semana» y de Progreso se miden contra ese objetivo, y el grupo muscular secundario de un ejercicio cuenta como media serie.",
  "Poprawki: Postępy pamiętają wybrane ćwiczenie, import bez godzin pokazuje „godzina nieznana”, a teksty pomocy zgadzają się z nazwami zakładek.": "Correcciones: Progreso recuerda el ejercicio elegido, una importación sin horas muestra «hora desconocida» y los textos de ayuda coinciden con los nombres de las pestañas.",
  "20 nowych ćwiczeń ze wskazówkami w sekcji „Technika”.": "20 ejercicios nuevos con consejos en la sección «Técnica».",
- "Trening dopisywany wstecz: miejsce treningu wybierzesz w edytorze.": "Entrenamiento añadido a posteriori: el lugar del entrenamiento se elige en el editor."
+ "Trening dopisywany wstecz: miejsce treningu wybierzesz w edytorze.": "Entrenamiento añadido a posteriori: el lugar del entrenamiento se elige en el editor.",
+ "Aktualizacja współpracy z Apple Health — zapis treningów działa jak dotąd.": "Actualizada la integración con Apple Health: el guardado de entrenamientos funciona como hasta ahora.",
+ "Poprawione sformułowania części wskazówek techniki.": "Mejorada la redacción de algunos consejos de técnica."
 }

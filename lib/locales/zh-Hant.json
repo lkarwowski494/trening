@@ -1438,5 +1438,7 @@
  "Cel serii na partię w tygodniu ustawisz w Ustawieniach (Automatycznie albo Ręcznie); paski w „Ten tydzień” i w Postępach mierzą do tego celu, a partia pomocnicza ćwiczenia liczy się za pół serii.": "每個肌群的每週組數目標在設定中設定（自動或手動）；「本週」與進度中的長條以此目標為準，動作的輔助肌群以半組計算。",
  "Poprawki: Postępy pamiętają wybrane ćwiczenie, import bez godzin pokazuje „godzina nieznana”, a teksty pomocy zgadzają się z nazwami zakładek.": "修正：進度會記住所選動作，沒有時間的匯入會顯示「時間不明」，說明文字也與分頁名稱一致。",
  "20 nowych ćwiczeń ze wskazówkami w sekcji „Technika”.": "在「技巧」區塊新增 20 個附有提示的動作。",
- "Trening dopisywany wstecz: miejsce treningu wybierzesz w edytorze.": "事後補記的訓練：可在編輯器中選擇訓練地點。"
+ "Trening dopisywany wstecz: miejsce treningu wybierzesz w edytorze.": "事後補記的訓練：可在編輯器中選擇訓練地點。",
+ "Aktualizacja współpracy z Apple Health — zapis treningów działa jak dotąd.": "已更新與 Apple Health 的整合——訓練儲存方式與以往相同。",
+ "Poprawione sformułowania części wskazówek techniki.": "改善了部分技巧提示的措辭。"
 }

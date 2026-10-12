@@ -1438,5 +1438,7 @@
  "Cel serii na partię w tygodniu ustawisz w Ustawieniach (Automatycznie albo Ręcznie); paski w „Ten tydzień” i w Postępach mierzą do tego celu, a partia pomocnicza ćwiczenia liczy się za pół serii.": "Ukentlig settmål per muskelgruppe stiller du inn i Innstillinger (Automatisk eller Manuelt); stolpene i «Denne uken» og i Fremgang måles mot dette målet, og en øvelses sekundære muskelgruppe teller som et halvt sett.",
  "Poprawki: Postępy pamiętają wybrane ćwiczenie, import bez godzin pokazuje „godzina nieznana”, a teksty pomocy zgadzają się z nazwami zakładek.": "Rettelser: Fremgang husker valgt øvelse, import uten klokkeslett viser «tid ukjent», og hjelpetekstene stemmer med fanenes navn.",
  "20 nowych ćwiczeń ze wskazówkami w sekcji „Technika”.": "20 nye øvelser med tips i delen «Teknikk».",
- "Trening dopisywany wstecz: miejsce treningu wybierzesz w edytorze.": "Økt lagt til i etterkant: du velger treningssted i editoren."
+ "Trening dopisywany wstecz: miejsce treningu wybierzesz w edytorze.": "Økt lagt til i etterkant: du velger treningssted i editoren.",
+ "Aktualizacja współpracy z Apple Health — zapis treningów działa jak dotąd.": "Oppdatert samarbeid med Apple Health — lagring av økter fungerer som før.",
+ "Poprawione sformułowania części wskazówek techniki.": "Forbedret ordlyd i noen teknikktips."
 }

@@ -1438,5 +1438,7 @@
  "Cel serii na partię w tygodniu ustawisz w Ustawieniach (Automatycznie albo Ręcznie); paski w „Ten tydzień” i w Postępach mierzą do tego celu, a partia pomocnicza ćwiczenia liczy się za pół serii.": "Тижневу ціль підходів на групу м’язів можна задати в розділі Параметри (Автоматично або Вручну); смуги в «Цей тиждень» і в Прогрес вимірюються за цією ціллю, а допоміжна група м’язів вправи враховується як пів підходу.",
  "Poprawki: Postępy pamiętają wybrane ćwiczenie, import bez godzin pokazuje „godzina nieznana”, a teksty pomocy zgadzają się z nazwami zakładek.": "Виправлення: Прогрес запам’ятовує вибрану вправу, імпорт без часу показує «час невідомий», а тексти довідки збігаються з назвами вкладок.",
  "20 nowych ćwiczeń ze wskazówkami w sekcji „Technika”.": "20 нових вправ з підказками в розділі «Техніка».",
- "Trening dopisywany wstecz: miejsce treningu wybierzesz w edytorze.": "Тренування, додане заднім числом: місце тренування вибирається в редакторі."
+ "Trening dopisywany wstecz: miejsce treningu wybierzesz w edytorze.": "Тренування, додане заднім числом: місце тренування вибирається в редакторі.",
+ "Aktualizacja współpracy z Apple Health — zapis treningów działa jak dotąd.": "Оновлено інтеграцію з Apple Health — збереження тренувань працює як раніше.",
+ "Poprawione sformułowania części wskazówek techniki.": "Покращено формулювання частини порад щодо техніки."
 }

@@ -21,6 +21,12 @@ const genDays = () => { const all = Object.values(GEN_SESSIONS).flat(); return {
 export const LANGS_012 = ['pt-BR', 'es-419', 'id', 'ms', 'vi', 'ru', 'ja', 'ko', 'zh-Hant'] as const;
 
 export const WHATS_NEW: WhatsNewEntry[] = [
+  /* 0.15.0 (docs/18): aktualizacja biblioteki Apple Health 8 → 16 (zapis treningów bez zmian dla użytkownika), parafrazy wskazówek techniki w EN.
+   * Strona WWW w site/ — tylko repo, bez punktu. Bez numeru buildu — dopisuje się po przebiegu testflight.yml. id '2026-10-13' (następny po 0.14), data wydania 12.10.2026. */
+  { id: '2026-10-13', date: '2026-10-12', items: () => [
+    t('Aktualizacja współpracy z Apple Health — zapis treningów działa jak dotąd.'),
+    t('Poprawione sformułowania części wskazówek techniki.'),
+  ] },
   /* 0.14.0 (backlog A, decyzja właściciela 12.10.2026, docs/18): cel serii na partię w Ustawieniach, poprawki błędów, 20 nowych ćwiczeń ze wskazówkami techniki,
    * miejsce treningu przy dopisywaniu wstecz. Bez numeru buildu — dopisuje się po przebiegu testflight.yml. */
   { id: '2026-10-12', date: '2026-10-12', items: () => [

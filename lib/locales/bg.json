@@ -1438,5 +1438,7 @@
  "Cel serii na partię w tygodniu ustawisz w Ustawieniach (Automatycznie albo Ręcznie); paski w „Ten tydzień” i w Postępach mierzą do tego celu, a partia pomocnicza ćwiczenia liczy się za pół serii.": "Седмичната цел за серии на мускулна група задаваш в Настройки (Автоматично или Ръчно); лентите в „Тази седмица“ и в Напредък следват тази цел, а спомагателната мускулна група на упражнението се брои за половин серия.",
  "Poprawki: Postępy pamiętają wybrane ćwiczenie, import bez godzin pokazuje „godzina nieznana”, a teksty pomocy zgadzają się z nazwami zakładek.": "Поправки: Напредък помни избраното упражнение, импортът без час показва „часът е неизвестен“, а помощните текстове съвпадат с имената на разделите.",
  "20 nowych ćwiczeń ze wskazówkami w sekcji „Technika”.": "20 нови упражнения със съвети в раздела „Техника“.",
- "Trening dopisywany wstecz: miejsce treningu wybierzesz w edytorze.": "Тренировка, добавена със закъснение: мястото на тренировката избираш в редактора."
+ "Trening dopisywany wstecz: miejsce treningu wybierzesz w edytorze.": "Тренировка, добавена със закъснение: мястото на тренировката избираш в редактора.",
+ "Aktualizacja współpracy z Apple Health — zapis treningów działa jak dotąd.": "Актуализирана е връзката с Apple Health — записването на тренировките работи както досега.",
+ "Poprawione sformułowania części wskazówek techniki.": "Подобрени са формулировките на част от съветите за техника."
 }
