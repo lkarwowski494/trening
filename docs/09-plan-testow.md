@@ -94,6 +94,100 @@ Znane, nie zgłaszać: Q-017, Q-020 (backlog); Q-004, Q-012…Q-016 rozstrzygni�
 | F4. Wydajność | 1000 / 5000 treningów: rozmiar stanu, zapis/odczyt+migracja, rekordy, PR historii, render startu, historii i Postępów; minimum z kilku prób. Uwaga: Jest (vm) spowalnia dostęp do globali ~30× względem zwykłego Node — liczby porównywać między wersjami, nie traktować jako czasu na telefonie. Równoważność szybkich ścieżek z wzorcem: tests/audit-perf-equiv.test.ts (fast-check) Wpis znaku w pole serii: pole ciężaru pierwszego bloku z ciężarem wg etykiety z ekranu (`loadLabel` z przyrządem bloku, np. „kg/hantel”); brak pola = błąd pomiaru, nie pominięcie (runda 82c — wcześniej szukał „kg” i po cichu pomijał) | scripts/perf/app.perf.tsx | npm run perf (PERF_N=1000,5000) |
 | F5. Audyty tematyczne | niezależny audytor na temat (trwałość, porzucony trening, wymiana danych, logika treningu, ścieżka użytkownika); każdy błąd z testem odtwarzającym; próg ważności jak wyżej | tests/audit-*.test.ts(x) | npm test |
 
+## G. Sprawdzenie podobieństwa wskazówek techniki do źródeł (F3, 12.10.2026)
+
+Decyzja właściciela 12.10.2026 (F3, wariant A): jednorazowe sprawdzenie skryptem, wynik zapisany tutaj. Stałego testu w verify nie ma:
+teksty źródeł są treściami cudzymi i nie trafiają do repozytorium (zasada z 09.10.2026).
+
+**Zakres:** `lib/cues` po scaleniu partii 1–2 (gałąź `wydanie-0.14`, commit `4fd7038`; bez zmian w `lib/cues` do `0186e07`): 102 ćwiczenia, 306 wskazówek, 230 źródeł w `lib/cues/data.json`.
+Teksty EN (`lib/cues/text/en.json`) — 306 zdań (każda wskazówka to jedno zdanie). Teksty PL nie mają z czym się równać:
+żadne z 230 źródeł nie jest polskie, a PL to własne sformułowania, nie tłumaczenie źródła. Pozostałe języki tłumaczymy z EN/PL, nie ze źródeł.
+
+**Metoda:**
+1. Pobranie stron źródeł (adres z `data.json`, dla ExRx adres `archive`). Strony PMC i PubMed zwracają reCAPTCHA, więc pełne teksty
+   pobrano z Europe PMC (REST `fullTextXML`), a gdy pełnego tekstu nie ma w otwartym dostępie — abstrakt. Strony z ekranem
+   zabezpieczającym (np. „Azure WAF”) pobrano ponownie. Pobrane teksty leżą tylko poza repozytorium.
+2. Normalizacja po obu stronach: usunięcie znaczników HTML, skryptów i stylów (PDF przez `pdftotext`), małe litery, bez interpunkcji
+   (myślnik i łącznik dzielą słowa, apostrof znika).
+3. Dla każdego zdania: najdłuższy wspólny ciąg kolejnych słów i liczba wspólnych 5-gramów słów: (a) ze źródłami cytowanymi przy tej
+   wskazówce (dla wszystkich ćwiczeń, w których występuje), (b) dla kontroli — ze wszystkimi pobranymi źródłami.
+4. **Próg:** ciąg ≥ 8 słów albo ≥ 2 wspólne 5-gramy → zdanie do przeredagowania.
+
+**Wynik zbiorczy:**
+
+| Miara | Wartość |
+|---|---|
+| Ćwiczenia / wskazówki / zdania EN | 102 / 306 / 306 |
+| Źródła sprawdzone | 157 z 230: ACE 76, NASM 39, badania 28 (19 pełnych tekstów z Europe PMC, 6 abstraktów, 3 PDF/strony uczelni), Eleiko 5, Stronger by Science 3, Concept2 2, HSS, Life Fitness, NordicTrack, NSCA po 1 |
+| Źródła niedostępne | 73, wszystkie z ExRx.net: exrx.net zwraca 403, a web.archive.org zrywa połączenie z tego środowiska |
+| Pokrycie | każde zdanie ma co najmniej jedno sprawdzone źródło cytowane; dla 101 zdań sprawdzono wszystkie cytowane źródła, 205 cytuje też ExRx (niesprawdzone) |
+| Najdłuższy wspólny ciąg (cytowane źródła): rozkład | 1 słowo: 25 · 2: 97 · 3: 90 · 4: 58 · 5: 22 · 6: 8 · 7: 3 · 8: 2 · 9: 1 |
+| Mediana / maksimum | 3 słowa / 9 słów (`erg.handle` wobec Concept2) |
+| Zdania z ciągiem ≤ 5 słów | 292 z 306 (95%) |
+| Wspólne 5-gramy (cytowane): rozkład | 0: 270 · 1: 21 · 2: 8 · 3: 4 · 4: 2 · 5: 1 |
+| Powyżej progu — źródła cytowane | 15 zdań (3 przez ciąg ≥ 8 słów, wszystkie 15 przez ≥ 2 wspólne 5-gramy) |
+| Powyżej progu — tylko inne źródła (kontrola) | 19 zdań (maks. ciąg 9 słów: `crunch.setup` wobec opisu innego ćwiczenia NASM) |
+
+**Ocena:** bliskiego przepisania nie ma. Najdłuższe wspólne ciągi to zwykłe zwroty instruktażowe („lie on your back with your…”,
+„keep your elbows at your sides”, „a straight line from head to…”). Te same zwroty występują w źródłach niecytowanych przy danej
+wskazówce, więc to język branżowy, nie zapożyczenie. Żadne zdanie nie powtarza całego zdania źródła. Mimo to próg przekraczało
+34 zdań. Parafrazy wprowadzone w `lib/cues/text/en.json` (gałąź `f-parafrazy`, 12.10.2026) nie zmieniają sensu merytorycznego: ten sam ruch, zakres, pozycja i liczby. Po zmianie
+ten sam skrypt, uruchomiony na zmienionym `en.json`, nie znajduje żadnego zdania powyżej progu (ani względem źródeł cytowanych, ani względem wszystkich): maksymalny ciąg 5 słów, najwyżej 1 wspólny 5-gram. Tekstów PL nie trzeba
+zmieniać, bo nie ma polskich źródeł. Zmiana EN nie zmienia znaczenia, więc tłumaczeń na inne języki nie trzeba poprawiać.
+
+**Otwarte (nadal):** 73 strony ExRx niesprawdzone. Do sprawdzenia z maszyny z dostępem do Wayback (np. jednorazowy przebieg w GitHub Actions
+bez zapisywania tekstów w artefaktach) albo ręcznie w próbce.
+
+### Zdania, które przekraczały próg, i wprowadzone parafrazy
+
+Wspólny fragment to cytat ze źródła ograniczony do części wspólnej. Kolumna „Po zmianie” podaje wynik parafrazy względem wszystkich pobranych źródeł.
+
+**A. Względem źródeł cytowanych przy wskazówce (15)**
+
+| # | Klucz | Ciąg / 5-gramy | Źródło | Wspólny fragment | Przed (EN) | Po (EN) | Po zmianie: ciąg / 5-gramy |
+|---|---|---|---|---|---|---|---|
+| 1 | `erg.handle` | 9 / 5 | `c2-technique` | „in a straight line to and from the flywheel” | Move the handle in a straight line to and from the flywheel. | Pull and return the handle along one straight path, toward the flywheel and back. | 3 / 0 |
+| 2 | `bike.foot` | 8 / 4 | `c2-bikeerg-setup` | „the ball of your foot on the pedal” | Keep the ball of your foot on the pedal. | Pedal with the front part of your foot, just behind the toes. | 3 / 0 |
+| 3 | `pallof.setup` | 8 / 4 | `eleiko-659d665d` | „height hold the handle with both hands at” | Stand side-on to a cable set at about chest height; hold the handle with both hands at your chest, cable taut. | Stand side-on to a cable at roughly chest level; grip the handle in both hands against your chest, with tension on the cable. | 5 / 1 |
+| 4 | `bss.move` | 7 / 3 | `nasm-bulgarian-split-squat` | „by bending your front knee and hip” | Lower yourself by bending your front knee and hip until your rear knee is just above the floor; stand up by pushing through your front leg. | Bend at the front hip and knee to descend until the back knee nearly touches the floor; drive through the front leg to rise. | 4 / 0 |
+| 5 | `db.setup` | 7 / 3 | `nasm-dead-bug` | „lie on your back with your arms” | Lie on your back with your arms reaching up and your hips and knees bent at right angles. | Lying face up, point both arms at the ceiling and bend your hips and knees to right angles. | 4 / 0 |
+| 6 | `sq.down` | 7 / 3 | `nasm-dumbbell-front-squat` | „your hips back and bending your knees” | Go down by sending your hips back and bending your knees together; stand up by pushing the floor away with your whole feet. | Descend by moving your hips back while your knees bend at the same time; rise by pushing the floor away with your whole feet. | 4 / 0 |
+| 7 | `burpee.down` | 6 / 3 | `nasm-squat-thrust-burpees` | „place your hands on the floor” | From a squat, place your hands on the floor and jump your feet back into a push-up position. | From a squat, put both palms on the floor and hop your feet back so you end up in a push-up position. | 4 / 0 |
+| 8 | `carry.noLean` | 6 / 2 | `nasm-best-abs` | „toward or away from the weight” | Do not lean toward or away from the weight; walk tall. | Keep your torso upright — don't tip toward the load or away from it; walk tall. | 3 / 0 |
+| 9 | `curl.elbows` | 6 / 2 | `nasm-barbell-bicep-curl` | „keep your elbows at your sides” | Keep your elbows at your sides — your forearm moves, not your upper arm. | Hold your elbows still by your sides — only the forearm moves, the upper arm stays put. | 3 / 0 |
+| 10 | `lcurl.move` | 6 / 2 | `nasm-seated-leg-curl` | „bringing your heels toward your glutes” | Bend your knees, bringing your heels toward your glutes; return slowly to straight legs. | Bend your knees to pull your heels in toward your buttocks; slowly straighten your legs again. | 4 / 0 |
+| 11 | `mc.setup` | 6 / 2 | `ace-258` | „slightly in front of your shoulders” | Support yourself on straight arms, hands under or slightly in front of your shoulders; one leg bent under your chest, the other straight behind you. | Hold yourself up on straight arms with your hands below your shoulders or a little ahead of them; one leg bent under your chest, the other straight behind you. | 3 / 0 |
+| 12 | `push.move` | 6 / 2 | `nasm-push-up` | „the floor by bending your elbows” | Lower your chest almost to the floor by bending your elbows; push back up until your arms are straight. | Bend your elbows to bring your chest close to the floor; press back up to straight arms. | 4 / 0 |
+| 13 | `splank.move` | 6 / 2 | `ace-303` | „a straight line from head to” | Lift your hips until your body forms a straight line from head to feet; hold, then switch sides. | Raise your hips until your head, hips and feet are in line; hold, then switch sides. | 4 / 0 |
+| 14 | `splank.setup` | 6 / 2 | `nasm-side-plank` | „lie on your side with your” | Lie on your side with your elbow right under your shoulder and your feet stacked. | On your side, prop yourself on your forearm with the elbow directly below the shoulder; feet stacked. | 4 / 0 |
+| 15 | `sumo.kneesOut` | 5 / 2 | `sbs-how-to-deadlift` | „as the bar leaves the” | As the bar leaves the floor, push your knees out, in line with your toes. | When the bar breaks from the floor, push your knees outward so they point the same way as your toes. | 4 / 0 |
+
+**B. Tylko względem innych pobranych źródeł, niecytowanych przy tej wskazówce (19)**
+
+| # | Klucz | Ciąg / 5-gramy | Źródło | Wspólny fragment | Przed (EN) | Po (EN) | Po zmianie: ciąg / 5-gramy |
+|---|---|---|---|---|---|---|---|
+| 16 | `crunch.setup` | 9 / 5 | `nasm-floor-bridge` | „lie on your back with your knees bent and” | Lie on your back with your knees bent and hands by your head. | Lie face up, knees bent, hands lightly beside your head. | 3 / 0 |
+| 17 | `calf.move` | 7 / 3 | `sbs-how-to-deadlift` | „until you feel a stretch in your” | Rise onto your toes as high as you can, then lower your heels until you feel a stretch in your calves. | Rise as high as you can onto your toes, then drop your heels until the calves are stretched. | 3 / 0 |
+| 18 | `gb.setup` | 7 / 3 | `ace-52` | „knees bent feet flat on the floor” | Lie on your back, knees bent, feet flat on the floor hip-width apart. | Lie face up with knees bent and both soles on the floor, hip-width apart. | 4 / 0 |
+| 19 | `lunge.stand` | 7 / 3 | `ace-139` | „with your feet about hip width apart” | Stand tall with your feet about hip-width apart. | Stand upright, feet roughly hip-width apart. | 3 / 0 |
+| 20 | `plank.move` | 7 / 3 | `ace-303` | „a straight line from head to heels” | Lift your body and hold a straight line from head to heels; keep breathing normally. | Lift your body so head, hips and heels stay in one line; hold it and keep breathing normally. | 3 / 0 |
+| 21 | `bp.blades` | 6 / 2 | `eleiko-659842f4` | „your shoulder blades back and down” | Pull your shoulder blades back and down and keep them there throughout. | Squeeze your shoulder blades together and down, and hold them there throughout. | 5 / 1 |
+| 22 | `bss.setup` | 6 / 2 | `sbs-how-to-deadlift` | „stand with your back to a” | Stand with your back to a bench and rest the top of your rear foot on it; front foot out in front. | With a bench behind you, place the top of your rear foot on it; front foot out in front. | 4 / 0 |
+| 23 | `carry.two` | 6 / 2 | `eleiko-659463af` | „hold a weight in each hand” | Hold a weight in each hand, arms hanging at your sides, weights next to your hips. | Take one weight in each hand and let your arms hang by your sides, the weights beside your hips. | 5 / 1 |
+| 24 | `cgbp.move` | 6 / 2 | `ace-32` | „with your elbows close to your” | Lower the bar to your chest with your elbows close to your body; press it up until your arms are straight. | Bring the bar down to your chest, elbows tucked near your torso; press it up to straight arms. | 3 / 0 |
+| 25 | `gm.move` | 6 / 2 | `sbs-how-to-deadlift` | „by pushing your hips back with” | Lean your torso forward by pushing your hips back with a straight back; return by driving your hips forward. | Keeping your back straight, hinge forward by moving your hips back; come up by driving your hips forward. | 5 / 1 |
+| 26 | `ht.dbSetup` | 6 / 2 | `acecert-7403` | „feet flat on the floor the” | Rest your upper back on a bench, feet flat on the floor, the dumbbell on your hips held with your hands. | Upper back on a bench, soles on the floor; hold the dumbbell across your hips with both hands. | 3 / 0 |
+| 27 | `inv.pull` | 6 / 2 | `ace-32` | „with your elbows close to your” | Pull your chest to the bar with your elbows close to your body; lower until your arms are straight. | Pull your chest up to the bar, elbows staying near your torso; lower to straight arms. | 4 / 0 |
+| 28 | `ohp.seat` | 6 / 2 | `nasm-chest-press-machine` | „with your back against the backrest” | Sit with your back against the backrest and feet firmly on the floor; dumbbells at your shoulders. | Sit with your back pressed into the backrest, feet planted on the floor; dumbbells at shoulder level. | 4 / 0 |
+| 29 | `pallof.move` | 6 / 2 | `hss-bike` | „straight out in front of you” | Press the handle straight out in front of you until your arms are straight, hold briefly, then slowly bring it back to your chest. | Push the handle forward from your chest until your arms are straight, pause briefly, then slowly bring it back to your chest. | 4 / 0 |
+| 30 | `scr.pull` | 6 / 2 | `ace-32` | „with your elbows close to your” | Pull the handle to your stomach with your elbows close to your body; return until your arms are straight. | Row the handle to your stomach, elbows staying near your torso; return to straight arms. | 2 / 0 |
+| 31 | `tpd.setup` | 6 / 2 | `nasm-barbell-bicep-curl` | „keep your elbows at your sides” | Face the high pulley, take the handle and keep your elbows at your sides. | Face the high pulley, grab the handle and pin your elbows to your sides. | 3 / 0 |
+| 32 | `fsq.rack` | 5 / 2 | `sbs-how-to-squat` | „on the front of your” | Rest the bar on the front of your shoulders with your elbows high, upper arms about horizontal. | Let the bar sit across the fronts of your shoulders, elbows high, upper arms roughly parallel to the floor. | 5 / 1 |
+| 33 | `ohp.bbSetup` | 5 / 2 | `sbs-how-to-squat` | „at the front of your” | Take the bar from a rack at shoulder height; grip shoulder-width or a little wider, bar resting at the front of your shoulders. | Take the bar from a rack at shoulder height; grip shoulder-width or a little wider, bar sitting across the fronts of your shoulders. | 4 / 0 |
+| 34 | `pp.setup` | 5 / 2 | `sbs-how-to-squat` | „at the front of your” | Bar resting at the front of your shoulders, grip about shoulder-width or a little wider, feet hip-width apart. | Bar sitting across the fronts of your shoulders, grip about shoulder-width or a little wider, feet hip-width apart. | 4 / 0 |
+
+Test regresji: `tests/cues-podobienstwo.test.ts` (34 klucze mają nowe teksty; teksty źródeł nie są trzymane w repozytorium). Pozostałe języki bez zmian — sens EN się nie zmienił.
+
 ## Rundy
 
 | Runda | Data | Automaty (pass/fail) | Przegląd świeżymi oczami | Nowe błędy | Licznik czystych rund |
