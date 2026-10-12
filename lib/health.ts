@@ -1,24 +1,15 @@
-import { Platform } from 'react-native';
 import type { Workout } from './seed';
 import { t } from './i18n';
 import { getState, save, exById, volume, workingSets, pausedTotal, flush } from './store';
 import { catalogKey } from './seed';
+import { hk as lib } from './hkModule';
 
 /*
- * Zapis treningu do Apple Health (0.6, HealthKit write). Biblioteka @kingstinct/react-native-healthkit 16.x (Nitro Modules; od 0.15.0,
+ * Zapis treningu do Apple Health (0.6, HealthKit write); ładowanie biblioteki i kształty wywołań: lib/hkModule.ts. Biblioteka @kingstinct/react-native-healthkit 16.x (Nitro Modules; od 0.15.0,
  * wcześniej 8.x). Wymaga dev buildu / IPA z config pluginem; w Expo Go moduł nie istnieje, więc ładujemy go leniwie i każdy brak
  * traktujemy jako „niedostępne”, nie jako błąd. Kontrakt 16.x: requestAuthorization({ toRead, toShare }), authorizationStatusFor synchroniczne,
  * saveWorkoutSample(rodzaj, próbki, start, koniec, sumy, metadane) → WorkoutProxy (UUID w `uuid`, po użyciu `dispose()`), błąd zapisu = odrzucona obietnica.
  */
-type HKProxy = { uuid: string; dispose?: () => void };
-type HK = { authorizationStatusFor?: (type: string) => number | Promise<number>; isHealthDataAvailableAsync: () => Promise<boolean>; requestAuthorization: (options: { toRead?: readonly string[]; toShare?: readonly string[] }) => Promise<boolean>; saveWorkoutSample: (type: number, quantities: readonly unknown[], start: Date, end: Date, totals?: { distance?: number; energyBurned?: number }, metadata?: Record<string, string | number | boolean>) => Promise<HKProxy> };
-let mod: HK | null | undefined;
-function lib(): HK | null {
-  if (mod !== undefined) return mod;
-  if (Platform.OS !== 'ios') { mod = null; return mod; }
-  try { mod = (require('@kingstinct/react-native-healthkit') as { default: HK }).default; } catch { mod = null; }
-  return mod;
-}
 const WORKOUT_TYPE = 'HKWorkoutTypeIdentifier';
 /** HKWorkoutActivityType (@kingstinct/react-native-healthkit 16.x, enum WorkoutActivityType; wartości liczbowe jak w 8.x). Audyt 0.10 MER-18: trening z samych ćwiczeń cardio nie jest siłowy. */
 export const HK_ACTIVITY = { traditionalStrength: 50, functionalStrength: 20, running: 37, walking: 52, cycling: 13, rowing: 35, elliptical: 16, stairClimbing: 44, jumpRope: 64, mixedCardio: 73 } as const;
