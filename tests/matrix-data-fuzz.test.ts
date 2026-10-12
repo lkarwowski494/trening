@@ -391,7 +391,7 @@ describe('5 lat codziennych treningów (~1830) — budżet czasu', () => {
     let t0 = realNow(); await renderApp({ saved: snapshot }); await flushAll(50); const dStart = realNow() - t0;
     expect(store.getState().workouts).toHaveLength(N);
     t0 = realNow(); await go('/history'); await flushAll(50); const dHist = realNow() - t0; expect(screen.queryAllByText(/Dzień 0/).length).toBeGreaterThan(0);
-    t0 = realNow(); await go('/more/progress?ex=' + ids[0]); await flushAll(50); const dProg = realNow() - t0;
+    t0 = realNow(); await go('/progress?ex=' + ids[0]); await flushAll(50); const dProg = realNow() - t0;
     expect({ dStart: dStart < 8000, dHist: dHist < 8000, dProg: dProg < 8000, ms: [dStart, dHist, dProg].map(Math.round) }).toMatchObject({ dStart: true, dHist: true, dProg: true });
   });
 });
@@ -405,7 +405,7 @@ describe('aplikacja na danych z popsutych kopii (po sanityzacji)', () => {
       for (const [i, raw] of SAMPLES.entries()) {
         await renderApp({ saved: raw }); await flushAll(50); expect({ i, recovery: store.getRecovery() }).toEqual({ i, recovery: null });
         const st = store.getState(); const w = st.workouts[0]; const ex = st.exercises.find(e => st.workouts.some(x => x.exercises.some(b => b.exerciseId === e.id)));
-        for (const href of ['/history', ...(w ? [`/history/${w.id}`] : []), ...(ex ? [`/more/progress?ex=${ex.id}`, `/exercise/${ex.id}`] : []), '/templates', ...(st.templates[0] ? [`/template/${st.templates[0].id}`] : []), '/exercises', '/more/locations', '/more/bands'])
+        for (const href of ['/history', ...(w ? [`/history/${w.id}`] : []), ...(ex ? [`/progress?ex=${ex.id}`, `/exercise/${ex.id}`] : []), '/templates', ...(st.templates[0] ? [`/template/${st.templates[0].id}`] : []), '/exercises', '/more/locations', '/more/bands'])
           { await go(href); await flushAll(30); expect({ i, href, ok: !!screen.toJSON() }).toEqual({ i, href, ok: true }); }
       }
     } finally { spy.mockRestore(); }

@@ -61,7 +61,7 @@ describe('K2 (A11-03): etykiety zakładek na wąskim ekranie', () => {
   test.each(['lv', 'bg', 'el'] as const)('%s: każda etykieta zakładki — jedna linia, adjustsFontSizeToFit z minimalną skalą (zamiast „…” na 320 pt)', async l => {
     await bootIn(l, '/more');
     const { TAB_LABEL_MIN_SCALE } = require('@/components/TabIcon');
-    for (const k of ['Trening', 'Szablony', 'Ćwiczenia', 'Kalendarz', 'Więcej']) {
+    for (const k of ['Trening', 'Plan', 'Postępy', 'Więcej']) {
       const els = texts().filter(x => str(x) === t(k) && x.props.numberOfLines === 1); /* etykieta zakładki (nie tytuł ekranu) */
       expect([k, els.length > 0]).toEqual([k, true]);
       for (const el of els) expect([k, el.props.adjustsFontSizeToFit, el.props.minimumFontScale, el.props.allowFontScaling]).toEqual([k, true, TAB_LABEL_MIN_SCALE, false]);
@@ -81,7 +81,7 @@ describe('K2 (A11-09): VoiceOver czyta głosem języka aplikacji', () => {
     const auto = rows(t('Jak w telefonie'));
     expect(auto.length > 0 && auto.every((r: Node) => r.props.accessibilityLanguage === 'de')).toBe(true);
   });
-  test.each([['el', '/more/settings'], ['tr', '/'], ['uk', '/history'], ['el', '/more/progress'], ['de', '/templates']] as const)('%s %s: każdy element czytany przez VoiceOver (tekst, element accessible, pole, przełącznik) ma accessibilityLanguage = język aplikacji', async (l, url) => {
+  test.each([['el', '/more/settings'], ['tr', '/'], ['uk', '/history'], ['el', '/progress'], ['de', '/templates']] as const)('%s %s: każdy element czytany przez VoiceOver (tekst, element accessible, pole, przełącznik) ma accessibilityLanguage = język aplikacji', async (l, url) => {
     await bootIn(l, url);
     const { n, bad } = langGaps(l);
     expect(n).toBeGreaterThan(5); expect(bad).toEqual([]);
@@ -102,7 +102,7 @@ describe('K2 (A11-09): VoiceOver czyta głosem języka aplikacji', () => {
       if (url === '/more/language') continue; /* wiersze listy języków celowo w języku nazwy — osobny test wyżej */
       const g = langGaps('de'); n += g.n; bad.push(...g.bad.map(b => `${url}: ${b}`));
     }
-    expect(routes).toHaveLength(30); /* 28 tras (+ wybór szablonu i Progresja, 11.10.2026) + podgląd ćwiczenia z „Techniką” + /generator?mode=own (plan z moich szablonów, 09.10) */ expect(n).toBeGreaterThan(500); expect([...new Set(bad)]).toEqual([]);
+    expect(routes).toHaveLength(31); /* 29 tras (+ wybór szablonu i Progresja, 11.10.2026; + /more/import, import CSV, 12.10.2026) + podgląd ćwiczenia z „Techniką” + /generator?mode=own (plan z moich szablonów, 09.10) */ expect(n).toBeGreaterThan(500); expect([...new Set(bad)]).toEqual([]);
   });
 });
 
@@ -110,7 +110,7 @@ describe('K3 (A11-11): krój mono (IBM Plex Mono) bez liter greckich', () => {
   test('el: Postępy (podsumowanie „προηγ.”, rekordy), szczegóły sesji, trening w toku — żaden tekst krojem mono nie zawiera liter greckich', async () => {
     const { F } = require('@/lib/theme');
     let wid = '';
-    await bootIn('el', '/more/progress', () => {
+    await bootIn('el', '/progress', () => {
       const st = store.getState(); store.startFromTemplate(st.templates[0]); store.toggleDone(0, 0); wid = store.finishWorkout(Date.now())!.id;
       store.startFromTemplate(st.templates[0]); store.toggleDone(0, 0);
     });
@@ -121,7 +121,7 @@ describe('K3 (A11-11): krój mono (IBM Plex Mono) bez liter greckich', () => {
       if (Array.isArray(x)) { x.forEach(c => walk(c, fam)); return; }
       if (typeof x !== 'object') return; walk(x.children, flat(x.props?.style).fontFamily ?? fam);
     };
-    for (const r of ['/more/progress', `/history/${wid}`, '/']) { await go(r); await flushAll(10); walk(screen.UNSAFE_root); }
+    for (const r of ['/progress', `/history/${wid}`, '/']) { await go(r); await flushAll(10); walk(screen.UNSAFE_root); }
     expect(monoSeen).toBeGreaterThan(5); expect(greekInMono).toEqual([]);
   });
   test('monoSafe: litery greckie krojem tekstu, reszta bez zmian (łacina i cyrylica są w Plex Mono)', () => {

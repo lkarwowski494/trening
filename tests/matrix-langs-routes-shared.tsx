@@ -34,9 +34,9 @@ export async function richState(l: Lang) {
   return { s: JSON.parse(JSON.stringify(S())), w, tpl, exId: S().exercises[0].id, locId: loc.id, blockId: S().active!.exercises[0].id };
 }
 export const routesFor = (r: Awaited<ReturnType<typeof richState>>) => [
-  '/', '/templates', '/exercises', '/history', '/more', '/more/settings', '/more/progress', '/more/locations', '/more/backup', '/more/language', '/more/bands',
+  '/', '/templates', '/exercises', '/history', '/more', '/more/settings', '/progress', '/more/locations', '/more/backup', '/more/language', '/more/bands',
   `/template/${r.tpl.id}`, `/exercise/${r.exId}`, `/history/${r.w.id}`, `/history/edit/${r.w.id}`, '/plan', '/generator', '/guide', `/swap?target=active:${r.blockId}`,
-  '/picker?target=active', '/reorder?target=active', '/history/add', `/more/location/${r.locId}`, '/more/bodymass', '/more/about', '/more/licenses',
+  '/picker?target=active', '/reorder?target=active', '/history/add', `/more/location/${r.locId}`, '/more/bodymass', '/more/about', '/more/licenses', '/more/import', /* 11.10.2026: import CSV — na końcu, żeby indeksy tras się nie przesunęły */
   '/generator?mode=own', /* 09.10.2026 (B): „Plan z moich szablonów” */
   '/pick-template', '/progression', /* 11.10.2026: wybór szablonu do startu (P2 B), Progresja (P8 B) */
 ];

@@ -5,11 +5,14 @@ nowe decyzje dopisywać tutaj (sekcja „Decyzje”), z datą. Kolejność czyta
 backlog) → docs/15 (App Store, ceny) → docs/09 (dziennik testów; stare rundy w docs/09-archiwum-do-0.11.md).
 
 ## Gałęzie i wydania
-- `main` = **0.11.0**, build **1005** (TestFlight, 10.10.2026), commit 0d71775, tag `v0.11.0-b1005` (tag zakłada właściciel w GitHubie —
-  sesja agenta nie może wypychać tagów, decyzja 10.10 wariant A). Wcześniej 0.10.0 / build 1004 (09.10).
-- `feature/e2-swap` = **0.12.0** (niewydana): języki fal 1–4 (pt-BR, es-419, id, ms, vi, ru, ja, ko, zh-Hant; razem 35), wpis „Co nowego” 0.12.
-  E2E z językami zielone (run 38035814445); E2E dla 0.12.0 w toku. **Audyt 0.12 wstrzymany** (polecenie właściciela 11.10).
-- `refactor-store` (w toku, 11.10): podział `lib/store.ts` na moduły bez zmiany działania — decyzja właściciela 11.10, wariant B.
+- `main` = **0.12.0**, build **1008** (TestFlight, 12.10.2026; PR #1–#3), tag `v0.12.0-b1008` (zakłada właściciel). Build 1006 i 1007 nie powstały:
+  przebiegi padły na testach przed wysłaniem (poniedziałkowy scenariusz E2E 05; brak pamięci w teście języków × trasy) — tag `v0.12.0-b1006` zostaje (decyzja 12.10, B).
+  Wcześniej 0.11.0 / build 1005 (10.10), 0.10.0 / build 1004 (09.10).
+- `feature/e2-swap` = **0.12.0** (72be439): języki fal 1–4 (razem 35), nowy ekran Trening, Progresja, „zrobiony wcześniej”, podsumowanie rekordów,
+  podział store.ts. Verify 237/237 plików, E2E pełny build zielony (run 38174381455, 11.10.2026). **PR #1 do `main`** — scala właściciel (12.10.2026:
+  sesja agenta nie może wypchnąć do `main` ani sama rozszerzyć uprawnień — blokada bezpieczeństwa), potem `testflight.yml` na `main` i tag `v0.12.0`.
+- `wydanie-0.13` (12.10.2026): 0.12.0 + `zakladki-4` (4 zakładki, masa ciała w Postępach) + `import-csv` + `strona-www` + `opis-app-store` + specyfikacje
+  docs/26 (prośba o ocenę), docs/27 (subskrypcja), docs/28 (Apple Zdrowie etap 0). Gałęzie źródłowe zostają na GitHubie jako kopie.
 
 ## W toku (11.10.2026) — lista tematów właściciela, przerabiana po kolei
 1. Ocena realności znalezisk — **zrobione** (CLAUDE.md, „Audyty i wydania” pkt 6).
@@ -25,9 +28,14 @@ backlog) → docs/15 (App Store, ceny) → docs/09 (dziennik testów; stare rund
 10. Baza ćwiczeń: wskazówki i animacje (ExRx — brak API/licencji; MuscleWiki — płatne API i serwer).
 11. Nazwa wydawcy Apps4Brew. 12. Strona internetowa. 13. Ryzyko FitNotes.
 
+**Import CSV (11.10.2026, gałąź agenta, bez pusha):** formatA + formatB zrobione (docs/21, „Import CSV z popularnych dzienników”), Hevy [OTWARTE]. Ekran `more/import`,
+logika `lib/csvparse.ts`/`lib/csvimport.ts`, testy `csv-import-logic`/`csv-import-ui`, 31 słowników (26 kluczy; do sprawdzenia przez native speakera). E2E Maestro — pominięty (docs/09).
+
 ## Otwarte ryzyka
 - E2E-105: zgubione znaki przy szybkim wpisie masy ciała na wolnym symulatorze — do sprawdzenia na telefonie (docs/25).
 - Scenariusz E2E 05 (Plank) — zgubione znaki po zimnym starcie; poprawka jak w 15 (backlog).
+- Interpreter Maestro w Jest (tests/maestro-flows) liczy czas od zegara maszyny: uruchomiony po ok. 22:00 UTC przekracza północ i scenariusz 05 („This week: deload”) pada —
+  to artefakt pory dnia, nie błąd (z `TZ=America/Los_Angeles` albo wcześniej w ciągu dnia przechodzi).
 
 ## Decyzje (od 11.10.2026)
 - 11.10.2026: raporty rynkowe — wnioski w docs/research/raporty-rynkowe-2026-10.md; import CSV i prośba o ocenę → „Przed App Store” (A+A).
@@ -115,3 +123,44 @@ backlog) → docs/15 (App Store, ceny) → docs/09 (dziennik testów; stare rund
   TestFlight 0.12.0: języki fal 1–4 + nowy ekran (wydanie 1) — bez osobnego wpisu „Co nowego” o nowym ekranie, lista kontrolna zamiast audytu.
   Do backlogu (bez blokowania wydania): przegląd tłumaczeń przez native speakerów — „Progresja” (el, tr, ko, ja, zh-Hant, vi, de), „Sylwetka”
   (it, vi, zh-Hant), hu „A {day} napra”, ja „先に完了”, ko „만들기”/„생성”.
+- 11.10.2026: **wydanie 2 — cztery zakładki i masa ciała w Postępach (docs/22 wariant A; P1, P5 A) — zrobione na gałęzi `worktree-agent-a8b35c1e8d37ffe2c`
+  (od `feature/e2-swap`, niewypchnięta; scalenie i E2E na symulatorze — główna sesja).** Zakładki: **Trening · Plan** (dawny Kalendarz) **· Postępy** (nowa,
+  z „Progresją”, podsumowaniem, wykresami, ćwiczeniami i sekcją „Masa ciała”) **· Więcej** (Szablony i Ćwiczenia na górze listy jako ekrany stosu `/templates`,
+  `/exercises`). Z Ustawień znikła „Masa ciała”; `app/more/progress.tsx` → `app/(tabs)/progress.tsx`. Bez zmiany schematu danych. Przepływy w stuknięciach
+  (od zakładki Trening): Postępy 2 → **1**; masa ciała (Więcej → Ustawienia → Masa ciała) 3 → **2** (Postępy → „Masa ciała — pomiary”); Szablony i Ćwiczenia
+  1 → **2** (Więcej → …); Plan 1 → 1; start „Z szablonu” bez zmian (2); Planowanie → Szablony → wraca do planu (stos). Żadna funkcja nie zniknęła
+  (tests/tabs-four.test.tsx sprawdza każdą drogę). Wpis „Co nowego” 2026-10-11 (3 punkty, 35 języków), teksty: „Plan” + 7 zmienionych (35 języków).
+  **Do akceptacji właściciela** (najmniej inwazyjne wybory agenta): (1) „Postępy” z ekranu ćwiczenia przełącza na zakładkę (zamyka stos, „Back” nie wraca do
+  ćwiczenia — jak „Pokaż” w Przewodniku); alt.: osobny ekran stosu dla wykresu ćwiczenia; (2) masa ciała w Postępach = ostatni pomiar + wykres + przycisk
+  do istniejącego ekranu pomiarów (dodawanie i lista tam); alt.: formularz w Postępach; (3) treść Postępów renderuje się tylko przy aktywnej zakładce, więc szukanie
+  i wybrane ćwiczenie znikają po wyjściu z zakładki (nie liczy wykresów w tle przy wpisach serii); (4) teksty z „Kalendarzem” (Przewodnik, komunikaty) zostały —
+  kalendarz jest w zakładce Plan; zmiana ~15 tekstów × 35 języków poza zakresem; (5) ekrany Szablony/Ćwiczenia mają tytuł tylko w nagłówku stosu (liczba
+  ćwiczeń jako sama liczba obok „+ Nowe”); (6) wpis „Co nowego” jest osobnym niewydanym wpisem nad 0.12.0 (też niewydanym) — przy nadawaniu numerów wersji
+  rozdzielić albo scalić; (7) tłumaczenia „Plan” i nowych zdań (en/de/… 35 języków) do przeglądu native speakerów razem z backlogiem; (8) E2E Maestro: nowy
+  `19-zakladki`, zmienione 01, 05, 08, 13–17 i podprzepływ `szablon-testowy` — sprawdzone interpreterem w Jest, wymagają przebiegu na symulatorze
+  (ryzyka: 14 — wejście przez „Planning”, 15 — masa ciała w Postępach, 16/17 — Więcej → „Exercises”).
+  Testy: 111 powiązanych plików (w tym nowy tests/tabs-four.test.tsx, interpreter Maestro dla 19 scenariuszy) — 3187 zielonych, 2 pominięte; `tsc` czysty,
+  `check:i18n`, `check:matrix` (1904 pozycji, bez testu: 0) OK. Pełnego `verify` (expo export, verify:native) nie uruchamiano — główna sesja.
+- 11.10.2026 (ok. 23:30): **TestFlight 0.12.0 — A**: po zielonym E2E 18/18, verify i liście kontrolnej scalenie do `main` i `testflight.yml` w nocy.
+  12.10.2026: scalenie zablokowane przez zabezpieczenie sesji (wypchnięcie do `main` = wdrożenie produkcyjne); właściciel wybrał B (reguła uprawnień) —
+  agent nie może sam dopisać reguły (blokada „samomodyfikacji”); zamiast tego **PR #1**, scala właściciel.
+- 11.10.2026: **hasło „w cenie espresso lub taniej”** — wyjątek od warunku źródeł (docs/15, sekcja metadanych pkt 4); wstawiane razem z blokiem cenowym.
+- 11.10.2026 (ok. 23:45, „wszystko wg rekomendacji”): (1) wskazówki ćwiczeń, partia 1 — badacz (A), adresy od Gemini jako punkt startu; (2) **0.13.0 =
+  4 zakładki + import CSV + strona www** (A); (3) import formatu bez godzin — dzień z istniejącym treningiem pomijany (A); (4) import: kg/lb z Ustawień,
+  nowe ćwiczenie przy braku dopasowania, 12:00 przy braku godziny — zaakceptowane; (5) **prośba o ocenę** (docs/26): po N-tym treningu z rekordem (B+A),
+  N = 5 (decyzja produktowa, bez źródła), odstęp 14 dni, max 1 na wersję, bez linku w Ustawieniach, data w polu ustawień; (6) **nazwa w App Store — A**:
+  „Trening: dziennik siłowni” / „Training: Gym Log & Rest Timer” (docs/15).
+- 11.10.2026: **kolejność wydań natywnych — A** (docs/28): (1) sama aktualizacja `@kingstinct/react-native-healthkit` 8 → 16, zapis do Zdrowia jak dziś;
+  (2) Apple Zdrowie etapy 1–2 (odczyt); (3) subskrypcja StoreKit (docs/27: najpierw pole „trening na żywo” i logika limitu za wyłączoną flagą, potem
+  biblioteka i ekran zakupu). Odrzucone: B (biblioteka razem z etapem 1), C (Zdrowie i StoreKit w jednym wydaniu).
+- 11.10.2026: **Gemini (subskrypcja właściciela) — wniosek z prób** (wskazówki techniki, partia 1): Deep Research czyta strony, ale znajduje mało
+  (43/50 „brak źródeł”); bez Deep Research podaje zmyślone cytaty i adresy (sprawdzone: ACE nr 42 to inne ćwiczenie, cytat ACE nr 183 nie występuje);
+  w trybie „tylko adresy” ok. 6 trafnych stron ACE/NASM na 50, źródło innego serwisu podpisane jako ExRx (weighttraining.guide), analogie jako źródła.
+  Wniosek: Gemini do researchu rynku, opinii i przeglądu tłumaczeń; cytaty i źródła merytoryczne — zawsze badacz (WebFetch + weryfikacja).
+  Zadania pasujące do Gemini agent zgłasza właścicielowi z gotowym promptem (CLAUDE.md).
+- 12.10.2026: 0.12.0 — A: osobny build dziś (poprawka scenariusza 05, PR, Merge + Run workflow + tag ręcznie, build 1007; tag v0.12.0-b1006 do usunięcia); automatyzacja (TestFlight + tag po scaleniu do main) — A, wklejana przez właściciela w PR 0.13.0 (agent nie może zmieniać procesu wydań — blokada „Production Deploy”).
+- 12.10.2026: komunikacja — A: agent pisze tylko, gdy potrzebna decyzja/kliknięcie właściciela, przy niepowodzeniu ze skutkami albo na końcu etapu; bez bieżących komunikatów o postępie.
+- 12.10.2026: tag v0.12.0-b1006 zostaje (B) — build 1006 nie powstał (TestFlight 38207286308 padł na teście przed wysłaniem do Apple); właściwy build 0.12.0 = 1007.
+- 12.10.2026: cel serii na partię/tydzień — funkcja A (Ustawienia: per partia Automatycznie/Ręcznie; paski mierzą do celu), wydanie 0.14.0; research „serie wg wielkości partii” — badacz, bez Gemini (docs/research/32).
+- 12.10.2026: research serii wg partii (docs/research/32): automatycznie 10 dla każdej partii (hierarchia: ACSM 2026, Schoenfeld 2017). Produkt 0.14.0: (1) A — zdanie przy kresce 10 serii w Postępach, że ćwiczenia pomocnicze liczą się za pół serii; (2) B — w statystykach barki na przód/bok/tył, plecy na górę/najszersze.
+- 12.10.2026: audyt zmian 0.13.0 — 1 WYSOKIE (import CSV: ćwiczenia z masą ciała w `weight` zamiast `addKg` → błędne rekordy/e1RM; naprawa przed wydaniem). Backlog 0.14.0: ŚREDNIE — formatB bez godziny pokazuje szacowany czas (12:00, serie×90 s) jak dane; NISKIE — teksty „Kalendarz”/„zakładka Szablony” po zmianie zakładek; Postępy gubią wybrane ćwiczenie po powrocie. Uwagi: dystans formatA jako metry [OTWARTE] — sprawdzić na prawdziwym pliku; kontakt na support.html przed App Store.

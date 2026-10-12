@@ -6,9 +6,10 @@ import { t, appName } from '@/lib/i18n';
 import { wu } from '@/lib/units';
 import { usePrefsTick, getState } from '@/lib/store';
 import * as timer from '@/lib/timer';
+import { useRouter } from 'expo-router';
 
 export default function Backup() {
-  usePrefsTick(); // runda 30: po imporcie język i jednostka ekranu jak w zaimportowanych danych
+  const router = useRouter(); usePrefsTick(); // runda 30: po imporcie język i jednostka ekranu jak w zaimportowanych danych
   const fail = () => Alert.alert(t('Nie udało się'), t('Spróbuj ponownie.')); const busy = useRef(false); // runda 11: jeden import naraz
   return (
     <Screen><ScrollView contentContainerStyle={{ paddingVertical: 10, gap: 12 }}>
@@ -17,6 +18,8 @@ export default function Backup() {
       <Btn title={t('Eksportuj historię do CSV')} block onPress={() => exportCsv().catch(fail)} />
       <Muted style={{ fontSize: 13 }}>{t('CSV: ciężar w jednostce z ustawień ({u}), dystans w metrach.', { u: wu() })}</Muted>
       <Btn title={t('Importuj backup')} block onPress={() => Alert.alert(t('Nadpisać dane?'), t('Import zastąpi wszystkie obecne dane zawartością pliku. Obecne dane (także trening w toku) zapiszą się najpierw jako kopia w Plikach: {app} → Backup.', { app: appName() }) + safetyRecoveryNote(), [{ text: t('Nie'), style: 'cancel' }, { text: t('Importuj'), style: 'destructive', onPress: () => { if (busy.current) return; busy.current = true; importBackup().finally(() => { busy.current = false; }).then(ok => { if (!ok) return; timer.resetAll().catch(() => {}); Alert.alert(t('Zaimportowano')); }).catch((e: unknown) => isSafetyError(e) ? Alert.alert(t('Import przerwany'), e.message) /* Q-019 */ : Alert.alert(e instanceof Error && e.message.includes('schem') ? t('Backup z nowszej wersji aplikacji') : t('To nie wygląda na backup z tej apki'), e instanceof Error && e.message.includes('schem') ? e.message : undefined)); } }])} />
+      <Btn title={t('Importuj historię z pliku CSV')} block nav onPress={() => router.push('/more/import')} />
+      <Muted style={{ fontSize: 13 }}>{t('Dopisuje treningi z plików CSV popularnych dzienników treningowych — bez usuwania obecnych danych, z podglądem przed zapisem.')}</Muted>
       <Muted style={{ fontSize: 13 }}>{getState().settings.autoBackup ? t('Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → {app} → Backup, ostatnie {n}). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego Apple ID wyeksportuj backup na zewnątrz.', { app: appName(), n: AUTO_KEEP }) : t('Kopia automatyczna po treningu jest wyłączona (Ustawienia).')}</Muted>
     </ScrollView></Screen>
   );

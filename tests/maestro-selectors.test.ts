@@ -101,13 +101,14 @@ test('regresja run 37738868663: każde stuknięcie „Swap exercise: …” na e
   expect(bad).toEqual([]);
 });
 
-test('regresja run 37761959586: po wejściu w Postępy (ekran stosu bez paska zakładek) stuknięcie w zakładkę dopiero po „Back”', () => {
+test('regresja run 37761959586: po wejściu w ekran stosu bez paska zakładek (od 11.10.2026: Templates, Exercises pod Więcej; dawniej Postępy) stuknięcie w zakładkę dopiero po „Back”', () => {
   const fs = require('fs'); const path = require('path'); const bad: string[] = [];
   for (const f of files(dir)) {
     let onStack = false; const name = path.basename(f);
     for (const line of fs.readFileSync(f, 'utf8').split('\n')) {
+      if (/^\s*-\s*launchApp/.test(line)) { onStack = false; continue; } /* nowy start aplikacji zaczyna od zakładek */
       const m = line.match(/^\s*-\s*tapOn:\s*"([^"]+)"/); if (!m) continue;
-      if (/^Progress/.test(m[1])) onStack = true; else if (m[1] === 'Back') onStack = false;
+      if (/^(Templates|Exercises)$/.test(m[1])) onStack = true; else if (m[1] === 'Back') onStack = false;
       else if (/, tab\.\*$/.test(m[1]) && onStack) bad.push(`${name}: ${m[1]}`);
     }
   }
@@ -191,12 +192,27 @@ describe('regresja E2E 91', () => {
   });
   test('10: guma Pull Up wskazana względem ✓ wiersza (leftOf), nie karty „Set done” (po przewinięciu nad ekranem)', () => {
     const s = steps('10-gumy.yaml'); const after = s.slice(s.indexOf('- extendedWaitUntil: { visible: "Set 1 done — Pull Up", timeout: 30000 }'));
-    expect(after).toContain('- tapOn: { text: "Band: none", leftOf: "Set 1 done — Pull Up" }');
+    expect(after).toContain('- tapOn: { text: "Band: none", below: "Pull Up", leftOf: "Set 1 done — Pull Up" }');
     expect(after.filter((l: string) => /below: "Set done/.test(l))).toEqual([]);
+  });
+  test('10 (run 38264871642): guma Pull Up kotwiczona także nagłówkiem „Pull Up” — `leftOf` samo trafiało w gumę wiersza Band Pull Apart (zrzut: Pull Up nadal G1)', () => {
+    const s = steps('10-gumy.yaml'); const after = s.slice(s.indexOf('- extendedWaitUntil: { visible: "Set 1 done — Pull Up", timeout: 30000 }'));
+    const upTo = after.slice(0, after.indexOf('- takeScreenshot: 62-guma-pull-up')).filter((l: string) => /"Band: /.test(l));
+    expect(upTo.length).toBe(4);
+    for (const l of upTo) expect(l).toContain('below: "Pull Up"');
+  });
+  test('14 (run 38264871642): przejście Więcej → Przewodnik czeka 30 s (nawigacja jak w innych scenariuszach), nie 15 s', () => {
+    const s = steps('14-generator.yaml');
+    expect(s.filter((l: string) => /visible: "Read: \.\*"|visible: "Show: Weekly plan and Calendar"/.test(l)).every((l: string) => /timeout: 30000/.test(l))).toBe(true);
+    expect(s.some((l: string) => /visible: "Read: \.\*", timeout: 30000/.test(l))).toBe(true);
   });
   test('07: przed „Always at Home — …” przewinięcie na środek ekranu (tap przy górnej krawędzi trafił w baner iOS → Ustawienia)', () => {
     const s = steps('07-zamiana.yaml'); const i = s.indexOf('- tapOn: "Always at Home — .*"');
     expect(i).toBeGreaterThan(0); expect(s[i - 1]).toMatch(/^- scrollUntilVisible: \{ element: "Always at Home — \.\*".*centerElement: true/);
+  });
+  test('07 (run 38241528019): przed stuknięciem podpowiedzi „Swap to substitute” przesunięcie listy w dół (podpowiedź pod paskiem stanu → tap w pasek)', () => {
+    const s = steps('07-zamiana.yaml'); const i = s.lastIndexOf('- tapOn: "Swap to substitute: .*"');
+    expect(i).toBeGreaterThan(2); expect(s[i - 1]).toBe('- waitForAnimationToEnd'); expect(s[i - 2]).toMatch(/^- swipe: \{ start: "50%, 30%", end: "50%, 80%"/);
   });
   test('13: po pierwszym dniu planu okno zgody na przypomnienie zamykane „Not now” (opcjonalnie)', () => {
     const { EN } = require('@/lib/i18n.en'); const s = steps('13-kalendarz-plan.yaml'); const i = s.indexOf('- tapOn: "Monday: Upper A"');

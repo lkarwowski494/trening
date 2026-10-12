@@ -23,7 +23,7 @@ describe('treść i logika', () => {
     const ids = GUIDE.map(g => g.id); expect(new Set(ids).size).toBe(ids.length); expect(GUIDE.length).toBe(10); /* H1 (audyt 0.10): + „Zmiany w trakcie treningu”, „Edycja sesji i trening wstecz” */
     for (const g of GUIDE) {
       const st = g.steps(); expect(st.length).toBeGreaterThanOrEqual(2); expect(st.length).toBeLessThanOrEqual(4); st.forEach(s => expect(s).toMatch(/[.…]”?\.?$/));
-      const file = g.route === '/' ? 'app/(tabs)/index.tsx' : g.route === '/templates' || g.route === '/history' ? `app/(tabs)${g.route}.tsx` : `app${g.route}.tsx`;
+      const file = g.route === '/' ? 'app/(tabs)/index.tsx' : g.route === '/history' || g.route === '/progress' ? `app/(tabs)${g.route}.tsx` : `app${g.route}.tsx`; /* 11.10.2026: Postępy to zakładka, Szablony — ekran stosu (app/templates.tsx) */
       expect([g.id, fs.existsSync(path.join(__dirname, '..', file))]).toEqual([g.id, true]);
     }
   });
@@ -71,10 +71,10 @@ test('macierz: każdy tekst przewodnika (i punkt „Co nowego”) jest w treści
     'Zmiany w trakcie treningu', 'Edycja sesji i trening wstecz',
     'Na ekranie Trening „Planowanie” (bez planu: „Ustaw plan”) otwiera plan tygodnia, który przypisuje szablony do dni — plan powtarza się co tydzień.',
     'W tygodniu deload „Start” i „Powtórz ostatni” zaproponują „Mniej serii”: o około 1/3–1/2 mniej serii (np. 2 z 3; ćwiczenia z 1 serią bez zmian); ciężary i szablon bez zmian.', /* audyt 0.10 (D1, MER-04) */
-    'W zakładce Szablony „+ Nowy” tworzy szablon: ćwiczenia, serie, zakres powtórzeń i przerwy.',
+    'Więcej → Szablony: „+ Nowy” tworzy szablon: ćwiczenia, serie, zakres powtórzeń i przerwy.',
     'Więcej → Kopia zapasowa: eksport wszystkich danych do pliku i import z pliku.',
     'Więcej → Miejsca i sprzęt: dom, siłownia, hotel — każdy ze swoim sprzętem i ciężarami.',
-    'Więcej → Postępy: podsumowanie tygodnia lub miesiąca z poprzednim okresem obok.',
+    'Postępy: podsumowanie tygodnia lub miesiąca z poprzednim okresem obok.',
     'Wpisz ciężar i powtórzenia, odhacz serię ✓ — przerwa odlicza się sama.',
     'Wykresy ćwiczeń i rekordy; rekord w trakcie treningu widać przy serii.',
     /* audyt 0.10 fala 2 (UI): temat „Zmiany w trakcie treningu” i „Edycja sesji i trening wstecz” */
@@ -106,9 +106,9 @@ describe('ekrany', () => {
   test('wszystkie tematy po polsku na ekranie; „Pokaż” otwiera opisany ekran', async () => {
     const expectOn: Record<string, () => void> = {
       workout: () => expect(screen.getByLabelText('Inny trening')).toBeTruthy(), templates: () => expect(screen.getByText('+ Nowy')).toBeTruthy(),
-      plan: () => expect(screen.getByRole('header', { name: 'Kalendarz' })).toBeTruthy(), generator: () => expect(screen.getByText('Podgląd')).toBeTruthy(),
-      deload: () => expect(screen.getByRole('header', { name: 'Kalendarz' })).toBeTruthy(), /* 11.10.2026: Przewodnik „Deload” kieruje do planu (Kalendarz), nie do Postępów */
-      during: () => expect(screen.getByLabelText('Inny trening')).toBeTruthy(), history: () => expect(screen.getByRole('header', { name: 'Kalendarz' })).toBeTruthy(), progress: () => expect(screen.getByText('Wykresy pojawią się po pierwszym zakończonym treningu.')).toBeTruthy(), /* ekran Postępów bez treningów */
+      plan: () => expect(screen.getByRole('header', { name: 'Plan' })).toBeTruthy(), generator: () => expect(screen.getByText('Podgląd')).toBeTruthy(),
+      deload: () => expect(screen.getByRole('header', { name: 'Plan' })).toBeTruthy(), /* 11.10.2026: Przewodnik „Deload” kieruje do planu (zakładka Plan), nie do Postępów */
+      during: () => expect(screen.getByLabelText('Inny trening')).toBeTruthy(), history: () => expect(screen.getByRole('header', { name: 'Plan' })).toBeTruthy(), progress: () => expect(screen.getByText('Wykresy pojawią się po pierwszym zakończonym treningu.')).toBeTruthy(), /* ekran Postępów bez treningów */
       places: () => expect(screen.getAllByText(/Miejsc|miejsc/).length).toBeGreaterThan(0), backup: () => expect(screen.getAllByText(/Eksport|eksport/).length).toBeGreaterThan(0),
     };
     for (const g of GUIDE) {

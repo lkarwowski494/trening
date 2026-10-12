@@ -30,6 +30,7 @@ const entries = (l: Lang) => Object.entries(dictOf(l));
 /** We wszystkich językach: symbole/wzory oraz angielskie nazwy z siłowni, których polski tekst
  * źródłowy używa bez tłumaczenia (te same w innych językach — tak jak nazwy ćwiczeń z biblioteki po angielsku, lib/i18n.ts exName). */
 const SAME_ANY = new Set([
+  'Plan' /* nazwa zakładki (11.10.2026, dawniej Kalendarz): to samo słowo w en, de, nl, sv, da, nb, es, fr, ro, hr, tr */,
   'Plan: {name}' /* układ B (09.10.2026): „plan” to to samo słowo w wielu językach (en, de, nl, sv, da, nb, es, ro, hr, tr) */,
   /* marek i modeli sprzętu już nie ma (SEC2-01, decyzja 09.10.2026 (3) A — nazwy ogólne, tłumaczone) */
   /* symbole i wzory */ '{k}: {v}', '↑ {label} {value} ({delta})' /* tylko symbol i parametry (wydanie 1, 11.10.2026) */, 'max ±', 'e1RM', '{n} min' /* jednostka (generator, 08.10.2026) */, '{n} s', '{n} h', '{n} m', '{n} km', 'max' /* jednostki SI i skrót — audyt 0.10 A11-17 (cyrylica i el mają własne) */, 'Rekord: {list}' /* „rekord” w wielu językach (A11-18, etykieta plakietki PR) */,
@@ -50,7 +51,7 @@ const SAME_IN: Partial<Record<Lang, string[]>> = {
   et: ['{u}/hant.', '{u}/hantel' /* hantel (est.) */],
   es: ['Dieta', 'Lista', 'Masa' /* masa (hiszp., cel generatora 08.10.2026) */], pt: ['Dieta', 'Lista'] /* lista = lista (hiszp., port.) */, hu: ['Lista'] /* lista = lista (węg.) */,
   /* 07.10.2026 (wariant B) — te same słowa w języku docelowym */
-  it: ['Dieta', 'Serie' /* nagłówek kafelka (08.10.2026) */], sv: ['(kopia)' /* kopia (szw.) */, '{u}/hantel', 'e1RM (Epley, per hantel)', 'per hantel (×2)' /* hantel, per (szw.) */, 'Lista', 'sek.'],
+  it: ['Dieta', 'Serie' /* nagłówek kafelka (08.10.2026) */, 'Serie: {n}' /* it: „serie” = serie (import CSV, 12.10.2026) */], sv: ['(kopia)' /* kopia (szw.) */, '{u}/hantel', 'e1RM (Epley, per hantel)', 'per hantel (×2)' /* hantel, per (szw.) */, 'Lista', 'sek.'],
   da: ['sek.'], nb: ['sek.', 'Trening' /* APP_NAME.nb */], fi: ['Lista' /* fiń. lista; „Historia” — klucz usunięty 09.10.2026 (TST-08) */],
   en: ['Folder' /* folder (ang.) — 07.10.2026 wieczór, foldery szablonów */],
   /* fala 2 (09.10.2026): „folder” — to samo słowo w id i ms (iOS id/ms: „Folder”); „Eksport CSV” — ms „eksport” = eksport */
@@ -329,9 +330,9 @@ describe('długie tłumaczenia w miejscach, gdzie tekst może być ucięty', () 
   /* @matrix LANGS */
   const W = 375;
   const lines = (s: string, w: (x: string) => number, avail: number) => { let n = 1, cur = 0; const sp = w(' '); for (const { t: word, sp: hasSp } of units(s)) { const ww = w(word); const gap = hasSp ? sp : 0; if (ww > avail) { n += Math.ceil(ww / avail) - (cur ? 0 : 1); cur = ww % avail; continue; } if (cur && cur + gap + ww > avail) { n++; cur = ww; } else cur += (cur ? gap : 0) + ww; } return n; };
-  const TABS = ['Trening', 'Szablony', 'Ćwiczenia', 'Kalendarz', 'Więcej'];
-  /** Zakładka: 1/5 szerokości, padding 5 (BottomTabItem tabVerticalUiKit), etykieta 10 pt (labelBeneath), numberOfLines=1. */
-  const TAB_AVAIL = W / 5 - 2 * 5;
+  const TABS = ['Trening', 'Plan', 'Postępy', 'Więcej'];
+  /** Zakładka: 1/4 szerokości (11.10.2026: cztery zakładki), padding 5 (BottomTabItem tabVerticalUiKit), etykieta 10 pt (labelBeneath), numberOfLines=1. */
+  const TAB_AVAIL = W / 4 - 2 * 5;
   const tabOverflow = (l: Lang) => TABS.map(k => trIn(l, k)).filter(s => SANS.semibold.width(s, 10) > TAB_AVAIL).map(s => `${s} (${SANS.semibold.width(s, 10).toFixed(1)} > ${TAB_AVAIL} pt)`);
   const TAB_KNOWN: Lang[] = []; /* es naprawione 06.10.2026 (decyzja właściciela, wariant A): „Entreno” zamiast „Entrenamiento” */
   test.each(LANGS.filter(l => !TAB_KNOWN.includes(l)))('%s: etykiety zakładek mieszczą się w jednej linii bez „…” na ekranie 375 pt', l => { expect([l, tabOverflow(l)]).toEqual([l, []]); });
@@ -342,7 +343,7 @@ describe('długie tłumaczenia w miejscach, gdzie tekst może być ucięty', () 
   /* Audyt 0.10 (A11-03): ekran 320 pt (SE 2/3, 12/13 mini z Display Zoom) — 54 pt na etykietę; długie tłumaczenia (bg, el, hu, it, lt, lv, ro, uk)
    * się nie mieszczą, więc etykieta (components/TabIcon.tsx TabLabel) zmniejsza krój do TAB_LABEL_MIN_SCALE zamiast „…”. */
   test.each([...LANGS])('%s: etykiety zakładek na ekranie 320 pt mieszczą się po zmniejszeniu kroju (adjustsFontSizeToFit, min. skala TabLabel)', l => {
-    const { TAB_LABEL_MIN_SCALE } = require('@/components/TabIcon') as typeof import('@/components/TabIcon'); const avail = 320 / 5 - 2 * 5;
+    const { TAB_LABEL_MIN_SCALE } = require('@/components/TabIcon') as typeof import('@/components/TabIcon'); const avail = 320 / 4 - 2 * 5;
     expect(TAB_LABEL_MIN_SCALE).toBeGreaterThanOrEqual(0.75); /* 7,5 pt — dolna granica czytelności */
     expect([l, TABS.map(k => trIn(l, k)).filter(s => SANS.semibold.width(s, 10 * TAB_LABEL_MIN_SCALE) > avail)]).toEqual([l, []]);
   });

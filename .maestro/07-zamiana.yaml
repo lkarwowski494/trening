@@ -190,6 +190,11 @@ name: Zamiana ćwiczenia w trakcie treningu (E2 W1)
 # interpreter E2E 91 (tests/maestro-layout.ts): linijka podpowiedzi przesuwa przycisk zamiany pod pasek zakładek (jak przy pierwszym starcie, run 37738868663)
 - scrollUntilVisible: { element: "Swap exercise: Bench Press \\(Dumbbell\\)", direction: DOWN, timeout: 30000, centerElement: true }   # podpowiedź nie zmienia bloku sama
 - takeScreenshot: 37-podpowiedz-zamiennika
+# E2E 0.13.0 (run 38241528019, próba 2): po przewinięciu linijka podpowiedzi leżała przy górnej krawędzi, pod paskiem stanu (zrzut kroku 181 — widać
+# tylko jej dolny skraj). Maestro uznał ją za widoczną (hierarchia iOS nie przycina do listy), stuknął w pasek stanu i arkusz zamiany się nie otworzył.
+# Najpierw przesunięcie palcem w dół (lista do góry — podpowiedź na górze bloku), potem stuknięcie (wzór: 13, E2E 105). Test: tests/maestro-selectors.test.ts
+- swipe: { start: "50%, 30%", end: "50%, 80%", duration: 400 }
+- waitForAnimationToEnd
 - tapOn: "Swap to substitute: .*"
 - extendedWaitUntil: { visible: "Suggestion 1: .*", timeout: 30000 }
 - tapOn: "Cancel"

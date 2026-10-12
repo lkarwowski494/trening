@@ -73,7 +73,7 @@ describe('X2-02: Postępy ćwiczenia — data sesji na zegarze strefy startu (ja
   test('X2-02: trening nd. 4.10 20:00 w strefie +10 h → lista sesji w Postępach: „pon., 5 paź”, nie „niedz., 4 paź”', async () => {
     await fresh(); const at = new Date(2026, 9, 4, 20, 0).getTime();
     const w = addWorkout(at, [['Back Squat', [{ weight: 120, reps: 5 }]]]); w.tzOffsetMin = store.tzOffsetAt(at) + 600; store.save();
-    await boot(`/more/progress?ex=${ex('Back Squat').id}`);
+    await boot(`/progress?ex=${ex('Back Squat').id}`);
     const wall = store.fmtDate(store.wallTs(w)); expect(wall).not.toBe(store.fmtDate(at));
     expect(screen.getAllByText(wall).length).toBeGreaterThan(0); expect(screen.queryAllByText(store.fmtDate(at))).toHaveLength(0);
   });

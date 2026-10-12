@@ -223,7 +223,7 @@ describe('start aplikacji na zapisie z każdej wersji schematu (prawdziwe ekrany
     expect(store.getRecovery()).toBeNull(); /* zapis nie trafił do „nieczytelnych danych” */
     const st = store.getState(); expect(st.workouts.map(w => w.id).sort()).toEqual(['w1', 'w2']); expect(st.active?.id).toBe('act');
     expect(screen.toJSON()).toBeTruthy();
-    for (const href of ['/history', '/history/w1', '/history/w2', '/more/progress?ex=ex-squat', '/more/progress?ex=ex-plank', '/template/tpl-a', '/exercise/ex-custom', '/more/backup', '/more/settings', '/more/locations', '/more/bands', '/exercises']) {
+    for (const href of ['/history', '/history/w1', '/history/w2', '/progress?ex=ex-squat', '/progress?ex=ex-plank', '/template/tpl-a', '/exercise/ex-custom', '/more/backup', '/more/settings', '/more/locations', '/more/bands', '/exercises']) {
       await go(href); await flushAll(50); expect({ v, href, ok: !!screen.toJSON() }).toEqual({ v, href, ok: true });
     }
     await go('/history/w1'); await flushAll(50);

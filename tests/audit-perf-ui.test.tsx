@@ -23,7 +23,7 @@ describe('R74 — wykres i Postępy', () => {
   test('opis wykresu dla VoiceOver i podpisy osi nadal mają daty (etykiety liczone leniwie)', async () => {
     await fresh(); const day = (d: number) => new Date(2026, 0, d, 18).getTime();
     for (let d = 1; d <= 70; d++) addWorkout(day(d), [['Back Squat', [{ weight: d === 30 ? 200 : 100, reps: 5 }]]]);
-    const id = ex('Back Squat').id; store.save(); await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())), url: '/more/progress?ex=' + id }); await flushAll(20);
+    const id = ex('Back Squat').id; store.save(); await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())), url: '/progress?ex=' + id }); await flushAll(20);
     const a11y = screen.UNSAFE_root.findAll((n: any) => typeof n.props?.accessibilityLabel === 'string' && /^Wykres, 70 sesji/.test(n.props.accessibilityLabel))[0]?.props.accessibilityLabel;
     expect(a11y).toBeTruthy(); const fmt = (d: number) => new Date(day(d)).toLocaleDateString('pl-PL', { day: 'numeric', month: 'short', ...(new Date().getFullYear() !== 2026 ? { year: 'numeric' as const } : {}) });
     expect(a11y).toContain(fmt(1)); expect(a11y).toContain(fmt(70)); expect(a11y).toContain(fmt(30));
@@ -34,7 +34,7 @@ describe('R74 — wykres i Postępy', () => {
     ex('Leg Curl').archived = true; store.save();
     const { hasHistory } = require('@/lib/stats');
     expect(hasHistory(ex('Leg Curl').id)).toBe(true); expect(hasHistory(ex('Leg Extension').id)).toBe(false);
-    await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())), url: '/more/progress' }); await flushAll(20);
+    await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())), url: '/progress' }); await flushAll(20);
     expect(screen.queryAllByText(/Leg Curl/).length).toBeGreaterThan(0);
   });
 });

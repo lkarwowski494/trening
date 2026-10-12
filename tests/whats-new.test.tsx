@@ -20,7 +20,7 @@ describe('logika i dane', () => {
     const ids = WHATS_NEW.map(e => e.id); expect(new Set(ids).size).toBe(ids.length);
     expect([...WHATS_NEW].sort((a, b) => b.date.localeCompare(a.date)).map(e => e.id)).toEqual(ids);
     const builds = WHATS_NEW.map(e => e.build).filter((b): b is number => b != null); expect([...builds].sort((a, b) => b - a)).toEqual(builds);
-    expect(WHATS_NEW.slice(1).every(e => e.build! > 1000)).toBe(true);
+    const firstBuilt = WHATS_NEW.findIndex(e => e.build != null); expect(firstBuilt).toBeGreaterThan(-1); expect(WHATS_NEW.slice(firstBuilt).every(e => e.build! > 1000)).toBe(true); /* niewydane wpisy tylko na górze (11.10.2026: 0.12 i wpis o nowym układzie) */
     WHATS_NEW.forEach(e => { const it = e.items(); expect(it.length).toBeGreaterThanOrEqual(2); expect(it.length).toBeLessThanOrEqual(10); it.forEach(x => expect(x).toMatch(/\.$/)); });
   });
   test('kropka: nowa osoba (bez treningów) — nie; po treningu — tak; otwarcie zapisuje id najnowszego wpisu; nowy wpis — znowu tak', () => {
@@ -59,7 +59,8 @@ describe('ekran Trening', () => {
     expect(screen.getByText(WHATS_NEW[0].build ? new RegExp(`^Wersja testowa ${WHATS_NEW[0].build} · `) : 'W tej wersji')).toBeTruthy(); /* bieżący wpis: niewydany albo wydany (0.11 — build 1005) */
     for (const x of WHATS_NEW[0].items()) expect(screen.getByText(`• ${x}`)).toBeTruthy();
     expect(screen.queryByTestId('whats-new-dot')).toBeNull(); expect(S().whatsNewSeen).toBe(WHATS_NEW[0].id);
-    const old = WHATS_NEW[3]; /* 1002 — rozwijany niżej (nad nim 0.12, 1005, 1004) */ const oldItem = `• ${old.items()[0]}`; expect(screen.queryByText(oldItem)).toBeNull();
+    const old = WHATS_NEW[4]; /* 1002 — rozwijany niżej (nad nim nowy układ, 0.12, 1005, 1004) */ const oldItem = `• ${old.items()[0]}`; expect(screen.queryByText(oldItem)).toBeNull();
+    expect(screen.getByText(/^▸ Wersja testowa 1008 · 12 paź 2026$/)).toBeTruthy(); /* 0.12.0 — build 1008, zwinięte pod bieżącym wpisem 0.13 */
     expect(screen.getByText(/^▸ Wersja testowa 1005 · 10 paź 2026$/)).toBeTruthy(); /* 0.11.0 — wydanie 2 */
     expect(screen.getByText(/^▸ Wersja testowa 1004 · 9 paź 2026$/)).toBeTruthy(); /* 0.10.0 — wydanie 1 (A11B-8) */
     const head = screen.getByText(/^▸ Wersja testowa 1002 · 7 paź 2026$/); expect(head).toBeTruthy(); /* H3 (audyt 0.10): miesiąc słownie */
@@ -72,15 +73,20 @@ describe('ekran Trening', () => {
   test('wszystkie wpisy po polsku mają tytuł i punkty (wpis 1001 rozwinięty)', async () => {
     await boot(withWorkout); await tap(screen.getByTestId('whats-new-i')); await flushAll(5);
     await tap(screen.getByText(/^▸ Wersja testowa 1001/)); await flushAll(5);
-    for (const x of WHATS_NEW[4].items()) expect(screen.getByText(`• ${x}`)).toBeTruthy();
+    for (const x of WHATS_NEW[5].items()) expect(screen.getByText(`• ${x}`)).toBeTruthy();
   });
   test('treść wpisów po polsku na ekranie (wszystkie rozwinięte po kolei)', async () => {
     const texts = [
+      /* 11.10.2026 (docs/18 P7): wspólny wpis o nowym układzie — nad 0.12 */
+      'Cztery zakładki: Trening, Plan, Postępy i Więcej. Szablony i Ćwiczenia znajdziesz teraz w Więcej.',
+      'Postępy mają własną zakładkę: podsumowanie, „Progresja”, wykresy ćwiczeń i masa ciała.',
+      'Ekran Trening: „Planowanie” przy nazwie planu, „Ten tydzień” i „Progresja”; „Z szablonu” w arkuszu „Inny trening” otwiera wybór szablonu ze „Startem”.',
       /* 0.12 (decyzja właściciela 10.10.2026, wariant A): nazwy języków z LANG_NAME */
       '9 nowych języków: Português (Brasil), Español (Latinoamérica), Bahasa Indonesia, Bahasa Melayu, Tiếng Việt, Русский, 日本語, 한국어, 繁體中文.',
       '35 języków; język zmienisz w Ustawieniach.',
       /* 0.11 (A11B-8; dwa ostatnie — zaległości z 0.10: UI2-04, MER2-06) */
       'Nowy wygląd z ikony: znacznik dnia jak ikona aplikacji, stosy talerzy z procentem planu tygodnia, filiżanka w dzień odpoczynku, podsumowanie miesiąca jako stosy.',
+      'Import historii treningów z plików CSV popularnych dzienników (Więcej → Kopia zapasowa → „Importuj historię z pliku CSV”), z podglądem przed zapisem.',
       'Krótka animacja przy starcie: talerze wsuwają się na gryf.',
       'Generator: wybór dni tygodnia, od 1 do 6 dni, cel „Ogólny” i „Plan z moich szablonów”.',
       'Ekran Trening w nowym układzie; „Powtórz ostatni” z nazwą i datą.',
@@ -108,7 +114,7 @@ describe('ekran Trening', () => {
     await boot(withWorkout); await tap(screen.getByTestId('whats-new-i')); await flushAll(5);
     const shown = new Set<string>(); const collect = () => texts.forEach(x => { if (screen.queryByText(`• ${x}`)) shown.add(x); });
     collect(); /* starsze otwierają się pojedynczo — otwarcie następnego zwija poprzedni */
-    for (const e of WHATS_NEW.slice(1)) { await tap(screen.getByText(new RegExp(`^▸ Wersja testowa ${e.build}`))); await flushAll(5); collect(); }
+    for (const e of WHATS_NEW.slice(1)) { await tap(screen.getByText(e.build ? new RegExp(`^▸ Wersja testowa ${e.build}`) : '▸ W tej wersji')); await flushAll(5); collect(); }
     expect([...shown].sort()).toEqual([...texts].sort()); expect(texts.length).toBe(WHATS_NEW.flatMap(e => e.items()).length);
   });
   test('w trakcie treningu „i” nie ma (ekran treningu)', async () => {

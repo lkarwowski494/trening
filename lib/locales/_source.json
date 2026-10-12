@@ -796,6 +796,10 @@
   "en": "Common mistakes"
  },
  {
+  "pl": "Cztery zakładki: Trening, Plan, Postępy i Więcej. Szablony i Ćwiczenia znajdziesz teraz w Więcej.",
+  "en": "Four tabs: Workout, Plan, Progress and More. Templates and Exercises are now under More."
+ },
+ {
   "pl": "czworogłowe",
   "en": "quads"
  },
@@ -816,12 +820,20 @@
   "en": "add exercises as you go"
  },
  {
+  "pl": "Ćwiczenia dopasowane do Twoich: {n}",
+  "en": "Exercises matched to yours: {n}"
+ },
+ {
   "pl": "Ćwiczenia na czas mają w treningu stoper — po upływie celu seria odhacza się sama. Przerwa ustawiona w pozycji szablonu ma pierwszeństwo; puste pole przerwy w szablonie oznacza przerwę z tego ćwiczenia.",
   "en": "Timed exercises get a stopwatch during the workout — the set ticks itself off when the target is reached. A rest set on a template item takes priority; an empty rest field in the template means this exercise’s rest."
  },
  {
   "pl": "Ćwiczenia z 1 serią bez zmian.",
   "en": "Exercises with 1 set unchanged."
+ },
+ {
+  "pl": "Ćwiczenia z pliku",
+  "en": "Exercises in the file"
  },
  {
   "pl": "Ćwiczenie",
@@ -989,6 +1001,10 @@
   "en": "Added: {list}."
  },
  {
+  "pl": "Dodano treningi: {n}, nowe ćwiczenia: {m}.",
+  "en": "Workouts added: {n}, new exercises: {m}."
+ },
+ {
   "pl": "Dom",
   "en": "Home"
  },
@@ -999,6 +1015,14 @@
  {
   "pl": "Domyślna przerwa (sekundy)",
   "en": "Default rest (seconds)"
+ },
+ {
+  "pl": "Dopisuje treningi z plików CSV popularnych dzienników treningowych — bez usuwania obecnych danych, z podglądem przed zapisem.",
+  "en": "Adds workouts from CSV files of popular workout logs — without removing your current data, with a preview before saving."
+ },
+ {
+  "pl": "Dopisuje treningi z plików CSV popularnych dzienników treningowych. Obecnych danych nie zmienia ani nie usuwa. Przed zapisem zobaczysz podgląd.",
+  "en": "Adds workouts from CSV files of popular workout logs. It does not change or remove your current data. You will see a preview before anything is saved."
  },
  {
   "pl": "Dopisz trening wstecz",
@@ -1069,6 +1093,10 @@
   "en": "distance + time"
  },
  {
+  "pl": "Dystans w pliku przyjęto jako metry.",
+  "en": "Distance in the file is taken as metres."
+ },
+ {
   "pl": "Dzień po dniu te same główne partie: {list}. Zwykle lepiej z dniem przerwy; przy tej samej liczbie serii w tygodniu to też jest w porządku.",
   "en": "Same main muscle groups on consecutive days: {list}. A rest day in between is usually better; with the same weekly number of sets it is also fine."
  },
@@ -1137,12 +1165,12 @@
   "en": "e1RM {v} (set {s})"
  },
  {
-  "pl": "e1RM pojawi się po wpisaniu masy ciała w Ustawieniach.",
-  "en": "e1RM will appear once you enter your body weight in Settings."
+  "pl": "e1RM pojawi się po wpisaniu masy ciała w Postępach.",
+  "en": "e1RM will appear once you enter your body weight in Progress."
  },
  {
-  "pl": "e1RM w ćwiczeniach z masą ciała liczy się tylko z masą ciała wpisaną w Ustawieniach i tylko tam, gdzie wiadomo, jaką jej część podnosisz: podciąganie (cała — uproszczenie), pompki (ok. {p}% — badania z platformą siłową).",
-  "en": "e1RM in bodyweight exercises is calculated only with the body weight entered in Settings, and only where it is known what share of it you lift: pull-ups (all of it — a simplification), push-ups (about {p}% — force-plate studies)."
+  "pl": "e1RM w ćwiczeniach z masą ciała liczy się tylko z masą ciała wpisaną w Postępach i tylko tam, gdzie wiadomo, jaką jej część podnosisz: podciąganie (cała — uproszczenie), pompki (ok. {p}% — badania z platformą siłową).",
+  "en": "e1RM in bodyweight exercises is calculated only with the body weight entered in Progress, and only where it is known what share of it you lift: pull-ups (all of it — a simplification), push-ups (about {p}% — force-plate studies)."
  },
  {
   "pl": "e1RM: wzór Epleya na {p}% masy ciała z dnia treningu (ostatni pomiar z tego dnia lub wcześniejszy) plus dociążenie (uproszczenie).",
@@ -1187,6 +1215,10 @@
  {
   "pl": "Ekran Trening w nowym układzie; „Powtórz ostatni” z nazwą i datą.",
   "en": "The Workout screen has a new layout; “Repeat last” shows the name and date."
+ },
+ {
+  "pl": "Ekran Trening: „Planowanie” przy nazwie planu, „Ten tydzień” i „Progresja”; „Z szablonu” w arkuszu „Inny trening” otwiera wybór szablonu ze „Startem”.",
+  "en": "Workout screen: “Planning” next to the plan name, “This week” and “Progression”; “From a template” in the “Other workout” sheet opens a template picker with “Start”."
  },
  {
   "pl": "Ekran włączony podczas treningu",
@@ -1421,6 +1453,14 @@
   "en": "Hotel"
  },
  {
+  "pl": "Import historii treningów z plików CSV popularnych dzienników (Więcej → Kopia zapasowa → „Importuj historię z pliku CSV”), z podglądem przed zapisem.",
+  "en": "Import your workout history from CSV files of popular training logs (More → Backup → “Import history from a CSV file”), with a preview before saving."
+ },
+ {
+  "pl": "Import historii z CSV",
+  "en": "Import history from CSV"
+ },
+ {
   "pl": "Import przerwany",
   "en": "Import cancelled"
  },
@@ -1435,6 +1475,10 @@
  {
   "pl": "Importuj backup",
   "en": "Import backup"
+ },
+ {
+  "pl": "Importuj historię z pliku CSV",
+  "en": "Import history from a CSV file"
  },
  {
   "pl": "Inna kolejność ćwiczeń.",
@@ -1529,6 +1573,10 @@
   "en": "Weight unit"
  },
  {
+  "pl": "Jednostka ciężaru w pliku",
+  "en": "Weight unit in the file"
+ },
+ {
   "pl": "Jednostka sprzętu",
   "en": "Equipment unit"
  },
@@ -1555,10 +1603,6 @@
  {
   "pl": "już w treningu",
   "en": "already in workout"
- },
- {
-  "pl": "Kalendarz",
-  "en": "Calendar"
  },
  {
   "pl": "Kalendarz od dziś będzie pusty.",
@@ -2417,6 +2461,10 @@
   "en": "Can’t be made with the plates ({l}) — nearest {v}"
  },
  {
+  "pl": "Nie ma nowych treningów do dodania — wszystkie są już w historii.",
+  "en": "There are no new workouts to add — all of them are already in your history."
+ },
+ {
   "pl": "Nie ma takiego ćwiczenia.",
   "en": "Exercise not found."
  },
@@ -2575,6 +2623,10 @@
  {
   "pl": "nowa",
   "en": "new"
+ },
+ {
+  "pl": "Nowe ćwiczenia: {n}",
+  "en": "New exercises: {n}"
  },
  {
   "pl": "Nowe ćwiczenie",
@@ -3021,6 +3073,10 @@
   "en": "tibialis anterior"
  },
  {
+  "pl": "Plan",
+  "en": "Plan"
+ },
+ {
   "pl": "Plan „{name}” jest teraz aktywny.",
   "en": "The plan “{name}” is now active."
  },
@@ -3061,8 +3117,28 @@
   "en": "back"
  },
  {
+  "pl": "Plik jest pusty. Dane nie zostały zmienione.",
+  "en": "The file is empty. Your data was not changed."
+ },
+ {
+  "pl": "Plik jest za duży. Dane nie zostały zmienione.",
+  "en": "The file is too large. Your data was not changed."
+ },
+ {
   "pl": "Plik ma schemat {a}, a ta wersja obsługuje do {b}. Zaktualizuj aplikację.",
   "en": "The file has schema {a}; this version supports up to {b}. Update the app."
+ },
+ {
+  "pl": "Plik nie podaje godzin treningów — dzień, w którym masz już trening, zostanie pominięty jako duplikat.",
+  "en": "The file has no workout times — a day on which you already have a workout is skipped as a duplicate."
+ },
+ {
+  "pl": "Plik nie podaje, czy ciężary są w kg, czy w lb. Domyślnie: jednostka z Ustawień.",
+  "en": "The file does not say whether weights are in kg or lb. Default: the unit from Settings."
+ },
+ {
+  "pl": "Plik nie zawiera żadnych poprawnych treningów. Dane nie zostały zmienione.",
+  "en": "The file contains no valid workouts. Your data was not changed."
  },
  {
   "pl": "Pliki → Na moim iPhonie → {app} → Backup, ostatnie {n}",
@@ -3091,6 +3167,10 @@
  {
   "pl": "Podgląd",
   "en": "Preview"
+ },
+ {
+  "pl": "Podgląd importu",
+  "en": "Import preview"
  },
  {
   "pl": "Podpowiedź progresji",
@@ -3175,6 +3255,14 @@
  {
   "pl": "pominięte dziś",
   "en": "skipped today"
+ },
+ {
+  "pl": "Pominięte jako duplikaty: {n}",
+  "en": "Skipped as duplicates: {n}"
+ },
+ {
+  "pl": "Pominięte wiersze (błędne dane): {n}",
+  "en": "Skipped rows (invalid data): {n}"
  },
  {
   "pl": "Pomiń",
@@ -3281,8 +3369,16 @@
   "en": "Progress and records"
  },
  {
+  "pl": "Postępy mają własną zakładkę: podsumowanie, „Progresja”, wykresy ćwiczeń i masa ciała.",
+  "en": "Progress has its own tab: summary, “Progression”, exercise charts and body weight."
+ },
+ {
   "pl": "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.",
   "en": "Progress: weekly and monthly summary with a muscle map, a {n}-sets-per-muscle-group weekly mark and marking a week as deload."
+ },
+ {
+  "pl": "Postępy: podsumowanie tygodnia lub miesiąca z poprzednim okresem obok.",
+  "en": "Progress: weekly or monthly summary with the previous period alongside."
  },
  {
   "pl": "pośladki",
@@ -3864,6 +3960,10 @@
   "en": "Sets from this session will be lost."
  },
  {
+  "pl": "Serie: {n}",
+  "en": "Sets: {n}"
+ },
+ {
   "pl": "Serie: {s} na ćwiczenie — ACSM 2026 zaleca co najmniej {m}; więcej serii zwykle daje trochę więcej, z malejącym zyskiem. Liczba {s} to uproszczenie.",
   "en": "Sets: {s} per exercise — ACSM 2026 advises at least {m}; more sets usually give a little more, with diminishing returns. {s} is a simplification."
  },
@@ -4378,6 +4478,10 @@
   "en": "This does not look like a backup from this app"
  },
  {
+  "pl": "To nie wygląda na obsługiwany plik CSV z historią treningów. Dane nie zostały zmienione.",
+  "en": "This does not look like a supported CSV file with workout history. Your data was not changed."
+ },
+ {
   "pl": "To ostatnia seria",
   "en": "This is the last set"
  },
@@ -4448,6 +4552,10 @@
  {
   "pl": "Treningi",
   "en": "Workouts"
+ },
+ {
+  "pl": "Treningi do dodania: {n}",
+  "en": "Workouts to add: {n}"
  },
  {
   "pl": "Treningi i szablony z tym miejscem pokażą „(usunięte miejsce)”.",
@@ -4834,10 +4942,6 @@
   "en": "In a deload week “Start” and “Repeat last” offer “Fewer sets”: {less}; weights and template unchanged."
  },
  {
-  "pl": "W zakładce Szablony „+ Nowy” tworzy szablon: ćwiczenia, serie, zakres powtórzeń i przerwy.",
-  "en": "On the Templates tab, “+ New” creates a template: exercises, sets, rep range and rest."
- },
- {
   "pl": "W zapisanych planach: {names}.",
   "en": "In saved plans: {names}."
  },
@@ -4886,8 +4990,8 @@
   "en": "More → Places and equipment: home, gym, hotel — each with its own equipment and weights."
  },
  {
-  "pl": "Więcej → Postępy: podsumowanie tygodnia lub miesiąca z poprzednim okresem obok.",
-  "en": "More → Progress: weekly or monthly summary with the previous period alongside."
+  "pl": "Więcej → Szablony: „+ Nowy” tworzy szablon: ćwiczenia, serie, zakres powtórzeń i przerwy.",
+  "en": "More → Templates: “+ New” creates a template: exercises, sets, rep range and rest."
  },
  {
   "pl": "Więcej dni niż szablonów: szablony po kolei (A, B, A…), jak w generatorze — konwencja.",
@@ -5024,6 +5128,10 @@
  {
   "pl": "Wybierz dni treningowe: od {a} do {b}.",
   "en": "Choose training days: {a} to {b}."
+ },
+ {
+  "pl": "Wybierz plik CSV",
+  "en": "Choose a CSV file"
  },
  {
   "pl": "Wybierz szablon",
@@ -5278,6 +5386,10 @@
   "en": "range"
  },
  {
+  "pl": "Zakres dat: {a} – {b}",
+  "en": "Date range: {a} – {b}"
+ },
+ {
   "pl": "Zakres jest niepoprawny: „do” musi być ≥ „od”, krok > 0, wartości od {a} do {b}.",
   "en": "Invalid range: “to” must be ≥ “from”, step > 0, values from {a} to {b}."
  },
@@ -5516,6 +5628,10 @@
  {
   "pl": "Zmienione dni: {n}",
   "en": "Days changed: {n}"
+ },
+ {
+  "pl": "Zmień dopasowanie",
+  "en": "Change match"
  },
  {
   "pl": "Zmień kolejność ćwiczeń",

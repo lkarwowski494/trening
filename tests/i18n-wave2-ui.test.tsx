@@ -49,7 +49,7 @@ describe('„Jak w telefonie”: telefon z Indonezji, Malezji, Wietnamu', () => 
     const s = seedWithDemo(l); s.settings.language = 'auto';
     await renderApp({ saved: s, code, tag }); await flushAll(10);
     expect(lang()).toBe(l);
-    for (const k of ['Trening', 'Szablony', 'Ćwiczenia', 'Kalendarz', 'Więcej']) expect([k, screen.getAllByText(t(k)).length > 0]).toEqual([k, true]);
+    for (const k of ['Trening', 'Plan', 'Postępy', 'Więcej']) expect([k, screen.getAllByText(t(k)).length > 0]).toEqual([k, true]);
     expect(plLeft(l)).toEqual([]);
   });
 

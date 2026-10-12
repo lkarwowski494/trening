@@ -121,7 +121,7 @@ describe('runda 1 — ekrany', () => {
     await renderApp({ saved: seedWithDemo() }); await startTpl('Upper A'); await flushAll(10);
     await tap(screen.getAllByLabelText(/^Seria 1 zrobiona/)[0]); await go('/history'); await flushAll(1000);
     expect(screen.getAllByText(/^[0-9]+[′″]$/).length).toBeGreaterThan(0); /* audyt 0.10 A11-17: 2′/45″; 02.10.2026: skrót „2m/45s” — „2:28” było ucinane na iOS */
-    expect(screen.getByLabelText(/^Trening, przerwa [0-9]+:[0-9]{2}, zakładka, 1 z 5$/)).toBeTruthy(); // VoiceOver: pełny czas
+    expect(screen.getByLabelText(/^Trening, przerwa [0-9]+:[0-9]{2}, zakładka, 1 z 4$/)).toBeTruthy(); // VoiceOver: pełny czas
   });
   test('R1-26 wiersz szablonu w wyborze szablonu („Inny trening” → „Z szablonu”) otwiera podgląd, nie start', async () => {
     await renderApp({ saved: seedWithDemo() }); await openTpl('Upper A');
@@ -332,10 +332,10 @@ describe('runda 4', () => {
   });
   test('R4-06 postępy pokazują usunięte ćwiczenie z historią', async () => {
     await renderApp(); addWorkout(Date.now() - 3600e3, [['Bench Press (hantle)', [{ weight: 24, reps: 8 }]]]); store.deleteExercise(ex('Bench Press (hantle)').id);
-    await go('/more/progress'); await flushAll(10); expect(screen.getByText(/Bench Press \(hantle\) \(usunięte\)/)).toBeTruthy();
+    await go('/progress'); await flushAll(10); expect(screen.getByText(/Bench Press \(hantle\) \(usunięte\)/)).toBeTruthy();
   });
   test('R4-07 serie per partia z przecinkiem', async () => {
-    await renderApp(); addWorkout(Date.now() - 3600e3, [['Bench Press (hantle)', [{ weight: 24, reps: 8 }]]]); await go('/more/progress'); await flushAll(10);
+    await renderApp(); addWorkout(Date.now() - 3600e3, [['Bench Press (hantle)', [{ weight: 24, reps: 8 }]]]); await go('/progress'); await flushAll(10);
     expect(screen.getAllByText(/^0,5/).length).toBeGreaterThan(0);
   });
   test('R4-08 „Zakończ” → „Wróć” nie przerywa trwającej serii na czas', async () => {
@@ -462,7 +462,7 @@ describe('runda 6', () => {
   });
   test('R6-11 wyszukiwanie bez wyników pokazuje tekst (Ćwiczenia i Postępy, ze spacją na końcu)', async () => {
     await renderApp(); await go('/exercises'); await flushAll(10); await type(screen.getByPlaceholderText('Szukaj…'), 'zzzz'); expect(screen.getByText('Nic nie pasuje.')).toBeTruthy();
-    await go('/more/progress'); await flushAll(10); await type(screen.getByPlaceholderText('Szukaj ćwiczenia…'), 'plank '); expect(screen.getByText('Plank')).toBeTruthy();
+    await go('/progress'); await flushAll(10); await type(screen.getByPlaceholderText('Szukaj ćwiczenia…'), 'plank '); expect(screen.getByText('Plank')).toBeTruthy();
     await type(screen.getByPlaceholderText('Szukaj ćwiczenia…'), 'zzzz'); expect(screen.getByText('Nic nie pasuje.')).toBeTruthy();
   });
   test('R6-12 sama rozgrzewka: osobne okno z możliwością odrzucenia', async () => {
@@ -663,7 +663,7 @@ describe('runda 12', () => {
   });
   test('R12-02 Postępy pompek bez masy ciała otwierają wykres z danymi', async () => {
     await renderApp(); addWorkout(Date.now() - 86400e3 * 2, [['Push Up', [{ reps: 15 }]]]); addWorkout(Date.now() - 86400e3, [['Push Up', [{ reps: 12 }]]]);
-    await go(`/more/progress?ex=${ex('Push Up').id}`); await flushAll(10); expect(screen.queryByText('Brak danych do wykresu.')).toBeNull();
+    await go(`/progress?ex=${ex('Push Up').id}`); await flushAll(10); expect(screen.queryByText('Brak danych do wykresu.')).toBeNull();
   });
   test('R12-03 ▶ i guma mówią, której serii dotyczą', async () => {
     await renderApp(); await act(async () => { store.startEmpty(); store.addExerciseToActive(ex('Plank')); store.addExerciseToActive(ex('Chin Up')); }); await flushAll(10);
@@ -700,8 +700,11 @@ describe('runda 13', () => {
     await fresh(); store.startEmpty(); const h = store.getHistRev(); store.save(store.getState().active); expect(store.getHistRev()).toBe(h);
     const fs = require('fs'), path = require('path');
     /* audyt 0.10 PERF-01/02 (celowa zmiana): Ćwiczenia słuchają tylko zmian listy ćwiczeń (useExercisesTick), Szablony — historii albo szablonów (useCfgTick); żadna nie słucha każdego wpisu (useTick) */
-    const tick: Record<string, RegExp> = { history: /useHistTick\(\)/, exercises: /useExercisesTick\(\)/, templates: /useCfgTick\(\)/, more: /useHistTick\(\)/ };
-    for (const [f, re] of Object.entries(tick)) { const src = fs.readFileSync(path.join(__dirname, `../app/(tabs)/${f}.tsx`), 'utf8'); expect(src).toMatch(re); expect(src).not.toMatch(/useTick\(\)/); }
+    /* 11.10.2026 (docs/22, wariant A): Ćwiczenia i Szablony to ekrany stosu pod Więcej (app/exercises.tsx, app/templates.tsx); Postępy to zakładka, która zostaje zamontowana,
+     * więc jej treść (useTick) renderuje się tylko, gdy zakładka jest aktywna (useIsFocused) */
+    const tick: Record<string, RegExp> = { 'app/(tabs)/history.tsx': /useHistTick\(\)/, 'app/exercises.tsx': /useExercisesTick\(\)/, 'app/templates.tsx': /useCfgTick\(\)/, 'app/(tabs)/more.tsx': /useHistTick\(\)/ };
+    for (const [f, re] of Object.entries(tick)) { const src = fs.readFileSync(path.join(__dirname, `../${f}`), 'utf8'); expect(src).toMatch(re); expect(src).not.toMatch(/useTick\(\)/); }
+    const prog = fs.readFileSync(path.join(__dirname, '../app/(tabs)/progress.tsx'), 'utf8'); expect(prog).toMatch(/useIsFocused\(\)/); expect(prog).toMatch(/\{focused \? <Progress \/> : null\}/);
     const sig0 = store.getHistRev(); const tpl = store.newTemplate(); const h1 = store.getHistRev(); expect(h1).toBeGreaterThan(sig0); tpl.name = 'X'; store.save(tpl); expect(store.getHistRev()).toBe(h1); /* PERF-02: znak w szablonie nie unieważnia historii */
   });
 });
@@ -1201,7 +1204,7 @@ describe('runda 48', () => {
     store.startEmpty(); store.addExerciseToActive(pu); const s0 = st.active!.exercises[0].sets[0]; store.toggleDone(0, 0); expect([s0.bandId, s0.addKg]).toEqual(['', '']);
   });
   test('R48-07 druga instancja ekranu treningu nie wywraca się po zakończeniu', async () => {
-    await renderApp(); await go('/more/progress'); await flushAll(10); await go('/'); await flushAll(10);
+    await renderApp(); await go('/progress'); await flushAll(10); await go('/'); await flushAll(10);
     await act(async () => { store.startEmpty(); store.addExerciseToActive(ex('Bench Press (hantle)')); store.addExerciseToActive(ex('Plank')); }); await flushAll(10);
     const a = store.getState().active!; a.exercises[0].sets[0].weight = 20; a.exercises[0].sets[0].reps = 5;
     await tap(screen.getAllByLabelText(/^Seria 1 zrobiona/)[0]); await tap(screen.getAllByLabelText('Start stopera serii')[0]); await flushAll(3000);
@@ -1245,7 +1248,7 @@ describe('runda 49', () => {
     const name = store.exById(tpl.items[0].exerciseId)!.name;
     expect(deleteActions()).toContain(`Usuń ćwiczenie: ${name}`); expect(screen.getAllByLabelText('+ seria')[0].props.accessibilityHint).toBe(name); /* 07.10.2026 wieczór: akcja „usuń” zamiast przycisku */
     await go('/more/bands'); await flushAll(10); expect(deleteActions().filter(l => /^Usuń gumę: .+/.test(l)).length).toBe(store.getState().bands.length);
-    await go(`/more/progress?ex=${ex('Back Squat').id}`); await flushAll(10); const chip = screen.getByLabelText('Back Squat'); expect(chip.props.accessibilityHint).toMatch(/inne ćwiczenie/);
+    await go(`/progress?ex=${ex('Back Squat').id}`); await flushAll(10); const chip = screen.getByLabelText('Back Squat'); expect(chip.props.accessibilityHint).toMatch(/inne ćwiczenie/);
     /* moduły schowane 05.10.2026 (decyzja właściciela) — chip „Trening” nie jest już wyświetlany */
   });
   test('R49-07 pusta nazwa wraca do ostatniej zapisanej, nie do tej sprzed otwarcia ekranu', async () => {
@@ -1291,11 +1294,11 @@ describe('runda 50', () => {
 });
 test('R50-08 wykresy mają streszczenie dla VoiceOver (słupki)', async () => {
   await renderApp(); addWorkout(Date.now() - 86400e3 * 9, [['Back Squat', [{ weight: 100, reps: 5 }]]]); addWorkout(Date.now() - 86400e3, [['Back Squat', [{ weight: 110, reps: 5 }]]]);
-  await go('/more/progress'); await flushAll(10); expect(screen.getAllByLabelText(/^Wykres słupkowy: .*: 550/).length).toBeGreaterThan(0);
+  await go('/progress'); await flushAll(10); expect(screen.getAllByLabelText(/^Wykres słupkowy: .*: 550/).length).toBeGreaterThan(0);
 });
 test('R50-09 wykresy mają streszczenie dla VoiceOver (linia)', async () => {
   await renderApp(); addWorkout(Date.now() - 86400e3 * 9, [['Back Squat', [{ weight: 100, reps: 5 }]]]); addWorkout(Date.now() - 86400e3, [['Back Squat', [{ weight: 110, reps: 5 }]]]);
-  await go(`/more/progress?ex=${ex('Back Squat').id}`); await flushAll(10); expect(screen.getAllByLabelText(/^Wykres, 2 sesje/).length).toBeGreaterThan(0);
+  await go(`/progress?ex=${ex('Back Squat').id}`); await flushAll(10); expect(screen.getAllByLabelText(/^Wykres, 2 sesje/).length).toBeGreaterThan(0);
 });
 
 describe('runda 51', () => {
@@ -1418,8 +1421,8 @@ describe('runda 54', () => {
     const s = st.active!.exercises[0].sets[0]; expect([s.bandId, s.addKg]).toEqual(['', -15]); expect(screen.getByText(/Brak gum/)).toBeTruthy();
   });
   test('R54-03 link do postępów ćwiczenia przy otwartym ekranie postępów pokazuje to ćwiczenie', async () => {
-    await renderApp({ url: '/more/progress' }); addWorkout(Date.now() - 86400e3, [['Plank', [{ durationSec: 60 }]]]); await flushAll(10);
-    const { router } = require('expo-router'); await act(async () => { router.push(`/more/progress?ex=${ex('Plank').id}`); }); await flushAll(10);
+    await renderApp({ url: '/progress' }); addWorkout(Date.now() - 86400e3, [['Plank', [{ durationSec: 60 }]]]); await flushAll(10);
+    const { router } = require('expo-router'); await act(async () => { router.push(`/progress?ex=${ex('Plank').id}`); }); await flushAll(10);
     expect(screen.getByLabelText('Plank')).toBeTruthy();
   });
   test('R54-04 guma w ćwiczeniu bez pola ±kg nie zapisuje ukrytej asysty', async () => {
@@ -1543,7 +1546,7 @@ describe('runda 59', () => {
   test('R59-04 postępy ćwiczenia jednostronnego: rekordy „na stronę”; w historii VoiceOver mówi typ serii słownie', async () => {
     await renderApp(); const e = ex('Bulgarian Split Squat (hantle)'); e.loadMode = 'unilateral'; store.save(e);
     const w = addWorkout(Date.now() - 86400e3, [['Bulgarian Split Squat (hantle)', [{ weight: 20, reps: 8 }, { weight: 10, reps: 8, kind: 'drop' } as any]]]);
-    await go(`/more/progress?ex=${e.id}`); await flushAll(10); expect(screen.getByText('Max ciężar (na stronę)')).toBeTruthy();
+    await go(`/progress?ex=${e.id}`); await flushAll(10); expect(screen.getByText('Max ciężar (na stronę)')).toBeTruthy();
     await go(`/history/${w.id}`); await flushAll(10); expect(screen.getByLabelText(/^#: 1 drop set,/)).toBeTruthy(); /* audyt 0.10 (LIVE-14): drop serii 1 („1D”, wcześniej „2D”) */
   });
 });
@@ -1577,7 +1580,7 @@ describe('runda 61', () => {
   test('R61-02 wykres „max ±” pokazuje sesję bez asysty (0) — dzień bez gumy', async () => {
     await renderApp(); const d = 86400e3, now = Date.now();
     addWorkout(now - 3 * d, [['Pull Up', [{ addKg: -15, reps: 6 }]]]); addWorkout(now - 2 * d, [['Pull Up', [{ addKg: -10, reps: 6 }]]]); addWorkout(now - d, [['Pull Up', [{ addKg: '', reps: 5 }]]]);
-    await go('/more/progress?ex=' + ex('Pull Up').id); await flushAll(20); await tap(screen.getByText('max ±')); /* runda 73: domyślnie wykres rekordu (suma) */ expect(screen.getAllByLabelText(/^Wykres, 3 sesje/).length).toBeGreaterThan(0);
+    await go('/progress?ex=' + ex('Pull Up').id); await flushAll(20); await tap(screen.getByText('max ±')); /* runda 73: domyślnie wykres rekordu (suma) */ expect(screen.getAllByLabelText(/^Wykres, 3 sesje/).length).toBeGreaterThan(0);
   });
 });
 
@@ -1585,7 +1588,7 @@ describe('runda 62', () => {
   test('R62-01 sesja bez wykonanej serii nie daje punktu 0 na wykresie „max ±”', async () => {
     await renderApp(); const d = 86400e3, now = Date.now();
     addWorkout(now - 3 * d, [['Pull Up', [{ addKg: -15, reps: 6 }]]]); addWorkout(now - 2 * d, [['Pull Up', [{ addKg: -20, reps: 0 }]]]); addWorkout(now - d, [['Pull Up', [{ addKg: -10, reps: 6 }]]]);
-    await go('/more/progress?ex=' + ex('Pull Up').id); await flushAll(20); expect(screen.getAllByLabelText(/^Wykres, 2 sesje/).length).toBeGreaterThan(0);
+    await go('/progress?ex=' + ex('Pull Up').id); await flushAll(20); expect(screen.getAllByLabelText(/^Wykres, 2 sesje/).length).toBeGreaterThan(0);
   });
   test('R62-02 stoper bez celu zapisuje najwyżej dobę (jak pole i wczytanie)', async () => {
     await fresh(); store.startEmpty(); store.addExerciseToActive(ex('Plank')); const s = store.getState().active!.exercises[0].sets[0]; const t0 = Date.now();
@@ -1712,7 +1715,7 @@ test('R69-10 przypomnienie o porzuconym treningu planowane 2 h po ostatniej seri
 describe('runda 68 (testy dopisane)', () => {
   /* R68-01 (udział masy ciała przy zmianie sprzętu) — nieaktualne od rundy 75 (Q-001). */
   test('R68-02 tytuły ekranów to nagłówki dla VoiceOver', async () => {
-    await renderApp({ url: '/history' }); await flushAll(10); expect(screen.getByRole('header', { name: 'Kalendarz' })).toBeTruthy();
+    await renderApp({ url: '/history' }); await flushAll(10); expect(screen.getByRole('header', { name: 'Plan' })).toBeTruthy();
   });
   test('R68-03 stoper z celem po czasie kończy Live Activity także bez ekranu treningu', async () => {
     await fresh(); store.startEmpty(); store.addExerciseToActive(ex('Plank')); const id = store.getState().active!.exercises[0].sets[0].id; const t0 = Date.now();
@@ -1747,7 +1750,7 @@ describe('runda 70 (audyt tematyczny T1/T2)', () => {
   test('R70-06 oś wykresu: w lb etykiety się nie powtarzają, objętość bez powtórzeń, powtórzenia na całkowitych', async () => {
     await renderApp(); const st = store.getState(); st.settings.unit = 'lb'; store.applyPrefs(); store.save();
     addWorkout(Date.now() - 2 * 86400e3, [['Back Squat', [{ weight: units.wIn(220.5) as number, reps: 5 }]], ['Pull Up', [{ reps: 1 }]]]); addWorkout(Date.now() - 86400e3, [['Back Squat', [{ weight: units.wIn(220.6) as number, reps: 5 }]], ['Pull Up', [{ reps: 6 }]]]);
-    await go('/more/progress?ex=' + ex('Back Squat').id); await flushAll(10);
+    await go('/progress?ex=' + ex('Back Squat').id); await flushAll(10);
     const txt = (re: RegExp) => screen.UNSAFE_root.findAll((n: any) => typeof n.props?.children === 'string' && re.test(n.props.children) && n.type === 'Text').map((n: any) => n.props.children);
     const labels = screen.UNSAFE_root.findAll((n: any) => n.props && typeof n.props.children === 'string' && / lb$/.test(n.props.children) && n.props.textAnchor === 'end').map((n: any) => n.props.children);
     expect(new Set(labels).size).toBe(labels.length); void txt; units.applyUnit('kg');
@@ -1840,7 +1843,7 @@ describe('runda 73 — rekord = suma na treningu + e1RM (decyzja 01.10)', () => 
   });
   test('R73-05 karta rekordów: pierwszy wiersz to najlepszy trening, drugi e1RM', async () => {
     await renderApp(); addWorkout(Date.now() - 86400e3, [['Back Squat', [{ weight: 100, reps: 5 }]]]);
-    await go('/more/progress?ex=' + ex('Back Squat').id); await flushAll(10);
+    await go('/progress?ex=' + ex('Back Squat').id); await flushAll(10);
     const txt = screen.UNSAFE_root.findAll((n: any) => n.type === 'Text' && typeof n.props.children === 'string').map((n: any) => n.props.children as string);
     const i = txt.indexOf('Najlepszy trening (objętość)'), j = txt.findIndex((x: string) => /^e1RM \(/.test(x)); expect(i).toBeGreaterThan(-1); expect(j).toBeGreaterThan(i);
   });
@@ -1879,5 +1882,32 @@ describe('B1 (build 1004; zmienione 11.10.2026): stała zachęta do planu (bez �
     await boot(locale); const strip = textsIn('week-strip');
     for (let d = 5; d <= 11; d++) expect([d, strip.includes(String(d))]).toEqual([d, true]); /* pon 5 … nd 11 października 2026 */
     expect(screen.getByTestId('strip-2026-10-08').props.accessibilityLabel).toMatch(locale === 'pl' ? /^czwartek, 8 października/ : /^Thursday,? 8 October/);
+  });
+});
+
+describe('bloker audytu 0.13 #1 (12.10.2026): import CSV zapisuje ciężar ćwiczeń z masą ciała w addKg, nie w weight', () => {
+  const HA = 'Date,Workout Name,Duration,Exercise Name,Set Order,Weight,Reps,Distance,Seconds,Notes,Workout Notes,RPE';
+  const recs = (name: string) => { const r = stats.recordsFor(ex(name)); return { maxLoad: r.maxLoad, bestE1rm: r.bestE1rm, maxRepsFree: r.maxRepsFree, bestTotal: r.bestTotal }; };
+  const importText = async (txt: string) => {
+    const { parseImport } = require('@/lib/csvparse'); const { commitCsvImport } = require('@/lib/csvimport');
+    await commitCsvImport(parseImport(txt, at(2026, 10, 12)), { unit: 'kg' });
+  };
+  test('(a) formatA: Pull Up 0×10 i +20×5, Push Up 0×20 — rekordy jak dla treningu wpisanego ręcznie', async () => {
+    await fresh(); const d = '2026-03-02 18:05:00';
+    await importText([HA, `${d},T,50m,Pull Up,1,0.0,10.0,0,0,,,`, `${d},T,50m,Pull Up,2,20.0,5.0,0,0,,,`, `${d},T,50m,Push Up,1,0.0,20.0,0,0,,,`].join('\n') + '\n');
+    const imp = { pu: recs('Pull Up'), pp: recs('Push Up') };
+    const w = store.getState().workouts[0]; for (const b of w.exercises) for (const s of b.sets) expect([s.weight, typeof s.addKg]).toEqual(['', 'number']);
+    await fresh(); addWorkout(at(2026, 3, 2), [['Pull Up', [{ addKg: 0, reps: 10 }, { addKg: 20, reps: 5 }]], ['Push Up', [{ addKg: 0, reps: 20 }]]]);
+    expect(imp).toEqual({ pu: recs('Pull Up'), pp: recs('Push Up') });
+    expect(imp.pu.maxRepsFree).toBeGreaterThan(0); expect(imp.pu.maxLoad).toBe(20); expect(imp.pu.bestTotal).toBeGreaterThan(0); expect(imp.pp.maxRepsFree).toBe(20);
+  });
+  test('(b)+(c) eksport CSV → import do świeżego stanu: rekordy identyczne, asysta (ujemny) zachowuje znak', async () => {
+    await fresh(); addWorkout(at(2026, 3, 2), [['Pull Up', [{ addKg: 0, reps: 10 }, { addKg: 20, reps: 5 }]], ['Push Up', [{ addKg: -10, reps: 12 }]], ['Bench Press (sztanga)', [{ weight: 60, reps: 8 }]]]);
+    const before = { pu: recs('Pull Up'), pp: recs('Push Up'), bp: recs('Bench Press (sztanga)') }; const csv = buildCsv();
+    await fresh(); await importText(csv);
+    expect({ pu: recs('Pull Up'), pp: recs('Push Up'), bp: recs('Bench Press (sztanga)') }).toEqual(before);
+    const w = store.getState().workouts[0]; const sets = (n: string) => w.exercises.find(b => b.exerciseId === ex(n).id)!.sets;
+    expect(sets('Push Up').map(s => [s.addKg, s.weight])).toEqual([[-10, '']]); expect(sets('Pull Up').map(s => [s.addKg, s.weight])).toEqual([[0, ''], [20, '']]);
+    expect(sets('Bench Press (sztanga)').map(s => [s.weight, s.addKg])).toEqual([[60, '']]);
   });
 });

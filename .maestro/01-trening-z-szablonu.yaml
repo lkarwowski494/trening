@@ -33,7 +33,7 @@ name: Trening z szablonu
 - assertVisible: "Upper A"
 - takeScreenshot: 05-zapisana-sesja
 - tapOn: "Back"
-- tapOn: "Calendar.*"  # 08.10.2026: zakładka Historia → Kalendarz
+- tapOn: "Plan, tab.*"  # 11.10.2026: zakładka Kalendarz → Plan (docs/22, wariant A: Trening · Plan · Postępy · Więcej)
 - assertVisible: "Upper A.*"
 - takeScreenshot: 06-historia
 # Dashboard ekranu Trening (08.10.2026, components/Dashboard.tsx): po treningu kafelki „This week” ('Ten tydzień'), „Workouts: 1; Sets: …”

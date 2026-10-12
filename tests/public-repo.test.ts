@@ -10,9 +10,14 @@ describe('workflowy na publicznym repozytorium', () => {
     for (const n of ['ios-unsigned.yml', 'testflight.yml']) {
       const y = wf(n);
       expect(y).toMatch(/permissions:\n\s+contents: read/);
-      expect(y).not.toMatch(/contents: write|pull_request_target|^\s+push:/m);
+      expect(y).not.toMatch(/pull_request/);
       expect(y).toMatch(/on:\n\s+workflow_dispatch:/);
     }
+    expect(wf('ios-unsigned.yml')).not.toMatch(/contents: write|^\s+push:/m);
+    const tf = wf('testflight.yml'); expect(tf).toMatch(/push:\n\s+branches: \[main\]\n/); expect(tf.match(/contents: write/g)).toHaveLength(1);
+    const tagJob = tf.slice(tf.indexOf('\n  tag:\n')); expect(tagJob.length).toBeGreaterThan(10); expect(tagJob).toMatch(/needs: build/);
+    expect(tagJob).toMatch(/permissions:\n\s+contents: write/); expect(tagJob).not.toMatch(/secrets\./);
+    expect(tf.slice(0, tf.indexOf('\n  tag:\n'))).not.toMatch(/contents: write/);
     /* decyzja właściciela 06.10.2026 (wariant A): testy przy każdym wypchnięciu; E2E samo tylko na main i integration/**; nigdy pull_request (forki) */
     const e = wf('e2e-ios.yml'); expect(e).toMatch(/permissions:\n\s+contents: read/); expect(e).not.toMatch(/contents: write|pull_request/);
     expect(e).toMatch(/push:\n\s+branches: \[main, 'integration\/\*\*'\]/); expect(e).toMatch(/workflow_dispatch:/); expect(e).not.toMatch(/secrets\.(?!GITHUB_TOKEN)/);
@@ -98,6 +103,36 @@ describe('polityka prywatności zgodna z kodem', () => {
     expect(html).toContain('siłowe i cardio'); expect(html).toContain('strength and cardio'); expect(health).toMatch(/HK_ACTIVITY\.running/); expect(health).toMatch(/export function retryHealth/);
     expect(html).toContain('ponownie przy kolejnym uruchomieniu'); expect(html).toContain('saved again the next time the app starts');
     expect(html).toContain('usuwa ze swojej pamięci podręcznej'); expect(backup).toMatch(/finally \{ await FileSystem\.deleteAsync\(path/);
+  });
+});
+
+/* strona www (11.10.2026): docs/index.html i docs/support.html — PL/EN, linki do polityki, bez e-maili i zasobów zewnętrznych, liczby zgodne z kodem */
+describe('strona www aplikacji (GitHub Pages)', () => {
+  const fs = require('fs') as typeof import('fs'); const root = join(__dirname, '..');
+  const { LANGS } = require('../lib/i18n') as typeof import('../lib/i18n');
+  test.each(['index.html', 'support.html'])('%s: istnieje, PL i EN, link do polityki prywatności, bez e-maili i zewnętrznych skryptów/fontów/trackerów', (name) => {
+    expect(fs.existsSync(join(root, 'docs', name))).toBe(true);
+    const html = readFileSync(join(root, 'docs', name), 'utf8');
+    expect(html).toMatch(/<section lang="pl"/); expect(html).toMatch(/<section lang="en"/); expect(html).toContain('href="privacy.html"');
+    expect(html).not.toMatch(/[\w.+-]+@[\w-]+\.[\w.-]+/); expect(html).not.toMatch(/mailto:/);
+    expect(html).not.toMatch(/<script/i); expect(html).not.toMatch(/<link\b[^>]*stylesheet/i); expect(html).not.toMatch(/<(img|iframe)\b/i); expect(html).not.toMatch(/@import|url\(/);
+    expect([...html.matchAll(/(?:src|href)="(https?:[^"]+)"/g)].map(m => m[1]).filter(u => !u.startsWith('https://github.com/lkarwowski494/trening/issues'))).toEqual([]);
+    expect(fs.existsSync(join(root, 'docs/CNAME'))).toBe(false); /* domena apps4brew.com dopiero po zakupie */
+  });
+  test('index.html linkuje do wsparcia; liczba języków na obu stronach = LANGS z kodu; kontakt przez GitHub Issues', () => {
+    const idx = readFileSync(join(root, 'docs/index.html'), 'utf8'); const sup = readFileSync(join(root, 'docs/support.html'), 'utf8');
+    expect(idx).toContain('href="support.html"'); expect(idx).toContain('Apps4Brew');
+    for (const h of [idx, sup]) expect(h).toContain(`${LANGS.length} języków`);
+    expect(idx).toContain(`${LANGS.length} languages`); expect(sup).toContain(`${LANGS.length} languages`);
+    expect(sup).toContain('https://github.com/lkarwowski494/trening/issues'); expect(sup).toContain('DO UZUPEŁNIENIA: adres kontaktowy po zakupie domeny');
+  });
+  test('FAQ wsparcia zgodne z kodem: ścieżki menu i nazwy przycisków istnieją w tekstach aplikacji', () => {
+    const sup = readFileSync(join(root, 'docs/support.html'), 'utf8'); const en = readFileSync(join(root, 'lib/i18n.en.ts'), 'utf8');
+    for (const pl of ['Eksportuj backup (plik JSON)', 'Eksportuj historię do CSV', 'Wyczyść wszystkie dane', 'Kopia zapasowa (eksport / import)', 'Język', 'Jak w telefonie']) {
+      expect(en).toContain(`'${pl}': '`); const val = new RegExp(`'${pl.replace(/[()/]/g, '\\$&')}': '([^']+)'`).exec(en)![1]; expect(sup).toContain(val);
+    }
+    for (const pl of ['Eksportuj backup (plik JSON)', 'Eksportuj historię do CSV', 'Wyczyść wszystkie dane']) expect(sup).toContain(pl);
+    expect(readFileSync(join(root, 'lib/backup.ts'), 'utf8')).toContain("AUTO_DIR = 'Backup/'");
   });
 });
 

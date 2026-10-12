@@ -399,7 +399,7 @@ describe('audyt: ekrany', () => {
     await go('/history'); await flushAll(20); await tap(screen.getAllByText('T')[0]); await flushAll(20); await tap(screen.getByText('Edytuj')); await flushAll(20);
     await swipeDelete(`Usuń ćwiczenie: ${BP}`); await alertNow('Usunąć z treningu?', 'Usuń'); /* G4: ostatniej serii nie usuwa się — całe ćwiczenie */ await tap(screen.getByText('Zapisz')); write.mockClear(); await alertNow('Pusty trening', 'Usuń sesję'); await settle();
     expect(store.getState().workouts.some(x => x.id === w.id)).toBe(false);
-    expect(screen.getByText('Dopisz trening wstecz')).toBeTruthy(); expect(screen.getAllByText('Kalendarz').length).toBeGreaterThan(0); expect(screen.queryByText('Brak sesji.')).toBeNull(); expect(screen.queryByText('Edytuj')).toBeNull();
+    expect(screen.getByText('Dopisz trening wstecz')).toBeTruthy(); expect(screen.getAllByText('Plan').length).toBeGreaterThan(0); expect(screen.queryByText('Brak sesji.')).toBeNull(); expect(screen.queryByText('Edytuj')).toBeNull();
     expect(write.mock.calls.some(c => /\/Backup\//.test(c[0]))).toBe(true);
   });
 

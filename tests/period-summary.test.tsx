@@ -57,7 +57,7 @@ describe('logika (lib/period.ts)', () => {
 });
 
 describe('ekran Postępy — sekcja „Podsumowanie”', () => {
-  const boot = async (fn: () => void, locale: 'pl' | 'en' = 'pl') => { await fresh(undefined, locale); fn(); await act(async () => { await store.flush(); }); await renderApp({ saved: JSON.parse(JSON.stringify(saved())), locale }); jest.setSystemTime(NOW.getTime()); await go('/more/progress'); await flushAll(10); };
+  const boot = async (fn: () => void, locale: 'pl' | 'en' = 'pl') => { await fresh(undefined, locale); fn(); await act(async () => { await store.flush(); }); await renderApp({ saved: JSON.parse(JSON.stringify(saved())), locale }); jest.setSystemTime(NOW.getTime()); await go('/progress'); await flushAll(10); };
   test('tydzień: wiersze z poprzednim okresem (VoiceOver), rekordy; „Następny okres” nieaktywny w bieżącym; strzałka wstecz i miesiąc', async () => {
     await boot(() => { addWorkout(at(8, 30), [['Back Squat', [{ weight: 100, reps: 5 }]]]); addWorkout(at(9, 6), [['Back Squat', [{ weight: 110, reps: 5 }, { weight: 110, reps: 5 }]]]); });
     expect(screen.getByTestId('period-summary')).toBeTruthy();

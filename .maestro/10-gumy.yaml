@@ -110,10 +110,13 @@ name: Gumy w miejscu i w treningu
 # E2E 91: po przewinięciu do wiersza Pull Up karta „teraz” (z „Set done”) jest nad ekranem — kotwica `below: "Set done.*"` nie istnieje.
 # Przycisk gumy Pull Up wskazujemy względem ✓ jego wiersza (leftOf; tekst karty „band: …” zajmuje całą szerokość karty, więc nie jest na lewo).
 - scrollUntilVisible: { element: "Set 1 done — Pull Up", direction: DOWN, timeout: 30000, centerElement: true }
-- tapOn: { text: "Band: none", leftOf: "Set 1 done — Pull Up" }
-- extendedWaitUntil: { visible: { text: "Band: green, level 1", leftOf: "Set 1 done — Pull Up" }, timeout: 15000 }
-- tapOn: { text: "Band: green, level 1", leftOf: "Set 1 done — Pull Up" }
-- extendedWaitUntil: { visible: "Band: red, level 2", timeout: 15000 }
+# Przebieg 38264871642 (14.10.2026 maszyna, ta sama aplikacja co 38241528019): przy innym przewinięciu w hierarchii był też wiersz Band Pull Apart
+# (✓, „Band: green, level 1” na y=38), a samo `leftOf` nie rozróżnia wierszy — drugie stuknięcie trafiło w gumę Band Pull Apart (zrzut 77: guma Pull Up
+# nadal G1). Kotwica `below: "Pull Up"` (nagłówek ćwiczenia stoi nad jego wierszami) wyklucza wiersze Band Pull Apart; zostaje też leftOf (✓ tego wiersza).
+- tapOn: { text: "Band: none", below: "Pull Up", leftOf: "Set 1 done — Pull Up" }
+- extendedWaitUntil: { visible: { text: "Band: green, level 1", below: "Pull Up", leftOf: "Set 1 done — Pull Up" }, timeout: 15000 }
+- tapOn: { text: "Band: green, level 1", below: "Pull Up", leftOf: "Set 1 done — Pull Up" }
+- extendedWaitUntil: { visible: { text: "Band: red, level 2", below: "Pull Up" }, timeout: 15000 }
 - takeScreenshot: 62-guma-pull-up
 - tapOn: "Set 1 done — Pull Up"
 - tapOn: { text: "Skip", optional: true }

@@ -84,7 +84,7 @@ test('C6 English: żaden ekran nie pokazuje polskich tekstów interfejsu', async
   // „Trening” w stopce „Trening 0.8.1 · …” to nazwa aplikacji (marka), nie tekst interfejsu.
   /* runda 75: także ścieżka w Plikach „On My iPhone → Trening → Backup” (nazwa aplikacji = folder) */
   const check = (where: string) => allTexts().filter(t => pl.test(t.replace(/^Trening \S* ·/, '').replace(/^Trening \S*\s*$/, '') /* 06.10.2026: stopka = nazwa aplikacji i wersja */.replace(/→ Trening →/g, '→'))).forEach(t => leaks.push(`${where}: ${t}`));
-  for (const url of ['/', '/templates', '/exercises', '/history', '/more', '/more/settings', '/more/bands', '/more/morning', '/more/progress', '/more/backup', `/template/${tplId}`, `/exercise/${exId}`, '/picker?target=active']) { await go(url); await flushAll(10); check(url); }
+  for (const url of ['/', '/templates', '/exercises', '/history', '/more', '/more/settings', '/more/bands', '/more/morning', '/progress', '/more/backup', `/template/${tplId}`, `/exercise/${exId}`, '/picker?target=active']) { await go(url); await flushAll(10); check(url); }
   await go('/'); await startTpl('Upper A'); await tap(screen.getAllByLabelText(/^Set 1 done/)[0]); check('workout');
   await tap(screen.getAllByText('Finish')[0]); pressAlert('Finish workout?', 'Finish'); await flushAll(500); check('history detail');
   expect(leaks).toEqual([]);
@@ -118,7 +118,7 @@ test('C7 akcje niszczące wymagają potwierdzenia', async () => {
 test('C8 puste stany mają tekst', async () => {
   await renderApp();
   await go('/history'); await flushAll(10); expect(screen.getByText(/pierwszy trening czeka/)).toBeTruthy();
-  await go('/more/progress'); await flushAll(10); expect(screen.getByText(/Wykresy pojawią się/)).toBeTruthy();
+  await go('/progress'); await flushAll(10); expect(screen.getByText(/Wykresy pojawią się/)).toBeTruthy();
   await act0(() => { store.getState().templates = []; store.save(); });
   await go('/templates'); await flushAll(10); expect(screen.getByText(/Brak szablonów/)).toBeTruthy();
 });
@@ -126,7 +126,7 @@ test('C8 puste stany mają tekst', async () => {
 test('C9 żaden ekran nie zgłasza ostrzeżeń Reacta (poza act w testach)', async () => {
   const errs: string[] = []; const spy = jest.spyOn(console, 'error').mockImplementation((...a: unknown[]) => { const m = String(a[0]); if (!/not wrapped in act/.test(m)) errs.push(m.slice(0, 160)); });
   await renderApp({ saved: seedWithDemo() }); const s = store.getState();
-  for (const url of ['/', '/templates', '/exercises', '/history', '/more', '/more/settings', '/more/bands', '/more/morning', '/more/progress', '/more/backup', `/template/${s.templates[0].id}`, `/exercise/${s.exercises[0].id}`, '/picker?target=active']) { await go(url); await flushAll(10); }
+  for (const url of ['/', '/templates', '/exercises', '/history', '/more', '/more/settings', '/more/bands', '/more/morning', '/progress', '/more/backup', `/template/${s.templates[0].id}`, `/exercise/${s.exercises[0].id}`, '/picker?target=active']) { await go(url); await flushAll(10); }
   await go('/'); await startTpl('Upper A'); await tap(screen.getAllByLabelText(/^Seria 1 zrobiona/)[0]); await flushAll(2000);
   spy.mockRestore(); expect(errs).toEqual([]);
 });

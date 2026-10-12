@@ -271,7 +271,7 @@ describe('/exercise/[id]', () => {
     await tap(byHint('plecy', 'Partie główne (1 seria)')); expect(e().muscles).toContain('plecy');
     await tap(byHint('plecy', 'Partie pomocnicze (0,5 serii)')); expect(e().secondaryMuscles).toContain('plecy'); expect(e().muscles).not.toContain('plecy');
     /* E1 (audyt 0.10): opis mówi prawdę o e1RM ćwiczeń z masą ciała (masa ciała z Ustawień, udział ze źródeł); E4: dopisek przy partiach */
-    expect(screen.getByText('Masa ciała: „±” to dociążenie (plus) albo asysta, np. maszyny (minus); guma to osobne pole z poziomem. Rekord to suma powtórzeń bez asysty, a objętość liczy się tylko z dociążenia. e1RM w ćwiczeniach z masą ciała liczy się tylko z masą ciała wpisaną w Ustawieniach i tylko tam, gdzie wiadomo, jaką jej część podnosisz: podciąganie (cała — uproszczenie), pompki (ok. 64% — badania z platformą siłową). Ćwiczenia na czas mają w treningu stoper — po upływie celu seria odhacza się sama. Przerwa ustawiona w pozycji szablonu ma pierwszeństwo; puste pole przerwy w szablonie oznacza przerwę z tego ćwiczenia.')).toBeTruthy();
+    expect(screen.getByText('Masa ciała: „±” to dociążenie (plus) albo asysta, np. maszyny (minus); guma to osobne pole z poziomem. Rekord to suma powtórzeń bez asysty, a objętość liczy się tylko z dociążenia. e1RM w ćwiczeniach z masą ciała liczy się tylko z masą ciała wpisaną w Postępach i tylko tam, gdzie wiadomo, jaką jej część podnosisz: podciąganie (cała — uproszczenie), pompki (ok. 64% — badania z platformą siłową). Ćwiczenia na czas mają w treningu stoper — po upływie celu seria odhacza się sama. Przerwa ustawiona w pozycji szablonu ma pierwszeństwo; puste pole przerwy w szablonie oznacza przerwę z tego ćwiczenia.')).toBeTruthy();
     expect(screen.getByText('Przypisanie partii mięśniowych — uproszczenie, nie wynik badań. Od niego zależą serie na partię, mapa mięśni, generator i propozycje w kalendarzu.')).toBeTruthy();
   });
 
@@ -491,12 +491,12 @@ describe('porzucony trening (ActiveWorkout + lib/timer)', () => {
   });
 });
 
-/* ======================================================================= /more/progress i components/Chart */
-describe('/more/progress (+ Chart)', () => {
+/* ======================================================================= /progress i components/Chart */
+describe('/progress (+ Chart)', () => {
   const at = (d: number) => Date.now() - d * DAY;
   test('bez ćwiczenia: opisy wykresów tygodniowych, „Brak serii w tym i poprzednim tygodniu.”, „Pokazano 40 z … — wpisz nazwę”', async () => {
     const saved = await prepared(() => { addWorkout(at(40), [['Back Squat', [{ weight: 100, reps: 5 }]]]); });
-    await renderApp({ saved }); await go('/more/progress'); await flushAll(10);
+    await renderApp({ saved }); await go('/progress'); await flushAll(10);
     expect(screen.getByText('Tygodnie od poniedziałku. Objętość = ciężar × powtórzenia × mnożnik ćwiczenia; rozgrzewka poza.')).toBeTruthy();
     expect(screen.getByText('Partia główna liczy 1 serię, pomocnicza 0,5 (np. wyciskanie: klatka 1, triceps i barki po 0,5). Partie ustawisz w edycji ćwiczenia.')).toBeTruthy();
     expect(screen.getByText('Objętość serii roboczych (ciężar × powtórzenia × mnożnik ćwiczenia); partia główna liczy całość, pomocnicza połowę. Ćwiczenia bez ciężaru (masa ciała, gumy) się nie liczą.')).toBeTruthy();
@@ -509,7 +509,7 @@ describe('/more/progress (+ Chart)', () => {
 
   test('ćwiczenie z ciężarem (2 sesje): opis wykresu dla VoiceOver, „obj.” w sesjach; chip „Tapnij, by wybrać inne ćwiczenie.” wraca do listy', async () => {
     const saved = await prepared(() => { addWorkout(at(10), [['Back Squat', [{ weight: 100, reps: 5 }]]]); addWorkout(at(3), [['Back Squat', [{ weight: 110, reps: 5 }]]]); });
-    await renderApp({ saved }); await go(`/more/progress?ex=${ex('Back Squat').id}`); await flushAll(10);
+    await renderApp({ saved }); await go(`/progress?ex=${ex('Back Squat').id}`); await flushAll(10);
     expect(screen.getByLabelText(/^Wykres, 2 sesje: od .+ do .+, najlepiej .+\.$/)).toBeTruthy();
     expect(tr('Wykres, {n} {s}: od {a} ({x}) do {b} ({y}), najlepiej {c} ({z}).', { n: 2, s: 'sesje', a: 'A', x: 'X', b: 'B', y: 'Y', c: 'C', z: 'Z' })).toBe('Wykres, 2 sesje: od A (X) do B (Y), najlepiej C (Z).');
     expect(screen.getAllByText(/ · obj\. /).length).toBe(2);
@@ -520,8 +520,8 @@ describe('/more/progress (+ Chart)', () => {
   /* E1 (audyt 0.10): „e1RM (dociążenie)” zniknęło — bez masy ciała w Ustawieniach wskazówka, z masą ciała e1RM (Epley) na masie + dociążeniu */
   test('masa ciała z dociążeniem i gumą: wskazówka e1RM, Max dociążenie, Max powtórzeń bez asysty / z asystą, Najwięcej powtórzeń na treningu; z masą ciała — e1RM (Epley)', async () => {
     const saved = await prepared(() => { const b = store.getState().bands[0]; addWorkout(at(3), [['Pull Up', [{ addKg: 10, reps: 5 }, { reps: 8 }, { reps: 12, bandId: b.id }]]]); });
-    await renderApp({ saved }); await go(`/more/progress?ex=${ex('Pull Up').id}`); await flushAll(10);
-    for (const l of ['e1RM pojawi się po wpisaniu masy ciała w Ustawieniach.', 'Max dociążenie', 'Max powtórzeń bez asysty', 'Max powtórzeń z asystą', 'Najwięcej powtórzeń na treningu']) expect(screen.getAllByText(l).length).toBeGreaterThan(0);
+    await renderApp({ saved }); await go(`/progress?ex=${ex('Pull Up').id}`); await flushAll(10);
+    for (const l of ['e1RM pojawi się po wpisaniu masy ciała w Postępach.', 'Max dociążenie', 'Max powtórzeń bez asysty', 'Max powtórzeń z asystą', 'Najwięcej powtórzeń na treningu']) expect(screen.getAllByText(l).length).toBeGreaterThan(0);
     expect(screen.getByText('Max dociążenie').parent).toBeTruthy(); expect(screen.queryByText('e1RM (Epley)')).toBeNull();
     await act(async () => { setBodyMass(80); }); await flushAll(5);
     expect(screen.getByText('e1RM (Epley)')).toBeTruthy(); expect(screen.getAllByText('e1RM').length).toBeGreaterThan(0); /* chip wykresu */
@@ -529,15 +529,15 @@ describe('/more/progress (+ Chart)', () => {
 
   test('jednostronne: „e1RM (Epley, na stronę)”; na czas (1 sesja): „max czas”, „Najdłużej łącznie na treningu”, „Jedna sesja: … Wykres pojawi się po drugiej.”', async () => {
     const saved = await prepared(() => { addWorkout(at(3), [['Meadows Row', [{ weight: 30, reps: 10 }]], ['Plank', [{ durationSec: 60 }]], ['Push Up', [{ reps: 20 }]], ['Bieg', [{ distanceM: 5000, durationSec: 1500 }]]]); });
-    await renderApp({ saved }); await go(`/more/progress?ex=${ex('Meadows Row').id}`); await flushAll(10);
+    await renderApp({ saved }); await go(`/progress?ex=${ex('Meadows Row').id}`); await flushAll(10);
     expect(screen.getByText('e1RM (Epley, na stronę)')).toBeTruthy();
-    await go(`/more/progress?ex=${ex('Plank').id}`); await flushAll(10);
+    await go(`/progress?ex=${ex('Plank').id}`); await flushAll(10);
     expect(screen.getByText('max czas')).toBeTruthy(); expect(screen.getByText('Najdłużej łącznie na treningu')).toBeTruthy();
     expect(screen.getByText(/^Jedna sesja: .+\. Wykres pojawi się po drugiej\.$/)).toBeTruthy();
     expect(tr('Jedna sesja: {v}. Wykres pojawi się po drugiej.', { v: '1:00' })).toBe('Jedna sesja: 1:00. Wykres pojawi się po drugiej.');
-    await go(`/more/progress?ex=${ex('Push Up').id}`); await flushAll(10);
+    await go(`/progress?ex=${ex('Push Up').id}`); await flushAll(10);
     expect(screen.getByText('max pow.')).toBeTruthy(); expect(screen.getByText('Najwięcej powtórzeń na treningu')).toBeTruthy();
-    await go(`/more/progress?ex=${ex('Bieg').id}`); await flushAll(10);
+    await go(`/progress?ex=${ex('Bieg').id}`); await flushAll(10);
     expect(screen.getByText('max dystans')).toBeTruthy(); expect(screen.getByText('Najdłuższy dystans')).toBeTruthy(); expect(screen.getByText('Najdłuższy dystans na treningu')).toBeTruthy();
     await tap(screen.getByText('max dystans')); expect(screen.getByText('max dystans').parent).toBeTruthy();
   });

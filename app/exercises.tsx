@@ -1,9 +1,8 @@
 import React, { useMemo, useState } from 'react';
 import { FlatList, View } from 'react-native';
 import { F } from '@/lib/theme';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
-import { Screen, H1, Item, Btn, Input, Muted, Empty, useOnce } from '@/components/ui';
+import { Screen, Item, Btn, Input, Muted, Empty, useOnce } from '@/components/ui';
 import { useExercisesTick, useCfgTick, newExercise, visibleExercises, getState, exerciseInHistory, usesBand, restoreExercise, deleteExercise, exercisesInUse, inCoreList, libShowAll, setLibShowAll } from '@/lib/store';
 import { LibScopeChip } from '@/components/LibScope';
 import { SwipeRow } from '@/components/SwipeRow';
@@ -44,12 +43,13 @@ export default function ExercisesScreen() {
   };
   const empty = <><Empty>{t('Nic nie pasuje.')}</Empty>{ql ? <Btn title={t('Utwórz „{name}”', { name: q.trim() })} block onPress={once(() => { const e = newExercise(q.replace(/\s+/g, ' ').trim()); setQ(''); router.push(`/exercise/${e.id}?edit=1&new=1`); })} /> : null}</>;
   return (
-    <SafeAreaView style={{ flex: 1 }} edges={['top']}><Screen>
-      <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginVertical: 10 }}><H1>{t('Ćwiczenia')} <Muted>{count}</Muted></H1><Btn title={t('+ Nowe')} small onPress={once(() => { const e = newExercise(); router.push(`/exercise/${e.id}?edit=1&new=1`); })} /></View>
+    <Screen>
+      {/* 11.10.2026 (docs/22, wariant A): ekran pod Więcej — tytuł „Ćwiczenia” w nagłówku stosu, liczba ćwiczeń obok przycisku */}
+      <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginVertical: 10 }}><Muted>{count}</Muted><Btn title={t('+ Nowe')} small onPress={once(() => { const e = newExercise(); router.push(`/exercise/${e.id}?edit=1&new=1`); })} /></View>
       <Input value={q} onChangeText={setQ} placeholder={t('Szukaj…')} maxLength={80} autoCorrect={false} />
       <LibScopeChip all={libAll} hidden={nicheHidden} searching={!!ql} onToggle={() => { const v = !libAll; setLibAll(v); setLibShowAll(v); }} />
       <FlatList testID="exercises-list" data={rows} renderItem={render} keyExtractor={r => r.key} initialNumToRender={EXERCISES_FIRST_RENDER} maxToRenderPerBatch={30} windowSize={11}
         keyboardShouldPersistTaps="handled" automaticallyAdjustKeyboardInsets contentContainerStyle={{ paddingBottom: 40 }} ListEmptyComponent={empty} />
-    </Screen></SafeAreaView>
+    </Screen>
   );
 }

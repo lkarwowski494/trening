@@ -313,7 +313,7 @@ describe('odpoczynek: filiżanka espresso w dniu bez treningu w planie (decyzja 
 
 /* ---------- 4. puste stany ---------- */
 describe('puste stany z grafiką gryfu (dekoracja, ukryta przed VoiceOver)', () => {
-  test.each([['/templates', 'Brak szablonów — dodaj pierwszy.'], ['/history', 'Jeszcze pusto — pierwszy trening czeka.'], ['/more/locations', 'Brak miejsc — wszystkie ćwiczenia są dostępne, a podpowiedzi działają jak dotąd.'], ['/more/progress', 'Wykresy pojawią się po pierwszym zakończonym treningu.']] as const)('%s', async (route, text) => {
+  test.each([['/templates', 'Brak szablonów — dodaj pierwszy.'], ['/history', 'Jeszcze pusto — pierwszy trening czeka.'], ['/more/locations', 'Brak miejsc — wszystkie ćwiczenia są dostępne, a podpowiedzi działają jak dotąd.'], ['/progress', 'Wykresy pojawią się po pierwszym zakończonym treningu.']] as const)('%s', async (route, text) => {
     await boot(); await go(route); await flushAll(10);
     expect(screen.getByText(text)).toBeTruthy();
     const art = screen.getAllByTestId('empty-art', { includeHiddenElements: true }); expect(art.length).toBeGreaterThan(0);
@@ -329,7 +329,7 @@ describe('puste stany z grafiką gryfu (dekoracja, ukryta przed VoiceOver)', () 
 
 /* ---------- 5. zakładki ---------- */
 describe('ikony zakładek w geometrii talerzy', () => {
-  const NAMES = Object.keys({ workout: 1, templates: 1, exercises: 1, history: 1, more: 1 } satisfies Record<TabIconName, 1>) as TabIconName[];
+  const NAMES = Object.keys({ workout: 1, history: 1, progress: 1, more: 1 } satisfies Record<TabIconName, 1>) as TabIconName[];
   test.each(NAMES)('%s: tylko zaokrąglone prostokąty i linie (bez kół), co najmniej dwa talerze', name => {
     const r = render(<TabIcon name={name} color="#123456" />);
     const kinds = r.UNSAFE_root.findAll(x => typeof x.type !== 'string' && ['Rect', 'Circle', 'Path', 'Ellipse'].includes((x.type as { displayName?: string; name?: string }).displayName ?? (x.type as { name?: string }).name ?? '')).map(x => (x.type as { displayName?: string; name?: string }).displayName ?? (x.type as { name?: string }).name);
@@ -339,7 +339,7 @@ describe('ikony zakładek w geometrii talerzy', () => {
   });
   test('etykiety VoiceOver zakładek bez zmian (tabA11y; E2E opiera się na nich)', async () => {
     await boot();
-    for (const [i, n] of ['Trening', 'Szablony', 'Ćwiczenia', 'Kalendarz', 'Więcej'].entries()) expect(screen.getByLabelText(`${n}, zakładka, ${i + 1} z 5`)).toBeTruthy();
+    for (const [i, n] of ['Trening', 'Plan', 'Postępy', 'Więcej'].entries()) expect(screen.getByLabelText(`${n}, zakładka, ${i + 1} z 4`)).toBeTruthy();
   });
 });
 
