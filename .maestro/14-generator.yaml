@@ -94,9 +94,9 @@ name: Generator szablonów i planu
 - tapOn: "Back"
 - tapOn: "More, tab.*"
 - tapOn: "Guide.*"
-- extendedWaitUntil: { visible: "Read: .*", timeout: 15000 }
+- extendedWaitUntil: { visible: "Read: .*", timeout: 30000 }  # nawigacja jak gdzie indziej 30 s (przebieg 38264871642: zrzut — Więcej z wciśniętym „Guide”, JS wolny)
 - tapOn: "Weekly plan and Calendar, unread"
-- extendedWaitUntil: { visible: "Show: Weekly plan and Calendar", timeout: 15000 }
+- extendedWaitUntil: { visible: "Show: Weekly plan and Calendar", timeout: 30000 }
 - takeScreenshot: 73-przewodnik
 - tapOn: "Show: Weekly plan and Calendar"
 - extendedWaitUntil: { visible: "Planning", timeout: 30000 }  # przycisk w Kalendarzu (dawniej „Weekly plan”)
