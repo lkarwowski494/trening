@@ -2,7 +2,7 @@
  * Fala 3 nowych języków (docs/16 „Fala 3”, 09.10.2026) — ekran, scenariusz i dane: „Русский” na liście języków, wybór zmienia teksty i przeżywa
  * ponowne uruchomienie, migrację i kopię; „Jak w telefonie” na telefonie ru-RU / ru-KZ / ru-UA / ru-BY → ru, a ukraiński telefon (uk-UA) dalej
  * po ukraińsku; ekran ćwiczenia z sekcją „Техника”; trening w toku i ustawienia na 320 pt przy skali tekstu 2,0 (200 %) bez polskich tekstów i błędów.
- * Wszystkie trasy × LANGS: tests/matrix-dim-langs-routes.test.tsx; szerokości 320 pt / 200 %: tests/matrix-i18n.test.tsx (ru wchodzi sam).
+ * Wszystkie trasy × LANGS: tests/matrix-dim-langs-routes1–6; szerokości 320 pt / 200 %: tests/matrix-i18n.test.tsx (ru wchodzi sam).
  */
 import * as store from '@/lib/store';
 import { buildBackup, parseBackup } from '@/lib/backup';

@@ -54,5 +54,5 @@ describe('wybór języka (ekran)', () => {
     await tap(screen.getByText('Čeština')); await flushAll(10);
     expect(store.getState().settings.language).toBe('cs'); expect(lang()).toBe('cs');
     const raw = JSON.parse(JSON.stringify(store.getState())); expect(store.migrate(raw).settings.language).toBe('cs');
-  });
+  }, 20000); /* jawny limit 20 s zamiast domyślnych 5 s: na macOS w CI (testflight.yml, 2 procesy Jest przy obciążonej maszynie) test przekroczył 5 s (run 38211187744, 12.10.2026); sprawdzenia bez zmian */
 });

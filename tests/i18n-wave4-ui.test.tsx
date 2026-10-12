@@ -3,7 +3,7 @@
  * i przeżywa ponowne uruchomienie, migrację i kopię; „Jak w telefonie” na telefonie ja-JP / ko-KR / zh-Hant-TW / zh-HK → ten język, a telefon
  * zh-Hans-CN (chiński uproszczony — odłożony) po angielsku; ekran ćwiczenia z sekcją techniki; trening w toku i ustawienia na 320 pt przy skali
  * tekstu 2,0 (200 %) bez polskich tekstów i błędów Reacta.
- * Wszystkie trasy × LANGS: tests/matrix-dim-langs-routes.test.tsx; szerokości 320 pt / 200 % z łamaniem CJK: tests/matrix-i18n.test.tsx (units()).
+ * Wszystkie trasy × LANGS: tests/matrix-dim-langs-routes1–6; szerokości 320 pt / 200 % z łamaniem CJK: tests/matrix-i18n.test.tsx (units()).
  */
 import * as store from '@/lib/store';
 import { buildBackup, parseBackup } from '@/lib/backup';

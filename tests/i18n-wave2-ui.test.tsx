@@ -2,7 +2,7 @@
  * Fala 2 nowych języków (docs/16 „Fala 2”, 09.10.2026) — ekran, scenariusz i dane: id, ms, vi na liście języków (nazwy w danym języku), wybór
  * zmienia teksty i przeżywa ponowne uruchomienie, migrację i kopię; „Jak w telefonie” na telefonie id-ID / ms-MY / vi-VN; ekran ćwiczenia
  * z sekcją „Technika” po wietnamsku; trening w toku na 320 pt przy skali tekstu 2,0 (200 %) bez polskich tekstów i błędów.
- * Wszystkie trasy × LANGS: tests/matrix-dim-langs-routes.test.tsx; szerokości 320 pt / 200 %: tests/matrix-i18n.test.tsx (nowe kody wchodzą same).
+ * Wszystkie trasy × LANGS: tests/matrix-dim-langs-routes1–6; szerokości 320 pt / 200 %: tests/matrix-i18n.test.tsx (nowe kody wchodzą same).
  */
 import * as store from '@/lib/store';
 import { buildBackup, parseBackup } from '@/lib/backup';
