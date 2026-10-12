@@ -897,7 +897,7 @@ Widok: z boku; kotwica: pięta; przyrządy: line, rect, cable, grip.
   - dłoń przy: biodro + [16, 8] w układzie tułowia (≤ 6) ← `erg.finish`: „Na końcu pociągnięcia nogi proste, tułów lekko odchylony, uchwyt tuż pod żebrami.”
 - Uproszczenie ilustracyjne: pozostałe kąty. Trzy pozycje: wyjściowa, po pracy nóg, koniec pociągnięcia; powrót w odwrotnej kolejności (erg.recovery). Pochylenie tułowia ilustracyjne.
 
-## Bez figury — lista otwarta (11)
+## Bez figury — lista otwarta (31)
 
 | Ćwiczenie | Powód |
 |---|---|
@@ -912,5 +912,25 @@ Widok: z boku; kotwica: pięta; przyrządy: line, rect, cable, grip.
 | Crunch | Ruch to zgięcie kręgosłupa (unoszenie łopatek przy lędźwiach na podłodze) — tułów w modelu jest sztywnym odcinkiem; rysunek pokazałby zgięcie w biodrach, czyli inne ćwiczenie. |
 | Side Plank | Pozycja w płaszczyźnie czołowej (odwiedzenie, zgięcie boczne) — model widoku z boku liczy zgięcie i wyprost, więc kąty byłyby źle nazwane; potrzebny widok z przodu dla całego ciała w podporze. |
 | Box Jump | Skok — tor lotu i lądowanie nie dają się uczciwie pokazać 2–3 pozycjami w pętli tam i z powrotem (powrót wyglądałby jak skok w tył). |
+| Straight Arm Pulldown | Wskazówki dodane w 0.14.0 (partie 1–2 researchu); rysunek (pozy, kąty ze źródłami i powiązane sprawdzenia) to osobne zlecenie, nie część tej partii. |
+| Wyciskanie na linkach (stojąc) | Wskazówki dodane w 0.14.0 (partie 1–2 researchu); rysunek (pozy, kąty ze źródłami i powiązane sprawdzenia) to osobne zlecenie, nie część tej partii. |
+| Machine Shoulder Press | Wskazówki dodane w 0.14.0 (partie 1–2 researchu); rysunek (pozy, kąty ze źródłami i powiązane sprawdzenia) to osobne zlecenie, nie część tej partii. |
+| Leg Curl | Wskazówki dodane w 0.14.0 (partie 1–2 researchu); rysunek (pozy, kąty ze źródłami i powiązane sprawdzenia) to osobne zlecenie, nie część tej partii. |
+| Nordic Curl | Wskazówki dodane w 0.14.0 (partie 1–2 researchu); rysunek (pozy, kąty ze źródłami i powiązane sprawdzenia) to osobne zlecenie, nie część tej partii. |
+| Wall Sit | Wskazówki dodane w 0.14.0 (partie 1–2 researchu); rysunek (pozy, kąty ze źródłami i powiązane sprawdzenia) to osobne zlecenie, nie część tej partii. |
+| Back Extension | Wskazówki dodane w 0.14.0 (partie 1–2 researchu); rysunek (pozy, kąty ze źródłami i powiązane sprawdzenia) to osobne zlecenie, nie część tej partii. |
+| Preacher Curl | Wskazówki dodane w 0.14.0 (partie 1–2 researchu); rysunek (pozy, kąty ze źródłami i powiązane sprawdzenia) to osobne zlecenie, nie część tej partii. |
+| Diamond Push Up | Wskazówki dodane w 0.14.0 (partie 1–2 researchu); rysunek (pozy, kąty ze źródłami i powiązane sprawdzenia) to osobne zlecenie, nie część tej partii. |
+| Pallof Press | Wskazówki dodane w 0.14.0 (partie 1–2 researchu); rysunek (pozy, kąty ze źródłami i powiązane sprawdzenia) to osobne zlecenie, nie część tej partii. |
+| Reverse Crunch | Wskazówki dodane w 0.14.0 (partie 1–2 researchu); rysunek (pozy, kąty ze źródłami i powiązane sprawdzenia) to osobne zlecenie, nie część tej partii. |
+| Farmer's Walk | Wskazówki dodane w 0.14.0 (partie 1–2 researchu); rysunek (pozy, kąty ze źródłami i powiązane sprawdzenia) to osobne zlecenie, nie część tej partii. |
+| Suitcase Carry | Wskazówki dodane w 0.14.0 (partie 1–2 researchu); rysunek (pozy, kąty ze źródłami i powiązane sprawdzenia) to osobne zlecenie, nie część tej partii. |
+| Burpees | Wskazówki dodane w 0.14.0 (partie 1–2 researchu); rysunek (pozy, kąty ze źródłami i powiązane sprawdzenia) to osobne zlecenie, nie część tej partii. |
+| Medicine Ball Slam | Wskazówki dodane w 0.14.0 (partie 1–2 researchu); rysunek (pozy, kąty ze źródłami i powiązane sprawdzenia) to osobne zlecenie, nie część tej partii. |
+| Leg Extension | Wskazówki dodane w 0.14.0 (partie 1–2 researchu); rysunek (pozy, kąty ze źródłami i powiązane sprawdzenia) to osobne zlecenie, nie część tej partii. |
+| Seated Calf Raise | Wskazówki dodane w 0.14.0 (partie 1–2 researchu); rysunek (pozy, kąty ze źródłami i powiązane sprawdzenia) to osobne zlecenie, nie część tej partii. |
+| Incline Walk (bieżnia) | Wskazówki dodane w 0.14.0 (partie 1–2 researchu); rysunek (pozy, kąty ze źródłami i powiązane sprawdzenia) to osobne zlecenie, nie część tej partii. |
+| Bieg | Wskazówki dodane w 0.14.0 (partie 1–2 researchu); rysunek (pozy, kąty ze źródłami i powiązane sprawdzenia) to osobne zlecenie, nie część tej partii. |
+| Rower | Wskazówki dodane w 0.14.0 (partie 1–2 researchu); rysunek (pozy, kąty ze źródłami i powiązane sprawdzenia) to osobne zlecenie, nie część tej partii. |
 
-Poza tym bez figury: 42 ćwiczeń bazowych bez wskazówek etapu 1 (docs/research/27, lista otwarta) — figura czeka na wskazówki.
+Poza tym bez figury: 22 ćwiczeń bazowych bez wskazówek etapu 1 (docs/research/27, lista otwarta) — figura czeka na wskazówki.

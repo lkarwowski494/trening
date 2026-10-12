@@ -162,6 +162,21 @@
   },
   {
    "path": "lib/cues/data.json",
+   "name": "Eleiko",
+   "reason": "źródło wskazówek techniki (producent sprzętu — organizacja i tytuły stron w danych źródeł, 0.14.0, docs/research/31 i 33); podpis w aplikacji neutralny (rodzaj źródła) — jak Concept2, decyzja MER2-07 = SEC2-02 wariant A"
+  },
+  {
+   "path": "lib/cues/data.json",
+   "name": "Life Fitness",
+   "reason": "źródło wskazówek techniki (producent sprzętu — organizacja i tytuł artykułu w danych źródeł, 0.14.0, docs/research/31 i 33); podpis w aplikacji neutralny (rodzaj źródła) — jak Concept2, decyzja MER2-07 = SEC2-02 wariant A"
+  },
+  {
+   "path": "lib/cues/data.json",
+   "name": "BikeErg",
+   "reason": "źródło wskazówek techniki (tytuł strony producenta ergometru rowerowego w danych źródeł, 0.14.0, docs/research/31 i 33); podpis w aplikacji neutralny (rodzaj źródła) — jak Concept2, decyzja MER2-07 = SEC2-02 wariant A"
+  },
+  {
+   "path": "lib/cues/data.json",
    "name": "Concept2",
    "reason": "źródło wskazówek techniki (organizacja w danych źródeł); podpis w aplikacji neutralny — decyzja MER2-07 = SEC2-02 wariant A, wdrożenie 0.10.1"
   },
@@ -194,6 +209,11 @@
    "path": "tests/fixtures/web03-backup.json",
    "name": "ViShape",
    "reason": "kopia zapasowa z 03.10 do testów importu — nazwa szablonu wpisana przez użytkownika (plik usuwany z historią przed App Store, N1)"
+  },
+  {
+   "path": "tests/cues-014.test.tsx",
+   "name": "Assault Bike",
+   "reason": "klucz katalogu (nazwa kanoniczna = Exercise.libKey w danych użytkownika; wskazówki po kluczu) — test pilnuje, że ćwiczenie o tym kluczu zostaje w „open” wskazówek (pytanie o wariant roweru otwarte)"
   },
   {
    "path": "tests/decisions-0310.test.tsx",

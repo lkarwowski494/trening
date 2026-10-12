@@ -33,11 +33,21 @@ export function validate(data, pl) {
     if (s && s.archive !== undefined && !/^https:\/\/web\.archive\.org\/web\/\d{8,14}\//.test(s.archive)) errs.push(`sources.${id}: archive musi być migawką Wayback`);
     if (s && s.level !== data.orgs?.[s.org]?.level && ![2, 3, 4].includes(s.level)) errs.push(`sources.${id}: szczebel`);
   }
+  const partial = new Set(data.partial ?? []);
+  for (const ex of partial) {
+    const x = data.exercises?.[ex];
+    if (!x) { errs.push(`partial.${ex}: ćwiczenie nie ma wskazówek`); continue; }
+    if ((x.setup ?? []).length >= 1 && (x.move ?? []).length >= 1 && (x.tips ?? []).length >= TIPS_MIN) errs.push(`partial.${ex}: komplet sekcji — wpis zbędny`);
+    if (Object.keys(SECTIONS).reduce((a, sec) => a + (x[sec] ?? []).length, 0) < TIPS_MIN) errs.push(`partial.${ex}: łącznie mniej niż ${TIPS_MIN} wskazówki`);
+  }
   for (const [ex, x] of Object.entries(data.exercises ?? {})) {
     for (const sec of Object.keys(x)) if (!(sec in SECTIONS)) errs.push(`${ex}: nieznana sekcja ${sec}`);
     for (const sec of Object.keys(SECTIONS)) {
       const list = x[sec] ?? [];
-      if (sec === 'tips' ? list.length < TIPS_MIN || list.length > TIPS_MAX : sec === 'mistakes' ? list.length > TIPS_MAX : list.length < 1) errs.push(`${ex}: sekcja ${sec} ma ${list.length} pozycji`);
+      /* 0.14.0 (partie 1–2 researchu, docs/research/31 i 33): ćwiczenia z listy „partial” mogą nie mieć ustawienia, ruchu lub 2 wskazówek — research potwierdził
+       * tylko część sekcji, a braków nie dopisujemy z jednego źródła; wystarczy łącznie ≥ TIPS_MIN wskazówek (sprawdzane niżej), górne granice zostają. */
+      const part = partial.has(ex);
+      if (sec === 'tips' ? (!part && list.length < TIPS_MIN) || list.length > TIPS_MAX : sec === 'mistakes' ? list.length > TIPS_MAX : (!part && list.length < 1)) errs.push(`${ex}: sekcja ${sec} ma ${list.length} pozycji`);
       const ids = new Set();
       for (const r of list) {
         if (!r || typeof r.c !== 'string' || !Object.prototype.hasOwnProperty.call(pl, r.c)) { errs.push(`${ex}.${sec}: brak tekstu PL dla ${r && r.c}`); continue; }
@@ -96,6 +106,7 @@ export function render(data, pl) {
   L.push(`- Ćwiczenia ze wskazówkami: ${exs.length}; zdań (z powtórzeniami między ćwiczeniami): ${nCues}; unikalnych zdań: ${Object.keys(pl).length}; źródeł: ${Object.keys(data.sources).length}.`);
   const open = Object.entries(data.open ?? {});
   L.push(`- Ćwiczenia bazowe bez wskazówek (otwarte): ${open.length}.`);
+  if ((data.partial ?? []).length) L.push(`- Ćwiczenia z niepełnym zestawem sekcji (research potwierdził tylko część; braków nie dopisujemy z jednego źródła): ${data.partial.length} — ${data.partial.map(md).join(', ')}.`);
   L.push('');
   if (open.length) {
     L.push('## Otwarte — bez wskazówek');
