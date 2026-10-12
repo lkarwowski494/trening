@@ -1434,5 +1434,9 @@
  "Na koniec „Zakończ” (u góry albo w karcie po ostatniej serii) — sesja trafi do zakładki Plan.": "Al final, «Terminar» (arriba o en la tarjeta tras la última serie) — la sesión pasa a la pestaña Plan.",
  "Ten tydzień jest oznaczony jako deload (D na wykresach). Oznaczenie zmienisz w zakładce Plan: dzień → „Więcej opcji”.": "Esta semana está marcada como descarga (D en los gráficos). Cambia la marca en la pestaña Plan: día → «Más opciones».",
  "godzina nieznana": "hora desconocida",
- "Ciężar z innego sprzętu — nie liczy się do rekordów, dopóki go tu nie wpiszesz.": "Peso de otro equipo — no cuenta para los récords hasta que lo introduzcas aquí."
+ "Ciężar z innego sprzętu — nie liczy się do rekordów, dopóki go tu nie wpiszesz.": "Peso de otro equipo — no cuenta para los récords hasta que lo introduzcas aquí.",
+ "Cel serii na partię w tygodniu ustawisz w Ustawieniach (Automatycznie albo Ręcznie); paski w „Ten tydzień” i w Postępach mierzą do tego celu, a partia pomocnicza ćwiczenia liczy się za pół serii.": "El objetivo semanal de series por grupo muscular se fija en Ajustes (Automático o Manual); las barras de «Esta semana» y de Progreso se miden contra ese objetivo, y el grupo muscular secundario de un ejercicio cuenta como media serie.",
+ "Poprawki: Postępy pamiętają wybrane ćwiczenie, import bez godzin pokazuje „godzina nieznana”, a teksty pomocy zgadzają się z nazwami zakładek.": "Correcciones: Progreso recuerda el ejercicio elegido, una importación sin horas muestra «hora desconocida» y los textos de ayuda coinciden con los nombres de las pestañas.",
+ "20 nowych ćwiczeń ze wskazówkami w sekcji „Technika”.": "20 ejercicios nuevos con consejos en la sección «Técnica».",
+ "Trening dopisywany wstecz: miejsce treningu wybierzesz w edytorze.": "Entrenamiento añadido a posteriori: el lugar del entrenamiento se elige en el editor."
 }

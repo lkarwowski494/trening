@@ -1434,5 +1434,9 @@
  "Na koniec „Zakończ” (u góry albo w karcie po ostatniej serii) — sesja trafi do zakładki Plan.": "La final, „Termină” (sus sau în card după ultima serie) — sesiunea ajunge în fila Plan.",
  "Ten tydzień jest oznaczony jako deload (D na wykresach). Oznaczenie zmienisz w zakładce Plan: dzień → „Więcej opcji”.": "Această săptămână este marcată ca descărcare (D în grafice). Schimbi marcajul în fila Plan: zi → „Mai multe opțiuni”.",
  "godzina nieznana": "ora necunoscută",
- "Ciężar z innego sprzętu — nie liczy się do rekordów, dopóki go tu nie wpiszesz.": "Greutate de la alt echipament — nu se numără la recorduri până când o introduci aici."
+ "Ciężar z innego sprzętu — nie liczy się do rekordów, dopóki go tu nie wpiszesz.": "Greutate de la alt echipament — nu se numără la recorduri până când o introduci aici.",
+ "Cel serii na partię w tygodniu ustawisz w Ustawieniach (Automatycznie albo Ręcznie); paski w „Ten tydzień” i w Postępach mierzą do tego celu, a partia pomocnicza ćwiczenia liczy się za pół serii.": "Ținta săptămânală de serii pe grupă musculară o setezi în Configurări (Automat sau Manual); barele din „Săptămâna aceasta” și din Progres se măsoară față de această țintă, iar grupa musculară secundară a unui exercițiu se numără ca jumătate de serie.",
+ "Poprawki: Postępy pamiętają wybrane ćwiczenie, import bez godzin pokazuje „godzina nieznana”, a teksty pomocy zgadzają się z nazwami zakładek.": "Corecturi: Progres ține minte exercițiul ales, importul fără ore afișează „ora necunoscută”, iar textele de ajutor se potrivesc cu numele filelor.",
+ "20 nowych ćwiczeń ze wskazówkami w sekcji „Technika”.": "20 de exerciții noi cu sfaturi în secțiunea „Tehnică”.",
+ "Trening dopisywany wstecz: miejsce treningu wybierzesz w edytorze.": "Antrenament adăugat ulterior: locul antrenamentului îl alegi în editor."
 }

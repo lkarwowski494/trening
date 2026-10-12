@@ -167,5 +167,6 @@
  "Kreska = cel serii na partię w tygodniu: {n} automatycznie albo Twoja liczba z Ustawień.": "Línea = objetivo semanal de series por grupo muscular: {n} automático o tu propio número en Configuración.",
  "Po kilku tygodniach treningu z rzędu zakładka Plan podpowie „Zaplanuj deload od …”.": "Después de varias semanas de entrenamiento seguidas, la pestaña Plan sugerirá «Planificar descarga desde el …».",
  "Stuknij dzień w zakładce Plan: „Przesuń albo pomiń” pokazuje możliwości — przesunięcie planu o 1 dzień, tylko tego treningu, zamianę albo wolne.": "Toca un día en la pestaña Plan: «Mover o saltar» muestra las opciones — mover el plan 1 día, solo este entrenamiento, intercambiar o descanso.",
- "Ciężar z innego sprzętu — nie liczy się do rekordów, dopóki go tu nie wpiszesz.": "Peso de otro equipo — no cuenta para los récords hasta que lo ingreses aquí."
+ "Ciężar z innego sprzętu — nie liczy się do rekordów, dopóki go tu nie wpiszesz.": "Peso de otro equipo — no cuenta para los récords hasta que lo ingreses aquí.",
+ "Cel serii na partię w tygodniu ustawisz w Ustawieniach (Automatycznie albo Ręcznie); paski w „Ten tydzień” i w Postępach mierzą do tego celu, a partia pomocnicza ćwiczenia liczy się za pół serii.": "El objetivo semanal de series por grupo muscular se fija en Configuración (Automático o Manual); las barras de «Esta semana» y de Progreso se miden contra ese objetivo, y el grupo muscular secundario de un ejercicio cuenta como media serie."
 }

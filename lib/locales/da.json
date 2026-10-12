@@ -1434,5 +1434,9 @@
  "Na koniec „Zakończ” (u góry albo w karcie po ostatniej serii) — sesja trafi do zakładki Plan.": "Til sidst “Afslut” (øverst eller i kortet efter sidste sæt) — sessionen havner på fanen Plan.",
  "Ten tydzień jest oznaczony jako deload (D na wykresach). Oznaczenie zmienisz w zakładce Plan: dzień → „Więcej opcji”.": "Denne uge er markeret som deload (D i diagrammerne). Ændr markeringen på fanen Plan: dag → “Flere valg”.",
  "godzina nieznana": "tidspunkt ukendt",
- "Ciężar z innego sprzętu — nie liczy się do rekordów, dopóki go tu nie wpiszesz.": "Vægt fra andet udstyr — tæller ikke med i rekorder, før du indtaster den her."
+ "Ciężar z innego sprzętu — nie liczy się do rekordów, dopóki go tu nie wpiszesz.": "Vægt fra andet udstyr — tæller ikke med i rekorder, før du indtaster den her.",
+ "Cel serii na partię w tygodniu ustawisz w Ustawieniach (Automatycznie albo Ręcznie); paski w „Ten tydzień” i w Postępach mierzą do tego celu, a partia pomocnicza ćwiczenia liczy się za pół serii.": "Ugentligt mål for sæt pr. muskelgruppe indstiller du i Indstillinger (Automatisk eller Manuelt); bjælkerne i ”Denne uge” og i Fremgang måler mod dette mål, og en øvelses sekundære muskelgruppe tæller som et halvt sæt.",
+ "Poprawki: Postępy pamiętają wybrane ćwiczenie, import bez godzin pokazuje „godzina nieznana”, a teksty pomocy zgadzają się z nazwami zakładek.": "Rettelser: Fremgang husker den valgte øvelse, import uden klokkeslæt viser ”tidspunkt ukendt”, og hjælpetekster passer nu til fanernes navne.",
+ "20 nowych ćwiczeń ze wskazówkami w sekcji „Technika”.": "20 nye øvelser med tips i sektionen ”Teknik”.",
+ "Trening dopisywany wstecz: miejsce treningu wybierzesz w edytorze.": "Træning tilføjet bagud: du vælger træningsstedet i editoren."
 }

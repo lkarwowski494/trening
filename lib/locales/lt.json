@@ -1434,5 +1434,9 @@
  "Na koniec „Zakończ” (u góry albo w karcie po ostatniej serii) — sesja trafi do zakładki Plan.": "Pabaigoje „Baigti“ (viršuje arba kortelėje po paskutinės serijos) — sesija patenka į skiltį „Planas“.",
  "Ten tydzień jest oznaczony jako deload (D na wykresach). Oznaczenie zmienisz w zakładce Plan: dzień → „Więcej opcji”.": "Ši savaitė pažymėta kaip iškrova (D diagramose). Žymą keisk skiltyje „Planas“: diena → „Daugiau parinkčių“.",
  "godzina nieznana": "laikas nežinomas",
- "Ciężar z innego sprzętu — nie liczy się do rekordów, dopóki go tu nie wpiszesz.": "Svoris iš kitos įrangos neįskaičiuojamas į rekordus, kol jo čia neįvesi."
+ "Ciężar z innego sprzętu — nie liczy się do rekordów, dopóki go tu nie wpiszesz.": "Svoris iš kitos įrangos neįskaičiuojamas į rekordus, kol jo čia neįvesi.",
+ "Cel serii na partię w tygodniu ustawisz w Ustawieniach (Automatycznie albo Ręcznie); paski w „Ten tydzień” i w Postępach mierzą do tego celu, a partia pomocnicza ćwiczenia liczy się za pół serii.": "Savaitinį serijų tikslą vienai raumenų grupei nustatai skiltyje Nustatymai (Automatiškai arba Rankiniu būdu); juostos skiltyse „Ši savaitė“ ir Progresas matuojamos pagal šį tikslą, o pagalbinė pratimo raumenų grupė skaičiuojama kaip pusė serijos.",
+ "Poprawki: Postępy pamiętają wybrane ćwiczenie, import bez godzin pokazuje „godzina nieznana”, a teksty pomocy zgadzają się z nazwami zakładek.": "Pataisymai: Progresas prisimena pasirinktą pratimą, importas be laiko rodo „laikas nežinomas“, o pagalbos tekstai atitinka skirtukų pavadinimus.",
+ "20 nowych ćwiczeń ze wskazówkami w sekcji „Technika”.": "20 naujų pratimų su patarimais skyriuje „Atlikimo technika“.",
+ "Trening dopisywany wstecz: miejsce treningu wybierzesz w edytorze.": "Vėliau įrašyta treniruotė: treniruotės vietą pasirenki redaktoriuje."
 }

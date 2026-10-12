@@ -1434,5 +1434,9 @@
  "Na koniec „Zakończ” (u góry albo w karcie po ostatniej serii) — sesja trafi do zakładki Plan.": "Beigās “Pabeigt” (augšā vai kartītē pēc pēdējās sērijas) — sesija nonāk cilnē Plāns.",
  "Ten tydzień jest oznaczony jako deload (D na wykresach). Oznaczenie zmienisz w zakładce Plan: dzień → „Więcej opcji”.": "Šī nedēļa ir atzīmēta kā atslodze (D diagrammās). Atzīmi maini cilnē Plāns: diena → “Vairāk iespēju”.",
  "godzina nieznana": "laiks nav zināms",
- "Ciężar z innego sprzętu — nie liczy się do rekordów, dopóki go tu nie wpiszesz.": "Svars no cita inventāra netiek ieskaitīts rekordos, kamēr to šeit neievadi."
+ "Ciężar z innego sprzętu — nie liczy się do rekordów, dopóki go tu nie wpiszesz.": "Svars no cita inventāra netiek ieskaitīts rekordos, kamēr to šeit neievadi.",
+ "Cel serii na partię w tygodniu ustawisz w Ustawieniach (Automatycznie albo Ręcznie); paski w „Ten tydzień” i w Postępach mierzą do tego celu, a partia pomocnicza ćwiczenia liczy się za pół serii.": "Iknedēļas sēriju mērķi uz muskuļu grupu iestata sadaļā Iestatījumi (Automātiski vai Manuāli); joslas sadaļās „Šī nedēļa“ un Progress tiek mērītas pret šo mērķi, un vingrinājuma palīgmuskuļu grupa tiek skaitīta kā pus sērijas.",
+ "Poprawki: Postępy pamiętają wybrane ćwiczenie, import bez godzin pokazuje „godzina nieznana”, a teksty pomocy zgadzają się z nazwami zakładek.": "Labojumi: Progress atceras izvēlēto vingrinājumu, imports bez laikiem rāda „laiks nav zināms“, un palīdzības teksti atbilst cilņu nosaukumiem.",
+ "20 nowych ćwiczeń ze wskazówkami w sekcji „Technika”.": "20 jauni vingrinājumi ar padomiem sadaļā „Tehnika“.",
+ "Trening dopisywany wstecz: miejsce treningu wybierzesz w edytorze.": "Vēlāk pievienots treniņš: treniņa vietu izvēlies redaktorā."
 }

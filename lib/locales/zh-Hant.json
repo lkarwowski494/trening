@@ -1434,5 +1434,9 @@
  "Na koniec „Zakończ” (u góry albo w karcie po ostatniej serii) — sesja trafi do zakładki Plan.": "最後點「結束」（在上方，或最後一組之後的卡片中），這次訓練就會存入「計畫」分頁。",
  "Ten tydzień jest oznaczony jako deload (D na wykresach). Oznaczenie zmienisz w zakładce Plan: dzień → „Więcej opcji”.": "本週已標示為減量週（圖表中的 D）。可在「計畫」分頁變更標示：日期 →「更多選項」。",
  "godzina nieznana": "時間不明",
- "Ciężar z innego sprzętu — nie liczy się do rekordów, dopóki go tu nie wpiszesz.": "這是其他器材記錄的重量 — 在此輸入之前不會計入紀錄。"
+ "Ciężar z innego sprzętu — nie liczy się do rekordów, dopóki go tu nie wpiszesz.": "這是其他器材記錄的重量 — 在此輸入之前不會計入紀錄。",
+ "Cel serii na partię w tygodniu ustawisz w Ustawieniach (Automatycznie albo Ręcznie); paski w „Ten tydzień” i w Postępach mierzą do tego celu, a partia pomocnicza ćwiczenia liczy się za pół serii.": "每個肌群的每週組數目標在設定中設定（自動或手動）；「本週」與進度中的長條以此目標為準，動作的輔助肌群以半組計算。",
+ "Poprawki: Postępy pamiętają wybrane ćwiczenie, import bez godzin pokazuje „godzina nieznana”, a teksty pomocy zgadzają się z nazwami zakładek.": "修正：進度會記住所選動作，沒有時間的匯入會顯示「時間不明」，說明文字也與分頁名稱一致。",
+ "20 nowych ćwiczeń ze wskazówkami w sekcji „Technika”.": "在「技巧」區塊新增 20 個附有提示的動作。",
+ "Trening dopisywany wstecz: miejsce treningu wybierzesz w edytorze.": "事後補記的訓練：可在編輯器中選擇訓練地點。"
 }

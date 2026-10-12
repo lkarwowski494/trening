@@ -1434,5 +1434,9 @@
  "Na koniec „Zakończ” (u góry albo w karcie po ostatniej serii) — sesja trafi do zakładki Plan.": "Nakoniec „Dokončiť“ (hore alebo v karte po poslednej sérii) — tréning sa uloží na kartu Plán.",
  "Ten tydzień jest oznaczony jako deload (D na wykresach). Oznaczenie zmienisz w zakładce Plan: dzień → „Więcej opcji”.": "Tento týždeň je označený ako deload (D v grafoch). Označenie zmeníš na karte Plán: deň → „Ďalšie možnosti“.",
  "godzina nieznana": "čas neznámy",
- "Ciężar z innego sprzętu — nie liczy się do rekordów, dopóki go tu nie wpiszesz.": "Záťaž z iného vybavenia sa do rekordov nezapočítava, kým ju tu nezadáte."
+ "Ciężar z innego sprzętu — nie liczy się do rekordów, dopóki go tu nie wpiszesz.": "Záťaž z iného vybavenia sa do rekordov nezapočítava, kým ju tu nezadáte.",
+ "Cel serii na partię w tygodniu ustawisz w Ustawieniach (Automatycznie albo Ręcznie); paski w „Ten tydzień” i w Postępach mierzą do tego celu, a partia pomocnicza ćwiczenia liczy się za pół serii.": "Týždenný cieľ sérií na partiu nastavíš v Nastavenia (Automaticky alebo Ručne); pruhy v „Tento týždeň“ a v Pokrok sa merajú podľa tohto cieľa a pomocná partia cvičenia sa počíta ako pol série.",
+ "Poprawki: Postępy pamiętają wybrane ćwiczenie, import bez godzin pokazuje „godzina nieznana”, a teksty pomocy zgadzają się z nazwami zakładek.": "Opravy: Pokrok si pamätá vybrané cvičenie, import bez časov ukazuje „čas neznámy“ a texty pomocníka zodpovedajú názvom kariet.",
+ "20 nowych ćwiczeń ze wskazówkami w sekcji „Technika”.": "20 nových cvičení s tipmi v sekcii „Technika vykonania“.",
+ "Trening dopisywany wstecz: miejsce treningu wybierzesz w edytorze.": "Tréning zapísaný dodatočne: miesto tréningu vyberieš v editore."
 }

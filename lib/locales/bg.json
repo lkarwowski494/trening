@@ -1434,5 +1434,9 @@
  "Na koniec „Zakończ” (u góry albo w karcie po ostatniej serii) — sesja trafi do zakładki Plan.": "Накрая „Край“ (горе или в картата след последната серия) — сесията отива в раздела „План“.",
  "Ten tydzień jest oznaczony jako deload (D na wykresach). Oznaczenie zmienisz w zakładce Plan: dzień → „Więcej opcji”.": "Тази седмица е отбелязана като разтоварване (D в графиките). Промени отметката в раздела „План“: ден → „Още опции“.",
  "godzina nieznana": "часът е неизвестен",
- "Ciężar z innego sprzętu — nie liczy się do rekordów, dopóki go tu nie wpiszesz.": "Тежест от друго оборудване — не се отчита в рекордите, докато не я въведеш тук."
+ "Ciężar z innego sprzętu — nie liczy się do rekordów, dopóki go tu nie wpiszesz.": "Тежест от друго оборудване — не се отчита в рекордите, докато не я въведеш тук.",
+ "Cel serii na partię w tygodniu ustawisz w Ustawieniach (Automatycznie albo Ręcznie); paski w „Ten tydzień” i w Postępach mierzą do tego celu, a partia pomocnicza ćwiczenia liczy się za pół serii.": "Седмичната цел за серии на мускулна група задаваш в Настройки (Автоматично или Ръчно); лентите в „Тази седмица“ и в Напредък следват тази цел, а спомагателната мускулна група на упражнението се брои за половин серия.",
+ "Poprawki: Postępy pamiętają wybrane ćwiczenie, import bez godzin pokazuje „godzina nieznana”, a teksty pomocy zgadzają się z nazwami zakładek.": "Поправки: Напредък помни избраното упражнение, импортът без час показва „часът е неизвестен“, а помощните текстове съвпадат с имената на разделите.",
+ "20 nowych ćwiczeń ze wskazówkami w sekcji „Technika”.": "20 нови упражнения със съвети в раздела „Техника“.",
+ "Trening dopisywany wstecz: miejsce treningu wybierzesz w edytorze.": "Тренировка, добавена със закъснение: мястото на тренировката избираш в редактора."
 }

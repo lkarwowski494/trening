@@ -947,6 +947,11 @@ export const EN: Record<string, string> = {
   'Na koniec „Zakończ” (u góry albo w karcie po ostatniej serii) — sesja trafi do zakładki Plan.': 'At the end tap “Finish” (at the top or in the card after the last set) — the session goes to the Plan tab.',
   'Na ekranie Trening „Planowanie” (bez planu: „Ustaw plan”) otwiera plan tygodnia, który przypisuje szablony do dni — plan powtarza się co tydzień.': 'On the Workout screen “Planning” (with no plan: “Set a plan”) opens the weekly plan, which assigns templates to days — the plan repeats every week.',
   'Na ekranie Trening „Progresja” porównuje tydzień (wykonane + zaplanowane) z poprzednim oraz miesiąc z miesiącem.': 'On the Workout screen “Progression” compares the week (done + planned) with the previous one and month with month.',
+  /* 0.14.0 — wpis „Co nowego” */
+  'Cel serii na partię w tygodniu ustawisz w Ustawieniach (Automatycznie albo Ręcznie); paski w „Ten tydzień” i w Postępach mierzą do tego celu, a partia pomocnicza ćwiczenia liczy się za pół serii.': 'Set the weekly set goal per muscle group in Settings (Automatic or Manual); the bars in “This week” and in Progress measure against this goal, and an exercise’s secondary muscle group counts as half a set.',
+  'Poprawki: Postępy pamiętają wybrane ćwiczenie, import bez godzin pokazuje „godzina nieznana”, a teksty pomocy zgadzają się z nazwami zakładek.': 'Fixes: Progress remembers the selected exercise, an import without times shows “time unknown”, and help texts now match the tab names.',
+  '20 nowych ćwiczeń ze wskazówkami w sekcji „Technika”.': '20 new exercises with tips in the “Technique” section.',
+  'Trening dopisywany wstecz: miejsce treningu wybierzesz w edytorze.': 'Workouts logged after the fact: you can choose the workout place in the editor.',
   /* 0.14.0 */
   'godzina nieznana': 'time unknown',
   'Ciężar z innego sprzętu — nie liczy się do rekordów, dopóki go tu nie wpiszesz.': 'Weight from other equipment — it does not count toward records until you enter it here.',

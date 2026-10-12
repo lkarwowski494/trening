@@ -1434,5 +1434,9 @@
  "Na koniec „Zakończ” (u góry albo w karcie po ostatniej serii) — sesja trafi do zakładki Plan.": "Na koncu »Končaj« (zgoraj ali v kartici po zadnji seriji) — seja gre v zavihek Načrt.",
  "Ten tydzień jest oznaczony jako deload (D na wykresach). Oznaczenie zmienisz w zakładce Plan: dzień → „Więcej opcji”.": "Ta teden je označen kot razbremenitev (D v grafikonih). Oznako spremeniš v zavihku Načrt: dan → »Več možnosti«.",
  "godzina nieznana": "čas ni znan",
- "Ciężar z innego sprzętu — nie liczy się do rekordów, dopóki go tu nie wpiszesz.": "Teža z druge opreme se ne všteje med rekorde, dokler je ne vneseš tukaj."
+ "Ciężar z innego sprzętu — nie liczy się do rekordów, dopóki go tu nie wpiszesz.": "Teža z druge opreme se ne všteje med rekorde, dokler je ne vneseš tukaj.",
+ "Cel serii na partię w tygodniu ustawisz w Ustawieniach (Automatycznie albo Ręcznie); paski w „Ten tydzień” i w Postępach mierzą do tego celu, a partia pomocnicza ćwiczenia liczy się za pół serii.": "Tedenski cilj serij na mišično skupino nastaviš v Nastavitve (Samodejno ali Ročno); stolpci v „Ta teden“ in v Napredek se merijo glede na ta cilj, pomožna mišična skupina vaje pa šteje kot pol serije.",
+ "Poprawki: Postępy pamiętają wybrane ćwiczenie, import bez godzin pokazuje „godzina nieznana”, a teksty pomocy zgadzają się z nazwami zakładek.": "Popravki: Napredek si zapomni izbrano vajo, uvoz brez ur prikaže „čas ni znan“, besedila pomoči pa se ujemajo z imeni zavihkov.",
+ "20 nowych ćwiczeń ze wskazówkami w sekcji „Technika”.": "20 novih vaj s priporočili v razdelku „Tehnika“.",
+ "Trening dopisywany wstecz: miejsce treningu wybierzesz w edytorze.": "Naknadno dodan trening: mesto treninga izbereš v urejevalniku."
 }

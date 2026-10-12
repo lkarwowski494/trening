@@ -1434,5 +1434,9 @@
  "Na koniec „Zakończ” (u góry albo w karcie po ostatniej serii) — sesja trafi do zakładki Plan.": "Наприкінці «Завершити» (угорі або в картці після останнього підходу) — сесія потрапляє на вкладку «План».",
  "Ten tydzień jest oznaczony jako deload (D na wykresach). Oznaczenie zmienisz w zakładce Plan: dzień → „Więcej opcji”.": "Цей тиждень позначено як розвантаження (D на графіках). Позначку змінюєш на вкладці «План»: день → «Більше опцій».",
  "godzina nieznana": "час невідомий",
- "Ciężar z innego sprzętu — nie liczy się do rekordów, dopóki go tu nie wpiszesz.": "Вага з іншого обладнання не враховується в рекордах, доки ви не введете її тут."
+ "Ciężar z innego sprzętu — nie liczy się do rekordów, dopóki go tu nie wpiszesz.": "Вага з іншого обладнання не враховується в рекордах, доки ви не введете її тут.",
+ "Cel serii na partię w tygodniu ustawisz w Ustawieniach (Automatycznie albo Ręcznie); paski w „Ten tydzień” i w Postępach mierzą do tego celu, a partia pomocnicza ćwiczenia liczy się za pół serii.": "Тижневу ціль підходів на групу м’язів можна задати в розділі Параметри (Автоматично або Вручну); смуги в «Цей тиждень» і в Прогрес вимірюються за цією ціллю, а допоміжна група м’язів вправи враховується як пів підходу.",
+ "Poprawki: Postępy pamiętają wybrane ćwiczenie, import bez godzin pokazuje „godzina nieznana”, a teksty pomocy zgadzają się z nazwami zakładek.": "Виправлення: Прогрес запам’ятовує вибрану вправу, імпорт без часу показує «час невідомий», а тексти довідки збігаються з назвами вкладок.",
+ "20 nowych ćwiczeń ze wskazówkami w sekcji „Technika”.": "20 нових вправ з підказками в розділі «Техніка».",
+ "Trening dopisywany wstecz: miejsce treningu wybierzesz w edytorze.": "Тренування, додане заднім числом: місце тренування вибирається в редакторі."
 }

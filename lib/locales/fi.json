@@ -1434,5 +1434,9 @@
  "Na koniec „Zakończ” (u góry albo w karcie po ostatniej serii) — sesja trafi do zakładki Plan.": "Lopuksi ”Lopeta” (ylhäällä tai kortissa viimeisen sarjan jälkeen) — treeni siirtyy Suunnitelma-välilehdelle.",
  "Ten tydzień jest oznaczony jako deload (D na wykresach). Oznaczenie zmienisz w zakładce Plan: dzień → „Więcej opcji”.": "Tämä viikko on merkitty kevennysviikoksi (D kaavioissa). Muuta merkintää Suunnitelma-välilehdellä: päivä → ”Lisää valintoja”.",
  "godzina nieznana": "kellonaika tuntematon",
- "Ciężar z innego sprzętu — nie liczy się do rekordów, dopóki go tu nie wpiszesz.": "Paino toisesta välineestä — se ei lasketa ennätyksiin, ennen kuin kirjoitat sen tähän."
+ "Ciężar z innego sprzętu — nie liczy się do rekordów, dopóki go tu nie wpiszesz.": "Paino toisesta välineestä — se ei lasketa ennätyksiin, ennen kuin kirjoitat sen tähän.",
+ "Cel serii na partię w tygodniu ustawisz w Ustawieniach (Automatycznie albo Ręcznie); paski w „Ten tydzień” i w Postępach mierzą do tego celu, a partia pomocnicza ćwiczenia liczy się za pół serii.": "Viikoittaisen sarjatavoitteen lihasryhmää kohti asetat kohdassa Asetukset (Automaattisesti tai Käsin); palkit näkymässä ”Tämä viikko” ja kohdassa Kehitys mitataan tätä tavoitetta vasten, ja liikkeen apulihasryhmä lasketaan puoleksi sarjaksi.",
+ "Poprawki: Postępy pamiętają wybrane ćwiczenie, import bez godzin pokazuje „godzina nieznana”, a teksty pomocy zgadzają się z nazwami zakładek.": "Korjauksia: Kehitys muistaa valitun liikkeen, tuonti ilman kellonaikoja näyttää ”kellonaika tuntematon” ja ohjetekstit vastaavat välilehtien nimiä.",
+ "20 nowych ćwiczeń ze wskazówkami w sekcji „Technika”.": "20 uutta liikettä vinkkeineen osiossa ”Tekniikka”.",
+ "Trening dopisywany wstecz: miejsce treningu wybierzesz w edytorze.": "Jälkikäteen kirjattu treeni: treenipaikan valitset muokkaimessa."
 }

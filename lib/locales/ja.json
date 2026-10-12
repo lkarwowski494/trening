@@ -1434,5 +1434,9 @@
  "Na koniec „Zakończ” (u góry albo w karcie po ostatniej serii) — sesja trafi do zakładki Plan.": "最後に「終了」（上部、または最後のセットの後のカード）をタップすると、セッションが「プラン」タブに保存されます。",
  "Ten tydzień jest oznaczony jako deload (D na wykresach). Oznaczenie zmienisz w zakładce Plan: dzień → „Więcej opcji”.": "今週はディロードとしてマークされています（グラフの D）。マークは「プラン」タブで変更できます：日付 →「その他のオプション」。",
  "godzina nieznana": "時刻不明",
- "Ciężar z innego sprzętu — nie liczy się do rekordów, dopóki go tu nie wpiszesz.": "別の器具で記録された重量です — ここで入力するまで記録には含まれません。"
+ "Ciężar z innego sprzętu — nie liczy się do rekordów, dopóki go tu nie wpiszesz.": "別の器具で記録された重量です — ここで入力するまで記録には含まれません。",
+ "Cel serii na partię w tygodniu ustawisz w Ustawieniach (Automatycznie albo Ręcznie); paski w „Ten tydzień” i w Postępach mierzą do tego celu, a partia pomocnicza ćwiczenia liczy się za pół serii.": "筋群ごとの週あたりセット目標は設定で設定します（自動または手動）。「今週」と進捗のバーはこの目標を基準に表示され、種目の補助筋群は0.5セットとして数えます。",
+ "Poprawki: Postępy pamiętają wybrane ćwiczenie, import bez godzin pokazuje „godzina nieznana”, a teksty pomocy zgadzają się z nazwami zakładek.": "修正：進捗は選んだ種目を記憶し、時刻のないインポートでは「時刻不明」と表示され、ヘルプの文言はタブ名と一致します。",
+ "20 nowych ćwiczeń ze wskazówkami w sekcji „Technika”.": "「テクニック」セクションにヒント付きの新しい種目を20件追加しました。",
+ "Trening dopisywany wstecz: miejsce treningu wybierzesz w edytorze.": "後から記録したトレーニング：エディタでトレーニングの場所を選べます。"
 }

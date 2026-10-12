@@ -1434,5 +1434,9 @@
  "Na koniec „Zakończ” (u góry albo w karcie po ostatniej serii) — sesja trafi do zakładki Plan.": "A végén „Befejezés” (felül vagy az utolsó sorozat utáni kártyán) — az edzés a Terv lapra kerül.",
  "Ten tydzień jest oznaczony jako deload (D na wykresach). Oznaczenie zmienisz w zakładce Plan: dzień → „Więcej opcji”.": "Ez a hét deloadként van megjelölve (D a grafikonokon). A jelölést a Terv lapon módosíthatod: nap → „További lehetőségek”.",
  "godzina nieznana": "időpont ismeretlen",
- "Ciężar z innego sprzętu — nie liczy się do rekordów, dopóki go tu nie wpiszesz.": "Másik felszerelésen rögzített súly — addig nem számít bele a rekordokba, amíg itt be nem írod."
+ "Ciężar z innego sprzętu — nie liczy się do rekordów, dopóki go tu nie wpiszesz.": "Másik felszerelésen rögzített súly — addig nem számít bele a rekordokba, amíg itt be nem írod.",
+ "Cel serii na partię w tygodniu ustawisz w Ustawieniach (Automatycznie albo Ręcznie); paski w „Ten tydzień” i w Postępach mierzą do tego celu, a partia pomocnicza ćwiczenia liczy się za pół serii.": "A heti sorozatcélt izomcsoportonként a(z) Beállítások menüben állíthatod be (Automatikus vagy Kézi); a(z) „Ezen a héten” és a(z) Fejlődés sávjai ehhez a célhoz mérnek, a gyakorlat segédizomcsoportja pedig fél sorozatnak számít.",
+ "Poprawki: Postępy pamiętają wybrane ćwiczenie, import bez godzin pokazuje „godzina nieznana”, a teksty pomocy zgadzają się z nazwami zakładek.": "Javítások: a(z) Fejlődés megjegyzi a kiválasztott gyakorlatot, az órák nélküli import „időpont ismeretlen” szöveget mutat, a súgószövegek pedig egyeznek a fülek neveivel.",
+ "20 nowych ćwiczeń ze wskazówkami w sekcji „Technika”.": "20 új gyakorlat tanácsokkal a(z) „Kivitelezés” részben.",
+ "Trening dopisywany wstecz: miejsce treningu wybierzesz w edytorze.": "Utólag rögzített edzés: az edzés helyét a szerkesztőben választod ki."
 }

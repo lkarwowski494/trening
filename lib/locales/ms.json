@@ -1434,5 +1434,9 @@
  "Na koniec „Zakończ” (u góry albo w karcie po ostatniej serii) — sesja trafi do zakładki Plan.": "Pada akhirnya, ketik “Tamat” (di atas atau pada kad selepas set terakhir) — sesi masuk ke tab Pelan.",
  "Ten tydzień jest oznaczony jako deload (D na wykresach). Oznaczenie zmienisz w zakładce Plan: dzień → „Więcej opcji”.": "Minggu ini ditandakan sebagai deload (D pada carta). Ubah tanda di tab Pelan: hari → “Lagi pilihan”.",
  "godzina nieznana": "masa tidak diketahui",
- "Ciężar z innego sprzętu — nie liczy się do rekordów, dopóki go tu nie wpiszesz.": "Berat daripada peralatan lain — tidak dikira untuk rekod sehingga anda memasukkannya di sini."
+ "Ciężar z innego sprzętu — nie liczy się do rekordów, dopóki go tu nie wpiszesz.": "Berat daripada peralatan lain — tidak dikira untuk rekod sehingga anda memasukkannya di sini.",
+ "Cel serii na partię w tygodniu ustawisz w Ustawieniach (Automatycznie albo Ręcznie); paski w „Ten tydzień” i w Postępach mierzą do tego celu, a partia pomocnicza ćwiczenia liczy się za pół serii.": "Sasaran set mingguan bagi setiap kumpulan otot ditetapkan di Seting (Automatik atau Secara manual); bar dalam “Minggu ini” dan Kemajuan diukur berdasarkan sasaran ini, dan kumpulan otot sokongan bagi sesuatu latihan dikira setengah set.",
+ "Poprawki: Postępy pamiętają wybrane ćwiczenie, import bez godzin pokazuje „godzina nieznana”, a teksty pomocy zgadzają się z nazwami zakładek.": "Pembetulan: Kemajuan mengingati latihan yang dipilih, import tanpa waktu memaparkan “masa tidak diketahui”, dan teks bantuan kini sepadan dengan nama tab.",
+ "20 nowych ćwiczeń ze wskazówkami w sekcji „Technika”.": "20 latihan baharu dengan petua dalam bahagian “Teknik”.",
+ "Trening dopisywany wstecz: miejsce treningu wybierzesz w edytorze.": "Latihan yang direkodkan kemudian: tempat latihan dipilih dalam editor."
 }

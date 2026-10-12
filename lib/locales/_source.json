@@ -304,6 +304,10 @@
   "en": "16 languages; light, dark or system appearance."
  },
  {
+  "pl": "20 nowych ćwiczeń ze wskazówkami w sekcji „Technika”.",
+  "en": "20 new exercises with tips in the “Technique” section."
+ },
+ {
   "pl": "35 języków; język zmienisz w Ustawieniach.",
   "en": "35 languages; change the language in Settings."
  },
@@ -674,6 +678,10 @@
  {
   "pl": "Cel serii na partię w tygodniu",
   "en": "Weekly set goal per muscle group"
+ },
+ {
+  "pl": "Cel serii na partię w tygodniu ustawisz w Ustawieniach (Automatycznie albo Ręcznie); paski w „Ten tydzień” i w Postępach mierzą do tego celu, a partia pomocnicza ćwiczenia liczy się za pół serii.",
+  "en": "Set the weekly set goal per muscle group in Settings (Automatic or Manual); the bars in “This week” and in Progress measure against this goal, and an exercise’s secondary muscle group counts as half a set."
  },
  {
   "pl": "Cel serii: {part}",
@@ -3317,6 +3325,10 @@
   "en": "Log correction: all sets of “{name}” move to the chosen exercise (values unchanged)."
  },
  {
+  "pl": "Poprawki: Postępy pamiętają wybrane ćwiczenie, import bez godzin pokazuje „godzina nieznana”, a teksty pomocy zgadzają się z nazwami zakładek.",
+  "en": "Fixes: Progress remembers the selected exercise, an import without times shows “time unknown”, and help texts now match the tab names."
+ },
+ {
   "pl": "poprz.",
   "en": "prev."
  },
@@ -4520,6 +4532,10 @@
  {
   "pl": "Trening",
   "en": "Workout"
+ },
+ {
+  "pl": "Trening dopisywany wstecz: miejsce treningu wybierzesz w edytorze.",
+  "en": "Workouts logged after the fact: you can choose the workout place in the editor."
  },
  {
   "pl": "Trening i serie",

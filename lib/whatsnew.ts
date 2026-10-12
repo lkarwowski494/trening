@@ -21,6 +21,14 @@ const genDays = () => { const all = Object.values(GEN_SESSIONS).flat(); return {
 export const LANGS_012 = ['pt-BR', 'es-419', 'id', 'ms', 'vi', 'ru', 'ja', 'ko', 'zh-Hant'] as const;
 
 export const WHATS_NEW: WhatsNewEntry[] = [
+  /* 0.14.0 (backlog A, decyzja właściciela 12.10.2026, docs/18): cel serii na partię w Ustawieniach, poprawki błędów, 20 nowych ćwiczeń ze wskazówkami techniki,
+   * miejsce treningu przy dopisywaniu wstecz. Bez numeru buildu — dopisuje się po przebiegu testflight.yml. */
+  { id: '2026-10-12', date: '2026-10-12', items: () => [
+    t('Cel serii na partię w tygodniu ustawisz w Ustawieniach (Automatycznie albo Ręcznie); paski w „Ten tydzień” i w Postępach mierzą do tego celu, a partia pomocnicza ćwiczenia liczy się za pół serii.'),
+    t('Poprawki: Postępy pamiętają wybrane ćwiczenie, import bez godzin pokazuje „godzina nieznana”, a teksty pomocy zgadzają się z nazwami zakładek.'),
+    t('20 nowych ćwiczeń ze wskazówkami w sekcji „Technika”.'),
+    t('Trening dopisywany wstecz: miejsce treningu wybierzesz w edytorze.'),
+  ] },
   /* Wydanie 2 (decyzja właściciela 11.10.2026, docs/18 P7 A): jeden wspólny wpis o nowym układzie — wydanie 1 (ekran Trening, „Progresja”) i wydanie 2 (cztery zakładki,
    * masa ciała w Postępach) oraz import CSV; to wpis wydania 0.13.0 (0.12.0 niżej wyszło bez wpisu o nowym ekranie). Numer buildu dopisuje się po wydaniu. */
   { id: '2026-10-11', date: '2026-10-12', items: () => [

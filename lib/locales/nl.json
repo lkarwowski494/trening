@@ -1434,5 +1434,9 @@
  "Na koniec „Zakończ” (u góry albo w karcie po ostatniej serii) — sesja trafi do zakładki Plan.": "Tot slot ‘Rond af’ (bovenaan of in de kaart na de laatste set) — de sessie komt in het tabblad Plan.",
  "Ten tydzień jest oznaczony jako deload (D na wykresach). Oznaczenie zmienisz w zakładce Plan: dzień → „Więcej opcji”.": "Deze week is gemarkeerd als deload (D in de grafieken). Wijzig de markering in het tabblad Plan: dag → ‘Meer opties’.",
  "godzina nieznana": "tijd onbekend",
- "Ciężar z innego sprzętu — nie liczy się do rekordów, dopóki go tu nie wpiszesz.": "Gewicht van ander materiaal — telt niet mee voor records totdat je het hier invoert."
+ "Ciężar z innego sprzętu — nie liczy się do rekordów, dopóki go tu nie wpiszesz.": "Gewicht van ander materiaal — telt niet mee voor records totdat je het hier invoert.",
+ "Cel serii na partię w tygodniu ustawisz w Ustawieniach (Automatycznie albo Ręcznie); paski w „Ten tydzień” i w Postępach mierzą do tego celu, a partia pomocnicza ćwiczenia liczy się za pół serii.": "Het wekelijkse setdoel per spiergroep stel je in bij Instellingen (Automatisch of Handmatig); de balken in “Deze week” en in Voortgang meten zich tegen dit doel, en de secundaire spiergroep van een oefening telt als een halve set.",
+ "Poprawki: Postępy pamiętają wybrane ćwiczenie, import bez godzin pokazuje „godzina nieznana”, a teksty pomocy zgadzają się z nazwami zakładek.": "Verbeteringen: Voortgang onthoudt de gekozen oefening, een import zonder tijden toont “tijd onbekend” en de helpteksten komen overeen met de namen van de tabbladen.",
+ "20 nowych ćwiczeń ze wskazówkami w sekcji „Technika”.": "20 nieuwe oefeningen met tips in het onderdeel “Techniek”.",
+ "Trening dopisywany wstecz: miejsce treningu wybierzesz w edytorze.": "Achteraf toegevoegde training: de trainingsplek kies je in de editor."
 }

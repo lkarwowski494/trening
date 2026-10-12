@@ -1434,5 +1434,9 @@
  "Na koniec „Zakończ” (u góry albo w karcie po ostatniej serii) — sesja trafi do zakładki Plan.": "Cuối buổi, chạm “Kết thúc” (ở trên cùng hoặc trong thẻ sau hiệp cuối) — buổi tập được lưu vào tab Kế hoạch.",
  "Ten tydzień jest oznaczony jako deload (D na wykresach). Oznaczenie zmienisz w zakładce Plan: dzień → „Więcej opcji”.": "Tuần này được đánh dấu là deload (chữ D trên biểu đồ). Đổi dấu trong tab Kế hoạch: ngày → “Tùy chọn khác”.",
  "godzina nieznana": "chưa rõ giờ",
- "Ciężar z innego sprzętu — nie liczy się do rekordów, dopóki go tu nie wpiszesz.": "Mức tạ từ dụng cụ khác — không tính vào kỷ lục cho đến khi bạn nhập lại tại đây."
+ "Ciężar z innego sprzętu — nie liczy się do rekordów, dopóki go tu nie wpiszesz.": "Mức tạ từ dụng cụ khác — không tính vào kỷ lục cho đến khi bạn nhập lại tại đây.",
+ "Cel serii na partię w tygodniu ustawisz w Ustawieniach (Automatycznie albo Ręcznie); paski w „Ten tydzień” i w Postępach mierzą do tego celu, a partia pomocnicza ćwiczenia liczy się za pół serii.": "Mục tiêu số hiệp mỗi tuần cho từng nhóm cơ được đặt trong Cài đặt (Tự động hoặc Thủ công); các thanh trong “Tuần này” và Tiến độ được đo theo mục tiêu này, và nhóm cơ phụ của một bài tập được tính là nửa hiệp.",
+ "Poprawki: Postępy pamiętają wybrane ćwiczenie, import bez godzin pokazuje „godzina nieznana”, a teksty pomocy zgadzają się z nazwami zakładek.": "Sửa lỗi: Tiến độ nhớ bài tập đã chọn, nhập dữ liệu không có giờ sẽ hiển thị “chưa rõ giờ”, và các văn bản trợ giúp khớp với tên các tab.",
+ "20 nowych ćwiczeń ze wskazówkami w sekcji „Technika”.": "20 bài tập mới kèm mẹo trong phần “Kỹ thuật”.",
+ "Trening dopisywany wstecz: miejsce treningu wybierzesz w edytorze.": "Buổi tập ghi bổ sung sau: bạn chọn nơi tập trong trình chỉnh sửa."
 }
