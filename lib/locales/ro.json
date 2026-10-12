@@ -1406,6 +1406,7 @@
  "Dopisuje treningi z plików CSV popularnych dzienników treningowych. Obecnych danych nie zmienia ani nie usuwa. Przed zapisem zobaczysz podgląd.": "Adaugă antrenamente din fișiere CSV ale unor jurnale de antrenament populare. Nu modifică și nu șterge datele tale actuale. Vei vedea o previzualizare înainte de a se salva ceva.",
  "Dystans w pliku przyjęto jako metry.": "Distanța din fișier este luată ca metri.",
  "Import historii z CSV": "Importă istoricul din CSV",
+ "Import historii treningów z plików CSV popularnych dzienników (Więcej → Kopia zapasowa → „Importuj historię z pliku CSV”), z podglądem przed zapisem.": "Import al istoricului de antrenamente din fișiere CSV ale jurnalelor populare (Mai mult → Copie de rezervă → „Importă istoricul dintr-un fișier CSV”), cu previzualizare înainte de salvare.",
  "Importuj historię z pliku CSV": "Importă istoricul dintr-un fișier CSV",
  "Jednostka ciężaru w pliku": "Unitatea de greutate din fișier",
  "Nie ma nowych treningów do dodania — wszystkie są już w historii.": "Nu există antrenamente noi de adăugat — toate sunt deja în istoric.",

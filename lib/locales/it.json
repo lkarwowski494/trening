@@ -1406,6 +1406,7 @@
  "Dopisuje treningi z plików CSV popularnych dzienników treningowych. Obecnych danych nie zmienia ani nie usuwa. Przed zapisem zobaczysz podgląd.": "Aggiunge allenamenti da file CSV di diari di allenamento popolari. Non modifica né rimuove i tuoi dati attuali. Vedrai un’anteprima prima di salvare qualsiasi cosa.",
  "Dystans w pliku przyjęto jako metry.": "La distanza nel file viene letta come metri.",
  "Import historii z CSV": "Importa cronologia da CSV",
+ "Import historii treningów z plików CSV popularnych dzienników (Więcej → Kopia zapasowa → „Importuj historię z pliku CSV”), z podglądem przed zapisem.": "Importazione della cronologia degli allenamenti da file CSV di diari popolari (Altro → Backup → «Importa la cronologia da un file CSV»), con anteprima prima del salvataggio.",
  "Importuj historię z pliku CSV": "Importa la cronologia da un file CSV",
  "Jednostka ciężaru w pliku": "Unità di peso nel file",
  "Nie ma nowych treningów do dodania — wszystkie są już w historii.": "Non ci sono nuovi allenamenti da aggiungere: sono già tutti nella tua cronologia.",

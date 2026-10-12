@@ -1453,6 +1453,10 @@
   "en": "Hotel"
  },
  {
+  "pl": "Import historii treningów z plików CSV popularnych dzienników (Więcej → Kopia zapasowa → „Importuj historię z pliku CSV”), z podglądem przed zapisem.",
+  "en": "Import your workout history from CSV files of popular training logs (More → Backup → “Import history from a CSV file”), with a preview before saving."
+ },
+ {
   "pl": "Import historii z CSV",
   "en": "Import history from CSV"
  },

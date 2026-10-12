@@ -11,7 +11,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 |---|---|---|---|
 | EKRAN | 29 | 29 | 0 |
 | UI | 290 | 290 | 0 |
-| TEKST | 879 | 879 | 0 |
+| TEKST | 880 | 880 | 0 |
 | LOGIKA | 673 | 673 | 0 |
 | WYMIAR | 75 | 75 | 0 |
 
@@ -129,9 +129,9 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Gotowe | app/reorder.tsx | tests/matrix-ui.test.tsx, tests/reorder-t010.test.tsx, tests/scenario-full.test.tsx |
 | Guma: {b} | app/history/edit/[id].tsx | tests/audit-journey-a.test.tsx, tests/audit-journey-c.test.tsx, tests/audit-r83.test.tsx +6 |
 | Gumy… | app/more/location/[id].tsx | tests/matrix-i18n.test.tsx, tests/scenario-full.test.tsx, tests/ui2-09-leftovers.test.tsx |
-| Importuj | app/more/backup.tsx | tests/audit-io-more.test.tsx, tests/audit-r83.test.tsx, tests/audit-r83b.test.tsx +4 |
+| Importuj | app/more/backup.tsx | tests/audit-io-more.test.tsx, tests/audit-r83.test.tsx, tests/audit-r83b.test.tsx +6 |
 | Importuj backup | app/more/backup.tsx | tests/audit-io-more.test.tsx, tests/audit-r83.test.tsx, tests/audit-r83b.test.tsx +3 |
-| Importuj historię z pliku CSV | app/more/backup.tsx | tests/csv-import-ui.test.tsx |
+| Importuj historię z pliku CSV | app/more/backup.tsx | tests/csv-import-ui.test.tsx, tests/tabs-four.test.tsx, tests/whats-new.test.tsx |
 | Inny przyrząd: {impl} | app/swap.tsx | tests/matrix-logic.test.tsx, tests/matrix-ui.test.tsx, tests/scenario-full.test.tsx +1 |
 | Inny trening | components/StartPanel.tsx | tests/app.tsx, tests/audit-0.10-live.test.tsx, tests/audit-0.10-stats-ui.test.tsx +18 |
 | Inny z planu | components/StartPanel.tsx | tests/home-b.test.tsx |
@@ -577,6 +577,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | hantle | lib/swap.ts | tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-gen.test.ts, tests/audit-0.10-live-logic.test.ts +67 |
 | hantle {a}–{b} {u}, ławka regulowana, mata, ściana, bieżnia, rower | lib/equipment.ts | tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-gen.test.ts, tests/scenario-full.test.tsx |
 | hantle: {v} | components/EquipVisual.tsx | tests/karta-sprzet.test.tsx, tests/matrix-karta.test.tsx |
+| Import historii treningów z plików CSV popularnych dzienników (Więcej → Kopia zapasowa → „Importuj historię z pliku CSV”), z podglądem przed zapisem. | lib/whatsnew.ts | tests/tabs-four.test.tsx, tests/whats-new.test.tsx |
 | Import historii z CSV | app/_layout.tsx | tests/csv-import-ui.test.tsx |
 | Import przerwany | app/more/backup.tsx | tests/audit-r83.test.tsx, tests/audit-r83b.test.tsx, tests/csv-import-ui.test.tsx +1 |
 | Import zastąpi wszystkie obecne dane zawartością pliku. Obecne dane (także trening w toku) zapiszą się najpierw jako kopia w Plikach: {app} → Backup. | app/more/backup.tsx | tests/matrix-ui.test.tsx |
@@ -619,7 +620,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Kopia obecnego planu w „Inne plany” — zmienisz ją przed ustawieniem jako aktywny. | app/plan.tsx | tests/audit-0.10-plan-ui.test.tsx |
 | Kopia obejmie też poprzednie, nieczytelne dane. | lib/backup.ts | tests/audit-r83b.test.tsx, tests/matrix-logic.test.tsx, tests/matrix-ui.test.tsx |
 | Kopia w Apple Health zostanie — usuniesz ją w aplikacji Zdrowie. | app/(tabs)/history.tsx | tests/audit-0.10-ui.test.tsx |
-| Kopia zapasowa | app/_layout.tsx | tests/audit-0.10-ui.test.tsx, tests/guide.test.tsx, tests/public-repo.test.ts +1 |
+| Kopia zapasowa | app/_layout.tsx | tests/audit-0.10-ui.test.tsx, tests/guide.test.tsx, tests/public-repo.test.ts +3 |
 | Kreska = {n} serii na partię w tygodniu (źródło i uproszczenia: Postępy). | app/progression.tsx | tests/progression-ui.test.tsx |
 | Kreska = {n} serii na partię w tygodniu (źródło i uproszczenia: Postępy). Zaplanowane — z szablonów na pozostałe dni tygodnia; partia pomocnicza liczy 0,5. | components/Dashboard.tsx | tests/progression-ui.test.tsx |
 | Kreska = {n} serii na partię w tygodniu. Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; każdy trening siłowy daje przyrost w porównaniu z brakiem treningu. Uproszczenie: serie pomocnicze liczymy po 0,5. | app/(tabs)/progress.tsx | tests/sets-mark.test.tsx |

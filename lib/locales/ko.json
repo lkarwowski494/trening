@@ -1406,6 +1406,7 @@
  "Dopisuje treningi z plików CSV popularnych dzienników treningowych. Obecnych danych nie zmienia ani nie usuwa. Przed zapisem zobaczysz podgląd.": "인기 운동 기록 앱의 CSV 파일에서 운동 기록을 추가합니다. 현재 데이터를 변경하거나 삭제하지 않습니다. 저장하기 전에 미리보기가 표시됩니다.",
  "Dystans w pliku przyjęto jako metry.": "파일의 거리는 미터로 처리합니다.",
  "Import historii z CSV": "CSV에서 기록 가져오기",
+ "Import historii treningów z plików CSV popularnych dzienników (Więcej → Kopia zapasowa → „Importuj historię z pliku CSV”), z podglądem przed zapisem.": "인기 운동 일지의 CSV 파일에서 운동 기록을 가져올 수 있습니다(더보기 → 백업 → ‘CSV 파일에서 기록 가져오기’). 저장 전에 미리 볼 수 있습니다.",
  "Importuj historię z pliku CSV": "CSV 파일에서 기록 가져오기",
  "Jednostka ciężaru w pliku": "파일의 무게 단위",
  "Nie ma nowych treningów do dodania — wszystkie są już w historii.": "추가할 새 운동 기록이 없습니다. 모두 이미 기록에 있습니다.",

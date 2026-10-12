@@ -60,7 +60,7 @@ describe('ekran Trening', () => {
     for (const x of WHATS_NEW[0].items()) expect(screen.getByText(`• ${x}`)).toBeTruthy();
     expect(screen.queryByTestId('whats-new-dot')).toBeNull(); expect(S().whatsNewSeen).toBe(WHATS_NEW[0].id);
     const old = WHATS_NEW[4]; /* 1002 — rozwijany niżej (nad nim nowy układ, 0.12, 1005, 1004) */ const oldItem = `• ${old.items()[0]}`; expect(screen.queryByText(oldItem)).toBeNull();
-    expect(screen.getByText('▸ W tej wersji')).toBeTruthy(); /* 0.12 (niewydane) zwinięte pod wpisem o nowym układzie */
+    expect(screen.getByText(/^▸ Wersja testowa 1008 · 12 paź 2026$/)).toBeTruthy(); /* 0.12.0 — build 1008, zwinięte pod bieżącym wpisem 0.13 */
     expect(screen.getByText(/^▸ Wersja testowa 1005 · 10 paź 2026$/)).toBeTruthy(); /* 0.11.0 — wydanie 2 */
     expect(screen.getByText(/^▸ Wersja testowa 1004 · 9 paź 2026$/)).toBeTruthy(); /* 0.10.0 — wydanie 1 (A11B-8) */
     const head = screen.getByText(/^▸ Wersja testowa 1002 · 7 paź 2026$/); expect(head).toBeTruthy(); /* H3 (audyt 0.10): miesiąc słownie */
@@ -86,6 +86,7 @@ describe('ekran Trening', () => {
       '35 języków; język zmienisz w Ustawieniach.',
       /* 0.11 (A11B-8; dwa ostatnie — zaległości z 0.10: UI2-04, MER2-06) */
       'Nowy wygląd z ikony: znacznik dnia jak ikona aplikacji, stosy talerzy z procentem planu tygodnia, filiżanka w dzień odpoczynku, podsumowanie miesiąca jako stosy.',
+      'Import historii treningów z plików CSV popularnych dzienników (Więcej → Kopia zapasowa → „Importuj historię z pliku CSV”), z podglądem przed zapisem.',
       'Krótka animacja przy starcie: talerze wsuwają się na gryf.',
       'Generator: wybór dni tygodnia, od 1 do 6 dni, cel „Ogólny” i „Plan z moich szablonów”.',
       'Ekran Trening w nowym układzie; „Powtórz ostatni” z nazwą i datą.',

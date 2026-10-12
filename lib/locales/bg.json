@@ -1406,6 +1406,7 @@
  "Dopisuje treningi z plików CSV popularnych dzienników treningowych. Obecnych danych nie zmienia ani nie usuwa. Przed zapisem zobaczysz podgląd.": "Добавя тренировки от CSV файлове на популярни дневници за тренировки. Не променя и не изтрива текущите ти данни. Преди запис ще видиш преглед.",
  "Dystans w pliku przyjęto jako metry.": "Разстоянието във файла се приема в метри.",
  "Import historii z CSV": "Импорт на история от CSV",
+ "Import historii treningów z plików CSV popularnych dzienników (Więcej → Kopia zapasowa → „Importuj historię z pliku CSV”), z podglądem przed zapisem.": "Импорт на история на тренировките от CSV файлове на популярни дневници (Още → Резервно копие → „Импорт на история от CSV файл“), с преглед преди запис.",
  "Importuj historię z pliku CSV": "Импорт на история от CSV файл",
  "Jednostka ciężaru w pliku": "Мерна единица за тежестта във файла",
  "Nie ma nowych treningów do dodania — wszystkie są już w historii.": "Няма нови тренировки за добавяне — всички вече са в историята ти.",

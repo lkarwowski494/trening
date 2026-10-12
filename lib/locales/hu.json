@@ -1406,6 +1406,7 @@
  "Dopisuje treningi z plików CSV popularnych dzienników treningowych. Obecnych danych nie zmienia ani nie usuwa. Przed zapisem zobaczysz podgląd.": "Edzéseket ad hozzá népszerű edzésnaplók CSV-fájljaiból. A jelenlegi adataidat nem módosítja és nem törli. Mentés előtt előnézetet látsz.",
  "Dystans w pliku przyjęto jako metry.": "A fájlban szereplő távolságot méterként értelmezzük.",
  "Import historii z CSV": "Előzmények importálása CSV-ből",
+ "Import historii treningów z plików CSV popularnych dzienników (Więcej → Kopia zapasowa → „Importuj historię z pliku CSV”), z podglądem przed zapisem.": "Edzéstörténet importálása népszerű naplók CSV-fájljaiból (Egyebek → Biztonsági mentés → „Előzmények importálása CSV-fájlból”), mentés előtti előnézettel.",
  "Importuj historię z pliku CSV": "Előzmények importálása CSV-fájlból",
  "Jednostka ciężaru w pliku": "A fájl súlymértékegysége",
  "Nie ma nowych treningów do dodania — wszystkie są już w historii.": "Nincs hozzáadható új edzés — mind szerepel már az előzményeidben.",

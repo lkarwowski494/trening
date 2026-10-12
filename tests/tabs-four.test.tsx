@@ -167,18 +167,19 @@ describe('przepływy dalej osiągalne (docs/22 4.5): Szablony, Ćwiczenia, Post�
 });
 
 describe('„Co nowego” — wspólny wpis o nowym układzie (docs/18 P7)', () => {
-  test('najnowszy wpis: id 2026-10-11, bez numeru buildu, trzy punkty o czterech zakładkach, Postępach i ekranie Trening; pod nim 0.12 (też niewydane)', () => {
-    const e = WHATS_NEW[0]; expect([e.id, e.build, WHATS_NEW[1].id, WHATS_NEW[1].build]).toEqual(['2026-10-11', undefined, '2026-10-10', undefined]); expect(e.items()).toEqual([
+  test('najnowszy wpis: id 2026-10-11, bez numeru buildu, trzy punkty o czterech zakładkach, Postępach i ekranie Trening oraz punkt o imporcie CSV (0.13.0); pod nim 0.12 z buildem 1008', () => {
+    const e = WHATS_NEW[0]; expect([e.id, e.build, WHATS_NEW[1].id, WHATS_NEW[1].build]).toEqual(['2026-10-11', undefined, '2026-10-10', 1008]); expect(e.items()).toEqual([
       'Cztery zakładki: Trening, Plan, Postępy i Więcej. Szablony i Ćwiczenia znajdziesz teraz w Więcej.',
       'Postępy mają własną zakładkę: podsumowanie, „Progresja”, wykresy ćwiczeń i masa ciała.',
       'Ekran Trening: „Planowanie” przy nazwie planu, „Ten tydzień” i „Progresja”; „Z szablonu” w arkuszu „Inny trening” otwiera wybór szablonu ze „Startem”.',
+      'Import historii treningów z plików CSV popularnych dzienników (Więcej → Kopia zapasowa → „Importuj historię z pliku CSV”), z podglądem przed zapisem.',
     ]);
   });
-  test('wszystkie języki: trzy punkty przetłumaczone (różne od polskich), bez „{”, zakończone kropką („。” w ja/zh-Hant)', () => {
+  test('wszystkie języki: cztery punkty przetłumaczone (różne od polskich), bez „{”, zakończone kropką („。” w ja/zh-Hant)', () => {
     const pl = WHATS_NEW[0].items();
     for (const l of LANGS) {
       if (l === 'pl') continue; applyLang(l); const it = WHATS_NEW[0].items();
-      expect([l, it.length]).toEqual([l, 3]);
+      expect([l, it.length]).toEqual([l, 4]);
       expect([l, it.filter((x, i) => x === pl[i] || /[{}]/.test(x) || !/[.。]$/.test(x))]).toEqual([l, []]);
     }
   });

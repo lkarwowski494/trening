@@ -1406,6 +1406,7 @@
  "Dopisuje treningi z plików CSV popularnych dzienników treningowych. Obecnych danych nie zmienia ani nie usuwa. Przed zapisem zobaczysz podgląd.": "Prideda treniruotes iš populiarių treniruočių dienynų CSV failų. Dabartinių duomenų nekeičia ir nešalina. Prieš išsaugant pamatysi peržiūrą.",
  "Dystans w pliku przyjęto jako metry.": "Failo atstumas laikomas metrais.",
  "Import historii z CSV": "Importuoti istoriją iš CSV",
+ "Import historii treningów z plików CSV popularnych dzienników (Więcej → Kopia zapasowa → „Importuj historię z pliku CSV”), z podglądem przed zapisem.": "Treniruočių istorijos importas iš populiarių dienoraščių CSV failų (Daugiau → Atsarginė kopija → „Importuoti istoriją iš CSV failo“), su peržiūra prieš išsaugant.",
  "Importuj historię z pliku CSV": "Importuoti istoriją iš CSV failo",
  "Jednostka ciężaru w pliku": "Svorio vienetas faile",
  "Nie ma nowych treningów do dodania — wszystkie są już w historii.": "Naujų treniruočių pridėti nėra — visos jau yra istorijoje.",
