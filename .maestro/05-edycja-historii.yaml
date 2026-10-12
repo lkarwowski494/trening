@@ -17,7 +17,7 @@
 #   "Upper A"                ← wartość pola Nazwa (Input w Field 'Nazwa' = „Name”) — nazwa szablonu z subflows/szablon-testowy.yaml
 #   "Upper A E2E"            ← tekst wpisywany w tym teście
 #   "Back"                   ← 'Wróć' (headerBackTitle w app/_layout.tsx)
-#   "Calendar, tab.*"         ← 'Kalendarz' (08.10.2026, dawniej 'Historia') + etykieta zakładki „{label}, tab, {i} of {n}” (React Navigation; od SDK 56 jej kopia w expo-router — ten sam format)
+#   "Plan, tab.*" / "Progress, tab.*" ← 'Plan' (11.10.2026, dawniej 'Kalendarz', dawniej 'Historia') / 'Postępy' (osobna zakładka) + etykieta zakładki „{label}, tab, {i} of {n}” (React Navigation; od SDK 56 jej kopia w expo-router — ten sam format)
 #   "Log a past workout"     ← 'Dopisz trening wstecz' (app/(tabs)/history.tsx)
 #   "From a template"        ← 'Z szablonu'       (app/history/add.tsx)
 #   "Upper A, .*"            ← Item: accessibilityLabel „{title}, {sub}” (components/ui.tsx), sub = '{n} ex. · {m} sets' (tu: 2 ex. · 6 sets)
@@ -68,7 +68,7 @@ name: Edycja historii i trening wstecz
 
 # --- Trening wstecz ---
 - tapOn: "Back"
-- tapOn: "Calendar, tab.*"
+- tapOn: "Plan, tab.*"
 - extendedWaitUntil: { visible: "Upper A E2E,.*", timeout: 30000 }
 - tapOn: "Log a past workout"  # 11.10.2026: bez „+” (jedna nazwa z przyciskiem w panelu dnia)
 - extendedWaitUntil: { visible: "From a template", timeout: 30000 }
@@ -106,8 +106,7 @@ name: Edycja historii i trening wstecz
 - takeScreenshot: 19-kalendarz-miesiac
 # Podsumowanie tygodnia / miesiąca w Postępach (08.10.2026, components/PeriodSummary.tsx): „Summary” ('Podsumowanie'), wiersz VoiceOver
 # „Workouts: N, previously M” ('{label}: {v}, poprzednio {p}'), „Month” ('Miesiąc'), „Previous period” ('Poprzedni okres').
-- tapOn: "More, tab.*"
-- tapOn: "Progress.*"
+- tapOn: "Progress, tab.*"  # 11.10.2026: Postępy to zakładka (dawniej Więcej → Postępy)
 - extendedWaitUntil: { visible: "Summary", timeout: 30000 }
 - assertVisible: "Workouts: [1-9].*, previously .*"
 - takeScreenshot: 20-podsumowanie-tydzien
@@ -126,8 +125,7 @@ name: Edycja historii i trening wstecz
 # Deload A+B (decyzje właściciela 08.10.2026): bieżący tydzień oznaczony wyżej („Deload week”) — Kalendarz pokazuje „This week: deload…”
 # ('Ten tydzień: deload. …', components/DeloadHint.tsx); „Start: Upper A” pyta „Deload week” ('Tydzień deload') z liczbą serii
 # ('Zacząć z mniejszą liczbą serii: {a} zamiast {b} serii roboczych? …' — Upper A: 2 ćw. × 3 serie → 2 + 2 = 4 zamiast 6), „Fewer sets” ('Mniej serii').
-- tapOn: "Back"  # run 37761959586: Postępy to ekran stosu bez paska zakładek — najpierw powrót do „Więcej”
-- tapOn: "Calendar, tab.*"
+- tapOn: "Plan, tab.*"
 - tapOn: { text: ".*, [0-9]+ sessions?", index: 0 }  # dzień z sesją → panel dnia
 - tapOn: "More options"
 - tapOn: "Mark week as deload"

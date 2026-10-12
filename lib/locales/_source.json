@@ -796,6 +796,10 @@
   "en": "Common mistakes"
  },
  {
+  "pl": "Cztery zakładki: Trening, Plan, Postępy i Więcej. Szablony i Ćwiczenia znajdziesz teraz w Więcej.",
+  "en": "Four tabs: Workout, Plan, Progress and More. Templates and Exercises are now under More."
+ },
+ {
   "pl": "czworogłowe",
   "en": "quads"
  },
@@ -1137,12 +1141,12 @@
   "en": "e1RM {v} (set {s})"
  },
  {
-  "pl": "e1RM pojawi się po wpisaniu masy ciała w Ustawieniach.",
-  "en": "e1RM will appear once you enter your body weight in Settings."
+  "pl": "e1RM pojawi się po wpisaniu masy ciała w Postępach.",
+  "en": "e1RM will appear once you enter your body weight in Progress."
  },
  {
-  "pl": "e1RM w ćwiczeniach z masą ciała liczy się tylko z masą ciała wpisaną w Ustawieniach i tylko tam, gdzie wiadomo, jaką jej część podnosisz: podciąganie (cała — uproszczenie), pompki (ok. {p}% — badania z platformą siłową).",
-  "en": "e1RM in bodyweight exercises is calculated only with the body weight entered in Settings, and only where it is known what share of it you lift: pull-ups (all of it — a simplification), push-ups (about {p}% — force-plate studies)."
+  "pl": "e1RM w ćwiczeniach z masą ciała liczy się tylko z masą ciała wpisaną w Postępach i tylko tam, gdzie wiadomo, jaką jej część podnosisz: podciąganie (cała — uproszczenie), pompki (ok. {p}% — badania z platformą siłową).",
+  "en": "e1RM in bodyweight exercises is calculated only with the body weight entered in Progress, and only where it is known what share of it you lift: pull-ups (all of it — a simplification), push-ups (about {p}% — force-plate studies)."
  },
  {
   "pl": "e1RM: wzór Epleya na {p}% masy ciała z dnia treningu (ostatni pomiar z tego dnia lub wcześniejszy) plus dociążenie (uproszczenie).",
@@ -1187,6 +1191,10 @@
  {
   "pl": "Ekran Trening w nowym układzie; „Powtórz ostatni” z nazwą i datą.",
   "en": "The Workout screen has a new layout; “Repeat last” shows the name and date."
+ },
+ {
+  "pl": "Ekran Trening: „Planowanie” przy nazwie planu, „Ten tydzień” i „Progresja”; „Z szablonu” w arkuszu „Inny trening” otwiera wybór szablonu ze „Startem”.",
+  "en": "Workout screen: “Planning” next to the plan name, “This week” and “Progression”; “From a template” in the “Other workout” sheet opens a template picker with “Start”."
  },
  {
   "pl": "Ekran włączony podczas treningu",
@@ -1555,10 +1563,6 @@
  {
   "pl": "już w treningu",
   "en": "already in workout"
- },
- {
-  "pl": "Kalendarz",
-  "en": "Calendar"
  },
  {
   "pl": "Kalendarz od dziś będzie pusty.",
@@ -3021,6 +3025,10 @@
   "en": "tibialis anterior"
  },
  {
+  "pl": "Plan",
+  "en": "Plan"
+ },
+ {
   "pl": "Plan „{name}” jest teraz aktywny.",
   "en": "The plan “{name}” is now active."
  },
@@ -3281,8 +3289,16 @@
   "en": "Progress and records"
  },
  {
+  "pl": "Postępy mają własną zakładkę: podsumowanie, „Progresja”, wykresy ćwiczeń i masa ciała.",
+  "en": "Progress has its own tab: summary, “Progression”, exercise charts and body weight."
+ },
+ {
   "pl": "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.",
   "en": "Progress: weekly and monthly summary with a muscle map, a {n}-sets-per-muscle-group weekly mark and marking a week as deload."
+ },
+ {
+  "pl": "Postępy: podsumowanie tygodnia lub miesiąca z poprzednim okresem obok.",
+  "en": "Progress: weekly or monthly summary with the previous period alongside."
  },
  {
   "pl": "pośladki",
@@ -4834,10 +4850,6 @@
   "en": "In a deload week “Start” and “Repeat last” offer “Fewer sets”: {less}; weights and template unchanged."
  },
  {
-  "pl": "W zakładce Szablony „+ Nowy” tworzy szablon: ćwiczenia, serie, zakres powtórzeń i przerwy.",
-  "en": "On the Templates tab, “+ New” creates a template: exercises, sets, rep range and rest."
- },
- {
   "pl": "W zapisanych planach: {names}.",
   "en": "In saved plans: {names}."
  },
@@ -4886,8 +4898,8 @@
   "en": "More → Places and equipment: home, gym, hotel — each with its own equipment and weights."
  },
  {
-  "pl": "Więcej → Postępy: podsumowanie tygodnia lub miesiąca z poprzednim okresem obok.",
-  "en": "More → Progress: weekly or monthly summary with the previous period alongside."
+  "pl": "Więcej → Szablony: „+ Nowy” tworzy szablon: ćwiczenia, serie, zakres powtórzeń i przerwy.",
+  "en": "More → Templates: “+ New” creates a template: exercises, sets, rep range and rest."
  },
  {
   "pl": "Więcej dni niż szablonów: szablony po kolei (A, B, A…), jak w generatorze — konwencja.",

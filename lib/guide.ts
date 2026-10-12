@@ -18,7 +18,7 @@ export const GUIDE: GuideTopic[] = [
     t('Na koniec „Zakończ” (u góry albo w karcie po ostatniej serii) — sesja trafi do Kalendarza.'),
   ] },
   { id: 'templates', route: '/templates', title: () => t('Szablony'), steps: () => [
-    t('W zakładce Szablony „+ Nowy” tworzy szablon: ćwiczenia, serie, zakres powtórzeń i przerwy.'),
+    t('Więcej → Szablony: „+ Nowy” tworzy szablon: ćwiczenia, serie, zakres powtórzeń i przerwy.'),
     t('Szablon otwiera się w podglądzie ze „Start”; zmiany (także folder) dopiero po „Edytuj” — zapisuje je „Zapisz”.'), /* edycja na żądanie, 08.10.2026 */
     t('„Archiwizuj” w podglądzie chowa szablon; przesunięcie w lewo na liście usuwa go (z potwierdzeniem).'),
   ] },
@@ -50,8 +50,8 @@ export const GUIDE: GuideTopic[] = [
     t('W Kalendarzu: stuknij dzień, potem „Więcej opcji” → „Oznacz tydzień jako deload” — także przyszły tydzień.'),
     t('W tygodniu deload „Start” i „Powtórz ostatni” zaproponują „Mniej serii”: {less}; ciężary i szablon bez zmian.', { less: deloadLessText() }), /* audyt 0.10 (D1, MER-04) */
   ] },
-  { id: 'progress', route: '/more/progress', title: () => t('Postępy i rekordy'), steps: () => [
-    t('Więcej → Postępy: podsumowanie tygodnia lub miesiąca z poprzednim okresem obok.'),
+  { id: 'progress', route: '/progress', title: () => t('Postępy i rekordy'), steps: () => [
+    t('Postępy: podsumowanie tygodnia lub miesiąca z poprzednim okresem obok.'),
     t('Mapa mięśni i serie na partię z kreską {n} serii tygodniowo.', { n: WEEKLY_SETS_MARK }), /* LOG2-05: próg w jednym miejscu */
     t('Wykresy ćwiczeń i rekordy; rekord w trakcie treningu widać przy serii.'),
     t('Na ekranie Trening „Progresja” porównuje tydzień (wykonane + zaplanowane) z poprzednim oraz miesiąc z miesiącem.'),

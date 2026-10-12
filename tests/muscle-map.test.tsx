@@ -56,7 +56,7 @@ describe('dane rysunku', () => {
 });
 
 describe('ekran', () => {
-  const boot = async (fn: () => void, locale: 'pl' | 'en' = 'pl') => { await fresh(undefined, locale); fn(); await act(async () => { await store.flush(); }); await renderApp({ saved: JSON.parse(JSON.stringify(saved())), locale }); jest.setSystemTime(NOW.getTime()); await go('/more/progress'); await flushAll(10); };
+  const boot = async (fn: () => void, locale: 'pl' | 'en' = 'pl') => { await fresh(undefined, locale); fn(); await act(async () => { await store.flush(); }); await renderApp({ saved: JSON.parse(JSON.stringify(saved())), locale }); jest.setSystemTime(NOW.getTime()); await go('/progress'); await flushAll(10); };
   test('mapa w podsumowaniu okresu: opis VoiceOver z partiami od największej; okres bez serii — opis „brak serii”; legenda i opis skali', async () => {
     await boot(() => { addWorkout(at(9, 6), [['Bench Press (sztanga)', [{ weight: 80, reps: 5 }, { weight: 80, reps: 5 }]]]); });
     const map = screen.getByTestId('muscle-map'); expect(map.props.accessibilityRole).toBe('image');

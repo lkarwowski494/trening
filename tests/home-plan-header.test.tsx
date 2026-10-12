@@ -65,21 +65,22 @@ describe('nagłówek planu nad kalendarzem', () => {
 });
 
 describe('Planowanie → szablony (docs/22 problem 3)', () => {
-  test('aktywny plan: przycisk „Szablony” zamyka stos i otwiera zakładkę Szablony z listą', async () => {
+  test('aktywny plan: przycisk „Szablony” otwiera listę szablonów na stosie (11.10.2026: pod Więcej, nie zakładka); powrót wraca do planu', async () => {
     const t = await boot(tt => { setPlan(tt, { 3: 0 }); hist(); });
     await tap(screen.getByLabelText('Planowanie')); await flushAll(10); expect(stack()).toEqual(['(tabs)', 'plan']);
-    await tap(screen.getByText('Szablony')); await flushAll(10); expect(stack()).toEqual(['(tabs)']); expect(screen.getByText('+ Nowy')).toBeTruthy(); expect(screen.getByText(t[0].name)).toBeTruthy();
+    await tap(screen.getByText('Szablony')); await flushAll(10); expect(stack()).toEqual(['(tabs)', 'plan', 'templates']); expect(screen.getByText('+ Nowy')).toBeTruthy(); expect(screen.getByText(t[0].name)).toBeTruthy();
+    await act(async () => { require('expo-router').router.back(); }); await flushAll(10); expect(stack()).toEqual(['(tabs)', 'plan']);
   });
   test('rozwinięty dzień: „Szablony ›” obok „+ Nowy szablon” prowadzi do listy; etykieta VoiceOver z dniem', async () => {
     await boot(t => { setPlan(t, { 3: 0 }); hist(); }, '/plan');
     await tap(screen.getAllByLabelText(/^poniedziałek, /)[0]); await flushAll(5); expect(screen.getByLabelText('poniedziałek: + Nowy szablon')).toBeTruthy();
     expect(screen.getByText('Szablony ›')).toBeTruthy(); const b = screen.getByLabelText('poniedziałek: Szablony'); expect(b.props.accessibilityHint).toBe('Otwiera listę szablonów.');
-    await tap(b); await flushAll(10); expect(stack()).toEqual(['(tabs)']); expect(screen.getByText('+ Nowy')).toBeTruthy();
+    await tap(b); await flushAll(10); expect(stack()).toEqual(['(tabs)', 'plan', 'templates']); expect(screen.getByText('+ Nowy')).toBeTruthy();
   });
   test('zapisany (nieaktywny) plan: „Szablony” też jest; EN: „Templates”', async () => {
     let id = ''; await boot(t => { setPlan(t, { 3: 0 }); hist(); id = plan.newPlan('Zapas')!; }, '/');
     await act(async () => { require('expo-router').router.push(`/plan?id=${id}`); }); await flushAll(10); expect(stack()).toEqual(['(tabs)', 'plan']);
-    await tap(screen.getByText('Szablony')); await flushAll(10); expect(stack()).toEqual(['(tabs)']); expect(screen.getByText('+ Nowy')).toBeTruthy();
+    await tap(screen.getByText('Szablony')); await flushAll(10); expect(stack()).toEqual(['(tabs)', 'plan', 'templates']); expect(screen.getByText('+ Nowy')).toBeTruthy();
     await boot(t => { setPlan(t, { 3: 0 }); hist(); }, '/plan', 'en'); expect(screen.getByText('Templates')).toBeTruthy(); await tap(screen.getByText('Templates')); await flushAll(10); expect(screen.getByText('+ New')).toBeTruthy();
   });
 });

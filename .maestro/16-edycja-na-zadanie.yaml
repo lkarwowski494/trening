@@ -4,7 +4,7 @@
 # Logika i ekrany: tests/edit-on-demand.test.tsx.
 #
 # Literały (EN z lib/i18n.en.ts):
-#   "Exercises, tab.*"           ← 'Ćwiczenia' + etykieta zakładki (jak „Calendar, tab.*” w 05)
+#   "More, tab.*" → "Exercises"           ← 'Więcej' + 'Ćwiczenia' (Item na liście Więcej; 11.10.2026, wariant A: Ćwiczenia pod Więcej)
 #   "Search…"                    ← 'Szukaj…' (pole wyszukiwania na zakładce Ćwiczenia)
 #   "Back Squat, barbell.*"      ← wiersz listy: „{nazwa}, {sprzęt}” (Item, components/ui.tsx; 'sztanga' → barbell)
 #   "Edit exercise"              ← 'Edytuj ćwiczenie' (accessibilityLabel przycisku „Edytuj” w podglądzie, app/exercise/[id].tsx)
@@ -25,7 +25,8 @@ name: Edycja na żądanie — ekran ćwiczenia
     clearState: true
     permissions: { all: allow }
 - extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
-- tapOn: "Exercises, tab.*"
+- tapOn: "More, tab.*"
+- tapOn: "Exercises"  # 11.10.2026: Ćwiczenia to ekran pod Więcej (bez własnej zakładki)
 - extendedWaitUntil: { visible: "Search…", timeout: 30000 }
 - tapOn: "Search…"
 - inputText: "Back Squat"
@@ -60,7 +61,8 @@ name: Edycja na żądanie — ekran ćwiczenia
 - launchApp:
     clearState: false
 - extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
-- tapOn: "Exercises, tab.*"
+- tapOn: "More, tab.*"
+- tapOn: "Exercises"  # 11.10.2026: Ćwiczenia to ekran pod Więcej (bez własnej zakładki)
 - extendedWaitUntil: { visible: "Search…", timeout: 30000 }
 - tapOn: "Search…"
 - inputText: "Back Squat"

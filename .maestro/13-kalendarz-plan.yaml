@@ -2,7 +2,7 @@
 # Logika i wszystkie przypadki: tests/plan-calendar.test.ts, tests/plan-calendar-ui.test.tsx. Tu: prawdziwe stuknięcia na symulatorze.
 #
 # Literały (EN z lib/i18n.en.ts):
-#   "Calendar, tab.*"               ← 'Kalendarz' + etykieta zakładki
+#   "Plan, tab.*"                   ← 'Plan' (dawniej Kalendarz, do 11.10.2026) + etykieta zakładki
 #   "Planning"                      ← 'Planowanie' (przycisk w Kalendarzu i tytuł ekranu planu; od 11.10.2026, dawniej „Weekly plan”)
 #   "Monday, Rest" … "Sunday, Rest" ← app/plan.tsx: wiersz dnia '{dzień tygodnia}, {szablon albo Wolne}' (audyt 0.10 UX-15 A: 7 wierszy zamiast chipów)
 #   "Monday: Upper A" … "Sunday: Upper A" ← app/plan.tsx: '{dzień tygodnia}: {szablon}' (chip w rozwiniętym wierszu)
@@ -26,7 +26,7 @@ name: Kalendarz z planem tygodnia
 - extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
 - runFlow: subflows/szablon-testowy.yaml
 # --- Plan tygodnia: Upper A każdego dnia (dzień symulatora nieznany — dziś zawsze zaplanowany); wiersz dnia → wybór szablonu ---
-- tapOn: "Calendar, tab.*"
+- tapOn: "Plan, tab.*"
 - extendedWaitUntil: { visible: "Planning", timeout: 30000 }
 - tapOn: "Planning"
 - extendedWaitUntil: { visible: "Monday, Rest", timeout: 30000 }

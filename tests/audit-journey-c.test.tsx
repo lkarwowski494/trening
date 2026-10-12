@@ -83,7 +83,7 @@ for (const [loc, unit] of [['pl', 'kg'], ['en', 'lb']] as const) {
     // history detail renders
     const txts = screen.toJSON() ? JSON.stringify(screen.toJSON()).length : 0; expect(txts).toBeGreaterThan(0);
     // progress
-    await go(`/more/progress?ex=${ex('Bench Press (hantle)').id}`); await flushAll(10);
+    await go(`/progress?ex=${ex('Bench Press (hantle)').id}`); await flushAll(10);
     log(loc, 'progress records', screen.getAllByText(/./).map(x => x.props.children).flat().filter(x => typeof x === 'string').join(' | ').slice(0, 1500));
 
     // ---- backup round trip ----

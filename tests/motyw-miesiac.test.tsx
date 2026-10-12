@@ -69,7 +69,7 @@ const rects = (n: Node) => n.findAll(x => typeof x.type !== 'string' && typeof x
 const hidden = (n: Node) => { for (let x: Node | null = n; x; x = x.parent as Node | null) if (x.props.accessibilityElementsHidden === true && x.props.importantForAccessibility === 'no-hide-descendants') return true; return false; };
 const boot = async (p: () => void, locale: 'pl' | 'en' = 'pl', theme: 'light' | 'dark' = 'light') => {
   jest.useFakeTimers({ now: NOW }); await fresh(undefined, locale); p(); S().settings.theme = theme; store.saveCfg(); await act(async () => { await store.flush(); });
-  await renderApp({ saved: JSON.parse(JSON.stringify(saved())), locale }); await flushAll(10); await go('/more/progress'); await flushAll(10);
+  await renderApp({ saved: JSON.parse(JSON.stringify(saved())), locale }); await flushAll(10); await go('/progress'); await flushAll(10);
 };
 const month = async (label: string) => { await act(async () => { fireEvent.press(screen.getByLabelText(label)); }); await flushAll(5); };
 

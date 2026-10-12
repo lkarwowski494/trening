@@ -210,7 +210,7 @@ describe('UI2-02: podwójne tapnięcie nie otwiera dwóch ekranów ani nie tworz
     await dbl(screen.getByLabelText(/^Sesja .*: 100×5$/)); expect(routeNames().filter(n => n === 'history/[id]')).toHaveLength(1);
   });
   test('Postępy: „Masa ciała — pomiary” ×2 → jeden ekran pomiarów', async () => {
-    await boot(() => { addWorkout(Date.now() - 86400e3, [['Pull Up', [{ addKg: 10, reps: 5 }]]]); }); await go(`/more/progress?ex=${ex('Pull Up').id}`); await flushAll(10);
+    await boot(() => { addWorkout(Date.now() - 86400e3, [['Pull Up', [{ addKg: 10, reps: 5 }]]]); }); await go(`/progress?ex=${ex('Pull Up').id}`); await flushAll(10);
     await dbl(screen.getByText('Masa ciała — pomiary')); expect(routeNames().filter(n => n === 'more/bodymass')).toHaveLength(1);
   });
   test('generator: chip „+ Dodaj miejsce” ×2 → jeden ekran miejsc', async () => {

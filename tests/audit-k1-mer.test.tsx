@@ -56,14 +56,14 @@ describe('MER2-01: ekran Postępy', () => {
   };
   test('PL: Push Up „64,85 kg (64% masy ciała + 13,65)”, bez „masa ciała + 13,65”; Pull Up „masa ciała + 46,67”', async () => {
     await boot();
-    await go(`/more/progress?ex=${ex('Push Up').id}`); await flushAll(10);
+    await go(`/progress?ex=${ex('Push Up').id}`); await flushAll(10);
     expect(screen.getByText('64,85 kg (64% masy ciała + 13,65)')).toBeTruthy(); expect(screen.queryByText(/\(masa ciała \+ 13,65\)/)).toBeNull();
-    await go(`/more/progress?ex=${ex('Pull Up').id}`); await flushAll(10);
+    await go(`/progress?ex=${ex('Pull Up').id}`); await flushAll(10);
     expect(screen.getByText('126,67 kg (masa ciała + 46,67)')).toBeTruthy();
   });
   test('EN: Push Up „64.85 kg (64% of body weight + 13.65)”', async () => {
     await boot('en');
-    await go(`/more/progress?ex=${ex('Push Up').id}`); await flushAll(10);
+    await go(`/progress?ex=${ex('Push Up').id}`); await flushAll(10);
     expect(screen.getByText('64.85 kg (64% of body weight + 13.65)')).toBeTruthy();
   });
 });

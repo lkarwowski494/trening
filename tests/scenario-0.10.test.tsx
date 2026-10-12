@@ -63,7 +63,7 @@ test('generator: zapis i aktywacja → restart → szablony w „Wygenerowane”
 });
 
 test('deload: oznaczenie tygodnia w Postępach → restart → start z szablonu pyta o mniej serii; po zdjęciu oznaczenia i restarcie — bez pytania', async () => {
-  const t = await boot('/more/progress', () => { [[8, 14], [8, 21], [8, 28], [9, 6]].forEach(([m, d]) => addWorkout(new Date(2026, m, d, 18).getTime(), [['Back Squat', [{ weight: 100, reps: 5 }]]])); });
+  const t = await boot('/progress', () => { [[8, 14], [8, 21], [8, 28], [9, 6]].forEach(([m, d]) => addWorkout(new Date(2026, m, d, 18).getTime(), [['Back Squat', [{ weight: 100, reps: 5 }]]])); });
   store.toggleDeloadWeek(NOW.getTime()); await flushAll(5); /* „Ten tydzień: deload” (ten sam przycisk co w Kalendarzu — test ekranu: deload-ui) */
   await restart('/'); expect(store.isDeloadWeek(NOW.getTime())).toBe(true);
   const c = deloadCounts(t[0]); await startTpl(t[0].name); await flushAll(5); await press('Tydzień deload', 'Mniej serii');

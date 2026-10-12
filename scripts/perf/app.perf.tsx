@@ -56,7 +56,7 @@ test('wydajność', async () => {
     expect(store.getState().active!.exercises.find(e => e.id === b0.id)!.sets[0].weight).toBe(74); /* wpis naprawdę trafił do serii */
     const { router } = require('expo-router');
     t = now(); await act(async () => { router.push('/history'); }); await flushAll(50); note(n, 'zakładka Historia (render)', now() - t);
-    t = now(); await act(async () => { router.push('/more/progress?ex=' + ex('Back Squat').id); }); await flushAll(50); note(n, 'Postępy ćwiczenia (render)', now() - t);
+    t = now(); await act(async () => { router.push('/progress?ex=' + ex('Back Squat').id); }); await flushAll(50); note(n, 'Postępy ćwiczenia (render)', now() - t);
     /* pełna baza ćwiczeń (04.10.2026): lista wyboru bez miejsca = wszystkie ćwiczenia biblioteki (ScrollView bez wirtualizacji) */
     note(n, `liczba ćwiczeń`, store.getState().exercises.length);
     t = now(); await act(async () => { router.push('/picker?target=add'); }); await flushAll(50); note(n, 'wybór ćwiczenia — wszystkie (render)', now() - t);

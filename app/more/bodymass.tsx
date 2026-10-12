@@ -10,7 +10,7 @@ import { wu, wIn, fmtW } from '@/lib/units';
 /*
  * Masa ciała z datą (fala 2 audytu 0.10, decyzja: wdrożyć; E1 wariant B). Pomiary — dzień i masa; e1RM ćwiczeń z masą ciała w każdym treningu liczy się
  * z ostatniego pomiaru z dnia treningu albo wcześniejszego (store.bodyMassOn). Dane tylko w telefonie (kopia zapasowa je obejmuje; CSV — nie).
- * Wejścia: Ustawienia → Masa ciała, Postępy (ćwiczenie z masą ciała) → „Masa ciała — pomiary”.
+ * Wejścia (od 11.10.2026, docs/22 P5 A): zakładka Postępy → sekcja „Masa ciała” → „Masa ciała — pomiary”; Postępy (ćwiczenie z masą ciała) → „Masa ciała — pomiary”.
  */
 export default function BodyMassScreen() {
   useTick(); const [kg, setKg] = useState<number | ''>(''); const [date, setDate] = useState(localISODate());

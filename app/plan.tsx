@@ -46,7 +46,7 @@ function PlanToggle({ name, active, onPress }: { name: string; active: boolean; 
     </Pressable>);
 }
 /** docs/22 krok 3 pkt 1 (11.10.2026): z Planowania da się przejść do listy szablonów (zakładka Szablony — zamknięcie stosu i przejście, jak „Pokaż” w Przewodniku). */
-const openTemplates = (router: ReturnType<typeof useRouter>) => { if (router.canDismiss()) router.dismissAll(); router.navigate('/templates'); };
+const openTemplates = (router: ReturnType<typeof useRouter>) => router.push('/templates'); /* 11.10.2026: Szablony to ekran w stosie (Więcej → Szablony), nie zakładka — powrót wraca do planu */
 
 /** 7 wierszy dni (UX-15 A): wiersz pokazuje dzień i szablon, tapnięcie rozwija wybór (szablony bez folderu, potem foldery). */
 function DayRows({ days, onSet, target }: { days: PlanDays; onSet: (i: number, id: string | null) => void; target: (i: number) => string }) {

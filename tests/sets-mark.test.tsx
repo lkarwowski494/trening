@@ -17,7 +17,7 @@ const NOW = new Date(2026, 9, 8, 18, 0);
 beforeEach(async () => { jest.useFakeTimers({ now: NOW }); await fresh(); });
 afterEach(() => { applyLang('pl'); });
 const bench = (n: number, d = 6) => addWorkout(new Date(2026, 9, d, 18).getTime(), [['Bench Press (sztanga)', Array.from({ length: n }, () => ({ weight: 80, reps: 8 }))]]);
-const boot = async (fn: () => void, locale: 'pl' | 'en' = 'pl') => { await fresh(undefined, locale); fn(); await act(async () => { await store.flush(); }); await renderApp({ saved: JSON.parse(JSON.stringify(saved())), locale, url: '/more/progress' }); jest.setSystemTime(NOW.getTime()); await flushAll(10); };
+const boot = async (fn: () => void, locale: 'pl' | 'en' = 'pl') => { await fresh(undefined, locale); fn(); await act(async () => { await store.flush(); }); await renderApp({ saved: JSON.parse(JSON.stringify(saved())), locale, url: '/progress' }); jest.setSystemTime(NOW.getTime()); await flushAll(10); };
 
 test('liczba w jednym miejscu (10) ze źródłem i cytatem przy stałej', () => {
   expect(WEEKLY_SETS_MARK).toBe(10);

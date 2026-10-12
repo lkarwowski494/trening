@@ -60,7 +60,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     expect(screen.queryByText('Nie masz jeszcze szablonów — utwórz pierwszy albo zacznij pusty trening.')).toBeNull(); /* bez powtórzenia przy „Pierwszych krokach” */
     expect(within(screen.getByTestId('first-steps')).getAllByText('Planowanie')).toHaveLength(2); expect(screen.queryByText('+ Nowy szablon')).toBeNull(); /* 11.10.2026 (P4 A): Pierwsze kroki — przyciski Planowanie */ expect(screen.getByText('Pusty trening')).toBeTruthy();
     expect(screen.queryByText(/^Powtórz ostatni/)).toBeNull(); expect(screen.queryByLabelText(/^Start: /)).toBeNull();
-    for (const tab of ['Trening', 'Szablony', 'Ćwiczenia', 'Kalendarz', 'Więcej']) expect(screen.getAllByText(tab).length).toBeGreaterThan(0);
+    for (const tab of ['Trening', 'Plan', 'Postępy', 'Więcej']) expect(screen.getAllByText(tab).length).toBeGreaterThan(0);
     /* pusty trening bez serii → „Brak odhaczonych serii” → odrzucenie; nic nie zostaje w historii */
     await tap(screen.getByText('Pusty trening')); await flushAll(10);
     expect(S().active).not.toBeNull(); expect(S().active!.templateId).toBeNull(); expect(screen.getAllByText('Zakończ').length).toBe(1);
@@ -79,9 +79,9 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     /* zakładki: puste listy */
     await go('/templates'); await flushAll(10); expect(screen.getByText('Brak szablonów — dodaj pierwszy.')).toBeTruthy();
     await go('/history'); await flushAll(10); expect(screen.getByText('Jeszcze pusto — pierwszy trening czeka.')).toBeTruthy(); expect(screen.getByText(/^0 sesji$/)).toBeTruthy();
-    await go('/more'); await flushAll(10); for (const x of ['Postępy', 'Miejsca i sprzęt', 'Kopia zapasowa (eksport / import)', 'Ustawienia']) expect(screen.getByText(x)).toBeTruthy();
+    await go('/more'); await flushAll(10); for (const x of ['Szablony', 'Ćwiczenia', 'Miejsca i sprzęt', 'Kopia zapasowa (eksport / import)', 'Ustawienia']) expect(screen.getByText(x)).toBeTruthy(); expect(screen.queryByLabelText('Postępy')).toBeNull(); /* 11.10.2026: Postępy mają własną zakładkę, Szablony i Ćwiczenia są pod Więcej */
     expect(screen.queryByText('Gumy')).toBeNull();
-    await go('/more/progress'); await flushAll(10); expect(screen.getByText('Wykresy pojawią się po pierwszym zakończonym treningu.')).toBeTruthy();
+    await go('/progress'); await flushAll(10); expect(screen.getByText('Wykresy pojawią się po pierwszym zakończonym treningu.')).toBeTruthy();
   });
 
   test('02 ustawienia: język EN i z powrotem, wygląd, jednostki kg→lb→kg, przerwa, przełączniki, powiadomienia', async () => {
@@ -96,7 +96,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     expect(screen.getByLabelText('Language, English')).toBeTruthy(); expect(screen.getByText('Appearance')).toBeTruthy(); expect(screen.getByText('Weight unit')).toBeTruthy();
     expect(screen.queryByText('Wygląd')).toBeNull();
     /* EN: nazwy z biblioteki po angielsku, interfejs po angielsku */
-    await go('/exercises'); await flushAll(10); expect(screen.getAllByText('Exercises').length).toBeGreaterThan(0);
+    await go('/exercises'); await flushAll(10); expect(screen.getByPlaceholderText('Search…')).toBeTruthy(); /* 11.10.2026: tytuł ekranu jest w nagłówku stosu (w Jest się nie renderuje) */
     await go('/'); await flushAll(10); expect(screen.getAllByText('Planning')).toHaveLength(2); expect(screen.getByText('Empty workout')).toBeTruthy();
     /* z powrotem na polski */
     await go('/more/settings'); await flushAll(10);
@@ -336,7 +336,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     expect(screen.queryByText(/^Uwaga: zmiana sprzętu/)).toBeNull(); /* bez historii — bez ostrzeżenia o przeliczeniu */
     expect(bench.restSec).toBeNull(); await saveEdit(); expect(bench).toMatchObject({ restSec: 100, restWarmupSec: 45, tempo: '3-1-1', notes: 'łokcie 45°', bandAssistable: false, muscles: ['klatka'], secondaryMuscles: ['triceps', 'barki'] });
     await tap(screen.getByText('Postępy')); await flushAll(10); expect(screen.getByText('Brak zapisanych sesji z tym ćwiczeniem.')).toBeTruthy(); expect(screen.getByLabelText('Bench Press (hantle)')).toBeTruthy();
-    await back(); await back();
+    await go('/exercises'); await flushAll(10); /* 11.10.2026: „Postępy” z ćwiczenia przełącza na zakładkę (zamyka stos), więc biblioteka otwiera się od nowa */
     /* lista pokazuje tempo przy ćwiczeniu */
     expect(screen.getByLabelText('Bench Press (hantle), hantle · tempo 3-1-1')).toBeTruthy();
     /* „+ Nowe” nietknięte znika po wyjściu */
@@ -673,7 +673,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     expect(screen.getByLabelText('Postęp treningu: 15 z 16 serii')).toBeTruthy(); expect(screen.getByText('chwyt nachwytem')).toBeTruthy();
     expect(screen.getByText('📍 Dom testowy ▾')).toBeTruthy();
     /* zakładka Trening z plakietką pozostałej przerwy, także z innej zakładki */
-    await go('/history'); await flushAll(10); expect(screen.getByLabelText(/^Trening, przerwa \+?\d+:\d\d, zakładka, 1 z 5$/)).toBeTruthy(); /* każde przejście ekranu w testach przesuwa zegar — przerwa mogła już minąć (+) */
+    await go('/history'); await flushAll(10); expect(screen.getByLabelText(/^Trening, przerwa \+?\d+:\d\d, zakładka, 1 z 4$/)).toBeTruthy(); /* każde przejście ekranu w testach przesuwa zegar — przerwa mogła już minąć (+) */
     await go('/'); await flushAll(10);
     /* koniec przerwy: „przerwa minęła” */
     await flushAll(120000); expect(screen.queryByText('przerwa minęła') ?? screen.queryByText(/^przerwa z/)).toBeTruthy();
@@ -804,7 +804,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
 
   test('08 postępy: wykresy tygodniowe, serie i objętość per partia (zgodne z danymi), wybór ćwiczenia, metryki wykresu, rekordy, sesje', async () => {
     const stats = require('@/lib/stats'); const { fmtNum, fmtW, fmtVol } = require('@/lib/units');
-    await boot('/more'); await tap(screen.getByText('Postępy')); await flushAll(10);
+    await boot('/progress');
     for (const t of ['Objętość tygodniowo (kg)', 'Serie robocze tygodniowo', 'Serie per partia — ten tydzień vs poprzedni', 'Objętość per partia (kg) — ten tydzień vs poprzedni']) expect(screen.getByText(t)).toBeTruthy();
     const weeks = stats.weeklyTotals(8); expect(weeks.reduce((a: number, w: any) => a + w.workouts, 0)).toBe(2);
     /* serie per partia: każdy wiersz na ekranie = liczby ze store (ten tydzień i poprzedni) */
@@ -840,7 +840,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     expect(S().workouts.some(w => w.exercises.some(e => e.exerciseId === lr.id))).toBe(true);
     /* historia i postępy dalej je znają */
     await go(`/history/${S().workouts.find(w => w.exercises.some(e => e.exerciseId === lr.id))!.id}`); await flushAll(10); expect(screen.getAllByText(LR).length).toBeGreaterThan(0);
-    await go('/more/progress'); await flushAll(10); await type(screen.getByPlaceholderText('Szukaj ćwiczenia…'), 'lateral raise (h'); expect(screen.getByText(`${LR} (usunięte)`)).toBeTruthy();
+    await go('/progress'); await flushAll(10); await type(screen.getByPlaceholderText('Szukaj ćwiczenia…'), 'lateral raise (h'); expect(screen.getByText(`${LR} (usunięte)`)).toBeTruthy();
     /* w oknie wyboru i na liście: „Przywróć „…”” */
     await go('/exercises'); await flushAll(10); await type(screen.getByPlaceholderText('Szukaj…'), 'lateral raise (h');
     expect(screen.getByLabelText(`Przywróć „${LR}”, usunięte ćwiczenie z historią`)).toBeTruthy();

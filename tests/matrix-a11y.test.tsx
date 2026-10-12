@@ -53,7 +53,7 @@ const ROUTES_N = 29; /* 23 + masa ciała, O aplikacji, licencje (fala 2) + plan 
  *  - „Poprzednio” i nagłówek kolumny ciężaru („kg/hant.” itp.): szerokości kolumn wiersza serii liczy rowLayout (ActiveWorkout.tsx,
  *    test szerokości: tests/ux.test.tsx), a przy wąskim ekranie „Poprzednio” schodzi pod wiersz.
  */
-const ONE_LINE_OK = ['Trening', 'Szablony', 'Ćwiczenia', 'Kalendarz', 'Więcej', 'Poprzednio'];
+const ONE_LINE_OK = ['Trening', 'Szablony', 'Ćwiczenia', 'Plan', 'Postępy', 'Więcej', 'Poprzednio'];
 /** Audyt kontrolny 1 A11N-04: długie teksty, którym wolno rosnąć mniej niż do 200% — z powodem (pusta lista = brak wyjątków). */
 const LONG_TEXT_OK: RegExp[] = [];
 const ONE_LINE_OK_RE = /^(kg|lb)\/|^Poprzednio: |^Previous: /;

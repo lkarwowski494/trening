@@ -13,7 +13,8 @@ import { PlanReminderSync } from '@/components/PlanReminderSync';
 // SDK 56: zakładki expo-router (fork React Navigation) podają kolor jako ColorValue, nie string — Text przyjmuje oba.
 /** E2E 88 (09.10.2026): przy tabBarLabel jako funkcji (A11-03) nawigacja nie tworzy etykiety „{tytuł}, tab, {i} of {n}” — VoiceOver i Maestro
  * traciły nazwę i pozycję zakładki. Etykieta budowana tu, w języku aplikacji. */
-const TAB_COUNT = 5;
+/** 11.10.2026 (docs/22, wariant A): Trening · Plan · Postępy · Więcej; Szablony i Ćwiczenia są pod Więcej. */
+const TAB_COUNT = 4;
 const tabA11y = (title: string, i: number, extra?: string) => [title, extra, tr('zakładka, {i} z {n}', { i, n: TAB_COUNT })].filter(Boolean).join(', ');
 const icon = (name: TabIconName) => ({ color }: { color: ColorValue }) => <TabIcon name={name} color={color} />;
 const label = ({ color, position, children }: { focused: boolean; color: ColorValue; position: 'beside-icon' | 'below-icon'; children: string }) => <TabLabel color={color} position={position}>{children}</TabLabel>;
@@ -47,10 +48,9 @@ export default function TabsLayout() {
     <PlanReminderSync />{/* 08.10.2026: przypomnienie o treningu z planu */}
     <Tabs screenOptions={{ headerShown: false, tabBarStyle: { backgroundColor: t.surface, borderTopColor: t.line }, tabBarActiveTintColor: t.accent, tabBarInactiveTintColor: t.muted, tabBarLabel: label /* A11-03 */, tabBarButton: p => <PlatformPressable {...p} accessibilityLanguage={lang()} /> /* A11-09: przycisk zakładki czytany głosem języka aplikacji */, sceneStyle: { backgroundColor: t.bg } }}>
       <Tabs.Screen name="index" options={{ title: tr('Trening'), tabBarIcon: icon('workout'), tabBarBadge: badge, tabBarAccessibilityLabel: tabA11y(tr('Trening'), 1, full ? tr('przerwa {s}', { s: full }) : undefined) /* runda 30: VoiceOver czyta przerwę */, tabBarBadgeStyle: { backgroundColor: t.accent, color: t.accentInk, fontSize: 11, fontFamily: F.semibold /* audyt 0.10 (UI-11) */ } }} />
-      <Tabs.Screen name="templates" options={{ title: tr('Szablony'), tabBarAccessibilityLabel: tabA11y(tr('Szablony'), 2), tabBarIcon: icon('templates') }} />
-      <Tabs.Screen name="exercises" options={{ title: tr('Ćwiczenia'), tabBarAccessibilityLabel: tabA11y(tr('Ćwiczenia'), 3), tabBarIcon: icon('exercises') }} />
-      <Tabs.Screen name="history" options={{ title: tr('Kalendarz') /* 08.10.2026: Historia → Kalendarz (decyzja 1A) */, tabBarAccessibilityLabel: tabA11y(tr('Kalendarz'), 4), tabBarIcon: icon('history') }} />
-      <Tabs.Screen name="more" options={{ title: tr('Więcej'), tabBarAccessibilityLabel: tabA11y(tr('Więcej'), 5), tabBarIcon: icon('more') }} />
+      <Tabs.Screen name="history" options={{ title: tr('Plan') /* 11.10.2026: Kalendarz → Plan (docs/22 4.4) */, tabBarAccessibilityLabel: tabA11y(tr('Plan'), 2), tabBarIcon: icon('history') }} />
+      <Tabs.Screen name="progress" options={{ title: tr('Postępy'), tabBarAccessibilityLabel: tabA11y(tr('Postępy'), 3), tabBarIcon: icon('progress') }} />
+      <Tabs.Screen name="more" options={{ title: tr('Więcej'), tabBarAccessibilityLabel: tabA11y(tr('Więcej'), 4), tabBarIcon: icon('more') }} />
     </Tabs>
   </>);
 }

@@ -8,7 +8,7 @@ import { GUIDE, guideSeen, guideProgress, markGuideSeen } from '@/lib/guide';
 import { t, lang } from '@/lib/i18n';
 
 /** Trasy zakładek (app/(tabs)) — „Pokaż” przechodzi do nich bez nowego zestawu zakładek na stosie. */
-export const TAB_ROUTES = ['/', '/templates', '/exercises', '/history', '/more'];
+export const TAB_ROUTES = ['/', '/history', '/progress', '/more']; /* 11.10.2026 (docs/22, wariant A): Trening · Plan · Postępy · Więcej */
 /* Przewodnik (decyzja właściciela 08.10.2026, wariant A): tematy rozwijane w miejscu, kroki, „Pokaż” otwiera ekran; przeczytane — ✓. Treść: lib/guide.ts. */
 export default function GuideScreen() {
   useTick(); const router = useRouter(); const th = useTheme(); const q = useLocalSearchParams<{ topic?: string }>();

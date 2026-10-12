@@ -212,7 +212,7 @@ describe('miara ciężar + dystans (noszenie, sanki)', () => {
     await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())) });
     store.startEmpty(); store.addExerciseToActive(store.exById(fw.id)!); await flushAll(20);
     expect(screen.getAllByText('m', { includeHiddenElements: true }) /* A11-18: nagłówki kolumn ukryte przed VoiceOver */.length).toBeGreaterThan(0); expect(screen.queryByText('▶')).toBeNull();
-    await go(`/more/progress?ex=${fw.id}`); await flushAll(20); expect(screen.getByText('Najdłuższy dystans')).toBeTruthy();
+    await go(`/progress?ex=${fw.id}`); await flushAll(20); expect(screen.getByText('Najdłuższy dystans')).toBeTruthy();
   });
 });
 

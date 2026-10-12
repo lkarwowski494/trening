@@ -1,9 +1,9 @@
 # Generator szablonów i planu tygodnia (decyzje właściciela 08.10.2026, docs/24). Logika i wszystkie przypadki: tests/generator.test.ts,
-# tests/generator-ui.test.tsx. Tu: prawdziwe stuknięcia na symulatorze — wejście z Szablonów, podgląd, zapis i aktywacja planu.
+# tests/generator-ui.test.tsx. Tu: prawdziwe stuknięcia na symulatorze — wejście z ekranu planu, podgląd, zapis i aktywacja planu.
 #
 # Literały (EN z lib/i18n.en.ts):
-#   "Templates, tab.*"               ← 'Szablony' + etykieta zakładki
-#   "Generate templates and plan"    ← 'Wygeneruj szablony i plan' (app/(tabs)/templates.tsx, app/plan.tsx)
+#   "Planning"                       ← 'Planowanie' (przycisk w „Pierwszych krokach” na ekranie Trening; po pierwszym treningu — w nagłówku planu; otwiera ekran planu app/plan.tsx)
+#   "Generate templates and plan"    ← 'Wygeneruj szablony i plan' (app/templates.tsx, app/plan.tsx)
 #   "Preview", "What this is based on" ← 'Podgląd', 'Na czym to oparte' (app/generator.tsx)
 #   "Save templates and plan"        ← 'Zapisz szablony i plan'
 #   "Make the new plan active\?"     ← 'Ustawić nowy plan jako aktywny?'
@@ -32,7 +32,9 @@ name: Generator szablonów i planu
     clearState: true
     permissions: { all: allow }
 - extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
-- tapOn: "Templates, tab.*"
+# 11.10.2026 (wariant A): Szablony są pod Więcej, więc generator otwieramy z ekranu planu (Trening → „Planning” → „Generate templates and plan”, B9) —
+# stos: Trening → Planowanie → Generator; „Planning” w oknie „Saved” wraca do planu, a „Back” do zakładek.
+- tapOn: "Planning"
 - extendedWaitUntil: { visible: "Generate templates and plan", timeout: 30000 }
 - tapOn: "Generate templates and plan"
 - extendedWaitUntil: { visible: "Preview", timeout: 30000 }
