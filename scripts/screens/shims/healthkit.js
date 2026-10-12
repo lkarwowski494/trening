@@ -1,1 +1,1 @@
-export default { isHealthDataAvailable: async () => false, requestAuthorization: async () => false, saveWorkoutSample: async () => false };
+export default { isHealthDataAvailableAsync: async () => false, requestAuthorization: async () => false, authorizationStatusFor: () => 0, saveWorkoutSample: async () => { throw new Error('HealthKit niedostępny'); } };

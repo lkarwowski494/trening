@@ -54,7 +54,7 @@ describe('T4b health dup', () => {
   test('R72 przywrócenie kopii sprzed zapisu do Zdrowia: zapis z identyfikatorem synchronizacji (bez duplikatu w HealthKit)', async () => {
     const { parseBackup } = require('@/lib/backup'); const health = require('@/lib/health');
     const hk = require('@kingstinct/react-native-healthkit').default; let n = 0;
-    const sv = jest.spyOn(hk, 'saveWorkoutSample').mockImplementation(async () => 'uuid-' + (++n));
+    const sv = jest.spyOn(hk, 'saveWorkoutSample').mockImplementation(async () => (global as any).__hkProxy('uuid-' + (++n)));
     await fresh(); store.getState().settings.healthSync = true;
     store.startEmpty(); store.addExerciseToActive(ex('Back Squat')); const s = store.getState().active!.exercises[0].sets[0]; s.weight = 100; s.reps = 5; store.toggleDone(0, 0);
     const id = store.getState().active!.id;
@@ -64,7 +64,7 @@ describe('T4b health dup', () => {
     const w2 = store.finishWorkout()!; expect(w2.id).toBe(id);
     await health.syncAfterFinish(w2);
     // R72: aplikacja nie wie, że trening już jest w Zdrowiu (kopia sprzed zapisu) — identyfikator synchronizacji pozwala HealthKit odrzucić duplikat.
-    expect(sv).toHaveBeenCalledTimes(2); for (const c of sv.mock.calls as any[]) { expect(c[3].metadata.HKMetadataKeySyncIdentifier).toBe(id); expect(c[3].metadata.HKMetadataKeySyncVersion).toBe(1); }
+    expect(sv).toHaveBeenCalledTimes(2); for (const c of sv.mock.calls as any[]) { expect(c[5].HKMetadataKeySyncIdentifier).toBe(id); expect(c[5].HKMetadataKeySyncVersion).toBe(1); }
     sv.mockRestore();
   });
 });

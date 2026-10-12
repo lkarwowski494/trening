@@ -36,7 +36,10 @@ jest.mock('expo-file-system', () => new Proxy({}, { get: (_t, k) => { throw new 
 jest.mock('expo-file-system/legacy', () => ({ cacheDirectory: 'file:///cache/', documentDirectory: 'file:///doc/', get bundleDirectory() { return global.__bundleDir ?? null; } /* runda 83: getter — `import * as` kopiuje wartości, test ustawia global.__bundleDir */, makeDirectoryAsync: jest.fn(async () => {}), readDirectoryAsync: jest.fn(async () => []), deleteAsync: jest.fn(async () => {}), writeAsStringAsync: jest.fn(async () => {}), readAsStringAsync: jest.fn(async () => ''), getInfoAsync: jest.fn(async () => ({ exists: false })), copyAsync: jest.fn(async () => {}), EncodingType: { UTF8: 'utf8', Base64: 'base64' } }));
 jest.mock('expo-sharing', () => ({ isAvailableAsync: async () => true, shareAsync: jest.fn(async () => {}) }));
 jest.mock('expo-document-picker', () => ({ getDocumentAsync: jest.fn(async () => ({ canceled: true })) }));
-jest.mock('@kingstinct/react-native-healthkit', () => ({ default: { isHealthDataAvailable: async () => false, requestAuthorization: async () => false, saveWorkoutSample: async () => false } }), { virtual: true });
+/* Kontrakt @kingstinct/react-native-healthkit 16.x (docs/28): isHealthDataAvailableAsync, requestAuthorization({ toRead, toShare }), authorizationStatusFor (synchroniczne),
+ * saveWorkoutSample(rodzaj, próbki, start, koniec, sumy, metadane) → WorkoutProxy { uuid, dispose }; błąd zapisu = odrzucona obietnica (nie `false` jak w 8.x). */
+global.__hkProxy = (uuid) => ({ uuid, dispose: jest.fn() });
+jest.mock('@kingstinct/react-native-healthkit', () => ({ default: { isHealthDataAvailableAsync: async () => false, requestAuthorization: async () => false, authorizationStatusFor: () => 0, saveWorkoutSample: async () => { throw new Error('HealthKit niedostępny'); } } }), { virtual: true });
 jest.mock('@/modules/rest-activity', () => ({
   isSupported: () => false,
   start: jest.fn(async (...a) => { global.__la.push(['start', ...a]); return false; }),

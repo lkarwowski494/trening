@@ -407,13 +407,13 @@ async function step(x: Act, m: Model, where: string) {
     case 'skipEx': if (act && blk) { if (blk.skipped) store.unskipExercise(blk.id); else if (!blk.sets.some(z => z.done)) store.skipExercise(blk.id); hit('skipEx'); } break; /* „Pomiń dziś” w treningu */
     case 'health': { /* J2: znacznik „czeka na Zdrowie” i ponowienie przy starcie / powrocie z tła; zapis w Zdrowiu zmienia tylko healthUUID i healthPending */
       const HK = require('@kingstinct/react-native-healthkit').default; const okSave = x.c % 2 === 0; let calls = 0;
-      HK.saveWorkoutSample = async () => { calls++; return okSave ? 'hk-' + calls : false; };
+      HK.saveWorkoutSample = async () => { calls++; if (!okSave) throw new Error('HealthKit'); return (global as any).__hkProxy('hk-' + calls); };
       st.settings.healthSync = x.b % 4 !== 0; store.saveCfg(); /* Ustawienia: przełącznik „Zapisuj w Apple Health” */ const w = pick(st.workouts.filter(z => !z.healthUUID), x.a); if (w) { w.healthPending = true; store.save(w); }
       const pend = health.healthPending().map(z => z.id); const bare = (z: Workout) => { const c = JSON.parse(J(z)); delete c.healthUUID; delete c.healthPending; delete c.updatedAt; return J(c); };
       const snapBare = new Map(S().workouts.map(z => [z.id, bare(z)] as const)); const n = await health.retryHealth();
       ok(n === (st.settings.healthSync && okSave ? pend.length : 0), where, 'ponowienie: liczba zapisanych', { n, pend });
       for (const z of S().workouts) { ok(bare(z) === snapBare.get(z.id), where, 'zapis do Zdrowia zmienił trening poza znacznikami', z.id); ok(!(z.healthPending && z.healthUUID), where, 'znacznik „czeka” przy zapisanym w Zdrowiu', z); m.hist.set(z.id, J(z)); }
-      HK.saveWorkoutSample = async () => false; hit('health'); break; }
+      HK.saveWorkoutSample = async () => { throw new Error('HealthKit'); }; hit('health'); break; }
     case 'planRename': case 'planDel': { const p = pick(plan.savedPlans(), x.a); if (!p) break; if (x.t === 'planDel') { plan.deletePlan(p.id); ok(!plan.savedPlans().some(q => q.id === p.id), where, 'usunięcie planu'); }
       else { plan.renamePlan(p.id, NAMES[x.b % NAMES.length], p.name); const q = plan.savedPlans().find(z => z.id === p.id)!; ok(!!q.name || !p.name, where, 'pusta nazwa planu zamiast poprzedniej', { p, q }); }
       hit(x.t); break; }
