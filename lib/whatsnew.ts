@@ -31,7 +31,7 @@ export const WHATS_NEW: WhatsNewEntry[] = [
   ] },
   /* Wydanie 2 (decyzja właściciela 11.10.2026, docs/18 P7 A): jeden wspólny wpis o nowym układzie — wydanie 1 (ekran Trening, „Progresja”) i wydanie 2 (cztery zakładki,
    * masa ciała w Postępach) oraz import CSV; to wpis wydania 0.13.0 (0.12.0 niżej wyszło bez wpisu o nowym ekranie). Numer buildu dopisuje się po wydaniu. */
-  { id: '2026-10-11', date: '2026-10-12', items: () => [
+  { id: '2026-10-11', build: 1009, date: '2026-10-12', items: () => [
     t('Cztery zakładki: Trening, Plan, Postępy i Więcej. Szablony i Ćwiczenia znajdziesz teraz w Więcej.'),
     t('Postępy mają własną zakładkę: podsumowanie, „Progresja”, wykresy ćwiczeń i masa ciała.'),
     t('Ekran Trening: „Planowanie” przy nazwie planu, „Ten tydzień” i „Progresja”; „Z szablonu” w arkuszu „Inny trening” otwiera wybór szablonu ze „Startem”.'),
