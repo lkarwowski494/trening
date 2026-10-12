@@ -47,7 +47,7 @@ export async function openDb(): Promise<SQLite.SQLiteDatabase> {
     if (ok) return old;
     await old.closeAsync().catch(() => {}); throw e;
   }
-  if (hasState) return next;
+  if (hasState) { void cleanupLegacy(def!); /* Q-015: aplikacja ubita po zatwierdzeniu przeniesienia, a przed sprzątaniem, zostawiła starą kopię — kasujemy ją przy najbliższym starcie */ return next; }
   /* pierwszy start w nowym miejscu: przeniesienie ze starej bazy (albo nic — nowa instalacja) */
   const old = await SQLite.openDatabaseAsync('trening.db');
   try { await copyKv(old, next); }

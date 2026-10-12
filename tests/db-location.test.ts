@@ -65,3 +65,22 @@ test('audyt T14c: nowa baza nieczytelna, ale stara w Dokumentach ma dane (nieprz
   let st: any = null; await jest.isolateModulesAsync(async () => { jest.doMock('expo-sqlite', () => f.mod); const s = require('@/lib/store'); await s.init(); st = s.getState(); });
   expect(st.templates[0].name).toBe('MOJ PLAN');
 });
+
+/* Q-015 (0.14.0): zabicie aplikacji między zatwierdzeniem przeniesienia a sprzątaniem zostawia starą kopię w Dokumentach (widoczną w Plikach).
+ * Kroki: pierwszy start po aktualizacji → aplikacja ubita w ułamku sekundy po przeniesieniu → kolejny start. Dawniej stara kopia zostawała na stałe
+ * i przy nieczytelnej nowej bazie stanowiłaby cichy powrót do starych danych. Realność: brzegowy (wąskie okno), ale dotyczy danych → naprawione. */
+test('Q-015: nowa baza ma już „state”, a stara kopia w Dokumentach została po ubitym sprzątaniu → następny start ją kasuje i używa nowej', async () => {
+  const stale = JSON.parse(savedState()); stale.templates[0].name = 'STARA KOPIA';
+  const dbs = new Map<string, KV>([['/c/Documents/SQLite', new Map([['state', JSON.stringify(stale)]])], ['/c/Library/SQLite', new Map([['state', savedState()]])]]);
+  const r = await start(dbs);
+  expect(r.st.templates[0].name).toBe('MOJ PLAN'); expect(r.deleted).toContain('/c/Documents/SQLite'); expect(dbs.has('/c/Documents/SQLite')).toBe(false);
+  expect(r.opened).toEqual(['/c/Library/SQLite']); /* nowa baza nietknięta, stara nawet nie otwierana */
+  expect(dbs.get('/c/Library/SQLite')!.get('state')).toContain('MOJ PLAN');
+});
+test('Q-015: po sprzątnięciu nieczytelna nowa baza nie cofa do starych danych (błąd startu, nie stara kopia)', async () => {
+  const dbs = new Map<string, KV>([['/c/Library/SQLite', new Map([['state', savedState()]])]]);
+  const f = fakeSqlite(dbs); const orig = f.mod.openDatabaseAsync;
+  f.mod.openDatabaseAsync = async (n: string, o?: unknown, dir?: string) => { if (dir) throw new Error('disk I/O error'); return orig(n, o, dir); };
+  let err: unknown = null; await jest.isolateModulesAsync(async () => { jest.doMock('expo-sqlite', () => f.mod); const s = require('@/lib/store'); try { await s.init(); } catch (e) { err = e; } });
+  expect(String(err)).toMatch(/disk I\/O/);
+});
