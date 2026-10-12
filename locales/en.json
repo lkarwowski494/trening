@@ -1,5 +1,5 @@
 {
   "CFBundleDisplayName": "Training",
-  "NSHealthShareUsageDescription": "Training does not read health data — iOS requires this description for the HealthKit permission.",
-  "NSHealthUpdateUsageDescription": "Training saves finished workouts — strength and cardio — to Apple Health."
+  "NSHealthShareUsageDescription": "Training reads steps, workouts (including from your watch), heart rate and active energy from Apple Health to show them in your plan and next to your sessions. The data stays on your iPhone — the app doesn't send it anywhere or store it in backups.",
+  "NSHealthUpdateUsageDescription": "Training saves finished workouts — strength and cardio — to Apple Health. When your watch records the same workout, the app removes its own copy."
 }

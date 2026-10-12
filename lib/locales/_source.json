@@ -96,6 +96,14 @@
   "en": "{n} h"
  },
  {
+  "pl": "{n} kcal aktywne",
+  "en": "{n} active kcal"
+ },
+ {
+  "pl": "{n} kilokalorii aktywnych",
+  "en": "{n} active kilocalories"
+ },
+ {
   "pl": "{n} km",
   "en": "{n} km"
  },
@@ -360,8 +368,24 @@
   "en": "The app closed while you were editing the template “{name}”. Go back to editing?"
  },
  {
+  "pl": "Apple Health",
+  "en": "Apple Health"
+ },
+ {
+  "pl": "Apple Health (zegarek)",
+  "en": "Apple Health (watch)"
+ },
+ {
+  "pl": "Apple Health nie jest dostępne na tym urządzeniu.",
+  "en": "Apple Health is not available on this device."
+ },
+ {
   "pl": "Apple Health niedostępne",
   "en": "Apple Health unavailable"
+ },
+ {
+  "pl": "Apple Health…",
+  "en": "Apple Health…"
  },
  {
   "pl": "Archiwizować szablon?",
@@ -530,6 +554,10 @@
  {
   "pl": "Brak danych do wykresu.",
   "en": "No data to chart."
+ },
+ {
+  "pl": "Brak danych z Apple Health dla tego dnia. Jeśli dane powinny być, sprawdź dostęp w aplikacji Zdrowie: profil → Aplikacje → {app}.",
+  "en": "No data from Apple Health for this day. If there should be some, check access in the Health app: profile → Apps → {app}."
  },
  {
   "pl": "Brak gum. Dodaj pierwszą, by zapisywać asystę przy podciąganiu.",
@@ -1509,6 +1537,19 @@
   "en": "Import history from a CSV file"
  },
  {
+  "pl": "inna aktywność",
+  "en": "other activity"
+ },
+ {
+  "pl": "Inna aktywność",
+  "en": "Other activity"
+ },
+ {
+  "pl": "inna aktywność|inne aktywności|innych aktywności",
+  "en": "other activity|other activities",
+  "plural": true
+ },
+ {
   "pl": "Inna kolejność ćwiczeń.",
   "en": "Different exercise order."
  },
@@ -1619,6 +1660,10 @@
  {
   "pl": "Jeszcze pusto — pierwszy trening czeka.",
   "en": "Nothing yet — your first workout is waiting."
+ },
+ {
+  "pl": "Jeśli dane się nie pokażą, sprawdź dostęp w aplikacji Zdrowie: profil → Aplikacje → {app}.",
+  "en": "If no data shows up, check access in the Health app: profile → Apps → {app}."
  },
  {
   "pl": "Język",
@@ -1803,6 +1848,22 @@
  {
   "pl": "krok",
   "en": "step"
+ },
+ {
+  "pl": "kroki {n}",
+  "en": "steps {n}"
+ },
+ {
+  "pl": "Kroki dziennie (średnia z {d} dni): {n}",
+  "en": "Steps per day (average of {d} days): {n}"
+ },
+ {
+  "pl": "Kroki, inne aktywności oraz tętno i kcal z zegarka — tylko do wglądu, dane zostają w Zdrowiu.",
+  "en": "Steps, other activities, and heart rate and kcal from your watch — view only, the data stays in Health."
+ },
+ {
+  "pl": "Kroki: {n}",
+  "en": "Steps: {n}"
  },
  {
   "pl": "Krótka animacja przy starcie: talerze wsuwają się na gryf.",
@@ -2259,6 +2320,11 @@
  {
   "pl": "Minęło {s} s.",
   "en": "{s} s have passed."
+ },
+ {
+  "pl": "minuta|minuty|minut",
+  "en": "minute|minutes",
+  "plural": true
  },
  {
   "pl": "młot",
@@ -3219,6 +3285,10 @@
  {
   "pl": "Pokazano {n} z {m} — wpisz nazwę, by zawęzić.",
   "en": "Showing {n} of {m} — type a name to narrow down."
+ },
+ {
+  "pl": "Pokazuj dane z Apple Health",
+  "en": "Show data from Apple Health"
  },
  {
   "pl": "Pokaż",
@@ -4506,6 +4576,30 @@
   "en": "Now: {v}"
  },
  {
+  "pl": "tętno maks. {max} /min",
+  "en": "max heart rate {max} /min"
+ },
+ {
+  "pl": "tętno maksymalne {n} na minutę",
+  "en": "maximum heart rate {n} per minute"
+ },
+ {
+  "pl": "tętno śr. {avg} /min",
+  "en": "avg. heart rate {avg} /min"
+ },
+ {
+  "pl": "tętno śr. {avg} /min, maks. {max} /min",
+  "en": "avg. heart rate {avg} /min, max {max} /min"
+ },
+ {
+  "pl": "tętno średnie {avg} na minutę, maksymalne {max}",
+  "en": "average heart rate {avg} per minute, maximum {max}"
+ },
+ {
+  "pl": "tętno średnie {n} na minutę",
+  "en": "average heart rate {n} per minute"
+ },
+ {
   "pl": "Timer odlicza w aplikacji, a na koniec przerwy przychodzi powiadomienie — także przy zablokowanym telefonie.",
   "en": "The timer counts down in the app and a notification arrives at the end of rest — even when the phone is locked."
  },
@@ -4588,6 +4682,10 @@
  {
   "pl": "Trening z Twojego planu tygodnia. Otwórz aplikację, by zacząć.",
   "en": "Workout from your weekly plan. Open the app to start."
+ },
+ {
+  "pl": "Trening z zegarka w Apple Health zostanie — usuniesz go w aplikacji Zdrowie.",
+  "en": "The workout from your watch stays in Apple Health — delete it in the Health app."
  },
  {
   "pl": "Trening, którego nie zapisałeś na bieżąco. Ustaw termin i wybierz szablon — serie uzupełnisz w następnym kroku (wartości z ostatniego treningu przed tą datą).",
@@ -4986,6 +5084,10 @@
   "en": "In a deload week “Start” and “Repeat last” offer “Fewer sets”: {less}; weights and template unchanged."
  },
  {
+  "pl": "w tym tygodniu",
+  "en": "this week"
+ },
+ {
   "pl": "W zakładce Plan stuknij sesję, potem „Edytuj” — zmiany zapisuje „Zapisz”, „Anuluj” je odrzuca.",
   "en": "In the Plan tab, tap a session, then “Edit” — “Save” saves the changes, “Cancel” discards them."
  },
@@ -5378,6 +5480,10 @@
   "en": "From a template"
  },
  {
+  "pl": "Z zegarka",
+  "en": "From your watch"
+ },
+ {
   "pl": "Za dużo ciężarów (najwyżej {n}).",
   "en": "Too many weights (at most {n})."
  },
@@ -5652,6 +5758,10 @@
  {
   "pl": "zginacze biodra",
   "en": "hip flexors"
+ },
+ {
+  "pl": "Zgodę cofniesz w aplikacji Zdrowie: profil → Aplikacje → {app}.",
+  "en": "You can revoke access in the Health app: profile → Apps → {app}."
  },
  {
   "pl": "Zgody na powiadomienia jeszcze nie ma — „Sprawdź zgodę na powiadomienia” poprosi o nią.",

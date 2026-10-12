@@ -17,14 +17,14 @@
 </head>
 <body>
 <main>
-<!-- Treść zgodna z kodem aplikacji (audyt 08.10.2026, docs/25 N2 i docs/audyt-0.10/SEC.md): brak wywołań sieciowych, HealthKit tylko zapis,
-     powiadomienia lokalne, dane w SQLite na urządzeniu. Test: tests/public-repo.test.ts. Zmiana działania aplikacji → zmiana tej strony. -->
+<!-- Treść zgodna z kodem aplikacji (audyt 08.10.2026, docs/25 N2 i docs/audyt-0.10/SEC.md): brak wywołań sieciowych, HealthKit: zapis treningów
+     oraz (od 0.16.0, docs/29) odczyt tylko do wyświetlenia — bez zapisu odczytanych danych w aplikacji, powiadomienia lokalne, dane w SQLite na urządzeniu. Test: tests/public-repo.test.ts. Zmiana działania aplikacji → zmiana tej strony. -->
 <section lang="pl">
 <h1>Trening — polityka prywatności</h1>
-<p class="muted">Obowiązuje od 8 października 2026 r. (wersja aplikacji 0.10.0).</p>
+<p class="muted">Obowiązuje od 12 października 2026 r. (wersja aplikacji 0.16.0).</p>
 
 <h2>W skrócie</h2>
-<p>Aplikacja Trening nie zbiera żadnych danych. Wszystko, co wpisujesz, zostaje na Twoim iPhonie. Aplikacja nie łączy się z internetem,
+<p>Aplikacja Trening nie zbiera żadnych danych. Wszystko, co wpisujesz, zostaje na Twoim iPhonie, a dane odczytane z Apple Health (jeśli to włączysz) są tylko wyświetlane na telefonie. Aplikacja nie łączy się z internetem,
 nie ma konta, reklam, analityki ani śledzenia.</p>
 
 <h2>Jakie dane są przechowywane i gdzie</h2>
@@ -36,8 +36,13 @@ nie ma konta, reklam, analityki ani śledzenia.</p>
 
 <h2>Apple Health (opcjonalnie)</h2>
 <p>Jeśli włączysz zapis do Apple Health w Ustawieniach, aplikacja zapisuje tam zakończone treningi — siłowe i cardio (czas, rodzaj treningu, nazwa, łączna objętość i liczba serii). Trening, którego nie udało się zapisać, aplikacja zapisuje ponownie przy kolejnym uruchomieniu.
-Aplikacja nie odczytuje żadnych danych z Apple Health. Dane w Apple Health podlegają zasadom Apple; zgodę możesz w każdej chwili
-cofnąć w ustawieniach iOS (Zdrowie → Dostęp do danych i urządzenia).</p>
+Gdy ten sam trening zapisze zegarek, aplikacja usuwa swoją kopię z Apple Health — wyłącznie wpis, który sama zapisała.</p>
+<p>Jeśli włączysz w Ustawieniach „Pokazuj dane z Apple Health”, aplikacja prosi iOS o zgodę i odczytuje z Apple Health: kroki, treningi (także z zegarka), tętno i aktywną energię.
+Pokazuje je tylko na ekranie telefonu — kroki i inne aktywności w planie dnia, średnią dzienną kroków z ostatnich 7 dni w tygodniu oraz, przy treningu siłowym zapisanym przez zegarek,
+tętno średnie i maksymalne i aktywne kalorie. Odczytane dane są tylko w pamięci aplikacji, gdy ekran je pokazuje: aplikacja nie zapisuje ich w swojej bazie, w kopii zapasowej ani w eksporcie CSV,
+nie wysyła ich nigdzie i nie używa do reklam, marketingu ani analityki. Aplikacja nie ocenia ani nie interpretuje tych wartości i nie udziela porad medycznych.
+Odczyt wyłączysz w Ustawieniach, a zgodę cofniesz w aplikacji Zdrowie (profil → Aplikacje) albo w ustawieniach iOS (Zdrowie → Dostęp do danych i urządzenia).
+Dane w Apple Health podlegają zasadom Apple.</p>
 
 <h2>Powiadomienia</h2>
 <p>Przypomnienia (koniec przerwy, trening z planu) są powiadomieniami lokalnymi, tworzonymi na urządzeniu. Aplikacja nie korzysta
@@ -65,10 +70,10 @@ Pytania: <a href="https://github.com/lkarwowski494/trening/issues">github.com/lk
 
 <section lang="en">
 <h1>Trening — Privacy Policy</h1>
-<p class="muted">Effective 8 October 2026 (app version 0.10.0).</p>
+<p class="muted">Effective 12 October 2026 (app version 0.16.0).</p>
 
 <h2>In short</h2>
-<p>The Trening app does not collect any data. Everything you enter stays on your iPhone. The app does not connect to the internet and has
+<p>The Trening app does not collect any data. Everything you enter stays on your iPhone, and data read from Apple Health (if you turn that on) is only displayed on your phone. The app does not connect to the internet and has
 no account, ads, analytics or tracking.</p>
 
 <h2>What is stored and where</h2>
@@ -79,9 +84,14 @@ no account, ads, analytics or tracking.</p>
 </ul>
 
 <h2>Apple Health (optional)</h2>
-<p>If you turn on saving to Apple Health in Settings, the app writes finished workouts there — strength and cardio (duration, workout type, name, total volume and number of sets). A workout that could not be saved is saved again the next time the app starts. The app does not
-read any data from Apple Health. Data in Apple Health is governed by Apple's terms; you can revoke access at any time in iOS settings
-(Health → Data Access &amp; Devices).</p>
+<p>If you turn on saving to Apple Health in Settings, the app writes finished workouts there — strength and cardio (duration, workout type, name, total volume and number of sets). A workout that could not be saved is saved again the next time the app starts. When your watch
+records the same workout, the app removes its own copy from Apple Health — only the entry it saved itself.</p>
+<p>If you turn on “Show data from Apple Health” in Settings, the app asks iOS for permission and reads from Apple Health: steps, workouts (including from your watch), heart rate and active energy.
+It shows them only on your phone's screen — steps and other activities in your day plan, the daily average of steps over the last 7 days in the weekly view and, for a strength workout recorded by your watch,
+average and maximum heart rate and active calories. The data it reads exists only in the app's memory while a screen shows it: the app does not store it in its database, in backups or in CSV exports,
+does not send it anywhere and does not use it for advertising, marketing or analytics. The app does not judge or interpret these values and gives no medical advice.
+You can turn reading off in Settings and revoke access in the Health app (profile → Apps) or in iOS settings (Health → Data Access &amp; Devices).
+Data in Apple Health is governed by Apple's terms.</p>
 
 <h2>Notifications</h2>
 <p>Reminders (end of rest, planned workout) are local notifications created on the device. The app does not use push notifications and

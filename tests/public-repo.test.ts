@@ -81,13 +81,15 @@ describe('workflowy na publicznym repozytorium', () => {
 describe('polityka prywatności zgodna z kodem', () => {
   const fs = require('fs') as typeof import('fs'); const root = join(__dirname, '..');
   const files = (d: string): string[] => fs.readdirSync(join(root, d), { withFileTypes: true }).flatMap(e => e.isDirectory() ? files(join(d, e.name)) : /\.(ts|tsx)$/.test(e.name) ? [join(d, e.name)] : []);
-  test('strona PL/EN istnieje, Pages bez Jekylla; aplikacja nie wykonuje żadnych wywołań sieciowych; HealthKit tylko zapis', () => {
+  test('strona PL/EN istnieje, Pages bez Jekylla; aplikacja nie wykonuje żadnych wywołań sieciowych; HealthKit: zapis, a od 0.16.0 odczyt tylko do wyświetlenia', () => {
     const html = readFileSync(join(root, 'site/privacy.html'), 'utf8');
     expect(html).toMatch(/<section lang="pl">/); expect(html).toMatch(/<section lang="en">/); expect(fs.existsSync(join(root, 'docs/.nojekyll'))).toBe(false); /* Pages z Actions (12.10.2026): artefakt z site/, Jekyll nie działa */
     expect(html).toContain('nie łączy się z internetem'); expect(html).toContain('does not connect to the internet');
     const net = ['lib', 'app', 'components'].flatMap(files).filter(f => /\bfetch\(|XMLHttpRequest|WebSocket|axios|EventSource/.test(readFileSync(join(root, f), 'utf8')));
     expect(net).toEqual([]);
-    expect(readFileSync(join(root, 'lib/health.ts'), 'utf8')).toMatch(/requestAuthorization\(\{ toRead: \[\], toShare: \[/); /* odczyt: pusta lista (kontrakt 16.x) */
+    const hk = readFileSync(join(root, 'lib/health.ts'), 'utf8');
+    expect(hk).toMatch(/requestAuthorization\(\{ toRead: \[\], toShare: \[/); /* zapis: bez odczytu (kontrakt 16.x) */
+    expect(hk).toMatch(/requestAuthorization\(\{ toRead: HEALTH_READ_TYPES, toShare: \[\] \}\)/); /* 0.16.0: odczyt osobną zgodą, bez zapisu; strona opisuje odczyt (tests/health-permissions.test.ts) */
   });
   /* fala 2 audytu 0.10: masa ciała z datą (State.bodyMassLog), Zdrowie — siłowe i cardio z ponowieniem, CSV bez masy ciała, pliki udostępniania usuwane */
   test('strona mówi to, co robi kod: pomiary masy ciała z datą (kopia tak, CSV nie), Zdrowie — siłowe i cardio z ponowieniem, sprzątanie plików udostępniania', () => {

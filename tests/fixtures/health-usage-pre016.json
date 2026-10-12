@@ -1,0 +1,142 @@
+{
+ "bg": {
+  "share": "Training не чете здравни данни — iOS изисква това описание за разрешението за HealthKit.",
+  "update": "Training записва завършените тренировки — силови и кардио — в Apple Health."
+ },
+ "cs": {
+  "share": "Trénink nečte zdravotní data — iOS tento popis vyžaduje u oprávnění HealthKit.",
+  "update": "Trénink ukládá dokončené tréninky — silové i kardio — do Apple Health."
+ },
+ "da": {
+  "share": "Træning læser ikke sundhedsdata — iOS kræver denne beskrivelse for HealthKit-tilladelsen.",
+  "update": "Træning gemmer afsluttede træninger — styrke og cardio — i Apple Health."
+ },
+ "de": {
+  "share": "Training liest keine Gesundheitsdaten — iOS verlangt diese Beschreibung für die HealthKit-Berechtigung.",
+  "update": "Training speichert abgeschlossene Trainings – Kraft und Cardio – in Apple Health."
+ },
+ "el": {
+  "share": "Το Training δεν διαβάζει δεδομένα υγείας — το iOS απαιτεί αυτή την περιγραφή για την άδεια HealthKit.",
+  "update": "Το Training αποθηκεύει τις ολοκληρωμένες προπονήσεις — δύναμης και καρδιο — στο Apple Health."
+ },
+ "en": {
+  "share": "Training does not read health data — iOS requires this description for the HealthKit permission.",
+  "update": "Training saves finished workouts — strength and cardio — to Apple Health."
+ },
+ "es-419": {
+  "share": "Training no lee datos de salud: iOS exige esta descripción para el permiso de HealthKit.",
+  "update": "Training guarda los entrenamientos terminados —de fuerza y cardio— en la app Salud."
+ },
+ "es": {
+  "share": "Training no lee datos de salud: iOS exige esta descripción para el permiso de HealthKit.",
+  "update": "Training guarda los entrenamientos terminados —de fuerza y cardio— en Apple Health."
+ },
+ "et": {
+  "share": "Treening ei loe terviseandmeid — iOS nõuab HealthKiti loa jaoks seda kirjeldust.",
+  "update": "Treening salvestab lõpetatud treeningud — jõu- ja kardiotreeningud — rakendusse Apple Health."
+ },
+ "fi": {
+  "share": "Treeni ei lue terveystietoja — iOS edellyttää tätä kuvausta HealthKit-luvalle.",
+  "update": "Treeni tallentaa päättyneet harjoitukset – voima- ja kardioharjoitukset – Apple Healthiin."
+ },
+ "fr": {
+  "share": "Training ne lit aucune donnée de santé — iOS exige cette description pour l’autorisation HealthKit.",
+  "update": "Training enregistre les séances terminées — musculation et cardio — dans l’app Santé."
+ },
+ "hr": {
+  "share": "Trening ne čita zdravstvene podatke — iOS zahtijeva ovaj opis za dopuštenje HealthKit.",
+  "update": "Trening sprema završene treninge — snage i kardio — u Apple Health."
+ },
+ "hu": {
+  "share": "A Training nem olvas egészségügyi adatokat — az iOS a HealthKit-engedélyhez megköveteli ezt a leírást.",
+  "update": "A Training a befejezett edzéseket – erősítő és kardió edzéseket – az Apple Health appba menti."
+ },
+ "id": {
+  "share": "Training tidak membaca data kesehatan — iOS mewajibkan keterangan ini untuk izin HealthKit.",
+  "update": "Training menyimpan latihan yang telah selesai — kekuatan dan kardio — ke Apple Health."
+ },
+ "it": {
+  "share": "Training non legge i dati sulla salute: iOS richiede questa descrizione per il permesso di HealthKit.",
+  "update": "Training salva gli allenamenti completati — di forza e cardio — nell’app Salute."
+ },
+ "ja": {
+  "share": "Training はヘルスケアのデータを読み取りません — HealthKit の許可には iOS がこの説明を必要とします。",
+  "update": "Training は終了したトレーニング（筋力トレーニングと有酸素運動）を Apple Health に保存します。"
+ },
+ "ko": {
+  "share": "Training은 건강 데이터를 읽지 않습니다 — iOS는 HealthKit 권한에 이 설명을 요구합니다.",
+  "update": "Training은 완료한 운동(근력 운동과 유산소)을 Apple Health에 저장합니다."
+ },
+ "lt": {
+  "share": "Treniruotė neskaito sveikatos duomenų — iOS reikalauja šio aprašo HealthKit leidimui.",
+  "update": "Treniruotė įrašo baigtas treniruotes — jėgos ir kardio — į Apple Health."
+ },
+ "lv": {
+  "share": "Treniņš nelasa veselības datus — iOS pieprasa šo aprakstu HealthKit atļaujai.",
+  "update": "Treniņš saglabā pabeigtos treniņus — spēka un kardio — lietotnē Apple Health."
+ },
+ "ms": {
+  "share": "Training tidak membaca data kesihatan — iOS memerlukan keterangan ini untuk kebenaran HealthKit.",
+  "update": "Training menyimpan latihan yang telah selesai — kekuatan dan kardio — ke Apple Health."
+ },
+ "nb": {
+  "share": "Trening leser ikke helsedata — iOS krever denne beskrivelsen for HealthKit-tillatelsen.",
+  "update": "Trening lagrer fullførte økter – styrke og kondisjon – i Apple Health."
+ },
+ "nl": {
+  "share": "Training leest geen gezondheidsgegevens — iOS vereist deze beschrijving voor de HealthKit-toestemming.",
+  "update": "Training bewaart afgeronde trainingen – kracht en cardio – in Apple Health."
+ },
+ "pl": {
+  "share": "Trening nie odczytuje danych zdrowotnych — iOS wymaga tego opisu przy uprawnieniu HealthKit.",
+  "update": "Trening zapisuje zakończone treningi — siłowe i cardio — do Apple Health."
+ },
+ "pt-BR": {
+  "share": "O Treino não lê dados de saúde — o iOS exige esta descrição para a permissão do HealthKit.",
+  "update": "O Treino salva os treinos concluídos — de força e cardio — no app Saúde."
+ },
+ "pt": {
+  "share": "O Treino não lê dados de saúde — o iOS exige esta descrição para a permissão do HealthKit.",
+  "update": "O Treino guarda os treinos concluídos — de força e cardio — no Apple Health."
+ },
+ "ro": {
+  "share": "Training nu citește date de sănătate — iOS cere această descriere pentru permisiunea HealthKit.",
+  "update": "Training salvează antrenamentele încheiate — de forță și cardio — în Apple Health."
+ },
+ "ru": {
+  "share": "Training не читает данные о здоровье — iOS требует это описание для разрешения HealthKit.",
+  "update": "Training сохраняет завершённые тренировки — силовые и кардио — в Apple Health."
+ },
+ "sk": {
+  "share": "Tréning nečíta zdravotné údaje — iOS vyžaduje tento popis pri povolení HealthKit.",
+  "update": "Tréning ukladá dokončené tréningy — silové aj kardio — do Apple Health."
+ },
+ "sl": {
+  "share": "Trening ne bere zdravstvenih podatkov — iOS zahteva ta opis za dovoljenje HealthKit.",
+  "update": "Trening shrani končane treninge — moči in kardio — v Apple Health."
+ },
+ "sr": {
+  "share": "Тренинг не чита здравствене податке — iOS захтева овај опис за дозволу HealthKit.",
+  "update": "Тренинг чува завршене тренинге — снаге и кардио — у Apple Health."
+ },
+ "sv": {
+  "share": "Träning läser inte hälsodata — iOS kräver den här beskrivningen för HealthKit-behörigheten.",
+  "update": "Träning sparar avslutade pass – styrka och kondition – i Apple Health."
+ },
+ "tr": {
+  "share": "Training sağlık verilerini okumaz — iOS, HealthKit izni için bu açıklamayı gerektirir.",
+  "update": "Training tamamlanan antrenmanları — kuvvet ve kardiyo — Apple Sağlık’a kaydeder."
+ },
+ "uk": {
+  "share": "Training не читає дані про здоров’я — iOS вимагає цей опис для дозволу HealthKit.",
+  "update": "Training зберігає завершені тренування — силові й кардіо — в Apple Health."
+ },
+ "vi": {
+  "share": "Training không đọc dữ liệu sức khỏe — iOS yêu cầu phần mô tả này cho quyền HealthKit.",
+  "update": "Training lưu các buổi tập đã hoàn thành — sức mạnh và cardio — vào Apple Health."
+ },
+ "zh-Hant": {
+  "share": "Training 不會讀取健康資料 — iOS 要求 HealthKit 權限必須附上這段說明。",
+  "update": "Training 會將完成的訓練（肌力與有氧）儲存到 Apple Health。"
+ }
+}

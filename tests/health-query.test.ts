@@ -225,3 +225,23 @@ describe('zgoda na odczyt: ensureReadAuthorization', () => {
     expect(await health.ensureAuthorization()).toBe(true); expect(W.spies.requestAuthorization).toHaveBeenCalledWith({ toRead: [], toShare: ['HKWorkoutTypeIdentifier'] });
   });
 });
+
+describe('pomocnicze: readEnabled, spansOf, sessionSpans, ownCopySessions, hasWatchMatch', () => {
+  test('readEnabled: tylko ustawienie healthRead = true (domyślnie wyłączone, zła wartość też)', () => {
+    delete S().settings.healthRead; expect(Q.readEnabled()).toBe(false); S().settings.healthRead = true; expect(Q.readEnabled()).toBe(true); (S().settings as any).healthRead = 'tak'; expect(Q.readEnabled()).toBe(false);
+  });
+  test('spansOf: tylko zakończone sesje z godziną; sessionSpans: tylko nakładające się na przedział (stykanie = nie)', () => {
+    const a = session(at(DAY, 10)), b = session(at(DAY, 14)); const open = { ...a, id: 'w-toku', finishedAt: null } as any; /* trening w toku — poza historią */ const nc = addWorkout(at(DAY, 12), [['Back Squat', [{ weight: 1, reps: 1 }]]]); nc.finishedAt = nc.startedAt;
+    expect(Q.spansOf([a, b, open, nc]).map(s => s.id)).toEqual([a.id, b.id]); expect(Q.spansOf([])).toEqual([]);
+    expect(Q.sessionSpans(at(DAY, 10, 30), at(DAY, 11)).map(s => s.id)).toEqual([a.id]); expect(Q.sessionSpans(a.finishedAt!, b.startedAt).map(s => s.id)).toEqual([]); expect(Q.sessionSpans(at(DAY, 0), at(DAY, 23, 59)).map(s => s.id).sort()).toEqual([a.id, b.id].sort());
+  });
+  test('ownCopySessions: sesje z własną kopią (UUID albo „saved”), bez „watch”, bez braku zapisu, bez sesji bez godziny / w toku', async () => {
+    const a = session(at(DAY, 10)); a.healthUUID = 'UUID-1'; const b = session(at(DAY, 12)); b.healthUUID = 'saved'; const c = session(at(DAY, 14)); c.healthUUID = 'watch'; const d = session(at(DAY, 16)); const e = session(at(DAY, 12)); e.healthUUID = 'UUID-2'; e.finishedAt = e.startedAt; /* bez godziny (12:00, zerowy czas) */
+    expect(Q.ownCopySessions().map(w => w.id).sort()).toEqual([a.id, b.id].sort()); expect(d.healthUUID).toBeNull();
+  });
+  test('hasWatchMatch: true / false / null (nie wiadomo: brak godziny, w toku, błąd zapytania)', async () => {
+    const s = session(at(DAY, 18)); expect(await Q.hasWatchMatch(s)).toBe(false); W.workouts.push(watchStrength(at(DAY, 18, 10), 30)); expect(await Q.hasWatchMatch(s)).toBe(true);
+    expect(await Q.hasWatchMatch({ ...s, finishedAt: null } as any)).toBeNull(); W.fail.workouts = true; expect(await Q.hasWatchMatch(s)).toBeNull();
+    const nc = addWorkout(at(DAY, 12), [['Back Squat', [{ weight: 1, reps: 1 }]]]); nc.finishedAt = nc.startedAt; W.fail.workouts = false; expect(await Q.hasWatchMatch(nc)).toBeNull();
+  });
+});
