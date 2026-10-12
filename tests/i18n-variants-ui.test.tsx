@@ -1,7 +1,7 @@
 /*
  * Fala 1 nowych języków (docs/18, 09.10.2026) — ekran i dane: wybór pt-BR / es-419 w Ustawieniach → Język, ustawienie przeżywa ponowne
  * uruchomienie, migrację i kopię (eksport → import), „Jak w telefonie” na telefonie z Brazylii / Meksyku, ekran Treningu w wariancie.
- * Rodzaje (docs/20): ekran, scenariusz, dane, regresja. Wszystkie trasy × LANGS: tests/matrix-dim-langs-routes.test.tsx (nowe kody wchodzą same).
+ * Rodzaje (docs/20): ekran, scenariusz, dane, regresja. Wszystkie trasy × LANGS: tests/matrix-dim-langs-routes1–6 (nowe kody wchodzą same).
  */
 import * as store from '@/lib/store';
 import { buildBackup, parseBackup } from '@/lib/backup';
