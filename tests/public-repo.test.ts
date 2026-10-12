@@ -87,7 +87,7 @@ describe('polityka prywatności zgodna z kodem', () => {
     expect(html).toContain('nie łączy się z internetem'); expect(html).toContain('does not connect to the internet');
     const net = ['lib', 'app', 'components'].flatMap(files).filter(f => /\bfetch\(|XMLHttpRequest|WebSocket|axios|EventSource/.test(readFileSync(join(root, f), 'utf8')));
     expect(net).toEqual([]);
-    expect(readFileSync(join(root, 'lib/health.ts'), 'utf8')).toMatch(/requestAuthorization\(\[\], \[/); /* odczyt: pusta lista */
+    expect(readFileSync(join(root, 'lib/health.ts'), 'utf8')).toMatch(/requestAuthorization\(\{ toRead: \[\], toShare: \[/); /* odczyt: pusta lista (kontrakt 16.x) */
   });
   /* fala 2 audytu 0.10: masa ciała z datą (State.bodyMassLog), Zdrowie — siłowe i cardio z ponowieniem, CSV bez masy ciała, pliki udostępniania usuwane */
   test('strona mówi to, co robi kod: pomiary masy ciała z datą (kopia tak, CSV nie), Zdrowie — siłowe i cardio z ponowieniem, sprzątanie plików udostępniania', () => {
