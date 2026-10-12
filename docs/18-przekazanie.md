@@ -7,9 +7,11 @@ backlog) → docs/15 (App Store, ceny) → docs/09 (dziennik testów; stare rund
 ## Gałęzie i wydania
 - `main` = **0.11.0**, build **1005** (TestFlight, 10.10.2026), commit 0d71775, tag `v0.11.0-b1005` (tag zakłada właściciel w GitHubie —
   sesja agenta nie może wypychać tagów, decyzja 10.10 wariant A). Wcześniej 0.10.0 / build 1004 (09.10).
-- `feature/e2-swap` = **0.12.0** (niewydana): języki fal 1–4 (pt-BR, es-419, id, ms, vi, ru, ja, ko, zh-Hant; razem 35), wpis „Co nowego” 0.12.
-  E2E z językami zielone (run 38035814445); E2E dla 0.12.0 w toku. **Audyt 0.12 wstrzymany** (polecenie właściciela 11.10).
-- `refactor-store` (w toku, 11.10): podział `lib/store.ts` na moduły bez zmiany działania — decyzja właściciela 11.10, wariant B.
+- `feature/e2-swap` = **0.12.0** (72be439): języki fal 1–4 (razem 35), nowy ekran Trening, Progresja, „zrobiony wcześniej”, podsumowanie rekordów,
+  podział store.ts. Verify 237/237 plików, E2E pełny build zielony (run 38174381455, 11.10.2026). **PR #1 do `main`** — scala właściciel (12.10.2026:
+  sesja agenta nie może wypchnąć do `main` ani sama rozszerzyć uprawnień — blokada bezpieczeństwa), potem `testflight.yml` na `main` i tag `v0.12.0`.
+- `wydanie-0.13` (12.10.2026): 0.12.0 + `zakladki-4` (4 zakładki, masa ciała w Postępach) + `import-csv` + `strona-www` + `opis-app-store` + specyfikacje
+  docs/26 (prośba o ocenę), docs/27 (subskrypcja), docs/28 (Apple Zdrowie etap 0). Gałęzie źródłowe zostają na GitHubie jako kopie.
 
 ## W toku (11.10.2026) — lista tematów właściciela, przerabiana po kolei
 1. Ocena realności znalezisk — **zrobione** (CLAUDE.md, „Audyty i wydania” pkt 6).
@@ -138,3 +140,20 @@ logika `lib/csvparse.ts`/`lib/csvimport.ts`, testy `csv-import-logic`/`csv-impor
   (ryzyka: 14 — wejście przez „Planning”, 15 — masa ciała w Postępach, 16/17 — Więcej → „Exercises”).
   Testy: 111 powiązanych plików (w tym nowy tests/tabs-four.test.tsx, interpreter Maestro dla 19 scenariuszy) — 3187 zielonych, 2 pominięte; `tsc` czysty,
   `check:i18n`, `check:matrix` (1904 pozycji, bez testu: 0) OK. Pełnego `verify` (expo export, verify:native) nie uruchamiano — główna sesja.
+- 11.10.2026 (ok. 23:30): **TestFlight 0.12.0 — A**: po zielonym E2E 18/18, verify i liście kontrolnej scalenie do `main` i `testflight.yml` w nocy.
+  12.10.2026: scalenie zablokowane przez zabezpieczenie sesji (wypchnięcie do `main` = wdrożenie produkcyjne); właściciel wybrał B (reguła uprawnień) —
+  agent nie może sam dopisać reguły (blokada „samomodyfikacji”); zamiast tego **PR #1**, scala właściciel.
+- 11.10.2026: **hasło „w cenie espresso lub taniej”** — wyjątek od warunku źródeł (docs/15, sekcja metadanych pkt 4); wstawiane razem z blokiem cenowym.
+- 11.10.2026 (ok. 23:45, „wszystko wg rekomendacji”): (1) wskazówki ćwiczeń, partia 1 — badacz (A), adresy od Gemini jako punkt startu; (2) **0.13.0 =
+  4 zakładki + import CSV + strona www** (A); (3) import formatu bez godzin — dzień z istniejącym treningiem pomijany (A); (4) import: kg/lb z Ustawień,
+  nowe ćwiczenie przy braku dopasowania, 12:00 przy braku godziny — zaakceptowane; (5) **prośba o ocenę** (docs/26): po N-tym treningu z rekordem (B+A),
+  N = 5 (decyzja produktowa, bez źródła), odstęp 14 dni, max 1 na wersję, bez linku w Ustawieniach, data w polu ustawień; (6) **nazwa w App Store — A**:
+  „Trening: dziennik siłowni” / „Training: Gym Log & Rest Timer” (docs/15).
+- 11.10.2026: **kolejność wydań natywnych — A** (docs/28): (1) sama aktualizacja `@kingstinct/react-native-healthkit` 8 → 16, zapis do Zdrowia jak dziś;
+  (2) Apple Zdrowie etapy 1–2 (odczyt); (3) subskrypcja StoreKit (docs/27: najpierw pole „trening na żywo” i logika limitu za wyłączoną flagą, potem
+  biblioteka i ekran zakupu). Odrzucone: B (biblioteka razem z etapem 1), C (Zdrowie i StoreKit w jednym wydaniu).
+- 11.10.2026: **Gemini (subskrypcja właściciela) — wniosek z prób** (wskazówki techniki, partia 1): Deep Research czyta strony, ale znajduje mało
+  (43/50 „brak źródeł”); bez Deep Research podaje zmyślone cytaty i adresy (sprawdzone: ACE nr 42 to inne ćwiczenie, cytat ACE nr 183 nie występuje);
+  w trybie „tylko adresy” ok. 6 trafnych stron ACE/NASM na 50, źródło innego serwisu podpisane jako ExRx (weighttraining.guide), analogie jako źródła.
+  Wniosek: Gemini do researchu rynku, opinii i przeglądu tłumaczeń; cytaty i źródła merytoryczne — zawsze badacz (WebFetch + weryfikacja).
+  Zadania pasujące do Gemini agent zgłasza właścicielowi z gotowym promptem (CLAUDE.md).

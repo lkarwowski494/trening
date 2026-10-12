@@ -1,4 +1,4 @@
-# 26 — Apple Zdrowie, etap 0: rozpoznanie techniczne (biblioteka healthkit 8 → 16)
+# 28 — Apple Zdrowie, etap 0: rozpoznanie techniczne (biblioteka healthkit 8 → 16)
 
 Data: 11.10.2026. Tylko rozpoznanie — bez zmian w kodzie i zależnościach. Decyzje właściciela: `docs/18-przekazanie.md` (11.10.2026, „Apple Zdrowie (pkt 9)”
 i „trening z zegarka (pkt 9, etap 2) — A”). Źródła: rejestr npm (metadane i paczki `@kingstinct/react-native-healthkit` 8.7.2 oraz 16.1.0, przeczytane

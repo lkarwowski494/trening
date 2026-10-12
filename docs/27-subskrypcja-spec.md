@@ -1,4 +1,4 @@
-# 26. Subskrypcja i zakup w aplikacji — specyfikacja (11.10.2026)
+# 27. Subskrypcja i zakup w aplikacji — specyfikacja (11.10.2026)
 
 Stan: **projekt do decyzji właściciela, bez kodu.** Autor: agent (rola analityk produktu). Realizuje decyzje z `docs/15-app-store.md`
 (sekcja „Decyzje właściciela”) i pkt 5 kolejności z `docs/21-roadmapa-offline.md` („Przed wersją płatną: subskrypcja i blokada po wygaśnięciu”).
