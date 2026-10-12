@@ -25,7 +25,7 @@ export type CueSource = { org: string; title: string; url: string; archive?: str
  * producent sprzętu, badanie w recenzowanym czasopiśmie. Kolejność = kolejność w podpisie. */
 export const CUE_BASIS_KINDS = ['org', 'site', 'maker', 'study'] as const;
 export type CueBasisKind = typeof CUE_BASIS_KINDS[number];
-type CueData = { orgs: Record<string, { name: string; level: 2 | 3 | 4; kind: CueBasisKind }>; sources: Record<string, CueSource>; exercises: Record<string, Record<CueSection, CueRef[]>>; open: Record<string, string> };
+type CueData = { orgs: Record<string, { name: string; level: 2 | 3 | 4; kind: CueBasisKind }>; sources: Record<string, CueSource>; exercises: Record<string, Record<CueSection, CueRef[]>>; open: Record<string, string>; /** 0.14.0: ćwiczenia z niepełnym zestawem sekcji (research potwierdził tylko część), patrz partialNote */ partial?: string[]; partialNote?: string };
 
 /* eslint-disable @typescript-eslint/no-var-requires */
 export const CUE_DATA: CueData = require('./data.json');
