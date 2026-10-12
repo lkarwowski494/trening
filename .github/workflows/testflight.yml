@@ -13,7 +13,7 @@
 name: TestFlight (testy wewnętrzne)
 on:
   workflow_dispatch:
-    push:
+  push:
     branches: [main]
 permissions:
   contents: read
