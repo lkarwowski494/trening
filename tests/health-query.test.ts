@@ -203,7 +203,9 @@ describe('niezmienniki', () => {
     const s = session(at(DAY, 18)); W.steps[DAY] = 8432.5; W.workouts.push(watchStrength(at(DAY, 18, 2), 55, { hr: { avg: 128, max: 161 }, kcal: 312 }), watchOther(at(DAY, 7), 32));
     await Q.loadDay(DAY); await Q.loadWeek(at(DAY, 20)); await Q.loadWatchStats(s); await health.syncAfterFinish(s); await health.retryHealth(); await store.flush();
     const blobs = [JSON.stringify(S()), JSON.stringify(buildBackup()), buildCsv(), global.__kv.get('state') ?? '', global.__kv.get('cfg') ?? '', global.__kv.get('live') ?? ''];
-    for (const b of blobs) { for (const needle of ['8432', '"avgBpm"', '"maxBpm"', '"kcal"', '"steps"', '5200', WATCH_BUNDLE, 'bundleIdentifier', 'sourceRevision']) expect(b).not.toContain(needle); }
+    /* liczby szukane jako samodzielne wartości — inaczej trafiają przypadkiem w losowe UUID/znaczniki czasu (verify 12.10: „8432” w id ćwiczenia) */
+    const lone = (n: string) => new RegExp(`(?<![0-9A-Za-z.-])${n}(?![0-9])`);
+    for (const b of blobs) { for (const n of ['8432', '5200']) expect(b).not.toMatch(lone(n)); for (const needle of ['"avgBpm"', '"maxBpm"', '"kcal"', '"steps"', WATCH_BUNDLE, 'bundleIdentifier', 'sourceRevision']) expect(b).not.toContain(needle); }
     expect(S().workouts.find(x => x.id === s.id)!.healthUUID).toBe('watch'); /* jedyny ślad: znacznik, nie dane zdrowotne */
   });
   test('zapis → restart: znacznik „watch” i ustawienie odczytu przeżywają, a po restarcie nie ma w stanie żadnych wartości ze Zdrowia', async () => {
