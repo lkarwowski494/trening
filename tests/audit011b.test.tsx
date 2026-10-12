@@ -163,16 +163,17 @@ describe('A11B-8: wersja 0.11.0 i „Co nowego” 0.11', () => {
   });
   test('najnowszy wpis = 0.11 (wydanie 2, build 1005), 0.10.0 z numerem 1004; zakres dni generatora z GEN_SESSIONS; zaległości UI2-04 i MER2-06', () => {
     const { WHATS_NEW } = require('@/lib/whatsnew'); const { GEN_SESSIONS } = require('@/lib/generator');
-    expect([WHATS_NEW[2].id, WHATS_NEW[2].build, WHATS_NEW[3].id, WHATS_NEW[3].build]).toEqual(['2026-10-09', 1005, '2026-10-08', 1004]); /* nad nim 0.12 (niewydany) i wpis o nowym układzie (11.10.2026) */
-    const all = Object.values(GEN_SESSIONS as Record<string, number[]>).flat(); const it: string[] = WHATS_NEW[2].items();
+    const i = WHATS_NEW.findIndex((e: any) => e.id === '2026-10-09'); expect(i).toBeGreaterThan(-1); const E11 = WHATS_NEW[i];
+    expect([E11.id, E11.build, WHATS_NEW[i + 1].id, WHATS_NEW[i + 1].build]).toEqual(['2026-10-09', 1005, '2026-10-08', 1004]); /* wpisy nad nim (0.12–0.14) nie wpływają */
+    const all = Object.values(GEN_SESSIONS as Record<string, number[]>).flat(); const it: string[] = E11.items();
     expect(it).toContain(`Generator: wybór dni tygodnia, od ${Math.min(...all)} do ${Math.max(...all)} dni, cel „Ogólny” i „Plan z moich szablonów”.`);
     expect(it.filter(x => /^Od 0\.10: /.test(x))).toHaveLength(2);
     expect(it.join(' ')).toMatch(/„Edytuj”.*„Zapisz”/); expect(it.join(' ')).toMatch(/„Podstawowe”/); expect(it.join(' ')).toMatch(/„Zapisz jako szablon”/);
     expect(it.every(x => !/[{}]/.test(x))).toBe(true);
   });
   test('wszystkie języki (LANGS): wszystkie punkty wpisu 0.11 przetłumaczone, bez „{”, nazwy przycisków z lokali („Edytuj”, „Zapisz”, „Podstawowe”, „Plan z moich szablonów”)', () => {
-    const { WHATS_NEW } = require('@/lib/whatsnew'); const pl: string[] = WHATS_NEW[2].items(); /* 0.11 (nad nim 0.12 i wpis o nowym układzie) */
-    for (const l of LANGS) { if (l === 'pl') continue; applyLang(l); const it: string[] = WHATS_NEW[2].items(); const joined = it.join(' ');
+    const { WHATS_NEW } = require('@/lib/whatsnew'); const E11 = () => WHATS_NEW.find((e: any) => e.id === '2026-10-09'); const pl: string[] = E11().items(); /* 0.11, po id */
+    for (const l of LANGS) { if (l === 'pl') continue; applyLang(l); const it: string[] = E11().items(); const joined = it.join(' ');
       expect([l, it.filter((x, i) => x === pl[i] || /[{}]/.test(x) || !/[.。]$/.test(x))]).toEqual([l, []]); /* „。” — kropka w ja/zh-Hant (fale 1–4, 10.10.2026) */
       expect([l, ['Edytuj', 'Zapisz', 'Podstawowe', 'Plan z moich szablonów', 'Zapisz jako szablon'].filter(k => !joined.includes(tIn(l, k)))]).toEqual([l, []]); }
   });
