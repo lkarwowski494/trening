@@ -1,7 +1,7 @@
 import * as FileSystem from 'expo-file-system/legacy';
 import * as Sharing from 'expo-sharing';
 import * as DocumentPicker from 'expo-document-picker';
-import { applyCfg, wallTs, bandColor, getState, save, replaceState, clearRecovery, migrate, finishedWorkouts, exById, workoutDurSec, shownLoad, bandById, localISODate, flush, readRecovery, getRecovery, readRawData } from './store';
+import { applyCfg, wallTs, bandColor, getState, save, replaceState, clearRecovery, migrate, finishedWorkouts, exById, workoutDurSec, noClock, shownLoad, bandById, localISODate, flush, readRecovery, getRecovery, readRawData } from './store';
 import { t, exName } from './i18n';
 import { wOut } from './units';
 import { ensureAuthorization, syncAfterFinish } from './health';
@@ -124,12 +124,12 @@ export function buildCsv(): string {
   const dt = (ts: number) => { const d = new Date(ts); return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`; };
   const rows: string[] = ['Date,Workout Name,Duration,Exercise Name,Set Order,Weight,Reps,Distance,Seconds,Notes,Workout Notes,RPE'];
   for (const w of [...finishedWorkouts()].reverse()) {
-    const dur = strongDur(Math.round(workoutDurSec(w) / 60)); /* bez pauz (08.10.2026) */
+    const nc = noClock(w); const dur = nc ? '' : strongDur(Math.round(workoutDurSec(w) / 60)); /* bez pauz (08.10.2026); sesja bez godziny i czasu (audyt 0.13) — sama data, puste Duration */
     w.exercises.forEach(e => { const ex = exById(e.exerciseId); /* T4b: usunięte ćwiczenie eksportujemy jako „?”, jak w historii — serie nie znikają z pliku */
       let n = 0; // numer zwykłej serii — rozgrzewka „W”, drop „D”, do upadku „F” nie przesuwają numeracji (LOG-14)
       e.sets.forEach(s => { const b = s.bandId ? bandById(s.bandId) : null; const bandTxt = b ? `${t('guma')} ${bandColor(b)} ${b.level}` : s.bandId ? `${t('guma')} ?` : ''; const mark = SET_KIND_MARK[s.kind ?? (s.warmup ? 'warmup' : 'normal')]; if (!mark) n++;
         const notes = [s.note, bandTxt].filter(Boolean).join('; ');
-        rows.push([dt(wallTs(w)) /* J3: data i godzina w strefie startu */, w.templateName || t('Trening'), dur, exName(ex), mark || String(n), wOut(shownLoad(ex, s)) /* runda 7: w jednostce użytkownika, jak eksport popularnych dzienników; T4b/Q-018/83b: store.shownLoad — jak ekran sesji w historii */, s.reps || 0, s.distanceM || 0, s.durationSec || 0, notes, w.note, s.rpe === '' || s.rpe == null ? '' : s.rpe /* runda 18: RIR 0 też */].map(q).join(','));
+        rows.push([(nc ? dt(wallTs(w)).slice(0, 10) : dt(wallTs(w))) /* J3: data i godzina w strefie startu */, w.templateName || t('Trening'), dur, exName(ex), mark || String(n), wOut(shownLoad(ex, s)) /* runda 7: w jednostce użytkownika, jak eksport popularnych dzienników; T4b/Q-018/83b: store.shownLoad — jak ekran sesji w historii */, s.reps || 0, s.distanceM || 0, s.durationSec || 0, notes, w.note, s.rpe === '' || s.rpe == null ? '' : s.rpe /* runda 18: RIR 0 też */].map(q).join(','));
       }); });
   }
   return rows.join('\n') + '\n';

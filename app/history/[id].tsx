@@ -4,7 +4,7 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Screen, H1, Muted, Btn, Txt, useOnce, monoSafe } from '@/components/ui';
 import { beginEdit } from '@/lib/edit';
 import { templateFromWorkout, pendingTemplateUpdate, applyPendingTemplateUpdate, templateDiffText } from '@/lib/tplsync';
-import { wallTs, effortLabel, effortText, workoutDurSec, getState, useTick, exById, isBW, bandById, loadLabel, fmtDate, fmtTime, fmtDur, fmtSec, fmtDist, volume, deleteWorkout, groupLabels, shortBand, bandA11y, loadLabelShort, blockImpl, shownLoad } from '@/lib/store';
+import { effortLabel, effortText, workoutDurSec, noClock, whenText, getState, useTick, exById, isBW, bandById, loadLabel, fmtDur, fmtSec, fmtDist, volume, deleteWorkout, groupLabels, shortBand, bandA11y, loadLabelShort, blockImpl, shownLoad } from '@/lib/store';
 import { hasTime, hasReps, hasWeight, hasDistance, SET_KIND_LABEL } from '@/lib/seed';
 import { setMarkOf } from '@/lib/live';
 import { earlyNote } from '@/lib/plan';
@@ -26,7 +26,7 @@ export default function HistoryDetail() {
   return (
     <Screen><ScrollView contentContainerStyle={{ paddingVertical: 10, paddingBottom: 60 }}>
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}><View style={{ flex: 1 }}><H1>{w.templateName || t('Trening')}</H1></View><Btn title={t('Edytuj')} small accessibilityLabel={t('Edytuj sesję')} onPress={once(() => { if (beginEdit(w.id)) router.push(`/history/edit/${encodeURIComponent(w.id)}`); })} /></View>
-      <Muted style={{ marginBottom: 14 }}>{fmtDate(wallTs(w))} {fmtTime(wallTs(w))} · {fmtDur(workoutDurSec(w))}{volume(w) > 0 ? ` · ${t('objętość')} ${fmtVol(volume(w))}` : ''}{w.deload ? ` · ${t('deload — mniej serii')}` /* audyt 0.10 (D1+) */ : ''}</Muted>
+      <Muted style={{ marginBottom: 14 }}>{whenText(w)} · {noClock(w) ? t('godzina nieznana') /* audyt 0.13: import bez godzin */ : fmtDur(workoutDurSec(w))}{volume(w) > 0 ? ` · ${t('objętość')} ${fmtVol(volume(w))}` : ''}{w.deload ? ` · ${t('deload — mniej serii')}` /* audyt 0.10 (D1+) */ : ''}</Muted>
       {nPR > 0 ? <RecordsCard count={nPR} prs={wprs} /> : null}
       {earlyNote(w.id) ? <Muted style={{ marginBottom: 10, fontSize: 13 }}>{earlyNote(w.id)}</Muted> : null}{/* docs/18 pkt 4 (11.10.2026): trening policzony do wcześniejszego dnia planu */}
       {w.healthPending && !w.healthUUID ? <Muted style={{ marginBottom: 10, fontSize: 13 }}>{t('Nie zapisano jeszcze w Apple Health — ponowię przy następnym uruchomieniu aplikacji.')}</Muted> : null}{/* audyt 0.10 J2 */}

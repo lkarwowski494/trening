@@ -2032,3 +2032,40 @@ describe('Q-016 (0.14.0): dwa bloki tego samego ćwiczenia spoza szablonu — �
     const w = store.finishWorkout()!; expect(w.exercises.every(e => (e as any).occ === undefined)).toBe(true);
   });
 });
+
+describe('audyt 0.13 ŚREDNIE (0.14.0): import bez godzin i czasu — historia nie udaje godziny 12:00 ani czasu trwania (serie × 90 s)', () => {
+  /* Kroki: Więcej → Import z CSV → plik formatu bez godzin (sam dzień) → import. Dawniej sesja dostawała start 12:00 i koniec = serie × 90 s, które lista,
+   * szczegóły, sumy czasu i eksport pokazywały jak dane. Teraz: czas trwania 0 (koniec = start), „godzina nieznana” w UI, 0 w sumach czasu, eksport sam dzień.
+   * Realność: realny (każdy import tego formatu). Bez zmiany schematu — brak czasu = koniec równy startowi (aplikacja nie tworzy takich sesji: pole minut ≥ 1). */
+  const HB = 'Date,Exercise,Category,Weight (kg),Weight (lbs),Reps,Distance,Distance Unit,Time,Notes,Kind';
+  const HA = 'Date,Workout Name,Duration,Exercise Name,Set Order,Weight,Reps,Distance,Seconds,Notes,Workout Notes,RPE';
+  const FB = [HB, '2026-03-02,Bench Press,Chest,80,,5,,,,,wr', '2026-03-02,Bench Press,Chest,82.5,,3,,,,,wr', '2026-03-04,Back Squat,Legs,100,,5,,,,,wr'].join('\n') + '\n';
+  const importText = async (txt: string) => { const { parseImport } = require('@/lib/csvparse'); const { commitCsvImport } = require('@/lib/csvimport'); await commitCsvImport(parseImport(txt, at(2026, 10, 12)), { unit: 'kg' }); };
+
+  test('formatB: sesja bez czasu (koniec = start), czas trwania 0, nie wlicza się do sum czasu; formatA z czasem trwania bez zmian', async () => {
+    await fresh(); await importText(FB);
+    const ws = store.getState().workouts; expect(ws).toHaveLength(2);
+    for (const w of ws) { expect(w.finishedAt).toBe(w.startedAt); expect(store.workoutDurSec(w)).toBe(0); expect(store.noClock(w)).toBe(true); }
+    const { totals } = require('@/lib/period'); expect(totals(at(2026, 3, 1, 0), at(2026, 4, 1, 0)).durationSec).toBe(0);
+    await fresh(); const d = '2026-03-02 18:05:00'; await importText([HA, `${d},T,50m,Pull Up,1,0.0,10.0,0,0,,,`].join('\n') + '\n');
+    const w = store.getState().workouts[0]; expect(w.finishedAt! - w.startedAt).toBe(50 * 60e3); expect(store.noClock(w)).toBe(false);
+  });
+  test('formatA z godziną, ale bez czasu trwania: też bez szacunku (koniec = start)', async () => {
+    await fresh(); await importText([HA, '2026-03-02 18:05:00,T,,Pull Up,1,0.0,10.0,0,0,,,'].join('\n') + '\n');
+    const w = store.getState().workouts[0]; expect(w.finishedAt).toBe(w.startedAt);
+  });
+  test('Historia i szczegóły sesji: „godzina nieznana” zamiast 12:00 i czasu; sesja z godziną — jak dotąd', async () => {
+    await fresh(); await importText(FB); addWorkout(at(2026, 3, 6, 18), [['Back Squat', [{ weight: 100, reps: 5 }]]], 'Własny'); await store.flush();
+    await renderApp({ saved: JSON.parse(JSON.stringify(saved())), url: '/history' }); await flushAll(10);
+    const imported = screen.queryAllByText(/godzina nieznana/).map((n: any) => [n.props.children].flat().join('')); expect(imported).toHaveLength(2);
+    for (const x of imported) { expect(x).not.toMatch(/12:00/); expect(x).not.toMatch(/\d+:\d{2}/); }
+    const own = screen.queryAllByText(/18:00/).map((n: any) => [n.props.children].flat().join('')); expect(own).toHaveLength(1); expect(own[0]).toMatch(/18:00 · [\d:]+ ·/);
+    await go(`/history/${store.getState().workouts.find(w => w.templateName === '')!.id}`); await flushAll(10);
+    const det = screen.queryAllByText(/godzina nieznana/).map((n: any) => [n.props.children].flat().join('')); expect(det.length).toBeGreaterThan(0); expect(det.join('')).not.toMatch(/12:00|\d+:\d{2}/);
+  });
+  test('eksport CSV: sesja bez czasu — sama data i puste Duration; ponowny import zachowuje „bez czasu”', async () => {
+    await fresh(); await importText(FB); const csv = buildCsv(); const lines = csv.trim().split('\n').slice(1);
+    for (const l of lines) { const c = l.split(','); expect(c[0]).toMatch(/^\d{4}-\d{2}-\d{2}$/); expect(c[2]).toBe(''); }
+    await fresh(); await importText(csv); const ws = store.getState().workouts; expect(ws).toHaveLength(2); expect(ws.every(w => store.noClock(w))).toBe(true);
+  });
+});
