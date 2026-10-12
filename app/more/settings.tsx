@@ -56,6 +56,14 @@ export default function SettingsScreen() {
         <Muted style={{ fontSize: 13 }}>{t('Czeka na zapis w Apple Health: {n}. Ponawiam przy uruchomieniu i powrocie do aplikacji.', { n: health.healthPending().length })}</Muted>
         <Btn small title={t('Ponów teraz')} style={{ alignSelf: 'flex-start' }} onPress={() => { health.retryHealth().then(() => { if (health.healthPending().length) Alert.alert(t('Nie udało się'), t('Treningi nadal czekają na zapis w Apple Health. Sprawdź zgodę w aplikacji Zdrowie: profil → Aplikacje → {app}.', { app: appName() })); }).catch(() => {}); }} />
       </View> : null}
+      <SwitchRow label={t('Pokazuj dane z Apple Health')} detail={t('Kroki, inne aktywności oraz tętno i kcal z zegarka — tylko do wglądu, dane zostają w Zdrowiu.')} value={s.healthRead === true} onChange={async v => {
+        if (!v) { delete s.healthRead; save(); return; } /* 0.16.0 (P2 A): wyłączenie = aplikacja przestaje pytać Zdrowie; zgoda w iOS zostaje */
+        const r = await health.ensureReadAuthorization();
+        if (r === 'unavailable') Alert.alert(t('Apple Health niedostępne'), t('Apple Health nie jest dostępne na tym urządzeniu.'));
+        else if (r === 'failed') Alert.alert(t('Nie udało się'), t('Spróbuj ponownie.'));
+        else { s.healthRead = true; save(); Alert.alert(t('Gotowe'), t('Jeśli dane się nie pokażą, sprawdź dostęp w aplikacji Zdrowie: profil → Aplikacje → {app}.', { app: appName() })); } /* iOS nie mówi, czy odmówiono odczytu — przełącznik włączony niezależnie od wyborów w arkuszu */
+      }} />
+      {s.healthRead ? <View testID="health-read-note" style={{ marginTop: -2, marginBottom: 8 }}><Muted style={{ fontSize: 13 }}>{t('Zgodę cofniesz w aplikacji Zdrowie: profil → Aplikacje → {app}.', { app: appName() })}</Muted></View> : null}
       <SwitchRow label={t('Automatyczna kopia po każdym treningu')} detail={t('Pliki → Na moim iPhonie → {app} → Backup, ostatnie {n}', { app: appName(), n: AUTO_KEEP })} value={s.autoBackup} onChange={v => { s.autoBackup = v; saveCfg(); }} />
 
       <SectionTitle>{t('Powiadomienia')}</SectionTitle>

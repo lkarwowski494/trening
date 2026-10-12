@@ -4,7 +4,7 @@ import * as DocumentPicker from 'expo-document-picker';
 import { applyCfg, wallTs, bandColor, getState, save, replaceState, clearRecovery, migrate, finishedWorkouts, exById, workoutDurSec, noClock, shownLoad, bandById, localISODate, flush, readRecovery, getRecovery, readRawData } from './store';
 import { t, exName } from './i18n';
 import { wOut } from './units';
-import { ensureAuthorization, syncAfterFinish } from './health';
+import { ensureAuthorization, ensureReadAuthorization, syncAfterFinish } from './health';
 import { scheduleWeighReminder } from './timer';
 import { SCHEMA_VERSION, SET_KIND_MARK, type State, type Exercise, type WSet, type Workout } from './seed';
 
@@ -160,9 +160,10 @@ export function parseBackup(txt: string): State {
 /** T4b: kopia z włączonym zapisem do Apple Health nie włącza go po cichu na tym telefonie — prosimy o zgodę od razu przy imporcie;
  * bez zgody (albo bez HealthKit) zapis zostaje wyłączony, a Ustawienia pokazują to zgodnie z prawdą. */
 export async function recheckHealthAfterImport(): Promise<void> {
-  const st = getState(); if (!st.settings.healthSync) return;
-  let ok = false; try { ok = await ensureAuthorization(); } catch {}
-  if (!ok) { st.settings.healthSync = false; save(); }
+  const st = getState();
+  if (st.settings.healthSync) { let ok = false; try { ok = await ensureAuthorization(); } catch {} if (!ok) { st.settings.healthSync = false; save(); } }
+  /* 0.16.0 (docs/29 rozdz. 6): odczyt z kopii — prośba o zgodę na tym telefonie; iOS nie mówi, czy odmówiono, więc pole zostaje, dopóki Zdrowie jest dostępne */
+  if (st.settings.healthRead) { let r: 'ok' | 'unavailable' | 'failed' = 'failed'; try { r = await ensureReadAuthorization(); } catch {} if (r === 'unavailable') { delete st.settings.healthRead; save(); } }
 }
 /** Import pliku JSON — z tej apki albo z wersji webowej. */
 export async function importBackup(): Promise<boolean> {

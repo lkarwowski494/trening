@@ -1,3 +1,4 @@
+import { WeekHealthLine } from '@/components/HealthLines';
 import React from 'react';
 import { View, Pressable } from 'react-native';
 import { useRouter } from 'expo-router';
@@ -36,6 +37,7 @@ export function WeekStats() {
     <Pressable testID="week-tiles" accessibilityRole="button" accessibilityLabel={tiles.map(([label, value]) => `${label}: ${value}`).join('; ')} accessibilityHint={t('Otwiera Postępy.')} onPress={once(() => router.navigate('/progress'))} style={({ pressed }: { pressed: boolean }) => ({ flexDirection: 'row', flexWrap: 'wrap', gap: 8, opacity: pressed ? 0.7 : 1 })} /* UX-16 A (audyt 0.10): te same definicje co Postępy */>
       {tiles.map(([label, value]) => <Tile key={label} label={label} value={value} />)}
     </Pressable>
+    <WeekHealthLine />{/* 0.16.0 (P3): średnia dzienna kroków z 7 dni + inne aktywności tygodnia (Apple Health) */}
     {w.planned ? <View style={{ marginTop: 10 }}><WeekStacks /></View> : null /* przy planie stosy talerzy i „60% planu tygodnia (3 z 5)” (korekta właściciela 09.10.2026 ok. 17:00; te same liczby, lib/motif.weekProgress) */}{/* audyt 0.10 A5/X-04: dni z planu zrobione zaplanowanym szablonem (ten sam stan dnia co kalendarz) — sesje i dni planu osobno */}
     {c.rows.length ? <View testID="week-muscles" style={{ marginTop: 6 }}>
       <MuscleMap sets={map} title={t('Sylwetka: serie w tym tygodniu')} height={170} legend={false} caption={t('Kolor względem partii z największą liczbą serii w tym tygodniu (wykonane + zaplanowane). Szare — bez serii.')} label={t('Sylwetka, serie w tym tygodniu: {list}', { list: c.rows.map(r => `${t(r.muscle)} ${r.doneSets + r.plannedSets}`).join(', ') })} />

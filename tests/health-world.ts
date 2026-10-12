@@ -24,7 +24,10 @@ export const watchOther = (start: number, minutes: number, extra: Partial<FakeWo
 export function hkWorld(init: Partial<Pick<World, 'steps' | 'workouts'>> = {}): World {
   const w: World = { steps: { ...(init.steps ?? {}) }, workouts: [...(init.workouts ?? [])], deleted: [], saved: [], fail: {}, available: true, spies: {}, proxies: [],
     calls: { statistics: [], workouts: [], delete: [] } };
-  const h = hkMod(); const s = (name: string, fn: (...a: any[]) => any) => { w.spies[name] = jest.spyOn(h, name).mockImplementation(fn as any); };
+  const h = hkMod(); const s = (name: string, fn: (...a: any[]) => any) => {
+    if (jest.isMockFunction(h[name]) && (h[name] as any).mockRestore) (h[name] as any).mockRestore(); /* kolejny świat w tym samym teście zaczyna z czystymi licznikami wywołań */
+    w.spies[name] = jest.spyOn(h, name).mockImplementation(fn as any);
+  };
   const matchFilter = (x: FakeWorkout, f: any): boolean => {
     if (!f) return true;
     if (f.date?.startDate && f.date?.endDate && !(x.end > f.date.startDate.getTime() && x.start < f.date.endDate.getTime())) return false;
