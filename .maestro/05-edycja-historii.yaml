@@ -128,7 +128,7 @@ name: Edycja historii i trening wstecz
 # ('Zacząć z mniejszą liczbą serii: {a} zamiast {b} serii roboczych? …' — Upper A: 2 ćw. × 3 serie → 2 + 2 = 4 zamiast 6), „Fewer sets” ('Mniej serii').
 - tapOn: "Back"  # run 37761959586: Postępy to ekran stosu bez paska zakładek — najpierw powrót do „Więcej”
 - tapOn: "Calendar, tab.*"
-- tapOn: { text: ".*, [0-9]+ sessions?", index: 0 }  # dzień z sesją → panel dnia
+- tapOn: { text: ".*, today, [0-9]+ sessions?" }  # dzień dzisiejszy z sesją (etykieta zawiera „today”); index 0 trafiał w „wczoraj” (trening wstecz), a w poniedziałek wczoraj to poprzedni tydzień
 - tapOn: "More options"
 - tapOn: "Mark week as deload"
 - takeScreenshot: 20a-tydzien-deload
