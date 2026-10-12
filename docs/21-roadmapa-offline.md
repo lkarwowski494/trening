@@ -82,6 +82,38 @@ widocznej w treningu (pole istnieje, ekran treningu go nie pokazuje), pola RIR (
 - Nazwy ćwiczeń: standardowe Stronga po angielsku z dopiskiem sprzętu „(Barbell)”, „(Dumbbell)”… + własne użytkownika; dopasowanie po nazwie i zamianie
   dopisku (Barbell→sztanga, Dumbbell→hantle) objęło 33 ze 134 nazw (~48% serii).
 
+### Import CSV z popularnych dzienników — zrobione 11.10.2026 (kod: `lib/csvparse.ts`, `lib/csvimport.ts`, ekran `app/more/import.tsx`)
+Mapowanie oznaczeń z kodu na nazwy (nazwy tylko tu — wytyczne Apple 2.3.7): **formatA** = eksport Stronga (opis wyżej, plik właściciela 07.10.2026);
+**formatB** = CSV zgodny z importem FitNotes; trzeci format (Hevy) — **[OTWARTE]**, nieobsługiwany.
+- **formatA** — nagłówek dokładnie `Date,Workout Name,Duration,Exercise Name,Set Order,Weight,Reps,Distance,Seconds,Notes,Workout Notes,RPE`.
+  Źródło: przejrzany plik właściciela (07.10.2026, wyżej) i własny eksport aplikacji (`buildCsv`, ten sam układ — import własnego eksportu działa).
+  **[OTWARTE]** oficjalna strona pomocy producenta nie została przeczytana (sam tytuł artykułu Hevy o imporcie CSV ze Strong:
+  https://help.hevyapp.com/hc/en-us/articles/38001424401943 — serwer odrzuca pobranie, 403). Brak jednostki ciężaru w pliku → wybór na podglądzie.
+  Jednostka dystansu w tym formacie nieznana (w pliku wzorcowym zawsze 0) — przyjęto metry jak w eksporcie aplikacji, podgląd to pokazuje.
+- **formatB** — źródło: dokumentacja producenta FitNotes iOS, strona „Import Data to FitNotes iOS”, przeczytana 11.10.2026:
+  https://www.getfitnotes.com/docs/migrate-from-other-apps.html — nagłówek „musi być dokładnie”: `Date`, `Exercise`, `Category`, `Weight (kg)`,
+  `Weight (lbs)`, `Reps`, `Distance`, `Distance Unit`, `Time`, `Notes`, `Kind`; „Date must be in `YYYY-mm-dd` format”; waga w osobnych kolumnach kg / lbs
+  (do 2 miejsc po przecinku); jednostki dystansu `m, km, cm, in, ft, yd, mi`; czas `HH:MM:ss` z możliwością pominięcia godzin (`23:59`); `Kind` = litery
+  w, r, d, t; „if there is already a workout in the app database for a date in the CSV, it will be skipped” (duplikat po dniu — przyjęte też u nas).
+  Strona https://www.getfitnotes.com/docs/migrate-from-android.html (przeczytana 11.10.2026): CSV z wersji Android da się zaimportować w iOS
+  („The CSV can be imported the same way as the backup file”), ale **[OTWARTE]**: dokładny nagłówek eksportu z Androida nie jest tam podany —
+  obsługujemy tylko nagłówek z opisu importu; inny nagłówek → komunikat „nieobsługiwany plik”, zero zmian.
+- **Hevy — [OTWARTE]:** strony pomocy producenta (help.hevyapp.com) zwracają 403 przy pobraniu, a lista kolumn (`title, start_time, end_time, description,
+  exercise_title, superset_id, exercise_notes, set_index, set_type, weight_lbs|weight_kg, reps, distance_miles|distance_km, duration_seconds, rpe`; data
+  w stylu „5 Jan 2026, 17:00”) pochodzi tylko z opisów osób trzecich — nie jest źródłem wg CLAUDE.md. Do dodania po przeczytaniu dokumentacji
+  producenta albo pliku testowego od właściciela.
+- **Zasady importu (domyślne propozycje do akceptacji właściciela, każda widoczna/zmienialna na podglądzie):** (1) jednostka formatA — przełącznik kg/lb,
+  domyślnie jednostka z Ustawień; formatB podaje jednostkę w kolumnach; (2) nazwy ćwiczeń: dokładne dopasowanie, potem znormalizowane (bez wielkości liter,
+  spacji, nawiasów i znaków specjalnych; „(Barbell)” = „(sztanga)”, „(Dumbbell)” = „(hantle)”), reszta → nowe ćwiczenie użytkownika
+  (sprzęt „inne”, metryka z danych); lista „Ćwiczenia z pliku” pozwala zmienić dopasowanie (istniejące z wyszukiwarki albo „Nowe ćwiczenie”);
+  (3) duplikat = istniejący trening o tej samej minucie startu (plik bez godzin: ten sam dzień) — pomijany, liczba na podglądzie; (4) podgląd obowiązkowy
+  (treningi, zakres dat, duplikaty, pominięte wiersze, dopasowane/nowe ćwiczenia) i „Importuj”/„Anuluj”.
+- **Bezpieczeństwo danych:** błędny/obcy/pusty/za duży plik → komunikat, zero zmian; kandydat (kopia stanu + nowe wpisy) przechodzi przez `migrate`
+  przed zapisem; kopia bezpieczeństwa w Plikach przed zapisem (ta sama pula co import kopii; nieudana → import przerwany); zapis jedną zmianą stanu,
+  istniejące dane i trening w toku nietknięte; ten sam plik drugi raz = 0 nowych treningów i 0 nowych ćwiczeń. Limity w jednym miejscu
+  (`IMPORT_*` w `lib/csvparse.ts`): 25 mln znaków, 400 tys. wierszy, rok ≥ 1990, ciężar ≤ 2000 kg, powtórzenia ≤ `REPS_MAX`. Bez zmiany schematu danych (18).
+- Bez nowych funkcji poza zakresem: pomiary ciała, szablony i plany z plików nie są importowane.
+
 ### Priorytet (decyzja właściciela 08.10.2026)
 - **Kalendarz z planowaniem treningów** — „sensowna forma kalendarza (może być też z planowaniem treningów)”. Dziś: kalendarz miesiąca w Historii
   (tylko przeszłe sesje). Do decyzji właściciela: miejsce w aplikacji, powtarzalny plan tygodnia vs pojedyncze wpisy, przypomnienia. Powiązania:

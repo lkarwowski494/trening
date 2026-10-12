@@ -476,5 +476,19 @@
  "e1RM w ćwiczeniach z masą ciała liczy się tylko z masą ciała wpisaną w Postępach i tylko tam, gdzie wiadomo, jaką jej część podnosisz: podciąganie (cała — uproszczenie), pompki (ok. {p}% — badania z platformą siłową).": "O e1RM nos exercícios com peso corporal só é calculado com o peso corporal informado em Progresso e só onde se sabe que parte dele você levanta: barras fixas (todo — simplificação), flexões de braço (cerca de {p}% — estudos com plataforma de força).",
  "Cztery zakładki: Trening, Plan, Postępy i Więcej. Szablony i Ćwiczenia znajdziesz teraz w Więcej.": "Quatro abas: Treino, Plano, Progresso e Mais. Modelos e Exercícios agora estão em Mais.",
  "Postępy mają własną zakładkę: podsumowanie, „Progresja”, wykresy ćwiczeń i masa ciała.": "Progresso tem a própria aba: resumo, «Progressão», gráficos dos exercícios e peso corporal.",
- "Ekran Trening: „Planowanie” przy nazwie planu, „Ten tydzień” i „Progresja”; „Z szablonu” w arkuszu „Inny trening” otwiera wybór szablonu ze „Startem”.": "Tela Treino: «Planejamento» ao lado do nome do plano, «Esta semana» e «Progressão»; «A partir de um modelo» na folha «Outro treino» abre a escolha do modelo com «Iniciar»."
+ "Ekran Trening: „Planowanie” przy nazwie planu, „Ten tydzień” i „Progresja”; „Z szablonu” w arkuszu „Inny trening” otwiera wybór szablonu ze „Startem”.": "Tela Treino: «Planejamento» ao lado do nome do plano, «Esta semana» e «Progressão»; «A partir de um modelo» na folha «Outro treino» abre a escolha do modelo com «Iniciar».",
+ "Ćwiczenia z pliku": "Exercícios do arquivo",
+ "Dopisuje treningi z plików CSV popularnych dzienników treningowych — bez usuwania obecnych danych, z podglądem przed zapisem.": "Adiciona treinos a partir de arquivos CSV de diários de treino populares — sem remover seus dados atuais, com prévia antes de salvar.",
+ "Dopisuje treningi z plików CSV popularnych dzienników treningowych. Obecnych danych nie zmienia ani nie usuwa. Przed zapisem zobaczysz podgląd.": "Adiciona treinos a partir de arquivos CSV de diários de treino populares. Não altera nem remove seus dados atuais. Você verá uma prévia antes de salvar qualquer coisa.",
+ "Dystans w pliku przyjęto jako metry.": "A distância no arquivo é tomada como metros.",
+ "Importuj historię z pliku CSV": "Importar histórico de um arquivo CSV",
+ "Jednostka ciężaru w pliku": "Unidade de peso no arquivo",
+ "Plik jest pusty. Dane nie zostały zmienione.": "O arquivo está vazio. Seus dados não foram alterados.",
+ "Plik jest za duży. Dane nie zostały zmienione.": "O arquivo é demasiado grande. Seus dados não foram alterados.",
+ "Plik nie podaje godzin treningów — dzień, w którym masz już trening, zostanie pominięty jako duplikat.": "O arquivo não indica a hora dos treinos — um dia em que já tem um treino é ignorado como duplicado.",
+ "Plik nie podaje, czy ciężary są w kg, czy w lb. Domyślnie: jednostka z Ustawień.": "O arquivo não indica se os pesos estão em kg ou em lb. Padrão: a unidade dos Ajustes.",
+ "Plik nie zawiera żadnych poprawnych treningów. Dane nie zostały zmienione.": "O arquivo não contém treinos válidos. Seus dados não foram alterados.",
+ "Podgląd importu": "Prévia da importação",
+ "To nie wygląda na obsługiwany plik CSV z historią treningów. Dane nie zostały zmienione.": "Isto não parece um arquivo CSV suportado com histórico de treinos. Seus dados não foram alterados.",
+ "Wybierz plik CSV": "Escolher arquivo CSV"
 }

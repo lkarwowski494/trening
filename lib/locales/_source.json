@@ -184,6 +184,10 @@
   "en": "{v} from {d}. Workouts from that period will recalculate e1RM from the earlier measurement (or show no e1RM if there is none)."
  },
  {
+  "pl": "→ {name}",
+  "en": "→ {name}"
+ },
+ {
   "pl": "↑ {label} {value} ({delta})",
   "en": "↑ {label} {value} ({delta})"
  },
@@ -820,12 +824,20 @@
   "en": "add exercises as you go"
  },
  {
+  "pl": "Ćwiczenia dopasowane do Twoich: {n}",
+  "en": "Exercises matched to yours: {n}"
+ },
+ {
   "pl": "Ćwiczenia na czas mają w treningu stoper — po upływie celu seria odhacza się sama. Przerwa ustawiona w pozycji szablonu ma pierwszeństwo; puste pole przerwy w szablonie oznacza przerwę z tego ćwiczenia.",
   "en": "Timed exercises get a stopwatch during the workout — the set ticks itself off when the target is reached. A rest set on a template item takes priority; an empty rest field in the template means this exercise’s rest."
  },
  {
   "pl": "Ćwiczenia z 1 serią bez zmian.",
   "en": "Exercises with 1 set unchanged."
+ },
+ {
+  "pl": "Ćwiczenia z pliku",
+  "en": "Exercises in the file"
  },
  {
   "pl": "Ćwiczenie",
@@ -993,6 +1005,10 @@
   "en": "Added: {list}."
  },
  {
+  "pl": "Dodano treningi: {n}, nowe ćwiczenia: {m}.",
+  "en": "Workouts added: {n}, new exercises: {m}."
+ },
+ {
   "pl": "Dom",
   "en": "Home"
  },
@@ -1003,6 +1019,14 @@
  {
   "pl": "Domyślna przerwa (sekundy)",
   "en": "Default rest (seconds)"
+ },
+ {
+  "pl": "Dopisuje treningi z plików CSV popularnych dzienników treningowych — bez usuwania obecnych danych, z podglądem przed zapisem.",
+  "en": "Adds workouts from CSV files of popular workout logs — without removing your current data, with a preview before saving."
+ },
+ {
+  "pl": "Dopisuje treningi z plików CSV popularnych dzienników treningowych. Obecnych danych nie zmienia ani nie usuwa. Przed zapisem zobaczysz podgląd.",
+  "en": "Adds workouts from CSV files of popular workout logs. It does not change or remove your current data. You will see a preview before anything is saved."
  },
  {
   "pl": "Dopisz trening wstecz",
@@ -1071,6 +1095,10 @@
  {
   "pl": "dystans + czas",
   "en": "distance + time"
+ },
+ {
+  "pl": "Dystans w pliku przyjęto jako metry.",
+  "en": "Distance in the file is taken as metres."
  },
  {
   "pl": "Dzień po dniu te same główne partie: {list}. Zwykle lepiej z dniem przerwy; przy tej samej liczbie serii w tygodniu to też jest w porządku.",
@@ -1429,6 +1457,10 @@
   "en": "Hotel"
  },
  {
+  "pl": "Import historii z CSV",
+  "en": "Import history from CSV"
+ },
+ {
   "pl": "Import przerwany",
   "en": "Import cancelled"
  },
@@ -1443,6 +1475,10 @@
  {
   "pl": "Importuj backup",
   "en": "Import backup"
+ },
+ {
+  "pl": "Importuj historię z pliku CSV",
+  "en": "Import history from a CSV file"
  },
  {
   "pl": "Inna kolejność ćwiczeń.",
@@ -1535,6 +1571,10 @@
  {
   "pl": "Jednostka ciężaru",
   "en": "Weight unit"
+ },
+ {
+  "pl": "Jednostka ciężaru w pliku",
+  "en": "Weight unit in the file"
  },
  {
   "pl": "Jednostka sprzętu",
@@ -2421,6 +2461,10 @@
   "en": "Can’t be made with the plates ({l}) — nearest {v}"
  },
  {
+  "pl": "Nie ma nowych treningów do dodania — wszystkie są już w historii.",
+  "en": "There are no new workouts to add — all of them are already in your history."
+ },
+ {
   "pl": "Nie ma takiego ćwiczenia.",
   "en": "Exercise not found."
  },
@@ -2579,6 +2623,10 @@
  {
   "pl": "nowa",
   "en": "new"
+ },
+ {
+  "pl": "Nowe ćwiczenia: {n}",
+  "en": "New exercises: {n}"
  },
  {
   "pl": "Nowe ćwiczenie",
@@ -3069,8 +3117,28 @@
   "en": "back"
  },
  {
+  "pl": "Plik jest pusty. Dane nie zostały zmienione.",
+  "en": "The file is empty. Your data was not changed."
+ },
+ {
+  "pl": "Plik jest za duży. Dane nie zostały zmienione.",
+  "en": "The file is too large. Your data was not changed."
+ },
+ {
   "pl": "Plik ma schemat {a}, a ta wersja obsługuje do {b}. Zaktualizuj aplikację.",
   "en": "The file has schema {a}; this version supports up to {b}. Update the app."
+ },
+ {
+  "pl": "Plik nie podaje godzin treningów — dzień, w którym masz już trening, zostanie pominięty jako duplikat.",
+  "en": "The file has no workout times — a day on which you already have a workout is skipped as a duplicate."
+ },
+ {
+  "pl": "Plik nie podaje, czy ciężary są w kg, czy w lb. Domyślnie: jednostka z Ustawień.",
+  "en": "The file does not say whether weights are in kg or lb. Default: the unit from Settings."
+ },
+ {
+  "pl": "Plik nie zawiera żadnych poprawnych treningów. Dane nie zostały zmienione.",
+  "en": "The file contains no valid workouts. Your data was not changed."
  },
  {
   "pl": "Pliki → Na moim iPhonie → {app} → Backup, ostatnie {n}",
@@ -3099,6 +3167,10 @@
  {
   "pl": "Podgląd",
   "en": "Preview"
+ },
+ {
+  "pl": "Podgląd importu",
+  "en": "Import preview"
  },
  {
   "pl": "Podpowiedź progresji",
@@ -3183,6 +3255,14 @@
  {
   "pl": "pominięte dziś",
   "en": "skipped today"
+ },
+ {
+  "pl": "Pominięte jako duplikaty: {n}",
+  "en": "Skipped as duplicates: {n}"
+ },
+ {
+  "pl": "Pominięte wiersze (błędne dane): {n}",
+  "en": "Skipped rows (invalid data): {n}"
  },
  {
   "pl": "Pomiń",
@@ -3880,6 +3960,10 @@
   "en": "Sets from this session will be lost."
  },
  {
+  "pl": "Serie: {n}",
+  "en": "Sets: {n}"
+ },
+ {
   "pl": "Serie: {s} na ćwiczenie — ACSM 2026 zaleca co najmniej {m}; więcej serii zwykle daje trochę więcej, z malejącym zyskiem. Liczba {s} to uproszczenie.",
   "en": "Sets: {s} per exercise — ACSM 2026 advises at least {m}; more sets usually give a little more, with diminishing returns. {s} is a simplification."
  },
@@ -4394,6 +4478,10 @@
   "en": "This does not look like a backup from this app"
  },
  {
+  "pl": "To nie wygląda na obsługiwany plik CSV z historią treningów. Dane nie zostały zmienione.",
+  "en": "This does not look like a supported CSV file with workout history. Your data was not changed."
+ },
+ {
   "pl": "To ostatnia seria",
   "en": "This is the last set"
  },
@@ -4464,6 +4552,10 @@
  {
   "pl": "Treningi",
   "en": "Workouts"
+ },
+ {
+  "pl": "Treningi do dodania: {n}",
+  "en": "Workouts to add: {n}"
  },
  {
   "pl": "Treningi i szablony z tym miejscem pokażą „(usunięte miejsce)”.",
@@ -5038,6 +5130,10 @@
   "en": "Choose training days: {a} to {b}."
  },
  {
+  "pl": "Wybierz plik CSV",
+  "en": "Choose a CSV file"
+ },
+ {
   "pl": "Wybierz szablon",
   "en": "Choose a template"
  },
@@ -5290,6 +5386,10 @@
   "en": "range"
  },
  {
+  "pl": "Zakres dat: {a} – {b}",
+  "en": "Date range: {a} – {b}"
+ },
+ {
   "pl": "Zakres jest niepoprawny: „do” musi być ≥ „od”, krok > 0, wartości od {a} do {b}.",
   "en": "Invalid range: “to” must be ≥ “from”, step > 0, values from {a} to {b}."
  },
@@ -5528,6 +5628,10 @@
  {
   "pl": "Zmienione dni: {n}",
   "en": "Days changed: {n}"
+ },
+ {
+  "pl": "Zmień dopasowanie",
+  "en": "Change match"
  },
  {
   "pl": "Zmień kolejność ćwiczeń",

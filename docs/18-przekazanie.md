@@ -25,6 +25,9 @@ backlog) → docs/15 (App Store, ceny) → docs/09 (dziennik testów; stare rund
 10. Baza ćwiczeń: wskazówki i animacje (ExRx — brak API/licencji; MuscleWiki — płatne API i serwer).
 11. Nazwa wydawcy Apps4Brew. 12. Strona internetowa. 13. Ryzyko FitNotes.
 
+**Import CSV (11.10.2026, gałąź agenta, bez pusha):** formatA + formatB zrobione (docs/21, „Import CSV z popularnych dzienników”), Hevy [OTWARTE]. Ekran `more/import`,
+logika `lib/csvparse.ts`/`lib/csvimport.ts`, testy `csv-import-logic`/`csv-import-ui`, 31 słowników (26 kluczy; do sprawdzenia przez native speakera). E2E Maestro — pominięty (docs/09).
+
 ## Otwarte ryzyka
 - E2E-105: zgubione znaki przy szybkim wpisie masy ciała na wolnym symulatorze — do sprawdzenia na telefonie (docs/25).
 - Scenariusz E2E 05 (Plank) — zgubione znaki po zimnym starcie; poprawka jak w 15 (backlog).
