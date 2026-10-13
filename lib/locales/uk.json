@@ -1580,5 +1580,9 @@
  "kilogram|kilogramy|kilogramów": "кілограм|кілограми|кілограмів",
  "funt|funty|funtów": "фунт|фунти|фунтів",
  "kilograma": "кілограма",
- "funta": "фунта"
+ "funta": "фунта",
+ "metr|metry|metrów": "метр|метри|метрів",
+ "metra": "метра",
+ "sekunda|sekundy|sekund": "секунда|секунди|секунд",
+ "godzina|godziny|godzin": "година|години|годин"
 }

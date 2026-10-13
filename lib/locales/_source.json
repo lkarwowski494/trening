@@ -1528,6 +1528,11 @@
   "en": "Start time"
  },
  {
+  "pl": "godzina|godziny|godzin",
+  "en": "hour|hours",
+  "plural": true
+ },
+ {
   "pl": "Gotowe",
   "en": "Done"
  },
@@ -2436,6 +2441,15 @@
  {
   "pl": "Max powtórzeń z asystą",
   "en": "Max reps assisted"
+ },
+ {
+  "pl": "metr|metry|metrów",
+  "en": "metre|metres",
+  "plural": true
+ },
+ {
+  "pl": "metra",
+  "en": "metres"
  },
  {
   "pl": "Miejsca głównego nie usuniesz — najpierw ustaw inne miejsce jako główne.",
@@ -4255,6 +4269,11 @@
  {
   "pl": "sek.",
   "en": "sec."
+ },
+ {
+  "pl": "sekunda|sekundy|sekund",
+  "en": "second|seconds",
+  "plural": true
  },
  {
   "pl": "sen",

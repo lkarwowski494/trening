@@ -1580,5 +1580,9 @@
  "kilogram|kilogramy|kilogramów": "κιλό|κιλά",
  "funt|funty|funtów": "λίβρα|λίβρες",
  "kilograma": "κιλά",
- "funta": "λίβρες"
+ "funta": "λίβρες",
+ "metr|metry|metrów": "μέτρο|μέτρα",
+ "metra": "μέτρα",
+ "sekunda|sekundy|sekund": "δευτερόλεπτο|δευτερόλεπτα",
+ "godzina|godziny|godzin": "ώρα|ώρες"
 }

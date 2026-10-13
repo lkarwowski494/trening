@@ -4,7 +4,8 @@
  */
 import * as store from '@/lib/store';
 import * as timer from '@/lib/timer';
-import { restCue, restLabel, spokenLoad, cueLoad, spokenUnit, counterLabel } from '@/lib/live';
+import { fmtSec } from '@/lib/store';
+import { restCue, restLabel, spokenLoad, cueLoad, spokenUnit, spokenMeters, spokenDuration, counterLabel } from '@/lib/live';
 import { completeSet } from '@/lib/setFlow';
 import { METRICS, type Exercise, type MetricType, type WSet } from '@/lib/seed';
 import { LANGS, applyLang, t } from '@/lib/i18n';
@@ -24,7 +25,11 @@ describe('spokenLoad: ciężar i powtórzenia słowami', () => {
       weight_reps: '80 kg, 8 powtórzeń', reps: '8 powtórzeń', time: '45 s', distance_time: '400 m, 45 s', weight_time: '80 kg, 45 s', weight_distance: '80 kg, 400 m',
     };
     expect(cueLoad(e, FULL)).toBe(want[m]); /* ekran i zegarek: skrót */
-    expect(spokenLoad(e, FULL)).toBe(want[m].replace('80 kg', '80 kilogramów')); /* głos: pełna nazwa jednostki */
+    const said: Record<MetricType, string> = {
+      weight_reps: '80 kilogramów, 8 powtórzeń', reps: '8 powtórzeń', time: '45 sekund', distance_time: '400 metrów, 45 sekund', weight_time: '80 kilogramów, 45 sekund', weight_distance: '80 kilogramów, 400 metrów',
+    };
+    expect(spokenLoad(e, FULL)).toBe(said[m]); /* głos: pełne nazwy jednostek (kg, m, s) */
+    expect(spokenLoad(e, FULL)).not.toMatch(/\d (kg|lb|m|s)\b/);
   });
   test.each([...METRICS])('metryka %s: puste pola i zera są pomijane (nie zgadujemy liczby) → pusty napis', m => {
     expect(spokenLoad(withMetric(m), blank())).toBe(''); expect(spokenLoad(withMetric(m), blank({ weight: 0, reps: 0, durationSec: 0, distanceM: 0 }))).toBe(m === 'weight_reps' || m === 'weight_time' || m === 'weight_distance' ? '0 kilogramów' : '');
@@ -74,6 +79,48 @@ describe('spokenUnit: pełna, odmieniona nazwa jednostki do głosu (nie skrót k
     expect(c.text).toBe('Bench Press (sztanga) · seria 2, 80 kg, 8 powtórzeń'); expect(c.speech).toBe('Bench Press (sztanga) · seria 2, 80 kilogramów, 8 powtórzeń');
     expect(restCue(A(), 'nie ma')).toEqual({ text: '', speech: '', last: false });
     A().exercises.forEach(e => e.sets.forEach(x => { x.done = true; })); expect(restCue(A(), sid(2, 1))).toEqual({ text: 'nic więcej do zrobienia', speech: 'nic więcej do zrobienia', last: true });
+  });
+});
+
+describe('głos: metry, sekundy i czas zegarowy słowami, nie skrótem „m” / „s” / „25:00”', () => {
+  beforeEach(async () => { await world(); });
+  const D = (m: number) => spokenLoad(withMetric('distance_time'), blank({ distanceM: m }));
+  const T = (sec: number) => spokenLoad(withMetric('time'), blank({ durationSec: sec }));
+  test('pl: metry 1 / 2 / 5 / 22 / 400 / 5000, ułamek (CLDR other → „metra”)', () => {
+    expect([1, 2, 5, 22, 400, 5000].map(D)).toEqual(['1 metr', '2 metry', '5 metrów', '22 metry', '400 metrów', '5000 metrów']);
+    expect([12.5, 0.5].map(D)).toEqual(['12,5 metra', '0,5 metra']);
+  });
+  test('pl: sekundy < 60, minuty i sekundy, godziny (bez „1:30”, „25:00”, „1:05:00”)', () => {
+    expect([1, 2, 5, 22, 45].map(T)).toEqual(['1 sekunda', '2 sekundy', '5 sekund', '22 sekundy', '45 sekund']);
+    expect([60, 90, 1500, 1501, 3600, 3905].map(T)).toEqual(['1 minuta', '1 minuta 30 sekund', '25 minut', '25 minut 1 sekunda', '1 godzina', '1 godzina 5 minut 5 sekund']);
+    expect(cueLoad(withMetric('time'), blank({ durationSec: 1500 }))).toBe('25:00'); /* ekran bez zmian */
+  });
+  test('en i fr/pt-BR: ułamek poniżej 2 w liczbie pojedynczej, metry i sekundy', () => {
+    applyLang('en'); expect([D(1), D(5000), D(12.5), T(1), T(45), T(90)]).toEqual(['1 metre', '5000 metres', '12.5 metres', '1 second', '45 seconds', '1 minute 30 seconds']);
+    applyLang('fr'); expect([D(1.5), D(2.5), D(5)]).toEqual(['1,5 mètre', '2,5 mètres', '5 mètres']);
+    applyLang('pt-BR'); expect([D(1.5), D(2.5)]).toEqual(['1,5 metro', '2,5 metros']);
+  });
+  test.each(LANGS.map(l => [l]))('%s: metry 1 / 2 / 5 / 22 / 5000 / 12,5 oraz sekundy 1 / 2 / 5 / 22 / 45 / 90 / 3905 — pełne słowa, nigdy „m”, „s”, ani zegar', l => {
+    applyLang(l);
+    for (const n of [1, 2, 5, 22, 5000, 12.5]) {
+      const v = D(n); expect(v).toMatch(/^\d/); expect(v).not.toMatch(/^\S+ (m|M|s|с|м)( |,|$)/); expect(v.split(', ')[0].length).toBeGreaterThan(String(n).length + 1);
+      expect(cueLoad(withMetric('distance_time'), blank({ distanceM: n }))).toBe(`${n} m`); /* ekran: skrót jak dotąd */
+    }
+    for (const n of [1, 2, 5, 22, 45, 90, 3905]) { const v = T(n); expect(v).not.toMatch(/\d:\d/); if (!["ja", "ko", "zh-Hant", "ms", "vi"].includes(l)) expect(v).not.toBe(fmtSec(n)); /* CJK: skrót i pełne słowo to ten sam znak (秒, 초, ms „saat”, vi „giây”) */ expect(v).toMatch(/^\d/); }
+    expect(new Set([1, 2, 5, 22].map(T)).size).toBeGreaterThan(1);
+  });
+  test('spokenMeters i spokenDuration bezpośrednio: granice (0, 59, 60, 3599, 3600), zaokrąglenie, ujemne jako 0', () => {
+    expect([spokenMeters(1), spokenMeters(5000), spokenMeters(0.5)]).toEqual(['1 metr', '5000 metrów', '0,5 metra']);
+    expect([0, 59, 60, 61, 3599, 3600, 7325, 44.6, -5].map(spokenDuration)).toEqual(['0 sekund', '59 sekund', '1 minuta', '1 minuta 1 sekunda', '59 minut 59 sekund', '1 godzina', '2 godziny 2 minuty 5 sekund', '45 sekund', '0 sekund']);
+  });
+  test('restCue: text ze skrótem („45 s”), speech z pełną nazwą („45 sekund”); serie W / D / F słowami', async () => {
+    await world(); const a = A(); a.exercises[0].sets.forEach(s => { s.done = true; }); a.exercises[1].sets.forEach(s => { s.done = true; });
+    const c = restCue(a, sid(1, 1)); expect(c.text).toBe('dalej: Plank, 45 s'); expect(c.speech).toBe('dalej: Plank, 45 sekund');
+    for (const [k, said, mark] of [['warmup', 'rozgrzewka', 'W'], ['drop', 'seria 1, drop set', '1D'], ['failure', 'seria 2, do upadku', '2F'], ['normal', 'seria 2', '2']] as const) {
+      const w = A(); w.exercises[0].sets.forEach(x => { x.done = false; }); w.exercises[0].sets[1].kind = k; w.exercises[0].sets[0].done = true;
+      const cc = restCue(w, w.exercises[0].sets[0].id);
+      expect(cc.text).toContain(`seria ${mark}, 80 kg`.replace('seria W', 'seria W')); expect(cc.speech).toBe(`Bench Press (sztanga) · ${said}, 80 kilogramów, 8 powtórzeń`);
+    }
   });
 });
 

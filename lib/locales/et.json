@@ -1580,5 +1580,9 @@
  "kilogram|kilogramy|kilogramów": "kilogramm|kilogrammi",
  "funt|funty|funtów": "nael|naela",
  "kilograma": "kilogrammi",
- "funta": "naela"
+ "funta": "naela",
+ "metr|metry|metrów": "meeter|meetrit",
+ "metra": "meetrit",
+ "sekunda|sekundy|sekund": "sekund|sekundit",
+ "godzina|godziny|godzin": "tund|tundi"
 }

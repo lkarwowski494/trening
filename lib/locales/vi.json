@@ -1580,5 +1580,9 @@
  "kilogram|kilogramy|kilogramów": "ki-lô-gam",
  "funt|funty|funtów": "pound",
  "kilograma": "ki-lô-gam",
- "funta": "pound"
+ "funta": "pound",
+ "metr|metry|metrów": "mét",
+ "metra": "mét",
+ "sekunda|sekundy|sekund": "giây",
+ "godzina|godziny|godzin": "giờ"
 }

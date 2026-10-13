@@ -1580,5 +1580,9 @@
  "kilogram|kilogramy|kilogramów": "킬로그램",
  "funt|funty|funtów": "파운드",
  "kilograma": "킬로그램",
- "funta": "파운드"
+ "funta": "파운드",
+ "metr|metry|metrów": "미터",
+ "metra": "미터",
+ "sekunda|sekundy|sekund": "초",
+ "godzina|godziny|godzin": "시간"
 }

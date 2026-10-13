@@ -1580,5 +1580,9 @@
  "kilogram|kilogramy|kilogramów": "kilogramma|kilogrammaa",
  "funt|funty|funtów": "pauna|paunaa",
  "kilograma": "kilogrammaa",
- "funta": "paunaa"
+ "funta": "paunaa",
+ "metr|metry|metrów": "metri|metriä",
+ "metra": "metriä",
+ "sekunda|sekundy|sekund": "sekunti|sekuntia",
+ "godzina|godziny|godzin": "tunti|tuntia"
 }

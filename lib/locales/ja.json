@@ -1580,5 +1580,9 @@
  "kilogram|kilogramy|kilogramów": "キログラム",
  "funt|funty|funtów": "ポンド",
  "kilograma": "キログラム",
- "funta": "ポンド"
+ "funta": "ポンド",
+ "metr|metry|metrów": "メートル",
+ "metra": "メートル",
+ "sekunda|sekundy|sekund": "秒",
+ "godzina|godziny|godzin": "時間"
 }

@@ -1580,5 +1580,9 @@
  "kilogram|kilogramy|kilogramów": "kilogram|kilograme|de kilograme",
  "funt|funty|funtów": "livră|livre|de livre",
  "kilograma": "kilograme",
- "funta": "livre"
+ "funta": "livre",
+ "metr|metry|metrów": "metru|metri|de metri",
+ "metra": "metri",
+ "sekunda|sekundy|sekund": "secundă|secunde|de secunde",
+ "godzina|godziny|godzin": "oră|ore|de ore"
 }

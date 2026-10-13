@@ -1580,5 +1580,9 @@
  "kilogram|kilogramy|kilogramów": "kilogram",
  "funt|funty|funtów": "pon",
  "kilograma": "kilogram",
- "funta": "pon"
+ "funta": "pon",
+ "metr|metry|metrów": "meter",
+ "metra": "meter",
+ "sekunda|sekundy|sekund": "detik",
+ "godzina|godziny|godzin": "jam"
 }

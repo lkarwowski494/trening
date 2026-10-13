@@ -1580,5 +1580,9 @@
  "kilogram|kilogramy|kilogramów": "kilogram|kilogramy|kilogramov",
  "funt|funty|funtów": "libra|libry|libier",
  "kilograma": "kilogramu",
- "funta": "libry"
+ "funta": "libry",
+ "metr|metry|metrów": "meter|metre|metrov",
+ "metra": "metra",
+ "sekunda|sekundy|sekund": "sekunda|sekundy|sekúnd",
+ "godzina|godziny|godzin": "hodina|hodiny|hodín"
 }

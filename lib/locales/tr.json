@@ -1580,5 +1580,9 @@
  "kilogram|kilogramy|kilogramów": "kilogram|kilogram",
  "funt|funty|funtów": "pound|pound",
  "kilograma": "kilogram",
- "funta": "pound"
+ "funta": "pound",
+ "metr|metry|metrów": "metre|metre",
+ "metra": "metre",
+ "sekunda|sekundy|sekund": "saniye|saniye",
+ "godzina|godziny|godzin": "saat|saat"
 }

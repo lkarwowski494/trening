@@ -1580,5 +1580,9 @@
  "kilogram|kilogramy|kilogramów": "kilogramas|kilogramai|kilogramų",
  "funt|funty|funtów": "svaras|svarai|svarų",
  "kilograma": "kilogramo",
- "funta": "svaro"
+ "funta": "svaro",
+ "metr|metry|metrów": "metras|metrai|metrų",
+ "metra": "metro",
+ "sekunda|sekundy|sekund": "sekundė|sekundės|sekundžių",
+ "godzina|godziny|godzin": "valanda|valandos|valandų"
 }

@@ -21,7 +21,12 @@ masa ciała: „masa ciała” / „+10 kg”; seria na czas: „45 s”; po ost
 i `speech` (głos i VoiceOver — pełna odmieniona nazwa: „80 kilogramów”, „1 pound”, „62,5 kilograma”). Obie składa ta sama funkcja (`buildCue`), różni je tylko jednostka ciężaru (`spokenUnit`).
 Liczba mnoga całkowitych: `tp()` (klucze „kilogram|kilogramy|kilogramów”, „funt|funty|funtów”); ułamek ma w wielu językach własną formę (reguły CLDR, v ≠ 0), stąd osobne klucze „kilograma” / „funta”;
 fr i pt-BR czytają ułamek poniżej 2 w liczbie pojedynczej (CLDR: one = i 0..1). Uproszczenie: hr, sr, lv mają „one” także dla ułamków kończących się na 1 (62,1) — tu forma „other”.
-Dystans „m” i czas „s” w głosie zostają skrótami (otwarte). Tłumaczenia kluczy jednostek — do przeglądu tłumacza.
+Ta sama zasada dla dystansu i czasu (14.10.2026): `spokenMeters` („400 metrów”, „1 metr”, ułamek „12,5 metra” — osobny klucz „metra”, fr i pt-BR poniżej 2 w liczbie pojedynczej) i `spokenDuration`
+(„45 sekund”, „1 minuta 30 sekund”, „25 minut”, „1 godzina 5 minut” zamiast „45 s” i zegarowego „25:00”, które syntezator czyta jak skrót albo godzinę; liczby całkowite przez `tp()`, klucze „metr|metry|metrów”, „metra”,
+„sekunda|sekundy|sekund”, „godzina|godziny|godzin”, minuty — istniejący klucz „minuta|minuty|minut”). Etykieta serii w głosie bez liter typu, które syntezator literuje: „rozgrzewka” (zamiast „seria W”),
+„seria 3, drop set” (zamiast „3D”), „seria 2, do upadku” (zamiast „2F”; istniejące klucze). Ekran, Live Activity, powiadomienie i zegarek bez zmian („45 s”, „25:00”, „2F”).
+Pozostałe znaki w głosie: „·” między nazwą a serią i „+”/„−” przed dociążeniem (symbole, nie skróty) — do sprawdzenia na telefonie w E2E.
+Tłumaczenia 8 kluczy jednostek (kilogram, funt, ich ułamki, metr, ułamek metra, sekunda, godzina) — do przeglądu tłumacza.
 Przy rekordzie przed zapowiedzią „Nowy rekord!” (ta sama detekcja co plakietka PR; serie „do uzupełnienia” z zegarka rekordu nie mają — docs/35 rozdz. 5).
 
 **Kiedy** (`voicePolicy`, pierwsza pasująca reguła):

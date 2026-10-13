@@ -1580,5 +1580,9 @@
  "kilogram|kilogramy|kilogramów": "chilogrammo|chilogrammi",
  "funt|funty|funtów": "libbra|libbre",
  "kilograma": "chilogrammi",
- "funta": "libbre"
+ "funta": "libbre",
+ "metr|metry|metrów": "metro|metri",
+ "metra": "metri",
+ "sekunda|sekundy|sekund": "secondo|secondi",
+ "godzina|godziny|godzin": "ora|ore"
 }

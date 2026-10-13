@@ -1580,5 +1580,9 @@
  "kilogram|kilogramy|kilogramów": "kilogramm|kilogramm",
  "funt|funty|funtów": "font|font",
  "kilograma": "kilogramm",
- "funta": "font"
+ "funta": "font",
+ "metr|metry|metrów": "méter|méter",
+ "metra": "méter",
+ "sekunda|sekundy|sekund": "másodperc|másodperc",
+ "godzina|godziny|godzin": "óra|óra"
 }

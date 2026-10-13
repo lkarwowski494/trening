@@ -1580,5 +1580,9 @@
  "kilogram|kilogramy|kilogramów": "kilogramu|kilograms|kilogrami",
  "funt|funty|funtów": "mārciņu|mārciņa|mārciņas",
  "kilograma": "kilogrami",
- "funta": "mārciņas"
+ "funta": "mārciņas",
+ "metr|metry|metrów": "metru|metrs|metri",
+ "metra": "metri",
+ "sekunda|sekundy|sekund": "sekunžu|sekunde|sekundes",
+ "godzina|godziny|godzin": "stundu|stunda|stundas"
 }

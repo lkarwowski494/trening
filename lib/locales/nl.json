@@ -1580,5 +1580,9 @@
  "kilogram|kilogramy|kilogramów": "kilogram|kilogram",
  "funt|funty|funtów": "pond|pond",
  "kilograma": "kilogram",
- "funta": "pond"
+ "funta": "pond",
+ "metr|metry|metrów": "meter|meter",
+ "metra": "meter",
+ "sekunda|sekundy|sekund": "seconde|seconden",
+ "godzina|godziny|godzin": "uur|uur"
 }

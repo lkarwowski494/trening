@@ -1580,5 +1580,9 @@
  "kilogram|kilogramy|kilogramów": "kilogramo|kilogramos",
  "funt|funty|funtów": "libra|libras",
  "kilograma": "kilogramos",
- "funta": "libras"
+ "funta": "libras",
+ "metr|metry|metrów": "metro|metros",
+ "metra": "metros",
+ "sekunda|sekundy|sekund": "segundo|segundos",
+ "godzina|godziny|godzin": "hora|horas"
 }

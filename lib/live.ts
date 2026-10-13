@@ -40,7 +40,7 @@ function buildCue(a: Workout, setId: string, spoken: boolean): { text: string; l
   const e = a.exercises[ei];
   const pos = focusSet(a, setId); if (!pos) return { text: t('nic więcej do zrobienia'), last: true };
   const x = a.exercises[pos.ei]; const xe = exById(x.exerciseId); const nm = exName(xe); const same = pos.ei === ei || (!!e.groupId && x.groupId === e.groupId);
-  const head = same ? `${nm} · ${t('seria {n}', { n: setLabel(x, pos.si) })}` : t('dalej: {name}', { name: nm });
+  const head = same ? `${nm} · ${spoken ? spokenSetLabel(x, pos.si) : t('seria {n}', { n: setLabel(x, pos.si) })}` : t('dalej: {name}', { name: nm });
   const load = xe ? loadText(xe, x.sets[pos.si], spoken) : '';
   return { text: load ? `${head}, ${load}` : head, last: false };
 }
@@ -59,10 +59,30 @@ export function restLabel(a: Workout, ei: number, si: number): { sub: string; la
  * Uproszczenie: hr/sr/lv mają „one” także dla ułamków kończących się na 1 (62,1) — tu forma „other”. `n` = wartość w jednostce aplikacji.
  */
 export function spokenUnit(n: number): string {
-  const lb = wu() === 'lb'; const a = Math.abs(n);
-  if (Number.isInteger(a)) return tp(a, lb ? 'funt|funty|funtów' : 'kilogram|kilogramy|kilogramów');
-  if ((lang() === 'fr' || lang() === 'pt-BR') && a < 2) return tp(1, lb ? 'funt|funty|funtów' : 'kilogram|kilogramy|kilogramów');
-  return t(lb ? 'funta' : 'kilograma');
+  return wu() === 'lb' ? spokenNoun(n, 'funt|funty|funtów', 'funta') : spokenNoun(n, 'kilogram|kilogramy|kilogramów', 'kilograma');
+}
+/** Nazwa jednostki przy liczbie `n` do głosu: całkowita — `tp(many)`, ułamek — osobna forma `frac` (CLDR, v ≠ 0); fr i pt-BR: ułamek poniżej 2 w liczbie pojedynczej. */
+function spokenNoun(n: number, many: string, frac: string): string {
+  const a = Math.abs(n);
+  if (Number.isInteger(a)) return tp(a, many);
+  if ((lang() === 'fr' || lang() === 'pt-BR') && a < 2) return tp(1, many);
+  return t(frac);
+}
+/** Dystans w metrach do głosu: „400 metrów”, „1 metr”, „12,5 metra” (zamiast „400 m”, które syntezator literuje). */
+export const spokenMeters = (m: number): string => `${Number.isInteger(m) ? m : fmtNum(m, 2)} ${spokenNoun(m, 'metr|metry|metrów', 'metra')}`;
+/** Czas do głosu słowami: „45 sekund”, „1 minuta 30 sekund”, „25 minut”, „1 godzina 5 minut” (zamiast „45 s” i zegarowego „25:00”, które syntezator czyta jak skrót lub godzinę). */
+export function spokenDuration(sec: number): string {
+  const s = Math.max(0, Math.round(sec)); const h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60), r = s % 60; const out: string[] = [];
+  const part = (n: number, forms: string) => `${n} ${tp(n, forms)}`;
+  if (h) out.push(part(h, 'godzina|godziny|godzin')); if (m) out.push(part(m, 'minuta|minuty|minut')); if (r || !out.length) out.push(part(r, 'sekunda|sekundy|sekund'));
+  return out.join(' ');
+}
+/** Etykieta serii do głosu bez liter typu („2F”, „W”, „3D” syntezator literuje): rozgrzewka, „seria 3, drop set”, „seria 2, do upadku”, „seria 2”. */
+function spokenSetLabel(e: WExercise, si: number): string {
+  const k = e.sets[si]?.kind ?? 'normal'; const mark = setLabel(e, si);
+  if (k === 'warmup') return t('rozgrzewka');
+  const base = t('seria {n}', { n: mark.replace(/[A-Z]$/, '') });
+  return k === 'drop' ? `${base}, ${t('drop set')}` : k === 'failure' ? `${base}, ${t('do upadku')}` : base;
 }
 /** Ciężar, dystans, powtórzenia i czas serii w kolejnych polach; `spoken` = jednostka ciężaru pełnym słowem (głos), inaczej skrót jak na karcie „teraz”. */
 function loadText(ex: Exercise, set: WSet, spoken: boolean): string {
@@ -74,15 +94,15 @@ function loadText(ex: Exercise, set: WSet, spoken: boolean): string {
       out.push(p.num + (p.unit ? ' ' + (spoken ? spokenUnit(wOut(v)) : p.unit) : ''));
     }
   }
-  if (hasDistance(m) && Number(set.distanceM) > 0) out.push(`${set.distanceM} m`);
+  if (hasDistance(m) && Number(set.distanceM) > 0) out.push(spoken ? spokenMeters(Number(set.distanceM)) : `${set.distanceM} m`);
   { const n = Number(set.reps); if (hasReps(m) && n > 0) out.push(`${n} ${tp(n, 'powtórzenie|powtórzenia|powtórzeń')}`); }
-  if (hasTime(m) && Number(set.durationSec) > 0) out.push(fmtSec(Number(set.durationSec)));
+  if (hasTime(m) && Number(set.durationSec) > 0) out.push(spoken ? spokenDuration(Number(set.durationSec)) : fmtSec(Number(set.durationSec)));
   return out.join(', ');
 }
 /**
- * Ciężar i powtórzenia serii słowami DO GŁOSU: „80 kilogramów, 8 powtórzeń”, „+10 kilogramów, 8 powtórzeń”, „masa ciała, 12 powtórzeń”, „45 s”,
- * „5000 m, 25:00”. Pole puste (albo 0) jest pomijane — zapowiedź nie zgaduje liczby. Ciężar w jednostce aplikacji (kg/lb) jak karta „teraz”
- * (`nowParts`), ale z pełną nazwą jednostki (`spokenUnit`). Dystans „m” i czas „s” zostają skrótami (otwarte: osobne pytanie do tłumacza).
+ * Ciężar i powtórzenia serii słowami DO GŁOSU: „80 kilogramów, 8 powtórzeń”, „+10 kilogramów, 8 powtórzeń”, „masa ciała, 12 powtórzeń”, „45 sekund”,
+ * „5000 metrów, 25 minut”. Pole puste (albo 0) jest pomijane — zapowiedź nie zgaduje liczby. Ciężar w jednostce aplikacji (kg/lb) jak karta „teraz”
+ * (`nowParts`), ale z pełną nazwą jednostki (`spokenUnit`). Dystans i czas też pełnymi słowami (`spokenMeters`, `spokenDuration`).
  */
 export const spokenLoad = (ex: Exercise, set: WSet): string => loadText(ex, set, true);
 /** Ten sam tekst ze skrótem jednostki (kg/lb) — ekran, Live Activity, powiadomienie i zegarek. */

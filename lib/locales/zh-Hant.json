@@ -1580,5 +1580,9 @@
  "kilogram|kilogramy|kilogramów": "公斤",
  "funt|funty|funtów": "磅",
  "kilograma": "公斤",
- "funta": "磅"
+ "funta": "磅",
+ "metr|metry|metrów": "公尺",
+ "metra": "公尺",
+ "sekunda|sekundy|sekund": "秒",
+ "godzina|godziny|godzin": "小時"
 }
