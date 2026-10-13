@@ -2,6 +2,7 @@
  * („Bez zmian”, „Pomiń dziś”), „Wraca z planu”, potwierdzenie C7, zastosowanie (jeden zapis) i ogłoszenie VoiceOver. */
 import { AccessibilityInfo } from 'react-native';
 import * as store from '@/lib/store';
+import * as timer from '@/lib/timer';
 import { fresh, ex, pressAlert } from './helpers';
 import { renderApp, flushAll, screen, tap, act, go, fireEvent } from './app';
 import { loc } from './locations-fixtures';
@@ -87,6 +88,18 @@ describe('arkusz zamiany z celem adapt: i zastosowanie', () => {
     await tap(screen.getByTestId('adapt-apply')); await flushAll(20);
     expect(top()).toBe('(tabs)'); expect(blk(0).exerciseId).toBe(ex('Bench Press (sztanga)').id); expect(blk(0).swappedFrom).toBeUndefined();
     expect(blk(1).swappedFrom).toBe(ex('Overhead Press (sztanga)').id); expect(blk(2).skipped).toBe(true); expect(blk(3).exerciseId).toBe(ex('RDL (hantle/linki)').id);
+  });
+  test('spójność (docs/32): „Pomiń dziś” w oknie przy trwającym stoperze serii pyta jak pojedyncze „Pomiń dziś”; Anuluj → bez zmian i bez zapisu; potwierdzenie → pominięto, stoper zatrzymany', async () => {
+    await boot(); await pickPlace('Hotel');
+    await tap(screen.getAllByText(/^Pull Up → /)[0]); await flushAll(20); await tap(screen.getByLabelText('Pomiń dziś: Pull Up')); await flushAll(20);
+    await act(async () => { await timer.startSet(blk(2).sets[0].id, 0); }); expect(timer.S.on).toBe(true);
+    const saves = jest.spyOn(store, 'save'); const before = JSON.stringify(S().active);
+    await tap(screen.getByTestId('adapt-apply')); await flushAll(5);
+    const q = global.__alerts.at(-1)!; expect(q.title).toBe('Trwa pomiar serii'); expect(q.msg).toBe('Pominięcie ćwiczenia przerwie pomiar — ten czas się nie zapisze.');
+    await act(async () => { pressAlert('Trwa pomiar serii', 'Anuluj'); }); await flushAll(5);
+    expect(top()).toBe('adapt'); expect(timer.S.on).toBe(true); expect(JSON.stringify(S().active)).toBe(before); expect(saves).not.toHaveBeenCalled(); saves.mockRestore();
+    await tap(screen.getByTestId('adapt-apply')); await flushAll(5); await act(async () => { pressAlert('Trwa pomiar serii', 'Pomiń dziś'); }); await flushAll(20);
+    expect(top()).toBe('(tabs)'); expect(blk(2).skipped).toBe(true); expect(timer.S.on).toBe(false);
   });
   test('„Zastosuj”: bloki zamienione („zamiast: A”), jeden zapis, szablon bez zmian, ogłoszenie VoiceOver „Zamieniono 3 ćwiczenia”; wiersz pod chipem znika', async () => {
     const spy = jest.spyOn(AccessibilityInfo, 'announceForAccessibility').mockImplementation(() => {});

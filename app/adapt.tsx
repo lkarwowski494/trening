@@ -9,7 +9,8 @@ import { adaptCandidates, restoreCandidates, type AdaptRow, type AdaptChoice } f
 import { onAdaptPick } from '@/lib/adaptPick';
 import { missingLabel } from '@/lib/equipment';
 import { implLabel, reasonText } from '@/lib/swap';
-import { confirm } from '@/lib/confirm';
+import { confirm, confirmSkipTimedSet } from '@/lib/confirm';
+import * as timer from '@/lib/timer';
 import { announce } from '@/lib/announce';
 import { t, tp, exName } from '@/lib/i18n';
 
@@ -36,8 +37,10 @@ export default function AdaptScreen() {
       if (r) { afterSwap([...r.goneSetIds, ...r.skippedSetIds]); const k = r.swapped + r.restored + r.skipped; announce(t('Zamieniono {n} {w}', { n: k, w: tp(k, 'ćwiczenie|ćwiczenia|ćwiczeń') })); }
       dismiss();
     };
-    if (back.some(r => !off[r.blockId] && r.edited)) confirm({ title: t('Cofnąć zamianę?'), message: t('Wpisane wartości zamiennika przepadną.'), action: t('Cofnij'), destructive: true, onConfirm: go }); /* C7 */
-    else go();
+    /* docs/32: jak pojedyncze „Pomiń dziś” — blok z trwającym stoperem serii pomijany przy „Zastosuj” pyta „Trwa pomiar serii” (Anuluj → nic nie zastosowano) */
+    const timedSkip = timer.S.on && choices.some(c => c.kind === 'skip' && a?.exercises.find(x => x.id === c.blockId)?.sets.some(x => x.id === timer.S.setId));
+    const next = () => { if (back.some(r => !off[r.blockId] && r.edited)) confirm({ title: t('Cofnąć zamianę?'), message: t('Wpisane wartości zamiennika przepadną.'), action: t('Cofnij'), destructive: true, onConfirm: go }); /* C7 */ else go(); };
+    if (timedSkip) confirmSkipTimedSet(next); else next();
   };
   const headerOpts = useCloseHeader(undefined, n ? { title: t('Zastosuj ({n})', { n }), onPress: apply, testID: 'adapt-apply' } : null);
   const title = loc ? t('Dostosuj do: {l}', { l: loc.name }) : t('Dostosuj do miejsca');

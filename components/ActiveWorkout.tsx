@@ -25,7 +25,7 @@ import { markDoneEarly } from '@/lib/plan';
 import { hasTime, hasReps, hasWeight, hasDistance, SET_KIND_LABEL, type WExercise, type WSet, type Workout } from '@/lib/seed';
 import { t as tr, tp, exName, lang, glue } from '@/lib/i18n';
 import { wu, wField, wInKeep, fmtW } from '@/lib/units';
-import { cancelButton } from '@/lib/confirm';
+import { cancelButton, confirmSkipTimedSet } from '@/lib/confirm';
 import { adaptCandidates, restoreCandidates } from '@/lib/adapt';
 
 /*
@@ -332,7 +332,7 @@ function ExerciseBlock({ w, e, ei, onDone, onStartSet, labels, prs }: { w: Worko
    * a jej podpis liczy się od nowa (relabelRest — następna seria jak na karcie). */
   const skipToday = () => {
     const go = () => { if (timer.S.on && e.sets.some(x => x.id === timer.S.setId)) timer.stopSet(); skipExercise(e.id); relabelRest(); };
-    if (timer.S.on && e.sets.some(x => x.id === timer.S.setId)) Alert.alert(tr('Trwa pomiar serii'), tr('Pominięcie ćwiczenia przerwie pomiar — ten czas się nie zapisze.'), [{ ...cancelButton() }, { text: tr('Pomiń dziś'), style: 'destructive', onPress: go }]);
+    if (timer.S.on && e.sets.some(x => x.id === timer.S.setId)) confirmSkipTimedSet(go);
     else go();
   };
   const removeBlock = () => { const i = getState().active?.exercises.findIndex(x => x.id === e.id) ?? -1; if (i < 0) return; /* runda 10: po id — drugie okno nie usuwa sąsiada */ dropBlockTimers(); removeExercise(i); };

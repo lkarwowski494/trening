@@ -10,7 +10,7 @@ import { render, fireEvent, renderHook } from '@testing-library/react-native';
 import * as store from '@/lib/store';
 import * as plan from '@/lib/plan';
 import { applyLang } from '@/lib/i18n';
-import { cancelButton, backToEditButton, okButton, confirm } from '@/lib/confirm';
+import { cancelButton, backToEditButton, okButton, confirm, confirmSkipTimedSet } from '@/lib/confirm';
 import { announce, useAnnounce } from '@/lib/announce';
 import { setAutoSavedNotice, autoSavedNotice, useAutoSavedNotice } from '@/lib/notices';
 import { workoutInProgressNotice } from '@/lib/start';
@@ -41,6 +41,12 @@ describe('lib/confirm: jedno słowo rezygnacji', () => {
     expect(a.title).toBe('Usunąć?'); expect(b.map(x => [x.text, x.style])).toEqual([['Anuluj', 'cancel'], ['Usuń', 'destructive']]);
     b[1].onPress!(); b[0].onPress!(); expect(yes).toHaveBeenCalledTimes(1); expect(no).toHaveBeenCalledTimes(1);
     confirm({ title: 'T', action: 'Zrób', onConfirm: yes }); expect((global.__alerts[1].buttons as { style?: string }[])[1].style).toBeUndefined();
+  });
+  test('confirmSkipTimedSet(): „Trwa pomiar serii” [Anuluj, Pomiń dziś (destructive)] — wspólne dla bloku i okna „Dostosuj”', () => {
+    global.__alerts.length = 0; const yes = jest.fn(); confirmSkipTimedSet(yes);
+    const a = global.__alerts[0]; const b = a.buttons as { text: string; style?: string; onPress?: () => void }[];
+    expect(a.title).toBe('Trwa pomiar serii'); expect(a.msg).toBe('Pominięcie ćwiczenia przerwie pomiar — ten czas się nie zapisze.'); expect(b.map(x => [x.text, x.style])).toEqual([['Anuluj', 'cancel'], ['Pomiń dziś', 'destructive']]);
+    expect(yes).not.toHaveBeenCalled(); b[1].onPress!(); expect(yes).toHaveBeenCalledTimes(1);
   });
 });
 
