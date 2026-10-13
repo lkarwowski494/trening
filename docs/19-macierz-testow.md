@@ -545,7 +545,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Dodaj do planu | components/DayPanel.tsx | tests/plan-calendar-ui.test.tsx |
 | Dodaj gumę | app/more/bands.tsx | tests/audit-r83.test.tsx, tests/interaction-guards.test.ts, tests/interaction-patterns.test.tsx +2 |
 | Dodaj miejsce | app/more/locations.tsx | tests/audit-0.10-gen-ui.test.tsx, tests/audit-k1-fala2b.test.tsx, tests/interaction-guards.test.ts +9 |
-| Dodaj plan | app/plan.tsx | tests/audit-0.10-plan-ui.test.tsx, tests/audit-k1-fala2b.test.tsx, tests/guide.test.tsx +5 |
+| Dodaj plan | app/plan.tsx | tests/audit-0.10-plan-ui.test.tsx, tests/audit-k1-fala2b.test.tsx, tests/guide.test.tsx +6 |
 | Dodaj szablon | app/templates.tsx | tests/b2-plan-own-templates.test.tsx, tests/edit-on-demand.test.tsx, tests/guide.test.tsx +7 |
 | Dodane: {list}. | lib/tplsync.ts | tests/audit-0.10-ui.test.tsx, tests/matrix-i18n.test.tsx |
 | Dodano treningi: {n}, nowe ćwiczenia: {m}. | app/more/import.tsx | tests/csv-import-ui.test.tsx |
