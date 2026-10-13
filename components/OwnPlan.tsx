@@ -4,7 +4,7 @@ import { useRouter, useNavigation } from 'expo-router';
 import { Field, Chip, Muted, Txt, Btn, SectionTitle } from '@/components/ui';
 import { DayPicker, daysOk } from '@/components/DayPicker';
 import { getState, useTick, newTemplate, SAVED_PLANS_MAX } from '@/lib/store';
-import { ownTemplates, ownSessionsFor, ownPlan, ownProposal, ownWarnings, ownCounts, saveOwnPlan, OWN_MAX, MAJOR, MIN_DAYS, SECONDARY_SHARE } from '@/lib/generator';
+import { ownTemplates, ownSessionsFor, ownPlan, ownProposal, ownWarnings, ownCounts, saveOwnPlan, weeklySetsList, OWN_MAX, MIN_DAYS, SECONDARY_SHARE } from '@/lib/generator';
 import { activationNote, plansFull } from '@/lib/plan';
 import { t, locale } from '@/lib/i18n';
 import { fmtNum } from '@/lib/units';
@@ -79,7 +79,7 @@ export function OwnPlan({ header }: { header?: React.ReactNode }) {
           <Txt accessibilityRole="header" style={{ fontSize: 15, marginBottom: 6 }}>{r.days.map((id, i) => (id ? `${wd(i)} ${nameOf(id)}` : null)).filter(Boolean).join(' · ')}</Txt>
           {r.seq.length > chosen.length ? <Muted style={{ fontSize: 13, marginBottom: 6 }}>{t('Dni: {n}, szablony: {k} — szablony powtarzają się po kolei: {seq}. Co tydzień od początku.', { n: r.sessions, k: chosen.length, seq: r.seq.map(nameOf).join(' → ') })}</Muted> : null}
           {ownCounts(r).map(c => <Muted key={c.id} style={{ fontSize: 13 }}>{t('{name}: {n}× w tygodniu', { name: nameOf(c.id), n: c.n })}</Muted>)}
-          <Muted style={{ fontSize: 13, marginTop: 6 }}>{t('Serie na partię w tygodniu (pomocnicza = {h} serii — uproszczenie, jedno źródło): {list}', { h: fmtNum(SECONDARY_SHARE, 1), list: MAJOR.map(m => `${t(m)} ${fmtNum(r.weeklySets[m] ?? 0, 1)}`).join(', ') })}</Muted>
+          <Muted style={{ fontSize: 13, marginTop: 6 }}>{t('Serie na partię w tygodniu (pomocnicza = {h} serii — uproszczenie, jedno źródło): {list}', { h: fmtNum(SECONDARY_SHARE, 1), list: weeklySetsList(r, true) })}</Muted>
           {warn.map(w => <Txt key={w.kind} style={{ fontSize: 13, marginTop: 6 }}>{w.text}</Txt>)}
           <SectionTitle>{t('Na czym to oparte')}</SectionTitle>
           {[t('Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM).') /* ten sam tekst co lista przesunięć w Kalendarzu (docs/research/23) */,

@@ -55,7 +55,7 @@ describe('generator: dwa tryby i „Plan z moich szablonów”', () => {
     expect(screen.getByText(r.days.map((id, i) => (id ? `${wd(i)} ${S().templates.find(x => x.id === id)!.name}` : null)).filter(Boolean).join(' · '))).toBeTruthy();
     expect(screen.getByText(`Dni: 3, szablony: 2 — szablony powtarzają się po kolei: ${t[0].name} → ${t[2].name} → ${t[0].name}. Co tydzień od początku.`)).toBeTruthy();
     expect(screen.getByText(`${t[0].name}: 2× w tygodniu`)).toBeTruthy(); expect(screen.getByText(`${t[2].name}: 1× w tygodniu`)).toBeTruthy();
-    expect(screen.getByText(/^Rzadziej niż 2 dni w tygodniu: /)).toBeTruthy(); expect(screen.getByText(/^Poniżej 10 serii tygodniowo: .+\. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach\.$/)).toBeTruthy();
+    expect(screen.getByText(/^Rzadziej niż 2 dni w tygodniu: /)).toBeTruthy(); expect(screen.getByText(/^Poniżej celu serii tygodniowo: .+\. Cel ustawisz w Ustawieniach \(automatycznie dolny próg zalecany przy budowie masy\); serie dodasz w szablonach\.$/)).toBeTruthy();
     expect(screen.getByText(/^Serie na partię w tygodniu \(pomocnicza = 0,5 serii/)).toBeTruthy();
     expect(screen.getByText(/^• Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami/)).toBeTruthy();
     expect(screen.getByText(/^• Każda główna partia co najmniej 2 dni w tygodniu \(WHO 2020/)).toBeTruthy();

@@ -81,23 +81,23 @@ describe('„Ten tydzień” (ekran Trening): paski serii z kreską celu każdej
     for (const x of ['side_delt', 'front_delt', 'rear_delt', 'lats', 'upper_back', 'lower_back']) expect(rows()).not.toContain(x);
     /* oś wspólna: max(cel 20, wartości) = 20 */
     expect(left('pbar-sets-klatka-mark')).toBe('100%'); expect(left('pbar-sets-barki-mark')).toBe('20%'); expect(left('pbar-sets-plecy-mark')).toBe('50%');
-    expect(screen.getByTestId('prow-sets-klatka').props.accessibilityLabel).toBe('klatka: 12'); /* 12 < 20 — bez dopisku */
-    expect(screen.getByTestId('prow-sets-barki').props.accessibilityLabel).toBe('barki: 11, co najmniej 4'); /* wyciskanie: barki pomocnicze 0,5 × 12 + unoszenie 5; 11 ≥ 4 */
-    expect(screen.getByTestId('prow-sets-plecy').props.accessibilityLabel).toBe('plecy: 4');
+    expect(screen.getByTestId('prow-sets-klatka').props.accessibilityLabel).toBe('klatka: 12, cel 20'); /* 12 < 20 — bez „co najmniej” */
+    expect(screen.getByTestId('prow-sets-barki').props.accessibilityLabel).toBe('barki: 5 bezpośrednio, 6 pośrednio (serie pomocnicze: 12), cel 4, co najmniej 4'); /* wyciskanie: barki pomocnicze 0,5 × 12 + unoszenie 5; 11 ≥ 4 */
+    expect(screen.getByTestId('prow-sets-plecy').props.accessibilityLabel).toBe('plecy: 4, cel 10');
   });
   test('kreska celu automatycznego i objaśnienie: cel, zaplanowane, pół serii z dopiskiem o źródle; bez zdania o rozbiciu', async () => {
     await boot(() => { week(); });
-    expect(screen.getByTestId('prow-sets-klatka').props.accessibilityLabel).toBe('klatka: 12, co najmniej 10'); expect(left('pbar-sets-klatka-mark')).toBe(`${(100 * 10) / 12}%`); /* oś kończy się na 12 (więcej niż cel 10) */
+    expect(screen.getByTestId('prow-sets-klatka').props.accessibilityLabel).toBe('klatka: 12, cel 10, co najmniej 10'); expect(left('pbar-sets-klatka-mark')).toBe(`${(100 * 10) / 12}%`); /* oś kończy się na 12 (więcej niż cel 10) */
     expect(screen.getByText(/^Kreska = cel serii na partię w tygodniu: 10 automatycznie albo Twoja liczba z Ustawień\. Zaplanowane — z szablonów na pozostałe dni tygodnia\. Uproszczenie: partia pomocnicza ćwiczenia liczy się za pół serii \(główna 1, pomocnicza 0,5; Pelland i in\. 2026 — jedno źródło\)\.$/)).toBeTruthy();
     expect(screen.queryByText(/rozbite|bez rozbicia/)).toBeNull();
   });
   test('ćwiczenie własne z barkami → wiersz „barki” (ta sama partia co z katalogu)', async () => {
     await boot(() => { const e = store.newExercise('Własne barki'); e.muscles = ['barki']; store.save(); addWorkout(new Date(2026, 9, 6, 18).getTime(), [['Własne barki', sets(3)]]); });
-    expect(screen.getByTestId('prow-sets-barki').props.accessibilityLabel).toBe('barki: 3');
+    expect(screen.getByTestId('prow-sets-barki').props.accessibilityLabel).toBe('barki: 3, cel 10');
   });
   test('English', async () => {
     await boot(() => { week(); }, '/', 'en');
-    expect(screen.getByTestId('prow-sets-barki').props.accessibilityLabel).toBe('shoulders: 11, at least 10'); expect(screen.getByTestId('prow-sets-plecy').props.accessibilityLabel).toBe('back: 4');
+    expect(screen.getByTestId('prow-sets-barki').props.accessibilityLabel).toMatch(/^shoulders: .*, at least 10$/); expect(screen.getByTestId('prow-sets-plecy').props.accessibilityLabel).toMatch(/^back: 4, .*10$/); /* nowe teksty (bezpośrednio / pośrednio / cel) czekają na tłumacza — docs/18 13.10.2026 */
     expect(screen.getByText(/^Line = weekly goal of sets per muscle group: 10 automatically, or your own number from Settings\. Planned — from templates for the rest of the week\. Simplification: a secondary muscle group of an exercise counts as half a set \(main 1, secondary 0\.5; Pelland et al\. 2026 — a single source\)\./)).toBeTruthy();
   });
 });
@@ -106,8 +106,8 @@ describe('Postępy i Progresja: kreski celu i objaśnienie', () => {
   test('Postępy: wiersze per partia z kreską celu partii; jedno zdanie o półserii przy kresce; bez zdania o rozbiciu', async () => {
     await boot(() => { week(); S().settings.weeklySetGoals = { barki: 20 }; store.save(); }, '/progress');
     expect(left('mark-barki')).toBe('100%'); expect(left('mark-klatka')).toBe('50%'); /* oś: max(20, 12) */
-    expect(screen.getByLabelText(/^barki: 11 \(poprz\. 0\)$/)).toBeTruthy(); expect(screen.getByLabelText(/^klatka: 12 \(poprz\. 0\), co najmniej 10$/)).toBeTruthy();
-    expect(screen.getByLabelText(/^plecy: 4 \(poprz\. 0\)$/)).toBeTruthy();
+    expect(screen.getByLabelText(/^barki: 5 bezpośrednio, 6 pośrednio \(serie pomocnicze: 12\) \(poprz\. 0\), cel 20$/)).toBeTruthy(); expect(screen.getByLabelText(/^klatka: 12 \(poprz\. 0\), cel 10, co najmniej 10$/)).toBeTruthy();
+    expect(screen.getByLabelText(/^plecy: 4 \(poprz\. 0\), cel 10$/)).toBeTruthy();
     expect(screen.getByText(/Uproszczenie: partia pomocnicza ćwiczenia liczy się za pół serii \(główna 1, pomocnicza 0,5; Pelland i in\. 2026 — jedno źródło\)\./)).toBeTruthy();
     expect(screen.queryByText(/rozbite|bez rozbicia/)).toBeNull();
     expect(screen.getByText(/^Kreska = cel serii na partię w tygodniu: 10 automatycznie albo Twoja liczba z Ustawień\. Stanowisko ACSM 2026:/)).toBeTruthy();

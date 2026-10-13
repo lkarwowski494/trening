@@ -337,7 +337,7 @@ describe('runda 4', () => {
   });
   test('R4-07 serie per partia z przecinkiem', async () => {
     await renderApp(); addWorkout(Date.now() - 3600e3, [['Bench Press (hantle)', [{ weight: 24, reps: 8 }]]]); await go('/progress'); await flushAll(10);
-    expect(screen.getAllByText(/^0,5/).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/^0 \+ 0,5 pośrednio \(1 seria\) \/ 10/).length).toBeGreaterThan(0); /* 13.10.2026: przecinek dziesiętny w podpisie z podziałem */
   });
   test('R4-08 „Zakończ” → „Wróć” nie przerywa trwającej serii na czas', async () => {
     await renderApp(); await act(async () => { store.startEmpty(); store.addExerciseToActive(ex('Back Squat')); store.addExerciseToActive(ex('Plank')); }); await flushAll(10);

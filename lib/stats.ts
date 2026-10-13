@@ -1,6 +1,7 @@
 import { t, tp } from './i18n';
 import { fmtW, fmtVol, fmtNum, wu, KG_PER_LB, volOut } from './units';
 import { bodyMassFor, bodyMassLog, wallTs, getState, exById, volume, finishedWorkouts, setSummary, shownLoad, isBW, setLoad, loadOf, effectiveLoad, setVolume, blockMult, setScore, isWorking, workSetCount, repsOf, memoHist, memoHistBy, workoutsWith, volOf, fmtSec, fmtDist } from './store';
+import { addSplitSets, splitTotals, type SetSplit } from './setSplit';
 import { isSetPart, SETS_GOAL_MIN, SETS_GOAL_MAX, type SetPart } from './setParts';
 import { hasReps, hasWeight, hasTime, hasDistance, catalogKey, own, type Exercise, type Impl, type MetricType, type WSet, type Workout } from './seed';
 
@@ -302,19 +303,30 @@ export const hasAnyHistory = () => getState().workouts.some(w => w.finishedAt);
 /** Znacznik przy „Serie per partia” (pakiet C, 08.10.2026). Źródło: ACSM Position Stand 2026 (Currier i in., MSSE 58(4), pełny tekst
  * PMC12965823, sekcja „Improving hypertrophy”): „Between RTx, hypertrophy was enhanced by … higher volume (≥10 sets/muscle group/wk)”;
  * to samo stanowisko: każdy trening siłowy poprawia hipertrofię względem braku treningu — znacznik nie jest progiem „działa / nie działa”.
- * Uproszczenie: u nas serie pomocnicze liczą się po 0,5 (Pelland 2026, docs/21 B3), w stanowisku — serie na partię bez tego rozróżnienia. */
+ * Uproszczenie (decyzja właściciela 13.10.2026, wariant A; docs/research/32): serie pomocnicze liczą się po 0,5 (SECONDARY_SHARE) — to metoda
+ * „fractional” z Pelland i in. 2024/2026 (JEDNO źródło, waga to założenie autorów), a nie praktyka „jak w aplikacjach”. Stanowisko ACSM i badania, z których
+ * pochodzi próg 10 (Schoenfeld i in. 2017, Baz-Valle i in. 2022), liczą „serie na partię” bez rozróżnienia bezpośrednich i pośrednich (Baz-Valle: wszystkie
+ * serie, także z ćwiczeń wielostawowych), więc liczenie 0,5 nie zawyża postępu względem progu. Dlatego na paskach odcinek bezpośredni i pośredni są
+ * pokazane osobno (lib/setSplit.ts). */
 export const WEEKLY_SETS_MARK = 10;
-/* 12.10.2026: to jest cel AUTOMATYCZNY każdej partii; użytkownik może ustawić własny cel per partia (Settings.weeklySetGoals → setsGoal, granice interfejsu: lib/setParts). Generator zostaje przy tej liczbie. */
-/** Serie robocze per partia w tygodniu zaczynającym się `weekStart` (główna = 1, pomocnicza = 0,5), jak w popularnych aplikacjach treningowych. */
+/* 12.10.2026: to jest cel AUTOMATYCZNY każdej partii; użytkownik może ustawić własny cel per partia (Settings.weeklySetGoals → setsGoal, granice interfejsu: lib/setParts).
+ * 13.10.2026: generator też mierzy do setsGoal (cel z Ustawień per partia), nie do stałej. */
+/** Serie robocze per partia w tygodniu zaczynającym się `weekStart` (bezpośrednio + pośrednio × 0,5). */
 export function weeklySetsByMuscle(weekStart: number): Record<string, number> {
   const d = new Date(weekStart); return setsByMuscle(weekStart, new Date(d.getFullYear(), d.getMonth(), d.getDate() + 7).getTime());
 }
-/** Serie robocze per partia w okresie [start, end) — tydzień w Postępach, okres podsumowania i mapa mięśni (08.10.2026). */
-export function setsByMuscle(start: number, end: number): Record<string, number> {
-  const out: Record<string, number> = {};
+/** To samo z podziałem na odcinek bezpośredni i pośredni (paski „Serie per partia”). */
+export function weeklySplitByMuscle(weekStart: number): Record<string, SetSplit> {
+  const d = new Date(weekStart); return setsSplitByMuscle(weekStart, new Date(d.getFullYear(), d.getMonth(), d.getDate() + 7).getTime());
+}
+/** Serie robocze per partia w okresie [start, end) — suma ważona (`total`); tydzień w Postępach, okres podsumowania i mapa mięśni (08.10.2026). */
+export function setsByMuscle(start: number, end: number): Record<string, number> { return splitTotals(setsSplitByMuscle(start, end)); }
+/** JEDNO źródło liczenia serii na partię w okresie [start, end): {direct, indirectSets, indirectWeighted, total} (13.10.2026). */
+export function setsSplitByMuscle(start: number, end: number): Record<string, SetSplit> {
+  const out: Record<string, SetSplit> = {};
   for (const w of finishedWorkouts()) { const x = wallTs(w); if (x < start || x >= end) continue; /* J3 */
     w.exercises.forEach(e => { const ex = exById(e.exerciseId); if (!ex) return; const n = workSetCount(e.sets); if (!n) return; /* D3: drop razem z serią (uproszczenie) */
-      (ex.muscles ?? []).forEach(mu => { out[mu] = (out[mu] ?? 0) + n; }); (ex.secondaryMuscles ?? []).forEach(mu => { out[mu] = (out[mu] ?? 0) + n * 0.5; }); }); }
+      addSplitSets(out, ex.muscles ?? [], ex.secondaryMuscles ?? [], n); }); }
   return out;
 }
 

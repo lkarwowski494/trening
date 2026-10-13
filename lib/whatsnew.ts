@@ -21,9 +21,30 @@ const genDays = () => { const all = Object.values(GEN_SESSIONS).flat(); return {
 export const LANGS_012 = ['pt-BR', 'es-419', 'id', 'ms', 'vi', 'ru', 'ja', 'ko', 'zh-Hant'] as const;
 
 export const WHATS_NEW: WhatsNewEntry[] = [
+  /* 0.17.0 (docs/32, docs/18 13.10.2026): spójna obsługa (wzorce interakcji), „Napisz do nas”, prośba o ocenę po treningu z rekordem (lib/review-run.ts — aktywna niezależnie od
+   * PAYWALL.ENABLED; system pokazuje okno tylko w wersji z App Store, w TestFlight nie). Subskrypcja jest wyłączona przełącznikiem — bez wzmianki. Bez numeru buildu — dopisuje się po
+   * przebiegu testflight.yml. id '2026-10-15' (następny po 0.16), data 13.10.2026. */
+  { id: '2026-10-15', date: '2026-10-13', items: () => [
+    t('Spójniejsza obsługa w całej aplikacji: okna z „Anuluj” po lewej, „+” w nagłówkach list do dodawania oraz czytelniejsze komunikaty i opisy dla VoiceOver.'),
+    t('Przycisk „Napisz do nas” w Więcej → O aplikacji.'),
+    t('Po treningu z nowym rekordem aplikacja może poprosić o ocenę — rzadko i tylko w oknie systemowym.'),
+  ] },
+  /* 0.16.0 (docs/29, docs/18 13.10.2026): odczyt z Apple Health, paski serii z odcinkiem pośrednim, cel serii w generatorze. Build 1013 (TestFlight 38374133953, tag v0.16.0-b1013).
+   * id '2026-10-14' (następny po 0.15), data 13.10.2026. */
+  { id: '2026-10-14', build: 1013, date: '2026-10-13', items: () => [
+    t('Odczyt z Apple Health (włączasz w Ustawieniach): kroki i inne aktywności w panelu dnia, średnia kroków pod „Ten tydzień” oraz tętno i kcal z zegarka przy sesji.'),
+    t('Paski serii pokazują osobno serie pośrednie (pomocnicze, liczone po 0,5).'),
+    t('Generator uwzględnia Twój cel serii z Ustawień.'),
+  ] },
+  /* 0.15.0 (docs/18): aktualizacja biblioteki Apple Health 8 → 16 (zapis treningów bez zmian dla użytkownika), parafrazy wskazówek techniki w EN.
+   * Strona WWW w site/ — tylko repo, bez punktu. Build 1012 (TestFlight 38355743899; 1011 przepadł — limit certyfikatów). id '2026-10-13' (następny po 0.14), data wydania 12.10.2026. */
+  { id: '2026-10-13', build: 1012, date: '2026-10-12', items: () => [
+    t('Aktualizacja współpracy z Apple Health — zapis treningów działa jak dotąd.'),
+    t('Poprawione sformułowania części wskazówek techniki.'),
+  ] },
   /* 0.14.0 (backlog A, decyzja właściciela 12.10.2026, docs/18): cel serii na partię w Ustawieniach, poprawki błędów, 20 nowych ćwiczeń ze wskazówkami techniki,
    * miejsce treningu przy dopisywaniu wstecz. Bez numeru buildu — dopisuje się po przebiegu testflight.yml. */
-  { id: '2026-10-12', date: '2026-10-12', items: () => [
+  { id: '2026-10-12', build: 1010, date: '2026-10-12', items: () => [
     t('Cel serii na partię w tygodniu ustawisz w Ustawieniach (Automatycznie albo Ręcznie); paski w „Ten tydzień” i w Postępach mierzą do tego celu, a partia pomocnicza ćwiczenia liczy się za pół serii.'),
     t('Poprawki: Postępy pamiętają wybrane ćwiczenie, import bez godzin pokazuje „godzina nieznana”, a teksty pomocy zgadzają się z nazwami zakładek.'),
     t('20 nowych ćwiczeń ze wskazówkami w sekcji „Technika”.'),
@@ -31,7 +52,7 @@ export const WHATS_NEW: WhatsNewEntry[] = [
   ] },
   /* Wydanie 2 (decyzja właściciela 11.10.2026, docs/18 P7 A): jeden wspólny wpis o nowym układzie — wydanie 1 (ekran Trening, „Progresja”) i wydanie 2 (cztery zakładki,
    * masa ciała w Postępach) oraz import CSV; to wpis wydania 0.13.0 (0.12.0 niżej wyszło bez wpisu o nowym ekranie). Numer buildu dopisuje się po wydaniu. */
-  { id: '2026-10-11', date: '2026-10-12', items: () => [
+  { id: '2026-10-11', build: 1009, date: '2026-10-12', items: () => [
     t('Cztery zakładki: Trening, Plan, Postępy i Więcej. Szablony i Ćwiczenia znajdziesz teraz w Więcej.'),
     t('Postępy mają własną zakładkę: podsumowanie, „Progresja”, wykresy ćwiczeń i masa ciała.'),
     t('Ekran Trening: „Planowanie” przy nazwie planu, „Ten tydzień” i „Progresja”; „Z szablonu” w arkuszu „Inny trening” otwiera wybór szablonu ze „Startem”.'),

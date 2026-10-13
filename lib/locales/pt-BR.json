@@ -171,8 +171,6 @@
  "Pominięcie ćwiczenia przerwie pomiar — ten czas się nie zapisze.": "Pular o exercício interrompe a cronometragem — este tempo não será salvo.",
  "Pomiń dziś": "Pular hoje",
  "Pomiń dziś: {name}": "Pular hoje: {name}",
- "Poniżej {n} serii tygodniowo: {list}. Pomoże więcej sesji, dłuższy czas albo więcej sprzętu w miejscu.": "Abaixo de {n} séries por semana: {list}. Mais sessões, sessões mais longas ou mais equipamento no local ajudam.",
- "Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.": "Abaixo de {n} séries por semana: {list}. É o limite mínimo recomendado para ganhar músculo; você pode adicionar séries nos modelos.",
  "Poprawka zapisu: wszystkie serie bloku „{name}” przejdą pod wybrane ćwiczenie (wartości bez zmian).": "Correção do registro: todas as séries de «{name}» passam para o exercício escolhido (valores inalterados).",
  "Poprzedni tydzień jest oznaczony jako deload.": "A semana anterior está marcada como deload.",
  "Poręcze do dipów": "Barras paralelas",
@@ -528,5 +526,13 @@
  "Czeka na zapis w Apple Health: {n}. Zapis zostanie ponowiony przy uruchomieniu i powrocie do aplikacji.": "Aguardando para serem salvos no Apple Health: {n}. O salvamento será repetido quando o app abrir e quando você voltar para ele.",
  "Kilka planów: przycisk + w nagłówku (Dodaj plan) tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.": "Vários planos: o botão + no cabeçalho (Adicionar plano) cria uma cópia para você alterar e «Tornar ativo» em «Outros planos» ativa essa cópia — as mudanças de dias voltam junto com o plano.",
  "Napisz do nas": "Escreva para nós",
- "Otwiera aplikację Mail": "Abre o app Mail"
+ "Otwiera aplikację Mail": "Abre o app Mail",
+ "Poniżej celu serii tygodniowo: {list}. Pomoże więcej sesji, dłuższy czas albo więcej sprzętu w miejscu.": "Abaixo da meta semanal de séries: {list}. Mais sessões, sessões mais longas ou mais equipamento no local ajudam.",
+ "Poniżej celu serii tygodniowo: {list}. Cel ustawisz w Ustawieniach (automatycznie dolny próg zalecany przy budowie masy); serie dodasz w szablonach.": "Abaixo da meta semanal de séries: {list}. A meta é definida em Ajustes (automaticamente, o limite mínimo recomendado para ganhar músculo); você pode adicionar séries nos modelos.",
+ "Masa: serie na partię w tygodniu do celu z Ustawień (automatycznie {m}), {a}–{b} powtórzeń (w domu {c}–{d}), zwykle {r1}–{r2} powtórzenia w zapasie.": "Massa: séries por grupo muscular por semana até a meta de Ajustes (automaticamente {m}), {a}–{b} repetições (em casa {c}–{d}), normalmente {r1}–{r2} repetições em reserva.",
+ "Odczyt z Apple Health (włączasz w Ustawieniach): kroki i inne aktywności w panelu dnia, średnia kroków pod „Ten tydzień” oraz tętno i kcal z zegarka przy sesji.": "Leitura do Apple Health (ative em Ajustes): passos e outras atividades no painel do dia, média de passos em “Esta semana” e frequência cardíaca e kcal do relógio no treino.",
+ "Generator uwzględnia Twój cel serii z Ustawień.": "O gerador considera a sua meta de séries de Ajustes.",
+ "Spójniejsza obsługa w całej aplikacji: okna z „Anuluj” po lewej, „+” w nagłówkach list do dodawania oraz czytelniejsze komunikaty i opisy dla VoiceOver.": "Uso mais consistente em todo o app: janelas com “Cancelar” à esquerda, “+” nos cabeçalhos das listas para adicionar, e mensagens e descrições do VoiceOver mais claras.",
+ "Przycisk „Napisz do nas” w Więcej → O aplikacji.": "Botão “Escreva para nós” em Mais → Sobre o app.",
+ "Po treningu z nowym rekordem aplikacja może poprosić o ocenę — rzadko i tylko w oknie systemowym.": "Depois de um treino com um novo recorde, o app pode pedir uma avaliação — raramente e só na janela do sistema."
 }

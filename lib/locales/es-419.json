@@ -72,8 +72,6 @@
  "Pierwsza wersja testowa: treningi z szablonów, historia, postępy i rekordy, kopia zapasowa w Plikach.": "Primera versión de prueba: entrenamientos desde plantillas, historial, progreso y récords, respaldo en Archivos.",
  "Piłka gimnastyczna (fitball)": "Pelota de estabilidad (fitball)",
  "Po dopisaniu zakresu byłoby ciężarów: {c} — najwyżej {n}. Zwiększ krok albo usuń odznaczone.": "Con el rango agregado habría {c} pesos, como máximo {n}. Aumenta el paso o elimina los desmarcados.",
- "Poniżej {n} serii tygodniowo: {list}. Pomoże więcej sesji, dłuższy czas albo więcej sprzętu w miejscu.": "Menos de {n} series a la semana: {list}. Ayudan más sesiones, sesiones más largas o más equipo en el lugar.",
- "Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.": "Menos de {n} series a la semana: {list}. Es el umbral mínimo recomendado para ganar músculo; las series se agregan en las plantillas.",
  "Poprzednich danych nie dało się odczytać": "No se pudieron leer tus datos anteriores",
  "Przypomnienie o treningu z planu": "Recordatorio de entrenamientos planificados",
  "RIR wpisuje się w zakresie 0–{max}; więcej niż {max} powtórzeń w zapasie zapisuje się jako „lekko” (RPE {light}), bo poniżej RPE {min} skala opisuje wysiłek słowami, a nie powtórzeniami w zapasie (Helms i in. 2016).": "El RIR se ingresa de 0 a {max}; más de {max} repeticiones en reserva se guardan como «ligero» (RPE {light}), porque por debajo de RPE {min} la escala describe el esfuerzo con palabras, no con repeticiones en reserva (Helms et al. 2016).",
@@ -197,5 +195,11 @@
  "Nie zapisano jeszcze w Apple Health — zapis zostanie ponowiony przy następnym uruchomieniu aplikacji.": "Todavía no se guardó en Apple Health: se volverá a intentar la próxima vez que se abra la app.",
  "Więcej → Szablony: przycisk + w nagłówku (Dodaj szablon) tworzy szablon: ćwiczenia, serie, zakres powtórzeń i przerwy.": "Más → Plantillas: el botón + del encabezado (Agregar plantilla) crea una plantilla: ejercicios, series, rango de repeticiones y descansos.",
  "Kilka planów: przycisk + w nagłówku (Dodaj plan) tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.": "Varios planes: el botón + del encabezado (Agregar plan) crea una copia para cambiar y «Hacer activo» en «Otros planes» la activa — los cambios de días vuelven con su plan.",
- "Nie udało się otworzyć poczty": "No se pudo abrir Mail"
+ "Nie udało się otworzyć poczty": "No se pudo abrir Mail",
+ "Poniżej celu serii tygodniowo: {list}. Pomoże więcej sesji, dłuższy czas albo więcej sprzętu w miejscu.": "Por debajo del objetivo semanal de series: {list}. Ayudan más sesiones, sesiones más largas o más equipo en el lugar.",
+ "Poniżej celu serii tygodniowo: {list}. Cel ustawisz w Ustawieniach (automatycznie dolny próg zalecany przy budowie masy); serie dodasz w szablonach.": "Por debajo del objetivo semanal de series: {list}. El objetivo se fija en Configuración (automáticamente, el umbral mínimo recomendado para ganar músculo); las series se agregan en las plantillas.",
+ "Masa: serie na partię w tygodniu do celu z Ustawień (automatycznie {m}), {a}–{b} powtórzeń (w domu {c}–{d}), zwykle {r1}–{r2} powtórzenia w zapasie.": "Masa: series por grupo muscular a la semana hasta el objetivo de Configuración (automáticamente {m}), {a}–{b} repeticiones (en casa {c}–{d}), normalmente {r1}–{r2} repeticiones en reserva.",
+ "Odczyt z Apple Health (włączasz w Ustawieniach): kroki i inne aktywności w panelu dnia, średnia kroków pod „Ten tydzień” oraz tętno i kcal z zegarka przy sesji.": "Lectura de Apple Health (se activa en Configuración): pasos y otras actividades en el panel del día, promedio de pasos bajo «Esta semana» y frecuencia cardiaca y kcal del reloj en el entrenamiento.",
+ "Generator uwzględnia Twój cel serii z Ustawień.": "El generador tiene en cuenta tu objetivo de series de Configuración.",
+ "Po treningu z nowym rekordem aplikacja może poprosić o ocenę — rzadko i tylko w oknie systemowym.": "Tras un entrenamiento con un nuevo récord, la app puede pedirte una calificación: con poca frecuencia y solo en la ventana del sistema."
 }
