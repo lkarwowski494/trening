@@ -56,6 +56,14 @@
   "en": "{cur} vs {prev}"
  },
  {
+  "pl": "{d} + {w} pośrednio ({n} {s})",
+  "en": "{d} + {w} indirect ({n} {s})"
+ },
+ {
+  "pl": "{d} bezpośrednio, {w} pośrednio (serie pomocnicze: {n})",
+  "en": "{d} direct, {w} indirect (secondary sets: {n})"
+ },
+ {
   "pl": "{ex} — {n} min, umiarkowane tempo",
   "en": "{ex} — {n} min, moderate pace"
  },
@@ -94,6 +102,14 @@
  {
   "pl": "{n} h",
   "en": "{n} h"
+ },
+ {
+  "pl": "{n} kcal aktywne",
+  "en": "{n} active kcal"
+ },
+ {
+  "pl": "{n} kilokalorii aktywnych",
+  "en": "{n} active kilocalories"
  },
  {
   "pl": "{n} km",
@@ -364,8 +380,24 @@
   "en": "The app closed while you were editing the template “{name}”. Go back to editing?"
  },
  {
+  "pl": "Apple Health",
+  "en": "Apple Health"
+ },
+ {
+  "pl": "Apple Health (zegarek)",
+  "en": "Apple Health (watch)"
+ },
+ {
+  "pl": "Apple Health nie jest dostępne na tym urządzeniu.",
+  "en": "Apple Health is not available on this device."
+ },
+ {
   "pl": "Apple Health niedostępne",
   "en": "Apple Health unavailable"
+ },
+ {
+  "pl": "Apple Health…",
+  "en": "Apple Health…"
  },
  {
   "pl": "Archiwizować szablon?",
@@ -488,6 +520,10 @@
   "en": "Not used in any workout: {list}. This also replaces the active plan “{plan}”, made only of these templates — “Replace” deletes them and makes the new plan active in its place, “Keep” adds the new ones alongside."
  },
  {
+  "pl": "bezpośrednie",
+  "en": "direct"
+ },
+ {
   "pl": "biblioteki ćwiczeń organizacji szkoleniowych",
   "en": "exercise libraries of fitness education organisations"
  },
@@ -534,6 +570,10 @@
  {
   "pl": "Brak danych do wykresu.",
   "en": "No data to chart."
+ },
+ {
+  "pl": "Brak danych z Apple Health dla tego dnia. Jeśli dane powinny być, sprawdź dostęp w aplikacji Zdrowie: profil → Aplikacje → {app}.",
+  "en": "No data from Apple Health for this day. If there should be some, check access in the Health app: profile → Apps → {app}."
  },
  {
   "pl": "Brak gum. Dodaj pierwszą, by zapisywać asystę przy podciąganiu.",
@@ -674,6 +714,10 @@
  {
   "pl": "Cel",
   "en": "Goal"
+ },
+ {
+  "pl": "cel {n}",
+  "en": "goal {n}"
  },
  {
   "pl": "cel s",
@@ -1333,6 +1377,10 @@
   "en": "Template and weekly plan generator on request (goal, place, number and length of sessions) and several plans with a choice of the active one."
  },
  {
+  "pl": "Generator uwzględnia Twój cel serii z Ustawień.",
+  "en": "The generator now uses your sets goal from Settings."
+ },
+ {
   "pl": "Generator: wybór dni tygodnia, od {a} do {b} dni, cel „Ogólny” i „Plan z moich szablonów”.",
   "en": "Generator: choose the days of the week, from {a} to {b} days, the “General fitness” goal and “Plan from my templates”."
  },
@@ -1513,6 +1561,19 @@
   "en": "Import history from a CSV file"
  },
  {
+  "pl": "inna aktywność",
+  "en": "other activity"
+ },
+ {
+  "pl": "Inna aktywność",
+  "en": "Other activity"
+ },
+ {
+  "pl": "inna aktywność|inne aktywności|innych aktywności",
+  "en": "other activity|other activities",
+  "plural": true
+ },
+ {
   "pl": "Inna kolejność ćwiczeń.",
   "en": "Different exercise order."
  },
@@ -1623,6 +1684,10 @@
  {
   "pl": "Jeszcze pusto — pierwszy trening czeka.",
   "en": "Nothing yet — your first workout is waiting."
+ },
+ {
+  "pl": "Jeśli dane się nie pokażą, sprawdź dostęp w aplikacji Zdrowie: profil → Aplikacje → {app}.",
+  "en": "If no data shows up, check access in the Health app: profile → Apps → {app}."
  },
  {
   "pl": "Język",
@@ -1807,6 +1872,22 @@
  {
   "pl": "krok",
   "en": "step"
+ },
+ {
+  "pl": "kroki {n}",
+  "en": "steps {n}"
+ },
+ {
+  "pl": "Kroki dziennie (średnia z {d} dni): {n}",
+  "en": "Steps per day (average of {d} days): {n}"
+ },
+ {
+  "pl": "Kroki, inne aktywności oraz tętno i kcal z zegarka — tylko do wglądu, dane zostają w Zdrowiu.",
+  "en": "Steps, other activities, and heart rate and kcal from your watch — view only, the data stays in Health."
+ },
+ {
+  "pl": "Kroki: {n}",
+  "en": "Steps: {n}"
  },
  {
   "pl": "Krótka animacja przy starcie: talerze wsuwają się na gryf.",
@@ -2001,8 +2082,8 @@
   "en": "Body weight: “±” is added weight (plus) or assistance, e.g. a machine (minus); a band is a separate field with its level. The record is total unassisted reps, and volume uses only the added weight."
  },
  {
-  "pl": "Masa: co najmniej {m} serii na partię w tygodniu, {a}–{b} powtórzeń (w domu {c}–{d}), zwykle {r1}–{r2} powtórzenia w zapasie.",
-  "en": "Muscle: at least {m} sets per muscle group per week, {a}–{b} reps (at home {c}–{d}), usually {r1}–{r2} reps in reserve."
+  "pl": "Masa: serie na partię w tygodniu do celu z Ustawień (automatycznie {m}), {a}–{b} powtórzeń (w domu {c}–{d}), zwykle {r1}–{r2} powtórzenia w zapasie.",
+  "en": "Muscle: sets per muscle group per week up to the goal from Settings (automatically {m}), {a}–{b} reps (at home {c}–{d}), usually {r1}–{r2} reps in reserve."
  },
  {
   "pl": "maszyna",
@@ -2263,6 +2344,11 @@
  {
   "pl": "Minęło {s} s.",
   "en": "{s} s have passed."
+ },
+ {
+  "pl": "minuta|minuty|minut",
+  "en": "minute|minutes",
+  "plural": true
  },
  {
   "pl": "młot",
@@ -2801,6 +2887,10 @@
   "en": "Since 0.10: templates and exercises open in a preview — start changes with “Edit” and confirm them with “Save”."
  },
  {
+  "pl": "Odczyt z Apple Health (włączasz w Ustawieniach): kroki i inne aktywności w panelu dnia, średnia kroków pod „Ten tydzień” oraz tętno i kcal z zegarka przy sesji.",
+  "en": "Reading from Apple Health (turn it on in Settings): steps and other activities in the day panel, average steps under “This week”, and heart rate and kcal from your watch on a workout."
+ },
+ {
   "pl": "Odhacz bez pomiaru",
   "en": "Tick without timing"
  },
@@ -3037,6 +3127,10 @@
   "en": "Dip belt"
  },
  {
+  "pl": "Paski serii pokazują osobno serie pośrednie (pomocnicze, liczone po 0,5).",
+  "en": "Set bars show indirect sets separately (secondary sets, counted as 0.5 each)."
+ },
+ {
   "pl": "pauza",
   "en": "paused"
  },
@@ -3225,6 +3319,10 @@
   "en": "Showing {n} of {m} — type a name to narrow down."
  },
  {
+  "pl": "Pokazuj dane z Apple Health",
+  "en": "Show data from Apple Health"
+ },
+ {
   "pl": "Pokaż",
   "en": "Show"
  },
@@ -3313,12 +3411,12 @@
   "en": "secondary"
  },
  {
-  "pl": "Poniżej {n} serii tygodniowo: {list}. Pomoże więcej sesji, dłuższy czas albo więcej sprzętu w miejscu.",
-  "en": "Below {n} sets per week: {list}. More sessions, longer sessions or more equipment at the place will help."
+  "pl": "Poniżej celu serii tygodniowo: {list}. Cel ustawisz w Ustawieniach (automatycznie dolny próg zalecany przy budowie masy); serie dodasz w szablonach.",
+  "en": "Below the weekly set goal: {list}. You can set the goal in Settings (automatically the lower threshold recommended for building muscle); you can add sets in the templates."
  },
  {
-  "pl": "Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.",
-  "en": "Below {n} sets per week: {list}. This is the lower threshold recommended for building muscle; you can add sets in the templates."
+  "pl": "Poniżej celu serii tygodniowo: {list}. Pomoże więcej sesji, dłuższy czas albo więcej sprzętu w miejscu.",
+  "en": "Below the weekly set goal: {list}. More sessions, longer sessions or more equipment at the place will help."
  },
  {
   "pl": "Ponów teraz",
@@ -3423,6 +3521,10 @@
  {
   "pl": "pośladki",
   "en": "glutes"
+ },
+ {
+  "pl": "pośrednie (pomocnicze, po {h})",
+  "en": "indirect (secondary, {h} each)"
  },
  {
   "pl": "pow.",
@@ -4514,6 +4616,30 @@
   "en": "Now: {v}"
  },
  {
+  "pl": "tętno maks. {max} /min",
+  "en": "max heart rate {max} /min"
+ },
+ {
+  "pl": "tętno maksymalne {n} na minutę",
+  "en": "maximum heart rate {n} per minute"
+ },
+ {
+  "pl": "tętno śr. {avg} /min",
+  "en": "avg. heart rate {avg} /min"
+ },
+ {
+  "pl": "tętno śr. {avg} /min, maks. {max} /min",
+  "en": "avg. heart rate {avg} /min, max {max} /min"
+ },
+ {
+  "pl": "tętno średnie {avg} na minutę, maksymalne {max}",
+  "en": "average heart rate {avg} per minute, maximum {max}"
+ },
+ {
+  "pl": "tętno średnie {n} na minutę",
+  "en": "average heart rate {n} per minute"
+ },
+ {
   "pl": "Timer odlicza w aplikacji, a na koniec przerwy przychodzi powiadomienie — także przy zablokowanym telefonie.",
   "en": "The timer counts down in the app and a notification arrives at the end of rest — even when the phone is locked."
  },
@@ -4596,6 +4722,10 @@
  {
   "pl": "Trening z Twojego planu tygodnia. Otwórz aplikację, by zacząć.",
   "en": "Workout from your weekly plan. Open the app to start."
+ },
+ {
+  "pl": "Trening z zegarka w Apple Health zostanie — usuniesz go w aplikacji Zdrowie.",
+  "en": "The workout from your watch stays in Apple Health — delete it in the Health app."
  },
  {
   "pl": "Trening, którego nie zapisałeś na bieżąco. Ustaw termin i wybierz szablon — serie uzupełnisz w następnym kroku (wartości z ostatniego treningu przed tą datą).",
@@ -4994,6 +5124,10 @@
   "en": "In a deload week “Start” and “Repeat last” offer “Fewer sets”: {less}; weights and template unchanged."
  },
  {
+  "pl": "w tym tygodniu",
+  "en": "this week"
+ },
+ {
   "pl": "W zakładce Plan stuknij sesję, potem „Edytuj” — zmiany zapisuje „Zapisz”, „Anuluj” je odrzuca.",
   "en": "In the Plan tab, tap a session, then “Edit” — “Save” saves the changes, “Cancel” discards them."
  },
@@ -5386,6 +5520,10 @@
   "en": "From a template"
  },
  {
+  "pl": "Z zegarka",
+  "en": "From your watch"
+ },
+ {
   "pl": "Za dużo ciężarów (najwyżej {n}).",
   "en": "Too many weights (at most {n})."
  },
@@ -5660,6 +5798,10 @@
  {
   "pl": "zginacze biodra",
   "en": "hip flexors"
+ },
+ {
+  "pl": "Zgodę cofniesz w aplikacji Zdrowie: profil → Aplikacje → {app}.",
+  "en": "You can revoke access in the Health app: profile → Apps → {app}."
  },
  {
   "pl": "Zgody na powiadomienia jeszcze nie ma — „Sprawdź zgodę na powiadomienia” poprosi o nią.",

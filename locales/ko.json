@@ -1,5 +1,5 @@
 {
   "CFBundleDisplayName": "Training",
-  "NSHealthShareUsageDescription": "Training은 건강 데이터를 읽지 않습니다 — iOS는 HealthKit 권한에 이 설명을 요구합니다.",
-  "NSHealthUpdateUsageDescription": "Training은 완료한 운동(근력 운동과 유산소)을 Apple Health에 저장합니다."
+  "NSHealthShareUsageDescription": "Training은 Apple Health(건강 앱)에서 걸음 수, 운동(워치 기록 포함), 심박수, 활동 에너지를 읽어 플랜과 세션 옆에 표시합니다. 데이터는 iPhone에 남으며 앱은 이를 외부로 보내거나 백업에 저장하지 않습니다.",
+  "NSHealthUpdateUsageDescription": "Training은 완료한 운동(근력 운동과 유산소)을 Apple Health에 저장합니다. 워치가 같은 운동을 기록하면 앱은 자체 사본을 삭제합니다."
 }

@@ -8,7 +8,7 @@ import { periodTitle } from '@/lib/period';
 import { WEEKLY_SETS_MARK } from '@/lib/stats';
 import { fmtVol, wu } from '@/lib/units';
 import { MuscleMap } from '@/components/MuscleMap';
-import { MuscleRows, SegBar, SegLegend, setBars, volumeBars } from '@/components/ProgressBars';
+import { MuscleRows, IndirectLegend, SegBar, SegLegend, setBars, volumeBars } from '@/components/ProgressBars';
 import { useTheme, F, TEXT_SCALE_MAX } from '@/lib/theme';
 import { t, tp, locale, lang } from '@/lib/i18n';
 
@@ -77,6 +77,7 @@ export default function ProgressionScreen() {
         <MuscleRows rows={volumeBars(c.rows)} metric="volume" />
         <H2 style={{ marginTop: 10 }}>{t('Serie per partia')}</H2>
         <MuscleRows rows={setBars(c.setRows, kind !== 'month')} metric="sets" />
+        {c.setRows.some(r => r.doneSplit.indirectSets + r.plannedSplit.indirectSets > 0) ? <IndirectLegend /> : null}
         {kind !== 'month' ? <Muted style={{ fontSize: 12, marginTop: 2 }}>{t('Kreska = cel serii na partię w tygodniu: {n} automatycznie albo Twoja liczba z Ustawień.', { n: WEEKLY_SETS_MARK })}</Muted> : null}
         <Muted style={{ fontSize: 12, marginTop: 8 }}>{kind === 'week'
           ? t('Zaplanowane = szablony z planu na pozostałe dni tygodnia, policzone z wartości w szablonie (brakujące — z „Poprzednio”). To rachunek z Twojego planu, nie prognoza. Partia główna liczy 1 serię, pomocnicza 0,5.')

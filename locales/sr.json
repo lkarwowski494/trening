@@ -1,5 +1,5 @@
 {
   "CFBundleDisplayName": "Тренинг",
-  "NSHealthShareUsageDescription": "Тренинг не чита здравствене податке — iOS захтева овај опис за дозволу HealthKit.",
-  "NSHealthUpdateUsageDescription": "Тренинг чува завршене тренинге — снаге и кардио — у Apple Health."
+  "NSHealthShareUsageDescription": "Тренинг чита из Apple Health кораке, тренинге (и са сата), пулс и активну енергију да би их приказао у плану и уз сесије. Подаци остају на телефону — апликација их никуда не шаље и не чува у резервним копијама.",
+  "NSHealthUpdateUsageDescription": "Тренинг чува завршене тренинге — снагу и кардио — у Apple Health. Када исти тренинг сачува сат, апликација брише своју копију."
 }

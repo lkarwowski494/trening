@@ -73,8 +73,8 @@
  "Pierwsza wersja testowa: treningi z szablonów, historia, postępy i rekordy, kopia zapasowa w Plikach.": "Primera versión de prueba: entrenamientos desde plantillas, historial, progreso y récords, respaldo en Archivos.",
  "Piłka gimnastyczna (fitball)": "Pelota de estabilidad (fitball)",
  "Po dopisaniu zakresu byłoby ciężarów: {c} — najwyżej {n}. Zwiększ krok albo usuń odznaczone.": "Con el rango agregado habría {c} pesos, como máximo {n}. Aumenta el paso o elimina los desmarcados.",
- "Poniżej {n} serii tygodniowo: {list}. Pomoże więcej sesji, dłuższy czas albo więcej sprzętu w miejscu.": "Menos de {n} series a la semana: {list}. Ayudan más sesiones, sesiones más largas o más equipo en el lugar.",
- "Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.": "Menos de {n} series a la semana: {list}. Es el umbral mínimo recomendado para ganar músculo; las series se agregan en las plantillas.",
+ "Poniżej celu serii tygodniowo: {list}. Pomoże więcej sesji, dłuższy czas albo więcej sprzętu w miejscu.": "Por debajo del objetivo semanal de series: {list}. Ayudan más sesiones, sesiones más largas o más equipo en el lugar.",
+ "Poniżej celu serii tygodniowo: {list}. Cel ustawisz w Ustawieniach (automatycznie dolny próg zalecany przy budowie masy); serie dodasz w szablonach.": "Por debajo del objetivo semanal de series: {list}. El objetivo se fija en Configuración (automáticamente, el umbral mínimo recomendado para ganar músculo); las series se agregan en las plantillas.",
  "Poprzednich danych nie dało się odczytać": "No se pudieron leer tus datos anteriores",
  "Przypomnienie o treningu z planu": "Recordatorio de entrenamientos planificados",
  "RIR wpisuje się w zakresie 0–{max}; więcej niż {max} powtórzeń w zapasie zapisuje się jako „lekko” (RPE {light}), bo poniżej RPE {min} skala opisuje wysiłek słowami, a nie powtórzeniami w zapasie (Helms i in. 2016).": "El RIR se ingresa de 0 a {max}; más de {max} repeticiones en reserva se guardan como «ligero» (RPE {light}), porque por debajo de RPE {min} la escala describe el esfuerzo con palabras, no con repeticiones en reserva (Helms et al. 2016).",
@@ -168,5 +168,15 @@
  "Po kilku tygodniach treningu z rzędu zakładka Plan podpowie „Zaplanuj deload od …”.": "Después de varias semanas de entrenamiento seguidas, la pestaña Plan sugerirá «Planificar descarga desde el …».",
  "Stuknij dzień w zakładce Plan: „Przesuń albo pomiń” pokazuje możliwości — przesunięcie planu o 1 dzień, tylko tego treningu, zamianę albo wolne.": "Toca un día en la pestaña Plan: «Mover o saltar» muestra las opciones — mover el plan 1 día, solo este entrenamiento, intercambiar o descanso.",
  "Ciężar z innego sprzętu — nie liczy się do rekordów, dopóki go tu nie wpiszesz.": "Peso de otro equipo — no cuenta para los récords hasta que lo ingreses aquí.",
- "Cel serii na partię w tygodniu ustawisz w Ustawieniach (Automatycznie albo Ręcznie); paski w „Ten tydzień” i w Postępach mierzą do tego celu, a partia pomocnicza ćwiczenia liczy się za pół serii.": "El objetivo semanal de series por grupo muscular se fija en Configuración (Automático o Manual); las barras de «Esta semana» y de Progreso se miden contra ese objetivo, y el grupo muscular secundario de un ejercicio cuenta como media serie."
+ "Cel serii na partię w tygodniu ustawisz w Ustawieniach (Automatycznie albo Ręcznie); paski w „Ten tydzień” i w Postępach mierzą do tego celu, a partia pomocnicza ćwiczenia liczy się za pół serii.": "El objetivo semanal de series por grupo muscular se fija en Configuración (Automático o Manual); las barras de «Esta semana» y de Progreso se miden contra ese objetivo, y el grupo muscular secundario de un ejercicio cuenta como media serie.",
+ "Kroki, inne aktywności oraz tętno i kcal z zegarka — tylko do wglądu, dane zostają w Zdrowiu.": "Pasos, otras actividades y frecuencia cardíaca y kcal del reloj: solo para consultar, los datos se quedan en Salud.",
+ "tętno maks. {max} /min": "frec. cardíaca máx. {max} /min",
+ "tętno maksymalne {n} na minutę": "frecuencia cardíaca máxima {n} por minuto",
+ "tętno śr. {avg} /min": "frec. cardíaca media {avg} /min",
+ "tętno śr. {avg} /min, maks. {max} /min": "frec. cardíaca media {avg} /min, máx. {max} /min",
+ "tętno średnie {avg} na minutę, maksymalne {max}": "frecuencia cardíaca media {avg} por minuto, máxima {max}",
+ "tętno średnie {n} na minutę": "frecuencia cardíaca media {n} por minuto",
+ "Masa: serie na partię w tygodniu do celu z Ustawień (automatycznie {m}), {a}–{b} powtórzeń (w domu {c}–{d}), zwykle {r1}–{r2} powtórzenia w zapasie.": "Masa: series por grupo muscular a la semana hasta el objetivo de Configuración (automáticamente {m}), {a}–{b} repeticiones (en casa {c}–{d}), normalmente {r1}–{r2} repeticiones en reserva.",
+ "Odczyt z Apple Health (włączasz w Ustawieniach): kroki i inne aktywności w panelu dnia, średnia kroków pod „Ten tydzień” oraz tętno i kcal z zegarka przy sesji.": "Lectura de Apple Health (se activa en Configuración): pasos y otras actividades en el panel del día, promedio de pasos bajo «Esta semana» y frecuencia cardiaca y kcal del reloj en el entrenamiento.",
+ "Generator uwzględnia Twój cel serii z Ustawień.": "El generador tiene en cuenta tu objetivo de series de Configuración."
 }

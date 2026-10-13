@@ -24,6 +24,7 @@ import * as gen from '@/lib/generator';
 import * as draft from '@/lib/draft';
 import * as tplsync from '@/lib/tplsync';
 import * as health from '@/lib/health';
+import * as hq from '@/lib/healthQuery';
 import { buildBackup, parseBackup } from '@/lib/backup';
 import { implsAt, EQUIPMENT, LOCATION_PRESETS } from '@/lib/equipment';
 import { CABLES } from '@/lib/catalog.generated';
@@ -33,6 +34,7 @@ import { weekProgress, planPct, dayMark, monthWeeks } from '@/lib/motif';
 import { periodRange } from '@/lib/period';
 import { weekTiles, weekStrip } from '@/lib/dashboard';
 import { fresh } from './helpers';
+import { hkWorld, watchStrength, OWN_BUNDLE, WATCH_BUNDLE, type FakeWorkout } from './health-world';
 
 jest.setTimeout(600000);
 
@@ -69,6 +71,8 @@ const KINDS = {
   draft: 3, saveAsTpl: 1, tplArchive: 1, deload: 1, pause: 2, skipEx: 1, health: 1, planRename: 1, planDel: 1, planSwap: 1, planSuggest: 4, planReset: 1, libScope: 1,
   /* 12.10.2026: ręczny cel serii na partię w tygodniu (Ustawienia) */
   setGoal: 1,
+  /* 0.16.0 (odczyt z Apple Health, docs/29 rozdz. 12 pkt 5): zegarek zapisuje trening (nakłada się na sesję albo stoi sam), zmiana zgody na odczyt, ponowienie zapisu z dopasowaniem, usuwanie własnej kopii */
+  healthWatch: 8,
   /* 09.10.2026 (decyzje właściciela, B): „Plan z moich szablonów” (zapis jako nowy / aktywny) i „+ Nowy szablon” z przypisaniem do dnia po „Zapisz” */
   ownPlan: 1, tplNewAssign: 1,
 } as const;
@@ -103,7 +107,7 @@ const seqArb = fc.array(fc.oneof({ weight: 3, arbitrary: actArb.map(x => [x]) },
 const TPL_EDIT = new Set<K>(['tplNew', 'tplRename', 'tplDup', 'tplDel', 'tplAddItem', 'tplRmItem', 'tplMove', 'tplLink', 'tplUnlink', 'tplAddRow', 'tplRmRow', 'tplKind', 'tplRow', 'tplBand', 'tplLoc', 'rememberAlt', 'rememberRest', 'gen', 'tplNote', 'draft', 'saveAsTpl', 'tplArchive', 'tplNewAssign']);
 const ACTIVE_FROZEN = new Set<K>([...[...TPL_EDIT].filter(k => k !== 'rememberRest'), 'delW', 'past', 'edit', 'unit', 'lang', 'newEx', 'metric', 'bandAssist', 'delEx', 'restoreEx', 'addLoc', 'setMain', 'dupLoc', 'renameLoc', 'setBandColor', 'reload', 'roundtrip', 'migrate', 'stats', 'planDay', 'planDayOv', 'planShift', 'planMove', 'planNew', 'planActivate', 'bodyMass', 'draft', 'saveAsTpl', 'tplArchive', 'deload', 'health', 'planRename', 'planDel', 'planSwap', 'planSuggest', 'planReset', 'libScope', 'ownPlan', 'setGoal']);
 /** Audyt 0.10 A1/A7: działania, po których żaden miniony dzień nie może zmienić statusu (poza dniem, którego działanie dotyczy wprost). */
-const PAST_FROZEN = new Set<K>(['planDay', 'planDayOv', 'planShift', 'planMove', 'planNew', 'planActivate', 'tplDel', 'tplNew', 'tplDup', 'tplRename', 'tplArchive', 'draft', 'saveAsTpl', 'planRename', 'planDel', 'planSwap', 'planSuggest', 'planReset', 'deload', 'health', 'ownPlan', 'tplNewAssign']);
+const PAST_FROZEN = new Set<K>(['planDay', 'planDayOv', 'planShift', 'planMove', 'planNew', 'planActivate', 'tplDel', 'tplNew', 'tplDup', 'tplRename', 'tplArchive', 'draft', 'saveAsTpl', 'planRename', 'planDel', 'planSwap', 'planSuggest', 'planReset', 'deload', 'health', 'healthWatch', 'ownPlan', 'tplNewAssign']);
 
 /* ---------- pomocnicze ---------- */
 const J = (x: unknown) => JSON.stringify(x);
@@ -414,6 +418,22 @@ async function step(x: Act, m: Model, where: string) {
       ok(n === (st.settings.healthSync && okSave ? pend.length : 0), where, 'ponowienie: liczba zapisanych', { n, pend });
       for (const z of S().workouts) { ok(bare(z) === snapBare.get(z.id), where, 'zapis do Zdrowia zmienił trening poza znacznikami', z.id); ok(!(z.healthPending && z.healthUUID), where, 'znacznik „czeka” przy zapisanym w Zdrowiu', z); m.hist.set(z.id, J(z)); }
       HK.saveWorkoutSample = async () => { throw new Error('HealthKit'); }; hit('health'); break; }
+    case 'healthWatch': { /* 0.16.0: odczyt ze Zdrowia nie zmienia niczego w danych poza znacznikami zapisu; usuwane są tylko WŁASNE kopie (filtr id + własne źródło); jeden trening z zegarka ↔ najwyżej jedna sesja */
+      const W = hkWorld({ workouts: hwKeep }); const done = st.workouts.filter(z => z.finishedAt != null && !store.noClock(z)); const k = x.a % 4; let added = 0;
+      const bare = (z: Workout) => { const c = JSON.parse(J(z)); delete c.healthUUID; delete c.healthPending; delete c.updatedAt; return J(c); }; const snapBare = new Map(S().workouts.map(z => [z.id, bare(z)] as const));
+      try {
+        if (k === 0) { const z = pick(done, x.b); const start = z ? z.startedAt + ((x.c % 21) - 10) * 60e3 : Date.now() - 864e5 * (1 + (x.c % 5)); W.workouts.push(watchStrength(start, 20 + (x.c % 80), x.c % 7 === 0 && z ? { syncId: z.id } : {})); }
+        else if (k === 1) { if (x.b % 3) st.settings.healthRead = true; else delete st.settings.healthRead; store.saveCfg(); }
+        else if (k === 2) { st.settings.healthSync = true; if (x.b % 4) st.settings.healthRead = true; else delete st.settings.healthRead; store.saveCfg(); const z = pick(st.workouts.filter(q => !q.healthUUID && q.finishedAt && !store.noClock(q)), x.a); if (z) { z.healthPending = true; store.save(z); } await health.retryHealth(); }
+        else { st.settings.healthSync = true; st.settings.healthRead = true; store.saveCfg(); const z = pick(done.filter(q => q.healthUUID !== 'watch'), x.b);
+          if (z && x.c % 2 === 0) { if (!z.healthUUID) await health.saveWorkout(z); W.workouts.push(watchStrength(z.startedAt - 1e3, 30)); added++; } /* własna kopia, potem zegarek się synchronizuje */ await health.reconcileWatchCopies(); }
+        for (const [type, f] of W.calls.delete) { ok(type === 'HKWorkoutTypeIdentifier' && f.metadata?.withMetadataKey === 'HKMetadataKeySyncIdentifier' && typeof f.metadata?.value === 'string' && !!f.metadata.value && f.sources?.length === 1 && f.sources[0].bundleIdentifier === OWN_BUNDLE, where, 'usuwanie ze Zdrowia bez id sesji ORAZ własnego źródła', f); }
+        ok(W.workouts.filter(q => q.bundle === WATCH_BUNDLE).length === hwKeep.filter(q => q.bundle === WATCH_BUNDLE).length + (k === 0 ? 1 : 0) + added, where, 'zniknął wpis zegarka (usunięto cudzy wpis)');
+        for (const z of S().workouts) { ok(bare(z) === snapBare.get(z.id), where, 'odczyt / zapis Zdrowia zmienił trening poza znacznikami', z.id); ok(!(z.healthPending && z.healthUUID), where, 'znacznik „czeka” przy zapisanym w Zdrowiu', z); m.hist.set(z.id, J(z)); }
+        const mt = await hq.matchesFor(done); if (mt) { const v = [...mt.values()]; ok(new Set(v).size === v.length, where, 'jeden trening z zegarka przypisany do dwóch sesji', [...mt]); }
+        ok(!J(S()).includes(WATCH_BUNDLE) && !J(S()).includes('avgBpm'), where, 'wartości ze Zdrowia w stanie aplikacji'); hit('healthWatch'); if (W.calls.delete.length) hit('healthDelete');
+      } finally { hwKeep = W.workouts; Object.values(W.spies).forEach(sp => sp.mockRestore()); }
+      break; }
     case 'planRename': case 'planDel': { const p = pick(plan.savedPlans(), x.a); if (!p) break; if (x.t === 'planDel') { plan.deletePlan(p.id); ok(!plan.savedPlans().some(q => q.id === p.id), where, 'usunięcie planu'); }
       else { plan.renamePlan(p.id, NAMES[x.b % NAMES.length], p.name); const q = plan.savedPlans().find(z => z.id === p.id)!; ok(!!q.name || !p.name, where, 'pusta nazwa planu zamiast poprzedniej', { p, q }); }
       hit(x.t); break; }
@@ -621,8 +641,9 @@ const PROLOGUE: Act[] = [
 /** Miejsca na start przebiegu (0 — bez miejsc, jak przed P-003; inaczej presety przez locations.addLocation). */
 const LOC_START: Act[][] = [[], [{ t: 'addLoc', a: 0, b: 0, c: 0, v: '' }], [{ t: 'addLoc', a: 0, b: 0, c: 0, v: '' }, { t: 'addLoc', a: 0, b: 1, c: 0, v: '' }], [{ t: 'addLoc', a: 0, b: 1, c: 0, v: '' }, { t: 'addLoc', a: 0, b: 2, c: 0, v: '' }, { t: 'tplLoc', a: 0, b: 1, c: 1, v: '' }]];
 
+let hwKeep: FakeWorkout[] = []; /* 0.16.0: treningi „w Zdrowiu” (zegarka i własne kopie) między krokami jednej sekwencji */
 async function runSeq(acts: Act[], locStart: number) {
-  await fresh(); edit.__resetDrafts(); draft.__resetObjDrafts(); store.setTimerState(blankTimer());
+  hwKeep = []; await fresh(); edit.__resetDrafts(); draft.__resetObjDrafts(); store.setTimerState(blankTimer());
   const m: Model = { tpl: '', hist: new Map() }; snap(m);
   const pro = [...PROLOGUE, ...LOC_START[locStart % LOC_START.length]]; const seq = [...pro, ...acts];
   for (let i = 0; i < seq.length; i++) { const where = `krok ${i - pro.length}: ${J(seq[i])}`; await step(seq[i], m, where); light(m, where); }
@@ -641,7 +662,7 @@ describe('macierz niezmienników — losowe sekwencje działań na prawdziwym AP
     }), { numRuns: RUNS, seed: SEED });
     if (process.env.MATRIX_COVERAGE) console.log(J(ran)); // eslint-disable-line no-console
     /* pokrycie: kluczowe ścieżki naprawdę się wykonały (inaczej niezmienniki byłyby puste) */
-    if (RUNS >= 50 && !process.env.MATRIX_SEED) /* kontrola pokrycia tylko dla stałego ziarna — losowe może nie wylosować rzadkiej akcji */ for (const k of ['startTpl', 'finish', 'tick', 'swap', 'split', 'undoSwap', 'pastCommit', 'editCommit', 'draftSwap', 'delExArchive', 'delExHard', 'reload', 'roundtrip', 'addLoc', 'setLoc', 'tplAddRow', 'tplRmRow', 'tplKind', 'tplDup', 'repeat', 'unit', 'lang', 'rememberAlt', 'rememberRest', 'gen', 'tplNote', 'draftCancel', 'draftSave', 'draftFxCancel', 'draftFxSave', 'saveAsTpl', 'tplArchive', 'deload', 'pause', 'resume', 'skipEx', 'health', 'planSwap', 'planSuggest', 'planReset', 'tplUpdate', 'ownPlan', 'tplNewAssign', 'setGoal'])
+    if (RUNS >= 50 && !process.env.MATRIX_SEED) /* kontrola pokrycia tylko dla stałego ziarna — losowe może nie wylosować rzadkiej akcji */ for (const k of ['startTpl', 'finish', 'tick', 'swap', 'split', 'undoSwap', 'pastCommit', 'editCommit', 'draftSwap', 'delExArchive', 'delExHard', 'reload', 'roundtrip', 'addLoc', 'setLoc', 'tplAddRow', 'tplRmRow', 'tplKind', 'tplDup', 'repeat', 'unit', 'lang', 'rememberAlt', 'rememberRest', 'gen', 'tplNote', 'draftCancel', 'draftSave', 'draftFxCancel', 'draftFxSave', 'saveAsTpl', 'tplArchive', 'deload', 'pause', 'resume', 'skipEx', 'health', 'planSwap', 'planSuggest', 'planReset', 'tplUpdate', 'ownPlan', 'tplNewAssign', 'setGoal', 'healthWatch'])
       expect([k, (ran[k] ?? 0) > 0]).toEqual([k, true]);
   });
 });

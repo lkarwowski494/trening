@@ -1,5 +1,5 @@
 {
   "CFBundleDisplayName": "Trening",
-  "NSHealthShareUsageDescription": "Trening leser ikke helsedata — iOS krever denne beskrivelsen for HealthKit-tillatelsen.",
-  "NSHealthUpdateUsageDescription": "Trening lagrer fullførte økter – styrke og kondisjon – i Apple Health."
+  "NSHealthShareUsageDescription": "Trening leser skritt, treningsøkter (også fra klokken), puls og aktiv energi fra Apple Health for å vise dem i planen og ved øktene dine. Dataene blir på iPhone — appen sender dem ikke noe sted og lagrer dem ikke i sikkerhetskopier.",
+  "NSHealthUpdateUsageDescription": "Trening lagrer fullførte økter — styrke og cardio — i Apple Health. Når klokken din registrerer den samme økten, sletter appen sin egen kopi."
 }

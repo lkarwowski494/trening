@@ -1,5 +1,5 @@
 {
   "CFBundleDisplayName": "Training",
-  "NSHealthShareUsageDescription": "Training tidak membaca data kesehatan — iOS mewajibkan keterangan ini untuk izin HealthKit.",
-  "NSHealthUpdateUsageDescription": "Training menyimpan latihan yang telah selesai — kekuatan dan kardio — ke Apple Health."
+  "NSHealthShareUsageDescription": "Training membaca data kesehatan dari Apple Health: langkah, latihan (termasuk dari jam tangan), detak jantung, dan energi aktif, untuk ditampilkan di rencana dan di samping sesi. Data tetap di iPhone — app tidak mengirimnya ke mana pun dan tidak menyimpannya di cadangan.",
+  "NSHealthUpdateUsageDescription": "Training menyimpan latihan yang selesai — kekuatan dan kardio — ke Apple Health. Saat jam tangan mencatat latihan yang sama, app menghapus salinannya sendiri."
 }

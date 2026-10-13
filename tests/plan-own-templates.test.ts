@@ -101,7 +101,7 @@ describe('obciążenie tygodnia i ostrzeżenia — te same co w generatorze', ()
     expect(r.rare.length).toBeGreaterThan(0); for (const m of r.rare) expect(r.freq[m]).toBeLessThan(MIN_DAYS);
     expect(ownWarnings(r).find(w => w.kind === 'rare')!.text).toMatch(/^Rzadziej niż 2 dni w tygodniu: /);
     const low = MAJOR.filter(m => (r.weeklySets[m] ?? 0) < WEEKLY_SETS_MARK && !r.missing.includes(m)); expect(low.length).toBeGreaterThan(0);
-    expect(ownWarnings(r).find(w => w.kind === 'below')!.text).toBe(`Poniżej 10 serii tygodniowo: ${low.join(', ')}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.`);
+    expect(ownWarnings(r).find(w => w.kind === 'below')!.text).toBe(`Poniżej celu serii tygodniowo: ${low.map(m => `${m} (${String(r.weeklySets[m]).replace('.', ',')}/${r.goals[m]})`).join(', ')}. Cel ustawisz w Ustawieniach (automatycznie dolny próg zalecany przy budowie masy); serie dodasz w szablonach.`);
     const full = ownPlan({ templateIds: [t[0].id, t[2].id], sessions: 6 })!; expect(full.rare).toEqual([]); expect(ownWarnings(full).some(w => w.kind === 'rare')).toBe(false);
   });
   test('ćwiczenie cardio w szablonie nie liczy się do partii (jak sesja cardio generatora); weekLoad = jedna funkcja z generatorem', () => {

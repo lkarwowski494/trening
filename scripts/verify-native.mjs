@@ -43,6 +43,12 @@ try {
   const langs = readdirSync(root + 'lib/locales').filter(f => /^[a-z]{2}\.json$/.test(f)).length + 2; /* + pl, en */
   ok(lproj.length >= langs, `InfoPlist.strings: ${lproj.length} języków, oczekiwano ${langs}`);
   for (const d of lproj) { const t = readFileSync(root + `ios/Trening/Supporting/${d}/InfoPlist.strings`, 'utf8'); ok(/NSHealthUpdateUsageDescription = "[^"]{10,}"/.test(t) && /NSHealthShareUsageDescription = "[^"]{10,}"/.test(t), `InfoPlist.strings ${d}: brak lub zły format`); }
+  /* 0.16.0 (odczyt z Apple Health, docs/29 rozdz. 8 i 15 pkt 9): aplikacja czyta Zdrowie, więc żaden język nie może zostać przy opisie sprzed 0.16 („nie odczytuje danych zdrowotnych”,
+   * zapis bez wzmianki o usuwaniu kopii) — teksty sprzed zmiany: tests/fixtures/health-usage-pre016.json; polski i angielski dodatkowo bez zdania „nie odczytuje” / „does not read” */
+  { const stale = JSON.parse(readFileSync(root + 'tests/fixtures/health-usage-pre016.json', 'utf8')); const val = (t, k) => (t.match(new RegExp(`${k} = "((?:[^"\\\\]|\\\\.)*)"`)) || [])[1]?.replace(/\\(.)/g, '$1');
+    for (const d of lproj) { const code = d.replace(/\.lproj$/, ''); const t = readFileSync(root + `ios/Trening/Supporting/${d}/InfoPlist.strings`, 'utf8'); const sh = val(t, 'NSHealthShareUsageDescription'), up = val(t, 'NSHealthUpdateUsageDescription');
+      ok(!stale[code] || (sh !== stale[code].share && up !== stale[code].update), `InfoPlist.strings ${d}: opis uprawnienia HealthKit sprzed 0.16 (aplikacja czyta Zdrowie — zaktualizuj tłumaczenie w locales/${code}.json)`);
+      if (code === 'pl' || code === 'en') ok(!/nie odczytuje|does not read|doesn't read/i.test(sh ?? '') && /kroki|steps/i.test(sh ?? ''), `InfoPlist.strings ${d}: opis odczytu Zdrowia nieaktualny`); } }
   const auto = execSync('npx expo-modules-autolinking resolve -p apple --json', { cwd: root }).toString();
   ok(/"podName":"RestActivity"/.test(auto.replace(/\s/g, '')), 'autolinking: moduł RestActivity nie jest linkowany (Live Activity byłoby martwe)');
   /* audyt 0.10 NAT-07: martwy moduł ExtensionStorage (@bacons/apple-targets, App Group widżetu wycofanego 07.10) poza aplikacją; ekran startowy z wariantem ciemnym */

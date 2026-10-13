@@ -2,7 +2,7 @@
   "expo": {
     "name": "Trening",
     "slug": "trening",
-    "version": "0.15.0",
+    "version": "0.16.0",
     "scheme": "trening",
     "orientation": "portrait",
     "userInterfaceStyle": "automatic",
@@ -83,8 +83,8 @@
       [
         "@kingstinct/react-native-healthkit",
         {
-          "NSHealthShareUsageDescription": "Trening nie odczytuje danych zdrowotnych — iOS wymaga tego opisu przy uprawnieniu HealthKit.",
-          "NSHealthUpdateUsageDescription": "Trening zapisuje zakończone treningi — siłowe i cardio — do Apple Health.",
+          "NSHealthShareUsageDescription": "Trening odczytuje z Apple Health kroki, treningi (także z zegarka), tętno i aktywne kalorie, żeby pokazać je w planie i przy sesjach. Dane zostają w telefonie — aplikacja ich nie wysyła ani nie zapisuje w kopii.",
+          "NSHealthUpdateUsageDescription": "Trening zapisuje zakończone treningi — siłowe i cardio — do Apple Health. Gdy ten sam trening zapisze zegarek, aplikacja usuwa swoją kopię.",
           "background": false
         }
       ],

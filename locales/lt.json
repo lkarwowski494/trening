@@ -1,5 +1,5 @@
 {
   "CFBundleDisplayName": "Treniruotė",
-  "NSHealthShareUsageDescription": "Treniruotė neskaito sveikatos duomenų — iOS reikalauja šio aprašo HealthKit leidimui.",
-  "NSHealthUpdateUsageDescription": "Treniruotė įrašo baigtas treniruotes — jėgos ir kardio — į Apple Health."
+  "NSHealthShareUsageDescription": "Treniruotė skaito iš Apple Health žingsnius, treniruotes (taip pat iš laikrodžio), pulsą ir aktyviąją energiją, kad parodytų juos plane ir prie treniruočių. Duomenys lieka telefone — programa jų niekur nesiunčia ir neįtraukia į atsargines kopijas.",
+  "NSHealthUpdateUsageDescription": "Treniruotė išsaugo baigtas treniruotes — jėgos ir kardio — Apple Health. Kai tą pačią treniruotę įrašo laikrodis, programa ištrina savo kopiją."
 }

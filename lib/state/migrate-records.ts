@@ -177,6 +177,7 @@ export const fixWorkout = (raw: any, owner: string, w: any) => {
     const l = idOf(w.locationId);
     if (l) w.locationId = l; else delete w.locationId;
   } /* P-003: miejsce zostaje także po usunięciu miejsca („(usunięte miejsce)”) */
+  if (w.live !== true) delete w.live; /* 0.16.0 (P11 B): znacznik treningu na żywo — tylko true */
   if (w.deload !== true) delete w.deload; /* audyt 0.10 (D1+): znacznik treningu deload — tylko true */
   if (w.healthPending !== true || w.healthUUID || w === raw.active) delete w.healthPending; /* J2 (fala 2): tylko zakończony, niezapisany w Zdrowiu */
   {

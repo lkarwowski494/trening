@@ -93,7 +93,7 @@ const EN_WORDS = /\b(the|and|with|your|you|of|for|this|that|is|are|will|not|from
 const PL_WORDS = /\b(nie|jest|albo|oraz|przy|trening|treningu|seria|serii|szablon|ćwiczenie|ciężar|przerwa|dodaj|usuń|zapisz)\b/i;
 /** Tłumaczenie identyczne z angielskim — tylko terminy siłowni używane w tych językach bez tłumaczenia i symbole (lista minimalna). */
 const SAME_AS_EN = new Set([
-  '{k}: {v}', '↑ {label} {value} ({delta})', '{n} km', '{n} m', 'e1RM', 'max ±', 'OK', 'GHD', 'GHD (glute-ham developer)', 'glute-ham raise', 'circus bell', 'drop set', '+ drop set', 'Drop set (D)',
+  '{k}: {v}', '↑ {label} {value} ({delta})', 'Apple Health', 'Apple Health…' /* nazwa produktu Apple (0.16.0) */, '{n} km', '{n} m', 'e1RM', 'max ±', 'OK', 'GHD', 'GHD (glute-ham developer)', 'glute-ham raise', 'circus bell', 'drop set', '+ drop set', 'Drop set (D)',
   'superset', 'Deload', 'core', 'kettlebell', 'Kettlebell', 'kettlebell: {v}', 'landmine', 'T-bar', 'trap bar', 'hack squat', 'Hack squat', 'pendulum squat', 'reverse hyper',
   'Strongman', 'tempo', 'Tempo', 'keg', 'Keg', 'pec deck', 'Pec deck', 'yoke', 'Yoke', 'Log bar', 'log bar', 'rickshaw', 'Rickshaw', 'Hotel', 'Folder', 'Diet', 'T-bar row',
   'Cable crossover (two adjustable pulleys)', 'treadmill', 'Treadmill', 'Leg extension', 'Leg curl', 'Seated cable row', 'Lat pulldown', 'lat pulldown', 'leg press', 'Leg press',

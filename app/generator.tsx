@@ -7,7 +7,7 @@ import { DayPicker, daysOk } from '@/components/DayPicker';
 import { Screen, Field, Chip, Muted, Txt, H2, Btn, SectionTitle, SwitchRow } from '@/components/ui';
 import { getState, useTick, exById, fmtDur } from '@/lib/store';
 import {
-  generate, genProposal, saveGenerated, replaceable, previewWarnings, genFolder, goalLabel, GOALS, GEN_SESSIONS, GEN_MINUTES, MAJOR, WARMUP_MIN, SET_WORK_SEC, SETS_PER_EX, ACSM_MIN_SETS,
+  generate, genProposal, weeklySetsList, saveGenerated, replaceable, previewWarnings, genFolder, goalLabel, GOALS, GEN_SESSIONS, GEN_MINUTES, WARMUP_MIN, SET_WORK_SEC, SETS_PER_EX, ACSM_MIN_SETS,
   MIN_EXERCISES, CUT_CARDIO_FROM, cardioCount, cardioSwitch, genCount, setsFor, REPS, REST, HEAVY_PCT, RIR, RIR_ACSM, MIN_DAYS, SECONDARY_SHARE, WHO_MODERATE, WHO_VIGOROUS,
   GENERAL_SETS_RANGE, GENERAL_LIFT_MAX, GENERAL_CARDIO_FROM, type GenInput,
 } from '@/lib/generator';
@@ -56,7 +56,7 @@ function NewTemplatesPlan({ header }: { header: React.ReactNode }) {
    * „Ogólny” przy 4–6 dniach: przełącznik „Dni cardio w planie” (domyślnie wyłączony) — dni powyżej GENERAL_LIFT_MAX to cardio */
   const nDays = genCount(inp); const cardioN = cardioCount(inp.goal, nDays, inp.cardio); const sets = setsFor(inp.goal); const general = inp.goal === 'general';
   const goalNote = inp.goal === 'strength' ? t('Siła: bój główny na początku, {s} × {a}–{b} powtórzeń (ciężko, ok. {p}% maksimum i więcej), pozostałe ćwiczenia {s} × {c}–{d}.', { s: SETS_PER_EX, a: REPS.heavy[0], b: REPS.heavy[1], p: HEAVY_PCT, c: REPS.strength[0], d: REPS.strength[1] })
-    : inp.goal === 'hypertrophy' ? t('Masa: co najmniej {m} serii na partię w tygodniu, {a}–{b} powtórzeń (w domu {c}–{d}), zwykle {r1}–{r2} powtórzenia w zapasie.', { m: WEEKLY_SETS_MARK, a: REPS.gym[0], b: REPS.gym[1], c: REPS.home[0], d: REPS.home[1], r1: RIR[0], r2: RIR[1] })
+    : inp.goal === 'hypertrophy' ? t('Masa: serie na partię w tygodniu do celu z Ustawień (automatycznie {m}), {a}–{b} powtórzeń (w domu {c}–{d}), zwykle {r1}–{r2} powtórzenia w zapasie.', { m: WEEKLY_SETS_MARK, a: REPS.gym[0], b: REPS.gym[1], c: REPS.home[0], d: REPS.home[1], r1: RIR[0], r2: RIR[1] })
       : general ? t('Ogólny (dla zdrowia i sprawności): {s} serie na ćwiczenie, {a}–{b} powtórzeń (w domu {c}–{d}), do chwili, gdy kolejne powtórzenie byłoby trudne. WHO 2020 zaleca ćwiczenia wzmacniające wszystkie główne partie co najmniej {n} dni w tygodniu.', { s: sets, a: REPS.gym[0], b: REPS.gym[1], c: REPS.home[0], d: REPS.home[1], n: MIN_DAYS })
         : cardioN ? t('Redukcja: trening jak na masę (chroni mięśnie) i jedna sesja umiarkowanego cardio.')
           : t('Redukcja: trening jak na masę (chroni mięśnie); sesja cardio w planie od {k} dni w tygodniu.', { k: CUT_CARDIO_FROM });
@@ -137,7 +137,7 @@ function NewTemplatesPlan({ header }: { header: React.ReactNode }) {
             <Muted key={it.exerciseId} style={{ fontSize: 13 }}>{glue(it.targetSec ? t('{ex} — {n} min, umiarkowane tempo', { ex: exName(e), n: Math.round(Number(it.targetSec) / 60) }) : t('{ex} — {s} × {a}–{b}, przerwa {r}', { ex: exName(e), s: it.sets, a: it.repMin ?? '', b: it.repMax ?? '', r: fmtDur(it.restSec) })) /* A11-19: „8–12” bez złamania */}</Muted>); })
             : <Muted style={{ fontSize: 13 }}>{t('Brak ćwiczeń dostępnych w tym miejscu.')}</Muted>}
         </View>))}
-      <Muted style={{ fontSize: 13 }}>{t('Serie na partię w tygodniu (pomocnicza = {h} serii — uproszczenie, jedno źródło): {list}', { h: fmtNum(SECONDARY_SHARE, 1), list: MAJOR.map(m => `${t(m)} ${fmtNum(r.weeklySets[m] ?? 0, 1)}`).join(', ') })}</Muted>
+      <Muted style={{ fontSize: 13 }}>{t('Serie na partię w tygodniu (pomocnicza = {h} serii — uproszczenie, jedno źródło): {list}', { h: fmtNum(SECONDARY_SHARE, 1), list: weeklySetsList(r, inp.goal === 'hypertrophy' || inp.goal === 'cut') })}</Muted>
       {warn.filter(w => w.kind !== 'unloaded' && w.kind !== 'oneday' /* pod celem */).map(w => <Txt key={w.kind} style={{ fontSize: 13, marginTop: 6 }}>{w.text}</Txt>)}
       {inp.goal === 'cut' && !cardioN ? <Muted style={{ fontSize: 13, marginTop: 6 }}>{t('Cardio poza planem: sesja cardio jest w planie od {k} dni w tygodniu, przy mniejszej liczbie wszystkie dni są siłowe. Zalecenie WHO: co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.', { k: CUT_CARDIO_FROM, a: WHO_MODERATE[0], b: WHO_MODERATE[1], c: WHO_VIGOROUS[0], d: WHO_VIGOROUS[1] })}</Muted> : null}
       {(inp.goal === 'cut' && cardioN) || general ? <Muted style={{ fontSize: 13, marginTop: 6 }}>{t('Cardio w planie: {n} min tygodniowo. Zalecenie WHO: co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.', { n: r.cardioMin, a: WHO_MODERATE[0], b: WHO_MODERATE[1], c: WHO_VIGOROUS[0], d: WHO_VIGOROUS[1] })}</Muted> : null}</> : null}

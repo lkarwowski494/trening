@@ -1,0 +1,55 @@
+# Odczyt z Apple Health (0.16.0, docs/29 rozdz. 12 pkt 9): Ustawienia pokazują przełącznik „Show data from Apple Health” z opisem, domyślnie wyłączony; przy wyłączonym odczycie
+# ani panel dnia w Planie, ani szczegóły sesji, ani „This week” nie pokazują nic z Apple Health (ekran jak przed 0.16). Na symulatorze CI nie ma danych Zdrowia ani sterowania nimi
+# (i nie obsługujemy systemowego arkusza zgody) — ścieżki z danymi: tests/health-*.test.ts(x) i lista ręczna dla właściciela na iPhonie z zegarkiem (docs/09, docs/29 rozdz. 12 pkt 9).
+#
+# Literały (EN z lib/i18n.en.ts):
+#   "Show data from Apple Health"   ← 'Pokazuj dane z Apple Health' (SwitchRow w app/more/settings.tsx)
+#   "Steps, other activities, .*"   ← opis przełącznika (accessibilityLabel zawiera nazwę, więc dopasowanie po opisie jest osobne)
+#   "You can revoke access .*"      ← notatka o cofnięciu zgody, tylko przy włączonym odczycie (testID health-read-note)
+#   "Apple Health.*" / "No data from Apple Health.*" ← linie odczytu (components/HealthLines.tsx) — przy wyłączonym odczycie nie ma żadnej
+#   "Set 1 done.*", "Skip", "Finish", "Finish workout\?", "Session", "Upper A" ← jak flow 05
+#   ".*today.*"                      ← komórka dzisiejszego dnia w kalendarzu Planu (etykieta VoiceOver: „{data}, today, {n} session”)
+appId: pl.lukasz.trening
+name: Odczyt z Apple Health — przełącznik i stan wyłączony
+---
+- launchApp:
+    clearState: true
+    permissions: { all: allow }
+- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+- runFlow: subflows/szablon-testowy.yaml
+- runFlow: subflows/start-szablonu.yaml
+- extendedWaitUntil: { visible: "Set 1 done.*", timeout: 30000 }
+- tapOn: { text: "Set 1 done.*", index: 0 }
+- extendedWaitUntil: { visible: "Skip", timeout: 30000 }
+- tapOn: "Skip"
+- assertNotVisible: "Skip"
+- tapOn: "Finish"
+- extendedWaitUntil: { visible: "Finish workout\\?", timeout: 30000 }
+- tapOn: { text: "Finish", below: "Finish workout\\?" }
+# --- Szczegóły sesji bez odczytu: żadnej linii „Apple Health” ---
+- extendedWaitUntil: { visible: "Session", timeout: 30000 }
+- assertVisible: "Upper A"
+- assertNotVisible: "Apple Health.*"
+- takeScreenshot: 96-sesja-bez-odczytu
+- tapOn: "Back"
+# --- „This week” na ekranie Trening bez linii Apple Health ---
+- tapOn: "Workout, tab.*"
+- extendedWaitUntil: { visible: "This week", timeout: 30000 }
+- assertNotVisible: "Apple Health.*"
+# --- Panel dnia w Planie bez bloku Apple Health ---
+- tapOn: "Plan, tab.*"
+- extendedWaitUntil: { visible: "Planning", timeout: 30000 }
+- tapOn: { text: ".*today.*", index: 0 }
+- extendedWaitUntil: { visible: "Done: Upper A", timeout: 15000 }
+- assertNotVisible: "Apple Health.*"
+- assertNotVisible: "No data from Apple Health.*"
+- takeScreenshot: 97-panel-dnia-bez-odczytu
+# --- Ustawienia: przełącznik i opis, bez notatki o cofnięciu zgody (odczyt wyłączony) ---
+- tapOn: "More, tab.*"
+- extendedWaitUntil: { visible: "Settings", timeout: 30000 }
+- tapOn: "Settings"
+- scrollUntilVisible: { element: "Show data from Apple Health", direction: DOWN, timeout: 60000, centerElement: true }
+- assertVisible: "Show data from Apple Health"
+- assertVisible: "Steps, other activities, .*"
+- assertNotVisible: "You can revoke access .*"
+- takeScreenshot: 98-ustawienia-odczyt-wylaczony

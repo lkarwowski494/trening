@@ -1,7 +1,6 @@
 /**
  * Wydanie 0.15.0 (docs/18): aktualizacja biblioteki Apple Health 8 → 16 (zapis treningów do Zdrowia bez zmian dla użytkownika), strona WWW w site/
- * (tylko repo), parafrazy wskazówek techniki w EN. Wersja projektu i bieżący wpis „Co nowego” (id '2026-10-13', data 12.10.2026, bez numeru buildu
- * do czasu wydania na TestFlight; numer dopisuje się po przebiegu). Wpis 0.14 jest historyczny (release-0.14.test.tsx).
+ * (tylko repo), parafrazy wskazówek techniki w EN. Wpis „Co nowego” (id '2026-10-13', data 12.10.2026, build 1012) jest historyczny od 0.16 — bieżący wpis i wersja projektu: release-0.16.test.tsx.
  */
 import { WHATS_NEW } from '@/lib/whatsnew';
 import { LANGS, applyLang, tIn } from '@/lib/i18n';
@@ -14,15 +13,14 @@ const A = 'Aktualizacja współpracy z Apple Health — zapis treningów działa
 const B = 'Poprawione sformułowania części wskazówek techniki.';
 
 describe('wydanie 0.15.0', () => {
-  test('app.json, package.json i package-lock.json (projekt) — 0.15.0', () => {
+  test('app.json, package.json i package-lock.json (projekt) — wersja bieżąca (od 0.16: release-0.16.test.tsx), 0.15.0 było wydane', () => {
     const lock = J('package-lock.json');
-    expect([J('app.json').expo.version, J('package.json').version, lock.version, lock.packages[''].version]).toEqual(['0.15.0', '0.15.0', '0.15.0', '0.15.0']);
+    expect([J('app.json').expo.version, J('package.json').version, lock.version, lock.packages[''].version]).toEqual(['0.16.0', '0.16.0', '0.16.0', '0.16.0']);
   });
-  test('najnowszy wpis = 0.15 (id 2026-10-13, data 2026-10-12); jeśli ma build, to nowszy niż 1010; pod nim 0.14 (2026-10-12, build 1010)', () => {
-    expect(WHATS_NEW[0]).toBe(E());
+  test('wpis 0.15 (id 2026-10-13, historyczny; bieżący 0.16: release-0.16.test.tsx), data 2026-10-12, build 1012 (TestFlight 38355743899; 1011 przepadł); pod nim 0.14 (2026-10-12, build 1010)', () => {
     const cur = E(); const prev = WHATS_NEW[WHATS_NEW.indexOf(cur) + 1];
     expect([cur.id, cur.date, prev.id]).toEqual(['2026-10-13', '2026-10-12', '2026-10-12']);
-    expect(cur.build === undefined || cur.build > 1010).toBe(true);
+    expect(cur.build).toBe(1012);
     expect(prev.build).toBe(1010);
   });
   test('wpis 0.15 po polsku: Apple Health i wskazówki techniki; 2–10 punktów, każdy kończy się kropką', () => {

@@ -44,8 +44,8 @@ describe('C2 / MER-02 / LOG-03: braki partii i dni w tygodniu — dla każdego c
     expect(screen.getByText(/^Brak ćwiczeń na: plecy, biceps(, \S+)*\. Przyda się: drążek(, \S+)*\.$/)).toBeTruthy(); /* podpowiedź z danych: sprzęt, który da ćwiczenia na brakujące partie */
     await tap(screen.getByText('Bez ograniczeń sprzętu')); await flushAll(5);
     expect(screen.queryByText(/^Brak ćwiczeń na:/)).toBeNull(); expect(screen.getByText(/^Rzadziej niż 2 dni w tygodniu: .*biceps \(1,5\).* \(dzień tylko z pracą pomocniczą = 0,5\)\.$/)).toBeTruthy();
-    expect(screen.queryByText(/^Poniżej 10 serii/)).toBeNull(); /* kreska serii (R2) tylko przy masie i redukcji */
-    await tap(screen.getByText('Masa')); await flushAll(5); expect(screen.getByText(/^Poniżej 10 serii tygodniowo: /)).toBeTruthy();
+    expect(screen.queryByText(/^Poniżej celu serii/)).toBeNull(); /* kreska serii (R2) tylko przy masie i redukcji */
+    await tap(screen.getByText('Masa')); await flushAll(5); expect(screen.getByText(/^Poniżej celu serii tygodniowo: /)).toBeTruthy();
   });
 });
 

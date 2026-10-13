@@ -22,6 +22,7 @@ const newWorkout = (templateId: string | null, templateName: string, locPref?: s
   const w: Workout = { ...base(st.ownerId), loggedBy: st.ownerId, sessionMode: 'solo', healthUUID: null, templateId, templateName, startedAt: Date.now(),
       finishedAt: null, note: '', exercises: [] };
   w.tzOffsetMin = tzOffsetAt(w.startedAt); /* J3 */
+  w.live = true; /* 0.16.0 (P11 B): start na żywo — jedyne miejsce, które ustawia znacznik (trening wstecz i import CSV tworzą Workout osobno, bez niego) */
   const loc = startLocationId(locPref);
   if (loc) w.locationId = loc;
   return w;

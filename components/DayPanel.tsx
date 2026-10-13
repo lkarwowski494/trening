@@ -8,6 +8,7 @@ import { plannedOn, isChanged, setDayPlan, resetDay, addDays, dayKeyOf, suggest,
 import { askReminderPermission } from '@/lib/planReminder';
 import { t, locale, lang } from '@/lib/i18n';
 import { startTemplate } from '@/lib/start';
+import { DayHealth } from '@/components/HealthLines';
 
 /*
  * Panel wybranego dnia w Kalendarzu (priorytet właściciela 08.10.2026): co jest zaplanowane i co z tym zrobić.
@@ -75,6 +76,7 @@ export function DayPanel({ day }: { day: string }) {
     <View testID="day-panel" style={{ marginBottom: 10 }}>
       <H2>{longDay(day)}</H2>
       <View style={{ gap: 2 }}>{lines}</View>
+      <DayHealth day={day} />{/* 0.16.0 (docs/29 5.5): Apple Health — kroki i inne aktywności dnia, tylko do wglądu */}
       <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6, marginTop: 8 }}>
         {primary.map(a => <React.Fragment key={a.key}>{a.el}</React.Fragment>)}
         {extra.length ? <Btn small kind="ghost" title={more ? t('Mniej opcji') : t('Więcej opcji')} accessibilityLabel={t('Więcej opcji')} accessibilityHint={t('Pozostałe akcje dla tego dnia.')} onPress={() => setMore(v => !v)} /> : null}

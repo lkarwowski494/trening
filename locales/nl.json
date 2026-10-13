@@ -1,5 +1,5 @@
 {
   "CFBundleDisplayName": "Training",
-  "NSHealthShareUsageDescription": "Training leest geen gezondheidsgegevens — iOS vereist deze beschrijving voor de HealthKit-toestemming.",
-  "NSHealthUpdateUsageDescription": "Training bewaart afgeronde trainingen – kracht en cardio – in Apple Health."
+  "NSHealthShareUsageDescription": "Training leest stappen, trainingen (ook van je horloge), hartslag en actieve energie uit Apple Health om ze te tonen in je plan en bij je sessies. De gegevens blijven op je iPhone — de app verstuurt ze nergens naartoe en bewaart ze niet in back-ups.",
+  "NSHealthUpdateUsageDescription": "Training bewaart afgeronde trainingen — kracht en cardio — in Apple Health. Wanneer je horloge dezelfde training vastlegt, verwijdert de app zijn eigen kopie."
 }

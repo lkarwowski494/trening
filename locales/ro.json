@@ -1,5 +1,5 @@
 {
   "CFBundleDisplayName": "Training",
-  "NSHealthShareUsageDescription": "Training nu citește date de sănătate — iOS cere această descriere pentru permisiunea HealthKit.",
-  "NSHealthUpdateUsageDescription": "Training salvează antrenamentele încheiate — de forță și cardio — în Apple Health."
+  "NSHealthShareUsageDescription": "Training citește din Apple Health pașii, antrenamentele (inclusiv cele de la ceas), pulsul și energia activă, ca să le afișeze în plan și lângă sesiuni. Datele rămân pe iPhone — aplicația nu le trimite nicăieri și nu le salvează în copii de rezervă.",
+  "NSHealthUpdateUsageDescription": "Training salvează antrenamentele încheiate — de forță și cardio — în Apple Health. Când ceasul înregistrează același antrenament, aplicația își șterge propria copie."
 }
