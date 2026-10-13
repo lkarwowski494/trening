@@ -1,5 +1,6 @@
 {
   "CFBundleDisplayName": "Training",
   "NSHealthShareUsageDescription": "Training citește din Apple Health pașii, antrenamentele (inclusiv cele de la ceas), pulsul și energia activă, ca să le afișeze în plan și lângă sesiuni. Datele rămân pe iPhone — aplicația nu le trimite nicăieri și nu le salvează în copii de rezervă.",
-  "NSHealthUpdateUsageDescription": "Training salvează antrenamentele încheiate — de forță și cardio — în Apple Health. Când ceasul înregistrează același antrenament, aplicația își șterge propria copie."
+  "NSHealthUpdateUsageDescription": "Training salvează antrenamentele încheiate — de forță și cardio — în Apple Health. Când ceasul înregistrează același antrenament, aplicația își șterge propria copie.",
+  "NSBluetoothAlwaysUsageDescription": "Training se conectează prin Bluetooth la ceasul tău sport, ca să afișeze pe el exercițiul curent și să primească confirmările seriilor. Datele rămân doar între telefon și ceas."
 }

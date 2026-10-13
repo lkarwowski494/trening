@@ -608,6 +608,10 @@
   "en": "No similar exercises at this place — expand “Other”."
  },
  {
+  "pl": "Brak połączenia z telefonem",
+  "en": "No connection to the phone"
+ },
+ {
   "pl": "Brak pomiarów.",
   "en": "No measurements."
  },
@@ -2681,6 +2685,10 @@
   "en": "nothing more to do"
  },
  {
+  "pl": "Nic więcej do zrobienia",
+  "en": "Nothing more to do"
+ },
+ {
   "pl": "Nic więcej do zrobienia — możesz zakończyć trening.",
   "en": "Nothing more to do — you can finish the workout."
  },
@@ -3581,6 +3589,10 @@
   "en": "Measurements"
  },
  {
+  "pl": "Pominąć ćwiczenie?",
+  "en": "Skip this exercise?"
+ },
+ {
   "pl": "Pominięcie ćwiczenia przerwie pomiar — ten czas się nie zapisze.",
   "en": "Skipping the exercise stops the timing — this time won’t be saved."
  },
@@ -3599,6 +3611,10 @@
  {
   "pl": "Pomiń",
   "en": "Skip"
+ },
+ {
+  "pl": "Pomiń ćwiczenie",
+  "en": "Skip exercise"
  },
  {
   "pl": "Pomiń dziś",
@@ -4982,6 +4998,10 @@
   "en": "The workout from your watch stays in Apple Health — delete it in the Health app."
  },
  {
+  "pl": "Trening zakończony",
+  "en": "Workout finished"
+ },
+ {
   "pl": "Trening zapisał się sam",
   "en": "Workout saved automatically"
  },
@@ -5859,6 +5879,10 @@
   "en": "Start your free month"
  },
  {
+  "pl": "Zacznij trening w aplikacji na telefonie",
+  "en": "Start a workout in the app on your phone"
+ },
+ {
   "pl": "Zaczynasz od tej wersji — poniżej zmiany dla osób, które korzystały z poprzednich. Na start przyda się przewodnik.",
   "en": "You’re starting with this version — below are changes for people who used earlier ones. The guide is a better place to start."
  },
@@ -5913,6 +5937,10 @@
  {
   "pl": "Zakresy powtórzeń (masa {a}–{b}, w domu i bez obciążenia {c}–{d}; przy sile dodatkowe {e}–{f}) to uproszczenie: mięśnie rosną przy szerokim zakresie ciężarów, gdy serie są blisko upadku (ACSM, przeglądy badań).",
   "en": "Rep ranges (muscle {a}–{b}, at home and without external load {c}–{d}; for strength other exercises {e}–{f}) are a simplification: muscles grow across a wide range of loads when sets are close to failure (ACSM, research reviews)."
+ },
+ {
+  "pl": "Zaktualizuj aplikację na zegarku",
+  "en": "Update the app on your watch"
  },
  {
   "pl": "Zakupy są przypisane do konta Apple. Treningi przywrócisz z kopii zapasowej.",
@@ -6213,6 +6241,10 @@
  {
   "pl": "zrobione",
   "en": "done"
+ },
+ {
+  "pl": "Zrobione inaczej niż w planie",
+  "en": "Done differently than planned"
  },
  {
   "pl": "zrobione: {name}",

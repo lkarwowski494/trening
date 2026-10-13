@@ -51,9 +51,9 @@ test('iOS zna wszystkie języki aplikacji: CFBundleLocalizations i opisy uprawni
   expect(Object.keys(app.locales).sort()).toEqual([...LANGS].sort());
   for (const l of LANGS) {
     const f = JSON.parse(fs.readFileSync(path.join(__dirname, '..', app.locales[l]), 'utf8'));
-    expect([l, Object.keys(f).sort()]).toEqual([l, ['CFBundleDisplayName', 'NSHealthShareUsageDescription', 'NSHealthUpdateUsageDescription']]);
+    expect([l, Object.keys(f).sort()]).toEqual([l, ['CFBundleDisplayName', 'NSBluetoothAlwaysUsageDescription', 'NSHealthShareUsageDescription', 'NSHealthUpdateUsageDescription']]); /* 0.20: Bluetooth do zegarka */
     expect(f.CFBundleDisplayName).toBe(APP_NAME[l]);
-    expect([l, f.NSHealthShareUsageDescription.includes(APP_NAME[l]), f.NSHealthUpdateUsageDescription.includes(APP_NAME[l])]).toEqual([l, true, true]);
+    expect([l, f.NSHealthShareUsageDescription.includes(APP_NAME[l]), f.NSHealthUpdateUsageDescription.includes(APP_NAME[l]), f.NSBluetoothAlwaysUsageDescription.includes(APP_NAME[l])]).toEqual([l, true, true, true]);
   }
 });
 

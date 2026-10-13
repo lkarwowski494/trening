@@ -1,5 +1,6 @@
 {
   "CFBundleDisplayName": "Training",
   "NSHealthShareUsageDescription": "Training đọc dữ liệu sức khỏe từ Apple Health: bước chân, buổi tập (cả từ đồng hồ), nhịp tim và năng lượng hoạt động, để hiển thị trong kế hoạch và bên cạnh các buổi tập của bạn. Dữ liệu vẫn nằm trên iPhone — ứng dụng không gửi đi đâu và không lưu vào bản sao lưu.",
-  "NSHealthUpdateUsageDescription": "Training lưu các buổi tập đã hoàn thành — sức mạnh và cardio — vào Apple Health. Khi đồng hồ ghi cùng buổi tập đó, ứng dụng xóa bản sao của chính nó."
+  "NSHealthUpdateUsageDescription": "Training lưu các buổi tập đã hoàn thành — sức mạnh và cardio — vào Apple Health. Khi đồng hồ ghi cùng buổi tập đó, ứng dụng xóa bản sao của chính nó.",
+  "NSBluetoothAlwaysUsageDescription": "Training kết nối qua Bluetooth với đồng hồ thể thao của bạn để hiển thị bài tập hiện tại trên đó và nhận xác nhận hiệp tập. Dữ liệu chỉ nằm giữa điện thoại và đồng hồ."
 }

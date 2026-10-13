@@ -1,5 +1,6 @@
 {
   "CFBundleDisplayName": "Training",
   "NSHealthShareUsageDescription": "Training legge da Apple Health i passi, gli allenamenti (anche quelli dell’orologio), la frequenza cardiaca e l’energia attiva per mostrarli nel tuo piano e accanto alle tue sessioni. I dati restano sull’iPhone: l’app non li invia da nessuna parte e non li include nei backup.",
-  "NSHealthUpdateUsageDescription": "Training salva in Apple Health gli allenamenti completati (forza e cardio). Quando l’orologio registra lo stesso allenamento, l’app elimina la propria copia."
+  "NSHealthUpdateUsageDescription": "Training salva in Apple Health gli allenamenti completati (forza e cardio). Quando l’orologio registra lo stesso allenamento, l’app elimina la propria copia.",
+  "NSBluetoothAlwaysUsageDescription": "Training si collega via Bluetooth al tuo orologio sportivo per mostrarvi l’esercizio in corso e ricevere le conferme delle serie. I dati restano solo tra telefono e orologio."
 }

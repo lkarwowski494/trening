@@ -1,5 +1,6 @@
 {
   "CFBundleDisplayName": "Trening",
   "NSHealthShareUsageDescription": "Trening čita iz Apple Healtha korake, treninge (i sa sata), puls i aktivnu energiju kako bi ih prikazao u planu i uz sesije. Podaci ostaju na telefonu — aplikacija ih nikamo ne šalje niti sprema u sigurnosne kopije.",
-  "NSHealthUpdateUsageDescription": "Trening sprema završene treninge — snagu i kardio — u Apple Health. Kad isti trening spremi sat, aplikacija briše svoju kopiju."
+  "NSHealthUpdateUsageDescription": "Trening sprema završene treninge — snagu i kardio — u Apple Health. Kad isti trening spremi sat, aplikacija briše svoju kopiju.",
+  "NSBluetoothAlwaysUsageDescription": "Trening se putem Bluetootha povezuje sa sportskim satom kako bi na njemu prikazivao trenutnu vježbu i primao potvrde serija. Podaci ostaju samo između telefona i sata."
 }

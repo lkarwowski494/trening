@@ -175,6 +175,10 @@ export const EN: Record<string, string> = {
   'Wyślij kopię': 'Send copy',
   'Po ukryciu komunikatu kopii nie da się już wysłać z aplikacji — najpierw ją wyślij, jeśli jest potrzebna.': 'After hiding this message the copy can no longer be sent from the app — send it first if you need it.',
   'Seria': 'Set',
+  /* 0.20: zegarek z Connect IQ — stałe etykiety zegarka (lib/watch/ciqWire.ts; reszta tekstu przychodzi z telefonu) */
+  'Zacznij trening w aplikacji na telefonie': 'Start a workout in the app on your phone', 'Brak połączenia z telefonem': 'No connection to the phone',
+  'Zaktualizuj aplikację na zegarku': 'Update the app on your watch', 'Trening zakończony': 'Workout finished', 'Nic więcej do zrobienia': 'Nothing more to do',
+  'Zrobione inaczej niż w planie': 'Done differently than planned', 'Pomiń ćwiczenie': 'Skip exercise', 'Pominąć ćwiczenie?': 'Skip this exercise?',
   'Przerwa': 'Rest',
   'usunięte ćwiczenie (w bieżącym treningu)': 'deleted exercise (in the current workout)',
   /* runda 75 */

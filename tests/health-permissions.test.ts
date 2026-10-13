@@ -16,7 +16,7 @@ const loc = (l: string) => J(`locales/${l}.json`);
 describe('opisy uprawnień: polski i angielski (napisane w tym wydaniu)', () => {
   test('app.json (plugin HealthKit) = locales/pl.json; zapis: nic nie zmienia się w kluczach pliku', () => {
     expect(hkOpts.NSHealthShareUsageDescription).toBe(loc('pl').NSHealthShareUsageDescription); expect(hkOpts.NSHealthUpdateUsageDescription).toBe(loc('pl').NSHealthUpdateUsageDescription); expect(hkOpts.background).toBe(false);
-    expect(Object.keys(loc('pl')).sort()).toEqual(['CFBundleDisplayName', 'NSHealthShareUsageDescription', 'NSHealthUpdateUsageDescription']);
+    expect(Object.keys(loc('pl')).sort()).toEqual(['CFBundleDisplayName', 'NSBluetoothAlwaysUsageDescription', 'NSHealthShareUsageDescription', 'NSHealthUpdateUsageDescription']); /* 0.20: zgoda Bluetooth do zegarka (docs/35); opisy HealthKit bez zmian */
   });
   test('PL: odczyt — kroki, treningi (także z zegarka), tętno, aktywne kalorie; po co; dane zostają w telefonie, bez wysyłania i kopii; bez „nie odczytuje”', () => {
     const t: string = loc('pl').NSHealthShareUsageDescription;

@@ -1,5 +1,6 @@
 {
   "CFBundleDisplayName": "Trening",
   "NSHealthShareUsageDescription": "Trening bere iz Apple Health korake, treninge (tudi z ure), srčni utrip in aktivno energijo, da jih prikaže v načrtu in ob treningih. Podatki ostanejo v telefonu — aplikacija jih nikamor ne pošilja in jih ne shranjuje v varnostne kopije.",
-  "NSHealthUpdateUsageDescription": "Trening shranjuje končane treninge — moč in kardio — v Apple Health. Ko isti trening shrani ura, aplikacija izbriše svojo kopijo."
+  "NSHealthUpdateUsageDescription": "Trening shranjuje končane treninge — moč in kardio — v Apple Health. Ko isti trening shrani ura, aplikacija izbriše svojo kopijo.",
+  "NSBluetoothAlwaysUsageDescription": "Trening se prek Bluetootha povezuje s športno uro, da na njej prikaže trenutno vajo in prejme potrditve serij. Podatki ostanejo samo med telefonom in uro."
 }

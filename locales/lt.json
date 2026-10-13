@@ -1,5 +1,6 @@
 {
   "CFBundleDisplayName": "Treniruotė",
   "NSHealthShareUsageDescription": "Treniruotė skaito iš Apple Health žingsnius, treniruotes (taip pat iš laikrodžio), pulsą ir aktyviąją energiją, kad parodytų juos plane ir prie treniruočių. Duomenys lieka telefone — programa jų niekur nesiunčia ir neįtraukia į atsargines kopijas.",
-  "NSHealthUpdateUsageDescription": "Treniruotė išsaugo baigtas treniruotes — jėgos ir kardio — Apple Health. Kai tą pačią treniruotę įrašo laikrodis, programa ištrina savo kopiją."
+  "NSHealthUpdateUsageDescription": "Treniruotė išsaugo baigtas treniruotes — jėgos ir kardio — Apple Health. Kai tą pačią treniruotę įrašo laikrodis, programa ištrina savo kopiją.",
+  "NSBluetoothAlwaysUsageDescription": "Treniruotė per Bluetooth jungiasi prie sportinio laikrodžio, kad jame rodytų dabartinį pratimą ir gautų serijų patvirtinimus. Duomenys lieka tik tarp telefono ir laikrodžio."
 }

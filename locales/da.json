@@ -1,5 +1,6 @@
 {
   "CFBundleDisplayName": "Træning",
   "NSHealthShareUsageDescription": "Træning læser skridt, træninger (også fra dit ur), puls og aktiv energi fra Apple Health for at vise dem i din plan og ved dine sessioner. Dataene bliver på din iPhone — appen sender dem ikke nogen steder hen og gemmer dem ikke i sikkerhedskopier.",
-  "NSHealthUpdateUsageDescription": "Træning gemmer afsluttede træninger — styrke og cardio — i Apple Health. Når dit ur registrerer den samme træning, sletter appen sin egen kopi."
+  "NSHealthUpdateUsageDescription": "Træning gemmer afsluttede træninger — styrke og cardio — i Apple Health. Når dit ur registrerer den samme træning, sletter appen sin egen kopi.",
+  "NSBluetoothAlwaysUsageDescription": "Træning opretter forbindelse via Bluetooth til dit sportsur for at vise den aktuelle øvelse på det og modtage bekræftelser af sæt. Dataene bliver kun mellem telefonen og uret."
 }

@@ -1,5 +1,6 @@
 {
   "CFBundleDisplayName": "Treino",
   "NSHealthShareUsageDescription": "O Treino lê do Apple Health os passos, os treinos (também os do relógio), a frequência cardíaca e a energia ativa para mostrá-los no seu plano e junto das sessões. Os dados ficam no iPhone — o app não os envia para lugar nenhum nem os salva em backups.",
-  "NSHealthUpdateUsageDescription": "O Treino salva os treinos terminados — de força e cardio — no Apple Health (app Saúde). Quando o relógio registra o mesmo treino, o app apague a própria cópia."
+  "NSHealthUpdateUsageDescription": "O Treino salva os treinos terminados — de força e cardio — no Apple Health (app Saúde). Quando o relógio registra o mesmo treino, o app apague a própria cópia.",
+  "NSBluetoothAlwaysUsageDescription": "O Treino se conecta por Bluetooth ao seu relógio esportivo para mostrar nele o exercício atual e receber as confirmações das séries. Os dados ficam apenas entre o celular e o relógio."
 }

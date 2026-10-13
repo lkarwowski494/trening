@@ -1,5 +1,6 @@
 {
   "CFBundleDisplayName": "Trening",
   "NSHealthShareUsageDescription": "Trening odczytuje z Apple Health kroki, treningi (także z zegarka), tętno i aktywne kalorie, żeby pokazać je w planie i przy sesjach. Dane zostają w telefonie — aplikacja ich nie wysyła ani nie zapisuje w kopii.",
-  "NSHealthUpdateUsageDescription": "Trening zapisuje zakończone treningi — siłowe i cardio — do Apple Health. Gdy ten sam trening zapisze zegarek, aplikacja usuwa swoją kopię."
+  "NSHealthUpdateUsageDescription": "Trening zapisuje zakończone treningi — siłowe i cardio — do Apple Health. Gdy ten sam trening zapisze zegarek, aplikacja usuwa swoją kopię.",
+  "NSBluetoothAlwaysUsageDescription": "Trening łączy się przez Bluetooth z zegarkiem sportowym, żeby pokazywać na nim bieżące ćwiczenie i odbierać potwierdzenia serii. Dane krążą tylko między telefonem a zegarkiem."
 }

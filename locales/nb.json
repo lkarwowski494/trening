@@ -1,5 +1,6 @@
 {
   "CFBundleDisplayName": "Trening",
   "NSHealthShareUsageDescription": "Trening leser skritt, treningsøkter (også fra klokken), puls og aktiv energi fra Apple Health for å vise dem i planen og ved øktene dine. Dataene blir på iPhone — appen sender dem ikke noe sted og lagrer dem ikke i sikkerhetskopier.",
-  "NSHealthUpdateUsageDescription": "Trening lagrer fullførte økter — styrke og cardio — i Apple Health. Når klokken din registrerer den samme økten, sletter appen sin egen kopi."
+  "NSHealthUpdateUsageDescription": "Trening lagrer fullførte økter — styrke og cardio — i Apple Health. Når klokken din registrerer den samme økten, sletter appen sin egen kopi.",
+  "NSBluetoothAlwaysUsageDescription": "Trening kobler til sportsklokken din via Bluetooth for å vise gjeldende øvelse på den og motta bekreftelser på sett. Dataene blir bare mellom telefonen og klokken."
 }

@@ -1,5 +1,6 @@
 {
   "CFBundleDisplayName": "Training",
   "NSHealthShareUsageDescription": "Training liest Schritte, Trainings (auch von deiner Uhr), Herzfrequenz und aktive Energie aus Apple Health, um sie in deinem Plan und bei deinen Einheiten anzuzeigen. Die Daten bleiben auf deinem iPhone — die App sendet sie nirgendwohin und speichert sie nicht in Backups.",
-  "NSHealthUpdateUsageDescription": "Training speichert abgeschlossene Trainings – Kraft und Cardio – in Apple Health. Wenn deine Uhr dasselbe Training aufzeichnet, löscht die App ihre eigene Kopie."
+  "NSHealthUpdateUsageDescription": "Training speichert abgeschlossene Trainings – Kraft und Cardio – in Apple Health. Wenn deine Uhr dasselbe Training aufzeichnet, löscht die App ihre eigene Kopie.",
+  "NSBluetoothAlwaysUsageDescription": "Training verbindet sich per Bluetooth mit deiner Sportuhr, um dort die aktuelle Übung anzuzeigen und Bestätigungen der Sätze zu empfangen. Die Daten bleiben nur zwischen Telefon und Uhr."
 }

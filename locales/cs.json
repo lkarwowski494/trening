@@ -1,5 +1,6 @@
 {
   "CFBundleDisplayName": "Trénink",
   "NSHealthShareUsageDescription": "Trénink čte z Apple Health kroky, tréninky (i z hodinek), tep a aktivní energii, aby je ukázal v plánu a u tréninků. Data zůstávají v telefonu — aplikace je nikam neposílá a neukládá do záloh.",
-  "NSHealthUpdateUsageDescription": "Trénink ukládá dokončené tréninky — silové i kardio — do Apple Health. Když stejný trénink uloží hodinky, aplikace svou kopii smaže."
+  "NSHealthUpdateUsageDescription": "Trénink ukládá dokončené tréninky — silové i kardio — do Apple Health. Když stejný trénink uloží hodinky, aplikace svou kopii smaže.",
+  "NSBluetoothAlwaysUsageDescription": "Trénink se přes Bluetooth připojuje k sportovním hodinkám, aby na nich ukazoval aktuální cvik a přijímal potvrzení sérií. Data zůstávají jen mezi telefonem a hodinkami."
 }

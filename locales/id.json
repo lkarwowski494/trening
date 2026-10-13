@@ -1,5 +1,6 @@
 {
   "CFBundleDisplayName": "Training",
   "NSHealthShareUsageDescription": "Training membaca data kesehatan dari Apple Health: langkah, latihan (termasuk dari jam tangan), detak jantung, dan energi aktif, untuk ditampilkan di rencana dan di samping sesi. Data tetap di iPhone — app tidak mengirimnya ke mana pun dan tidak menyimpannya di cadangan.",
-  "NSHealthUpdateUsageDescription": "Training menyimpan latihan yang selesai — kekuatan dan kardio — ke Apple Health. Saat jam tangan mencatat latihan yang sama, app menghapus salinannya sendiri."
+  "NSHealthUpdateUsageDescription": "Training menyimpan latihan yang selesai — kekuatan dan kardio — ke Apple Health. Saat jam tangan mencatat latihan yang sama, app menghapus salinannya sendiri.",
+  "NSBluetoothAlwaysUsageDescription": "Training terhubung lewat Bluetooth ke jam olahraga Anda untuk menampilkan gerakan saat ini di jam dan menerima konfirmasi set. Data hanya berpindah antara ponsel dan jam."
 }

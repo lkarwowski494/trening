@@ -1,5 +1,6 @@
 {
   "CFBundleDisplayName": "Training",
   "NSHealthShareUsageDescription": "A Training az Apple Healthből olvassa a lépéseket, az edzéseket (az óráról is), a pulzust és az aktív energiát, hogy megjelenítse őket a tervben és az edzések mellett. Az adatok a telefonon maradnak — az app nem küldi el őket sehová, és nem menti őket biztonsági másolatba.",
-  "NSHealthUpdateUsageDescription": "A Training az Apple Healthbe menti a befejezett edzéseket — erőt és kardiót. Ha ugyanazt az edzést az óra is rögzíti, az app törli a saját másolatát."
+  "NSHealthUpdateUsageDescription": "A Training az Apple Healthbe menti a befejezett edzéseket — erőt és kardiót. Ha ugyanazt az edzést az óra is rögzíti, az app törli a saját másolatát.",
+  "NSBluetoothAlwaysUsageDescription": "A Training Bluetooth-on csatlakozik a sportóráddal, hogy megjelenítse rajta az aktuális gyakorlatot, és fogadja a sorozatok visszaigazolását. Az adatok csak a telefon és az óra között maradnak."
 }
