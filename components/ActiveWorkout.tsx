@@ -6,7 +6,7 @@ import { useTheme, F, NUM_SCALE_MAX } from '@/lib/theme';
 import { Btn, Input, NumInput, Muted, useOnce, monoSafe } from '@/components/ui';
 import { TechniqueLink } from '@/components/ExerciseCues';
 import { effortLabel, effortField, effortIn, isPaused, workoutDurSec, pauseWorkout, resumeWorkout, progressionFor, skipExercise, unskipExercise, typeSetValue, setActiveLocation, lastActivity, staleSince, staleRef, staleKind, ackStale, useForegroundTick, bandA11y, clampName, loadLabelShort, getState, useTick, exById, prevOfActiveBlock, previousFor, canUndoSwap, undoSwap, pinnedImpl, rememberRest as storeRememberRest, canRememberAlt, rememberAlt, altHint, skipAlt, occurrence, occurrences, hintFor, isBW, reps, fmtDur, fmtSec, fmtTime, setSummary, roundRest, addSet, removeSet, removeSetById, removeExercise, finishWorkout, cancelWorkout, save, loadLabel, groupLabels, linkWithNext, unlink, cycleBand, findSet, shortBand, setHasValue, locationById, offListNote, liveBlockImpl, listLocFor, srcSetAt, usesBand, focusSet, isDeloadWeek, wallTs, workCount, workSetCount, REPS_MAX, REST_MAX } from '@/lib/store';
-import { restLabel, setLabel, nowParts, focusCounter, timedLabel } from '@/lib/live';
+import { restLabel, setLabel, nowParts, counterLabel, timedLabel } from '@/lib/live';
 import { availability, missingLabel } from '@/lib/equipment';
 import { EquipVisual } from '@/components/EquipVisual';
 import { SwipeRow, lastSetBlock } from '@/components/SwipeRow';
@@ -18,7 +18,7 @@ import { implLabel } from '@/lib/swap';
 import { SetBadge } from '@/components/SetBadge';
 import { locationLabel } from '@/lib/locations';
 import * as timer from '@/lib/timer';
-import { completeSet, finishTimedSet, isClosingSet } from '@/lib/setFlow';
+import { completeSet, finishTimedSet, isClosingSet, relabelRest } from '@/lib/setFlow';
 import { prMap } from '@/lib/stats';
 import { onWorkoutSaved } from '@/lib/backup';
 import { markJustFinished } from '@/lib/review-run';
@@ -111,7 +111,16 @@ export default function ActiveWorkout() {
     ]);
   };
   useEffect(() => { askStale(); }, [fg, minute]); // eslint-disable-line react-hooks/exhaustive-deps
+  /** 0.20 (decyzja właściciela 13.10.2026): przed „Zakończ” prośba o uzupełnienie serii odhaczonych na zegarku jako „zrobione inaczej niż w planie” (wzorzec potwierdzeń docs/32:
+   * „Anuluj” wraca do treningu, „Zakończ mimo to” zostawia wartości z planu). Rekord dla takich serii liczy się dopiero po uzupełnieniu. */
   const finish = () => {
+    if (finishing.current || asking.current) return;
+    const toFill = w.exercises.reduce((a, e) => a + e.sets.filter(x => x.done && x.toFill).length, 0);
+    if (toFill) { asking.current = true; Alert.alert(tr('Serie do uzupełnienia'), tr('Z zegarka oznaczono serie jako zrobione inaczej niż w planie: {n}. Uzupełnij powtórzenia i ciężar — rekord liczy się dopiero po uzupełnieniu.', { n: toFill }),
+      [{ ...cancelButton(), onPress: () => { asking.current = false; } }, { text: tr('Zakończ mimo to'), onPress: () => { asking.current = false; finishCore(); } }]); return; }
+    finishCore();
+  };
+  const finishCore = () => {
     if (finishing.current || asking.current) return; // runda 6: podwójne tapnięcie nie otwiera dwóch okien
     const ask = (title: string, msg: string, buttons: { text: string; style?: 'destructive' | 'cancel'; onPress?: () => void }[]) => { asking.current = true; Alert.alert(title, msg, buttons.map(b => ({ ...b, onPress: () => { asking.current = false; b.onPress?.(); } }))); };
     // Trwająca seria na czas liczy się jak odhaczona — zapisze się dopiero po „Zakończ”. Runda 5: tylko gdy ta seria
@@ -176,9 +185,7 @@ export default function ActiveWorkout() {
   );
 }
 
-/** Podpis TRWAJĄCEJ przerwy liczony od nowa dla serii, która ją uruchomiła (lib/live.ts restLabel) — po zamianie (E2 pkt 3.8), „Pomiń dziś”
- * i każdej innej zmianie treningu (audyt 0.10, LIVE-03/04). Bez przerwy albo bez tej serii — nic. */
-export function relabelRest() { const a = getState().active; const pos = timer.T.on ? findSet(timer.T.setId) : null; if (a && pos) { const r = restLabel(a, pos.ei, pos.si); timer.relabel(r.sub, r.last); } }
+export { relabelRest }; /* lib/setFlow.ts — wspólne z zegarkiem */
 /** E2 (docs/14 pkt 3.8): po zamianie albo cofnięciu zamiany — stoper usuniętej serii stop (jak „usuń”), przerwa trwa (seria, która ją uruchomiła,
  * zostaje w bloku A), a jej podpis — także na Live Activity — liczony od nowa dla serii, która ją uruchomiła. */
 export function afterSwap(goneSetIds: string[]) {
@@ -403,6 +410,10 @@ function ExerciseBlock({ w, e, ei, onDone, onStartSet, labels, prs }: { w: Worko
             </View>
             {!prevInline && p ? <Muted numberOfLines={1} style={{ fontSize: 12, marginLeft: W.idx + W.gap, marginTop: -4, marginBottom: 6 }}>{tr('Poprzednio')}: {prevTxt}</Muted> : null}
             {set.note ? <Muted style={{ fontSize: 12, marginLeft: W.idx + W.gap, marginTop: -4, marginBottom: 6 }}>{set.note}</Muted> : null}
+            {set.done && set.toFill ? <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginLeft: W.idx + W.gap, marginTop: -4, marginBottom: 6 }} testID={`tofill-${ei}-${si}`}>
+              <Muted accessibilityLabel={tr('Seria {n} do uzupełnienia — {ex}', { n: lbl, ex: nm })} style={{ fontSize: 12, color: t.danger /* 0.20: seria odhaczona na zegarku jako „zrobione inaczej” — znacznik słowem, nie samym kolorem */ }}>{tr('do uzupełnienia')}</Muted>
+              <Btn small kind="ghost" title={tr('Gotowe')} accessibilityLabel={tr('Seria {n} uzupełniona — {ex}', { n: lbl, ex: nm })} onPress={() => { delete set.toFill; save(st.active); }} />
+            </View> : null}
           </View>}</SwipeRow>
         );
       })}
@@ -457,8 +468,7 @@ function FocusCard({ w, onDone, onFinish, onStartSet, onCardY, onRestY }: { w: W
   const prev = prevOfActiveBlock(w, e); const p = hintFor(prev?.sets, e.sets, pos.si, ex);
   const vis = equipVisFor(w, e, set); const ghost = vis.some(v => v.kind !== 'noplates') ? [] : equipSlotFor(w, e, set); const minH = slot.key === set.id ? slot.h : 0; const resting = timer.T.on;
   /* Audyt 0.10 (UI-10 / LIVE-14, wariant A): „80 kg × 8” — jednostka przy ciężarze, ta sama treść dla VoiceOver; licznik bez drop setów */
-  const big = nowParts(ex, set); const bigTxt = `${big.num}${big.unit ? ' ' + big.unit : ''}${big.tail}`; const cnt = focusCounter(e, pos.si);
-  const counter = cnt.kind === 'warmup' ? tr('rozgrzewka') : cnt.kind === 'drop' ? tr('seria {n} z {all} · drop set', { n: cnt.n, all: cnt.all }) : tr('seria {n} z {all}', { n: cnt.n, all: cnt.all });
+  const big = nowParts(ex, set); const bigTxt = `${big.num}${big.unit ? ' ' + big.unit : ''}${big.tail}`; const counter = counterLabel(e, pos.si);
   const name = exName(ex); const ss = e.groupId ? `SS ${groupLabels(w.exercises)[e.groupId]} · ` : '';
   /* Audyt 0.10 (LIVE-06, wariant A): seria na czas bez trwającego pomiaru — duży „▶ Start”, pod nim mały „Odhacz bez pomiaru” (czas z pola serii) */
   const timedIdle = hasTime(m) && !(timer.S.on && timer.S.setId === set.id);
