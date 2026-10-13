@@ -202,5 +202,8 @@
  "Poniżej celu serii tygodniowo: {list}. Cel ustawisz w Ustawieniach (automatycznie dolny próg zalecany przy budowie masy); serie dodasz w szablonach.": "Por debajo del objetivo semanal de series: {list}. El objetivo se fija en Configuración (automáticamente, el umbral mínimo recomendado para ganar músculo); las series se agregan en las plantillas.",
  "Masa: serie na partię w tygodniu do celu z Ustawień (automatycznie {m}), {a}–{b} powtórzeń (w domu {c}–{d}), zwykle {r1}–{r2} powtórzenia w zapasie.": "Masa: series por grupo muscular a la semana hasta el objetivo de Configuración (automáticamente {m}), {a}–{b} repeticiones (en casa {c}–{d}), normalmente {r1}–{r2} repeticiones en reserva.",
  "Odczyt z Apple Health (włączasz w Ustawieniach): kroki i inne aktywności w panelu dnia, średnia kroków pod „Ten tydzień” oraz tętno i kcal z zegarka przy sesji.": "Lectura de Apple Health (se activa en Configuración): pasos y otras actividades en el panel del día, promedio de pasos bajo «Esta semana» y frecuencia cardiaca y kcal del reloj en el entrenamiento.",
- "Generator uwzględnia Twój cel serii z Ustawień.": "El generador tiene en cuenta tu objetivo de series de Configuración."
+ "Generator uwzględnia Twój cel serii z Ustawień.": "El generador tiene en cuenta tu objetivo de series de Configuración.",
+ "Miejsce trafi na listę miejsc (Ustawienia → Miejsca i sprzęt).": "El lugar se agregará a la lista de lugares (Configuración → Lugares y equipo).",
+ "Miejsce tylko na ten trening. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.": "Un lugar solo para este entrenamiento. Elige el equipo que tienes allí; no hace falta escribir pesos.",
+ "Miejsce na dni {a} – {b}. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.": "Un lugar para {a} – {b}. Elige el equipo que tienes allí; no hace falta escribir pesos."
 }

@@ -1559,5 +1559,22 @@
  "Spójniejsza obsługa w całej aplikacji: okna z „Anuluj” po lewej, „+” w nagłówkach list do dodawania oraz czytelniejsze komunikaty i opisy dla VoiceOver.": "Mer enhetlig hantering i hela appen: fönster med ”Avbryt” till vänster, ”+” i listrubrikerna för att lägga till samt tydligare meddelanden och beskrivningar för VoiceOver.",
  "Przycisk „Napisz do nas” w Więcej → O aplikacji.": "Knappen ”Skriv till oss” under Mer → Om appen.",
  "Dostosuj do miejsca: po zmianie miejsca na takie bez potrzebnego sprzętu aplikacja proponuje zamienniki ćwiczeń do przejrzenia — zmiany tylko w tym treningu.": "Anpassa till platsen: när du byter till en plats utan den utrustning som behövs föreslår appen ersättningsövningar att gå igenom – ändringarna gäller bara det här passet.",
- "W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.": "I fönstret kan du ändra ersättaren eller välja ”Ingen ändring” eller ”Hoppa över i dag”; ett genomfört byte ångrar du vid övningen."
+ "W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.": "I fönstret kan du ändra ersättaren eller välja ”Ingen ändring” eller ”Hoppa över i dag”; ett genomfört byte ångrar du vid övningen.",
+ "Inne miejsce (tylko dziś)…": "Annan plats (bara i dag)…",
+ "Inne miejsce": "Annan plats",
+ "Tylko dziś": "Bara i dag",
+ "Użyj": "Använd",
+ "Miejsce tylko na ten trening. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.": "En plats bara för det här passet. Välj utrustningen du har där – du behöver inte skriva in vikter.",
+ "Miejsce na dni {a} – {b}. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.": "En plats för {a} – {b}. Välj utrustningen du har där – du behöver inte skriva in vikter.",
+ "Zapisz jako miejsce": "Spara som plats",
+ "Miejsce trafi na listę miejsc (Ustawienia → Miejsca i sprzęt).": "Platsen läggs till i listan över platser (Inställningar → Platser och utrustning).",
+ "Gotowe zestawy": "Färdiga uppsättningar",
+ "📍 Miejsce na te dni": "📍 Plats för de här dagarna",
+ "Start treningu w tych dniach weźmie to miejsce przed miejscem szablonu, a okno „Dostosuj” zaproponuje zamiany. Nic nie zmienia się samo.": "När du startar ett pass de här dagarna används den här platsen före mallens plats, och fönstret ”Anpassa” föreslår byten. Inget ändras av sig självt.",
+ "Inne miejsce…": "Annan plats…",
+ "Od: {day}": "Från: {day}",
+ "Do: {day}": "Till: {day}",
+ "Ustaw miejsce": "Ange plats",
+ "Usuń miejsce": "Ta bort plats",
+ "Usuń miejsce: {a} – {b}": "Ta bort plats: {a} – {b}"
 }

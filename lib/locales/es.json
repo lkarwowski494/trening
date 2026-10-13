@@ -1559,5 +1559,22 @@
  "Spójniejsza obsługa w całej aplikacji: okna z „Anuluj” po lewej, „+” w nagłówkach list do dodawania oraz czytelniejsze komunikaty i opisy dla VoiceOver.": "Manejo más coherente en toda la app: ventanas con «Cancelar» a la izquierda, «+» en las cabeceras de las listas para añadir, y mensajes y descripciones de VoiceOver más claros.",
  "Przycisk „Napisz do nas” w Więcej → O aplikacji.": "Botón «Escríbenos» en Más → Acerca de.",
  "Dostosuj do miejsca: po zmianie miejsca na takie bez potrzebnego sprzętu aplikacja proponuje zamienniki ćwiczeń do przejrzenia — zmiany tylko w tym treningu.": "Adaptar al lugar: al cambiar a un lugar sin el equipo necesario, la app propone ejercicios sustitutos para que los revises; los cambios solo afectan a este entrenamiento.",
- "W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.": "En la ventana puedes cambiar el sustituto o elegir «Sin cambios» o «Saltar hoy»; un cambio aplicado se deshace en el propio ejercicio."
+ "W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.": "En la ventana puedes cambiar el sustituto o elegir «Sin cambios» o «Saltar hoy»; un cambio aplicado se deshace en el propio ejercicio.",
+ "Inne miejsce (tylko dziś)…": "Otro lugar (solo hoy)…",
+ "Inne miejsce": "Otro lugar",
+ "Tylko dziś": "Solo hoy",
+ "Użyj": "Usar",
+ "Miejsce tylko na ten trening. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.": "Un lugar solo para este entrenamiento. Elige el material que tienes allí; no hace falta escribir pesos.",
+ "Miejsce na dni {a} – {b}. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.": "Un lugar para {a} – {b}. Elige el material que tienes allí; no hace falta escribir pesos.",
+ "Zapisz jako miejsce": "Guardar como lugar",
+ "Miejsce trafi na listę miejsc (Ustawienia → Miejsca i sprzęt).": "El lugar se añadirá a la lista de lugares (Ajustes → Lugares y material).",
+ "Gotowe zestawy": "Conjuntos listos",
+ "📍 Miejsce na te dni": "📍 Lugar para estos días",
+ "Start treningu w tych dniach weźmie to miejsce przed miejscem szablonu, a okno „Dostosuj” zaproponuje zamiany. Nic nie zmienia się samo.": "Al empezar un entrenamiento en estos días se usará este lugar antes que el de la plantilla, y la ventana «Adaptar» propondrá cambios. Nada cambia por sí solo.",
+ "Inne miejsce…": "Otro lugar…",
+ "Od: {day}": "Desde: {day}",
+ "Do: {day}": "Hasta: {day}",
+ "Ustaw miejsce": "Fijar lugar",
+ "Usuń miejsce": "Quitar lugar",
+ "Usuń miejsce: {a} – {b}": "Quitar lugar: {a} – {b}"
 }

@@ -1559,5 +1559,22 @@
  "Spójniejsza obsługa w całej aplikacji: okna z „Anuluj” po lewej, „+” w nagłówkach list do dodawania oraz czytelniejsze komunikaty i opisy dla VoiceOver.": "Доследније руковање у целој апликацији: прозори са „Откажи“ са леве стране, „+“ у заглављима листа за додавање и јаснија обавештења и описи за VoiceOver.",
  "Przycisk „Napisz do nas” w Więcej → O aplikacji.": "Дугме „Пишите нам“ у Још → О апликацији.",
  "Dostosuj do miejsca: po zmianie miejsca na takie bez potrzebnego sprzętu aplikacja proponuje zamienniki ćwiczeń do przejrzenia — zmiany tylko w tym treningu.": "Прилагоди месту: када промениш место у такво без потребне опреме, апликација предлаже замене вежби на преглед — измене важе само за овај тренинг.",
- "W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.": "У прозору можеш да промениш замену или да одабереш „Без промене“ или „Прескочи данас“; примењену замену поништаваш код вежбе."
+ "W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.": "У прозору можеш да промениш замену или да одабереш „Без промене“ или „Прескочи данас“; примењену замену поништаваш код вежбе.",
+ "Inne miejsce (tylko dziś)…": "Друго место (само данас)…",
+ "Inne miejsce": "Друго место",
+ "Tylko dziś": "Само данас",
+ "Użyj": "Користи",
+ "Miejsce tylko na ten trening. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.": "Место само за овај тренинг. Изабери опрему коју тамо имаш — тегове не мораш да уносиш.",
+ "Miejsce na dni {a} – {b}. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.": "Место за {a} – {b}. Изабери опрему коју тамо имаш — тегове не мораш да уносиш.",
+ "Zapisz jako miejsce": "Сачувај као место",
+ "Miejsce trafi na listę miejsc (Ustawienia → Miejsca i sprzęt).": "Место ће бити додато на листу места (Подешавања → Места и опрема).",
+ "Gotowe zestawy": "Готови комплети",
+ "📍 Miejsce na te dni": "📍 Место за ове дане",
+ "Start treningu w tych dniach weźmie to miejsce przed miejscem szablonu, a okno „Dostosuj” zaproponuje zamiany. Nic nie zmienia się samo.": "Почетак тренинга тих дана користиће ово место пре места шаблона, а прозор „Прилагоди” предложиће замене. Ништа се не мења само од себе.",
+ "Inne miejsce…": "Друго место…",
+ "Od: {day}": "Од: {day}",
+ "Do: {day}": "До: {day}",
+ "Ustaw miejsce": "Постави место",
+ "Usuń miejsce": "Уклони место",
+ "Usuń miejsce: {a} – {b}": "Уклони место: {a} – {b}"
 }

@@ -1559,5 +1559,22 @@
  "Spójniejsza obsługa w całej aplikacji: okna z „Anuluj” po lewej, „+” w nagłówkach list do dodawania oraz czytelniejsze komunikaty i opisy dla VoiceOver.": "Penggunaan yang lebih konsisten di seluruh aplikasi: jendela dengan “Batal” di kiri, “+” di header daftar untuk menambah, serta pesan dan deskripsi VoiceOver yang lebih jelas.",
  "Przycisk „Napisz do nas” w Więcej → O aplikacji.": "Tombol “Tulis kepada kami” di Lainnya → Tentang.",
  "Dostosuj do miejsca: po zmianie miejsca na takie bez potrzebnego sprzętu aplikacja proponuje zamienniki ćwiczeń do przejrzenia — zmiany tylko w tym treningu.": "Sesuaikan dengan tempat: saat Anda pindah ke tempat tanpa peralatan yang diperlukan, aplikasi menyarankan latihan pengganti untuk Anda tinjau — perubahan hanya berlaku untuk latihan ini.",
- "W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.": "Di jendela, Anda bisa mengubah penggantinya atau memilih “Tanpa perubahan” atau “Lewati hari ini”; penggantian yang sudah diterapkan bisa dibatalkan pada latihannya."
+ "W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.": "Di jendela, Anda bisa mengubah penggantinya atau memilih “Tanpa perubahan” atau “Lewati hari ini”; penggantian yang sudah diterapkan bisa dibatalkan pada latihannya.",
+ "Inne miejsce (tylko dziś)…": "Tempat lain (hari ini saja)…",
+ "Inne miejsce": "Tempat lain",
+ "Tylko dziś": "Hari ini saja",
+ "Użyj": "Gunakan",
+ "Miejsce tylko na ten trening. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.": "Tempat hanya untuk latihan ini. Pilih alat yang ada di sana — beban tidak perlu diisi.",
+ "Miejsce na dni {a} – {b}. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.": "Tempat untuk {a} – {b}. Pilih alat yang ada di sana — beban tidak perlu diisi.",
+ "Zapisz jako miejsce": "Simpan sebagai tempat",
+ "Miejsce trafi na listę miejsc (Ustawienia → Miejsca i sprzęt).": "Tempat akan ditambahkan ke daftar tempat (Pengaturan → Tempat dan alat).",
+ "Gotowe zestawy": "Paket siap pakai",
+ "📍 Miejsce na te dni": "📍 Tempat untuk hari-hari ini",
+ "Start treningu w tych dniach weźmie to miejsce przed miejscem szablonu, a okno „Dostosuj” zaproponuje zamiany. Nic nie zmienia się samo.": "Saat memulai latihan pada hari-hari ini, tempat ini dipakai lebih dulu daripada tempat templat, dan jendela “Sesuaikan” menyarankan penukaran. Tidak ada yang berubah sendiri.",
+ "Inne miejsce…": "Tempat lain…",
+ "Od: {day}": "Dari: {day}",
+ "Do: {day}": "Sampai: {day}",
+ "Ustaw miejsce": "Atur tempat",
+ "Usuń miejsce": "Hapus tempat",
+ "Usuń miejsce: {a} – {b}": "Hapus tempat: {a} – {b}"
 }

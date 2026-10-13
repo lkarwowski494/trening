@@ -1559,5 +1559,22 @@
  "Spójniejsza obsługa w całej aplikacji: okna z „Anuluj” po lewej, „+” w nagłówkach list do dodawania oraz czytelniejsze komunikaty i opisy dla VoiceOver.": "Dosljednije rukovanje u cijeloj aplikaciji: prozori s gumbom „Odustani“ slijeva, „+“ u zaglavljima popisa za dodavanje te jasnije poruke i opisi za VoiceOver.",
  "Przycisk „Napisz do nas” w Więcej → O aplikacji.": "Gumb „Napišite nam“ u Više → O aplikaciji.",
  "Dostosuj do miejsca: po zmianie miejsca na takie bez potrzebnego sprzętu aplikacja proponuje zamienniki ćwiczeń do przejrzenia — zmiany tylko w tym treningu.": "Prilagodi mjestu: kad promijeniš mjesto u ono bez potrebne opreme, aplikacija predlaže zamjenske vježbe za pregled — promjene vrijede samo za ovaj trening.",
- "W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.": "U prozoru možeš promijeniti zamjenu ili odabrati „Bez promjene“ ili „Preskoči danas“; primijenjenu zamjenu poništavaš kod vježbe."
+ "W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.": "U prozoru možeš promijeniti zamjenu ili odabrati „Bez promjene“ ili „Preskoči danas“; primijenjenu zamjenu poništavaš kod vježbe.",
+ "Inne miejsce (tylko dziś)…": "Drugo mjesto (samo danas)…",
+ "Inne miejsce": "Drugo mjesto",
+ "Tylko dziś": "Samo danas",
+ "Użyj": "Koristi",
+ "Miejsce tylko na ten trening. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.": "Mjesto samo za ovaj trening. Odaberi opremu koju tamo imaš — težine ne moraš upisivati.",
+ "Miejsce na dni {a} – {b}. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.": "Mjesto za {a} – {b}. Odaberi opremu koju tamo imaš — težine ne moraš upisivati.",
+ "Zapisz jako miejsce": "Spremi kao mjesto",
+ "Miejsce trafi na listę miejsc (Ustawienia → Miejsca i sprzęt).": "Mjesto će biti dodano na popis mjesta (Postavke → Mjesta i oprema).",
+ "Gotowe zestawy": "Gotovi skupovi",
+ "📍 Miejsce na te dni": "📍 Mjesto za ove dane",
+ "Start treningu w tych dniach weźmie to miejsce przed miejscem szablonu, a okno „Dostosuj” zaproponuje zamiany. Nic nie zmienia się samo.": "Početak treninga tih dana koristit će ovo mjesto prije mjesta predloška, a prozor „Prilagodi” predložit će zamjene. Ništa se ne mijenja samo od sebe.",
+ "Inne miejsce…": "Drugo mjesto…",
+ "Od: {day}": "Od: {day}",
+ "Do: {day}": "Do: {day}",
+ "Ustaw miejsce": "Postavi mjesto",
+ "Usuń miejsce": "Ukloni mjesto",
+ "Usuń miejsce: {a} – {b}": "Ukloni mjesto: {a} – {b}"
 }

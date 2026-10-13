@@ -535,5 +535,10 @@
  "Spójniejsza obsługa w całej aplikacji: okna z „Anuluj” po lewej, „+” w nagłówkach list do dodawania oraz czytelniejsze komunikaty i opisy dla VoiceOver.": "Uso mais consistente em todo o app: janelas com “Cancelar” à esquerda, “+” nos cabeçalhos das listas para adicionar, e mensagens e descrições do VoiceOver mais claras.",
  "Przycisk „Napisz do nas” w Więcej → O aplikacji.": "Botão “Escreva para nós” em Mais → Sobre o app.",
  "Dostosuj do miejsca: po zmianie miejsca na takie bez potrzebnego sprzętu aplikacja proponuje zamienniki ćwiczeń do przejrzenia — zmiany tylko w tym treningu.": "Adaptar ao local: ao mudar para um local sem o equipamento necessário, o app sugere exercícios substitutos para você revisar — as alterações valem só para este treino.",
- "W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.": "Na janela você pode trocar o substituto ou escolher “Sem alterações” ou “Pular hoje”; uma troca aplicada pode ser desfeita no exercício."
+ "W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.": "Na janela você pode trocar o substituto ou escolher “Sem alterações” ou “Pular hoje”; uma troca aplicada pode ser desfeita no exercício.",
+ "Zapisz jako miejsce": "Salvar como local",
+ "Miejsce trafi na listę miejsc (Ustawienia → Miejsca i sprzęt).": "O local será adicionado à lista de locais (Ajustes → Locais e equipamento).",
+ "Miejsce na dni {a} – {b}. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.": "Um local para {a} – {b}. Escolha o equipamento que tem lá — não precisa digitar pesos.",
+ "Miejsce tylko na ten trening. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.": "Um local só para este treino. Escolha o equipamento que tem lá — não precisa digitar pesos.",
+ "Start treningu w tych dniach weźmie to miejsce przed miejscem szablonu, a okno „Dostosuj” zaproponuje zamiany. Nic nie zmienia się samo.": "Ao iniciar um treino nesses dias, o app usa este local antes do local do modelo, e a janela «Adaptar» sugere trocas. Nada muda sozinho."
 }

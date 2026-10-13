@@ -1559,5 +1559,22 @@
  "Spójniejsza obsługa w całej aplikacji: okna z „Anuluj” po lewej, „+” w nagłówkach list do dodawania oraz czytelniejsze komunikaty i opisy dla VoiceOver.": "Utilizare mai coerentă în toată aplicația: ferestre cu „Anulează” în stânga, „+” în antetele listelor pentru adăugare și mesaje și descrieri VoiceOver mai clare.",
  "Przycisk „Napisz do nas” w Więcej → O aplikacji.": "Butonul „Scrie-ne” din Mai mult → Despre aplicație.",
  "Dostosuj do miejsca: po zmianie miejsca na takie bez potrzebnego sprzętu aplikacja proponuje zamienniki ćwiczeń do przejrzenia — zmiany tylko w tym treningu.": "Adaptează la locație: când treci la o locație fără echipamentul necesar, aplicația propune exerciții de înlocuire pentru a le revizui — modificările se aplică doar acestui antrenament.",
- "W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.": "În fereastră poți schimba înlocuitorul sau alege „Fără modificări” ori „Sari peste azi”; o înlocuire aplicată se anulează la exercițiu."
+ "W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.": "În fereastră poți schimba înlocuitorul sau alege „Fără modificări” ori „Sari peste azi”; o înlocuire aplicată se anulează la exercițiu.",
+ "Inne miejsce (tylko dziś)…": "Altă locație (doar azi)…",
+ "Inne miejsce": "Altă locație",
+ "Tylko dziś": "Doar azi",
+ "Użyj": "Folosește",
+ "Miejsce tylko na ten trening. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.": "O locație doar pentru acest antrenament. Alege echipamentul pe care îl ai acolo — nu trebuie să introduci greutăți.",
+ "Miejsce na dni {a} – {b}. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.": "O locație pentru {a} – {b}. Alege echipamentul pe care îl ai acolo — nu trebuie să introduci greutăți.",
+ "Zapisz jako miejsce": "Salvează ca locație",
+ "Miejsce trafi na listę miejsc (Ustawienia → Miejsca i sprzęt).": "Locația va fi adăugată în lista de locații (Configurări → Locații și echipament).",
+ "Gotowe zestawy": "Seturi gata făcute",
+ "📍 Miejsce na te dni": "📍 Locație pentru aceste zile",
+ "Start treningu w tych dniach weźmie to miejsce przed miejscem szablonu, a okno „Dostosuj” zaproponuje zamiany. Nic nie zmienia się samo.": "La pornirea unui antrenament în aceste zile se folosește această locație înaintea celei a șablonului, iar fereastra „Adaptează” propune înlocuiri. Nimic nu se schimbă de la sine.",
+ "Inne miejsce…": "Altă locație…",
+ "Od: {day}": "De la: {day}",
+ "Do: {day}": "Până la: {day}",
+ "Ustaw miejsce": "Setează locația",
+ "Usuń miejsce": "Elimină locația",
+ "Usuń miejsce: {a} – {b}": "Elimină locația: {a} – {b}"
 }

@@ -1559,5 +1559,22 @@
  "Spójniejsza obsługa w całej aplikacji: okna z „Anuluj” po lewej, „+” w nagłówkach list do dodawania oraz czytelniejsze komunikaty i opisy dla VoiceOver.": "Einheitlichere Bedienung in der ganzen App: Fenster mit „Abbrechen“ links, „+“ in den Listenköpfen zum Hinzufügen sowie verständlichere Meldungen und Beschreibungen für VoiceOver.",
  "Przycisk „Napisz do nas” w Więcej → O aplikacji.": "Die Schaltfläche „Schreib uns“ unter Mehr → Über die App.",
  "Dostosuj do miejsca: po zmianie miejsca na takie bez potrzebnego sprzętu aplikacja proponuje zamienniki ćwiczeń do przejrzenia — zmiany tylko w tym treningu.": "An den Ort anpassen: Wechselst du zu einem Ort ohne die nötige Ausrüstung, schlägt die App Ersatzübungen zur Durchsicht vor – die Änderungen gelten nur für dieses Training.",
- "W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.": "Im Fenster änderst du die Ersatzübung oder wählst „Keine Änderung“ bzw. „Heute überspringen“; einen angewendeten Tausch machst du bei der Übung rückgängig."
+ "W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.": "Im Fenster änderst du die Ersatzübung oder wählst „Keine Änderung“ bzw. „Heute überspringen“; einen angewendeten Tausch machst du bei der Übung rückgängig.",
+ "Inne miejsce (tylko dziś)…": "Anderer Ort (nur heute)…",
+ "Inne miejsce": "Anderer Ort",
+ "Tylko dziś": "Nur heute",
+ "Użyj": "Verwenden",
+ "Miejsce tylko na ten trening. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.": "Ein Ort nur für dieses Training. Wähle die Ausrüstung, die du dort hast – Gewichte musst du nicht eingeben.",
+ "Miejsce na dni {a} – {b}. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.": "Ein Ort für {a} – {b}. Wähle die Ausrüstung, die du dort hast – Gewichte musst du nicht eingeben.",
+ "Zapisz jako miejsce": "Als Ort speichern",
+ "Miejsce trafi na listę miejsc (Ustawienia → Miejsca i sprzęt).": "Der Ort wird zur Liste der Orte hinzugefügt (Einstellungen → Orte und Ausrüstung).",
+ "Gotowe zestawy": "Fertige Sets",
+ "📍 Miejsce na te dni": "📍 Ort für diese Tage",
+ "Start treningu w tych dniach weźmie to miejsce przed miejscem szablonu, a okno „Dostosuj” zaproponuje zamiany. Nic nie zmienia się samo.": "Ein Training, das du an diesen Tagen startest, nutzt diesen Ort vor dem Ort der Vorlage, und das Fenster „Anpassen“ schlägt Tausch vor. Nichts ändert sich von allein.",
+ "Inne miejsce…": "Anderer Ort…",
+ "Od: {day}": "Von: {day}",
+ "Do: {day}": "Bis: {day}",
+ "Ustaw miejsce": "Ort festlegen",
+ "Usuń miejsce": "Ort entfernen",
+ "Usuń miejsce: {a} – {b}": "Ort entfernen: {a} – {b}"
 }

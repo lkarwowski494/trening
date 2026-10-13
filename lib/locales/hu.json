@@ -1559,5 +1559,22 @@
  "Spójniejsza obsługa w całej aplikacji: okna z „Anuluj” po lewej, „+” w nagłówkach list do dodawania oraz czytelniejsze komunikaty i opisy dla VoiceOver.": "Egységesebb kezelés az egész alkalmazásban: az ablakokban a „Mégsem” balra kerül, a listák fejlécében „+” gomb szolgál a hozzáadásra, az üzenetek és a VoiceOver-leírások pedig érthetőbbek.",
  "Przycisk „Napisz do nas” w Więcej → O aplikacji.": "Új „Írj nekünk” gomb az Egyebek → Az alkalmazásról részben.",
  "Dostosuj do miejsca: po zmianie miejsca na takie bez potrzebnego sprzętu aplikacja proponuje zamienniki ćwiczeń do przejrzenia — zmiany tylko w tym treningu.": "Igazítás a helyszínhez: ha olyan helyszínre váltasz, ahol nincs meg a szükséges felszerelés, az alkalmazás helyettesítő gyakorlatokat javasol átnézésre – a módosítások csak erre az edzésre vonatkoznak.",
- "W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.": "Az ablakban módosíthatod a helyettesítőt, vagy választhatod a „Nincs változtatás” vagy a „Ma kihagyom” lehetőséget; az alkalmazott cserét a gyakorlatnál vonhatod vissza."
+ "W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.": "Az ablakban módosíthatod a helyettesítőt, vagy választhatod a „Nincs változtatás” vagy a „Ma kihagyom” lehetőséget; az alkalmazott cserét a gyakorlatnál vonhatod vissza.",
+ "Inne miejsce (tylko dziś)…": "Másik helyszín (csak ma)…",
+ "Inne miejsce": "Másik helyszín",
+ "Tylko dziś": "Csak ma",
+ "Użyj": "Használat",
+ "Miejsce tylko na ten trening. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.": "Helyszín csak erre az edzésre. Válaszd ki az ott meglévő eszközöket — súlyokat nem kell megadnod.",
+ "Miejsce na dni {a} – {b}. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.": "Helyszín erre: {a} – {b}. Válaszd ki az ott meglévő eszközöket — súlyokat nem kell megadnod.",
+ "Zapisz jako miejsce": "Mentés helyszínként",
+ "Miejsce trafi na listę miejsc (Ustawienia → Miejsca i sprzęt).": "A helyszín bekerül a helyszínek listájába (Beállítások → Helyszínek és eszközök).",
+ "Gotowe zestawy": "Kész csomagok",
+ "📍 Miejsce na te dni": "📍 Helyszín ezekre a napokra",
+ "Start treningu w tych dniach weźmie to miejsce przed miejscem szablonu, a okno „Dostosuj” zaproponuje zamiany. Nic nie zmienia się samo.": "Ha ezeken a napokon indítasz edzést, a sablon helyszíne előtt ez a helyszín lesz érvényben, és az „Igazítás” ablak cseréket javasol. Semmi sem változik magától.",
+ "Inne miejsce…": "Másik helyszín…",
+ "Od: {day}": "Mettől: {day}",
+ "Do: {day}": "Meddig: {day}",
+ "Ustaw miejsce": "Helyszín beállítása",
+ "Usuń miejsce": "Helyszín eltávolítása",
+ "Usuń miejsce: {a} – {b}": "Helyszín eltávolítása: {a} – {b}"
 }

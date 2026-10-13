@@ -1559,5 +1559,22 @@
  "Spójniejsza obsługa w całej aplikacji: okna z „Anuluj” po lewej, „+” w nagłówkach list do dodawania oraz czytelniejsze komunikaty i opisy dla VoiceOver.": "Πιο συνεπής χειρισμός σε όλη την εφαρμογή: παράθυρα με «Ακύρωση» αριστερά, «+» στις κεφαλίδες των λιστών για προσθήκη, καθώς και πιο κατανοητά μηνύματα και περιγραφές για το VoiceOver.",
  "Przycisk „Napisz do nas” w Więcej → O aplikacji.": "Κουμπί «Γράψτε μας» στο Περισσότερα → Σχετικά με την εφαρμογή.",
  "Dostosuj do miejsca: po zmianie miejsca na takie bez potrzebnego sprzętu aplikacja proponuje zamienniki ćwiczeń do przejrzenia — zmiany tylko w tym treningu.": "Προσαρμογή στον χώρο: όταν αλλάξεις σε χώρο χωρίς τον απαραίτητο εξοπλισμό, η εφαρμογή προτείνει εναλλακτικές ασκήσεις για να τις ελέγξεις — οι αλλαγές ισχύουν μόνο για αυτή την προπόνηση.",
- "W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.": "Στο παράθυρο μπορείς να αλλάξεις το υποκατάστατο ή να επιλέξεις «Καμία αλλαγή» ή «Παράλειψη σήμερα» — μια εφαρμοσμένη αλλαγή την αναιρείς στην άσκηση."
+ "W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.": "Στο παράθυρο μπορείς να αλλάξεις το υποκατάστατο ή να επιλέξεις «Καμία αλλαγή» ή «Παράλειψη σήμερα» — μια εφαρμοσμένη αλλαγή την αναιρείς στην άσκηση.",
+ "Inne miejsce (tylko dziś)…": "Άλλος χώρος (μόνο σήμερα)…",
+ "Inne miejsce": "Άλλος χώρος",
+ "Tylko dziś": "Μόνο σήμερα",
+ "Użyj": "Χρήση",
+ "Miejsce tylko na ten trening. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.": "Χώρος μόνο για αυτή την προπόνηση. Διάλεξε τον εξοπλισμό που έχεις εκεί — δεν χρειάζεται να γράψεις βάρη.",
+ "Miejsce na dni {a} – {b}. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.": "Χώρος για {a} – {b}. Διάλεξε τον εξοπλισμό που έχεις εκεί — δεν χρειάζεται να γράψεις βάρη.",
+ "Zapisz jako miejsce": "Αποθήκευση ως χώρου",
+ "Miejsce trafi na listę miejsc (Ustawienia → Miejsca i sprzęt).": "Ο χώρος θα προστεθεί στη λίστα χώρων (Ρυθμίσεις → Χώροι και εξοπλισμός).",
+ "Gotowe zestawy": "Έτοιμα σετ",
+ "📍 Miejsce na te dni": "📍 Χώρος για αυτές τις ημέρες",
+ "Start treningu w tych dniach weźmie to miejsce przed miejscem szablonu, a okno „Dostosuj” zaproponuje zamiany. Nic nie zmienia się samo.": "Η έναρξη προπόνησης αυτές τις ημέρες θα πάρει αυτόν τον χώρο πριν από τον χώρο του προτύπου, και το παράθυρο «Προσαρμογή» θα προτείνει αλλαγές. Τίποτα δεν αλλάζει από μόνο του.",
+ "Inne miejsce…": "Άλλος χώρος…",
+ "Od: {day}": "Από: {day}",
+ "Do: {day}": "Έως: {day}",
+ "Ustaw miejsce": "Ορισμός χώρου",
+ "Usuń miejsce": "Αφαίρεση χώρου",
+ "Usuń miejsce: {a} – {b}": "Αφαίρεση χώρου: {a} – {b}"
 }

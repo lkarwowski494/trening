@@ -1559,5 +1559,22 @@
  "Spójniejsza obsługa w całej aplikacji: okna z „Anuluj” po lewej, „+” w nagłówkach list do dodawania oraz czytelniejsze komunikaty i opisy dla VoiceOver.": "Uygulamanın her yerinde daha tutarlı kullanım: pencerelerde “Vazgeç” solda, listelerin başlıklarında eklemek için “+”, ayrıca daha anlaşılır iletiler ve VoiceOver açıklamaları.",
  "Przycisk „Napisz do nas” w Więcej → O aplikacji.": "Daha Fazla → Hakkında bölümünde “Bize yazın” düğmesi.",
  "Dostosuj do miejsca: po zmianie miejsca na takie bez potrzebnego sprzętu aplikacja proponuje zamienniki ćwiczeń do przejrzenia — zmiany tylko w tym treningu.": "Yere uyarla: yeri gerekli ekipmanın olmadığı bir yerle değiştirdiğinde uygulama, gözden geçirmen için yedek egzersizler önerir — değişiklikler yalnızca bu antrenman için geçerlidir.",
- "W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.": "Pencerede yedeği değiştirebilir ya da “Değişiklik yok” veya “Bugün atla” seçeneğini seçebilirsiniz; uygulanan değişikliği egzersiz üzerinden geri alabilirsiniz."
+ "W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.": "Pencerede yedeği değiştirebilir ya da “Değişiklik yok” veya “Bugün atla” seçeneğini seçebilirsiniz; uygulanan değişikliği egzersiz üzerinden geri alabilirsiniz.",
+ "Inne miejsce (tylko dziś)…": "Başka bir yer (yalnızca bugün)…",
+ "Inne miejsce": "Başka bir yer",
+ "Tylko dziś": "Yalnızca bugün",
+ "Użyj": "Kullan",
+ "Miejsce tylko na ten trening. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.": "Yalnızca bu antrenman için bir yer. Orada bulunan ekipmanı seç — ağırlık girmen gerekmez.",
+ "Miejsce na dni {a} – {b}. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.": "{a} – {b} için bir yer. Orada bulunan ekipmanı seç — ağırlık girmen gerekmez.",
+ "Zapisz jako miejsce": "Yer olarak kaydet",
+ "Miejsce trafi na listę miejsc (Ustawienia → Miejsca i sprzęt).": "Yer, yerler listesine eklenecek (Ayarlar → Yerler ve ekipman).",
+ "Gotowe zestawy": "Hazır setler",
+ "📍 Miejsce na te dni": "📍 Bu günler için yer",
+ "Start treningu w tych dniach weźmie to miejsce przed miejscem szablonu, a okno „Dostosuj” zaproponuje zamiany. Nic nie zmienia się samo.": "Bu günlerde antrenman başlatırsan şablonun yerinden önce bu yer kullanılır ve “Uyarla” penceresi değişiklikler önerir. Kendiliğinden hiçbir şey değişmez.",
+ "Inne miejsce…": "Başka bir yer…",
+ "Od: {day}": "Başlangıç: {day}",
+ "Do: {day}": "Bitiş: {day}",
+ "Ustaw miejsce": "Yeri ayarla",
+ "Usuń miejsce": "Yeri kaldır",
+ "Usuń miejsce: {a} – {b}": "Yeri kaldır: {a} – {b}"
 }

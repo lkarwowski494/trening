@@ -1559,5 +1559,22 @@
  "Spójniejsza obsługa w całej aplikacji: okna z „Anuluj” po lewej, „+” w nagłówkach list do dodawania oraz czytelniejsze komunikaty i opisy dla VoiceOver.": "Consistentere bediening in de hele app: vensters met „Annuleer” links, „+” in de koppen van lijsten om iets toe te voegen, en duidelijkere meldingen en VoiceOver-beschrijvingen.",
  "Przycisk „Napisz do nas” w Więcej → O aplikacji.": "De knop „Schrijf ons” onder Meer → Over de app.",
  "Dostosuj do miejsca: po zmianie miejsca na takie bez potrzebnego sprzętu aplikacja proponuje zamienniki ćwiczeń do przejrzenia — zmiany tylko w tym treningu.": "Aanpassen aan locatie: als je overstapt naar een locatie zonder de benodigde apparatuur, stelt de app vervangende oefeningen voor om te bekijken – de wijzigingen gelden alleen voor deze training.",
- "W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.": "In het venster kun je de vervanger wijzigen of „Geen wijziging” of „Vandaag overslaan” kiezen; een toegepaste vervanging maak je ongedaan bij de oefening."
+ "W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.": "In het venster kun je de vervanger wijzigen of „Geen wijziging” of „Vandaag overslaan” kiezen; een toegepaste vervanging maak je ongedaan bij de oefening.",
+ "Inne miejsce (tylko dziś)…": "Andere locatie (alleen vandaag)…",
+ "Inne miejsce": "Andere locatie",
+ "Tylko dziś": "Alleen vandaag",
+ "Użyj": "Gebruik",
+ "Miejsce tylko na ten trening. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.": "Een locatie alleen voor deze training. Kies het materiaal dat je daar hebt — gewichten hoef je niet in te voeren.",
+ "Miejsce na dni {a} – {b}. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.": "Een locatie voor {a} – {b}. Kies het materiaal dat je daar hebt — gewichten hoef je niet in te voeren.",
+ "Zapisz jako miejsce": "Bewaar als locatie",
+ "Miejsce trafi na listę miejsc (Ustawienia → Miejsca i sprzęt).": "De locatie wordt toegevoegd aan de lijst met locaties (Instellingen → Locaties en materiaal).",
+ "Gotowe zestawy": "Kant-en-klare sets",
+ "📍 Miejsce na te dni": "📍 Locatie voor deze dagen",
+ "Start treningu w tych dniach weźmie to miejsce przed miejscem szablonu, a okno „Dostosuj” zaproponuje zamiany. Nic nie zmienia się samo.": "Een training die je op deze dagen start, gebruikt deze locatie vóór die van het sjabloon, en het venster ‘Aanpassen’ stelt wissels voor. Er verandert niets vanzelf.",
+ "Inne miejsce…": "Andere locatie…",
+ "Od: {day}": "Van: {day}",
+ "Do: {day}": "Tot: {day}",
+ "Ustaw miejsce": "Locatie instellen",
+ "Usuń miejsce": "Locatie verwijderen",
+ "Usuń miejsce: {a} – {b}": "Locatie verwijderen: {a} – {b}"
 }

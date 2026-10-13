@@ -1559,5 +1559,22 @@
  "Spójniejsza obsługa w całej aplikacji: okna z „Anuluj” po lewej, „+” w nagłówkach list do dodawania oraz czytelniejsze komunikaty i opisy dla VoiceOver.": "앱 전체에서 조작이 더 일관됩니다. 창의 ‘취소’는 왼쪽에, 목록 머리글에는 추가용 ‘+’가 있고, 메시지와 VoiceOver 설명이 더 명확해졌습니다.",
  "Przycisk „Napisz do nas” w Więcej → O aplikacji.": "더보기 → 앱 정보에 ‘문의하기’ 버튼이 생겼습니다.",
  "Dostosuj do miejsca: po zmianie miejsca na takie bez potrzebnego sprzętu aplikacja proponuje zamienniki ćwiczeń do przejrzenia — zmiany tylko w tym treningu.": "장소에 맞게 조정: 필요한 기구가 없는 장소로 바꾸면 앱이 대체 운동을 제안하며, 직접 검토할 수 있습니다. 변경은 이 운동에만 적용됩니다.",
- "W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.": "창에서 대체 운동을 바꾸거나 ‘변경 없음’ 또는 ‘오늘 건너뛰기’을(를) 고를 수 있습니다. 적용한 교체는 해당 운동에서 되돌릴 수 있습니다."
+ "W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.": "창에서 대체 운동을 바꾸거나 ‘변경 없음’ 또는 ‘오늘 건너뛰기’을(를) 고를 수 있습니다. 적용한 교체는 해당 운동에서 되돌릴 수 있습니다.",
+ "Inne miejsce (tylko dziś)…": "다른 장소(오늘만)…",
+ "Inne miejsce": "다른 장소",
+ "Tylko dziś": "오늘만",
+ "Użyj": "사용",
+ "Miejsce tylko na ten trening. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.": "이번 운동에만 쓰는 장소입니다. 그곳에 있는 장비를 고르세요 — 무게는 입력하지 않아도 됩니다.",
+ "Miejsce na dni {a} – {b}. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.": "{a} – {b}의 장소입니다. 그곳에 있는 장비를 고르세요 — 무게는 입력하지 않아도 됩니다.",
+ "Zapisz jako miejsce": "장소로 저장",
+ "Miejsce trafi na listę miejsc (Ustawienia → Miejsca i sprzęt).": "이 장소가 장소 목록에 추가됩니다(설정 → 장소 및 장비).",
+ "Gotowe zestawy": "준비된 구성",
+ "📍 Miejsce na te dni": "📍 이 날들의 장소",
+ "Start treningu w tych dniach weźmie to miejsce przed miejscem szablonu, a okno „Dostosuj” zaproponuje zamiany. Nic nie zmienia się samo.": "이 날들에 운동을 시작하면 루틴의 장소보다 이 장소가 먼저 쓰이고, ‘조정’ 창이 교체를 제안합니다. 저절로 바뀌는 것은 없습니다.",
+ "Inne miejsce…": "다른 장소…",
+ "Od: {day}": "시작: {day}",
+ "Do: {day}": "종료: {day}",
+ "Ustaw miejsce": "장소 지정",
+ "Usuń miejsce": "장소 해제",
+ "Usuń miejsce: {a} – {b}": "장소 해제: {a} – {b}"
 }

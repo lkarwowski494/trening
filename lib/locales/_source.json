@@ -308,6 +308,10 @@
   "en": "★ Main place — default for new workouts and for templates without their own place."
  },
  {
+  "pl": "📍 Miejsce na te dni",
+  "en": "📍 Place for these days"
+ },
+ {
   "pl": "1 miesiąc za darmo, potem {price}/{period}",
   "en": "1 month free, then {price}/{period}"
  },
@@ -1095,6 +1099,10 @@
   "en": "to do"
  },
  {
+  "pl": "Do: {day}",
+  "en": "To: {day}"
+ },
+ {
   "pl": "dociążenie: {v}",
   "en": "added weight: {v}"
  },
@@ -1511,6 +1519,10 @@
   "en": "Done"
  },
  {
+  "pl": "Gotowe zestawy",
+  "en": "Ready-made sets"
+ },
+ {
   "pl": "Góra A",
   "en": "Upper A"
  },
@@ -1674,6 +1686,18 @@
  {
   "pl": "Inne",
   "en": "Other"
+ },
+ {
+  "pl": "Inne miejsce",
+  "en": "Another place"
+ },
+ {
+  "pl": "Inne miejsce (tylko dziś)…",
+  "en": "Another place (today only)…"
+ },
+ {
+  "pl": "Inne miejsce…",
+  "en": "Another place…"
  },
  {
   "pl": "Inne plany",
@@ -2424,12 +2448,24 @@
   "en": "Default place"
  },
  {
+  "pl": "Miejsce na dni {a} – {b}. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.",
+  "en": "A place for {a} – {b}. Pick the equipment you have there — no need to enter weights."
+ },
+ {
   "pl": "Miejsce tego treningu",
   "en": "Place of this workout"
  },
  {
+  "pl": "Miejsce trafi na listę miejsc (Ustawienia → Miejsca i sprzęt).",
+  "en": "The place will be added to your places (Settings → Places and equipment)."
+ },
+ {
   "pl": "Miejsce treningu: {l}",
   "en": "Workout place: {l}"
+ },
+ {
+  "pl": "Miejsce tylko na ten trening. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.",
+  "en": "A place for this workout only. Pick the equipment you have there — no need to enter weights."
  },
  {
   "pl": "miesiąc",
@@ -3055,6 +3091,10 @@
  {
   "pl": "Od 0.10: szablon i ćwiczenie otwierają się w podglądzie — zmiany zaczynasz przyciskiem „Edytuj” i zatwierdzasz „Zapisz”.",
   "en": "Since 0.10: templates and exercises open in a preview — start changes with “Edit” and confirm them with “Save”."
+ },
+ {
+  "pl": "Od: {day}",
+  "en": "From: {day}"
  },
  {
   "pl": "Odczyt z Apple Health (włączasz w Ustawieniach): kroki i inne aktywności w panelu dnia, średnia kroków pod „Ten tydzień” oraz tętno i kcal z zegarka przy sesji.",
@@ -4489,6 +4529,10 @@
   "en": "Start stopwatch: {ex}, set {n}"
  },
  {
+  "pl": "Start treningu w tych dniach weźmie to miejsce przed miejscem szablonu, a okno „Dostosuj” zaproponuje zamiany. Nic nie zmienia się samo.",
+  "en": "Starting a workout on these days uses this place before the template’s place, and the “Adjust” window suggests swaps. Nothing changes by itself."
+ },
+ {
   "pl": "Start zaplanowanego treningu: {name}",
   "en": "Start planned workout: {name}"
  },
@@ -5067,6 +5111,10 @@
   "en": "only available at {l}"
  },
  {
+  "pl": "Tylko dziś",
+  "en": "Today only"
+ },
+ {
   "pl": "Tylko masa ciała",
   "en": "Bodyweight only"
  },
@@ -5153,6 +5201,10 @@
  {
   "pl": "Ustaw jako główne",
   "en": "Set as main"
+ },
+ {
+  "pl": "Ustaw miejsce",
+  "en": "Set place"
  },
  {
   "pl": "Ustaw plan",
@@ -5279,6 +5331,14 @@
   "en": "Delete band: {name}"
  },
  {
+  "pl": "Usuń miejsce",
+  "en": "Remove place"
+ },
+ {
+  "pl": "Usuń miejsce: {a} – {b}",
+  "en": "Remove place: {a} – {b}"
+ },
+ {
   "pl": "Usuń miejsce: {name}",
   "en": "Delete place: {name}"
  },
@@ -5345,6 +5405,10 @@
  {
   "pl": "Uwaga: zmiana sprzętu, trybu liczenia lub metryki przelicza też dawne treningi (objętość, rekordy, wykresy).",
   "en": "Note: changing equipment, weight counting or metric also recalculates past workouts (volume, records, charts)."
+ },
+ {
+  "pl": "Użyj",
+  "en": "Use"
  },
  {
   "pl": "W „Inne plany” jest już {n} planów — usuń któryś, by dodać nowy.",
@@ -6005,6 +6069,10 @@
  {
   "pl": "Zapisz ćwiczenie",
   "en": "Save exercise"
+ },
+ {
+  "pl": "Zapisz jako miejsce",
+  "en": "Save as a place"
  },
  {
   "pl": "Zapisz jako szablon",

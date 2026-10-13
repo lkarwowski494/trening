@@ -1559,5 +1559,22 @@
  "Spójniejsza obsługa w całej aplikacji: okna z „Anuluj” po lewej, „+” w nagłówkach list do dodawania oraz czytelniejsze komunikaty i opisy dla VoiceOver.": "Ühtlasem kasutus kogu rakenduses: aknad nupuga „Tühista“ vasakul, „+“ loendite päistes lisamiseks ning selgemad teated ja VoiceOveri kirjeldused.",
  "Przycisk „Napisz do nas” w Więcej → O aplikacji.": "Nupp „Kirjuta meile“ jaotises Rohkem → Rakendusest.",
  "Dostosuj do miejsca: po zmianie miejsca na takie bez potrzebnego sprzętu aplikacja proponuje zamienniki ćwiczeń do przejrzenia — zmiany tylko w tym treningu.": "Kohanda kohale: kui vahetad koha vajaliku varustuseta koha vastu, pakub rakendus asendusharjutusi ülevaatamiseks – muudatused kehtivad ainult selle treeningu kohta.",
- "W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.": "Aknas saad asendust muuta või valida „Muutmata“ või „Jäta täna vahele“; rakendatud vahetuse saad harjutuse juures tühistada."
+ "W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.": "Aknas saad asendust muuta või valida „Muutmata“ või „Jäta täna vahele“; rakendatud vahetuse saad harjutuse juures tühistada.",
+ "Inne miejsce (tylko dziś)…": "Muu koht (ainult täna)…",
+ "Inne miejsce": "Muu koht",
+ "Tylko dziś": "Ainult täna",
+ "Użyj": "Kasuta",
+ "Miejsce tylko na ten trening. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.": "Koht ainult selle treeningu jaoks. Vali varustus, mis seal on — raskusi pole vaja sisestada.",
+ "Miejsce na dni {a} – {b}. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.": "Koht päevadeks {a} – {b}. Vali varustus, mis seal on — raskusi pole vaja sisestada.",
+ "Zapisz jako miejsce": "Salvesta kohana",
+ "Miejsce trafi na listę miejsc (Ustawienia → Miejsca i sprzęt).": "Koht lisatakse kohtade loendisse (Seaded → Kohad ja varustus).",
+ "Gotowe zestawy": "Valmiskomplektid",
+ "📍 Miejsce na te dni": "📍 Koht nendeks päevadeks",
+ "Start treningu w tych dniach weźmie to miejsce przed miejscem szablonu, a okno „Dostosuj” zaproponuje zamiany. Nic nie zmienia się samo.": "Treeningu alustamisel nendel päevadel kasutatakse seda kohta enne malli kohta ja aken „Kohanda“ pakub vahetusi. Midagi ei muutu iseenesest.",
+ "Inne miejsce…": "Muu koht…",
+ "Od: {day}": "Alates: {day}",
+ "Do: {day}": "Kuni: {day}",
+ "Ustaw miejsce": "Määra koht",
+ "Usuń miejsce": "Eemalda koht",
+ "Usuń miejsce: {a} – {b}": "Eemalda koht: {a} – {b}"
 }

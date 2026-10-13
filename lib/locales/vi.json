@@ -1559,5 +1559,22 @@
  "Spójniejsza obsługa w całej aplikacji: okna z „Anuluj” po lewej, „+” w nagłówkach list do dodawania oraz czytelniejsze komunikaty i opisy dla VoiceOver.": "Thao tác nhất quán hơn trên toàn ứng dụng: cửa sổ có “Hủy” ở bên trái, dấu “+” ở tiêu đề danh sách để thêm, cùng thông báo và mô tả VoiceOver rõ ràng hơn.",
  "Przycisk „Napisz do nas” w Więcej → O aplikacji.": "Nút “Liên hệ với chúng tôi” trong Thêm → Giới thiệu.",
  "Dostosuj do miejsca: po zmianie miejsca na takie bez potrzebnego sprzętu aplikacja proponuje zamienniki ćwiczeń do przejrzenia — zmiany tylko w tym treningu.": "Điều chỉnh theo địa điểm: khi bạn đổi sang địa điểm không có dụng cụ cần thiết, ứng dụng sẽ đề xuất bài tập thay thế để bạn xem lại — thay đổi chỉ áp dụng cho buổi tập này.",
- "W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.": "Trong cửa sổ, bạn có thể đổi bài thay thế hoặc chọn “Không đổi” hoặc chọn “Bỏ qua hôm nay”; phép thay đã áp dụng có thể hoàn tác ở bài tập."
+ "W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.": "Trong cửa sổ, bạn có thể đổi bài thay thế hoặc chọn “Không đổi” hoặc chọn “Bỏ qua hôm nay”; phép thay đã áp dụng có thể hoàn tác ở bài tập.",
+ "Inne miejsce (tylko dziś)…": "Địa điểm khác (chỉ hôm nay)…",
+ "Inne miejsce": "Địa điểm khác",
+ "Tylko dziś": "Chỉ hôm nay",
+ "Użyj": "Dùng",
+ "Miejsce tylko na ten trening. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.": "Địa điểm chỉ cho buổi tập này. Chọn dụng cụ bạn có ở đó — không cần nhập mức tạ.",
+ "Miejsce na dni {a} – {b}. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.": "Địa điểm cho {a} – {b}. Chọn dụng cụ bạn có ở đó — không cần nhập mức tạ.",
+ "Zapisz jako miejsce": "Lưu thành địa điểm",
+ "Miejsce trafi na listę miejsc (Ustawienia → Miejsca i sprzęt).": "Địa điểm sẽ được thêm vào danh sách địa điểm (Cài đặt → Địa điểm và dụng cụ).",
+ "Gotowe zestawy": "Bộ dựng sẵn",
+ "📍 Miejsce na te dni": "📍 Địa điểm cho những ngày này",
+ "Start treningu w tych dniach weźmie to miejsce przed miejscem szablonu, a okno „Dostosuj” zaproponuje zamiany. Nic nie zmienia się samo.": "Khi bắt đầu buổi tập vào những ngày này, địa điểm này được dùng trước địa điểm của mẫu, và cửa sổ “Điều chỉnh” sẽ đề xuất việc đổi bài. Không có gì tự thay đổi.",
+ "Inne miejsce…": "Địa điểm khác…",
+ "Od: {day}": "Từ: {day}",
+ "Do: {day}": "Đến: {day}",
+ "Ustaw miejsce": "Đặt địa điểm",
+ "Usuń miejsce": "Bỏ địa điểm",
+ "Usuń miejsce: {a} – {b}": "Bỏ địa điểm: {a} – {b}"
 }

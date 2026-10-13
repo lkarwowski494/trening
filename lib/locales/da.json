@@ -1559,5 +1559,22 @@
  "Spójniejsza obsługa w całej aplikacji: okna z „Anuluj” po lewej, „+” w nagłówkach list do dodawania oraz czytelniejsze komunikaty i opisy dla VoiceOver.": "Mere ensartet betjening i hele appen: vinduer med „Annuller“ til venstre, „+“ i listernes overskrifter til tilføjelse samt tydeligere meddelelser og beskrivelser til VoiceOver.",
  "Przycisk „Napisz do nas” w Więcej → O aplikacji.": "Knappen „Skriv til os“ under Mere → Om appen.",
  "Dostosuj do miejsca: po zmianie miejsca na takie bez potrzebnego sprzętu aplikacja proponuje zamienniki ćwiczeń do przejrzenia — zmiany tylko w tym treningu.": "Tilpas til stedet: når du skifter til et sted uden det nødvendige udstyr, foreslår appen erstatningsøvelser, som du kan gennemgå – ændringerne gælder kun denne træning.",
- "W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.": "I vinduet kan du ændre erstatningen eller vælge „Ingen ændring“ eller „Spring over i dag“; en udført udskiftning kan fortrydes ved øvelsen."
+ "W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.": "I vinduet kan du ændre erstatningen eller vælge „Ingen ændring“ eller „Spring over i dag“; en udført udskiftning kan fortrydes ved øvelsen.",
+ "Inne miejsce (tylko dziś)…": "Et andet sted (kun i dag)…",
+ "Inne miejsce": "Et andet sted",
+ "Tylko dziś": "Kun i dag",
+ "Użyj": "Brug",
+ "Miejsce tylko na ten trening. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.": "Et sted kun til denne træning. Vælg det udstyr, du har dér – du behøver ikke angive vægte.",
+ "Miejsce na dni {a} – {b}. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.": "Et sted for {a} – {b}. Vælg det udstyr, du har dér – du behøver ikke angive vægte.",
+ "Zapisz jako miejsce": "Gem som sted",
+ "Miejsce trafi na listę miejsc (Ustawienia → Miejsca i sprzęt).": "Stedet føjes til listen over steder (Indstillinger → Steder og udstyr).",
+ "Gotowe zestawy": "Færdige sæt",
+ "📍 Miejsce na te dni": "📍 Sted for disse dage",
+ "Start treningu w tych dniach weźmie to miejsce przed miejscem szablonu, a okno „Dostosuj” zaproponuje zamiany. Nic nie zmienia się samo.": "Når du starter en træning på disse dage, bruges dette sted før skabelonens sted, og vinduet “Tilpas” foreslår skift. Intet ændres af sig selv.",
+ "Inne miejsce…": "Et andet sted…",
+ "Od: {day}": "Fra: {day}",
+ "Do: {day}": "Til: {day}",
+ "Ustaw miejsce": "Angiv sted",
+ "Usuń miejsce": "Fjern sted",
+ "Usuń miejsce: {a} – {b}": "Fjern sted: {a} – {b}"
 }

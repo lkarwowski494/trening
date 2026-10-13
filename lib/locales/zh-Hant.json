@@ -1559,5 +1559,22 @@
  "Spójniejsza obsługa w całej aplikacji: okna z „Anuluj” po lewej, „+” w nagłówkach list do dodawania oraz czytelniejsze komunikaty i opisy dla VoiceOver.": "整個 App 的操作更一致：視窗的「取消」在左側，清單標題以「+」新增，訊息與 VoiceOver 說明也更清楚。",
  "Przycisk „Napisz do nas” w Więcej → O aplikacji.": "「更多」→「關於」新增「寫信給我們」按鈕。",
  "Dostosuj do miejsca: po zmianie miejsca na takie bez potrzebnego sprzętu aplikacja proponuje zamienniki ćwiczeń do przejrzenia — zmiany tylko w tym treningu.": "配合地點調整：切換到沒有所需器材的地點後，App 會建議替代動作供你檢視，變更只套用於這次訓練。",
- "W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.": "在視窗中可更換替代動作，或選擇「不變更」或「今天略過」；已套用的替換可在該動作上復原。"
+ "W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.": "在視窗中可更換替代動作，或選擇「不變更」或「今天略過」；已套用的替換可在該動作上復原。",
+ "Inne miejsce (tylko dziś)…": "其他地點（僅限今天）…",
+ "Inne miejsce": "其他地點",
+ "Tylko dziś": "僅限今天",
+ "Użyj": "使用",
+ "Miejsce tylko na ten trening. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.": "僅供這次訓練使用的地點。選擇你在那裡有的器材——不必輸入重量。",
+ "Miejsce na dni {a} – {b}. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.": "{a} – {b} 的地點。選擇你在那裡有的器材——不必輸入重量。",
+ "Zapisz jako miejsce": "儲存為地點",
+ "Miejsce trafi na listę miejsc (Ustawienia → Miejsca i sprzęt).": "此地點會加入地點清單（設定 → 地點與器材）。",
+ "Gotowe zestawy": "現成組合",
+ "📍 Miejsce na te dni": "📍 這幾天的地點",
+ "Start treningu w tych dniach weźmie to miejsce przed miejscem szablonu, a okno „Dostosuj” zaproponuje zamiany. Nic nie zmienia się samo.": "這幾天開始訓練時，會先採用這個地點，再採用範本的地點，「調整」視窗會建議替換。不會自動變更任何內容。",
+ "Inne miejsce…": "其他地點…",
+ "Od: {day}": "起：{day}",
+ "Do: {day}": "迄：{day}",
+ "Ustaw miejsce": "設定地點",
+ "Usuń miejsce": "移除地點",
+ "Usuń miejsce: {a} – {b}": "移除地點：{a} – {b}"
 }
