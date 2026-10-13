@@ -82,6 +82,7 @@ function Root() {
         <Stack.Screen name="picker" options={{ presentation: 'modal', title: t('Wybierz ćwiczenie') }} />
         <Stack.Screen name="swap" options={{ presentation: 'modal', title: t('Zamień ćwiczenie') }} />
         <Stack.Screen name="adapt" options={{ presentation: 'modal', title: t('Dostosuj do miejsca') }} />{/* 0.18 (docs/33): okno „Dostosuj do: X” */}
+        <Stack.Screen name="place-once" options={{ presentation: 'modal', title: t('Inne miejsce') }} />{/* 0.19 (docs/33 A4, B): szybka lista sprzętu — miejsce jednorazowe / na dni planu */}
         <Stack.Screen name="pick-template" options={{ presentation: 'modal', title: t('Wybierz szablon') }} />{/* P2 B (11.10.2026): „Z szablonu” w arkuszu „Inny trening” */}
         <Stack.Screen name="templates" options={{ title: t('Szablony') }} />{/* 11.10.2026 (docs/22, wariant A): Szablony i Ćwiczenia pod Więcej */}
         <Stack.Screen name="exercises" options={{ title: t('Ćwiczenia') }} />

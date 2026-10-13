@@ -1067,4 +1067,12 @@ export const EN: Record<string, string> = {
   '{n} {w} · Dostosuj': '{n} {w} · Adjust', 'ćwiczenie bez sprzętu|ćwiczenia bez sprzętu|ćwiczeń bez sprzętu': 'exercise without equipment|exercises without equipment',
   'ćwiczenie wraca do planu|ćwiczenia wracają do planu|ćwiczeń wraca do planu': 'exercise returns to your plan|exercises return to your plan',
   'Otwiera propozycje zamian na to miejsce.': 'Opens swap suggestions for this location.',
+  /* 0.19: miejsce jednorazowe (docs/33 A4) i miejsce na dni planu (docs/33 B) */
+  'Inne miejsce (tylko dziś)…': 'Another place (today only)…', 'Inne miejsce': 'Another place', 'Tylko dziś': 'Today only', 'Użyj': 'Use',
+  'Miejsce tylko na ten trening. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.': 'A place for this workout only. Pick the equipment you have there — no need to enter weights.',
+  'Miejsce na dni {a} – {b}. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.': 'A place for {a} – {b}. Pick the equipment you have there — no need to enter weights.',
+  'Zapisz jako miejsce': 'Save as a place', 'Miejsce trafi na listę miejsc (Ustawienia → Miejsca i sprzęt).': 'The place will be added to your places (Settings → Places and equipment).',
+  'Gotowe zestawy': 'Ready-made sets',
+  '📍 Miejsce na te dni': '📍 Place for these days', 'Start treningu w tych dniach weźmie to miejsce przed miejscem szablonu, a okno „Dostosuj” zaproponuje zamiany. Nic nie zmienia się samo.': 'Starting a workout on these days uses this place before the template’s place, and the “Adjust” window suggests swaps. Nothing changes by itself.',
+  'Inne miejsce…': 'Another place…', 'Od: {day}': 'From: {day}', 'Do: {day}': 'To: {day}', 'Ustaw miejsce': 'Set place', 'Usuń miejsce': 'Remove place', 'Usuń miejsce: {a} – {b}': 'Remove place: {a} – {b}',
 };

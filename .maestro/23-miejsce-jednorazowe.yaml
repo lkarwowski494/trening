@@ -1,0 +1,80 @@
+# 0.19 „Inne miejsce (tylko dziś)” (docs/33 A4, Maestro 23): pusty trening na siłowni z Bench Press → „📍” → „Another place (today only)…” → okno „Another place”
+# (nazwa „Today only”, „Save as a place”, gotowe zestawy) → zestaw „Bodyweight only” → „Use” → okno „Adjust to: Today only” otwiera się samo → „Apply (1)” → blok
+# z linijką „instead of: …”. Miejsce jednorazowe nie jest na liście miejsc (Places and equipment) — tylko siłownia.
+#
+# Literały (EN z lib/i18n.en.ts / lib/equipment.ts, chyba że zaznaczono inaczej):
+#   "Other workout", "More, tab.*", "Workout, tab.*", "Places and equipment", "Add place", "Back" ← jak przepływy 06, 07 i 22
+#   "Full gym,.*"                    ← Item presetu w kreatorze miejsca ('{etykieta}, {opis}'; LOCATION_PRESET_LABEL.gym.en)
+#   "Available exercises: .*"        ← 'Dostępne ćwiczenia: {n} z {m}' (app/more/location/[id].tsx)
+#   "Empty workout", "\\+ Add exercise", "Search exercises…", "Bench Press \\(Barbell\\),.*" ← jak 07 i 22
+#   "Workout place: X"               ← 'Miejsce treningu: {l}' (accessibilityLabel chipa „📍 X ▾”, components/ActiveWorkout.tsx)
+#   "Another place \\(today only\\)…" ← 'Inne miejsce (tylko dziś)…' (ostatnia pozycja arkusza „📍” przed „Cancel”)
+#   "Ready-made sets", "Save as a place", "Bodyweight only" ← 'Gotowe zestawy', 'Zapisz jako miejsce', LOCATION_PRESET_LABEL.bodyweight.en (okno app/place-once.tsx)
+#   "A place for this workout only\\..*" ← 'Miejsce tylko na ten trening. Wybierz sprzęt, jaki tam masz — …'
+#   "Use"                            ← 'Użyj' (przycisk akcji po prawej w nagłówku okna; testID place-once-use)
+#   "Adjust to: Today only"          ← 'Dostosuj do: {l}' z nazwą domyślną 'Tylko dziś' → 'Today only'
+#   "Bench Press \\(Barbell\\) → .*", "Apply \\(1\\)", "instead of: X.*" ← jak 22
+appId: pl.lukasz.trening
+name: Miejsce jednorazowe (0.19)
+---
+- launchApp:
+    clearState: true
+    permissions: { all: allow }
+- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+
+# --- Jedno miejsce: pełna siłownia (główne) ---
+- tapOn: "More, tab.*"
+- extendedWaitUntil: { visible: "Places and equipment", timeout: 30000 }
+- tapOn: "Places and equipment"
+- extendedWaitUntil: { visible: "Add place", timeout: 30000 }
+- tapOn: "Add place"
+- extendedWaitUntil: { visible: "Full gym,.*", timeout: 30000 }
+- tapOn: "Full gym,.*"
+- extendedWaitUntil: { visible: "Available exercises: .*", timeout: 30000 }
+- tapOn: "Back"
+- extendedWaitUntil: { visible: "Add place", timeout: 30000 }
+- tapOn: "Back"
+- extendedWaitUntil: { visible: "Places and equipment", timeout: 30000 }
+- tapOn: "Workout, tab.*"
+
+# --- Pusty trening na siłowni z Bench Press (Barbell) ---
+- extendedWaitUntil: { visible: "Other workout", timeout: 30000 }
+- scrollUntilVisible: { element: "Empty workout", direction: DOWN, timeout: 60000 }
+- tapOn: "Empty workout"
+- extendedWaitUntil: { visible: "\\+ Add exercise", timeout: 30000 }
+- tapOn: "\\+ Add exercise"
+- extendedWaitUntil: { visible: "Search exercises…", timeout: 30000 }
+- tapOn: "Search exercises…"
+- inputText: "Bench Press"
+- tapOn: { text: "Continue", optional: true }
+- extendedWaitUntil: { visible: "Bench Press \\(Barbell\\),.*", timeout: 30000 }
+- tapOn: "Bench Press \\(Barbell\\),.*"
+- extendedWaitUntil: { visible: "Workout place: Full gym", timeout: 30000 }
+- assertNotVisible: ".*exercise without equipment · Adjust"
+
+# --- 📍 → „Another place (today only)…” → okno → zestaw → „Use” ---
+- tapOn: "Workout place: Full gym"
+- extendedWaitUntil: { visible: "Another place \\(today only\\)…", timeout: 30000 }
+- tapOn: "Another place \\(today only\\)…"
+- extendedWaitUntil: { visible: "Ready-made sets", timeout: 30000 }
+- assertVisible: "A place for this workout only\\..*"
+- assertVisible: "Save as a place"
+- takeScreenshot: 43-inne-miejsce
+- tapOn: "Bodyweight only"
+- tapOn: "Use"
+
+# --- okno „Adjust to: Today only” samo → „Apply (1)” → „instead of” ---
+- extendedWaitUntil: { visible: "Adjust to: Today only", timeout: 30000 }
+- assertVisible: "Bench Press \\(Barbell\\) → .*"
+- takeScreenshot: 44-dostosuj-jednorazowe
+- tapOn: "Apply \\(1\\)"
+- extendedWaitUntil: { visible: "instead of: Bench Press \\(Barbell\\).*", timeout: 30000 }
+- assertVisible: "Workout place: Today only"
+
+# --- Miejsca jednorazowego nie ma na liście miejsc ---
+- tapOn: "More, tab.*"
+- extendedWaitUntil: { visible: "Places and equipment", timeout: 30000 }
+- tapOn: "Places and equipment"
+- extendedWaitUntil: { visible: "Add place", timeout: 30000 }
+- assertNotVisible: ".*Today only.*"
+- assertVisible: ".*Full gym.*"

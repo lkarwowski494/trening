@@ -44,6 +44,7 @@ Każdy `EKRAN` z `docs/19` ma wiersz (pilnuje tego `tests/maestro-zycie.test.tsx
 | `/progress` (Postępy, masa ciała, rekordy) | 05, 15, 19, **31, 32, 34** | |
 | `/more` | 06, 09, 15, 19, **32, 34, 35** | |
 | `/adapt` (Dostosuj do miejsca) | 22 | okno modalne po zmianie miejsca na takie z brakami sprzętu; w 31–35 bez wejścia w to okno (scenariusze zmieniające miejsce zamykają je „Cancel”) |
+| `/place-once` (Inne miejsce) | 23, 13 | okno z „Inne miejsce (tylko dziś)…” w arkuszu 📍 (23); w 13 miejsce na dni planu ustawia się z listy miejsc (panel dnia → „📍 Miejsce na te dni”), „Inne miejsce…” z panelu — tests/places-ui; w 31–35 bez wejścia w to okno |
 | `/exercise` (karta/edycja ćwiczenia) | 16, 17 | |
 | `/exercises` | 17, 19 | wejście z Więcej; w 31 ćwiczenie wybierane z listy w Postępach |
 | `/generator` | 14, **31** | |

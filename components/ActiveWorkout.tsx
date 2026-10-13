@@ -5,7 +5,7 @@ import { activateKeepAwakeAsync, deactivateKeepAwake } from 'expo-keep-awake';
 import { useTheme, F, NUM_SCALE_MAX } from '@/lib/theme';
 import { Btn, Input, NumInput, Muted, useOnce, monoSafe } from '@/components/ui';
 import { TechniqueLink } from '@/components/ExerciseCues';
-import { effortLabel, effortField, effortIn, isPaused, workoutDurSec, pauseWorkout, resumeWorkout, progressionFor, skipExercise, unskipExercise, typeSetValue, setActiveLocation, lastActivity, staleSince, staleRef, staleKind, ackStale, markActivity, useForegroundTick, bandA11y, clampName, loadLabelShort, getState, useTick, exById, prevOfActiveBlock, previousFor, canUndoSwap, undoSwap, pinnedImpl, rememberRest as storeRememberRest, canRememberAlt, rememberAlt, altHint, skipAlt, occurrence, occurrences, hintFor, isBW, reps, fmtDur, fmtSec, fmtTime, setSummary, toggleDone, restAfter, roundRest, addSet, removeSet, removeSetById, removeExercise, finishWorkout, cancelWorkout, save, loadLabel, groupLabels, linkWithNext, unlink, cycleBand, findSet, shortBand, setHasValue, locationById, offListNote, liveBlockImpl, listLocFor, srcSetAt, usesBand, focusSet, isDeloadWeek, wallTs, workCount, workSetCount, REPS_MAX, REST_MAX } from '@/lib/store';
+import { effortLabel, effortField, effortIn, isPaused, workoutDurSec, pauseWorkout, resumeWorkout, progressionFor, skipExercise, unskipExercise, typeSetValue, setActiveLocation, visibleLocations, lastActivity, staleSince, staleRef, staleKind, ackStale, markActivity, useForegroundTick, bandA11y, clampName, loadLabelShort, getState, useTick, exById, prevOfActiveBlock, previousFor, canUndoSwap, undoSwap, pinnedImpl, rememberRest as storeRememberRest, canRememberAlt, rememberAlt, altHint, skipAlt, occurrence, occurrences, hintFor, isBW, reps, fmtDur, fmtSec, fmtTime, setSummary, toggleDone, restAfter, roundRest, addSet, removeSet, removeSetById, removeExercise, finishWorkout, cancelWorkout, save, loadLabel, groupLabels, linkWithNext, unlink, cycleBand, findSet, shortBand, setHasValue, locationById, offListNote, liveBlockImpl, listLocFor, srcSetAt, usesBand, focusSet, isDeloadWeek, wallTs, workCount, workSetCount, REPS_MAX, REST_MAX } from '@/lib/store';
 import { restLabel, setLabel, nowParts, focusCounter, timedLabel } from '@/lib/live';
 import { availability, missingLabel } from '@/lib/equipment';
 import { EquipVisual } from '@/components/EquipVisual';
@@ -27,6 +27,7 @@ import { t as tr, tp, exName, lang, glue } from '@/lib/i18n';
 import { wu, wField, wInKeep, fmtW } from '@/lib/units';
 import { cancelButton, confirmSkipTimedSet } from '@/lib/confirm';
 import { adaptCandidates, restoreCandidates } from '@/lib/adapt';
+import { takeAutoAdapt } from '@/lib/adaptPick';
 
 /*
  * Trening w toku. Audyt 0.8.1:
@@ -46,6 +47,8 @@ export default function ActiveWorkout() {
   const wake = st.settings.wakeLock !== false;
   useEffect(() => { if (!wake) return; activateKeepAwakeAsync('workout').catch(() => {}); return () => { deactivateKeepAwake('workout').catch(() => {}); }; }, [wake]);
   useEffect(() => { timer.ensurePermission().catch(() => {}); }, []);
+  /* 0.19 (docs/33 B, P4 A): start w dniu z miejscem z planu — okno „Dostosuj do: X” otwiera się samo (raz, tylko gdy są propozycje); nigdy automatyczna zamiana */
+  useEffect(() => { const a = getState().active; if (a && takeAutoAdapt(a.id) && a.locationId && (adaptCandidates(a, a.locationId).length || restoreCandidates(a, a.locationId).length)) router.push('/adapt'); }, [w.id]); // eslint-disable-line react-hooks/exhaustive-deps
   const [, force] = useState(0);
   useEffect(() => timer.subscribe(() => force(x => x + 1)), []);
   const finishing = useRef(false); const asking = useRef(false);
@@ -225,9 +228,11 @@ function insteadLine(e: WExercise): string {
 /** P-003 E1: „📍 Dom ▾” pod nazwą treningu (tylko gdy są miejsca) — zmiana miejsca tylko dla tej sesji; nic nie jest przepisywane
  * ani zamieniane (A-002) — zmienia się filtr wyboru ćwiczeń, plakietki braku sprzętu i podpowiedzi. */
 function LocationChip({ w }: { w: Workout }) {
-  const t = useTheme(); const router = useRouter(); const locs = getState().settings.locations; if (!locs.length) return null;
+  const t = useTheme(); const router = useRouter(); const locs = visibleLocations(); if (!locs.length) return null;
   const name = w.locationId ? locationLabel(w.locationId) : tr('bez miejsca');
-  const pick = () => ActionSheetIOS.showActionSheetWithOptions({ options: [...locs.map(l => l.name), tr('Anuluj')], cancelButtonIndex: locs.length, title: tr('Miejsce tego treningu') }, i => {
+  /* 0.19 (docs/33 A4): ostatnia pozycja arkusza — „Inne miejsce (tylko dziś)…” (szybka lista sprzętu, app/place-once.tsx); miejsca jednorazowe nie są na liście */
+  const pick = () => ActionSheetIOS.showActionSheetWithOptions({ options: [...locs.map(l => l.name), tr('Inne miejsce (tylko dziś)…'), tr('Anuluj')], cancelButtonIndex: locs.length + 1, title: tr('Miejsce tego treningu') }, i => {
+    if (i === locs.length) { if (getState().active?.id === w.id) router.push('/place-once'); return; }
     const l = locs[i]; const a = getState().active; if (!l || !a || a.id !== w.id) return; const was = a.locationId; setActiveLocation(l.id); /* decyzja 8c: przyrządy bloków wg nowego miejsca */
     /* 0.18 (docs/33, P2 A): miejsce z brakami albo z ćwiczeniami do przywrócenia — okno „Dostosuj do: X” otwiera się samo (tylko propozycje do przejrzenia) */
     const cur = getState().active; if (cur && was !== l.id && (adaptCandidates(cur, l.id).length || restoreCandidates(cur, l.id).length)) router.push('/adapt'); });

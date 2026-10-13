@@ -4,7 +4,7 @@ import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
 import { Screen, Muted, Btn, Txt, Field, Input, NumInput, Empty, Missing } from '@/components/ui';
 import { WhenFields } from '@/components/WhenFields';
 import { setLabel } from '@/components/ActiveWorkout';
-import { effortLabel, effortField, effortIn, getState, useTick, exById, isBW, loadLabel, loadLabelShort, groupLabels, occurrence, occurrences, deleteWorkout, bandA11y, shortBand, clampName, NAME_MAX, blockImpl, liveBlockImpl, nextBandId, loadFieldValue, loadOf, writeLoad, usesBand, workCount, wallTs, REPS_MAX } from '@/lib/store';
+import { visibleLocations, effortLabel, effortField, effortIn, getState, useTick, exById, isBW, loadLabel, loadLabelShort, groupLabels, occurrence, occurrences, deleteWorkout, bandA11y, shortBand, clampName, NAME_MAX, blockImpl, liveBlockImpl, nextBandId, loadFieldValue, loadOf, writeLoad, usesBand, workCount, wallTs, REPS_MAX } from '@/lib/store';
 import { draftOf, beginEdit, discardDraft, isDirty, touchDraft, useDraftTick, checkDraft, commitDraft, draftAddSet, draftRemoveSet, draftRemoveExercise, draftSetWhen, draftSetLocation, dateText, timeText, prefilledOffList, type Draft } from '@/lib/edit';
 import { onHistoryEdited } from '@/lib/backup';
 import { locationLabel } from '@/lib/locations';
@@ -85,7 +85,7 @@ export default function EditWorkout() {
 /** T-057: „📍 Dom ▾” — wybór miejsca treningu (jak chip w treningu w toku): miejsca użytkownika i, gdy trening ma miejsce, „bez miejsca”. Bez zdefiniowanych
  * miejsc — tylko podpis (jeśli trening ma miejsce, także usunięte). Zmiana: lib/edit.ts draftSetLocation. */
 function LocationChip({ d }: { d: Draft }) {
-  const th = useTheme(); const locs = getState().settings.locations; const cur = d.w.locationId;
+  const th = useTheme(); const locs = visibleLocations(); const cur = d.w.locationId; /* 0.19: miejsca jednorazowe poza listą */
   if (!locs.length && !cur) return null;
   const name = cur ? locationLabel(cur) : t('bez miejsca');
   if (!locs.length) return <Text accessibilityLanguage={lang()} accessibilityLabel={`${t('Miejsce')}: ${name}`} maxFontSizeMultiplier={1.3} style={{ color: th.muted, fontSize: 14, fontFamily: F.semibold, marginBottom: 10 }}>{`📍 ${name}`}</Text>;

@@ -538,13 +538,13 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     expect(screen.getByText('Notatka do treningu')).toBeTruthy(); expect(screen.getAllByText('RPE', { includeHiddenElements: true }).length).toBeGreaterThan(0); /* RPE włączone w Ustawieniach; nagłówek kolumny ukryty przed VoiceOver (audyt 0.10, A11-18) */
     /* zmiana miejsca tylko dla tej sesji: masa ciała → plakietka braku sprzętu; Anuluj; powrót do domu */
     const chipLoc = () => screen.getByLabelText(/^Miejsce treningu: .*$/);
-    await tap(chipLoc()); expect((global as any).__sheets.at(-1).opts.options).toEqual(['Pełna siłownia', 'Dom testowy', 'Tylko masa ciała', 'Hotel', 'Anuluj']);
+    await tap(chipLoc()); expect((global as any).__sheets.at(-1).opts.options).toEqual(['Pełna siłownia', 'Dom testowy', 'Tylko masa ciała', 'Hotel', 'Inne miejsce (tylko dziś)…', 'Anuluj']); /* 0.19 (docs/33 A4): pozycja „Inne miejsce (tylko dziś)…” */
     await sheet(2); expect(S().active!.locationId).toBe(loc('Tylko masa ciała').id);
     /* 0.18 (docs/33, P2 A): miejsce z brakami otwiera okno „Dostosuj do: X” samo — „Anuluj” nic nie zmienia, wiersz pod chipem zostaje */
     expect(screen.getByTestId('adapt-apply')).toBeTruthy(); await tap(screen.getByTestId('close-modal')); await flushAll(10); expect(screen.getByTestId('adapt-line')).toBeTruthy();
     expect(screen.getByText('📍 Tylko masa ciała ▾')).toBeTruthy();
     expect(screen.getAllByLabelText(/^Brak sprzętu w: Tylko masa ciała\. Brakuje: /).length).toBe(4); /* wszystko poza Plankiem */ expect(screen.queryByLabelText(`Zamień ćwiczenie (brak sprzętu): ${B}`)).toBeNull(); /* jedno „⇄ zamień” w stopce; plakietka = tekst otwierający arkusz */ expect(screen.getByLabelText(`Zamień ćwiczenie: ${B}`)).toBeTruthy();
-    await tap(chipLoc()); await sheet(4); expect(S().active!.locationId).toBe(loc('Tylko masa ciała').id); /* Anuluj */
+    await tap(chipLoc()); await sheet(5); expect(S().active!.locationId).toBe(loc('Tylko masa ciała').id); /* Anuluj (0.19: po „Inne miejsce (tylko dziś)…” — indeks 5) */
     await tap(chipLoc()); await sheet(1); expect(S().active!.locationId).toBe(loc('Dom testowy').id); expect(screen.queryByLabelText(/^Brak sprzętu w:/)).toBeNull();
     expect(tpl.locationId).toBe(loc('Dom testowy').id); /* szablon bez zmian */
 

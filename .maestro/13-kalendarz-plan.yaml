@@ -17,6 +17,9 @@
 #   "Not now"                       ← 'Nie teraz' (okno zgody na przypomnienie, lib/planReminder.ts askReminderPermission)
 #   "Today: Upper A", "Start planned workout: Upper A" ← components/TodayPlan.tsx
 #   "What's new", "In this version", "Close"   ← components/WhatsNew.tsx: 'Co nowego' (etykieta „i”), 'W tej wersji', 'Zamknij' (08.10.2026)
+#   0.19 (docs/33 B, miejsce na zakres dni): "Places and equipment", "Add place", "Full gym,.*", "Hotel,.*", "Available exercises: .*", "Back" ← jak 06 i 22 (dwa miejsca:
+#        pełna siłownia — główne, Hotel); "📍 Place for these days" ← '📍 Miejsce na te dni' (przycisk pod „More options”, components/DayPanel.tsx PlaceRange);
+#        "Hotel" (chip miejsca), "Set place", "Workout place: Hotel" (linijka „📍 Hotel” dnia — accessibilityLabel 'Miejsce treningu: {l}'), "Remove place" ('Usuń miejsce')
 appId: pl.lukasz.trening
 name: Kalendarz z planem tygodnia
 ---
@@ -25,6 +28,25 @@ name: Kalendarz z planem tygodnia
     permissions: { all: allow }
 - extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
 - runFlow: subflows/szablon-testowy.yaml
+# --- 0.19: dwa miejsca (pełna siłownia — główne, Hotel) do miejsca na zakres dni w planie (jak 22) ---
+- tapOn: "More, tab.*"
+- extendedWaitUntil: { visible: "Places and equipment", timeout: 30000 }
+- tapOn: "Places and equipment"
+- extendedWaitUntil: { visible: "Add place", timeout: 30000 }
+- tapOn: "Add place"
+- extendedWaitUntil: { visible: "Full gym,.*", timeout: 30000 }
+- tapOn: "Full gym,.*"
+- extendedWaitUntil: { visible: "Available exercises: .*", timeout: 30000 }
+- tapOn: "Back"
+- extendedWaitUntil: { visible: "Add place", timeout: 30000 }
+- tapOn: "Add place"
+- extendedWaitUntil: { visible: "Hotel,.*", timeout: 30000 }
+- tapOn: "Hotel,.*"
+- extendedWaitUntil: { visible: "Available exercises: .*", timeout: 30000 }
+- tapOn: "Back"
+- extendedWaitUntil: { visible: "Add place", timeout: 30000 }
+- tapOn: "Back"
+- extendedWaitUntil: { visible: "Places and equipment", timeout: 30000 }
 # --- Plan tygodnia: Upper A każdego dnia (dzień symulatora nieznany — dziś zawsze zaplanowany); wiersz dnia → wybór szablonu ---
 - tapOn: "Plan, tab.*"
 - extendedWaitUntil: { visible: "Planning", timeout: 30000 }
@@ -68,6 +90,23 @@ name: Kalendarz z planem tygodnia
 - tapOn: { text: ".*, planned: Upper A", index: 0 }
 - extendedWaitUntil: { visible: "Planned: Upper A", timeout: 15000 }
 - takeScreenshot: 61-panel-dnia
+# --- 0.19: „📍 Place for these days” — Hotel na wybrany dzień (zakres od–do: tu jeden dzień), linijka „📍 Hotel”, „Remove place” przywraca domyślne ---
+- tapOn: "More options"
+- extendedWaitUntil: { visible: "📍 Place for these days", timeout: 15000 }
+- tapOn: "📍 Place for these days"
+- extendedWaitUntil: { visible: "Hotel", timeout: 15000 }
+- scrollUntilVisible: { element: "Hotel", direction: DOWN, timeout: 30000, centerElement: true }  # niedziela / początek miesiąca: dłuższy kalendarz — chip pod krawędzią listy
+- tapOn: "Hotel"
+- scrollUntilVisible: { element: "Set place", direction: DOWN, timeout: 30000, centerElement: true }  # panel miejsca pod kalendarzem miesiąca — przycisk pod krawędzią listy
+- tapOn: "Set place"
+- extendedWaitUntil: { visible: "Workout place: Hotel", timeout: 15000 }
+- takeScreenshot: 61a-miejsce-dnia
+- tapOn: "More options"
+- tapOn: "📍 Place for these days"
+- extendedWaitUntil: { visible: "Remove place", timeout: 15000 }
+- scrollUntilVisible: { element: "Remove place", direction: DOWN, timeout: 30000, centerElement: true }
+- tapOn: "Remove place"
+- assertNotVisible: "Workout place: Hotel"
 - tapOn: "Move or skip"
 - extendedWaitUntil: { visible: "Days changed: .*", timeout: 15000 }
 - takeScreenshot: 64-propozycje

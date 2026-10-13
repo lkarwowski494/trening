@@ -44,7 +44,7 @@ const hex6 = (c: unknown) => typeof c === 'string' && /^#[0-9a-f]{6}$/i.test(c) 
 const isBold = (st: Record<string, unknown>) => st.fontFamily === F.heavy || st.fontFamily === F.display || st.fontFamily === F.monoBold || st.fontWeight === 'bold' || Number(st.fontWeight) >= 700;
 
 /* ---------- stan i trasy: tests/a11y-routes.ts (wspólne z audit-0.10-lang-ui — A11N-01) ---------- */
-const ROUTES_N = 32; /* import CSV (11.10.2026) + 23 + masa ciała, O aplikacji, licencje (fala 2) + plan z moich szablonów (09.10.2026) + wybór szablonu i Progresja (11.10.2026) + okno „Dostosuj” (0.18) */
+const ROUTES_N = 33; /* 0.19: + /place-once (okno „Inne miejsce”) */ // było 32: /* import CSV (11.10.2026) + 23 + masa ciała, O aplikacji, licencje (fala 2) + plan z moich szablonów (09.10.2026) + wybór szablonu i Progresja (11.10.2026) + okno „Dostosuj” (0.18) */
 /* Trasa „/” w stanie z treningiem w toku = ekran aktywnego treningu (components/ActiveWorkout.tsx). */
 
 /**

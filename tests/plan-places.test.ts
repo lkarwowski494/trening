@@ -6,7 +6,7 @@ import * as store from '@/lib/store';
 import * as plan from '@/lib/plan';
 import * as locs from '@/lib/locations';
 import { syncPlanReminders, planReminderKey } from '@/lib/planReminder';
-import { takeAutoAdapt } from '@/lib/adaptPick';
+import { takeAutoAdapt, armAutoAdapt } from '@/lib/adaptPick';
 import { presetEquipment } from '@/lib/equipment';
 import { fresh, saved, withDemoTemplates } from './helpers';
 import { loc } from './locations-fixtures';
@@ -74,6 +74,16 @@ describe('placeRun / clearPlanPlace — „Usuń miejsce”', () => {
   });
   test('miejsce usunięte w danych (id bez miejsca) — plannedPlace nic nie zwraca, start nie wybiera nieistniejącego miejsca', () => {
     S().planPlaces = { '2026-10-08': 'duch' }; expect(plan.plannedPlace('2026-10-08')).toBeUndefined(); store.startFromTemplate(S().templates[0]); expect(S().active!.locationId).toBe(GYM);
+  });
+});
+
+describe('placeOnDay / armAutoAdapt — niskopoziomowe', () => {
+  test('placeOnDay: id miejsca zapisanego na dzień albo undefined (brak wpisu, usunięte miejsce); nie sięga do innych dni', () => {
+    plan.setPlanPlace('2026-10-09', '2026-10-09', HOTEL); expect([store.placeOnDay('2026-10-09'), store.placeOnDay('2026-10-10'), store.placeOnDay('')]).toEqual([HOTEL, undefined, undefined]);
+    S().settings.locations = S().settings.locations.filter(l => l.id !== HOTEL); expect(store.placeOnDay('2026-10-09')).toBeUndefined();
+  });
+  test('armAutoAdapt: znacznik tylko dla ostatnio uzbrojonego treningu i tylko raz (nowy start zastępuje poprzedni)', () => {
+    armAutoAdapt('a'); armAutoAdapt('b'); expect(takeAutoAdapt('a')).toBe(false); expect(takeAutoAdapt('b')).toBe(true); expect(takeAutoAdapt('b')).toBe(false); expect(takeAutoAdapt('')).toBe(false);
   });
 });
 

@@ -22,7 +22,7 @@ const rel = (p: string) => relative(ROOT, p).split(sep).join('/');
 const src = (p: string) => readFileSync(p, 'utf8');
 
 /** Adres, pod którym okno otwiera się w teście (nowa trasa modalna bez wpisu tutaj = czerwony test). */
-export const MODAL_URLS: Record<string, string> = { picker: '/picker', swap: '/swap', adapt: '/adapt', 'pick-template': '/pick-template', paywall: '/paywall?reason=settings' };
+export const MODAL_URLS: Record<string, string> = { picker: '/picker', swap: '/swap', adapt: '/adapt', 'place-once': '/place-once', 'pick-template': '/pick-template', paywall: '/paywall?reason=settings' };
 /** Warianty zawartości, w których przycisk też ma być (np. ekran zakupu przy każdym powodzie otwarcia). */
 const EXTRA_URLS = ['/paywall?reason=limit', '/paywall?reason=first', '/paywall?reason=settings'];
 

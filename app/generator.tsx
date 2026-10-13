@@ -5,7 +5,7 @@ import { useRouter, useLocalSearchParams, Stack } from 'expo-router';
 import { OwnPlan, usePlanReturn } from '@/components/OwnPlan';
 import { DayPicker, daysOk } from '@/components/DayPicker';
 import { Screen, Field, Chip, Muted, Txt, H2, Btn, SectionTitle, SwitchRow, Segmented } from '@/components/ui';
-import { getState, useTick, exById, fmtSec } from '@/lib/store';
+import { getState, useTick, exById, fmtSec, visibleLocations } from '@/lib/store';
 import {
   generate, genProposal, weeklySetsList, saveGenerated, replaceable, previewWarnings, genFolder, goalLabel, GOALS, GEN_SESSIONS, GEN_MINUTES, WARMUP_MIN, SET_WORK_SEC, SETS_PER_EX, ACSM_MIN_SETS,
   MIN_EXERCISES, CUT_CARDIO_FROM, cardioCount, cardioSwitch, genCount, setsFor, REPS, REST, HEAVY_PCT, RIR, RIR_ACSM, MIN_DAYS, SECONDARY_SHARE, WHO_MODERATE, WHO_VIGOROUS,
@@ -42,13 +42,13 @@ export default function GeneratorScreen() {
 function NewTemplatesPlan({ header }: { header: React.ReactNode }) {
   const rev = useTick(); const router = useRouter(); const toPlan = usePlanReturn(); const s = getState().settings;
   /* wybór dni (09.10.2026 B): na starcie zaznaczona propozycja generatora dla domyślnej liczby sesji (genProposal) */
-  const [inp, setInp] = useState<GenInput>(() => { const i: GenInput = { goal: 'hypertrophy', locationId: s.mainLocationId && s.locations.some(l => l.id === s.mainLocationId) ? s.mainLocationId : null, sessions: 3, minutes: 60 }; return { ...i, days: genProposal(i) }; });
+  const [inp, setInp] = useState<GenInput>(() => { const i: GenInput = { goal: 'hypertrophy', locationId: s.mainLocationId && visibleLocations().some(l => l.id === s.mainLocationId) ? s.mainLocationId : null, sessions: 3, minutes: 60 }; return { ...i, days: genProposal(i) }; });
   /* zmiana celu, przy której liczba zaznaczonych dni wypada poza zakres (redukcja: od 3) — zaznaczenie = propozycja dla najbliższej dozwolonej liczby;
    * w zakresie — wybór użytkownika zostaje (miejsce i czas go nie zmieniają) */
   const set = (p: Partial<GenInput>) => setInp(x => { const n = { ...x, ...p }; const al = GEN_SESSIONS[n.goal]; const k = (n.days ?? []).length;
     if (p.goal && p.goal !== x.goal && !al.includes(k)) { n.sessions = al.find(v => v >= k) ?? al[al.length - 1]; n.days = genProposal(n); } return n; });
   const lim = GEN_SESSIONS[inp.goal]; const ok = daysOk(inp.days ?? [], lim[0], lim[lim.length - 1]);
-  const nLoc = s.locations.length; const r = useMemo(() => generate(inp), [inp, rev]); /* rev: miejsca i sprzęt zmienione po „+ Dodaj miejsce” */ const warn = previewWarnings(r, inp);
+  const nLoc = visibleLocations().length; const r = useMemo(() => generate(inp), [inp, rev]); /* rev: miejsca i sprzęt zmienione po „+ Dodaj miejsce” */ const warn = previewWarnings(r, inp);
   const unloaded = warn.find(w => w.kind === 'unloaded');
   /* uwaga pod celem przy zbyt małej liczbie dni (decyzja właściciela 09.10.2026 B, docs/18): ostrzeżenie „oneday” (1 dzień siłowy) stoi pod celem,
    * a nie w podglądzie — jedno miejsce, bez powtórzenia; przy celu „Ogólny” ma tekst dla zdrowia (WHO/PAG, docs/research/30) */
@@ -119,7 +119,7 @@ function NewTemplatesPlan({ header }: { header: React.ReactNode }) {
       {dayNote ? <View testID="gen-day-note"><Txt style={{ fontSize: 13, marginTop: -2, marginBottom: 8 }}>{dayNote.text}</Txt></View> : null}
       {cardioSwitch(inp.goal, nDays) ? <SwitchRow label={t('Dni cardio w planie')} detail={t('Dni powyżej {k} to sesje umiarkowanego cardio zamiast siłowych.', { k: GENERAL_LIFT_MAX })} value={!!inp.cardio} onChange={v => set({ cardio: v })} /> : null}
       <Field label={t('Miejsce')}><View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6 }}>
-        {s.locations.map(l => <Chip key={l.id} label={l.name} on={inp.locationId === l.id} onPress={() => set({ locationId: l.id })} />)}
+        {visibleLocations().map(l => <Chip key={l.id} label={l.name} on={inp.locationId === l.id} onPress={() => set({ locationId: l.id })} />)}
         <Chip label={t('Bez ograniczeń sprzętu')} on={inp.locationId === null} onPress={() => set({ locationId: null })} />
         <Chip nav label={t('+ Dodaj miejsce')} on={false} onPress={() => router.push('/more/locations')} />
       </View></Field>

@@ -10,6 +10,7 @@
 # 20 (12.10.2026, 0.16.0): odczyt z Apple Health — przełącznik w Ustawieniach, stan wyłączony (panel dnia, „This week”, szczegóły sesji bez linii Zdrowia).
 # 21 (12.10.2026, 0.17.0): subskrypcja — build ze sztucznym sklepem (EXPO_PUBLIC_STORE_FAKE=1 tylko w e2e-ios.yml): ekran zakupu, limit, zakup.
 # 22 (13.10.2026, 0.18): „Dostosuj do miejsca” — zmiana „📍” → okno samo → „Apply” → „instead of”; powrót z „Back to your plan”.
+# 23 (13.10.2026, 0.19): „Inne miejsce (tylko dziś)” — 📍 → okno → zestaw → „Use” → „Adjust to: Today only” → „Apply”; 13 rozszerzony o miejsce na zakres dni w planie.
 # 13 (08.10.2026): kalendarz z planem tygodnia (plan, przesunięcie planu, konflikt, „Dziś”). 14 (08.10.2026): generator szablonów i planu. Każdy plik .yaml z katalogu musi być tu wpisany (tests/maestro-selectors.test.ts).
 flows:
   - 01-trening-z-szablonu.yaml
@@ -34,6 +35,7 @@ flows:
   - 20-zdrowie-odczyt.yaml
   - 21-subskrypcja.yaml
   - 22-dostosuj-do-miejsca.yaml
+  - 23-miejsce-jednorazowe.yaml
   - 31-pierwszy-tydzien.yaml
   - 32-regularny-uzytkownik.yaml
   - 33-aktualizacja-przygotuj.yaml

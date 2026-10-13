@@ -4,7 +4,7 @@ import { useRouter } from 'expo-router';
 import { Btn, Muted, Txt, upperText, useOnce } from '@/components/ui';
 import { useTheme, F, NUM_SCALE_MAX } from '@/lib/theme';
 import { getState, finishedWorkouts, useForegroundTick, isDeloadWeek, fmtDayKey } from '@/lib/store';
-import { hasPlan, dayKeyOf, doneOn, upcoming, pending, planTplName, planName, addDays, type DayStatus } from '@/lib/plan';
+import { plannedPlaceName, hasPlan, dayKeyOf, doneOn, upcoming, pending, planTplName, planName, addDays, type DayStatus } from '@/lib/plan';
 import { weekStrip } from '@/lib/dashboard';
 import { DayIcon } from '@/components/Motif';
 import { dayMark } from '@/lib/motif';
@@ -55,11 +55,13 @@ export function TodayPlan() {
         {(() => { const u = upperText(deload ? `${t('Dziś')} · ${t('Tydzień deload')}` : t('Dziś')); /* A11-02: wersaliki z regułami języka */ return <Muted accessibilityLabel={u.label} style={[{ fontSize: 12, fontFamily: F.semibold, letterSpacing: 0.5 }, u.style]}>{u.text}</Muted>; })()}
         <Txt style={{ fontFamily: F.semibold, fontSize: 18 }}>{title}</Txt>
         {cur.status === 'other' ? <Muted style={{ fontSize: 13 }}>{t('Zrobiony inny trening: {name}', { name: names(today) })}</Muted> : null}
+        {plannedPlaceName(today) ? <Muted testID="today-place" accessibilityLabel={t('Miejsce treningu: {l}', { l: plannedPlaceName(today) })} style={{ fontSize: 13 }}>{`📍 ${plannedPlaceName(today)}`}</Muted> : null}
         {tpl && pending(cur) && !tpl.items.length ? <Pressable accessibilityLanguage={lang()} accessibilityRole="button" onPress={once(() => router.push(`/template/${tpl.id}?edit=1`))} hitSlop={8} style={{ minHeight: 44, justifyContent: 'center' }}><Muted style={{ fontSize: 13 }}>{t('Szablon jest pusty — dodaj ćwiczenia')}</Muted></Pressable> : null}
       </View> : deload ? <Muted style={{ fontSize: 12, fontFamily: F.semibold }}>{t('Tydzień deload')}</Muted> : null}
       <View testID="week-strip" style={{ flexDirection: 'row', gap: 2 }}>
         {days.map(d => {
-          const label = [fmtWeekdayDayMonth(dateOf(d.date)), ...(d.today ? [t('dziś')] : []), word(d), ...(deload ? [t('tydzień deload')] : [])].join(', ');
+          const place = plannedPlaceName(d.date); /* 0.19 (docs/33 B): miejsce zapisane w planie na ten dzień */
+          const label = [fmtWeekdayDayMonth(dateOf(d.date)), ...(d.today ? [t('dziś')] : []), word(d), ...(place ? [t('Miejsce treningu: {l}', { l: place })] : []), ...(deload ? [t('tydzień deload')] : [])].join(', ');
           const mark = dayMark(d.status, d.inPlan);
           return (
             <Pressable accessibilityLanguage={lang()} key={d.date} testID={`strip-${d.date}`} accessibilityRole="button" accessibilityLabel={label} accessibilityHint={t('Otwiera ten dzień w zakładce Plan.')} onPress={once(() => router.push(`/history?day=${d.date}`))} style={({ pressed }) => ({ flex: 1, minHeight: 44 /* A11-15 */, alignItems: 'center', gap: 4, paddingVertical: 3, borderRadius: 8, borderWidth: 2, borderColor: d.today ? th.accent : 'transparent', opacity: pressed ? 0.6 : 1 })}>
