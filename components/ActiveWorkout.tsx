@@ -5,7 +5,7 @@ import { activateKeepAwakeAsync, deactivateKeepAwake } from 'expo-keep-awake';
 import { useTheme, F, NUM_SCALE_MAX } from '@/lib/theme';
 import { Btn, Input, NumInput, Muted, useOnce, monoSafe } from '@/components/ui';
 import { TechniqueLink } from '@/components/ExerciseCues';
-import { effortLabel, effortField, effortIn, isPaused, workoutDurSec, pauseWorkout, resumeWorkout, progressionFor, skipExercise, unskipExercise, typeSetValue, setActiveLocation, lastActivity, staleSince, staleRef, staleKind, ackStale, markActivity, useForegroundTick, bandA11y, clampName, loadLabelShort, getState, useTick, exById, prevOfActiveBlock, previousFor, canUndoSwap, undoSwap, pinnedImpl, rememberRest as storeRememberRest, canRememberAlt, rememberAlt, altHint, skipAlt, occurrence, occurrences, hintFor, isBW, reps, fmtDur, fmtSec, fmtTime, setSummary, toggleDone, restAfter, roundRest, addSet, removeSet, removeSetById, removeExercise, finishWorkout, cancelWorkout, save, loadLabel, groupLabels, linkWithNext, unlink, cycleBand, findSet, shortBand, setHasValue, locationById, offListNote, liveBlockImpl, listLocFor, srcSetAt, usesBand, focusSet, isDeloadWeek, wallTs, workCount, workSetCount, REPS_MAX, REST_MAX } from '@/lib/store';
+import { effortLabel, effortField, effortIn, isPaused, workoutDurSec, pauseWorkout, resumeWorkout, progressionFor, skipExercise, unskipExercise, typeSetValue, setActiveLocation, lastActivity, staleSince, staleRef, staleKind, ackStale, useForegroundTick, bandA11y, clampName, loadLabelShort, getState, useTick, exById, prevOfActiveBlock, previousFor, canUndoSwap, undoSwap, pinnedImpl, rememberRest as storeRememberRest, canRememberAlt, rememberAlt, altHint, skipAlt, occurrence, occurrences, hintFor, isBW, reps, fmtDur, fmtSec, fmtTime, setSummary, roundRest, addSet, removeSet, removeSetById, removeExercise, finishWorkout, cancelWorkout, save, loadLabel, groupLabels, linkWithNext, unlink, cycleBand, findSet, shortBand, setHasValue, locationById, offListNote, liveBlockImpl, listLocFor, srcSetAt, usesBand, focusSet, isDeloadWeek, wallTs, workCount, workSetCount, REPS_MAX, REST_MAX } from '@/lib/store';
 import { restLabel, setLabel, nowParts, focusCounter, timedLabel } from '@/lib/live';
 import { availability, missingLabel } from '@/lib/equipment';
 import { EquipVisual } from '@/components/EquipVisual';
@@ -18,6 +18,7 @@ import { implLabel } from '@/lib/swap';
 import { SetBadge } from '@/components/SetBadge';
 import { locationLabel } from '@/lib/locations';
 import * as timer from '@/lib/timer';
+import { completeSet, finishTimedSet, isClosingSet } from '@/lib/setFlow';
 import { prMap } from '@/lib/stats';
 import { onWorkoutSaved } from '@/lib/backup';
 import { markJustFinished } from '@/lib/review-run';
@@ -50,37 +51,14 @@ export default function ActiveWorkout() {
   useEffect(() => timer.subscribe(() => force(x => x + 1)), []);
   const finishing = useRef(false); const asking = useRef(false);
 
-  /** Odhaczenie serii: startuje przerwę; cofnięcie — zatrzymuje ją tylko, jeśli pochodziła z tej serii. */
+  /** Odhaczenie serii: startuje przerwę; cofnięcie — zatrzymuje ją tylko, jeśli pochodziła z tej serii (lib/setFlow.ts — wspólne z zegarkiem). */
   const onDone = async (ei: number, si: number, at?: number) => {
     if (at == null) Keyboard.dismiss(); /* audyt przed telefonem: klawiatura numeryczna nie ma „Gotowe” i zasłaniała pasek przerwy po ✓ */
-    const a = getState().active; if (!a) return; const set = a.exercises[ei]?.sets[si]; if (!set) return;
-    if (timer.S.on && timer.S.setId === set.id) { await finishTimedSet(); return; }
-    if (timer.S.on && timer.S.setId !== set.id && !set.done) await finishTimedSet(); // runda 19: odhaczenie innej serii kończy trwający pomiar (jeden timer naraz)
-    if (!set.done) restLabels(ei, si); // runda 23: tylko przy odhaczeniu — odznaczenie nie zmienia podpisu trwającej przerwy
-    const rest = toggleDone(ei, si, at);
-    /* T8: przerwa liczona od końca serii — po późnym wybudzeniu zostaje reszta albo nic */
-    const live = !!rest && (at == null || at + rest * 1000 > Date.now());
-    if (set.done) { if (rest && live) await timer.start(rest, set.id, at); else await timer.stop(); }
-    else await timer.stopIfFrom(set.id);
-  };
-  /** Podpis przerwy na Live Activity: następna seria albo następne ćwiczenie (runda 22: wspólny dla odhaczenia i ponownego pomiaru; audyt 0.10 LIVE-04:
-   * ta sama reguła co karta „teraz”, po ostatniej serii — `last`). */
-  const restLabels = (ei: number, si: number) => {
-    const a = getState().active; if (!a) return; const e = a.exercises[ei]; if (!e) return; timer.labels.title = a.templateName || tr('Trening');
-    const r = restLabel(a, ei, si); timer.labels.subtitle = r.sub; timer.labels.last = r.last;
+    await completeSet(ei, si, at);
   };
   /* Audyt 0.10 (LIVE-03/04): podpis trwającej przerwy liczony po każdej zmianie treningu („Pomiń dziś”, „Przywróć”, + seria, usunięcie, kolejność) —
    * zawsze ta sama następna seria co na karcie; bez zmiany nic się nie dzieje (timer.relabel porównuje). */
   useEffect(() => { relabelRest(); });
-  /** Koniec serii czasowej (auto po osiągnięciu celu, ✓ albo ręcznie): zapisuje czas (maks. cel) i odhacza. */
-  const closingSet = useRef(false); /* T11: domykanie serii czasowej w toku — pytanie o porzucony trening czeka */
-  const finishTimedSet = async () => { closingSet.current = true; try { await finishTimedSetInner(); } finally { closingSet.current = false; } };
-  const finishTimedSetInner = async () => {
-    const { setId, sec, endAt } = await timer.stopSet(); const pos = findSet(setId); const a = getState().active; if (!pos || !a) return;
-    const set = a.exercises[pos.ei].sets[pos.si]; set.durationSec = Math.max(1, sec); if (set.done) markActivity(a, endAt); /* Q-010 */ save(a);
-    if (!set.done) await onDone(pos.ei, pos.si, endAt);
-    else { const nx = a.exercises[pos.ei].sets[pos.si + 1]; const rest = nx && nx.kind === 'drop' && !nx.done ? null /* T7: przed drop setem bez przerwy, także po ponownym pomiarze */ : restAfter(pos.ei, pos.si) ?? roundRest(pos.ei); if (rest && endAt + rest * 1000 > Date.now()) { restLabels(pos.ei, pos.si); await timer.start(rest, set.id, endAt); } /* T9: przerwa od końca serii, jak przy pierwszym pomiarze */ } // runda 19/21/22: po ponownym pomiarze przerwa od nowa (w supersecie — przerwa rundy)
-  };
   const finishRef = useRef(finishTimedSet); finishRef.current = finishTimedSet;
   useEffect(() => {
     const i = setInterval(() => { timer.tick(); if (timer.setReached()) finishRef.current().catch(() => {}); }, 500);
@@ -118,7 +96,7 @@ export default function ActiveWorkout() {
   /** Pytanie o porzucony trening. Runda 71: blokada na poziomie modułu (dwa zamontowane ekrany nie otwierają dwóch okien),
    * przyciski działają tylko na tym samym treningu (T3), a „Wróć” z potwierdzenia odrzucenia wraca do pytania. */
   const askStale = (tries = 0) => {
-    if (closingSet.current && tries < 10) { setTimeout(() => askStale(tries + 1), 300); return; }
+    if (isClosingSet() && tries < 10) { setTimeout(() => askStale(tries + 1), 300); return; }
     if (timer.setReached()) { finishRef.current().then(() => askStale()).catch(() => {}); return; } /* T11: najpierw domknięcie serii czasowej po celu — pytanie widzi te same dane co zapis po 6 h */
     { const tm = getState().timer; const pos = tm?.setStartAt && Number(tm.setTarget) > 0 ? findSet(tm.setId) : null; const cur0 = getState().active;
       /* T11: zimny start — stoper z zapisu jeszcze nie odtworzony (timer.restore), a jego cel już minął: chwila na domknięcie serii */
