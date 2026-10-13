@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!-- Generowane: tests/ciq-gen.test.ts (UPDATE_CIQ=1) — nie edytuj ręcznie. -->
+<strings>
+    <string id="AppName">Training</string>
+    <string id="LblIdle">Mulai latihan di aplikasi pada ponsel</string>
+    <string id="LblOffline">Tidak terhubung ke ponsel</string>
+    <string id="LblUpdate">Perbarui aplikasi di jam</string>
+    <string id="LblFinished">Latihan selesai</string>
+    <string id="LblNothingMore">Tidak ada lagi yang perlu dilakukan</string>
+    <string id="LblDone">Set selesai</string>
+    <string id="LblDoneDiff">Dilakukan berbeda dari rencana</string>
+    <string id="LblSkip">Lewati gerakan</string>
+    <string id="LblSkipQuestion">Lewati gerakan ini?</string>
+    <string id="LblUndo">Urungkan</string>
+    <string id="LblRest">Istirahat</string>
+</strings>

@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!-- Generowane: tests/ciq-gen.test.ts (UPDATE_CIQ=1) — nie edytuj ręcznie. -->
+<strings>
+    <string id="AppName">Training</string>
+    <string id="LblIdle">Indítson edzést a telefon alkalmazásában</string>
+    <string id="LblOffline">Nincs kapcsolat a telefonnal</string>
+    <string id="LblUpdate">Frissítse az alkalmazást az órán</string>
+    <string id="LblFinished">Edzés befejezve</string>
+    <string id="LblNothingMore">Nincs több teendő</string>
+    <string id="LblDone">Sorozat kész</string>
+    <string id="LblDoneDiff">Másként végezve, mint a tervben</string>
+    <string id="LblSkip">Gyakorlat kihagyása</string>
+    <string id="LblSkipQuestion">Kihagyja a gyakorlatot?</string>
+    <string id="LblUndo">Visszavonás</string>
+    <string id="LblRest">Pihenő</string>
+</strings>

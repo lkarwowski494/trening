@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!-- Generowane: tests/ciq-gen.test.ts (UPDATE_CIQ=1) — nie edytuj ręcznie. -->
+<strings>
+    <string id="AppName">Training</string>
+    <string id="LblIdle">Bắt đầu buổi tập trong ứng dụng trên điện thoại</string>
+    <string id="LblOffline">Không có kết nối với điện thoại</string>
+    <string id="LblUpdate">Cập nhật ứng dụng trên đồng hồ</string>
+    <string id="LblFinished">Buổi tập đã kết thúc</string>
+    <string id="LblNothingMore">Không còn gì để làm</string>
+    <string id="LblDone">Đã xong hiệp</string>
+    <string id="LblDoneDiff">Làm khác với kế hoạch</string>
+    <string id="LblSkip">Bỏ qua bài tập</string>
+    <string id="LblSkipQuestion">Bỏ qua bài tập này?</string>
+    <string id="LblUndo">Hoàn tác</string>
+    <string id="LblRest">Nghỉ</string>
+</strings>

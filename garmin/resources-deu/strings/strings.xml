@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!-- Generowane: tests/ciq-gen.test.ts (UPDATE_CIQ=1) — nie edytuj ręcznie. -->
+<strings>
+    <string id="AppName">Training</string>
+    <string id="LblIdle">Training in der App auf dem Telefon starten</string>
+    <string id="LblOffline">Keine Verbindung zum Telefon</string>
+    <string id="LblUpdate">App auf der Uhr aktualisieren</string>
+    <string id="LblFinished">Training beendet</string>
+    <string id="LblNothingMore">Nichts mehr zu tun</string>
+    <string id="LblDone">Satz erledigt</string>
+    <string id="LblDoneDiff">Anders als geplant erledigt</string>
+    <string id="LblSkip">Übung überspringen</string>
+    <string id="LblSkipQuestion">Übung überspringen?</string>
+    <string id="LblUndo">Rückgängig</string>
+    <string id="LblRest">Pause</string>
+</strings>

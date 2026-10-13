@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!-- Generowane: tests/ciq-gen.test.ts (UPDATE_CIQ=1) — nie edytuj ręcznie. -->
+<strings>
+    <string id="AppName">Training</string>
+    <string id="LblIdle">スマートフォンのアプリでトレーニングを開始</string>
+    <string id="LblOffline">スマートフォンと接続されていません</string>
+    <string id="LblUpdate">ウォッチのアプリを更新してください</string>
+    <string id="LblFinished">トレーニング完了</string>
+    <string id="LblNothingMore">これ以上やることはありません</string>
+    <string id="LblDone">セット完了</string>
+    <string id="LblDoneDiff">プランと違う内容で完了</string>
+    <string id="LblSkip">種目をスキップ</string>
+    <string id="LblSkipQuestion">この種目をスキップしますか？</string>
+    <string id="LblUndo">元に戻す</string>
+    <string id="LblRest">休憩</string>
+</strings>

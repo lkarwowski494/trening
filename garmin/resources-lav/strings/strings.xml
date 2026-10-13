@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!-- Generowane: tests/ciq-gen.test.ts (UPDATE_CIQ=1) — nie edytuj ręcznie. -->
+<strings>
+    <string id="AppName">Treniņš</string>
+    <string id="LblIdle">Sāciet treniņu lietotnē tālrunī</string>
+    <string id="LblOffline">Nav savienojuma ar tālruni</string>
+    <string id="LblUpdate">Atjauniniet lietotni pulkstenī</string>
+    <string id="LblFinished">Treniņš pabeigts</string>
+    <string id="LblNothingMore">Vairs nav ko darīt</string>
+    <string id="LblDone">Sērija pabeigta</string>
+    <string id="LblDoneDiff">Izpildīts citādi nekā plānā</string>
+    <string id="LblSkip">Izlaist vingrinājumu</string>
+    <string id="LblSkipQuestion">Izlaist vingrinājumu?</string>
+    <string id="LblUndo">Atsaukt</string>
+    <string id="LblRest">Atpūta</string>
+</strings>

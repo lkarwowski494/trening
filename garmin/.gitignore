@@ -1,0 +1,8 @@
+# Artefakty budowania i KLUCZ DEWELOPERSKI Connect IQ — klucz podpisu jest sekretem (docs/35-zegarek-garmin.md), nigdy w repozytorium.
+bin/
+*.prg
+*.iq
+*.der
+*.pem
+developer_key*
+*.p12

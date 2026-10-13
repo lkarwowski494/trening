@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!-- Generowane: tests/ciq-gen.test.ts (UPDATE_CIQ=1) — nie edytuj ręcznie. -->
+<strings>
+    <string id="AppName">Training</string>
+    <string id="LblIdle">在手機 App 開始訓練</string>
+    <string id="LblOffline">未連線到手機</string>
+    <string id="LblUpdate">請更新手錶上的 App</string>
+    <string id="LblFinished">訓練已完成</string>
+    <string id="LblNothingMore">沒有其他要做的了</string>
+    <string id="LblDone">這組完成</string>
+    <string id="LblDoneDiff">與計畫不同的完成方式</string>
+    <string id="LblSkip">略過動作</string>
+    <string id="LblSkipQuestion">要略過這個動作嗎？</string>
+    <string id="LblUndo">復原</string>
+    <string id="LblRest">休息</string>
+</strings>

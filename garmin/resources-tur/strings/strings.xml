@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!-- Generowane: tests/ciq-gen.test.ts (UPDATE_CIQ=1) — nie edytuj ręcznie. -->
+<strings>
+    <string id="AppName">Training</string>
+    <string id="LblIdle">Antrenmanı telefondaki uygulamadan başlat</string>
+    <string id="LblOffline">Telefonla bağlantı yok</string>
+    <string id="LblUpdate">Saatteki uygulamayı güncelle</string>
+    <string id="LblFinished">Antrenman bitti</string>
+    <string id="LblNothingMore">Yapılacak başka bir şey yok</string>
+    <string id="LblDone">Set tamam</string>
+    <string id="LblDoneDiff">Plandan farklı yapıldı</string>
+    <string id="LblSkip">Egzersizi atla</string>
+    <string id="LblSkipQuestion">Egzersiz atlansın mı?</string>
+    <string id="LblUndo">Geri al</string>
+    <string id="LblRest">Dinlenme</string>
+</strings>

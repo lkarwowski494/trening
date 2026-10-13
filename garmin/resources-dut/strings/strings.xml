@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!-- Generowane: tests/ciq-gen.test.ts (UPDATE_CIQ=1) — nie edytuj ręcznie. -->
+<strings>
+    <string id="AppName">Training</string>
+    <string id="LblIdle">Start een training in de app op je telefoon</string>
+    <string id="LblOffline">Geen verbinding met de telefoon</string>
+    <string id="LblUpdate">Werk de app op je horloge bij</string>
+    <string id="LblFinished">Training afgerond</string>
+    <string id="LblNothingMore">Niets meer te doen</string>
+    <string id="LblDone">Set klaar</string>
+    <string id="LblDoneDiff">Anders gedaan dan gepland</string>
+    <string id="LblSkip">Oefening overslaan</string>
+    <string id="LblSkipQuestion">Oefening overslaan?</string>
+    <string id="LblUndo">Herstel</string>
+    <string id="LblRest">Rust</string>
+</strings>

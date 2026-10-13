@@ -1,0 +1,2 @@
+# Domyślne ścieżki Connect IQ: source/ (kod) i resources/ oraz resources-<kod języka>/ (zasoby i tłumaczenia dobierane automatycznie).
+project.manifest = manifest.xml

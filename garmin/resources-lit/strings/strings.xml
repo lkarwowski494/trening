@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!-- Generowane: tests/ciq-gen.test.ts (UPDATE_CIQ=1) — nie edytuj ręcznie. -->
+<strings>
+    <string id="AppName">Treniruotė</string>
+    <string id="LblIdle">Pradėkite treniruotę programėlėje telefone</string>
+    <string id="LblOffline">Nėra ryšio su telefonu</string>
+    <string id="LblUpdate">Atnaujinkite programėlę laikrodyje</string>
+    <string id="LblFinished">Treniruotė baigta</string>
+    <string id="LblNothingMore">Daugiau nieko daryti nereikia</string>
+    <string id="LblDone">Serija atlikta</string>
+    <string id="LblDoneDiff">Atlikta kitaip nei plane</string>
+    <string id="LblSkip">Praleisti pratimą</string>
+    <string id="LblSkipQuestion">Praleisti pratimą?</string>
+    <string id="LblUndo">Atšaukti</string>
+    <string id="LblRest">Poilsis</string>
+</strings>

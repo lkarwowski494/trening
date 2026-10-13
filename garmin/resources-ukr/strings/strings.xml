@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!-- Generowane: tests/ciq-gen.test.ts (UPDATE_CIQ=1) — nie edytuj ręcznie. -->
+<strings>
+    <string id="AppName">Training</string>
+    <string id="LblIdle">Розпочніть тренування в застосунку на телефоні</string>
+    <string id="LblOffline">Немає з’єднання з телефоном</string>
+    <string id="LblUpdate">Оновіть застосунок на годиннику</string>
+    <string id="LblFinished">Тренування завершено</string>
+    <string id="LblNothingMore">Більше нічого робити</string>
+    <string id="LblDone">Підхід виконано</string>
+    <string id="LblDoneDiff">Виконано інакше, ніж за планом</string>
+    <string id="LblSkip">Пропустити вправу</string>
+    <string id="LblSkipQuestion">Пропустити вправу?</string>
+    <string id="LblUndo">Відмінити</string>
+    <string id="LblRest">Відпочинок</string>
+</strings>

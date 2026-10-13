@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!-- Generowane: tests/ciq-gen.test.ts (UPDATE_CIQ=1) — nie edytuj ręcznie. -->
+<strings>
+    <string id="AppName">Training</string>
+    <string id="LblIdle">휴대폰 앱에서 운동을 시작하세요</string>
+    <string id="LblOffline">휴대폰과 연결되지 않음</string>
+    <string id="LblUpdate">워치의 앱을 업데이트하세요</string>
+    <string id="LblFinished">운동 완료</string>
+    <string id="LblNothingMore">더 할 일이 없습니다</string>
+    <string id="LblDone">세트 완료</string>
+    <string id="LblDoneDiff">계획과 다르게 완료</string>
+    <string id="LblSkip">종목 건너뛰기</string>
+    <string id="LblSkipQuestion">이 종목을 건너뛸까요?</string>
+    <string id="LblUndo">실행 취소</string>
+    <string id="LblRest">휴식</string>
+</strings>

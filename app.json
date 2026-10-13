@@ -58,7 +58,8 @@
         "CFBundleAllowMixedLocalizations": true,
         "UIFileSharingEnabled": true,
         "LSSupportsOpeningDocumentsInPlace": true,
-        "ITSAppUsesNonExemptEncryption": false
+        "ITSAppUsesNonExemptEncryption": false,
+        "NSBluetoothAlwaysUsageDescription": "Trening łączy się przez Bluetooth z zegarkiem sportowym, żeby pokazywać na nim bieżące ćwiczenie i odbierać potwierdzenia serii. Dane krążą tylko między telefonem a zegarkiem."
       }
     },
     "android": {
@@ -89,6 +90,7 @@
         }
       ],
       "@bacons/apple-targets",
+      "./plugins/withConnectIq",
       "expo-iap",
       "expo-localization",
       "expo-sharing",

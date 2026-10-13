@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!-- Generowane: tests/ciq-gen.test.ts (UPDATE_CIQ=1) — nie edytuj ręcznie. -->
+<strings>
+    <string id="AppName">Training</string>
+    <string id="LblIdle">Démarrez une séance dans l’app du téléphone</string>
+    <string id="LblOffline">Pas de connexion avec le téléphone</string>
+    <string id="LblUpdate">Mettez à jour l’app sur la montre</string>
+    <string id="LblFinished">Séance terminée</string>
+    <string id="LblNothingMore">Plus rien à faire</string>
+    <string id="LblDone">Série terminée</string>
+    <string id="LblDoneDiff">Fait autrement que prévu</string>
+    <string id="LblSkip">Passer l’exercice</string>
+    <string id="LblSkipQuestion">Passer l’exercice ?</string>
+    <string id="LblUndo">Annuler</string>
+    <string id="LblRest">Repos</string>
+</strings>

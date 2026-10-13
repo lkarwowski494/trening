@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!-- Generowane: tests/ciq-gen.test.ts (UPDATE_CIQ=1) — nie edytuj ręcznie. -->
+<strings>
+    <string id="AppName">Trening</string>
+    <string id="LblIdle">Start en økt i appen på telefonen</string>
+    <string id="LblOffline">Ingen tilkobling til telefonen</string>
+    <string id="LblUpdate">Oppdater appen på klokken</string>
+    <string id="LblFinished">Økten er ferdig</string>
+    <string id="LblNothingMore">Ingenting mer å gjøre</string>
+    <string id="LblDone">Sett gjort</string>
+    <string id="LblDoneDiff">Gjort annerledes enn planlagt</string>
+    <string id="LblSkip">Hopp over øvelsen</string>
+    <string id="LblSkipQuestion">Hoppe over øvelsen?</string>
+    <string id="LblUndo">Angre</string>
+    <string id="LblRest">Hvile</string>
+</strings>

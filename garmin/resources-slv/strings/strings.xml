@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!-- Generowane: tests/ciq-gen.test.ts (UPDATE_CIQ=1) — nie edytuj ręcznie. -->
+<strings>
+    <string id="AppName">Trening</string>
+    <string id="LblIdle">Začnite trening v aplikaciji na telefonu</string>
+    <string id="LblOffline">Ni povezave s telefonom</string>
+    <string id="LblUpdate">Posodobite aplikacijo na uri</string>
+    <string id="LblFinished">Trening končan</string>
+    <string id="LblNothingMore">Nič več ni za narediti</string>
+    <string id="LblDone">Serija opravljena</string>
+    <string id="LblDoneDiff">Opravljeno drugače, kot je v načrtu</string>
+    <string id="LblSkip">Preskoči vajo</string>
+    <string id="LblSkipQuestion">Preskočim vajo?</string>
+    <string id="LblUndo">Razveljavi</string>
+    <string id="LblRest">Počitek</string>
+</strings>

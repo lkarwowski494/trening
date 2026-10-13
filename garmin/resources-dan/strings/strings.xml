@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!-- Generowane: tests/ciq-gen.test.ts (UPDATE_CIQ=1) — nie edytuj ręcznie. -->
+<strings>
+    <string id="AppName">Træning</string>
+    <string id="LblIdle">Start en træning i appen på telefonen</string>
+    <string id="LblOffline">Ingen forbindelse til telefonen</string>
+    <string id="LblUpdate">Opdater appen på uret</string>
+    <string id="LblFinished">Træning afsluttet</string>
+    <string id="LblNothingMore">Ikke mere at gøre</string>
+    <string id="LblDone">Sæt udført</string>
+    <string id="LblDoneDiff">Udført anderledes end planlagt</string>
+    <string id="LblSkip">Spring øvelsen over</string>
+    <string id="LblSkipQuestion">Spring øvelsen over?</string>
+    <string id="LblUndo">Fortryd</string>
+    <string id="LblRest">Hvile</string>
+</strings>

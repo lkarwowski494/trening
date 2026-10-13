@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!-- Generowane: tests/ciq-gen.test.ts (UPDATE_CIQ=1) — nie edytuj ręcznie. -->
+<strings>
+    <string id="AppName">Träning</string>
+    <string id="LblIdle">Starta ett pass i appen på telefonen</string>
+    <string id="LblOffline">Ingen anslutning till telefonen</string>
+    <string id="LblUpdate">Uppdatera appen på klockan</string>
+    <string id="LblFinished">Passet är klart</string>
+    <string id="LblNothingMore">Inget mer att göra</string>
+    <string id="LblDone">Set klart</string>
+    <string id="LblDoneDiff">Gjort annorlunda än planerat</string>
+    <string id="LblSkip">Hoppa över övning</string>
+    <string id="LblSkipQuestion">Hoppa över övningen?</string>
+    <string id="LblUndo">Ångra</string>
+    <string id="LblRest">Vila</string>
+</strings>

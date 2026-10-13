@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!-- Generowane: tests/ciq-gen.test.ts (UPDATE_CIQ=1) — nie edytuj ręcznie. -->
+<strings>
+    <string id="AppName">Treening</string>
+    <string id="LblIdle">Alusta treeningut telefoni rakenduses</string>
+    <string id="LblOffline">Telefoniga ühendus puudub</string>
+    <string id="LblUpdate">Uuenda kella rakendust</string>
+    <string id="LblFinished">Treening lõppenud</string>
+    <string id="LblNothingMore">Rohkem pole midagi teha</string>
+    <string id="LblDone">Seeria tehtud</string>
+    <string id="LblDoneDiff">Tehtud teisiti kui plaanis</string>
+    <string id="LblSkip">Jäta harjutus vahele</string>
+    <string id="LblSkipQuestion">Kas jätta harjutus vahele?</string>
+    <string id="LblUndo">Võta tagasi</string>
+    <string id="LblRest">Paus</string>
+</strings>

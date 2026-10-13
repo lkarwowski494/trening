@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!-- Generowane: tests/ciq-gen.test.ts (UPDATE_CIQ=1) — nie edytuj ręcznie. -->
+<strings>
+    <string id="AppName">Treeni</string>
+    <string id="LblIdle">Aloita treeni puhelimen sovelluksessa</string>
+    <string id="LblOffline">Ei yhteyttä puhelimeen</string>
+    <string id="LblUpdate">Päivitä sovellus kelloon</string>
+    <string id="LblFinished">Treeni päättyi</string>
+    <string id="LblNothingMore">Ei enää tekemistä</string>
+    <string id="LblDone">Sarja tehty</string>
+    <string id="LblDoneDiff">Tehty toisin kuin suunnitelmassa</string>
+    <string id="LblSkip">Ohita liike</string>
+    <string id="LblSkipQuestion">Ohitetaanko liike?</string>
+    <string id="LblUndo">Peru</string>
+    <string id="LblRest">Palautus</string>
+</strings>
