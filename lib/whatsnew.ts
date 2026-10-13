@@ -21,13 +21,12 @@ const genDays = () => { const all = Object.values(GEN_SESSIONS).flat(); return {
 export const LANGS_012 = ['pt-BR', 'es-419', 'id', 'ms', 'vi', 'ru', 'ja', 'ko', 'zh-Hant'] as const;
 
 export const WHATS_NEW: WhatsNewEntry[] = [
-  /* 0.17.0 (docs/32, docs/18 13.10.2026): spójna obsługa (wzorce interakcji), „Napisz do nas”, prośba o ocenę po treningu z rekordem (lib/review-run.ts — aktywna niezależnie od
+  /* 0.17.0 (docs/32, docs/18 13.10.2026): spójna obsługa (wzorce interakcji), „Napisz do nas”, (punkt o prośbie o ocenę usunięty 13.10.2026, decyzja właściciela A — w TestFlight okno się nie pokazuje; prośba aktywna: lib/review-run.ts — aktywna niezależnie od
    * PAYWALL.ENABLED; system pokazuje okno tylko w wersji z App Store, w TestFlight nie). Subskrypcja jest wyłączona przełącznikiem — bez wzmianki. Bez numeru buildu — dopisuje się po
    * przebiegu testflight.yml. id '2026-10-15' (następny po 0.16), data 13.10.2026. */
   { id: '2026-10-15', date: '2026-10-13', items: () => [
     t('Spójniejsza obsługa w całej aplikacji: okna z „Anuluj” po lewej, „+” w nagłówkach list do dodawania oraz czytelniejsze komunikaty i opisy dla VoiceOver.'),
     t('Przycisk „Napisz do nas” w Więcej → O aplikacji.'),
-    t('Po treningu z nowym rekordem aplikacja może poprosić o ocenę — rzadko i tylko w oknie systemowym.'),
   ] },
   /* 0.16.0 (docs/29, docs/18 13.10.2026): odczyt z Apple Health, paski serii z odcinkiem pośrednim, cel serii w generatorze. Build 1013 (TestFlight 38374133953, tag v0.16.0-b1013).
    * id '2026-10-14' (następny po 0.15), data 13.10.2026. */

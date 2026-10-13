@@ -1051,7 +1051,6 @@ export const EN: Record<string, string> = {
   /* 0.17.0 „Co nowego” */
   'Spójniejsza obsługa w całej aplikacji: okna z „Anuluj” po lewej, „+” w nagłówkach list do dodawania oraz czytelniejsze komunikaty i opisy dla VoiceOver.': 'More consistent controls across the app: windows with “Cancel” on the left, “+” in list headers for adding, and clearer messages and VoiceOver descriptions.',
   'Przycisk „Napisz do nas” w Więcej → O aplikacji.': 'A “Write to us” button in More → About.',
-  'Po treningu z nowym rekordem aplikacja może poprosić o ocenę — rzadko i tylko w oknie systemowym.': 'After a workout with a new record, the app may ask you for a rating — rarely, and only in the system dialog.',
   /* 0.18 „Dostosuj do miejsca” (docs/33) */
   'Dostosuj do miejsca': 'Adjust to location', 'Dostosuj do: {l}': 'Adjust to: {l}',
   'Zamiany tylko w tym treningu — szablon i plan bez zmian.': 'Swaps apply to this workout only — your template and plan stay as they are.',
