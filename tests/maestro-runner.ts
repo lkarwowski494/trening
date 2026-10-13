@@ -96,9 +96,11 @@ export class Runner {
   vpTop(sc: LNode): number { const sb = this.screenBox(sc, false); return sb ? sb.y : this.headerTop(); }
   /** E2E 105: przesunięcie palcem w pionie (`swipe: { start: "x%, y%", end: "x%, y%" }`) przewija listę pod punktem startu o różnicę y
    * (w dół — do góry treści); przycięte do zakresu listy. */
-  swipeScroll(step: string, start: string, end: string) {
+  async swipeScroll(step: string, start: string, end: string) {
     const pt = (s: string) => { const m = /^\s*(\d+(?:\.\d+)?)%\s*,\s*(\d+(?:\.\d+)?)%\s*$/.exec(s); if (!m) this.fail(step, `swipe: punkt „${s}” — interpreter zna tylko procenty ekranu`); return { x: +m![1] / 100 * SCREEN.w, y: +m![2] / 100 * SCREEN.h }; };
     const a = pt(start), b = pt(end); this.relayout();
+    const nv = this.nav(); const po = nv?.getCurrentOptions?.() ?? {};
+    if (/modal|sheet/i.test(String(po.presentation ?? '')) && a.y < this.headerTop() && b.y > a.y + 100) { if (!nv?.canGoBack?.()) this.fail(step, 'swipe: okno modalne bez ekranu pod spodem.'); await act(async () => { nv.goBack(); }); await this.tick(); return; }
     let hit: LNode | null = null; let hitTop = 0;
     for (const [n, box] of this.boxes) {
       if (n.type !== 'RCTScrollView' || n.props.horizontal) continue; const sb = this.screenBox(n, false); if (!sb) continue;
@@ -157,7 +159,9 @@ export class Runner {
     /* pasek nawigacji (w Jest się nie renderuje): tytuł ekranu i przycisk wstecz „Back” — na górze ekranu, więc przed treścią */
     const nav = require('expo-router/build/global-state/router-store').store.navigationRef; const o = nav?.getCurrentOptions?.() ?? {};
     if (typeof o.title === 'string' && o.title && o.headerShown !== false) out.push({ texts: [o.title], header: true });
-    if (nav?.canGoBack?.() && o.headerBackVisible !== false && !o.headerLeft && o.headerShown !== false) out.push({ texts: [typeof o.headerBackTitle === 'string' ? o.headerBackTitle : 'Back'], header: true, alertBtn: () => { nav.goBack(); } });
+    /* okno modalne (presentation modal/sheet) nie ma przycisku „Back” — zamyka je gest w dół z paska nagłówka (E2E 38324474808, scenariusz 21) */
+    const modal = /modal|sheet/i.test(String(o.presentation ?? ''));
+    if (!modal && nav?.canGoBack?.() && o.headerBackVisible !== false && !o.headerLeft && o.headerShown !== false) out.push({ texts: [typeof o.headerBackTitle === 'string' ? o.headerBackTitle : 'Back'], header: true, alertBtn: () => { nav.goBack(); } });
     const all = (screen.UNSAFE_root as unknown as Node & { findAll: (f: (n: Node) => boolean) => Node[] }).findAll((n: Node) => isHost(n) && !hidden(n)); /* ekrany pod spodem stosu (aria-hidden) — Maestro ich nie widzi */
     for (const n of all) {
       const p = n.props; const texts: string[] = [];
@@ -272,7 +276,7 @@ export class Runner {
           const why = this.scrollTo(c!, String(arg.direction ?? 'DOWN'), !!arg.centerElement); if (why) this.fail(step, why); break;
         }
         case 'swipe': {
-          if (arg.start != null && arg.end != null) { this.swipeScroll(step, String(arg.start), String(arg.end)); break; }
+          if (arg.start != null && arg.end != null) { await this.swipeScroll(step, String(arg.start), String(arg.end)); break; }
           const id = arg.from?.id; if (!id || !/LEFT/i.test(arg.direction)) break;
           const c = this.find({ id })[0]; if (!c?.node) this.fail(step, 'Brak wiersza do przesunięcia.');
           let n: Node | null = c!.node!; const hasDel = (x: Node) => Array.isArray(x.props.accessibilityActions) && x.props.accessibilityActions.some((a: any) => a.name === 'delete') && typeof x.props.onAccessibilityAction === 'function';

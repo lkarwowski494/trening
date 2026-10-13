@@ -48,7 +48,9 @@ name: Subskrypcja — ekran zakupu i limit
 - scrollUntilVisible: { element: "Restore purchases", direction: DOWN, timeout: 60000 }
 - tapOn: "Restore purchases"
 - extendedWaitUntil: { visible: "No purchases found for this Apple account.", timeout: 20000 }
-- tapOn: "Back"
+# Ekran zakupu z Ustawień to okno modalne (presentation 'modal', bez „Back” i bez „Not now” — E2E 38324474808, krok 74): zamyka je gest w dół z paska nagłówka.
+- swipe: { start: "50%, 10%", end: "50%, 90%", duration: 400 }
+- extendedWaitUntil: { visible: "Subscription", timeout: 30000 }
 - tapOn: "Back"
 # --- drugi trening na żywo ponad limit 1: ekran zakupu zamiast startu ---
 - tapOn: "Workout, tab.*"
