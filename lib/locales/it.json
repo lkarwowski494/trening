@@ -1516,5 +1516,11 @@
  "Nie zapisano jeszcze w Apple Health — zapis zostanie ponowiony przy następnym uruchomieniu aplikacji.": "Non ancora salvato in Apple Health — il salvataggio verrà ritentato al prossimo avvio dell’app.",
  "Czeka na zapis w Apple Health: {n}. Zapis zostanie ponowiony przy uruchomieniu i powrocie do aplikacji.": "In attesa di salvataggio in Apple Health: {n}. Il salvataggio verrà ritentato all’avvio dell’app e al ritorno.",
  "Więcej → Szablony: przycisk + w nagłówku (Dodaj szablon) tworzy szablon: ćwiczenia, serie, zakres powtórzeń i przerwy.": "Altro → Schede: il pulsante + nell’intestazione (Aggiungi scheda) crea una scheda: esercizi, serie, intervallo di ripetizioni e recuperi.",
- "Kilka planów: przycisk + w nagłówku (Dodaj plan) tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.": "Più piani: il pulsante + nell’intestazione (Aggiungi piano) crea una copia da modificare e «Rendi attivo» in «Altri piani» la attiva — le modifiche dei giorni tornano insieme al piano."
+ "Kilka planów: przycisk + w nagłówku (Dodaj plan) tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.": "Più piani: il pulsante + nell’intestazione (Aggiungi piano) crea una copia da modificare e «Rendi attivo» in «Altri piani» la attiva — le modifiche dei giorni tornano insieme al piano.",
+ "Napisz do nas": "Scrivici",
+ "Otwiera aplikację Mail": "Apre l’app Mail",
+ "Trening — opinia": "Training — feedback",
+ "Wersja: {v} · iOS {os} · Język: {lang}": "Versione: {v} · iOS {os} · Lingua: {lang}",
+ "Nie udało się otworzyć poczty": "Impossibile aprire Mail",
+ "Napisz na: {mail}": "Scrivi a: {mail}"
 }

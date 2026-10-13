@@ -1516,5 +1516,11 @@
  "Nie zapisano jeszcze w Apple Health — zapis zostanie ponowiony przy następnym uruchomieniu aplikacji.": "まだ Apple Health に保存されていません — 次回アプリを起動したときに保存を再試行します。",
  "Czeka na zapis w Apple Health: {n}. Zapis zostanie ponowiony przy uruchomieniu i powrocie do aplikacji.": "Apple Health への保存待ち: {n}。アプリの起動時とアプリに戻ったときに保存を再試行します。",
  "Więcej → Szablony: przycisk + w nagłówku (Dodaj szablon) tworzy szablon: ćwiczenia, serie, zakres powtórzeń i przerwy.": "その他 → テンプレート：ヘッダーの「+」ボタン（テンプレートを追加）でテンプレートを作成します：種目、セット、レップ範囲、休憩。",
- "Kilka planów: przycisk + w nagłówku (Dodaj plan) tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.": "複数のプラン：ヘッダーの「+」ボタン（プランを追加）で変更用のコピーを作成し、「その他のプラン」の「有効にする」で切り替えます — 日程の変更はプランと一緒に戻ります。"
+ "Kilka planów: przycisk + w nagłówku (Dodaj plan) tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.": "複数のプラン：ヘッダーの「+」ボタン（プランを追加）で変更用のコピーを作成し、「その他のプラン」の「有効にする」で切り替えます — 日程の変更はプランと一緒に戻ります。",
+ "Napisz do nas": "お問い合わせ",
+ "Otwiera aplikację Mail": "メールアプリを開きます",
+ "Trening — opinia": "Training — ご意見",
+ "Wersja: {v} · iOS {os} · Język: {lang}": "バージョン：{v} · iOS {os} · 言語：{lang}",
+ "Nie udało się otworzyć poczty": "メールを開けませんでした",
+ "Napisz na: {mail}": "宛先：{mail}"
 }

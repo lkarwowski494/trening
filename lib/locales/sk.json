@@ -1516,5 +1516,11 @@
  "Nie zapisano jeszcze w Apple Health — zapis zostanie ponowiony przy następnym uruchomieniu aplikacji.": "Zatiaľ neuložené do Apple Health — ukladanie sa zopakuje pri ďalšom spustení aplikácie.",
  "Czeka na zapis w Apple Health: {n}. Zapis zostanie ponowiony przy uruchomieniu i powrocie do aplikacji.": "Čaká na uloženie do Apple Health: {n}. Ukladanie sa zopakuje pri spustení a návrate do aplikácie.",
  "Więcej → Szablony: przycisk + w nagłówku (Dodaj szablon) tworzy szablon: ćwiczenia, serie, zakres powtórzeń i przerwy.": "Viac → Šablóny: tlačidlo + v záhlaví (Pridať šablónu) vytvorí šablónu: cviky, série, rozsah opakovaní a pauzy.",
- "Kilka planów: przycisk + w nagłówku (Dodaj plan) tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.": "Viac plánov: tlačidlo + v záhlaví (Pridať plán) vytvorí kópiu na úpravu a „Nastaviť ako aktívny“ v „Ďalšie plány“ ju zapne — zmeny dní sa vracajú spolu s plánom."
+ "Kilka planów: przycisk + w nagłówku (Dodaj plan) tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.": "Viac plánov: tlačidlo + v záhlaví (Pridať plán) vytvorí kópiu na úpravu a „Nastaviť ako aktívny“ v „Ďalšie plány“ ju zapne — zmeny dní sa vracajú spolu s plánom.",
+ "Napisz do nas": "Napíšte nám",
+ "Otwiera aplikację Mail": "Otvorí aplikáciu Pošta",
+ "Trening — opinia": "Tréning — spätná väzba",
+ "Wersja: {v} · iOS {os} · Język: {lang}": "Verzia: {v} · iOS {os} · Jazyk: {lang}",
+ "Nie udało się otworzyć poczty": "Poštu sa nepodarilo otvoriť",
+ "Napisz na: {mail}": "Napíšte na: {mail}"
 }

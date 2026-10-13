@@ -1516,5 +1516,11 @@
  "Nie zapisano jeszcze w Apple Health — zapis zostanie ponowiony przy następnym uruchomieniu aplikacji.": "Még nincs mentve az Apple Healthbe — a mentés az alkalmazás következő indításakor megismétlődik.",
  "Czeka na zapis w Apple Health: {n}. Zapis zostanie ponowiony przy uruchomieniu i powrocie do aplikacji.": "Apple Healthbe mentésre vár: {n}. A mentés az alkalmazás indításakor és az oda való visszatéréskor megismétlődik.",
  "Więcej → Szablony: przycisk + w nagłówku (Dodaj szablon) tworzy szablon: ćwiczenia, serie, zakres powtórzeń i przerwy.": "Egyebek → Sablonok: a fejléc + gombja (Sablon hozzáadása) sablont hoz létre: gyakorlatok, sorozatok, ismétlési tartomány és pihenők.",
- "Kilka planów: przycisk + w nagłówku (Dodaj plan) tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.": "Több terv: a fejléc + gombja (Terv hozzáadása) módosítható másolatot készít, a „Legyen aktív” a „További tervek” alatt bekapcsolja — a napi módosítások a tervvel együtt térnek vissza."
+ "Kilka planów: przycisk + w nagłówku (Dodaj plan) tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.": "Több terv: a fejléc + gombja (Terv hozzáadása) módosítható másolatot készít, a „Legyen aktív” a „További tervek” alatt bekapcsolja — a napi módosítások a tervvel együtt térnek vissza.",
+ "Napisz do nas": "Írj nekünk",
+ "Otwiera aplikację Mail": "Megnyitja a Levelek appot",
+ "Trening — opinia": "Training — vélemény",
+ "Wersja: {v} · iOS {os} · Język: {lang}": "Verzió: {v} · iOS {os} · Nyelv: {lang}",
+ "Nie udało się otworzyć poczty": "Nem sikerült megnyitni a Leveleket",
+ "Napisz na: {mail}": "Írj ide: {mail}"
 }

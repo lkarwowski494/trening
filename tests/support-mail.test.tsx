@@ -29,7 +29,7 @@ describe('lib/support: buildSupportMailto', () => {
   test('EN: temat i stopka po angielsku; znaki specjalne (&, #, %, +) w wersji nie rozbijają adresu', () => {
     applyLang('en');
     const p = parse(buildSupportMailto({ version: '1.0 & #2 100% a+b', os: 18, language: 'en' }));
-    expect(p.subject).toBe('Trening — feedback'); expect(p.body).toBe('\n\nVersion: 1.0 & #2 100% a+b · iOS 18 · Language: en');
+    expect(p.subject).toBe('Training — feedback'); expect(p.body).toBe('\n\nVersion: 1.0 & #2 100% a+b · iOS 18 · Language: en');
   });
   test('niezmiennik: treść to dokładnie pusta linia + stopka — bez historii, masy ciała, nazw szablonów, identyfikatorów, kopii; bez numeru buildu poza versionLabel', async () => {
     await fresh(seedWithDemo(), 'pl');

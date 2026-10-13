@@ -1516,5 +1516,11 @@
  "Nie zapisano jeszcze w Apple Health — zapis zostanie ponowiony przy następnym uruchomieniu aplikacji.": "Δεν έχει αποθηκευτεί ακόμη στο Apple Health — η αποθήκευση θα επαναληφθεί στην επόμενη εκκίνηση της εφαρμογής.",
  "Czeka na zapis w Apple Health: {n}. Zapis zostanie ponowiony przy uruchomieniu i powrocie do aplikacji.": "Αναμένουν αποθήκευση στο Apple Health: {n}. Η αποθήκευση θα επαναληφθεί κατά την εκκίνηση και την επιστροφή στην εφαρμογή.",
  "Więcej → Szablony: przycisk + w nagłówku (Dodaj szablon) tworzy szablon: ćwiczenia, serie, zakres powtórzeń i przerwy.": "Περισσότερα → Πρότυπα: το κουμπί + στην κεφαλίδα (Προσθήκη προτύπου) δημιουργεί πρότυπο: ασκήσεις, σετ, εύρος επαναλήψεων και διαλείμματα.",
- "Kilka planów: przycisk + w nagłówku (Dodaj plan) tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.": "Πολλά προγράμματα: το κουμπί + στην κεφαλίδα (Προσθήκη προγράμματος) φτιάχνει αντίγραφο για αλλαγές και το «Ορισμός ως ενεργό» στα «Άλλα προγράμματα» το ενεργοποιεί — οι αλλαγές ημερών επιστρέφουν μαζί με το πρόγραμμα."
+ "Kilka planów: przycisk + w nagłówku (Dodaj plan) tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.": "Πολλά προγράμματα: το κουμπί + στην κεφαλίδα (Προσθήκη προγράμματος) φτιάχνει αντίγραφο για αλλαγές και το «Ορισμός ως ενεργό» στα «Άλλα προγράμματα» το ενεργοποιεί — οι αλλαγές ημερών επιστρέφουν μαζί με το πρόγραμμα.",
+ "Napisz do nas": "Γράψτε μας",
+ "Otwiera aplikację Mail": "Ανοίγει την εφαρμογή Mail",
+ "Trening — opinia": "Training — σχόλια",
+ "Wersja: {v} · iOS {os} · Język: {lang}": "Έκδοση: {v} · iOS {os} · Γλώσσα: {lang}",
+ "Nie udało się otworzyć poczty": "Δεν ήταν δυνατό το άνοιγμα του Mail",
+ "Napisz na: {mail}": "Γράψτε στο: {mail}"
 }

@@ -1516,5 +1516,11 @@
  "Nie zapisano jeszcze w Apple Health — zapis zostanie ponowiony przy następnym uruchomieniu aplikacji.": "Še ni shranjeno v Apple Health — shranjevanje se bo ponovilo ob naslednjem zagonu aplikacije.",
  "Czeka na zapis w Apple Health: {n}. Zapis zostanie ponowiony przy uruchomieniu i powrocie do aplikacji.": "Čaka na shranjevanje v Apple Health: {n}. Shranjevanje se bo ponovilo ob zagonu in vrnitvi v aplikacijo.",
  "Więcej → Szablony: przycisk + w nagłówku (Dodaj szablon) tworzy szablon: ćwiczenia, serie, zakres powtórzeń i przerwy.": "Več → Predloge: gumb + v glavi (Dodaj predlogo) ustvari predlogo: vaje, serije, razpon ponovitev in počitki.",
- "Kilka planów: przycisk + w nagłówku (Dodaj plan) tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.": "Več načrtov: gumb + v glavi (Dodaj načrt) ustvari kopijo za spreminjanje, »Nastavi kot aktivni« v »Drugi načrti« pa jo vklopi — spremembe dni se vrnejo skupaj z načrtom."
+ "Kilka planów: przycisk + w nagłówku (Dodaj plan) tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.": "Več načrtov: gumb + v glavi (Dodaj načrt) ustvari kopijo za spreminjanje, »Nastavi kot aktivni« v »Drugi načrti« pa jo vklopi — spremembe dni se vrnejo skupaj z načrtom.",
+ "Napisz do nas": "Pišite nam",
+ "Otwiera aplikację Mail": "Odpre aplikacijo Pošta",
+ "Trening — opinia": "Trening — povratne informacije",
+ "Wersja: {v} · iOS {os} · Język: {lang}": "Različica: {v} · iOS {os} · Jezik: {lang}",
+ "Nie udało się otworzyć poczty": "Pošte ni bilo mogoče odpreti",
+ "Napisz na: {mail}": "Pišite na: {mail}"
 }

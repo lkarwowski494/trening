@@ -1516,5 +1516,11 @@
  "Nie zapisano jeszcze w Apple Health — zapis zostanie ponowiony przy następnym uruchomieniu aplikacji.": "尚未寫入 Apple Health — 下次啟動 App 時會再次嘗試。",
  "Czeka na zapis w Apple Health: {n}. Zapis zostanie ponowiony przy uruchomieniu i powrocie do aplikacji.": "等待寫入 Apple Health：{n}。會在 App 啟動及回到 App 時再次嘗試。",
  "Więcej → Szablony: przycisk + w nagłówku (Dodaj szablon) tworzy szablon: ćwiczenia, serie, zakres powtórzeń i przerwy.": "更多 → 範本：標題列的「+」按鈕（新增範本）可建立範本：動作、組數、次數範圍與休息。",
- "Kilka planów: przycisk + w nagłówku (Dodaj plan) tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.": "多個計畫：標題列的「+」按鈕（新增計畫）會建立一份副本供修改，在「其他計畫」中按「設為啟用」即可切換 — 日期的調整會跟著計畫一起回來。"
+ "Kilka planów: przycisk + w nagłówku (Dodaj plan) tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.": "多個計畫：標題列的「+」按鈕（新增計畫）會建立一份副本供修改，在「其他計畫」中按「設為啟用」即可切換 — 日期的調整會跟著計畫一起回來。",
+ "Napisz do nas": "寫信給我們",
+ "Otwiera aplikację Mail": "開啟「郵件」App",
+ "Trening — opinia": "Training — 意見回饋",
+ "Wersja: {v} · iOS {os} · Język: {lang}": "版本：{v} · iOS {os} · 語言：{lang}",
+ "Nie udało się otworzyć poczty": "無法開啟郵件",
+ "Napisz na: {mail}": "寫信至：{mail}"
 }

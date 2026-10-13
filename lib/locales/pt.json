@@ -1516,5 +1516,11 @@
  "Nie zapisano jeszcze w Apple Health — zapis zostanie ponowiony przy następnym uruchomieniu aplikacji.": "Ainda não guardado no Apple Health — a gravação será repetida da próxima vez que a app abrir.",
  "Czeka na zapis w Apple Health: {n}. Zapis zostanie ponowiony przy uruchomieniu i powrocie do aplikacji.": "À espera de serem guardados no Apple Health: {n}. A gravação será repetida ao abrir a app e ao regressar a ela.",
  "Więcej → Szablony: przycisk + w nagłówku (Dodaj szablon) tworzy szablon: ćwiczenia, serie, zakres powtórzeń i przerwy.": "Mais → Modelos: o botão + no cabeçalho (Adicionar modelo) cria um modelo: exercícios, séries, intervalo de repetições e descansos.",
- "Kilka planów: przycisk + w nagłówku (Dodaj plan) tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.": "Vários planos: o botão + no cabeçalho (Adicionar plano) cria uma cópia para alterar e «Tornar ativo» em «Outros planos» ativa-a — as alterações de dias voltam com o plano."
+ "Kilka planów: przycisk + w nagłówku (Dodaj plan) tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.": "Vários planos: o botão + no cabeçalho (Adicionar plano) cria uma cópia para alterar e «Tornar ativo» em «Outros planos» ativa-a — as alterações de dias voltam com o plano.",
+ "Napisz do nas": "Escreva-nos",
+ "Otwiera aplikację Mail": "Abre a app Mail",
+ "Trening — opinia": "Treino — opinião",
+ "Wersja: {v} · iOS {os} · Język: {lang}": "Versão: {v} · iOS {os} · Idioma: {lang}",
+ "Nie udało się otworzyć poczty": "Não foi possível abrir o Mail",
+ "Napisz na: {mail}": "Escreva para: {mail}"
 }

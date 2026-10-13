@@ -1516,5 +1516,11 @@
  "Nie zapisano jeszcze w Apple Health — zapis zostanie ponowiony przy następnym uruchomieniu aplikacji.": "Į Apple Health dar neįrašyta — įrašymas bus kartojamas kitą kartą paleidus programėlę.",
  "Czeka na zapis w Apple Health: {n}. Zapis zostanie ponowiony przy uruchomieniu i powrocie do aplikacji.": "Laukia įrašymo į Apple Health: {n}. Įrašymas bus kartojamas paleidus programėlę ir į ją grįžus.",
  "Więcej → Szablony: przycisk + w nagłówku (Dodaj szablon) tworzy szablon: ćwiczenia, serie, zakres powtórzeń i przerwy.": "Daugiau → Šablonai: antraštės mygtukas + (Pridėti šabloną) sukuria šabloną: pratimai, serijos, pakartojimų intervalas ir poilsis.",
- "Kilka planów: przycisk + w nagłówku (Dodaj plan) tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.": "Keli planai: antraštės mygtukas + (Pridėti planą) sukuria kopiją keitimui, o „Padaryti aktyviu“ skiltyje „Kiti planai“ ją įjungia — dienų pakeitimai grįžta kartu su planu."
+ "Kilka planów: przycisk + w nagłówku (Dodaj plan) tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.": "Keli planai: antraštės mygtukas + (Pridėti planą) sukuria kopiją keitimui, o „Padaryti aktyviu“ skiltyje „Kiti planai“ ją įjungia — dienų pakeitimai grįžta kartu su planu.",
+ "Napisz do nas": "Parašykite mums",
+ "Otwiera aplikację Mail": "Atidaro programą Paštas",
+ "Trening — opinia": "Treniruotė — atsiliepimas",
+ "Wersja: {v} · iOS {os} · Język: {lang}": "Versija: {v} · iOS {os} · Kalba: {lang}",
+ "Nie udało się otworzyć poczty": "Nepavyko atidaryti Pašto",
+ "Napisz na: {mail}": "Rašykite adresu: {mail}"
 }

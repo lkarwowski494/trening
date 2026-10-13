@@ -1516,5 +1516,11 @@
  "Nie zapisano jeszcze w Apple Health — zapis zostanie ponowiony przy następnym uruchomieniu aplikacji.": "Endnu ikke gemt i Apple Health — det gøres igen, næste gang appen starter.",
  "Czeka na zapis w Apple Health: {n}. Zapis zostanie ponowiony przy uruchomieniu i powrocie do aplikacji.": "Venter på at blive gemt i Apple Health: {n}. Det gøres igen, når appen starter, og når du vender tilbage til den.",
  "Więcej → Szablony: przycisk + w nagłówku (Dodaj szablon) tworzy szablon: ćwiczenia, serie, zakres powtórzeń i przerwy.": "Mere → Skabeloner: knappen + i overskriften (Tilføj skabelon) opretter en skabelon: øvelser, sæt, gentagelsesinterval og hvile.",
- "Kilka planów: przycisk + w nagłówku (Dodaj plan) tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.": "Flere planer: knappen + i overskriften (Tilføj plan) laver en kopi, du kan ændre, og “Gør aktiv” under “Andre planer” slår den til — dagændringer følger med planen tilbage."
+ "Kilka planów: przycisk + w nagłówku (Dodaj plan) tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.": "Flere planer: knappen + i overskriften (Tilføj plan) laver en kopi, du kan ændre, og “Gør aktiv” under “Andre planer” slår den til — dagændringer følger med planen tilbage.",
+ "Napisz do nas": "Skriv til os",
+ "Otwiera aplikację Mail": "Åbner appen Mail",
+ "Trening — opinia": "Træning — feedback",
+ "Wersja: {v} · iOS {os} · Język: {lang}": "Version: {v} · iOS {os} · Sprog: {lang}",
+ "Nie udało się otworzyć poczty": "Kunne ikke åbne Mail",
+ "Napisz na: {mail}": "Skriv til: {mail}"
 }

@@ -1516,5 +1516,11 @@
  "Nie zapisano jeszcze w Apple Health — zapis zostanie ponowiony przy następnym uruchomieniu aplikacji.": "아직 Apple Health에 저장되지 않았습니다 — 다음에 앱을 시작할 때 저장을 다시 시도합니다.",
  "Czeka na zapis w Apple Health: {n}. Zapis zostanie ponowiony przy uruchomieniu i powrocie do aplikacji.": "Apple Health 저장 대기 중: {n}. 앱을 시작하거나 앱으로 돌아올 때 저장을 다시 시도합니다.",
  "Więcej → Szablony: przycisk + w nagłówku (Dodaj szablon) tworzy szablon: ćwiczenia, serie, zakres powtórzeń i przerwy.": "더보기 → 루틴: 헤더의 ‘+’ 버튼(루틴 추가)으로 루틴을 만듭니다: 종목, 세트, 반복 범위, 휴식.",
- "Kilka planów: przycisk + w nagłówku (Dodaj plan) tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.": "여러 플랜: 헤더의 ‘+’ 버튼(플랜 추가)은 수정용 사본을 만들고, ‘다른 플랜’의 ‘활성으로 설정’은 그 플랜으로 전환합니다 — 날짜 변경은 플랜과 함께 돌아옵니다."
+ "Kilka planów: przycisk + w nagłówku (Dodaj plan) tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.": "여러 플랜: 헤더의 ‘+’ 버튼(플랜 추가)은 수정용 사본을 만들고, ‘다른 플랜’의 ‘활성으로 설정’은 그 플랜으로 전환합니다 — 날짜 변경은 플랜과 함께 돌아옵니다.",
+ "Napisz do nas": "문의하기",
+ "Otwiera aplikację Mail": "메일 앱을 엽니다",
+ "Trening — opinia": "Training — 의견",
+ "Wersja: {v} · iOS {os} · Język: {lang}": "버전: {v} · iOS {os} · 언어: {lang}",
+ "Nie udało się otworzyć poczty": "메일을 열지 못했습니다",
+ "Napisz na: {mail}": "보낼 주소: {mail}"
 }

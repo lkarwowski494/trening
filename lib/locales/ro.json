@@ -1516,5 +1516,11 @@
  "Nie zapisano jeszcze w Apple Health — zapis zostanie ponowiony przy następnym uruchomieniu aplikacji.": "Încă nu a fost salvat în Apple Health — salvarea se va reîncerca la următoarea pornire a aplicației.",
  "Czeka na zapis w Apple Health: {n}. Zapis zostanie ponowiony przy uruchomieniu i powrocie do aplikacji.": "Așteaptă salvarea în Apple Health: {n}. Salvarea se va reîncerca la pornirea aplicației și la revenirea în ea.",
  "Więcej → Szablony: przycisk + w nagłówku (Dodaj szablon) tworzy szablon: ćwiczenia, serie, zakres powtórzeń i przerwy.": "Mai mult → Șabloane: butonul + din antet (Adaugă șablon) creează un șablon: exerciții, serii, interval de repetări și pauze.",
- "Kilka planów: przycisk + w nagłówku (Dodaj plan) tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.": "Mai multe planuri: butonul + din antet (Adaugă plan) creează o copie de modificat, iar „Fă-l activ” la „Alte planuri” o activează — modificările zilelor revin odată cu planul."
+ "Kilka planów: przycisk + w nagłówku (Dodaj plan) tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.": "Mai multe planuri: butonul + din antet (Adaugă plan) creează o copie de modificat, iar „Fă-l activ” la „Alte planuri” o activează — modificările zilelor revin odată cu planul.",
+ "Napisz do nas": "Scrie-ne",
+ "Otwiera aplikację Mail": "Deschide aplicația Mail",
+ "Trening — opinia": "Training — feedback",
+ "Wersja: {v} · iOS {os} · Język: {lang}": "Versiune: {v} · iOS {os} · Limbă: {lang}",
+ "Nie udało się otworzyć poczty": "Nu s-a putut deschide Mail",
+ "Napisz na: {mail}": "Scrie la: {mail}"
 }

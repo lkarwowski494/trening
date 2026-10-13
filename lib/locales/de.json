@@ -1516,5 +1516,11 @@
  "Nie zapisano jeszcze w Apple Health — zapis zostanie ponowiony przy następnym uruchomieniu aplikacji.": "Noch nicht in Apple Health gespeichert — das Speichern wird beim nächsten Start der App wiederholt.",
  "Czeka na zapis w Apple Health: {n}. Zapis zostanie ponowiony przy uruchomieniu i powrocie do aplikacji.": "Warten auf Speicherung in Apple Health: {n}. Das Speichern wird beim Start und bei der Rückkehr zur App wiederholt.",
  "Więcej → Szablony: przycisk + w nagłówku (Dodaj szablon) tworzy szablon: ćwiczenia, serie, zakres powtórzeń i przerwy.": "Mehr → Vorlagen: Die Taste + in der Kopfzeile (Vorlage hinzufügen) erstellt eine Vorlage: Übungen, Sätze, Wiederholungsbereich und Pausen.",
- "Kilka planów: przycisk + w nagłówku (Dodaj plan) tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.": "Mehrere Pläne: Die Taste + in der Kopfzeile (Plan hinzufügen) erstellt eine Kopie zum Ändern, „Als aktiv festlegen“ unter „Andere Pläne“ schaltet sie ein — Tagesänderungen kommen mit dem Plan zurück."
+ "Kilka planów: przycisk + w nagłówku (Dodaj plan) tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.": "Mehrere Pläne: Die Taste + in der Kopfzeile (Plan hinzufügen) erstellt eine Kopie zum Ändern, „Als aktiv festlegen“ unter „Andere Pläne“ schaltet sie ein — Tagesänderungen kommen mit dem Plan zurück.",
+ "Napisz do nas": "Schreib uns",
+ "Otwiera aplikację Mail": "Öffnet die Mail-App",
+ "Trening — opinia": "Training — Feedback",
+ "Wersja: {v} · iOS {os} · Język: {lang}": "Version: {v} · iOS {os} · Sprache: {lang}",
+ "Nie udało się otworzyć poczty": "Mail konnte nicht geöffnet werden",
+ "Napisz na: {mail}": "Schreib an: {mail}"
 }

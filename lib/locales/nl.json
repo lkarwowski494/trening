@@ -1516,5 +1516,11 @@
  "Nie zapisano jeszcze w Apple Health — zapis zostanie ponowiony przy następnym uruchomieniu aplikacji.": "Nog niet bewaard in Apple Health — het bewaren wordt opnieuw geprobeerd bij de volgende start van de app.",
  "Czeka na zapis w Apple Health: {n}. Zapis zostanie ponowiony przy uruchomieniu i powrocie do aplikacji.": "Wacht op bewaren in Apple Health: {n}. Het bewaren wordt opnieuw geprobeerd bij het starten van de app en als je terugkeert.",
  "Więcej → Szablony: przycisk + w nagłówku (Dodaj szablon) tworzy szablon: ćwiczenia, serie, zakres powtórzeń i przerwy.": "Meer → Sjablonen: de knop + in de kop (Voeg sjabloon toe) maakt een sjabloon: oefeningen, sets, herhalingsbereik en rust.",
- "Kilka planów: przycisk + w nagłówku (Dodaj plan) tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.": "Meerdere plannen: de knop + in de kop (Voeg plan toe) maakt een kopie om aan te passen en ‘Actief maken’ onder ‘Andere plannen’ zet die aan — dagwijzigingen komen met hun plan terug."
+ "Kilka planów: przycisk + w nagłówku (Dodaj plan) tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.": "Meerdere plannen: de knop + in de kop (Voeg plan toe) maakt een kopie om aan te passen en ‘Actief maken’ onder ‘Andere plannen’ zet die aan — dagwijzigingen komen met hun plan terug.",
+ "Napisz do nas": "Schrijf ons",
+ "Otwiera aplikację Mail": "Opent de Mail-app",
+ "Trening — opinia": "Training — feedback",
+ "Wersja: {v} · iOS {os} · Język: {lang}": "Versie: {v} · iOS {os} · Taal: {lang}",
+ "Nie udało się otworzyć poczty": "Kan Mail niet openen",
+ "Napisz na: {mail}": "Schrijf naar: {mail}"
 }

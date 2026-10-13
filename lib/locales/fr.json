@@ -1516,5 +1516,11 @@
  "Nie zapisano jeszcze w Apple Health — zapis zostanie ponowiony przy następnym uruchomieniu aplikacji.": "Pas encore enregistrée dans Santé — nouvel essai au prochain lancement de l’app.",
  "Czeka na zapis w Apple Health: {n}. Zapis zostanie ponowiony przy uruchomieniu i powrocie do aplikacji.": "En attente d’enregistrement dans Santé : {n}. Nouvel essai au lancement de l’app et à chaque retour.",
  "Więcej → Szablony: przycisk + w nagłówku (Dodaj szablon) tworzy szablon: ćwiczenia, serie, zakres powtórzeń i przerwy.": "Plus → Modèles : le bouton + de l’en-tête (Ajouter un modèle) crée un modèle : exercices, séries, plage de répétitions et repos.",
- "Kilka planów: przycisk + w nagłówku (Dodaj plan) tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.": "Plusieurs programmes : le bouton + de l’en-tête (Ajouter un programme) crée une copie à modifier et « Rendre actif » dans « Autres programmes » l’active — les modifications de jours reviennent avec leur programme."
+ "Kilka planów: przycisk + w nagłówku (Dodaj plan) tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.": "Plusieurs programmes : le bouton + de l’en-tête (Ajouter un programme) crée une copie à modifier et « Rendre actif » dans « Autres programmes » l’active — les modifications de jours reviennent avec leur programme.",
+ "Napisz do nas": "Écrivez-nous",
+ "Otwiera aplikację Mail": "Ouvre l’app Mail",
+ "Trening — opinia": "Training — avis",
+ "Wersja: {v} · iOS {os} · Język: {lang}": "Version : {v} · iOS {os} · Langue : {lang}",
+ "Nie udało się otworzyć poczty": "Impossible d’ouvrir Mail",
+ "Napisz na: {mail}": "Écrivez à : {mail}"
 }

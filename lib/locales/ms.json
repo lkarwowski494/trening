@@ -1516,5 +1516,11 @@
  "Nie zapisano jeszcze w Apple Health — zapis zostanie ponowiony przy następnym uruchomieniu aplikacji.": "Belum disimpan dalam Apple Health — penyimpanan akan dicuba lagi apabila aplikasi dibuka seterusnya.",
  "Czeka na zapis w Apple Health: {n}. Zapis zostanie ponowiony przy uruchomieniu i powrocie do aplikacji.": "Menunggu untuk disimpan ke Apple Health: {n}. Penyimpanan akan dicuba lagi apabila aplikasi dibuka dan apabila anda kembali kepadanya.",
  "Więcej → Szablony: przycisk + w nagłówku (Dodaj szablon) tworzy szablon: ćwiczenia, serie, zakres powtórzeń i przerwy.": "Lagi → Templat: butang + pada pengepala (Tambah templat) mencipta templat: senaman, set, julat ulangan dan rehat.",
- "Kilka planów: przycisk + w nagłówku (Dodaj plan) tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.": "Beberapa pelan: butang + pada pengepala (Tambah pelan) mencipta salinan untuk diubah, dan “Jadikan aktif” dalam “Pelan lain” menghidupkannya — perubahan hari kembali bersama pelannya."
+ "Kilka planów: przycisk + w nagłówku (Dodaj plan) tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.": "Beberapa pelan: butang + pada pengepala (Tambah pelan) mencipta salinan untuk diubah, dan “Jadikan aktif” dalam “Pelan lain” menghidupkannya — perubahan hari kembali bersama pelannya.",
+ "Napisz do nas": "Tulis kepada kami",
+ "Otwiera aplikację Mail": "Membuka app Mail",
+ "Trening — opinia": "Training — maklum balas",
+ "Wersja: {v} · iOS {os} · Język: {lang}": "Versi: {v} · iOS {os} · Bahasa: {lang}",
+ "Nie udało się otworzyć poczty": "Tidak dapat membuka Mail",
+ "Napisz na: {mail}": "Tulis ke: {mail}"
 }

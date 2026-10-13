@@ -729,7 +729,7 @@ export const EN: Record<string, string> = {
   'Wersja': 'Version',
   'Napisz do nas': 'Write to us',
   'Otwiera aplikację Mail': 'Opens the Mail app',
-  'Trening — opinia': 'Trening — feedback',
+  'Trening — opinia': 'Training — feedback',
   'Wersja: {v} · iOS {os} · Język: {lang}': 'Version: {v} · iOS {os} · Language: {lang}',
   'Nie udało się otworzyć poczty': 'Couldn’t open Mail',
   'Napisz na: {mail}': 'Write to: {mail}',

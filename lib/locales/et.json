@@ -1516,5 +1516,11 @@
  "Nie zapisano jeszcze w Apple Health — zapis zostanie ponowiony przy następnym uruchomieniu aplikacji.": "Apple Healthi pole veel salvestatud — salvestust proovitakse uuesti rakenduse järgmisel käivitamisel.",
  "Czeka na zapis w Apple Health: {n}. Zapis zostanie ponowiony przy uruchomieniu i powrocie do aplikacji.": "Ootavad Apple Healthi salvestamist: {n}. Salvestust proovitakse uuesti rakenduse käivitamisel ja sellesse naasmisel.",
  "Więcej → Szablony: przycisk + w nagłówku (Dodaj szablon) tworzy szablon: ćwiczenia, serie, zakres powtórzeń i przerwy.": "Rohkem → Mallid: päisenupp + (Lisa mall) loob malli: harjutused, seeriad, korduste vahemik ja pausid.",
- "Kilka planów: przycisk + w nagłówku (Dodaj plan) tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.": "Mitu plaani: päisenupp + (Lisa plaan) loob muudetava koopia ja „Tee aktiivseks“ jaotises „Muud plaanid“ lülitab selle sisse — päevamuudatused tulevad koos plaaniga tagasi."
+ "Kilka planów: przycisk + w nagłówku (Dodaj plan) tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.": "Mitu plaani: päisenupp + (Lisa plaan) loob muudetava koopia ja „Tee aktiivseks“ jaotises „Muud plaanid“ lülitab selle sisse — päevamuudatused tulevad koos plaaniga tagasi.",
+ "Napisz do nas": "Kirjuta meile",
+ "Otwiera aplikację Mail": "Avab rakenduse Mail",
+ "Trening — opinia": "Treening — tagasiside",
+ "Wersja: {v} · iOS {os} · Język: {lang}": "Versioon: {v} · iOS {os} · Keel: {lang}",
+ "Nie udało się otworzyć poczty": "Maili avamine ebaõnnestus",
+ "Napisz na: {mail}": "Kirjuta aadressile: {mail}"
 }

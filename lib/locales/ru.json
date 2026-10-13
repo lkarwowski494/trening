@@ -1516,5 +1516,11 @@
  "Nie zapisano jeszcze w Apple Health — zapis zostanie ponowiony przy następnym uruchomieniu aplikacji.": "В Apple Health ещё не сохранено — запись будет повторена при следующем запуске приложения.",
  "Czeka na zapis w Apple Health: {n}. Zapis zostanie ponowiony przy uruchomieniu i powrocie do aplikacji.": "Ожидает записи в Apple Health: {n}. Запись будет повторена при запуске приложения и при возврате в него.",
  "Więcej → Szablony: przycisk + w nagłówku (Dodaj szablon) tworzy szablon: ćwiczenia, serie, zakres powtórzeń i przerwy.": "Ещё → Шаблоны: кнопка «+» в заголовке (Добавить шаблон) создаёт шаблон: упражнения, подходы, диапазон повторений и отдых.",
- "Kilka planów: przycisk + w nagłówku (Dodaj plan) tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.": "Несколько планов: кнопка «+» в заголовке (Добавить план) создаёт копию для изменений, а «Сделать активным» в «Других планах» включает её — изменения дней возвращаются вместе с планом."
+ "Kilka planów: przycisk + w nagłówku (Dodaj plan) tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.": "Несколько планов: кнопка «+» в заголовке (Добавить план) создаёт копию для изменений, а «Сделать активным» в «Других планах» включает её — изменения дней возвращаются вместе с планом.",
+ "Napisz do nas": "Написать нам",
+ "Otwiera aplikację Mail": "Открывает приложение «Почта»",
+ "Trening — opinia": "Training — отзыв",
+ "Wersja: {v} · iOS {os} · Język: {lang}": "Версия: {v} · iOS {os} · Язык: {lang}",
+ "Nie udało się otworzyć poczty": "Не удалось открыть Почту",
+ "Napisz na: {mail}": "Напишите на: {mail}"
 }

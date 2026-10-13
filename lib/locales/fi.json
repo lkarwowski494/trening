@@ -1516,5 +1516,11 @@
  "Nie zapisano jeszcze w Apple Health — zapis zostanie ponowiony przy następnym uruchomieniu aplikacji.": "Ei vielä tallennettu Apple Healthiin — tallennusta yritetään uudelleen, kun sovellus seuraavan kerran käynnistyy.",
  "Czeka na zapis w Apple Health: {n}. Zapis zostanie ponowiony przy uruchomieniu i powrocie do aplikacji.": "Odottaa tallennusta Apple Healthiin: {n}. Tallennusta yritetään uudelleen, kun sovellus käynnistyy ja kun palaat siihen.",
  "Więcej → Szablony: przycisk + w nagłówku (Dodaj szablon) tworzy szablon: ćwiczenia, serie, zakres powtórzeń i przerwy.": "Lisää → Pohjat: otsikon + -painike (Lisää pohja) luo pohjan: liikkeet, sarjat, toistoalue ja palautukset.",
- "Kilka planów: przycisk + w nagłówku (Dodaj plan) tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.": "Useita suunnitelmia: otsikon + -painike (Lisää suunnitelma) luo muokattavan kopion, ja ”Tee aktiiviseksi” kohdassa ”Muut suunnitelmat” ottaa sen käyttöön — päivämuutokset palaavat suunnitelman mukana."
+ "Kilka planów: przycisk + w nagłówku (Dodaj plan) tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.": "Useita suunnitelmia: otsikon + -painike (Lisää suunnitelma) luo muokattavan kopion, ja ”Tee aktiiviseksi” kohdassa ”Muut suunnitelmat” ottaa sen käyttöön — päivämuutokset palaavat suunnitelman mukana.",
+ "Napisz do nas": "Kirjoita meille",
+ "Otwiera aplikację Mail": "Avaa Mail-sovelluksen",
+ "Trening — opinia": "Treeni — palaute",
+ "Wersja: {v} · iOS {os} · Język: {lang}": "Versio: {v} · iOS {os} · Kieli: {lang}",
+ "Nie udało się otworzyć poczty": "Mailin avaaminen epäonnistui",
+ "Napisz na: {mail}": "Kirjoita osoitteeseen: {mail}"
 }

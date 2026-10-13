@@ -1516,5 +1516,11 @@
  "Nie zapisano jeszcze w Apple Health — zapis zostanie ponowiony przy następnym uruchomieniu aplikacji.": "Apple Health vēl nav saglabāts — saglabāšana tiks atkārtota nākamajā lietotnes palaišanas reizē.",
  "Czeka na zapis w Apple Health: {n}. Zapis zostanie ponowiony przy uruchomieniu i powrocie do aplikacji.": "Gaida saglabāšanu Apple Health: {n}. Saglabāšana tiks atkārtota, palaižot lietotni un atgriežoties tajā.",
  "Więcej → Szablony: przycisk + w nagłówku (Dodaj szablon) tworzy szablon: ćwiczenia, serie, zakres powtórzeń i przerwy.": "Vairāk → Veidnes: virsraksta poga + (Pievienot veidni) izveido veidni: vingrinājumi, sērijas, atkārtojumu diapazons un atpūta.",
- "Kilka planów: przycisk + w nagłówku (Dodaj plan) tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.": "Vairāki plāni: virsraksta poga + (Pievienot plānu) izveido maināmu kopiju, bet “Padarīt aktīvu” sadaļā “Citi plāni” to ieslēdz — dienu izmaiņas atgriežas kopā ar plānu."
+ "Kilka planów: przycisk + w nagłówku (Dodaj plan) tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.": "Vairāki plāni: virsraksta poga + (Pievienot plānu) izveido maināmu kopiju, bet “Padarīt aktīvu” sadaļā “Citi plāni” to ieslēdz — dienu izmaiņas atgriežas kopā ar plānu.",
+ "Napisz do nas": "Raksti mums",
+ "Otwiera aplikację Mail": "Atver lietotni Pasts",
+ "Trening — opinia": "Treniņš — atsauksme",
+ "Wersja: {v} · iOS {os} · Język: {lang}": "Versija: {v} · iOS {os} · Valoda: {lang}",
+ "Nie udało się otworzyć poczty": "Neizdevās atvērt Pastu",
+ "Napisz na: {mail}": "Raksti uz: {mail}"
 }

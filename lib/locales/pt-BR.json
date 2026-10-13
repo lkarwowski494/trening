@@ -526,5 +526,7 @@
  "Domyślna przerwa (s)": "Descanso padrão (s)",
  "Nie zapisano jeszcze w Apple Health — zapis zostanie ponowiony przy następnym uruchomieniu aplikacji.": "Ainda não salvo no Apple Health — o salvamento será repetido na próxima vez que o app abrir.",
  "Czeka na zapis w Apple Health: {n}. Zapis zostanie ponowiony przy uruchomieniu i powrocie do aplikacji.": "Aguardando para serem salvos no Apple Health: {n}. O salvamento será repetido quando o app abrir e quando você voltar para ele.",
- "Kilka planów: przycisk + w nagłówku (Dodaj plan) tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.": "Vários planos: o botão + no cabeçalho (Adicionar plano) cria uma cópia para você alterar e «Tornar ativo» em «Outros planos» ativa essa cópia — as mudanças de dias voltam junto com o plano."
+ "Kilka planów: przycisk + w nagłówku (Dodaj plan) tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.": "Vários planos: o botão + no cabeçalho (Adicionar plano) cria uma cópia para você alterar e «Tornar ativo» em «Outros planos» ativa essa cópia — as mudanças de dias voltam junto com o plano.",
+ "Napisz do nas": "Escreva para nós",
+ "Otwiera aplikację Mail": "Abre o app Mail"
 }

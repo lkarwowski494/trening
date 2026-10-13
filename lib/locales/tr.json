@@ -1516,5 +1516,11 @@
  "Nie zapisano jeszcze w Apple Health — zapis zostanie ponowiony przy następnym uruchomieniu aplikacji.": "Henüz Apple Sağlık’a kaydedilmedi — kayıt bir sonraki açılışta yeniden denenecek.",
  "Czeka na zapis w Apple Health: {n}. Zapis zostanie ponowiony przy uruchomieniu i powrocie do aplikacji.": "Apple Sağlık’a kaydedilmeyi bekleyen: {n}. Kayıt uygulama açıldığında ve uygulamaya dönüldüğünde yeniden denenir.",
  "Więcej → Szablony: przycisk + w nagłówku (Dodaj szablon) tworzy szablon: ćwiczenia, serie, zakres powtórzeń i przerwy.": "Daha Fazla → Şablonlar: üstteki “+” düğmesi (Şablon ekle) bir şablon oluşturur: hareketler, setler, tekrar aralığı ve dinlenmeler.",
- "Kilka planów: przycisk + w nagłówku (Dodaj plan) tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.": "Birden fazla plan: üstteki “+” düğmesi (Plan ekle) değiştirmek için bir kopya oluşturur, “Diğer planlar” altındaki “Etkin yap” onu açar — gün değişiklikleri planla birlikte geri gelir."
+ "Kilka planów: przycisk + w nagłówku (Dodaj plan) tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.": "Birden fazla plan: üstteki “+” düğmesi (Plan ekle) değiştirmek için bir kopya oluşturur, “Diğer planlar” altındaki “Etkin yap” onu açar — gün değişiklikleri planla birlikte geri gelir.",
+ "Napisz do nas": "Bize yazın",
+ "Otwiera aplikację Mail": "Mail uygulamasını açar",
+ "Trening — opinia": "Training — geri bildirim",
+ "Wersja: {v} · iOS {os} · Język: {lang}": "Sürüm: {v} · iOS {os} · Dil: {lang}",
+ "Nie udało się otworzyć poczty": "Mail açılamadı",
+ "Napisz na: {mail}": "Şu adrese yazın: {mail}"
 }

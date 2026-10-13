@@ -2555,6 +2555,14 @@
   "en": "At most {n} templates — each one gets at least one day."
  },
  {
+  "pl": "Napisz do nas",
+  "en": "Write to us"
+ },
+ {
+  "pl": "Napisz na: {mail}",
+  "en": "Write to: {mail}"
+ },
+ {
   "pl": "Następna seria.",
   "en": "Next set."
  },
@@ -2697,6 +2705,10 @@
  {
   "pl": "Nie udało się otworzyć danych.",
   "en": "Could not open your data."
+ },
+ {
+  "pl": "Nie udało się otworzyć poczty",
+  "en": "Couldn’t open Mail"
  },
  {
   "pl": "Nie udało się przywrócić zakupów. Sprawdź połączenie z internetem.",
@@ -3141,6 +3153,10 @@
  {
   "pl": "ostatnio {s}",
   "en": "last time {s}"
+ },
+ {
+  "pl": "Otwiera aplikację Mail",
+  "en": "Opens the Mail app"
  },
  {
   "pl": "Otwiera listę szablonów.",
@@ -4796,6 +4812,10 @@
   "en": "Workout"
  },
  {
+  "pl": "Trening — opinia",
+  "en": "Training — feedback"
+ },
+ {
   "pl": "Trening dopisywany wstecz: miejsce treningu wybierzesz w edytorze.",
   "en": "Workouts logged after the fact: you can choose the workout place in the editor."
  },
@@ -5303,6 +5323,10 @@
  {
   "pl": "Wersja testowa {n} · {date}",
   "en": "Test build {n} · {date}"
+ },
+ {
+  "pl": "Wersja: {v} · iOS {os} · Język: {lang}",
+  "en": "Version: {v} · iOS {os} · Language: {lang}"
  },
  {
   "pl": "Widok treningu",

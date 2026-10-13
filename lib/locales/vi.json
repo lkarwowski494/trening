@@ -1516,5 +1516,11 @@
  "Nie zapisano jeszcze w Apple Health — zapis zostanie ponowiony przy następnym uruchomieniu aplikacji.": "Chưa lưu vào Apple Health — việc lưu sẽ được thử lại vào lần mở ứng dụng tới.",
  "Czeka na zapis w Apple Health: {n}. Zapis zostanie ponowiony przy uruchomieniu i powrocie do aplikacji.": "Đang chờ lưu vào Apple Health: {n}. Việc lưu sẽ được thử lại khi ứng dụng khởi động và khi bạn quay lại ứng dụng.",
  "Więcej → Szablony: przycisk + w nagłówku (Dodaj szablon) tworzy szablon: ćwiczenia, serie, zakres powtórzeń i przerwy.": "Thêm → Mẫu: nút + ở tiêu đề (Thêm mẫu) tạo một mẫu: bài tập, hiệp, khoảng lần lặp và thời gian nghỉ.",
- "Kilka planów: przycisk + w nagłówku (Dodaj plan) tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.": "Nhiều kế hoạch: nút + ở tiêu đề (Thêm kế hoạch) tạo một bản sao để chỉnh, và “Đặt làm đang dùng” trong “Kế hoạch khác” sẽ bật nó — thay đổi theo ngày quay lại cùng kế hoạch."
+ "Kilka planów: przycisk + w nagłówku (Dodaj plan) tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.": "Nhiều kế hoạch: nút + ở tiêu đề (Thêm kế hoạch) tạo một bản sao để chỉnh, và “Đặt làm đang dùng” trong “Kế hoạch khác” sẽ bật nó — thay đổi theo ngày quay lại cùng kế hoạch.",
+ "Napisz do nas": "Liên hệ với chúng tôi",
+ "Otwiera aplikację Mail": "Mở ứng dụng Mail",
+ "Trening — opinia": "Training — phản hồi",
+ "Wersja: {v} · iOS {os} · Język: {lang}": "Phiên bản: {v} · iOS {os} · Ngôn ngữ: {lang}",
+ "Nie udało się otworzyć poczty": "Không mở được Mail",
+ "Napisz na: {mail}": "Viết tới: {mail}"
 }
